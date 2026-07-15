@@ -521,6 +521,127 @@ def detect_darvas_box(weekly, min_box_weeks=4):
     return out
 
 
+def _build_darvas2_boxes(high, low, close, n_confirm, tol):
+    """Forward scan: ratchet a candidate ceiling up, FREEZE it after n_confirm
+    non-exceeding weeks, then find a symmetric floor. Returns a stack of frozen
+    boxes oldest->newest: [(ceil_bar, ceil, floor_bar, floor_low), ...].
+
+    Boxes are RETAINED even after price later exceeds the ceiling — that later
+    penetration is the breakout. This is the fix for the always-False bug in
+    detect_darvas_box (which defined the ceiling as a trailing UNBROKEN max, so
+    the close could never be above it)."""
+    n = len(high)
+    boxes = []
+    i = 0
+    while i < n - 1:
+        cand_bar, cand_high, cnt = i, high[i], 0
+        j, confirmed = i + 1, False
+        while j < n:
+            if high[j] > cand_high * (1 + tol):
+                cand_bar, cand_high, cnt = j, high[j], 0   # new high -> ratchet up, reset
+            else:
+                cnt += 1
+                if cnt >= n_confirm:                       # ceiling CONFIRMED and FROZEN
+                    confirmed = True
+                    break
+            j += 1
+        if not confirmed:
+            break
+        ceil_bar, ceil = cand_bar, cand_high
+        # symmetric floor: n_confirm higher-lows after the ceiling bar
+        floor_bar, floor_low, lcnt, k = ceil_bar, low[ceil_bar], 0, ceil_bar + 1
+        while k < n:
+            if low[k] < floor_low * (1 - tol):
+                floor_bar, floor_low, lcnt = k, low[k], 0
+            else:
+                lcnt += 1
+            if close[k] > ceil:            # broke out before floor confirmed -> stop, floor provisional
+                break
+            if lcnt >= n_confirm:
+                break
+            k += 1
+        boxes.append((ceil_bar, ceil, floor_bar, floor_low))
+        i = ceil_bar + 1                   # keep scanning for the next (stacked) box
+    return boxes
+
+
+def detect_darvas2_box(weekly, n_confirm=2, tol=0.02, near_52w=0.15,
+                       overext_pct=10.0, vol_k=1.3):
+    """Robust weekly Darvas box: canonical FROZEN ceiling (forward scan) +
+    52-week-high precondition + volume gate. Coexists with detect_darvas_box.
+
+    Unlike the legacy detector, the ceiling is a fixed past swing-high that
+    later closes CAN exceed, so a real breakout (close above the box top) is
+    detectable. Returns a dict of darvas2_* fields, or None."""
+    if len(weekly) < 12:
+        return None
+    high = weekly["High"].astype(float).values
+    low = weekly["Low"].astype(float).values
+    close = weekly["Close"].astype(float).values
+    vol = pd.to_numeric(weekly["Volume"], errors="coerce").fillna(0.0).astype(float).values \
+        if "Volume" in weekly.columns else np.zeros(len(weekly))
+    n = len(weekly)
+    last_idx = n - 1
+    last = float(close[-1])
+
+    boxes = _build_darvas2_boxes(high, low, close, n_confirm, tol)
+    if not boxes:
+        return None
+
+    h52 = float(high[-52:].max()) if n >= 52 else float(high.max())
+
+    # ACTIVE box = latest FROZEN box near the 52w high that price has not run
+    # far past yet (retains already-broken boxes so the breakout is visible).
+    active, prior_top = None, None
+    for idx in range(len(boxes) - 1, -1, -1):
+        ceil_bar, ceil, floor_bar, flr = boxes[idx]
+        if flr <= 0 or ceil <= flr:
+            continue
+        if ceil < h52 * (1 - near_52w):                 # Darvas precondition: pressing highs
+            continue
+        if last > ceil * (1 + overext_pct / 100.0):     # already extended -> superseded
+            continue
+        active = (ceil_bar, ceil, floor_bar, flr)
+        prior_top = float(boxes[idx - 1][1]) if idx > 0 else None
+        break
+    if active is None:
+        return None
+    ceil_bar, ceil, floor_bar, flr = active
+
+    # Robust floor: the TRUE lowest low over the box span (what a chartist
+    # draws as the box bottom), not the early-stopping symmetric-floor guess.
+    # This makes degenerate long-span "boxes" that concealed a deep drawdown
+    # (an old ceiling the price fell far below and later reclaimed) fail the
+    # height gate instead of rendering with a phantom shallow floor.
+    flr = float(np.min(low[ceil_bar:last_idx + 1]))
+    if flr <= 0 or ceil <= flr:
+        return None
+
+    height_pct = (ceil - flr) / flr * 100.0
+    length_w = last_idx - ceil_bar
+    pos_pct = (last - flr) / (ceil - flr) * 100.0 if ceil > flr else None
+    dist_top = (last - ceil) / ceil * 100.0
+
+    over = np.where(close[ceil_bar + 1:] > ceil)[0]     # first weekly CLOSE over the frozen ceiling
+    freshness = int(last_idx - (ceil_bar + 1 + over[0])) if over.size else None
+
+    vw = vol[-30:] if n >= 30 else vol
+    vol_ok = bool(vw.size and vw.mean() > 0 and vol[-1] >= vol_k * float(np.mean(vw)))
+
+    return {
+        "darvas2_box_top": float(ceil),
+        "darvas2_box_bottom": float(flr),
+        "darvas2_box_height_pct": float(height_pct),
+        "darvas2_box_length_weeks": int(length_w),
+        "darvas2_pos_in_box_pct": float(pos_pct) if pos_pct is not None else None,
+        "darvas2_dist_from_top_pct": float(dist_top),
+        "darvas2_breakout_freshness_w": freshness,
+        "darvas2_prior_box_top": prior_top,
+        "darvas2_ceiling_at_52w_high": bool(ceil >= h52 * (1 - near_52w)),
+        "darvas2_vol_expansion": vol_ok,
+    }
+
+
 def true_range(high, low, close_prev):
     return np.maximum(
         high - low,
@@ -1866,6 +1987,9 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
     box = detect_darvas_box(weekly, min_box_weeks=4)
     if box is None:
         box = {}
+    box2 = detect_darvas2_box(weekly)   # robust canonical detector (coexists)
+    if box2 is None:
+        box2 = {}
 
     # Days since 52-week high (calendar days), kept for reference
     try:
@@ -2158,6 +2282,17 @@ def compute_momentum(df, spy_close=None, df_monthly=None, spy_monthly_close=None
         "dist_from_box_top_pct": box.get("dist_from_box_top_pct"),
         "inner_height_pct": box.get("inner_height_pct"),
         "inner_weeks": box.get("inner_weeks"),
+        # Robust canonical Darvas (darvas2_*) — frozen ceiling, detects breakouts
+        "darvas2_box_top": box2.get("darvas2_box_top"),
+        "darvas2_box_bottom": box2.get("darvas2_box_bottom"),
+        "darvas2_box_height_pct": box2.get("darvas2_box_height_pct"),
+        "darvas2_box_length_weeks": box2.get("darvas2_box_length_weeks"),
+        "darvas2_pos_in_box_pct": box2.get("darvas2_pos_in_box_pct"),
+        "darvas2_dist_from_top_pct": box2.get("darvas2_dist_from_top_pct"),
+        "darvas2_breakout_freshness_w": box2.get("darvas2_breakout_freshness_w"),
+        "darvas2_prior_box_top": box2.get("darvas2_prior_box_top"),
+        "darvas2_ceiling_at_52w_high": box2.get("darvas2_ceiling_at_52w_high"),
+        "darvas2_vol_expansion": box2.get("darvas2_vol_expansion"),
     }
 
     # --- Relative-to-SPY metrics ----------------------------------------
@@ -2909,6 +3044,40 @@ def main():
     df["base_on_base"] = df["inner_height_pct"].notna() & pd.to_numeric(df["inner_height_pct"], errors="coerce").lt(box_height * 0.6)
     df["near_box_top"] = dist_top.between(-3, 0)
     df["box_breakout"] = dist_top.gt(0) & dist_top.lt(5)  # just broke out, not yet extended
+
+    # --- Robust canonical Darvas (darvas2_*) tags ------------------------
+    # These use the FROZEN-ceiling detector so darvas2_breakout can actually
+    # fire (the legacy box_breakout above is ~always False by construction).
+    d2_len = pd.to_numeric(df.get("darvas2_box_length_weeks"), errors="coerce")
+    d2_hgt = pd.to_numeric(df.get("darvas2_box_height_pct"), errors="coerce")
+    d2_dist = pd.to_numeric(df.get("darvas2_dist_from_top_pct"), errors="coerce")
+    d2_fresh = pd.to_numeric(df.get("darvas2_breakout_freshness_w"), errors="coerce")
+    d2_at52 = (df["darvas2_ceiling_at_52w_high"].fillna(False)
+               if "darvas2_ceiling_at_52w_high" in df.columns
+               else pd.Series(False, index=df.index))
+    d2_vol = (df["darvas2_vol_expansion"].fillna(False)
+              if "darvas2_vol_expansion" in df.columns
+              else pd.Series(False, index=df.index))
+
+    df["darvas2_tight"] = d2_len.ge(4) & d2_hgt.lt(15) & d2_at52
+    df["darvas2_breakout"] = (
+        d2_dist.gt(0) & d2_dist.le(10)        # broke out, not overextended
+        & d2_fresh.ge(0) & d2_fresh.le(4)     # fresh (<=4 weeks)
+        & d2_at52
+        & d2_hgt.between(3, 35)
+        & d2_len.ge(3)                        # >=3-week base (reject 2-week noise)
+    )
+    df["darvas2_breakout_strong"] = df["darvas2_breakout"] & d2_vol
+    df["darvas2_tight_near_top"] = (
+        d2_at52 & d2_hgt.le(12) & d2_len.ge(4)
+        & d2_dist.between(-3, 0)              # top 3% of a tight, mature box
+        & d2_fresh.isna()                     # not yet broken out
+    )
+    _d2_top = pd.to_numeric(df.get("darvas2_box_top"), errors="coerce")
+    _d2_prior = pd.to_numeric(df.get("darvas2_prior_box_top"), errors="coerce")
+    df["darvas2_base_on_base"] = (
+        _d2_prior.notna() & _d2_top.gt(_d2_prior) & df["darvas2_tight"]
+    )
 
     # Qullamaggie Setup 3 (Consolidation Breakout): had a real prior move,
     # tight box, near top / just broken out, vol drying, relative trend up.

@@ -42,7 +42,8 @@ bools = ['mv_setup_premium','mv_setup_clean','mv_power_trend','mv_3w_tight',
          'sq_d_just_release','sq_w_hyper','harmonic_bullish_w_or_m',
          'harmonic_bullish_consonance','macd_above_signal','extended_w',
          'base_forming','very_long_base','base_on_base','near_box_top',
-         'box_breakout','consolidating','vol_drying','uptrend_w','tight_base_w',
+         'box_breakout','darvas2_breakout','darvas2_tight_near_top','darvas2_tight',
+         'consolidating','vol_drying','uptrend_w','tight_base_w',
          'td_bullish_exhaustion','td_bullish_exhaustion_strong',
          'breakout_squeeze','breakout_squeeze_strict','wma_trend_up',
          'monthly_uptrend','rel_trend_up','rel_macd_above_signal']
@@ -168,11 +169,13 @@ passes["TD-Sequential"] = (
 )
 
 # --- Darvas ---
-# Tight base of >= 12 weeks, near top, not yet broken
+# Robust darvas2 breakout/coil OR legacy tight base/near-top. (Legacy
+# box_breakout is ~always False by construction; darvas2_* actually fires.)
 passes["Darvas"] = (
-    (bcol("darvas_tight") & (col("box_length_weeks").fillna(0) >= 12))
+    bcol("darvas2_breakout")
+    | bcol("darvas2_tight_near_top")
+    | (bcol("darvas_tight") & (col("box_length_weeks").fillna(0) >= 12))
     | bcol("near_box_top")
-    | bcol("box_breakout")
     | (col("box_length_weeks").fillna(0) >= 20)
 )
 

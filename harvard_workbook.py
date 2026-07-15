@@ -46,7 +46,11 @@ bools = ['mv_setup_premium','mv_setup_clean','mv_power_trend','mv_3w_tight',
          'bearish_climax_turning','stacked_ma_down','weekly_stacked_ma_down',
          'stacked_ma_down_any','rs_laggard','rs_laggard_strict','prior_decline_30pct',
          'surfing_10dma_below','surfing_20dma_below','surfing_below_10_or_20',
-         'lower_highs_4w','harmonic_bearish_consonance']
+         'lower_highs_4w','harmonic_bearish_consonance',
+         # Robust canonical Darvas (darvas2_*)
+         'darvas2_tight','darvas2_breakout','darvas2_breakout_strong',
+         'darvas2_tight_near_top','darvas2_base_on_base','darvas2_vol_expansion',
+         'darvas2_ceiling_at_52w_high']
 for c in bools:
     if c in df.columns:
         df[c] = df[c].astype(str).str.lower().isin(["true","1","yes"])
@@ -209,11 +213,17 @@ LEGS = [
      ["box_length_weeks","pos_in_box_pct","near_box_top","box_breakout"],
      "Tightest Darvas bases — lowest box height with ≥12-week duration"),
 
-    ("11b. Darvas – Breakout from Longest Box", "box_length_weeks", False,
-     lambda d: bcol("box_breakout") & (d["box_length_weeks"].fillna(0) >= 8),
-     ["box_height_pct","pos_in_box_pct","darvas_tight","near_box_top",
-      "mv_composite_score","aqr_trend_score"],
-     "Fresh Darvas breakouts ranked by base length — longest consolidation + just broke out"),
+    ("11b. Darvas2 Breakout (longest box)", "darvas2_box_length_weeks", False,
+     lambda d: bcol("darvas2_breakout") & (d["darvas2_box_length_weeks"].fillna(0) >= 6),
+     ["darvas2_box_height_pct","darvas2_dist_from_top_pct","darvas2_breakout_freshness_w",
+      "darvas2_breakout_strong","darvas2_vol_expansion","mv_composite_score"],
+     "Robust Darvas: fresh CLOSE above a frozen ceiling (near 52w high, ≤10% extended, ≤4wk fresh), ranked by longest base"),
+
+    ("11c. Darvas2 Tight Coil (pre-breakout)", "darvas2_box_length_weeks", False,
+     lambda d: bcol("darvas2_tight_near_top"),
+     ["darvas2_box_height_pct","darvas2_dist_from_top_pct","darvas2_base_on_base",
+      "mv_composite_score","aqr_trend_score","adv"],
+     "Robust Darvas coil: sitting in the top 3% of a tight (≤12%) mature box at 52w highs, not yet broken out — pre-breakout watchlist"),
 
     ("12. Harmonic – Weekly Quality", "h_w_quality", False,
      lambda d: d["h_w_quality"].notna(),
@@ -338,10 +348,12 @@ LEGS = [
      "Canonical short setup (mirror of Q-canonical): RS≤10 + ADR≥5 + stacked DOWN + 30%+ prior decline + surfing 10/20 from below"),
 
     ("35. Bearish – Bear-Flag Consolidating", "prior_decline_3m_pct", True,
-     lambda d: bcol("bearish_setup_consolidating"),
-     ["adr_pct_20d","range_4w_pct","lower_highs_4w","prior_decline_1m_pct",
-      "surfing_below_10_or_20","stacked_ma_down_any"],
-     "Bear-flag candidate: 30%+ prior decline + tight 4w range + lower highs + ADR≥5 + stacked DOWN"),
+     lambda d: bcol("prior_decline_30pct") & bcol("stacked_ma_down_any")
+               & (bcol("lower_highs_4w") | (d["range_4w_pct"].fillna(99) <= 20)),
+     ["bearish_setup_consolidating","adr_pct_20d","range_4w_pct","lower_highs_4w",
+      "prior_decline_1m_pct","surfing_below_10_or_20"],
+     "Bear-flag population: 30%+ prior decline + stacked DOWN + (lower highs or tight range). "
+     "bearish_setup_consolidating column flags the strict full-criteria subset"),
 
     ("36. Bearish – Climax Turning", "td_mtf_composite", True,
      lambda d: bcol("bearish_climax_turning"),
@@ -356,9 +368,11 @@ LEGS = [
      "Monthly TD13 sell countdown complete — Demark's strongest topping signal"),
 
     ("38. Bearish – Harmonic Consonance", "harmonic_consonance", True,
-     lambda d: bcol("harmonic_bearish_consonance"),
-     ["h_w_pattern","h_m_pattern","harmonic_score","h_w_direction","h_m_direction"],
-     "Bearish harmonic patterns confirmed on multiple timeframes — multi-TF turning point"),
+     lambda d: pd.to_numeric(d["harmonic_consonance"], errors="coerce") <= -1,
+     ["harmonic_bearish_consonance","h_w_pattern","h_m_pattern","harmonic_score",
+      "h_w_direction","h_m_direction"],
+     "Bearish-leaning harmonic patterns (consonance ≤ -1). "
+     "harmonic_bearish_consonance column flags the strict multi-TF (≤ -2) subset"),
 
     ("39. Bearish – ATH-Climax Extended", "mv_dist_from_ath_pct", True,
      lambda d: bcol("mv_at_ath") & bcol("extended_w") & bcol("mv_climax_top_warning"),
