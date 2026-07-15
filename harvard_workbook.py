@@ -368,11 +368,11 @@ LEGS = [
      "Monthly TD13 sell countdown complete — Demark's strongest topping signal"),
 
     ("38. Bearish – Harmonic Consonance", "harmonic_consonance", True,
-     lambda d: pd.to_numeric(d["harmonic_consonance"], errors="coerce") <= -1,
+     lambda d: pd.to_numeric(d["harmonic_consonance"], errors="coerce") <= -0.5,
      ["harmonic_bearish_consonance","h_w_pattern","h_m_pattern","harmonic_score",
       "h_w_direction","h_m_direction"],
-     "Bearish-leaning harmonic patterns (consonance ≤ -1). "
-     "harmonic_bearish_consonance column flags the strict multi-TF (≤ -2) subset"),
+     "Bearish-leaning harmonic patterns (consonance ≤ -0.5 = a bearish pattern on some "
+     "timeframe, none bullish). harmonic_bearish_consonance flags the strict multi-TF (≤ -2) subset"),
 
     ("39. Bearish – ATH-Climax Extended", "mv_dist_from_ath_pct", True,
      lambda d: bcol("mv_at_ath") & bcol("extended_w") & bcol("mv_climax_top_warning"),
