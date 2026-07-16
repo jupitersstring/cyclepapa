@@ -62,7 +62,7 @@ def filter_events(events: dict, as_of: date) -> dict:
 
 def score_at(c: dict, events: dict, as_of: date, dna: float, era: float) -> float:
     ev = filter_events(events, as_of)
-    peak, _, conc, fwd_hits, jul, _ = score_forward(c, ev)
+    peak, _, conc, fwd_hits, jul, _, _silas = score_forward(c, ev)
     window, first_year = classify_window(fwd_hits)
     row = {
         "total_dna": dna,

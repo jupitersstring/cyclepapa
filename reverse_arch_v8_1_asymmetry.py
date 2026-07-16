@@ -513,29 +513,50 @@ def score_forward(c: dict, events: dict | None = None):
     all_hits = []
     robust_targets = ["Sun", "Mercury", "Venus", "Mars", "Jupiter", "Neptune"]
     lunar_targets = ["Moon"]
+    # Silas overlay: angles as forward eclipse targets (reduced weight, assumed
+    # 9:30 time), eclipse-Sun polarity split, <=1-degree tight-orb kicker, and
+    # eclipse-conj/opp-Sun M&A/rebrand flags.
+    angle_targets = ["ASC", "MC"]
+    eclipse_sun_events = []
 
     for ev in events.get("eclipses", []):
         is_scheat = "SCHEAT" in ev.get("type", "")
         star_amp = 1.8 if is_scheat else (1.5 if any(k in ev.get("type", "") for k in ("ALDEBARAN", "GREAT")) else 1.0)
         base = 10.0 if "total_solar" in ev.get("type", "") else (8.0 if "annular" in ev.get("type", "") else 5.0)
         base *= star_amp
-        for pn in robust_targets + lunar_targets:
+        for pn in robust_targets + lunar_targets + angle_targets:
             plon = c[pn]["lon"]
             r = hard_asp(ev["lon"], plon, 2.0)
             if not r:
                 continue
             asp, o = r
-            pm = 1.5 if pn == "Sun" else (1.4 if pn in ("Jupiter", "Neptune") else (1.1 if pn == "Moon" else 1.0))
+            if pn in angle_targets:
+                pm = 0.8
+            else:
+                pm = 1.5 if pn == "Sun" else (1.4 if pn in ("Jupiter", "Neptune") else (1.1 if pn == "Moon" else 1.0))
             pts = base * (2.0 - o) / 2.0 * pm
             if pn == "Moon":
                 pts *= 0.65
+            tag = ""
+            if pn == "Sun":
+                if asp == "conj":
+                    pts *= 1.2
+                    tag = " SUN-POWER"
+                elif asp == "opp":
+                    pts *= 0.9
+                    tag = " SUN-DRAIN"
+                if asp in ("conj", "opp") and o <= 1.0:
+                    eclipse_sun_events.append(f"{ev['date']} {asp} {o:.2f}° {ev.get('type','')[:20]}")
+            if o <= 1.0:
+                pts *= 1.3
+                tag += " TIGHT"
             try:
                 yr = int(ev["date"][:4])
                 if BARBAULT.get(yr, "RISING") == "FALLING":
                     pts *= 0.85
             except Exception:
                 pass
-            all_hits.append({"pts": pts, "date": ev["date"], "desc": f"{ev['date']} {ev.get('type','')[:30]} {asp} {pn} {o:.2f}°"})
+            all_hits.append({"pts": pts, "date": ev["date"], "desc": f"{ev['date']} {ev.get('type','')[:30]} {asp} {pn} {o:.2f}°{tag}"})
 
     for ev in events.get("outer_pair_conj_and_ingress", []):
         note = ev.get("note", "")
@@ -638,7 +659,20 @@ def score_forward(c: dict, events: dict | None = None):
                         pts *= 0.65
                     jul_score += pts
                     jul_hits.append(f"{body} {asp} {tn} {ao:.1f}°")
-    return peak["pts"], peak, top3 + rest, all_hits, jul_score, jul_hits
+
+    # Silas positioning rule: enter ~6 weeks before the first meaningful hit.
+    position_by = ""
+    for h in sorted(all_hits, key=lambda x: x["date"]):
+        if h["pts"] < 3 or len(h["date"]) != 10:
+            continue
+        try:
+            position_by = (date.fromisoformat(h["date"]) - timedelta(days=42)).isoformat()
+        except ValueError:
+            continue
+        break
+
+    silas = {"eclipse_sun_events": eclipse_sun_events, "position_by": position_by}
+    return peak["pts"], peak, top3 + rest, all_hits, jul_score, jul_hits, silas
 
 
 def era_match(c: dict) -> float:
@@ -803,7 +837,7 @@ def run_scoring(ipos: list[dict], events: dict | None = None, already_cult: set[
                 continue
             semi, l_hits = semi_lunar_bucket(c)
             spec, s_hits = speculative_bonus(c)
-            peak, peak_d, conc, fwd_hits, jul, jul_hits = score_forward(c, events)
+            peak, peak_d, conc, fwd_hits, jul, jul_hits, silas = score_forward(c, events)
             era = era_match(c)
             window, first_year = classify_window(fwd_hits)
             total_dna = robust + semi + spec
@@ -818,6 +852,8 @@ def run_scoring(ipos: list[dict], events: dict | None = None, already_cult: set[
                 "eq_sol": c["_equinox_solstice"], "founder_flag": founder_flag,
                 "r_hits": r_hits, "l_hits": l_hits, "s_hits": s_hits,
                 "fwd_hits": fwd_hits[:8], "peak_d": peak_d, "jul_hits": jul_hits[:4],
+                "eclipse_sun_events": silas["eclipse_sun_events"],
+                "position_by": silas["position_by"],
             })
         except Exception:
             continue
@@ -921,6 +957,7 @@ def export_results(results: list[dict], output_csv: str):
             "era", "jul26", "peak", "conc", "composite", "asym_early", "asym_enduring", "asym_total", "asym_label",
             "pre_cult", "window", "rally_type", "jn_phase", "jn_age", "jn_bucket", "lunar_phase", "archetype",
             "neptune_return", "nep_return_orb", "equinox_solstice", "founder_flag",
+            "eclipse_sun_event", "position_by",
             "key_robust_hit", "key_lunar_hit", "key_spec_hit", "peak_event", "jul26_hits",
         ])
         for i, r in enumerate(results, start=1):
@@ -932,6 +969,7 @@ def export_results(results: list[dict], output_csv: str):
                 f"{r['asym_early']:.1f}", f"{r['asym_enduring']:.1f}", f"{r['asym_total']:.1f}", r["asym_label"],
                 r["pre_cult"], r["window"], r["rally"], r["jn_phase"], f"{r['jn_age']:.0f}", r["jn_bucket"], r["phase"], r["archetype"],
                 r["nep_return"], f"{r['nep_orb']:.2f}", r["eq_sol"], r["founder_flag"],
+                "; ".join(r.get("eclipse_sun_events", [])[:2]), r.get("position_by", ""),
                 r["r_hits"][0][:80] if r["r_hits"] else "",
                 r["l_hits"][0][:80] if r["l_hits"] else "",
                 r["s_hits"][0][:80] if r["s_hits"] else "",
