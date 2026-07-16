@@ -33,7 +33,13 @@ def latest_results(exclude: str | None = None) -> list[Path]:
 
 
 def compute_diff(today: pd.DataFrame, prior: pd.DataFrame) -> dict:
-    """Per-ticker comparison of meaningful fields."""
+    """Per-ticker comparison of meaningful fields.
+
+    Scope guard: when the two runs cover materially different ticker
+    sets (e.g. a UK-only run vs a full-universe run) the added/removed
+    lists are run-scope noise, not real universe changes. We flag that
+    in the output so the reader doesn't misread 250 'removed' names as
+    delistings."""
     fields = ["in_setup_sleeve", "in_fundamentals_sleeve", "in_micro_sleeve",
               "catalyst", "phase", "expected_irr", "composite_score",
               "resolution_score", "rns_pdmr_buys", "rns_tr1_buys",
@@ -105,7 +111,10 @@ def compute_diff(today: pd.DataFrame, prior: pd.DataFrame) -> dict:
                 "from": b.get("catalyst") or "",
                 "to": a.get("catalyst") or "",
             })
+    size_ratio = len(today) / max(1, len(prior))
+    scope_mismatch = size_ratio < 0.8 or size_ratio > 1.25
     return {
+        "scope_mismatch": scope_mismatch,
         "added": list(added),
         "removed": list(removed),
         "sleeve_moves": sleeve_moves,
@@ -126,6 +135,11 @@ def render_markdown(today_path: Path, prior_path: Path, diff: dict) -> str:
         f"\nGenerated {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}",
         "",
     ]
+    if diff.get("scope_mismatch"):
+        lines.append(
+            "> **Scope warning:** the two runs cover materially "
+            "different ticker counts — the added/removed lists below "
+            "reflect run scope, not universe changes.\n")
     if diff["new_activists"]:
         lines.append("## NEW activist accumulation (highest priority)")
         for r in diff["new_activists"][:10]:

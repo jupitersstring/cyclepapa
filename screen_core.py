@@ -256,6 +256,12 @@ class ScreenResult:
     # Time-since-announcement (committed wind-downs only)
     catalyst_age_months: float | None = None
 
+    # Partial-coverage marker. Unlike `error`, a data gap does NOT
+    # remove the name from ranking — it only voids the technical leg.
+    # Values: "no_price_data" (no/short OHLCV) or "no_base" (price
+    # history present but no detectable base).
+    data_gaps: str | None = None
+
     # Ranking sleeve tags
     in_setup_sleeve: bool = False        # passes setup gates + score
     in_fundamentals_sleeve: bool = False  # event catalyst + IRR alone

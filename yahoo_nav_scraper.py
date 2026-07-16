@@ -54,6 +54,16 @@ def _write_cache(data: dict) -> None:
         pass
 
 
+# Circuit breaker: yf.Ticker().info runs on curl_cffi, which bypasses
+# HTTPS_PROXY and dies slowly (~15-30s of retries per name) in proxied
+# environments. After N consecutive failures we stop trying for the
+# rest of the process — non-UK names then fall back to the
+# discount_override column in universe.csv via the normal priority
+# chain (AIC -> yahoo -> override).
+_CONSECUTIVE_FAILURES = 0
+_BREAKER_THRESHOLD = 3
+
+
 def fetch_yahoo_discounts(tickers: list[str], use_cache: bool = True,
                           verbose: bool = False) -> dict[str, float]:
     """For each ticker, compute book-value-implied discount = 1 - price/book.
@@ -61,6 +71,7 @@ def fetch_yahoo_discounts(tickers: list[str], use_cache: bool = True,
     Returns a dict of ticker -> discount (positive = discount, negative
     = premium). Only ticks that pass the sanity filter are included.
     """
+    global _CONSECUTIVE_FAILURES
     cache = _read_cache() or {} if use_cache else {}
     out: dict[str, float] = {}
     needed = [t for t in tickers if t not in cache]
@@ -69,10 +80,21 @@ def fetch_yahoo_discounts(tickers: list[str], use_cache: bool = True,
               f"need to fetch: {len(needed)}")
 
     for i, t in enumerate(needed, 1):
+        if _CONSECUTIVE_FAILURES >= _BREAKER_THRESHOLD:
+            # Transport is broken — don't burn 30s per remaining name.
+            # Leave these OUT of the cache so a healthy future process
+            # retries them (caching None would suppress the retry for
+            # the cache TTL and silently reduce coverage).
+            break
         try:
             info = yf.Ticker(t).info
             price = info.get("regularMarketPrice") or info.get("previousClose")
             book = info.get("bookValue")
+            if price is None and book is None:
+                _CONSECUTIVE_FAILURES += 1
+                cache[t] = None
+                continue
+            _CONSECUTIVE_FAILURES = 0
             if price is None or book is None or book <= 0:
                 cache[t] = None
                 continue
@@ -83,6 +105,7 @@ def fetch_yahoo_discounts(tickers: list[str], use_cache: bool = True,
             discount = 1.0 - ratio
             cache[t] = discount
         except Exception:
+            _CONSECUTIVE_FAILURES += 1
             cache[t] = None
         if verbose and i % 10 == 0:
             print(f"  [{i}/{len(needed)}]", flush=True)

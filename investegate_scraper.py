@@ -616,15 +616,29 @@ def _tr1_cache_path(url: str) -> Path:
     return TR1_DETAIL_DIR / f"{rns_id}.json"
 
 
-def fetch_tr1_detail(url: str, *, use_cache: bool = True) -> dict:
+def fetch_tr1_detail(url: str, *, use_cache: bool = True,
+                     announce_date: str | None = None) -> dict:
     """Fetch one TR-1 body and parse holder + position. Returns dict
-    {holder, new_pct, prev_pct, delta_pp, direction, is_activist}.
-    Cached per-URL forever."""
+    {holder, new_pct, prev_pct, delta_pp, direction, is_activist,
+    url, epic, date}. Cached per-URL forever.
+
+    announce_date (ISO) is stamped into the cache record when given so
+    campaign analysis stays possible after the parent announcement
+    scrolls off the per-EPIC page."""
     cp = _tr1_cache_path(url)
     if use_cache and cp.exists():
         try:
             with open(cp) as f:
-                return json.load(f)
+                rec = json.load(f)
+            # Backfill date onto legacy records when we know it now
+            if announce_date and not rec.get("date"):
+                rec["date"] = announce_date
+                try:
+                    with open(cp, "w") as fw:
+                        json.dump(rec, fw)
+                except Exception:
+                    pass
+            return rec
         except Exception:
             pass
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
@@ -655,9 +669,17 @@ def fetch_tr1_detail(url: str, *, use_cache: bool = True) -> dict:
         direction = "unknown"
     holder_lc = holder.lower()
     is_activist = any(a in holder_lc for a in _activist_holders())
+    # Persist the source URL so downstream consumers (the activist-
+    # campaign tracker) can recover epic + date even after the parent
+    # announcement scrolls out of the per-EPIC page window. Without
+    # this the campaign join silently drops older filings.
+    epic_m = re.search(r"--([a-z0-9]+)/", url.lower())
     rec = {"holder": holder, "new_pct": new_pct, "prev_pct": prev_pct,
            "delta_pp": round(delta, 4), "direction": direction,
-           "is_activist": is_activist}
+           "is_activist": is_activist,
+           "url": url,
+           "epic": (epic_m.group(1).upper() if epic_m else None),
+           "date": announce_date}
     if use_cache:
         try:
             with open(cp, "w") as f:
@@ -696,7 +718,7 @@ def enrich_tr1_directions(
             break
         cp = _tr1_cache_path(a.url)
         had_cache = cp.exists()
-        det = fetch_tr1_detail(a.url)
+        det = fetch_tr1_detail(a.url, announce_date=a.date)
         if not had_cache:
             fetched += 1
         d = det.get("direction", "unknown")

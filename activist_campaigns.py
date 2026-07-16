@@ -71,6 +71,7 @@ def collect_filings() -> list[dict]:
             if u and d:
                 url_to_meta[u] = (epic, d)
     out = []
+    unmatched = 0
     for jf in TR1_DETAIL_DIR.glob("*.json"):
         try:
             det = json.loads(jf.read_text())
@@ -82,19 +83,20 @@ def collect_filings() -> list[dict]:
         norm = _norm_holder(holder)
         if not norm:
             continue
-        # The per-URL cache doesn't know which URL it came from once we
-        # only have the file; we have to find it from the URL -> meta
-        # index. Filename is the slug-id; match by that.
-        rns_id = jf.stem
-        # Find an URL whose path ends with /{rns_id}
-        match = None
-        for u, (epic, d) in url_to_meta.items():
-            if u.rstrip("/").endswith(f"/{rns_id}"):
-                match = (epic, d)
-                break
-        if match is None:
+        # Preferred path: epic + date stamped in the detail record
+        # (records written after 2026-07 carry these). Fall back to
+        # joining via the per-EPIC announcement index for older files.
+        epic = det.get("epic")
+        d = det.get("date")
+        if not (epic and d):
+            rns_id = jf.stem
+            for u, (e2, d2) in url_to_meta.items():
+                if u.rstrip("/").endswith(f"/{rns_id}"):
+                    epic, d = e2, d2
+                    break
+        if not (epic and d):
+            unmatched += 1
             continue
-        epic, d = match
         out.append({
             "ticker": f"{epic}.L",
             "date": d,
@@ -103,6 +105,13 @@ def collect_filings() -> list[dict]:
             "delta_pp": float(det.get("delta_pp") or 0.0),
             "direction": det.get("direction", "unknown"),
         })
+    if unmatched:
+        # Silent drops are the enemy — surface how many detail files
+        # couldn't be joined (parent announcement aged off the page and
+        # the record predates url/date stamping).
+        print(f"[campaigns] WARNING: {unmatched} activist TR-1 detail "
+              f"file(s) unmatchable to epic/date — excluded from "
+              f"campaign detection", file=sys.stderr)
     return out
 
 

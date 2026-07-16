@@ -60,13 +60,35 @@ def _age_hours(p: Path) -> float:
     return (time.time() - p.stat().st_mtime) / 3600.0
 
 
+# Circuit breaker: yfinance's curl_cffi backend can be broken at the
+# transport level (proxied environments) and each failure burns ~15-30s
+# of internal retries. After N consecutive empty/erroring yfinance
+# calls we stop trying it for the rest of the process and go straight
+# to the urllib chart API. Any yfinance success resets the counter.
+_YF_CONSECUTIVE_FAILURES = 0
+_YF_BREAKER_THRESHOLD = 3
+
+
 def _download(ticker: str, period: str = "5y",
               interval: str = "1wk") -> pd.DataFrame | None:
-    try:
-        d = yf.download(ticker, period=period, interval=interval,
-                        progress=False, auto_adjust=True)
-    except Exception:
-        return None
+    """Download OHLCV. Tries yfinance first; falls back to the Yahoo
+    chart API via urllib. The fallback matters in proxied
+    environments: yfinance's curl_cffi backend bypasses HTTPS_PROXY
+    and dies on TLS, while urllib honours the proxy and works."""
+    global _YF_CONSECUTIVE_FAILURES
+    d = None
+    if _YF_CONSECUTIVE_FAILURES < _YF_BREAKER_THRESHOLD:
+        try:
+            d = yf.download(ticker, period=period, interval=interval,
+                            progress=False, auto_adjust=True)
+        except Exception:
+            d = None
+        if d is None or d.empty:
+            _YF_CONSECUTIVE_FAILURES += 1
+        else:
+            _YF_CONSECUTIVE_FAILURES = 0
+    if d is None or d.empty:
+        d = _download_via_chart_api(ticker, period=period, interval=interval)
     if d is None or d.empty:
         return None
     if isinstance(d.columns, pd.MultiIndex):
@@ -76,6 +98,40 @@ def _download(ticker: str, period: str = "5y",
     if bad.any():
         d.loc[bad, "Low"] = d.loc[bad, ["Open", "Close"]].min(axis=1)
     return d.dropna(subset=["Close", "Volume"])
+
+
+def _download_via_chart_api(ticker: str, period: str = "5y",
+                            interval: str = "1wk") -> pd.DataFrame | None:
+    """Direct Yahoo v8 chart API via urllib (proxy-friendly)."""
+    import json
+    import urllib.parse
+    import urllib.request
+    url = ("https://query1.finance.yahoo.com/v8/finance/chart/"
+           f"{urllib.parse.quote(ticker)}?range={period}&interval={interval}")
+    req = urllib.request.Request(url, headers={
+        "User-Agent": "Mozilla/5.0 (compatible; CyclepapaPrices/1.0)"})
+    try:
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            payload = json.loads(resp.read().decode("utf-8"))
+    except Exception:
+        return None
+    try:
+        result = payload["chart"]["result"][0]
+        ts = result["timestamp"]
+        q = result["indicators"]["quote"][0]
+        df = pd.DataFrame({
+            "Open": q["open"], "High": q["high"], "Low": q["low"],
+            "Close": q["close"], "Volume": q["volume"],
+        }, index=pd.to_datetime(ts, unit="s"))
+        # Use adjclose when present (matches auto_adjust=True closer)
+        adj = result["indicators"].get("adjclose")
+        if adj and adj[0].get("adjclose"):
+            ratio = pd.Series(adj[0]["adjclose"], index=df.index) / df["Close"]
+            for col in ("Open", "High", "Low", "Close"):
+                df[col] = df[col] * ratio
+        return df.dropna(subset=["Close"])
+    except (KeyError, IndexError, TypeError):
+        return None
 
 
 def get(ticker: str, *, ttl_hours: float = 24.0,
@@ -89,6 +145,15 @@ def get(ticker: str, *, ttl_hours: float = 24.0,
             pass
     d = _download(ticker)
     if d is None or d.empty:
+        # STALE-CACHE FALLBACK: a failed refresh must not erase
+        # coverage we already have. Serving yesterday's parquet beats
+        # dropping the name from the screen entirely (the June-24
+        # "255 of 653" coverage collapse was exactly this).
+        if p.exists():
+            try:
+                return pd.read_parquet(p)
+            except Exception:
+                pass
         return None
     try:
         d.to_parquet(p)
@@ -111,6 +176,12 @@ def get_daily(ticker: str, *, ttl_hours: float = 24.0,
     period = "6mo" if days <= 180 else "1y"
     d = _download(ticker, period=period, interval="1d")
     if d is None or d.empty:
+        # Stale-cache fallback — same rationale as get()
+        if p.exists():
+            try:
+                return pd.read_parquet(p)
+            except Exception:
+                pass
         return None
     try:
         d.to_parquet(p)

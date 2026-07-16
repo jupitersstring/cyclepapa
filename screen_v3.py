@@ -58,6 +58,22 @@ except Exception:
 
 # ---------------------------------------------------------------------------
 
+def promotion_increases_probability(current: str | None,
+                                    candidate: str) -> bool:
+    """Catalyst auto-promotion is PROMOTION ONLY — never demote.
+
+    A committed wind-down naturally accumulates >=3 winddown filings
+    and serial tenders; letting the RNS-density rule rewrite
+    WIND_DOWN_COMMITTED (P=0.80) down to WIND_DOWN_LIKELY (P=0.60)
+    silently degraded RMII and four RETURN_OF_CAPITAL_LIVE names in
+    the 2026-06-24 run. Apply a new tag only when it carries a
+    strictly higher base probability than the current one."""
+    cur_p = (params.CATALYST_PROB_BASE.get(current, params.DEFAULT_PROB_BASE)
+             if current else 0.0)
+    new_p = params.CATALYST_PROB_BASE.get(candidate, params.DEFAULT_PROB_BASE)
+    return new_p > cur_p
+
+
 def screen_one(
     ticker: str,
     *,
@@ -92,99 +108,109 @@ def screen_one(
     r.gate_gearing = "gearing" not in " ".join(reasons)
     r.gate_ongoing_charge = "ongoing charge" not in " ".join(reasons)
 
-    # Price data
-    if ohlcv is None or len(ohlcv) < 30:
-        r.error = "no price data"
-        return r
-    data = ohlcv
-    r.last_close = float(data["Close"].iloc[-1])
-
-    # Base detection
-    base = core.detect_base(data)
-    if base is None:
-        r.error = "no base"
+    # Price data. Missing / short history is a DATA GAP, not a fatal
+    # error — the fundamentals sleeve doesn't need a chart. The old
+    # early-returns here silently excluded 35 names per run (21 "no
+    # price data" + 14 "no base") from ALL sleeves including
+    # fundamentals, which is exactly the USF bug class the
+    # fundamentals sleeve was built to prevent.
+    data = ohlcv if (ohlcv is not None and len(ohlcv) >= 30) else None
+    base = None
+    if data is None:
+        r.data_gaps = "no_price_data"
         r.phase = "NO_BASE"
-        # Still populate discount & catalyst data for completeness
-        _populate_discount(r, aic_summary, yahoo_discount, row)
-        return r
+    else:
+        r.last_close = float(data["Close"].iloc[-1])
+        base = core.detect_base(data)
+        if base is None:
+            r.data_gaps = "no_base"
+            r.phase = "NO_BASE"
+            # Price-change features are computable without a base
+            if len(data) >= 14:
+                r.chg_13w_pct = float(
+                    data["Close"].iloc[-1] / data["Close"].iloc[-14] - 1)
+            if len(data) >= 27:
+                r.chg_26w_pct = float(
+                    data["Close"].iloc[-1] / data["Close"].iloc[-27] - 1)
 
-    r.base_start = base.index[0]
-    r.base_length_weeks = len(base)
-    closes = base["Close"]
-    r.base_low = float(closes.min())
-    r.base_high = float(closes.max())
-    med = float(closes.median())
-    r.base_range_pct = (r.base_high - r.base_low) / med if med > 0 else None
-    lo_q, hi_q = float(closes.quantile(0.25)), float(closes.quantile(0.75))
-    # IQR range — robust to outliers, used by compute_setup_score for
-    # the broken-base check.
-    r.base_quantile_range_pct = (hi_q - lo_q) / med if med > 0 else None
+    if base is not None:
+        r.base_start = base.index[0]
+        r.base_length_weeks = len(base)
+        closes = base["Close"]
+        r.base_low = float(closes.min())
+        r.base_high = float(closes.max())
+        med = float(closes.median())
+        r.base_range_pct = (r.base_high - r.base_low) / med if med > 0 else None
+        lo_q, hi_q = float(closes.quantile(0.25)), float(closes.quantile(0.75))
+        # IQR range — robust to outliers, used by compute_setup_score for
+        # the broken-base check.
+        r.base_quantile_range_pct = (hi_q - lo_q) / med if med > 0 else None
 
-    # POC
-    r.poc = core.base_volume_profile(base)
-    if r.poc and r.poc > 0:
-        r.poc_distance_pct = abs(r.last_close - r.poc) / r.poc
+        # POC
+        r.poc = core.base_volume_profile(base)
+        if r.poc and r.poc > 0:
+            r.poc_distance_pct = abs(r.last_close - r.poc) / r.poc
 
-    # Price change
-    if len(data) >= 14:
-        r.chg_13w_pct = float(data["Close"].iloc[-1] / data["Close"].iloc[-14] - 1)
-    if len(data) >= 27:
-        r.chg_26w_pct = float(data["Close"].iloc[-1] / data["Close"].iloc[-27] - 1)
+        # Price change
+        if len(data) >= 14:
+            r.chg_13w_pct = float(data["Close"].iloc[-1] / data["Close"].iloc[-14] - 1)
+        if len(data) >= 27:
+            r.chg_26w_pct = float(data["Close"].iloc[-1] / data["Close"].iloc[-27] - 1)
 
-    # Volume features
-    bv = base["Volume"].astype(float)
-    if len(bv) >= 5 and bv.std() > 0:
-        r.vol_z_last = float((data["Volume"].iloc[-1] - bv.mean()) / bv.std())
-    signed_sum, count_ge_1p5, max_abs = core.directional_vol_score(data, base, window=8)
-    r.directional_vol_8w = signed_sum
-    r.vol_z_8w_bars_over_1p5 = count_ge_1p5
-    r.vol_z_8w_max = max_abs
+        # Volume features
+        bv = base["Volume"].astype(float)
+        if len(bv) >= 5 and bv.std() > 0:
+            r.vol_z_last = float((data["Volume"].iloc[-1] - bv.mean()) / bv.std())
+        signed_sum, count_ge_1p5, max_abs = core.directional_vol_score(data, base, window=8)
+        r.directional_vol_8w = signed_sum
+        r.vol_z_8w_bars_over_1p5 = count_ge_1p5
+        r.vol_z_8w_max = max_abs
 
-    # Daily spike — single-bar volume signature that weekly bars
-    # smooth over. Either modality (weekly absorption OR daily spike)
-    # is enough to trigger BASE_ABSORBING.
-    if daily_ohlcv is not None:
-        dz_max, dz_dt, dz_signed, has_spike = core.daily_vol_spike_features(
-            daily_ohlcv)
-        r.daily_vol_z_max_30d = dz_max
-        r.daily_vol_z_max_30d_date = dz_dt
-        r.daily_vol_spike_directional = dz_signed
-        r.has_daily_spike = has_spike
+        # Daily spike — single-bar volume signature that weekly bars
+        # smooth over. Either modality (weekly absorption OR daily spike)
+        # is enough to trigger BASE_ABSORBING.
+        if daily_ohlcv is not None:
+            dz_max, dz_dt, dz_signed, has_spike = core.daily_vol_spike_features(
+                daily_ohlcv)
+            r.daily_vol_z_max_30d = dz_max
+            r.daily_vol_z_max_30d_date = dz_dt
+            r.daily_vol_spike_directional = dz_signed
+            r.has_daily_spike = has_spike
 
-    # Recent selloff (renamed)
-    recent = data["Close"].iloc[-6:]
-    if len(recent) >= 2:
-        weekly_chg = recent.pct_change().dropna()
-        r.recent_selloff = bool((weekly_chg < -0.08).any())
-        if r.recent_selloff:
-            r.selloff_max_drop_pct = float(weekly_chg.min())
+        # Recent selloff (renamed)
+        recent = data["Close"].iloc[-6:]
+        if len(recent) >= 2:
+            weekly_chg = recent.pct_change().dropna()
+            r.recent_selloff = bool((weekly_chg < -0.08).any())
+            if r.recent_selloff:
+                r.selloff_max_drop_pct = float(weekly_chg.min())
 
-    # MFI
-    mfi = core.money_flow_index(data, period=18)
-    if len(mfi.dropna()) >= 2:
-        r.mfi = float(mfi.iloc[-1])
-        r.mfi_rising = float(mfi.iloc[-1]) > float(mfi.iloc[-2])
-    if len(mfi.dropna()) >= 8:
-        r.mfi_low_8w = float(mfi.iloc[-8:].min())
+        # MFI
+        mfi = core.money_flow_index(data, period=18)
+        if len(mfi.dropna()) >= 2:
+            r.mfi = float(mfi.iloc[-1])
+            r.mfi_rising = float(mfi.iloc[-1]) > float(mfi.iloc[-2])
+        if len(mfi.dropna()) >= 8:
+            r.mfi_low_8w = float(mfi.iloc[-8:].min())
 
-    in_base = (r.base_low * 0.95 <= r.last_close <= r.base_high * 1.05)
-    r.in_base = in_base
+        in_base = (r.base_low * 0.95 <= r.last_close <= r.base_high * 1.05)
+        r.in_base = in_base
 
-    r.phase = core.classify_phase(
-        in_base=in_base,
-        base_length_weeks=r.base_length_weeks,
-        vol_z_last=r.vol_z_last,
-        vol_z_8w_max=r.vol_z_8w_max,
-        directional_8w=r.directional_vol_8w,
-        chg_13w=r.chg_13w_pct,
-        last_close=r.last_close,
-        base_high=r.base_high,
-        base_low=r.base_low,
-        recent_selloff=r.recent_selloff,
-        mfi_low_8w=r.mfi_low_8w,
-        daily_vol_z_max_30d=r.daily_vol_z_max_30d,
-        daily_vol_spike_directional=r.daily_vol_spike_directional,
-    )
+        r.phase = core.classify_phase(
+            in_base=in_base,
+            base_length_weeks=r.base_length_weeks,
+            vol_z_last=r.vol_z_last,
+            vol_z_8w_max=r.vol_z_8w_max,
+            directional_8w=r.directional_vol_8w,
+            chg_13w=r.chg_13w_pct,
+            last_close=r.last_close,
+            base_high=r.base_high,
+            base_low=r.base_low,
+            recent_selloff=r.recent_selloff,
+            mfi_low_8w=r.mfi_low_8w,
+            daily_vol_z_max_30d=r.daily_vol_z_max_30d,
+            daily_vol_spike_directional=r.daily_vol_spike_directional,
+        )
 
     # Discount
     _populate_discount(r, aic_summary, yahoo_discount, row)
@@ -297,7 +323,10 @@ def screen_one(
             promoted = params.DISCOUNT_STRETCH_TARGET
             promoted_by = "discount_stretch"
     if promoted != r.catalyst and promoted:
-        r.catalyst = promoted
+        if promotion_increases_probability(r.catalyst, promoted):
+            r.catalyst = promoted
+        else:
+            promoted_by = "none"
     r.catalyst_promoted_by = promoted_by
     base_prob = params.CATALYST_PROB_BASE.get(r.catalyst, params.DEFAULT_PROB_BASE)
     r.catalyst_prob_base = base_prob
@@ -753,7 +782,10 @@ def main() -> int:
             lambda xs: "; ".join(xs) if isinstance(xs, list) else "")
 
     # 7) Output CSV
-    out_path = args.out or f"results_{datetime.now().strftime('%Y%m%d')}.csv"
+    # HHMMSS in the default filename — same-day runs previously
+    # overwrote each other, which also made runs.db ingest the same
+    # filename twice with different contents.
+    out_path = args.out or f"results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
     df.to_csv(out_path, index=False)
     print(f"[v3] wrote {len(df)} rows to {out_path}", file=sys.stderr)
 
@@ -852,6 +884,20 @@ def main() -> int:
 
     by_phase = keep.groupby("phase").size().sort_values(ascending=False)
     print(f"\nPhase distribution among investable:\n{by_phase}")
+
+    # Coverage accounting — every universe row must be traceable to
+    # ranked / gated / gapped / errored. Silent drops hide here.
+    print("\nCoverage accounting:")
+    print(f"  universe rows screened:   {len(df)}")
+    if "data_gaps" in df.columns:
+        gaps = df["data_gaps"].value_counts()
+        for gap, n in gaps.items():
+            print(f"  data gap — {gap}: {n}  (fundamental leg still ranked)")
+    n_err = df["error"].notna().sum()
+    if n_err:
+        print(f"  hard errors (unrankable):  {n_err}")
+        for e, n in df[df["error"].notna()]["error"].value_counts().items():
+            print(f"    {e}: {n}")
 
     if not args.include_uninvestable:
         uninv = df[(df["investable"] == False)].sort_values(
