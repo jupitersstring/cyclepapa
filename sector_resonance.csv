@@ -1,0 +1,727 @@
+ticker,name,date,sector,resonance,resonance_classical,top_ruler,tier_fired,t0_asym,peak_asym,months_to_peak,dna,sector_adj_asym
+AVIV,Aviv REIT Inc,2013-03-20,real_estate,1.3,0.0,Moon,modern,99.11,101.96,4,21.1,104.3
+ENTA,Enanta Pharmaceuticals Inc,2013-03-20,pharma_biotech,0.78,0.0,Neptune,modern,99.11,101.96,4,21.1,102.2
+AKBA,Akebia Therapeutics Inc,2014-03-20,pharma_biotech,1.4,0.0,Jupiter,contested,94.15,94.15,0,22.6,99.4
+CQP,Cheniere Energy Partners LP,2007-03-20,oil_gas,1.03,0.0,Pluto,modern,91.21,91.21,0,26.3,95.0
+CHFN,Charter Financial Corp,2010-09-23,banking_financial,1.98,0.0,Jupiter,contested,80.82,80.82,0,17.8,87.2
+NRGN,Neurogen,1989-10-03,pharma_biotech,7.08,0.0,Mercury,modern,67.75,67.75,0,22.8,86.9
+MPO,Midstates Petroleum Co Inc,2012-04-19,oil_gas,4.15,1.5,Neptune,modern,74.28,74.28,0,9.0,86.6
+COR,CoreSite Realty Corporation,2010-09-22,real_estate,1.5,1.5,Saturn,classical,80.88,80.88,0,17.8,85.7
+TTPH,Tetraphase Pharmaceuticals Inc,2013-03-19,pharma_biotech,0.98,0.0,Neptune,modern,82.18,86.64,4,19.2,85.4
+CTR,ClearBridge Energy MLP Total,2012-06-26,oil_gas,4.15,3.5,Saturn,classical,72.37,72.37,0,12.8,84.4
+EQM,EQT Midstream Partners LP,2012-06-26,oil_gas,4.15,3.5,Saturn,classical,72.37,72.37,0,12.8,84.4
+LX,LexinFintech Holdings,2017-12-21,banking_financial,1.92,0.0,Saturn,contested,77.38,77.38,0,12.8,83.3
+AKRO,Akero Therapeutics Inc,2019-06-20,pharma_biotech,2.95,0.0,Neptune,modern,73.69,73.69,0,26.1,82.4
+PRVL,Prevail Therapeutics Inc,2019-06-20,pharma_biotech,2.95,0.0,Neptune,modern,73.69,73.69,0,26.1,82.4
+NRG,NRG Energy Inc,2000-05-30,oil_gas,0.36,0.0,Pluto,modern,80.99,84.81,5,15.0,82.2
+RGCI,Regent Communications Inc,2000-01-24,telecom_media,1.24,0.0,Neptune,modern,77.35,77.35,0,15.3,81.2
+KITE,Kite Pharma Inc,2014-06-20,pharma_biotech,3.6,0.0,Mercury,modern,69.87,69.87,0,12.2,79.9
+GO,Grocery Outlet Holding Corp,2019-06-20,food_agriculture,2.0,2.0,Saturn,classical,73.69,73.69,0,26.1,79.6
+PSIT,PSi Technologies Inc,2000-03-16,tech_software,1.27,0.0,Uranus,experimental,75.38,79.19,1,23.7,79.2
+MLTC,Multilink Technology Corp,2001-06-20,tech_software,1.65,0.0,Mercury,modern,74.26,74.26,0,13.4,79.2
+TIGR,Up Fintech Holding Ltd,2019-03-20,banking_financial,2.46,0.0,Jupiter,contested,71.84,71.84,0,20.5,78.9
+NEOF,Neoforma.com Inc,2000-01-24,tech_software,0.35,0.0,Uranus,experimental,77.35,77.35,0,15.3,78.4
+GU,Gushan Environmental Energy,2007-12-18,oil_gas,2.28,2.0,Saturn,classical,71.46,71.46,0,7.9,78.0
+IMGN,ImmunoGen,1989-11-16,pharma_biotech,2.78,0.0,Jupiter,contested,69.57,69.57,0,30.0,77.3
+PETX,Aratana Therapeutics Inc,2013-06-26,pharma_biotech,2.7,0.0,Mercury,modern,69.25,69.25,0,2.0,76.7
+DNJR,Golden Bull Ltd,2018-03-20,gold,0.0,0.0,,,76.57,76.57,0,20.1,76.6
+CSTR,Capstar Financial Holdings Inc,2016-09-22,banking_financial,1.96,0.0,Venus,contested,70.4,70.4,0,11.6,75.9
+ANTH,Anthera Pharmaceuticals Inc,2010-03-01,pharma_biotech,1.71,0.0,Jupiter,contested,70.27,70.27,0,5.2,75.1
+SMM,Salient Midstream & MLP Fund,2012-05-24,oil_gas,3.16,1.5,Neptune,modern,66.27,69.36,4,10.6,74.7
+CNTB,Connect Biopharma Hldg Ltd,2021-03-19,pharma_biotech,0.77,0.0,Neptune,modern,72.39,72.39,0,18.8,74.6
+FNCH,Finch Therapeutics Group Inc,2021-03-19,pharma_biotech,0.77,0.0,Neptune,modern,72.39,72.39,0,18.8,74.6
+TIL,Instil Bio Inc,2021-03-19,pharma_biotech,0.77,0.0,Neptune,modern,72.39,72.39,0,18.8,74.6
+ENBL,Enable Midstream Partners LP,2014-04-11,oil_gas,1.27,0.0,Neptune,modern,70.4,70.4,0,10.1,74.0
+PAHC,Phibro Animal Health Corp,2014-04-11,healthcare_services,1.27,0.0,Neptune,modern,70.4,70.4,0,10.1,74.0
+ALTU,Altus Pharmaceuticals Inc,2006-01-26,pharma_biotech,2.23,0.0,Mercury,modern,67.66,67.66,0,19.3,73.7
+FHRX,First Horizon Pharmaceutical,2000-05-31,pharma_biotech,0.42,0.0,Pluto,experimental,72.15,72.15,0,9.1,73.4
+AMC,AMC Entertainment Holdings,2013-12-18,entertainment,5.06,4.41,Venus,classical,61.01,61.01,0,13.8,73.4
+ONIS,ONI Systems Corp,2000-05-31,tech_software,0.35,0.0,Uranus,experimental,72.15,72.15,0,9.1,73.2
+LOUD,Loudeye Technologies Inc,2000-03-15,tech_software,1.15,0.0,Uranus,experimental,69.52,72.42,1,20.4,72.7
+OESX,Orion Energy Systems Inc,2007-12-18,tech_software,0.42,0.0,Mercury,modern,71.46,71.46,0,7.9,72.7
+IISX,Integrated Information Systems,2000-03-17,tech_software,1.07,0.0,Uranus,experimental,69.61,72.34,4,17.8,72.6
+OIS,Oil States International Inc,2001-02-08,oil_gas,1.49,1.49,Saturn,classical,68.51,68.51,0,8.9,72.6
+PF,Pinnacle Foods,2013-03-28,food_agriculture,0.0,0.0,,,72.48,72.48,0,15.9,72.5
+ESRT,Empire State Realty Trust,2013-10-02,real_estate,2.69,2.69,Saturn,classical,64.54,64.54,0,13.1,71.5
+GGM,Guggenheim Credit Allocation,2013-06-26,banking_financial,0.75,0.0,Jupiter,contested,69.25,69.25,0,2.0,71.3
+JPW,Nuveen Flexible Invest Inc Fd,2013-06-26,banking_financial,0.75,0.0,Jupiter,contested,69.25,69.25,0,2.0,71.3
+CTLM,Centillium Communications Inc,2000-05-23,telecom_media,1.3,0.0,Mercury,modern,67.1,70.79,4,11.5,70.6
+ICH,Investors Capital Holdings Ltd,2001-02-08,banking_financial,0.74,0.0,Saturn,contested,68.51,68.51,0,8.9,70.5
+CALD,Caldera Systems Inc,2000-03-21,tech_software,1.23,0.0,Uranus,experimental,66.94,70.83,8,17.4,70.2
+NEXT,Nextest Systems Corp,2006-03-21,tech_software,0.0,0.0,,,70.18,70.18,0,21.8,70.2
+GTTLO,GT Group Telecom Inc,2000-03-09,telecom_media,1.22,0.0,Neptune,modern,66.23,66.23,0,12.4,69.5
+OPHM,OraPharma Inc,2000-03-09,pharma_biotech,1.23,0.0,Neptune,modern,66.23,66.23,0,12.4,69.5
+SAMG,Silvercrest Asset Management,2013-06-26,silver,0.0,0.0,,,69.25,69.25,0,2.0,69.2
+CWLD,CrossWorlds Software Inc,2000-06-01,tech_software,0.35,0.0,Uranus,experimental,68.19,68.19,0,11.3,69.1
+INRG,INRANGE Technologies Corp,2000-09-21,tech_software,0.35,0.0,Uranus,experimental,68.05,68.05,0,4.6,69.0
+TTMI,TTM Technologies Inc,2000-09-21,tech_software,0.35,0.0,Uranus,experimental,68.05,68.05,0,4.6,69.0
+UPG,Universal Power Group,2006-12-21,utilities,0.0,0.0,,,68.66,68.66,0,13.8,68.7
+XXIA,IXIA Communications,2000-10-17,telecom_media,3.26,0.0,Mercury,modern,60.55,60.55,0,4.8,68.4
+CURN,Curon Medical Inc,2000-09-21,healthcare_services,0.0,0.0,,,68.05,68.05,0,4.6,68.0
+ALGN,Align Technology,2001-01-26,tech_software,0.35,0.0,Uranus,experimental,66.91,70.61,4,15.1,67.8
+IBEM,iBeam Broadcasting Corp,2000-05-17,telecom_media,1.3,0.0,Mercury,modern,64.39,64.39,0,7.8,67.7
+MRT,Morton's Restaurant Group Inc,2006-02-08,hospitality,1.92,0.0,Venus,modern,62.76,62.76,0,12.5,67.6
+PIH,1347 Property Insurance Hldgs,2014-04-01,insurance,2.2,0.0,Jupiter,contested,62.0,62.0,0,17.9,67.5
+PRTHV,Parthus Technologies PLC,2000-05-19,tech_software,2.05,0.0,Mercury,modern,62.32,64.54,4,9.6,67.4
+CSAV,coolsavings.com inc,2000-05-19,tech_software,2.05,0.0,Mercury,modern,62.32,64.54,4,9.6,67.4
+LMIN,Lastminute.com,2000-03-14,tech_software,1.03,0.0,Uranus,experimental,64.61,66.55,1,18.2,67.3
+HOMG,HomeGrocer.com,2000-03-09,tech_software,0.35,0.0,Uranus,experimental,66.23,66.23,0,12.4,67.2
+ACLA,Aclara Biosciences Inc,2000-03-21,pharma_biotech,0.0,0.0,,,66.94,70.83,8,17.4,66.9
+SONS,Sonus Networks Inc,2000-05-24,tech_software,2.35,0.0,Mercury,modern,61.19,65.32,4,10.3,66.9
+OAKS,Five Oaks Investment Corp,2013-03-21,banking_financial,1.15,0.0,Venus,contested,63.87,69.26,8,8.1,66.8
+FDUS,Fidus Investment Corp,2011-06-20,banking_financial,1.09,0.0,Saturn,contested,62.99,62.99,0,13.7,65.7
+TBET,Tibet Pharmaceuticals Inc,2011-01-24,pharma_biotech,0.54,0.0,Jupiter,contested,64.16,64.16,0,5.6,65.5
+AGLE,Aeglea BioTherapeutics Inc,2016-04-06,pharma_biotech,1.29,0.0,Neptune,modern,62.28,62.28,0,6.7,65.5
+IFX,Infineon Technologies AG,2000-03-13,tech_software,0.9,0.0,Uranus,experimental,63.14,65.03,1,15.1,65.4
+ADMA,ADMA Biologics,2013-10-17,pharma_biotech,2.64,0.0,Mercury,modern,59.13,59.13,0,5.3,65.4
+PTGX,Protagonist Therapeutics Inc,2016-08-11,pharma_biotech,2.97,0.0,Mercury,modern,58.47,58.47,0,8.9,65.4
+TSLX,TPG Specialty Lending Inc,2014-03-21,banking_financial,0.75,0.0,Jupiter,contested,63.34,72.13,4,13.7,65.2
+MTWV,Metawave Communications,2000-04-26,telecom_media,1.38,0.0,Neptune,modern,61.5,61.5,0,11.2,64.9
+PRCS,Praecis Pharmaceuticals Inc,2000-04-26,pharma_biotech,1.38,0.0,Neptune,modern,61.5,61.5,0,11.2,64.9
+SNBA,Sun Bancshares Inc,2000-10-27,banking_financial,0.0,0.0,,,64.77,64.77,0,10.0,64.8
+EPRT,Essential Properties Realty,2018-06-21,real_estate,2.0,2.0,Saturn,classical,59.95,59.95,0,7.6,64.7
+VLLY,Valley Bancorp,2004-09-23,banking_financial,0.21,0.0,Saturn,contested,63.97,63.97,0,8.4,64.5
+BURL,Burlington Stores Inc,2013-10-02,retail_consumer,0.0,0.0,,,64.54,64.54,0,13.1,64.5
+AR,Antero Resources,2013-10-10,mining_materials,3.76,3.76,Mars,classical,55.93,55.93,0,5.3,64.3
+MRIN,Marin Software Inc,2013-03-21,tech_software,0.0,0.0,,,63.87,69.26,8,8.1,63.9
+TUSK,Mammoth Energy Services Inc,2016-10-14,oil_gas,0.65,0.0,Neptune,modern,62.1,62.1,0,13.9,63.7
+ICST,Integrated Circuit Systems Inc,2000-05-22,tech_software,1.65,0.0,Mercury,modern,59.53,62.9,4,9.5,63.5
+LEVL,Level One Bancorp Inc,2018-04-20,banking_financial,3.0,0.0,Saturn,contested,56.73,56.73,0,10.3,63.5
+ATEN,A10 Networks Inc,2014-03-21,tech_software,0.0,0.0,,,63.34,72.13,4,13.7,63.3
+HPOW,H Power Corp,2000-08-09,utilities,1.23,0.0,Uranus,modern,60.16,60.16,0,12.2,63.1
+PTCT,PTC Therapeutics Inc,2013-06-19,pharma_biotech,1.12,0.0,Neptune,modern,60.39,62.42,4,11.6,63.1
+BAOS,Baosheng Media Group Holdings,2021-02-08,telecom_media,1.92,0.0,Mercury,modern,58.6,58.6,0,5.3,63.1
+PDSN,PowerDsine Ltd,2004-06-09,utilities,1.3,0.0,Uranus,modern,59.82,59.82,0,10.4,62.9
+XCO,EXCO Resources Inc,2006-02-08,mining_materials,0.06,0.0,Pluto,modern,62.76,62.76,0,12.5,62.9
+AHS,AMN Healthcare Services Inc,2001-11-13,healthcare_services,0.0,0.0,,,62.78,62.78,0,19.2,62.8
+FPHC,Fisher & Paykel Healthcare Ltd,2001-11-13,healthcare_services,0.0,0.0,,,62.78,62.78,0,19.2,62.8
+EONC,eOn Communications Corp,2000-02-04,telecom_media,0.95,0.0,Neptune,modern,60.35,60.35,0,10.1,62.7
+VHS,Vanguard Health Systems Inc,2011-06-22,healthcare_services,0.65,0.0,Neptune,modern,60.99,60.99,0,10.2,62.6
+SPRT,Support.com Inc,2000-07-18,tech_software,1.84,0.0,Mercury,modern,57.88,60.09,1,5.6,62.1
+WQNI,WorldQuest Networks Inc,2000-02-04,tech_software,0.67,0.0,Uranus,experimental,60.35,60.35,0,10.1,62.0
+SDAY,SUNDAY Communications Ltd,2000-03-10,telecom_media,0.99,0.0,Neptune,modern,59.58,61.21,1,12.1,61.9
+BLZE,Blaze Software Inc,2000-03-22,tech_software,1.1,0.0,Uranus,experimental,59.19,63.7,8,10.0,61.8
+PRTS,Partsbase.com Inc,2000-03-22,tech_software,1.1,0.0,Uranus,experimental,59.19,63.7,8,10.0,61.8
+EVLV,Evolve Software Inc,2000-08-09,tech_software,0.66,0.0,Uranus,experimental,60.16,60.16,0,12.2,61.8
+MCDT,McData Corp,2000-08-09,tech_software,0.66,0.0,Uranus,experimental,60.16,60.16,0,12.2,61.8
+RADV,RadView Software Ltd,2000-08-09,tech_software,0.66,0.0,Uranus,experimental,60.16,60.16,0,12.2,61.8
+TBIO,Transgenomic Inc,2000-07-18,pharma_biotech,1.67,0.0,Mercury,modern,57.88,60.09,1,5.6,61.7
+BUYX,Buy.com Inc,2000-02-07,tech_software,0.76,0.0,Uranus,experimental,59.82,59.82,0,11.4,61.6
+SLRC,Solar Capital Ltd,2010-02-08,banking_financial,1.75,0.0,Jupiter,contested,57.58,57.58,0,5.1,61.6
+GMED,Globus Medical Inc,2012-08-02,healthcare_services,0.65,0.0,Neptune,modern,59.98,59.98,0,2.7,61.5
+AVRO,AVROBIO Inc,2018-06-21,pharma_biotech,0.65,0.0,Neptune,modern,59.95,59.95,0,7.6,61.5
+AUTL,Autolus Therapeutics Ltd,2018-06-21,pharma_biotech,0.65,0.0,Neptune,modern,59.95,59.95,0,7.6,61.5
+MGTA,Magenta Therapeutics,2018-06-21,pharma_biotech,0.65,0.0,Neptune,modern,59.95,59.95,0,7.6,61.5
+XERS,Xeris Pharmaceuticals Inc,2018-06-21,pharma_biotech,0.65,0.0,Neptune,modern,59.95,59.95,0,7.6,61.5
+GME,GameStop Corp,2002-02-12,entertainment,1.5,1.5,Venus,classical,57.7,57.7,0,11.0,61.2
+BLMN,Bloomin' Brands Inc,2012-08-08,retail_consumer,2.25,1.27,Venus,classical,56.16,56.16,0,5.2,61.2
+VEEV,Veeva Systems,2013-10-16,tech_software,1.19,0.0,Mercury,modern,58.35,58.35,0,6.8,61.1
+EIDX,Eidos Therapeutics Inc,2018-06-20,pharma_biotech,1.95,0.0,Neptune,modern,56.66,56.66,0,13.6,61.1
+NGLS,Targa Resources Partners LP,2007-02-08,mining_materials,2.25,2.25,Mars,classical,55.95,55.95,0,9.3,61.0
+GORX,Go2pharmacy.com Inc,2000-11-09,pharma_biotech,0.0,0.0,,,60.85,60.85,0,10.0,60.9
+STOK,Stoke Therapeutics Inc,2019-06-19,pharma_biotech,3.92,0.0,Neptune,modern,52.62,52.62,0,16.1,60.9
+OAK,Oaktree Capital Group LLC,2012-04-11,banking_financial,0.75,0.0,Saturn,contested,58.99,58.99,0,4.3,60.8
+GMZ,Goldman Sachs MLP Income,2013-11-25,gold,0.35,0.35,Sun,classical,59.93,59.93,0,6.9,60.8
+CIPH,Ciphergen Biosystems Inc,2000-09-28,tech_software,0.74,0.0,Mercury,modern,58.99,58.99,0,5.3,60.7
+ELAS,Elastic Networks Inc,2000-09-28,tech_software,0.74,0.0,Mercury,modern,58.99,58.99,0,5.3,60.7
+PRTN,Proton Energy Systems Inc,2000-09-28,tech_software,0.74,0.0,Mercury,modern,58.99,58.99,0,5.3,60.7
+OTGS,OTG Software Inc,2000-03-10,tech_software,0.35,0.0,Uranus,experimental,59.58,61.21,1,12.1,60.4
+ESPR,Esperion Therapeutics Inc,2000-08-09,pharma_biotech,0.0,0.0,,,60.16,60.16,0,12.2,60.2
+PSMI,Peregrine Semiconductor Corp,2012-08-08,semiconductors,1.76,0.0,Mercury,modern,56.16,56.16,0,5.2,60.1
+WNRL,Western Refining Logistics LP,2013-10-10,transport_shipping,1.88,0.0,Mercury,modern,55.93,55.93,0,5.3,60.1
+HJLI,Hancock Jaffe Laboratories,2018-05-31,pharma_biotech,1.95,0.0,Mercury,modern,55.71,55.71,0,6.0,60.1
+SURF,Surface Oncology Inc,2018-04-19,pharma_biotech,1.5,0.0,Neptune,modern,56.49,56.49,0,13.0,59.9
+PFMT,Performant Financial Corp,2012-08-09,banking_financial,1.39,0.0,Saturn,contested,56.7,56.7,0,4.6,59.8
+SNCR,Synchronoss Technologies Inc,2006-06-15,tech_software,0.0,0.0,,,59.62,59.62,0,11.4,59.6
+EFH,Empire Financial Holdings Co,2002-04-09,banking_financial,1.91,0.0,Venus,contested,55.23,55.23,0,4.4,59.5
+FIF,First Trust Energy Infrastruct,2011-09-28,oil_gas,3.01,1.78,Saturn,classical,53.05,53.05,0,12.6,59.4
+DCIN,Digital Cinema Destinations,2012-04-17,tech_software,0.0,0.0,,,59.32,59.32,0,4.7,59.3
+HPP,Hudson Pacific Properties Inc,2010-06-23,real_estate,0.0,0.0,,,59.18,59.87,8,12.6,59.2
+FATE,Fate Therapeutics,2013-10-01,pharma_biotech,2.49,0.0,Jupiter,contested,53.88,53.88,0,9.4,59.2
+TRFC,Traffic.com Inc,2006-01-25,tech_software,1.02,0.0,Mercury,modern,56.82,56.82,0,11.4,59.1
+EMO,ClearBridge Energy MLP Opport,2011-06-09,oil_gas,2.15,1.5,Saturn,classical,54.4,54.4,0,5.1,59.1
+FET,Forum Energy Technologies Inc,2012-04-11,tech_software,0.0,0.0,,,58.99,58.99,0,4.3,59.0
+HOMB,"Home Bancshares Inc,Conway,AR",2006-06-22,banking_financial,1.0,0.0,Venus,contested,56.61,56.61,0,9.8,58.9
+DFH,Dream Finders Homes Inc,2021-01-21,real_estate,3.47,2.49,Saturn,classical,51.73,51.73,0,10.4,58.9
+FMTX,Forma Therapeutics Hldg Inc,2020-06-19,pharma_biotech,1.95,0.0,Mercury,modern,54.41,54.41,0,12.3,58.7
+RPTX,Repare Therapeutics Inc,2020-06-19,pharma_biotech,1.95,0.0,Mercury,modern,54.41,54.41,0,12.3,58.7
+IW,Imageware Systems Inc,2000-03-30,tech_software,0.35,0.0,Uranus,experimental,57.84,57.84,0,4.0,58.6
+TRDR,Trader.com (Hebdo Mag Europe),2000-03-30,tech_software,0.35,0.0,Uranus,experimental,57.84,57.84,0,4.0,58.6
+MNTA,Momenta Pharmaceuticals Inc,2004-06-21,pharma_biotech,0.0,0.0,,,58.5,58.5,0,8.8,58.5
+BCX,BlackRock Resources & Commodit,2011-03-28,mining_materials,2.78,1.5,Saturn,classical,52.61,53.22,8,13.3,58.5
+QIHU,Qihoo 360 Technology Co Ltd,2011-03-29,tech_software,1.3,0.0,Mercury,modern,55.61,58.14,8,8.1,58.5
+KOS,Kosmos Energy Ltd,2011-05-10,oil_gas,2.15,1.5,Saturn,classical,53.77,53.77,0,4.0,58.4
+ARPT,ArrowPoint Communications Inc,2000-03-30,telecom_media,0.21,0.0,Neptune,modern,57.84,57.84,0,4.0,58.3
+ACCL,Accelerated Networks Inc,2000-06-22,tech_software,1.65,0.0,Mercury,modern,54.53,56.5,1,6.5,58.1
+CKSW,Clicksoftware Ltd,2000-06-22,tech_software,1.65,0.0,Mercury,modern,54.53,56.5,1,6.5,58.1
+ITMN,Intermune Pharmaceuticals Inc,2000-03-24,pharma_biotech,0.0,0.0,,,57.67,57.67,0,5.8,57.7
+RAP,RMR Asia Pacific Real Estate,2006-05-26,real_estate,0.98,0.0,Moon,modern,55.52,55.52,0,7.1,57.7
+CLSD,Clearside Biomedical Inc,2016-06-02,healthcare_services,1.76,0.0,Neptune,modern,53.94,53.94,0,18.6,57.7
+NH,NantHealth Inc,2016-06-02,healthcare_services,1.76,0.0,Neptune,modern,53.94,53.94,0,18.6,57.7
+ARNA,Arena Pharmaceuticals Inc,2000-07-28,pharma_biotech,1.04,0.0,Neptune,modern,55.26,61.56,5,8.1,57.6
+KERX,Keryx Biopharmaceuticals Inc,2000-07-28,pharma_biotech,1.04,0.0,Neptune,modern,55.26,61.56,5,8.1,57.6
+DWG,Duoyuan Global Water Inc,2009-06-24,utilities,1.3,0.0,Moon,modern,54.71,54.71,0,17.4,57.6
+MDSO,Medidata Solutions Inc,2009-06-24,tech_software,1.3,0.0,Mercury,modern,54.71,54.71,0,17.4,57.6
+FNGN,Financial Engines Inc,2010-03-15,banking_financial,1.75,0.0,Jupiter,contested,53.69,53.69,0,14.6,57.4
+PVTL,Pivotal Software,2018-04-20,tech_software,0.28,0.0,Uranus,experimental,56.73,56.73,0,10.3,57.4
+HCF,Highland Credit Strategies,2006-06-23,banking_financial,1.0,0.0,Venus,contested,55.1,55.1,0,7.9,57.3
+NMM,Navios Maritime Partners LP,2007-11-12,transport_shipping,1.07,0.0,Neptune,modern,54.93,54.93,0,8.4,57.3
+CAFD,8point3 Energy Partners LP,2015-06-19,oil_gas,0.65,0.0,Neptune,modern,55.83,55.83,0,5.6,57.3
+IWAV,interWAVE Communications,2000-01-28,telecom_media,0.0,0.0,,,57.25,57.25,0,7.2,57.2
+IVR,Invesco Mortgage Capital Inc,2009-06-25,banking_financial,1.62,0.0,Venus,contested,53.73,54.33,4,14.7,57.2
+IGI,Wstn Asset Invest Grade Define,2009-06-25,banking_financial,1.62,0.0,Venus,contested,53.73,54.33,4,14.7,57.2
+YMAB,Y-MABS Therapeutics Inc,2018-09-21,pharma_biotech,4.34,0.0,Mercury,modern,48.7,48.7,0,3.6,57.2
+AQA,Aquacell Technologies Inc,2001-02-09,tech_software,1.03,0.0,Uranus,experimental,54.85,55.59,4,12.1,57.1
+TWTI,Third Wave Technologies Inc,2001-02-09,tech_software,1.03,0.0,Uranus,experimental,54.85,55.59,4,12.1,57.1
+LPLA,LPL Investment Holdings Inc,2010-11-18,banking_financial,5.32,0.0,Venus,contested,47.08,47.08,0,11.2,57.1
+SQSW,Sequoia Software Corp,2000-05-12,tech_software,0.73,0.0,Uranus,experimental,55.33,56.67,5,13.8,57.0
+BUSY,BusyBox.com Inc,2000-06-27,tech_software,0.35,0.0,Uranus,experimental,56.09,58.45,1,4.0,56.9
+IBTX,Independent Bank Group Inc,2013-04-02,banking_financial,0.99,0.0,Jupiter,contested,54.66,54.9,4,10.6,56.8
+HGAT,HealthGate Data Corp,2000-01-25,healthcare_services,0.94,0.0,Neptune,modern,54.52,54.52,0,5.3,56.6
+RTIX,Regeneration Technologies Inc,2000-08-10,tech_software,0.9,0.0,Uranus,experimental,54.63,61.95,4,15.6,56.6
+VINA,Vina Technologies Inc,2000-08-10,tech_software,0.9,0.0,Uranus,experimental,54.63,61.95,4,15.6,56.6
+RJET,Republic Airways Holdings Inc,2004-05-26,aerospace_aviation,0.83,0.0,Uranus,modern,54.65,54.65,0,6.4,56.5
+AONE,A123 Systems Inc,2009-09-23,tech_software,2.27,0.0,Mercury,modern,51.8,51.8,0,23.6,56.5
+VITC,Vitacost.com Inc,2009-09-23,tech_software,2.27,0.0,Mercury,modern,51.8,51.8,0,23.6,56.5
+OTWO,O2Wireless Solutions Inc,2000-08-16,telecom_media,0.0,0.0,,,56.3,56.3,0,10.1,56.3
+ROX,Castle Brands Inc,2006-04-05,retail_consumer,2.29,0.0,Moon,modern,51.53,51.53,0,5.1,56.3
+CYS,Cypress Sharpridge Investments,2009-06-11,banking_financial,2.72,0.0,Venus,contested,50.46,50.46,0,17.7,55.9
+OPWR,Opower Inc,2014-04-04,utilities,2.32,0.0,Moon,modern,51.14,51.14,0,10.9,55.9
+AWE,AT&T Wireless Group,2000-04-27,telecom_media,0.85,0.0,Neptune,modern,53.95,53.95,0,6.7,55.8
+SOHU,Sohu.com Inc,2000-07-12,tech_software,0.35,0.0,Uranus,experimental,54.99,56.15,1,3.3,55.8
+TNSI,Triton Network Systems Inc,2000-07-12,tech_software,0.35,0.0,Uranus,experimental,54.99,56.15,1,3.3,55.8
+OPTR,Optimer Pharmaceuticals Inc,2007-02-09,pharma_biotech,1.9,0.0,Jupiter,contested,51.85,51.85,0,6.5,55.8
+VRNS,Varonis Systems,2014-02-28,tech_software,1.3,0.0,Mercury,modern,52.92,60.21,4,5.0,55.7
+INVH,Invitation Homes Inc,2017-02-01,real_estate,1.93,0.0,Moon,modern,51.72,51.72,0,6.7,55.7
+TSC,TriState Capital Holdings Inc,2013-05-08,banking_financial,1.0,0.0,Venus,contested,53.49,54.89,4,3.0,55.6
+HOWL,Werewolf Therapeutics Inc,2021-04-30,pharma_biotech,1.07,0.0,Neptune,modern,53.36,53.36,0,14.5,55.6
+EOE,Eaton Vance Credit Opport,2006-05-26,banking_financial,0.0,0.0,,,55.52,55.52,0,7.1,55.5
+VG,Viasystems Group,2000-03-23,tech_software,0.98,0.0,Uranus,experimental,53.33,55.56,1,6.9,55.4
+IPDN,Professional Diversity Network,2013-03-05,tech_software,0.0,0.0,,,55.42,55.42,0,5.5,55.4
+ASPM,Aspect Medical Systems Inc,2000-01-27,healthcare_services,0.09,0.0,Neptune,modern,55.12,55.12,0,8.1,55.3
+SOLF,Solarfun Power Holdings,2006-12-20,utilities,1.19,0.0,Moon,modern,52.66,52.66,0,9.5,55.2
+SRTI,Sunrise Telecom Inc,2000-07-12,telecom_media,0.0,0.0,,,54.99,56.15,1,3.3,55.0
+WRC,Westport Resources Corp,2000-10-19,mining_materials,0.0,0.0,,,54.98,54.98,0,2.6,55.0
+VSE,Verasun Energy Corp,2006-06-13,oil_gas,0.25,0.25,Saturn,classical,54.44,54.44,0,5.4,55.0
+MXRE,Max Re Capital LTD,2001-08-14,banking_financial,1.23,0.0,Jupiter,contested,52.29,52.29,0,8.1,54.9
+EMES,Emerge Energy Services LP,2013-05-08,oil_gas,0.65,0.0,Neptune,modern,53.49,54.89,4,3.0,54.9
+DPM,DCP Midstream Partners,2005-12-01,oil_gas,0.0,0.0,,,54.84,54.84,0,14.8,54.8
+DEP,Duncan Energy Partners LP,2007-01-30,oil_gas,0.81,0.0,Pluto,modern,53.07,53.07,0,4.6,54.8
+HFFIU,Healthy Fast Food Inc,2008-03-19,healthcare_services,0.0,0.0,,,54.79,54.79,0,25.0,54.8
+ONNN,ON Semiconductor,2000-04-27,semiconductors,0.35,0.0,Uranus,experimental,53.95,53.95,0,6.7,54.7
+STCS,Software Technologies Corp,2000-04-27,tech_software,0.35,0.0,Uranus,experimental,53.95,53.95,0,6.7,54.7
+APRE,Aprea Therapeutics Inc,2019-10-03,pharma_biotech,2.65,0.0,Jupiter,contested,49.43,49.43,0,5.3,54.7
+FREQ,Frequency Therapeutics Inc,2019-10-03,pharma_biotech,2.65,0.0,Jupiter,contested,49.43,49.43,0,5.3,54.7
+VIE,Viela Bio Inc,2019-10-03,pharma_biotech,2.65,0.0,Jupiter,contested,49.43,49.43,0,5.3,54.7
+AMMD,American Medical Systems Hold,2000-08-10,healthcare_services,0.0,0.0,,,54.63,61.95,4,15.6,54.6
+LSBC,Large Scale Biology Corp,2000-08-10,pharma_biotech,0.0,0.0,,,54.63,61.95,4,15.6,54.6
+LION,Lion Bioscience AG,2000-08-10,pharma_biotech,0.0,0.0,,,54.63,61.95,4,15.6,54.6
+OEH,Orient-Express Hotels Ltd,2000-08-10,hospitality,0.0,0.0,,,54.63,61.95,4,15.6,54.6
+ACAD,Acadia Pharmaceuticals,2004-05-26,pharma_biotech,0.0,0.0,,,54.65,54.65,0,6.4,54.6
+CRTX,Critical Therapeutics Inc,2004-05-26,pharma_biotech,0.0,0.0,,,54.65,54.65,0,6.4,54.6
+MVO,MV Oil Trust,2007-01-19,oil_gas,0.75,0.0,Pluto,modern,52.96,52.96,0,8.2,54.5
+FDC,First Data Corp,2015-10-15,tech_software,0.0,0.0,,,54.45,54.45,0,10.7,54.5
+ACCD,Accord Networks Ltd,2000-06-28,tech_software,0.62,0.0,Uranus,experimental,53.11,54.13,1,3.6,54.4
+OSTK,Overstock.com,2002-05-30,tech_software,1.65,0.0,Mercury,modern,51.01,51.01,0,7.2,54.4
+SGNT,Sagent Pharmaceuticals Inc,2011-04-19,pharma_biotech,1.75,0.0,Neptune,modern,50.81,53.34,4,4.2,54.4
+TLLP,Tesoro Logistics LP,2011-04-19,transport_shipping,1.75,0.0,Neptune,modern,50.81,53.34,4,4.2,54.4
+LSF,Laird Superfood Inc,2020-09-23,food_agriculture,2.0,2.0,Saturn,classical,50.39,50.39,0,5.1,54.4
+ETE,Energy Transfer Equity LP,2006-02-03,oil_gas,0.19,0.0,Neptune,modern,53.9,53.9,0,8.7,54.3
+GNSL,Genomic Solutions Inc,2000-05-05,pharma_biotech,0.36,0.0,Jupiter,contested,53.3,53.3,0,5.0,54.1
+JAZZ,Jazz Pharmaceuticals Inc,2007-05-31,pharma_biotech,1.0,0.0,Jupiter,contested,52.05,52.05,0,8.7,54.1
+FFN,FriendFinder Networks Inc,2011-05-10,tech_software,0.13,0.0,Uranus,experimental,53.77,53.77,0,4.0,54.1
+FWIS,FirstWorld Communications Inc,2000-03-07,telecom_media,1.67,0.0,Neptune,modern,50.62,50.62,0,7.1,54.0
+KCAP,Kohlberg Capital Group,2006-12-11,banking_financial,1.0,0.0,Jupiter,contested,51.91,51.91,0,2.0,54.0
+ATHN,athenahealth Inc,2007-09-19,healthcare_services,0.0,0.0,,,54.0,54.0,0,12.5,54.0
+TBNK,Territorial Bancorp Inc,2009-07-13,banking_financial,0.2,0.0,Venus,contested,53.52,53.52,0,13.6,54.0
+GAME,Shanda Games Ltd,2009-09-24,entertainment,0.0,0.0,,,54.05,54.05,0,17.3,54.0
+ALXA,Alexza Pharmaceuticals Inc,2006-03-08,pharma_biotech,1.0,0.0,Jupiter,contested,51.78,51.78,0,13.6,53.9
+TEP,Tallgrass Energy Partners LP,2013-05-13,oil_gas,0.65,0.0,Neptune,modern,52.51,54.38,4,10.9,53.9
+SLAB,Silicon Laboratories Inc,2000-03-23,pharma_biotech,0.0,0.0,,,53.33,55.56,1,6.9,53.3
+AQXP,Aquinox Pharmaceuticals Inc,2014-03-06,pharma_biotech,2.4,0.0,Jupiter,contested,48.67,52.1,4,5.9,53.3
+REPH,Recro Pharma Inc,2014-03-06,pharma_biotech,2.4,0.0,Jupiter,contested,48.67,52.1,4,5.9,53.3
+MY,China Ming Yang Wind Power Grp,2010-09-30,utilities,2.56,0.0,Saturn,modern,48.31,48.31,0,6.1,53.2
+AHII,Animal Health International,2007-01-30,healthcare_services,0.0,0.0,,,53.07,53.07,0,4.6,53.1
+EVEP,EV Energy Partners LP,2006-09-26,oil_gas,0.8,0.0,Neptune,modern,51.36,51.36,0,14.4,53.0
+RETA,Reata Pharmaceuticals Inc,2016-05-26,pharma_biotech,0.65,0.0,Neptune,modern,51.65,51.65,0,4.3,53.0
+SRTS,Sensus Healthcare Inc,2016-06-03,healthcare_services,1.68,0.0,Neptune,modern,49.58,49.58,0,17.5,52.9
+ARTE,Artes Medical,2006-12-20,healthcare_services,0.0,0.0,,,52.66,52.66,0,9.5,52.7
+BCYC,Bicycle Therapeutics Ltd,2019-05-23,pharma_biotech,3.17,0.0,Mercury,modern,46.78,46.78,0,2.2,52.7
+IDYA,Ideaya Biosciences Inc,2019-05-23,pharma_biotech,3.17,0.0,Mercury,modern,46.78,46.78,0,2.2,52.7
+MRVL,Marvell Technology Group Ltd,2000-06-26,tech_software,1.65,0.0,Mercury,modern,49.35,50.36,1,2.6,52.6
+ACOR,Acorda Therapeutics Inc,2006-02-09,pharma_biotech,0.11,0.0,Jupiter,contested,52.31,52.31,0,8.9,52.5
+ACA,ACA Capital Holdings Inc,2006-11-09,banking_financial,0.0,0.0,,,52.5,52.5,0,12.9,52.5
+IMS,IMS Health Holdings Inc,2014-04-04,healthcare_services,0.65,0.0,Neptune,modern,51.14,51.14,0,10.9,52.5
+RCOM,Register.com Inc,2000-03-02,tech_software,0.35,0.0,Uranus,experimental,51.71,51.71,0,6.3,52.4
+ENP,Encore Energy Partners LP,2007-09-11,oil_gas,0.0,0.0,,,52.42,52.42,0,7.5,52.4
+MGG,Magellan Midstream Holdings LP,2006-02-09,oil_gas,0.0,0.0,,,52.31,52.31,0,8.9,52.3
+CEM,ClearBridge Energy MLP Fund,2010-06-24,oil_gas,0.78,0.0,Pluto,modern,50.61,52.03,8,8.7,52.2
+RBKB,Rhinebeck Bancorp,2019-01-17,banking_financial,2.42,0.0,Jupiter,contested,47.57,47.57,0,13.8,52.2
+ROSG,Rosetta Genomics Ltd,2007-02-26,pharma_biotech,1.0,0.0,Jupiter,contested,50.14,50.14,0,4.7,52.1
+CLR,Continental Resources Inc,2007-05-14,mining_materials,2.54,2.54,Mars,classical,47.32,47.32,0,11.5,52.1
+VIT,VanceInfo Technologies Inc,2007-12-11,tech_software,0.0,0.0,,,52.06,52.06,0,6.4,52.1
+XIN,Xinyuan Real Estate Co Ltd,2007-12-11,real_estate,0.0,0.0,,,52.06,52.06,0,6.4,52.1
+MSGM,Motorsport Games,2021-01-13,entertainment,0.65,0.0,Neptune,modern,50.75,50.75,0,13.1,52.1
+CNEY,CN Energy Group Inc,2021-02-05,oil_gas,2.65,2.0,Saturn,classical,47.11,47.11,0,4.0,52.1
+MMPI,Meruelo Maddux Properties Inc,2007-01-24,real_estate,0.0,0.0,,,51.97,51.97,0,15.3,52.0
+BLSW,Bridgeline Software Inc,2007-06-28,tech_software,1.16,0.0,Mercury,modern,49.7,49.7,0,6.3,52.0
+BWTR,Basin Water Inc,2006-05-11,utilities,0.0,0.0,,,51.85,51.85,0,6.0,51.9
+TRBN,Trubion Pharmaceuticals Inc,2006-10-17,pharma_biotech,2.75,0.0,Mercury,modern,46.74,46.74,0,8.2,51.9
+CHIP,VeriChip Corp,2007-02-09,semiconductors,0.0,0.0,,,51.85,51.85,0,6.5,51.9
+SEA,Bio Aqua Systems Inc,2000-03-29,pharma_biotech,0.0,0.0,,,51.79,51.79,0,2.3,51.8
+CHPC,ChipPAC Inc,2000-08-08,semiconductors,0.43,0.0,Uranus,experimental,50.94,50.94,0,10.1,51.8
+RPTR,Repeater Technologies Inc,2000-08-08,tech_software,0.43,0.0,Uranus,experimental,50.94,50.94,0,10.1,51.8
+TSYS,TeleCommunications Systems Inc,2000-08-08,tech_software,0.43,0.0,Uranus,experimental,50.94,50.94,0,10.1,51.8
+EGLT,Eagle Test Systems Inc,2006-03-08,tech_software,0.0,0.0,,,51.78,51.78,0,13.6,51.8
+ART,Artio Global Investors Inc,2009-09-23,banking_financial,0.0,0.0,,,51.8,51.8,0,23.6,51.8
+CLNY,Colony Financial Inc,2009-09-23,banking_financial,0.0,0.0,,,51.8,51.8,0,23.6,51.8
+CLDR,Cloudera Inc,2017-04-28,tech_software,0.0,0.0,,,51.82,51.82,0,6.9,51.8
+TXG,10X Genomics Inc,2019-09-12,pharma_biotech,4.25,0.0,Mercury,modern,44.26,44.26,0,13.8,51.8
+AL,Air Lease Corp,2011-04-18,aerospace_aviation,2.0,2.0,Mars,classical,47.87,47.87,0,4.3,51.7
+RTLR,Rattler Midstream Partners LP,2019-05-23,oil_gas,2.65,2.0,Saturn,classical,46.78,46.78,0,2.2,51.7
+CRSR,Corsair Gaming Inc,2020-09-23,entertainment,0.65,0.0,Neptune,modern,50.39,50.39,0,5.1,51.7
+GEG,Global Power Equipment Group,2001-05-17,utilities,1.12,0.0,Uranus,modern,49.37,49.37,0,7.9,51.6
+USFD,US Foods Holding Corp,2016-05-26,food_agriculture,0.0,0.0,,,51.65,51.65,0,4.3,51.6
+AVR,Aventine Renewable Energy Hlds,2006-06-28,oil_gas,0.21,0.21,Saturn,classical,50.94,50.94,0,5.1,51.4
+IMRX,ImaRx Therapeutics Inc,2007-07-25,pharma_biotech,1.37,0.0,Jupiter,contested,48.75,48.75,0,5.2,51.4
+AEGR,Aegerion Pharmaceuticals Inc,2010-10-22,pharma_biotech,1.0,0.0,Jupiter,contested,49.39,49.39,0,8.9,51.4
+IPRT,iprint.com Inc,2000-03-07,tech_software,0.35,0.0,Uranus,experimental,50.62,50.62,0,7.1,51.3
+FMR,First Mercury Financial Corp,2006-10-17,banking_financial,2.42,0.0,Jupiter,contested,46.74,46.74,0,8.2,51.3
+REXX,Rex Energy Corp,2007-07-24,oil_gas,0.0,0.0,,,51.29,51.29,0,5.4,51.3
+MCBK,Madison County Financial Inc,2012-10-03,banking_financial,1.25,0.0,Saturn,contested,48.89,49.98,4,6.1,51.3
+QTS,QTS Realty Trust,2013-10-09,real_estate,1.58,1.58,Saturn,classical,48.25,48.25,0,3.5,51.3
+CHOM,New China Homes Ltd,2000-03-08,real_estate,0.0,0.0,,,51.2,51.2,0,8.5,51.2
+MACK,Merrimack Pharmaceuticals Inc,2012-03-28,pharma_biotech,1.06,0.0,Neptune,modern,49.05,49.05,0,4.5,51.1
+PLTE,Claymont Steel Holdings,2006-12-19,steel_defense,0.0,0.0,,,50.99,50.99,0,8.8,51.0
+MPEL,Melco PBL Entertainment,2006-12-19,entertainment,0.0,0.0,,,50.99,50.99,0,8.8,51.0
+ENTR,Entropic Communications Inc,2007-12-06,telecom_media,0.0,0.0,,,50.96,50.96,0,10.2,51.0
+VISN,VisionChina Media Inc,2007-12-06,telecom_media,0.0,0.0,,,50.96,50.96,0,10.2,51.0
+XCOM,Xtera Communications Inc,2015-11-13,telecom_media,0.92,0.0,Neptune,modern,49.2,49.2,0,6.2,51.0
+SDH,Global Internet Of People Inc,2021-02-09,tech_software,0.32,0.0,Mercury,modern,50.34,50.34,0,7.1,51.0
+NCMI,National CineMedia Inc,2007-02-07,telecom_media,0.85,0.0,Neptune,modern,49.23,49.23,0,6.1,50.9
+AH,Accretive Health Inc,2010-05-20,healthcare_services,0.97,0.0,Neptune,modern,48.9,51.56,4,5.9,50.8
+BSY,Bentley Systems Inc,2020-09-23,tech_software,0.21,0.0,Mercury,modern,50.39,50.39,0,5.1,50.8
+THLD,Threshold Pharmaceuticals Inc,2005-02-03,pharma_biotech,2.21,0.0,Neptune,modern,46.56,46.56,0,13.3,50.7
+ALDX,Aldeyra Therapeutics Inc,2014-05-02,pharma_biotech,1.84,0.0,Jupiter,contested,47.16,52.54,4,4.3,50.6
+PAX,Patria Investments Ltd,2021-01-22,banking_financial,1.54,0.0,Saturn,contested,47.66,47.66,0,7.7,50.6
+GROY,Gold Royalty Corp,2021-03-09,gold,0.0,0.0,,,50.59,50.59,0,6.1,50.6
+BBRG,Bravo Brio Restaurant Grp Inc,2010-10-21,hospitality,0.0,0.0,,,50.55,50.55,0,7.4,50.5
+GMLP,Golar LNG Partners LP,2011-04-06,oil_gas,2.33,1.68,Saturn,classical,46.1,47.85,4,4.2,50.4
+MM,Millennial Media Inc,2012-03-28,telecom_media,0.65,0.0,Neptune,modern,49.05,49.05,0,4.5,50.3
+TPB,Turning Point Brands Inc,2016-05-11,retail_consumer,3.3,2.0,Venus,classical,44.43,44.43,0,10.1,50.3
+SQNS,Sequans Communications SA,2011-04-14,telecom_media,2.22,0.0,Neptune,modern,46.07,46.07,0,5.0,50.2
+NBCB,First NBC Bank Holding Co,2013-05-09,banking_financial,1.0,0.0,Venus,contested,48.25,48.25,0,2.2,50.2
+MRAM,EverSpin Technologies,2016-10-07,tech_software,0.0,0.0,,,50.18,50.18,0,9.7,50.2
+NTKK,Net 2000 Communications Inc,2000-03-06,telecom_media,1.9,0.0,Neptune,modern,46.53,46.53,0,6.2,50.1
+RGNC,Regency Energy Partners LP,2006-01-30,oil_gas,0.23,0.0,Pluto,modern,49.53,49.53,0,9.9,50.0
+DMGI,Digital Music Group Inc,2006-02-02,tech_software,0.0,0.0,,,49.98,49.98,0,8.9,50.0
+HS,HealthSpring Inc,2006-02-02,healthcare_services,0.0,0.0,,,49.98,49.98,0,8.9,50.0
+SMOD,Smart Modular Technologies Inc,2006-02-02,tech_software,0.0,0.0,,,49.98,49.98,0,8.9,50.0
+TAST,Carrols Restaurant Group,2006-12-15,hospitality,0.0,0.0,,,49.98,49.98,0,6.9,50.0
+DBTK,Double-Take Software,2006-12-15,tech_software,0.0,0.0,,,49.98,49.98,0,6.9,50.0
+ISLN,Isilon Systems,2006-12-15,tech_software,0.0,0.0,,,49.98,49.98,0,6.9,50.0
+USBE,U.S. BioEnergy,2006-12-15,oil_gas,0.02,0.0,Pluto,modern,49.98,49.98,0,6.9,50.0
+VRPX,Virpax Pharmaceuticals Inc,2021-02-17,pharma_biotech,0.9,0.0,Neptune,modern,48.2,48.2,0,5.6,49.9
+AVAH,Aveanna Healthcare Holdings In,2021-04-29,healthcare_services,0.82,0.0,Neptune,modern,48.29,48.29,0,11.7,49.9
+PRVA,Privia Health Group Inc,2021-04-29,healthcare_services,0.82,0.0,Neptune,modern,48.29,48.29,0,11.7,49.9
+BDE,Bois d'Arc Energy Inc,2005-05-06,oil_gas,0.68,0.0,Neptune,modern,48.44,48.44,0,5.5,49.8
+SBPH,Spring Bank Pharms Inc,2016-05-06,banking_financial,1.5,0.0,Venus,contested,46.96,46.96,0,13.9,49.8
+ONSIU,Oncobiologics Inc,2016-05-13,pharma_biotech,1.15,0.0,Neptune,modern,47.63,47.63,0,14.3,49.8
+CDAK,Codiak Biosciences Inc,2020-10-14,pharma_biotech,3.28,0.0,Mercury,modern,43.99,43.99,0,10.9,49.8
+CPSI,Computer Programs & Systems,2002-05-21,tech_software,1.99,0.0,Mercury,modern,46.03,46.03,0,8.8,49.7
+HIMX,Himax Technologies Inc,2006-03-30,tech_software,0.0,0.0,,,49.68,49.68,0,8.4,49.7
+FRNK,Franklin Financial Corp,2011-04-28,banking_financial,0.75,0.0,Saturn,contested,48.16,48.16,0,4.0,49.6
+GWRE,Guidewire Software Inc,2012-01-24,tech_software,0.13,0.0,Uranus,experimental,49.31,50.13,4,8.9,49.6
+EZGO,EZGO Technologies Ltd,2021-01-26,tech_software,0.68,0.0,Uranus,experimental,48.28,48.28,0,22.4,49.6
+SFXE,SFX Entertainment,2013-10-09,entertainment,0.65,0.0,Neptune,modern,48.25,48.25,0,3.5,49.5
+STSA,Satsuma Pharmaceuticals Inc,2019-09-13,pharma_biotech,4.05,0.0,Mercury,modern,42.61,42.61,0,13.5,49.5
+SWTX,Springworks Therapeutics Inc,2019-09-13,pharma_biotech,4.05,0.0,Mercury,modern,42.61,42.61,0,13.5,49.5
+RLX,RLX Technology Inc,2021-01-22,tech_software,0.9,0.0,Mercury,modern,47.66,47.66,0,7.7,49.4
+SJH,Stelmar Shipping Ltd,2001-03-06,transport_shipping,1.42,0.0,Neptune,modern,46.68,47.8,4,5.2,49.3
+MLNX,Mellanox Technologies Ltd,2007-02-07,tech_software,0.0,0.0,,,49.23,49.23,0,6.1,49.2
+SDXC,Switch And Data Inc,2007-02-07,tech_software,0.0,0.0,,,49.23,49.23,0,6.1,49.2
+CIE,Cobalt International Energy,2009-12-16,oil_gas,1.5,1.5,Saturn,classical,46.38,46.38,0,12.4,49.2
+CRWN,Crown Media Holdings Inc,2000-05-03,telecom_media,0.91,0.0,Neptune,modern,47.39,47.39,0,3.9,49.1
+CRL,Charles River Labs Int Inc,2000-06-23,pharma_biotech,1.3,0.0,Mercury,modern,46.67,47.41,1,2.7,49.1
+ORGN,Origen Financial Inc,2004-05-05,banking_financial,0.91,0.0,Jupiter,contested,47.37,47.37,0,9.9,49.1
+NTLA,Intellia Therapeutics Inc,2016-05-06,pharma_biotech,1.15,0.0,Neptune,modern,46.96,46.96,0,13.9,49.1
+SPR,Spirit Aerosystems Holdings,2006-11-21,tech_software,0.7,0.0,Uranus,experimental,47.7,47.7,0,7.3,49.0
+SKH,Skilled Healthcare Group Inc,2007-05-15,healthcare_services,1.59,0.0,Mercury,modern,46.01,46.01,0,5.3,48.9
+SMLP,Summit Midstream Partners LP,2012-09-27,oil_gas,3.03,2.01,Saturn,classical,43.62,43.62,0,5.1,48.9
+RGDO,Regado Biosciences Inc,2013-08-22,pharma_biotech,2.5,0.0,Jupiter,contested,44.49,50.72,4,9.9,48.9
+ACIA,Acacia Communications Inc,2016-05-13,telecom_media,0.65,0.0,Neptune,modern,47.63,47.63,0,14.3,48.9
+FRP,FairPoint Communications Inc,2005-02-03,telecom_media,1.21,0.0,Neptune,modern,46.56,46.56,0,13.3,48.8
+AWH,Allied World Assurance,2006-07-11,insurance,1.0,0.0,Jupiter,contested,46.9,46.9,0,6.1,48.8
+MAPP,MAP Pharmaceuticals Inc,2007-10-04,pharma_biotech,1.89,0.0,Jupiter,contested,45.34,45.34,0,4.0,48.8
+COUP,Coupons.com Inc,2014-03-06,tech_software,0.0,0.0,,,48.67,52.1,4,5.9,48.7
+VLRX,Valera Pharmaceuticals Inc,2006-02-01,pharma_biotech,0.35,0.0,Pluto,experimental,47.96,47.96,0,11.6,48.6
+PINN,Pinnacle Gas Resources Inc,2007-05-14,oil_gas,0.7,0.0,Neptune,modern,47.32,47.32,0,11.5,48.6
+PTLA,Portola Pharmaceuticals Inc,2013-05-21,pharma_biotech,2.42,0.0,Mercury,modern,44.28,47.34,4,9.4,48.6
+TTO,Tortoise Capital Resources,2007-02-01,mining_materials,2.21,1.83,Mars,classical,44.55,44.55,0,5.0,48.5
+UCL,UCloudLink Group Inc,2020-06-10,tech_software,0.0,0.0,,,48.27,48.27,0,6.6,48.3
+BOLT,Bolt Biotherapeutics Inc,2021-02-05,pharma_biotech,0.65,0.0,Neptune,modern,47.11,47.11,0,4.0,48.3
+EVAX,Evaxion Biotech AS,2021-02-05,pharma_biotech,0.65,0.0,Neptune,modern,47.11,47.11,0,4.0,48.3
+IMCR,Immunocore Hldg Ltd,2021-02-05,pharma_biotech,0.65,0.0,Neptune,modern,47.11,47.11,0,4.0,48.3
+LHDX,Lucira Health Inc,2021-02-05,healthcare_services,0.65,0.0,Neptune,modern,47.11,47.11,0,4.0,48.3
+TERN,Terns Pharmaceuticals Inc,2021-02-05,pharma_biotech,0.65,0.0,Neptune,modern,47.11,47.11,0,4.0,48.3
+VOR,Vor Biopharma Inc,2021-02-05,pharma_biotech,0.65,0.0,Neptune,modern,47.11,47.11,0,4.0,48.3
+PRB,PRB Gas Transportation Inc,2005-04-12,oil_gas,0.0,0.0,,,48.22,48.22,0,9.9,48.2
+ETEL,eTelecare Global Solutions,2007-03-27,healthcare_services,0.0,0.0,,,48.2,48.2,0,4.5,48.2
+REST,Restore Medical Inc,2006-05-16,healthcare_services,0.1,0.0,Mercury,modern,47.91,47.91,0,3.6,48.1
+PBIB,Porter Bancorp Inc,2006-09-21,banking_financial,0.36,0.0,Venus,contested,47.4,47.4,0,11.5,48.1
+AHH,Armada Hoffler Properties Inc,2013-05-07,real_estate,0.0,0.0,,,48.07,49.88,4,5.6,48.1
+RARX,Ra Pharmaceuticals Inc,2016-10-26,pharma_biotech,1.63,0.0,Mercury,modern,45.11,45.11,0,3.8,48.1
+NTES,Netease.com Inc,2000-06-30,tech_software,0.35,0.0,Uranus,experimental,47.33,48.99,1,2.7,48.0
+GOV,Government Properties Income,2009-06-02,real_estate,0.0,0.0,Saturn,classical,47.85,47.85,0,13.4,47.9
+ORIC,Oric Pharmaceuticals Inc,2020-04-24,pharma_biotech,1.35,0.0,Pluto,experimental,45.46,45.46,0,7.8,47.9
+MMLP,Martin Midstream Partners LP,2002-11-01,oil_gas,2.56,0.0,Pluto,modern,43.34,43.34,0,13.6,47.8
+VOC,VOC Energy Tr,2011-05-05,oil_gas,2.15,1.5,Saturn,classical,43.97,43.97,0,4.2,47.8
+OCUL,Ocular Therapeutix Inc,2014-07-24,pharma_biotech,1.58,0.0,Jupiter,contested,44.99,44.99,0,5.7,47.8
+OMP,Oasis Midstream Partners LP,2017-09-21,oil_gas,1.01,0.0,Neptune,modern,45.99,45.99,0,9.9,47.8
+GRX,GABELLI HEALTHCARE & WELLNESS,2007-06-19,healthcare_services,0.26,0.0,Neptune,modern,47.13,47.13,0,10.9,47.6
+GNET,Global Traffic Network Inc,2006-03-23,tech_software,0.33,0.0,Mercury,modern,46.9,46.9,0,11.1,47.5
+NEWS,NewStar Financial,2006-12-14,banking_financial,1.0,0.0,Jupiter,contested,45.68,45.68,0,3.9,47.5
+WSFG,WSB Financial Group,2006-12-14,banking_financial,1.0,0.0,Jupiter,contested,45.68,45.68,0,3.9,47.5
+SC,Santander Consumer USA Hold,2014-01-23,retail_consumer,0.0,0.0,,,47.54,52.18,6,11.5,47.5
+PAGS,Pagseguro Digital Ltd.,2018-01-24,tech_software,0.0,0.0,,,47.55,47.55,0,2.9,47.5
+CVLT,CommVault Systems Inc,2006-09-21,tech_software,0.0,0.0,,,47.4,47.4,0,11.5,47.4
+MR,Mindray Medical International,2006-09-25,healthcare_services,0.0,0.0,,,47.44,47.44,0,12.1,47.4
+RITA,Rita Medical Systems Inc,2000-07-27,healthcare_services,1.13,0.0,Neptune,modern,45.23,50.33,5,6.8,47.3
+WEBX,Webex Communications Inc,2000-07-27,telecom_media,1.13,0.0,Neptune,modern,45.23,50.33,5,6.8,47.3
+TBBK,"Bancorp Bank,Wilmington,DE",2004-02-02,banking_financial,0.75,0.0,Venus,contested,45.9,45.9,0,9.6,47.3
+MHGC,Morgans Hotel Group Co,2006-02-13,hospitality,1.38,0.0,Venus,modern,44.85,44.85,0,10.7,47.3
+FOLD,Amicus Therapeutics Inc,2007-05-30,pharma_biotech,1.95,0.0,Jupiter,contested,43.89,43.89,0,6.8,47.3
+IFE,IFCO Systems NV,2000-03-06,tech_software,0.35,0.0,Uranus,experimental,46.53,46.53,0,6.2,47.2
+CBF,CBRE Realty Finance,2006-09-27,real_estate,0.0,0.0,,,47.16,47.16,0,11.0,47.2
+OB,One Beacon Insurance Group,2006-11-08,insurance,1.18,0.0,Pluto,modern,44.95,44.95,0,11.7,47.1
+TARG,Targanta Therapeutics Corp,2007-10-09,pharma_biotech,1.89,0.0,Jupiter,contested,43.8,43.8,0,7.2,47.1
+KANG,iKang Healthcare Group Inc,2014-04-09,healthcare_services,0.65,0.0,Neptune,modern,45.93,45.93,0,3.7,47.1
+ALNY,Alnylam Pharmaceuticals Inc,2004-05-27,pharma_biotech,0.16,0.0,Jupiter,contested,46.72,46.72,0,9.6,47.0
+ANW,Aegean Marine Petroleum Ntwrk,2006-12-08,oil_gas,1.0,1.0,Saturn,classical,45.17,45.17,0,3.0,47.0
+VRAZ,Veraz Networks Inc,2007-04-04,tech_software,0.0,0.0,,,46.98,46.98,0,7.8,47.0
+HEBT,Hebron Technology Co Ltd,2016-12-23,tech_software,0.0,0.0,,,47.04,47.04,0,4.4,47.0
+DCPH,Deciphera Pharmaceuticals LLC,2017-09-28,pharma_biotech,3.62,0.0,Mercury,modern,40.93,40.93,0,11.7,46.9
+NITE,Nightstar Therapeutics Ltd,2017-09-28,pharma_biotech,3.62,0.0,Mercury,modern,40.93,40.93,0,11.7,46.9
+SGXP,SGX Pharmaceuticals Inc,2006-01-31,pharma_biotech,0.01,0.0,Pluto,experimental,46.83,46.83,0,11.2,46.8
+ALLY,Ally Financial Inc,2014-04-10,banking_financial,1.5,0.0,Jupiter,contested,44.13,49.94,4,5.6,46.8
+AVNC,Advancis Pharmaceutical Corp,2003-10-16,pharma_biotech,0.0,0.0,,,46.6,46.6,0,4.7,46.6
+ENPH,Enphase Energy Inc,2012-03-29,oil_gas,3.34,1.5,Saturn,classical,41.08,42.71,4,6.3,46.6
+RGLS,Regulus Therapeutics Inc,2012-10-04,pharma_biotech,2.09,0.0,Neptune,modern,43.02,43.02,0,9.3,46.6
+ADMS,Adamas Pharmaceuticals Inc,2014-04-10,pharma_biotech,1.4,0.0,Jupiter,contested,44.13,49.94,4,5.6,46.6
+CERU,Cerulean Pharma Inc,2014-04-10,pharma_biotech,1.4,0.0,Jupiter,contested,44.13,49.94,4,5.6,46.6
+ARUN,Aruba Networks Inc,2007-03-26,tech_software,0.0,0.0,,,46.46,46.46,0,6.1,46.5
+CEP,Constellation Energy Partners,2006-11-15,oil_gas,2.29,0.0,Pluto,modern,42.51,42.51,0,12.7,46.4
+NKBP,China Nuokang Bio-Pharmac,2009-12-10,pharma_biotech,0.36,0.0,Mercury,modern,45.78,45.78,0,4.7,46.4
+TMH,Team Health Holdings,2009-12-16,healthcare_services,0.0,0.0,,,46.38,46.38,0,12.4,46.4
+EQBK,Equity Bancshares Inc,2015-11-11,banking_financial,1.0,0.0,Venus,contested,44.66,44.66,0,5.8,46.4
+VYGR,Voyager Therapeutics Inc,2015-11-11,pharma_biotech,0.96,0.0,Neptune,modern,44.66,44.66,0,5.8,46.4
+AKA,A.K.A. Brands Holding Corp,2021-09-22,retail_consumer,0.0,0.0,,,46.35,46.35,0,7.3,46.4
+JMLP,Nuveen All Cap Energy MLP,2014-03-26,oil_gas,0.65,0.0,Neptune,modern,45.1,50.96,4,3.0,46.3
+IRTC,iRhythm Technologies Inc,2016-10-20,tech_software,0.0,0.0,,,46.31,46.31,0,8.4,46.3
+WMS,Advanced Drainage Systems Inc,2014-07-24,tech_software,0.7,0.0,Uranus,experimental,44.99,44.99,0,5.7,46.2
+SONM,Sonim Technologies Inc,2019-05-10,tech_software,0.0,0.0,,,46.13,46.13,0,4.1,46.1
+DBTX,Decibel Therapeutics Inc,2021-02-12,pharma_biotech,0.65,0.0,Neptune,modern,44.93,44.93,0,6.0,46.1
+TLIS,Talis Biomedical Corp,2021-02-12,healthcare_services,0.65,0.0,Neptune,modern,44.93,44.93,0,6.0,46.1
+ADGI,Adagio Therapeutics Inc,2021-08-06,pharma_biotech,0.65,0.0,Neptune,modern,44.96,44.96,0,10.3,46.1
+ORCH,Orchid BioSciences Inc,2000-05-04,pharma_biotech,0.21,0.0,Jupiter,contested,45.66,47.56,4,4.0,46.0
+MWE,MarkWest Energy Partners LP,2002-05-21,oil_gas,0.0,0.0,,,46.03,46.03,0,8.8,46.0
+CCBI,Commercial Capital Bancorp,2002-12-18,banking_financial,0.68,0.0,Saturn,contested,44.78,44.78,0,12.5,46.0
+GNTY,Guaranty Bancshares Inc,2017-05-09,banking_financial,0.0,0.0,,,46.0,46.0,0,9.0,46.0
+AVCI,Avici Systems Inc,2000-07-27,tech_software,0.35,0.0,Uranus,experimental,45.23,50.33,5,6.8,45.9
+BOFL,Bancshares of Florida Inc,2003-02-10,banking_financial,0.41,0.0,Venus,contested,45.03,45.03,0,7.2,45.8
+OFED,Oconee Federal Financial Corp,2011-01-14,banking_financial,1.75,0.0,Jupiter,contested,42.84,42.84,0,4.5,45.8
+MITT,AG Mortgage Investment Trust,2011-06-29,banking_financial,0.75,0.0,Saturn,contested,44.42,44.69,5,3.7,45.8
+FBNK,First Connecticut Bancorp Inc,2011-06-29,banking_financial,0.75,0.0,Saturn,contested,44.42,44.69,5,3.7,45.8
+DATA,Tableau Software Inc,2013-05-16,tech_software,1.32,0.0,Mercury,modern,43.55,46.73,4,8.4,45.8
+TPRE,Third Point Reinsurance Ltd,2013-08-14,insurance,0.75,0.0,Jupiter,contested,44.49,44.49,0,3.6,45.8
+ANVS,Annovis Bio Inc,2020-01-29,pharma_biotech,0.65,0.0,Neptune,modern,44.61,44.61,0,5.4,45.8
+BMEZ,BlackRock Health Sci Tr II,2020-01-29,healthcare_services,0.65,0.0,Neptune,modern,44.61,44.61,0,5.4,45.8
+NRPH,New River Pharmaceuticals Inc,2004-08-05,pharma_biotech,3.4,0.0,Mercury,modern,40.24,40.24,0,6.7,45.7
+ASTIU,Ascent Solar Technologies Inc,2006-07-10,tech_software,0.0,0.0,,,45.67,45.67,0,6.2,45.7
+OFSI,Omni Financial Services Inc,2006-09-29,banking_financial,0.0,0.0,,,45.67,45.67,0,12.0,45.7
+OMPI,Obagi Medical Products,2006-12-14,healthcare_services,0.0,0.0,,,45.68,45.68,0,3.9,45.7
+BOLD,Audentes Therapeutics Inc,2016-07-20,pharma_biotech,0.65,0.0,Neptune,modern,44.56,44.56,0,2.6,45.7
+ELOS,Syneron Medical Ltd,2004-08-05,healthcare_services,3.33,0.0,Mercury,modern,40.24,40.24,0,6.7,45.6
+EVHC,Envision Healthcare Holdings,2013-08-14,healthcare_services,0.65,0.0,Neptune,modern,44.49,44.49,0,3.6,45.6
+CRSP,CRISPR Therapeutics AG,2016-10-19,pharma_biotech,0.65,0.0,Neptune,modern,44.42,44.42,0,4.3,45.6
+LYRA,Lyra Therapeutics Inc,2020-05-01,pharma_biotech,1.91,0.0,Neptune,modern,42.35,42.35,0,6.7,45.6
+RSTN,Riverstone Networks Inc,2001-02-15,tech_software,0.35,0.0,Uranus,experimental,44.89,48.24,4,4.6,45.5
+NIV,NIVS IntelliMedia Tech Gp Inc,2009-03-12,telecom_media,0.0,0.0,,,45.45,45.45,0,10.5,45.5
+VEL,Velocity Financial LLC,2020-01-17,banking_financial,1.75,0.0,Saturn,contested,42.42,42.42,0,2.5,45.4
+OBLN,Obalon Therapeutics Inc,2016-10-06,pharma_biotech,3.34,0.0,Mercury,modern,39.99,39.99,0,3.9,45.3
+EMS,Emergency Medical Services,2005-12-16,healthcare_services,0.0,0.0,,,45.18,45.18,0,6.8,45.2
+DPRX,Dipexium Pharmaceuticals LLC,2014-03-13,pharma_biotech,1.4,0.0,Jupiter,contested,42.8,48.81,4,3.3,45.2
+GLMD,Galmed Pharmaceuticals Ltd,2014-03-13,pharma_biotech,1.4,0.0,Jupiter,contested,42.8,48.81,4,3.3,45.2
+ACPW,Active Power Inc,2000-08-07,utilities,0.87,0.0,Uranus,modern,43.55,49.76,1,7.8,45.1
+VRNT,Verint Systems Inc,2002-05-16,tech_software,2.95,0.0,Mercury,modern,40.33,40.33,0,8.8,45.1
+STX,Seagate Technology,2002-12-11,tech_software,0.35,0.0,Uranus,experimental,44.49,44.49,0,7.1,45.1
+KING,King Digital Entertainment plc,2014-03-26,tech_software,0.0,0.0,,,45.1,50.96,4,3.0,45.1
+MSBI,Midland States Bancorp Inc,2016-05-24,banking_financial,0.0,0.0,,,45.13,45.13,0,4.3,45.1
+ALLO,Allogene Therapeutics Inc.,2018-10-11,pharma_biotech,1.21,0.0,Neptune,modern,43.02,43.02,0,12.2,45.1
+TRVI,Trevi Therapeutics Inc,2019-05-07,pharma_biotech,3.17,0.0,Neptune,modern,40.04,40.04,0,11.3,45.1
+CADX,Cadence Pharmaceuticals Inc,2006-10-24,pharma_biotech,2.4,0.0,Mercury,modern,41.01,41.01,0,5.3,45.0
+SAXN,Saxon REIT Inc,2004-09-20,real_estate,0.0,0.0,,,44.93,44.93,0,5.9,44.9
+RICE,Rice Energy,2014-01-24,oil_gas,0.65,0.0,Neptune,modern,43.75,49.31,4,3.7,44.9
+VSTA,VistaCare,2002-12-18,healthcare_services,0.0,0.0,,,44.78,44.78,0,12.5,44.8
+XRM,Xerium Technologies Inc,2005-05-16,tech_software,0.0,0.0,,,44.75,44.75,0,7.5,44.8
+CML,Compellent Technologies Inc,2007-10-09,tech_software,0.58,0.0,Mercury,modern,43.8,43.8,0,7.2,44.8
+ECC,Eagle Point Credit Co Inc,2014-10-08,banking_financial,1.46,0.0,Venus,contested,42.32,42.32,0,7.9,44.8
+MBT,Mobile Telesystems OJSC,2000-06-29,tech_software,0.35,0.0,Uranus,experimental,44.08,44.62,1,2.8,44.7
+PRSE,Precise Software Solutions Ltd,2000-06-29,tech_software,0.35,0.0,Uranus,experimental,44.08,44.62,1,2.8,44.7
+STOR,Storagenetworks Inc,2000-06-29,tech_software,0.35,0.0,Uranus,experimental,44.08,44.62,1,2.8,44.7
+FBK,FB Financial Corp,2016-09-16,banking_financial,1.41,0.0,Venus,contested,42.21,42.21,0,4.4,44.6
+DWMA,Dickie Walker Marine Inc,2002-05-16,transport_shipping,2.6,0.0,Mercury,modern,40.33,40.33,0,8.8,44.5
+APTI,Advanced Power Technology Inc,2000-08-07,tech_software,0.47,0.0,Uranus,experimental,43.55,49.76,1,7.8,44.4
+SGMEU,SMG Indium Resources Ltd,2011-05-04,mining_materials,3.5,3.5,Mars,classical,38.91,38.91,0,4.2,44.4
+OPB,Opus Bank,2014-04-16,banking_financial,1.5,0.0,Jupiter,contested,41.91,41.91,0,6.5,44.4
+AFMD,Affimed Therapeutics BV,2014-09-12,pharma_biotech,0.65,0.0,Neptune,modern,43.27,43.27,0,6.6,44.4
+LINE,Linn Energy LLC,2006-01-12,oil_gas,0.0,0.0,,,44.27,44.27,0,9.0,44.3
+RPAI,Retail Ppty of Americas Inc,2012-04-05,retail_consumer,0.0,0.0,,,44.32,46.59,4,5.5,44.3
+INDO,Indonesia Energy Corp Ltd,2019-12-19,oil_gas,2.65,2.0,Saturn,classical,40.08,40.08,0,4.1,44.3
+CPRX,Catalyst Pharmaceutical,2006-11-07,pharma_biotech,0.75,0.0,Neptune,modern,42.93,42.93,0,10.4,44.2
+SLRY,Salary.com Inc,2007-02-15,tech_software,0.0,0.0,,,44.14,44.14,0,2.7,44.1
+BIOF,Biofuel Energy Corp,2007-06-14,oil_gas,0.0,0.0,,,44.11,44.11,0,3.3,44.1
+SWAV,Shockwave Medical Inc,2019-03-07,healthcare_services,1.72,0.0,Neptune,modern,41.31,41.31,0,8.7,44.1
+CSE,Capitalsource Inc,2003-08-06,banking_financial,0.0,0.0,,,43.86,43.86,0,9.1,43.9
+RNOW,RightNow Technologies Inc,2004-08-05,tech_software,2.27,0.0,Mercury,modern,40.24,40.24,0,6.7,43.9
+CSLT,Castlight Health Inc,2014-03-13,healthcare_services,0.65,0.0,Neptune,modern,42.8,48.81,4,3.3,43.9
+CRCM,Care.com,2014-01-24,tech_software,0.0,0.0,,,43.75,49.31,4,3.7,43.8
+SQBK,Square 1 Financial,2014-03-27,banking_financial,1.32,0.0,Jupiter,contested,41.58,44.95,4,3.3,43.8
+SELB,Selecta Biosciences Inc,2016-06-22,pharma_biotech,1.95,0.0,Mercury,modern,40.64,40.64,0,6.9,43.8
+TPTX,Turning Point Therapeutics,2019-04-17,pharma_biotech,2.32,0.0,Jupiter,contested,40.11,40.11,0,2.7,43.8
+CMBM,Cambium Networks Corp,2019-06-26,tech_software,0.0,0.0,,,43.76,43.76,0,8.9,43.8
+LSE,Capital Lease Funding Inc,2004-03-18,banking_financial,1.0,0.0,Venus,contested,41.92,41.92,0,8.8,43.6
+ANPC,Anpac Bio Med Science Co Ltd,2020-01-30,pharma_biotech,1.1,0.0,Neptune,modern,41.76,41.76,0,2.6,43.6
+BDTX,Black Diamond Therapeutics Inc,2020-01-30,pharma_biotech,1.1,0.0,Neptune,modern,41.76,41.76,0,2.6,43.6
+MDCO,Medicines Co,2000-08-07,pharma_biotech,0.0,0.0,,,43.55,49.76,1,7.8,43.5
+OMED,OncoMed Pharmaceuticals Inc,2013-07-17,pharma_biotech,1.4,0.0,Jupiter,contested,41.22,42.25,4,6.7,43.5
+KALA,Kala Pharmaceuticals Inc,2017-07-20,pharma_biotech,0.65,0.0,Neptune,modern,42.42,42.42,0,9.3,43.5
+KRYS,Krystal Biotech Inc,2017-09-20,pharma_biotech,3.62,0.0,Mercury,modern,38.03,38.03,0,3.4,43.5
+BBIO,BridgeBio Pharma Inc,2019-06-27,pharma_biotech,2.48,0.0,Jupiter,contested,39.6,39.6,0,5.7,43.5
+SGFY,Signify Health Inc,2021-02-11,healthcare_services,0.65,0.0,Neptune,modern,42.42,42.42,0,4.3,43.5
+GAIN,Gladstone Investment Corp,2005-06-22,banking_financial,0.07,0.0,Jupiter,contested,43.26,43.26,0,7.3,43.4
+GHS,GateHouse Media Inc,2006-10-24,telecom_media,1.43,0.0,Mercury,modern,41.01,41.01,0,5.3,43.4
+SHLS,Shoals Technologies Group Inc,2021-01-27,tech_software,0.45,0.0,Uranus,experimental,42.67,42.67,0,16.6,43.4
+HETC,Healthetech Inc,2002-07-12,healthcare_services,0.0,0.0,,,43.32,43.32,0,2.1,43.3
+MUI,Muni Intermediate Duration,2003-07-29,telecom_media,0.14,0.0,Neptune,modern,43.06,43.06,0,4.2,43.3
+MNE,Muni New York Intermediate,2003-07-29,telecom_media,0.14,0.0,Neptune,modern,43.06,43.06,0,4.2,43.3
+ALLI,Allion Healthcare Inc,2005-06-22,healthcare_services,0.0,0.0,,,43.26,43.26,0,7.3,43.3
+EGLE,Eagle Bulk Shipping Inc,2005-06-22,transport_shipping,0.0,0.0,,,43.26,43.26,0,7.3,43.3
+UDRL,Union Drilling,2005-11-21,oil_gas,1.0,1.0,Saturn,classical,41.64,41.64,0,7.0,43.3
+XFML,Xinhua Finance Media Ltd,2007-03-08,telecom_media,1.3,0.0,Mercury,modern,41.13,41.13,0,3.3,43.3
+EVDY,Everyday Health,2014-03-28,healthcare_services,1.02,0.0,Neptune,modern,41.56,41.56,0,4.3,43.3
+CIO,City Office REIT Inc,2014-04-15,real_estate,0.03,0.0,Moon,modern,43.27,49.29,3,9.7,43.3
+PAYC,Paycom Software Inc,2014-04-15,tech_software,0.0,0.0,,,43.27,49.29,3,9.7,43.3
+AFCB,Athens Bancshares Corp,2010-01-06,banking_financial,3.06,0.0,Saturn,contested,38.48,38.48,0,6.5,43.2
+SFBC,Sound Financial Bancorp Inc,2012-08-15,banking_financial,1.42,0.0,Saturn,contested,40.74,40.74,0,5.2,43.1
+CATZ,Computer Access Technology,2000-11-10,tech_software,1.22,0.0,Uranus,experimental,41.01,46.8,4,7.4,43.0
+IKAN,Ikanos Communications Inc,2005-09-21,telecom_media,0.88,0.0,Neptune,modern,41.55,41.55,0,7.3,43.0
+AGIO,Agios Pharmaceuticals Inc,2013-07-23,pharma_biotech,1.4,0.0,Jupiter,contested,40.62,45.84,4,4.6,42.9
+HTBX,Heat Biologics Inc,2013-07-23,pharma_biotech,1.4,0.0,Jupiter,contested,40.62,45.84,4,4.6,42.9
+RGF,Real Good Food Company Inc,2021-11-05,food_agriculture,2.0,2.0,Saturn,classical,39.61,39.61,0,10.3,42.8
+AZYO,Aziyo Biologics Inc,2020-10-08,pharma_biotech,1.58,0.0,Mercury,modern,40.13,40.13,0,7.3,42.7
+HPLA,HPL Technologies Inc,2001-07-31,tech_software,0.35,0.0,Uranus,experimental,41.97,41.97,0,4.6,42.6
+CCM,Concord Medical Services Ltd,2009-12-11,healthcare_services,0.0,0.0,,,42.57,42.57,0,5.2,42.6
+ALLT,Allot Communications Inc,2006-11-15,telecom_media,0.0,0.0,,,42.51,42.51,0,12.7,42.5
+HNSN,Hansen Medical Inc,2006-11-15,healthcare_services,0.0,0.0,,,42.51,42.51,0,12.7,42.5
+ACLS,Axcelis Technologies Inc,2000-07-10,tech_software,0.35,0.0,Uranus,experimental,41.81,43.03,1,2.3,42.4
+FSL,Freescale Semiconductor Inc,2004-07-16,semiconductors,0.0,0.0,,,42.37,42.37,0,6.7,42.4
+OVID,Ovid Therapeutics Inc,2017-05-05,pharma_biotech,2.67,0.0,Neptune,modern,38.15,38.15,0,4.7,42.2
+LWSN,Lawson Software Inc,2001-12-06,tech_software,0.59,0.0,Uranus,experimental,41.17,41.17,0,8.0,42.1
+LFC,China Life Insurance Company L,2003-12-12,insurance,1.14,0.0,Pluto,modern,40.29,40.29,0,7.1,42.1
+CMP,Compass Minerals International,2003-12-12,mining_materials,1.14,0.0,Pluto,modern,40.29,40.29,0,7.1,42.1
+BNK,C1 Financial Inc,2014-08-14,banking_financial,0.0,0.0,,,42.08,45.43,3,6.9,42.1
+BGR,BlackRock Global Energy,2004-12-22,oil_gas,0.0,0.0,,,42.02,42.02,0,4.7,42.0
+BBEP,BreitBurn Energy Partners L.P.,2006-10-04,oil_gas,1.04,1.04,Saturn,classical,40.31,40.31,0,4.1,42.0
+DCW,Dividend Capital Strategic,2007-06-27,banking_financial,2.43,0.0,Jupiter,contested,38.29,38.29,0,4.9,42.0
+WIFI,Boingo Wireless Inc,2011-05-03,telecom_media,0.65,0.0,Neptune,modern,40.9,41.33,3,4.7,42.0
+CHNG,Change Healthcare Inc,2019-06-27,healthcare_services,1.48,0.0,Mercury,modern,39.6,39.6,0,5.7,42.0
+PACB,Pacific Biosciences of CA Inc,2010-10-26,pharma_biotech,1.0,0.0,Jupiter,contested,40.26,40.26,0,5.0,41.9
+TRIV,TriVascular Technologies Inc,2014-04-16,tech_software,0.0,0.0,,,41.91,41.91,0,6.5,41.9
+KRTX,Karuna Therapeutics Inc,2019-06-28,pharma_biotech,1.65,0.0,Jupiter,contested,39.31,39.31,0,4.3,41.9
+XTEX,Crosstex Energy LP,2002-12-12,oil_gas,0.07,0.0,Pluto,modern,41.65,41.65,0,6.9,41.8
+VAPN,Vaso Active Pharmaceuticals,2003-12-11,pharma_biotech,0.7,0.0,Pluto,experimental,40.62,40.62,0,6.4,41.8
+AIMT,Aimmune Therapeutics Inc,2015-08-06,pharma_biotech,0.65,0.0,Neptune,modern,40.75,40.75,0,5.9,41.8
+IOBT,IO Biotech Inc,2021-11-05,pharma_biotech,1.39,0.0,Jupiter,contested,39.61,39.61,0,10.3,41.8
+JONE,Jones Energy Inc,2013-07-23,oil_gas,0.65,0.0,Neptune,modern,40.62,45.84,4,4.6,41.7
+AGTC,Applied Genetic Technologies,2014-03-27,tech_software,0.0,0.0,,,41.58,44.95,4,3.3,41.6
+HIVE,Aerohive Networks,2014-03-28,tech_software,0.0,0.0,,,41.56,41.56,0,4.3,41.6
+PLSE,Pulse Biosciences Inc,2016-05-18,pharma_biotech,0.65,0.0,Neptune,modern,40.56,40.56,0,7.7,41.6
+APFH,AdvancePierre Foods Hldg Inc,2016-07-15,food_agriculture,0.0,0.0,,,41.5,41.5,0,8.7,41.5
+DESP,Despegar.com Corp,2017-09-20,tech_software,2.27,0.0,Mercury,modern,38.03,38.03,0,3.4,41.5
+RPHM,Reneo Pharmaceuticals Inc,2021-04-09,pharma_biotech,2.91,0.0,Neptune,modern,37.22,37.22,0,15.2,41.5
+VECT,VectivBio Holding AG,2021-04-09,pharma_biotech,2.91,0.0,Neptune,modern,37.22,37.22,0,15.2,41.5
+ACTS,Actions Semiconductor,2005-11-29,semiconductors,0.57,0.0,Uranus,experimental,40.48,40.48,0,8.8,41.4
+NCST,NUCRYST Pharmaceuticals,2005-12-22,pharma_biotech,0.0,0.0,,,41.35,41.35,0,5.5,41.4
+CTUY,Century Next Financial Corp,2010-09-28,banking_financial,2.04,0.0,Saturn,contested,38.26,38.26,0,4.3,41.4
+MNPR,Monopar Therapeutics,2019-12-19,pharma_biotech,0.85,0.0,Neptune,modern,40.08,40.08,0,4.1,41.4
+ISG,International Steel Group Inc.,2003-12-12,steel_defense,0.65,0.0,Uranus,modern,40.29,40.29,0,7.1,41.3
+EROC,Eagle Rock Energy LP,2006-10-24,oil_gas,0.0,0.0,,,41.01,41.01,0,5.3,41.0
+BWP,Boardwalk Pipeline Partners LP,2005-11-08,oil_gas,2.07,0.0,Pluto,modern,37.58,37.58,0,9.3,40.7
+FISH,Marlin Midstream Partners LP,2013-07-25,oil_gas,1.12,0.47,Neptune,modern,38.94,43.87,4,5.8,40.7
+FBTX,Franklin Bank Corp.,2003-12-18,banking_financial,0.95,0.0,Venus,contested,39.1,39.1,0,6.0,40.6
+ACHN,Achillion Pharmaceuticals Inc,2006-10-25,pharma_biotech,2.21,0.0,Mercury,modern,37.29,37.29,0,8.4,40.6
+OMAM,OM Asset Management plc,2014-10-09,banking_financial,1.42,0.0,Venus,contested,38.38,38.38,0,4.2,40.6
+ATN,Atlas Energy Resources LLC,2006-12-13,oil_gas,0.0,0.0,,,40.55,40.55,0,2.0,40.5
+GUID,Guidance Software,2006-12-13,tech_software,0.0,0.0,,,40.55,40.55,0,2.0,40.5
+KUN,China Shenghuo Pharmaceutical,2007-06-18,pharma_biotech,2.83,0.0,Mercury,modern,36.42,36.42,0,8.1,40.5
+FOODU,Vaughan Foods Inc,2007-06-27,food_agriculture,1.41,1.41,Saturn,classical,38.29,38.29,0,4.9,40.5
+FPT,Federated Premier Intermediate,2002-12-19,telecom_media,0.0,0.0,,,40.27,40.27,0,5.2,40.3
+CDL,Citadel Broadcasting Corp,2003-07-31,telecom_media,2.27,0.0,Mercury,modern,36.95,36.95,0,8.7,40.3
+CENF,Central Freight Lines Inc.,2003-12-12,transport_shipping,0.0,0.0,,,40.29,40.29,0,7.1,40.3
+NBLX,Noble Midstream Partners LP,2016-09-15,oil_gas,0.65,0.0,Neptune,modern,39.29,39.29,0,4.5,40.3
+BCOW,1895 Bancorp of Wisconsin,2019-01-09,banking_financial,3.47,0.0,Jupiter,contested,35.3,35.3,0,11.3,40.2
+HDIX,Home Diagnostics Inc,2006-09-20,healthcare_services,0.0,0.0,,,40.09,40.09,0,7.3,40.1
+KED,Kayne Anderson Energy Dvpt,2006-09-20,oil_gas,0.0,0.0,,,40.09,40.09,0,7.3,40.1
+RVBD,Riverbed Technology Inc,2006-09-20,tech_software,0.0,0.0,,,40.09,40.09,0,7.3,40.1
+TLMR,Talmer Bancorp,2014-02-12,banking_financial,2.75,0.0,Venus,contested,36.04,40.71,4,4.2,40.0
+BLCM,Bellicum Pharmaceuticals Inc,2014-12-18,pharma_biotech,0.65,0.0,Neptune,modern,39.02,39.02,0,7.9,40.0
+VIRI,Virios Therapeutics LLC,2020-12-17,pharma_biotech,2.21,0.0,Jupiter,contested,36.63,36.63,0,6.6,39.9
+NGSX,Neurogesx Inc,2007-05-01,pharma_biotech,1.48,0.0,Jupiter,contested,37.58,37.58,0,3.9,39.8
+BBND,Bigband Networks Inc,2007-03-14,tech_software,0.0,0.0,,,39.72,39.72,0,2.7,39.7
+CAVM,Cavium Networks Inc,2007-05-01,tech_software,1.39,0.0,Uranus,experimental,37.58,37.58,0,3.9,39.7
+OAS,Oasis Petroleum Inc,2010-06-16,oil_gas,0.16,0.16,Saturn,classical,39.4,39.4,0,3.3,39.6
+CFB,Crossfirst Bankshares Inc,2019-08-15,banking_financial,4.6,0.0,Jupiter,contested,33.45,33.45,0,7.9,39.6
+PEB,Pebblebrook Hotel Trust,2009-12-09,hospitality,0.0,0.0,,,39.46,39.46,0,4.1,39.5
+CNCE,Concert Pharmaceuaticals,2014-02-13,pharma_biotech,2.05,0.0,Jupiter,contested,36.48,40.81,4,4.6,39.5
+SKIS,Peak Resorts Inc,2014-11-21,hospitality,0.0,0.0,,,39.38,39.38,0,4.5,39.4
+ANR,Alpha Natural Resources Inc,2005-02-14,mining_materials,1.5,1.5,Mars,classical,37.09,37.09,0,8.5,39.3
+EGRX,Eagle Pharmaceuticals,2014-02-12,pharma_biotech,2.17,0.0,Pluto,experimental,36.04,40.71,4,4.2,39.2
+FLXN,Flexion Therapeutics,2014-02-12,pharma_biotech,2.17,0.0,Pluto,experimental,36.04,40.71,4,4.2,39.2
+ATRA,Atara Biotherapeutics Inc,2014-10-16,pharma_biotech,1.66,0.0,Mercury,modern,36.77,36.77,0,5.7,39.2
+NARI,Inari Medical Inc,2020-05-22,healthcare_services,1.95,0.0,Mercury,modern,36.35,36.35,0,8.5,39.2
+RMR,R M R REAL ESTATE FUND,2003-12-18,real_estate,0.0,0.0,,,39.1,39.1,0,6.0,39.1
+APLT,Applied Therapeutics Inc,2019-05-14,pharma_biotech,1.65,0.0,Jupiter,contested,36.69,36.69,0,6.8,39.1
+BRBR,BellRing Brands Inc,2019-10-17,retail_consumer,0.0,0.0,,,39.09,39.09,0,8.0,39.1
+LUM,Luminent Mortgage Capital,2003-12-19,banking_financial,0.96,0.0,Venus,contested,37.6,37.6,0,3.5,39.0
+HABT,The Habit Restaurants Inc,2014-11-20,hospitality,0.0,0.0,,,39.0,39.0,0,9.2,39.0
+HPJ,Hong Kong Highpower Tech Inc,2008-06-19,utilities,0.0,0.0,,,38.8,38.8,0,17.3,38.8
+CADE,Cadence Bancorp,2017-04-13,banking_financial,1.75,0.0,Venus,contested,36.08,36.08,0,9.9,38.6
+VITL,Vital Farms Inc,2020-07-31,food_agriculture,2.0,2.0,Saturn,classical,35.72,35.72,0,5.6,38.6
+PRVB,Provention Bio Inc,2018-07-24,pharma_biotech,1.95,0.0,Mercury,modern,35.67,35.67,0,12.6,38.5
+MNRL,Brigham Minerals Inc,2019-04-18,mining_materials,2.0,2.0,Saturn,classical,35.66,35.66,0,2.6,38.5
+SALE,RetailMeNot Inc,2013-07-18,retail_consumer,0.43,0.43,Venus,classical,37.72,42.13,4,6.9,38.4
+RGNX,Regenxbio Inc,2015-09-17,pharma_biotech,1.95,0.0,Mercury,modern,35.63,35.63,0,9.9,38.4
+CXS,CreXus Investment Corp,2009-09-16,banking_financial,1.03,0.0,Saturn,contested,36.72,36.72,0,19.1,38.2
+RRBI,Red River Bancshares Inc,2019-05-03,banking_financial,3.0,0.0,Saturn,contested,34.08,34.08,0,6.8,38.2
+SOVO,Sovos Brands Inc,2021-09-23,retail_consumer,0.98,0.0,Moon,modern,36.72,36.72,0,7.8,38.2
+DRII,Diamond Resorts International,2013-07-18,hospitality,0.28,0.0,Venus,modern,37.72,42.13,4,6.9,38.1
+KREF,KKR Real Estate Fin Trust,2017-05-05,real_estate,0.0,0.0,,,38.15,38.15,0,4.7,38.1
+LEND,Accredited Home Lenders,2003-02-14,banking_financial,0.59,0.0,Venus,contested,37.11,37.11,0,11.1,38.0
+HOOK,Hookipa Pharma Inc,2019-04-18,pharma_biotech,1.65,0.0,Jupiter,contested,35.66,35.66,0,2.6,38.0
+KRON,Kronos Bio Inc,2020-10-09,pharma_biotech,1.67,0.0,Mercury,modern,35.58,35.58,0,4.0,38.0
+STTK,Shattuck Labs Inc,2020-10-09,pharma_biotech,1.67,0.0,Mercury,modern,35.58,35.58,0,4.0,38.0
+SPRB,Spruce Biosciences Inc,2020-10-09,pharma_biotech,1.67,0.0,Mercury,modern,35.58,35.58,0,4.0,38.0
+HMIN,Home Inns & Hotels Management,2006-10-25,hospitality,0.41,0.0,Venus,modern,37.29,37.29,0,8.4,37.9
+BE,Bloom Energy Corp,2018-07-25,oil_gas,2.65,2.0,Saturn,classical,34.26,34.26,0,14.1,37.9
+THRN,Thorne Healthtech Inc,2021-09-23,healthcare_services,0.73,0.0,Neptune,modern,36.72,36.72,0,7.8,37.8
+DOC,Physicians Realty Trust,2013-07-18,real_estate,0.0,0.0,,,37.72,42.13,4,6.9,37.7
+REXR,Rexford Industrial Realty Inc,2013-07-18,real_estate,0.0,0.0,,,37.72,42.13,4,6.9,37.7
+SFUN,Saifun Semiconductors Ltd,2005-11-08,semiconductors,0.0,0.0,,,37.58,37.58,0,9.3,37.6
+DRVN,Driven Brands Holdings Inc,2021-01-15,retail_consumer,0.0,0.0,,,37.65,37.65,0,11.0,37.6
+CRIC,China Real Estate Information,2009-10-16,tech_software,0.0,0.0,,,37.39,37.39,0,13.9,37.4
+CMED,China Medical Technologies Inc,2005-08-09,healthcare_services,0.92,0.0,Neptune,modern,35.89,35.89,0,5.2,37.2
+COLY,Coley Pharmaceutical Group Inc,2005-08-09,pharma_biotech,0.92,0.0,Neptune,modern,35.89,35.89,0,5.2,37.2
+JUNO,Juno Therapeutics Inc,2014-12-19,pharma_biotech,0.65,0.0,Neptune,modern,36.24,36.24,0,1.6,37.2
+PFBC,Preferred Bank LA,2005-02-14,banking_financial,0.0,0.0,,,37.09,37.09,0,8.5,37.1
+TLCR,Talecris Biotherapeutics Hldg,2009-09-30,pharma_biotech,4.23,0.0,Mercury,modern,31.57,31.57,0,6.0,36.9
+NBRV,Nabriva Therapeutics,2015-09-18,pharma_biotech,1.95,0.0,Mercury,modern,34.22,34.22,0,9.0,36.9
+AQST,Aquestive Therapeutics Inc,2018-07-25,pharma_biotech,1.95,0.0,Mercury,modern,34.26,34.26,0,14.1,36.9
+VTAE,Vitae Pharmaceuticals Inc,2014-09-24,pharma_biotech,2.44,0.0,Pluto,experimental,33.56,33.56,0,7.4,36.8
+TPGI,Thomas Properties Group Inc,2004-10-06,real_estate,1.95,0.0,Moon,modern,34.08,34.08,0,3.0,36.7
+DAWN,Day One Biopharmaceuticals Inc,2021-05-27,pharma_biotech,5.06,0.0,Mercury,modern,30.48,30.48,0,11.8,36.6
+OMIC,Singular Genomics Systems Inc,2021-05-27,pharma_biotech,5.06,0.0,Mercury,modern,30.48,30.48,0,11.8,36.6
+SRQ,Scudder RREEF Real Estate Fund,2002-10-28,real_estate,1.3,0.0,Moon,modern,34.57,34.57,0,5.3,36.4
+ACM,AECOM Technology Corp,2007-05-09,tech_software,0.11,0.0,Uranus,experimental,36.26,36.26,0,4.6,36.4
+CTMX,CytomX Therapeutics Inc,2015-10-08,pharma_biotech,2.2,0.0,Mercury,modern,33.43,33.43,0,5.8,36.4
+BHVN,Biohaven Pharmaceutical Hldg,2017-05-04,pharma_biotech,2.3,0.0,Mercury,modern,33.06,33.06,0,2.4,36.1
+URGN,Urogen Pharma Ltd,2017-05-04,pharma_biotech,2.3,0.0,Mercury,modern,33.06,33.06,0,2.4,36.1
+IGR,ING Clarion Real Estate Income,2004-02-24,real_estate,0.0,0.0,,,35.95,35.95,0,7.3,36.0
+TYG,Tortoise Energy Infrastructure,2004-02-24,oil_gas,0.0,0.0,,,35.95,35.95,0,7.3,36.0
+SEM,Select Medical Holdings Corp,2009-09-25,healthcare_services,2.39,0.0,Mercury,modern,32.88,32.88,0,10.5,36.0
+OPRT,Oportun Financial Corp,2019-09-26,banking_financial,3.0,0.0,Jupiter,contested,32.13,32.13,0,10.0,36.0
+HCAP,Harvest Capital Credit Corp,2013-05-02,banking_financial,1.0,0.0,Venus,contested,34.3,34.3,0,2.0,35.7
+AXSM,Axsome Therapeutics Inc,2015-11-19,pharma_biotech,2.75,0.0,Neptune,modern,32.13,32.13,0,13.9,35.7
+SPFI,South Plains Financial Inc,2019-05-09,banking_financial,2.0,0.0,Jupiter,contested,33.06,33.06,0,5.7,35.7
+MIST,Milestone Pharmaceuticals Inc,2019-05-09,pharma_biotech,1.91,0.0,Jupiter,contested,33.06,33.06,0,5.7,35.6
+CNTA,Centessa Pharmaceuticals plc,2021-05-28,pharma_biotech,4.25,0.0,Mercury,modern,30.27,30.27,0,8.2,35.4
+FOCS,Focus Financial Partners Inc,2018-07-26,banking_financial,1.92,0.0,Saturn,contested,32.8,32.8,0,13.3,35.3
+INSY,Insys Therapeutics Inc,2013-05-02,pharma_biotech,0.65,0.0,Neptune,modern,34.3,34.3,0,2.0,35.2
+LQDA,Liquidia Technologies Inc,2018-07-26,tech_software,1.76,0.0,Mercury,modern,32.8,32.8,0,13.3,35.1
+ALGS,Aligos Therapeutics Inc,2020-10-16,pharma_biotech,1.46,0.0,Neptune,modern,32.95,32.95,0,13.8,34.9
+KRBP,Kiromic Biopharma Inc,2020-10-16,pharma_biotech,1.46,0.0,Neptune,modern,32.95,32.95,0,13.8,34.9
+PRAX,Praxis Precision Medicines Inc,2020-10-16,pharma_biotech,1.46,0.0,Neptune,modern,32.95,32.95,0,13.8,34.9
+TARS,Tarsus Pharmaceuticals Inc,2020-10-16,pharma_biotech,1.46,0.0,Neptune,modern,32.95,32.95,0,13.8,34.9
+ACRS,Aclaris Therapeutics Inc,2015-10-07,pharma_biotech,1.13,0.0,Neptune,modern,33.28,33.28,0,9.7,34.8
+LABP,Landos Biopharma Inc,2021-02-04,pharma_biotech,0.65,0.0,Neptune,modern,33.6,33.6,0,4.0,34.5
+SANA,Sana Biotechnology Inc,2021-02-04,pharma_biotech,0.65,0.0,Neptune,modern,33.6,33.6,0,4.0,34.5
+SNSE,Sensei Biotherapeutics Inc,2021-02-04,pharma_biotech,0.65,0.0,Neptune,modern,33.6,33.6,0,4.0,34.5
+GKIS,Gold Kist Holdings Inc,2004-10-06,gold,0.25,0.25,Sun,classical,34.08,34.08,0,3.0,34.4
+CYBR,CyberArk Software Ltd,2014-09-24,tech_software,0.61,0.0,Mercury,modern,33.56,33.56,0,7.4,34.4
+AXLA,Axcella Health Inc,2019-05-09,healthcare_services,0.91,0.0,Neptune,modern,33.06,33.06,0,5.7,34.3
+CFG,Citizens Financial Group Inc,2014-09-24,banking_financial,0.48,0.0,Jupiter,contested,33.56,33.56,0,7.4,34.2
+IMPL,Impel NeuroPharma Inc,2021-04-23,pharma_biotech,0.65,0.0,Neptune,modern,33.3,33.3,0,4.0,34.2
+RAIN,Rain Therapeutics Inc,2021-04-23,pharma_biotech,0.65,0.0,Neptune,modern,33.3,33.3,0,4.0,34.2
+TMCI,Treace Medical Concepts Inc,2021-04-23,healthcare_services,0.65,0.0,Neptune,modern,33.3,33.3,0,4.0,34.2
+DCA,Dividend Capital Realty Income,2005-02-23,banking_financial,0.22,0.0,Venus,contested,33.84,33.84,0,5.9,34.1
+DICE,DICE Therapeutics Inc,2021-09-15,pharma_biotech,1.74,0.0,Neptune,modern,31.72,31.72,0,6.3,33.9
+DH,Definitive Healthcare Corp,2021-09-15,healthcare_services,1.74,0.0,Neptune,modern,31.72,31.72,0,6.3,33.9
+KTTA,Pasithea Therapeutics Corp,2021-09-15,pharma_biotech,1.74,0.0,Neptune,modern,31.72,31.72,0,6.3,33.9
+TYRA,Tyra Biosciences Inc,2021-09-15,pharma_biotech,1.74,0.0,Neptune,modern,31.72,31.72,0,6.3,33.9
+VTA,Van Kampen Dynamic Credit,2007-06-26,banking_financial,3.26,0.0,Venus,contested,29.86,29.86,0,3.8,33.8
+ABTX,Allegiance Bancshares Inc,2015-10-08,banking_financial,0.22,0.0,Venus,contested,33.43,33.43,0,5.8,33.7
+DMTX,Dimension Therapeutics Inc,2015-10-22,pharma_biotech,0.65,0.0,Neptune,modern,32.82,32.82,0,5.8,33.7
+DSP,Viant Technology Inc,2021-02-10,tech_software,0.46,0.0,Uranus,experimental,33.11,33.11,0,6.5,33.7
+SFS,Smart & Final Stores Inc,2014-09-24,retail_consumer,0.0,0.0,,,33.56,33.56,0,7.4,33.6
+ADIL,Adial Pharmaceuticals Inc,2018-07-27,pharma_biotech,1.95,0.0,Mercury,modern,31.12,31.12,0,5.8,33.5
+GTHX,G1 Therapeutics Inc,2017-05-17,pharma_biotech,0.65,0.0,Neptune,modern,32.55,32.55,0,5.2,33.4
+WISA,Summit Semiconductor Inc,2018-07-27,semiconductors,1.87,0.0,Mercury,modern,31.12,31.12,0,5.8,33.4
+LTRN,Lantern Pharma Inc,2020-06-11,pharma_biotech,1.88,0.0,Neptune,modern,31.08,31.08,0,9.9,33.4
+SMI,Semiconductor Mnfg Intl Corp,2004-03-11,semiconductors,0.0,0.0,,,33.18,33.18,0,4.8,33.2
+IOTS,Adesto Technologies Corp,2015-10-27,tech_software,0.0,0.0,,,33.01,33.01,0,6.3,33.0
+AKYA,Akoya Biosciences Inc,2021-04-16,pharma_biotech,1.94,0.0,Pluto,experimental,30.26,30.26,0,7.9,32.6
+RXRX,Recursion Pharmaceuticals Inc,2021-04-16,pharma_biotech,1.94,0.0,Pluto,experimental,30.26,30.26,0,7.9,32.6
+IGMS,IGM Biosciences Inc,2019-09-18,pharma_biotech,1.65,0.0,Jupiter,contested,30.38,30.38,0,8.4,32.4
+LVS,Las Vegas Sands Corp,2004-12-14,oil_gas,0.92,0.0,Pluto,modern,31.06,31.06,0,6.0,32.2
+AGNC,American Capital Agency Corp,2008-05-14,banking_financial,1.75,0.0,Venus,contested,30.13,30.13,0,12.4,32.2
+TPZ,Tortoise Power & Energy,2009-07-29,oil_gas,2.87,2.87,Saturn,classical,28.69,28.69,0,4.7,32.0
+SYRS,Syros Pharmaceuticals Inc,2016-06-30,pharma_biotech,0.65,0.0,Neptune,modern,31.15,31.15,0,4.8,32.0
+SEP,Spectra Energy Partners LP,2007-06-26,oil_gas,1.66,1.66,Saturn,classical,29.86,29.86,0,3.8,31.8
+DGI,DigitalGlobe Inc,2009-05-13,tech_software,1.79,0.0,Mercury,modern,29.64,29.64,0,10.8,31.8
+WOLF,Great Wolf Resorts Inc,2004-12-14,hospitality,0.54,0.0,Moon,modern,31.06,31.06,0,6.0,31.7
+NBH,Neuberger Berman Intermediate,2002-09-24,telecom_media,0.0,0.0,,,31.46,31.46,0,6.1,31.5
+BGF,B&G Foods Holdings Corp,2004-10-07,food_agriculture,2.18,2.18,Moon,classical,29.01,29.01,0,3.0,31.5
+RRST,RRSat Global Communications,2006-10-31,telecom_media,0.0,0.0,,,31.48,31.48,0,4.0,31.5
+CONR,Conor Medsystems Inc,2004-12-14,tech_software,0.0,0.0,,,31.06,31.06,0,6.0,31.1
+ADCT,ADC Therapeutics SA,2020-05-15,pharma_biotech,3.21,0.0,Mercury,modern,27.36,27.36,0,4.6,30.9
+PMT,Pennymac Mtg Invest Tr,2009-07-29,banking_financial,1.44,0.0,Saturn,contested,28.69,28.69,0,4.7,30.3
+ECHO,Echo Global Logistics Inc,2009-10-01,transport_shipping,2.27,0.0,Mercury,modern,27.73,27.73,0,3.9,30.3
+ZYNE,Zynerba Pharmaceuticals Inc,2015-08-05,pharma_biotech,0.65,0.0,Neptune,modern,29.4,29.4,0,5.5,30.2
+DDUP,Data Domain Inc,2007-06-26,tech_software,0.0,0.0,,,29.86,29.86,0,3.8,29.9
+SPRD,Spreadtrum Communications Inc,2007-06-26,telecom_media,0.0,0.0,,,29.86,29.86,0,3.8,29.9
+HTX,Hutchison Telecommun Intl Ltd,2004-10-07,telecom_media,0.72,0.0,Mercury,modern,29.01,29.01,0,3.0,29.8
+RLAY,Relay Therapeutics Inc,2020-07-16,pharma_biotech,1.18,0.0,Neptune,modern,28.39,28.39,0,4.9,29.7
+TIG,Trean Insurance Group Inc,2020-07-16,insurance,0.98,0.0,Pluto,modern,28.39,28.39,0,4.9,29.5
+BETR,Amplify Snack Brands Inc,2015-08-05,retail_consumer,0.0,0.0,,,29.4,29.4,0,5.5,29.4
+AGL,agilon health inc,2021-04-15,healthcare_services,0.65,0.0,Neptune,modern,28.69,28.69,0,6.2,29.4
+RCON,Recon Technology Ltd,2009-07-29,tech_software,0.0,0.0,,,28.69,28.69,0,4.7,28.7
+BNR,Burning Rock Biotech Ltd,2020-06-12,pharma_biotech,1.47,0.0,Neptune,modern,27.07,27.07,0,8.2,28.7
+GBIO,Generation Bio Co,2020-06-12,pharma_biotech,1.47,0.0,Neptune,modern,27.07,27.07,0,8.2,28.7
+EBET,eSports Technologies Inc,2021-04-15,tech_software,0.0,0.0,,,28.69,28.69,0,6.2,28.7
+AYLA,Ayala Pharmaceuticals Inc,2020-05-08,pharma_biotech,1.5,0.0,Neptune,modern,26.77,26.77,0,3.0,28.4
+ALZN,Alzamend Neuro Inc,2021-06-15,pharma_biotech,3.6,0.0,Neptune,modern,24.33,24.33,0,3.2,27.8
+GOCO,GoHealth Inc,2020-07-15,healthcare_services,0.65,0.0,Neptune,modern,26.83,26.83,0,7.6,27.5
+YGMZ,Mingzhu Logistics Holdings Ltd,2020-10-21,transport_shipping,0.65,0.0,Neptune,modern,26.32,26.32,0,6.0,27.0
+AVIR,Atea Pharmaceuticals Inc,2020-10-30,pharma_biotech,1.16,0.0,Neptune,modern,25.73,25.73,0,6.9,26.9
+SQZ,SQZ Biotechnologies Co,2020-10-30,pharma_biotech,1.16,0.0,Neptune,modern,25.73,25.73,0,6.9,26.9
+KC,Kingsoft Cloud Holdings Ltd,2020-05-08,tech_software,0.0,0.0,,,26.77,26.77,0,3.0,26.8
+ARCC,Ares Capital Co,2004-10-05,banking_financial,0.5,0.0,Jupiter,contested,25.86,25.86,0,3.0,26.4
+NSTC,Ness Technologies Inc,2004-09-29,tech_software,0.0,0.0,,,25.93,25.93,0,2.0,25.9
+MRM,Medirom Healthcare Tech Inc,2020-12-29,healthcare_services,0.65,0.0,Neptune,modern,23.3,23.3,0,4.0,23.9
+INFA,Informatica Inc,2021-10-27,tech_software,0.0,0.0,,,23.88,23.88,0,4.9,23.9
+ELYM,Eliem Therapeutics Inc,2021-08-10,pharma_biotech,0.65,0.0,Neptune,modern,22.21,22.21,0,4.6,22.8
+BLND,Blend Labs Inc,2021-07-16,pharma_biotech,2.03,0.0,Jupiter,contested,20.08,20.08,0,3.2,21.7
+BLFY,Blue Foundry Bancorp,2021-07-16,banking_financial,2.0,0.0,Jupiter,contested,20.08,20.08,0,3.2,21.7
+BRDG,Bridge Investment Group Holdin,2021-07-16,banking_financial,2.0,0.0,Jupiter,contested,20.08,20.08,0,3.2,21.7
+IMGO,Imago BioSciences Inc,2021-07-16,pharma_biotech,2.03,0.0,Jupiter,contested,20.08,20.08,0,3.2,21.7
+TCRX,TScan Therapeutics Inc,2021-07-16,pharma_biotech,2.03,0.0,Jupiter,contested,20.08,20.08,0,3.2,21.7
