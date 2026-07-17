@@ -85,7 +85,7 @@ def find_eclipses():
         if tjd >= jd_end:
             break
         sun_lon = lon_at(tjd, swe.SUN)
-        if ecl_type & swe.ECL_TOTAL:
+        if ecl_type & swe.ECL_TOTAL or ecl_type & swe.ECL_ANNULAR_TOTAL:
             kind = "total_solar"
         elif ecl_type & swe.ECL_ANNULAR:
             kind = "annular_solar"

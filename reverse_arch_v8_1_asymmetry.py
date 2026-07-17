@@ -50,6 +50,26 @@ DEFAULT_ALREADY = {
     "WDAY","PTON","BYND","MANU","GPRO","TMUS","BTC","ETH","BIRK","CAVA",
     "DPZ","DNKN","CIEN","MO","GE","CHTR","ERTS","BX","ANSS"
 }
+# RCA F3: DEFAULT_ALREADY names modern cult stocks, but tickers get recycled.
+# An exclusion only applies if the IPO date is on/after the modern company's
+# listing era; earlier same-ticker companies are different businesses.
+# Collisions found in the Ritter universe: SNOW=Snowball.com 2000 + Intrawest
+# 2014, COIN=Converted Organics 2007, PATH=NuPathe 2010, SHOP=Shopping.com
+# 2004, FIG=Fortress Investment Group 2007.
+ALREADY_MIN_DATE = {
+    "SNOW": "2020-09-01", "COIN": "2021-01-01", "PATH": "2021-01-01",
+    "SHOP": "2015-01-01", "FIG": "2025-01-01", "U": "2020-09-01",
+    "AI": "2020-12-01", "NET": "2019-09-01", "BILL": "2019-12-01",
+}
+
+
+def is_already_cult(ticker: str, ipo_date: str, already: set[str]) -> bool:
+    if ticker not in already:
+        return False
+    min_date = ALREADY_MIN_DATE.get(ticker)
+    return min_date is None or ipo_date >= min_date
+
+
 SHELL_KW = [
     "acquisition", "merger corp", "spac", "capital corp", "blank check",
     "income tr", "premium", "quality mun", "bond trust", " fund ", "trust i"
@@ -508,7 +528,10 @@ def july_cluster_positions(cluster_date: str = "2026-07-20") -> dict:
     }
 
 
-def score_forward(c: dict, events: dict | None = None):
+def score_forward(c: dict, events: dict | None = None, as_of: str | None = None):
+    # as_of (YYYY-MM-DD): drop ALL hits dated on/before this — events AND the
+    # internally-generated solar-arc / progressed-Moon hits, which previously
+    # leaked past dates into time-shifted scoring (RCA F4).
     events = events or {}
     all_hits = []
     robust_targets = ["Sun", "Mercury", "Venus", "Mars", "Jupiter", "Neptune"]
@@ -640,6 +663,11 @@ def score_forward(c: dict, events: dict | None = None):
                     if pts > 0.3:
                         all_hits.append({"pts": pts, "date": f"{ty}-{mo:02d}", "desc": f"{ty}-{mo:02d} pMoon {asp} {pn} {o:.1f}°"})
 
+    if as_of:
+        # "2026" (SA year hits) and "2026-07" (pMoon) compare correctly against
+        # a full date prefix: keep a hit only when its period is not fully past.
+        all_hits = [h for h in all_hits if h["date"] >= as_of[: len(h["date"])]]
+
     all_hits.sort(key=lambda h: (-h["pts"], h["date"]))
     peak = all_hits[0] if all_hits else {"pts": 0.0, "desc": "none"}
     top3 = sum(h["pts"] for h in all_hits[:3])
@@ -660,10 +688,12 @@ def score_forward(c: dict, events: dict | None = None):
                     jul_score += pts
                     jul_hits.append(f"{body} {asp} {tn} {ao:.1f}°")
 
-    # Silas positioning rule: enter ~6 weeks before the first meaningful hit.
+    # Silas positioning rule: enter ~6 weeks before the first meaningful
+    # ECLIPSE hit (RCA F2: eclipses only — her 6-week rule is an eclipse rule,
+    # and ingress-anchored dates made position_by nearly global).
     position_by = ""
     for h in sorted(all_hits, key=lambda x: x["date"]):
-        if h["pts"] < 3 or len(h["date"]) != 10:
+        if h["pts"] < 3 or len(h["date"]) != 10 or ("solar" not in h["desc"] and "lunar" not in h["desc"]):
             continue
         try:
             position_by = (date.fromisoformat(h["date"]) - timedelta(days=42)).isoformat()
@@ -826,18 +856,18 @@ def load_ipos(expanded_path: str | None = None, ritter_path: str | None = None, 
     return rows
 
 
-def run_scoring(ipos: list[dict], events: dict | None = None, already_cult: set[str] | None = None) -> tuple[list[dict], dict[str, list[float]]]:
+def run_scoring(ipos: list[dict], events: dict | None = None, already_cult: set[str] | None = None, as_of: str | None = None) -> tuple[list[dict], dict[str, list[float]]]:
     already_cult = already_cult or DEFAULT_ALREADY
     preliminary = []
     for ipo in ipos:
         try:
             c = compute_chart(ipo["date"])
             robust, r_hits, gate, archetype, founder_flag = robust_core(c)
-            if not gate or ipo["ticker"] in already_cult or is_shell(ipo.get("name", "")):
+            if not gate or is_already_cult(ipo["ticker"], ipo["date"], already_cult) or is_shell(ipo.get("name", "")):
                 continue
             semi, l_hits = semi_lunar_bucket(c)
             spec, s_hits = speculative_bonus(c)
-            peak, peak_d, conc, fwd_hits, jul, jul_hits, silas = score_forward(c, events)
+            peak, peak_d, conc, fwd_hits, jul, jul_hits, silas = score_forward(c, events, as_of=as_of)
             era = era_match(c)
             window, first_year = classify_window(fwd_hits)
             total_dna = robust + semi + spec
@@ -867,7 +897,7 @@ def run_scoring(ipos: list[dict], events: dict | None = None, already_cult: set[
     for r in preliminary:
         r["comp"] = composite_v8_1(r["robust"], r["semi"], r["spec"], r["peak"], r["conc"], r["era"], r["jul"], stats)
         r["rally"] = classify_rally(r["jn_phase"], r["jn_age"], r["first_year"], r["total_dna"], r["peak"], r["conc"])
-        r["pre_cult"] = pre_cult_bucket(r["window"], r["total_dna"], r["peak"], r["conc"], r["ticker"] in already_cult)
+        r["pre_cult"] = pre_cult_bucket(r["window"], r["total_dna"], r["peak"], r["conc"], is_already_cult(r["ticker"], r["date"], already_cult))
         early, enduring, asym, asym_label = asymmetry_scores(r)
         r["asym_early"] = early
         r["asym_enduring"] = enduring
@@ -994,7 +1024,15 @@ def main():
 
     ipos = load_ipos(expanded, ritter, extra_ritter)
     events = load_events(events_path)
-    results, _stats = run_scoring(ipos, events)
+    # RCA F7: fail loudly when the universe or event stack silently collapses
+    # because a data path is missing (fresh container, moved files).
+    if len(ipos) < 100:
+        raise SystemExit(f"ABORT: universe={len(ipos)} — ritter/expanded CSVs not found at RA_RITTER={ritter!r} RA_EXPANDED={expanded!r}")
+    if not events.get("eclipses"):
+        raise SystemExit(f"ABORT: no eclipse events — RA_EVENTS={events_path!r} missing or empty")
+    as_of = os.environ.get("RA_ASOF", date.today().isoformat())
+    results, _stats = run_scoring(ipos, events, as_of=as_of)
+    print(f"as_of={as_of}")
 
     export_results(results, str(output_dir / "reverse_arch_v8_1_asymmetry.csv"))
 

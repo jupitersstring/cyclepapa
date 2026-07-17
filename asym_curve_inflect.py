@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 import sys
 from datetime import date, timedelta
 from pathlib import Path
@@ -39,7 +40,7 @@ from reverse_arch_v8_1_asymmetry import (
     speculative_bonus,
 )
 
-T0 = date(2026, 5, 4)
+T0 = date.fromisoformat(os.environ.get("RA_ASOF", date.today().isoformat()))
 HORIZON_MONTHS = 48
 SNAPSHOT_STEP = 1
 
@@ -62,7 +63,7 @@ def filter_events(events: dict, as_of: date) -> dict:
 
 def score_at(c: dict, events: dict, as_of: date, dna: float, era: float) -> float:
     ev = filter_events(events, as_of)
-    peak, _, conc, fwd_hits, jul, _, _silas = score_forward(c, ev)
+    peak, _, conc, fwd_hits, jul, _, _silas = score_forward(c, ev, as_of=as_of.isoformat())
     window, first_year = classify_window(fwd_hits)
     row = {
         "total_dna": dna,

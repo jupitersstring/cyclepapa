@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 import sys
 from datetime import date, timedelta
 from pathlib import Path
@@ -32,7 +33,7 @@ from reverse_arch_v8_1_asymmetry import (
     speculative_bonus,
 )
 
-T0 = date(2026, 5, 4)
+T0 = date.fromisoformat(os.environ.get("RA_ASOF", date.today().isoformat()))
 T1 = T0 + timedelta(days=int(18 * 30.4375))
 print(f"as-of t0={T0.isoformat()}  t1={T1.isoformat()}  ({(T1-T0).days} days)")
 
@@ -49,7 +50,7 @@ def filter_events(events: dict, as_of: date) -> dict:
 
 def score_at(c: dict, events: dict, as_of: date) -> dict:
     ev = filter_events(events, as_of)
-    peak, peak_d, conc, fwd_hits, jul, _, _silas = score_forward(c, ev)
+    peak, peak_d, conc, fwd_hits, jul, _, _silas = score_forward(c, ev, as_of=as_of.isoformat())
     window, first_year = classify_window(fwd_hits)
     return {"peak": peak, "conc": conc, "jul": jul, "window": window, "first_year": first_year}
 
