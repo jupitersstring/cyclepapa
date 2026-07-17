@@ -60,11 +60,49 @@ def _age_hours(p: Path) -> float:
     return (time.time() - p.stat().st_mtime) / 3600.0
 
 
-# Circuit breaker: yfinance's curl_cffi backend can be broken at the
-# transport level (proxied environments) and each failure burns ~15-30s
-# of internal retries. After N consecutive empty/erroring yfinance
-# calls we stop trying it for the rest of the process and go straight
-# to the urllib chart API. Any yfinance success resets the counter.
+# --- yfinance transport fix (RCA 2026-07-16) -------------------------
+# yfinance's new_session() hardcodes curl_cffi impersonate="chrome".
+# Modern Chrome/Firefox ClientHellos carry post-quantum key shares and
+# ECH, which some TLS-terminating egress proxies cannot parse — they
+# reset the connection ("curl: (35) Recv failure"). Profile matrix
+# tested against this environment's proxy:
+#     chrome / chrome120 / chrome131 / firefox  -> connection reset
+#     chrome110 / safari184 / edge              -> 200 OK
+#     no impersonation                          -> 429 (Yahoo rate-limits)
+# So we inject our own session with a pre-PQ profile: full proxy
+# compatibility AND Yahoo's bot-filter is satisfied. Ordered
+# candidates in case Yahoo ever blocks the older fingerprint.
+_YF_IMPERSONATE_CANDIDATES = ("chrome110", "safari184", "edge")
+_YF_SESSION = None
+
+
+def _yf_session():
+    """Shared curl_cffi session with a proxy-compatible TLS profile.
+    Falls back to None (yfinance default) if curl_cffi is missing."""
+    global _YF_SESSION
+    if _YF_SESSION is not None:
+        return _YF_SESSION
+    try:
+        from curl_cffi import requests as _creq
+    except ImportError:
+        return None
+    for prof in _YF_IMPERSONATE_CANDIDATES:
+        try:
+            s = _creq.Session(impersonate=prof)
+            # Cheap probe — any HTTP status means TLS + proxy work
+            s.get("https://query1.finance.yahoo.com/v8/finance/chart/AAPL"
+                  "?range=1d&interval=1d", timeout=8)
+            _YF_SESSION = s
+            return s
+        except Exception:
+            continue
+    return None
+
+
+# Circuit breaker: retained as a belt-and-braces layer — if even the
+# fixed session fails repeatedly (proxy policy change, Yahoo outage)
+# we stop paying per-name retry latency and go straight to the urllib
+# chart API. Any yfinance success resets the counter.
 _YF_CONSECUTIVE_FAILURES = 0
 _YF_BREAKER_THRESHOLD = 3
 
@@ -80,7 +118,8 @@ def _download(ticker: str, period: str = "5y",
     if _YF_CONSECUTIVE_FAILURES < _YF_BREAKER_THRESHOLD:
         try:
             d = yf.download(ticker, period=period, interval=interval,
-                            progress=False, auto_adjust=True)
+                            progress=False, auto_adjust=True,
+                            session=_yf_session())
         except Exception:
             d = None
         if d is None or d.empty:

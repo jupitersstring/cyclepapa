@@ -54,12 +54,17 @@ def _write_cache(data: dict) -> None:
         pass
 
 
-# Circuit breaker: yf.Ticker().info runs on curl_cffi, which bypasses
-# HTTPS_PROXY and dies slowly (~15-30s of retries per name) in proxied
-# environments. After N consecutive failures we stop trying for the
-# rest of the process — non-UK names then fall back to the
-# discount_override column in universe.csv via the normal priority
-# chain (AIC -> yahoo -> override).
+# Transport fix (RCA 2026-07-16): yfinance's default session uses
+# curl_cffi impersonate="chrome", whose post-quantum/ECH ClientHello
+# is reset by TLS-terminating egress proxies. price_store._yf_session
+# builds a session with a pre-PQ profile (chrome110) that both the
+# proxy and Yahoo accept — reuse it here for Ticker().info calls.
+from price_store import _yf_session
+
+# Circuit breaker retained as a safety net: after N consecutive
+# failures we stop for the rest of the process — non-UK names then
+# fall back to the discount_override column in universe.csv via the
+# normal priority chain (AIC -> yahoo -> override).
 _CONSECUTIVE_FAILURES = 0
 _BREAKER_THRESHOLD = 3
 
@@ -87,7 +92,7 @@ def fetch_yahoo_discounts(tickers: list[str], use_cache: bool = True,
             # the cache TTL and silently reduce coverage).
             break
         try:
-            info = yf.Ticker(t).info
+            info = yf.Ticker(t, session=_yf_session()).info
             price = info.get("regularMarketPrice") or info.get("previousClose")
             book = info.get("bookValue")
             if price is None and book is None:

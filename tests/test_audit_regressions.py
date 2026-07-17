@@ -60,6 +60,26 @@ def test_promotion_equal_probability_rejected():
         "WIND_DOWN_LIKELY", "WIND_DOWN_LIKELY")
 
 
+# ----- 1b. yfinance TLS-profile injection (RCA 2026-07-16) ----------
+
+def test_yf_session_uses_proxy_compatible_profile():
+    """yfinance's default impersonate="chrome" ClientHello (post-
+    quantum key shares + ECH) is reset by TLS-terminating egress
+    proxies. Our injected session must use a profile from the tested
+    compatibility list, and _download must pass it through."""
+    assert "chrome110" in price_store._YF_IMPERSONATE_CANDIDATES
+    # The candidates must NOT include the profiles the proxy resets
+    for bad in ("chrome", "chrome120", "chrome131", "firefox"):
+        assert bad not in price_store._YF_IMPERSONATE_CANDIDATES
+
+
+def test_yf_session_shared_between_modules():
+    """yahoo_nav_scraper must reuse price_store's fixed session, not
+    fall back to yfinance's broken default."""
+    import yahoo_nav_scraper
+    assert yahoo_nav_scraper._yf_session is price_store._yf_session
+
+
 # ----- 2. Stale-parquet fallback ------------------------------------
 
 def test_price_store_serves_stale_cache_on_download_failure(
