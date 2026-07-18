@@ -174,18 +174,39 @@ def score_row(dist, norm_y, ttm_y, bb_y, net_bb_y, nd_e, mcap, meta) -> dict:
 # 3. Universe construction
 # ----------------------------------------------------------------------
 
+# index: (url, ticker column, yahoo suffix, opts for _clean_symbol)
 WIKI = {
-    'SP500':     ('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies', 'Symbol', ''),
-    'SP400':     ('https://en.wikipedia.org/wiki/List_of_S%26P_400_companies', 'Symbol', ''),
-    'SP600':     ('https://en.wikipedia.org/wiki/List_of_S%26P_600_companies', 'Symbol', ''),
-    'FTSE100':   ('https://en.wikipedia.org/wiki/FTSE_100_Index', 'Ticker', '.L'),
-    'FTSE250':   ('https://en.wikipedia.org/wiki/FTSE_250_Index', 'Ticker', '.L'),
-    'HSI':       ('https://en.wikipedia.org/wiki/Hang_Seng_Index', 'Ticker', '.HK'),
-    'DAX':       ('https://en.wikipedia.org/wiki/DAX', 'Ticker', ''),
-    'CAC40':     ('https://en.wikipedia.org/wiki/CAC_40', 'Ticker', ''),
-    'ASX200':    ('https://en.wikipedia.org/wiki/S%26P/ASX_200', 'Code', '.AX'),
-    'TSX60':     ('https://en.wikipedia.org/wiki/S%26P/TSX_60', 'Symbol', '.TO'),
-    'IBOV':      ('https://en.wikipedia.org/wiki/Lista_de_companhias_citadas_no_Ibovespa', 'Código', '.SA'),
+    'SP500':       ('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies', 'Symbol', '', {}),
+    'SP400':       ('https://en.wikipedia.org/wiki/List_of_S%26P_400_companies', 'Symbol', '', {}),
+    'SP600':       ('https://en.wikipedia.org/wiki/List_of_S%26P_600_companies', 'Symbol', '', {}),
+    'FTSE100':     ('https://en.wikipedia.org/wiki/FTSE_100_Index', 'Ticker', '.L', {}),
+    'FTSE250':     ('https://en.wikipedia.org/wiki/FTSE_250_Index', 'Ticker', '.L', {}),
+    'HSI':         ('https://en.wikipedia.org/wiki/Hang_Seng_Index', 'Ticker', '.HK',
+                    {'strip_prefix': True, 'zfill': 4}),   # 'SEHK: 5' -> 0005.HK
+    'DAX':         ('https://en.wikipedia.org/wiki/DAX', 'Ticker', '', {}),
+    'CAC40':       ('https://en.wikipedia.org/wiki/CAC_40', 'Ticker', '', {}),
+    'ASX200':      ('https://en.wikipedia.org/wiki/S%26P/ASX_200', 'Code', '.AX', {}),
+    'TSX60':       ('https://en.wikipedia.org/wiki/S%26P/TSX_60', 'Symbol', '.TO', {}),
+    'TSXCOMP':     ('https://en.wikipedia.org/wiki/S%26P/TSX_Composite_Index', 'Ticker', '.TO', {}),
+    'EUROSTOXX50': ('https://en.wikipedia.org/wiki/EURO_STOXX_50', 'Ticker', '', {}),
+    'IBEX35':      ('https://en.wikipedia.org/wiki/IBEX_35', 'Ticker', '', {}),
+    'AEX':         ('https://en.wikipedia.org/wiki/AEX_index', 'Ticker', '', {}),
+    'SMI':         ('https://en.wikipedia.org/wiki/Swiss_Market_Index', 'Ticker', '.SW', {}),
+    'FTSEMIB':     ('https://en.wikipedia.org/wiki/FTSE_MIB', 'Ticker', '', {}),
+    'OMXS30':      ('https://en.wikipedia.org/wiki/OMX_Stockholm_30', 'Ticker', '', {}),
+    'OMXH25':      ('https://en.wikipedia.org/wiki/OMX_Helsinki_25', 'Ticker', '', {}),
+    'OMXC25':      ('https://en.wikipedia.org/wiki/OMX_Copenhagen_25', 'Ticker symbol', '.CO', {}),
+    'OBX':         ('https://en.wikipedia.org/wiki/OBX_Index', 'Ticker symbol', '.OL',
+                    {'strip_prefix': True}),               # 'OSE: EQNR' -> EQNR.OL
+    'NIFTY50':     ('https://en.wikipedia.org/wiki/NIFTY_50', 'Symbol', '.NS', {}),
+    'KOSPI200':    ('https://en.wikipedia.org/wiki/KOSPI_200', 'Symbol', '.KS',
+                    {'zfill': 6}),                         # keep leading zeros
+    'PSI':         ('https://en.wikipedia.org/wiki/PSI-20', 'Ticker', '.LS', {}),
+    'BEL20':       ('https://en.wikipedia.org/wiki/BEL_20', 'Ticker symbol', '.BR',
+                    {'prefix_map': {'Euronext Brussels': '.BR',
+                                    'Euronext Amsterdam': '.AS'}}),
+    'STI':         ('https://en.wikipedia.org/wiki/Straits_Times_Index', 'Stock symbol', '.SI',
+                    {'strip_prefix': True}),               # 'SGX: D05' -> D05.SI
 }
 
 # Liquid-core fallbacks if Wikipedia scrape fails (curated, not exhaustive)
@@ -222,6 +243,60 @@ def _fetch_html(url: str) -> str:
         return resp.read().decode('utf-8', errors='replace')
 
 
+def _clean_symbol(raw: str, suffix: str, opts: dict | None = None) -> str:
+    """Normalise one scraped symbol to Yahoo form.
+
+    Handles 'EXCHANGE: SYM' prefixes (HSI, STI, OBX, BEL20), zero-padded
+    numeric codes (Hong Kong 4, Korea 6), and Yahoo's dash convention for
+    share classes ('BT.A' -> 'BT-A.L', 'MAERSK B' -> 'MAERSK-B.CO').
+    """
+    opts = opts or {}
+    s = str(raw).replace('\xa0', ' ').strip()
+    if ':' in s and (opts.get('strip_prefix') or opts.get('prefix_map')):
+        pre, _, base = s.rpartition(':')
+        if opts.get('prefix_map'):
+            suffix = opts['prefix_map'].get(pre.strip(), suffix)
+        s = base.strip()
+    if opts.get('zfill'):
+        s = s.zfill(opts['zfill'])
+    s = s.replace(' ', '-')
+    if suffix and not s.endswith(suffix):
+        s = s.replace('.', '-') + suffix
+    return s
+
+
+_STOXX_SUFFIX = {
+    'United Kingdom': '.L', 'Switzerland': '.SW', 'France': '.PA',
+    'Germany': '.DE', 'Netherlands': '.AS', 'Italy': '.MI', 'Spain': '.MC',
+    'Sweden': '.ST', 'Denmark': '.CO', 'Norway': '.OL', 'Finland': '.HE',
+    'Belgium': '.BR', 'Austria': '.VI', 'Portugal': '.LS', 'Ireland': '.IR',
+    'Poland': '.WA', 'Greece': '.AT', 'Czech Republic': '.PR',
+}
+
+def _stoxx600_tickers() -> list[str]:
+    """STOXX Europe 600 lists bare local tickers plus a Country column; map
+    the country to its Yahoo exchange suffix. Rows from unmapped countries
+    are dropped (and reported) rather than guessed — a wrong suffix can
+    silently resolve to a different company."""
+    import io
+    tables = pd.read_html(io.StringIO(
+        _fetch_html('https://en.wikipedia.org/wiki/STOXX_Europe_600')))
+    for t in tables:
+        if 'Ticker' in t.columns and 'Country' in t.columns and len(t) > 300:
+            out, dropped = [], 0
+            for _, r in t[['Ticker', 'Country']].dropna().iterrows():
+                sfx = _STOXX_SUFFIX.get(str(r['Country']).strip())
+                if sfx is None:
+                    dropped += 1
+                    continue
+                out.append(_clean_symbol(str(r['Ticker']), sfx))
+            if dropped:
+                print(f"  [info] STOXX600: dropped {dropped} rows from "
+                      f"unmapped countries")
+            return out
+    raise ValueError('constituents table not found')
+
+
 def _nikkei225_tickers() -> list[str]:
     """The Nikkei 225 Wikipedia page no longer carries a constituents table;
     scrape the official index site instead."""
@@ -245,18 +320,23 @@ def build_universe(args) -> pd.DataFrame:
                     tickers = _nikkei225_tickers()
                 except Exception as e:
                     print(f"  [warn] Nikkei site fetch failed: {e}")
+            elif u == 'STOXX600':
+                try:
+                    tickers = _stoxx600_tickers()
+                except Exception as e:
+                    print(f"  [warn] STOXX600 fetch failed: {e}")
             elif u in WIKI:
-                url, col, suffix = WIKI[u]
+                url, col, suffix, opts = WIKI[u]
                 try:
                     tables = pd.read_html(io.StringIO(_fetch_html(url)))
                     for t in tables:
-                        if col in t.columns:
-                            # dropna before astype: pandas 3.0 keeps NaN as
-                            # missing through astype(str), so floats would
-                            # otherwise leak into the str comprehension below
+                        # len guard skips small sidebars; dropna before
+                        # astype: pandas 3.0 keeps NaN missing through
+                        # astype(str), so floats would otherwise leak in
+                        if col in t.columns and len(t) >= 12:
                             raw = t[col].dropna().astype(str).str.strip()
-                            tickers = [r + suffix if suffix and not r.endswith(suffix)
-                                       else r for r in raw if r and r.lower() != 'nan']
+                            tickers = [_clean_symbol(r, suffix, opts)
+                                       for r in raw if r and r.lower() != 'nan']
                             break
                 except Exception as e:
                     print(f"  [warn] Wikipedia fetch failed for {u}: {e}")
@@ -270,7 +350,8 @@ def build_universe(args) -> pd.DataFrame:
         sys.exit("No universe. Pass --universe-file and/or --universe.")
     uni = pd.concat(frames, ignore_index=True)
     uni['ticker'] = uni['ticker'].str.replace('.', '-', regex=False).where(
-        ~uni['ticker'].str.contains(r'\.(?:L|T|HK|KS|KQ|DE|PA|AX|TO|SA|MI|AS|SW|ST|OL|HE|CO)$',
+        ~uni['ticker'].str.contains(r'\.(?:L|T|HK|KS|KQ|DE|PA|AX|TO|SA|MI|AS|SW|ST|OL|HE|CO'
+                                    r'|MC|BR|SI|NS|LS|IR|VI|WA|AT|PR)$',
                                     regex=True), uni['ticker'])
     uni = uni.drop_duplicates('ticker').reset_index(drop=True)
     print(f"Universe: {len(uni)} tickers")
@@ -322,17 +403,28 @@ def stage1_prices(uni: pd.DataFrame, args, ckpt: Path) -> pd.DataFrame:
     CH, bad_streak = args.chunk_size, 0
     for i in range(0, len(todo), CH):
         chunk = todo[i:i + CH]
+        px = None
         for attempt in range(4):
             try:
-                px = yf.download(chunk, period='5y', interval='1wk',
-                                 auto_adjust=True, progress=False,
-                                 threads=args.threads, session=sess)['Close']
+                ret = yf.download(chunk, period='5y', interval='1wk',
+                                  auto_adjust=True, progress=False,
+                                  threads=args.threads, session=sess)
+                if ret is None:
+                    # yf.download returns None (not an exception) when the
+                    # whole batch dies, typically hard rate limiting
+                    raise RuntimeError('yf.download returned None')
+                px = ret['Close']
                 break
             except Exception as e:
                 wait = 20 * (attempt + 1)
-                print(f"  [retry {attempt+1}] {type(e).__name__}: sleeping {wait}s")
+                print(f"  [retry {attempt+1}] {type(e).__name__}: "
+                      f"{str(e)[:90]}; sleeping {wait}s")
                 time.sleep(wait)
-        else:
+        if px is None:
+            bad_streak += 1
+            wait = min(600, 90 * 2 ** (bad_streak - 1))
+            print(f"  [rate-limited] chunk failed all retries; backing off {wait}s")
+            time.sleep(wait)
             continue
         if isinstance(px, pd.Series):
             px = px.to_frame(chunk[0])
