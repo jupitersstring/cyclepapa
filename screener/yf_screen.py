@@ -449,12 +449,25 @@ def stage1_prices(uni: pd.DataFrame, args, ckpt: Path) -> pd.DataFrame:
         print(f"  {min(i+CH, len(todo))}/{len(todo)} priced | "
               f"cumulative survivors: {surv}")
         got = {r['ticker'] for r in rows}
+        # Per-ticker failure reasons from this download call. A miss whose
+        # recorded reason is throttling must NEVER count as death evidence,
+        # even inside an otherwise-healthy chunk.
+        try:
+            from yfinance import shared as _yfs
+            dl_errs = {k: str(v) for k, v in (_yfs._ERRORS or {}).items()}
+        except Exception:
+            dl_errs = {}
+        def _throttled(t):
+            e = dl_errs.get(t, '').lower()
+            return ('429' in e or 'too many' in e or 'rate limit' in e
+                    or 'curl' in e or 'timed out' in e or 'timeout' in e
+                    or 'connection' in e or 'ssl' in e)
         if len(got) >= max(1, len(chunk) // 4):
             bad_streak = 0
             for t in chunk:
                 if t in got:
                     fails.pop(t, None)
-                else:
+                elif not _throttled(t):
                     fails[t] = fails.get(t, 0) + 1
             pd.DataFrame({'ticker': list(fails.keys()),
                           'fails': list(fails.values())}).to_parquet(fckpt)
@@ -514,7 +527,10 @@ def stage2_fundamentals(surv: pd.DataFrame, uni: pd.DataFrame, args, ckpt: Path)
             except Exception:
                 mcap = float((tk.info or {}).get('marketCap', 0))
             if not mcap or mcap <= 0:
-                record({'ticker': t}, False)
+                # Market cap can be missing because ITS endpoint was
+                # throttled; never record that as a permanent verdict —
+                # leave the name pending for a later pass.
+                print(f"  [no-mcap] {t}: left pending for a later pass")
                 queue.pop(0); k += 1; continue
             norm_y = float(np.mean(fcf5)) / mcap
             bb_y, net_bb_y = bb / mcap, (bb - iss) / mcap
@@ -532,14 +548,20 @@ def stage2_fundamentals(surv: pd.DataFrame, uni: pd.DataFrame, args, ckpt: Path)
             backoff, rl_hits = 60, 0
         except Exception as e:
             msg = f"{type(e).__name__}: {e}"
-            if '429' in msg or 'Too Many' in msg or 'rate limit' in msg.lower():
+            low = msg.lower()
+            transient = ('429' in msg or 'too many' in low or 'rate limit' in low
+                         or 'timed out' in low or 'timeout' in low or 'curl' in low
+                         or 'connection' in low or 'ssl' in low
+                         or '502' in msg or '503' in msg)
+            if transient:
                 rl_hits += 1
                 if rl_hits > 8:
-                    print(f"  [rate-limited] giving up on {t} this pass; "
+                    print(f"  [transient] giving up on {t} this pass; "
                           f"--resume will retry it")
                     queue.pop(0); k += 1; rl_hits = 0
                 else:
-                    print(f"  [rate-limited] sleeping {backoff}s (hit {rl_hits})")
+                    print(f"  [transient] {msg[:70]}; sleeping {backoff}s "
+                          f"(hit {rl_hits})")
                     time.sleep(backoff)
                     backoff = min(600, backoff * 2)
                 continue    # ticker not consumed: retry it after the backoff
@@ -577,13 +599,42 @@ def main():
                    help='misses in healthy chunks before a ticker is marked '
                         'dead and skipped')
     p.add_argument('--resume', action='store_true')
+    p.add_argument('--converge', action='store_true',
+                   help='repeat resume passes until nothing pending shrinks '
+                        'further, so throttled names are never silently lost')
     p.add_argument('--out', default='shortlist.csv')
     args = p.parse_args()
 
     uni = build_universe(args)
     ck1, ck2 = Path('.ckpt_prices.parquet'), Path('.ckpt_fund.parquet')
-    surv = stage1_prices(uni, args, ck1)
-    df = stage2_fundamentals(surv, uni, args, ck2)
+    last_pending = None
+    passno = 0
+    while True:
+        passno += 1
+        surv = stage1_prices(uni, args, ck1)
+        df = stage2_fundamentals(surv, uni, args, ck2)
+        if not args.converge:
+            break
+        fk = Path(str(ck1).replace('.parquet', '_fails.parquet'))
+        failsd = (pd.read_parquet(fk).set_index('ticker')['fails'].to_dict()
+                  if fk.exists() else {})
+        dead = {t for t, n in failsd.items() if n >= args.max_fails}
+        done_t = set(pd.read_parquet(ck1)['ticker']) if ck1.exists() else set()
+        pend1 = len(set(uni['ticker']) - done_t - dead)
+        seen2 = set(pd.read_parquet(ck2)['ticker']) if ck2.exists() else set()
+        pend2 = len(set(surv['ticker']) - seen2)
+        pending = pend1 + pend2
+        print(f"[converge] pass {passno}: {pend1} unpriced, "
+              f"{pend2} unevaluated, {len(dead)} dead-listed")
+        if pending == 0:
+            print("[converge] fully converged — nothing pending"); break
+        if last_pending is not None and pending >= last_pending:
+            print(f"[converge] no further progress ({pending} names remain "
+                  f"pending — likely capless or persistently unservable); "
+                  f"stopping")
+            break
+        last_pending = pending
+        args.resume = True
     if df.empty:
         print("No names passed. Loosen thresholds."); return
     ranks = df[['norm_fcf_yield_5y_pct', 'net_buyback_yield_ttm_pct']].rank(pct=True)
