@@ -308,8 +308,13 @@ def _nikkei225_tickers() -> list[str]:
 def build_universe(args) -> pd.DataFrame:
     frames = []
     if args.universe_file:
-        df = pd.read_csv(args.universe_file)
+        # keep_default_na=False: real tickers like 'NA' (Nano Labs) must not
+        # be parsed into NaN floats — a float in a download chunk raises
+        # TypeError inside yfinance and kills the whole chunk.
+        df = pd.read_csv(args.universe_file, dtype={'ticker': str},
+                         keep_default_na=False)
         assert 'ticker' in df.columns, "universe file needs a 'ticker' column"
+        df = df[df['ticker'].str.strip().str.len() > 0]
         frames.append(df)
     if args.universe:
         import io

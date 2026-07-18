@@ -48,7 +48,9 @@ def main():
     frames = []
     us = Path(__file__).with_name('universe_us.csv')
     if us.exists():
-        frames.append(pd.read_csv(us))
+        # keep_default_na=False: 'NA' is a real NASDAQ ticker, not missing data
+        frames.append(pd.read_csv(us, dtype={'ticker': str},
+                                  keep_default_na=False))
     frames.append(load_financedatabase())
     uni = pd.concat(frames, ignore_index=True).drop_duplicates('ticker')
     out = Path(__file__).with_name('universe_global.csv')
