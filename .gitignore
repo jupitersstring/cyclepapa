@@ -1,0 +1,9 @@
+# Screener run artifacts (checkpoints are per-run, resumable, not source)
+.ckpt_*.parquet
+*_shortlist.csv
+shortlist.csv
+
+# Python
+__pycache__/
+*.pyc
+.venv/
