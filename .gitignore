@@ -2,6 +2,7 @@
 .ckpt_*.parquet
 *_shortlist.csv
 shortlist.csv
+*.log
 
 # Python
 __pycache__/

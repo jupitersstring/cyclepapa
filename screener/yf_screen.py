@@ -180,7 +180,6 @@ WIKI = {
     'SP600':     ('https://en.wikipedia.org/wiki/List_of_S%26P_600_companies', 'Symbol', ''),
     'FTSE100':   ('https://en.wikipedia.org/wiki/FTSE_100_Index', 'Ticker', '.L'),
     'FTSE250':   ('https://en.wikipedia.org/wiki/FTSE_250_Index', 'Ticker', '.L'),
-    'NIKKEI225': ('https://en.wikipedia.org/wiki/Nikkei_225', 'Code', '.T'),
     'HSI':       ('https://en.wikipedia.org/wiki/Hang_Seng_Index', 'Ticker', '.HK'),
     'DAX':       ('https://en.wikipedia.org/wiki/DAX', 'Ticker', ''),
     'CAC40':     ('https://en.wikipedia.org/wiki/CAC_40', 'Ticker', ''),
@@ -211,6 +210,26 @@ FALLBACK = {
                  'MQG.AX','WDS.AX','TLS.AX','RIO.AX','FMG.AX','QBE.AX','STO.AX'],
 }
 
+_BROWSER_UA = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+               '(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36')
+
+def _fetch_html(url: str) -> str:
+    """Fetch a page with a browser User-Agent (Wikipedia 403s the default
+    Python-urllib UA). urllib honors HTTPS_PROXY/SSL_CERT_FILE env vars."""
+    import urllib.request
+    req = urllib.request.Request(url, headers={'User-Agent': _BROWSER_UA})
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        return resp.read().decode('utf-8', errors='replace')
+
+
+def _nikkei225_tickers() -> list[str]:
+    """The Nikkei 225 Wikipedia page no longer carries a constituents table;
+    scrape the official index site instead."""
+    html = _fetch_html('https://indexes.nikkei.co.jp/en/nkave/index/component')
+    codes = sorted(set(re.findall(r'>(\d{4})</td>', html)))
+    return [c + '.T' for c in codes]
+
+
 def build_universe(args) -> pd.DataFrame:
     frames = []
     if args.universe_file:
@@ -218,16 +237,24 @@ def build_universe(args) -> pd.DataFrame:
         assert 'ticker' in df.columns, "universe file needs a 'ticker' column"
         frames.append(df)
     if args.universe:
-        import io, urllib.request
+        import io
         for u in [x.strip().upper() for x in args.universe.split(',') if x.strip()]:
             tickers = []
-            if u in WIKI:
+            if u == 'NIKKEI225':
+                try:
+                    tickers = _nikkei225_tickers()
+                except Exception as e:
+                    print(f"  [warn] Nikkei site fetch failed: {e}")
+            elif u in WIKI:
                 url, col, suffix = WIKI[u]
                 try:
-                    tables = pd.read_html(url)
+                    tables = pd.read_html(io.StringIO(_fetch_html(url)))
                     for t in tables:
                         if col in t.columns:
-                            raw = t[col].astype(str).str.strip()
+                            # dropna before astype: pandas 3.0 keeps NaN as
+                            # missing through astype(str), so floats would
+                            # otherwise leak into the str comprehension below
+                            raw = t[col].dropna().astype(str).str.strip()
                             tickers = [r + suffix if suffix and not r.endswith(suffix)
                                        else r for r in raw if r and r.lower() != 'nan']
                             break
