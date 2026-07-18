@@ -305,17 +305,28 @@ def stage1_prices(uni: pd.DataFrame, args, ckpt: Path) -> pd.DataFrame:
     sess = make_session()
     done = pd.read_parquet(ckpt) if (args.resume and ckpt.exists()) else \
            pd.DataFrame(columns=['ticker', 'dist', 'last_px'])
+    # Dead-ticker ledger: count of times a ticker returned nothing while the
+    # rest of its chunk came back fine. Misses inside a rate-limited chunk
+    # are censored observations, not evidence of death, and aren't counted.
+    fckpt = Path(str(ckpt).replace('.parquet', '_fails.parquet'))
+    fails = (pd.read_parquet(fckpt).set_index('ticker')['fails'].to_dict()
+             if (args.resume and fckpt.exists()) else {})
     seen = set(done['ticker'])
-    todo = [t for t in uni['ticker'] if t not in seen]
+    dead = {t for t, n in fails.items() if n >= args.max_fails}
+    todo = [t for t in uni['ticker'] if t not in seen and t not in dead]
+    n_dead = sum(1 for t in uni['ticker'] if t in dead and t not in seen)
+    if n_dead:
+        print(f"  [info] skipping {n_dead} tickers marked dead "
+              f"({args.max_fails}+ misses in healthy chunks)")
     print(f"Stage 1: {len(todo)} to price ({len(seen)} from checkpoint)")
-    CH = 200
+    CH, bad_streak = args.chunk_size, 0
     for i in range(0, len(todo), CH):
         chunk = todo[i:i + CH]
         for attempt in range(4):
             try:
                 px = yf.download(chunk, period='5y', interval='1wk',
-                                 auto_adjust=True, progress=False, threads=True,
-                                 session=sess)['Close']
+                                 auto_adjust=True, progress=False,
+                                 threads=args.threads, session=sess)['Close']
                 break
             except Exception as e:
                 wait = 20 * (attempt + 1)
@@ -325,14 +336,13 @@ def stage1_prices(uni: pd.DataFrame, args, ckpt: Path) -> pd.DataFrame:
             continue
         if isinstance(px, pd.Series):
             px = px.to_frame(chunk[0])
-        rows, got = [], 0
+        rows = []
         for t in chunk:
             if t not in px.columns:
                 continue          # no data (failed/rate-limited): retry on --resume
             lp = px[t].dropna()
             if lp.empty:
                 continue          # ditto
-            got += 1
             d = pct_above_200w_low(px[t], args.min_weeks)
             if d is None or lp.iloc[-1] < args.min_price:
                 # Legitimately filtered (short history / penny). Checkpoint
@@ -345,12 +355,24 @@ def stage1_prices(uni: pd.DataFrame, args, ckpt: Path) -> pd.DataFrame:
         surv = (done['dist'] <= args.within_low_pct / 100).sum()
         print(f"  {min(i+CH, len(todo))}/{len(todo)} priced | "
               f"cumulative survivors: {surv}")
-        if got < max(1, len(chunk) // 4):
-            print(f"  [rate-limited?] only {got}/{len(chunk)} returned data; "
-                  f"backing off 90s")
-            time.sleep(90)
+        got = {r['ticker'] for r in rows}
+        if len(got) >= max(1, len(chunk) // 4):
+            bad_streak = 0
+            for t in chunk:
+                if t in got:
+                    fails.pop(t, None)
+                else:
+                    fails[t] = fails.get(t, 0) + 1
+            pd.DataFrame({'ticker': list(fails.keys()),
+                          'fails': list(fails.values())}).to_parquet(fckpt)
+        else:
+            bad_streak += 1
+            wait = min(600, 90 * 2 ** (bad_streak - 1))
+            print(f"  [rate-limited] only {len(got)}/{len(chunk)} returned "
+                  f"data; backing off {wait}s")
+            time.sleep(wait)
         time.sleep(1.5)
-    missing = len(set(uni['ticker']) - set(done['ticker']))
+    missing = len(set(uni['ticker']) - set(done['ticker']) - dead)
     if missing:
         print(f"  [note] {missing} tickers still unpriced (failures/rate "
               f"limits); rerun with --resume to retry them")
@@ -364,18 +386,31 @@ def stage2_fundamentals(surv: pd.DataFrame, uni: pd.DataFrame, args, ckpt: Path)
     sess = make_session()
     meta = uni.set_index('ticker').to_dict('index')
     done = pd.read_parquet(ckpt) if (args.resume and ckpt.exists()) else pd.DataFrame()
+    if not done.empty and 'passed' not in done.columns:
+        done['passed'] = True   # pre-upgrade checkpoints stored passers only
     seen = set(done['ticker']) if not done.empty else set()
     rows = done.to_dict('records') if not done.empty else []
-    todo = [r for _, r in surv.iterrows() if r['ticker'] not in seen]
-    print(f"Stage 2: fundamentals on {len(todo)} survivors")
-    for k, r in enumerate(todo):
+    queue = [r for _, r in surv.iterrows() if r['ticker'] not in seen]
+    total = len(queue)
+    print(f"Stage 2: fundamentals on {total} survivors ({len(seen)} from checkpoint)")
+
+    def record(row, passed):
+        # Every evaluated outcome is checkpointed — pass or fail — so
+        # --resume passes never refetch a name that has already been judged.
+        row['passed'] = passed
+        rows.append(row)
+        pd.DataFrame(rows).to_parquet(ckpt)
+
+    k, backoff, rl_hits = 0, 60, 0
+    while queue:
+        r = queue[0]
         t = r['ticker']
         try:
             tk = yf.Ticker(t, session=sess)
-            cf_y = tk.cashflow
-            fcf5 = fcf_series_from_cashflow(cf_y)
+            fcf5 = fcf_series_from_cashflow(tk.cashflow)
             if len(fcf5) < 3:
-                continue
+                record({'ticker': t}, False)
+                queue.pop(0); k += 1; continue
             qcf = tk.quarterly_cashflow
             bb = ttm_flow(qcf, ALIAS['buyback'], 'neg')
             iss = ttm_flow(qcf, ALIAS['issuance'], 'pos')
@@ -386,27 +421,47 @@ def stage2_fundamentals(surv: pd.DataFrame, uni: pd.DataFrame, args, ckpt: Path)
             except Exception:
                 mcap = float((tk.info or {}).get('marketCap', 0))
             if not mcap or mcap <= 0:
-                continue
+                record({'ticker': t}, False)
+                queue.pop(0); k += 1; continue
             norm_y = float(np.mean(fcf5)) / mcap
             bb_y, net_bb_y = bb / mcap, (bb - iss) / mcap
             nd = net_debt_from_bs(tk.balance_sheet)
             e5 = ebitda_5y_avg(tk.income_stmt)
             nd_e = (nd / e5) if (nd is not None and e5 and e5 > 0) else None
-            if norm_y < args.min_norm_fcf_yield:  continue
-            if bb_y < args.min_buyback_yield:     continue
-            if nd_e is not None and nd_e > args.max_nd_ebitda: continue
-            m = meta.get(t, {}); m['ticker'] = t
-            rows.append(score_row(r['dist'], norm_y,
-                                  (fcf_ttm / mcap) if fcf_ttm is not None else None,
-                                  bb_y, net_bb_y, nd_e, mcap, m))
-            pd.DataFrame(rows).to_parquet(ckpt)
+            passed = (norm_y >= args.min_norm_fcf_yield
+                      and bb_y >= args.min_buyback_yield
+                      and not (nd_e is not None and nd_e > args.max_nd_ebitda))
+            m = dict(meta.get(t, {})); m['ticker'] = t
+            record(score_row(r['dist'], norm_y,
+                             (fcf_ttm / mcap) if fcf_ttm is not None else None,
+                             bb_y, net_bb_y, nd_e, mcap, m), passed)
+            queue.pop(0); k += 1
+            backoff, rl_hits = 60, 0
         except Exception as e:
-            if '429' in str(e) or 'Too Many' in str(e):
-                print("  [rate-limited] sleeping 60s"); time.sleep(60)
-        if k % 25 == 0:
-            print(f"  {k}/{len(todo)} | passing: {len(rows)}")
+            msg = f"{type(e).__name__}: {e}"
+            if '429' in msg or 'Too Many' in msg or 'rate limit' in msg.lower():
+                rl_hits += 1
+                if rl_hits > 8:
+                    print(f"  [rate-limited] giving up on {t} this pass; "
+                          f"--resume will retry it")
+                    queue.pop(0); k += 1; rl_hits = 0
+                else:
+                    print(f"  [rate-limited] sleeping {backoff}s (hit {rl_hits})")
+                    time.sleep(backoff)
+                    backoff = min(600, backoff * 2)
+                continue    # ticker not consumed: retry it after the backoff
+            # Deterministic per-ticker failure (delisted, statements missing):
+            # record it so future passes skip the guaranteed refetch.
+            record({'ticker': t}, False)
+            queue.pop(0); k += 1
+        if k and k % 25 == 0:
+            print(f"  {k}/{total} | passing: "
+                  f"{sum(1 for x in rows if x.get('passed'))}")
         time.sleep(args.sleep)
-    return pd.DataFrame(rows)
+    out = pd.DataFrame(rows)
+    if out.empty:
+        return out
+    return out[out['passed'] == True].drop(columns=['passed'])  # noqa: E712
 
 
 def main():
@@ -420,6 +475,14 @@ def main():
     p.add_argument('--min-price', type=float, default=1.0)
     p.add_argument('--min-weeks', type=int, default=150)
     p.add_argument('--sleep', type=float, default=0.4)
+    p.add_argument('--chunk-size', type=int, default=100,
+                   help='stage-1 tickers per yf.download call')
+    p.add_argument('--threads', type=int, default=8,
+                   help='stage-1 download concurrency (True-equivalent bursts '
+                        'of 100+ trip the rate limiter)')
+    p.add_argument('--max-fails', type=int, default=3,
+                   help='misses in healthy chunks before a ticker is marked '
+                        'dead and skipped')
     p.add_argument('--resume', action='store_true')
     p.add_argument('--out', default='shortlist.csv')
     args = p.parse_args()
