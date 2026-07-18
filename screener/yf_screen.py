@@ -449,26 +449,37 @@ def stage1_prices(uni: pd.DataFrame, args, ckpt: Path) -> pd.DataFrame:
         print(f"  {min(i+CH, len(todo))}/{len(todo)} priced | "
               f"cumulative survivors: {surv}")
         got = {r['ticker'] for r in rows}
-        # Per-ticker failure reasons from this download call. A miss whose
-        # recorded reason is throttling must NEVER count as death evidence,
-        # even inside an otherwise-healthy chunk.
+        # Death strikes require POSITIVE evidence of a dead listing, never
+        # absence of evidence: a miss with no recorded reason, or any
+        # throttle/connection-shaped reason, must not count. (Yahoo has
+        # been seen labelling connection-failed tickers "possibly
+        # delisted", so the delisted text alone only counts when the
+        # reason carries no transport-failure signature.)
         try:
             from yfinance import shared as _yfs
             dl_errs = {k: str(v) for k, v in (_yfs._ERRORS or {}).items()}
         except Exception:
             dl_errs = {}
-        def _throttled(t):
+        def _proven_dead(t):
             e = dl_errs.get(t, '').lower()
-            return ('429' in e or 'too many' in e or 'rate limit' in e
+            if not e:
+                return False
+            if ('429' in e or 'too many' in e or 'rate limit' in e
                     or 'curl' in e or 'timed out' in e or 'timeout' in e
-                    or 'connection' in e or 'ssl' in e)
+                    or 'connection' in e or 'ssl' in e):
+                return False
+            return 'delisted' in e or 'no data found' in e or '404' in e
+        # Pacing backoff triggers below 25% success, but strike-counting
+        # demands a strongly healthy chunk (>=75%) — during even partial
+        # throttling, no strikes are handed out at all.
         if len(got) >= max(1, len(chunk) // 4):
             bad_streak = 0
-            for t in chunk:
-                if t in got:
-                    fails.pop(t, None)
-                elif not _throttled(t):
-                    fails[t] = fails.get(t, 0) + 1
+            if len(got) >= (3 * len(chunk)) // 4:
+                for t in chunk:
+                    if t in got:
+                        fails.pop(t, None)
+                    elif _proven_dead(t):
+                        fails[t] = fails.get(t, 0) + 1
             pd.DataFrame({'ticker': list(fails.keys()),
                           'fails': list(fails.values())}).to_parquet(fckpt)
         else:
@@ -609,6 +620,7 @@ def main():
     ck1, ck2 = Path('.ckpt_prices.parquet'), Path('.ckpt_fund.parquet')
     last_pending = None
     passno = 0
+    resurrected = False
     while True:
         passno += 1
         surv = stage1_prices(uni, args, ck1)
@@ -627,6 +639,21 @@ def main():
         print(f"[converge] pass {passno}: {pend1} unpriced, "
               f"{pend2} unevaluated, {len(dead)} dead-listed")
         if pending == 0:
+            if dead and not resurrected:
+                # Resurrection pass: no run may declare itself converged
+                # while dead-listed names are unverified. Knock every dead
+                # name down to one strike short and refetch it once more —
+                # anything that returns data is priced normally; only a
+                # fresh, positively-evidenced miss re-deads it.
+                print(f"[converge] resurrecting {len(dead)} dead-listed "
+                      f"names for a final clean-room re-check")
+                fd = pd.read_parquet(fk)
+                fd.loc[fd['fails'] >= args.max_fails, 'fails'] = args.max_fails - 1
+                fd.to_parquet(fk)
+                resurrected = True
+                last_pending = None
+                args.resume = True
+                continue
             print("[converge] fully converged — nothing pending"); break
         if last_pending is not None and pending >= last_pending:
             print(f"[converge] no further progress ({pending} names remain "
