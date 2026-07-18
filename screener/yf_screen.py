@@ -349,10 +349,11 @@ def build_universe(args) -> pd.DataFrame:
     if not frames:
         sys.exit("No universe. Pass --universe-file and/or --universe.")
     uni = pd.concat(frames, ignore_index=True)
-    uni['ticker'] = uni['ticker'].str.replace('.', '-', regex=False).where(
-        ~uni['ticker'].str.contains(r'\.(?:L|T|HK|KS|KQ|DE|PA|AX|TO|SA|MI|AS|SW|ST|OL|HE|CO'
-                                    r'|MC|BR|SI|NS|LS|IR|VI|WA|AT|PR)$',
-                                    regex=True), uni['ticker'])
+    # No dot->dash rewriting here: every source already emits Yahoo-format
+    # symbols (build_universe_us converts BRK.B->BRK-B, _clean_symbol handles
+    # index scrapes, financedatabase is Yahoo-native). A suffix whitelist
+    # here corrupted every ticker from a market it didn't know about
+    # ('2891B.TW' -> '2891B-TW', which Yahoo reports as delisted).
     uni = uni.drop_duplicates('ticker').reset_index(drop=True)
     print(f"Universe: {len(uni)} tickers")
     return uni
