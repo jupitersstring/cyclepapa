@@ -325,21 +325,35 @@ def stage1_prices(uni: pd.DataFrame, args, ckpt: Path) -> pd.DataFrame:
             continue
         if isinstance(px, pd.Series):
             px = px.to_frame(chunk[0])
-        rows = []
+        rows, got = [], 0
         for t in chunk:
             if t not in px.columns:
-                continue
-            d = pct_above_200w_low(px[t], args.min_weeks)
+                continue          # no data (failed/rate-limited): retry on --resume
             lp = px[t].dropna()
-            if d is None or lp.empty or lp.iloc[-1] < args.min_price:
-                continue
+            if lp.empty:
+                continue          # ditto
+            got += 1
+            d = pct_above_200w_low(px[t], args.min_weeks)
+            if d is None or lp.iloc[-1] < args.min_price:
+                # Legitimately filtered (short history / penny). Checkpoint
+                # with dist=NaN so --resume passes don't re-download it;
+                # NaN never satisfies the survivor threshold below.
+                d = np.nan
             rows.append({'ticker': t, 'dist': d, 'last_px': float(lp.iloc[-1])})
         done = pd.concat([done, pd.DataFrame(rows)], ignore_index=True)
         done.to_parquet(ckpt)
         surv = (done['dist'] <= args.within_low_pct / 100).sum()
         print(f"  {min(i+CH, len(todo))}/{len(todo)} priced | "
               f"cumulative survivors: {surv}")
+        if got < max(1, len(chunk) // 4):
+            print(f"  [rate-limited?] only {got}/{len(chunk)} returned data; "
+                  f"backing off 90s")
+            time.sleep(90)
         time.sleep(1.5)
+    missing = len(set(uni['ticker']) - set(done['ticker']))
+    if missing:
+        print(f"  [note] {missing} tickers still unpriced (failures/rate "
+              f"limits); rerun with --resume to retry them")
     out = done[done['dist'] <= args.within_low_pct / 100].copy()
     print(f"Stage 1 survivors (within {args.within_low_pct}% of 200w low): {len(out)}")
     return out
