@@ -351,8 +351,15 @@ def main() -> int:
         # skip the fetch for them.
         vinfo = ({"filer_emerged": True, "emergence_date": None, "context": ""}
                  if in_pacer else
-                 verify(int(cik), rec.get("accession", ""), vcache))
+                 verify(int(cik), rec.get("accession", ""), vcache,
+                        filer_name=rec.get("name", "")))
         if vinfo.get("filer_emerged") is False:
+            # Could not confirm the FILER's own emergence: the only
+            # bankruptcy reference is a third-party/subsidiary possessive.
+            # This is usually an incidental mention (Eastman→Solutia) but
+            # can be a genuine parent/sub emergence (PG&E Corp → the
+            # Utility), so it is set aside for verification, NOT scored and
+            # NOT silently dropped — every name is listed with its context.
             incidental.append({"ticker": ticker, "name": rec.get("name", ""),
                                "context": vinfo.get("context", "")})
             continue
@@ -397,8 +404,9 @@ def main() -> int:
         "",
         f"- cohort screened: **{len(scored)}**  ·  listed common (Q1 gate "
         f"passed): **{len(listed)}**  ·  prime (fitness ≥ 3): **{len(prime)}**  "
-        f"·  filer-emergence confirmed: **{len(confirmed)}**  ·  incidental "
-        f"third-party references dropped: **{len(incidental)}**",
+        f"·  filer-emergence confirmed: **{len(confirmed)}**  ·  set aside "
+        f"for verification (filer's own emergence unconfirmed): "
+        f"**{len(incidental)}**",
         "",
         "Six questions: **L**isted · **U**nnatural owners (live forced-seller "
         "overhang) · **R**epaired balance sheet · **O**verstated count/debt · "
@@ -441,15 +449,18 @@ def main() -> int:
     # Transparency: never drop silently. Show every name removed because its
     # filing referenced ANOTHER issuer's bankruptcy, with the evidence.
     if incidental:
-        lines += ["", "## Dropped — incidental third-party emergence "
-                  "references", "",
-                  "These matched the emergence full-text query but the "
-                  "filing refers to a DIFFERENT issuer's Chapter 11 (an "
-                  "acquired subsidiary, JV, or counterparty), so the filer "
-                  "itself is not a post-reorg. Listed for auditability.", "",
-                  "| Name | Ticker | Filing context |", "|---|---|---|"]
+        lines += ["", "## Set aside — filer's own emergence unconfirmed", "",
+                  "The emergence full-text match here is a third-party or "
+                  "subsidiary possessive, so the screen could not confirm "
+                  "the FILER itself reorganized. Usually incidental (e.g. "
+                  "Eastman Chemical referencing acquired Solutia's Chapter "
+                  "11), but occasionally a genuine parent/subsidiary "
+                  "emergence (e.g. PG&E Corp → Pacific Gas & Electric). "
+                  "Not scored, not dropped — listed for manual verification.",
+                  "", "| Name | Ticker | Filing context |", "|---|---|---|"]
         for e in incidental:
-            ctx = (e.get("context") or "").replace("|", "/")[:80]
+            ctx = (e.get("context") or "").replace("|", "/")[:80] or \
+                "(bankruptcy reference is a non-filer possessive)"
             lines.append(f"| {e['name'][:30]} | {e['ticker']} | {ctx} |")
 
     OUT_MD.parent.mkdir(parents=True, exist_ok=True)

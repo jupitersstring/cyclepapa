@@ -47,16 +47,24 @@ CACHE = REPO / "data" / "postreorg_verify.json"
 UA = {"User-Agent": os.environ.get(
     "EDGAR_USER_AGENT", "cyclepapa-screener research@example.com")}
 
+# Bankruptcy-SPECIFIC emergence phrases only. Deliberately excludes bare
+# "emergence"/"emerge" (which also matches "risks may emerge", "emerging
+# growth company", "emerging markets" — all non-bankruptcy).
 _EMERGE = re.compile(
     r"emerged from (?:chapter 11|bankruptcy)|emergence from (?:chapter 11|"
     r"bankruptcy)|fresh[- ]start (?:accounting|reporting)|plan of "
-    r"reorganization became effective|upon (?:its |our |the company's )?"
-    r"emergence", re.I)
+    r"reorganization became effective|effective date of the plan of "
+    r"reorganization|upon (?:its|our|the company's) emergence from", re.I)
 
 # First-person = the FILER is the one that emerged.
 _FIRST_PERSON = re.compile(
-    r"\b(the company|the registrant|the debtors?|we|our|us|the "
-    r"predecessor|the successor)\b", re.I)
+    r"\b(the company|the registrant|the debtors?|we|our|us)\b", re.I)
+
+# Successor + Predecessor comparative reporting is the fresh-start accounting
+# hallmark — ONLY the reorganized filer itself reports these periods, so it
+# is strong first-person evidence that survives even when the prose is terse.
+_SUCC_PRED = (re.compile(r"\bsuccessor\b", re.I),
+              re.compile(r"\bpredecessor\b", re.I))
 
 # Third-party possessive right before the phrase ("Solutia's emergence",
 # "Monsanto's Chapter 11") = someone ELSE emerged.
@@ -99,10 +107,29 @@ def _strip(html: str) -> str:
     return re.sub(r"\s+", " ", text)
 
 
+def _name_stem(s: str) -> str:
+    return re.sub(r"[^a-z0-9]", "",
+                  re.sub(r"\b(inc|corp|corporation|ltd|limited|plc|llc|lp|"
+                         r"holdings?|group|co|company|the|and|energy|"
+                         r"international)\b", "", str(s or ""), flags=re.I)
+                  ).lower()
+
+
 def verify(cik: int, accession: str, cache: dict | None = None,
-           max_bytes: int = 1_500_000) -> dict:
-    """Return {filer_emerged, emergence_date, context, doc}. Cached by
-    accession. filer_emerged is None when the document can't be fetched."""
+           max_bytes: int = 6_000_000, filer_name: str = "") -> dict:
+    """Return {filer_emerged, emergence_date, context, doc}.
+
+    filer_emerged is THREE-STATE, and the guiding rule is KEEP-BY-DEFAULT
+    (never drop a genuine post-reorg on absent evidence — emergence notes
+    sit deep in large 10-Qs):
+      True  — positive evidence the FILER emerged: first-person emergence
+              context, or Successor+Predecessor fresh-start reporting.
+      False — positive evidence it's SOMEONE ELSE: the only bankruptcy-
+              emergence phrase(s) are a third-party possessive
+              ("Solutia's emergence") with no filer evidence anywhere.
+      None  — uncertain (no bankruptcy phrase found, doc unfetchable, or
+              ambiguous). The screen KEEPS these, flagged unverified.
+    """
     if cache is not None and accession in cache:
         return cache[accession]
     result = {"filer_emerged": None, "emergence_date": None,
@@ -114,7 +141,7 @@ def verify(cik: int, accession: str, cache: dict | None = None,
         return result
     result["doc"] = url
     try:
-        r = requests.get(url, headers=UA, timeout=30, stream=True)
+        r = requests.get(url, headers=UA, timeout=45, stream=True)
         raw = r.raw.read(max_bytes, decode_content=True) or b""
         html = raw.decode(r.encoding or "utf-8", errors="ignore")
     except (requests.RequestException, ValueError):
@@ -122,40 +149,58 @@ def verify(cik: int, accession: str, cache: dict | None = None,
             cache[accession] = result
         return result
     text = _strip(html)
+    filer_stem = _name_stem(filer_name)
 
     first_person = False
-    third_party_only = True
+    any_third_party = False
     best_ctx = ""
     best_date = None
+    n_phrase = 0
     for m in _EMERGE.finditer(text):
-        lo, hi = max(0, m.start() - 140), min(len(text), m.end() + 60)
+        n_phrase += 1
+        lo, hi = max(0, m.start() - 160), min(len(text), m.end() + 60)
         window = text[lo:hi]
-        pre = text[lo:m.start()]
-        # third-party possessive immediately before the phrase?
+        # third-party possessive around the phrase ("Solutia's emergence")?
+        # A possessive matching the FILER'S OWN name ("PG&E's emergence") is
+        # self-reference = first-person, not a third party.
         tp = _THIRD_PARTY.search(window)
-        tp_is_other = bool(tp) and tp.group(1).split()[-1].lower() \
-            not in _FILER_WORDS
-        fp = bool(_FIRST_PERSON.search(pre)) or bool(re.search(
+        tp_is_other = False
+        if tp:
+            poss_stem = _name_stem(tp.group(1))
+            is_self = bool(poss_stem) and bool(filer_stem) and (
+                poss_stem in filer_stem or filer_stem in poss_stem)
+            tp_is_other = (tp.group(1).split()[-1].lower()
+                           not in _FILER_WORDS) and not is_self
+        if tp_is_other:
+            any_third_party = True
+        fp = bool(_FIRST_PERSON.search(window)) or bool(re.search(
             r"\b(company|registrant|debtors?)\s+emerged", window, re.I))
-        if fp and not (tp_is_other and not fp):
+        # a self-name possessive ("PG&E's emergence") is also first-person
+        if tp and not tp_is_other:
+            fp = True
+        if fp and not tp_is_other:
             first_person = True
-        if not tp_is_other:
-            third_party_only = False
-        if fp and not best_ctx:
-            best_ctx = window.strip()
-            # search a wider forward window and prefer a full month-day-year
-            # date (the emergence date usually prints just after the phrase).
-            fwd = text[m.start():min(len(text), m.end() + 240)]
-            dates = _DATE.findall(fwd)
-            full = [d for d in dates if "," in d]
-            if full:
-                best_date = full[0]
-            elif dates:
-                best_date = dates[0]
-    # verdict: the filer emerged if any first-person context AND it's not
-    # exclusively third-party possessive mentions.
-    result["filer_emerged"] = bool(first_person) and not (
-        third_party_only and not first_person)
+            if not best_ctx:
+                best_ctx = window.strip()
+                fwd = text[m.start():min(len(text), m.end() + 240)]
+                dates = _DATE.findall(fwd)
+                full = [d for d in dates if "," in d]
+                best_date = full[0] if full else (dates[0] if dates else None)
+
+    # Successor+Predecessor comparative reporting = fresh-start hallmark,
+    # strong filer evidence even when the emergence prose is terse/deep.
+    succ_pred = bool(_SUCC_PRED[0].search(text)) and bool(
+        _SUCC_PRED[1].search(text))
+
+    if first_person or succ_pred:
+        result["filer_emerged"] = True
+        if not best_ctx and succ_pred:
+            best_ctx = "Successor/Predecessor fresh-start reporting present"
+    elif n_phrase > 0 and any_third_party:
+        result["filer_emerged"] = False   # only third-party evidence
+    else:
+        result["filer_emerged"] = None     # uncertain → keep
+
     result["emergence_date"] = best_date
     result["context"] = best_ctx[:200]
     if cache is not None:
@@ -201,7 +246,7 @@ def main() -> int:
         acc = r.get("accession")
         if not (cik and acc):
             continue
-        v = verify(int(cik), acc, cache)
+        v = verify(int(cik), acc, cache, filer_name=r.get("name", ""))
         tk = (r.get("ticker") or "").split(":")[-1]
         flag = ("FILER-EMERGED" if v["filer_emerged"] else
                 "incidental" if v["filer_emerged"] is False else "unknown")
