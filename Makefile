@@ -1,4 +1,4 @@
-.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll poll-all security-master source-health corroborate reconcile postreorg-score waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
+.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll poll-all security-master source-health corroborate reconcile postreorg-score listed-equity-screen waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
 
 help:
 	@echo "Targets:"
@@ -150,8 +150,16 @@ reconcile: audit
 # Post-reorg assembly scorecard — grades the fresh-start cohort on the
 # Verdad EBIT-yield screen + Chapter-22 veto + assembly checklist.
 # Network-bound (SEC XBRL + Yahoo); run standalone, not in refresh.
+# No --max-names → scores the ENTIRE cohort (no silent truncation).
 postreorg-score: audit
-	python3 -m src.postreorg_score --max-names 80
+	python3 -m src.postreorg_score
+
+# Listed-equity reorganization screen — the tradable slice (exchange-listed
+# common only) graded on the six-question sweet-spot test + entry-archetype
+# tags (forced-creditor overhang, excess cash, share-reserve, refinancing).
+# Network-bound; run standalone. Scores the entire cohort.
+listed-equity-screen: audit
+	python3 -m src.listed_equity_screen
 
 waterfall: audit
 	@for f in data/candidates/*.yaml; do \

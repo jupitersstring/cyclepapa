@@ -47,7 +47,7 @@ except ImportError:
     print("Install requests: pip install requests", file=sys.stderr)
     sys.exit(1)
 
-from src.edgar_util import issuer_fields
+from src.edgar_util import issuer_fields, fts_search_all
 
 REPO = Path(__file__).resolve().parent.parent
 INBOX = REPO / "data" / "inbox"
@@ -82,27 +82,16 @@ ITEM_MAP: dict[str, tuple[str, str, str]] = {
 
 def fetch(item: str, start: date, end: date,
           retries: int = 4) -> list[dict]:
+    """ALL 8-Ks mentioning the item across the window, paginated. Read only
+    the first 10 before — on any multi-day window the high-signal codes
+    (1.03 bankruptcy, 3.01 delisting) easily exceed that, so real triggers
+    were silently dropped before the structured-item verification step."""
     params = {
         "q": f'"Item {item}"', "forms": "8-K",
         "startdt": start.isoformat(), "enddt": end.isoformat(),
     }
-    url = f"{EDGAR}?{urlencode(params)}"
-    delay = 1.0
-    for attempt in range(retries):
-        try:
-            r = requests.get(url, headers=HEADERS, timeout=30)
-            if r.status_code == 429:
-                time.sleep(delay); delay *= 2
-                continue
-            r.raise_for_status()
-            return r.json().get("hits", {}).get("hits", [])
-        except requests.RequestException as exc:
-            if attempt == retries - 1:
-                print(f"  ! EDGAR failed after {retries} attempts: {exc}",
-                      file=sys.stderr)
-                return []
-            time.sleep(delay); delay *= 2
-    return []
+    return fts_search_all(params, HEADERS, retries=retries,
+                          log=lambda m: print(m, file=sys.stderr))
 
 
 def normalize_hit(item: str, hit: dict, fetched_at: str) -> dict:

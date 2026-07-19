@@ -38,7 +38,7 @@ from datetime import date, datetime, timedelta
 from pathlib import Path
 from urllib.parse import urlencode
 
-from src.edgar_util import issuer_fields
+from src.edgar_util import issuer_fields, fts_search_all
 
 try:
     import requests
@@ -64,36 +64,29 @@ QUERIES: dict[str, str] = {
     "post_reorg_emerged":
         '"emerged from Chapter 11" OR "emergence from Chapter 11" '
         'OR "successfully emerged"',
+    # NB: the bare phrase "Effective Date of the Plan" also matches employee
+    # STOCK-plan / benefit-plan effective dates (GoDaddy, Skyworks, Federated
+    # Hermes all false-positived on it), so require the "of Reorganization"
+    # qualifier — a genuine Chapter 11 emergence, not a benefit plan.
     "post_reorg_plan_effective":
         '"Plan of Reorganization became effective" '
-        'OR "Effective Date of the Plan"',
+        'OR "Effective Date of the Plan of Reorganization" '
+        'OR "Plan of Reorganization became effective on"',
 }
 FORMS = "8-K,10-K,10-Q,8-A12B,8-A12G"
 
 
 def fetch(query: str, start: date, end: date,
           retries: int = 4) -> list[dict]:
+    """ALL hits for a query, paginating through EDGAR's 10-per-page full-
+    text search (shared paginator). Without this we silently caught only
+    the first 10 records per query per run — the cardinal under-catch."""
     params = {
         "q": query, "forms": FORMS,
         "startdt": start.isoformat(), "enddt": end.isoformat(),
     }
-    url = f"{EDGAR}?{urlencode(params)}"
-    delay = 1.0
-    for attempt in range(retries):
-        try:
-            r = requests.get(url, headers=HEADERS, timeout=30)
-            if r.status_code == 429:
-                time.sleep(delay); delay *= 2
-                continue
-            r.raise_for_status()
-            return r.json().get("hits", {}).get("hits", [])
-        except requests.RequestException as exc:
-            if attempt == retries - 1:
-                print(f"  ! EDGAR failed after {retries} attempts: {exc}",
-                      file=sys.stderr)
-                return []
-            time.sleep(delay); delay *= 2
-    return []
+    return fts_search_all(params, HEADERS, retries=retries,
+                          log=lambda m: print(m, file=sys.stderr))
 
 
 def normalize_hit(label: str, hit: dict, fetched_at: str) -> dict:

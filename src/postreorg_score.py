@@ -264,7 +264,10 @@ def assembly_score(rec: dict, ey: dict, is_ch22: bool) -> dict:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--max-names", type=int, default=60)
+    # 0 (default) = score the ENTIRE cohort. A positive cap is a manual
+    # override for quick runs; when it truncates we say so loudly rather
+    # than silently drop names (the framework's cardinal sin).
+    ap.add_argument("--max-names", type=int, default=0)
     args = ap.parse_args()
 
     cohort = collect_postreorg()
@@ -272,8 +275,22 @@ def main() -> int:
     print(f"Post-reorg cohort (fresh-start/emerged, SEC filers): "
           f"{len(cohort)}")
 
+    # Deterministic order (fresh-start highest-precision first, then by CIK)
+    # so a run is reproducible and any truncation drops the least-precise
+    # tail, transparently — never an arbitrary dict-order slice.
+    def _prio(item):
+        lbl = item[1].get("query_label", "")
+        rank = (0 if "freshstart" in lbl else 1 if "emerged" in lbl else 2)
+        return (rank, int(item[0]))
+    ordered = sorted(cohort.items(), key=_prio)
+    if args.max_names and args.max_names < len(ordered):
+        dropped = len(ordered) - args.max_names
+        print(f"  ** --max-names={args.max_names} TRUNCATES the cohort: "
+              f"{dropped} lower-precision names not scored this run **")
+        ordered = ordered[:args.max_names]
+
     scored = []
-    for i, (cik, rec) in enumerate(list(cohort.items())[:args.max_names]):
+    for i, (cik, rec) in enumerate(ordered):
         ticker = rec.get("ticker") or ""
         is_ch22 = _norm(rec.get("name", "")) in ch22
         ey = ebit_yield(int(cik), ticker)
@@ -282,7 +299,7 @@ def main() -> int:
                        "name": rec.get("name", ""), **sc, **ey})
         time.sleep(0.15)   # SEC + Yahoo courtesy
         if (i + 1) % 10 == 0:
-            print(f"  scored {i+1}/{min(len(cohort), args.max_names)}...")
+            print(f"  scored {i+1}/{len(ordered)}...")
 
     # rank: gated + score desc; vetoes last
     scored.sort(key=lambda s: (s["score"] > -99, s["gate_ok"], s["score"]),

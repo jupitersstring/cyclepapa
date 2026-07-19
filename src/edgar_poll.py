@@ -22,7 +22,7 @@ import time
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from urllib.parse import urlencode
-from src.edgar_util import issuer_fields
+from src.edgar_util import issuer_fields, fts_search_all
 
 try:
     import requests
@@ -64,29 +64,16 @@ FORMS = "8-K,6-K,S-1,S-3,424B5,T-3,SC 13D,SC 13G,DEF 14A,4"
 
 
 def fetch_one_day(query: str, day: date, retries: int = 4) -> list[dict]:
+    """ALL hits for a query on one day, paginating the EDGAR full-text
+    window. Previously read only the first page (10 hits) — on any busy
+    filing day that silently dropped every match past the tenth."""
     iso = day.isoformat()
     params = {
         "q": query, "forms": FORMS,
         "dateRange": "custom", "startdt": iso, "enddt": iso,
     }
-    url = f"{EDGAR}?{urlencode(params)}"
-    delay = 1.0
-    for attempt in range(retries):
-        try:
-            r = requests.get(url, headers=HEADERS, timeout=30)
-            if r.status_code == 429:
-                time.sleep(delay)
-                delay *= 2
-                continue
-            r.raise_for_status()
-            return r.json().get("hits", {}).get("hits", [])
-        except requests.RequestException as exc:
-            if attempt == retries - 1:
-                print(f"  ! failed after {retries} attempts: {exc}", file=sys.stderr)
-                return []
-            time.sleep(delay)
-            delay *= 2
-    return []
+    return fts_search_all(params, HEADERS, retries=retries,
+                          log=lambda m: print(m, file=sys.stderr))
 
 
 def normalize_hit(label: str, hit: dict, query: str, fetched_at: str) -> dict:

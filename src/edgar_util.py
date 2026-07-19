@@ -16,6 +16,7 @@ universe_screen) sees real tickers instead of "CIK:0000000000".
 from __future__ import annotations
 
 import re
+import time
 
 # "NAME  (TICKER[, TICKER2 ...])  (CIK 0000000000)"
 _DN_TICKER = re.compile(
@@ -106,6 +107,73 @@ def resolve_cik_to_ticker(cik: str | int | None) -> str | None:
     except ValueError:
         return None
     return _cik_ticker_map().get(key)
+
+
+EDGAR_FTS = "https://efts.sec.gov/LATEST/search-index"
+
+
+def fts_search_all(params: dict, headers: dict, *, retries: int = 4,
+                   page_pause: float = 0.12, max_results: int = 10000,
+                   log=None) -> list[dict]:
+    """Return ALL EDGAR full-text-search hits for a query, paginating through
+    the API's fixed 10-per-page window.
+
+    Every EDGAR FTS poller that read only `hits.hits` from a single request
+    was silently catching just the first 10 matches per query — the
+    framework's cardinal under-catch. This helper is the one correct place
+    to page: it walks `from` in steps of 10 until the result set is
+    exhausted or EDGAR's 10,000-hit ceiling is reached, and (via `log`)
+    reports when the ceiling truncates so the miss is never silent.
+
+    `params` is the base query (q, forms, startdt, enddt, ...) WITHOUT
+    `from`. Returns the concatenated list of raw hit dicts.
+    """
+    try:
+        import requests
+    except ImportError:  # pragma: no cover
+        return []
+    from urllib.parse import urlencode
+
+    out: list[dict] = []
+    from_ = 0
+    total = None
+    while True:
+        p = dict(params)
+        if from_:
+            p["from"] = from_
+        url = f"{EDGAR_FTS}?{urlencode(p)}"
+        delay = 1.0
+        page = {}
+        for attempt in range(retries):
+            try:
+                r = requests.get(url, headers=headers, timeout=30)
+                if r.status_code == 429:
+                    time.sleep(delay); delay *= 2
+                    continue
+                r.raise_for_status()
+                page = r.json().get("hits", {}) or {}
+                break
+            except requests.RequestException:
+                if attempt == retries - 1:
+                    page = {}
+                    break
+                time.sleep(delay); delay *= 2
+        hits = page.get("hits", []) or []
+        if total is None:
+            tv = page.get("total", {})
+            total = tv.get("value") if isinstance(tv, dict) else None
+        out.extend(hits)
+        if len(hits) < 10:
+            break
+        from_ += 10
+        ceiling = min(int(total), max_results) if total is not None else max_results
+        if from_ >= ceiling:
+            if total is not None and int(total) > max_results and log:
+                log(f"    (EDGAR returned {total} hits; capped at "
+                    f"{max_results} — narrow the date window to catch the tail)")
+            break
+        time.sleep(page_pause)
+    return out
 
 
 def issuer_fields(source: dict) -> dict:
