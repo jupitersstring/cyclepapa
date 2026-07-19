@@ -134,10 +134,13 @@ def balance_sheet(cik: int) -> dict:
 
 
 def six_questions(rec: dict, cik: int, ticker: str, ey: dict,
-                  bs: dict, sig: dict, is_ch22: bool) -> dict:
+                  bs: dict, sig: dict, in_pacer: bool) -> dict:
     """Score the six-question listed-equity screen. Q1 is a hard gate
-    (must be listed common with a live price). Returns per-question marks,
-    a 0-6 fitness score, and archetype tags."""
+    (must be listed common with a live price). `in_pacer` = the filer
+    appears in the PACER Chapter 11 poller, which CORROBORATES that the
+    filer itself reorganized (vs an incidental full-text mention of
+    another issuer). Returns per-question marks, a 0-6 fitness score,
+    archetype tags, and a confidence flag."""
     q = {}
     reasons = []
 
@@ -152,8 +155,20 @@ def six_questions(rec: dict, cik: int, ticker: str, ey: dict,
                 "marks": q}
 
     # Q2 UNNATURAL — distributed to creditors → structural forced sellers.
-    q["unnatural"] = sig["unnatural_owners"] or sig["secondary_clearing"]
-    if sig["unnatural_owners"]:
+    # An emergence EVENT filing (8-K "plan became effective" / "emerged")
+    # IS the moment plan equity lands in creditor hands, so the forced-
+    # seller overhang is live by construction. Fresh-start-only 10-Ks are
+    # accounting recognition that can post-date emergence, so those need a
+    # corroborating text signal. (Full-text emergence language can also be
+    # an incidental reference to ANOTHER issuer — see the confidence mark.)
+    label = rec.get("query_label", "")
+    is_event = "emerged" in label or "plan_effective" in label
+    q["unnatural"] = (is_event or sig["unnatural_owners"] or
+                      sig["secondary_clearing"])
+    if is_event:
+        reasons.append("emergence event — plan equity just distributed to "
+                       "creditors (live forced-seller overhang)")
+    elif sig["unnatural_owners"]:
         reasons.append("distributed to creditors (forced-seller overhang)")
     elif sig["secondary_clearing"]:
         reasons.append("registered resale (secondary clearing)")
@@ -202,13 +217,11 @@ def six_questions(rec: dict, cik: int, ticker: str, ey: dict,
             reasons.append(lbl)
 
     # Q6 QUALITY — clears the Verdad quality bar (EBIT-yield > 0, ideally
-    # > 20%). Chapter-22 re-filers fail quality by definition.
+    # > 20%).
     tier = ey.get("tier") or ""
     y = ey.get("ebit_yield")
     quality = False
-    if is_ch22:
-        reasons.append("CHAPTER 22 re-filer → quality FAIL")
-    elif y is not None and y > 0:
+    if y is not None and y > 0:
         quality = True
         reasons.append(f"EBIT/EV {y*100:.0f}% ({tier})")
     elif ebit is not None and ebit > 0:
@@ -218,7 +231,7 @@ def six_questions(rec: dict, cik: int, ticker: str, ey: dict,
 
     # --- archetype tags (document's ranked order) ---
     arche = []
-    if sig["unnatural_owners"]:
+    if is_event or sig["unnatural_owners"]:
         arche.append("forced-creditor overhang")           # A1 (#1)
     if sig["secondary_clearing"]:
         arche.append("post-secondary clearing")            # A2
@@ -242,11 +255,13 @@ def six_questions(rec: dict, cik: int, ticker: str, ey: dict,
     soft = sum(bool(q[k]) for k in
                ("unnatural", "repaired", "overstated", "catalyst", "quality"))
     fitness = soft + 0.5 * max(0, len(arche) - 1)
-    if is_ch22:
-        fitness = min(fitness, 1.0)   # re-filer can't rank
+    # confidence: PACER-corroborated (the FILER actually filed Chapter 11)
+    # is hard-confirmed; a bare full-text emergence match could be an
+    # incidental reference to another issuer, so flag it text-only.
+    confidence = "confirmed" if in_pacer else "text-matched"
     return {"listed": True, "score": soft, "fitness": round(fitness, 1),
             "archetypes": arche, "reasons": reasons, "marks": q,
-            "ch22": is_ch22}
+            "confidence": confidence}
 
 
 def main() -> int:
@@ -291,7 +306,7 @@ def main() -> int:
     scored = []
     for i, (cik, rec) in enumerate(items):
         ticker = rec.get("ticker") or ""
-        is_ch22 = _norm(rec.get("name", "")) in ch22
+        in_pacer = _norm(rec.get("name", "")) in ch22
         ey = ebit_yield(int(cik), ticker)
         # skip the mega-cap / sub-scale precision-gate false positives
         if ey["tier"] in ("not-postreorg (mega-cap)", "sub-scale (<$100M)"):
@@ -299,7 +314,7 @@ def main() -> int:
         bs = balance_sheet(int(cik))
         sig = _detect(rec.get("query_note", "") + " " + rec.get("form", "") +
                       " " + rec.get("query_label", ""))
-        res = six_questions(rec, int(cik), ticker, ey, bs, sig, is_ch22)
+        res = six_questions(rec, int(cik), ticker, ey, bs, sig, in_pacer)
         scored.append({"cik": cik, "ticker": ticker,
                        "name": rec.get("name", ""), **res,
                        "tier": ey.get("tier"), "ebit_yield": ey.get("ebit_yield")})
@@ -308,8 +323,11 @@ def main() -> int:
             print(f"  screened {i+1}/{len(items)}...")
 
     listed = [s for s in scored if s["listed"]]
-    listed.sort(key=lambda s: (s["fitness"], s["score"]), reverse=True)
-    prime = [s for s in listed if s["fitness"] >= 3 and not s.get("ch22")]
+    # rank by fitness, then hard-confirmed (PACER) above text-matched, then score
+    listed.sort(key=lambda s: (s["fitness"], s.get("confidence") == "confirmed",
+                               s["score"]), reverse=True)
+    prime = [s for s in listed if s["fitness"] >= 3]
+    confirmed = [s for s in listed if s.get("confidence") == "confirmed"]
 
     lines = [
         "# Listed-equity reorganization watchlist",
@@ -326,30 +344,37 @@ def main() -> int:
         "that broadens the natural shareholder base.",
         "",
         f"- cohort screened: **{len(scored)}**  ·  listed common (Q1 gate "
-        f"passed): **{len(listed)}**  ·  prime (fitness ≥ 3): **{len(prime)}**",
+        f"passed): **{len(listed)}**  ·  prime (fitness ≥ 3): **{len(prime)}**  "
+        f"·  PACER-confirmed bankruptcies: **{len(confirmed)}**",
         "",
         "Six questions: **L**isted · **U**nnatural owners · **R**epaired "
         "balance sheet · **O**verstated count/debt · **C**atalyst · "
-        "**Q**uality (EBIT-yield).",
+        "**Q**uality (EBIT-yield). **Conf** = the filer's own Chapter 11 is "
+        "corroborated by the PACER poller (`✓`) vs a full-text emergence "
+        "match that could be an incidental reference to another issuer (`~`).",
         "",
-        "| Name | Ticker | Fit | U | R | O | C | Q | Archetypes | Why |",
-        "|---|---|---:|:-:|:-:|:-:|:-:|:-:|---|---|",
+        "| Name | Ticker | Conf | Fit | U | R | O | C | Q | Archetypes | Why |",
+        "|---|---|:--:|---:|:-:|:-:|:-:|:-:|:-:|---|---|",
     ]
     def mk(s, k):
         return "●" if s["marks"].get(k) else "·"
     for s in listed:
         arch = ", ".join(s["archetypes"][:3]) or "—"
         why = "; ".join(s["reasons"][:3])
+        conf = "✓" if s.get("confidence") == "confirmed" else "~"
         lines.append(
-            f"| {s['name'][:30]} | {s['ticker']} | {s['fitness']} | "
+            f"| {s['name'][:30]} | {s['ticker']} | {conf} | {s['fitness']} | "
             f"{mk(s,'unnatural')} | {mk(s,'repaired')} | {mk(s,'overstated')} | "
             f"{mk(s,'catalyst')} | {mk(s,'quality')} | {arch} | {why[:64]} |")
 
     lines += ["", "## Prime setups (fitness ≥ 3)", ""]
     if prime:
         for s in prime:
+            conf = ("✓ PACER-confirmed" if s.get("confidence") == "confirmed"
+                    else "~ text-matched (verify the filer itself emerged)")
             lines.append(f"- **{s['name'][:40]}** ({s['ticker']}) — "
-                         f"fitness {s['fitness']}; {', '.join(s['archetypes']) or '—'}"
+                         f"fitness {s['fitness']} · {conf}; "
+                         f"{', '.join(s['archetypes']) or '—'}"
                          f"  ·  {'; '.join(s['reasons'][:4])}")
     else:
         lines.append("_None cleared fitness ≥ 3 this run — the listed-common "
