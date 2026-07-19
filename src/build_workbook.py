@@ -776,6 +776,108 @@ def build_portfolio_sizing(wb: Workbook, weights: dict[str, dict]) -> None:
     ws.row_dimensions[3].height = 32
 
 
+def build_all_names(wb: Workbook, universe_rr: list[dict]) -> None:
+    """Every ranked name (not just the top 100), with all asymmetry
+    lenses, so nothing is hidden below a cutoff."""
+    ws = wb.create_sheet("All names")
+    ws.sheet_view.showGridLines = False
+    ws["A1"] = (f"All {len(universe_rr)} ranked names · reward/risk + "
+                "alternative asymmetry lenses")
+    ws["A1"].font = FONT_SUBHEAD
+    headers = ["Rank", "Src", "Ticker", "Name", "Region", "Arch",
+               "Bear", "EV×", "Rew/Risk", "Skew", "Downside",
+               "Conv.", "Hard", "Val", "Composite"]
+    for j, h in enumerate(headers, 1):
+        ws.cell(row=3, column=j, value=h)
+    style_header_row(ws, 3, len(headers))
+    for i, r in enumerate(universe_rr):
+        row = 4 + i
+
+        def fnum(k, d=0.0):
+            try:
+                return float(r.get(k) or d)
+            except (TypeError, ValueError):
+                return d
+        cells = [
+            i + 1, r["source"], r["ticker"], r["name"][:44],
+            r["region"][:20], r["archetype"][:8],
+            f"{fnum('bear_loss')*100:.0f}%", f"{fnum('ev'):.2f}×",
+            f"{fnum('rr'):.1f}×", f"{fnum('skew'):.1f}",
+            f"{fnum('downside_prot'):.2f}", f"{fnum('conviction'):.2f}",
+            f"{fnum('hardness'):.2f}",
+            (f"{fnum('val_score'):.2f}" if r.get("val_score") else "—"),
+            f"{fnum('composite'):.3f}",
+        ]
+        for j, v in enumerate(cells, 1):
+            ws.cell(row=row, column=j, value=v)
+        style_body_band(ws, row, len(headers), banded=(i % 2 == 1))
+    ws.freeze_panes = "A4"
+    last = 3 + len(universe_rr)
+    for col in ("I", "O"):   # heat Reward/Risk + Composite
+        ws.conditional_formatting.add(
+            f"{col}4:{col}{last}",
+            ColorScaleRule(start_type="min", start_color="F2F4F6",
+                           mid_type="percentile", mid_value=50,
+                           mid_color="C7E8C0", end_type="max",
+                           end_color=GREEN))
+    autosize_cols(ws)
+    ws.row_dimensions[3].height = 30
+
+
+def build_lenses(wb: Workbook, universe_rr: list[dict]) -> None:
+    """Side-by-side leaders under each asymmetry lens, so the user can see
+    WHICH lens each name wins on — different lenses surface different
+    opportunities (a floored microcap vs a convex sovereign bet vs a
+    cheap-on-valuation restructuring vs a heavily-corroborated event)."""
+    ws = wb.create_sheet("Asymmetry lenses")
+    ws.sheet_view.showGridLines = False
+    ws["A1"] = "Top 20 under each asymmetry lens"
+    ws["A1"].font = FONT_SUBHEAD
+    ws["A2"] = ("Different lenses find different asymmetry. Reward/Risk = "
+                "(EV−1)/bear. Skew = pure upside/downside. Downside = "
+                "capital floor (1−bear). Conviction = weighted cross-source "
+                "signal. Valuation = cheapness (net-cash/EV-EBITDA/P-B/"
+                "discount, where data exists). Composite blends them.")
+    ws["A2"].font = FONT_FOOTNOTE
+    ws["A2"].alignment = ALIGN_WRAP
+    ws.merge_cells("A2:L2")
+    ws.row_dimensions[2].height = 42
+
+    def fnum(r, k):
+        try:
+            return float(r.get(k) or 0)
+        except (TypeError, ValueError):
+            return 0.0
+
+    lenses = [
+        ("Reward/Risk", "rr", "{:.1f}×"),
+        ("Skew (up/down)", "skew", "{:.1f}"),
+        ("Downside floor", "downside_prot", "{:.2f}"),
+        ("Signal conviction", "conviction", "{:.2f}"),
+        ("Valuation cheapness", "val_score", "{:.2f}"),
+        ("Composite (blended)", "composite", "{:.3f}"),
+    ]
+    col = 1
+    for label, key, fmt in lenses:
+        pool = [r for r in universe_rr if fnum(r, key) > 0]
+        ranked = sorted(pool, key=lambda r: -fnum(r, key))[:20]
+        ws.cell(row=4, column=col, value=label).font = FONT_HEADER
+        ws.cell(row=4, column=col).fill = FILL_HEADER
+        ws.cell(row=4, column=col + 1, value="val").font = FONT_HEADER
+        ws.cell(row=4, column=col + 1).fill = FILL_HEADER
+        for i, r in enumerate(ranked):
+            rr = 5 + i
+            tk = r["ticker"].split(":")[-1]
+            ws.cell(row=rr, column=col,
+                    value=f"{tk} · {r['name'][:20]}").font = FONT_BODY
+            ws.cell(row=rr, column=col + 1,
+                    value=fmt.format(fnum(r, key))).font = FONT_BODY
+            ws.cell(row=rr, column=col + 1).alignment = ALIGN_R
+        col += 3
+    autosize_cols(ws, max_w=34)
+    ws.row_dimensions[4].height = 26
+
+
 def build_methodology(wb: Workbook) -> None:
     ws = wb.create_sheet("Methodology")
     ws.sheet_view.showGridLines = False
@@ -854,6 +956,8 @@ def main() -> int:
 
     build_cover(wb, candidates, weights)
     build_executive_summary(wb, candidates, weights, universe_rr)
+    build_lenses(wb, universe_rr)
+    build_all_names(wb, universe_rr)
     build_coverage_gap(wb, universe_rr)
     build_old_yaml_only(wb, candidates, weights)
     build_universe(wb, candidates, weights)

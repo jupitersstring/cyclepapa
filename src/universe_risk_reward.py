@@ -99,6 +99,150 @@ class UniverseRow:
     rr: float = 0.0
     source: str = "PROXY"      # PROXY or REAL
     yaml_ticker: str = ""
+    # ---- alternative asymmetry lenses ----
+    skew: float = 0.0          # (bull-1)/bear_loss — pure upside/downside
+    downside_prot: float = 0.0 # 1-bear_loss — capital-preservation floor
+    conviction: float = 0.0    # weighted cross-source signal strength
+    hardness: float = 0.0      # hardest corroborated event severity (0-1)
+    val_score: float | None = None  # valuation cheapness (data permitting)
+    val_note: str = ""
+    composite: float = 0.0     # blended asymmetry rank
+
+
+def _load_corroboration_map() -> dict[str, dict]:
+    import json
+    path = REPO / "data" / "corroboration.json"
+    out: dict[str, dict] = {}
+    if path.exists():
+        try:
+            for stem, e in json.loads(path.read_text()).items():
+                if isinstance(e, dict):
+                    out[stem.upper()] = e
+        except Exception:
+            pass
+    return out
+
+
+def _load_yaml_valuations() -> dict[str, dict]:
+    """ticker-stem -> valuation facts pulled from hand-built YAMLs, for the
+    valuation asymmetry lens. Looks for EV/EBITDA, P/B, P/E, discount-to-
+    NAV, and net-cash-vs-market-cap (the LOCAL 'trades below cash' shape)."""
+    out: dict[str, dict] = {}
+    for path in CANDIDATES.glob("*.yaml"):
+        try:
+            d = yaml.safe_load(path.open()) or {}
+        except Exception:
+            continue
+        if not isinstance(d, dict):
+            continue
+        t = d.get("ticker")
+        if not t:
+            continue
+        stem = re.sub(r"[^A-Za-z0-9-]", "", str(t).split(":")[-1]).upper()
+        fields = (d.get("deal", {}) or {}).get("fields", {}) or {}
+        flat = {}
+        for k, v in fields.items():
+            val = v.get("value") if isinstance(v, dict) else v
+            flat[k.lower()] = val
+        out[stem] = {"flat": flat, "sc": d.get("scorecard", {}) or {}}
+    return out
+
+
+def compute_lenses(r: UniverseRow, corrob: dict, yaml_val: dict) -> None:
+    """Populate the alternative asymmetry lenses on a row."""
+    bl = max(0.01, r.bear_loss)
+    # 1. Skew — pure upside/downside (independent of base-case weighting)
+    r.skew = round((r.bull_r - 1.0) / bl, 2)
+    # 2. Downside protection — how floored the capital is (1 = fully floored)
+    r.downside_prot = round(1.0 - r.bear_loss, 3)
+    # 3/4. Signal conviction + event hardness from corroboration
+    keys = set()
+    if r.ticker:
+        keys.add(re.sub(r"[^A-Za-z0-9]", "", r.ticker.split(":")[-1]).upper())
+    if r.name:
+        keys.add(re.sub(r"[^A-Za-z0-9]", "",
+                        re.sub(r"\b(inc|corp|ltd|plc|holdings?|group|co|sa|nv|ag|se)\b",
+                               "", r.name, flags=re.I)).upper())
+    best = None
+    for k in keys:
+        e = corrob.get(k)
+        if e and (best is None or e.get("conviction_score", 0) >
+                  best.get("conviction_score", 0)):
+            best = e
+    if best:
+        r.conviction = round(float(best.get("conviction_score", 0.0)), 2)
+        r.hardness = round(float(best.get("hardest_event", 0.0)), 2)
+    # 5. Valuation lens — cheapness where YAML data exists
+    r.val_score, r.val_note = _valuation_lens(r, yaml_val)
+
+
+def _valuation_lens(r: UniverseRow, yaml_val: dict):
+    """Return (score 0-1, note). Higher = cheaper/more downside-anchored.
+    Uses whatever valuation facts the YAML exposes; None if no data."""
+    stem = re.sub(r"[^A-Za-z0-9-]", "", r.ticker.split(":")[-1]).upper()
+    d = yaml_val.get(stem)
+    if not d:
+        return None, ""
+    flat, sc = d["flat"], d["sc"]
+    signals = []
+    notes = []
+    # net cash >= market cap → the LOCAL 'below cash' floor (strongest)
+    nc = next((flat[k] for k in flat if "net_cash" in k), None)
+    mc = next((flat[k] for k in flat if "market_cap" in k), None)
+    try:
+        if nc and mc and float(nc) >= 0.6 * float(mc):
+            signals.append(1.0); notes.append("net cash ≥60% of mkt cap")
+    except (TypeError, ValueError):
+        pass
+    # EV/EBITDA cheapness
+    ee = next((flat[k] for k in flat if "ev_ebitda" in k or "ev/ebitda" in k), None)
+    try:
+        if ee is not None:
+            ee = float(ee)
+            if ee <= 4: signals.append(0.9); notes.append(f"EV/EBITDA {ee:g}×")
+            elif ee <= 7: signals.append(0.6); notes.append(f"EV/EBITDA {ee:g}×")
+    except (TypeError, ValueError):
+        pass
+    # P/B below book
+    pb = next((flat[k] for k in flat if k.startswith("pb_") or "price_to_book" in k), None)
+    try:
+        if pb is not None:
+            pb = float(pb)
+            if pb <= 0.7: signals.append(0.85); notes.append(f"P/B {pb:g}×")
+            elif pb <= 1.0: signals.append(0.5); notes.append(f"P/B {pb:g}×")
+    except (TypeError, ValueError):
+        pass
+    # explicit discount-to-NAV / SOTP language in scorecard
+    for k, v in (sc or {}).items():
+        if "discount" in k.lower() and isinstance(v, (int, float)) and v >= 30:
+            signals.append(0.8); notes.append(f"{v:g}% discount")
+    if not signals:
+        return None, ""
+    return round(min(1.0, max(signals) * 0.7 + 0.3 * (len(signals) >= 2)), 2), \
+        "; ".join(notes[:3])
+
+
+def _rank_composite(rows: list[UniverseRow]) -> None:
+    """Blended asymmetry rank: percentile-average of the lenses so no
+    single metric dominates. RR + skew + downside-protection + conviction,
+    with valuation as a bonus where present."""
+    def pct(vals):
+        order = sorted(range(len(vals)), key=lambda i: vals[i])
+        p = [0.0] * len(vals)
+        for rank, i in enumerate(order):
+            p[i] = rank / max(1, len(vals) - 1)
+        return p
+    if not rows:
+        return
+    rr_p = pct([r.rr for r in rows])
+    sk_p = pct([r.skew for r in rows])
+    dp_p = pct([r.downside_prot for r in rows])
+    cv_p = pct([r.conviction for r in rows])
+    for i, r in enumerate(rows):
+        base = 0.40 * rr_p[i] + 0.25 * sk_p[i] + 0.20 * dp_p[i] + 0.15 * cv_p[i]
+        if r.val_score is not None:
+            base = 0.85 * base + 0.15 * r.val_score
+        r.composite = round(base, 4)
 
 
 def load_full_candidates() -> list[UniverseRow]:
@@ -396,7 +540,14 @@ def main() -> int:
     keep: list[UniverseRow] = []
     dropped = 0
     for r in rows:
-        if not is_investable(r):
+        # A hand-built YAML is authoritative: rank it with its REAL
+        # waterfall regardless of what status/score the terse universe.md
+        # text-parse assigned (e.g. Solocal's text row parses as PASS/0.00,
+        # but LOCAL.yaml is a real Tier-1 thesis and must always rank).
+        tstem = re.sub(r"[^A-Za-z0-9-]", "",
+                       r.ticker.split(":")[-1]).upper()
+        has_yaml = tstem in yamls
+        if not has_yaml and not is_investable(r):
             dropped += 1
             continue
         proxy_reward_risk(r)
@@ -427,7 +578,14 @@ def main() -> int:
     keep = list(by_ticker.values())
     print(f"After ticker dedup: {len(keep)}")
 
-    # Rank by reward/risk ratio descending
+    # ---- alternative asymmetry lenses ----
+    corrob = _load_corroboration_map()
+    yaml_val = _load_yaml_valuations()
+    for r in keep:
+        compute_lenses(r, corrob, yaml_val)
+    _rank_composite(keep)
+
+    # Rank by reward/risk ratio descending (the primary lens)
     keep.sort(key=lambda r: -r.rr)
 
     # Write markdown
@@ -480,11 +638,16 @@ def main() -> int:
         w = csv.writer(f)
         w.writerow(["rank", "source", "ticker", "name", "region",
                     "score", "bucket", "archetype", "status", "size",
-                    "bear_loss", "base_r", "bull_r", "ev", "rr"])
+                    "bear_loss", "base_r", "bull_r", "ev", "rr",
+                    "skew", "downside_prot", "conviction", "hardness",
+                    "val_score", "val_note", "composite"])
         for i, r in enumerate(keep):
             w.writerow([i + 1, r.source, r.ticker, r.name, r.region,
                         r.score, r.bucket, r.archetype, r.status, r.size,
-                        r.bear_loss, r.base_r, r.bull_r, r.ev, r.rr])
+                        r.bear_loss, r.base_r, r.bull_r, r.ev, r.rr,
+                        r.skew, r.downside_prot, r.conviction, r.hardness,
+                        "" if r.val_score is None else r.val_score,
+                        r.val_note, r.composite])
 
     print(f"\nWrote {OUT_MD}")
     print(f"Wrote {OUT_CSV}")
