@@ -54,11 +54,42 @@ import json
 import re
 import sys
 import time
+from datetime import date
 from pathlib import Path
 
 from src.postreorg_score import (
     collect_postreorg, chapter22_ciks, ebit_yield, _norm, _xbrl,
 )
+from src.postreorg_verify import verify, load_cache, save_cache
+
+# Forced-seller overhang is a fresh-emergence phenomenon: creditors dump
+# the plan equity in roughly the first 18-24 months, then the supply clears.
+# Beyond this the name is a genuine post-reorg but no longer a live overhang.
+OVERHANG_MONTHS = 24
+
+
+def _months_since(emergence_date: str | None) -> float | None:
+    """Approximate months since an emergence-date string ('September 30,
+    2014' or a bare '2021'). Returns None if unparseable."""
+    if not emergence_date:
+        return None
+    today = date.today()
+    m = re.search(r"([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})", emergence_date)
+    if m:
+        months = {"january": 1, "february": 2, "march": 3, "april": 4,
+                  "may": 5, "june": 6, "july": 7, "august": 8,
+                  "september": 9, "october": 10, "november": 11,
+                  "december": 12}.get(m.group(1).lower())
+        if months:
+            try:
+                d = date(int(m.group(3)), months, min(int(m.group(2)), 28))
+                return (today - d).days / 30.4
+            except ValueError:
+                pass
+    ym = re.search(r"(19|20)\d{2}", emergence_date)
+    if ym:
+        return (today - date(int(ym.group(0)), 6, 30)).days / 30.4
+    return None
 
 REPO = Path(__file__).resolve().parent.parent
 OUT_MD = REPO / "output" / "listed_equity_watchlist.md"
@@ -134,13 +165,15 @@ def balance_sheet(cik: int) -> dict:
 
 
 def six_questions(rec: dict, cik: int, ticker: str, ey: dict,
-                  bs: dict, sig: dict, in_pacer: bool) -> dict:
+                  bs: dict, sig: dict, in_pacer: bool, vinfo: dict) -> dict:
     """Score the six-question listed-equity screen. Q1 is a hard gate
     (must be listed common with a live price). `in_pacer` = the filer
     appears in the PACER Chapter 11 poller, which CORROBORATES that the
-    filer itself reorganized (vs an incidental full-text mention of
-    another issuer). Returns per-question marks, a 0-6 fitness score,
-    archetype tags, and a confidence flag."""
+    filer itself reorganized. `vinfo` is the postreorg_verify verdict
+    ({filer_emerged, emergence_date, ...}) that confirms the FILER — not
+    an incidentally-referenced third party — emerged, and when. Returns
+    per-question marks, a 0-6 fitness score, archetype tags, and a
+    confidence flag."""
     q = {}
     reasons = []
 
@@ -155,21 +188,21 @@ def six_questions(rec: dict, cik: int, ticker: str, ey: dict,
                 "marks": q}
 
     # Q2 UNNATURAL — distributed to creditors → structural forced sellers.
-    # An emergence EVENT filing (8-K "plan became effective" / "emerged")
-    # IS the moment plan equity lands in creditor hands, so the forced-
-    # seller overhang is live by construction. Fresh-start-only 10-Ks are
-    # accounting recognition that can post-date emergence, so those need a
-    # corroborating text signal. (Full-text emergence language can also be
-    # an incidental reference to ANOTHER issuer — see the confidence mark.)
-    label = rec.get("query_label", "")
-    is_event = "emerged" in label or "plan_effective" in label
-    q["unnatural"] = (is_event or sig["unnatural_owners"] or
-                      sig["secondary_clearing"])
-    if is_event:
-        reasons.append("emergence event — plan equity just distributed to "
-                       "creditors (live forced-seller overhang)")
-    elif sig["unnatural_owners"]:
-        reasons.append("distributed to creditors (forced-seller overhang)")
+    # This fires only for a VERIFIED filer-emergence (postreorg_verify
+    # confirmed the filer itself emerged, not an incidental third-party
+    # mention) that is still inside the forced-seller window. A genuine but
+    # ancient emergence (Centrus, 2014) is a real post-reorg but the
+    # overhang has long cleared, so it does NOT get the point.
+    months = _months_since(vinfo.get("emergence_date"))
+    overhang_live = (bool(vinfo.get("filer_emerged")) and months is not None
+                     and months <= OVERHANG_MONTHS)
+    q["unnatural"] = (overhang_live or sig["secondary_clearing"])
+    if overhang_live:
+        reasons.append(f"filer emerged {vinfo.get('emergence_date')} "
+                       f"(~{months:.0f}mo ago) — live forced-seller overhang")
+    elif vinfo.get("filer_emerged") and months is not None:
+        reasons.append(f"filer emerged {vinfo.get('emergence_date')} "
+                       f"(~{months:.0f}mo ago) — overhang likely cleared")
     elif sig["secondary_clearing"]:
         reasons.append("registered resale (secondary clearing)")
 
@@ -231,7 +264,7 @@ def six_questions(rec: dict, cik: int, ticker: str, ey: dict,
 
     # --- archetype tags (document's ranked order) ---
     arche = []
-    if is_event or sig["unnatural_owners"]:
+    if overhang_live or sig["unnatural_owners"]:
         arche.append("forced-creditor overhang")           # A1 (#1)
     if sig["secondary_clearing"]:
         arche.append("post-secondary clearing")            # A2
@@ -255,13 +288,17 @@ def six_questions(rec: dict, cik: int, ticker: str, ey: dict,
     soft = sum(bool(q[k]) for k in
                ("unnatural", "repaired", "overstated", "catalyst", "quality"))
     fitness = soft + 0.5 * max(0, len(arche) - 1)
-    # confidence: PACER-corroborated (the FILER actually filed Chapter 11)
-    # is hard-confirmed; a bare full-text emergence match could be an
-    # incidental reference to another issuer, so flag it text-only.
-    confidence = "confirmed" if in_pacer else "text-matched"
+    # confidence: the filing was read and the FILER's own emergence
+    # confirmed (postreorg_verify) or the filer is in the PACER Chapter 11
+    # poller = hard-confirmed. A filing we couldn't fetch stays unverified.
+    if vinfo.get("filer_emerged") or in_pacer:
+        confidence = "confirmed"
+    else:
+        confidence = "unverified"
     return {"listed": True, "score": soft, "fitness": round(fitness, 1),
             "archetypes": arche, "reasons": reasons, "marks": q,
-            "confidence": confidence}
+            "confidence": confidence,
+            "emergence_date": vinfo.get("emergence_date")}
 
 
 def main() -> int:
@@ -303,10 +340,22 @@ def main() -> int:
               f"{dropped} lower-precision names not screened this run **")
         items = items[:args.max_names]
 
+    vcache = load_cache()
     scored = []
+    incidental = []   # filing referenced ANOTHER issuer's emergence — dropped
     for i, (cik, rec) in enumerate(items):
         ticker = rec.get("ticker") or ""
         in_pacer = _norm(rec.get("name", "")) in ch22
+        # Verify the FILER itself emerged (not an incidental third-party
+        # mention). PACER-corroborated names are already hard-confirmed, so
+        # skip the fetch for them.
+        vinfo = ({"filer_emerged": True, "emergence_date": None, "context": ""}
+                 if in_pacer else
+                 verify(int(cik), rec.get("accession", ""), vcache))
+        if vinfo.get("filer_emerged") is False:
+            incidental.append({"ticker": ticker, "name": rec.get("name", ""),
+                               "context": vinfo.get("context", "")})
+            continue
         ey = ebit_yield(int(cik), ticker)
         # skip the mega-cap / sub-scale precision-gate false positives
         if ey["tier"] in ("not-postreorg (mega-cap)", "sub-scale (<$100M)"):
@@ -314,13 +363,16 @@ def main() -> int:
         bs = balance_sheet(int(cik))
         sig = _detect(rec.get("query_note", "") + " " + rec.get("form", "") +
                       " " + rec.get("query_label", ""))
-        res = six_questions(rec, int(cik), ticker, ey, bs, sig, in_pacer)
+        res = six_questions(rec, int(cik), ticker, ey, bs, sig, in_pacer, vinfo)
         scored.append({"cik": cik, "ticker": ticker,
                        "name": rec.get("name", ""), **res,
                        "tier": ey.get("tier"), "ebit_yield": ey.get("ebit_yield")})
         time.sleep(0.15)
         if (i + 1) % 10 == 0:
             print(f"  screened {i+1}/{len(items)}...")
+    save_cache(vcache)
+    print(f"  dropped {len(incidental)} incidental third-party emergence "
+          f"references (filer itself did not emerge)")
 
     listed = [s for s in scored if s["listed"]]
     # rank by fitness, then hard-confirmed (PACER) above text-matched, then score
@@ -345,16 +397,19 @@ def main() -> int:
         "",
         f"- cohort screened: **{len(scored)}**  ·  listed common (Q1 gate "
         f"passed): **{len(listed)}**  ·  prime (fitness ≥ 3): **{len(prime)}**  "
-        f"·  PACER-confirmed bankruptcies: **{len(confirmed)}**",
+        f"·  filer-emergence confirmed: **{len(confirmed)}**  ·  incidental "
+        f"third-party references dropped: **{len(incidental)}**",
         "",
-        "Six questions: **L**isted · **U**nnatural owners · **R**epaired "
-        "balance sheet · **O**verstated count/debt · **C**atalyst · "
-        "**Q**uality (EBIT-yield). **Conf** = the filer's own Chapter 11 is "
-        "corroborated by the PACER poller (`✓`) vs a full-text emergence "
-        "match that could be an incidental reference to another issuer (`~`).",
+        "Six questions: **L**isted · **U**nnatural owners (live forced-seller "
+        "overhang) · **R**epaired balance sheet · **O**verstated count/debt · "
+        "**C**atalyst · **Q**uality (EBIT-yield). **Conf** `✓` = the filing "
+        "was read and the FILER's own emergence confirmed (or PACER-"
+        "corroborated); `~` = filing couldn't be fetched to verify. Names "
+        "whose filing referenced ANOTHER issuer's bankruptcy are dropped "
+        "(listed at the bottom), not scored.",
         "",
-        "| Name | Ticker | Conf | Fit | U | R | O | C | Q | Archetypes | Why |",
-        "|---|---|:--:|---:|:-:|:-:|:-:|:-:|:-:|---|---|",
+        "| Name | Ticker | Conf | Emerged | Fit | U | R | O | C | Q | Archetypes | Why |",
+        "|---|---|:--:|---|---:|:-:|:-:|:-:|:-:|:-:|---|---|",
     ]
     def mk(s, k):
         return "●" if s["marks"].get(k) else "·"
@@ -362,16 +417,19 @@ def main() -> int:
         arch = ", ".join(s["archetypes"][:3]) or "—"
         why = "; ".join(s["reasons"][:3])
         conf = "✓" if s.get("confidence") == "confirmed" else "~"
+        emd = s.get("emergence_date") or "—"
         lines.append(
-            f"| {s['name'][:30]} | {s['ticker']} | {conf} | {s['fitness']} | "
+            f"| {s['name'][:30]} | {s['ticker']} | {conf} | {emd} | "
+            f"{s['fitness']} | "
             f"{mk(s,'unnatural')} | {mk(s,'repaired')} | {mk(s,'overstated')} | "
             f"{mk(s,'catalyst')} | {mk(s,'quality')} | {arch} | {why[:64]} |")
 
     lines += ["", "## Prime setups (fitness ≥ 3)", ""]
     if prime:
         for s in prime:
-            conf = ("✓ PACER-confirmed" if s.get("confidence") == "confirmed"
-                    else "~ text-matched (verify the filer itself emerged)")
+            conf = ("✓ filer-emergence confirmed"
+                    if s.get("confidence") == "confirmed"
+                    else "~ unverified (filing not fetched)")
             lines.append(f"- **{s['name'][:40]}** ({s['ticker']}) — "
                          f"fitness {s['fitness']} · {conf}; "
                          f"{', '.join(s['archetypes']) or '—'}"
@@ -379,6 +437,20 @@ def main() -> int:
     else:
         lines.append("_None cleared fitness ≥ 3 this run — the listed-common "
                      "gate plus the six-question bar is deliberately strict._")
+
+    # Transparency: never drop silently. Show every name removed because its
+    # filing referenced ANOTHER issuer's bankruptcy, with the evidence.
+    if incidental:
+        lines += ["", "## Dropped — incidental third-party emergence "
+                  "references", "",
+                  "These matched the emergence full-text query but the "
+                  "filing refers to a DIFFERENT issuer's Chapter 11 (an "
+                  "acquired subsidiary, JV, or counterparty), so the filer "
+                  "itself is not a post-reorg. Listed for auditability.", "",
+                  "| Name | Ticker | Filing context |", "|---|---|---|"]
+        for e in incidental:
+            ctx = (e.get("context") or "").replace("|", "/")[:80]
+            lines.append(f"| {e['name'][:30]} | {e['ticker']} | {ctx} |")
 
     OUT_MD.parent.mkdir(parents=True, exist_ok=True)
     OUT_MD.write_text("\n".join(lines) + "\n")

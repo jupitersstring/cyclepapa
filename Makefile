@@ -1,4 +1,4 @@
-.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll poll-all security-master source-health corroborate reconcile postreorg-score listed-equity-screen waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
+.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll poll-all security-master source-health corroborate reconcile postreorg-score postreorg-verify listed-equity-screen waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
 
 help:
 	@echo "Targets:"
@@ -154,9 +154,17 @@ reconcile: audit
 postreorg-score: audit
 	python3 -m src.postreorg_score
 
+# Filer-emergence verifier — reads each emergence filing to confirm the
+# FILER itself emerged (not an incidental reference to another issuer's
+# Chapter 11) and extracts the emergence date. Warms the shared cache the
+# listed-equity screen consumes. Network-bound; standalone.
+postreorg-verify: audit
+	python3 -m src.postreorg_verify
+
 # Listed-equity reorganization screen — the tradable slice (exchange-listed
 # common only) graded on the six-question sweet-spot test + entry-archetype
 # tags (forced-creditor overhang, excess cash, share-reserve, refinancing).
+# Verifies filer-emergence and drops incidental third-party references.
 # Network-bound; run standalone. Scores the entire cohort.
 listed-equity-screen: audit
 	python3 -m src.listed_equity_screen
