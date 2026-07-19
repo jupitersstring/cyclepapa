@@ -1,4 +1,4 @@
-.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll poll-all security-master source-health corroborate reconcile waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
+.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll poll-all security-master source-health corroborate reconcile postreorg-score waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
 
 help:
 	@echo "Targets:"
@@ -146,6 +146,12 @@ corroborate: audit
 # ranking and flags any above-threshold name silently dropped.
 reconcile: audit
 	-python3 -m src.reconcile
+
+# Post-reorg assembly scorecard — grades the fresh-start cohort on the
+# Verdad EBIT-yield screen + Chapter-22 veto + assembly checklist.
+# Network-bound (SEC XBRL + Yahoo); run standalone, not in refresh.
+postreorg-score: audit
+	python3 -m src.postreorg_score --max-names 80
 
 waterfall: audit
 	@for f in data/candidates/*.yaml; do \
