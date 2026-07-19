@@ -411,10 +411,12 @@ def main() -> int:
         "Six questions: **L**isted · **U**nnatural owners (live forced-seller "
         "overhang) · **R**epaired balance sheet · **O**verstated count/debt · "
         "**C**atalyst · **Q**uality (EBIT-yield). **Conf** `✓` = the filing "
-        "was read and the FILER's own emergence confirmed (or PACER-"
-        "corroborated); `~` = filing couldn't be fetched to verify. Names "
-        "whose filing referenced ANOTHER issuer's bankruptcy are dropped "
-        "(listed at the bottom), not scored.",
+        "was read and the FILER's own emergence confirmed (first-person or "
+        "Successor/Predecessor fresh-start reporting), or PACER-corroborated; "
+        "`~` = kept but unverified (emergence note not found in the fetched "
+        "filing — kept, never dropped). Names whose only bankruptcy reference "
+        "is a non-filer possessive are set aside for verification at the "
+        "bottom (not scored, not dropped).",
         "",
         "| Name | Ticker | Conf | Emerged | Fit | U | R | O | C | Q | Archetypes | Why |",
         "|---|---|:--:|---|---:|:-:|:-:|:-:|:-:|:-:|---|---|",
