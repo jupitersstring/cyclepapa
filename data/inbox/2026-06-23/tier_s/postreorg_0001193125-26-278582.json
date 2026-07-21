@@ -1,0 +1,27 @@
+{
+  "accession": "0001193125-26-278582",
+  "cik": "0001001233",
+  "emergence_tier": "item103",
+  "fetched_at": "2026-07-21T18:19:14.461342Z",
+  "filed": "2026-06-23",
+  "form": "8-K",
+  "form_code": "8-K/1.03",
+  "isin": null,
+  "item_1_03": true,
+  "items": [
+    "1.01",
+    "1.03",
+    "2.03",
+    "2.05"
+  ],
+  "jurisdiction": "US",
+  "matched_phrase": "Item 1.03 (structured) + emergence language",
+  "name": "SANGAMO THERAPEUTICS, INC",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_emerged",
+  "query_note": "Emergence caught via STRUCTURED 8-K Item 1.03 (Bankruptcy/Receivership) + effective/consummated language \u2014 a phrase-independent emergence signal. Context: \u2026with respect to the Company; (iii) the consummation of the sale or other disposition of all or substantially\u2026",
+  "source": "EDGAR-postreorg",
+  "ticker": "SGMO",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1001233/000119312526278582"
+}

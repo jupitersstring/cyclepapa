@@ -1,0 +1,25 @@
+{
+  "accession": "0001753926-26-001173",
+  "cik": "0001347242",
+  "emergence_tier": "item103",
+  "fetched_at": "2026-07-21T18:19:14.461342Z",
+  "filed": "2026-07-15",
+  "form": "8-K",
+  "form_code": "8-K/1.03",
+  "isin": null,
+  "item_1_03": true,
+  "items": [
+    "1.03",
+    "9.01"
+  ],
+  "jurisdiction": "US",
+  "matched_phrase": "Item 1.03 (structured) + emergence language",
+  "name": "LIPELLA PHARMACEUTICALS INC.",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_emerged",
+  "query_note": "Emergence caught via STRUCTURED 8-K Item 1.03 (Bankruptcy/Receivership) + effective/consummated language \u2014 a phrase-independent emergence signal. Context: \u2026of its obligations under the APA and to consummate the Sale, including as required by its organizational docu\u2026",
+  "source": "EDGAR-postreorg",
+  "ticker": "LIPO",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1347242/000175392626001173"
+}

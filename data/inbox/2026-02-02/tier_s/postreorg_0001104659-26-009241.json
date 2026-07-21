@@ -1,0 +1,24 @@
+{
+  "accession": "0001104659-26-009241",
+  "cik": "0000846475",
+  "emergence_tier": "item103",
+  "fetched_at": "2026-07-21T18:19:14.461342Z",
+  "filed": "2026-02-02",
+  "form": "8-K",
+  "form_code": "8-K/1.03",
+  "isin": null,
+  "item_1_03": true,
+  "items": [
+    "1.03"
+  ],
+  "jurisdiction": "US",
+  "matched_phrase": "Item 1.03 (structured) + emergence language",
+  "name": "ZYNEX INC",
+  "pre_emergence": true,
+  "query_label": "tier_s.post_reorg_emerged",
+  "query_note": "Emergence caught via STRUCTURED 8-K Item 1.03 (Bankruptcy/Receivership) + effective/consummated language \u2014 a phrase-independent emergence signal. Context: \u2026mmission (the &#8220;SEC&#8221;), which became effective 10 calendar days after such filing on February 2, 2026. The\u2026",
+  "source": "EDGAR-postreorg",
+  "ticker": "ZYXIQ",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/846475/000110465926009241"
+}

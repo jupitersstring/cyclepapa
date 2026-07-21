@@ -2,7 +2,7 @@
 
 Every Chapter 11 emergence signal in `data/inbox/`, fused by entity and scored by how many INDEPENDENT SEC channels corroborate it. Primary channels (emergence 8-K, fresh-start accounting, plan-effective) ARE an emergence; structural channels (Form 25/15 delisting, Form 8-A relisting, PACER docket, 8-K Item 1.03) raise confidence.
 
-- fused emergence events: **348**  ·  with a primary signal: **314**  ·  high-confidence (primary + corroboration): **28**  ·  pending (Q-suffix, still in Chapter 11): **6**
+- fused emergence events: **354**  ·  with a primary signal: **320**  ·  high-confidence (primary + corroboration): **34**  ·  pending (Q-suffix, still in Chapter 11): **6**
 - ground-truth known emergences loaded: **76**  ·  **coverage gaps (known, listed, NOT caught): 3**
 
 ## Fused events (most-corroborated first)
@@ -39,6 +39,7 @@ Every Chapter 11 emergence signal in `data/inbox/`, fused by entity and scored b
 | Bristow Group Inc. | VTOL | high (primary + corroboration) | emergence 8-K prose; plan-effective 8-K | 2026-02-26 |
 | ZeroStack Corp. | ZSTK | medium (single primary source) | plan-effective 8-K | 2026-07-20 |
 | JERSEY CENTRAL POWER & LIGHT CO | — | medium (single primary source) | emergence 8-K prose×2 | 2026-07-16 |
+| LIPELLA PHARMACEUTICALS INC. | LIPO | high (primary + corroboration) | emergence 8-K prose | 2026-07-15 |
 | Ionic Digital Inc. | — | medium (single primary source) | plan-effective 8-K×2 | 2026-07-13 |
 | Tailored Brands, Inc. / DE | — | medium (single primary source) | fresh-start accounting (10-K/Q) | 2026-07-10 |
 | Copper Property CTL Pass Through Tru | CPPTL | medium (single primary source) | fresh-start accounting (10-K/Q)×7 | 2026-07-07 |
@@ -60,6 +61,7 @@ Every Chapter 11 emergence signal in `data/inbox/`, fused by entity and scored b
 | CARMAX INC | KMX | medium (single primary source) | plan-effective 8-K | 2026-06-24 |
 | WEYCO GROUP INC | WEYS | medium (single primary source) | plan-effective 8-K | 2026-06-24 |
 | Compass Diversified Holdings | CODI | medium (single primary source) | plan-effective 8-K | 2026-06-24 |
+| SANGAMO THERAPEUTICS, INC | SGMO | high (primary + corroboration) | emergence 8-K prose | 2026-06-23 |
 | RMR GROUP INC. | RMR | medium (single primary source) | emergence 8-K prose | 2026-06-23 |
 | CopperTech Metals Inc. | CUX | medium (single primary source) | emergence 8-K prose×2 | 2026-06-23 |
 | Backblaze, Inc. | BLZE | medium (single primary source) | plan-effective 8-K | 2026-06-23 |
@@ -72,6 +74,7 @@ Every Chapter 11 emergence signal in `data/inbox/`, fused by entity and scored b
 | TARGET CORP | TGT | medium (single primary source) | plan-effective 8-K | 2026-06-12 |
 | Marblegate Capital Corp | MGTE | medium (single primary source) | plan-effective 8-K | 2026-06-12 |
 | C21 Investments Inc. | CWLXF | medium (single primary source) | plan-effective 8-K | 2026-06-12 |
+| Sleep Number Corp | SNBR | high (primary + corroboration) | emergence 8-K prose | 2026-06-12 |
 | Pacira BioSciences, Inc. | PCRX | medium (single primary source) | plan-effective 8-K | 2026-06-11 |
 | BeOne Medicines Ltd. | ONC | medium (single primary source) | plan-effective 8-K | 2026-06-11 |
 | Crocs, Inc. | CROX | medium (single primary source) | plan-effective 8-K | 2026-06-10 |
@@ -121,6 +124,7 @@ Every Chapter 11 emergence signal in `data/inbox/`, fused by entity and scored b
 | Woodbridge Liquidation Trust | WBQNL | medium (single primary source) | plan-effective 8-K×2 | 2026-05-14 |
 | Mentor Capital, Inc. | MNTR | medium (single primary source) | emergence 8-K prose×2 | 2026-05-14 |
 | AMERISERV FINANCIAL INC /PA/ | ASRV | medium (single primary source) | emergence 8-K prose×2 | 2026-05-14 |
+| SOCIETY PASS INCORPORATED. | SOPA | high (primary + corroboration) | emergence 8-K prose | 2026-05-14 |
 | KAANAPALI LAND LLC | KANP | medium (single primary source) | emergence 8-K prose×2 | 2026-05-13 |
 | MDU RESOURCES GROUP INC | MDU | medium (single primary source) | plan-effective 8-K | 2026-05-13 |
 | Keenova Therapeutics plc | — | medium (single primary source) | emergence 8-K prose×4 | 2026-05-12 |
@@ -205,10 +209,6 @@ Every Chapter 11 emergence signal in `data/inbox/`, fused by entity and scored b
 | CLEVELAND-CLIFFS INC. | CLF | medium (single primary source) | emergence 8-K prose×2 | 2026-04-21 |
 | LibreMax Asset-Backed Income Fund | — | medium (single primary source) | emergence 8-K prose | 2026-04-20 |
 | SYNOPSYS INC | SNPS | medium (single primary source) | plan-effective 8-K | 2026-04-20 |
-| Liftoff Mobile, Inc. | LFTO | medium (single primary source) | plan-effective 8-K | 2026-04-17 |
-| FARMERS NATIONAL BANC CORP /OH/ | FMNB | medium (single primary source) | plan-effective 8-K | 2026-04-16 |
-| Mega Matrix Inc | MPU | medium (single primary source) | emergence 8-K prose | 2026-04-16 |
-| Ionetix Corp / DE / | — | medium (single primary source) | plan-effective 8-K | 2026-04-16 |
 
 ## Coverage gaps — known emergences we FAILED to catch
 

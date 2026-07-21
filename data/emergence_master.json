@@ -483,6 +483,21 @@
   },
   {
     "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001347242",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-07-15",
+    "item_1_03": true,
+    "key": "CIK:1347242",
+    "last_filed": "2026-07-15",
+    "name": "LIPELLA PHARMACEUTICALS INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "LIPO"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 2
     },
     "cik": "0002007691",
@@ -800,6 +815,21 @@
     "channels": {
       "emergence 8-K prose": 1
     },
+    "cik": "0001001233",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-06-23",
+    "item_1_03": true,
+    "key": "CIK:1001233",
+    "last_filed": "2026-06-23",
+    "name": "SANGAMO THERAPEUTICS, INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "SGMO"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
     "cik": "0001644378",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-23",
@@ -975,6 +1005,21 @@
     "pending": false,
     "primary": true,
     "ticker": "CWLXF"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0000827187",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-06-12",
+    "item_1_03": true,
+    "key": "CIK:827187",
+    "last_filed": "2026-06-12",
+    "name": "Sleep Number Corp",
+    "pending": false,
+    "primary": true,
+    "ticker": "SNBR"
   },
   {
     "channels": {
@@ -1710,6 +1755,21 @@
     "pending": false,
     "primary": true,
     "ticker": "ASRV"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001817511",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-05-14",
+    "item_1_03": true,
+    "key": "CIK:1817511",
+    "last_filed": "2026-05-14",
+    "name": "SOCIETY PASS INCORPORATED.",
+    "pending": false,
+    "primary": true,
+    "ticker": "SOPA"
   },
   {
     "channels": {
@@ -3305,6 +3365,21 @@
     "channels": {
       "emergence 8-K prose": 1
     },
+    "cik": "0001659323",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-03-27",
+    "item_1_03": true,
+    "key": "CIK:1659323",
+    "last_filed": "2026-03-27",
+    "name": "Iterum Therapeutics plc",
+    "pending": false,
+    "primary": true,
+    "ticker": "ITRM"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
     "cik": "0002025396",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-03-27",
@@ -3333,11 +3408,11 @@
   },
   {
     "channels": {
-      "emergence 8-K prose": 2
+      "emergence 8-K prose": 4
     },
     "cik": "0000846475",
     "confidence": "pending (Q-suffix \u2014 still in Chapter 11, not yet emerged)",
-    "first_filed": "2026-03-20",
+    "first_filed": "2026-02-02",
     "item_1_03": true,
     "key": "CIK:846475",
     "last_filed": "2026-03-26",
@@ -3405,6 +3480,21 @@
     "pending": false,
     "primary": true,
     "ticker": "FTW"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001776738",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-03-24",
+    "item_1_03": true,
+    "key": "CIK:1776738",
+    "last_filed": "2026-03-24",
+    "name": "Cannabist Co Holdings Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "CBSTF"
   },
   {
     "channels": {

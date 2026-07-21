@@ -1,0 +1,26 @@
+{
+  "accession": "0001493152-26-023162",
+  "cik": "0001817511",
+  "emergence_tier": "item103",
+  "fetched_at": "2026-07-21T18:19:14.461342Z",
+  "filed": "2026-05-14",
+  "form": "8-K",
+  "form_code": "8-K/1.03",
+  "isin": null,
+  "item_1_03": true,
+  "items": [
+    "1.03",
+    "2.04",
+    "8.01"
+  ],
+  "jurisdiction": "US",
+  "matched_phrase": "Item 1.03 (structured) + emergence language",
+  "name": "SOCIETY PASS INCORPORATED.",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_emerged",
+  "query_note": "Emergence caught via STRUCTURED 8-K Item 1.03 (Bankruptcy/Receivership) + effective/consummated language \u2014 a phrase-independent emergence signal. Context: \u2026e ability of the Debtors to develop and consummate one or more plans of reorganization with respect to the Ch\u2026",
+  "source": "EDGAR-postreorg",
+  "ticker": "SOPA",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1817511/000149315226023162"
+}
