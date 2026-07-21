@@ -172,6 +172,106 @@ def normalize_hit(label: str, tier: str, phrase: str, hit: dict,
     }
 
 
+# ---- structured Item 1.03 emergence sweep --------------------------------
+# The phrase set misses genuine emergences whose 8-K wording differs from our
+# phrases (Marizyme, Iterum both filed an Item 1.03 emergence 8-K we didn't
+# catch). Item 1.03 (Bankruptcy or Receivership) is the STRUCTURED code the
+# SEC requires for both entry AND plan-confirmation/emergence, so sweeping it
+# and classifying each catches emergences no phrase list can enumerate.
+
+_EMERGE_STRONG = re.compile(
+    r"became effective|consummat|emerged from|effective date of the plan|"
+    r"fresh[- ]start|plan of reorganization .{0,40}effective|"
+    r"upon (?:its|the company'?s|our) emergence", re.I)
+_ENTER_STRONG = re.compile(
+    r"voluntary petition|commenc\w+ .{0,30}chapter 11|petition for relief|"
+    r"filed .{0,20}(?:a )?(?:voluntary )?petition|debtor.?in.?possession|"
+    r"chapter 11 case", re.I)
+
+
+def classify_8k(cik: int, accession: str) -> tuple[str, str]:
+    """Fetch an 8-K's primary doc and classify it as emergence / entry /
+    ambig / unclear from its own text. Returns (class, short-context)."""
+    try:
+        from src.postreorg_verify import _primary_doc_url, _strip
+    except Exception:
+        return "unclear", ""
+    url = _primary_doc_url(cik, accession)
+    if not url:
+        return "unclear", ""
+    try:
+        r = requests.get(url, headers=HEADERS, timeout=25, stream=True)
+        raw = r.raw.read(400_000, decode_content=True) or b""
+        text = _strip(raw.decode(r.encoding or "utf-8", errors="ignore"))
+    except (requests.RequestException, ValueError):
+        return "unclear", ""
+    em = _EMERGE_STRONG.search(text)
+    en = _ENTER_STRONG.search(text)
+    if em and not en:
+        return "emergence", text[max(0, em.start() - 40):em.end() + 60]
+    if en and not em:
+        return "entry", ""
+    if em and en:
+        # both present — an emergence 8-K normally recites the original
+        # petition; treat effective/consummated language as decisive.
+        return "emergence", text[max(0, em.start() - 40):em.end() + 60]
+    return "unclear", ""
+
+
+def poll_item103(start: date, end: date, seen_acc: set[str],
+                 fetched_at: str, max_fetch: int = 220) -> list[dict]:
+    """Sweep structured Item 1.03 8-Ks, classify, and return the EMERGENCE
+    ones our phrase set missed (dedup against the phrase sweep by accession)."""
+    params = {"q": '"Item 1.03"', "forms": "8-K",
+              "startdt": start.isoformat(), "enddt": end.isoformat()}
+    hits = fts_search_all(params, HEADERS,
+                          log=lambda m: print(m, file=sys.stderr))
+    out, fetched = [], 0
+    for h in hits:
+        s = h.get("_source", {})
+        items = s.get("items") or []
+        if not any(str(i).startswith("1.03") for i in items):
+            continue
+        acc = s.get("adsh", "")
+        if not acc or acc in seen_acc:
+            continue
+        fields = issuer_fields(s)
+        cik = fields["cik"] or ""
+        if not cik or fetched >= max_fetch:
+            continue
+        cls, ctx = classify_8k(int(cik), acc)
+        fetched += 1
+        time.sleep(0.1)
+        if cls != "emergence":
+            continue
+        seen_acc.add(acc)
+        ticker = fields["ticker"] or ""
+        tk = ticker.split(":")[-1]
+        out.append({
+            "tier": "tier_s",
+            "query_label": "tier_s.post_reorg_emerged",
+            "query_note": "Emergence caught via STRUCTURED 8-K Item 1.03 "
+                          "(Bankruptcy/Receivership) + effective/consummated "
+                          "language — a phrase-independent emergence signal. "
+                          f"Context: …{ctx.strip()[:120]}…",
+            "emergence_tier": "item103",
+            "matched_phrase": "Item 1.03 (structured) + emergence language",
+            "item_1_03": True,
+            "pre_emergence": bool(re.match(r"^[A-Z]{3,4}Q$", tk)),
+            "cik": cik, "ticker": ticker, "isin": None,
+            "name": fields["name"], "form": s.get("form") or "8-K",
+            "form_code": "8-K/1.03", "items": items,
+            "accession": acc, "filed": s.get("file_date") or "",
+            "jurisdiction": "US",
+            "url": (f"https://www.sec.gov/Archives/edgar/data/"
+                    f"{int(cik):d}/{acc.replace('-', '')}"),
+            "source": "EDGAR-postreorg", "fetched_at": fetched_at,
+        })
+    print(f"  [item103] structured sweep: fetched/classified {fetched}, "
+          f"+{len(out)} emergences the phrase set missed")
+    return out
+
+
 def write_inbox(records: list[dict]) -> dict[str, int]:
     counts: dict[str, int] = {}
     for r in records:
@@ -223,6 +323,12 @@ def poll(days_back: int) -> int:
             recall_n += kept
         print(f"  [{tier:6}] {label:14s} {phrase[:44]:44s} +{kept:>3d} new")
         time.sleep(0.12)
+    # Structured Item 1.03 sweep — catches emergences whose 8-K wording our
+    # phrase set doesn't match (dedups against the phrase sweep by accession).
+    seen_acc = set(by_acc)
+    for rec in poll_item103(start, end, seen_acc, fetched_at):
+        by_acc[rec["accession"]] = rec
+
     all_records = list(by_acc.values())
     if all_records:
         counts = write_inbox(all_records)
