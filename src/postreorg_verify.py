@@ -108,11 +108,8 @@ def _strip(html: str) -> str:
 
 
 def _name_stem(s: str) -> str:
-    return re.sub(r"[^a-z0-9]", "",
-                  re.sub(r"\b(inc|corp|corporation|ltd|limited|plc|llc|lp|"
-                         r"holdings?|group|co|company|the|and|energy|"
-                         r"international)\b", "", str(s or ""), flags=re.I)
-                  ).lower()
+    from src.entity_resolver import normalize_name
+    return normalize_name(s)
 
 
 def verify(cik: int, accession: str, cache: dict | None = None,

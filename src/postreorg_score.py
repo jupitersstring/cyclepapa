@@ -107,11 +107,9 @@ def chapter22_ciks() -> dict[str, str]:
 
 
 def _norm(n) -> str:
-    if isinstance(n, (list, tuple)):
-        n = " ".join(map(str, n))
-    return re.sub(r"[^A-Za-z0-9]", "",
-                  re.sub(r"\b(inc|corp|ltd|llc|holdings?|group|co|the|company)\b",
-                         "", str(n or ""), flags=re.I)).upper()
+    # canonical resolver (uppercased to preserve this module's historic case)
+    from src.entity_resolver import normalize_name
+    return normalize_name(n).upper()
 
 
 # ---- SEC XBRL + price ----------------------------------------------------

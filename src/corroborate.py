@@ -50,19 +50,13 @@ _CORP_SUFFIX = re.compile(
 
 
 def stem_name(n) -> str:
-    if not n:
-        return ""
-    if isinstance(n, (list, tuple)):
-        n = " ".join(str(x) for x in n)
-    n = str(n)
-    s = _CORP_SUFFIX.sub("", n)
-    return re.sub(r"[^A-Za-z0-9]", "", s).upper()
+    from src.entity_resolver import normalize_name
+    return normalize_name(n).upper()
 
 
 def stem_ticker(t) -> str:
-    if not t:
-        return ""
-    return re.sub(r"[^A-Za-z0-9]", "", str(t).split(":")[-1]).upper()
+    from src.entity_resolver import ticker_stem
+    return ticker_stem(t)
 
 
 # ---- institutional weighted-corroboration model -------------------------

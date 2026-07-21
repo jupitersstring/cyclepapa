@@ -56,35 +56,9 @@ except Exception:            # pragma: no cover
 # signals ARE an emergence on their own; corroborating signals only raise
 # confidence when they coincide with a primary (or with each other).
 
-_STOP = {"inc", "corp", "corporation", "ltd", "limited", "plc", "llc",
-         "lp", "holdings", "holding", "group", "co", "company", "the",
-         "sa", "nv", "ag", "se", "spa", "as", "oyj", "ab", "of", "and"}
-
-
-def _norm(n) -> str:
-    """Robust entity key: drop parentheticals ('(Spirit Airlines)',
-    '(formerly ...)'), fold punctuation so 'S.A.' == 'SA', tokenize, drop
-    corporate-form stopwords, join. Consistent across sources so the same
-    issuer fuses instead of splitting (and the coverage tripwire matches)."""
-    if isinstance(n, (list, tuple)):
-        n = " ".join(map(str, n))
-    s = str(n or "").lower()
-    s = re.sub(r"\([^)]*\)", " ", s)          # strip parentheticals
-    s = s.replace(".", "")                      # s.a. -> sa, inc. -> inc
-    toks = [t for t in re.split(r"[^a-z0-9]+", s) if t and t not in _STOP]
-    return "".join(toks)
-
-
-def _ticker_stems(t) -> set[str]:
-    """All ticker-like stems from a (possibly messy) ticker field, each with
-    a trailing bankruptcy 'Q' stripped ('FLYYQ' -> 'FLYY', 'AZULQ' -> 'AZUL')."""
-    out = set()
-    for m in re.findall(r"[A-Za-z]{1,6}\d?", (t or "").split(":")[-1]):
-        u = m.upper()
-        out.add(u)
-        if len(u) >= 4 and u.endswith("Q"):
-            out.add(u[:-1])
-    return {s for s in out if len(s) >= 2}
+# Entity normalization delegated to the one canonical resolver.
+from src.entity_resolver import (           # noqa: E402
+    normalize_name as _norm, ticker_stems as _ticker_stems)
 
 
 def _key(rec) -> str:
@@ -221,15 +195,7 @@ _NOT_YET = re.compile(r"in process|targeted|expected|pending|not yet|"
                       r"anticipat|q[1-4]\b|20\d\d-q", re.I)
 
 
-def _name_match(a: str, b: str) -> bool:
-    """Equal, or one a prefix of the other (handles ground-truth names that
-    carry an extra '(Spirit Airlines)'-style suffix)."""
-    if not a or not b:
-        return False
-    if a == b:
-        return True
-    lo, hi = sorted((a, b), key=len)
-    return len(lo) >= 6 and hi.startswith(lo)
+from src.entity_resolver import name_match as _name_match   # noqa: E402,F401
 
 
 def coverage_gap(events: dict[str, dict],

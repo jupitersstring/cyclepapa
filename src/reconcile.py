@@ -42,10 +42,8 @@ _PLACEHOLDER_NAME = re.compile(r"^\(|^—$|^-$|census$|^various\b|^\?+$", re.I)
 
 
 def _stem(s: str) -> str:
-    return re.sub(r"[^A-Za-z0-9]", "",
-                  re.sub(r"\b(inc|corp|corporation|ltd|limited|plc|holdings?|"
-                         r"group|co|sa|nv|ag|se|the)\b", "", s or "",
-                         flags=re.I)).upper()
+    from src.entity_resolver import normalize_name
+    return normalize_name(s).upper()
 
 
 def universe_md_names() -> list[dict]:
