@@ -147,6 +147,9 @@ th.c,td.c{text-align:center;}
 .tk{font-weight:700;white-space:nowrap;}
 .emd{color:var(--muted);white-space:nowrap;}
 .emd.live{color:var(--lapis);font-weight:700;}
+.liq-ok{color:var(--ink);}
+.liq-thin{color:var(--muted);}
+.liq-micro{color:var(--crimson);}
 .tag{color:var(--ink);}
 .tag.none{color:var(--neutral);}
 .conf-y{color:var(--ink);font-weight:700;}
@@ -221,7 +224,7 @@ def build() -> str:
     for r in rows:
         name = col(r, "Name"); tk = col(r, "Ticker")
         conf = col(r, "Conf"); emd = col(r, "Emerged"); fit = col(r, "Fit")
-        arch = col(r, "Archetypes")
+        liq = col(r, "Liq"); arch = col(r, "Archetypes")
         u = col(r, "U"); rr = col(r, "R"); o = col(r, "O")
         c = col(r, "C"); q = col(r, "Q")
         why = col(r, "Why")
@@ -241,6 +244,10 @@ def build() -> str:
         arch_disp = arch if arch and arch != "—" else ""
         arch_html = (f'<span class="arch-lapis">{esc(arch_disp)}</span>'
                      if arch_disp else '<span class="tag none">—</span>')
+        # liquidity band: micro is a genuine constraint (crimson), thin a
+        # de-rate (muted), deep/ok fine (ink).
+        liq_cls = {"micro": "liq-micro", "thin": "liq-thin"}.get(liq, "liq-ok")
+        liq_html = f'<span class="{liq_cls}">{esc(liq or "?")}</span>'
         cls = ' class="prime"' if prime else ""
         body_rows.append(
             f'<tr{cls}>'
@@ -249,6 +256,7 @@ def build() -> str:
             f'<td class="c">{conf_html}</td>'
             f'<td>{emd_html}</td>'
             f'<td class="n">{esc(fit)}</td>'
+            f'<td class="c">{liq_html}</td>'
             f'<td class="c">{dot(u)}</td><td class="c">{dot(rr)}</td>'
             f'<td class="c">{dot(o)}</td><td class="c">{dot(c)}</td>'
             f'<td class="c">{dot(q)}</td>'
@@ -324,7 +332,7 @@ def build() -> str:
     <table>
       <thead><tr>
         <th>Name</th><th>Ticker</th><th class="c">Conf</th><th>Emerged</th>
-        <th class="n">Fit</th>
+        <th class="n">Fit</th><th class="c">Liq</th>
         <th class="c">U</th><th class="c">R</th><th class="c">O</th>
         <th class="c">C</th><th class="c">Q</th><th>Archetype</th>
       </tr></thead>

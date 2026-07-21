@@ -8,64 +8,64 @@ The tradable slice of the post-reorg universe: **exchange-listed common equity o
 
 Six questions: **L**isted · **U**nnatural owners (live forced-seller overhang) · **R**epaired balance sheet · **O**verstated count/debt · **C**atalyst · **Q**uality (EBIT-yield). **Conf** `✓` = the filing was read and the FILER's own emergence confirmed (first-person or Successor/Predecessor fresh-start reporting), or PACER-corroborated; `~` = kept but unverified (emergence note not found in the fetched filing — kept, never dropped). Names whose only bankruptcy reference is a non-filer possessive are set aside for verification at the bottom (not scored, not dropped).
 
-| Name | Ticker | Conf | Emerged | Fit | U | R | O | C | Q | Archetypes | Why |
-|---|---|:--:|---|---:|:-:|:-:|:-:|:-:|:-:|---|---|
-| CENTRUS ENERGY CORP | LEU | ✓ | September 30, 2014 | 3.0 | · | ● | ● | · | ● | excess-emergence-cash | filer emerged September 30, 2014 (~142mo ago) — overhang likely  |
-| DIEBOLD NIXDORF, Inc | DBD | ✓ | August 12, 2023 | 2.0 | · | ● | · | · | ● | — | filer emerged August 12, 2023 (~35mo ago) — overhang likely clea |
-| Valaris Ltd | VAL | ✓ | 2021 | 2.0 | · | ● | · | · | ● | — | filer emerged 2021 (~61mo ago) — overhang likely cleared; low le |
-| CBL & ASSOCIATES PROPERTIES IN | CBL | ✓ | — | 2.0 | · | ● | · | · | ● | — | net cash balance sheet; EBIT/EV 2% (neutral (0-20%)) |
-| SANDRIDGE ENERGY INC | SD | ✓ | October 4, 2016 | 2.0 | · | ● | · | · | ● | — | filer emerged October 4, 2016 (~118mo ago) — overhang likely cle |
-| ARMSTRONG WORLD INDUSTRIES INC | AWI | ✓ | 2006 | 2.0 | · | ● | · | · | ● | — | filer emerged 2006 (~241mo ago) — overhang likely cleared; low l |
-| TIDEWATER INC | TDW | ✓ | 2017 | 2.0 | · | ● | · | · | ● | — | filer emerged 2017 (~109mo ago) — overhang likely cleared; low l |
-| STIFEL FINANCIAL CORP | SF | ✓ | — | 2.0 | · | ● | · | · | ● | — | net cash balance sheet; EBIT/EV 2% (neutral (0-20%)) |
-| ITRON, INC. | ITRI | ✓ | — | 2.0 | · | ● | · | · | ● | — | low leverage (ND/EBIT 0.7×); EBIT/EV 7% (neutral (0-20%)) |
-| PAR PACIFIC HOLDINGS, INC. | PARR | ✓ | August 31, 2012 | 2.0 | · | ● | · | · | ● | — | filer emerged August 31, 2012 (~167mo ago) — overhang likely cle |
-| VISTEON CORP | VC | ✓ | — | 2.0 | · | ● | · | · | ● | — | net cash balance sheet; EBIT/EV 1% (neutral (0-20%)) |
-| Spok Holdings, Inc | SPOK | ✓ | 2002 | 2.0 | · | ● | · | · | ● | — | filer emerged 2002 (~289mo ago) — overhang likely cleared; net c |
-| HOULIHAN LOKEY, INC. | HLI | ✓ | — | 2.0 | · | ● | · | · | ● | — | net cash balance sheet; positive EBIT |
-| Victoria's Secret & Co. | VSCO | ✓ | 2019 | 2.0 | · | ● | · | · | ● | — | filer emerged 2019 (~85mo ago) — overhang likely cleared; low le |
-| Diversified Energy Co | DEC | ✓ | July 4, 2025 | 2.0 | ● | · | · | · | ● | forced-creditor overhang | filer emerged July 4, 2025 (~13mo ago) — live forced-seller over |
-| Sinclair, Inc. | SBGI | ✓ | — | 2.0 | · | ● | · | · | ● | — | net cash balance sheet; positive EBIT |
-| Venture Global, Inc. | VG | ✓ | 2025 | 2.0 | ● | · | · | · | ● | forced-creditor overhang | filer emerged 2025 (~13mo ago) — live forced-seller overhang; po |
-| California Resources Corp | CRC | ~ | — | 2.0 | · | ● | · | · | ● | — | low leverage (ND/EBIT 2.3×); EBIT/EV 13% (neutral (0-20%)) |
-| INFINITY NATURAL RESOURCES, IN | INR | ~ | — | 2.0 | · | ● | · | · | ● | — | low leverage (ND/EBIT 0.7×); positive EBIT |
-| Jefferies Financial Group Inc. | JEF | ~ | — | 2.0 | · | ● | ● | · | · | excess-emergence-cash | net cash balance sheet; net cash = 107% of mkt cap (net-debt bur |
-| GULFPORT ENERGY CORP | GPOR | ~ | — | 2.0 | · | ● | · | · | ● | — | low leverage (ND/EBIT 1.3×); EBIT/EV 15% (neutral (0-20%)) |
-| AGCO CORP /DE | AGCO | ~ | — | 2.0 | · | ● | · | · | ● | — | low leverage (ND/EBIT 3.0×); EBIT/EV 4% (neutral (0-20%)) |
-| Bristow Group Inc. | VTOL | ~ | — | 2.0 | · | ● | · | · | ● | — | low leverage (ND/EBIT 2.7×); EBIT/EV 7% (neutral (0-20%)) |
-| RMR GROUP INC. | RMR | ~ | — | 2.0 | · | ● | · | · | ● | — | net cash balance sheet; positive EBIT |
-| APA Corp | APA | ~ | — | 2.0 | · | ● | · | · | ● | — | low leverage (ND/EBIT 2.7×); EBIT/EV 25% (PRIORITY (>20%)) |
-| WW INTERNATIONAL, INC. | WW | ✓ | December 31, 2025 | 1.0 | ● | · | · | · | · | forced-creditor overhang | filer emerged December 31, 2025 (~7mo ago) — live forced-seller  |
-| WOLFSPEED, INC. | WOLF | ✓ | January 29, 2026 | 1.0 | ● | · | · | · | · | forced-creditor overhang | filer emerged January 29, 2026 (~6mo ago) — live forced-seller o |
-| GOLAR LNG LTD | GLNG | ✓ | — | 1.0 | · | · | · | · | ● | — | EBIT/EV 1% (neutral (0-20%)) |
-| Nine Energy Service, Inc. | NINE | ✓ | — | 1.0 | · | · | · | · | ● | — | EBIT/EV 0% (neutral (0-20%)) |
-| Red Rock Resorts, Inc. | RRR | ✓ | 2011 | 1.0 | · | · | · | · | ● | — | filer emerged 2011 (~181mo ago) — overhang likely cleared; posit |
-| SEADRILL Ltd | SDRL | ✓ | — | 1.0 | · | · | · | · | ● | — | EBIT/EV 2% (neutral (0-20%)) |
-| Phoenix Energy One, LLC | PHXE-P | ✓ | — | 1.0 | · | · | · | · | ● | — | EBIT/EV 4% (neutral (0-20%)) |
-| Noble Corp plc | NE | ✓ | — | 1.0 | · | · | · | · | ● | — | EBIT/EV 5% (neutral (0-20%)) |
-| CLEVELAND-CLIFFS INC. | CLF | ✓ | 2042 | 1.0 | ● | · | · | · | · | forced-creditor overhang | filer emerged 2042 (~-192mo ago) — live forced-seller overhang |
-| Capstone Green Energy Holdings | CGEH | ✓ | — | 1.0 | · | · | · | · | ● | — | EBIT/EV 1% (neutral (0-20%)) |
-| NEXSTAR MEDIA GROUP, INC. | NXST | ✓ | — | 1.0 | · | · | · | · | ● | — | EBIT/EV 6% (neutral (0-20%)) |
-| TruBridge, Inc. | TBRG | ✓ | 2020 | 1.0 | · | · | · | · | ● | — | filer emerged 2020 (~73mo ago) — overhang likely cleared; EBIT/E |
-| Clean Energy Fuels Corp. | CLNE | ✓ | September 1, 2025 | 1.0 | ● | · | · | · | · | forced-creditor overhang | filer emerged September 1, 2025 (~11mo ago) — live forced-seller |
-| Smart Sand, Inc. | SND | ✓ | — | 1.0 | · | ● | · | · | · | — | net cash balance sheet |
-| Sila Realty Trust, Inc. | SILA | ✓ | February 16, 2024 | 1.0 | · | · | · | · | ● | — | filer emerged February 16, 2024 (~29mo ago) — overhang likely cl |
-| CLOVER HEALTH INVESTMENTS, COR | CLOV | ✓ | — | 1.0 | · | ● | · | · | · | — | net cash balance sheet |
-| Sable Offshore Corp. | SOC | ✓ | — | 1.0 | · | ● | · | · | · | — | net cash balance sheet |
-| Ridgepost Capital, Inc. | RPC | ✓ | May 3, 2017 | 1.0 | · | · | · | · | ● | — | filer emerged May 3, 2017 (~111mo ago) — overhang likely cleared |
-| FERRELLGAS PARTNERS L P | FGPR | ~ | — | 1.0 | · | · | · | · | ● | — | EBIT/EV 3% (neutral (0-20%)) |
-| EchoStar CORP | SATS | ~ | — | 1.0 | · | ● | · | · | · | — | net cash balance sheet |
-| Fortune Brands Innovations, In | FBIN | ~ | — | 1.0 | · | · | · | · | ● | — | EBIT/EV 5% (neutral (0-20%)) |
-| Beneficient | BENF | ~ | — | 1.0 | · | ● | · | · | · | — | net cash balance sheet |
-| Fifth Era Acquisition Corp I | FERA | ~ | — | 1.0 | · | ● | · | · | · | — | net cash balance sheet |
-| Xanadu Quantum Technologies Lt | XNDU | ~ | — | 1.0 | · | ● | · | · | · | — | net cash balance sheet |
-| Cinemark Holdings, Inc. | CNK | ✓ | August 7, 2023 | 0.0 | · | · | · | · | · | — | filer emerged August 7, 2023 (~35mo ago) — overhang likely clear |
-| iHeartMedia, Inc. | IHRT | ✓ | May 1, 2019 | 0.0 | · | · | · | · | · | — | filer emerged May 1, 2019 (~87mo ago) — overhang likely cleared |
-| Tronox Holdings plc | TROX | ✓ | November 30, 2010 | 0.0 | · | · | · | · | · | — | filer emerged November 30, 2010 (~188mo ago) — overhang likely c |
-| GoHealth, Inc. | GOCO | ✓ | — | 0.0 | · | · | · | · | · | — |  |
-| Core Scientific, Inc./tx | CORZ | ✓ | — | 0.0 | · | · | · | · | · | — |  |
-| Atlanta Braves Holdings, Inc. | BATRA | ✓ | — | 0.0 | · | · | · | · | · | — |  |
-| AMPCO PITTSBURGH CORP | AP | ~ | — | 0.0 | · | · | · | · | · | — |  |
+| Name | Ticker | Conf | Emerged | Fit | Liq | U | R | O | C | Q | Archetypes | Why |
+|---|---|:--:|---|---:|:--:|:-:|:-:|:-:|:-:|:-:|---|---|
+| CENTRUS ENERGY CORP | LEU | ✓ | September 30, 2014 | 3.0 | deep | · | ● | ● | · | ● | excess-emergence-cash | filer emerged September 30, 2014 (~142mo ago) — overhang likely  |
+| DIEBOLD NIXDORF, Inc | DBD | ✓ | August 12, 2023 | 2.0 | deep | · | ● | · | · | ● | — | filer emerged August 12, 2023 (~35mo ago) — overhang likely clea |
+| Valaris Ltd | VAL | ✓ | 2021 | 2.0 | deep | · | ● | · | · | ● | — | filer emerged 2021 (~61mo ago) — overhang likely cleared; low le |
+| CBL & ASSOCIATES PROPERTIES IN | CBL | ✓ | — | 2.0 | deep | · | ● | · | · | ● | — | net cash balance sheet; EBIT/EV 2% (neutral (0-20%)) |
+| SANDRIDGE ENERGY INC | SD | ✓ | October 4, 2016 | 2.0 | ok | · | ● | · | · | ● | — | filer emerged October 4, 2016 (~118mo ago) — overhang likely cle |
+| ARMSTRONG WORLD INDUSTRIES INC | AWI | ✓ | 2006 | 2.0 | deep | · | ● | · | · | ● | — | filer emerged 2006 (~241mo ago) — overhang likely cleared; low l |
+| TIDEWATER INC | TDW | ✓ | 2017 | 2.0 | deep | · | ● | · | · | ● | — | filer emerged 2017 (~109mo ago) — overhang likely cleared; low l |
+| STIFEL FINANCIAL CORP | SF | ✓ | — | 2.0 | deep | · | ● | · | · | ● | — | net cash balance sheet; EBIT/EV 2% (neutral (0-20%)) |
+| ITRON, INC. | ITRI | ✓ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 0.7×); EBIT/EV 7% (neutral (0-20%)) |
+| PAR PACIFIC HOLDINGS, INC. | PARR | ✓ | August 31, 2012 | 2.0 | deep | · | ● | · | · | ● | — | filer emerged August 31, 2012 (~167mo ago) — overhang likely cle |
+| VISTEON CORP | VC | ✓ | — | 2.0 | deep | · | ● | · | · | ● | — | net cash balance sheet; EBIT/EV 1% (neutral (0-20%)) |
+| Spok Holdings, Inc | SPOK | ✓ | 2002 | 2.0 | ok | · | ● | · | · | ● | — | filer emerged 2002 (~289mo ago) — overhang likely cleared; net c |
+| HOULIHAN LOKEY, INC. | HLI | ✓ | — | 2.0 | deep | · | ● | · | · | ● | — | net cash balance sheet; positive EBIT |
+| Victoria's Secret & Co. | VSCO | ✓ | 2019 | 2.0 | deep | · | ● | · | · | ● | — | filer emerged 2019 (~85mo ago) — overhang likely cleared; low le |
+| Diversified Energy Co | DEC | ✓ | July 4, 2025 | 2.0 | deep | ● | · | · | · | ● | forced-creditor overhang | filer emerged July 4, 2025 (~13mo ago) — live forced-seller over |
+| Sinclair, Inc. | SBGI | ✓ | — | 2.0 | deep | · | ● | · | · | ● | — | net cash balance sheet; positive EBIT |
+| Venture Global, Inc. | VG | ✓ | 2025 | 2.0 | deep | ● | · | · | · | ● | forced-creditor overhang | filer emerged 2025 (~13mo ago) — live forced-seller overhang; po |
+| California Resources Corp | CRC | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 2.3×); EBIT/EV 13% (neutral (0-20%)) |
+| INFINITY NATURAL RESOURCES, IN | INR | ~ | — | 2.0 | ok | · | ● | · | · | ● | — | low leverage (ND/EBIT 0.7×); positive EBIT |
+| Jefferies Financial Group Inc. | JEF | ~ | — | 2.0 | deep | · | ● | ● | · | · | excess-emergence-cash | net cash balance sheet; net cash = 106% of mkt cap (net-debt bur |
+| GULFPORT ENERGY CORP | GPOR | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 1.3×); EBIT/EV 15% (neutral (0-20%)) |
+| AGCO CORP /DE | AGCO | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 3.0×); EBIT/EV 4% (neutral (0-20%)) |
+| Bristow Group Inc. | VTOL | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 2.7×); EBIT/EV 7% (neutral (0-20%)) |
+| RMR GROUP INC. | RMR | ~ | — | 2.0 | ok | · | ● | · | · | ● | — | net cash balance sheet; positive EBIT |
+| APA Corp | APA | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 2.7×); EBIT/EV 25% (PRIORITY (>20%)) |
+| WW INTERNATIONAL, INC. | WW | ✓ | December 31, 2025 | 1.0 | ok | ● | · | · | · | · | forced-creditor overhang | filer emerged December 31, 2025 (~7mo ago) — live forced-seller  |
+| WOLFSPEED, INC. | WOLF | ✓ | January 29, 2026 | 1.0 | deep | ● | · | · | · | · | forced-creditor overhang | filer emerged January 29, 2026 (~6mo ago) — live forced-seller o |
+| GOLAR LNG LTD | GLNG | ✓ | — | 1.0 | deep | · | · | · | · | ● | — | EBIT/EV 1% (neutral (0-20%)) |
+| Nine Energy Service, Inc. | NINE | ✓ | — | 1.0 | thin | · | · | · | · | ● | — | EBIT/EV 0% (neutral (0-20%)) |
+| Red Rock Resorts, Inc. | RRR | ✓ | 2011 | 1.0 | deep | · | · | · | · | ● | — | filer emerged 2011 (~181mo ago) — overhang likely cleared; posit |
+| SEADRILL Ltd | SDRL | ✓ | — | 1.0 | deep | · | · | · | · | ● | — | EBIT/EV 2% (neutral (0-20%)) |
+| Phoenix Energy One, LLC | PHXE-P | ✓ | — | 1.0 | thin | · | · | · | · | ● | — | EBIT/EV 4% (neutral (0-20%)) |
+| Noble Corp plc | NE | ✓ | — | 1.0 | deep | · | · | · | · | ● | — | EBIT/EV 5% (neutral (0-20%)) |
+| CLEVELAND-CLIFFS INC. | CLF | ✓ | 2042 | 1.0 | deep | ● | · | · | · | · | forced-creditor overhang | filer emerged 2042 (~-192mo ago) — live forced-seller overhang |
+| Capstone Green Energy Holdings | CGEH | ✓ | — | 1.0 | ok | · | · | · | · | ● | — | EBIT/EV 1% (neutral (0-20%)) |
+| NEXSTAR MEDIA GROUP, INC. | NXST | ✓ | — | 1.0 | deep | · | · | · | · | ● | — | EBIT/EV 6% (neutral (0-20%)) |
+| TruBridge, Inc. | TBRG | ✓ | 2020 | 1.0 | deep | · | · | · | · | ● | — | filer emerged 2020 (~73mo ago) — overhang likely cleared; EBIT/E |
+| Clean Energy Fuels Corp. | CLNE | ✓ | September 1, 2025 | 1.0 | ok | ● | · | · | · | · | forced-creditor overhang | filer emerged September 1, 2025 (~11mo ago) — live forced-seller |
+| Smart Sand, Inc. | SND | ✓ | — | 1.0 | ok | · | ● | · | · | · | — | net cash balance sheet |
+| Sila Realty Trust, Inc. | SILA | ✓ | February 16, 2024 | 1.0 | deep | · | · | · | · | ● | — | filer emerged February 16, 2024 (~29mo ago) — overhang likely cl |
+| CLOVER HEALTH INVESTMENTS, COR | CLOV | ✓ | — | 1.0 | deep | · | ● | · | · | · | — | net cash balance sheet |
+| Sable Offshore Corp. | SOC | ✓ | — | 1.0 | deep | · | ● | · | · | · | — | net cash balance sheet |
+| Ridgepost Capital, Inc. | RPC | ✓ | May 3, 2017 | 1.0 | ok | · | · | · | · | ● | — | filer emerged May 3, 2017 (~111mo ago) — overhang likely cleared |
+| FERRELLGAS PARTNERS L P | FGPR | ~ | — | 1.0 | micro | · | · | · | · | ● | — | EBIT/EV 3% (neutral (0-20%)) |
+| EchoStar CORP | SATS | ~ | — | 1.0 | deep | · | ● | · | · | · | — | net cash balance sheet |
+| Fortune Brands Innovations, In | FBIN | ~ | — | 1.0 | deep | · | · | · | · | ● | — | EBIT/EV 5% (neutral (0-20%)) |
+| Beneficient | BENF | ~ | — | 1.0 | micro | · | ● | · | · | · | — | net cash balance sheet |
+| Fifth Era Acquisition Corp I | FERA | ~ | — | 1.0 | thin | · | ● | · | · | · | — | net cash balance sheet |
+| Xanadu Quantum Technologies Lt | XNDU | ~ | — | 1.0 | deep | · | ● | · | · | · | — | net cash balance sheet |
+| Cinemark Holdings, Inc. | CNK | ✓ | August 7, 2023 | 0.0 | deep | · | · | · | · | · | — | filer emerged August 7, 2023 (~35mo ago) — overhang likely clear |
+| iHeartMedia, Inc. | IHRT | ✓ | May 1, 2019 | 0.0 | ok | · | · | · | · | · | — | filer emerged May 1, 2019 (~87mo ago) — overhang likely cleared |
+| Tronox Holdings plc | TROX | ✓ | November 30, 2010 | 0.0 | deep | · | · | · | · | · | — | filer emerged November 30, 2010 (~188mo ago) — overhang likely c |
+| GoHealth, Inc. | GOCO | ✓ | — | 0.0 | micro | · | · | · | · | · | — |  |
+| Core Scientific, Inc./tx | CORZ | ✓ | — | 0.0 | deep | · | · | · | · | · | — |  |
+| Atlanta Braves Holdings, Inc. | BATRA | ✓ | — | 0.0 | ok | · | · | · | · | · | — |  |
+| AMPCO PITTSBURGH CORP | AP | ~ | — | 0.0 | ok | · | · | · | · | · | — |  |
 
 ## Prime setups (fitness ≥ 3)
 
