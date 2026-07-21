@@ -19207,7 +19207,6 @@ id,accession,ticker,owner,role,trans_date,code,shares,price,acquired,source_url
 52765,0001969292-26-000002,SBLK,,COO,2026-04-14,S,1594.0,25.0,0,https://www.sec.gov/Archives/edgar/data/1386716/000196929226000002/xslF345X06/primary_doc.xml
 52766,0001969292-26-000002,SBLK,,COO,2026-04-15,S,8406.0,25.05,0,https://www.sec.gov/Archives/edgar/data/1386716/000196929226000002/xslF345X06/primary_doc.xml
 52767,0001978604-26-000002,SBLK,,Chief Strategy Officer,2026-04-08,S,16500.0,24.5564,1,https://www.sec.gov/Archives/edgar/data/1386716/000197860426000002/xslF345X06/primary_doc.xml
-52768,0002005037-26-000007,SBLK,,Director,2026-03-31,S,11500.0,227538.0,1,https://www.sec.gov/Archives/edgar/data/1386716/000200503726000007/xslF345X06/primary_doc.xml
 52769,0000794367-26-000043,M,,SVP and Controller,2026-06-25,S,10077.0,25.6304,0,https://www.sec.gov/Archives/edgar/data/794367/000079436726000043/xslF345X06/wk-form4_1782504399.xml
 52771,0001637335-26-000004,M,,"EVP, COO & CFO",2026-06-24,S,16419.0,24.8935,0,https://www.sec.gov/Archives/edgar/data/794367/000163733526000004/xslF345X06/wk-form4_1782331955.xml
 52773,0002016845-26-000006,M,,"CEO, Bloomingdale's",2026-04-06,S,7228.0,17.9241,0,https://www.sec.gov/Archives/edgar/data/794367/000201684526000006/xslF345X06/wk-form4_1775593103.xml
@@ -48275,7 +48274,6 @@ id,accession,ticker,owner,role,trans_date,code,shares,price,acquired,source_url
 138960,0001435109-26-000012,VCX,,Director,2026-01-09,P,23.8439,16.66,1,https://www.sec.gov/Archives/edgar/data/1867090/000143510926000012/xslF345X05/primary_doc.xml
 138961,0001435109-26-000011,VCX,,Secretary and CCO,2026-01-09,P,47.4736,16.66,1,https://www.sec.gov/Archives/edgar/data/1867090/000143510926000011/xslF345X05/primary_doc.xml
 138962,0001435109-26-000001,VCX,,Secretary and CCO,2026-01-08,P,60.0601,16.65,1,https://www.sec.gov/Archives/edgar/data/1867090/000143510926000001/xslF345X05/primary_doc.xml
-138963,0000947871-26-000392,CPAC,,10%+ Owner,2026-03-30,S,211985547.0,0.0,0,https://www.sec.gov/Archives/edgar/data/1221029/000094787126000392/xslF345X06/ownership.xml
 138964,0001767197-26-000004,CFR,,GEVP and Chief Risk Officer,2026-06-12,S,837.0,148.291,0,https://www.sec.gov/Archives/edgar/data/39263/000176719726000004/xslF345X06/wk-form4_1781541106.xml
 138985,0001388767-26-000002,CFR,,GEVP Research & Strategy,2026-01-30,S,1000.0,137.07,0,https://www.sec.gov/Archives/edgar/data/39263/000138876726000002/xslF345X05/wk-form4_1770054926.xml
 138987,0001193125-26-277651,PFGC,,,2026-06-18,S,13090.0,103.46,0,https://www.sec.gov/Archives/edgar/data/1618673/000119312526277651/xslF345X06/ownership.xml
@@ -92669,7 +92667,6 @@ id,accession,ticker,owner,role,trans_date,code,shares,price,acquired,source_url
 197703,0001969292-26-000002,SBLK,,COO,2026-04-14,S,1594.0,25.0,0,https://www.sec.gov/Archives/edgar/data/1386716/000196929226000002/xslF345X06/primary_doc.xml
 197704,0001969292-26-000002,SBLK,,COO,2026-04-15,S,8406.0,25.05,0,https://www.sec.gov/Archives/edgar/data/1386716/000196929226000002/xslF345X06/primary_doc.xml
 197705,0001978604-26-000002,SBLK,,Chief Strategy Officer,2026-04-08,S,16500.0,24.5564,1,https://www.sec.gov/Archives/edgar/data/1386716/000197860426000002/xslF345X06/primary_doc.xml
-197706,0002005037-26-000007,SBLK,,Director,2026-03-31,S,11500.0,227538.0,1,https://www.sec.gov/Archives/edgar/data/1386716/000200503726000007/xslF345X06/primary_doc.xml
 197707,0002126540-26-000002,BAP,,CEO Head Universal Banking,2026-06-05,S,3500.0,319.0,0,https://www.sec.gov/Archives/edgar/data/1001290/000212654026000002/xslF345X06/primary_doc.xml
 197708,0002126550-26-000003,BAP,,CFO,2026-05-21,S,1073.0,337.5,0,https://www.sec.gov/Archives/edgar/data/1001290/000212655026000003/xslF345X06/primary_doc.xml
 197709,0001674236-26-000017,ANIP,,SVP & CFO,2026-07-02,S,3313.0,86.0,0,https://www.sec.gov/Archives/edgar/data/1023024/000167423626000017/xslF345X06/wk-form4_1783388415.xml

@@ -129,7 +129,36 @@ def sheet_readme(wb, conn):
         1)
     ws.column_dimensions["A"].width = 92
 
+    # --- data-as-of dates (be honest about the 13F lag) ---
+    def _maxdate(sql):
+        r = conn.execute(sql).fetchone()
+        return str(r[0])[:10] if r and r[0] else "—"
+    f13_filed = _maxdate("SELECT MAX(filed) FROM fund_13f_holdings")
+    # 13F holdings are as-of the quarter-end BEFORE the filing (statutory +45d lag)
+    import datetime as _dt, calendar as _cal
+    f13_asof = "—"
+    try:
+        fd = _dt.date.fromisoformat(f13_filed)
+        qe_month = ((fd.month - 1) // 3) * 3          # 0,3,6,9 -> prior quarter-end month
+        yr = fd.year if qe_month else fd.year - 1
+        qe_month = qe_month or 12
+        f13_asof = f"{yr}-{qe_month:02d}-{_cal.monthrange(yr, qe_month)[1]}"
+    except Exception:
+        pass
+    f4_date = _maxdate("SELECT MAX(trans_date) FROM form4_transactions")
+    d13_date = _maxdate("SELECT MAX(filed) FROM holder_13d")
+    c8_date = _maxdate("SELECT MAX(filed) FROM catalysts_8k")
+    yf_date = _maxdate("SELECT MAX(asof) FROM ticker_yf")
+
     rows = [
+        ("",),
+        ("DATA AS-OF (read before trusting any number)",),
+        (f"13F holdings   position as-of ~{f13_asof}  (latest filing {f13_filed}; SEC allows +45d, so 'smart money'",),
+        ("    reflects quarter-END positions and can be up to ~3-4 months old — a fund may have since exited).",),
+        (f"Form 4 insider {f4_date}     ·   13D/G activist {d13_date}     ·   8-K catalysts {c8_date}   (near-current)",),
+        (f"Valuations     {yf_date}     (Yahoo; price/mcap current to within days)",),
+        ("    → The 13F-derived columns (smart_money, section counts, %book) are the LAGGED layer; the Form 4 /",),
+        ("      13D / 8-K / valuation columns are current. Don't read a 13F consensus as a live position.",),
         ("",),
         ("Universe",),
         (f"{n_tk:,} tickers — the union of fund_13f_holdings, fund_positions, and holder_13d.subject_ticker.",),
@@ -201,6 +230,35 @@ def write_signal_sheet(wb, conn, name, where_extra="", limit=200, subtitle=""):
     ws.column_dimensions["A"].width = 8
     ws.column_dimensions[get_column_letter(len(SIG_HDR))].width = 80
     ws.column_dimensions[get_column_letter(len(SIG_HDR) - 1)].width = 24  # Industry
+
+def sheet_best_in_bucket(wb, conn, per_bucket=20):
+    """Top names WITHIN each size bucket. The flat Top-100 is ~44% large-cap
+    because raw scores favor names held by many funds; ranking within-bucket
+    surfaces the best small/micro/mid ideas that the mega-caps otherwise bury.
+    """
+    ws = wb.create_sheet("Best in Bucket")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Best in Bucket — top ideas within each size class",
+                "Score is cross-sectionally biased toward large caps; this ranks the best names within nano/micro/small/mid/large separately.",
+                len(SIG_HDR))
+    row = 4
+    for bucket, label in [("nano", "Nano (<$50M)"), ("micro", "Micro ($50–300M)"),
+                          ("small", "Small ($300M–2B)"), ("mid", "Mid ($2–10B)"),
+                          ("large", "Large (>$10B)")]:
+        write_section_heading(ws, row, label, len(SIG_HDR)); row += 1
+        write_table_header(ws, row, SIG_HDR); row += 1
+        rows = get_signal_rows(conn, where_extra=f"AND us.mcap_bucket='{bucket}'", limit=per_bucket)
+        rows = [r for r in rows if r[0] not in ETFs and r[0] not in MEGA]
+        out = [signal_row_to_cells(r) for r in rows]
+        write_table_rows(ws, out, row)
+        for ridx in range(row, row + len(out)):
+            format_signal_row(ws, ridx)
+        row += len(out) + 2
+    ws.freeze_panes = "B5"
+    autosize(ws)
+    ws.column_dimensions["A"].width = 8
+    ws.column_dimensions[get_column_letter(len(SIG_HDR))].width = 80
+    ws.column_dimensions[get_column_letter(len(SIG_HDR) - 1)].width = 24
 
 def sheet_activist(wb, conn):
     ws = wb.create_sheet("Activist 10+")
@@ -1187,6 +1245,7 @@ def main():
         write_signal_sheet(wb, conn, title,
             where_extra=f"AND us.mcap_bucket = '{bucket}'", limit=60,
             subtitle=f"Top {bucket} cap by unified_score. Ex-ETF, ex-mega.")
+    sheet_best_in_bucket(wb, conn)
     write_signal_sheet(wb, conn, "Material + New",
         where_extra="AND (us.s3_new + us.s4_add) >= 2 AND us.mcap_bucket != 'unknown'",
         limit=80,

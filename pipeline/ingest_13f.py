@@ -269,19 +269,48 @@ def _norm_name(s):
     s = re.sub(r"\s+", " ", s).strip()
     return s
 
+# ETF / fund-family issuers. A 13F line for "Invesco Exch Trd" or "Global X Fds"
+# is an ETF POSITION, not smart money in the operating company that shares a name
+# stem (Invesco Ltd / Global Partners LP). Historically the fuzzy matcher
+# collapsed whole fund families onto one operating ticker (GLP got 137 phantom
+# "Global*" holders; IVZ 302), badly inflating smart_money_n. Fund issuers must
+# NOT fuzzy-map to an operating ticker.
+# Structural fund-vehicle tokens only — NOT brand names (WisdomTree/Invesco are
+# also operating tickers). Real operating companies whose name contains "Trust"
+# or "Fund" (Northern Trust=NTRS, Eaton Vance, Franklin) are protected because
+# name_to_ticker's raw-exact SEC lookup runs BEFORE this guard; only issuers
+# absent from the SEC ticker file (the ETF trust entities) fall through to it.
+_FUND_ISSUER_RE = re.compile(
+    r"\b(ETF|ETFS|EXCH\s*TRD|EXCHANGE\s*TRD|FDS|SER\s*TR|"
+    r"INDEX\s*(FD|FDS|FUND|FUNDS|TR|TRUST)|"
+    r"UCITS|SELECT\s*SECTOR|ISHARES|SPDR|POWERSHARES|PROSHARES)\b"
+    r"|(\bTR|TRUST|FUND|FUNDS|SHARES|PORTFOLIO)\s*$", re.I)
+
+def _is_fund_issuer(name):
+    return bool(_FUND_ISSUER_RE.search(name or ""))
+
 def name_to_ticker(name, name_map):
     if not name: return None
     n = name.upper().strip()
-    if n in name_map: return name_map[n]
+    if n in name_map: return name_map[n]   # raw exact is always safe
+    # Fund/ETF issuers stop here: normalization strips the very tokens (TRUST /
+    # FUND / TR) that distinguish an ETF from its same-named operating parent, so
+    # norm-exact and fuzzy would collapse "WisdomTree Trust" onto WT, "Invesco
+    # Exch Trd" onto IVZ. A fund line is an ETF position, not a stock pick.
+    if _is_fund_issuer(name):
+        return None
     # normalised exact match (handles punctuation + corporate suffixes)
     nn = _norm_name(name)
     if nn and nn in name_map: return name_map[nn]
     # legacy suffix-strip
     cleaned = re.sub(r"\b(INC|CORP|CORPORATION|HOLDINGS?|GROUP|LTD|PLC|LP|LLC|CLASS\s+[A-Z]|COM|COMMON)\b", "", n).strip()
     if cleaned in name_map: return name_map[cleaned]
-    # token match: ticker exists in name
+    # token match: a map key must be a leading prefix of the issuer AND cover most
+    # of it (>=60%), so "INVESCO" (7) can't claim "INVESCO EXCH TRD" (16).
     for full_name, tkr in name_map.items():
-        if full_name and full_name in n and len(full_name) > 6: return tkr
+        if (full_name and len(full_name) > 6
+                and n.startswith(full_name) and len(full_name) >= 0.6 * len(n)):
+            return tkr
     return None
 
 def run(only=None):

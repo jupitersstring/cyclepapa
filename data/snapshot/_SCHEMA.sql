@@ -121,7 +121,6 @@ CREATE TABLE "highest_conviction" ("ticker" TEXT, "n_funds" REAL, "max_pct_book"
 CREATE TABLE "microcap_conviction_adds" ("ticker" TEXT, "n_funds_adding" INTEGER, "n_new_inits" INTEGER, "sum_dollar_m" REAL, "max_dollar_m" REAL, "max_pct_add" REAL, "funds" TEXT, "narratives" TEXT);
 CREATE TABLE "multi_fund_new_inits" ("ticker" TEXT, "n_funds_initiating" INTEGER, "sum_dollar_m" TEXT, "funds" INTEGER);
 CREATE TABLE "ticker_valuation" ("ticker" TEXT, "cik" INTEGER, "ebitda_ttm" REAL, "book_value" REAL, "net_debt" REAL, "ev_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "ebitda_is_ebit_fallback" INTEGER, "asof" TEXT);
-CREATE TABLE "ticker_yf__old" ("ticker" TEXT, "mcap_m" REAL, "enterprise_value_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "pe_ttm" REAL, "fwd_pe" REAL, "ev_revenue" REAL, "peg" REAL, "price" REAL, "currency" TEXT, "shares_out_m" REAL, "ebitda_m" REAL, "total_debt_m" REAL, "total_cash_m" REAL, "profit_margin" REAL, "rev_growth" REAL, "sector" TEXT, "industry" TEXT, "asof" TEXT, "business_summary" TEXT, "long_name" TEXT);
 CREATE TABLE fund_13f_holdings (
       fund TEXT, cik TEXT, accession TEXT, filed TEXT,
       issuer TEXT, cusip TEXT, ticker TEXT, value_k INTEGER, shares INTEGER,
@@ -154,6 +153,23 @@ CREATE TABLE ticker_meta ("ticker" TEXT PRIMARY KEY, "name" TEXT, "exchange" TEX
 CREATE TABLE yf_dead (ticker TEXT PRIMARY KEY, asof TEXT);
 CREATE INDEX idx_yf_evebitda ON ticker_yf(ev_ebitda);
 CREATE INDEX idx_yf_pb ON ticker_yf(pb_ratio);
+CREATE TABLE pb_people (
+      person_id TEXT, first_name TEXT, last_name TEXT, full_name TEXT,
+      primary_company TEXT, primary_company_type TEXT, primary_position TEXT,
+      is_former INTEGER, board_seats TEXT, roles TEXT,
+      location TEXT, country TEXT, biography TEXT,
+      theme TEXT, company_website TEXT, is_principal INTEGER DEFAULT 0);
+CREATE INDEX idx_pbp_name ON pb_people(full_name);
+CREATE INDEX idx_pbp_company ON pb_people(primary_company);
+CREATE INDEX idx_pbp_theme ON pb_people(theme);
+CREATE TABLE pb_affiliation (
+      full_name TEXT, company TEXT, company_type TEXT, position TEXT,
+      is_former INTEGER, theme TEXT, ticker TEXT, is_principal INTEGER DEFAULT 0,
+      role_class TEXT);
+CREATE INDEX idx_pba_company ON pb_affiliation(company);
+CREATE INDEX idx_pba_ticker ON pb_affiliation(ticker);
+CREATE TABLE pb_principal (name TEXT PRIMARY KEY);
+CREATE TABLE pb_principal_fund (principal TEXT, fund TEXT);
 CREATE TABLE fund_conviction (
       fund TEXT, ticker TEXT, signals TEXT, raw_score REAL, style_weight REAL,
       score REAL, macro_style TEXT,
@@ -218,20 +234,3 @@ CREATE TABLE style_consensus (
       macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
       sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
       PRIMARY KEY (macro_style, ticker));
-CREATE TABLE pb_people (
-      person_id TEXT, first_name TEXT, last_name TEXT, full_name TEXT,
-      primary_company TEXT, primary_company_type TEXT, primary_position TEXT,
-      is_former INTEGER, board_seats TEXT, roles TEXT,
-      location TEXT, country TEXT, biography TEXT,
-      theme TEXT, company_website TEXT, is_principal INTEGER DEFAULT 0);
-CREATE INDEX idx_pbp_name ON pb_people(full_name);
-CREATE INDEX idx_pbp_company ON pb_people(primary_company);
-CREATE INDEX idx_pbp_theme ON pb_people(theme);
-CREATE TABLE pb_affiliation (
-      full_name TEXT, company TEXT, company_type TEXT, position TEXT,
-      is_former INTEGER, theme TEXT, ticker TEXT, is_principal INTEGER DEFAULT 0,
-      role_class TEXT);
-CREATE INDEX idx_pba_company ON pb_affiliation(company);
-CREATE INDEX idx_pba_ticker ON pb_affiliation(ticker);
-CREATE TABLE pb_principal (name TEXT PRIMARY KEY);
-CREATE TABLE pb_principal_fund (principal TEXT, fund TEXT);

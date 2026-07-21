@@ -379,14 +379,19 @@ def run():
         revealed_pref = 2.0 * s3 + 1.0 * s4 + 0.5 * s1
 
         # scoring
+        # Count-based curated terms are CAPPED. Uncapped, they made the ranking a
+        # popularity contest (AMZN's s1=35 -> 70pts dwarfed everything and pinned
+        # mega-caps at the top). The Nth fund calling a name a "top pick" adds
+        # little beyond a strong consensus, so we saturate: 8-12 funds captures
+        # ~all the credit. Preserves ordering, removes the mega-cap runaway.
         smart_money       = math.log1p(n13f) * 2
-        s3_new_init       = 3.0 * s3
-        s4_material_add   = 1.5 * s4
-        s1_top_pick       = 2.0 * s1
+        s3_new_init       = 3.0 * min(s3, 8)      # was 3.0*s3 (uncapped)
+        s4_material_add   = 1.5 * min(s4, 10)     # was 1.5*s4
+        s1_top_pick       = 2.0 * min(s1, 12)     # was 2.0*s1  (AMZN 70 -> 24)
         activist_pct      = 0.5 * min(pct, 30)
         # max_pct_book of 10%+ = HIGH conviction; 20%+ = HYPER
         max_pb_term       = 0.6 * min(max_pb, 25)
-        cluster_pct_book  = 1.5 * n5_pb
+        cluster_pct_book  = 1.5 * min(n5_pb, 12)   # capped like the other counts
         insider_cluster   = (5 if ins_n >= 1 else 0) + (5 if ins_n >= 3 else 0) + (5 if ins_n >= 5 else 0)
         insider_dollars   = math.log1p(ins_m) * 3 if ins_m > 0 else 0
         # form4_buying uses time-decayed sum: recent buys weight more
@@ -397,7 +402,11 @@ def run():
         # very-recent sells hit harder
         form4_recent_sell_penalty = -math.log1p(f4sell_30) * 1.5 if f4sell_30 > 0 else 0
         micro_bonus       = (5 if 0 < mcap < 300 else 3 if 0 < mcap < 2000 else 0)
-        er_contribution   = er_pct * 0.5
+        # expected_return REMOVED from the live score: it covered only 14 of ~8,900
+        # tickers and derives from a 19-event backtest with n=0-2 base rates (see
+        # AUDIT_2026-07.md #2/#9). Kept as a research column (expected_return_pct),
+        # not a scoring input, until it has a statistically sound basis.
+        er_contribution   = 0.0
         # in-the-money / entry-intact — REVISED per adversarial review.
         # Reviewers found pattern: drawdowns >50% almost always signal
         # (a) stale anchor from pre-event cohort, (b) busted thesis with
