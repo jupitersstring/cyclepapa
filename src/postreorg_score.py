@@ -139,19 +139,47 @@ def _shares(cik: int) -> float | None:
     return _xbrl(cik, "EntityCommonStockSharesOutstanding", tax="dei")
 
 
-def _price(ticker: str) -> float | None:
+_QUOTE_CACHE: dict[str, dict] = {}
+
+
+def _quote(ticker: str) -> dict:
+    """One Yahoo call → {price, adv_dollar}. Fetches a 3-month daily series
+    so we get BOTH the live price AND a SMOOTHED liquidity read (MEDIAN daily
+    dollar volume — robust to single-day outliers) instead of price alone.
+    Cached per ticker per run."""
     if not ticker:
-        return None
+        return {"price": None, "adv_dollar": None}
     t = ticker.split(":")[-1].replace(".", "-")
+    if t in _QUOTE_CACHE:
+        return _QUOTE_CACHE[t]
+    out = {"price": None, "adv_dollar": None}
     try:
-        r = requests.get(YAHOO.format(ticker=t),
-                         headers={"User-Agent": "Mozilla/5.0"}, timeout=12)
-        if r.status_code != 200:
-            return None
-        return r.json()["chart"]["result"][0]["meta"].get(
-            "regularMarketPrice")
-    except (requests.RequestException, ValueError, KeyError, TypeError):
-        return None
+        r = requests.get(YAHOO.format(ticker=t) + "?range=3mo&interval=1d",
+                         headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
+        if r.status_code == 200:
+            import statistics as _st
+            res = r.json()["chart"]["result"][0]
+            out["price"] = res["meta"].get("regularMarketPrice")
+            q = (res.get("indicators", {}).get("quote") or [{}])[0]
+            vols = [v for v in (q.get("volume") or []) if v]
+            closes = [c for c in (q.get("close") or []) if c]
+            if vols and closes:
+                out["adv_dollar"] = _st.median(vols) * _st.median(closes)
+    except (requests.RequestException, ValueError, KeyError, TypeError,
+            IndexError):
+        pass
+    _QUOTE_CACHE[t] = out
+    return out
+
+
+def _price(ticker: str) -> float | None:
+    return _quote(ticker).get("price")
+
+
+def dollar_adv(ticker: str) -> float | None:
+    """3-month median daily dollar volume — a tradability read that price
+    alone can't give (a $2 post-reorg shell and a NYSE name both quote)."""
+    return _quote(ticker).get("adv_dollar")
 
 
 def ebit_yield(cik: int, ticker: str) -> dict:

@@ -58,8 +58,23 @@ from datetime import date
 from pathlib import Path
 
 from src.postreorg_score import (
-    collect_postreorg, chapter22_ciks, ebit_yield, _norm, _xbrl,
+    collect_postreorg, chapter22_ciks, ebit_yield, _norm, _xbrl, dollar_adv,
 )
+
+
+def _liquidity_tier(adv: float | None) -> str:
+    """Dollar-ADV tradability band. Post-reorgs are often thin, so this is a
+    FLAG, not a gate — a name is never dropped for illiquidity, only marked
+    so position sizing can account for it."""
+    if adv is None:
+        return "?"
+    if adv >= 5e6:
+        return "deep"       # >$5M/day — institutionally tradable
+    if adv >= 1e6:
+        return "ok"         # $1-5M/day
+    if adv >= 1e5:
+        return "thin"       # $100k-1M/day — sizing-constrained
+    return "micro"          # <$100k/day — retail-only / expert-market
 from src.postreorg_verify import verify, load_cache, save_cache
 
 # Forced-seller overhang is a fresh-emergence phenomenon: creditors dump
@@ -375,8 +390,10 @@ def main() -> int:
         sig = _detect(rec.get("query_note", "") + " " + rec.get("form", "") +
                       " " + rec.get("query_label", ""))
         res = six_questions(rec, int(cik), ticker, ey, bs, sig, in_pacer, vinfo)
+        adv = dollar_adv(ticker)   # cached from the ebit_yield price fetch
         scored.append({"cik": cik, "ticker": ticker,
                        "name": rec.get("name", ""), **res,
+                       "adv_dollar": adv, "liquidity": _liquidity_tier(adv),
                        "tier": ey.get("tier"), "ebit_yield": ey.get("ebit_yield")})
         time.sleep(0.15)
         if (i + 1) % 10 == 0:
@@ -422,8 +439,8 @@ def main() -> int:
         "is a non-filer possessive are set aside for verification at the "
         "bottom (not scored, not dropped).",
         "",
-        "| Name | Ticker | Conf | Emerged | Fit | U | R | O | C | Q | Archetypes | Why |",
-        "|---|---|:--:|---|---:|:-:|:-:|:-:|:-:|:-:|---|---|",
+        "| Name | Ticker | Conf | Emerged | Fit | Liq | U | R | O | C | Q | Archetypes | Why |",
+        "|---|---|:--:|---|---:|:--:|:-:|:-:|:-:|:-:|:-:|---|---|",
     ]
     def mk(s, k):
         return "●" if s["marks"].get(k) else "·"
@@ -434,7 +451,7 @@ def main() -> int:
         emd = s.get("emergence_date") or "—"
         lines.append(
             f"| {s['name'][:30]} | {s['ticker']} | {conf} | {emd} | "
-            f"{s['fitness']} | "
+            f"{s['fitness']} | {s.get('liquidity','?')} | "
             f"{mk(s,'unnatural')} | {mk(s,'repaired')} | {mk(s,'overstated')} | "
             f"{mk(s,'catalyst')} | {mk(s,'quality')} | {arch} | {why[:64]} |")
 
