@@ -1,4 +1,4 @@
-.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll poll-all security-master source-health corroborate reconcile postreorg-score postreorg-verify emergence-master listed-equity-screen waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
+.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll poll-all security-master source-health corroborate reconcile postreorg-score postreorg-verify emergence-master db listed-equity-screen waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
 
 help:
 	@echo "Targets:"
@@ -153,6 +153,12 @@ reconcile: audit
 # No --max-names → scores the ENTIRE cohort (no silent truncation).
 postreorg-score: audit
 	python3 -m src.postreorg_score
+
+# Inbox index — (re)build the queryable SQLite index over data/inbox/.
+# Derived + fully rebuildable from the tracked JSON (the source of truth);
+# committed only so the durability audit sees no untracked data.
+db: audit
+	python3 -m src.inbox_db --build
 
 # Emergence master — fuse every Chapter 11 EMERGENCE signal in data/inbox/
 # (emergence 8-K, fresh-start accounting, Form 25/15 delisting, Form 8-A
