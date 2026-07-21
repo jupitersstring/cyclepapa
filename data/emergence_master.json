@@ -1,0 +1,1903 @@
+[
+  {
+    "channels": {
+      "emergence 8-K prose": 1,
+      "fresh-start accounting (10-K/Q)": 3,
+      "plan-effective 8-K": 3
+    },
+    "cik": "0001456772",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-04-28",
+    "key": "CIK:1456772",
+    "last_filed": "2026-06-23",
+    "name": "OFFICE PROPERTIES INCOME TRUST",
+    "primary": true,
+    "ticker": "OPIRQ"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2,
+      "fresh-start accounting (10-K/Q)": 1,
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001519061",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-05-14",
+    "key": "CIK:1519061",
+    "last_filed": "2026-06-01",
+    "name": "Trinseo PLC",
+    "primary": true,
+    "ticker": "TSEOF"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2,
+      "fresh-start accounting (10-K/Q)": 1,
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001355096",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-04-15",
+    "key": "CIK:1355096",
+    "last_filed": "2026-05-15",
+    "name": "QVC Group, Inc.",
+    "primary": true,
+    "ticker": "QVCGA"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1,
+      "fresh-start accounting (10-K/Q)": 2,
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001532286",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-04-21",
+    "key": "CIK:1532286",
+    "last_filed": "2026-05-15",
+    "name": "Nine Energy Service, Inc.",
+    "primary": true,
+    "ticker": "NINE"
+  },
+  {
+    "channels": {
+      "Form 25 old-share delisting": 1,
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001808220",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-06-08",
+    "key": "CIK:1808220",
+    "last_filed": "2026-07-11",
+    "name": "GoHealth, Inc.",
+    "primary": true,
+    "ticker": "GOCO"
+  },
+  {
+    "channels": {
+      "Form 25 old-share delisting": 1,
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0000720154",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-06-03",
+    "key": "CIK:720154",
+    "last_filed": "2026-07-11",
+    "name": "Inotiv, Inc.",
+    "primary": true,
+    "ticker": "NOTV"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1,
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0001737706",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-05-11",
+    "key": "CIK:1737706",
+    "last_filed": "2026-06-18",
+    "name": "SEADRILL Ltd",
+    "primary": true,
+    "ticker": "SDRL"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1,
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0000896493",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-04-15",
+    "key": "CIK:896493",
+    "last_filed": "2026-05-18",
+    "name": "Hyperscale Data, Inc.",
+    "primary": true,
+    "ticker": "GPUS"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1,
+      "plan-effective 8-K": 2
+    },
+    "cik": "0001254699",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-04-15",
+    "key": "CIK:1254699",
+    "last_filed": "2026-05-15",
+    "name": "QVC INC",
+    "primary": true,
+    "ticker": "QVCC"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2,
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0001567892",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-04-15",
+    "key": "CIK:1567892",
+    "last_filed": "2026-05-12",
+    "name": "Keenova Therapeutics plc",
+    "primary": true,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2,
+      "plan-effective 8-K": 2
+    },
+    "cik": "0001058623",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-04-17",
+    "key": "CIK:1058623",
+    "last_filed": "2026-04-30",
+    "name": "CUMULUS MEDIA INC",
+    "primary": true,
+    "ticker": "CMLS"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 3
+    },
+    "cik": "0001837671",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-05",
+    "key": "CIK:1837671",
+    "last_filed": "2026-07-07",
+    "name": "Copper Property CTL Pass Through Trust",
+    "primary": true,
+    "ticker": "CPPTL"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000748592",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-07-02",
+    "key": "CIK:748592",
+    "last_filed": "2026-07-02",
+    "name": "Ernexa Therapeutics Inc.",
+    "primary": true,
+    "ticker": "ERNA"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0001282648",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-07-01",
+    "key": "CIK:1282648",
+    "last_filed": "2026-07-01",
+    "name": "BATTALION OIL CORP",
+    "primary": true,
+    "ticker": "BATL"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001003078",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-07-01",
+    "key": "CIK:1003078",
+    "last_filed": "2026-07-01",
+    "name": "MSC INDUSTRIAL DIRECT CO INC",
+    "primary": true,
+    "ticker": "MSM"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0001692819",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-30",
+    "key": "CIK:1692819",
+    "last_filed": "2026-06-30",
+    "name": "Vistra Corp.",
+    "primary": true,
+    "ticker": "VST"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 2
+    },
+    "cik": "0001856365",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-25",
+    "key": "CIK:1856365",
+    "last_filed": "2026-06-29",
+    "name": "Finwise Bancorp",
+    "primary": true,
+    "ticker": "FINW"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001280776",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-29",
+    "key": "CIK:1280776",
+    "last_filed": "2026-06-29",
+    "name": "IMMUNIC, INC.",
+    "primary": true,
+    "ticker": "IMUX"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001009759",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-25",
+    "key": "CIK:1009759",
+    "last_filed": "2026-06-25",
+    "name": "Capstone Energy Plus, Inc.",
+    "primary": true,
+    "ticker": "CGEH"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0002048951",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-25",
+    "key": "CIK:2048951",
+    "last_filed": "2026-06-25",
+    "name": "Teamshares Inc",
+    "primary": true,
+    "ticker": "LOKV"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001170010",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-24",
+    "key": "CIK:1170010",
+    "last_filed": "2026-06-24",
+    "name": "CARMAX INC",
+    "primary": true,
+    "ticker": "KMX"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000106532",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-24",
+    "key": "CIK:106532",
+    "last_filed": "2026-06-24",
+    "name": "WEYCO GROUP INC",
+    "primary": true,
+    "ticker": "WEYS"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001345126",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-24",
+    "key": "CIK:1345126",
+    "last_filed": "2026-06-24",
+    "name": "Compass Diversified Holdings",
+    "primary": true,
+    "ticker": "CODI"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001644378",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-23",
+    "key": "CIK:1644378",
+    "last_filed": "2026-06-23",
+    "name": "RMR GROUP INC.",
+    "primary": true,
+    "ticker": "RMR"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001120914",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-18",
+    "key": "CIK:1120914",
+    "last_filed": "2026-06-18",
+    "name": "PDF SOLUTIONS INC",
+    "primary": true,
+    "ticker": "PDFS"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001437402",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-17",
+    "key": "CIK:1437402",
+    "last_filed": "2026-06-17",
+    "name": "ARDELYX, INC.",
+    "primary": true,
+    "ticker": "ARDX"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000023197",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-15",
+    "key": "CIK:23197",
+    "last_filed": "2026-06-15",
+    "name": "COMTECH TELECOMMUNICATIONS CORP /DE/",
+    "primary": true,
+    "ticker": "CMTL"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 2
+    },
+    "cik": "0001622536",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-21",
+    "key": "CIK:1622536",
+    "last_filed": "2026-06-15",
+    "name": "Talen Energy Corp",
+    "primary": true,
+    "ticker": "TLN"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 2
+    },
+    "cik": "0001895262",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-01",
+    "key": "CIK:1895262",
+    "last_filed": "2026-06-12",
+    "name": "Noble Corp plc",
+    "primary": true,
+    "ticker": "NE"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000027419",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-12",
+    "key": "CIK:27419",
+    "last_filed": "2026-06-12",
+    "name": "TARGET CORP",
+    "primary": true,
+    "ticker": "TGT"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001396814",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-11",
+    "key": "CIK:1396814",
+    "last_filed": "2026-06-11",
+    "name": "Pacira BioSciences, Inc.",
+    "primary": true,
+    "ticker": "PCRX"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001334036",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-10",
+    "key": "CIK:1334036",
+    "last_filed": "2026-06-10",
+    "name": "Crocs, Inc.",
+    "primary": true,
+    "ticker": "CROX"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001819516",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-10",
+    "key": "CIK:1819516",
+    "last_filed": "2026-06-10",
+    "name": "Wheels Up Experience Inc.",
+    "primary": true,
+    "ticker": "UP"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000014846",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-10",
+    "key": "CIK:14846",
+    "last_filed": "2026-06-10",
+    "name": "BRT Apartments Corp.",
+    "primary": true,
+    "ticker": "BRT"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0002033383",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-09",
+    "key": "CIK:2033383",
+    "last_filed": "2026-06-09",
+    "name": "Fusemachines Inc.",
+    "primary": true,
+    "ticker": "FUSE"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 3
+    },
+    "cik": "0000895419",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-05",
+    "key": "CIK:895419",
+    "last_filed": "2026-06-09",
+    "name": "WOLFSPEED, INC.",
+    "primary": true,
+    "ticker": "WOLF"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001645113",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-05",
+    "key": "CIK:1645113",
+    "last_filed": "2026-06-05",
+    "name": "NovoCure Ltd",
+    "primary": true,
+    "ticker": "NVCR"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001609711",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-05",
+    "key": "CIK:1609711",
+    "last_filed": "2026-06-05",
+    "name": "GoDaddy Inc.",
+    "primary": true,
+    "ticker": "GDDY"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001814287",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-04",
+    "key": "CIK:1814287",
+    "last_filed": "2026-06-04",
+    "name": "Abacus Global Management, Inc.",
+    "primary": true,
+    "ticker": "ABX"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001299130",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-04",
+    "key": "CIK:1299130",
+    "last_filed": "2026-06-04",
+    "name": "PACIFIC BIOSCIENCES OF CALIFORNIA, INC.",
+    "primary": true,
+    "ticker": "PACB"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001400891",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-04",
+    "key": "CIK:1400891",
+    "last_filed": "2026-06-04",
+    "name": "iHeartMedia, Inc.",
+    "primary": true,
+    "ticker": "IHRT"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001535955",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-04",
+    "key": "CIK:1535955",
+    "last_filed": "2026-06-04",
+    "name": "Lipocine Inc.",
+    "primary": true,
+    "ticker": "LPCN"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000902791",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-03",
+    "key": "CIK:902791",
+    "last_filed": "2026-06-03",
+    "name": "BARRETT BUSINESS SERVICES INC",
+    "primary": true,
+    "ticker": "BBSI"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0001818643",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-02",
+    "key": "CIK:1818643",
+    "last_filed": "2026-06-02",
+    "name": "Phoenix Energy One, LLC",
+    "primary": true,
+    "ticker": "PHXE-P"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001445305",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-02",
+    "key": "CIK:1445305",
+    "last_filed": "2026-06-02",
+    "name": "WORKIVA INC",
+    "primary": true,
+    "ticker": "WK"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0002075109",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-29",
+    "key": "CIK:2075109",
+    "last_filed": "2026-05-29",
+    "name": "Matternet, Inc.",
+    "primary": true,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001046568",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-27",
+    "key": "CIK:1046568",
+    "last_filed": "2026-05-27",
+    "name": "PERDOCEO EDUCATION Corp",
+    "primary": true,
+    "ticker": "PRDO"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001964738",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-27",
+    "key": "CIK:1964738",
+    "last_filed": "2026-05-27",
+    "name": "Solventum Corp",
+    "primary": true,
+    "ticker": "SOLV"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000877212",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-26",
+    "key": "CIK:877212",
+    "last_filed": "2026-05-26",
+    "name": "ZEBRA TECHNOLOGIES CORP",
+    "primary": true,
+    "ticker": "ZBRA"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001056903",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-21",
+    "key": "CIK:1056903",
+    "last_filed": "2026-05-21",
+    "name": "AMERICAN STATES WATER CO",
+    "primary": true,
+    "ticker": "AWR"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000890926",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-21",
+    "key": "CIK:890926",
+    "last_filed": "2026-05-21",
+    "name": "RADIAN GROUP INC",
+    "primary": true,
+    "ticker": "RDN"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001023024",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-21",
+    "key": "CIK:1023024",
+    "last_filed": "2026-05-21",
+    "name": "ANI PHARMACEUTICALS INC",
+    "primary": true,
+    "ticker": "ANIP"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001443669",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-20",
+    "key": "CIK:1443669",
+    "last_filed": "2026-05-20",
+    "name": "Proto Labs Inc",
+    "primary": true,
+    "ticker": "PRLB"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001519401",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-19",
+    "key": "CIK:1519401",
+    "last_filed": "2026-05-19",
+    "name": "Regional Management Corp.",
+    "primary": true,
+    "ticker": "RM"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000882835",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-19",
+    "key": "CIK:882835",
+    "last_filed": "2026-05-19",
+    "name": "ROPER TECHNOLOGIES INC",
+    "primary": true,
+    "ticker": "ROP"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001323885",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-19",
+    "key": "CIK:1323885",
+    "last_filed": "2026-05-19",
+    "name": "AtriCure, Inc.",
+    "primary": true,
+    "ticker": "ATRC"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001090425",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-19",
+    "key": "CIK:1090425",
+    "last_filed": "2026-05-19",
+    "name": "LAMAR ADVERTISING CO/NEW",
+    "primary": true,
+    "ticker": "LAMR"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2
+    },
+    "cik": "0000862861",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-13",
+    "key": "CIK:862861",
+    "last_filed": "2026-05-18",
+    "name": "AI Financial Corp",
+    "primary": true,
+    "ticker": "ALTS"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001603454",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-18",
+    "key": "CIK:1603454",
+    "last_filed": "2026-05-18",
+    "name": "Celcuity Inc.",
+    "primary": true,
+    "ticker": "CELC"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0001839530",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-15",
+    "key": "CIK:1839530",
+    "last_filed": "2026-05-15",
+    "name": "XBP Global Holdings, Inc.",
+    "primary": true,
+    "ticker": "XBP"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0001759546",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-15",
+    "key": "CIK:1759546",
+    "last_filed": "2026-05-15",
+    "name": "NU RIDE INC.",
+    "primary": true,
+    "ticker": "NRDE"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 2
+    },
+    "cik": "0001580864",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-15",
+    "key": "CIK:1580864",
+    "last_filed": "2026-05-15",
+    "name": "Vroom, Inc.",
+    "primary": true,
+    "ticker": "VRM"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001628369",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-14",
+    "key": "CIK:1628369",
+    "last_filed": "2026-05-14",
+    "name": "Cushman & Wakefield Ltd.",
+    "primary": true,
+    "ticker": "CWK"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2
+    },
+    "cik": "0001599117",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-15",
+    "key": "CIK:1599117",
+    "last_filed": "2026-05-14",
+    "name": "Mentor Capital, Inc.",
+    "primary": true,
+    "ticker": "MNTR"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000067716",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-13",
+    "key": "CIK:67716",
+    "last_filed": "2026-05-13",
+    "name": "MDU RESOURCES GROUP INC",
+    "primary": true,
+    "ticker": "MDU"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001331757",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-12",
+    "key": "CIK:1331757",
+    "last_filed": "2026-05-12",
+    "name": "Federal Home Loan Bank of Dallas",
+    "primary": true,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001302387",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-11",
+    "key": "CIK:1302387",
+    "last_filed": "2026-05-11",
+    "name": "BV Financial, Inc.",
+    "primary": true,
+    "ticker": "BVFL"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001100682",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-11",
+    "key": "CIK:1100682",
+    "last_filed": "2026-05-11",
+    "name": "CHARLES RIVER LABORATORIES INTERNATIONAL, INC.",
+    "primary": true,
+    "ticker": "CRL"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 2
+    },
+    "cik": "0000910612",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-08",
+    "key": "CIK:910612",
+    "last_filed": "2026-05-08",
+    "name": "CBL & ASSOCIATES PROPERTIES INC",
+    "primary": true,
+    "ticker": "CBL"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001782303",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-08",
+    "key": "CIK:1782303",
+    "last_filed": "2026-05-08",
+    "name": "Boundless Bio, Inc.",
+    "primary": true,
+    "ticker": "BOLD"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001142417",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-08",
+    "key": "CIK:1142417",
+    "last_filed": "2026-05-08",
+    "name": "NEXSTAR MEDIA GROUP, INC.",
+    "primary": true,
+    "ticker": "NXST"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000746514",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-08",
+    "key": "CIK:746514",
+    "last_filed": "2026-05-08",
+    "name": "NEW ENGLAND REALTY ASSOCIATES LIMITED PARTNERSHIP",
+    "primary": true,
+    "ticker": "NEN"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 2
+    },
+    "cik": "0000105319",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-07",
+    "key": "CIK:105319",
+    "last_filed": "2026-05-07",
+    "name": "WW INTERNATIONAL, INC.",
+    "primary": true,
+    "ticker": "WW"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000884614",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-07",
+    "key": "CIK:884614",
+    "last_filed": "2026-05-07",
+    "name": "UGI CORP /PA/",
+    "primary": true,
+    "ticker": "UGI"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000737468",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-07",
+    "key": "CIK:737468",
+    "last_filed": "2026-05-07",
+    "name": "WASHINGTON TRUST BANCORP INC",
+    "primary": true,
+    "ticker": "WASH"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001759655",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-07",
+    "key": "CIK:1759655",
+    "last_filed": "2026-05-07",
+    "name": "Privia Health Group, Inc.",
+    "primary": true,
+    "ticker": "PRVA"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001841666",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-07",
+    "key": "CIK:1841666",
+    "last_filed": "2026-05-07",
+    "name": "APA Corp",
+    "primary": true,
+    "ticker": "APA"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001331754",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-07",
+    "key": "CIK:1331754",
+    "last_filed": "2026-05-07",
+    "name": "Federal Home Loan Bank of Indianapolis",
+    "primary": true,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0001653653",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-07",
+    "key": "CIK:1653653",
+    "last_filed": "2026-05-07",
+    "name": "Red Rock Resorts, Inc.",
+    "primary": true,
+    "ticker": "RRR"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000275053",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-07",
+    "key": "CIK:275053",
+    "last_filed": "2026-05-07",
+    "name": "NATURES SUNSHINE PRODUCTS INC",
+    "primary": true,
+    "ticker": "NATR"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001041934",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-07",
+    "key": "CIK:1041934",
+    "last_filed": "2026-05-07",
+    "name": "EDAP TMS SA",
+    "primary": true,
+    "ticker": "EDAP"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0001065059",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-06",
+    "key": "CIK:1065059",
+    "last_filed": "2026-05-06",
+    "name": "CENTRUS ENERGY CORP",
+    "primary": true,
+    "ticker": "LEU"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0002064953",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-06",
+    "key": "CIK:2064953",
+    "last_filed": "2026-05-06",
+    "name": "Solstice Advanced Materials Inc.",
+    "primary": true,
+    "ticker": "SOLS"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001690820",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-06",
+    "key": "CIK:1690820",
+    "last_filed": "2026-05-06",
+    "name": "CARVANA CO.",
+    "primary": true,
+    "ticker": "CVNA"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001589526",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-06",
+    "key": "CIK:1589526",
+    "last_filed": "2026-05-06",
+    "name": "Blue Bird Corp",
+    "primary": true,
+    "ticker": "BLBD"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001481582",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-06",
+    "key": "CIK:1481582",
+    "last_filed": "2026-05-06",
+    "name": "Ryerson Holding Corp",
+    "primary": true,
+    "ticker": "RYZ"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0000790273",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-06",
+    "key": "CIK:790273",
+    "last_filed": "2026-05-06",
+    "name": "CONECTISYS CORP",
+    "primary": true,
+    "ticker": "CONC"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001585364",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-05",
+    "key": "CIK:1585364",
+    "last_filed": "2026-05-05",
+    "name": "PERRIGO Co plc",
+    "primary": true,
+    "ticker": "PRGO"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000004127",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-05",
+    "key": "CIK:4127",
+    "last_filed": "2026-05-05",
+    "name": "SKYWORKS SOLUTIONS, INC.",
+    "primary": true,
+    "ticker": "SWKS"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0002078008",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-05",
+    "key": "CIK:2078008",
+    "last_filed": "2026-05-05",
+    "name": "Versigent PLC",
+    "primary": true,
+    "ticker": "VGNT"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0000314808",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-05",
+    "key": "CIK:314808",
+    "last_filed": "2026-05-05",
+    "name": "Valaris Ltd",
+    "primary": true,
+    "ticker": "VAL"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000885725",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-05",
+    "key": "CIK:885725",
+    "last_filed": "2026-05-05",
+    "name": "BOSTON SCIENTIFIC CORP",
+    "primary": true,
+    "ticker": "BSX"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000078890",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-04",
+    "key": "CIK:78890",
+    "last_filed": "2026-05-04",
+    "name": "BRINKS CO",
+    "primary": true,
+    "ticker": "BCO"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001056288",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-01",
+    "key": "CIK:1056288",
+    "last_filed": "2026-05-01",
+    "name": "FEDERATED HERMES, INC.",
+    "primary": true,
+    "ticker": "FHI"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0000915389",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-01",
+    "key": "CIK:915389",
+    "last_filed": "2026-05-01",
+    "name": "EASTMAN CHEMICAL CO",
+    "primary": true,
+    "ticker": "EMN"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001627223",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-30",
+    "key": "CIK:1627223",
+    "last_filed": "2026-04-30",
+    "name": "Chemours Co",
+    "primary": true,
+    "ticker": "CC"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001466258",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-30",
+    "key": "CIK:1466258",
+    "last_filed": "2026-04-30",
+    "name": "Trane Technologies plc",
+    "primary": true,
+    "ticker": "TT"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001141391",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-30",
+    "key": "CIK:1141391",
+    "last_filed": "2026-04-30",
+    "name": "Mastercard Inc",
+    "primary": true,
+    "ticker": "MA"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000883569",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-30",
+    "key": "CIK:883569",
+    "last_filed": "2026-04-30",
+    "name": "Fossil Group, Inc.",
+    "primary": true,
+    "ticker": "FOSL"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001587523",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-28",
+    "key": "CIK:1587523",
+    "last_filed": "2026-04-28",
+    "name": "Knowles Corp",
+    "primary": true,
+    "ticker": "KN"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0001013871",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-28",
+    "key": "CIK:1013871",
+    "last_filed": "2026-04-28",
+    "name": "NRG ENERGY, INC.",
+    "primary": true,
+    "ticker": "NRG"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000064040",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-28",
+    "key": "CIK:64040",
+    "last_filed": "2026-04-28",
+    "name": "S&P Global Inc.",
+    "primary": true,
+    "ticker": "SPGI"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001300514",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-24",
+    "key": "CIK:1300514",
+    "last_filed": "2026-04-24",
+    "name": "LAS VEGAS SANDS CORP",
+    "primary": true,
+    "ticker": "LVS"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001004980",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-23",
+    "key": "CIK:1004980",
+    "last_filed": "2026-04-23",
+    "name": "PG&E Corp",
+    "primary": true,
+    "ticker": "PCG"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0000016875",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-23",
+    "key": "CIK:16875",
+    "last_filed": "2026-04-23",
+    "name": "CANADIAN PACIFIC KANSAS CITY LTD/CN",
+    "primary": true,
+    "ticker": "CP"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001094285",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-23",
+    "key": "CIK:1094285",
+    "last_filed": "2026-04-23",
+    "name": "TELEDYNE TECHNOLOGIES INC",
+    "primary": true,
+    "ticker": "TDY"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000883241",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-20",
+    "key": "CIK:883241",
+    "last_filed": "2026-04-20",
+    "name": "SYNOPSYS INC",
+    "primary": true,
+    "ticker": "SNPS"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0001609253",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-17",
+    "key": "CIK:1609253",
+    "last_filed": "2026-04-17",
+    "name": "California Resources Corp",
+    "primary": true,
+    "ticker": "CRC"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000709337",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-16",
+    "key": "CIK:709337",
+    "last_filed": "2026-04-16",
+    "name": "FARMERS NATIONAL BANC CORP /OH/",
+    "primary": true,
+    "ticker": "FMNB"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0002108121",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-16",
+    "key": "CIK:2108121",
+    "last_filed": "2026-04-16",
+    "name": "Ionetix Corp / DE /",
+    "primary": true,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "8-K Item 1.03 / bankruptcy docket": 1,
+      "PACER bankruptcy docket": 1
+    },
+    "cik": "",
+    "confidence": "medium (corroborating signals only)",
+    "first_filed": "2026-06-19",
+    "key": "NAME:15odmanark",
+    "last_filed": "2026-06-19",
+    "name": "15 Codman Park LLC",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "Form 25 old-share delisting": 2
+    },
+    "cik": "0001169445",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-10",
+    "key": "CIK:1169445",
+    "last_filed": "2026-07-11",
+    "name": "TruBridge, Inc.",
+    "primary": false,
+    "ticker": "TBRG"
+  },
+  {
+    "channels": {
+      "Form 25 old-share delisting": 2
+    },
+    "cik": "0001552947",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-10",
+    "key": "CIK:1552947",
+    "last_filed": "2026-07-11",
+    "name": "Two Roads Shared Trust",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "Form 15 deregistration": 2
+    },
+    "cik": "0001127703",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-10",
+    "key": "CIK:1127703",
+    "last_filed": "2026-07-11",
+    "name": "PROASSURANCE CORP",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "Form 25 old-share delisting": 1
+    },
+    "cik": "0001415726",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-11",
+    "key": "CIK:1415726",
+    "last_filed": "2026-07-11",
+    "name": "Innovator ETFs Trust",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "Form 15 deregistration": 2
+    },
+    "cik": "0001644697",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-10",
+    "key": "CIK:1644697",
+    "last_filed": "2026-07-11",
+    "name": "GS Mortgage Securities Trust 2015-GC32",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "Form 25 old-share delisting": 1
+    },
+    "cik": "0002074850",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-11",
+    "key": "CIK:2074850",
+    "last_filed": "2026-07-11",
+    "name": "Spring Valley Acquisition Corp. III",
+    "primary": false,
+    "ticker": "SVACU"
+  },
+  {
+    "channels": {
+      "Form 25 old-share delisting": 2
+    },
+    "cik": "0001870600",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-10",
+    "key": "CIK:1870600",
+    "last_filed": "2026-07-11",
+    "name": "Solo Brands, Inc.",
+    "primary": false,
+    "ticker": "SBDS"
+  },
+  {
+    "channels": {
+      "Form 25 old-share delisting": 1
+    },
+    "cik": "0001901336",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-11",
+    "key": "CIK:1901336",
+    "last_filed": "2026-07-11",
+    "name": "Alchemy Investments Acquisition Corp 1",
+    "primary": false,
+    "ticker": "ALCUF"
+  },
+  {
+    "channels": {
+      "Form 15 deregistration": 1
+    },
+    "cik": "0001802457",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-11",
+    "key": "CIK:1802457",
+    "last_filed": "2026-07-11",
+    "name": "Origin Materials, Inc.",
+    "primary": false,
+    "ticker": "ORGN"
+  },
+  {
+    "channels": {
+      "Form 25 old-share delisting": 1
+    },
+    "cik": "0001992243",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-11",
+    "key": "CIK:1992243",
+    "last_filed": "2026-07-11",
+    "name": "T1 Energy Inc.",
+    "primary": false,
+    "ticker": "TE-WT"
+  },
+  {
+    "channels": {
+      "Form 25 old-share delisting": 1
+    },
+    "cik": "0001742927",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-11",
+    "key": "CIK:1742927",
+    "last_filed": "2026-07-11",
+    "name": "REVIVA PHARMACEUTICALS HOLDINGS, INC.",
+    "primary": false,
+    "ticker": "RVPH"
+  },
+  {
+    "channels": {
+      "Form 15 deregistration": 2
+    },
+    "cik": "0001926999",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-10",
+    "key": "CIK:1926999",
+    "last_filed": "2026-07-11",
+    "name": "World Omni Auto Receivables Trust 2022-B",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "Form 25 old-share delisting": 2
+    },
+    "cik": "0001844224",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-10",
+    "key": "CIK:1844224",
+    "last_filed": "2026-07-11",
+    "name": "FREYR Battery",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "Form 15 deregistration": 1
+    },
+    "cik": "0001900520",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-11",
+    "key": "CIK:1900520",
+    "last_filed": "2026-07-11",
+    "name": "Lomond Therapeutics Holdings, Inc.",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "Form 15 deregistration": 1
+    },
+    "cik": "0001560143",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "key": "CIK:1560143",
+    "last_filed": "2026-07-01",
+    "name": "WYTEC INTERNATIONAL INC",
+    "primary": false,
+    "ticker": "WYTC"
+  },
+  {
+    "channels": {
+      "Form 15 deregistration": 1
+    },
+    "cik": "0001408100",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "key": "CIK:1408100",
+    "last_filed": "2026-07-01",
+    "name": "Kennedy-Wilson Holdings, Inc.",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "Form 15 deregistration": 1
+    },
+    "cik": "0002073537",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "key": "CIK:2073537",
+    "last_filed": "2026-07-01",
+    "name": "PIMCO Asset-Based Lending Co LLC",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "Form 15 deregistration": 1
+    },
+    "cik": "0001606268",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "key": "CIK:1606268",
+    "last_filed": "2026-07-01",
+    "name": "Via Renewables, Inc.",
+    "primary": false,
+    "ticker": "VIASP"
+  },
+  {
+    "channels": {
+      "Form 15 deregistration": 1
+    },
+    "cik": "0001905655",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "key": "CIK:1905655",
+    "last_filed": "2026-07-01",
+    "name": "Nissan Auto Receivables 2022-A Owner Trust",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "Form 15 deregistration": 1
+    },
+    "cik": "0001117171",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "key": "CIK:1117171",
+    "last_filed": "2026-07-01",
+    "name": "CBAK Energy Technology, Inc.",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "Form 15 deregistration": 1
+    },
+    "cik": "0001888143",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "key": "CIK:1888143",
+    "last_filed": "2026-07-01",
+    "name": "AmeriCredit Automobile Receivables Trust 2021-3",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "Form 15 deregistration": 1
+    },
+    "cik": "0000882361",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "key": "CIK:882361",
+    "last_filed": "2026-07-01",
+    "name": "Aptose Biosciences Inc.",
+    "primary": false,
+    "ticker": "APTOF"
+  },
+  {
+    "channels": {
+      "Form 15 deregistration": 1
+    },
+    "cik": "0001500305",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "key": "CIK:1500305",
+    "last_filed": "2026-07-01",
+    "name": "Sustainable Projects Group Inc.",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "PACER bankruptcy docket": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-30",
+    "key": "NAME:unenion",
+    "last_filed": "2026-06-30",
+    "name": "Dune Union Inc.",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "PACER bankruptcy docket": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-22",
+    "key": "NAME:hicagoeightsyers",
+    "last_filed": "2026-06-22",
+    "name": "Chicago Heights Ayers LLC",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "Form 15 deregistration": 1
+    },
+    "cik": "0001783876",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-22",
+    "key": "CIK:1783876",
+    "last_filed": "2026-06-22",
+    "name": "Teamshares Inc.",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "Form 15 deregistration": 1
+    },
+    "cik": "0001574219",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-22",
+    "key": "CIK:1574219",
+    "last_filed": "2026-06-22",
+    "name": "J.P. Morgan Chase Commercial Mortgage Securities Trust 2013-LC11",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "Form 15 deregistration": 1
+    },
+    "cik": "0001348911",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-22",
+    "key": "CIK:1348911",
+    "last_filed": "2026-06-22",
+    "name": "KalVista Pharmaceuticals, Inc.",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "Form 15 deregistration": 1
+    },
+    "cik": "0001909770",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-22",
+    "key": "CIK:1909770",
+    "last_filed": "2026-06-22",
+    "name": "KHEOBA CORP.",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "Form 15 deregistration": 1
+    },
+    "cik": "0001489096",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-22",
+    "key": "CIK:1489096",
+    "last_filed": "2026-06-22",
+    "name": "Thermon Group Holdings, Inc.",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "8-K Item 1.03 / bankruptcy docket": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-21",
+    "key": "NAME:lobalgamiab",
+    "last_filed": "2026-06-21",
+    "name": "Global Agami Cab LLC",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "8-K Item 1.03 / bankruptcy docket": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-21",
+    "key": "NAME:niversalgamiransit",
+    "last_filed": "2026-06-21",
+    "name": "Universal Agami Transit Inc.",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "8-K Item 1.03 / bankruptcy docket": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-21",
+    "key": "NAME:lanetgamiab",
+    "last_filed": "2026-06-21",
+    "name": "Planet Agami Cab LLC",
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "PACER bankruptcy docket": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-16",
+    "key": "NAME:opco",
+    "last_filed": "2026-06-16",
+    "name": "GVO Topco LLC",
+    "primary": false,
+    "ticker": ""
+  }
+]
