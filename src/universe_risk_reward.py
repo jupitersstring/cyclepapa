@@ -247,7 +247,19 @@ def _rank_composite(rows: list[UniverseRow]) -> None:
         return p
     if not rows:
         return
-    rr_p = pct([r.rr for r in rows])
+    # rr is percentile-normalized WITHIN each source population (REAL hand-
+    # built waterfalls vs PROXY formula). REAL waterfalls can have bear_loss
+    # as low as 0.01 → raw RR in the tens, which would otherwise pin every
+    # REAL name to the top of a pooled rr percentile regardless of how the
+    # PROXY universe looks. Normalizing within-source makes a REAL name's
+    # asymmetry rank mean "top of the REAL names" and a PROXY name's "top of
+    # the PROXY names" — comparable 0-1 signals rather than raw multiples.
+    rr_p = [0.0] * len(rows)
+    for src in {r.source for r in rows}:
+        idx = [i for i, r in enumerate(rows) if r.source == src]
+        sub = pct([rows[i].rr for i in idx])
+        for k, i in enumerate(idx):
+            rr_p[i] = sub[k]
     sk_p = pct([r.skew for r in rows])
     dp_p = pct([r.downside_prot for r in rows])
     cv_p = pct([r.conviction for r in rows])
@@ -255,7 +267,14 @@ def _rank_composite(rows: list[UniverseRow]) -> None:
         base = 0.40 * rr_p[i] + 0.25 * sk_p[i] + 0.20 * dp_p[i] + 0.15 * cv_p[i]
         if r.val_score is not None:
             base = 0.85 * base + 0.15 * r.val_score
-        r.composite = round(base, 4)
+        # Source-quality premium: a REAL hand-built waterfall is a
+        # deeply-researched, verified conviction signal, not a formula guess,
+        # so it earns a premium in the blend — this keeps the researched book
+        # prominent without letting a single 0.01-bear-loss raw RR dominate
+        # (that distortion is already removed by within-source rr normalizing).
+        if r.source == "REAL":
+            base += 0.12
+        r.composite = round(min(base, 1.0), 4)
 
 
 def load_full_candidates() -> list[UniverseRow]:
@@ -598,8 +617,12 @@ def main() -> int:
         compute_lenses(r, corrob, yaml_val)
     _rank_composite(keep)
 
-    # Rank by reward/risk ratio descending (the primary lens)
-    keep.sort(key=lambda r: -r.rr)
+    # Headline order = the blended, source-normalized COMPOSITE (raw reward/
+    # risk as tiebreak). Sorting by raw rr alone let hand-YAML REAL names with
+    # a 0.01 bear-loss (RR in the tens) sit atop the table by construction,
+    # burying high-asymmetry PROXY names; the composite ranks on comparable
+    # 0-1 asymmetry percentiles across all six lenses instead.
+    keep.sort(key=lambda r: (-r.composite, -r.rr))
 
     # Write markdown
     OUT_MD.parent.mkdir(parents=True, exist_ok=True)
