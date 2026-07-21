@@ -1,8 +1,80 @@
 {
+  "0000028823-26-000008": {
+    "context": "ility and cash on hand, to (i) repurchase all of the term loans outstanding under senior secured term loan facility that we entered into in connection with our emergence from bankruptcy on August 12, ",
+    "doc": "https://www.sec.gov/Archives/edgar/data/28823/000002882326000008/0000028823-26-000008.txt",
+    "emergence_date": "August 12, 2023",
+    "filer_emerged": true
+  },
+  "0000037996-26-000015": {
+    "context": "mer maritime fleet. We believe that we are targeted more aggressively in asbestos suits because many previously targeted companies have filed for bankruptcy or emerged from bankruptcy relieved of liab",
+    "doc": "https://www.sec.gov/Archives/edgar/data/37996/000003799626000015/0000037996-26-000015.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0000096223-26-000009": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/96223/000009622326000009/0000096223-26-000009.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
   "0000314808-26-000103": {
     "context": "uity in earnings of ARO in our Condensed Consolidated Statements of Operations. Our equity method investment in ARO was recorded at its estimated fair value in fresh start accounting upon emergence fr",
     "doc": "https://www.sec.gov/Archives/edgar/data/314808/000031480826000103/0000314808-26-000103.txt",
     "emergence_date": "2021",
+    "filer_emerged": true
+  },
+  "0000764065-26-000025": {
+    "context": "sition, we have acquired funding commitments to employee life and health trusts. These obligations pertain to plans previously sponsored by Stelco prior to its emergence from bankruptcy. The commitmen",
+    "doc": "https://www.sec.gov/Archives/edgar/data/764065/000076406526000025/0000764065-26-000025.txt",
+    "emergence_date": "2042",
+    "filer_emerged": true
+  },
+  "0000773840-26-000013": {
+    "context": "ed against both NARCO and Honeywell pending the reorganization of NARCO. The Company established its initial liability for NARCO asbestos claims in 2002. NARCO emerged from bankruptcy in April 2013, a",
+    "doc": "https://www.sec.gov/Archives/edgar/data/773840/000077384026000013/0000773840-26-000013.txt",
+    "emergence_date": "2013",
+    "filer_emerged": true
+  },
+  "0000780571-26-000033": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/780571/000078057126000033/0000780571-26-000033.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0000821483-26-000005": {
+    "context": "elated to the release of majority of the valuation allowance against our net deferred tax assets, partially offset by state tax expense. In connection with our emergence from bankruptcy on August 31, ",
+    "doc": "https://www.sec.gov/Archives/edgar/data/821483/000082148326000005/0000821483-26-000005.txt",
+    "emergence_date": "August 31, 2012",
+    "filer_emerged": true
+  },
+  "0000827052-26-000012": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/827052/000082705226000012/0000827052-26-000012.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0000874761-26-000063": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/874761/000087476126000063/0000874761-26-000063.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0000880266-26-000010": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/880266/000088026626000010/0000880266-26-000010.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0000894189-26-012241": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/2074612/000089418926012241/0000894189-26-012241.txt",
+    "emergence_date": null,
+    "filer_emerged": false
+  },
+  "0000894189-26-014313": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/2092387/000089418926014313/0000894189-26-014313.txt",
+    "emergence_date": null,
     "filer_emerged": true
   },
   "0000915389-26-000099": {
@@ -11,11 +83,113 @@
     "emergence_date": null,
     "filer_emerged": false
   },
+  "0000930413-26-001526": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/2050541/000093041326001526/0000930413-26-001526.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
   "0001004980-26-000033": {
     "context": "",
     "doc": "https://www.sec.gov/Archives/edgar/data/1004980/000100498026000033/0001004980-26-000033.txt",
     "emergence_date": null,
     "filer_emerged": false
+  },
+  "0001013605-26-000019": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1013605/000101360526000019/0001013605-26-000019.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001031296-26-000046": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1031296/000103129626000046/0001031296-26-000046.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001035443-26-000013": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1035443/000103544326000013/0001035443-26-000013.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001047716-26-000063": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000063/0001047716-26-000063.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001058623-26-000018": {
+    "context": "titrust and Market Concentration Considerations\" within Item 1, \"Business.\" In connection with our 2011 acquisition of Citadel Broadcasting Corporation and our emergence from Chapter 11 in June 2018, ",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1058623/000105862326000018/0001058623-26-000018.txt",
+    "emergence_date": "2018",
+    "filer_emerged": true
+  },
+  "0001062993-26-002169": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/351834/000106299326002169/0001062993-26-002169.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001079973-26-000354": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1230058/000107997326000354/0001079973-26-000354.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001104659-26-008567": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1013871/000110465926008567/0001104659-26-008567.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001104659-26-014292": {
+    "context": "factors, including, among others: &#9679; the significant risks related to our substantial indebtedness and our long-term liquidity requirements following our emergence from Chapter 11 and reorganizat",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1009759/000110465926014292/0001104659-26-014292.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001104659-26-019215": {
+    "context": "1; (accept) the agreements between Debtor entities and bpJV entities. In June 2025, the final Debtor Plan was confirmed by the bankruptcy court and the Debtors emerged from bankruptcy on September 1, ",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1368265/000110465926019215/0001104659-26-019215.txt",
+    "emergence_date": "September 1, 2025",
+    "filer_emerged": true
+  },
+  "0001104659-26-020650": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1958140/000110465926020650/0001104659-26-020650.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001104659-26-023787": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/922358/000110465926023787/0001104659-26-023787.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001104659-26-029442": {
+    "context": "ur consolidated aeronautical revenue, respectively. LATAM Group filed for Chapter 11 bankruptcy protection in May 2020 as a result of the COVID-19 pandemic and emerged from bankruptcy in November 2022",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1717393/000110465926029442/0001104659-26-029442.txt",
+    "emergence_date": "2022",
+    "filer_emerged": true
+  },
+  "0001104659-26-033373": {
+    "context": "#8203; &#8203; ( 547,982 ) &#8203; &#8203; ( 497,272 ) Net oil and natural gas properties &#8203; $ 390,093 &#8203; $ 368,005 (1) In 2019, with the adoption of fresh-start accounting, the Company's un",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1282648/000110465926033373/0001104659-26-033373.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001104659-26-036223": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/749098/000110465926036223/0001104659-26-036223.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001104659-26-038311": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1323404/000110465926038311/0001104659-26-038311.txt",
+    "emergence_date": null,
+    "filer_emerged": null
   },
   "0001104659-26-044521": {
     "context": "Are the Sources of Cash and Other Consideration Required to Fund the Plan? 20 S. Are There Risks to Owning the QVC New Equity Interests upon the Debtors&rsquo; Emergence from Chapter 11? 20 T. Is Ther",
@@ -29,6 +203,24 @@
     "emergence_date": null,
     "filer_emerged": true
   },
+  "0001104659-26-051797": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1355096/000110465926051797/0001104659-26-051797.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001104659-26-058108": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/813762/000110465926058108/0001104659-26-058108.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001104659-26-061052": {
+    "context": "r estimation. Equity Securities Without Readily Determinable Fair Values The Company has entered into a Registration Rights Agreement with a borrower who, upon emergence from bankruptcy, issued ordina",
+    "doc": "https://www.sec.gov/Archives/edgar/data/707605/000110465926061052/0001104659-26-061052.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
   "0001104659-26-062511": {
     "context": "ng satisfied or waived all the conditions set forth in the Plan. In accordance with ASC 852, Reorganizations (&#8220;ASC 852&#8221;), BPA was required to apply fresh start accounting upon its emergenc",
     "doc": "https://www.sec.gov/Archives/edgar/data/1839530/000110465926062511/0001104659-26-062511.txt",
@@ -38,6 +230,12 @@
   "0001104659-26-066376": {
     "context": "no guarantee that the Reorganized Common Interests will appreciate in value. 129 D. Risks Relating to the Capital Structure of the Reorganized Debtors 1. Upon Emergence from Bankruptcy, the Debtors&rs",
     "doc": "https://www.sec.gov/Archives/edgar/data/1519061/000110465926066376/0001104659-26-066376.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001104659-26-068944": {
+    "context": "rity date of the DIP Facility shall have occurred (whether by scheduled maturity, acceleration, or otherwise), other than in connection with the Debtors&rsquo; emergence from chapter 11; or &#8239; (c",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1519061/000110465926068944/0001104659-26-068944.txt",
     "emergence_date": null,
     "filer_emerged": true
   },
@@ -65,10 +263,142 @@
     "emergence_date": null,
     "filer_emerged": true
   },
+  "0001111335-26-000006": {
+    "context": "2025, $ 26 million which will expire at various dates between 2026 and 2044, and $ 2 million of which have an indefinite life. In connection with the Company's emergence from bankruptcy and resulting ",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1111335/000111133526000006/0001111335-26-000006.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001130310-26-000008": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1130310/000113031026000008/0001130310-26-000008.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
   "0001140361-26-026944": {
     "context": "Successor/Predecessor fresh-start reporting present",
     "doc": "https://www.sec.gov/Archives/edgar/data/1692819/000114036126026944/0001140361-26-026944.txt",
     "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001144800-26-000019": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1144800/000114480026000019/0001144800-26-000019.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001193125-26-051726": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1818643/000119312526051726/0001193125-26-051726.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001193125-26-056015": {
+    "context": "ng of the market on August 4, 2023. After giving effect to the reverse stock split, the Company owns approximately 4.4 million shares of NCMI common stock. NCM emerged from bankruptcy on August 7, 202",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1385280/000119312526056015/0001193125-26-056015.txt",
+    "emergence_date": "August 7, 2023",
+    "filer_emerged": true
+  },
+  "0001193125-26-063960": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1519751/000119312526063960/0001193125-26-063960.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001193125-26-064039": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/2029118/000119312526064039/0001193125-26-064039.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001193125-26-064403": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/732834/000119312526064403/0001193125-26-064403.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001193125-26-065183": {
+    "context": "dated financial statements by $ 119.3 million as of December 31, 2025 and $ 123.6 million as of December 31, 2024. These differences arose from our adoption of fresh-start reporting upon our emergence",
+    "doc": "https://www.sec.gov/Archives/edgar/data/7431/000119312526065183/0001193125-26-065183.txt",
+    "emergence_date": "2006",
+    "filer_emerged": true
+  },
+  "0001193125-26-067130": {
+    "context": "fees we receive for our advisory services are considered variable, as they are contingent upon a future event (e.g., completion of a transaction or third-party emergence from bankruptcy) and are exclu",
+    "doc": "https://www.sec.gov/Archives/edgar/data/720672/000119312526067130/0001193125-26-067130.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001193125-26-076630": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1377630/000119312526076630/0001193125-26-076630.txt",
+    "emergence_date": null,
+    "filer_emerged": false
+  },
+  "0001193125-26-079299": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1370755/000119312526079299/0001193125-26-079299.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001193125-26-085756": {
+    "context": "ting in higher delinquencies, charge-offs and increased losses for us. While Puerto Rico's economy has been gradually recovering and the Puerto Rico government emerged from bankruptcy in 2022, Puerto ",
+    "doc": "https://www.sec.gov/Archives/edgar/data/763901/000119312526085756/0001193125-26-085756.txt",
+    "emergence_date": "2022",
+    "filer_emerged": true
+  },
+  "0001193125-26-087049": {
+    "context": "CBL &amp; Associates Properties, Inc. and its Affiliated Debtors (With Technical Modifications) (as modified at Docket No. 1521, the &#8220;Plan&#8221;). Under fresh-start reporting rules, our assets ",
+    "doc": "https://www.sec.gov/Archives/edgar/data/910612/000119312526087049/0001193125-26-087049.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001193125-26-093323": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1000275/000119312526093323/0001193125-26-093323.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001193125-26-098669": {
+    "context": "rt on Form 10-Q for the quarter ended September 28, 2025, filed with the Securities and Exchange Commission on November 7, 2025, (ii) the Company's adoption of fresh start accounting on the Effective ",
+    "doc": "https://www.sec.gov/Archives/edgar/data/895419/000119312526098669/0001193125-26-098669.txt",
+    "emergence_date": "January 29, 2026",
+    "filer_emerged": true
+  },
+  "0001193125-26-107148": {
+    "context": "nd Predecessor and Successor Periods In connection with the Company's emergence from its financial reorganization process on June 24, 2025, the Company applied fresh start accounting which resulted in",
+    "doc": "https://www.sec.gov/Archives/edgar/data/105319/000119312526107148/0001193125-26-107148.txt",
+    "emergence_date": "December 31, 2025",
+    "filer_emerged": true
+  },
+  "0001193125-26-108598": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/6176/000119312526108598/0001193125-26-108598.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001193125-26-114381": {
+    "context": "ts in non-traded equity involve a high degree of business and financial risk. The entities in which we invest in may be financially distressed or have recently emerged from bankruptcy, they may requir",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1646614/000119312526114381/0001193125-26-114381.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001193125-26-124134": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/16875/000119312526124134/0001193125-26-124134.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001193125-26-145714": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1334388/000119312526145714/0001193125-26-145714.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001193125-26-153091": {
+    "context": "a University. Mr. Swartz served as an executive officer of Westmoreland at the time that Westmoreland filed for Chapter 11 reorganization in 2018; Westmoreland emerged from Chapter 11 bankruptcy in 20",
+    "doc": "https://www.sec.gov/Archives/edgar/data/2095743/000119312526153091/0001193125-26-153091.txt",
+    "emergence_date": "2019",
     "filer_emerged": true
   },
   "0001193125-26-173665": {
@@ -76,6 +406,24 @@
     "doc": "https://www.sec.gov/Archives/edgar/data/16875/000119312526173665/0001193125-26-173665.txt",
     "emergence_date": null,
     "filer_emerged": null
+  },
+  "0001193125-26-194071": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/53456/000119312526194071/0001193125-26-194071.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001193125-26-194311": {
+    "context": "olutions and services, backed by Apollo Global Management, where she played a key leadership role in the financial and operational turnaround after the company emerged from bankruptcy. Prior to joinin",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1169445/000119312526194311/0001193125-26-194311.txt",
+    "emergence_date": "2020",
+    "filer_emerged": true
+  },
+  "0001193125-26-197494": {
+    "context": "erception that these sales may occur, especially by significant shareholders, could cause the market price of the ADSs and our shares to decline. Following our emergence from bankruptcy, a substantial",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1561861/000119312526197494/0001193125-26-197494.txt",
+    "emergence_date": null,
+    "filer_emerged": true
   },
   "0001193125-26-210279": {
     "context": "nd Predecessor and Successor Periods In connection with the Company's emergence from its financial reorganization process on June 24, 2025, the Company applied fresh start accounting which resulted in",
@@ -89,6 +437,12 @@
     "emergence_date": null,
     "filer_emerged": true
   },
+  "0001193125-26-213908": {
+    "context": "nefits. On March 22, 2017, we filed for reorganization under Chapter 11 of the Federal Bankruptcy Code, using a prepackaged plan of reorganization. The Company emerged from bankruptcy on May 3, 2017. ",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1841968/000119312526213908/0001193125-26-213908.txt",
+    "emergence_date": "May 3, 2017",
+    "filer_emerged": true
+  },
   "0001193125-26-214023": {
     "context": "the acquisition of the Company's partner's 50% joint venture interests in CoolSprings Galleria, Oak Park Mall and West County Center and the implementation of fresh start accounting upon emergence fro",
     "doc": "https://www.sec.gov/Archives/edgar/data/910612/000119312526214023/0001193125-26-214023.txt",
@@ -98,6 +452,12 @@
   "0001193125-26-224748": {
     "context": "notes included in the Annual Report on Form 10-K for the year ended December 31, 2025. Upon emergence from the Prepackaged Chapter 11 Case, the Company adopted fresh start accounting in accordance wit",
     "doc": "https://www.sec.gov/Archives/edgar/data/1580864/000119312526224748/0001193125-26-224748.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001193125-26-237902": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1921603/000119312526237902/0001193125-26-237902.txt",
     "emergence_date": null,
     "filer_emerged": true
   },
@@ -119,16 +479,88 @@
     "emergence_date": null,
     "filer_emerged": true
   },
+  "0001213900-26-028437": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/2087587/000121390026028437/0001213900-26-028437.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001213900-26-033155": {
+    "context": "2016. Mr. Herz led the company through a consensual reorganization and continued to serve as director and Chief Executive Officer following the company&rsquo;s emergence from bankruptcy and its subseq",
+    "doc": "https://www.sec.gov/Archives/edgar/data/2083125/000121390026033155/0001213900-26-033155.txt",
+    "emergence_date": "2018",
+    "filer_emerged": true
+  },
+  "0001213900-26-035615": {
+    "context": "f directors of CenterPoint Energy, Inc. (NYSE: CNP). Mr. Seavers served as the Chair of the Utility Board of PG&amp;E from 2020 to 2023 following the company's emergence from bankruptcy. While at PG&a",
+    "doc": "https://www.sec.gov/Archives/edgar/data/2025396/000121390026035615/0001213900-26-035615.txt",
+    "emergence_date": "2015",
+    "filer_emerged": true
+  },
+  "0001213900-26-037410": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/2025401/000121390026037410/0001213900-26-037410.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001213900-26-044335": {
+    "context": "develop, and you may not be able to easily sell your Class A Ordinary Shares. An active trading market for shares of our Class A Ordinary Shares following our emergence from bankruptcy may never devel",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1953021/000121390026044335/0001213900-26-044335.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001213900-26-050382": {
+    "context": "the board of Physicians Insurance Company and was a member of the board of directors of United States Enrichment Corp. (USEC) from 2011 to the company&rsquo;s emergence from Chapter 11 bankruptcy in S",
+    "doc": "https://www.sec.gov/Archives/edgar/data/2033770/000121390026050382/0001213900-26-050382.txt",
+    "emergence_date": "2014",
+    "filer_emerged": true
+  },
   "0001213900-26-055933": {
     "context": "eporting perspective,&#8221; said Ann Fox, President and Chief Executive Officer of Nine Energy Service. &#8220;During the quarter, we entered and successfully emerged from Chapter 11 and implemented ",
     "doc": "https://www.sec.gov/Archives/edgar/data/1532286/000121390026055933/0001213900-26-055933.txt",
     "emergence_date": null,
     "filer_emerged": true
   },
+  "0001213900-26-063514": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/2097163/000121390026063514/0001213900-26-063514.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001213900-26-068811": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/2113481/000121390026068811/0001213900-26-068811.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001213900-26-073749": {
+    "context": "roxy and information statements, and other information regarding issuers that file electronically with the SEC. The address of that website is www.sec.gov. Our Emergence from Bankruptcy On October 15,",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1023994/000121390026073749/0001213900-26-073749.txt",
+    "emergence_date": "October 15, 2015",
+    "filer_emerged": true
+  },
+  "0001213900-26-077111": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/2045151/000121390026077111/0001213900-26-077111.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
   "0001214659-26-004697": {
     "context": "ior lenders released Gresham and us in exchange for a settlement payment. That payment was made on October 1, 2025. Consequently, Gresham may be deemed to have emerged from bankruptcy on November 28, ",
     "doc": "https://www.sec.gov/Archives/edgar/data/896493/000121465926004697/0001214659-26-004697.txt",
     "emergence_date": "November 28, 2025",
+    "filer_emerged": true
+  },
+  "0001214659-26-005364": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/896493/000121465926005364/0001214659-26-005364.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001232384-26-000023": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1232384/000123238426000023/0001232384-26-000023.txt",
+    "emergence_date": null,
     "filer_emerged": true
   },
   "0001254699-26-000004": {
@@ -137,10 +569,100 @@
     "emergence_date": null,
     "filer_emerged": true
   },
+  "0001279569-26-000267": {
+    "context": "of Vermilion until the Meeting, was a board member of Whiting Petroleum Corporation from 2015 to 2020. Whiting Petroleum filed for bankruptcy in April 2020 and emerged from bankruptcy in September 202",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1293135/000127956926000267/0001279569-26-000267.txt",
+    "emergence_date": "2020",
+    "filer_emerged": true
+  },
+  "0001289945-26-000010": {
+    "context": "ld cause a person or group of persons to become a 5% stockholder of our common stock. After a cumulative indirect shift in ownership of more than 45% since our emergence from bankruptcy proceedings in",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1289945/000128994526000010/0001289945-26-000010.txt",
+    "emergence_date": "2002",
+    "filer_emerged": true
+  },
+  "0001302215-26-000053": {
+    "context": "able and constrained as they are contingent upon a future event which includes factors outside of our control (e.g., completion of a transaction or third-party emergence from bankruptcy or approval by",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1302215/000130221526000053/0001302215-26-000053.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001415404-26-000006": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1415404/000141540426000006/0001415404-26-000006.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001437749-26-006391": {
+    "context": "a corporation to utilize its tax attributes, as well as certain built-in-losses, against future U.S. taxable income in the event of a change in ownership. Our emergence from Chapter 11 bankruptcy proc",
+    "doc": "https://www.sec.gov/Archives/edgar/data/98222/000143774926006391/0001437749-26-006391.txt",
+    "emergence_date": "2017",
+    "filer_emerged": true
+  },
+  "0001437749-26-008309": {
+    "context": "s. As of December 31, 2025, and 2024, the fair value of our net accounts receivable approximated their carrying values; therefore, no fair value adjustment for fresh start accounting was required. Our",
+    "doc": "https://www.sec.gov/Archives/edgar/data/71557/000143774926008309/0001437749-26-008309.txt",
+    "emergence_date": "December 31, 2025",
+    "filer_emerged": true
+  },
+  "0001437749-26-009797": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1831868/000143774926009797/0001437749-26-009797.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001437749-26-017104": {
+    "context": "gen remains a non-operational, wholly owned subsidiary of the Company. In 2014, Cytomedix changed its name to Nuo Therapeutics, Inc. In 2016, Nuo filed for and emerged from bankruptcy under a Chapter ",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1091596/000143774926017104/0001437749-26-017104.txt",
+    "emergence_date": "May 1, 2019",
+    "filer_emerged": true
+  },
   "0001456772-26-000020": {
     "context": "on Date. We did not meet the conditions for the application of ASC 852 as of September 30, 2025, as the Chapter 11 Cases occurred subsequent to that date. Upon emergence from bankruptcy on the effecti",
     "doc": "https://www.sec.gov/Archives/edgar/data/1456772/000145677226000020/0001456772-26-000020.txt",
     "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001467858-26-000013": {
+    "context": "eded our share of the underlying net assets by $ 1.6 billion and $ 1.9 billion at December 31, 2025 and 2024, primarily due to goodwill from the application of fresh-start reporting and the purchase o",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1467858/000146785826000013/0001467858-26-000013.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001489393-26-000012": {
+    "context": "nd book basis of our assets and liabilities, which resulted from the revaluation of those assets and liabilities to fair value in connection with the Company's emergence from bankruptcy and the applic",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1489393/000148939326000012/0001489393-26-000012.txt",
+    "emergence_date": "2010",
+    "filer_emerged": true
+  },
+  "0001493152-26-004291": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/2011954/000149315226004291/0001493152-26-004291.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001493152-26-004619": {
+    "context": "ny is unable to continue as a going concern. The Company has a working capital deficit as of December 31, 2024 and has generated recurring net losses since its emergence from bankruptcy in April 2022.",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1416876/000149315226004619/0001493152-26-004619.txt",
+    "emergence_date": "December 31, 2024",
+    "filer_emerged": true
+  },
+  "0001493152-26-009686": {
+    "context": "re to emerge from a bankruptcy proceeding, our capital structure, operating plans, and financial reporting could change materially. We may be required to adopt fresh start accounting, which could resu",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1618835/000149315226009686/0001493152-26-009686.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001493152-26-012751": {
+    "context": "0;Commonwealth Biotechnologies, Inc.&#8221; in Virginia in 1992, and completed an initial public offering in October 1997 (we refer to our company prior to our emergence from bankruptcy as CBI). CBI p",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1042418/000149315226012751/0001493152-26-012751.txt",
+    "emergence_date": "January 20, 2011",
+    "filer_emerged": true
+  },
+  "0001493152-26-013579": {
+    "context": "nter market since October 1999. On October 31, 2013, we filed a voluntary petition for reorganization under Chapter 11 of the United States bankruptcy code. We emerged from bankruptcy on January 23, 2",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1014763/000149315226013579/0001493152-26-013579.txt",
+    "emergence_date": "January 23, 2015",
     "filer_emerged": true
   },
   "0001493152-26-016259": {
@@ -161,15 +683,93 @@
     "emergence_date": "March 14, 2024",
     "filer_emerged": true
   },
+  "0001525221-26-000013": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1525221/000152522126000013/0001525221-26-000013.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001529628-26-000006": {
+    "context": "ducts and services) and technical support. Some of our competitors have greater financial and other resources than we do. Also, certain of our competitors have emerged from bankruptcy in recent years ",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1529628/000152962826000006/0001529628-26-000006.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001530804-26-000006": {
+    "context": "here in this Form 10-K for further information regarding our commitments and contingencies. We may be subject to claims that arise from activities prior to our emergence from bankruptcy in 2011. On No",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1530804/000153080426000006/0001530804-26-000006.txt",
+    "emergence_date": "November 30, 2010",
+    "filer_emerged": true
+  },
+  "0001567925-26-000008": {
+    "context": "tered into a second amendment to the second amended and restated master lease, or the GenesisCare Amended Master Lease, with GenesisCare in connection with its emergence from bankruptcy on February 16",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1567925/000156792526000008/0001567925-26-000008.txt",
+    "emergence_date": "February 16, 2024",
+    "filer_emerged": true
+  },
+  "0001575872-26-000437": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/2093018/000157587226000437/0001575872-26-000437.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
   "0001609253-26-000086": {
     "context": "",
     "doc": "https://www.sec.gov/Archives/edgar/data/1609253/000160925326000086/0001609253-26-000086.txt",
     "emergence_date": null,
     "filer_emerged": null
   },
+  "0001622536-26-000017": {
+    "context": "ion may not be indicative of our future financial performance. Our capital structure was significantly altered in the Restructuring. Upon Emergence, we adopted fresh start accounting, which required u",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1622536/000162253626000017/0001622536-26-000017.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
   "0001622536-26-000048": {
     "context": "Borrower and its Restricted Subsidiaries) in the Borrower's consolidated financial statements pursuant to GAAP, net of taxes, resulting from the application of fresh start accounting principles as a r",
     "doc": "https://www.sec.gov/Archives/edgar/data/1622536/000162253626000048/0001622536-26-000048.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001628280-26-009136": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1059556/000162828026009136/0001628280-26-009136.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001628280-26-013221": {
+    "context": "ed for bankruptcy protection under Chapter 11 of the United States Bankruptcy Code (&#8220;Chapter 11&#8221;). The Company completed the Chapter 11 process and emerged from bankruptcy on May 1, 2019. ",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1400891/000162828026013221/0001628280-26-013221.txt",
+    "emergence_date": "May 1, 2019",
+    "filer_emerged": true
+  },
+  "0001628280-26-013232": {
+    "context": "services, which could have a material adverse effect on our business, financial condition and results of operations. &#8226; Our actual financial results after emergence from bankruptcy may not be com",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1839341/000162828026013232/0001628280-26-013232.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001628280-26-014653": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/874501/000162828026014653/0001628280-26-014653.txt",
+    "emergence_date": null,
+    "filer_emerged": false
+  },
+  "0001628280-26-015318": {
+    "context": "incapable of producing either oil or natural gas in sufficient quantities to justify completion as an oil or natural gas well. Emergence Date. Date the Debtors emerged from bankruptcy, October 4, 2016",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1349436/000162828026015318/0001628280-26-015318.txt",
+    "emergence_date": "October 4, 2016",
+    "filer_emerged": true
+  },
+  "0001628280-26-021198": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1207179/000162828026021198/0001628280-26-021198.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001628280-26-023423": {
+    "context": "r 11 Cases will not be comparable to the financial condition and results of operations reflected in our historical financial statements. In connection with our emergence from Chapter 11 Cases, it is a",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1432364/000162828026023423/0001628280-26-023423.txt",
     "emergence_date": null,
     "filer_emerged": true
   },
@@ -185,11 +785,29 @@
     "emergence_date": "September 30, 2014",
     "filer_emerged": true
   },
+  "0001628280-26-031073": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/874499/000162828026031073/0001628280-26-031073.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001628280-26-032512": {
+    "context": "tics, Viafoura Inc. (&#8220;Viafoura&#8221;), an online provider of community engagement and management systems (where he was appointed following the company's emergence from bankruptcy protection), V",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1829959/000162828026032512/0001628280-26-032512.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
   "0001628280-26-041369": {
     "context": "pt with respect to the Series A redeemable convertible preferred stock of the Company, which will be reinstated upon consummation of the Plan and the Company's emergence from Chapter 11, all existing ",
     "doc": "https://www.sec.gov/Archives/edgar/data/1808220/000162828026041369/0001628280-26-041369.txt",
     "emergence_date": null,
     "filer_emerged": true
+  },
+  "0001645873-26-000057": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1645873/000164587326000057/0001645873-26-000057.txt",
+    "emergence_date": null,
+    "filer_emerged": false
   },
   "0001653653-26-000008": {
     "context": "ent, the carrying amount of the advances was $ 102.0 million, which was net of a $ 15.1 million fair value adjustment recognized upon the Company's adoption of fresh-start reporting in 2011. The $ 110",
@@ -197,9 +815,51 @@
     "emergence_date": "2011",
     "filer_emerged": true
   },
+  "0001657853-26-000010": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1657853/000165785326000010/0001657853-26-000010.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
   "0001683168-26-003521": {
     "context": "segment at this time. Quasi-reorganization On March 31, 2025, the Company implemented a quasi-reorganization to eliminate its accumulated deficits and reflect fresh-start accounting, in accordance wit",
     "doc": "https://www.sec.gov/Archives/edgar/data/790273/000168316826003521/0001683168-26-003521.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001735707-26-000009": {
+    "context": "w is not indicative of future stock price performance. The following graph and table illustrate the total return from April 30, 2021, the date of the Company's emergence from Chapter 11 bankruptcy pro",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1735707/000173570726000009/0001735707-26-000009.txt",
+    "emergence_date": "December 31, 2025",
+    "filer_emerged": true
+  },
+  "0001775734-26-000012": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1775734/000177573426000012/0001775734-26-000012.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001801170-26-000057": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1801170/000180117026000057/0001801170-26-000057.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001829126-26-002303": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1859035/000182912626002303/0001829126-26-002303.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
+  "0001829126-26-003167": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/2109876/000182912626003167/0001829126-26-003167.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001831481-26-000026": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1831481/000183148126000026/0001831481-26-000026.txt",
     "emergence_date": null,
     "filer_emerged": true
   },
@@ -209,16 +869,52 @@
     "emergence_date": null,
     "filer_emerged": null
   },
+  "0001841666-26-000015": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1841666/000184166626000015/0001841666-26-000015.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
   "0001841666-26-000034": {
     "context": "",
     "doc": "https://www.sec.gov/Archives/edgar/data/1841666/000184166626000034/0001841666-26-000034.txt",
     "emergence_date": null,
     "filer_emerged": null
   },
+  "0001856437-26-000004": {
+    "context": "f its subsidiaries commenced voluntary cases for Chapter 11 bankruptcy protection. In April 2024, the company's bankruptcy plan became effective and JOANN Inc. emerged from bankruptcy. Prior to joinin",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1856437/000185643726000004/0001856437-26-000004.txt",
+    "emergence_date": "2019",
+    "filer_emerged": true
+  },
+  "0001859392-26-000016": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1859392/000185939226000016/0001859392-26-000016.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
   "0001895262-26-000129": {
     "context": "Successor/Predecessor fresh-start reporting present",
     "doc": "https://www.sec.gov/Archives/edgar/data/1895262/000189526226000129/0001895262-26-000129.txt",
     "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001922446-26-000011": {
+    "context": "IRC Section 382. As a result, NOLs occurring prior to our ownership change can only offset taxable income of $0.7 million annually. Losses generated after our emergence from bankruptcy in October 2020",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1922446/000192244626000011/0001922446-26-000011.txt",
+    "emergence_date": "July 4, 2025",
+    "filer_emerged": true
+  },
+  "0001971213-26-000012": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1971213/000197121326000012/0001971213-26-000012.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0002007855-26-000013": {
+    "context": "ontractor for the Plaquemines Project, filed for bankruptcy protection under Chapter 11 of the U.S. bankruptcy code. While Zachry Industrial, Inc. successfully emerged from Chapter 11 proceeding in 20",
+    "doc": "https://www.sec.gov/Archives/edgar/data/2007855/000200785526000013/0002007855-26-000013.txt",
+    "emergence_date": "2025",
     "filer_emerged": true
   }
 }
