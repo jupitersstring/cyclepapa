@@ -319,6 +319,10 @@ def main() -> int:
     # positives) — so a plan_effective-only name is admitted ONLY if it is
     # corroborated by an actual Chapter 11 filing in the PACER poller.
     def _genuine(rec) -> bool:
+        # A Q-suffix ticker means the security is STILL IN Chapter 11
+        # (pending emergence) — not yet a tradable post-reorg common.
+        if rec.get("pre_emergence"):
+            return False
         lbl = rec.get("query_label", "")
         if "freshstart" in lbl or "emerged" in lbl:
             return True
