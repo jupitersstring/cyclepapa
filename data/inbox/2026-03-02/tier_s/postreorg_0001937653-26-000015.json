@@ -1,0 +1,30 @@
+{
+  "accession": "0001937653-26-000015",
+  "also_matched": [
+    "consummation of the Plan",
+    "consummation of the Plan",
+    "consummation of the Plan",
+    "consummation of the Plan",
+    "consummation of the Plan",
+    "consummation of the Plan"
+  ],
+  "cik": "0001937653",
+  "emergence_tier": "recall",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-03-02",
+  "form": "10-K",
+  "form_code": "10-K",
+  "isin": null,
+  "item_1_03": false,
+  "items": [],
+  "jurisdiction": "US",
+  "matched_phrase": "consummation of the Plan",
+  "name": "Zymeworks Inc.",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_plan_effective",
+  "query_note": "Plan of Reorganization effective / consummated \u2014 the emergence event. New equity distributed to creditors; watch the forced-selling window.",
+  "source": "EDGAR-postreorg",
+  "ticker": "ZYME",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1937653/000193765326000015"
+}

@@ -1,0 +1,39 @@
+{
+  "accession": "0001193125-26-201368",
+  "also_matched": [
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date"
+  ],
+  "cik": "0002032019",
+  "emergence_tier": "recall",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-05-01",
+  "form": "8-K",
+  "form_code": "8-K",
+  "isin": null,
+  "item_1_03": false,
+  "items": [
+    "1.01",
+    "5.03",
+    "5.07",
+    "8.01",
+    "9.01"
+  ],
+  "jurisdiction": "US",
+  "matched_phrase": "Plan Effective Date",
+  "name": "EQT Infrastructure Co LLC",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_plan_effective",
+  "query_note": "Plan of Reorganization effective / consummated \u2014 the emergence event. New equity distributed to creditors; watch the forced-selling window.",
+  "source": "EDGAR-postreorg",
+  "ticker": "",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/2032019/000119312526201368"
+}

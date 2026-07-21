@@ -1,0 +1,25 @@
+{
+  "accession": "0001692819-26-000006",
+  "also_matched": [
+    "fresh-start reporting"
+  ],
+  "cik": "0001692819",
+  "emergence_tier": "recall",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-02-27",
+  "form": "10-K",
+  "form_code": "10-K",
+  "isin": null,
+  "item_1_03": false,
+  "items": [],
+  "jurisdiction": "US",
+  "matched_phrase": "fresh-start reporting",
+  "name": "Vistra Corp.",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_freshstart",
+  "query_note": "Fresh-start accounting (ASC 852) \u2014 adopted ONLY upon Chapter 11 emergence, so a post-reorg entity by definition. Uncovered equity, forced-seller creditors, clean cap stack.",
+  "source": "EDGAR-postreorg",
+  "ticker": "VST",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1692819/000169281926000006"
+}

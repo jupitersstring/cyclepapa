@@ -1,0 +1,30 @@
+{
+  "accession": "0001213900-26-050382",
+  "also_matched": [
+    "emergence from Chapter 11",
+    "emergence from Chapter 11",
+    "emergence from Chapter 11",
+    "emergence from Chapter 11",
+    "emergence from Chapter 11",
+    "emergence from Chapter 11"
+  ],
+  "cik": "0002033770",
+  "emergence_tier": "strong",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-04-30",
+  "form": "424B3",
+  "form_code": "424B3",
+  "isin": null,
+  "item_1_03": false,
+  "items": [],
+  "jurisdiction": "US",
+  "matched_phrase": "emergence from Chapter 11",
+  "name": "CID Holdco, Inc.",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_emerged",
+  "query_note": "Emergence from Chapter 11 \u2014 post-reorg equity now trading. Verify float, creditor overhang, and the coverage vacuum.",
+  "source": "EDGAR-postreorg",
+  "ticker": "DAIC",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/2033770/000121390026050382"
+}

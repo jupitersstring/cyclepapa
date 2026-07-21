@@ -1,0 +1,37 @@
+{
+  "accession": "0001437749-26-004381",
+  "also_matched": [
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date"
+  ],
+  "cik": "0000108385",
+  "emergence_tier": "recall",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-02-17",
+  "form": "8-K",
+  "form_code": "8-K",
+  "isin": null,
+  "item_1_03": false,
+  "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+  ],
+  "jurisdiction": "US",
+  "matched_phrase": "Plan Effective Date",
+  "name": "WORLD ACCEPTANCE CORP",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_plan_effective",
+  "query_note": "Plan of Reorganization effective / consummated \u2014 the emergence event. New equity distributed to creditors; watch the forced-selling window.",
+  "source": "EDGAR-postreorg",
+  "ticker": "WRLD",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/108385/000143774926004381"
+}

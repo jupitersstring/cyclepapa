@@ -1,0 +1,33 @@
+{
+  "accession": "0001289945-26-000010",
+  "also_matched": [
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy"
+  ],
+  "cik": "0001289945",
+  "emergence_tier": "recall",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-02-26",
+  "form": "10-K",
+  "form_code": "10-K",
+  "isin": null,
+  "item_1_03": false,
+  "items": [],
+  "jurisdiction": "US",
+  "matched_phrase": "emergence from bankruptcy",
+  "name": "Spok Holdings, Inc",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_emerged",
+  "query_note": "Emergence from Chapter 11 \u2014 post-reorg equity now trading. Verify float, creditor overhang, and the coverage vacuum.",
+  "source": "EDGAR-postreorg",
+  "ticker": "SPOK",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1289945/000128994526000010"
+}

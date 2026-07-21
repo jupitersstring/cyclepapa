@@ -1,0 +1,31 @@
+{
+  "accession": "0001104659-26-058108",
+  "also_matched": [
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy"
+  ],
+  "cik": "0000813762",
+  "emergence_tier": "recall",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-05-11",
+  "form": "8-K",
+  "form_code": "8-K",
+  "isin": null,
+  "item_1_03": false,
+  "items": [
+    "7.01",
+    "9.01"
+  ],
+  "jurisdiction": "US",
+  "matched_phrase": "emergence from bankruptcy",
+  "name": "ICAHN ENTERPRISES L.P.",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_emerged",
+  "query_note": "Emergence from Chapter 11 \u2014 post-reorg equity now trading. Verify float, creditor overhang, and the coverage vacuum.",
+  "source": "EDGAR-postreorg",
+  "ticker": "IEP",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/813762/000110465926058108"
+}

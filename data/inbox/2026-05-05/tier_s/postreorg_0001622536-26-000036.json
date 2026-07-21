@@ -1,0 +1,31 @@
+{
+  "accession": "0001622536-26-000036",
+  "also_matched": [
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy"
+  ],
+  "cik": "0001622536",
+  "emergence_tier": "recall",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-05-05",
+  "form": "10-Q",
+  "form_code": "10-Q",
+  "isin": null,
+  "item_1_03": false,
+  "items": [],
+  "jurisdiction": "US",
+  "matched_phrase": "emergence from bankruptcy",
+  "name": "Talen Energy Corp",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_emerged",
+  "query_note": "Emergence from Chapter 11 \u2014 post-reorg equity now trading. Verify float, creditor overhang, and the coverage vacuum.",
+  "source": "EDGAR-postreorg",
+  "ticker": "TLN",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1622536/000162253626000036"
+}

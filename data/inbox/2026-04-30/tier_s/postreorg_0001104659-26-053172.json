@@ -1,0 +1,22 @@
+{
+  "accession": "0001104659-26-053172",
+  "cik": "0001444406",
+  "emergence_tier": "strong",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-04-30",
+  "form": "20-F",
+  "form_code": "20-F",
+  "isin": null,
+  "item_1_03": false,
+  "items": [],
+  "jurisdiction": "US",
+  "matched_phrase": "Effective Date of the Plan of Reorganization",
+  "name": "ECOPETROL S.A.",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_plan_effective",
+  "query_note": "Plan of Reorganization effective / consummated \u2014 the emergence event. New equity distributed to creditors; watch the forced-selling window.",
+  "source": "EDGAR-postreorg",
+  "ticker": "EC",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1444406/000110465926053172"
+}

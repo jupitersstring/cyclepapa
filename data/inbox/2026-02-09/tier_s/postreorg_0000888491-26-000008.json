@@ -1,0 +1,25 @@
+{
+  "accession": "0000888491-26-000008",
+  "also_matched": [
+    "Plan of Reorganization became effective"
+  ],
+  "cik": "0000888491",
+  "emergence_tier": "strong",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-02-09",
+  "form": "10-K",
+  "form_code": "10-K",
+  "isin": null,
+  "item_1_03": false,
+  "items": [],
+  "jurisdiction": "US",
+  "matched_phrase": "Effective Date of the Plan of Reorganization",
+  "name": "OMEGA HEALTHCARE INVESTORS INC",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_plan_effective",
+  "query_note": "Plan of Reorganization effective / consummated \u2014 the emergence event. New equity distributed to creditors; watch the forced-selling window.",
+  "source": "EDGAR-postreorg",
+  "ticker": "OHI",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/888491/000088849126000008"
+}

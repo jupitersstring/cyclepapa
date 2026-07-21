@@ -1,0 +1,37 @@
+{
+  "accession": "0001193125-26-023418",
+  "also_matched": [
+    "consummation of the Plan",
+    "consummation of the Plan",
+    "consummation of the Plan",
+    "consummation of the Plan",
+    "consummation of the Plan",
+    "consummation of the Plan",
+    "consummation of the Plan"
+  ],
+  "cik": "0001525221",
+  "emergence_tier": "strong",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-01-27",
+  "form": "8-K",
+  "form_code": "8-K",
+  "isin": null,
+  "item_1_03": false,
+  "items": [
+    "1.01",
+    "2.03",
+    "7.01",
+    "8.01",
+    "9.01"
+  ],
+  "jurisdiction": "US",
+  "matched_phrase": "consummation of the Plan of Reorganization",
+  "name": "Bristow Group Inc.",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_plan_effective",
+  "query_note": "Plan of Reorganization effective / consummated \u2014 the emergence event. New equity distributed to creditors; watch the forced-selling window.",
+  "source": "EDGAR-postreorg",
+  "ticker": "VTOL",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1525221/000119312526023418"
+}

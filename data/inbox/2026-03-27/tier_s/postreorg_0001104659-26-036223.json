@@ -1,0 +1,33 @@
+{
+  "accession": "0001104659-26-036223",
+  "also_matched": [
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy"
+  ],
+  "cik": "0000749098",
+  "emergence_tier": "recall",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-03-27",
+  "form": "6-K",
+  "form_code": "6-K",
+  "isin": null,
+  "item_1_03": false,
+  "items": [],
+  "jurisdiction": "US",
+  "matched_phrase": "emerged from bankruptcy",
+  "name": "MAGNA INTERNATIONAL INC",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_emerged",
+  "query_note": "Emergence from Chapter 11 \u2014 post-reorg equity now trading. Verify float, creditor overhang, and the coverage vacuum.",
+  "source": "EDGAR-postreorg",
+  "ticker": "MGA",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/749098/000110465926036223"
+}

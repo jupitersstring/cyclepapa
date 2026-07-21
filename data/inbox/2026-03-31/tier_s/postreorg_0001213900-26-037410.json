@@ -1,0 +1,30 @@
+{
+  "accession": "0001213900-26-037410",
+  "also_matched": [
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy"
+  ],
+  "cik": "0002025401",
+  "emergence_tier": "recall",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-03-31",
+  "form": "10-K",
+  "form_code": "10-K",
+  "isin": null,
+  "item_1_03": false,
+  "items": [],
+  "jurisdiction": "US",
+  "matched_phrase": "emerged from bankruptcy",
+  "name": "Fifth Era Acquisition Corp I",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_emerged",
+  "query_note": "Emergence from Chapter 11 \u2014 post-reorg equity now trading. Verify float, creditor overhang, and the coverage vacuum.",
+  "source": "EDGAR-postreorg",
+  "ticker": "FERA",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/2025401/000121390026037410"
+}

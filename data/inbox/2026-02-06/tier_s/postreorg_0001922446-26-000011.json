@@ -1,0 +1,33 @@
+{
+  "accession": "0001922446-26-000011",
+  "also_matched": [
+    "emergence from Chapter 11",
+    "emergence from Chapter 11",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy"
+  ],
+  "cik": "0001922446",
+  "emergence_tier": "strong",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-02-06",
+  "form": "8-K/A",
+  "form_code": "8-K/A",
+  "isin": null,
+  "item_1_03": false,
+  "items": [
+    "9.01"
+  ],
+  "jurisdiction": "US",
+  "matched_phrase": "emergence from Chapter 11",
+  "name": "Diversified Energy Co",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_emerged",
+  "query_note": "Emergence from Chapter 11 \u2014 post-reorg equity now trading. Verify float, creditor overhang, and the coverage vacuum.",
+  "source": "EDGAR-postreorg",
+  "ticker": "DEC",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1922446/000192244626000011"
+}

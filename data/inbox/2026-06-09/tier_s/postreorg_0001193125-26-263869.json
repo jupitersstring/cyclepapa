@@ -1,0 +1,32 @@
+{
+  "accession": "0001193125-26-263869",
+  "also_matched": [
+    "adopted fresh-start",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "upon emergence",
+    "upon emergence",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "application of fresh start"
+  ],
+  "cik": "0000895419",
+  "emergence_tier": "strong",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-06-09",
+  "form": "424B3",
+  "form_code": "424B3",
+  "isin": null,
+  "item_1_03": false,
+  "items": [],
+  "jurisdiction": "US",
+  "matched_phrase": "fresh-start accounting",
+  "name": "WOLFSPEED, INC.",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_freshstart",
+  "query_note": "Fresh-start accounting (ASC 852) \u2014 adopted ONLY upon Chapter 11 emergence, so a post-reorg entity by definition. Uncovered equity, forced-seller creditors, clean cap stack.",
+  "source": "EDGAR-postreorg",
+  "ticker": "WOLF",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/895419/000119312526263869"
+}

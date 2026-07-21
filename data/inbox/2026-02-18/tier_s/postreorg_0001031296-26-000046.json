@@ -1,0 +1,33 @@
+{
+  "accession": "0001031296-26-000046",
+  "also_matched": [
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy"
+  ],
+  "cik": "0001031296",
+  "emergence_tier": "recall",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-02-18",
+  "form": "10-K",
+  "form_code": "10-K",
+  "isin": null,
+  "item_1_03": false,
+  "items": [],
+  "jurisdiction": "US",
+  "matched_phrase": "emerged from bankruptcy",
+  "name": "FIRSTENERGY CORP",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_emerged",
+  "query_note": "Emergence from Chapter 11 \u2014 post-reorg equity now trading. Verify float, creditor overhang, and the coverage vacuum.",
+  "source": "EDGAR-postreorg",
+  "ticker": "FE",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1031296/000103129626000046"
+}

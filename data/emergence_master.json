@@ -1,119 +1,263 @@
 [
   {
     "channels": {
+      "Form 25 old-share delisting": 1,
       "emergence 8-K prose": 1,
-      "fresh-start accounting (10-K/Q)": 3,
+      "plan-effective 8-K": 2
+    },
+    "cik": "0000720154",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-06-03",
+    "item_1_03": true,
+    "key": "CIK:720154",
+    "last_filed": "2026-07-16",
+    "name": "Inotiv, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "NOTV"
+  },
+  {
+    "channels": {
+      "Form 25 old-share delisting": 1,
+      "emergence 8-K prose": 1,
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001808220",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-06-08",
+    "item_1_03": true,
+    "key": "CIK:1808220",
+    "last_filed": "2026-07-11",
+    "name": "GoHealth, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "GOCO"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 9,
+      "fresh-start accounting (10-K/Q)": 8,
       "plan-effective 8-K": 3
+    },
+    "cik": "0000895419",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-01-30",
+    "item_1_03": false,
+    "key": "CIK:895419",
+    "last_filed": "2026-06-18",
+    "name": "WOLFSPEED, INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "WOLF"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 6,
+      "fresh-start accounting (10-K/Q)": 1,
+      "plan-effective 8-K": 2
+    },
+    "cik": "0001532286",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-02-02",
+    "item_1_03": true,
+    "key": "CIK:1532286",
+    "last_filed": "2026-05-15",
+    "name": "Nine Energy Service, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "NINE"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 4,
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001355096",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-04-15",
+    "item_1_03": true,
+    "key": "CIK:1355096",
+    "last_filed": "2026-07-17",
+    "name": "QVC Group, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "QVCGA"
+  },
+  {
+    "channels": {
+      "Form 25 old-share delisting": 2,
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001169445",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-04-30",
+    "item_1_03": false,
+    "key": "CIK:1169445",
+    "last_filed": "2026-07-11",
+    "name": "TruBridge, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "TBRG"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 7,
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001432364",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-02-18",
+    "item_1_03": false,
+    "key": "CIK:1432364",
+    "last_filed": "2026-07-01",
+    "name": "AZUL SA",
+    "pending": false,
+    "primary": true,
+    "ticker": "AZLUY"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1,
+      "fresh-start accounting (10-K/Q)": 2
+    },
+    "cik": "0001282648",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-03-23",
+    "item_1_03": false,
+    "key": "CIK:1282648",
+    "last_filed": "2026-07-01",
+    "name": "BATTALION OIL CORP",
+    "pending": false,
+    "primary": true,
+    "ticker": "BATL"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 5,
+      "plan-effective 8-K": 4
     },
     "cik": "0001456772",
     "confidence": "high (primary + corroboration)",
-    "first_filed": "2026-04-28",
+    "first_filed": "2026-02-06",
+    "item_1_03": true,
     "key": "CIK:1456772",
     "last_filed": "2026-06-23",
     "name": "OFFICE PROPERTIES INCOME TRUST",
+    "pending": false,
     "primary": true,
     "ticker": "OPIRQ"
   },
   {
     "channels": {
       "emergence 8-K prose": 2,
-      "fresh-start accounting (10-K/Q)": 1,
-      "plan-effective 8-K": 1
-    },
-    "cik": "0001519061",
-    "confidence": "high (primary + corroboration)",
-    "first_filed": "2026-05-14",
-    "key": "CIK:1519061",
-    "last_filed": "2026-06-01",
-    "name": "Trinseo PLC",
-    "primary": true,
-    "ticker": "TSEOF"
-  },
-  {
-    "channels": {
-      "emergence 8-K prose": 2,
-      "fresh-start accounting (10-K/Q)": 1,
-      "plan-effective 8-K": 1
-    },
-    "cik": "0001355096",
-    "confidence": "high (primary + corroboration)",
-    "first_filed": "2026-04-15",
-    "key": "CIK:1355096",
-    "last_filed": "2026-05-15",
-    "name": "QVC Group, Inc.",
-    "primary": true,
-    "ticker": "QVCGA"
-  },
-  {
-    "channels": {
-      "emergence 8-K prose": 1,
-      "fresh-start accounting (10-K/Q)": 2,
-      "plan-effective 8-K": 1
-    },
-    "cik": "0001532286",
-    "confidence": "high (primary + corroboration)",
-    "first_filed": "2026-04-21",
-    "key": "CIK:1532286",
-    "last_filed": "2026-05-15",
-    "name": "Nine Energy Service, Inc.",
-    "primary": true,
-    "ticker": "NINE"
-  },
-  {
-    "channels": {
-      "Form 25 old-share delisting": 1,
-      "emergence 8-K prose": 1
-    },
-    "cik": "0001808220",
-    "confidence": "high (primary + corroboration)",
-    "first_filed": "2026-06-08",
-    "key": "CIK:1808220",
-    "last_filed": "2026-07-11",
-    "name": "GoHealth, Inc.",
-    "primary": true,
-    "ticker": "GOCO"
-  },
-  {
-    "channels": {
-      "Form 25 old-share delisting": 1,
-      "fresh-start accounting (10-K/Q)": 1
-    },
-    "cik": "0000720154",
-    "confidence": "high (primary + corroboration)",
-    "first_filed": "2026-06-03",
-    "key": "CIK:720154",
-    "last_filed": "2026-07-11",
-    "name": "Inotiv, Inc.",
-    "primary": true,
-    "ticker": "NOTV"
-  },
-  {
-    "channels": {
-      "emergence 8-K prose": 1,
       "fresh-start accounting (10-K/Q)": 1
     },
     "cik": "0001737706",
     "confidence": "high (primary + corroboration)",
-    "first_filed": "2026-05-11",
+    "first_filed": "2026-02-26",
+    "item_1_03": false,
     "key": "CIK:1737706",
     "last_filed": "2026-06-18",
-    "name": "SEADRILL Ltd",
+    "name": "Seadrill Ltd",
+    "pending": false,
     "primary": true,
     "ticker": "SDRL"
   },
   {
     "channels": {
-      "emergence 8-K prose": 1,
-      "fresh-start accounting (10-K/Q)": 1
+      "emergence 8-K prose": 2,
+      "plan-effective 8-K": 1
     },
-    "cik": "0000896493",
+    "cik": "0001831868",
     "confidence": "high (primary + corroboration)",
-    "first_filed": "2026-04-15",
-    "key": "CIK:896493",
-    "last_filed": "2026-05-18",
-    "name": "Hyperscale Data, Inc.",
+    "first_filed": "2026-03-25",
+    "item_1_03": false,
+    "key": "CIK:1831868",
+    "last_filed": "2026-06-17",
+    "name": "SeaStar Medical Holding Corp",
+    "pending": false,
     "primary": true,
-    "ticker": "GPUS"
+    "ticker": "ICU"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1,
+      "fresh-start accounting (10-K/Q)": 3
+    },
+    "cik": "0001622536",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-02-26",
+    "item_1_03": false,
+    "key": "CIK:1622536",
+    "last_filed": "2026-06-15",
+    "name": "Talen Energy Corp",
+    "pending": false,
+    "primary": true,
+    "ticker": "TLN"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 3,
+      "plan-effective 8-K": 2
+    },
+    "cik": "0001519061",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-05-14",
+    "item_1_03": true,
+    "key": "CIK:1519061",
+    "last_filed": "2026-06-12",
+    "name": "Trinseo PLC",
+    "pending": false,
+    "primary": true,
+    "ticker": "TSEOF"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1,
+      "fresh-start accounting (10-K/Q)": 2
+    },
+    "cik": "0001895262",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-02-12",
+    "item_1_03": false,
+    "key": "CIK:1895262",
+    "last_filed": "2026-06-12",
+    "name": "Noble Corp plc",
+    "pending": false,
+    "primary": true,
+    "ticker": "NE"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1,
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001400891",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-03-02",
+    "item_1_03": false,
+    "key": "CIK:1400891",
+    "last_filed": "2026-06-04",
+    "name": "iHeartMedia, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "IHRT"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2,
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001705012",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-01-27",
+    "item_1_03": true,
+    "key": "CIK:1705012",
+    "last_filed": "2026-06-04",
+    "name": "Fat Brands, Inc",
+    "pending": false,
+    "primary": true,
+    "ticker": "FABTQ"
   },
   {
     "channels": {
@@ -123,9 +267,11 @@
     "cik": "0001254699",
     "confidence": "high (primary + corroboration)",
     "first_filed": "2026-04-15",
+    "item_1_03": true,
     "key": "CIK:1254699",
     "last_filed": "2026-05-15",
     "name": "QVC INC",
+    "pending": false,
     "primary": true,
     "ticker": "QVCC"
   },
@@ -134,39 +280,249 @@
       "emergence 8-K prose": 2,
       "fresh-start accounting (10-K/Q)": 1
     },
-    "cik": "0001567892",
+    "cik": "0001759546",
     "confidence": "high (primary + corroboration)",
-    "first_filed": "2026-04-15",
-    "key": "CIK:1567892",
-    "last_filed": "2026-05-12",
-    "name": "Keenova Therapeutics plc",
+    "first_filed": "2026-03-26",
+    "item_1_03": false,
+    "key": "CIK:1759546",
+    "last_filed": "2026-05-15",
+    "name": "NU RIDE INC.",
+    "pending": false,
     "primary": true,
-    "ticker": ""
+    "ticker": "NRDE"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1,
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0001839530",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-03-31",
+    "item_1_03": false,
+    "key": "CIK:1839530",
+    "last_filed": "2026-05-15",
+    "name": "XBP Global Holdings, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "XBP"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1,
+      "fresh-start accounting (10-K/Q)": 3
+    },
+    "cik": "0001580864",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-03-26",
+    "item_1_03": false,
+    "key": "CIK:1580864",
+    "last_filed": "2026-05-15",
+    "name": "Vroom, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "VRM"
   },
   {
     "channels": {
       "emergence 8-K prose": 2,
+      "fresh-start accounting (10-K/Q)": 3
+    },
+    "cik": "0000105319",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-03-16",
+    "item_1_03": false,
+    "key": "CIK:105319",
+    "last_filed": "2026-05-07",
+    "name": "WW INTERNATIONAL, INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "WW"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2,
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0001349436",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-03-05",
+    "item_1_03": false,
+    "key": "CIK:1349436",
+    "last_filed": "2026-05-07",
+    "name": "SANDRIDGE ENERGY INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "SD"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1,
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0001065059",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-02-11",
+    "item_1_03": false,
+    "key": "CIK:1065059",
+    "last_filed": "2026-05-06",
+    "name": "CENTRUS ENERGY CORP",
+    "pending": false,
+    "primary": true,
+    "ticker": "LEU"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 4,
       "plan-effective 8-K": 2
     },
     "cik": "0001058623",
     "confidence": "high (primary + corroboration)",
-    "first_filed": "2026-04-17",
+    "first_filed": "2026-03-05",
+    "item_1_03": true,
     "key": "CIK:1058623",
     "last_filed": "2026-04-30",
     "name": "CUMULUS MEDIA INC",
+    "pending": false,
     "primary": true,
     "ticker": "CMLS"
   },
   {
     "channels": {
-      "fresh-start accounting (10-K/Q)": 3
+      "emergence 8-K prose": 1,
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0001609253",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-03-02",
+    "item_1_03": false,
+    "key": "CIK:1609253",
+    "last_filed": "2026-04-17",
+    "name": "California Resources Corp",
+    "pending": false,
+    "primary": true,
+    "ticker": "CRC"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1,
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001322422",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-03-09",
+    "item_1_03": false,
+    "key": "CIK:1322422",
+    "last_filed": "2026-04-14",
+    "name": "Hudbay Minerals Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "HBM"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 1,
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001455684",
+    "confidence": "pending (Q-suffix \u2014 still in Chapter 11, not yet emerged)",
+    "first_filed": "2026-03-05",
+    "item_1_03": false,
+    "key": "CIK:1455684",
+    "last_filed": "2026-03-25",
+    "name": "TPI COMPOSITES, INC",
+    "pending": true,
+    "primary": true,
+    "ticker": "TPICQ"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1,
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001525221",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-01-27",
+    "item_1_03": false,
+    "key": "CIK:1525221",
+    "last_filed": "2026-02-26",
+    "name": "Bristow Group Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "VTOL"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001790169",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-07-20",
+    "item_1_03": false,
+    "key": "CIK:1790169",
+    "last_filed": "2026-07-20",
+    "name": "ZeroStack Corp.",
+    "pending": false,
+    "primary": true,
+    "ticker": "ZSTK"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2
+    },
+    "cik": "0000053456",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-30",
+    "item_1_03": false,
+    "key": "CIK:53456",
+    "last_filed": "2026-07-16",
+    "name": "JERSEY CENTRAL POWER & LIGHT CO",
+    "pending": false,
+    "primary": true,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 2
+    },
+    "cik": "0002007691",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-29",
+    "item_1_03": false,
+    "key": "CIK:2007691",
+    "last_filed": "2026-07-13",
+    "name": "Ionic Digital Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0002045151",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-07-10",
+    "item_1_03": false,
+    "key": "CIK:2045151",
+    "last_filed": "2026-07-10",
+    "name": "Tailored Brands, Inc. / DE",
+    "pending": false,
+    "primary": true,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 7
     },
     "cik": "0001837671",
     "confidence": "medium (single primary source)",
-    "first_filed": "2026-05-05",
+    "first_filed": "2026-02-05",
+    "item_1_03": false,
     "key": "CIK:1837671",
     "last_filed": "2026-07-07",
     "name": "Copper Property CTL Pass Through Trust",
+    "pending": false,
     "primary": true,
     "ticker": "CPPTL"
   },
@@ -177,24 +533,58 @@
     "cik": "0000748592",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-07-02",
+    "item_1_03": false,
     "key": "CIK:748592",
     "last_filed": "2026-07-02",
     "name": "Ernexa Therapeutics Inc.",
+    "pending": false,
     "primary": true,
     "ticker": "ERNA"
   },
   {
     "channels": {
-      "fresh-start accounting (10-K/Q)": 1
+      "plan-effective 8-K": 1
     },
-    "cik": "0001282648",
+    "cik": "0001948056",
     "confidence": "medium (single primary source)",
-    "first_filed": "2026-07-01",
-    "key": "CIK:1282648",
-    "last_filed": "2026-07-01",
-    "name": "BATTALION OIL CORP",
+    "first_filed": "2026-07-02",
+    "item_1_03": false,
+    "key": "CIK:1948056",
+    "last_filed": "2026-07-02",
+    "name": "KKR Infrastructure Conglomerate LLC",
+    "pending": false,
     "primary": true,
-    "ticker": "BATL"
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001957845",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-07-02",
+    "item_1_03": false,
+    "key": "CIK:1957845",
+    "last_filed": "2026-07-02",
+    "name": "KKR Private Equity Conglomerate LLC",
+    "pending": false,
+    "primary": true,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 9
+    },
+    "cik": "0000885508",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-11",
+    "item_1_03": false,
+    "key": "CIK:885508",
+    "last_filed": "2026-07-01",
+    "name": "STRATUS PROPERTIES INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "STRS"
   },
   {
     "channels": {
@@ -203,22 +593,71 @@
     "cik": "0001003078",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-07-01",
+    "item_1_03": false,
     "key": "CIK:1003078",
     "last_filed": "2026-07-01",
     "name": "MSC INDUSTRIAL DIRECT CO INC",
+    "pending": false,
     "primary": true,
     "ticker": "MSM"
   },
   {
     "channels": {
-      "fresh-start accounting (10-K/Q)": 1
+      "emergence 8-K prose": 3
+    },
+    "cik": "0001775734",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-17",
+    "item_1_03": false,
+    "key": "CIK:1775734",
+    "last_filed": "2026-06-30",
+    "name": "Beneficient",
+    "pending": false,
+    "primary": true,
+    "ticker": "BENF"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 2
+    },
+    "cik": "0002049662",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-06",
+    "item_1_03": false,
+    "key": "CIK:2049662",
+    "last_filed": "2026-06-30",
+    "name": "Cartesian Growth Corp III",
+    "pending": false,
+    "primary": true,
+    "ticker": "CGCT"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001023994",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-30",
+    "item_1_03": false,
+    "key": "CIK:1023994",
+    "last_filed": "2026-06-30",
+    "name": "OLENOX INDUSTRIES INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "OLOX"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 2
     },
     "cik": "0001692819",
     "confidence": "medium (single primary source)",
-    "first_filed": "2026-06-30",
+    "first_filed": "2026-02-27",
+    "item_1_03": false,
     "key": "CIK:1692819",
     "last_filed": "2026-06-30",
     "name": "Vistra Corp.",
+    "pending": false,
     "primary": true,
     "ticker": "VST"
   },
@@ -229,11 +668,43 @@
     "cik": "0001856365",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-25",
+    "item_1_03": false,
     "key": "CIK:1856365",
     "last_filed": "2026-06-29",
     "name": "Finwise Bancorp",
+    "pending": false,
     "primary": true,
     "ticker": "FINW"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000919012",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-29",
+    "item_1_03": false,
+    "key": "CIK:919012",
+    "last_filed": "2026-06-29",
+    "name": "AMERICAN EAGLE OUTFITTERS INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "AEO"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001779977",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-29",
+    "item_1_03": false,
+    "key": "CIK:1779977",
+    "last_filed": "2026-06-29",
+    "name": "SeeQC, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "SEQC"
   },
   {
     "channels": {
@@ -242,22 +713,26 @@
     "cik": "0001280776",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-29",
+    "item_1_03": false,
     "key": "CIK:1280776",
     "last_filed": "2026-06-29",
     "name": "IMMUNIC, INC.",
+    "pending": false,
     "primary": true,
     "ticker": "IMUX"
   },
   {
     "channels": {
-      "emergence 8-K prose": 1
+      "emergence 8-K prose": 3
     },
     "cik": "0001009759",
     "confidence": "medium (single primary source)",
-    "first_filed": "2026-06-25",
+    "first_filed": "2026-02-12",
+    "item_1_03": false,
     "key": "CIK:1009759",
     "last_filed": "2026-06-25",
-    "name": "Capstone Energy Plus, Inc.",
+    "name": "Capstone Green Energy Holdings, Inc.",
+    "pending": false,
     "primary": true,
     "ticker": "CGEH"
   },
@@ -268,9 +743,11 @@
     "cik": "0002048951",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-25",
+    "item_1_03": false,
     "key": "CIK:2048951",
     "last_filed": "2026-06-25",
     "name": "Teamshares Inc",
+    "pending": false,
     "primary": true,
     "ticker": "LOKV"
   },
@@ -281,9 +758,11 @@
     "cik": "0001170010",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-24",
+    "item_1_03": false,
     "key": "CIK:1170010",
     "last_filed": "2026-06-24",
     "name": "CARMAX INC",
+    "pending": false,
     "primary": true,
     "ticker": "KMX"
   },
@@ -294,9 +773,11 @@
     "cik": "0000106532",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-24",
+    "item_1_03": false,
     "key": "CIK:106532",
     "last_filed": "2026-06-24",
     "name": "WEYCO GROUP INC",
+    "pending": false,
     "primary": true,
     "ticker": "WEYS"
   },
@@ -307,9 +788,11 @@
     "cik": "0001345126",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-24",
+    "item_1_03": false,
     "key": "CIK:1345126",
     "last_filed": "2026-06-24",
     "name": "Compass Diversified Holdings",
+    "pending": false,
     "primary": true,
     "ticker": "CODI"
   },
@@ -320,11 +803,58 @@
     "cik": "0001644378",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-23",
+    "item_1_03": false,
     "key": "CIK:1644378",
     "last_filed": "2026-06-23",
     "name": "RMR GROUP INC.",
+    "pending": false,
     "primary": true,
     "ticker": "RMR"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2
+    },
+    "cik": "0002093018",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-02",
+    "item_1_03": false,
+    "key": "CIK:2093018",
+    "last_filed": "2026-06-23",
+    "name": "CopperTech Metals Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "CUX"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001462056",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-23",
+    "item_1_03": false,
+    "key": "CIK:1462056",
+    "last_filed": "2026-06-23",
+    "name": "Backblaze, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "BLZE"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 2
+    },
+    "cik": "0000726958",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-09",
+    "item_1_03": false,
+    "key": "CIK:726958",
+    "last_filed": "2026-06-22",
+    "name": "CASEYS GENERAL STORES INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "CASY"
   },
   {
     "channels": {
@@ -333,9 +863,11 @@
     "cik": "0001120914",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-18",
+    "item_1_03": false,
     "key": "CIK:1120914",
     "last_filed": "2026-06-18",
     "name": "PDF SOLUTIONS INC",
+    "pending": false,
     "primary": true,
     "ticker": "PDFS"
   },
@@ -346,11 +878,43 @@
     "cik": "0001437402",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-17",
+    "item_1_03": false,
     "key": "CIK:1437402",
     "last_filed": "2026-06-17",
     "name": "ARDELYX, INC.",
+    "pending": false,
     "primary": true,
     "ticker": "ARDX"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0002105398",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-16",
+    "item_1_03": false,
+    "key": "CIK:2105398",
+    "last_filed": "2026-06-16",
+    "name": "Csquare, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "CSQR"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0002113481",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-15",
+    "item_1_03": false,
+    "key": "CIK:2113481",
+    "last_filed": "2026-06-15",
+    "name": "Osprey Acquisition Corp. III",
+    "pending": false,
+    "primary": true,
+    "ticker": "OSPRU"
   },
   {
     "channels": {
@@ -359,37 +923,13 @@
     "cik": "0000023197",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-15",
+    "item_1_03": false,
     "key": "CIK:23197",
     "last_filed": "2026-06-15",
     "name": "COMTECH TELECOMMUNICATIONS CORP /DE/",
+    "pending": false,
     "primary": true,
     "ticker": "CMTL"
-  },
-  {
-    "channels": {
-      "fresh-start accounting (10-K/Q)": 2
-    },
-    "cik": "0001622536",
-    "confidence": "medium (single primary source)",
-    "first_filed": "2026-05-21",
-    "key": "CIK:1622536",
-    "last_filed": "2026-06-15",
-    "name": "Talen Energy Corp",
-    "primary": true,
-    "ticker": "TLN"
-  },
-  {
-    "channels": {
-      "fresh-start accounting (10-K/Q)": 2
-    },
-    "cik": "0001895262",
-    "confidence": "medium (single primary source)",
-    "first_filed": "2026-06-01",
-    "key": "CIK:1895262",
-    "last_filed": "2026-06-12",
-    "name": "Noble Corp plc",
-    "primary": true,
-    "ticker": "NE"
   },
   {
     "channels": {
@@ -398,11 +938,43 @@
     "cik": "0000027419",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-12",
+    "item_1_03": false,
     "key": "CIK:27419",
     "last_filed": "2026-06-12",
     "name": "TARGET CORP",
+    "pending": false,
     "primary": true,
     "ticker": "TGT"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001965052",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-12",
+    "item_1_03": false,
+    "key": "CIK:1965052",
+    "last_filed": "2026-06-12",
+    "name": "Marblegate Capital Corp",
+    "pending": false,
+    "primary": true,
+    "ticker": "MGTE"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000831609",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-12",
+    "item_1_03": false,
+    "key": "CIK:831609",
+    "last_filed": "2026-06-12",
+    "name": "C21 Investments Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "CWLXF"
   },
   {
     "channels": {
@@ -411,11 +983,28 @@
     "cik": "0001396814",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-11",
+    "item_1_03": false,
     "key": "CIK:1396814",
     "last_filed": "2026-06-11",
     "name": "Pacira BioSciences, Inc.",
+    "pending": false,
     "primary": true,
     "ticker": "PCRX"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001651308",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-11",
+    "item_1_03": false,
+    "key": "CIK:1651308",
+    "last_filed": "2026-06-11",
+    "name": "BeOne Medicines Ltd.",
+    "pending": false,
+    "primary": true,
+    "ticker": "ONC"
   },
   {
     "channels": {
@@ -424,9 +1013,11 @@
     "cik": "0001334036",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-10",
+    "item_1_03": false,
     "key": "CIK:1334036",
     "last_filed": "2026-06-10",
     "name": "Crocs, Inc.",
+    "pending": false,
     "primary": true,
     "ticker": "CROX"
   },
@@ -437,9 +1028,11 @@
     "cik": "0001819516",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-10",
+    "item_1_03": false,
     "key": "CIK:1819516",
     "last_filed": "2026-06-10",
     "name": "Wheels Up Experience Inc.",
+    "pending": false,
     "primary": true,
     "ticker": "UP"
   },
@@ -450,11 +1043,28 @@
     "cik": "0000014846",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-10",
+    "item_1_03": false,
     "key": "CIK:14846",
     "last_filed": "2026-06-10",
     "name": "BRT Apartments Corp.",
+    "pending": false,
     "primary": true,
     "ticker": "BRT"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001687187",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-10",
+    "item_1_03": false,
+    "key": "CIK:1687187",
+    "last_filed": "2026-06-10",
+    "name": "Ramaco Resources, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "METC"
   },
   {
     "channels": {
@@ -463,24 +1073,43 @@
     "cik": "0002033383",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-09",
+    "item_1_03": false,
     "key": "CIK:2033383",
     "last_filed": "2026-06-09",
     "name": "Fusemachines Inc.",
+    "pending": false,
     "primary": true,
     "ticker": "FUSE"
   },
   {
     "channels": {
-      "fresh-start accounting (10-K/Q)": 3
+      "plan-effective 8-K": 1
     },
-    "cik": "0000895419",
+    "cik": "0001724965",
     "confidence": "medium (single primary source)",
-    "first_filed": "2026-05-05",
-    "key": "CIK:895419",
+    "first_filed": "2026-06-09",
+    "item_1_03": false,
+    "key": "CIK:1724965",
     "last_filed": "2026-06-09",
-    "name": "WOLFSPEED, INC.",
+    "name": "TALOS ENERGY INC.",
+    "pending": false,
     "primary": true,
-    "ticker": "WOLF"
+    "ticker": "TALO"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 5
+    },
+    "cik": "0001921603",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-11",
+    "item_1_03": false,
+    "key": "CIK:1921603",
+    "last_filed": "2026-06-05",
+    "name": "WhiteHawk Income Corp",
+    "pending": false,
+    "primary": true,
+    "ticker": "WHK"
   },
   {
     "channels": {
@@ -489,9 +1118,11 @@
     "cik": "0001645113",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-05",
+    "item_1_03": false,
     "key": "CIK:1645113",
     "last_filed": "2026-06-05",
     "name": "NovoCure Ltd",
+    "pending": false,
     "primary": true,
     "ticker": "NVCR"
   },
@@ -502,9 +1133,11 @@
     "cik": "0001609711",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-05",
+    "item_1_03": false,
     "key": "CIK:1609711",
     "last_filed": "2026-06-05",
     "name": "GoDaddy Inc.",
+    "pending": false,
     "primary": true,
     "ticker": "GDDY"
   },
@@ -515,9 +1148,11 @@
     "cik": "0001814287",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-04",
+    "item_1_03": false,
     "key": "CIK:1814287",
     "last_filed": "2026-06-04",
     "name": "Abacus Global Management, Inc.",
+    "pending": false,
     "primary": true,
     "ticker": "ABX"
   },
@@ -528,24 +1163,13 @@
     "cik": "0001299130",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-04",
+    "item_1_03": false,
     "key": "CIK:1299130",
     "last_filed": "2026-06-04",
     "name": "PACIFIC BIOSCIENCES OF CALIFORNIA, INC.",
+    "pending": false,
     "primary": true,
     "ticker": "PACB"
-  },
-  {
-    "channels": {
-      "plan-effective 8-K": 1
-    },
-    "cik": "0001400891",
-    "confidence": "medium (single primary source)",
-    "first_filed": "2026-06-04",
-    "key": "CIK:1400891",
-    "last_filed": "2026-06-04",
-    "name": "iHeartMedia, Inc.",
-    "primary": true,
-    "ticker": "IHRT"
   },
   {
     "channels": {
@@ -554,9 +1178,11 @@
     "cik": "0001535955",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-04",
+    "item_1_03": false,
     "key": "CIK:1535955",
     "last_filed": "2026-06-04",
     "name": "Lipocine Inc.",
+    "pending": false,
     "primary": true,
     "ticker": "LPCN"
   },
@@ -567,22 +1193,26 @@
     "cik": "0000902791",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-03",
+    "item_1_03": false,
     "key": "CIK:902791",
     "last_filed": "2026-06-03",
     "name": "BARRETT BUSINESS SERVICES INC",
+    "pending": false,
     "primary": true,
     "ticker": "BBSI"
   },
   {
     "channels": {
-      "fresh-start accounting (10-K/Q)": 1
+      "fresh-start accounting (10-K/Q)": 4
     },
     "cik": "0001818643",
     "confidence": "medium (single primary source)",
-    "first_filed": "2026-06-02",
+    "first_filed": "2026-02-13",
+    "item_1_03": false,
     "key": "CIK:1818643",
     "last_filed": "2026-06-02",
     "name": "Phoenix Energy One, LLC",
+    "pending": false,
     "primary": true,
     "ticker": "PHXE-P"
   },
@@ -593,11 +1223,43 @@
     "cik": "0001445305",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-06-02",
+    "item_1_03": false,
     "key": "CIK:1445305",
     "last_filed": "2026-06-02",
     "name": "WORKIVA INC",
+    "pending": false,
     "primary": true,
     "ticker": "WK"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0002082247",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-01",
+    "item_1_03": false,
+    "key": "CIK:2082247",
+    "last_filed": "2026-06-01",
+    "name": "FedEx Freight Holding Company, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "FDXF"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 3
+    },
+    "cik": "0002097163",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-31",
+    "item_1_03": false,
+    "key": "CIK:2097163",
+    "last_filed": "2026-06-01",
+    "name": "Xanadu Quantum Technologies Ltd",
+    "pending": false,
+    "primary": true,
+    "ticker": "XNDU"
   },
   {
     "channels": {
@@ -606,11 +1268,28 @@
     "cik": "0002075109",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-29",
+    "item_1_03": false,
     "key": "CIK:2075109",
     "last_filed": "2026-05-29",
     "name": "Matternet, Inc.",
+    "pending": false,
     "primary": true,
     "ticker": ""
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001795589",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-29",
+    "item_1_03": false,
+    "key": "CIK:1795589",
+    "last_filed": "2026-05-29",
+    "name": "Kingsoft Cloud Holdings Ltd",
+    "pending": false,
+    "primary": true,
+    "ticker": "KC"
   },
   {
     "channels": {
@@ -619,9 +1298,11 @@
     "cik": "0001046568",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-27",
+    "item_1_03": false,
     "key": "CIK:1046568",
     "last_filed": "2026-05-27",
     "name": "PERDOCEO EDUCATION Corp",
+    "pending": false,
     "primary": true,
     "ticker": "PRDO"
   },
@@ -632,9 +1313,11 @@
     "cik": "0001964738",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-27",
+    "item_1_03": false,
     "key": "CIK:1964738",
     "last_filed": "2026-05-27",
     "name": "Solventum Corp",
+    "pending": false,
     "primary": true,
     "ticker": "SOLV"
   },
@@ -645,11 +1328,88 @@
     "cik": "0000877212",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-26",
+    "item_1_03": false,
     "key": "CIK:877212",
     "last_filed": "2026-05-26",
     "name": "ZEBRA TECHNOLOGIES CORP",
+    "pending": false,
     "primary": true,
     "ticker": "ZBRA"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0002086771",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-26",
+    "item_1_03": false,
+    "key": "CIK:2086771",
+    "last_filed": "2026-05-26",
+    "name": "Elemental Royalty Corp",
+    "pending": false,
+    "primary": true,
+    "ticker": "ELE"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001443646",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-22",
+    "item_1_03": false,
+    "key": "CIK:1443646",
+    "last_filed": "2026-05-22",
+    "name": "Booz Allen Hamilton Holding Corp",
+    "pending": false,
+    "primary": true,
+    "ticker": "BAH"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001680247",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-22",
+    "item_1_03": false,
+    "key": "CIK:1680247",
+    "last_filed": "2026-05-22",
+    "name": "ProPetro Holding Corp.",
+    "pending": false,
+    "primary": true,
+    "ticker": "PUMP"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001302215",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-22",
+    "item_1_03": false,
+    "key": "CIK:1302215",
+    "last_filed": "2026-05-22",
+    "name": "HOULIHAN LOKEY, INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "HLI"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001781730",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-21",
+    "item_1_03": false,
+    "key": "CIK:1781730",
+    "last_filed": "2026-05-21",
+    "name": "Third Coast Bancshares, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "TCBX"
   },
   {
     "channels": {
@@ -658,9 +1418,11 @@
     "cik": "0001056903",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-21",
+    "item_1_03": false,
     "key": "CIK:1056903",
     "last_filed": "2026-05-21",
     "name": "AMERICAN STATES WATER CO",
+    "pending": false,
     "primary": true,
     "ticker": "AWR"
   },
@@ -671,9 +1433,11 @@
     "cik": "0000890926",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-21",
+    "item_1_03": false,
     "key": "CIK:890926",
     "last_filed": "2026-05-21",
     "name": "RADIAN GROUP INC",
+    "pending": false,
     "primary": true,
     "ticker": "RDN"
   },
@@ -684,9 +1448,11 @@
     "cik": "0001023024",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-21",
+    "item_1_03": false,
     "key": "CIK:1023024",
     "last_filed": "2026-05-21",
     "name": "ANI PHARMACEUTICALS INC",
+    "pending": false,
     "primary": true,
     "ticker": "ANIP"
   },
@@ -697,11 +1463,43 @@
     "cik": "0001443669",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-20",
+    "item_1_03": false,
     "key": "CIK:1443669",
     "last_filed": "2026-05-20",
     "name": "Proto Labs Inc",
+    "pending": false,
     "primary": true,
     "ticker": "PRLB"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001470129",
+    "confidence": "pending (Q-suffix \u2014 still in Chapter 11, not yet emerged)",
+    "first_filed": "2026-05-20",
+    "item_1_03": false,
+    "key": "CIK:1470129",
+    "last_filed": "2026-05-20",
+    "name": "VisitIQ Corp.",
+    "pending": true,
+    "primary": true,
+    "ticker": "VIIQ"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 2
+    },
+    "cik": "0002104882",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-16",
+    "item_1_03": false,
+    "key": "CIK:2104882",
+    "last_filed": "2026-05-19",
+    "name": "EagleRock Land, LLC",
+    "pending": false,
+    "primary": true,
+    "ticker": "EROK"
   },
   {
     "channels": {
@@ -710,9 +1508,11 @@
     "cik": "0001519401",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-19",
+    "item_1_03": false,
     "key": "CIK:1519401",
     "last_filed": "2026-05-19",
     "name": "Regional Management Corp.",
+    "pending": false,
     "primary": true,
     "ticker": "RM"
   },
@@ -723,9 +1523,11 @@
     "cik": "0000882835",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-19",
+    "item_1_03": false,
     "key": "CIK:882835",
     "last_filed": "2026-05-19",
     "name": "ROPER TECHNOLOGIES INC",
+    "pending": false,
     "primary": true,
     "ticker": "ROP"
   },
@@ -736,9 +1538,11 @@
     "cik": "0001323885",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-19",
+    "item_1_03": false,
     "key": "CIK:1323885",
     "last_filed": "2026-05-19",
     "name": "AtriCure, Inc.",
+    "pending": false,
     "primary": true,
     "ticker": "ATRC"
   },
@@ -749,11 +1553,28 @@
     "cik": "0001090425",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-19",
+    "item_1_03": false,
     "key": "CIK:1090425",
     "last_filed": "2026-05-19",
     "name": "LAMAR ADVERTISING CO/NEW",
+    "pending": false,
     "primary": true,
     "ticker": "LAMR"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 5
+    },
+    "cik": "0000896493",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-11",
+    "item_1_03": false,
+    "key": "CIK:896493",
+    "last_filed": "2026-05-18",
+    "name": "Hyperscale Data, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "GPUS"
   },
   {
     "channels": {
@@ -762,11 +1583,28 @@
     "cik": "0000862861",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-04-13",
+    "item_1_03": false,
     "key": "CIK:862861",
     "last_filed": "2026-05-18",
     "name": "AI Financial Corp",
+    "pending": false,
     "primary": true,
     "ticker": "ALTS"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001728117",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-18",
+    "item_1_03": false,
+    "key": "CIK:1728117",
+    "last_filed": "2026-05-18",
+    "name": "Gossamer Bio, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "GOSS"
   },
   {
     "channels": {
@@ -775,50 +1613,13 @@
     "cik": "0001603454",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-18",
+    "item_1_03": false,
     "key": "CIK:1603454",
     "last_filed": "2026-05-18",
     "name": "Celcuity Inc.",
+    "pending": false,
     "primary": true,
     "ticker": "CELC"
-  },
-  {
-    "channels": {
-      "fresh-start accounting (10-K/Q)": 1
-    },
-    "cik": "0001839530",
-    "confidence": "medium (single primary source)",
-    "first_filed": "2026-05-15",
-    "key": "CIK:1839530",
-    "last_filed": "2026-05-15",
-    "name": "XBP Global Holdings, Inc.",
-    "primary": true,
-    "ticker": "XBP"
-  },
-  {
-    "channels": {
-      "fresh-start accounting (10-K/Q)": 1
-    },
-    "cik": "0001759546",
-    "confidence": "medium (single primary source)",
-    "first_filed": "2026-05-15",
-    "key": "CIK:1759546",
-    "last_filed": "2026-05-15",
-    "name": "NU RIDE INC.",
-    "primary": true,
-    "ticker": "NRDE"
-  },
-  {
-    "channels": {
-      "fresh-start accounting (10-K/Q)": 2
-    },
-    "cik": "0001580864",
-    "confidence": "medium (single primary source)",
-    "first_filed": "2026-05-15",
-    "key": "CIK:1580864",
-    "last_filed": "2026-05-15",
-    "name": "Vroom, Inc.",
-    "primary": true,
-    "ticker": "VRM"
   },
   {
     "channels": {
@@ -827,11 +1628,58 @@
     "cik": "0001628369",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-14",
+    "item_1_03": false,
     "key": "CIK:1628369",
     "last_filed": "2026-05-14",
     "name": "Cushman & Wakefield Ltd.",
+    "pending": false,
     "primary": true,
     "ticker": "CWK"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2
+    },
+    "cik": "0001091596",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-30",
+    "item_1_03": false,
+    "key": "CIK:1091596",
+    "last_filed": "2026-05-14",
+    "name": "Nuo Therapeutics, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "AURX"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0002012139",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-14",
+    "item_1_03": false,
+    "key": "CIK:2012139",
+    "last_filed": "2026-05-14",
+    "name": "Fortress Private Lending Fund",
+    "pending": false,
+    "primary": true,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 2
+    },
+    "cik": "0001785494",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-11",
+    "item_1_03": false,
+    "key": "CIK:1785494",
+    "last_filed": "2026-05-14",
+    "name": "Woodbridge Liquidation Trust",
+    "pending": false,
+    "primary": true,
+    "ticker": "WBQNL"
   },
   {
     "channels": {
@@ -840,11 +1688,43 @@
     "cik": "0001599117",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-04-15",
+    "item_1_03": false,
     "key": "CIK:1599117",
     "last_filed": "2026-05-14",
     "name": "Mentor Capital, Inc.",
+    "pending": false,
     "primary": true,
     "ticker": "MNTR"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2
+    },
+    "cik": "0000707605",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-18",
+    "item_1_03": false,
+    "key": "CIK:707605",
+    "last_filed": "2026-05-14",
+    "name": "AMERISERV FINANCIAL INC /PA/",
+    "pending": false,
+    "primary": true,
+    "ticker": "ASRV"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2
+    },
+    "cik": "0001230058",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-25",
+    "item_1_03": false,
+    "key": "CIK:1230058",
+    "last_filed": "2026-05-13",
+    "name": "KAANAPALI LAND LLC",
+    "pending": false,
+    "primary": true,
+    "ticker": "KANP"
   },
   {
     "channels": {
@@ -853,11 +1733,43 @@
     "cik": "0000067716",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-13",
+    "item_1_03": false,
     "key": "CIK:67716",
     "last_filed": "2026-05-13",
     "name": "MDU RESOURCES GROUP INC",
+    "pending": false,
     "primary": true,
     "ticker": "MDU"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 4
+    },
+    "cik": "0001567892",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-31",
+    "item_1_03": false,
+    "key": "CIK:1567892",
+    "last_filed": "2026-05-12",
+    "name": "Keenova Therapeutics plc",
+    "pending": false,
+    "primary": true,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 5
+    },
+    "cik": "0001377630",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-26",
+    "item_1_03": false,
+    "key": "CIK:1377630",
+    "last_filed": "2026-05-12",
+    "name": "National CineMedia, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "NCMI"
   },
   {
     "channels": {
@@ -866,11 +1778,43 @@
     "cik": "0001331757",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-12",
+    "item_1_03": false,
     "key": "CIK:1331757",
     "last_filed": "2026-05-12",
     "name": "Federal Home Loan Bank of Dallas",
+    "pending": false,
     "primary": true,
     "ticker": ""
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 3
+    },
+    "cik": "0001843973",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-05",
+    "item_1_03": false,
+    "key": "CIK:1843973",
+    "last_filed": "2026-05-11",
+    "name": "FLYEXCLUSIVE INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "FLYX"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2
+    },
+    "cik": "0000813762",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-05",
+    "item_1_03": false,
+    "key": "CIK:813762",
+    "last_filed": "2026-05-11",
+    "name": "ICAHN ENTERPRISES L.P.",
+    "pending": false,
+    "primary": true,
+    "ticker": "IEP"
   },
   {
     "channels": {
@@ -879,9 +1823,11 @@
     "cik": "0001302387",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-11",
+    "item_1_03": false,
     "key": "CIK:1302387",
     "last_filed": "2026-05-11",
     "name": "BV Financial, Inc.",
+    "pending": false,
     "primary": true,
     "ticker": "BVFL"
   },
@@ -892,22 +1838,41 @@
     "cik": "0001100682",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-11",
+    "item_1_03": false,
     "key": "CIK:1100682",
     "last_filed": "2026-05-11",
     "name": "CHARLES RIVER LABORATORIES INTERNATIONAL, INC.",
+    "pending": false,
     "primary": true,
     "ticker": "CRL"
   },
   {
     "channels": {
-      "fresh-start accounting (10-K/Q)": 2
+      "emergence 8-K prose": 7
+    },
+    "cik": "0001416876",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-01-27",
+    "item_1_03": false,
+    "key": "CIK:1416876",
+    "last_filed": "2026-05-08",
+    "name": "First Choice Healthcare Solutions, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "FCHS"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 4
     },
     "cik": "0000910612",
     "confidence": "medium (single primary source)",
-    "first_filed": "2026-05-08",
+    "first_filed": "2026-02-13",
+    "item_1_03": false,
     "key": "CIK:910612",
     "last_filed": "2026-05-08",
     "name": "CBL & ASSOCIATES PROPERTIES INC",
+    "pending": false,
     "primary": true,
     "ticker": "CBL"
   },
@@ -918,22 +1883,26 @@
     "cik": "0001782303",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-08",
+    "item_1_03": false,
     "key": "CIK:1782303",
     "last_filed": "2026-05-08",
     "name": "Boundless Bio, Inc.",
+    "pending": false,
     "primary": true,
     "ticker": "BOLD"
   },
   {
     "channels": {
-      "emergence 8-K prose": 1
+      "emergence 8-K prose": 2
     },
     "cik": "0001142417",
     "confidence": "medium (single primary source)",
-    "first_filed": "2026-05-08",
+    "first_filed": "2026-02-27",
+    "item_1_03": false,
     "key": "CIK:1142417",
     "last_filed": "2026-05-08",
     "name": "NEXSTAR MEDIA GROUP, INC.",
+    "pending": false,
     "primary": true,
     "ticker": "NXST"
   },
@@ -944,24 +1913,148 @@
     "cik": "0000746514",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-08",
+    "item_1_03": false,
     "key": "CIK:746514",
     "last_filed": "2026-05-08",
     "name": "NEW ENGLAND REALTY ASSOCIATES LIMITED PARTNERSHIP",
+    "pending": false,
     "primary": true,
     "ticker": "NEN"
   },
   {
     "channels": {
-      "fresh-start accounting (10-K/Q)": 2
+      "emergence 8-K prose": 2
     },
-    "cik": "0000105319",
+    "cik": "0001841968",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-27",
+    "item_1_03": false,
+    "key": "CIK:1841968",
+    "last_filed": "2026-05-08",
+    "name": "Ridgepost Capital, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "RPC"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001829959",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-08",
+    "item_1_03": false,
+    "key": "CIK:1829959",
+    "last_filed": "2026-05-08",
+    "name": "Docebo Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "DCBO"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000010456",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-08",
+    "item_1_03": false,
+    "key": "CIK:10456",
+    "last_filed": "2026-05-08",
+    "name": "BAXTER INTERNATIONAL INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "BAX"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 2
+    },
+    "cik": "0001937653",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-02",
+    "item_1_03": false,
+    "key": "CIK:1937653",
+    "last_filed": "2026-05-07",
+    "name": "Zymeworks Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "ZYME"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 3
+    },
+    "cik": "0001657853",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-26",
+    "item_1_03": false,
+    "key": "CIK:1657853",
+    "last_filed": "2026-05-07",
+    "name": "HERTZ GLOBAL HOLDINGS, INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "HTZ"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2
+    },
+    "cik": "0001841666",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-26",
+    "item_1_03": false,
+    "key": "CIK:1841666",
+    "last_filed": "2026-05-07",
+    "name": "APA Corp",
+    "pending": false,
+    "primary": true,
+    "ticker": "APA"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000771992",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-07",
-    "key": "CIK:105319",
+    "item_1_03": false,
+    "key": "CIK:771992",
     "last_filed": "2026-05-07",
-    "name": "WW INTERNATIONAL, INC.",
+    "name": "PAN AMERICAN SILVER CORP",
+    "pending": false,
     "primary": true,
-    "ticker": "WW"
+    "ticker": "PAAS"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000084748",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-07",
+    "item_1_03": false,
+    "key": "CIK:84748",
+    "last_filed": "2026-05-07",
+    "name": "ROGERS CORP",
+    "pending": false,
+    "primary": true,
+    "ticker": "ROG"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001929561",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-07",
+    "item_1_03": false,
+    "key": "CIK:1929561",
+    "last_filed": "2026-05-07",
+    "name": "RXO, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "RXO"
   },
   {
     "channels": {
@@ -970,9 +2063,11 @@
     "cik": "0000884614",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-07",
+    "item_1_03": false,
     "key": "CIK:884614",
     "last_filed": "2026-05-07",
     "name": "UGI CORP /PA/",
+    "pending": false,
     "primary": true,
     "ticker": "UGI"
   },
@@ -983,9 +2078,11 @@
     "cik": "0000737468",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-07",
+    "item_1_03": false,
     "key": "CIK:737468",
     "last_filed": "2026-05-07",
     "name": "WASHINGTON TRUST BANCORP INC",
+    "pending": false,
     "primary": true,
     "ticker": "WASH"
   },
@@ -996,9 +2093,11 @@
     "cik": "0001759655",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-07",
+    "item_1_03": false,
     "key": "CIK:1759655",
     "last_filed": "2026-05-07",
     "name": "Privia Health Group, Inc.",
+    "pending": false,
     "primary": true,
     "ticker": "PRVA"
   },
@@ -1006,14 +2105,16 @@
     "channels": {
       "emergence 8-K prose": 1
     },
-    "cik": "0001841666",
+    "cik": "0002050541",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-07",
-    "key": "CIK:1841666",
+    "item_1_03": false,
+    "key": "CIK:2050541",
     "last_filed": "2026-05-07",
-    "name": "APA Corp",
+    "name": "First Eagle Tactical Municipal Opportunities Fund",
+    "pending": false,
     "primary": true,
-    "ticker": "APA"
+    "ticker": ""
   },
   {
     "channels": {
@@ -1022,22 +2123,26 @@
     "cik": "0001331754",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-07",
+    "item_1_03": false,
     "key": "CIK:1331754",
     "last_filed": "2026-05-07",
     "name": "Federal Home Loan Bank of Indianapolis",
+    "pending": false,
     "primary": true,
     "ticker": ""
   },
   {
     "channels": {
-      "fresh-start accounting (10-K/Q)": 1
+      "fresh-start accounting (10-K/Q)": 2
     },
     "cik": "0001653653",
     "confidence": "medium (single primary source)",
-    "first_filed": "2026-05-07",
+    "first_filed": "2026-02-20",
+    "item_1_03": false,
     "key": "CIK:1653653",
     "last_filed": "2026-05-07",
     "name": "Red Rock Resorts, Inc.",
+    "pending": false,
     "primary": true,
     "ticker": "RRR"
   },
@@ -1048,11 +2153,28 @@
     "cik": "0000275053",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-07",
+    "item_1_03": false,
     "key": "CIK:275053",
     "last_filed": "2026-05-07",
     "name": "NATURES SUNSHINE PRODUCTS INC",
+    "pending": false,
     "primary": true,
     "ticker": "NATR"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 2
+    },
+    "cik": "0001655210",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-09",
+    "item_1_03": false,
+    "key": "CIK:1655210",
+    "last_filed": "2026-05-07",
+    "name": "BEYOND MEAT, INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "BYND"
   },
   {
     "channels": {
@@ -1061,24 +2183,28 @@
     "cik": "0001041934",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-07",
+    "item_1_03": false,
     "key": "CIK:1041934",
     "last_filed": "2026-05-07",
     "name": "EDAP TMS SA",
+    "pending": false,
     "primary": true,
     "ticker": "EDAP"
   },
   {
     "channels": {
-      "fresh-start accounting (10-K/Q)": 1
+      "emergence 8-K prose": 8
     },
-    "cik": "0001065059",
+    "cik": "0001839341",
     "confidence": "medium (single primary source)",
-    "first_filed": "2026-05-06",
-    "key": "CIK:1065059",
+    "first_filed": "2026-03-02",
+    "item_1_03": false,
+    "key": "CIK:1839341",
     "last_filed": "2026-05-06",
-    "name": "CENTRUS ENERGY CORP",
+    "name": "Core Scientific, Inc./tx",
+    "pending": false,
     "primary": true,
-    "ticker": "LEU"
+    "ticker": "CORZ"
   },
   {
     "channels": {
@@ -1087,9 +2213,11 @@
     "cik": "0002064953",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-06",
+    "item_1_03": false,
     "key": "CIK:2064953",
     "last_filed": "2026-05-06",
     "name": "Solstice Advanced Materials Inc.",
+    "pending": false,
     "primary": true,
     "ticker": "SOLS"
   },
@@ -1100,9 +2228,11 @@
     "cik": "0001690820",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-06",
+    "item_1_03": false,
     "key": "CIK:1690820",
     "last_filed": "2026-05-06",
     "name": "CARVANA CO.",
+    "pending": false,
     "primary": true,
     "ticker": "CVNA"
   },
@@ -1113,9 +2243,11 @@
     "cik": "0001589526",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-06",
+    "item_1_03": false,
     "key": "CIK:1589526",
     "last_filed": "2026-05-06",
     "name": "Blue Bird Corp",
+    "pending": false,
     "primary": true,
     "ticker": "BLBD"
   },
@@ -1126,24 +2258,73 @@
     "cik": "0001481582",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-06",
+    "item_1_03": false,
     "key": "CIK:1481582",
     "last_filed": "2026-05-06",
     "name": "Ryerson Holding Corp",
+    "pending": false,
     "primary": true,
     "ticker": "RYZ"
   },
   {
     "channels": {
-      "fresh-start accounting (10-K/Q)": 1
+      "fresh-start accounting (10-K/Q)": 2
     },
     "cik": "0000790273",
     "confidence": "medium (single primary source)",
-    "first_filed": "2026-05-06",
+    "first_filed": "2026-02-19",
+    "item_1_03": false,
     "key": "CIK:790273",
     "last_filed": "2026-05-06",
     "name": "CONECTISYS CORP",
+    "pending": false,
     "primary": true,
     "ticker": "CONC"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001635327",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-06",
+    "item_1_03": false,
+    "key": "CIK:1635327",
+    "last_filed": "2026-05-06",
+    "name": "Flutter Entertainment plc",
+    "pending": false,
+    "primary": true,
+    "ticker": "FLUT"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2
+    },
+    "cik": "0000874499",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-25",
+    "item_1_03": false,
+    "key": "CIK:874499",
+    "last_filed": "2026-05-06",
+    "name": "GULFPORT ENERGY CORP",
+    "pending": false,
+    "primary": true,
+    "ticker": "GPOR"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2
+    },
+    "cik": "0000874761",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-02",
+    "item_1_03": false,
+    "key": "CIK:874761",
+    "last_filed": "2026-05-05",
+    "name": "AES CORP",
+    "pending": false,
+    "primary": true,
+    "ticker": "AES"
   },
   {
     "channels": {
@@ -1152,9 +2333,11 @@
     "cik": "0001585364",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-05",
+    "item_1_03": false,
     "key": "CIK:1585364",
     "last_filed": "2026-05-05",
     "name": "PERRIGO Co plc",
+    "pending": false,
     "primary": true,
     "ticker": "PRGO"
   },
@@ -1165,9 +2348,11 @@
     "cik": "0000004127",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-05",
+    "item_1_03": false,
     "key": "CIK:4127",
     "last_filed": "2026-05-05",
     "name": "SKYWORKS SOLUTIONS, INC.",
+    "pending": false,
     "primary": true,
     "ticker": "SWKS"
   },
@@ -1178,24 +2363,43 @@
     "cik": "0002078008",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-05",
+    "item_1_03": false,
     "key": "CIK:2078008",
     "last_filed": "2026-05-05",
     "name": "Versigent PLC",
+    "pending": false,
     "primary": true,
     "ticker": "VGNT"
   },
   {
     "channels": {
-      "fresh-start accounting (10-K/Q)": 1
+      "fresh-start accounting (10-K/Q)": 2
     },
     "cik": "0000314808",
     "confidence": "medium (single primary source)",
-    "first_filed": "2026-05-05",
+    "first_filed": "2026-02-20",
+    "item_1_03": false,
     "key": "CIK:314808",
     "last_filed": "2026-05-05",
     "name": "Valaris Ltd",
+    "pending": false,
     "primary": true,
     "ticker": "VAL"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 4
+    },
+    "cik": "0001047716",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-03",
+    "item_1_03": false,
+    "key": "CIK:1047716",
+    "last_filed": "2026-05-05",
+    "name": "LATAM AIRLINES GROUP S.A.",
+    "pending": false,
+    "primary": true,
+    "ticker": "LTM"
   },
   {
     "channels": {
@@ -1204,11 +2408,28 @@
     "cik": "0000885725",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-05",
+    "item_1_03": false,
     "key": "CIK:885725",
     "last_filed": "2026-05-05",
     "name": "BOSTON SCIENTIFIC CORP",
+    "pending": false,
     "primary": true,
     "ticker": "BSX"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2
+    },
+    "cik": "0000720672",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-24",
+    "item_1_03": false,
+    "key": "CIK:720672",
+    "last_filed": "2026-05-04",
+    "name": "STIFEL FINANCIAL CORP",
+    "pending": false,
+    "primary": true,
+    "ticker": "SF"
   },
   {
     "channels": {
@@ -1217,11 +2438,28 @@
     "cik": "0000078890",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-04",
+    "item_1_03": false,
     "key": "CIK:78890",
     "last_filed": "2026-05-04",
     "name": "BRINKS CO",
+    "pending": false,
     "primary": true,
     "ticker": "BCO"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001894525",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-04",
+    "item_1_03": false,
+    "key": "CIK:1894525",
+    "last_filed": "2026-05-04",
+    "name": "Apimeds Pharmaceuticals US, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "APUS"
   },
   {
     "channels": {
@@ -1230,24 +2468,58 @@
     "cik": "0001056288",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-05-01",
+    "item_1_03": false,
     "key": "CIK:1056288",
     "last_filed": "2026-05-01",
     "name": "FEDERATED HERMES, INC.",
+    "pending": false,
     "primary": true,
     "ticker": "FHI"
   },
   {
     "channels": {
-      "emergence 8-K prose": 1
+      "emergence 8-K prose": 2
     },
     "cik": "0000915389",
     "confidence": "medium (single primary source)",
-    "first_filed": "2026-05-01",
+    "first_filed": "2026-02-13",
+    "item_1_03": false,
     "key": "CIK:915389",
     "last_filed": "2026-05-01",
     "name": "EASTMAN CHEMICAL CO",
+    "pending": false,
     "primary": true,
     "ticker": "EMN"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2
+    },
+    "cik": "0002092387",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-01",
+    "item_1_03": false,
+    "key": "CIK:2092387",
+    "last_filed": "2026-05-01",
+    "name": "Aristotle Pacific Enhanced CLO Income Fund",
+    "pending": false,
+    "primary": true,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 2
+    },
+    "cik": "0002032019",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-01-30",
+    "item_1_03": false,
+    "key": "CIK:2032019",
+    "last_filed": "2026-05-01",
+    "name": "EQT Infrastructure Co LLC",
+    "pending": false,
+    "primary": true,
+    "ticker": ""
   },
   {
     "channels": {
@@ -1256,9 +2528,11 @@
     "cik": "0001627223",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-04-30",
+    "item_1_03": false,
     "key": "CIK:1627223",
     "last_filed": "2026-04-30",
     "name": "Chemours Co",
+    "pending": false,
     "primary": true,
     "ticker": "CC"
   },
@@ -1269,11 +2543,43 @@
     "cik": "0001466258",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-04-30",
+    "item_1_03": false,
     "key": "CIK:1466258",
     "last_filed": "2026-04-30",
     "name": "Trane Technologies plc",
+    "pending": false,
     "primary": true,
     "ticker": "TT"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 2
+    },
+    "cik": "0001865200",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-12",
+    "item_1_03": false,
+    "key": "CIK:1865200",
+    "last_filed": "2026-04-30",
+    "name": "Angel Studios, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "ANGX"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 3
+    },
+    "cik": "0001498710",
+    "confidence": "pending (Q-suffix \u2014 still in Chapter 11, not yet emerged)",
+    "first_filed": "2026-03-16",
+    "item_1_03": false,
+    "key": "CIK:1498710",
+    "last_filed": "2026-04-30",
+    "name": "Spirit Aviation Holdings, Inc.",
+    "pending": true,
+    "primary": true,
+    "ticker": "FLYYQ"
   },
   {
     "channels": {
@@ -1282,9 +2588,11 @@
     "cik": "0001141391",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-04-30",
+    "item_1_03": false,
     "key": "CIK:1141391",
     "last_filed": "2026-04-30",
     "name": "Mastercard Inc",
+    "pending": false,
     "primary": true,
     "ticker": "MA"
   },
@@ -1295,11 +2603,193 @@
     "cik": "0000883569",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-04-30",
+    "item_1_03": false,
     "key": "CIK:883569",
     "last_filed": "2026-04-30",
     "name": "Fossil Group, Inc.",
+    "pending": false,
     "primary": true,
     "ticker": "FOSL"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001561861",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-30",
+    "item_1_03": false,
+    "key": "CIK:1561861",
+    "last_filed": "2026-04-30",
+    "name": "Grupo Aeromexico, S.A.B. de C.V.",
+    "pending": false,
+    "primary": true,
+    "ticker": "AERO"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001444406",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-30",
+    "item_1_03": false,
+    "key": "CIK:1444406",
+    "last_filed": "2026-04-30",
+    "name": "ECOPETROL S.A.",
+    "pending": false,
+    "primary": true,
+    "ticker": "EC"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001645873",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-30",
+    "item_1_03": false,
+    "key": "CIK:1645873",
+    "last_filed": "2026-04-30",
+    "name": "MODIV INDUSTRIAL, INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "MDV"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001796209",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-30",
+    "item_1_03": false,
+    "key": "CIK:1796209",
+    "last_filed": "2026-04-30",
+    "name": "APi Group Corp",
+    "pending": false,
+    "primary": true,
+    "ticker": "APG"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 5
+    },
+    "cik": "0002033770",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-01-29",
+    "item_1_03": false,
+    "key": "CIK:2033770",
+    "last_filed": "2026-04-30",
+    "name": "CID Holdco, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "DAIC"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 2
+    },
+    "cik": "0001853070",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-13",
+    "item_1_03": false,
+    "key": "CIK:1853070",
+    "last_filed": "2026-04-30",
+    "name": "Volato Group, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "SOAR"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001321834",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-29",
+    "item_1_03": false,
+    "key": "CIK:1321834",
+    "last_filed": "2026-04-29",
+    "name": "Q/C TECHNOLOGIES, INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "QCLS"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 2
+    },
+    "cik": "0001280058",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-18",
+    "item_1_03": false,
+    "key": "CIK:1280058",
+    "last_filed": "2026-04-29",
+    "name": "BLACKBAUD INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "BLKB"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001101239",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-29",
+    "item_1_03": false,
+    "key": "CIK:1101239",
+    "last_filed": "2026-04-29",
+    "name": "EQUINIX INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "EQIX"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2
+    },
+    "cik": "0002095743",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-13",
+    "item_1_03": false,
+    "key": "CIK:2095743",
+    "last_filed": "2026-04-28",
+    "name": "Rare Earths Americas, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "REA"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 2
+    },
+    "cik": "0001013871",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-01-30",
+    "item_1_03": false,
+    "key": "CIK:1013871",
+    "last_filed": "2026-04-28",
+    "name": "NRG ENERGY, INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "NRG"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001231346",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-28",
+    "item_1_03": false,
+    "key": "CIK:1231346",
+    "last_filed": "2026-04-28",
+    "name": "SEABRIDGE GOLD INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "SA"
   },
   {
     "channels": {
@@ -1308,24 +2798,13 @@
     "cik": "0001587523",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-04-28",
+    "item_1_03": false,
     "key": "CIK:1587523",
     "last_filed": "2026-04-28",
     "name": "Knowles Corp",
+    "pending": false,
     "primary": true,
     "ticker": "KN"
-  },
-  {
-    "channels": {
-      "fresh-start accounting (10-K/Q)": 1
-    },
-    "cik": "0001013871",
-    "confidence": "medium (single primary source)",
-    "first_filed": "2026-04-28",
-    "key": "CIK:1013871",
-    "last_filed": "2026-04-28",
-    "name": "NRG ENERGY, INC.",
-    "primary": true,
-    "ticker": "NRG"
   },
   {
     "channels": {
@@ -1334,11 +2813,28 @@
     "cik": "0000064040",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-04-28",
+    "item_1_03": false,
     "key": "CIK:64040",
     "last_filed": "2026-04-28",
     "name": "S&P Global Inc.",
+    "pending": false,
     "primary": true,
     "ticker": "SPGI"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0000351834",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-27",
+    "item_1_03": false,
+    "key": "CIK:351834",
+    "last_filed": "2026-04-27",
+    "name": "SunOpta Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "STKL"
   },
   {
     "channels": {
@@ -1347,37 +2843,73 @@
     "cik": "0001300514",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-04-24",
+    "item_1_03": false,
     "key": "CIK:1300514",
     "last_filed": "2026-04-24",
     "name": "LAS VEGAS SANDS CORP",
+    "pending": false,
     "primary": true,
     "ticker": "LVS"
   },
   {
     "channels": {
-      "emergence 8-K prose": 1
+      "plan-effective 8-K": 1
     },
-    "cik": "0001004980",
+    "cik": "0001861737",
     "confidence": "medium (single primary source)",
-    "first_filed": "2026-04-23",
-    "key": "CIK:1004980",
-    "last_filed": "2026-04-23",
-    "name": "PG&E Corp",
+    "first_filed": "2026-04-24",
+    "item_1_03": false,
+    "key": "CIK:1861737",
+    "last_filed": "2026-04-24",
+    "name": "Hesai Group",
+    "pending": false,
     "primary": true,
-    "ticker": "PCG"
+    "ticker": "HSAI"
   },
   {
     "channels": {
-      "emergence 8-K prose": 1
+      "emergence 8-K prose": 2
     },
     "cik": "0000016875",
     "confidence": "medium (single primary source)",
-    "first_filed": "2026-04-23",
+    "first_filed": "2026-03-25",
+    "item_1_03": false,
     "key": "CIK:16875",
     "last_filed": "2026-04-23",
     "name": "CANADIAN PACIFIC KANSAS CITY LTD/CN",
+    "pending": false,
     "primary": true,
     "ticker": "CP"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2
+    },
+    "cik": "0000773840",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-17",
+    "item_1_03": false,
+    "key": "CIK:773840",
+    "last_filed": "2026-04-23",
+    "name": "HONEYWELL INTERNATIONAL INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "HON"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2
+    },
+    "cik": "0001004980",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-12",
+    "item_1_03": false,
+    "key": "CIK:1004980",
+    "last_filed": "2026-04-23",
+    "name": "PG&E Corp",
+    "pending": false,
+    "primary": true,
+    "ticker": "PCG"
   },
   {
     "channels": {
@@ -1386,11 +2918,43 @@
     "cik": "0001094285",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-04-23",
+    "item_1_03": false,
     "key": "CIK:1094285",
     "last_filed": "2026-04-23",
     "name": "TELEDYNE TECHNOLOGIES INC",
+    "pending": false,
     "primary": true,
     "ticker": "TDY"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2
+    },
+    "cik": "0000764065",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-09",
+    "item_1_03": false,
+    "key": "CIK:764065",
+    "last_filed": "2026-04-21",
+    "name": "CLEVELAND-CLIFFS INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "CLF"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0002074612",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-20",
+    "item_1_03": false,
+    "key": "CIK:2074612",
+    "last_filed": "2026-04-20",
+    "name": "LibreMax Asset-Backed Income Fund",
+    "pending": false,
+    "primary": true,
+    "ticker": ""
   },
   {
     "channels": {
@@ -1399,24 +2963,28 @@
     "cik": "0000883241",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-04-20",
+    "item_1_03": false,
     "key": "CIK:883241",
     "last_filed": "2026-04-20",
     "name": "SYNOPSYS INC",
+    "pending": false,
     "primary": true,
     "ticker": "SNPS"
   },
   {
     "channels": {
-      "fresh-start accounting (10-K/Q)": 1
+      "plan-effective 8-K": 1
     },
-    "cik": "0001609253",
+    "cik": "0001850351",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-04-17",
-    "key": "CIK:1609253",
+    "item_1_03": false,
+    "key": "CIK:1850351",
     "last_filed": "2026-04-17",
-    "name": "California Resources Corp",
+    "name": "Liftoff Mobile, Inc.",
+    "pending": false,
     "primary": true,
-    "ticker": "CRC"
+    "ticker": "LFTO"
   },
   {
     "channels": {
@@ -1425,11 +2993,28 @@
     "cik": "0000709337",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-04-16",
+    "item_1_03": false,
     "key": "CIK:709337",
     "last_filed": "2026-04-16",
     "name": "FARMERS NATIONAL BANC CORP /OH/",
+    "pending": false,
     "primary": true,
     "ticker": "FMNB"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001953021",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-16",
+    "item_1_03": false,
+    "key": "CIK:1953021",
+    "last_filed": "2026-04-16",
+    "name": "Mega Matrix Inc",
+    "pending": false,
+    "primary": true,
+    "ticker": "MPU"
   },
   {
     "channels": {
@@ -1438,11 +3023,1723 @@
     "cik": "0002108121",
     "confidence": "medium (single primary source)",
     "first_filed": "2026-04-16",
+    "item_1_03": false,
     "key": "CIK:2108121",
     "last_filed": "2026-04-16",
     "name": "Ionetix Corp / DE /",
+    "pending": false,
     "primary": true,
     "ticker": ""
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0002023730",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-15",
+    "item_1_03": false,
+    "key": "CIK:2023730",
+    "last_filed": "2026-04-15",
+    "name": "GigCapital7 Corp.",
+    "pending": false,
+    "primary": true,
+    "ticker": "GIG"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001960355",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-13",
+    "item_1_03": false,
+    "key": "CIK:1960355",
+    "last_filed": "2026-04-13",
+    "name": "Exyn Technologies, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "EXYN"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001866501",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-09",
+    "item_1_03": false,
+    "key": "CIK:1866501",
+    "last_filed": "2026-04-09",
+    "name": "Wallbox N.V.",
+    "pending": false,
+    "primary": true,
+    "ticker": "WBX"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 3
+    },
+    "cik": "0001758057",
+    "confidence": "pending (Q-suffix \u2014 still in Chapter 11, not yet emerged)",
+    "first_filed": "2026-01-30",
+    "item_1_03": true,
+    "key": "CIK:1758057",
+    "last_filed": "2026-04-07",
+    "name": "Luminar Technologies, Inc./DE",
+    "pending": true,
+    "primary": true,
+    "ticker": "LAZRQ"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001334388",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-07",
+    "item_1_03": false,
+    "key": "CIK:1334388",
+    "last_filed": "2026-04-07",
+    "name": "OBSIDIAN ENERGY LTD.",
+    "pending": false,
+    "primary": true,
+    "ticker": "OBE"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0002109876",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-06",
+    "item_1_03": false,
+    "key": "CIK:2109876",
+    "last_filed": "2026-04-06",
+    "name": "Mountain Crest Acquisition 6 Corp.",
+    "pending": false,
+    "primary": true,
+    "ticker": "MCAHU"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001111741",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-02",
+    "item_1_03": false,
+    "key": "CIK:1111741",
+    "last_filed": "2026-04-02",
+    "name": "DYNARESOURCE, INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "DYNR"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001293135",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-02",
+    "item_1_03": false,
+    "key": "CIK:1293135",
+    "last_filed": "2026-04-02",
+    "name": "VERMILION ENERGY INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "VET"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001013605",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-01",
+    "item_1_03": false,
+    "key": "CIK:1013605",
+    "last_filed": "2026-04-01",
+    "name": "PRECISION DRILLING Corp",
+    "pending": false,
+    "primary": true,
+    "ticker": "PDS"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001323404",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-01",
+    "item_1_03": false,
+    "key": "CIK:1323404",
+    "last_filed": "2026-04-01",
+    "name": "Wheaton Precious Metals Corp.",
+    "pending": false,
+    "primary": true,
+    "ticker": "WPM"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001546066",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-01",
+    "item_1_03": false,
+    "key": "CIK:1546066",
+    "last_filed": "2026-04-01",
+    "name": "PEMBINA PIPELINE CORP",
+    "pending": false,
+    "primary": true,
+    "ticker": "PBA"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000727273",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-31",
+    "item_1_03": false,
+    "key": "CIK:727273",
+    "last_filed": "2026-03-31",
+    "name": "CADIZ INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "CDZI"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001144800",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-31",
+    "item_1_03": false,
+    "key": "CIK:1144800",
+    "last_filed": "2026-03-31",
+    "name": "TRANSALTA CORP",
+    "pending": false,
+    "primary": true,
+    "ticker": "TAC"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001346830",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-31",
+    "item_1_03": false,
+    "key": "CIK:1346830",
+    "last_filed": "2026-03-31",
+    "name": "Tvardi Therapeutics, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "TVRD"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0002025401",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-31",
+    "item_1_03": false,
+    "key": "CIK:2025401",
+    "last_filed": "2026-03-31",
+    "name": "Fifth Era Acquisition Corp I",
+    "pending": false,
+    "primary": true,
+    "ticker": "FERA"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001828673",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-31",
+    "item_1_03": false,
+    "key": "CIK:1828673",
+    "last_filed": "2026-03-31",
+    "name": "HCW Biologics Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "HCWB"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001840563",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-30",
+    "item_1_03": false,
+    "key": "CIK:1840563",
+    "last_filed": "2026-03-30",
+    "name": "PMGC Holdings Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "ELAB"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001014763",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-30",
+    "item_1_03": false,
+    "key": "CIK:1014763",
+    "last_filed": "2026-03-30",
+    "name": "Ainos, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "AIMD"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0002025396",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-27",
+    "item_1_03": false,
+    "key": "CIK:2025396",
+    "last_filed": "2026-03-27",
+    "name": "Vine Hill Capital Investment Corp.",
+    "pending": false,
+    "primary": true,
+    "ticker": "VCIC"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0000749098",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-27",
+    "item_1_03": false,
+    "key": "CIK:749098",
+    "last_filed": "2026-03-27",
+    "name": "MAGNA INTERNATIONAL INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "MGA"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2
+    },
+    "cik": "0000846475",
+    "confidence": "pending (Q-suffix \u2014 still in Chapter 11, not yet emerged)",
+    "first_filed": "2026-03-20",
+    "item_1_03": true,
+    "key": "CIK:846475",
+    "last_filed": "2026-03-26",
+    "name": "ZYNEX INC",
+    "pending": true,
+    "primary": true,
+    "ticker": "ZYXIQ"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 3
+    },
+    "cik": "0001415311",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-26",
+    "item_1_03": false,
+    "key": "CIK:1415311",
+    "last_filed": "2026-03-26",
+    "name": "ProShares Trust II",
+    "pending": false,
+    "primary": true,
+    "ticker": "AGQ"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0001207179",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-26",
+    "item_1_03": false,
+    "key": "CIK:1207179",
+    "last_filed": "2026-03-26",
+    "name": "GOLAR LNG LTD",
+    "pending": false,
+    "primary": true,
+    "ticker": "GLNG"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001042418",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-26",
+    "item_1_03": false,
+    "key": "CIK:1042418",
+    "last_filed": "2026-03-26",
+    "name": "Inhibitor Therapeutics, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "INTI"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 3
+    },
+    "cik": "0002083125",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-01-30",
+    "item_1_03": false,
+    "key": "CIK:2083125",
+    "last_filed": "2026-03-24",
+    "name": "PRESIDIO PRODUCTION Co",
+    "pending": false,
+    "primary": true,
+    "ticker": "FTW"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 2
+    },
+    "cik": "0000215466",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-18",
+    "item_1_03": false,
+    "key": "CIK:215466",
+    "last_filed": "2026-03-23",
+    "name": "Coeur Mining, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "CDE"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001232384",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-20",
+    "item_1_03": false,
+    "key": "CIK:1232384",
+    "last_filed": "2026-03-20",
+    "name": "TC ENERGY CORP",
+    "pending": false,
+    "primary": true,
+    "ticker": "TRP"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001856437",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-20",
+    "item_1_03": false,
+    "key": "CIK:1856437",
+    "last_filed": "2026-03-20",
+    "name": "Victoria's Secret & Co.",
+    "pending": false,
+    "primary": true,
+    "ticker": "VSCO"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001415404",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-19",
+    "item_1_03": false,
+    "key": "CIK:1415404",
+    "last_filed": "2026-03-19",
+    "name": "EchoStar CORP",
+    "pending": false,
+    "primary": true,
+    "ticker": "SATS"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001549145",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-19",
+    "item_1_03": false,
+    "key": "CIK:1549145",
+    "last_filed": "2026-03-19",
+    "name": "BLUE BIOFUELS, INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "BIOF"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001646614",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-18",
+    "item_1_03": false,
+    "key": "CIK:1646614",
+    "last_filed": "2026-03-18",
+    "name": "Silver Point Specialty Lending Fund",
+    "pending": false,
+    "primary": true,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001717393",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-17",
+    "item_1_03": false,
+    "key": "CIK:1717393",
+    "last_filed": "2026-03-17",
+    "name": "CORPORACION AMERICA AIRPORTS S.A.",
+    "pending": false,
+    "primary": true,
+    "ticker": "CAAP"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0002087587",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-16",
+    "item_1_03": false,
+    "key": "CIK:2087587",
+    "last_filed": "2026-03-16",
+    "name": "Odysseus Holdings Ltd",
+    "pending": false,
+    "primary": true,
+    "ticker": "CSHRW"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001859035",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-16",
+    "item_1_03": false,
+    "key": "CIK:1859035",
+    "last_filed": "2026-03-16",
+    "name": "Mountain Crest Acquisition Corp. V",
+    "pending": false,
+    "primary": true,
+    "ticker": "MCAG"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0000006176",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-16",
+    "item_1_03": false,
+    "key": "CIK:6176",
+    "last_filed": "2026-03-16",
+    "name": "AMPCO PITTSBURGH CORP",
+    "pending": false,
+    "primary": true,
+    "ticker": "AP"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0000071557",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-16",
+    "item_1_03": false,
+    "key": "CIK:71557",
+    "last_filed": "2026-03-16",
+    "name": "Nuvera Communications, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "NUVR"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000863894",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-13",
+    "item_1_03": false,
+    "key": "CIK:863894",
+    "last_filed": "2026-03-13",
+    "name": "VERU INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "VERU"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000104169",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-13",
+    "item_1_03": false,
+    "key": "CIK:104169",
+    "last_filed": "2026-03-13",
+    "name": "Walmart Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "WMT"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001538263",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-13",
+    "item_1_03": false,
+    "key": "CIK:1538263",
+    "last_filed": "2026-03-13",
+    "name": "HomeTrust Bancshares, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "HTB"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0001618835",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-11",
+    "item_1_03": false,
+    "key": "CIK:1618835",
+    "last_filed": "2026-03-11",
+    "name": "Evofem Biosciences, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "EVFM"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001093672",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-11",
+    "item_1_03": false,
+    "key": "CIK:1093672",
+    "last_filed": "2026-03-11",
+    "name": "PEOPLES BANCORP OF NORTH CAROLINA INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "PEBK"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001597672",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-05",
+    "item_1_03": false,
+    "key": "CIK:1597672",
+    "last_filed": "2026-03-05",
+    "name": "RAYONIER ADVANCED MATERIALS INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "RYAM"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001517396",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-05",
+    "item_1_03": false,
+    "key": "CIK:1517396",
+    "last_filed": "2026-03-05",
+    "name": "STRATASYS LTD.",
+    "pending": false,
+    "primary": true,
+    "ticker": "SSYS"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001000275",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-05",
+    "item_1_03": false,
+    "key": "CIK:1000275",
+    "last_filed": "2026-03-05",
+    "name": "ROYAL BANK OF CANADA",
+    "pending": false,
+    "primary": true,
+    "ticker": "RY"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0000922358",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-05",
+    "item_1_03": false,
+    "key": "CIK:922358",
+    "last_filed": "2026-03-05",
+    "name": "FERRELLGAS PARTNERS L P",
+    "pending": false,
+    "primary": true,
+    "ticker": "FGPR"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0000874501",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-04",
+    "item_1_03": false,
+    "key": "CIK:874501",
+    "last_filed": "2026-03-04",
+    "name": "OCTAVE SPECIALTY GROUP INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "OSG"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001057060",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-03",
+    "item_1_03": false,
+    "key": "CIK:1057060",
+    "last_filed": "2026-03-03",
+    "name": "MARINEMAX INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "HZO"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0000098222",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-02",
+    "item_1_03": false,
+    "key": "CIK:98222",
+    "last_filed": "2026-03-02",
+    "name": "TIDEWATER INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "TDW"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0000763901",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-02",
+    "item_1_03": false,
+    "key": "CIK:763901",
+    "last_filed": "2026-03-02",
+    "name": "POPULAR, INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "BPOP"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001841408",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-02",
+    "item_1_03": false,
+    "key": "CIK:1841408",
+    "last_filed": "2026-03-02",
+    "name": "Dave Inc./DE",
+    "pending": false,
+    "primary": true,
+    "ticker": "DAVE"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0002007855",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-02",
+    "item_1_03": false,
+    "key": "CIK:2007855",
+    "last_filed": "2026-03-02",
+    "name": "Venture Global, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "VG"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001971213",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-27",
+    "item_1_03": false,
+    "key": "CIK:1971213",
+    "last_filed": "2026-02-27",
+    "name": "Sinclair, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "SBGI"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001370755",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-27",
+    "item_1_03": false,
+    "key": "CIK:1370755",
+    "last_filed": "2026-02-27",
+    "name": "BlackRock TCP Capital Corp.",
+    "pending": false,
+    "primary": true,
+    "ticker": "TCPC"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001293818",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-27",
+    "item_1_03": false,
+    "key": "CIK:1293818",
+    "last_filed": "2026-02-27",
+    "name": "CapForce Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "OPGN"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001801170",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-27",
+    "item_1_03": false,
+    "key": "CIK:1801170",
+    "last_filed": "2026-02-27",
+    "name": "CLOVER HEALTH INVESTMENTS, CORP. /DE",
+    "pending": false,
+    "primary": true,
+    "ticker": "CLOV"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001831481",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-27",
+    "item_1_03": false,
+    "key": "CIK:1831481",
+    "last_filed": "2026-02-27",
+    "name": "Sable Offshore Corp.",
+    "pending": false,
+    "primary": true,
+    "ticker": "SOC"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001130144",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-27",
+    "item_1_03": false,
+    "key": "CIK:1130144",
+    "last_filed": "2026-02-27",
+    "name": "SIERRA BANCORP",
+    "pending": false,
+    "primary": true,
+    "ticker": "BSRR"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001068851",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-26",
+    "item_1_03": false,
+    "key": "CIK:1068851",
+    "last_filed": "2026-02-26",
+    "name": "PROSPERITY BANCSHARES INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "PB"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 3
+    },
+    "cik": "0001859392",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-26",
+    "item_1_03": false,
+    "key": "CIK:1859392",
+    "last_filed": "2026-02-26",
+    "name": "Galaxy Digital Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "GLXY"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000060714",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-26",
+    "item_1_03": false,
+    "key": "CIK:60714",
+    "last_filed": "2026-02-26",
+    "name": "LSB INDUSTRIES, INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "LXU"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001958140",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-26",
+    "item_1_03": false,
+    "key": "CIK:1958140",
+    "last_filed": "2026-02-26",
+    "name": "Atlanta Braves Holdings, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "BATRA"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000917520",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-26",
+    "item_1_03": false,
+    "key": "CIK:917520",
+    "last_filed": "2026-02-26",
+    "name": "INTEGRA LIFESCIENCES HOLDINGS CORP",
+    "pending": false,
+    "primary": true,
+    "ticker": "IART"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000926282",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-26",
+    "item_1_03": false,
+    "key": "CIK:926282",
+    "last_filed": "2026-02-26",
+    "name": "ADTRAN Holdings, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "ADTN"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001289945",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-26",
+    "item_1_03": false,
+    "key": "CIK:1289945",
+    "last_filed": "2026-02-26",
+    "name": "Spok Holdings, Inc",
+    "pending": false,
+    "primary": true,
+    "ticker": "SPOK"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001529628",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-26",
+    "item_1_03": false,
+    "key": "CIK:1529628",
+    "last_filed": "2026-02-26",
+    "name": "Smart Sand, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "SND"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001567925",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-25",
+    "item_1_03": false,
+    "key": "CIK:1567925",
+    "last_filed": "2026-02-25",
+    "name": "Sila Realty Trust, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "SILA"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0000821483",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-25",
+    "item_1_03": false,
+    "key": "CIK:821483",
+    "last_filed": "2026-02-25",
+    "name": "PAR PACIFIC HOLDINGS, INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "PARR"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000792987",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-25",
+    "item_1_03": false,
+    "key": "CIK:792987",
+    "last_filed": "2026-02-25",
+    "name": "ASTEC INDUSTRIES INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "ASTE"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0000007431",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-24",
+    "item_1_03": false,
+    "key": "CIK:7431",
+    "last_filed": "2026-02-24",
+    "name": "ARMSTRONG WORLD INDUSTRIES INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "AWI"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000750004",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-24",
+    "item_1_03": false,
+    "key": "CIK:750004",
+    "last_filed": "2026-02-24",
+    "name": "Light & Wonder, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "LNWO"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001368265",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-24",
+    "item_1_03": false,
+    "key": "CIK:1368265",
+    "last_filed": "2026-02-24",
+    "name": "Clean Energy Fuels Corp.",
+    "pending": false,
+    "primary": true,
+    "ticker": "CLNE"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0002029118",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-23",
+    "item_1_03": false,
+    "key": "CIK:2029118",
+    "last_filed": "2026-02-23",
+    "name": "INFINITY NATURAL RESOURCES, INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "INR"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0000732834",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-23",
+    "item_1_03": false,
+    "key": "CIK:732834",
+    "last_filed": "2026-02-23",
+    "name": "CONTINENTAL RESOURCES, INC",
+    "pending": false,
+    "primary": true,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001519751",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-23",
+    "item_1_03": false,
+    "key": "CIK:1519751",
+    "last_filed": "2026-02-23",
+    "name": "Fortune Brands Innovations, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "FBIN"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001411579",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-23",
+    "item_1_03": false,
+    "key": "CIK:1411579",
+    "last_filed": "2026-02-23",
+    "name": "AMC ENTERTAINMENT HOLDINGS, INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "AMC"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0001489393",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-20",
+    "item_1_03": false,
+    "key": "CIK:1489393",
+    "last_filed": "2026-02-20",
+    "name": "LyondellBasell Industries N.V.",
+    "pending": false,
+    "primary": true,
+    "ticker": "LYB"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000944695",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-20",
+    "item_1_03": false,
+    "key": "CIK:944695",
+    "last_filed": "2026-02-20",
+    "name": "HANOVER INSURANCE GROUP, INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "THG"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001530804",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-20",
+    "item_1_03": false,
+    "key": "CIK:1530804",
+    "last_filed": "2026-02-20",
+    "name": "Tronox Holdings plc",
+    "pending": false,
+    "primary": true,
+    "ticker": "TROX"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000916365",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-19",
+    "item_1_03": false,
+    "key": "CIK:916365",
+    "last_filed": "2026-02-19",
+    "name": "TRACTOR SUPPLY CO /DE/",
+    "pending": false,
+    "primary": true,
+    "ticker": "TSCO"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000059558",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-19",
+    "item_1_03": false,
+    "key": "CIK:59558",
+    "last_filed": "2026-02-19",
+    "name": "LINCOLN NATIONAL CORP",
+    "pending": false,
+    "primary": true,
+    "ticker": "LNC"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001735707",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-19",
+    "item_1_03": false,
+    "key": "CIK:1735707",
+    "last_filed": "2026-02-19",
+    "name": "Garrett Motion Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "GTX"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000049071",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-19",
+    "item_1_03": false,
+    "key": "CIK:49071",
+    "last_filed": "2026-02-19",
+    "name": "HUMANA INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "HUM"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001111335",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-19",
+    "item_1_03": false,
+    "key": "CIK:1111335",
+    "last_filed": "2026-02-19",
+    "name": "VISTEON CORP",
+    "pending": false,
+    "primary": true,
+    "ticker": "VC"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001130310",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-19",
+    "item_1_03": false,
+    "key": "CIK:1130310",
+    "last_filed": "2026-02-19",
+    "name": "CENTERPOINT ENERGY INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "CNP"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001099219",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-19",
+    "item_1_03": false,
+    "key": "CIK:1099219",
+    "last_filed": "2026-02-19",
+    "name": "METLIFE INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "MET"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001031296",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-18",
+    "item_1_03": false,
+    "key": "CIK:1031296",
+    "last_filed": "2026-02-18",
+    "name": "FIRSTENERGY CORP",
+    "pending": false,
+    "primary": true,
+    "ticker": "FE"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001385280",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-18",
+    "item_1_03": false,
+    "key": "CIK:1385280",
+    "last_filed": "2026-02-18",
+    "name": "Cinemark Holdings, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "CNK"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0000827052",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-18",
+    "item_1_03": false,
+    "key": "CIK:827052",
+    "last_filed": "2026-02-18",
+    "name": "EDISON INTERNATIONAL",
+    "pending": false,
+    "primary": true,
+    "ticker": "EIX"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001059556",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-18",
+    "item_1_03": false,
+    "key": "CIK:1059556",
+    "last_filed": "2026-02-18",
+    "name": "MOODYS CORP /DE/",
+    "pending": false,
+    "primary": true,
+    "ticker": "MCO"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0000780571",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-17",
+    "item_1_03": false,
+    "key": "CIK:780571",
+    "last_filed": "2026-02-17",
+    "name": "ITRON, INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "ITRI"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000108385",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-17",
+    "item_1_03": false,
+    "key": "CIK:108385",
+    "last_filed": "2026-02-17",
+    "name": "WORLD ACCEPTANCE CORP",
+    "pending": false,
+    "primary": true,
+    "ticker": "WRLD"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0000880266",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-13",
+    "item_1_03": false,
+    "key": "CIK:880266",
+    "last_filed": "2026-02-13",
+    "name": "AGCO CORP /DE",
+    "pending": false,
+    "primary": true,
+    "ticker": "AGCO"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001109448",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-12",
+    "item_1_03": false,
+    "key": "CIK:1109448",
+    "last_filed": "2026-02-12",
+    "name": "ALLIANCEBERNSTEIN L.P.",
+    "pending": false,
+    "primary": true,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001052752",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-12",
+    "item_1_03": false,
+    "key": "CIK:1052752",
+    "last_filed": "2026-02-12",
+    "name": "GETTY REALTY CORP /MD/",
+    "pending": false,
+    "primary": true,
+    "ticker": "GTY"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000825313",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-12",
+    "item_1_03": false,
+    "key": "CIK:825313",
+    "last_filed": "2026-02-12",
+    "name": "ALLIANCEBERNSTEIN HOLDING L.P.",
+    "pending": false,
+    "primary": true,
+    "ticker": "AB"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001637459",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-12",
+    "item_1_03": false,
+    "key": "CIK:1637459",
+    "last_filed": "2026-02-12",
+    "name": "Kraft Heinz Co",
+    "pending": false,
+    "primary": true,
+    "ticker": "KHC"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0000028823",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-12",
+    "item_1_03": false,
+    "key": "CIK:28823",
+    "last_filed": "2026-02-12",
+    "name": "DIEBOLD NIXDORF, Inc",
+    "pending": false,
+    "primary": true,
+    "ticker": "DBD"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000860748",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-11",
+    "item_1_03": false,
+    "key": "CIK:860748",
+    "last_filed": "2026-02-11",
+    "name": "KEMPER Corp",
+    "pending": false,
+    "primary": true,
+    "ticker": "KMPB"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000820313",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-11",
+    "item_1_03": false,
+    "key": "CIK:820313",
+    "last_filed": "2026-02-11",
+    "name": "AMPHENOL CORP /DE/",
+    "pending": false,
+    "primary": true,
+    "ticker": "APH"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0000037996",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-11",
+    "item_1_03": false,
+    "key": "CIK:37996",
+    "last_filed": "2026-02-11",
+    "name": "FORD MOTOR CO",
+    "pending": false,
+    "primary": true,
+    "ticker": "F"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001502377",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-11",
+    "item_1_03": false,
+    "key": "CIK:1502377",
+    "last_filed": "2026-02-11",
+    "name": "Contango ORE, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "CTGO"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0000888491",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-09",
+    "item_1_03": false,
+    "key": "CIK:888491",
+    "last_filed": "2026-02-09",
+    "name": "OMEGA HEALTHCARE INVESTORS INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "OHI"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0002080921",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-06",
+    "item_1_03": false,
+    "key": "CIK:2080921",
+    "last_filed": "2026-02-06",
+    "name": "ARKO Petroleum Corp.",
+    "pending": false,
+    "primary": true,
+    "ticker": "APC"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001493225",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-06",
+    "item_1_03": false,
+    "key": "CIK:1493225",
+    "last_filed": "2026-02-06",
+    "name": "Northfield Bancorp, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "NFBK"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001922446",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-06",
+    "item_1_03": false,
+    "key": "CIK:1922446",
+    "last_filed": "2026-02-06",
+    "name": "Diversified Energy Co",
+    "pending": false,
+    "primary": true,
+    "ticker": "DEC"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001083220",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-04",
+    "item_1_03": false,
+    "key": "CIK:1083220",
+    "last_filed": "2026-02-04",
+    "name": "XCel Brands, Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "XELB"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001751788",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-03",
+    "item_1_03": false,
+    "key": "CIK:1751788",
+    "last_filed": "2026-02-03",
+    "name": "DOW INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "DOW"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001433642",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-03",
+    "item_1_03": false,
+    "key": "CIK:1433642",
+    "last_filed": "2026-02-03",
+    "name": "Hamilton Lane INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "HLNE"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 2
+    },
+    "cik": "0002011954",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-01-27",
+    "item_1_03": true,
+    "key": "CIK:2011954",
+    "last_filed": "2026-01-30",
+    "name": "Twin Hospitality Group Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "TWNP"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0000096223",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-01-28",
+    "item_1_03": false,
+    "key": "CIK:96223",
+    "last_filed": "2026-01-28",
+    "name": "Jefferies Financial Group Inc.",
+    "pending": false,
+    "primary": true,
+    "ticker": "JEF"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 1
+    },
+    "cik": "0001467858",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-01-27",
+    "item_1_03": false,
+    "key": "CIK:1467858",
+    "last_filed": "2026-01-27",
+    "name": "General Motors Co",
+    "pending": false,
+    "primary": true,
+    "ticker": "GM"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001159167",
+    "confidence": "pending (Q-suffix \u2014 still in Chapter 11, not yet emerged)",
+    "first_filed": "2026-01-26",
+    "item_1_03": true,
+    "key": "CIK:1159167",
+    "last_filed": "2026-01-26",
+    "name": "IROBOT CORP",
+    "pending": true,
+    "primary": true,
+    "ticker": "IRBTQ"
+  },
+  {
+    "channels": {
+      "plan-effective 8-K": 1
+    },
+    "cik": "0001160791",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-01-26",
+    "item_1_03": false,
+    "key": "CIK:1160791",
+    "last_filed": "2026-01-26",
+    "name": "GOLD RESOURCE CORP",
+    "pending": false,
+    "primary": true,
+    "ticker": "GORO"
+  },
+  {
+    "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "0001035443",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-01-26",
+    "item_1_03": false,
+    "key": "CIK:1035443",
+    "last_filed": "2026-01-26",
+    "name": "ALEXANDRIA REAL ESTATE EQUITIES, INC.",
+    "pending": false,
+    "primary": true,
+    "ticker": "ARE"
   },
   {
     "channels": {
@@ -1452,24 +4749,13 @@
     "cik": "",
     "confidence": "medium (corroborating signals only)",
     "first_filed": "2026-06-19",
-    "key": "NAME:15odmanark",
+    "item_1_03": false,
+    "key": "NAME:15codmanpark",
     "last_filed": "2026-06-19",
     "name": "15 Codman Park LLC",
+    "pending": null,
     "primary": false,
     "ticker": ""
-  },
-  {
-    "channels": {
-      "Form 25 old-share delisting": 2
-    },
-    "cik": "0001169445",
-    "confidence": "low (single corroborating signal)",
-    "first_filed": "2026-07-10",
-    "key": "CIK:1169445",
-    "last_filed": "2026-07-11",
-    "name": "TruBridge, Inc.",
-    "primary": false,
-    "ticker": "TBRG"
   },
   {
     "channels": {
@@ -1478,9 +4764,11 @@
     "cik": "0001552947",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-10",
+    "item_1_03": false,
     "key": "CIK:1552947",
     "last_filed": "2026-07-11",
     "name": "Two Roads Shared Trust",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1491,9 +4779,11 @@
     "cik": "0001127703",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-10",
+    "item_1_03": false,
     "key": "CIK:1127703",
     "last_filed": "2026-07-11",
     "name": "PROASSURANCE CORP",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1504,9 +4794,11 @@
     "cik": "0001415726",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-11",
+    "item_1_03": false,
     "key": "CIK:1415726",
     "last_filed": "2026-07-11",
     "name": "Innovator ETFs Trust",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1517,9 +4809,11 @@
     "cik": "0001644697",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-10",
+    "item_1_03": false,
     "key": "CIK:1644697",
     "last_filed": "2026-07-11",
     "name": "GS Mortgage Securities Trust 2015-GC32",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1530,9 +4824,11 @@
     "cik": "0002074850",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-11",
+    "item_1_03": false,
     "key": "CIK:2074850",
     "last_filed": "2026-07-11",
     "name": "Spring Valley Acquisition Corp. III",
+    "pending": null,
     "primary": false,
     "ticker": "SVACU"
   },
@@ -1543,9 +4839,11 @@
     "cik": "0001870600",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-10",
+    "item_1_03": false,
     "key": "CIK:1870600",
     "last_filed": "2026-07-11",
     "name": "Solo Brands, Inc.",
+    "pending": null,
     "primary": false,
     "ticker": "SBDS"
   },
@@ -1556,9 +4854,11 @@
     "cik": "0001901336",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-11",
+    "item_1_03": false,
     "key": "CIK:1901336",
     "last_filed": "2026-07-11",
     "name": "Alchemy Investments Acquisition Corp 1",
+    "pending": null,
     "primary": false,
     "ticker": "ALCUF"
   },
@@ -1569,9 +4869,11 @@
     "cik": "0001802457",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-11",
+    "item_1_03": false,
     "key": "CIK:1802457",
     "last_filed": "2026-07-11",
     "name": "Origin Materials, Inc.",
+    "pending": null,
     "primary": false,
     "ticker": "ORGN"
   },
@@ -1582,9 +4884,11 @@
     "cik": "0001992243",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-11",
+    "item_1_03": false,
     "key": "CIK:1992243",
     "last_filed": "2026-07-11",
     "name": "T1 Energy Inc.",
+    "pending": null,
     "primary": false,
     "ticker": "TE-WT"
   },
@@ -1595,9 +4899,11 @@
     "cik": "0001742927",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-11",
+    "item_1_03": false,
     "key": "CIK:1742927",
     "last_filed": "2026-07-11",
     "name": "REVIVA PHARMACEUTICALS HOLDINGS, INC.",
+    "pending": null,
     "primary": false,
     "ticker": "RVPH"
   },
@@ -1608,9 +4914,11 @@
     "cik": "0001926999",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-10",
+    "item_1_03": false,
     "key": "CIK:1926999",
     "last_filed": "2026-07-11",
     "name": "World Omni Auto Receivables Trust 2022-B",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1621,9 +4929,11 @@
     "cik": "0001844224",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-10",
+    "item_1_03": false,
     "key": "CIK:1844224",
     "last_filed": "2026-07-11",
     "name": "FREYR Battery",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1634,9 +4944,11 @@
     "cik": "0001900520",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-11",
+    "item_1_03": false,
     "key": "CIK:1900520",
     "last_filed": "2026-07-11",
     "name": "Lomond Therapeutics Holdings, Inc.",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1647,9 +4959,11 @@
     "cik": "0001560143",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-01",
+    "item_1_03": false,
     "key": "CIK:1560143",
     "last_filed": "2026-07-01",
     "name": "WYTEC INTERNATIONAL INC",
+    "pending": null,
     "primary": false,
     "ticker": "WYTC"
   },
@@ -1660,9 +4974,11 @@
     "cik": "0001408100",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-01",
+    "item_1_03": false,
     "key": "CIK:1408100",
     "last_filed": "2026-07-01",
     "name": "Kennedy-Wilson Holdings, Inc.",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1673,9 +4989,11 @@
     "cik": "0002073537",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-01",
+    "item_1_03": false,
     "key": "CIK:2073537",
     "last_filed": "2026-07-01",
     "name": "PIMCO Asset-Based Lending Co LLC",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1686,9 +5004,11 @@
     "cik": "0001606268",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-01",
+    "item_1_03": false,
     "key": "CIK:1606268",
     "last_filed": "2026-07-01",
     "name": "Via Renewables, Inc.",
+    "pending": null,
     "primary": false,
     "ticker": "VIASP"
   },
@@ -1699,9 +5019,11 @@
     "cik": "0001905655",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-01",
+    "item_1_03": false,
     "key": "CIK:1905655",
     "last_filed": "2026-07-01",
     "name": "Nissan Auto Receivables 2022-A Owner Trust",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1712,9 +5034,11 @@
     "cik": "0001117171",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-01",
+    "item_1_03": false,
     "key": "CIK:1117171",
     "last_filed": "2026-07-01",
     "name": "CBAK Energy Technology, Inc.",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1725,9 +5049,11 @@
     "cik": "0001888143",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-01",
+    "item_1_03": false,
     "key": "CIK:1888143",
     "last_filed": "2026-07-01",
     "name": "AmeriCredit Automobile Receivables Trust 2021-3",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1738,9 +5064,11 @@
     "cik": "0000882361",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-01",
+    "item_1_03": false,
     "key": "CIK:882361",
     "last_filed": "2026-07-01",
     "name": "Aptose Biosciences Inc.",
+    "pending": null,
     "primary": false,
     "ticker": "APTOF"
   },
@@ -1751,9 +5079,11 @@
     "cik": "0001500305",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-07-01",
+    "item_1_03": false,
     "key": "CIK:1500305",
     "last_filed": "2026-07-01",
     "name": "Sustainable Projects Group Inc.",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1764,9 +5094,11 @@
     "cik": "",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-06-30",
-    "key": "NAME:unenion",
+    "item_1_03": false,
+    "key": "NAME:duneunion",
     "last_filed": "2026-06-30",
     "name": "Dune Union Inc.",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1777,9 +5109,11 @@
     "cik": "",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-06-22",
-    "key": "NAME:hicagoeightsyers",
+    "item_1_03": false,
+    "key": "NAME:chicagoheightsayers",
     "last_filed": "2026-06-22",
     "name": "Chicago Heights Ayers LLC",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1790,9 +5124,11 @@
     "cik": "0001783876",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-06-22",
+    "item_1_03": false,
     "key": "CIK:1783876",
     "last_filed": "2026-06-22",
     "name": "Teamshares Inc.",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1803,9 +5139,11 @@
     "cik": "0001574219",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-06-22",
+    "item_1_03": false,
     "key": "CIK:1574219",
     "last_filed": "2026-06-22",
     "name": "J.P. Morgan Chase Commercial Mortgage Securities Trust 2013-LC11",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1816,9 +5154,11 @@
     "cik": "0001348911",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-06-22",
+    "item_1_03": false,
     "key": "CIK:1348911",
     "last_filed": "2026-06-22",
     "name": "KalVista Pharmaceuticals, Inc.",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1829,9 +5169,11 @@
     "cik": "0001909770",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-06-22",
+    "item_1_03": false,
     "key": "CIK:1909770",
     "last_filed": "2026-06-22",
     "name": "KHEOBA CORP.",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1842,9 +5184,11 @@
     "cik": "0001489096",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-06-22",
+    "item_1_03": false,
     "key": "CIK:1489096",
     "last_filed": "2026-06-22",
     "name": "Thermon Group Holdings, Inc.",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1855,9 +5199,11 @@
     "cik": "",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-06-21",
-    "key": "NAME:lobalgamiab",
+    "item_1_03": false,
+    "key": "NAME:globalagamicab",
     "last_filed": "2026-06-21",
     "name": "Global Agami Cab LLC",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1868,9 +5214,11 @@
     "cik": "",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-06-21",
-    "key": "NAME:niversalgamiransit",
+    "item_1_03": false,
+    "key": "NAME:universalagamitransit",
     "last_filed": "2026-06-21",
     "name": "Universal Agami Transit Inc.",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1881,9 +5229,11 @@
     "cik": "",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-06-21",
-    "key": "NAME:lanetgamiab",
+    "item_1_03": false,
+    "key": "NAME:planetagamicab",
     "last_filed": "2026-06-21",
     "name": "Planet Agami Cab LLC",
+    "pending": null,
     "primary": false,
     "ticker": ""
   },
@@ -1894,9 +5244,11 @@
     "cik": "",
     "confidence": "low (single corroborating signal)",
     "first_filed": "2026-06-16",
-    "key": "NAME:opco",
+    "item_1_03": false,
+    "key": "NAME:gvotopco",
     "last_filed": "2026-06-16",
     "name": "GVO Topco LLC",
+    "pending": null,
     "primary": false,
     "ticker": ""
   }

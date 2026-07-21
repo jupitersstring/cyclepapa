@@ -56,13 +56,35 @@ except Exception:            # pragma: no cover
 # signals ARE an emergence on their own; corroborating signals only raise
 # confidence when they coincide with a primary (or with each other).
 
+_STOP = {"inc", "corp", "corporation", "ltd", "limited", "plc", "llc",
+         "lp", "holdings", "holding", "group", "co", "company", "the",
+         "sa", "nv", "ag", "se", "spa", "as", "oyj", "ab", "of", "and"}
+
+
 def _norm(n) -> str:
+    """Robust entity key: drop parentheticals ('(Spirit Airlines)',
+    '(formerly ...)'), fold punctuation so 'S.A.' == 'SA', tokenize, drop
+    corporate-form stopwords, join. Consistent across sources so the same
+    issuer fuses instead of splitting (and the coverage tripwire matches)."""
     if isinstance(n, (list, tuple)):
         n = " ".join(map(str, n))
-    return re.sub(r"[^a-z0-9]", "",
-                  re.sub(r"\b(inc|corp|corporation|ltd|limited|plc|llc|lp|"
-                         r"holdings?|group|co|company|the|sa|nv|ag|se)\b",
-                         "", str(n or ""), flags=re.I)).lower()
+    s = str(n or "").lower()
+    s = re.sub(r"\([^)]*\)", " ", s)          # strip parentheticals
+    s = s.replace(".", "")                      # s.a. -> sa, inc. -> inc
+    toks = [t for t in re.split(r"[^a-z0-9]+", s) if t and t not in _STOP]
+    return "".join(toks)
+
+
+def _ticker_stems(t) -> set[str]:
+    """All ticker-like stems from a (possibly messy) ticker field, each with
+    a trailing bankruptcy 'Q' stripped ('FLYYQ' -> 'FLYY', 'AZULQ' -> 'AZUL')."""
+    out = set()
+    for m in re.findall(r"[A-Za-z]{1,6}\d?", (t or "").split(":")[-1]):
+        u = m.upper()
+        out.add(u)
+        if len(u) >= 4 and u.endswith("Q"):
+            out.add(u[:-1])
+    return {s for s in out if len(s) >= 2}
 
 
 def _key(rec) -> str:
@@ -195,21 +217,43 @@ def load_ground_truth() -> list[dict]:
     return []
 
 
+_NOT_YET = re.compile(r"in process|targeted|expected|pending|not yet|"
+                      r"anticipat|q[1-4]\b|20\d\d-q", re.I)
+
+
+def _name_match(a: str, b: str) -> bool:
+    """Equal, or one a prefix of the other (handles ground-truth names that
+    carry an extra '(Spirit Airlines)'-style suffix)."""
+    if not a or not b:
+        return False
+    if a == b:
+        return True
+    lo, hi = sorted((a, b), key=len)
+    return len(lo) >= 6 and hi.startswith(lo)
+
+
 def coverage_gap(events: dict[str, dict],
                  truth: list[dict]) -> list[dict]:
-    """Known listed-common emergences NOT present in our fused corpus."""
-    caught_names = {_norm(ev["name"]) for ev in events.values()}
-    caught_tickers = {re.sub(r"[^A-Za-z0-9]", "",
-                             (ev["ticker"] or "").split(":")[-1]).upper()
-                      for ev in events.values() if ev["ticker"]}
+    """Known listed-common emergences NOT present in our fused corpus. Uses
+    robust name + ticker-stem matching, and skips ground-truth entries that
+    the researcher flagged as not-yet-emerged (in process / targeted)."""
+    caught_names = {_norm(ev["name"]) for ev in events.values() if ev["name"]}
+    caught_tickers: set[str] = set()
+    for ev in events.values():
+        caught_tickers |= _ticker_stems(ev.get("ticker"))
     gaps = []
     for t in truth:
         if not t.get("listed_common", True):
             continue
+        # skip emergences the researcher marked as not-yet-effective
+        if _NOT_YET.search(str(t.get("emergence_date", "")) + " " +
+                           str(t.get("note", ""))):
+            continue
         nm = _norm(t.get("name", ""))
-        tk = re.sub(r"[^A-Za-z0-9]", "",
-                    (t.get("ticker") or "").split(":")[-1]).upper()
-        if nm in caught_names or (tk and tk in caught_tickers):
+        tks = _ticker_stems(t.get("ticker"))
+        if any(_name_match(nm, cn) for cn in caught_names):
+            continue
+        if tks & caught_tickers:
             continue
         gaps.append(t)
     return gaps

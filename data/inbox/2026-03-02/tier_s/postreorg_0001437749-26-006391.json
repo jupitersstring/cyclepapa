@@ -1,0 +1,29 @@
+{
+  "accession": "0001437749-26-006391",
+  "also_matched": [
+    "emergence from Chapter 11",
+    "emergence from Chapter 11",
+    "emergence from Chapter 11",
+    "emergence from Chapter 11",
+    "emergence from Chapter 11"
+  ],
+  "cik": "0000098222",
+  "emergence_tier": "strong",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-03-02",
+  "form": "10-K",
+  "form_code": "10-K",
+  "isin": null,
+  "item_1_03": false,
+  "items": [],
+  "jurisdiction": "US",
+  "matched_phrase": "emergence from Chapter 11",
+  "name": "TIDEWATER INC",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_emerged",
+  "query_note": "Emergence from Chapter 11 \u2014 post-reorg equity now trading. Verify float, creditor overhang, and the coverage vacuum.",
+  "source": "EDGAR-postreorg",
+  "ticker": "TDW",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/98222/000143774926006391"
+}

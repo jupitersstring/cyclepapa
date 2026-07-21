@@ -1,0 +1,33 @@
+{
+  "accession": "0000771992-26-000047",
+  "also_matched": [
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date"
+  ],
+  "cik": "0000771992",
+  "emergence_tier": "recall",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-05-07",
+  "form": "6-K",
+  "form_code": "6-K",
+  "isin": null,
+  "item_1_03": false,
+  "items": [],
+  "jurisdiction": "US",
+  "matched_phrase": "Plan Effective Date",
+  "name": "PAN AMERICAN SILVER CORP",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_plan_effective",
+  "query_note": "Plan of Reorganization effective / consummated \u2014 the emergence event. New equity distributed to creditors; watch the forced-selling window.",
+  "source": "EDGAR-postreorg",
+  "ticker": "PAAS",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/771992/000077199226000047"
+}

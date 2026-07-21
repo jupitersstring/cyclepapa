@@ -1,0 +1,32 @@
+{
+  "accession": "0001193125-26-194071",
+  "also_matched": [
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy"
+  ],
+  "cik": "0000053456",
+  "emergence_tier": "recall",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-04-30",
+  "form": "424B3",
+  "form_code": "424B3",
+  "isin": null,
+  "item_1_03": false,
+  "items": [],
+  "jurisdiction": "US",
+  "matched_phrase": "emerged from bankruptcy",
+  "name": "JERSEY CENTRAL POWER & LIGHT CO",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_emerged",
+  "query_note": "Emergence from Chapter 11 \u2014 post-reorg equity now trading. Verify float, creditor overhang, and the coverage vacuum.",
+  "source": "EDGAR-postreorg",
+  "ticker": "",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/53456/000119312526194071"
+}

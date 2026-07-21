@@ -1,0 +1,30 @@
+{
+  "accession": "0000780571-26-000033",
+  "also_matched": [
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy"
+  ],
+  "cik": "0000780571",
+  "emergence_tier": "recall",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-02-17",
+  "form": "10-K",
+  "form_code": "10-K",
+  "isin": null,
+  "item_1_03": false,
+  "items": [],
+  "jurisdiction": "US",
+  "matched_phrase": "emerged from bankruptcy",
+  "name": "ITRON, INC.",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_emerged",
+  "query_note": "Emergence from Chapter 11 \u2014 post-reorg equity now trading. Verify float, creditor overhang, and the coverage vacuum.",
+  "source": "EDGAR-postreorg",
+  "ticker": "ITRI",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/780571/000078057126000033"
+}

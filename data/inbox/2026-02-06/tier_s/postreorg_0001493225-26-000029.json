@@ -1,0 +1,32 @@
+{
+  "accession": "0001493225-26-000029",
+  "also_matched": [
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date"
+  ],
+  "cik": "0001493225",
+  "emergence_tier": "recall",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-02-06",
+  "form": "8-K",
+  "form_code": "8-K",
+  "isin": null,
+  "item_1_03": false,
+  "items": [
+    "5.02",
+    "9.01"
+  ],
+  "jurisdiction": "US",
+  "matched_phrase": "Plan Effective Date",
+  "name": "Northfield Bancorp, Inc.",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_plan_effective",
+  "query_note": "Plan of Reorganization effective / consummated \u2014 the emergence event. New equity distributed to creditors; watch the forced-selling window.",
+  "source": "EDGAR-postreorg",
+  "ticker": "NFBK",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1493225/000149322526000029"
+}

@@ -1,0 +1,28 @@
+{
+  "accession": "0000880266-26-000010",
+  "also_matched": [
+    "post-emergence",
+    "post-emergence",
+    "post-emergence",
+    "post-emergence"
+  ],
+  "cik": "0000880266",
+  "emergence_tier": "recall",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-02-13",
+  "form": "10-K",
+  "form_code": "10-K",
+  "isin": null,
+  "item_1_03": false,
+  "items": [],
+  "jurisdiction": "US",
+  "matched_phrase": "post-emergence",
+  "name": "AGCO CORP /DE",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_emerged",
+  "query_note": "Emergence from Chapter 11 \u2014 post-reorg equity now trading. Verify float, creditor overhang, and the coverage vacuum.",
+  "source": "EDGAR-postreorg",
+  "ticker": "AGCO",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/880266/000088026626000010"
+}

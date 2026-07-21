@@ -1,15 +1,28 @@
 {
   "accession": "0001193125-26-230932",
+  "also_matched": [
+    "Plan Effective Date",
+    "Plan Effective Date"
+  ],
   "cik": "0001519401",
-  "fetched_at": "2026-07-11T09:55:55.798254Z",
+  "emergence_tier": "recall",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
   "filed": "2026-05-19",
   "form": "8-K",
   "form_code": "8-K",
   "isin": null,
+  "item_1_03": false,
+  "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+  ],
   "jurisdiction": "US",
+  "matched_phrase": "Plan Effective Date",
   "name": "Regional Management Corp.",
+  "pre_emergence": false,
   "query_label": "tier_s.post_reorg_plan_effective",
-  "query_note": "Plan of Reorganization effective \u2014 emergence event. New equity distributed to creditors; watch for forced selling window.",
+  "query_note": "Plan of Reorganization effective / consummated \u2014 the emergence event. New equity distributed to creditors; watch the forced-selling window.",
   "source": "EDGAR-postreorg",
   "ticker": "RM",
   "tier": "tier_s",

@@ -1,0 +1,28 @@
+{
+  "accession": "0000049071-26-000009",
+  "also_matched": [
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date",
+    "Plan Effective Date"
+  ],
+  "cik": "0000049071",
+  "emergence_tier": "recall",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-02-19",
+  "form": "10-K",
+  "form_code": "10-K",
+  "isin": null,
+  "item_1_03": false,
+  "items": [],
+  "jurisdiction": "US",
+  "matched_phrase": "Plan Effective Date",
+  "name": "HUMANA INC",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_plan_effective",
+  "query_note": "Plan of Reorganization effective / consummated \u2014 the emergence event. New equity distributed to creditors; watch the forced-selling window.",
+  "source": "EDGAR-postreorg",
+  "ticker": "HUM",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/49071/000004907126000009"
+}

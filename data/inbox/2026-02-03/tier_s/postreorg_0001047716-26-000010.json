@@ -1,0 +1,25 @@
+{
+  "accession": "0001047716-26-000010",
+  "also_matched": [
+    "emergence date"
+  ],
+  "cik": "0001047716",
+  "emergence_tier": "recall",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-02-03",
+  "form": "6-K",
+  "form_code": "6-K",
+  "isin": null,
+  "item_1_03": false,
+  "items": [],
+  "jurisdiction": "US",
+  "matched_phrase": "emergence date",
+  "name": "LATAM AIRLINES GROUP S.A.",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_emerged",
+  "query_note": "Emergence from Chapter 11 \u2014 post-reorg equity now trading. Verify float, creditor overhang, and the coverage vacuum.",
+  "source": "EDGAR-postreorg",
+  "ticker": "LTM",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1047716/000104771626000010"
+}

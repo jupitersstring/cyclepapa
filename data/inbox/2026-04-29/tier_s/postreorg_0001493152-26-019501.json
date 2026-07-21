@@ -1,0 +1,30 @@
+{
+  "accession": "0001493152-26-019501",
+  "also_matched": [
+    "emergence from bankruptcy",
+    "emerged from bankruptcy",
+    "emerged from bankruptcy",
+    "upon emergence",
+    "upon emergence",
+    "upon emergence"
+  ],
+  "cik": "0001759546",
+  "emergence_tier": "recall",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-04-29",
+  "form": "10-K/A",
+  "form_code": "10-K/A",
+  "isin": null,
+  "item_1_03": false,
+  "items": [],
+  "jurisdiction": "US",
+  "matched_phrase": "emergence from bankruptcy",
+  "name": "NU RIDE INC.",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_emerged",
+  "query_note": "Emergence from Chapter 11 \u2014 post-reorg equity now trading. Verify float, creditor overhang, and the coverage vacuum.",
+  "source": "EDGAR-postreorg",
+  "ticker": "NRDE",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1759546/000149315226019501"
+}

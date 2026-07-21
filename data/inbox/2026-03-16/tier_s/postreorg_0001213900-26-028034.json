@@ -1,0 +1,33 @@
+{
+  "accession": "0001213900-26-028034",
+  "also_matched": [
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy",
+    "emergence from bankruptcy"
+  ],
+  "cik": "0002083125",
+  "emergence_tier": "recall",
+  "fetched_at": "2026-07-21T08:47:51.460858Z",
+  "filed": "2026-03-16",
+  "form": "S-1",
+  "form_code": "S-1",
+  "isin": null,
+  "item_1_03": false,
+  "items": [],
+  "jurisdiction": "US",
+  "matched_phrase": "emergence from bankruptcy",
+  "name": "PRESIDIO PRODUCTION Co",
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_emerged",
+  "query_note": "Emergence from Chapter 11 \u2014 post-reorg equity now trading. Verify float, creditor overhang, and the coverage vacuum.",
+  "source": "EDGAR-postreorg",
+  "ticker": "FTW",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/2083125/000121390026028034"
+}
