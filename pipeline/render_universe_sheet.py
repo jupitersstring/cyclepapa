@@ -36,12 +36,36 @@ def is_biotech(desc):
     d = desc.lower()
     return any(p in d for p in BIOTECH_PATTERNS)
 
-SIG_HDR = ["Ticker","Score","Mcap","Bucket","13F","S1","S3","S4","Act %",
+SIG_HDR = ["Ticker","Score","Why","Mcap","ADV $M","Bucket","13F","S1","S3","S4","Act %",
            "pB Max","pB ≥5%","13D","Clu $M",
            "F4 Buy 180d","F4 Buy ≤30d","F4 Sell 180d","F4 Sell ≤30d",
            "EV/EBITDA","P/B",
            "Entry","vs Entry %","Anchor $",
-           "ER %","Name","Sector","Px","Industry","Business"]
+           "Name","Sector","Px","Industry","Business"]
+
+# components string -> readable "why" (top-3 contributing terms). Turns an opaque
+# 90+ score into its drivers, e.g. "s1 24 · pb5 18 · s4 14".
+_WHY_LABEL = {"sm": "sm", "s3*": "s3", "s4*": "s4", "s1*": "s1", "act": "act",
+              "pb_max": "pb", "pb_n5": "pb5", "clust": "clu", "clust$": "clu$",
+              "f4buy": "f4buy", "f4rec+": "f4rec", "f4sell": "f4sell",
+              "f4recsell": "f4sell30", "mic": "micro", "er": "er", "entry": "entry",
+              "cat8k": "8k"}
+def _why(components):
+    if not components:
+        return ""
+    terms = []
+    for tok in components.split():
+        if "=" not in tok:
+            continue
+        k, v = tok.split("=", 1)
+        try:
+            val = float(v)
+        except ValueError:
+            continue
+        if abs(val) >= 1 and k in _WHY_LABEL:
+            terms.append((_WHY_LABEL[k], val))
+    terms.sort(key=lambda t: -abs(t[1]))
+    return " · ".join(f"{lbl} {val:.0f}" for lbl, val in terms[:3])
 
 def get_signal_rows(conn, where_extra="", limit=None, params=()):
     sql = """SELECT us.ticker, us.score, us.mcap_m, us.mcap_bucket, us.smart_money_n,
@@ -52,7 +76,8 @@ def get_signal_rows(conn, where_extra="", limit=None, params=()):
         us.ev_ebitda, us.pb_ratio,
         us.entry_bucket, us.vs_entry_pct, us.anchor_px,
         us.expected_return_pct, tm.name, tm.sic_description, tm.price,
-        COALESCE(yf.industry, tm.industry, tm.sic_description), yf.business_summary
+        COALESCE(yf.industry, tm.industry, tm.sic_description), yf.business_summary,
+        tm.adv_3m_usd_m, us.components
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
         LEFT JOIN ticker_yf  yf ON yf.ticker = us.ticker
@@ -74,7 +99,10 @@ def signal_row_to_cells(r):
     else:                           eb_label = ""
     return [
         r[0], round(r[1] or 0, 1),
-        r[2] or "", r[3] or "",
+        _why(r[29]),                             # Why (top-3 score drivers)
+        r[2] or "",                              # Mcap
+        round(r[28], 1) if r[28] else "",        # ADV $M (adv_3m_usd_m)
+        r[3] or "",                              # Bucket
         round(r[4] or 0, 1), r[5] or 0, r[6] or 0, r[7] or 0,
         round(r[8] or 0, 1),
         round(r[9] or 0, 1),
@@ -90,30 +118,54 @@ def signal_row_to_cells(r):
         eb_label,
         round(r[20] or 0, 1) if r[20] else "",   # vs entry
         round(r[21] or 0, 2) if r[21] else "",   # anchor px
-        round(r[22] or 0, 1) if r[22] else "",   # ER
-        (r[23] or "")[:38],
-        (r[24] or "")[:32],
-        round(r[25] or 0, 2) if r[25] else "",
+        (r[23] or "")[:38],                      # Name
+        (r[24] or "")[:32],                      # Sector
+        round(r[25] or 0, 2) if r[25] else "",   # Px
         (r[26] or "")[:26],            # Industry
         _one_liner(r[27], 90),         # Business (one-line summary)
     ]
 
 def format_signal_row(ws, ridx):
-    """Apply number formats to a signal row."""
-    ws.cell(row=ridx, column=3).number_format = NUMFMT_MCAP    # mcap
-    ws.cell(row=ridx, column=9).number_format = NUMFMT_PCT     # act
-    ws.cell(row=ridx, column=10).number_format = NUMFMT_PCT    # pB max
-    ws.cell(row=ridx, column=13).number_format = NUMFMT_M_TO_B # Clu $M
-    ws.cell(row=ridx, column=14).number_format = NUMFMT_M_TO_B # F4 buy 180d
-    ws.cell(row=ridx, column=15).number_format = NUMFMT_M_TO_B # F4 buy 30d
-    ws.cell(row=ridx, column=16).number_format = NUMFMT_M_TO_B # F4 sell 180d
-    ws.cell(row=ridx, column=17).number_format = NUMFMT_M_TO_B # F4 sell 30d
-    ws.cell(row=ridx, column=18).number_format = '0.0"x"'      # EV/EBITDA
-    ws.cell(row=ridx, column=19).number_format = '0.00"x"'     # P/B
-    ws.cell(row=ridx, column=21).number_format = NUMFMT_PCT    # vs entry
-    ws.cell(row=ridx, column=22).number_format = NUMFMT_USD2   # anchor px
-    ws.cell(row=ridx, column=23).number_format = NUMFMT_PCT    # ER
-    ws.cell(row=ridx, column=26).number_format = NUMFMT_USD2   # px
+    """Apply number formats to a signal row. Columns (1-idx):
+    1 Ticker 2 Score 3 Why 4 Mcap 5 ADV$M 6 Bucket 7 13F 8 S1 9 S3 10 S4 11 Act%
+    12 pBMax 13 pB≥5% 14 13D 15 Clu$M 16 F4B180 17 F4B30 18 F4S180 19 F4S30
+    20 EV/EBITDA 21 P/B 22 Entry 23 vsEntry% 24 Anchor$ 25 Name 26 Sector 27 Px"""
+    ws.cell(row=ridx, column=4).number_format = NUMFMT_MCAP    # mcap
+    ws.cell(row=ridx, column=5).number_format = NUMFMT_M_TO_B  # ADV $M
+    ws.cell(row=ridx, column=11).number_format = NUMFMT_PCT    # act
+    ws.cell(row=ridx, column=12).number_format = NUMFMT_PCT    # pB max
+    ws.cell(row=ridx, column=15).number_format = NUMFMT_M_TO_B # Clu $M
+    ws.cell(row=ridx, column=16).number_format = NUMFMT_M_TO_B # F4 buy 180d
+    ws.cell(row=ridx, column=17).number_format = NUMFMT_M_TO_B # F4 buy 30d
+    ws.cell(row=ridx, column=18).number_format = NUMFMT_M_TO_B # F4 sell 180d
+    ws.cell(row=ridx, column=19).number_format = NUMFMT_M_TO_B # F4 sell 30d
+    ws.cell(row=ridx, column=20).number_format = '0.0"x"'      # EV/EBITDA
+    ws.cell(row=ridx, column=21).number_format = '0.00"x"'     # P/B
+    ws.cell(row=ridx, column=23).number_format = NUMFMT_PCT    # vs entry
+    ws.cell(row=ridx, column=24).number_format = NUMFMT_USD2   # anchor px
+    ws.cell(row=ridx, column=27).number_format = NUMFMT_USD2   # px
+
+def add_signal_heatmap(ws, first_row, last_row):
+    """Monochrome conditional-format heatmaps on the key decision columns so a
+    reader can eyeball the cheap-below-entry-high-score corner without reading
+    every cell. Score/vs-entry darker = more attractive; valuation cheaper=darker."""
+    from openpyxl.formatting.rule import ColorScaleRule, DataBarRule
+    if last_row < first_row:
+        return
+    rng = lambda col: f"{col}{first_row}:{col}{last_row}"
+    WHITE, GREY, DARK = "FFFFFF", "BFBFBF", "595959"
+    # Score (col B): higher = darker (more attractive)
+    ws.conditional_formatting.add(rng("B"),
+        ColorScaleRule(start_type="min", start_color=WHITE, end_type="max", end_color=DARK))
+    ws.conditional_formatting.add(rng("B"), DataBarRule(start_type="min", end_type="max", color="A6A6A6"))
+    # EV/EBITDA (T) and P/B (U): cheaper (lower) = darker
+    for col in ("T", "U"):
+        ws.conditional_formatting.add(rng(col),
+            ColorScaleRule(start_type="min", start_color=DARK, end_type="max", end_color=WHITE))
+    # vs Entry % (W): more below entry (more negative) = darker
+    ws.conditional_formatting.add(rng("W"),
+        ColorScaleRule(start_type="min", start_color=DARK, mid_type="num", mid_value=0, mid_color=GREY,
+                       end_type="max", end_color=WHITE))
 
 # ---- sheets -----------------------------------------------------------------
 def sheet_readme(wb, conn):
@@ -213,29 +265,37 @@ def sheet_readme(wb, conn):
         else:
             c.font = MONO_FONT
 
-def write_signal_sheet(wb, conn, name, where_extra="", limit=200, subtitle=""):
+def write_signal_sheet(wb, conn, name, where_extra="", limit=200, subtitle="", exclude_biotech=False):
     ws = wb.create_sheet(name)
     ws.sheet_view.showGridLines = False
-    # Transparency: if the LIMIT truncates, say so in the subtitle rather than
-    # silently showing a subset. total = all names matching the filter.
-    total = conn.execute(
-        "SELECT COUNT(*) FROM unified_signal us WHERE us.sec_type='common' " + where_extra
-    ).fetchone()[0]
-    shown = min(limit, total) if limit else total
-    if limit and total > limit:
-        subtitle = (subtitle + "  " if subtitle else "") + f"[showing top {limit} of {total} matching names]"
-    write_title(ws, name, subtitle, len(SIG_HDR))
     write_table_header(ws, 4, SIG_HDR)
-    rows = get_signal_rows(conn, where_extra=where_extra, limit=limit)
+    # Fetch a generous superset, then apply the ETF/mega/biotech exclusions in
+    # Python and truncate to `limit` — so the exclusions actually reduce the list
+    # (the old Non-Biotech sheet passed limit=400 and never filtered biotech).
+    fetch = (limit * 4) if limit else None
+    rows = get_signal_rows(conn, where_extra=where_extra, limit=fetch)
     rows = [r for r in rows if r[0] not in ETFs and r[0] not in MEGA]
+    if exclude_biotech:
+        rows = [r for r in rows if not is_biotech(r[24])]   # r[24] = sic_description
+    matched = len(rows)
+    if limit and matched > limit:
+        rows = rows[:limit]
+        subtitle = (subtitle + "  " if subtitle else "") + f"[showing top {limit} of {matched} matching names]"
+    # Transparency: if the LIMIT truncates, say so in the subtitle rather than
+    # silently showing a subset.
+    write_title(ws, name, subtitle, len(SIG_HDR))
     out = [signal_row_to_cells(r) for r in rows]
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         format_signal_row(ws, ridx)
+    add_signal_heatmap(ws, 5, 4 + len(out))
     ws.freeze_panes = "B5"
+    if out:
+        ws.auto_filter.ref = f"A4:{get_column_letter(len(SIG_HDR))}{4 + len(out)}"
     autosize(ws)
     # ticker col narrower; Business (last col) wide for the one-line summary
     ws.column_dimensions["A"].width = 8
+    ws.column_dimensions["C"].width = 22  # Why
     ws.column_dimensions[get_column_letter(len(SIG_HDR))].width = 80
     ws.column_dimensions[get_column_letter(len(SIG_HDR) - 1)].width = 24  # Industry
 
@@ -314,33 +374,43 @@ def sheet_activist(wb, conn):
     ws = wb.create_sheet("Activist 10+")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Activist Concentration",
-                "SC 13D/G filings disclosing ≥10% stake. Sourced from holder_13d. Ex-biotech, ex-ETF.", 11)
-    hdr = ["Ticker","Mcap","Bucket","Act %","13D #","13F #","pB Max","EV/EBITDA","P/B","Name","Sector"]
+                "SC 13D/G filings disclosing ≥10% stake. Type: 13D = ACTIVIST intent; 13G = PASSIVE holder. Filer shown. Ex-biotech, ex-ETF.", 13)
+    hdr = ["Ticker","Type","Top Filer","Act %","Mcap","Bucket","13D #","13F #","pB Max","EV/EBITDA","P/B","Name","Sector"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT us.ticker, us.mcap_m, us.mcap_bucket,
                us.activist_max_pct, us.activist_filings, us.smart_money_n,
-               us.max_pct_book, us.ev_ebitda, us.pb_ratio, tm.name, tm.sic_description
+               us.max_pct_book, us.ev_ebitda, us.pb_ratio, tm.name, tm.sic_description,
+               (SELECT h.holder FROM holder_13d h WHERE h.subject_ticker=us.ticker
+                  ORDER BY h.pct_class DESC LIMIT 1) AS top_filer,
+               (SELECT h.form FROM holder_13d h WHERE h.subject_ticker=us.ticker
+                  ORDER BY h.pct_class DESC LIMIT 1) AS top_form,
+               (SELECT MAX(CASE WHEN h.form LIKE '%13D%' THEN 1 ELSE 0 END)
+                  FROM holder_13d h WHERE h.subject_ticker=us.ticker) AS any_13d
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
         WHERE us.activist_max_pct >= 10 AND us.sec_type='common'
-        ORDER BY us.activist_max_pct DESC"""))
+        ORDER BY any_13d DESC, us.activist_max_pct DESC"""))
     out = []
     for r in rows:
         if r[0] in ETFs or r[0] in MEGA: continue
         if is_biotech(r[10]): continue
-        out.append([r[0], r[1] or "", r[2] or "", round(r[3] or 0, 1),
+        # 13D anywhere = activist; else the top filer's form (13G = passive)
+        typ = "13D activist" if r[13] else ("13G passive" if r[12] and "13G" in (r[12] or "") else "—")
+        filer = re.sub(r"\s*\(.*$", "", (r[11] or "")).strip()[:26]
+        out.append([r[0], typ, filer, round(r[3] or 0, 1),
+                    r[1] or "", r[2] or "",
                     r[4] or 0, r[5] or 0, round(r[6] or 0, 1),
                     round(r[7], 1) if r[7] is not None else "",
                     round(r[8], 2) if r[8] is not None else "",
                     (r[9] or "")[:38], (r[10] or "")[:32]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
-        ws.cell(row=ridx, column=2).number_format = NUMFMT_MCAP
         ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
-        ws.cell(row=ridx, column=7).number_format = NUMFMT_PCT
-        ws.cell(row=ridx, column=8).number_format = '0.0"x"'
-        ws.cell(row=ridx, column=9).number_format = '0.00"x"'
+        ws.cell(row=ridx, column=5).number_format = NUMFMT_MCAP
+        ws.cell(row=ridx, column=9).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=10).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=11).number_format = '0.00"x"'
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
@@ -469,6 +539,7 @@ def sheet_clusters(wb, conn):
         LEFT JOIN unified_signal us ON us.ticker = ic.ticker
         WHERE DATE(ic.window_end) >= DATE('now', '-180 days')
           AND COALESCE(us.sec_type,'common')='common'
+          AND ic.n_insiders >= 2
         ORDER BY ic.total_usd_m DESC"""))
     out = [[r[0], r[1], r[2], r[3], round(r[4] or 0, 2), round(r[5] or 0, 2),
             r[6][:30] if r[6] else "", r[7] or "", r[8] or "unknown",
@@ -519,32 +590,44 @@ def sheet_unknown(wb, conn):
 def sheet_fund_coverage(wb, conn):
     ws = wb.create_sheet("Fund Coverage")
     ws.sheet_view.showGridLines = False
+    n_fund = conn.execute("SELECT COUNT(*) FROM fund_meta").fetchone()[0]
+    n_data = conn.execute("""SELECT COUNT(DISTINCT fm.fund) FROM fund_meta fm
+        WHERE fm.fund IN (SELECT fund FROM fund_13f_state WHERE n_holdings > 0)
+           OR fm.fund IN (SELECT fund FROM fund_positions)
+           OR fm.fund IN (SELECT holder FROM holder_13d)""").fetchone()[0]
     write_title(ws, "Fund Coverage",
-                "424 of 445 funds (95.3%) have at least one primary-source data row. 21 documented categorical gaps.", 3)
-    hdr = ["Category","Count","Pct"]
+                f"{n_data} of {n_fund} funds ({n_data*100//n_fund}%) have at least one primary-source data row. "
+                f"Remaining are documented categorical gaps (below-threshold, CTA, private office, ...).", 3)
+    hdr = ["Category","Funds","Pct"]
     write_table_header(ws, 4, hdr)
+    # COUNT(DISTINCT fm.fund): the LEFT JOINs to fund_positions/holder_13d fan out
+    # (a fund with 50 positions x 5 filings = 250 rows), so a plain COUNT(*)
+    # inflated every category ~200x. We also collapse the joins to EXISTS-style
+    # per-fund flags first so each fund lands in exactly one category.
     cats = list(conn.execute("""
+        WITH f AS (
+          SELECT fm.fund,
+                 (SELECT n_holdings FROM fund_13f_state s WHERE s.fund=fm.fund) AS nh,
+                 EXISTS(SELECT 1 FROM fund_positions p WHERE p.fund=fm.fund) AS has_fp,
+                 EXISTS(SELECT 1 FROM holder_13d h WHERE h.holder=fm.fund) AS has_13d,
+                 (SELECT status FROM fund_resolution_state r WHERE r.fund=fm.fund) AS status
+          FROM fund_meta fm)
         SELECT
           CASE
-            WHEN st.n_holdings > 0 THEN '1. 13F-HR holdings ingested'
-            WHEN fp.fund IS NOT NULL AND h.holder IS NOT NULL THEN '2. fund_positions + 13D/G'
-            WHEN fp.fund IS NOT NULL THEN '3. fund_positions only'
-            WHEN h.holder IS NOT NULL THEN '4. 13D/G only (foreign activists)'
-            WHEN fr.status LIKE '%non_filer%' THEN '5. Foreign non-filer (explicit)'
-            WHEN fr.status = 'below_13f_threshold' THEN '6. Below AUM threshold'
-            WHEN fr.status = 'non_equity_strategy' THEN '7. CTA / options (no equity to track)'
-            WHEN fr.status = 'historical_13f_only' THEN '8. Historical only (pre-2013 format)'
-            WHEN fr.status = 'individual' THEN '9. Individual (not a fund)'
-            WHEN fr.status = 'meta_rollup' THEN '10. Meta tab (not a real fund)'
-            WHEN fr.status = 'private_office' THEN '11. Private office (no disclosure)'
+            WHEN nh > 0 THEN '1. 13F-HR holdings ingested'
+            WHEN has_fp AND has_13d THEN '2. fund_positions + 13D/G'
+            WHEN has_fp THEN '3. fund_positions only'
+            WHEN has_13d THEN '4. 13D/G only (foreign activists)'
+            WHEN status LIKE '%non_filer%' THEN '5. Foreign non-filer (explicit)'
+            WHEN status = 'below_13f_threshold' THEN '6. Below AUM threshold'
+            WHEN status = 'non_equity_strategy' THEN '7. CTA / options (no equity to track)'
+            WHEN status = 'historical_13f_only' THEN '8. Historical only (pre-2013 format)'
+            WHEN status = 'individual' THEN '9. Individual (not a fund)'
+            WHEN status = 'meta_rollup' THEN '10. Meta tab (not a real fund)'
+            WHEN status = 'private_office' THEN '11. Private office (no disclosure)'
             ELSE '12. Other / unresolved'
-          END as cat, COUNT(*)
-        FROM fund_meta fm
-        LEFT JOIN fund_resolution_state fr ON fr.fund = fm.fund
-        LEFT JOIN fund_13f_state st ON st.fund = fm.fund
-        LEFT JOIN fund_positions fp ON fp.fund = fm.fund
-        LEFT JOIN holder_13d h ON h.holder = fm.fund
-        GROUP BY cat ORDER BY 1"""))
+          END as cat, COUNT(DISTINCT fund)
+        FROM f GROUP BY cat ORDER BY 1"""))
     total = sum(r[1] for r in cats)
     out = [[r[0], r[1], round(r[1]*100/total, 1)] for r in cats]
     write_table_rows(ws, out, 5)
@@ -601,8 +684,17 @@ def sheet_all_holdings_consolidated(wb, conn):
         WHERE h.subject_ticker IS NOT NULL AND h.pct_class >= 5
         ORDER BY fund, value_m DESC
     """))
+    # Show ALL rows (they fit well within Excel's limit). The prior 6000-row slice
+    # was ordered by FUND NAME, so it silently dropped every fund after ~"P" while
+    # claiming full coverage. Cap only as an extreme-safety backstop, with a note.
+    CAP = 60000
+    if len(rows) > CAP:
+        rows = rows[:CAP]
+    ws.cell(row=2, column=1).value = (
+        f"Union of 13F-HR (top 30/fund) + fund_positions + 13D/G across all funds. "
+        f"{len(rows):,} rows shown, grouped by fund.")
     out = []
-    for r in rows[:6000]:  # cap for Excel sanity
+    for r in rows:
         out.append([(r[0] or "")[:45], r[1] or "", r[2],
                     round(r[3] or 0, 1) if r[3] else "",
                     round(r[4] or 0, 2),
@@ -831,6 +923,23 @@ def sheet_catalysts(wb, conn):
     autosize(ws)
     ws.column_dimensions["A"].width = 8
 
+# Approximate FX -> USD (mid-2026). Foreign mcap in ticker_yf is in the LISTING
+# currency; printing it with a "$" made 4676.T (¥586B ≈ $3.9B) read as "$586B".
+# These are approximate and drift; the sheet labels them so and shows the
+# currency. Minor units (GBp pence, ZAc cents) convert via their major /100.
+_FX_USD = {
+    "USD": 1.0, "CAD": 0.73, "EUR": 1.08, "GBP": 1.28, "GBp": 0.0128, "JPY": 0.0064,
+    "HKD": 0.128, "AUD": 0.66, "CHF": 1.12, "SGD": 0.74, "INR": 0.012, "KRW": 0.00073,
+    "TWD": 0.031, "ZAR": 0.055, "ZAc": 0.00055, "NOK": 0.093, "DKK": 0.145, "SEK": 0.095,
+    "PLN": 0.25, "IDR": 0.0000615, "TRY": 0.030, "HUF": 0.0028, "MYR": 0.21, "CNY": 0.138,
+    "BRL": 0.18, "MXN": 0.055, "THB": 0.028, "PHP": 0.017, "NZD": 0.60, "ILS": 0.27,
+}
+
+def _mcap_usd(mcap_m, currency):
+    if not mcap_m:
+        return None
+    return mcap_m * _FX_USD.get(currency or "USD", None) if (currency or "USD") in _FX_USD else None
+
 def sheet_global_picks(wb, conn):
     """Foreign-exchange tickers — scored on a GLOBAL-FAIR formula.
 
@@ -844,15 +953,19 @@ def sheet_global_picks(wb, conn):
     ws.sheet_view.showGridLines = False
     write_title(ws, "Global Picks — non-US listings, fair-score",
                 "Foreign-exchange tickers (.L London, .T Tokyo, .TO Toronto, .HK Hong Kong, .AX Sydney, .MI Milan, .DE Frankfurt, .PA Paris, .AS Amsterdam, .MC Madrid). Ranked by global_score which excludes US-only signals.", 17)
-    hdr = ["Ticker","Global Score","Exchange","Mcap","13F","S1","S3","S4","pB Max","Act %","Entry","vs Entry %","EV/EBITDA","P/B","Name","Industry","Business"]
+    ws.cell(row=2, column=1).value = (ws.cell(row=2, column=1).value or "") + \
+        "  Mcap converted to USD at approximate mid-2026 FX (see Currency col)."
+    hdr = ["Ticker","Global Score","Exchange","Mcap $ (USD)","Ccy","13F","S1","S3","S4","pB Max","Act %","Entry","vs Entry %","EV/EBITDA","P/B","Name","Industry","Business"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT us.ticker, us.global_score, tm.exchange, us.mcap_m,
                us.smart_money_n, us.s1_top, us.s3_new, us.s4_add,
                us.max_pct_book, us.activist_max_pct,
-               us.entry_bucket, us.vs_entry_pct, us.ev_ebitda, us.pb_ratio, tm.name
+               us.entry_bucket, us.vs_entry_pct, us.ev_ebitda, us.pb_ratio, tm.name,
+               yf.currency
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
+        LEFT JOIN ticker_yf yf ON yf.ticker = us.ticker
         WHERE us.is_us = 0 AND us.sec_type='common'
           AND (us.s1_top + us.s3_new + us.s4_add + us.smart_money_n) >= 1
         ORDER BY us.global_score DESC LIMIT 150"""))
@@ -862,9 +975,11 @@ def sheet_global_picks(wb, conn):
         eb_label = ("below" if eb == "BELOW_ENTRY" else
                     "near"  if eb == "NEAR_ENTRY" else
                     "above" if "ABOVE" in eb else "")
+        ccy = r[15] or "USD"
+        mcap_usd = _mcap_usd(r[3], ccy)
         out.append([r[0], round(r[1] or 0, 1),
                     (r[2] or "")[:14],
-                    r[3] or "", r[4] or 0,
+                    round(mcap_usd) if mcap_usd is not None else "", ccy, r[4] or 0,
                     r[5] or 0, r[6] or 0, r[7] or 0,
                     round(r[8] or 0, 1),
                     round(r[9] or 0, 1),
@@ -875,17 +990,17 @@ def sheet_global_picks(wb, conn):
                     (r[14] or "")[:38], *desc_for(conn, r[0])])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
-        ws.cell(row=ridx, column=4).number_format = NUMFMT_MCAP
-        ws.cell(row=ridx, column=9).number_format = NUMFMT_PCT
-        ws.cell(row=ridx, column=10).number_format = NUMFMT_PCT
-        ws.cell(row=ridx, column=12).number_format = NUMFMT_PCT
-        ws.cell(row=ridx, column=13).number_format = '0.0"x"'
-        ws.cell(row=ridx, column=14).number_format = '0.00"x"'
+        ws.cell(row=ridx, column=4).number_format = NUMFMT_MCAP    # Mcap $ (USD)
+        ws.cell(row=ridx, column=10).number_format = NUMFMT_PCT    # pB Max
+        ws.cell(row=ridx, column=11).number_format = NUMFMT_PCT    # Act %
+        ws.cell(row=ridx, column=13).number_format = NUMFMT_PCT    # vs Entry %
+        ws.cell(row=ridx, column=14).number_format = '0.0"x"'      # EV/EBITDA
+        ws.cell(row=ridx, column=15).number_format = '0.00"x"'     # P/B
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 10
-    ws.column_dimensions[get_column_letter(16)].width = 24   # Industry
-    ws.column_dimensions[get_column_letter(17)].width = 80   # Business
+    ws.column_dimensions[get_column_letter(17)].width = 24   # Industry
+    ws.column_dimensions[get_column_letter(18)].width = 80   # Business
 
 def sheet_in_the_money(wb, conn):
     """Below-entry / in-the-money picks — buy below where smart money entered."""
@@ -1307,8 +1422,8 @@ def main():
     sheet_insider_f4(wb, conn)
     sheet_clusters(wb, conn)
     write_signal_sheet(wb, conn, "Non-Biotech Top 100",
-        where_extra="AND us.mcap_bucket != 'unknown'", limit=400,
-        subtitle="Top 100 ex-biotech, ex-ETF, ex-mega.")
+        where_extra="AND us.mcap_bucket != 'unknown'", limit=140,
+        subtitle="Top ex-biotech, ex-ETF, ex-mega.", exclude_biotech=True)
     sheet_in_the_money(wb, conn)
     sheet_asymmetry(wb, conn)
     sheet_revealed_pref(wb, conn)

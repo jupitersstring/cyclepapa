@@ -25,7 +25,7 @@ STYLE_RULES = [
     (r"japan|european|asia|global|EM",        "Foreign / EM Value"),
     (r"activist|special\s+sits|sponsor",      "Activists / Special Situations"),
     (r"value|quality|compounder|skin|fat[\s-]?pitch|VIC|concentrated", "Value / Concentrated Quality"),
-    (r"PE|SPAC|gold|mining",                  "PE / SPAC / Gold / Mining"),
+    (r"\bPE\b|\bLBO\b|private\s+equity|SPAC|gold|mining", "PE / SPAC / Gold / Mining"),
     (r"macro|trend",                          "Macro / Trend"),
 ]
 

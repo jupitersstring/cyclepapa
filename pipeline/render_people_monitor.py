@@ -260,6 +260,12 @@ def run():
     sheet_new_funds(wb, conn)
     for ws in wb.worksheets:
         autosize(ws)
+        # parity with the other two workbooks: freeze the header + enable filtering
+        # on every data sheet (was missing on all six people sheets).
+        if ws.title != "README" and ws.max_row > 4:
+            ws.freeze_panes = "B5"
+            from openpyxl.utils import get_column_letter as _gcl
+            ws.auto_filter.ref = f"A4:{_gcl(ws.max_column)}{ws.max_row}"
     set_default_font(wb)
     set_print_layout(wb, header_rows=4)
     add_contents_index(wb["README"], [s.title for s in wb.worksheets])
