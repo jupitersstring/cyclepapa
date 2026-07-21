@@ -170,6 +170,9 @@ CREATE INDEX idx_pba_company ON pb_affiliation(company);
 CREATE INDEX idx_pba_ticker ON pb_affiliation(ticker);
 CREATE TABLE pb_principal (name TEXT PRIMARY KEY);
 CREATE TABLE pb_principal_fund (principal TEXT, fund TEXT);
+CREATE TABLE cusip_map (
+        cusip TEXT PRIMARY KEY, ticker TEXT, sec_type TEXT, source TEXT, asof TEXT);
+CREATE INDEX idx_cusipmap_tk ON cusip_map(ticker);
 CREATE TABLE fund_conviction (
       fund TEXT, ticker TEXT, signals TEXT, raw_score REAL, style_weight REAL,
       score REAL, macro_style TEXT,

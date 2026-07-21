@@ -263,11 +263,38 @@ def _norm_name(s):
     suffixes so 'MOODYS CORP DEL' and 'Moody's Corporation' collide."""
     s = (s or "").upper()
     s = re.sub(r"[.,'/&()\-]", " ", s)
+    # Expand SEC's standard abbreviations FIRST so an issuer's "CNX RES CORP" and
+    # the SEC file's "CNX Resources Corp" normalize to the same tokens. This is the
+    # single biggest source of silently-dropped REAL companies (Brookdale "SR
+    # LIVING", VICI "PPTYS", UGI "CORP NEW", Global "PMTS") — expansion makes both
+    # sides specific rather than guessing. Expanding NEVER collapses distinct firms.
+    s = " " + s + " "
+    for ab, full in _ABBREV.items():
+        s = re.sub(rf"\b{ab}\b", full, s)
     s = re.sub(r"\b(THE|INC|CORP|CORPORATION|CO|COMPANY|COS|HOLDING|HOLDINGS|HLDGS?|"
                r"GROUP|GRP|LTD|LIMITED|PLC|LP|LLC|NV|SA|AG|ADR|ADS|SP|SPONSORED|"
                r"CLASS|CL|COM|COMMON|ORD|ORDINARY|NEW|DEL|TR|TRUST|REIT|PARTNERS)\b", " ", s)
     s = re.sub(r"\s+", " ", s).strip()
     return s
+
+# SEC issuer-name abbreviations -> full word (both the 13F issuer and the SEC
+# ticker file get normalized through this, so they collide).
+_ABBREV = {
+    "RES": "RESOURCES", "PPTYS": "PROPERTIES", "PPTY": "PROPERTIES", "PROPS": "PROPERTIES",
+    "SR": "SENIOR", "PMTS": "PAYMENTS", "PMT": "PAYMENT", "INDS": "INDUSTRIES",
+    "IND": "INDUSTRIES", "INVT": "INVESTMENT", "INVTS": "INVESTMENTS", "INV": "INVESTMENT",
+    "MGMT": "MANAGEMENT", "MGT": "MANAGEMENT", "INTL": "INTERNATIONAL", "NATL": "NATIONAL",
+    "FINL": "FINANCIAL", "FIN": "FINANCIAL", "SVCS": "SERVICES", "SVC": "SERVICE",
+    "SYS": "SYSTEMS", "TECHS": "TECHNOLOGIES", "TCHNLGY": "TECHNOLOGY", "COMMTNS": "COMMUNICATIONS",
+    "COMM": "COMMUNICATIONS", "COMMUN": "COMMUNICATIONS", "PHARMS": "PHARMACEUTICALS",
+    "PHARM": "PHARMACEUTICALS", "PHRM": "PHARMACEUTICALS", "LAB": "LABORATORIES",
+    "LABS": "LABORATORIES", "MTLS": "MATERIALS", "MTL": "METALS", "ENGY": "ENERGY",
+    "ENRGY": "ENERGY", "PWR": "POWER", "BANCORPORATION": "BANCORP", "BANCSHARES": "BANCSHARES",
+    "HLTH": "HEALTH", "HLTHCARE": "HEALTHCARE", "Cap": "CAPITAL", "CAP": "CAPITAL",
+    "MFG": "MANUFACTURING", "MFRS": "MANUFACTURERS", "GLBL": "GLOBAL", "SEMICONDUCTOR": "SEMICONDUCTOR",
+    "SEMI": "SEMICONDUCTOR", "PROD": "PRODUCTS", "PRODS": "PRODUCTS", "SOLTNS": "SOLUTIONS",
+    "SLTNS": "SOLUTIONS", "ENTMT": "ENTERTAINMENT", "ENTERTAINMEN": "ENTERTAINMENT",
+}
 
 # ETF / fund-family issuers. A 13F line for "Invesco Exch Trd" or "Global X Fds"
 # is an ETF POSITION, not smart money in the operating company that shares a name
@@ -331,6 +358,15 @@ def run(only=None):
     print("loading SEC ticker map...")
     name_map = cusip_ticker_map(conn)
     print(f"  {len(name_map)} name-to-ticker mappings loaded")
+    # CUSIP authority: persisted resolutions (OpenFIGI + consensus) checked FIRST,
+    # so a once-resolved CUSIP is never re-lost to a name quirk and a fund vehicle
+    # never re-maps onto an operating ticker. ticker may be None = known-unmappable.
+    try:
+        cusip_map = {c: (tk, st) for c, tk, st in
+                     conn.execute("SELECT cusip, ticker, sec_type FROM cusip_map")}
+    except sqlite3.OperationalError:
+        cusip_map = {}
+    print(f"  {len(cusip_map)} CUSIP-authority mappings loaded")
     time.sleep(1)
 
     funds = [(name, cik) for name, cik in FUND_CIK.items()]
@@ -370,7 +406,11 @@ def run(only=None):
             continue
         total_v = sum(r["value_k"] for r in rows)
         for r in rows:
-            tkr = name_to_ticker(r["issuer"], name_map)
+            cm = cusip_map.get(r["cusip"])
+            if cm is not None:                       # CUSIP authority wins
+                tkr = cm[0] if cm[1] != "etf" else None
+            else:
+                tkr = name_to_ticker(r["issuer"], name_map)
             pct = (r["value_k"] / total_v * 100) if total_v else None
             conn.execute("""INSERT OR REPLACE INTO fund_13f_holdings
                 VALUES (?,?,?,?,?,?,?,?,?,?,?)""",

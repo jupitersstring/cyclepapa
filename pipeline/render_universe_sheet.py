@@ -6,7 +6,7 @@ by size bucket and signal type.
 
 Design language is shared with render_style_workbook.py via _style_bw.py.
 """
-import os, sqlite3
+import os, re, sqlite3
 import openpyxl
 from openpyxl.utils import get_column_letter
 
@@ -216,6 +216,14 @@ def sheet_readme(wb, conn):
 def write_signal_sheet(wb, conn, name, where_extra="", limit=200, subtitle=""):
     ws = wb.create_sheet(name)
     ws.sheet_view.showGridLines = False
+    # Transparency: if the LIMIT truncates, say so in the subtitle rather than
+    # silently showing a subset. total = all names matching the filter.
+    total = conn.execute(
+        "SELECT COUNT(*) FROM unified_signal us WHERE us.sec_type='common' " + where_extra
+    ).fetchone()[0]
+    shown = min(limit, total) if limit else total
+    if limit and total > limit:
+        subtitle = (subtitle + "  " if subtitle else "") + f"[showing top {limit} of {total} matching names]"
     write_title(ws, name, subtitle, len(SIG_HDR))
     write_table_header(ws, 4, SIG_HDR)
     rows = get_signal_rows(conn, where_extra=where_extra, limit=limit)
@@ -230,6 +238,48 @@ def write_signal_sheet(wb, conn, name, where_extra="", limit=200, subtitle=""):
     ws.column_dimensions["A"].width = 8
     ws.column_dimensions[get_column_letter(len(SIG_HDR))].width = 80
     ws.column_dimensions[get_column_letter(len(SIG_HDR) - 1)].width = 24  # Industry
+
+def sheet_whos_buying(wb, conn):
+    """The NAMES behind the s3/s4 counts — which specific funds are initiating new
+    positions and materially adding. Counts tell you 'how many'; this tells you
+    'who', which is the part that actually matters (a Baupost new position reads
+    very differently from an anonymous count of 3)."""
+    ws = wb.create_sheet("Who's Buying")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Who's Buying — the funds behind the New / Add counts",
+                "Per name: which funds are INITIATING (S3 new major position) and ADDING (S4 material add), from fund_positions. De-duplicated by canonical manager.", 7)
+    hdr = ["Ticker", "Company", "Score", "# New", "New Initiators (funds)", "# Add", "Material Adders (funds)"]
+    write_table_header(ws, 4, hdr)
+    # canonical-manager de-dupe so a fund's name variants don't list twice
+    from _canon import canon
+    rows = conn.execute("""
+        SELECT us.ticker, us.name, us.score, us.s3_new, us.s4_add
+        FROM unified_signal us
+        WHERE us.sec_type='common' AND (us.s3_new > 0 OR us.s4_add > 0)
+        ORDER BY (us.s3_new*2 + us.s4_add) DESC, us.score DESC LIMIT 200""").fetchall()
+    def funds_for(tk, sec):
+        seen, out = set(), []
+        for (f,) in conn.execute("""SELECT DISTINCT fund FROM fund_positions
+                WHERE ticker=? AND section=? AND ticker IS NOT NULL""", (tk, sec)):
+            c = canon(f)
+            if c in seen:
+                continue
+            seen.add(c)
+            # display the raw fund but trimmed of the trailing manager parenthetical
+            out.append(re.sub(r"\s*\(.*$", "", f).strip()[:26])
+        return out
+    out = []
+    for tk, name, score, s3, s4 in rows:
+        new_f = funds_for(tk, 3)
+        add_f = funds_for(tk, 4)
+        out.append([tk, (name or "")[:24], round(score or 0, 1),
+                    len(new_f), ", ".join(new_f)[:70],
+                    len(add_f), ", ".join(add_f)[:70]])
+    write_table_rows(ws, out, 5, ticker_col=1)
+    ws.freeze_panes = "B5"
+    autosize(ws)
+    ws.column_dimensions["E"].width = 60
+    ws.column_dimensions["G"].width = 60
 
 def sheet_best_in_bucket(wb, conn, per_bucket=20):
     """Top names WITHIN each size bucket. The flat Top-100 is ~44% large-cap
@@ -1208,6 +1258,7 @@ TAB_COLORS = {
     "Mid ($2B–$10B)":          "595959",
     # Signal sheets — mid
     "Material + New":          "808080",
+    "Who's Buying":            "808080",
     "Revealed Preference":     "808080",
     "Activist 10+":            "808080",
     "Insider Buys ≤30d":       "808080",
@@ -1250,6 +1301,7 @@ def main():
         where_extra="AND (us.s3_new + us.s4_add) >= 2 AND us.mcap_bucket != 'unknown'",
         limit=80,
         subtitle="≥2 funds adding to existing (S4) OR initiating major new (S3) — smart money is BUILDING.")
+    sheet_whos_buying(wb, conn)
     sheet_activist(wb, conn)
     sheet_insider_recent(wb, conn)
     sheet_insider_f4(wb, conn)

@@ -94,6 +94,30 @@ def run():
                           "(name LIKE '%__old' OR name LIKE '%_tmp' OR name LIKE '%_bak')"):
         warns.append(f"leftover temp table: {r[0]}")
 
+    # I8b. SILENT-DROP GATE: real (non-fund, non-foreign) 13F holdings that failed
+    #      to map to a ticker are excluded from ALL aggregation. Surface them loudly
+    #      — a big unmapped position is smart-money signal we're losing (Brookdale
+    #      had 27 holders silently dropped before this gate existed). List the top
+    #      offenders by value so they can never disappear silently again.
+    unmapped = conn.execute("""SELECT issuer, COUNT(*) n, SUM(value_k)/1e3 vM
+        FROM fund_13f_holdings
+        WHERE ticker IS NULL AND value_k > 0
+          AND issuer NOT LIKE '%ETF%' AND issuer NOT LIKE '%FUND%' AND issuer NOT LIKE '% TR%'
+          AND issuer NOT LIKE '%FDS%' AND issuer NOT LIKE '%SHARES%' AND issuer NOT LIKE '%EXCH TRD%'
+          AND issuer NOT LIKE '%PORTFOLIO%' AND issuer NOT LIKE '%INDEX%' AND issuer NOT LIKE '%ISHARES%'
+          AND issuer NOT LIKE '%NOTE%' AND issuer NOT LIKE '%BOND%' AND issuer NOT LIKE '%CALL%' AND issuer NOT LIKE '%PUT%'
+        GROUP BY issuer HAVING vM >= 100 ORDER BY vM DESC""").fetchall()
+    if unmapped:
+        big = sum(1 for _ in unmapped)
+        warns.append(f"{big} unmapped non-fund issuers with >=$100M held (possible dropped real "
+                     f"companies) — top: " + "; ".join(f"{r[0][:24]} (${r[2]:,.0f}M)" for r in unmapped[:5]))
+        # a very large single unmapped US-looking position is a FAIL (likely a name we can fix)
+        us_like = [r for r in unmapped if r[2] >= 400 and ' SA' not in (r[0] or '')
+                   and ' NV' not in (r[0] or '') and ' AG' not in (r[0] or '') and ' PLC' not in (r[0] or '')]
+        if len(us_like) > 8:
+            fails.append(f"{len(us_like)} US-looking issuers with >=$400M held are UNMAPPED — "
+                         f"run OpenFIGI recovery (map_cusip_openfigi) / check name normalization")
+
     # I8. feed freshness: warn when the tradeable-signal feeds fall behind.
     for tbl, col, days in [('form4_transactions','trans_date',21), ('holder_13d','filed',30),
                            ('catalysts_8k','filed',30), ('ticker_yf','asof',21)]:

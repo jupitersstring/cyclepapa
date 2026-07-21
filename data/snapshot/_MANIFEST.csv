@@ -11,6 +11,7 @@ catalysts,32,
 catalysts_8k,42105,EXPENSIVE
 consensus_buys,88,
 conviction_adds,180,
+cusip_map,9411,
 discovery,16,EXPENSIVE
 discovery_13d,48,EXPENSIVE
 discovery_13d_subjects,24,EXPENSIVE
@@ -46,5 +47,5 @@ ticker_meta,8607,EXPENSIVE
 ticker_style_conviction,2271,
 ticker_valuation,3000,EXPENSIVE
 ticker_yf,8707,
-unified_signal,9006,
+unified_signal,9048,
 yf_dead,1349,
