@@ -32,6 +32,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 import time
 from datetime import date, datetime, timedelta
@@ -54,26 +55,63 @@ USER_AGENT = os.environ.get(
     "EDGAR_USER_AGENT", "cyclepapa-screener research@example.com")
 HEADERS = {"User-Agent": USER_AGENT, "Accept": "application/json"}
 
-# Emergence-signalling phrases → sub-query label. Fresh-start accounting
-# is the strongest (definitionally a post-reorg entity); emergence /
-# plan-effective language captures the event announcement.
-QUERIES: dict[str, str] = {
-    "post_reorg_freshstart":
-        '"fresh-start accounting" OR "fresh start reporting" '
-        'OR "fresh-start reporting"',
-    "post_reorg_emerged":
-        '"emerged from Chapter 11" OR "emergence from Chapter 11" '
-        'OR "successfully emerged"',
-    # NB: the bare phrase "Effective Date of the Plan" also matches employee
-    # STOCK-plan / benefit-plan effective dates (GoDaddy, Skyworks, Federated
-    # Hermes all false-positived on it), so require the "of Reorganization"
-    # qualifier — a genuine Chapter 11 emergence, not a benefit plan.
-    "post_reorg_plan_effective":
-        '"Plan of Reorganization became effective" '
-        'OR "Effective Date of the Plan of Reorganization" '
-        'OR "Plan of Reorganization became effective on"',
+# Emergence phrase set — evidence-graded by the emergence-catch audit
+# (live EDGAR precision/recall test on ~40 candidate phrases). Each entry is
+# (phrase, canonical-sublabel, tier). STRONG = precise, event-marking phrases
+# a downstream verifier can largely trust. RECALL = the wide net (lower
+# precision), kept because catching the EVENT matters and precision is
+# handled downstream (filer-emergence verification + the six-question screen).
+# Phrases the audit found to be pure noise are intentionally excluded:
+#   "the Plan became effective"   → matches annual incentive/equity plans
+#   "consummated its Plan of Reorganization" → 0 hits
+#   unhyphenated "fresh start ..." → redundant with the hyphenated forms
+EMERGENCE_PHRASES: list[tuple[str, str, str]] = [
+    # --- STRONG ---
+    ('"emergence from Chapter 11"',                       "emerged",       "strong"),
+    ('"fresh-start accounting"',                          "freshstart",    "strong"),
+    ('"Effective Date of the Plan of Reorganization"',    "plan_effective","strong"),
+    ('"consummation of the Plan of Reorganization"',      "plan_effective","strong"),
+    ('"Plan of Reorganization became effective"',         "plan_effective","strong"),
+    ('"applied fresh-start"',                             "freshstart",    "strong"),
+    ('"adopted fresh-start"',                             "freshstart",    "strong"),
+    # --- RECALL (wide net) ---
+    ('"emerged from Chapter 11"',                         "emerged",       "recall"),
+    ('"emerges from Chapter 11"',                         "emerged",       "recall"),
+    ('"emergence from bankruptcy"',                       "emerged",       "recall"),
+    ('"emerged from bankruptcy"',                         "emerged",       "recall"),
+    ('"successfully emerged"',                            "emerged",       "recall"),
+    ('"successfully emerges"',                            "emerged",       "recall"),
+    ('"upon emergence"',                                  "emerged",       "recall"),
+    ('"post-emergence"',                                  "emerged",       "recall"),
+    ('"Plan Effective Date"',                             "plan_effective","recall"),
+    ('"consummation of the Plan"',                        "plan_effective","recall"),
+    ('"consummated the Plan"',                            "plan_effective","recall"),
+    ('"fresh-start reporting"',                           "freshstart",    "recall"),
+    ('"application of fresh start"',                      "freshstart",    "recall"),
+    ('"emergence date"',                                  "emerged",       "recall"),
+    ('"completes Chapter 11 reorganization"',             "emerged",       "recall"),
+    ('"completion of the Chapter 11"',                    "emerged",       "recall"),
+]
+
+# Forms broadened per the audit. Critically adds 6-K + 20-F: foreign private
+# issuers (Seadrill, Valaris, Noble) announce emergence on those, NOT 8-K/
+# 10-K, so the old form set was structurally blind to them. S-1/424B3 catch
+# post-emergence resale registration; 8-A12B the relisting of new common.
+FORMS = "8-K,10-K,10-Q,6-K,20-F,S-1,424B3,8-A12B,8-A12G"
+
+_NOTE = {
+    "freshstart":
+        "Fresh-start accounting (ASC 852) — adopted ONLY upon Chapter 11 "
+        "emergence, so a post-reorg entity by definition. Uncovered equity, "
+        "forced-seller creditors, clean cap stack.",
+    "emerged":
+        "Emergence from Chapter 11 — post-reorg equity now trading. Verify "
+        "float, creditor overhang, and the coverage vacuum.",
+    "plan_effective":
+        "Plan of Reorganization effective / consummated — the emergence "
+        "event. New equity distributed to creditors; watch the forced-"
+        "selling window.",
 }
-FORMS = "8-K,10-K,10-Q,8-A12B,8-A12G"
 
 
 def fetch(query: str, start: date, end: date,
@@ -89,44 +127,48 @@ def fetch(query: str, start: date, end: date,
                           log=lambda m: print(m, file=sys.stderr))
 
 
-def normalize_hit(label: str, hit: dict, fetched_at: str) -> dict:
+def normalize_hit(label: str, tier: str, phrase: str, hit: dict,
+                  fetched_at: str) -> dict:
     src = hit.get("_source", {})
     accession = src.get("adsh", "")
     fields = issuer_fields(src)
     cik = fields["cik"] or ""
     name = fields["name"]
+    ticker = fields["ticker"] or ""
     url = (f"https://www.sec.gov/Archives/edgar/data/"
            f"{int(cik):d}/{accession.replace('-', '')}"
            if cik and accession else "")
-    note = {
-        "post_reorg_freshstart":
-            "Fresh-start accounting — a post-emergence entity by "
-            "definition. Uncovered equity, forced-seller creditors, "
-            "clean cap stack. Classic distressed-to-equity setup.",
-        "post_reorg_emerged":
-            "Emerged from Chapter 11 — post-reorg equity now trading. "
-            "Verify float, creditor overhang, and coverage vacuum.",
-        "post_reorg_plan_effective":
-            "Plan of Reorganization effective — emergence event. "
-            "New equity distributed to creditors; watch for forced "
-            "selling window.",
-    }.get(label, "Post-reorganization emergence signal.")
+    items = src.get("items") or []
+    # 8-K Item 1.03 (Bankruptcy or Receivership) present = structural
+    # confirmation this is a genuine bankruptcy/emergence 8-K (the audit's
+    # key precision filter — genuine emergence 8-Ks carry Item 1.03).
+    has_103 = any(str(it).startswith("1.03") for it in items)
+    # A 5-letter ticker ending in Q signals a security STILL IN bankruptcy
+    # (not yet emerged) — forward-looking "upon emergence" language, not the
+    # event. Flag so downstream treats it as pending, not emerged.
+    tk = ticker.split(":")[-1]
+    pre_emergence = bool(re.match(r"^[A-Z]{3,4}Q$", tk))
     return {
-        "tier":        "tier_s",
-        "query_label": f"tier_s.{label}",
-        "query_note":  note,
-        "cik":         cik,
-        "ticker":      fields["ticker"],
-        "isin":        None,
-        "name":        name,
-        "form":        src.get("form") or "",
-        "form_code":   src.get("form") or "",
-        "accession":   accession,
-        "filed":       src.get("file_date") or "",
-        "jurisdiction": "US",
-        "url":         url,
-        "source":      "EDGAR-postreorg",
-        "fetched_at":  fetched_at,
+        "tier":          "tier_s",
+        "query_label":   f"tier_s.post_reorg_{label}",
+        "query_note":    _NOTE.get(label, "Post-reorganization signal."),
+        "emergence_tier": tier,
+        "matched_phrase": phrase.strip('"'),
+        "item_1_03":     has_103,
+        "pre_emergence": pre_emergence,
+        "cik":           cik,
+        "ticker":        ticker,
+        "isin":          None,
+        "name":          name,
+        "form":          src.get("form") or "",
+        "form_code":     src.get("form") or "",
+        "items":         items,
+        "accession":     accession,
+        "filed":         src.get("file_date") or "",
+        "jurisdiction":  "US",
+        "url":           url,
+        "source":        "EDGAR-postreorg",
+        "fetched_at":    fetched_at,
     }
 
 
@@ -149,25 +191,48 @@ def poll(days_back: int) -> int:
     end = date.today()
     start = end - timedelta(days=days_back)
     print(f"Polling EDGAR for post-reorg emergence "
-          f"({start.isoformat()}..{end.isoformat()})...")
-    all_records: list[dict] = []
-    seen_acc: set[str] = set()
-    for label, query in QUERIES.items():
-        hits = fetch(query, start, end)
+          f"({start.isoformat()}..{end.isoformat()}) — "
+          f"{len(EMERGENCE_PHRASES)} phrases × {FORMS.count(',')+1} forms...")
+    # Dedup by accession across all phrases; keep the record from the
+    # STRONGEST tier that matched it (strong > recall), and note every phrase.
+    by_acc: dict[str, dict] = {}
+    tier_rank = {"strong": 1, "recall": 0}
+    strong_n = recall_n = 0
+    for phrase, label, tier in EMERGENCE_PHRASES:
+        hits = fetch(phrase, start, end)
         kept = 0
         for h in hits:
             acc = h.get("_source", {}).get("adsh", "")
-            if acc and acc in seen_acc:
+            if not acc:
                 continue
-            seen_acc.add(acc)
-            all_records.append(normalize_hit(label, h, fetched_at))
-            kept += 1
-        print(f"  {label:28s} {kept:>4d} unique hits")
-        time.sleep(0.15)
+            rec = normalize_hit(label, tier, phrase, h, fetched_at)
+            prev = by_acc.get(acc)
+            if prev is None:
+                by_acc[acc] = rec
+                kept += 1
+            else:
+                # upgrade tier if this phrase is stronger; accumulate phrases
+                prev.setdefault("also_matched", [])
+                prev["also_matched"].append(phrase.strip('"'))
+                if tier_rank[tier] > tier_rank.get(prev["emergence_tier"], 0):
+                    rec["also_matched"] = prev.get("also_matched", [])
+                    by_acc[acc] = rec
+        if tier == "strong":
+            strong_n += kept
+        else:
+            recall_n += kept
+        print(f"  [{tier:6}] {label:14s} {phrase[:44]:44s} +{kept:>3d} new")
+        time.sleep(0.12)
+    all_records = list(by_acc.values())
     if all_records:
         counts = write_inbox(all_records)
-        print(f"\nWrote {len(all_records)} records across "
-              f"{len(counts)} day/tier buckets")
+        n_103 = sum(1 for r in all_records if r.get("item_1_03"))
+        n_pre = sum(1 for r in all_records if r.get("pre_emergence"))
+        print(f"\nWrote {len(all_records)} unique records "
+              f"(strong-tier first-catch {strong_n}, recall {recall_n}) "
+              f"across {len(counts)} day/tier buckets")
+        print(f"  {n_103} carry 8-K Item 1.03 (structural confirmation); "
+              f"{n_pre} are Q-suffix (still-in-bankruptcy, pending emergence)")
     else:
         print("\nNo post-reorg emergence signals in window.")
     return len(all_records)

@@ -1,0 +1,686 @@
+[
+  {
+    "emergence_date": "2025-01-14",
+    "exchange": "Nasdaq",
+    "listed_common": true,
+    "name": "Vroom, Inc.",
+    "note": "Prepackaged Ch. 11 (online used-car retailer). Plan effective Jan 14, 2025; ~$290M convert notes discharged, old equity ",
+    "source": "https://www.sec.gov/Archives/edgar/data/1580864/000095017025023626/vrm-ex99_1.htm",
+    "ticker": "VRM"
+  },
+  {
+    "emergence_date": "2025-03-12",
+    "exchange": "NYSE American",
+    "listed_common": true,
+    "name": "Spirit Aviation Holdings, Inc. (Spirit Airlines)",
+    "note": "Emerged from first Ch. 11 on Mar 12, 2025; old SAVE equity canceled. New common began trading on NYSE American as FLYY o",
+    "source": "https://www.prnewswire.com/news-releases/spirit-airlines-announces-nyse-american-listing-approval-302436551.html",
+    "ticker": "FLYY"
+  },
+  {
+    "emergence_date": "2025-06-24",
+    "exchange": "Nasdaq",
+    "listed_common": true,
+    "name": "WW International, Inc. (WeightWatchers)",
+    "note": "42-day prepackaged Ch. 11 cut ~$1.15B debt. Emerged Jun 24, 2025; old shares canceled (traded WGHTQ on OTC briefly). New",
+    "source": "https://www.stblaw.com/about-us/news/view/2025/06/25/weightwatchers-completes-financial-reorganization-following-chapter-11-plan-approval",
+    "ticker": "WW"
+  },
+  {
+    "emergence_date": "2025-09-29",
+    "exchange": "NYSE",
+    "listed_common": true,
+    "name": "Wolfspeed, Inc.",
+    "note": "Semiconductor (SiC) maker. Confirmation Sept 8, 2025; emerged Sept 29, 2025, cutting debt ~70%. Old common canceled and ",
+    "source": "https://www.stocktitan.net/sec-filings/WOLF/8-k-wolfspeed-inc-reports-material-event-9d4fc11879ed.html",
+    "ticker": "WOLF"
+  },
+  {
+    "emergence_date": "2025-12-29",
+    "exchange": "OTC (Pink)",
+    "listed_common": false,
+    "name": "ModivCare Inc.",
+    "note": "NEMT/home-care provider. 117-day Ch. 11 (filed Aug 20, 2025), ~$1.1B debt reduction. Nasdaq (MODV) delisting began Aug 2",
+    "source": "https://www.sec.gov/Archives/edgar/data/1220754/000143774925027610/ex_856345.htm",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-04-04",
+    "exchange": "OTC (Pink)",
+    "listed_common": false,
+    "name": "Gritstone bio, Inc.",
+    "note": "Biotech; Ch. 11 filed Oct 2024, assets sold. Second Modified Plan confirmed Apr 3, 2025, effective Apr 4, 2025. Delisted",
+    "source": "https://www.sec.gov/Archives/edgar/data/1656634/000119312525073396/d916691d8k.htm",
+    "ticker": "GRTSQ"
+  },
+  {
+    "emergence_date": "2025-01-22",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Vertex Energy, Inc.",
+    "note": "Refiner/renewables. Emerged Jan 22, 2025 as a PRIVATE company owned by lenders (BlackRock, Highbridge, Whitebox, CrowdOu",
+    "source": "https://www.sec.gov/Archives/edgar/data/890447/000199937125000518/vtnr-8k_012125.htm",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-01-17",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Independence Contract Drilling, Inc.",
+    "note": "Land driller. Prepackaged Ch. 11; plan effective Jan 17, 2025, eliminating ~$197M convertible debt. Emerged as a PRIVATE",
+    "source": "https://icdrilling.investorroom.com/2025-01-20-Independence-Contract-Drilling,-Inc-Announces-Emergence-from-Chapter-11-as-a-Private-Company-with-Increased-Liquidity-and-a-Significantly-Deleveraged-Bal",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-03-07",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Accuride Corporation",
+    "note": "Commercial-vehicle wheels/components. Plan confirmed Feb 12, 2025; emerged Mar 7, 2025, cutting ~$400M debt. Former lend",
+    "source": "https://www.davispolk.com/experience/accuride-confirms-and-consummates-chapter-11-plan",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-04-30",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Zips Car Wash, LLC",
+    "note": "Express car wash (~230+ sites). Prepackaged Ch. 11 filed Feb 5, 2025; confirmed Apr 18, plan effective Apr 30, 2025 (~84",
+    "source": "https://www.carwash.com/zips-car-wash-restructuring-complete/",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-01-28",
+    "exchange": "",
+    "listed_common": false,
+    "name": "The Container Store Group, Inc.",
+    "note": "Retailer (was NYSE: TCS). Plan confirmed Jan 24, 2025; emerged ~Jan 28-31, 2025 as a PRIVATE company owned by its suppor",
+    "source": "https://www.financierworldwide.com/fw-news/2025/1/30/the-container-store-exits-chapter-11",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-01-31",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Vertex Energy note / Cano Health, Inc.",
+    "note": "Primary-care operator (was NYSE: CANO). Prepackaged Ch. 11 swapped ~$933M debt for equity; emerged early 2025 as a priva",
+    "source": "https://www.veritaglobal.net/canohealth",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-08-11",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Global Clean Energy Holdings, Inc. (renamed Grapevine Energy Holdings, LLC)",
+    "note": "Renewable-fuels producer; was OTC: GCEH. Under-4-month Ch. 11 (SD Texas). Plan effective Aug 11, 2025; term-loan lenders",
+    "source": "https://www.sec.gov/Archives/edgar/data/748790/000121390025074670/ea0251950-8k_global.htm",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-05-20",
+    "exchange": "",
+    "listed_common": false,
+    "name": "American Tire Distributors (n/k/a OldCo Tire Distributors, Inc.)",
+    "note": "Tire distributor. 363 asset sale to a lender-formed buyer completed Mar 5, 2025; wind-down plan for OldCo confirmed Mar ",
+    "source": "https://www.atd.com/who-we-are/article/american-tire-distributors-receives-court-approval-sale-to-lender-group",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2026-06-17",
+    "exchange": "Nasdaq",
+    "listed_common": true,
+    "name": "Office Properties Income Trust",
+    "note": "Plan effective June 17, 2026 (confirmed April 22, 2026, SDTX). All 73,943,439 old common shares cancelled (no recovery);",
+    "source": "https://www.businesswire.com/news/home/20260617055100/en/Office-Properties-Income-Trust-Completes-Chapter-11-Reorganization",
+    "ticker": "OPI"
+  },
+  {
+    "emergence_date": "2026-03-05",
+    "exchange": "NYSE American",
+    "listed_common": true,
+    "name": "Nine Energy Service, Inc.",
+    "note": "Prepackaged case filed Feb 1, 2026; confirmed March 4, 2026; effective March 5, 2026. All ~43.3M old shares cancelled; ~",
+    "source": "https://www.stocktitan.net/sec-filings/NINE/8-k-nine-energy-service-inc-reports-material-event-a34a186bc2a1.html",
+    "ticker": "NINE"
+  },
+  {
+    "emergence_date": "2026-02-20",
+    "exchange": "B3 (Brazil); OTC in US",
+    "listed_common": true,
+    "name": "Azul S.A.",
+    "note": "Brazilian airline / foreign private issuer that restructured under US Chapter 11 (SDNY; confirmed Dec 19, 2025). Emerged",
+    "source": "https://www.prnewswire.com/news-releases/azul-sa-successfully-emerges-from-chapter-11-302697164.html",
+    "ticker": "AZUL4 (B3); AZULQ (OTC)"
+  },
+  {
+    "emergence_date": "2026-03-26",
+    "exchange": "None (delisted; reorganized entity private)",
+    "listed_common": false,
+    "name": "Zynex, Inc.",
+    "note": "Medical device maker. Filed Dec 15, 2025 (SDTX). Plan effective March 26, 2026. Old ZYXI common cancelled with no recove",
+    "source": "https://www.stocktitan.net/sec-filings/ZYXI/8-k-zynex-inc-reports-material-event-3fe6f366f9e8.html",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2026-03-03",
+    "exchange": "None (private)",
+    "listed_common": false,
+    "name": "United Site Services",
+    "note": "Portable sanitation / site services company (Platinum Equity-backed). Chapter 11 plan went effective March 3, 2026 (conf",
+    "source": "https://elevenflo.com/blog/united-site-services",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2026 (post-April 15 confirmation; pending FCC approval)",
+    "exchange": "None (reorganized entity not to be exchange-listed)",
+    "listed_common": false,
+    "name": "Cumulus Media Inc.",
+    "note": "Radio broadcaster. Prepackaged Chapter 11 filed March 5, 2026 (SDTX); plan confirmed April 15, 2026. Old Class A/B commo",
+    "source": "https://www.cumulusmedia.com/2026/04/15/cumulus-media-secures-court-approval-of-reorganization-plan/",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2026 (~July; confirmed July 14, 2026)",
+    "exchange": "None (emerging as private company)",
+    "listed_common": false,
+    "name": "Inotiv, Inc.",
+    "note": "Drug discovery / preclinical CRO. Prepackaged Chapter 11 filed June 3, 2026 (SDTX); plan confirmed July 14, 2026. Old NO",
+    "source": "https://www.stocktitan.net/news/NOTV/inotiv-successfully-completes-financial-restructuring-kcsdrnphrldu.html",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2026-06-13",
+    "exchange": "None (wind-down; private)",
+    "listed_common": false,
+    "name": "Del Monte Foods (Del Monte Foods Corporation II Inc.)",
+    "note": "Canned/packaged foods. Year-long Chapter 11 (District of New Jersey). First Amended Joint Plan confirmed May 22, 2026; e",
+    "source": "https://elevenflo.com/blog/del-monte-foods-bankruptcy",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "late 2025 / early 2026 (confirmed Dec 9, 2025; effective ~Dec 19, 2025-Jan 15, 2026)",
+    "exchange": "None (private)",
+    "listed_common": false,
+    "name": "Ascend Performance Materials",
+    "note": "Nylon/chemicals maker. Plan confirmed Dec 9, 2025; ~$2B term-loan debt converted to equity, with former PE owner SK Capi",
+    "source": "https://www.prnewswire.com/news-releases/ascend-performance-materials-successfully-emerges-from-chapter-11-302647159.html",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "pending (filed April 16, 2026; prepackaged plan confirmed)",
+    "exchange": "National exchange listing expected (per plan); currently OTC as QVCG/QVCAQ",
+    "listed_common": true,
+    "name": "QVC Group, Inc.",
+    "note": "UNCERTAIN / possibly not yet emerged within window. Prepackaged Chapter 11 filed April 16, 2026 (SDTX) to cut funded deb",
+    "source": "https://www.stocktitan.net/news/QVCAQ/qvc-group-achieves-key-milestone-with-court-s-approval-of-xe9bbywgs278.html",
+    "ticker": "QVCG (expected)"
+  },
+  {
+    "emergence_date": "2024-01-23",
+    "exchange": "Nasdaq Global Select",
+    "listed_common": true,
+    "name": "Core Scientific, Inc.",
+    "note": "Emerged 1/23/2024; new common (plus warrants CORZW/CORZZ) began trading on Nasdaq 1/24/2024 after ~$400M debt-to-equity ",
+    "source": "https://investors.corescientific.com/news-events/press-releases/detail/13/core-scientific-inc-emerges-from-chapter-11-with-strengthened-balance-sheet-and-enhanced-competitive-position",
+    "ticker": "CORZ"
+  },
+  {
+    "emergence_date": "2024-05-03",
+    "exchange": "n/a (was Nasdaq CRGE pre-filing)",
+    "listed_common": false,
+    "name": "Charge Enterprises, Inc.",
+    "note": "Prepackaged Ch11 (filed 3/7/2024), plan effective 5/3/2024. Arena Investors received 100% of new common; prior preferred",
+    "source": "https://www.prnewswire.com/news-releases/arena-investors-completes-recapitalization-of-charge-enterprises-302135960.html",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-06-12",
+    "exchange": "n/a (was NYSE CORR; delisted, traded CORRQ)",
+    "listed_common": false,
+    "name": "CorEnergy Infrastructure Trust, Inc.",
+    "note": "Energy-infrastructure REIT (regulated crude pipelines). Plan confirmed 5/24/2024, effective 6/12/2024. Reorganized equit",
+    "source": "https://www.businesswire.com/news/home/20240613985630/en/CorEnergy-Successfully-Completes-Financial-Restructuring",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-11-14",
+    "exchange": "n/a (was Nasdaq SPWR; wiped)",
+    "listed_common": false,
+    "name": "SunPower Corporation",
+    "note": "Residential solar. Filed 8/5/2024; amended plan confirmed 10/18/2024, effective 11/14/2024. A monetization/liquidating p",
+    "source": "https://www.davispolk.com/experience/sunpower-confirms-and-consummates-chapter-11-plan",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-12-06",
+    "exchange": "n/a (was NYSE EVA)",
+    "listed_common": false,
+    "name": "Enviva Inc.",
+    "note": "Wood-pellet / biomass energy. Plan confirmed 11/13/2024, effective 12/6/2024. Equitized >$1B of debt; on emergence the c",
+    "source": "https://www.davispolk.com/experience/enviva-emerges-chapter-11",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-02-18",
+    "exchange": "n/a (private)",
+    "listed_common": false,
+    "name": "Lumio Holdings, Inc.",
+    "note": "Residential solar installer. Filed 9/3/2024; liquidating plan effective 2/18/2025. Assets sold to Zeo Energy (~$4M cash ",
+    "source": "https://www.solarpowerworldonline.com/2024/11/zeo-energy-completes-acquisition-of-residential-solar-company-lumio/",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-09-03",
+    "exchange": "n/a (private)",
+    "listed_common": false,
+    "name": "Scanrock Oil & Gas, Inc.",
+    "note": "Moderate confidence. Small Odessa, TX E&P. Filed 2/3/2025; amended joint plan of reorganization confirmed 9/3/2025 after",
+    "source": "https://elevenflo.com/blog/scanrock-oil-gas-bankruptcy",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-11-14",
+    "exchange": "n/a (was NYSE NOVA; traded NOVAQ)",
+    "listed_common": false,
+    "name": "Sunnova Energy International Inc.",
+    "note": "Residential solar (~500k customers, ~$8.9B debt). Filed 6/8/2025; plan confirmed 11/12/2025, effective 11/14/2025. A 363",
+    "source": "https://bondoro.com/sunnova/",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2023-05-17",
+    "exchange": "Nasdaq Global Select",
+    "listed_common": true,
+    "name": "Talen Energy Corporation",
+    "note": "BORDERLINE / likely outside window: independent power producer (nuclear + gas), emerged from Ch11 on 5/17/2023 (not 2024",
+    "source": "https://www.prnewswire.com/news-releases/talen-energy-corporation-announces-expected-listing-on-the-nasdaq-global-select-market-302191022.html",
+    "ticker": "TLN"
+  },
+  {
+    "emergence_date": "2023-12-07",
+    "exchange": "OTC (Pink, then OTCQX)",
+    "listed_common": true,
+    "name": "Capstone Green Energy Holdings, Inc.",
+    "note": "BORDERLINE window: microturbine / distributed-energy company. Prepackaged plan confirmed 11/14/2023, emerged 12/7/2023 (",
+    "source": "https://www.capstoneenergyplus.com/news/press-releases/detail/4019/",
+    "ticker": "CGEH"
+  },
+  {
+    "emergence_date": "2026-Q3 (targeted, in process)",
+    "exchange": "Nasdaq",
+    "listed_common": true,
+    "name": "New Fortress Energy Inc.",
+    "note": "NOT a Chapter 11: LNG-to-power company restructuring via a UK Part 26A plan plus U.S. Chapter 15 recognition (RSA 3/17/2",
+    "source": "https://www.paulhastings.com/insights/client-alerts/new-fortress-energy-a-us-listed-energy-group-chooses-an-english-restructuring-plan-over-us-chapter-11",
+    "ticker": "NFE"
+  },
+  {
+    "emergence_date": "2025-06-24",
+    "exchange": "Nasdaq",
+    "listed_common": true,
+    "name": "WW International, Inc. (Weight Watchers)",
+    "note": "Consumer wellness / subscription-media brand. Delisting notice May 2025, traded OTC as WGHTQ, emerged June 24, 2025 (~$1",
+    "source": "https://www.sec.gov/Archives/edgar/data/105319/000119312526107176/ww-20251231.htm",
+    "ticker": "WW"
+  },
+  {
+    "emergence_date": "2024-09-30",
+    "exchange": "OTC Markets (over-the-counter)",
+    "listed_common": true,
+    "name": "Audacy, Inc.",
+    "note": "Radio/audio-media operator (formerly Entercom). Equitized ~$1.6B debt; old AUDAQ cancelled. Reorganized common exists an",
+    "source": "https://www.sec.gov/Archives/edgar/data/1067837/000119312524229306/d753507dex991.htm",
+    "ticker": "AUDA"
+  },
+  {
+    "emergence_date": "2024-03-14",
+    "exchange": "OTC Pink",
+    "listed_common": true,
+    "name": "Nu Ride Inc. (fka Lordstown Motors Corp.)",
+    "note": "BORDERLINE relevance \u2014 EV maker turned litigation/shell holding company, not core retail/consumer/restaurant/media; incl",
+    "source": "https://www.sec.gov/Archives/edgar/data/1759546/000110465924034627/tm248893d1_ex99-1.htm",
+    "ticker": "NRDE"
+  },
+  {
+    "emergence_date": "2024-09-03",
+    "exchange": "None (private)",
+    "listed_common": false,
+    "name": "Rite Aid Corporation",
+    "note": "Retail pharmacy. Emerged from its first Chapter 11 in Sept 2024 as a PRIVATE company owned by creditors (Brigade, HG Vor",
+    "source": "https://www.businesswire.com/news/home/20240902715896/en/Rite-Aid-Completes-Restructuring-Process-and-Emerges-from-Chapter-11",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-06-06",
+    "exchange": "None (private)",
+    "listed_common": false,
+    "name": "Franchise Group, Inc. (Pet Supplies Plus, Buddy's Home Furnishings)",
+    "note": "Multi-brand consumer/retail holdco. Filed Nov 3, 2024; two-step emergence June 6 and July 3, 2025 under new private pare",
+    "source": "https://www.retaildive.com/news/franchise-group-exits-chapter-11-bankruptcy-pet-supplies-plus-buddys-home-furnishings/750412/",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-06-13",
+    "exchange": "None (private)",
+    "listed_common": false,
+    "name": "Careismatic Brands, LLC",
+    "note": "Consumer/apparel (medical scrubs, e.g., Cherokee/Dickies Medical). Filed Jan 22, 2024; plan confirmed May 31, 2024; emer",
+    "source": "https://www.businesswire.com/news/home/20240613273747/en/Careismatic-Brands-Successfully-Completes-Financial-Restructuring-Positioned-for-Continued-Leadership-in-the-Medical-Apparel-Industry",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-09-13",
+    "exchange": "None (private)",
+    "listed_common": false,
+    "name": "2U, Inc. (edX)",
+    "note": "Online-education / media-tech (formerly Nasdaq: TWOU). Prepackaged Chapter 11 filed July 25, 2024; emerged Sept 13, 2024",
+    "source": "https://www.highereddive.com/news/judge-signs-off-on-2u-bankruptcy-plan/726776/",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-11-28",
+    "exchange": "None (private)",
+    "listed_common": false,
+    "name": "Tupperware Brands Corporation",
+    "note": "Consumer housewares. Filed Sept 17, 2024; brand name, IP and core operations sold to lender-formed vehicle (Party Produc",
+    "source": "https://insideretail.asia/2024/11/28/tupperware-business-to-re-emerge-under-new-ownership/",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-09",
+    "exchange": "None (private)",
+    "listed_common": false,
+    "name": "Red Lobster Management LLC",
+    "note": "Casual-dining restaurant chain. Filed May 19, 2024; emerged ~Sept 2024 acquired by Fortress-backed RL Investor Holdings ",
+    "source": "https://www.restaurantbusinessonline.com/financing/bankruptcies-wiped-out-lot-full-service-restaurant-locations-last-year",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-01",
+    "exchange": "None (private)",
+    "listed_common": false,
+    "name": "TGI Fridays Inc.",
+    "note": "Casual-dining restaurant. Filed Nov 2, 2024; going-concern sale/plan approved early Jan 2025 with control passing to a b",
+    "source": "https://www.credaily.com/briefs/tgi-fridays-sells-9-stores-after-chapter-11-filing/",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-10-31",
+    "exchange": "None (private)",
+    "listed_common": false,
+    "name": "Hooters of America, LLC",
+    "note": "Casual-dining restaurant. Filed Mar 31, 2025; plan confirmed Oct 30, 2025 and transaction closed Oct 31, 2025 with origi",
+    "source": "https://www.ropesgray.com/en/news-and-events/news/2025/11/hooters-of-america-successfully-completes-restructuring-transactions",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "n/a (did not emerge as a going-concern public entity)",
+    "exchange": "None",
+    "listed_common": false,
+    "name": "Big Lots, Inc.",
+    "note": "Discount retailer. Filed Sept 9, 2024; Nexus PE deal collapsed; assets sold Jan 2025 to Gordon Brothers, with ~200-400 s",
+    "source": "https://elevenflo.com/blog/big-lots-bankruptcy",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-04-23",
+    "exchange": "OTCQX",
+    "listed_common": true,
+    "name": "Endo, Inc. (formerly Endo International plc)",
+    "note": "Specialty pharma. Plan effective 4/23/2024; new Endo, Inc. common traded OTCQX: NDOI post-emergence. Later combined with",
+    "source": "https://investor.endo.com/faqs ; https://www.justice.gov/usao-sdny/pr/united-states-reaches-settlement-law-enforcement-tax-and-healthcare-cost-claims-endo",
+    "ticker": "NDOI"
+  },
+  {
+    "emergence_date": "2024-06-28",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Cano Health, Inc.",
+    "note": "Value-based primary care provider. Emerged as reorganized PRIVATE company on 6/28/2024; prior Nasdaq/NYSE common (CANO) ",
+    "source": "https://www.sec.gov/Archives/edgar/data/1800682/000119312524172745/d840809dex991.htm",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-02-03",
+    "exchange": "",
+    "listed_common": false,
+    "name": "CareMax, Inc.",
+    "note": "Value-based care provider. Sale-based Chapter 11; effective date ~2/3/2025 after asset dispositions (core clinics to Rev",
+    "source": "https://elevenflo.com/blog/caremax-bankruptcy",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2026-04-01",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Purdue Pharma L.P. (successor: Knoa Pharma LLC)",
+    "note": "Opioid maker; always private. $7.4B+ opioid-settlement plan confirmed 11/18/2025, went effective 4/1/2026. Successor Kno",
+    "source": "https://www.purduepharma.com/news/2025/11/14/bankruptcy-court-to-confirm-purdue-pharmas-plan-of-reorganization/ ; https://elevenflo.com/blog/purdue-pharma-chapter-11-opioid-settlement",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-04-10",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Sorrento Therapeutics, Inc.",
+    "note": "Biopharma. Plan effective 4/10/2024; Sorrento reorganized privately and its prior Nasdaq common (SRNE) did not survive a",
+    "source": "https://www.marketscreener.com/quote/stock/SORRENTO-THERAPEUTICS-INC-14708339/news/Sorrento-Therapeutics-Inc-Emerged-from-Bankruptcy-46671363/",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-02-16",
+    "exchange": "",
+    "listed_common": false,
+    "name": "GenesisCare (Genesis Care Pty / US cancer-care ops)",
+    "note": "Oncology / radiation-therapy provider. Emerged 2/16/2024; ~$1.7B debt cut; reorganized privately into four regional busi",
+    "source": "https://www.genesiscare.com/au/news/genesiscare-completes-reorganisation-and-emerges-from-chapter-11",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-02-08",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Akumin Inc.",
+    "note": "Outpatient radiology / diagnostic imaging. Emerged 2/8/2024 as PRIVATE company majority-owned by Stonepeak; prior Nasdaq",
+    "source": "https://vmghealth.com/insights/blog/from-chapter-11-to-growth-akumins-turnaround-from-bankruptcy/",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-01-02",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Air Methods Corporation",
+    "note": "Air-medical (helicopter) transport. Prepackaged Chapter 11; emerged around the 2023/2024 year-end (reported ~early Janua",
+    "source": "https://www.financierworldwide.com/fw-news/2024/1/2/air-methods-emerges-from-bankruptcy-protection",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-05-12",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Wellpath Holdings, Inc.",
+    "note": "Correctional/behavioral healthcare provider. Filed 11/12/2024, plan confirmed 5/1/2025, emerged 5/12/2025; ~$550M debt c",
+    "source": "https://www.businesswire.com/news/home/20250512320637/en/Wellpath-Emerges-from-Chapter-11-to-Lead-a-New-Era-in-Correctional-Healthcare",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-12-15",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Prospect Medical Holdings, Inc.",
+    "note": "PE-owned hospital operator (CA/CT/PA/RI). Filed 1/11/2025; plan confirmation order entered 12/15/2025 after hospital sal",
+    "source": "https://elevenflo.com/blog/prospect-medical-holdings-bankruptcy",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-09-30",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Steward Health Care System LLC",
+    "note": "PE-owned (Cerberus) hospital chain. Filed 5/6/2024; resolved via hospital sales/transfers (MA hospitals transferred ~9/3",
+    "source": "https://elevenflo.com/blog/envision-healthcare-dual-silo-chapter-11",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-05-06",
+    "exchange": "",
+    "listed_common": false,
+    "name": "NanoString Technologies, Inc.",
+    "note": "Spatial-biology / life-science tools (medical/biotech instruments). Section 363 asset sale to Bruker for ~$392.6M closed",
+    "source": "https://www.willkie.com/news/2024/04/willkie-advises-nanostring-technologies-in-chapter-11-asset-sale-to-bruker-corporation",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-07-24",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Invitae Corporation",
+    "note": "Medical genetic-testing company. Section 363 going-concern asset sale to Labcorp (~$239M) closed Q3 2024 (court approval",
+    "source": "https://www.prnewswire.com/news-releases/invitae-receives-court-approval-for-sale-to-labcorp-302138770.html",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-07-14",
+    "exchange": "",
+    "listed_common": false,
+    "name": "23andMe Holding Co.",
+    "note": "Consumer genetics / telehealth (Lemonaid). Filed 3/2025; Section 363 sale of substantially all assets to nonprofit TTAM ",
+    "source": "https://www.globenewswire.com/news-release/2025/07/14/3114916/0/en/TTAM-Research-Institute-A-Nonprofit-Public-Benefit-Corporation-Completes-The-Acquisition-of-23andMe-Assets.html",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-11-01",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Eiger BioPharmaceuticals, Inc.",
+    "note": "Rare-disease biopharma. Filed 4/1/2024; pursued asset sales (e.g., Zokinvy) and a plan of reorganization/wind-down; prio",
+    "source": "https://www.biospace.com/news/bankruptcies/",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-07-01",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Acorda Therapeutics, Inc.",
+    "note": "Neurology pharma (Inbrija, Ampyra). Filed 4/1/2024 with a stalking-horse APA; assets sold to Merz Therapeutics; estate w",
+    "source": "https://www.biospace.com/news/bankruptcies/",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-06-01",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Sientra, Inc.",
+    "note": "Medical device \u2014 breast implants/aesthetics. Filed 2/13/2024; assets sold (breast-implant business to Tiger Aesthetics, ",
+    "source": "https://www.biospace.com/news/bankruptcies/",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-11-01",
+    "exchange": "",
+    "listed_common": false,
+    "name": "BIOLASE, Inc.",
+    "note": "Dental laser medical-device maker. Filed 10/1/2024; assets sold through 363 (to Sonendo/others); estate wound down. Prio",
+    "source": "https://www.biospace.com/news/bankruptcies/",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-08-01",
+    "exchange": "",
+    "listed_common": false,
+    "name": "DermTech, Inc.",
+    "note": "Molecular skin-cancer diagnostics. Filed 6/18/2024; pursued 363 asset sale and wind-down; prior Nasdaq common (DMTK) del",
+    "source": "https://www.biospace.com/news/bankruptcies/",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-04-01",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Biora Therapeutics, Inc.",
+    "note": "Drug-delivery / therapeutics biotech. Filed 12/30/2024; pursued Chapter 11 sale process and wind-down. Prior Nasdaq comm",
+    "source": "https://www.biospace.com/news/bankruptcies/",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-07-01",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Histogen Inc.",
+    "note": "Regenerative-medicine biotech. Filed 4/18/2024 to facilitate wind-down / maximize residual value; prior Nasdaq common (H",
+    "source": "https://www.biospace.com/news/bankruptcies/",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-11-01",
+    "exchange": "",
+    "listed_common": false,
+    "name": "LifeScan Global Corporation",
+    "note": "Medical device \u2014 blood-glucose monitoring (OneTouch). Filed prepackaged Chapter 11 on ~7/15/2025 to cut ~$1.27B debt and",
+    "source": "https://www.thestreet.com/retail/promising-healthcare-company-files-chapter-11-bankruptcy",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-03-12",
+    "exchange": "NYSE American (later OTC Pink FLYYQ)",
+    "listed_common": true,
+    "name": "Spirit Airlines (Spirit Aviation Holdings, Inc.)",
+    "note": "Airline. Emerged Mar 12 2025; new common began trading on NYSE American as FLYY on Apr 29 2025. Filed a second Chapter 1",
+    "source": "https://www.tradingcalendar.com/post/spirit-aviation-airlines-flyy",
+    "ticker": "FLYY"
+  },
+  {
+    "emergence_date": "2025-06-06",
+    "exchange": "B3 (Sao Paulo)",
+    "listed_common": true,
+    "name": "GOL Linhas Aereas Inteligentes S.A.",
+    "note": "Brazilian airline. NYSE ADSs (GOL) delisted Feb 2024 during Ch11 (traded OTC as GOLLQ). Emerged Jun 6 2025 with Abra Gro",
+    "source": "https://www.prnewswire.com/news-releases/gol-emerges-from-united-states-chapter-11-process-as-a-stronger-more-competitive-airline-302475684.html",
+    "ticker": "GOLL4"
+  },
+  {
+    "emergence_date": "2024-06-11",
+    "exchange": "",
+    "listed_common": false,
+    "name": "WeWork Inc.",
+    "note": "Flexible-office/real estate. Emerged as a PRIVATE company; all pre-petition common and warrants cancelled with no distri",
+    "source": "https://www.davispolk.com/experience/wework-emerges-chapter-11",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2024-12-06",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Enviva Inc. (now Enviva, LLC)",
+    "note": "Industrial wood-pellet (biomass) producer. Emerged PRIVATE; >$1B equitized, converted Delaware corp into an LLC, AIP bec",
+    "source": "https://www.businesswire.com/news/home/20241206254913/en/",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "2025-10-01",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Ligado Networks LLC",
+    "note": "Telecom / mobile-satellite spectrum. Filed Jan 5 2025; plan confirmed Sep 29 2025 converting ~$8.6B debt to equity; emer",
+    "source": "https://elevenflo.com/blog/ligado-networks-chapter-11-bankruptcy",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Danimer Scientific, Inc.",
+    "note": "Chemicals / renewable bioplastics (PHA). Filed Ch11 Mar 18 2025 (Delaware); proceeded as an asset sale / wind-down rathe",
+    "source": "https://bondoro.com/danimer-scientific/",
+    "ticker": ""
+  },
+  {
+    "emergence_date": "",
+    "exchange": "",
+    "listed_common": false,
+    "name": "Trinseo PLC",
+    "note": "Specialty materials / chemicals & plastics. Announced RSA May 13 2026 for a prepackaged Ch11 (SD Texas) to cut ~$2.0B de",
+    "source": "https://www.tipranks.com/news/company-announcements/trinseo-announces-chapter-11-restructuring-to-reduce-debt",
+    "ticker": ""
+  }
+]
