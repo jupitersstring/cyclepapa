@@ -43,6 +43,8 @@ REPO = Path(__file__).resolve().parent.parent
 CANDIDATES = REPO / "data" / "candidates"
 PORTFOLIO_MD = REPO / "output" / "portfolio.md"
 UNIVERSE_RR_CSV = REPO / "output" / "universe_risk_reward.csv"
+LISTED_EQUITY_MD = REPO / "output" / "listed_equity_watchlist.md"
+POSTREORG_MD = REPO / "output" / "postreorg_watchlist.md"
 OUT_DIR = REPO / "output"
 OUT_PATH = OUT_DIR / "cyclepapa_risk_reward_workbook.xlsx"
 
@@ -878,6 +880,130 @@ def build_lenses(wb: Workbook, universe_rr: list[dict]) -> None:
     ws.row_dimensions[4].height = 26
 
 
+def _parse_md_tables(path: Path) -> list[tuple[list[str], list[list[str]]]]:
+    """Return every GitHub-markdown table in a file as (headers, rows).
+    Lets the workbook fold in the post-reorg watchlists without re-running
+    their network-bound screens — the .md files are the durable artifact."""
+    tables: list[tuple[list[str], list[list[str]]]] = []
+    if not path.exists():
+        return tables
+    header: list[str] | None = None
+    rows: list[list[str]] = []
+    for line in path.read_text().splitlines():
+        s = line.strip()
+        is_row = s.startswith("|") and s.endswith("|")
+        if is_row and set(s) <= set("|-: "):   # separator row
+            continue
+        if is_row:
+            cells = [c.strip() for c in s.strip("|").split("|")]
+            if header is None:
+                header = cells
+            else:
+                rows.append(cells)
+        else:
+            if header is not None:
+                tables.append((header, rows))
+            header, rows = None, []
+    if header is not None:
+        tables.append((header, rows))
+    return tables
+
+
+def _render_table_sheet(wb: Workbook, sheet_name: str, title: str,
+                        subtitle: str, headers: list[str],
+                        rows: list[list[str]], heat_col: int | None = None,
+                        subtitle2: str = "") -> None:
+    ws = wb.create_sheet(sheet_name[:31])
+    ws.sheet_view.showGridLines = False
+    ws["A1"] = title
+    ws["A1"].font = FONT_SUBHEAD
+    r0 = 2
+    for sub in (subtitle, subtitle2):
+        if sub:
+            ws.cell(row=r0, column=1, value=sub).font = FONT_FOOTNOTE
+            ws.cell(row=r0, column=1).alignment = ALIGN_WRAP
+            ws.merge_cells(start_row=r0, start_column=1, end_row=r0,
+                           end_column=max(4, len(headers)))
+            ws.row_dimensions[r0].height = 30
+            r0 += 1
+    hdr_row = r0 + 1
+    for j, h in enumerate(headers, 1):
+        ws.cell(row=hdr_row, column=j, value=h)
+    style_header_row(ws, hdr_row, len(headers))
+    for i, row in enumerate(rows):
+        rr = hdr_row + 1 + i
+        for j, v in enumerate(row, 1):
+            ws.cell(row=rr, column=j, value=v)
+        style_body_band(ws, rr, len(headers), banded=(i % 2 == 1))
+    ws.freeze_panes = f"A{hdr_row + 1}"
+    autosize_cols(ws)
+    ws.row_dimensions[hdr_row].height = 30
+
+
+def build_postreorg_listed(wb: Workbook) -> None:
+    """Listed-equity reorganization watchlist — the tradable post-reorg
+    slice on the six-question screen. Folded in from its durable .md."""
+    tables = _parse_md_tables(LISTED_EQUITY_MD)
+    if not tables:
+        return
+    # main watchlist = the table whose header starts with Name|Ticker|Conf
+    main = next((t for t in tables if len(t[0]) >= 6
+                 and t[0][0].lower() == "name" and "conf" in
+                 " ".join(t[0]).lower()), tables[0])
+    headers, rows = main
+    _render_table_sheet(
+        wb, "Post-reorg (listed common)",
+        "Listed-equity reorganization watchlist — six-question sweet-spot screen",
+        "Exchange-listed common only (no claims, DIP paper, rights, "
+        "backstops, creditor-only securities). Q's: Listed · Unnatural "
+        "owners (live forced-seller overhang) · Repaired B/S · Overstated "
+        "count/debt · Catalyst · Quality (EBIT-yield). Conf ✓ = filer's own "
+        "emergence verified from the filing (or PACER); ~ = unverified/kept.",
+        headers, rows,
+        subtitle2="Source: output/listed_equity_watchlist.md (make "
+        "listed-equity-screen). Emergence dates and filer-emergence "
+        "verification are read from each SEC filing.")
+    # set-aside table (unconfirmed filer emergence), if present
+    aside = next((t for t in tables if t is not main and t[0]
+                  and t[0][0].lower() == "name"), None)
+    if aside and aside[1]:
+        h2, r2 = aside
+        ws = wb["Post-reorg (listed common)"]
+        start = ws.max_row + 3
+        ws.cell(row=start, column=1,
+                value="Set aside — filer's own emergence unconfirmed "
+                "(verify; not scored, not dropped)").font = FONT_SUBHEAD
+        for j, h in enumerate(h2, 1):
+            ws.cell(row=start + 1, column=j, value=h)
+        style_header_row(ws, start + 1, len(h2))
+        for i, row in enumerate(r2):
+            for j, v in enumerate(row, 1):
+                ws.cell(row=start + 2 + i, column=j, value=v)
+            style_body_band(ws, start + 2 + i, len(h2), banded=(i % 2 == 1))
+        autosize_cols(ws)
+
+
+def build_postreorg_assembly(wb: Workbook) -> None:
+    """Post-reorg assembly scorecard — Verdad EBIT-yield + Chapter-22 veto
+    across the whole fresh-start cohort. Folded in from its durable .md."""
+    tables = _parse_md_tables(POSTREORG_MD)
+    main = next((t for t in tables if t[0] and t[0][0].lower() == "name"),
+                None)
+    if not main:
+        return
+    headers, rows = main
+    _render_table_sheet(
+        wb, "Post-reorg assembly",
+        "Post-reorg assembly scorecard — Verdad EBIT-yield + Chapter-22 veto",
+        "The fresh-start cohort graded on the two highest-signal filters: "
+        "EBIT/EV > 20% → +61% avg 2yr (PRIORITY), < 0% → −21% (AVOID); and "
+        "a Chapter-22 auto-veto (re-filed after emergence = fixed the "
+        "balance sheet, not the business).",
+        headers, rows,
+        subtitle2="Source: output/postreorg_watchlist.md (make "
+        "postreorg-score).")
+
+
 def build_methodology(wb: Workbook) -> None:
     ws = wb.create_sheet("Methodology")
     ws.sheet_view.showGridLines = False
@@ -963,6 +1089,8 @@ def main() -> int:
     build_universe(wb, candidates, weights)
     build_waterfall_matrix(wb, candidates)
     build_catalyst_timeline(wb, candidates)
+    build_postreorg_listed(wb)
+    build_postreorg_assembly(wb)
     build_portfolio_sizing(wb, weights)
 
     # Detail sheets: the top-10 hand-built YAMLs by their own bottom-up
