@@ -215,7 +215,13 @@ def build_corroboration(records: list[dict]) -> dict[str, dict]:
                 rec.get("query_label") == "tier_s.corroborated_multi":
             continue
         key = entity_key(rec)
-        if not key or len(key) < 3:
+        # The <3-char floor exists to drop junk NAME-stems — but entity_key
+        # resolves a ticker/CIK/CUSIP/ISIN FIRST, so it was silently dropping
+        # every 1-2 char ticker issuer (Ford F, GM, GE, Citi C, AT&T T…) from
+        # ALL corroboration. Apply the floor ONLY to pure name-stem fallbacks.
+        has_identifier = bool(rec.get("ticker") or rec.get("cik")
+                              or rec.get("cusip") or rec.get("isin"))
+        if not key or (len(key) < 3 and not has_identifier):
             continue
         e = by_entity[key]
         src = rec.get("source", "") or rec.get("_tier_dir", "")

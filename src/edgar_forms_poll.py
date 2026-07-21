@@ -87,6 +87,17 @@ FORM_MAP: dict[str, tuple[str, str, str]] = {
     "25-NSE":  ("tier_s", "delisting_form25",
                 "Form 25-NSE — notification of removal from listing (the "
                 "delisting event itself)"),
+    "8-A12B":  ("tier_s", "new_listing",
+                "Form 8-A12B — registration of a class of securities for "
+                "national-exchange (NYSE/Nasdaq) listing: a NEW listed "
+                "equity appearing — post-reorg relisting, OTC→exchange "
+                "uplisting, or spin-off/when-issued common. The mirror of "
+                "the 25-NSE delisting signal, caught structurally rather "
+                "than only when the emergence phrase happens to co-occur."),
+    "8-A12G":  ("tier_s", "new_listing",
+                "Form 8-A12G — registration of a class of securities under "
+                "§12(g): a newly-reporting equity (often the OTC/relisting "
+                "leg of a post-reorg or spin-off)."),
     "UPLOAD":  ("red_flag", "sec_comment_letter",
                 "UPLOAD — SEC staff comment letter (accounting / disclosure "
                 "scrutiny)"),

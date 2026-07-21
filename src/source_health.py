@@ -51,6 +51,19 @@ LOW_FREQUENCY = {
     "CVM-IPE": 8,             # weekly archive refresh
 }
 
+# The canonical `source` string every active poller SHOULD emit. Without
+# this, source_health only classified sources that produced records on disk,
+# so a poller that produces ZERO records (endpoint moved, auth broke, a whole
+# geography went dark) was simply absent from the report — invisible, the
+# exact silent-failure this module claims to catch. Any EXPECTED_SOURCE with
+# no records in the window is now reported as DARK.
+EXPECTED_SOURCES = {
+    "ASX", "CVM-IPE", "CourtListener-RECAP", "EDGAR-13F", "EDGAR-8K-items",
+    "EDGAR-Form15", "EDGAR-Form4-cluster-sells", "EDGAR-SC13D", "EDGAR-forms",
+    "EDGAR-postreorg", "EDGAR-FTS", "FRED-ICE-BofA-OAS", "LDA-Senate", "NSM",
+    "OFAC", "SEDAR+", "TDnet", "spinoff-radar",
+}
+
 
 def collect_counts(days_back: int) -> dict[str, dict[str, int]]:
     """source -> {day_iso: n_records} over the trailing window."""
@@ -117,17 +130,32 @@ def main() -> int:
     counts = collect_counts(args.days_back)
     reports = [classify(src, dc, today, args.staleness_days)
                for src, dc in counts.items()]
-    reports.sort(key=lambda r: ({"STALE": 0, "ANOMALY": 1, "QUIET": 2,
-                                 "OK": 3}[r["status"]], -r["total_window"]))
+    # DARK: an expected poller that produced ZERO records this window. This is
+    # the silent-failure case a count-only scan can never see. Only fire when
+    # the source's cadence means a record WAS due in the window — a quarterly
+    # feed (13F, tol 95d) legitimately shows nothing across 30 days.
+    for src in sorted(EXPECTED_SOURCES - set(counts)):
+        if LOW_FREQUENCY.get(src, args.staleness_days) > args.days_back:
+            continue
+        reports.append({
+            "source": src, "status": "DARK", "last_seen": None,
+            "age_days": 999, "last_count": 0, "active_days": 0,
+            "mean_per_active_day": 0.0, "stdev": 0.0, "total_window": 0,
+            "cadence_tolerance_days": LOW_FREQUENCY.get(src, args.staleness_days),
+        })
+    reports.sort(key=lambda r: ({"DARK": 0, "STALE": 1, "ANOMALY": 2,
+                                 "QUIET": 3, "OK": 4}[r["status"]],
+                                -r["total_window"]))
 
     stale = [r for r in reports if r["status"] == "STALE"]
     anomaly = [r for r in reports if r["status"] == "ANOMALY"]
+    dark = [r for r in reports if r["status"] == "DARK"]
 
     print(f"Source health over {args.days_back + 1} days "
           f"({len(reports)} sources):")
     for r in reports:
-        icon = {"OK": "✓", "QUIET": "·", "STALE": "✗", "ANOMALY": "⚠"}[
-            r["status"]]
+        icon = {"OK": "✓", "QUIET": "·", "STALE": "✗", "ANOMALY": "⚠",
+                "DARK": "⬛"}[r["status"]]
         print(f"  {icon} {r['status']:8s} {r['source']:24s} "
               f"last={r['last_seen']} ({r['age_days']}d ago) "
               f"total={r['total_window']:>5d} "
@@ -148,8 +176,9 @@ def main() -> int:
         "",
         f"- Window: {args.days_back + 1} days",
         f"- Sources tracked: {len(reports)}",
-        f"- **STALE: {len(stale)}**  ·  **ANOMALY: {len(anomaly)}**  ·  "
-        f"OK/QUIET: {len(reports) - len(stale) - len(anomaly)}",
+        f"- **DARK (expected source, zero records): {len(dark)}**  ·  "
+        f"**STALE: {len(stale)}**  ·  **ANOMALY: {len(anomaly)}**  ·  "
+        f"OK/QUIET: {len(reports) - len(dark) - len(stale) - len(anomaly)}",
         "",
         "| Status | Source | Last seen | Age | Last | Total | Mean/day |",
         "|---|---|---|---:|---:|---:|---:|",
@@ -159,8 +188,12 @@ def main() -> int:
             f"| {r['status']} | {r['source']} | {r['last_seen']} | "
             f"{r['age_days']}d | {r['last_count']} | {r['total_window']} | "
             f"{r['mean_per_active_day']} |")
-    if stale or anomaly:
+    if dark or stale or anomaly:
         lines += ["", "## Alerts", ""]
+        for r in dark:
+            lines.append(f"- **DARK** `{r['source']}` — an expected poller "
+                         f"produced ZERO records this window. Endpoint moved, "
+                         f"auth broke, or the poller stopped running.")
         for r in stale:
             lines.append(f"- **STALE** `{r['source']}` — no record in "
                          f"{r['age_days']}d (tolerance "
@@ -176,8 +209,9 @@ def main() -> int:
 
     print(f"\nWrote {HEALTH_JSON}")
     print(f"Wrote {HEALTH_MD}")
-    if stale or anomaly:
-        print(f"\n⚠ {len(stale)} stale, {len(anomaly)} anomalous sources.")
+    if dark or stale or anomaly:
+        print(f"\n⚠ {len(dark)} DARK, {len(stale)} stale, "
+              f"{len(anomaly)} anomalous sources.")
         return 1
     print("\nAll sources healthy.")
     return 0

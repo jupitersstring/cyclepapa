@@ -227,10 +227,23 @@ def _rank_composite(rows: list[UniverseRow]) -> None:
     single metric dominates. RR + skew + downside-protection + conviction,
     with valuation as a bonus where present."""
     def pct(vals):
-        order = sorted(range(len(vals)), key=lambda i: vals[i])
-        p = [0.0] * len(vals)
-        for rank, i in enumerate(order):
-            p[i] = rank / max(1, len(vals) - 1)
+        # Tie-AWARE (average-rank) percentile: every equal value gets the
+        # mean of the ranks its run spans, so e.g. a mass of tied zeros all
+        # land at the same low percentile instead of a spurious gradient
+        # determined purely by original list order (which silently tilted
+        # the composite for any lens with many ties — conviction, valuation).
+        n = len(vals)
+        order = sorted(range(n), key=lambda i: vals[i])
+        p = [0.0] * n
+        i = 0
+        while i < n:
+            j = i
+            while j + 1 < n and vals[order[j + 1]] == vals[order[i]]:
+                j += 1
+            avg_rank = (i + j) / 2.0
+            for k in range(i, j + 1):
+                p[order[k]] = avg_rank / max(1, n - 1)
+            i = j + 1
         return p
     if not rows:
         return

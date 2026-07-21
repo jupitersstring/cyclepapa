@@ -119,6 +119,7 @@ PROMOTE_TIER_S_TIGHT = {                  # tier_s sub-queries that promote
     "item_delisting_deficiency",
     # ---- Multi-form labels (edgar_forms_poll.py) ----
     "proxy_contest", "merger_vote", "self_tender", "delisting_form25",
+    "new_listing",   # Form 8-A — a NEW listed equity appearing (relisting/uplisting)
     # ---- Cross-source corroboration (corroborate.py) ----
     "corroborated_multi",
 }
