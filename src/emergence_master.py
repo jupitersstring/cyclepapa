@@ -133,12 +133,22 @@ def collect_signals() -> dict[str, dict]:
                   "cik": rec.get("cik") or "",
                   "ticker": rec.get("ticker") or "",
                   "channels": {}, "primary": False,
+                  "item_1_03": False, "pending": None,
                   "first_filed": rec.get("filed") or "",
                   "last_filed": rec.get("filed") or ""}
             events[k] = ev
         ev["channels"].setdefault(channel, 0)
         ev["channels"][channel] += 1
         ev["primary"] = ev["primary"] or is_primary
+        # structured 8-K Item 1.03 = strong confirmation this is a genuine
+        # bankruptcy/emergence filing (the audit's key precision filter).
+        ev["item_1_03"] = ev["item_1_03"] or bool(rec.get("item_1_03"))
+        # a Q-suffix ticker means STILL IN bankruptcy (pending emergence);
+        # any non-Q primary signal flips it to actually-emerged.
+        if rec.get("pre_emergence") and ev["pending"] is None:
+            ev["pending"] = True
+        if is_primary and not rec.get("pre_emergence"):
+            ev["pending"] = False
         if not ev.get("ticker") and rec.get("ticker"):
             ev["ticker"] = rec["ticker"]
         # prefer the longest, most descriptive name
@@ -159,12 +169,16 @@ def collect_signals() -> dict[str, dict]:
 
 
 def confidence(ev: dict) -> str:
+    if ev.get("pending"):
+        return "pending (Q-suffix — still in Chapter 11, not yet emerged)"
     n = len(ev["channels"])
-    if ev["primary"] and n >= 2:
+    # a structured 8-K Item 1.03 counts as an independent corroboration
+    corrob = n + (1 if ev.get("item_1_03") else 0)
+    if ev["primary"] and corrob >= 2:
         return "high (primary + corroboration)"
     if ev["primary"]:
         return "medium (single primary source)"
-    if n >= 2:
+    if corrob >= 2:
         return "medium (corroborating signals only)"
     return "low (single corroborating signal)"
 
@@ -209,6 +223,7 @@ def main() -> int:
                                     e["last_filed"]), reverse=True)
     high = [e for e in ordered if confidence(e).startswith("high")]
     primary = [e for e in ordered if e["primary"]]
+    pending = [e for e in ordered if e.get("pending")]
     gaps = coverage_gap(events, truth)
 
     # persist the fused list
@@ -229,7 +244,8 @@ def main() -> int:
         "",
         f"- fused emergence events: **{len(ordered)}**  ·  with a primary "
         f"signal: **{len(primary)}**  ·  high-confidence (primary + "
-        f"corroboration): **{len(high)}**",
+        f"corroboration): **{len(high)}**  ·  pending (Q-suffix, still in "
+        f"Chapter 11): **{len(pending)}**",
         f"- ground-truth known emergences loaded: **{len(truth)}**  ·  "
         f"**coverage gaps (known, listed, NOT caught): {len(gaps)}**",
         "",
