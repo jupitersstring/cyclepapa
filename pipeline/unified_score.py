@@ -26,6 +26,20 @@ import math, os, re, sqlite3, sys
 
 DB = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "cyclepapa.db")
 
+# Approximate FX -> USD (mid-2026). ticker_yf.mcap_m is in the LISTING currency;
+# without conversion, foreign mega/micro-caps size and bucket by their raw local
+# number (Samsung ₩1.87e15 -> "$1.87 quadrillion"; FPT.VN's $5M co -> "large").
+# Minor units (GBp pence, ZAc cents) convert via their major /100. A currency
+# absent here yields mcap=None (unknown bucket) rather than a wrong USD figure.
+_FX_USD = {
+    "USD": 1.0, "CAD": 0.73, "EUR": 1.08, "GBP": 1.28, "GBp": 0.0128, "JPY": 0.0064,
+    "HKD": 0.128, "AUD": 0.66, "CHF": 1.12, "SGD": 0.74, "INR": 0.012, "KRW": 0.00073,
+    "TWD": 0.031, "ZAR": 0.055, "ZAc": 0.00055, "NOK": 0.093, "DKK": 0.145, "SEK": 0.095,
+    "PLN": 0.25, "IDR": 0.0000615, "TRY": 0.030, "HUF": 0.0028, "MYR": 0.21, "CNY": 0.138,
+    "BRL": 0.18, "MXN": 0.055, "THB": 0.028, "PHP": 0.017, "NZD": 0.60, "ILS": 0.27,
+    "VND": 0.0000393, "AED": 0.272, "SAR": 0.267, "QAR": 0.275, "EGP": 0.020, "NGN": 0.00065,
+}
+
 # --- security-type classification -------------------------------------------
 # 13F filings include ETFs, preferreds, warrants, units and CVRs. Those are
 # hedges/arb legs, not stock picks — an index fund held by 50 quants must not
@@ -245,19 +259,23 @@ def run():
     try:
         for r in conn.execute("""SELECT ticker,
                 CASE WHEN ev_m > 0 AND ebitda_ttm > 0 THEN ev_ebitda END AS ev_ebitda,
-                CASE WHEN pb_ratio > 0 AND pb_ratio <= 100 THEN pb_ratio END AS pb_ratio
+                CASE WHEN pb_ratio > 0 AND pb_ratio <= 30 THEN pb_ratio END AS pb_ratio
                 FROM ticker_valuation"""):
             valn[r["ticker"]] = (r["ev_ebitda"], r["pb_ratio"])
     except Exception:
         pass
     yf_pe = {}; yf_mcap = {}; yf_name = {}
     try:
-        # P/B only meaningful with positive book; >100 is a near-zero-book artifact
-        # (SPAC units, royalty trusts) — guard like EV/EBITDA.
+        # P/B only meaningful with a sane positive book. >30 is almost always a
+        # data artifact — an ADR/foreign currency mismatch (TSM "98x", real ~7x)
+        # or a near-zero book — so reject it rather than display a false multiple.
+        # mcap is FX-converted to USD: ticker_yf.mcap_m is in the LISTING currency,
+        # so foreign names (Samsung ₩1.87e15, FPT.VN) otherwise size + bucket as if
+        # the raw number were USD. Convert once here so every sheet is correct.
         for r in conn.execute("""SELECT ticker,
             CASE WHEN enterprise_value_m > 0 AND ebitda_m > 0 THEN ev_ebitda END AS ev_ebitda,
-            CASE WHEN pb_ratio > 0 AND pb_ratio <= 100 THEN pb_ratio END AS pb_ratio,
-            pe_ttm, mcap_m, long_name
+            CASE WHEN pb_ratio > 0 AND pb_ratio <= 30 THEN pb_ratio END AS pb_ratio,
+            pe_ttm, mcap_m, long_name, currency
             FROM ticker_yf"""):
             ev, pb = r["ev_ebitda"], r["pb_ratio"]
             prev = valn.get(r["ticker"], (None, None))
@@ -266,7 +284,8 @@ def run():
                                  pb if pb is not None else prev[1])
             yf_pe[r["ticker"]] = r["pe_ttm"]
             if r["mcap_m"]:
-                yf_mcap[r["ticker"]] = r["mcap_m"]
+                fx = _FX_USD.get(r["currency"] or "USD")
+                yf_mcap[r["ticker"]] = (r["mcap_m"] * fx) if fx is not None else None
             if r["long_name"]:
                 yf_name[r["ticker"]] = r["long_name"]
     except Exception:

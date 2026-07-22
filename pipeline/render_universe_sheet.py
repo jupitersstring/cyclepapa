@@ -1301,7 +1301,7 @@ def sheet_global_picks(wb, conn):
                     "near"  if eb == "NEAR_ENTRY" else
                     "above" if "ABOVE" in eb else "")
         ccy = r[15] or "USD"
-        mcap_usd = _mcap_usd(r[3], ccy)
+        mcap_usd = r[3]   # unified_signal.mcap_m is already FX-converted to USD
         out.append([r[0], round(r[1] or 0, 1),
                     (r[2] or "")[:14],
                     round(mcap_usd) if mcap_usd is not None else "", ccy, r[4] or 0,

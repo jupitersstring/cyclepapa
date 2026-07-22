@@ -189,6 +189,18 @@ CREATE TABLE ticker_style_conviction (
       ticker TEXT, macro_style TEXT, score REAL, n_funds INTEGER,
       n_hyper INTEGER, dollar_m REAL,
       PRIMARY KEY (ticker, macro_style));
+CREATE TABLE price_stats (
+        ticker TEXT PRIMARY KEY, mom_3mo REAL, mom_20d REAL, off_high REAL,
+        last_close REAL, n_pts INTEGER, asof TEXT);
+CREATE TABLE fund_13f_prior (
+      fund TEXT, cik TEXT, accession TEXT, filed TEXT,
+      issuer TEXT, cusip TEXT, ticker TEXT, value_k INTEGER, shares INTEGER,
+      sh_type TEXT, pct_book REAL,
+      PRIMARY KEY (fund, accession, cusip));
+CREATE INDEX idx_prior_ticker ON fund_13f_prior(ticker);
+CREATE INDEX idx_prior_fund ON fund_13f_prior(fund);
+CREATE TABLE fund_13f_prior_state (
+      fund TEXT PRIMARY KEY, accession TEXT, filed TEXT, n_holdings INTEGER, total_value_k INTEGER);
 CREATE TABLE unified_signal (
       ticker TEXT PRIMARY KEY,
       name TEXT, exchange TEXT, sector TEXT, mcap_m REAL, price REAL,
@@ -237,15 +249,3 @@ CREATE TABLE style_consensus (
       macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
       sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
       PRIMARY KEY (macro_style, ticker));
-CREATE TABLE price_stats (
-        ticker TEXT PRIMARY KEY, mom_3mo REAL, mom_20d REAL, off_high REAL,
-        last_close REAL, n_pts INTEGER, asof TEXT);
-CREATE TABLE fund_13f_prior (
-      fund TEXT, cik TEXT, accession TEXT, filed TEXT,
-      issuer TEXT, cusip TEXT, ticker TEXT, value_k INTEGER, shares INTEGER,
-      sh_type TEXT, pct_book REAL,
-      PRIMARY KEY (fund, accession, cusip));
-CREATE INDEX idx_prior_ticker ON fund_13f_prior(ticker);
-CREATE INDEX idx_prior_fund ON fund_13f_prior(fund);
-CREATE TABLE fund_13f_prior_state (
-      fund TEXT PRIMARY KEY, accession TEXT, filed TEXT, n_holdings INTEGER, total_value_k INTEGER);

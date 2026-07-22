@@ -25,6 +25,10 @@ def run():
         if len(pts) < 10:
             continue
         first, last, hi = pts[0], pts[-1], max(pts)
+        # skip sub-$1 penny stocks: their % moves are meaningless noise (ARDS
+        # $0.003 -> "+1450%") and pollute the momentum columns.
+        if last < 1.0 or first < 0.5:
+            continue
         mom_3mo = (last / first - 1) * 100 if first else None
         mom_20d = (last / pts[-20] - 1) * 100 if len(pts) >= 20 and pts[-20] else None
         off_high = (last / hi - 1) * 100 if hi else None
