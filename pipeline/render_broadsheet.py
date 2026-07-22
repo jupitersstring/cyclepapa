@@ -107,7 +107,10 @@ def build():
 
     # snapshot numbers
     n_names = q(conn, "SELECT COUNT(*) FROM unified_signal WHERE sec_type='common'")[0][0]
-    n_funds = q(conn, "SELECT COUNT(DISTINCT fund) FROM fund_13f_holdings WHERE ticker IS NOT NULL")[0][0]
+    # ALL tracked funds (roster), not just the 13F subset. The roster spans 13F
+    # filers + curated-position + 13D/G-only foreign activists.
+    n_funds = q(conn, "SELECT COUNT(*) FROM fund_meta")[0][0]
+    n_13f = q(conn, "SELECT COUNT(DISTINCT fund) FROM fund_13f_holdings WHERE ticker IS NOT NULL")[0][0]
     conv = q(conn, "SELECT COUNT(*) FROM (SELECT ticker FROM unified_signal WHERE sec_type='common')")[0][0]
     mom = q(conn, "SELECT AVG(mom_3mo) FROM price_stats") if _has_table(conn, "price_stats") else [[0]]
     avg_mom = mom[0][0] or 0
@@ -130,7 +133,7 @@ def build():
         return f'<div class="cell"><div class="val tnum">{v}</div><div class="lbl">{l}</div></div>'
     parts.append('<div class="snapshot">'
                  + cell(f"{n_names:,}", "common names")
-                 + cell(f"{n_funds}", "funds tracked")
+                 + cell(f"{n_funds}", f"funds tracked ({n_13f} file 13F)")
                  + cell(f'<span class="{"up" if avg_mom>=0 else "dn"}">{avg_mom:+.1f}%</span>', "avg 3-mo momentum")
                  + cell(f"{esc(tm_tk)} {arrow(tm_v)}", "biggest 3-mo move")
                  + cell(f"{px_asof}", "price as-of")
