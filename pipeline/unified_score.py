@@ -62,13 +62,20 @@ def classify_sec_type(tkr, name, names):
     heuristic verify that RVMDW's base ticker RVMD is the SAME issuer (warrant
     quotes carry the issuer's name), so ARW/SNOW-style tickers never match."""
     nm = name or ""
-    if _PREF_RE.search(tkr):
+    # PREFERRED — by ticker suffix OR the unambiguous "PFD" name token / coupon-pfd
+    # (NCR Corp "5.5% PFD CNV A" is a preferred, not $138B of NCR common stock).
+    if _PREF_RE.search(tkr) or re.search(r"\bPFD\b|\bPFD\.|% PFD|CNV PFD|PREF\b", nm, re.I):
         return "preferred"
     if tkr.endswith("-RI") or re.search(r"\bCVR\b|contingent value", nm, re.I):
         return "right"
     if tkr.endswith(("-WT", "+")) or re.search(r"\bwarrant", nm, re.I):
         return "warrant"
-    if tkr in _ETF_TICKERS or _ETF_NAME_RE.search(nm):
+    # CLOSED-END FUNDS: names ending in "Fund"/"Fund Inc" (Nuveen/PIMCO/Eaton Vance
+    # income & municipal funds) are fund vehicles, not operating stocks. Anchored
+    # to the end so operating names ("Preferred Bank", "SoFi") stay common.
+    if (tkr in _ETF_TICKERS or _ETF_NAME_RE.search(nm)
+            or re.search(r"\bFUND\.?(\s+(INC|LP|LTD)\.?)?\s*$", nm, re.I)
+            or re.search(r"\b(MUNICIPAL|MUNI)\b.*\bFUND\b|CLOSED[\s-]END", nm, re.I)):
         return "etf"
     if re.search(r"\bunits?\b", nm, re.I) and re.search(r"acquisition|SPAC", nm, re.I):
         return "unit"

@@ -173,6 +173,25 @@ CREATE TABLE pb_principal_fund (principal TEXT, fund TEXT);
 CREATE TABLE cusip_map (
         cusip TEXT PRIMARY KEY, ticker TEXT, sec_type TEXT, source TEXT, asof TEXT);
 CREATE INDEX idx_cusipmap_tk ON cusip_map(ticker);
+CREATE TABLE price_stats (
+        ticker TEXT PRIMARY KEY, mom_3mo REAL, mom_20d REAL, off_high REAL,
+        last_close REAL, n_pts INTEGER, asof TEXT);
+CREATE TABLE fund_13f_prior (
+      fund TEXT, cik TEXT, accession TEXT, filed TEXT,
+      issuer TEXT, cusip TEXT, ticker TEXT, value_k INTEGER, shares INTEGER,
+      sh_type TEXT, pct_book REAL,
+      PRIMARY KEY (fund, accession, cusip));
+CREATE INDEX idx_prior_ticker ON fund_13f_prior(ticker);
+CREATE INDEX idx_prior_fund ON fund_13f_prior(fund);
+CREATE TABLE fund_13f_prior_state (
+      fund TEXT PRIMARY KEY, accession TEXT, filed TEXT, n_holdings INTEGER, total_value_k INTEGER);
+CREATE TABLE ticker_entry_intact (
+      ticker TEXT PRIMARY KEY,
+      current_px REAL, anchor_px REAL, anchor_source TEXT,
+      vs_entry_pct REAL, bucket TEXT,
+      conviction_score REAL, n_funds INTEGER,
+      n_hyper INTEGER, has_insider_cobuy INTEGER, sum_dollar_m REAL,
+      anchors_seen TEXT);
 CREATE TABLE fund_conviction (
       fund TEXT, ticker TEXT, signals TEXT, raw_score REAL, style_weight REAL,
       score REAL, macro_style TEXT,
@@ -189,18 +208,6 @@ CREATE TABLE ticker_style_conviction (
       ticker TEXT, macro_style TEXT, score REAL, n_funds INTEGER,
       n_hyper INTEGER, dollar_m REAL,
       PRIMARY KEY (ticker, macro_style));
-CREATE TABLE price_stats (
-        ticker TEXT PRIMARY KEY, mom_3mo REAL, mom_20d REAL, off_high REAL,
-        last_close REAL, n_pts INTEGER, asof TEXT);
-CREATE TABLE fund_13f_prior (
-      fund TEXT, cik TEXT, accession TEXT, filed TEXT,
-      issuer TEXT, cusip TEXT, ticker TEXT, value_k INTEGER, shares INTEGER,
-      sh_type TEXT, pct_book REAL,
-      PRIMARY KEY (fund, accession, cusip));
-CREATE INDEX idx_prior_ticker ON fund_13f_prior(ticker);
-CREATE INDEX idx_prior_fund ON fund_13f_prior(fund);
-CREATE TABLE fund_13f_prior_state (
-      fund TEXT PRIMARY KEY, accession TEXT, filed TEXT, n_holdings INTEGER, total_value_k INTEGER);
 CREATE TABLE unified_signal (
       ticker TEXT PRIMARY KEY,
       name TEXT, exchange TEXT, sector TEXT, mcap_m REAL, price REAL,
@@ -229,13 +236,6 @@ CREATE INDEX idx_us_score ON unified_signal(score DESC);
 CREATE INDEX idx_us_bucket ON unified_signal(mcap_bucket);
 CREATE INDEX idx_us_pb ON unified_signal(max_pct_book DESC);
 CREATE INDEX idx_us_entry ON unified_signal(entry_bucket);
-CREATE TABLE ticker_entry_intact (
-      ticker TEXT PRIMARY KEY,
-      current_px REAL, anchor_px REAL, anchor_source TEXT,
-      vs_entry_pct REAL, bucket TEXT,
-      conviction_score REAL, n_funds INTEGER,
-      n_hyper INTEGER, has_insider_cobuy INTEGER, sum_dollar_m REAL,
-      anchors_seen TEXT);
 CREATE TABLE fund_style (
       fund TEXT PRIMARY KEY, sub_group TEXT, macro_style TEXT,
       total_rows INTEGER, conviction_n INTEGER, threshold_n INTEGER,

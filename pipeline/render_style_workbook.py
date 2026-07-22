@@ -90,17 +90,13 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
     ws = wb.create_sheet(sheet_name)
     style_funds = [r[0] for r in conn.execute(
         "SELECT fund FROM fund_style WHERE macro_style = ?", (macro_style,))]
-    write_title(ws, macro_style,
-                f"Top picks held by funds in this style ({len(style_funds)} funds). "
-                f"'Signature picks' = names this style over-indexes on vs the whole universe (lift) — its DISTINCTIVE bets, not the mega-caps everyone owns.",
-                17)
-    row = 4
     # ---- SIGNATURE PICKS: where this style over-indexes vs the universe ----
     # lift = (style holder-share) / (universe holder-share). A name held by a much
     # larger fraction of THIS style than of all funds is the style's fingerprint;
     # this is what stops GOOGL/AMZN topping all 15 style sheets identically.
     n_style = len(style_funds) or 1
     n_univ = conn.execute("SELECT COUNT(DISTINCT fund) FROM fund_13f_holdings WHERE ticker IS NOT NULL").fetchone()[0] or 1
+    min_holders = 2 if n_style < 8 else 3   # adaptive: small styles need only 2 holders
     ph_sig = ",".join("?" * len(style_funds))
     sig = list(conn.execute(f"""
         WITH uni AS (SELECT ticker, COUNT(DISTINCT fund) uh FROM fund_13f_holdings
@@ -113,8 +109,19 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
         FROM sty JOIN uni ON uni.ticker=sty.ticker
         LEFT JOIN unified_signal us ON us.ticker=sty.ticker
         LEFT JOIN ticker_meta tm ON tm.ticker=sty.ticker
-        WHERE sty.sh >= 3 AND COALESCE(us.sec_type,'common')='common'
+        WHERE sty.sh >= {min_holders} AND COALESCE(us.sec_type,'common')='common'
         ORDER BY lift DESC, sty.sh DESC LIMIT 12""", style_funds))
+    # Subtitle promises signature picks ONLY when the section will render (a 1-fund
+    # style like Macro/Trend can't compute lift) — otherwise the header contradicts
+    # the sheet, as the review found.
+    if sig:
+        sub = (f"Top picks held by funds in this style ({len(style_funds)} funds). "
+               f"'Signature picks' below = names this style over-indexes on vs the universe (lift) — its DISTINCTIVE bets.")
+    else:
+        sub = (f"Top picks held by funds in this style ({len(style_funds)} funds). "
+               f"Too few funds for a distinctive-lift ranking, so no signature-picks section.")
+    write_title(ws, macro_style, sub, 17)
+    row = 4
     if sig:
         write_section_heading(ws, row, "Signature picks — this style's distinctive over-weights (by lift)", 17); row += 1
         write_table_header(ws, row, ["Ticker","Lift","St Held","Uni Held","Score","Bucket","EV/EBITDA","pB Max","Name"]); row += 1
