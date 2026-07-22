@@ -40,7 +40,7 @@ SIG_HDR = ["Ticker","Score","Why","Mcap","ADV $M","Bucket","13F","S1","S3","S4",
            "pB Max","pB ≥5%","13D","Clu $M",
            "F4 Buy 180d","F4 Buy ≤30d","F4 Sell 180d","F4 Sell ≤30d",
            "EV/EBITDA","P/B",
-           "Entry","vs Entry %","Anchor $",
+           "Entry","vs Entry %","3mo %","Off Hi %","Anchor $",
            "Name","Sector","Px","Industry","Business"]
 
 # components string -> readable "why" (top-3 contributing terms). Turns an opaque
@@ -77,10 +77,11 @@ def get_signal_rows(conn, where_extra="", limit=None, params=()):
         us.entry_bucket, us.vs_entry_pct, us.anchor_px,
         us.expected_return_pct, tm.name, tm.sic_description, tm.price,
         COALESCE(yf.industry, tm.industry, tm.sic_description), yf.business_summary,
-        tm.adv_3m_usd_m, us.components
+        tm.adv_3m_usd_m, us.components, ps.mom_3mo, ps.off_high
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
         LEFT JOIN ticker_yf  yf ON yf.ticker = us.ticker
+        LEFT JOIN price_stats ps ON ps.ticker = us.ticker
         WHERE us.sec_type='common' """ + where_extra + " ORDER BY us.score DESC"
     if limit: sql += f" LIMIT {limit}"
     return list(conn.execute(sql, params))
@@ -117,6 +118,8 @@ def signal_row_to_cells(r):
         round(r[18], 2) if r[18] is not None else "",   # P/B
         eb_label,
         round(r[20] or 0, 1) if r[20] else "",   # vs entry
+        round(r[30], 0) if r[30] is not None else "",   # 3mo % momentum (price_stats)
+        round(r[31], 0) if r[31] is not None else "",   # off 3mo high (drawdown)
         round(r[21] or 0, 2) if r[21] else "",   # anchor px
         (r[23] or "")[:38],                      # Name
         (r[24] or "")[:32],                      # Sector
@@ -142,8 +145,10 @@ def format_signal_row(ws, ridx):
     ws.cell(row=ridx, column=20).number_format = '0.0"x"'      # EV/EBITDA
     ws.cell(row=ridx, column=21).number_format = '0.00"x"'     # P/B
     ws.cell(row=ridx, column=23).number_format = NUMFMT_PCT    # vs entry
-    ws.cell(row=ridx, column=24).number_format = NUMFMT_USD2   # anchor px
-    ws.cell(row=ridx, column=27).number_format = NUMFMT_USD2   # px
+    ws.cell(row=ridx, column=24).number_format = NUMFMT_PCT    # 3mo %
+    ws.cell(row=ridx, column=25).number_format = NUMFMT_PCT    # off hi %
+    ws.cell(row=ridx, column=26).number_format = NUMFMT_USD2   # anchor px
+    ws.cell(row=ridx, column=29).number_format = NUMFMT_USD2   # px
 
 def add_signal_heatmap(ws, first_row, last_row):
     """Monochrome conditional-format heatmaps on the key decision columns so a
@@ -298,6 +303,133 @@ def write_signal_sheet(wb, conn, name, where_extra="", limit=200, subtitle="", e
     ws.column_dimensions["C"].width = 22  # Why
     ws.column_dimensions[get_column_letter(len(SIG_HDR))].width = 80
     ws.column_dimensions[get_column_letter(len(SIG_HDR) - 1)].width = 24  # Industry
+
+def _signal_flags(r):
+    """Independent signal types firing for a unified_signal row (as a dict).
+    r keys: smart_money_n, activist_max_pct, form4_buy_30d_m, insider_n,
+    insider_cluster_dollars_m, entry_bucket, ev_ebitda, pb_ratio, cat8k_ma,
+    cat8k_ctrl, s3_new, s4_add, form4_sell_30d_m."""
+    cheap = ((r["ev_ebitda"] is not None and 2 <= r["ev_ebitda"] <= 12)
+             or (r["pb_ratio"] is not None and 0 < r["pb_ratio"] <= 1.2))
+    return {
+        "Smart$≥3":  (r["smart_money_n"] or 0) >= 3,
+        "Activist":  (r["activist_max_pct"] or 0) >= 10,
+        "Insider30d":(r["form4_buy_30d_m"] or 0) > 0,
+        "Cluster":   (r["insider_n"] or 0) >= 2,
+        "New/Add":   (r["s3_new"] or 0) > 0 or (r["s4_add"] or 0) > 0,
+        "BelowEntry":r["entry_bucket"] == "BELOW_ENTRY",
+        "Cheap":     cheap,
+        "Catalyst":  bool(r["cat8k_ma"] or r["cat8k_ctrl"]),
+    }
+
+def sheet_convergence(wb, conn):
+    """Names where several INDEPENDENT signal types fire at once — the single most
+    decision-relevant pattern, and one with no home until now (a name recurs
+    across five sheets today with no consolidated view). Check-glyph matrix."""
+    ws = wb.create_sheet("Convergence")
+    ws.sheet_view.showGridLines = False
+    flag_names = ["Smart$≥3","Activist","Insider30d","Cluster","New/Add","BelowEntry","Cheap","Catalyst"]
+    write_title(ws, "Convergence — where independent signals stack up",
+                "Names firing ≥3 independent signal types. Convergence of unrelated signals is the strongest read. Sorted by signal count, then score.", 6 + len(flag_names))
+    hdr = ["Ticker","# Sig","Score","Mcap","Off Hi %"] + flag_names + ["Name"]
+    write_table_header(ws, 4, hdr)
+    conn.row_factory = sqlite3.Row
+    rows = conn.execute("""
+        SELECT us.*, ps.off_high FROM unified_signal us
+        LEFT JOIN price_stats ps ON ps.ticker = us.ticker
+        WHERE us.sec_type='common'""").fetchall()
+    conn.row_factory = None
+    scored = []
+    for r in rows:
+        if r["ticker"] in ETFs or r["ticker"] in MEGA:
+            continue
+        flags = _signal_flags(r)
+        n = sum(flags.values())
+        if n >= 3:
+            scored.append((n, r, flags))
+    scored.sort(key=lambda t: (-t[0], -(t[1]["score"] or 0)))
+    out = []
+    for n, r, flags in scored[:120]:
+        out.append([r["ticker"], n, round(r["score"] or 0, 1), r["mcap_m"] or "",
+                    round(r["off_high"], 0) if r["off_high"] is not None else ""]
+                   + ["●" if flags[f] else "" for f in flag_names]
+                   + [(r["name"] or "")[:32]])
+    write_table_rows(ws, out, 5, ticker_col=1)
+    from openpyxl.formatting.rule import DataBarRule
+    if out:
+        ws.conditional_formatting.add(f"B5:B{4+len(out)}",
+            DataBarRule(start_type="num", start_value=3, end_type="num", end_value=8, color="808080"))
+        ws.auto_filter.ref = f"A4:{get_column_letter(len(hdr))}{4+len(out)}"
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=4).number_format = NUMFMT_MCAP
+        ws.cell(row=ridx, column=5).number_format = NUMFMT_PCT
+    ws.freeze_panes = "C5"
+    autosize(ws)
+    ws.column_dimensions["A"].width = 8
+
+def sheet_action_dashboard(wb, conn):
+    """Front-page scannable summary: the top actionable setups across ALL signal
+    types on one screen, so a reader gets the 'what should I look at today' answer
+    without opening 30 tabs. Ranks by convergence (signal count) then score,
+    tradeable names first."""
+    ws = wb.create_sheet("Action Dashboard")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Action Dashboard — top setups across every signal",
+                "The most actionable names right now: strongest convergence of independent signals, with the driver, valuation, momentum and a one-line read. Start here.", 9)
+    hdr = ["Ticker","Setup","Score","# Sig","Mcap","ADV $M","EV/EBITDA","Off Hi %","Read"]
+    write_table_header(ws, 4, hdr)
+    conn.row_factory = sqlite3.Row
+    rows = conn.execute("""
+        SELECT us.*, tm.adv_3m_usd_m AS adv, ps.off_high, ps.mom_3mo
+        FROM unified_signal us
+        LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
+        LEFT JOIN price_stats ps ON ps.ticker = us.ticker
+        WHERE us.sec_type='common'""").fetchall()
+    conn.row_factory = None
+    cand = []
+    for r in rows:
+        if r["ticker"] in ETFs or r["ticker"] in MEGA:
+            continue
+        flags = _signal_flags(r)
+        n = sum(flags.values())
+        if n >= 2 and (r["score"] or 0) >= 15:
+            cand.append((n, r, flags))
+    cand.sort(key=lambda t: (-t[0], -(t[1]["score"] or 0)))
+    out = []
+    for n, r, flags in cand[:25]:
+        fired = [f for f in flags if flags[f]]
+        setup = " + ".join(fired[:3])
+        # one-line read synthesizing the strongest angle
+        bits = []
+        if flags["Activist"]:  bits.append(f"activist {r['activist_max_pct']:.0f}%")
+        if flags["Cluster"]:   bits.append(f"{r['insider_n']} insiders buying")
+        elif flags["Insider30d"]: bits.append("insiders buying")
+        if flags["New/Add"]:   bits.append(f"{(r['s3_new'] or 0)+(r['s4_add'] or 0)} funds building")
+        if flags["Cheap"] and r["ev_ebitda"]: bits.append(f"{r['ev_ebitda']:.0f}x EV/EBITDA")
+        if flags["BelowEntry"] and r["vs_entry_pct"]: bits.append(f"{r['vs_entry_pct']:.0f}% vs entry")
+        if r["off_high"] is not None and r["off_high"] <= -15: bits.append(f"{r['off_high']:.0f}% off high")
+        read = "; ".join(bits[:4]) or setup
+        out.append([r["ticker"], setup, round(r["score"] or 0, 1), n, r["mcap_m"] or "",
+                    round(r["adv"], 1) if r["adv"] else "",
+                    round(r["ev_ebitda"], 1) if r["ev_ebitda"] is not None else "",
+                    round(r["off_high"], 0) if r["off_high"] is not None else "",
+                    read])
+    write_table_rows(ws, out, 5, ticker_col=1)
+    from openpyxl.formatting.rule import ColorScaleRule
+    if out:
+        ws.conditional_formatting.add(f"C5:C{4+len(out)}",
+            ColorScaleRule(start_type="min", start_color="FFFFFF", end_type="max", end_color="595959"))
+        ws.auto_filter.ref = f"A4:I{4+len(out)}"
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=5).number_format = NUMFMT_MCAP
+        ws.cell(row=ridx, column=6).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=7).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=8).number_format = NUMFMT_PCT
+    ws.freeze_panes = "B5"
+    autosize(ws)
+    ws.column_dimensions["A"].width = 8
+    ws.column_dimensions["B"].width = 30
+    ws.column_dimensions["I"].width = 62
 
 def sheet_whos_buying(wb, conn):
     """The NAMES behind the s3/s4 counts — which specific funds are initiating new
@@ -637,30 +769,24 @@ def sheet_fund_coverage(wb, conn):
     ws.column_dimensions["A"].width = 40
 
 def sheet_all_holdings_consolidated(wb, conn):
-    """Union view across 13F, fund_positions, and holder_13d — every disclosed
-    position across the 445-fund universe. Source column indicates origin.
-    Shows top 30 positions per fund to keep workbook navigable.
+    """Union view across 13F, fund_positions, and holder_13d — EVERY disclosed
+    position across the whole fund universe. Source column indicates origin.
+    No per-fund cap and all fund_positions sections (1-4) are included, so no
+    fund and no position is silently dropped (fits well within Excel's limit).
     """
     ws = wb.create_sheet("All Positions")
     ws.sheet_view.showGridLines = False
-    write_title(ws, "All Fund Positions — consolidated view",
-                "Union of 13F-HR holdings + fund_positions (XLSX-classified) + 13D/G subjects across all 445 funds. Top 30 per fund.", 11)
     hdr = ["Fund","Ticker","Source","Value $M","%Book","Section","Activist %","Mcap","Bucket","EV/EBITDA","P/B"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
-        WITH ranked AS (
-          SELECT h.fund, h.ticker, '13F-HR' AS source,
-                 h.value_k/1000.0 AS value_m,
-                 h.pct_book, NULL AS section,
-                 NULL AS act_pct,
-                 us.mcap_m, us.mcap_bucket, us.ev_ebitda, us.pb_ratio,
-                 ROW_NUMBER() OVER (PARTITION BY h.fund ORDER BY h.value_k DESC) AS rn
-          FROM fund_13f_holdings h
-          LEFT JOIN unified_signal us ON us.ticker = h.ticker
-          WHERE h.ticker IS NOT NULL
-        )
-        SELECT fund, ticker, source, value_m, pct_book, section, act_pct, mcap_m, mcap_bucket, ev_ebitda, pb_ratio
-        FROM ranked WHERE rn <= 30
+        SELECT h.fund, h.ticker, '13F-HR' AS source,
+               h.value_k/1000.0 AS value_m,
+               h.pct_book, NULL AS section,
+               NULL AS act_pct,
+               us.mcap_m, us.mcap_bucket, us.ev_ebitda, us.pb_ratio
+        FROM fund_13f_holdings h
+        LEFT JOIN unified_signal us ON us.ticker = h.ticker
+        WHERE h.ticker IS NOT NULL
         UNION ALL
         SELECT fp.fund, fp.ticker, 'XLSX' AS source,
                fp.dollar_m AS value_m,
@@ -671,7 +797,7 @@ def sheet_all_holdings_consolidated(wb, conn):
         FROM fund_positions fp
         LEFT JOIN unified_signal us ON us.ticker = fp.ticker
         WHERE fp.ticker IS NOT NULL
-          AND fp.section IN (1,3,4)
+          AND fp.section IN (1,2,3,4)
         UNION ALL
         SELECT h.holder AS fund, h.subject_ticker AS ticker, 'SC 13D/G' AS source,
                NULL AS value_m,
@@ -684,15 +810,18 @@ def sheet_all_holdings_consolidated(wb, conn):
         WHERE h.subject_ticker IS NOT NULL AND h.pct_class >= 5
         ORDER BY fund, value_m DESC
     """))
-    # Show ALL rows (they fit well within Excel's limit). The prior 6000-row slice
-    # was ordered by FUND NAME, so it silently dropped every fund after ~"P" while
-    # claiming full coverage. Cap only as an extreme-safety backstop, with a note.
-    CAP = 60000
-    if len(rows) > CAP:
+    # Show ALL rows (they fit well within Excel's ~1.05M limit). The prior version
+    # capped at 6000 ordered by FUND NAME (dropping every fund after ~"P") AND
+    # top-30 per fund AND excluded section-2 positions — silently hiding 45 funds
+    # and ~65k positions. Now genuinely complete: every fund, every position.
+    n_funds = len(set(r[0] for r in rows))
+    CAP = 500000  # extreme-safety backstop only
+    truncated = len(rows) > CAP
+    if truncated:
         rows = rows[:CAP]
-    ws.cell(row=2, column=1).value = (
-        f"Union of 13F-HR (top 30/fund) + fund_positions + 13D/G across all funds. "
-        f"{len(rows):,} rows shown, grouped by fund.")
+    write_title(ws, "All Fund Positions — consolidated view",
+                f"Every disclosed position: 13F-HR + fund_positions (all sections) + 13D/G (≥5%). "
+                f"{len(rows):,} rows across {n_funds} funds — complete, no per-fund cap.", 11)
     out = []
     for r in rows:
         out.append([(r[0] or "")[:45], r[1] or "", r[2],
@@ -840,18 +969,20 @@ def sheet_valuation(wb, conn):
     """Cheapest names by valuation among smart-money holdings."""
     ws = wb.create_sheet("Valuation")
     ws.sheet_view.showGridLines = False
-    write_title(ws, "Valuation — EV/EBITDA & P/B among smart-money names",
-                "Names held by ≥3 funds, sorted by EV/EBITDA ascending (cheapest first). Negative EV/EBITDA (no/neg EBITDA) excluded.", 15)
-    hdr = ["Ticker","EV/EBITDA","P/B","P/E","Score","Mcap","Bucket","13F","Act %","Entry","vs Entry %","Name","Sector","Industry","Business"]
+    write_title(ws, "Valuation — cheap on trailing multiples, checked for quality",
+                "Names held by ≥3 funds, cheapest EV/EBITDA first. Growth/margin columns separate a cheap compounder from a value trap (neg growth/margin flagged). EV/Rev covers names with no EBITDA.", 19)
+    hdr = ["Ticker","EV/EBITDA","P/B","P/E","Fwd P/E","EV/Rev","Rev Gr %","Margin %","Score","Mcap","Bucket","13F","Act %","Entry","vs Entry %","Name","Sector","Industry","Business"]
     write_table_header(ws, 4, hdr)
     # Floor at 2x — below that is almost always a data artifact (warrant,
     # near-zero EBITDA, ADR currency mismatch). Exclude warrant/preferred tickers.
     rows = list(conn.execute("""
         SELECT us.ticker, us.ev_ebitda, us.pb_ratio, us.pe_ttm, us.score, us.mcap_m, us.mcap_bucket,
                us.smart_money_n, us.activist_max_pct, us.entry_bucket, us.vs_entry_pct,
-               tm.name, tm.sic_description
+               tm.name, tm.sic_description,
+               yf.fwd_pe, yf.ev_revenue, yf.rev_growth, yf.profit_margin
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
+        LEFT JOIN ticker_yf yf ON yf.ticker = us.ticker
         WHERE us.ev_ebitda IS NOT NULL AND us.ev_ebitda >= 2 AND us.ev_ebitda < 40 AND us.sec_type='common'
           AND us.smart_money_n >= 3
           AND us.ticker NOT LIKE '%-P%'   -- preferreds
@@ -868,23 +999,40 @@ def sheet_valuation(wb, conn):
         d = desc_for(conn, r[0])
         out.append([r[0], round(r[1], 1), round(r[2], 2) if r[2] is not None else "",
                     round(r[3], 1) if r[3] is not None else "",
+                    round(r[13], 1) if r[13] is not None else "",          # Fwd P/E
+                    round(r[14], 1) if r[14] is not None else "",          # EV/Rev
+                    round(r[15]*100, 0) if r[15] is not None else "",      # Rev Gr %
+                    round(r[16]*100, 0) if r[16] is not None else "",      # Margin %
                     round(r[4] or 0, 1), r[5] or "", r[6] or "", r[7] or 0,
                     round(r[8] or 0, 1), eb_label,
                     round(r[10] or 0, 1) if r[10] else "",
                     (r[11] or "")[:38], (r[12] or "")[:30], d[0], d[1]])
     write_table_rows(ws, out, 5)
+    # flag value traps: negative revenue growth OR negative margin in red-ish grey
+    from openpyxl.styles import Font as _F
     for ridx in range(5, 5 + len(out)):
-        ws.cell(row=ridx, column=2).number_format = '0.0"x"'
-        ws.cell(row=ridx, column=3).number_format = '0.00"x"'
-        ws.cell(row=ridx, column=4).number_format = '0.0"x"'
-        ws.cell(row=ridx, column=6).number_format = NUMFMT_MCAP
-        ws.cell(row=ridx, column=9).number_format = NUMFMT_PCT
-        ws.cell(row=ridx, column=11).number_format = NUMFMT_PCT
+        for col in (7, 8):  # Rev Gr %, Margin %
+            c = ws.cell(row=ridx, column=col)
+            if isinstance(c.value, (int, float)) and c.value < 0:
+                c.font = _F(name=c.font.name, size=c.font.size, bold=True, color="7F1D1D")
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=2).number_format = '0.0"x"'    # EV/EBITDA
+        ws.cell(row=ridx, column=3).number_format = '0.00"x"'   # P/B
+        ws.cell(row=ridx, column=4).number_format = '0.0"x"'    # P/E
+        ws.cell(row=ridx, column=5).number_format = '0.0"x"'    # Fwd P/E
+        ws.cell(row=ridx, column=6).number_format = '0.0"x"'    # EV/Rev
+        ws.cell(row=ridx, column=7).number_format = '0"%"'      # Rev Gr %
+        ws.cell(row=ridx, column=8).number_format = '0"%"'      # Margin %
+        ws.cell(row=ridx, column=10).number_format = NUMFMT_MCAP
+        ws.cell(row=ridx, column=13).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=15).number_format = NUMFMT_PCT
     ws.freeze_panes = "B5"
+    if out:
+        ws.auto_filter.ref = f"A4:{get_column_letter(len(hdr))}{4 + len(out)}"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
-    ws.column_dimensions[get_column_letter(14)].width = 24   # Industry
-    ws.column_dimensions[get_column_letter(15)].width = 80   # Business
+    ws.column_dimensions[get_column_letter(18)].width = 24   # Industry
+    ws.column_dimensions[get_column_letter(19)].width = 80   # Business
 
 def sheet_catalysts(wb, conn):
     """8-K material-event tickers: M&A, control change, director shuffle, PIPE, bankruptcy."""
@@ -1361,6 +1509,8 @@ TAB_COLORS = {
     "Fund Coverage":   "F2F2F2",
     "All Funds":       "F2F2F2",
     # Universe ranking — darkest
+    "Action Dashboard": "1A1A1A",
+    "Convergence":     "1A1A1A",
     "Best Ideas":      "262626",
     "Adversarial Review": "262626",
     "Top 100":         "262626",
@@ -1393,12 +1543,18 @@ TAB_COLORS = {
 
 def main():
     conn = sqlite3.connect(DB)
+    try:                                  # ensure momentum/drawdown are fresh
+        import build_price_stats; build_price_stats.run()
+    except Exception as e:
+        print(f"  (price_stats skipped: {e})")
     wb = openpyxl.Workbook()
     if "Sheet" in wb.sheetnames:
         wb.remove(wb["Sheet"])
 
     sheet_readme(wb, conn)
     write_legend_sheet(wb, 1)
+    sheet_action_dashboard(wb, conn)      # front-page scannable summary
+    sheet_convergence(wb, conn)           # multi-signal convergence matrix
     sheet_best_ideas(wb, conn)
     sheet_adversarial_review(wb, conn)
     write_signal_sheet(wb, conn, "Top 100",
