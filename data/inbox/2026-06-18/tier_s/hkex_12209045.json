@@ -1,0 +1,17 @@
+{
+  "accession": "12209045",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-06-18",
+  "form": "(1) DECISION OF THE LISTING COMMITTEE\nON THE CANCELLATION OF LISTING\nAND\n(2) REQUEST FOR A REVIEW OF THE LISTING COMMITTEE DECISION",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "DASHAN EDU",
+  "query_label": "tier_s.suspension",
+  "query_note": "HKEX Suspension of Trading \u2014 the pre-event distress signal (long suspensions precede restructuring or delisting).",
+  "source": "HKEXnews",
+  "ticker": "HKEX:09986.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0618/2026061802038.pdf"
+}

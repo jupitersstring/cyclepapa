@@ -1,0 +1,17 @@
+{
+  "accession": "12085513",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-04-01",
+  "form": "(1) POLL RESULTS OF EXTRAORDINARY GENERAL MEETING HELD ON TUESDAY, 31 MARCH 2026&#x3b; (2) CHANGE OF AUDITOR&#x3b; (3) DELAY IN PUBLICATION OF THE ANNUAL RESULT",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "C TRANSMISSION",
+  "query_label": "tier_s.suspension",
+  "query_note": "HKEX Suspension of Trading \u2014 the pre-event distress signal (long suspensions precede restructuring or delisting).",
+  "source": "HKEXnews",
+  "ticker": "HKEX:00658.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0401/2026033103741.pdf"
+}

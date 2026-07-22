@@ -61,7 +61,7 @@ EXPECTED_SOURCES = {
     "ASX", "CVM-IPE", "CourtListener-RECAP", "EDGAR-13F", "EDGAR-8K-items",
     "EDGAR-Form15", "EDGAR-Form4-cluster-sells", "EDGAR-SC13D", "EDGAR-forms",
     "EDGAR-postreorg", "EDGAR-FTS", "FRED-ICE-BofA-OAS", "LDA-Senate", "NSM",
-    "OFAC", "SEDAR+", "TDnet", "spinoff-radar",
+    "OFAC", "SEDAR+", "TDnet", "spinoff-radar", "HKEXnews",
 }
 
 

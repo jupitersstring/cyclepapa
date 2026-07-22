@@ -1,0 +1,17 @@
+{
+  "accession": "12041997",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-03-05",
+  "form": "QUARTERLY UPDATE ON THE IMPLEMENTATION ON ACTION PLANS TO REMOVE THE DISCLAIMER OF OPINION",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "HMVOD",
+  "query_label": "tier_s.liquidation",
+  "query_note": "HKEX Winding Up & Liquidation \u2014 terminal distress.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:08103.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/gem/2026/0305/2026030500616.pdf"
+}

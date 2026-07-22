@@ -1,0 +1,17 @@
+{
+  "accession": "12177151",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-05-29",
+  "form": "POSTPONEMENT OF BOARD MEETING",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "C TRANSMISSION",
+  "query_label": "tier_s.suspension",
+  "query_note": "HKEX Suspension of Trading \u2014 the pre-event distress signal (long suspensions precede restructuring or delisting).",
+  "source": "HKEXnews",
+  "ticker": "HKEX:00658.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0529/2026052901459.pdf"
+}

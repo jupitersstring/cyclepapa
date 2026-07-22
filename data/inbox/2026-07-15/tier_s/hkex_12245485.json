@@ -1,0 +1,17 @@
+{
+  "accession": "12245485",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-07-15",
+  "form": "FURTHER ADJOURNMENT OF THE SANCTION HEARING OF THE COURT FOR THE SCHEME",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "CHINA CBS INTL",
+  "query_label": "tier_s.scheme",
+  "query_note": "HKEX Group Restructuring or Scheme of Arrangement \u2014 the court-supervised recapitalisation itself.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:00989.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0715/2026071501123.pdf"
+}

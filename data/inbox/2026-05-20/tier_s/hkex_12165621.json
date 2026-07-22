@@ -1,0 +1,17 @@
+{
+  "accession": "12165621",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-05-20",
+  "form": "SUPPLEMENTAL ANNOUNCEMENT ON TWO WINDING-UP PETITIONS AGAINST THE COMPANY AND ITS WHOLLY-OWNED SUBSIDIARY",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "POLYFAIR HLDGS",
+  "query_label": "tier_s.liquidation",
+  "query_note": "HKEX Winding Up & Liquidation \u2014 terminal distress.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:08532.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/gem/2026/0520/2026052001198.pdf"
+}

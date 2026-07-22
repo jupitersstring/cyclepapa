@@ -1,0 +1,17 @@
+{
+  "accession": "12182287",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-06-01",
+  "form": "RESUMPTION GUIDANCE AND CONTINUED SUSPENSION OF TRADING",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "ELEGANCEOPTICAL",
+  "query_label": "tier_s.suspension",
+  "query_note": "HKEX Suspension of Trading \u2014 the pre-event distress signal (long suspensions precede restructuring or delisting).",
+  "source": "HKEXnews",
+  "ticker": "HKEX:00907.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0601/2026060103790.pdf"
+}

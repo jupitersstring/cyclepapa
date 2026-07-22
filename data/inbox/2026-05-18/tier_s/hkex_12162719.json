@@ -1,0 +1,17 @@
+{
+  "accession": "12162719",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-05-18",
+  "form": "(1) CLARIFICATION ANNOUNCEMENT&#x3b;\n(2) NON-COMPLIANCE WITH LISTING RULE&#x3b;\n(3) FURTHER INFORMATION ON WINDING-UP PETITION&#x3b; AND\n(4) CONTINUED SUSPENSIO",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "ATV HOLDINGS",
+  "query_label": "tier_s.suspension",
+  "query_note": "HKEX Suspension of Trading \u2014 the pre-event distress signal (long suspensions precede restructuring or delisting).",
+  "source": "HKEXnews",
+  "ticker": "HKEX:00707.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0518/2026051801270.pdf"
+}

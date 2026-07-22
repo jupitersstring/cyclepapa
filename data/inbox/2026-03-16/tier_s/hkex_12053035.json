@@ -1,0 +1,17 @@
+{
+  "accession": "12053035",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-03-16",
+  "form": "(1) QUARTERLY UPDATE ON RECENT DEVELOPMENTS&#x3b; (2) CHANGE OF PRINCIPAL PLACE OF BUSINESS IN HONG KONG&#x3b; AND (3) CONTINUED SUSPENSION OF TRADING",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "C ZENITH CHEM",
+  "query_label": "tier_s.liquidation",
+  "query_note": "HKEX Winding Up & Liquidation \u2014 terminal distress.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:00362.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0316/2026031600629.pdf"
+}

@@ -1,0 +1,17 @@
+{
+  "accession": "12028075",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-02-23",
+  "form": "(1) DISCLOSEABLE TRANSACTION\nSUBSCRIPTION FOR SECURITIES\nUNDER THE PLACEMENT\nAND\n(2) RESUMPTION OF TRADING",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "ADD NEW ENERGY",
+  "query_label": "tier_s.resumption",
+  "query_note": "HKEX Resumption of Trading \u2014 trading resumes after a suspension, typically on completion of a restructuring / scheme: the Hong Kong post-reorg / re-listing event.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:02623.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0223/2026022300884.pdf"
+}

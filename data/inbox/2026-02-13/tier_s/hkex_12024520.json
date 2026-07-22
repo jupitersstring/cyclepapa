@@ -1,0 +1,17 @@
+{
+  "accession": "12024520",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-02-13",
+  "form": "INSIDE INFORMATION UPDATE ON WINDING-UP PETITION",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "HMVOD",
+  "query_label": "tier_s.liquidation",
+  "query_note": "HKEX Winding Up & Liquidation \u2014 terminal distress.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:08103.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/gem/2026/0213/2026021300695.pdf"
+}

@@ -1,0 +1,17 @@
+{
+  "accession": "12241383",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-07-10",
+  "form": "(I) ANNOUNCEMENT\nPURSUANT TO RULE 3.7 OF THE TAKEOVERS CODE,\nRULE 13.09 OF THE LISTING RULES AND\nTHE INSIDER INFORMATION PROVISIONS UNDER PART XIVA OF\nTHE SECUR",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "MAN SHUN GP",
+  "query_label": "tier_s.resumption",
+  "query_note": "HKEX Resumption of Trading \u2014 trading resumes after a suspension, typically on completion of a restructuring / scheme: the Hong Kong post-reorg / re-listing event.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:01746.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0710/2026071000993.pdf"
+}

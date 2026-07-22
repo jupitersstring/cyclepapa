@@ -1,0 +1,17 @@
+{
+  "accession": "12105641",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-04-14",
+  "form": "WITHDRAWAL OF THE WINDING-UP PETITION",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "KING INTL INV",
+  "query_label": "tier_s.liquidation",
+  "query_note": "HKEX Winding Up & Liquidation \u2014 terminal distress.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:00928.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0414/2026041401204.pdf"
+}

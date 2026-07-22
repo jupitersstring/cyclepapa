@@ -1,0 +1,17 @@
+{
+  "accession": "12084725",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-03-31",
+  "form": "(I) QUARTERLY UPDATE ON STATUS OF RESUMPTION&#x3b;\n(II) DELAY IN PUBLICATION OF THE 2025 ANNUAL\nRESULTS AND DESPATCH OF THE 2025 ANNUAL REPORT&#x3b;\n(III) POSTP",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "CHIHO ENV",
+  "query_label": "tier_s.suspension",
+  "query_note": "HKEX Suspension of Trading \u2014 the pre-event distress signal (long suspensions precede restructuring or delisting).",
+  "source": "HKEXnews",
+  "ticker": "HKEX:00976.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0331/2026033102815.pdf"
+}

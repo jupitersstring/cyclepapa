@@ -1,0 +1,17 @@
+{
+  "accession": "12217405",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-06-26",
+  "form": "QUARTERLY UPDATE ON RESUMPTION PROGRESS AND CONTINUED SUSPENSION OF TRADING",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "HANHUA FIN",
+  "query_label": "tier_s.suspension",
+  "query_note": "HKEX Suspension of Trading \u2014 the pre-event distress signal (long suspensions precede restructuring or delisting).",
+  "source": "HKEXnews",
+  "ticker": "HKEX:03903.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0626/2026062600908.pdf"
+}

@@ -1,0 +1,17 @@
+{
+  "accession": "12136173",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-04-29",
+  "form": "(1) MAJOR AND CONNECTED TRANSACTION:\nPROPOSED ACQUISITION OF 51% EQUITY INTERESTS\nIN THE TARGET COMPANY&#x3b;\nAND\n(2) CONTINUED SUSPENSION OF TRADING",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "LONGHUI INTL",
+  "query_label": "tier_s.suspension",
+  "query_note": "HKEX Suspension of Trading \u2014 the pre-event distress signal (long suspensions precede restructuring or delisting).",
+  "source": "HKEXnews",
+  "ticker": "HKEX:01007.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0429/2026042904720.pdf"
+}

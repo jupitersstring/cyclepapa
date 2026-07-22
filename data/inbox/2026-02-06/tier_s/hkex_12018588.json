@@ -1,0 +1,17 @@
+{
+  "accession": "12018588",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-02-06",
+  "form": "TERMINATION OF APPLICATION\nFOR THE PROPOSED A SHARE OFFERING&#x3b;\nAPPLICATION FOR THE DELISTING OF\nDOMESTIC SHARES FROM THE NEEQ&#x3b;\nAUTHORIZATION TO THE BOA",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "XUNZHONG",
+  "query_label": "tier_s.privatisation",
+  "query_note": "HKEX Privatisation / Withdrawal of Listing \u2014 take-private / delisting event.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:02597.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0206/2026020601380.pdf"
+}

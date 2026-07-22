@@ -1,0 +1,17 @@
+{
+  "accession": "12220558",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-06-29",
+  "form": "REORGANISATION PROPOSAL - CHANGE OF THE HOLDING COMPANY OF THE GROUP FROM THE COMPANY (DOMICILED IN AUSTRALIA) TO THE NEW HOLDCO (DOMICILED IN HONG KONG), THE S",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "DRAGON MINING",
+  "query_label": "tier_s.scheme",
+  "query_note": "HKEX Group Restructuring or Scheme of Arrangement \u2014 the court-supervised recapitalisation itself.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:01712.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0629/2026062901285.pdf"
+}

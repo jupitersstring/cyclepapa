@@ -1,0 +1,17 @@
+{
+  "accession": "12136787",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-04-29",
+  "form": "INSIDE INFORMATION DISPOSAL OF SHARES IN SUBSIDIARIES HELD BY SILVERINE PACIFIC LTD. (IN LIQUIDATION)",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "LINK HOLDINGS",
+  "query_label": "tier_s.liquidation",
+  "query_note": "HKEX Winding Up & Liquidation \u2014 terminal distress.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:08237.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/gem/2026/0429/2026042905430.pdf"
+}

@@ -1,0 +1,17 @@
+{
+  "accession": "12101035",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-04-10",
+  "form": "FINAL RESULTS FOR THE YEAR ENDED 31 DECEMBER 2025\nAND RESUMPTION OF TRADING",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "INFINITY L&T",
+  "query_label": "tier_s.resumption",
+  "query_note": "HKEX Resumption of Trading \u2014 trading resumes after a suspension, typically on completion of a restructuring / scheme: the Hong Kong post-reorg / re-listing event.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:01442.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0410/2026041000007.pdf"
+}

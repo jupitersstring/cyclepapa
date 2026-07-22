@@ -1,0 +1,17 @@
+{
+  "accession": "12167209",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-05-21",
+  "form": "DECISION OF LISTING REVIEW COMMITTEE AND JUDICIAL REVIEW",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "BOILLHEALTHCARE",
+  "query_label": "tier_s.privatisation",
+  "query_note": "HKEX Privatisation / Withdrawal of Listing \u2014 take-private / delisting event.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:01246.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0521/2026052101242.pdf"
+}

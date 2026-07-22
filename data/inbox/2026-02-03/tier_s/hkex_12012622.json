@@ -1,0 +1,17 @@
+{
+  "accession": "12012622",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-02-03",
+  "form": "JOINT ANNOUNCEMENT\nI. 5th SUPPLEMENTAL AGREEMENTS IN RELATION TO\nTHE SUBSCRIPTION AGREEMENTS&#x3b;\nII. MONTHLY UPDATES&#x3b;\nIII. DELAY IN DESPATCH OF THE CIRCU",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "CA CULTURAL",
+  "query_label": "tier_s.suspension",
+  "query_note": "HKEX Suspension of Trading \u2014 the pre-event distress signal (long suspensions precede restructuring or delisting).",
+  "source": "HKEXnews",
+  "ticker": "HKEX:01566.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0203/2026020302568.pdf"
+}

@@ -1,0 +1,17 @@
+{
+  "accession": "12213456",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-06-24",
+  "form": "JOINT ANNOUNCEMENT\nRESULTS OF THE COURT MEETING AND THE EGM AND\nLAPSE OF THE PROPOSAL",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "WECON HOLDINGS",
+  "query_label": "tier_s.scheme",
+  "query_note": "HKEX Group Restructuring or Scheme of Arrangement \u2014 the court-supervised recapitalisation itself.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:01793.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0624/2026062400965.pdf"
+}

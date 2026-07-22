@@ -1,4 +1,4 @@
-.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll poll-all security-master source-health corroborate reconcile postreorg-score postreorg-verify emergence-master db listed-equity-screen waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
+.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll hkex-poll poll-all security-master source-health corroborate reconcile postreorg-score postreorg-verify emergence-master db listed-equity-screen waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
 
 help:
 	@echo "Targets:"
@@ -159,6 +159,13 @@ postreorg-score: audit
 # committed only so the durability audit sees no untracked data.
 db: audit
 	python3 -m src.inbox_db --build
+
+# HKEX (Hong Kong) special-situations poller — resumption-of-trading,
+# scheme/restructuring, privatisation, suspension, liquidation via the free
+# HKEXnews title-search JSON. Closes the Hong Kong geography the EDGAR-centric
+# funnel is blind to.
+hkex-poll: audit
+	python3 -m src.hkex_poll --days-back 180
 
 # Emergence master — fuse every Chapter 11 EMERGENCE signal in data/inbox/
 # (emergence 8-K, fresh-start accounting, Form 25/15 delisting, Form 8-A

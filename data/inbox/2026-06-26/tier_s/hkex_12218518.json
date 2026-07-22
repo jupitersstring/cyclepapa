@@ -1,0 +1,17 @@
+{
+  "accession": "12218518",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-06-26",
+  "form": "JOINT ANNOUNCEMENT (1) PROPOSED VERY SUBSTANTIAL DISPOSAL (2) PROPOSED DECLARATION OF SPECIAL DIVIDEND AND CASH DIVIDEND (3) NOTE 7 TO RULE 2 OF TAKEOVERS CODE ",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "CON AERO TECH",
+  "query_label": "tier_s.privatisation",
+  "query_note": "HKEX Privatisation / Withdrawal of Listing \u2014 take-private / delisting event.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:00232.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0626/2026062602235.pdf"
+}

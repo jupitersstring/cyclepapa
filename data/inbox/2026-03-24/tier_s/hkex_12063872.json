@@ -1,0 +1,17 @@
+{
+  "accession": "12063872",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-03-24",
+  "form": "EXCHANGE NOTICE - RESUMPTION OF TRADING",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "TIANAN MEDICARE",
+  "query_label": "tier_s.resumption",
+  "query_note": "HKEX Resumption of Trading \u2014 trading resumes after a suspension, typically on completion of a restructuring / scheme: the Hong Kong post-reorg / re-listing event.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:00383.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0324/2026032400053.htm"
+}

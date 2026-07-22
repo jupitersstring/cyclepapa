@@ -1,0 +1,17 @@
+{
+  "accession": "12084216",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-03-31",
+  "form": "INSIDE INFORMATION (1) DELAY IN PUBLICATION OF ANNUAL RESULTS ANNOUNCEMENT FOR\nTHE YEAR ENDED 31 DECEMBER 2025&#x3b; (2) POSTPONEMENT OF BOARD MEETING&#x3b; AND",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "LAJIN ENT",
+  "query_label": "tier_s.suspension",
+  "query_note": "HKEX Suspension of Trading \u2014 the pre-event distress signal (long suspensions precede restructuring or delisting).",
+  "source": "HKEXnews",
+  "ticker": "HKEX:08172.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/gem/2026/0331/2026033102397.pdf"
+}

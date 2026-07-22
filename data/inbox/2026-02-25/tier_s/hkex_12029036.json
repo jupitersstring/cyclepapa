@@ -1,0 +1,17 @@
+{
+  "accession": "12029036",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-02-25",
+  "form": "INSIDE INFORMATION - RECEIPT OF JUDGMENT DISCHARGING INJUNCTION ORDER AND RESUMPTION OF TRADING",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "RAFFLESINTERIOR",
+  "query_label": "tier_s.resumption",
+  "query_note": "HKEX Resumption of Trading \u2014 trading resumes after a suspension, typically on completion of a restructuring / scheme: the Hong Kong post-reorg / re-listing event.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:01376.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0225/2026022500003.pdf"
+}

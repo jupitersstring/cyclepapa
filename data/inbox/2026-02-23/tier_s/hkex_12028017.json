@@ -1,0 +1,17 @@
+{
+  "accession": "12028017",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-02-23",
+  "form": "INSIDE INFORMATION - SEVENTH SUPPLEMENTAL ANNOUNCEMENT IN RELATION TO TEMPORARY SUSPENSION OF OPERATION OF THE COMPANY&#x27;S SUBSIDIARY AND WINDING-UP OF A SUB",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "CHINA HONGBAO",
+  "query_label": "tier_s.liquidation",
+  "query_note": "HKEX Winding Up & Liquidation \u2014 terminal distress.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:08316.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/gem/2026/0223/2026022300826.pdf"
+}

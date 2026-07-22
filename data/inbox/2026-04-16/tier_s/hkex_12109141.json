@@ -1,0 +1,17 @@
+{
+  "accession": "12109141",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-04-16",
+  "form": "(I) APPOINTMENT OF EXECUTIVE DIRECTOR AND CHANGE OF\nINDEPENDENT NON-EXECUTIVE DIRECTORS&#x3b;\n(II) CHANGE OF COMPOSITION OF THE BOARD COMMITTEES&#x3b;\nAND\n(III)",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "TWINTEK",
+  "query_label": "tier_s.suspension",
+  "query_note": "HKEX Suspension of Trading \u2014 the pre-event distress signal (long suspensions precede restructuring or delisting).",
+  "source": "HKEXnews",
+  "ticker": "HKEX:06182.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0416/2026041602000.pdf"
+}

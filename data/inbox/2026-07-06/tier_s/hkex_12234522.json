@@ -1,0 +1,17 @@
+{
+  "accession": "12234522",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-07-06",
+  "form": "(1) RESUMPTION GUIDANCE&#x3b; (2) UPDATE ON RESUMPTION PROGRESS&#x3b; AND (3) CONTINUED SUSPENSION OF TRADING",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "HOPSON DEV HOLD",
+  "query_label": "tier_s.suspension",
+  "query_note": "HKEX Suspension of Trading \u2014 the pre-event distress signal (long suspensions precede restructuring or delisting).",
+  "source": "HKEXnews",
+  "ticker": "HKEX:00754.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0706/2026070601510.pdf"
+}

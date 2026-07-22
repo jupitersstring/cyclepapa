@@ -1,0 +1,17 @@
+{
+  "accession": "12251269",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-07-21",
+  "form": "SUPPLEMENTAL ANNOUNCEMENT - INSIDE INFORMATION - WINDING-UP PETITION AGAINST A SUBSIDIARY",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "ZHENROPPT SPCS<br/>ZHENRO PPT<br/>ZHENROPPT N2608",
+  "query_label": "tier_s.liquidation",
+  "query_note": "HKEX Winding Up & Liquidation \u2014 terminal distress.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:04596<br/>06158<br/>40572.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0721/2026072100826.pdf"
+}

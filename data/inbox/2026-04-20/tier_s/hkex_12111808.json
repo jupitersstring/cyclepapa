@@ -1,0 +1,17 @@
+{
+  "accession": "12111808",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-04-20",
+  "form": "ANNOUNCEMENT MONTHLY UPDATE IN RELATION TO (1) PROPOSED PRE-CONDITIONAL SHARE BUY-BACK OF SKYWORTH GROUP LIMITED BY WAY OF A SCHEME OF ARRANGEMENT UNDER SECTION",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "SKYWORTH GROUP",
+  "query_label": "tier_s.scheme",
+  "query_note": "HKEX Group Restructuring or Scheme of Arrangement \u2014 the court-supervised recapitalisation itself.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:00751.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0420/2026042000504.pdf"
+}

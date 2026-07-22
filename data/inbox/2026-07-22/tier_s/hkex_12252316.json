@@ -1,0 +1,17 @@
+{
+  "accession": "12252316",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-07-22",
+  "form": "JOINT ANNOUNCEMENT - MONTHLY UPDATE IN RELATION TO (1) PRE-CONDITIONAL PROPOSAL FOR THE PRIVATISATION OF CHANGHONG JIAHUA HOLDINGS LIMITED BY WAY OF A SCHEME OF",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "CHANGHONG JH",
+  "query_label": "tier_s.scheme",
+  "query_note": "HKEX Group Restructuring or Scheme of Arrangement \u2014 the court-supervised recapitalisation itself.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:03991.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0722/2026072200350.pdf"
+}

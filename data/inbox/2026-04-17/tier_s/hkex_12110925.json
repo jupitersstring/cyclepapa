@@ -1,0 +1,17 @@
+{
+  "accession": "12110925",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-04-17",
+  "form": "(1) QUARTERLY UPDATE ON BUSINESS PROGRESS AND\nSTATUS OF RESUMPTION&#x3b;\n(2) QUARTERLY PROGRESS UPDATE ON THE ACTION PLAN \nTO ADDRESS THE DISCLAIMER OF OPINION ",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "S. DRAGON",
+  "query_label": "tier_s.suspension",
+  "query_note": "HKEX Suspension of Trading \u2014 the pre-event distress signal (long suspensions precede restructuring or delisting).",
+  "source": "HKEXnews",
+  "ticker": "HKEX:08493.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/gem/2026/0417/2026041701615.pdf"
+}

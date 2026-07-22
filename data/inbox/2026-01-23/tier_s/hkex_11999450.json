@@ -1,0 +1,17 @@
+{
+  "accession": "11999450",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-01-23",
+  "form": "Joint Announcement - (1) Proposal for the Privatisation of Hang Seng Bank Limited by The Hongkong and Shanghai Banking Corporation Limited by way of a Scheme of",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "HSBC HOLDINGS",
+  "query_label": "tier_s.scheme",
+  "query_note": "HKEX Group Restructuring or Scheme of Arrangement \u2014 the court-supervised recapitalisation itself.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:00005.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0123/2026012300291.pdf"
+}

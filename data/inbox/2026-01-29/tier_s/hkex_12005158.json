@@ -1,0 +1,17 @@
+{
+  "accession": "12005158",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-01-29",
+  "form": "(1) CLARIFICATION ANNOUNCEMENT IN RELATION TO\nRULE 3.7 ANNOUNCEMENT, RULE 13.09 OF THE LISTING RULES\nAND INSIDE INFORMATION PROVISIONS\nAND\n(2) CONTINUED SUSPENS",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "GUANZE MEDICAL",
+  "query_label": "tier_s.suspension",
+  "query_note": "HKEX Suspension of Trading \u2014 the pre-event distress signal (long suspensions precede restructuring or delisting).",
+  "source": "HKEXnews",
+  "ticker": "HKEX:02427.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0129/2026012901207.pdf"
+}

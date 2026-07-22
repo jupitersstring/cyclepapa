@@ -1,0 +1,17 @@
+{
+  "accession": "12063612",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-03-23",
+  "form": "(1) Conditional Cash Offer by Morton Securities Limited on behalf of Tian An Medicare Limited to buy-back up to 70,000,000 shares at HK$1.1 per share and (2) Re",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "TIANAN MEDICARE",
+  "query_label": "tier_s.resumption",
+  "query_note": "HKEX Resumption of Trading \u2014 trading resumes after a suspension, typically on completion of a restructuring / scheme: the Hong Kong post-reorg / re-listing event.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:00383.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0323/2026032301462.pdf"
+}

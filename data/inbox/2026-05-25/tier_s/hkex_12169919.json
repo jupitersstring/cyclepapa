@@ -1,0 +1,17 @@
+{
+  "accession": "12169919",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-05-25",
+  "form": "(1) SUPPLEMENTAL ANNOUNCEMENT\nIN RELATION TO PLACING OF NEW SHARES&#x3b; AND\n(2) RESUMPTION OF TRADING",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "ZXZN QI-HOUSE",
+  "query_label": "tier_s.resumption",
+  "query_note": "HKEX Resumption of Trading \u2014 trading resumes after a suspension, typically on completion of a restructuring / scheme: the Hong Kong post-reorg / re-listing event.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:08395.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/gem/2026/0525/2026052500409.pdf"
+}

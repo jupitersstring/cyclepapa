@@ -1,0 +1,17 @@
+{
+  "accession": "12126170",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-04-27",
+  "form": "(1) QUARTERLY UPDATE OF RESUMPTION PROGRESS&#x3b; (2) FIRST QUARTER 2026 OPERATIONAL HIGHLIGHTS&#x3b; (3) APPOINTMENT OF CHIEF COMPLIANCE OFFICER&#x3b; AND (4) ",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "LUFAX",
+  "query_label": "tier_s.suspension",
+  "query_note": "HKEX Suspension of Trading \u2014 the pre-event distress signal (long suspensions precede restructuring or delisting).",
+  "source": "HKEXnews",
+  "ticker": "HKEX:06623.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0427/2026042702728.pdf"
+}

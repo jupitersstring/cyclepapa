@@ -1,0 +1,17 @@
+{
+  "accession": "12209011",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-06-18",
+  "form": "(1) RESUMPTION GUIDANCE&#x3b; (2) UPDATE ON PROGRESS OF RESUMPTION&#x3b; (3) POSTPONEMENT OF ANNUAL GENERAL MEETING&#x3b; AND (4) CONTINUED TRADING SUSPENSION",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "FU SHOU YUAN",
+  "query_label": "tier_s.suspension",
+  "query_note": "HKEX Suspension of Trading \u2014 the pre-event distress signal (long suspensions precede restructuring or delisting).",
+  "source": "HKEXnews",
+  "ticker": "HKEX:01448.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0618/2026061802008.pdf"
+}

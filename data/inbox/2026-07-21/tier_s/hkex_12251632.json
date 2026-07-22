@@ -1,0 +1,17 @@
+{
+  "accession": "12251632",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-07-21",
+  "form": "JOINT ANNOUNCEMENT\n(1) PROPOSAL FOR THE PRIVATISATION OF Z FIN LIMITED BY THE\nOFFEROR BY WAY OF A SCHEME OF ARRANGEMENT UNDER SECTION\n99 OF THE COMPANIES ACT&#x",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "Z FIN",
+  "query_label": "tier_s.resumption",
+  "query_note": "HKEX Resumption of Trading \u2014 trading resumes after a suspension, typically on completion of a restructuring / scheme: the Hong Kong post-reorg / re-listing event.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:01168.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0721/2026072101177.pdf"
+}

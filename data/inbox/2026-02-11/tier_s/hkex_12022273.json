@@ -1,0 +1,17 @@
+{
+  "accession": "12022273",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-02-11",
+  "form": "(1) CONNECTED TRANSACTION IN RELATION TO JUNHENG LLP FORMATION (2) POSSIBLE CONNECTED AND MAJOR TRANSACTION IN RELATION TO POSSIBLE GRANT OF PUT OPTION (3) MAJO",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "GLOBAL NEW MAT",
+  "query_label": "tier_s.resumption",
+  "query_note": "HKEX Resumption of Trading \u2014 trading resumes after a suspension, typically on completion of a restructuring / scheme: the Hong Kong post-reorg / re-listing event.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:06616.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0211/2026021100868.pdf"
+}

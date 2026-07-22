@@ -1,0 +1,17 @@
+{
+  "accession": "12007033",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-02-02",
+  "form": "UPDATE ON THE FOLLOW-UP ACTIONS OF SHANDONG HONGRI IN RELATION TO THE ADMINISTRATIVE RULING AND UPDATE ON THE AUCTION BY THE LUOZHUANG COURT, LINYI CITY IN RESP",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "SUNSHINE",
+  "query_label": "tier_s.suspension",
+  "query_note": "HKEX Suspension of Trading \u2014 the pre-event distress signal (long suspensions precede restructuring or delisting).",
+  "source": "HKEXnews",
+  "ticker": "HKEX:00509.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0202/2026020200055.pdf"
+}

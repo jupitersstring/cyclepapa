@@ -1,0 +1,17 @@
+{
+  "accession": "12248392",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-07-17",
+  "form": "CLARIFICATION ANNOUNCEMENT IN RELATION TO THE QUARTERLY\nUPDATE ANNOUNCEMENT DATED 8 JULY 2026",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "RMH HOLDINGS",
+  "query_label": "tier_s.suspension",
+  "query_note": "HKEX Suspension of Trading \u2014 the pre-event distress signal (long suspensions precede restructuring or delisting).",
+  "source": "HKEXnews",
+  "ticker": "HKEX:08437.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/gem/2026/0717/2026071700995.pdf"
+}

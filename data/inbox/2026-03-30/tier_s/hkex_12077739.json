@@ -1,0 +1,17 @@
+{
+  "accession": "12077739",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-03-30",
+  "form": "INSIDE INFORMATION (1) DELAY IN PUBLICATION OF THE 2025 ANNUAL RESULTS&#x3b; (2) POSTPONEMENT OF BOARD MEETING&#x3b; AND (3) CONTINUED SUSPENSION OF TRADING",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "ADWAY",
+  "query_label": "tier_s.suspension",
+  "query_note": "HKEX Suspension of Trading \u2014 the pre-event distress signal (long suspensions precede restructuring or delisting).",
+  "source": "HKEXnews",
+  "ticker": "HKEX:06189.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0330/2026033001116.pdf"
+}

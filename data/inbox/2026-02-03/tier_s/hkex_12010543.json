@@ -1,0 +1,17 @@
+{
+  "accession": "12010543",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-02-03",
+  "form": "ADJOURNMENT OF THE WINDING UP APPLICATION AGAINST NEW SELECT (A WHOLLY OWNED SUBSIDIARY)",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "ROAD KING INFRA",
+  "query_label": "tier_s.liquidation",
+  "query_note": "HKEX Winding Up & Liquidation \u2014 terminal distress.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:01098.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0203/2026020300421.pdf"
+}

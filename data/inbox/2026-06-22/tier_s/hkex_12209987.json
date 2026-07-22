@@ -1,0 +1,17 @@
+{
+  "accession": "12209987",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-06-22",
+  "form": "Further Adjournment of Winding-up Petition Hearing",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "KWG GROUP<br/>KWG GROUP N2701<br/>KWG GROUP N2608",
+  "query_label": "tier_s.liquidation",
+  "query_note": "HKEX Winding Up & Liquidation \u2014 terminal distress.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:01813<br/>40117<br/>40683.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0622/2026062200534.pdf"
+}

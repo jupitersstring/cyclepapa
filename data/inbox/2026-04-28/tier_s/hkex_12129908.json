@@ -1,0 +1,17 @@
+{
+  "accession": "12129908",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-04-28",
+  "form": "INSIDE INFORMATION\n(1) FURTHER DELAY IN PUBLICATION OF ANNUAL RESULTS\nFOR THE YEAR ENDED 31 DECEMBER 2025&#x3b;\n(2) DELAY IN PUBLICATION OF 2025 ANNUAL REPORT&#",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "MANY IDEA CLOUD",
+  "query_label": "tier_s.suspension",
+  "query_note": "HKEX Suspension of Trading \u2014 the pre-event distress signal (long suspensions precede restructuring or delisting).",
+  "source": "HKEXnews",
+  "ticker": "HKEX:06696.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0428/2026042803151.pdf"
+}

@@ -1,0 +1,17 @@
+{
+  "accession": "12224332",
+  "cik": "",
+  "fetched_at": "2026-07-22T15:52:17.314723Z",
+  "filed": "2026-06-30",
+  "form": "JOINT ANNOUNCEMENT 1 CONNECTED TRANSACTION IN RELATION TO PROPOSED SHARE\nSUBSCRIPTION UNDER SPECIFIC MANDATE&#x3b;2 SHARE PURCHASE AGREEMENTS&#x3b;3 PROPOSED PL",
+  "form_code": "HKEX-announcement",
+  "isin": null,
+  "jurisdiction": "HK",
+  "name": "REALWAY CAPITAL",
+  "query_label": "tier_s.resumption",
+  "query_note": "HKEX Resumption of Trading \u2014 trading resumes after a suspension, typically on completion of a restructuring / scheme: the Hong Kong post-reorg / re-listing event.",
+  "source": "HKEXnews",
+  "ticker": "HKEX:01835.HK",
+  "tier": "tier_s",
+  "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0630/2026063003989.pdf"
+}
