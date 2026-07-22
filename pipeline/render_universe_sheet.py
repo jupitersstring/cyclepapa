@@ -290,6 +290,7 @@ def write_signal_sheet(wb, conn, name, where_extra="", limit=200, subtitle="", e
         subtitle = (subtitle + "  " if subtitle else "") + f"[showing top {limit} of {matched} matching names]"
     # Transparency: if the LIMIT truncates, say so in the subtitle rather than
     # silently showing a subset.
+    subtitle = (subtitle + "  " if subtitle else "") + "· signal-detail columns (13F/S1-4/pB/13D/insider) are collapsed — click the ＋ above column T to expand."
     write_title(ws, name, subtitle, len(SIG_HDR))
     out = [signal_row_to_cells(r) for r in rows]
     write_table_rows(ws, out, 5)
@@ -312,6 +313,15 @@ def write_signal_sheet(wb, conn, name, where_extra="", limit=200, subtitle="", e
     ws.column_dimensions["C"].width = 22  # Why
     ws.column_dimensions[get_column_letter(len(SIG_HDR))].width = 80
     ws.column_dimensions[get_column_letter(len(SIG_HDR) - 1)].width = 24  # Industry
+    # Collapse the granular signal-detail block (cols H–S: section counts, activist,
+    # pB, 13D, cluster, Form-4 detail) into an outline group — the "Why" column
+    # already summarizes it, so the default view is identity → score → why → size →
+    # liquidity → valuation → entry. Click the [+] to expand the full breakdown.
+    ws.sheet_properties.outlinePr.summaryRight = False
+    for _c in range(8, 20):   # cols H(8)..S(19)
+        cd = ws.column_dimensions[get_column_letter(_c)]
+        cd.outline_level = 1
+        cd.hidden = True
 
 def _signal_flags(r):
     """Independent signal types firing for a unified_signal row (as a dict).
