@@ -126,6 +126,32 @@ EXCH_YAHOO = {
 }
 
 
+_SM = None
+_CIK_RESOLVE_CACHE: dict[str, str] = {}
+
+
+def _resolve_cik(ticker: str) -> str:
+    """Ticker → SEC CIK via the security master (US filers only). Lets a
+    hand-curated US post-reorg (Peabody BTU, Warrior HCC) be scored FULLY on
+    SEC financials instead of the partial OTC path. '' if not a US filer."""
+    global _SM
+    stem = re.sub(r"[^A-Za-z0-9]", "", (ticker or "").split(":")[-1]).upper()
+    if not stem:
+        return ""
+    if stem in _CIK_RESOLVE_CACHE:
+        return _CIK_RESOLVE_CACHE[stem]
+    cik = ""
+    try:
+        if _SM is None:
+            from src.security_master import SecurityMaster
+            _SM = SecurityMaster()
+        cik = _SM.cik_for_ticker(stem) or ""
+    except Exception:
+        cik = ""
+    _CIK_RESOLVE_CACHE[stem] = cik
+    return cik
+
+
 def _yahoo_ticker(ticker: str) -> str:
     """Map an 'EXCHANGE:SYMBOL' ticker to a Yahoo symbol (adds the venue
     suffix for foreign listings; OTC/US pass through)."""
@@ -450,38 +476,49 @@ def main() -> int:
         ticker = rec.get("ticker") or ""
         in_pacer = _norm(rec.get("name", "")) in ch22
 
-        # --- hand-curated OTC/foreign post-reorg (no SEC CIK/XBRL) ---
-        # Priced via Yahoo (venue-suffixed), liquidity read, and a known-
-        # post-reorg confidence — SEC financials aren't available, so R/O/Q
-        # can't be scored, but the name is CAPTURED and visible (McDermott/
-        # MCDIF, LATAM, OI…) rather than silently absent.
+        # --- hand-curated post-reorg from universe.md ---
         if rec.get("hand_curated"):
-            yt = _yahoo_ticker(ticker)
-            price = _price(yt)
-            adv = dollar_adv(yt)
-            marks = {"listed": price is not None, "unnatural": False,
-                     "repaired": False, "overstated": False,
-                     "catalyst": False, "quality": False}
-            scored.append({
-                "cik": "", "ticker": ticker, "name": rec.get("name", ""),
-                "listed": price is not None, "score": 0,
-                "fitness": 0.0, "archetypes": ["hand-curated post-reorg"],
-                "reasons": ["universe.md Bucket C (OTC/foreign; SEC "
-                            "financials unavailable — verify manually)"],
-                "marks": marks, "confidence": "hand-curated",
-                "emergence_date": None, "adv_dollar": adv,
-                "liquidity": _liquidity_tier(adv),
-                "tier": "no SEC data (OTC/deregistered)", "ebit_yield": None})
-            time.sleep(0.1)
-            continue
+            # If it's a US filer with a resolvable CIK (Peabody BTU, Warrior
+            # HCC…), score it FULLY on SEC financials — it was only missing
+            # because its emergence is old and absent from recent filings.
+            rc = _resolve_cik(ticker)
+            if rc:
+                cik = rc
+                vinfo = {"filer_emerged": True, "emergence_date": None,
+                         "context": ""}
+                # fall through to the normal EDGAR scoring path below
+            else:
+                # Genuinely OTC / foreign / deregistered (MCDIF, OI, LATAM):
+                # price via Yahoo, liquidity read, flag SEC-data-unavailable.
+                yt = _yahoo_ticker(ticker)
+                price = _price(yt)
+                adv = dollar_adv(yt)
+                marks = {"listed": price is not None, "unnatural": False,
+                         "repaired": False, "overstated": False,
+                         "catalyst": False, "quality": False}
+                scored.append({
+                    "cik": "", "ticker": ticker, "name": rec.get("name", ""),
+                    "listed": price is not None, "score": 0, "fitness": 0.0,
+                    "archetypes": ["hand-curated post-reorg"],
+                    "reasons": ["universe.md Bucket C (OTC/foreign; SEC "
+                                "financials unavailable — verify manually)"],
+                    "marks": marks, "confidence": "hand-curated",
+                    "emergence_date": None, "adv_dollar": adv,
+                    "liquidity": _liquidity_tier(adv),
+                    "tier": "no SEC data (OTC/deregistered)",
+                    "ebit_yield": None})
+                time.sleep(0.1)
+                continue
 
         # Verify the FILER itself emerged (not an incidental third-party
-        # mention). PACER-corroborated names are already hard-confirmed, so
-        # skip the fetch for them.
-        vinfo = ({"filer_emerged": True, "emergence_date": None, "context": ""}
-                 if in_pacer else
-                 verify(int(cik), rec.get("accession", ""), vcache,
-                        filer_name=rec.get("name", "")))
+        # mention). PACER-corroborated + resolved hand-curated names are
+        # already confirmed, so skip the fetch for them.
+        if rec.get("hand_curated") or in_pacer:
+            vinfo = {"filer_emerged": True, "emergence_date": None,
+                     "context": ""}
+        else:
+            vinfo = verify(int(cik), rec.get("accession", ""), vcache,
+                           filer_name=rec.get("name", ""))
         if vinfo.get("filer_emerged") is False:
             # Could not confirm the FILER's own emergence: the only
             # bankruptcy reference is a third-party/subsidiary possessive.
