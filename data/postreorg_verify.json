@@ -89,6 +89,12 @@
     "emergence_date": null,
     "filer_emerged": true
   },
+  "0000950103-26-008891": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/827187/000095010326008891/0000950103-26-008891.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
   "0001004980-26-000033": {
     "context": "",
     "doc": "https://www.sec.gov/Archives/edgar/data/1004980/000100498026000033/0001004980-26-000033.txt",
@@ -275,6 +281,12 @@
     "emergence_date": null,
     "filer_emerged": null
   },
+  "0001140361-26-010926": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1776738/000114036126010926/0001140361-26-010926.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
   "0001140361-26-026944": {
     "context": "Successor/Predecessor fresh-start reporting present",
     "doc": "https://www.sec.gov/Archives/edgar/data/1692819/000114036126026944/0001140361-26-026944.txt",
@@ -389,6 +401,12 @@
     "emergence_date": null,
     "filer_emerged": null
   },
+  "0001193125-26-127785": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1659323/000119312526127785/0001193125-26-127785.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
   "0001193125-26-145714": {
     "context": "",
     "doc": "https://www.sec.gov/Archives/edgar/data/1334388/000119312526145714/0001193125-26-145714.txt",
@@ -478,6 +496,12 @@
     "doc": "https://www.sec.gov/Archives/edgar/data/1737706/000119312526275884/0001193125-26-275884.txt",
     "emergence_date": null,
     "filer_emerged": true
+  },
+  "0001193125-26-278582": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1001233/000119312526278582/0001193125-26-278582.txt",
+    "emergence_date": null,
+    "filer_emerged": null
   },
   "0001213900-26-028437": {
     "context": "Successor/Predecessor fresh-start reporting present",
@@ -677,6 +701,12 @@
     "emergence_date": "May 22, 2015",
     "filer_emerged": true
   },
+  "0001493152-26-023162": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1817511/000149315226023162/0001493152-26-023162.txt",
+    "emergence_date": null,
+    "filer_emerged": null
+  },
   "0001493152-26-023856": {
     "context": "ed Debtors (the &#8220;Plan&#8221;). Following the entry of the confirmation order and all conditions to effectiveness of the Plan being satisfied, the Debtors emerged from bankruptcy on March 14, 202",
     "doc": "https://www.sec.gov/Archives/edgar/data/1759546/000149315226023856/0001493152-26-023856.txt",
@@ -831,6 +861,12 @@
     "context": "w is not indicative of future stock price performance. The following graph and table illustrate the total return from April 30, 2021, the date of the Company's emergence from Chapter 11 bankruptcy pro",
     "doc": "https://www.sec.gov/Archives/edgar/data/1735707/000173570726000009/0001735707-26-000009.txt",
     "emergence_date": "December 31, 2025",
+    "filer_emerged": true
+  },
+  "0001753926-26-001173": {
+    "context": "Successor/Predecessor fresh-start reporting present",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1347242/000175392626001173/0001753926-26-001173.txt",
+    "emergence_date": null,
     "filer_emerged": true
   },
   "0001775734-26-000012": {
