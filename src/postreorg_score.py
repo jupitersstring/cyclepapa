@@ -245,9 +245,33 @@ def detect_components(text: str) -> dict[str, bool]:
 
 # ---- scoring -------------------------------------------------------------
 
+def altman_z2(cik: int, mkt_cap: float | None, ebit: float | None,
+              total_liab: float | None) -> float | None:
+    """Altman Z″ (the non-manufacturer / emerging-market variant) on the
+    emergence balance sheet — a PREDICTIVE Chapter-22 test to complement the
+    historical PACER veto. Z″ = 3.25 + 6.56·WC/TA + 3.26·RE/TA + 6.72·EBIT/TA
+    + 1.05·MVE/TL. Z″ < ~1.1 is the distress zone (high re-filing risk); the
+    "Chapter 22 Recidivism" literature and Altman's own updates use this as
+    the emergence-quality screen. Returns None if inputs are unavailable."""
+    ta = _xbrl(cik, "Assets")
+    if not ta or ta <= 0:
+        return None
+    ca = _xbrl(cik, "AssetsCurrent")
+    cl = _xbrl(cik, "LiabilitiesCurrent")
+    re = _xbrl(cik, "RetainedEarningsAccumulatedDeficit")
+    tl = total_liab if total_liab else _xbrl(cik, "Liabilities")
+    if ebit is None or tl is None or tl <= 0 or mkt_cap is None:
+        return None
+    wc = (ca or 0.0) - (cl or 0.0)
+    z = (3.25 + 6.56 * (wc / ta) + 3.26 * ((re or 0.0) / ta)
+         + 6.72 * (ebit / ta) + 1.05 * (mkt_cap / tl))
+    return round(z, 2)
+
+
 def assembly_score(rec: dict, ey: dict, is_ch22: bool) -> dict:
     """Return {score, gate_ok, notes} implementing the Part 7 scorecard.
-    Gating: distress-type + de-levering. EBIT-yield ×2. Chapter 22 vetoes."""
+    Gating: distress-type + de-levering + predictive Z″. EBIT-yield ×2.
+    Chapter 22 vetoes (historical PACER + predictive Altman Z″)."""
     comps = detect_components(rec.get("query_note", "") + " " +
                               rec.get("form", ""))
     notes = []
@@ -285,8 +309,23 @@ def assembly_score(rec: dict, ey: dict, is_ch22: bool) -> dict:
     if comps["economic_distress"] and not comps["financial_distress"]:
         gate_ok = False
         notes.append("⚠ economic/secular distress signal — moat-gate RED")
+    # PREDICTIVE Chapter-22 test — Altman Z″ on the emergence balance sheet.
+    # Distress-zone Z″ flags high re-filing risk even before any PACER re-file.
+    z2 = altman_z2(int(rec["cik"]), ey.get("mkt_cap"), ey.get("ebit"),
+                   _xbrl(int(rec["cik"]), "Liabilities")) if rec.get("cik") \
+        else None
+    if z2 is not None:
+        if z2 < 1.1:
+            gate_ok = False
+            notes.append(f"⚠ Altman Z″ {z2} (<1.1 distress zone) — high "
+                         f"re-filing risk")
+        elif z2 >= 2.6:
+            comp_score += 0.5
+            notes.append(f"Altman Z″ {z2} (safe zone)")
+        else:
+            notes.append(f"Altman Z″ {z2} (grey zone)")
     total = val * 2 + comp_score
-    return {"score": round(total, 1), "gate_ok": gate_ok,
+    return {"score": round(total, 1), "gate_ok": gate_ok, "z2": z2,
             "tier": ey["tier"], "notes": "; ".join(notes)}
 
 

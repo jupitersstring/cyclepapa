@@ -78,10 +78,14 @@ def _liquidity_tier(adv: float | None) -> str:
     return "micro"          # <$100k/day — retail-only / expert-market
 from src.postreorg_verify import verify, load_cache, save_cache
 
-# Forced-seller overhang is a fresh-emergence phenomenon: creditors dump
-# the plan equity in roughly the first 18-24 months, then the supply clears.
-# Beyond this the name is a genuine post-reorg but no longer a live overhang.
-OVERHANG_MONTHS = 24
+# Forced-seller overhang / abnormal-return window. Eberhart, Altman &
+# Aggarwal (1999, J.Finance) show post-emergence abnormal returns are
+# concentrated in the first ~200 TRADING days (~9-10 months); the edge is
+# front-loaded, and Jiang-Wang-Yang (2023) find the residual edge lives only
+# while unnatural owners still dominate the register. So the live window is
+# ~10 months, not the 24 we used — beyond it the name is a genuine post-reorg
+# but the overhang has cleared. (See docs/ACADEMIC_FINDINGS.md.)
+OVERHANG_MONTHS = 10
 
 
 def _months_since(emergence_date: str | None) -> float | None:
