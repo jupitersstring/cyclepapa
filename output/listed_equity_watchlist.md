@@ -4,7 +4,7 @@ The tradable slice of the post-reorg universe: **exchange-listed common equity o
 
 > **The sweet spot:** a newly listed common equity, distributed to unnatural owners, with a genuinely repaired balance sheet, an overstated share count or net-debt burden, and a dated catalyst that broadens the natural shareholder base.
 
-- cohort screened: **102**  ·  listed common (Q1 gate passed): **56**  ·  prime (fitness ≥ 3): **1**  ·  filer-emergence confirmed: **41**  ·  set aside for verification (filer's own emergence unconfirmed): **6**
+- cohort screened: **129**  ·  listed common (Q1 gate passed): **74**  ·  prime (fitness ≥ 3): **1**  ·  filer-emergence confirmed: **41**  ·  set aside for verification (filer's own emergence unconfirmed): **6**
 
 Six questions: **L**isted · **U**nnatural owners (live forced-seller overhang) · **R**epaired balance sheet · **O**verstated count/debt · **C**atalyst · **Q**uality (EBIT-yield). **Conf** `✓` = the filing was read and the FILER's own emergence confirmed (first-person or Successor/Predecessor fresh-start reporting), or PACER-corroborated; `~` = kept but unverified (emergence note not found in the fetched filing — kept, never dropped). Names whose only bankruptcy reference is a non-filer possessive are set aside for verification at the bottom (not scored, not dropped).
 
@@ -29,7 +29,7 @@ Six questions: **L**isted · **U**nnatural owners (live forced-seller overhang) 
 | Venture Global, Inc. | VG | ✓ | 2025 | 2.0 | deep | ● | · | · | · | ● | forced-creditor overhang | filer emerged 2025 (~13mo ago) — live forced-seller overhang; po |
 | California Resources Corp | CRC | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 2.3×); EBIT/EV 13% (neutral (0-20%)) |
 | INFINITY NATURAL RESOURCES, IN | INR | ~ | — | 2.0 | ok | · | ● | · | · | ● | — | low leverage (ND/EBIT 0.7×); positive EBIT |
-| Jefferies Financial Group Inc. | JEF | ~ | — | 2.0 | deep | · | ● | ● | · | · | excess-emergence-cash | net cash balance sheet; net cash = 106% of mkt cap (net-debt bur |
+| Jefferies Financial Group Inc. | JEF | ~ | — | 2.0 | deep | · | ● | ● | · | · | excess-emergence-cash | net cash balance sheet; net cash = 107% of mkt cap (net-debt bur |
 | GULFPORT ENERGY CORP | GPOR | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 1.3×); EBIT/EV 15% (neutral (0-20%)) |
 | AGCO CORP /DE | AGCO | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 3.0×); EBIT/EV 4% (neutral (0-20%)) |
 | Bristow Group Inc. | VTOL | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 2.7×); EBIT/EV 7% (neutral (0-20%)) |
@@ -66,6 +66,24 @@ Six questions: **L**isted · **U**nnatural owners (live forced-seller overhang) 
 | Core Scientific, Inc./tx | CORZ | ✓ | — | 0.0 | deep | · | · | · | · | · | — |  |
 | Atlanta Braves Holdings, Inc. | BATRA | ✓ | — | 0.0 | ok | · | · | · | · | · | — |  |
 | AMPCO PITTSBURGH CORP | AP | ~ | — | 0.0 | ok | · | · | · | · | · | — |  |
+| McDermott International | OTC:MCDIF | ~ | — | 0.0 | thin | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
+| Core Natural Resources | NYSE:CNR | ~ | — | 0.0 | deep | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
+| Warrior Met Coal | NYSE:HCC | ~ | — | 0.0 | deep | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
+| Alpha Metallurgical Resources | NYSE:AMR | ~ | — | 0.0 | deep | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
+| Peabody Energy | NYSE:BTU | ~ | — | 0.0 | deep | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
+| Chesapeake / Expand Energy | NYSE:EXE | ~ | — | 0.0 | deep | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
+| Argo Blockchain | NASDAQ:ARBK | ~ | — | 0.0 | micro | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
+| Orpea / Emeis | EPA:EMEIS | ~ | — | 0.0 | ok | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
+| Vallourec | EPA:VK | ~ | — | 0.0 | deep | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
+| Solocal Group | EPA:LOCAL | ~ | — | 0.0 | micro | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
+| Intrum | ST:INTRUM | ~ | — | 0.0 | deep | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
+| Norwegian Air Shuttle | OSL:NAS | ~ | — | 0.0 | deep | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
+| HMM (Hyundai Merchant Marine) | KRX:011200 | ~ | — | 0.0 | deep | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
+| Sri Rejeki Isman (Sritex) | IDX:SRIL | ~ | — | 0.0 | ? | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
+| AirAsia X | KLSE:5238 | ~ | — | 0.0 | deep | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
+| Lupatech | B3:LUPA3 | ~ | — | 0.0 | micro | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
+| Drake & Scull | DFM:DSI | ~ | — | 0.0 | ok | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
+| OI SA | B3:OIBR3 | ~ | — | 0.0 | micro | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
 
 ## Prime setups (fitness ≥ 3)
 
