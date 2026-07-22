@@ -17,7 +17,7 @@ from _style_bw import (
     NUMFMT_USD, NUMFMT_PCT, NUMFMT_NUM, NUMFMT_INT, NUMFMT_USD2,
     NUMFMT_MCAP, NUMFMT_M_TO_B,
     BODY_FONT, BODY_ITALIC, SECTION_FONT, MONO_FONT, TICKER_FONT,
-    TNR, SIZE_BODY,
+    TNR, SIZE_BODY, LAPIS, CRIMSON, color_fixed,
 )
 
 DB = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "cyclepapa.db")
@@ -177,6 +177,9 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
                     (r[14] or "")[:38], *desc_for(conn, r[0])])
         if len(out) >= 30: break
     write_table_rows(ws, out, row)
+    # colour is data: activist stake / cluster $ / insider buys = lapis (all are
+    # positive signals whose presence is the read).
+    color_fixed(ws, row, row + len(out) - 1, [12, 13, 14], LAPIS)  # Act %, Clu $M, F4 Buy
     for ridx in range(row, row + len(out)):
         ws.cell(row=ridx, column=3).number_format = NUMFMT_PCT
         ws.cell(row=ridx, column=8).number_format = NUMFMT_MCAP

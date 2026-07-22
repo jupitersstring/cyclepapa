@@ -18,7 +18,7 @@ from _style_bw import (
     NUMFMT_USD, NUMFMT_PCT, NUMFMT_NUM, NUMFMT_INT, NUMFMT_USD2,
     NUMFMT_MCAP, NUMFMT_M_TO_B,
     TNR, SIZE_BODY, BODY_FONT, BODY_ITALIC, SECTION_FONT, TICKER_FONT, MONO_FONT,
-    BLACK, ROW_BORDER, LAPIS, CRIMSON, color_directional,
+    BLACK, ROW_BORDER, LAPIS, CRIMSON, color_directional, color_fixed,
 )
 from openpyxl.styles import Font, Alignment, Border, Side
 
@@ -296,7 +296,13 @@ def write_signal_sheet(wb, conn, name, where_extra="", limit=200, subtitle="", e
     for ridx in range(5, 5 + len(out)):
         format_signal_row(ws, ridx)
     add_signal_heatmap(ws, 5, 4 + len(out))
-    color_directional(ws, 5, 4 + len(out), 24, higher_is_better=True)   # 3mo % momentum
+    last = 4 + len(out)
+    # colour is data, pervasively: momentum by sign; buys lapis, sells crimson;
+    # insider cluster $ lapis; activist stake lapis (its presence is the signal).
+    color_directional(ws, 5, last, 24, higher_is_better=True)     # 3mo % momentum
+    color_fixed(ws, 5, last, [15, 16, 17], LAPIS)                 # Clu $, F4 buy 180/30
+    color_fixed(ws, 5, last, [18, 19], CRIMSON)                   # F4 sell 180/30
+    color_fixed(ws, 5, last, [11, 14], LAPIS)                     # Act %, 13D count
     ws.freeze_panes = "B5"
     if out:
         ws.auto_filter.ref = f"A4:{get_column_letter(len(SIG_HDR))}{4 + len(out)}"

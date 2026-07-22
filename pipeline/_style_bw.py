@@ -23,7 +23,7 @@ SIZE_BODY = 10
 SIZE_HDR = 10
 SIZE_SECTION = 11
 SIZE_SUBTITLE = 10
-SIZE_TITLE = 14
+SIZE_TITLE = 15
 
 BLACK = "000000"
 LIGHT_GREY = "BFBFBF"
@@ -59,6 +59,22 @@ def color_directional(ws, first_row, last_row, cols, higher_is_better=True):
                 f = cell.font
                 cell.font = Font(name=f.name or TNR, size=f.size or SIZE_BODY,
                                  bold=f.bold, italic=f.italic, color=ink)
+
+def color_fixed(ws, first_row, last_row, cols, ink):
+    """Colour non-blank/non-zero cells in `cols` a FIXED ink — for columns whose
+    mere presence carries direction (a buy $ is always good=lapis, a sell $ always
+    bad=crimson, regardless of sign)."""
+    if isinstance(cols, int):
+        cols = [cols]
+    for r in range(first_row, last_row + 1):
+        for c in cols:
+            cell = ws.cell(row=r, column=c)
+            v = cell.value
+            if v in (None, "", "—", 0, 0.0):
+                continue
+            f = cell.font
+            cell.font = Font(name=f.name or TNR, size=f.size or SIZE_BODY,
+                             bold=f.bold, italic=f.italic, color=ink)
 
 # Fonts
 TITLE_FONT     = Font(name=TNR, bold=True, size=SIZE_TITLE, color=BLACK)
@@ -104,20 +120,27 @@ BODY_HEIGHT = 14
 TITLE_HEIGHT = 26
 
 # ---------- helpers ----------
+MEDIUM_BLK = Side(border_style="medium", color=BLACK)
+
 def write_title(ws, title, subtitle, ncols):
-    """Title block at the top — title 14pt bold, subtitle italic, thin rule under."""
+    """Broadsheet masthead — an engraved nameplate: the title UPPERCASE bold with
+    a fleur-de-lis, over an italic-muted subline, closed by a MEDIUM black rule
+    (the 19th-century financial-broadsheet look of the Times-Lattice style guide)."""
     ws.sheet_view.showGridLines = False
     ws.row_dimensions[1].height = TITLE_HEIGHT
     ws.merge_cells(f"A1:{get_column_letter(ncols)}1")
-    t = ws.cell(row=1, column=1, value=title)
+    t = ws.cell(row=1, column=1, value="⚜  " + str(title).upper())   # ⚜ fleur + nameplate
     t.font = TITLE_FONT
     t.alignment = Alignment(horizontal="left", vertical="center")
-    ws.row_dimensions[2].height = 18
+    # heavy rule directly under the nameplate
+    for col in range(1, ncols + 1):
+        ws.cell(row=1, column=col).border = Border(bottom=MEDIUM_BLK, top=NO_SIDE, left=NO_SIDE, right=NO_SIDE)
+    ws.row_dimensions[2].height = 16
     ws.merge_cells(f"A2:{get_column_letter(ncols)}2")
     s = ws.cell(row=2, column=1, value=subtitle)
     s.font = SUBTITLE_FONT
     s.alignment = Alignment(horizontal="left", vertical="center")
-    # thin black rule under title row 2
+    # thin black rule closing the masthead under the subline
     for col in range(1, ncols + 1):
         ws.cell(row=2, column=col).border = Border(bottom=THIN_BLK, top=NO_SIDE, left=NO_SIDE, right=NO_SIDE)
 
