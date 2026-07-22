@@ -4,7 +4,7 @@ The tradable slice of the post-reorg universe: **exchange-listed common equity o
 
 > **The sweet spot:** a newly listed common equity, distributed to unnatural owners, with a genuinely repaired balance sheet, an overstated share count or net-debt burden, and a dated catalyst that broadens the natural shareholder base.
 
-- cohort screened: **129**  ·  listed common (Q1 gate passed): **74**  ·  prime (fitness ≥ 3): **1**  ·  filer-emergence confirmed: **41**  ·  set aside for verification (filer's own emergence unconfirmed): **6**
+- cohort screened: **128**  ·  listed common (Q1 gate passed): **73**  ·  prime (fitness ≥ 3): **1**  ·  filer-emergence confirmed: **46**  ·  set aside for verification (filer's own emergence unconfirmed): **6**
 
 Six questions: **L**isted · **U**nnatural owners (live forced-seller overhang) · **R**epaired balance sheet · **O**verstated count/debt · **C**atalyst · **Q**uality (EBIT-yield). **Conf** `✓` = the filing was read and the FILER's own emergence confirmed (first-person or Successor/Predecessor fresh-start reporting), or PACER-corroborated; `~` = kept but unverified (emergence note not found in the fetched filing — kept, never dropped). Names whose only bankruptcy reference is a non-filer possessive are set aside for verification at the bottom (not scored, not dropped).
 
@@ -27,9 +27,10 @@ Six questions: **L**isted · **U**nnatural owners (live forced-seller overhang) 
 | Diversified Energy Co | DEC | ✓ | July 4, 2025 | 2.0 | deep | ● | · | · | · | ● | forced-creditor overhang | filer emerged July 4, 2025 (~13mo ago) — live forced-seller over |
 | Sinclair, Inc. | SBGI | ✓ | — | 2.0 | deep | · | ● | · | · | ● | — | net cash balance sheet; positive EBIT |
 | Venture Global, Inc. | VG | ✓ | 2025 | 2.0 | deep | ● | · | · | · | ● | forced-creditor overhang | filer emerged 2025 (~13mo ago) — live forced-seller overhang; po |
+| Warrior Met Coal | NYSE:HCC | ✓ | — | 2.0 | deep | · | ● | · | · | ● | — | net cash balance sheet; EBIT/EV 1% (neutral (0-20%)) |
 | California Resources Corp | CRC | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 2.3×); EBIT/EV 13% (neutral (0-20%)) |
 | INFINITY NATURAL RESOURCES, IN | INR | ~ | — | 2.0 | ok | · | ● | · | · | ● | — | low leverage (ND/EBIT 0.7×); positive EBIT |
-| Jefferies Financial Group Inc. | JEF | ~ | — | 2.0 | deep | · | ● | ● | · | · | excess-emergence-cash | net cash balance sheet; net cash = 107% of mkt cap (net-debt bur |
+| Jefferies Financial Group Inc. | JEF | ~ | — | 2.0 | deep | · | ● | ● | · | · | excess-emergence-cash | net cash balance sheet; net cash = 106% of mkt cap (net-debt bur |
 | GULFPORT ENERGY CORP | GPOR | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 1.3×); EBIT/EV 15% (neutral (0-20%)) |
 | AGCO CORP /DE | AGCO | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 3.0×); EBIT/EV 4% (neutral (0-20%)) |
 | Bristow Group Inc. | VTOL | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 2.7×); EBIT/EV 7% (neutral (0-20%)) |
@@ -53,6 +54,9 @@ Six questions: **L**isted · **U**nnatural owners (live forced-seller overhang) 
 | CLOVER HEALTH INVESTMENTS, COR | CLOV | ✓ | — | 1.0 | deep | · | ● | · | · | · | — | net cash balance sheet |
 | Sable Offshore Corp. | SOC | ✓ | — | 1.0 | deep | · | ● | · | · | · | — | net cash balance sheet |
 | Ridgepost Capital, Inc. | RPC | ✓ | May 3, 2017 | 1.0 | ok | · | · | · | · | ● | — | filer emerged May 3, 2017 (~111mo ago) — overhang likely cleared |
+| Core Natural Resources | NYSE:CNR | ✓ | — | 1.0 | deep | · | ● | · | · | · | — | net cash balance sheet |
+| Alpha Metallurgical Resources | NYSE:AMR | ✓ | — | 1.0 | deep | · | ● | · | · | · | — | net cash balance sheet |
+| Peabody Energy | NYSE:BTU | ✓ | — | 1.0 | deep | · | ● | · | · | · | — | net cash balance sheet |
 | FERRELLGAS PARTNERS L P | FGPR | ~ | — | 1.0 | micro | · | · | · | · | ● | — | EBIT/EV 3% (neutral (0-20%)) |
 | EchoStar CORP | SATS | ~ | — | 1.0 | deep | · | ● | · | · | · | — | net cash balance sheet |
 | Fortune Brands Innovations, In | FBIN | ~ | — | 1.0 | deep | · | · | · | · | ● | — | EBIT/EV 5% (neutral (0-20%)) |
@@ -65,14 +69,9 @@ Six questions: **L**isted · **U**nnatural owners (live forced-seller overhang) 
 | GoHealth, Inc. | GOCO | ✓ | — | 0.0 | micro | · | · | · | · | · | — |  |
 | Core Scientific, Inc./tx | CORZ | ✓ | — | 0.0 | deep | · | · | · | · | · | — |  |
 | Atlanta Braves Holdings, Inc. | BATRA | ✓ | — | 0.0 | ok | · | · | · | · | · | — |  |
+| PAL Holdings (Philippine Airli | PSE:PAL | ✓ | — | 0.0 | ok | · | · | · | · | · | — |  |
 | AMPCO PITTSBURGH CORP | AP | ~ | — | 0.0 | ok | · | · | · | · | · | — |  |
 | McDermott International | OTC:MCDIF | ~ | — | 0.0 | thin | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
-| Core Natural Resources | NYSE:CNR | ~ | — | 0.0 | deep | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
-| Warrior Met Coal | NYSE:HCC | ~ | — | 0.0 | deep | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
-| Alpha Metallurgical Resources | NYSE:AMR | ~ | — | 0.0 | deep | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
-| Peabody Energy | NYSE:BTU | ~ | — | 0.0 | deep | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
-| Chesapeake / Expand Energy | NYSE:EXE | ~ | — | 0.0 | deep | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
-| Argo Blockchain | NASDAQ:ARBK | ~ | — | 0.0 | micro | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
 | Orpea / Emeis | EPA:EMEIS | ~ | — | 0.0 | ok | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
 | Vallourec | EPA:VK | ~ | — | 0.0 | deep | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
 | Solocal Group | EPA:LOCAL | ~ | — | 0.0 | micro | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
