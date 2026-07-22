@@ -19,6 +19,8 @@ edgar_filings,768,EXPENSIVE
 expected_return,14,
 form4_transactions,101185,EXPENSIVE
 fund_13f_holdings,72616,
+fund_13f_prior,72453,
+fund_13f_prior_state,293,
 fund_13f_state,332,
 fund_canon,598,
 fund_cik_map,713,

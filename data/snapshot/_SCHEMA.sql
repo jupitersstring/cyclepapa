@@ -240,3 +240,12 @@ CREATE TABLE style_consensus (
 CREATE TABLE price_stats (
         ticker TEXT PRIMARY KEY, mom_3mo REAL, mom_20d REAL, off_high REAL,
         last_close REAL, n_pts INTEGER, asof TEXT);
+CREATE TABLE fund_13f_prior (
+      fund TEXT, cik TEXT, accession TEXT, filed TEXT,
+      issuer TEXT, cusip TEXT, ticker TEXT, value_k INTEGER, shares INTEGER,
+      sh_type TEXT, pct_book REAL,
+      PRIMARY KEY (fund, accession, cusip));
+CREATE INDEX idx_prior_ticker ON fund_13f_prior(ticker);
+CREATE INDEX idx_prior_fund ON fund_13f_prior(fund);
+CREATE TABLE fund_13f_prior_state (
+      fund TEXT PRIMARY KEY, accession TEXT, filed TEXT, n_holdings INTEGER, total_value_k INTEGER);

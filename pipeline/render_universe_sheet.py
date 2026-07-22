@@ -431,6 +431,163 @@ def sheet_action_dashboard(wb, conn):
     ws.column_dimensions["B"].width = 30
     ws.column_dimensions["I"].width = 62
 
+def _has_prior(conn):
+    try:
+        return conn.execute("SELECT COUNT(*) FROM fund_13f_prior").fetchone()[0] > 0
+    except sqlite3.OperationalError:
+        return False
+
+def sheet_qoq_change(wb, conn):
+    """Quarter-over-quarter 13F change: current holdings diffed against each fund's
+    PRIOR filing. A single-quarter snapshot cannot tell accumulation from quiet
+    distribution — this can. Net funds building (new+add) minus trimming
+    (reduced+exited), and net $ flow, per ticker."""
+    ws = wb.create_sheet("QoQ Change")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "QoQ Position Change — building vs quietly trimming",
+                "Current 13F vs each fund's PRIOR filing, matched on CUSIP + share count (mapping/value-unit safe). Net Funds = (new+added) − (trimmed+exited). All-new names are often IPOs/spins; mixed-churn rows (both adds and trims) are the cleanest accumulation/distribution reads.", 10)
+    hdr = ["Ticker","Net Funds","New","Added","Trimmed","Exited","Δ Shares %","Score","Mcap","Name"]
+    write_table_header(ws, 4, hdr)
+    # Match on CUSIP (stable across quarters), not ticker — the two quarters were
+    # mapped by different logic, so a ticker-level diff is dominated by mapping
+    # noise (Comcast CMCSA vs CCZ). Share counts are unit-independent, so we
+    # ignore the value_k unit stragglers entirely and diff shares.
+    rows = list(conn.execute("""
+        WITH cur AS (SELECT fund, cusip, SUM(shares) sh FROM fund_13f_holdings
+                     WHERE cusip IS NOT NULL AND sh_type IN ('SH','') GROUP BY fund, cusip),
+             pri AS (SELECT fund, cusip, SUM(shares) sh FROM fund_13f_prior
+                     WHERE cusip IS NOT NULL AND sh_type IN ('SH','') GROUP BY fund, cusip),
+             chg AS (
+               SELECT cur.fund, cur.cusip, cur.sh cur_sh, pri.sh pri_sh
+               FROM cur LEFT JOIN pri ON pri.fund=cur.fund AND pri.cusip=cur.cusip
+               UNION ALL
+               SELECT pri.fund, pri.cusip, NULL, pri.sh
+               FROM pri LEFT JOIN cur ON cur.fund=pri.fund AND cur.cusip=pri.cusip
+               WHERE cur.fund IS NULL)
+        SELECT COALESCE(cm.ticker, chg.cusip) tk,
+          SUM(CASE WHEN pri_sh IS NULL AND cur_sh>0 THEN 1 ELSE 0 END) n_new,
+          SUM(CASE WHEN pri_sh IS NOT NULL AND cur_sh>pri_sh*1.05 THEN 1 ELSE 0 END) n_add,
+          SUM(CASE WHEN cur_sh IS NOT NULL AND pri_sh IS NOT NULL AND cur_sh<pri_sh*0.95 THEN 1 ELSE 0 END) n_trim,
+          SUM(CASE WHEN cur_sh IS NULL AND pri_sh>0 THEN 1 ELSE 0 END) n_exit,
+          SUM(COALESCE(cur_sh,0)) - SUM(COALESCE(pri_sh,0)) d_sh,
+          SUM(COALESCE(pri_sh,0)) p_sh
+        FROM chg LEFT JOIN cusip_map cm ON cm.cusip = chg.cusip
+        GROUP BY tk""").fetchall())
+    scored = []
+    for r in rows:
+        tk, n_new, n_add, n_trim, n_exit, d_sh, p_sh = r
+        net_funds = (n_new + n_add) - (n_trim + n_exit)
+        if abs(net_funds) < 2:
+            continue
+        us = conn.execute("SELECT score, mcap_m, name, sec_type FROM unified_signal WHERE ticker=?", (tk,)).fetchone()
+        if not us or us[3] != 'common' or tk in ETFs or tk in MEGA:
+            continue
+        d_pct = (d_sh / p_sh * 100) if p_sh else (100 if d_sh > 0 else 0)
+        scored.append((net_funds, tk, n_new, n_add, n_trim, n_exit, d_pct, us[0], us[1], us[2]))
+    scored.sort(key=lambda x: -x[0])
+    top = scored[:80] + scored[-40:]      # biggest builders AND biggest distributors
+    out = []
+    for nf, tk, n_new, n_add, n_trim, n_exit, d_pct, score, mcap, name in top:
+        out.append([tk, nf, n_new, n_add, n_trim, n_exit,
+                    round(max(-99, min(999, d_pct)), 0), round(score or 0, 1), mcap or "", (name or "")[:38]])
+    write_table_rows(ws, out, 5, ticker_col=1)
+    from openpyxl.formatting.rule import ColorScaleRule
+    if out:
+        ws.conditional_formatting.add(f"B5:B{4+len(out)}",
+            ColorScaleRule(start_type="min", start_color="7A0019", mid_type="num", mid_value=0,
+                           mid_color="FFFFFF", end_type="max", end_color="061933"))
+        ws.auto_filter.ref = f"A4:J{4+len(out)}"
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=7).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=9).number_format = NUMFMT_MCAP
+    ws.freeze_panes = "B5"
+    autosize(ws)
+    ws.column_dimensions["A"].width = 8
+
+def sheet_dossier(wb, conn, top_n=45):
+    """One consolidated block per ticker — score + drivers, holders, insiders,
+    activist, catalysts, valuation, momentum — so vetting an idea doesn't mean
+    hand-cross-referencing six ticker-keyed sheets. Covers the top-N by score."""
+    from _canon import canon
+    ws = wb.create_sheet("Ticker Dossier")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Ticker Dossier — every signal per name, one block each",
+                f"Top {top_n} by score. Each block: drivers · top holders (13F %book) · insiders · activist · recent 8-Ks · valuation & momentum. The single-idea vetting view.", 8)
+    conn.row_factory = sqlite3.Row
+    names = conn.execute("""SELECT us.*, tm.adv_3m_usd_m adv, ps.off_high, ps.mom_3mo,
+               yf.rev_growth, yf.profit_margin, yf.fwd_pe
+        FROM unified_signal us
+        LEFT JOIN ticker_meta tm ON tm.ticker=us.ticker
+        LEFT JOIN price_stats ps ON ps.ticker=us.ticker
+        LEFT JOIN ticker_yf yf ON yf.ticker=us.ticker
+        WHERE us.sec_type='common' AND us.ticker NOT IN ({})
+        ORDER BY us.score DESC LIMIT ?""".format(",".join("?"*len(MEGA))),
+        list(MEGA) + [top_n]).fetchall()
+    conn.row_factory = None
+    row = 4
+    from openpyxl.styles import Font as _F
+    for r in names:
+        tk = r["ticker"]
+        # header line: ticker — name | score | mcap | bucket
+        h = ws.cell(row=row, column=1, value=f"{tk} — {(r['name'] or '')[:40]}")
+        h.font = _F(name="Times New Roman", size=11, bold=True)
+        ws.cell(row=row, column=6, value=f"Score {r['score']:.0f}")
+        ws.cell(row=row, column=7, value=f"{(r['mcap_m'] or 0)/1000:.1f}B" if r['mcap_m'] else "")
+        ws.cell(row=row, column=8, value=r["mcap_bucket"] or "")
+        row += 1
+        # drivers
+        ws.cell(row=row, column=1, value="Drivers"); ws.cell(row=row, column=2, value=_why(r["components"])); row += 1
+        # top holders (13F, canonical, %book)
+        holders = []
+        seen = set()
+        for hr in conn.execute("""SELECT fund, pct_book FROM fund_13f_holdings
+                WHERE ticker=? AND sh_type IN ('SH','') ORDER BY value_k DESC LIMIT 8""", (tk,)):
+            c = canon(hr[0])
+            if c in seen: continue
+            seen.add(c)
+            nm = re.sub(r"\s*\(.*$", "", hr[0]).strip()[:22]
+            holders.append(f"{nm}{f' {hr[1]:.0f}%' if hr[1] else ''}")
+        ws.cell(row=row, column=1, value="Held by"); ws.cell(row=row, column=2, value=", ".join(holders[:6])[:120]); row += 1
+        # insiders + activist
+        ins = conn.execute("""SELECT COUNT(DISTINCT owner), SUM(shares*price)/1e6,
+                MAX(CASE WHEN role LIKE '%CEO%' OR role LIKE '%CFO%' OR role LIKE '%Chief%' OR role LIKE '%President%' THEN 1 ELSE 0 END)
+                FROM form4_transactions WHERE ticker=? AND code='P' AND trans_date>=date('now','-180 days')
+                  AND price<200000""", (tk,)).fetchone()
+        act = conn.execute("""SELECT holder, pct_class, form FROM holder_13d WHERE subject_ticker=?
+                ORDER BY pct_class DESC LIMIT 1""", (tk,)).fetchone()
+        parts = []
+        if ins and ins[0]: parts.append(f"{ins[0]} insiders bought ${ins[1]:.1f}M{' (C-suite)' if ins[2] else ''}")
+        if r["insider_n"] and r["insider_n"] >= 2: parts.append(f"{r['insider_n']}-insider cluster")
+        if act: parts.append(f"{re.sub(r'( |).*$','',act[0])[:18]} {act[1]:.0f}% ({'13D' if '13D' in (act[2] or '') else '13G'})" if act[1] else "")
+        ws.cell(row=row, column=1, value="Insiders"); ws.cell(row=row, column=2, value=" · ".join(p for p in parts if p)[:120]); row += 1
+        # recent catalysts
+        cats = conn.execute("""SELECT filed, has_ma, has_control, has_director, has_pipe FROM catalysts_8k
+                WHERE ticker=? ORDER BY filed DESC LIMIT 3""", (tk,)).fetchall()
+        clabels = []
+        for c in cats:
+            tags = [t for t, on in [("M&A", c[1]), ("control", c[2]), ("director", c[3]), ("PIPE", c[4])] if on]
+            if tags: clabels.append(f"{c[0][:10]} {'/'.join(tags)}")
+        ws.cell(row=row, column=1, value="Catalysts"); ws.cell(row=row, column=2, value="; ".join(clabels)[:120] or "—"); row += 1
+        # valuation + momentum
+        val = []
+        if r["ev_ebitda"] is not None: val.append(f"EV/EBITDA {r['ev_ebitda']:.1f}x")
+        if r["pb_ratio"] is not None: val.append(f"P/B {r['pb_ratio']:.2f}")
+        if r["fwd_pe"] is not None: val.append(f"Fwd P/E {r['fwd_pe']:.0f}")
+        if r["rev_growth"] is not None: val.append(f"Rev {r['rev_growth']*100:+.0f}%")
+        if r["profit_margin"] is not None: val.append(f"Margin {r['profit_margin']*100:.0f}%")
+        if r["mom_3mo"] is not None: val.append(f"3mo {r['mom_3mo']:+.0f}%")
+        if r["off_high"] is not None: val.append(f"{r['off_high']:+.0f}% off high")
+        ws.cell(row=row, column=1, value="Valuation"); ws.cell(row=row, column=2, value=" · ".join(val)[:120]); row += 1
+        # thin rule between blocks
+        row += 1
+    for rr in range(4, row):
+        c = ws.cell(row=rr, column=1)
+        if c.value in ("Drivers", "Held by", "Insiders", "Catalysts", "Valuation"):
+            c.font = _F(name="Times New Roman", size=9, italic=True, color="7F7F7F")
+    ws.column_dimensions["A"].width = 16
+    ws.column_dimensions["B"].width = 96
+    ws.freeze_panes = "A4"
+
 def sheet_whos_buying(wb, conn):
     """The NAMES behind the s3/s4 counts — which specific funds are initiating new
     positions and materially adding. Counts tell you 'how many'; this tells you
@@ -609,8 +766,8 @@ def sheet_insider_recent(wb, conn):
     ws = wb.create_sheet("Insider Buys ≤30d")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Recent Insider Buying — last 30 days only",
-                "Buys reported in the last 30 days. Most signal-rich window.", 14)
-    hdr = ["Ticker","≤30d $M","# Buyers","Latest","Avg Px","Mcap","Bucket","13F","S3","S4","Act %","EV/EBITDA","P/B","Name"]
+                "Buys reported in the last 30 days. C-Suite = a CEO/CFO/COO/President/Chair bought (personal-cash conviction beats a passive 10%-owner). Net nets out any sells.", 16)
+    hdr = ["Ticker","Buy $M","Sell $M","Net $M","# Buyers","C-Suite","Days Ago","Avg Px","Mcap","Bucket","13F","S3","S4","Act %","EV/EBITDA","Name"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT f.ticker, SUM(f.shares*f.price)/1e6 AS dollars_m,
@@ -619,7 +776,15 @@ def sheet_insider_recent(wb, conn):
                tm.mcap_m, us.mcap_bucket,
                us.smart_money_n, us.s3_new, us.s4_add, us.activist_max_pct,
                us.ev_ebitda, us.pb_ratio,
-               tm.name
+               tm.name,
+               MAX(CASE WHEN f.role LIKE '%CEO%' OR f.role LIKE '%Chief Exec%'
+                        OR f.role LIKE '%CFO%' OR f.role LIKE '%Chief Fin%'
+                        OR f.role LIKE '%COO%' OR f.role LIKE '%President%'
+                        OR f.role LIKE '%Chair%' THEN 1 ELSE 0 END) AS csuite,
+               CAST(julianday('now') - julianday(MAX(f.trans_date)) AS INT) AS days_ago,
+               (SELECT COALESCE(SUM(s.shares*s.price),0)/1e6 FROM form4_transactions s
+                  WHERE s.ticker=f.ticker AND s.code='S' AND s.trans_date >= date('now','-30 days')
+                    AND s.price IS NOT NULL AND s.price < 200000) AS sell_m
         FROM form4_transactions f
         LEFT JOIN ticker_meta tm ON tm.ticker = f.ticker
         LEFT JOIN unified_signal us ON us.ticker = f.ticker
@@ -636,22 +801,28 @@ def sheet_insider_recent(wb, conn):
         ORDER BY dollars_m DESC"""))
     out = []
     for r in rows:
-        out.append([r[0], round(r[1], 2), r[2], r[3], round(r[4] or 0, 2),
+        buy, sell = r[1] or 0, r[16] or 0
+        out.append([r[0], round(buy, 2), round(sell, 2) if sell else "",
+                    round(buy - sell, 2), r[2],
+                    "CEO/CFO" if r[14] else "", r[15],
+                    round(r[4] or 0, 2),
                     r[5] or "", r[6] or "unknown",
                     r[7] or 0, r[8] or 0, r[9] or 0,
                     round(r[10] or 0, 1),
                     round(r[11], 1) if r[11] is not None else "",
-                    round(r[12], 2) if r[12] is not None else "",
                     (r[13] or "")[:38]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=2).number_format = NUMFMT_M_TO_B
-        ws.cell(row=ridx, column=5).number_format = NUMFMT_USD2
-        ws.cell(row=ridx, column=6).number_format = NUMFMT_MCAP
-        ws.cell(row=ridx, column=11).number_format = NUMFMT_PCT
-        ws.cell(row=ridx, column=12).number_format = '0.0"x"'
-        ws.cell(row=ridx, column=13).number_format = '0.00"x"'
+        ws.cell(row=ridx, column=3).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=4).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=8).number_format = NUMFMT_USD2    # Avg Px
+        ws.cell(row=ridx, column=9).number_format = NUMFMT_MCAP    # Mcap
+        ws.cell(row=ridx, column=14).number_format = NUMFMT_PCT    # Act %
+        ws.cell(row=ridx, column=15).number_format = '0.0"x"'      # EV/EBITDA
     ws.freeze_panes = "B5"
+    if out:
+        ws.auto_filter.ref = f"A4:P{4 + len(out)}"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
 
@@ -659,13 +830,14 @@ def sheet_clusters(wb, conn):
     ws = wb.create_sheet("Insider Clusters")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Live Insider Clusters",
-                "Insider buy clusters (≤180-day window) — multiple insiders, same ticker.", 11)
-    hdr = ["Ticker","Trigger","Window End","# Insiders","Cluster $M","Avg Px","Top Buyer","Mcap","Bucket","EV/EBITDA","P/B"]
+                "Insider buy clusters (≤180-day window) — multiple insiders, same ticker. Days-Ago from the window end: a 3-day-old cluster is far stronger than a 29-day-old one.", 12)
+    hdr = ["Ticker","Trigger","Days Ago","Window End","# Insiders","Cluster $M","Avg Px","Top Buyer","Mcap","Bucket","EV/EBITDA","P/B"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT ic.ticker, ic.trigger, ic.window_end, ic.n_insiders, ic.total_usd_m,
                ic.avg_price, ic.top_buyer, tm.mcap_m, us.mcap_bucket,
-               us.ev_ebitda, us.pb_ratio
+               us.ev_ebitda, us.pb_ratio,
+               CAST(julianday('now') - julianday(ic.window_end) AS INT) AS days_ago
         FROM insider_clusters ic
         LEFT JOIN ticker_meta tm ON tm.ticker = ic.ticker
         LEFT JOIN unified_signal us ON us.ticker = ic.ticker
@@ -673,17 +845,17 @@ def sheet_clusters(wb, conn):
           AND COALESCE(us.sec_type,'common')='common'
           AND ic.n_insiders >= 2
         ORDER BY ic.total_usd_m DESC"""))
-    out = [[r[0], r[1], r[2], r[3], round(r[4] or 0, 2), round(r[5] or 0, 2),
+    out = [[r[0], r[1], r[11], r[2], r[3], round(r[4] or 0, 2), round(r[5] or 0, 2),
             r[6][:30] if r[6] else "", r[7] or "", r[8] or "unknown",
             round(r[9], 1) if r[9] is not None else "",
             round(r[10], 2) if r[10] is not None else ""] for r in rows]
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
-        ws.cell(row=ridx, column=5).number_format = NUMFMT_M_TO_B
-        ws.cell(row=ridx, column=6).number_format = NUMFMT_USD2
-        ws.cell(row=ridx, column=8).number_format = NUMFMT_MCAP
-        ws.cell(row=ridx, column=10).number_format = '0.0"x"'
-        ws.cell(row=ridx, column=11).number_format = '0.00"x"'
+        ws.cell(row=ridx, column=6).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=7).number_format = NUMFMT_USD2
+        ws.cell(row=ridx, column=9).number_format = NUMFMT_MCAP
+        ws.cell(row=ridx, column=11).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=12).number_format = '0.00"x"'
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
@@ -1555,6 +1727,9 @@ def main():
     write_legend_sheet(wb, 1)
     sheet_action_dashboard(wb, conn)      # front-page scannable summary
     sheet_convergence(wb, conn)           # multi-signal convergence matrix
+    sheet_dossier(wb, conn)               # per-ticker consolidated view
+    if _has_prior(conn):
+        sheet_qoq_change(wb, conn)        # quarter-over-quarter accumulation/distribution
     sheet_best_ideas(wb, conn)
     sheet_adversarial_review(wb, conn)
     write_signal_sheet(wb, conn, "Top 100",

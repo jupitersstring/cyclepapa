@@ -91,9 +91,41 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
     style_funds = [r[0] for r in conn.execute(
         "SELECT fund FROM fund_style WHERE macro_style = ?", (macro_style,))]
     write_title(ws, macro_style,
-                f"Top picks held by funds in this style ({len(style_funds)} funds).",
+                f"Top picks held by funds in this style ({len(style_funds)} funds). "
+                f"'Signature picks' = names this style over-indexes on vs the whole universe (lift) — its DISTINCTIVE bets, not the mega-caps everyone owns.",
                 17)
     row = 4
+    # ---- SIGNATURE PICKS: where this style over-indexes vs the universe ----
+    # lift = (style holder-share) / (universe holder-share). A name held by a much
+    # larger fraction of THIS style than of all funds is the style's fingerprint;
+    # this is what stops GOOGL/AMZN topping all 15 style sheets identically.
+    n_style = len(style_funds) or 1
+    n_univ = conn.execute("SELECT COUNT(DISTINCT fund) FROM fund_13f_holdings WHERE ticker IS NOT NULL").fetchone()[0] or 1
+    ph_sig = ",".join("?" * len(style_funds))
+    sig = list(conn.execute(f"""
+        WITH uni AS (SELECT ticker, COUNT(DISTINCT fund) uh FROM fund_13f_holdings
+                     WHERE ticker IS NOT NULL AND sh_type IN ('SH','') GROUP BY ticker),
+             sty AS (SELECT ticker, COUNT(DISTINCT fund) sh FROM fund_13f_holdings
+                     WHERE ticker IS NOT NULL AND sh_type IN ('SH','') AND fund IN ({ph_sig}) GROUP BY ticker)
+        SELECT sty.ticker, sty.sh, uni.uh,
+               (sty.sh*1.0/{n_style}) / (uni.uh*1.0/{n_univ}) AS lift,
+               us.score, us.mcap_bucket, us.ev_ebitda, us.max_pct_book, tm.name
+        FROM sty JOIN uni ON uni.ticker=sty.ticker
+        LEFT JOIN unified_signal us ON us.ticker=sty.ticker
+        LEFT JOIN ticker_meta tm ON tm.ticker=sty.ticker
+        WHERE sty.sh >= 3 AND COALESCE(us.sec_type,'common')='common'
+        ORDER BY lift DESC, sty.sh DESC LIMIT 12""", style_funds))
+    if sig:
+        write_section_heading(ws, row, "Signature picks — this style's distinctive over-weights (by lift)", 17); row += 1
+        write_table_header(ws, row, ["Ticker","Lift","St Held","Uni Held","Score","Bucket","EV/EBITDA","pB Max","Name"]); row += 1
+        sout = [[s[0], round(s[3], 1), s[1], s[2],
+                 round(s[4] or 0, 1), s[5] or "",
+                 round(s[6], 1) if s[6] is not None else "",
+                 round(s[7] or 0, 1), (s[8] or "")[:40]] for s in sig]
+        write_table_rows(ws, sout, row, ticker_col=1);
+        for rr in range(row, row + len(sout)):
+            ws.cell(row=rr, column=2).number_format = '0.0"x"'
+        row += len(sout) + 2
     write_section_heading(ws, row, "Top picks — most held within this style", 17)
     row += 1
     hdr = ["Ticker","St Holders","pB Max","pB ≥5%","S3","S4","S1","Mcap","Bucket","EV/EBITDA","P/B","Act %","Clu $M","F4 Buy","Name","Industry","Business"]

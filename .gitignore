@@ -16,3 +16,4 @@ __pycache__/
 *.log
 figi.log
 recover.log
+prior.log
