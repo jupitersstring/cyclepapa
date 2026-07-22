@@ -230,6 +230,8 @@ LEGEND = [
         ("Global Score", "Score excluding US-only signals (Form 4, clusters) so foreign listings rank on equal footing."),
         ("Rev Pref", "Revealed preference = 2×S3 + 1×S4 + 0.5×S1 — measures active accumulation, not static holding."),
         ("Asym", "Asymmetry score — margin-of-safety (cheap valuation + below smart-money entry) × upside (conviction + catalyst + small-cap room)."),
+        ("Why", "The top-3 terms driving the Score, as compact codes: sm=smart-money holders, s1=top-pick funds, s3=new-position funds, s4=add funds, pb=low price/book, pb5=funds ≥5% book, clu$=insider-cluster $, f4buy=insider buys, f4rec=very-recent buys, f4sell=insider sells, act=activist %, 8k=catalyst, micro=small-cap, entry=below smart-money entry. e.g. 's1 24 · pb5 18 · pb 14'."),
+        ("Lift  (Signature picks)", "How much a fund STYLE over-indexes on a name vs the whole universe: (style holder-share) ÷ (universe holder-share). >1 = the style's distinctive bet."),
     ]),
     ("Activist & insider (SEC)", [
         ("13D", "Number of SC 13D / 13G beneficial-ownership filings (a ≥5% stake)."),
@@ -244,9 +246,22 @@ LEGEND = [
     ]),
     ("Valuation", [
         ("Mcap", "Market capitalization in USD ($M, auto-scaled to $B / $T). Foreign caps are FX-converted to USD."),
+        ("ADV $M", "Average daily dollar volume traded (3-month, $M) — the tradeability check: a high score on a $0.3M/day nano is hard to act on."),
         ("EV/EBITDA", "Enterprise value ÷ trailing EBITDA (shown ×). A negative figure means negative EBITDA."),
         ("P/B", "Price ÷ book value per share (shown ×). A negative figure means negative book equity."),
-        ("P/E", "Price ÷ trailing-twelve-month earnings per share (shown ×)."),
+        ("P/E  /  Fwd P/E", "Price ÷ trailing (or forward) EPS (shown ×)."),
+        ("Rev Gr %", "Year-over-year revenue growth. Negative (crimson) flags a possible value trap on an otherwise-cheap multiple."),
+        ("Margin %", "Net profit margin. Negative (crimson) = loss-making."),
+        ("EV/Rev  /  PEG", "Enterprise value ÷ revenue; PEG = P/E ÷ growth. Cover names with no meaningful EV/EBITDA."),
+    ]),
+    ("Price & momentum (from daily closes)", [
+        ("3mo %  /  20d %", "Price change over the last ~3 months / ~20 trading days. Positive = lapis, negative = crimson."),
+        ("Off Hi %", "Percent below the 3-month high (drawdown). A name deep off its high with insiders buying is a different setup from one at highs."),
+    ]),
+    ("Quarter-over-quarter (QoQ Change sheet)", [
+        ("Net Funds", "(New + Added) − (Trimmed + Exited) funds this quarter vs each fund's prior 13F. Lapis = accumulating, crimson = distributing."),
+        ("New / Added / Trimmed / Exited", "Count of funds that started / grew (>5%) / cut (>5%) / closed the position, matched on CUSIP + share count."),
+        ("Δ Shares %", "Aggregate share-count change across all funds vs the prior quarter."),
     ]),
     ("Entry / setup", [
         ("Entry / Bucket", "Where the current price sits versus the smart-money cost anchor: below / near / above."),
@@ -272,11 +287,17 @@ LEGEND = [
         ("unknown", "Market cap unresolved (foreign / SPAC / warrant / defunct)."),
     ]),
     ("Sources & symbols", [
-        ("13F-HR", "SEC quarterly institutional holdings filing (the standard smart-money source)."),
+        ("13F-HR", "SEC quarterly institutional holdings filing (the standard smart-money source). NOTE: 13F holdings are quarter-END positions filed up to 45 days later — the smart-money columns can be up to ~3–4 months old (see each sheet's as-of date). Form 4 / 13D / 8-K / valuation columns are near-current."),
         ("XLSX", "Research-team position classification (sections 1 / 3 / 4 / 5)."),
         ("SC 13D/G", "SEC beneficial-ownership filing (a ≥5% stake)."),
         ("Value $M", "Position market value in $M (13F holdings); blank for 13D/G rows."),
         ("—", "An em-dash means not applicable / not available for that cell."),
+    ]),
+    ("Colour (Times-Lattice — 'colour is data')", [
+        ("Lapis blue", "Good / improving: positive momentum & growth, insider buying, net funds accumulating, cheap valuation."),
+        ("Crimson red", "Bad / deteriorating: negative momentum & growth, insider selling, net funds distributing."),
+        ("Faint wash", "Score / valuation / vs-entry heatmaps — a lapis or crimson tint at ~7% strength, darker = more attractive."),
+        ("Black only", "Everything structural. Colour appears ONLY where it carries a good/bad meaning, never for decoration."),
     ]),
 ]
 
