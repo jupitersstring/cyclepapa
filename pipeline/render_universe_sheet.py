@@ -18,7 +18,7 @@ from _style_bw import (
     NUMFMT_USD, NUMFMT_PCT, NUMFMT_NUM, NUMFMT_INT, NUMFMT_USD2,
     NUMFMT_MCAP, NUMFMT_M_TO_B,
     TNR, SIZE_BODY, BODY_FONT, BODY_ITALIC, SECTION_FONT, TICKER_FONT, MONO_FONT,
-    BLACK, ROW_BORDER,
+    BLACK, ROW_BORDER, LAPIS, CRIMSON, color_directional,
 )
 from openpyxl.styles import Font, Alignment, Border, Side
 
@@ -151,26 +151,28 @@ def format_signal_row(ws, ridx):
     ws.cell(row=ridx, column=29).number_format = NUMFMT_USD2   # px
 
 def add_signal_heatmap(ws, first_row, last_row):
-    """Monochrome conditional-format heatmaps on the key decision columns so a
-    reader can eyeball the cheap-below-entry-high-score corner without reading
-    every cell. Score/vs-entry darker = more attractive; valuation cheaper=darker."""
+    """Times-Lattice 'colour is data': faint lapis (good) / crimson (bad) washes on
+    the decision columns — a dark ink reduced to a whisper, never a bright pastel.
+    Score higher = deeper lapis; valuation cheaper = deeper lapis; vs-entry diverges
+    lapis(below, opportunity)↔crimson(well above)."""
     from openpyxl.formatting.rule import ColorScaleRule, DataBarRule
     if last_row < first_row:
         return
     rng = lambda col: f"{col}{first_row}:{col}{last_row}"
-    WHITE, GREY, DARK = "FFFFFF", "BFBFBF", "595959"
-    # Score (col B): higher = darker (more attractive)
+    WHITE = "FFFFFF"
+    LAPIS_WASH, CRIMSON_WASH = "DDE2EA", "EDDCE0"   # the two inks at ~7% strength
+    # Score (col B): higher = deeper lapis (more attractive)
     ws.conditional_formatting.add(rng("B"),
-        ColorScaleRule(start_type="min", start_color=WHITE, end_type="max", end_color=DARK))
-    ws.conditional_formatting.add(rng("B"), DataBarRule(start_type="min", end_type="max", color="A6A6A6"))
-    # EV/EBITDA (T) and P/B (U): cheaper (lower) = darker
+        ColorScaleRule(start_type="min", start_color=WHITE, end_type="max", end_color=LAPIS_WASH))
+    ws.conditional_formatting.add(rng("B"), DataBarRule(start_type="min", end_type="max", color="C7CEDA"))
+    # EV/EBITDA (T) and P/B (U): cheaper (lower) = deeper lapis
     for col in ("T", "U"):
         ws.conditional_formatting.add(rng(col),
-            ColorScaleRule(start_type="min", start_color=DARK, end_type="max", end_color=WHITE))
-    # vs Entry % (W): more below entry (more negative) = darker
+            ColorScaleRule(start_type="min", start_color=LAPIS_WASH, end_type="max", end_color=WHITE))
+    # vs Entry % (W): below entry (negative) lapis opportunity ↔ well above crimson
     ws.conditional_formatting.add(rng("W"),
-        ColorScaleRule(start_type="min", start_color=DARK, mid_type="num", mid_value=0, mid_color=GREY,
-                       end_type="max", end_color=WHITE))
+        ColorScaleRule(start_type="min", start_color=LAPIS_WASH, mid_type="num", mid_value=0, mid_color=WHITE,
+                       end_type="max", end_color=CRIMSON_WASH))
 
 # ---- sheets -----------------------------------------------------------------
 def sheet_readme(wb, conn):
@@ -294,6 +296,7 @@ def write_signal_sheet(wb, conn, name, where_extra="", limit=200, subtitle="", e
     for ridx in range(5, 5 + len(out)):
         format_signal_row(ws, ridx)
     add_signal_heatmap(ws, 5, 4 + len(out))
+    color_directional(ws, 5, 4 + len(out), 24, higher_is_better=True)   # 3mo % momentum
     ws.freeze_panes = "B5"
     if out:
         ws.auto_filter.ref = f"A4:{get_column_letter(len(SIG_HDR))}{4 + len(out)}"
@@ -491,11 +494,9 @@ def sheet_qoq_change(wb, conn):
         out.append([tk, nf, n_new, n_add, n_trim, n_exit,
                     round(max(-99, min(999, d_pct)), 0), round(score or 0, 1), mcap or "", (name or "")[:38]])
     write_table_rows(ws, out, 5, ticker_col=1)
-    from openpyxl.formatting.rule import ColorScaleRule
+    # colour is data: Net Funds & Δ Shares — lapis building, crimson trimming
+    color_directional(ws, 5, 4 + len(out), [2, 7], higher_is_better=True)
     if out:
-        ws.conditional_formatting.add(f"B5:B{4+len(out)}",
-            ColorScaleRule(start_type="min", start_color="7A0019", mid_type="num", mid_value=0,
-                           mid_color="FFFFFF", end_type="max", end_color="061933"))
         ws.auto_filter.ref = f"A4:J{4+len(out)}"
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=7).number_format = NUMFMT_M_TO_B
@@ -820,6 +821,8 @@ def sheet_insider_recent(wb, conn):
         ws.cell(row=ridx, column=9).number_format = NUMFMT_MCAP    # Mcap
         ws.cell(row=ridx, column=14).number_format = NUMFMT_PCT    # Act %
         ws.cell(row=ridx, column=15).number_format = '0.0"x"'      # EV/EBITDA
+    # colour is data: Net $ (buy − sell) — lapis net buying, crimson net selling
+    color_directional(ws, 5, 4 + len(out), 4, higher_is_better=True)
     ws.freeze_panes = "B5"
     if out:
         ws.auto_filter.ref = f"A4:P{4 + len(out)}"
@@ -1180,13 +1183,9 @@ def sheet_valuation(wb, conn):
                     round(r[10] or 0, 1) if r[10] else "",
                     (r[11] or "")[:38], (r[12] or "")[:30], d[0], d[1]])
     write_table_rows(ws, out, 5)
-    # flag value traps: negative revenue growth OR negative margin in red-ish grey
-    from openpyxl.styles import Font as _F
-    for ridx in range(5, 5 + len(out)):
-        for col in (7, 8):  # Rev Gr %, Margin %
-            c = ws.cell(row=ridx, column=col)
-            if isinstance(c.value, (int, float)) and c.value < 0:
-                c.font = _F(name=c.font.name, size=c.font.size, bold=True, color="7F1D1D")
+    # colour is data: Rev Gr % and Margin % — lapis growing/profitable, crimson
+    # shrinking/loss-making (the value-trap tell).
+    color_directional(ws, 5, 4 + len(out), [7, 8], higher_is_better=True)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=2).number_format = '0.0"x"'    # EV/EBITDA
         ws.cell(row=ridx, column=3).number_format = '0.00"x"'   # P/B

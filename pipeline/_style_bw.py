@@ -28,6 +28,37 @@ SIZE_TITLE = 14
 BLACK = "000000"
 LIGHT_GREY = "BFBFBF"
 HAIRLINE = "D9D9D9"
+MUTED = "3F3F3F"
+# Times-Lattice style guide: the ONLY two accent inks. Colour is data — lapis =
+# good/improving, crimson = bad/deteriorating. Used ONLY as directional font
+# colour on value cells (never fills, headings, or borders).
+LAPIS = "061933"
+CRIMSON = "7A0019"
+
+def ink_for(value, higher_is_better=True):
+    """Return LAPIS (good) / CRIMSON (bad) / None for a signed value."""
+    try:
+        v = float(value)
+    except (TypeError, ValueError):
+        return None
+    if v == 0:
+        return None
+    good = (v > 0) if higher_is_better else (v < 0)
+    return LAPIS if good else CRIMSON
+
+def color_directional(ws, first_row, last_row, cols, higher_is_better=True):
+    """Colour the given 1-indexed columns lapis/crimson by the cell's sign, over
+    [first_row, last_row]. cols may be one int or a list. Keeps Times + size."""
+    if isinstance(cols, int):
+        cols = [cols]
+    for r in range(first_row, last_row + 1):
+        for c in cols:
+            cell = ws.cell(row=r, column=c)
+            ink = ink_for(cell.value, higher_is_better)
+            if ink:
+                f = cell.font
+                cell.font = Font(name=f.name or TNR, size=f.size or SIZE_BODY,
+                                 bold=f.bold, italic=f.italic, color=ink)
 
 # Fonts
 TITLE_FONT     = Font(name=TNR, bold=True, size=SIZE_TITLE, color=BLACK)
@@ -66,9 +97,11 @@ NUMFMT_MCAP = '[>=1000000]"$"#,##0.0,,"T";[>=1000]"$"#,##0.0,"B";"$"#,##0" M"'
 # Same idea for dollar quantities in $M (Form 4 $M, cluster $M, position $M):
 NUMFMT_M_TO_B = '[>=1000]"$"#,##0.0,"B";"$"#,##0.0" M"'
 
-HDR_HEIGHT = 22
-BODY_HEIGHT = 18
-TITLE_HEIGHT = 30
+# Times-Lattice density spec — rows are separated by a hairline, not padding, so
+# heights are tight (the ledger-like feel). Was 22/18/30 (airy); now dense.
+HDR_HEIGHT = 17
+BODY_HEIGHT = 14
+TITLE_HEIGHT = 26
 
 # ---------- helpers ----------
 def write_title(ws, title, subtitle, ncols):
