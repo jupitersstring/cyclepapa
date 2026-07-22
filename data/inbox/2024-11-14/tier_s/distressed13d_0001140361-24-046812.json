@@ -1,0 +1,18 @@
+{
+  "accession": "0001140361-24-046812",
+  "cik": "0001547903",
+  "distressed_fund": "Oaktree Capital",
+  "fetched_at": "2026-07-22T22:39:06.553377Z",
+  "filed": "2024-11-14",
+  "form": "SC 13G/A",
+  "form_code": "SC 13G/A",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "NMI Holdings, Inc.",
+  "query_label": "tier_s.distressed_13g",
+  "query_note": "Oaktree Capital filed SC 13G/A on NMI Holdings, Inc. \u2014 a distressed/loan-to-own fund taking a passive >5% (13G) equity stake. Classic debt-to-equity control signal: verify whether the stake came through a restructuring / post-reorg distribution.",
+  "source": "EDGAR-distressed13D",
+  "ticker": "NMIH",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001547903&type=SC+13D"
+}

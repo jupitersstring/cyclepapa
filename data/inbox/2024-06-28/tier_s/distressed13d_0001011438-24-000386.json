@@ -1,0 +1,18 @@
+{
+  "accession": "0001011438-24-000386",
+  "cik": "0001805077",
+  "distressed_fund": "Cerberus Capital",
+  "fetched_at": "2026-07-22T22:39:06.553377Z",
+  "filed": "2024-06-28",
+  "form": "SC 13D",
+  "form_code": "SC 13D",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Eos Energy Enterprises, Inc.",
+  "query_label": "tier_s.distressed_13d",
+  "query_note": "Cerberus Capital filed SC 13D on Eos Energy Enterprises, Inc. \u2014 a distressed/loan-to-own fund taking a CONTROL (13D) equity stake. Classic debt-to-equity control signal: verify whether the stake came through a restructuring / post-reorg distribution.",
+  "source": "EDGAR-distressed13D",
+  "ticker": "EOSER",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001805077&type=SC+13D"
+}

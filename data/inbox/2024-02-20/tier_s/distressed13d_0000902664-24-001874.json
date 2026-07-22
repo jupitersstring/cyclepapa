@@ -1,0 +1,18 @@
+{
+  "accession": "0000902664-24-001874",
+  "cik": "0001064728",
+  "distressed_fund": "Elliott Investment Management",
+  "fetched_at": "2026-07-22T22:39:06.553377Z",
+  "filed": "2024-02-20",
+  "form": "SC 13D/A",
+  "form_code": "SC 13D/A",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "PEABODY ENERGY CORP",
+  "query_label": "tier_s.distressed_13d",
+  "query_note": "Elliott Investment Management filed SC 13D/A on PEABODY ENERGY CORP \u2014 a distressed/loan-to-own fund taking a CONTROL (13D) equity stake. Classic debt-to-equity control signal: verify whether the stake came through a restructuring / post-reorg distribution.",
+  "source": "EDGAR-distressed13D",
+  "ticker": "BTU",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001064728&type=SC+13D"
+}

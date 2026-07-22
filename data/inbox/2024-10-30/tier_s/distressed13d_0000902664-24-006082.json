@@ -1,0 +1,18 @@
+{
+  "accession": "0000902664-24-006082",
+  "cik": "0000092380",
+  "distressed_fund": "Elliott Investment Management",
+  "fetched_at": "2026-07-22T22:39:06.553377Z",
+  "filed": "2024-10-30",
+  "form": "SC 13D/A",
+  "form_code": "SC 13D/A",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "SOUTHWEST AIRLINES CO",
+  "query_label": "tier_s.distressed_13d",
+  "query_note": "Elliott Investment Management filed SC 13D/A on SOUTHWEST AIRLINES CO \u2014 a distressed/loan-to-own fund taking a CONTROL (13D) equity stake. Classic debt-to-equity control signal: verify whether the stake came through a restructuring / post-reorg distribution.",
+  "source": "EDGAR-distressed13D",
+  "ticker": "LUV",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000092380&type=SC+13D"
+}

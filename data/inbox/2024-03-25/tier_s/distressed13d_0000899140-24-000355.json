@@ -1,0 +1,18 @@
+{
+  "accession": "0000899140-24-000355",
+  "cik": "0000939930",
+  "distressed_fund": "Monarch Alternative",
+  "fetched_at": "2026-07-22T22:39:06.553377Z",
+  "filed": "2024-03-25",
+  "form": "SC 13D/A",
+  "form_code": "SC 13D/A",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "PYXUS INTERNATIONAL, INC.",
+  "query_label": "tier_s.distressed_13d",
+  "query_note": "Monarch Alternative filed SC 13D/A on PYXUS INTERNATIONAL, INC. \u2014 a distressed/loan-to-own fund taking a CONTROL (13D) equity stake. Classic debt-to-equity control signal: verify whether the stake came through a restructuring / post-reorg distribution.",
+  "source": "EDGAR-distressed13D",
+  "ticker": "PYYX",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000939930&type=SC+13D"
+}

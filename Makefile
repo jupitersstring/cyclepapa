@@ -1,4 +1,4 @@
-.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll hkex-poll sgx-poll euronext-poll jse-poll poll-all security-master source-health corroborate reconcile postreorg-score postreorg-verify emergence-master db listed-equity-screen waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
+.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll hkex-poll sgx-poll euronext-poll jse-poll distressed-13d-poll poll-all security-master source-health corroborate reconcile postreorg-score postreorg-verify emergence-master db listed-equity-screen waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
 
 help:
 	@echo "Targets:"
@@ -159,6 +159,12 @@ postreorg-score: audit
 # committed only so the durability audit sees no untracked data.
 db: audit
 	python3 -m src.inbox_db --build
+
+# Distressed-fund 13D control tracker — loan-to-own funds (Oaktree,
+# Apollo, Centerbridge, Elliott, Silver Point...) filing 13D/13G on an
+# equity = debt-to-equity control, the highest-signal post-reorg tell.
+distressed-13d-poll: audit
+	python3 -m src.distressed_13d_poll --days-back 730
 
 # HKEX (Hong Kong) special-situations poller — resumption-of-trading,
 # scheme/restructuring, privatisation, suspension, liquidation via the free

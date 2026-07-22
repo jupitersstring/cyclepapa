@@ -124,6 +124,8 @@ PROMOTE_TIER_S_TIGHT = {                  # tier_s sub-queries that promote
     "resumption",      # trading resumption = post-reorg / re-listing event
     "scheme", "privatisation", "suspension",
     "restructuring", "recapitalisation",
+    # ---- Distressed-fund 13D control tracker (distressed_13d_poll.py) ----
+    "distressed_13d", "distressed_13g",
     # ---- Cross-source corroboration (corroborate.py) ----
     "corroborated_multi",
 }
