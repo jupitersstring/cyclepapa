@@ -62,6 +62,7 @@ EXPECTED_SOURCES = {
     "EDGAR-Form15", "EDGAR-Form4-cluster-sells", "EDGAR-SC13D", "EDGAR-forms",
     "EDGAR-postreorg", "EDGAR-FTS", "FRED-ICE-BofA-OAS", "LDA-Senate", "NSM",
     "OFAC", "SEDAR+", "TDnet", "spinoff-radar", "HKEXnews",
+    "SGX", "OAM-AMF", "JSE-SENS",
 }
 
 

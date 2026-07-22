@@ -1,0 +1,17 @@
+{
+  "accession": "FR001400IE672026-06-26",
+  "cik": "",
+  "fetched_at": "2026-07-22T16:40:21.263834Z",
+  "filed": "2026-06-26",
+  "form": "MHM Corporate: Restructuration de sa dette par voie d'obligations remboursables en actions",
+  "form_code": "OAM-AMF",
+  "isin": "FR001400IE67",
+  "jurisdiction": "FR",
+  "name": "MHM Corporate: Restructuration de sa dette par voie d'obliga",
+  "query_label": "tier_s.restructuring",
+  "query_note": "Restructuration financi\u00e8re \u2014 balance-sheet restructuring.  [matched: restructuration]",
+  "source": "OAM-AMF",
+  "ticker": "EPA:FR001400IE67",
+  "tier": "tier_s",
+  "url": "https://www.info-financiere.gouv.fr/"
+}

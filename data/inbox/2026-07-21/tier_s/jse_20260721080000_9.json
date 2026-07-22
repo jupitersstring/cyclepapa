@@ -1,0 +1,17 @@
+{
+  "accession": "20260721080000_9",
+  "cik": "",
+  "fetched_at": "2026-07-22T16:40:31.752456Z",
+  "filed": "2026-07-21",
+  "form": "Partial Delisting Satrix Msci Emg Markets Feeder",
+  "form_code": "JSE-SENS",
+  "isin": null,
+  "jurisdiction": "ZA",
+  "name": "SATRIX COLLECTIVE INVESTMENT SCHEME",
+  "query_label": "tier_s.liquidation",
+  "query_note": "JSE Liquidation / winding-up / delisting.",
+  "source": "JSE-SENS",
+  "ticker": "",
+  "tier": "tier_s",
+  "url": "https://www.sharenet.co.za/v3/sens_display.php?tdate=20260721080000&seq=9&scode="
+}

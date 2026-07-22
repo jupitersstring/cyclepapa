@@ -87,6 +87,16 @@ def _classify(rec) -> tuple[str, bool] | None:
         return ("plan-effective 8-K", True)
     if "emergence" in lbl:
         return ("emergence signal", True)
+    # Foreign-exchange resumption of trading (HKEX 17650 / Euronext reprise /
+    # JSE reinstatement) = a security re-listing after a restructuring, the
+    # non-US analogue of a fresh-start emergence.
+    if "resumption" in lbl:
+        return ("resumption of listing (foreign)", True)
+    # court-supervised recap in progress — corroborating, not yet emerged
+    if "scheme" in lbl:
+        return ("scheme of arrangement", False)
+    if "restructuring" in lbl or "recapitalis" in lbl:
+        return ("restructuring in progress", False)
     # 8-K Item 1.03 covers BOTH entry and emergence; treat as corroborating
     # (the emergence_master can't split them without the body, so it counts
     # only as a supporting court/structural signal).

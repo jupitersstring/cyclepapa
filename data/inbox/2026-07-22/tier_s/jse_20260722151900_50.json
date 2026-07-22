@@ -1,0 +1,17 @@
+{
+  "accession": "20260722151900_50",
+  "cik": "",
+  "fetched_at": "2026-07-22T16:40:31.752456Z",
+  "filed": "2026-07-22",
+  "form": "REINSTATEMENT OF THE GCFO",
+  "form_code": "JSE-SENS",
+  "isin": null,
+  "jurisdiction": "ZA",
+  "name": "CITY OF TSHWANE METROPOLITAN MUNICIPALITY",
+  "query_label": "tier_s.resumption",
+  "query_note": "JSE Reinstatement / Resumption of listing \u2014 trading resumes, typically post-restructuring: the SA post-reorg event.",
+  "source": "JSE-SENS",
+  "ticker": "",
+  "tier": "tier_s",
+  "url": "https://www.sharenet.co.za/v3/sens_display.php?tdate=20260722151900&seq=50&scode="
+}

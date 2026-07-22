@@ -1,0 +1,17 @@
+{
+  "accession": "FR00133417812026-06-18",
+  "cik": "",
+  "fetched_at": "2026-07-22T16:40:21.263834Z",
+  "filed": "2026-06-18",
+  "form": "2CRSi SA: 2CRSi conteste le contenu du document publi\u00e9 par Grizzly Research et pr\u00e9pare une r\u00e9ponse document\u00e9e n\u00e9cessitant la suspension de la cotation de son ti",
+  "form_code": "OAM-AMF",
+  "isin": "FR0013341781",
+  "jurisdiction": "FR",
+  "name": "2CRSi SA: 2CRSi conteste le contenu du document publi\u00e9 par G",
+  "query_label": "tier_s.resumption",
+  "query_note": "Euronext reprise de cotation \u2014 RESUMPTION of listing, typically post-restructuring: the French post-reorg event.  [matched: reprise de cotation]",
+  "source": "OAM-AMF",
+  "ticker": "EPA:FR0013341781",
+  "tier": "tier_s",
+  "url": "https://www.info-financiere.gouv.fr/"
+}

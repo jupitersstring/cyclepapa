@@ -1,0 +1,17 @@
+{
+  "accession": "FR00000357842026-04-30",
+  "cik": "",
+  "fetched_at": "2026-07-22T16:40:21.263834Z",
+  "filed": "2026-04-30",
+  "form": "Prorogation de la p\u00e9riode d'observation du redressement judiciaire pour une dur\u00e9e de six mois et mise \u00e0 disposition du Rapport financier annuel 2025",
+  "form_code": "OAM-AMF",
+  "isin": "FR0000035784",
+  "jurisdiction": "FR",
+  "name": "Prorogation de la p\u00e9riode d'observation du redressement judi",
+  "query_label": "tier_s.restructuring",
+  "query_note": "Redressement judiciaire \u2014 judicial reorganisation (deeper distress than sauvegarde).  [matched: redressement judiciaire]",
+  "source": "OAM-AMF",
+  "ticker": "EPA:FR0000035784",
+  "tier": "tier_s",
+  "url": "https://www.info-financiere.gouv.fr/"
+}

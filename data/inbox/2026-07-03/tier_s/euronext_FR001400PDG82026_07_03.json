@@ -1,0 +1,17 @@
+{
+  "accession": "FR001400PDG82026-07-03",
+  "cik": "",
+  "fetched_at": "2026-07-22T16:40:21.263834Z",
+  "filed": "2026-07-03",
+  "form": "Europlasma annonce l\u2019ouverture d\u2019une proc\u00e9dure  de redressement judiciaire de sa filiale FDB Industries",
+  "form_code": "OAM-AMF",
+  "isin": "FR001400PDG8",
+  "jurisdiction": "FR",
+  "name": "Europlasma annonce l\u2019ouverture d\u2019une proc\u00e9dure  de redressem",
+  "query_label": "tier_s.restructuring",
+  "query_note": "Redressement judiciaire \u2014 judicial reorganisation (deeper distress than sauvegarde).  [matched: redressement judiciaire]",
+  "source": "OAM-AMF",
+  "ticker": "EPA:FR001400PDG8",
+  "tier": "tier_s",
+  "url": "https://www.info-financiere.gouv.fr/"
+}

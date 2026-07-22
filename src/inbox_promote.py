@@ -120,9 +120,10 @@ PROMOTE_TIER_S_TIGHT = {                  # tier_s sub-queries that promote
     # ---- Multi-form labels (edgar_forms_poll.py) ----
     "proxy_contest", "merger_vote", "self_tender", "delisting_form25",
     "new_listing",   # Form 8-A — a NEW listed equity appearing (relisting/uplisting)
-    # ---- HKEX labels (hkex_poll.py) ----
-    "resumption",      # HK trading resumption = post-reorg / re-listing event
+    # ---- Foreign-exchange labels (hkex/sgx/euronext/jse pollers) ----
+    "resumption",      # trading resumption = post-reorg / re-listing event
     "scheme", "privatisation", "suspension",
+    "restructuring", "recapitalisation",
     # ---- Cross-source corroboration (corroborate.py) ----
     "corroborated_multi",
 }

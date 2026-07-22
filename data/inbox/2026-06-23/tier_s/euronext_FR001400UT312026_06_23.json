@@ -1,0 +1,17 @@
+{
+  "accession": "FR001400UT312026-06-23",
+  "cik": "",
+  "fetched_at": "2026-07-22T16:40:21.263834Z",
+  "filed": "2026-06-23",
+  "form": "Adomos annonce le d\u00e9part d'\u00c9ric Longu\u00e9p\u00e9e \u00e0 l'issue de sa mission de restructuration",
+  "form_code": "OAM-AMF",
+  "isin": "FR001400UT31",
+  "jurisdiction": "FR",
+  "name": "Adomos annonce le d\u00e9part d'\u00c9ric Longu\u00e9p\u00e9e \u00e0 l'issue de sa mi",
+  "query_label": "tier_s.restructuring",
+  "query_note": "Restructuration financi\u00e8re \u2014 balance-sheet restructuring.  [matched: restructuration]",
+  "source": "OAM-AMF",
+  "ticker": "EPA:FR001400UT31",
+  "tier": "tier_s",
+  "url": "https://www.info-financiere.gouv.fr/"
+}

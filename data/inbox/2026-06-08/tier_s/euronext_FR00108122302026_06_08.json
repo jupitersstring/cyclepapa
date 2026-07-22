@@ -1,0 +1,17 @@
+{
+  "accession": "FR00108122302026-06-08",
+  "cik": "",
+  "fetched_at": "2026-07-22T16:40:21.263834Z",
+  "filed": "2026-06-08",
+  "form": "Sirius Media restructure l'int\u00e9gralit\u00e9 de son emprunt obligataire de 5.774.322 EUR et all\u00e8ge sa charge financi\u00e8re de pr\u00e8s de 3,7 M EUR",
+  "form_code": "OAM-AMF",
+  "isin": "FR0010812230",
+  "jurisdiction": "FR",
+  "name": "Sirius Media restructure l'int\u00e9gralit\u00e9 de son emprunt obliga",
+  "query_label": "tier_s.restructuring",
+  "query_note": "Restructuration financi\u00e8re \u2014 balance-sheet restructuring.  [matched: restructuration]",
+  "source": "OAM-AMF",
+  "ticker": "EPA:FR0010812230",
+  "tier": "tier_s",
+  "url": "https://www.info-financiere.gouv.fr/"
+}

@@ -85,6 +85,22 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2,
+      "scheme of arrangement": 4
+    },
+    "cik": "",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-03-30",
+    "item_1_03": false,
+    "key": "NAME:cnengystorage",
+    "last_filed": "2026-07-15",
+    "name": "CN ENGY STORAGE",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01143.HK"
+  },
+  {
+    "channels": {
       "Form 25 old-share delisting": 2,
       "emergence 8-K prose": 1
     },
@@ -98,6 +114,40 @@
     "pending": false,
     "primary": true,
     "ticker": "TBRG"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2,
+      "scheme of arrangement": 1
+    },
+    "cik": "",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-06-23",
+    "item_1_03": false,
+    "key": "NAME:chinahuajungp",
+    "last_filed": "2026-07-02",
+    "name": "CHINA HUAJUN GP",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00377.HK"
+  },
+  {
+    "channels": {
+      "fresh-start accounting (10-K/Q)": 2,
+      "scheme of arrangement": 1
+    },
+    "cik": "0000314808",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-02-20",
+    "item_1_03": false,
+    "key": "CIK:314808",
+    "last_filed": "2026-07-01",
+    "name": [
+      "Valaris Ltd  (VAL, VAL-WT)  (CIK 0000314808)"
+    ],
+    "pending": false,
+    "primary": true,
+    "ticker": "VAL"
   },
   {
     "channels": {
@@ -130,6 +180,38 @@
     "pending": false,
     "primary": true,
     "ticker": "BATL"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 1,
+      "scheme of arrangement": 2
+    },
+    "cik": "",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-04-27",
+    "item_1_03": false,
+    "key": "NAME:cacultural",
+    "last_filed": "2026-06-30",
+    "name": "CA CULTURAL",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01566.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2,
+      "scheme of arrangement": 4
+    },
+    "cik": "",
+    "confidence": "high (primary + corroboration)",
+    "first_filed": "2026-03-16",
+    "item_1_03": false,
+    "key": "NAME:wecon",
+    "last_filed": "2026-06-24",
+    "name": "WECON HOLDINGS",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01793.HK"
   },
   {
     "channels": {
@@ -453,6 +535,96 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-07-21",
+    "item_1_03": false,
+    "key": "NAME:zfin",
+    "last_filed": "2026-07-22",
+    "name": "Z FIN",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01168.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 1
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-07-22",
+    "item_1_03": false,
+    "key": "NAME:citytshwanemetropolitanmunicipality",
+    "last_filed": "2026-07-22",
+    "name": "CITY OF TSHWANE METROPOLITAN MUNICIPALITY",
+    "pending": false,
+    "primary": true,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-07-17",
+    "item_1_03": false,
+    "key": "NAME:getnice",
+    "last_filed": "2026-07-20",
+    "name": "GET NICE",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00064.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-07-17",
+    "item_1_03": false,
+    "key": "NAME:chinapptinv",
+    "last_filed": "2026-07-20",
+    "name": "CHINA PPT INV",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00736.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 4
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-07-02",
+    "item_1_03": false,
+    "key": "NAME:carrywealth",
+    "last_filed": "2026-07-20",
+    "name": "CARRY WEALTH",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00643.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 1
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-07-20",
+    "item_1_03": false,
+    "key": "NAME:worldlinklog",
+    "last_filed": "2026-07-20",
+    "name": "WORLD-LINK LOG",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:06083.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0001790169",
@@ -465,6 +637,21 @@
     "pending": false,
     "primary": true,
     "ticker": "ZSTK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-07-20",
+    "item_1_03": false,
+    "key": "NAME:geotechhldgs",
+    "last_filed": "2026-07-20",
+    "name": "GEOTECH HLDGS",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01707.HK"
   },
   {
     "channels": {
@@ -483,6 +670,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-27",
+    "item_1_03": false,
+    "key": "NAME:chinarareearth",
+    "last_filed": "2026-07-15",
+    "name": "CHINA RAREEARTH",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00769.HK"
+  },
+  {
+    "channels": {
       "emergence 8-K prose": 1
     },
     "cik": "0001347242",
@@ -495,6 +697,51 @@
     "pending": false,
     "primary": true,
     "ticker": "LIPO"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-07-13",
+    "item_1_03": false,
+    "key": "NAME:primeintel",
+    "last_filed": "2026-07-14",
+    "name": "PRIME INTEL",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:08379.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-07-14",
+    "item_1_03": false,
+    "key": "NAME:cassavares",
+    "last_filed": "2026-07-14",
+    "name": "CASSAVA RES",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00841.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 4
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-01-29",
+    "item_1_03": false,
+    "key": "NAME:manshungp",
+    "last_filed": "2026-07-13",
+    "name": "MAN SHUN GP",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01746.HK"
   },
   {
     "channels": {
@@ -513,6 +760,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 6
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-09",
+    "item_1_03": false,
+    "key": "NAME:fastretaildrs",
+    "last_filed": "2026-07-10",
+    "name": "FAST RETAIL-DRS",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:06288.HK"
+  },
+  {
+    "channels": {
       "fresh-start accounting (10-K/Q)": 1
     },
     "cik": "0002045151",
@@ -525,6 +787,21 @@
     "pending": false,
     "primary": true,
     "ticker": ""
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-07-09",
+    "item_1_03": false,
+    "key": "NAME:simplicityhldg",
+    "last_filed": "2026-07-09",
+    "name": "SIMPLICITY HLDG",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:08367.HK"
   },
   {
     "channels": {
@@ -543,6 +820,51 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-07-03",
+    "item_1_03": false,
+    "key": "NAME:cciamfutureen",
+    "last_filed": "2026-07-06",
+    "name": "CCIAM FUTURE EN",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00145.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-07-02",
+    "item_1_03": false,
+    "key": "NAME:maxicity",
+    "last_filed": "2026-07-03",
+    "name": "MAXICITY",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:02295.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-30",
+    "item_1_03": false,
+    "key": "NAME:realwaycapital",
+    "last_filed": "2026-07-02",
+    "name": "REALWAY CAPITAL",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01835.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0000748592",
@@ -555,6 +877,21 @@
     "pending": false,
     "primary": true,
     "ticker": "ERNA"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-30",
+    "item_1_03": false,
+    "key": "NAME:moderninnodt",
+    "last_filed": "2026-07-02",
+    "name": "MODERN INNO DT",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:02322.HK"
   },
   {
     "channels": {
@@ -678,6 +1015,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-29",
+    "item_1_03": false,
+    "key": "NAME:idtintl",
+    "last_filed": "2026-06-30",
+    "name": "IDT INT'L",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00167.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 2
     },
     "cik": "0001856365",
@@ -693,6 +1045,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 4
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-05",
+    "item_1_03": false,
+    "key": "NAME:citicresources",
+    "last_filed": "2026-06-29",
+    "name": "CITIC RESOURCES",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01205.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0000919012",
@@ -705,6 +1072,21 @@
     "pending": false,
     "primary": true,
     "ticker": "AEO"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-29",
+    "item_1_03": false,
+    "key": "NAME:msctech",
+    "last_filed": "2026-06-29",
+    "name": "MSCTECH",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01632.HK"
   },
   {
     "channels": {
@@ -735,6 +1117,36 @@
     "pending": false,
     "primary": true,
     "ticker": "IMUX"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-25",
+    "item_1_03": false,
+    "key": "NAME:topsports",
+    "last_filed": "2026-06-26",
+    "name": "TOPSPORTS",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:06110.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 4
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-26",
+    "item_1_03": false,
+    "key": "NAME:rsunser",
+    "last_filed": "2026-06-25",
+    "name": "RSUN SER",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01971.HK"
   },
   {
     "channels": {
@@ -795,6 +1207,21 @@
     "pending": false,
     "primary": true,
     "ticker": "WEYS"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-23",
+    "item_1_03": false,
+    "key": "NAME:sinofortunefin",
+    "last_filed": "2026-06-24",
+    "name": "SINOFORTUNE FIN",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:08123.HK"
   },
   {
     "channels": {
@@ -903,6 +1330,66 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 1
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-18",
+    "item_1_03": false,
+    "key": "NAME:2crsi2crsicontestelecontenududocumentpubliparg",
+    "last_filed": "2026-06-18",
+    "name": "2CRSi SA: 2CRSi conteste le contenu du document publi\u00e9 par G",
+    "pending": false,
+    "primary": true,
+    "ticker": "EPA:FR0013341781"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-18",
+    "item_1_03": false,
+    "key": "NAME:chcityinfra",
+    "last_filed": "2026-06-18",
+    "name": "CH CITY INFRA",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:02349.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-17",
+    "item_1_03": false,
+    "key": "NAME:ctransmission",
+    "last_filed": "2026-06-18",
+    "name": "C TRANSMISSION",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00658.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 4
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-01-27",
+    "item_1_03": false,
+    "key": "NAME:fullshare",
+    "last_filed": "2026-06-18",
+    "name": "FULLSHARE",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00607.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0001437402",
@@ -918,6 +1405,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-16",
+    "item_1_03": false,
+    "key": "NAME:junwea",
+    "last_filed": "2026-06-16",
+    "name": "JUNWEA GROUP",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01920.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0002105398",
@@ -930,6 +1432,21 @@
     "pending": false,
     "primary": true,
     "ticker": "CSQR"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 4
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-18",
+    "item_1_03": false,
+    "key": "NAME:riverinechina",
+    "last_filed": "2026-06-16",
+    "name": "RIVERINE CHINA",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01417.HK"
   },
   {
     "channels": {
@@ -1053,6 +1570,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-09",
+    "item_1_03": false,
+    "key": "NAME:jintaienergyh",
+    "last_filed": "2026-06-10",
+    "name": "JINTAI ENERGY H",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:02728.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0001334036",
@@ -1113,6 +1645,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 4
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-03",
+    "item_1_03": false,
+    "key": "NAME:contel",
+    "last_filed": "2026-06-09",
+    "name": "CONTEL",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01912.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0002033383",
@@ -1155,6 +1702,36 @@
     "pending": false,
     "primary": true,
     "ticker": "WHK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-04",
+    "item_1_03": false,
+    "key": "NAME:sghldgs",
+    "last_filed": "2026-06-05",
+    "name": "SG GROUP HLDGS",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01657.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-04",
+    "item_1_03": false,
+    "key": "NAME:indigostar",
+    "last_filed": "2026-06-05",
+    "name": "INDIGO STAR",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:08373.HK"
   },
   {
     "channels": {
@@ -1218,6 +1795,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-04",
+    "item_1_03": false,
+    "key": "NAME:xizhitechp",
+    "last_filed": "2026-06-04",
+    "name": "XIZHI TECH-P",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01879.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0001535955",
@@ -1230,6 +1822,21 @@
     "pending": false,
     "primary": true,
     "ticker": "LPCN"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 1
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-06-03",
+    "item_1_03": false,
+    "key": "NAME:feg",
+    "last_filed": "2026-06-03",
+    "name": "FEG HOLDINGS",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01413.HK"
   },
   {
     "channels": {
@@ -1278,6 +1885,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-29",
+    "item_1_03": false,
+    "key": "NAME:tayang",
+    "last_filed": "2026-06-01",
+    "name": "TA YANG GROUP",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01991.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0002082247",
@@ -1305,6 +1927,36 @@
     "pending": false,
     "primary": true,
     "ticker": "XNDU"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-29",
+    "item_1_03": false,
+    "key": "NAME:conaerotech",
+    "last_filed": "2026-05-29",
+    "name": "CON AERO TECH",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00232.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-29",
+    "item_1_03": false,
+    "key": "NAME:mediachinese",
+    "last_filed": "2026-05-29",
+    "name": "MEDIA CHINESE",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00685.HK"
   },
   {
     "channels": {
@@ -1338,6 +1990,36 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-27",
+    "item_1_03": false,
+    "key": "NAME:momentumfin",
+    "last_filed": "2026-05-28",
+    "name": "MOMENTUM FIN",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01152.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-26",
+    "item_1_03": false,
+    "key": "NAME:ruifengrenew",
+    "last_filed": "2026-05-27",
+    "name": "RUIFENG RENEW",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00527.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0001046568",
@@ -1368,6 +2050,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 3
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-21",
+    "item_1_03": false,
+    "key": "NAME:zxznqihouse",
+    "last_filed": "2026-05-26",
+    "name": "ZXZN QI-HOUSE",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:08395.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0000877212",
@@ -1395,6 +2092,21 @@
     "pending": false,
     "primary": true,
     "ticker": "ELE"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-21",
+    "item_1_03": false,
+    "key": "NAME:sdhg",
+    "last_filed": "2026-05-22",
+    "name": "SDHG",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00412.HK"
   },
   {
     "channels": {
@@ -1440,6 +2152,21 @@
     "pending": false,
     "primary": true,
     "ticker": "HLI"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-20",
+    "item_1_03": false,
+    "key": "NAME:singamascont",
+    "last_filed": "2026-05-21",
+    "name": "SINGAMAS CONT",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00716.HK"
   },
   {
     "channels": {
@@ -1548,6 +2275,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-18",
+    "item_1_03": false,
+    "key": "NAME:jutengintl",
+    "last_filed": "2026-05-19",
+    "name": "JU TENG INTL",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:03336.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0001519401",
@@ -1638,6 +2380,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-15",
+    "item_1_03": false,
+    "key": "NAME:zhuguanghold",
+    "last_filed": "2026-05-18",
+    "name": "ZHUGUANG HOLD",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01176.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0001728117",
@@ -1665,6 +2422,21 @@
     "pending": false,
     "primary": true,
     "ticker": "CELC"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-14",
+    "item_1_03": false,
+    "key": "NAME:metaspacex",
+    "last_filed": "2026-05-15",
+    "name": "METASPACEX",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01796.HK"
   },
   {
     "channels": {
@@ -1710,6 +2482,21 @@
     "pending": false,
     "primary": true,
     "ticker": ""
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-13",
+    "item_1_03": false,
+    "key": "NAME:jlogohldgs",
+    "last_filed": "2026-05-14",
+    "name": "JLOGO HLDGS",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:08527.HK"
   },
   {
     "channels": {
@@ -1848,6 +2635,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 1
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-12",
+    "item_1_03": false,
+    "key": "NAME:bjsportsent",
+    "last_filed": "2026-05-12",
+    "name": "BJ SPORTS & ENT",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01803.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 3
     },
     "cik": "0001843973",
@@ -1875,6 +2677,21 @@
     "pending": false,
     "primary": true,
     "ticker": "IEP"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-10",
+    "item_1_03": false,
+    "key": "NAME:bwiintl",
+    "last_filed": "2026-05-11",
+    "name": "BWI INT'L",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:02339.HK"
   },
   {
     "channels": {
@@ -1935,6 +2752,51 @@
     "pending": false,
     "primary": true,
     "ticker": "CBL"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-07",
+    "item_1_03": false,
+    "key": "NAME:rongzunintlh",
+    "last_filed": "2026-05-08",
+    "name": "RONGZUN INT'L H",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01780.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-07",
+    "item_1_03": false,
+    "key": "NAME:twintek",
+    "last_filed": "2026-05-08",
+    "name": "TWINTEK",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:06182.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 3
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-08",
+    "item_1_03": false,
+    "key": "NAME:zyy",
+    "last_filed": "2026-05-08",
+    "name": "ZYY",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:08223.HK"
   },
   {
     "channels": {
@@ -2268,6 +3130,66 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-05",
+    "item_1_03": false,
+    "key": "NAME:hinsang",
+    "last_filed": "2026-05-06",
+    "name": "HINSANG GROUP",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:06893.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-05",
+    "item_1_03": false,
+    "key": "NAME:mshldgs",
+    "last_filed": "2026-05-06",
+    "name": "MS GROUP HLDGS",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01451.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-05",
+    "item_1_03": false,
+    "key": "NAME:newcitydev",
+    "last_filed": "2026-05-06",
+    "name": "NEW CITY DEV",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00456.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-06",
+    "item_1_03": false,
+    "key": "NAME:dexinser",
+    "last_filed": "2026-05-06",
+    "name": "DEXIN SER GROUP",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:02215.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0002064953",
@@ -2310,6 +3232,21 @@
     "pending": false,
     "primary": true,
     "ticker": "BLBD"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-06",
+    "item_1_03": false,
+    "key": "NAME:futongtech",
+    "last_filed": "2026-05-06",
+    "name": "FUTONG TECH",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00465.HK"
   },
   {
     "channels": {
@@ -2388,6 +3325,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 4
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-13",
+    "item_1_03": false,
+    "key": "NAME:somerleycap",
+    "last_filed": "2026-05-05",
+    "name": "SOMERLEY CAP",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:08439.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0001585364",
@@ -2433,21 +3385,6 @@
   },
   {
     "channels": {
-      "fresh-start accounting (10-K/Q)": 2
-    },
-    "cik": "0000314808",
-    "confidence": "medium (single primary source)",
-    "first_filed": "2026-02-20",
-    "item_1_03": false,
-    "key": "CIK:314808",
-    "last_filed": "2026-05-05",
-    "name": "Valaris Ltd",
-    "pending": false,
-    "primary": true,
-    "ticker": "VAL"
-  },
-  {
-    "channels": {
       "emergence 8-K prose": 4
     },
     "cik": "0001047716",
@@ -2478,6 +3415,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-30",
+    "item_1_03": false,
+    "key": "NAME:numans",
+    "last_filed": "2026-05-04",
+    "name": "NUMANS",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:02530.HK"
+  },
+  {
+    "channels": {
       "emergence 8-K prose": 2
     },
     "cik": "0000720672",
@@ -2493,6 +3445,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 4
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-04",
+    "item_1_03": false,
+    "key": "NAME:vongroup",
+    "last_filed": "2026-05-04",
+    "name": "VONGROUP",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00318.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0000078890",
@@ -2505,6 +3472,21 @@
     "pending": false,
     "primary": true,
     "ticker": "BCO"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-04",
+    "item_1_03": false,
+    "key": "NAME:sinohytec",
+    "last_filed": "2026-05-04",
+    "name": "SINOHYTEC",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:02402.HK"
   },
   {
     "channels": {
@@ -2808,6 +3790,36 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-28",
+    "item_1_03": false,
+    "key": "NAME:immunotechb",
+    "last_filed": "2026-04-29",
+    "name": "IMMUNOTECH-B",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:06978.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 1
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-29",
+    "item_1_03": false,
+    "key": "NAME:pointdinformationsurlesprocduresjudiciairesencours",
+    "last_filed": "2026-04-29",
+    "name": "Point d'information sur les proc\u00e9dures judiciaires en cours",
+    "pending": false,
+    "primary": true,
+    "ticker": "EPA:FR0011038348"
+  },
+  {
+    "channels": {
       "emergence 8-K prose": 2
     },
     "cik": "0002095743",
@@ -2883,6 +3895,51 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-24",
+    "item_1_03": false,
+    "key": "NAME:vpower",
+    "last_filed": "2026-04-27",
+    "name": "VPOWER GROUP",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01608.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-24",
+    "item_1_03": false,
+    "key": "NAME:rimbaco",
+    "last_filed": "2026-04-27",
+    "name": "RIMBACO",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01953.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-24",
+    "item_1_03": false,
+    "key": "NAME:mingfa",
+    "last_filed": "2026-04-27",
+    "name": "MINGFA GROUP",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00846.HK"
+  },
+  {
+    "channels": {
       "emergence 8-K prose": 1
     },
     "cik": "0000351834",
@@ -2895,6 +3952,21 @@
     "pending": false,
     "primary": true,
     "ticker": "STKL"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-23",
+    "item_1_03": false,
+    "key": "NAME:newgonowrv",
+    "last_filed": "2026-04-24",
+    "name": "NEW GONOW RV",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00805.HK"
   },
   {
     "channels": {
@@ -2943,6 +4015,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-22",
+    "item_1_03": false,
+    "key": "NAME:silkwave",
+    "last_filed": "2026-04-23",
+    "name": "SILKWAVE INC",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00471.HK"
+  },
+  {
+    "channels": {
       "emergence 8-K prose": 2
     },
     "cik": "0000773840",
@@ -2988,6 +4075,36 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-21",
+    "item_1_03": false,
+    "key": "NAME:cpm",
+    "last_filed": "2026-04-22",
+    "name": "CPM GROUP",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01932.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-21",
+    "item_1_03": false,
+    "key": "NAME:cnt",
+    "last_filed": "2026-04-22",
+    "name": "CNT GROUP",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00701.HK"
+  },
+  {
+    "channels": {
       "emergence 8-K prose": 2
     },
     "cik": "0000764065",
@@ -3000,6 +4117,21 @@
     "pending": false,
     "primary": true,
     "ticker": "CLF"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-21",
+    "item_1_03": false,
+    "key": "NAME:chinahkpower",
+    "last_filed": "2026-04-21",
+    "name": "CHINA HK POWER",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00931.HK"
   },
   {
     "channels": {
@@ -3030,6 +4162,21 @@
     "pending": false,
     "primary": true,
     "ticker": "SNPS"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-17",
+    "item_1_03": false,
+    "key": "NAME:basichnewlife",
+    "last_filed": "2026-04-20",
+    "name": "BASIC H NEWLIFE",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:08360.HK"
   },
   {
     "channels": {
@@ -3093,6 +4240,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-14",
+    "item_1_03": false,
+    "key": "NAME:yancoalaus",
+    "last_filed": "2026-04-15",
+    "name": "YANCOAL AUS",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:03668.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0002023730",
@@ -3105,6 +4267,51 @@
     "pending": false,
     "primary": true,
     "ticker": "GIG"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-14",
+    "item_1_03": false,
+    "key": "NAME:lingyui",
+    "last_filed": "2026-04-15",
+    "name": "LING YUI",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00784.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-13",
+    "item_1_03": false,
+    "key": "NAME:waichun",
+    "last_filed": "2026-04-14",
+    "name": "WAI CHUN GROUP",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01013.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-13",
+    "item_1_03": false,
+    "key": "NAME:waichunbiotec",
+    "last_filed": "2026-04-14",
+    "name": "WAI CHUN BIOTEC",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00660.HK"
   },
   {
     "channels": {
@@ -3123,6 +4330,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-10",
+    "item_1_03": false,
+    "key": "NAME:infinitylandt",
+    "last_filed": "2026-04-10",
+    "name": "INFINITY L&T",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01442.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0001866501",
@@ -3135,6 +4357,21 @@
     "pending": false,
     "primary": true,
     "ticker": "WBX"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-04-02",
+    "item_1_03": false,
+    "key": "NAME:chtreasuresnm",
+    "last_filed": "2026-04-08",
+    "name": "CH TREASURES NM",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:02439.HK"
   },
   {
     "channels": {
@@ -3303,6 +4540,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-31",
+    "item_1_03": false,
+    "key": "NAME:gtgold",
+    "last_filed": "2026-03-31",
+    "name": "GT GOLD",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:08299.HK"
+  },
+  {
+    "channels": {
       "emergence 8-K prose": 1
     },
     "cik": "0002025401",
@@ -3333,6 +4585,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 4
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-23",
+    "item_1_03": false,
+    "key": "NAME:addnewenergy",
+    "last_filed": "2026-03-30",
+    "name": "ADD NEW ENERGY",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:02623.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0001840563",
@@ -3360,6 +4627,36 @@
     "pending": false,
     "primary": true,
     "ticker": "AIMD"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-27",
+    "item_1_03": false,
+    "key": "NAME:meitu",
+    "last_filed": "2026-03-30",
+    "name": "MEITU",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01357.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-26",
+    "item_1_03": false,
+    "key": "NAME:hinglee",
+    "last_filed": "2026-03-27",
+    "name": "HING LEE (HK)",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00396.HK"
   },
   {
     "channels": {
@@ -3453,6 +4750,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-26",
+    "item_1_03": false,
+    "key": "NAME:dit",
+    "last_filed": "2026-03-26",
+    "name": "DIT GROUP",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00726.HK"
+  },
+  {
+    "channels": {
       "emergence 8-K prose": 1
     },
     "cik": "0001042418",
@@ -3465,6 +4777,36 @@
     "pending": false,
     "primary": true,
     "ticker": "INTI"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 1
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-25",
+    "item_1_03": false,
+    "key": "NAME:honlivhealth",
+    "last_filed": "2026-03-25",
+    "name": "HONLIV HEALTH",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:09906.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-23",
+    "item_1_03": false,
+    "key": "NAME:tiananmedicare",
+    "last_filed": "2026-03-24",
+    "name": "TIANAN MEDICARE",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00383.HK"
   },
   {
     "channels": {
@@ -3510,6 +4852,36 @@
     "pending": false,
     "primary": true,
     "ticker": "CDE"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-23",
+    "item_1_03": false,
+    "key": "NAME:dtxssilkroad",
+    "last_filed": "2026-03-23",
+    "name": "DTXS SILK ROAD",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00620.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-23",
+    "item_1_03": false,
+    "key": "NAME:chifenggold",
+    "last_filed": "2026-03-23",
+    "name": "CHIFENG GOLD",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:06693.HK"
   },
   {
     "channels": {
@@ -3588,6 +4960,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-16",
+    "item_1_03": false,
+    "key": "NAME:brightsmart",
+    "last_filed": "2026-03-17",
+    "name": "BRIGHT SMART",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01428.HK"
+  },
+  {
+    "channels": {
       "emergence 8-K prose": 1
     },
     "cik": "0001717393",
@@ -3600,6 +4987,21 @@
     "pending": false,
     "primary": true,
     "ticker": "CAAP"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-13",
+    "item_1_03": false,
+    "key": "NAME:cgiihldgs",
+    "last_filed": "2026-03-16",
+    "name": "CGII HLDGS",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01940.HK"
   },
   {
     "channels": {
@@ -3660,6 +5062,51 @@
     "pending": false,
     "primary": true,
     "ticker": "NUVR"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-12",
+    "item_1_03": false,
+    "key": "NAME:mostkwaichung",
+    "last_filed": "2026-03-13",
+    "name": "MOST KWAI CHUNG",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01716.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-12",
+    "item_1_03": false,
+    "key": "NAME:prospinvhold",
+    "last_filed": "2026-03-13",
+    "name": "PROSP INV HOLD",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00310.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-12",
+    "item_1_03": false,
+    "key": "NAME:wankaonline",
+    "last_filed": "2026-03-13",
+    "name": "WANKA ONLINE",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01762.HK"
   },
   {
     "channels": {
@@ -3813,6 +5260,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-03-02",
+    "item_1_03": false,
+    "key": "NAME:novosense",
+    "last_filed": "2026-03-03",
+    "name": "NOVOSENSE",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:02676.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0001057060",
@@ -3885,6 +5347,51 @@
     "pending": false,
     "primary": true,
     "ticker": "VG"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-26",
+    "item_1_03": false,
+    "key": "NAME:euroeyes",
+    "last_filed": "2026-02-27",
+    "name": "EUROEYES",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01846.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-26",
+    "item_1_03": false,
+    "key": "NAME:tontinewines",
+    "last_filed": "2026-02-27",
+    "name": "TONTINE WINES",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:00389.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-26",
+    "item_1_03": false,
+    "key": "NAME:megagenomics",
+    "last_filed": "2026-02-27",
+    "name": "MEGA GENOMICS",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:06667.HK"
   },
   {
     "channels": {
@@ -4110,6 +5617,21 @@
     "pending": false,
     "primary": true,
     "ticker": "SILA"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-25",
+    "item_1_03": false,
+    "key": "NAME:rafflesinterior",
+    "last_filed": "2026-02-25",
+    "name": "RAFFLESINTERIOR",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01376.HK"
   },
   {
     "channels": {
@@ -4488,6 +6010,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-12",
+    "item_1_03": false,
+    "key": "NAME:xinhualande",
+    "last_filed": "2026-02-13",
+    "name": "XINHUA LANDE",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:08106.HK"
+  },
+  {
+    "channels": {
       "emergence 8-K prose": 1
     },
     "cik": "0000880266",
@@ -4575,6 +6112,51 @@
     "pending": false,
     "primary": true,
     "ticker": "DBD"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-11",
+    "item_1_03": false,
+    "key": "NAME:globalnewmat",
+    "last_filed": "2026-02-12",
+    "name": "GLOBAL NEW MAT",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:06616.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-11",
+    "item_1_03": false,
+    "key": "NAME:guanzemedical",
+    "last_filed": "2026-02-12",
+    "name": "GUANZE MEDICAL",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:02427.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-10",
+    "item_1_03": false,
+    "key": "NAME:ntpharma",
+    "last_filed": "2026-02-11",
+    "name": "NT PHARMA",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01011.HK"
   },
   {
     "channels": {
@@ -4698,6 +6280,51 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-04",
+    "item_1_03": false,
+    "key": "NAME:tianqilithium",
+    "last_filed": "2026-02-05",
+    "name": "TIANQI LITHIUM",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:09696.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-05",
+    "item_1_03": false,
+    "key": "NAME:mgmchinabrmgmchinan3106brmgmchinan2702",
+    "last_filed": "2026-02-05",
+    "name": "MGM CHINA<br/>MGM CHINA N3106<br/>MGM CHINA N2702",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:02282<br/>05036<br/>40634.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-02-04",
+    "item_1_03": false,
+    "key": "NAME:truepartner",
+    "last_filed": "2026-02-04",
+    "name": "TRUE PARTNER",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:08657.HK"
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0001083220",
@@ -4758,6 +6385,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-01-28",
+    "item_1_03": false,
+    "key": "NAME:thelloydev",
+    "last_filed": "2026-01-29",
+    "name": "THELLOY DEV",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01546.HK"
+  },
+  {
+    "channels": {
       "emergence 8-K prose": 1
     },
     "cik": "0000096223",
@@ -4785,6 +6427,36 @@
     "pending": false,
     "primary": true,
     "ticker": "GM"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-01-23",
+    "item_1_03": false,
+    "key": "NAME:skymissiongp",
+    "last_filed": "2026-01-26",
+    "name": "SKYMISSION GP",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01429.HK"
+  },
+  {
+    "channels": {
+      "resumption of listing (foreign)": 2
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-01-23",
+    "item_1_03": false,
+    "key": "NAME:megain",
+    "last_filed": "2026-01-26",
+    "name": "MEGAIN",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:06939.HK"
   },
   {
     "channels": {
@@ -4833,6 +6505,21 @@
   },
   {
     "channels": {
+      "resumption of listing (foreign)": 1
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-01-23",
+    "item_1_03": false,
+    "key": "NAME:johnsonhldgs",
+    "last_filed": "2026-01-23",
+    "name": "JOHNSON HLDGS",
+    "pending": false,
+    "primary": true,
+    "ticker": "HKEX:01955.HK"
+  },
+  {
+    "channels": {
       "8-K Item 1.03 / bankruptcy docket": 1,
       "PACER bankruptcy docket": 1
     },
@@ -4846,6 +6533,51 @@
     "pending": null,
     "primary": false,
     "ticker": ""
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 7
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-01-26",
+    "item_1_03": false,
+    "key": "NAME:changhongjh",
+    "last_filed": "2026-07-22",
+    "name": "CHANGHONG JH",
+    "pending": null,
+    "primary": false,
+    "ticker": "HKEX:03991.HK"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 5
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-02-24",
+    "item_1_03": false,
+    "key": "NAME:chinacbsintl",
+    "last_filed": "2026-07-21",
+    "name": "CHINA CBS INTL",
+    "pending": null,
+    "primary": false,
+    "ticker": "HKEX:00989.HK"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 6
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-02-20",
+    "item_1_03": false,
+    "key": "NAME:skyworth",
+    "last_filed": "2026-07-17",
+    "name": "SKYWORTH GROUP",
+    "pending": null,
+    "primary": false,
+    "ticker": "HKEX:00751.HK"
   },
   {
     "channels": {
@@ -5044,6 +6776,96 @@
   },
   {
     "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-10",
+    "item_1_03": false,
+    "key": "NAME:loyalmetals",
+    "last_filed": "2026-07-10",
+    "name": "LOYAL METALS LTD",
+    "pending": null,
+    "primary": false,
+    "ticker": "LLM"
+  },
+  {
+    "channels": {
+      "restructuring in progress": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-09",
+    "item_1_03": false,
+    "key": "NAME:inventivaannouncescompletioneibwarrantrestructur",
+    "last_filed": "2026-07-09",
+    "name": "Inventiva Announces Completion of the EIB Warrant Restructur",
+    "pending": null,
+    "primary": false,
+    "ticker": "EPA:FR0013233012"
+  },
+  {
+    "channels": {
+      "restructuring in progress": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-03",
+    "item_1_03": false,
+    "key": "NAME:europlasmaannoncelouvertureduneprocdurederedressem",
+    "last_filed": "2026-07-03",
+    "name": "Europlasma annonce l\u2019ouverture d\u2019une proc\u00e9dure  de redressem",
+    "pending": null,
+    "primary": false,
+    "ticker": "EPA:FR001400PDG8"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 2
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-19",
+    "item_1_03": false,
+    "key": "NAME:emmersonresources",
+    "last_filed": "2026-07-01",
+    "name": "EMMERSON RESOURCES LIMITED",
+    "pending": null,
+    "primary": false,
+    "ticker": "ERM"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 3
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-19",
+    "item_1_03": false,
+    "key": "NAME:peelmining",
+    "last_filed": "2026-07-01",
+    "name": "PEEL MINING LIMITED",
+    "pending": null,
+    "primary": false,
+    "ticker": "PEX"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 3
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-19",
+    "item_1_03": false,
+    "key": "NAME:aerisresources",
+    "last_filed": "2026-07-01",
+    "name": "AERIS RESOURCES LIMITED",
+    "pending": null,
+    "primary": false,
+    "ticker": "AIS"
+  },
+  {
+    "channels": {
       "Form 15 deregistration": 1
     },
     "cik": "0001560143",
@@ -5056,6 +6878,40 @@
     "pending": null,
     "primary": false,
     "ticker": "WYTC"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "0001631487",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "CIK:1631487",
+    "last_filed": "2026-07-01",
+    "name": [
+      "CollPlant Biotechnologies Ltd  (CLGN)  (CIK 0001631487)"
+    ],
+    "pending": null,
+    "primary": false,
+    "ticker": "CLGN"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 2
+    },
+    "cik": "0001879754",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "CIK:1879754",
+    "last_filed": "2026-07-01",
+    "name": [
+      "EShallGo Inc.  (EHGO)  (CIK 0001879754)"
+    ],
+    "pending": null,
+    "primary": false,
+    "ticker": "EHGO"
   },
   {
     "channels": {
@@ -5074,6 +6930,21 @@
   },
   {
     "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "NAME:panafricanresources",
+    "last_filed": "2026-07-01",
+    "name": "PAN AFRICAN RESOURCES PLC",
+    "pending": null,
+    "primary": false,
+    "ticker": "PAF"
+  },
+  {
+    "channels": {
       "Form 15 deregistration": 1
     },
     "cik": "0002073537",
@@ -5089,6 +6960,57 @@
   },
   {
     "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "0001438943",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "CIK:1438943",
+    "last_filed": "2026-07-01",
+    "name": [
+      "RANGE IMPACT, INC.  (RNGE)  (CIK 0001438943)"
+    ],
+    "pending": null,
+    "primary": false,
+    "ticker": "RNGE"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "0001792030",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "CIK:1792030",
+    "last_filed": "2026-07-01",
+    "name": [
+      "IM Cannabis Corp.  (IMCC)  (CIK 0001792030)"
+    ],
+    "pending": null,
+    "primary": false,
+    "ticker": "IMCC"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "0001451505",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "CIK:1451505",
+    "last_filed": "2026-07-01",
+    "name": [
+      "Transocean Ltd.  (RIG)  (CIK 0001451505)"
+    ],
+    "pending": null,
+    "primary": false,
+    "ticker": "RIG"
+  },
+  {
+    "channels": {
       "Form 15 deregistration": 1
     },
     "cik": "0001606268",
@@ -5101,6 +7023,23 @@
     "pending": null,
     "primary": false,
     "ticker": "VIASP"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "0002128462",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "CIK:2128462",
+    "last_filed": "2026-07-01",
+    "name": [
+      "Three Lions Acquisition Corp.  (CIK 0002128462)"
+    ],
+    "pending": null,
+    "primary": false,
+    "ticker": ""
   },
   {
     "channels": {
@@ -5134,6 +7073,91 @@
   },
   {
     "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "0000882291",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "CIK:882291",
+    "last_filed": "2026-07-01",
+    "name": [
+      "AETHLON MEDICAL INC  (AEMD)  (CIK 0000882291)"
+    ],
+    "pending": null,
+    "primary": false,
+    "ticker": "AEMD"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "0000040211",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "CIK:40211",
+    "last_filed": "2026-07-01",
+    "name": [
+      "GATX CORP  (GATX)  (CIK 0000040211)"
+    ],
+    "pending": null,
+    "primary": false,
+    "ticker": "GATX"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "0002129659",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "CIK:2129659",
+    "last_filed": "2026-07-01",
+    "name": [
+      "Freedom Metals Acquisition Corp.  (FDMM)  (CIK 0002129659)"
+    ],
+    "pending": null,
+    "primary": false,
+    "ticker": "FDMMU"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "0001937993",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "CIK:1937993",
+    "last_filed": "2026-07-01",
+    "name": [
+      "Cadrenal Therapeutics, Inc.  (CVKD)  (CIK 0001937993)"
+    ],
+    "pending": null,
+    "primary": false,
+    "ticker": "CVKD"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "0001936224",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "CIK:1936224",
+    "last_filed": "2026-07-01",
+    "name": [
+      "SURF AIR MOBILITY INC.  (SRFM)  (CIK 0001936224)"
+    ],
+    "pending": null,
+    "primary": false,
+    "ticker": "SRFM"
+  },
+  {
+    "channels": {
       "Form 15 deregistration": 1
     },
     "cik": "0001888143",
@@ -5146,6 +7170,57 @@
     "pending": null,
     "primary": false,
     "ticker": ""
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "0001997464",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "CIK:1997464",
+    "last_filed": "2026-07-01",
+    "name": [
+      "Marex Group plc  (MRX)  (CIK 0001997464)"
+    ],
+    "pending": null,
+    "primary": false,
+    "ticker": "MRX"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "0000723612",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "CIK:723612",
+    "last_filed": "2026-07-01",
+    "name": [
+      "AVIS BUDGET GROUP, INC.  (CAR)  (CIK 0000723612)"
+    ],
+    "pending": null,
+    "primary": false,
+    "ticker": "CAR"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "0001720424",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "CIK:1720424",
+    "last_filed": "2026-07-01",
+    "name": [
+      "HIVE Digital Technologies Ltd.  (HIVE)  (CIK 0001720424)"
+    ],
+    "pending": null,
+    "primary": false,
+    "ticker": "HIVE"
   },
   {
     "channels": {
@@ -5164,6 +7239,57 @@
   },
   {
     "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "0001253689",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "CIK:1253689",
+    "last_filed": "2026-07-01",
+    "name": [
+      "CRESCENT BIOPHARMA, INC.  (CBIO)  (CIK 0001253689)"
+    ],
+    "pending": null,
+    "primary": false,
+    "ticker": "CBIO"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "0002058873",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "CIK:2058873",
+    "last_filed": "2026-07-01",
+    "name": [
+      "Qnity Electronics, Inc.  (Q)  (CIK 0002058873)"
+    ],
+    "pending": null,
+    "primary": false,
+    "ticker": "Q"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "0001141284",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "CIK:1141284",
+    "last_filed": "2026-07-01",
+    "name": [
+      "ACTELIS NETWORKS INC  (ASNS)  (CIK 0001141284)"
+    ],
+    "pending": null,
+    "primary": false,
+    "ticker": "ASNS"
+  },
+  {
+    "channels": {
       "Form 15 deregistration": 1
     },
     "cik": "0001500305",
@@ -5179,6 +7305,79 @@
   },
   {
     "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "NAME:qoria",
+    "last_filed": "2026-07-01",
+    "name": "QORIA LIMITED",
+    "pending": null,
+    "primary": false,
+    "ticker": "QOR"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "0001378789",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "CIK:1378789",
+    "last_filed": "2026-07-01",
+    "name": [
+      "AerCap Holdings N.V.  (AER)  (CIK 0001378789)",
+      "AerCap Aviation Solutions B.V.  (CIK 0001552087)",
+      "Aercap Funding DAC  (CIK 0002129045)",
+      "AerCap Ireland Capital DAC  (CIK 0001639856)",
+      "AerCap Ireland Ltd  (CIK 0001639858)",
+      "AerCap U.S. Global Aviation LLC  (CIK 0001639862)",
+      "INTERNATIONAL LEASE FINANCE CORP  (CIK 0000714311)",
+      "AerCap Global Aviation Trust  (CIK 0001603794)"
+    ],
+    "pending": null,
+    "primary": false,
+    "ticker": "AER"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "0000829323",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "CIK:829323",
+    "last_filed": "2026-07-01",
+    "name": [
+      "Inuvo, Inc.  (INUV)  (CIK 0000829323)"
+    ],
+    "pending": null,
+    "primary": false,
+    "ticker": "INUV"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "0001905660",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-01",
+    "item_1_03": false,
+    "key": "CIK:1905660",
+    "last_filed": "2026-07-01",
+    "name": [
+      "Hub Cyber Security Ltd.  (HUBC, HUBCW, HUBCZ)  (CIK 0001905660)"
+    ],
+    "pending": null,
+    "primary": false,
+    "ticker": "HUBCZ"
+  },
+  {
+    "channels": {
       "PACER bankruptcy docket": 1
     },
     "cik": "",
@@ -5191,6 +7390,111 @@
     "pending": null,
     "primary": false,
     "ticker": ""
+  },
+  {
+    "channels": {
+      "restructuring in progress": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-30",
+    "item_1_03": false,
+    "key": "NAME:europlasmasollicitelouvertureduneprocdurederedresse",
+    "last_filed": "2026-06-30",
+    "name": "Europlasma sollicite l\u2019ouverture d\u2019une proc\u00e9dure de redresse",
+    "pending": null,
+    "primary": false,
+    "ticker": "EPA:FR001400PDG8"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-30",
+    "item_1_03": false,
+    "key": "NAME:treatt",
+    "last_filed": "2026-06-30",
+    "name": "Treatt PLC",
+    "pending": null,
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 4
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-03-25",
+    "item_1_03": false,
+    "key": "NAME:chinaecotour",
+    "last_filed": "2026-06-29",
+    "name": "CHINA ECOTOUR",
+    "pending": null,
+    "primary": false,
+    "ticker": "HKEX:01371.HK"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 2
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-04-29",
+    "item_1_03": false,
+    "key": "NAME:dragonmining",
+    "last_filed": "2026-06-29",
+    "name": "DRAGON MINING",
+    "pending": null,
+    "primary": false,
+    "ticker": "HKEX:01712.HK"
+  },
+  {
+    "channels": {
+      "restructuring in progress": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-26",
+    "item_1_03": false,
+    "key": "NAME:ralisationdesoprationsavecolympebidcoetdelarestru",
+    "last_filed": "2026-06-26",
+    "name": "R\u00c9ALISATION DES OP\u00c9RATIONS AVEC OLYMPE BIDCO ET DE LA RESTRU",
+    "pending": null,
+    "primary": false,
+    "ticker": "EPA:FR0010428771"
+  },
+  {
+    "channels": {
+      "restructuring in progress": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-26",
+    "item_1_03": false,
+    "key": "NAME:mhmcorporaterestructurationdedetteparvoiedobliga",
+    "last_filed": "2026-06-26",
+    "name": "MHM Corporate: Restructuration de sa dette par voie d'obliga",
+    "pending": null,
+    "primary": false,
+    "ticker": "EPA:FR001400IE67"
+  },
+  {
+    "channels": {
+      "restructuring in progress": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-23",
+    "item_1_03": false,
+    "key": "NAME:adomosannonceledpartdriclongupelissuedemi",
+    "last_filed": "2026-06-23",
+    "name": "Adomos annonce le d\u00e9part d'\u00c9ric Longu\u00e9p\u00e9e \u00e0 l'issue de sa mi",
+    "pending": null,
+    "primary": false,
+    "ticker": "EPA:FR001400UT31"
   },
   {
     "channels": {
@@ -5329,6 +7633,81 @@
   },
   {
     "channels": {
+      "restructuring in progress": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-19",
+    "item_1_03": false,
+    "key": "NAME:namrconvocationduneaudiencedevantletribunaldecomme",
+    "last_filed": "2026-06-19",
+    "name": "namR: Convocation d'une audience devant le Tribunal de Comme",
+    "pending": null,
+    "primary": false,
+    "ticker": "EPA:FR0014003J32"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-18",
+    "item_1_03": false,
+    "key": "NAME:australianstrategicmaterials",
+    "last_filed": "2026-06-18",
+    "name": "AUSTRALIAN STRATEGIC MATERIALS LIMITED",
+    "pending": null,
+    "primary": false,
+    "ticker": "ASM"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-17",
+    "item_1_03": false,
+    "key": "NAME:qube",
+    "last_filed": "2026-06-17",
+    "name": "QUBE HOLDINGS LIMITED",
+    "pending": null,
+    "primary": false,
+    "ticker": "QUB"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-17",
+    "item_1_03": false,
+    "key": "NAME:novaminerals",
+    "last_filed": "2026-06-17",
+    "name": "NOVA MINERALS CORP",
+    "pending": null,
+    "primary": false,
+    "ticker": "NVA"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-17",
+    "item_1_03": false,
+    "key": "NAME:europeanlithium",
+    "last_filed": "2026-06-17",
+    "name": "EUROPEAN LITHIUM LIMITED",
+    "pending": null,
+    "primary": false,
+    "ticker": "EUR"
+  },
+  {
+    "channels": {
       "PACER bankruptcy docket": 1
     },
     "cik": "",
@@ -5341,5 +7720,125 @@
     "pending": null,
     "primary": false,
     "ticker": ""
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-15",
+    "item_1_03": false,
+    "key": "NAME:vanelle",
+    "last_filed": "2026-06-15",
+    "name": "Van Elle Holdings PLC",
+    "pending": null,
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-12",
+    "item_1_03": false,
+    "key": "NAME:ennenergybrennenergyn2705brennenergyn3009",
+    "last_filed": "2026-06-12",
+    "name": "ENN ENERGY<br/>ENNENERGY N2705<br/>ENNENERGY N3009",
+    "pending": null,
+    "primary": false,
+    "ticker": "HKEX:02688<br/>05235<br/>40383.HK"
+  },
+  {
+    "channels": {
+      "restructuring in progress": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-08",
+    "item_1_03": false,
+    "key": "NAME:siriusmediarestructurelintgralitdesonempruntobliga",
+    "last_filed": "2026-06-08",
+    "name": "Sirius Media restructure l'int\u00e9gralit\u00e9 de son emprunt obliga",
+    "pending": null,
+    "primary": false,
+    "ticker": "EPA:FR0010812230"
+  },
+  {
+    "channels": {
+      "restructuring in progress": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-05-27",
+    "item_1_03": false,
+    "key": "NAME:communiquedepressenaconprolongationdelapriodedob",
+    "last_filed": "2026-05-27",
+    "name": "COMMUNIQUE DE PRESSE: NACON: Prolongation de la p\u00e9riode d\u2019ob",
+    "pending": null,
+    "primary": false,
+    "ticker": "EPA:FR0013482791"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 5
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-01-28",
+    "item_1_03": false,
+    "key": "NAME:ennenergy",
+    "last_filed": "2026-05-15",
+    "name": "ENN ENERGY",
+    "pending": null,
+    "primary": false,
+    "ticker": "HKEX:02688.HK"
+  },
+  {
+    "channels": {
+      "restructuring in progress": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-05-05",
+    "item_1_03": false,
+    "key": "NAME:klarsenouvertureduneprocdurederedressementjudiciai",
+    "last_filed": "2026-05-05",
+    "name": "KLARSEN : Ouverture d\u2019une proc\u00e9dure de redressement judiciai",
+    "pending": null,
+    "primary": false,
+    "ticker": "EPA:FR0011038348"
+  },
+  {
+    "channels": {
+      "restructuring in progress": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-04-30",
+    "item_1_03": false,
+    "key": "NAME:prorogationdelapriodedobservationduredressementjudi",
+    "last_filed": "2026-04-30",
+    "name": "Prorogation de la p\u00e9riode d'observation du redressement judi",
+    "pending": null,
+    "primary": false,
+    "ticker": "EPA:FR0000035784"
+  },
+  {
+    "channels": {
+      "scheme of arrangement": 2
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-01-23",
+    "item_1_03": false,
+    "key": "NAME:hsbc",
+    "last_filed": "2026-01-26",
+    "name": "HSBC HOLDINGS",
+    "pending": null,
+    "primary": false,
+    "ticker": "HKEX:00005.HK"
   }
 ]

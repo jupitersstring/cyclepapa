@@ -1,0 +1,17 @@
+{
+  "accession": "20260721150100_34",
+  "cik": "",
+  "fetched_at": "2026-07-22T16:40:31.752456Z",
+  "filed": "2026-07-21",
+  "form": "Delisting of 200 000 10X Global Property ETF securities",
+  "form_code": "JSE-SENS",
+  "isin": null,
+  "jurisdiction": "ZA",
+  "name": "10X FUND MANAGERS (RF) PROPRIETARY LIMITED",
+  "query_label": "tier_s.liquidation",
+  "query_note": "JSE Liquidation / winding-up / delisting.",
+  "source": "JSE-SENS",
+  "ticker": "",
+  "tier": "tier_s",
+  "url": "https://www.sharenet.co.za/v3/sens_display.php?tdate=20260721150100&seq=34&scode="
+}

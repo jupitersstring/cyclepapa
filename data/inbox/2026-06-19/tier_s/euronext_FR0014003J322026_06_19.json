@@ -1,0 +1,17 @@
+{
+  "accession": "FR0014003J322026-06-19",
+  "cik": "",
+  "fetched_at": "2026-07-22T16:40:21.263834Z",
+  "filed": "2026-06-19",
+  "form": "namR: Convocation d'une audience devant le Tribunal de Commerce de Paris en vue d\u2019une conversion de la proc\u00e9dure de redressement judiciaire en\u00a0liquidation judic",
+  "form_code": "OAM-AMF",
+  "isin": "FR0014003J32",
+  "jurisdiction": "FR",
+  "name": "namR: Convocation d'une audience devant le Tribunal de Comme",
+  "query_label": "tier_s.restructuring",
+  "query_note": "Redressement judiciaire \u2014 judicial reorganisation (deeper distress than sauvegarde).  [matched: redressement judiciaire]",
+  "source": "OAM-AMF",
+  "ticker": "EPA:FR0014003J32",
+  "tier": "tier_s",
+  "url": "https://www.info-financiere.gouv.fr/"
+}

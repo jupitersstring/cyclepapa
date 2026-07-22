@@ -1,0 +1,17 @@
+{
+  "accession": "FR00110383482026-05-05",
+  "cik": "",
+  "fetched_at": "2026-07-22T16:40:21.263834Z",
+  "filed": "2026-05-05",
+  "form": "KLARSEN : Ouverture d\u2019une proc\u00e9dure de redressement judiciaire aupr\u00e8s du Tribunal judiciaire de Strasbourg pour la filiale ITL",
+  "form_code": "OAM-AMF",
+  "isin": "FR0011038348",
+  "jurisdiction": "FR",
+  "name": "KLARSEN : Ouverture d\u2019une proc\u00e9dure de redressement judiciai",
+  "query_label": "tier_s.restructuring",
+  "query_note": "Redressement judiciaire \u2014 judicial reorganisation (deeper distress than sauvegarde).  [matched: redressement judiciaire]",
+  "source": "OAM-AMF",
+  "ticker": "EPA:FR0011038348",
+  "tier": "tier_s",
+  "url": "https://www.info-financiere.gouv.fr/"
+}

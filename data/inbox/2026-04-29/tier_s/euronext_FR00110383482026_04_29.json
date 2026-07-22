@@ -1,0 +1,17 @@
+{
+  "accession": "FR00110383482026-04-29",
+  "cik": "",
+  "fetched_at": "2026-07-22T16:40:21.263834Z",
+  "filed": "2026-04-29",
+  "form": "Point d'information sur les proc\u00e9dures judiciaires en cours et Reprise de cotation du titre",
+  "form_code": "OAM-AMF",
+  "isin": "FR0011038348",
+  "jurisdiction": "FR",
+  "name": "Point d'information sur les proc\u00e9dures judiciaires en cours",
+  "query_label": "tier_s.resumption",
+  "query_note": "Euronext reprise de cotation \u2014 RESUMPTION of listing, typically post-restructuring: the French post-reorg event.  [matched: reprise de cotation]",
+  "source": "OAM-AMF",
+  "ticker": "EPA:FR0011038348",
+  "tier": "tier_s",
+  "url": "https://www.info-financiere.gouv.fr/"
+}

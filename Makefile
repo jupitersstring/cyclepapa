@@ -1,4 +1,4 @@
-.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll hkex-poll poll-all security-master source-health corroborate reconcile postreorg-score postreorg-verify emergence-master db listed-equity-screen waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
+.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll hkex-poll sgx-poll euronext-poll jse-poll poll-all security-master source-health corroborate reconcile postreorg-score postreorg-verify emergence-master db listed-equity-screen waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
 
 help:
 	@echo "Targets:"
@@ -166,6 +166,22 @@ db: audit
 # funnel is blind to.
 hkex-poll: audit
 	python3 -m src.hkex_poll --days-back 180
+
+# SGX (Singapore) special-situations poller — scheme/restructuring/capital-
+# reorganisation via the free legacy api3.sgx.com infofeed. Feed serves only
+# "today", so run DAILY to accumulate coverage.
+sgx-poll: audit
+	python3 -m src.sgx_poll
+
+# Euronext (Paris) special-situations poller — sauvegarde / redressement /
+# reprise de cotation via the free French OAM (info-financiere.gouv.fr).
+euronext-poll: audit
+	python3 -m src.euronext_poll --days-back 180
+
+# JSE (Johannesburg) SENS poller — business-rescue / scheme / resumption via
+# the free Sharenet SENS mirror. Feed is ~2 trading days, so run DAILY.
+jse-poll: audit
+	python3 -m src.jse_poll
 
 # Emergence master — fuse every Chapter 11 EMERGENCE signal in data/inbox/
 # (emergence 8-K, fresh-start accounting, Form 25/15 delisting, Form 8-A
