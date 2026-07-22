@@ -59,7 +59,7 @@ from pathlib import Path
 
 from src.postreorg_score import (
     collect_postreorg, chapter22_ciks, ebit_yield, _norm, _xbrl, dollar_adv,
-    _price,
+    _price, financial_quality,
 )
 
 
@@ -78,12 +78,14 @@ def _liquidity_tier(adv: float | None) -> str:
     return "micro"          # <$100k/day — retail-only / expert-market
 from src.postreorg_verify import verify, load_cache, save_cache
 
-# Forced-seller overhang is a fresh-emergence phenomenon: creditors dump
-# the plan equity in roughly the first 18-24 months, then the supply clears.
-# Beyond this the name is a genuine post-reorg but no longer a live overhang.
-# (Academic evidence suggests a tighter ~10-month window — see
-# docs/ACADEMIC_FINDINGS.md — kept at 24 pending review.)
-OVERHANG_MONTHS = 24
+# Forced-seller overhang / abnormal-return window. Eberhart, Altman &
+# Aggarwal (1999) show post-emergence abnormal returns concentrate in the
+# first ~200 trading days (~9-10 months); Jiang-Wang-Yang (2023) find the
+# edge lives only while unnatural owners still dominate the register. NB
+# this is a RECENCY judgment, not a data-quality gate — a name past the
+# window still ranks on every other signal; it just doesn't get the "live
+# overhang" point. (See docs/ACADEMIC_FINDINGS.md.)
+OVERHANG_MONTHS = 10
 
 
 def _months_since(emergence_date: str | None) -> float | None:
@@ -506,7 +508,8 @@ def main() -> int:
                                 "financials unavailable — verify manually)"],
                     "marks": marks, "confidence": "hand-curated",
                     "emergence_date": None, "adv_dollar": adv,
-                    "liquidity": _liquidity_tier(adv),
+                    "liquidity": _liquidity_tier(adv), "fscore": "—",
+                    "quality_bonus": 0.0,
                     "tier": "no SEC data (OTC/deregistered)",
                     "ebit_yield": None})
                 time.sleep(0.1)
@@ -540,9 +543,20 @@ def main() -> int:
                       " " + rec.get("query_label", ""))
         res = six_questions(rec, int(cik), ticker, ey, bs, sig, in_pacer, vinfo)
         adv = dollar_adv(ticker)   # cached from the ebit_yield price fetch
+        # Academic quality tilt (Piotroski F / gross-profitability / accruals /
+        # debt-paydown) — POSITIVE-ONLY: adds to fitness where the financials
+        # confirm quality, contributes 0 (never a penalty) where data is
+        # missing, so we never miss a name for imperfect data.
+        fq = financial_quality(int(cik))
+        res["fitness"] = round(res["fitness"] + fq.get("bonus", 0.0), 1)
+        res["reasons"] = res.get("reasons", []) + fq.get("notes", []) + \
+            [f"⚑ {f}" for f in fq.get("flags", [])]
         scored.append({"cik": cik, "ticker": ticker,
                        "name": rec.get("name", ""), **res,
                        "adv_dollar": adv, "liquidity": _liquidity_tier(adv),
+                       "fscore": (f"{fq['fscore']}/{fq['fscore_of']}"
+                                  if fq.get("fscore") is not None else "—"),
+                       "quality_bonus": fq.get("bonus", 0.0),
                        "tier": ey.get("tier"), "ebit_yield": ey.get("ebit_yield")})
         time.sleep(0.15)
         if (i + 1) % 10 == 0:
@@ -579,8 +593,12 @@ def main() -> int:
         f"**{len(incidental)}**",
         "",
         "Six questions: **L**isted · **U**nnatural owners (live forced-seller "
-        "overhang) · **R**epaired balance sheet · **O**verstated count/debt · "
-        "**C**atalyst · **Q**uality (EBIT-yield). **Conf** `✓` = the filing "
+        "overhang, ~10-mo window) · **R**epaired balance sheet · "
+        "**O**verstated count/debt · **C**atalyst · **Q**uality (EBIT-yield). "
+        "**F** = Piotroski F-score (passed/evaluable); a POSITIVE-only "
+        "academic quality tilt (F-score, gross-profitability, accruals, "
+        "debt-paydown) adds to Fit where financials confirm quality and "
+        "NEVER penalises a name for missing data. **Conf** `✓` = the filing "
         "was read and the FILER's own emergence confirmed (first-person or "
         "Successor/Predecessor fresh-start reporting), or PACER-corroborated; "
         "`~` = kept but unverified (emergence note not found in the fetched "
@@ -588,8 +606,8 @@ def main() -> int:
         "is a non-filer possessive are set aside for verification at the "
         "bottom (not scored, not dropped).",
         "",
-        "| Name | Ticker | Conf | Emerged | Fit | Liq | U | R | O | C | Q | Archetypes | Why |",
-        "|---|---|:--:|---|---:|:--:|:-:|:-:|:-:|:-:|:-:|---|---|",
+        "| Name | Ticker | Conf | Emerged | Fit | Liq | F | U | R | O | C | Q | Archetypes | Why |",
+        "|---|---|:--:|---|---:|:--:|:--:|:-:|:-:|:-:|:-:|:-:|---|---|",
     ]
     def mk(s, k):
         return "●" if s["marks"].get(k) else "·"
@@ -600,7 +618,7 @@ def main() -> int:
         emd = s.get("emergence_date") or "—"
         lines.append(
             f"| {s['name'][:30]} | {s['ticker']} | {conf} | {emd} | "
-            f"{s['fitness']} | {s.get('liquidity','?')} | "
+            f"{s['fitness']} | {s.get('liquidity','?')} | {s.get('fscore','—')} | "
             f"{mk(s,'unnatural')} | {mk(s,'repaired')} | {mk(s,'overstated')} | "
             f"{mk(s,'catalyst')} | {mk(s,'quality')} | {arch} | {why[:64]} |")
 
