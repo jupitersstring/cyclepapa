@@ -59,6 +59,7 @@ from pathlib import Path
 
 from src.postreorg_score import (
     collect_postreorg, chapter22_ciks, ebit_yield, _norm, _xbrl, dollar_adv,
+    _price,
 )
 
 
@@ -108,6 +109,78 @@ def _months_since(emergence_date: str | None) -> float | None:
 
 REPO = Path(__file__).resolve().parent.parent
 OUT_MD = REPO / "output" / "listed_equity_watchlist.md"
+UNIVERSE_MD = REPO / "universe.md"
+
+# Exchange-prefix → Yahoo suffix, so OTC and FOREIGN post-reorgs (which the
+# EDGAR emergence poller can't see because the issuer deregistered / trades
+# off-SEC) can still be priced and captured. OTC/US venues need no suffix.
+EXCH_YAHOO = {
+    "OTC": "", "OTCMKTS": "", "NYSE": "", "NASDAQ": "", "NYSEAMERICAN": "",
+    "AMEX": "", "B3": ".SA", "BVMF": ".SA", "KRX": ".KS", "KOSDAQ": ".KQ",
+    "OSL": ".OL", "EPA": ".PA", "XETR": ".DE", "ETR": ".DE", "FRA": ".F",
+    "ST": ".ST", "STO": ".ST", "LSE": ".L", "HK": ".HK", "HKG": ".HK",
+    "IDX": ".JK", "KLSE": ".KL", "SGX": ".SI", "PSE": ".PS", "NSE": ".NS",
+    "BSE": ".BO", "DFM": ".AE", "TSX": ".TO", "TSXV": ".V", "ASX": ".AX",
+    "TSE": ".T", "JPX": ".T", "BIT": ".MI", "BME": ".MC", "AMS": ".AS",
+    "SWX": ".SW", "CSE": ".CO", "NSE(K)": ".NR",
+}
+
+
+def _yahoo_ticker(ticker: str) -> str:
+    """Map an 'EXCHANGE:SYMBOL' ticker to a Yahoo symbol (adds the venue
+    suffix for foreign listings; OTC/US pass through)."""
+    if not ticker:
+        return ""
+    if ":" in ticker:
+        exch, sym = ticker.split(":", 1)
+        return sym.strip() + EXCH_YAHOO.get(exch.strip().upper(), "")
+    return ticker.strip()
+
+
+def universe_supplement(existing_names: set[str],
+                        existing_tickers: set[str]) -> list[dict]:
+    """Hand-curated post-reorgs from universe.md tagged Bucket C / C→B
+    (legacy cancelled, new common = a post-reorg equity) that the EDGAR
+    emergence poller cannot see because the issuer DEREGISTERED after
+    emergence and trades OTC / on a foreign venue (McDermott/MCDIF, LATAM,
+    OI Brazil, HMM…). Without this bridge these core names are invisible to
+    an EDGAR-only funnel. Skips ones already in the EDGAR cohort and rows
+    whose 'ticker' is a placeholder ('(gone)', '(private)', '—')."""
+    if not UNIVERSE_MD.exists():
+        return []
+    out, in_table, seen = [], False, set()
+    placeholder = re.compile(r"^\(|^—$|^-$|^\?+$|gone|private|delisted|"
+                             r"acquired|merged|state|admin|liquidat", re.I)
+    for line in UNIVERSE_MD.read_text().splitlines():
+        st = line.strip()
+        if set(st) <= set("-:| ") and "|" in st:
+            in_table = True
+            continue
+        if not st.startswith("|"):
+            in_table = False
+            continue
+        if not in_table:
+            continue
+        cells = [c.strip() for c in st.strip("|").split("|")]
+        if len(cells) < 3 or cells[0].lower() in ("name", ""):
+            continue
+        name, ticker = cells[0], cells[1]
+        is_c = any(c.replace(" ", "").upper().replace("->", "→").replace(
+            "⇒", "→") in ("C", "C→B", "C→A", "C→") for c in cells[1:])
+        if not is_c or placeholder.match(ticker) or ":" not in ticker \
+                and not re.match(r"^[A-Z0-9.]{1,6}$", ticker):
+            continue
+        tstem = re.sub(r"[^A-Za-z0-9]", "", ticker.split(":")[-1]).upper()
+        nstem = _norm(name)
+        if not tstem or tstem in seen:
+            continue
+        if tstem in existing_tickers or nstem in existing_names:
+            continue          # already caught by the EDGAR cohort
+        seen.add(tstem)
+        out.append({"name": name, "ticker": ticker, "bucket": "C",
+                    "hand_curated": True,
+                    "query_label": "tier_s.post_reorg_emerged"})
+    return out
 
 
 # --- archetype / question text signals ------------------------------------
@@ -359,12 +432,49 @@ def main() -> int:
               f"{dropped} lower-precision names not screened this run **")
         items = items[:args.max_names]
 
+    # Bridge in hand-curated OTC / foreign post-reorgs from universe.md that
+    # the EDGAR poller can't see (deregistered issuers like McDermott/MCDIF).
+    have_names = {_norm(r.get("name", "")) for _, r in items}
+    have_tks = {re.sub(r"[^A-Za-z0-9]", "", (r.get("ticker") or "").split(":")[-1]
+                       ).upper() for _, r in items}
+    supplement = universe_supplement(have_names, have_tks)
+    for j, rec in enumerate(supplement):
+        items.append((f"UNIV{j}", rec))    # synthetic key; cik resolved later
+    print(f"  + {len(supplement)} hand-curated OTC/foreign post-reorgs from "
+          f"universe.md (Bucket C, EDGAR-invisible)")
+
     vcache = load_cache()
     scored = []
     incidental = []   # filing referenced ANOTHER issuer's emergence — dropped
     for i, (cik, rec) in enumerate(items):
         ticker = rec.get("ticker") or ""
         in_pacer = _norm(rec.get("name", "")) in ch22
+
+        # --- hand-curated OTC/foreign post-reorg (no SEC CIK/XBRL) ---
+        # Priced via Yahoo (venue-suffixed), liquidity read, and a known-
+        # post-reorg confidence — SEC financials aren't available, so R/O/Q
+        # can't be scored, but the name is CAPTURED and visible (McDermott/
+        # MCDIF, LATAM, OI…) rather than silently absent.
+        if rec.get("hand_curated"):
+            yt = _yahoo_ticker(ticker)
+            price = _price(yt)
+            adv = dollar_adv(yt)
+            marks = {"listed": price is not None, "unnatural": False,
+                     "repaired": False, "overstated": False,
+                     "catalyst": False, "quality": False}
+            scored.append({
+                "cik": "", "ticker": ticker, "name": rec.get("name", ""),
+                "listed": price is not None, "score": 0,
+                "fitness": 0.0, "archetypes": ["hand-curated post-reorg"],
+                "reasons": ["universe.md Bucket C (OTC/foreign; SEC "
+                            "financials unavailable — verify manually)"],
+                "marks": marks, "confidence": "hand-curated",
+                "emergence_date": None, "adv_dollar": adv,
+                "liquidity": _liquidity_tier(adv),
+                "tier": "no SEC data (OTC/deregistered)", "ebit_yield": None})
+            time.sleep(0.1)
+            continue
+
         # Verify the FILER itself emerged (not an incidental third-party
         # mention). PACER-corroborated names are already hard-confirmed, so
         # skip the fetch for them.

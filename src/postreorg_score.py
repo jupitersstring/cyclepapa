@@ -147,7 +147,9 @@ def _quote(ticker: str) -> dict:
     Cached per ticker per run."""
     if not ticker:
         return {"price": None, "adv_dollar": None}
-    t = ticker.split(":")[-1].replace(".", "-")
+    # class-share dot → dash (BRK.B → BRK-B) but PRESERVE a foreign venue
+    # suffix (OIBR3.SA, 011200.KS) which Yahoo needs verbatim.
+    t = re.sub(r"\.([A-Za-z])$", r"-\1", ticker.split(":")[-1])
     if t in _QUOTE_CACHE:
         return _QUOTE_CACHE[t]
     out = {"price": None, "adv_dollar": None}
