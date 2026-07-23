@@ -137,121 +137,6 @@ def _shares(cik: int) -> float | None:
     return _xbrl(cik, "EntityCommonStockSharesOutstanding", tax="dei")
 
 
-def _xbrl_series(cik: int, concept: str, tax: str = "us-gaap",
-                 n: int = 2) -> list[float]:
-    """The last n ANNUAL values of a concept, oldest→newest. Enables
-    year-over-year trend factors (F-score, debt paydown). Returns [] on
-    missing — callers treat absence as NEUTRAL, never a penalty."""
-    url = SEC_CONCEPT.format(cik=cik, tax=tax, concept=concept)
-    try:
-        r = requests.get(url, headers=UA, timeout=20)
-        if r.status_code != 200:
-            return []
-        units = r.json().get("units", {})
-        vals = units.get("USD") or units.get("shares") or next(
-            iter(units.values()), [])
-        anns = [u for u in vals if u.get("form", "").startswith("10-K")
-                and u.get("fp") == "FY"] or [
-            u for u in vals if u.get("form", "").startswith("10-K")]
-        if not anns:
-            return []
-        # one value per fiscal-year-end, most recent per end date
-        by_end: dict[str, float] = {}
-        for u in sorted(anns, key=lambda u: u.get("filed", "")):
-            try:
-                by_end[u.get("end", "")] = float(u["val"])
-            except (ValueError, KeyError):
-                continue
-        ordered = [by_end[k] for k in sorted(by_end)]
-        return ordered[-n:]
-    except (requests.RequestException, ValueError, KeyError):
-        return []
-
-
-def financial_quality(cik: int) -> dict:
-    """POSITIVE-ONLY academic quality tilt for a post-reorg. Computes the
-    Piotroski F-score (partial-OK), gross-profitability (Novy-Marx), the
-    accruals sign (Sloan), the debt-paydown trend, and the asset-growth
-    flag — from SEC XBRL WHERE AVAILABLE.
-
-    Guiding rule (per user direction): MISSING DATA NEVER PENALISES. Every
-    output is a positive `bonus` that only ever ADDS, plus informational
-    `flags`. A name with no filed financials (OTC/foreign/deregistered) just
-    gets bonus 0 and is neither dropped nor demerited.
-    """
-    out = {"bonus": 0.0, "fscore": None, "fscore_of": None, "gpa": None,
-           "accruals": None, "debt_trend": None, "flags": [], "notes": []}
-    A = _xbrl_series(cik, "Assets", n=2)
-    if not A:
-        return out                      # no financials → neutral, no penalty
-    ta = A[-1]
-    ni = _xbrl_series(cik, "NetIncomeLoss", n=2)
-    cfo = _xbrl_series(cik, "NetCashProvidedByUsedInOperatingActivities", n=2)
-    ltd = _xbrl_series(cik, "LongTermDebtNoncurrent", n=2) or \
-        _xbrl_series(cik, "LongTermDebt", n=2)
-    ca = _xbrl_series(cik, "AssetsCurrent", n=2)
-    cl = _xbrl_series(cik, "LiabilitiesCurrent", n=2)
-    rev = _xbrl_series(cik, "Revenues", n=2) or \
-        _xbrl_series(cik, "RevenueFromContractWithCustomerExcludingAssessedTax", n=2)
-    gp = _xbrl_series(cik, "GrossProfit", n=2)
-    sh = _xbrl_series(cik, "CommonStockSharesOutstanding", n=2)
-
-    # --- Piotroski F-score: award only the tests we can actually evaluate ---
-    passed = avail = 0
-    if ni and ta:
-        avail += 1; passed += 1 if ni[-1] / ta > 0 else 0     # ROA>0
-    if cfo:
-        avail += 1; passed += 1 if cfo[-1] > 0 else 0         # CFO>0
-    if len(ni) == 2 and len(A) == 2 and A[0]:
-        avail += 1; passed += 1 if (ni[-1] / ta) > (ni[0] / A[0]) else 0  # ΔROA
-    if cfo and ni:
-        avail += 1; passed += 1 if cfo[-1] > ni[-1] else 0    # accrual (CFO>NI)
-    if len(ltd) == 2 and len(A) == 2 and A[0]:
-        avail += 1; passed += 1 if (ltd[-1]/ta) < (ltd[0]/A[0]) else 0  # Δlev↓
-    if len(ca) == 2 and len(cl) == 2 and cl[0] and cl[-1]:
-        avail += 1; passed += 1 if (ca[-1]/cl[-1]) > (ca[0]/cl[0]) else 0  # Δcurr
-    if len(sh) == 2:
-        avail += 1; passed += 1 if sh[-1] <= sh[0] * 1.02 else 0  # no dilution
-    if len(gp) == 2 and len(rev) == 2 and rev[0] and rev[-1]:
-        avail += 1; passed += 1 if (gp[-1]/rev[-1]) > (gp[0]/rev[0]) else 0  # Δmargin
-    if len(rev) == 2 and len(A) == 2 and A[0]:
-        avail += 1; passed += 1 if (rev[-1]/ta) > (rev[0]/A[0]) else 0  # Δturn
-    if avail >= 3:                       # only score if enough tests evaluable
-        out["fscore"], out["fscore_of"] = passed, avail
-        frac = passed / avail
-        out["bonus"] += 1.0 * frac       # up to +1.0 for a clean F-score
-        out["notes"].append(f"Piotroski F {passed}/{avail}")
-
-    # --- gross profitability (Novy-Marx), robust to fresh-start restatement ---
-    if gp and ta:
-        gpa = gp[-1] / ta
-        out["gpa"] = round(gpa, 3)
-        if gpa >= 0.33:
-            out["bonus"] += 0.5; out["notes"].append(f"GP/A {gpa:.2f} (high)")
-
-    # --- accruals sign (Sloan): reward high cash-conversion; never penalise ---
-    if ni and cfo and ta:
-        acc = (ni[-1] - cfo[-1]) / ta
-        out["accruals"] = round(acc, 3)
-        if acc < 0:
-            out["bonus"] += 0.5; out["notes"].append("low accruals (cash-backed)")
-
-    # --- debt-paydown trajectory: reward YoY de-levering ---
-    if len(ltd) == 2 and ltd[0]:
-        chg = (ltd[-1] - ltd[0]) / abs(ltd[0])
-        out["debt_trend"] = round(chg, 3)
-        if chg <= -0.10:
-            out["bonus"] += 0.5; out["notes"].append(
-                f"de-levering {chg*100:.0f}% YoY")
-
-    # --- asset-growth: informational FLAG only, no penalty ---
-    if len(A) == 2 and A[0] and (A[-1] - A[0]) / A[0] > 0.50:
-        out["flags"].append("high asset growth (re-levering? verify)")
-
-    out["bonus"] = round(out["bonus"], 2)
-    return out
-
-
 _QUOTE_CACHE: dict[str, dict] = {}
 
 
@@ -400,17 +285,8 @@ def assembly_score(rec: dict, ey: dict, is_ch22: bool) -> dict:
     if comps["economic_distress"] and not comps["financial_distress"]:
         gate_ok = False
         notes.append("⚠ economic/secular distress signal — moat-gate RED")
-    # Academic quality tilt (Piotroski F, gross-profitability, accruals,
-    # debt-paydown). POSITIVE-ONLY — a name with no filed financials gets
-    # bonus 0 and is neither dropped nor demerited (per user direction:
-    # never penalise for imperfect data).
-    fq = financial_quality(int(rec["cik"])) if rec.get("cik") else {
-        "bonus": 0.0, "notes": [], "flags": []}
-    comp_score += fq.get("bonus", 0.0)
-    notes += fq.get("notes", [])
-    notes += [f"⚑ {f}" for f in fq.get("flags", [])]   # flags, not penalties
     total = val * 2 + comp_score
-    return {"score": round(total, 1), "gate_ok": gate_ok, "fq": fq,
+    return {"score": round(total, 1), "gate_ok": gate_ok,
             "tier": ey["tier"], "notes": "; ".join(notes)}
 
 
