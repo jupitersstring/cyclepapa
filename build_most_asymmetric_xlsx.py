@@ -964,6 +964,134 @@ def build_single_measure(wb: Workbook, yf: dict, proxy: dict,
     ws.freeze_panes = "A4"
 
 
+def build_incentive_improvers(wb: Workbook, yf: dict, proxy: dict):
+    """Governance / PSU / incentive-structure IMPROVERS: names whose
+    latest DEF 14A shows the compensation architecture getting BETTER
+    versus the prior plan. The thesis: a board that just tightened its
+    own incentives (heavier PSU weight, added ownership requirements,
+    longer vesting, strengthened clawback, shareholder-responsive
+    redesign) is signaling a governance inflection -- often the
+    precursor to the operational one.
+
+    Scoring is RARITY-WEIGHTED: psu_weight_increased appears in only
+    12 of 4,410 proxies (strong signal); clawback_strengthened in 607
+    (post-SEC-rule boilerplate; weak alone). Data-driven from
+    proxy_scan plan_deltas -- nothing hardcoded."""
+    ws = wb.create_sheet("Incentive Improvers")
+    set_col_widths(ws, [9, 26, 11, 9, 9, 9, 10, 46, 40])
+    write_title_band(
+        ws,
+        "Governance / PSU / Incentive-Structure Improvers",
+        "Names whose latest proxy tightened the incentive architecture "
+        "vs the prior plan · rarity-weighted (rare deltas score high, "
+        "post-2023-rule boilerplate scores low)",
+        n_cols=9,
+    )
+
+    # Rarity-weighted delta scores (counts across 4,410 proxies noted)
+    DELTA_WEIGHTS = {
+        "psu_weight_increased":        (25, "PSU weight increased"),        # 12
+        "new_metric_added":            (15, "new performance metric"),      # 2
+        "ownership_requirement_added": (15, "ownership requirement added"), # 23
+        "responsive_to_shareholders":  (10, "shareholder-responsive redesign"), # 152
+        "anti_hedge_pledge_added":     (6,  "anti-hedge/pledge added"),     # 331
+        "clawback_strengthened":       (4,  "clawback strengthened"),       # 607
+        # penalties -- structure got WORSE
+        "front_load_grant":            (-10, "front-loaded grant (worse)"), # 24
+        "metric_eliminated":           (-8,  "metric eliminated (worse)"),  # 1
+    }
+    EVOLUTION_BONUS = {
+        "vest_period_extended":        (12, "vesting period extended"),     # 36
+    }
+
+    def _n(v):
+        if v is None: return None
+        try: return float(v)
+        except Exception: return None
+
+    rows = []
+    for tk, p in proxy.items():
+        deltas = p.get("plan_deltas") or []
+        pattern = " ".join(p.get("pattern_reasons") or [])
+        score = 0.0
+        improvements = []
+        regressions = []
+        for d in deltas:
+            key = d if isinstance(d, str) else str(d)
+            w, label = DELTA_WEIGHTS.get(key, (0, None))
+            if not label:
+                continue
+            if w > 0:
+                score += w; improvements.append(label)
+            else:
+                score += w; regressions.append(label)
+        for key, (w, label) in EVOLUTION_BONUS.items():
+            if key in pattern:
+                score += w; improvements.append(label)
+        if not improvements:
+            continue
+        # Multi-improvement conjunction bonus: 2+ distinct improvements
+        # is a deliberate redesign, not an isolated tweak.
+        if len(set(improvements)) >= 3:
+            score += 10
+        elif len(set(improvements)) >= 2:
+            score += 5
+        # Context: improvement AFTER say-on-pay dissent is the
+        # forced-response archetype (board reacting to shareholders).
+        sop = _n(p.get("say_on_pay_pct"))
+        if sop is not None and sop < 80:
+            score += 8
+            improvements.append(f"follows SOP dissent ({sop:.0f}%)")
+        y = yf.get(tk, {}) or {}
+        rows.append({
+            "tk": tk,
+            "name": (y.get("name") or tk),
+            "score": round(score, 1),
+            "psu_core": p.get("psu_core"),
+            "gov": p.get("gov_score"),
+            "psu_pct": p.get("psu_pct_lti"),
+            "pb": _n(y.get("p_b")),
+            "improvements": "; ".join(dict.fromkeys(improvements)),
+            "regressions": "; ".join(dict.fromkeys(regressions)),
+            "filing_date": p.get("filing_date", ""),
+        })
+    rows.sort(key=lambda r: -r["score"])
+
+    headers = ["Ticker", "Name", "Improve", "PSU core", "Gov",
+                "PSU %", "P/B", "What improved", "Caveats / date"]
+    write_header_row(ws, 4, headers)
+    r = 5
+    for i, row in enumerate(rows[:45], 1):
+        band = (i % 2 == 0)
+        caveat = row["regressions"] or ""
+        tail = (caveat + (" · " if caveat else "") + row["filing_date"])
+        write_body_row(ws, r,
+                       [row["tk"], row["name"][:26], row["score"],
+                        row["psu_core"], row["gov"], row["psu_pct"],
+                        row["pb"], row["improvements"][:90], tail[:60]],
+                       band=band, bold_first=True)
+        ws.row_dimensions[r].height = 24
+        r += 1
+
+    r += 1
+    n_total = len(rows)
+    write_footnote(ws, r,
+        f"{n_total} names show at least one structural improvement in "
+        "the latest proxy (top 45 shown). Weights reflect rarity across "
+        "4,410 scanned DEF 14As: PSU-weight increase (12 occurrences, "
+        "+25) and ownership-requirement addition (23, +15) are "
+        "deliberate alignment choices; clawback strengthening (607, +4) "
+        "and anti-hedge language (331, +6) are largely post-2023 "
+        "SEC-rule boilerplate. Multi-improvement redesigns earn a "
+        "conjunction bonus; improvements that follow a sub-80% "
+        "say-on-pay vote are tagged as forced-response. Regressions "
+        "(front-loaded grants, metric elimination) subtract and are "
+        "listed as caveats. Source: proxy_scan plan_deltas + "
+        "pattern_reasons -- fully data-driven.", 9)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A5"
+
+
 def build_noval_view(wb: Workbook, yf: dict):
     """Parallel ranking that EXCLUDES the valuation leg. Surfaces
     structurally strong names that may be missing yfinance overlay
@@ -1743,6 +1871,7 @@ TAB_INDEX = [
     ("By Archetype", "Single best representative of each of 57 archetypes."),
     ("Reserve Baskets", "Sub-archetype baskets and full portfolio math."),
     ("Caution List", "Convergent names carrying governance red flags."),
+    ("Incentive Improvers", "Latest proxy tightened the incentive architecture (rarity-weighted)."),
     ("Without Valuation", "Parallel ranking excluding the valuation leg."),
     ("Recent 30d", "Material incentive events disclosed in the last 30 days."),
     ("Foreign Markets", "Japan TSE PBR<1, Korea Value-Up, UK schemes."),
@@ -1900,6 +2029,7 @@ def main() -> int:
     build_by_archetype(wb, {}, {}, yf)
     build_reserve_baskets(wb, yf)
     build_caution_list(wb, proxy, consensus)
+    build_incentive_improvers(wb, yf, proxy)
     build_noval_view(wb, yf)
     build_recent_30d(wb, yf)
     build_foreign_markets(wb)
