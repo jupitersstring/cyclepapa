@@ -18,6 +18,7 @@ score,name,ticker,conf,bucket,archetype,status,vintage,size,region
 0.83,ACROW LIMITED,ACF,○,A,A1,OK,2026,mid,SE Asia / Pacific
 0.82,Samsung C&T,KRX:028260,★,A,H,OK,2026,small,Korea
 0.79,GTCO (Guaranty Trust),NGX:GTCO,★,A,G,OK,?,mid,MEA / Frontier
+0.79,Inventiva Announces Completion of the EIB Warrant Restructur,EPA:FR0013233012,○,A,A2,OK,2026,small,Unspecified
 0.78,Drake & Scull,DFM:DSI,★,A,A2,OK,?,small,MEA / Frontier
 0.77,AETHLON MEDICAL INC  (AEMD)  (CIK 0000882291),AEMD,○,A,F2,OK,2026,small,United States/Canada
 0.76,Talgo,BME:TLGO,○,A,A1,OK,2024,mid,Continental Europe
@@ -124,6 +125,9 @@ score,name,ticker,conf,bucket,archetype,status,vintage,size,region
 0.60,Fermi Inc.,FRMI,○,A,H,OK,2026,small,United States/Canada
 0.60,NEUGEBAUER TOBY R,CIK:0001098464,○,A,H,OK,2026,small,United States/Canada
 0.60,Radoff Bradley Louis,CIK:0001380585,○,A,H,OK,2026,small,United States/Canada
+0.60,CON AERO TECH,HKEX:00232.HK,○,A,H,OK,2026,small,Unspecified
+0.60,MHM Corporate: Restructuration de sa dette par voie d'obliga,EPA:FR001400IE67,○,A,H,OK,2026,small,Unspecified
+0.60,XUNZHONG,HKEX:02597.HK,○,A,H,OK,2026,small,Unspecified
 0.59,Tui AG,XETR:TUI1,○,A,A2,OK,2022,small,Continental Europe
 0.59,Sharp,TSE:6753,★,A,H,OK,2024,small,Japan
 0.58,Coinbase,NASDAQ:COIN,★,A,B,OK,?,small,United States/Canada
@@ -177,6 +181,20 @@ score,name,ticker,conf,bucket,archetype,status,vintage,size,region
 0.56,Global Agami Cab LLC,—,○,A,E,OK,2026,small,United States/Canada
 0.56,Universal Agami Transit Inc.,—,○,A,E,OK,2026,small,United States/Canada
 0.56,Planet Agami Cab LLC,—,○,A,E,OK,2026,small,United States/Canada
+0.56,CHANGHONG JH,HKEX:03991.HK,○,A,E,OK,2026,small,Unspecified
+0.56,CHINA CBS INTL,HKEX:00989.HK,○,A,E,OK,2026,small,Unspecified
+0.56,SKYWORTH GROUP,HKEX:00751.HK,○,A,E,OK,2026,small,Unspecified
+0.56,CN ENGY STORAGE,HKEX:01143.HK,○,A,E,OK,2026,small,Unspecified
+0.56,Europlasma annonce l’ouverture d’une procédure  de redressem,EPA:FR001400PDG8,○,A,E,OK,2026,small,Unspecified
+0.56,CHINA ECOTOUR,HKEX:01371.HK,○,A,E,OK,2026,small,Unspecified
+0.56,DRAGON MINING,HKEX:01712.HK,○,A,E,OK,2026,small,SE Asia / Pacific
+0.56,WECON HOLDINGS,HKEX:01793.HK,○,A,E,OK,2026,small,Unspecified
+0.56,ENN ENERGY<br/>ENNENERGY N2705<br/>ENNENERGY N3009,HKEX:02688<br/>05235<br/>40383.HK,○,A,E,OK,2026,small,Unspecified
+0.56,COMMUNIQUE DE PRESSE: NACON: Prolongation de la période d’ob,EPA:FR0013482791,○,A,E,OK,2026,small,Unspecified
+0.56,ENN ENERGY,HKEX:02688.HK,○,A,E,OK,2026,small,Unspecified
+0.56,KLARSEN : Ouverture d’une procédure de redressement judiciai,EPA:FR0011038348,○,A,E,OK,2026,small,Unspecified
+0.56,Prorogation de la période d'observation du redressement judi,EPA:FR0000035784,○,A,E,OK,2026,small,Unspecified
+0.56,HSBC HOLDINGS,HKEX:00005.HK,○,A,E,OK,2026,small,Unspecified
 0.56,LG Display,KRX:034220,★,A,H,OK,?,small,Korea
 0.55,Sunac China,HK:1918,★,A,F,OK,?,small,Greater China / HK
 0.54,Japan Display,TSE:6740,★,A,H,OK,2026,small,Japan
@@ -281,6 +299,320 @@ score,name,ticker,conf,bucket,archetype,status,vintage,size,region
 0.52,FARMERS NATIONAL BANC CORP /OH/,FMNB,○,A,F,OK,2026,small,United States/Canada
 0.52,Ionetix Corp / DE /,CIK:0002108121,○,A,F,OK,2026,small,United States/Canada
 0.52,ALT5 Sigma Corp,ALTS,○,A,F,OK,2026,small,United States/Canada
+0.52,Z FIN,HKEX:01168.HK,○,A,F,OK,2026,small,Unspecified
+0.52,CITY OF TSHWANE METROPOLITAN MUNICIPALITY,—,○,A,F,OK,2026,small,Unspecified
+0.52,WORLD-LINK LOG,HKEX:06083.HK,○,A,F,OK,2026,small,Unspecified
+0.52,CARRY WEALTH,HKEX:00643.HK,○,A,F,OK,2026,small,Unspecified
+0.52,ZeroStack Corp.,ZSTK,○,A,F,OK,2026,small,United States/Canada
+0.52,GEOTECH HLDGS,HKEX:01707.HK,○,A,F,OK,2026,small,Unspecified
+0.52,GET NICE,HKEX:00064.HK,○,A,F,OK,2026,small,Unspecified
+0.52,CHINA PPT INV,HKEX:00736.HK,○,A,F,OK,2026,small,Unspecified
+0.52,Alea Holdings US Company,—,○,A,F,OK,2026,small,Unspecified
+0.52,JERSEY CENTRAL POWER & LIGHT CO,CIK:0000053456,○,A,F,OK,2026,small,United States/Canada
+0.52,CHINA RAREEARTH,HKEX:00769.HK,○,A,F,OK,2026,small,Unspecified
+0.52,CASSAVA RES,HKEX:00841.HK,○,A,F,OK,2026,small,Unspecified
+0.52,PRIME INTEL,HKEX:08379.HK,○,A,F,OK,2026,small,Unspecified
+0.52,Ionic Digital Inc.,CIK:0002007691,○,A,F,OK,2026,small,United States/Canada
+0.52,MAN SHUN GP,HKEX:01746.HK,○,A,F,OK,2026,small,Unspecified
+0.52,"Tailored Brands, Inc. / DE",CIK:0002045151,○,A,F,OK,2026,small,United States/Canada
+0.52,Central Falls Detention Facility Corporation,—,○,A,F,OK,2026,small,Unspecified
+0.52,FAST RETAIL-DRS,HKEX:06288.HK,○,A,F,OK,2026,small,Unspecified
+0.52,SIMPLICITY HLDG,HKEX:08367.HK,○,A,F,OK,2026,small,Unspecified
+0.52,CCIAM FUTURE EN,HKEX:00145.HK,○,A,F,OK,2026,small,Unspecified
+0.52,MAXICITY,HKEX:02295.HK,○,A,F,OK,2026,small,Unspecified
+0.52,REALWAY CAPITAL,HKEX:01835.HK,○,A,F,OK,2026,small,Unspecified
+0.52,CHINA HUAJUN GP,HKEX:00377.HK,○,A,F,OK,2026,small,Unspecified
+0.52,MODERN INNO DT,HKEX:02322.HK,○,A,F,OK,2026,small,Unspecified
+0.52,KKR Infrastructure Conglomerate LLC,CIK:0001948056,○,A,F,OK,2026,small,United States/Canada
+0.52,KKR Private Equity Conglomerate LLC,CIK:0001957845,○,A,F,OK,2026,small,United States/Canada
+0.52,STRATUS PROPERTIES INC,STRS,○,A,F,OK,2026,small,United States/Canada
+0.52,AZUL SA,AZUL,○,A,F,OK,2026,small,United States/Canada
+0.52,OLENOX INDUSTRIES INC.,OLOX,○,A,F,OK,2026,small,United States/Canada
+0.52,IDT INT'L,HKEX:00167.HK,○,A,F,OK,2026,small,Unspecified
+0.52,CA CULTURAL,HKEX:01566.HK,○,A,F,OK,2026,small,Unspecified
+0.52,DISH DBS Corporation and Official Committee of Unsecured Creditors of DISH,—,○,A,F,OK,2026,small,Unspecified
+0.52,Factorial Energy Inc.,FAC,○,A,F,OK,2026,small,United States/Canada
+0.52,Beneficient,BENF,○,A,F,OK,2026,small,United States/Canada
+0.52,In Re: The Babcock & Wilcox Company,—,○,A,F,OK,2026,small,Unspecified
+0.52,AMERICAN EAGLE OUTFITTERS INC,AEO,○,A,F,OK,2026,small,United States/Canada
+0.52,CITIC RESOURCES,HKEX:01205.HK,○,A,F,OK,2026,small,Unspecified
+0.52,"SeeQC, Inc.",SEQC,○,A,F,OK,2026,small,United States/Canada
+0.52,TOPSPORTS,HKEX:06110.HK,○,A,F,OK,2026,small,Unspecified
+0.52,RSUN SER,HKEX:01971.HK,○,A,F,OK,2026,small,Unspecified
+0.52,SINOFORTUNE FIN,HKEX:08123.HK,○,A,F,OK,2026,small,Unspecified
+0.52,CopperTech Metals Inc.,CUX,○,A,F,OK,2026,small,United States/Canada
+0.52,"Backblaze, Inc.",BLZE,○,A,F,OK,2026,small,United States/Canada
+0.52,CASEYS GENERAL STORES INC,CASY,○,A,F,OK,2026,small,United States/Canada
+0.52,2CRSi SA: 2CRSi conteste le contenu du document publié par G,EPA:FR0013341781,○,A,F,OK,2026,small,Unspecified
+0.52,CH CITY INFRA,HKEX:02349.HK,○,A,F,OK,2026,small,Unspecified
+0.52,C TRANSMISSION,HKEX:00658.HK,○,A,F,OK,2026,small,Unspecified
+0.52,FULLSHARE,HKEX:00607.HK,○,A,F,OK,2026,small,Unspecified
+0.52,SeaStar Medical Holding Corp,ICU,○,A,F,OK,2026,small,United States/Canada
+0.52,JUNWEA GROUP,HKEX:01920.HK,○,A,F,OK,2026,small,Unspecified
+0.52,"Csquare, Inc.",CSQR,○,A,F,OK,2026,small,United States/Canada
+0.52,RIVERINE CHINA,HKEX:01417.HK,○,A,F,OK,2026,small,Unspecified
+0.52,Osprey Acquisition Corp. III,OSPRU,○,A,F,OK,2026,small,United States/Canada
+0.52,Searles Valley Minerals Inc.,—,○,A,F,OK,2026,small,Unspecified
+0.52,Marblegate Capital Corp,MGTE,○,A,F,OK,2026,small,United States/Canada
+0.52,C21 Investments Inc.,CWLXF,○,A,F,OK,2026,small,United States/Canada
+0.52,Sleep Number Corporation,—,○,A,F,OK,2026,small,Unspecified
+0.52,BeOne Medicines Ltd.,ONC,○,A,F,OK,2026,small,United States/Canada
+0.52,JINTAI ENERGY H,HKEX:02728.HK,○,A,F,OK,2026,small,Unspecified
+0.52,CONTEL,HKEX:01912.HK,○,A,F,OK,2026,small,Unspecified
+0.52,SG GROUP HLDGS,HKEX:01657.HK,○,A,F,OK,2026,small,Unspecified
+0.52,WhiteHawk Income Corp,WHK,○,A,F,OK,2026,small,United States/Canada
+0.52,INDIGO STAR,HKEX:08373.HK,○,A,F,OK,2026,small,Unspecified
+0.52,SIMAD Holdings Ltd.,—,○,A,F,OK,2026,small,Unspecified
+0.52,"Fat Brands, Inc",FABTQ,○,A,F,OK,2026,small,United States/Canada
+0.52,XIZHI TECH-P,HKEX:01879.HK,○,A,F,OK,2026,small,Unspecified
+0.52,"New York State Nurses Association Pension Plan v. Tehum Care Services, Inc.",—,○,A,F,OK,2026,small,Unspecified
+0.52,FEG HOLDINGS,HKEX:01413.HK,○,A,F,OK,2026,small,Unspecified
+0.52,"FedEx Freight Holding Company, Inc.",FDXF,○,A,F,OK,2026,small,United States/Canada
+0.52,Xanadu Quantum Technologies Ltd,XNDU,○,A,F,OK,2026,small,United States/Canada
+0.52,MEDIA CHINESE,HKEX:00685.HK,○,A,F,OK,2026,small,Unspecified
+0.52,Kingsoft Cloud Holdings Ltd,KC,○,A,F,OK,2026,small,United States/Canada
+0.52,MOMENTUM FIN,HKEX:01152.HK,○,A,F,OK,2026,small,Unspecified
+0.52,RUIFENG RENEW,HKEX:00527.HK,○,A,F,OK,2026,small,Unspecified
+0.52,ZXZN QI-HOUSE,HKEX:08395.HK,○,A,F,OK,2026,small,Unspecified
+0.52,SDHG,HKEX:00412.HK,○,A,F,OK,2026,small,Unspecified
+0.52,Booz Allen Hamilton Holding Corp,BAH,○,A,F,OK,2026,small,United States/Canada
+0.52,"HOULIHAN LOKEY, INC.",HLI,○,A,F,OK,2026,small,United States/Canada
+0.52,"Third Coast Bancshares, Inc.",TCBX,○,A,F,OK,2026,small,United States/Canada
+0.52,SINGAMAS CONT,HKEX:00716.HK,○,A,F,OK,2026,small,Unspecified
+0.52,VisitIQ Corp.,VIIQ,○,A,F,OK,2026,small,United States/Canada
+0.52,AZUL SA,AZLUY,○,A,F,OK,2026,small,United States/Canada
+0.52,"EagleRock Land, LLC",EROK,○,A,F,OK,2026,small,United States/Canada
+0.52,JU TENG INTL,HKEX:03336.HK,○,A,F,OK,2026,small,Unspecified
+0.52,ZHUGUANG HOLD,HKEX:01176.HK,○,A,F,OK,2026,small,Unspecified
+0.52,"Gossamer Bio, Inc.",GOSS,○,A,F,OK,2026,small,United States/Canada
+0.52,METASPACEX,HKEX:01796.HK,○,A,F,OK,2026,small,Unspecified
+0.52,"Nuo Therapeutics, Inc.",AURX,○,A,F,OK,2026,small,United States/Canada
+0.52,Fortress Private Lending Fund,CIK:0002012139,○,A,F,OK,2026,small,United States/Canada
+0.52,JLOGO HLDGS,HKEX:08527.HK,○,A,F,OK,2026,small,Unspecified
+0.52,Woodbridge Liquidation Trust,WBQNL,○,A,F,OK,2026,small,United States/Canada
+0.52,AMERISERV FINANCIAL INC /PA/,ASRV,○,A,F,OK,2026,small,United States/Canada
+0.52,KAANAPALI LAND LLC,KANP,○,A,F,OK,2026,small,United States/Canada
+0.52,BJ SPORTS & ENT,HKEX:01803.HK,○,A,F,OK,2026,small,Unspecified
+0.52,"National CineMedia, Inc.",NCMI,○,A,F,OK,2026,small,United States/Canada
+0.52,ICAHN ENTERPRISES L.P.,IEP,○,A,F,OK,2026,small,United States/Canada
+0.52,WhiteHawk Income Corp,WHK,○,A,F,OK,2026,small,United States/Canada
+0.52,FLYEXCLUSIVE INC.,FLYX,○,A,F,OK,2026,small,United States/Canada
+0.52,BWI INT'L,HKEX:02339.HK,○,A,F,OK,2026,small,Unspecified
+0.52,"First Choice Healthcare Solutions, Inc.",FCHS,○,A,F,OK,2026,small,United States/Canada
+0.52,TWINTEK,HKEX:06182.HK,○,A,F,OK,2026,small,Unspecified
+0.52,Docebo Inc.,DCBO,○,A,F,OK,2026,small,United States/Canada
+0.52,RONGZUN INT'L H,HKEX:01780.HK,○,A,F,OK,2026,small,Unspecified
+0.52,BAXTER INTERNATIONAL INC,BAX,○,A,F,OK,2026,small,United States/Canada
+0.52,PAN AMERICAN SILVER CORP,PAAS,○,A,F,OK,2026,small,United States/Canada
+0.52,ROGERS CORP,ROG,○,A,F,OK,2026,small,United States/Canada
+0.52,"RXO, Inc.",RXO,○,A,F,OK,2026,small,United States/Canada
+0.52,First Eagle Tactical Municipal Opportunities Fund,CIK:0002050541,○,A,F,OK,2026,small,United States/Canada
+0.52,Zymeworks Inc.,ZYME,○,A,F,OK,2026,small,United States/Canada
+0.52,DEXIN SER GROUP,HKEX:02215.HK,○,A,F,OK,2026,small,Unspecified
+0.52,NEW CITY DEV,HKEX:00456.HK,○,A,F,OK,2026,small,Unspecified
+0.52,MS GROUP HLDGS,HKEX:01451.HK,○,A,F,OK,2026,small,Unspecified
+0.52,HINSANG GROUP,HKEX:06893.HK,○,A,F,OK,2026,small,Unspecified
+0.52,FUTONG TECH,HKEX:00465.HK,○,A,F,OK,2026,small,Unspecified
+0.52,Flutter Entertainment plc,FLUT,○,A,F,OK,2026,small,United States/Canada
+0.52,GULFPORT ENERGY CORP,GPOR,○,A,F,OK,2026,small,United States/Canada
+0.52,Cartesian Growth Corp III,CGCT,○,A,F,OK,2026,small,United States/Canada
+0.52,AES CORP,AES,○,A,F,OK,2026,small,United States/Canada
+0.52,590-600 Realty Corp.,—,○,A,F,OK,2026,small,Unspecified
+0.52,SOMERLEY CAP,HKEX:08439.HK,○,A,F,OK,2026,small,Unspecified
+0.52,VONGROUP,HKEX:00318.HK,○,A,F,OK,2026,small,Unspecified
+0.52,NUMANS,HKEX:02530.HK,○,A,F,OK,2026,small,Unspecified
+0.52,STIFEL FINANCIAL CORP,SF,○,A,F,OK,2026,small,United States/Canada
+0.52,SINOHYTEC,HKEX:02402.HK,○,A,F,OK,2026,small,Unspecified
+0.52,"Apimeds Pharmaceuticals US, Inc.",APUS,○,A,F,OK,2026,small,United States/Canada
+0.52,Aristotle Pacific Enhanced CLO Income Fund,CIK:0002092387,○,A,F,OK,2026,small,United States/Canada
+0.52,EQT Infrastructure Co LLC,CIK:0002032019,○,A,F,OK,2026,small,United States/Canada
+0.52,"Angel Studios, Inc.",ANGX,○,A,F,OK,2026,small,United States/Canada
+0.52,"Spirit Aviation Holdings, Inc.",FLYYQ,○,A,F,OK,2026,small,United States/Canada
+0.52,ECOPETROL S.A.,EC,○,A,F,OK,2026,small,United States/Canada
+0.52,"MODIV INDUSTRIAL, INC.",MDV,○,A,F,OK,2026,small,United States/Canada
+0.52,APi Group Corp,APG,○,A,F,OK,2026,small,United States/Canada
+0.52,"CID Holdco, Inc.",DAIC,○,A,F,OK,2026,small,United States/Canada
+0.52,"Q/C TECHNOLOGIES, INC.",QCLS,○,A,F,OK,2026,small,United States/Canada
+0.52,BLACKBAUD INC,BLKB,○,A,F,OK,2026,small,United States/Canada
+0.52,EQUINIX INC,EQIX,○,A,F,OK,2026,small,United States/Canada
+0.52,IMMUNOTECH-B,HKEX:06978.HK,○,A,F,OK,2026,small,Unspecified
+0.52,SEABRIDGE GOLD INC,SA,○,A,F,OK,2026,small,United States/Canada
+0.52,"Rare Earths Americas, Inc.",REA,○,A,F,OK,2026,small,United States/Canada
+0.52,MINGFA GROUP,HKEX:00846.HK,○,A,F,OK,2026,small,Unspecified
+0.52,RIMBACO,HKEX:01953.HK,○,A,F,OK,2026,small,Unspecified
+0.52,SunOpta Inc.,STKL,○,A,F,OK,2026,small,United States/Canada
+0.52,NEW GONOW RV,HKEX:00805.HK,○,A,F,OK,2026,small,Unspecified
+0.52,Hesai Group,HSAI,○,A,F,OK,2026,small,United States/Canada
+0.52,SILKWAVE INC,HKEX:00471.HK,○,A,F,OK,2026,small,Unspecified
+0.52,HONEYWELL INTERNATIONAL INC,HON,○,A,F,OK,2026,small,United States/Canada
+0.52,CPM GROUP,HKEX:01932.HK,○,A,F,OK,2026,small,Unspecified
+0.52,CNT GROUP,HKEX:00701.HK,○,A,F,OK,2026,small,Unspecified
+0.52,CHINA HK POWER,HKEX:00931.HK,○,A,F,OK,2026,small,Unspecified
+0.52,CLEVELAND-CLIFFS INC.,CLF,○,A,F,OK,2026,small,United States/Canada
+0.52,LibreMax Asset-Backed Income Fund,CIK:0002074612,○,A,F,OK,2026,small,United States/Canada
+0.52,BASIC H NEWLIFE,HKEX:08360.HK,○,A,F,OK,2026,small,Unspecified
+0.52,"Liftoff Mobile, Inc.",LFTO,○,A,F,OK,2026,small,United States/Canada
+0.52,"EagleRock Land, LLC",EROK,○,A,F,OK,2026,small,United States/Canada
+0.52,Mega Matrix Inc,MPU,○,A,F,OK,2026,small,United States/Canada
+0.52,YANCOAL AUS,HKEX:03668.HK,○,A,F,OK,2026,small,Unspecified
+0.52,GigCapital7 Corp.,GIG,○,A,F,OK,2026,small,United States/Canada
+0.52,LING YUI,HKEX:00784.HK,○,A,F,OK,2026,small,Unspecified
+0.52,Hudbay Minerals Inc.,HBM,○,A,F,OK,2026,small,United States/Canada
+0.52,WAI CHUN GROUP,HKEX:01013.HK,○,A,F,OK,2026,small,Unspecified
+0.52,WAI CHUN BIOTEC,HKEX:00660.HK,○,A,F,OK,2026,small,Unspecified
+0.52,"Rare Earths Americas, Inc.",REA,○,A,F,OK,2026,small,United States/Canada
+0.52,INFINITY L&T,HKEX:01442.HK,○,A,F,OK,2026,small,Unspecified
+0.52,CH TREASURES NM,HKEX:02439.HK,○,A,F,OK,2026,small,Unspecified
+0.52,OBSIDIAN ENERGY LTD.,OBE,○,A,F,OK,2026,small,United States/Canada
+0.52,"Luminar Technologies, Inc./DE",LAZRQ,○,A,F,OK,2026,small,United States/Canada
+0.52,Mountain Crest Acquisition 6 Corp.,MCAHU,○,A,F,OK,2026,small,United States/Canada
+0.52,"DYNARESOURCE, INC.",DYNR,○,A,F,OK,2026,small,United States/Canada
+0.52,VERMILION ENERGY INC.,VET,○,A,F,OK,2026,small,United States/Canada
+0.52,PRECISION DRILLING Corp,PDS,○,A,F,OK,2026,small,United States/Canada
+0.52,Wheaton Precious Metals Corp.,WPM,○,A,F,OK,2026,small,United States/Canada
+0.52,PEMBINA PIPELINE CORP,PBA,○,A,F,OK,2026,small,United States/Canada
+0.52,CADIZ INC,CDZI,○,A,F,OK,2026,small,United States/Canada
+0.52,TRANSALTA CORP,TAC,○,A,F,OK,2026,small,United States/Canada
+0.52,"Tvardi Therapeutics, Inc.",TVRD,○,A,F,OK,2026,small,United States/Canada
+0.52,GT GOLD,HKEX:08299.HK,○,A,F,OK,2026,small,Unspecified
+0.52,Fifth Era Acquisition Corp I,FERA,○,A,F,OK,2026,small,United States/Canada
+0.52,ADD NEW ENERGY,HKEX:02623.HK,○,A,F,OK,2026,small,Unspecified
+0.52,PMGC Holdings Inc.,ELAB,○,A,F,OK,2026,small,United States/Canada
+0.52,"Ainos, Inc.",AIMD,○,A,F,OK,2026,small,United States/Canada
+0.52,MEITU,HKEX:01357.HK,○,A,F,OK,2026,small,Unspecified
+0.52,HING LEE (HK),HKEX:00396.HK,○,A,F,OK,2026,small,Unspecified
+0.52,Vine Hill Capital Investment Corp.,VCIC,○,A,F,OK,2026,small,United States/Canada
+0.52,ProShares Trust II,AGQ,○,A,F,OK,2026,small,United States/Canada
+0.52,GOLAR LNG LTD,GLNG,○,A,F,OK,2026,small,United States/Canada
+0.52,DIT GROUP,HKEX:00726.HK,○,A,F,OK,2026,small,Unspecified
+0.52,"Inhibitor Therapeutics, Inc.",INTI,○,A,F,OK,2026,small,United States/Canada
+0.52,ZYNEX INC,ZYXIQ,○,A,F,OK,2026,small,United States/Canada
+0.52,"TPI COMPOSITES, INC",TPICQ,○,A,F,OK,2026,small,United States/Canada
+0.52,TIANAN MEDICARE,HKEX:00383.HK,○,A,F,OK,2026,small,Unspecified
+0.52,PRESIDIO PRODUCTION Co,FTW,○,A,F,OK,2026,small,United States/Canada
+0.52,DTXS SILK ROAD,HKEX:00620.HK,○,A,F,OK,2026,small,Unspecified
+0.52,CHIFENG GOLD,HKEX:06693.HK,○,A,F,OK,2026,small,Unspecified
+0.52,"Coeur Mining, Inc.",CDE,○,A,F,OK,2026,small,United States/Canada
+0.52,TC ENERGY CORP,TRP,○,A,F,OK,2026,small,United States/Canada
+0.52,Victoria's Secret & Co.,VSCO,○,A,F,OK,2026,small,United States/Canada
+0.52,"BLUE BIOFUELS, INC.",BIOF,○,A,F,OK,2026,small,United States/Canada
+0.52,Silver Point Specialty Lending Fund,CIK:0001646614,○,A,F,OK,2026,small,United States/Canada
+0.52,BRIGHT SMART,HKEX:01428.HK,○,A,F,OK,2026,small,Unspecified
+0.52,CORPORACION AMERICA AIRPORTS S.A.,CAAP,○,A,F,OK,2026,small,United States/Canada
+0.52,CGII HLDGS,HKEX:01940.HK,○,A,F,OK,2026,small,Unspecified
+0.52,Odysseus Holdings Ltd,CSHRW,○,A,F,OK,2026,small,United States/Canada
+0.52,Mountain Crest Acquisition Corp. V,MCAG,○,A,F,OK,2026,small,United States/Canada
+0.52,AMPCO PITTSBURGH CORP,AP,○,A,F,OK,2026,small,United States/Canada
+0.52,"Nuvera Communications, Inc.",NUVR,○,A,F,OK,2026,small,United States/Canada
+0.52,PROSP INV HOLD,HKEX:00310.HK,○,A,F,OK,2026,small,Unspecified
+0.52,MOST KWAI CHUNG,HKEX:01716.HK,○,A,F,OK,2026,small,Unspecified
+0.52,VERU INC.,VERU,○,A,F,OK,2026,small,United States/Canada
+0.52,WANKA ONLINE,HKEX:01762.HK,○,A,F,OK,2026,small,Unspecified
+0.52,Walmart Inc.,WMT,○,A,F,OK,2026,small,United States/Canada
+0.52,"HomeTrust Bancshares, Inc.",HTB,○,A,F,OK,2026,small,United States/Canada
+0.52,"Evofem Biosciences, Inc.",EVFM,○,A,F,OK,2026,small,United States/Canada
+0.52,PEOPLES BANCORP OF NORTH CAROLINA INC,PEBK,○,A,F,OK,2026,small,United States/Canada
+0.52,RAYONIER ADVANCED MATERIALS INC.,RYAM,○,A,F,OK,2026,small,United States/Canada
+0.52,STRATASYS LTD.,SSYS,○,A,F,OK,2026,small,United States/Canada
+0.52,ROYAL BANK OF CANADA,RY,○,A,F,OK,2026,small,United States/Canada
+0.52,FERRELLGAS PARTNERS L P,FGPR,○,A,F,OK,2026,small,United States/Canada
+0.52,AZUL SA,AZLUD,○,A,F,OK,2026,small,United States/Canada
+0.52,OCTAVE SPECIALTY GROUP INC,OSG,○,A,F,OK,2026,small,United States/Canada
+0.52,NOVOSENSE,HKEX:02676.HK,○,A,F,OK,2026,small,Unspecified
+0.52,MARINEMAX INC,HZO,○,A,F,OK,2026,small,United States/Canada
+0.52,"POPULAR, INC.",BPOP,○,A,F,OK,2026,small,United States/Canada
+0.52,Dave Inc./DE,DAVE,○,A,F,OK,2026,small,United States/Canada
+0.52,"Venture Global, Inc.",VG,○,A,F,OK,2026,small,United States/Canada
+0.52,"Sinclair, Inc.",SBGI,○,A,F,OK,2026,small,United States/Canada
+0.52,BlackRock TCP Capital Corp.,TCPC,○,A,F,OK,2026,small,United States/Canada
+0.52,TONTINE WINES,HKEX:00389.HK,○,A,F,OK,2026,small,Unspecified
+0.52,CapForce Inc.,OPGN,○,A,F,OK,2026,small,United States/Canada
+0.52,"CLOVER HEALTH INVESTMENTS, CORP. /DE",CLOV,○,A,F,OK,2026,small,United States/Canada
+0.52,MEGA GENOMICS,HKEX:06667.HK,○,A,F,OK,2026,small,Unspecified
+0.52,EUROEYES,HKEX:01846.HK,○,A,F,OK,2026,small,Unspecified
+0.52,SIERRA BANCORP,BSRR,○,A,F,OK,2026,small,United States/Canada
+0.52,PROSPERITY BANCSHARES INC,PB,○,A,F,OK,2026,small,United States/Canada
+0.52,Galaxy Digital Inc.,GLXY,○,A,F,OK,2026,small,United States/Canada
+0.52,"LSB INDUSTRIES, INC.",LXU,○,A,F,OK,2026,small,United States/Canada
+0.52,"Atlanta Braves Holdings, Inc.",BATRA,○,A,F,OK,2026,small,United States/Canada
+0.52,INTEGRA LIFESCIENCES HOLDINGS CORP,IART,○,A,F,OK,2026,small,United States/Canada
+0.52,"ADTRAN Holdings, Inc.",ADTN,○,A,F,OK,2026,small,United States/Canada
+0.52,"Spok Holdings, Inc",SPOK,○,A,F,OK,2026,small,United States/Canada
+0.52,"Smart Sand, Inc.",SND,○,A,F,OK,2026,small,United States/Canada
+0.52,"Sila Realty Trust, Inc.",SILA,○,A,F,OK,2026,small,United States/Canada
+0.52,"PAR PACIFIC HOLDINGS, INC.",PARR,○,A,F,OK,2026,small,United States/Canada
+0.52,ARMSTRONG WORLD INDUSTRIES INC,AWI,○,A,F,OK,2026,small,United States/Canada
+0.52,"Light & Wonder, Inc.",LNWO,○,A,F,OK,2026,small,United States/Canada
+0.52,Clean Energy Fuels Corp.,CLNE,○,A,F,OK,2026,small,United States/Canada
+0.52,"INFINITY NATURAL RESOURCES, INC.",INR,○,A,F,OK,2026,small,United States/Canada
+0.52,"CONTINENTAL RESOURCES, INC",CIK:0000732834,○,A,F,OK,2026,small,United States/Canada
+0.52,"Fortune Brands Innovations, Inc.",FBIN,○,A,F,OK,2026,small,United States/Canada
+0.52,LyondellBasell Industries N.V.,LYB,○,A,F,OK,2026,small,United States/Canada
+0.52,Tronox Holdings plc,TROX,○,A,F,OK,2026,small,United States/Canada
+0.52,TRACTOR SUPPLY CO /DE/,TSCO,○,A,F,OK,2026,small,United States/Canada
+0.52,LINCOLN NATIONAL CORP,LNC,○,A,F,OK,2026,small,United States/Canada
+0.52,HUMANA INC,HUM,○,A,F,OK,2026,small,United States/Canada
+0.52,VISTEON CORP,VC,○,A,F,OK,2026,small,United States/Canada
+0.52,CENTERPOINT ENERGY INC,CNP,○,A,F,OK,2026,small,United States/Canada
+0.52,METLIFE INC,MET,○,A,F,OK,2026,small,United States/Canada
+0.52,FIRSTENERGY CORP,FE,○,A,F,OK,2026,small,United States/Canada
+0.52,"Cinemark Holdings, Inc.",CNK,○,A,F,OK,2026,small,United States/Canada
+0.52,EDISON INTERNATIONAL,EIX,○,A,F,OK,2026,small,United States/Canada
+0.52,MOODYS CORP /DE/,MCO,○,A,F,OK,2026,small,United States/Canada
+0.52,AZUL SA,AZLUQ,○,A,F,OK,2026,small,United States/Canada
+0.52,"ITRON, INC.",ITRI,○,A,F,OK,2026,small,United States/Canada
+0.52,WORLD ACCEPTANCE CORP,WRLD,○,A,F,OK,2026,small,United States/Canada
+0.52,XINHUA LANDE,HKEX:08106.HK,○,A,F,OK,2026,small,Unspecified
+0.52,AGCO CORP /DE,AGCO,○,A,F,OK,2026,small,United States/Canada
+0.52,ALLIANCEBERNSTEIN L.P.,CIK:0001109448,○,A,F,OK,2026,small,United States/Canada
+0.52,GETTY REALTY CORP /MD/,GTY,○,A,F,OK,2026,small,United States/Canada
+0.52,ALLIANCEBERNSTEIN HOLDING L.P.,AB,○,A,F,OK,2026,small,United States/Canada
+0.52,Kraft Heinz Co,KHC,○,A,F,OK,2026,small,United States/Canada
+0.52,GLOBAL NEW MAT,HKEX:06616.HK,○,A,F,OK,2026,small,Unspecified
+0.52,GUANZE MEDICAL,HKEX:02427.HK,○,A,F,OK,2026,small,Unspecified
+0.52,KEMPER Corp,KMPB,○,A,F,OK,2026,small,United States/Canada
+0.52,AMPHENOL CORP /DE/,APH,○,A,F,OK,2026,small,United States/Canada
+0.52,FORD MOTOR CO,F,○,A,F,OK,2026,small,United States/Canada
+0.52,NT PHARMA,HKEX:01011.HK,○,A,F,OK,2026,small,Unspecified
+0.52,"Contango ORE, Inc.",CTGO,○,A,F,OK,2026,small,United States/Canada
+0.52,OMEGA HEALTHCARE INVESTORS INC,OHI,○,A,F,OK,2026,small,United States/Canada
+0.52,ARKO Petroleum Corp.,APC,○,A,F,OK,2026,small,United States/Canada
+0.52,"Northfield Bancorp, Inc.",NFBK,○,A,F,OK,2026,small,United States/Canada
+0.52,Diversified Energy Co,DEC,○,A,F,OK,2026,small,United States/Canada
+0.52,TIANQI LITHIUM,HKEX:09696.HK,○,A,F,OK,2026,small,Unspecified
+0.52,MGM CHINA<br/>MGM CHINA N3106<br/>MGM CHINA N2702,HKEX:02282<br/>05036<br/>40634.HK,○,A,F,OK,2026,small,Unspecified
+0.52,TRUE PARTNER,HKEX:08657.HK,○,A,F,OK,2026,small,Unspecified
+0.52,"XCel Brands, Inc.",XELB,○,A,F,OK,2026,small,United States/Canada
+0.52,DOW INC.,DOW,○,A,F,OK,2026,small,United States/Canada
+0.52,Hamilton Lane INC,HLNE,○,A,F,OK,2026,small,United States/Canada
+0.52,Twin Hospitality Group Inc.,TWNP,○,A,F,OK,2026,small,United States/Canada
+0.52,PRESIDIO PUBCO INC.,FTW-WT,○,A,F,OK,2026,small,United States/Canada
+0.52,"Fat Brands, Inc",FAT,○,A,F,OK,2026,small,United States/Canada
+0.52,THELLOY DEV,HKEX:01546.HK,○,A,F,OK,2026,small,Unspecified
+0.52,Jefferies Financial Group Inc.,JEF,○,A,F,OK,2026,small,United States/Canada
+0.52,General Motors Co,GM,○,A,F,OK,2026,small,United States/Canada
+0.52,SKYMISSION GP,HKEX:01429.HK,○,A,F,OK,2026,small,Unspecified
+0.52,MEGAIN,HKEX:06939.HK,○,A,F,OK,2026,small,Unspecified
+0.52,IROBOT CORP,IRBTQ,○,A,F,OK,2026,small,United States/Canada
+0.52,GOLD RESOURCE CORP,GORO,○,A,F,OK,2026,small,United States/Canada
+0.52,"ALEXANDRIA REAL ESTATE EQUITIES, INC.",ARE,○,A,F,OK,2026,small,United States/Canada
+0.52,JOHNSON HLDGS,HKEX:01955.HK,○,A,F,OK,2026,small,Unspecified
+0.52,First American Financial Corp,FAF,○,A,F,OK,2026,small,United States/Canada
+0.52,RYDER SYSTEM INC,R,○,A,F,OK,2026,small,United States/Canada
+0.52,"Rush Street Interactive, Inc.",RSI,○,A,F,OK,2026,small,United States/Canada
+0.52,Playa Hotels & Resorts N.V.,CIK:0001692412,○,A,F,OK,2026,small,United States/Canada
+0.52,EON Resources Inc.,EONR-WT,○,A,F,OK,2026,small,United States/Canada
+0.52,ModivCare Inc,CIK:0001220754,○,A,F,OK,2026,small,United States/Canada
+0.52,"NMI Holdings, Inc.",NMIH,○,A,F,OK,2026,small,United States/Canada
+0.52,Star Holdings,STHO,○,A,F,OK,2026,small,United States/Canada
+0.52,Ares Management Corp,ARES-PB,○,A,F,OK,2026,small,United States/Canada
+0.52,ODP Corp,CIK:0000800240,○,A,F,OK,2026,small,United States/Canada
+0.52,SOUTHWEST AIRLINES CO,LUV,○,A,F,OK,2026,small,United States/Canada
+0.52,TORM plc,TRMD,○,A,F,OK,2026,small,United States/Canada
+0.52,Sixth Street Lending Partners,CIK:0001925309,○,A,F,OK,2026,small,United States/Canada
+0.52,"NEW RITE AID, LLC",CIK:0000084129,○,A,F,OK,2026,small,United States/Canada
+0.52,"PENN Entertainment, Inc.",PENN,○,A,F,OK,2026,small,United States/Canada
+0.52,"Vacasa, Inc.",CIK:0001874944,○,A,F,OK,2026,small,United States/Canada
 0.51,Metro Bank,LSE:MTRO,★,A,H,OK,2023,small,United Kingdom
 0.51,BHP GROUP LIMITED,—,○,A,Unknown,OK,2026,small,SE Asia / Pacific
 0.51,Edenor,NYSE:EDN,○,A,A1,OK,?,small,Latin America
@@ -330,6 +662,7 @@ score,name,ticker,conf,bucket,archetype,status,vintage,size,region
 0.42,POWER MINERALS LIMITED,PNN,○,A,Unknown,OK,2026,mid,SE Asia / Pacific
 0.42,ECHOIQ LIMITED,EIQ,○,A,Unknown,OK,2026,mid,SE Asia / Pacific
 0.42,ELECTRO OPTIC SYSTEMS HOLDINGS LIMITED,EOS,○,A,Unknown,OK,2026,mid,SE Asia / Pacific
+0.42,Sirius Media restructure l'intégralité de son emprunt obliga,EPA:FR0010812230,○,A,Unknown,OK,2026,mid,Unspecified
 0.42,Step Energy Services,TSX:STEP,○,A,B,OK,?,small,United States/Canada
 0.41,Chesapeake / Expand Energy,NYSE:EXE,★,C → B,F,OK,2024,small,United States/Canada
 0.41,Garrett Motion,NASDAQ:GTX,★,C → B,F,OK,2021,small,United States/Canada
@@ -463,6 +796,324 @@ score,name,ticker,conf,bucket,archetype,status,vintage,size,region
 0.38,CRITICAL MINERALS GROUP LIMITED,CMG,○,A,Unknown,OK,2026,small,SE Asia / Pacific
 0.38,CLEARVUE TECHNOLOGIES LIMITED,CPV,○,A,Unknown,OK,2026,small,SE Asia / Pacific
 0.38,LOTUS RESOURCES LIMITED,LOT,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,General SENS Submitter Company,—,○,A,Unknown,OK,2026,small,Unspecified
+0.38,CHIHO ENV,HKEX:00976.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,HMVOD,HKEX:08103.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,Star Gold Corp.,SRGZ,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,RAFFLESINTERIOR,HKEX:01376.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,SUNHO BIO-B,HKEX:02898.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,NewHold Investment Corp IV,NHIV,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,AM GROUP,HKEX:01849.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,JINGRUI HLDGS,HKEX:01862.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,FSM HOLDINGS,HKEX:01721.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,NETJOY,HKEX:02131.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,CENTURY ENT INT,HKEX:00959.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,Artificial Intelligence Technology Solutions Inc.,AITX,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,OCEAN STAR TECH,HKEX:08297.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,RA SILK ROAD,HKEX:00274.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,RMH HOLDINGS,HKEX:08437.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,S. DRAGON,HKEX:08493.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,PASHUN INT'L,HKEX:00574.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,CHINA SANDI,HKEX:00910.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,Fathom Holdings Inc.,FTHM,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Norris Industries, Inc.",NRIS,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,LIPELLA PHARMACEUTICALS INC.,LIPO,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,CLARITY MEDICAL,HKEX:01406.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,CH BEIDAHUANG,HKEX:00039.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,Antiaging Quantum Living Inc.,AAQL,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,JEWETT CAMERON TRADING CO LTD,JCTC,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,AMERICAS CARMART INC,CRMT,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,S ROBOT EDU,HKEX:08206.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,MODERN LAND,HKEX:01107.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,MEXICAN PETROLEUM,CIK:0000932782,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,HUSCOKE HLDGS,HKEX:00704.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,BLUE RIVER HLDG,HKEX:00498.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,BROAD HOMES,HKEX:02163.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,INFINITIES TECH,HKEX:01961.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,LUK HING ENT,HKEX:08052.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,CHINA OCEAN GP,HKEX:08047.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,DETAI NEWENERGY,HKEX:00559.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,TIANJUDIHE,HKEX:02479.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,GLOBAL UIN,HKEX:08496.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,"ADM TRONICS UNLIMITED, INC.",ADMT,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,XIWANG PROPERTY,HKEX:02088.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,E-STATION GTECH,HKEX:08475.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,Amplara Corp,CIK:0002093096,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,JINCHUAN INTL,HKEX:02362.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,CMRU,HKEX:01636.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,ICONCULTURE,HKEX:08500.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,HONLIV HEALTH,HKEX:09906.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,HOPSON DEV HOLD,HKEX:00754.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,"Exyn Technologies, Inc.",EXYN,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,SHANGHAI XNG,HKEX:03666.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,HUARONG ENERGY,HKEX:01101.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,GLORIOUS PPT H,HKEX:00845.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,MIN FU INTL,HKEX:08511.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,HYBRID KINETIC,HKEX:01188.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,STERLING GP,HKEX:01825.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,CAPITAL REALM,HKEX:00204.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,HAO TIAN INTL,HKEX:01341.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,SUN KONG HLDGS,HKEX:08631.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,ACESO LIFE SCI,HKEX:00474.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,BAIYING HOLDING,HKEX:08525.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,MSCTECH,HKEX:01632.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,CT IND GROUP,HKEX:08111.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,PENNANTPARK INVESTMENT CORP,PNNT,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,SUPERACTIVE GP,HKEX:00176.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,MIRXES-B,HKEX:02629.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,SINCEREWATCH HK,HKEX:00444.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,HC GROUP,HKEX:02280.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,STRONG PETRO,HKEX:00852.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,GRAND BAOXIN,HKEX:01293.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,GLORY SUN LAND,HKEX:00299.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,VITAL INNO,HKEX:06133.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,LONGHUI INTL,HKEX:01007.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,CBK HOLDINGS,HKEX:08428.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,CIRTEK HLDGS,HKEX:01433.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,ZHIDAO INT'L,HKEX:01220.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,AB&B BIO-TECH-B,HKEX:02627.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,ZHENGTONGAUTO,HKEX:01728.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,TAIHE M-FIN,HKEX:01915.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,S-ENJOY SERVICE,HKEX:01755.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,STARCOIN GROUP,HKEX:00399.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,SKYFAME REALTY<br/>SKYFAME B2609<br/>SKYFAME B3311<br/>SKYFAME B2609B<br/>SKYFAME B3311B<br/>SKYFAME B3111B<br/>SKYFAME B3211<br/>SKYFAME B3111,HKEX:00059<br/>05310<br/>05311<br/>05367<br/>05379<br/>05567<br/>05602<br/>05855.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,BIT ORIGIN Ltd,BTOG,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,RONGTA TECH,HKEX:09881.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,TRANSMIT ENT,HKEX:01326.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,CHINASILVER TEC,HKEX:00515.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,SUNSHINE,HKEX:00509.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,ARRAIL GROUP,HKEX:06639.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,Avalanche Treasury Corp,AVAT,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,MINISO Group Holding Ltd,MNSO,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,ALSCO POOLING,HKEX:02649.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,MANY IDEA CLOUD,HKEX:06696.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,"PetVivo Holdings, Inc.",PETV,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,GUIXIN GROUP,HKEX:08349.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,"Sundance Strategies, Inc.",SUND,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,RÉALISATION DES OPÉRATIONS AVEC OLYMPE BIDCO ET DE LA RESTRU,EPA:FR0010428771,○,A,Unknown,OK,2026,small,Unspecified
+0.38,HANHUA FIN,HKEX:03903.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,Kinetic Seas Inc.,KSEZ,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,MDJM LTD,UOKAF,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,TECHPRECISION CORP,TPCS,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,TIAN YUAN GP,HKEX:06119.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,CHINA TIANRUI,HKEX:01252.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,"SANGAMO THERAPEUTICS, INC",SGMO,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Adomos annonce le départ d'Éric Longuépée à l'issue de sa mi,EPA:FR001400UT31,○,A,Unknown,OK,2026,small,Unspecified
+0.38,LAJIN ENT,HKEX:08172.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,Libity,CIK:0001852889,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,WISDOM WEALTH,HKEX:00007.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,ETERNAL BEAUTY,HKEX:06883.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,DASHAN EDU,HKEX:09986.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,FU SHOU YUAN,HKEX:01448.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,"Odyssey Therapeutics, Inc.",ODTX,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,GREENTECH INTL,HKEX:00195.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,Pacific Booker Minerals Inc.,PBMLF,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,BOILLHEALTHCARE,HKEX:01246.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,EVERG VEHICLE,HKEX:00708.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,Veraxa Biotech Holding AG,VRXA,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Helio Corp /FL/,HLEO,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,WATER INDUSTRY,HKEX:01129.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,"Greenwave Technology Solutions, Inc.",GWAV,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,FORTUNE SUN,HKEX:00352.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,"Hartford Creative Group, Inc.",HFUS,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Sleep Number Corp,SNBR,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,NutriBand Inc.,NTRB,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Trio Petroleum Corp,TPET,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,AKANDA CORP.,AKAN,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Aeries Technology, Inc.",AERT,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,OURGAME,HKEX:06899.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,PETMED EXPRESS INC,PETS,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,ELEGANCEOPTICAL,HKEX:00907.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,LANDSEA MGMT,HKEX:00106.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,"EXICURE, INC.",XCUR,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,XIN YUAN ENT,HKEX:01748.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,MINERALRITE Corp,RITE,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,AIDIGONG,HKEX:00286.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,Alpha Compute Corp,ALP,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Lakewood-Amedex Biotherapeutics Inc.,LABT,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Evolution Metals & Technologies Corp.,EMAT,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,American Resources Corp,AREC,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,TREASURE GLOBAL INC,TGL,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Collab Z Inc.,CLBZ,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"MOBIX LABS, INC",MOBX,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"urban-gro, Inc.",UGRO,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,RELIABILITY INC,RLBY,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"SmartKem, Inc.",SMTK,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"VisionWave Holdings, Inc.",VWAV,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Global Innovative Platforms Inc.,GIPL,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,REALLOYS INC.,ALOY,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,GAPACK,HKEX:00468.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,EDUCATIONAL DEVELOPMENT CORP,EDUC,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Sono Group N.V.,SSM,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,ATV HOLDINGS,HKEX:00707.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,"VPR Brands, LP.",VPRB,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Aether Holdings, Inc.",ATHR,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,1847 Holdings LLC,LBRA,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,CervoMed Inc.,CRVO,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"AMERICAN BATTERY MATERIALS, INC.",BLTH,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,GIBO HOLDINGS Ltd,GIBO,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,FOXO TECHNOLOGIES INC.,FOXO,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Allied Energy, Inc.",AGGI,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Brera Holdings PLC,SLMT,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"TransparentBusiness, Inc.",CIK:0001740742,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Venu Holding Corp,VENU,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,U Power Ltd,UCAR,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,BION ENVIRONMENTAL TECHNOLOGIES INC,BNET,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Maris Tech Ltd.,MTEK,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,KRAKacquisition Corp,KRAQ,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Arrive AI Inc.,ARAI,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,NextPlat Corp,NXPL,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Allbirds, Inc.",BIRD,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Suncrete, Inc.",RMIX,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Profusa, Inc.",PFSA,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,American Strategic Investment Co.,NYC,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,CALLAN JMB INC.,CJMB,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Brag House Holdings, Inc.",TBH,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Aldabra 4 Liquidity Opportunity Vehicle, Inc.",ALOV,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,LFTD PARTNERS INC.,LIFD,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Fabric.AI, Inc.",FABC,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Kingfish Holding Corp,CIK:0001374881,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"KUSTOM ENTERTAINMENT, INC.",KUST,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Curanex Pharmaceuticals Inc,CURX,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Aptorum Group Ltd,APM,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Alset Inc.,AEI,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Pelthos Therapeutics Inc.,PTHS,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Vuzix Corp,VUZI,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,MANNATECH INC,MTEX,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Glimpse Group, Inc.",GGRP,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,BARFRESH FOOD GROUP INC.,BRFH,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"NOCERA, INC.",NCRA,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,EMPIRE PETROLEUM CORP,EP,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"CNS Pharmaceuticals, Inc.",CNSP,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Dragonfly Energy Holdings Corp.,DFLI,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,SOCIETY PASS INCORPORATED.,SOPA,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,HCW Biologics Inc.,HCWB,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"FLYWHEEL ADVANCED TECHNOLOGY, INC.",FWFW,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Co-Diagnostics, Inc.",CODX,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Dermata Therapeutics, Inc.",DRMA,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,SPECTRAL CAPITAL Corp,FCCN,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Onconetix, Inc.",ONCO,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,GigCapital9 Corp.,GIX,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Birchtech Corp.,BCHT,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,GENOIL INC,GNOLF,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"AtlasClear Holdings, Inc.",ATCH,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Momentus Inc.,MNTS,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,HARVARD BIOSCIENCE INC,HBIO,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Cyclerion Therapeutics, Inc.",CYCN,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,i-80 Gold Corp.,IAUX,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Space Asset Acquisition Corp.,SAAQ,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,ODYSSEY MARINE EXPLORATION INC,OMEX,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"SideChannel, Inc.",SDCH,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"EBR Systems, Inc.",EBRCZ,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,PORTSMOUTH SQUARE INC,PRSI,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Hapi Metaverse Inc.,CIK:0001600347,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,CIMG Inc.,CIMG,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Aura Biosciences, Inc.",AURA,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,DIXIE GROUP INC,DXYN,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"GoPro, Inc.",GPRO,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Babcock & Wilcox Enterprises, Inc.",BW,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,OneIM Acquisition Corp.,OIM,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,INTERGROUP CORP,INTG,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Token Cat Ltd,TC,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Hyperliquid Strategies Inc,PURR,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Senseonics Holdings, Inc.",SENS,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Generate Biomedicines, Inc.",GENB,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Vaxart, Inc.",VXRT,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Prime Medicine, Inc.",PRME,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Dianthus Therapeutics, Inc. /DE/",DNTH,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Viridian Therapeutics, Inc.\DE",VRDN,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"OnKure Therapeutics, Inc.",OKUR,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Seres Therapeutics, Inc.",MCRB,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,NATIONAL HEALTH INVESTORS INC,NHI,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Tiziana Life Sciences Ltd,TLSA,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"SMITH MICRO SOFTWARE, INC.",SMSI,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Greenbriar Sustainable Living Inc.,GEBRF,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,ROBO.AI INC.,AIIO,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Nvni Group Ltd,NVNI,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Pinnacle Food Group Ltd,PFAI,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,TH International Ltd,THCH,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"J-Star Holding Co., Ltd.",YMAT,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,FE HLDGS INTL,HKEX:00036.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,CoinShares PLC,CSHR,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Eason Technology Ltd,DXF,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"SOBR Safe, Inc.",SOBR,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Uxin Ltd,UXIN,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Nebius Group N.V.,NBIS,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Yueda Digital Holding,YDKG,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Currenc Group Inc.,CURR,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,WEBUY GLOBAL LTD,WBUY,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Concord Medical Services Holdings Ltd,CCM,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Kanzhun Ltd,BZ,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"EKSO BIONICS HOLDINGS, INC.",EKSO,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Lichen International Ltd,LICN,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,SuperCom Ltd,SPCB,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,LUFAX,HKEX:06623.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,Performance Shipping Inc.,PSHG,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Polibeli Group Ltd,PLBL,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Agomab Therapeutics NV,AGMB,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Aesthetic Medical International Holdings Group Ltd,PAIYY,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Jayud Global Logistics Ltd,JYD,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,BRASKEM SA,BAK,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,DADI INTL GROUP,HKEX:08130.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,SUNRISE REAL ESTATE GROUP INC,SRRE,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,NaaS Technology Inc.,NAAS,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,K-TECH SOLUTIONS CO LTD,KMRK,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,China Foods Holdings Ltd.,CFOO,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"ConnectM Technology Solutions, Inc.",CNTM,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Vivakor, Inc.",VIVK,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"SHF Holdings, Inc.",SHFS,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"KALA BIO, Inc.",KALA,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,CS DIAGNOSTICS CORP.,CSDX,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Horizon Quantum Holdings Ltd.,HQ,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,CARMEN CENTURY,HKEX:00612.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,"GameSquare Holdings, Inc.",GAME,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,United Maritime Corp,USEA,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Kaixin Holdings,KXIN,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Intercont (Cayman) Ltd,NCT,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Charlie's Holdings, Inc.",CHUC,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"JUPITER NEUROSCIENCES, INC.",JUNS,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,CHINA COME RIDE,HKEX:08039.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,FORUM MARKETS Inc,FRMM,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Unicoin Inc.,CIK:0001740742,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"XWELL, Inc.",XWEL,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Innate Pharma SA,IPHA,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Corvex, Inc.",MOVE,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Solana Co,HSDT,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Bimergen Energy Corp,BESS,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,GUIDED THERAPEUTICS INC,GTHP,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Canton Strategic Holdings, Inc.",CNTN,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,NeuroSense Therapeutics Ltd.,NRSN,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,AVAX ONE TECHNOLOGY LTD.,AVX,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Rank One Computing Corp,ROC,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Infleqtion, Inc.",INFQ,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Super League Enterprise, Inc.",SLE,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,INTERNET SCIENCES INC.,CIK:0001720286,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"SKINVISIBLE, INC.",SKVI,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,ESG Inc.,ESGH,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,ECARX Holdings Inc.,ECX,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,ADWAY,HKEX:06189.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,"StableX Technologies, Inc.",SBLX,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"HYPERION DEFI, INC.",HYPD,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,QUEST PATENT RESEARCH CORP,QPRC,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Elauwit Connection, Inc.",ELWT,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,CXApp Inc.,CXAI,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Gores Holdings X, Inc. / CI",GTEN,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Ideal Power Inc.,IPWR,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Iterum Therapeutics plc,ITRM,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Senti Biosciences, Inc.",SNTI,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"iANTHUS CAPITAL HOLDINGS, INC.",ITHUF,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,PRF Technologies Ltd.,PRFX,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"SANUWAVE Health, Inc.",SNWV,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,BTCS Inc.,BTCS,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Evogene Ltd.,EVGN,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"BioRestorative Therapies, Inc.",BRTX,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Can-Fite BioPharma Ltd.,CANF,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,MARCHEX INC,MCHX,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Social Commerce Partners Corp,SCPQ,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,LEADING HLDGS,HKEX:06999.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,Cannabist Co Holdings Inc.,CBSTF,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,A METAVERSE,HKEX:01616.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,INTL GENIUS,HKEX:00033.HK,○,A,Unknown,OK,2026,small,Unspecified
 0.37,Alpha Metallurgical Resources,NYSE:AMR,★,C → B,F,OK,?,small,United States/Canada
 0.36,Sampath Bank,CSE:SAMP,○,A,G,OK,?,small,SE Asia / Pacific
 0.36,Red Lobster,(Ch.11 2024),★,C → B,F,OK,?,small,United States/Canada
@@ -1124,3 +1775,36 @@ score,name,ticker,conf,bucket,archetype,status,vintage,size,region
 0.00,Ｇ－リボミック,4591,○,A,B,ACQUIRED,2026,small,Japan
 0.00,フジコピアン,7957,○,A,B,ACQUIRED,2026,small,Japan
 0.00,GENERAL SHOPPING E OUTLETS DO BRASIL BRASIL S.A.,—,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Latin America
+0.00,ZHENROPPT SPCS<br/>ZHENRO PPT<br/>ZHENROPPT N2608,HKEX:04596<br/>06158<br/>40572.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,10X FUND MANAGERS (RF) PROPRIETARY LIMITED,—,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,SATRIX COLLECTIVE INVESTMENT SCHEME,—,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,FIRST CAP GP,HKEX:01269.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,PACIFIC LEGEND,HKEX:08547.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,ZYY,HKEX:08223.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,SC HOLDINGS,HKEX:00413.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,KING INTL INV,HKEX:00928.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,SUMMI,HKEX:00756.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,CHINA GLASS,HKEX:03300.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,YESTAR HEALTH,HKEX:02393.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,JINMA ENERGY,HKEX:06885.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,AGILE GROUP,HKEX:03383.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,POLYFAIR HLDGS,HKEX:08532.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,KWG GROUP<br/>KWG GROUP N2701<br/>KWG GROUP N2608,HKEX:01813<br/>40117<br/>40683.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,TA YANG GROUP,HKEX:01991.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,namR: Convocation d'une audience devant le Tribunal de Comme,EPA:FR0014003J32,○,A,E,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,XH NEWS MEDIA,HKEX:00309.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,SUNSHINE 100,HKEX:02608.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,C ZENITH CHEM,HKEX:00362.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,ROAD KING INFRA,HKEX:01098.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,VPOWER GROUP,HKEX:01608.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,LVGEM CHINA,HKEX:00095.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,GLOBAL CORN GP,HKEX:03889.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,GRAND MING,HKEX:01271.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,LINK HOLDINGS,HKEX:08237.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,RENCO HOLDINGS,HKEX:02323.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,ALPHA PRO HLDGS,HKEX:00948.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,RSUN PPT,HKEX:01996.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,PROSPEROUSPRINT,HKEX:08385.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,CHINA HONGBAO,HKEX:08316.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,WELIFE TECH,HKEX:01703.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,HILONG,HKEX:01623.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
