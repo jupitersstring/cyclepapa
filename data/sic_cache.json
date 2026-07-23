@@ -1,0 +1,602 @@
+{
+ "1001233": {
+  "desc": "Biological Products, (No Diagnostic Substances)",
+  "sic2": "28"
+ },
+ "1003078": {
+  "desc": "Wholesale-Industrial Machinery & Equipment",
+  "sic2": "50"
+ },
+ "1009759": {
+  "desc": "Engines & Turbines",
+  "sic2": "35"
+ },
+ "1023024": {
+  "desc": "Pharmaceutical Preparations",
+  "sic2": "28"
+ },
+ "1023994": {
+  "desc": "Wholesale-Lumber & Other Construction Materials",
+  "sic2": "50"
+ },
+ "1041934": {
+  "desc": "Electromedical & Electrotherapeutic Apparatus",
+  "sic2": "38"
+ },
+ "10456": {
+  "desc": "Surgical & Medical Instruments & Apparatus",
+  "sic2": "38"
+ },
+ "1046568": {
+  "desc": "Services-Educational Services",
+  "sic2": "82"
+ },
+ "105319": {
+  "desc": "Services-Personal Services",
+  "sic2": "72"
+ },
+ "1056903": {
+  "desc": "Water Supply",
+  "sic2": "49"
+ },
+ "1058623": {
+  "desc": "Radio Broadcasting Stations",
+  "sic2": "48"
+ },
+ "1065059": {
+  "desc": "Mining & Quarrying of  Nonmetallic Minerals (No Fuels)",
+  "sic2": "14"
+ },
+ "106532": {
+  "desc": "Wholesale-Apparel, Piece Goods & Notions",
+  "sic2": "51"
+ },
+ "1090425": {
+  "desc": "Real Estate Investment Trusts",
+  "sic2": "67"
+ },
+ "1091596": {
+  "desc": "Surgical & Medical Instruments & Apparatus",
+  "sic2": "38"
+ },
+ "1100682": {
+  "desc": "Services-Commercial Physical & Biological Research",
+  "sic2": "87"
+ },
+ "1120914": {
+  "desc": "Services-Prepackaged Software",
+  "sic2": "73"
+ },
+ "1142417": {
+  "desc": "Television Broadcasting Stations",
+  "sic2": "48"
+ },
+ "1169445": {
+  "desc": "Services-Computer Programming Services",
+  "sic2": "73"
+ },
+ "1170010": {
+  "desc": "Retail-Auto Dealers & Gasoline Stations",
+  "sic2": "55"
+ },
+ "1230058": {
+  "desc": "Land Subdividers & Developers (No Cemeteries)",
+  "sic2": "65"
+ },
+ "1254699": {
+  "desc": "Retail-Catalog & Mail-Order Houses",
+  "sic2": "59"
+ },
+ "1280776": {
+  "desc": "Pharmaceutical Preparations",
+  "sic2": "28"
+ },
+ "1282648": {
+  "desc": "Crude Petroleum & Natural Gas",
+  "sic2": "13"
+ },
+ "1299130": {
+  "desc": "Laboratory Analytical Instruments",
+  "sic2": "38"
+ },
+ "1302215": {
+  "desc": "Investment Advice",
+  "sic2": "62"
+ },
+ "1302387": {
+  "desc": "Savings Institution, Federally Chartered",
+  "sic2": "60"
+ },
+ "1322422": {
+  "desc": "Metal Mining",
+  "sic2": "10"
+ },
+ "1323885": {
+  "desc": "Surgical & Medical Instruments & Apparatus",
+  "sic2": "38"
+ },
+ "1331754": {
+  "desc": "Federal & Federally-Sponsored Credit Agencies",
+  "sic2": "61"
+ },
+ "1331757": {
+  "desc": "Federal & Federally-Sponsored Credit Agencies",
+  "sic2": "61"
+ },
+ "1334036": {
+  "desc": "Rubber & Plastics Footwear",
+  "sic2": "30"
+ },
+ "1345126": {
+  "desc": "Household Furniture",
+  "sic2": "25"
+ },
+ "1347242": {
+  "desc": "Pharmaceutical Preparations",
+  "sic2": "28"
+ },
+ "1349436": {
+  "desc": "Crude Petroleum & Natural Gas",
+  "sic2": "13"
+ },
+ "1355096": {
+  "desc": "Retail-Catalog & Mail-Order Houses",
+  "sic2": "59"
+ },
+ "1377630": {
+  "desc": "Services-Advertising",
+  "sic2": "73"
+ },
+ "1396814": {
+  "desc": "Pharmaceutical Preparations",
+  "sic2": "28"
+ },
+ "1400891": {
+  "desc": "Radio Broadcasting Stations",
+  "sic2": "48"
+ },
+ "1416876": {
+  "desc": "Services-Medical Laboratories",
+  "sic2": "80"
+ },
+ "1432364": {
+  "desc": "Air Transportation, Scheduled",
+  "sic2": "45"
+ },
+ "1437402": {
+  "desc": "Pharmaceutical Preparations",
+  "sic2": "28"
+ },
+ "1443646": {
+  "desc": "Services-Management Consulting Services",
+  "sic2": "87"
+ },
+ "1443669": {
+  "desc": "Fabricated Structural Metal Products",
+  "sic2": "34"
+ },
+ "1445305": {
+  "desc": "Services-Prepackaged Software",
+  "sic2": "73"
+ },
+ "1456772": {
+  "desc": "Real Estate",
+  "sic2": "65"
+ },
+ "1462056": {
+  "desc": "Services-Prepackaged Software",
+  "sic2": "73"
+ },
+ "14846": {
+  "desc": "Real Estate Investment Trusts",
+  "sic2": "67"
+ },
+ "1519061": {
+  "desc": "Plastic Materials, Synth Resins & Nonvulcan Elastomers",
+  "sic2": "28"
+ },
+ "1519401": {
+  "desc": "Personal Credit Institutions",
+  "sic2": "61"
+ },
+ "1525221": {
+  "desc": "Air Transportation, Nonscheduled",
+  "sic2": "45"
+ },
+ "1532286": {
+  "desc": "Oil & Gas Field Services, NEC",
+  "sic2": "13"
+ },
+ "1535955": {
+  "desc": "Pharmaceutical Preparations",
+  "sic2": "28"
+ },
+ "1567892": {
+  "desc": "Pharmaceutical Preparations",
+  "sic2": "28"
+ },
+ "1580864": {
+  "desc": "Retail-Auto Dealers & Gasoline Stations",
+  "sic2": "55"
+ },
+ "1599117": {
+  "desc": "Investors, NEC",
+  "sic2": "67"
+ },
+ "1603454": {
+  "desc": "Services-Medical Laboratories",
+  "sic2": "80"
+ },
+ "1609253": {
+  "desc": "Crude Petroleum & Natural Gas",
+  "sic2": "13"
+ },
+ "1609711": {
+  "desc": "Services-Computer Integrated Systems Design",
+  "sic2": "73"
+ },
+ "1622536": {
+  "desc": "Electric Services",
+  "sic2": "49"
+ },
+ "1628369": {
+  "desc": "Real Estate",
+  "sic2": "65"
+ },
+ "1644378": {
+  "desc": "Services-Management Consulting Services",
+  "sic2": "87"
+ },
+ "1645113": {
+  "desc": "Surgical & Medical Instruments & Apparatus",
+  "sic2": "38"
+ },
+ "1651308": {
+  "desc": "Pharmaceutical Preparations",
+  "sic2": "28"
+ },
+ "1653653": {
+  "desc": "Hotels & Motels",
+  "sic2": "70"
+ },
+ "1655210": {
+  "desc": "Food and Kindred Products",
+  "sic2": "20"
+ },
+ "1657853": {
+  "desc": "Services-Auto Rental & Leasing (No Drivers)",
+  "sic2": "75"
+ },
+ "1680247": {
+  "desc": "Oil & Gas Field Services, NEC",
+  "sic2": "13"
+ },
+ "1687187": {
+  "desc": "Silver Ores",
+  "sic2": "12"
+ },
+ "1690820": {
+  "desc": "Retail-Auto Dealers & Gasoline Stations",
+  "sic2": "55"
+ },
+ "1692819": {
+  "desc": "Electric Services",
+  "sic2": "49"
+ },
+ "1705012": {
+  "desc": "Retail-Eating  Places",
+  "sic2": "58"
+ },
+ "1724965": {
+  "desc": "Crude Petroleum & Natural Gas",
+  "sic2": "13"
+ },
+ "1728117": {
+  "desc": "Pharmaceutical Preparations",
+  "sic2": "28"
+ },
+ "1737706": {
+  "desc": "Drilling Oil & Gas Wells",
+  "sic2": "13"
+ },
+ "1759546": {
+  "desc": "Motor Vehicles & Passenger Car Bodies",
+  "sic2": "37"
+ },
+ "1759655": {
+  "desc": "Services-Health Services",
+  "sic2": "80"
+ },
+ "1775734": {
+  "desc": "Finance Services",
+  "sic2": "61"
+ },
+ "1779977": {
+  "desc": "Services-Computer Processing & Data Preparation",
+  "sic2": "73"
+ },
+ "1781730": {
+  "desc": "Savings Institutions, Not Federally Chartered",
+  "sic2": "60"
+ },
+ "1782303": {
+  "desc": "Pharmaceutical Preparations",
+  "sic2": "28"
+ },
+ "1785494": {
+  "desc": "Real Estate",
+  "sic2": "65"
+ },
+ "1790169": {
+  "desc": "Wholesale-Drugs, Proprietaries & Druggists' Sundries",
+  "sic2": "51"
+ },
+ "1795589": {
+  "desc": "Services-Prepackaged Software",
+  "sic2": "73"
+ },
+ "1808220": {
+  "desc": "Insurance Agents, Brokers & Service",
+  "sic2": "64"
+ },
+ "1814287": {
+  "desc": "Investment Advice",
+  "sic2": "62"
+ },
+ "1817511": {
+  "desc": "Services-Business Services, NEC",
+  "sic2": "73"
+ },
+ "1818643": {
+  "desc": "Crude Petroleum & Natural Gas",
+  "sic2": "13"
+ },
+ "1819516": {
+  "desc": "Air Transportation, Nonscheduled",
+  "sic2": "45"
+ },
+ "1829959": {
+  "desc": "Services-Prepackaged Software",
+  "sic2": "73"
+ },
+ "1831868": {
+  "desc": "Surgical & Medical Instruments & Apparatus",
+  "sic2": "38"
+ },
+ "1837671": {
+  "desc": "Real Estate",
+  "sic2": "65"
+ },
+ "1839341": {
+  "desc": "Finance Services",
+  "sic2": "61"
+ },
+ "1839530": {
+  "desc": "Services-Business Services, NEC",
+  "sic2": "73"
+ },
+ "1841666": {
+  "desc": "Crude Petroleum & Natural Gas",
+  "sic2": "13"
+ },
+ "1841968": {
+  "desc": "Investment Advice",
+  "sic2": "62"
+ },
+ "1843973": {
+  "desc": "Air Transportation, Nonscheduled",
+  "sic2": "45"
+ },
+ "1856365": {
+  "desc": "State Commercial Banks",
+  "sic2": "60"
+ },
+ "1895262": {
+  "desc": "Drilling Oil & Gas Wells",
+  "sic2": "13"
+ },
+ "1921603": {
+  "desc": "Crude Petroleum & Natural Gas",
+  "sic2": "13"
+ },
+ "1929561": {
+  "desc": "Transportation Services",
+  "sic2": "47"
+ },
+ "1937653": {
+  "desc": "Pharmaceutical Preparations",
+  "sic2": "28"
+ },
+ "1948056": {
+  "desc": "Investors, NEC",
+  "sic2": "67"
+ },
+ "1957845": {
+  "desc": "Finance Services",
+  "sic2": "61"
+ },
+ "1964738": {
+  "desc": "Surgical & Medical Instruments & Apparatus",
+  "sic2": "38"
+ },
+ "1965052": {
+  "desc": "Finance Services",
+  "sic2": "61"
+ },
+ "2007691": {
+  "desc": "Finance Services",
+  "sic2": "61"
+ },
+ "2012139": {
+  "desc": "",
+  "sic2": ""
+ },
+ "2033383": {
+  "desc": "Services-Computer Integrated Systems Design",
+  "sic2": "73"
+ },
+ "2045151": {
+  "desc": "Retail-Apparel & Accessory Stores",
+  "sic2": "56"
+ },
+ "2048951": {
+  "desc": "Retail-Miscellaneous Retail",
+  "sic2": "59"
+ },
+ "2049662": {
+  "desc": "Miscellaneous Electrical Machinery, Equipment & Supplies",
+  "sic2": "36"
+ },
+ "2050541": {
+  "desc": "",
+  "sic2": ""
+ },
+ "2064953": {
+  "desc": "Chemicals & Allied Products",
+  "sic2": "28"
+ },
+ "2075109": {
+  "desc": "Aircraft",
+  "sic2": "37"
+ },
+ "2082247": {
+  "desc": "Air Courier Services",
+  "sic2": "45"
+ },
+ "2086771": {
+  "desc": "Gold and Silver Ores",
+  "sic2": "10"
+ },
+ "2093018": {
+  "desc": "Metal Mining",
+  "sic2": "10"
+ },
+ "2097163": {
+  "desc": "Electronic Computers",
+  "sic2": "35"
+ },
+ "2104882": {
+  "desc": "Oil Royalty Traders",
+  "sic2": "67"
+ },
+ "2105398": {
+  "desc": "Services-Computer Programming, Data Processing, Etc.",
+  "sic2": "73"
+ },
+ "2113481": {
+  "desc": "Blank Checks",
+  "sic2": "67"
+ },
+ "23197": {
+  "desc": "Radio & Tv Broadcasting & Communications Equipment",
+  "sic2": "36"
+ },
+ "27419": {
+  "desc": "Retail-Variety Stores",
+  "sic2": "53"
+ },
+ "275053": {
+  "desc": "Pharmaceutical Preparations",
+  "sic2": "28"
+ },
+ "314808": {
+  "desc": "Drilling Oil & Gas Wells",
+  "sic2": "13"
+ },
+ "53456": {
+  "desc": "Electric Services",
+  "sic2": "49"
+ },
+ "67716": {
+  "desc": "Mining & Quarrying of  Nonmetallic Minerals (No Fuels)",
+  "sic2": "14"
+ },
+ "707605": {
+  "desc": "National Commercial Banks",
+  "sic2": "60"
+ },
+ "720154": {
+  "desc": "Services-Commercial Physical & Biological Research",
+  "sic2": "87"
+ },
+ "726958": {
+  "desc": "Retail-Auto Dealers & Gasoline Stations",
+  "sic2": "55"
+ },
+ "737468": {
+  "desc": "State Commercial Banks",
+  "sic2": "60"
+ },
+ "746514": {
+  "desc": "Operators of  Apartment Buildings",
+  "sic2": "65"
+ },
+ "748592": {
+  "desc": "Pharmaceutical Preparations",
+  "sic2": "28"
+ },
+ "771992": {
+  "desc": "Gold and Silver Ores",
+  "sic2": "10"
+ },
+ "813762": {
+  "desc": "Petroleum Refining",
+  "sic2": "29"
+ },
+ "827187": {
+  "desc": "Household Furniture",
+  "sic2": "25"
+ },
+ "831609": {
+  "desc": "Medicinal Chemicals & Botanical Products",
+  "sic2": "28"
+ },
+ "84748": {
+  "desc": "Plastic Materials, Synth Resins & Nonvulcan Elastomers",
+  "sic2": "28"
+ },
+ "862861": {
+  "desc": "Commodity Contracts Brokers & Dealers",
+  "sic2": "62"
+ },
+ "877212": {
+  "desc": "General Industrial Machinery & Equipment",
+  "sic2": "35"
+ },
+ "882835": {
+  "desc": "Industrial Instruments For Measurement, Display, and Control",
+  "sic2": "38"
+ },
+ "884614": {
+  "desc": "Gas & Other Services Combined",
+  "sic2": "49"
+ },
+ "885508": {
+  "desc": "Land Subdividers & Developers (No Cemeteries)",
+  "sic2": "65"
+ },
+ "890926": {
+  "desc": "Surety Insurance",
+  "sic2": "63"
+ },
+ "895419": {
+  "desc": "Semiconductors & Related Devices",
+  "sic2": "36"
+ },
+ "896493": {
+  "desc": "Oil & Gas Field Machinery & Equipment",
+  "sic2": "35"
+ },
+ "902791": {
+  "desc": "Services-Help Supply Services",
+  "sic2": "73"
+ },
+ "910612": {
+  "desc": "Real Estate Investment Trusts",
+  "sic2": "67"
+ },
+ "919012": {
+  "desc": "Retail-Family Clothing Stores",
+  "sic2": "56"
+ }
+}
