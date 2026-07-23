@@ -1,0 +1,2094 @@
+[
+  {
+    "ticker": "TONX",
+    "name": "TON Strategy Company",
+    "sector": "Technology",
+    "industry": "Software - Application",
+    "mcap_musd": 213.0,
+    "price": 3.76,
+    "fwk_low": 1.75,
+    "fwk_high": 29.77,
+    "drawdown_pct": 7.2,
+    "p_b": 0.52287585,
+    "p_s": 12.707307,
+    "cluster": 4,
+    "window_days_ago": 21,
+    "ceo": true,
+    "cfo": true,
+    "tot_insider_musd": 0.07,
+    "top_buyers": [
+      [
+        "2026-05-15",
+        "Wilson Kevin Mark",
+        "Chief Executive Officer",
+        29353.2
+      ],
+      [
+        "2026-05-14",
+        "Olsen Sarah Josephine",
+        "CFO & COO",
+        26932.8
+      ],
+      [
+        "2026-05-15",
+        "Sohn Evan",
+        "Director",
+        9930.45
+      ],
+      [
+        "2026-05-15",
+        "Marbach Mary",
+        "General Counsel/Corp Secretary",
+        5632.0
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 56.0,
+    "reasons": "4-buyer cluster 21d ago | CEO+CFO bought | only 7% above 52w low | P/B 0.5",
+    "rank": 1
+  },
+  {
+    "ticker": "FLUT",
+    "name": "Flutter Entertainment plc",
+    "sector": "Consumer Cyc",
+    "industry": "Gambling",
+    "mcap_musd": 17461.0,
+    "price": 100.7,
+    "fwk_low": 91.52,
+    "fwk_high": 313.685,
+    "drawdown_pct": 4.1,
+    "p_b": 1.9375817,
+    "p_s": 1.0258152,
+    "cluster": 7,
+    "window_days_ago": 23,
+    "ceo": true,
+    "cfo": false,
+    "tot_insider_musd": 1.05,
+    "top_buyers": [
+      [
+        "2026-05-13",
+        "Taylor Daniel Mark",
+        "President FLUT; CEO FLUT Intl",
+        251586.9745
+      ],
+      [
+        "2026-05-12",
+        "Jackson Jeremy Peter",
+        "Chief Executive Officer",
+        244655.52000000002
+      ],
+      [
+        "2026-05-12",
+        "BRYANT JOHN A",
+        "Director",
+        200585.77500000002
+      ],
+      [
+        "2026-05-12",
+        "LIU DON H",
+        "Chief Legal Officer",
+        149999.90706
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 56.0,
+    "reasons": "7-buyer cluster 23d ago | CEO bought | only 4% above 52w low",
+    "rank": 2
+  },
+  {
+    "ticker": "AGBK",
+    "name": "AGI Inc",
+    "sector": "Financial Se",
+    "industry": "Banks - Regional",
+    "mcap_musd": 1081.0,
+    "price": 6.76,
+    "fwk_low": 6.4,
+    "fwk_high": 12.21,
+    "drawdown_pct": 6.2,
+    "p_b": 1.1710745,
+    "p_s": 0.29676384,
+    "cluster": 4,
+    "window_days_ago": 24,
+    "ceo": true,
+    "cfo": false,
+    "tot_insider_musd": 0.21,
+    "top_buyers": [
+      [
+        "2026-05-11",
+        "TESTA MARCIANO",
+        "Chairman and CEO",
+        200264.40000000002
+      ],
+      [
+        "2026-05-14",
+        "Morais Rafael De Oliveira",
+        "Risk & Controllership Officer",
+        3101.2584
+      ],
+      [
+        "2026-05-12",
+        "ALOE VINICIUS BIRKELAND",
+        "Chief Technology Officer",
+        3001.2246
+      ],
+      [
+        "2026-05-12",
+        "GIRARDI MATHEUS",
+        "Chief Sales Officer",
+        1914.3
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 50.0,
+    "reasons": "4-buyer cluster 24d ago | CEO bought | only 6% above 52w low | P/B 1.2",
+    "rank": 3
+  },
+  {
+    "ticker": "HDSN",
+    "name": "Hudson Technologies, Inc.",
+    "sector": "Basic Materi",
+    "industry": "Specialty Chemicals",
+    "mcap_musd": 222.0,
+    "price": 5.27,
+    "fwk_low": 4.64,
+    "fwk_high": 10.52,
+    "drawdown_pct": 10.7,
+    "p_b": 0.93241334,
+    "p_s": 0.8817944,
+    "cluster": 7,
+    "window_days_ago": 20,
+    "ceo": true,
+    "cfo": false,
+    "tot_insider_musd": 0.15,
+    "top_buyers": [
+      [
+        "2026-05-15",
+        "Sheriff Alan",
+        "Director",
+        25350.0
+      ],
+      [
+        "2026-05-15",
+        "Feeler Jeffrey R",
+        "Director",
+        25092.0
+      ],
+      [
+        "2026-05-15",
+        "Mansy Loan Nguyen",
+        "Director",
+        24814.0
+      ],
+      [
+        "2026-05-15",
+        "Parrillo Richard",
+        "Director",
+        24814.0
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 49.0,
+    "reasons": "7-buyer cluster 20d ago | CEO bought | 11% above 52w low | P/B 0.9",
+    "rank": 4
+  },
+  {
+    "ticker": "EPAM",
+    "name": "EPAM Systems, Inc.",
+    "sector": "Technology",
+    "industry": "Information Technology Service",
+    "mcap_musd": 5082.0,
+    "price": 97.28,
+    "fwk_low": 89.25,
+    "fwk_high": 222.53,
+    "drawdown_pct": 6.0,
+    "p_b": 1.4957869,
+    "p_s": 0.9148428,
+    "cluster": 6,
+    "window_days_ago": 31,
+    "ceo": true,
+    "cfo": true,
+    "tot_insider_musd": 0.04,
+    "top_buyers": [
+      [
+        "2026-05-04",
+        "Fejes Balazs",
+        "CEO, President, Director",
+        7499.95721
+      ],
+      [
+        "2026-05-04",
+        "Rockwell Edward",
+        "SVP/Chief Legal Officer",
+        7499.95721
+      ],
+      [
+        "2026-05-04",
+        "Abrahams Gary C",
+        "VP, Corporate Controller, PAO",
+        7499.95721
+      ],
+      [
+        "2026-05-04",
+        "Peterson Jason D.",
+        "Chief Financial Officer",
+        7499.95721
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 48.0,
+    "reasons": "6-buyer cluster 31d ago | CEO+CFO bought | only 6% above 52w low",
+    "rank": 5
+  },
+  {
+    "ticker": "PATK",
+    "name": "Patrick Industries, Inc.",
+    "sector": "Consumer Cyc",
+    "industry": "Recreational Vehicles",
+    "mcap_musd": 2982.0,
+    "price": 90.65,
+    "fwk_low": 83.96,
+    "fwk_high": 148.5,
+    "drawdown_pct": 10.4,
+    "p_b": 2.524226,
+    "p_s": 0.75592643,
+    "cluster": 5,
+    "window_days_ago": 29,
+    "ceo": true,
+    "cfo": false,
+    "tot_insider_musd": 3.54,
+    "top_buyers": [
+      [
+        "2026-03-12",
+        "WELCH M SCOTT",
+        "Director",
+        1136821.0
+      ],
+      [
+        "2026-05-06",
+        "WELCH M SCOTT",
+        "Director",
+        886670.5
+      ],
+      [
+        "2026-05-06",
+        "NEMETH ANDY L",
+        "Chief Executive Officer",
+        880000.0
+      ],
+      [
+        "2026-05-06",
+        "Roeder Charles R",
+        "President - RV",
+        505018.47500000003
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 47.0,
+    "reasons": "5-buyer cluster 29d ago | CEO bought | 10% above 52w low",
+    "rank": 6
+  },
+  {
+    "ticker": "GO",
+    "name": "Grocery Outlet Holding Corp.",
+    "sector": "Consumer Def",
+    "industry": "Grocery Stores",
+    "mcap_musd": 818.0,
+    "price": 8.27,
+    "fwk_low": 5.655,
+    "fwk_high": 19.41,
+    "drawdown_pct": 19.0,
+    "p_b": 1.0136046,
+    "p_s": 0.1729745,
+    "cluster": 6,
+    "window_days_ago": 87,
+    "ceo": true,
+    "cfo": false,
+    "tot_insider_musd": 7.92,
+    "top_buyers": [
+      [
+        "2026-03-20",
+        "Potter Jason J. N.",
+        "President and CEO",
+        1687972.3
+      ],
+      [
+        "2026-03-11",
+        "Lindberg Eric J. Jr.",
+        "Director",
+        1644500.0000000002
+      ],
+      [
+        "2026-03-30",
+        "Ragatz Erik D.",
+        "Director",
+        882500.0
+      ],
+      [
+        "2026-03-12",
+        "Ragatz Erik D.",
+        "Director",
+        750000.0
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 47.0,
+    "reasons": "6-buyer cluster 87d ago | CEO bought | $7.9M insider buys | 19% above 52w low | P/B 1.0",
+    "rank": 7
+  },
+  {
+    "ticker": "BETR",
+    "name": "Better Home & Finance Holding C",
+    "sector": "Financial Se",
+    "industry": "Mortgage Finance",
+    "mcap_musd": 498.0,
+    "price": 26.41,
+    "fwk_low": 10.86,
+    "fwk_high": 94.06,
+    "drawdown_pct": 18.7,
+    "p_b": 51.582027,
+    "p_s": 2.752703,
+    "cluster": 6,
+    "window_days_ago": 59,
+    "ceo": true,
+    "cfo": true,
+    "tot_insider_musd": 9.21,
+    "top_buyers": [
+      [
+        "2026-04-10",
+        "Framework Ventures IV L.P.",
+        "10%",
+        1792496.6400000001
+      ],
+      [
+        "2026-03-19",
+        "Framework Ventures IV L.P.",
+        "10%",
+        1509440.0
+      ],
+      [
+        "2026-03-11",
+        "Framework Ventures IV L.P.",
+        "10%",
+        1212688.54
+      ],
+      [
+        "2026-03-23",
+        "Framework Ventures IV L.P.",
+        "10%",
+        1184000.0
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 47.0,
+    "reasons": "6-buyer cluster 59d ago | CEO+CFO bought | $9.2M insider buys | 19% above 52w low",
+    "rank": 8
+  },
+  {
+    "ticker": "SRAD",
+    "name": "Sportradar Group AG",
+    "sector": "Technology",
+    "industry": "Software - Application",
+    "mcap_musd": 3984.0,
+    "price": 13.46,
+    "fwk_low": 11.66,
+    "fwk_high": 32.22,
+    "drawdown_pct": 8.8,
+    "p_b": 3.6539679,
+    "p_s": 3.0058506,
+    "cluster": 7,
+    "window_days_ago": 31,
+    "ceo": true,
+    "cfo": false,
+    "tot_insider_musd": 11.35,
+    "top_buyers": [
+      [
+        "2026-05-06",
+        "Koerl Carsten",
+        "Chief Executive Officer",
+        4552360.0
+      ],
+      [
+        "2026-05-04",
+        "Koerl Carsten",
+        "Chief Executive Officer",
+        3342856.0
+      ],
+      [
+        "2026-05-07",
+        "Koerl Carsten",
+        "Chief Executive Officer",
+        2128735.49
+      ],
+      [
+        "2026-05-04",
+        "Walder Marc",
+        "Director",
+        842820.0
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 47.0,
+    "reasons": "7-buyer cluster 31d ago | CEO bought | $11.3M insider buys | only 9% above 52w low",
+    "rank": 9
+  },
+  {
+    "ticker": "POOL",
+    "name": "Pool Corporation",
+    "sector": "Industrials",
+    "industry": "Industrial Distribution",
+    "mcap_musd": 6585.0,
+    "price": 180.69,
+    "fwk_low": 172.68,
+    "fwk_high": 345.0,
+    "drawdown_pct": 4.6,
+    "p_b": 5.810715,
+    "p_s": 1.2294676,
+    "cluster": 4,
+    "window_days_ago": 27,
+    "ceo": false,
+    "cfo": false,
+    "tot_insider_musd": 7.67,
+    "top_buyers": [
+      [
+        "2026-05-08",
+        "PEREZ DE LA MESA MANUEL J",
+        "Director",
+        1900000.0
+      ],
+      [
+        "2026-05-14",
+        "PEREZ DE LA MESA MANUEL J",
+        "Director",
+        1759471.0
+      ],
+      [
+        "2026-02-25",
+        "St Romain Kenneth G",
+        "Senior Vice President",
+        1215810.0
+      ],
+      [
+        "2026-03-04",
+        "PEREZ DE LA MESA MANUEL J",
+        "Director",
+        1090000.0
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 46.0,
+    "reasons": "4-buyer cluster 27d ago | $7.7M insider buys | only 5% above 52w low",
+    "rank": 10
+  },
+  {
+    "ticker": "ODTX",
+    "name": "Odyssey Therapeutics, Inc.",
+    "sector": "Healthcare",
+    "industry": "Biotechnology",
+    "mcap_musd": 787.0,
+    "price": 16.69,
+    "fwk_low": 15.35,
+    "fwk_high": 20.3,
+    "drawdown_pct": 27.1,
+    "p_b": -0.74181074,
+    "p_s": 264.56207,
+    "cluster": 7,
+    "window_days_ago": 24,
+    "ceo": false,
+    "cfo": true,
+    "tot_insider_musd": 75.32,
+    "top_buyers": [
+      [
+        "2026-05-13",
+        "TPG GP A, LLC",
+        "?",
+        25000002.0
+      ],
+      [
+        "2026-05-12",
+        "Dimension Capital II, L.P.",
+        "Director",
+        19999998.0
+      ],
+      [
+        "2026-05-11",
+        "Li Nan (LN)",
+        "Director",
+        19999998.0
+      ],
+      [
+        "2026-05-11",
+        "SR ONE CAPITAL MANAGEMENT, LLC",
+        "10%",
+        9999990.0
+      ]
+    ],
+    "has_13d": true,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 45.0,
+    "reasons": "7-buyer cluster 24d ago | $75.3M insider buys | 13D filed",
+    "rank": 11
+  },
+  {
+    "ticker": "GSHD",
+    "name": "Goosehead Insurance, Inc.",
+    "sector": "Financial Se",
+    "industry": "Insurance Brokers",
+    "mcap_musd": 1224.0,
+    "price": 34.37,
+    "fwk_low": 33.68,
+    "fwk_high": 113.0,
+    "drawdown_pct": 0.9,
+    "p_b": -6.708959,
+    "p_s": 3.2019448,
+    "cluster": 3,
+    "window_days_ago": 20,
+    "ceo": true,
+    "cfo": true,
+    "tot_insider_musd": 0.56,
+    "top_buyers": [
+      [
+        "2026-05-15",
+        "Miller Mark",
+        "President and CEO",
+        184450.0
+      ],
+      [
+        "2026-05-29",
+        "Martin John Arthur",
+        "Chief Financial Officer",
+        173649.99999999997
+      ],
+      [
+        "2026-06-01",
+        "Langston Patrick Ryan",
+        "10%",
+        99568.0
+      ],
+      [
+        "2026-05-15",
+        "Jones Mark E. Jr.",
+        "President & COO",
+        99375.0
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 44.0,
+    "reasons": "3-buyer cluster 20d ago | CEO+CFO bought | only 1% above 52w low",
+    "rank": 12
+  },
+  {
+    "ticker": "OI",
+    "name": "O-I Glass, Inc.",
+    "sector": "Consumer Cyc",
+    "industry": "Packaging & Containers",
+    "mcap_musd": 1222.0,
+    "price": 7.97,
+    "fwk_low": 7.915,
+    "fwk_high": 16.91,
+    "drawdown_pct": 0.6,
+    "p_b": 0.9421918,
+    "p_s": 0.19093569,
+    "cluster": 4,
+    "window_days_ago": 23,
+    "ceo": false,
+    "cfo": true,
+    "tot_insider_musd": 0.18,
+    "top_buyers": [
+      [
+        "2026-05-12",
+        "BURNS RANDOLPH L",
+        "SVP, Chief Admin & Sus Officer",
+        102467.20000000001
+      ],
+      [
+        "2026-05-15",
+        "Restrepo Eduardo",
+        "SVP, Business Ops Americas",
+        29731.364999999998
+      ],
+      [
+        "2026-05-12",
+        "ABRAHAMS DARROW A",
+        "SVP, GC & Corporate Secretary",
+        25072.244199999997
+      ],
+      [
+        "2026-05-12",
+        "Haudrich John",
+        "SVP & Chief Financial Officer",
+        20027.4215
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 44.0,
+    "reasons": "4-buyer cluster 23d ago | only 1% above 52w low | P/B 0.9",
+    "rank": 13
+  },
+  {
+    "ticker": "XRN",
+    "name": "Chiron Real Estate Inc.",
+    "sector": "Real Estate",
+    "industry": "REIT - Healthcare Facilities",
+    "mcap_musd": 501.0,
+    "price": 34.87,
+    "fwk_low": 29.05,
+    "fwk_high": 39.93,
+    "drawdown_pct": 53.5,
+    "p_b": 1.1966369,
+    "p_s": 3.3092165,
+    "cluster": 9,
+    "window_days_ago": 24,
+    "ceo": true,
+    "cfo": true,
+    "tot_insider_musd": 0.62,
+    "top_buyers": [
+      [
+        "2026-05-12",
+        "Decker Mark Okey Jr",
+        "CEO and President",
+        169700.0
+      ],
+      [
+        "2026-05-12",
+        "KIERNAN ROBERT J",
+        "CFO and Treasurer",
+        100470.0
+      ],
+      [
+        "2026-05-13",
+        "Wittman Lori",
+        "Director",
+        99515.178
+      ],
+      [
+        "2026-05-13",
+        "Marston Ronald",
+        "Director",
+        51110.326199999996
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 43.0,
+    "reasons": "9-buyer cluster 24d ago | CEO+CFO bought | P/B 1.2",
+    "rank": 14
+  },
+  {
+    "ticker": "EVTC",
+    "name": "Evertec, Inc.",
+    "sector": "Technology",
+    "industry": "Software - Infrastructure",
+    "mcap_musd": 1391.0,
+    "price": 22.57,
+    "fwk_low": 21.82,
+    "fwk_high": 38.02,
+    "drawdown_pct": 4.6,
+    "p_b": 2.0811434,
+    "p_s": 1.4625087,
+    "cluster": 4,
+    "window_days_ago": 24,
+    "ceo": false,
+    "cfo": false,
+    "tot_insider_musd": 1.82,
+    "top_buyers": [
+      [
+        "2026-05-12",
+        "Vizcarrondo Miguel",
+        "Executive Vice President",
+        490772.10000000003
+      ],
+      [
+        "2026-05-12",
+        "D'ANGELO FRANK G.",
+        "Director",
+        468000.0
+      ],
+      [
+        "2026-05-11",
+        "Castrillo-Salgado Joaquin A.",
+        "Senior EVP & COO",
+        454705.89999999997
+      ],
+      [
+        "2026-05-11",
+        "Rodriguez-Gonzalez Luis A",
+        "General Counsel & EVP",
+        409774.8
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 42.0,
+    "reasons": "4-buyer cluster 24d ago | only 5% above 52w low",
+    "rank": 15
+  },
+  {
+    "ticker": "OLED",
+    "name": "Universal Display Corporation",
+    "sector": "Technology",
+    "industry": "Electronic Components",
+    "mcap_musd": 4247.0,
+    "price": 90.84,
+    "fwk_low": 83.64,
+    "fwk_high": 163.21,
+    "drawdown_pct": 9.0,
+    "p_b": 2.4923177,
+    "p_s": 6.7782054,
+    "cluster": 3,
+    "window_days_ago": 24,
+    "ceo": true,
+    "cfo": false,
+    "tot_insider_musd": 1.47,
+    "top_buyers": [
+      [
+        "2026-05-11",
+        "ABRAMSON STEVEN V",
+        "President and CEO",
+        1027770.0
+      ],
+      [
+        "2026-05-11",
+        "Premutico Mauro",
+        "SVP & CLO",
+        345034.5
+      ],
+      [
+        "2026-05-13",
+        "ELIAS RICHARD C",
+        "Director",
+        92840.0
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 42.0,
+    "reasons": "3-buyer cluster 24d ago | CEO bought | only 9% above 52w low",
+    "rank": 16
+  },
+  {
+    "ticker": "HFFG",
+    "name": "",
+    "sector": "",
+    "industry": "",
+    "mcap_musd": 102.0,
+    "price": 1.899999976158142,
+    "fwk_low": null,
+    "fwk_high": null,
+    "drawdown_pct": null,
+    "p_b": null,
+    "p_s": null,
+    "cluster": 4,
+    "window_days_ago": 78,
+    "ceo": true,
+    "cfo": true,
+    "tot_insider_musd": 0.04,
+    "top_buyers": [
+      [
+        "2026-03-18",
+        "Lin Xi",
+        "President and CEO",
+        15027.9687
+      ],
+      [
+        "2026-03-19",
+        "Lam Dennis",
+        "Director",
+        14548.8
+      ],
+      [
+        "2026-03-18",
+        "Chang Christine",
+        "Chief Administrative Officer",
+        6959.6
+      ],
+      [
+        "2026-03-18",
+        "McGarry Paul E",
+        "CFO",
+        4400.0
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": 35.755,
+    "psu_pct_lti": 50,
+    "score": 41.0,
+    "reasons": "4-buyer cluster 78d ago | CEO+CFO bought | forensic-PSU 36",
+    "rank": 17
+  },
+  {
+    "ticker": "CRM",
+    "name": "",
+    "sector": "",
+    "industry": "",
+    "mcap_musd": 148738.0,
+    "price": 181.82000732421875,
+    "fwk_low": null,
+    "fwk_high": null,
+    "drawdown_pct": null,
+    "p_b": null,
+    "p_s": null,
+    "cluster": 2,
+    "window_days_ago": 78,
+    "ceo": false,
+    "cfo": false,
+    "tot_insider_musd": 1.0,
+    "top_buyers": [
+      [
+        "2026-03-19",
+        "ALBER LAURA",
+        "Director",
+        500266.13200000004
+      ],
+      [
+        "2026-03-18",
+        "Kirk David Blair",
+        "Director",
+        500178.28300000005
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": "57.2",
+    "forensic_psu_score": 21.04,
+    "psu_pct_lti": 67,
+    "score": 40.6,
+    "reasons": "2-buyer cluster 78d ago | step-change 57 | forensic-PSU 21",
+    "rank": 18
+  },
+  {
+    "ticker": "MRP",
+    "name": "Millrose Properties, Inc.",
+    "sector": "Real Estate",
+    "industry": "REIT - Residential",
+    "mcap_musd": 4573.0,
+    "price": 27.54,
+    "fwk_low": 26.3,
+    "fwk_high": 36.0,
+    "drawdown_pct": 12.8,
+    "p_b": 0.78101075,
+    "p_s": 6.4164605,
+    "cluster": 3,
+    "window_days_ago": 22,
+    "ceo": false,
+    "cfo": false,
+    "tot_insider_musd": 6.53,
+    "top_buyers": [
+      [
+        "2026-05-13",
+        "Richman Darren",
+        "See Remarks",
+        6418320.0
+      ],
+      [
+        "2026-05-13",
+        "Nitkin Robert",
+        "Chief Operating Officer",
+        48944.0
+      ],
+      [
+        "2026-03-09",
+        "Gorson Matthew B.",
+        "Director",
+        30665.0
+      ],
+      [
+        "2026-05-13",
+        "Presa Rachel",
+        "General Counsel and Secretary",
+        27876.4977
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 40.0,
+    "reasons": "3-buyer cluster 22d ago | $6.5M insider buys | 13% above 52w low | P/B 0.8",
+    "rank": 19
+  },
+  {
+    "ticker": "OPCH",
+    "name": "Option Care Health, Inc.",
+    "sector": "Healthcare",
+    "industry": "Medical Care Facilities",
+    "mcap_musd": 3224.0,
+    "price": 20.53,
+    "fwk_low": 18.01,
+    "fwk_high": 36.8,
+    "drawdown_pct": 13.4,
+    "p_b": 2.385545,
+    "p_s": 0.5688478,
+    "cluster": 4,
+    "window_days_ago": 31,
+    "ceo": true,
+    "cfo": true,
+    "tot_insider_musd": 1.88,
+    "top_buyers": [
+      [
+        "2026-05-05",
+        "KRAEMER HARRY M JANSEN JR",
+        "Director",
+        783772.507
+      ],
+      [
+        "2026-05-07",
+        "SULLIVAN TIMOTHY P",
+        "Director",
+        499671.3826
+      ],
+      [
+        "2026-05-04",
+        "Sethna Meenal",
+        "Chief Financial Officer",
+        327074.9075
+      ],
+      [
+        "2026-05-04",
+        "RADEMACHER JOHN CHARLES",
+        "Chief Executive Officer",
+        264706.25
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 40.0,
+    "reasons": "4-buyer cluster 31d ago | CEO+CFO bought | 13% above 52w low",
+    "rank": 20
+  },
+  {
+    "ticker": "NKE",
+    "name": "Nike, Inc.",
+    "sector": "Consumer Cyc",
+    "industry": "Footwear & Accessories",
+    "mcap_musd": 64878.0,
+    "price": 43.81,
+    "fwk_low": 41.35,
+    "fwk_high": 80.17,
+    "drawdown_pct": 6.3,
+    "p_b": 4.6018906,
+    "p_s": 1.3945289,
+    "cluster": 4,
+    "window_days_ago": 57,
+    "ceo": true,
+    "cfo": false,
+    "tot_insider_musd": 3.73,
+    "top_buyers": [
+      [
+        "2026-04-14",
+        "COOK TIMOTHY D",
+        "Director",
+        1060750.0
+      ],
+      [
+        "2026-04-22",
+        "Hill Elliott",
+        "PRESIDENT & CEO",
+        1000118.1334500001
+      ],
+      [
+        "2026-04-14",
+        "Hill Elliott",
+        "PRESIDENT & CEO",
+        999999.832275
+      ],
+      [
+        "2026-04-08",
+        "SWAN ROBERT HOLMES",
+        "Director",
+        500002.06428
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 40.0,
+    "reasons": "4-buyer cluster 57d ago | CEO bought | only 6% above 52w low",
+    "rank": 21
+  },
+  {
+    "ticker": "ONON",
+    "name": "On Holding AG",
+    "sector": "Consumer Cyc",
+    "industry": "Footwear & Accessories",
+    "mcap_musd": 13055.0,
+    "price": 37.52,
+    "fwk_low": 31.41,
+    "fwk_high": 58.25,
+    "drawdown_pct": 22.8,
+    "p_b": 5.536192,
+    "p_s": 4.185318,
+    "cluster": 3,
+    "window_days_ago": 20,
+    "ceo": true,
+    "cfo": false,
+    "tot_insider_musd": 6.59,
+    "top_buyers": [
+      [
+        "2026-05-15",
+        "Coppetti Caspar Felix",
+        "Executive Officer & Co-CEO",
+        2198102.193
+      ],
+      [
+        "2026-05-15",
+        "Allemann David Michael",
+        "Executive Officer & Co-CEO",
+        2198098.536
+      ],
+      [
+        "2026-05-15",
+        "Bernhard Olivier",
+        "Executive Officer",
+        2198098.536
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 40.0,
+    "reasons": "3-buyer cluster 20d ago | CEO bought | $6.6M insider buys | 23% above 52w low",
+    "rank": 22
+  },
+  {
+    "ticker": "MOBI",
+    "name": "Mobia Medical, Inc.",
+    "sector": "Healthcare",
+    "industry": "Medical Devices",
+    "mcap_musd": 454.0,
+    "price": 13.73,
+    "fwk_low": 10.19,
+    "fwk_high": 14.77,
+    "drawdown_pct": 77.3,
+    "p_b": -0.28039864,
+    "p_s": 14.177546,
+    "cluster": 6,
+    "window_days_ago": 24,
+    "ceo": false,
+    "cfo": false,
+    "tot_insider_musd": 19.02,
+    "top_buyers": [
+      [
+        "2026-05-12",
+        "Osage University GP III, LLC",
+        "10%",
+        7999995.0
+      ],
+      [
+        "2026-05-11",
+        "HARRINGTON WILLIAM T",
+        "Director",
+        7999995.0
+      ],
+      [
+        "2026-05-11",
+        "Lucchese Cynthia L",
+        "Director",
+        1875000.0
+      ],
+      [
+        "2026-05-11",
+        "Tansey Casey M",
+        "Director",
+        999990.0
+      ]
+    ],
+    "has_13d": true,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 39.0,
+    "reasons": "6-buyer cluster 24d ago | $19.0M insider buys | 13D filed",
+    "rank": 23
+  },
+  {
+    "ticker": "NSP",
+    "name": "Insperity, Inc.",
+    "sector": "Industrials",
+    "industry": "Staffing & Employment Services",
+    "mcap_musd": 1282.0,
+    "price": 33.6,
+    "fwk_low": 18.57,
+    "fwk_high": 64.22,
+    "drawdown_pct": 32.9,
+    "p_b": 19.145298,
+    "p_s": 0.18738814,
+    "cluster": 4,
+    "window_days_ago": 85,
+    "ceo": true,
+    "cfo": true,
+    "tot_insider_musd": 7.81,
+    "top_buyers": [
+      [
+        "2026-03-19",
+        "SARVADI PAUL J",
+        "Chairman of the Board & CEO",
+        4688790.35
+      ],
+      [
+        "2026-05-06",
+        "SARVADI PAUL J",
+        "Chairman of the Board & CEO",
+        2873235.58
+      ],
+      [
+        "2026-03-11",
+        "ALLISON JAMES D",
+        "EVP, Finance, CFO & Treasurer",
+        204500.0
+      ],
+      [
+        "2026-03-11",
+        "Callens Christian P",
+        "SVP Legal, Gen Counsel & Sec",
+        24100.0
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 38.0,
+    "reasons": "4-buyer cluster 85d ago | CEO+CFO bought | $7.8M insider buys",
+    "rank": 24
+  },
+  {
+    "ticker": "PSN",
+    "name": "Parsons Corporation",
+    "sector": "Technology",
+    "industry": "Information Technology Service",
+    "mcap_musd": 6413.0,
+    "price": 59.95,
+    "fwk_low": 48.23,
+    "fwk_high": 89.5,
+    "drawdown_pct": 28.4,
+    "p_b": 2.4202664,
+    "p_s": 1.0178225,
+    "cluster": 4,
+    "window_days_ago": 24,
+    "ceo": true,
+    "cfo": false,
+    "tot_insider_musd": 2.13,
+    "top_buyers": [
+      [
+        "2026-05-11",
+        "Smith Carey A.",
+        "President & CEO",
+        624645.0
+      ],
+      [
+        "2026-05-13",
+        "Holdsworth Mark Keith",
+        "Director",
+        512673.36
+      ],
+      [
+        "2026-05-14",
+        "Ball George L.",
+        "Director",
+        500000.0
+      ],
+      [
+        "2026-05-12",
+        "McMahon Harry T.",
+        "Director",
+        491400.0
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 36.0,
+    "reasons": "4-buyer cluster 24d ago | CEO bought",
+    "rank": 25
+  },
+  {
+    "ticker": "FCN",
+    "name": "FTI Consulting, Inc.",
+    "sector": "Industrials",
+    "industry": "Consulting Services",
+    "mcap_musd": 4662.0,
+    "price": 154.66,
+    "fwk_low": 140.84,
+    "fwk_high": 189.3,
+    "drawdown_pct": 28.5,
+    "p_b": 2.7522511,
+    "p_s": 1.2034523,
+    "cluster": 3,
+    "window_days_ago": 21,
+    "ceo": true,
+    "cfo": true,
+    "tot_insider_musd": 2.08,
+    "top_buyers": [
+      [
+        "2026-05-14",
+        "Gunby Steven Henry",
+        "CEO, Chairman and President",
+        1441707.8
+      ],
+      [
+        "2026-05-14",
+        "Linton Paul Alderman",
+        "Chief Strategy/Transf. Officer",
+        345696.0
+      ],
+      [
+        "2026-05-14",
+        "Nam Eun",
+        "Chief Financial Officer",
+        289180.0
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 36.0,
+    "reasons": "3-buyer cluster 21d ago | CEO+CFO bought",
+    "rank": 26
+  },
+  {
+    "ticker": "HUBS",
+    "name": "HubSpot, Inc.",
+    "sector": "Technology",
+    "industry": "Software - Application",
+    "mcap_musd": 11387.0,
+    "price": 222.45,
+    "fwk_low": 173.25,
+    "fwk_high": 611.0,
+    "drawdown_pct": 11.2,
+    "p_b": 5.787844,
+    "p_s": 3.4526818,
+    "cluster": 3,
+    "window_days_ago": 23,
+    "ceo": true,
+    "cfo": false,
+    "tot_insider_musd": 2.59,
+    "top_buyers": [
+      [
+        "2026-05-12",
+        "Shah Dharmesh",
+        "Chief Technology Officer",
+        1813700.0
+      ],
+      [
+        "2026-05-12",
+        "Rangan Yamini",
+        "Chief Executive Officer & Pres",
+        522060.0
+      ],
+      [
+        "2026-05-12",
+        "NORRINGTON LORRIE M",
+        "Director",
+        250021.46
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 36.0,
+    "reasons": "3-buyer cluster 23d ago | CEO bought | 11% above 52w low",
+    "rank": 27
+  },
+  {
+    "ticker": "GRNT",
+    "name": "Granite Ridge Resources, Inc.",
+    "sector": "Energy",
+    "industry": "Oil & Gas E&P",
+    "mcap_musd": 658.0,
+    "price": 4.99,
+    "fwk_low": 4.18,
+    "fwk_high": 6.72,
+    "drawdown_pct": 31.9,
+    "p_b": 1.2003849,
+    "p_s": 1.5174124,
+    "cluster": 5,
+    "window_days_ago": 85,
+    "ceo": true,
+    "cfo": true,
+    "tot_insider_musd": 0.41,
+    "top_buyers": [
+      [
+        "2026-05-13",
+        "Miller Matthew Reade",
+        "Director",
+        94717.8
+      ],
+      [
+        "2026-03-11",
+        "Farquharson Tyler",
+        "President and CEO",
+        65125.0
+      ],
+      [
+        "2026-05-13",
+        "Farquharson Tyler",
+        "President and CEO",
+        51500.0
+      ],
+      [
+        "2026-03-11",
+        "Miller Matthew Reade",
+        "Director",
+        51000.0
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 36.0,
+    "reasons": "5-buyer cluster 85d ago | CEO+CFO bought",
+    "rank": 28
+  },
+  {
+    "ticker": "ZTS",
+    "name": "Zoetis Inc.",
+    "sector": "Healthcare",
+    "industry": "Drug Manufacturers - Specialty",
+    "mcap_musd": 32528.0,
+    "price": 77.59,
+    "fwk_low": 72.38,
+    "fwk_high": 171.52,
+    "drawdown_pct": 5.3,
+    "p_b": 9.897945,
+    "p_s": 3.4128537,
+    "cluster": 3,
+    "window_days_ago": 23,
+    "ceo": false,
+    "cfo": false,
+    "tot_insider_musd": 0.89,
+    "top_buyers": [
+      [
+        "2026-05-13",
+        "DAMELIO FRANK A",
+        "Director",
+        501343.5
+      ],
+      [
+        "2026-05-12",
+        "MCCALLISTER MICHAEL B",
+        "Director",
+        233273.40000000002
+      ],
+      [
+        "2026-05-13",
+        "Bisaro Paul",
+        "Director",
+        151750.0
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 32.0,
+    "reasons": "3-buyer cluster 23d ago | only 5% above 52w low",
+    "rank": 29
+  },
+  {
+    "ticker": "KKR",
+    "name": "KKR & Co. Inc.",
+    "sector": "Financial Se",
+    "industry": "Asset Management",
+    "mcap_musd": 84414.0,
+    "price": 90.53,
+    "fwk_low": 82.67,
+    "fwk_high": 153.87,
+    "drawdown_pct": 11.0,
+    "p_b": 2.8805523,
+    "p_s": 3.3293545,
+    "cluster": 4,
+    "window_days_ago": 106,
+    "ceo": true,
+    "cfo": false,
+    "tot_insider_musd": 45.68,
+    "top_buyers": [
+      [
+        "2026-02-18",
+        "NUTTALL SCOTT C",
+        "Co-Chief Executive Officer",
+        12833087.34
+      ],
+      [
+        "2026-02-18",
+        "BAE JOSEPH Y",
+        "Co-Chief Executive Officer",
+        12773530.16
+      ],
+      [
+        "2026-03-05",
+        "BARAKETT TIMOTHY R",
+        "Director",
+        4723500.0
+      ],
+      [
+        "2026-02-18",
+        "Cohler Matt",
+        "Director",
+        4514428.8
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 32.0,
+    "reasons": "4-buyer cluster 106d ago | CEO bought | $45.7M insider buys | 11% above 52w low",
+    "rank": 30
+  },
+  {
+    "ticker": "IBP",
+    "name": "Installed Building Products, In",
+    "sector": "Consumer Cyc",
+    "industry": "Residential Construction",
+    "mcap_musd": 5435.0,
+    "price": 201.74,
+    "fwk_low": 162.56,
+    "fwk_high": 349.0,
+    "drawdown_pct": 21.0,
+    "p_b": 8.091934,
+    "p_s": 1.8445677,
+    "cluster": 4,
+    "window_days_ago": 23,
+    "ceo": false,
+    "cfo": true,
+    "tot_insider_musd": 0.84,
+    "top_buyers": [
+      [
+        "2026-05-12",
+        "Miller Michael Thomas",
+        "Executive VP & CFO",
+        498771.02999999997
+      ],
+      [
+        "2026-05-12",
+        "Wheeler Brad A",
+        "Chief Operating Officer",
+        149737.08
+      ],
+      [
+        "2026-05-12",
+        "Hilsheimer Lawrence A.",
+        "Director",
+        97952.125
+      ],
+      [
+        "2026-05-12",
+        "Niswonger Jason R",
+        "Chief Admin. & Sustainability",
+        97734.0
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 32.0,
+    "reasons": "4-buyer cluster 23d ago | 21% above 52w low",
+    "rank": 31
+  },
+  {
+    "ticker": "CCI",
+    "name": "",
+    "sector": "",
+    "industry": "",
+    "mcap_musd": 39530.0,
+    "price": 90.56999969482422,
+    "fwk_low": null,
+    "fwk_high": null,
+    "drawdown_pct": null,
+    "p_b": null,
+    "p_s": null,
+    "cluster": 1,
+    "window_days_ago": 29,
+    "ceo": false,
+    "cfo": false,
+    "tot_insider_musd": 0.07,
+    "top_buyers": [
+      [
+        "2026-05-06",
+        "Stephens Kevin A",
+        "Director",
+        73996.8
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": "53.3",
+    "forensic_psu_score": 20.6,
+    "psu_pct_lti": null,
+    "score": 31.0,
+    "reasons": "step-change 53 | forensic-PSU 21",
+    "rank": 32
+  },
+  {
+    "ticker": "TKO",
+    "name": "TKO Group Holdings, Inc.",
+    "sector": "Communicatio",
+    "industry": "Entertainment",
+    "mcap_musd": 37952.0,
+    "price": 198.57,
+    "fwk_low": 152.29,
+    "fwk_high": 226.94,
+    "drawdown_pct": 62.0,
+    "p_b": 4.4092374,
+    "p_s": 7.4956045,
+    "cluster": 3,
+    "window_days_ago": 22,
+    "ceo": true,
+    "cfo": true,
+    "tot_insider_musd": 4.5,
+    "top_buyers": [
+      [
+        "2026-05-13",
+        "Emanuel Ariel",
+        "Chief Executive Officer",
+        1999875.12
+      ],
+      [
+        "2026-05-13",
+        "SHAPIRO MARK S",
+        "See Remarks",
+        1999868.3399999999
+      ],
+      [
+        "2026-05-13",
+        "Schleimer Andrew M",
+        "Chief Financial Officer",
+        499953.04000000004
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 30.0,
+    "reasons": "3-buyer cluster 22d ago | CEO+CFO bought",
+    "rank": 33
+  },
+  {
+    "ticker": "TPL",
+    "name": "",
+    "sector": "",
+    "industry": "",
+    "mcap_musd": 27190.0,
+    "price": 394.20001220703125,
+    "fwk_low": null,
+    "fwk_high": null,
+    "drawdown_pct": null,
+    "p_b": null,
+    "p_s": null,
+    "cluster": 2,
+    "window_days_ago": 107,
+    "ceo": false,
+    "cfo": false,
+    "tot_insider_musd": 0.49,
+    "top_buyers": [
+      [
+        "2026-02-27",
+        "EPPS DONNA E",
+        "Director",
+        456852.75
+      ],
+      [
+        "2026-04-09",
+        "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "10%",
+        1347.0
+      ],
+      [
+        "2026-03-30",
+        "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "10%",
+        1044.3400000000001
+      ],
+      [
+        "2026-03-26",
+        "HORIZON KINETICS ASSET MANAGEMENT LLC",
+        "10%",
+        538.37
+      ]
+    ],
+    "has_13d": true,
+    "step_change_score": "59.6",
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 29.8,
+    "reasons": "2-buyer cluster 107d ago | step-change 60 | 13D filed",
+    "rank": 34
+  },
+  {
+    "ticker": "ADT",
+    "name": "ADT Inc.",
+    "sector": "Industrials",
+    "industry": "Security & Protection Services",
+    "mcap_musd": 5065.0,
+    "price": 6.66,
+    "fwk_low": 6.25,
+    "fwk_high": 8.935,
+    "drawdown_pct": 15.3,
+    "p_b": 1.397105,
+    "p_s": 0.98552954,
+    "cluster": 3,
+    "window_days_ago": 23,
+    "ceo": false,
+    "cfo": false,
+    "tot_insider_musd": 0.35,
+    "top_buyers": [
+      [
+        "2026-05-12",
+        "Houston Daniel Joseph",
+        "Director",
+        250411.5
+      ],
+      [
+        "2026-05-12",
+        "Ahmad Fawad",
+        "EVP, Chief Oper and Cust. Off.",
+        50625.0
+      ],
+      [
+        "2026-05-12",
+        "Khan Omar",
+        "EVP, Chief Business Officer",
+        50079.848
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 29.0,
+    "reasons": "3-buyer cluster 23d ago | 15% above 52w low",
+    "rank": 35
+  },
+  {
+    "ticker": "GRND",
+    "name": "",
+    "sector": "",
+    "industry": "",
+    "mcap_musd": 2551.0,
+    "price": 13.779999732971191,
+    "fwk_low": null,
+    "fwk_high": null,
+    "drawdown_pct": null,
+    "p_b": null,
+    "p_s": null,
+    "cluster": 0,
+    "window_days_ago": null,
+    "ceo": false,
+    "cfo": false,
+    "tot_insider_musd": 0.0,
+    "top_buyers": [],
+    "has_13d": true,
+    "step_change_score": "78.4",
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 28.0,
+    "reasons": "step-change 78 | 13D filed",
+    "rank": 36
+  },
+  {
+    "ticker": "SOFI",
+    "name": "",
+    "sector": "",
+    "industry": "",
+    "mcap_musd": 21054.0,
+    "price": 16.43000030517578,
+    "fwk_low": null,
+    "fwk_high": null,
+    "drawdown_pct": null,
+    "p_b": null,
+    "p_s": null,
+    "cluster": 1,
+    "window_days_ago": 27,
+    "ceo": true,
+    "cfo": false,
+    "tot_insider_musd": 0.5,
+    "top_buyers": [
+      [
+        "2026-05-08",
+        "Noto Anthony",
+        "Chief Executive Officer",
+        249768.879
+      ],
+      [
+        "2026-05-11",
+        "Noto Anthony",
+        "Chief Executive Officer",
+        248780.62550000002
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": "53.3",
+    "forensic_psu_score": null,
+    "psu_pct_lti": 25,
+    "score": 28.0,
+    "reasons": "CEO bought | step-change 53",
+    "rank": 37
+  },
+  {
+    "ticker": "KDP",
+    "name": "",
+    "sector": "",
+    "industry": "",
+    "mcap_musd": 39579.0,
+    "price": 29.09000015258789,
+    "fwk_low": null,
+    "fwk_high": null,
+    "drawdown_pct": null,
+    "p_b": null,
+    "p_s": null,
+    "cluster": 0,
+    "window_days_ago": null,
+    "ceo": false,
+    "cfo": false,
+    "tot_insider_musd": 0.0,
+    "top_buyers": [],
+    "has_13d": false,
+    "step_change_score": "58.3",
+    "forensic_psu_score": 12.184999999999999,
+    "psu_pct_lti": 75,
+    "score": 27.0,
+    "reasons": "step-change 58 | PSU 75% LTI",
+    "rank": 38
+  },
+  {
+    "ticker": "VSNT",
+    "name": "Versant Media Group, Inc.",
+    "sector": "Communicatio",
+    "industry": "Entertainment",
+    "mcap_musd": 5690.0,
+    "price": 40.21,
+    "fwk_low": 27.17,
+    "fwk_high": 59.0,
+    "drawdown_pct": 41.0,
+    "p_b": 0.56325203,
+    "p_s": 0.8531467,
+    "cluster": 4,
+    "window_days_ago": 87,
+    "ceo": false,
+    "cfo": false,
+    "tot_insider_musd": 6.19,
+    "top_buyers": [
+      [
+        "2026-03-09",
+        "NOVAK DAVID C",
+        "Director",
+        5269550.0
+      ],
+      [
+        "2026-03-16",
+        "Potter Leonard",
+        "Director",
+        510475.0
+      ],
+      [
+        "2026-03-10",
+        "HASSELL GERALD L",
+        "Director",
+        360700.0
+      ],
+      [
+        "2026-03-10",
+        "Conway Michael Aaron",
+        "Director",
+        48789.0
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 26.0,
+    "reasons": "4-buyer cluster 87d ago | $6.2M insider buys | P/B 0.6",
+    "rank": 39
+  },
+  {
+    "ticker": "AVBC",
+    "name": "Avidia Bancorp, Inc.",
+    "sector": "Financial Se",
+    "industry": "Banks - Regional",
+    "mcap_musd": 349.0,
+    "price": 18.78,
+    "fwk_low": 14.0,
+    "fwk_high": 21.43,
+    "drawdown_pct": 64.3,
+    "p_b": 0.9095312,
+    "p_s": 3.3540869,
+    "cluster": 3,
+    "window_days_ago": 24,
+    "ceo": true,
+    "cfo": false,
+    "tot_insider_musd": 0.21,
+    "top_buyers": [
+      [
+        "2026-05-15",
+        "GILLES MICHAEL O",
+        "Director",
+        97496.1
+      ],
+      [
+        "2026-06-01",
+        "Cozzone Robert D",
+        "President & CEO",
+        40006.4
+      ],
+      [
+        "2026-05-15",
+        "Cozzone Robert D",
+        "President & CEO",
+        39990.2594
+      ],
+      [
+        "2026-05-11",
+        "Jensen Barry H",
+        "EVP and Chief Admin Officer",
+        20190.0
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 26.0,
+    "reasons": "3-buyer cluster 24d ago | CEO bought | P/B 0.9",
+    "rank": 40
+  },
+  {
+    "ticker": "PLSE",
+    "name": "Pulse Biosciences, Inc",
+    "sector": "Healthcare",
+    "industry": "Medical Instruments & Supplies",
+    "mcap_musd": 1730.0,
+    "price": 24.99,
+    "fwk_low": 12.56,
+    "fwk_high": 27.98,
+    "drawdown_pct": 80.6,
+    "p_b": 21.017662,
+    "p_s": 2302.997,
+    "cluster": 2,
+    "window_days_ago": 24,
+    "ceo": true,
+    "cfo": false,
+    "tot_insider_musd": 26.59,
+    "top_buyers": [
+      [
+        "2026-05-15",
+        "DUGGAN ROBERT W",
+        "Director",
+        12999987.770000001
+      ],
+      [
+        "2026-05-11",
+        "DUGGAN ROBERT W",
+        "Director",
+        12999987.770000001
+      ],
+      [
+        "2026-05-11",
+        "LAVIOLETTE PAUL A",
+        "Chief Executive Officer",
+        295350.0
+      ],
+      [
+        "2026-05-11",
+        "LAVIOLETTE PAUL A",
+        "Chief Executive Officer",
+        295350.0
+      ]
+    ],
+    "has_13d": true,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 26.0,
+    "reasons": "2-buyer cluster 24d ago | CEO bought | $26.6M insider buys | 13D filed",
+    "rank": 41
+  },
+  {
+    "ticker": "NXG",
+    "name": "733085",
+    "sector": "Financial Se",
+    "industry": "Asset Management",
+    "mcap_musd": 339.0,
+    "price": 59.69,
+    "fwk_low": 45.05,
+    "fwk_high": 60.84,
+    "drawdown_pct": 92.7,
+    "p_b": null,
+    "p_s": null,
+    "cluster": 3,
+    "window_days_ago": 27,
+    "ceo": true,
+    "cfo": true,
+    "tot_insider_musd": 0.04,
+    "top_buyers": [
+      [
+        "2026-05-12",
+        "Mullins Andrea",
+        "Director",
+        20223.7
+      ],
+      [
+        "2026-05-11",
+        "Nelson Blake",
+        "CFO & Treasurer",
+        12975.900000000001
+      ],
+      [
+        "2026-05-08",
+        "Musgrave John M.",
+        "CEO & President",
+        7832.3
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 26.0,
+    "reasons": "3-buyer cluster 27d ago | CEO+CFO bought",
+    "rank": 42
+  },
+  {
+    "ticker": "INFU",
+    "name": "InfuSystems Holdings, Inc.",
+    "sector": "Healthcare",
+    "industry": "Medical Devices",
+    "mcap_musd": 182.0,
+    "price": 9.03,
+    "fwk_low": 5.38,
+    "fwk_high": 11.04,
+    "drawdown_pct": 64.5,
+    "p_b": 3.1020267,
+    "p_s": 1.2797449,
+    "cluster": 3,
+    "window_days_ago": 23,
+    "ceo": true,
+    "cfo": true,
+    "tot_insider_musd": 0.13,
+    "top_buyers": [
+      [
+        "2026-05-12",
+        "Steele Barry G",
+        "Executive VP and CFO",
+        60949.00000000001
+      ],
+      [
+        "2026-05-12",
+        "GENDRON PAUL ANDREW",
+        "Director",
+        44400.00000000001
+      ],
+      [
+        "2026-05-12",
+        "Lachance Carrie",
+        "President and CEO",
+        26120.0
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": null,
+    "psu_pct_lti": null,
+    "score": 26.0,
+    "reasons": "3-buyer cluster 23d ago | CEO+CFO bought",
+    "rank": 43
+  },
+  {
+    "ticker": "NCLH",
+    "name": "",
+    "sector": "",
+    "industry": "",
+    "mcap_musd": 8569.0,
+    "price": 18.809999465942383,
+    "fwk_low": null,
+    "fwk_high": null,
+    "drawdown_pct": null,
+    "p_b": null,
+    "p_s": null,
+    "cluster": 3,
+    "window_days_ago": 24,
+    "ceo": false,
+    "cfo": false,
+    "tot_insider_musd": 0.97,
+    "top_buyers": [
+      [
+        "2026-05-11",
+        "Byng-Thorne Zillah",
+        "Director",
+        521394.21
+      ],
+      [
+        "2026-05-12",
+        "MacDonald Brian P",
+        "Director",
+        248100.0
+      ],
+      [
+        "2026-05-11",
+        "Lansberry Kevin Allen",
+        "Director",
+        196992.0
+      ]
+    ],
+    "has_13d": false,
+    "step_change_score": null,
+    "forensic_psu_score": 20.19,
+    "psu_pct_lti": 60,
+    "score": 25.0,
+    "reasons": "3-buyer cluster 24d ago | forensic-PSU 20",
+    "rank": 44
+  }
+]

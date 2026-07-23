@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+.env
+.DS_Store
+*.log
+# .cache/ is now PERMANENT -- contains the immutable EDGAR doc cache
+# (filings never change once filed; re-fetching wastes time and risks
+# the SEC rate-limiter). Also contains scored row JSONs keyed by
+# accession version.
+# Overlay JSONs (yfinance_enrichment, enrichment_overlay, uk_rns_overlay,
+# accumulation_scan, etc.) are kept so re-runs don't repeat the slow
+# network sweeps.
+# SQLite WAL sidecars (transient; checkpointed into pipeline.db)
+pipeline.db-shm
+pipeline.db-wal

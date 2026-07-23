@@ -1,0 +1,2424 @@
+{
+  "JANL": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 22698.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "CMCL": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 372150.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "ONON": {
+    "n_opportunistic_buyers": 3,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 6594299.0,
+    "routine_dollar": 0.0,
+    "score": 30.0
+  },
+  "MERC": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 262398.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "GMRS": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 15000.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "AMR": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 2838325.0,
+    "routine_dollar": 0.0,
+    "score": 11.0
+  },
+  "SSP": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 262275.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "HDSN": {
+    "n_opportunistic_buyers": 7,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 151410.0,
+    "routine_dollar": 0.0,
+    "score": 25.0
+  },
+  "AXR": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 28581.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "TXO": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 13492593.0,
+    "routine_dollar": 0.0,
+    "score": 22.0
+  },
+  "VTSI": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 45502.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "VVV": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 418347.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "UP": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 138005.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "TFSL": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 529200.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "EQPT": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 242200.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "GLP": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 736350.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "PLSE": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 26590676.0,
+    "routine_dollar": 0.0,
+    "score": 22.0
+  },
+  "KBR": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 348585.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "HROW": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 406650.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "TONX": {
+    "n_opportunistic_buyers": 4,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 71848.0,
+    "routine_dollar": 0.0,
+    "score": 25.0
+  },
+  "SELF": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 21320.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "NONE": {
+    "n_opportunistic_buyers": 9,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 54366422.0,
+    "routine_dollar": 0.0,
+    "score": 37.0
+  },
+  "DTM": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 22160.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "XZO": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 167540.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "DGICA": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 862831.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "NCDL": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 115960.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "XRN": {
+    "n_opportunistic_buyers": 9,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 624926.0,
+    "routine_dollar": 0.0,
+    "score": 25.0
+  },
+  "RHLD": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 148743.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "GSHD": {
+    "n_opportunistic_buyers": 4,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 557043.0,
+    "routine_dollar": 0.0,
+    "score": 25.0
+  },
+  "AVBC": {
+    "n_opportunistic_buyers": 3,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 207313.0,
+    "routine_dollar": 0.0,
+    "score": 18.0
+  },
+  "GPGI": {
+    "n_opportunistic_buyers": 3,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 200865.0,
+    "routine_dollar": 0.0,
+    "score": 18.0
+  },
+  "SNSE": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1341721.0,
+    "routine_dollar": 0.0,
+    "score": 11.0
+  },
+  "VITL": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 24690.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "TPL": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 487261.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "RGR": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 229890.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "ATLO": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 13204.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "WEST": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 266630.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "TTEK": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 50179.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "OI": {
+    "n_opportunistic_buyers": 4,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 177298.0,
+    "routine_dollar": 0.0,
+    "score": 25.0
+  },
+  "ULS": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 9366.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "SAFTX": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 49999.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "CVBF": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1499969.0,
+    "routine_dollar": 0.0,
+    "score": 11.0
+  },
+  "NMM": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 501237.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "ERII": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 166840.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "CRESY": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 713403.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "BROS": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 102350.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "BCDA": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 5202.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "NSPR": {
+    "n_opportunistic_buyers": 4,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 444915.0,
+    "routine_dollar": 0.0,
+    "score": 25.0
+  },
+  "GUER": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 5640.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "RLYB": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1824032.0,
+    "routine_dollar": 0.0,
+    "score": 11.0
+  },
+  "FLS": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 67340.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "TRS": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 2522.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "NOMD": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 7545100.0,
+    "routine_dollar": 0.0,
+    "score": 22.0
+  },
+  "PAL": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 19570.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "WGS": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 74032163.0,
+    "routine_dollar": 0.0,
+    "score": 17.0
+  },
+  "FCN": {
+    "n_opportunistic_buyers": 3,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 2076584.0,
+    "routine_dollar": 0.0,
+    "score": 24.0
+  },
+  "IIIV": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 961500.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "CXNU": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 676000.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "OTF": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 119740.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "AGIG": {
+    "n_opportunistic_buyers": 3,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 60976.0,
+    "routine_dollar": 0.0,
+    "score": 18.0
+  },
+  "CLH": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 135760.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "CVM": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 119000.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "UPST": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1375000.0,
+    "routine_dollar": 0.0,
+    "score": 11.0
+  },
+  "FUN": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 238612.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "LTRN": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 200001.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "MYGN": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 27638.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "PFX": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1680497.0,
+    "routine_dollar": 0.0,
+    "score": 11.0
+  },
+  "UA": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 5869079.0,
+    "routine_dollar": 0.0,
+    "score": 17.0
+  },
+  "STRT": {
+    "n_opportunistic_buyers": 3,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 286430.0,
+    "routine_dollar": 0.0,
+    "score": 18.0
+  },
+  "NPB": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 857280.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "JKHY": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 317135.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "BWFG": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 96709.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "COAG": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1427631.0,
+    "routine_dollar": 0.0,
+    "score": 11.0
+  },
+  "SLGL": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 231502.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "LEE": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 629542.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "AAT": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 3589826.0,
+    "routine_dollar": 0.0,
+    "score": 11.0
+  },
+  "AMH": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 37198.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "BH": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 13439604.0,
+    "routine_dollar": 0.0,
+    "score": 17.0
+  },
+  "ALKT": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 65859500.0,
+    "routine_dollar": 0.0,
+    "score": 22.0
+  },
+  "STRZ": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 310150.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "PSN": {
+    "n_opportunistic_buyers": 4,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 2128718.0,
+    "routine_dollar": 0.0,
+    "score": 31.0
+  },
+  "PLNT": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 478750.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "AIJTY": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 76213.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "N/A": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 375975.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "GRNT": {
+    "n_opportunistic_buyers": 5,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 410072.0,
+    "routine_dollar": 0.0,
+    "score": 25.0
+  },
+  "MRBK": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 17381.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "TMCI": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 553420.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "AGBK": {
+    "n_opportunistic_buyers": 4,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 208281.0,
+    "routine_dollar": 0.0,
+    "score": 25.0
+  },
+  "CSPI": {
+    "n_opportunistic_buyers": 3,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 86357.0,
+    "routine_dollar": 0.0,
+    "score": 18.0
+  },
+  "MKTW": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1521982.0,
+    "routine_dollar": 0.0,
+    "score": 11.0
+  },
+  "SLRC": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 261849.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "ACM": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 401050.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "GF": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 454029.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "MXF": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1156638.0,
+    "routine_dollar": 0.0,
+    "score": 11.0
+  },
+  "AWRE": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 112839.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "J": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 77615.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "QCLS": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 5522.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "JYNT": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1268797.0,
+    "routine_dollar": 0.0,
+    "score": 11.0
+  },
+  "ADMA": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 417670.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "SLNG": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 37136.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "ECL": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 250650.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "NAIFX": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 13750.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "BRBR": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 36940.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "LODE": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1538015.0,
+    "routine_dollar": 0.0,
+    "score": 16.0
+  },
+  "POOL": {
+    "n_opportunistic_buyers": 5,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 7673698.0,
+    "routine_dollar": 0.0,
+    "score": 37.0
+  },
+  "OSUR": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 224750.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "NLCP": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 5016.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "KODK": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 20600.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "ZOMDF": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 88091.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "ZTS": {
+    "n_opportunistic_buyers": 3,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 886367.0,
+    "routine_dollar": 0.0,
+    "score": 18.0
+  },
+  "EHSI": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1844.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "RNTX": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 25000.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "TKO": {
+    "n_opportunistic_buyers": 3,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 4499696.0,
+    "routine_dollar": 0.0,
+    "score": 24.0
+  },
+  "CZNC": {
+    "n_opportunistic_buyers": 3,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 26199.0,
+    "routine_dollar": 0.0,
+    "score": 18.0
+  },
+  "PFBX": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 116899.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "FLUT": {
+    "n_opportunistic_buyers": 7,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1045575.0,
+    "routine_dollar": 0.0,
+    "score": 31.0
+  },
+  "COE": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 7770366.0,
+    "routine_dollar": 0.0,
+    "score": 17.0
+  },
+  "BBSI": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 28600.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "BETR": {
+    "n_opportunistic_buyers": 6,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 9214153.0,
+    "routine_dollar": 0.0,
+    "score": 37.0
+  },
+  "KYN": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 34975.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "KINS": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 653414.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "MNTK": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 25384.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "ODTX": {
+    "n_opportunistic_buyers": 7,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 75319986.0,
+    "routine_dollar": 0.0,
+    "score": 37.0
+  },
+  "PFLEX": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1999950.0,
+    "routine_dollar": 0.0,
+    "score": 11.0
+  },
+  "DIBS": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 214132.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "CBKM": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 54225.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "ATMU": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 109999.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "NWFL": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 7987.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "ARTV": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 74999992.0,
+    "routine_dollar": 0.0,
+    "score": 17.0
+  },
+  "STIM": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 636500.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "TSLX": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 142080.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "STGW": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 117600.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "BXSL": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 49851.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "BLND": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 2789590.0,
+    "routine_dollar": 0.0,
+    "score": 11.0
+  },
+  "MRP": {
+    "n_opportunistic_buyers": 4,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 6525805.0,
+    "routine_dollar": 0.0,
+    "score": 37.0
+  },
+  "ABR": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 60466.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "SMRT": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 117850.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "MMSI": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 224436.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "CRT": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 90631.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "RSG": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 100528322.0,
+    "routine_dollar": 0.0,
+    "score": 17.0
+  },
+  "FOUR": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 15943102.0,
+    "routine_dollar": 0.0,
+    "score": 17.0
+  },
+  "VRDN": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 19999990.0,
+    "routine_dollar": 0.0,
+    "score": 17.0
+  },
+  "OLED": {
+    "n_opportunistic_buyers": 3,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1465644.0,
+    "routine_dollar": 0.0,
+    "score": 24.0
+  },
+  "EDAP": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 42200.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "ABSI": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 200748.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "GLND": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 175157.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "ITIC": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 124278.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "APPN": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 99993.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "FMBM": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 73382.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "ANNX": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 46240.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "CHCO": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 12160.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "GEHC": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 163371.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "APLE": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 69825.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "BX": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 105122527.0,
+    "routine_dollar": 0.0,
+    "score": 22.0
+  },
+  "WCN": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 7611750.0,
+    "routine_dollar": 0.0,
+    "score": 17.0
+  },
+  "SENS": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 126134.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "GRF": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 10050.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "NSIT": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 199814.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "CRCT": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 43390.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "NWN": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 20128.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "ACON": {
+    "n_opportunistic_buyers": 4,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 50915.0,
+    "routine_dollar": 0.0,
+    "score": 25.0
+  },
+  "POR": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 97600.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "CZFS": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 8914.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "EVTC": {
+    "n_opportunistic_buyers": 4,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1823253.0,
+    "routine_dollar": 0.0,
+    "score": 31.0
+  },
+  "AXIA3": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 43537755.0,
+    "routine_dollar": 0.0,
+    "score": 22.0
+  },
+  "INFU": {
+    "n_opportunistic_buyers": 3,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 131469.0,
+    "routine_dollar": 0.0,
+    "score": 18.0
+  },
+  "HUBS": {
+    "n_opportunistic_buyers": 3,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 2585781.0,
+    "routine_dollar": 0.0,
+    "score": 24.0
+  },
+  "BSM": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 909335.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "CUBI": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 72578.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "SPOK": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 106820.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "ONT": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 100378.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "APTV": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 352153.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "PFLT": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 50020.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "ADT": {
+    "n_opportunistic_buyers": 3,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 351116.0,
+    "routine_dollar": 0.0,
+    "score": 18.0
+  },
+  "HAWK": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 379990.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "IRTC": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 56892.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "OBDC": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 11210.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "FTCI": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 10575.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "FBLA": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1205.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "DMLP": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 107120.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "PTLO": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 300306.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "OVBC": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 4500.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "BHRB": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 711064.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "IOR": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 29583.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "OUST": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 41831.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "MED": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 62950.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "OVLY": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 9409.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "IBP": {
+    "n_opportunistic_buyers": 4,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 844194.0,
+    "routine_dollar": 0.0,
+    "score": 25.0
+  },
+  "CAI": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 501426.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "BOBS": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 302788.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "NXG": {
+    "n_opportunistic_buyers": 3,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 41032.0,
+    "routine_dollar": 0.0,
+    "score": 18.0
+  },
+  "OPEN": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 487800.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "MOBI": {
+    "n_opportunistic_buyers": 6,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 19024980.0,
+    "routine_dollar": 0.0,
+    "score": 37.0
+  },
+  "OSBC": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 502.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "ETN": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 390197.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "SRTS": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 5002.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "HSIC": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 691900.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "BWB": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 4100.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "LILA": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 161490.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "NCLH": {
+    "n_opportunistic_buyers": 3,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 966486.0,
+    "routine_dollar": 0.0,
+    "score": 18.0
+  },
+  "DLPN": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 9831.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "PLBC": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 24088.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "BUSE": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 15594.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "TSM": {
+    "n_opportunistic_buyers": 28,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 115630.0,
+    "routine_dollar": 0.0,
+    "score": 25.0
+  },
+  "NEWT": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 13870.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "AMWL": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 4938.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "ACEL": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 577500.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "SR": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 171620.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "NTRP": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 50000.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "SOFI": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 498550.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "FRPT": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 109340.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "CLRB": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 49997.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "LZ": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 768988.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "RDGL": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 9270.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "GPK": {
+    "n_opportunistic_buyers": 4,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1054285.0,
+    "routine_dollar": 0.0,
+    "score": 31.0
+  },
+  "OTAI": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 2215000.0,
+    "routine_dollar": 0.0,
+    "score": 11.0
+  },
+  "ATRA": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 4744255.0,
+    "routine_dollar": 0.0,
+    "score": 11.0
+  },
+  "WNW": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 11355.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "LW": {
+    "n_opportunistic_buyers": 4,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 16983271.0,
+    "routine_dollar": 0.0,
+    "score": 37.0
+  },
+  "GTE": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 511842.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "ATEC": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 996192.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "RVSB": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 21760.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "CZWI": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 15868.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "ADP": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 745695.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "AVTR": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 83200.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "TFIN": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 469070.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "ES": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 49864.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "LAW": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 35730.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "DXC": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 249512.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "SEI": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 450652.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "MKL": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 268720.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "PAM": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 4060500.0,
+    "routine_dollar": 0.0,
+    "score": 11.0
+  },
+  "BOTJ": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 23397.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "OFIX": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 61295.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "WSBC": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 13632.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "CHTR": {
+    "n_opportunistic_buyers": 3,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 2365149.0,
+    "routine_dollar": 0.0,
+    "score": 24.0
+  },
+  "GO": {
+    "n_opportunistic_buyers": 6,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 7923061.0,
+    "routine_dollar": 0.0,
+    "score": 37.0
+  },
+  "OPCH": {
+    "n_opportunistic_buyers": 4,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1875225.0,
+    "routine_dollar": 0.0,
+    "score": 31.0
+  },
+  "VSNT": {
+    "n_opportunistic_buyers": 4,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 6189514.0,
+    "routine_dollar": 0.0,
+    "score": 37.0
+  },
+  "SRAD": {
+    "n_opportunistic_buyers": 7,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 11349413.0,
+    "routine_dollar": 0.0,
+    "score": 37.0
+  },
+  "PATK": {
+    "n_opportunistic_buyers": 5,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 3541271.0,
+    "routine_dollar": 0.0,
+    "score": 31.0
+  },
+  "NSP": {
+    "n_opportunistic_buyers": 4,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 7814506.0,
+    "routine_dollar": 0.0,
+    "score": 37.0
+  },
+  "JPM": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "GME": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "AAPL": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "CRSP": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "CMG": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "CRM": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1000444.0,
+    "routine_dollar": 0.0,
+    "score": 16.0
+  },
+  "VRSK": {
+    "n_opportunistic_buyers": 3,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 449280.0,
+    "routine_dollar": 0.0,
+    "score": 18.0
+  },
+  "INDV": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 31211.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "EPAM": {
+    "n_opportunistic_buyers": 6,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 45000.0,
+    "routine_dollar": 0.0,
+    "score": 25.0
+  },
+  "SCHL": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "YEXT": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "SNPS": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "BAC": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 50352.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "MTB": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "CCI": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 73997.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "SF": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "MNSB": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "INSE": {
+    "n_opportunistic_buyers": 3,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 545789.0,
+    "routine_dollar": 0.0,
+    "score": 18.0
+  },
+  "CARE": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 119865.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "DLTR": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "LCID": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "PGR": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "TT": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "DUK": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "KKR": {
+    "n_opportunistic_buyers": 5,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 45684632.0,
+    "routine_dollar": 0.0,
+    "score": 37.0
+  },
+  "JBL": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "EME": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "PWR": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "MCO": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "WST": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "TJX": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "VRT": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "PAY": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "TXRH": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "ODFL": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "CTAS": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "MSCI": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 5559795.0,
+    "routine_dollar": 0.0,
+    "score": 22.0
+  },
+  "SBUX": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "WMT": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "TGT": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "ULTA": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "TPR": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "SHAK": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "HFFG": {
+    "n_opportunistic_buyers": 4,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 40936.0,
+    "routine_dollar": 0.0,
+    "score": 25.0
+  },
+  "NUE": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "STLD": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "CLF": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "MOS": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "CF": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "MRK": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "PFE": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "NKE": {
+    "n_opportunistic_buyers": 4,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 3734230.0,
+    "routine_dollar": 0.0,
+    "score": 31.0
+  },
+  "LULU": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1494568.0,
+    "routine_dollar": 0.0,
+    "score": 16.0
+  },
+  "DECK": {
+    "n_opportunistic_buyers": 0,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 0.0
+  },
+  "BREZ": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "CRCW": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 0.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "GOOD": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1251.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "PRIM": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1000004.0,
+    "routine_dollar": 0.0,
+    "score": 11.0
+  },
+  "MTDR": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 26970.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "BFS": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 90337.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "RLI": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 282675.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "SND": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 19998.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "FRAF": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1001.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "VTS": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 1005006.0,
+    "routine_dollar": 0.0,
+    "score": 11.0
+  },
+  "RMBI": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 21532.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "CURI": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 330130.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "CWBC": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 5436.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "ASND": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 167392.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "STRR": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 195612.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "HFRO": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 273940.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "AIMD": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 4575.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "CJMB": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 7620.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "HUBC": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 71894.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "WOK": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 138226.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "BOC": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 671250.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "ENS": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 24675.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "LSF": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 101137.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "IPWR": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 39900.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "RCG": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 6290.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "SWZ": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 83759.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "L": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 523700.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "FRST": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 20157.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "MYO": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 24825.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "MDWD": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 2150.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "KWY": {
+    "n_opportunistic_buyers": 3,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 48697.0,
+    "routine_dollar": 0.0,
+    "score": 18.0
+  },
+  "HOOD": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 20018206.0,
+    "routine_dollar": 0.0,
+    "score": 17.0
+  },
+  "AUNA": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 222314.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "PAX": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 344400.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "QTTB": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 30000000.0,
+    "routine_dollar": 0.0,
+    "score": 22.0
+  },
+  "SBMT": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 24231.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "OTLK": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 5000000.0,
+    "routine_dollar": 0.0,
+    "score": 11.0
+  },
+  "PCSA": {
+    "n_opportunistic_buyers": 5,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 24718.0,
+    "routine_dollar": 0.0,
+    "score": 25.0
+  },
+  "CSWC": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 4988.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "VRSN": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 4929.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "ACCS": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 64634.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "TWFG": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 421367.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "ACOG": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 434714.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "AWHL": {
+    "n_opportunistic_buyers": 2,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 32375.0,
+    "routine_dollar": 0.0,
+    "score": 10.0
+  },
+  "FONR": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 5092808.0,
+    "routine_dollar": 0.0,
+    "score": 17.0
+  },
+  "BDCO": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 78650.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "ALRS": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 28715.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "PNBK": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 81600.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "LCNB": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 6778.0,
+    "routine_dollar": 0.0,
+    "score": 5.0
+  },
+  "CDW": {
+    "n_opportunistic_buyers": 1,
+    "n_routine_buyers": 0,
+    "opportunistic_dollar": 2005740.0,
+    "routine_dollar": 0.0,
+    "score": 11.0
+  }
+}

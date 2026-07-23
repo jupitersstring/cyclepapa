@@ -1,0 +1,1501 @@
+ticker,filing_date,action,plan_type,role,neo,shares,forward_days,px_at_disclosure,px_forward,return_pct,spy_return_pct,excess_return_pct,bucket
+AVGO,2024-12-20,ADOPT,sell,Director,,15000,30,217.77,215.33,-1.12,1.12,-2.24,adopt_sell
+AVGO,2024-12-20,ADOPT,sell,Director,,15000,90,217.77,189.63,-12.92,-5.95,-6.97,adopt_sell
+AVGO,2024-12-20,ADOPT,sell,Director,,15000,180,217.77,343.68,57.82,10.41,47.4,adopt_sell
+AVGO,2025-03-12,ADOPT,sell,,,0,30,192.09,186.64,-2.84,-1.89,-0.95,adopt_sell
+AVGO,2025-03-12,ADOPT,sell,,,0,90,192.09,286.57,49.19,13.18,36.01,adopt_sell
+AVGO,2025-03-12,ADOPT,sell,,,0,180,192.09,401.35,108.94,23.35,85.59,adopt_sell
+AVGO,2025-03-12,ADOPT,sell,Director,,7200,30,192.09,186.64,-2.84,-1.89,-0.95,adopt_sell
+AVGO,2025-03-12,ADOPT,sell,Director,,7200,90,192.09,286.57,49.19,13.18,36.01,adopt_sell
+AVGO,2025-03-12,ADOPT,sell,Director,,7200,180,192.09,401.35,108.94,23.35,85.59,adopt_sell
+STZ,2025-01-10,ADOPT,sell,President and Chief Executive Officer an,William A. Newlands,0,30,174.99,173.29,-0.98,2.88,-3.86,adopt_sell
+STZ,2025-01-10,ADOPT,sell,President and Chief Executive Officer an,William A. Newlands,0,90,174.99,184.37,5.36,2.44,2.92,adopt_sell
+STZ,2025-01-10,ADOPT,sell,President and Chief Executive Officer an,William A. Newlands,0,180,174.99,133.64,-23.63,15.33,-38.96,adopt_sell
+DT,2025-01-30,ADOPT,sell,Executive Vice President,Dan Zugelder,120000,30,57.77,48.47,-16.1,-6.98,-9.12,adopt_sell
+DT,2025-01-30,ADOPT,sell,Executive Vice President,Dan Zugelder,120000,90,57.77,54.21,-6.16,-0.59,-5.57,adopt_sell
+DT,2025-01-30,ADOPT,sell,Executive Vice President,Dan Zugelder,120000,180,57.77,50.12,-13.24,11.92,-25.17,adopt_sell
+DT,2025-05-22,TERMINATE,sell,director,,10000,30,54.19,56.64,4.52,6.76,-2.24,term_sell
+DT,2025-05-22,TERMINATE,sell,director,,10000,90,54.19,49.32,-8.99,14.47,-23.46,term_sell
+DT,2025-05-22,TERMINATE,sell,director,,10000,180,54.19,36.18,-33.23,20.05,-53.28,term_sell
+DT,2025-05-22,ADOPT,sell,director,,10000,30,54.19,56.64,4.52,6.76,-2.24,adopt_sell
+DT,2025-05-22,ADOPT,sell,director,,10000,90,54.19,49.32,-8.99,14.47,-23.46,adopt_sell
+DT,2025-05-22,ADOPT,sell,director,,10000,180,54.19,36.18,-33.23,20.05,-53.28,adopt_sell
+DT,2025-08-06,TERMINATE,sell,director,,0,30,50.53,48.6,-3.82,4.66,-8.48,term_sell
+DT,2025-08-06,TERMINATE,sell,director,,0,90,50.53,44.38,-12.17,7.88,-20.05,term_sell
+DT,2025-08-06,TERMINATE,sell,director,,0,180,50.53,35.29,-30.16,13.78,-43.94,term_sell
+NOW,2025-01-30,ADOPT,sell,Chief Financial Officer,Gina Mastantuono,830,30,202.55,168.87,-16.63,-6.98,-9.65,adopt_sell
+NOW,2025-01-30,ADOPT,sell,Chief Financial Officer,Gina Mastantuono,830,90,202.55,205.37,1.39,-0.59,1.98,adopt_sell
+NOW,2025-01-30,ADOPT,sell,Chief Financial Officer,Gina Mastantuono,830,180,202.55,183.51,-9.4,11.92,-21.32,adopt_sell
+NOW,2025-01-30,ADOPT,sell,Chief Financial Officer,Gina Mastantuono,352,30,202.55,168.87,-16.63,-6.98,-9.65,adopt_sell
+NOW,2025-01-30,ADOPT,sell,Chief Financial Officer,Gina Mastantuono,352,90,202.55,205.37,1.39,-0.59,1.98,adopt_sell
+NOW,2025-01-30,ADOPT,sell,Chief Financial Officer,Gina Mastantuono,352,180,202.55,183.51,-9.4,11.92,-21.32,adopt_sell
+NOW,2025-04-23,ADOPT,sell,Chief Accounting Officer,Kevin McBride,1120,30,162.54,203.52,25.21,10.76,14.45,adopt_sell
+NOW,2025-04-23,ADOPT,sell,Chief Accounting Officer,Kevin McBride,1120,90,162.54,182.28,12.15,19.94,-7.79,adopt_sell
+NOW,2025-04-23,ADOPT,sell,Chief Accounting Officer,Kevin McBride,1120,180,162.54,141.8,-12.76,30.76,-43.52,adopt_sell
+NOW,2025-04-23,ADOPT,sell,Vice Chairman,Nick Tzitzon,1120,30,162.54,203.52,25.21,10.76,14.45,adopt_sell
+NOW,2025-04-23,ADOPT,sell,Vice Chairman,Nick Tzitzon,1120,90,162.54,182.28,12.15,19.94,-7.79,adopt_sell
+NOW,2025-04-23,ADOPT,sell,Vice Chairman,Nick Tzitzon,1120,180,162.54,141.8,-12.76,30.76,-43.52,adopt_sell
+CHTR,2025-01-31,ADOPT,sell,President,Richard DiGeronimo,57531,30,345.49,354.08,2.49,-5.76,8.25,adopt_sell
+CHTR,2025-01-31,ADOPT,sell,President,Richard DiGeronimo,57531,90,345.49,406.77,17.74,0.51,17.23,adopt_sell
+CHTR,2025-01-31,ADOPT,sell,President,Richard DiGeronimo,57531,180,345.49,251.51,-27.2,12.52,-39.72,adopt_sell
+TMUSL,2025-01-31,ADOPT,sell,President,Michael Katz,2500,30,25.1,25.1,0.0,-5.76,5.76,adopt_sell
+TMUSL,2025-01-31,ADOPT,sell,President,Michael Katz,2500,90,25.1,25.1,0.0,0.51,-0.51,adopt_sell
+TMUSL,2025-01-31,ADOPT,sell,President,Michael Katz,2500,180,25.1,24.92,-0.72,12.52,-13.24,adopt_sell
+TMUSL,2025-01-31,ADOPT,sell,President,Callie Field,6204,30,25.1,25.1,0.0,-5.76,5.76,adopt_sell
+TMUSL,2025-01-31,ADOPT,sell,President,Callie Field,6204,90,25.1,25.1,0.0,0.51,-0.51,adopt_sell
+TMUSL,2025-01-31,ADOPT,sell,President,Callie Field,6204,180,25.1,24.92,-0.72,12.52,-13.24,adopt_sell
+TMUSL,2025-01-31,ADOPT,sell,President and Chief Executive Officer,Michael Sievert,43582,30,25.1,25.1,0.0,-5.76,5.76,adopt_sell
+TMUSL,2025-01-31,ADOPT,sell,President and Chief Executive Officer,Michael Sievert,43582,90,25.1,25.1,0.0,0.51,-0.51,adopt_sell
+TMUSL,2025-01-31,ADOPT,sell,President and Chief Executive Officer,Michael Sievert,43582,180,25.1,24.92,-0.72,12.52,-13.24,adopt_sell
+TMUSL,2025-01-31,ADOPT,sell,President,Callie Field,180000,30,25.1,25.1,0.0,-5.76,5.76,adopt_sell
+TMUSL,2025-01-31,ADOPT,sell,President,Callie Field,180000,90,25.1,25.1,0.0,0.51,-0.51,adopt_sell
+TMUSL,2025-01-31,ADOPT,sell,President,Callie Field,180000,180,25.1,24.92,-0.72,12.52,-13.24,adopt_sell
+TMUSL,2025-01-31,ADOPT,sell,President and Chief Executive Officer,Michael Sievert,19407,30,25.1,25.1,0.0,-5.76,5.76,adopt_sell
+TMUSL,2025-01-31,ADOPT,sell,President and Chief Executive Officer,Michael Sievert,19407,90,25.1,25.1,0.0,0.51,-0.51,adopt_sell
+TMUSL,2025-01-31,ADOPT,sell,President and Chief Executive Officer,Michael Sievert,19407,180,25.1,24.92,-0.72,12.52,-13.24,adopt_sell
+TMUSL,2025-01-31,ADOPT,sell,President and Chief Executive Officer,Michael Sievert,25000,30,25.1,25.1,0.0,-5.76,5.76,adopt_sell
+TMUSL,2025-01-31,ADOPT,sell,President and Chief Executive Officer,Michael Sievert,25000,90,25.1,25.1,0.0,0.51,-0.51,adopt_sell
+TMUSL,2025-01-31,ADOPT,sell,President and Chief Executive Officer,Michael Sievert,25000,180,25.1,24.92,-0.72,12.52,-13.24,adopt_sell
+TMUSL,2025-04-24,ADOPT,sell,Executive Vice President,,42525,30,25.1,25.1,0.0,9.59,-9.59,adopt_sell
+TMUSL,2025-04-24,ADOPT,sell,Executive Vice President,,42525,90,25.1,24.68,-1.67,17.46,-19.14,adopt_sell
+TMUSL,2025-04-24,ADOPT,sell,Executive Vice President,,42525,180,25.1,25.05,-0.2,28.27,-28.46,adopt_sell
+TMUSL,2025-04-24,ADOPT,sell,Chief Financial Officer,,10000,30,25.1,25.1,0.0,9.59,-9.59,adopt_sell
+TMUSL,2025-04-24,ADOPT,sell,Chief Financial Officer,,10000,90,25.1,24.68,-1.67,17.46,-19.14,adopt_sell
+TMUSL,2025-04-24,ADOPT,sell,Chief Financial Officer,,10000,180,25.1,25.05,-0.2,28.27,-28.46,adopt_sell
+TMUSL,2025-04-24,ADOPT,sell,Executive Vice President,,18628,30,25.1,25.1,0.0,9.59,-9.59,adopt_sell
+TMUSL,2025-04-24,ADOPT,sell,Executive Vice President,,18628,90,25.1,24.68,-1.67,17.46,-19.14,adopt_sell
+TMUSL,2025-04-24,ADOPT,sell,Executive Vice President,,18628,180,25.1,25.05,-0.2,28.27,-28.46,adopt_sell
+AMD,2025-02-05,TERMINATE,sell,director,,0,30,112.01,107.14,-4.35,-6.41,2.06,term_sell
+AMD,2025-02-05,TERMINATE,sell,director,,0,90,112.01,126.39,12.84,0.05,12.79,term_sell
+AMD,2025-02-05,TERMINATE,sell,director,,0,180,112.01,252.92,125.8,13.07,112.73,term_sell
+AMD,2025-08-06,TERMINATE,sell,director,,0,30,163.12,157.92,-3.19,4.66,-7.85,term_sell
+AMD,2025-08-06,TERMINATE,sell,director,,0,90,163.12,207.58,27.26,7.88,19.38,term_sell
+AMD,2025-08-06,TERMINATE,sell,director,,0,180,163.12,347.81,113.22,13.78,99.44,term_sell
+GOOG,2025-02-05,ADOPT,sell,Chair of the Board,John Hennessy,6000,30,192.3,164.38,-14.52,-6.41,-8.11,adopt_sell
+GOOG,2025-02-05,ADOPT,sell,Chair of the Board,John Hennessy,6000,90,192.3,177.43,-7.73,0.05,-7.78,adopt_sell
+GOOG,2025-02-05,ADOPT,sell,Chair of the Board,John Hennessy,6000,180,192.3,260.0,35.21,13.07,22.14,adopt_sell
+GOOG,2025-02-05,ADOPT,sell,Chief Executive Officer,Sundar Pichai,6000,30,192.3,164.38,-14.52,-6.41,-8.11,adopt_sell
+GOOG,2025-02-05,ADOPT,sell,Chief Executive Officer,Sundar Pichai,6000,90,192.3,177.43,-7.73,0.05,-7.78,adopt_sell
+GOOG,2025-02-05,ADOPT,sell,Chief Executive Officer,Sundar Pichai,6000,180,192.3,260.0,35.21,13.07,22.14,adopt_sell
+GOOG,2025-07-24,TERMINATE,sell,President,Kent Walker,11112,30,192.65,234.5,21.72,2.02,19.7,term_sell
+GOOG,2025-07-24,TERMINATE,sell,President,Kent Walker,11112,90,192.65,314.5,63.25,7.52,55.73,term_sell
+GOOG,2025-07-24,TERMINATE,sell,President,Kent Walker,11112,180,192.65,319.02,65.59,9.06,56.53,term_sell
+GOOGL,2025-02-05,ADOPT,sell,Chair of the Board,John Hennessy,6000,30,190.34,162.14,-14.81,-6.41,-8.4,adopt_sell
+GOOGL,2025-02-05,ADOPT,sell,Chair of the Board,John Hennessy,6000,90,190.34,176.27,-7.39,0.05,-7.44,adopt_sell
+GOOGL,2025-02-05,ADOPT,sell,Chair of the Board,John Hennessy,6000,180,190.34,259.41,36.29,13.07,23.22,adopt_sell
+GOOGL,2025-02-05,ADOPT,sell,Chief Executive Officer,Sundar Pichai,6000,30,190.34,162.14,-14.81,-6.41,-8.4,adopt_sell
+GOOGL,2025-02-05,ADOPT,sell,Chief Executive Officer,Sundar Pichai,6000,90,190.34,176.27,-7.39,0.05,-7.44,adopt_sell
+GOOGL,2025-02-05,ADOPT,sell,Chief Executive Officer,Sundar Pichai,6000,180,190.34,259.41,36.29,13.07,23.22,adopt_sell
+GOOGL,2025-07-24,TERMINATE,sell,President,Kent Walker,11112,30,191.62,234.33,22.29,2.02,20.27,term_sell
+GOOGL,2025-07-24,TERMINATE,sell,President,Kent Walker,11112,90,191.62,314.28,64.01,7.52,56.48,term_sell
+GOOGL,2025-07-24,TERMINATE,sell,President,Kent Walker,11112,180,191.62,321.12,67.58,9.06,58.51,term_sell
+MCK,2025-02-06,ADOPT,sell,Chief Executive Officer,Brian Tyler,100774,30,596.07,657.84,10.36,-6.7,17.07,adopt_sell
+MCK,2025-02-06,ADOPT,sell,Chief Executive Officer,Brian Tyler,100774,90,596.07,716.65,20.23,-0.3,20.53,adopt_sell
+MCK,2025-02-06,ADOPT,sell,Chief Executive Officer,Brian Tyler,100774,180,596.07,809.12,35.74,14.01,21.74,adopt_sell
+MCK,2025-02-06,ADOPT,sell,Executive Vice President and,Britt Vitalone,11133,30,596.07,657.84,10.36,-6.7,17.07,adopt_sell
+MCK,2025-02-06,ADOPT,sell,Executive Vice President and,Britt Vitalone,11133,90,596.07,716.65,20.23,-0.3,20.53,adopt_sell
+MCK,2025-02-06,ADOPT,sell,Executive Vice President and,Britt Vitalone,11133,180,596.07,809.12,35.74,14.01,21.74,adopt_sell
+MCK,2025-02-06,ADOPT,sell,Executive Vice President and,Michele Lau,950,30,596.07,657.84,10.36,-6.7,17.07,adopt_sell
+MCK,2025-02-06,ADOPT,sell,Executive Vice President and,Michele Lau,950,90,596.07,716.65,20.23,-0.3,20.53,adopt_sell
+MCK,2025-02-06,ADOPT,sell,Executive Vice President and,Michele Lau,950,180,596.07,809.12,35.74,14.01,21.74,adopt_sell
+MCK,2025-05-09,ADOPT,sell,Senior Vice President and,Rutledge Jr,2984,30,689.97,718.9,4.19,6.66,-2.47,adopt_sell
+MCK,2025-05-09,ADOPT,sell,Senior Vice President and,Rutledge Jr,2984,90,689.97,691.46,0.22,17.3,-17.08,adopt_sell
+MCK,2025-05-09,ADOPT,sell,Senior Vice President and,Rutledge Jr,2984,180,689.97,825.02,19.57,23.82,-4.25,adopt_sell
+PINS,2025-02-06,ADOPT,sell,director,fiscal quarter,5128,30,33.59,32.42,-3.48,-6.7,3.22,adopt_sell
+PINS,2025-02-06,ADOPT,sell,director,fiscal quarter,5128,90,33.59,35.22,4.85,-0.3,5.15,adopt_sell
+PINS,2025-02-06,ADOPT,sell,director,fiscal quarter,5128,180,33.59,35.24,4.91,14.01,-9.09,adopt_sell
+PINS,2025-02-06,ADOPT,sell,Chief Financial Officer,Brau Donnelly,5128,30,33.59,32.42,-3.48,-6.7,3.22,adopt_sell
+PINS,2025-02-06,ADOPT,sell,Chief Financial Officer,Brau Donnelly,5128,90,33.59,35.22,4.85,-0.3,5.15,adopt_sell
+PINS,2025-02-06,ADOPT,sell,Chief Financial Officer,Brau Donnelly,5128,180,33.59,35.24,4.91,14.01,-9.09,adopt_sell
+PINS,2025-02-06,ADOPT,sell,Chief Financial Officer,Brau Donnelly,40000,30,33.59,32.42,-3.48,-6.7,3.22,adopt_sell
+PINS,2025-02-06,ADOPT,sell,Chief Financial Officer,Brau Donnelly,40000,90,33.59,35.22,4.85,-0.3,5.15,adopt_sell
+PINS,2025-02-06,ADOPT,sell,Chief Financial Officer,Brau Donnelly,40000,180,33.59,35.24,4.91,14.01,-9.09,adopt_sell
+PINS,2025-02-06,ADOPT,sell,Chief Financial Officer,Brau Donnelly,4000000,30,33.59,32.42,-3.48,-6.7,3.22,adopt_sell
+PINS,2025-02-06,ADOPT,sell,Chief Financial Officer,Brau Donnelly,4000000,90,33.59,35.22,4.85,-0.3,5.15,adopt_sell
+PINS,2025-02-06,ADOPT,sell,Chief Financial Officer,Brau Donnelly,4000000,180,33.59,35.24,4.91,14.01,-9.09,adopt_sell
+AMZN,2025-02-07,ADOPT,sell,CEO,Douglas Herrington,158970,30,229.15,203.26,-11.3,-4.16,-7.14,adopt_sell
+AMZN,2025-02-07,ADOPT,sell,CEO,Douglas Herrington,158970,90,229.15,214.82,-6.25,-0.24,-6.01,adopt_sell
+AMZN,2025-02-07,ADOPT,sell,CEO,Douglas Herrington,158970,180,229.15,226.97,-0.95,15.06,-16.01,adopt_sell
+AMZN,2025-02-07,ADOPT,sell,Vice President,Shelley Reynolds,16938,30,229.15,203.26,-11.3,-4.16,-7.14,adopt_sell
+AMZN,2025-02-07,ADOPT,sell,Vice President,Shelley Reynolds,16938,90,229.15,214.82,-6.25,-0.24,-6.01,adopt_sell
+AMZN,2025-02-07,ADOPT,sell,Vice President,Shelley Reynolds,16938,180,229.15,226.97,-0.95,15.06,-16.01,adopt_sell
+AMZN,2025-02-07,ADOPT,sell,Senior Vice President and,Brian Olsavsky,32370,30,229.15,203.26,-11.3,-4.16,-7.14,adopt_sell
+AMZN,2025-02-07,ADOPT,sell,Senior Vice President and,Brian Olsavsky,32370,90,229.15,214.82,-6.25,-0.24,-6.01,adopt_sell
+AMZN,2025-02-07,ADOPT,sell,Senior Vice President and,Brian Olsavsky,32370,180,229.15,226.97,-0.95,15.06,-16.01,adopt_sell
+AMZN,2025-02-07,ADOPT,sell,Senior Vice President,David Zapolsky,87070,30,229.15,203.26,-11.3,-4.16,-7.14,adopt_sell
+AMZN,2025-02-07,ADOPT,sell,Senior Vice President,David Zapolsky,87070,90,229.15,214.82,-6.25,-0.24,-6.01,adopt_sell
+AMZN,2025-02-07,ADOPT,sell,Senior Vice President,David Zapolsky,87070,180,229.15,226.97,-0.95,15.06,-16.01,adopt_sell
+AMZN,2025-05-02,ADOPT,sell,Director,,1900,30,189.98,216.1,13.75,6.34,7.41,adopt_sell
+AMZN,2025-05-02,ADOPT,sell,Director,,1900,90,189.98,238.24,25.4,15.08,10.32,adopt_sell
+AMZN,2025-05-02,ADOPT,sell,Director,,1900,180,189.98,231.0,21.59,20.59,1.0,adopt_sell
+AMZN,2025-05-02,ADOPT,sell,President and Chief Executive Officer of,Andrew R. Jassy,1900,30,189.98,216.1,13.75,6.34,7.41,adopt_sell
+AMZN,2025-05-02,ADOPT,sell,President and Chief Executive Officer of,Andrew R. Jassy,1900,90,189.98,238.24,25.4,15.08,10.32,adopt_sell
+AMZN,2025-05-02,ADOPT,sell,President and Chief Executive Officer of,Andrew R. Jassy,1900,180,189.98,231.0,21.59,20.59,1.0,adopt_sell
+AMZN,2025-05-02,ADOPT,sell,President and Chief Executive Officer of,Andrew R. Jassy,15728,30,189.98,216.1,13.75,6.34,7.41,adopt_sell
+AMZN,2025-05-02,ADOPT,sell,President and Chief Executive Officer of,Andrew R. Jassy,15728,90,189.98,238.24,25.4,15.08,10.32,adopt_sell
+AMZN,2025-05-02,ADOPT,sell,President and Chief Executive Officer of,Andrew R. Jassy,15728,180,189.98,231.0,21.59,20.59,1.0,adopt_sell
+AMZN,2025-05-02,ADOPT,sell,President and Chief Executive Officer of,Andrew R. Jassy,1237,30,189.98,216.1,13.75,6.34,7.41,adopt_sell
+AMZN,2025-05-02,ADOPT,sell,President and Chief Executive Officer of,Andrew R. Jassy,1237,90,189.98,238.24,25.4,15.08,10.32,adopt_sell
+AMZN,2025-05-02,ADOPT,sell,President and Chief Executive Officer of,Andrew R. Jassy,1237,180,189.98,231.0,21.59,20.59,1.0,adopt_sell
+AMZN,2025-08-01,ADOPT,sell,CEO,Matthew S. Garman,80246,30,214.75,231.43,7.77,6.3,1.46,adopt_sell
+AMZN,2025-08-01,ADOPT,sell,CEO,Matthew S. Garman,80246,90,214.75,227.92,6.13,10.17,-4.03,adopt_sell
+AMZN,2025-08-01,ADOPT,sell,CEO,Matthew S. Garman,80246,180,214.75,248.28,15.61,14.96,0.65,adopt_sell
+MSCI,2025-02-07,ADOPT,sell,President and Chief Operating Officer of,Baer Pettit,20000,30,567.83,557.23,-1.87,-4.16,2.29,adopt_sell
+MSCI,2025-02-07,ADOPT,sell,President and Chief Operating Officer of,Baer Pettit,20000,90,567.83,540.99,-4.73,-0.24,-4.49,adopt_sell
+MSCI,2025-02-07,ADOPT,sell,President and Chief Operating Officer of,Baer Pettit,20000,180,567.83,541.05,-4.72,15.06,-19.78,adopt_sell
+ON,2025-02-10,ADOPT,sell,Chair,Alan Campbell,25371,30,47.04,45.31,-3.68,-4.57,0.9,adopt_sell
+ON,2025-02-10,ADOPT,sell,Chair,Alan Campbell,25371,90,47.04,52.82,12.29,-1.16,13.45,adopt_sell
+ON,2025-02-10,ADOPT,sell,Chair,Alan Campbell,25371,180,47.04,51.4,9.27,14.64,-5.37,adopt_sell
+INCY,2025-02-10,ADOPT,sell,Executive Vice President and,Christiana Stamoulis,107938,30,68.3,62.08,-9.11,-4.57,-4.53,adopt_sell
+INCY,2025-02-10,ADOPT,sell,Executive Vice President and,Christiana Stamoulis,107938,90,68.3,68.46,0.23,-1.16,1.39,adopt_sell
+INCY,2025-02-10,ADOPT,sell,Executive Vice President and,Christiana Stamoulis,107938,180,68.3,90.18,32.04,14.64,17.39,adopt_sell
+SHOP,2025-02-11,TERMINATE,sell,director,,573865,30,123.59,104.28,-15.62,-5.78,-9.84,term_sell
+SHOP,2025-02-11,TERMINATE,sell,director,,573865,90,123.59,109.98,-11.01,-0.26,-10.75,term_sell
+SHOP,2025-02-11,TERMINATE,sell,director,,573865,180,123.59,173.61,40.47,13.3,27.18,term_sell
+SHOP,2025-02-11,ADOPT,sell,director,,573865,30,123.59,104.28,-15.62,-5.78,-9.84,adopt_sell
+SHOP,2025-02-11,ADOPT,sell,director,,573865,90,123.59,109.98,-11.01,-0.26,-10.75,adopt_sell
+SHOP,2025-02-11,ADOPT,sell,director,,573865,180,123.59,173.61,40.47,13.3,27.18,adopt_sell
+SHOP,2025-05-08,TERMINATE,sell,director,,41430,30,94.0,106.4,13.19,5.48,7.71,term_sell
+SHOP,2025-05-08,TERMINATE,sell,director,,41430,90,94.0,147.89,57.33,17.31,40.02,term_sell
+SHOP,2025-05-08,TERMINATE,sell,director,,41430,180,94.0,136.31,45.01,23.66,21.35,term_sell
+SHOP,2025-05-08,ADOPT,sell,director,,41430,30,94.0,106.4,13.19,5.48,7.71,adopt_sell
+SHOP,2025-05-08,ADOPT,sell,director,,41430,90,94.0,147.89,57.33,17.31,40.02,adopt_sell
+SHOP,2025-05-08,ADOPT,sell,director,,41430,180,94.0,136.31,45.01,23.66,21.35,adopt_sell
+AAT,2025-02-12,ADOPT,sell,President and then Chief Operating Offic,Adam Wyll,0,30,19.96,18.64,-6.6,-5.73,-0.87,adopt_sell
+AAT,2025-02-12,ADOPT,sell,President and then Chief Operating Offic,Adam Wyll,0,90,19.96,18.94,-5.1,0.06,-5.16,adopt_sell
+AAT,2025-02-12,ADOPT,sell,President and then Chief Operating Offic,Adam Wyll,0,180,19.96,18.19,-8.87,14.03,-22.9,adopt_sell
+MA,2025-02-12,TERMINATE,sell,President and Chief Executive Officer Ad,Michael Miebach,29952,30,560.4,553.42,-1.25,-5.73,4.49,term_sell
+MA,2025-02-12,TERMINATE,sell,President and Chief Executive Officer Ad,Michael Miebach,29952,90,560.4,539.17,-3.79,0.06,-3.85,term_sell
+MA,2025-02-12,TERMINATE,sell,President and Chief Executive Officer Ad,Michael Miebach,29952,180,560.4,550.22,-1.82,14.03,-15.85,term_sell
+QTWO,2025-02-12,ADOPT,sell,Chief Executive Officer,Matthew Flake,148182,30,92.02,82.72,-10.11,-5.73,-4.38,adopt_sell
+QTWO,2025-02-12,ADOPT,sell,Chief Executive Officer,Matthew Flake,148182,90,92.02,92.78,0.83,0.06,0.76,adopt_sell
+QTWO,2025-02-12,ADOPT,sell,Chief Executive Officer,Matthew Flake,148182,180,92.02,61.76,-32.88,14.03,-46.92,adopt_sell
+QTWO,2025-02-12,ADOPT,sell,Chief Financial Officer,Jonathan Price,148182,30,92.02,82.72,-10.11,-5.73,-4.38,adopt_sell
+QTWO,2025-02-12,ADOPT,sell,Chief Financial Officer,Jonathan Price,148182,90,92.02,92.78,0.83,0.06,0.76,adopt_sell
+QTWO,2025-02-12,ADOPT,sell,Chief Financial Officer,Jonathan Price,148182,180,92.02,61.76,-32.88,14.03,-46.92,adopt_sell
+QTWO,2025-02-12,ADOPT,sell,President,Kirk Coleman,34117,30,92.02,82.72,-10.11,-5.73,-4.38,adopt_sell
+QTWO,2025-02-12,ADOPT,sell,President,Kirk Coleman,34117,90,92.02,92.78,0.83,0.06,0.76,adopt_sell
+QTWO,2025-02-12,ADOPT,sell,President,Kirk Coleman,34117,180,92.02,61.76,-32.88,14.03,-46.92,adopt_sell
+QTWO,2025-02-12,ADOPT,sell,Senior Vice President,Michael Kerr,142268,30,92.02,82.72,-10.11,-5.73,-4.38,adopt_sell
+QTWO,2025-02-12,ADOPT,sell,Senior Vice President,Michael Kerr,142268,90,92.02,92.78,0.83,0.06,0.76,adopt_sell
+QTWO,2025-02-12,ADOPT,sell,Senior Vice President,Michael Kerr,142268,180,92.02,61.76,-32.88,14.03,-46.92,adopt_sell
+QTWO,2025-05-07,ADOPT,sell,Senior Vice President,Scott Kerr,14109,30,80.31,88.5,10.2,6.22,3.98,adopt_sell
+QTWO,2025-05-07,ADOPT,sell,Senior Vice President,Scott Kerr,14109,90,80.31,82.91,3.24,18.13,-14.89,adopt_sell
+QTWO,2025-05-07,ADOPT,sell,Senior Vice President,Scott Kerr,14109,180,80.31,68.48,-14.73,23.89,-38.62,adopt_sell
+QTWO,2025-07-30,ADOPT,sell,Director,James Offerdahl,126328,30,89.99,82.72,-8.08,3.65,-11.73,adopt_sell
+QTWO,2025-07-30,ADOPT,sell,Director,James Offerdahl,126328,90,89.99,73.5,-18.32,8.05,-26.37,adopt_sell
+QTWO,2025-07-30,ADOPT,sell,Director,James Offerdahl,126328,180,89.99,51.81,-42.43,12.88,-55.3,adopt_sell
+QTWO,2025-07-30,ADOPT,sell,Director,James Offerdahl,3627,30,89.99,82.72,-8.08,3.65,-11.73,adopt_sell
+QTWO,2025-07-30,ADOPT,sell,Director,James Offerdahl,3627,90,89.99,73.5,-18.32,8.05,-26.37,adopt_sell
+QTWO,2025-07-30,ADOPT,sell,Director,James Offerdahl,3627,180,89.99,51.81,-42.43,12.88,-55.3,adopt_sell
+ILMN,2025-02-12,TERMINATE,sell,Chief People Officer,Patricia Leckman,120,30,103.57,82.28,-20.56,-5.73,-14.83,term_sell
+ILMN,2025-02-12,TERMINATE,sell,Chief People Officer,Patricia Leckman,120,90,103.57,90.61,-12.51,0.06,-12.58,term_sell
+ILMN,2025-02-12,TERMINATE,sell,Chief People Officer,Patricia Leckman,120,180,103.57,123.54,19.28,14.03,5.25,term_sell
+PEGA,2025-02-12,ADOPT,sell,Chief Executive Officer,Alan Trefler,630000,30,52.9,36.16,-31.64,-5.73,-25.91,adopt_sell
+PEGA,2025-02-12,ADOPT,sell,Chief Executive Officer,Alan Trefler,630000,90,52.9,49.84,-5.79,0.06,-5.86,adopt_sell
+PEGA,2025-02-12,ADOPT,sell,Chief Executive Officer,Alan Trefler,630000,180,52.9,63.57,20.17,14.03,6.14,adopt_sell
+PEGA,2025-02-12,ADOPT,sell,Chief Product Officer,Kerim Akgonul,18000,30,52.9,36.16,-31.64,-5.73,-25.91,adopt_sell
+PEGA,2025-02-12,ADOPT,sell,Chief Product Officer,Kerim Akgonul,18000,90,52.9,49.84,-5.79,0.06,-5.86,adopt_sell
+PEGA,2025-02-12,ADOPT,sell,Chief Product Officer,Kerim Akgonul,18000,180,52.9,63.57,20.17,14.03,6.14,adopt_sell
+PCG,2025-02-13,ADOPT,sell,Chair of the Board,,6800,30,15.68,16.82,7.26,-8.59,15.85,adopt_sell
+PCG,2025-02-13,ADOPT,sell,Chair of the Board,,6800,90,15.68,13.68,-12.74,-0.98,-11.76,adopt_sell
+PCG,2025-02-13,ADOPT,sell,Chair of the Board,,6800,180,15.68,15.82,0.87,13.05,-12.18,adopt_sell
+BROS,2025-02-13,ADOPT,sell,Chairman,,10000000,30,83.54,62.52,-25.16,-8.59,-16.57,adopt_sell
+BROS,2025-02-13,ADOPT,sell,Chairman,,10000000,90,83.54,69.27,-17.08,-0.98,-16.1,adopt_sell
+BROS,2025-02-13,ADOPT,sell,Chairman,,10000000,180,83.54,54.49,-34.77,13.05,-47.83,adopt_sell
+COIN,2025-02-13,ADOPT,sell,director,,733235,30,298.11,173.93,-41.66,-8.59,-33.06,adopt_sell
+COIN,2025-02-13,ADOPT,sell,director,,733235,90,298.11,307.59,3.18,-0.98,4.16,adopt_sell
+COIN,2025-02-13,ADOPT,sell,director,,733235,180,298.11,330.42,10.84,13.05,-2.22,adopt_sell
+COIN,2025-02-13,ADOPT,sell,Chief Accounting Officer,,23625,30,298.11,173.93,-41.66,-8.59,-33.06,adopt_sell
+COIN,2025-02-13,ADOPT,sell,Chief Accounting Officer,,23625,90,298.11,307.59,3.18,-0.98,4.16,adopt_sell
+COIN,2025-02-13,ADOPT,sell,Chief Accounting Officer,,23625,180,298.11,330.42,10.84,13.05,-2.22,adopt_sell
+COIN,2025-02-13,ADOPT,sell,Chief People Officer,,72436,30,298.11,173.93,-41.66,-8.59,-33.06,adopt_sell
+COIN,2025-02-13,ADOPT,sell,Chief People Officer,,72436,90,298.11,307.59,3.18,-0.98,4.16,adopt_sell
+COIN,2025-02-13,ADOPT,sell,Chief People Officer,,72436,180,298.11,330.42,10.84,13.05,-2.22,adopt_sell
+FIS,2025-02-13,ADOPT,buy,Chair,,0,30,68.37,71.8,5.01,-8.59,13.61,adopt_buy
+FIS,2025-02-13,ADOPT,buy,Chair,,0,90,68.37,78.87,15.34,-0.98,16.33,adopt_buy
+FIS,2025-02-13,ADOPT,buy,Chair,,0,180,68.37,61.3,-10.35,13.05,-23.41,adopt_buy
+IQV,2025-02-13,TERMINATE,sell,director,,0,30,196.05,177.39,-9.52,-8.59,-0.92,term_sell
+IQV,2025-02-13,TERMINATE,sell,director,,0,90,196.05,155.17,-20.85,-0.98,-19.87,term_sell
+IQV,2025-02-13,TERMINATE,sell,director,,0,180,196.05,213.88,9.09,13.05,-3.96,term_sell
+IQV,2025-07-22,TERMINATE,buy,director,,0,30,187.38,184.62,-1.47,2.37,-3.84,term_buy
+IQV,2025-07-22,TERMINATE,buy,director,,0,90,187.38,228.47,21.93,8.48,13.45,term_buy
+IQV,2025-07-22,TERMINATE,buy,director,,0,180,187.38,168.98,-9.82,9.03,-18.85,term_buy
+STT,2025-02-13,TERMINATE,sell,director,,0,30,95.5,85.88,-10.08,-8.59,-1.49,term_sell
+STT,2025-02-13,TERMINATE,sell,director,,0,90,95.5,98.48,3.12,-0.98,4.1,term_sell
+STT,2025-02-13,TERMINATE,sell,director,,0,180,95.5,115.16,20.58,13.05,7.53,term_sell
+STT,2025-07-31,TERMINATE,sell,director,,0,30,109.49,110.16,0.62,4.01,-3.39,term_sell
+STT,2025-07-31,TERMINATE,sell,director,,0,90,109.49,122.44,11.83,8.46,3.38,term_sell
+STT,2025-07-31,TERMINATE,sell,director,,0,180,109.49,150.18,37.17,13.08,24.09,term_sell
+PPL,2025-02-13,ADOPT,sell,President,Ms. Christine M. Martin,2160,30,33.08,34.61,4.62,-8.59,13.21,adopt_sell
+PPL,2025-02-13,ADOPT,sell,President,Ms. Christine M. Martin,2160,90,33.08,33.51,1.3,-0.98,2.28,adopt_sell
+PPL,2025-02-13,ADOPT,sell,President,Ms. Christine M. Martin,2160,180,33.08,35.85,8.36,13.05,-4.69,adopt_sell
+PPL,2025-04-30,ADOPT,sell,Executive Vice President and,Ms. Angela K. Gosman,6533,30,35.37,33.59,-5.04,8.87,-13.92,adopt_sell
+PPL,2025-04-30,ADOPT,sell,Executive Vice President and,Ms. Angela K. Gosman,6533,90,35.37,34.83,-1.54,17.35,-18.89,adopt_sell
+PPL,2025-04-30,ADOPT,sell,Executive Vice President and,Ms. Angela K. Gosman,6533,180,35.37,36.56,3.34,25.81,-22.47,adopt_sell
+PPL,2025-07-31,ADOPT,sell,President,Crockett III,15791,30,34.87,35.6,2.1,4.01,-1.91,adopt_sell
+PPL,2025-07-31,ADOPT,sell,President,Crockett III,15791,90,34.87,33.41,-4.2,8.46,-12.65,adopt_sell
+PPL,2025-07-31,ADOPT,sell,President,Crockett III,15791,180,34.87,38.73,11.07,13.08,-2.01,adopt_sell
+PPLC,2025-02-13,ADOPT,sell,President,Ms. Christine M. Martin,2160,30,50.13,50.13,0.0,-8.59,8.59,adopt_sell
+PPLC,2025-02-13,ADOPT,sell,President,Ms. Christine M. Martin,2160,90,50.13,50.13,0.0,-0.98,0.98,adopt_sell
+PPLC,2025-02-13,ADOPT,sell,President,Ms. Christine M. Martin,2160,180,50.13,50.13,0.0,13.05,-13.05,adopt_sell
+PPLC,2025-04-30,ADOPT,sell,Executive Vice President and,Ms. Angela K. Gosman,6533,30,50.13,50.13,0.0,8.87,-8.87,adopt_sell
+PPLC,2025-04-30,ADOPT,sell,Executive Vice President and,Ms. Angela K. Gosman,6533,90,50.13,50.13,0.0,17.35,-17.35,adopt_sell
+PPLC,2025-04-30,ADOPT,sell,Executive Vice President and,Ms. Angela K. Gosman,6533,180,50.13,50.13,0.0,25.81,-25.81,adopt_sell
+PPLC,2025-07-31,ADOPT,sell,President,Crockett III,15791,30,50.13,50.13,0.0,4.01,-4.01,adopt_sell
+PPLC,2025-07-31,ADOPT,sell,President,Crockett III,15791,90,50.13,50.13,0.0,8.46,-8.46,adopt_sell
+PPLC,2025-07-31,ADOPT,sell,President,Crockett III,15791,180,50.13,50.65,1.04,13.08,-12.03,adopt_sell
+RDDT,2025-02-13,ADOPT,sell,director,,200000,30,204.95,107.71,-47.45,-8.59,-38.85,adopt_sell
+RDDT,2025-02-13,ADOPT,sell,director,,200000,90,204.95,134.14,-34.55,-0.98,-33.57,adopt_sell
+RDDT,2025-02-13,ADOPT,sell,director,,200000,180,204.95,204.98,0.01,13.05,-13.04,adopt_sell
+RDDT,2025-02-13,ADOPT,sell,Chief Legal Officer,,267933,30,204.95,107.71,-47.45,-8.59,-38.85,adopt_sell
+RDDT,2025-02-13,ADOPT,sell,Chief Legal Officer,,267933,90,204.95,134.14,-34.55,-0.98,-33.57,adopt_sell
+RDDT,2025-02-13,ADOPT,sell,Chief Legal Officer,,267933,180,204.95,204.98,0.01,13.05,-13.04,adopt_sell
+RDDT,2025-02-13,ADOPT,sell,Chief Accounting Officer,,126660,30,204.95,107.71,-47.45,-8.59,-38.85,adopt_sell
+RDDT,2025-02-13,ADOPT,sell,Chief Accounting Officer,,126660,90,204.95,134.14,-34.55,-0.98,-33.57,adopt_sell
+RDDT,2025-02-13,ADOPT,sell,Chief Accounting Officer,,126660,180,204.95,204.98,0.01,13.05,-13.04,adopt_sell
+RDDT,2025-08-01,ADOPT,sell,director,,350000,30,188.64,263.64,39.76,6.3,33.45,adopt_sell
+RDDT,2025-08-01,ADOPT,sell,director,,350000,90,188.64,236.11,25.16,10.17,15.0,adopt_sell
+RDDT,2025-08-01,ADOPT,sell,director,,350000,180,188.64,166.28,-11.85,14.96,-26.81,adopt_sell
+RDDT,2025-08-01,ADOPT,sell,Chief Financial Officer,,50000,30,188.64,263.64,39.76,6.3,33.45,adopt_sell
+RDDT,2025-08-01,ADOPT,sell,Chief Financial Officer,,50000,90,188.64,236.11,25.16,10.17,15.0,adopt_sell
+RDDT,2025-08-01,ADOPT,sell,Chief Financial Officer,,50000,180,188.64,166.28,-11.85,14.96,-26.81,adopt_sell
+HRI,2025-02-13,ADOPT,sell,Chief Financial Officer,Mark Humphrey,852,30,189.73,135.41,-28.63,-8.59,-20.04,adopt_sell
+HRI,2025-02-13,ADOPT,sell,Chief Financial Officer,Mark Humphrey,852,90,189.73,114.74,-39.52,-0.98,-38.54,adopt_sell
+HRI,2025-02-13,ADOPT,sell,Chief Financial Officer,Mark Humphrey,852,180,189.73,134.41,-29.16,13.05,-42.21,adopt_sell
+GVA,2025-02-14,ADOPT,sell,President and Chief Executive Officer,,30000,30,86.3,75.04,-13.05,-7.98,-5.08,adopt_sell
+GVA,2025-02-14,ADOPT,sell,President and Chief Executive Officer,,30000,90,86.3,91.45,5.96,0.12,5.85,adopt_sell
+GVA,2025-02-14,ADOPT,sell,President and Chief Executive Officer,,30000,180,86.3,102.29,18.53,13.06,5.47,adopt_sell
+HBANP,2025-02-14,ADOPT,sell,Executive Vice President and,Amit Dhingra,8054,30,17.09,16.03,-6.21,-7.98,1.77,adopt_sell
+HBANP,2025-02-14,ADOPT,sell,Executive Vice President and,Amit Dhingra,8054,90,17.09,16.34,-4.39,0.12,-4.51,adopt_sell
+HBANP,2025-02-14,ADOPT,sell,Executive Vice President and,Amit Dhingra,8054,180,17.09,17.42,1.94,13.06,-11.12,adopt_sell
+HBANP,2025-02-14,ADOPT,sell,Executive Vice President and,Amit Dhingra,125,30,17.09,16.03,-6.21,-7.98,1.77,adopt_sell
+HBANP,2025-02-14,ADOPT,sell,Executive Vice President and,Amit Dhingra,125,90,17.09,16.34,-4.39,0.12,-4.51,adopt_sell
+HBANP,2025-02-14,ADOPT,sell,Executive Vice President and,Amit Dhingra,125,180,17.09,17.42,1.94,13.06,-11.12,adopt_sell
+HBANP,2025-04-29,ADOPT,sell,Executive Vice President,,54800,30,16.53,16.23,-1.81,8.49,-10.3,adopt_sell
+HBANP,2025-04-29,ADOPT,sell,Executive Vice President,,54800,90,16.53,17.87,8.09,17.4,-9.31,adopt_sell
+HBANP,2025-04-29,ADOPT,sell,Executive Vice President,,54800,180,16.53,17.42,5.38,25.97,-20.59,adopt_sell
+JBLU,2025-02-14,ADOPT,sell,Chief Financial Officer,Ursula Hurley,30000,30,6.78,4.82,-28.91,-7.98,-20.93,adopt_sell
+JBLU,2025-02-14,ADOPT,sell,Chief Financial Officer,Ursula Hurley,30000,90,6.78,4.27,-37.02,0.12,-37.14,adopt_sell
+JBLU,2025-02-14,ADOPT,sell,Chief Financial Officer,Ursula Hurley,30000,180,6.78,4.18,-38.35,13.06,-51.41,adopt_sell
+NEE,2025-02-14,ADOPT,sell,Vice President,James May,2177,30,65.08,68.34,5.02,-7.98,12.99,adopt_sell
+NEE,2025-02-14,ADOPT,sell,Vice President,James May,2177,90,65.08,69.39,6.63,0.12,6.51,adopt_sell
+NEE,2025-02-14,ADOPT,sell,Vice President,James May,2177,180,65.08,80.09,23.07,13.06,10.01,adopt_sell
+NEE,2025-04-23,ADOPT,sell,Executive Vice President,Charles E. Sieving,145140,30,64.85,69.49,7.15,10.76,-3.62,adopt_sell
+NEE,2025-04-23,ADOPT,sell,Executive Vice President,Charles E. Sieving,145140,90,64.85,71.15,9.71,19.94,-10.22,adopt_sell
+NEE,2025-04-23,ADOPT,sell,Executive Vice President,Charles E. Sieving,145140,180,64.85,78.77,21.46,30.76,-9.3,adopt_sell
+NEE,2025-04-23,ADOPT,sell,Chairman,John W. Ketchum,145120,30,64.85,69.49,7.15,10.76,-3.62,adopt_sell
+NEE,2025-04-23,ADOPT,sell,Chairman,John W. Ketchum,145120,90,64.85,71.15,9.71,19.94,-10.22,adopt_sell
+NEE,2025-04-23,ADOPT,sell,Chairman,John W. Ketchum,145120,180,64.85,78.77,21.46,30.76,-9.3,adopt_sell
+NEE,2025-07-23,ADOPT,sell,Executive Vice President Nuclear,Robert Coffey,7500,30,70.77,69.41,-1.93,2.35,-4.28,adopt_sell
+NEE,2025-07-23,ADOPT,sell,Executive Vice President Nuclear,Robert Coffey,7500,90,70.77,83.47,17.94,7.56,10.38,adopt_sell
+NEE,2025-07-23,ADOPT,sell,Executive Vice President Nuclear,Robert Coffey,7500,180,70.77,93.4,31.97,8.04,23.93,adopt_sell
+NEE,2025-07-23,ADOPT,sell,Executive Vice President and,Michael Dunne,10000,30,70.77,69.41,-1.93,2.35,-4.28,adopt_sell
+NEE,2025-07-23,ADOPT,sell,Executive Vice President and,Michael Dunne,10000,90,70.77,83.47,17.94,7.56,10.38,adopt_sell
+NEE,2025-07-23,ADOPT,sell,Executive Vice President and,Michael Dunne,10000,180,70.77,93.4,31.97,8.04,23.93,adopt_sell
+PLTR,2025-02-18,ADOPT,sell,President,Stephen Cohen,9975000,30,124.62,87.45,-29.83,-7.4,-22.42,adopt_sell
+PLTR,2025-02-18,ADOPT,sell,President,Stephen Cohen,9975000,90,124.62,136.32,9.39,1.64,7.74,adopt_sell
+PLTR,2025-02-18,ADOPT,sell,President,Stephen Cohen,9975000,180,124.62,175.05,40.47,10.58,29.89,adopt_sell
+PLTR,2025-05-06,ADOPT,sell,Chief Revenue Officer,Ryan Taylor,27214,30,108.86,139.96,28.57,6.91,21.65,adopt_sell
+PLTR,2025-05-06,ADOPT,sell,Chief Revenue Officer,Ryan Taylor,27214,90,108.86,171.21,57.28,18.62,38.65,adopt_sell
+PLTR,2025-05-06,ADOPT,sell,Chief Revenue Officer,Ryan Taylor,27214,180,108.86,165.9,52.4,24.37,28.03,adopt_sell
+PLTR,2025-05-06,ADOPT,sell,Chief Revenue Officer,Ryan Taylor,1620000,30,108.86,139.96,28.57,6.91,21.65,adopt_sell
+PLTR,2025-05-06,ADOPT,sell,Chief Revenue Officer,Ryan Taylor,1620000,90,108.86,171.21,57.28,18.62,38.65,adopt_sell
+PLTR,2025-05-06,ADOPT,sell,Chief Revenue Officer,Ryan Taylor,1620000,180,108.86,165.9,52.4,24.37,28.03,adopt_sell
+PLTR,2025-05-06,ADOPT,sell,Chief Financial Officer,David Glazer,168766,30,108.86,139.96,28.57,6.91,21.65,adopt_sell
+PLTR,2025-05-06,ADOPT,sell,Chief Financial Officer,David Glazer,168766,90,108.86,171.21,57.28,18.62,38.65,adopt_sell
+PLTR,2025-05-06,ADOPT,sell,Chief Financial Officer,David Glazer,168766,180,108.86,165.9,52.4,24.37,28.03,adopt_sell
+PLTR,2025-08-05,ADOPT,sell,Chief Accounting Officer,Jeffrey Buckley,11628,30,173.27,168.33,-2.85,4.97,-7.82,adopt_sell
+PLTR,2025-08-05,ADOPT,sell,Chief Accounting Officer,Jeffrey Buckley,11628,90,173.27,183.25,5.76,8.7,-2.94,adopt_sell
+PLTR,2025-08-05,ADOPT,sell,Chief Accounting Officer,Jeffrey Buckley,11628,180,173.27,141.57,-18.3,13.77,-32.07,adopt_sell
+PEN,2025-02-18,ADOPT,sell,Director,Arani Bose,0,30,271.14,277.35,2.29,-7.4,9.69,adopt_sell
+PEN,2025-02-18,ADOPT,sell,Director,Arani Bose,0,90,271.14,256.63,-5.35,1.64,-7.0,adopt_sell
+PEN,2025-02-18,ADOPT,sell,Director,Arani Bose,0,180,271.14,264.61,-2.41,10.58,-12.99,adopt_sell
+CVNA,2025-02-19,ADOPT,sell,President,,128471,30,56.36,36.36,-35.49,-12.17,-23.32,adopt_sell
+CVNA,2025-02-19,ADOPT,sell,President,,128471,90,56.36,67.39,19.57,1.4,18.16,adopt_sell
+CVNA,2025-02-19,ADOPT,sell,President,,128471,180,56.36,60.8,7.87,10.43,-2.56,adopt_sell
+CVNA,2025-02-19,ADOPT,sell,Chief Operating Officer,,515166,30,56.36,36.36,-35.49,-12.17,-23.32,adopt_sell
+CVNA,2025-02-19,ADOPT,sell,Chief Operating Officer,,515166,90,56.36,67.39,19.57,1.4,18.16,adopt_sell
+CVNA,2025-02-19,ADOPT,sell,Chief Operating Officer,,515166,180,56.36,60.8,7.87,10.43,-2.56,adopt_sell
+CVNA,2025-02-19,ADOPT,sell,Chief Executive Officer,,1000000,30,56.36,36.36,-35.49,-12.17,-23.32,adopt_sell
+CVNA,2025-02-19,ADOPT,sell,Chief Executive Officer,,1000000,90,56.36,67.39,19.57,1.4,18.16,adopt_sell
+CVNA,2025-02-19,ADOPT,sell,Chief Executive Officer,,1000000,180,56.36,60.8,7.87,10.43,-2.56,adopt_sell
+CVNA,2025-05-07,ADOPT,sell,director,,5674,30,51.83,63.98,23.43,6.22,17.21,adopt_sell
+CVNA,2025-05-07,ADOPT,sell,director,,5674,90,51.83,73.07,40.97,18.13,22.84,adopt_sell
+CVNA,2025-05-07,ADOPT,sell,director,,5674,180,51.83,94.66,82.63,23.89,58.73,adopt_sell
+CVNA,2025-07-30,ADOPT,sell,President,,15000,30,66.72,70.85,6.19,3.65,2.54,adopt_sell
+CVNA,2025-07-30,ADOPT,sell,President,,15000,90,66.72,89.6,34.29,8.05,26.24,adopt_sell
+CVNA,2025-07-30,ADOPT,sell,President,,15000,180,66.72,77.51,16.17,12.88,3.29,adopt_sell
+CVNA,2025-07-30,ADOPT,sell,director,,30928,30,66.72,70.85,6.19,3.65,2.54,adopt_sell
+CVNA,2025-07-30,ADOPT,sell,director,,30928,90,66.72,89.6,34.29,8.05,26.24,adopt_sell
+CVNA,2025-07-30,ADOPT,sell,director,,30928,180,66.72,77.51,16.17,12.88,3.29,adopt_sell
+CVNA,2025-07-30,ADOPT,sell,director,,14000,30,66.72,70.85,6.19,3.65,2.54,adopt_sell
+CVNA,2025-07-30,ADOPT,sell,director,,14000,90,66.72,89.6,34.29,8.05,26.24,adopt_sell
+CVNA,2025-07-30,ADOPT,sell,director,,14000,180,66.72,77.51,16.17,12.88,3.29,adopt_sell
+IMAX,2025-02-19,TERMINATE,sell,director,,0,30,27.22,25.73,-5.47,-12.17,6.7,term_sell
+IMAX,2025-02-19,TERMINATE,sell,director,,0,90,27.22,27.96,2.72,1.4,1.31,term_sell
+IMAX,2025-02-19,TERMINATE,sell,director,,0,180,27.22,34.48,26.67,10.43,16.24,term_sell
+IMAX,2025-07-24,ADOPT,sell,Chief Legal Officer,,1495900,30,28.29,29.78,5.27,2.02,3.25,adopt_sell
+IMAX,2025-07-24,ADOPT,sell,Chief Legal Officer,,1495900,90,28.29,36.84,30.22,7.52,22.7,adopt_sell
+IMAX,2025-07-24,ADOPT,sell,Chief Legal Officer,,1495900,180,28.29,36.94,30.58,9.06,21.51,adopt_sell
+RELY,2025-02-19,ADOPT,sell,Vice Chair and a member of our,Joshua Hug,1223107,30,25.91,20.13,-22.31,-12.17,-10.13,adopt_sell
+RELY,2025-02-19,ADOPT,sell,Vice Chair and a member of our,Joshua Hug,1223107,90,25.91,18.77,-27.56,1.4,-28.96,adopt_sell
+RELY,2025-02-19,ADOPT,sell,Vice Chair and a member of our,Joshua Hug,1223107,180,25.91,12.71,-50.95,10.43,-61.37,adopt_sell
+RELY,2025-05-07,ADOPT,sell,director,,60000,30,21.09,20.13,-4.55,6.22,-10.77,adopt_sell
+RELY,2025-05-07,ADOPT,sell,director,,60000,90,21.09,16.67,-20.96,18.13,-39.08,adopt_sell
+RELY,2025-05-07,ADOPT,sell,director,,60000,180,21.09,14.17,-32.81,23.89,-56.71,adopt_sell
+TNL,2025-02-19,TERMINATE,sell,Chief Financial Officer,Michael A. Hug,27000,30,55.14,41.3,-25.08,-12.17,-12.91,term_sell
+TNL,2025-02-19,TERMINATE,sell,Chief Financial Officer,Michael A. Hug,27000,90,55.14,50.32,-8.73,1.4,-10.14,term_sell
+TNL,2025-02-19,TERMINATE,sell,Chief Financial Officer,Michael A. Hug,27000,180,55.14,62.34,13.07,10.43,2.64,term_sell
+TNL,2025-02-19,ADOPT,sell,Chief Operating Officer,Geoff Richards,27000,30,55.14,41.3,-25.08,-12.17,-12.91,adopt_sell
+TNL,2025-02-19,ADOPT,sell,Chief Operating Officer,Geoff Richards,27000,90,55.14,50.32,-8.73,1.4,-10.14,adopt_sell
+TNL,2025-02-19,ADOPT,sell,Chief Operating Officer,Geoff Richards,27000,180,55.14,62.34,13.07,10.43,2.64,adopt_sell
+TNL,2025-02-19,ADOPT,sell,Chief Operating Officer,Geoff Richards,15216,30,55.14,41.3,-25.08,-12.17,-12.91,adopt_sell
+TNL,2025-02-19,ADOPT,sell,Chief Operating Officer,Geoff Richards,15216,90,55.14,50.32,-8.73,1.4,-10.14,adopt_sell
+TNL,2025-02-19,ADOPT,sell,Chief Operating Officer,Geoff Richards,15216,180,55.14,62.34,13.07,10.43,2.64,adopt_sell
+TNL,2025-02-19,ADOPT,sell,General Counsel,James Savina,33000,30,55.14,41.3,-25.08,-12.17,-12.91,adopt_sell
+TNL,2025-02-19,ADOPT,sell,General Counsel,James Savina,33000,90,55.14,50.32,-8.73,1.4,-10.14,adopt_sell
+TNL,2025-02-19,ADOPT,sell,General Counsel,James Savina,33000,180,55.14,62.34,13.07,10.43,2.64,adopt_sell
+MTB,2025-02-19,ADOPT,sell,director,,0,30,190.7,157.47,-17.42,-12.17,-5.25,adopt_sell
+MTB,2025-02-19,ADOPT,sell,director,,0,90,190.7,188.39,-1.21,1.4,-2.61,adopt_sell
+MTB,2025-02-19,ADOPT,sell,director,,0,180,190.7,181.85,-4.64,10.43,-15.07,adopt_sell
+RGR,2025-02-19,ADOPT,sell,Director,,5000,30,34.7,37.95,9.37,-12.17,21.54,adopt_sell
+RGR,2025-02-19,ADOPT,sell,Director,,5000,90,34.7,35.51,2.34,1.4,0.94,adopt_sell
+RGR,2025-02-19,ADOPT,sell,Director,,5000,180,34.7,33.73,-2.8,10.43,-13.22,adopt_sell
+RGR,2025-04-30,ADOPT,sell,Senior Vice President,,22612,30,40.03,37.45,-6.43,8.87,-15.31,adopt_sell
+RGR,2025-04-30,ADOPT,sell,Senior Vice President,,22612,90,40.03,35.41,-11.54,17.35,-28.89,adopt_sell
+RGR,2025-04-30,ADOPT,sell,Senior Vice President,,22612,180,40.03,37.56,-6.18,25.81,-31.99,adopt_sell
+RGR,2025-04-30,ADOPT,sell,,,20000,30,40.03,37.45,-6.43,8.87,-15.31,adopt_sell
+RGR,2025-04-30,ADOPT,sell,,,20000,90,40.03,35.41,-11.54,17.35,-28.89,adopt_sell
+RGR,2025-04-30,ADOPT,sell,,,20000,180,40.03,37.56,-6.18,25.81,-31.99,adopt_sell
+AMPL,2025-02-20,ADOPT,sell,Director,,15532,30,14.44,8.88,-38.5,-16.97,-21.53,adopt_sell
+AMPL,2025-02-20,ADOPT,sell,Director,,15532,90,14.44,12.4,-14.13,1.83,-15.96,adopt_sell
+AMPL,2025-02-20,ADOPT,sell,Director,,15532,180,14.44,10.73,-25.69,12.62,-38.31,adopt_sell
+AMPL,2025-05-07,ADOPT,sell,director,,81394,30,9.42,11.61,23.25,6.22,17.03,adopt_sell
+AMPL,2025-05-07,ADOPT,sell,director,,81394,90,9.42,10.87,15.39,18.13,-2.73,adopt_sell
+AMPL,2025-05-07,ADOPT,sell,director,,81394,180,9.42,10.25,8.81,23.89,-15.08,adopt_sell
+BBIO,2025-02-20,TERMINATE,sell,director,,0,30,36.81,31.37,-14.77,-16.97,2.2,term_sell
+BBIO,2025-02-20,TERMINATE,sell,director,,0,90,36.81,43.18,17.32,1.83,15.49,term_sell
+BBIO,2025-02-20,TERMINATE,sell,director,,0,180,36.81,62.81,70.66,12.62,58.04,term_sell
+BBIO,2025-04-29,ADOPT,sell,President and Chief Financial Officer,Thomas Trimarchi,47887,30,36.42,39.05,7.22,8.49,-1.26,adopt_sell
+BBIO,2025-04-29,ADOPT,sell,President and Chief Financial Officer,Thomas Trimarchi,47887,90,36.42,54.29,49.07,17.4,31.67,adopt_sell
+BBIO,2025-04-29,ADOPT,sell,President and Chief Financial Officer,Thomas Trimarchi,47887,180,36.42,76.26,109.39,25.97,83.42,adopt_sell
+BBIO,2025-08-05,ADOPT,sell,Director,,300000,30,49.21,51.18,4.0,4.97,-0.97,adopt_sell
+BBIO,2025-08-05,ADOPT,sell,Director,,300000,90,49.21,74.51,51.41,8.7,42.71,adopt_sell
+BBIO,2025-08-05,ADOPT,sell,Director,,300000,180,49.21,71.67,45.64,13.77,31.87,adopt_sell
+BBIO,2025-08-05,ADOPT,sell,Director,,51501,30,49.21,51.18,4.0,4.97,-0.97,adopt_sell
+BBIO,2025-08-05,ADOPT,sell,Director,,51501,90,49.21,74.51,51.41,8.7,42.71,adopt_sell
+BBIO,2025-08-05,ADOPT,sell,Director,,51501,180,49.21,71.67,45.64,13.77,31.87,adopt_sell
+BKNG,2025-02-20,ADOPT,sell,Director,Glenn D. Fogel,6502,30,198.3,169.63,-14.46,-16.97,2.51,adopt_sell
+BKNG,2025-02-20,ADOPT,sell,Director,Glenn D. Fogel,6502,90,198.3,229.63,15.8,1.83,13.97,adopt_sell
+BKNG,2025-02-20,ADOPT,sell,Director,Glenn D. Fogel,6502,180,198.3,197.01,-0.65,12.62,-13.27,adopt_sell
+BKNG,2025-02-20,ADOPT,sell,Executive Vice President and,Peter J. Millones,6502,30,198.3,169.63,-14.46,-16.97,2.51,adopt_sell
+BKNG,2025-02-20,ADOPT,sell,Executive Vice President and,Peter J. Millones,6502,90,198.3,229.63,15.8,1.83,13.97,adopt_sell
+BKNG,2025-02-20,ADOPT,sell,Executive Vice President and,Peter J. Millones,6502,180,198.3,197.01,-0.65,12.62,-13.27,adopt_sell
+BKNG,2025-07-29,ADOPT,sell,Director,Vanessa Wittman,180,30,221.76,217.53,-1.91,2.67,-4.57,adopt_sell
+BKNG,2025-07-29,ADOPT,sell,Director,Vanessa Wittman,180,90,221.76,206.11,-7.06,7.91,-14.97,adopt_sell
+BKNG,2025-07-29,ADOPT,sell,Director,Vanessa Wittman,180,180,221.76,184.1,-16.98,11.39,-28.37,adopt_sell
+CHDN,2025-02-20,ADOPT,sell,Chief Operating Officer,,101379,30,118.59,102.26,-13.77,-16.97,3.2,adopt_sell
+CHDN,2025-02-20,ADOPT,sell,Chief Operating Officer,,101379,90,118.59,100.61,-15.16,1.83,-16.99,adopt_sell
+CHDN,2025-02-20,ADOPT,sell,Chief Operating Officer,,101379,180,118.59,99.48,-16.11,12.62,-28.73,adopt_sell
+GMED,2025-02-20,ADOPT,sell,Director,Ann D. Rhoads,27500,30,84.12,68.83,-18.18,-16.97,-1.21,adopt_sell
+GMED,2025-02-20,ADOPT,sell,Director,Ann D. Rhoads,27500,90,84.12,59.02,-29.84,1.83,-31.67,adopt_sell
+GMED,2025-02-20,ADOPT,sell,Director,Ann D. Rhoads,27500,180,84.12,86.36,2.66,12.62,-9.96,adopt_sell
+GMED,2025-02-20,ADOPT,sell,Executive Vice President and,Kelly Huller,80000,30,84.12,68.83,-18.18,-16.97,-1.21,adopt_sell
+GMED,2025-02-20,ADOPT,sell,Executive Vice President and,Kelly Huller,80000,90,84.12,59.02,-29.84,1.83,-31.67,adopt_sell
+GMED,2025-02-20,ADOPT,sell,Executive Vice President and,Kelly Huller,80000,180,84.12,86.36,2.66,12.62,-9.96,adopt_sell
+PWR,2025-02-20,ADOPT,sell,Executive Vice President and,Donald C. Wayne,19307,30,280.78,239.24,-14.8,-16.97,2.17,adopt_sell
+PWR,2025-02-20,ADOPT,sell,Executive Vice President and,Donald C. Wayne,19307,90,280.78,377.72,34.52,1.83,32.69,adopt_sell
+PWR,2025-02-20,ADOPT,sell,Executive Vice President and,Donald C. Wayne,19307,180,280.78,450.17,60.33,12.62,47.71,adopt_sell
+REZI,2025-02-20,ADOPT,sell,President,Robert Aarnes,47000,30,21.43,15.62,-27.11,-16.97,-10.14,adopt_sell
+REZI,2025-02-20,ADOPT,sell,President,Robert Aarnes,47000,90,21.43,22.06,2.94,1.83,1.11,adopt_sell
+REZI,2025-02-20,ADOPT,sell,President,Robert Aarnes,47000,180,21.43,30.62,42.88,12.62,30.26,adopt_sell
+OSCR,2025-02-20,ADOPT,sell,Chief Legal Officer,,98411,30,16.07,13.0,-19.1,-16.97,-2.13,adopt_sell
+OSCR,2025-02-20,ADOPT,sell,Chief Legal Officer,,98411,90,16.07,21.44,33.42,1.83,31.59,adopt_sell
+OSCR,2025-02-20,ADOPT,sell,Chief Legal Officer,,98411,180,16.07,14.61,-9.09,12.62,-21.71,adopt_sell
+OSCR,2025-05-08,TERMINATE,sell,,,211774,30,17.06,21.22,24.38,5.48,18.9,term_sell
+OSCR,2025-05-08,TERMINATE,sell,,,211774,90,17.06,18.73,9.79,17.31,-7.52,term_sell
+OSCR,2025-05-08,TERMINATE,sell,,,211774,180,17.06,15.7,-7.97,23.66,-31.63,term_sell
+PAYC,2025-02-20,ADOPT,sell,Chief Executive Officer,Chad Richison,600000,30,211.72,195.98,-7.43,-16.97,9.53,adopt_sell
+PAYC,2025-02-20,ADOPT,sell,Chief Executive Officer,Chad Richison,600000,90,211.72,229.24,8.28,1.83,6.45,adopt_sell
+PAYC,2025-02-20,ADOPT,sell,Chief Executive Officer,Chad Richison,600000,180,211.72,165.51,-21.83,12.62,-34.45,adopt_sell
+PAYC,2025-02-20,ADOPT,sell,Chief Financial Officer,Craig Boelte,600000,30,211.72,195.98,-7.43,-16.97,9.53,adopt_sell
+PAYC,2025-02-20,ADOPT,sell,Chief Financial Officer,Craig Boelte,600000,90,211.72,229.24,8.28,1.83,6.45,adopt_sell
+PAYC,2025-02-20,ADOPT,sell,Chief Financial Officer,Craig Boelte,600000,180,211.72,165.51,-21.83,12.62,-34.45,adopt_sell
+PAYC,2025-02-20,ADOPT,sell,Chief Financial Officer,Craig Boelte,20000,30,211.72,195.98,-7.43,-16.97,9.53,adopt_sell
+PAYC,2025-02-20,ADOPT,sell,Chief Financial Officer,Craig Boelte,20000,90,211.72,229.24,8.28,1.83,6.45,adopt_sell
+PAYC,2025-02-20,ADOPT,sell,Chief Financial Officer,Craig Boelte,20000,180,211.72,165.51,-21.83,12.62,-34.45,adopt_sell
+ASIX,2025-02-21,ADOPT,sell,Senior Vice President,,18783,30,28.37,18.42,-35.08,-15.68,-19.4,adopt_sell
+ASIX,2025-02-21,ADOPT,sell,Senior Vice President,,18783,90,28.37,23.94,-15.63,3.57,-19.19,adopt_sell
+ASIX,2025-02-21,ADOPT,sell,Senior Vice President,,18783,180,28.37,15.82,-44.23,14.58,-58.81,adopt_sell
+BCPC,2025-02-21,TERMINATE,sell,director,,0,30,162.73,153.19,-5.86,-15.68,9.81,term_sell
+BCPC,2025-02-21,TERMINATE,sell,director,,0,90,162.73,160.89,-1.13,3.57,-4.7,term_sell
+BCPC,2025-02-21,TERMINATE,sell,director,,0,180,162.73,154.28,-5.19,14.58,-19.77,term_sell
+HIG,2025-02-21,ADOPT,sell,Chairman and Chief Executive Officer,Christopher J. Swift,294481,30,108.61,107.51,-1.01,-15.68,14.67,adopt_sell
+HIG,2025-02-21,ADOPT,sell,Chairman and Chief Executive Officer,Christopher J. Swift,294481,90,108.61,124.43,14.56,3.57,11.0,adopt_sell
+HIG,2025-02-21,ADOPT,sell,Chairman and Chief Executive Officer,Christopher J. Swift,294481,180,108.61,129.12,18.89,14.58,4.31,adopt_sell
+HIG,2025-04-24,ADOPT,sell,Executive Vice President,Amy Stepnowski,48690,30,116.72,127.11,8.9,9.59,-0.7,adopt_sell
+HIG,2025-04-24,ADOPT,sell,Executive Vice President,Amy Stepnowski,48690,90,116.72,130.16,11.51,17.46,-5.96,adopt_sell
+HIG,2025-04-24,ADOPT,sell,Executive Vice President,Amy Stepnowski,48690,180,116.72,134.03,14.83,28.27,-13.44,adopt_sell
+PTGX,2025-02-21,ADOPT,sell,,,24000,30,38.75,43.21,11.51,-15.68,27.19,adopt_sell
+PTGX,2025-02-21,ADOPT,sell,,,24000,90,38.75,50.21,29.57,3.57,26.01,adopt_sell
+PTGX,2025-02-21,ADOPT,sell,,,24000,180,38.75,83.23,114.79,14.58,100.21,adopt_sell
+NDAQ,2025-02-21,ADOPT,sell,Executive Vice President and,Bradley J. Peterson,14959,30,79.83,66.93,-16.16,-15.68,-0.49,adopt_sell
+NDAQ,2025-02-21,ADOPT,sell,Executive Vice President and,Bradley J. Peterson,14959,90,79.83,88.15,10.42,3.57,6.85,adopt_sell
+NDAQ,2025-02-21,ADOPT,sell,Executive Vice President and,Bradley J. Peterson,14959,180,79.83,87.28,9.33,14.58,-5.25,adopt_sell
+NDAQ,2025-02-21,ADOPT,sell,Executive Vice President and,Sarah Youngwood,14959,30,79.83,66.93,-16.16,-15.68,-0.49,adopt_sell
+NDAQ,2025-02-21,ADOPT,sell,Executive Vice President and,Sarah Youngwood,14959,90,79.83,88.15,10.42,3.57,6.85,adopt_sell
+NDAQ,2025-02-21,ADOPT,sell,Executive Vice President and,Sarah Youngwood,14959,180,79.83,87.28,9.33,14.58,-5.25,adopt_sell
+NDAQ,2025-04-28,ADOPT,sell,Chair,,16840,30,74.2,85.04,14.61,9.48,5.13,adopt_sell
+NDAQ,2025-04-28,ADOPT,sell,Chair,,16840,90,74.2,92.64,24.86,17.85,7.02,adopt_sell
+NDAQ,2025-04-28,ADOPT,sell,Chair,,16840,180,74.2,99.75,34.44,26.42,8.03,adopt_sell
+LAZ,2025-02-24,ADOPT,sell,Chief Executive Officer,,130000,30,46.76,31.72,-32.15,-16.62,-15.53,adopt_sell
+LAZ,2025-02-24,ADOPT,sell,Chief Executive Officer,,130000,90,46.76,47.87,2.37,4.55,-2.18,adopt_sell
+LAZ,2025-02-24,ADOPT,sell,Chief Executive Officer,,130000,180,46.76,50.92,8.9,15.43,-6.53,adopt_sell
+LAZ,2025-05-01,ADOPT,sell,Director,,226003,30,37.43,41.46,10.78,6.9,3.88,adopt_sell
+LAZ,2025-05-01,ADOPT,sell,Director,,226003,90,37.43,54.53,45.68,16.52,29.16,adopt_sell
+LAZ,2025-05-01,ADOPT,sell,Director,,226003,180,37.43,50.98,36.19,22.38,13.8,adopt_sell
+MKL,2025-02-24,ADOPT,sell,Chair of the Board,Steven A. Markel,0,30,1849.57,1680.26,-9.15,-16.62,7.46,adopt_sell
+MKL,2025-02-24,ADOPT,sell,Chair of the Board,Steven A. Markel,0,90,1849.57,1986.6,7.41,4.55,2.86,adopt_sell
+MKL,2025-02-24,ADOPT,sell,Chair of the Board,Steven A. Markel,0,180,1849.57,2091.91,13.1,15.43,-2.33,adopt_sell
+KDP,2025-02-25,ADOPT,sell,Executive Chairman,Bob Gamgort,2500000,30,33.58,33.56,-0.04,-7.4,7.35,adopt_sell
+KDP,2025-02-25,ADOPT,sell,Executive Chairman,Bob Gamgort,2500000,90,33.58,32.91,-1.98,5.07,-7.06,adopt_sell
+KDP,2025-02-25,ADOPT,sell,Executive Chairman,Bob Gamgort,2500000,180,33.58,26.54,-20.95,14.08,-35.03,adopt_sell
+AESI,2025-02-25,ADOPT,sell,director,,90000,30,18.66,14.09,-24.51,-7.4,-17.11,adopt_sell
+AESI,2025-02-25,ADOPT,sell,director,,90000,90,18.66,13.26,-28.94,5.07,-34.01,adopt_sell
+AESI,2025-02-25,ADOPT,sell,director,,90000,180,18.66,8.89,-52.35,14.08,-66.44,adopt_sell
+ARQT,2025-02-25,ADOPT,sell,,,177732,30,12.2,14.57,19.43,-7.4,26.83,adopt_sell
+ARQT,2025-02-25,ADOPT,sell,,,177732,90,12.2,13.39,9.75,5.07,4.68,adopt_sell
+ARQT,2025-02-25,ADOPT,sell,,,177732,180,12.2,22.86,87.38,14.08,73.29,adopt_sell
+ARQT,2025-05-06,ADOPT,sell,Director,,96814,30,14.32,13.67,-4.54,6.91,-11.45,adopt_sell
+ARQT,2025-05-06,ADOPT,sell,Director,,96814,90,14.32,16.93,18.23,18.62,-0.4,adopt_sell
+ARQT,2025-05-06,ADOPT,sell,Director,,96814,180,14.32,26.65,86.1,24.37,61.73,adopt_sell
+ARQT,2025-08-06,ADOPT,sell,Chief Executive Officer,Franklin Watanabe,135000,30,15.36,17.71,15.3,4.66,10.64,adopt_sell
+ARQT,2025-08-06,ADOPT,sell,Chief Executive Officer,Franklin Watanabe,135000,90,15.36,28.95,88.48,7.88,80.6,adopt_sell
+ARQT,2025-08-06,ADOPT,sell,Chief Executive Officer,Franklin Watanabe,135000,180,15.36,23.26,51.43,13.78,37.65,adopt_sell
+CIFR,2025-02-25,TERMINATE,sell,Chief Executive Officer,Tyler Page,900000,30,4.1,2.46,-40.0,-7.4,-32.6,term_sell
+CIFR,2025-02-25,TERMINATE,sell,Chief Executive Officer,Tyler Page,900000,90,4.1,5.79,41.22,5.07,36.15,term_sell
+CIFR,2025-02-25,TERMINATE,sell,Chief Executive Officer,Tyler Page,900000,180,4.1,14.93,264.15,14.08,250.06,term_sell
+CIFR,2025-02-25,TERMINATE,sell,Chief Executive Officer,Tyler Page,323694,30,4.1,2.46,-40.0,-7.4,-32.6,term_sell
+CIFR,2025-02-25,TERMINATE,sell,Chief Executive Officer,Tyler Page,323694,90,4.1,5.79,41.22,5.07,36.15,term_sell
+CIFR,2025-02-25,TERMINATE,sell,Chief Executive Officer,Tyler Page,323694,180,4.1,14.93,264.15,14.08,250.06,term_sell
+CIFR,2025-05-06,ADOPT,sell,Chief Executive Officer,Tyler Page,900000,30,3.04,3.81,25.33,6.91,18.41,adopt_sell
+CIFR,2025-05-06,ADOPT,sell,Chief Executive Officer,Tyler Page,900000,90,3.04,10.85,256.91,18.62,238.29,adopt_sell
+CIFR,2025-05-06,ADOPT,sell,Chief Executive Officer,Tyler Page,900000,180,3.04,17.39,472.04,24.37,447.67,adopt_sell
+DOCN,2025-02-25,ADOPT,sell,director,,0,30,40.83,30.67,-24.88,-7.4,-17.48,adopt_sell
+DOCN,2025-02-25,ADOPT,sell,director,,0,90,40.83,28.87,-29.29,5.07,-34.37,adopt_sell
+DOCN,2025-02-25,ADOPT,sell,director,,0,180,40.83,45.19,10.68,14.08,-3.4,adopt_sell
+ENVX,2025-02-25,ADOPT,sell,Chief Executive Officer,Dr. Raj Talluri,300000,30,9.44,6.64,-29.61,-7.4,-22.21,adopt_sell
+ENVX,2025-02-25,ADOPT,sell,Chief Executive Officer,Dr. Raj Talluri,300000,90,9.44,13.03,38.03,5.07,32.96,adopt_sell
+ENVX,2025-02-25,ADOPT,sell,Chief Executive Officer,Dr. Raj Talluri,300000,180,9.44,8.08,-14.41,14.08,-28.49,adopt_sell
+ENVX,2025-07-31,ADOPT,sell,Chief Operating Officer,Ajay Marathe,268338,30,13.4,8.14,-39.25,4.01,-43.26,adopt_sell
+ENVX,2025-07-31,ADOPT,sell,Chief Operating Officer,Ajay Marathe,268338,90,13.4,8.68,-35.22,8.46,-43.68,adopt_sell
+ENVX,2025-07-31,ADOPT,sell,Chief Operating Officer,Ajay Marathe,268338,180,13.4,6.83,-49.03,13.08,-62.11,adopt_sell
+FULC,2025-02-25,ADOPT,sell,President and Chief Executive Officer,Alex C. Sapir,360000,30,3.7,2.88,-22.16,-7.4,-14.76,adopt_sell
+FULC,2025-02-25,ADOPT,sell,President and Chief Executive Officer,Alex C. Sapir,360000,90,3.7,7.02,89.73,5.07,84.66,adopt_sell
+FULC,2025-02-25,ADOPT,sell,President and Chief Executive Officer,Alex C. Sapir,360000,180,3.7,8.79,137.57,14.08,123.48,adopt_sell
+RXST,2025-02-25,TERMINATE,sell,President and Chief Executive Officer an,,448635,30,29.21,15.51,-46.9,-7.4,-39.5,term_sell
+RXST,2025-02-25,TERMINATE,sell,President and Chief Executive Officer an,,448635,90,29.21,12.43,-57.45,5.07,-62.52,term_sell
+RXST,2025-02-25,TERMINATE,sell,President and Chief Executive Officer an,,448635,180,29.21,9.58,-67.2,14.08,-81.29,term_sell
+RXST,2025-02-25,ADOPT,sell,Chief Executive Officer,,448635,30,29.21,15.51,-46.9,-7.4,-39.5,adopt_sell
+RXST,2025-02-25,ADOPT,sell,Chief Executive Officer,,448635,90,29.21,12.43,-57.45,5.07,-62.52,adopt_sell
+RXST,2025-02-25,ADOPT,sell,Chief Executive Officer,,448635,180,29.21,9.58,-67.2,14.08,-81.29,adopt_sell
+MMSI,2025-02-25,ADOPT,sell,Chief Operating Officer,Neil Peterson,15000,30,102.03,95.79,-6.12,-7.4,1.28,adopt_sell
+MMSI,2025-02-25,ADOPT,sell,Chief Operating Officer,Neil Peterson,15000,90,102.03,91.12,-10.69,5.07,-15.77,adopt_sell
+MMSI,2025-02-25,ADOPT,sell,Chief Operating Officer,Neil Peterson,15000,180,102.03,87.4,-14.34,14.08,-28.42,adopt_sell
+MMSI,2025-04-24,ADOPT,sell,Director,,5021,30,94.67,95.28,0.64,9.59,-8.95,adopt_sell
+MMSI,2025-04-24,ADOPT,sell,Director,,5021,90,94.67,90.68,-4.21,17.46,-21.68,adopt_sell
+MMSI,2025-04-24,ADOPT,sell,Director,,5021,180,94.67,83.25,-12.06,28.27,-40.33,adopt_sell
+ITRI,2025-02-25,TERMINATE,sell,Senior Vice President,Donald L. Reeves,4170,30,101.81,99.53,-2.24,-7.4,5.16,term_sell
+ITRI,2025-02-25,TERMINATE,sell,Senior Vice President,Donald L. Reeves,4170,90,101.81,134.45,32.06,5.07,26.99,term_sell
+ITRI,2025-02-25,TERMINATE,sell,Senior Vice President,Donald L. Reeves,4170,180,101.81,99.47,-2.3,14.08,-16.38,term_sell
+ITRI,2025-05-01,TERMINATE,sell,President and Chief Executive Officer,Thomas L. Deitrich,6904,30,108.05,121.96,12.87,6.9,5.97,term_sell
+ITRI,2025-05-01,TERMINATE,sell,President and Chief Executive Officer,Thomas L. Deitrich,6904,90,108.05,120.12,11.17,16.52,-5.35,term_sell
+ITRI,2025-05-01,TERMINATE,sell,President and Chief Executive Officer,Thomas L. Deitrich,6904,180,108.05,96.81,-10.4,22.38,-32.79,term_sell
+SIBN,2025-02-25,ADOPT,sell,director,,34028,30,18.44,13.92,-24.51,-7.4,-17.11,adopt_sell
+SIBN,2025-02-25,ADOPT,sell,director,,34028,90,18.44,18.02,-2.28,5.07,-7.35,adopt_sell
+SIBN,2025-02-25,ADOPT,sell,director,,34028,180,18.44,17.26,-6.4,14.08,-20.48,adopt_sell
+SIBN,2025-08-05,ADOPT,sell,director,,128067,30,16.0,14.71,-8.06,4.97,-13.03,adopt_sell
+SIBN,2025-08-05,ADOPT,sell,director,,128067,90,16.0,18.41,15.06,8.7,6.36,adopt_sell
+SIBN,2025-08-05,ADOPT,sell,director,,128067,180,16.0,13.4,-16.25,13.77,-30.02,adopt_sell
+PRCH,2025-02-25,ADOPT,sell,Chief Operating Officer,Matthew Neagle,500000,30,3.79,5.93,56.46,-7.4,63.86,adopt_sell
+PRCH,2025-02-25,ADOPT,sell,Chief Operating Officer,Matthew Neagle,500000,90,3.79,12.68,234.56,5.07,229.49,adopt_sell
+PRCH,2025-02-25,ADOPT,sell,Chief Operating Officer,Matthew Neagle,500000,180,3.79,10.2,169.13,14.08,155.05,adopt_sell
+PRCH,2025-02-25,ADOPT,sell,Chief Financial Officer,Shawn Tabak,500000,30,3.79,5.93,56.46,-7.4,63.86,adopt_sell
+PRCH,2025-02-25,ADOPT,sell,Chief Financial Officer,Shawn Tabak,500000,90,3.79,12.68,234.56,5.07,229.49,adopt_sell
+PRCH,2025-02-25,ADOPT,sell,Chief Financial Officer,Shawn Tabak,500000,180,3.79,10.2,169.13,14.08,155.05,adopt_sell
+PRCH,2025-05-08,ADOPT,sell,Director,,40000,30,10.88,10.72,-1.47,5.48,-6.95,adopt_sell
+PRCH,2025-05-08,ADOPT,sell,Director,,40000,90,10.88,17.66,62.32,17.31,45.01,adopt_sell
+PRCH,2025-05-08,ADOPT,sell,Director,,40000,180,10.88,7.97,-26.75,23.66,-50.41,adopt_sell
+TARS,2025-02-25,ADOPT,sell,Chief Executive Officer,Bobak Azamian,24000,30,41.29,45.87,11.09,-7.4,18.49,adopt_sell
+TARS,2025-02-25,ADOPT,sell,Chief Executive Officer,Bobak Azamian,24000,90,41.29,39.93,-3.29,5.07,-8.37,adopt_sell
+TARS,2025-02-25,ADOPT,sell,Chief Executive Officer,Bobak Azamian,24000,180,41.29,72.53,75.66,14.08,61.58,adopt_sell
+TARS,2025-05-01,ADOPT,sell,Chief Commercial Officer,Aziz Mottiwala,24000,30,50.3,40.89,-18.71,6.9,-25.61,adopt_sell
+TARS,2025-05-01,ADOPT,sell,Chief Commercial Officer,Aziz Mottiwala,24000,90,50.3,56.89,13.1,16.52,-3.42,adopt_sell
+TARS,2025-05-01,ADOPT,sell,Chief Commercial Officer,Aziz Mottiwala,24000,180,50.3,70.93,41.01,22.38,18.63,adopt_sell
+CAVA,2025-02-26,ADOPT,sell,director,,0,30,98.96,88.77,-10.3,-11.5,1.2,adopt_sell
+CAVA,2025-02-26,ADOPT,sell,director,,0,90,98.96,84.28,-14.83,5.02,-19.85,adopt_sell
+CAVA,2025-02-26,ADOPT,sell,director,,0,180,98.96,47.22,-52.28,14.01,-66.29,adopt_sell
+BSY,2025-02-26,ADOPT,sell,Chief Revenue Officer,,0,30,44.18,41.26,-6.61,-11.5,4.89,adopt_sell
+BSY,2025-02-26,ADOPT,sell,Chief Revenue Officer,,0,90,44.18,55.14,24.8,5.02,19.78,adopt_sell
+BSY,2025-02-26,ADOPT,sell,Chief Revenue Officer,,0,180,44.18,42.94,-2.82,14.01,-16.83,adopt_sell
+BSY,2025-05-07,ADOPT,sell,Director,,0,30,45.86,50.39,9.87,6.22,3.65,adopt_sell
+BSY,2025-05-07,ADOPT,sell,Director,,0,90,45.86,52.31,14.05,18.13,-4.07,adopt_sell
+BSY,2025-05-07,ADOPT,sell,Director,,0,180,45.86,38.7,-15.63,23.89,-39.53,adopt_sell
+BSY,2025-08-06,TERMINATE,sell,Director,,0,30,54.85,52.6,-4.11,4.66,-8.77,term_sell
+BSY,2025-08-06,TERMINATE,sell,Director,,0,90,54.85,40.1,-26.89,7.88,-34.77,term_sell
+BSY,2025-08-06,TERMINATE,sell,Director,,0,180,54.85,33.37,-39.16,13.78,-52.94,term_sell
+CERS,2025-02-26,ADOPT,sell,Chief Financial Officer,Kevin Green,85301,30,1.64,1.24,-24.39,-11.5,-12.89,adopt_sell
+CERS,2025-02-26,ADOPT,sell,Chief Financial Officer,Kevin Green,85301,90,1.64,1.45,-11.59,5.02,-16.61,adopt_sell
+CERS,2025-02-26,ADOPT,sell,Chief Financial Officer,Kevin Green,85301,180,1.64,1.62,-1.22,14.01,-15.23,adopt_sell
+CHCO,2025-02-26,ADOPT,buy,director,,0,30,113.3,105.24,-7.11,-11.5,4.39,adopt_buy
+CHCO,2025-02-26,ADOPT,buy,director,,0,90,113.3,123.63,9.12,5.02,4.1,adopt_buy
+CHCO,2025-02-26,ADOPT,buy,director,,0,180,113.3,118.92,4.96,14.01,-9.05,adopt_buy
+CRSR,2025-02-26,ADOPT,sell,Chief Executive Officer,,750000,30,12.03,6.16,-48.79,-11.5,-37.29,adopt_sell
+CRSR,2025-02-26,ADOPT,sell,Chief Executive Officer,,750000,90,12.03,9.32,-22.53,5.02,-27.55,adopt_sell
+CRSR,2025-02-26,ADOPT,sell,Chief Executive Officer,,750000,180,12.03,6.07,-49.54,14.01,-63.55,adopt_sell
+ENOV,2025-02-26,TERMINATE,sell,Chief Executive Officer,,6000,30,40.0,32.1,-19.75,-11.5,-8.25,term_sell
+ENOV,2025-02-26,TERMINATE,sell,Chief Executive Officer,,6000,90,40.0,33.02,-17.45,5.02,-22.47,term_sell
+ENOV,2025-02-26,TERMINATE,sell,Chief Executive Officer,,6000,180,40.0,29.99,-25.03,14.01,-39.03,term_sell
+MLTX,2025-02-26,ADOPT,sell,,,0,30,42.37,33.97,-19.83,-11.5,-8.32,adopt_sell
+MLTX,2025-02-26,ADOPT,sell,,,0,90,42.37,47.5,12.11,5.02,7.09,adopt_sell
+MLTX,2025-02-26,ADOPT,sell,,,0,180,42.37,12.77,-69.86,14.01,-83.87,adopt_sell
+MLTX,2025-08-05,ADOPT,sell,Chief Executive Officer,da Silva,0,30,53.41,51.18,-4.18,4.97,-9.15,adopt_sell
+MLTX,2025-08-05,ADOPT,sell,Chief Executive Officer,da Silva,0,90,53.41,14.32,-73.19,8.7,-81.89,adopt_sell
+MLTX,2025-08-05,ADOPT,sell,Chief Executive Officer,da Silva,0,180,53.41,16.93,-68.3,13.77,-82.07,adopt_sell
+MLTX,2025-08-05,ADOPT,sell,Chief Financial Officer,Mr. Matthias Bodenstedt,0,30,53.41,51.18,-4.18,4.97,-9.15,adopt_sell
+MLTX,2025-08-05,ADOPT,sell,Chief Financial Officer,Mr. Matthias Bodenstedt,0,90,53.41,14.32,-73.19,8.7,-81.89,adopt_sell
+MLTX,2025-08-05,ADOPT,sell,Chief Financial Officer,Mr. Matthias Bodenstedt,0,180,53.41,16.93,-68.3,13.77,-82.07,adopt_sell
+UTHR,2025-02-26,ADOPT,sell,,,0,30,318.89,278.89,-12.54,-11.5,-1.04,adopt_sell
+UTHR,2025-02-26,ADOPT,sell,,,0,90,318.89,290.39,-8.94,5.02,-13.96,adopt_sell
+UTHR,2025-02-26,ADOPT,sell,,,0,180,318.89,466.4,46.26,14.01,32.25,adopt_sell
+UTHR,2025-07-30,ADOPT,sell,Chairperson and Chief Executive Officer,Dr. Martine Rothblatt,0,30,281.95,404.84,43.59,3.65,39.93,adopt_sell
+UTHR,2025-07-30,ADOPT,sell,Chairperson and Chief Executive Officer,Dr. Martine Rothblatt,0,90,281.95,479.51,70.07,8.05,62.02,adopt_sell
+UTHR,2025-07-30,ADOPT,sell,Chairperson and Chief Executive Officer,Dr. Martine Rothblatt,0,180,281.95,588.38,108.68,12.88,95.8,adopt_sell
+NVDA,2025-02-26,TERMINATE,sell,Director,,0,30,131.08,107.42,-18.05,-11.5,-6.55,term_sell
+NVDA,2025-02-26,TERMINATE,sell,Director,,0,90,131.08,158.03,20.56,5.02,15.54,term_sell
+NVDA,2025-02-26,TERMINATE,sell,Director,,0,180,131.08,189.93,44.89,14.01,30.88,term_sell
+NVDA,2025-05-28,TERMINATE,sell,Director,,363818,30,134.62,163.88,21.74,6.8,14.94,term_sell
+NVDA,2025-05-28,TERMINATE,sell,Director,,363818,90,134.62,185.3,37.65,14.93,22.72,term_sell
+NVDA,2025-05-28,TERMINATE,sell,Director,,363818,180,134.62,182.59,35.63,17.01,18.62,term_sell
+TOST,2025-02-26,ADOPT,sell,Chief Revenue Officer,Jonathan Vassil,635000,30,37.64,33.36,-11.37,-11.5,0.13,adopt_sell
+TOST,2025-02-26,ADOPT,sell,Chief Revenue Officer,Jonathan Vassil,635000,90,37.64,44.83,19.1,5.02,14.08,adopt_sell
+TOST,2025-02-26,ADOPT,sell,Chief Revenue Officer,Jonathan Vassil,635000,180,37.64,35.9,-4.62,14.01,-18.63,adopt_sell
+TOST,2025-02-26,ADOPT,sell,Chief Revenue Officer,Jonathan Vassil,40000,30,37.64,33.36,-11.37,-11.5,0.13,adopt_sell
+TOST,2025-02-26,ADOPT,sell,Chief Revenue Officer,Jonathan Vassil,40000,90,37.64,44.83,19.1,5.02,14.08,adopt_sell
+TOST,2025-02-26,ADOPT,sell,Chief Revenue Officer,Jonathan Vassil,40000,180,37.64,35.9,-4.62,14.01,-18.63,adopt_sell
+TOST,2025-02-26,ADOPT,sell,President,Stephen Fredette,635000,30,37.64,33.36,-11.37,-11.5,0.13,adopt_sell
+TOST,2025-02-26,ADOPT,sell,President,Stephen Fredette,635000,90,37.64,44.83,19.1,5.02,14.08,adopt_sell
+TOST,2025-02-26,ADOPT,sell,President,Stephen Fredette,635000,180,37.64,35.9,-4.62,14.01,-18.63,adopt_sell
+TOST,2025-02-26,ADOPT,sell,President,Elena Gomez,281594,30,37.64,33.36,-11.37,-11.5,0.13,adopt_sell
+TOST,2025-02-26,ADOPT,sell,President,Elena Gomez,281594,90,37.64,44.83,19.1,5.02,14.08,adopt_sell
+TOST,2025-02-26,ADOPT,sell,President,Elena Gomez,281594,180,37.64,35.9,-4.62,14.01,-18.63,adopt_sell
+TOST,2025-05-09,ADOPT,sell,General Counsel,Brian Elworthy,339368,30,40.84,43.36,6.17,6.66,-0.49,adopt_sell
+TOST,2025-05-09,ADOPT,sell,General Counsel,Brian Elworthy,339368,90,40.84,39.96,-2.15,17.3,-19.45,adopt_sell
+TOST,2025-05-09,ADOPT,sell,General Counsel,Brian Elworthy,339368,180,40.84,33.5,-17.97,23.82,-41.79,adopt_sell
+IEP,2025-02-26,ADOPT,buy,,,0,30,7.11,5.99,-15.73,-11.5,-4.22,adopt_buy
+IEP,2025-02-26,ADOPT,buy,,,0,90,7.11,6.66,-6.3,5.02,-11.32,adopt_buy
+IEP,2025-02-26,ADOPT,buy,,,0,180,7.11,7.27,2.23,14.01,-11.78,adopt_buy
+IEP,2025-02-26,ADOPT,buy,Chief Executive Officer,that evaluation,878212,30,7.11,5.99,-15.73,-11.5,-4.22,adopt_buy
+IEP,2025-02-26,ADOPT,buy,Chief Executive Officer,that evaluation,878212,90,7.11,6.66,-6.3,5.02,-11.32,adopt_buy
+IEP,2025-02-26,ADOPT,buy,Chief Executive Officer,that evaluation,878212,180,7.11,7.27,2.23,14.01,-11.78,adopt_buy
+IEP,2025-05-07,ADOPT,buy,,,878212,30,6.23,6.54,5.03,6.22,-1.19,adopt_buy
+IEP,2025-05-07,ADOPT,buy,,,878212,90,6.23,6.76,8.53,18.13,-9.6,adopt_buy
+IEP,2025-05-07,ADOPT,buy,,,878212,180,6.23,7.04,12.98,23.89,-10.91,adopt_buy
+SCHW,2025-02-26,TERMINATE,sell,director,,38227,30,77.47,72.69,-6.16,-11.5,5.34,term_sell
+SCHW,2025-02-26,TERMINATE,sell,director,,38227,90,77.47,91.44,18.04,5.02,13.02,term_sell
+SCHW,2025-02-26,TERMINATE,sell,director,,38227,180,77.47,93.74,21.0,14.01,7.0,term_sell
+ROOT,2025-02-26,ADOPT,sell,Chairman of the Board,,147652,30,98.71,118.71,20.26,-11.5,31.76,adopt_sell
+ROOT,2025-02-26,ADOPT,sell,Chairman of the Board,,147652,90,98.71,119.72,21.28,5.02,16.26,adopt_sell
+ROOT,2025-02-26,ADOPT,sell,Chairman of the Board,,147652,180,98.71,81.84,-17.09,14.01,-31.1,adopt_sell
+ROOT,2025-02-26,ADOPT,sell,President and Chief Technology Officer,,61211,30,98.71,118.71,20.26,-11.5,31.76,adopt_sell
+ROOT,2025-02-26,ADOPT,sell,President and Chief Technology Officer,,61211,90,98.71,119.72,21.28,5.02,16.26,adopt_sell
+ROOT,2025-02-26,ADOPT,sell,President and Chief Technology Officer,,61211,180,98.71,81.84,-17.09,14.01,-31.1,adopt_sell
+ROOT,2025-05-07,ADOPT,sell,Director,,2853,30,139.93,138.48,-1.04,6.22,-7.25,adopt_sell
+ROOT,2025-05-07,ADOPT,sell,Director,,2853,90,139.93,100.2,-28.39,18.13,-46.52,adopt_sell
+ROOT,2025-05-07,ADOPT,sell,Director,,2853,180,139.93,68.91,-50.75,23.89,-74.65,adopt_sell
+ROOT,2025-05-07,ADOPT,sell,Director,,8291,30,139.93,138.48,-1.04,6.22,-7.25,adopt_sell
+ROOT,2025-05-07,ADOPT,sell,Director,,8291,90,139.93,100.2,-28.39,18.13,-46.52,adopt_sell
+ROOT,2025-05-07,ADOPT,sell,Director,,8291,180,139.93,68.91,-50.75,23.89,-74.65,adopt_sell
+ACAD,2025-02-27,ADOPT,sell,Senior Vice President,James Kihara,18000,30,19.34,14.58,-24.61,-8.46,-16.15,adopt_sell
+ACAD,2025-02-27,ADOPT,sell,Senior Vice President,James Kihara,18000,90,19.34,20.88,7.96,6.72,1.24,adopt_sell
+ACAD,2025-02-27,ADOPT,sell,Senior Vice President,James Kihara,18000,180,19.34,24.01,24.15,14.78,9.37,adopt_sell
+ACRS,2025-02-27,ADOPT,sell,,,60000,30,1.95,1.15,-41.03,-8.46,-32.56,adopt_sell
+ACRS,2025-02-27,ADOPT,sell,,,60000,90,1.95,1.46,-25.13,6.72,-31.85,adopt_sell
+ACRS,2025-02-27,ADOPT,sell,,,60000,180,1.95,2.45,25.64,14.78,10.86,adopt_sell
+ALIT,2025-02-27,ADOPT,sell,director,,56000,30,6.5,4.79,-26.3,-8.46,-17.84,adopt_sell
+ALIT,2025-02-27,ADOPT,sell,director,,56000,90,6.5,5.77,-11.24,6.72,-17.97,adopt_sell
+ALIT,2025-02-27,ADOPT,sell,director,,56000,180,6.5,2.1,-67.64,14.78,-82.41,adopt_sell
+APP,2025-02-27,ADOPT,sell,Chief Financial Officer,Matthew Stumpf,120000,30,320.49,249.95,-22.01,-8.46,-13.55,adopt_sell
+APP,2025-02-27,ADOPT,sell,Chief Financial Officer,Matthew Stumpf,120000,90,320.49,345.0,7.65,6.72,0.92,adopt_sell
+APP,2025-02-27,ADOPT,sell,Chief Financial Officer,Matthew Stumpf,120000,180,320.49,539.27,68.26,14.78,53.49,adopt_sell
+APP,2025-05-07,TERMINATE,sell,Chief Legal Officer,Victoria Valenzuela,56058,30,303.46,324.7,7.0,6.22,0.78,term_sell
+APP,2025-05-07,TERMINATE,sell,Chief Legal Officer,Victoria Valenzuela,56058,90,303.46,593.14,95.46,18.13,77.33,term_sell
+APP,2025-05-07,TERMINATE,sell,Chief Legal Officer,Victoria Valenzuela,56058,180,303.46,524.41,72.81,23.89,48.92,term_sell
+APP,2025-05-07,TERMINATE,sell,Chief Legal Officer,Victoria Valenzuela,40000,30,303.46,324.7,7.0,6.22,0.78,term_sell
+APP,2025-05-07,TERMINATE,sell,Chief Legal Officer,Victoria Valenzuela,40000,90,303.46,593.14,95.46,18.13,77.33,term_sell
+APP,2025-05-07,TERMINATE,sell,Chief Legal Officer,Victoria Valenzuela,40000,180,303.46,524.41,72.81,23.89,48.92,term_sell
+APP,2025-05-07,TERMINATE,sell,Chief Legal Officer,Victoria Valenzuela,4850,30,303.46,324.7,7.0,6.22,0.78,term_sell
+APP,2025-05-07,TERMINATE,sell,Chief Legal Officer,Victoria Valenzuela,4850,90,303.46,593.14,95.46,18.13,77.33,term_sell
+APP,2025-05-07,TERMINATE,sell,Chief Legal Officer,Victoria Valenzuela,4850,180,303.46,524.41,72.81,23.89,48.92,term_sell
+APP,2025-05-07,TERMINATE,sell,Chief Legal Officer,Victoria Valenzuela,1875000,30,303.46,324.7,7.0,6.22,0.78,term_sell
+APP,2025-05-07,TERMINATE,sell,Chief Legal Officer,Victoria Valenzuela,1875000,90,303.46,593.14,95.46,18.13,77.33,term_sell
+APP,2025-05-07,TERMINATE,sell,Chief Legal Officer,Victoria Valenzuela,1875000,180,303.46,524.41,72.81,23.89,48.92,term_sell
+APP,2025-08-06,ADOPT,sell,Chief Legal Officer,Victoria Valenzuela,60000,30,390.57,621.52,59.13,4.66,54.47,adopt_sell
+APP,2025-08-06,ADOPT,sell,Chief Legal Officer,Victoria Valenzuela,60000,90,390.57,675.16,72.87,7.88,64.99,adopt_sell
+APP,2025-08-06,ADOPT,sell,Chief Legal Officer,Victoria Valenzuela,60000,180,390.57,448.29,14.78,13.78,1.0,adopt_sell
+ARES,2025-02-27,ADOPT,sell,Director,Bennett Rosenthal,0,30,160.44,133.27,-16.94,-8.46,-8.47,adopt_sell
+ARES,2025-02-27,ADOPT,sell,Director,Bennett Rosenthal,0,90,160.44,170.33,6.16,6.72,-0.56,adopt_sell
+ARES,2025-02-27,ADOPT,sell,Director,Bennett Rosenthal,0,180,160.44,139.25,-13.21,14.78,-27.99,adopt_sell
+AUPH,2025-02-27,ADOPT,buy,,,0,30,7.55,7.41,-1.85,-8.46,6.61,adopt_buy
+AUPH,2025-02-27,ADOPT,buy,,,0,90,7.55,7.47,-1.06,6.72,-7.78,adopt_buy
+AUPH,2025-02-27,ADOPT,buy,,,0,180,7.55,15.49,105.17,14.78,90.39,adopt_buy
+AUPH,2025-05-12,ADOPT,buy,,,0,30,8.12,8.05,-0.86,4.39,-5.25,adopt_buy
+AUPH,2025-05-12,ADOPT,buy,,,0,90,8.12,13.0,60.1,14.5,45.6,adopt_buy
+AUPH,2025-05-12,ADOPT,buy,,,0,180,8.12,14.57,79.43,20.32,59.11,adopt_buy
+BE,2025-02-27,ADOPT,sell,Chairman,,285714,30,23.04,17.64,-23.44,-8.46,-14.98,adopt_sell
+BE,2025-02-27,ADOPT,sell,Chairman,,285714,90,23.04,24.36,5.73,6.72,-0.99,adopt_sell
+BE,2025-02-27,ADOPT,sell,Chairman,,285714,180,23.04,107.11,364.89,14.78,350.11,adopt_sell
+BE,2025-04-30,ADOPT,sell,director,,20000,30,18.32,22.25,21.45,8.87,12.58,adopt_sell
+BE,2025-04-30,ADOPT,sell,director,,20000,90,18.32,53.44,191.7,17.35,174.35,adopt_sell
+BE,2025-04-30,ADOPT,sell,director,,20000,180,18.32,149.5,716.05,25.81,690.24,adopt_sell
+CMLSQ,2025-02-27,TERMINATE,sell,director,,0,30,0.9,0.31,-65.78,-8.46,-57.32,term_sell
+CMLSQ,2025-02-27,TERMINATE,sell,director,,0,90,0.9,0.13,-85.44,6.72,-92.17,term_sell
+CMLSQ,2025-02-27,TERMINATE,sell,director,,0,180,0.9,0.1,-88.89,14.78,-103.67,term_sell
+EBAY,2025-02-27,ADOPT,sell,Senior Vice President,Eddie Garcia,0,30,62.14,63.51,2.19,-8.46,10.66,adopt_sell
+EBAY,2025-02-27,ADOPT,sell,Senior Vice President,Eddie Garcia,0,90,62.14,74.95,20.6,6.72,13.88,adopt_sell
+EBAY,2025-02-27,ADOPT,sell,Senior Vice President,Eddie Garcia,0,180,62.14,81.37,30.94,14.78,16.17,adopt_sell
+EBAY,2025-05-01,ADOPT,sell,Senior Vice President,Cornelius Boone,130000,30,66.55,76.38,14.78,6.9,7.88,adopt_sell
+EBAY,2025-05-01,ADOPT,sell,Senior Vice President,Cornelius Boone,130000,90,66.55,92.13,38.44,16.52,21.92,adopt_sell
+EBAY,2025-05-01,ADOPT,sell,Senior Vice President,Cornelius Boone,130000,180,66.55,90.15,35.47,22.38,13.08,adopt_sell
+EBAY,2025-07-31,ADOPT,sell,Senior Vice President,Mazen Rawashdeh,0,30,90.59,89.93,-0.73,4.01,-4.73,adopt_sell
+EBAY,2025-07-31,ADOPT,sell,Senior Vice President,Mazen Rawashdeh,0,90,90.59,83.34,-8.0,8.46,-16.46,adopt_sell
+EBAY,2025-07-31,ADOPT,sell,Senior Vice President,Mazen Rawashdeh,0,180,90.59,106.83,17.94,13.08,4.86,adopt_sell
+JANX,2025-02-27,ADOPT,sell,,,238000,30,32.01,28.8,-10.03,-8.46,-1.57,adopt_sell
+JANX,2025-02-27,ADOPT,sell,,,238000,90,32.01,23.96,-25.15,6.72,-31.87,adopt_sell
+JANX,2025-02-27,ADOPT,sell,,,238000,180,32.01,28.72,-10.28,14.78,-25.06,adopt_sell
+IBTA,2025-02-27,TERMINATE,sell,Director,,0,30,34.01,46.04,35.37,-8.46,43.83,term_sell
+IBTA,2025-02-27,TERMINATE,sell,Director,,0,90,34.01,35.26,3.68,6.72,-3.05,term_sell
+IBTA,2025-02-27,TERMINATE,sell,Director,,0,180,34.01,24.21,-28.82,14.78,-43.59,term_sell
+IRON,2025-02-27,TERMINATE,sell,director,,0,30,54.5,38.73,-28.94,-8.46,-20.47,term_sell
+IRON,2025-02-27,TERMINATE,sell,director,,0,90,54.5,53.38,-2.06,6.72,-8.78,term_sell
+IRON,2025-02-27,TERMINATE,sell,director,,0,180,54.5,89.65,64.5,14.78,49.72,term_sell
+IRON,2025-05-07,TERMINATE,sell,director,,0,30,43.55,51.61,18.51,6.22,12.29,term_sell
+IRON,2025-05-07,TERMINATE,sell,director,,0,90,43.55,59.9,37.54,18.13,19.42,term_sell
+IRON,2025-05-07,TERMINATE,sell,director,,0,180,43.55,76.33,75.27,23.89,51.38,term_sell
+LXU,2025-02-27,ADOPT,sell,Director,,40000,30,7.38,5.3,-28.18,-8.46,-19.72,adopt_sell
+LXU,2025-02-27,ADOPT,sell,Director,,40000,90,7.38,8.12,10.03,6.72,3.3,adopt_sell
+LXU,2025-02-27,ADOPT,sell,Director,,40000,180,7.38,9.29,25.88,14.78,11.1,adopt_sell
+LXU,2025-04-30,ADOPT,sell,Executive Vice President and,Cheryl A. Maguire,0,30,6.38,7.93,24.29,8.87,15.42,adopt_sell
+LXU,2025-04-30,ADOPT,sell,Executive Vice President and,Cheryl A. Maguire,0,90,6.38,8.22,28.84,17.35,11.49,adopt_sell
+LXU,2025-04-30,ADOPT,sell,Executive Vice President and,Cheryl A. Maguire,0,180,6.38,9.6,50.47,25.81,24.66,adopt_sell
+LXU,2025-04-30,ADOPT,sell,Senior Vice President and,Kristy D. Carver,0,30,6.38,7.93,24.29,8.87,15.42,adopt_sell
+LXU,2025-04-30,ADOPT,sell,Senior Vice President and,Kristy D. Carver,0,90,6.38,8.22,28.84,17.35,11.49,adopt_sell
+LXU,2025-04-30,ADOPT,sell,Senior Vice President and,Kristy D. Carver,0,180,6.38,9.6,50.47,25.81,24.66,adopt_sell
+LXU,2025-07-30,ADOPT,sell,Executive Vice President,Michael J. Foster,30000,30,7.56,8.08,6.88,3.65,3.23,adopt_sell
+LXU,2025-07-30,ADOPT,sell,Executive Vice President,Michael J. Foster,30000,90,7.56,8.7,15.08,8.05,7.03,adopt_sell
+LXU,2025-07-30,ADOPT,sell,Executive Vice President,Michael J. Foster,30000,180,7.56,13.61,80.03,12.88,67.15,adopt_sell
+RKLB,2025-02-27,ADOPT,sell,director,,0,30,19.83,19.63,-1.01,-8.46,7.45,adopt_sell
+RKLB,2025-02-27,ADOPT,sell,director,,0,90,19.83,38.88,96.07,6.72,89.34,adopt_sell
+RKLB,2025-02-27,ADOPT,sell,director,,0,180,19.83,43.31,118.41,14.78,103.63,adopt_sell
+RKLB,2025-05-08,TERMINATE,sell,director,,2377078,30,23.1,30.04,30.04,5.48,24.56,term_sell
+RKLB,2025-05-08,TERMINATE,sell,director,,2377078,90,23.1,54.04,133.94,17.31,116.63,term_sell
+RKLB,2025-05-08,TERMINATE,sell,director,,2377078,180,23.1,80.48,248.4,23.66,224.74,term_sell
+SATS,2025-02-27,TERMINATE,sell,director,,30000,30,30.41,22.48,-26.08,-8.46,-17.62,term_sell
+SATS,2025-02-27,TERMINATE,sell,director,,30000,90,30.41,31.36,3.12,6.72,-3.6,term_sell
+SATS,2025-02-27,TERMINATE,sell,director,,30000,180,30.41,66.93,120.09,14.78,105.32,term_sell
+SRRK,2025-02-27,TERMINATE,sell,COO,Ted Myles,0,30,35.96,28.0,-22.14,-8.46,-13.67,term_sell
+SRRK,2025-02-27,TERMINATE,sell,COO,Ted Myles,0,90,35.96,35.48,-1.33,6.72,-8.06,term_sell
+SRRK,2025-02-27,TERMINATE,sell,COO,Ted Myles,0,180,35.96,36.47,1.42,14.78,-13.36,term_sell
+TMCI,2025-02-27,ADOPT,sell,,,50000,30,9.13,6.74,-26.23,-8.46,-17.77,adopt_sell
+TMCI,2025-02-27,ADOPT,sell,,,50000,90,9.13,6.05,-33.73,6.72,-40.46,adopt_sell
+TMCI,2025-02-27,ADOPT,sell,,,50000,180,9.13,2.89,-68.35,14.78,-83.12,adopt_sell
+TRUP,2025-02-27,ADOPT,sell,President,Margi Tooth,2294,30,33.59,35.62,6.04,-8.46,14.5,adopt_sell
+TRUP,2025-02-27,ADOPT,sell,President,Margi Tooth,2294,90,33.59,51.88,54.45,6.72,47.73,adopt_sell
+TRUP,2025-02-27,ADOPT,sell,President,Margi Tooth,2294,180,33.59,36.34,8.19,14.78,-6.59,adopt_sell
+VERX,2025-02-27,ADOPT,sell,Chief Financial Officer,John Schwab,60000,30,34.54,38.48,11.41,-8.46,19.87,adopt_sell
+VERX,2025-02-27,ADOPT,sell,Chief Financial Officer,John Schwab,60000,90,34.54,36.15,4.66,6.72,-2.06,adopt_sell
+VERX,2025-02-27,ADOPT,sell,Chief Financial Officer,John Schwab,60000,180,34.54,19.95,-42.24,14.78,-57.02,adopt_sell
+KYMR,2025-02-27,TERMINATE,sell,director,,0,30,30.25,24.12,-20.26,-8.46,-11.8,term_sell
+KYMR,2025-02-27,TERMINATE,sell,director,,0,90,30.25,43.81,44.83,6.72,38.1,term_sell
+KYMR,2025-02-27,TERMINATE,sell,director,,0,180,30.25,64.1,111.9,14.78,97.12,term_sell
+PAYO,2025-02-27,ADOPT,sell,Director,Avi Zeevi,99253,30,8.68,6.33,-27.07,-8.46,-18.61,adopt_sell
+PAYO,2025-02-27,ADOPT,sell,Director,Avi Zeevi,99253,90,8.68,6.68,-23.04,6.72,-29.77,adopt_sell
+PAYO,2025-02-27,ADOPT,sell,Director,Avi Zeevi,99253,180,8.68,5.4,-37.79,14.78,-52.57,adopt_sell
+ALKT,2025-02-28,ADOPT,sell,Chairperson,Brian Smith,3276000,30,30.84,24.6,-20.23,-8.99,-11.24,adopt_sell
+ALKT,2025-02-28,ADOPT,sell,Chairperson,Brian Smith,3276000,90,30.84,30.19,-2.11,5.03,-7.13,adopt_sell
+ALKT,2025-02-28,ADOPT,sell,Chairperson,Brian Smith,3276000,180,30.84,20.4,-33.85,13.01,-46.87,adopt_sell
+CART,2025-02-28,TERMINATE,sell,General Counsel,Morgan Fong,483688,30,41.09,41.8,1.73,-8.99,10.72,term_sell
+CART,2025-02-28,TERMINATE,sell,General Counsel,Morgan Fong,483688,90,41.09,48.71,18.54,5.03,13.52,term_sell
+CART,2025-02-28,TERMINATE,sell,General Counsel,Morgan Fong,483688,180,41.09,40.51,-1.41,13.01,-14.42,term_sell
+CART,2025-02-28,ADOPT,sell,Chief Executive Officer,Fidji Simo,483688,30,41.09,41.8,1.73,-8.99,10.72,adopt_sell
+CART,2025-02-28,ADOPT,sell,Chief Executive Officer,Fidji Simo,483688,90,41.09,48.71,18.54,5.03,13.52,adopt_sell
+CART,2025-02-28,ADOPT,sell,Chief Executive Officer,Fidji Simo,483688,180,41.09,40.51,-1.41,13.01,-14.42,adopt_sell
+CDNA,2025-02-28,ADOPT,sell,Chief Executive Officer,John W. Hanna,297755,30,22.15,18.9,-14.67,-8.99,-5.68,adopt_sell
+CDNA,2025-02-28,ADOPT,sell,Chief Executive Officer,John W. Hanna,297755,90,22.15,19.25,-13.09,5.03,-18.12,adopt_sell
+CDNA,2025-02-28,ADOPT,sell,Chief Executive Officer,John W. Hanna,297755,180,22.15,15.51,-29.98,13.01,-42.99,adopt_sell
+ICFI,2025-02-28,ADOPT,sell,Chief Operating Officer,James Morgan,10000,30,78.42,82.27,4.9,-8.99,13.9,adopt_sell
+ICFI,2025-02-28,ADOPT,sell,Chief Operating Officer,James Morgan,10000,90,78.42,88.02,12.23,5.03,7.21,adopt_sell
+ICFI,2025-02-28,ADOPT,sell,Chief Operating Officer,James Morgan,10000,180,78.42,76.21,-2.83,13.01,-15.84,adopt_sell
+MP,2025-02-28,TERMINATE,sell,Chief Financial Officer,,2386223,30,24.01,27.59,14.91,-8.99,23.9,term_sell
+MP,2025-02-28,TERMINATE,sell,Chief Financial Officer,,2386223,90,24.01,31.19,29.9,5.03,24.88,term_sell
+MP,2025-02-28,TERMINATE,sell,Chief Financial Officer,,2386223,180,24.01,56.98,137.32,13.01,124.3,term_sell
+MP,2025-02-28,ADOPT,sell,Chairman of the Board,,2386223,30,24.01,27.59,14.91,-8.99,23.9,adopt_sell
+MP,2025-02-28,ADOPT,sell,Chairman of the Board,,2386223,90,24.01,31.19,29.9,5.03,24.88,adopt_sell
+MP,2025-02-28,ADOPT,sell,Chairman of the Board,,2386223,180,24.01,56.98,137.32,13.01,124.3,adopt_sell
+MP,2025-05-09,ADOPT,sell,General Counsel,Elliot D. Hoops,41020,30,21.95,36.56,66.56,6.66,59.9,adopt_sell
+MP,2025-05-09,ADOPT,sell,General Counsel,Elliot D. Hoops,41020,90,21.95,65.98,200.59,17.3,183.3,adopt_sell
+MP,2025-05-09,ADOPT,sell,General Counsel,Elliot D. Hoops,41020,180,21.95,63.44,189.02,23.82,165.2,adopt_sell
+RYTM,2025-02-28,TERMINATE,sell,,,99495,30,54.91,60.14,9.52,-8.99,18.52,term_sell
+RYTM,2025-02-28,TERMINATE,sell,,,99495,90,54.91,65.14,18.63,5.03,13.6,term_sell
+RYTM,2025-02-28,TERMINATE,sell,,,99495,180,54.91,100.69,83.37,13.01,70.36,term_sell
+RYTM,2025-02-28,ADOPT,sell,,,99495,30,54.91,60.14,9.52,-8.99,18.52,adopt_sell
+RYTM,2025-02-28,ADOPT,sell,,,99495,90,54.91,65.14,18.63,5.03,13.6,adopt_sell
+RYTM,2025-02-28,ADOPT,sell,,,99495,180,54.91,100.69,83.37,13.01,70.36,adopt_sell
+RYTM,2025-05-07,ADOPT,sell,director,,65431,30,64.63,61.99,-4.08,6.22,-10.3,adopt_sell
+RYTM,2025-05-07,ADOPT,sell,director,,65431,90,64.63,96.03,48.58,18.13,30.46,adopt_sell
+RYTM,2025-05-07,ADOPT,sell,director,,65431,180,64.63,102.87,59.17,23.89,35.27,adopt_sell
+RYTM,2025-05-07,ADOPT,sell,Chief Financial Officer,,121185,30,64.63,61.99,-4.08,6.22,-10.3,adopt_sell
+RYTM,2025-05-07,ADOPT,sell,Chief Financial Officer,,121185,90,64.63,96.03,48.58,18.13,30.46,adopt_sell
+RYTM,2025-05-07,ADOPT,sell,Chief Financial Officer,,121185,180,64.63,102.87,59.17,23.89,35.27,adopt_sell
+NTRA,2025-02-28,ADOPT,sell,president,Solomon Moshkevich,160000,30,155.59,148.45,-4.59,-8.99,4.4,adopt_sell
+NTRA,2025-02-28,ADOPT,sell,president,Solomon Moshkevich,160000,90,155.59,158.48,1.86,5.03,-3.17,adopt_sell
+NTRA,2025-02-28,ADOPT,sell,president,Solomon Moshkevich,160000,180,155.59,206.04,32.42,13.01,19.41,adopt_sell
+NTRA,2025-02-28,ADOPT,sell,president,Solomon Moshkevich,395452,30,155.59,148.45,-4.59,-8.99,4.4,adopt_sell
+NTRA,2025-02-28,ADOPT,sell,president,Solomon Moshkevich,395452,90,155.59,158.48,1.86,5.03,-3.17,adopt_sell
+NTRA,2025-02-28,ADOPT,sell,president,Solomon Moshkevich,395452,180,155.59,206.04,32.42,13.01,19.41,adopt_sell
+NTRA,2025-02-28,ADOPT,sell,president,Solomon Moshkevich,130000,30,155.59,148.45,-4.59,-8.99,4.4,adopt_sell
+NTRA,2025-02-28,ADOPT,sell,president,Solomon Moshkevich,130000,90,155.59,158.48,1.86,5.03,-3.17,adopt_sell
+NTRA,2025-02-28,ADOPT,sell,president,Solomon Moshkevich,130000,180,155.59,206.04,32.42,13.01,19.41,adopt_sell
+NTRA,2025-02-28,ADOPT,sell,chief executive officer,Steve Chapman,49911,30,155.59,148.45,-4.59,-8.99,4.4,adopt_sell
+NTRA,2025-02-28,ADOPT,sell,chief executive officer,Steve Chapman,49911,90,155.59,158.48,1.86,5.03,-3.17,adopt_sell
+NTRA,2025-02-28,ADOPT,sell,chief executive officer,Steve Chapman,49911,180,155.59,206.04,32.42,13.01,19.41,adopt_sell
+NTRA,2025-05-09,ADOPT,sell,Director,,80000,30,151.95,170.37,12.12,6.66,5.46,adopt_sell
+NTRA,2025-05-09,ADOPT,sell,Director,,80000,90,151.95,175.01,15.18,17.3,-2.12,adopt_sell
+NTRA,2025-05-09,ADOPT,sell,Director,,80000,180,151.95,241.39,58.86,23.82,35.04,adopt_sell
+TXRH,2025-02-28,TERMINATE,sell,Chief Executive Officer,,0,30,179.71,159.88,-11.03,-8.99,-2.04,term_sell
+TXRH,2025-02-28,TERMINATE,sell,Chief Executive Officer,,0,90,179.71,185.15,3.03,5.03,-2.0,term_sell
+TXRH,2025-02-28,TERMINATE,sell,Chief Executive Officer,,0,180,179.71,167.57,-6.75,13.01,-19.77,term_sell
+RXRX,2025-02-28,ADOPT,sell,Chief Executive Officer,Christopher Gibson,2343000,30,7.51,5.51,-26.63,-8.99,-17.64,adopt_sell
+RXRX,2025-02-28,ADOPT,sell,Chief Executive Officer,Christopher Gibson,2343000,90,7.51,5.36,-28.63,5.03,-33.65,adopt_sell
+RXRX,2025-02-28,ADOPT,sell,Chief Executive Officer,Christopher Gibson,2343000,180,7.51,4.12,-45.14,13.01,-58.15,adopt_sell
+VST,2025-02-28,ADOPT,sell,Executive Vice President and,Kristopher Moldovan,139925,30,132.75,112.12,-15.54,-8.99,-6.55,adopt_sell
+VST,2025-02-28,ADOPT,sell,Executive Vice President and,Kristopher Moldovan,139925,90,132.75,189.45,42.71,5.03,37.69,adopt_sell
+VST,2025-02-28,ADOPT,sell,Executive Vice President and,Kristopher Moldovan,139925,180,132.75,174.52,31.46,13.01,18.45,adopt_sell
+GSHD,2025-03-03,ADOPT,sell,Executive Chairman,Mark E. Jones,200000,30,120.53,111.3,-7.66,-7.63,-0.03,adopt_sell
+GSHD,2025-03-03,ADOPT,sell,Executive Chairman,Mark E. Jones,200000,90,120.53,96.32,-20.09,7.46,-27.55,adopt_sell
+GSHD,2025-03-03,ADOPT,sell,Executive Chairman,Mark E. Jones,200000,180,120.53,68.41,-43.24,14.5,-57.75,adopt_sell
+ACMR,2025-03-03,ADOPT,sell,President,David Wang,326310,30,24.31,20.5,-15.67,-7.63,-8.04,adopt_sell
+ACMR,2025-03-03,ADOPT,sell,President,David Wang,326310,90,24.31,28.56,17.48,7.46,10.02,adopt_sell
+ACMR,2025-03-03,ADOPT,sell,President,David Wang,326310,180,24.31,31.5,29.58,14.5,15.07,adopt_sell
+ACMR,2025-05-12,ADOPT,sell,Chief Financial Officer,Lu Feng,30000,30,24.62,26.17,6.32,4.39,1.93,adopt_sell
+ACMR,2025-05-12,ADOPT,sell,Chief Financial Officer,Lu Feng,30000,90,24.62,35.89,45.78,14.5,31.28,adopt_sell
+ACMR,2025-05-12,ADOPT,sell,Chief Financial Officer,Lu Feng,30000,180,24.62,55.79,126.6,20.32,106.28,adopt_sell
+ADPT,2025-03-03,ADOPT,sell,Director,,0,30,8.1,7.74,-4.44,-7.63,3.19,adopt_sell
+ADPT,2025-03-03,ADOPT,sell,Director,,0,90,8.1,11.82,45.93,7.46,38.46,adopt_sell
+ADPT,2025-03-03,ADOPT,sell,Director,,0,180,8.1,15.15,87.04,14.5,72.53,adopt_sell
+DIBS,2025-03-03,ADOPT,sell,Chief Marketing Officer,Nancy Hood,124382,30,3.73,2.4,-35.66,-7.63,-28.03,adopt_sell
+DIBS,2025-03-03,ADOPT,sell,Chief Marketing Officer,Nancy Hood,124382,90,3.73,2.77,-25.74,7.46,-33.2,adopt_sell
+DIBS,2025-03-03,ADOPT,sell,Chief Marketing Officer,Nancy Hood,124382,180,3.73,5.26,41.02,14.5,26.52,adopt_sell
+DIBS,2025-03-03,ADOPT,sell,Chief Product Officer,Ryan Beauchamp,124382,30,3.73,2.4,-35.66,-7.63,-28.03,adopt_sell
+DIBS,2025-03-03,ADOPT,sell,Chief Product Officer,Ryan Beauchamp,124382,90,3.73,2.77,-25.74,7.46,-33.2,adopt_sell
+DIBS,2025-03-03,ADOPT,sell,Chief Product Officer,Ryan Beauchamp,124382,180,3.73,5.26,41.02,14.5,26.52,adopt_sell
+DSP,2025-03-03,ADOPT,sell,Chief Financial Officer,Larry Madden,268460,30,19.75,13.14,-33.47,-7.63,-25.84,adopt_sell
+DSP,2025-03-03,ADOPT,sell,Chief Financial Officer,Larry Madden,268460,90,19.75,12.93,-34.53,7.46,-42.0,adopt_sell
+DSP,2025-03-03,ADOPT,sell,Chief Financial Officer,Larry Madden,268460,180,19.75,9.43,-52.25,14.5,-66.76,adopt_sell
+DSP,2025-05-06,ADOPT,sell,Chief Operating Officer,Chris Vanderhook,900000,30,14.91,13.07,-12.34,6.91,-19.26,adopt_sell
+DSP,2025-05-06,ADOPT,sell,Chief Operating Officer,Chris Vanderhook,900000,90,14.91,9.3,-37.63,18.62,-56.25,adopt_sell
+DSP,2025-05-06,ADOPT,sell,Chief Operating Officer,Chris Vanderhook,900000,180,14.91,12.75,-14.49,24.37,-38.86,adopt_sell
+INDI,2025-03-03,ADOPT,sell,Chief Financial Officer,Singh Bal,246315,30,2.77,1.91,-31.05,-7.63,-23.42,adopt_sell
+INDI,2025-03-03,ADOPT,sell,Chief Financial Officer,Singh Bal,246315,90,2.77,3.85,38.99,7.46,31.52,adopt_sell
+INDI,2025-03-03,ADOPT,sell,Chief Financial Officer,Singh Bal,246315,180,2.77,3.43,23.83,14.5,9.32,adopt_sell
+INDI,2025-05-12,TERMINATE,sell,Chief Financial Officer,Singh Bal,246315,30,2.64,3.29,24.62,4.39,20.23,term_sell
+INDI,2025-05-12,TERMINATE,sell,Chief Financial Officer,Singh Bal,246315,90,2.64,3.63,37.5,14.5,23.0,term_sell
+INDI,2025-05-12,TERMINATE,sell,Chief Financial Officer,Singh Bal,246315,180,2.64,4.32,63.64,20.32,43.31,term_sell
+MPWR,2025-03-03,ADOPT,sell,director,,0,30,573.01,540.15,-5.74,-7.63,1.9,adopt_sell
+MPWR,2025-03-03,ADOPT,sell,director,,0,90,573.01,732.06,27.76,7.46,20.29,adopt_sell
+MPWR,2025-03-03,ADOPT,sell,director,,0,180,573.01,881.39,53.82,14.5,39.32,adopt_sell
+MPWR,2025-08-04,ADOPT,buy,director,,0,30,826.12,852.36,3.18,4.57,-1.39,adopt_buy
+MPWR,2025-08-04,ADOPT,buy,director,,0,90,826.12,943.03,14.15,8.31,5.84,adopt_buy
+MPWR,2025-08-04,ADOPT,buy,director,,0,180,826.12,1522.04,84.24,13.64,70.6,adopt_buy
+PAR,2025-03-03,ADOPT,sell,Chief Financial Officer,Bryan Menar,10915,30,64.39,56.28,-12.6,-7.63,-4.96,adopt_sell
+PAR,2025-03-03,ADOPT,sell,Chief Financial Officer,Bryan Menar,10915,90,64.39,69.06,7.25,7.46,-0.21,adopt_sell
+PAR,2025-03-03,ADOPT,sell,Chief Financial Officer,Bryan Menar,10915,180,64.39,33.96,-47.26,14.5,-61.76,adopt_sell
+PAR,2025-05-09,ADOPT,sell,Chief Financial Officer,Bryan Menar,102093,30,64.73,65.48,1.16,6.66,-5.5,adopt_sell
+PAR,2025-05-09,ADOPT,sell,Chief Financial Officer,Bryan Menar,102093,90,64.73,42.42,-34.47,17.3,-51.76,adopt_sell
+PAR,2025-05-09,ADOPT,sell,Chief Financial Officer,Bryan Menar,102093,180,64.73,31.58,-51.21,23.82,-75.03,adopt_sell
+PAR,2025-05-09,ADOPT,sell,Chief Financial Officer,Bryan Menar,26000,30,64.73,65.48,1.16,6.66,-5.5,adopt_sell
+PAR,2025-05-09,ADOPT,sell,Chief Financial Officer,Bryan Menar,26000,90,64.73,42.42,-34.47,17.3,-51.76,adopt_sell
+PAR,2025-05-09,ADOPT,sell,Chief Financial Officer,Bryan Menar,26000,180,64.73,31.58,-51.21,23.82,-75.03,adopt_sell
+PAR,2025-05-09,ADOPT,sell,Chief Legal Officer,Cathy King,6000,30,64.73,65.48,1.16,6.66,-5.5,adopt_sell
+PAR,2025-05-09,ADOPT,sell,Chief Legal Officer,Cathy King,6000,90,64.73,42.42,-34.47,17.3,-51.76,adopt_sell
+PAR,2025-05-09,ADOPT,sell,Chief Legal Officer,Cathy King,6000,180,64.73,31.58,-51.21,23.82,-75.03,adopt_sell
+PGR,2025-03-03,ADOPT,sell,,,0,30,267.61,259.28,-3.11,-7.63,4.52,adopt_sell
+PGR,2025-03-03,ADOPT,sell,,,0,90,267.61,230.14,-14.0,7.46,-21.47,adopt_sell
+PGR,2025-03-03,ADOPT,sell,,,0,180,267.61,209.51,-21.71,14.5,-36.21,adopt_sell
+PGR,2025-05-05,ADOPT,sell,,,0,30,264.96,249.57,-5.81,6.04,-11.85,adopt_sell
+PGR,2025-05-05,ADOPT,sell,,,0,90,264.96,233.24,-11.97,17.01,-28.98,adopt_sell
+PGR,2025-05-05,ADOPT,sell,,,0,180,264.96,202.9,-23.42,22.69,-46.11,adopt_sell
+MARA,2025-03-03,ADOPT,sell,Chief Financial Officer,Salman Khan,66800,30,13.79,12.58,-8.77,-7.63,-1.14,adopt_sell
+MARA,2025-03-03,ADOPT,sell,Chief Financial Officer,Salman Khan,66800,90,13.79,19.14,38.8,7.46,31.33,adopt_sell
+MARA,2025-03-03,ADOPT,sell,Chief Financial Officer,Salman Khan,66800,180,13.79,11.1,-19.51,14.5,-34.01,adopt_sell
+MARA,2025-05-08,ADOPT,sell,Chief Financial Officer,Salman Khan,13000,30,14.29,14.32,0.21,5.48,-5.27,adopt_sell
+MARA,2025-05-08,ADOPT,sell,Chief Financial Officer,Salman Khan,13000,90,14.29,16.24,13.65,17.31,-3.66,adopt_sell
+MARA,2025-05-08,ADOPT,sell,Chief Financial Officer,Salman Khan,13000,180,14.29,9.98,-30.16,23.66,-53.82,adopt_sell
+MARA,2025-05-08,ADOPT,sell,Chief Financial Officer,Salman Khan,33500,30,14.29,14.32,0.21,5.48,-5.27,adopt_sell
+MARA,2025-05-08,ADOPT,sell,Chief Financial Officer,Salman Khan,33500,90,14.29,16.24,13.65,17.31,-3.66,adopt_sell
+MARA,2025-05-08,ADOPT,sell,Chief Financial Officer,Salman Khan,33500,180,14.29,9.98,-30.16,23.66,-53.82,adopt_sell
+MARA,2025-07-29,ADOPT,sell,Chief Executive Officer,Fred Thiel,357565,30,16.61,15.86,-4.52,2.67,-7.18,adopt_sell
+MARA,2025-07-29,ADOPT,sell,Chief Executive Officer,Fred Thiel,357565,90,16.61,12.05,-27.45,7.91,-35.37,adopt_sell
+MARA,2025-07-29,ADOPT,sell,Chief Executive Officer,Fred Thiel,357565,180,16.61,11.55,-30.46,11.39,-41.85,adopt_sell
+PLRX,2025-03-03,TERMINATE,sell,director,,111781,30,1.38,1.46,5.8,-7.63,13.43,term_sell
+PLRX,2025-03-03,TERMINATE,sell,director,,111781,90,1.38,1.41,2.17,7.46,-5.29,term_sell
+PLRX,2025-03-03,TERMINATE,sell,director,,111781,180,1.38,1.5,8.7,14.5,-5.81,term_sell
+PLRX,2025-03-03,ADOPT,sell,director,,111781,30,1.38,1.46,5.8,-7.63,13.43,adopt_sell
+PLRX,2025-03-03,ADOPT,sell,director,,111781,90,1.38,1.41,2.17,7.46,-5.29,adopt_sell
+PLRX,2025-03-03,ADOPT,sell,director,,111781,180,1.38,1.5,8.7,14.5,-5.81,adopt_sell
+PLRX,2025-05-08,ADOPT,sell,,,104327,30,1.46,1.28,-12.33,5.48,-17.81,adopt_sell
+PLRX,2025-05-08,ADOPT,sell,,,104327,90,1.46,1.53,4.79,17.31,-12.51,adopt_sell
+PLRX,2025-05-08,ADOPT,sell,,,104327,180,1.46,1.29,-11.64,23.66,-35.31,adopt_sell
+PRKS,2025-03-03,ADOPT,sell,Director,,14000,30,50.77,42.73,-15.84,-7.63,-8.21,adopt_sell
+PRKS,2025-03-03,ADOPT,sell,Director,,14000,90,50.77,47.46,-6.52,7.46,-13.98,adopt_sell
+PRKS,2025-03-03,ADOPT,sell,Director,,14000,180,50.77,30.94,-39.06,14.5,-53.56,adopt_sell
+VICR,2025-03-03,ADOPT,sell,Vice President,James F. Schmidt,1000000,30,60.62,47.04,-22.4,-7.63,-14.77,adopt_sell
+VICR,2025-03-03,ADOPT,sell,Vice President,James F. Schmidt,1000000,90,60.62,46.25,-23.71,7.46,-31.17,adopt_sell
+VICR,2025-03-03,ADOPT,sell,Vice President,James F. Schmidt,1000000,180,60.62,85.07,40.33,14.5,25.83,adopt_sell
+TXO,2025-03-04,ADOPT,sell,President,,0,30,15.55,14.27,-8.26,-8.6,0.34,adopt_sell
+TXO,2025-03-04,ADOPT,sell,President,,0,90,15.55,13.59,-12.62,8.96,-21.58,adopt_sell
+TXO,2025-03-04,ADOPT,sell,President,,0,180,15.55,12.24,-21.31,14.11,-35.42,adopt_sell
+WVE,2025-03-04,ADOPT,sell,Chairman,,0,30,11.23,5.84,-48.0,-8.6,-39.39,adopt_sell
+WVE,2025-03-04,ADOPT,sell,Chairman,,0,90,11.23,7.84,-30.19,8.96,-39.15,adopt_sell
+WVE,2025-03-04,ADOPT,sell,Chairman,,0,180,11.23,6.76,-39.8,14.11,-53.91,adopt_sell
+WVE,2025-05-08,ADOPT,sell,Chief Financial Officer,,0,30,6.54,6.57,0.46,5.48,-5.02,adopt_sell
+WVE,2025-05-08,ADOPT,sell,Chief Financial Officer,,0,90,6.54,6.97,6.57,17.31,-10.73,adopt_sell
+WVE,2025-05-08,ADOPT,sell,Chief Financial Officer,,0,180,6.54,13.25,102.6,23.66,78.94,adopt_sell
+WVE,2025-07-30,ADOPT,sell,President and Chief Executive Officer,,0,30,8.16,7.16,-12.25,3.65,-15.91,adopt_sell
+WVE,2025-07-30,ADOPT,sell,President and Chief Executive Officer,,0,90,8.16,18.52,126.96,8.05,118.91,adopt_sell
+WVE,2025-07-30,ADOPT,sell,President and Chief Executive Officer,,0,180,8.16,7.49,-8.21,12.88,-21.09,adopt_sell
+CRM,2025-03-05,ADOPT,sell,Chair and Chief Executive Officer,Marc Benioff,150662,30,289.35,245.43,-15.18,-9.44,-5.74,adopt_sell
+CRM,2025-03-05,ADOPT,sell,Chair and Chief Executive Officer,Marc Benioff,150662,90,289.35,258.17,-10.78,7.8,-18.58,adopt_sell
+CRM,2025-03-05,ADOPT,sell,Chair and Chief Executive Officer,Marc Benioff,150662,180,289.35,226.18,-21.83,14.02,-35.85,adopt_sell
+GPGI,2025-03-05,ADOPT,sell,Chief Revenue Officer,Amanda Gourbault,178923,30,12.02,10.65,-11.4,-9.44,-1.95,adopt_sell
+GPGI,2025-03-05,ADOPT,sell,Chief Revenue Officer,Amanda Gourbault,178923,90,12.02,14.34,19.38,7.8,11.58,adopt_sell
+GPGI,2025-03-05,ADOPT,sell,Chief Revenue Officer,Amanda Gourbault,178923,180,12.02,18.17,51.25,14.02,37.23,adopt_sell
+CRCT,2025-03-05,ADOPT,sell,Chief Executive Officer,Ashish Arora,626250,30,4.7,3.56,-24.26,-9.44,-14.82,adopt_sell
+CRCT,2025-03-05,ADOPT,sell,Chief Executive Officer,Ashish Arora,626250,90,4.7,5.1,8.36,7.8,0.56,adopt_sell
+CRCT,2025-03-05,ADOPT,sell,Chief Executive Officer,Ashish Arora,626250,180,4.7,4.71,0.24,14.02,-13.78,adopt_sell
+ADSK,2025-03-06,ADOPT,sell,DIRECTOR,,8170,30,260.39,254.27,-2.35,-10.0,7.65,adopt_sell
+ADSK,2025-03-06,ADOPT,sell,DIRECTOR,,8170,90,260.39,294.55,13.12,9.75,3.37,adopt_sell
+ADSK,2025-03-06,ADOPT,sell,DIRECTOR,,8170,180,260.39,289.85,11.31,17.79,-6.48,adopt_sell
+ACET,2025-03-06,TERMINATE,sell,,,400000,30,13.54,9.09,-32.86,-10.0,-22.86,term_sell
+ACET,2025-03-06,TERMINATE,sell,,,400000,90,13.54,12.46,-7.92,9.75,-17.67,term_sell
+ACET,2025-03-06,TERMINATE,sell,,,400000,180,13.54,9.79,-27.66,17.79,-45.45,term_sell
+ARCT,2025-03-06,ADOPT,sell,Chief Legal Officer,Lance Kurata,35000,30,15.97,11.0,-31.12,-10.0,-21.12,adopt_sell
+ARCT,2025-03-06,ADOPT,sell,Chief Legal Officer,Lance Kurata,35000,90,15.97,13.31,-16.66,9.75,-26.4,adopt_sell
+ARCT,2025-03-06,ADOPT,sell,Chief Legal Officer,Lance Kurata,35000,180,15.97,6.33,-60.36,17.79,-78.15,adopt_sell
+BDTX,2025-03-06,TERMINATE,sell,director,,40470,30,1.9,1.49,-21.58,-10.0,-11.58,term_sell
+BDTX,2025-03-06,TERMINATE,sell,director,,40470,90,1.9,2.94,54.74,9.75,44.99,term_sell
+BDTX,2025-03-06,TERMINATE,sell,director,,40470,180,1.9,3.85,102.63,17.79,84.84,term_sell
+TASK,2025-03-06,ADOPT,sell,Chief Operating Officer,Stephan Daoust,243650,30,8.41,8.34,-0.78,-10.0,9.23,adopt_sell
+TASK,2025-03-06,ADOPT,sell,Chief Operating Officer,Stephan Daoust,243650,90,8.41,11.14,32.56,9.75,22.81,adopt_sell
+TASK,2025-03-06,ADOPT,sell,Chief Operating Officer,Stephan Daoust,243650,180,8.41,7.37,-12.33,17.79,-30.11,adopt_sell
+TASK,2025-05-12,ADOPT,sell,,,145986,30,11.0,10.94,-0.59,4.39,-4.98,adopt_sell
+TASK,2025-05-12,ADOPT,sell,,,145986,90,11.0,11.43,3.91,14.5,-10.59,adopt_sell
+TASK,2025-05-12,ADOPT,sell,,,145986,180,11.0,6.99,-36.49,20.32,-56.82,adopt_sell
+PRTHU,2025-03-06,ADOPT,sell,Director,,0,30,8.76,7.55,-13.81,-10.0,-3.81,adopt_sell
+PRTHU,2025-03-06,ADOPT,sell,Director,,0,90,8.76,7.55,-13.81,9.75,-23.56,adopt_sell
+PRTHU,2025-03-06,ADOPT,sell,Director,,0,180,8.76,5.0,-42.92,17.79,-60.71,adopt_sell
+PRTHU,2025-05-06,ADOPT,sell,Director,,0,30,7.55,7.55,0.0,6.91,-6.91,adopt_sell
+PRTHU,2025-05-06,ADOPT,sell,Director,,0,90,7.55,7.55,0.0,18.62,-18.62,adopt_sell
+PRTHU,2025-05-06,ADOPT,sell,Director,,0,180,7.55,5.0,-33.77,24.37,-58.14,adopt_sell
+CYRX,2025-03-07,ADOPT,sell,Director,,14078,30,6.23,5.52,-11.4,-10.5,-0.89,adopt_sell
+CYRX,2025-03-07,ADOPT,sell,Director,,14078,90,6.23,7.33,17.66,8.67,8.99,adopt_sell
+CYRX,2025-03-07,ADOPT,sell,Director,,14078,180,6.23,9.5,52.49,17.13,35.36,adopt_sell
+LOCO,2025-03-07,ADOPT,sell,Director,,12271,30,10.62,9.39,-11.58,-10.5,-1.08,adopt_sell
+LOCO,2025-03-07,ADOPT,sell,Director,,12271,90,10.62,10.45,-1.6,8.67,-10.27,adopt_sell
+LOCO,2025-03-07,ADOPT,sell,Director,,12271,180,10.62,10.39,-2.17,17.13,-19.3,adopt_sell
+GBLI,2025-03-11,TERMINATE,sell,director,,0,30,34.24,27.54,-19.56,-3.4,-16.17,term_sell
+GBLI,2025-03-11,TERMINATE,sell,director,,0,90,34.24,29.68,-13.31,13.78,-27.09,term_sell
+GBLI,2025-03-11,TERMINATE,sell,director,,0,180,34.24,27.33,-20.18,24.01,-44.18,term_sell
+PAY,2025-03-11,TERMINATE,sell,director,,50000,30,30.75,30.19,-1.82,-3.4,1.58,term_sell
+PAY,2025-03-11,TERMINATE,sell,director,,50000,90,30.75,29.36,-4.52,13.78,-18.3,term_sell
+PAY,2025-03-11,TERMINATE,sell,director,,50000,180,30.75,34.72,12.91,24.01,-11.1,term_sell
+BWMN,2025-03-12,ADOPT,sell,,,92500,30,22.01,22.41,1.82,-1.89,3.7,adopt_sell
+BWMN,2025-03-12,ADOPT,sell,,,92500,90,22.01,31.71,44.07,13.18,30.89,adopt_sell
+BWMN,2025-03-12,ADOPT,sell,,,92500,180,22.01,36.18,64.38,23.35,41.03,adopt_sell
+BWMN,2025-03-12,ADOPT,sell,Chief Financial Officer,,55000,30,22.01,22.41,1.82,-1.89,3.7,adopt_sell
+BWMN,2025-03-12,ADOPT,sell,Chief Financial Officer,,55000,90,22.01,31.71,44.07,13.18,30.89,adopt_sell
+BWMN,2025-03-12,ADOPT,sell,Chief Financial Officer,,55000,180,22.01,36.18,64.38,23.35,41.03,adopt_sell
+BWMN,2025-05-07,ADOPT,sell,director,,1120942,30,23.97,26.76,11.64,6.22,5.42,adopt_sell
+BWMN,2025-05-07,ADOPT,sell,director,,1120942,90,23.97,41.82,74.47,18.13,56.34,adopt_sell
+BWMN,2025-05-07,ADOPT,sell,director,,1120942,180,23.97,35.93,49.9,23.89,26.0,adopt_sell
+LCNB,2025-03-12,ADOPT,buy,,,450000,30,13.63,13.45,-1.3,-1.89,0.58,adopt_buy
+LCNB,2025-03-12,ADOPT,buy,,,450000,90,13.63,14.71,7.94,13.18,-5.24,adopt_buy
+LCNB,2025-03-12,ADOPT,buy,,,450000,180,13.63,15.25,11.89,23.35,-11.46,adopt_buy
+LCNB,2025-03-12,ADOPT,buy,,,500000,30,13.63,13.45,-1.3,-1.89,0.58,adopt_buy
+LCNB,2025-03-12,ADOPT,buy,,,500000,90,13.63,14.71,7.94,13.18,-5.24,adopt_buy
+LCNB,2025-03-12,ADOPT,buy,,,500000,180,13.63,15.25,11.89,23.35,-11.46,adopt_buy
+LCNB,2025-05-07,ADOPT,buy,,,0,30,13.67,13.38,-2.13,6.22,-8.35,adopt_buy
+LCNB,2025-05-07,ADOPT,buy,,,0,90,13.67,15.31,11.93,18.13,-6.19,adopt_buy
+LCNB,2025-05-07,ADOPT,buy,,,0,180,13.67,16.64,21.7,23.89,-2.19,adopt_buy
+BLND,2025-03-13,ADOPT,sell,,,93039,30,3.49,3.31,-5.16,0.16,-5.32,adopt_sell
+BLND,2025-03-13,ADOPT,sell,,,93039,90,3.49,3.47,-0.57,14.71,-15.28,adopt_sell
+BLND,2025-03-13,ADOPT,sell,,,93039,180,3.49,3.14,-10.03,24.45,-34.48,adopt_sell
+BLND,2025-03-13,ADOPT,sell,Chair,,800000,30,3.49,3.31,-5.16,0.16,-5.32,adopt_sell
+BLND,2025-03-13,ADOPT,sell,Chair,,800000,90,3.49,3.47,-0.57,14.71,-15.28,adopt_sell
+BLND,2025-03-13,ADOPT,sell,Chair,,800000,180,3.49,3.14,-10.03,24.45,-34.48,adopt_sell
+BLND,2025-05-08,TERMINATE,sell,,,922996,30,3.29,3.18,-3.34,5.48,-8.83,term_sell
+BLND,2025-05-08,TERMINATE,sell,,,922996,90,3.29,4.24,28.88,17.31,11.57,term_sell
+BLND,2025-05-08,TERMINATE,sell,,,922996,180,3.29,2.91,-11.55,23.66,-35.21,term_sell
+BLND,2025-05-08,TERMINATE,sell,,,70000,30,3.29,3.18,-3.34,5.48,-8.83,term_sell
+BLND,2025-05-08,TERMINATE,sell,,,70000,90,3.29,4.24,28.88,17.31,11.57,term_sell
+BLND,2025-05-08,TERMINATE,sell,,,70000,180,3.29,2.91,-11.55,23.66,-35.21,term_sell
+BLND,2025-05-08,ADOPT,sell,,,70000,30,3.29,3.18,-3.34,5.48,-8.83,adopt_sell
+BLND,2025-05-08,ADOPT,sell,,,70000,90,3.29,4.24,28.88,17.31,11.57,adopt_sell
+BLND,2025-05-08,ADOPT,sell,,,70000,180,3.29,2.91,-11.55,23.66,-35.21,adopt_sell
+BLND,2025-05-08,ADOPT,sell,,,168929,30,3.29,3.18,-3.34,5.48,-8.83,adopt_sell
+BLND,2025-05-08,ADOPT,sell,,,168929,90,3.29,4.24,28.88,17.31,11.57,adopt_sell
+BLND,2025-05-08,ADOPT,sell,,,168929,180,3.29,2.91,-11.55,23.66,-35.21,adopt_sell
+BLND,2025-05-08,ADOPT,sell,director,,40000,30,3.29,3.18,-3.34,5.48,-8.83,adopt_sell
+BLND,2025-05-08,ADOPT,sell,director,,40000,90,3.29,4.24,28.88,17.31,11.57,adopt_sell
+BLND,2025-05-08,ADOPT,sell,director,,40000,180,3.29,2.91,-11.55,23.66,-35.21,adopt_sell
+BRLT,2025-03-13,ADOPT,sell,Chief Executive Officer,,22581,30,1.3,1.38,6.16,0.16,6.01,adopt_sell
+BRLT,2025-03-13,ADOPT,sell,Chief Executive Officer,,22581,90,1.3,1.33,2.05,14.71,-12.65,adopt_sell
+BRLT,2025-03-13,ADOPT,sell,Chief Executive Officer,,22581,180,1.3,1.78,37.08,24.45,12.63,adopt_sell
+BRLT,2025-03-13,ADOPT,sell,,,700000,30,1.3,1.38,6.16,0.16,6.01,adopt_sell
+BRLT,2025-03-13,ADOPT,sell,,,700000,90,1.3,1.33,2.05,14.71,-12.65,adopt_sell
+BRLT,2025-03-13,ADOPT,sell,,,700000,180,1.3,1.78,37.08,24.45,12.63,adopt_sell
+FNKO,2025-03-13,ADOPT,sell,Chief Financial Officer,Le Pendeven,34079,30,7.22,4.3,-40.44,0.16,-40.6,adopt_sell
+FNKO,2025-03-13,ADOPT,sell,Chief Financial Officer,Le Pendeven,34079,90,7.22,4.64,-35.73,14.71,-50.44,adopt_sell
+FNKO,2025-03-13,ADOPT,sell,Chief Financial Officer,Le Pendeven,34079,180,7.22,3.17,-56.09,24.45,-80.54,adopt_sell
+PHR,2025-03-13,ADOPT,sell,Senior Vice President,Amy VanDuyn,40000,30,25.45,24.75,-2.75,0.16,-2.91,adopt_sell
+PHR,2025-03-13,ADOPT,sell,Senior Vice President,Amy VanDuyn,40000,90,25.45,26.55,4.32,14.71,-10.39,adopt_sell
+PHR,2025-03-13,ADOPT,sell,Senior Vice President,Amy VanDuyn,40000,180,25.45,20.01,-21.38,24.45,-45.82,adopt_sell
+PHR,2025-03-13,ADOPT,sell,Senior Vice President,Amy VanDuyn,18573,30,25.45,24.75,-2.75,0.16,-2.91,adopt_sell
+PHR,2025-03-13,ADOPT,sell,Senior Vice President,Amy VanDuyn,18573,90,25.45,26.55,4.32,14.71,-10.39,adopt_sell
+PHR,2025-03-13,ADOPT,sell,Senior Vice President,Amy VanDuyn,18573,180,25.45,20.01,-21.38,24.45,-45.82,adopt_sell
+PHR,2025-03-13,ADOPT,sell,Senior Vice President,David Linetsky,12000,30,25.45,24.75,-2.75,0.16,-2.91,adopt_sell
+PHR,2025-03-13,ADOPT,sell,Senior Vice President,David Linetsky,12000,90,25.45,26.55,4.32,14.71,-10.39,adopt_sell
+PHR,2025-03-13,ADOPT,sell,Senior Vice President,David Linetsky,12000,180,25.45,20.01,-21.38,24.45,-45.82,adopt_sell
+RNAC,2025-03-13,ADOPT,sell,,,15000,30,16.61,11.83,-28.78,0.16,-28.94,adopt_sell
+RNAC,2025-03-13,ADOPT,sell,,,15000,90,16.61,12.05,-27.45,14.71,-42.16,adopt_sell
+RNAC,2025-03-13,ADOPT,sell,,,15000,180,16.61,7.3,-56.05,24.45,-80.5,adopt_sell
+WEAV,2025-03-13,ADOPT,sell,,,160261,30,10.99,10.43,-5.1,0.16,-5.25,adopt_sell
+WEAV,2025-03-13,ADOPT,sell,,,160261,90,10.99,7.82,-28.84,14.71,-43.55,adopt_sell
+WEAV,2025-03-13,ADOPT,sell,,,160261,180,10.99,6.31,-42.58,24.45,-67.03,adopt_sell
+FOA,2025-03-14,ADOPT,sell,Chief Accounting Officer,Tai A. Thornock,12100,30,20.82,19.7,-5.38,-1.83,-3.55,adopt_sell
+FOA,2025-03-14,ADOPT,sell,Chief Accounting Officer,Tai A. Thornock,12100,90,20.82,24.74,18.83,12.4,6.42,adopt_sell
+FOA,2025-03-14,ADOPT,sell,Chief Accounting Officer,Tai A. Thornock,12100,180,20.82,23.15,11.19,21.93,-10.74,adopt_sell
+FOA,2025-03-14,ADOPT,sell,President,Kristen N. Sieffert,12100,30,20.82,19.7,-5.38,-1.83,-3.55,adopt_sell
+FOA,2025-03-14,ADOPT,sell,President,Kristen N. Sieffert,12100,90,20.82,24.74,18.83,12.4,6.42,adopt_sell
+FOA,2025-03-14,ADOPT,sell,President,Kristen N. Sieffert,12100,180,20.82,23.15,11.19,21.93,-10.74,adopt_sell
+KODK,2025-03-17,TERMINATE,sell,Chief Financial Officer,David E. Bullwinkle,0,30,6.98,6.23,-10.74,-1.97,-8.78,term_sell
+KODK,2025-03-17,TERMINATE,sell,Chief Financial Officer,David E. Bullwinkle,0,90,6.98,6.8,-2.58,13.0,-15.58,term_sell
+KODK,2025-03-17,TERMINATE,sell,Chief Financial Officer,David E. Bullwinkle,0,180,6.98,7.92,13.47,21.64,-8.17,term_sell
+IMNM,2025-03-19,ADOPT,sell,Director,Isaac Barchas,0,30,8.57,8.86,3.38,-1.23,4.61,adopt_sell
+IMNM,2025-03-19,ADOPT,sell,Director,Isaac Barchas,0,90,8.57,10.84,26.49,12.98,13.51,adopt_sell
+IMNM,2025-03-19,ADOPT,sell,Director,Isaac Barchas,0,180,8.57,19.76,130.57,21.96,108.61,adopt_sell
+ABEO,2025-03-20,ADOPT,sell,director,,40176,30,5.14,6.56,27.63,0.53,27.1,adopt_sell
+ABEO,2025-03-20,ADOPT,sell,director,,40176,90,5.14,6.62,28.79,13.31,15.49,adopt_sell
+ABEO,2025-03-20,ADOPT,sell,director,,40176,180,5.14,5.13,-0.19,21.95,-22.15,adopt_sell
+FIVE,2025-03-20,ADOPT,sell,,,7500,30,76.11,84.31,10.77,0.53,10.25,adopt_sell
+FIVE,2025-03-20,ADOPT,sell,,,7500,90,76.11,142.45,87.16,13.31,73.86,adopt_sell
+FIVE,2025-03-20,ADOPT,sell,,,7500,180,76.11,174.62,129.43,21.95,107.48,adopt_sell
+SPRY,2025-03-20,TERMINATE,sell,Chief Commercial Officer,Eric Karas,0,30,14.31,14.46,1.05,0.53,0.52,term_sell
+SPRY,2025-03-20,TERMINATE,sell,Chief Commercial Officer,Eric Karas,0,90,14.31,18.35,28.23,13.31,14.92,term_sell
+SPRY,2025-03-20,TERMINATE,sell,Chief Commercial Officer,Eric Karas,0,180,14.31,10.0,-30.12,21.95,-52.07,term_sell
+AEVA,2025-03-21,ADOPT,sell,Chief Executive Officer,Soroush Salehian,900000,30,4.19,7.79,85.92,-0.08,86.0,adopt_sell
+AEVA,2025-03-21,ADOPT,sell,Chief Executive Officer,Soroush Salehian,900000,90,4.19,20.43,387.59,12.97,374.62,adopt_sell
+AEVA,2025-03-21,ADOPT,sell,Chief Executive Officer,Soroush Salehian,900000,180,4.19,15.09,260.14,21.91,238.23,adopt_sell
+AEVA,2025-03-21,ADOPT,sell,Chief Technology Officer,Mina Rezk,900000,30,4.19,7.79,85.92,-0.08,86.0,adopt_sell
+AEVA,2025-03-21,ADOPT,sell,Chief Technology Officer,Mina Rezk,900000,90,4.19,20.43,387.59,12.97,374.62,adopt_sell
+AEVA,2025-03-21,ADOPT,sell,Chief Technology Officer,Mina Rezk,900000,180,4.19,15.09,260.14,21.91,238.23,adopt_sell
+CNTA,2025-03-24,ADOPT,sell,director,,0,30,16.63,12.01,-27.78,-2.66,-25.12,adopt_sell
+CNTA,2025-03-24,ADOPT,sell,director,,0,90,16.63,16.81,1.08,8.62,-7.54,adopt_sell
+CNTA,2025-03-24,ADOPT,sell,director,,0,180,16.63,29.57,77.81,20.46,57.36,adopt_sell
+LUNR,2025-03-25,TERMINATE,sell,director,,3000000,30,9.2,8.93,-2.93,-2.49,-0.45,term_sell
+LUNR,2025-03-25,TERMINATE,sell,director,,3000000,90,9.2,11.2,21.74,10.01,11.73,term_sell
+LUNR,2025-03-25,TERMINATE,sell,director,,3000000,180,9.2,12.55,36.41,20.45,15.97,term_sell
+FENC,2025-03-26,ADOPT,sell,Director,,120000,30,6.47,6.2,-4.1,-0.62,-3.47,adopt_sell
+FENC,2025-03-26,ADOPT,sell,Director,,120000,90,6.47,8.32,28.59,11.33,17.26,adopt_sell
+FENC,2025-03-26,ADOPT,sell,Director,,120000,180,6.47,7.55,16.69,20.59,-3.9,adopt_sell
+GRDN,2025-03-26,TERMINATE,sell,director,,0,30,20.23,25.48,25.95,-0.62,26.57,term_sell
+GRDN,2025-03-26,TERMINATE,sell,director,,0,90,20.23,20.26,0.15,11.33,-11.19,term_sell
+GRDN,2025-03-26,TERMINATE,sell,director,,0,180,20.23,30.18,49.18,20.59,28.59,term_sell
+DLPN,2025-03-27,TERMINATE,sell,director,,0,30,1.06,1.09,2.83,-0.48,3.31,term_sell
+DLPN,2025-03-27,TERMINATE,sell,director,,0,90,1.06,1.1,3.77,11.63,-7.86,term_sell
+DLPN,2025-03-27,TERMINATE,sell,director,,0,180,1.06,1.54,45.28,20.73,24.55,term_sell
+DLPN,2025-03-27,ADOPT,sell,Chief Executive Officer,,0,30,1.06,1.09,2.83,-0.48,3.31,adopt_sell
+DLPN,2025-03-27,ADOPT,sell,Chief Executive Officer,,0,90,1.06,1.1,3.77,11.63,-7.86,adopt_sell
+DLPN,2025-03-27,ADOPT,sell,Chief Executive Officer,,0,180,1.06,1.54,45.28,20.73,24.55,adopt_sell
+P,2025-03-27,ADOPT,sell,Chief Revenue Officer,Dan FitzSimons,800000,30,48.44,48.7,0.54,-0.48,1.02,adopt_sell
+P,2025-03-27,ADOPT,sell,Chief Revenue Officer,Dan FitzSimons,800000,90,48.44,56.25,16.12,11.63,4.49,adopt_sell
+P,2025-03-27,ADOPT,sell,Chief Revenue Officer,Dan FitzSimons,800000,180,48.44,69.57,43.62,20.73,22.89,adopt_sell
+SVRA,2025-03-27,TERMINATE,sell,director,,0,30,2.78,2.86,2.88,-0.48,3.36,term_sell
+SVRA,2025-03-27,TERMINATE,sell,director,,0,90,2.78,2.57,-7.55,11.63,-19.18,term_sell
+SVRA,2025-03-27,TERMINATE,sell,director,,0,180,2.78,6.61,137.77,20.73,117.04,term_sell
+JBIO,2025-03-27,TERMINATE,sell,Chief Executive Officer,Timothy Noyes,0,30,86.28,8.65,-89.98,-0.48,-89.49,term_sell
+JBIO,2025-03-27,TERMINATE,sell,Chief Executive Officer,Timothy Noyes,0,90,86.28,7.29,-91.55,11.63,-103.18,term_sell
+JBIO,2025-03-27,TERMINATE,sell,Chief Executive Officer,Timothy Noyes,0,180,86.28,15.25,-82.33,20.73,-103.06,term_sell
+CGON,2025-03-28,TERMINATE,sell,director,,0,30,26.42,25.16,-4.77,4.92,-9.69,term_sell
+CGON,2025-03-28,TERMINATE,sell,director,,0,90,26.42,26.94,1.97,13.35,-11.38,term_sell
+CGON,2025-03-28,TERMINATE,sell,director,,0,180,26.42,39.75,50.45,23.21,27.24,term_sell
+BKV,2025-03-31,ADOPT,sell,President,Mr. Eric Jacobsen,123374,30,21.0,22.38,6.57,4.91,1.66,adopt_sell
+BKV,2025-03-31,ADOPT,sell,President,Mr. Eric Jacobsen,123374,90,21.0,20.0,-4.76,14.24,-19.0,adopt_sell
+BKV,2025-03-31,ADOPT,sell,President,Mr. Eric Jacobsen,123374,180,21.0,26.2,24.76,20.71,4.05,adopt_sell
+BKV,2025-03-31,ADOPT,sell,President,Mr. Eric Jacobsen,76657,30,21.0,22.38,6.57,4.91,1.66,adopt_sell
+BKV,2025-03-31,ADOPT,sell,President,Mr. Eric Jacobsen,76657,90,21.0,20.0,-4.76,14.24,-19.0,adopt_sell
+BKV,2025-03-31,ADOPT,sell,President,Mr. Eric Jacobsen,76657,180,21.0,26.2,24.76,20.71,4.05,adopt_sell
+BKV,2025-03-31,ADOPT,sell,President,Mr. Eric Jacobsen,94050,30,21.0,22.38,6.57,4.91,1.66,adopt_sell
+BKV,2025-03-31,ADOPT,sell,President,Mr. Eric Jacobsen,94050,90,21.0,20.0,-4.76,14.24,-19.0,adopt_sell
+BKV,2025-03-31,ADOPT,sell,President,Mr. Eric Jacobsen,94050,180,21.0,26.2,24.76,20.71,4.05,adopt_sell
+BKV,2025-03-31,ADOPT,sell,Vice President of,Mr. Javier Hinojosa,195003,30,21.0,22.38,6.57,4.91,1.66,adopt_sell
+BKV,2025-03-31,ADOPT,sell,Vice President of,Mr. Javier Hinojosa,195003,90,21.0,20.0,-4.76,14.24,-19.0,adopt_sell
+BKV,2025-03-31,ADOPT,sell,Vice President of,Mr. Javier Hinojosa,195003,180,21.0,26.2,24.76,20.71,4.05,adopt_sell
+BKV,2025-03-31,ADOPT,sell,Vice President,Mr. David Tameron,70981,30,21.0,22.38,6.57,4.91,1.66,adopt_sell
+BKV,2025-03-31,ADOPT,sell,Vice President,Mr. David Tameron,70981,90,21.0,20.0,-4.76,14.24,-19.0,adopt_sell
+BKV,2025-03-31,ADOPT,sell,Vice President,Mr. David Tameron,70981,180,21.0,26.2,24.76,20.71,4.05,adopt_sell
+BKV,2025-03-31,ADOPT,sell,Senior Vice President,Mr. Bradley Birkelo,9509,30,21.0,22.38,6.57,4.91,1.66,adopt_sell
+BKV,2025-03-31,ADOPT,sell,Senior Vice President,Mr. Bradley Birkelo,9509,90,21.0,20.0,-4.76,14.24,-19.0,adopt_sell
+BKV,2025-03-31,ADOPT,sell,Senior Vice President,Mr. Bradley Birkelo,9509,180,21.0,26.2,24.76,20.71,4.05,adopt_sell
+BKV,2025-03-31,ADOPT,sell,Chief Financial Officer,Mr. John Jimenez,23523,30,21.0,22.38,6.57,4.91,1.66,adopt_sell
+BKV,2025-03-31,ADOPT,sell,Chief Financial Officer,Mr. John Jimenez,23523,90,21.0,20.0,-4.76,14.24,-19.0,adopt_sell
+BKV,2025-03-31,ADOPT,sell,Chief Financial Officer,Mr. John Jimenez,23523,180,21.0,26.2,24.76,20.71,4.05,adopt_sell
+BKV,2025-03-31,ADOPT,sell,Vice President Operations,Ms. Lauren Read,58204,30,21.0,22.38,6.57,4.91,1.66,adopt_sell
+BKV,2025-03-31,ADOPT,sell,Vice President Operations,Ms. Lauren Read,58204,90,21.0,20.0,-4.76,14.24,-19.0,adopt_sell
+BKV,2025-03-31,ADOPT,sell,Vice President Operations,Ms. Lauren Read,58204,180,21.0,26.2,24.76,20.71,4.05,adopt_sell
+CASIF,2025-03-31,TERMINATE,buy,,,1250000,30,2.16,1.86,-13.89,4.91,-18.8,term_buy
+CASIF,2025-03-31,TERMINATE,buy,,,1250000,90,2.16,1.63,-24.54,14.24,-38.78,term_buy
+CASIF,2025-03-31,TERMINATE,buy,,,1250000,180,2.16,0.84,-61.11,20.71,-81.82,term_buy
+CASIF,2025-03-31,TERMINATE,buy,,,3734992,30,2.16,1.86,-13.89,4.91,-18.8,term_buy
+CASIF,2025-03-31,TERMINATE,buy,,,3734992,90,2.16,1.63,-24.54,14.24,-38.78,term_buy
+CASIF,2025-03-31,TERMINATE,buy,,,3734992,180,2.16,0.84,-61.11,20.71,-81.82,term_buy
+CELC,2025-03-31,ADOPT,sell,,,229325,30,10.11,10.82,7.02,4.91,2.12,adopt_sell
+CELC,2025-03-31,ADOPT,sell,,,229325,90,10.11,45.88,353.81,14.24,339.57,adopt_sell
+CELC,2025-03-31,ADOPT,sell,,,229325,180,10.11,99.05,879.72,20.71,859.01,adopt_sell
+CLIR,2025-03-31,TERMINATE,buy,director,,4620760,30,7.5,5.7,-24.0,4.91,-28.91,term_buy
+CLIR,2025-03-31,TERMINATE,buy,director,,4620760,90,7.5,5.6,-25.33,14.24,-39.58,term_buy
+CLIR,2025-03-31,TERMINATE,buy,director,,4620760,180,7.5,5.5,-26.67,20.71,-47.38,term_buy
+VANI,2025-03-31,ADOPT,sell,,,93000,30,1.05,1.05,0.0,4.91,-4.91,adopt_sell
+VANI,2025-03-31,ADOPT,sell,,,93000,90,1.05,1.38,31.43,14.24,17.19,adopt_sell
+VANI,2025-03-31,ADOPT,sell,,,93000,180,1.05,1.35,28.57,20.71,7.86,adopt_sell
+OVLY,2025-03-31,ADOPT,sell,director,,375,30,24.4,25.82,5.81,4.91,0.9,adopt_sell
+OVLY,2025-03-31,ADOPT,sell,director,,375,90,24.4,27.13,11.18,14.24,-3.07,adopt_sell
+OVLY,2025-03-31,ADOPT,sell,director,,375,180,24.4,30.44,24.74,20.71,4.03,adopt_sell
+BB,2025-04-02,TERMINATE,sell,director,,0,30,3.39,3.89,14.75,4.6,10.15,term_sell
+BB,2025-04-02,TERMINATE,sell,director,,0,90,3.39,3.58,5.6,12.98,-7.38,term_sell
+BB,2025-04-02,TERMINATE,sell,director,,0,180,3.39,3.77,11.21,21.61,-10.4,term_sell
+RH,2025-04-02,ADOPT,sell,Chief Financial Officer,Jack Preston,2786,30,249.35,218.09,-12.54,4.6,-17.13,adopt_sell
+RH,2025-04-02,ADOPT,sell,Chief Financial Officer,Jack Preston,2786,90,249.35,214.92,-13.81,12.98,-26.79,adopt_sell
+RH,2025-04-02,ADOPT,sell,Chief Financial Officer,Jack Preston,2786,180,249.35,170.98,-31.43,21.61,-53.04,adopt_sell
+JBL,2025-04-08,ADOPT,sell,Executive Vice President,Matthew Crowley,0,30,120.14,164.98,37.33,17.4,19.93,adopt_sell
+JBL,2025-04-08,ADOPT,sell,Executive Vice President,Matthew Crowley,0,90,120.14,215.46,79.35,29.96,49.39,adopt_sell
+JBL,2025-04-08,ADOPT,sell,Executive Vice President,Matthew Crowley,0,180,120.14,235.98,96.43,40.25,56.18,adopt_sell
+JBL,2025-06-30,ADOPT,sell,Executive Vice President,Steven Borges,22000,30,217.82,230.01,5.6,4.02,1.58,adopt_sell
+JBL,2025-06-30,ADOPT,sell,Executive Vice President,Steven Borges,22000,90,217.82,213.51,-1.98,8.9,-10.88,adopt_sell
+JBL,2025-06-30,ADOPT,sell,Executive Vice President,Steven Borges,22000,180,217.82,258.61,18.73,7.67,11.06,adopt_sell
+APLD,2025-04-14,ADOPT,sell,,,26823,30,5.37,7.59,41.34,9.65,31.69,adopt_sell
+APLD,2025-04-14,ADOPT,sell,,,26823,90,5.37,16.05,198.88,20.05,178.83,adopt_sell
+APLD,2025-04-14,ADOPT,sell,,,26823,180,5.37,24.52,356.61,27.59,329.02,adopt_sell
+APLD,2025-07-30,ADOPT,sell,General Counsel,,0,30,10.03,17.18,71.29,3.65,67.63,adopt_sell
+APLD,2025-07-30,ADOPT,sell,General Counsel,,0,90,10.03,32.11,220.14,8.05,212.09,adopt_sell
+APLD,2025-07-30,ADOPT,sell,General Counsel,,0,180,10.03,31.53,214.36,12.88,201.48,adopt_sell
+RENT,2025-04-15,ADOPT,sell,,,0,30,4.41,5.79,31.29,9.32,21.97,adopt_sell
+RENT,2025-04-15,ADOPT,sell,,,0,90,4.41,5.15,16.78,19.86,-3.08,adopt_sell
+RENT,2025-04-15,ADOPT,sell,,,0,180,4.41,8.1,83.67,28.18,55.49,adopt_sell
+XTIA,2025-04-15,TERMINATE,buy,Chairman and Chief Exec,Scott Pomeroy,0,30,1.37,1.95,42.34,9.32,33.01,term_buy
+XTIA,2025-04-15,TERMINATE,buy,Chairman and Chief Exec,Scott Pomeroy,0,90,1.37,1.72,25.55,19.86,5.69,term_buy
+XTIA,2025-04-15,TERMINATE,buy,Chairman and Chief Exec,Scott Pomeroy,0,180,1.37,1.43,4.38,28.18,-23.8,term_buy
+APPF,2025-04-24,ADOPT,sell,,,2500,30,234.65,217.25,-7.42,9.59,-17.01,adopt_sell
+APPF,2025-04-24,ADOPT,sell,,,2500,90,234.65,273.54,16.57,17.46,-0.89,adopt_sell
+APPF,2025-04-24,ADOPT,sell,,,2500,180,234.65,222.81,-5.05,28.27,-33.31,adopt_sell
+XEL,2025-04-24,TERMINATE,sell,director,,0,30,68.13,66.41,-2.53,9.59,-12.13,term_sell
+XEL,2025-04-24,TERMINATE,sell,director,,0,90,68.13,70.51,3.49,17.46,-13.98,term_sell
+XEL,2025-04-24,TERMINATE,sell,director,,0,180,68.13,73.46,7.81,28.27,-20.45,term_sell
+VRSN,2025-04-24,ADOPT,sell,Chairman,,144000,30,248.82,281.53,13.15,9.59,3.55,adopt_sell
+VRSN,2025-04-24,ADOPT,sell,Chairman,,144000,90,248.82,270.63,8.77,17.46,-8.7,adopt_sell
+VRSN,2025-04-24,ADOPT,sell,Chairman,,144000,180,248.82,247.08,-0.7,28.27,-28.96,adopt_sell
+VRSN,2025-04-24,ADOPT,sell,Executive Vice President,,12000,30,248.82,281.53,13.15,9.59,3.55,adopt_sell
+VRSN,2025-04-24,ADOPT,sell,Executive Vice President,,12000,90,248.82,270.63,8.77,17.46,-8.7,adopt_sell
+VRSN,2025-04-24,ADOPT,sell,Executive Vice President,,12000,180,248.82,247.08,-0.7,28.27,-28.96,adopt_sell
+WKC,2025-04-25,ADOPT,sell,director,,13000,30,23.39,27.2,16.28,8.91,7.37,adopt_sell
+WKC,2025-04-25,ADOPT,sell,director,,13000,90,23.39,26.39,12.85,16.62,-3.77,adopt_sell
+WKC,2025-04-25,ADOPT,sell,director,,13000,180,23.39,27.02,15.51,27.35,-11.83,adopt_sell
+KHC,2025-04-29,ADOPT,sell,Chief Executive Officer,Carlos Abrams-Rivera,182183,30,26.65,24.76,-7.11,8.49,-15.6,adopt_sell
+KHC,2025-04-29,ADOPT,sell,Chief Executive Officer,Carlos Abrams-Rivera,182183,90,26.65,25.58,-4.03,17.4,-21.43,adopt_sell
+KHC,2025-04-29,ADOPT,sell,Chief Executive Officer,Carlos Abrams-Rivera,182183,180,26.65,23.42,-12.15,25.97,-38.12,adopt_sell
+KHC,2025-04-29,ADOPT,sell,Executive Vice President and,Melissa Werneck,81438,30,26.65,24.76,-7.11,8.49,-15.6,adopt_sell
+KHC,2025-04-29,ADOPT,sell,Executive Vice President and,Melissa Werneck,81438,90,26.65,25.58,-4.03,17.4,-21.43,adopt_sell
+KHC,2025-04-29,ADOPT,sell,Executive Vice President and,Melissa Werneck,81438,180,26.65,23.42,-12.15,25.97,-38.12,adopt_sell
+KHC,2025-04-29,ADOPT,sell,Executive Vice President and,Eloi Lima,177149,30,26.65,24.76,-7.11,8.49,-15.6,adopt_sell
+KHC,2025-04-29,ADOPT,sell,Executive Vice President and,Eloi Lima,177149,90,26.65,25.58,-4.03,17.4,-21.43,adopt_sell
+KHC,2025-04-29,ADOPT,sell,Executive Vice President and,Eloi Lima,177149,180,26.65,23.42,-12.15,25.97,-38.12,adopt_sell
+KHC,2025-04-29,ADOPT,sell,Executive Vice President and,Cory Onell,50000,30,26.65,24.76,-7.11,8.49,-15.6,adopt_sell
+KHC,2025-04-29,ADOPT,sell,Executive Vice President and,Cory Onell,50000,90,26.65,25.58,-4.03,17.4,-21.43,adopt_sell
+KHC,2025-04-29,ADOPT,sell,Executive Vice President and,Cory Onell,50000,180,26.65,23.42,-12.15,25.97,-38.12,adopt_sell
+KHC,2025-04-29,ADOPT,sell,Executive Vice President and,Flavio Torres,50000,30,26.65,24.76,-7.11,8.49,-15.6,adopt_sell
+KHC,2025-04-29,ADOPT,sell,Executive Vice President and,Flavio Torres,50000,90,26.65,25.58,-4.03,17.4,-21.43,adopt_sell
+KHC,2025-04-29,ADOPT,sell,Executive Vice President and,Flavio Torres,50000,180,26.65,23.42,-12.15,25.97,-38.12,adopt_sell
+BXMT,2025-04-30,ADOPT,sell,Chief Executive Officer,Katharine A. Keenan,51850,30,17.27,17.67,2.31,8.87,-6.56,adopt_sell
+BXMT,2025-04-30,ADOPT,sell,Chief Executive Officer,Katharine A. Keenan,51850,90,17.27,18.51,7.17,17.35,-10.18,adopt_sell
+BXMT,2025-04-30,ADOPT,sell,Chief Executive Officer,Katharine A. Keenan,51850,180,17.27,19.14,10.85,25.81,-14.96,adopt_sell
+BXMT,2025-04-30,ADOPT,sell,Chief Financial Officer,,12000,30,17.27,17.67,2.31,8.87,-6.56,adopt_sell
+BXMT,2025-04-30,ADOPT,sell,Chief Financial Officer,,12000,90,17.27,18.51,7.17,17.35,-10.18,adopt_sell
+BXMT,2025-04-30,ADOPT,sell,Chief Financial Officer,,12000,180,17.27,19.14,10.85,25.81,-14.96,adopt_sell
+JSM,2025-04-30,TERMINATE,buy,Director,,0,30,16.27,17.22,5.85,8.87,-3.02,term_buy
+JSM,2025-04-30,TERMINATE,buy,Director,,0,90,16.27,18.44,13.36,17.35,-3.99,term_buy
+JSM,2025-04-30,TERMINATE,buy,Director,,0,180,16.27,19.34,18.9,25.81,-6.92,term_buy
+JSM,2025-07-30,TERMINATE,buy,Director,,0,30,17.87,18.43,3.11,3.65,-0.54,term_buy
+JSM,2025-07-30,TERMINATE,buy,Director,,0,90,17.87,18.9,5.72,8.05,-2.33,term_buy
+JSM,2025-07-30,TERMINATE,buy,Director,,0,180,17.87,18.57,3.89,12.88,-8.99,term_buy
+SES,2025-04-30,TERMINATE,sell,Chief Financial Officer,,870000,30,0.9,1.0,10.68,8.87,1.8,term_sell
+SES,2025-04-30,TERMINATE,sell,Chief Financial Officer,,870000,90,0.9,1.17,30.14,17.35,12.8,term_sell
+SES,2025-04-30,TERMINATE,sell,Chief Financial Officer,,870000,180,0.9,2.31,156.95,25.81,131.14,term_sell
+META,2025-05-01,ADOPT,sell,Chief Financial Officer,Susan Li,22988,30,570.43,680.75,19.34,6.9,12.44,adopt_sell
+META,2025-05-01,ADOPT,sell,Chief Financial Officer,Susan Li,22988,90,570.43,750.54,31.57,16.52,15.05,adopt_sell
+META,2025-05-01,ADOPT,sell,Chief Financial Officer,Susan Li,22988,180,570.43,603.6,5.82,22.38,-16.57,adopt_sell
+META,2025-05-01,ADOPT,sell,Chief Financial Officer,Susan Li,2800,30,570.43,680.75,19.34,6.9,12.44,adopt_sell
+META,2025-05-01,ADOPT,sell,Chief Financial Officer,Susan Li,2800,90,570.43,750.54,31.57,16.52,15.05,adopt_sell
+META,2025-05-01,ADOPT,sell,Chief Financial Officer,Susan Li,2800,180,570.43,603.6,5.82,22.38,-16.57,adopt_sell
+META,2025-07-31,ADOPT,sell,Chief Product Officer,Christopher K. Cox,75000,30,771.63,753.82,-2.31,4.01,-6.32,adopt_sell
+META,2025-07-31,ADOPT,sell,Chief Product Officer,Christopher K. Cox,75000,90,771.63,665.69,-13.73,8.46,-22.19,adopt_sell
+META,2025-07-31,ADOPT,sell,Chief Product Officer,Christopher K. Cox,75000,180,771.63,670.91,-13.05,13.08,-26.13,adopt_sell
+MORN,2025-05-01,ADOPT,sell,Chief Financial Officer,Michael Holt,648,30,280.68,296.5,5.64,6.9,-1.26,adopt_sell
+MORN,2025-05-01,ADOPT,sell,Chief Financial Officer,Michael Holt,648,90,280.68,255.85,-8.85,16.52,-25.37,adopt_sell
+MORN,2025-05-01,ADOPT,sell,Chief Financial Officer,Michael Holt,648,180,280.68,206.33,-26.49,22.38,-48.87,adopt_sell
+VTR,2025-05-01,ADOPT,sell,Executive Vice President and,Robert F. Probst,320057,30,63.79,62.15,-2.56,6.9,-9.46,adopt_sell
+VTR,2025-05-01,ADOPT,sell,Executive Vice President and,Robert F. Probst,320057,90,63.79,66.77,4.67,16.52,-11.85,adopt_sell
+VTR,2025-05-01,ADOPT,sell,Executive Vice President and,Robert F. Probst,320057,180,63.79,77.68,21.78,22.38,-0.6,adopt_sell
+VTR,2025-05-01,ADOPT,sell,Executive Vice President,Peter J. Bulgarelli,320057,30,63.79,62.15,-2.56,6.9,-9.46,adopt_sell
+VTR,2025-05-01,ADOPT,sell,Executive Vice President,Peter J. Bulgarelli,320057,90,63.79,66.77,4.67,16.52,-11.85,adopt_sell
+VTR,2025-05-01,ADOPT,sell,Executive Vice President,Peter J. Bulgarelli,320057,180,63.79,77.68,21.78,22.38,-0.6,adopt_sell
+KLAC,2025-05-01,ADOPT,sell,Director,,0,30,670.37,862.11,28.6,6.9,21.7,adopt_sell
+KLAC,2025-05-01,ADOPT,sell,Director,,0,90,670.37,905.12,35.02,16.52,18.5,adopt_sell
+KLAC,2025-05-01,ADOPT,sell,Director,,0,180,670.37,1482.36,121.13,22.38,98.74,adopt_sell
+VEL,2025-05-01,ADOPT,sell,Executive Vice President,Jeffrey T. Taylor,21250,30,17.85,19.22,7.68,6.9,0.78,adopt_sell
+VEL,2025-05-01,ADOPT,sell,Executive Vice President,Jeffrey T. Taylor,21250,90,17.85,19.1,7.0,16.52,-9.52,adopt_sell
+VEL,2025-05-01,ADOPT,sell,Executive Vice President,Jeffrey T. Taylor,21250,180,17.85,19.15,7.28,22.38,-15.1,adopt_sell
+VEL,2025-05-01,ADOPT,sell,Chief Financial Officer,Mark R. Szczepaniak,21250,30,17.85,19.22,7.68,6.9,0.78,adopt_sell
+VEL,2025-05-01,ADOPT,sell,Chief Financial Officer,Mark R. Szczepaniak,21250,90,17.85,19.1,7.0,16.52,-9.52,adopt_sell
+VEL,2025-05-01,ADOPT,sell,Chief Financial Officer,Mark R. Szczepaniak,21250,180,17.85,19.15,7.28,22.38,-15.1,adopt_sell
+EG,2025-05-02,TERMINATE,sell,President and Chief Executive Officer of,James Williamson,0,30,344.21,337.03,-2.09,6.34,-8.43,term_sell
+EG,2025-05-02,TERMINATE,sell,President and Chief Executive Officer of,James Williamson,0,90,344.21,338.5,-1.66,15.08,-16.75,term_sell
+EG,2025-05-02,TERMINATE,sell,President and Chief Executive Officer of,James Williamson,0,180,344.21,318.01,-7.61,20.59,-28.21,term_sell
+GDDY,2025-05-02,ADOPT,sell,Chief Executive Officer,Aman Bhutani,72000,30,176.27,178.09,1.03,6.34,-5.31,adopt_sell
+GDDY,2025-05-02,ADOPT,sell,Chief Executive Officer,Aman Bhutani,72000,90,176.27,148.88,-15.54,15.08,-30.62,adopt_sell
+GDDY,2025-05-02,ADOPT,sell,Chief Executive Officer,Aman Bhutani,72000,180,176.27,103.49,-41.29,20.59,-61.88,adopt_sell
+ROP,2025-05-02,ADOPT,sell,President and Chief Executive Officer an,Neil Hunn,0,30,561.69,561.32,-0.07,6.34,-6.4,adopt_sell
+ROP,2025-05-02,ADOPT,sell,President and Chief Executive Officer an,Neil Hunn,0,90,561.69,516.43,-8.06,15.08,-23.14,adopt_sell
+ROP,2025-05-02,ADOPT,sell,President and Chief Executive Officer an,Neil Hunn,0,180,561.69,402.73,-28.3,20.59,-48.89,adopt_sell
+TEAM,2025-05-02,ADOPT,sell,Director,,1916250,30,208.48,200.32,-3.91,6.34,-10.25,adopt_sell
+TEAM,2025-05-02,ADOPT,sell,Director,,1916250,90,208.48,182.36,-12.53,15.08,-27.61,adopt_sell
+TEAM,2025-05-02,ADOPT,sell,Director,,1916250,180,208.48,118.06,-43.37,20.59,-63.97,adopt_sell
+TEAM,2025-05-02,ADOPT,sell,Director,,12000,30,208.48,200.32,-3.91,6.34,-10.25,adopt_sell
+TEAM,2025-05-02,ADOPT,sell,Director,,12000,90,208.48,182.36,-12.53,15.08,-27.61,adopt_sell
+TEAM,2025-05-02,ADOPT,sell,Director,,12000,180,208.48,118.06,-43.37,20.59,-63.97,adopt_sell
+TEAM,2025-05-02,ADOPT,sell,Chief Revenue Officer,,25857,30,208.48,200.32,-3.91,6.34,-10.25,adopt_sell
+TEAM,2025-05-02,ADOPT,sell,Chief Revenue Officer,,25857,90,208.48,182.36,-12.53,15.08,-27.61,adopt_sell
+TEAM,2025-05-02,ADOPT,sell,Chief Revenue Officer,,25857,180,208.48,118.06,-43.37,20.59,-63.97,adopt_sell
+PCTY,2025-05-02,TERMINATE,sell,director,,0,30,187.33,179.09,-4.4,6.34,-10.74,term_sell
+PCTY,2025-05-02,TERMINATE,sell,director,,0,90,187.33,172.04,-8.16,15.08,-23.25,term_sell
+PCTY,2025-05-02,TERMINATE,sell,director,,0,180,187.33,137.66,-26.51,20.59,-47.11,term_sell
+UZD,2025-05-02,TERMINATE,buy,director,,0,30,21.65,21.74,0.44,6.34,-5.9,term_buy
+UZD,2025-05-02,TERMINATE,buy,director,,0,90,21.65,20.82,-3.82,15.08,-18.91,term_buy
+UZD,2025-05-02,TERMINATE,buy,director,,0,180,21.65,20.16,-6.87,20.59,-27.46,term_buy
+PCOR,2025-05-02,TERMINATE,sell,director,,0,30,64.85,65.65,1.23,6.34,-5.1,term_sell
+PCOR,2025-05-02,TERMINATE,sell,director,,0,90,64.85,70.03,7.99,15.08,-7.1,term_sell
+PCOR,2025-05-02,TERMINATE,sell,director,,0,180,64.85,64.44,-0.63,20.59,-21.23,term_sell
+TWLO,2025-05-02,ADOPT,sell,Chief Executive Officer,Khozema Shipchandler,7000,30,100.11,116.67,16.54,6.34,10.2,adopt_sell
+TWLO,2025-05-02,ADOPT,sell,Chief Executive Officer,Khozema Shipchandler,7000,90,100.11,107.0,6.88,15.08,-8.2,adopt_sell
+TWLO,2025-05-02,ADOPT,sell,Chief Executive Officer,Khozema Shipchandler,7000,180,100.11,119.72,19.59,20.59,-1.01,adopt_sell
+TWLO,2025-05-02,ADOPT,sell,Chief Executive Officer,Khozema Shipchandler,10600,30,100.11,116.67,16.54,6.34,10.2,adopt_sell
+TWLO,2025-05-02,ADOPT,sell,Chief Executive Officer,Khozema Shipchandler,10600,90,100.11,107.0,6.88,15.08,-8.2,adopt_sell
+TWLO,2025-05-02,ADOPT,sell,Chief Executive Officer,Khozema Shipchandler,10600,180,100.11,119.72,19.59,20.59,-1.01,adopt_sell
+AEE,2025-05-05,ADOPT,sell,director,,62686,30,96.75,92.41,-4.49,6.04,-10.52,adopt_sell
+AEE,2025-05-05,ADOPT,sell,director,,62686,90,96.75,99.39,2.73,17.01,-14.28,adopt_sell
+AEE,2025-05-05,ADOPT,sell,director,,62686,180,96.75,103.43,6.9,22.69,-15.79,adopt_sell
+ADUS,2025-05-06,ADOPT,sell,Chief Financial Officer,Poff EVP,0,30,108.62,115.16,6.02,6.91,-0.89,adopt_sell
+ADUS,2025-05-06,ADOPT,sell,Chief Financial Officer,Poff EVP,0,90,108.62,109.27,0.6,18.62,-18.02,adopt_sell
+ADUS,2025-05-06,ADOPT,sell,Chief Financial Officer,Poff EVP,0,180,108.62,110.37,1.61,24.37,-22.76,adopt_sell
+AEP,2025-05-06,ADOPT,sell,Executive Vice President and,David M. Feinberg,8057,30,103.22,98.09,-4.97,6.91,-11.88,adopt_sell
+AEP,2025-05-06,ADOPT,sell,Executive Vice President and,David M. Feinberg,8057,90,103.22,106.62,3.3,18.62,-15.33,adopt_sell
+AEP,2025-05-06,ADOPT,sell,Executive Vice President and,David M. Feinberg,8057,180,103.22,115.42,11.82,24.37,-12.55,adopt_sell
+AEP,2025-05-06,ADOPT,sell,Executive Vice President,Shane Lies,8057,30,103.22,98.09,-4.97,6.91,-11.88,adopt_sell
+AEP,2025-05-06,ADOPT,sell,Executive Vice President,Shane Lies,8057,90,103.22,106.62,3.3,18.62,-15.33,adopt_sell
+AEP,2025-05-06,ADOPT,sell,Executive Vice President,Shane Lies,8057,180,103.22,115.42,11.82,24.37,-12.55,adopt_sell
+AEP,2025-07-30,ADOPT,sell,Executive Vice President and,Kelly J. Ferneau,25000,30,109.77,106.27,-3.19,3.65,-6.84,adopt_sell
+AEP,2025-07-30,ADOPT,sell,Executive Vice President and,Kelly J. Ferneau,25000,90,109.77,113.99,3.84,8.05,-4.2,adopt_sell
+AEP,2025-07-30,ADOPT,sell,Executive Vice President and,Kelly J. Ferneau,25000,180,109.77,132.7,20.88,12.88,8.0,adopt_sell
+ANGI,2025-05-06,TERMINATE,sell,Chief Technology Officer,,1662118,30,11.25,15.04,33.69,6.91,26.77,term_sell
+ANGI,2025-05-06,TERMINATE,sell,Chief Technology Officer,,1662118,90,11.25,17.36,54.31,18.62,35.69,term_sell
+ANGI,2025-05-06,TERMINATE,sell,Chief Technology Officer,,1662118,180,11.25,13.12,16.62,24.37,-7.75,term_sell
+RVLV,2025-05-06,ADOPT,sell,chief financial officer,Jesse Timmermans,127362,30,18.94,20.88,10.24,6.91,3.33,adopt_sell
+RVLV,2025-05-06,ADOPT,sell,chief financial officer,Jesse Timmermans,127362,90,18.94,23.82,25.77,18.62,7.14,adopt_sell
+RVLV,2025-05-06,ADOPT,sell,chief financial officer,Jesse Timmermans,127362,180,18.94,29.99,58.34,24.37,33.97,adopt_sell
+RVLV,2025-08-05,ADOPT,sell,director,,3750125,30,20.7,23.9,15.46,4.97,10.49,adopt_sell
+RVLV,2025-08-05,ADOPT,sell,director,,3750125,90,20.7,27.85,34.54,8.7,25.84,adopt_sell
+RVLV,2025-08-05,ADOPT,sell,director,,3750125,180,20.7,26.45,27.78,13.77,14.0,adopt_sell
+QLYS,2025-05-06,ADOPT,sell,Director,,1168,30,126.82,137.2,8.18,6.91,1.27,adopt_sell
+QLYS,2025-05-06,ADOPT,sell,Director,,1168,90,126.82,132.08,4.15,18.62,-14.48,adopt_sell
+QLYS,2025-05-06,ADOPT,sell,Director,,1168,180,126.82,130.97,3.27,24.37,-21.1,adopt_sell
+QLYS,2025-05-06,ADOPT,sell,Chief Executive Officer,Sumedh S. Thakar,600,30,126.82,137.2,8.18,6.91,1.27,adopt_sell
+QLYS,2025-05-06,ADOPT,sell,Chief Executive Officer,Sumedh S. Thakar,600,90,126.82,132.08,4.15,18.62,-14.48,adopt_sell
+QLYS,2025-05-06,ADOPT,sell,Chief Executive Officer,Sumedh S. Thakar,600,180,126.82,130.97,3.27,24.37,-21.1,adopt_sell
+LFMDP,2025-05-06,ADOPT,sell,Chief Financial Officer,Marc Benathen,200000,30,21.98,22.07,0.38,6.91,-6.53,adopt_sell
+LFMDP,2025-05-06,ADOPT,sell,Chief Financial Officer,Marc Benathen,200000,90,21.98,22.17,0.86,18.62,-17.76,adopt_sell
+LFMDP,2025-05-06,ADOPT,sell,Chief Financial Officer,Marc Benathen,200000,180,21.98,21.96,-0.08,24.37,-24.45,adopt_sell
+LFMDP,2025-08-05,TERMINATE,sell,,,0,30,22.38,22.36,-0.12,4.97,-5.09,term_sell
+LFMDP,2025-08-05,TERMINATE,sell,,,0,90,22.38,20.98,-6.27,8.7,-14.97,term_sell
+LFMDP,2025-08-05,TERMINATE,sell,,,0,180,22.38,24.0,7.22,13.77,-6.55,term_sell
+RIVN,2025-05-06,ADOPT,sell,Chief Executive Officer,,3500000,30,13.5,13.77,2.0,6.91,-4.91,adopt_sell
+RIVN,2025-05-06,ADOPT,sell,Chief Executive Officer,,3500000,90,13.5,13.6,0.74,18.62,-17.88,adopt_sell
+RIVN,2025-05-06,ADOPT,sell,Chief Executive Officer,,3500000,180,13.5,16.32,20.89,24.37,-3.48,adopt_sell
+AIRG,2025-05-07,ADOPT,sell,Director,,91000,30,4.05,3.98,-1.85,6.22,-8.07,adopt_sell
+AIRG,2025-05-07,ADOPT,sell,Director,,91000,90,4.05,4.31,6.29,18.13,-11.84,adopt_sell
+AIRG,2025-05-07,ADOPT,sell,Director,,91000,180,4.05,4.55,12.21,23.89,-11.69,adopt_sell
+BRBS,2025-05-07,TERMINATE,sell,director,,0,30,2.83,2.67,-5.73,6.22,-11.95,term_sell
+BRBS,2025-05-07,TERMINATE,sell,director,,0,90,2.83,3.4,20.34,18.13,2.22,term_sell
+BRBS,2025-05-07,TERMINATE,sell,director,,0,180,2.83,3.71,31.12,23.89,7.22,term_sell
+CDE,2025-05-07,ADOPT,sell,Chairman,Mitchell J. Krebs,200000,30,5.72,8.89,55.32,6.22,49.11,adopt_sell
+CDE,2025-05-07,ADOPT,sell,Chairman,Mitchell J. Krebs,200000,90,5.72,16.91,195.46,18.13,177.34,adopt_sell
+CDE,2025-05-07,ADOPT,sell,Chairman,Mitchell J. Krebs,200000,180,5.72,26.08,355.67,23.89,331.78,adopt_sell
+CDE,2025-05-07,ADOPT,sell,Senior Vice President,Casey M. Nault,200000,30,5.72,8.89,55.32,6.22,49.11,adopt_sell
+CDE,2025-05-07,ADOPT,sell,Senior Vice President,Casey M. Nault,200000,90,5.72,16.91,195.46,18.13,177.34,adopt_sell
+CDE,2025-05-07,ADOPT,sell,Senior Vice President,Casey M. Nault,200000,180,5.72,26.08,355.67,23.89,331.78,adopt_sell
+CDE,2025-08-06,TERMINATE,sell,Chairman,Mitchell J. Krebs,250000,30,9.88,16.26,64.61,4.66,59.95,term_sell
+CDE,2025-08-06,TERMINATE,sell,Chairman,Mitchell J. Krebs,250000,90,9.88,16.89,70.98,7.88,63.1,term_sell
+CDE,2025-08-06,TERMINATE,sell,Chairman,Mitchell J. Krebs,250000,180,9.88,19.29,95.25,13.78,81.46,term_sell
+DDOG,2025-05-07,TERMINATE,sell,Chief Financial Officer,David Obstler,107500,30,106.02,127.5,20.26,6.22,14.04,term_sell
+DDOG,2025-05-07,TERMINATE,sell,Chief Financial Officer,David Obstler,107500,90,106.02,138.65,30.78,18.13,12.65,term_sell
+DDOG,2025-05-07,TERMINATE,sell,Chief Financial Officer,David Obstler,107500,180,106.02,130.13,22.74,23.89,-1.15,term_sell
+ENTG,2025-05-07,TERMINATE,sell,Senior Vice President and,Olivier Blachier,4010,30,78.1,75.14,-3.79,6.22,-10.01,term_sell
+ENTG,2025-05-07,TERMINATE,sell,Senior Vice President and,Olivier Blachier,4010,90,78.1,89.94,15.16,18.13,-2.96,term_sell
+ENTG,2025-05-07,TERMINATE,sell,Senior Vice President and,Olivier Blachier,4010,180,78.1,114.54,46.65,23.89,22.76,term_sell
+FSLY,2025-05-07,ADOPT,sell,Chief Revenue Officer,Scott Lovett,919616,30,6.03,6.76,12.11,6.22,5.89,adopt_sell
+FSLY,2025-05-07,ADOPT,sell,Chief Revenue Officer,Scott Lovett,919616,90,6.03,8.76,45.27,18.13,27.15,adopt_sell
+FSLY,2025-05-07,ADOPT,sell,Chief Revenue Officer,Scott Lovett,919616,180,6.03,9.29,54.06,23.89,30.17,adopt_sell
+MYO,2025-05-07,TERMINATE,sell,Chief Financial Officer,,0,30,4.84,2.42,-50.0,6.22,-56.22,term_sell
+MYO,2025-05-07,TERMINATE,sell,Chief Financial Officer,,0,90,4.84,0.88,-81.84,18.13,-99.96,term_sell
+MYO,2025-05-07,TERMINATE,sell,Chief Financial Officer,,0,180,4.84,0.91,-81.16,23.89,-105.05,term_sell
+MYO,2025-05-07,ADOPT,sell,director,,0,30,4.84,2.42,-50.0,6.22,-56.22,adopt_sell
+MYO,2025-05-07,ADOPT,sell,director,,0,90,4.84,0.88,-81.84,18.13,-99.96,adopt_sell
+MYO,2025-05-07,ADOPT,sell,director,,0,180,4.84,0.91,-81.16,23.89,-105.05,adopt_sell
+PCVX,2025-05-07,TERMINATE,sell,President and Chief Financial Officer,Andrew Guggenhime,146000,30,29.0,32.87,13.34,6.22,7.13,term_sell
+PCVX,2025-05-07,TERMINATE,sell,President and Chief Financial Officer,Andrew Guggenhime,146000,90,29.0,31.0,6.9,18.13,-11.23,term_sell
+PCVX,2025-05-07,TERMINATE,sell,President and Chief Financial Officer,Andrew Guggenhime,146000,180,29.0,52.73,81.83,23.89,57.93,term_sell
+LITE,2025-05-07,ADOPT,sell,Senior Vice President,Jae Kim,20352,30,66.24,89.66,35.36,6.22,29.14,adopt_sell
+LITE,2025-05-07,ADOPT,sell,Senior Vice President,Jae Kim,20352,90,66.24,168.77,154.79,18.13,136.66,adopt_sell
+LITE,2025-05-07,ADOPT,sell,Senior Vice President,Jae Kim,20352,180,66.24,339.19,412.06,23.89,388.17,adopt_sell
+LITE,2025-05-07,ADOPT,sell,President,Wupen Yuen,20352,30,66.24,89.66,35.36,6.22,29.14,adopt_sell
+LITE,2025-05-07,ADOPT,sell,President,Wupen Yuen,20352,90,66.24,168.77,154.79,18.13,136.66,adopt_sell
+LITE,2025-05-07,ADOPT,sell,President,Wupen Yuen,20352,180,66.24,339.19,412.06,23.89,388.17,adopt_sell
+SMG,2025-05-07,TERMINATE,sell,director,,0,30,50.97,59.19,16.13,6.22,9.92,term_sell
+SMG,2025-05-07,TERMINATE,sell,director,,0,90,50.97,58.5,14.78,18.13,-3.34,term_sell
+SMG,2025-05-07,TERMINATE,sell,director,,0,180,50.97,61.45,20.56,23.89,-3.34,term_sell
+XNCR,2025-05-07,TERMINATE,buy,director,,0,30,7.99,8.54,6.95,6.22,0.73,term_buy
+XNCR,2025-05-07,TERMINATE,buy,director,,0,90,7.99,8.49,6.32,18.13,-11.8,term_buy
+XNCR,2025-05-07,TERMINATE,buy,director,,0,180,7.99,12.78,60.05,23.89,36.16,term_buy
+EPAM,2025-05-08,ADOPT,sell,Senior Vice President,Jason Peterson,4200,30,179.71,163.06,-9.26,5.48,-14.75,adopt_sell
+EPAM,2025-05-08,ADOPT,sell,Senior Vice President,Jason Peterson,4200,90,179.71,154.55,-14.0,17.31,-31.31,adopt_sell
+EPAM,2025-05-08,ADOPT,sell,Senior Vice President,Jason Peterson,4200,180,179.71,220.44,22.66,23.66,-1.0,adopt_sell
+EPAM,2025-05-08,ADOPT,sell,President,Balazs Fejes,4200,30,179.71,163.06,-9.26,5.48,-14.75,adopt_sell
+EPAM,2025-05-08,ADOPT,sell,President,Balazs Fejes,4200,90,179.71,154.55,-14.0,17.31,-31.31,adopt_sell
+EPAM,2025-05-08,ADOPT,sell,President,Balazs Fejes,4200,180,179.71,220.44,22.66,23.66,-1.0,adopt_sell
+APT,2025-05-08,TERMINATE,sell,director,,0,30,4.64,4.75,2.37,5.48,-3.11,term_sell
+APT,2025-05-08,TERMINATE,sell,director,,0,90,4.64,4.84,4.31,17.31,-13.0,term_sell
+APT,2025-05-08,TERMINATE,sell,director,,0,180,4.64,4.96,6.9,23.66,-16.77,term_sell
+CF,2025-05-08,ADOPT,sell,Executive Vice President,Bert A. Frost,21003,30,79.15,98.25,24.14,5.48,18.65,adopt_sell
+CF,2025-05-08,ADOPT,sell,Executive Vice President,Bert A. Frost,21003,90,79.15,84.05,6.19,17.31,-11.12,adopt_sell
+CF,2025-05-08,ADOPT,sell,Executive Vice President,Bert A. Frost,21003,180,79.15,90.79,14.71,23.66,-8.95,adopt_sell
+CRBU,2025-05-08,TERMINATE,sell,,,29675,30,0.79,1.34,69.62,5.48,64.14,term_sell
+CRBU,2025-05-08,TERMINATE,sell,,,29675,90,0.79,1.83,131.65,17.31,114.34,term_sell
+CRBU,2025-05-08,TERMINATE,sell,,,29675,180,0.79,1.53,93.67,23.66,70.01,term_sell
+GCMG,2025-05-08,TERMINATE,buy,director,,0,30,11.73,10.98,-6.44,5.48,-11.92,term_buy
+GCMG,2025-05-08,TERMINATE,buy,director,,0,90,11.73,12.54,6.9,17.31,-10.4,term_buy
+GCMG,2025-05-08,TERMINATE,buy,director,,0,180,11.73,11.05,-5.84,23.66,-29.5,term_buy
+ORGO,2025-05-08,ADOPT,sell,director,,827688,30,5.34,3.23,-39.51,5.48,-45.0,adopt_sell
+ORGO,2025-05-08,ADOPT,sell,director,,827688,90,5.34,4.96,-7.12,17.31,-24.42,adopt_sell
+ORGO,2025-05-08,ADOPT,sell,director,,827688,180,5.34,3.95,-26.03,23.66,-49.69,adopt_sell
+SERV,2025-05-08,TERMINATE,sell,Chief Executive Officer,Ali Kashani,600000,30,6.56,10.42,58.84,5.48,53.36,term_sell
+SERV,2025-05-08,TERMINATE,sell,Chief Executive Officer,Ali Kashani,600000,90,6.56,12.21,86.13,17.31,68.82,term_sell
+SERV,2025-05-08,TERMINATE,sell,Chief Executive Officer,Ali Kashani,600000,180,6.56,11.93,81.86,23.66,58.2,term_sell
+WEST,2025-05-08,TERMINATE,sell,director,,30000,30,6.15,5.96,-3.09,5.48,-8.57,term_sell
+WEST,2025-05-08,TERMINATE,sell,director,,30000,90,6.15,5.21,-15.28,17.31,-32.59,term_sell
+WEST,2025-05-08,TERMINATE,sell,director,,30000,180,6.15,4.66,-24.23,23.66,-47.89,term_sell
+RPC,2025-05-08,TERMINATE,buy,director,,0,30,11.49,8.76,-23.71,5.48,-29.19,term_buy
+RPC,2025-05-08,TERMINATE,buy,director,,0,90,11.49,11.8,2.72,17.31,-14.59,term_buy
+RPC,2025-05-08,TERMINATE,buy,director,,0,180,11.49,10.6,-7.73,23.66,-31.39,term_buy
+TSCO,2025-05-08,ADOPT,sell,Director,,92455,30,50.14,51.45,2.61,5.48,-2.87,adopt_sell
+TSCO,2025-05-08,ADOPT,sell,Director,,92455,90,50.14,58.61,16.9,17.31,-0.41,adopt_sell
+TSCO,2025-05-08,ADOPT,sell,Director,,92455,180,50.14,54.87,9.43,23.66,-14.23,adopt_sell
+TSCO,2025-05-08,ADOPT,sell,Executive Vice President,,10345,30,50.14,51.45,2.61,5.48,-2.87,adopt_sell
+TSCO,2025-05-08,ADOPT,sell,Executive Vice President,,10345,90,50.14,58.61,16.9,17.31,-0.41,adopt_sell
+TSCO,2025-05-08,ADOPT,sell,Executive Vice President,,10345,180,50.14,54.87,9.43,23.66,-14.23,adopt_sell
+TSCO,2025-05-08,ADOPT,sell,,,168195,30,50.14,51.45,2.61,5.48,-2.87,adopt_sell
+TSCO,2025-05-08,ADOPT,sell,,,168195,90,50.14,58.61,16.9,17.31,-0.41,adopt_sell
+TSCO,2025-05-08,ADOPT,sell,,,168195,180,50.14,54.87,9.43,23.66,-14.23,adopt_sell
+TSCO,2025-05-08,ADOPT,sell,Senior Vice President,,87250,30,50.14,51.45,2.61,5.48,-2.87,adopt_sell
+TSCO,2025-05-08,ADOPT,sell,Senior Vice President,,87250,90,50.14,58.61,16.9,17.31,-0.41,adopt_sell
+TSCO,2025-05-08,ADOPT,sell,Senior Vice President,,87250,180,50.14,54.87,9.43,23.66,-14.23,adopt_sell
+ZLAB,2025-05-08,TERMINATE,sell,director,,0,30,29.14,34.55,18.57,5.48,13.08,term_sell
+ZLAB,2025-05-08,TERMINATE,sell,director,,0,90,29.14,31.92,9.54,17.31,-7.77,term_sell
+ZLAB,2025-05-08,TERMINATE,sell,director,,0,180,29.14,17.64,-39.46,23.66,-63.13,term_sell
+TSEOF,2025-05-08,ADOPT,sell,Director,Jeffrey Cote,100000,30,2.8,3.72,32.74,5.48,27.26,adopt_sell
+TSEOF,2025-05-08,ADOPT,sell,Director,Jeffrey Cote,100000,90,2.8,2.4,-14.3,17.31,-31.61,adopt_sell
+TSEOF,2025-05-08,ADOPT,sell,Director,Jeffrey Cote,100000,180,2.8,0.49,-82.5,23.66,-106.17,adopt_sell
+CLOV,2025-05-09,ADOPT,sell,Chief Executive Officer,Jamie Reynoso,1725426,30,3.51,2.83,-19.37,6.66,-26.03,adopt_sell
+CLOV,2025-05-09,ADOPT,sell,Chief Executive Officer,Jamie Reynoso,1725426,90,3.51,3.12,-11.11,17.3,-28.41,adopt_sell
+CLOV,2025-05-09,ADOPT,sell,Chief Executive Officer,Jamie Reynoso,1725426,180,3.51,2.49,-29.06,23.82,-52.88,adopt_sell
+GYRE,2025-05-09,TERMINATE,buy,director,,0,30,9.53,7.77,-18.47,6.66,-25.13,term_buy
+GYRE,2025-05-09,TERMINATE,buy,director,,0,90,9.53,7.59,-20.36,17.3,-37.65,term_buy
+GYRE,2025-05-09,TERMINATE,buy,director,,0,180,9.53,7.9,-17.1,23.82,-40.92,term_buy
+OUT,2025-05-09,ADOPT,sell,Executive Vice President,,50000,30,14.02,15.11,7.78,6.66,1.13,adopt_sell
+OUT,2025-05-09,ADOPT,sell,Executive Vice President,,50000,90,14.02,18.13,29.36,17.3,12.07,adopt_sell
+OUT,2025-05-09,ADOPT,sell,Executive Vice President,,50000,180,14.02,23.97,70.98,23.82,47.16,adopt_sell
+BCO,2025-05-12,TERMINATE,sell,President and Chief Executive Officer,Mark Eubanks,6418,30,93.23,87.76,-5.87,4.39,-10.26,term_sell
+BCO,2025-05-12,TERMINATE,sell,President and Chief Executive Officer,Mark Eubanks,6418,90,93.23,113.2,21.42,14.5,6.92,term_sell
+BCO,2025-05-12,TERMINATE,sell,President and Chief Executive Officer,Mark Eubanks,6418,180,93.23,124.11,33.12,20.32,12.8,term_sell
+CFBK,2025-05-12,ADOPT,sell,Chief Executive Officer,,75000,30,23.69,23.29,-1.67,4.39,-6.06,adopt_sell
+CFBK,2025-05-12,ADOPT,sell,Chief Executive Officer,,75000,90,23.69,24.16,2.0,14.5,-12.49,adopt_sell
+CFBK,2025-05-12,ADOPT,sell,Chief Executive Officer,,75000,180,23.69,28.53,20.45,20.32,0.12,adopt_sell
+CHGG,2025-05-12,ADOPT,sell,Chief Executive Officer,Nathan Schultz,27973,30,0.74,1.35,82.43,4.39,78.04,adopt_sell
+CHGG,2025-05-12,ADOPT,sell,Chief Executive Officer,Nathan Schultz,27973,90,0.74,1.65,122.97,14.5,108.48,adopt_sell
+CHGG,2025-05-12,ADOPT,sell,Chief Executive Officer,Nathan Schultz,27973,180,0.74,0.8,8.11,20.32,-12.22,adopt_sell
+RDW,2025-05-12,ADOPT,sell,director,,40000,30,10.56,16.53,56.53,4.39,52.15,adopt_sell
+RDW,2025-05-12,ADOPT,sell,director,,40000,90,10.56,7.95,-24.72,14.5,-39.21,adopt_sell
+RDW,2025-05-12,ADOPT,sell,director,,40000,180,10.56,13.29,25.85,20.32,5.53,adopt_sell
+AIP,2025-05-13,ADOPT,sell,Chief Executive Officer,Charles Janac,186757,30,8.35,9.37,12.22,3.76,8.45,adopt_sell
+AIP,2025-05-13,ADOPT,sell,Chief Executive Officer,Charles Janac,186757,90,8.35,10.44,25.03,14.28,10.75,adopt_sell
+AIP,2025-05-13,ADOPT,sell,Chief Executive Officer,Charles Janac,186757,180,8.35,15.66,87.54,19.3,68.25,adopt_sell
+AIP,2025-05-13,ADOPT,sell,CEO,Charles Janac,840000,30,8.35,9.37,12.22,3.76,8.45,adopt_sell
+AIP,2025-05-13,ADOPT,sell,CEO,Charles Janac,840000,90,8.35,10.44,25.03,14.28,10.75,adopt_sell
+AIP,2025-05-13,ADOPT,sell,CEO,Charles Janac,840000,180,8.35,15.66,87.54,19.3,68.25,adopt_sell
+AIP,2025-05-13,ADOPT,sell,Vice President and,Paul Alpern,840000,30,8.35,9.37,12.22,3.76,8.45,adopt_sell
+AIP,2025-05-13,ADOPT,sell,Vice President and,Paul Alpern,840000,90,8.35,10.44,25.03,14.28,10.75,adopt_sell
+AIP,2025-05-13,ADOPT,sell,Vice President and,Paul Alpern,840000,180,8.35,15.66,87.54,19.3,68.25,adopt_sell
+AIP,2025-05-13,ADOPT,sell,Director,Raman Chitkara,115533,30,8.35,9.37,12.22,3.76,8.45,adopt_sell
+AIP,2025-05-13,ADOPT,sell,Director,Raman Chitkara,115533,90,8.35,10.44,25.03,14.28,10.75,adopt_sell
+AIP,2025-05-13,ADOPT,sell,Director,Raman Chitkara,115533,180,8.35,15.66,87.54,19.3,68.25,adopt_sell
+AIP,2025-08-05,ADOPT,sell,Chief Financial Officer,Nicholas B. Hawkins,97092,30,13.0,9.23,-29.0,4.97,-33.97,adopt_sell
+AIP,2025-08-05,ADOPT,sell,Chief Financial Officer,Nicholas B. Hawkins,97092,90,13.0,15.93,22.54,8.7,13.84,adopt_sell
+AIP,2025-08-05,ADOPT,sell,Chief Financial Officer,Nicholas B. Hawkins,97092,180,13.0,24.31,87.0,13.77,73.23,adopt_sell
+ANTX,2025-05-13,ADOPT,sell,Chief Executive Officer,Eric Easom,20000,30,1.18,1.1,-6.78,3.76,-10.54,adopt_sell
+ANTX,2025-05-13,ADOPT,sell,Chief Executive Officer,Eric Easom,20000,90,1.18,1.34,13.56,14.28,-0.72,adopt_sell
+ANTX,2025-05-13,ADOPT,sell,Chief Executive Officer,Eric Easom,20000,180,1.18,1.13,-4.24,19.3,-23.53,adopt_sell
+CDXS,2025-05-14,ADOPT,sell,Chief Operating Officer,Kevin Norrett,66602,30,2.47,2.52,2.02,4.44,-2.42,adopt_sell
+CDXS,2025-05-14,ADOPT,sell,Chief Operating Officer,Kevin Norrett,66602,90,2.47,2.52,2.02,14.14,-12.11,adopt_sell
+CDXS,2025-05-14,ADOPT,sell,Chief Operating Officer,Kevin Norrett,66602,180,2.47,1.24,-49.8,18.79,-68.59,adopt_sell
+GRAL,2025-05-14,ADOPT,sell,Chief Financial Officer,Aaron Freidin,64000,30,32.89,49.38,50.14,4.44,45.7,adopt_sell
+GRAL,2025-05-14,ADOPT,sell,Chief Financial Officer,Aaron Freidin,64000,90,32.89,44.48,35.24,14.14,21.1,adopt_sell
+GRAL,2025-05-14,ADOPT,sell,Chief Financial Officer,Aaron Freidin,64000,180,32.89,97.82,197.42,18.79,178.63,adopt_sell
+GRAL,2025-05-14,ADOPT,sell,President,Joshua Ofman,92269,30,32.89,49.38,50.14,4.44,45.7,adopt_sell
+GRAL,2025-05-14,ADOPT,sell,President,Joshua Ofman,92269,90,32.89,44.48,35.24,14.14,21.1,adopt_sell
+GRAL,2025-05-14,ADOPT,sell,President,Joshua Ofman,92269,180,32.89,97.82,197.42,18.79,178.63,adopt_sell
+ZNTL,2025-05-14,ADOPT,sell,,,104221,30,1.19,1.26,5.88,4.44,1.44,adopt_sell
+ZNTL,2025-05-14,ADOPT,sell,,,104221,90,1.19,1.52,27.73,14.14,13.59,adopt_sell
+ZNTL,2025-05-14,ADOPT,sell,,,104221,180,1.19,2.43,104.2,18.79,85.41,adopt_sell
+SPAI,2025-05-15,TERMINATE,buy,director,,0,30,2.92,2.67,-8.56,4.45,-13.01,term_buy
+SPAI,2025-05-15,TERMINATE,buy,director,,0,90,2.92,7.14,144.52,13.58,130.94,term_buy
+SPAI,2025-05-15,TERMINATE,buy,director,,0,180,2.92,4.72,61.64,18.8,42.84,term_buy
+WMT,2025-06-06,TERMINATE,sell,President and Chief Executive Officer,Douglas McMillon,233000,30,96.66,94.88,-1.85,5.26,-7.1,term_sell
+WMT,2025-06-06,TERMINATE,sell,President and Chief Executive Officer,Douglas McMillon,233000,90,96.66,106.57,10.25,11.16,-0.91,term_sell
+WMT,2025-06-06,TERMINATE,sell,President and Chief Executive Officer,Douglas McMillon,233000,180,96.66,125.31,29.64,14.89,14.75,term_sell
+DKS,2025-06-09,ADOPT,sell,Executive Vice President and,Navdeep Gupta,26725,30,178.04,210.93,18.48,5.18,13.3,adopt_sell
+DKS,2025-06-09,ADOPT,sell,Executive Vice President and,Navdeep Gupta,26725,90,178.04,226.1,27.0,11.43,15.57,adopt_sell
+DKS,2025-06-09,ADOPT,sell,Executive Vice President and,Navdeep Gupta,26725,180,178.04,213.36,19.84,16.59,3.25,adopt_sell
+GME,2025-06-10,ADOPT,sell,Director,,11719,30,30.15,23.96,-20.53,5.47,-26.0,adopt_sell
+GME,2025-06-10,ADOPT,sell,Director,,11719,90,30.15,23.37,-22.49,11.95,-34.44,adopt_sell
+GME,2025-06-10,ADOPT,sell,Director,,11719,180,30.15,24.1,-20.07,15.29,-35.36,adopt_sell
+GME,2025-06-10,ADOPT,sell,General Counsel,Mark Robinson,11719,30,30.15,23.96,-20.53,5.47,-26.0,adopt_sell
+GME,2025-06-10,ADOPT,sell,General Counsel,Mark Robinson,11719,90,30.15,23.37,-22.49,11.95,-34.44,adopt_sell
+GME,2025-06-10,ADOPT,sell,General Counsel,Mark Robinson,11719,180,30.15,24.1,-20.07,15.29,-35.36,adopt_sell
+LOVE,2025-06-12,TERMINATE,buy,director,,13711,30,16.82,20.31,20.79,5.84,14.95,term_buy
+LOVE,2025-06-12,TERMINATE,buy,director,,13711,90,16.82,14.81,-11.92,11.83,-23.75,term_buy
+LOVE,2025-06-12,TERMINATE,buy,director,,13711,180,16.82,12.75,-24.17,14.68,-38.85,term_buy
+LOVE,2025-06-12,TERMINATE,buy,director,,630698,30,16.82,20.31,20.79,5.84,14.95,term_buy
+LOVE,2025-06-12,TERMINATE,buy,director,,630698,90,16.82,14.81,-11.92,11.83,-23.75,term_buy
+LOVE,2025-06-12,TERMINATE,buy,director,,630698,180,16.82,12.75,-24.17,14.68,-38.85,term_buy
+LOVE,2025-06-12,ADOPT,sell,Director,,630698,30,16.82,20.31,20.79,5.84,14.95,adopt_sell
+LOVE,2025-06-12,ADOPT,sell,Director,,630698,90,16.82,14.81,-11.92,11.83,-23.75,adopt_sell
+LOVE,2025-06-12,ADOPT,sell,Director,,630698,180,16.82,12.75,-24.17,14.68,-38.85,adopt_sell
+PENG,2025-07-08,ADOPT,sell,Executive Vice President,Jack Pacheco,63447,30,21.19,23.26,9.77,2.86,6.9,adopt_sell
+PENG,2025-07-08,ADOPT,sell,Executive Vice President,Jack Pacheco,63447,90,21.19,18.56,-12.41,7.6,-20.02,adopt_sell
+PENG,2025-07-08,ADOPT,sell,Executive Vice President,Jack Pacheco,63447,180,21.19,17.66,-16.66,4.87,-21.53,adopt_sell
+TSLA,2025-07-24,TERMINATE,sell,director,,240000,30,305.3,350.84,14.92,2.02,12.9,term_sell
+TSLA,2025-07-24,TERMINATE,sell,director,,240000,90,305.3,430.14,40.89,7.52,33.37,term_sell
+TSLA,2025-07-24,TERMINATE,sell,director,,240000,180,305.3,352.42,15.43,9.06,6.37,term_sell
+TSLA,2025-07-24,ADOPT,sell,director,,240000,30,305.3,350.84,14.92,2.02,12.9,adopt_sell
+TSLA,2025-07-24,ADOPT,sell,director,,240000,90,305.3,430.14,40.89,7.52,33.37,adopt_sell
+TSLA,2025-07-24,ADOPT,sell,director,,240000,180,305.3,352.42,15.43,9.06,6.37,adopt_sell
+QS,2025-07-25,ADOPT,sell,Chief Technology Officer,Dr. Timothy Holme,2714753,30,11.97,9.49,-20.72,1.84,-22.56,adopt_sell
+QS,2025-07-25,ADOPT,sell,Chief Technology Officer,Dr. Timothy Holme,2714753,90,11.97,12.17,1.67,7.27,-5.6,adopt_sell
+QS,2025-07-25,ADOPT,sell,Chief Technology Officer,Dr. Timothy Holme,2714753,180,11.97,6.44,-46.2,8.6,-54.8,adopt_sell
+QS,2025-07-25,ADOPT,sell,Chief Financial Officer,Kevin Hettrich,2714753,30,11.97,9.49,-20.72,1.84,-22.56,adopt_sell
+QS,2025-07-25,ADOPT,sell,Chief Financial Officer,Kevin Hettrich,2714753,90,11.97,12.17,1.67,7.27,-5.6,adopt_sell
+QS,2025-07-25,ADOPT,sell,Chief Financial Officer,Kevin Hettrich,2714753,180,11.97,6.44,-46.2,8.6,-54.8,adopt_sell
+QS,2025-07-25,ADOPT,sell,Director,JB Straubel,117600,30,11.97,9.49,-20.72,1.84,-22.56,adopt_sell
+QS,2025-07-25,ADOPT,sell,Director,JB Straubel,117600,90,11.97,12.17,1.67,7.27,-5.6,adopt_sell
+QS,2025-07-25,ADOPT,sell,Director,JB Straubel,117600,180,11.97,6.44,-46.2,8.6,-54.8,adopt_sell
+FCFS,2025-07-28,TERMINATE,sell,Executive Vice President and,Douglas Orr,44000,30,118.91,145.48,22.35,2.1,20.24,term_sell
+FCFS,2025-07-28,TERMINATE,sell,Executive Vice President and,Douglas Orr,44000,90,118.91,153.29,28.92,7.95,20.97,term_sell
+FCFS,2025-07-28,TERMINATE,sell,Executive Vice President and,Douglas Orr,44000,180,118.91,202.23,70.07,10.82,59.25,term_sell
+ALKS,2025-07-29,ADOPT,sell,director,,0,30,27.0,26.93,-0.26,2.67,-2.93,adopt_sell
+ALKS,2025-07-29,ADOPT,sell,director,,0,90,27.0,29.41,8.93,7.91,1.01,adopt_sell
+ALKS,2025-07-29,ADOPT,sell,director,,0,180,27.0,33.77,25.07,11.39,13.68,adopt_sell
+XPRO,2025-07-29,ADOPT,sell,Director,,0,30,11.89,12.27,3.2,2.67,0.53,adopt_sell
+XPRO,2025-07-29,ADOPT,sell,Director,,0,90,11.89,14.49,21.87,7.91,13.95,adopt_sell
+XPRO,2025-07-29,ADOPT,sell,Director,,0,180,11.89,16.1,35.41,11.39,24.02,adopt_sell
+ALL,2025-07-30,ADOPT,sell,Chairman of the Board,Thomas J. Wilson,48400,30,188.49,199.45,5.82,3.65,2.17,adopt_sell
+ALL,2025-07-30,ADOPT,sell,Chairman of the Board,Thomas J. Wilson,48400,90,188.49,198.81,5.48,8.05,-2.57,adopt_sell
+ALL,2025-07-30,ADOPT,sell,Chairman of the Board,Thomas J. Wilson,48400,180,188.49,215.03,14.08,12.88,1.2,adopt_sell
+QCOM,2025-07-30,ADOPT,sell,President and Chief Executive Officer,Cristiano Amon,150000,30,155.78,159.08,2.12,3.65,-1.53,adopt_sell
+QCOM,2025-07-30,ADOPT,sell,President and Chief Executive Officer,Cristiano Amon,150000,90,155.78,173.55,11.41,8.05,3.36,adopt_sell
+QCOM,2025-07-30,ADOPT,sell,President and Chief Executive Officer,Cristiano Amon,150000,180,155.78,135.7,-12.89,12.88,-25.77,adopt_sell
+APG,2025-07-31,ADOPT,sell,director,Jim Lillie,759000,30,36.07,34.88,-3.3,4.01,-7.31,adopt_sell
+APG,2025-07-31,ADOPT,sell,director,Jim Lillie,759000,90,36.07,38.9,7.85,8.46,-0.61,adopt_sell
+APG,2025-07-31,ADOPT,sell,director,Jim Lillie,759000,180,36.07,48.72,35.07,13.08,21.99,adopt_sell
+APG,2025-07-31,ADOPT,sell,director,Jim Lillie,2700000,30,36.07,34.88,-3.3,4.01,-7.31,adopt_sell
+APG,2025-07-31,ADOPT,sell,director,Jim Lillie,2700000,90,36.07,38.9,7.85,8.46,-0.61,adopt_sell
+APG,2025-07-31,ADOPT,sell,director,Jim Lillie,2700000,180,36.07,48.72,35.07,13.08,21.99,adopt_sell
+IR,2025-07-31,ADOPT,sell,Chairman,,496746,30,84.55,78.73,-6.88,4.01,-10.88,adopt_sell
+IR,2025-07-31,ADOPT,sell,Chairman,,496746,90,84.55,79.27,-6.24,8.46,-14.69,adopt_sell
+IR,2025-07-31,ADOPT,sell,Chairman,,496746,180,84.55,85.99,1.7,13.08,-11.37,adopt_sell
+RMNI,2025-07-31,ADOPT,sell,Executive Vice President,,205377,30,4.8,4.51,-6.04,4.01,-10.05,adopt_sell
+RMNI,2025-07-31,ADOPT,sell,Executive Vice President,,205377,90,4.8,4.07,-15.31,8.46,-23.77,adopt_sell
+RMNI,2025-07-31,ADOPT,sell,Executive Vice President,,205377,180,4.8,3.74,-22.08,13.08,-35.16,adopt_sell
+AVTR,2025-08-01,ADOPT,sell,Director,Michael Stubblefield,906204,30,11.36,12.39,9.07,6.3,2.76,adopt_sell
+AVTR,2025-08-01,ADOPT,sell,Director,Michael Stubblefield,906204,90,11.36,10.63,-6.43,10.17,-16.59,adopt_sell
+AVTR,2025-08-01,ADOPT,sell,Director,Michael Stubblefield,906204,180,11.36,8.5,-25.18,14.96,-40.14,adopt_sell
+CL,2025-08-01,ADOPT,sell,Chief Legal Officer,,6000,30,81.94,80.59,-1.65,6.3,-7.96,adopt_sell
+CL,2025-08-01,ADOPT,sell,Chief Legal Officer,,6000,90,81.94,76.04,-7.2,10.17,-17.37,adopt_sell
+CL,2025-08-01,ADOPT,sell,Chief Legal Officer,,6000,180,81.94,83.53,1.94,14.96,-13.02,adopt_sell
+SYK,2025-08-01,ADOPT,sell,Vice President,Kathryn Fink,16132,30,374.98,374.31,-0.18,6.3,-6.48,adopt_sell
+SYK,2025-08-01,ADOPT,sell,Vice President,Kathryn Fink,16132,90,374.98,347.42,-7.35,10.17,-17.52,adopt_sell
+SYK,2025-08-01,ADOPT,sell,Vice President,Kathryn Fink,16132,180,374.98,338.34,-9.77,14.96,-24.73,adopt_sell
+CRSP,2025-08-04,ADOPT,sell,director,,0,30,59.59,61.19,2.69,4.57,-1.88,adopt_sell
+CRSP,2025-08-04,ADOPT,sell,director,,0,90,59.59,56.68,-4.88,8.31,-13.2,adopt_sell
+CRSP,2025-08-04,ADOPT,sell,director,,0,180,59.59,56.42,-5.32,13.64,-18.96,adopt_sell
+VVX,2025-08-04,ADOPT,buy,,,7000,30,48.5,56.62,16.74,4.57,12.17,adopt_buy
+VVX,2025-08-04,ADOPT,buy,,,7000,90,48.5,54.7,12.78,8.31,4.47,adopt_buy
+VVX,2025-08-04,ADOPT,buy,,,7000,180,48.5,66.13,36.35,13.64,22.71,adopt_buy
+AMWL,2025-08-05,ADOPT,sell,director,,13593,30,8.48,6.49,-23.47,4.97,-28.44,adopt_sell
+AMWL,2025-08-05,ADOPT,sell,director,,13593,90,8.48,4.7,-44.58,8.7,-53.28,adopt_sell
+AMWL,2025-08-05,ADOPT,sell,director,,13593,180,8.48,6.1,-28.07,13.77,-41.84,adopt_sell
+LTH,2025-08-05,ADOPT,sell,Executive Vice President,,1170345,30,25.83,27.81,7.67,4.97,2.7,adopt_sell
+LTH,2025-08-05,ADOPT,sell,Executive Vice President,,1170345,90,25.83,25.8,-0.12,8.7,-8.82,adopt_sell
+LTH,2025-08-05,ADOPT,sell,Executive Vice President,,1170345,180,25.83,27.17,5.19,13.77,-8.59,adopt_sell
+LCID,2025-08-05,TERMINATE,buy,director,,0,30,24.2,20.36,-15.87,4.97,-20.84,term_buy
+LCID,2025-08-05,TERMINATE,buy,director,,0,90,24.2,11.81,-51.2,8.7,-59.9,term_buy
+LCID,2025-08-05,TERMINATE,buy,director,,0,180,24.2,6.27,-74.09,13.77,-87.86,term_buy
+CAT,2025-08-06,ADOPT,buy,Executive Chairman of the Board,Umpleby III,58000,30,424.69,463.65,9.17,4.66,4.52,adopt_buy
+CAT,2025-08-06,ADOPT,buy,Executive Chairman of the Board,Umpleby III,58000,90,424.69,587.27,38.28,7.88,30.4,adopt_buy
+CAT,2025-08-06,ADOPT,buy,Executive Chairman of the Board,Umpleby III,58000,180,424.69,830.79,95.62,13.78,81.84,adopt_buy
+CURI,2025-08-06,TERMINATE,sell,Chief Financial Officer,,90052,30,3.89,4.6,18.1,4.66,13.44,term_sell
+CURI,2025-08-06,TERMINATE,sell,Chief Financial Officer,,90052,90,3.89,3.97,2.06,7.88,-5.82,term_sell
+CURI,2025-08-06,TERMINATE,sell,Chief Financial Officer,,90052,180,3.89,3.27,-15.97,13.78,-29.75,term_sell
+DIS,2025-08-06,ADOPT,sell,Chief Executive Officer,,0,30,114.4,114.09,-0.27,4.66,-4.93,adopt_sell
+DIS,2025-08-06,ADOPT,sell,Chief Executive Officer,,0,90,114.4,110.49,-3.41,7.88,-11.29,adopt_sell
+DIS,2025-08-06,ADOPT,sell,Chief Executive Officer,,0,180,114.4,102.6,-10.31,13.78,-24.09,adopt_sell
+ECPG,2025-08-06,ADOPT,sell,President,John Yung,6000,30,37.43,46.09,23.14,4.66,18.48,adopt_sell
+ECPG,2025-08-06,ADOPT,sell,President,John Yung,6000,90,37.43,53.71,43.49,7.88,35.62,adopt_sell
+ECPG,2025-08-06,ADOPT,sell,President,John Yung,6000,180,37.43,83.73,123.7,13.78,109.91,adopt_sell

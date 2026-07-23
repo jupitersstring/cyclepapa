@@ -1,0 +1,9 @@
+# Pinned to the versions the pipeline was validated against
+# (2026-06-10). yfinance schema changes have historically broken
+# get_shares_full / .info consumers -- upgrade deliberately, then
+# run tests/run_all.sh.
+beautifulsoup4==4.14.3
+numpy==2.4.6
+pandas==3.0.3
+requests==2.33.1
+yfinance==1.4.1

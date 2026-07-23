@@ -1,0 +1,104 @@
+{
+ "HFFG": {
+  "ticker": "HFFG",
+  "accession": "0001680873-26-000021",
+  "filing_date": "2026-04-24",
+  "has_psu_program": true,
+  "psu_core": 52.0,
+  "pattern_match": 44.0,
+  "freshness": 1.0,
+  "gov_score": 15.0,
+  "gov_reasons": [
+   "double-trigger only",
+   "3y vesting",
+   "clawback strengthened"
+  ],
+  "pattern_reasons": [
+   "3-tranche price ladder $4-$8",
+   "top hurdle $8 = 4.3x current",
+   "double-trigger CIC",
+   "front-loaded grant"
+  ],
+  "n_fwd_cond": 1,
+  "n_retro_cond": 0,
+  "cond_cats": [
+   "revenue_dollar_target"
+  ],
+  "fwd_snippets": [
+   "vest at 100%, the Company must have achieved a revenue of $1.232 billion",
+   "vest at 100%, the Company must achieve a revenue of $1.281 billion",
+   "vest at 100%, the Company must achieve a revenue of $1.319 billion"
+  ],
+  "per_share_metrics": [
+   "tsr"
+  ],
+  "aggregate_metrics": [
+   "market_cap",
+   "absolute_ebitda",
+   "absolute_net_income",
+   "absolute_op_income"
+  ],
+  "psu_pct_lti": 50,
+  "say_on_pay_pct": 87.0,
+  "double_trigger": true,
+  "single_trigger": false,
+  "plan_deltas": [
+   "clawback_strengthened"
+  ],
+  "stock_price_hurdles": [
+   4.0,
+   6.0,
+   8.0
+  ],
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "EXFY": {
+  "ticker": "EXFY",
+  "accession": "0001476840-26-000020",
+  "filing_date": "2026-04-10",
+  "has_psu_program": false,
+  "_complete": true,
+  "_version": "proxy-v1"
+ },
+ "GETY": {
+  "ticker": "GETY",
+  "accession": "0001628280-25-035585",
+  "filing_date": "2025-07-22",
+  "has_psu_program": true,
+  "psu_core": 6.0,
+  "pattern_match": 10.0,
+  "freshness": 0.6,
+  "gov_score": 4.0,
+  "gov_reasons": [
+   "4y vesting"
+  ],
+  "pattern_reasons": [
+   "filtered 2 implausible hurdles (>8x current)",
+   "4-tranche price ladder $1-$3",
+   "top hurdle $3 = 4.2x current",
+   "discretionary language (gameable)"
+  ],
+  "n_fwd_cond": 0,
+  "n_retro_cond": 0,
+  "cond_cats": [],
+  "fwd_snippets": [],
+  "per_share_metrics": [],
+  "aggregate_metrics": [],
+  "psu_pct_lti": null,
+  "say_on_pay_pct": null,
+  "double_trigger": false,
+  "single_trigger": false,
+  "plan_deltas": [],
+  "stock_price_hurdles": [
+   1.0,
+   2.0,
+   2.16,
+   3.0,
+   550.0,
+   780.0
+  ],
+  "_complete": true,
+  "_version": "proxy-v1"
+ }
+}
