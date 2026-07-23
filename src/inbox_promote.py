@@ -128,6 +128,7 @@ PROMOTE_TIER_S_TIGHT = {                  # tier_s sub-queries that promote
     "distressed_13d", "distressed_13g",
     # ---- Court-side emergence + going-concern recovery ----
     "plan_confirmed", "going_concern_lifted",
+    "equity_committee", "plan_competition",   # the Hertz preconditions
     # ---- Cross-source corroboration (corroborate.py) ----
     "corroborated_multi",
 }

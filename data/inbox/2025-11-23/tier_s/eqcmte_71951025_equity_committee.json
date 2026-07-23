@@ -1,0 +1,18 @@
+{
+  "accession": "71951025",
+  "cik": "",
+  "fetched_at": "2026-07-23T10:21:01.354936Z",
+  "filed": "2025-11-23",
+  "form": "deb",
+  "form_code": "RECAP-docket",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Clearside Biomedical, Inc.",
+  "precise_match": true,
+  "query_label": "tier_s.equity_committee",
+  "query_note": "OFFICIAL EQUITY COMMITTEE appointed \u2014 the court signaling the estate may be solvent (the GGP/Hertz precondition). In-case old common is only investable when this (or a plan auction) is present.",
+  "source": "CourtListener-eqcommittee",
+  "ticker": "",
+  "tier": "tier_s",
+  "url": "https://www.courtlistener.com/docket/71951025/clearside-biomedical-inc/"
+}

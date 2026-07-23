@@ -137,6 +137,61 @@ def _shares(cik: int) -> float | None:
     return _xbrl(cik, "EntityCommonStockSharesOutstanding", tax="dei")
 
 
+def _xbrl_series(cik: int, concept: str, tax: str = "us-gaap",
+                 n: int = 8) -> list[float]:
+    """Last n ANNUAL values of a concept, oldest→newest ([] on missing).
+    Powers the case-study cyclical lenses: normalized (mid-cycle) EBIT and
+    the residual-leverage trajectory. Missing data yields [] — callers treat
+    absence as neutral, never a penalty."""
+    url = SEC_CONCEPT.format(cik=cik, tax=tax, concept=concept)
+    try:
+        r = requests.get(url, headers=UA, timeout=20)
+        if r.status_code != 200:
+            return []
+        units = r.json().get("units", {})
+        vals = units.get("USD") or next(iter(units.values()), [])
+        anns = [u for u in vals if u.get("form", "").startswith("10-K")]
+        if not anns:
+            return []
+        by_end: dict[str, float] = {}
+        for u in sorted(anns, key=lambda u: u.get("filed", "")):
+            try:
+                by_end[u.get("end", "")] = float(u["val"])
+            except (ValueError, KeyError):
+                continue
+        return [by_end[k] for k in sorted(by_end)][-n:]
+    except (requests.RequestException, ValueError, KeyError):
+        return []
+
+
+def cyclical_context(cik: int, current_ebit: float | None) -> list[str]:
+    """Case-study lenses A3/A4 as INFORMATIONAL notes (no score impact):
+    - A3 normalized EBIT: trough-EBIT/EV missed every 2021 driller winner —
+      when current EBIT sits far below its multi-year median, say so, so a
+      'weak' EBIT-yield is read as cycle position, not just poor quality.
+    - A4 residual leverage: Ultra Petroleum kept ~$2bn debt through its 2017
+      plan and refiled in 2020 — when liabilities barely fell vs their own
+      history, flag the Chapter-22 precursor."""
+    notes: list[str] = []
+    ebits = _xbrl_series(cik, "OperatingIncomeLoss")
+    if current_ebit is not None and len(ebits) >= 4:
+        import statistics as _st
+        mid = _st.median(ebits)
+        if mid > 0 and current_ebit < 0.5 * mid:
+            notes.append(f"⚑ trough EBIT: current ${current_ebit/1e6:.0f}M "
+                         f"vs mid-cycle ${mid/1e6:.0f}M — cyclical low, "
+                         f"normalized yield likely understated")
+    liabs = _xbrl_series(cik, "Liabilities")
+    if len(liabs) >= 3:
+        peak = max(liabs[:-1])
+        if peak > 0 and liabs[-1] > 0.85 * peak:
+            notes.append(f"⚑ residual leverage: liabilities "
+                         f"${liabs[-1]/1e9:.1f}bn ≈ pre-restructuring peak "
+                         f"${peak/1e9:.1f}bn — Ultra-class Chapter-22 "
+                         f"precursor, verify the plan actually de-levered")
+    return notes
+
+
 _QUOTE_CACHE: dict[str, dict] = {}
 
 
@@ -285,6 +340,10 @@ def assembly_score(rec: dict, ey: dict, is_ch22: bool) -> dict:
     if comps["economic_distress"] and not comps["financial_distress"]:
         gate_ok = False
         notes.append("⚠ economic/secular distress signal — moat-gate RED")
+    # Case-study cyclical lenses (A3 trough-EBIT context, A4 residual-
+    # leverage precursor) — informational flags only, no score impact.
+    if rec.get("cik"):
+        notes += cyclical_context(int(rec["cik"]), ey.get("ebit"))
     total = val * 2 + comp_score
     return {"score": round(total, 1), "gate_ok": gate_ok,
             "tier": ey["tier"], "notes": "; ".join(notes)}

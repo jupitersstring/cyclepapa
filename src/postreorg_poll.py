@@ -156,6 +156,10 @@ def normalize_hit(label: str, tier: str, phrase: str, hit: dict,
         "matched_phrase": phrase.strip('"'),
         "item_1_03":     has_103,
         "pre_emergence": pre_emergence,
+        # S-1/424 with emergence language = a reorganized private company
+        # coming (back) to market — the Warrior Met path (bankruptcy 2016 →
+        # IPO 2017 → ~32% CAGR). Flagged so the funnel can prioritize it.
+        "post_reorg_ipo": (src.get("form") or "").startswith(("S-1", "424")),
         "cik":           cik,
         "ticker":        ticker,
         "isin":          None,

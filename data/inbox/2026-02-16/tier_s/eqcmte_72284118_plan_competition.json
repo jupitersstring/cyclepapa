@@ -1,0 +1,18 @@
+{
+  "accession": "72284118",
+  "cik": "",
+  "fetched_at": "2026-07-23T10:21:01.354936Z",
+  "filed": "2026-02-16",
+  "form": "flsb",
+  "form_code": "RECAP-docket",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Bloom Hotels 6060, LLC",
+  "precise_match": false,
+  "query_label": "tier_s.plan_competition",
+  "query_note": "COMPETING PLANS on the docket \u2014 a plan auction in the making; competition among sponsors raises every class's recovery (Hertz).",
+  "source": "CourtListener-eqcommittee",
+  "ticker": "",
+  "tier": "tier_s",
+  "url": "https://www.courtlistener.com/docket/72284118/bloom-hotels-6060-llc/"
+}

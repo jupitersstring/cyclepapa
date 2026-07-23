@@ -1,0 +1,18 @@
+{
+  "accession": "71648721",
+  "cik": "",
+  "fetched_at": "2026-07-23T10:21:01.354936Z",
+  "filed": "2025-10-14",
+  "form": "mdb",
+  "form_code": "RECAP-docket",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "5410 30th Street DC LLC",
+  "precise_match": false,
+  "query_label": "tier_s.plan_competition",
+  "query_note": "COMPETING PLANS on the docket \u2014 a plan auction in the making; competition among sponsors raises every class's recovery (Hertz).",
+  "source": "CourtListener-eqcommittee",
+  "ticker": "",
+  "tier": "tier_s",
+  "url": "https://www.courtlistener.com/docket/71648721/5410-30th-street-dc-llc/"
+}

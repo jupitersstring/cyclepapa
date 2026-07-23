@@ -93,6 +93,12 @@ def is_commercial(case_name: str) -> bool:
     commercial ones (which are the special-situations universe)."""
     if not case_name:
         return False
+    # A corporate-form token anywhere wins outright: "QVC Group, Inc." /
+    # "Spirit Aviation Holdings, Inc." carry a comma before the suffix, and
+    # the comma heuristic below was silently dropping every such name (the
+    # framework's classic over-broad-filter failure, here since day one).
+    if _COMMERCIAL_TOKENS.search(case_name):
+        return True
     # Individual-filer name patterns to drop:
     #   "Last, First [Middle]"
     #   "First Last and Spouse Name"
@@ -101,7 +107,7 @@ def is_commercial(case_name: str) -> bool:
         return False
     if " and " in case_name.lower() and len(case_name) < 70:
         return False
-    return bool(_COMMERCIAL_TOKENS.search(case_name))
+    return False
 
 
 def collapse_joint_filings(records: list[dict]) -> list[dict]:

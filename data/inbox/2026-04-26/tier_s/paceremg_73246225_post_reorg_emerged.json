@@ -1,17 +1,17 @@
 {
-  "accession": "73298209",
+  "accession": "73246225",
   "cik": "",
   "fetched_at": "2026-07-23T10:21:07.246672Z",
-  "filed": "2026-05-05",
-  "form": "United States Bankruptcy Court, E.D. New York",
+  "filed": "2026-04-26",
+  "form": "United States Bankruptcy Court, D. Delaware",
   "form_code": "RECAP-docket",
   "isin": null,
   "jurisdiction": "US",
-  "name": "590-600 Realty Corp.",
+  "name": "Impac Mortgage Holdings, Inc.",
   "query_label": "tier_s.post_reorg_emerged",
   "query_note": "Court NOTICE OF EFFECTIVE DATE \u2014 the plan of reorganization has become effective: the exact, dated emergence moment on the bankruptcy docket.",
   "source": "CourtListener-emergence",
   "ticker": "",
   "tier": "tier_s",
-  "url": "https://www.courtlistener.com/docket/73298209/590-600-realty-corp/"
+  "url": "https://www.courtlistener.com/docket/73246225/impac-mortgage-holdings-inc/"
 }

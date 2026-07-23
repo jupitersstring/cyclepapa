@@ -1,4 +1,4 @@
-.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll hkex-poll sgx-poll euronext-poll jse-poll distressed-13d-poll pacer-emergence-poll going-concern-poll poll-all security-master source-health corroborate reconcile postreorg-score postreorg-verify emergence-master db listed-equity-screen waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
+.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll hkex-poll sgx-poll euronext-poll jse-poll distressed-13d-poll pacer-emergence-poll going-concern-poll equity-committee-poll nol-shells cohort-lens poll-all security-master source-health corroborate reconcile postreorg-score postreorg-verify emergence-master db listed-equity-screen waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
 
 help:
 	@echo "Targets:"
@@ -176,6 +176,21 @@ pacer-emergence-poll: audit
 # slow to re-rate). --include-flags also polls the distress side.
 going-concern-poll: audit
 	python3 -m src.going_concern_poll --days-back 120
+
+# Equity-committee + plan-competition tracker (the Hertz preconditions:
+# the ONLY conditions under which in-case OLD common is investable).
+equity-committee-poll: audit
+	python3 -m src.equity_committee_poll --days-back 365
+
+# NOL-shell registry — WMIH->Mr Cooper playbook: post-reorgs whose tax
+# attributes are a material fraction of market cap. Network-bound.
+nol-shells: audit
+	python3 -m src.nol_shell_scan
+
+# Cohort / capacity-exit lens — industry restructuring waves + the
+# second-vintage rule from our own inbox record. Network-bound (SIC).
+cohort-lens: audit
+	python3 -m src.cohort_lens
 
 # HKEX (Hong Kong) special-situations poller — resumption-of-trading,
 # scheme/restructuring, privatisation, suspension, liquidation via the free

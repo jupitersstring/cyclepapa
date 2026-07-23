@@ -1,0 +1,18 @@
+{
+  "accession": "72035924",
+  "cik": "",
+  "fetched_at": "2026-07-23T10:21:01.354936Z",
+  "filed": "2025-12-15",
+  "form": "txsb",
+  "form_code": "RECAP-docket",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Luminar Technologies, Inc. and Official Committee of Unsecured Creditors",
+  "precise_match": false,
+  "query_label": "tier_s.equity_committee",
+  "query_note": "Equity-committee reference on the docket (recall net \u2014 verify an OFFICIAL committee was actually appointed).",
+  "source": "CourtListener-eqcommittee",
+  "ticker": "",
+  "tier": "tier_s",
+  "url": "https://www.courtlistener.com/docket/72035924/luminar-technologies-inc-and-official-committee-of-unsecured-creditors/"
+}
