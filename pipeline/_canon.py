@@ -16,7 +16,7 @@ import re
 
 def canon(fund):
     c = re.sub(r"\(.*?(\)|$)", "", fund or "")   # parenthetical, incl. unclosed at end
-    c = re.split(r"\s{2,}", c)[0]                # drop "  Manager"-style suffixes
+    c = re.split(r"\s{2,}|\s/\s", c)[0]         # drop "  Manager" / " / BLR Partners"-style suffixes
     c = re.sub(r"\s+", " ", c).strip().rstrip(",&").strip().upper()
     c = re.sub(r"\b(LLC|LP|L\.P\.|LLP|LTD|INC|CORP)\.?$", "", c).strip()
     return c or (fund or "").upper()

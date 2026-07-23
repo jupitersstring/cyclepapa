@@ -218,7 +218,7 @@ LEGEND = [
         ("Section 5", "Researcher-flagged position (letters, interviews, primary research) without a 13F section."),
         ("ST  (prefix)", "Within-style: counted only across funds in THIS macro-style. e.g. ST S3 = funds in this style initiating a new major position; ST Holders = holders within the style."),
         ("Sub (prefix)", "Within sub-group: counted only across funds in this sub-group tier (e.g. Sub Holders)."),
-        ("Uni (prefix)", "Universe-wide: counted across all 445 funds (e.g. Uni 13F)."),
+        ("Uni (prefix)", "Universe-wide: counted across every tracked fund (e.g. Uni 13F)."),
     ]),
     ("Smart money & conviction", [
         ("13F", "Number of distinct 13F filers (funds) holding the name."),

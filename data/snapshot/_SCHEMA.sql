@@ -146,30 +146,11 @@ CREATE TABLE catalysts_8k (
       PRIMARY KEY (cik, accession));
 CREATE INDEX idx_8k_ticker ON catalysts_8k(ticker);
 CREATE INDEX idx_8k_filed ON catalysts_8k(filed);
-CREATE UNIQUE INDEX ux_form4_txn
-        ON form4_transactions(accession, owner, code, trans_date, shares, COALESCE(price,-1));
 CREATE TABLE ticker_yf ("ticker" TEXT PRIMARY KEY, "mcap_m" REAL, "enterprise_value_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "pe_ttm" REAL, "fwd_pe" REAL, "ev_revenue" REAL, "peg" REAL, "price" REAL, "currency" TEXT, "shares_out_m" REAL, "ebitda_m" REAL, "total_debt_m" REAL, "total_cash_m" REAL, "profit_margin" REAL, "rev_growth" REAL, "sector" TEXT, "industry" TEXT, "asof" TEXT, "business_summary" TEXT, "long_name" TEXT);
 CREATE TABLE ticker_meta ("ticker" TEXT PRIMARY KEY, "name" TEXT, "exchange" TEXT, "market" TEXT, "sector" TEXT, "industry" TEXT, "mcap_m" REAL, "price" REAL, "price_currency" TEXT, "adv_3m_usd_m" REAL, "shares_out_m" REAL, "pe_ttm" TEXT, "fwd_pe" TEXT, "beta" TEXT, "asof" TEXT, "sic" INTEGER, "sic_description" TEXT);
 CREATE TABLE yf_dead (ticker TEXT PRIMARY KEY, asof TEXT);
 CREATE INDEX idx_yf_evebitda ON ticker_yf(ev_ebitda);
 CREATE INDEX idx_yf_pb ON ticker_yf(pb_ratio);
-CREATE TABLE pb_people (
-      person_id TEXT, first_name TEXT, last_name TEXT, full_name TEXT,
-      primary_company TEXT, primary_company_type TEXT, primary_position TEXT,
-      is_former INTEGER, board_seats TEXT, roles TEXT,
-      location TEXT, country TEXT, biography TEXT,
-      theme TEXT, company_website TEXT, is_principal INTEGER DEFAULT 0);
-CREATE INDEX idx_pbp_name ON pb_people(full_name);
-CREATE INDEX idx_pbp_company ON pb_people(primary_company);
-CREATE INDEX idx_pbp_theme ON pb_people(theme);
-CREATE TABLE pb_affiliation (
-      full_name TEXT, company TEXT, company_type TEXT, position TEXT,
-      is_former INTEGER, theme TEXT, ticker TEXT, is_principal INTEGER DEFAULT 0,
-      role_class TEXT);
-CREATE INDEX idx_pba_company ON pb_affiliation(company);
-CREATE INDEX idx_pba_ticker ON pb_affiliation(ticker);
-CREATE TABLE pb_principal (name TEXT PRIMARY KEY);
-CREATE TABLE pb_principal_fund (principal TEXT, fund TEXT);
 CREATE TABLE cusip_map (
         cusip TEXT PRIMARY KEY, ticker TEXT, sec_type TEXT, source TEXT, asof TEXT);
 CREATE INDEX idx_cusipmap_tk ON cusip_map(ticker);
@@ -185,13 +166,25 @@ CREATE INDEX idx_prior_ticker ON fund_13f_prior(ticker);
 CREATE INDEX idx_prior_fund ON fund_13f_prior(fund);
 CREATE TABLE fund_13f_prior_state (
       fund TEXT PRIMARY KEY, accession TEXT, filed TEXT, n_holdings INTEGER, total_value_k INTEGER);
-CREATE TABLE ticker_entry_intact (
-      ticker TEXT PRIMARY KEY,
-      current_px REAL, anchor_px REAL, anchor_source TEXT,
-      vs_entry_pct REAL, bucket TEXT,
-      conviction_score REAL, n_funds INTEGER,
-      n_hyper INTEGER, has_insider_cobuy INTEGER, sum_dollar_m REAL,
-      anchors_seen TEXT);
+CREATE UNIQUE INDEX ux_form4_txn ON form4_transactions(
+    accession, COALESCE(owner,''), code, trans_date, shares, COALESCE(price,-1));
+CREATE TABLE pb_people (
+      person_id TEXT, first_name TEXT, last_name TEXT, full_name TEXT,
+      primary_company TEXT, primary_company_type TEXT, primary_position TEXT,
+      is_former INTEGER, board_seats TEXT, roles TEXT,
+      location TEXT, country TEXT, biography TEXT,
+      theme TEXT, company_website TEXT, is_principal INTEGER DEFAULT 0);
+CREATE INDEX idx_pbp_name ON pb_people(full_name);
+CREATE INDEX idx_pbp_company ON pb_people(primary_company);
+CREATE INDEX idx_pbp_theme ON pb_people(theme);
+CREATE TABLE pb_affiliation (
+      full_name TEXT, company TEXT, company_type TEXT, position TEXT,
+      is_former INTEGER, theme TEXT, ticker TEXT, is_principal INTEGER DEFAULT 0,
+      role_class TEXT, confidence TEXT, seat_since TEXT);
+CREATE INDEX idx_pba_company ON pb_affiliation(company);
+CREATE INDEX idx_pba_ticker ON pb_affiliation(ticker);
+CREATE TABLE pb_principal (name TEXT PRIMARY KEY);
+CREATE TABLE pb_principal_fund (principal TEXT, fund TEXT);
 CREATE TABLE fund_conviction (
       fund TEXT, ticker TEXT, signals TEXT, raw_score REAL, style_weight REAL,
       score REAL, macro_style TEXT,
@@ -208,6 +201,13 @@ CREATE TABLE ticker_style_conviction (
       ticker TEXT, macro_style TEXT, score REAL, n_funds INTEGER,
       n_hyper INTEGER, dollar_m REAL,
       PRIMARY KEY (ticker, macro_style));
+CREATE TABLE ticker_entry_intact (
+      ticker TEXT PRIMARY KEY,
+      current_px REAL, anchor_px REAL, anchor_source TEXT,
+      vs_entry_pct REAL, bucket TEXT,
+      conviction_score REAL, n_funds INTEGER,
+      n_hyper INTEGER, has_insider_cobuy INTEGER, sum_dollar_m REAL,
+      anchors_seen TEXT);
 CREATE TABLE unified_signal (
       ticker TEXT PRIMARY KEY,
       name TEXT, exchange TEXT, sector TEXT, mcap_m REAL, price REAL,

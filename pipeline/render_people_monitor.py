@@ -71,6 +71,14 @@ def sheet_readme(wb, conn):
         ("• 'Family Office / SWF Map' — where Gulf, royal, and billionaire-vehicle nominees sit.",),
         ("• 'Network Roster Adds' — investment firms found in the data and now tracked for holdings (context).",),
         ("",),
+        ("Column definitions",),
+        ("• Conf — linkage confidence: A = the tracked principal themselves; B = biography explicitly names",),
+        ("   a searched network entity; C = matched the search some other way (often an employer-name collision) —",),
+        ("   treat C as noise. Convergence & Watchlist only count A/B.",),
+        ("• Since — the seat's start year where the person's biography states it ('since 2018'); blank = unknown.",),
+        ("• Our Score / Smart$ n — this ticker's unified score and conviction-weighted 13F holder count from the",),
+        ("   universe workbook (see its Legend for the full formula).",),
+        ("",),
         ("Signal classification & caveats",),
         ("• OUTSIDE-director = a Board Member / Non-Exec / Advisor / Chairman who is NOT the company's CEO/founder.",),
         ("   Founder/CEO-on-own-board rows are labelled OPERATOR and excluded from the signal sheets.",),
@@ -89,25 +97,31 @@ def sheet_board_signal(wb, conn):
     ws = wb.create_sheet("Board Signal — In Universe")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Board Signal — connected directors on tradeable companies",
-                "Companies where network-connected people hold an ACTIVE outside board seat. Ranked by our score. The forward tea leaf + our smart money on one line.", 8)
-    hdr = ["Ticker", "Company", "Our Score", "Smart$ n", "# Dir", "Connected Directors", "Network", "Sector"]
+                "Conf: A = tracked principal themselves · B = biography names the network entity · C = search-linkage only (treat as noise). Sorted A first, then score. Since = seat start year where the bio states it.", 10)
+    hdr = ["Ticker", "Conf", "Company", "Our Score", "Smart$ n", "# Dir", "Since", "Connected Directors", "Network", "Sector"]
     write_table_header(ws, 4, hdr)
     rows = conn.execute("""
         SELECT a.ticker, u.name, u.score, u.smart_money_n,
                COUNT(DISTINCT a.full_name) nd,
                GROUP_CONCAT(DISTINCT a.full_name),
-               GROUP_CONCAT(DISTINCT a.theme), u.sector
+               GROUP_CONCAT(DISTINCT a.theme), u.sector,
+               MIN(a.confidence) best_conf, MIN(a.seat_since) since
         FROM pb_affiliation a
         JOIN unified_signal u ON u.ticker=a.ticker
         WHERE a.role_class='outside_director' AND a.is_former=0 AND u.sec_type='common'
         GROUP BY a.ticker
-        ORDER BY u.score DESC, nd DESC LIMIT 140""").fetchall()
+        ORDER BY best_conf ASC, u.score DESC, nd DESC LIMIT 140""").fetchall()
     out = []
     for r in rows:
-        out.append([r[0], (r[1] or "")[:26], round(r[2], 1) if r[2] is not None else "",
+        out.append([r[0], r[8] or "C", (r[1] or "")[:26],
+                    round(r[2], 1) if r[2] is not None else "",
                     round(r[3], 1) if r[3] is not None else "", r[4],
-                    (r[5] or "")[:44], (r[6] or "").replace(" / ", "/")[:24], (r[7] or "")[:16]])
+                    r[9] or "", (r[5] or "")[:44],
+                    (r[6] or "").replace(" / ", "/")[:24], (r[7] or "")[:16]])
     write_table_rows(ws, out, 5, ticker_col=1)
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=4).number_format = '0.0'
+        ws.cell(row=ridx, column=5).number_format = '0.0'
     return ws
 
 
@@ -115,7 +129,7 @@ def sheet_investor_seats(wb, conn):
     ws = wb.create_sheet("Investor Board Seats")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Investor Board Seats — the activism / involvement tell",
-                "People whose day job is investing (AM / hedge fund / PE / VC / family office) taking an OUTSIDE board seat. The highest-signal placements.", 7)
+                "Investors & tracked principals holding an OUTSIDE board seat. Conf A = the principal themselves; executive-chair/MD roles are classed operator and excluded.", 7)
     hdr = ["Director", "Investor Identity", "Board Seat At", "Ticker", "Our Score", "Smart$ n", "Role"]
     write_table_header(ws, 4, hdr)
     ph = ",".join("?" * len(INVESTOR_TYPES))
@@ -166,6 +180,7 @@ def sheet_convergence(wb, conn):
         LEFT JOIN unified_signal u ON u.ticker=a.ticker
         WHERE a.role_class='outside_director' AND a.is_former=0
           AND a.company_type='Public Company'
+          AND a.confidence IN ('A','B')
         GROUP BY a.company
         HAVING COUNT(DISTINCT a.full_name) >= 2
         ORDER BY nd DESC, nt DESC LIMIT 80""").fetchall()
@@ -191,10 +206,16 @@ def sheet_watchlist(wb, conn):
         FROM pb_affiliation a
         WHERE a.role_class='outside_director' AND a.is_former=0
           AND a.company_type='Public Company' AND a.ticker IS NULL
+          AND a.confidence IN ('A','B')
         GROUP BY a.company
         HAVING COUNT(DISTINCT a.full_name) >= 2
         ORDER BY nd DESC LIMIT 120""").fetchall()
-    out = [[(r[0] or "")[:40], r[1], (r[2] or "")[:50], (r[3] or "").replace(" / ", "/")[:28]] for r in rows]
+    _SANCTIONED = ("NOVATEK", "EN+", "BASIC ELEMENT", "RUSAL", "EUROSIBENERGO")
+    out = []
+    for r in rows:
+        comp = (r[0] or "")
+        note = " (SANCTIONED — not addable)" if any(x in comp.upper() for x in _SANCTIONED) else ""
+        out.append([(comp + note)[:52], r[1], (r[2] or "")[:50], (r[3] or "").replace(" / ", "/")[:28]])
     write_table_rows(ws, out, 5, ticker_col=1)
     return ws
 

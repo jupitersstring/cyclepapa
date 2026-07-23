@@ -66,8 +66,10 @@ def classify_sec_type(tkr, name, names):
     # (NCR Corp "5.5% PFD CNV A" is a preferred, not $138B of NCR common stock).
     if _PREF_RE.search(tkr) or re.search(r"\bPFD\b|\bPFD\.|% PFD|CNV PFD|PREF\b", nm, re.I):
         return "preferred"
-    if tkr.endswith("-RI") or re.search(r"\bCVR\b|contingent value", nm, re.I):
+    if tkr.endswith(("-RI", "-R")) or re.search(r"\bCVR\b|contingent value|\bright(s)?\b(?!s? of)", nm, re.I):
         return "right"
+    if tkr.endswith("-UN"):
+        return "unit"                       # SPAC units (TRAD-UN, GLED-UN)
     if tkr.endswith(("-WT", "+")) or re.search(r"\bwarrant", nm, re.I):
         return "warrant"
     # CLOSED-END FUNDS: names ending in "Fund"/"Fund Inc" (Nuveen/PIMCO/Eaton Vance
@@ -79,8 +81,10 @@ def classify_sec_type(tkr, name, names):
         return "etf"
     if re.search(r"\bunits?\b", nm, re.I) and re.search(r"acquisition|SPAC", nm, re.I):
         return "unit"
-    # suffix heuristic: 5+ letter ticker ending W/U whose BASE ticker trades too,
-    # and either we have no name, or the name matches the base issuer's name.
+    # suffix heuristic: 5+ letter ticker ending W/U/P/O whose BASE ticker trades
+    # too, and either we have no name, or the name matches the base issuer's name.
+    # P/O catch hyphen-less preferred/depositary listings (STRRP = Star Equity
+    # pfd next to STRR; TCBIO = Texas Capital depositary next to TCBI).
     if len(tkr) >= 5 and "-" not in tkr and tkr[:-1] in names:
         base_nm = names.get(tkr[:-1]) or ""
         same_issuer = (not nm) or (base_nm and nm[:12].upper() == base_nm[:12].upper())
@@ -89,6 +93,8 @@ def classify_sec_type(tkr, name, names):
                 return "warrant"
             if tkr.endswith("U"):
                 return "unit"
+            if tkr.endswith(("P", "O")):
+                return "preferred"
     if re.search(r"\bnotes? due\b|% notes\b", nm, re.I):
         return "note"
     return "common"
@@ -291,7 +297,12 @@ def run():
                                  pb if pb is not None else prev[1])
             yf_pe[r["ticker"]] = r["pe_ttm"]
             if r["mcap_m"]:
-                fx = _FX_USD.get(r["currency"] or "USD")
+                # Yahoo reports marketCap in the MAJOR currency even when the
+                # price currency is a minor unit (GBp pence, ZAc cents) — using
+                # the minor rate divided every London mcap by 100 (Rolls-Royce
+                # showed $1.5B). Map minor units to their major rate for MCAP.
+                ccy = r["currency"] or "USD"
+                fx = _FX_USD.get({"GBp": "GBP", "ZAc": "ZAR"}.get(ccy, ccy))
                 yf_mcap[r["ticker"]] = (r["mcap_m"] * fx) if fx is not None else None
             if r["long_name"]:
                 yf_name[r["ticker"]] = r["long_name"]

@@ -118,6 +118,13 @@ def run():
             fails.append(f"{len(us_like)} US-looking issuers with >=$400M held are UNMAPPED — "
                          f"run OpenFIGI recovery (map_cusip_openfigi) / check name normalization")
 
+    # I8c. Form 4 attribution: one accession = one issuer = one ticker. The same
+    #      filing under two tickers means an owner-feed misbooking (Sumitomo's JEF
+    #      buy shown under SMFG too) — double-counted insider dollars.
+    n = one("""SELECT COUNT(*) FROM (SELECT accession FROM form4_transactions
+        WHERE ticker IS NOT NULL GROUP BY accession HAVING COUNT(DISTINCT ticker)>1)""")
+    if n: fails.append(f"Form4: {n} accessions booked under multiple tickers (owner-vs-issuer misattribution)")
+
     # I8. feed freshness: warn when the tradeable-signal feeds fall behind.
     for tbl, col, days in [('form4_transactions','trans_date',21), ('holder_13d','filed',30),
                            ('catalysts_8k','filed',30), ('ticker_yf','asof',21)]:

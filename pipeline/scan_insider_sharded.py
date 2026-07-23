@@ -54,6 +54,12 @@ def parse_form4(cik, accession, primary_doc, tkr=None):
         root = ET.fromstring(xml)
     except ET.ParseError:
         return out
+    # ISSUER symbol from the filing itself. A 10%-owner's Form 4 (Sumitomo buying
+    # JEF; Blackstone buying PBLS) surfaces under the OWNER's CIK feed too — if we
+    # book it to the scanned ticker, the buy lands on the owner's stock (SMFG/BX)
+    # instead of the issuer's. The XML names the true issuer; trust it.
+    iss_el = root.find(".//issuer/issuerTradingSymbol")
+    issuer_sym = (iss_el.text or "").strip().upper().replace("/", "-") if (iss_el is not None and iss_el.text) else None
     owner = ""
     for o in root.iter("rptOwner"):
         n = o.find(".//rptOwnerName")
@@ -92,6 +98,7 @@ def parse_form4(cik, accession, primary_doc, tkr=None):
         acquired = 1 if (a_d_el is not None and a_d_el.text == "A") else 0
         out.append({"owner": owner, "role": role, "code": code,
                     "shares": shares, "price": price, "acquired": acquired,
+                    "issuer_sym": issuer_sym,
                     "trans_date": date_el.text if date_el is not None else None})
     return out
 
@@ -151,7 +158,7 @@ def scan_one_ticker(tkr):
             continue
         for t in txns:
             if t["code"] not in ("P", "S"): continue
-            rows.append((acc, tkr, t["owner"], t["role"], t["trans_date"],
+            rows.append((acc, t.get("issuer_sym") or tkr, t["owner"], t["role"], t["trans_date"],
                          t["code"], t["shares"], t["price"], t["acquired"],
                          f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc.replace('-','')}/{doc}"))
     return rows

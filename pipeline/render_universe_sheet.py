@@ -36,7 +36,7 @@ def is_biotech(desc):
     d = desc.lower()
     return any(p in d for p in BIOTECH_PATTERNS)
 
-SIG_HDR = ["Ticker","Score","Why","Mcap","ADV $M","Bucket","13F","S1","S3","S4","Act %",
+SIG_HDR = ["Ticker","Score","Why","Mcap","ADV $M","Bucket","13F Wt","S1","S3","S4","Act %",
            "pB Max","pB ≥5%","13D","Clu $M",
            "F4 Buy 180d","F4 Buy ≤30d","F4 Sell 180d","F4 Sell ≤30d",
            "EV/EBITDA","P/B",
@@ -133,6 +133,8 @@ def format_signal_row(ws, ridx):
     1 Ticker 2 Score 3 Why 4 Mcap 5 ADV$M 6 Bucket 7 13F 8 S1 9 S3 10 S4 11 Act%
     12 pBMax 13 pB≥5% 14 13D 15 Clu$M 16 F4B180 17 F4B30 18 F4S180 19 F4S30
     20 EV/EBITDA 21 P/B 22 Entry 23 vsEntry% 24 Anchor$ 25 Name 26 Sector 27 Px"""
+    ws.cell(row=ridx, column=2).number_format = '0.0'          # Score (align decimals)
+    ws.cell(row=ridx, column=7).number_format = '0.0'          # 13F Wt (decimal = weighted)
     ws.cell(row=ridx, column=4).number_format = NUMFMT_MCAP    # mcap
     ws.cell(row=ridx, column=5).number_format = NUMFMT_M_TO_B  # ADV $M
     ws.cell(row=ridx, column=11).number_format = NUMFMT_PCT    # act
@@ -301,6 +303,7 @@ def write_signal_sheet(wb, conn, name, where_extra="", limit=200, subtitle="", e
     # colour is data, pervasively: momentum by sign; buys lapis, sells crimson;
     # insider cluster $ lapis; activist stake lapis (its presence is the signal).
     color_directional(ws, 5, last, 24, higher_is_better=True)     # 3mo % momentum
+    color_directional(ws, 5, last, 23, higher_is_better=False)    # vs Entry % (below entry = good)
     color_fixed(ws, 5, last, [15, 16, 17], LAPIS)                 # Clu $, F4 buy 180/30
     color_fixed(ws, 5, last, [18, 19], CRIMSON)                   # F4 sell 180/30
     color_fixed(ws, 5, last, [11, 14], LAPIS)                     # Act %, 13D count
@@ -423,7 +426,9 @@ def sheet_action_dashboard(wb, conn):
         if flags["Activist"]:  bits.append(f"activist {r['activist_max_pct']:.0f}%")
         if flags["Cluster"]:   bits.append(f"{r['insider_n']} insiders buying")
         elif flags["Insider30d"]: bits.append("insiders buying")
-        if flags["New/Add"]:   bits.append(f"{(r['s3_new'] or 0)+(r['s4_add'] or 0)} funds building")
+        if flags["New/Add"]:
+            _nb = (r['s3_new'] or 0) + (r['s4_add'] or 0)
+            bits.append(f"{_nb} fund{'s' if _nb != 1 else ''} building")
         if flags["Cheap"] and r["ev_ebitda"]: bits.append(f"{r['ev_ebitda']:.0f}x EV/EBITDA")
         if flags["BelowEntry"] and r["vs_entry_pct"]: bits.append(f"{r['vs_entry_pct']:.0f}% vs entry")
         if r["off_high"] is not None and r["off_high"] <= -15: bits.append(f"{r['off_high']:.0f}% off high")
@@ -472,26 +477,43 @@ def sheet_qoq_change(wb, conn):
     # noise (Comcast CMCSA vs CCZ). Share counts are unit-independent, so we
     # ignore the value_k unit stragglers entirely and diff shares.
     rows = list(conn.execute("""
-        WITH cur AS (SELECT fund, cusip, SUM(shares) sh FROM fund_13f_holdings
-                     WHERE cusip IS NOT NULL AND sh_type IN ('SH','') GROUP BY fund, cusip),
-             pri AS (SELECT fund, cusip, SUM(shares) sh FROM fund_13f_prior
-                     WHERE cusip IS NOT NULL AND sh_type IN ('SH','') GROUP BY fund, cusip),
+        WITH ok_funds AS (
+             -- guard against PARTIAL prior filings: Berkshire's prior accession
+             -- covered only $67B of a $263B book, manufacturing fake adds/exits.
+             -- A fund's prior book must be within [40%, 250%] of current to diff.
+             SELECT c.fund FROM
+               (SELECT fund, SUM(value_k) v FROM fund_13f_holdings GROUP BY fund) c
+               JOIN (SELECT fund, SUM(value_k) v FROM fund_13f_prior GROUP BY fund) p
+               ON p.fund=c.fund
+             WHERE c.v > 0 AND p.v BETWEEN c.v*0.4 AND c.v*2.5),
+             -- match at the TICKER level (via cusip_map), not raw CUSIP: an
+             -- ADR->ordinary CUSIP change between quarters (AZN 046353108 ->
+             -- G0593M107) otherwise fabricates "19 funds new + 19 exited".
+             cur AS (SELECT h.fund, COALESCE(cm.ticker, h.cusip) tk, SUM(h.shares) sh
+                     FROM fund_13f_holdings h LEFT JOIN cusip_map cm ON cm.cusip=h.cusip
+                     WHERE h.cusip IS NOT NULL AND h.sh_type IN ('SH','')
+                       AND h.fund IN (SELECT fund FROM ok_funds)
+                     GROUP BY h.fund, tk),
+             pri AS (SELECT h.fund, COALESCE(cm.ticker, h.cusip) tk, SUM(h.shares) sh
+                     FROM fund_13f_prior h LEFT JOIN cusip_map cm ON cm.cusip=h.cusip
+                     WHERE h.cusip IS NOT NULL AND h.sh_type IN ('SH','')
+                       AND h.fund IN (SELECT fund FROM ok_funds)
+                     GROUP BY h.fund, tk),
              chg AS (
-               SELECT cur.fund, cur.cusip, cur.sh cur_sh, pri.sh pri_sh
-               FROM cur LEFT JOIN pri ON pri.fund=cur.fund AND pri.cusip=cur.cusip
+               SELECT cur.fund, cur.tk, cur.sh cur_sh, pri.sh pri_sh
+               FROM cur LEFT JOIN pri ON pri.fund=cur.fund AND pri.tk=cur.tk
                UNION ALL
-               SELECT pri.fund, pri.cusip, NULL, pri.sh
-               FROM pri LEFT JOIN cur ON cur.fund=pri.fund AND cur.cusip=pri.cusip
+               SELECT pri.fund, pri.tk, NULL, pri.sh
+               FROM pri LEFT JOIN cur ON cur.fund=pri.fund AND cur.tk=pri.tk
                WHERE cur.fund IS NULL)
-        SELECT COALESCE(cm.ticker, chg.cusip) tk,
+        SELECT tk,
           SUM(CASE WHEN pri_sh IS NULL AND cur_sh>0 THEN 1 ELSE 0 END) n_new,
           SUM(CASE WHEN pri_sh IS NOT NULL AND cur_sh>pri_sh*1.05 THEN 1 ELSE 0 END) n_add,
           SUM(CASE WHEN cur_sh IS NOT NULL AND pri_sh IS NOT NULL AND cur_sh<pri_sh*0.95 THEN 1 ELSE 0 END) n_trim,
           SUM(CASE WHEN cur_sh IS NULL AND pri_sh>0 THEN 1 ELSE 0 END) n_exit,
           SUM(COALESCE(cur_sh,0)) - SUM(COALESCE(pri_sh,0)) d_sh,
           SUM(COALESCE(pri_sh,0)) p_sh
-        FROM chg LEFT JOIN cusip_map cm ON cm.cusip = chg.cusip
-        GROUP BY tk""").fetchall())
+        FROM chg GROUP BY tk""").fetchall())
     scored = []
     for r in rows:
         tk, n_new, n_add, n_trim, n_exit, d_sh, p_sh = r
@@ -503,19 +525,27 @@ def sheet_qoq_change(wb, conn):
             continue
         d_pct = (d_sh / p_sh * 100) if p_sh else (100 if d_sh > 0 else 0)
         scored.append((net_funds, tk, n_new, n_add, n_trim, n_exit, d_pct, us[0], us[1], us[2]))
-    scored.sort(key=lambda x: -x[0])
-    top = scored[:80] + scored[-40:]      # biggest builders AND biggest distributors
+    # Mixed-churn rows (some adds/trims/exits, i.e. funds with an existing view
+    # changing it) are the cleanest accumulation/distribution read; all-new rows
+    # (IPO/SPAC allocations) sort below them rather than walling off the top.
+    scored.sort(key=lambda x: (-(1 if (x[3] + x[4] + x[5]) > 0 else 0), -x[0]))
+    churn = [t for t in scored if (t[3] + t[4] + t[5]) > 0]
+    allnew = [t for t in scored if (t[3] + t[4] + t[5]) == 0]
+    top = churn[:70] + churn[-30:] + allnew[:20]
     out = []
     for nf, tk, n_new, n_add, n_trim, n_exit, d_pct, score, mcap, name in top:
+        pure_new = (n_add + n_trim + n_exit) == 0
         out.append([tk, nf, n_new, n_add, n_trim, n_exit,
-                    round(max(-99, min(999, d_pct)), 0), round(score or 0, 1), mcap or "", (name or "")[:38]])
+                    "new" if pure_new else round(max(-99, min(999, d_pct)), 0),
+                    round(score or 0, 1), mcap or "", (name or "")[:38]])
     write_table_rows(ws, out, 5, ticker_col=1)
     # colour is data: Net Funds & Δ Shares — lapis building, crimson trimming
     color_directional(ws, 5, 4 + len(out), [2, 7], higher_is_better=True)
     if out:
         ws.auto_filter.ref = f"A4:J{4+len(out)}"
     for ridx in range(5, 5 + len(out)):
-        ws.cell(row=ridx, column=7).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=7).number_format = '0"%"'      # Δ Shares % (was $M — wrong unit)
+        ws.cell(row=ridx, column=8).number_format = '0.0'       # Score
         ws.cell(row=ridx, column=9).number_format = NUMFMT_MCAP
     ws.freeze_panes = "B5"
     autosize(ws)
@@ -589,7 +619,7 @@ def sheet_dossier(wb, conn, top_n=45):
         val = []
         if r["ev_ebitda"] is not None: val.append(f"EV/EBITDA {r['ev_ebitda']:.1f}x")
         if r["pb_ratio"] is not None: val.append(f"P/B {r['pb_ratio']:.2f}")
-        if r["fwd_pe"] is not None: val.append(f"Fwd P/E {r['fwd_pe']:.0f}")
+        if r["fwd_pe"] is not None and r["fwd_pe"] > 0: val.append(f"Fwd P/E {r['fwd_pe']:.0f}")
         if r["rev_growth"] is not None: val.append(f"Rev {r['rev_growth']*100:+.0f}%")
         if r["profit_margin"] is not None: val.append(f"Margin {r['profit_margin']*100:.0f}%")
         if r["mom_3mo"] is not None: val.append(f"3mo {r['mom_3mo']:+.0f}%")
@@ -637,12 +667,18 @@ def sheet_whos_buying(wb, conn):
     out = []
     for tk, name, score, s3, s4 in rows:
         new_f = funds_for(tk, 3)
-        add_f = funds_for(tk, 4)
+        # the same manager can't be simultaneously INITIATING and ADDING — when
+        # research notes place it in both sections, the initiation wins.
+        from _canon import canon as _cn2
+        new_keys = {_cn2(f) for f in new_f}
+        add_f = [f for f in funds_for(tk, 4) if _cn2(f) not in new_keys]
         out.append([tk, (name or "")[:24], round(score or 0, 1),
                     len(new_f), ", ".join(new_f)[:70],
                     len(add_f), ", ".join(add_f)[:70]])
     write_table_rows(ws, out, 5, ticker_col=1)
     ws.freeze_panes = "B5"
+    if out:
+        ws.auto_filter.ref = f"A4:G{4 + len(out)}"
     autosize(ws)
     ws.column_dimensions["E"].width = 60
     ws.column_dimensions["G"].width = 60
@@ -735,7 +771,7 @@ def sheet_insider_f4(wb, conn):
             SUM(CASE WHEN julianday('now')-julianday(f.trans_date) BETWEEN 31 AND 60  THEN f.shares*f.price ELSE 0 END)/1e6 AS d_60,
             SUM(CASE WHEN julianday('now')-julianday(f.trans_date) > 60   THEN f.shares*f.price ELSE 0 END)/1e6 AS d_180,
             COUNT(DISTINCT f.owner), AVG(f.price),
-            tm.mcap_m, us.mcap_bucket, us.smart_money_n,
+            us.mcap_m, us.mcap_bucket, us.smart_money_n,
             us.ev_ebitda, us.pb_ratio,
             tm.name
         FROM form4_transactions f
@@ -788,9 +824,9 @@ def sheet_insider_recent(wb, conn):
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT f.ticker, SUM(f.shares*f.price)/1e6 AS dollars_m,
-               COUNT(DISTINCT f.owner), MAX(f.trans_date),
+               COUNT(DISTINCT CASE WHEN COALESCE(f.owner,'')='' THEN f.accession ELSE f.owner END), MAX(f.trans_date),
                AVG(f.price),
-               tm.mcap_m, us.mcap_bucket,
+               us.mcap_m, us.mcap_bucket,
                us.smart_money_n, us.s3_new, us.s4_add, us.activist_max_pct,
                us.ev_ebitda, us.pb_ratio,
                tm.name,
@@ -815,7 +851,7 @@ def sheet_insider_recent(wb, conn):
                    AND NOT EXISTS (SELECT 1 FROM ticker_yf y2 WHERE y2.ticker = f.ticker))
         GROUP BY f.ticker
         HAVING dollars_m >= 0.05
-        ORDER BY dollars_m DESC"""))
+        ORDER BY csuite DESC, dollars_m DESC"""))
     out = []
     for r in rows:
         buy, sell = r[1] or 0, r[16] or 0
@@ -854,7 +890,7 @@ def sheet_clusters(wb, conn):
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT ic.ticker, ic.trigger, ic.window_end, ic.n_insiders, ic.total_usd_m,
-               ic.avg_price, ic.top_buyer, tm.mcap_m, us.mcap_bucket,
+               ic.avg_price, ic.top_buyer, us.mcap_m, us.mcap_bucket,
                us.ev_ebitda, us.pb_ratio,
                CAST(julianday('now') - julianday(ic.window_end) AS INT) AS days_ago
         FROM insider_clusters ic
@@ -893,6 +929,7 @@ def sheet_unknown(wb, conn):
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
         WHERE us.mcap_bucket = 'unknown' AND us.sec_type='common'
+          AND COALESCE(tm.name, us.name) IS NOT NULL
         ORDER BY us.score DESC LIMIT 200"""))
     out = []
     for r in rows:
@@ -1190,7 +1227,7 @@ def sheet_valuation(wb, conn):
         d = desc_for(conn, r[0])
         out.append([r[0], round(r[1], 1), round(r[2], 2) if r[2] is not None else "",
                     round(r[3], 1) if r[3] is not None else "",
-                    round(r[13], 1) if r[13] is not None else "",          # Fwd P/E
+                    round(r[13], 1) if (r[13] is not None and r[13] > 0) else "",   # Fwd P/E (neg = meaningless)
                     round(r[14], 1) if r[14] is not None else "",          # EV/Rev
                     round(r[15]*100, 0) if r[15] is not None else "",      # Rev Gr %
                     round(r[16]*100, 0) if r[16] is not None else "",      # Margin %
@@ -1226,7 +1263,7 @@ def sheet_catalysts(wb, conn):
     ws = wb.create_sheet("Catalysts 8-K")
     ws.sheet_view.showGridLines = False
     write_title(ws, "8-K Material-Event Catalysts (≤180d)",
-                "M&A (1.01 / 2.01), Control change (5.01), Director change (5.02), PIPE/dilution (3.02), Bankruptcy (1.03). Cross-referenced with smart money.", 15)
+                "M&A (1.01 / 2.01), Control change (5.01), Director change (5.02), PIPE/dilution (3.02), Bankruptcy (1.03). Sorted by unified score, then M&A/control weight.", 15)
     hdr = ["Ticker","Score","Mcap","M&A","Ctrl","Director","PIPE","Bnk","Total Events","13F","Activist %","EV/EBITDA","P/B","Name","Sector"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
@@ -1236,7 +1273,7 @@ def sheet_catalysts(wb, conn):
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
         WHERE us.cat8k_n > 0 AND us.sec_type='common'
-        ORDER BY (us.cat8k_ma*5 + us.cat8k_ctrl*4 + us.cat8k_dir + us.smart_money_n*0.1) DESC LIMIT 200"""))
+        ORDER BY us.score DESC, (us.cat8k_ma*5 + us.cat8k_ctrl*4) DESC LIMIT 200"""))
     out = []
     for r in rows:
         if r[0] in ETFs or r[0] in MEGA: continue
@@ -1303,6 +1340,7 @@ def sheet_global_picks(wb, conn):
         LEFT JOIN ticker_yf yf ON yf.ticker = us.ticker
         WHERE us.is_us = 0 AND us.sec_type='common'
           AND (us.s1_top + us.s3_new + us.s4_add + us.smart_money_n) >= 1
+          AND COALESCE(tm.name, yf.long_name) IS NOT NULL
         ORDER BY us.global_score DESC LIMIT 150"""))
     out = []
     for r in rows:
@@ -1337,6 +1375,9 @@ def sheet_global_picks(wb, conn):
     ws.column_dimensions[get_column_letter(17)].width = 24   # Industry
     ws.column_dimensions[get_column_letter(18)].width = 80   # Business
 
+
+_ANCHOR_LABEL = {"candidates": "analyst anchor", "raw_text": "filing text",
+                 "form4_p_buy": "insider avg cost", "p80_close": "80th-pctl price"}
 def sheet_in_the_money(wb, conn):
     """Below-entry / in-the-money picks — buy below where smart money entered."""
     ws = wb.create_sheet("In The Money")
@@ -1347,25 +1388,35 @@ def sheet_in_the_money(wb, conn):
            "13F","S1","S3","S4","Act %","pB Max","Anchor Src","EV/EBITDA","P/B","Name","Industry","Business"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
-        SELECT us.ticker, us.score, us.mcap_m, us.mcap_bucket, us.price,
+        SELECT us.ticker, us.score, us.mcap_m, us.mcap_bucket,
+               COALESCE(yf.price, us.price) AS now_px,
                us.anchor_px, us.vs_entry_pct,
                us.smart_money_n, us.s1_top, us.s3_new, us.s4_add,
                us.activist_max_pct, us.max_pct_book,
                us.anchor_source, us.ev_ebitda, us.pb_ratio, tm.name
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
+        LEFT JOIN ticker_yf yf ON yf.ticker = us.ticker
         WHERE us.entry_bucket = 'BELOW_ENTRY' AND us.sec_type='common'
         ORDER BY us.score DESC LIMIT 100"""))
     out = []
     for r in rows:
         if r[0] in ETFs: continue
+        # ONE price vintage: recompute vs-entry from the freshest price shown in
+        # the NOW column, and drop rows that are no longer below the anchor —
+        # the stored vs_entry_pct could disagree with its own row (FEIM showed
+        # -18% while NOW > ANCHOR).
+        now_px, anchor = r[4], r[5]
+        vs = ((now_px / anchor) - 1) * 100 if (now_px and anchor) else None
+        if vs is None or vs > 2:      # not meaningfully below entry any more
+            continue
         out.append([r[0], round(r[1] or 0, 1), r[2] or "", r[3] or "",
-                    round(r[4] or 0, 2) if r[4] else "",
-                    round(r[5] or 0, 2) if r[5] else "",
-                    round(r[6] or 0, 1) if r[6] else "",
+                    round(now_px or 0, 2) if now_px else "",
+                    round(anchor or 0, 2) if anchor else "",
+                    round(vs, 1),
                     r[7] or 0, r[8] or 0, r[9] or 0, r[10] or 0,
                     round(r[11] or 0, 1), round(r[12] or 0, 1),
-                    (r[13] or "")[:18],
+                    _ANCHOR_LABEL.get(r[13], (r[13] or ""))[:18],
                     round(r[14], 1) if r[14] is not None else "",
                     round(r[15], 2) if r[15] is not None else "",
                     (r[16] or "")[:38], *desc_for(conn, r[0])])
@@ -1407,7 +1458,7 @@ def sheet_bill_miller(wb, conn):
         row += 1
         rows = list(conn.execute("""
             SELECT h.ticker, h.issuer, h.value_k, h.pct_book,
-                   tm.mcap_m, us.mcap_bucket, us.smart_money_n, us.activist_max_pct,
+                   us.mcap_m, us.mcap_bucket, us.smart_money_n, us.activist_max_pct,
                    us.insider_cluster_dollars_m, us.ev_ebitda, us.pb_ratio, tm.name
             FROM fund_13f_holdings h
             LEFT JOIN ticker_meta tm ON tm.ticker = h.ticker
@@ -1445,7 +1496,7 @@ def sheet_bill_miller(wb, conn):
     overlap = list(conn.execute("""
         SELECT h4.ticker, h4.issuer, h4.pct_book pct4, h3.pct_book pct3,
                (h4.pct_book + h3.pct_book) AS combined,
-               tm.mcap_m, us.mcap_bucket, us.smart_money_n, us.activist_max_pct,
+               us.mcap_m, us.mcap_bucket, us.smart_money_n, us.activist_max_pct,
                us.ev_ebitda, us.pb_ratio, tm.name
         FROM fund_13f_holdings h4
         JOIN fund_13f_holdings h3 ON h3.ticker = h4.ticker
@@ -1487,7 +1538,7 @@ def sheet_best_ideas(wb, conn):
     ws.sheet_view.showGridLines = False
     write_title(ws, "Best Ideas — multi-signal shortlist",
                 "Names firing on several independent signals at once (cheap + below entry + insider buying + activist/concentration + catalyst). Ranked by a blended idea score; rationale in the Why column. Ex-biotech, ex-mega, < $10B.", 18)
-    hdr = ["Ticker", "Idea", "Flags", "Score", "Asym", "Mcap", "Bucket",
+    hdr = ["Ticker", "Idea Score", "# Signals", "Base Score", "Asym", "Mcap", "Bucket",
            "EV/EBITDA", "P/B", "Entry", "vs Entry %", "F4 ≤30d $M", "Act %",
            "Catalyst", "Name", "Why", "Industry", "Business"]
     write_table_header(ws, 4, hdr)
@@ -1643,11 +1694,20 @@ def desc_for(conn, ticker):
         for r in conn.execute("""
             SELECT us.ticker,
                    COALESCE(yf.industry, tm.industry, tm.sic_description),
-                   yf.business_summary
+                   yf.business_summary, us.name
             FROM unified_signal us
             LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
             LEFT JOIN ticker_yf  yf ON yf.ticker = us.ticker"""):
-            _DESC_CACHE[r[0]] = ((r[1] or "")[:26], _one_liner(r[2], 90))
+            summ = r[2] or ""
+            # Yahoo summaries open with "<Company Name>, together with its
+            # subsidiaries," — a 90-char cut then just repeats the Name column.
+            # Strip that lead-in so the Business cell carries new information.
+            nm = (r[3] or "").rstrip(".")
+            if nm and summ.upper().startswith(nm.upper()):
+                summ = summ[len(nm):]
+            summ = re.sub(r"^[,\s]*(together with its subsidiaries|and its subsidiaries"
+                          r"|through its subsidiaries)?[,\s]*", "", summ, flags=re.I)
+            _DESC_CACHE[r[0]] = ((r[1] or "")[:26], _one_liner(summ, 90))
     return _DESC_CACHE.get(ticker, ("", ""))
 
 def sheet_ticker_reference(wb, conn):

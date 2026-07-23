@@ -6,7 +6,7 @@ Activists / Special Situations,WBD,3,1554.4,"4,1,3",0,0,NEAR_ENTRY
 Activists / Special Situations,ILMN,3,984.7,1,0,0,WELL_ABOVE
 Activists / Special Situations,RKT,3,762.4,"4,1",0,0,NEAR_ENTRY
 Activists / Special Situations,AAP,3,111.1,"1,4",0,0,NEAR_ENTRY
-Activists / Special Situations,MSTR,3,54.8,1,0,1,NEAR_ENTRY
+Activists / Special Situations,MSTR,3,54.8,1,0,0,NEAR_ENTRY
 Activists / Special Situations,AEM,3,7.1,"1,5",0,0,
 Activists / Special Situations,GE,2,14720.0,1,0,0,NEAR_ENTRY
 Activists / Special Situations,CP,2,3682.1,"3,1",0,0,NEAR_ENTRY
@@ -36,7 +36,7 @@ Activists / Special Situations,APG,2,124.0,"3,1",0,0,NEAR_ENTRY
 Activists / Special Situations,FUN,2,118.5,"3,1,2",0,1,NEAR_ENTRY
 Activists / Special Situations,TECK,2,90.1,"1,4,5",0,0,
 Activists / Special Situations,ESTA,2,87.7,1,0,0,MODERATELY_ABOVE
-Activists / Special Situations,GTLB,2,86.0,1,0,0,WELL_ABOVE
+Activists / Special Situations,GTLB,2,86.0,1,0,0,MODERATELY_ABOVE
 Activists / Special Situations,NATL,2,77.0,"1,4",0,0,NEAR_ENTRY
 Activists / Special Situations,FTAI,2,59.0,1,0,0,NEAR_ENTRY
 Biotech Specialists,MDGL,3,2504.0,"1,4",0,0,NEAR_ENTRY
@@ -84,10 +84,10 @@ Family Offices / Individual Filers,BRN,2,0.0,"1,2,3,4",0,0,NEAR_ENTRY
 Family Offices / Individual Filers,MILFAM,2,0.0,0,0,0,
 Foreign / EM Value,MA,4,0.0,"1,5",0,0,NEAR_ENTRY
 Foreign / EM Value,V,4,0.0,5,0,0,
-Foreign / EM Value,BRK-B,3,181.4,"1,5",0,0,NEAR_ENTRY
+Foreign / EM Value,BRK-B,3,181.4,"1,5",0,0,
 Foreign / EM Value,HTHT,3,88.9,"1,4",0,0,BELOW_ENTRY
 Foreign / EM Value,IBKR,3,51.1,"1,5",0,0,MODERATELY_ABOVE
-Foreign / EM Value,MELI,3,40.0,"4,1,5",0,1,NEAR_ENTRY
+Foreign / EM Value,MELI,3,40.0,"4,1,5",0,0,NEAR_ENTRY
 Foreign / EM Value,2330.TW,3,0.0,5,0,0,
 Foreign / EM Value,AVGO,2,1500.0,"4,5",0,0,NEAR_ENTRY
 Foreign / EM Value,BSX,2,1060.5,"1,4",0,0,
@@ -105,7 +105,7 @@ Foreign / EM Value,000660.KS,2,0.0,5,0,0,
 Foreign / EM Value,005930.KS,2,0.0,5,0,0,
 Foreign / EM Value,2308.TW,2,0.0,5,0,0,
 Foreign / EM Value,ADI,2,0.0,5,0,0,NEAR_ENTRY
-Foreign / EM Value,APH,2,0.0,"1,5",0,1,MODERATELY_ABOVE
+Foreign / EM Value,APH,2,0.0,"1,5",0,0,
 Foreign / EM Value,ASML.AS,2,0.0,5,0,0,
 Foreign / EM Value,BAM,2,0.0,"1,5",0,0,
 Foreign / EM Value,BFSA.DE,2,0.0,5,0,0,
@@ -123,7 +123,7 @@ Foreign / EM Value,NA9.DE,2,0.0,5,0,0,
 Foreign / EM Value,NE,2,0.0,"1,5",0,0,
 Foreign / EM Value,NOVO-B.CO,2,0.0,5,0,0,
 Mega Multi-Strats / Quants,AVGO,3,3523.0,"1,4",0,0,NEAR_ENTRY
-Mega Multi-Strats / Quants,MU,3,1737.0,"1,3,4",0,1,NEAR_ENTRY
+Mega Multi-Strats / Quants,MU,3,1737.0,"1,3,4",0,0,NEAR_ENTRY
 Mega Multi-Strats / Quants,PLTR,3,1560.0,1,0,0,BELOW_ENTRY
 Mega Multi-Strats / Quants,AMD,3,480.0,"1,4",0,0,NEAR_ENTRY
 Mega Multi-Strats / Quants,BKNG,2,1500.0,"4,5",0,0,
@@ -160,11 +160,11 @@ Tiger Cubs / L/S Legends,APP,2,0.0,1,0,0,NEAR_ENTRY
 Tiger Cubs / L/S Legends,SE,2,0.0,1,0,0,MODERATELY_ABOVE
 Tiger Cubs / L/S Legends,WLTH,2,0.0,"2,3",0,0,BELOW_ENTRY
 Value / Concentrated Quality,CVNA,6,3564.7,"1,2,4",0,0,BELOW_ENTRY
-Value / Concentrated Quality,MELI,6,1253.0,"1,4,5",0,1,NEAR_ENTRY
+Value / Concentrated Quality,MELI,6,1253.0,"1,4,5",0,0,NEAR_ENTRY
 Value / Concentrated Quality,CPNG,5,850.1,"1,4,5",0,1,NEAR_ENTRY
 Value / Concentrated Quality,COF,5,455.0,"1,4",0,0,NEAR_ENTRY
-Value / Concentrated Quality,BRK-B,5,145.0,1,0,0,NEAR_ENTRY
-Value / Concentrated Quality,NRP,4,225.0,"3,1",1,1,NEAR_ENTRY
+Value / Concentrated Quality,BRK-B,5,145.0,1,0,0,
+Value / Concentrated Quality,NRP,4,225.0,"3,1",1,0,NEAR_ENTRY
 Value / Concentrated Quality,CSU.TO,4,0.0,1,0,0,NEAR_ENTRY
 Value / Concentrated Quality,MA,3,743.2,1,0,0,NEAR_ENTRY
 Value / Concentrated Quality,APG,3,719.2,"1,4",0,0,NEAR_ENTRY
@@ -188,9 +188,9 @@ Value / Concentrated Quality,SGI,2,1126.0,1,0,0,NEAR_ENTRY
 Value / Concentrated Quality,FICO,2,821.3,"1,5",0,0,NEAR_ENTRY
 Value / Concentrated Quality,SPGI,2,747.8,"3,1",0,1,NEAR_ENTRY
 Value / Concentrated Quality,DASH,2,642.0,"1,4",0,0,MODERATELY_ABOVE
-Value / Concentrated Quality,UBER,2,573.0,"1,4,3",0,1,MODERATELY_ABOVE
+Value / Concentrated Quality,UBER,2,573.0,"1,4,3",0,1,NEAR_ENTRY
 Value / Concentrated Quality,ABG,2,501.0,1,0,1,NEAR_ENTRY
-Value / Concentrated Quality,ELV,2,439.0,1,0,1,WELL_ABOVE
+Value / Concentrated Quality,ELV,2,439.0,1,0,0,WELL_ABOVE
 Value / Concentrated Quality,DHR,2,437.0,"1,4",0,0,NEAR_ENTRY
 Value / Concentrated Quality,HGV,2,410.0,1,0,0,NEAR_ENTRY
 Value / Concentrated Quality,SLM,2,360.3,"1,4",0,0,NEAR_ENTRY

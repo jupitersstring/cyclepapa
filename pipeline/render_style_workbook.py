@@ -40,9 +40,11 @@ def style_macro_list(conn):
 
 def sheet_readme(wb, conn):
     ws = wb.create_sheet("README", 0)
+    n_f = conn.execute("SELECT COUNT(*) FROM fund_style").fetchone()[0]
+    n_s = conn.execute("SELECT COUNT(DISTINCT macro_style) FROM fund_style").fetchone()[0]
     write_title(ws,
         "Cyclepapa — Style Analysis",
-        "Top picks within each fund style and size bucket. 445 funds in 15 macro styles.",
+        f"Top picks within each fund style and size bucket. {n_f} funds in {n_s} macro styles.",
         1)
     ws.column_dimensions["A"].width = 92
     styles = style_macro_list(conn)
@@ -110,7 +112,15 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
         LEFT JOIN unified_signal us ON us.ticker=sty.ticker
         LEFT JOIN ticker_meta tm ON tm.ticker=sty.ticker
         WHERE sty.sh >= {min_holders} AND COALESCE(us.sec_type,'common')='common'
+          AND COALESCE(us.score, 0) > 0
+          AND COALESCE((SELECT industry FROM ticker_yf y WHERE y.ticker=sty.ticker), '')
+              NOT LIKE '%Shell%'
         ORDER BY lift DESC, sty.sh DESC LIMIT 12""", style_funds))
+    # only rows genuinely OVER-weighted (lift >= 1.2) belong under a "distinctive
+    # over-weights" heading; a saturated/uniform lift column carries no signal.
+    sig = [x for x in sig if (x[3] or 0) >= 1.2]
+    if len({round(x[3],1) for x in sig}) <= 1 and len(sig) > 5:
+        sig = []   # lift saturated (tiny style where st==uni) — section is noise
     # Subtitle promises signature picks ONLY when the section will render (a 1-fund
     # style like Macro/Trend can't compute lift) — otherwise the header contradicts
     # the sheet, as the review found.
@@ -131,7 +141,9 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
                  round(s[7] or 0, 1), (s[8] or "")[:40]] for s in sig]
         write_table_rows(ws, sout, row, ticker_col=1);
         for rr in range(row, row + len(sout)):
-            ws.cell(row=rr, column=2).number_format = '0.0"x"'
+            ws.cell(row=rr, column=2).number_format = '0.0"× univ"'
+            ws.cell(row=rr, column=5).number_format = '0.0'       # Score
+            ws.cell(row=rr, column=8).number_format = '0.0"%"'    # pB Max (same unit as Top-picks table)
         row += len(sout) + 2
     write_section_heading(ws, row, "Top picks — most held within this style", 17)
     row += 1
@@ -165,6 +177,8 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
         LEFT JOIN ticker_meta tm ON tm.ticker = h.ticker
         WHERE h.fund IN ({ph}) AND h.ticker IS NOT NULL
           AND COALESCE(us.sec_type,'common')='common'
+          AND COALESCE((SELECT industry FROM ticker_yf y WHERE y.ticker=h.ticker),'')
+              NOT LIKE '%Shell%'
         GROUP BY h.ticker
         ORDER BY holders DESC, max_pb DESC
         LIMIT 60
@@ -200,7 +214,8 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
     # New initiations
     write_section_heading(ws, row, "New major positions — section 3", 13)
     row += 1
-    hdr2 = ["Ticker","St S3 #","Uni 13F","pB Max","Mcap","Bucket","EV/EBITDA","P/B","Act %","Name"]
+    hdr2 = ["Ticker","St S3 #","Uni 13F wtd","pB Max","Mcap","Bucket","EV/EBITDA","P/B","Act %","Name"]
+    hdr2_s4 = ["Ticker","St S4 #","Uni 13F wtd","pB Max","Mcap","Bucket","EV/EBITDA","P/B","Act %","Name"]
     write_table_header(ws, row, hdr2)
     row += 1
     rows = list(conn.execute(f"""
@@ -233,7 +248,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
     # Material adds
     write_section_heading(ws, row, "Material adds — section 4", 13)
     row += 1
-    write_table_header(ws, row, hdr2)
+    write_table_header(ws, row, hdr2_s4)
     row += 1
     rows = list(conn.execute(f"""
         SELECT fp.ticker, COUNT(DISTINCT COALESCE(fc.canon, fp.fund)) AS n,
@@ -265,7 +280,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
     # Concentration leaders
     write_section_heading(ws, row, "Concentration leaders — single-fund pct_book ≥5%", 13)
     row += 1
-    hdr3 = ["Ticker","Fund","%Book","Uni 13F","Mcap","Bucket","EV/EBITDA","P/B","Name"]
+    hdr3 = ["Ticker","Fund","%Book","Uni 13F wtd","Mcap","Bucket","EV/EBITDA","P/B","Name"]
     write_table_header(ws, row, hdr3)
     row += 1
     rows = list(conn.execute(f"""

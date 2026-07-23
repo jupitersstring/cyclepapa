@@ -28,6 +28,26 @@ _ORG_RE = re.compile(
 def _name_key(s):
     return re.sub(r"[^a-z]", "", (s or "").lower())
 
+def parse_all_search_terms(paths):
+    """EVERY quoted term in the Search Criteria — people AND seed entities
+    (offices/holdings). Used to grade linkage confidence: a biography that
+    explicitly names a searched entity is tier B; one that merely matched the
+    search some other way (name collision, employer-name match) is tier C."""
+    terms = set()
+    for path in paths:
+        wb = openpyxl.load_workbook(path, read_only=True)
+        ws = wb["Data"]
+        crit = ""
+        for r in ws.iter_rows(max_row=8, values_only=True):
+            if r and r[0] == "Search Criteria:":
+                crit = str(r[1] or ""); break
+        wb.close()
+        for n in re.findall("[“”\"]([^“”\"]+)[“”\"]", crit):
+            n = n.strip()
+            if 2 < len(n) < 60:
+                terms.add(n)
+    return terms
+
 def parse_principals(paths):
     """The quoted names in each file's Search Criteria ARE the tracked people —
     the search returns anyone whose biography mentions them, so flagging rows
@@ -128,7 +148,7 @@ def init_schema(conn):
     CREATE TABLE pb_affiliation (
       full_name TEXT, company TEXT, company_type TEXT, position TEXT,
       is_former INTEGER, theme TEXT, ticker TEXT, is_principal INTEGER DEFAULT 0,
-      role_class TEXT);
+      role_class TEXT, confidence TEXT, seat_since TEXT);
     CREATE INDEX idx_pba_company ON pb_affiliation(company);
     CREATE INDEX idx_pba_ticker ON pb_affiliation(ticker);
     """)
@@ -138,7 +158,8 @@ _FORMER_RE = re.compile(r"\(former\)", re.I)
 # director/advisor who does NOT run the company) is the signal — an investor or
 # operator being PLACED onto a board. A founder/CEO on their own board is not.
 _OP_RE = re.compile(r"\b(CEO|Chief Executive|CFO|Chief Financial|COO|Chief Oper|"
-                    r"President|Founder|Co-Founder|Managing Partner|Owner)\b", re.I)
+                    r"President|Founder|Co-Founder|Managing Partner|Owner|"
+                    r"Managing Director|Executive Chair(man|woman)?|Executive Director)\b", re.I)
 _BOARD_RE = re.compile(r"\b(Board Member|Director|Non-executive|Non-Executive|"
                        r"Advisor|Adviser|Board Observer|Chairman|Chair|Trustee)\b", re.I)
 
@@ -152,7 +173,7 @@ def role_class(position):
         return "operator"
     return "other"
 
-def load_file(path, conn, principal_keys):
+def load_file(path, conn, principal_keys, search_terms):
     prefix = os.path.basename(path).split("-")[0]
     theme = THEMES.get(prefix, "Other")
     wb = openpyxl.load_workbook(path, read_only=True)
@@ -191,10 +212,34 @@ def load_file(path, conn, principal_keys):
             loc, country, _cell(r, ci, "Biography"),
             theme, _cell(r, ci, "Primary Company Website"), is_prin))
         if company:
+            bio = _cell(r, ci, "Biography") or ""
+            # confidence: A = tracked principal themselves; B = biography
+            # explicitly names a searched person/entity; C = search matched some
+            # other way (employer-name collision etc.) — the honest default.
+            if is_prin:
+                conf = "A"
+            else:
+                bl = bio.lower()
+                cl = (company or "").lower()
+                # B requires the bio to name a searched entity that is NOT simply
+                # the person's own employer — a Vulcan Materials director's bio
+                # naturally says "Vulcan", which must not count as a link to
+                # Paul Allen's Vulcan. Generic single-word terms only count when
+                # they aren't part of the company's own name.
+                def _counts(t):
+                    # only MULTI-WORD terms are reliable links: "ERG" matches
+                    # inside "energy", "Trident" hits Trident Technical College.
+                    if " " not in t and len(t) < 10:
+                        return False
+                    tl = t.lower()
+                    return tl in bl and tl not in cl and cl[:12] not in tl
+                conf = "B" if any(_counts(t) for t in search_terms) else "C"
+            m = re.search(r"\bsince (\d{4})\b", bio)
+            seat_since = m.group(1) if m else None
             conn.execute("""INSERT INTO pb_affiliation
-                (full_name, company, company_type, position, is_former, theme, ticker, is_principal, role_class)
-                VALUES (?,?,?,?,?,?,NULL,?,?)""",
-                (full, company, ctype, pos, is_former, theme, is_prin, role_class(pos)))
+                (full_name, company, company_type, position, is_former, theme, ticker, is_principal, role_class, confidence, seat_since)
+                VALUES (?,?,?,?,?,?,NULL,?,?,?,?)""",
+                (full, company, ctype, pos, is_former, theme, is_prin, role_class(pos), conf, seat_since))
         n += 1
     return n
 
@@ -204,6 +249,7 @@ def run():
     paths = [p for p in sorted(glob.glob(os.path.join(PB, "*.xlsx")))
              if not os.path.basename(p).startswith(("0a7e48ee", "repaired"))]
     principals = parse_principals(paths)
+    search_terms = parse_all_search_terms(paths)
     pkeys = {_name_key(p) for p in principals}
     conn.execute("DROP TABLE IF EXISTS pb_principal")
     conn.execute("CREATE TABLE pb_principal (name TEXT PRIMARY KEY)")
@@ -212,7 +258,7 @@ def run():
     total = 0
     for path in paths:
         base = os.path.basename(path)
-        k = load_file(path, conn, pkeys)
+        k = load_file(path, conn, pkeys, search_terms)
         print(f"  {base.split('-')[0]} [{THEMES.get(base.split('-')[0],'?')}]: {k} people")
         total += k
     n_links = build_principal_fund(conn)
