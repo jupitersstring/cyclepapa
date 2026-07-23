@@ -31,7 +31,7 @@ Six questions: **L**isted · **U**nnatural owners (live forced-seller overhang) 
 | California Resources Corp | CRC | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 2.3×); EBIT/EV 13% (neutral (0-20%)) |
 | INFINITY NATURAL RESOURCES, IN | INR | ~ | — | 2.0 | ok | · | ● | · | · | ● | — | low leverage (ND/EBIT 0.7×); positive EBIT |
 | Jefferies Financial Group Inc. | JEF | ~ | — | 2.0 | deep | · | ● | ● | · | · | excess-emergence-cash | net cash balance sheet; net cash = 106% of mkt cap (net-debt bur |
-| GULFPORT ENERGY CORP | GPOR | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 1.3×); EBIT/EV 15% (neutral (0-20%)) |
+| GULFPORT ENERGY CORP | GPOR | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 1.3×); EBIT/EV 14% (neutral (0-20%)) |
 | AGCO CORP /DE | AGCO | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 3.0×); EBIT/EV 4% (neutral (0-20%)) |
 | Bristow Group Inc. | VTOL | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 2.7×); EBIT/EV 7% (neutral (0-20%)) |
 | RMR GROUP INC. | RMR | ~ | — | 2.0 | ok | · | ● | · | · | ● | — | net cash balance sheet; positive EBIT |
@@ -44,10 +44,10 @@ Six questions: **L**isted · **U**nnatural owners (live forced-seller overhang) 
 | SEADRILL Ltd | SDRL | ✓ | — | 1.0 | deep | · | · | · | · | ● | — | EBIT/EV 2% (neutral (0-20%)) |
 | Phoenix Energy One, LLC | PHXE-P | ✓ | — | 1.0 | thin | · | · | · | · | ● | — | EBIT/EV 4% (neutral (0-20%)) |
 | Noble Corp plc | NE | ✓ | — | 1.0 | deep | · | · | · | · | ● | — | EBIT/EV 4% (neutral (0-20%)) |
-| CLEVELAND-CLIFFS INC. | CLF | ✓ | 2042 | 1.0 | deep | ● | · | · | · | · | forced-creditor overhang | filer emerged 2042 (~-192mo ago) — live forced-seller overhang |
+| CLEVELAND-CLIFFS INC. | CLF | ✓ | 2042 | 1.0 | deep | ● | · | · | · | · | forced-creditor overhang | filer emerged 2042 (~-191mo ago) — live forced-seller overhang |
 | Capstone Green Energy Holdings | CGEH | ✓ | — | 1.0 | ok | · | · | · | · | ● | — | EBIT/EV 1% (neutral (0-20%)) |
 | NEXSTAR MEDIA GROUP, INC. | NXST | ✓ | — | 1.0 | deep | · | · | · | · | ● | — | EBIT/EV 6% (neutral (0-20%)) |
-| TruBridge, Inc. | TBRG | ✓ | 2020 | 1.0 | deep | · | · | · | · | ● | — | filer emerged 2020 (~73mo ago) — overhang likely cleared; EBIT/E |
+| TruBridge, Inc. | TBRG | ✓ | 2020 | 1.0 | ? | · | · | · | · | ● | — | filer emerged 2020 (~73mo ago) — overhang likely cleared; EBIT/E |
 | Clean Energy Fuels Corp. | CLNE | ✓ | September 1, 2025 | 1.0 | ok | ● | · | · | · | · | forced-creditor overhang | filer emerged September 1, 2025 (~11mo ago) — live forced-seller |
 | Smart Sand, Inc. | SND | ✓ | — | 1.0 | ok | · | ● | · | · | · | — | net cash balance sheet |
 | Sila Realty Trust, Inc. | SILA | ✓ | February 16, 2024 | 1.0 | deep | · | · | · | · | ● | — | filer emerged February 16, 2024 (~29mo ago) — overhang likely cl |
@@ -86,7 +86,7 @@ Six questions: **L**isted · **U**nnatural owners (live forced-seller overhang) 
 
 ## Prime setups (fitness ≥ 3)
 
-- **CENTRUS ENERGY CORP** (LEU) — fitness 3.0 · ✓ filer-emergence confirmed; excess-emergence-cash  ·  filer emerged September 30, 2014 (~142mo ago) — overhang likely cleared; net cash balance sheet; net cash = 81% of mkt cap (net-debt burden overstated); EBIT/EV 2% (neutral (0-20%))
+- **CENTRUS ENERGY CORP** (LEU) — fitness 3.0 · ✓ filer-emergence confirmed; excess-emergence-cash  ·  filer emerged September 30, 2014 (~142mo ago) — overhang likely cleared; net cash balance sheet; net cash = 82% of mkt cap (net-debt burden overstated); EBIT/EV 2% (neutral (0-20%))
 
 ## Set aside — filer's own emergence unconfirmed
 
