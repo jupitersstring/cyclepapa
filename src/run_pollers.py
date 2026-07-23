@@ -59,6 +59,8 @@ POLLERS: list[tuple[str, list[str]]] = [
     ("src.euronext_poll",      ["--days-back", "30"]),
     ("src.jse_poll",           []),
     ("src.distressed_13d_poll", ["--days-back", "730"]),
+    ("src.pacer_emergence_poll", ["--days-back", "120"]),
+    ("src.going_concern_poll",  ["--days-back", "120"]),
     ("src.spinoff_radar",      []),
     ("src.cluster_buys",       []),
 ]

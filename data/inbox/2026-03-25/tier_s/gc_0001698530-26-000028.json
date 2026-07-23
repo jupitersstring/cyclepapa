@@ -1,0 +1,17 @@
+{
+  "accession": "0001698530-26-000028",
+  "cik": "0001698530",
+  "fetched_at": "2026-07-23T00:02:57.892397Z",
+  "filed": "2026-03-25",
+  "form": "10-K",
+  "form_code": "10-K",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "EXICURE, INC.",
+  "query_label": "tier_s.going_concern_lifted",
+  "query_note": "Going-concern doubt ALLEVIATED / RESOLVED \u2014 a survival turnaround (refinanced / recapitalised / returned to profit). Recovery signal the market is slow to re-rate.",
+  "source": "EDGAR-going-concern",
+  "ticker": "XCUR",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1698530/000169853026000028"
+}

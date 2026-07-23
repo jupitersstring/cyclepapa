@@ -1,0 +1,17 @@
+{
+  "accession": "0001213900-26-044471",
+  "cik": "0002049187",
+  "fetched_at": "2026-07-23T00:02:57.892397Z",
+  "filed": "2026-04-16",
+  "form": "6-K",
+  "form_code": "6-K",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "K-TECH SOLUTIONS CO LTD",
+  "query_label": "tier_s.going_concern_lifted",
+  "query_note": "Going-concern doubt ALLEVIATED / RESOLVED \u2014 a survival turnaround (refinanced / recapitalised / returned to profit). Recovery signal the market is slow to re-rate.",
+  "source": "EDGAR-going-concern",
+  "ticker": "KMRK",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/2049187/000121390026044471"
+}

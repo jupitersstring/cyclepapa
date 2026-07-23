@@ -1,0 +1,17 @@
+{
+  "accession": "0001493152-26-012925",
+  "cik": "0001505497",
+  "fetched_at": "2026-07-23T00:02:57.892397Z",
+  "filed": "2026-03-26",
+  "form": "10-K",
+  "form_code": "10-K",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "BioRestorative Therapies, Inc.",
+  "query_label": "tier_s.going_concern_lifted",
+  "query_note": "Going-concern doubt ALLEVIATED / RESOLVED \u2014 a survival turnaround (refinanced / recapitalised / returned to profit). Recovery signal the market is slow to re-rate.",
+  "source": "EDGAR-going-concern",
+  "ticker": "BRTX",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1505497/000149315226012925"
+}

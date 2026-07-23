@@ -3355,6 +3355,21 @@
   },
   {
     "channels": {
+      "emergence 8-K prose": 1
+    },
+    "cik": "",
+    "confidence": "medium (single primary source)",
+    "first_filed": "2026-05-05",
+    "item_1_03": false,
+    "key": "NAME:590600realty",
+    "last_filed": "2026-05-05",
+    "name": "590-600 Realty Corp.",
+    "pending": false,
+    "primary": true,
+    "ticker": ""
+  },
+  {
+    "channels": {
       "plan-effective 8-K": 1
     },
     "cik": "0000004127",
@@ -6566,6 +6581,21 @@
   },
   {
     "channels": {
+      "court plan-confirmation order": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-19",
+    "item_1_03": false,
+    "key": "NAME:aleaus",
+    "last_filed": "2026-07-19",
+    "name": "Alea Holdings US Company",
+    "pending": null,
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
       "scheme of arrangement": 6
     },
     "cik": "",
@@ -6770,6 +6800,21 @@
     "key": "CIK:1900520",
     "last_filed": "2026-07-11",
     "name": "Lomond Therapeutics Holdings, Inc.",
+    "pending": null,
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "court plan-confirmation order": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-07-10",
+    "item_1_03": false,
+    "key": "NAME:centralfallsdetentionfacility",
+    "last_filed": "2026-07-10",
+    "name": "Central Falls Detention Facility Corporation",
     "pending": null,
     "primary": false,
     "ticker": ""
@@ -7393,6 +7438,21 @@
   },
   {
     "channels": {
+      "court plan-confirmation order": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-30",
+    "item_1_03": false,
+    "key": "NAME:dishdbsofficialcommitteeunsecuredcreditorsdish",
+    "last_filed": "2026-06-30",
+    "name": "DISH DBS Corporation and Official Committee of Unsecured Creditors of DISH",
+    "pending": null,
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
       "restructuring in progress": 1
     },
     "cik": "",
@@ -7417,6 +7477,21 @@
     "key": "NAME:treatt",
     "last_filed": "2026-06-30",
     "name": "Treatt PLC",
+    "pending": null,
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "court plan-confirmation order": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-30",
+    "item_1_03": false,
+    "key": "NAME:inrebabcockwilcox",
+    "last_filed": "2026-06-30",
+    "name": "In Re: The Babcock & Wilcox Company",
     "pending": null,
     "primary": false,
     "ticker": ""
@@ -7738,6 +7813,21 @@
   },
   {
     "channels": {
+      "court plan-confirmation order": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-15",
+    "item_1_03": false,
+    "key": "NAME:searlesvalleyminerals",
+    "last_filed": "2026-06-15",
+    "name": "Searles Valley Minerals Inc.",
+    "pending": null,
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
       "scheme of arrangement": 1
     },
     "cik": "",
@@ -7753,6 +7843,21 @@
   },
   {
     "channels": {
+      "court plan-confirmation order": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-12",
+    "item_1_03": false,
+    "key": "NAME:sleepnumber",
+    "last_filed": "2026-06-12",
+    "name": "Sleep Number Corporation",
+    "pending": null,
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
       "restructuring in progress": 1
     },
     "cik": "",
@@ -7765,6 +7870,36 @@
     "pending": null,
     "primary": false,
     "ticker": "EPA:FR0010812230"
+  },
+  {
+    "channels": {
+      "court plan-confirmation order": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-04",
+    "item_1_03": false,
+    "key": "NAME:simad",
+    "last_filed": "2026-06-04",
+    "name": "SIMAD Holdings Ltd.",
+    "pending": null,
+    "primary": false,
+    "ticker": ""
+  },
+  {
+    "channels": {
+      "court plan-confirmation order": 1
+    },
+    "cik": "",
+    "confidence": "low (single corroborating signal)",
+    "first_filed": "2026-06-03",
+    "item_1_03": false,
+    "key": "NAME:newyorkstatenursesassociationpensionplanvtehumcareservices",
+    "last_filed": "2026-06-03",
+    "name": "New York State Nurses Association Pension Plan v. Tehum Care Services, Inc.",
+    "pending": null,
+    "primary": false,
+    "ticker": ""
   },
   {
     "channels": {

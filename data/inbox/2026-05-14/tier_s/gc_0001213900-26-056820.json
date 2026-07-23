@@ -1,0 +1,17 @@
+{
+  "accession": "0001213900-26-056820",
+  "cik": "0001734005",
+  "fetched_at": "2026-07-23T00:02:57.892397Z",
+  "filed": "2026-05-14",
+  "form": "6-K",
+  "form_code": "6-K",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Aptorum Group Ltd",
+  "query_label": "tier_s.going_concern_lifted",
+  "query_note": "Going-concern doubt ALLEVIATED / RESOLVED \u2014 a survival turnaround (refinanced / recapitalised / returned to profit). Recovery signal the market is slow to re-rate.",
+  "source": "EDGAR-going-concern",
+  "ticker": "APM",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1734005/000121390026056820"
+}

@@ -1,0 +1,17 @@
+{
+  "accession": "0001683168-26-002986",
+  "cik": "0001109262",
+  "fetched_at": "2026-07-23T00:02:57.892397Z",
+  "filed": "2026-04-15",
+  "form": "10-K",
+  "form_code": "10-K",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Allied Energy, Inc.",
+  "query_label": "tier_s.going_concern_lifted",
+  "query_note": "Going-concern doubt ALLEVIATED / RESOLVED \u2014 a survival turnaround (refinanced / recapitalised / returned to profit). Recovery signal the market is slow to re-rate.",
+  "source": "EDGAR-going-concern",
+  "ticker": "AGGI",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1109262/000168316826002986"
+}

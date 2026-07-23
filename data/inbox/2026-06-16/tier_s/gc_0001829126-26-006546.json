@@ -1,0 +1,17 @@
+{
+  "accession": "0001829126-26-006546",
+  "cik": "0002079109",
+  "fetched_at": "2026-07-23T00:02:57.892397Z",
+  "filed": "2026-06-16",
+  "form": "20-F",
+  "form_code": "20-F",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Veraxa Biotech Holding AG",
+  "query_label": "tier_s.going_concern_lifted",
+  "query_note": "Going-concern doubt ALLEVIATED / RESOLVED \u2014 a survival turnaround (refinanced / recapitalised / returned to profit). Recovery signal the market is slow to re-rate.",
+  "source": "EDGAR-going-concern",
+  "ticker": "VRXA",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/2079109/000182912626006546"
+}

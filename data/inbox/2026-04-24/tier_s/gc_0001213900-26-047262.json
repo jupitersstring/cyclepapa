@@ -1,0 +1,17 @@
+{
+  "accession": "0001213900-26-047262",
+  "cik": "0002035697",
+  "fetched_at": "2026-07-23T00:02:57.892397Z",
+  "filed": "2026-04-24",
+  "form": "20-F",
+  "form_code": "20-F",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Polibeli Group Ltd",
+  "query_label": "tier_s.going_concern_lifted",
+  "query_note": "Going-concern doubt ALLEVIATED / RESOLVED \u2014 a survival turnaround (refinanced / recapitalised / returned to profit). Recovery signal the market is slow to re-rate.",
+  "source": "EDGAR-going-concern",
+  "ticker": "PLBL",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/2035697/000121390026047262"
+}

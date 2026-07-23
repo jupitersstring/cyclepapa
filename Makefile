@@ -1,4 +1,4 @@
-.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll hkex-poll sgx-poll euronext-poll jse-poll distressed-13d-poll poll-all security-master source-health corroborate reconcile postreorg-score postreorg-verify emergence-master db listed-equity-screen waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
+.PHONY: score poll uk-poll ca-poll jp-poll us-bankr-poll br-poll au-poll sc13d-poll form15-poll cluster-sells ofac-poll lobbying-poll credit-spread-poll thirteenf-poll postreorg-poll eightk-items-poll edgar-forms-poll hkex-poll sgx-poll euronext-poll jse-poll distressed-13d-poll pacer-emergence-poll going-concern-poll poll-all security-master source-health corroborate reconcile postreorg-score postreorg-verify emergence-master db listed-equity-screen waterfall validate portfolio audit clean help inbox-promote universe-rr workbook refresh
 
 help:
 	@echo "Targets:"
@@ -165,6 +165,17 @@ db: audit
 # equity = debt-to-equity control, the highest-signal post-reorg tell.
 distressed-13d-poll: audit
 	python3 -m src.distressed_13d_poll --days-back 730
+
+# Court-side EMERGENCE poller — plan-confirmation orders + notices of
+# effective date via CourtListener RECAP (the exact docket emergence).
+pacer-emergence-poll: audit
+	python3 -m src.pacer_emergence_poll --days-back 120
+
+# Going-concern RECOVERY poller — filings where the auditor's substantial-
+# doubt qualification was ALLEVIATED/RESOLVED (a turnaround the market is
+# slow to re-rate). --include-flags also polls the distress side.
+going-concern-poll: audit
+	python3 -m src.going_concern_poll --days-back 120
 
 # HKEX (Hong Kong) special-situations poller — resumption-of-trading,
 # scheme/restructuring, privatisation, suspension, liquidation via the free

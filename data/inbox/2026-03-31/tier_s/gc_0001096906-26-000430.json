@@ -1,0 +1,17 @@
+{
+  "accession": "0001096906-26-000430",
+  "cik": "0001131903",
+  "fetched_at": "2026-07-23T00:02:57.892397Z",
+  "filed": "2026-03-31",
+  "form": "10-K",
+  "form_code": "10-K",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "SPECTRAL CAPITAL Corp",
+  "query_label": "tier_s.going_concern_lifted",
+  "query_note": "Going-concern doubt ALLEVIATED / RESOLVED \u2014 a survival turnaround (refinanced / recapitalised / returned to profit). Recovery signal the market is slow to re-rate.",
+  "source": "EDGAR-going-concern",
+  "ticker": "FCCN",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1131903/000109690626000430"
+}

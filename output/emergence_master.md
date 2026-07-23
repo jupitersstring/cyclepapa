@@ -2,7 +2,7 @@
 
 Every Chapter 11 emergence signal in `data/inbox/`, fused by entity and scored by how many INDEPENDENT SEC channels corroborate it. Primary channels (emergence 8-K, fresh-start accounting, plan-effective) ARE an emergence; structural channels (Form 25/15 delisting, Form 8-A relisting, PACER docket, 8-K Item 1.03) raise confidence.
 
-- fused emergence events: **517**  ·  with a primary signal: **432**  ·  high-confidence (primary + corroboration): **39**  ·  pending (Q-suffix, still in Chapter 11): **6**
+- fused emergence events: **526**  ·  with a primary signal: **433**  ·  high-confidence (primary + corroboration): **39**  ·  pending (Q-suffix, still in Chapter 11): **6**
 - ground-truth known emergences loaded: **76**  ·  **coverage gaps (known, listed, NOT caught): 3**
 
 ## Fused events (most-corroborated first)

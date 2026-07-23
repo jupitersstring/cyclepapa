@@ -1,0 +1,17 @@
+{
+  "accession": "0001213900-26-057499",
+  "cik": "0001599407",
+  "fetched_at": "2026-07-23T00:02:57.892397Z",
+  "filed": "2026-05-15",
+  "form": "10-Q",
+  "form_code": "10-Q",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "1847 Holdings LLC",
+  "query_label": "tier_s.going_concern_lifted",
+  "query_note": "Going-concern doubt ALLEVIATED / RESOLVED \u2014 a survival turnaround (refinanced / recapitalised / returned to profit). Recovery signal the market is slow to re-rate.",
+  "source": "EDGAR-going-concern",
+  "ticker": "LBRA",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1599407/000121390026057499"
+}

@@ -93,6 +93,8 @@ def _classify(rec) -> tuple[str, bool] | None:
     if "resumption" in lbl:
         return ("resumption of listing (foreign)", True)
     # court-supervised recap in progress — corroborating, not yet emerged
+    if "plan_confirmed" in lbl:
+        return ("court plan-confirmation order", False)
     if "scheme" in lbl:
         return ("scheme of arrangement", False)
     if "restructuring" in lbl or "recapitalis" in lbl:

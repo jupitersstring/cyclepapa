@@ -63,6 +63,7 @@ EXPECTED_SOURCES = {
     "EDGAR-postreorg", "EDGAR-FTS", "FRED-ICE-BofA-OAS", "LDA-Senate", "NSM",
     "OFAC", "SEDAR+", "TDnet", "spinoff-radar", "HKEXnews",
     "SGX", "OAM-AMF", "JSE-SENS", "EDGAR-distressed13D",
+    "CourtListener-emergence", "EDGAR-going-concern",
 }
 
 

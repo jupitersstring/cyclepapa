@@ -1,0 +1,17 @@
+{
+  "accession": "0001213900-26-040504",
+  "cik": "0002018529",
+  "fetched_at": "2026-07-23T00:02:57.892397Z",
+  "filed": "2026-04-06",
+  "form": "6-K",
+  "form_code": "6-K",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Intercont (Cayman) Ltd",
+  "query_label": "tier_s.going_concern_lifted",
+  "query_note": "Going-concern doubt ALLEVIATED / RESOLVED \u2014 a survival turnaround (refinanced / recapitalised / returned to profit). Recovery signal the market is slow to re-rate.",
+  "source": "EDGAR-going-concern",
+  "ticker": "NCT",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/2018529/000121390026040504"
+}

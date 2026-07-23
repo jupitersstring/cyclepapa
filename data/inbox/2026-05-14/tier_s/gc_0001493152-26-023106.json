@@ -1,0 +1,17 @@
+{
+  "accession": "0001493152-26-023106",
+  "cik": "0001487197",
+  "fetched_at": "2026-07-23T00:02:57.892397Z",
+  "filed": "2026-05-14",
+  "form": "10-Q",
+  "form_code": "10-Q",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "BARFRESH FOOD GROUP INC.",
+  "query_label": "tier_s.going_concern_lifted",
+  "query_note": "Going-concern doubt ALLEVIATED / RESOLVED \u2014 a survival turnaround (refinanced / recapitalised / returned to profit). Recovery signal the market is slow to re-rate.",
+  "source": "EDGAR-going-concern",
+  "ticker": "BRFH",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1487197/000149315226023106"
+}

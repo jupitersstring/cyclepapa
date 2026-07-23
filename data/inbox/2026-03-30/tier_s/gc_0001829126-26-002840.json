@@ -1,0 +1,17 @@
+{
+  "accession": "0001829126-26-002840",
+  "cik": "0001820875",
+  "fetched_at": "2026-07-23T00:02:57.892397Z",
+  "filed": "2026-03-30",
+  "form": "10-K",
+  "form_code": "10-K",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "CXApp Inc.",
+  "query_label": "tier_s.going_concern_lifted",
+  "query_note": "Going-concern doubt ALLEVIATED / RESOLVED \u2014 a survival turnaround (refinanced / recapitalised / returned to profit). Recovery signal the market is slow to re-rate.",
+  "source": "EDGAR-going-concern",
+  "ticker": "CXAI",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1820875/000182912626002840"
+}

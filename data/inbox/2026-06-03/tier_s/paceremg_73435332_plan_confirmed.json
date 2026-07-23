@@ -1,0 +1,17 @@
+{
+  "accession": "73435332",
+  "cik": "",
+  "fetched_at": "2026-07-23T00:00:55.123152Z",
+  "filed": "2026-06-03",
+  "form": "District Court, N.D. New York",
+  "form_code": "RECAP-docket",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "New York State Nurses Association Pension Plan v. Tehum Care Services, Inc.",
+  "query_label": "tier_s.plan_confirmed",
+  "query_note": "Court ORDER CONFIRMING the plan of reorganization \u2014 confirmation precedes the effective date by ~2 weeks; emergence is imminent.",
+  "source": "CourtListener-emergence",
+  "ticker": "",
+  "tier": "tier_s",
+  "url": "https://www.courtlistener.com/docket/73435332/new-york-state-nurses-association-pension-plan-v-tehum-care-services-inc/"
+}

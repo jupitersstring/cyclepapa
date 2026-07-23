@@ -1,0 +1,17 @@
+{
+  "accession": "0001437749-26-015608",
+  "cik": "0000072444",
+  "fetched_at": "2026-07-23T00:02:57.892397Z",
+  "filed": "2026-05-07",
+  "form": "10-Q",
+  "form_code": "10-Q",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Vaxart, Inc.",
+  "query_label": "tier_s.going_concern_lifted",
+  "query_note": "Going-concern doubt ALLEVIATED / RESOLVED \u2014 a survival turnaround (refinanced / recapitalised / returned to profit). Recovery signal the market is slow to re-rate.",
+  "source": "EDGAR-going-concern",
+  "ticker": "VXRT",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/72444/000143774926015608"
+}

@@ -126,6 +126,8 @@ PROMOTE_TIER_S_TIGHT = {                  # tier_s sub-queries that promote
     "restructuring", "recapitalisation",
     # ---- Distressed-fund 13D control tracker (distressed_13d_poll.py) ----
     "distressed_13d", "distressed_13g",
+    # ---- Court-side emergence + going-concern recovery ----
+    "plan_confirmed", "going_concern_lifted",
     # ---- Cross-source corroboration (corroborate.py) ----
     "corroborated_multi",
 }

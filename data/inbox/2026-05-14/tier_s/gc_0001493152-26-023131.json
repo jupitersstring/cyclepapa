@@ -1,0 +1,17 @@
+{
+  "accession": "0001493152-26-023131",
+  "cik": "0001828673",
+  "fetched_at": "2026-07-23T00:02:57.892397Z",
+  "filed": "2026-05-14",
+  "form": "10-Q",
+  "form_code": "10-Q",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "HCW Biologics Inc.",
+  "query_label": "tier_s.going_concern_lifted",
+  "query_note": "Going-concern doubt ALLEVIATED / RESOLVED \u2014 a survival turnaround (refinanced / recapitalised / returned to profit). Recovery signal the market is slow to re-rate.",
+  "source": "EDGAR-going-concern",
+  "ticker": "HCWB",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1828673/000149315226023131"
+}

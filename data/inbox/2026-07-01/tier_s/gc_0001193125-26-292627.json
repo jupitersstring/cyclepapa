@@ -1,0 +1,17 @@
+{
+  "accession": "0001193125-26-292627",
+  "cik": "0001383414",
+  "fetched_at": "2026-07-23T00:02:57.892397Z",
+  "filed": "2026-07-01",
+  "form": "10-K/A",
+  "form_code": "10-K/A",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "PENNANTPARK INVESTMENT CORP",
+  "query_label": "tier_s.going_concern_lifted",
+  "query_note": "Going-concern doubt ALLEVIATED / RESOLVED \u2014 a survival turnaround (refinanced / recapitalised / returned to profit). Recovery signal the market is slow to re-rate.",
+  "source": "EDGAR-going-concern",
+  "ticker": "PNNT",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1383414/000119312526292627"
+}

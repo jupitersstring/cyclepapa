@@ -1,0 +1,17 @@
+{
+  "accession": "0001477932-26-003174",
+  "cik": "0001374881",
+  "fetched_at": "2026-07-23T00:02:57.892397Z",
+  "filed": "2026-05-15",
+  "form": "10-Q",
+  "form_code": "10-Q",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Kingfish Holding Corp",
+  "query_label": "tier_s.going_concern_lifted",
+  "query_note": "Going-concern doubt ALLEVIATED / RESOLVED \u2014 a survival turnaround (refinanced / recapitalised / returned to profit). Recovery signal the market is slow to re-rate.",
+  "source": "EDGAR-going-concern",
+  "ticker": "",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1374881/000147793226003174"
+}

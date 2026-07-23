@@ -1,0 +1,17 @@
+{
+  "accession": "0001437749-26-017043",
+  "cik": "0001056358",
+  "fetched_at": "2026-07-23T00:02:57.892397Z",
+  "filed": "2026-05-14",
+  "form": "10-Q",
+  "form_code": "10-Q",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "MANNATECH INC",
+  "query_label": "tier_s.going_concern_lifted",
+  "query_note": "Going-concern doubt ALLEVIATED / RESOLVED \u2014 a survival turnaround (refinanced / recapitalised / returned to profit). Recovery signal the market is slow to re-rate.",
+  "source": "EDGAR-going-concern",
+  "ticker": "MTEX",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1056358/000143774926017043"
+}
