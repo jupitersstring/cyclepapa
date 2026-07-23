@@ -1,0 +1,22 @@
+{
+  "accession": "bcd68073-fb39-4d64-b171-d446c4139083",
+  "cik": "",
+  "expenses": "10000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Civil Rights/Civil Liberties",
+  "jurisdiction": "US",
+  "name": "AMERICAN COUNCIL OF THE BLIND INC",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN COUNCIL OF THE BLIND INC engaged AMERICAN COUNCIL OF THE BLIND INC on Civil Rights/Civil Liberties (universe-name match: AMERICAN)",
+  "registrant": "AMERICAN COUNCIL OF THE BLIND INC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/bcd68073-fb39-4d64-b171-d446c4139083/print/"
+}

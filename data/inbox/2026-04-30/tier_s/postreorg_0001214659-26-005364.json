@@ -1,11 +1,8 @@
 {
   "accession": "0001214659-26-005364",
-  "also_matched": [
-    "emergence from bankruptcy"
-  ],
   "cik": "0000896493",
   "emergence_tier": "recall",
-  "fetched_at": "2026-07-21T18:19:14.461342Z",
+  "fetched_at": "2026-07-23T13:36:23.219185Z",
   "filed": "2026-04-30",
   "form": "8-K",
   "form_code": "8-K",
@@ -18,6 +15,7 @@
   "jurisdiction": "US",
   "matched_phrase": "emergence from bankruptcy",
   "name": "Hyperscale Data, Inc.",
+  "post_reorg_ipo": false,
   "pre_emergence": false,
   "query_label": "tier_s.post_reorg_emerged",
   "query_note": "Emergence from Chapter 11 \u2014 post-reorg equity now trading. Verify float, creditor overhang, and the coverage vacuum.",

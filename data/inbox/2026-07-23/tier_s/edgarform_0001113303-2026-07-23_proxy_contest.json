@@ -1,0 +1,17 @@
+{
+  "accession": "",
+  "cik": "0001113303",
+  "fetched_at": "2026-07-23T13:37:58.942597Z",
+  "filed": "2026-07-23",
+  "form": "DEFC14A",
+  "form_code": "DEFC14A",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Stilwell Joseph",
+  "query_label": "tier_s.proxy_contest",
+  "query_note": "DEFC14A \u2014 definitive CONTESTED proxy statement",
+  "source": "EDGAR-forms",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1113303/000092189526001843/0000921895-26-001843-index.htm"
+}

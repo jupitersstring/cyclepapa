@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113484-2A1685594",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-22",
+  "form": "Trading Halt",
+  "form_code": "Trading Halt",
+  "industry": "Independent Power & Renewable Electricity Producers",
+  "isin": "AU0000395626",
+  "jurisdiction": "AU",
+  "name": "JANUS ELECTRIC HOLDINGS LIMITED",
+  "price_sensitive": true,
+  "query_label": "tier_s.suspension_halt",
+  "query_note": "Trading halt or suspension",
+  "sector": "Utilities",
+  "source": "ASX",
+  "ticker": "JNS",
+  "tier": "tier_s",
+  "url": ""
+}

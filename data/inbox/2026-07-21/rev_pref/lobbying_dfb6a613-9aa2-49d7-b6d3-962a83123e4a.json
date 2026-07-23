@@ -1,0 +1,22 @@
+{
+  "accession": "dfb6a613-9aa2-49d7-b6d3-962a83123e4a",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Defense",
+  "jurisdiction": "US",
+  "name": "EQUIFAX WORKFORCE SOLUTIONS",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 EQUIFAX WORKFORCE SOLUTIONS engaged BANNER PUBLIC AFFAIRS, LLC for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "BANNER PUBLIC AFFAIRS, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/dfb6a613-9aa2-49d7-b6d3-962a83123e4a/print/"
+}

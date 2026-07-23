@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113702-2A1685678",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-23",
+  "form": "Initial Director's Interest Notice - Peter Pawlowitsch",
+  "form_code": "Initial Director's Interest Notice",
+  "industry": "Software",
+  "isin": "AU0000473464",
+  "jurisdiction": "AU",
+  "name": "AURA CONSOLIDATED GROUP, INC.",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Information Technology",
+  "source": "ASX",
+  "ticker": "AXQ",
+  "tier": "rev_pref",
+  "url": ""
+}

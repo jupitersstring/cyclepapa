@@ -1,0 +1,22 @@
+{
+  "accession": "160b212f-25dc-4d81-a64a-8f40e80c48e2",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report (No Activity)",
+  "form_code": "Q2Y",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "THE BARNES GLOBAL ADVISORS",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 THE BARNES GLOBAL ADVISORS engaged BRODY GROUP L.L.C. PUBLIC AFFAIRS on  (universe-name match: GLOBAL)",
+  "registrant": "BRODY GROUP L.L.C. PUBLIC AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "GLOBAL",
+  "url": "https://lda.senate.gov/filings/public/filing/160b212f-25dc-4d81-a64a-8f40e80c48e2/print/"
+}

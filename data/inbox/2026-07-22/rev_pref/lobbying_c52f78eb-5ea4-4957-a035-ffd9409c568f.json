@@ -1,0 +1,22 @@
+{
+  "accession": "c52f78eb-5ea4-4957-a035-ffd9409c568f",
+  "cik": "",
+  "expenses": "30000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Trade (domestic/foreign) \u00b7 Apparel/Clothing Industry/Textiles \u00b7 Manufacturing \u00b7 Tariff (miscellaneous tariff bills) \u00b7 Homeland Security",
+  "jurisdiction": "US",
+  "name": "NATIONAL COUNCIL OF TEXTILE ORGANIZATIONS",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 NATIONAL COUNCIL OF TEXTILE ORGANIZATIONS engaged NATIONAL COUNCIL OF TEXTILE ORGANIZATION for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "NATIONAL COUNCIL OF TEXTILE ORGANIZATIONS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "NATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/c52f78eb-5ea4-4957-a035-ffd9409c568f/print/"
+}

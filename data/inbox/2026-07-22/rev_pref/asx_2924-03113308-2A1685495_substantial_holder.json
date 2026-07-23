@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113308-2A1685495",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-22",
+  "form": "Change in substantial holding",
+  "form_code": "Change in substantial holding",
+  "industry": "Software",
+  "isin": "AU0000152183",
+  "jurisdiction": "AU",
+  "name": "GRATIFII LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Information Technology",
+  "source": "ASX",
+  "ticker": "GTI",
+  "tier": "rev_pref",
+  "url": ""
+}

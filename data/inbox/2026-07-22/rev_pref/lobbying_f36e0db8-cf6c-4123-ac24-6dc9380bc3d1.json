@@ -1,0 +1,22 @@
+{
+  "accession": "f36e0db8-cf6c-4123-ac24-6dc9380bc3d1",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "40000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Homeland Security \u00b7 Marine/Maritime/Boating/Fisheries \u00b7 Transportation \u00b7 Energy/Nuclear \u00b7 Defense",
+  "jurisdiction": "US",
+  "name": "GHOSTWORKS MARINE",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 GHOSTWORKS MARINE engaged WHITMER & WORRALL, LLC for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "WHITMER & WORRALL, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/f36e0db8-cf6c-4123-ac24-6dc9380bc3d1/print/"
+}

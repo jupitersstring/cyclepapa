@@ -1,0 +1,22 @@
+{
+  "accession": "4f1bfe0f-f12a-431f-a18b-7df4b2fcf47e",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Medicare/Medicaid \u00b7 Health Issues",
+  "jurisdiction": "US",
+  "name": "AMERICAN SOCIETY FOR GASTROINTESTINAL ENDOSCOPY",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN SOCIETY FOR GASTROINTESTINAL ENDOSCOPY engaged SUMMIT HEALTH CARE CONSULTING on Medicare/Medicaid \u00b7 Health Issues (universe-name match: AMERICAN)",
+  "registrant": "SUMMIT HEALTH CARE CONSULTING",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/4f1bfe0f-f12a-431f-a18b-7df4b2fcf47e/print/"
+}

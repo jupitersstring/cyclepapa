@@ -2,7 +2,7 @@
 
 Industry-wide restructuring WAVES from our own inbox record (bankruptcy entries + emergences grouped by SIC industry). The case-study shape: the emergence vintage FOLLOWING a wave is the buy (coal '16, drillers '21); the FIRST restructuring in a downcycle is often too early (Seadrill '17 → Chapter 22 '21). Informational — no score impact.
 
-- industries with a wave (≥3 distinct restructurings in 24mo): **27**  ·  second-vintage industries: **0**  ·  cohort-vintage emergences: **281**
+- industries with a wave (≥3 distinct restructurings in 24mo): **27**  ·  second-vintage industries: **0**  ·  cohort-vintage emergences: **282**
 
 ## Waves
 
@@ -15,8 +15,8 @@ Industry-wide restructuring WAVES from our own inbox record (bankruptcy entries 
 | 67 | Investors, NEC | 2026 | 17 |  |
 | 38 | Surgical & Medical Instruments & App | 2026 | 16 |  |
 | 62 | Investment Advice | 2026 | 14 |  |
+| 10 | Metal Mining | 2026 | 13 |  |
 | 60 | State Commercial Banks | 2026 | 13 |  |
-| 10 | Metal Mining | 2026 | 12 |  |
 | 35 | Engines & Turbines | 2026 | 11 |  |
 | 37 | Motor Vehicles & Passenger Car Bodie | 2026 | 10 |  |
 | 61 | Finance Services | 2026 | 10 |  |
@@ -40,6 +40,9 @@ Industry-wide restructuring WAVES from our own inbox record (bankruptcy entries 
 
 | Name | Ticker | Industry | Emerged |
 |---|---|---|---|
+| PG&E Corp | PCG | Electric Services | 2026-07-23 |
+| NOVAGOLD RESOURCES INC | NG | Metal Mining | 2026-07-22 |
+| CONECTISYS CORP | CONC | Semiconductors & Related Devic | 2026-07-21 |
 | ZeroStack Corp. | ZSTK | Wholesale-Drugs, Proprietaries | 2026-07-20 |
 | QVC Group, Inc. | QVCGA | Retail-Catalog & Mail-Order Ho | 2026-07-17 |
 | Inotiv, Inc. | NOTV | Services-Commercial Physical & | 2026-07-16 |
@@ -172,7 +175,6 @@ Industry-wide restructuring WAVES from our own inbox record (bankruptcy entries 
 | CARVANA CO. | CVNA | Retail-Auto Dealers & Gasoline | 2026-05-06 |
 | Blue Bird Corp | BLBD | Motor Vehicles & Passenger Car | 2026-05-06 |
 | Ryerson Holding Corp | RYZ | Wholesale-Industrial Machinery | 2026-05-06 |
-| CONECTISYS CORP | CONC | Semiconductors & Related Devic | 2026-05-06 |
 | Flutter Entertainment plc | FLUT | Services-Computer Programming  | 2026-05-06 |
 | GULFPORT ENERGY CORP | GPOR | Oil & Gas Field Services, NEC | 2026-05-06 |
 | AES CORP | AES | Electric Services | 2026-05-05 |
@@ -209,7 +211,6 @@ Industry-wide restructuring WAVES from our own inbox record (bankruptcy entries 
 | SunOpta Inc. | STKL | Food and Kindred Products | 2026-04-27 |
 | Hesai Group | HSAI | Engines & Turbines | 2026-04-24 |
 | HONEYWELL INTERNATIONAL INC | HON | Motor Vehicles & Passenger Car | 2026-04-23 |
-| PG&E Corp | PCG | Electric Services | 2026-04-23 |
 | TELEDYNE TECHNOLOGIES INC | TDY | Surgical & Medical Instruments | 2026-04-23 |
 | CLEVELAND-CLIFFS INC. | CLF | Metal Mining | 2026-04-21 |
 | SYNOPSYS INC | SNPS | Services-Computer Programming  | 2026-04-20 |

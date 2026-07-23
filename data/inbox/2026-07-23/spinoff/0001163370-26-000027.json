@@ -1,0 +1,14 @@
+{
+  "accession": "0001163370-26-000027",
+  "cik": "0001163370",
+  "fetched_at": "2026-07-23T13:40:48.732536Z",
+  "filed": "2026-07-23",
+  "form": "8-K",
+  "name": "NORTHRIM BANCORP INC",
+  "query_label": "reverse_morris_trust",
+  "query_note": "RMT \u2014 spinoff immediately merged with 3rd party",
+  "source": "EDGAR-spinoff-radar",
+  "ticker": "NRIM",
+  "tier": "spinoff",
+  "url": "https://www.sec.gov/Archives/edgar/data/1163370/000116337026000027"
+}

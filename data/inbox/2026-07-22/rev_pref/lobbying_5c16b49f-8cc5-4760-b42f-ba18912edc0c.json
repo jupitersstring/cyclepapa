@@ -1,0 +1,22 @@
+{
+  "accession": "5c16b49f-8cc5-4760-b42f-ba18912edc0c",
+  "cik": "",
+  "expenses": "293250.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Firearms/Guns/Ammunition",
+  "jurisdiction": "US",
+  "name": "NATIONAL ASSOCIATION FOR GUN RIGHTS",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 NATIONAL ASSOCIATION FOR GUN RIGHTS engaged NATIONAL ASSOCIATION FOR GUN RIGHTS on Firearms/Guns/Ammunition (universe-name match: NATIONAL)",
+  "registrant": "NATIONAL ASSOCIATION FOR GUN RIGHTS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "NATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/5c16b49f-8cc5-4760-b42f-ba18912edc0c/print/"
+}

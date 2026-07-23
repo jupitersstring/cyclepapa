@@ -1,0 +1,22 @@
+{
+  "accession": "9d5199af-4aff-456c-804d-db8cb9c2f5a4",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Environment/Superfund \u00b7 Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "GREEN TRADING CAPITAL",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 GREEN TRADING CAPITAL engaged ONMESSAGE PUBLIC STRATEGIES for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "ONMESSAGE PUBLIC STRATEGIES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "GREEN",
+  "url": "https://lda.senate.gov/filings/public/filing/9d5199af-4aff-456c-804d-db8cb9c2f5a4/print/"
+}

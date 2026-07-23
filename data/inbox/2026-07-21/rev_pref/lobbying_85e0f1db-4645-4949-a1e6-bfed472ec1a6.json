@@ -1,0 +1,22 @@
+{
+  "accession": "85e0f1db-4645-4949-a1e6-bfed472ec1a6",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Termination",
+  "form_code": "2T",
+  "income": "21600.00",
+  "isin": null,
+  "issues": "Medicare/Medicaid \u00b7 Health Issues",
+  "jurisdiction": "US",
+  "name": "AMERICAN COLLEGE OF OSTEOPATHIC INTERNISTS",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN COLLEGE OF OSTEOPATHIC INTERNISTS engaged SUMMIT HEALTH CARE CONSULTING on Medicare/Medicaid \u00b7 Health Issues (universe-name match: AMERICAN)",
+  "registrant": "SUMMIT HEALTH CARE CONSULTING",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/85e0f1db-4645-4949-a1e6-bfed472ec1a6/print/"
+}

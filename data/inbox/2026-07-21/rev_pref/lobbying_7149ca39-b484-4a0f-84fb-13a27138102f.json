@@ -1,0 +1,22 @@
+{
+  "accession": "7149ca39-b484-4a0f-84fb-13a27138102f",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Amendment",
+  "form_code": "2A",
+  "income": "60000.00",
+  "isin": null,
+  "issues": "Veterans \u00b7 Defense \u00b7 Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "DEPT OF MILITARY AFFAIRS & DEPT OF VETERANS AFFAIRS, STATE OF NEW JERSEY",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 DEPT OF MILITARY AFFAIRS & DEPT OF VETERANS AFFAIRS, STATE O engaged CASSIDY & ASSOCIATES, INC. for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "CASSIDY & ASSOCIATES, INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "JERSEY",
+  "url": "https://lda.senate.gov/filings/public/filing/7149ca39-b484-4a0f-84fb-13a27138102f/print/"
+}

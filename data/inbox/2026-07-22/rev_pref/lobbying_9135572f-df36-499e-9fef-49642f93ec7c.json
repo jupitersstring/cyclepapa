@@ -1,0 +1,22 @@
+{
+  "accession": "9135572f-df36-499e-9fef-49642f93ec7c",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Termination (No Activity)",
+  "form_code": "2TY",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "AKIN GUMP STRAUSS HAUER & FELD (OBO HUMANE WORLD ACTION FUND (FKA HUMANE SOCIETY",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AKIN GUMP STRAUSS HAUER & FELD (OBO HUMANE WORLD ACTION FUND engaged RELATION STRATEGY, LLC on  (universe-name match: WORLD)",
+  "registrant": "RELATION STRATEGY, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "WORLD",
+  "url": "https://lda.senate.gov/filings/public/filing/9135572f-df36-499e-9fef-49642f93ec7c/print/"
+}

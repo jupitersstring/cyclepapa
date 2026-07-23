@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113601-6A1335105",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-23",
+  "form": "Change of Director's Interest Notice",
+  "form_code": "Change of Director's Interest Notice",
+  "industry": "Aerospace & Defense",
+  "isin": "AU0000465338",
+  "jurisdiction": "AU",
+  "name": "KTEK AEROSYSTEMS LTD",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Industrials",
+  "source": "ASX",
+  "ticker": "KTK",
+  "tier": "rev_pref",
+  "url": ""
+}

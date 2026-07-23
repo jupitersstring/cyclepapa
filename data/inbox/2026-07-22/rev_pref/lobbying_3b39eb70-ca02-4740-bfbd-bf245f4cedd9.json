@@ -1,0 +1,22 @@
+{
+  "accession": "3b39eb70-ca02-4740-bfbd-bf245f4cedd9",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Insurance",
+  "jurisdiction": "US",
+  "name": "REGENCE BLUE CROSS BLUE SHIELD",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 REGENCE BLUE CROSS BLUE SHIELD engaged FOXLEY & PIGNANELLI on Insurance (universe-name match: BLUE)",
+  "registrant": "FOXLEY & PIGNANELLI",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "BLUE",
+  "url": "https://lda.senate.gov/filings/public/filing/3b39eb70-ca02-4740-bfbd-bf245f4cedd9/print/"
+}

@@ -1,0 +1,17 @@
+{
+  "accession": "",
+  "cik": "0002074643",
+  "fetched_at": "2026-07-23T13:37:58.942597Z",
+  "filed": "2026-07-23",
+  "form": "8-A12G",
+  "form_code": "8-A12G",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Somitos Corp.",
+  "query_label": "tier_s.new_listing",
+  "query_note": "Form 8-A12G \u2014 registration of a class of securities under \u00a712(g): a newly-reporting equity (often the OTC/relisting leg of a post-reorg or spin-off).",
+  "source": "EDGAR-forms",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/2074643/000168316826005696/0001683168-26-005696-index.htm"
+}

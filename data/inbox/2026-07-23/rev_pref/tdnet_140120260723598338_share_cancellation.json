@@ -1,0 +1,17 @@
+{
+  "accession": "140120260723598338",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:28:01.229342Z",
+  "filed": "2026-07-23",
+  "form": "自己株式の消却に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "巴工業",
+  "query_label": "rev_pref.share_cancellation",
+  "query_note": "share cancellation (自己株式消却)",
+  "source": "TDnet",
+  "ticker": "6309",
+  "tier": "rev_pref",
+  "url": "https://www.release.tdnet.info/inbs/140120260723598338.pdf"
+}

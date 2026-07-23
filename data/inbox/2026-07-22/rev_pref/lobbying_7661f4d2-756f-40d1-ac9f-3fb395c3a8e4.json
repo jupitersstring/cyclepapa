@@ -1,0 +1,22 @@
+{
+  "accession": "7661f4d2-756f-40d1-ac9f-3fb395c3a8e4",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Defense",
+  "jurisdiction": "US",
+  "name": "CONSTELLIUM MUSCLE SHOALS, LLC",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 CONSTELLIUM MUSCLE SHOALS, LLC engaged EDWARD C. OLIVARES, LLC for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "EDWARD C. OLIVARES, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/7661f4d2-756f-40d1-ac9f-3fb395c3a8e4/print/"
+}

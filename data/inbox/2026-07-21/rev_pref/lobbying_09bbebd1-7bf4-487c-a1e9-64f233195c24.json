@@ -1,0 +1,22 @@
+{
+  "accession": "09bbebd1-7bf4-487c-a1e9-64f233195c24",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Energy/Nuclear \u00b7 Defense \u00b7 Chemicals/Chemical Industry \u00b7 Science/Technology",
+  "jurisdiction": "US",
+  "name": "OMC THERMOCHEMISTRY FKA OMC HYDROGEN",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 OMC THERMOCHEMISTRY FKA OMC HYDROGEN engaged STROGEN LLC for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "STROGEN LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/09bbebd1-7bf4-487c-a1e9-64f233195c24/print/"
+}

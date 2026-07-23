@@ -260,8 +260,8 @@ universe: audit
 # Apply quantitative reward/risk ranking across every universe row.
 # Depends on `universe` so the screener output is fresh.
 universe-rr: universe
-	-python3 -m src.reconcile
 	python3 -m src.universe_risk_reward
+	-python3 -m src.reconcile
 
 # Rebuild the Excel workbook from the latest universe-wide ranking,
 # YAMLs, and portfolio output.

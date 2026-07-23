@@ -1,0 +1,17 @@
+{
+  "accession": "",
+  "cik": "0001023459",
+  "fetched_at": "2026-07-23T13:37:58.942597Z",
+  "filed": "2026-07-23",
+  "form": "DEFM14A",
+  "form_code": "DEFM14A",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Simulations Plus, Inc.",
+  "query_label": "tier_s.merger_vote",
+  "query_note": "DEFM14A \u2014 definitive merger proxy (shareholder vote on a deal; merger-arb window)",
+  "source": "EDGAR-forms",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1023459/000102345926000051/0001023459-26-000051-index.htm"
+}

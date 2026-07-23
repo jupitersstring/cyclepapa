@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113281-6A1334957",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-22",
+  "form": "Final Director's Interest Notice",
+  "form_code": "Final Director's Interest Notice",
+  "industry": "Metals & Mining",
+  "isin": "AU0000196206",
+  "jurisdiction": "AU",
+  "name": "EV RESOURCES LTD",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "EVR",
+  "tier": "rev_pref",
+  "url": ""
+}

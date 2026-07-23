@@ -1,0 +1,22 @@
+{
+  "accession": "0001213900-26-080432",
+  "all_items": [
+    "1.01",
+    "3.01",
+    "9.01"
+  ],
+  "cik": "0001139685",
+  "fetched_at": "2026-07-23T13:37:52.470250Z",
+  "filed": "2026-07-22",
+  "form": "8-K Item 3.01",
+  "form_code": "8-K/3.01",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "20/20 Biolabs, Inc.",
+  "query_label": "tier_s.item_delisting_deficiency",
+  "query_note": "8-K Item 3.01 \u2014 delisting / continued-listing-rule failure. The PRE-going-dark deficiency signal (~180 days before a Form 15). Cure via reverse split or face delisting.",
+  "source": "EDGAR-8K-items",
+  "ticker": "AIDX",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1139685/000121390026080432"
+}

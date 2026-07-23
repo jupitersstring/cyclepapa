@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113687-2A1685675",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-23",
+  "form": "Becoming a substantial holder",
+  "form_code": "Becoming a substantial holder",
+  "industry": "Metals & Mining",
+  "isin": "AU000000KCN1",
+  "jurisdiction": "AU",
+  "name": "KINGSGATE CONSOLIDATED LIMITED.",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "KCN",
+  "tier": "rev_pref",
+  "url": ""
+}

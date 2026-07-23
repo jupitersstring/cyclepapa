@@ -1,0 +1,22 @@
+{
+  "accession": "144c8e00-b985-4eaa-8fd9-423ddaff1d58",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "3rd Quarter - Termination (No Activity)",
+  "form_code": "3TY",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "THE COOPER UNION FOR THE ADVANCEMENT OF SCIENCE AND ART",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 THE COOPER UNION FOR THE ADVANCEMENT OF SCIENCE AND ART engaged ARENTFOX SCHIFF LLP on  (universe-name match: UNION)",
+  "registrant": "ARENTFOX SCHIFF LLP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "UNION",
+  "url": "https://lda.senate.gov/filings/public/filing/144c8e00-b985-4eaa-8fd9-423ddaff1d58/print/"
+}

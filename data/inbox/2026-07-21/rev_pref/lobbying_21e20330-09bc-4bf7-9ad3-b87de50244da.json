@@ -1,0 +1,22 @@
+{
+  "accession": "21e20330-09bc-4bf7-9ad3-b87de50244da",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "22000.00",
+  "isin": null,
+  "issues": "Transportation \u00b7 Roads/Highway \u00b7 Civil Rights/Civil Liberties",
+  "jurisdiction": "US",
+  "name": "WOMEN FIRST NATIONAL LEGISLATIVE COMMITTEE",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 WOMEN FIRST NATIONAL LEGISLATIVE COMMITTEE engaged PAYNE SHEA & ASSOCIATES for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "PAYNE SHEA & ASSOCIATES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "FIRST",
+  "url": "https://lda.senate.gov/filings/public/filing/21e20330-09bc-4bf7-9ad3-b87de50244da/print/"
+}

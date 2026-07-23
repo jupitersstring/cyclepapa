@@ -1,0 +1,22 @@
+{
+  "accession": "0b98193c-d1e7-4deb-af16-0e3b94b63654",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "40000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Taxation/Internal Revenue Code \u00b7 Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "MOMENT ENERGY",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 MOMENT ENERGY engaged WHITMER & WORRALL, LLC for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "WHITMER & WORRALL, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "ENERGY",
+  "url": "https://lda.senate.gov/filings/public/filing/0b98193c-d1e7-4deb-af16-0e3b94b63654/print/"
+}

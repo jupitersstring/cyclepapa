@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113220-2A1685450",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-22",
+  "form": "Completion of first tranche placement",
+  "form_code": "Cleansing Notice",
+  "industry": "Metals & Mining",
+  "isin": "AU0000104374",
+  "jurisdiction": "AU",
+  "name": "NEWPEAK METALS LIMITED",
+  "price_sensitive": false,
+  "query_label": "tier_s.capital_raising",
+  "query_note": "Capital raising / rights / placement",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "NPM",
+  "tier": "tier_s",
+  "url": ""
+}

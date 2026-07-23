@@ -1,0 +1,22 @@
+{
+  "accession": "9afdd8bd-8bf6-46f7-a40e-a2504ff58d2c",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Transportation \u00b7 Budget/Appropriations \u00b7 Railroads",
+  "jurisdiction": "US",
+  "name": "KADESH & ASSOCIATES ON BEHALF OF CALIFORNIA HIGH SPEED RAIL AUTHORITY",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 KADESH & ASSOCIATES ON BEHALF OF CALIFORNIA HIGH SPEED RAIL  engaged PEYSER ASSOCIATES LLC for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "PEYSER ASSOCIATES LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CALIFORNIA",
+  "url": "https://lda.senate.gov/filings/public/filing/9afdd8bd-8bf6-46f7-a40e-a2504ff58d2c/print/"
+}

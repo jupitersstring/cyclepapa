@@ -1,0 +1,22 @@
+{
+  "accession": "d417e29b-c301-44f7-988e-c0a9d4d28d55",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Torts",
+  "jurisdiction": "US",
+  "name": "BURFORD CAPITAL",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 BURFORD CAPITAL engaged ONMESSAGE PUBLIC STRATEGIES on Torts (universe-name match: CAPITAL)",
+  "registrant": "ONMESSAGE PUBLIC STRATEGIES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CAPITAL",
+  "url": "https://lda.senate.gov/filings/public/filing/d417e29b-c301-44f7-988e-c0a9d4d28d55/print/"
+}

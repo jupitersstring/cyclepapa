@@ -1,0 +1,17 @@
+{
+  "accession": "ofac-20260713-Cyber-related_Designations_Cub",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:34:32.135627Z",
+  "filed": "2026-07-13",
+  "form": "OFAC Recent Action",
+  "form_code": "OFAC",
+  "isin": null,
+  "jurisdiction": "US-OFAC",
+  "name": "Cyber-related Designations; Cuba Designations; Issuance of Cuba-related Frequently Asked Question",
+  "query_label": "red_flag.ofac_action_cuba",
+  "query_note": "OFAC Cuba-related action",
+  "source": "OFAC",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://ofac.treasury.gov/recent-actions/20260713"
+}

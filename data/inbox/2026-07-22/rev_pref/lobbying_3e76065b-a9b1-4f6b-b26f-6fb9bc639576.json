@@ -1,0 +1,22 @@
+{
+  "accession": "3e76065b-a9b1-4f6b-b26f-6fb9bc639576",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "ELECTRICITY CUSTOMER ALLIANCE",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 ELECTRICITY CUSTOMER ALLIANCE engaged CO2EFFICIENT for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "CO2EFFICIENT",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/3e76065b-a9b1-4f6b-b26f-6fb9bc639576/print/"
+}

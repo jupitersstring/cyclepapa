@@ -1,0 +1,22 @@
+{
+  "accession": "3f5bbc94-348b-4be9-81c1-6d2f802ef53a",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Amendment",
+  "form_code": "2A",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Energy/Nuclear \u00b7 Manufacturing \u00b7 Taxation/Internal Revenue Code",
+  "jurisdiction": "US",
+  "name": "CELLINK CORPORATION",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 CELLINK CORPORATION engaged MISSION STRATEGIES LLC (ENERGY) for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MISSION STRATEGIES LLC (ENERGY)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/3f5bbc94-348b-4be9-81c1-6d2f802ef53a/print/"
+}

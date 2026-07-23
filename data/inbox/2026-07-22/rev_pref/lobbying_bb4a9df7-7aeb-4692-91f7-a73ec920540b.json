@@ -1,0 +1,22 @@
+{
+  "accession": "bb4a9df7-7aeb-4692-91f7-a73ec920540b",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "1st Quarter - Termination",
+  "form_code": "1T",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Aerospace",
+  "jurisdiction": "US",
+  "name": "AQUILA",
+  "query_label": "rev_pref.lobbying_aerospace",
+  "query_note": "LDA filing \u2014 AQUILA engaged FIDELITY STRATEGIES for Aerospace (1st Quarter (Jan 1 - Mar 31))",
+  "registrant": "FIDELITY STRATEGIES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/bb4a9df7-7aeb-4692-91f7-a73ec920540b/print/"
+}

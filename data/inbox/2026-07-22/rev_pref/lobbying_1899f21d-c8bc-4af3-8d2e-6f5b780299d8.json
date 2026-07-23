@@ -1,0 +1,22 @@
+{
+  "accession": "1899f21d-c8bc-4af3-8d2e-6f5b780299d8",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report (No Activity)",
+  "form_code": "Q2Y",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "NATIONAL ASSOCIATION OF TELECOMMUNICATIONS OFFICERS AND ADVISORS",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 NATIONAL ASSOCIATION OF TELECOMMUNICATIONS OFFICERS AND ADVI engaged NATIONAL ASSOCIATION OF TELECOMMUNICATIO on  (universe-name match: NATIONAL)",
+  "registrant": "NATIONAL ASSOCIATION OF TELECOMMUNICATIONS OFFICERS AND ADVISORS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "NATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/1899f21d-c8bc-4af3-8d2e-6f5b780299d8/print/"
+}

@@ -1,0 +1,14 @@
+{
+  "accession": "0001101215-26-000069",
+  "cik": "0001101215",
+  "fetched_at": "2026-07-23T13:40:48.732536Z",
+  "filed": "2026-07-23",
+  "form": "8-K",
+  "name": "BREAD FINANCIAL HOLDINGS, INC.",
+  "query_label": "form_8k_spin",
+  "query_note": "8-K catch-all for spinoffs that skip 10-12B",
+  "source": "EDGAR-spinoff-radar",
+  "ticker": "BFH",
+  "tier": "spinoff",
+  "url": "https://www.sec.gov/Archives/edgar/data/1101215/000110121526000069"
+}

@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113499-6A1335052",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-22",
+  "form": "Trading Halt",
+  "form_code": "Trading Halt",
+  "industry": "Metals & Mining",
+  "isin": "AU0000355000",
+  "jurisdiction": "AU",
+  "name": "ARIKA RESOURCES LIMITED",
+  "price_sensitive": true,
+  "query_label": "tier_s.suspension_halt",
+  "query_note": "Trading halt or suspension",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "ARI",
+  "tier": "tier_s",
+  "url": ""
+}

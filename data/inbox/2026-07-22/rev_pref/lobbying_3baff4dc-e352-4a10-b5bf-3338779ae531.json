@@ -1,0 +1,22 @@
+{
+  "accession": "3baff4dc-e352-4a10-b5bf-3338779ae531",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Medicare/Medicaid \u00b7 Health Issues",
+  "jurisdiction": "US",
+  "name": "AMERICAN SOCIETY FOR DERMATOLOGIC SURGERY ASSOCIATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN SOCIETY FOR DERMATOLOGIC SURGERY ASSOCIATION engaged AMERICAN SOCIETY FOR DERMATOLOGIC SURGER on Medicare/Medicaid \u00b7 Health Issues (universe-name match: AMERICAN)",
+  "registrant": "AMERICAN SOCIETY FOR DERMATOLOGIC SURGERY ASSOCIATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/3baff4dc-e352-4a10-b5bf-3338779ae531/print/"
+}

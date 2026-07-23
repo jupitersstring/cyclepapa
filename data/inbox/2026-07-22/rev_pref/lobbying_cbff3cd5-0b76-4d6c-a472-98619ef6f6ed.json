@@ -1,0 +1,22 @@
+{
+  "accession": "cbff3cd5-0b76-4d6c-a472-98619ef6f6ed",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Government Issues \u00b7 Law Enforcement/Crime/Criminal Justice \u00b7 Retirement \u00b7 Budget/Appropriations \u00b7 Labor Issues/Antitrust/Workplace",
+  "jurisdiction": "US",
+  "name": "UNITED STATES CAPITOL POLICE LABOR COMMITTEE",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 UNITED STATES CAPITOL POLICE LABOR COMMITTEE engaged MCALLISTER & QUINN, LLC on Government Issues \u00b7 Law Enforcement/Crime/Criminal Justice \u00b7 Retirement \u00b7 Budget (universe-name match: UNITED)",
+  "registrant": "MCALLISTER & QUINN, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "UNITED",
+  "url": "https://lda.senate.gov/filings/public/filing/cbff3cd5-0b76-4d6c-a472-98619ef6f6ed/print/"
+}

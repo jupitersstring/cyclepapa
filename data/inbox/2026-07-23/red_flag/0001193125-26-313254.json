@@ -1,0 +1,14 @@
+{
+  "accession": "0001193125-26-313254",
+  "cik": "0001455863",
+  "fetched_at": "2026-07-23T13:23:51.523142Z",
+  "filed": "2026-07-23",
+  "form": "8-K",
+  "name": "AMERICOLD REALTY TRUST",
+  "query": "\"strategic alternatives\" OR \"financial advisor\"",
+  "query_label": "red_flag.advisor",
+  "source": "EDGAR-FTS",
+  "ticker": "COLD",
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/1455863/000119312526313254"
+}

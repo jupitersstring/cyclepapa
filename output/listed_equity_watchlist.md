@@ -4,7 +4,7 @@ The tradable slice of the post-reorg universe: **exchange-listed common equity o
 
 > **The sweet spot:** a newly listed common equity, distributed to unnatural owners, with a genuinely repaired balance sheet, an overstated share count or net-debt burden, and a dated catalyst that broadens the natural shareholder base.
 
-- cohort screened: **128**  ·  listed common (Q1 gate passed): **73**  ·  prime (fitness ≥ 3): **1**  ·  filer-emergence confirmed: **46**  ·  set aside for verification (filer's own emergence unconfirmed): **6**
+- cohort screened: **127**  ·  listed common (Q1 gate passed): **71**  ·  prime (fitness ≥ 3): **1**  ·  filer-emergence confirmed: **45**  ·  set aside for verification (filer's own emergence unconfirmed): **6**
 
 Six questions: **L**isted · **U**nnatural owners (live forced-seller overhang) · **R**epaired balance sheet · **O**verstated count/debt · **C**atalyst · **Q**uality (EBIT-yield). **Conf** `✓` = the filing was read and the FILER's own emergence confirmed (first-person or Successor/Predecessor fresh-start reporting), or PACER-corroborated; `~` = kept but unverified (emergence note not found in the fetched filing — kept, never dropped). Names whose only bankruptcy reference is a non-filer possessive are set aside for verification at the bottom (not scored, not dropped).
 
@@ -28,14 +28,14 @@ Six questions: **L**isted · **U**nnatural owners (live forced-seller overhang) 
 | Sinclair, Inc. | SBGI | ✓ | — | 2.0 | deep | · | ● | · | · | ● | — | net cash balance sheet; positive EBIT |
 | Venture Global, Inc. | VG | ✓ | 2025 | 2.0 | deep | ● | · | · | · | ● | forced-creditor overhang | filer emerged 2025 (~13mo ago) — live forced-seller overhang; po |
 | Warrior Met Coal | NYSE:HCC | ✓ | — | 2.0 | deep | · | ● | · | · | ● | — | net cash balance sheet; EBIT/EV 1% (neutral (0-20%)) |
-| California Resources Corp | CRC | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 2.3×); EBIT/EV 13% (neutral (0-20%)) |
+| California Resources Corp | CRC | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 2.3×); EBIT/EV 12% (neutral (0-20%)) |
 | INFINITY NATURAL RESOURCES, IN | INR | ~ | — | 2.0 | ok | · | ● | · | · | ● | — | low leverage (ND/EBIT 0.7×); positive EBIT |
 | Jefferies Financial Group Inc. | JEF | ~ | — | 2.0 | deep | · | ● | ● | · | · | excess-emergence-cash | net cash balance sheet; net cash = 106% of mkt cap (net-debt bur |
 | GULFPORT ENERGY CORP | GPOR | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 1.3×); EBIT/EV 14% (neutral (0-20%)) |
 | AGCO CORP /DE | AGCO | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 3.0×); EBIT/EV 4% (neutral (0-20%)) |
 | Bristow Group Inc. | VTOL | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 2.7×); EBIT/EV 7% (neutral (0-20%)) |
 | RMR GROUP INC. | RMR | ~ | — | 2.0 | ok | · | ● | · | · | ● | — | net cash balance sheet; positive EBIT |
-| APA Corp | APA | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 2.7×); EBIT/EV 24% (PRIORITY (>20%)) |
+| APA Corp | APA | ~ | — | 2.0 | deep | · | ● | · | · | ● | — | low leverage (ND/EBIT 2.7×); EBIT/EV 23% (PRIORITY (>20%)) |
 | WW INTERNATIONAL, INC. | WW | ✓ | December 31, 2025 | 1.0 | ok | ● | · | · | · | · | forced-creditor overhang | filer emerged December 31, 2025 (~7mo ago) — live forced-seller  |
 | WOLFSPEED, INC. | WOLF | ✓ | January 29, 2026 | 1.0 | deep | ● | · | · | · | · | forced-creditor overhang | filer emerged January 29, 2026 (~6mo ago) — live forced-seller o |
 | GOLAR LNG LTD | GLNG | ✓ | — | 1.0 | deep | · | · | · | · | ● | — | EBIT/EV 1% (neutral (0-20%)) |
@@ -66,7 +66,6 @@ Six questions: **L**isted · **U**nnatural owners (live forced-seller overhang) 
 | Cinemark Holdings, Inc. | CNK | ✓ | August 7, 2023 | 0.0 | deep | · | · | · | · | · | — | filer emerged August 7, 2023 (~36mo ago) — overhang likely clear |
 | iHeartMedia, Inc. | IHRT | ✓ | May 1, 2019 | 0.0 | ok | · | · | · | · | · | — | filer emerged May 1, 2019 (~87mo ago) — overhang likely cleared |
 | Tronox Holdings plc | TROX | ✓ | November 30, 2010 | 0.0 | deep | · | · | · | · | · | — | filer emerged November 30, 2010 (~188mo ago) — overhang likely c |
-| GoHealth, Inc. | GOCO | ✓ | — | 0.0 | micro | · | · | · | · | · | — |  |
 | Core Scientific, Inc./tx | CORZ | ✓ | — | 0.0 | deep | · | · | · | · | · | — |  |
 | Atlanta Braves Holdings, Inc. | BATRA | ✓ | — | 0.0 | ok | · | · | · | · | · | — |  |
 | PAL Holdings (Philippine Airli | PSE:PAL | ✓ | — | 0.0 | ok | · | · | · | · | · | — |  |
@@ -79,14 +78,13 @@ Six questions: **L**isted · **U**nnatural owners (live forced-seller overhang) 
 | Norwegian Air Shuttle | OSL:NAS | ~ | — | 0.0 | deep | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
 | HMM (Hyundai Merchant Marine) | KRX:011200 | ~ | — | 0.0 | deep | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
 | Sri Rejeki Isman (Sritex) | IDX:SRIL | ~ | — | 0.0 | ? | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
-| AirAsia X | KLSE:5238 | ~ | — | 0.0 | deep | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
 | Lupatech | B3:LUPA3 | ~ | — | 0.0 | micro | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
 | Drake & Scull | DFM:DSI | ~ | — | 0.0 | ok | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
 | OI SA | B3:OIBR3 | ~ | — | 0.0 | micro | · | · | · | · | · | hand-curated post-reorg | universe.md Bucket C (OTC/foreign; SEC financials unavailable —  |
 
 ## Prime setups (fitness ≥ 3)
 
-- **CENTRUS ENERGY CORP** (LEU) — fitness 3.0 · ✓ filer-emergence confirmed; excess-emergence-cash  ·  filer emerged September 30, 2014 (~142mo ago) — overhang likely cleared; net cash balance sheet; net cash = 82% of mkt cap (net-debt burden overstated); EBIT/EV 2% (neutral (0-20%))
+- **CENTRUS ENERGY CORP** (LEU) — fitness 3.0 · ✓ filer-emergence confirmed; excess-emergence-cash  ·  filer emerged September 30, 2014 (~142mo ago) — overhang likely cleared; net cash balance sheet; net cash = 84% of mkt cap (net-debt burden overstated); EBIT/EV 2% (neutral (0-20%))
 
 ## Set aside — filer's own emergence unconfirmed
 

@@ -1,11 +1,8 @@
 {
   "accession": "0001628280-26-042509",
-  "also_matched": [
-    "consummation of the Plan"
-  ],
   "cik": "0001808220",
   "emergence_tier": "recall",
-  "fetched_at": "2026-07-21T18:19:14.461342Z",
+  "fetched_at": "2026-07-23T13:36:23.219185Z",
   "filed": "2026-06-11",
   "form": "8-K",
   "form_code": "8-K",
@@ -17,6 +14,7 @@
   "jurisdiction": "US",
   "matched_phrase": "consummation of the Plan",
   "name": "GoHealth, Inc.",
+  "post_reorg_ipo": false,
   "pre_emergence": false,
   "query_label": "tier_s.post_reorg_plan_effective",
   "query_note": "Plan of Reorganization effective / consummated \u2014 the emergence event. New equity distributed to creditors; watch the forced-selling window.",

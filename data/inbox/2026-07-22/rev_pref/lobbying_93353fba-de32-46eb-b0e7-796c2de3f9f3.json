@@ -1,0 +1,22 @@
+{
+  "accession": "93353fba-de32-46eb-b0e7-796c2de3f9f3",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Defense \u00b7 Energy/Nuclear \u00b7 Tariff (miscellaneous tariff bills) \u00b7 Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "CONSTELLIUM U.S. HOLDINGS I",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 CONSTELLIUM U.S. HOLDINGS I engaged EDWARD C. OLIVARES, LLC for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "EDWARD C. OLIVARES, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/93353fba-de32-46eb-b0e7-796c2de3f9f3/print/"
+}

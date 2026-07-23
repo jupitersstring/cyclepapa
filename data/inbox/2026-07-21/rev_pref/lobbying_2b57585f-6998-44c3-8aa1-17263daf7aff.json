@@ -1,0 +1,22 @@
+{
+  "accession": "2b57585f-6998-44c3-8aa1-17263daf7aff",
+  "cik": "",
+  "expenses": "20000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Environment/Superfund \u00b7 Disaster Planning/Emergencies \u00b7 Housing \u00b7 Clean Air and Water (quality) \u00b7 Civil Rights/Civil Liberties \u00b7 Labor Issues/Antitrust/Workplace \u00b7 Education",
+  "jurisdiction": "US",
+  "name": "AMERICAN SOCIETY OF INTERIOR DESIGNERS",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN SOCIETY OF INTERIOR DESIGNERS engaged AMERICAN SOCIETY OF INTERIOR DESIGNERS on Environment/Superfund \u00b7 Disaster Planning/Emergencies \u00b7 Housing \u00b7 Clean Air and  (universe-name match: AMERICAN)",
+  "registrant": "AMERICAN SOCIETY OF INTERIOR DESIGNERS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/2b57585f-6998-44c3-8aa1-17263daf7aff/print/"
+}

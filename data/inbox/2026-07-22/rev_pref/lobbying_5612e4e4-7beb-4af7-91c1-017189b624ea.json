@@ -1,0 +1,22 @@
+{
+  "accession": "5612e4e4-7beb-4af7-91c1-017189b624ea",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Economics/Economic Development",
+  "jurisdiction": "US",
+  "name": "CITY OF STERLING HEIGHTS",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 CITY OF STERLING HEIGHTS engaged HANKA ADVISOR LLC on Economics/Economic Development (universe-name match: CITY)",
+  "registrant": "HANKA ADVISOR LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CITY",
+  "url": "https://lda.senate.gov/filings/public/filing/5612e4e4-7beb-4af7-91c1-017189b624ea/print/"
+}

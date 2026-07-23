@@ -1,0 +1,22 @@
+{
+  "accession": "e2a3ff6a-cd8e-4c81-bbcf-41af7f886799",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "60000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Homeland Security \u00b7 Telecommunications \u00b7 Immigration \u00b7 Labor Issues/Antitrust/Workplace \u00b7 Law Enforcement/Crime/Criminal Justice",
+  "jurisdiction": "US",
+  "name": "NATIONAL BORDER PATROL COUNCIL",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 NATIONAL BORDER PATROL COUNCIL engaged MCALLISTER & QUINN, LLC for Telecommunications (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MCALLISTER & QUINN, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "NATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/e2a3ff6a-cd8e-4c81-bbcf-41af7f886799/print/"
+}

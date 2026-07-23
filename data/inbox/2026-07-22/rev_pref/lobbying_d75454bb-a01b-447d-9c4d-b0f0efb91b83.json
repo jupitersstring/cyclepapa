@@ -1,0 +1,22 @@
+{
+  "accession": "d75454bb-a01b-447d-9c4d-b0f0efb91b83",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Defense \u00b7 Science/Technology \u00b7 Education",
+  "jurisdiction": "US",
+  "name": "UNIVERSITY OF SAINT THOMAS",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 UNIVERSITY OF SAINT THOMAS engaged MCALLISTER & QUINN, LLC for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MCALLISTER & QUINN, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/d75454bb-a01b-447d-9c4d-b0f0efb91b83/print/"
+}

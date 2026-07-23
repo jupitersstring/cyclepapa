@@ -1,0 +1,22 @@
+{
+  "accession": "4fa5c588-ee59-4937-948c-eae6458de77f",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Housing",
+  "jurisdiction": "US",
+  "name": "NORTH STAR FAMILY SERVICES",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 NORTH STAR FAMILY SERVICES engaged KELLER PARTNERS & COMPANY on Budget/Appropriations \u00b7 Housing (universe-name match: STAR)",
+  "registrant": "KELLER PARTNERS & COMPANY",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "STAR",
+  "url": "https://lda.senate.gov/filings/public/filing/4fa5c588-ee59-4937-948c-eae6458de77f/print/"
+}

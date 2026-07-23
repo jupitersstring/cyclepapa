@@ -1,0 +1,14 @@
+{
+  "accession": "0001163370-26-000027",
+  "cik": "0001163370",
+  "fetched_at": "2026-07-23T13:23:51.523142Z",
+  "filed": "2026-07-23",
+  "form": "8-K",
+  "name": "NORTHRIM BANCORP INC",
+  "query": "\"Foreign Corrupt Practices Act\" OR FCPA OR \"corruption investigation\"",
+  "query_label": "red_flag.fcpa",
+  "source": "EDGAR-FTS",
+  "ticker": "NRIM",
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/1163370/000116337026000027"
+}

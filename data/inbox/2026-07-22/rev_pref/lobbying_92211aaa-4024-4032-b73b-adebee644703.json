@@ -1,0 +1,22 @@
+{
+  "accession": "92211aaa-4024-4032-b73b-adebee644703",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "60000.00",
+  "isin": null,
+  "issues": "Transportation \u00b7 Energy/Nuclear \u00b7 Environment/Superfund",
+  "jurisdiction": "US",
+  "name": "GEOSYNTHETIC MATERIALS ASSOCIATION - ATA (FORMERLY KNOWN AS GMA - IFAI)",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 GEOSYNTHETIC MATERIALS ASSOCIATION - ATA (FORMERLY KNOWN AS  engaged WHITMER & WORRALL, LLC for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "WHITMER & WORRALL, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/92211aaa-4024-4032-b73b-adebee644703/print/"
+}

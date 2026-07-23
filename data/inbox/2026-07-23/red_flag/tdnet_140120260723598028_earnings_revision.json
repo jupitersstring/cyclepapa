@@ -1,0 +1,17 @@
+{
+  "accession": "140120260723598028",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:28:01.229342Z",
+  "filed": "2026-07-23",
+  "form": "連結業績予想と実績の差異及び連結業績予想修正並びに配当予想の修正（増配）に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "未来工業",
+  "query_label": "red_flag.earnings_revision",
+  "query_note": "earnings forecast revision — verify whether downward",
+  "source": "TDnet",
+  "ticker": "7931",
+  "tier": "red_flag",
+  "url": "https://www.release.tdnet.info/inbs/140120260723598028.pdf"
+}

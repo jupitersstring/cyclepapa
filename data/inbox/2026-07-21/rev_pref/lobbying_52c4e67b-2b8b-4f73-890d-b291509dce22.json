@@ -1,0 +1,22 @@
+{
+  "accession": "52c4e67b-2b8b-4f73-890d-b291509dce22",
+  "cik": "",
+  "expenses": "25779.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Health Issues \u00b7 Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "NATIONAL HEALTH COUNCIL",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 NATIONAL HEALTH COUNCIL engaged NATIONAL HEALTH COUNCIL on Health Issues \u00b7 Budget/Appropriations (universe-name match: NATIONAL)",
+  "registrant": "NATIONAL HEALTH COUNCIL",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "NATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/52c4e67b-2b8b-4f73-890d-b291509dce22/print/"
+}

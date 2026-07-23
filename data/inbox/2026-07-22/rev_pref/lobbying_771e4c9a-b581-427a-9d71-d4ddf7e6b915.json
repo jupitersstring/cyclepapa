@@ -1,0 +1,22 @@
+{
+  "accession": "771e4c9a-b581-427a-9d71-d4ddf7e6b915",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "UNION OF OIL AND GAS PRODUCERS RUSSIA",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 UNION OF OIL AND GAS PRODUCERS RUSSIA engaged QORVIS HOLDING INC - GEOPOLS for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "QORVIS HOLDING INC - GEOPOLS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "UNION",
+  "url": "https://lda.senate.gov/filings/public/filing/771e4c9a-b581-427a-9d71-d4ddf7e6b915/print/"
+}

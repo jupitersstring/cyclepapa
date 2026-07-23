@@ -1,0 +1,22 @@
+{
+  "accession": "08ce5326-41c5-478e-84bc-761f1235a0a7",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "Registration - Amendment",
+  "form_code": "RA",
+  "income": null,
+  "isin": null,
+  "issues": "Defense",
+  "jurisdiction": "US",
+  "name": "PALANTIR TECHNOLOGIES, INC.",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 PALANTIR TECHNOLOGIES, INC. engaged ANCHOR & ARROW LLC for Defense (1st Quarter (Jan 1 - Mar 31))",
+  "registrant": "ANCHOR & ARROW LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/08ce5326-41c5-478e-84bc-761f1235a0a7/print/"
+}

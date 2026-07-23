@@ -1,0 +1,17 @@
+{
+  "accession": "ofac-20260717-Hong_Kong-related_Designations",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:34:32.135627Z",
+  "filed": "2026-07-17",
+  "form": "OFAC Recent Action",
+  "form_code": "OFAC",
+  "isin": null,
+  "jurisdiction": "US-OFAC",
+  "name": "Hong Kong-related Designations Updates and Removals",
+  "query_label": "red_flag.ofac_designation_other",
+  "query_note": "OFAC designation / sanctions update",
+  "source": "OFAC",
+  "ticker": null,
+  "tier": "red_flag",
+  "url": "https://ofac.treasury.gov/recent-actions/20260717"
+}

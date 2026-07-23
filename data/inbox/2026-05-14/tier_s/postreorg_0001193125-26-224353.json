@@ -2,14 +2,11 @@
   "accession": "0001193125-26-224353",
   "also_matched": [
     "Plan Effective Date",
-    "Plan Effective Date",
-    "Plan Effective Date",
-    "Plan Effective Date",
     "Plan Effective Date"
   ],
   "cik": "0002012139",
   "emergence_tier": "recall",
-  "fetched_at": "2026-07-21T18:19:14.461342Z",
+  "fetched_at": "2026-07-23T13:36:23.219185Z",
   "filed": "2026-05-14",
   "form": "10-Q",
   "form_code": "10-Q",
@@ -19,6 +16,7 @@
   "jurisdiction": "US",
   "matched_phrase": "Plan Effective Date",
   "name": "Fortress Private Lending Fund",
+  "post_reorg_ipo": false,
   "pre_emergence": false,
   "query_label": "tier_s.post_reorg_plan_effective",
   "query_note": "Plan of Reorganization effective / consummated \u2014 the emergence event. New equity distributed to creditors; watch the forced-selling window.",

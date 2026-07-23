@@ -1,0 +1,17 @@
+{
+  "accession": "140120260723598304",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:28:01.229342Z",
+  "filed": "2026-07-23",
+  "form": "グループ内組織再編（連結子会社の吸収合併（簡易合併・略式合併））及び債権放棄に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "オイシックス",
+  "query_label": "tier_s.merger_absorption",
+  "query_note": "merger by absorption",
+  "source": "TDnet",
+  "ticker": "3182",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260723598304.pdf"
+}

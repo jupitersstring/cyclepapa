@@ -2,13 +2,11 @@
   "accession": "0001841666-26-000034",
   "also_matched": [
     "upon emergence",
-    "upon emergence",
-    "upon emergence",
     "upon emergence"
   ],
   "cik": "0001841666",
   "emergence_tier": "recall",
-  "fetched_at": "2026-07-21T18:19:14.461342Z",
+  "fetched_at": "2026-07-23T13:36:23.219185Z",
   "filed": "2026-05-07",
   "form": "10-Q",
   "form_code": "10-Q",
@@ -18,6 +16,7 @@
   "jurisdiction": "US",
   "matched_phrase": "emerged from Chapter 11",
   "name": "APA Corp",
+  "post_reorg_ipo": false,
   "pre_emergence": false,
   "query_label": "tier_s.post_reorg_emerged",
   "query_note": "Emergence from Chapter 11 \u2014 post-reorg equity now trading. Verify float, creditor overhang, and the coverage vacuum.",

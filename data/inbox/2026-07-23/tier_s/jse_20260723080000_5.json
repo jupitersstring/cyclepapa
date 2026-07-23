@@ -1,0 +1,17 @@
+{
+  "accession": "20260723080000_5",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:38:55.436828Z",
+  "filed": "2026-07-23",
+  "form": "Partial Delisting Of SYGUS Securities",
+  "form_code": "JSE-SENS",
+  "isin": null,
+  "jurisdiction": "ZA",
+  "name": "SYGNIA ITRIX (RF) PROPRIETARY LIMITED",
+  "query_label": "tier_s.liquidation",
+  "query_note": "JSE Liquidation / winding-up / delisting.",
+  "source": "JSE-SENS",
+  "ticker": "",
+  "tier": "tier_s",
+  "url": "https://www.sharenet.co.za/v3/sens_display.php?tdate=20260723080000&seq=5&scode="
+}

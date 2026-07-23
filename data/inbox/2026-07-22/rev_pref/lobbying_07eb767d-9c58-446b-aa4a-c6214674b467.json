@@ -1,0 +1,22 @@
+{
+  "accession": "07eb767d-9c58-446b-aa4a-c6214674b467",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Energy/Nuclear \u00b7 Natural Resources \u00b7 Fuel/Gas/Oil \u00b7 Environment/Superfund \u00b7 Manufacturing \u00b7 Science/Technology \u00b7 Budget/Appropriations \u00b7 Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "VALKOR LLC",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 VALKOR LLC engaged THORNROSE VENTURES for Energy/Nuclear (3rd Quarter (July 1 - Sep 30))",
+  "registrant": "THORNROSE VENTURES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/07eb767d-9c58-446b-aa4a-c6214674b467/print/"
+}

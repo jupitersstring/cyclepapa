@@ -1,0 +1,22 @@
+{
+  "accession": "a40c467c-8c60-415f-8e92-3ef0b7770be6",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Defense",
+  "jurisdiction": "US",
+  "name": "CONCURRENT TECHNOLOGIES CORPORATION (CTC))",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 CONCURRENT TECHNOLOGIES CORPORATION (CTC)) engaged THE ROOSEVELT GROUP for Defense (3rd Quarter (July 1 - Sep 30))",
+  "registrant": "THE ROOSEVELT GROUP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/a40c467c-8c60-415f-8e92-3ef0b7770be6/print/"
+}

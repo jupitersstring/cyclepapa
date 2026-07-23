@@ -1,0 +1,22 @@
+{
+  "accession": "35a980f3-33bb-4c1f-814a-eb4502640f75",
+  "cik": "",
+  "expenses": "210000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Government Issues \u00b7 Energy/Nuclear \u00b7 Chemicals/Chemical Industry \u00b7 Homeland Security \u00b7 Taxation/Internal Revenue Code \u00b7 Agriculture \u00b7 Food Industry (safety, labeling, etc.) \u00b7 Environment/Superfund \u00b7 T",
+  "jurisdiction": "US",
+  "name": "AGRICULTURAL RETAILERS ASSOCIATION",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 AGRICULTURAL RETAILERS ASSOCIATION engaged AGRICULTURAL RETAILERS ASSOCIATION for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "AGRICULTURAL RETAILERS ASSOCIATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/35a980f3-33bb-4c1f-814a-eb4502640f75/print/"
+}

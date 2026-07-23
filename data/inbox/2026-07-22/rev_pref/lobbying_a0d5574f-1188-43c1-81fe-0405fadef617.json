@@ -1,0 +1,22 @@
+{
+  "accession": "a0d5574f-1188-43c1-81fe-0405fadef617",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "50000.00",
+  "isin": null,
+  "issues": "Manufacturing",
+  "jurisdiction": "US",
+  "name": "PRYSMIAN GROUP",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 PRYSMIAN GROUP engaged FROST BROWN TODD LLC for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "FROST BROWN TODD LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/a0d5574f-1188-43c1-81fe-0405fadef617/print/"
+}

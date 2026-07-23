@@ -1,0 +1,22 @@
+{
+  "accession": "52d8a091-0e07-49e6-88ba-b70453c6c95c",
+  "cik": "",
+  "expenses": "335000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Automotive Industry \u00b7 Trade (domestic/foreign) \u00b7 Taxation/Internal Revenue Code",
+  "jurisdiction": "US",
+  "name": "AMERICAN INTERNATIONAL AUTOMOBILE DEALERS ASSOCIATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN INTERNATIONAL AUTOMOBILE DEALERS ASSOCIATION engaged AMERICAN INTERNATIONAL AUTOMOBILE DEALER on Automotive Industry \u00b7 Trade (domestic/foreign) \u00b7 Taxation/Internal Revenue Code (universe-name match: AMERICAN)",
+  "registrant": "AMERICAN INTERNATIONAL AUTOMOBILE DEALERS ASSOCIATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/52d8a091-0e07-49e6-88ba-b70453c6c95c/print/"
+}

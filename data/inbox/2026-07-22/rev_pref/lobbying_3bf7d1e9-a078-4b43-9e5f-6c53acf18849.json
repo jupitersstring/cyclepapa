@@ -1,0 +1,22 @@
+{
+  "accession": "3bf7d1e9-a078-4b43-9e5f-6c53acf18849",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Welfare",
+  "jurisdiction": "US",
+  "name": "SOCIAL CURRENT",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 SOCIAL CURRENT engaged SOCIAL CURRENT on Welfare (universe-name match: SOCIAL)",
+  "registrant": "SOCIAL CURRENT",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "SOCIAL",
+  "url": "https://lda.senate.gov/filings/public/filing/3bf7d1e9-a078-4b43-9e5f-6c53acf18849/print/"
+}

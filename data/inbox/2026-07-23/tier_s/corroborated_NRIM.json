@@ -1,0 +1,34 @@
+{
+  "accession": "corrob-NRIM",
+  "cik": "",
+  "conviction_score": 1.712,
+  "fetched_at": "2026-07-23T13:41:16.684981Z",
+  "filed": "2026-07-23",
+  "form": "Cross-source corroboration",
+  "form_code": "CORROBORATED",
+  "hardest_event": 0.85,
+  "isin": null,
+  "jurisdiction": "",
+  "labels": [
+    "red_flag.fcpa",
+    "reverse_morris_trust",
+    "tier_s.exchange_offer"
+  ],
+  "n_sources": 2,
+  "name": "NORTHRIM BANCORP INC",
+  "query_label": "tier_s.corroborated_multi",
+  "query_note": "CORROBORATED across 2 independent sources (EDGAR-FTS, EDGAR-spinoff-radar); 3 total records. Cross-source corroboration is the framework's highest-conviction sourced signal.",
+  "source": "corroboration",
+  "sources": [
+    "EDGAR-FTS",
+    "EDGAR-spinoff-radar"
+  ],
+  "ticker": null,
+  "tier": "tier_s",
+  "tiers": [
+    "red_flag",
+    "spinoff",
+    "tier_s"
+  ],
+  "url": ""
+}

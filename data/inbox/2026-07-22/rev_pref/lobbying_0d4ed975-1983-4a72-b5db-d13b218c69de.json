@@ -1,0 +1,22 @@
+{
+  "accession": "0d4ed975-1983-4a72-b5db-d13b218c69de",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Amendment",
+  "form_code": "2A",
+  "income": "320000.00",
+  "isin": null,
+  "issues": "Marine/Maritime/Boating/Fisheries",
+  "jurisdiction": "US",
+  "name": "LIBERTY MARITIME CORPORATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 LIBERTY MARITIME CORPORATION engaged WINSTON TAYLOR LLP (FORMERLY KNOWN AS WI on Marine/Maritime/Boating/Fisheries (universe-name match: LIBERTY)",
+  "registrant": "WINSTON TAYLOR LLP (FORMERLY KNOWN AS WINSTON & STRAWN LLP)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "LIBERTY",
+  "url": "https://lda.senate.gov/filings/public/filing/0d4ed975-1983-4a72-b5db-d13b218c69de/print/"
+}

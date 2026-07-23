@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113423-2A1685540",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-22",
+  "form": "Change of Director's Interest Notice - DG",
+  "form_code": "Change of Director's Interest Notice",
+  "industry": "Construction & Engineering",
+  "isin": "AU000000BSA3",
+  "jurisdiction": "AU",
+  "name": "BSA LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Industrials",
+  "source": "ASX",
+  "ticker": "BSA",
+  "tier": "rev_pref",
+  "url": ""
+}

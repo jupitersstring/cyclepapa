@@ -1,0 +1,22 @@
+{
+  "accession": "79c03952-a250-4420-abcb-3a3a7e7285b3",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "18000.00",
+  "isin": null,
+  "issues": "Education \u00b7 Economics/Economic Development",
+  "jurisdiction": "US",
+  "name": "MUSEUM OF THE AMERICAN REVOLUTION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 MUSEUM OF THE AMERICAN REVOLUTION engaged IKON PUBLIC AFFAIRS on Education \u00b7 Economics/Economic Development (universe-name match: AMERICAN)",
+  "registrant": "IKON PUBLIC AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/79c03952-a250-4420-abcb-3a3a7e7285b3/print/"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "79410957-9acd-48b7-9864-73c43564211c",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-23",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "22500.00",
+  "isin": null,
+  "issues": "Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "CITY OF BILOXI",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 CITY OF BILOXI engaged KEY IMPACT STRATEGIES on Budget/Appropriations (universe-name match: CITY)",
+  "registrant": "KEY IMPACT STRATEGIES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CITY",
+  "url": "https://lda.senate.gov/filings/public/filing/79410957-9acd-48b7-9864-73c43564211c/print/"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "2210059b-bbb4-4a4b-afb4-8bab5943c9b3",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report (No Activity)",
+  "form_code": "Q2Y",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "ARISTEIA CAPITAL",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 ARISTEIA CAPITAL engaged SCONSET STRATEGIES, LLC on  (universe-name match: CAPITAL)",
+  "registrant": "SCONSET STRATEGIES, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CAPITAL",
+  "url": "https://lda.senate.gov/filings/public/filing/2210059b-bbb4-4a4b-afb4-8bab5943c9b3/print/"
+}

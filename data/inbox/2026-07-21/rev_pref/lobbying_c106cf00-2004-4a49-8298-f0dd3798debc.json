@@ -1,0 +1,22 @@
+{
+  "accession": "c106cf00-2004-4a49-8298-f0dd3798debc",
+  "cik": "",
+  "expenses": "180000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Amendment",
+  "form_code": "2A",
+  "income": null,
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Energy/Nuclear \u00b7 Natural Resources \u00b7 Taxation/Internal Revenue Code",
+  "jurisdiction": "US",
+  "name": "FERVO ENERGY COMPANY",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 FERVO ENERGY COMPANY engaged FERVO ENERGY COMPANY for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "FERVO ENERGY COMPANY",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "ENERGY",
+  "url": "https://lda.senate.gov/filings/public/filing/c106cf00-2004-4a49-8298-f0dd3798debc/print/"
+}

@@ -5,22 +5,22 @@ score,name,ticker,conf,bucket,archetype,status,vintage,size,region
 1.01,Edenor,NYSE:EDN,★,A,A1,OK,?,small,Latin America
 0.99,Banco Sabadell,BME:SAB,★,A,A1,OK,2026,small,Continental Europe
 0.96,Mediobanca,BIT:MB,★,A,A1,OK,?,small,Continental Europe
-0.96,"TruBridge, Inc.",TBRG,○,A,K3,OK,2026,small,United States/Canada
-0.96,"TruBridge, Inc.",TBRG,○,A,K3,OK,2026,small,United States/Canada
+0.96,"GoHealth, Inc.",GOCOQ,○,A,K3,OK,2026,small,United States/Canada
 0.95,Thyssenkrupp Steel,XETR:TKA,★,A,H,OK,2024,large,Continental Europe
 0.95,Banco Galicia,NYSE:GGAL,★,A,A1,OK,2024,mid,Latin America
+0.95,"TruBridge, Inc.",TBRG,○,A,K3,OK,2026,small,United States/Canada
+0.95,"TruBridge, Inc.",TBRG,○,A,K3,OK,2026,small,United States/Canada
 0.91,NYCB / Flagstar Financial,NYSE:FLG,★,A,A1,OK,2024,small,United States/Canada
 0.91,Pampa Energía,NYSE:PAM,★,A,A1,OK,2026,small,Latin America
-0.91,Aptose Biosciences Inc.,APTOF,○,A,K3,OK,2026,mid,United States/Canada
+0.88,"Inotiv, Inc.",NOTVQ,○,A,K3,OK,2026,small,United States/Canada
 0.86,Hitachi Construction Machinery,TSE:6305,★,A,H,OK,2026,small,Japan
 0.86,Doosan Bobcat → Doosan Robotics merger,KRX:241560,★,A,H,OK,2026,small,Korea
-0.84,LEGGETT & PLATT INC,LEG,○,A,C,OK,2026,small,United States/Canada
 0.83,ACROW LIMITED,ACF,○,A,A1,OK,2026,mid,SE Asia / Pacific
 0.82,Samsung C&T,KRX:028260,★,A,H,OK,2026,small,Korea
+0.79,LIVEPERSON INC,LPSN,○,A,C,OK,2026,small,United States/Canada
 0.79,GTCO (Guaranty Trust),NGX:GTCO,★,A,G,OK,?,mid,MEA / Frontier
 0.79,Inventiva Announces Completion of the EIB Warrant Restructur,EPA:FR0013233012,○,A,A2,OK,2026,small,Unspecified
 0.78,Drake & Scull,DFM:DSI,★,A,A2,OK,?,small,MEA / Frontier
-0.77,AETHLON MEDICAL INC  (AEMD)  (CIK 0000882291),AEMD,○,A,F2,OK,2026,small,United States/Canada
 0.76,Talgo,BME:TLGO,○,A,A1,OK,2024,mid,Continental Europe
 0.76,ASOS,LSE:ASC,★,A,A1,OK,2024,small,United Kingdom
 0.76,Zenith Bank,NGX:ZENITHBANK,★,A,G,OK,?,mid,MEA / Frontier
@@ -43,15 +43,19 @@ score,name,ticker,conf,bucket,archetype,status,vintage,size,region
 0.71,PIMCO Asset-Based Lending Co LLC,CIK:0002073537,○,A,K3,OK,2026,mid,United States/Canada
 0.71,"Via Renewables, Inc.",VIASP,○,A,K3,OK,2026,mid,United States/Canada
 0.71,"CBAK Energy Technology, Inc.",CIK:0001117171,○,A,K3,OK,2026,mid,United States/Canada
+0.71,Aptose Biosciences Inc.,APTOF,○,A,K3,OK,2026,mid,United States/Canada
 0.71,Sustainable Projects Group Inc.,CIK:0001500305,○,A,K3,OK,2026,mid,United States/Canada
 0.71,PROASSURANCE CORP,CIK:0001127703,○,A,K3,OK,2026,mid,United States/Canada
 0.71,"Lomond Therapeutics Holdings, Inc.",CIK:0001900520,○,A,K3,OK,2026,mid,United States/Canada
+0.71,"Venture Lending & Leasing IX, Inc.",CIK:0001717310,○,A,K3,OK,2026,mid,United States/Canada
+0.71,Dream Homes & Development Corp.,CIK:0001518336,○,A,K3,OK,2026,mid,United States/Canada
+0.71,"Esperion Therapeutics, Inc.",ESPR,○,A,K3,OK,2026,mid,United States/Canada
 0.71,Sibanye-Stillwater,NYSE:SBSW,★,B,G,OK,?,mid,MEA / Frontier
 0.70,Aston Martin Lagonda,LSE:AML,★,A,A1,OK,?,small,United Kingdom
 0.69,SK Inc,KRX:034730,★,A,H,OK,2026,small,Korea
-0.69,"Encore Medical, Inc.  (EMI)  (CIK 0001838003)",EMI,○,A,F2,OK,2026,small,United States/Canada
 0.69,Vanke,HK:2202,★,A,A1,YELLOW,2025,mid,Greater China / HK
 0.68,Hitachi Transport System → Logisteed,(Hitachi 40%),★,A,H,OK,2026,small,Japan
+0.68,Motorsport Games Inc.,MSGM,○,A,F,OK,2026,small,United States/Canada
 0.68,Counter Narcotics Designations; Russia-related Designations Removals; Publication of Report for Licensing Activities Undertaken Pursuant to the Trade Sanctions Reform and Export Enhancement Act (TSRA),—,○,A,G,OK,2026,small,United States/Canada
 0.68,Russia-related Designations Removals,—,○,A,G,OK,2026,small,United States/Canada
 0.68,Democratic Republic of the Congo-related Designations; Issuance of Amended Russia-related General License and Frequently Asked Questions,—,○,A,G,OK,2026,small,United States/Canada
@@ -70,6 +74,7 @@ score,name,ticker,conf,bucket,archetype,status,vintage,size,region
 0.68,Iran-related Designations; Counter Terrorism and Iran-related Designation Update; Issuance of Iran-related General License,—,○,A,G,OK,2026,small,United States/Canada
 0.68,"Counter Terrorism, Counter Narcotics, and Cyber-related Designations; Issuance of Cyber-related General License",—,○,A,G,OK,2026,small,United States/Canada
 0.68,Nicaragua-related Designations; Issuance of Nicaragua-related General License,—,○,A,G,OK,2026,small,United States/Canada
+0.68,Iran-related Designations; Iran-related and Counter Terrorism Designation Update; Issuance of Iran-related General License,—,○,A,G,OK,2026,small,United States/Canada
 0.67,Vodafone,LSE:VOD,★,A,A1,OK,2024,small,United Kingdom
 0.67,First Foundation,NYSE:FFWM,★,A,A1,OK,2024,small,United States/Canada
 0.67,Tullow Oil,LSE:TLW,★,A,A1,OK,2024,small,United Kingdom
@@ -102,16 +107,24 @@ score,name,ticker,conf,bucket,archetype,status,vintage,size,region
 0.64,"CISO Global, Inc.",CISO,○,A,K3,OK,2026,small,United States/Canada
 0.64,"Polar Power, Inc.",POLA,○,A,K3,OK,2026,small,United States/Canada
 0.64,Innovator ETFs Trust,CIK:0001415726,○,A,K3,OK,2026,small,United States/Canada
-0.64,"Inotiv, Inc.",NOTVQ,○,A,K3,OK,2026,small,United States/Canada
 0.64,Spring Valley Acquisition Corp. III,SVACU,○,A,K3,OK,2026,small,United States/Canada
 0.64,Alchemy Investments Acquisition Corp 1,ALCUF,○,A,K3,OK,2026,small,United States/Canada
 0.64,T1 Energy Inc.,TE-WT,○,A,K3,OK,2026,small,United States/Canada
 0.64,"REVIVA PHARMACEUTICALS HOLDINGS, INC.",RVPH,○,A,K3,OK,2026,small,United States/Canada
-0.64,"GoHealth, Inc.",GOCOQ,○,A,K3,OK,2026,small,United States/Canada
 0.64,MERCER INTERNATIONAL INC.,MERC,○,A,K3,OK,2026,small,United States/Canada
 0.64,"ENvue Medical, Inc.",FEED,○,A,K3,OK,2026,small,United States/Canada
 0.64,Lakeside Holding Ltd,LSH,○,A,K3,OK,2026,small,United States/Canada
 0.64,"GeoVax Labs, Inc.",GOVX,○,A,K3,OK,2026,small,United States/Canada
+0.64,GeneDx Holdings Corp.,WGSWW,○,A,K3,OK,2026,small,United States/Canada
+0.64,CROSS COUNTRY HEALTHCARE INC,CCRN,○,A,K3,OK,2026,small,United States/Canada
+0.64,National Storage Affiliates Trust,NSA-PB,○,A,K3,OK,2026,small,United States/Canada
+0.64,"Microvast Holdings, Inc.",MVSTW,○,A,K3,OK,2026,small,United States/Canada
+0.64,Celularity Inc,CELUW,○,A,K3,OK,2026,small,United States/Canada
+0.64,PGIM ETF TRUST,CIK:0001727074,○,A,K3,OK,2026,small,United States/Canada
+0.64,"KORE Group Holdings, Inc.",KORGW,○,A,K3,OK,2026,small,United States/Canada
+0.64,"20/20 Biolabs, Inc.",AIDX,○,A,K3,OK,2026,small,United States/Canada
+0.64,"Purple Innovation, Inc.",PRPL,○,A,K3,OK,2026,small,United States/Canada
+0.64,National Storage Affiliates Trust,NSA,○,A,K3,OK,2026,small,United States/Canada
 0.61,Synlait Milk,NZX:SML,★,A,D,OK,2024,small,SE Asia / Pacific
 0.61,MedioCredito Centrale (MCC),(state),○,A,A1,OK,?,small,Continental Europe
 0.60,Petra Diamonds,LSE:PDL,★,A,A1,OK,?,small,United Kingdom
@@ -164,6 +177,8 @@ score,name,ticker,conf,bucket,archetype,status,vintage,size,region
 0.56,AUSTRALIAN STRATEGIC MATERIALS LIMITED,ASM,○,A,E,OK,2026,small,SE Asia / Pacific
 0.56,QUBE HOLDINGS LIMITED,QUB,○,A,E,OK,2026,small,SE Asia / Pacific
 0.56,NOVA MINERALS CORP,NVA,○,A,E,OK,2026,small,SE Asia / Pacific
+0.56,"Encore Medical, Inc.  (EMI)  (CIK 0001838003)",EMI,○,A,F2,OK,2026,small,United States/Canada
+0.56,AETHLON MEDICAL INC  (AEMD)  (CIK 0000882291),AEMD,○,A,F2,OK,2026,small,United States/Canada
 0.56,PAN AFRICAN RESOURCES PLC,PAF,○,A,E,OK,2026,small,SE Asia / Pacific
 0.56,AngloGold Ashanti plc,—,○,A,E,OK,2026,small,United States/Canada
 0.56,Caplink Ventures Inc.,—,○,A,E,OK,2026,small,United States/Canada
@@ -172,7 +187,7 @@ score,name,ticker,conf,bucket,archetype,status,vintage,size,region
 0.56,Treatt PLC,—,○,A,E,OK,2026,small,United Kingdom
 0.56,"RE/MAX Holdings, Inc.",RMAX,○,A,C,OK,2026,small,United States/Canada
 0.56,Inflection Point Acquisition Corp. III,IPCXU,○,A,C,OK,2026,small,United States/Canada
-0.56,LIVEPERSON INC,LPSN,○,A,C,OK,2026,small,United States/Canada
+0.56,LEGGETT & PLATT INC,LEG,○,A,C,OK,2026,small,United States/Canada
 0.56,"Simulations Plus, Inc.",SLP,○,A,C,OK,2026,small,United States/Canada
 0.56,Reco Central Alberta Inc.,—,○,A,E,OK,2026,small,United States/Canada
 0.56,GLOBALDATA PLC,—,○,A,C,OK,2026,small,United Kingdom
@@ -195,13 +210,25 @@ score,name,ticker,conf,bucket,archetype,status,vintage,size,region
 0.56,KLARSEN : Ouverture d’une procédure de redressement judiciai,EPA:FR0011038348,○,A,E,OK,2026,small,Unspecified
 0.56,Prorogation de la période d'observation du redressement judi,EPA:FR0000035784,○,A,E,OK,2026,small,Unspecified
 0.56,HSBC HOLDINGS,HKEX:00005.HK,○,A,E,OK,2026,small,Unspecified
+0.56,KKR Real Estate Select Trust Inc.,CIK:0001803958,○,A,C,OK,2026,small,United States/Canada
+0.56,ADVANCED INNERGY HOLDINGS LIMITED,AIH,○,A,E,OK,2026,small,SE Asia / Pacific
+0.56,"Oxford Park Income Fund, Inc.",CIK:0001959353,○,A,C,OK,2026,small,United States/Canada
+0.56,Plant Advanced Technologies PAT annonce l’ouverture d’une pr,EPA:FR0010785790,○,A,E,OK,2026,small,Unspecified
+0.56,Lord Abbett Private Credit Fund,CIK:0002008748,○,A,C,OK,2026,small,United States/Canada
+0.56,Modern Capital Funds Trust,CIK:0001815608,○,A,C,OK,2026,small,United States/Canada
+0.56,"Crinetics Pharmaceuticals, Inc.",CRNX,○,A,C,OK,2026,small,United States/Canada
+0.56,"iDirect Multi-Strategy Fund, LLC",CIK:0002023773,○,A,C,OK,2026,small,United States/Canada
+0.56,MATRIX COMPOSITES & ENGINEERING LIMITED,MCE,○,A,E,OK,2026,small,SE Asia / Pacific
+0.56,Onex Direct Lending BDC Fund,CIK:0001860424,○,A,C,OK,2026,small,United States/Canada
+0.56,"BlackRock Realty Group, LLC",—,○,A,E,OK,2026,small,United States/Canada
+0.56,AC Evolution LLC,—,○,A,E,OK,2026,small,United States/Canada
+0.56,CLEARVIEW WEALTH LIMITED,CVW,○,A,E,OK,2026,small,SE Asia / Pacific
 0.56,LG Display,KRX:034220,★,A,H,OK,?,small,Korea
 0.55,Sunac China,HK:1918,★,A,F,OK,?,small,Greater China / HK
 0.54,Japan Display,TSE:6740,★,A,H,OK,2026,small,Japan
 0.53,Eneti,(merged Cadeler),★,A,B,OK,?,small,United States/Canada
 0.53,Toshiba,(private 2023; JIP),★,C → B,E+H,OK,2026,small,Japan
 0.53,Japan Display,TSE:6740,★,A,H,OK,?,small,Japan
-0.53,['BATTALION OIL CORP  (BATL)  (CIK 0001282648)'],BATL,○,A,Unknown,OK,2026,small,United States/Canada
 0.52,Copper Property CTL Pass Through Trust  (CPPTL)  (CIK 0001837671),CPPTL,○,A,F,OK,2026,small,United States/Canada
 0.52,Ernexa Therapeutics Inc.,ERNA,○,A,F,OK,2026,small,United States/Canada
 0.52,MSC INDUSTRIAL DIRECT CO INC,MSM,○,A,F,OK,2026,small,United States/Canada
@@ -613,33 +640,39 @@ score,name,ticker,conf,bucket,archetype,status,vintage,size,region
 0.52,"NEW RITE AID, LLC",CIK:0000084129,○,A,F,OK,2026,small,United States/Canada
 0.52,"PENN Entertainment, Inc.",PENN,○,A,F,OK,2026,small,United States/Canada
 0.52,"Vacasa, Inc.",CIK:0001874944,○,A,F,OK,2026,small,United States/Canada
+0.52,Amplify ETF Trust,CIK:0001633061,○,A,F,OK,2026,small,United States/Canada
+0.52,Morgan Stanley Solana Trust,CIK:0002103547,○,A,F,OK,2026,small,United States/Canada
+0.52,Morgan Stanley Ethereum Trust,CIK:0002103976,○,A,F,OK,2026,small,United States/Canada
+0.52,Greenland Mines Ltd,GRMLW,○,A,F,OK,2026,small,United States/Canada
+0.52,GLOBUS MARITIME LTD,GLBS,○,A,F,OK,2026,small,United States/Canada
+0.52,Public Storage,PSA-PG,○,A,F,OK,2026,small,United States/Canada
+0.52,Pelican Acquisition II Corp,PLCI,○,A,F,OK,2026,small,United States/Canada
+0.52,"DOMO, INC.",DOMO,○,A,F,OK,2026,small,United States/Canada
+0.52,Horizon Funds,CIK:0001643174,○,A,F,OK,2026,small,United States/Canada
+0.52,CAE INC,CAE,○,A,F,OK,2026,small,United States/Canada
+0.52,Somitos Corp.,CIK:0002074643,○,A,F,OK,2026,small,United States/Canada
+0.52,Spinnaker ETF Series,CIK:0001484018,○,A,F,OK,2026,small,United States/Canada
+0.52,HOTCHKIS & WILEY FUNDS /DE/,CIK:0001145022,○,A,F,OK,2026,small,United States/Canada
+0.52,M&T BANK CORP,MTB-PH,○,A,F,OK,2026,small,United States/Canada
+0.52,NOVAGOLD RESOURCES INC,NG,○,A,F,OK,2026,small,United States/Canada
+0.52,"MVMT Labs, Inc.",—,○,A,F,OK,2026,small,Unspecified
+0.52,"The Sisters of Saint Ann, Inc. d/b/a Anna Maria Co",—,○,A,F,OK,2026,small,Unspecified
+0.52,"In Re: Impac Mortgage Holdings, Inc.",—,○,A,F,OK,2026,small,Unspecified
+0.52,"SiFi Networks America, LLC",—,○,A,F,OK,2026,small,Unspecified
+0.52,"Missouri Delta Medical Center v. Tehum Care Services, Inc.",—,○,A,F,OK,2026,small,Unspecified
+0.52,"Brewster Heights Packing & Orchards, LP",—,○,A,F,OK,2026,small,Unspecified
+0.52,"St. Luke's Health System, LTD. v. Lefkowitz",—,○,A,F,OK,2026,small,Unspecified
+0.52,"Tehum Care Services, Inc. and Thurman R Watson - Adversary Proceeding",—,○,A,F,OK,2026,small,Unspecified
+0.52,"Impac Mortgage Holdings, Inc.",—,○,A,F,OK,2026,small,Unspecified
+0.52,NORTHRIM BANCORP INC,NRIM,○,A,Unknown,OK,2026,small,United States/Canada
 0.51,Metro Bank,LSE:MTRO,★,A,H,OK,2023,small,United Kingdom
-0.51,BHP GROUP LIMITED,—,○,A,Unknown,OK,2026,small,SE Asia / Pacific
 0.51,Edenor,NYSE:EDN,○,A,A1,OK,?,small,Latin America
 0.50,CIB Egypt,EGX:CIB,★,A,G,OK,?,small,MEA / Frontier
 0.50,Core Scientific,NASDAQ:CORZ,★,C → B,B,OK,?,small,United States/Canada
-0.50,['EShallGo Inc.  (EHGO)  (CIK 0001879754)'],EHGO,○,A,Unknown,OK,2026,small,United States/Canada
-0.50,"RANGE IMPACT, INC.  (RNGE)  (CIK 0001438943)",RNGE,○,A,Unknown,OK,2026,small,United States/Canada
-0.50,"Cadrenal Therapeutics, Inc.  (CVKD)  (CIK 0001937993)",CVKD,○,A,Unknown,OK,2026,small,United States/Canada
-0.50,SURF AIR MOBILITY INC.  (SRFM)  (CIK 0001936224),SRFM,○,A,Unknown,OK,2026,small,United States/Canada
-0.50,HIVE Digital Technologies Ltd.  (HIVE)  (CIK 0001720424),HIVE,○,A,Unknown,OK,2026,small,United States/Canada
-0.50,ACTELIS NETWORKS INC  (ASNS)  (CIK 0001141284),ASNS,○,A,Unknown,OK,2026,small,United States/Canada
-0.50,"Inuvo, Inc.  (INUV)  (CIK 0000829323)",INUV,○,A,Unknown,OK,2026,small,United States/Canada
-0.49,FMC CORP  (FMC)  (CIK 0000037785),FMC,○,A,Unknown,OK,2026,small,United States/Canada
 0.49,Lucid Group,NASDAQ:LCID,○,A,A2,OK,?,small,United States/Canada
+0.49,Motorsport Games Inc.,MSGM,○,A,Unknown,OK,2026,small,United States/Canada
 0.48,Carvana,NYSE:CVNA,★,A,C,OK,2023,small,United States/Canada
-0.48,['Sable Offshore Corp.  (SOC)  (CIK 0001831481)'],SOC,○,A,Unknown,OK,2026,small,United States/Canada
-0.48,"RESIDEO TECHNOLOGIES, INC.  (REZI)  (CIK 0001740332)",REZI,○,A,Unknown,OK,2026,small,United States/Canada
 0.47,Commercial Bank of Ceylon,CSE:COMB,○,A,G,OK,?,small,SE Asia / Pacific
-0.47,Curbline Properties Corp.  (CURB)  (CIK 0002027317),CURB,○,A,Unknown,OK,2026,small,United States/Canada
-0.47,['CollPlant Biotechnologies Ltd  (CLGN)  (CIK 0001631487)'],CLGN,○,A,Unknown,OK,2026,small,United States/Canada
-0.47,['IM Cannabis Corp.  (IMCC)  (CIK 0001792030)'],IMCC,○,A,Unknown,OK,2026,small,United States/Canada
-0.47,['GATX CORP  (GATX)  (CIK 0000040211)'],GATX,○,A,Unknown,OK,2026,small,United States/Canada
-0.47,['Freedom Metals Acquisition Corp.  (FDMM)  (CIK 0002129659)'],FDMMU,○,A,Unknown,OK,2026,small,United States/Canada
-0.47,"['CRESCENT BIOPHARMA, INC.  (CBIO)  (CIK 0001253689)']",CBIO,○,A,Unknown,OK,2026,small,United States/Canada
-0.47,"['Hub Cyber Security Ltd.  (HUBC, HUBCW, HUBCZ)  (CIK 0001905660)']",HUBCZ,○,A,Unknown,OK,2026,small,United States/Canada
-0.47,['Redwire Corp  (RDW)  (CIK 0001819810)'],RDW,○,A,Unknown,OK,2026,small,United States/Canada
-0.47,"['Stewards, Inc.  (SWRD)  (CIK 0001795851)']",SWRD,○,A,Unknown,OK,2026,small,United States/Canada
 0.46,voestalpine,VIE:VOE,▲,A,A2+A1,OK,?,large,Continental Europe
 0.46,MTN Ghana,GSE:MTNGH,○,A,G,OK,?,small,MEA / Frontier
 0.46,HAGL (Hoang Anh Gia Lai),HOSE:HAG,★,A,Unknown,OK,?,small,SE Asia / Pacific
@@ -725,18 +758,33 @@ score,name,ticker,conf,bucket,archetype,status,vintage,size,region
 0.38,ATLAS ARTERIA,ALX,○,A,Unknown,OK,2026,small,SE Asia / Pacific
 0.38,"Velo3D, Inc.  (VELO, VLDXW)  (CIK 0001825079)",VLDXW,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,"BED BATH & BEYOND, INC.  (BBBY, BBBY-WT)  (CIK 0001130713)",BBBY-WT,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"RANGE IMPACT, INC.  (RNGE)  (CIK 0001438943)",RNGE,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,ARROW FINANCIAL CORP  (AROW)  (CIK 0000717538),AROW,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"RESIDEO TECHNOLOGIES, INC.  (REZI)  (CIK 0001740332)",REZI,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Curbline Properties Corp.  (CURB)  (CIK 0002027317),CURB,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Cadrenal Therapeutics, Inc.  (CVKD)  (CIK 0001937993)",CVKD,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,SURF AIR MOBILITY INC.  (SRFM)  (CIK 0001936224),SRFM,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,HIVE Digital Technologies Ltd.  (HIVE)  (CIK 0001720424),HIVE,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,FMC CORP  (FMC)  (CIK 0000037785),FMC,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,ADI GLOBAL DISTRIBUTION INC.  (ADIG)  (CIK 0002105139),ADIG,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,"Qnity Electronics, Inc.  (Q)  (CIK 0002058873)",Q,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,ACTELIS NETWORKS INC  (ASNS)  (CIK 0001141284),ASNS,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,"BOX INC  (BOX, BXCAP)  (CIK 0001372612)",BXCAP,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,AMBARELLA INC  (AMBA)  (CIK 0001280263),AMBA,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,"Cloudflare, Inc.  (NET)  (CIK 0001477333)",NET,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"Inuvo, Inc.  (INUV)  (CIK 0000829323)",INUV,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,NEOMETALS LTD,NMT,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,['CollPlant Biotechnologies Ltd  (CLGN)  (CIK 0001631487)'],CLGN,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,NANOVEU LIMITED,NVU,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,['EShallGo Inc.  (EHGO)  (CIK 0001879754)'],EHGO,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,['IM Cannabis Corp.  (IMCC)  (CIK 0001792030)'],IMCC,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,グリーンクロスＨＤ,272A,○,A,Unknown,OK,2026,small,Japan
 0.38,['Transocean Ltd.  (RIG)  (CIK 0001451505)'],RIG,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,['Redwire Corp  (RDW)  (CIK 0001819810)'],RDW,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,ＮＥＣ,6701,○,A,Unknown,OK,2026,small,Japan
 0.38,['Three Lions Acquisition Corp.  (CIK 0002128462)'],CIK:0002128462,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,['GATX CORP  (GATX)  (CIK 0000040211)'],GATX,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,['Freedom Metals Acquisition Corp.  (FDMM)  (CIK 0002129659)'],FDMMU,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,ＬＩＮＥヤフー,4689,○,A,Unknown,OK,2026,small,Japan
 0.38,"['Valaris Ltd  (VAL, VAL-WT)  (CIK 0000314808)']",VAL-WT,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,['FIRST BANCORP /PR/  (FBP)  (CIK 0001057706)'],FBP,○,A,Unknown,OK,2026,small,United States/Canada
@@ -745,11 +793,15 @@ score,name,ticker,conf,bucket,archetype,status,vintage,size,region
 0.38,ソノコム,7902,○,A,Unknown,OK,2026,small,Japan
 0.38,['Marex Group plc  (MRX)  (CIK 0001997464)'],MRX,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,"['AVIS BUDGET GROUP, INC.  (CAR)  (CIK 0000723612)']",CAR,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,['BATTALION OIL CORP  (BATL)  (CIK 0001282648)'],BATL,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,"['Evans Bronwyn  (CIK 0002037266)', 'EBR Systems, Inc.  (CIK 0001347123)']",CIK:0002037266,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"['Stewards, Inc.  (SWRD)  (CIK 0001795851)']",SWRD,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,FORRESTANIA RESOURCES LIMITED,FRS,○,A,Unknown,OK,2026,small,SE Asia / Pacific
 0.38,住友ゴム,5110,○,A,Unknown,OK,2026,small,Japan
+0.38,['Sable Offshore Corp.  (SOC)  (CIK 0001831481)'],SOC,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,KAPSTREAM INVESTMENT TRUST,KIT,○,A,Unknown,OK,2026,small,SE Asia / Pacific
 0.38,"['Alight, Inc. / Delaware  (ALIT)  (CIK 0001809104)']",ALIT,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"['CRESCENT BIOPHARMA, INC.  (CBIO)  (CIK 0001253689)']",CBIO,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,['SIFY TECHNOLOGIES LTD  (SIFY)  (CIK 0001094324)'],SIFY,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,ＳＨＩＮＰＯ,5903,○,A,Unknown,OK,2026,small,Japan
 0.38,['Dell Technologies Inc.  (DELL)  (CIK 0001571996)'],DELL,○,A,Unknown,OK,2026,small,United States/Canada
@@ -761,7 +813,9 @@ score,name,ticker,conf,bucket,archetype,status,vintage,size,region
 0.38,"['AerCap Holdings N.V.  (AER)  (CIK 0001378789)', 'AerCap Aviation Solutions B.V.  (CIK 0001552087)', 'Aercap Funding DAC  (CIK 0002129045)', 'AerCap Ireland Capital DAC  (CIK 0001639856)', 'AerCap Ireland Ltd  (CIK 0001639858)', 'AerCap U.S. Global Aviation LLC  (CIK 0001639862)', 'INTERNATIONAL LEASE FINANCE CORP  (CIK 0000714311)', 'AerCap Global Aviation Trust  (CIK 0001603794)']",AER,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,"['QXO Insulation, LLC  (BLD)  (CIK 0001633931)']",BLD,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,AKORA RESOURCES LIMITED,AKO,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,"['Hub Cyber Security Ltd.  (HUBC, HUBCW, HUBCZ)  (CIK 0001905660)']",HUBCZ,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,CONTROL BIONICS LIMITED,CBL,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,BHP GROUP LIMITED,—,○,A,Unknown,OK,2026,small,SE Asia / Pacific
 0.38,XAI Floating Rate & Alternative Income Trust,XFLT,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,"Octagon Credit Investors, LLC",CIK:0001717906,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,AXT INC,AXTI,○,A,Unknown,OK,2026,small,United States/Canada
@@ -1114,6 +1168,34 @@ score,name,ticker,conf,bucket,archetype,status,vintage,size,region
 0.38,Cannabist Co Holdings Inc.,CBSTF,○,A,Unknown,OK,2026,small,United States/Canada
 0.38,A METAVERSE,HKEX:01616.HK,○,A,Unknown,OK,2026,small,Unspecified
 0.38,INTL GENIUS,HKEX:00033.HK,○,A,Unknown,OK,2026,small,Unspecified
+0.38,"BREAD FINANCIAL HOLDINGS, INC.",BFH,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,COMCAST CORP,CCZ,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,Gentherm Inc,THRM,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,SOMERSET MINERALS LIMITED,SMM,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,NORTHRIM BANCORP INC,—,○,A,Unknown,OK,2026,small,Unspecified
+0.38,ホーブ,1382,○,A,Unknown,OK,2026,small,Japan
+0.38,WEST PHARMACEUTICAL SERVICES INC,WST,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,ENVIRONMENTAL CLEAN TECHNOLOGIES LIMITED.,ECT,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,Pool Safe Inc.,#000029217,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,ALMONTY INDUSTRIES INC.,AII,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,Greenland Mines Ltd,GRML,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,"CHINA PHARMA HOLDINGS, INC.",CPHI,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,PACGOLD LIMITED,PGO,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,オイシックス,3182,○,A,Unknown,OK,2026,small,Japan
+0.38,ZEUS RESOURCES LIMITED,ZEU,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,エニグモ,3665,○,A,Unknown,OK,2026,small,Japan
+0.38,Ｇ－ＡＬｉＮＫ,7077,○,A,Unknown,OK,2026,small,Japan
+0.38,AMERICOLD REALTY TRUST,—,○,A,Unknown,OK,2026,small,Unspecified
+0.38,B&R Technology Merger Corp.,BRTM,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,TRANSCAT INC,TRNS,○,A,Unknown,OK,2026,small,United States/Canada
+0.38,CITIGOLD CORPORATION LIMITED,CTO,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,NEWPEAK METALS LIMITED,NPM,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,APOLLO MINERALS LIMITED,AON,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,JANUS ELECTRIC HOLDINGS LIMITED,JNS,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,ARIKA RESOURCES LIMITED,ARI,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,WRKR LTD,WRK,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,PRESTAL HOLDINGS LIMITED,PTL,○,A,Unknown,OK,2026,small,SE Asia / Pacific
+0.38,Ultinon Motion Holding B.V. and Liberty I B.V.,—,○,A,Unknown,OK,2026,small,Unspecified
 0.37,Alpha Metallurgical Resources,NYSE:AMR,★,C → B,F,OK,?,small,United States/Canada
 0.36,Sampath Bank,CSE:SAMP,○,A,G,OK,?,small,SE Asia / Pacific
 0.36,Red Lobster,(Ch.11 2024),★,C → B,F,OK,?,small,United States/Canada
@@ -1808,3 +1890,5 @@ score,name,ticker,conf,bucket,archetype,status,vintage,size,region
 0.00,CHINA HONGBAO,HKEX:08316.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
 0.00,WELIFE TECH,HKEX:01703.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
 0.00,HILONG,HKEX:01623.HK,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,SYGNIA ITRIX (RF) PROPRIETARY LIMITED,—,○,A,Unknown,PASS_FALSE_FRIEND,2026,small,Unspecified
+0.00,Ｇ－インフォメティス,281A,○,A,B,ACQUIRED,2026,small,Japan

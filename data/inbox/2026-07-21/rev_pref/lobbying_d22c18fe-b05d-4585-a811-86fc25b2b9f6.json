@@ -1,0 +1,22 @@
+{
+  "accession": "d22c18fe-b05d-4585-a811-86fc25b2b9f6",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "15000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Transportation",
+  "jurisdiction": "US",
+  "name": "BUTTE COUNTY ASSOCIATION OF GOVERNMENTS",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 BUTTE COUNTY ASSOCIATION OF GOVERNMENTS engaged THE FERGUSON GROUP, LLC for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "THE FERGUSON GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/d22c18fe-b05d-4585-a811-86fc25b2b9f6/print/"
+}

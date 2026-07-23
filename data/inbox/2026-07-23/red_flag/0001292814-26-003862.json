@@ -1,0 +1,14 @@
+{
+  "accession": "0001292814-26-003862",
+  "cik": "0001439124",
+  "fetched_at": "2026-07-23T13:23:51.523142Z",
+  "filed": "2026-07-23",
+  "form": "6-K",
+  "name": "AXIA Energia S.A.",
+  "query": "\"Foreign Corrupt Practices Act\" OR FCPA OR \"corruption investigation\"",
+  "query_label": "red_flag.fcpa",
+  "source": "EDGAR-FTS",
+  "ticker": "AXIA",
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/1439124/000129281426003862"
+}

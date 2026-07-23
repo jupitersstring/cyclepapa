@@ -1,0 +1,17 @@
+{
+  "accession": "140120260723598438",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:28:01.229342Z",
+  "filed": "2026-07-23",
+  "form": "質疑応答の書き起こし（連結業績予想修正と中期事業計画について）",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "Ｇ－ＪＳＨ",
+  "query_label": "red_flag.earnings_revision",
+  "query_note": "earnings forecast revision — verify whether downward",
+  "source": "TDnet",
+  "ticker": "150A",
+  "tier": "red_flag",
+  "url": "https://www.release.tdnet.info/inbs/140120260723598438.pdf"
+}

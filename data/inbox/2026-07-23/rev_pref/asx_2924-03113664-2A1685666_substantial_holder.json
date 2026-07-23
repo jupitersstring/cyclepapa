@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113664-2A1685666",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-23",
+  "form": "Change in substantial holding",
+  "form_code": "Change in substantial holding",
+  "industry": "Financial Services",
+  "isin": "AU000000CCA5",
+  "jurisdiction": "AU",
+  "name": "CHANGE FINANCIAL LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Financials",
+  "source": "ASX",
+  "ticker": "CCA",
+  "tier": "rev_pref",
+  "url": ""
+}

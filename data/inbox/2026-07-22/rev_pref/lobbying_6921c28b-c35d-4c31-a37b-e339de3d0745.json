@@ -1,0 +1,22 @@
+{
+  "accession": "6921c28b-c35d-4c31-a37b-e339de3d0745",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Consumer Issues/Safety/Products \u00b7 Trade (domestic/foreign) \u00b7 Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "INTERNATIONAL SAFETY EQUIPMENT ASSOCIATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 INTERNATIONAL SAFETY EQUIPMENT ASSOCIATION engaged MCALLISTER & QUINN, LLC on Consumer Issues/Safety/Products \u00b7 Trade (domestic/foreign) \u00b7 Budget/Appropriatio (universe-name match: INTERNATIONAL)",
+  "registrant": "MCALLISTER & QUINN, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "INTERNATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/6921c28b-c35d-4c31-a37b-e339de3d0745/print/"
+}

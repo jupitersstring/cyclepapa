@@ -1,0 +1,22 @@
+{
+  "accession": "4ff19940-59f1-4db3-83cd-00185749191a",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "105000.00",
+  "isin": null,
+  "issues": "Manufacturing \u00b7 Trade (domestic/foreign) \u00b7 Taxation/Internal Revenue Code \u00b7 Chemicals/Chemical Industry \u00b7 Consumer Issues/Safety/Products",
+  "jurisdiction": "US",
+  "name": "HENKEL OF AMERICA INC.",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 HENKEL OF AMERICA INC. engaged HENKEL OF AMERICA INC. for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "HENKEL OF AMERICA INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/4ff19940-59f1-4db3-83cd-00185749191a/print/"
+}

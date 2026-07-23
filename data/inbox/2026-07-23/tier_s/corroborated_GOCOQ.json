@@ -1,0 +1,33 @@
+{
+  "accession": "corrob-GOCOQ",
+  "cik": "",
+  "conviction_score": 3.13,
+  "fetched_at": "2026-07-23T13:41:16.684981Z",
+  "filed": "2026-07-23",
+  "form": "Cross-source corroboration",
+  "form_code": "CORROBORATED",
+  "hardest_event": 0.9,
+  "isin": null,
+  "jurisdiction": "",
+  "labels": [
+    "tier_s.delisting_form25",
+    "tier_s.going_dark_12g",
+    "tier_s.post_reorg_emerged"
+  ],
+  "n_sources": 3,
+  "name": "GoHealth, Inc.",
+  "query_label": "tier_s.corroborated_multi",
+  "query_note": "CORROBORATED across 3 independent sources (EDGAR-Form15, EDGAR-forms, EDGAR-postreorg); 3 total records. Cross-source corroboration is the framework's highest-conviction sourced signal.",
+  "source": "corroboration",
+  "sources": [
+    "EDGAR-Form15",
+    "EDGAR-forms",
+    "EDGAR-postreorg"
+  ],
+  "ticker": null,
+  "tier": "tier_s",
+  "tiers": [
+    "tier_s"
+  ],
+  "url": ""
+}

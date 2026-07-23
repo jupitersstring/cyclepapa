@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113672-3A697547",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-23",
+  "form": "Ceasing to be a substantial holder",
+  "form_code": "Ceasing to be a substantial holder",
+  "industry": "Metals & Mining",
+  "isin": "AU000000BSL0",
+  "jurisdiction": "AU",
+  "name": "BLUESCOPE STEEL LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "BSL",
+  "tier": "rev_pref",
+  "url": ""
+}

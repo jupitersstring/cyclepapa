@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113635-6A1335124",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-23",
+  "form": "Change in substantial holding",
+  "form_code": "Change in substantial holding",
+  "industry": "Metals & Mining",
+  "isin": "AU0000422495",
+  "jurisdiction": "AU",
+  "name": "RIGHT RESOURCES LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "RRE",
+  "tier": "rev_pref",
+  "url": ""
+}

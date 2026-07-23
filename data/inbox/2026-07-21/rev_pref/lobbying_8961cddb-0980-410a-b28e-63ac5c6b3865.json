@@ -1,0 +1,22 @@
+{
+  "accession": "8961cddb-0980-410a-b28e-63ac5c6b3865",
+  "cik": "",
+  "expenses": "20000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Clean Air and Water (quality) \u00b7 Consumer Issues/Safety/Products \u00b7 Copyright/Patent/Trademark \u00b7 Energy/Nuclear \u00b7 Environment/Superfund \u00b7 Health Issues \u00b7 Homeland Security \u00b7 Labo",
+  "jurisdiction": "US",
+  "name": "INTERNATIONAL ASSOCIATION OF PLUMBING AND MECHANICAL OFFICIALS",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 INTERNATIONAL ASSOCIATION OF PLUMBING AND MECHANICAL OFFICIA engaged INTERNATIONAL ASSOCIATION OF PLUMBING AN for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "INTERNATIONAL ASSOCIATION OF PLUMBING AND MECHANICAL OFFICIALS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "INTERNATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/8961cddb-0980-410a-b28e-63ac5c6b3865/print/"
+}

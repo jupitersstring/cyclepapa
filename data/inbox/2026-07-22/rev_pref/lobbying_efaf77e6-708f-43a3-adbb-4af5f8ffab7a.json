@@ -1,0 +1,22 @@
+{
+  "accession": "efaf77e6-708f-43a3-adbb-4af5f8ffab7a",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Utilities",
+  "jurisdiction": "US",
+  "name": "GRID20/20",
+  "query_label": "rev_pref.lobbying_utilities",
+  "query_note": "LDA filing \u2014 GRID20/20 engaged JACK FERGUSON ASSOC., INC. for Utilities (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "JACK FERGUSON ASSOC., INC.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/efaf77e6-708f-43a3-adbb-4af5f8ffab7a/print/"
+}

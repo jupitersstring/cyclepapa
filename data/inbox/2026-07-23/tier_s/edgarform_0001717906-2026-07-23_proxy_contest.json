@@ -1,0 +1,17 @@
+{
+  "accession": "",
+  "cik": "0001717906",
+  "fetched_at": "2026-07-23T13:37:58.942597Z",
+  "filed": "2026-07-23",
+  "form": "DFAN14A",
+  "form_code": "DFAN14A",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Octagon Credit Investors, LLC",
+  "query_label": "tier_s.proxy_contest",
+  "query_note": "DFAN14A \u2014 non-management soliciting material (activist proxy campaign in flight)",
+  "source": "EDGAR-forms",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1717906/000121390026080393/0001213900-26-080393-index.htm"
+}

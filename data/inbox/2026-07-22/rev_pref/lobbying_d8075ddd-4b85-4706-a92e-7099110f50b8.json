@@ -1,0 +1,22 @@
+{
+  "accession": "d8075ddd-4b85-4706-a92e-7099110f50b8",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "50000.00",
+  "isin": null,
+  "issues": "Communications/Broadcasting/Radio/TV",
+  "jurisdiction": "US",
+  "name": "TIK TOK USDS JOINT VENTURE",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 TIK TOK USDS JOINT VENTURE engaged VALCOUR LLC on Communications/Broadcasting/Radio/TV (universe-name match: VENTURE)",
+  "registrant": "VALCOUR LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "VENTURE",
+  "url": "https://lda.senate.gov/filings/public/filing/d8075ddd-4b85-4706-a92e-7099110f50b8/print/"
+}

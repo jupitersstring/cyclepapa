@@ -1,0 +1,22 @@
+{
+  "accession": "1637c498-4197-48a4-9e5e-6d8ddc56a39c",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Defense",
+  "jurisdiction": "US",
+  "name": "INGENIUM TECHNOLOGIES CORP",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 INGENIUM TECHNOLOGIES CORP engaged STROGEN LLC for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "STROGEN LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/1637c498-4197-48a4-9e5e-6d8ddc56a39c/print/"
+}

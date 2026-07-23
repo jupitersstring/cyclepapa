@@ -1,0 +1,17 @@
+{
+  "accession": "140120260722597596",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:28:01.229342Z",
+  "filed": "2026-07-23",
+  "form": "第三者割当によるインフォメティス株式会社第10回新株予約権（行使価額修正条項付）の発行に係る払込完了に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "Ｇ－インフォメティス",
+  "query_label": "tier_s.third_party_allotment",
+  "query_note": "third-party share allocation (private placement)",
+  "source": "TDnet",
+  "ticker": "281A",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260722597596.pdf"
+}

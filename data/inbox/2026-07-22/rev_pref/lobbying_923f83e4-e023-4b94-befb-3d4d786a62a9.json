@@ -1,0 +1,22 @@
+{
+  "accession": "923f83e4-e023-4b94-befb-3d4d786a62a9",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "UNITED PROTECTIVE TECHNOLGIES",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 UNITED PROTECTIVE TECHNOLGIES engaged BRODY GROUP L.L.C. PUBLIC AFFAIRS on Budget/Appropriations (universe-name match: UNITED)",
+  "registrant": "BRODY GROUP L.L.C. PUBLIC AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "UNITED",
+  "url": "https://lda.senate.gov/filings/public/filing/923f83e4-e023-4b94-befb-3d4d786a62a9/print/"
+}

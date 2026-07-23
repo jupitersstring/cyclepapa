@@ -1,0 +1,22 @@
+{
+  "accession": "711f94b3-4296-4d43-b656-3086857657b0",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Defense \u00b7 Education \u00b7 Science/Technology \u00b7 Automotive Industry \u00b7 Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "OAKLAND UNIVERSITY",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 OAKLAND UNIVERSITY engaged THE BURNHAM GROUP LLC for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "THE BURNHAM GROUP LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/711f94b3-4296-4d43-b656-3086857657b0/print/"
+}

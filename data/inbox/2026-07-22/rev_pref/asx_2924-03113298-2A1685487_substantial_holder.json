@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113298-2A1685487",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-22",
+  "form": "Change in substantial holding from CGF",
+  "form_code": "Change in substantial holding",
+  "industry": "Household Durables",
+  "isin": "AU000000BRG2",
+  "jurisdiction": "AU",
+  "name": "BREVILLE GROUP LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Consumer Discretionary",
+  "source": "ASX",
+  "ticker": "BRG",
+  "tier": "rev_pref",
+  "url": ""
+}

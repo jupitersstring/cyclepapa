@@ -1,14 +1,11 @@
 {
   "accession": "0000885508-26-000024",
   "also_matched": [
-    "consummation of the Plan",
-    "consummation of the Plan",
-    "consummation of the Plan",
     "consummation of the Plan"
   ],
   "cik": "0000885508",
   "emergence_tier": "recall",
-  "fetched_at": "2026-07-21T18:19:14.461342Z",
+  "fetched_at": "2026-07-23T13:36:23.219185Z",
   "filed": "2026-05-12",
   "form": "10-Q",
   "form_code": "10-Q",
@@ -18,6 +15,7 @@
   "jurisdiction": "US",
   "matched_phrase": "consummation of the Plan",
   "name": "STRATUS PROPERTIES INC",
+  "post_reorg_ipo": false,
   "pre_emergence": false,
   "query_label": "tier_s.post_reorg_plan_effective",
   "query_note": "Plan of Reorganization effective / consummated \u2014 the emergence event. New equity distributed to creditors; watch the forced-selling window.",

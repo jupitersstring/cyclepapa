@@ -1,0 +1,22 @@
+{
+  "accession": "c876d894-bad7-4f56-9670-29a6b12f3cf6",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report (No Activity)",
+  "form_code": "Q2Y",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "EXPANSION FUNDING PARTNERS, LLC",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 EXPANSION FUNDING PARTNERS, LLC engaged THE MAJORITY GROUP, LLC on  (universe-name match: FUNDING)",
+  "registrant": "THE MAJORITY GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "FUNDING",
+  "url": "https://lda.senate.gov/filings/public/filing/c876d894-bad7-4f56-9670-29a6b12f3cf6/print/"
+}

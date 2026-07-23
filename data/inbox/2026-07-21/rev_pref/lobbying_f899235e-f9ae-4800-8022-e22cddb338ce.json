@@ -1,0 +1,22 @@
+{
+  "accession": "f899235e-f9ae-4800-8022-e22cddb338ce",
+  "cik": "",
+  "expenses": "10000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Health Issues",
+  "jurisdiction": "US",
+  "name": "SOCIETY FOR MATERNAL-FETAL MEDICINE",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 SOCIETY FOR MATERNAL-FETAL MEDICINE engaged SOCIETY FOR MATERNAL-FETAL MEDICINE on Budget/Appropriations \u00b7 Health Issues (universe-name match: SOCIETY)",
+  "registrant": "SOCIETY FOR MATERNAL-FETAL MEDICINE",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "SOCIETY",
+  "url": "https://lda.senate.gov/filings/public/filing/f899235e-f9ae-4800-8022-e22cddb338ce/print/"
+}

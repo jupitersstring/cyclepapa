@@ -1,0 +1,17 @@
+{
+  "accession": "FR00107857902026-07-23",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:38:43.276955Z",
+  "filed": "2026-07-23",
+  "form": "Plant Advanced Technologies PAT annonce l\u2019ouverture d\u2019une proc\u00e9dure de redressement judiciaire et l\u2019obtention d\u2019une p\u00e9riode d'observation de 6 mois renouvelable",
+  "form_code": "OAM-AMF",
+  "isin": "FR0010785790",
+  "jurisdiction": "FR",
+  "name": "Plant Advanced Technologies PAT annonce l\u2019ouverture d\u2019une pr",
+  "query_label": "tier_s.restructuring",
+  "query_note": "Redressement judiciaire \u2014 judicial reorganisation (deeper distress than sauvegarde).  [matched: redressement judiciaire]",
+  "source": "OAM-AMF",
+  "ticker": "EPA:FR0010785790",
+  "tier": "tier_s",
+  "url": "https://www.info-financiere.gouv.fr/"
+}

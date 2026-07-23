@@ -101,6 +101,12 @@
     "emergence_date": null,
     "filer_emerged": false
   },
+  "0001004980-26-000048": {
+    "context": "",
+    "doc": "https://www.sec.gov/Archives/edgar/data/1004980/000100498026000048/0001004980-26-000048.txt",
+    "emergence_date": null,
+    "filer_emerged": false
+  },
   "0001013605-26-000019": {
     "context": "",
     "doc": "https://www.sec.gov/Archives/edgar/data/1013605/000101360526000019/0001013605-26-000019.txt",
@@ -854,6 +860,12 @@
   "0001683168-26-003521": {
     "context": "segment at this time. Quasi-reorganization On March 31, 2025, the Company implemented a quasi-reorganization to eliminate its accumulated deficits and reflect fresh-start accounting, in accordance wit",
     "doc": "https://www.sec.gov/Archives/edgar/data/790273/000168316826003521/0001683168-26-003521.txt",
+    "emergence_date": null,
+    "filer_emerged": true
+  },
+  "0001683168-26-005674": {
+    "context": "segment at this time. Quasi-reorganization On March 31, 2025, the Company implemented a quasi-reorganization to eliminate its accumulated deficits and reflect fresh-start accounting, in accordance wit",
+    "doc": "https://www.sec.gov/Archives/edgar/data/790273/000168316826005674/0001683168-26-005674.txt",
     "emergence_date": null,
     "filer_emerged": true
   },

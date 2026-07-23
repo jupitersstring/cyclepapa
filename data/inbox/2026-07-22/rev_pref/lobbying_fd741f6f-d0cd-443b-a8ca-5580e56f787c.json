@@ -1,0 +1,22 @@
+{
+  "accession": "fd741f6f-d0cd-443b-a8ca-5580e56f787c",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "Registration - Amendment",
+  "form_code": "RA",
+  "income": null,
+  "isin": null,
+  "issues": "Education",
+  "jurisdiction": "US",
+  "name": "AMERICAN FEDERATION FOR CHILDREN (FKA ADVOCATES FOR SCHOOL CHOICE)",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN FEDERATION FOR CHILDREN (FKA ADVOCATES FOR SCHOOL C engaged AMERICAN FEDERATION FOR CHILDREN (FKA AD on Education (universe-name match: AMERICAN)",
+  "registrant": "AMERICAN FEDERATION FOR CHILDREN (FKA ADVOCATES FOR SCHOOL CHOICE)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/fd741f6f-d0cd-443b-a8ca-5580e56f787c/print/"
+}

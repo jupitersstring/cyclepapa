@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113603-2A1685645",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-23",
+  "form": "Change of Director's Interest Notice",
+  "form_code": "Change of Director's Interest Notice",
+  "industry": "Consumer Staples Distribution & Retail",
+  "isin": "AU000000MTS0",
+  "jurisdiction": "AU",
+  "name": "METCASH LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.director_interest",
+  "query_note": "Director interest notice (Appendix 3X/3Y)",
+  "sector": "Consumer Staples",
+  "source": "ASX",
+  "ticker": "MTS",
+  "tier": "rev_pref",
+  "url": ""
+}

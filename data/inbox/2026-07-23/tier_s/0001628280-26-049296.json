@@ -1,0 +1,14 @@
+{
+  "accession": "0001628280-26-049296",
+  "cik": "0001805077",
+  "fetched_at": "2026-07-23T13:23:51.523142Z",
+  "filed": "2026-07-23",
+  "form": "8-K",
+  "name": "Eos Energy Enterprises, Inc.",
+  "query": "\"rights offering\" OR \"rights issue\"",
+  "query_label": "tier_s.rights_offering",
+  "source": "EDGAR-FTS",
+  "ticker": "EOSE",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1805077/000162828026049296"
+}

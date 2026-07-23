@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113219-6A1334923",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-22",
+  "form": "Change in substantial holding",
+  "form_code": "Change in substantial holding",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "isin": "AU000000BOE4",
+  "jurisdiction": "AU",
+  "name": "BOSS ENERGY LTD",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Energy",
+  "source": "ASX",
+  "ticker": "BOE",
+  "tier": "rev_pref",
+  "url": ""
+}

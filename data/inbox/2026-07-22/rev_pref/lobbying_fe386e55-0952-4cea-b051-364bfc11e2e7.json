@@ -1,0 +1,22 @@
+{
+  "accession": "fe386e55-0952-4cea-b051-364bfc11e2e7",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "6000.00",
+  "isin": null,
+  "issues": "Defense",
+  "jurisdiction": "US",
+  "name": "ISRAEL AEROSPACE INDUSTRIES N.A.",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 ISRAEL AEROSPACE INDUSTRIES N.A. engaged EMANUEL & ASSOCIATES, INC. (FKA ADAM EMA for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "EMANUEL & ASSOCIATES, INC. (FKA ADAM EMANUEL)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/fe386e55-0952-4cea-b051-364bfc11e2e7/print/"
+}

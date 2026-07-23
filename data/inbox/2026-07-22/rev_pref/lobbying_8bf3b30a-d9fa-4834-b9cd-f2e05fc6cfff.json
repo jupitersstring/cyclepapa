@@ -1,0 +1,22 @@
+{
+  "accession": "8bf3b30a-d9fa-4834-b9cd-f2e05fc6cfff",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Termination",
+  "form_code": "2T",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Agriculture \u00b7 Energy/Nuclear \u00b7 Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "OLD BRIDGE MINERALS",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 OLD BRIDGE MINERALS engaged MCALLISTER & QUINN, LLC for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MCALLISTER & QUINN, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/8bf3b30a-d9fa-4834-b9cd-f2e05fc6cfff/print/"
+}

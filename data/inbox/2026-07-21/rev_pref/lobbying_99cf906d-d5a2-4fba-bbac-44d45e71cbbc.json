@@ -1,0 +1,22 @@
+{
+  "accession": "99cf906d-d5a2-4fba-bbac-44d45e71cbbc",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "40000.00",
+  "isin": null,
+  "issues": "Health Issues",
+  "jurisdiction": "US",
+  "name": "AMERICAN OPTOMETRIC ASSOCIATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN OPTOMETRIC ASSOCIATION engaged VINCENT BRANDYS on Health Issues (universe-name match: AMERICAN)",
+  "registrant": "VINCENT BRANDYS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/99cf906d-d5a2-4fba-bbac-44d45e71cbbc/print/"
+}

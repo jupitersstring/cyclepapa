@@ -1,0 +1,22 @@
+{
+  "accession": "aa6f4464-9eb7-418e-b0f5-67d033140933",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Amendment",
+  "form_code": "2A",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Energy/Nuclear \u00b7 Taxation/Internal Revenue Code \u00b7 Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "SYRAH RESOURCES LIMITED",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 SYRAH RESOURCES LIMITED engaged MISSION STRATEGIES LLC (ENERGY) for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MISSION STRATEGIES LLC (ENERGY)",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/aa6f4464-9eb7-418e-b0f5-67d033140933/print/"
+}

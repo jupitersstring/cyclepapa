@@ -1,0 +1,22 @@
+{
+  "accession": "4bf4f844-ed40-4ad0-ae63-6d41cb65e692",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Transportation \u00b7 Housing",
+  "jurisdiction": "US",
+  "name": "WILKES COUNTY, NC",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 WILKES COUNTY, NC engaged THE FERGUSON GROUP, LLC for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "THE FERGUSON GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/4bf4f844-ed40-4ad0-ae63-6d41cb65e692/print/"
+}

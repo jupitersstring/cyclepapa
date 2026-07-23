@@ -1,0 +1,22 @@
+{
+  "accession": "218fda2d-6f7f-41a9-b540-d3f0eeb72d4e",
+  "cik": "",
+  "expenses": "22063.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report (No Activity)",
+  "form_code": "Q2Y",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "LOW INCOME INVESTMENT FUND",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 LOW INCOME INVESTMENT FUND engaged LOW INCOME INVESTMENT FUND on  (universe-name match: INVESTMENT)",
+  "registrant": "LOW INCOME INVESTMENT FUND",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "INVESTMENT",
+  "url": "https://lda.senate.gov/filings/public/filing/218fda2d-6f7f-41a9-b540-d3f0eeb72d4e/print/"
+}

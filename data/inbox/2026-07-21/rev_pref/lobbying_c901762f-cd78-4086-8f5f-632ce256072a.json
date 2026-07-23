@@ -1,0 +1,22 @@
+{
+  "accession": "c901762f-cd78-4086-8f5f-632ce256072a",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "TOKYO ELECTRON U.S. HOLDINGS, INC.",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 TOKYO ELECTRON U.S. HOLDINGS, INC. engaged GIRARD GOVERNMENT RELATIONS on Trade (domestic/foreign) (universe-name match: TOKYO)",
+  "registrant": "GIRARD GOVERNMENT RELATIONS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "TOKYO",
+  "url": "https://lda.senate.gov/filings/public/filing/c901762f-cd78-4086-8f5f-632ce256072a/print/"
+}

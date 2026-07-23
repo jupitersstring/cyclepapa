@@ -1,0 +1,17 @@
+{
+  "accession": "",
+  "cik": "0001818331",
+  "fetched_at": "2026-07-23T13:37:58.942597Z",
+  "filed": "2026-07-23",
+  "form": "25-NSE",
+  "form_code": "25-NSE",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "GeneDx Holdings Corp.",
+  "query_label": "tier_s.delisting_form25",
+  "query_note": "Form 25-NSE \u2014 notification of removal from listing (the delisting event itself)",
+  "source": "EDGAR-forms",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1818331/000135445726000715/0001354457-26-000715-index.htm"
+}

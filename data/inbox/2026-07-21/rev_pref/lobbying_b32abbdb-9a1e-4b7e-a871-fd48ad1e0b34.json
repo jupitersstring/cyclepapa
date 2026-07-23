@@ -1,0 +1,22 @@
+{
+  "accession": "b32abbdb-9a1e-4b7e-a871-fd48ad1e0b34",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Apparel/Clothing Industry/Textiles \u00b7 Defense \u00b7 Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "AMERICAN APPAREL AND FOOTWEAR ASSOCIATION",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 AMERICAN APPAREL AND FOOTWEAR ASSOCIATION engaged MS. MISSY BRANSON for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MS. MISSY BRANSON",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/b32abbdb-9a1e-4b7e-a871-fd48ad1e0b34/print/"
+}

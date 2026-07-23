@@ -1,0 +1,22 @@
+{
+  "accession": "fe07d07a-0870-44fd-8654-aced4cba32cf",
+  "cik": "",
+  "expenses": "20000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Education \u00b7 Medicare/Medicaid \u00b7 Veterans \u00b7 Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "AMERICAN ASSOCIATION FOR MARRIAGE AND FAMILY THERAPY",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN ASSOCIATION FOR MARRIAGE AND FAMILY THERAPY engaged AMERICAN ASSOCIATION FOR MARRIAGE AND FA on Education \u00b7 Medicare/Medicaid \u00b7 Veterans \u00b7 Budget/Appropriations (universe-name match: AMERICAN)",
+  "registrant": "AMERICAN ASSOCIATION FOR MARRIAGE AND FAMILY THERAPY",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/fe07d07a-0870-44fd-8654-aced4cba32cf/print/"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "4dabdfb1-6483-43aa-90ab-fe9102209a5f",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Tariff (miscellaneous tariff bills) \u00b7 Food Industry (safety, labeling, etc.) \u00b7 Small Business \u00b7 Manufacturing",
+  "jurisdiction": "US",
+  "name": "TRADITIONAL MEDICINALS",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 TRADITIONAL MEDICINALS engaged MS. TAMI WAHL for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MS. TAMI WAHL",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/4dabdfb1-6483-43aa-90ab-fe9102209a5f/print/"
+}

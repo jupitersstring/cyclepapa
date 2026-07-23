@@ -1,0 +1,22 @@
+{
+  "accession": "74200811-beda-4554-ad06-acb93b4e385f",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Science/Technology",
+  "jurisdiction": "US",
+  "name": "SEISMOLOGICAL SOCIETY OF AMERICA",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 SEISMOLOGICAL SOCIETY OF AMERICA engaged THE FEDERAL AFFAIRS OFFICE on Science/Technology (universe-name match: SOCIETY)",
+  "registrant": "THE FEDERAL AFFAIRS OFFICE",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "SOCIETY",
+  "url": "https://lda.senate.gov/filings/public/filing/74200811-beda-4554-ad06-acb93b4e385f/print/"
+}

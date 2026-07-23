@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113191-6A1334889",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-22",
+  "form": "Codefai Completes Capital Raising",
+  "form_code": "Placement|Trading Halt Lifted",
+  "industry": "Professional Services",
+  "isin": "AU0000347718",
+  "jurisdiction": "AU",
+  "name": "CODEIFAI LIMITED",
+  "price_sensitive": true,
+  "query_label": "tier_s.capital_raising",
+  "query_note": "Capital raising / rights / placement",
+  "sector": "Industrials",
+  "source": "ASX",
+  "ticker": "CDE",
+  "tier": "tier_s",
+  "url": ""
+}

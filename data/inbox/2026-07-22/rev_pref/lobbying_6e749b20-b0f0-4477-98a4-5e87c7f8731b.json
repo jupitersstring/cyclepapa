@@ -1,0 +1,22 @@
+{
+  "accession": "6e749b20-b0f0-4477-98a4-5e87c7f8731b",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "FFP NEW HYDRO, LLC",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 FFP NEW HYDRO, LLC engaged THE ROSE COMPANY, LLC for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "THE ROSE COMPANY, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/6e749b20-b0f0-4477-98a4-5e87c7f8731b/print/"
+}

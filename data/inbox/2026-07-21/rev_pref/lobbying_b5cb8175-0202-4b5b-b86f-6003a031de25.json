@@ -1,0 +1,22 @@
+{
+  "accession": "b5cb8175-0202-4b5b-b86f-6003a031de25",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Automotive Industry",
+  "jurisdiction": "US",
+  "name": "JAPAN AUTOMOBILE STANDARDS INTERNATIONALIZATION CENTER",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 JAPAN AUTOMOBILE STANDARDS INTERNATIONALIZATION CENTER engaged JAPAN AUTOMOBILE STANDARDS INTERNATIONAL on Automotive Industry (universe-name match: JAPAN)",
+  "registrant": "JAPAN AUTOMOBILE STANDARDS INTERNATIONALIZATION CENTER",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "JAPAN",
+  "url": "https://lda.senate.gov/filings/public/filing/b5cb8175-0202-4b5b-b86f-6003a031de25/print/"
+}

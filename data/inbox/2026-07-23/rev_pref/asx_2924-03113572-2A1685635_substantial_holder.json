@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113572-2A1685635",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-23",
+  "form": "Becoming a substantial holder from TIP",
+  "form_code": "Becoming a substantial holder",
+  "industry": "Capital Markets",
+  "isin": "AU000000ARC3",
+  "jurisdiction": "AU",
+  "name": "ARC FUNDS LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Financials",
+  "source": "ASX",
+  "ticker": "ARC",
+  "tier": "rev_pref",
+  "url": ""
+}

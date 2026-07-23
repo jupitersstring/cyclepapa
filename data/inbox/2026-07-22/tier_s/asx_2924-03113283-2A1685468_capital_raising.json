@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113283-2A1685468",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-22",
+  "form": "Placement and Share Purchase Plan",
+  "form_code": "Placement|Trading Halt Lifted|Security Purchase Plan",
+  "industry": "IT Services",
+  "isin": "AU0000192064",
+  "jurisdiction": "AU",
+  "name": "WRKR LTD",
+  "price_sensitive": true,
+  "query_label": "tier_s.capital_raising",
+  "query_note": "Capital raising / rights / placement",
+  "sector": "Information Technology",
+  "source": "ASX",
+  "ticker": "WRK",
+  "tier": "tier_s",
+  "url": ""
+}

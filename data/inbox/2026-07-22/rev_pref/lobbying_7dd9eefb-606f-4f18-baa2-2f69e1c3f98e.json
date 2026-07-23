@@ -1,0 +1,22 @@
+{
+  "accession": "7dd9eefb-606f-4f18-baa2-2f69e1c3f98e",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "1st Quarter - Report",
+  "form_code": "Q1",
+  "income": "35000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Housing \u00b7 Transportation",
+  "jurisdiction": "US",
+  "name": "CITY OF RALEIGH, NC",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 CITY OF RALEIGH, NC engaged THE FERGUSON GROUP, LLC for Transportation (1st Quarter (Jan 1 - Mar 31))",
+  "registrant": "THE FERGUSON GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CITY",
+  "url": "https://lda.senate.gov/filings/public/filing/7dd9eefb-606f-4f18-baa2-2f69e1c3f98e/print/"
+}

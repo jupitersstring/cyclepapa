@@ -1,0 +1,14 @@
+{
+  "accession": "0001171843-26-004839",
+  "cik": "0001937926",
+  "fetched_at": "2026-07-23T13:23:51.523142Z",
+  "filed": "2026-07-23",
+  "form": "8-K",
+  "name": "Brookfield Asset Management Ltd.",
+  "query": "\"strategic alternatives\" OR \"financial advisor\"",
+  "query_label": "red_flag.advisor",
+  "source": "EDGAR-FTS",
+  "ticker": "BAM",
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/1937926/000117184326004839"
+}

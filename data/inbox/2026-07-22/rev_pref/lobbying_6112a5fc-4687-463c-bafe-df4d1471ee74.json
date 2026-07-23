@@ -1,0 +1,22 @@
+{
+  "accession": "6112a5fc-4687-463c-bafe-df4d1471ee74",
+  "cik": "",
+  "expenses": "60000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Amendment",
+  "form_code": "2A",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "ADISA - ALTERNATIVE & DIRECT INVESTMENT",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 ADISA - ALTERNATIVE & DIRECT INVESTMENT engaged ADISA - ALTERNATIVE & DIRECT INVESTMENT on  (universe-name match: INVESTMENT)",
+  "registrant": "ADISA - ALTERNATIVE & DIRECT INVESTMENT",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "INVESTMENT",
+  "url": "https://lda.senate.gov/filings/public/filing/6112a5fc-4687-463c-bafe-df4d1471ee74/print/"
+}

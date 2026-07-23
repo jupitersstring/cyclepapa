@@ -1,0 +1,22 @@
+{
+  "accession": "d79138b7-be8b-4816-9200-323cae37b1d6",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Defense \u00b7 Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "U.S. MINERALS & METALS CORPORATION (M2I)",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 U.S. MINERALS & METALS CORPORATION (M2I) engaged BANNER PUBLIC AFFAIRS, LLC for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "BANNER PUBLIC AFFAIRS, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/d79138b7-be8b-4816-9200-323cae37b1d6/print/"
+}

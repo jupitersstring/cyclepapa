@@ -1,0 +1,22 @@
+{
+  "accession": "f45ca20a-0529-42d3-8e87-dac1766e66a5",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Civil Rights/Civil Liberties",
+  "jurisdiction": "US",
+  "name": "NALEO EDUCATIONAL FUND",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 NALEO EDUCATIONAL FUND engaged NALEO EDUCATIONAL FUND on Budget/Appropriations \u00b7 Civil Rights/Civil Liberties (universe-name match: EDUCATIONAL)",
+  "registrant": "NALEO EDUCATIONAL FUND",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "EDUCATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/f45ca20a-0529-42d3-8e87-dac1766e66a5/print/"
+}

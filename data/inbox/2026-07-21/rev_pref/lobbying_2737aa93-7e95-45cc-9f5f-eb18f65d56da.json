@@ -1,0 +1,22 @@
+{
+  "accession": "2737aa93-7e95-45cc-9f5f-eb18f65d56da",
+  "cik": "",
+  "expenses": "50000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Banking",
+  "jurisdiction": "US",
+  "name": "NATIONAL CREDITORS BAR ASSOCIATION",
+  "query_label": "rev_pref.lobbying_banking",
+  "query_note": "LDA filing \u2014 NATIONAL CREDITORS BAR ASSOCIATION engaged NATIONAL CREDITORS BAR ASSOCIATION for Banking (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "NATIONAL CREDITORS BAR ASSOCIATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "NATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/2737aa93-7e95-45cc-9f5f-eb18f65d56da/print/"
+}

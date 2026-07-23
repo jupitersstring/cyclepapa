@@ -1,0 +1,22 @@
+{
+  "accession": "99ea1f75-421e-4bdf-a182-4be9b1ab28b9",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Health Issues",
+  "jurisdiction": "US",
+  "name": "BAXTER HEALTHCARE CORPORATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 BAXTER HEALTHCARE CORPORATION engaged SUMMIT HEALTH CARE CONSULTING on Health Issues (universe-name match: BAXTER)",
+  "registrant": "SUMMIT HEALTH CARE CONSULTING",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "BAXTER",
+  "url": "https://lda.senate.gov/filings/public/filing/99ea1f75-421e-4bdf-a182-4be9b1ab28b9/print/"
+}

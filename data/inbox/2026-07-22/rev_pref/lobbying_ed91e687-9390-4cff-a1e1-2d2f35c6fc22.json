@@ -1,0 +1,22 @@
+{
+  "accession": "ed91e687-9390-4cff-a1e1-2d2f35c6fc22",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Amendment",
+  "form_code": "2A",
+  "income": "120000.00",
+  "isin": null,
+  "issues": "Natural Resources",
+  "jurisdiction": "US",
+  "name": "IVANHOE ATLANTIC (FORMERLY HIGH POWER EXPLORATION INC.)",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 IVANHOE ATLANTIC (FORMERLY HIGH POWER EXPLORATION INC.) engaged YORKTOWN SOLUTIONS on Natural Resources (universe-name match: POWER)",
+  "registrant": "YORKTOWN SOLUTIONS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "POWER",
+  "url": "https://lda.senate.gov/filings/public/filing/ed91e687-9390-4cff-a1e1-2d2f35c6fc22/print/"
+}

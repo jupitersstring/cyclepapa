@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113189-2A1685435",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-22",
+  "form": "Trading Halt",
+  "form_code": "Trading Halt",
+  "industry": "Metals & Mining",
+  "isin": "AU000000CTO0",
+  "jurisdiction": "AU",
+  "name": "CITIGOLD CORPORATION LIMITED",
+  "price_sensitive": true,
+  "query_label": "tier_s.suspension_halt",
+  "query_note": "Trading halt or suspension",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "CTO",
+  "tier": "tier_s",
+  "url": ""
+}

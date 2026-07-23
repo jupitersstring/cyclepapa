@@ -1,0 +1,22 @@
+{
+  "accession": "908b20b5-f5c9-431c-8b7f-d1629ce4bf61",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "50000.00",
+  "isin": null,
+  "issues": "Railroads",
+  "jurisdiction": "US",
+  "name": "UNION STATION REDEVELOPMENT CORPORATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 UNION STATION REDEVELOPMENT CORPORATION engaged PEYSER ASSOCIATES LLC on Railroads (universe-name match: UNION)",
+  "registrant": "PEYSER ASSOCIATES LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "UNION",
+  "url": "https://lda.senate.gov/filings/public/filing/908b20b5-f5c9-431c-8b7f-d1629ce4bf61/print/"
+}

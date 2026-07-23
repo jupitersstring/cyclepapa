@@ -1,0 +1,22 @@
+{
+  "accession": "3c3a30c0-429a-4db8-bc41-52399e73fa2c",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Immigration",
+  "jurisdiction": "US",
+  "name": "NATIONAL IMMIGRATION LAW CENTRE",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 NATIONAL IMMIGRATION LAW CENTRE engaged MASA GROUP, LLC on Immigration (universe-name match: NATIONAL)",
+  "registrant": "MASA GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "NATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/3c3a30c0-429a-4db8-bc41-52399e73fa2c/print/"
+}

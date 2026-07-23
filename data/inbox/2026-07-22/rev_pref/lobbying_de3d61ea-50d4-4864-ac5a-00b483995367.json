@@ -1,0 +1,22 @@
+{
+  "accession": "de3d61ea-50d4-4864-ac5a-00b483995367",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Transportation",
+  "jurisdiction": "US",
+  "name": "LONG BEACH TRANSIT",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 LONG BEACH TRANSIT engaged HANKA ADVISOR LLC for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "HANKA ADVISOR LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/de3d61ea-50d4-4864-ac5a-00b483995367/print/"
+}

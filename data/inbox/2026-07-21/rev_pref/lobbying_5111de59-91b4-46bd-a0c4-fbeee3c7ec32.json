@@ -1,0 +1,22 @@
+{
+  "accession": "5111de59-91b4-46bd-a0c4-fbeee3c7ec32",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Urban Development/Municipalities",
+  "jurisdiction": "US",
+  "name": "CITY OF HILLSIDE",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 CITY OF HILLSIDE engaged KELLER PARTNERS & COMPANY on Urban Development/Municipalities (universe-name match: CITY)",
+  "registrant": "KELLER PARTNERS & COMPANY",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CITY",
+  "url": "https://lda.senate.gov/filings/public/filing/5111de59-91b4-46bd-a0c4-fbeee3c7ec32/print/"
+}

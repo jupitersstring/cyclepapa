@@ -1,0 +1,22 @@
+{
+  "accession": "09abcb64-1667-4847-848e-4e3e18d485f0",
+  "cik": "",
+  "expenses": "30000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Civil Rights/Civil Liberties \u00b7 Constitution \u00b7 Intelligence \u00b7 Copyright/Patent/Trademark \u00b7 Computer Industry",
+  "jurisdiction": "US",
+  "name": "ELECTRONIC FRONTIER FOUNDATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 ELECTRONIC FRONTIER FOUNDATION engaged ELECTRONIC FRONTIER FOUNDATION on Civil Rights/Civil Liberties \u00b7 Constitution \u00b7 Intelligence \u00b7 Copyright/Patent/Tr (universe-name match: FRONTIER)",
+  "registrant": "ELECTRONIC FRONTIER FOUNDATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "FRONTIER",
+  "url": "https://lda.senate.gov/filings/public/filing/09abcb64-1667-4847-848e-4e3e18d485f0/print/"
+}

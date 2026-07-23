@@ -1,0 +1,22 @@
+{
+  "accession": "654a4621-ce92-4ca1-be7e-13290a1106dd",
+  "cik": "",
+  "expenses": "36000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Agriculture \u00b7 Education \u00b7 Budget/Appropriations \u00b7 Aerospace \u00b7 Manufacturing \u00b7 Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "KANSAS STATE UNIVERSITY",
+  "query_label": "rev_pref.lobbying_aerospace",
+  "query_note": "LDA filing \u2014 KANSAS STATE UNIVERSITY engaged KANSAS STATE UNIVERSITY for Aerospace (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "KANSAS STATE UNIVERSITY",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/654a4621-ce92-4ca1-be7e-13290a1106dd/print/"
+}

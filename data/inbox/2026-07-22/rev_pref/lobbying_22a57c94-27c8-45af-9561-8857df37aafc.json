@@ -1,0 +1,22 @@
+{
+  "accession": "22a57c94-27c8-45af-9561-8857df37aafc",
+  "cik": "",
+  "expenses": "20000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Manufacturing \u00b7 Budget/Appropriations \u00b7 Postal \u00b7 Financial Institutions/Investments/Securities \u00b7 Tariff (miscellaneous tariff bills)",
+  "jurisdiction": "US",
+  "name": "ENVELOPE MANUFACTURERS ASSOCIATION",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 ENVELOPE MANUFACTURERS ASSOCIATION engaged ENVELOPE MANUFACTURERS ASSOCIATION for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "ENVELOPE MANUFACTURERS ASSOCIATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/22a57c94-27c8-45af-9561-8857df37aafc/print/"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "3b3ce51e-63f7-4a99-b33d-46bf0026413e",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Economics/Economic Development",
+  "jurisdiction": "US",
+  "name": "INTER GLOBAL LEGAL",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 INTER GLOBAL LEGAL engaged LATAM DEVELOPMENT GROUP LLC on Economics/Economic Development (universe-name match: INTER)",
+  "registrant": "LATAM DEVELOPMENT GROUP LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "INTER",
+  "url": "https://lda.senate.gov/filings/public/filing/3b3ce51e-63f7-4a99-b33d-46bf0026413e/print/"
+}

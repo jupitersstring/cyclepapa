@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113631-6A1335120",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-23",
+  "form": "Trading Halt",
+  "form_code": "Trading Halt",
+  "industry": "Commercial Services & Supplies",
+  "isin": "AU0000018137",
+  "jurisdiction": "AU",
+  "name": "ENVIRONMENTAL CLEAN TECHNOLOGIES LIMITED.",
+  "price_sensitive": true,
+  "query_label": "tier_s.suspension_halt",
+  "query_note": "Trading halt or suspension",
+  "sector": "Industrials",
+  "source": "ASX",
+  "ticker": "ECT",
+  "tier": "tier_s",
+  "url": ""
+}

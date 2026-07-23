@@ -1,0 +1,22 @@
+{
+  "accession": "a5182e56-ab16-424b-bb2f-1822656bf468",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-23",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Agriculture",
+  "jurisdiction": "US",
+  "name": "AMERICAN FROZEN FOOD INSTITUTE",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN FROZEN FOOD INSTITUTE engaged CAPROCK STRATEGIES, LLC on Agriculture (universe-name match: AMERICAN)",
+  "registrant": "CAPROCK STRATEGIES, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/a5182e56-ab16-424b-bb2f-1822656bf468/print/"
+}

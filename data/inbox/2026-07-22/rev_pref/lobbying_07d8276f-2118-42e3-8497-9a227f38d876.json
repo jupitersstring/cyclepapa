@@ -1,0 +1,22 @@
+{
+  "accession": "07d8276f-2118-42e3-8497-9a227f38d876",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "7500.00",
+  "isin": null,
+  "issues": "Agriculture \u00b7 Clean Air and Water (quality)",
+  "jurisdiction": "US",
+  "name": "NATIONAL TURFGRASS FEDERATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 NATIONAL TURFGRASS FEDERATION engaged MR. JONATHAN MOORE on Agriculture \u00b7 Clean Air and Water (quality) (universe-name match: NATIONAL)",
+  "registrant": "MR. JONATHAN MOORE",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "NATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/07d8276f-2118-42e3-8497-9a227f38d876/print/"
+}

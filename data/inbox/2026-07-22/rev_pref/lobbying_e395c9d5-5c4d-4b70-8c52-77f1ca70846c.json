@@ -1,0 +1,22 @@
+{
+  "accession": "e395c9d5-5c4d-4b70-8c52-77f1ca70846c",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "SES SPACE AND DEFENSE (FORMERLY KNOWN AS SES GOVERNMENT SOLUTIONS)",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 SES SPACE AND DEFENSE (FORMERLY KNOWN AS SES GOVERNMENT SOLU engaged BRODY GROUP L.L.C. PUBLIC AFFAIRS on Budget/Appropriations (universe-name match: SPACE)",
+  "registrant": "BRODY GROUP L.L.C. PUBLIC AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "SPACE",
+  "url": "https://lda.senate.gov/filings/public/filing/e395c9d5-5c4d-4b70-8c52-77f1ca70846c/print/"
+}

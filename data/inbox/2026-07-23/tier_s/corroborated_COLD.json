@@ -1,0 +1,31 @@
+{
+  "accession": "corrob-COLD",
+  "cik": "",
+  "conviction_score": 1.031,
+  "fetched_at": "2026-07-23T13:41:16.684981Z",
+  "filed": "2026-07-23",
+  "form": "Cross-source corroboration",
+  "form_code": "CORROBORATED",
+  "hardest_event": 0.5,
+  "isin": null,
+  "jurisdiction": "",
+  "labels": [
+    "red_flag.advisor",
+    "red_flag.item_material_impairment"
+  ],
+  "n_sources": 2,
+  "name": "AMERICOLD REALTY TRUST",
+  "query_label": "tier_s.corroborated_multi",
+  "query_note": "CORROBORATED across 2 independent sources (EDGAR-8K-items, EDGAR-FTS); 2 total records. Cross-source corroboration is the framework's highest-conviction sourced signal.",
+  "source": "corroboration",
+  "sources": [
+    "EDGAR-8K-items",
+    "EDGAR-FTS"
+  ],
+  "ticker": null,
+  "tier": "tier_s",
+  "tiers": [
+    "red_flag"
+  ],
+  "url": ""
+}

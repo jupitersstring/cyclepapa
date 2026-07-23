@@ -1,0 +1,22 @@
+{
+  "accession": "da2a04b7-0107-4f8d-89cc-39abee9db236",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "45000.00",
+  "isin": null,
+  "issues": "Computer Industry \u00b7 Accounting \u00b7 Labor Issues/Antitrust/Workplace \u00b7 Arts/Entertainment \u00b7 Taxation/Internal Revenue Code \u00b7 Communications/Broadcasting/Radio/TV",
+  "jurisdiction": "US",
+  "name": "WRITERS GUILD OF AMERICA WEST",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 WRITERS GUILD OF AMERICA WEST engaged CUNEO GILBERT & LADUCA on Computer Industry \u00b7 Accounting \u00b7 Labor Issues/Antitrust/Workplace \u00b7 Arts/Enterta (universe-name match: WEST)",
+  "registrant": "CUNEO GILBERT & LADUCA",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "WEST",
+  "url": "https://lda.senate.gov/filings/public/filing/da2a04b7-0107-4f8d-89cc-39abee9db236/print/"
+}

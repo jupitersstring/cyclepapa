@@ -1,0 +1,22 @@
+{
+  "accession": "d0f7d97a-1ce3-4bb0-9be5-1de53c6efe15",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Education \u00b7 Government Issues",
+  "jurisdiction": "US",
+  "name": "PACIFIC OAKS COLLEGE",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 PACIFIC OAKS COLLEGE engaged MCALLISTER & QUINN, LLC on Education \u00b7 Government Issues (universe-name match: PACIFIC)",
+  "registrant": "MCALLISTER & QUINN, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "PACIFIC",
+  "url": "https://lda.senate.gov/filings/public/filing/d0f7d97a-1ce3-4bb0-9be5-1de53c6efe15/print/"
+}

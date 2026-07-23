@@ -1,0 +1,22 @@
+{
+  "accession": "9f3b15ae-500e-4a4a-85a2-dda6e385fbb9",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Agriculture \u00b7 Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "IMPROVING MARKET ACCESS COALITION (IMAC)",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 IMPROVING MARKET ACCESS COALITION (IMAC) engaged WHITMER & WORRALL, LLC on Agriculture \u00b7 Trade (domestic/foreign) (universe-name match: ACCESS)",
+  "registrant": "WHITMER & WORRALL, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "ACCESS",
+  "url": "https://lda.senate.gov/filings/public/filing/9f3b15ae-500e-4a4a-85a2-dda6e385fbb9/print/"
+}

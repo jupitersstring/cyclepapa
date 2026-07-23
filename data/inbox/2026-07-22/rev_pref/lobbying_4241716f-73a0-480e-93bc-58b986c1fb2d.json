@@ -1,0 +1,22 @@
+{
+  "accession": "4241716f-73a0-480e-93bc-58b986c1fb2d",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Energy/Nuclear \u00b7 Science/Technology \u00b7 Transportation \u00b7 Trade (domestic/foreign) \u00b7 Taxation/Internal Revenue Code",
+  "jurisdiction": "US",
+  "name": "PANASONIC CORPORATION OF NORTH AMERICA",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 PANASONIC CORPORATION OF NORTH AMERICA engaged WHITMER & WORRALL, LLC for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "WHITMER & WORRALL, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/4241716f-73a0-480e-93bc-58b986c1fb2d/print/"
+}

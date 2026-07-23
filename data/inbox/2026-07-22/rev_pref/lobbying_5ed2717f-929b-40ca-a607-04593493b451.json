@@ -1,0 +1,22 @@
+{
+  "accession": "5ed2717f-929b-40ca-a607-04593493b451",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "45000.00",
+  "isin": null,
+  "issues": "Environment/Superfund",
+  "jurisdiction": "US",
+  "name": "REPUBLIC SERVICES",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 REPUBLIC SERVICES engaged CO2EFFICIENT on Environment/Superfund (universe-name match: REPUBLIC)",
+  "registrant": "CO2EFFICIENT",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "REPUBLIC",
+  "url": "https://lda.senate.gov/filings/public/filing/5ed2717f-929b-40ca-a607-04593493b451/print/"
+}

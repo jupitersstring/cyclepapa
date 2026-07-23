@@ -1,0 +1,22 @@
+{
+  "accession": "c568900e-8a53-48aa-a47d-bdbc1ba7bfb6",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "3rd Quarter - Report (No Activity)",
+  "form_code": "Q3Y",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "NATIONAL FEDERATION OF STATE HIGH SCHOOL ASSOCIATIONS",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 NATIONAL FEDERATION OF STATE HIGH SCHOOL ASSOCIATIONS engaged REPUBLIC CONSULTING, LLC on  (universe-name match: NATIONAL)",
+  "registrant": "REPUBLIC CONSULTING, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "NATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/c568900e-8a53-48aa-a47d-bdbc1ba7bfb6/print/"
+}

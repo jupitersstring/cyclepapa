@@ -1,0 +1,22 @@
+{
+  "accession": "6e9e8b33-bc3c-4cbe-b85b-554dcffa6589",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Immigration",
+  "jurisdiction": "US",
+  "name": "UNITED WE DREAM",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 UNITED WE DREAM engaged MASA GROUP, LLC on Immigration (universe-name match: UNITED)",
+  "registrant": "MASA GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "UNITED",
+  "url": "https://lda.senate.gov/filings/public/filing/6e9e8b33-bc3c-4cbe-b85b-554dcffa6589/print/"
+}

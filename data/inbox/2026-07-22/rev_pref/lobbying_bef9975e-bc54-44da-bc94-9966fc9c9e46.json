@@ -1,0 +1,22 @@
+{
+  "accession": "bef9975e-bc54-44da-bc94-9966fc9c9e46",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "60000.00",
+  "isin": null,
+  "issues": "Energy/Nuclear \u00b7 Transportation \u00b7 Environment/Superfund \u00b7 Manufacturing \u00b7 Trade (domestic/foreign) \u00b7 Labor Issues/Antitrust/Workplace \u00b7 Disaster Planning/Emergencies",
+  "jurisdiction": "US",
+  "name": "CGCN GROUP ON BEHALF OF BRADFORD WHITE CORPORATION",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 CGCN GROUP ON BEHALF OF BRADFORD WHITE CORPORATION engaged SCONSET STRATEGIES, LLC for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "SCONSET STRATEGIES, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/bef9975e-bc54-44da-bc94-9966fc9c9e46/print/"
+}

@@ -1,0 +1,17 @@
+{
+  "accession": "140120260723598261",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:28:01.229342Z",
+  "filed": "2026-07-23",
+  "form": "特別損失（固定資産の減損損失）の計上に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "ヨコレイ",
+  "query_label": "red_flag.extraordinary_loss",
+  "query_note": "extraordinary loss",
+  "source": "TDnet",
+  "ticker": "2874",
+  "tier": "red_flag",
+  "url": "https://www.release.tdnet.info/inbs/140120260723598261.pdf"
+}

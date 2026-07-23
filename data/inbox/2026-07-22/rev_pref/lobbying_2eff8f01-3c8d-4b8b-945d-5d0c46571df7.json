@@ -1,0 +1,22 @@
+{
+  "accession": "2eff8f01-3c8d-4b8b-945d-5d0c46571df7",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Taxation/Internal Revenue Code \u00b7 Telecommunications",
+  "jurisdiction": "US",
+  "name": "FULCRUM PUBLIC AFFAIRS ON BEHALF OF THE DIGITAL CHAMBER",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 FULCRUM PUBLIC AFFAIRS ON BEHALF OF THE DIGITAL CHAMBER engaged K&L GATES, LLP for Telecommunications (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "K&L GATES, LLP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/2eff8f01-3c8d-4b8b-945d-5d0c46571df7/print/"
+}

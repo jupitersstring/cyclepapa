@@ -1,0 +1,22 @@
+{
+  "accession": "ce160a79-da9f-4bbc-8f5b-69045d0a9cde",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Transportation \u00b7 Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "VOLVO GROUP NORTH AMERICA",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 VOLVO GROUP NORTH AMERICA engaged MAYER BROWN LLP for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MAYER BROWN LLP",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/ce160a79-da9f-4bbc-8f5b-69045d0a9cde/print/"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "d0361d07-d939-444e-a21a-6c18c349cdbe",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Health Issues \u00b7 Small Business \u00b7 Science/Technology \u00b7 Defense \u00b7 Veterans \u00b7 Homeland Security \u00b7 Medical/Disease Research/Clinical Labs",
+  "jurisdiction": "US",
+  "name": "ACESO PLASMA, INC",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 ACESO PLASMA, INC engaged THORNROSE VENTURES for Defense (3rd Quarter (July 1 - Sep 30))",
+  "registrant": "THORNROSE VENTURES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "ACESO",
+  "url": "https://lda.senate.gov/filings/public/filing/d0361d07-d939-444e-a21a-6c18c349cdbe/print/"
+}

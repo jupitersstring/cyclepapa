@@ -1,0 +1,22 @@
+{
+  "accession": "36a1e3a6-08a6-4bb2-a388-7f5f6a8bcbe7",
+  "cik": "",
+  "expenses": "2140000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Automotive Industry \u00b7 Disaster Planning/Emergencies \u00b7 Housing \u00b7 Insurance \u00b7 Taxation/Internal Revenue Code \u00b7 Transportation \u00b7 Budget/Appropriations \u00b7 Alcohol and Drug Abuse \u00b7 Financial Institutions/In",
+  "jurisdiction": "US",
+  "name": "AMERICAN PROPERTY CASUALTY INSURANCE ASSOCIATION",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 AMERICAN PROPERTY CASUALTY INSURANCE ASSOCIATION engaged AMERICAN PROPERTY CASUALTY INSURANCE ASS for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "AMERICAN PROPERTY CASUALTY INSURANCE ASSOCIATION FKA PROPERTY CASUALTY INSURERS ASSOC. OF AMERICA",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/36a1e3a6-08a6-4bb2-a388-7f5f6a8bcbe7/print/"
+}

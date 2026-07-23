@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113294-2A1685481",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-22",
+  "form": "APRA Approval Received",
+  "form_code": "Scheme of Arrangement|Notice of Meeting - Other",
+  "industry": "Insurance",
+  "isin": "AU000000CVW9",
+  "jurisdiction": "AU",
+  "name": "CLEARVIEW WEALTH LIMITED",
+  "price_sensitive": true,
+  "query_label": "tier_s.scheme",
+  "query_note": "Australian scheme of arrangement",
+  "sector": "Financials",
+  "source": "ASX",
+  "ticker": "CVW",
+  "tier": "tier_s",
+  "url": ""
+}

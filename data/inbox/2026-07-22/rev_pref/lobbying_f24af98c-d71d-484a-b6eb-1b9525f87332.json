@@ -1,0 +1,22 @@
+{
+  "accession": "f24af98c-d71d-484a-b6eb-1b9525f87332",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Termination",
+  "form_code": "2T",
+  "income": "50000.00",
+  "isin": null,
+  "issues": "Medicare/Medicaid \u00b7 Copyright/Patent/Trademark \u00b7 Pharmacy \u00b7 Taxation/Internal Revenue Code",
+  "jurisdiction": "US",
+  "name": "CAMPAIGN FOR SUSTAINABLE DRUG PRICING (CSRXP)",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 CAMPAIGN FOR SUSTAINABLE DRUG PRICING (CSRXP) engaged WHITMER & WORRALL, LLC on Medicare/Medicaid \u00b7 Copyright/Patent/Trademark \u00b7 Pharmacy \u00b7 Taxation/Internal Re (universe-name match: SUSTAINABLE)",
+  "registrant": "WHITMER & WORRALL, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "SUSTAINABLE",
+  "url": "https://lda.senate.gov/filings/public/filing/f24af98c-d71d-484a-b6eb-1b9525f87332/print/"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "f9ad892c-4d26-4bd1-94cd-93dbbe15fbe5",
+  "cik": "",
+  "expenses": "180000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Medicare/Medicaid \u00b7 Budget/Appropriations \u00b7 Education \u00b7 Defense \u00b7 Labor Issues/Antitrust/Workplace",
+  "jurisdiction": "US",
+  "name": "AMERICAN COUNSELING ASSOCIATION",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 AMERICAN COUNSELING ASSOCIATION engaged AMERICAN COUNSELING ASSOCIATION for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "AMERICAN COUNSELING ASSOCIATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/f9ad892c-4d26-4bd1-94cd-93dbbe15fbe5/print/"
+}

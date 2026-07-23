@@ -1,0 +1,22 @@
+{
+  "accession": "4a207fb2-755a-4c3c-ac9d-99674ef70396",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations",
+  "jurisdiction": "US",
+  "name": "NATIONAL CENTER FOR DEFENSE MANUFACTURING & MACHINING",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 NATIONAL CENTER FOR DEFENSE MANUFACTURING & MACHINING engaged BRODY GROUP L.L.C. PUBLIC AFFAIRS on Budget/Appropriations (universe-name match: NATIONAL)",
+  "registrant": "BRODY GROUP L.L.C. PUBLIC AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "NATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/4a207fb2-755a-4c3c-ac9d-99674ef70396/print/"
+}

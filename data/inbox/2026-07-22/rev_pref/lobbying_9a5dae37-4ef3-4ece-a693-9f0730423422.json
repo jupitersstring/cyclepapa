@@ -1,0 +1,22 @@
+{
+  "accession": "9a5dae37-4ef3-4ece-a693-9f0730423422",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Termination (No Activity)",
+  "form_code": "2TY",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "UNITY GLOBAL ENERGY",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 UNITY GLOBAL ENERGY engaged IKON PUBLIC AFFAIRS on  (universe-name match: GLOBAL)",
+  "registrant": "IKON PUBLIC AFFAIRS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "GLOBAL",
+  "url": "https://lda.senate.gov/filings/public/filing/9a5dae37-4ef3-4ece-a693-9f0730423422/print/"
+}

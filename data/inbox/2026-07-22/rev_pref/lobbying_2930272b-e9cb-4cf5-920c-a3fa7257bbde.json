@@ -1,0 +1,22 @@
+{
+  "accession": "2930272b-e9cb-4cf5-920c-a3fa7257bbde",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report (No Activity)",
+  "form_code": "Q2Y",
+  "income": null,
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "KERING AMERICAS, INC.",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 KERING AMERICAS, INC. engaged CAPITOL KNOWLEDGE, LLC on  (universe-name match: AMERICAS)",
+  "registrant": "CAPITOL KNOWLEDGE, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAS",
+  "url": "https://lda.senate.gov/filings/public/filing/2930272b-e9cb-4cf5-920c-a3fa7257bbde/print/"
+}

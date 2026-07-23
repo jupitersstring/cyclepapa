@@ -1,0 +1,26 @@
+{
+  "accession": "0001683168-26-005674",
+  "also_matched": [
+    "fresh-start accounting"
+  ],
+  "cik": "0000790273",
+  "emergence_tier": "strong",
+  "fetched_at": "2026-07-23T13:36:23.219185Z",
+  "filed": "2026-07-21",
+  "form": "10-Q",
+  "form_code": "10-Q",
+  "isin": null,
+  "item_1_03": false,
+  "items": [],
+  "jurisdiction": "US",
+  "matched_phrase": "fresh-start accounting",
+  "name": "CONECTISYS CORP",
+  "post_reorg_ipo": false,
+  "pre_emergence": false,
+  "query_label": "tier_s.post_reorg_freshstart",
+  "query_note": "Fresh-start accounting (ASC 852) \u2014 adopted ONLY upon Chapter 11 emergence, so a post-reorg entity by definition. Uncovered equity, forced-seller creditors, clean cap stack.",
+  "source": "EDGAR-postreorg",
+  "ticker": "CONC",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/790273/000168316826005674"
+}

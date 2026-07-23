@@ -1,0 +1,22 @@
+{
+  "accession": "2d437c32-9705-4448-93b9-726a8da5be7d",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "80000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Telecommunications \u00b7 Transportation \u00b7 Government Issues \u00b7 Agriculture \u00b7 Taxation/Internal Revenue Code \u00b7 Housing",
+  "jurisdiction": "US",
+  "name": "NATAT (NATIONAL ASSN OF TOWNS AND TOWNSHIPS",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 NATAT (NATIONAL ASSN OF TOWNS AND TOWNSHIPS engaged THE FERGUSON GROUP, LLC for Telecommunications (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "THE FERGUSON GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "NATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/2d437c32-9705-4448-93b9-726a8da5be7d/print/"
+}

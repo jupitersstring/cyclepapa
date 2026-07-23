@@ -1,0 +1,22 @@
+{
+  "accession": "f8790400-b8c2-4c87-8727-d58fd76c181b",
+  "cik": "",
+  "expenses": "200000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Amendment",
+  "form_code": "2A",
+  "income": null,
+  "isin": null,
+  "issues": "Banking \u00b7 Taxation/Internal Revenue Code \u00b7 Financial Institutions/Investments/Securities",
+  "jurisdiction": "US",
+  "name": "RBC CAPITAL MARKETS, LLC",
+  "query_label": "rev_pref.lobbying_banking",
+  "query_note": "LDA filing \u2014 RBC CAPITAL MARKETS, LLC engaged RBC CAPITAL MARKETS, LLC for Banking (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "RBC CAPITAL MARKETS, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CAPITAL",
+  "url": "https://lda.senate.gov/filings/public/filing/f8790400-b8c2-4c87-8727-d58fd76c181b/print/"
+}

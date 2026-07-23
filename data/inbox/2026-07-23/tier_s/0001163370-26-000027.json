@@ -1,0 +1,14 @@
+{
+  "accession": "0001163370-26-000027",
+  "cik": "0001163370",
+  "fetched_at": "2026-07-23T13:23:51.523142Z",
+  "filed": "2026-07-23",
+  "form": "8-K",
+  "name": "NORTHRIM BANCORP INC",
+  "query": "\"exchange offer\"",
+  "query_label": "tier_s.exchange_offer",
+  "source": "EDGAR-FTS",
+  "ticker": "NRIM",
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1163370/000116337026000027"
+}

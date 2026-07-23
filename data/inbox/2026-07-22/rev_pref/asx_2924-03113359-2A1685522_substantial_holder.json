@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113359-2A1685522",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-22",
+  "form": "Ceasing to be a substantial holder",
+  "form_code": "Ceasing to be a substantial holder",
+  "industry": "Specialty Retail",
+  "isin": "AU0000143711",
+  "jurisdiction": "AU",
+  "name": "PETER WARREN AUTOMOTIVE HOLDINGS LIMITED",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Consumer Discretionary",
+  "source": "ASX",
+  "ticker": "PWR",
+  "tier": "rev_pref",
+  "url": ""
+}

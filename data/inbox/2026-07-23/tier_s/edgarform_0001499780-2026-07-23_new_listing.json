@@ -1,0 +1,17 @@
+{
+  "accession": "",
+  "cik": "0001499780",
+  "fetched_at": "2026-07-23T13:37:58.942597Z",
+  "filed": "2026-07-23",
+  "form": "8-A12B/A",
+  "form_code": "8-A12B/A",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "GLOBUS MARITIME LTD",
+  "query_label": "tier_s.new_listing",
+  "query_note": "Form 8-A12B \u2014 registration of a class of securities for national-exchange (NYSE/Nasdaq) listing: a NEW listed equity appearing \u2014 post-reorg relisting, OTC\u2192exchange uplisting, or spin-off/when-issued common. The mirror of the 25-NSE delisting signal, caught structurally rather than only when the emergence phrase happens to co-occur.",
+  "source": "EDGAR-forms",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1499780/000110465926085817/0001104659-26-085817-index.htm"
+}

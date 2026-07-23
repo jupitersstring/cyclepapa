@@ -1,0 +1,22 @@
+{
+  "accession": "12d0ef3c-872f-4c81-9d7c-a42584f292d1",
+  "cik": "",
+  "expenses": "95566.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Utilities \u00b7 Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "OGLETHORPE POWER CORPORATION",
+  "query_label": "rev_pref.lobbying_utilities",
+  "query_note": "LDA filing \u2014 OGLETHORPE POWER CORPORATION engaged OGLETHORPE POWER CORPORATION for Utilities (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "OGLETHORPE POWER CORPORATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "POWER",
+  "url": "https://lda.senate.gov/filings/public/filing/12d0ef3c-872f-4c81-9d7c-a42584f292d1/print/"
+}

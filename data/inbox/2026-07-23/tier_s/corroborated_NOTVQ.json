@@ -1,0 +1,31 @@
+{
+  "accession": "corrob-NOTVQ",
+  "cik": "",
+  "conviction_score": 1.662,
+  "fetched_at": "2026-07-23T13:41:16.684981Z",
+  "filed": "2026-07-23",
+  "form": "Cross-source corroboration",
+  "form_code": "CORROBORATED",
+  "hardest_event": 1.0,
+  "isin": null,
+  "jurisdiction": "",
+  "labels": [
+    "tier_s.delisting_form25",
+    "tier_s.post_reorg_plan_effective"
+  ],
+  "n_sources": 2,
+  "name": "Inotiv, Inc.",
+  "query_label": "tier_s.corroborated_multi",
+  "query_note": "CORROBORATED across 2 independent sources (EDGAR-forms, EDGAR-postreorg); 2 total records. Cross-source corroboration is the framework's highest-conviction sourced signal.",
+  "source": "corroboration",
+  "sources": [
+    "EDGAR-forms",
+    "EDGAR-postreorg"
+  ],
+  "ticker": null,
+  "tier": "tier_s",
+  "tiers": [
+    "tier_s"
+  ],
+  "url": ""
+}

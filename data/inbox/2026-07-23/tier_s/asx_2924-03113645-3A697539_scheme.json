@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113645-3A697539",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-23",
+  "form": "Completion of the Acquisition of Matrix",
+  "form_code": "Scheme of Arrangement",
+  "industry": "Machinery",
+  "isin": "AU0000423667",
+  "jurisdiction": "AU",
+  "name": "ADVANCED INNERGY HOLDINGS LIMITED",
+  "price_sensitive": false,
+  "query_label": "tier_s.scheme",
+  "query_note": "Australian scheme of arrangement",
+  "sector": "Industrials",
+  "source": "ASX",
+  "ticker": "AIH",
+  "tier": "tier_s",
+  "url": ""
+}

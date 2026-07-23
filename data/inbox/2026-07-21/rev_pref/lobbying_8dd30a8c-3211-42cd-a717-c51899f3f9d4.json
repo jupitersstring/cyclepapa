@@ -1,0 +1,22 @@
+{
+  "accession": "8dd30a8c-3211-42cd-a717-c51899f3f9d4",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Manufacturing \u00b7 Taxation/Internal Revenue Code \u00b7 Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "ADVANTEST AMERICA, INC.",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 ADVANTEST AMERICA, INC. engaged GIRARD GOVERNMENT RELATIONS for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "GIRARD GOVERNMENT RELATIONS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/8dd30a8c-3211-42cd-a717-c51899f3f9d4/print/"
+}

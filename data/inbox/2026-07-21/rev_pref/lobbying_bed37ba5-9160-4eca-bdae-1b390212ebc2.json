@@ -1,0 +1,22 @@
+{
+  "accession": "bed37ba5-9160-4eca-bdae-1b390212ebc2",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "42000.00",
+  "isin": null,
+  "issues": "",
+  "jurisdiction": "US",
+  "name": "CITY OF WOODWAY",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 CITY OF WOODWAY engaged HICKS-RAY ASSOCIATES on  (universe-name match: CITY)",
+  "registrant": "HICKS-RAY ASSOCIATES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CITY",
+  "url": "https://lda.senate.gov/filings/public/filing/bed37ba5-9160-4eca-bdae-1b390212ebc2/print/"
+}

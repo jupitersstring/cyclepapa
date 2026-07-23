@@ -2,15 +2,15 @@
 
 Every Chapter 11 emergence signal in `data/inbox/`, fused by entity and scored by how many INDEPENDENT SEC channels corroborate it. Primary channels (emergence 8-K, fresh-start accounting, plan-effective) ARE an emergence; structural channels (Form 25/15 delisting, Form 8-A relisting, PACER docket, 8-K Item 1.03) raise confidence.
 
-- fused emergence events: **526**  ·  with a primary signal: **433**  ·  high-confidence (primary + corroboration): **39**  ·  pending (Q-suffix, still in Chapter 11): **6**
+- fused emergence events: **587**  ·  with a primary signal: **437**  ·  high-confidence (primary + corroboration): **40**  ·  pending (Q-suffix, still in Chapter 11): **6**
 - ground-truth known emergences loaded: **76**  ·  **coverage gaps (known, listed, NOT caught): 3**
 
 ## Fused events (most-corroborated first)
 
 | Entity | Ticker | Confidence | Channels | Last filing |
 |---|---|---|---|---|
+| GoHealth, Inc. | GOCOQ | high (primary + corroboration) | emergence 8-K prose×2; Form 15 deregistration; Form 25 old-share delisting; plan | 2026-07-23 |
 | Inotiv, Inc. | NOTV | high (primary + corroboration) | plan-effective 8-K×2; Form 25 old-share delisting; emergence 8-K prose | 2026-07-16 |
-| GoHealth, Inc. | GOCO | high (primary + corroboration) | emergence 8-K prose; Form 25 old-share delisting; plan-effective 8-K | 2026-07-11 |
 | WOLFSPEED, INC. | WOLF | high (primary + corroboration) | fresh-start accounting (10-K/Q)×8; emergence 8-K prose×9; plan-effective 8-K×3 | 2026-06-18 |
 | Nine Energy Service, Inc. | NINE | high (primary + corroboration) | emergence 8-K prose×6; fresh-start accounting (10-K/Q); plan-effective 8-K×2 | 2026-05-15 |
 | QVC Group, Inc. | QVCGA | high (primary + corroboration) | emergence 8-K prose×4; plan-effective 8-K | 2026-07-17 |
@@ -28,6 +28,7 @@ Every Chapter 11 emergence signal in `data/inbox/`, fused by entity and scored b
 | Talen Energy Corp | TLN | high (primary + corroboration) | emergence 8-K prose; fresh-start accounting (10-K/Q)×3 | 2026-06-15 |
 | Trinseo PLC | TSEOF | high (primary + corroboration) | emergence 8-K prose×3; plan-effective 8-K×2 | 2026-06-12 |
 | Noble Corp plc | NE | high (primary + corroboration) | fresh-start accounting (10-K/Q)×2; emergence 8-K prose | 2026-06-12 |
+| GoHealth, Inc. | — | high (primary + corroboration) | emergence 8-K prose; court plan-confirmation order | 2026-06-07 |
 | iHeartMedia, Inc. | IHRT | high (primary + corroboration) | emergence 8-K prose; plan-effective 8-K | 2026-06-04 |
 | Fat Brands, Inc | FABTQ | high (primary + corroboration) | plan-effective 8-K; emergence 8-K prose×2 | 2026-06-04 |
 | QVC INC | QVCC | high (primary + corroboration) | emergence 8-K prose; plan-effective 8-K×2 | 2026-05-15 |
@@ -42,8 +43,11 @@ Every Chapter 11 emergence signal in `data/inbox/`, fused by entity and scored b
 | Hudbay Minerals Inc. | HBM | high (primary + corroboration) | plan-effective 8-K; emergence 8-K prose | 2026-04-14 |
 | TPI COMPOSITES, INC | TPICQ | pending (Q-suffix — still in Chapter 11, not yet emerged) | fresh-start accounting (10-K/Q); plan-effective 8-K | 2026-03-25 |
 | Bristow Group Inc. | VTOL | high (primary + corroboration) | emergence 8-K prose; plan-effective 8-K | 2026-02-26 |
+| PG&E Corp | PCG | medium (single primary source) | emergence 8-K prose×3 | 2026-07-23 |
 | Z FIN | HKEX:01168.HK | medium (single primary source) | resumption of listing (foreign)×2 | 2026-07-22 |
+| NOVAGOLD RESOURCES INC | NG | medium (single primary source) | plan-effective 8-K | 2026-07-22 |
 | CITY OF TSHWANE METROPOLITAN MUNICIP | — | medium (single primary source) | resumption of listing (foreign) | 2026-07-22 |
+| CONECTISYS CORP | CONC | medium (single primary source) | fresh-start accounting (10-K/Q)×3 | 2026-07-21 |
 | GET NICE | HKEX:00064.HK | medium (single primary source) | resumption of listing (foreign)×2 | 2026-07-20 |
 | CHINA PPT INV | HKEX:00736.HK | medium (single primary source) | resumption of listing (foreign)×2 | 2026-07-20 |
 | CARRY WEALTH | HKEX:00643.HK | medium (single primary source) | resumption of listing (foreign)×4 | 2026-07-20 |
@@ -205,10 +209,6 @@ Every Chapter 11 emergence signal in `data/inbox/`, fused by entity and scored b
 | PAN AMERICAN SILVER CORP | PAAS | medium (single primary source) | plan-effective 8-K | 2026-05-07 |
 | ROGERS CORP | ROG | medium (single primary source) | plan-effective 8-K | 2026-05-07 |
 | RXO, Inc. | RXO | medium (single primary source) | plan-effective 8-K | 2026-05-07 |
-| UGI CORP /PA/ | UGI | medium (single primary source) | plan-effective 8-K | 2026-05-07 |
-| WASHINGTON TRUST BANCORP INC | WASH | medium (single primary source) | plan-effective 8-K | 2026-05-07 |
-| Privia Health Group, Inc. | PRVA | medium (single primary source) | plan-effective 8-K | 2026-05-07 |
-| First Eagle Tactical Municipal Oppor | — | medium (single primary source) | emergence 8-K prose | 2026-05-07 |
 
 ## Coverage gaps — known emergences we FAILED to catch
 

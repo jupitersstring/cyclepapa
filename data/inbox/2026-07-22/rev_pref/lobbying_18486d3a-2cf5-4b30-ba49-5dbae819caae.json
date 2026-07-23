@@ -1,0 +1,22 @@
+{
+  "accession": "18486d3a-2cf5-4b30-ba49-5dbae819caae",
+  "cik": "",
+  "expenses": "220000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "CENTRUS ENERGY CORP",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 CENTRUS ENERGY CORP engaged CENTRUS ENERGY CORP. for Energy/Nuclear (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "CENTRUS ENERGY CORP.",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "CENTRUS",
+  "url": "https://lda.senate.gov/filings/public/filing/18486d3a-2cf5-4b30-ba49-5dbae819caae/print/"
+}

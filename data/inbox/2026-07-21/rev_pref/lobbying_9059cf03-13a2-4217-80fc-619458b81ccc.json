@@ -1,0 +1,22 @@
+{
+  "accession": "9059cf03-13a2-4217-80fc-619458b81ccc",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "20000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Transportation",
+  "jurisdiction": "US",
+  "name": "KITTITAS COUNTY",
+  "query_label": "rev_pref.lobbying_transport",
+  "query_note": "LDA filing \u2014 KITTITAS COUNTY engaged THE FERGUSON GROUP, LLC for Transportation (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "THE FERGUSON GROUP, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/9059cf03-13a2-4217-80fc-619458b81ccc/print/"
+}

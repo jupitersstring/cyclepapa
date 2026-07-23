@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113268-3A697490",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-22",
+  "form": "Becoming a substantial holder",
+  "form_code": "Becoming a substantial holder",
+  "industry": "Metals & Mining",
+  "isin": "AU0000432205",
+  "jurisdiction": "AU",
+  "name": "6K ADDITIVE, INC.",
+  "price_sensitive": false,
+  "query_label": "rev_pref.substantial_holder",
+  "query_note": "5pct substantial-holder notice (AU equivalent of 13D)",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "6KA",
+  "tier": "rev_pref",
+  "url": ""
+}

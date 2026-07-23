@@ -1,0 +1,22 @@
+{
+  "accession": "14ce7791-1645-4b27-aff9-a356c7242c3e",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 District of Columbia \u00b7 Taxation/Internal Revenue Code",
+  "jurisdiction": "US",
+  "name": "INTERNATIONAL ASSOCIATION OF FIREFIGHTERS, LOCAL NO. 36",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 INTERNATIONAL ASSOCIATION OF FIREFIGHTERS, LOCAL NO. 36 engaged MCALLISTER & QUINN, LLC on Budget/Appropriations \u00b7 District of Columbia \u00b7 Taxation/Internal Revenue Code (universe-name match: INTERNATIONAL)",
+  "registrant": "MCALLISTER & QUINN, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "INTERNATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/14ce7791-1645-4b27-aff9-a356c7242c3e/print/"
+}

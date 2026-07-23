@@ -1,0 +1,17 @@
+{
+  "accession": "140120260723598094",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:28:01.229342Z",
+  "filed": "2026-07-23",
+  "form": "自己株式取得に係る事項の決定に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "ＳＥ　Ｈ＆Ｉ",
+  "query_label": "rev_pref.buyback",
+  "query_note": "share buyback (自己株式取得) — Lakonishok-Lee analogue at the corp level",
+  "source": "TDnet",
+  "ticker": "9478",
+  "tier": "rev_pref",
+  "url": "https://www.release.tdnet.info/inbs/140120260723598094.pdf"
+}

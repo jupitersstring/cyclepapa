@@ -1,0 +1,22 @@
+{
+  "accession": "41e3f54c-d966-4902-95ed-7cfaa079e2ac",
+  "cik": "",
+  "expenses": "50000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Chemicals/Chemical Industry \u00b7 Manufacturing \u00b7 Trade (domestic/foreign) \u00b7 Aviation/Airlines/Airports \u00b7 Pharmacy",
+  "jurisdiction": "US",
+  "name": "SOCIETY OF CHEMICAL MANUFACTURERS & AFFILIATES",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 SOCIETY OF CHEMICAL MANUFACTURERS & AFFILIATES engaged SOCIETY OF CHEMICAL MANUFACTURERS & AFFI for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "SOCIETY OF CHEMICAL MANUFACTURERS & AFFILIATES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "SOCIETY",
+  "url": "https://lda.senate.gov/filings/public/filing/41e3f54c-d966-4902-95ed-7cfaa079e2ac/print/"
+}

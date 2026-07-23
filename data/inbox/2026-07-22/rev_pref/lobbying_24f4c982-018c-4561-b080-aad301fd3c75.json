@@ -1,0 +1,22 @@
+{
+  "accession": "24f4c982-018c-4561-b080-aad301fd3c75",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Amendment",
+  "form_code": "2A",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Automotive Industry \u00b7 Environment/Superfund \u00b7 Taxation/Internal Revenue Code \u00b7 Computer Industry \u00b7 Manufacturing \u00b7 Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "GENERAL MOTORS COMPANY",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 GENERAL MOTORS COMPANY engaged MISSY EDWARDS STRATEGIES, LLC for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MISSY EDWARDS STRATEGIES, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "GENERAL",
+  "url": "https://lda.senate.gov/filings/public/filing/24f4c982-018c-4561-b080-aad301fd3c75/print/"
+}

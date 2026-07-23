@@ -1,0 +1,22 @@
+{
+  "accession": "ff35d0ae-5ce2-40cb-9666-870ee7e96441",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Homeland Security \u00b7 Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "COALITION FOR AMERICAN ELECTRONICS RECYCLING",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 COALITION FOR AMERICAN ELECTRONICS RECYCLING engaged WHITMER & WORRALL, LLC on Homeland Security \u00b7 Trade (domestic/foreign) (universe-name match: AMERICAN)",
+  "registrant": "WHITMER & WORRALL, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/ff35d0ae-5ce2-40cb-9666-870ee7e96441/print/"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "b71ab87d-f3fb-4edf-b2ab-0cb2c0c41876",
+  "cik": "",
+  "expenses": "20000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Roads/Highway \u00b7 Trade (domestic/foreign) \u00b7 Environment/Superfund \u00b7 Government Issues",
+  "jurisdiction": "US",
+  "name": "AMERICAN COMPOSITES MANUFACTURERS ASSOCIATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 AMERICAN COMPOSITES MANUFACTURERS ASSOCIATION engaged AMERICAN COMPOSITES MANUFACTURERS ASSOCI on Roads/Highway \u00b7 Trade (domestic/foreign) \u00b7 Environment/Superfund \u00b7 Government Is (universe-name match: AMERICAN)",
+  "registrant": "AMERICAN COMPOSITES MANUFACTURERS ASSOCIATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "AMERICAN",
+  "url": "https://lda.senate.gov/filings/public/filing/b71ab87d-f3fb-4edf-b2ab-0cb2c0c41876/print/"
+}

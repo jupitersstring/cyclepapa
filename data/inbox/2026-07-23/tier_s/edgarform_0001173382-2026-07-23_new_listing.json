@@ -1,0 +1,17 @@
+{
+  "accession": "",
+  "cik": "0001173382",
+  "fetched_at": "2026-07-23T13:37:58.942597Z",
+  "filed": "2026-07-23",
+  "form": "8-A12B",
+  "form_code": "8-A12B",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "CAE INC",
+  "query_label": "tier_s.new_listing",
+  "query_note": "Form 8-A12B \u2014 registration of a class of securities for national-exchange (NYSE/Nasdaq) listing: a NEW listed equity appearing \u2014 post-reorg relisting, OTC\u2192exchange uplisting, or spin-off/when-issued common. The mirror of the 25-NSE delisting signal, caught structurally rather than only when the emergence phrase happens to co-occur.",
+  "source": "EDGAR-forms",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1173382/000117338226000037/0001173382-26-000037-index.htm"
+}

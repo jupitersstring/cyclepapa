@@ -1,0 +1,22 @@
+{
+  "accession": "a4a492dd-74c2-44d4-8189-05c261b4d386",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Defense",
+  "jurisdiction": "US",
+  "name": "PROVIDENCE COLLEGE",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 PROVIDENCE COLLEGE engaged MCALLISTER & QUINN, LLC for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "MCALLISTER & QUINN, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/a4a492dd-74c2-44d4-8189-05c261b4d386/print/"
+}

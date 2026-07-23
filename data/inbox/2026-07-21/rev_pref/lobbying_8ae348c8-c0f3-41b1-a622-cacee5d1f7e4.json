@@ -1,0 +1,22 @@
+{
+  "accession": "8ae348c8-c0f3-41b1-a622-cacee5d1f7e4",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "10000.00",
+  "isin": null,
+  "issues": "Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "MS INTERNATIONAL",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 MS INTERNATIONAL engaged PARK ROAD TRADE LLC on Trade (domestic/foreign) (universe-name match: INTERNATIONAL)",
+  "registrant": "PARK ROAD TRADE LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "INTERNATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/8ae348c8-c0f3-41b1-a622-cacee5d1f7e4/print/"
+}

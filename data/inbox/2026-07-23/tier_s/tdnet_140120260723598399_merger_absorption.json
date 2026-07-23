@@ -1,0 +1,17 @@
+{
+  "accession": "140120260723598399",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:28:01.229342Z",
+  "filed": "2026-07-23",
+  "form": "連結子会社の吸収合併および同社に対する財務再構築（増資）ならびに個別決算における特別損失（抱合せ株式消滅差損）の計上に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "エニグモ",
+  "query_label": "tier_s.merger_absorption",
+  "query_note": "merger by absorption",
+  "source": "TDnet",
+  "ticker": "3665",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260723598399.pdf"
+}

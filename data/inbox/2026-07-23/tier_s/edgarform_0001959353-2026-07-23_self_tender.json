@@ -1,0 +1,17 @@
+{
+  "accession": "",
+  "cik": "0001959353",
+  "fetched_at": "2026-07-23T13:37:58.942597Z",
+  "filed": "2026-07-23",
+  "form": "SC TO-I/A",
+  "form_code": "SC TO-I/A",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Oxford Park Income Fund, Inc.",
+  "query_label": "tier_s.self_tender",
+  "query_note": "SC TO-I \u2014 issuer self-tender / Dutch auction (buyback or going-private step)",
+  "source": "EDGAR-forms",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1959353/000121390026080647/0001213900-26-080647-index.htm"
+}

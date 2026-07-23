@@ -1,0 +1,22 @@
+{
+  "accession": "5b17fcdb-1e86-42aa-937b-a8906533ad25",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Homeland Security \u00b7 Health Issues \u00b7 Computer Industry \u00b7 Science/Technology",
+  "jurisdiction": "US",
+  "name": "DNA HIVE LLC",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 DNA HIVE LLC engaged THORNROSE VENTURES on Homeland Security \u00b7 Health Issues \u00b7 Computer Industry \u00b7 Science/Technology (universe-name match: HIVE)",
+  "registrant": "THORNROSE VENTURES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "HIVE",
+  "url": "https://lda.senate.gov/filings/public/filing/5b17fcdb-1e86-42aa-937b-a8906533ad25/print/"
+}

@@ -1,0 +1,31 @@
+{
+  "accession": "corrob-MSGM",
+  "cik": "",
+  "conviction_score": 1.031,
+  "fetched_at": "2026-07-23T13:41:16.684981Z",
+  "filed": "2026-07-23",
+  "form": "Cross-source corroboration",
+  "form_code": "CORROBORATED",
+  "hardest_event": 0.5,
+  "isin": null,
+  "jurisdiction": "",
+  "labels": [
+    "tier_s.consent_solicitation",
+    "tier_s.new_listing"
+  ],
+  "n_sources": 2,
+  "name": "Motorsport Games Inc.",
+  "query_label": "tier_s.corroborated_multi",
+  "query_note": "CORROBORATED across 2 independent sources (EDGAR-FTS, EDGAR-forms); 2 total records. Cross-source corroboration is the framework's highest-conviction sourced signal.",
+  "source": "corroboration",
+  "sources": [
+    "EDGAR-FTS",
+    "EDGAR-forms"
+  ],
+  "ticker": null,
+  "tier": "tier_s",
+  "tiers": [
+    "tier_s"
+  ],
+  "url": ""
+}

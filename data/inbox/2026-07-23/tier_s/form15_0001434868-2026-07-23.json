@@ -1,0 +1,17 @@
+{
+  "accession": "",
+  "cik": "0001434868",
+  "fetched_at": "2026-07-23T13:32:17.657580Z",
+  "filed": "2026-07-23",
+  "form": "15-12G",
+  "form_code": "15-12G",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "Esperion Therapeutics, Inc.",
+  "query_label": "tier_s.going_dark_12g",
+  "query_note": "Form 15-12G: termination of Section 12(g) registration \u2014 held by < 300 record-holders (or < 500 with assets < $10m); reporting suspends. Trade setup: 30-90 day forced-selling window from mandates that require SEC-registered status.",
+  "source": "EDGAR-Form15",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.sec.gov/Archives/edgar/data/1434868/000110465926086097/0001104659-26-086097-index.htm"
+}

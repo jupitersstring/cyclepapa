@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113580-3A697531",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-23",
+  "form": "Significant High-Grade Gold & Copper Discovery at White Dam",
+  "form_code": "Trading Halt Lifted|Progress Report",
+  "industry": "Metals & Mining",
+  "isin": "AU0000158636",
+  "jurisdiction": "AU",
+  "name": "PACGOLD LIMITED",
+  "price_sensitive": true,
+  "query_label": "tier_s.suspension_halt",
+  "query_note": "Trading halt or suspension",
+  "sector": "Materials",
+  "source": "ASX",
+  "ticker": "PGO",
+  "tier": "tier_s",
+  "url": ""
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "e9c9f6d0-7d9e-4e5a-9a8f-d1c8fe455804",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-23",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Budget/Appropriations \u00b7 Law Enforcement/Crime/Criminal Justice",
+  "jurisdiction": "US",
+  "name": "LOCAL INITIATIVES SUPPORT CORPORATION",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 LOCAL INITIATIVES SUPPORT CORPORATION engaged KEY IMPACT STRATEGIES on Budget/Appropriations \u00b7 Law Enforcement/Crime/Criminal Justice (universe-name match: LOCAL)",
+  "registrant": "KEY IMPACT STRATEGIES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "LOCAL",
+  "url": "https://lda.senate.gov/filings/public/filing/e9c9f6d0-7d9e-4e5a-9a8f-d1c8fe455804/print/"
+}

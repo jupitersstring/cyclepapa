@@ -1,0 +1,22 @@
+{
+  "accession": "b455e093-8636-4867-a863-afc621583a17",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Natural Resources \u00b7 Energy/Nuclear \u00b7 Manufacturing \u00b7 Environment/Superfund \u00b7 Budget/Appropriations \u00b7 Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "MONTLARGO ENERGY INC",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 MONTLARGO ENERGY INC engaged THORNROSE VENTURES for Energy/Nuclear (3rd Quarter (July 1 - Sep 30))",
+  "registrant": "THORNROSE VENTURES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "ENERGY",
+  "url": "https://lda.senate.gov/filings/public/filing/b455e093-8636-4867-a863-afc621583a17/print/"
+}

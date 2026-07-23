@@ -1,0 +1,14 @@
+{
+  "accession": "0001628280-26-049274",
+  "cik": "0001166691",
+  "fetched_at": "2026-07-23T13:40:48.732536Z",
+  "filed": "2026-07-23",
+  "form": "8-K",
+  "name": "COMCAST CORP",
+  "query_label": "form_8k_spin",
+  "query_note": "8-K catch-all for spinoffs that skip 10-12B",
+  "source": "EDGAR-spinoff-radar",
+  "ticker": "CCZ",
+  "tier": "spinoff",
+  "url": "https://www.sec.gov/Archives/edgar/data/1166691/000162828026049274"
+}

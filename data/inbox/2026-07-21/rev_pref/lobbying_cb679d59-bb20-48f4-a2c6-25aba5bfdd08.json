@@ -1,0 +1,22 @@
+{
+  "accession": "cb679d59-bb20-48f4-a2c6-25aba5bfdd08",
+  "cik": "",
+  "expenses": "715000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Government Issues \u00b7 Manufacturing \u00b7 Trade (domestic/foreign) \u00b7 Tariff (miscellaneous tariff bills) \u00b7 Aviation/Airlines/Airports \u00b7 Labor Issues/Antitrust/Workplace \u00b7 Railroads \u00b7 Defense \u00b7 Taxation/Inte",
+  "jurisdiction": "US",
+  "name": "INTERNATIONAL ASSOCIATION OF MACHINISTS AND AEROSPACE WORKERS",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 INTERNATIONAL ASSOCIATION OF MACHINISTS AND AEROSPACE WORKER engaged INTERNATIONAL ASSOCIATION OF MACHINISTS  for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "INTERNATIONAL ASSOCIATION OF MACHINISTS AND AEROSPACE WORKERS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "INTERNATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/cb679d59-bb20-48f4-a2c6-25aba5bfdd08/print/"
+}

@@ -1,0 +1,22 @@
+{
+  "accession": "f5f34e3b-4dbe-4e12-b0cd-cecb22ae2a54",
+  "cik": "",
+  "expenses": "143000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Telecommunications",
+  "jurisdiction": "US",
+  "name": "FIBER BROADBAND ASSOCIATION",
+  "query_label": "rev_pref.lobbying_telecom",
+  "query_note": "LDA filing \u2014 FIBER BROADBAND ASSOCIATION engaged FIBER BROADBAND ASSOCIATION for Telecommunications (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "FIBER BROADBAND ASSOCIATION",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/f5f34e3b-4dbe-4e12-b0cd-cecb22ae2a54/print/"
+}

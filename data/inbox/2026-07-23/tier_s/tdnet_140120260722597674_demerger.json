@@ -1,0 +1,17 @@
+{
+  "accession": "140120260722597674",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:28:01.229342Z",
+  "filed": "2026-07-23",
+  "form": "会社分割（簡易吸収分割）に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "Ｇ－ＡＬｉＮＫ",
+  "query_label": "tier_s.demerger",
+  "query_note": "company split / demerger",
+  "source": "TDnet",
+  "ticker": "7077",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260722597674.pdf"
+}

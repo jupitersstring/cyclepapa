@@ -1,0 +1,22 @@
+{
+  "accession": "797ce970-3231-4748-9a7d-e13b6a6f115a",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Amendment",
+  "form_code": "2A",
+  "income": "60000.00",
+  "isin": null,
+  "issues": "Defense \u00b7 Trade (domestic/foreign)",
+  "jurisdiction": "US",
+  "name": "APPLIED OPTOELECTRONICS, INC.",
+  "query_label": "rev_pref.lobbying_defense",
+  "query_note": "LDA filing \u2014 APPLIED OPTOELECTRONICS, INC. engaged BANNER PUBLIC AFFAIRS, LLC for Defense (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "BANNER PUBLIC AFFAIRS, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/797ce970-3231-4748-9a7d-e13b6a6f115a/print/"
+}

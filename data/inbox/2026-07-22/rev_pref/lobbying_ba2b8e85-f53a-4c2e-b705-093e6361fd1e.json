@@ -1,0 +1,22 @@
+{
+  "accession": "ba2b8e85-f53a-4c2e-b705-093e6361fd1e",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "Registration",
+  "form_code": "RR",
+  "income": null,
+  "isin": null,
+  "issues": "Energy/Nuclear",
+  "jurisdiction": "US",
+  "name": "ENERGY EIGHT LLC",
+  "query_label": "rev_pref.lobbying_energy",
+  "query_note": "LDA filing \u2014 ENERGY EIGHT LLC engaged THORNROSE VENTURES for Energy/Nuclear (3rd Quarter (July 1 - Sep 30))",
+  "registrant": "THORNROSE VENTURES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "ENERGY",
+  "url": "https://lda.senate.gov/filings/public/filing/ba2b8e85-f53a-4c2e-b705-093e6361fd1e/print/"
+}

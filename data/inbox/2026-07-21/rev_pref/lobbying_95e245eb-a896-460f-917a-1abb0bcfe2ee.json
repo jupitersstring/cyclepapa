@@ -1,0 +1,22 @@
+{
+  "accession": "95e245eb-a896-460f-917a-1abb0bcfe2ee",
+  "cik": "",
+  "expenses": "10000.00",
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-21",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": null,
+  "isin": null,
+  "issues": "Education",
+  "jurisdiction": "US",
+  "name": "SOCIETY OF HEALTH AND PHYSICAL EDUCATORS",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 SOCIETY OF HEALTH AND PHYSICAL EDUCATORS engaged SOCIETY OF HEALTH AND PHYSICAL EDUCATORS on Education (universe-name match: SOCIETY)",
+  "registrant": "SOCIETY OF HEALTH AND PHYSICAL EDUCATORS",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "SOCIETY",
+  "url": "https://lda.senate.gov/filings/public/filing/95e245eb-a896-460f-917a-1abb0bcfe2ee/print/"
+}

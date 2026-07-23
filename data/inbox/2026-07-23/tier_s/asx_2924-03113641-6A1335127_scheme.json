@@ -1,0 +1,20 @@
+{
+  "accession": "2924-03113641-6A1335127",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:31:46.860407Z",
+  "filed": "2026-07-23",
+  "form": "Implementation of Scheme",
+  "form_code": "Scheme of Arrangement|Company Administration - Other",
+  "industry": "Energy Equipment & Services",
+  "isin": "AU000000MCE6",
+  "jurisdiction": "AU",
+  "name": "MATRIX COMPOSITES & ENGINEERING LIMITED",
+  "price_sensitive": false,
+  "query_label": "tier_s.scheme",
+  "query_note": "Australian scheme of arrangement",
+  "sector": "Energy",
+  "source": "ASX",
+  "ticker": "MCE",
+  "tier": "tier_s",
+  "url": ""
+}

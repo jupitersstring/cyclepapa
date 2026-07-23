@@ -1,0 +1,22 @@
+{
+  "accession": "2062d1eb-970d-47f4-ac53-f7a18109fb3d",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-23",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "30000.00",
+  "isin": null,
+  "issues": "Manufacturing",
+  "jurisdiction": "US",
+  "name": "SOUTHERN IONICS",
+  "query_label": "rev_pref.lobbying_industrial",
+  "query_note": "LDA filing \u2014 SOUTHERN IONICS engaged KEY IMPACT STRATEGIES for Manufacturing (2nd Quarter (Apr 1 - June 30))",
+  "registrant": "KEY IMPACT STRATEGIES",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": null,
+  "url": "https://lda.senate.gov/filings/public/filing/2062d1eb-970d-47f4-ac53-f7a18109fb3d/print/"
+}

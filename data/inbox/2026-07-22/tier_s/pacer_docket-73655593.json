@@ -1,0 +1,24 @@
+{
+  "accession": "docket-73655593",
+  "assigned_to": "Janet Bostwick",
+  "cik": "",
+  "court_id": "mab",
+  "debtor_firm": [
+    "Department of Justice",
+    "Ehrhard & Associates"
+  ],
+  "docket_no": "26-11739",
+  "fetched_at": "2026-07-23T13:28:04.992690Z",
+  "filed": "2026-07-22",
+  "form": "Chapter 11 filing",
+  "form_code": "CH11",
+  "isin": null,
+  "jurisdiction": "US",
+  "name": "BlackRock Realty Group, LLC",
+  "query_label": "tier_s.bankruptcy_11",
+  "query_note": "New Chapter 11 filing in Massachusetts; verify whether DIP / plan / 363 trajectory makes equity worth analyzing",
+  "source": "CourtListener-RECAP",
+  "ticker": null,
+  "tier": "tier_s",
+  "url": "https://www.courtlistener.com/docket/73655593/blackrock-realty-group-llc/"
+}

@@ -1,0 +1,17 @@
+{
+  "accession": "140120260721596568",
+  "cik": "",
+  "fetched_at": "2026-07-23T13:28:01.229342Z",
+  "filed": "2026-07-23",
+  "form": "当社株式の上場廃止の決定及び整理銘柄の指定に関するお知らせ",
+  "form_code": "",
+  "isin": null,
+  "jurisdiction": "JP",
+  "name": "ホーブ",
+  "query_label": "tier_s.delisting",
+  "query_note": "delisting",
+  "source": "TDnet",
+  "ticker": "1382",
+  "tier": "tier_s",
+  "url": "https://www.release.tdnet.info/inbs/140120260721596568.pdf"
+}

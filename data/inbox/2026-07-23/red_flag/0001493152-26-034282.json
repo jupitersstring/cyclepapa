@@ -1,0 +1,14 @@
+{
+  "accession": "0001493152-26-034282",
+  "cik": "0001866816",
+  "fetched_at": "2026-07-23T13:23:51.523142Z",
+  "filed": "2026-07-23",
+  "form": "S-1",
+  "name": "SYNTEC OPTICS HOLDINGS, INC.",
+  "query": "\"Foreign Corrupt Practices Act\" OR FCPA OR \"corruption investigation\"",
+  "query_label": "red_flag.fcpa",
+  "source": "EDGAR-FTS",
+  "ticker": "OPTX",
+  "tier": "red_flag",
+  "url": "https://www.sec.gov/Archives/edgar/data/1866816/000149315226034282"
+}

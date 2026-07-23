@@ -1,0 +1,22 @@
+{
+  "accession": "f36bbd9d-70f7-405b-aeed-2c90099d3e38",
+  "cik": "",
+  "expenses": null,
+  "fetched_at": "2026-07-23T13:34:37.185388Z",
+  "filed": "2026-07-22",
+  "form": "2nd Quarter - Report",
+  "form_code": "Q2",
+  "income": "24000.00",
+  "isin": null,
+  "issues": "Immigration \u00b7 Budget/Appropriations \u00b7 Education \u00b7 Environment/Superfund \u00b7 Health Issues \u00b7 Labor Issues/Antitrust/Workplace \u00b7 Medicare/Medicaid \u00b7 Taxation/Internal Revenue Code \u00b7 Veterans",
+  "jurisdiction": "US",
+  "name": "NATIONAL ASSOCIATION OF PEDIATRIC NURSE PRACTITIONERS",
+  "query_label": "rev_pref.lobbying_universe_match",
+  "query_note": "LDA filing \u2014 NATIONAL ASSOCIATION OF PEDIATRIC NURSE PRACTITIONERS engaged MASON CONSULTING, LLC on Immigration \u00b7 Budget/Appropriations \u00b7 Education \u00b7 Environment/Superfund \u00b7 Health (universe-name match: NATIONAL)",
+  "registrant": "MASON CONSULTING, LLC",
+  "source": "LDA-Senate",
+  "ticker": null,
+  "tier": "rev_pref",
+  "universe_match": "NATIONAL",
+  "url": "https://lda.senate.gov/filings/public/filing/f36bbd9d-70f7-405b-aeed-2c90099d3e38/print/"
+}

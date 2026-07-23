@@ -1,0 +1,14 @@
+{
+  "accession": "0001193125-26-313204",
+  "cik": "0000903129",
+  "fetched_at": "2026-07-23T13:40:48.732536Z",
+  "filed": "2026-07-23",
+  "form": "8-K",
+  "name": "Gentherm Inc",
+  "query_label": "form_8k_spin",
+  "query_note": "8-K catch-all for spinoffs that skip 10-12B",
+  "source": "EDGAR-spinoff-radar",
+  "ticker": "THRM",
+  "tier": "spinoff",
+  "url": "https://www.sec.gov/Archives/edgar/data/903129/000119312526313204"
+}
