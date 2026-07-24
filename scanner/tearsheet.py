@@ -29,9 +29,15 @@ from . import kalecki_levy as KL
 
 # --- plain-language translators (gulf-of-evaluation closers) ---------------
 
-def _phrase_valuation(q: float | None) -> str:
+def _phrase_valuation(q: float | None, archetype: str | None = None) -> str:
     if q is None:
         return "valuation unknown"
+    # Entrepot / MNC-distorted markets (archetype D) carry a market-cap-to-GDP
+    # ratio that reflects foreign listings, not the domestic economy -- Hong
+    # Kong lists the mainland Chinese megacaps against a tiny local GDP, so q
+    # is not a valuation signal. Say so rather than over-claim a verdict.
+    if archetype == "D" and q > 1.35:
+        return f"valuation distorted (entrepot listings; nominal q {q:.1f})"
     if q < 0.6:
         return f"deep value (q {q:.2f})"
     if q < 0.85:
@@ -97,7 +103,7 @@ def verdict(iso: str, scored: pd.DataFrame | None = None) -> str:
     if iso not in s.index:
         return f"{iso}: not in panel"
     r = s.loc[iso]
-    bits = [_phrase_valuation(r.get("tobin_q")),
+    bits = [_phrase_valuation(r.get("tobin_q"), r.get("archetype")),
             _phrase_fuel(float(r.get("profit_fuel", 0.0))),
             f"{r.get('fine_stage','?').replace('_',' ')} (clock {r.get('stage_position',0):.0f}/100)",
             _phrase_financing(r.get("minsky_regime", ""), float(r.get("minsky_fragility") or 0))]
