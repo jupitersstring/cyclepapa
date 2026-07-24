@@ -52,11 +52,19 @@ DATA_CONFIDENCE_HAIRCUT: dict[str, float] = {
 }
 
 
+# Weights, re-calibrated to the historical backtest (backtest.component_ic):
+# at the 2-year horizon the reconstructed profit-fuel (+0.058) and external
+# (+0.057) legs led forward returns, valuation was modest (+0.030), and the
+# credit-impulse leg added ~nothing (-0.004) -- it leads only <1y and turns
+# CONTRARIAN at 2-3y. So credit is trimmed from 0.20 -> 0.12 (it earns its
+# keep as a near-term signal, surfaced separately in horizon.py, not as a
+# medium-term fundamental), and the weight is moved to the validated legs:
+# profit_fuel 0.25 -> 0.28 and valuation 0.15 -> 0.20.
 WEIGHTS = {
-    "profit_fuel": 0.25,
-    "credit_impulse": 0.20,
+    "profit_fuel": 0.28,     # strongest validated leg (backtest IC +0.058)
+    "credit_impulse": 0.12,  # trimmed: ~0 at annual horizon, contrarian at 2-3y
     "institutional": 0.15,
-    "valuation_gap": 0.15,
+    "valuation_gap": 0.20,   # raised: mean-reversion validated (+0.030)
     "carry_cushion": 0.10,
     "crowding": -0.15,
     "suddenstop_risk": -0.05,

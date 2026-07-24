@@ -11,6 +11,7 @@ from . import anomalies as AN
 from . import kalecki_levy as KL
 from . import strategic_analysis as SA
 from . import robustness as RB
+from . import horizon as HZ
 
 _FLABEL = {"profit_fuel": "profit fuel", "credit_impulse": "credit",
            "valuation_gap": "valuation", "carry_cushion": "carry",
@@ -38,6 +39,8 @@ def _balances(iso: str) -> dict:
 
 def build() -> dict:
     s = _app.build_scored()
+    hz = HZ.horizon_scores(s)
+    s = s.join(hz)
     comps = KL.components_df()
     countries = []
     for iso in s.index:
@@ -71,6 +74,10 @@ def build() -> dict:
             "opp_sigma": round(float(r.get("opp_sigma", 0) or 0), 2),
             "regime_confidence": round(float(r.get("regime_confidence", 0) or 0), 2),
             "drivers": [[_FLABEL.get(k, k), v] for k, v in RB.top_drivers(s, iso, 3)],
+            "near_score": round(float(r.get("near_score", 0) or 0), 2),
+            "long_score": round(float(r.get("long_score", 0) or 0), 2),
+            "credit_warning": bool(r.get("credit_warning", False)),
+            "horizon_label": r.get("horizon_label", ""),
             "note": r.get("note", ""),
         })
     return {
