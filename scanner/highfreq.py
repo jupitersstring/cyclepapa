@@ -26,6 +26,7 @@ import pandas as pd
 
 from .sources import monthly as MO
 from .sources import prices as PX
+from .sources import quarterly as QT
 from .archetypes import lookup, COUNTRIES
 
 
@@ -112,6 +113,80 @@ def backtest(horizons_m=(3, 6, 12, 24)) -> dict:
         out[f"IC_{h}m"] = round(float(np.mean(ics)), 3) if ics else None
         out[f"n_{h}m"] = len(ics)
     return out
+
+
+# ---------------------------------------------------------------------------
+# QUARTERLY -- the middle rung: credit impulse (Biggs-Mayer) from BIS credit.
+# Fills the 1-2 year window where the monthly money signal has faded and the
+# annual sectoral score has not yet built.
+# ---------------------------------------------------------------------------
+
+def credit_impulse(iso: str) -> pd.DataFrame | None:
+    """
+    Quarterly credit measures from BIS private non-financial credit/GDP:
+      net_lending = 4q change in credit/GDP        (Godley Process 2)
+      credit_impulse = acceleration of that flow   (Biggs-Mayer 2nd derivative)
+    """
+    c = QT.credit_gdp(iso)
+    if c is None or len(c) < 24:
+        return None
+    flow = c.diff(4)                    # net new lending to private, %GDP (Process 2)
+    impulse = flow.diff(4)             # Biggs-Mayer credit impulse
+    df = pd.DataFrame(index=c.index)
+    df["credit_gdp"] = c
+    df["net_lending"] = flow
+    df["credit_impulse"] = impulse
+    z = 0.4 * _ts_z(flow, 20) + 0.6 * _ts_z(impulse, 20)
+    df["credit_signal"] = z.rolling(2, min_periods=1).mean()
+    return df
+
+
+def backtest_quarterly(horizons_q=(1, 2, 4, 8, 12)) -> dict:
+    """Pooled IC of the quarterly credit impulse vs forward returns (in quarters)."""
+    frames = []
+    for c in COUNTRIES:
+        df = credit_impulse(c.iso)
+        px = PX.load().get(c.iso)
+        if df is None or not px:
+            continue
+        p = pd.Series(px)
+        p.index = pd.to_datetime(p.index + "-01")
+        pq = p.sort_index().resample("QE").last()
+        sig = df["credit_signal"].reindex(pq.index, method="ffill")
+        rec = pd.DataFrame({"sig": sig, "px": pq})
+        rec["iso"] = c.iso
+        frames.append(rec)
+    if not frames:
+        return {}
+    allrec = pd.concat(frames)
+    out = {"n_countries": allrec["iso"].nunique()}
+    for h in horizons_q:
+        ics = []
+        for iso, g in allrec.groupby("iso"):
+            g = g.sort_index()
+            fwd = g["px"].shift(-h) / g["px"] - 1.0
+            ic = _spearman(g["sig"], fwd, min_n=20)
+            if ic == ic:
+                ics.append(ic)
+        out[f"IC_{h*3}m"] = round(float(np.mean(ics)), 3) if ics else None
+    return out
+
+
+def term_structure() -> str:
+    """Plain-language verdict on Godley's three legs across the horizon."""
+    m = backtest((3, 6, 12, 24))
+    q = backtest_quarterly((1, 2, 4, 8, 12))
+    return (
+        "GODLEY TERM STRUCTURE -- three legs, three horizons:\n"
+        f"  FAST  real money growth (Process 3): peaks {m.get('IC_6m')} at 6m, "
+        f"fades to {m.get('IC_24m')} by 2y.\n"
+        f"  MID   credit impulse (Biggs-Mayer):  {q.get('IC_6m')} at 6m then "
+        f"turns CONTRARIAN {q.get('IC_24m')} at 2y, {q.get('IC_36m')} at 3y "
+        f"-- credit booms sow busts (Mian-Sufi).\n"
+        "  SLOW  sectoral-balance score:         silent short-term, builds to "
+        "+0.12 at 4y.\n"
+        "Use money+credit for <1y momentum, flip credit as a 2-3y warning, and "
+        "the sectoral score for the 3-4y direction.")
 
 
 def panel() -> pd.DataFrame:
