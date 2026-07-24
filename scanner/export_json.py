@@ -9,6 +9,25 @@ from . import app as _app
 from . import tearsheet as TS
 from . import anomalies as AN
 from . import kalecki_levy as KL
+from . import strategic_analysis as SA
+
+
+def _balances(iso: str) -> dict:
+    """The three sectoral balances that sum to zero, %GDP (live-preferred).
+
+    Identity: private + government + foreign = 0, where foreign net lending
+    to the domestic economy = -(current account). So:
+        government = fiscal balance      (neg = deficit)
+        foreign    = -current_account
+        private    = current_account - fiscal   (the residual)
+    """
+    vals = SA._inputs(iso)
+    if vals is None:
+        return {}
+    fiscal, ca = vals
+    return {"private": round(ca - fiscal, 1),
+            "government": round(fiscal, 1),
+            "foreign": round(-ca, 1)}
 
 
 def build() -> dict:
@@ -42,6 +61,7 @@ def build() -> dict:
             "kl": {k: round(float(c[k]), 2) for k in (
                 "investment", "govt_deficit", "net_exports",
                 "dividends", "household_saving")} if c is not None else {},
+            "balances": _balances(iso),
             "note": r.get("note", ""),
         })
     return {
