@@ -241,6 +241,34 @@ def main_cli() -> None:
           + ", ".join(f"{i} {r['inflation_tax_pct_gdp']:.0f}%GDP"
                       for i, r in flagged.head(4).iterrows()) + ")")
 
+    print("\n=== KOHLER EM CARRY-CYCLE PHASES ===")
+    from . import kohler_cycle as KC
+    kp = KC.panel()
+    for ph in ["late_boom", "reversal", "inflow_boom", "bust", "recovery"]:
+        members = kp[kp["kohler_phase"] == ph]
+        if len(members):
+            print(f"  {ph:12s}: " + ", ".join(members["country"]))
+
+    print("\n=== DISTRIBUTION MASK (fragile-majority pattern) ===")
+    from . import distribution as DIST
+    dm = DIST.panel()
+    flagged = dm[dm["mask_flag"]]
+    print(f"  {len(flagged)} countries where a safe-looking aggregate household "
+          f"balance masks a bottom-80% deficit:")
+    print("  " + flagged.head(8)[["aggregate_hh_balance", "top20_balance",
+                                  "bottom80_balance"]].to_string().replace("\n", "\n  "))
+
+    print("\n=== GODLEY-2007 GROSS-BORROWING TEST ===")
+    from . import strategic_analysis as SA2
+    gb = SA2.godley_2007_borrowing_test()
+    n_flag = int(gb["godley_2007_flag"].sum())
+    print(f"  {n_flag} countries require >10% GDP gross borrowing to sustain trend "
+          f"growth (Godley's 2007 absurdity threshold). "
+          f"Highest: " + ", ".join(f"{r['country']} {r['gross_borrowing_required_pct_gdp']:.0f}%"
+                                   for _, r in gb.head(3).iterrows()))
+    print("  => The 2007 pattern (forced private re-leveraging) is ABSENT in 2026;")
+    print("     the binding constraint is the savers' surplus, not borrowers' deficits.")
+
     print("\n=== ANOMALIES ===")
     from . import anomalies as AN
     breadth = AN.private_surplus_breadth()

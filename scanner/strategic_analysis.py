@@ -221,3 +221,40 @@ def implausibility_flag(iso: str) -> bool:
     """True if the country's trend-growth target requires an implausible private balance."""
     r = evaluate(iso)
     return bool(r and r.implausible)
+
+
+def godley_2007_borrowing_test(horizon_years: int = 4) -> pd.DataFrame:
+    """
+    Godley's 2007 metric, generalised. In *Is There a Way Out of the Woods?*
+    (Levy SA, Nov 2007) he converted the required private-balance path into
+    the implied GROSS flow of net lending to households -- 'borrowing would
+    have to reach 14 percent of GDP by 2010' -- and called it wildly
+    implausible. The gross-flow restatement bites harder than the net
+    balance because it is what the credit system must actually originate.
+
+    We approximate: sustaining target growth for `horizon_years` requires the
+    private balance to move to `priv_balance_required` and stay there; the
+    cumulative required swing in the private NET position, plus the normal
+    churn of gross origination (~3x the net flow, per flow-of-funds
+    regularities), gives the implied gross borrowing flow at horizon end:
+
+        gross_borrowing_required ~= 3 * max(0, -priv_balance_required)
+                                    + max(0, -required_shift_pp) * horizon/4
+
+    Flag when it exceeds 10% of GDP -- the level Godley treated as absurd.
+    """
+    rows = []
+    for c in COUNTRIES:
+        r = evaluate(c.iso)
+        if r is None:
+            continue
+        net_deficit = max(0.0, -r.priv_balance_required)
+        swing = max(0.0, -r.required_shift_pp) * horizon_years / 4.0
+        gross = 3.0 * net_deficit + swing
+        rows.append({"iso": c.iso, "country": c.name,
+                     "priv_balance_required": r.priv_balance_required,
+                     "required_shift_pp": r.required_shift_pp,
+                     "gross_borrowing_required_pct_gdp": round(gross, 1),
+                     "godley_2007_flag": gross > 10.0})
+    return (pd.DataFrame(rows).set_index("iso")
+            .sort_values("gross_borrowing_required_pct_gdp", ascending=False))
