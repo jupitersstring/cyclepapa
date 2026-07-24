@@ -10,6 +10,12 @@ from . import tearsheet as TS
 from . import anomalies as AN
 from . import kalecki_levy as KL
 from . import strategic_analysis as SA
+from . import robustness as RB
+
+_FLABEL = {"profit_fuel": "profit fuel", "credit_impulse": "credit",
+           "valuation_gap": "valuation", "carry_cushion": "carry",
+           "crowding": "un-crowding", "suddenstop_risk": "external risk",
+           "institutional": "policy catalyst"}
 
 
 def _balances(iso: str) -> dict:
@@ -62,6 +68,9 @@ def build() -> dict:
                 "investment", "govt_deficit", "net_exports",
                 "dividends", "household_saving")} if c is not None else {},
             "balances": _balances(iso),
+            "opp_sigma": round(float(r.get("opp_sigma", 0) or 0), 2),
+            "regime_confidence": round(float(r.get("regime_confidence", 0) or 0), 2),
+            "drivers": [[_FLABEL.get(k, k), v] for k, v in RB.top_drivers(s, iso, 3)],
             "note": r.get("note", ""),
         })
     return {

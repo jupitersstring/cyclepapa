@@ -204,6 +204,10 @@ def score_panel(panel: pd.DataFrame, archetype_of: dict[str, str]) -> pd.DataFra
     )
     out["note"] = panel["note"]
     out["estimated"] = panel.get("estimated", False)
+    # Uncertainty propagation: sigma on the score + regime probabilities.
+    # Imported here (not at module top) to avoid a circular import.
+    from . import robustness as RB
+    out = RB.propagate(out)
     return out.sort_values("opportunity", ascending=False)
 
 
