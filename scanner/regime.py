@@ -146,6 +146,97 @@ STAGE_THRESHOLD_TILT: dict[DebtStage, float] = {
 }
 
 
+# ---------------------------------------------------------------------------
+# CONTINUOUS CYCLE CLOCK -- finer gradations of stage.
+#
+# The 7 coarse labels are step functions: a country entering 'bubble' jumps
+# its bull threshold by 30bp overnight, and 'late expansion' is
+# indistinguishable from 'early expansion'. We underpin the labels with a
+# continuous position on a 0-100 clock (mod 100, the cycle wraps):
+#
+#     0-10   early           (0-5 early_recovery, 5-10 early_expansion)
+#    10-30   expansion       (10-20 mid_expansion, 20-30 late_expansion)
+#    30-45   bubble          (30-38 early_bubble, 38-45 late_bubble)
+#    45-55   top             (45-50 topping, 50-55 rollover)
+#    55-75   depression      (55-62 early_downturn, 62-70 deleveraging,
+#                             70-75 trough)
+#    75-90   beautiful_del.  (75-82 reflation, 82-90 beautiful_deleveraging)
+#    90-100  new_equilibrium (90-95 normalization, 95-100 new_equilibrium)
+#
+# Positions are calibrated consistent with DALIO_STAGE but add intra-stage
+# differentiation: Poland (26, late_expansion with hot credit) is no longer
+# identical to Qatar (14, mid_expansion); Turkey (43, late_bubble) reads as
+# far more advanced than Taiwan (36, early_bubble) -- matching the Kohler
+# late_boom read; Japan (87) is further through beautiful deleveraging than
+# Argentina (78, still reflation).
+# ---------------------------------------------------------------------------
+
+STAGE_POSITION: dict[str, float] = {
+    # early (0-10)
+    "PH": 4, "ID": 5, "MX": 6, "BR": 8,
+    # expansion (10-30)
+    "QA": 14, "SA": 15, "VN": 16, "AE": 18, "CZ": 18, "DK": 16, "AT": 17,
+    "BE": 17, "FI": 18, "IE": 19, "LU": 18, "SG": 20, "NL": 21, "CH": 19,
+    "HU": 20, "KZ": 20, "MY": 21, "TH": 19, "KR": 22, "RO": 24, "PL": 26,
+    # bubble (30-45)
+    "TW": 36, "IN": 40, "TR": 43,
+    # top (45-55)
+    "FR": 46, "US": 48, "CA": 50, "SE": 50, "AU": 52, "NZ": 52,
+    # depression (55-75)
+    "GB": 60, "NG": 62, "HK": 64, "RU": 65, "CN": 66, "PK": 66, "IR": 66,
+    "EG": 68, "VE": 72,
+    # beautiful deleveraging (75-90)
+    "LK": 76, "AR": 78, "DE": 84, "JP": 87,
+    # new equilibrium (90-100)
+    "GR": 92, "ES": 93, "PT": 94, "CO": 94, "ZA": 94, "IT": 95, "PE": 95,
+    "NO": 96, "CL": 96, "KW": 97,
+}
+
+_FINE_BANDS: list[tuple[float, str]] = [
+    (5, "early_recovery"), (10, "early_expansion"), (20, "mid_expansion"),
+    (30, "late_expansion"), (38, "early_bubble"), (45, "late_bubble"),
+    (50, "topping"), (55, "rollover"), (62, "early_downturn"),
+    (70, "deleveraging"), (75, "trough"), (82, "reflation"),
+    (90, "beautiful_deleveraging"), (95, "normalization"),
+    (100, "new_equilibrium"),
+]
+
+# Tilt anchor points (position, tilt) -- piecewise-linear, wrapping at 100.
+# Matches the coarse STAGE_THRESHOLD_TILT at band midpoints but now a country
+# at position 30 (entering bubble) gets ~+0.17, not an instant +0.30 jump.
+_TILT_ANCHORS: list[tuple[float, float]] = [
+    (5, -0.10),   # early_recovery: trust bulls
+    (20, 0.00),   # mid_expansion: neutral
+    (38, +0.30),  # late_bubble: maximum scepticism
+    (50, +0.20),  # topping
+    (65, -0.10),  # deleveraging: contrarian setups emerge
+    (85, -0.15),  # beautiful_deleveraging: the historical sweet spot
+    (97, 0.00),   # new_equilibrium: neutral
+    (105, -0.10), # wraps into early_recovery
+]
+
+
+def fine_stage(position: float) -> str:
+    """Map a clock position (0-100) to the 14-sub-stage label."""
+    p = position % 100
+    for bound, label in _FINE_BANDS:
+        if p < bound or bound == 100:
+            return label
+    return "new_equilibrium"
+
+
+def stage_tilt_continuous(position: float) -> float:
+    """Piecewise-linear interpolation of the bull-threshold tilt."""
+    p = position % 100
+    anchors = _TILT_ANCHORS
+    if p < anchors[0][0]:
+        p += 100  # wrap into the final segment
+    for (x0, y0), (x1, y1) in zip(anchors, anchors[1:]):
+        if x0 <= p <= x1:
+            return y0 + (y1 - y0) * (p - x0) / (x1 - x0)
+    return 0.0
+
+
 # --- 3. Marathon capex-squeeze --------------------------------------------
 
 # Sectors / countries where multi-year capex contraction is now producing
@@ -265,7 +356,15 @@ def overlay(panel: pd.DataFrame, components: pd.DataFrame | None = None
 
     # 2. Dalio stage
     out["dalio_stage"] = pd.Series(DALIO_STAGE).reindex(out.index).fillna("expansion")
-    out["stage_threshold_tilt"] = out["dalio_stage"].map(STAGE_THRESHOLD_TILT).fillna(0.0)
+    # Continuous cycle clock: position, fine sub-stage, interpolated tilt.
+    out["stage_position"] = pd.Series(STAGE_POSITION).reindex(out.index)
+    out["fine_stage"] = out["stage_position"].map(
+        lambda p: fine_stage(p) if p == p else "unknown")
+    out["stage_threshold_tilt"] = out["stage_position"].map(
+        lambda p: stage_tilt_continuous(p) if p == p else None)
+    # Fallback to the coarse step tilt where no position is calibrated.
+    coarse = out["dalio_stage"].map(STAGE_THRESHOLD_TILT).fillna(0.0)
+    out["stage_threshold_tilt"] = out["stage_threshold_tilt"].fillna(coarse)
 
     # 3. Marathon capex squeeze
     out["marathon_squeeze"] = pd.Series(MARATHON_CAPEX_SQUEEZE).reindex(out.index).fillna(0.0)
@@ -282,12 +381,24 @@ def overlay(panel: pd.DataFrame, components: pd.DataFrame | None = None
     return out
 
 
+def regime_from_tilt(opportunity: float, tilt: float,
+                     bull: float = 0.15, bear: float = -0.15) -> str:
+    """Regime label from a pre-computed (continuous) threshold tilt."""
+    if opportunity >= bull + tilt:
+        return "bull"
+    if opportunity <= bear - abs(tilt) * 0.5:
+        return "bear"
+    return "neutral"
+
+
 def stage_adjusted_regime(opportunity: float, dalio_stage: str,
                           bull: float = 0.15, bear: float = -0.15) -> str:
     """
     Re-label regime using the Dalio stage to shift thresholds. A bull score
     in 'bubble' or 'top' needs to clear a higher bar; the same score in
     'early' or 'beautiful_deleveraging' is more trustworthy.
+    (Coarse-label fallback; the composite now prefers regime_from_tilt with
+    the continuous stage_threshold_tilt.)
     """
     tilt = STAGE_THRESHOLD_TILT.get(dalio_stage, 0.0)
     if opportunity >= bull + tilt:

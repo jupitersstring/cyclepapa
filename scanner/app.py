@@ -192,7 +192,7 @@ def main_cli() -> None:
           .to_string(index=False))
 
     print("\n=== REGIME OVERLAY (Keen / Dalio / Marathon / Napier / NBFI) ===")
-    cols = ["country", "dalio_stage", "keen_accel", "marathon_squeeze",
+    cols = ["country", "fine_stage", "stage_position", "keen_accel", "marathon_squeeze",
             "napier_repression", "nbfi_leverage", "tobin_q", "q_investment_adj",
             "data_confidence", "opportunity", "regime"]
     print(scored[cols].head(15).to_string(index=False))

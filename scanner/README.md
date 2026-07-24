@@ -66,7 +66,7 @@ savers; `*= 0.5` for MNC-distorted entrepôts) live in `composite.ARCHETYPE_TILT
 | `kalecki_levy.py` | Profit-equation components + named-policy registry (the new leg) |
 | `composite.py` | Opportunity score, archetype tilts, regime classifier |
 | `seven_processes.py` | Godley's 1999 diagnostic as a live country-level flag count |
-| `regime.py` | Practitioner overlay: Keen accelerator + Dalio debt-cycle stage + Marathon capex-squeeze + Napier financial-repression + NBFI continuous-leverage score |
+| `regime.py` | Practitioner overlay: Keen accelerator + continuous debt-cycle clock (0-100 position, 14 fine sub-stages, interpolated regime-threshold tilt) + Marathon capex-squeeze + Napier financial-repression + NBFI continuous-leverage score |
 | `godley_projection.py` | Godley 1999 Appendix 2 stock-projection method, automated — endogenous NII feedback, 5y NIIP trajectory, one-sided unsustainability score |
 | `tobin_q.py` | Endogenous Tobin's q per Godley-Lavoie ch.11; closes the equity-prices-validate-investment loop |
 | `sfc_integrity.py` | Quadruple-bookkeeping consistency check + per-country tolerance band + data-confidence label |
