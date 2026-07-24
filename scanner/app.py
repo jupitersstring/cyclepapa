@@ -163,8 +163,26 @@ def _run_streamlit() -> None:
 
 
 def main_cli() -> None:
-    """Print the scorecard to stdout (no Streamlit needed)."""
+    """Print the scorecard to stdout (no Streamlit needed).
+
+    Inverted pyramid: the one-sentence system reading first, then a
+    plain-language verdict board, then the full instrument tables.
+    """
+    from . import tearsheet as TS
     scored = build_scored()
+
+    print("=" * 78)
+    print("  STATE OF THE WORLD")
+    print("=" * 78)
+    print("  " + TS.system_headline().replace(" -- ", "\n  -- ").replace(". ", ".\n  "))
+    print()
+    print("=" * 78)
+    print("  VERDICT BOARD  (plain language, one line per market)")
+    print("=" * 78)
+    for iso in scored.index:
+        print("  " + TS.verdict(iso, scored))
+    print()
+
     cols = ["country", "archetype", "etf", "opportunity", "regime"]
     pd.set_option("display.max_rows", None, "display.width", 160)
     print("\n=== TOP OPPORTUNITIES ===")
