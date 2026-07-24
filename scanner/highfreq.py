@@ -37,13 +37,24 @@ def _ts_z(s: pd.Series, min_periods: int = 24) -> pd.Series:
 
 
 def real_money_growth(iso: str) -> pd.Series | None:
-    """Monthly real broad-money YoY growth -- Godley's Process 3."""
+    """
+    Monthly real broad-money YoY growth -- Godley's Process 3.
+
+    Uses LOG differences (audit fix): real growth = Dlog(M) - Dlog(CPI) over 12
+    months, the geometric form, which is exact rather than the first-order
+    subtraction of percentage changes (matters at high inflation). Money is
+    OECD broad money (M3-concept); note the US M3 was discontinued in 2006, so
+    for a strictly-US operational series a Divisia/M2 aggregate is preferable.
+    """
+    import numpy as np
     f = MO.monthly_frame(iso)
     if f is None or len(f) < 40:
         return None
-    money_yoy = f["money"].pct_change(12) * 100
-    cpi_yoy = f["cpi"].pct_change(12) * 100
-    return (money_yoy - cpi_yoy).dropna()
+    m = f["money"].where(f["money"] > 0)
+    c = f["cpi"].where(f["cpi"] > 0)
+    money_log = 100 * (np.log(m) - np.log(m.shift(12)))
+    cpi_log = 100 * (np.log(c) - np.log(c.shift(12)))
+    return (money_log - cpi_log).dropna()
 
 
 def fast_fuel(iso: str) -> pd.DataFrame | None:
@@ -59,6 +70,36 @@ def fast_fuel(iso: str) -> pd.DataFrame | None:
     df["fast_fuel"] = z
     df["fast_fuel_smooth"] = z.rolling(3, min_periods=1).mean()
     return df
+
+
+def excess_liquidity(iso: str) -> pd.Series | None:
+    """
+    VALUATION-EXPANSION fuel (monthly) -- money growing faster than the real
+    economy needs, which spills into asset prices rather than goods.
+
+    In Godley-Lavoie portfolio terms, when broad money is created beyond
+    transaction needs, households allocate the surplus across assets (the
+    Brainard-Tobin lambda matrix), lifting equity/bond prices and Tobin's q --
+    i.e. MULTIPLE expansion rather than profit growth. The measure is the
+    change in the Marshallian K (M / nominal GDP):
+
+        excess_liquidity = nominal broad-money growth - nominal GDP growth
+
+    Positive = liquidity accumulating faster than output = fuel for valuation
+    expansion; negative = liquidity being absorbed by the real economy or
+    withdrawn. This complements 'real money growth' (Process 3, the goods-side
+    fuel) by isolating the ASSET-side fuel.
+    """
+    import numpy as np
+    f = MO.monthly_frame(iso)
+    if f is None or len(f) < 40:
+        return None
+    m = f["money"].where(f["money"] > 0)
+    money_g = 100 * (np.log(m) - np.log(m.shift(12)))
+    nom_g = _nominal_growth_q(iso, m.index)
+    if nom_g is None:
+        return None
+    return (money_g - nom_g).dropna()
 
 
 def nowcast(iso: str) -> dict | None:
@@ -123,22 +164,62 @@ def backtest(horizons_m=(3, 6, 12, 24)) -> dict:
 
 def credit_impulse(iso: str) -> pd.DataFrame | None:
     """
-    Quarterly credit measures from BIS private non-financial credit/GDP:
-      net_lending = 4q change in credit/GDP        (Godley Process 2)
-      credit_impulse = acceleration of that flow   (Biggs-Mayer 2nd derivative)
+    Quarterly credit measures from BIS private non-financial credit/GDP.
+
+    Biggs-Mayer-Pick (2010) credit impulse is the change in the FLOW of new
+    credit divided by the GDP LEVEL: CI = (dD_t - dD_{t-4}) / Y_t, the second
+    derivative of the nominal credit stock over nominal GDP.
+
+    AUDIT FIX -- we only hold the BIS credit/GDP RATIO C = D/Y, and naive
+    differencing of the ratio, d(D/Y), is NOT dD/Y: they differ by the
+    denominator term (D/Y)*(dY/Y). In a recession falling Y mechanically lifts
+    C and manufactures a false positive impulse. We remove that bias with the
+    identity dD/Y ~= d(D/Y) + (D/Y)*(nominal GDP growth), using nominal growth
+    (real growth + CPI inflation) from the annual history:
+        net_lending (Process 2) = 4q change in credit/GDP, denominator-adjusted
+        credit_impulse           = the 4q change of that (Biggs-Mayer)
     """
     c = QT.credit_gdp(iso)
     if c is None or len(c) < 24:
         return None
-    flow = c.diff(4)                    # net new lending to private, %GDP (Process 2)
-    impulse = flow.diff(4)             # Biggs-Mayer credit impulse
+    # nominal GDP growth (quarterly, forward-filled from annual real + CPI)
+    nom_g = _nominal_growth_q(iso, c.index)
+    dC = c.diff(4)
+    # denominator correction: recover the credit-flow/GDP-level from the ratio
+    flow = dC + (c * nom_g / 100.0) if nom_g is not None else dC
+    impulse = flow.diff(4)
     df = pd.DataFrame(index=c.index)
     df["credit_gdp"] = c
-    df["net_lending"] = flow
-    df["credit_impulse"] = impulse
+    df["net_lending"] = flow          # Process 2, denominator-corrected
+    df["credit_impulse"] = impulse    # Biggs-Mayer, denominator-corrected
+    df["credit_impulse_raw"] = dC.diff(4)   # the uncorrected ratio version, for reference
     z = 0.4 * _ts_z(flow, 20) + 0.6 * _ts_z(impulse, 20)
     df["credit_signal"] = z.rolling(2, min_periods=1).mean()
     return df
+
+
+def _nominal_growth_q(iso: str, index) -> "pd.Series | None":
+    """Nominal GDP growth (%), quarterly, from annual real growth + CPI inflation."""
+    from .sources import history
+    rec = history.load().get(iso, {})
+    g, cpi = rec.get("growth", {}), rec.get("cpi", {})
+    if not g:
+        return None
+    yrs = {}
+    for y in set(g) | set(cpi):
+        rg = g.get(y)
+        infl = None
+        if str(int(y) - 1) in cpi and cpi.get(y) not in (None, 0):
+            try:
+                infl = (cpi[y] / cpi[str(int(y) - 1)] - 1) * 100
+            except Exception:
+                infl = None
+        if rg is not None:
+            yrs[int(y)] = rg + (infl if infl is not None else 2.0)
+    if not yrs:
+        return None
+    out = pd.Series({pd.Timestamp(y, 12, 31): v for y, v in yrs.items()}).sort_index()
+    return out.reindex(index, method="ffill")
 
 
 def backtest_quarterly(horizons_q=(1, 2, 4, 8, 12)) -> dict:

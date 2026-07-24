@@ -54,11 +54,18 @@ def reconstruct_score(iso: str) -> pd.DataFrame | None:
     nan = pd.Series(np.nan, index=f.index)
     col = lambda k: f[k] if k in f.columns else nan
     df = pd.DataFrame(index=f.index)
-    gov_def = -col("fiscal")                          # deficit = fuel
-    nx = col("exports") - col("imports")
+    gov_def = -col("fiscal")                          # deficit = fuel (Kalecki +)
+    nx = col("exports") - col("imports")              # net exports of goods+services
     inv = col("investment")
-    ext = col("ca")
-    # Kalecki profit-fuel legs; use CA as the net-external proxy where NX missing
+    ext = col("ca")                                   # current account (financing leg)
+    # AUDIT NOTE: the Kalecki-Levy foreign profit term is NET EXPORTS (X-M),
+    # not the current account (which adds primary income + transfers -- material
+    # for creditors/financial centres like JP/IE/CH). We therefore build the
+    # profit-fuel leg from NX where available and fall back to CA only when the
+    # trade series is missing. AUDIT NOTE 2: this proxy omits the household-
+    # saving drain (a large negative Kalecki term), so it is biased optimistic
+    # in saving-shock years (2008-09, 2020-21) -- household saving is not
+    # available cross-country at annual frequency from IMF/WB.
     fuel_level = gov_def.add(inv, fill_value=0).add(
         nx if nx.notna().any() else ext, fill_value=0)
     df["profit_fuel"] = _ts_z(fuel_level.diff())
