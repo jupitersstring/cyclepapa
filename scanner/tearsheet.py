@@ -116,6 +116,58 @@ def verdict(iso: str, scored: pd.DataFrame | None = None) -> str:
             f"({r['opportunity']:+.2f})  " + " | ".join(b for b in bits if b) + tail)
 
 
+def godley_reading(iso: str, balances: dict, profit_fuel: float,
+                   fine_stage: str, regime: str) -> str:
+    """
+    A plain-language explanation of what is happening to a country through
+    Godley's lens: which sectors are injecting or draining purchasing power,
+    whether that fuel is reaching private balance sheets (the Kalecki-Levy
+    profit channel), and where it sits in the debt cycle.
+    """
+    if not balances:
+        return ""
+    priv = balances.get("private", 0.0)
+    gov = balances.get("government", 0.0)      # <0 = deficit
+    ext = balances.get("foreign", 0.0)         # >0 = foreign funds us (CA deficit)
+
+    # Who is injecting demand into the private sector?
+    injectors, drainers = [], []
+    if gov < -1.5:
+        injectors.append(f"the government deficit ({gov:.0f}% of GDP)")
+    elif gov > 1.5:
+        drainers.append(f"a government surplus ({gov:+.0f}%)")
+    if ext > 1.5:
+        injectors.append(f"foreign inflows ({ext:+.0f}%)")
+    elif ext < -1.5:
+        drainers.append(f"a trade surplus sending demand abroad ({ext:.0f}%)")
+
+    # What is the private sector doing with it?
+    if priv > 2.5:
+        priv_state = f"but the private sector is hoarding it (surplus {priv:+.0f}%) rather than spending"
+    elif priv > 0.5:
+        priv_state = f"and the private sector runs a modest surplus ({priv:+.0f}%)"
+    elif priv < -2.5:
+        priv_state = f"and the private sector is spending well beyond income (deficit {priv:.0f}%)"
+    else:
+        priv_state = "and the private sector is roughly in balance"
+
+    # The Kalecki-Levy fuel verdict
+    if profit_fuel > 1.0:
+        fuel = "That flow is reaching profits — fuel surging"
+    elif profit_fuel > 0.3:
+        fuel = "Some of it is reaching profits — fuel rising"
+    elif profit_fuel < -0.5:
+        fuel = "Little is reaching profits — the profit engine is draining"
+    else:
+        fuel = "Fuel to profits is flat"
+
+    inj = " and ".join(injectors) if injectors else "no sector is adding demand"
+    drn = ("; " + " and ".join(drainers) + " pull it back") if drainers else ""
+    stage = fine_stage.replace("_", " ")
+    return (f"{inj[0].upper()}{inj[1:]}{drn}, {priv_state}. "
+            f"{fuel}; {stage} in the debt cycle. → {regime.upper()}.")
+
+
 def system_headline() -> str:
     """The inverted-pyramid lead: one sentence for the whole panel."""
     b = AN.private_surplus_breadth()

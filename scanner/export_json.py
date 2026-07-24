@@ -12,6 +12,7 @@ from . import kalecki_levy as KL
 from . import strategic_analysis as SA
 from . import robustness as RB
 from . import horizon as HZ
+from . import godley_projection as GP
 
 _FLABEL = {"profit_fuel": "profit fuel", "credit_impulse": "credit",
            "valuation_gap": "valuation", "carry_cushion": "carry",
@@ -19,16 +20,32 @@ _FLABEL = {"profit_fuel": "profit fuel", "credit_impulse": "credit",
            "institutional": "policy catalyst"}
 
 
+def _hist_balance(iso: str) -> tuple[float, float] | None:
+    """Latest-actual (<=2024) fiscal + current account from real IMF history."""
+    from .sources import history
+    rec = history.load().get(iso, {})
+    f, c = rec.get("fiscal", {}), rec.get("ca", {})
+    fy = [int(y) for y in f if int(y) <= 2024 and f[y] is not None]
+    cy = [int(y) for y in c if int(y) <= 2024 and c[y] is not None]
+    if not fy or not cy:
+        return None
+    return float(f[str(max(fy))]), float(c[str(max(cy))])
+
+
 def _balances(iso: str) -> dict:
-    """The three sectoral balances that sum to zero, %GDP (live-preferred).
+    """The three sectoral balances that sum to zero, %GDP.
 
     Identity: private + government + foreign = 0, where foreign net lending
     to the domestic economy = -(current account). So:
         government = fiscal balance      (neg = deficit)
         foreign    = -current_account
         private    = current_account - fiscal   (the residual)
+
+    Data preference: real IMF history (45 countries, actual through 2024) ->
+    the mid-2026 live snapshot -> calibrated fallback. This keeps the balances
+    on measured national-accounts data wherever it exists rather than estimates.
     """
-    vals = SA._inputs(iso)
+    vals = _hist_balance(iso) or SA._inputs(iso)
     if vals is None:
         return {}
     fiscal, ca = vals
@@ -71,6 +88,10 @@ def build() -> dict:
                 "investment", "govt_deficit", "net_exports",
                 "dividends", "household_saving")} if c is not None else {},
             "balances": _balances(iso),
+            "godley_reading": TS.godley_reading(
+                iso, _balances(iso), float(r["profit_fuel"]),
+                r.get("fine_stage", ""), r["regime"]),
+            "sustainability": round(float(GP.unsustainability_score(iso)), 2),
             "opp_sigma": round(float(r.get("opp_sigma", 0) or 0), 2),
             "regime_confidence": round(float(r.get("regime_confidence", 0) or 0), 2),
             "drivers": [[_FLABEL.get(k, k), v] for k, v in RB.top_drivers(s, iso, 3)],
