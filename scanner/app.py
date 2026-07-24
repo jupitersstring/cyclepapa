@@ -224,6 +224,23 @@ def main_cli() -> None:
     print("\n  Germany scenario grid (the Maastricht surplus-trap):")
     print("  " + SA.scenarios("DE").to_string(index=False).replace("\n", "\n  "))
 
+    print("\n=== CAMBRIDGE-LINEAGE DIAGNOSTICS (Cripps / Shaikh / Martin) ===")
+    from . import lineage as LN
+    w = LN.world_ca_check()
+    print(f"  Cripps closed-world check: panel implies world balance of "
+          f"${w['implied_world_balance_usd_bn']:.0f}bn with itself "
+          f"({w['as_pct_panel_gdp']}% of panel GDP) -- {w['verdict']}")
+    irop = LN.shaikh_irop()
+    print("  Shaikh incremental-rate-of-profit, top 5 (marginal return on new capital):")
+    print("  " + irop.head(5)[["profit_impulse", "investment_share_gdp",
+                               "irop_proxy", "irop_z"]].to_string().replace("\n", "\n  "))
+    infl = LN.panel_inflation_adjustment()
+    flagged = infl[infl["true_saving_overstated"]]
+    print(f"  Martin inflation-tax: {len(flagged)} countries where measured household "
+          f"saving materially overstates TRUE saving (worst: "
+          + ", ".join(f"{i} {r['inflation_tax_pct_gdp']:.0f}%GDP"
+                      for i, r in flagged.head(4).iterrows()) + ")")
+
     print("\n=== ANOMALIES ===")
     from . import anomalies as AN
     breadth = AN.private_surplus_breadth()
