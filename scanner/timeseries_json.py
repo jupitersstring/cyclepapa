@@ -19,6 +19,25 @@ _cp = _Path(__file__).resolve().parent / "_cache" / "prices_current.json"
 if _cp.exists():
     _CURRENT = _json.loads(_cp.read_text())
 
+_OHLC = {}
+_op = _Path(__file__).resolve().parent / "_cache" / "ohlc_current.json"
+if _op.exists():
+    _OHLC = _json.loads(_op.read_text())
+
+
+def _ohlc_series(iso):
+    """Monthly OHLC bars as parallel arrays keyed for the chart (decimal-year t)."""
+    rows = _OHLC.get(iso)
+    if not rows:
+        return None
+    t, o, h, l, c = [], [], [], [], []
+    for ym in sorted(rows):
+        y, m = ym.split("-")
+        t.append(round(int(y) + (int(m) - 1) / 12, 3))
+        vo, vh, vl, vc = rows[ym]
+        o.append(vo); h.append(vh); l.append(vl); c.append(vc)
+    return {"t": t, "o": o, "h": h, "l": l, "c": c}
+
 
 def _annual_price_current(iso):
     """Year-end price to 2026 from current Yahoo data if available, else OECD."""
@@ -61,6 +80,9 @@ def build() -> dict:
             "score_frontier": 2024,
         }
         rec = {"country": lookup(iso).name, "annual": ann}
+        ohlc = _ohlc_series(iso)
+        if ohlc:
+            rec["ohlc"] = ohlc
         # high-frequency
         rmg = HF.real_money_growth(iso)
         if rmg is not None:
