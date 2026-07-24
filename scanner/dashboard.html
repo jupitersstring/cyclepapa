@@ -80,8 +80,9 @@
   .dagger{color:var(--muted);font-weight:400}
   .cyclecell{white-space:nowrap}
   .cyclecell .cn{color:var(--muted);margin-left:0.2rem}
-  .oppwrap{display:inline-flex;flex-direction:column;align-items:flex-start;gap:1px;cursor:help}
-  .whisk{width:52px;height:6px;display:block}
+  .oppwrap{display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px;cursor:help}
+  .whisk{width:66px;height:13px;display:block}
+  .qmark{color:var(--muted);font-size:0.8em;vertical-align:super;margin-left:1px}
   .hz{display:inline-flex;align-items:center;cursor:help}
   .hzsvg{width:52px;height:16px;display:block}
   .cwarn{color:var(--crimson);font-weight:700}
@@ -135,7 +136,7 @@
       <span class="it"><svg width="12" height="12" viewBox="0 0 12 12"><path fill="#061933" d="M6 0l1 5 5 1-5 1-1 5-1-5-5-1 5-1z"/></svg> improving inflection</span>
       <span class="it"><svg width="12" height="12" viewBox="0 0 12 12"><path fill="#7a0019" d="M6 0l1 5 5 1-5 1-1 5-1-5-5-1 5-1z"/></svg> adverse inflection (Ponzi / carry late-boom)</span>
     </div>
-    <strong>Opp&nbsp;&plusmn;&sigma;</strong> shows the score with its uncertainty whisker — the range is one standard deviation from data confidence, so a call within a hair of zero reads as the coin-flip it is (hover for confidence &amp; drivers; faint rows are &lt;60% confident). <strong>N&thinsp;/&thinsp;L</strong> places each market's edge on the horizon: the circle is the NEAR (liquidity, &lt;1y) signal, the square the LONG (fundamental, 3–4y) signal, lapis when favourable; <span class="cwarn">&Dagger;</span> marks credit-fuelled setups that the backtest says reverse at 2–3 years. <strong>Balances&nbsp;&rarr;0</strong> is the Godley identity made visible: three ink bars — <b>P</b>rivate, <b>G</b>overnment, e<b>X</b>ternal — diverge left (borrowing) and right (saving) around a centre axis and always sum to zero. <strong>Cycle</strong> is a tick on a 0–100 debt-clock line, coloured by regime; faint ticks mark the 30/55/75 turns. <strong>Factor band</strong>, numbered 1–6 left→right: (1)&nbsp;profit&nbsp;fuel (2)&nbsp;credit impulse (3)&nbsp;valuation, cheap (4)&nbsp;carry (5)&nbsp;un-crowding (6)&nbsp;robustness — bars rise <span class="lapis">lapis</span> when favourable, fall <span class="crimson">crimson</span> when adverse, height is the cross-sectional z-score; hover any bar for its value. A faint wash marks the top and bottom opportunity deciles; fragility turns <span class="crimson">crimson</span> past 0.50; <span class="dagger">&#8224;</span> flags low data confidence. A reading of configuration on calibrated mid-2026 data, not a timed forecast — after Wynne Godley, Levy Economics Institute of Bard College.
+    <strong>Opp&nbsp;&plusmn;&sigma;</strong> shows the score with a &plusmn;1&sigma; error bar (uncertainty sized by data confidence). When the bar straddles the centre line the sign is not distinguishable from neutral — marked with a <span class="qmark" style="vertical-align:baseline">?</span> and a faint row. Hover for confidence and the top drivers. <strong>N&thinsp;/&thinsp;L</strong> places each market's edge on the horizon: the circle is the NEAR (liquidity, &lt;1y) signal, the square the LONG (fundamental, 3–4y) signal, lapis when favourable; <span class="cwarn">&Dagger;</span> marks credit-fuelled setups that the backtest says reverse at 2–3 years. <strong>Balances&nbsp;&rarr;0</strong> is the Godley identity made visible: three ink bars — <b>P</b>rivate, <b>G</b>overnment, e<b>X</b>ternal — diverge left (borrowing) and right (saving) around a centre axis and always sum to zero. <strong>Cycle</strong> is a tick on a 0–100 debt-clock line, coloured by regime; faint ticks mark the 30/55/75 turns. <strong>Factor band</strong>, numbered 1–6 left→right: (1)&nbsp;profit&nbsp;fuel (2)&nbsp;credit impulse (3)&nbsp;valuation, cheap (4)&nbsp;carry (5)&nbsp;un-crowding (6)&nbsp;robustness — bars rise <span class="lapis">lapis</span> when favourable, fall <span class="crimson">crimson</span> when adverse, height is the cross-sectional z-score; hover any bar for its value. A faint wash marks the top and bottom opportunity deciles; fragility turns <span class="crimson">crimson</span> past 0.50; <span class="dagger">&#8224;</span> flags low data confidence. A reading of configuration on calibrated mid-2026 data, not a timed forecast — after Wynne Godley, Levy Economics Institute of Bard College.
   </footer>
 </div>
 
@@ -263,24 +264,29 @@
       <line x1="${pos}" y1="2" x2="${pos}" y2="${H-1}" stroke="${col}" stroke-width="1.4"/></svg><span class="cn tnum">${Math.round(pos)}</span></span>`;
   }
   function fragTxt(f){ return f>=0.5?`<span class="crimson">${f.toFixed(2)}</span>`:f.toFixed(2); }
-  /* Opportunity with an uncertainty WHISKER (Norman: make false precision
-     visible) + confidence + drivers on hover (knowledge on demand). */
+  /* Opportunity with an uncertainty ERROR BAR (Norman: make false precision
+     visible; you can SEE whether the ±1σ range straddles zero -- i.e. whether
+     the call is statistically distinguishable from neutral). Confidence and
+     the top drivers on hover (knowledge on demand). */
   function oppCell(c){
     const v=c.opportunity, sig=c.opp_sigma||0, cls=v>0?'lapis':(v<0?'crimson':'muted');
     const conf=Math.round((c.regime_confidence||0)*100);
     const drv=(c.drivers||[]).map(d=>`${d[0]} ${d[1]>0?'+':''}${d[1]}`).join(', ');
-    const tip=`opportunity ${v>0?'+':''}${v.toFixed(2)} ± ${sig.toFixed(2)} · ${conf}% ${c.regime} · driven by ${drv}`;
-    // whisker on a fixed -1.5..+1.5 scale (W=100), tick at v, range v±sigma
-    const sc=x=>Math.max(0,Math.min(100,(x+1.5)/3*100));
+    const tip=`opportunity ${v>0?'+':''}${v.toFixed(2)} ± ${sig.toFixed(2)} (1σ) · ${conf}% ${c.regime} · driven by ${drv}`;
+    const W=88,H=13,cy=7;                       // fixed -1.5..+1.5 scale
+    const sc=x=>Math.max(2,Math.min(W-2,(x+1.5)/3*W));
     const lo=sc(v-sig), hi=sc(v+sig), mid=sc(v), zero=sc(0);
     const col=v>=0?LAPIS:CRIMSON;
-    const wk=`<svg class="whisk" viewBox="0 0 100 8" preserveAspectRatio="none" aria-hidden="true">
-      <line x1="${zero}" y1="0" x2="${zero}" y2="8" stroke="${MUTED}" stroke-width="0.6" stroke-opacity="0.5"/>
-      <line x1="${lo}" y1="4" x2="${hi}" y2="4" stroke="${col}" stroke-width="0.8"/>
-      <line x1="${mid}" y1="1" x2="${mid}" y2="7" stroke="${col}" stroke-width="1.6"/></svg>`;
-    const faint = conf<60 ? ' style="opacity:.55"' : '';
+    const straddles = (v-sig)<0 && (v+sig)>0;   // range crosses zero = uncertain sign
+    const bar=`<svg class="whisk" viewBox="0 0 ${W} ${H}" aria-hidden="true">
+      <line x1="${zero}" y1="1" x2="${zero}" y2="${H-1}" stroke="${MUTED}" stroke-width="0.7"/>
+      <line x1="${lo}" y1="${cy}" x2="${hi}" y2="${cy}" stroke="${col}" stroke-width="1"/>
+      <line x1="${lo}" y1="${cy-2.5}" x2="${lo}" y2="${cy+2.5}" stroke="${col}" stroke-width="1"/>
+      <line x1="${hi}" y1="${cy-2.5}" x2="${hi}" y2="${cy+2.5}" stroke="${col}" stroke-width="1"/>
+      <circle cx="${mid}" cy="${cy}" r="1.9" fill="${col}"/></svg>`;
+    const faint = conf<60 ? ' style="opacity:.62"' : '';
     return `<span class="oppwrap" title="${tip.replace(/"/g,'')}"${faint}>
-      <span class="tnum ${cls}">${v>0?'+':''}${v.toFixed(2)}</span>${wk}</span>`;
+      <span class="tnum ${cls}">${v>0?'+':''}${v.toFixed(2)}${straddles?'<span class="qmark" title="±1σ range straddles zero — sign uncertain">?</span>':''}</span>${bar}</span>`;
   }
   /* Horizon indicator: two diverging bars, Near (liquidity, <1y) over Long
      (fundamental, 3-4y), lapis right = favourable, crimson left = adverse.
