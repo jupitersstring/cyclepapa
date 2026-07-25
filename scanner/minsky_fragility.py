@@ -124,6 +124,48 @@ _INPUTS: dict[str, FragilityInputs] = {
 }
 
 
+def debt_dynamics(iso: str) -> float | None:
+    """
+    MEASURED financing posture from BIS private non-financial credit/GDP.
+
+    CORRECTION (audit): Minsky's Ponzi is a FINANCING-STRUCTURE claim -- debt
+    service exceeding cash flow, so that liabilities must grow to be serviced.
+    It is NOT a valuation claim. High multiples on an equity-funded boom are
+    hedge finance, not Ponzi. The hand-set `asset_dependence` inputs conflated
+    the two and produced a false Ponzi label for the US, which the Levy team
+    explicitly contradicts: "Different from the 1990s bubble, we are not
+    witnessing an increase in the net liabilities of the non-financial
+    corporate sector" (Strategic Analysis, October 2025).
+
+    The data agrees with Levy: US private credit peaked at 164.6% of GDP in
+    2021-Q1 and has fallen to 143.0% by 2024-Q4 -- a 21pp DELEVERAGING.
+
+    Returns the deviation of current credit/GDP from its own 5-year peak, in
+    pp: POSITIVE = still levering toward/through the peak (Ponzi-consistent),
+    NEGATIVE = deleveraging (hedge-consistent). None where BIS has no series.
+    """
+    from .sources import quarterly as QT
+    c = QT.credit_gdp(iso)
+    if c is None or len(c) < 20:
+        return None
+    recent = c.iloc[-20:]                     # last five years
+    return round(float(c.iloc[-1] - recent.max()), 1)
+
+
+def _asset_dependence(inp: FragilityInputs) -> float:
+    """
+    Asset-dependence, preferring the MEASURED debt dynamics over the hand-set
+    prior. Mapped so that a sector still at its credit peak scores high and one
+    that has delevered 20pp scores low.
+    """
+    dd = debt_dynamics(inp.iso)
+    if dd is None:
+        return inp.asset_dependence
+    # 0pp below peak -> 0.85 (still levering); -20pp -> 0.15 (deleveraged)
+    scaled = 0.85 + dd * 0.035
+    return float(max(0.10, min(0.95, scaled)))
+
+
 def _shares(inp: FragilityInputs) -> tuple[float, float, float]:
     """
     Map proxies to (hedge, speculative, ponzi) shares summing to 1.
@@ -140,7 +182,7 @@ def _shares(inp: FragilityInputs) -> tuple[float, float, float]:
     # Speculative pressure: r-g gap (only the positive part) + moderate credit
     spec = max(0.0, inp.r_minus_g) * 0.06
     # Ponzi pressure: asset-dependence, dissaving, DSR acceleration
-    ponzi = (inp.asset_dependence * 0.45
+    ponzi = (_asset_dependence(inp) * 0.45
              + max(0.0, inp.dissaving) * 0.30
              + max(0.0, dsr_accel) * 0.25)
     ponzi = min(ponzi, 0.85)

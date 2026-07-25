@@ -76,14 +76,27 @@ GDP_USD_TN: dict[str, float] = {
 }
 
 
+# The world's measured current-account discrepancy is persistently POSITIVE --
+# the planet reports a surplus with itself, on the order of $300-500bn, because
+# of under-recorded imports, transfer pricing and financial-centre flows. The
+# correct benchmark for a closed-world check is therefore this discrepancy, NOT
+# zero: a panel summing to ~+$400bn is normal, not evidence of bias.
+WORLD_CA_DISCREPANCY_USD_BN = 400.0
+
+
 def world_ca_check() -> dict:
     """
-    Cripps closed-world test: GDP-weighted sum of CA balances across the
-    panel. Should be ~0 for a world-spanning panel; our 57 countries cover
-    ~90% of world GDP so a modest residual is expected, but a LARGE implied
-    world surplus/deficit marks either measurement bias (hidden surpluses --
-    cf. Setser on China) or panel-coverage bias. Returns the implied world
-    balance in USD bn and as % of panel GDP, plus the largest contributors.
+    Cripps / Godley closed-world test, run as Godley ran it: the world identity
+    is deliberately LEFT OUT of the calculation and used as a REDUNDANT-EQUATION
+    diagnostic (Godley, Levy WP 281, 'An accounting system with no black holes' --
+    the constraint "is not included explicitly in the model [but] is found to be
+    satisfied when the model is solved numerically").
+
+    Summed in USD LEVELS, because percentages of GDP do not aggregate. Judged
+    against the real world discrepancy rather than zero, and -- following the
+    Cripps-Izurieta-Singh rule that "surpluses cannot be achieved in all
+    countries at the same time" -- it names the counterparty that would have to
+    absorb the deterioration.
     """
     from . import godley_projection as GP
     livedf = live.load_cached()
@@ -107,16 +120,35 @@ def world_ca_check() -> dict:
         contribs[c.iso] = ca / 100.0 * gdp * 1000.0  # USD bn
         total_gdp += gdp
     world_bn = sum(contribs.values())
+    excess = world_bn - WORLD_CA_DISCREPANCY_USD_BN   # residual vs the real world
     top = sorted(contribs.items(), key=lambda kv: -abs(kv[1]))[:8]
+    surplus = {k: v for k, v in contribs.items() if v > 0}
+    deficit = {k: v for k, v in contribs.items() if v < 0}
+    biggest_absorber = min(deficit.items(), key=lambda kv: kv[1]) if deficit else None
+
+    if abs(excess) < 250:
+        verdict = ("consistent -- the panel's implied world balance sits within "
+                   "the normal global CA discrepancy")
+    elif excess > 0:
+        verdict = (f"panel implies ${excess:,.0f}bn MORE world surplus than the "
+                   "measured discrepancy: some surpluses are not matched by a "
+                   "counterparty deficit in the panel")
+    else:
+        verdict = (f"panel implies ${-excess:,.0f}bn more world deficit than the "
+                   "measured discrepancy")
+
     return {
         "implied_world_balance_usd_bn": round(world_bn, 0),
-        "as_pct_panel_gdp": round(world_bn / (total_gdp * 1000.0) * 100.0, 2),
+        "world_discrepancy_benchmark_usd_bn": WORLD_CA_DISCREPANCY_USD_BN,
+        "residual_vs_benchmark_usd_bn": round(excess, 0),
         "panel_gdp_usd_tn": round(total_gdp, 1),
+        "total_surplus_usd_bn": round(sum(surplus.values()), 0),
+        "total_deficit_usd_bn": round(sum(deficit.values()), 0),
+        "counterparty": (f"{biggest_absorber[0]} absorbs "
+                         f"${-biggest_absorber[1]:,.0f}bn of the world's surpluses"
+                         if biggest_absorber else "none"),
         "largest_contributors_usd_bn": {k: round(v, 0) for k, v in top},
-        "verdict": ("exports-to-Mars bias: panel implies the world runs a "
-                    "surplus with itself" if world_bn > 300 else
-                    "world implied in deficit with itself" if world_bn < -300
-                    else "within normal global-discrepancy range"),
+        "verdict": verdict,
     }
 
 
