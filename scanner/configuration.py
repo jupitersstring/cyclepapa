@@ -152,6 +152,101 @@ def configure(iso: str) -> dict | None:
                       ("expanding" if expanding else "neutral")}
 
 
+def disaggregate(iso: str) -> dict | None:
+    """
+    Split the private balance into households and corporations, and name which
+    one is driving it.
+
+    Godley & Lavoie (2007, p.25) repudiated the New Cambridge amalgamation --
+    "households and production firms take entirely different decisions" -- and
+    Godley had already disaggregated in Seven Unsustainable Processes (1999):
+    "most of the fall in the private balance and the entire deficit has taken
+    place in the household sector." Bill Martin's verdict on the behavioural
+    justification is that "the pierced corporate veil rationale for
+    across-sector aggregation has a limited following"; for the UK the
+    veil-piercing evidence is weak (Feldstein & Fane find quarter-piercing,
+    Pitelis essentially none).
+
+    So the aggregate private balance is not the right object. The same +8%
+    surplus is a HOUSEHOLD saving glut in Germany (consumption suppressed) and
+    a CORPORATE one in the Netherlands and Ireland (profits not reinvested) --
+    different mechanisms, different remedies. Romania's benign +1.7% aggregate
+    conceals households running a -4.7% deficit.
+
+    Returns None outside the Eurostat sector-accounts panel.
+    """
+    from .sources import sectors as SEC
+    s = SEC.split(iso)
+    if not s:
+        return None
+    hh, corp = s["households"], s["nonfin_corp"] + s["fin_corp"]
+    f = SEC.frame(iso)
+    # each sub-sector against its OWN pre-2020 norm, as with the aggregate
+    def norm(col):
+        if f is None or col not in f.columns:
+            return None
+        v = f.loc[[y for y in f.index if y <= 2019], col].dropna()
+        return round(float(v.median()), 1) if len(v) >= 5 else None
+    hh_norm = norm("households")
+    corp_norm = None
+    if f is not None and "nonfin_corp" in f.columns:
+        pre = f.loc[[y for y in f.index if y <= 2019]]
+        cc = (pre.get("nonfin_corp", pd.Series(dtype=float)).fillna(0)
+              + pre.get("fin_corp", pd.Series(dtype=float)).fillna(0)).dropna()
+        corp_norm = round(float(cc.median()), 1) if len(cc) >= 5 else None
+
+    hh_gap = round(hh - hh_norm, 1) if hh_norm is not None else None
+    corp_gap = round(corp - corp_norm, 1) if corp_norm is not None else None
+
+    # which sub-sector is driving the deviation from norm?
+    if hh_gap is not None and corp_gap is not None:
+        driver = "household" if abs(hh_gap) >= abs(corp_gap) else "corporate"
+    else:
+        driver = "household" if abs(hh) >= abs(corp) else "corporate"
+
+    # sub-sector configuration -- the mechanism the aggregate hides
+    if hh < -1.0:
+        # A household deficit is only a WARNING if it is deep relative to that
+        # sector's own norm. Convergence economies (Romania) structurally run
+        # household deficits: -4.7% against a -7.6% norm is an improvement, not
+        # a Seven-Processes deterioration. Judging the level alone would
+        # misread it -- the same norm-relative discipline as the aggregate.
+        if hh_gap is not None and hh_gap > 0.5:
+            sub = "household-deficit-improving"
+            note = (f"Households run a deficit ({hh:.1f}% of GDP) but that is "
+                    f"{hh_gap:+.1f}pp BETTER than their own norm of {hh_norm:+.1f}% -- "
+                    "structural borrowing that is narrowing, not a deterioration.")
+        else:
+            sub = "household-deficit"
+            note = (f"Households are running a deficit of {hh:.1f}% of GDP"
+                    + (f", {abs(hh_gap):.1f}pp below their own norm" if hh_gap is not None else "")
+                    + " -- borrowing to spend, behind an aggregate that looks benign. "
+                      "This is the sub-sector configuration of the Seven "
+                      "Unsustainable Processes.")
+    elif hh_gap is not None and hh_gap > 1.5 and driver == "household":
+        sub = "household-saving-glut"
+        note = (f"Households are saving {hh_gap:+.1f}pp above their own norm "
+                f"({hh:+.1f}% vs {hh_norm:+.1f}%): consumption is being suppressed.")
+    elif corp_gap is not None and corp_gap > 1.5 and driver == "corporate":
+        sub = "corporate-saving-glut"
+        note = (f"Corporations are saving {corp_gap:+.1f}pp above their norm "
+                f"({corp:+.1f}% vs {corp_norm:+.1f}%): profits are not being "
+                "reinvested -- a corporate savings glut, not a consumer one.")
+    elif corp < -1.5:
+        sub = "corporate-borrowing"
+        note = (f"Corporations are net borrowers ({corp:.1f}% of GDP) -- "
+                "investing beyond internal funds.")
+    else:
+        sub = "balanced-within"
+        note = "Neither sub-sector is far from its own norm."
+
+    return {"iso": iso, "year": s["year"], "households": hh,
+            "corporates": round(corp, 1), "households_norm": hh_norm,
+            "corporates_norm": corp_norm, "households_gap": hh_gap,
+            "corporates_gap": corp_gap, "driver": driver,
+            "sub_configuration": sub, "sub_note": note}
+
+
 def what_must_give(iso: str) -> str:
     """
     Godley's conditional output. Given the configuration and the policy stance,

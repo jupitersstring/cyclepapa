@@ -133,7 +133,15 @@ def adjusted_balances(iso: str, year: int | None = None) -> dict | None:
     gov, ext = fiscal, -ca
     priv = ca - fiscal
 
-    gain = pi / 100.0 * debt                      # inflation gain to the debtor, %GDP
+    # Inflation gain to the debtor, %GDP. Godley & Lavoie deflate by the CURRENT
+    # price level, which gives the geometric form pi/(1+pi) rather than the
+    # first-order pi. The two agree at low inflation but the first-order version
+    # is nonsense in the high-inflation cohort -- at Argentina's 220% it implied
+    # a gain of 186pp of GDP on an 85pp debt stock. The geometric form is bounded
+    # by the debt itself, which is the economically correct limit: inflation can
+    # at most extinguish the whole real value of the stock in one period.
+    p = pi / 100.0
+    gain = (p / (1.0 + p)) * debt if p > -0.99 else 0.0
     # split the matching loss between domestic private and foreign holders.
     # Proxy the foreign share by the external position's share of total
     # non-government claims; fall back to 30% (a typical foreign-held share).
