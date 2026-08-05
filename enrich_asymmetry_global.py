@@ -106,8 +106,14 @@ def main():
 
     print('loading asymmetry_global, archetype_tags, verdicts...', file=sys.stderr)
     df = pd.read_csv(args.asym)
-    # Drop stale suffixed columns from prior enrich runs
+    # Drop stale suffixed columns from prior enrich runs, plus any stale
+    # archetype outputs the master already carries — otherwise the fresh
+    # archetype_tags merge below collides and suffixes to *_arch, leaving the
+    # STALE archetype_count/bab_score in place (would silently freeze counts
+    # whenever new archetypes are added).
     df = df.drop(columns=[c for c in df.columns if c.endswith('_arch')])
+    df = df.drop(columns=[c for c in ('archetype_count', 'bab_score')
+                          if c in df.columns])
     arch_df = pd.read_csv(args.arch)
     verdicts = load_verdicts()
     intrinsic_in = load_intrinsic_inputs()
@@ -118,7 +124,8 @@ def main():
     print(f'  {len(arch_cols)} archetype columns ({len(edgar_arch_cols)} EDGAR-only, '
           f'{len(non_edgar_arch_cols)} universal)', file=sys.stderr)
 
-    df = df.merge(arch_df[['symbol'] + arch_cols + ['archetype_count']],
+    extra_arch = [c for c in ['archetype_count', 'bab_score'] if c in arch_df.columns]
+    df = df.merge(arch_df[['symbol'] + arch_cols + extra_arch],
                   on='symbol', how='left', suffixes=('', '_arch'))
     # Drop any pre-existing verdict so the fresh merge wins
     if 'verdict' in df.columns:

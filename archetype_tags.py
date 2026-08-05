@@ -568,6 +568,92 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((roic_acceleration_v > 0) | (roic_lindy > 0.10))
     ).fillna(False).astype(int)
 
+    # ---------- Betting-Against-Beta family (Frazzini & Pedersen 2014) ----------
+    # Beta is a leverage substitute: leverage-constrained investors overpay for
+    # high-beta assets to get embedded leverage, which flattens the security
+    # market line and leaves low-beta QUALITY assets cheap (the model's alpha =
+    # psi*(1 - beta), positive when beta < 1). The BAB long side is high-quality,
+    # optically-boring businesses whose cash flows can be safely levered —
+    # financially, or through reinvestment (= a yartseva multibagger). We follow
+    # the paper's beta handling: clip Yahoo's noisy raw beta and SHRINK toward
+    # the cross-sectional mean of 1 (w = 0.6) to tame illiquidity / non-
+    # synchronous-trading artifacts before sorting.
+    beta_present = (pd.to_numeric(df['yf_beta'], errors='coerce').notna()
+                    if 'yf_beta' in df.columns else pd.Series(False, index=df.index))
+    beta_raw = s('yf_beta', 1.0).clip(lower=-0.5, upper=4.0)
+    beta_shrunk = 0.6 * beta_raw + 0.4
+
+    fcf_margin_v = s('fcf_margin')
+    cash_conv_v = s('cash_conversion')
+    roce_v = s('roce')
+    ev_ebit_v = s('ev_ebit', 99.0)
+    cheap_7x_v = s('cheapness_under_7x_flag')
+    berezin_v = s('berezin_score')
+
+    # "Safe, leverable cash flows": profitable, cash-generative, clean balance
+    # sheet, decent returns on capital. This quality gate also screens out
+    # illiquid nano-caps whose low *measured* beta is a non-trading artifact
+    # rather than genuine low market sensitivity.
+    bab_quality = (
+        (fcf_margin_v > 0.0) &
+        (ebitda_margin >= 0.10) &
+        (nde <= 2.5) &
+        ((roce_v >= 0.10) | (cash_conv_v >= 0.60))
+    )
+    # Two ways a boring low-beta business still compounds hard: a yartseva
+    # multibagger inflection, or a genuinely cheap price.
+    bab_multibagger_leg = (yart_score >= 0.60) | inflection_print | (rev_accel > 0.05)
+    bab_cheap_leg = (
+        (cheap_7x_v > 0) |
+        ((ev_ebit_v > 0) & (ev_ebit_v <= 8.0)) |
+        (fcf_yield >= 0.08) |
+        (berezin_v >= 0.60)
+    )
+
+    # 1) Pure BAB long side: genuine low beta + quality. Buffett in this lens —
+    #    "long safe, profitable, low-beta assets" (the leg the paper levers up).
+    df['arch_bab_low_beta'] = (
+        beta_present & (beta_shrunk <= 0.85) & bab_quality
+    ).fillna(False).astype(int)
+
+    # 2) Becoming more BAB-like: beta still moderate, but the business is
+    #    de-risking — margins expanding, cash inflecting, deleveraging — trending
+    #    toward the boring-safe profile before beta has fully compressed. (No beta
+    #    time-series available, so improving fundamental stability stands in for
+    #    the paper's beta compression.)
+    df['arch_bab_becoming'] = (
+        beta_present & (beta_shrunk > 0.85) & (beta_shrunk <= 1.15) &
+        (ebitda_margin_delta >= 0.01) &
+        ((fcf_inflection > 0) | (ebitda_inflection > 0) | (fcf_margin_v > 0.0)) &
+        (nde <= 3.0)
+    ).fillna(False).astype(int)
+
+    # 3) BAB multibagger — the synthesis: low/declining-beta quality that is ALSO
+    #    a yartseva multibagger OR very cheap. Boring safety + embedded compounding
+    #    (financial or reinvestment leverage) at a price the market underrates.
+    df['arch_bab_multibagger'] = (
+        beta_present & (beta_shrunk <= 1.0) & bab_quality &
+        (bab_multibagger_leg | bab_cheap_leg)
+    ).fillna(False).astype(int)
+
+    # Continuous BAB attractiveness score (0..1) for ranking within the family:
+    # lower shrunk beta + higher quality + cheaper. Zero when beta is unobserved.
+    _lowbeta_sc = (1.0 - ((beta_shrunk - 0.4).clip(0, 1.2) / 1.2)).clip(0, 1)
+    _quality_sc = (
+        (fcf_margin_v.clip(0, 0.30) / 0.30) * 0.40 +
+        (roce_v.clip(0, 0.30) / 0.30) * 0.30 +
+        (1.0 - (nde.clip(0, 4.0) / 4.0)) * 0.30
+    ).clip(0, 1)
+    _ev_ebit_pos = ev_ebit_v.where(ev_ebit_v > 0, 20.0)
+    _cheap_sc = (
+        (fcf_yield.clip(0, 0.15) / 0.15) * 0.5 +
+        (1.0 - (_ev_ebit_pos.clip(0, 20) / 20)) * 0.5
+    ).clip(0, 1)
+    df['bab_score'] = (
+        beta_present.astype(float) *
+        (0.45 * _lowbeta_sc + 0.35 * _quality_sc + 0.20 * _cheap_sc)
+    ).round(4)
+
     arch_cols = [
         'arch_narrative_lag',
         'arch_fixed_cost_demand_shock',
@@ -603,6 +689,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_concentrated_segments',
         'arch_geographic_global',
         'arch_fastest_segment',
+        'arch_bab_low_beta',
+        'arch_bab_becoming',
+        'arch_bab_multibagger',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -639,6 +728,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_concentrated_segments': 'ConcentratedSegments',
         'arch_geographic_global': 'GeographicGlobal',
         'arch_fastest_segment': 'FastestSegment',
+        'arch_bab_low_beta': 'BAB-LowBetaQuality',
+        'arch_bab_becoming': 'BAB-Becoming',
+        'arch_bab_multibagger': 'BAB-Multibagger',
     }
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(
@@ -646,7 +738,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str']]
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score']]
     out.to_csv(out_path, index=False)
 
     # Summary to stderr

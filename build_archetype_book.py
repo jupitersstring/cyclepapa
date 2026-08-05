@@ -65,6 +65,9 @@ ARCHETYPE_LABELS = {
     'arch_concentrated_segments': 'Concentrated Segments',
     'arch_geographic_global': 'Global Geographic Footprint',
     'arch_fastest_segment': 'Fastest Segment Inflection',
+    'arch_bab_low_beta': 'BAB — Low-Beta Quality',
+    'arch_bab_becoming': 'BAB — Becoming Low-Beta',
+    'arch_bab_multibagger': 'BAB — Multibagger / Cheap',
 }
 
 
