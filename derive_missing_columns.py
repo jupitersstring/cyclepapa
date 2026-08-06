@@ -58,6 +58,8 @@ DERIVED_COLUMNS = [
     'pretax_margin',
     'asset_turnover',
     'ev_revenue',
+    'pegy',
+    'ev_ebitda_gy',
 ]
 
 
@@ -277,6 +279,26 @@ def main():
 
     # 11) ev_revenue -- EV > 0, revenue > 0 (alias of ev_sales)
     _fill('ev_revenue', _safe_div(ev, rev, den_must_be_positive=True))
+
+    # 12+13) Lynch multiples (recomputed every run, not gap-filled, so they
+    # track the freshest growth/yield inputs).
+    #   pegy         = P/E / (earnings growth% + dividend yield%)   (Lynch PEGY)
+    #   ev_ebitda_gy = EV/EBITDA / (EBITDA growth% + dividend yield%)
+    # Lynch's convention expresses growth+yield in percentage points (PE 15 on
+    # 15% growth -> PEG 1.0). Inputs here are fractions, hence the x100.
+    # Growth is capped at 100% so a one-off doubling can't manufacture a
+    # sub-0.1 multiple; negative/zero denominators -> NaN (not meaningful).
+    pe_v = _to_num(_s('p_e'))
+    ev_eb_v = _to_num(_s('ev_ebitda'))
+    egrow = _to_num(_s('yf_earnings_growth')).clip(upper=1.0)
+    ebgrow = _to_num(_s('ebitda_yoy')).clip(upper=1.0)
+    divy = _to_num(_s('dividend_yield')).fillna(0.0).clip(lower=0.0, upper=0.25)
+    pe_pos = pe_v.where(pe_v > 0)
+    ev_eb_pos = ev_eb_v.where(ev_eb_v > 0)
+    master['pegy'] = _safe_div(pe_pos, (egrow + divy) * 100.0,
+                               den_must_be_positive=True)
+    master['ev_ebitda_gy'] = _safe_div(ev_eb_pos, (ebgrow + divy) * 100.0,
+                                       den_must_be_positive=True)
 
     # Drop helper edgar columns (don't pollute the master)
     drop_cols = [c for c in master.columns if c.startswith('_e_')]

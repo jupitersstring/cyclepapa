@@ -654,6 +654,151 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (0.45 * _lowbeta_sc + 0.35 * _quality_sc + 0.20 * _cheap_sc)
     ).round(4)
 
+    # ---------- Lynch multiples (One Up on Wall Street) ----------
+    # PEGY = P/E / (earnings growth% + dividend yield%). Lynch: <=1.0 is
+    # fair-or-better, growth+income you aren't paying for. The EV variant
+    # applies the same idea capital-structure-neutral: EV/EBITDA /
+    # (EBITDA growth% + dividend yield%) — threshold scaled to 0.6 since
+    # EV/EBITDA runs ~60% of P/E for the same business. Both ratios are
+    # computed in derive_missing_columns.py with growth capped at 100% so a
+    # one-off doubling can't manufacture a sub-0.1 multiple.
+    pegy_v = s('pegy', 99.0)
+    evgy_v = s('ev_ebitda_gy', 99.0)
+    df['arch_lynch_pegy'] = (
+        (pegy_v > 0) & (pegy_v <= 1.0)
+    ).fillna(False).astype(int)
+    df['arch_lynch_evgy'] = (
+        (evgy_v > 0) & (evgy_v <= 0.6)
+    ).fillna(False).astype(int)
+
+    # ---------- Wolf of Oakville family ----------
+    # Small-cap picker (~105%/yr on 19 picks since 2023: HBFG 20x, NCI 15x,
+    # ZOMD 10x...). Core doctrine: the "Wolf Trifecta" — strengthening
+    # revenue, improving margins, expense control — on clean microcap
+    # balance sheets bought at unde­manding multiples. Screens below are the
+    # quant translation of his five published archetypes; the qualitative
+    # legs (insider buying, FINS star ratings) have no columns here.
+    cfo_ttm_v = s('cfo_ttm')
+    fcf_ttm_v = s('fcf_ttm')
+    ev_sales_v = s('ev_sales', 99.0)
+    p_s_v = s('p_s', 99.0)
+    fcf_margin_w = s('fcf_margin')
+    op_margin_v = s('op_margin')
+    ebitda_ttm_v = s('ebitda_ttm')
+    cash_pct_mcap_v = s('cash_pct_mcap')
+    cash_conv_w = s('cash_conversion')
+    div_yield_v = s('dividend_yield')
+    cap_ret_v = s('capital_return_yield')
+    off_high = s('pct_off_52w_high')   # negative = below the 52w high
+
+    # A — Explosive high-growth microcap ("Wolf Trifecta"): 50%+ revenue
+    # growth, already cash-generative, margins improving, cheap on sales.
+    df['arch_wolf_trifecta'] = (
+        (mcap >= 20e6) & (mcap <= 300e6) &
+        (rev_yoy >= 0.50) &
+        ((cfo_ttm_v > 0) | (fcf_ttm_v > 0)) &
+        (ev_sales_v > 0) & (ev_sales_v < 3.0) &
+        (ebitda_margin_delta >= 0.0)
+    ).fillna(False).astype(int)
+
+    # B — Turnaround/improvement: loss-maker crossing into the black with
+    # margins inflecting and revenue not collapsing.
+    df['arch_wolf_turnaround'] = (
+        (mcap >= 10e6) & (mcap <= 200e6) &
+        ((ebitda_first_pos > 0) | (cfo_first_pos > 0) |
+         (fcf_first_pos > 0) | (ni_first_pos > 0) |
+         ((ebitda_inflection > 0) & (ebitda_margin_delta > 0))) &
+        (ebitda_margin_delta >= 0.0) &
+        (rev_yoy > -0.05)
+    ).fillna(False).astype(int)
+
+    # C — Value/catalyst: net-cash-heavy microcap on a distressed multiple
+    # (the D-Box shape: cash floor > half the cap, single-digit EV/EBITDA).
+    df['arch_wolf_value_catalyst'] = (
+        (mcap > 0) & (mcap < 150e6) &
+        (net_cash_pct >= 0.50) &
+        (((ev_ebitda_v := s('ev_ebitda', 99.0)) > 0) & (ev_ebitda_v < 5.0) |
+         ((p_s_v > 0) & (p_s_v < 1.0)))
+    ).fillna(False).astype(int)
+
+    # D — Emerging-sector profitability (his cautious cannabis bets):
+    # trendy high-risk sector name that has actually reached profits.
+    _ind = df['industry'].fillna('').astype(str).str.lower() if 'industry' in df.columns else pd.Series('', index=df.index)
+    _nm = df['name'].fillna('').astype(str).str.lower() if 'name' in df.columns else pd.Series('', index=df.index)
+    _emerging = (_ind.str.contains('cannabis|hemp|marijuana|tobacco', regex=True) |
+                 _nm.str.contains('cannabis|hemp', regex=True))
+    df['arch_wolf_emerging'] = (
+        _emerging &
+        (ebitda_ttm_v > 0) &
+        (((pe_w := s('p_e', 99.0)) > 0) & (pe_w < 10.0) |
+         ((ev_ebitda_v > 0) & (ev_ebitda_v < 6.0)))
+    ).fillna(False).astype(int)
+
+    # E — "Seal of Approval" fresh trigger: a printed inflection with the
+    # tape already confirming (positive momentum, near the 52w high).
+    df['arch_wolf_seal'] = (
+        (mcap > 0) & (mcap < 500e6) &
+        inflection_print &
+        (mom12 >= 0.25) &
+        (off_high >= -0.30)
+    ).fillna(False).astype(int)
+
+    # ---------- Liger Cub / Byron Street family ----------
+    # Long-only public-information arbitrage in neglected microcaps. The
+    # OSINT legs (website metadata, job postings, procurement, shipping)
+    # aren't screenable here; these two capture the FINANCIAL preconditions
+    # his best setups share.
+    # Asset-backed optionality: hard floor (net cash covers most of the
+    # cap), operating business near break-even or better, so the thesis
+    # doesn't need financing to survive.
+    df['arch_liger_asset_backed'] = (
+        (mcap > 0) & (mcap < 300e6) &
+        (net_cash_pct >= 0.60) &
+        ((op_margin_v >= -0.05) | (ebitda_margin >= 0.0))
+    ).fillna(False).astype(int)
+
+    # Quiet inflection the market failed to process: reported growth +
+    # clean cash conversion + safe balance sheet, while the PRICE still
+    # lags (down/flat or far off the high) — his "earnings/backlog
+    # inflection with conservative guidance" setup.
+    df['arch_liger_lagging_inflect'] = (
+        (rev_yoy >= 0.15) &
+        ((cash_conv_w >= 0.80) | (fcf_margin_w > 0)) &
+        (nde <= 1.0) &
+        ((mom12 <= 0.0) | (off_high <= -0.30))
+    ).fillna(False).astype(int)
+
+    # ---------- Oak Bloke-style special situations ----------
+    # Commodity/resource producer with operating leverage: cheap on
+    # EBITDA, low leverage, real margins — the Thungela/UUUU shape.
+    df['arch_oak_resource_leverage'] = (
+        sector.isin({'Materials', 'Energy'}) &
+        (ev_ebitda_v > 0) & (ev_ebitda_v < 6.0) &
+        (nde <= 1.5) &
+        (ebitda_margin >= 0.20) &
+        (fcf_yield > 0)
+    ).fillna(False).astype(int)
+
+    # Cash-flow deleveraging/yield: heavy FCF against a debt load that is
+    # being paid down — equity compounds as EV migrates from debt to
+    # shareholders (the DEC/Avation mechanic).
+    df['arch_oak_deleveraging'] = (
+        (fcf_yield >= 0.10) &
+        (nde >= 1.0) & (nde <= 3.0) &
+        ((div_yield_v >= 0.03) | (cap_ret_v >= 0.03))
+    ).fillna(False).astype(int)
+
+    # Distressed deep value with a hard-asset parachute: crushed price,
+    # sub-half book, sub-0.3 sales, real cash on hand, and still EBITDA-
+    # positive (separates the survivors from the wipeouts).
+    df['arch_oak_deep_value'] = (
+        (off_high <= -0.50) &
+        (pb > 0) & (pb < 0.5) &
+        (p_s_v > 0) & (p_s_v < 0.3) &
+        (cash_pct_mcap_v >= 0.20) &
+        (ebitda_ttm_v > 0)
+    ).fillna(False).astype(int)
+
     arch_cols = [
         'arch_narrative_lag',
         'arch_fixed_cost_demand_shock',
@@ -692,6 +837,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_bab_low_beta',
         'arch_bab_becoming',
         'arch_bab_multibagger',
+        'arch_lynch_pegy',
+        'arch_lynch_evgy',
+        'arch_wolf_trifecta',
+        'arch_wolf_turnaround',
+        'arch_wolf_value_catalyst',
+        'arch_wolf_emerging',
+        'arch_wolf_seal',
+        'arch_liger_asset_backed',
+        'arch_liger_lagging_inflect',
+        'arch_oak_resource_leverage',
+        'arch_oak_deleveraging',
+        'arch_oak_deep_value',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -731,6 +888,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_bab_low_beta': 'BAB-LowBetaQuality',
         'arch_bab_becoming': 'BAB-Becoming',
         'arch_bab_multibagger': 'BAB-Multibagger',
+        'arch_lynch_pegy': 'LynchPEGY',
+        'arch_lynch_evgy': 'LynchEV-GY',
+        'arch_wolf_trifecta': 'WolfTrifecta',
+        'arch_wolf_turnaround': 'WolfTurnaround',
+        'arch_wolf_value_catalyst': 'WolfValueCatalyst',
+        'arch_wolf_emerging': 'WolfEmergingSector',
+        'arch_wolf_seal': 'WolfSeal',
+        'arch_liger_asset_backed': 'LigerAssetBacked',
+        'arch_liger_lagging_inflect': 'LigerLaggingInflect',
+        'arch_oak_resource_leverage': 'OakResourceLeverage',
+        'arch_oak_deleveraging': 'OakDeleveraging',
+        'arch_oak_deep_value': 'OakDeepValue',
     }
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(

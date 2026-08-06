@@ -68,6 +68,18 @@ ARCHETYPE_LABELS = {
     'arch_bab_low_beta': 'BAB — Low-Beta Quality',
     'arch_bab_becoming': 'BAB — Becoming Low-Beta',
     'arch_bab_multibagger': 'BAB — Multibagger / Cheap',
+    'arch_lynch_pegy': 'Lynch PEGY ≤ 1',
+    'arch_lynch_evgy': 'Lynch EV/EBITDA-GY ≤ 0.6',
+    'arch_wolf_trifecta': 'Wolf Trifecta High-Growth',
+    'arch_wolf_turnaround': 'Wolf Turnaround',
+    'arch_wolf_value_catalyst': 'Wolf Value + Catalyst',
+    'arch_wolf_emerging': 'Wolf Emerging-Sector Profit',
+    'arch_wolf_seal': 'Wolf Seal (Fresh Trigger)',
+    'arch_liger_asset_backed': 'Liger Asset-Backed Floor',
+    'arch_liger_lagging_inflect': 'Liger Lagging Inflection',
+    'arch_oak_resource_leverage': 'Oak Resource Leverage',
+    'arch_oak_deleveraging': 'Oak Deleveraging Yield',
+    'arch_oak_deep_value': 'Oak Distressed Deep Value',
 }
 
 
