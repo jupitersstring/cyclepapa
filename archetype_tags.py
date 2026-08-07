@@ -945,6 +945,45 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((ebitda_inflection > 0) | (ebitda_yoy_v > 0))
     ).fillna(False).astype(int)
 
+    # ---------- Ted Weschler leveraged-equity deleveraging ----------
+    # (dirtcheapstocks case study, Valassis Communications). The equity is
+    # CHEAP on its own cash flow (low P/FCF = high FCF yield) but the company
+    # is HEAVILY indebted, so it looks expensive on EV (EV >> market cap). The
+    # equity is a small, high-torque claim on a deleveraging business: as debt
+    # is serviced and paid down, enterprise value migrates from lenders to the
+    # (shrinking, bought-back) equity, compounding it hard. Valassis: traded
+    # <1x FCF, ~$1.15B debt, EBIT covered interest even in the 2008 recession,
+    # paid down $200-305M/yr from FCF, bought back 16% of shares -> ~52%/yr for
+    # six years.
+    # The thesis works only when the company can (a) SERVICE the debt, (b)
+    # AMORTISE it from cash, and (c) has LONG-DATED maturities (no near-term
+    # refinancing wall). We can screen (a) and (b); we have NO debt-maturity-
+    # schedule field, so the maturity-wall risk is NOT screenable — it must be
+    # checked by hand before acting on this flag.
+    ev_raw = s('enterprise_value')
+    mcap_raw = s('market_cap')  # same-currency as EV -> ratio is FX-neutral
+    ev_over_mcap = pd.Series(np.nan, index=df.index)
+    _m = (mcap_raw > 0) & (ev_raw > 0)
+    ev_over_mcap[_m] = ev_raw[_m] / mcap_raw[_m]
+    # NaN-preserving nde so MISSING debt (which s() fills with 99) can't
+    # spuriously satisfy the "heavy debt" test.
+    nde_real = pd.to_numeric(df['net_debt_ebitda'], errors='coerce') \
+        if 'net_debt_ebitda' in df.columns else pd.Series(np.nan, index=df.index)
+    # Upper bounds reject near-zero-mcap data artifacts (a fcf_yield of
+    # 55,000,000x or EV/mcap of 130,000,000x is a broken market cap, not a
+    # cheap stub). Genuine Weschler zone: P/FCF ~0.5-6.7x, EV a few x equity.
+    heavy_debt = ((nde_real >= 3.0) & (nde_real <= 30.0)) | \
+                 ((ev_over_mcap >= 1.75) & (ev_over_mcap <= 30.0))
+    df['arch_weschler_levered_equity'] = (
+        (fcf_yield >= 0.15) & (fcf_yield <= 2.0) &  # cheap on equity cash (low P/FCF)
+        (ebitda_ttm_v > 0) &                     # EBITDA to service the debt
+        heavy_debt &                             # enormous debt burden
+        (fcf_ttm_v > 0) &                        # cash to amortise (deleverage)
+        ((ebitda_yoy_v >= 0) | (ebitda_inflection > 0)) &  # stable/rising -> deleveraging
+        _soft_ok_above('interest_coverage', 1.0) &  # can service (soft; 8% cov)
+        (mcap > 0) & (mcap < 5e9)                # small/mid, where this is mispriced
+    ).fillna(False).astype(int)
+
     arch_cols = [
         'arch_narrative_lag',
         'arch_fixed_cost_demand_shock',
@@ -1000,6 +1039,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_oak_nav_discount',
         'arch_oak_asset_floor',
         'arch_oak_order_conversion',
+        'arch_weschler_levered_equity',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -1056,6 +1096,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_oak_nav_discount': 'OakNAVDiscount',
         'arch_oak_asset_floor': 'OakAssetFloor',
         'arch_oak_order_conversion': 'OakOrderConversion',
+        'arch_weschler_levered_equity': 'WeschlerLeveredEquity',
     }
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(

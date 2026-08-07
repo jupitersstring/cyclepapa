@@ -85,6 +85,7 @@ ARCHETYPE_LABELS = {
     'arch_oak_nav_discount': 'Oak NAV Discount (Holdco)',
     'arch_oak_asset_floor': 'Oak Asset Floor',
     'arch_oak_order_conversion': 'Oak Order-Book Conversion',
+    'arch_weschler_levered_equity': 'Weschler Levered-Equity Deleveraging',
 }
 
 
