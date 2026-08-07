@@ -77,9 +77,14 @@ ARCHETYPE_LABELS = {
     'arch_wolf_seal': 'Wolf Seal (Fresh Trigger)',
     'arch_liger_asset_backed': 'Liger Asset-Backed Floor',
     'arch_liger_lagging_inflect': 'Liger Lagging Inflection',
+    'arch_wolf_compounder': 'Wolf Compounder (Accelerating)',
+    'arch_liger_neglected_survivor': 'Liger Neglected Survivor',
     'arch_oak_resource_leverage': 'Oak Resource Leverage',
     'arch_oak_deleveraging': 'Oak Deleveraging Yield',
     'arch_oak_deep_value': 'Oak Distressed Deep Value',
+    'arch_oak_nav_discount': 'Oak NAV Discount (Holdco)',
+    'arch_oak_asset_floor': 'Oak Asset Floor',
+    'arch_oak_order_conversion': 'Oak Order-Book Conversion',
 }
 
 

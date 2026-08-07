@@ -671,13 +671,24 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (evgy_v > 0) & (evgy_v <= 0.6)
     ).fillna(False).astype(int)
 
-    # ---------- Wolf of Oakville family ----------
-    # Small-cap picker (~105%/yr on 19 picks since 2023: HBFG 20x, NCI 15x,
-    # ZOMD 10x...). Core doctrine: the "Wolf Trifecta" — strengthening
-    # revenue, improving margins, expense control — on clean microcap
-    # balance sheets bought at unde­manding multiples. Screens below are the
-    # quant translation of his five published archetypes; the qualitative
-    # legs (insider buying, FINS star ratings) have no columns here.
+    # ======================================================================
+    # Practitioner archetypes — Wolf of Oakville, Liger Cub / Byron Street,
+    # Oak Bloke. Thresholds below were tightened against the investors' ACTUAL
+    # published writing (blogs read Aug 2026); see refinement notes inline.
+    #
+    # Two cross-cutting corrections applied throughout:
+    #  (1) Growth/margin inputs are CLAMPED to plausible bands. Raw yfinance
+    #      deltas carry data artifacts (ebitda_margin_delta_yoy ranged to
+    #      ±244,930; rev_yoy to 16,316x) that would otherwise satisfy any
+    #      ">0" growth gate on garbage.
+    #  (2) A negative EBITDA makes net_debt/EBITDA negative, so `nde <= X`
+    #      silently passes loss-makers. Every "clean balance sheet" gate that
+    #      uses nde now also requires ebitda_ttm > 0 (or uses net-cash %).
+    # Sparse EDGAR-only columns (interest_coverage 8%, sbc_pct_revenue 9%,
+    # capital_return_yield 5%) are used as SOFT guards — they exclude a name
+    # only when the value is PRESENT and bad, never when it's missing —
+    # otherwise the archetype would collapse to US filers.
+    # ======================================================================
     cfo_ttm_v = s('cfo_ttm')
     fcf_ttm_v = s('fcf_ttm')
     ev_sales_v = s('ev_sales', 99.0)
@@ -685,118 +696,243 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     fcf_margin_w = s('fcf_margin')
     op_margin_v = s('op_margin')
     ebitda_ttm_v = s('ebitda_ttm')
-    cash_pct_mcap_v = s('cash_pct_mcap')
+    ev_ebitda_v = s('ev_ebitda', 99.0)
+    pe_w = s('p_e', 99.0)
     cash_conv_w = s('cash_conversion')
     div_yield_v = s('dividend_yield')
-    cap_ret_v = s('capital_return_yield')
-    off_high = s('pct_off_52w_high')   # negative = below the 52w high
+    ebitda_yoy_v = s('ebitda_yoy').clip(-3.0, 10.0)
+    ncav_pct = s('ncav_pct_mcap')
+    n_analysts_v = s('n_analysts', 0.0)     # missing -> 0 -> treated as neglected
+    off_high = s('pct_off_52w_high')        # negative = below the 52w high
+    # Clamped growth/margin inputs (kill the data-artifact tail)
+    rev_yoy_c = rev_yoy.clip(-1.0, 10.0)
+    emd_c = ebitda_margin_delta.clip(-1.0, 1.0)
+    cash_pct_mcap_v = s('cash_pct_mcap').clip(0.0, 3.0)
+    net_cash_pct_c = net_cash_pct.clip(-2.0, 2.0)
 
-    # A — Explosive high-growth microcap ("Wolf Trifecta"): 50%+ revenue
-    # growth, already cash-generative, margins improving, cheap on sales.
+    def _soft_ok_below(colname, thresh):
+        """True unless the column is PRESENT and >= thresh (soft exclude)."""
+        c = pd.to_numeric(df[colname], errors='coerce') if colname in df.columns \
+            else pd.Series(np.nan, index=df.index)
+        return ~(c.notna() & (c >= thresh))
+
+    def _soft_ok_above(colname, thresh):
+        """True unless the column is PRESENT and < thresh (soft exclude)."""
+        c = pd.to_numeric(df[colname], errors='coerce') if colname in df.columns \
+            else pd.Series(np.nan, index=df.index)
+        return ~(c.notna() & (c < thresh))
+
+    low_sbc_wolf = _soft_ok_below('sbc_pct_revenue', 0.15)   # Wolf dings excess SBC
+    low_sbc_liger = _soft_ok_below('sbc_pct_revenue', 0.10)  # Liger flags diluters
+    # Wolf's most-cited discipline: a cheap ENTRY multiple ceiling. Every
+    # verified winner entered <12x EV/EBITDA or <20x P/E (NCI 9x/11pe,
+    # ZOMD 6.2x/8pe); he SOLD KITS at 175pe on the same rule.
+    wolf_cheap_entry = (((ev_ebitda_v > 0) & (ev_ebitda_v < 12.0)) |
+                        ((pe_w > 0) & (pe_w < 20.0)))
+    # Neglected-microcap sectors Liger avoids (binary-outcome capital sinks).
+    _ind = df['industry'].fillna('').astype(str).str.lower() if 'industry' in df.columns else pd.Series('', index=df.index)
+    _nm = df['name'].fillna('').astype(str).str.lower() if 'name' in df.columns else pd.Series('', index=df.index)
+    liger_sector_ok = ~_ind.str.contains(
+        'biotech|pharmaceutical|mining|metals|coal|gold|silver|crypto|blockchain',
+        regex=True)
+
+    # ---------- Wolf of Oakville family ----------
+    # ~105%/yr on 19 picks since 2023. Doctrine = the "Wolf Trifecta":
+    # DOUBLE-DIGIT revenue growth + improving margins + operating leverage
+    # (opex growing slower than sales, i.e. EBITDA outgrowing revenue),
+    # bought at an undemanding multiple. (Refined: growth floor 50%->15%;
+    # added the operating-leverage leg and the cheap-entry ceiling he lives
+    # by; SBC guard.)
     df['arch_wolf_trifecta'] = (
-        (mcap >= 20e6) & (mcap <= 300e6) &
-        (rev_yoy >= 0.50) &
+        (mcap >= 10e6) & (mcap <= 300e6) &
+        (rev_yoy_c >= 0.15) &                       # "double-digit", not 50%
+        (ebitda_yoy_v > rev_yoy_c) &                # operating leverage (the 3rd leg)
+        (emd_c > 0.0) &                             # margins genuinely improving
         ((cfo_ttm_v > 0) | (fcf_ttm_v > 0)) &
         (ev_sales_v > 0) & (ev_sales_v < 3.0) &
-        (ebitda_margin_delta >= 0.0)
+        wolf_cheap_entry &
+        low_sbc_wolf
     ).fillna(False).astype(int)
 
-    # B — Turnaround/improvement: loss-maker crossing into the black with
-    # margins inflecting and revenue not collapsing.
+    # B — Turnaround: loss-maker crossing into the black (incl. the OCF-
+    # turns-positive shape, e.g. SBBC) while still GROWING (he avoided the
+    # flat/declining Thermal Energy). Cheap-entry ceiling added.
     df['arch_wolf_turnaround'] = (
         (mcap >= 10e6) & (mcap <= 200e6) &
         ((ebitda_first_pos > 0) | (cfo_first_pos > 0) |
          (fcf_first_pos > 0) | (ni_first_pos > 0) |
-         ((ebitda_inflection > 0) & (ebitda_margin_delta > 0))) &
-        (ebitda_margin_delta >= 0.0) &
-        (rev_yoy > -0.05)
+         (cfo_inflection > 0) | (fcf_inflection > 0) |
+         ((ebitda_inflection > 0) & (emd_c > 0))) &
+        (emd_c >= 0.0) &
+        (rev_yoy_c >= 0.0) &                        # growing, not shrinking
+        wolf_cheap_entry
     ).fillna(False).astype(int)
 
-    # C — Value/catalyst: net-cash-heavy microcap on a distressed multiple
-    # (the D-Box shape: cash floor > half the cap, single-digit EV/EBITDA).
+    # C — Value + catalyst (repurposed). He is NOT a net-net investor; his
+    # real shape is a growing, cash-generative microcap with a fortress
+    # balance sheet at a cheap FCF yield (Progressive Planet: ~12% FCF yld,
+    # ~$32M cap, growing). Lowered net-cash floor 0.50->0.20; added growth
+    # + positive CFO; FCF-yield as the cheapness catalyst.
     df['arch_wolf_value_catalyst'] = (
-        (mcap > 0) & (mcap < 150e6) &
-        (net_cash_pct >= 0.50) &
-        (((ev_ebitda_v := s('ev_ebitda', 99.0)) > 0) & (ev_ebitda_v < 5.0) |
-         ((p_s_v > 0) & (p_s_v < 1.0)))
+        (mcap > 0) & (mcap < 200e6) &
+        (net_cash_pct_c >= 0.20) &
+        (rev_yoy_c >= 0.10) &
+        (cfo_ttm_v > 0) &
+        ((fcf_yield >= 0.08) |
+         ((ev_ebitda_v > 0) & (ev_ebitda_v < 6.0)))
     ).fillna(False).astype(int)
 
-    # D — Emerging-sector profitability (his cautious cannabis bets):
-    # trendy high-risk sector name that has actually reached profits.
-    _ind = df['industry'].fillna('').astype(str).str.lower() if 'industry' in df.columns else pd.Series('', index=df.index)
-    _nm = df['name'].fillna('').astype(str).str.lower() if 'name' in df.columns else pd.Series('', index=df.index)
+    # D — Emerging-sector profitability (his cautious cannabis bets). His one
+    # such pick (Simply Solventless/HASH) blew up -57% on accounting + cash
+    # problems, so gate hard on POSITIVE OPERATING CASH FLOW (not just EBITDA)
+    # and clean SBC — exactly what would have excluded HASH.
     _emerging = (_ind.str.contains('cannabis|hemp|marijuana|tobacco', regex=True) |
                  _nm.str.contains('cannabis|hemp', regex=True))
     df['arch_wolf_emerging'] = (
         _emerging &
-        (ebitda_ttm_v > 0) &
-        (((pe_w := s('p_e', 99.0)) > 0) & (pe_w < 10.0) |
-         ((ev_ebitda_v > 0) & (ev_ebitda_v < 6.0)))
+        (cfo_ttm_v > 0) &
+        low_sbc_wolf &
+        (((pe_w > 0) & (pe_w < 10.0)) | ((ev_ebitda_v > 0) & (ev_ebitda_v < 6.0)))
     ).fillna(False).astype(int)
 
-    # E — "Seal of Approval" fresh trigger: a printed inflection with the
-    # tape already confirming (positive momentum, near the 52w high).
+    # E — "Seal of Approval" fresh trigger: an earnings inflection bought on
+    # a post-earnings dip. Loosened the drawdown gate (he buys before the
+    # full run) and added his valuation discipline (the KITS lesson).
     df['arch_wolf_seal'] = (
         (mcap > 0) & (mcap < 500e6) &
         inflection_print &
-        (mom12 >= 0.25) &
-        (off_high >= -0.30)
+        (mom12 >= 0.10) &
+        (off_high >= -0.50) &
+        (((ev_ebitda_v > 0) & (ev_ebitda_v < 15.0)) | ((pe_w > 0) & (pe_w < 25.0)))
+    ).fillna(False).astype(int)
+
+    # F — NEW: Wolf Compounder — his signature winner (NCI/ZOMD/KITS-at-entry):
+    # a sustained, ACCELERATING grower bought at a single-digit/low-teens
+    # multiple, margins expanding, cash-positive, low dilution. Isolates the
+    # multi-quarter streak the single-period trifecta gate can miss.
+    df['arch_wolf_compounder'] = (
+        (mcap >= 10e6) & (mcap <= 150e6) &
+        (rev_yoy_c >= 0.25) & (rev_accel > 0) &     # accelerating streak
+        ((cfo_ttm_v > 0) | (fcf_ttm_v > 0)) &
+        (emd_c > 0) &
+        ((ev_ebitda_v > 0) & (ev_ebitda_v < 12.0)) &
+        (pe_w > 0) & (pe_w < 20.0) &
+        low_sbc_wolf
     ).fillna(False).astype(int)
 
     # ---------- Liger Cub / Byron Street family ----------
-    # Long-only public-information arbitrage in neglected microcaps. The
-    # OSINT legs (website metadata, job postings, procurement, shipping)
-    # aren't screenable here; these two capture the FINANCIAL preconditions
-    # his best setups share.
-    # Asset-backed optionality: hard floor (net cash covers most of the
-    # cap), operating business near break-even or better, so the thesis
-    # doesn't need financing to survive.
+    # Long-only public-information arbitrage in NEGLECTED microcaps. His edge
+    # is OSINT (unscreenable); these capture the financial preconditions his
+    # documented longs (RCMT, VTSI) shared: neglect (<=3-4 analysts), no
+    # dilution, survivable balance sheet, near-breakeven-or-better cash flow
+    # (this gate correctly REJECTS the WATT cash-burner, whose edge was pure
+    # OSINT), depressed/off-highs, and NOT mining/biotech/crypto.
     df['arch_liger_asset_backed'] = (
-        (mcap > 0) & (mcap < 300e6) &
-        (net_cash_pct >= 0.60) &
-        ((op_margin_v >= -0.05) | (ebitda_margin >= 0.0))
+        (mcap > 0) & (mcap < 400e6) &
+        (net_cash_pct_c >= 0.20) &                  # 0.60 excluded every real long
+        (n_analysts_v <= 4) &
+        ((op_margin_v >= -0.05) | (ebitda_margin >= 0.0)) &
+        low_sbc_liger &
+        liger_sector_ok
     ).fillna(False).astype(int)
 
-    # Quiet inflection the market failed to process: reported growth +
-    # clean cash conversion + safe balance sheet, while the PRICE still
-    # lags (down/flat or far off the high) — his "earnings/backlog
-    # inflection with conservative guidance" setup.
+    # Quiet inflection the market hasn't processed. His signal is
+    # ACCELERATION (RCMT consolidated +14.7% but the segment far faster), not
+    # a high absolute growth level — so the growth gate is now accel-aware.
+    # Leverage loosened 1.0->1.5 (RCMT ran ~1.3-1.5x) with the ebitda>0 guard.
     df['arch_liger_lagging_inflect'] = (
-        (rev_yoy >= 0.15) &
+        (((rev_yoy_c >= 0.10) & (rev_accel > 0)) | (rev_yoy_c >= 0.15) | (emd_c > 0)) &
         ((cash_conv_w >= 0.80) | (fcf_margin_w > 0)) &
-        (nde <= 1.0) &
+        (ebitda_ttm_v > 0) & (nde <= 1.5) &         # ebitda>0 guard on nde
+        (n_analysts_v <= 4) &
+        low_sbc_liger &
+        liger_sector_ok &
         ((mom12 <= 0.0) | (off_high <= -0.30))
     ).fillna(False).astype(int)
 
-    # ---------- Oak Bloke-style special situations ----------
-    # Commodity/resource producer with operating leverage: cheap on
-    # EBITDA, low leverage, real margins — the Thungela/UUUU shape.
+    # NEW: Liger Neglected Survivor — the single best proxy for his edge:
+    # neglected + financially survivable (no dilution) + cheap, with an early
+    # inflection and room to re-rate on a material catalyst. RCMT & VTSI pass;
+    # WATT is intentionally rejected by the near-breakeven gate.
+    df['arch_liger_neglected_survivor'] = (
+        (mcap >= 20e6) & (mcap <= 400e6) &
+        (n_analysts_v <= 3) &
+        ((net_cash_pct_c >= 0.15) | ((ebitda_ttm_v > 0) & (nde <= 1.5))) &
+        ((fcf_margin_w >= 0.0) | (op_margin_v >= -0.02)) &
+        low_sbc_liger &
+        ((off_high <= -0.30) | ((ev_sales_v > 0) & (ev_sales_v <= 2.0))) &
+        ((rev_accel > 0) | (emd_c > 0)) &
+        liger_sector_ok
+    ).fillna(False).astype(int)
+
+    # ---------- Oak Bloke special situations ----------
+    # Every Oak winner pairs cheapness with a CASH-RICH, cash-generative
+    # balance sheet; every trap (Belluscura -96.6%) was a cash-burner needing
+    # external capital. So each screen now carries a solvency/cash gate.
+    #
+    # Resource leverage — low-cost producer in the bottom half of the cost
+    # curve, bought NET-CASH on price weakness (Thungela: ~75% of price was
+    # cash, P/E<1). Added cash floor + high-margin (cost-curve) proxy +
+    # bought-on-weakness; loosened EV/EBITDA to 8 so the very cheapest qualify.
     df['arch_oak_resource_leverage'] = (
         sector.isin({'Materials', 'Energy'}) &
-        (ev_ebitda_v > 0) & (ev_ebitda_v < 6.0) &
-        (nde <= 1.5) &
-        (ebitda_margin >= 0.20) &
-        (fcf_yield > 0)
+        (ev_ebitda_v > 0) & (ev_ebitda_v < 8.0) &
+        (ebitda_ttm_v > 0) & (nde <= 1.5) &
+        (cash_pct_mcap_v >= 0.20) &                 # net-cash survivability
+        (ebitda_margin >= 0.25) &                   # cost-curve proxy
+        (fcf_yield >= 0.08) &
+        (off_high <= -0.20)                         # bought on weakness
     ).fillna(False).astype(int)
 
-    # Cash-flow deleveraging/yield: heavy FCF against a debt load that is
-    # being paid down — equity compounds as EV migrates from debt to
-    # shareholders (the DEC/Avation mechanic).
+    # Deleveraging/yield — heavy FCF, moderate debt being paid down (rising
+    # EBITDA mechanically cuts the ratio = his actual thesis), material
+    # shareholder return. Yield floor raised to DEC-scale; solvency soft gate.
     df['arch_oak_deleveraging'] = (
         (fcf_yield >= 0.10) &
-        (nde >= 1.0) & (nde <= 3.0) &
-        ((div_yield_v >= 0.03) | (cap_ret_v >= 0.03))
+        (ebitda_ttm_v > 0) & (nde >= 1.0) & (nde <= 3.0) &
+        ((ebitda_yoy_v > 0) | (ebitda_inflection > 0)) &   # leverage trajectory
+        ((div_yield_v >= 0.06) | (s('capital_return_yield', 0.0) >= 0.06)) &
+        _soft_ok_above('interest_coverage', 2.0)
     ).fillna(False).astype(int)
 
-    # Distressed deep value with a hard-asset parachute: crushed price,
-    # sub-half book, sub-0.3 sales, real cash on hand, and still EBITDA-
-    # positive (separates the survivors from the wipeouts).
+    # Distressed deep value with a hard-asset parachute — crushed price, deep
+    # discount to book OR net-net, real cash, still cash-GENERATIVE (the
+    # Belluscura gate: positive EBITDA alone isn't enough, require FCF/CFO>0).
     df['arch_oak_deep_value'] = (
         (off_high <= -0.50) &
-        (pb > 0) & (pb < 0.5) &
-        (p_s_v > 0) & (p_s_v < 0.3) &
+        (((pb > 0) & (pb < 0.7)) | (ncav_pct >= 0.5)) &
         (cash_pct_mcap_v >= 0.20) &
-        (ebitda_ttm_v > 0)
+        (ebitda_ttm_v > 0) & ((fcf_ttm_v > 0) | (cfo_ttm_v > 0)) &
+        _soft_ok_above('interest_coverage', 1.5)
+    ).fillna(False).astype(int)
+
+    # NEW: Oak NAV-discount holdco — his price/NAV<0.7 + covered-yield trusts.
+    # PROXY ONLY: for investment vehicles book ~ NAV, so a Financials-sector
+    # deep book discount with a high yield. Cannot capture true NAV (marks on
+    # unlisted assets) or his dividend-cover >=1.2x test.
+    df['arch_oak_nav_discount'] = (
+        sector.isin({'Financials'}) &
+        (pb > 0) & (pb < 0.7) &
+        (div_yield_v >= 0.05)
+    ).fillna(False).astype(int)
+
+    # NEW: Oak asset floor — market cap at/below cash + hard assets (CVV/PRTC).
+    # Well-captured on the CASH leg (net cash or NCAV >= mcap = Graham floor);
+    # does NOT see hidden real-estate-at-market or private-stake value.
+    df['arch_oak_asset_floor'] = (
+        (mcap > 0) & (mcap < 500e6) &
+        ((net_cash_pct_c >= 0.40) | (ncav_pct >= 0.80)) &
+        (pb > 0) & (pb < 1.5)
+    ).fillna(False).astype(int)
+
+    # NEW: Oak order-book conversion (backlog->revenue, the MPAC pattern).
+    # LAGGING proxy: we can't see order intake / book-to-bill, only the P&L
+    # footprint once it lands — accelerating revenue + margin expansion.
+    df['arch_oak_order_conversion'] = (
+        (mcap > 0) & (mcap < 1e9) &
+        ((rev_accel > 0) | (rev_yoy_c > 0.05)) &
+        (emd_c > 0) &
+        ((ebitda_inflection > 0) | (ebitda_yoy_v > 0))
     ).fillna(False).astype(int)
 
     arch_cols = [
@@ -846,9 +982,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_wolf_seal',
         'arch_liger_asset_backed',
         'arch_liger_lagging_inflect',
+        'arch_wolf_compounder',
+        'arch_liger_neglected_survivor',
         'arch_oak_resource_leverage',
         'arch_oak_deleveraging',
         'arch_oak_deep_value',
+        'arch_oak_nav_discount',
+        'arch_oak_asset_floor',
+        'arch_oak_order_conversion',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -897,9 +1038,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_wolf_seal': 'WolfSeal',
         'arch_liger_asset_backed': 'LigerAssetBacked',
         'arch_liger_lagging_inflect': 'LigerLaggingInflect',
+        'arch_wolf_compounder': 'WolfCompounder',
+        'arch_liger_neglected_survivor': 'LigerNeglectedSurvivor',
         'arch_oak_resource_leverage': 'OakResourceLeverage',
         'arch_oak_deleveraging': 'OakDeleveraging',
         'arch_oak_deep_value': 'OakDeepValue',
+        'arch_oak_nav_discount': 'OakNAVDiscount',
+        'arch_oak_asset_floor': 'OakAssetFloor',
+        'arch_oak_order_conversion': 'OakOrderConversion',
     }
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(
