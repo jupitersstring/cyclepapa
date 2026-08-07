@@ -36,3 +36,4 @@ deep_driver.log
 .deep_rendered
 .yahoo_session.json
 pip_install.log
+yahoo_chart_fill.csv.tmp
