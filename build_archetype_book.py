@@ -144,6 +144,13 @@ def load_data():
         mc = ['symbol'] + [c for c in val.columns if c != 'symbol' and c not in df.columns]
         df = df.merge(val[mc], on='symbol', how='left')
 
+    # Normalise market_cap to USD for cross-country comparability (the books
+    # are USD-labelled). market_cap_usd is produced by fix_pipeline; fall back
+    # to raw market_cap only where the USD value is missing.
+    if 'market_cap_usd' in df.columns:
+        df['market_cap'] = (pd.to_numeric(df['market_cap_usd'], errors='coerce')
+                            .fillna(pd.to_numeric(df['market_cap'], errors='coerce')))
+
     # Apply min mcap + exclude RED
     df = df[df['market_cap'].fillna(0) >= 10_000_000]
     df = df[df['verdict'] != 'RED']

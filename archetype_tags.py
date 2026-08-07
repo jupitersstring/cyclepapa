@@ -724,6 +724,16 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
 
     low_sbc_wolf = _soft_ok_below('sbc_pct_revenue', 0.15)   # Wolf dings excess SBC
     low_sbc_liger = _soft_ok_below('sbc_pct_revenue', 0.10)  # Liger flags diluters
+    # `nde` defaults to 99 when net_debt_ebitda is missing (37% of names), so
+    # a `nde <= X` gate silently EXCLUDES clean names whose debt just wasn't
+    # fetched — including 1,652 names that are clearly net cash. Treat a name
+    # as clean-balance-sheet if EITHER a real low nde OR a real net-cash %.
+    def _clean_bs(nde_max):
+        return ((ebitda_ttm_v > 0) & (nde <= nde_max)) | (net_cash_pct_c >= 0.20)
+    # rev_yoy defaults to 0, so `rev_yoy >= 0` passes 15k missing-growth rows.
+    # Require the field actually present for "not shrinking" gates.
+    rev_present = (pd.to_numeric(df['rev_yoy'], errors='coerce').notna()
+                   if 'rev_yoy' in df.columns else pd.Series(False, index=df.index))
     # Wolf's most-cited discipline: a cheap ENTRY multiple ceiling. Every
     # verified winner entered <12x EV/EBITDA or <20x P/E (NCI 9x/11pe,
     # ZOMD 6.2x/8pe); he SOLD KITS at 175pe on the same rule.
@@ -764,7 +774,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
          (cfo_inflection > 0) | (fcf_inflection > 0) |
          ((ebitda_inflection > 0) & (emd_c > 0))) &
         (emd_c >= 0.0) &
-        (rev_yoy_c >= 0.0) &                        # growing, not shrinking
+        (rev_yoy_c >= 0.0) & rev_present &          # growing (present), not shrinking
         wolf_cheap_entry
     ).fillna(False).astype(int)
 
@@ -843,7 +853,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_liger_lagging_inflect'] = (
         (((rev_yoy_c >= 0.10) & (rev_accel > 0)) | (rev_yoy_c >= 0.15) | (emd_c > 0)) &
         ((cash_conv_w >= 0.80) | (fcf_margin_w > 0)) &
-        (ebitda_ttm_v > 0) & (nde <= 1.5) &         # ebitda>0 guard on nde
+        _clean_bs(1.5) &                            # clean b/s (nde OR net-cash)
         (n_analysts_v <= 4) &
         low_sbc_liger &
         liger_sector_ok &
@@ -877,7 +887,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_oak_resource_leverage'] = (
         sector.isin({'Materials', 'Energy'}) &
         (ev_ebitda_v > 0) & (ev_ebitda_v < 8.0) &
-        (ebitda_ttm_v > 0) & (nde <= 1.5) &
+        _clean_bs(1.5) &
         (cash_pct_mcap_v >= 0.20) &                 # net-cash survivability
         (ebitda_margin >= 0.25) &                   # cost-curve proxy
         (fcf_yield >= 0.08) &

@@ -70,6 +70,7 @@ done
 echo "$(ts) merging + re-rendering" >> "$LOG"
 "$PY" fill_asymmetry_gaps.py        >> "$LOG" 2>&1
 "$PY" derive_missing_columns.py     >> "$LOG" 2>&1
+"$PY" rebuild_scores.py            >> "$LOG" 2>&1   # FX+dedup+rescore (audit fix)
 "$PY" enrich_asymmetry_global.py    >> "$LOG" 2>&1
 "$PY" archetype_tags.py             >> "$LOG" 2>&1
 "$PY" enrich_asymmetry_global.py    >> "$LOG" 2>&1
@@ -99,6 +100,7 @@ PYEOF
 for cmd in \
   "build_segment_detail_book.py" "build_archetype_book.py" "build_harvard_workbook.py" \
   "build_country_workbook.py" "build_nms_book.py" "build_nms_candidates_book.py" \
+  "build_country_archetype_book.py --n 30" \
   "top_n_by_country.py --n 30 --out-csv top_n_by_country.csv --out-xlsx top_n_by_country.xlsx" \
   "top_n_by_country.py --n 30 --sort-by inflection --out-csv top_n_by_country_inflection.csv --out-xlsx top_n_by_country_inflection.xlsx" ; do
   echo "$(ts)  $cmd" >> "$LOG"
@@ -113,7 +115,7 @@ git add asymmetry_global.csv archetype_tags.csv \
   fdb_expansion_yartseva.csv fdb_deep_attempts.json \
   asymmetry_country_workbook.xlsx asymmetry_harvard_workbook.xlsx asymmetry_nms_book.xlsx \
   top_by_archetype_book.xlsx nms_multibagger_candidates.xlsx segment_detail_book.xlsx \
-  top_n_by_country.xlsx top_n_by_country_inflection.xlsx \
+  top_n_by_country.xlsx top_n_by_country_inflection.xlsx country_archetype_book.xlsx \
   top_n_by_country.csv top_n_by_country_inflection.csv 2>/dev/null
 if ! git diff --cached --quiet 2>/dev/null; then
   git commit -q -m "Deep enrichment complete: merge + regenerate all workbooks" 2>>"$LOG"

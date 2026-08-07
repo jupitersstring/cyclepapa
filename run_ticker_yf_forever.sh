@@ -67,6 +67,8 @@ done
 echo "$(ts) driver: applying Yahoo fundamentals + re-rendering" >> "$DRIVER_LOG"
 "$PYTHON" apply_ticker_yf.py >> "$DRIVER_LOG" 2>&1
 "$PYTHON" fill_asymmetry_gaps.py >> "$DRIVER_LOG" 2>&1
+"$PYTHON" derive_missing_columns.py >> "$DRIVER_LOG" 2>&1
+"$PYTHON" rebuild_scores.py >> "$DRIVER_LOG" 2>&1   # FX+dedup+rescore (audit fix)
 "$PYTHON" enrich_asymmetry_global.py >> "$DRIVER_LOG" 2>&1
 "$PYTHON" archetype_tags.py >> "$DRIVER_LOG" 2>&1
 "$PYTHON" enrich_asymmetry_global.py >> "$DRIVER_LOG" 2>&1
@@ -79,6 +81,7 @@ for cmd in \
     "build_country_workbook.py" \
     "build_nms_book.py" \
     "build_nms_candidates_book.py" \
+    "build_country_archetype_book.py --n 30" \
     "top_n_by_country.py --n 30 --out-csv top_n_by_country.csv --out-xlsx top_n_by_country.xlsx" \
     "top_n_by_country.py --n 30 --sort-by inflection --out-csv top_n_by_country_inflection.csv --out-xlsx top_n_by_country_inflection.xlsx" ; do
     echo "$(ts) driver:   $cmd" >> "$DRIVER_LOG"

@@ -605,7 +605,8 @@ def build_name_sheet(ws: Worksheet, rank: int, r: pd.Series):
     _text_kv(row, "Bucket", r.get('market_cap_bucket') or '');                   row += 1
     _money_kv(row, "Market cap (USD)", r.get('market_cap_usd') or r.get('market_cap'));  row += 1
     _money_kv(row, "Revenue TTM (USD)", r.get('revenue_ttm_usd') or r.get('revenue_ttm')); row += 1
-    _text_kv(row, "As-of", str(r.get('balance_sheet_date') or ''));              row += 1
+    _bsd = r.get('balance_sheet_date')
+    _text_kv(row, "As-of", '' if pd.isna(_bsd) else str(_bsd));              row += 1
     for r2 in range(5, row):
         ws.row_dimensions[r2].height = 16
 
@@ -729,7 +730,8 @@ def build_name_sheet(ws: Worksheet, rank: int, r: pd.Series):
             row += 1
 
     # ── Notes
-    notes_text = str(r.get('notes', '') or '')
+    _notes = r.get('notes', '')
+    notes_text = '' if pd.isna(_notes) else str(_notes)
     if notes_text:
         row += 1
         _section_rule(ws, row, "Notes", span_cols=5); row += 1

@@ -58,6 +58,13 @@ DERIVED_COLUMNS = [
     'pretax_margin',
     'asset_turnover',
     'ev_revenue',
+    'ev_ebitda',
+    'ev_sales',
+    'p_s',
+    'pb',
+    'fcf_yield',
+    'ebitda_margin',
+    'gross_margin',
     'pegy',
     'ev_ebitda_gy',
 ]
@@ -227,6 +234,9 @@ def main():
     pretax = _to_num(_s('_e_pretax_income_ttm'))
     netinc = _to_num(_s('_e_netinc_ttm'))
     ev = _to_num(ev_use)
+    ebitda = _to_num(_s('ebitda_ttm'))
+    equity = _to_num(_s('equity'))
+    gross_profit = _to_num(_s('gross_profit_ttm'))
 
     # Counter for how many cells we add (any column, any row)
     fillable_columns_added = 0
@@ -279,6 +289,21 @@ def main():
 
     # 11) ev_revenue -- EV > 0, revenue > 0 (alias of ev_sales)
     _fill('ev_revenue', _safe_div(ev, rev, den_must_be_positive=True))
+
+    # 11b) Valuation ratios that were missing despite having their inputs —
+    # gap-fill only (existing values win). These close ~5.5k ratio gaps that
+    # were NOT caused by throttling: the raw inputs were fetched, the ratio
+    # just never got computed. EV/EBITDA and EV/EBIT require a POSITIVE
+    # denominator (a negative-EBITDA multiple is meaningless — left NaN as a
+    # genuine gap). Price ratios require a positive book/sales.
+    ebitda_pos = ebitda.where(ebitda > 0)
+    _fill('ev_ebitda', _safe_div(ev, ebitda_pos, den_must_be_positive=True))
+    _fill('ev_sales', _safe_div(ev, rev, den_must_be_positive=True))
+    _fill('p_s', _safe_div(mcap, rev, den_must_be_positive=True))
+    _fill('pb', _safe_div(mcap, equity, den_must_be_positive=True))
+    _fill('fcf_yield', _safe_div(fcf, mcap, den_must_be_positive=True))
+    _fill('ebitda_margin', _safe_div(ebitda, rev, den_must_be_positive=True))
+    _fill('gross_margin', _safe_div(gross_profit, rev, den_must_be_positive=True))
 
     # 12+13) Lynch multiples (recomputed every run, not gap-filled, so they
     # track the freshest growth/yield inputs).

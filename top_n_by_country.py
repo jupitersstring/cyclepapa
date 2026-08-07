@@ -154,6 +154,10 @@ def main():
     quant = load_quant()
     verdicts = load_verdicts()
     df = compute_eta(quant, verdicts)
+    # USD-normalise market cap so the min-mcap gate is comparable across markets
+    if 'market_cap_usd' in df.columns:
+        df['market_cap'] = (pd.to_numeric(df['market_cap_usd'], errors='coerce')
+                            .fillna(pd.to_numeric(df['market_cap'], errors='coerce')))
     df = df[df['market_cap'].fillna(0) >= args.min_mcap]
     if args.exclude_red:
         df = df[df['verdict'] != 'RED']

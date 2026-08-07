@@ -29,6 +29,7 @@ import json
 import sys
 from datetime import date
 
+import numpy as np
 import pandas as pd
 
 
@@ -162,7 +163,23 @@ def fx_convert(df: pd.DataFrame, fx: dict) -> pd.DataFrame:
             df.get('src', pd.Series('USD', index=df.index)).map(_country_to_currency)
         )
 
-    df['fx_to_usd'] = df['currency'].map(fx).fillna(1.0)
+    # Sub-currency units: Yahoo quotes some markets in 1/100 units (London
+    # pence, Israeli agora, SA cents). Their market_cap is 100x too large AND
+    # the code isn't in the FX table, so without this it would default to
+    # fx=1.0 — a ~100x error. Normalise to the parent currency's rate / 100.
+    SUBUNIT = {'GBp': ('GBP', 100.0), 'GBX': ('GBP', 100.0),
+               'ZAc': ('ZAR', 100.0), 'ZAC': ('ZAR', 100.0),
+               'ILA': ('ILS', 100.0), 'ILa': ('ILS', 100.0),
+               'KWf': ('KWD', 1000.0)}
+
+    def _rate(ccy):
+        if ccy in SUBUNIT:
+            parent, div = SUBUNIT[ccy]
+            base = fx.get(parent)
+            return base / div if base is not None else np.nan
+        return fx.get(ccy, np.nan)
+
+    df['fx_to_usd'] = df['currency'].map(_rate).fillna(1.0)
 
     for col in ('market_cap', 'revenue_ttm', 'ebitda_ttm', 'fcf_ttm',
                 'enterprise_value', 'net_cash', 'ncav'):
