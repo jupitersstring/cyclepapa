@@ -269,6 +269,30 @@ def score_opportunistic_insiders_layer(layers: dict, universe: set) -> dict:
     return out
 
 
+def score_discretionary_conviction_layer(layers: dict, universe: set) -> dict:
+    """Discretionary insider-conviction leg.
+
+    Orthogonal to the raw F4 layer (count + dollar) and the Cohen-Malloy
+    opportunistic layer: rewards only the anomalous, tightly-clustered,
+    role-weighted, high-conviction open-market buying (code P only). See
+    discretionary_insider_conviction.py. Names without a scored row -- or
+    without F4 data at all -- score 0."""
+    out = {tk: 0.0 for tk in universe}
+    f = ROOT / "discretionary_insider_conviction.json"
+    if f.exists():
+        try:
+            data = json.loads(f.read_text())
+            for tk, v in data.items():
+                if tk in out and isinstance(v, dict):
+                    try:
+                        out[tk] = float(v.get("score") or 0)
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+    return out
+
+
 def score_buyback_insider_overlay_layer(layers: dict, universe: set) -> dict:
     """Bonaime-Ryngaert insider-direction overlay on buyback.
     Returns a score DELTA (positive or negative) that ADDS to the
@@ -542,6 +566,7 @@ def main() -> int:
         # Ryngaert, Tauraitis odd-lot, Comment-Jarrell) -- each ADDS to
         # (does not replace) the corresponding base layer.
         "opportunistic_insiders": score_opportunistic_insiders_layer(layers, universe),
+        "discretionary_conviction": score_discretionary_conviction_layer(layers, universe),
         "buyback_insider_overlay": score_buyback_insider_overlay_layer(layers, universe),
         "odd_lot_tender": score_odd_lot_tender_layer(layers, universe),
         "tender_mechanism": score_tender_mechanism_layer(layers, universe),
@@ -620,6 +645,7 @@ def main() -> int:
             "special_sits_pts": layer_scores["special_situations"].get(tk, 0),
             "turnaround_pts": layer_scores["turnaround"].get(tk, 0),
             "opportunistic_pts": layer_scores["opportunistic_insiders"].get(tk, 0),
+            "discretionary_conviction_pts": layer_scores["discretionary_conviction"].get(tk, 0),
             "bb_insider_overlay_pts": layer_scores["buyback_insider_overlay"].get(tk, 0),
             "odd_lot_pts": layer_scores["odd_lot_tender"].get(tk, 0),
             "tender_mech_pts": layer_scores["tender_mechanism"].get(tk, 0),

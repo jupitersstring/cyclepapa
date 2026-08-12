@@ -14,4 +14,7 @@ echo
 echo "=== ticker validity gate ==="
 python3 test_ticker_gate.py
 echo
+echo "=== discretionary insider conviction ==="
+python3 test_discretionary_conviction.py
+echo
 echo "All test suites passed."

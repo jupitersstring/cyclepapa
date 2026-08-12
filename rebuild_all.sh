@@ -85,6 +85,13 @@ run python3 psu_archetypes_full.py         || true
 # (bastian_forcing, psu_valcreate, psu_asymmetric_full) -- also feed
 # the consensus, so likewise BEFORE it.
 run python3 gen_orphan_scorers.py          || true
+# Form 4-derived insider scorers (pure-compute from form4_buys.json) --
+# they write the JSONs consensus ingests, so run BEFORE it. Previously
+# these were run by hand and their outputs frozen; wiring them here keeps
+# the insider layers reachable and refreshed each build.
+run python3 opportunistic_insiders.py      || true
+run python3 discretionary_insider_conviction.py || true
+run python3 buyback_insider_overlay.py     || true
 run python3 full_universe_consensus.py     || true
 run python3 full_universe_consensus_noval.py || true
 run python3 grand_unified_ranker.py        || true

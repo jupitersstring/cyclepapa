@@ -272,13 +272,27 @@ def main() -> int:
         for tx in parsed["transactions"]:
             rec["total_dollar"] += tx["dollar"]
             rec["total_shares"] += tx["shares"]
+        txns = parsed["transactions"]
+        # weighted-avg price and the ending (max) post-transaction holding
+        tot_sh = sum(t["shares"] for t in txns) or 0.0
+        tot_dol = sum(t["dollar"] for t in txns)
+        avg_price = (tot_dol / tot_sh) if tot_sh else 0.0
+        post_shares = max((t.get("post_shares") or 0) for t in txns) if txns else 0.0
         rec["filings"].append({
             "accession": f["accession"],
             "date": f.get("file_date"),
             "person": parsed.get("person"),
             "title": parsed.get("title"),
-            "dollar": sum(t["dollar"] for t in parsed["transactions"]),
-            "shares": sum(t["shares"] for t in parsed["transactions"]),
+            "dollar": tot_dol,
+            "shares": tot_sh,
+            # --- enriched, additive fields (older files omit these) ---
+            "code": "P",  # parse_form4 keeps only open-market purchases
+            "price": round(avg_price, 4),
+            "post_shares": post_shares,
+            "txn_date": (txns[0].get("date") if txns else None),
+            "is_officer": parsed.get("is_officer", False),
+            "is_director": parsed.get("is_director", False),
+            "is_10pct": parsed.get("is_10pct", False),
         })
 
     out_path.write_text(json.dumps(by_ticker, indent=2, default=str))
