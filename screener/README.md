@@ -45,6 +45,29 @@ TTM FCF is depressed by the same shock that broke the price, so screening
 on trailing FCF yield systematically excludes the recoverable names. We
 use mean(last 5 fiscal-year FCF) over the CURRENT market cap instead.
 
+## Auction/breakout overlay
+
+`auction_overlay.py` layers a Dalton (Market Profile) auction read on top
+of the shortlist, from daily OHLCV only, on a monthly -> weekly -> daily
+hierarchy with the weekly leg weighted heaviest (50/30/20). Per ticker it
+computes volume-profile value (POC / 70% value area), value migration,
+13-week bracket breakout + acceptance vs rejection, failed auctions at
+the lows (probe under a 26-week low, bought back, never revisited),
+weekly one-timeframing, compression, up/down volume confirmation,
+auction efficiency, structural destination/invalidation with gross RR,
+and friction estimates (Corwin-Schultz spread, Amihud) so chart RR can
+be sanity-checked against trading cost.
+
+```bash
+python auction_overlay.py --shortlist ../us_global_shortlist.csv \
+    --out ../shortlist_auction.csv
+python test_auction_overlay.py   # offline synthetic tests
+```
+
+`alignment_score` (0-100) rewards monthly/weekly/daily confluence;
+`auction_label` classifies the weekly state (accepted_breakout,
+failed_auction_low, breakout_unconfirmed, rejection_at_highs, balance).
+
 ## Tests
 
 The computational core (label matching, 200w-low distance, FCF/buyback/
