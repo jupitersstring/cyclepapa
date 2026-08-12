@@ -65,6 +65,11 @@ DERIVED_COLUMNS = [
     'fcf_yield',
     'ebitda_margin',
     'gross_margin',
+    'net_income_ttm',
+    'owner_earnings_yield',
+    'cfo_yield',
+    'earnings_yield',
+    'robust_cash_yield',
     'pegy',
     'ev_ebitda_gy',
 ]
@@ -237,6 +242,8 @@ def main():
     ebitda = _to_num(_s('ebitda_ttm'))
     equity = _to_num(_s('equity'))
     gross_profit = _to_num(_s('gross_profit_ttm'))
+    cfo = _to_num(_s('cfo_ttm'))
+    net_margin = _to_num(_s('net_margin'))
 
     # Counter for how many cells we add (any column, any row)
     fillable_columns_added = 0
@@ -304,6 +311,36 @@ def main():
     _fill('fcf_yield', _safe_div(fcf, mcap, den_must_be_positive=True))
     _fill('ebitda_margin', _safe_div(ebitda, rev, den_must_be_positive=True))
     _fill('gross_margin', _safe_div(gross_profit, rev, den_must_be_positive=True))
+
+    # 11c) Robust cash-earnings yields — the "owner's earnings / CFADS" lens.
+    # We lack the individual line items to build CFADS or Buffett owner's
+    # earnings from scratch (D&A, cash interest, capex, ΔNWC are not master
+    # columns), but the REPORTED cash flows already embed them:
+    #   fcf_ttm  = CFO − capex          = cash owner's earnings (after all capex)
+    #   cfo_ttm  = pre-capex operating cash (capex = cfo − fcf, so cfo = fcf+capex)
+    # We cross-check those two cash measures against accounting earnings and
+    # take the row-wise MEDIAN as a robust, Lindy cheapness signal that no
+    # single distorted metric (a capex spike, a working-capital swing, an
+    # accrual quirk) can drive on its own.
+    # net_income (fill where missing) = net_margin × revenue
+    ni = net_margin * rev
+    ni = ni.where(net_margin.notna() & rev.notna() & np.isfinite(ni))
+    if 'net_income_ttm' in master.columns:
+        _fill('net_income_ttm', ni)
+        ni_use = _to_num(master['net_income_ttm']).where(
+            _to_num(master['net_income_ttm']).notna(), ni)
+    else:
+        master['net_income_ttm'] = ni
+        ni_use = ni
+    owner_earnings_yield = _safe_div(fcf, mcap, den_must_be_positive=True)  # reported FCF
+    cfo_yield = _safe_div(cfo, mcap, den_must_be_positive=True)
+    earnings_yield = _safe_div(ni_use, mcap, den_must_be_positive=True)
+    master['owner_earnings_yield'] = owner_earnings_yield
+    master['cfo_yield'] = cfo_yield
+    master['earnings_yield'] = earnings_yield
+    # Robust central estimate: median of the available yields per row.
+    _stack = pd.concat([owner_earnings_yield, cfo_yield, earnings_yield], axis=1)
+    master['robust_cash_yield'] = _stack.median(axis=1, skipna=True)
 
     # 12+13) Lynch multiples (recomputed every run, not gap-filled, so they
     # track the freshest growth/yield inputs).

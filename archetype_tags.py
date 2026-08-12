@@ -969,13 +969,23 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # spuriously satisfy the "heavy debt" test.
     nde_real = pd.to_numeric(df['net_debt_ebitda'], errors='coerce') \
         if 'net_debt_ebitda' in df.columns else pd.Series(np.nan, index=df.index)
-    # Upper bounds reject near-zero-mcap data artifacts (a fcf_yield of
-    # 55,000,000x or EV/mcap of 130,000,000x is a broken market cap, not a
-    # cheap stub). Genuine Weschler zone: P/FCF ~0.5-6.7x, EV a few x equity.
+    # Cheapness is measured on a ROBUST, Lindy cash basis rather than a single
+    # FCF print. robust_cash_yield (from derive) is the row-wise MEDIAN of three
+    # independent yields — reported FCF (owner's earnings, after all capex),
+    # operating cash flow (pre-capex), and accounting earnings — so no single
+    # distorted metric (a capex spike, a working-capital swing, an accrual
+    # quirk) can qualify a name. We additionally require a conservative
+    # reported-FCF floor so the equity's cash is real after capex.
+    robust_cy = s('robust_cash_yield')
+    owner_ey = s('owner_earnings_yield')   # = reported FCF / mcap
+    # Upper bounds reject near-zero-mcap data artifacts (a yield of 55,000,000x
+    # or EV/mcap of 130,000,000x is a broken market cap, not a cheap stub).
+    # Genuine Weschler zone: P/cash ~0.5-6.7x, EV a few x equity.
     heavy_debt = ((nde_real >= 3.0) & (nde_real <= 30.0)) | \
                  ((ev_over_mcap >= 1.75) & (ev_over_mcap <= 30.0))
     df['arch_weschler_levered_equity'] = (
-        (fcf_yield >= 0.15) & (fcf_yield <= 2.0) &  # cheap on equity cash (low P/FCF)
+        (robust_cy >= 0.15) & (robust_cy <= 2.0) &  # cheap on ROBUST cash (Lindy)
+        (owner_ey >= 0.08) & (owner_ey <= 2.0) &    # corroborated by reported FCF
         (ebitda_ttm_v > 0) &                     # EBITDA to service the debt
         heavy_debt &                             # enormous debt burden
         (fcf_ttm_v > 0) &                        # cash to amortise (deleverage)

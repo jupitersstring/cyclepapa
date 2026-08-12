@@ -84,6 +84,8 @@ d = d.replace([np.inf, -np.inf], np.nan)
 # so they create no fake signal. (~138 fcf_yield outliers observed.)
 BANDS = {
     'fcf_yield': (-2.0, 2.0), 'dividend_yield': (0.0, 1.0),
+    'owner_earnings_yield': (-2.0, 2.0), 'cfo_yield': (-2.0, 3.0),
+    'earnings_yield': (-2.0, 2.0), 'robust_cash_yield': (-2.0, 2.0),
     'ev_ebitda': (-1000, 1000), 'ev_ebit': (-1000, 1000),
     'ev_sales': (-500, 500), 'p_e': (-1000, 1000), 'p_s': (0, 1000),
     'p_b': (-500, 500), 'pb': (-500, 500),
