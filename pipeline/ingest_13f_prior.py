@@ -114,12 +114,12 @@ def run():
     px = {t: p for t, p in conn.execute("SELECT ticker, price FROM ticker_yf WHERE price > 0")}
     for (fund,) in conn.execute("SELECT DISTINCT fund FROM fund_13f_prior").fetchall():
         ratios = []
-        for tk, v, sh in conn.execute("""SELECT ticker, value_k, shares FROM fund_13f_prior
-                                         WHERE fund=? AND shares>0 AND value_k>0""", (fund,)):
-            p = px.get(tk)
+        for tk, v, sh, st in conn.execute("""SELECT ticker, value_k, shares, sh_type FROM fund_13f_prior
+                                             WHERE fund=? AND shares>0 AND value_k>0""", (fund,)):
+            p = 1.0 if st == "PRN" else px.get(tk)   # bonds trade near par per $1 principal
             if p:
                 ratios.append((v * 1000.0 / sh) / p)
-        if len(ratios) >= 3 and statistics.median(ratios) > 100:
+        if len(ratios) >= 2 and statistics.median(ratios) > 100:
             conn.execute("UPDATE fund_13f_prior SET value_k=value_k/1000.0 WHERE fund=?", (fund,))
     conn.commit()
     n = conn.execute("SELECT COUNT(*) FROM fund_13f_prior").fetchone()[0]

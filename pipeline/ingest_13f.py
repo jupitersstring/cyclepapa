@@ -21,6 +21,7 @@ NS = {'i': 'http://www.sec.gov/edgar/document/thirteenf/informationtable'}
 # CIK map for our known funds. Keyed by canonical fund name.
 # Add to this as we resolve more CIKs.
 FUND_CIK = {
+    "Pershing Square Capital Managem": "1336528",
     # --- Low-profile / "hidden" exceptional filers (2026-08, verified active) ---
     "Euclidean Capital (Jim Simons FO)":    "1825034",
     "Gates Foundation Trust (Larson)":      "1166559",
@@ -45,18 +46,12 @@ FUND_CIK = {
     "Tybourne Capital Management":          "1553936",
     "Man Group":                            "1637460",
     "Mubadala Investment Company":          "1704268",
-    "Pershing Square Capital Manag":       "1336528",
-    "Pershing Square Capital Management":  "1336528",
     "Third Point LLC":                     "1040273",
     "Elliott Investment Management":       "0001791786",
     "Starboard Value LP":                  "1517137",
     "Trian Fund Management":               "1345471",
     "Icahn Capital   Carl Icahn":          "921669",
-    "Carl Icahn":                          "921669",
-    "Greenlight Capital":                  "1079114",
-    "Greenlight Capital (David Ein":       "1079114",
     "Baupost Group LLC":                   "1061768",
-    "Pershing Square":                     "1336528",
     "ValueAct Capital":                    "1418814",
     "Glenview Capital Management":         "1138995",
     "TCI Fund Management Ltd":             "1647251",
@@ -93,12 +88,11 @@ FUND_CIK = {
     "Harbert Discovery Fund":              "1616659",
     "Cevian Capital":                      "1365341",
     "Cartica Management":                  "1600011",
-    "Sessa Capital":                       "1543160",
+    "Sessa Capital":                       "1595849",
     "Pzena Investment Management":         "1027796",
     "CAS Investment Partners":             "1628110",
     "Petrus Advisers":                     "1473429",
     "JANA Partners":                       "1998597",
-    "Abrams Capital Managemen":            "1358706",
     "Voss Capital":                        "1730145",
     "Marlowe Partners":                    "1624049",
     "Alta Fox Capital Management":         "1858353",
@@ -108,7 +102,7 @@ FUND_CIK = {
     "Third Avenue Management":             "1099281",
     "Dodge and Cox":                       "200217",
     "Fundsmith LLP":                       "1543160",
-    "Lindsell Train Limited":              "1543160",
+    "Lindsell Train Limited":              "1484150",
     "Yacktman Asset Management LP":        "905567",
     "Wedgewood Partners":                  "859804",
     "Cantillon Capital Management":        "1279936",
@@ -125,7 +119,7 @@ FUND_CIK = {
     "Atlantic Investment Management":      "1063296",
     "Conifer Management":                  "1773994",
     "Altarock Partners":                   "1631014",
-    "FPA Crescent Fund":                   "915191",
+    "FPA Crescent Fund":                   "1377581",
 }
 
 def curl(url, retries=6):
@@ -157,22 +151,52 @@ def latest_13f_acc(cik):
     except json.JSONDecodeError:
         return None, None
     rec = d["filings"]["recent"]
-    for i, form in enumerate(rec["form"]):
-        if form == "13F-HR":
-            return rec["accessionNumber"][i], rec["filingDate"][i]
-    pages = sorted(d["filings"].get("files", []),
-                   key=lambda p: p.get("filingTo", ""), reverse=True)
-    for pg in pages:                                # newest chunk first
-        data = curl(f"https://data.sec.gov/submissions/{pg['name']}")
-        if not data: continue
-        try:
-            rec = json.loads(data)
-        except json.JSONDecodeError:
-            continue
-        for i, form in enumerate(rec["form"]):
-            if form == "13F-HR":
-                return rec["accessionNumber"][i], rec["filingDate"][i]
-    return None, None
+    hits = [(rec["accessionNumber"][i], rec["filingDate"][i])
+            for i, form in enumerate(rec["form"]) if form == "13F-HR"]
+    if not hits:
+        pages = sorted(d["filings"].get("files", []),
+                       key=lambda p: p.get("filingTo", ""), reverse=True)
+        for pg in pages:                            # newest chunk first
+            data = curl(f"https://data.sec.gov/submissions/{pg['name']}")
+            if not data: continue
+            try:
+                rec = json.loads(data)
+            except json.JSONDecodeError:
+                continue
+            hits = [(rec["accessionNumber"][i], rec["filingDate"][i])
+                    for i, form in enumerate(rec["form"]) if form == "13F-HR"]
+            if hits:
+                break
+    return hits[0] if hits else (None, None)
+
+def list_13f_accs(cik, k=3):
+    """Up to k most recent 13F-HR (accession, filed) pairs, newest first.
+    Lets the ingest fall past an empty off-cycle restatement (Eminence filed a
+    1-row 13F-HR in July 2026; the real Q1 book was the accession before it)."""
+    cik10 = cik.zfill(10)
+    data = curl(f"https://data.sec.gov/submissions/CIK{cik10}.json")
+    if not data: return []
+    try:
+        d = json.loads(data)
+    except json.JSONDecodeError:
+        return []
+    rec = d["filings"]["recent"]
+    hits = [(rec["accessionNumber"][i], rec["filingDate"][i])
+            for i, form in enumerate(rec["form"]) if form == "13F-HR"]
+    if len(hits) < k:
+        for pg in sorted(d["filings"].get("files", []),
+                         key=lambda p: p.get("filingTo", ""), reverse=True):
+            data = curl(f"https://data.sec.gov/submissions/{pg['name']}")
+            if not data: continue
+            try:
+                rec = json.loads(data)
+            except json.JSONDecodeError:
+                continue
+            hits += [(rec["accessionNumber"][i], rec["filingDate"][i])
+                     for i, form in enumerate(rec["form"]) if form == "13F-HR"]
+            if len(hits) >= k:
+                break
+    return hits[:k]
 
 def find_infotable(cik, accession):
     """Find the infotable XML file in the filing directory.
@@ -395,32 +419,27 @@ def run(only=None):
             print(f"  [skip] {fund_name[:40]}: already ingested {prior[0]}")
             n_skipped += 1
             continue
-        acc, filed = latest_13f_acc(cik)
-        if not acc:
-            print(f"  [-] {fund_name[:40]}: no 13F-HR found")
-            time.sleep(1)
-            continue
-        path = find_infotable(cik, acc)
-        if not path:
-            print(f"  [-] {fund_name[:40]}: no infotable in {acc}")
-            time.sleep(1)
-            continue
-        url = path if path.startswith("http") else f"https://www.sec.gov{path}"
-        body = curl(url)
-        if not body:
-            print(f"  [-] {fund_name[:40]}: failed to fetch infotable")
-            time.sleep(2)
-            continue
-        rows = parse_infotable(body)
+        # Walk recent 13F-HRs newest-first: an empty off-cycle restatement
+        # (Eminence, July 2026: 1 zero row) must fall through to the real book.
+        rows, acc, filed = None, None, None
+        for cand_acc, cand_filed in list_13f_accs(cik):
+            if not cand_acc:
+                break
+            path = find_infotable(cik, cand_acc)
+            if not path:
+                continue
+            url = path if path.startswith("http") else f"https://www.sec.gov{path}"
+            body = curl(url)
+            cand = parse_infotable(body) if body else []
+            cand = [r for r in cand if not r.get("put_call")]  # options are not holdings
+            cand = [r for r in cand if r["value_k"] or r["shares"]]
+            if cand:
+                rows, acc, filed = cand, cand_acc, cand_filed
+                break
+            time.sleep(0.4)
         if not rows:
-            print(f"  [-] {fund_name[:40]}: 0 rows parsed from XML")
+            print(f"  [-] {fund_name[:40]}: no usable 13F-HR (empty/derivative-only/missing)")
             time.sleep(1)
-            continue
-        n_deriv = sum(1 for r in rows if r.get("put_call"))
-        rows = [r for r in rows if not r.get("put_call")]     # options are not holdings
-        if not rows:
-            print(f"  [-] {fund_name[:40]}: all {n_deriv} rows were derivatives")
-            time.sleep(0.5)
             continue
         # A combined report files one line per ACCOUNT per security (Kopernik:
         # 23,960 lines for ~4,400 securities). Sum lines by CUSIP — the old
@@ -454,7 +473,10 @@ def run(only=None):
                 VALUES (?,?,?,?,?,?,?,?,?,?,?)""",
                 (fund_name, cik, acc, filed, r["issuer"], r["cusip"], tkr,
                  r["value_k"], r["shares"], r["type"], pct))
-            p = px_map.get(tkr)
+            # PRN rows: shares = bond principal in dollars, which trades near par
+            # (~1.0 value per $1) — reference price 1.0 keeps convert-arb books
+            # (Linden: mostly bonds, few priced SH rows) inside the detector.
+            p = 1.0 if r["type"] == "PRN" else px_map.get(tkr)
             if p and r["shares"] and r["value_k"]:
                 ratios.append((r["value_k"] * 1000.0 / r["shares"]) / p)
         # Value-unit sanity: filings since 2023 report FULL DOLLARS; value_k
@@ -462,7 +484,7 @@ def run(only=None):
         # unit-free detector: median ratio ~1000 means full-dollar filing.
         # The old mcap-based check missed megacap-heavy books (a raw-dollar
         # TSM position is still below TSM's mcap) — Gates Trust booked $31.7T.
-        if len(ratios) >= 3 and statistics.median(ratios) > 100:
+        if len(ratios) >= 2 and statistics.median(ratios) > 100:
             conn.execute("UPDATE fund_13f_holdings SET value_k=value_k/1000.0 WHERE fund=?",
                          (fund_name,))
             total_v /= 1000.0
