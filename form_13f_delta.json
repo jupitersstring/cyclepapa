@@ -38,8 +38,9 @@
       "elliott investment management"
     ],
     "filers_trimming": [],
-    "score": 19.0,
-    "reasons": "1 known activist added"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": 19.0
   },
   "W": {
     "n_filers_adding": 0,
@@ -80,8 +81,9 @@
       "elliott investment management"
     ],
     "filers_trimming": [],
-    "score": 19.0,
-    "reasons": "1 known activist added"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": 19.0
   },
   "BILL": {
     "n_filers_adding": 0,
@@ -95,8 +97,9 @@
       "starboard value lp",
       "elliott investment management"
     ],
-    "score": -15,
-    "reasons": "net smart-money exits; 2 activist trim"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": -15
   },
   "WPM": {
     "n_filers_adding": 1,
@@ -123,8 +126,9 @@
       "elliott investment management"
     ],
     "filers_trimming": [],
-    "score": 27.0,
-    "reasons": "1 known activist added; 1 new position(s)"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": 27.0
   },
   "PINS": {
     "n_filers_adding": 0,
@@ -137,8 +141,9 @@
     "filers_trimming": [
       "elliott investment management"
     ],
-    "score": -15,
-    "reasons": "net smart-money exits; 1 activist trim"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": -15
   },
   "ETSY": {
     "n_filers_adding": 0,
@@ -151,8 +156,9 @@
     "filers_trimming": [
       "elliott investment management"
     ],
-    "score": -15,
-    "reasons": "net smart-money exits; 1 activist trim"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": -15
   },
   "PSX": {
     "n_filers_adding": 1,
@@ -165,8 +171,9 @@
       "elliott investment management"
     ],
     "filers_trimming": [],
-    "score": 19.0,
-    "reasons": "1 known activist added"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": 19.0
   },
   "SDRL": {
     "n_filers_adding": 1,
@@ -179,8 +186,9 @@
       "elliott investment management"
     ],
     "filers_trimming": [],
-    "score": 19.0,
-    "reasons": "1 known activist added"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": 19.0
   },
   "EQIX": {
     "n_filers_adding": 1,
@@ -193,8 +201,9 @@
       "elliott investment management"
     ],
     "filers_trimming": [],
-    "score": 19.0,
-    "reasons": "1 known activist added"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": 19.0
   },
   "NVDA": {
     "n_filers_adding": 0,
@@ -207,8 +216,9 @@
     "filers_trimming": [
       "elliott investment management"
     ],
-    "score": -15,
-    "reasons": "net smart-money exits; 1 activist trim"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": -15
   },
   "RIG": {
     "n_filers_adding": 1,
@@ -221,8 +231,9 @@
       "elliott investment management"
     ],
     "filers_trimming": [],
-    "score": 27.0,
-    "reasons": "1 known activist added; 1 new position(s)"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": 27.0
   },
   "OR": {
     "n_filers_adding": 1,
@@ -263,8 +274,9 @@
     "filers_trimming": [
       "starboard value lp"
     ],
-    "score": -15,
-    "reasons": "net smart-money exits; 1 activist trim"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": -15
   },
   "BDX": {
     "n_filers_adding": 0,
@@ -277,8 +289,9 @@
     "filers_trimming": [
       "starboard value lp"
     ],
-    "score": -15,
-    "reasons": "net smart-money exits; 1 activist trim"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": -15
   },
   "RIOT": {
     "n_filers_adding": 1,
@@ -291,8 +304,9 @@
       "starboard value lp"
     ],
     "filers_trimming": [],
-    "score": 19.0,
-    "reasons": "1 known activist added"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": 19.0
   },
   "BLMN": {
     "n_filers_adding": 0,
@@ -319,8 +333,9 @@
     "filers_trimming": [
       "starboard value lp"
     ],
-    "score": -15,
-    "reasons": "net smart-money exits; 1 activist trim"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": -15
   },
   "QRVO": {
     "n_filers_adding": 0,
@@ -333,8 +348,9 @@
     "filers_trimming": [
       "starboard value lp"
     ],
-    "score": -15,
-    "reasons": "net smart-money exits; 1 activist trim"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": -15
   },
   "MTCH": {
     "n_filers_adding": 0,
@@ -361,8 +377,9 @@
     "filers_trimming": [
       "starboard value lp"
     ],
-    "score": -15,
-    "reasons": "net smart-money exits; 1 activist trim"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": -15
   },
   "ADSK": {
     "n_filers_adding": 0,
@@ -375,8 +392,9 @@
     "filers_trimming": [
       "starboard value lp"
     ],
-    "score": -15,
-    "reasons": "net smart-money exits; 1 activist trim"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": -15
   },
   "GPGI": {
     "n_filers_adding": 1,
@@ -389,8 +407,9 @@
       "starboard value lp"
     ],
     "filers_trimming": [],
-    "score": 27.0,
-    "reasons": "1 known activist added; 1 new position(s)"
+    "score": 0.0,
+    "reasons": "ZEROED: $86B single-filer delta is a parse artifact (plausibility gate)",
+    "score_pre_verification": 27.0
   },
   "GENVR": {
     "n_filers_adding": 0,
@@ -403,8 +422,9 @@
     "filers_trimming": [
       "starboard value lp"
     ],
-    "score": -15,
-    "reasons": "net smart-money exits; 1 activist trim"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": -15
   },
   "KVUE": {
     "n_filers_adding": 0,
@@ -431,8 +451,9 @@
     "filers_trimming": [
       "starboard value lp"
     ],
-    "score": -15,
-    "reasons": "net smart-money exits; 1 activist trim"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": -15
   },
   "KMX": {
     "n_filers_adding": 1,
@@ -445,8 +466,9 @@
       "starboard value lp"
     ],
     "filers_trimming": [],
-    "score": 27.0,
-    "reasons": "1 known activist added; 1 new position(s)"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": 27.0
   },
   "BRCC": {
     "n_filers_adding": 0,
@@ -543,8 +565,9 @@
     "filers_trimming": [
       "pershing square capital"
     ],
-    "score": -15,
-    "reasons": "net smart-money exits; 1 activist trim"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": -15
   },
   "HHH": {
     "n_filers_adding": 0,
@@ -557,8 +580,9 @@
     "filers_trimming": [
       "pershing square capital"
     ],
-    "score": -15,
-    "reasons": "net smart-money exits; 1 activist trim"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": -15
   },
   "AMZN": {
     "n_filers_adding": 1,
@@ -571,8 +595,9 @@
       "pershing square capital"
     ],
     "filers_trimming": [],
-    "score": 19.0,
-    "reasons": "1 known activist added"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": 19.0
   },
   "MSFT": {
     "n_filers_adding": 1,
@@ -585,8 +610,9 @@
       "pershing square capital"
     ],
     "filers_trimming": [],
-    "score": 27.0,
-    "reasons": "1 known activist added; 1 new position(s)"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": 27.0
   },
   "GOOGM": {
     "n_filers_adding": 0,
@@ -600,8 +626,9 @@
       "pershing square capital",
       "pershing square capital"
     ],
-    "score": -15,
-    "reasons": "net smart-money exits; 2 activist trim"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": -15
   },
   "UBER": {
     "n_filers_adding": 0,
@@ -614,8 +641,9 @@
     "filers_trimming": [
       "pershing square capital"
     ],
-    "score": -15,
-    "reasons": "net smart-money exits; 1 activist trim"
+    "score": 0.0,
+    "reasons": "ZEROED: implausible delta magnitude (parse artifact; await rescan with plausibility gate)",
+    "score_pre_verification": -15
   },
   "_META_FILINGS_USED": {
     "elliott investment management": {

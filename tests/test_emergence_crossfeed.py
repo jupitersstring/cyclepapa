@@ -68,3 +68,18 @@ weak = score_entity({
 assert_true(weak is not None and weak["score"] <= 2, "stale low is token")
 
 print("test_emergence_crossfeed: all assertions passed")
+
+
+# --- Sohn pitch layer (appended: shares the external-feed test group) ---
+from datetime import datetime, timezone
+from sohn_pitch_layer import score_pitch, age_factor
+
+_T = datetime(2026, 8, 13, tzinfo=timezone.utc)
+assert age_factor("2026-05-12", _T) == 1.0, "fresh conference full weight"
+assert age_factor("2025-05-06", _T) == 0.3, "prior-year conference decayed"
+s_long = score_pitch({"side": "long", "stage": "main"}, "2026-05-12", _T)
+s_short = score_pitch({"side": "short", "stage": "next_wave"}, "2026-05-12", _T)
+assert s_long > 0, "long positive"
+assert s_short < 0, "short negative"
+assert abs(s_short) < s_long, "short dampened vs main long"
+print("sohn pitch layer: assertions passed")

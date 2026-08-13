@@ -404,6 +404,14 @@ def main() -> int:
             ds = cs - ps
             if abs(dv) < 100_000:   # filter dust
                 continue
+            # Plausibility gate: no single 13F filer moves >$25B in one
+            # name in one quarter. Values beyond that are parse artifacts
+            # (units confusion or a mis-attributed information-table row
+            # -- see the GPGI $86B Starboard "position") and must not
+            # create activist-add signals. Counted, not silently dropped.
+            if abs(dv) > 25_000_000_000:
+                n_unresolved += 1
+                continue
 
             # Resolve via 13F's nameOfIssuer field (much more reliable)
             issuer = cur_h.get(cusip, {}).get("name") or prior_h.get(cusip, {}).get("name")

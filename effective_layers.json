@@ -1,6 +1,6 @@
 {
-  "n_raw_layers": 32,
-  "n_effective_layers_at_06": 27,
+  "n_raw_layers": 33,
+  "n_effective_layers_at_06": 28,
   "clusters": [
     [
       "psu_pts"
@@ -50,6 +50,9 @@
     ],
     [
       "emergence_crossfeed_pts"
+    ],
+    [
+      "sohn_pitch_pts"
     ],
     [
       "internalization_pts"

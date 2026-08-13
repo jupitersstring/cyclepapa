@@ -1,0 +1,236 @@
+{
+  "IFNNY": {
+    "score": 15.0,
+    "pitches": [
+      {
+        "presenter": "Kevin Salimian",
+        "fund": "Voxel Capital",
+        "side": "long",
+        "stage": "main",
+        "conference_date": "2026-05-12",
+        "points": 15.0
+      }
+    ]
+  },
+  "NOK": {
+    "score": 15.0,
+    "pitches": [
+      {
+        "presenter": "Philosophy Capital",
+        "fund": "Philosophy Capital",
+        "side": "long",
+        "stage": "main",
+        "conference_date": "2026-05-12",
+        "points": 15.0
+      }
+    ]
+  },
+  "TTMI": {
+    "score": 15.0,
+    "pitches": [
+      {
+        "presenter": "Alex Sacerdote",
+        "fund": "Whale Rock",
+        "side": "long",
+        "stage": "main",
+        "conference_date": "2026-05-12",
+        "points": 15.0
+      }
+    ]
+  },
+  "JMIA": {
+    "score": 15.0,
+    "pitches": [
+      {
+        "presenter": "Thea Jamison",
+        "fund": "CHANGE Global",
+        "side": "long",
+        "stage": "main",
+        "conference_date": "2026-05-12",
+        "points": 15.0
+      }
+    ]
+  },
+  "ACHC": {
+    "score": 15.0,
+    "pitches": [
+      {
+        "presenter": "David Einhorn",
+        "fund": "Greenlight",
+        "side": "long",
+        "stage": "main",
+        "conference_date": "2026-05-12",
+        "points": 15.0
+      }
+    ]
+  },
+  "VSNT": {
+    "score": 15.0,
+    "pitches": [
+      {
+        "presenter": "David Einhorn",
+        "fund": "Greenlight",
+        "side": "long",
+        "stage": "main",
+        "conference_date": "2026-05-12",
+        "points": 15.0
+      }
+    ]
+  },
+  "CNC": {
+    "score": 15.0,
+    "pitches": [
+      {
+        "presenter": "David Einhorn",
+        "fund": "Greenlight",
+        "side": "long",
+        "stage": "main",
+        "conference_date": "2026-05-12",
+        "points": 15.0
+      }
+    ]
+  },
+  "FLR": {
+    "score": 15.0,
+    "pitches": [
+      {
+        "presenter": "David Einhorn",
+        "fund": "Greenlight",
+        "side": "long",
+        "stage": "main",
+        "conference_date": "2026-05-12",
+        "points": 15.0
+      }
+    ]
+  },
+  "VSCO": {
+    "score": 15.0,
+    "pitches": [
+      {
+        "presenter": "David Einhorn",
+        "fund": "Greenlight",
+        "side": "long",
+        "stage": "main",
+        "conference_date": "2026-05-12",
+        "points": 15.0
+      }
+    ]
+  },
+  "VIST": {
+    "score": 15.0,
+    "pitches": [
+      {
+        "presenter": null,
+        "fund": null,
+        "side": "long",
+        "stage": "main",
+        "conference_date": "2026-05-12",
+        "points": 15.0
+      }
+    ]
+  },
+  "FIX": {
+    "score": 7.5,
+    "pitches": [
+      {
+        "presenter": null,
+        "fund": "Hiddenite",
+        "side": "long",
+        "stage": "main",
+        "conference_date": "2026-05-12",
+        "points": 7.5
+      }
+    ]
+  },
+  "CVNA": {
+    "score": 12.0,
+    "pitches": [
+      {
+        "presenter": "Andrew Bellas",
+        "fund": "General Equity",
+        "side": "long",
+        "stage": "next_wave",
+        "conference_date": "2026-05-12",
+        "points": 12.0
+      }
+    ]
+  },
+  "PRM": {
+    "score": 12.0,
+    "pitches": [
+      {
+        "presenter": "Tariq Barma",
+        "fund": "Balance Capital",
+        "side": "long",
+        "stage": "next_wave",
+        "conference_date": "2026-05-12",
+        "points": 12.0
+      }
+    ]
+  },
+  "DDOG": {
+    "score": 15.0,
+    "pitches": [
+      {
+        "presenter": "Leon Shaulov",
+        "fund": "Maplelane",
+        "side": "long",
+        "stage": "main",
+        "conference_date": "2026-05-12",
+        "points": 15.0
+      }
+    ]
+  },
+  "TXN": {
+    "score": 15.0,
+    "pitches": [
+      {
+        "presenter": "Leon Shaulov",
+        "fund": "Maplelane",
+        "side": "long",
+        "stage": "main",
+        "conference_date": "2026-05-12",
+        "points": 15.0
+      }
+    ]
+  },
+  "LRCX": {
+    "score": 15.0,
+    "pitches": [
+      {
+        "presenter": "Leon Shaulov",
+        "fund": "Maplelane",
+        "side": "long",
+        "stage": "main",
+        "conference_date": "2026-05-12",
+        "points": 15.0
+      }
+    ]
+  },
+  "RZLV": {
+    "score": -9.6,
+    "pitches": [
+      {
+        "presenter": "Joyce Meng",
+        "fund": "FACT Capital",
+        "side": "short",
+        "stage": "next_wave",
+        "conference_date": "2026-05-12",
+        "points": -9.6
+      }
+    ]
+  },
+  "OSIS": {
+    "score": -9.6,
+    "pitches": [
+      {
+        "presenter": "Soren Aandahl",
+        "fund": "Blue Orca",
+        "side": "short",
+        "stage": "next_wave",
+        "conference_date": "2026-05-12",
+        "points": -9.6
+      }
+    ]
+  }
+}

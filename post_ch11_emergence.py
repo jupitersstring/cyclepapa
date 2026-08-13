@@ -54,8 +54,13 @@ def main() -> int:
     print(f"Scanning Ch11 emergence 8-Ks {start}..{end}",
           file=sys.stderr, flush=True)
 
+    # Every query must anchor to actual bankruptcy context. The old
+    # first query ('"plan of reorganization" "effective date"') matched
+    # Section 368(a)(1)(F) tax-reorg language in reincorporation Plans
+    # of Conversion (e.g. GPGI's Nevada conversion) -- corporate
+    # "reorganization" is not Chapter 11 emergence.
     queries = [
-        '"plan of reorganization" "effective date"',
+        '"plan of reorganization" "Chapter 11"',
         '"plan became effective" "Chapter 11"',
         '"emergence from Chapter 11"',
         '"emerged from Chapter 11"',

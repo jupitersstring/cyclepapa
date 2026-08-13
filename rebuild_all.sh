@@ -96,6 +96,7 @@ run python3 buyback_insider_overlay.py     || true
 # emergence_master_snapshot.json is absent; refresh the snapshot by
 # copying data/emergence_master.json from the capital-structure branch).
 run python3 emergence_crossfeed.py         || true
+run python3 sohn_pitch_layer.py            || true
 run python3 full_universe_consensus.py     || true
 run python3 full_universe_consensus_noval.py || true
 run python3 grand_unified_ranker.py        || true

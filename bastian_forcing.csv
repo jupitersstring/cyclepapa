@@ -1,42 +1,42 @@
 ticker,score,mcap_M,px,p_b,psu_core,gov,reasons
 LGL,50,45.0,6.9,0.99294865,10.8,4.0,post-Ch11 emergence in PSU; spin trigger; P/B 0.99
+MLCI,48,31.0,2.75,0.45628008,,,issuer SELF_TENDER live; organic shrink -11.1%; P/B 0.46
 BEEP,48,73.0,1.78,0.52772015,2.0,12.0,M&A close trigger; spin trigger; organic shrink -3.5%; P/B 0.53
 HTT,48,480.0,3.09,0.2815344,,,issuer SELF_TENDER live; organic shrink -18.0%; P/B 0.28
-MLCI,48,31.0,2.75,0.45628008,,,issuer SELF_TENDER live; organic shrink -11.1%; P/B 0.46
 GNPX,45,6.0,0.592,0.31623933,16.0,0.0,M&A close trigger; spin trigger; P/B 0.32
 NUS,43,244.0,5.02,0.30724034,40.5,11.0,named asset-sale PSU; organic shrink -1.9%; P/B 0.31
+RBNE,40,5.0,0.7371,0.123819925,,,issuer SELF_TENDER live; P/B 0.12
+OSUR,40,293.0,4.25,0.87773645,2.0,-2.0,restructuring milestone PSU; EXECUTING shrinkage -5.9%; P/B 0.88
 SVRN,40,19.0,10.29,0.049616423,,,issuer SELF_TENDER live; P/B 0.05
 DXLG,40,39.0,0.7,0.37614188,18.0,15.0,TARGET live (own 14D-9); P/B 0.38
-ENZN,40,37.0,5.6,0.41756764,,,issuer SELF_TENDER live; P/B 0.42
-RBNE,40,5.0,0.7371,0.123819925,,,issuer SELF_TENDER live; P/B 0.12
-WW,40,192.0,19.2,0.6031477,22.0,3.0,post-Ch11 emergence in PSU; P/B 0.60
 GETY,40,254.0,0.6051,0.47052875,6.0,4.0,issuer SELF_TENDER live; P/B 0.47
-OSUR,40,293.0,4.25,0.87773645,2.0,-2.0,restructuring milestone PSU; EXECUTING shrinkage -5.9%; P/B 0.88
+ENZN,40,37.0,5.6,0.41756764,,,issuer SELF_TENDER live; P/B 0.42
+WW,40,192.0,19.2,0.6031477,22.0,3.0,post-Ch11 emergence in PSU; P/B 0.60
 FLGT,38,511.0,18.0,0.49468216,14.4,0.0,M&A close trigger; organic shrink -7.2%; P/B 0.49
 TORO,35,175.0,5.07,0.6729493,,,issuer SELF_TENDER live; P/B 0.67
+DTST,35,7.0,3.27,0.65048736,2.4,-6.0,issuer SELF_TENDER live; P/B 0.65
 KROS,35,197.0,9.93,0.68601036,0.0,0.0,issuer SELF_TENDER live; P/B 0.69
 GPUS,35,91.0,0.1721,0.50029063,,,issuer SELF_TENDER live; P/B 0.50
-DTST,35,7.0,3.27,0.65048736,2.4,-6.0,issuer SELF_TENDER live; P/B 0.65
 NEXN,33,478.0,8.57,1.0594635,,,issuer SELF_TENDER live; organic shrink -12.1%
 DTI,33,79.0,2.26,0.65927655,5.4,3.0,M&A close trigger; organic shrink -3.6%; P/B 0.66
-LE,30,382.0,12.44,0.76525587,51.3,15.0,TARGET live (own 14D-9); P/B 0.77
-FUBO,30,271.0,9.22,0.33423963,8.6,15.0,M&A close trigger; P/B 0.33
-CLW,30,271.0,16.79,0.33269268,37.8,4.0,spin trigger; P/B 0.33
-BGY,30,520.0,5.7401,0.91170585,,,issuer SELF_TENDER live; P/B 0.91
-EXFY,30,121.0,1.255,0.8733472,,,issuer SELF_TENDER live; P/B 0.87
-PMCB,30,8.0,0.7178,0.2,1.8,0.0,M&A close trigger; P/B 0.20
-JOF,30,334.0,11.78,0.8529433,,,issuer SELF_TENDER live; P/B 0.85
-JTAI,30,10.0,7.03,0.12501334,0.0,0.0,spin trigger; P/B 0.13
-CXH,30,31.0,7.63,0.88515085,,,issuer SELF_TENDER live; P/B 0.89
-CMU,30,86.0,3.36,0.8865435,,,issuer SELF_TENDER live; P/B 0.89
-HERZ,30,32.0,16.58,0.7750199,,,issuer SELF_TENDER live; P/B 0.78
 SWZ,30,77.0,5.91,0.8557581,,,issuer SELF_TENDER live; P/B 0.86
-EVF,30,90.0,4.96,0.8301256,,,issuer SELF_TENDER live; P/B 0.83
+HERZ,30,32.0,16.58,0.7750199,,,issuer SELF_TENDER live; P/B 0.78
+CXH,30,31.0,7.63,0.88515085,,,issuer SELF_TENDER live; P/B 0.89
 EFR,30,309.0,10.46,0.8442292,,,issuer SELF_TENDER live; P/B 0.84
+CMU,30,86.0,3.36,0.8865435,,,issuer SELF_TENDER live; P/B 0.89
+CLW,30,271.0,16.79,0.33269268,37.8,4.0,spin trigger; P/B 0.33
+JOF,30,334.0,11.78,0.8529433,,,issuer SELF_TENDER live; P/B 0.85
+PMCB,30,8.0,0.7178,0.2,1.8,0.0,M&A close trigger; P/B 0.20
+BGY,30,520.0,5.7401,0.91170585,,,issuer SELF_TENDER live; P/B 0.91
+FUBO,30,271.0,9.22,0.33423963,8.6,15.0,M&A close trigger; P/B 0.33
+LE,30,382.0,12.44,0.76525587,51.3,15.0,TARGET live (own 14D-9); P/B 0.77
+EXFY,30,121.0,1.255,0.8733472,,,issuer SELF_TENDER live; P/B 0.87
+JTAI,30,10.0,7.03,0.12501334,0.0,0.0,spin trigger; P/B 0.13
+EVF,30,90.0,4.96,0.8301256,,,issuer SELF_TENDER live; P/B 0.83
 AMS,30,10.0,1.46,0.3994528,12.0,4.0,spin trigger; P/B 0.40
-ASIX,25,535.0,19.86,0.67237705,17.0,15.0,spin trigger; P/B 0.67
-RCKT,25,353.0,3.235,1.4832646,0.0,-6.0,issuer SELF_TENDER live
 ALIT,25,312.0,0.5692,0.29189742,26.0,7.0,EXECUTING shrinkage -4.1%; P/B 0.29
+ASIX,25,535.0,19.86,0.67237705,17.0,15.0,spin trigger; P/B 0.67
 WKHS,25,33.0,3.03,0.6828939,11.0,8.0,M&A close trigger; P/B 0.68
 IZEA,25,63.0,3.61,1.2934432,5.2,0.0,issuer SELF_TENDER live
 AOUT,25,128.0,10.13,0.7618833,0.0,4.0,named asset-sale PSU; P/B 0.76
+RCKT,25,353.0,3.235,1.4832646,0.0,-6.0,issuer SELF_TENDER live

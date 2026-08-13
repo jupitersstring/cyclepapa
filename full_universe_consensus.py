@@ -398,6 +398,26 @@ def score_post_ch11_layer(layers: dict, universe: set) -> dict:
     return _load_jscore(ROOT / "post_ch11_emergence.json", universe)
 
 
+def score_sohn_pitch_layer(layers: dict, universe: set) -> dict:
+    """Sohn Conference pitches: reputation-staked public ideas from
+    professional managers (curated, hand-refreshed per conference).
+    Longs add, shorts subtract, age-decayed. See sohn_pitch_layer.py."""
+    out = {tk: 0.0 for tk in universe}
+    f = ROOT / "sohn_pitch_scores.json"
+    if f.exists():
+        try:
+            data = json.loads(f.read_text())
+            for tk, v in data.items():
+                if tk in out and isinstance(v, dict):
+                    try:
+                        out[tk] = float(v.get("score") or 0)
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+    return out
+
+
 def score_emergence_crossfeed_layer(layers: dict, universe: set) -> dict:
     """Post-reorg emergence cross-feed from the pollers subsystem
     (capital-structure-screening branch): 5-channel EDGAR emergence
@@ -597,6 +617,7 @@ def main() -> int:
         "voss_cic": score_voss_cic_layer(layers, universe),
         "post_ch11": score_post_ch11_layer(layers, universe),
         "emergence_crossfeed": score_emergence_crossfeed_layer(layers, universe),
+        "sohn_pitch": score_sohn_pitch_layer(layers, universe),
         "internalization": score_internalization_layer(layers, universe),
         "bumpitrage": score_bumpitrage_layer(layers, universe),
         "spinoff_volume": score_spinoff_volume_layer(layers, universe),
@@ -676,6 +697,7 @@ def main() -> int:
             "voss_cic_pts": layer_scores["voss_cic"].get(tk, 0),
             "post_ch11_pts": layer_scores["post_ch11"].get(tk, 0),
             "emergence_crossfeed_pts": layer_scores["emergence_crossfeed"].get(tk, 0),
+            "sohn_pitch_pts": layer_scores["sohn_pitch"].get(tk, 0),
             "internalization_pts": layer_scores["internalization"].get(tk, 0),
             "bumpitrage_pts": layer_scores["bumpitrage"].get(tk, 0),
             "spinoff_volume_pts": layer_scores["spinoff_volume"].get(tk, 0),

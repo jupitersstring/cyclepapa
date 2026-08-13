@@ -5,7 +5,8 @@
     "accession": "0001193125-25-142383",
     "query_match": "\"plan of reorganization\" \"effective date\"",
     "score": 16.0,
-    "reasons": "P/B 0.60"
+    "reasons": "P/B 0.60",
+    "corroborated": true
   },
   "OPITQ": {
     "emergence_filing_date": "2026-04-28",
@@ -13,7 +14,9 @@
     "accession": "0001104659-26-050398",
     "query_match": "\"plan of reorganization\" \"effective date\"",
     "score": 25.0,
-    "reasons": "55d ago (very recent)"
+    "reasons": "55d ago (very recent)",
+    "corroborated": false,
+    "verification": "unverifiable"
   },
   "WOLF": {
     "emergence_filing_date": "2025-09-10",
@@ -21,7 +24,8 @@
     "accession": "0001193125-25-199310",
     "query_match": "\"plan of reorganization\" \"effective date\"",
     "score": 12.0,
-    "reasons": "285d ago"
+    "reasons": "285d ago",
+    "corroborated": true
   },
   "CMLSQ": {
     "emergence_filing_date": "2026-04-17",
@@ -29,7 +33,9 @@
     "accession": "0001104659-26-044909",
     "query_match": "\"plan of reorganization\" \"effective date\"",
     "score": 20.0,
-    "reasons": "66d ago (in 200d alpha window)"
+    "reasons": "66d ago (in 200d alpha window)",
+    "corroborated": false,
+    "verification": "genuine"
   },
   "NINE": {
     "emergence_filing_date": "2026-03-10",
@@ -37,7 +43,8 @@
     "accession": "0001213900-26-025721",
     "query_match": "\"plan of reorganization\" \"effective date\"",
     "score": 20.0,
-    "reasons": "104d ago (in 200d alpha window)"
+    "reasons": "104d ago (in 200d alpha window)",
+    "corroborated": true
   },
   "VRMWW": {
     "emergence_filing_date": "2025-03-26",
@@ -45,15 +52,20 @@
     "accession": "0000950170-25-045264",
     "query_match": "\"plan of reorganization\" \"effective date\"",
     "score": 6.0,
-    "reasons": ""
+    "reasons": "",
+    "corroborated": false,
+    "verification": "genuine"
   },
   "BICX": {
     "emergence_filing_date": "2026-04-02",
     "days_since_emergence": 81,
     "accession": "0001477932-26-001957",
     "query_match": "\"plan of reorganization\" \"effective date\"",
-    "score": 20.0,
-    "reasons": "81d ago (in 200d alpha window)"
+    "score": 0.0,
+    "reasons": "ZEROED: fake_reorg (INCENTIVE follow-up audit; 8-K lacks Ch11 context)",
+    "corroborated": false,
+    "verification": "fake_reorg",
+    "score_pre_verification": 20.0
   },
   "GPUS-PD": {
     "emergence_filing_date": "2025-06-09",
@@ -61,7 +73,9 @@
     "accession": "0001214659-25-009010",
     "query_match": "\"plan of reorganization\" \"effective date\"",
     "score": 6.0,
-    "reasons": ""
+    "reasons": "",
+    "corroborated": false,
+    "verification": "genuine"
   },
   "TSEOF": {
     "emergence_filing_date": "2026-05-26",
@@ -69,7 +83,8 @@
     "accession": "0001104659-26-066376",
     "query_match": "\"plan of reorganization\" \"effective date\"",
     "score": 25.0,
-    "reasons": "27d ago (very recent)"
+    "reasons": "27d ago (very recent)",
+    "corroborated": true
   },
   "SXC": {
     "emergence_filing_date": "2025-10-16",
@@ -77,23 +92,31 @@
     "accession": "0001514705-25-000027",
     "query_match": "\"plan of reorganization\" \"effective date\"",
     "score": 12.0,
-    "reasons": "249d ago"
+    "reasons": "249d ago",
+    "corroborated": false,
+    "verification": "genuine"
   },
   "ACNB": {
     "emergence_filing_date": "2025-02-03",
     "days_since_emergence": 504,
     "accession": "0001104659-25-008408",
     "query_match": "\"plan of reorganization\" \"effective date\"",
-    "score": 6.0,
-    "reasons": ""
+    "score": 0.0,
+    "reasons": "ZEROED: no_bk_context (INCENTIVE follow-up audit; 8-K lacks Ch11 context)",
+    "corroborated": false,
+    "verification": "no_bk_context",
+    "score_pre_verification": 6.0
   },
   "C-PR": {
     "emergence_filing_date": "2025-06-03",
     "days_since_emergence": 384,
     "accession": "0001193125-25-134112",
     "query_match": "\"plan of reorganization\" \"effective date\"",
-    "score": 6.0,
-    "reasons": ""
+    "score": 0.0,
+    "reasons": "ZEROED: no_bk_context (INCENTIVE follow-up audit; 8-K lacks Ch11 context)",
+    "corroborated": false,
+    "verification": "no_bk_context",
+    "score_pre_verification": 6.0
   },
   "QVCGQ": {
     "emergence_filing_date": "2026-04-17",
@@ -101,7 +124,9 @@
     "accession": "0001104659-26-044521",
     "query_match": "\"plan of reorganization\" \"effective date\"",
     "score": 20.0,
-    "reasons": "66d ago (in 200d alpha window)"
+    "reasons": "66d ago (in 200d alpha window)",
+    "corroborated": false,
+    "verification": "unverifiable"
   },
   "CBIO": {
     "emergence_filing_date": "2025-06-18",
@@ -109,7 +134,8 @@
     "accession": "0001104659-25-060714",
     "query_match": "\"plan of reorganization\" \"effective date\"",
     "score": 6.0,
-    "reasons": ""
+    "reasons": "",
+    "corroborated": true
   },
   "RNGE": {
     "emergence_filing_date": "2026-06-03",
@@ -117,31 +143,41 @@
     "accession": "0001493152-26-027049",
     "query_match": "\"plan of reorganization\" \"effective date\"",
     "score": 25.0,
-    "reasons": "19d ago (very recent)"
+    "reasons": "19d ago (very recent)",
+    "corroborated": true
   },
   "RHLD": {
     "emergence_filing_date": "2026-03-02",
     "days_since_emergence": 112,
     "accession": "0001104659-26-022325",
     "query_match": "\"plan of reorganization\" \"effective date\"",
-    "score": 20.0,
-    "reasons": "112d ago (in 200d alpha window)"
+    "score": 0.0,
+    "reasons": "ZEROED: fake_reorg (INCENTIVE follow-up audit; 8-K lacks Ch11 context)",
+    "corroborated": false,
+    "verification": "fake_reorg",
+    "score_pre_verification": 20.0
   },
   "IOT": {
     "emergence_filing_date": "2026-06-01",
     "days_since_emergence": 21,
     "accession": "0001628280-26-039465",
     "query_match": "\"plan of reorganization\" \"effective date\"",
-    "score": 25.0,
-    "reasons": "21d ago (very recent)"
+    "score": 0.0,
+    "reasons": "ZEROED: fake_reorg (INCENTIVE follow-up audit; 8-K lacks Ch11 context)",
+    "corroborated": false,
+    "verification": "fake_reorg",
+    "score_pre_verification": 25.0
   },
   "GPGI": {
     "emergence_filing_date": "2026-06-05",
     "days_since_emergence": 17,
     "accession": "0001104659-26-071041",
     "query_match": "\"plan of reorganization\" \"effective date\"",
-    "score": 25.0,
-    "reasons": "17d ago (very recent)"
+    "score": 0.0,
+    "reasons": "ZEROED: fake_reorg (INCENTIVE follow-up audit; 8-K lacks Ch11 context)",
+    "corroborated": false,
+    "verification": "fake_reorg",
+    "score_pre_verification": 25.0
   },
   "NOTV": {
     "emergence_filing_date": "2026-06-03",
@@ -149,23 +185,30 @@
     "accession": "0001104659-26-069950",
     "query_match": "\"plan of reorganization\" \"effective date\"",
     "score": 25.0,
-    "reasons": "19d ago (very recent)"
+    "reasons": "19d ago (very recent)",
+    "corroborated": true
   },
   "AFRM": {
     "emergence_filing_date": "2025-06-26",
     "days_since_emergence": 361,
     "accession": "0001820953-25-000064",
     "query_match": "\"plan of reorganization\" \"effective date\"",
-    "score": 12.0,
-    "reasons": "361d ago"
+    "score": 0.0,
+    "reasons": "ZEROED: fake_reorg (INCENTIVE follow-up audit; 8-K lacks Ch11 context)",
+    "corroborated": false,
+    "verification": "fake_reorg",
+    "score_pre_verification": 12.0
   },
   "RBLX": {
     "emergence_filing_date": "2025-06-02",
     "days_since_emergence": 385,
     "accession": "0001315098-25-000178",
     "query_match": "\"plan of reorganization\" \"effective date\"",
-    "score": 6.0,
-    "reasons": ""
+    "score": 0.0,
+    "reasons": "ZEROED: fake_reorg (INCENTIVE follow-up audit; 8-K lacks Ch11 context)",
+    "corroborated": false,
+    "verification": "fake_reorg",
+    "score_pre_verification": 6.0
   },
   "XBPEW": {
     "emergence_filing_date": "2025-08-04",
@@ -173,7 +216,9 @@
     "accession": "0001104659-25-073718",
     "query_match": "\"plan of reorganization\" \"effective date\"",
     "score": 12.0,
-    "reasons": "322d ago"
+    "reasons": "322d ago",
+    "corroborated": false,
+    "verification": "genuine"
   },
   "TBH": {
     "emergence_filing_date": "2025-12-10",
@@ -181,15 +226,20 @@
     "accession": "0001213900-25-120192",
     "query_match": "\"plan of reorganization\" \"effective date\"",
     "score": 20.0,
-    "reasons": "194d ago (in 200d alpha window)"
+    "reasons": "194d ago (in 200d alpha window)",
+    "corroborated": false,
+    "verification": "unverifiable"
   },
   "BRLT": {
     "emergence_filing_date": "2025-12-22",
     "days_since_emergence": 182,
     "accession": "0001140361-25-046408",
     "query_match": "\"plan of reorganization\" \"effective date\"",
-    "score": 20.0,
-    "reasons": "182d ago (in 200d alpha window)"
+    "score": 0.0,
+    "reasons": "ZEROED: fake_reorg (INCENTIVE follow-up audit; 8-K lacks Ch11 context)",
+    "corroborated": false,
+    "verification": "fake_reorg",
+    "score_pre_verification": 20.0
   },
   "FLYYQ": {
     "emergence_filing_date": "2025-02-21",
@@ -197,7 +247,8 @@
     "accession": "0000950103-25-002262",
     "query_match": "\"plan of reorganization\" \"effective date\"",
     "score": 6.0,
-    "reasons": ""
+    "reasons": "",
+    "corroborated": true
   },
   "ULCC": {
     "emergence_filing_date": "2025-01-29",
@@ -205,7 +256,9 @@
     "accession": "0001193125-25-014898",
     "query_match": "\"plan of reorganization\" \"effective date\"",
     "score": 6.0,
-    "reasons": ""
+    "reasons": "",
+    "corroborated": false,
+    "verification": "fetch_err"
   },
   "TPICQ": {
     "emergence_filing_date": "2025-08-15",
@@ -213,7 +266,8 @@
     "accession": "0001171843-25-005450",
     "query_match": "\"plan of reorganization confirmed\"",
     "score": 12.0,
-    "reasons": "311d ago"
+    "reasons": "311d ago",
+    "corroborated": true
   },
   "SNBR": {
     "emergence_filing_date": "2026-06-16",
@@ -221,7 +275,8 @@
     "accession": "0000950103-26-009081",
     "query_match": "\"plan of reorganization confirmed\"",
     "score": 25.0,
-    "reasons": "6d ago (very recent)"
+    "reasons": "6d ago (very recent)",
+    "corroborated": true
   },
   "ADV": {
     "emergence_filing_date": "2026-03-11",
@@ -229,6 +284,8 @@
     "accession": "0001193125-26-102465",
     "query_match": "\"plan of reorganization confirmed\"",
     "score": 25.0,
-    "reasons": "103d ago (in 200d alpha window)"
+    "reasons": "103d ago (in 200d alpha window)",
+    "corroborated": false,
+    "verification": "genuine"
   }
 }

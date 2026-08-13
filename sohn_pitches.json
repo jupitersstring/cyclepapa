@@ -1,0 +1,158 @@
+{
+  "_meta": {
+    "conference": "Sohn New York 2026",
+    "date": "2026-05-12",
+    "sources": [
+      "https://hedgefundalpha.com/conferences/2026-sohn-new-york-conference/",
+      "https://www.matterfact.com/blog/sohn-2026-pitch-scorecard"
+    ],
+    "note": "Curated from public conference coverage; ~30 picks total, ~20 public tickers captured. Refresh after each conference."
+  },
+  "pitches": [
+    {
+      "ticker": "IFNNY",
+      "presenter": "Kevin Salimian",
+      "fund": "Voxel Capital",
+      "side": "long",
+      "stage": "main",
+      "thesis": "AI power semis re-rating"
+    },
+    {
+      "ticker": "NOK",
+      "presenter": "Philosophy Capital",
+      "fund": "Philosophy Capital",
+      "side": "long",
+      "stage": "main",
+      "thesis": "Telco capex tied to AI datacenters"
+    },
+    {
+      "ticker": "TTMI",
+      "presenter": "Alex Sacerdote",
+      "fund": "Whale Rock",
+      "side": "long",
+      "stage": "main",
+      "thesis": "AI infrastructure beneficiary"
+    },
+    {
+      "ticker": "JMIA",
+      "presenter": "Thea Jamison",
+      "fund": "CHANGE Global",
+      "side": "long",
+      "stage": "main",
+      "thesis": "African e-commerce"
+    },
+    {
+      "ticker": "ACHC",
+      "presenter": "David Einhorn",
+      "fund": "Greenlight",
+      "side": "long",
+      "stage": "main",
+      "thesis": "turnaround basket"
+    },
+    {
+      "ticker": "VSNT",
+      "presenter": "David Einhorn",
+      "fund": "Greenlight",
+      "side": "long",
+      "stage": "main",
+      "thesis": "live news resilient to cord-cutting"
+    },
+    {
+      "ticker": "CNC",
+      "presenter": "David Einhorn",
+      "fund": "Greenlight",
+      "side": "long",
+      "stage": "main",
+      "thesis": "transition/turnaround"
+    },
+    {
+      "ticker": "FLR",
+      "presenter": "David Einhorn",
+      "fund": "Greenlight",
+      "side": "long",
+      "stage": "main",
+      "thesis": "repositioning value unlock"
+    },
+    {
+      "ticker": "VSCO",
+      "presenter": "David Einhorn",
+      "fund": "Greenlight",
+      "side": "long",
+      "stage": "main",
+      "thesis": "turnaround"
+    },
+    {
+      "ticker": "VIST",
+      "presenter": null,
+      "fund": null,
+      "side": "long",
+      "stage": "main",
+      "thesis": "Vaca Muerta guidance raise / Argentina re-rating"
+    },
+    {
+      "ticker": "FIX",
+      "presenter": null,
+      "fund": "Hiddenite",
+      "side": "long",
+      "stage": "main",
+      "thesis": "comparator name (lower confidence)",
+      "low_confidence": true
+    },
+    {
+      "ticker": "CVNA",
+      "presenter": "Andrew Bellas",
+      "fund": "General Equity",
+      "side": "long",
+      "stage": "next_wave",
+      "thesis": null
+    },
+    {
+      "ticker": "PRM",
+      "presenter": "Tariq Barma",
+      "fund": "Balance Capital",
+      "side": "long",
+      "stage": "next_wave",
+      "thesis": "Perimeter Solutions"
+    },
+    {
+      "ticker": "DDOG",
+      "presenter": "Leon Shaulov",
+      "fund": "Maplelane",
+      "side": "long",
+      "stage": "main",
+      "thesis": "software/semis basket"
+    },
+    {
+      "ticker": "TXN",
+      "presenter": "Leon Shaulov",
+      "fund": "Maplelane",
+      "side": "long",
+      "stage": "main",
+      "thesis": "software/semis basket"
+    },
+    {
+      "ticker": "LRCX",
+      "presenter": "Leon Shaulov",
+      "fund": "Maplelane",
+      "side": "long",
+      "stage": "main",
+      "thesis": "software/semis basket"
+    },
+    {
+      "ticker": "RZLV",
+      "presenter": "Joyce Meng",
+      "fund": "FACT Capital",
+      "side": "short",
+      "stage": "next_wave",
+      "thesis": null
+    },
+    {
+      "ticker": "OSIS",
+      "presenter": "Soren Aandahl",
+      "fund": "Blue Orca",
+      "side": "short",
+      "stage": "next_wave",
+      "thesis": null
+    }
+  ]
+}
