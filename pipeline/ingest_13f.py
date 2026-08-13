@@ -435,6 +435,18 @@ def run(only=None):
             print(f"  [-] {fund_name[:40]}: all {n_deriv} rows were derivatives")
             time.sleep(0.5)
             continue
+        # A combined report files one line per ACCOUNT per security (Kopernik:
+        # 23,960 lines for ~4,400 securities). Sum lines by CUSIP — the old
+        # REPLACE-on-PK kept only the last account's slice of each position.
+        agg = {}
+        for r in rows:
+            a = agg.get(r["cusip"])
+            if a is None:
+                agg[r["cusip"]] = dict(r)
+            else:
+                a["value_k"] += r["value_k"]
+                a["shares"]  += r["shares"]
+        rows = list(agg.values())
         total_v = sum(r["value_k"] for r in rows)
         ratios = []          # implied-price / actual-price, for value-unit detection
         for r in rows:

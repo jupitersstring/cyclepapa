@@ -63,6 +63,15 @@ def run():
         rows = [r for r in rows if not r.get("put_call")]     # options are not holdings
         if not rows:
             continue
+        agg = {}                       # sum per-account lines by CUSIP (see ingest_13f)
+        for r in rows:
+            a = agg.get(r["cusip"])
+            if a is None:
+                agg[r["cusip"]] = dict(r)
+            else:
+                a["value_k"] += r["value_k"]
+                a["shares"]  += r["shares"]
+        rows = list(agg.values())
         total_v = sum(r["value_k"] for r in rows)
         for r in rows:
             # Same guards as current-quarter ingest: skip empty-filing markers,
