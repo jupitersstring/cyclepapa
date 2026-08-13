@@ -25,8 +25,20 @@ def _valid_cusip(c):
     # shared across unrelated rows, so it can never serve as an authority key.
     return bool(c) and len(c) == 9 and len(set(c)) > 1
 
+_CCY = ("EUR","GBP","CHF","JPY","SEK","NOK","DKK","HKD","CAD","AUD","USD","PLN",
+        "CZK","HUF","MXN","BRL","ZAR","TRY","KRW","TWD","SGD","INR","CNY","CNH",
+        "THB","IDR","MYR","PHP","VND","AED","SAR","ILS","NZD")
+
+def _valid_ticker(t):
+    # Composite venue tickers ("TRI4EUR", "APLSUSD", "CCL1EUR") leak in from
+    # OpenFIGI/Yahoo European listing lines. Persisting one poisons every later
+    # ingest of that CUSIP (Woodbridge's $27B TRI stake surfaced as TRI4EUR).
+    if t is None:
+        return True                      # NULL = known-unmappable, allowed
+    return not (len(t) >= 6 and any(t.endswith(x) for x in _CCY))
+
 def upsert(conn, cusip, ticker, sec_type, source, asof):
-    if not _valid_cusip(cusip):
+    if not _valid_cusip(cusip) or not _valid_ticker(ticker):
         return
     # Never let a lower-authority source overwrite an OpenFIGI/curated mapping.
     prior = conn.execute("SELECT source FROM cusip_map WHERE cusip=?", (cusip,)).fetchone()

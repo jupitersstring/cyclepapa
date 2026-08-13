@@ -365,6 +365,16 @@ def run():
     universe = set(sm) | set(s_by) | set(act) | set(cl) | set(pct_book_max)
     # ticker -> name map for sec_type's same-issuer suffix check
     _names = {t: (tm.get(t, {}).get("name") or yf_name.get(t)) for t in universe}
+    # Name-less tickers (no Yahoo quote yet) fall back to the 13F issuer string —
+    # our own holdings say "INVESCO GALAXY BITCOIN ETF" even when Yahoo is silent,
+    # so the ETF/preferred name rules still get to see a name.
+    _noname = [t for t, n in _names.items() if not n]
+    if _noname:
+        ph = ",".join("?" * len(_noname))
+        for t, iss in conn.execute(
+                f"""SELECT ticker, MAX(issuer) FROM fund_13f_holdings
+                    WHERE ticker IN ({ph}) GROUP BY ticker""", _noname):
+            _names[t] = iss
     # Delisted set (quote 404s under valid crumb auth — the 2025-26 M&A wave):
     # a "pick" that can no longer be bought is noise; classified out of pick
     # sheets but kept in reference sheets like everything else.

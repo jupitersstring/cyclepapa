@@ -55,8 +55,10 @@ def run():
     # I1. 13F value-unit sanity. >3x issuer mcap is impossible (dollars-vs-thousands
     #     1000x stragglers / ADS inflation) -> FAIL. 1.5-3x is usually a stale
     #     quarter-end value on a since-collapsed stock (e.g. post-bankruptcy) -> WARN.
+    # mcap floor: a sub-$5M mcap is a collapsed/bankrupt shell (SNBRQ, NOTVQ) —
+    # any pre-collapse quarter-end value trips 3x there without being a unit bug.
     n = one("""SELECT COUNT(*) FROM fund_13f_holdings h JOIN ticker_yf y ON y.ticker=h.ticker
-        WHERE y.mcap_m>0 AND h.value_k/1e3 > y.mcap_m*3 AND h.sh_type IN ('SH','')""")
+        WHERE y.mcap_m>=5 AND h.value_k/1e3 > y.mcap_m*3 AND h.sh_type IN ('SH','')""")
     if n: fails.append(f"13F: {n} holdings worth >3x issuer mcap (value-unit/ADS inflation)")
     n = one("""SELECT COUNT(*) FROM fund_13f_holdings h JOIN ticker_yf y ON y.ticker=h.ticker
         WHERE y.mcap_m>0 AND h.value_k/1e3 BETWEEN y.mcap_m*1.5 AND y.mcap_m*3 AND h.sh_type IN ('SH','')""")
@@ -136,6 +138,13 @@ def run():
     for tbl in ("fund_13f_holdings", "fund_13f_prior"):
         n = one(f"SELECT COUNT(*) FROM {tbl} WHERE value_k=0 AND shares=0")
         if n: fails.append(f"{tbl}: {n} informationless zero-value/zero-share rows booked")
+    #      ...and composite venue tickers ("TRI4EUR", "APLSUSD") must never be
+    #      persisted as authority nor carried on holdings rows.
+    ccy = "','".join(("EUR","GBP","CHF","JPY","SEK","NOK","DKK","HKD","CAD","AUD","USD"))
+    for tbl, col in (("cusip_map","ticker"), ("fund_13f_holdings","ticker")):
+        n = one(f"""SELECT COUNT(*) FROM {tbl} WHERE {col} IS NOT NULL
+            AND length({col}) >= 6 AND substr({col}, -3) IN ('{ccy}')""")
+        if n: fails.append(f"{tbl}: {n} composite venue tickers (ccy-suffix junk, e.g. TRI4EUR)")
 
     # I8. feed freshness: warn when the tradeable-signal feeds fall behind.
     for tbl, col, days in [('form4_transactions','trans_date',21), ('holder_13d','filed',30),

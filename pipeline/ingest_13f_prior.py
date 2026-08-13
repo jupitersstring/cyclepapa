@@ -60,6 +60,9 @@ def run():
         rows = m.parse_infotable(body) if body else []
         if not rows:
             continue
+        rows = [r for r in rows if not r.get("put_call")]     # options are not holdings
+        if not rows:
+            continue
         total_v = sum(r["value_k"] for r in rows)
         for r in rows:
             # Same guards as current-quarter ingest: skip empty-filing markers,

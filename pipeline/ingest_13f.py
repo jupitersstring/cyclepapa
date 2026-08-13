@@ -10,7 +10,7 @@ Politeness contract per SEC EDGAR rules: ~5 req/sec max, sleep on 429,
 exponential backoff. Designed to run as a long-running background job;
 state is persisted on the fly so partial runs are resumable.
 """
-import json, os, re, sqlite3, subprocess, time, sys
+import json, os, re, sqlite3, statistics, subprocess, time, sys
 import xml.etree.ElementTree as ET
 
 DB = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "cyclepapa.db")
@@ -21,6 +21,18 @@ NS = {'i': 'http://www.sec.gov/edgar/document/thirteenf/informationtable'}
 # CIK map for our known funds. Keyed by canonical fund name.
 # Add to this as we resolve more CIKs.
 FUND_CIK = {
+    # --- Low-profile / "hidden" exceptional filers (2026-08, verified active) ---
+    "Euclidean Capital (Jim Simons FO)":    "1825034",
+    "Gates Foundation Trust (Larson)":      "1166559",
+    "Longview Asset Mgmt (Crown Family)":   "1086477",
+    "Woodbridge Co (Thomson Family)":       "1397960",
+    "Summer Road (Sackler FO)":             "1604873",
+    "Continental Grain (Fribourg)":         "929607",
+    "Koch Inc (Koch Family)":               "2027344",
+    "Stockbridge Partners (Berkshire Ptrs)": "1505183",
+    "BlueCrest Capital (Michael Platt)":    "1610880",
+    "Quadrature Capital (London Quant)":    "1651424",
+    "Boxer Capital Management (Tavistock)": "2018299",
     # --- Billionaire family-office gap-fill (2026-08, verified active filers) ---
     "Meritage Group (Nat Simons)":          "1427119",
     "Wildcat Capital (Bonderman FO)":       "1582384",
@@ -236,6 +248,10 @@ def parse_infotable(xml_bytes):
             "value_k": v,
             "shares":  sh,
             "type":    t("shrsOrPrnAmt/sshPrnamtType"),
+            # Derivatives are reported at underlying value with putCall set.
+            # Booking them as shares corrupts consensus (a PUT is bearish!) —
+            # OrbiMed's $286M MDXH call surfaced as an 11x-mcap "holding".
+            "put_call": t("putCall").lower(),
         })
     return out
 
@@ -371,6 +387,11 @@ def run(only=None):
     except sqlite3.OperationalError:
         cusip_map = {}
     print(f"  {len(cusip_map)} CUSIP-authority mappings loaded")
+    try:
+        px_map = {t: p for t, p in conn.execute(
+            "SELECT ticker, price FROM ticker_yf WHERE price > 0")}
+    except sqlite3.OperationalError:
+        px_map = {}
     time.sleep(1)
 
     funds = [(name, cik) for name, cik in FUND_CIK.items()]
@@ -408,7 +429,14 @@ def run(only=None):
             print(f"  [-] {fund_name[:40]}: 0 rows parsed from XML")
             time.sleep(1)
             continue
+        n_deriv = sum(1 for r in rows if r.get("put_call"))
+        rows = [r for r in rows if not r.get("put_call")]     # options are not holdings
+        if not rows:
+            print(f"  [-] {fund_name[:40]}: all {n_deriv} rows were derivatives")
+            time.sleep(0.5)
+            continue
         total_v = sum(r["value_k"] for r in rows)
+        ratios = []          # implied-price / actual-price, for value-unit detection
         for r in rows:
             # Empty-filing markers ("NONE", "NA", cusip 000000000) and zero rows
             # carry no information and must never be booked as holdings.
@@ -427,6 +455,19 @@ def run(only=None):
                 VALUES (?,?,?,?,?,?,?,?,?,?,?)""",
                 (fund_name, cik, acc, filed, r["issuer"], r["cusip"], tkr,
                  r["value_k"], r["shares"], r["type"], pct))
+            p = px_map.get(tkr)
+            if p and r["shares"] and r["value_k"]:
+                ratios.append((r["value_k"] * 1000.0 / r["shares"]) / p)
+        # Value-unit sanity: filings since 2023 report FULL DOLLARS; value_k
+        # assumes thousands. Implied price (value/shares) vs actual price is a
+        # unit-free detector: median ratio ~1000 means full-dollar filing.
+        # The old mcap-based check missed megacap-heavy books (a raw-dollar
+        # TSM position is still below TSM's mcap) — Gates Trust booked $31.7T.
+        if len(ratios) >= 3 and statistics.median(ratios) > 100:
+            conn.execute("UPDATE fund_13f_holdings SET value_k=value_k/1000.0 WHERE fund=?",
+                         (fund_name,))
+            total_v /= 1000.0
+            print(f"    [unit] {fund_name[:36]}: full-dollar filing normalized to $k")
         conn.execute("""INSERT OR REPLACE INTO fund_13f_state VALUES
             (?,?,?,?,?,?,datetime('now'))""",
             (fund_name, cik, acc, filed, len(rows), total_v))
