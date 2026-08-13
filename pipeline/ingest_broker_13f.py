@@ -35,6 +35,28 @@ BROKER_CIK = {
     "Nomura Holdings":     "1163653",
     "Deutsche Bank AG":    "948046",
     "Wells Fargo":         "72971",
+    # --- Lowkey desks: the PBs/swap entities activists actually use because
+    # nobody watches them. Several are the SEPARATE swap subsidiary whose
+    # parent's consolidated 13F hides the real book (BNPP Financial Markets
+    # vs BNP Paribas's 333-row shell; SG Americas after SocGen's parent
+    # stopped filing in 2016; Mizuho Markets Americas).
+    "Jefferies":           "96223",
+    "Royal Bank of Canada": "1000275",
+    "Bank of Nova Scotia": "9631",
+    "Bank of Montreal":    "927971",
+    "Toronto-Dominion":    "947263",
+    "Sumitomo Mitsui FG":  "1022837",
+    "Mitsubishi UFJ FG":   "67088",
+    "Macquarie Group":     "1418333",
+    "Natixis":             "1274981",
+    "BNPP Financial Mkts": "1166588",
+    "SG Americas":         "1313360",
+    "Mizuho Markets Amer": "1825516",
+    "MUFG Securities Can": "1656187",
+    "StoneX Group":        "913760",
+    "Clear Street":        "1881567",
+    "Daiwa Securities":    "1481045",
+    "Marex Group":         "1997464",
 }
 
 def curl_big(url, timeout=240):
