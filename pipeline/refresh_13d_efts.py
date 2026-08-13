@@ -81,7 +81,7 @@ def collect_holders(conn):
     return list(out.items())
 
 def run():
-    conn = sqlite3.connect(DB)
+    conn = sqlite3.connect(DB, timeout=60); conn.execute('PRAGMA busy_timeout=60000')
     conn.row_factory = sqlite3.Row
     # Make sure ticker map is loaded
     import ingest_13d as i13

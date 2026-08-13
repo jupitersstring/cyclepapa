@@ -161,7 +161,7 @@ def fetch_one(tkr, session):
     }
 
 def run(max_n=4000, rps=3.0):
-    conn = sqlite3.connect(DB)
+    conn = sqlite3.connect(DB, timeout=60); conn.execute('PRAGMA busy_timeout=60000')
     init_schema(conn)
     conn.execute("""CREATE TABLE IF NOT EXISTS yf_dead (
         ticker TEXT PRIMARY KEY, asof TEXT)""")

@@ -174,7 +174,7 @@ def ensure_dedup_index(conn):
     conn.commit()
 
 def run(max_n=1500, n_workers=8, rps=8, all_us=False):
-    conn = sqlite3.connect(DB)
+    conn = sqlite3.connect(DB, timeout=60); conn.execute('PRAGMA busy_timeout=60000')
     ensure_dedup_index(conn)
     targets = target_tickers(conn, max_n if not all_us else 0, all_us=all_us)
     print(f"sharded scan: {len(targets)} tickers, {n_workers} workers, {rps} req/s"

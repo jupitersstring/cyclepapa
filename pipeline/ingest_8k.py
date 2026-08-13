@@ -165,7 +165,7 @@ def target_tickers(conn, max_n, all_us=False):
     return [t for t in targets if t not in have][:max_n]
 
 def run(max_n=600):
-    conn = sqlite3.connect(DB)
+    conn = sqlite3.connect(DB, timeout=60); conn.execute('PRAGMA busy_timeout=60000')
     init_schema(conn)
     targets = target_tickers(conn, max_n)
     print(f"scanning {len(targets)} tickers for 8-K filings (≤180d)")
@@ -230,7 +230,7 @@ def scan_8k_one(tkr):
 
 def run_sharded(all_us=True, n_workers=8, rps=8):
     """Complete, fast 8-K ingest across the full US-held universe."""
-    conn = sqlite3.connect(DB)
+    conn = sqlite3.connect(DB, timeout=60); conn.execute('PRAGMA busy_timeout=60000')
     init_schema(conn)
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     from _shard import shard_map

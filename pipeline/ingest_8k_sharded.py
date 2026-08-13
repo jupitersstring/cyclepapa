@@ -31,7 +31,7 @@ def scan_one_ticker(tkr):
     return rows
 
 def run(max_n=1200, n_workers=8, rps=8):
-    conn = sqlite3.connect(DB)
+    conn = sqlite3.connect(DB, timeout=60); conn.execute('PRAGMA busy_timeout=60000')
     init_schema(conn)
     targets = target_tickers(conn, max_n)
     print(f"sharded 8-K scan: {len(targets)} tickers, {n_workers} workers")
