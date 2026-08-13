@@ -62,7 +62,12 @@ def run():
             continue
         total_v = sum(r["value_k"] for r in rows)
         for r in rows:
-            cm = cusip_map.get(r["cusip"])
+            # Same guards as current-quarter ingest: skip empty-filing markers,
+            # never consult the authority map for shared placeholder CUSIPs.
+            if not r["value_k"] and not r["shares"]:
+                continue
+            cusip_ok = r["cusip"] and len(r["cusip"]) == 9 and len(set(r["cusip"])) > 1
+            cm = cusip_map.get(r["cusip"]) if cusip_ok else None
             tkr = (cm[0] if cm[1] != "etf" else None) if cm is not None else m.name_to_ticker(r["issuer"], name_map)
             pct = (r["value_k"] / total_v * 100) if total_v else None
             conn.execute("INSERT OR REPLACE INTO fund_13f_prior VALUES (?,?,?,?,?,?,?,?,?,?,?)",

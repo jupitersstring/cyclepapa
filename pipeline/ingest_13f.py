@@ -21,6 +21,10 @@ NS = {'i': 'http://www.sec.gov/edgar/document/thirteenf/informationtable'}
 # CIK map for our known funds. Keyed by canonical fund name.
 # Add to this as we resolve more CIKs.
 FUND_CIK = {
+    # --- Billionaire family-office gap-fill (2026-08, verified active filers) ---
+    "Meritage Group (Nat Simons)":          "1427119",
+    "Wildcat Capital (Bonderman FO)":       "1582384",
+    "Thiel Macro (Peter Thiel)":            "1562087",
     # --- PitchBook-sourced additions (2026-07, verified active 13F filers) ---
     "Cat Rock Capital Management":          "1654648",
     "Theleme Partners":                     "1511881",
@@ -406,7 +410,14 @@ def run(only=None):
             continue
         total_v = sum(r["value_k"] for r in rows)
         for r in rows:
-            cm = cusip_map.get(r["cusip"])
+            # Empty-filing markers ("NONE", "NA", cusip 000000000) and zero rows
+            # carry no information and must never be booked as holdings.
+            if not r["value_k"] and not r["shares"]:
+                continue
+            # Placeholder CUSIPs are shared across unrelated rows: never consult
+            # the authority map for them, fall through to name matching.
+            cusip_ok = r["cusip"] and len(r["cusip"]) == 9 and len(set(r["cusip"])) > 1
+            cm = cusip_map.get(r["cusip"]) if cusip_ok else None
             if cm is not None:                       # CUSIP authority wins
                 tkr = cm[0] if cm[1] != "etf" else None
             else:

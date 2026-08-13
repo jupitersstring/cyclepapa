@@ -125,6 +125,18 @@ def run():
         WHERE ticker IS NOT NULL GROUP BY accession HAVING COUNT(DISTINCT ticker)>1)""")
     if n: fails.append(f"Form4: {n} accessions booked under multiple tickers (owner-vs-issuer misattribution)")
 
+    # I8d. Placeholder-CUSIP hygiene: "000000000"-style CUSIPs come from empty
+    #      13F filings ("NONE", "No Securities") and unassigned issues; one such
+    #      CUSIP is shared by unrelated rows, so it must never be an authority
+    #      key (it once painted 6 empty filings as phantom PRLD holders) and
+    #      zero-value/zero-share rows must never be booked at all.
+    n = one("""SELECT COUNT(*) FROM cusip_map
+        WHERE length(cusip) != 9 OR replace(cusip, substr(cusip,1,1), '') = ''""")
+    if n: fails.append(f"cusip_map: {n} placeholder/malformed CUSIPs persisted as authority")
+    for tbl in ("fund_13f_holdings", "fund_13f_prior"):
+        n = one(f"SELECT COUNT(*) FROM {tbl} WHERE value_k=0 AND shares=0")
+        if n: fails.append(f"{tbl}: {n} informationless zero-value/zero-share rows booked")
+
     # I8. feed freshness: warn when the tradeable-signal feeds fall behind.
     for tbl, col, days in [('form4_transactions','trans_date',21), ('holder_13d','filed',30),
                            ('catalysts_8k','filed',30), ('ticker_yf','asof',21)]:

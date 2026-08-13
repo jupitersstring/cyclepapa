@@ -98,6 +98,22 @@ CREATE TABLE fund_positions (
       id INTEGER PRIMARY KEY, fund TEXT, ticker TEXT, company TEXT, section INTEGER,
       pct_value REAL, pct_kind TEXT, dollar_m REAL, change_text TEXT,
       event_date TEXT, raw_text TEXT, asof TEXT);
+CREATE TABLE fund_style (
+      fund TEXT PRIMARY KEY, sub_group TEXT, macro_style TEXT,
+      total_rows INTEGER, conviction_n INTEGER, threshold_n INTEGER,
+      new_n INTEGER, adds_n INTEGER);
+CREATE TABLE style_summary (
+      macro_style TEXT PRIMARY KEY, n_funds INTEGER, total_rows INTEGER,
+      n_conviction INTEGER, n_threshold INTEGER, n_new INTEGER, n_adds INTEGER,
+      top_funds TEXT, top_consensus TEXT);
+CREATE TABLE style_consensus (
+      macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
+      sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
+      PRIMARY KEY (macro_style, ticker));
+CREATE TABLE ticker_entry_intact (
+      ticker TEXT PRIMARY KEY, current_px REAL, anchor_px REAL, anchor_source TEXT,
+      vs_entry_pct REAL, bucket TEXT, conviction_score REAL, n_funds INTEGER,
+      n_hyper INTEGER, has_insider_cobuy INTEGER, sum_dollar_m REAL, anchors_seen TEXT);
 CREATE TABLE expected_return (
       ticker TEXT PRIMARY KEY, tags_n INTEGER, weighted_excess_12m REAL,
       best_tag TEXT, best_tag_excess REAL, worst_tag TEXT, worst_tag_excess REAL,
@@ -112,30 +128,6 @@ CREATE TABLE archetype_status (
       members_dead INTEGER, members_untracked INTEGER, members_excluded INTEGER,
       best_member TEXT, best_member_er REAL, verdict TEXT);
 CREATE TABLE "activist_catalysts" ("ticker" TEXT, "n_threshold_filings" INTEGER, "funds_5pct" TEXT, "n_funds_positive" INTEGER, "max_pct_any_fund" REAL, "flags" TEXT, "sample_notes" TEXT);
-CREATE TABLE "consensus_buys" ("ticker" TEXT, "n_funds" INTEGER, "max_pct" TEXT, "flags" REAL, "funds" INTEGER, "narratives" INTEGER);
-CREATE TABLE "conviction_adds" ("ticker" TEXT, "n_funds_adding" INTEGER, "n_new_inits" INTEGER, "sum_dollar_m" REAL, "max_dollar_m" REAL, "max_pct_add" REAL, "funds" TEXT, "narratives" TEXT);
-CREATE TABLE "fund_canon" ("fund" TEXT, "canon" TEXT);
-CREATE TABLE "fund_cik_map" ("fund" TEXT, "cik" INTEGER, "edgar_name" TEXT, "confidence" REAL, "has_13f" INTEGER, "asof" TEXT);
-CREATE TABLE "fund_resolution_state" ("fund" TEXT, "n_candidates" INTEGER, "best_cik" INTEGER, "best_conf" REAL, "status" TEXT, "asof" TEXT);
-CREATE TABLE "highest_conviction" ("ticker" TEXT, "n_funds" REAL, "max_pct_book" TEXT, "n_threshold" INTEGER, "n_hyper" INTEGER, "flags" INTEGER, "top_funds" TEXT);
-CREATE TABLE "microcap_conviction_adds" ("ticker" TEXT, "n_funds_adding" INTEGER, "n_new_inits" INTEGER, "sum_dollar_m" REAL, "max_dollar_m" REAL, "max_pct_add" REAL, "funds" TEXT, "narratives" TEXT);
-CREATE TABLE "multi_fund_new_inits" ("ticker" TEXT, "n_funds_initiating" INTEGER, "sum_dollar_m" TEXT, "funds" INTEGER);
-CREATE TABLE "ticker_valuation" ("ticker" TEXT, "cik" INTEGER, "ebitda_ttm" REAL, "book_value" REAL, "net_debt" REAL, "ev_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "ebitda_is_ebit_fallback" INTEGER, "asof" TEXT);
-CREATE TABLE fund_13f_holdings (
-      fund TEXT, cik TEXT, accession TEXT, filed TEXT,
-      issuer TEXT, cusip TEXT, ticker TEXT, value_k INTEGER, shares INTEGER,
-      sh_type TEXT, pct_book REAL,
-      PRIMARY KEY (fund, accession, cusip));
-CREATE INDEX idx_13f_ticker ON fund_13f_holdings(ticker);
-CREATE INDEX idx_13f_fund ON fund_13f_holdings(fund);
-CREATE TABLE fund_13f_state (
-      fund TEXT PRIMARY KEY, cik TEXT, last_accession TEXT, last_filed TEXT,
-      n_holdings INTEGER, total_value_k INTEGER, ingested_at TEXT);
-CREATE TABLE holder_13d (
-      holder TEXT, holder_cik TEXT, form TEXT, filed TEXT, accession TEXT,
-      subject_name TEXT, subject_cik TEXT, subject_ticker TEXT,
-      pct_class REAL, source_url TEXT,
-      PRIMARY KEY (holder_cik, accession));
 CREATE TABLE catalysts_8k (
       ticker TEXT, cik TEXT, accession TEXT, filed TEXT,
       items TEXT,                -- comma-separated item codes
@@ -144,47 +136,58 @@ CREATE TABLE catalysts_8k (
       has_bankruptcy INTEGER, has_pipe INTEGER, has_control INTEGER,
       source_url TEXT,
       PRIMARY KEY (cik, accession));
-CREATE INDEX idx_8k_ticker ON catalysts_8k(ticker);
-CREATE INDEX idx_8k_filed ON catalysts_8k(filed);
-CREATE TABLE ticker_yf ("ticker" TEXT PRIMARY KEY, "mcap_m" REAL, "enterprise_value_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "pe_ttm" REAL, "fwd_pe" REAL, "ev_revenue" REAL, "peg" REAL, "price" REAL, "currency" TEXT, "shares_out_m" REAL, "ebitda_m" REAL, "total_debt_m" REAL, "total_cash_m" REAL, "profit_margin" REAL, "rev_growth" REAL, "sector" TEXT, "industry" TEXT, "asof" TEXT, "business_summary" TEXT, "long_name" TEXT);
-CREATE TABLE ticker_meta ("ticker" TEXT PRIMARY KEY, "name" TEXT, "exchange" TEXT, "market" TEXT, "sector" TEXT, "industry" TEXT, "mcap_m" REAL, "price" REAL, "price_currency" TEXT, "adv_3m_usd_m" REAL, "shares_out_m" REAL, "pe_ttm" TEXT, "fwd_pe" TEXT, "beta" TEXT, "asof" TEXT, "sic" INTEGER, "sic_description" TEXT);
-CREATE TABLE yf_dead (ticker TEXT PRIMARY KEY, asof TEXT);
-CREATE INDEX idx_yf_evebitda ON ticker_yf(ev_ebitda);
-CREATE INDEX idx_yf_pb ON ticker_yf(pb_ratio);
+CREATE TABLE "consensus_buys" ("ticker" TEXT, "n_funds" INTEGER, "max_pct" TEXT, "flags" REAL, "funds" INTEGER, "narratives" INTEGER);
+CREATE TABLE "conviction_adds" ("ticker" TEXT, "n_funds_adding" INTEGER, "n_new_inits" INTEGER, "sum_dollar_m" REAL, "max_dollar_m" REAL, "max_pct_add" REAL, "funds" TEXT, "narratives" TEXT);
 CREATE TABLE cusip_map (
         cusip TEXT PRIMARY KEY, ticker TEXT, sec_type TEXT, source TEXT, asof TEXT);
-CREATE INDEX idx_cusipmap_tk ON cusip_map(ticker);
-CREATE TABLE price_stats (
-        ticker TEXT PRIMARY KEY, mom_3mo REAL, mom_20d REAL, off_high REAL,
-        last_close REAL, n_pts INTEGER, asof TEXT);
+CREATE TABLE fund_13f_holdings (
+      fund TEXT, cik TEXT, accession TEXT, filed TEXT,
+      issuer TEXT, cusip TEXT, ticker TEXT, value_k INTEGER, shares INTEGER,
+      sh_type TEXT, pct_book REAL,
+      PRIMARY KEY (fund, accession, cusip));
 CREATE TABLE fund_13f_prior (
       fund TEXT, cik TEXT, accession TEXT, filed TEXT,
       issuer TEXT, cusip TEXT, ticker TEXT, value_k INTEGER, shares INTEGER,
       sh_type TEXT, pct_book REAL,
       PRIMARY KEY (fund, accession, cusip));
-CREATE INDEX idx_prior_ticker ON fund_13f_prior(ticker);
-CREATE INDEX idx_prior_fund ON fund_13f_prior(fund);
 CREATE TABLE fund_13f_prior_state (
       fund TEXT PRIMARY KEY, accession TEXT, filed TEXT, n_holdings INTEGER, total_value_k INTEGER);
-CREATE UNIQUE INDEX ux_form4_txn ON form4_transactions(
-    accession, COALESCE(owner,''), code, trans_date, shares, COALESCE(price,-1));
+CREATE TABLE fund_13f_state (
+      fund TEXT PRIMARY KEY, cik TEXT, last_accession TEXT, last_filed TEXT,
+      n_holdings INTEGER, total_value_k INTEGER, ingested_at TEXT);
+CREATE TABLE "fund_canon" ("fund" TEXT, "canon" TEXT);
+CREATE TABLE "fund_cik_map" ("fund" TEXT, "cik" INTEGER, "edgar_name" TEXT, "confidence" REAL, "has_13f" INTEGER, "asof" TEXT);
+CREATE TABLE "fund_resolution_state" ("fund" TEXT, "n_candidates" INTEGER, "best_cik" INTEGER, "best_conf" REAL, "status" TEXT, "asof" TEXT);
+CREATE TABLE "highest_conviction" ("ticker" TEXT, "n_funds" REAL, "max_pct_book" TEXT, "n_threshold" INTEGER, "n_hyper" INTEGER, "flags" INTEGER, "top_funds" TEXT);
+CREATE TABLE holder_13d (
+      holder TEXT, holder_cik TEXT, form TEXT, filed TEXT, accession TEXT,
+      subject_name TEXT, subject_cik TEXT, subject_ticker TEXT,
+      pct_class REAL, source_url TEXT,
+      PRIMARY KEY (holder_cik, accession));
+CREATE TABLE "microcap_conviction_adds" ("ticker" TEXT, "n_funds_adding" INTEGER, "n_new_inits" INTEGER, "sum_dollar_m" REAL, "max_dollar_m" REAL, "max_pct_add" REAL, "funds" TEXT, "narratives" TEXT);
+CREATE TABLE "multi_fund_new_inits" ("ticker" TEXT, "n_funds_initiating" INTEGER, "sum_dollar_m" TEXT, "funds" INTEGER);
+CREATE TABLE pb_affiliation (
+      full_name TEXT, company TEXT, company_type TEXT, position TEXT,
+      is_former INTEGER, theme TEXT, ticker TEXT, is_principal INTEGER DEFAULT 0,
+      role_class TEXT, confidence TEXT, seat_since TEXT);
 CREATE TABLE pb_people (
       person_id TEXT, first_name TEXT, last_name TEXT, full_name TEXT,
       primary_company TEXT, primary_company_type TEXT, primary_position TEXT,
       is_former INTEGER, board_seats TEXT, roles TEXT,
       location TEXT, country TEXT, biography TEXT,
       theme TEXT, company_website TEXT, is_principal INTEGER DEFAULT 0);
-CREATE INDEX idx_pbp_name ON pb_people(full_name);
-CREATE INDEX idx_pbp_company ON pb_people(primary_company);
-CREATE INDEX idx_pbp_theme ON pb_people(theme);
-CREATE TABLE pb_affiliation (
-      full_name TEXT, company TEXT, company_type TEXT, position TEXT,
-      is_former INTEGER, theme TEXT, ticker TEXT, is_principal INTEGER DEFAULT 0,
-      role_class TEXT, confidence TEXT, seat_since TEXT);
-CREATE INDEX idx_pba_company ON pb_affiliation(company);
-CREATE INDEX idx_pba_ticker ON pb_affiliation(ticker);
 CREATE TABLE pb_principal (name TEXT PRIMARY KEY);
 CREATE TABLE pb_principal_fund (principal TEXT, fund TEXT);
+CREATE TABLE price_stats (
+        ticker TEXT PRIMARY KEY, mom_3mo REAL, mom_20d REAL, off_high REAL,
+        last_close REAL, n_pts INTEGER, asof TEXT);
+CREATE TABLE ticker_meta ("ticker" TEXT PRIMARY KEY, "name" TEXT, "exchange" TEXT, "market" TEXT, "sector" TEXT, "industry" TEXT, "mcap_m" REAL, "price" REAL, "price_currency" TEXT, "adv_3m_usd_m" REAL, "shares_out_m" REAL, "pe_ttm" TEXT, "fwd_pe" TEXT, "beta" TEXT, "asof" TEXT, "sic" INTEGER, "sic_description" TEXT);
+CREATE TABLE "ticker_valuation" ("ticker" TEXT, "cik" INTEGER, "ebitda_ttm" REAL, "book_value" REAL, "net_debt" REAL, "ev_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "ebitda_is_ebit_fallback" INTEGER, "asof" TEXT);
+CREATE TABLE ticker_yf ("ticker" TEXT PRIMARY KEY, "mcap_m" REAL, "enterprise_value_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "pe_ttm" REAL, "fwd_pe" REAL, "ev_revenue" REAL, "peg" REAL, "price" REAL, "currency" TEXT, "shares_out_m" REAL, "ebitda_m" REAL, "total_debt_m" REAL, "total_cash_m" REAL, "profit_margin" REAL, "rev_growth" REAL, "sector" TEXT, "industry" TEXT, "asof" TEXT, "business_summary" TEXT, "long_name" TEXT);
+CREATE TABLE "ticker_yf__old" ("ticker" TEXT, "mcap_m" REAL, "enterprise_value_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "pe_ttm" REAL, "fwd_pe" REAL, "ev_revenue" REAL, "peg" REAL, "price" REAL, "currency" TEXT, "shares_out_m" REAL, "ebitda_m" REAL, "total_debt_m" REAL, "total_cash_m" REAL, "profit_margin" REAL, "rev_growth" REAL, "sector" TEXT, "industry" TEXT, "asof" TEXT, "business_summary" TEXT, "long_name" TEXT);
+CREATE TABLE yf_dead (ticker TEXT PRIMARY KEY, asof TEXT);
+CREATE INDEX idx_13f_ticker ON fund_13f_holdings(ticker);
+CREATE INDEX idx_13f_fund ON fund_13f_holdings(fund);
 CREATE TABLE fund_conviction (
       fund TEXT, ticker TEXT, signals TEXT, raw_score REAL, style_weight REAL,
       score REAL, macro_style TEXT,
@@ -201,13 +204,6 @@ CREATE TABLE ticker_style_conviction (
       ticker TEXT, macro_style TEXT, score REAL, n_funds INTEGER,
       n_hyper INTEGER, dollar_m REAL,
       PRIMARY KEY (ticker, macro_style));
-CREATE TABLE ticker_entry_intact (
-      ticker TEXT PRIMARY KEY,
-      current_px REAL, anchor_px REAL, anchor_source TEXT,
-      vs_entry_pct REAL, bucket TEXT,
-      conviction_score REAL, n_funds INTEGER,
-      n_hyper INTEGER, has_insider_cobuy INTEGER, sum_dollar_m REAL,
-      anchors_seen TEXT);
 CREATE TABLE unified_signal (
       ticker TEXT PRIMARY KEY,
       name TEXT, exchange TEXT, sector TEXT, mcap_m REAL, price REAL,
@@ -236,16 +232,3 @@ CREATE INDEX idx_us_score ON unified_signal(score DESC);
 CREATE INDEX idx_us_bucket ON unified_signal(mcap_bucket);
 CREATE INDEX idx_us_pb ON unified_signal(max_pct_book DESC);
 CREATE INDEX idx_us_entry ON unified_signal(entry_bucket);
-CREATE TABLE fund_style (
-      fund TEXT PRIMARY KEY, sub_group TEXT, macro_style TEXT,
-      total_rows INTEGER, conviction_n INTEGER, threshold_n INTEGER,
-      new_n INTEGER, adds_n INTEGER);
-CREATE TABLE style_summary (
-      macro_style TEXT PRIMARY KEY,
-      n_funds INTEGER, total_rows INTEGER,
-      n_conviction INTEGER, n_threshold INTEGER, n_new INTEGER, n_adds INTEGER,
-      top_funds TEXT, top_consensus TEXT);
-CREATE TABLE style_consensus (
-      macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
-      sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
-      PRIMARY KEY (macro_style, ticker));

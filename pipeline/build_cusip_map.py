@@ -19,7 +19,15 @@ def init(conn):
         cusip TEXT PRIMARY KEY, ticker TEXT, sec_type TEXT, source TEXT, asof TEXT)""")
     conn.execute("CREATE INDEX IF NOT EXISTS idx_cusipmap_tk ON cusip_map(ticker)")
 
+def _valid_cusip(c):
+    # Placeholder CUSIPs ("000000000", "0") appear in empty 13F filings ("NONE",
+    # "No Securities") and on not-yet-assigned issues; the same placeholder is
+    # shared across unrelated rows, so it can never serve as an authority key.
+    return bool(c) and len(c) == 9 and len(set(c)) > 1
+
 def upsert(conn, cusip, ticker, sec_type, source, asof):
+    if not _valid_cusip(cusip):
+        return
     # Never let a lower-authority source overwrite an OpenFIGI/curated mapping.
     prior = conn.execute("SELECT source FROM cusip_map WHERE cusip=?", (cusip,)).fetchone()
     RANK = {"curated": 3, "openfigi": 2, "name": 1, "sec": 1}
