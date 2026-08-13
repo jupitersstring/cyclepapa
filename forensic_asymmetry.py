@@ -376,17 +376,32 @@ def extract_conditionalities(section: str) -> dict[str, list[dict]]:
 # ---------------------------------------------------------------------------
 
 PLAN_DELTA_PATTERNS = {
+    # Widened (INCENTIVE_AUDIT.md R7): the old form required an
+    # effective-date prefix AND an immediately-adjacent metric name --
+    # 2 hits in 4,410 proxies measured regex narrowness, not rarity.
+    # Now: change-verb near a metric name near a metric noun, with the
+    # date prefix optional.
     "new_metric_added": re.compile(
-        r"(?:beginning|effective|starting|for\s+(?:fiscal\s+)?\d{4})[^.\n]{0,80}?"
-        r"(?:added|introduced|incorporated|will\s+(?:include|incorporate))\s+"
-        r"(?:a\s+|the\s+)?(?:ROIC|ROIIC|TSR|EPS|FCF|free\s+cash\s+flow|"
-        r"revenue|EBITDA|operating\s+margin)", re.I),
+        r"(?:added|introduced|incorporated|adopted|"
+        r"will\s+(?:include|incorporate))\s+"
+        r"(?:a\s+|the\s+|an?\s+new\s+)?[^.\n]{0,40}?"
+        r"(?:ROIC|ROIIC|TSR|EPS|FCF|free\s+cash\s+flow|"
+        r"return\s+on\s+(?:invested\s+)?capital|per[- ]share|"
+        r"revenue|EBITDA|operating\s+margin)"
+        r"[^.\n]{0,40}?(?:metric|measure|component|goal|modifier)", re.I),
     "metric_eliminated": re.compile(
         r"(?:eliminated|removed|discontinued)\s+(?:the\s+)?"
         r"(?:ROIC|TSR|EPS|FCF|revenue|EBITDA)\s+(?:metric|component|measure)", re.I),
+    # Widened (R7): allow words between the verb and the PSU term, and
+    # the reversed noun order ("increased the portion of equity awarded
+    # as PSUs"). 12/4,410 hits under the old exact-sequence form.
     "psu_weight_increased": re.compile(
-        r"(?:increased|raised|expanded)\s+(?:the\s+)?(?:PSU|performance[- ]based|"
-        r"performance[- ]share)\s+(?:weight(?:ing)?|allocation|portion|mix)", re.I),
+        r"(?:increased|raised|expanded|shifted)[^.\n]{0,50}?"
+        r"(?:PSU|performance[- ]based|performance[- ]share|performance[- ]stock)"
+        r"[^.\n]{0,30}?(?:weight(?:ing)?|allocation|portion|mix|percentage)"
+        r"|(?:increased|raised|expanded|shifted)[^.\n]{0,50}?"
+        r"(?:weight(?:ing)?|allocation|portion|mix|percentage)"
+        r"[^.\n]{0,50}?(?:PSUs?\b|performance[- ](?:based|share|stock))", re.I),
     "performance_period_extended": re.compile(
         r"(?:extended|increased|lengthened)\s+(?:the\s+)?performance\s+period\s+"
         r"(?:from\s+)?\d+\s*(?:to|-)\s*\d+\s*(?:year|yr)", re.I),

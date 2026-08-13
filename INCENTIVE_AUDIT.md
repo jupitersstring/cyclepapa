@@ -203,3 +203,27 @@ Fixing R2+R3+R4 changes scores for a large fraction of the 2,970 PSU
 names (directionally: fewer false penalties, more transformation
 signals) — regenerate consensus + workbook and expect material re-ranking
 inside the PSU-heavy tabs after applying.
+
+---
+
+## F. Fixes applied (2026-08-13, same branch)
+
+| Finding | Status | Where |
+|---|---|---|
+| R1 comma/million phantom hurdles | **FIXED** | `psu_scoring.py`: `_NUM` captures full comma-grouped numbers (parse to real magnitude, die at the 1..10000 filter); `_collect_dollars` rejects million/billion/thousand-suffixed amounts. Applied to every hurdle pattern incl. the table-trigger harvest and ladder inner scan. |
+| R2 single-trigger negation | **FIXED** | `psu_forensics.py` + `event_signals.py` (same bug, second site): a mention counts only when no negation token appears in the preceding 60 chars. |
+| R3 retirement boilerplate | **FIXED** | `psu_scoring.py`: flag requires retirement coupled to award treatment (vest/acceler/continu/eligib/pro-rat) or explicit departure phrasings; 401(k)/savings/pension prose stripped first. |
+| R4 admin vs payout discretion | **FIXED** | `psu_scoring.py`: fires only on discretion coupled to changing an outcome, discretionary bonus, or notwithstanding-the-formula. |
+| R5 say-on-pay | **FIXED** | `psu_forensics_v2.py`: `\d{1,3}` (100% capturable); year-context selection — latest-year value wins, else minimum (conservative toward dissent). |
+| R6 dead patterns | **FIXED** | `TRAILING_AVG_HURDLE` wired into the pattern loop; `APPRECIATION_*` extracted into `appreciation_pcts` and converted to implied $ hurdles in `score()` (also feeds `transformation_signal`). |
+| R7 narrow deltas | **WIDENED** | `forensic_asymmetry.py`: `psu_weight_increased` (verb-gap + reversed order), `new_metric_added` (date prefix optional, metric-noun anchored). Re-check occurrence counts after next scan before trusting the rarity weights. |
+| R9 adjust-targets | **FIXED** | `psu_scoring.py`: alternative removed; genuine resets still fire via reprice/reset/recalibrate/lowered-hurdles. |
+| R8 table harvest | mitigated | R1's guards remove the dominant junk class (comp-table dollars); window unchanged. |
+| S1/S2/S3, R10, C3 | open | Need a scan/poller change, not a regex fix. |
+
+All behaviors locked in `tests/test_incentive_fixes.py` (each FP probe
+paired with a genuine-positive probe). **Data note:** the stored
+`proxy_scan.json` fields were extracted with the OLD regexes; scores
+re-materialize at the next `--base` proxy rescan (no cached HTML in this
+sandbox — the cache archive commits are ~2.6 GB and exceed the disk
+allowance).

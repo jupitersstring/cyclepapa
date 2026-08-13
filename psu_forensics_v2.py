@@ -41,16 +41,19 @@ NEO_NAME_TITLE = re.compile(
     re.I,
 )
 
+# \d{1,3}: the old \d{1,2} could never capture a 100% approval
+# (INCENTIVE_AUDIT.md R5); values are range-checked to <=100 downstream.
 SAYS_ON_PAY = re.compile(
     r"(?:say[- ]on[- ]pay|advisory\s+vote\s+on\s+(?:executive\s+)?compensation)"
-    r"[^.\n]{0,200}?(\d{1,2}(?:\.\d+)?)\s*%\s+(?:approval|approved|in\s+favor|"
+    r"[^.\n]{0,200}?(\d{1,3}(?:\.\d+)?)\s*%\s+(?:approval|approved|in\s+favor|"
     r"supported|voted\s+(?:in\s+)?favor|of\s+(?:the\s+)?votes\s+cast)",
     re.I,
 )
 SAYS_ON_PAY_PCT = re.compile(
-    r"(\d{1,2}(?:\.\d+)?)\s*%[^.\n]{0,80}?say[- ]on[- ]pay",
+    r"(\d{1,3}(?:\.\d+)?)\s*%[^.\n]{0,80}?say[- ]on[- ]pay",
     re.I,
 )
+_NEAR_YEAR = re.compile(r"\b(20[12]\d)\b")
 
 COMP_CONSULTANT = re.compile(
     r"\b(FW\s+Cook|F\.\s*W\.\s+Cook|Frederic\s+W\.?\s+Cook|"
@@ -188,23 +191,33 @@ def extract_neos(text: str, max_neos: int = 8) -> list[dict]:
 
 
 def extract_say_on_pay(text: str) -> Optional[float]:
-    """Most-recent say-on-pay approval %."""
-    pcts = []
-    for m in SAYS_ON_PAY.finditer(text):
-        try:
-            pct = float(m.group(1))
-            if 30 <= pct <= 100:
-                pcts.append(pct)
-        except ValueError:
-            pass
-    for m in SAYS_ON_PAY_PCT.finditer(text):
-        try:
-            pct = float(m.group(1))
-            if 30 <= pct <= 100:
-                pcts.append(pct)
-        except ValueError:
-            pass
-    return max(pcts) if pcts else None
+    """Most-recent say-on-pay approval %.
+
+    The old max() across all mentions masked dissent: "received 78%
+    this year, versus 92% in the prior year" reported 92
+    (INCENTIVE_AUDIT.md R5). Now each candidate is tagged with any year
+    within +/-80 chars; when years are present the value tied to the
+    LATEST year wins, otherwise the MINIMUM is returned -- conservative
+    in exactly the direction the dissent signals need."""
+    cands: list[tuple[float, Optional[int]]] = []
+    for rx in (SAYS_ON_PAY, SAYS_ON_PAY_PCT):
+        for m in rx.finditer(text):
+            try:
+                pct = float(m.group(1))
+            except ValueError:
+                continue
+            if not (30 <= pct <= 100):
+                continue
+            ctx = text[max(0, m.start(1) - 80):m.end(1) + 80]
+            years = [int(y) for y in _NEAR_YEAR.findall(ctx)]
+            cands.append((pct, max(years) if years else None))
+    if not cands:
+        return None
+    dated = [(pct, y) for pct, y in cands if y is not None]
+    if dated:
+        latest = max(y for _, y in dated)
+        return min(pct for pct, y in dated if y == latest)
+    return min(pct for pct, _ in cands)
 
 
 def extract_lti_mix(text: str) -> dict:

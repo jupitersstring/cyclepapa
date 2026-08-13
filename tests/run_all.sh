@@ -20,4 +20,7 @@ echo
 echo "=== emergence cross-feed ==="
 python3 test_emergence_crossfeed.py
 echo
+echo "=== incentive audit fixes (R1-R9) ==="
+python3 test_incentive_fixes.py
+echo
 echo "All test suites passed."

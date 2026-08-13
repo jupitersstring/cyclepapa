@@ -236,6 +236,20 @@ CIC_HEADER = re.compile(
 )
 DOUBLE_TRIGGER = re.compile(r"\bdouble[- ]trigger\b", re.I)
 SINGLE_TRIGGER = re.compile(r"\bsingle[- ]trigger\b", re.I)
+# Same negation guard as psu_forensics (INCENTIVE_AUDIT.md R2): "we do
+# not provide single-trigger..." must not fire the penalty flag.
+_SINGLE_TRIGGER_NEG = re.compile(
+    r"\b(?:no|not|n't|never|without|none|eliminat\w*|remov\w*|"
+    r"prohibit\w*|do(?:es)?\s+not|avoid\w*)\b",
+    re.I,
+)
+
+
+def _single_trigger_present(text: str) -> bool:
+    for m in SINGLE_TRIGGER.finditer(text):
+        if not _SINGLE_TRIGGER_NEG.search(text[max(0, m.start() - 60):m.start()]):
+            return True
+    return False
 SECTION_280G = re.compile(r"\bSection\s*280G\b", re.I)
 
 
@@ -498,7 +512,7 @@ def extract_event_features(ticker: str, text: str) -> EventFeatures:
     # CIC ------------------------------------------------------------------
     f.has_cic_table = bool(CIC_HEADER.search(text))
     f.double_trigger = bool(DOUBLE_TRIGGER.search(text))
-    f.single_trigger = bool(SINGLE_TRIGGER.search(text))
+    f.single_trigger = _single_trigger_present(text)
     f.section_280g = bool(SECTION_280G.search(text))
 
     # Buyback --------------------------------------------------------------

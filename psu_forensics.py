@@ -75,6 +75,26 @@ SINGLE_TRIGGER = re.compile(
     r"automatic\s+accelerat\w+\s+upon\s+(?:change|in)\s+control)\b",
     re.I,
 )
+# Negation context for single-trigger (INCENTIVE_AUDIT.md R2): proxies
+# overwhelmingly mention "single-trigger" in the NEGATIVE ("we do not
+# provide single-trigger acceleration", the "what we don't do" table).
+# The old bare search fired on 34% of PSU names -- penalizing companies
+# for bragging about NOT having the feature. A mention only counts when
+# no negation token appears in the preceding ~60 chars.
+_SINGLE_TRIGGER_NEG = re.compile(
+    r"\b(?:no|not|n't|never|without|none|eliminat\w*|remov\w*|"
+    r"prohibit\w*|do(?:es)?\s+not|avoid\w*)\b",
+    re.I,
+)
+
+
+def _single_trigger_present(text: str) -> bool:
+    """True only if at least one single-trigger mention is NOT negated."""
+    for m in SINGLE_TRIGGER.finditer(text):
+        lookback = text[max(0, m.start() - 60):m.start()]
+        if not _SINGLE_TRIGGER_NEG.search(lookback):
+            return True
+    return False
 SECTION_280G = re.compile(r"\bSection\s*280G\b|\b280G\s+(?:cutback|gross[- ]up|analysis)", re.I)
 
 # PSU weight in LTI mix: catches "PSUs (50%)" / "50% PSU" / "weighted 50%"
@@ -194,7 +214,7 @@ def extract_forensics(text: str) -> dict:
 
     # Trigger type
     out["double_trigger"] = bool(DOUBLE_TRIGGER.search(text))
-    out["single_trigger"] = bool(SINGLE_TRIGGER.search(text))
+    out["single_trigger"] = _single_trigger_present(text)
     out["section_280g"] = bool(SECTION_280G.search(text))
 
     # PSU weighting

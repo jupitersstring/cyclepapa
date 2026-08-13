@@ -88,51 +88,88 @@ PER_SHARE_PATTERNS = [
     (re.compile(r"\bcash flow return on (invested capital|investment)\b|\bCFROI\b", re.I), "cfroi"),
 ]
 
+# A dollar amount as filed: optionally comma-grouped ("$1,250,000") and
+# optionally followed by a scale word ("$2.4 million"). Capturing the FULL
+# number (not stopping at the first comma) is load-bearing: the old
+# `[0-9]+` capture turned "$1,250,000" into a phantom $1 hurdle
+# (INCENTIVE_AUDIT.md R1). Comma-grouped compensation dollars now parse
+# to their real magnitude and die at the 1..10000 plausibility filter;
+# scale-suffixed amounts are rejected in _collect_dollars.
+_NUM = r"[0-9][0-9,]*(?:\.[0-9]+)?"
+_SCALE_AFTER = re.compile(r"^\s*(?:million|billion|thousand|mm\b|bn\b)", re.I)
+
+
+def _parse_dollar(raw: str) -> float | None:
+    try:
+        return float(raw.replace(",", ""))
+    except ValueError:
+        return None
+
+
+def _collect_dollars(pattern: re.Pattern, text: str) -> list[float]:
+    """All group-1 dollar values from pattern, with the two R1 guards:
+    commas parsed at full magnitude, scale-word suffixes rejected."""
+    out: list[float] = []
+    for m in pattern.finditer(text):
+        raw = m.group(1)
+        if raw is None:
+            continue
+        if _SCALE_AFTER.match(text[m.end(1):m.end(1) + 12]):
+            continue  # "$2.4 million" is a comp dollar, not a hurdle
+        v = _parse_dollar(raw)
+        if v is not None:
+            out.append(v)
+    return out
+
+
 # "$X stock price" or "$X per share" hurdles for vesting.
 STOCK_PRICE_HURDLE = re.compile(
-    r"(?:stock|share) price[^.\n]{0,40}?\$([0-9]+(?:\.[0-9]+)?)",
+    rf"(?:stock|share) price[^.\n]{{0,40}}?\$({_NUM})",
     re.I,
 )
 GENERIC_PRICE_TARGET = re.compile(
-    r"\$([0-9]+(?:\.[0-9]+)?)\s*per share",
+    rf"\$({_NUM})\s*per share",
     re.I,
 )
 # VWAP-anchored hurdles -- common in tranched inducement grants.
 VWAP_HURDLE = re.compile(
-    r"(?:VWAP|volume[- ]weighted average price)[^.\n]{0,80}?\$([0-9]+(?:\.[0-9]+)?)",
+    rf"(?:VWAP|volume[- ]weighted average price)[^.\n]{{0,80}}?\$({_NUM})",
     re.I,
 )
 VWAP_HURDLE_REVERSE = re.compile(
-    r"\$([0-9]+(?:\.[0-9]+)?)\s+(?:VWAP|volume[- ]weighted)",
+    rf"\$({_NUM})\s+(?:VWAP|volume[- ]weighted)",
     re.I,
 )
 # "trailing 45-day average / highest 60-day average / X-day moving average"
 TRAILING_AVG_HURDLE = re.compile(
-    r"(?:trailing|highest|moving|average)[^.\n]{0,80}?\$([0-9]+(?:\.[0-9]+)?)",
+    rf"(?:trailing|highest|moving|average)[^.\n]{{0,80}}?\$({_NUM})",
     re.I,
 )
 # "threshold / target / maximum at $X / $Y / $Z" -- inducement-grant style.
 THRESHOLD_TARGET_MAX = re.compile(
-    r"(?:threshold|target|maximum)[^.\n]{0,40}?\$([0-9]+(?:\.[0-9]+)?)",
+    rf"(?:threshold|target|maximum)[^.\n]{{0,40}}?\$({_NUM})",
     re.I,
 )
 # Multi-tranche dollar ladders: "$8 / $20", "$15, $30, $45",
 # "$1.50, $2.25, $3.00, $3.75 and $4.50" -- accept comma, slash or
-# bare "and" as the connector.
+# bare "and" as the connector. The inner number is comma-grouping-aware
+# but the connector comma requires a following $, so "$15, $30" splits
+# correctly while "$1,250" stays one number.
 PRICE_LADDER = re.compile(
-    r"(\$[0-9]+(?:\.[0-9]+)?)"
-    r"(?:\s*(?:[/,]\s*(?:and\s+)?|\s+and\s+)\s*\$[0-9]+(?:\.[0-9]+)?){1,8}",
+    rf"(\${_NUM})"
+    rf"(?:\s*(?:[/,]\s*(?:and\s+)?|\s+and\s+)\s*\${_NUM}){{1,8}}",
     re.I,
 )
+_LADDER_INNER = re.compile(rf"\$({_NUM})")
 # "$X hurdle" / "$X share price target" / "vest at $X" -- reverse phrasing
 # where the dollar comes before the noun.
 PRE_POSITIONAL_HURDLE = re.compile(
-    r"\$([0-9]+(?:\.[0-9]+)?)\s+(?:stock\s+price\s+)?(?:hurdle|target|threshold|"
+    rf"\$({_NUM})\s+(?:stock\s+price\s+)?(?:hurdle|target|threshold|"
     r"per\s+share|VWAP|trailing|share\s+price)",
     re.I,
 )
 VEST_AT_PRICE = re.compile(
-    r"vest(?:ing|s)?\s+(?:at|upon|when)[^.\n]{0,40}?\$([0-9]+(?:\.[0-9]+)?)",
+    rf"vest(?:ing|s)?\s+(?:at|upon|when)[^.\n]{{0,40}}?\$({_NUM})",
     re.I,
 )
 
@@ -167,7 +204,7 @@ HURDLE_TABLE_TRIGGER = re.compile(
     r")",
     re.I,
 )
-DOLLAR_AMT = re.compile(r"\$\s*([0-9]+(?:\.[0-9]+)?)")
+DOLLAR_AMT = re.compile(rf"\$\s*({_NUM})")
 
 # % share-price appreciation -- e.g. Penguin Solutions: "25% / 50% / 75% /
 # 100% share price appreciation". Convert to implied $ hurdles using the
@@ -189,21 +226,54 @@ STOCK_PRICE_TARGET = re.compile(
     re.I,
 )
 
+# PAYOUT discretion only (INCENTIVE_AUDIT.md R4). "The Committee
+# administers the plan in its sole discretion" is universal plan-document
+# boilerplate (44.8% of PSU names fired the old flag) and says nothing
+# about formula overrides. The flag now requires discretion coupled to
+# changing an OUTCOME (payout/award/vesting/goal), or the explicitly
+# gameable phrasings (discretionary bonus, notwithstanding the formula).
 DISCRETIONARY = re.compile(
-    r"\b(discretionary bonus|special bonus|notwithstanding the formula|"
-    r"committee[- ]determined|in its sole discretion|exercise(d)? discretion)\b",
+    r"(?:discretionary\s+(?:bonus|award|payment)|special bonus|"
+    r"notwithstanding the formula|"
+    r"discretion\w*[^.\n]{0,60}?(?:increas|decreas|adjust|modif|overrid|"
+    r"reduc|waiv)\w*[^.\n]{0,60}?(?:payout|award|vesting|goal|target|"
+    r"result|amount)|"
+    r"(?:increas|adjust|modif|overrid|waiv)\w*[^.\n]{0,40}?"
+    r"(?:payout|award|vesting)[^.\n]{0,40}?discretion)",
     re.I,
 )
 
+# Retirement CARVEOUT only (INCENTIVE_AUDIT.md R3). The old bare
+# `retire|retirement` fired on 63.8% of PSU names -- mostly 401(k) /
+# retirement-savings-plan prose. The milk-and-exit tell is retirement
+# language coupled to award treatment (continued/accelerated vesting,
+# eligibility, pro-ration), or explicit executive-departure phrasings.
 RETIREMENT = re.compile(
-    r"\b(retire|retirement|step(ping)? down|transition agreement|"
-    r"departing|outgoing|succession plan)\b",
+    r"(?:retire(?:ment|s|d)?\b[^.\n]{0,80}?(?:vest|acceler|continu|"
+    r"eligib|pro[- ]?rat)|"
+    r"(?:vest|acceler|continu|eligib|pro[- ]?rat)\w*[^.\n]{0,80}?"
+    r"\bretire(?:ment|s|d)?\b|"
+    r"step(?:ping)?\s+down|transition agreement|"
+    r"departing\s+(?:executive|officer|CEO)|"
+    r"outgoing\s+(?:chief|CEO|executive|officer)|succession plan)",
+    re.I,
+)
+# Savings-plan noise stripped before the RETIREMENT search -- "401(k)
+# retirement savings plan" prose must not fire the carveout flag.
+RETIREMENT_NOISE = re.compile(
+    r"401\s*\(\s*k\s*\)[^.\n]{0,60}|retirement savings[^.\n]{0,40}|"
+    r"pension plan|deferred compensation plan",
     re.I,
 )
 
+# "adjust(ed) targets" removed (INCENTIVE_AUDIT.md R9): it caught routine
+# annual target-setting ("adjusted targets to reflect the divestiture"),
+# 19.2% fire rate. Genuine mid-cycle resets still match via "reset of
+# performance" / "recalibrat" / award-modification phrasings.
 REPRICING = re.compile(
     r"\b(repric(e|ing|ed)|exchange offer|modif(y|ied|ication) of (the )?award|"
-    r"reset of performance|adjust(ed)? targets?|recalibrat)\b",
+    r"reset of performance|recalibrat|"
+    r"lowered? the (?:performance )?(?:targets?|hurdles?|goals?))\b",
     re.I,
 )
 
@@ -225,6 +295,7 @@ class PSUFeatures:
     aggregate_metrics: list[str] = field(default_factory=list)
     per_share_metrics: list[str] = field(default_factory=list)
     stock_price_hurdles: list[float] = field(default_factory=list)
+    appreciation_pcts: list[float] = field(default_factory=list)
     discretionary_language: bool = False
     retirement_language: bool = False
     repricing_language: bool = False
@@ -287,9 +358,10 @@ def extract_features(ticker: str, comp_text: str) -> PSUFeatures:
     found: list[float] = []
     for pat in (STOCK_PRICE_HURDLE, GENERIC_PRICE_TARGET,
                 VWAP_HURDLE, VWAP_HURDLE_REVERSE,
+                TRAILING_AVG_HURDLE,
                 THRESHOLD_TARGET_MAX, STOCK_PRICE_TARGET,
                 PRE_POSITIONAL_HURDLE, VEST_AT_PRICE):
-        found.extend(float(x) for x in pat.findall(base))
+        found.extend(_collect_dollars(pat, base))
 
     # Trigger-window extraction for table-rendered ladders. Wider window
     # (4000 chars) handles verbose phrasings like "the weighted average
@@ -298,31 +370,43 @@ def extract_features(ticker: str, comp_text: str) -> PSUFeatures:
     # de-duplication keep the unique tranche values.
     for m in HURDLE_TABLE_TRIGGER.finditer(base):
         window = base[m.end(): m.end() + 4000]
-        for d in DOLLAR_AMT.findall(window):
-            try:
-                v = float(d)
-                if 1.0 <= v <= 10000.0:
-                    found.append(v)
-            except ValueError:
-                pass
+        for v in _collect_dollars(DOLLAR_AMT, window):
+            if 1.0 <= v <= 10000.0:
+                found.append(v)
 
     # Multi-tranche ladders: extract every $-amount inside the run.
     for m in PRICE_LADDER.finditer(base):
-        for v in re.findall(r"\$([0-9]+(?:\.[0-9]+)?)", m.group(0)):
-            try:
-                found.append(float(v))
-            except ValueError:
-                pass
+        found.extend(_collect_dollars(_LADDER_INNER, m.group(0)))
 
     # Drop fee-table / par-value noise (<$1) and obvious dividends/strikes.
     hurdles = sorted({round(h, 2) for h in found if 1.0 <= h <= 10000.0})
     f.stock_price_hurdles = hurdles
 
+    # %-appreciation ladders (Penguin Solutions style: "25% / 50% / 75% /
+    # 100% share price appreciation"). Stored as percents; score() converts
+    # to implied $ hurdles against the current price when no explicit
+    # $ ladder exists.
+    pcts: set[float] = set()
+    for m in APPRECIATION_LADDER.finditer(base):
+        for p in re.findall(r"([0-9]{1,3})\s*%", m.group(1)):
+            try:
+                pcts.add(float(p))
+            except ValueError:
+                pass
+    for m in APPRECIATION_PCT.finditer(base):
+        try:
+            pcts.add(float(m.group(1)))
+        except ValueError:
+            pass
+    f.appreciation_pcts = sorted(p for p in pcts if 5.0 <= p <= 1000.0)
+
     # Risk flags evaluated only inside PSU windows -- generic governance
     # boilerplate elsewhere in the proxy should not falsely cut the score.
     flag_text = psu_window if psu_window else comp_text
     f.discretionary_language = bool(DISCRETIONARY.search(flag_text))
-    f.retirement_language = bool(RETIREMENT.search(flag_text))
+    # strip 401(k)/savings-plan prose before the retirement-carveout test
+    f.retirement_language = bool(
+        RETIREMENT.search(RETIREMENT_NOISE.sub(" ", flag_text)))
     f.repricing_language = bool(REPRICING.search(flag_text))
     f.front_loaded_language = bool(FRONT_LOADED.search(flag_text))
 
@@ -373,9 +457,21 @@ def score(features: PSUFeatures, current_price: float | None) -> PSUScore:
     align = max(0.0, min(100.0, align))
 
     # ------ Upside kicker (depth of OTM hurdles) -----------------------
+    # When there is no explicit $ ladder but a %-appreciation ladder was
+    # disclosed, convert to implied $ hurdles using the current price as
+    # a proxy for the grant-date baseline (best-effort).
+    effective_hurdles = list(features.stock_price_hurdles)
+    if not effective_hurdles and features.appreciation_pcts and \
+            current_price and current_price > 0:
+        effective_hurdles = [round(current_price * (1 + p / 100.0), 2)
+                             for p in features.appreciation_pcts]
+        flags.append(
+            f"%-appreciation ladder ({len(features.appreciation_pcts)} "
+            f"tranches, top {max(features.appreciation_pcts):.0f}%) -> "
+            "implied $ hurdles vs current price")
     upside = 0.0
-    if features.stock_price_hurdles and current_price and current_price > 0:
-        max_hurdle = max(features.stock_price_hurdles)
+    if effective_hurdles and current_price and current_price > 0:
+        max_hurdle = max(effective_hurdles)
         moneyness = max_hurdle / current_price
         if moneyness > 1.0:
             # 1.0x current -> 0; 2.0x -> 50; 3.0x+ -> 100.
@@ -393,9 +489,9 @@ def score(features: PSUFeatures, current_price: float | None) -> PSUScore:
     transformation = bool(
         features.has_psu_program
         and features.per_share_metrics
-        and features.stock_price_hurdles
+        and effective_hurdles
         and current_price
-        and max(features.stock_price_hurdles) / current_price >= 1.5
+        and max(effective_hurdles) / current_price >= 1.5
         and not features.discretionary_language
         and not features.retirement_language
         and not features.repricing_language
