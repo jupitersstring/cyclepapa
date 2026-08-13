@@ -98,18 +98,6 @@ CREATE TABLE fund_positions (
       id INTEGER PRIMARY KEY, fund TEXT, ticker TEXT, company TEXT, section INTEGER,
       pct_value REAL, pct_kind TEXT, dollar_m REAL, change_text TEXT,
       event_date TEXT, raw_text TEXT, asof TEXT);
-CREATE TABLE fund_style (
-      fund TEXT PRIMARY KEY, sub_group TEXT, macro_style TEXT,
-      total_rows INTEGER, conviction_n INTEGER, threshold_n INTEGER,
-      new_n INTEGER, adds_n INTEGER);
-CREATE TABLE style_summary (
-      macro_style TEXT PRIMARY KEY, n_funds INTEGER, total_rows INTEGER,
-      n_conviction INTEGER, n_threshold INTEGER, n_new INTEGER, n_adds INTEGER,
-      top_funds TEXT, top_consensus TEXT);
-CREATE TABLE style_consensus (
-      macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
-      sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
-      PRIMARY KEY (macro_style, ticker));
 CREATE TABLE ticker_entry_intact (
       ticker TEXT PRIMARY KEY, current_px REAL, anchor_px REAL, anchor_source TEXT,
       vs_entry_pct REAL, bucket TEXT, conviction_score REAL, n_funds INTEGER,
@@ -188,6 +176,21 @@ CREATE TABLE "ticker_yf__old" ("ticker" TEXT, "mcap_m" REAL, "enterprise_value_m
 CREATE TABLE yf_dead (ticker TEXT PRIMARY KEY, asof TEXT);
 CREATE INDEX idx_13f_ticker ON fund_13f_holdings(ticker);
 CREATE INDEX idx_13f_fund ON fund_13f_holdings(fund);
+CREATE INDEX idx_prior_ticker ON fund_13f_prior(ticker);
+CREATE INDEX idx_prior_fund ON fund_13f_prior(fund);
+CREATE TABLE fund_style (
+      fund TEXT PRIMARY KEY, sub_group TEXT, macro_style TEXT,
+      total_rows INTEGER, conviction_n INTEGER, threshold_n INTEGER,
+      new_n INTEGER, adds_n INTEGER);
+CREATE TABLE style_summary (
+      macro_style TEXT PRIMARY KEY,
+      n_funds INTEGER, total_rows INTEGER,
+      n_conviction INTEGER, n_threshold INTEGER, n_new INTEGER, n_adds INTEGER,
+      top_funds TEXT, top_consensus TEXT);
+CREATE TABLE style_consensus (
+      macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
+      sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
+      PRIMARY KEY (macro_style, ticker));
 CREATE TABLE fund_conviction (
       fund TEXT, ticker TEXT, signals TEXT, raw_score REAL, style_weight REAL,
       score REAL, macro_style TEXT,
