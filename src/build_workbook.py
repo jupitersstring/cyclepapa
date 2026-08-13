@@ -1083,6 +1083,14 @@ def main() -> int:
     build_cover(wb, candidates, weights)
     build_executive_summary(wb, candidates, weights, universe_rr)
     build_lenses(wb, universe_rr)
+    # Cross-feed from the PSU/governance 31-layer engine (independent
+    # subsystem; sheet is skipped gracefully if the snapshot is absent).
+    from src.psu_crossfeed import build_psu_engine_sheet
+    build_psu_engine_sheet(
+        wb, universe_rr, style_header_row, style_body_band,
+        autosize_cols,
+        {"subhead": FONT_SUBHEAD, "footnote": FONT_FOOTNOTE,
+         "body_b": FONT_BODY_B})
     build_all_names(wb, universe_rr)
     build_coverage_gap(wb, universe_rr)
     build_old_yaml_only(wb, candidates, weights)
