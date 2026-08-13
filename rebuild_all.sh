@@ -92,6 +92,10 @@ run python3 gen_orphan_scorers.py          || true
 run python3 opportunistic_insiders.py      || true
 run python3 discretionary_insider_conviction.py || true
 run python3 buyback_insider_overlay.py     || true
+# Emergence cross-feed from the pollers subsystem (skips gracefully if
+# emergence_master_snapshot.json is absent; refresh the snapshot by
+# copying data/emergence_master.json from the capital-structure branch).
+run python3 emergence_crossfeed.py         || true
 run python3 full_universe_consensus.py     || true
 run python3 full_universe_consensus_noval.py || true
 run python3 grand_unified_ranker.py        || true

@@ -17,4 +17,7 @@ echo
 echo "=== discretionary insider conviction ==="
 python3 test_discretionary_conviction.py
 echo
+echo "=== emergence cross-feed ==="
+python3 test_emergence_crossfeed.py
+echo
 echo "All test suites passed."

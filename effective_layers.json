@@ -1,6 +1,6 @@
 {
-  "n_raw_layers": 31,
-  "n_effective_layers_at_06": 26,
+  "n_raw_layers": 32,
+  "n_effective_layers_at_06": 27,
   "clusters": [
     [
       "psu_pts"
@@ -47,6 +47,9 @@
     ],
     [
       "post_ch11_pts"
+    ],
+    [
+      "emergence_crossfeed_pts"
     ],
     [
       "internalization_pts"

@@ -1,0 +1,4330 @@
+{
+  "GOCOQ": {
+    "ticker": "GOCOQ",
+    "name": "GoHealth, Inc.",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 4,
+    "channels": [
+      "Form 15 deregistration",
+      "Form 25 old-share delisting",
+      "emergence 8-K prose",
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-08",
+    "last_filed": "2026-07-23",
+    "score": 29.0
+  },
+  "NOTV": {
+    "ticker": "NOTV",
+    "name": "Inotiv, Inc.",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 3,
+    "channels": [
+      "Form 25 old-share delisting",
+      "emergence 8-K prose",
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-03",
+    "last_filed": "2026-07-16",
+    "score": 26.0
+  },
+  "WOLF": {
+    "ticker": "WOLF",
+    "name": "WOLFSPEED, INC.",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 3,
+    "channels": [
+      "emergence 8-K prose",
+      "fresh-start accounting (10-K/Q)",
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-01-30",
+    "last_filed": "2026-06-18",
+    "score": 26.0
+  },
+  "NINE": {
+    "ticker": "NINE",
+    "name": "Nine Energy Service, Inc.",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 3,
+    "channels": [
+      "emergence 8-K prose",
+      "fresh-start accounting (10-K/Q)",
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-02",
+    "last_filed": "2026-05-15",
+    "score": 26.0
+  },
+  "QVCGA": {
+    "ticker": "QVCGA",
+    "name": "QVC Group, Inc.",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-15",
+    "last_filed": "2026-07-17",
+    "score": 23.0
+  },
+  "TBRG": {
+    "ticker": "TBRG",
+    "name": "TruBridge, Inc.",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "Form 25 old-share delisting",
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-04-30",
+    "last_filed": "2026-07-11",
+    "score": 23.0
+  },
+  "VAL": {
+    "ticker": "VAL",
+    "name": [
+      "Valaris Ltd  (VAL, VAL-WT)  (CIK 0000314808)"
+    ],
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "fresh-start accounting (10-K/Q)",
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-02-20",
+    "last_filed": "2026-07-01",
+    "score": 23.0
+  },
+  "AZLUY": {
+    "ticker": "AZLUY",
+    "name": "AZUL SA",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-18",
+    "last_filed": "2026-07-01",
+    "score": 23.0
+  },
+  "BATL": {
+    "ticker": "BATL",
+    "name": "BATTALION OIL CORP",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-03-23",
+    "last_filed": "2026-07-01",
+    "score": 23.0
+  },
+  "OPIRQ": {
+    "ticker": "OPIRQ",
+    "name": "OFFICE PROPERTIES INCOME TRUST",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-06",
+    "last_filed": "2026-06-23",
+    "score": 23.0
+  },
+  "SDRL": {
+    "ticker": "SDRL",
+    "name": "Seadrill Ltd",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-02-26",
+    "last_filed": "2026-06-18",
+    "score": 23.0
+  },
+  "ICU": {
+    "ticker": "ICU",
+    "name": "SeaStar Medical Holding Corp",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-25",
+    "last_filed": "2026-06-17",
+    "score": 23.0
+  },
+  "TLN": {
+    "ticker": "TLN",
+    "name": "Talen Energy Corp",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-02-26",
+    "last_filed": "2026-06-15",
+    "score": 23.0
+  },
+  "TSEOF": {
+    "ticker": "TSEOF",
+    "name": "Trinseo PLC",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-14",
+    "last_filed": "2026-06-12",
+    "score": 23.0
+  },
+  "NE": {
+    "ticker": "NE",
+    "name": "Noble Corp plc",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-02-12",
+    "last_filed": "2026-06-12",
+    "score": 23.0
+  },
+  "IHRT": {
+    "ticker": "IHRT",
+    "name": "iHeartMedia, Inc.",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-02",
+    "last_filed": "2026-06-04",
+    "score": 23.0
+  },
+  "FABTQ": {
+    "ticker": "FABTQ",
+    "name": "Fat Brands, Inc",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-01-27",
+    "last_filed": "2026-06-04",
+    "score": 23.0
+  },
+  "QVCC": {
+    "ticker": "QVCC",
+    "name": "QVC INC",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-15",
+    "last_filed": "2026-05-15",
+    "score": 23.0
+  },
+  "NRDE": {
+    "ticker": "NRDE",
+    "name": "NU RIDE INC.",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-03-26",
+    "last_filed": "2026-05-15",
+    "score": 23.0
+  },
+  "XBP": {
+    "ticker": "XBP",
+    "name": "XBP Global Holdings, Inc.",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-03-31",
+    "last_filed": "2026-05-15",
+    "score": 23.0
+  },
+  "VRM": {
+    "ticker": "VRM",
+    "name": "Vroom, Inc.",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-03-26",
+    "last_filed": "2026-05-15",
+    "score": 23.0
+  },
+  "WW": {
+    "ticker": "WW",
+    "name": "WW INTERNATIONAL, INC.",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-03-16",
+    "last_filed": "2026-05-07",
+    "score": 17.2
+  },
+  "SD": {
+    "ticker": "SD",
+    "name": "SANDRIDGE ENERGY INC",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-03-05",
+    "last_filed": "2026-05-07",
+    "score": 17.2
+  },
+  "LEU": {
+    "ticker": "LEU",
+    "name": "CENTRUS ENERGY CORP",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-02-11",
+    "last_filed": "2026-05-06",
+    "score": 17.2
+  },
+  "CMLS": {
+    "ticker": "CMLS",
+    "name": "CUMULUS MEDIA INC",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-05",
+    "last_filed": "2026-04-30",
+    "score": 17.2
+  },
+  "CRC": {
+    "ticker": "CRC",
+    "name": "California Resources Corp",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-03-02",
+    "last_filed": "2026-04-17",
+    "score": 17.2
+  },
+  "HBM": {
+    "ticker": "HBM",
+    "name": "Hudbay Minerals Inc.",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-09",
+    "last_filed": "2026-04-14",
+    "score": 17.2
+  },
+  "VTOL": {
+    "ticker": "VTOL",
+    "name": "Bristow Group Inc.",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 2,
+    "channels": [
+      "emergence 8-K prose",
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-01-27",
+    "last_filed": "2026-02-26",
+    "score": 17.2
+  },
+  "PCG": {
+    "ticker": "PCG",
+    "name": "PG&E Corp",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-12",
+    "last_filed": "2026-07-23",
+    "score": 12.0
+  },
+  "NG": {
+    "ticker": "NG",
+    "name": "NOVAGOLD RESOURCES INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-07-22",
+    "last_filed": "2026-07-22",
+    "score": 12.0
+  },
+  "CONC": {
+    "ticker": "CONC",
+    "name": "CONECTISYS CORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-02-19",
+    "last_filed": "2026-07-21",
+    "score": 12.0
+  },
+  "ZSTK": {
+    "ticker": "ZSTK",
+    "name": "ZeroStack Corp.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-07-20",
+    "last_filed": "2026-07-20",
+    "score": 12.0
+  },
+  "LIPO": {
+    "ticker": "LIPO",
+    "name": "LIPELLA PHARMACEUTICALS INC.",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-07-15",
+    "last_filed": "2026-07-15",
+    "score": 20.0
+  },
+  "CPPTL": {
+    "ticker": "CPPTL",
+    "name": "Copper Property CTL Pass Through Trust",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-02-05",
+    "last_filed": "2026-07-07",
+    "score": 12.0
+  },
+  "ERNA": {
+    "ticker": "ERNA",
+    "name": "Ernexa Therapeutics Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-07-02",
+    "last_filed": "2026-07-02",
+    "score": 12.0
+  },
+  "STRS": {
+    "ticker": "STRS",
+    "name": "STRATUS PROPERTIES INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-11",
+    "last_filed": "2026-07-01",
+    "score": 12.0
+  },
+  "MSM": {
+    "ticker": "MSM",
+    "name": "MSC INDUSTRIAL DIRECT CO INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 12.0
+  },
+  "BENF": {
+    "ticker": "BENF",
+    "name": "Beneficient",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-17",
+    "last_filed": "2026-06-30",
+    "score": 12.0
+  },
+  "CGCT": {
+    "ticker": "CGCT",
+    "name": "Cartesian Growth Corp III",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-06",
+    "last_filed": "2026-06-30",
+    "score": 12.0
+  },
+  "OLOX": {
+    "ticker": "OLOX",
+    "name": "OLENOX INDUSTRIES INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-06-30",
+    "last_filed": "2026-06-30",
+    "score": 12.0
+  },
+  "VST": {
+    "ticker": "VST",
+    "name": "Vistra Corp.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-02-27",
+    "last_filed": "2026-06-30",
+    "score": 12.0
+  },
+  "FINW": {
+    "ticker": "FINW",
+    "name": "Finwise Bancorp",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-25",
+    "last_filed": "2026-06-29",
+    "score": 12.0
+  },
+  "AEO": {
+    "ticker": "AEO",
+    "name": "AMERICAN EAGLE OUTFITTERS INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-29",
+    "last_filed": "2026-06-29",
+    "score": 12.0
+  },
+  "SEQC": {
+    "ticker": "SEQC",
+    "name": "SeeQC, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-29",
+    "last_filed": "2026-06-29",
+    "score": 12.0
+  },
+  "IMUX": {
+    "ticker": "IMUX",
+    "name": "IMMUNIC, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-29",
+    "last_filed": "2026-06-29",
+    "score": 12.0
+  },
+  "CGEH": {
+    "ticker": "CGEH",
+    "name": "Capstone Green Energy Holdings, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-12",
+    "last_filed": "2026-06-25",
+    "score": 12.0
+  },
+  "LOKV": {
+    "ticker": "LOKV",
+    "name": "Teamshares Inc",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-25",
+    "last_filed": "2026-06-25",
+    "score": 12.0
+  },
+  "KMX": {
+    "ticker": "KMX",
+    "name": "CARMAX INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-24",
+    "last_filed": "2026-06-24",
+    "score": 12.0
+  },
+  "WEYS": {
+    "ticker": "WEYS",
+    "name": "WEYCO GROUP INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-24",
+    "last_filed": "2026-06-24",
+    "score": 12.0
+  },
+  "CODI": {
+    "ticker": "CODI",
+    "name": "Compass Diversified Holdings",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-24",
+    "last_filed": "2026-06-24",
+    "score": 12.0
+  },
+  "SGMO": {
+    "ticker": "SGMO",
+    "name": "SANGAMO THERAPEUTICS, INC",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-06-23",
+    "last_filed": "2026-06-23",
+    "score": 20.0
+  },
+  "RMR": {
+    "ticker": "RMR",
+    "name": "RMR GROUP INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-06-23",
+    "last_filed": "2026-06-23",
+    "score": 12.0
+  },
+  "CUX": {
+    "ticker": "CUX",
+    "name": "CopperTech Metals Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-06-02",
+    "last_filed": "2026-06-23",
+    "score": 12.0
+  },
+  "BLZE": {
+    "ticker": "BLZE",
+    "name": "Backblaze, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-23",
+    "last_filed": "2026-06-23",
+    "score": 12.0
+  },
+  "CASY": {
+    "ticker": "CASY",
+    "name": "CASEYS GENERAL STORES INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-09",
+    "last_filed": "2026-06-22",
+    "score": 12.0
+  },
+  "PDFS": {
+    "ticker": "PDFS",
+    "name": "PDF SOLUTIONS INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-18",
+    "last_filed": "2026-06-18",
+    "score": 12.0
+  },
+  "ARDX": {
+    "ticker": "ARDX",
+    "name": "ARDELYX, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-17",
+    "last_filed": "2026-06-17",
+    "score": 12.0
+  },
+  "CSQR": {
+    "ticker": "CSQR",
+    "name": "Csquare, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-16",
+    "last_filed": "2026-06-16",
+    "score": 12.0
+  },
+  "OSPRU": {
+    "ticker": "OSPRU",
+    "name": "Osprey Acquisition Corp. III",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-06-15",
+    "last_filed": "2026-06-15",
+    "score": 12.0
+  },
+  "CMTL": {
+    "ticker": "CMTL",
+    "name": "COMTECH TELECOMMUNICATIONS CORP /DE/",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-15",
+    "last_filed": "2026-06-15",
+    "score": 12.0
+  },
+  "TGT": {
+    "ticker": "TGT",
+    "name": "TARGET CORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-12",
+    "last_filed": "2026-06-12",
+    "score": 12.0
+  },
+  "MGTE": {
+    "ticker": "MGTE",
+    "name": "Marblegate Capital Corp",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-12",
+    "last_filed": "2026-06-12",
+    "score": 12.0
+  },
+  "CWLXF": {
+    "ticker": "CWLXF",
+    "name": "C21 Investments Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-12",
+    "last_filed": "2026-06-12",
+    "score": 12.0
+  },
+  "SNBR": {
+    "ticker": "SNBR",
+    "name": "Sleep Number Corp",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-06-12",
+    "last_filed": "2026-06-12",
+    "score": 20.0
+  },
+  "PCRX": {
+    "ticker": "PCRX",
+    "name": "Pacira BioSciences, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-11",
+    "last_filed": "2026-06-11",
+    "score": 12.0
+  },
+  "ONC": {
+    "ticker": "ONC",
+    "name": "BeOne Medicines Ltd.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-11",
+    "last_filed": "2026-06-11",
+    "score": 12.0
+  },
+  "CROX": {
+    "ticker": "CROX",
+    "name": "Crocs, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-10",
+    "last_filed": "2026-06-10",
+    "score": 12.0
+  },
+  "UP": {
+    "ticker": "UP",
+    "name": "Wheels Up Experience Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-10",
+    "last_filed": "2026-06-10",
+    "score": 12.0
+  },
+  "BRT": {
+    "ticker": "BRT",
+    "name": "BRT Apartments Corp.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-10",
+    "last_filed": "2026-06-10",
+    "score": 12.0
+  },
+  "METC": {
+    "ticker": "METC",
+    "name": "Ramaco Resources, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-10",
+    "last_filed": "2026-06-10",
+    "score": 12.0
+  },
+  "FUSE": {
+    "ticker": "FUSE",
+    "name": "Fusemachines Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-09",
+    "last_filed": "2026-06-09",
+    "score": 12.0
+  },
+  "TALO": {
+    "ticker": "TALO",
+    "name": "TALOS ENERGY INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-09",
+    "last_filed": "2026-06-09",
+    "score": 12.0
+  },
+  "WHK": {
+    "ticker": "WHK",
+    "name": "WhiteHawk Income Corp",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-05-11",
+    "last_filed": "2026-06-05",
+    "score": 12.0
+  },
+  "NVCR": {
+    "ticker": "NVCR",
+    "name": "NovoCure Ltd",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-05",
+    "last_filed": "2026-06-05",
+    "score": 12.0
+  },
+  "GDDY": {
+    "ticker": "GDDY",
+    "name": "GoDaddy Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-05",
+    "last_filed": "2026-06-05",
+    "score": 12.0
+  },
+  "ABX": {
+    "ticker": "ABX",
+    "name": "Abacus Global Management, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-04",
+    "last_filed": "2026-06-04",
+    "score": 12.0
+  },
+  "PACB": {
+    "ticker": "PACB",
+    "name": "PACIFIC BIOSCIENCES OF CALIFORNIA, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-04",
+    "last_filed": "2026-06-04",
+    "score": 12.0
+  },
+  "LPCN": {
+    "ticker": "LPCN",
+    "name": "Lipocine Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-04",
+    "last_filed": "2026-06-04",
+    "score": 12.0
+  },
+  "BBSI": {
+    "ticker": "BBSI",
+    "name": "BARRETT BUSINESS SERVICES INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-03",
+    "last_filed": "2026-06-03",
+    "score": 12.0
+  },
+  "PHXE-P": {
+    "ticker": "PHXE-P",
+    "name": "Phoenix Energy One, LLC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-02-13",
+    "last_filed": "2026-06-02",
+    "score": 12.0
+  },
+  "WK": {
+    "ticker": "WK",
+    "name": "WORKIVA INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-02",
+    "last_filed": "2026-06-02",
+    "score": 12.0
+  },
+  "FDXF": {
+    "ticker": "FDXF",
+    "name": "FedEx Freight Holding Company, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-06-01",
+    "last_filed": "2026-06-01",
+    "score": 12.0
+  },
+  "XNDU": {
+    "ticker": "XNDU",
+    "name": "Xanadu Quantum Technologies Ltd",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-31",
+    "last_filed": "2026-06-01",
+    "score": 12.0
+  },
+  "KC": {
+    "ticker": "KC",
+    "name": "Kingsoft Cloud Holdings Ltd",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-29",
+    "last_filed": "2026-05-29",
+    "score": 12.0
+  },
+  "PRDO": {
+    "ticker": "PRDO",
+    "name": "PERDOCEO EDUCATION Corp",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-27",
+    "last_filed": "2026-05-27",
+    "score": 12.0
+  },
+  "SOLV": {
+    "ticker": "SOLV",
+    "name": "Solventum Corp",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-27",
+    "last_filed": "2026-05-27",
+    "score": 12.0
+  },
+  "ZBRA": {
+    "ticker": "ZBRA",
+    "name": "ZEBRA TECHNOLOGIES CORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-26",
+    "last_filed": "2026-05-26",
+    "score": 12.0
+  },
+  "ELE": {
+    "ticker": "ELE",
+    "name": "Elemental Royalty Corp",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-26",
+    "last_filed": "2026-05-26",
+    "score": 12.0
+  },
+  "BAH": {
+    "ticker": "BAH",
+    "name": "Booz Allen Hamilton Holding Corp",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-22",
+    "last_filed": "2026-05-22",
+    "score": 12.0
+  },
+  "PUMP": {
+    "ticker": "PUMP",
+    "name": "ProPetro Holding Corp.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-22",
+    "last_filed": "2026-05-22",
+    "score": 12.0
+  },
+  "HLI": {
+    "ticker": "HLI",
+    "name": "HOULIHAN LOKEY, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-05-22",
+    "last_filed": "2026-05-22",
+    "score": 12.0
+  },
+  "TCBX": {
+    "ticker": "TCBX",
+    "name": "Third Coast Bancshares, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-21",
+    "last_filed": "2026-05-21",
+    "score": 12.0
+  },
+  "AWR": {
+    "ticker": "AWR",
+    "name": "AMERICAN STATES WATER CO",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-21",
+    "last_filed": "2026-05-21",
+    "score": 12.0
+  },
+  "RDN": {
+    "ticker": "RDN",
+    "name": "RADIAN GROUP INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-21",
+    "last_filed": "2026-05-21",
+    "score": 12.0
+  },
+  "ANIP": {
+    "ticker": "ANIP",
+    "name": "ANI PHARMACEUTICALS INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-21",
+    "last_filed": "2026-05-21",
+    "score": 12.0
+  },
+  "PRLB": {
+    "ticker": "PRLB",
+    "name": "Proto Labs Inc",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-20",
+    "last_filed": "2026-05-20",
+    "score": 12.0
+  },
+  "EROK": {
+    "ticker": "EROK",
+    "name": "EagleRock Land, LLC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-16",
+    "last_filed": "2026-05-19",
+    "score": 12.0
+  },
+  "RM": {
+    "ticker": "RM",
+    "name": "Regional Management Corp.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-19",
+    "last_filed": "2026-05-19",
+    "score": 12.0
+  },
+  "ROP": {
+    "ticker": "ROP",
+    "name": "ROPER TECHNOLOGIES INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-19",
+    "last_filed": "2026-05-19",
+    "score": 12.0
+  },
+  "ATRC": {
+    "ticker": "ATRC",
+    "name": "AtriCure, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-19",
+    "last_filed": "2026-05-19",
+    "score": 12.0
+  },
+  "LAMR": {
+    "ticker": "LAMR",
+    "name": "LAMAR ADVERTISING CO/NEW",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-19",
+    "last_filed": "2026-05-19",
+    "score": 12.0
+  },
+  "GPUS": {
+    "ticker": "GPUS",
+    "name": "Hyperscale Data, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-11",
+    "last_filed": "2026-05-18",
+    "score": 12.0
+  },
+  "ALTS": {
+    "ticker": "ALTS",
+    "name": "AI Financial Corp",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-04-13",
+    "last_filed": "2026-05-18",
+    "score": 12.0
+  },
+  "GOSS": {
+    "ticker": "GOSS",
+    "name": "Gossamer Bio, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-18",
+    "last_filed": "2026-05-18",
+    "score": 12.0
+  },
+  "CELC": {
+    "ticker": "CELC",
+    "name": "Celcuity Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-18",
+    "last_filed": "2026-05-18",
+    "score": 12.0
+  },
+  "CWK": {
+    "ticker": "CWK",
+    "name": "Cushman & Wakefield Ltd.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-14",
+    "last_filed": "2026-05-14",
+    "score": 9.0
+  },
+  "AURX": {
+    "ticker": "AURX",
+    "name": "Nuo Therapeutics, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-30",
+    "last_filed": "2026-05-14",
+    "score": 9.0
+  },
+  "WBQNL": {
+    "ticker": "WBQNL",
+    "name": "Woodbridge Liquidation Trust",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-11",
+    "last_filed": "2026-05-14",
+    "score": 9.0
+  },
+  "MNTR": {
+    "ticker": "MNTR",
+    "name": "Mentor Capital, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-04-15",
+    "last_filed": "2026-05-14",
+    "score": 9.0
+  },
+  "ASRV": {
+    "ticker": "ASRV",
+    "name": "AMERISERV FINANCIAL INC /PA/",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-18",
+    "last_filed": "2026-05-14",
+    "score": 9.0
+  },
+  "SOPA": {
+    "ticker": "SOPA",
+    "name": "SOCIETY PASS INCORPORATED.",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-05-14",
+    "last_filed": "2026-05-14",
+    "score": 15.0
+  },
+  "KANP": {
+    "ticker": "KANP",
+    "name": "KAANAPALI LAND LLC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-25",
+    "last_filed": "2026-05-13",
+    "score": 9.0
+  },
+  "MDU": {
+    "ticker": "MDU",
+    "name": "MDU RESOURCES GROUP INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-13",
+    "last_filed": "2026-05-13",
+    "score": 9.0
+  },
+  "NCMI": {
+    "ticker": "NCMI",
+    "name": "National CineMedia, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-26",
+    "last_filed": "2026-05-12",
+    "score": 9.0
+  },
+  "FLYX": {
+    "ticker": "FLYX",
+    "name": "FLYEXCLUSIVE INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-05",
+    "last_filed": "2026-05-11",
+    "score": 9.0
+  },
+  "IEP": {
+    "ticker": "IEP",
+    "name": "ICAHN ENTERPRISES L.P.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-05",
+    "last_filed": "2026-05-11",
+    "score": 9.0
+  },
+  "BVFL": {
+    "ticker": "BVFL",
+    "name": "BV Financial, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-11",
+    "last_filed": "2026-05-11",
+    "score": 9.0
+  },
+  "CRL": {
+    "ticker": "CRL",
+    "name": "CHARLES RIVER LABORATORIES INTERNATIONAL, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-11",
+    "last_filed": "2026-05-11",
+    "score": 9.0
+  },
+  "FCHS": {
+    "ticker": "FCHS",
+    "name": "First Choice Healthcare Solutions, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-01-27",
+    "last_filed": "2026-05-08",
+    "score": 9.0
+  },
+  "CBL": {
+    "ticker": "CBL",
+    "name": "CBL & ASSOCIATES PROPERTIES INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-02-13",
+    "last_filed": "2026-05-08",
+    "score": 9.0
+  },
+  "BOLD": {
+    "ticker": "BOLD",
+    "name": "Boundless Bio, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-08",
+    "last_filed": "2026-05-08",
+    "score": 9.0
+  },
+  "NXST": {
+    "ticker": "NXST",
+    "name": "NEXSTAR MEDIA GROUP, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-27",
+    "last_filed": "2026-05-08",
+    "score": 9.0
+  },
+  "NEN": {
+    "ticker": "NEN",
+    "name": "NEW ENGLAND REALTY ASSOCIATES LIMITED PARTNERSHIP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-08",
+    "last_filed": "2026-05-08",
+    "score": 9.0
+  },
+  "RPC": {
+    "ticker": "RPC",
+    "name": "Ridgepost Capital, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-27",
+    "last_filed": "2026-05-08",
+    "score": 9.0
+  },
+  "DCBO": {
+    "ticker": "DCBO",
+    "name": "Docebo Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-05-08",
+    "last_filed": "2026-05-08",
+    "score": 9.0
+  },
+  "BAX": {
+    "ticker": "BAX",
+    "name": "BAXTER INTERNATIONAL INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-08",
+    "last_filed": "2026-05-08",
+    "score": 9.0
+  },
+  "ZYME": {
+    "ticker": "ZYME",
+    "name": "Zymeworks Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-02",
+    "last_filed": "2026-05-07",
+    "score": 9.0
+  },
+  "HTZ": {
+    "ticker": "HTZ",
+    "name": "HERTZ GLOBAL HOLDINGS, INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-26",
+    "last_filed": "2026-05-07",
+    "score": 9.0
+  },
+  "APA": {
+    "ticker": "APA",
+    "name": "APA Corp",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-26",
+    "last_filed": "2026-05-07",
+    "score": 9.0
+  },
+  "PAAS": {
+    "ticker": "PAAS",
+    "name": "PAN AMERICAN SILVER CORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-07",
+    "last_filed": "2026-05-07",
+    "score": 9.0
+  },
+  "ROG": {
+    "ticker": "ROG",
+    "name": "ROGERS CORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-07",
+    "last_filed": "2026-05-07",
+    "score": 9.0
+  },
+  "RXO": {
+    "ticker": "RXO",
+    "name": "RXO, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-07",
+    "last_filed": "2026-05-07",
+    "score": 9.0
+  },
+  "UGI": {
+    "ticker": "UGI",
+    "name": "UGI CORP /PA/",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-07",
+    "last_filed": "2026-05-07",
+    "score": 9.0
+  },
+  "WASH": {
+    "ticker": "WASH",
+    "name": "WASHINGTON TRUST BANCORP INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-07",
+    "last_filed": "2026-05-07",
+    "score": 9.0
+  },
+  "PRVA": {
+    "ticker": "PRVA",
+    "name": "Privia Health Group, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-07",
+    "last_filed": "2026-05-07",
+    "score": 9.0
+  },
+  "RRR": {
+    "ticker": "RRR",
+    "name": "Red Rock Resorts, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-02-20",
+    "last_filed": "2026-05-07",
+    "score": 9.0
+  },
+  "NATR": {
+    "ticker": "NATR",
+    "name": "NATURES SUNSHINE PRODUCTS INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-07",
+    "last_filed": "2026-05-07",
+    "score": 9.0
+  },
+  "BYND": {
+    "ticker": "BYND",
+    "name": "BEYOND MEAT, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-09",
+    "last_filed": "2026-05-07",
+    "score": 9.0
+  },
+  "EDAP": {
+    "ticker": "EDAP",
+    "name": "EDAP TMS SA",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-07",
+    "last_filed": "2026-05-07",
+    "score": 9.0
+  },
+  "CORZ": {
+    "ticker": "CORZ",
+    "name": "Core Scientific, Inc./tx",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-02",
+    "last_filed": "2026-05-06",
+    "score": 9.0
+  },
+  "SOLS": {
+    "ticker": "SOLS",
+    "name": "Solstice Advanced Materials Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-06",
+    "last_filed": "2026-05-06",
+    "score": 9.0
+  },
+  "CVNA": {
+    "ticker": "CVNA",
+    "name": "CARVANA CO.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-06",
+    "last_filed": "2026-05-06",
+    "score": 9.0
+  },
+  "BLBD": {
+    "ticker": "BLBD",
+    "name": "Blue Bird Corp",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-06",
+    "last_filed": "2026-05-06",
+    "score": 9.0
+  },
+  "RYZ": {
+    "ticker": "RYZ",
+    "name": "Ryerson Holding Corp",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-06",
+    "last_filed": "2026-05-06",
+    "score": 9.0
+  },
+  "FLUT": {
+    "ticker": "FLUT",
+    "name": "Flutter Entertainment plc",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-06",
+    "last_filed": "2026-05-06",
+    "score": 9.0
+  },
+  "GPOR": {
+    "ticker": "GPOR",
+    "name": "GULFPORT ENERGY CORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-25",
+    "last_filed": "2026-05-06",
+    "score": 9.0
+  },
+  "AES": {
+    "ticker": "AES",
+    "name": "AES CORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-02",
+    "last_filed": "2026-05-05",
+    "score": 9.0
+  },
+  "PRGO": {
+    "ticker": "PRGO",
+    "name": "PERRIGO Co plc",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-05",
+    "last_filed": "2026-05-05",
+    "score": 9.0
+  },
+  "SWKS": {
+    "ticker": "SWKS",
+    "name": "SKYWORKS SOLUTIONS, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-05",
+    "last_filed": "2026-05-05",
+    "score": 9.0
+  },
+  "VGNT": {
+    "ticker": "VGNT",
+    "name": "Versigent PLC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-05",
+    "last_filed": "2026-05-05",
+    "score": 9.0
+  },
+  "LTM": {
+    "ticker": "LTM",
+    "name": "LATAM AIRLINES GROUP S.A.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-03",
+    "last_filed": "2026-05-05",
+    "score": 9.0
+  },
+  "BSX": {
+    "ticker": "BSX",
+    "name": "BOSTON SCIENTIFIC CORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-05",
+    "last_filed": "2026-05-05",
+    "score": 9.0
+  },
+  "SF": {
+    "ticker": "SF",
+    "name": "STIFEL FINANCIAL CORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-24",
+    "last_filed": "2026-05-04",
+    "score": 9.0
+  },
+  "BCO": {
+    "ticker": "BCO",
+    "name": "BRINKS CO",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-04",
+    "last_filed": "2026-05-04",
+    "score": 9.0
+  },
+  "APUS": {
+    "ticker": "APUS",
+    "name": "Apimeds Pharmaceuticals US, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-04",
+    "last_filed": "2026-05-04",
+    "score": 9.0
+  },
+  "FHI": {
+    "ticker": "FHI",
+    "name": "FEDERATED HERMES, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-05-01",
+    "last_filed": "2026-05-01",
+    "score": 9.0
+  },
+  "EMN": {
+    "ticker": "EMN",
+    "name": "EASTMAN CHEMICAL CO",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-13",
+    "last_filed": "2026-05-01",
+    "score": 9.0
+  },
+  "CC": {
+    "ticker": "CC",
+    "name": "Chemours Co",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-30",
+    "last_filed": "2026-04-30",
+    "score": 9.0
+  },
+  "TT": {
+    "ticker": "TT",
+    "name": "Trane Technologies plc",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-30",
+    "last_filed": "2026-04-30",
+    "score": 9.0
+  },
+  "ANGX": {
+    "ticker": "ANGX",
+    "name": "Angel Studios, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-12",
+    "last_filed": "2026-04-30",
+    "score": 9.0
+  },
+  "MA": {
+    "ticker": "MA",
+    "name": "Mastercard Inc",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-30",
+    "last_filed": "2026-04-30",
+    "score": 9.0
+  },
+  "FOSL": {
+    "ticker": "FOSL",
+    "name": "Fossil Group, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-30",
+    "last_filed": "2026-04-30",
+    "score": 9.0
+  },
+  "AERO": {
+    "ticker": "AERO",
+    "name": "Grupo Aeromexico, S.A.B. de C.V.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-04-30",
+    "last_filed": "2026-04-30",
+    "score": 9.0
+  },
+  "EC": {
+    "ticker": "EC",
+    "name": "ECOPETROL S.A.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-30",
+    "last_filed": "2026-04-30",
+    "score": 9.0
+  },
+  "MDV": {
+    "ticker": "MDV",
+    "name": "MODIV INDUSTRIAL, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-04-30",
+    "last_filed": "2026-04-30",
+    "score": 9.0
+  },
+  "APG": {
+    "ticker": "APG",
+    "name": "APi Group Corp",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-30",
+    "last_filed": "2026-04-30",
+    "score": 9.0
+  },
+  "DAIC": {
+    "ticker": "DAIC",
+    "name": "CID Holdco, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-01-29",
+    "last_filed": "2026-04-30",
+    "score": 9.0
+  },
+  "SOAR": {
+    "ticker": "SOAR",
+    "name": "Volato Group, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-13",
+    "last_filed": "2026-04-30",
+    "score": 9.0
+  },
+  "QCLS": {
+    "ticker": "QCLS",
+    "name": "Q/C TECHNOLOGIES, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-29",
+    "last_filed": "2026-04-29",
+    "score": 9.0
+  },
+  "BLKB": {
+    "ticker": "BLKB",
+    "name": "BLACKBAUD INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-18",
+    "last_filed": "2026-04-29",
+    "score": 9.0
+  },
+  "EQIX": {
+    "ticker": "EQIX",
+    "name": "EQUINIX INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-29",
+    "last_filed": "2026-04-29",
+    "score": 9.0
+  },
+  "REA": {
+    "ticker": "REA",
+    "name": "Rare Earths Americas, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-04-13",
+    "last_filed": "2026-04-28",
+    "score": 9.0
+  },
+  "NRG": {
+    "ticker": "NRG",
+    "name": "NRG ENERGY, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-01-30",
+    "last_filed": "2026-04-28",
+    "score": 9.0
+  },
+  "SA": {
+    "ticker": "SA",
+    "name": "SEABRIDGE GOLD INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-28",
+    "last_filed": "2026-04-28",
+    "score": 9.0
+  },
+  "KN": {
+    "ticker": "KN",
+    "name": "Knowles Corp",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-28",
+    "last_filed": "2026-04-28",
+    "score": 9.0
+  },
+  "SPGI": {
+    "ticker": "SPGI",
+    "name": "S&P Global Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-28",
+    "last_filed": "2026-04-28",
+    "score": 9.0
+  },
+  "STKL": {
+    "ticker": "STKL",
+    "name": "SunOpta Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-04-27",
+    "last_filed": "2026-04-27",
+    "score": 9.0
+  },
+  "LVS": {
+    "ticker": "LVS",
+    "name": "LAS VEGAS SANDS CORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-24",
+    "last_filed": "2026-04-24",
+    "score": 9.0
+  },
+  "HSAI": {
+    "ticker": "HSAI",
+    "name": "Hesai Group",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-24",
+    "last_filed": "2026-04-24",
+    "score": 9.0
+  },
+  "CP": {
+    "ticker": "CP",
+    "name": "CANADIAN PACIFIC KANSAS CITY LTD/CN",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-25",
+    "last_filed": "2026-04-23",
+    "score": 9.0
+  },
+  "HON": {
+    "ticker": "HON",
+    "name": "HONEYWELL INTERNATIONAL INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-17",
+    "last_filed": "2026-04-23",
+    "score": 9.0
+  },
+  "TDY": {
+    "ticker": "TDY",
+    "name": "TELEDYNE TECHNOLOGIES INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-23",
+    "last_filed": "2026-04-23",
+    "score": 9.0
+  },
+  "CLF": {
+    "ticker": "CLF",
+    "name": "CLEVELAND-CLIFFS INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-09",
+    "last_filed": "2026-04-21",
+    "score": 9.0
+  },
+  "SNPS": {
+    "ticker": "SNPS",
+    "name": "SYNOPSYS INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-20",
+    "last_filed": "2026-04-20",
+    "score": 9.0
+  },
+  "LFTO": {
+    "ticker": "LFTO",
+    "name": "Liftoff Mobile, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-17",
+    "last_filed": "2026-04-17",
+    "score": 9.0
+  },
+  "FMNB": {
+    "ticker": "FMNB",
+    "name": "FARMERS NATIONAL BANC CORP /OH/",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-16",
+    "last_filed": "2026-04-16",
+    "score": 9.0
+  },
+  "MPU": {
+    "ticker": "MPU",
+    "name": "Mega Matrix Inc",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-04-16",
+    "last_filed": "2026-04-16",
+    "score": 9.0
+  },
+  "GIG": {
+    "ticker": "GIG",
+    "name": "GigCapital7 Corp.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-15",
+    "last_filed": "2026-04-15",
+    "score": 9.0
+  },
+  "EXYN": {
+    "ticker": "EXYN",
+    "name": "Exyn Technologies, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-13",
+    "last_filed": "2026-04-13",
+    "score": 9.0
+  },
+  "WBX": {
+    "ticker": "WBX",
+    "name": "Wallbox N.V.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-09",
+    "last_filed": "2026-04-09",
+    "score": 9.0
+  },
+  "OBE": {
+    "ticker": "OBE",
+    "name": "OBSIDIAN ENERGY LTD.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-04-07",
+    "last_filed": "2026-04-07",
+    "score": 9.0
+  },
+  "MCAHU": {
+    "ticker": "MCAHU",
+    "name": "Mountain Crest Acquisition 6 Corp.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-04-06",
+    "last_filed": "2026-04-06",
+    "score": 9.0
+  },
+  "DYNR": {
+    "ticker": "DYNR",
+    "name": "DYNARESOURCE, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-02",
+    "last_filed": "2026-04-02",
+    "score": 9.0
+  },
+  "VET": {
+    "ticker": "VET",
+    "name": "VERMILION ENERGY INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-04-02",
+    "last_filed": "2026-04-02",
+    "score": 9.0
+  },
+  "PDS": {
+    "ticker": "PDS",
+    "name": "PRECISION DRILLING Corp",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-04-01",
+    "last_filed": "2026-04-01",
+    "score": 9.0
+  },
+  "WPM": {
+    "ticker": "WPM",
+    "name": "Wheaton Precious Metals Corp.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-04-01",
+    "last_filed": "2026-04-01",
+    "score": 9.0
+  },
+  "PBA": {
+    "ticker": "PBA",
+    "name": "PEMBINA PIPELINE CORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-04-01",
+    "last_filed": "2026-04-01",
+    "score": 9.0
+  },
+  "CDZI": {
+    "ticker": "CDZI",
+    "name": "CADIZ INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-31",
+    "last_filed": "2026-03-31",
+    "score": 9.0
+  },
+  "TAC": {
+    "ticker": "TAC",
+    "name": "TRANSALTA CORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-31",
+    "last_filed": "2026-03-31",
+    "score": 9.0
+  },
+  "TVRD": {
+    "ticker": "TVRD",
+    "name": "Tvardi Therapeutics, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-31",
+    "last_filed": "2026-03-31",
+    "score": 9.0
+  },
+  "FERA": {
+    "ticker": "FERA",
+    "name": "Fifth Era Acquisition Corp I",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-31",
+    "last_filed": "2026-03-31",
+    "score": 9.0
+  },
+  "HCWB": {
+    "ticker": "HCWB",
+    "name": "HCW Biologics Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-31",
+    "last_filed": "2026-03-31",
+    "score": 9.0
+  },
+  "ELAB": {
+    "ticker": "ELAB",
+    "name": "PMGC Holdings Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-30",
+    "last_filed": "2026-03-30",
+    "score": 9.0
+  },
+  "AIMD": {
+    "ticker": "AIMD",
+    "name": "Ainos, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-30",
+    "last_filed": "2026-03-30",
+    "score": 9.0
+  },
+  "ITRM": {
+    "ticker": "ITRM",
+    "name": "Iterum Therapeutics plc",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-27",
+    "last_filed": "2026-03-27",
+    "score": 15.0
+  },
+  "VCIC": {
+    "ticker": "VCIC",
+    "name": "Vine Hill Capital Investment Corp.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-27",
+    "last_filed": "2026-03-27",
+    "score": 9.0
+  },
+  "MGA": {
+    "ticker": "MGA",
+    "name": "MAGNA INTERNATIONAL INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-27",
+    "last_filed": "2026-03-27",
+    "score": 9.0
+  },
+  "AGQ": {
+    "ticker": "AGQ",
+    "name": "ProShares Trust II",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-26",
+    "last_filed": "2026-03-26",
+    "score": 9.0
+  },
+  "GLNG": {
+    "ticker": "GLNG",
+    "name": "GOLAR LNG LTD",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-03-26",
+    "last_filed": "2026-03-26",
+    "score": 9.0
+  },
+  "INTI": {
+    "ticker": "INTI",
+    "name": "Inhibitor Therapeutics, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-26",
+    "last_filed": "2026-03-26",
+    "score": 9.0
+  },
+  "FTW": {
+    "ticker": "FTW",
+    "name": "PRESIDIO PRODUCTION Co",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-01-30",
+    "last_filed": "2026-03-24",
+    "score": 9.0
+  },
+  "CBSTF": {
+    "ticker": "CBSTF",
+    "name": "Cannabist Co Holdings Inc.",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-24",
+    "last_filed": "2026-03-24",
+    "score": 15.0
+  },
+  "CDE": {
+    "ticker": "CDE",
+    "name": "Coeur Mining, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-18",
+    "last_filed": "2026-03-23",
+    "score": 9.0
+  },
+  "TRP": {
+    "ticker": "TRP",
+    "name": "TC ENERGY CORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-20",
+    "last_filed": "2026-03-20",
+    "score": 9.0
+  },
+  "VSCO": {
+    "ticker": "VSCO",
+    "name": "Victoria's Secret & Co.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-20",
+    "last_filed": "2026-03-20",
+    "score": 9.0
+  },
+  "SATS": {
+    "ticker": "SATS",
+    "name": "EchoStar CORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-19",
+    "last_filed": "2026-03-19",
+    "score": 9.0
+  },
+  "BIOF": {
+    "ticker": "BIOF",
+    "name": "BLUE BIOFUELS, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-19",
+    "last_filed": "2026-03-19",
+    "score": 9.0
+  },
+  "CAAP": {
+    "ticker": "CAAP",
+    "name": "CORPORACION AMERICA AIRPORTS S.A.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-17",
+    "last_filed": "2026-03-17",
+    "score": 9.0
+  },
+  "CSHRW": {
+    "ticker": "CSHRW",
+    "name": "Odysseus Holdings Ltd",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-16",
+    "last_filed": "2026-03-16",
+    "score": 9.0
+  },
+  "MCAG": {
+    "ticker": "MCAG",
+    "name": "Mountain Crest Acquisition Corp. V",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-16",
+    "last_filed": "2026-03-16",
+    "score": 9.0
+  },
+  "AP": {
+    "ticker": "AP",
+    "name": "AMPCO PITTSBURGH CORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-16",
+    "last_filed": "2026-03-16",
+    "score": 9.0
+  },
+  "NUVR": {
+    "ticker": "NUVR",
+    "name": "Nuvera Communications, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-03-16",
+    "last_filed": "2026-03-16",
+    "score": 9.0
+  },
+  "VERU": {
+    "ticker": "VERU",
+    "name": "VERU INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-13",
+    "last_filed": "2026-03-13",
+    "score": 9.0
+  },
+  "WMT": {
+    "ticker": "WMT",
+    "name": "Walmart Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-13",
+    "last_filed": "2026-03-13",
+    "score": 9.0
+  },
+  "HTB": {
+    "ticker": "HTB",
+    "name": "HomeTrust Bancshares, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-13",
+    "last_filed": "2026-03-13",
+    "score": 9.0
+  },
+  "EVFM": {
+    "ticker": "EVFM",
+    "name": "Evofem Biosciences, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-03-11",
+    "last_filed": "2026-03-11",
+    "score": 9.0
+  },
+  "PEBK": {
+    "ticker": "PEBK",
+    "name": "PEOPLES BANCORP OF NORTH CAROLINA INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-11",
+    "last_filed": "2026-03-11",
+    "score": 9.0
+  },
+  "RYAM": {
+    "ticker": "RYAM",
+    "name": "RAYONIER ADVANCED MATERIALS INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-05",
+    "last_filed": "2026-03-05",
+    "score": 9.0
+  },
+  "SSYS": {
+    "ticker": "SSYS",
+    "name": "STRATASYS LTD.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-05",
+    "last_filed": "2026-03-05",
+    "score": 9.0
+  },
+  "RY": {
+    "ticker": "RY",
+    "name": "ROYAL BANK OF CANADA",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-05",
+    "last_filed": "2026-03-05",
+    "score": 9.0
+  },
+  "FGPR": {
+    "ticker": "FGPR",
+    "name": "FERRELLGAS PARTNERS L P",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-05",
+    "last_filed": "2026-03-05",
+    "score": 9.0
+  },
+  "OSG": {
+    "ticker": "OSG",
+    "name": "OCTAVE SPECIALTY GROUP INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-04",
+    "last_filed": "2026-03-04",
+    "score": 9.0
+  },
+  "HZO": {
+    "ticker": "HZO",
+    "name": "MARINEMAX INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-03",
+    "last_filed": "2026-03-03",
+    "score": 9.0
+  },
+  "TDW": {
+    "ticker": "TDW",
+    "name": "TIDEWATER INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-02",
+    "last_filed": "2026-03-02",
+    "score": 9.0
+  },
+  "BPOP": {
+    "ticker": "BPOP",
+    "name": "POPULAR, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-02",
+    "last_filed": "2026-03-02",
+    "score": 9.0
+  },
+  "DAVE": {
+    "ticker": "DAVE",
+    "name": "Dave Inc./DE",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-03-02",
+    "last_filed": "2026-03-02",
+    "score": 9.0
+  },
+  "VG": {
+    "ticker": "VG",
+    "name": "Venture Global, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-03-02",
+    "last_filed": "2026-03-02",
+    "score": 9.0
+  },
+  "SBGI": {
+    "ticker": "SBGI",
+    "name": "Sinclair, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-27",
+    "last_filed": "2026-02-27",
+    "score": 9.0
+  },
+  "TCPC": {
+    "ticker": "TCPC",
+    "name": "BlackRock TCP Capital Corp.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-27",
+    "last_filed": "2026-02-27",
+    "score": 9.0
+  },
+  "OPGN": {
+    "ticker": "OPGN",
+    "name": "CapForce Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-27",
+    "last_filed": "2026-02-27",
+    "score": 9.0
+  },
+  "CLOV": {
+    "ticker": "CLOV",
+    "name": "CLOVER HEALTH INVESTMENTS, CORP. /DE",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-27",
+    "last_filed": "2026-02-27",
+    "score": 9.0
+  },
+  "SOC": {
+    "ticker": "SOC",
+    "name": "Sable Offshore Corp.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-27",
+    "last_filed": "2026-02-27",
+    "score": 9.0
+  },
+  "BSRR": {
+    "ticker": "BSRR",
+    "name": "SIERRA BANCORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-27",
+    "last_filed": "2026-02-27",
+    "score": 9.0
+  },
+  "PB": {
+    "ticker": "PB",
+    "name": "PROSPERITY BANCSHARES INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-26",
+    "last_filed": "2026-02-26",
+    "score": 9.0
+  },
+  "GLXY": {
+    "ticker": "GLXY",
+    "name": "Galaxy Digital Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-26",
+    "last_filed": "2026-02-26",
+    "score": 9.0
+  },
+  "LXU": {
+    "ticker": "LXU",
+    "name": "LSB INDUSTRIES, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-26",
+    "last_filed": "2026-02-26",
+    "score": 9.0
+  },
+  "BATRA": {
+    "ticker": "BATRA",
+    "name": "Atlanta Braves Holdings, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-26",
+    "last_filed": "2026-02-26",
+    "score": 9.0
+  },
+  "IART": {
+    "ticker": "IART",
+    "name": "INTEGRA LIFESCIENCES HOLDINGS CORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-26",
+    "last_filed": "2026-02-26",
+    "score": 9.0
+  },
+  "ADTN": {
+    "ticker": "ADTN",
+    "name": "ADTRAN Holdings, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-26",
+    "last_filed": "2026-02-26",
+    "score": 9.0
+  },
+  "SPOK": {
+    "ticker": "SPOK",
+    "name": "Spok Holdings, Inc",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-26",
+    "last_filed": "2026-02-26",
+    "score": 9.0
+  },
+  "SND": {
+    "ticker": "SND",
+    "name": "Smart Sand, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-26",
+    "last_filed": "2026-02-26",
+    "score": 9.0
+  },
+  "SILA": {
+    "ticker": "SILA",
+    "name": "Sila Realty Trust, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-25",
+    "last_filed": "2026-02-25",
+    "score": 9.0
+  },
+  "PARR": {
+    "ticker": "PARR",
+    "name": "PAR PACIFIC HOLDINGS, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-25",
+    "last_filed": "2026-02-25",
+    "score": 9.0
+  },
+  "ASTE": {
+    "ticker": "ASTE",
+    "name": "ASTEC INDUSTRIES INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-25",
+    "last_filed": "2026-02-25",
+    "score": 9.0
+  },
+  "AWI": {
+    "ticker": "AWI",
+    "name": "ARMSTRONG WORLD INDUSTRIES INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-24",
+    "last_filed": "2026-02-24",
+    "score": 9.0
+  },
+  "LNWO": {
+    "ticker": "LNWO",
+    "name": "Light & Wonder, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-24",
+    "last_filed": "2026-02-24",
+    "score": 9.0
+  },
+  "CLNE": {
+    "ticker": "CLNE",
+    "name": "Clean Energy Fuels Corp.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-24",
+    "last_filed": "2026-02-24",
+    "score": 9.0
+  },
+  "INR": {
+    "ticker": "INR",
+    "name": "INFINITY NATURAL RESOURCES, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-02-23",
+    "last_filed": "2026-02-23",
+    "score": 9.0
+  },
+  "FBIN": {
+    "ticker": "FBIN",
+    "name": "Fortune Brands Innovations, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-23",
+    "last_filed": "2026-02-23",
+    "score": 9.0
+  },
+  "AMC": {
+    "ticker": "AMC",
+    "name": "AMC ENTERTAINMENT HOLDINGS, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-23",
+    "last_filed": "2026-02-23",
+    "score": 9.0
+  },
+  "LYB": {
+    "ticker": "LYB",
+    "name": "LyondellBasell Industries N.V.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-02-20",
+    "last_filed": "2026-02-20",
+    "score": 9.0
+  },
+  "THG": {
+    "ticker": "THG",
+    "name": "HANOVER INSURANCE GROUP, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-20",
+    "last_filed": "2026-02-20",
+    "score": 9.0
+  },
+  "TROX": {
+    "ticker": "TROX",
+    "name": "Tronox Holdings plc",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-20",
+    "last_filed": "2026-02-20",
+    "score": 9.0
+  },
+  "TSCO": {
+    "ticker": "TSCO",
+    "name": "TRACTOR SUPPLY CO /DE/",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-19",
+    "last_filed": "2026-02-19",
+    "score": 9.0
+  },
+  "LNC": {
+    "ticker": "LNC",
+    "name": "LINCOLN NATIONAL CORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-19",
+    "last_filed": "2026-02-19",
+    "score": 9.0
+  },
+  "GTX": {
+    "ticker": "GTX",
+    "name": "Garrett Motion Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-19",
+    "last_filed": "2026-02-19",
+    "score": 9.0
+  },
+  "HUM": {
+    "ticker": "HUM",
+    "name": "HUMANA INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-19",
+    "last_filed": "2026-02-19",
+    "score": 9.0
+  },
+  "VC": {
+    "ticker": "VC",
+    "name": "VISTEON CORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-19",
+    "last_filed": "2026-02-19",
+    "score": 9.0
+  },
+  "CNP": {
+    "ticker": "CNP",
+    "name": "CENTERPOINT ENERGY INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-19",
+    "last_filed": "2026-02-19",
+    "score": 9.0
+  },
+  "MET": {
+    "ticker": "MET",
+    "name": "METLIFE INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-19",
+    "last_filed": "2026-02-19",
+    "score": 9.0
+  },
+  "FE": {
+    "ticker": "FE",
+    "name": "FIRSTENERGY CORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-18",
+    "last_filed": "2026-02-18",
+    "score": 9.0
+  },
+  "CNK": {
+    "ticker": "CNK",
+    "name": "Cinemark Holdings, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-18",
+    "last_filed": "2026-02-18",
+    "score": 9.0
+  },
+  "EIX": {
+    "ticker": "EIX",
+    "name": "EDISON INTERNATIONAL",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-18",
+    "last_filed": "2026-02-18",
+    "score": 9.0
+  },
+  "MCO": {
+    "ticker": "MCO",
+    "name": "MOODYS CORP /DE/",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-18",
+    "last_filed": "2026-02-18",
+    "score": 9.0
+  },
+  "ITRI": {
+    "ticker": "ITRI",
+    "name": "ITRON, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-17",
+    "last_filed": "2026-02-17",
+    "score": 9.0
+  },
+  "WRLD": {
+    "ticker": "WRLD",
+    "name": "WORLD ACCEPTANCE CORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-17",
+    "last_filed": "2026-02-17",
+    "score": 9.0
+  },
+  "AGCO": {
+    "ticker": "AGCO",
+    "name": "AGCO CORP /DE",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-13",
+    "last_filed": "2026-02-13",
+    "score": 6.0
+  },
+  "GTY": {
+    "ticker": "GTY",
+    "name": "GETTY REALTY CORP /MD/",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-12",
+    "last_filed": "2026-02-12",
+    "score": 6.0
+  },
+  "AB": {
+    "ticker": "AB",
+    "name": "ALLIANCEBERNSTEIN HOLDING L.P.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-12",
+    "last_filed": "2026-02-12",
+    "score": 6.0
+  },
+  "KHC": {
+    "ticker": "KHC",
+    "name": "Kraft Heinz Co",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-12",
+    "last_filed": "2026-02-12",
+    "score": 6.0
+  },
+  "DBD": {
+    "ticker": "DBD",
+    "name": "DIEBOLD NIXDORF, Inc",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-02-12",
+    "last_filed": "2026-02-12",
+    "score": 6.0
+  },
+  "KMPB": {
+    "ticker": "KMPB",
+    "name": "KEMPER Corp",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-11",
+    "last_filed": "2026-02-11",
+    "score": 6.0
+  },
+  "APH": {
+    "ticker": "APH",
+    "name": "AMPHENOL CORP /DE/",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-11",
+    "last_filed": "2026-02-11",
+    "score": 6.0
+  },
+  "F": {
+    "ticker": "F",
+    "name": "FORD MOTOR CO",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-11",
+    "last_filed": "2026-02-11",
+    "score": 6.0
+  },
+  "CTGO": {
+    "ticker": "CTGO",
+    "name": "Contango ORE, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-11",
+    "last_filed": "2026-02-11",
+    "score": 6.0
+  },
+  "OHI": {
+    "ticker": "OHI",
+    "name": "OMEGA HEALTHCARE INVESTORS INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-09",
+    "last_filed": "2026-02-09",
+    "score": 6.0
+  },
+  "APC": {
+    "ticker": "APC",
+    "name": "ARKO Petroleum Corp.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-06",
+    "last_filed": "2026-02-06",
+    "score": 6.0
+  },
+  "NFBK": {
+    "ticker": "NFBK",
+    "name": "Northfield Bancorp, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-06",
+    "last_filed": "2026-02-06",
+    "score": 6.0
+  },
+  "DEC": {
+    "ticker": "DEC",
+    "name": "Diversified Energy Co",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-02-06",
+    "last_filed": "2026-02-06",
+    "score": 6.0
+  },
+  "XELB": {
+    "ticker": "XELB",
+    "name": "XCel Brands, Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-04",
+    "last_filed": "2026-02-04",
+    "score": 6.0
+  },
+  "DOW": {
+    "ticker": "DOW",
+    "name": "DOW INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-03",
+    "last_filed": "2026-02-03",
+    "score": 6.0
+  },
+  "HLNE": {
+    "ticker": "HLNE",
+    "name": "Hamilton Lane INC",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-02-03",
+    "last_filed": "2026-02-03",
+    "score": 6.0
+  },
+  "TWNP": {
+    "ticker": "TWNP",
+    "name": "Twin Hospitality Group Inc.",
+    "confidence": "high (primary + corroboration)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-01-27",
+    "last_filed": "2026-01-30",
+    "score": 10.0
+  },
+  "JEF": {
+    "ticker": "JEF",
+    "name": "Jefferies Financial Group Inc.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-01-28",
+    "last_filed": "2026-01-28",
+    "score": 6.0
+  },
+  "GM": {
+    "ticker": "GM",
+    "name": "General Motors Co",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "fresh-start accounting (10-K/Q)"
+    ],
+    "first_filed": "2026-01-27",
+    "last_filed": "2026-01-27",
+    "score": 6.0
+  },
+  "GORO": {
+    "ticker": "GORO",
+    "name": "GOLD RESOURCE CORP",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "plan-effective 8-K"
+    ],
+    "first_filed": "2026-01-26",
+    "last_filed": "2026-01-26",
+    "score": 6.0
+  },
+  "ARE": {
+    "ticker": "ARE",
+    "name": "ALEXANDRIA REAL ESTATE EQUITIES, INC.",
+    "confidence": "medium (single primary source)",
+    "n_channels": 1,
+    "channels": [
+      "emergence 8-K prose"
+    ],
+    "first_filed": "2026-01-26",
+    "last_filed": "2026-01-26",
+    "score": 6.0
+  },
+  "WGSWW": {
+    "ticker": "WGSWW",
+    "name": "GeneDx Holdings Corp.",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 25 old-share delisting"
+    ],
+    "first_filed": "2026-07-23",
+    "last_filed": "2026-07-23",
+    "score": 4.0
+  },
+  "WST": {
+    "ticker": "WST",
+    "name": "WEST PHARMACEUTICAL SERVICES INC",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-23",
+    "last_filed": "2026-07-23",
+    "score": 4.0
+  },
+  "CCRN": {
+    "ticker": "CCRN",
+    "name": "CROSS COUNTRY HEALTHCARE INC",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 25 old-share delisting"
+    ],
+    "first_filed": "2026-07-23",
+    "last_filed": "2026-07-23",
+    "score": 4.0
+  },
+  "AIH": {
+    "ticker": "AIH",
+    "name": "ADVANCED INNERGY HOLDINGS LIMITED",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-23",
+    "last_filed": "2026-07-23",
+    "score": 4.0
+  },
+  "MSGM": {
+    "ticker": "MSGM",
+    "name": "Motorsport Games Inc.",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 8-A new-common registration"
+    ],
+    "first_filed": "2026-07-23",
+    "last_filed": "2026-07-23",
+    "score": 4.0
+  },
+  "NSA-PB": {
+    "ticker": "NSA-PB",
+    "name": "National Storage Affiliates Trust",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 25 old-share delisting"
+    ],
+    "first_filed": "2026-07-23",
+    "last_filed": "2026-07-23",
+    "score": 4.0
+  },
+  "GRMLW": {
+    "ticker": "GRMLW",
+    "name": "Greenland Mines Ltd",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 8-A new-common registration"
+    ],
+    "first_filed": "2026-07-23",
+    "last_filed": "2026-07-23",
+    "score": 4.0
+  },
+  "GLBS": {
+    "ticker": "GLBS",
+    "name": "GLOBUS MARITIME LTD",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 8-A new-common registration"
+    ],
+    "first_filed": "2026-07-23",
+    "last_filed": "2026-07-23",
+    "score": 4.0
+  },
+  "PSA-PG": {
+    "ticker": "PSA-PG",
+    "name": "Public Storage",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 8-A new-common registration"
+    ],
+    "first_filed": "2026-07-23",
+    "last_filed": "2026-07-23",
+    "score": 4.0
+  },
+  "PLCI": {
+    "ticker": "PLCI",
+    "name": "Pelican Acquisition II Corp",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 8-A new-common registration"
+    ],
+    "first_filed": "2026-07-23",
+    "last_filed": "2026-07-23",
+    "score": 4.0
+  },
+  "DOMO": {
+    "ticker": "DOMO",
+    "name": "DOMO, INC.",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 8-A new-common registration"
+    ],
+    "first_filed": "2026-07-23",
+    "last_filed": "2026-07-23",
+    "score": 4.0
+  },
+  "MCE": {
+    "ticker": "MCE",
+    "name": "MATRIX COMPOSITES & ENGINEERING LIMITED",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-23",
+    "last_filed": "2026-07-23",
+    "score": 4.0
+  },
+  "CAE": {
+    "ticker": "CAE",
+    "name": "CAE INC",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 8-A new-common registration"
+    ],
+    "first_filed": "2026-07-23",
+    "last_filed": "2026-07-23",
+    "score": 4.0
+  },
+  "MVSTW": {
+    "ticker": "MVSTW",
+    "name": "Microvast Holdings, Inc.",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 25 old-share delisting"
+    ],
+    "first_filed": "2026-07-23",
+    "last_filed": "2026-07-23",
+    "score": 4.0
+  },
+  "CELUW": {
+    "ticker": "CELUW",
+    "name": "Celularity Inc",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 25 old-share delisting"
+    ],
+    "first_filed": "2026-07-23",
+    "last_filed": "2026-07-23",
+    "score": 4.0
+  },
+  "ESPR": {
+    "ticker": "ESPR",
+    "name": "Esperion Therapeutics, Inc.",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 15 deregistration"
+    ],
+    "first_filed": "2026-07-23",
+    "last_filed": "2026-07-23",
+    "score": 4.0
+  },
+  "KORGW": {
+    "ticker": "KORGW",
+    "name": "KORE Group Holdings, Inc.",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 25 old-share delisting"
+    ],
+    "first_filed": "2026-07-23",
+    "last_filed": "2026-07-23",
+    "score": 4.0
+  },
+  "MTB-PH": {
+    "ticker": "MTB-PH",
+    "name": "M&T BANK CORP",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 8-A new-common registration"
+    ],
+    "first_filed": "2026-07-23",
+    "last_filed": "2026-07-23",
+    "score": 4.0
+  },
+  "CVW": {
+    "ticker": "CVW",
+    "name": "CLEARVIEW WEALTH LIMITED",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-22",
+    "last_filed": "2026-07-22",
+    "score": 4.0
+  },
+  "SVACU": {
+    "ticker": "SVACU",
+    "name": "Spring Valley Acquisition Corp. III",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 25 old-share delisting"
+    ],
+    "first_filed": "2026-07-11",
+    "last_filed": "2026-07-11",
+    "score": 4.0
+  },
+  "SBDS": {
+    "ticker": "SBDS",
+    "name": "Solo Brands, Inc.",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 25 old-share delisting"
+    ],
+    "first_filed": "2026-07-10",
+    "last_filed": "2026-07-11",
+    "score": 4.0
+  },
+  "ALCUF": {
+    "ticker": "ALCUF",
+    "name": "Alchemy Investments Acquisition Corp 1",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 25 old-share delisting"
+    ],
+    "first_filed": "2026-07-11",
+    "last_filed": "2026-07-11",
+    "score": 4.0
+  },
+  "ORGN": {
+    "ticker": "ORGN",
+    "name": "Origin Materials, Inc.",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 15 deregistration"
+    ],
+    "first_filed": "2026-07-11",
+    "last_filed": "2026-07-11",
+    "score": 4.0
+  },
+  "TE-WT": {
+    "ticker": "TE-WT",
+    "name": "T1 Energy Inc.",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 25 old-share delisting"
+    ],
+    "first_filed": "2026-07-11",
+    "last_filed": "2026-07-11",
+    "score": 4.0
+  },
+  "RVPH": {
+    "ticker": "RVPH",
+    "name": "REVIVA PHARMACEUTICALS HOLDINGS, INC.",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 25 old-share delisting"
+    ],
+    "first_filed": "2026-07-11",
+    "last_filed": "2026-07-11",
+    "score": 4.0
+  },
+  "LLM": {
+    "ticker": "LLM",
+    "name": "LOYAL METALS LTD",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-10",
+    "last_filed": "2026-07-10",
+    "score": 4.0
+  },
+  "ERM": {
+    "ticker": "ERM",
+    "name": "EMMERSON RESOURCES LIMITED",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-06-19",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "PEX": {
+    "ticker": "PEX",
+    "name": "PEEL MINING LIMITED",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-06-19",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "AIS": {
+    "ticker": "AIS",
+    "name": "AERIS RESOURCES LIMITED",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-06-19",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "WYTC": {
+    "ticker": "WYTC",
+    "name": "WYTEC INTERNATIONAL INC",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 15 deregistration"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "CLGN": {
+    "ticker": "CLGN",
+    "name": [
+      "CollPlant Biotechnologies Ltd  (CLGN)  (CIK 0001631487)"
+    ],
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "EHGO": {
+    "ticker": "EHGO",
+    "name": [
+      "EShallGo Inc.  (EHGO)  (CIK 0001879754)"
+    ],
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "PAF": {
+    "ticker": "PAF",
+    "name": "PAN AFRICAN RESOURCES PLC",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "RNGE": {
+    "ticker": "RNGE",
+    "name": [
+      "RANGE IMPACT, INC.  (RNGE)  (CIK 0001438943)"
+    ],
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "IMCC": {
+    "ticker": "IMCC",
+    "name": [
+      "IM Cannabis Corp.  (IMCC)  (CIK 0001792030)"
+    ],
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "RIG": {
+    "ticker": "RIG",
+    "name": [
+      "Transocean Ltd.  (RIG)  (CIK 0001451505)"
+    ],
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "VIASP": {
+    "ticker": "VIASP",
+    "name": "Via Renewables, Inc.",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 15 deregistration"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "AEMD": {
+    "ticker": "AEMD",
+    "name": [
+      "AETHLON MEDICAL INC  (AEMD)  (CIK 0000882291)"
+    ],
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "GATX": {
+    "ticker": "GATX",
+    "name": [
+      "GATX CORP  (GATX)  (CIK 0000040211)"
+    ],
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "FDMMU": {
+    "ticker": "FDMMU",
+    "name": [
+      "Freedom Metals Acquisition Corp.  (FDMM)  (CIK 0002129659)"
+    ],
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "CVKD": {
+    "ticker": "CVKD",
+    "name": [
+      "Cadrenal Therapeutics, Inc.  (CVKD)  (CIK 0001937993)"
+    ],
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "SRFM": {
+    "ticker": "SRFM",
+    "name": [
+      "SURF AIR MOBILITY INC.  (SRFM)  (CIK 0001936224)"
+    ],
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "MRX": {
+    "ticker": "MRX",
+    "name": [
+      "Marex Group plc  (MRX)  (CIK 0001997464)"
+    ],
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "CAR": {
+    "ticker": "CAR",
+    "name": [
+      "AVIS BUDGET GROUP, INC.  (CAR)  (CIK 0000723612)"
+    ],
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "HIVE": {
+    "ticker": "HIVE",
+    "name": [
+      "HIVE Digital Technologies Ltd.  (HIVE)  (CIK 0001720424)"
+    ],
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "APTOF": {
+    "ticker": "APTOF",
+    "name": "Aptose Biosciences Inc.",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "Form 15 deregistration"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "CBIO": {
+    "ticker": "CBIO",
+    "name": [
+      "CRESCENT BIOPHARMA, INC.  (CBIO)  (CIK 0001253689)"
+    ],
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "Q": {
+    "ticker": "Q",
+    "name": [
+      "Qnity Electronics, Inc.  (Q)  (CIK 0002058873)"
+    ],
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "ASNS": {
+    "ticker": "ASNS",
+    "name": [
+      "ACTELIS NETWORKS INC  (ASNS)  (CIK 0001141284)"
+    ],
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "QOR": {
+    "ticker": "QOR",
+    "name": "QORIA LIMITED",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "AER": {
+    "ticker": "AER",
+    "name": [
+      "AerCap Holdings N.V.  (AER)  (CIK 0001378789)",
+      "AerCap Aviation Solutions B.V.  (CIK 0001552087)",
+      "Aercap Funding DAC  (CIK 0002129045)",
+      "AerCap Ireland Capital DAC  (CIK 0001639856)",
+      "AerCap Ireland Ltd  (CIK 0001639858)",
+      "AerCap U.S. Global Aviation LLC  (CIK 0001639862)",
+      "INTERNATIONAL LEASE FINANCE CORP  (CIK 0000714311)",
+      "AerCap Global Aviation Trust  (CIK 0001603794)"
+    ],
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "INUV": {
+    "ticker": "INUV",
+    "name": [
+      "Inuvo, Inc.  (INUV)  (CIK 0000829323)"
+    ],
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "HUBCZ": {
+    "ticker": "HUBCZ",
+    "name": [
+      "Hub Cyber Security Ltd.  (HUBC, HUBCW, HUBCZ)  (CIK 0001905660)"
+    ],
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-07-01",
+    "last_filed": "2026-07-01",
+    "score": 4.0
+  },
+  "ASM": {
+    "ticker": "ASM",
+    "name": "AUSTRALIAN STRATEGIC MATERIALS LIMITED",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-06-18",
+    "last_filed": "2026-06-18",
+    "score": 4.0
+  },
+  "QUB": {
+    "ticker": "QUB",
+    "name": "QUBE HOLDINGS LIMITED",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-06-17",
+    "last_filed": "2026-06-17",
+    "score": 4.0
+  },
+  "NVA": {
+    "ticker": "NVA",
+    "name": "NOVA MINERALS CORP",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-06-17",
+    "last_filed": "2026-06-17",
+    "score": 4.0
+  },
+  "EUR": {
+    "ticker": "EUR",
+    "name": "EUROPEAN LITHIUM LIMITED",
+    "confidence": "low (single corroborating signal)",
+    "n_channels": 1,
+    "channels": [
+      "scheme of arrangement"
+    ],
+    "first_filed": "2026-06-17",
+    "last_filed": "2026-06-17",
+    "score": 4.0
+  }
+}

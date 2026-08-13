@@ -398,6 +398,29 @@ def score_post_ch11_layer(layers: dict, universe: set) -> dict:
     return _load_jscore(ROOT / "post_ch11_emergence.json", universe)
 
 
+def score_emergence_crossfeed_layer(layers: dict, universe: set) -> dict:
+    """Post-reorg emergence cross-feed from the pollers subsystem
+    (capital-structure-screening branch): 5-channel EDGAR emergence
+    detection with confidence grading, ~587 entities vs the 29 in this
+    engine's own post_ch11 layer. Additive; the correlation stage
+    reports overlap with post_ch11 honestly. Scores 0 when the
+    snapshot-derived emergence_crossfeed.json is absent."""
+    out = {tk: 0.0 for tk in universe}
+    f = ROOT / "emergence_crossfeed.json"
+    if f.exists():
+        try:
+            data = json.loads(f.read_text())
+            for tk, v in data.items():
+                if tk in out and isinstance(v, dict):
+                    try:
+                        out[tk] = float(v.get("score") or 0)
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+    return out
+
+
 def score_internalization_layer(layers: dict, universe: set) -> dict:
     """External-manager internalization (Braemar/Ashford)."""
     return _load_jscore(ROOT / "external_manager_internalization.json", universe)
@@ -573,6 +596,7 @@ def main() -> int:
         # Tier-2 additive layers
         "voss_cic": score_voss_cic_layer(layers, universe),
         "post_ch11": score_post_ch11_layer(layers, universe),
+        "emergence_crossfeed": score_emergence_crossfeed_layer(layers, universe),
         "internalization": score_internalization_layer(layers, universe),
         "bumpitrage": score_bumpitrage_layer(layers, universe),
         "spinoff_volume": score_spinoff_volume_layer(layers, universe),
@@ -651,6 +675,7 @@ def main() -> int:
             "tender_mech_pts": layer_scores["tender_mechanism"].get(tk, 0),
             "voss_cic_pts": layer_scores["voss_cic"].get(tk, 0),
             "post_ch11_pts": layer_scores["post_ch11"].get(tk, 0),
+            "emergence_crossfeed_pts": layer_scores["emergence_crossfeed"].get(tk, 0),
             "internalization_pts": layer_scores["internalization"].get(tk, 0),
             "bumpitrage_pts": layer_scores["bumpitrage"].get(tk, 0),
             "spinoff_volume_pts": layer_scores["spinoff_volume"].get(tk, 0),

@@ -70,7 +70,9 @@ valuation_pts,tender_pts,0.09,0.09,negligible
 valuation_pts,discretionary_conviction_pts,0.09,0.09,negligible
 odd_lot_pts,internalization_pts,0.089,0.089,negligible
 turnaround_pts,coval_stafford_pts,0.087,0.087,negligible
+post_ch11_pts,emergence_crossfeed_pts,0.086,0.086,negligible
 coval_stafford_pts,financial_primary_pts,0.084,0.084,negligible
+psu_pts,emergence_crossfeed_pts,0.083,0.083,negligible
 valuation_pts,f4_buys_pts,0.083,0.083,negligible
 buyback_pts,discretionary_conviction_pts,0.083,0.083,negligible
 buyback_pts,f4_buys_pts,0.082,0.082,negligible
@@ -85,14 +87,20 @@ fdic_call_report_pts,financial_primary_pts,0.068,0.068,negligible
 special_sits_pts,backstopped_rights_pts,0.067,0.067,negligible
 internalization_pts,financial_primary_pts,0.064,0.064,negligible
 valuation_pts,c10b51_pts,-0.064,0.064,negligible
+voss_cic_pts,emergence_crossfeed_pts,0.064,0.064,negligible
+emergence_crossfeed_pts,coval_stafford_pts,0.062,0.062,negligible
 tender_pts,financial_primary_pts,0.061,0.061,negligible
 c10b51_pts,recent_incentive_pts,-0.06,0.06,negligible
+recent_incentive_pts,emergence_crossfeed_pts,0.059,0.059,negligible
 turnaround_pts,voss_cic_pts,0.055,0.055,negligible
+valuation_pts,emergence_crossfeed_pts,0.053,0.053,negligible
 f144_pts,turnaround_pts,-0.053,0.053,negligible
 f144_pts,biotech_pdufa_pts,-0.053,0.053,negligible
+special_sits_pts,emergence_crossfeed_pts,0.051,0.051,negligible
 f144_pts,form_13f_delta_pts,0.05,0.05,negligible
 recent_incentive_pts,form_13f_delta_pts,-0.05,0.05,negligible
 recent_incentive_pts,bb_insider_overlay_pts,0.049,0.049,negligible
+turnaround_pts,emergence_crossfeed_pts,0.049,0.049,negligible
 internalization_pts,backstopped_rights_pts,0.048,0.048,negligible
 recent_incentive_pts,activist_letter_pts,0.047,0.047,negligible
 bumpitrage_pts,financial_primary_pts,0.046,0.046,negligible
@@ -102,6 +110,7 @@ recent_incentive_pts,biotech_pdufa_pts,0.044,0.044,negligible
 valuation_pts,tender_mech_pts,-0.043,0.043,negligible
 recent_incentive_pts,post_ch11_pts,0.043,0.043,negligible
 psu_pts,opportunistic_pts,0.042,0.042,negligible
+emergence_crossfeed_pts,form_13f_delta_pts,0.042,0.042,negligible
 valuation_pts,special_sits_pts,0.041,0.041,negligible
 psu_pts,odd_lot_pts,-0.041,0.041,negligible
 buyback_pts,nport_forced_selling_pts,0.041,0.041,negligible
@@ -114,6 +123,7 @@ f144_pts,discretionary_conviction_pts,-0.039,0.039,negligible
 f4_buys_pts,activist_letter_pts,0.036,0.036,negligible
 f4_buys_pts,special_sits_pts,0.036,0.036,negligible
 psu_pts,discretionary_conviction_pts,0.036,0.036,negligible
+emergence_crossfeed_pts,backstopped_rights_pts,0.036,0.036,negligible
 net_net_ncav_pts,financial_primary_pts,0.036,0.036,negligible
 psu_pts,form_13f_delta_pts,-0.036,0.036,negligible
 post_ch11_pts,form_13f_delta_pts,0.035,0.035,negligible
@@ -129,7 +139,9 @@ opportunistic_pts,activist_letter_pts,0.033,0.033,negligible
 buyback_pts,bb_insider_overlay_pts,0.033,0.033,negligible
 special_sits_pts,discretionary_conviction_pts,0.033,0.033,negligible
 psu_pts,special_sits_pts,0.033,0.033,negligible
+emergence_crossfeed_pts,net_net_ncav_pts,0.033,0.033,negligible
 voss_cic_pts,biotech_pdufa_pts,0.032,0.032,negligible
+emergence_crossfeed_pts,nport_forced_selling_pts,0.032,0.032,negligible
 f4_buys_pts,f144_pts,-0.031,0.031,negligible
 f4_buys_pts,post_ch11_pts,0.031,0.031,negligible
 valuation_pts,f144_pts,-0.031,0.031,negligible
@@ -147,9 +159,11 @@ c10b51_pts,discretionary_conviction_pts,-0.029,0.029,negligible
 buyback_pts,quarterly_10q_pts,0.028,0.028,negligible
 psu_pts,f4_buys_pts,0.028,0.028,negligible
 opportunistic_pts,financial_primary_pts,0.028,0.028,negligible
+discretionary_conviction_pts,emergence_crossfeed_pts,-0.028,0.028,negligible
 f4_buys_pts,turnaround_pts,0.027,0.027,negligible
 tender_mech_pts,biotech_pdufa_pts,-0.027,0.027,negligible
 tender_mech_pts,coval_stafford_pts,-0.027,0.027,negligible
+f4_buys_pts,emergence_crossfeed_pts,-0.027,0.027,negligible
 valuation_pts,post_ch11_pts,0.026,0.026,negligible
 net_net_ncav_pts,activist_letter_pts,0.026,0.026,negligible
 turnaround_pts,discretionary_conviction_pts,0.025,0.025,negligible
@@ -178,6 +192,7 @@ c10b51_pts,bb_insider_overlay_pts,-0.022,0.022,negligible
 opportunistic_pts,quarterly_10q_pts,0.021,0.021,negligible
 bb_insider_overlay_pts,voss_cic_pts,-0.021,0.021,negligible
 tender_pts,coval_stafford_pts,0.021,0.021,negligible
+opportunistic_pts,emergence_crossfeed_pts,-0.021,0.021,negligible
 special_sits_pts,financial_primary_pts,-0.021,0.021,negligible
 special_sits_pts,opportunistic_pts,0.021,0.021,negligible
 turnaround_pts,opportunistic_pts,0.021,0.021,negligible
@@ -186,7 +201,9 @@ buyback_pts,bumpitrage_pts,0.021,0.021,negligible
 discretionary_conviction_pts,financial_primary_pts,0.02,0.02,negligible
 f144_pts,net_net_ncav_pts,0.02,0.02,negligible
 valuation_pts,internalization_pts,0.02,0.02,negligible
+emergence_crossfeed_pts,quarterly_10q_pts,0.02,0.02,negligible
 turnaround_pts,backstopped_rights_pts,0.019,0.019,negligible
+emergence_crossfeed_pts,financial_primary_pts,0.019,0.019,negligible
 c10b51_pts,backstopped_rights_pts,0.019,0.019,negligible
 financial_primary_pts,nport_forced_selling_pts,0.019,0.019,negligible
 f144_pts,activist_letter_pts,-0.019,0.019,negligible
@@ -246,7 +263,9 @@ backstopped_rights_pts,nport_forced_selling_pts,-0.012,0.012,negligible
 tender_pts,net_net_ncav_pts,0.012,0.012,negligible
 discretionary_conviction_pts,backstopped_rights_pts,0.012,0.012,negligible
 bumpitrage_pts,nport_forced_selling_pts,-0.012,0.012,negligible
+tender_pts,emergence_crossfeed_pts,0.011,0.011,negligible
 opportunistic_pts,net_net_ncav_pts,0.011,0.011,negligible
+emergence_crossfeed_pts,activist_letter_pts,-0.011,0.011,negligible
 opportunistic_pts,bumpitrage_pts,-0.011,0.011,negligible
 turnaround_pts,bumpitrage_pts,-0.011,0.011,negligible
 biotech_pdufa_pts,quarterly_10q_pts,-0.011,0.011,negligible
@@ -257,6 +276,7 @@ tender_pts,biotech_pdufa_pts,0.011,0.011,negligible
 f144_pts,backstopped_rights_pts,0.011,0.011,negligible
 f144_pts,bumpitrage_pts,0.01,0.01,negligible
 turnaround_pts,internalization_pts,0.01,0.01,negligible
+bb_insider_overlay_pts,emergence_crossfeed_pts,-0.01,0.01,negligible
 discretionary_conviction_pts,tender_mech_pts,0.01,0.01,negligible
 discretionary_conviction_pts,net_net_ncav_pts,-0.01,0.01,negligible
 buyback_pts,biotech_pdufa_pts,0.01,0.01,negligible
@@ -272,6 +292,7 @@ c10b51_pts,internalization_pts,0.009,0.009,negligible
 special_sits_pts,internalization_pts,0.009,0.009,negligible
 tender_mech_pts,nport_forced_selling_pts,-0.009,0.009,negligible
 odd_lot_pts,voss_cic_pts,-0.009,0.009,negligible
+emergence_crossfeed_pts,bumpitrage_pts,0.009,0.009,negligible
 coval_stafford_pts,activist_letter_pts,0.009,0.009,negligible
 f4_buys_pts,net_net_ncav_pts,-0.008,0.008,negligible
 special_sits_pts,bumpitrage_pts,0.008,0.008,negligible
@@ -282,7 +303,9 @@ bb_insider_overlay_pts,net_net_ncav_pts,0.008,0.008,negligible
 turnaround_pts,nport_forced_selling_pts,-0.008,0.008,negligible
 special_sits_pts,tender_mech_pts,0.007,0.007,negligible
 psu_pts,bb_insider_overlay_pts,0.007,0.007,negligible
+f144_pts,emergence_crossfeed_pts,-0.007,0.007,negligible
 activist_letter_pts,nport_forced_selling_pts,-0.007,0.007,negligible
+emergence_crossfeed_pts,internalization_pts,0.007,0.007,negligible
 valuation_pts,bb_insider_overlay_pts,0.007,0.007,negligible
 recent_incentive_pts,internalization_pts,0.007,0.007,negligible
 special_sits_pts,odd_lot_pts,-0.007,0.007,negligible
@@ -301,6 +324,7 @@ voss_cic_pts,bumpitrage_pts,-0.006,0.006,negligible
 opportunistic_pts,odd_lot_pts,-0.006,0.006,negligible
 backstopped_rights_pts,net_net_ncav_pts,-0.006,0.006,negligible
 f144_pts,odd_lot_pts,0.006,0.006,negligible
+odd_lot_pts,emergence_crossfeed_pts,-0.006,0.006,negligible
 discretionary_conviction_pts,quarterly_10q_pts,-0.005,0.005,negligible
 buyback_pts,odd_lot_pts,-0.005,0.005,negligible
 recent_incentive_pts,tender_mech_pts,-0.005,0.005,negligible
@@ -327,6 +351,8 @@ odd_lot_pts,coval_stafford_pts,0.004,0.004,negligible
 tender_pts,nport_forced_selling_pts,-0.004,0.004,negligible
 form_13f_delta_pts,financial_primary_pts,0.004,0.004,negligible
 post_ch11_pts,internalization_pts,-0.004,0.004,negligible
+emergence_crossfeed_pts,biotech_pdufa_pts,0.004,0.004,negligible
+buyback_pts,emergence_crossfeed_pts,-0.004,0.004,negligible
 activist_letter_pts,biotech_pdufa_pts,-0.004,0.004,negligible
 psu_pts,activist_letter_pts,0.004,0.004,negligible
 discretionary_conviction_pts,odd_lot_pts,-0.004,0.004,negligible
@@ -348,14 +374,17 @@ f4_buys_pts,form_13f_delta_pts,0.003,0.003,negligible
 turnaround_pts,odd_lot_pts,-0.003,0.003,negligible
 discretionary_conviction_pts,form_13f_delta_pts,0.003,0.003,negligible
 special_sits_pts,bb_insider_overlay_pts,0.003,0.003,negligible
+c10b51_pts,emergence_crossfeed_pts,-0.003,0.003,negligible
 post_ch11_pts,activist_letter_pts,-0.003,0.003,negligible
 opportunistic_pts,fdic_call_report_pts,-0.003,0.003,negligible
 opportunistic_pts,biotech_pdufa_pts,0.003,0.003,negligible
 f144_pts,fdic_call_report_pts,0.003,0.003,negligible
+emergence_crossfeed_pts,fdic_call_report_pts,-0.003,0.003,negligible
 buyback_pts,fdic_call_report_pts,-0.003,0.003,negligible
 net_net_ncav_pts,biotech_pdufa_pts,-0.003,0.003,negligible
 fdic_call_report_pts,net_net_ncav_pts,-0.002,0.002,negligible
 tender_pts,form_13f_delta_pts,0.002,0.002,negligible
+tender_mech_pts,emergence_crossfeed_pts,0.002,0.002,negligible
 odd_lot_pts,backstopped_rights_pts,-0.002,0.002,negligible
 odd_lot_pts,bumpitrage_pts,-0.002,0.002,negligible
 odd_lot_pts,biotech_pdufa_pts,-0.002,0.002,negligible
@@ -439,6 +468,8 @@ voss_cic_pts,spinoff_volume_pts,0.0,0.0,negligible
 voss_cic_pts,arquitos_pts,0.0,0.0,negligible
 post_ch11_pts,spinoff_volume_pts,0.0,0.0,negligible
 post_ch11_pts,arquitos_pts,0.0,0.0,negligible
+emergence_crossfeed_pts,spinoff_volume_pts,0.0,0.0,negligible
+emergence_crossfeed_pts,arquitos_pts,0.0,0.0,negligible
 internalization_pts,spinoff_volume_pts,0.0,0.0,negligible
 internalization_pts,arquitos_pts,0.0,0.0,negligible
 bumpitrage_pts,spinoff_volume_pts,0.0,0.0,negligible
