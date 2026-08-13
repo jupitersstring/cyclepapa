@@ -38,6 +38,7 @@ import numpy as np
 import pandas as pd
 
 from yf_screen import make_session
+import harmonics
 
 # ----------------------------------------------------------------------
 # 1. Pure computational core (unit-tested offline)
@@ -331,7 +332,8 @@ def geometry(wf: dict) -> dict:
 # 2. Pipeline
 # ----------------------------------------------------------------------
 
-def analyse_ticker(daily: pd.DataFrame) -> dict:
+def analyse_ticker(daily: pd.DataFrame, harm_depth: int = 10,
+                   harm_tol: float = 0.15, harm_bars: int = 15) -> dict:
     daily = daily.dropna(subset=['Close'])
     weekly = resample(daily, 'W-FRI')
     monthly = resample(daily, 'ME')
@@ -352,6 +354,14 @@ def analyse_ticker(daily: pd.DataFrame) -> dict:
     for k in ['d_above_20d_bracket', 'd_otf_up_days', 'd_excess_low',
               'd_accepts_weekly_break']:
         row[k] = df_.get(k)
+    # Harmonic scanner (TradingView "Harmonic Scanner" port): most recent
+    # completion within harm_bars on the daily and the weekly bars.
+    hd = harmonics.latest_signal(daily, harm_depth, harm_tol, harm_bars)
+    for k, v in hd.items():
+        row[k + '_d'] = v
+    hw = harmonics.latest_signal(weekly, harm_depth, harm_tol, harm_bars)
+    for k, v in hw.items():
+        row[k + '_w'] = v
     d90 = daily.tail(90)
     row['cs_spread_pct'] = round(corwin_schultz(d90['High'], d90['Low']) * 100, 3)
     row['amihud_1e9'] = round(amihud(d90['Close'].tail(20), d90['Volume'].tail(20)), 4)
@@ -385,7 +395,8 @@ def run(args):
             if isinstance(px.columns, pd.MultiIndex):
                 px.columns = px.columns.get_level_values(0)
             row = {'ticker': t}
-            row.update(analyse_ticker(px))
+            row.update(analyse_ticker(px, args.harm_depth, args.harm_error / 100,
+                                      args.harm_bars))
             rows.append(row)
             pd.DataFrame(rows).to_parquet(ckpt)
         except Exception as e:
@@ -413,6 +424,13 @@ def main():
     p.add_argument('--out', default='shortlist_auction.csv')
     p.add_argument('--ckpt', default='.ckpt_auction.parquet')
     p.add_argument('--sleep', type=float, default=0.5)
+    p.add_argument('--harm-depth', type=int, default=10,
+                   help='harmonic scanner ZigZag depth (script base setting)')
+    p.add_argument('--harm-error', type=float, default=15.0,
+                   help='harmonic error tolerance in %% (script base setting; '
+                        'published default was 5)')
+    p.add_argument('--harm-bars', type=int, default=15,
+                   help='flag completions within the last N bars')
     p.add_argument('--resume', action='store_true')
     args = p.parse_args()
     run(args)
