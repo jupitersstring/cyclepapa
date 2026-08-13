@@ -1092,6 +1092,95 @@ def build_incentive_improvers(wb: Workbook, yf: dict, proxy: dict):
     ws.freeze_panes = "A5"
 
 
+def build_insider_conviction(wb: Workbook, yf: dict):
+    """Discretionary insider-conviction clusters: the most anomalous,
+    high-conviction OPEN-MARKET buying (Form 4 code P only -- never RSU
+    grants or option exercises). Rewards temporal clustering
+    (Lakonishok-Lee), role-weighted dollars (CEO/CFO > 10% holder), and
+    rare configurations (multiple C-suite same-day). Dollar-gated so
+    trivial-dollar 'clusters' from filing artifacts are neutralised.
+
+    Source: discretionary_insider_conviction.json (built by
+    discretionary_insider_conviction.py from form4_buys.json)."""
+    ws = wb.create_sheet("Insider Conviction")
+    set_col_widths(ws, [9, 26, 10, 9, 9, 9, 9, 11, 11, 44])
+    write_title_band(
+        ws,
+        "Discretionary Insider-Conviction Clusters",
+        "Open-market purchases only (Form 4 code P) · clustered, "
+        "role-weighted, dollar-gated · grants and option exercises "
+        "excluded by construction",
+        n_cols=10,
+    )
+
+    data = {}
+    p = ROOT / "discretionary_insider_conviction.json"
+    if p.exists():
+        try:
+            data = json.loads(p.read_text())
+        except Exception:
+            data = {}
+
+    rows = []
+    for tk, v in data.items():
+        if not isinstance(v, dict) or (v.get("score") or 0) <= 0:
+            continue
+        y = yf.get(tk, {}) or {}
+        rows.append({
+            "tk": tk,
+            "name": (y.get("name") or tk),
+            "score": v.get("score", 0),
+            "n_insiders": v.get("n_insiders", 0),
+            "cluster": v.get("cluster_size", 0),
+            "same_day": v.get("same_day_cluster", 0),
+            "csuite": v.get("csuite_buyers", 0),
+            "total_m": (v.get("total_dollar") or 0) / 1e6,
+            "top_m": (v.get("top_person_dollar") or 0) / 1e6,
+            "flags": "; ".join(v.get("flags") or []),
+        })
+    rows.sort(key=lambda r: -r["score"])
+
+    headers = ["Ticker", "Name", "Conviction", "Insiders", "Cluster",
+               "Same day", "C-suite", "Total $M", "Top $M",
+               "Configuration"]
+    write_header_row(ws, 4, headers)
+    r = 5
+    for i, row in enumerate(rows[:45], 1):
+        band = (i % 2 == 0)
+        write_body_row(ws, r,
+                       [row["tk"], row["name"][:26], row["score"],
+                        row["n_insiders"], row["cluster"],
+                        row["same_day"], row["csuite"],
+                        round(row["total_m"], 2), round(row["top_m"], 2),
+                        row["flags"][:80]],
+                       band=band, bold_first=True)
+        ws.row_dimensions[r].height = 24
+        r += 1
+
+    r += 1
+    n_total = len(rows)
+    n_cluster = sum(1 for x in rows if x["cluster"] >= 2)
+    n_sameday = sum(1 for x in rows if x["same_day"] >= 2)
+    write_footnote(ws, r,
+        f"{n_total} names show scored discretionary buying (top 45 "
+        f"shown); {n_cluster} have a multi-insider cluster inside a "
+        f"45-day window and {n_sameday} a same-day cluster. Population "
+        "is Form 4 transaction code P only -- open-market cash "
+        "purchases; grants (code A) and option exercises (code M) are "
+        "excluded at the scanner, so every dollar here is discretionary. "
+        "Cluster credit follows Lakonishok-Lee (temporal concentration, "
+        "not raw count) and is scaled by aggregate dollars committed so "
+        "filing artifacts cannot masquerade as conviction. Dollars are "
+        "role-weighted (CEO/CFO 1.6x, Chair 1.5x, director 1.0x, 10% "
+        "holder 0.6x); multiple C-suite buying together is the rarest "
+        "and highest-signal configuration. This layer is additive and "
+        "orthogonal to the raw Form 4 layer and the Cohen-Malloy "
+        "opportunistic layer. Source: "
+        "discretionary_insider_conviction.json.", 10)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A5"
+
+
 def build_noval_view(wb: Workbook, yf: dict):
     """Parallel ranking that EXCLUDES the valuation leg. Surfaces
     structurally strong names that may be missing yfinance overlay
@@ -1872,6 +1961,7 @@ TAB_INDEX = [
     ("Reserve Baskets", "Sub-archetype baskets and full portfolio math."),
     ("Caution List", "Convergent names carrying governance red flags."),
     ("Incentive Improvers", "Latest proxy tightened the incentive architecture (rarity-weighted)."),
+    ("Insider Conviction", "Discretionary open-market buying clusters (code P only, role-weighted)."),
     ("Without Valuation", "Parallel ranking excluding the valuation leg."),
     ("Recent 30d", "Material incentive events disclosed in the last 30 days."),
     ("Foreign Markets", "Japan TSE PBR<1, Korea Value-Up, UK schemes."),
@@ -2030,6 +2120,7 @@ def main() -> int:
     build_reserve_baskets(wb, yf)
     build_caution_list(wb, proxy, consensus)
     build_incentive_improvers(wb, yf, proxy)
+    build_insider_conviction(wb, yf)
     build_noval_view(wb, yf)
     build_recent_30d(wb, yf)
     build_foreign_markets(wb)

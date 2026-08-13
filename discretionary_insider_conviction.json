@@ -11,10 +11,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "CMCL": {
@@ -29,10 +29,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 5.0,
+    "score": 0.0,
     "flags": []
   },
   "ONON": {
@@ -70,10 +70,10 @@
     "roles": [
       "ten_pct"
     ],
-    "cluster_score": 2.0,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 2.0,
+    "score": 0.0,
     "flags": []
   },
   "GMRS": {
@@ -88,10 +88,10 @@
     "roles": [
       "senior_officer"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "AMR": {
@@ -166,10 +166,10 @@
     "roles": [
       "ten_pct"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "TXO": {
@@ -249,13 +249,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.6,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 4.6,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "TFSL": {
     "n_insiders": 1,
@@ -269,10 +267,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 5.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.0,
+    "score": 0.0,
     "flags": []
   },
   "EQPT": {
@@ -287,10 +285,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.6,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.6,
+    "score": 0.0,
     "flags": []
   },
   "GLP": {
@@ -305,10 +303,10 @@
     "roles": [
       "unknown"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 5.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.0,
+    "score": 0.0,
     "flags": []
   },
   "PLSE": {
@@ -413,13 +411,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 0.7,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 3.7,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "DTM": {
     "n_insiders": 1,
@@ -433,13 +429,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 0.7,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 3.7,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "XZO": {
     "n_insiders": 1,
@@ -453,13 +447,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.6,
-    "conviction_score": 6.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.6,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "DGICA": {
     "n_insiders": 1,
@@ -473,10 +465,10 @@
     "roles": [
       "ten_pct"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 5.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.0,
+    "score": 0.0,
     "flags": []
   },
   "NCDL": {
@@ -645,10 +637,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "TPL": {
@@ -720,10 +712,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 5.0,
+    "score": 0.0,
     "flags": []
   },
   "TTEK": {
@@ -738,10 +730,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "OI": {
@@ -779,10 +771,10 @@
     "roles": [
       "unknown"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "SAFTX": {
@@ -797,10 +789,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "CVBF": {
@@ -835,10 +827,10 @@
     "roles": [
       "unknown"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 5.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.0,
+    "score": 0.0,
     "flags": []
   },
   "ERII": {
@@ -853,10 +845,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.6,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.6,
+    "score": 0.0,
     "flags": []
   },
   "CRESY": {
@@ -871,10 +863,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 5.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.0,
+    "score": 0.0,
     "flags": []
   },
   "BROS": {
@@ -889,10 +881,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.6,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.6,
+    "score": 0.0,
     "flags": []
   },
   "BCDA": {
@@ -907,13 +899,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 0.7,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 3.7,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "NSPR": {
     "n_insiders": 4,
@@ -950,13 +940,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 0.7,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 3.7,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "RLYB": {
     "n_insiders": 1,
@@ -990,10 +978,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "TRS": {
@@ -1008,10 +996,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "NOMD": {
@@ -1046,13 +1034,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 0.7,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 3.7,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "WGS": {
     "n_insiders": 1,
@@ -1190,10 +1176,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.6,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.6,
+    "score": 0.0,
     "flags": []
   },
   "CVM": {
@@ -1208,13 +1194,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.6,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 4.6,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "UPST": {
     "n_insiders": 1,
@@ -1291,10 +1275,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "PFX": {
@@ -1413,10 +1397,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "COAG": {
@@ -1451,10 +1435,10 @@
     "roles": [
       "ten_pct"
     ],
-    "cluster_score": 1.6,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.6,
+    "score": 0.0,
     "flags": []
   },
   "LEE": {
@@ -1469,10 +1453,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 5.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.0,
+    "score": 0.0,
     "flags": []
   },
   "AAT": {
@@ -1508,10 +1492,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "BH": {
@@ -1633,10 +1617,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "GRNT": {
@@ -1674,10 +1658,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "TMCI": {
@@ -1777,10 +1761,10 @@
     "roles": [
       "unknown"
     ],
-    "cluster_score": 2.0,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 2.0,
+    "score": 0.0,
     "flags": []
   },
   "ACM": {
@@ -1816,10 +1800,10 @@
     "roles": [
       "ten_pct"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 5.0,
+    "score": 0.0,
     "flags": []
   },
   "MXF": {
@@ -1875,10 +1859,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "QCLS": {
@@ -1893,10 +1877,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "JYNT": {
@@ -1931,10 +1915,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 5.0,
+    "score": 0.0,
     "flags": []
   },
   "SLNG": {
@@ -1971,10 +1955,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 5.0,
+    "score": 0.0,
     "flags": []
   },
   "NAIFX": {
@@ -1989,10 +1973,10 @@
     "roles": [
       "unknown"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "BRBR": {
@@ -2007,10 +1991,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "LODE": {
@@ -2071,10 +2055,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.6,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.6,
+    "score": 0.0,
     "flags": []
   },
   "NLCP": {
@@ -2089,13 +2073,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 0.7,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 3.7,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "KODK": {
     "n_insiders": 1,
@@ -2109,10 +2091,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "ZOMDF": {
@@ -2127,10 +2109,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "ZTS": {
@@ -2166,13 +2148,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 0.7,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 3.7,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "RNTX": {
     "n_insiders": 1,
@@ -2186,10 +2166,10 @@
     "roles": [
       "unknown"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "TKO": {
@@ -2311,10 +2291,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "BETR": {
@@ -2354,13 +2334,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.1,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 4.1,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "KINS": {
     "n_insiders": 1,
@@ -2374,10 +2352,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 5.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.0,
+    "score": 0.0,
     "flags": []
   },
   "MNTK": {
@@ -2392,10 +2370,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "ODTX": {
@@ -2456,13 +2434,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.6,
-    "conviction_score": 6.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.6,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "CBKM": {
     "n_insiders": 2,
@@ -2494,10 +2470,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.6,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.6,
+    "score": 0.0,
     "flags": []
   },
   "NWFL": {
@@ -2512,10 +2488,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "ARTV": {
@@ -2550,10 +2526,10 @@
     "roles": [
       "ten_pct"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 5.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.0,
+    "score": 0.0,
     "flags": []
   },
   "TSLX": {
@@ -2568,13 +2544,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.6,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 4.6,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "STGW": {
     "n_insiders": 1,
@@ -2588,13 +2562,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.6,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 4.6,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "BXSL": {
     "n_insiders": 1,
@@ -2608,10 +2580,10 @@
     "roles": [
       "unknown"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "BLND": {
@@ -2671,10 +2643,10 @@
     "roles": [
       "unknown"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "SMRT": {
@@ -2689,13 +2661,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.6,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 4.6,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "MMSI": {
     "n_insiders": 2,
@@ -2729,10 +2699,10 @@
     "roles": [
       "ten_pct"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "RSG": {
@@ -2832,10 +2802,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "ABSI": {
@@ -2850,10 +2820,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.6,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.6,
+    "score": 0.0,
     "flags": []
   },
   "GLND": {
@@ -2886,10 +2856,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.6,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.6,
+    "score": 0.0,
     "flags": []
   },
   "APPN": {
@@ -2904,13 +2874,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.1,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 4.1,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "FMBM": {
     "n_insiders": 1,
@@ -2924,10 +2892,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "ANNX": {
@@ -2942,10 +2910,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "CHCO": {
@@ -2960,10 +2928,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "GEHC": {
@@ -2996,13 +2964,11 @@
     "roles": [
       "chair_founder"
     ],
-    "cluster_score": 1.1,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 4.1,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "BX": {
     "n_insiders": 2,
@@ -3058,10 +3024,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.6,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.6,
+    "score": 0.0,
     "flags": []
   },
   "GRF": {
@@ -3076,10 +3042,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "NSIT": {
@@ -3094,13 +3060,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.6,
-    "conviction_score": 6.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.6,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "CRCT": {
     "n_insiders": 1,
@@ -3114,10 +3078,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "NWN": {
@@ -3132,10 +3096,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "ACON": {
@@ -3173,10 +3137,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "CZFS": {
@@ -3191,10 +3155,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "EVTC": {
@@ -3318,13 +3282,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.1,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 4.1,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "SPOK": {
     "n_insiders": 1,
@@ -3338,13 +3300,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.6,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 4.6,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "ONT": {
     "n_insiders": 1,
@@ -3358,13 +3318,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.6,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 4.6,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "APTV": {
     "n_insiders": 1,
@@ -3378,10 +3336,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 5.0,
+    "score": 0.0,
     "flags": []
   },
   "PFLT": {
@@ -3396,10 +3354,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "ADT": {
@@ -3437,10 +3395,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 5.0,
+    "score": 0.0,
     "flags": []
   },
   "IRTC": {
@@ -3455,10 +3413,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "OBDC": {
@@ -3473,10 +3431,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "FTCI": {
@@ -3491,10 +3449,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "FBLA": {
@@ -3509,13 +3467,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 0.7,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 3.7,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "DMLP": {
     "n_insiders": 1,
@@ -3529,13 +3485,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.6,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 4.6,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "PTLO": {
     "n_insiders": 1,
@@ -3549,10 +3503,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 5.0,
+    "score": 0.0,
     "flags": []
   },
   "OVBC": {
@@ -3607,10 +3561,10 @@
     "roles": [
       "ten_pct"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "OUST": {
@@ -3625,10 +3579,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "MED": {
@@ -3643,10 +3597,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "OVLY": {
@@ -3702,10 +3656,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 5.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.0,
+    "score": 0.0,
     "flags": []
   },
   "BOBS": {
@@ -3720,10 +3674,10 @@
     "roles": [
       "unknown"
     ],
-    "cluster_score": 2.0,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 2.0,
+    "score": 0.0,
     "flags": []
   },
   "NXG": {
@@ -3804,10 +3758,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "ETN": {
@@ -3822,10 +3776,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 5.0,
+    "score": 0.0,
     "flags": []
   },
   "SRTS": {
@@ -3840,10 +3794,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "HSIC": {
@@ -3858,10 +3812,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 5.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.0,
+    "score": 0.0,
     "flags": []
   },
   "BWB": {
@@ -3876,10 +3830,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "LILA": {
@@ -3894,13 +3848,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.6,
-    "conviction_score": 6.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.6,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "NCLH": {
     "n_insiders": 3,
@@ -3935,13 +3887,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 0.7,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 3.7,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "PLBC": {
     "n_insiders": 1,
@@ -3955,10 +3905,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "BUSE": {
@@ -3973,10 +3923,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "TSM": {
@@ -4015,10 +3965,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "AMWL": {
@@ -4033,13 +3983,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 0.7,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 3.7,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "ACEL": {
     "n_insiders": 1,
@@ -4053,10 +4001,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 5.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.0,
+    "score": 0.0,
     "flags": []
   },
   "SR": {
@@ -4071,10 +4019,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.6,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.6,
+    "score": 0.0,
     "flags": []
   },
   "NTRP": {
@@ -4089,10 +4037,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "SOFI": {
@@ -4127,10 +4075,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.6,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.6,
+    "score": 0.0,
     "flags": []
   },
   "CLRB": {
@@ -4186,13 +4134,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 0.7,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 3.7,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "GPK": {
     "n_insiders": 4,
@@ -4268,10 +4214,10 @@
     "roles": [
       "ten_pct"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "LW": {
@@ -4309,10 +4255,10 @@
     "roles": [
       "ten_pct"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 5.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.0,
+    "score": 0.0,
     "flags": []
   },
   "ATEC": {
@@ -4327,10 +4273,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 5.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.0,
+    "score": 0.0,
     "flags": []
   },
   "RVSB": {
@@ -4345,10 +4291,10 @@
     "roles": [
       "senior_officer"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "CZWI": {
@@ -4363,10 +4309,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "ADP": {
@@ -4381,10 +4327,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 5.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.0,
+    "score": 0.0,
     "flags": []
   },
   "AVTR": {
@@ -4399,10 +4345,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "TFIN": {
@@ -4437,10 +4383,10 @@
     "roles": [
       "unknown"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "LAW": {
@@ -4455,13 +4401,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.1,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 4.1,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "DXC": {
     "n_insiders": 1,
@@ -4475,13 +4419,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.6,
-    "conviction_score": 6.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.6,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "SEI": {
     "n_insiders": 1,
@@ -4495,10 +4437,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 5.0,
+    "score": 0.0,
     "flags": []
   },
   "MKL": {
@@ -4513,10 +4455,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 5.0,
+    "score": 0.0,
     "flags": []
   },
   "PAM": {
@@ -4552,10 +4494,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "OFIX": {
@@ -4570,10 +4512,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "WSBC": {
@@ -4588,10 +4530,10 @@
     "roles": [
       "senior_officer"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "CHTR": {
@@ -4980,10 +4922,10 @@
     "roles": [
       "ten_pct"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "MTB": {
@@ -5014,10 +4956,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "SF": {
@@ -5087,10 +5029,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.6,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.6,
+    "score": 0.0,
     "flags": []
   },
   "DLTR": {
@@ -5721,13 +5663,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 0.7,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 3.7,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "GOOD": {
     "n_insiders": 1,
@@ -5741,13 +5681,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 0.7,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 3.7,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "PRIM": {
     "n_insiders": 1,
@@ -5782,13 +5720,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.1,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 4.1,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "BFS": {
     "n_insiders": 1,
@@ -5802,13 +5738,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.1,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 4.1,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "RLI": {
     "n_insiders": 2,
@@ -5840,10 +5774,10 @@
     "roles": [
       "unknown"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "FRAF": {
@@ -5858,10 +5792,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "VTS": {
@@ -5896,10 +5830,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "CURI": {
@@ -5977,13 +5911,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.6,
-    "conviction_score": 6.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.6,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "HFRO": {
     "n_insiders": 1,
@@ -5997,10 +5929,10 @@
     "roles": [
       "ten_pct"
     ],
-    "cluster_score": 2.0,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 2.0,
+    "score": 0.0,
     "flags": []
   },
   "AIMD": {
@@ -6015,10 +5947,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "CJMB": {
@@ -6033,10 +5965,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "HUBC": {
@@ -6051,10 +5983,10 @@
     "roles": [
       "ten_pct"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "WOK": {
@@ -6069,10 +6001,10 @@
     "roles": [
       "ten_pct"
     ],
-    "cluster_score": 1.6,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.6,
+    "score": 0.0,
     "flags": []
   },
   "BOC": {
@@ -6087,10 +6019,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 5.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.0,
+    "score": 0.0,
     "flags": []
   },
   "ENS": {
@@ -6105,13 +6037,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 0.7,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 3.7,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "LSF": {
     "n_insiders": 1,
@@ -6125,10 +6055,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.6,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.6,
+    "score": 0.0,
     "flags": []
   },
   "IPWR": {
@@ -6143,10 +6073,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "RCG": {
@@ -6161,10 +6091,10 @@
     "roles": [
       "ten_pct"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "SWZ": {
@@ -6200,10 +6130,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 5.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.0,
+    "score": 0.0,
     "flags": []
   },
   "FRST": {
@@ -6218,10 +6148,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "MYO": {
@@ -6236,10 +6166,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "MDWD": {
@@ -6254,10 +6184,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "KWY": {
@@ -6314,13 +6244,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.6,
-    "conviction_score": 6.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 7.6,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "PAX": {
     "n_insiders": 1,
@@ -6334,10 +6262,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 5.0,
+    "score": 0.0,
     "flags": []
   },
   "QTTB": {
@@ -6373,13 +6301,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 0.7,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 3.7,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "OTLK": {
     "n_insiders": 1,
@@ -6436,10 +6362,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "VRSN": {
@@ -6454,10 +6380,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 0.7,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 0.7,
+    "score": 0.0,
     "flags": []
   },
   "ACCS": {
@@ -6472,13 +6398,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 1.1,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 4.1,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "TWFG": {
     "n_insiders": 1,
@@ -6492,10 +6416,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 5.0,
+    "score": 0.0,
     "flags": []
   },
   "ACOG": {
@@ -6510,10 +6434,10 @@
     "roles": [
       "ten_pct"
     ],
-    "cluster_score": 2.0,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 5.0,
+    "score": 0.0,
     "flags": []
   },
   "AWHL": {
@@ -6568,10 +6492,10 @@
     "roles": [
       "ten_pct"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "ALRS": {
@@ -6586,10 +6510,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "PNBK": {
@@ -6604,10 +6528,10 @@
     "roles": [
       "director"
     ],
-    "cluster_score": 1.1,
+    "cluster_score": 0.0,
     "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 1.1,
+    "score": 0.0,
     "flags": []
   },
   "LCNB": {
@@ -6622,13 +6546,11 @@
     "roles": [
       "c_suite"
     ],
-    "cluster_score": 0.7,
-    "conviction_score": 3.0,
+    "cluster_score": 0.0,
+    "conviction_score": 0.0,
     "anomaly_score": 0.0,
-    "score": 3.7,
-    "flags": [
-      "C-suite buyer"
-    ]
+    "score": 0.0,
+    "flags": []
   },
   "CDW": {
     "n_insiders": 1,

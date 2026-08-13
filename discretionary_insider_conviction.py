@@ -247,6 +247,42 @@ def score_ticker(rec: dict) -> dict:
         for p, d in person_dollar.items())
 
     cluster_size, same_day_cluster, window_span = cluster_metrics(filings)
+    anomaly_holdings = holdings_anomaly(filings)
+
+    # --- qualifying bar: SELECTIVE by design ------------------------------
+    # This leg exists to isolate the most anomalous, highest-conviction
+    # configurations -- not to hand every lone small buyer a couple of
+    # points (that is the base F4 layer's job, and duplicating it makes
+    # the layer rank-identical to the Cohen-Malloy layer on the same
+    # support). A name fires ONLY if at least one is true:
+    #   - a genuine multi-insider cluster (2+ distinct buyers in-window)
+    #   - an informed buyer (C-suite/Chair) committing real money
+    #   - a single buyer of unusual size ($1M+)
+    #   - a materially stake-growing buy (enriched data)
+    qualifies = (
+        cluster_size >= 2
+        or same_day_cluster >= 2
+        or (csuite_buyers >= 1 and top_person_dollar >= 2.5e5)
+        or top_person_dollar >= 1e6
+        or anomaly_holdings > 0
+    )
+    if not qualifies:
+        return {
+            "n_insiders": n_insiders,
+            "cluster_size": cluster_size,
+            "same_day_cluster": same_day_cluster,
+            "window_span_days": window_span,
+            "csuite_buyers": csuite_buyers,
+            "total_dollar": round(total_dollar, 0),
+            "top_person_dollar": round(top_person_dollar, 0),
+            "role_weighted_dollar": round(role_weighted_dollar, 0),
+            "roles": sorted(set(roles.values())),
+            "cluster_score": 0.0,
+            "conviction_score": 0.0,
+            "anomaly_score": 0.0,
+            "score": 0.0,
+            "flags": [],
+        }
 
     # --- cluster score (Lakonishok-Lee: tightness beats raw count) ------
     cluster_score = 0.0
@@ -287,7 +323,7 @@ def score_ticker(rec: dict) -> dict:
         anomaly_score += 8          # multiple C-suite buying together is rare
     elif csuite_buyers == 1 and n_insiders == 1 and top_person_dollar >= 1e6:
         anomaly_score += 5          # lone, large, informed, concentrated
-    anomaly_score += holdings_anomaly(filings)
+    anomaly_score += anomaly_holdings
 
     score = round(cluster_score + conviction_score + anomaly_score, 1)
 

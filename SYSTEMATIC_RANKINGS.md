@@ -100,8 +100,8 @@ Use this to deploy systematically by mandate.
 | 5 | BEEP | 59.2 | A | +10 PSU.spin_separation; +12 PSU.merger_acquisition_close | P/B 0.53; microcap | buyback SHRINKING_NO_AUTH -3.5% | Form1 |
 | 6 | CLW | 58.2 | A | +10 PSU.spin_separation; +10 PSU.fda_phase_milestone | P/B 0.33 | buyback NO_AUTH +0.5% | 10b5-1 adopt_sell -12 | Form14 |
 | 7 | LGL | 57.1 | B | +10 PSU.spin_separation; +15 PSU.chapter11_emergence | P/B 0.99; microcap | buyback NO_AUTH +20.4% |
-| 8 | LBTYA | 56.3 | B | +10 PSU.spin_separation | P/B 0.40 | buyback NO_AUTH -0.2% |
-| 9 | LBTYB | 56.3 | B | +10 PSU.spin_separation | P/B 0.47 | buyback NO_AUTH -0.2% |
+| 8 | LBTYB | 56.3 | B | +10 PSU.spin_separation | P/B 0.47 | buyback NO_AUTH -0.2% |
+| 9 | LBTYA | 56.3 | B | +10 PSU.spin_separation | P/B 0.40 | buyback NO_AUTH -0.2% |
 | 10 | VSNT | 55.0 | B | +10 PSU.spin_separation | P/B 0.54 | F4 cluster 4 / $6.2M | Form144 +0 |
 
 ### Named asset-sale trigger
@@ -190,8 +190,8 @@ Use this to deploy systematically by mandate.
 | 6 | MRNA | 66.1 | B | tender SELF_TENDER | 10b5-1 term_sell +13 |
 | 7 | MLCI | 63.7 | A | P/B 0.46; microcap | buyback SHRINKING_NO_AUTH -11.1% | tender SELF_TENDER |
 | 8 | HTT | 59.2 | B | P/B 0.28 | buyback SHRINKING_NO_AUTH -18.0% | tender SELF_TENDER |
-| 9 | ENZN | 54.0 | A | P/B 0.42; microcap | buyback ANOMALY_REVIEW -91.1% | tender SELF_TENDER | Form144 +0 |
-| 10 | SWZ | 54.0 | A | P/B 0.86; microcap | tender SELF_TENDER | F4 cluster 2 / $0.1M | Form144 +0 |
+| 9 | SWZ | 54.0 | A | P/B 0.86; microcap | tender SELF_TENDER | F4 cluster 2 / $0.1M | Form144 +0 |
+| 10 | ENZN | 54.0 | A | P/B 0.42; microcap | buyback ANOMALY_REVIEW -91.1% | tender SELF_TENDER | Form144 +0 |
 
 ### Live TARGET 14D-9
 | Rank | Ticker | Norm | Tier | Reasons |
@@ -214,12 +214,12 @@ Use this to deploy systematically by mandate.
 | 2 | CWAN | 33.7 | B | +12 PSU.merger_acquisition_close | 13E-3 going-private |
 | 3 | FONR | 31.9 | B | 13E-3 going-private | F4 cluster 1 / $5.1M | Form144 +0 |
 | 4 | KW | 23.4 | A | 13E-3 going-private | Form144 +0 |
-| 5 | ELPC | 22.9 | C | 13E-3 going-private |
-| 6 | IHS | 22.9 | C | 13E-3 going-private |
-| 7 | LSBWF | 19.8 | B | 13E-3 going-private | Form144 +0 |
-| 8 | CSCIF | 19.8 | B | 13E-3 going-private | Form144 +0 |
-| 9 | RAASY | 19.8 | B | 13E-3 going-private | Form144 +0 |
-| 10 | KORE | 19.8 | B | 13E-3 going-private |
+| 5 | IHS | 22.9 | C | 13E-3 going-private |
+| 6 | ELPC | 22.9 | C | 13E-3 going-private |
+| 7 | CSCIF | 19.8 | B | 13E-3 going-private | Form144 +0 |
+| 8 | RAASY | 19.8 | B | 13E-3 going-private | Form144 +0 |
+| 9 | KORE | 19.8 | B | 13E-3 going-private |
+| 10 | LSBWF | 19.8 | B | 13E-3 going-private | Form144 +0 |
 
 ### CEO/Chair 10b5-1 sell-plan termination (score >= 30)
 | Rank | Ticker | Norm | Tier | Reasons |
@@ -360,8 +360,8 @@ Best single-layer score in each dimension. Use when deploying a single-signal ma
 | 3 | BETR | 28 | 43.2 | A | buyback NO_AUTH +22.9% | F4 cluster 6 / $9.2M | Form144 +0 |
 | 4 | KKR | 28 | 38.9 | A | buyback EXECUTING -3.0% | F4 cluster 5 / $45.7M | Form144 +0 |
 | 5 | ODTX | 28 | 37.0 | B | F4 cluster 7 / $75.3M | Form144 +0 |
-| 6 | MOBI | 28 | 33.1 | B | buyback NO_AUTH +0.5% | F4 cluster 6 / $19.0M | Form144 +0 |
-| 7 | SRAD | 28 | 33.1 | B | buyback NO_AUTH -1.5% | F4 cluster 7 / $11.3M | Form144 +0 |
+| 6 | SRAD | 28 | 33.1 | B | buyback NO_AUTH -1.5% | F4 cluster 7 / $11.3M | Form144 +0 |
+| 7 | MOBI | 28 | 33.1 | B | buyback NO_AUTH +0.5% | F4 cluster 6 / $19.0M | Form144 +0 |
 | 8 | NSP | 24 | 59.4 | A | +12 PSU.ebitda_dollar_target | buyback NO_AUTH +1.3% | F4 cluster 4 / $7.8M | Form144 +0 |
 | 9 | VSNT | 24 | 55.0 | B | +10 PSU.spin_separation | P/B 0.54 | F4 cluster 4 / $6.2M | Form144 +0 |
 | 10 | LW | 24 | 43.3 | A | gov 15 | buyback NO_AUTH -0.9% | F4 cluster 4 / $17.0M | Form144 +0 |
@@ -390,8 +390,8 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 | 10 | DXC | 65.0 | 6 | PSU%LTI=85 | P/B 0.48 | buyback SHRINKING_NO_AUTH -9.4% | F4 cluster 1 / $0.2M | Form144 +0 |
 | 11 | GO | 64.8 | 6 | PSU core 50; PSU%LTI=84 | buyback NO_AUTH +0.8% | F4 cluster 6 / $7.9M | Form144 +0 |
 | 12 | MLCI | 63.7 | 6 | P/B 0.46; microcap | buyback SHRINKING_NO_AUTH -11.1% | tender SELF_TENDER |
-| 13 | BCO | 60.7 | 6 | buyback SHRINKING_NO_AUTH -1.7% | 10b5-1 term_sell +36 | Form144 +0 |
-| 14 | FIS | 60.7 | 6 | +12 PSU.ebitda_dollar_target | buyback TOKEN -1.1% | 10b5-1 term_sell +16 | Form144 +0 |
+| 13 | FIS | 60.7 | 6 | +12 PSU.ebitda_dollar_target | buyback TOKEN -1.1% | 10b5-1 term_sell +16 | Form144 +0 |
+| 14 | BCO | 60.7 | 6 | buyback SHRINKING_NO_AUTH -1.7% | 10b5-1 term_sell +36 | Form144 +0 |
 | 15 | SBET | 60.3 | 6 | P/B 0.43; DD 87% | buyback NO_AUTH +0.3% | 10b5-1 term_sell +15 | Form144 +0 |
 | 16 | BHF | 59.4 | 6 | P/B 0.65 | buyback NO_AUTH +0.5% | 10b5-1 term_sell +30 | Form144 +0 |
 | 17 | NSP | 59.4 | 6 | +12 PSU.ebitda_dollar_target | buyback NO_AUTH +1.3% | F4 cluster 4 / $7.8M | Form144 +0 |
@@ -414,8 +414,8 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 | 10 | MAT | 69.3 | 5 | +12 PSU.ebitda_dollar_target; +12 PSU.fcf_dollar_target | buyback SHRINKING_NO_AUTH -6.5% |
 | 11 | LEN | 67.1 | 5 | +12 PSU.revenue_dollar_target; gov 15 | tender SELF_TENDER |
 | 12 | WHR | 66.9 | 4 | +10 PSU.operating_margin_target; gov 16 | P/B 0.67 |
-| 13 | MRNA | 66.1 | 5 | tender SELF_TENDER | 10b5-1 term_sell +13 |
-| 14 | PGNY | 66.1 | 4 | +12 PSU.ebitda_dollar_target; +12 PSU.revenue_dollar_target | 10b5-1 term_sell +20 |
+| 13 | PGNY | 66.1 | 4 | +12 PSU.ebitda_dollar_target; +12 PSU.revenue_dollar_target | 10b5-1 term_sell +20 |
+| 14 | MRNA | 66.1 | 5 | tender SELF_TENDER | 10b5-1 term_sell +13 |
 | 15 | GWW | 64.5 | 5 | PSU%LTI=90; gov 15 | buyback NO_AUTH -1.3% | 10b5-1 term_sell +36 |
 | 16 | HAE | 63.7 | 5 | +12 PSU.revenue_dollar_target | buyback SHRINKING_NO_AUTH -5.7% | 10b5-1 term_sell +18 |
 | 17 | NWL | 62.7 | 5 | PSU%LTI=89 | P/B 0.89 | buyback SHRINKING_NO_AUTH -27.2% | 10b5-1 term_sell +30 |
@@ -430,22 +430,22 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 | 2 | KMPB | 58.5 | 3 | gov 15 | 10b5-1 term_sell +20 |
 | 3 | EFSCP | 49.3 | 3 | 10b5-1 term_sell +22 |
 | 4 | METCI | 48.0 | 3 | 10b5-1 term_sell +17 |
-| 5 | LILPV | 40.9 | 3 | PSU%LTI=85 |
-| 6 | LILKV | 40.9 | 3 | PSU%LTI=85 |
-| 7 | LILAV | 40.9 | 3 | PSU%LTI=85 |
+| 5 | LILKV | 40.9 | 3 | PSU%LTI=85 |
+| 6 | LILAV | 40.9 | 3 | PSU%LTI=85 |
+| 7 | LILPV | 40.9 | 3 | PSU%LTI=85 |
 | 8 | WTTR | 39.0 | 3 | 10b5-1 term_sell +42 |
-| 9 | RGTI | 38.2 | 3 | 10b5-1 term_sell +41 |
-| 10 | VIASP | 38.2 | 3 | tender SELF_TENDER |
-| 11 | TCRX | 38.2 | 3 | 10b5-1 term_sell +51 |
-| 12 | AGQ | 38.2 | 3 | 10b5-1 term_sell +80 | Form144 +0 |
-| 13 | BNO | 38.2 | 3 | 10b5-1 term_sell +30 | Form144 +0 |
-| 14 | ORLY | 38.2 | 3 | 10b5-1 term_sell +43 |
+| 9 | ORLY | 38.2 | 3 | 10b5-1 term_sell +43 |
+| 10 | AGQ | 38.2 | 3 | 10b5-1 term_sell +80 | Form144 +0 |
+| 11 | RGTI | 38.2 | 3 | 10b5-1 term_sell +41 |
+| 12 | TCRX | 38.2 | 3 | 10b5-1 term_sell +51 |
+| 13 | BOIL | 38.2 | 3 | 10b5-1 term_sell +80 | Form144 +0 |
+| 14 | VIASP | 38.2 | 3 | tender SELF_TENDER |
 | 15 | CPER | 38.2 | 3 | 10b5-1 term_sell +43 | Form144 +0 |
-| 16 | BOIL | 38.2 | 3 | 10b5-1 term_sell +80 | Form144 +0 |
+| 16 | BNO | 38.2 | 3 | 10b5-1 term_sell +30 | Form144 +0 |
 | 17 | TPGXL | 37.1 | 3 | +10 PSU.spin_separation |
 | 18 | PTEN | 36.7 | 3 | 10b5-1 term_sell +36 |
 | 19 | TDUP | 36.7 | 3 | 10b5-1 term_sell +24 |
-| 20 | PRSO | 35.1 | 3 | 10b5-1 term_sell +23 |
+| 20 | PDYN | 35.1 | 3 | 10b5-1 term_sell +23 |
 
 
 ## 5. Caution list -- convergent names with red flags
@@ -456,8 +456,8 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 | LE | retirement carveout |
 | GO | discretionary hurdle, single-trigger CIC |
 | BCO | discretionary hurdle, retirement carveout |
-| OLED | retirement carveout |
 | NSP | discretionary hurdle, retirement carveout, single-trigger CIC |
+| OLED | retirement carveout |
 | SNBR | discretionary hurdle, retirement carveout |
 | GRNT | retirement carveout |
 | MAT | discretionary hurdle, repricing language, retirement carveout |
@@ -477,21 +477,20 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 | GPRO | discretionary hurdle, retirement carveout |
 | GETY | discretionary hurdle |
 | BEEP | discretionary hurdle, retirement carveout |
-| MA | repricing language, retirement carveout |
 | LMT | retirement carveout |
+| MA | repricing language, retirement carveout |
 | WHR | discretionary hurdle, repricing language, retirement carveout |
-| OPCH | discretionary hurdle, retirement carveout |
 | BDC | discretionary hurdle, repricing language, retirement carveout |
 | LGL | discretionary hurdle, repricing language |
 | CRM | discretionary hurdle, repricing language, retirement carveout |
+| OPCH | discretionary hurdle, retirement carveout |
 | TXRH | discretionary hurdle, retirement carveout |
 | GRND | discretionary hurdle, retirement carveout |
-| POOL | retirement carveout, single-trigger CIC |
 | TBI | discretionary hurdle, retirement carveout |
+| POOL | retirement carveout, single-trigger CIC |
 | BHF | discretionary hurdle, retirement carveout |
 | ADSK | retirement carveout |
 | GIII | discretionary hurdle, repricing language |
-| WW | discretionary hurdle, retirement carveout |
 | LCID | discretionary hurdle, front-loaded grant, repricing language, retirement carveout, single-trigger CIC |
 | CDE | single-trigger CIC |
 

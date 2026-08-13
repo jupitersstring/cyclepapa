@@ -1,5 +1,5 @@
 {
-  "n_raw_layers": 30,
+  "n_raw_layers": 31,
   "n_effective_layers_at_06": 26,
   "clusters": [
     [
@@ -21,7 +21,8 @@
     ],
     [
       "f4_buys_pts",
-      "opportunistic_pts"
+      "opportunistic_pts",
+      "discretionary_conviction_pts"
     ],
     [
       "f144_pts"

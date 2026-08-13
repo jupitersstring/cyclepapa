@@ -2,201 +2,201 @@
   "psu": {
     "file": "proxy_scan.json",
     "exists": true,
-    "age_days": 3.0,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T09:46:02",
+    "last_refreshed": "2026-08-12T18:30:39",
     "size_bytes": 2221
   },
   "valuation": {
     "file": "yfinance_quick.json",
     "exists": true,
-    "age_days": 3.0,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T09:46:03",
+    "last_refreshed": "2026-08-12T18:30:40",
     "size_bytes": 1479060
   },
   "buyback": {
     "file": "buyback_verify.json",
     "exists": true,
-    "age_days": 3.0,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T09:46:02",
+    "last_refreshed": "2026-08-12T18:30:39",
     "size_bytes": 545511
   },
   "tender": {
     "file": "tender_scan.json",
     "exists": true,
-    "age_days": 0.0,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-14T09:11:35",
+    "last_refreshed": "2026-08-12T18:30:40",
     "size_bytes": 1269558
   },
   "c10b51": {
     "file": "cancel_10b5_1.json",
     "exists": true,
-    "age_days": 3.0,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T09:46:02",
+    "last_refreshed": "2026-08-12T18:30:39",
     "size_bytes": 10747798
   },
   "f4_buys": {
     "file": "form4_buys.json",
     "exists": true,
-    "age_days": 3.0,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T09:46:02",
+    "last_refreshed": "2026-08-12T18:30:39",
     "size_bytes": 250803
   },
   "f144": {
     "file": "form144_scan.json",
     "exists": true,
-    "age_days": 3.0,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T09:46:02",
+    "last_refreshed": "2026-08-12T18:30:39",
     "size_bytes": 7613519
   },
   "recent_incentive": {
     "file": "recent_incentive_asymmetry_120d.csv",
     "exists": true,
-    "age_days": 3.0,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T09:46:02",
+    "last_refreshed": "2026-08-12T18:30:40",
     "size_bytes": 449522
   },
   "special_situations": {
     "file": "special_situations_unified.csv",
     "exists": true,
-    "age_days": 3.0,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T09:46:02",
+    "last_refreshed": "2026-08-12T18:30:40",
     "size_bytes": 89150
   },
   "turnaround": {
     "file": "turnaround_signal.csv",
     "exists": true,
-    "age_days": 3.0,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T09:46:02",
+    "last_refreshed": "2026-08-12T18:30:40",
     "size_bytes": 24065
   },
   "opportunistic_insiders": {
     "file": "opportunistic_insiders.json",
     "exists": true,
-    "age_days": 3.0,
+    "age_days": 0.0,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T09:46:02",
+    "last_refreshed": "2026-08-13T03:36:35",
     "size_bytes": 54741
   },
   "buyback_insider_overlay": {
     "file": "buyback_insider_overlay.json",
     "exists": true,
-    "age_days": 3.0,
+    "age_days": 0.0,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T09:46:02",
+    "last_refreshed": "2026-08-13T03:36:35",
     "size_bytes": 203859
   },
   "odd_lot_tender": {
     "file": "tender_odd_lot.json",
     "exists": true,
-    "age_days": 2.7,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T17:18:21",
+    "last_refreshed": "2026-08-12T18:30:40",
     "size_bytes": 14737
   },
   "tender_mechanism": {
     "file": "tender_mechanism.json",
     "exists": true,
-    "age_days": 2.7,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T17:18:21",
+    "last_refreshed": "2026-08-12T18:30:40",
     "size_bytes": 5969
   },
   "voss_cic": {
     "file": "voss_cic_triangulation.json",
     "exists": true,
-    "age_days": 2.7,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T17:17:04",
+    "last_refreshed": "2026-08-12T18:30:40",
     "size_bytes": 473673
   },
   "post_ch11": {
     "file": "post_ch11_emergence.json",
     "exists": true,
-    "age_days": 3.0,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T09:46:02",
+    "last_refreshed": "2026-08-12T18:30:39",
     "size_bytes": 7331
   },
   "internalization": {
     "file": "external_manager_internalization.json",
     "exists": true,
-    "age_days": 3.0,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T09:46:02",
+    "last_refreshed": "2026-08-12T18:30:39",
     "size_bytes": 15362
   },
   "bumpitrage": {
     "file": "bumpitrage_tender_decline.json",
     "exists": true,
-    "age_days": 2.7,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T17:19:54",
+    "last_refreshed": "2026-08-12T18:30:39",
     "size_bytes": 23102
   },
   "spinoff_volume": {
     "file": "spinoff_volume_timer.json",
     "exists": true,
-    "age_days": 1.8,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-12T12:51:27",
+    "last_refreshed": "2026-08-12T18:30:40",
     "size_bytes": 2
   },
   "arquitos": {
     "file": "arquitos_subsidiary_anchor.json",
     "exists": true,
-    "age_days": 3.0,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T09:46:02",
+    "last_refreshed": "2026-08-12T18:30:39",
     "size_bytes": 2
   },
   "coval_stafford": {
     "file": "coval_stafford_proxy.json",
     "exists": true,
-    "age_days": 2.7,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T17:17:05",
-    "size_bytes": 323919
+    "last_refreshed": "2026-08-12T18:30:39",
+    "size_bytes": 325779
   },
   "backstopped_rights": {
     "file": "backstopped_rights.json",
     "exists": true,
-    "age_days": 3.0,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T09:46:02",
+    "last_refreshed": "2026-08-12T18:30:39",
     "size_bytes": 23320
   },
   "fdic_call_report": {
     "file": "fdic_call_report_overlay.json",
     "exists": true,
-    "age_days": 3.0,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T09:46:02",
+    "last_refreshed": "2026-08-12T18:30:39",
     "size_bytes": 468
   },
   "net_net_ncav": {
     "file": "net_net_ncav.json",
     "exists": true,
-    "age_days": 3.0,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-11T09:46:02",
+    "last_refreshed": "2026-08-12T18:30:39",
     "size_bytes": 129959
   },
   "activist_letter": {
     "file": "activist_letter_feed.json",
     "exists": true,
-    "age_days": 1.8,
+    "age_days": 0.4,
     "decay": 1.0,
-    "last_refreshed": "2026-07-12T12:51:31",
+    "last_refreshed": "2026-08-12T18:30:39",
     "size_bytes": 5300
   }
 }

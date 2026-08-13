@@ -14,12 +14,12 @@ MTG,50.2,62.1,5.0,11.0,44.1,18.0,0,61,"eps,tsr,roe,other_per_sh",5511.0,26.06,20
 CAT,49.0,57.0,17.6,0.0,45.0,12.0,0,,"tsr,roic,roe",454061.0,985.82,2026-04-30,10b5-1 +10 | bb EXECUTING,,double-trigger only; 3y vesting
 MAT,48.6,61.0,5.0,10.0,49.0,12.0,0,75,"eps,tsr,roic,roce,roe,cf",4080.0,14.04,2026-04-14,bb SHRINKING,,double-trigger only; 5y vesting
 TROX,48.4,78.9,0.0,5.0,63.9,15.0,0,86,"eps,tsr,roic,roe,other_p",1180.0,7.4,2026-03-19,,,double-trigger only; 3y vesting; responsive to shareholders
-ADT,48.1,54.0,8.4,10.0,43.0,11.0,0,90,"eps,tsr",5004.0,6.58,2026-04-14,bb SHRINKING | ins +3,,double-trigger only; clawback strengthened
 ADSK,47.8,72.0,-1.8,10.0,57.0,15.0,0,60,"eps,fcf_per_share,tsr",40924.0,193.82,2026-05-06,10b5-1 -2,,double-trigger only; 3y vesting; responsive to shareholders
 GRND,47.6,52.0,13.0,6.0,41.0,11.0,0,,"eps,tsr,roe",2373.0,13.35,2026-04-30,bb EXECUTING | 13D,,double-trigger only; clawback strengthened
 CTSH,46.9,58.0,5.0,10.0,41.0,17.0,0,57,"eps,tsr",20670.0,43.7,2026-04-17,bb SHRINKING,,double-trigger only; post-vest holding requirement; 4y vesti
 YUMC,46.5,39.0,15.0,10.0,27.0,12.0,0,50,"eps,tsr,roic",14874.0,42.93,2026-04-16,10b5-1 +15,,double-trigger only; 3y vesting
 FOUR,46.2,51.0,8.2,10.0,39.0,12.0,0,,"fcf_per_share,tsr",3906.0,39.4,2026-04-30,bb SHRINKING | ins +3,,double-trigger only; 3y vesting
+ADT,46.1,54.0,6.4,10.0,43.0,11.0,0,90,"eps,tsr",5004.0,6.58,2026-04-14,bb SHRINKING | ins +1,,double-trigger only; clawback strengthened
 DOV,46.1,69.3,8.0,0.0,51.3,18.0,0,75,"eps,tsr,roic",30106.0,223.57,2026-03-24,bb EXECUTING,,double-trigger only; 3y vesting; clawback strengthened; resp
 SBET,46.0,31.0,14.0,15.0,27.0,4.0,0,,"eps,tsr,roic",1043.0,5.29,2026-03-17,10b5-1 +9 | 13D,,3y vesting
 COLB,45.8,37.9,20.0,5.0,36.9,1.0,0,50,"eps,tsr,roe",8844.0,30.55,2026-03-31,10b5-1 +15 | bb SHRINKING,,single-trigger CIC; 3y vesting; clawback strengthened
@@ -34,7 +34,6 @@ AON,44.5,70.0,0.0,6.0,55.0,15.0,0,83,"eps,tsr",67862.0,317.74,2026-04-28,,,doubl
 FIS,44.4,45.0,9.6,10.0,33.0,12.0,0,65,"eps,tsr",19750.0,38.21,2026-04-28,10b5-1 +10,,double-trigger only; 3y vesting
 BDC,44.4,55.2,14.0,0.0,43.2,12.0,0,50,"eps,tsr,roic,roe,cfroi",4800.0,123.26,2026-04-09,10b5-1 +9 | bb SHRINKING,,double-trigger only; 3y vesting
 J,44.0,60.0,5.0,6.0,42.0,18.0,0,60,"eps,tsr,roic",14284.0,120.97,2025-12-18,bb SHRINKING,,double-trigger only; 4y vesting; clawback strengthened; anti
-OLED,43.3,38.0,12.4,10.0,26.0,12.0,0,50,"eps,tsr,roce,roe",4158.0,88.94,2026-04-23,bb SHRINKING | ins +7,,double-trigger only; 3y vesting
 TXRH,43.0,36.3,23.0,0.0,24.3,12.0,0,,"eps,tsr",11683.0,177.75,2026-04-10,10b5-1 +15 | bb EXECUTING,,double-trigger only; 3y vesting
 AMD,42.9,50.7,15.0,0.0,38.7,12.0,0,,"eps,tsr,roic,roce,roe",876236.0,537.37,2026-03-27,10b5-1 +15,,double-trigger only; 3y vesting
 ANGI,42.6,52.0,-1.0,15.0,44.0,8.0,0,,"eps,tsr,roe",203.0,5.02,2026-04-28,10b5-1 -6 | bb SHRINKING,,double-trigger only
@@ -49,6 +48,7 @@ CG,41.9,58.0,0.0,10.0,46.0,12.0,0,50,"eps,tsr,roic",16127.0,44.8,2026-04-23,,,do
 FFAI,41.6,40.0,9.6,10.0,40.0,0.0,0,,"eps,tsr,roe,other_per_sh",88.0,0.2907,2026-04-28,10b5-1 +10,,
 INGR,41.6,48.3,5.0,10.0,33.3,15.0,0,50,"eps,tsr,roic",6175.0,97.93,2026-04-08,bb SHRINKING,,double-trigger only; 3y vesting; clawback strengthened
 TAP,41.5,33.6,8.0,15.0,21.6,12.0,0,50,"eps,tsr",7390.0,39.4,2026-03-25,bb EXECUTING,,double-trigger only; 3y vesting
+OLED,41.3,38.0,10.4,10.0,26.0,12.0,0,50,"eps,tsr,roce,roe",4158.0,88.94,2026-04-23,bb SHRINKING | ins +5,,double-trigger only; 3y vesting
 CDE,41.1,47.5,15.0,0.0,49.5,-2.0,0,50,"fcf_per_share,tsr,roic",18045.0,17.51,2026-04-01,10b5-1 +15,,single-trigger CIC; 3y vesting
 WHR,41.1,47.5,0.0,15.0,31.5,16.0,0,70,"eps,tsr,roic",2519.0,38.86,2026-03-10,,,double-trigger only; 7x ownership multiple; 4y vesting
 MMS,41.0,47.2,5.0,10.0,32.2,15.0,0,88,"eps,tsr",2929.0,55.74,2026-01-22,bb SHRINKING,,double-trigger only; 3y vesting; responsive to shareholders
@@ -61,7 +61,6 @@ CINF,39.8,45.0,15.0,0.0,27.0,18.0,0,50,"tsr,other_per_share",26328.0,170.2,2026-
 GIII,39.7,54.0,5.0,5.0,46.0,8.0,0,50,"eps,tsr,roic,roe,cfroi",1467.0,34.77,2026-05-05,bb SHRINKING,,double-trigger only
 BBAI,39.7,54.0,0.0,10.0,43.0,11.0,0,,"eps,tsr,other_per_share",1877.0,3.92,2026-04-28,,,double-trigger only; clawback strengthened
 DCH,39.5,62.7,0.0,5.0,47.7,15.0,0,90,"eps,tsr,roic,roe",1498.0,6.31,2026-03-19,,,double-trigger only; 3y vesting; responsive to shareholders
-OPCH,39.4,32.3,15.6,6.0,15.3,17.0,0,66,"eps,tsr",3453.0,21.99,2026-04-08,10b5-1 -1 | bb SHRINKING | ins +11,,double-trigger only; post-vest holding requirement; 3y vesti
 CNH,39.3,60.6,0.0,6.0,48.6,12.0,0,75,"eps,tsr,roic",12970.0,10.46,2026-03-25,,,double-trigger only; 3y vesting
 GTM,39.3,39.4,2.6,15.0,41.4,-2.0,0,33,"eps,fcf_per_share,tsr",828.0,2.81,2026-03-26,10b5-1 -2 | bb SHRINKING,,single-trigger CIC; 3y vesting
 AWI,39.2,53.0,0.0,10.0,36.0,17.0,0,50,tsr,6738.0,157.88,2026-04-30,,,double-trigger only; post-vest holding requirement; 3y vesti
@@ -72,7 +71,6 @@ AOS,38.9,43.5,5.0,10.0,31.5,12.0,0,,"tsr,roic,roe",8024.0,58.22,2026-03-04,bb SH
 PEG,38.8,59.7,0.0,6.0,47.7,12.0,0,70,"eps,tsr,roic",39811.0,79.89,2026-03-12,,,double-trigger only; 3y vesting
 FDP,38.7,43.0,0.0,15.0,28.0,15.0,0,50,"eps,tsr,roe",1306.0,27.44,2026-04-24,,,double-trigger only; 3y vesting; clawback strengthened
 ACGL,38.6,42.6,15.2,0.0,30.6,12.0,0,68,"tsr,roe,other_per_share",31857.0,91.18,2026-03-24,10b5-1 +10 | bb SHRINKING,,double-trigger only; 3y vesting
-INFU,38.5,55.2,8.2,0.0,43.2,12.0,0,50,"tsr,roic",190.0,9.42,2026-04-10,ins +8,,double-trigger only; 3y vesting
 METC,38.4,33.0,10.2,10.0,21.0,12.0,0,,"eps,tsr,roce,roe",914.0,13.99,2026-04-27,10b5-1 +10,,double-trigger only; 3y vesting
 TBI,38.0,60.0,0.0,5.0,43.0,17.0,0,80,"eps,tsr,roe",204.0,6.7,2026-04-14,,,double-trigger only; post-vest holding requirement; 10y vest
 APTV,38.0,60.0,5.0,0.0,45.0,15.0,0,60,"eps,tsr,roic",13476.0,63.68,2026-03-16,bb SHRINKING,,double-trigger only; 3y vesting; clawback strengthened
@@ -94,6 +92,8 @@ BGS,36.9,39.9,0.0,15.0,27.9,12.0,0,,"tsr,roic",316.0,3.89,2026-04-03,,,double-tr
 HPP,36.9,58.0,0.0,5.0,38.0,20.0,0,50,tsr,6422.0,14.62,2026-04-23,,,double-trigger only; post-vest holding requirement; 3y vesti
 WMS,36.7,58.0,4.8,0.0,46.0,12.0,0,60,"tsr,roic",11269.0,147.12,2026-06-03,10b5-1 +5,,double-trigger only; 3y vesting
 MRNA,36.7,41.7,13.8,0.0,29.7,12.0,0,55,tsr,25378.0,63.96,2026-03-16,10b5-1 +8 | tender +6,,double-trigger only; 3y vesting
+INFU,36.6,55.2,6.2,0.0,43.2,12.0,0,50,"tsr,roic",190.0,9.42,2026-04-10,ins +6,,double-trigger only; 3y vesting
+OPCH,36.6,32.3,12.8,6.0,15.3,17.0,0,66,"eps,tsr",3453.0,21.99,2026-04-08,10b5-1 -1 | bb SHRINKING | ins +8,,double-trigger only; post-vest holding requirement; 3y vesti
 RWT,36.6,39.3,0.0,15.0,24.3,15.0,0,55,"tsr,roe",646.0,5.16,2026-03-31,,,double-trigger only; 4y vesting; responsive to shareholders
 EHC,36.5,39.0,5.0,10.0,27.0,12.0,0,,"eps,tsr,roic",9724.0,98.03,2026-04-07,bb SHRINKING,,double-trigger only; 3y vesting
 HSY,36.5,55.5,0.0,6.0,40.5,15.0,0,65,"eps,tsr",35017.0,172.63,2026-03-25,,,double-trigger only; 3y vesting; anti-hedge/pledge
@@ -107,7 +107,6 @@ SAFE,35.9,56.1,0.0,5.0,44.1,12.0,0,,"eps,tsr,roic,roe",1098.0,15.34,2026-03-31,,
 M,35.9,56.1,5.0,0.0,44.1,12.0,0,,"eps,tsr,roic,roe",6350.0,24.14,2026-03-31,bb SHRINKING,,double-trigger only; 5y vesting
 PII,35.8,54.1,6.0,0.0,35.1,19.0,0,,"eps,tsr,roic",4059.0,71.36,2026-03-17,10b5-1 +6,,double-trigger only; 5x ownership multiple; 3y vesting; claw
 BRKR,35.5,37.2,15.0,0.0,25.2,12.0,0,,"eps,tsr",8712.0,57.23,2026-04-10,10b5-1 +15,,double-trigger only; 4y vesting
-OI,35.5,35.8,4.8,11.0,37.8,-2.0,0,60,"eps,tsr,roic",1415.0,9.23,2026-03-31,ins +5,,single-trigger CIC; 3y vesting
 BRKRP,35.5,37.2,15.0,0.0,25.2,12.0,0,,"eps,tsr",,,2026-04-10,10b5-1 +15,,double-trigger only; 4y vesting
 HOG,35.4,46.2,5.0,5.0,34.2,12.0,0,50,"eps,tsr,roic,roe",2702.0,25.67,2026-04-09,bb SHRINKING,,double-trigger only; 3y vesting
 BFH,35.2,54.9,5.0,0.0,36.9,18.0,0,60,"eps,tsr,roe",4138.0,102.41,2026-04-07,bb SHRINKING,,double-trigger only; 10y vesting; clawback strengthened; ant
@@ -173,6 +172,7 @@ DLHC,32.9,32.5,0.0,15.0,25.5,7.0,0,,"eps,tsr,roic,roe",79.0,5.44,2026-01-28,,,3y
 EVRG,32.8,59.7,0.0,0.0,47.7,12.0,0,70,"eps,tsr,roic",19017.0,82.5,2026-03-26,,,double-trigger only; 3y vesting
 MOD,32.8,32.4,15.0,0.0,20.4,12.0,0,,"tsr,roic,cfroi",15706.0,297.37,2025-07-09,10b5-1 +15,,double-trigger only; 3y vesting
 KMX,32.8,45.0,8.0,0.0,41.0,4.0,0,50,"eps,tsr,roic,roe",7615.0,53.66,2026-05-12,bb EXECUTING,,single-trigger CIC; 4y vesting; clawback strengthened; anti-
+OI,32.7,35.8,2.0,11.0,37.8,-2.0,0,60,"eps,tsr,roic",1415.0,9.23,2026-03-31,ins +2,,single-trigger CIC; 3y vesting
 BHFAM,32.6,32.0,15.0,0.0,20.0,12.0,0,70,tsr,,,2026-04-14,10b5-1 +15,,double-trigger only; 3y vesting
 BHFAP,32.6,32.0,15.0,0.0,20.0,12.0,0,70,tsr,,,2026-04-14,10b5-1 +15,,double-trigger only; 3y vesting
 DNOW,32.6,50.1,0.0,5.0,35.1,15.0,0,86,"eps,tsr,roce",2464.0,13.5,2026-04-09,,,double-trigger only; 3y vesting; clawback strengthened
@@ -391,7 +391,6 @@ CMI,24.9,45.3,0.0,0.0,33.3,12.0,0,,"eps,tsr,roic,roe",98919.0,716.86,2026-04-02,
 HG,24.9,31.8,2.4,5.0,19.8,12.0,0,50,"tsr,roe,other_per_share",3115.0,31.38,2026-03-24,10b5-1 +2,,double-trigger only; 3y vesting
 GERN,24.8,34.1,0.0,6.0,26.1,8.0,0,70,"eps,tsr",808.0,1.26,2026-04-07,,,double-trigger only
 LILAV,24.8,45.0,0.0,0.0,37.0,8.0,0,85,"eps,tsr,roe",,,2026-04-29,,,double-trigger only
-NCLH,24.8,39.0,3.4,0.0,41.0,-2.0,0,60,"eps,tsr,roic",9384.0,20.44,2026-04-30,ins +3,,single-trigger CIC; 4y vesting
 SXT,24.8,45.0,0.0,0.0,27.0,18.0,0,60,"tsr,roic",4831.0,113.48,2026-03-11,,,double-trigger only; 3y vesting; clawback strengthened; anti
 BWXT,24.8,48.4,-1.8,0.0,50.4,-2.0,0,70,"eps,tsr,roic",18818.0,205.4,2026-03-18,10b5-1 -2,,single-trigger CIC; 3y vesting
 LILKV,24.8,45.0,0.0,0.0,37.0,8.0,0,85,"eps,tsr,roe",,,2026-04-29,,,double-trigger only
@@ -456,6 +455,7 @@ FERG,23.1,42.0,0.0,0.0,27.0,15.0,0,50,"eps,tsr,roce",46225.0,238.35,2026-03-16,,
 HTO,23.1,42.0,0.0,0.0,27.0,15.0,0,70,"eps,tsr,roe",2372.0,56.69,2026-04-03,,,double-trigger only; 3y vesting; clawback strengthened
 UUUU,23.1,42.0,0.0,0.0,30.0,12.0,0,50,"eps,tsr",4138.0,16.56,2026-04-17,,,double-trigger only; 3y vesting
 RRC,23.0,30.9,0.0,6.0,18.9,12.0,0,50,tsr,8574.0,36.39,2026-03-31,,,double-trigger only; 3y vesting
+NCLH,22.9,39.0,1.4,0.0,41.0,-2.0,0,60,"eps,tsr,roic",9384.0,20.44,2026-04-30,ins +1,,single-trigger CIC; 4y vesting
 KBH,22.9,45.3,-7.0,5.0,33.3,12.0,0,,"eps,tsr,roic,roe,other_p",3393.0,54.2,2026-03-13,10b5-1 -12 | bb SHRINKING,,double-trigger only; 3y vesting
 MRVL,22.8,56.0,-8.0,0.0,41.0,15.0,0,70,"eps,tsr",271695.0,310.58,2026-05-13,144 -8,,double-trigger only; 5y vesting; responsive to shareholders
 COTY,22.8,32.4,-10.0,15.0,17.4,15.0,0,,tsr,1717.0,1.95,2025-09-26,bb DILUTING,,double-trigger only; 5y vesting; clawback strengthened
@@ -478,7 +478,6 @@ HOFT,22.6,32.0,0.0,5.0,17.0,15.0,0,,"eps,tsr",170.0,15.8,2026-05-08,,,double-tri
 EBMT,22.5,31.8,0.0,5.0,19.8,12.0,0,,tsr,182.0,22.91,2026-03-09,,,double-trigger only; 3y vesting
 ONC,22.5,30.0,0.0,6.0,23.0,7.0,0,50,"eps,tsr",28028.0,270.15,2026-04-28,,,3y vesting; clawback strengthened
 PEBO,22.5,31.8,0.0,5.0,19.8,12.0,0,,"eps,tsr",1302.0,36.23,2026-03-06,,,double-trigger only; 3y vesting
-FUN,22.4,38.1,1.4,0.0,26.1,12.0,0,70,tsr,2549.0,24.94,2026-04-09,ins +1,,double-trigger only; 3y vesting
 BNL,22.4,31.6,5.0,0.0,30.6,1.0,0,60,"eps,tsr",4117.0,20.58,2026-03-20,bb SHRINKING,,single-trigger CIC; 3y vesting; clawback strengthened
 KTB,22.4,40.8,0.0,0.0,28.8,12.0,0,60,"eps,tsr,roic",4321.0,78.17,2026-03-09,,,double-trigger only; 3y vesting
 SJM,22.4,40.8,0.0,0.0,25.8,15.0,0,74,"eps,tsr,roic",11825.0,110.86,2025-06-27,,,double-trigger only; 3y vesting; clawback strengthened
@@ -507,6 +506,7 @@ PR,21.7,39.5,0.0,0.0,31.5,8.0,0,80,"fcf_per_share,tsr",15878.0,18.43,2026-04-06,
 ATOM,21.7,39.4,0.0,0.0,32.4,7.0,0,,"eps,tsr",348.0,9.0,2026-03-27,,,3y vesting; clawback strengthened
 CNOB,21.7,30.3,0.0,5.0,15.3,15.0,0,,"tsr,other_per_share",1632.0,32.45,2026-04-09,,,double-trigger only; 3y vesting; clawback strengthened
 BOKF,21.6,30.1,5.0,0.0,26.1,4.0,0,70,"eps,tsr",7919.0,130.33,2026-03-19,bb SHRINKING,,3y vesting
+FUN,21.6,38.1,0.6,0.0,26.1,12.0,0,70,tsr,2549.0,24.94,2026-04-09,ins +1,,double-trigger only; 3y vesting
 KN,21.6,39.3,0.0,0.0,24.3,15.0,0,,"eps,tsr",3540.0,41.37,2026-03-11,,,double-trigger only; 3y vesting; clawback strengthened
 RWTN,21.6,39.3,0.0,0.0,24.3,15.0,0,55,"tsr,roe",,,2026-03-31,,,double-trigger only; 4y vesting; responsive to shareholders
 RWTQ,21.6,39.3,0.0,0.0,24.3,15.0,0,55,"tsr,roe",,,2026-03-31,,,double-trigger only; 4y vesting; responsive to shareholders
@@ -636,7 +636,6 @@ NNN,17.7,32.2,0.0,0.0,25.2,7.0,0,70,"eps,tsr",8561.0,45.0,2026-03-23,,,3y vestin
 AMGN,17.7,32.2,0.0,0.0,34.2,-2.0,0,80,"eps,tsr,roic",182206.0,337.6,2026-04-07,,,single-trigger CIC; 3y vesting
 SRPT,17.6,32.0,0.0,0.0,24.0,8.0,0,50,tsr,1851.0,17.53,2026-04-24,,,double-trigger only
 DXPE,17.6,32.0,0.0,0.0,32.0,0.0,0,,"eps,tsr,roic",2693.0,173.69,2026-04-30,,,
-MMSI,17.6,30.4,-5.2,6.0,32.4,-2.0,0,60,"eps,tsr",4010.0,67.22,2026-03-31,10b5-1 -7 | ins +1,,single-trigger CIC; 3y vesting
 RBLX,17.6,41.0,-15.0,10.0,33.0,8.0,0,80,tsr,36894.0,51.53,2026-04-16,10b5-1 -15,,double-trigger only
 MPC,17.5,31.4,0.2,0.0,23.4,8.0,0,67,"fcf_per_share,tsr",70914.0,242.91,2026-03-16,10b5-1 -5 | bb SHRINKING,,double-trigger only
 PRDO,17.5,31.8,0.0,0.0,19.8,12.0,0,50,"eps,tsr,roic,roe,cfroi",2008.0,32.03,2026-04-09,,,double-trigger only; 3y vesting
@@ -673,6 +672,7 @@ YETI,16.7,30.3,0.0,0.0,15.3,15.0,0,,"eps,tsr",3710.0,48.97,2026-03-26,,,double-t
 SFST,16.7,30.3,0.0,0.0,15.3,15.0,0,,tsr,549.0,58.03,2026-04-06,,,double-trigger only; 3y vesting; anti-hedge/pledge
 ACCO,16.7,30.3,0.0,0.0,15.3,15.0,0,,"eps,tsr",,,2026-03-27,,,double-trigger only; 3y vesting; anti-hedge/pledge
 CTRI,16.7,30.3,0.0,0.0,15.3,15.0,0,40,tsr,3005.0,29.77,2026-04-06,,,double-trigger only; 3y vesting; anti-hedge/pledge
+MMSI,16.7,30.4,-6.0,6.0,32.4,-2.0,0,60,"eps,tsr",4010.0,67.22,2026-03-31,10b5-1 -7 | ins +1,,single-trigger CIC; 3y vesting
 OVV,16.7,30.4,0.0,0.0,32.4,-2.0,0,84,"tsr,roic",14728.0,52.41,2026-03-25,,,single-trigger CIC; 3y vesting
 WRLD,16.6,30.2,0.0,0.0,19.2,11.0,0,,"eps,tsr",826.0,177.95,2025-07-23,,,double-trigger only; anti-hedge/pledge
 FLL,16.6,32.3,-7.2,6.0,24.3,8.0,0,,"fcf_per_share,tsr",104.0,2.88,2026-04-10,10b5-1 -7,,double-trigger only

@@ -136,15 +136,25 @@ assert_eq(out["n_insiders"], 3, "3 insiders")
 assert_eq(out["same_day_cluster"], 3, "same-day 3")
 assert_true(out["csuite_buyers"] >= 2, "multiple C-suite")
 assert_true(out["score"] >= 40, "high-conviction cluster scores high")
-# a lone director buying $30k should score far lower
+# a lone director buying $22k does NOT qualify -- the leg is selective
+# by design and must stay 0 outside conviction configurations
 low = {
     "buyer_set": ["Graves Gregory B | Director"],
     "total_dollar": 22697.0,
     "filings": [{"date": "2026-05-15", "person": "Graves Gregory B", "dollar": 22697.0, "shares": 475}],
 }
 lo = score_ticker(low)
-assert_true(lo["score"] < out["score"], "lone small director < exec cluster")
-assert_true(lo["score"] < 15, "lone small buy is modest")
+assert_eq(lo["score"], 0.0, "lone small director does not fire")
+
+# ...but a lone CEO writing a $600k check DOES qualify
+ceo = {
+    "buyer_set": ["Doe Jane | Chief Executive Officer"],
+    "total_dollar": 600000.0,
+    "filings": [{"date": "2026-05-15", "person": "Doe Jane", "dollar": 600000.0, "shares": 40000}],
+}
+hi = score_ticker(ceo)
+assert_true(hi["score"] > 0, "lone convicted CEO fires")
+assert_true(hi["score"] < out["score"], "lone CEO < same-day exec cluster")
 
 
 print("test_discretionary_conviction: all assertions passed")
