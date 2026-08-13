@@ -263,6 +263,11 @@ LEGEND = [
         ("New / Added / Trimmed / Exited", "Count of funds that started / grew (>5%) / cut (>5%) / closed the position, matched on CUSIP + share count."),
         ("Δ Shares %", "Aggregate share-count change across all funds vs the prior quarter."),
     ]),
+    ("Broker Swap Radar", [
+        ("Δ Sh (M) / Δ % Out", "Quarter-over-quarter share-count change in ONE swap-desk broker's 13F (UBS, GS, MS, JPM...), absolute and as % of shares outstanding."),
+        ("Idio %", "This desk's move as a share of ALL tracked desks' movement in the name. High = idiosyncratic (swap-hedge-like); low = every desk moved (index/ETF flow)."),
+        ("Why it matters", "An activist building via total-return swaps appears on NO 13F/13D of their own — the counterparty desk hedges with physical shares, which print HERE. Leads, not proof: baskets and custody flows also move desks."),
+    ]),
     ("Entry / setup", [
         ("Entry / Bucket", "Where the current price sits versus the smart-money cost anchor: below / near / above."),
         ("Anchor $", "Estimated smart-money cost basis (cost_basis / filing text / Form-4 buy average / 80th-percentile)."),

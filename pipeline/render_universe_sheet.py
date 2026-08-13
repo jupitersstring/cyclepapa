@@ -757,6 +757,40 @@ def sheet_activist(wb, conn):
     autosize(ws)
     ws.column_dimensions["A"].width = 8
 
+def sheet_broker_radar(wb, conn):
+    """Single-desk share-count jumps = candidate swap-hedge footprints for
+    stakes nobody has disclosed yet (activist TRS exposure sits on the
+    counterparty's 13F, not the activist's)."""
+    ws = wb.create_sheet("Broker Swap Radar")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Broker Swap Radar — single-desk hedge footprints",
+                "QoQ share-count change per swap-desk broker 13F (UBS, GS, MS, JPM...). One desk absorbing a block ≥0.35% of shares out is the classic total-return-swap hedge print — activist economic exposure with no 13D yet. Idio % = this desk's share of all desks' movement (high = NOT index flow). Context: 13D/G filers ≤12mo + our activist-style funds holding. Caveat: ETF baskets, index adds and plain custody flows also move these books — treat as leads, not proof.", 12)
+    hdr = ["Ticker","Broker","Δ Sh (M)","Δ % Out","Δ $M","Desk $M","Idio %","Score","Mcap","13D/G ≤12mo","Activist holders","Name"]
+    write_table_header(ws, 4, hdr)
+    try:
+        rows = list(conn.execute("""SELECT ticker, broker, delta_sh_m, pct_out, delta_m,
+                cur_m, idio_pct, score, mcap_m, recent_13d, activist_holders, name
+            FROM broker_swap_radar
+            ORDER BY pct_out * (idio_pct/100.0) DESC LIMIT 120"""))
+    except Exception:
+        rows = []
+    out = []
+    for r in rows:
+        out.append([r[0], (r[1] or "")[:20], round(r[2] or 0, 1), r[3] or 0,
+                    round(r[4] or 0, 0), round(r[5] or 0, 0), r[6] or 0,
+                    round(r[7], 1) if r[7] is not None else "",
+                    r[8] or "", (r[9] or "")[:36], (r[10] or "")[:36], (r[11] or "")[:34]])
+    write_table_rows(ws, out, 5)
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=4).number_format = '0.00"%"'
+        ws.cell(row=ridx, column=5).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=6).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=7).number_format = '0"%"'
+        ws.cell(row=ridx, column=9).number_format = NUMFMT_MCAP
+    ws.freeze_panes = "B5"
+    autosize(ws)
+    ws.column_dimensions["A"].width = 8
+
 def sheet_insider_f4(wb, conn):
     """Insider buying ranked by RECENCY-weighted total. ≤30d buys shown separately."""
     ws = wb.create_sheet("Insider F4 Buys")
@@ -1824,6 +1858,7 @@ def main():
         subtitle="≥2 funds adding to existing (S4) OR initiating major new (S3) — smart money is BUILDING.")
     sheet_whos_buying(wb, conn)
     sheet_activist(wb, conn)
+    sheet_broker_radar(wb, conn)
     sheet_insider_recent(wb, conn)
     sheet_insider_f4(wb, conn)
     sheet_clusters(wb, conn)
