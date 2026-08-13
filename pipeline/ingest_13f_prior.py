@@ -10,16 +10,33 @@ import ingest_13f as m
 DB = m.DB
 
 def nth_13f_acc(cik, n=1):
-    """(accession, filed) of the n-th most recent 13F-HR (0 = latest, 1 = prior)."""
+    """(accession, filed) of the n-th most recent 13F-HR (0 = latest, 1 = prior).
+    Falls through to the paged history files when heavy filers (Form 4 / SC 13
+    torrents) push their 13F-HRs out of the ~1000-filing "recent" window."""
     data = m.curl(f"https://data.sec.gov/submissions/CIK{str(cik).zfill(10)}.json")
     if not data:
         return None, None
     try:
-        rec = json.loads(data)["filings"]["recent"]
-    except (json.JSONDecodeError, KeyError):
+        d = json.loads(data)
+    except json.JSONDecodeError:
         return None, None
+    rec = d.get("filings", {}).get("recent", {})
     hits = [(rec["accessionNumber"][i], rec["filingDate"][i])
-            for i, f in enumerate(rec["form"]) if f == "13F-HR"]
+            for i, f in enumerate(rec.get("form", [])) if f == "13F-HR"]
+    if len(hits) <= n:
+        pages = sorted(d.get("filings", {}).get("files", []),
+                       key=lambda p: p.get("filingTo", ""), reverse=True)
+        for pg in pages:
+            data = m.curl(f"https://data.sec.gov/submissions/{pg['name']}")
+            if not data: continue
+            try:
+                rec = json.loads(data)
+            except json.JSONDecodeError:
+                continue
+            hits += [(rec["accessionNumber"][i], rec["filingDate"][i])
+                     for i, f in enumerate(rec.get("form", [])) if f == "13F-HR"]
+            if len(hits) > n:
+                break
     return hits[n] if len(hits) > n else (None, None)
 
 def run():
@@ -90,11 +107,20 @@ def run():
         conn.commit(); done += 1
         if done % 25 == 0:
             print(f"  {done} funds ingested ({skip} skipped)", flush=True)
-    # same value-unit straggler normalization as current (recent filings in dollars)
-    for (fund,) in conn.execute("""SELECT p.fund FROM fund_13f_prior p JOIN ticker_yf y ON y.ticker=p.ticker
-            WHERE y.mcap_m>0 AND p.value_k/1e3 > y.mcap_m*1.5 GROUP BY p.fund
-            HAVING COUNT(*)*1.0/(SELECT COUNT(*) FROM fund_13f_prior x WHERE x.fund=p.fund) > 0.5""").fetchall():
-        conn.execute("UPDATE fund_13f_prior SET value_k=value_k/1000.0 WHERE fund=?", (fund,))
+    # Value-unit normalization by implied price (value/shares vs actual price):
+    # unit-free and immune to the megacap blindspot of the old mcap heuristic.
+    # One quarter of price drift is irrelevant against a ~1000x unit signal.
+    import statistics
+    px = {t: p for t, p in conn.execute("SELECT ticker, price FROM ticker_yf WHERE price > 0")}
+    for (fund,) in conn.execute("SELECT DISTINCT fund FROM fund_13f_prior").fetchall():
+        ratios = []
+        for tk, v, sh in conn.execute("""SELECT ticker, value_k, shares FROM fund_13f_prior
+                                         WHERE fund=? AND shares>0 AND value_k>0""", (fund,)):
+            p = px.get(tk)
+            if p:
+                ratios.append((v * 1000.0 / sh) / p)
+        if len(ratios) >= 3 and statistics.median(ratios) > 100:
+            conn.execute("UPDATE fund_13f_prior SET value_k=value_k/1000.0 WHERE fund=?", (fund,))
     conn.commit()
     n = conn.execute("SELECT COUNT(*) FROM fund_13f_prior").fetchone()[0]
     print(f"DONE: {done} funds, {n} prior holdings", flush=True)
