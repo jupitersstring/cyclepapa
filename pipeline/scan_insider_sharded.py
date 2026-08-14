@@ -217,6 +217,10 @@ def run(max_n=1500, n_workers=8, rps=8, all_us=False):
     shard_map(scan_one_ticker, targets, n_workers=n_workers, rps=rps,
               on_result=on_result, on_error=on_error)
     conn.commit()
+    # Self-heal: a scan can book a filing under the scan-target ticker while an
+    # older row books it under another — resolve via EDGAR's issuer symbol.
+    import fix_form4_multiticker
+    fix_form4_multiticker.run(conn)
     print(f"\ndone: {n_buys} P-code buys ingested across {len(targets)} tickers scanned")
 
 if __name__ == "__main__":

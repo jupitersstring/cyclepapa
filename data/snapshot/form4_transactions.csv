@@ -21846,10 +21846,6 @@ id,accession,ticker,owner,role,trans_date,code,shares,price,acquired,source_url,
 169754,0001193125-26-140266,RLGT,,,2026-03-31,S,7500.0,7.0,0,https://www.sec.gov/Archives/edgar/data/1171155/000119312526140266/xslF345X06/ownership.xml,0,0
 169755,0001628280-26-041445,ARDT,,Director,2026-06-05,P,11260.0,8.73,1,https://www.sec.gov/Archives/edgar/data/1756655/000162828026041445/xslF345X06/wk-form4_1780937435.xml,0,0
 169756,0001628280-26-041444,ARDT,,Chief Financial Officer,2026-06-05,P,10000.0,8.81,1,https://www.sec.gov/Archives/edgar/data/1756655/000162828026041444/xslF345X06/wk-form4_1780937412.xml,0,0
-169757,0001270868-26-000003,GDV-PK,,Director,2026-01-23,P,1000.0,28.5202,1,https://www.sec.gov/Archives/edgar/data/1260729/000127086826000003/xslF345X06/primary_doc.xml,0,0
-169758,0000929743-26-000003,GDV-PK,,Director,2026-01-12,P,500.0,28.57,1,https://www.sec.gov/Archives/edgar/data/1260729/000092974326000003/xslF345X06/primary_doc.xml,0,0
-169759,0001247238-26-000003,GDV-PK,,Director,2026-02-18,S,1700.0,29.15,0,https://www.sec.gov/Archives/edgar/data/1260729/000124723826000003/xslF345X06/primary_doc.xml,0,0
-169760,0001185533-26-000008,GDV-PK,,Director,2026-02-17,P,4500.0,29.0933,1,https://www.sec.gov/Archives/edgar/data/1260729/000118553326000008/xslF345X05/primary_doc.xml,0,0
 169761,0001644859-26-000001,GDV-PK,,Director,2026-02-09,P,684.0,29.1959,1,https://www.sec.gov/Archives/edgar/data/1260729/000164485926000001/xslF345X05/primary_doc.xml,0,0
 169762,0001185533-26-000007,GDV-PK,,Director,2026-01-27,P,5500.0,28.7174,1,https://www.sec.gov/Archives/edgar/data/1260729/000118553326000007/xslF345X05/primary_doc.xml,0,0
 169763,0001200357-26-000003,GDV-PK,,Director,2026-01-27,P,400.0,28.7299,1,https://www.sec.gov/Archives/edgar/data/1260729/000120035726000003/xslF345X05/primary_doc.xml,0,0
@@ -30595,12 +30591,6 @@ id,accession,ticker,owner,role,trans_date,code,shares,price,acquired,source_url,
 178600,0001235110-26-000037,BBW,,Director,2026-06-05,S,3000.0,34.523,0,https://www.sec.gov/Archives/edgar/data/1113809/000123511026000037/xslF345X06/form4.xml,0,0
 178601,0001193125-26-253540,NSIT,,,2026-05-29,S,559.0,107.4,0,https://www.sec.gov/Archives/edgar/data/932696/000119312526253540/xslF345X06/ownership.xml,0,0
 178602,0001193125-26-221694,NSIT,,,2026-05-11,P,2290.0,87.255,1,https://www.sec.gov/Archives/edgar/data/932696/000119312526221694/xslF345X06/ownership.xml,0,0
-178603,0000950142-26-001526,SATLW,,10%+ Owner,2026-05-26,S,10000000.0,9.77,0,https://www.sec.gov/Archives/edgar/data/1874315/000095014226001526/xslF345X06/eh260785016_4-satl.xml,0,0
-178604,0002130394-26-000009,SATLW,,Chief Technology Officer,2026-05-14,S,87091.0,8.351,0,https://www.sec.gov/Archives/edgar/data/1874315/000213039426000009/xslF345X06/wk-form4_1779311481.xml,0,0
-178605,0002060688-26-000006,SATLW,,President,2026-03-30,S,9499.0,5.179,0,https://www.sec.gov/Archives/edgar/data/1874315/000206068826000006/xslF345X06/wk-form4_1774987767.xml,0,0
-178606,0001979159-26-000005,SATLW,,Chief Financial Officer,2026-03-27,P,16695.0,5.906,1,https://www.sec.gov/Archives/edgar/data/1874315/000197915926000005/xslF345X06/wk-form4_1774987732.xml,0,0
-178607,0001979159-26-000005,SATLW,,Chief Financial Officer,2026-03-30,P,19050.0,5.17,1,https://www.sec.gov/Archives/edgar/data/1874315/000197915926000005/xslF345X06/wk-form4_1774987732.xml,0,0
-178608,0001213900-26-034048,SATLW,,,2026-03-23,S,500000.0,5.008,0,https://www.sec.gov/Archives/edgar/data/1874315/000121390026034048/xslF345X06/ownership.xml,0,0
 178609,0001213900-26-010487,SATLW,,10%+ Owner,2026-01-28,S,129971.0,5.5581,0,https://www.sec.gov/Archives/edgar/data/1874315/000121390026010487/xslF345X05/ownership.xml,0,0
 178610,0001213900-26-010487,SATLW,,10%+ Owner,2026-01-29,S,388827.0,5.6316,0,https://www.sec.gov/Archives/edgar/data/1874315/000121390026010487/xslF345X05/ownership.xml,0,0
 178611,0001213900-26-010487,SATLW,,10%+ Owner,2026-01-30,S,5575.0,5.5498,0,https://www.sec.gov/Archives/edgar/data/1874315/000121390026010487/xslF345X05/ownership.xml,0,0
@@ -48723,8 +48713,6 @@ id,accession,ticker,owner,role,trans_date,code,shares,price,acquired,source_url,
 196866,0001193125-26-221785,BX,,,2026-05-11,P,125.609,122.7711,1,https://www.sec.gov/Archives/edgar/data/1393818/000119312526221785/xslF345X06/ownership.xml,0,0
 196867,0001193125-26-221785,BX,,,2026-05-11,P,229.4958,123.1919,1,https://www.sec.gov/Archives/edgar/data/1393818/000119312526221785/xslF345X06/ownership.xml,0,0
 196868,0001193125-26-221785,BX,,,2026-05-11,P,83.739,122.7711,1,https://www.sec.gov/Archives/edgar/data/1393818/000119312526221785/xslF345X06/ownership.xml,0,0
-196869,0001193125-26-220232,BX,,,2026-02-12,P,100000.0,17.66,0,https://www.sec.gov/Archives/edgar/data/1393818/000119312526220232/xslF345X06/ownership.xml,0,0
-196870,0001193125-26-220232,BX,,,2026-03-03,S,25000.0,19.0,0,https://www.sec.gov/Archives/edgar/data/1393818/000119312526220232/xslF345X06/ownership.xml,0,0
 196871,0001193125-26-201508,BX,,,2026-05-01,S,16965.0,125.55,0,https://www.sec.gov/Archives/edgar/data/1393818/000119312526201508/xslF345X06/ownership.xml,0,0
 196872,0001193125-26-201508,BX,,,2026-05-01,S,13049.0,126.11,0,https://www.sec.gov/Archives/edgar/data/1393818/000119312526201508/xslF345X06/ownership.xml,0,0
 196873,0001213900-26-032972,BX,,10%+ Owner,2026-03-20,P,1912045.889,26.15,1,https://www.sec.gov/Archives/edgar/data/1393818/000121390026032972/xslF345X06/ownership.xml,0,0
