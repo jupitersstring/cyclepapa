@@ -74,10 +74,18 @@ def parse_form4(cik, accession, primary_doc, tkr=None):
             role = title.text.strip() if title is not None and title.text else "Officer"
         if r.find("isTenPercentOwner") is not None and r.find("isTenPercentOwner").text == "1": role = "10%+ Owner"
         break
+    # 10b5-1 checkbox (since 2023): filing-level "this trade was under a plan".
+    # Splits mechanical scheduled selling from discretionary selling.
+    plan_el = root.find(".//aff10b5One")
+    planned = 1 if (plan_el is not None and (plan_el.text or "").strip() in ("1", "true")) else 0
     for tx in root.iter("nonDerivativeTransaction"):
         code_el = tx.find(".//transactionCode")
         if code_el is None or not code_el.text: continue
         code = code_el.text.strip()
+        # equitySwapInvolved: the issuer marks the transaction as part of an
+        # equity swap — insider "alignment" that is economically hedged.
+        swap_el = tx.find(".//equitySwapInvolved")
+        swap_inv = 1 if (swap_el is not None and (swap_el.text or "").strip() in ("1", "true")) else 0
         shares_el = tx.find(".//transactionShares/value")
         price_el  = tx.find(".//transactionPricePerShare/value")
         date_el   = tx.find(".//transactionDate/value")
@@ -98,7 +106,8 @@ def parse_form4(cik, accession, primary_doc, tkr=None):
         acquired = 1 if (a_d_el is not None and a_d_el.text == "A") else 0
         out.append({"owner": owner, "role": role, "code": code,
                     "shares": shares, "price": price, "acquired": acquired,
-                    "issuer_sym": issuer_sym,
+                    "issuer_sym": issuer_sym, "swap_involved": swap_inv,
+                    "planned_10b5": planned,
                     "trans_date": date_el.text if date_el is not None else None})
     return out
 
@@ -157,9 +166,11 @@ def scan_one_ticker(tkr):
         except Exception:
             continue
         for t in txns:
-            if t["code"] not in ("P", "S"): continue
+            # P/S = market signal; K = equity swap (insider hedging detector)
+            if t["code"] not in ("P", "S", "K"): continue
             rows.append((acc, t.get("issuer_sym") or tkr, t["owner"], t["role"], t["trans_date"],
                          t["code"], t["shares"], t["price"], t["acquired"],
+                         t.get("swap_involved", 0), t.get("planned_10b5", 0),
                          f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc.replace('-','')}/{doc}"))
     return rows
 
@@ -187,8 +198,9 @@ def run(max_n=1500, n_workers=8, rps=8, all_us=False):
         for row in rows:
             try:
                 conn.execute("""INSERT OR IGNORE INTO form4_transactions
-                    (accession, ticker, owner, role, trans_date, code, shares, price, acquired, source_url)
-                    VALUES (?,?,?,?,?,?,?,?,?,?)""", row)
+                    (accession, ticker, owner, role, trans_date, code, shares, price, acquired,
+                     swap_involved, planned_10b5, source_url)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?)""", row)
                 n_buys += 1
             except Exception:
                 pass

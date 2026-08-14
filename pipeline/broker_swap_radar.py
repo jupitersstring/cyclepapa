@@ -44,6 +44,8 @@ def run():
       mcap_m REAL, score REAL,
       recent_13d TEXT,          -- 13D/G filers on this name, last 12 months
       activist_holders TEXT,    -- our activist-style funds currently holding
+      live_action TEXT,         -- contested proxy / tender / 13E-3 in motion
+      d13_momo TEXT,            -- 13D amendment momentum (holder +/-pp)
       PRIMARY KEY (ticker, broker));
     """)
 
@@ -130,6 +132,30 @@ def run():
             WHERE h.ticker IS NOT NULL AND h.value_k > 10000
             GROUP BY h.ticker"""):
         actv[r["t"]] = r["f"]
+    # 13D/G amendment momentum: latest disclosed % vs the holder's previous
+    # filing on the same name — a disclosed activist still BUILDING is the
+    # strongest confirmation a desk-side jump is hedge flow for more.
+    momo = {}
+    for r in conn.execute("""
+        WITH ranked AS (
+          SELECT subject_ticker tk, holder, pct_class, filed,
+                 ROW_NUMBER() OVER (PARTITION BY subject_ticker, holder ORDER BY filed DESC) rn
+          FROM holder_13d
+          WHERE subject_ticker IS NOT NULL AND pct_class > 0
+            AND filed >= date('now','-24 months'))
+        SELECT a.tk, a.holder, a.pct_class, b.pct_class
+        FROM ranked a JOIN ranked b ON b.tk=a.tk AND b.holder=a.holder AND b.rn=2
+        WHERE a.rn=1 AND ABS(a.pct_class - b.pct_class) >= 0.5"""):
+        d = r[2] - r[3]
+        momo.setdefault(r["tk"], []).append(f"{r['holder'][:18]} {'+' if d>0 else ''}{d:.1f}pp")
+    # live corporate actions (proxy fights, tenders, going-private)
+    try:
+        live = {r[0]: r[1] for r in conn.execute("""SELECT ticker,
+            GROUP_CONCAT(DISTINCT form) FROM corp_actions
+            WHERE ticker IS NOT NULL AND filed >= date('now','-9 months')
+            GROUP BY ticker""")}
+    except sqlite3.OperationalError:
+        live = {}
 
     n = 0
     for tk, per_broker in deltas.items():
@@ -181,13 +207,16 @@ def run():
             if cheap:    shadow *= 1.2
             if gov8k:    shadow *= 1.3
             if desk_anom >= 20: shadow *= 1.25
-            conn.execute("INSERT OR REPLACE INTO broker_swap_radar VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            if live.get(tk):   shadow *= 1.4   # control event already in motion
+            if momo.get(tk):   shadow *= 1.2   # disclosed holder still moving
+            conn.execute("INSERT OR REPLACE INTO broker_swap_radar VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 (tk, (s["name"] if s else None), broker,
                  round(d_sh / 1e6, 2), round(pct_out, 2), round(delta_m, 1),
                  round(cur_m or 0, 1), round(idio, 0),
                  round(desk_anom, 1), round(min(shadow, 99.0), 1),
                  round(y["mcap_m"] or 0, 0), (s["score"] if s else None),
-                 d13.get(tk), actv.get(tk)))
+                 d13.get(tk), actv.get(tk),
+                 live.get(tk), "; ".join(momo.get(tk, [])[:3]) or None))
             n += 1
     conn.commit()
 
