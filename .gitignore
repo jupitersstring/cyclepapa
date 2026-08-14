@@ -37,3 +37,5 @@ deep_driver.log
 .yahoo_session.json
 pip_install.log
 yahoo_chart_fill.csv.tmp
+otc_enrich.log
+otc_driver.log

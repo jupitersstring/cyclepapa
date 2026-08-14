@@ -95,8 +95,12 @@ def _sheet_safe(s: str) -> str:
     return out[:31]
 
 
-def load_data():
-    """Merge asymmetry_global + archetype_tags + verdicts + valuation."""
+def load_data(min_mcap: float = 10_000_000):
+    """Merge asymmetry_global + archetype_tags + verdicts + valuation.
+
+    min_mcap: minimum USD market cap to keep (default $10M for listed names;
+    callers covering inherently-tiny universes like OTC pass a lower floor).
+    """
     df = pd.read_csv('asymmetry_global.csv').drop_duplicates('symbol')
     # Strip any stale suffixed columns that prior merges left behind
     df = df.drop(columns=[c for c in df.columns if c.endswith('_arch')])
@@ -153,7 +157,7 @@ def load_data():
                             .fillna(pd.to_numeric(df['market_cap'], errors='coerce')))
 
     # Apply min mcap + exclude RED
-    df = df[df['market_cap'].fillna(0) >= 10_000_000]
+    df = df[df['market_cap'].fillna(0) >= min_mcap]
     df = df[df['verdict'] != 'RED']
     return df, arch_cols
 
@@ -229,11 +233,11 @@ def _write_archetype_table(ws, df_subset, archetype_label, total_universe, sort_
         ws.cell(row=r_idx, column=2).alignment = _TXT_ALIGN_LEFT
         ws.cell(row=r_idx, column=3, value=str(r.get('name') or '')[:50]).font = f_text
         ws.cell(row=r_idx, column=3).alignment = _TXT_ALIGN_LEFT
-        ws.cell(row=r_idx, column=4, value=str(r.get('src') or '')).font = f_text_muted
+        ws.cell(row=r_idx, column=4, value=('' if pd.isna(r.get('src')) else str(r.get('src')))).font = f_text_muted
         ws.cell(row=r_idx, column=4).alignment = _NUM_ALIGN_CENTER
-        ws.cell(row=r_idx, column=5, value=str(r.get('sector') or '')).font = f_text_muted
+        ws.cell(row=r_idx, column=5, value=('' if pd.isna(r.get('sector')) else str(r.get('sector')))).font = f_text_muted
         ws.cell(row=r_idx, column=5).alignment = _TXT_ALIGN_LEFT
-        ws.cell(row=r_idx, column=6, value=str(r.get('market_cap_bucket') or '')).font = f_text_muted
+        ws.cell(row=r_idx, column=6, value=('' if pd.isna(r.get('market_cap_bucket')) else str(r.get('market_cap_bucket')))).font = f_text_muted
         ws.cell(row=r_idx, column=6).alignment = _NUM_ALIGN_CENTER
         _write_money(ws, r_idx, 7, r.get('market_cap'), font=f_text)
         _verdict_badge(ws, r_idx, 8, r['verdict'])
