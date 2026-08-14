@@ -14,13 +14,14 @@ catalysts,32,
 catalysts_8k,42693,EXPENSIVE
 consensus_buys,88,
 conviction_adds,180,
+corp_actions,1249,
 cusip_map,9411,
 discovery,16,EXPENSIVE
 discovery_13d,48,EXPENSIVE
 discovery_13d_subjects,24,EXPENSIVE
 edgar_filings,768,EXPENSIVE
 expected_return,14,
-form4_transactions,59922,EXPENSIVE
+form4_transactions,60044,EXPENSIVE
 fund_13f_confidential,309,
 fund_13f_holdings,72162,
 fund_13f_prior,69604,
@@ -35,7 +36,7 @@ fund_resolution_state,430,
 fund_style,469,
 highest_conviction,369,
 holder_13d,5703,EXPENSIVE
-insider_clusters,273,EXPENSIVE
+insider_clusters,274,EXPENSIVE
 liquidity,815,
 microcap_conviction_adds,180,
 multi_fund_new_inits,24,

@@ -58,7 +58,7 @@ CREATE TABLE form4_transactions (
   accession TEXT NOT NULL, ticker TEXT, owner TEXT, role TEXT,
   trans_date TEXT, code TEXT, shares REAL, price REAL, acquired INTEGER,
   source_url TEXT NOT NULL
-);
+, swap_involved INTEGER DEFAULT 0, planned_10b5 INTEGER DEFAULT 0);
 CREATE TABLE archetype_members (
   archetype TEXT NOT NULL, ticker TEXT NOT NULL,
   thesis TEXT, valuation TEXT, catalyst TEXT, variant TEXT, smart_money TEXT,
@@ -257,6 +257,10 @@ CREATE TABLE style_consensus (
       macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
       sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
       PRIMARY KEY (macro_style, ticker));
+CREATE TABLE corp_actions (
+      form TEXT, filed TEXT, company TEXT, ticker TEXT, accession TEXT,
+      PRIMARY KEY (form, accession));
+CREATE INDEX idx_corpact_tk ON corp_actions(ticker);
 CREATE TABLE broker_swap_radar (
       ticker TEXT, name TEXT, broker TEXT,
       delta_sh_m REAL,          -- share-count change, millions
@@ -269,4 +273,6 @@ CREATE TABLE broker_swap_radar (
       mcap_m REAL, score REAL,
       recent_13d TEXT,          -- 13D/G filers on this name, last 12 months
       activist_holders TEXT,    -- our activist-style funds currently holding
+      live_action TEXT,         -- contested proxy / tender / 13E-3 in motion
+      d13_momo TEXT,            -- 13D amendment momentum (holder +/-pp)
       PRIMARY KEY (ticker, broker));
