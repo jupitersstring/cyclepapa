@@ -98,10 +98,6 @@ CREATE TABLE fund_positions (
       id INTEGER PRIMARY KEY, fund TEXT, ticker TEXT, company TEXT, section INTEGER,
       pct_value REAL, pct_kind TEXT, dollar_m REAL, change_text TEXT,
       event_date TEXT, raw_text TEXT, asof TEXT);
-CREATE TABLE ticker_entry_intact (
-      ticker TEXT PRIMARY KEY, current_px REAL, anchor_px REAL, anchor_source TEXT,
-      vs_entry_pct REAL, bucket TEXT, conviction_score REAL, n_funds INTEGER,
-      n_hyper INTEGER, has_insider_cobuy INTEGER, sum_dollar_m REAL, anchors_seen TEXT);
 CREATE TABLE expected_return (
       ticker TEXT PRIMARY KEY, tags_n INTEGER, weighted_excess_12m REAL,
       best_tag TEXT, best_tag_excess REAL, worst_tag TEXT, worst_tag_excess REAL,
@@ -172,25 +168,38 @@ CREATE TABLE price_stats (
 CREATE TABLE ticker_meta ("ticker" TEXT PRIMARY KEY, "name" TEXT, "exchange" TEXT, "market" TEXT, "sector" TEXT, "industry" TEXT, "mcap_m" REAL, "price" REAL, "price_currency" TEXT, "adv_3m_usd_m" REAL, "shares_out_m" REAL, "pe_ttm" TEXT, "fwd_pe" TEXT, "beta" TEXT, "asof" TEXT, "sic" INTEGER, "sic_description" TEXT);
 CREATE TABLE "ticker_valuation" ("ticker" TEXT, "cik" INTEGER, "ebitda_ttm" REAL, "book_value" REAL, "net_debt" REAL, "ev_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "ebitda_is_ebit_fallback" INTEGER, "asof" TEXT);
 CREATE TABLE ticker_yf ("ticker" TEXT PRIMARY KEY, "mcap_m" REAL, "enterprise_value_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "pe_ttm" REAL, "fwd_pe" REAL, "ev_revenue" REAL, "peg" REAL, "price" REAL, "currency" TEXT, "shares_out_m" REAL, "ebitda_m" REAL, "total_debt_m" REAL, "total_cash_m" REAL, "profit_margin" REAL, "rev_growth" REAL, "sector" TEXT, "industry" TEXT, "asof" TEXT, "business_summary" TEXT, "long_name" TEXT);
-CREATE TABLE "ticker_yf__old" ("ticker" TEXT, "mcap_m" REAL, "enterprise_value_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "pe_ttm" REAL, "fwd_pe" REAL, "ev_revenue" REAL, "peg" REAL, "price" REAL, "currency" TEXT, "shares_out_m" REAL, "ebitda_m" REAL, "total_debt_m" REAL, "total_cash_m" REAL, "profit_margin" REAL, "rev_growth" REAL, "sector" TEXT, "industry" TEXT, "asof" TEXT, "business_summary" TEXT, "long_name" TEXT);
 CREATE TABLE yf_dead (ticker TEXT PRIMARY KEY, asof TEXT);
 CREATE INDEX idx_13f_ticker ON fund_13f_holdings(ticker);
 CREATE INDEX idx_13f_fund ON fund_13f_holdings(fund);
 CREATE INDEX idx_prior_ticker ON fund_13f_prior(ticker);
 CREATE INDEX idx_prior_fund ON fund_13f_prior(fund);
-CREATE TABLE fund_style (
-      fund TEXT PRIMARY KEY, sub_group TEXT, macro_style TEXT,
-      total_rows INTEGER, conviction_n INTEGER, threshold_n INTEGER,
-      new_n INTEGER, adds_n INTEGER);
-CREATE TABLE style_summary (
-      macro_style TEXT PRIMARY KEY,
-      n_funds INTEGER, total_rows INTEGER,
-      n_conviction INTEGER, n_threshold INTEGER, n_new INTEGER, n_adds INTEGER,
-      top_funds TEXT, top_consensus TEXT);
-CREATE TABLE style_consensus (
-      macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
-      sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
-      PRIMARY KEY (macro_style, ticker));
+CREATE INDEX idx_yf_evebitda ON ticker_yf(ev_ebitda);
+CREATE INDEX idx_yf_pb ON ticker_yf(pb_ratio);
+CREATE INDEX idx_8k_ticker ON catalysts_8k(ticker);
+CREATE INDEX idx_8k_filed ON catalysts_8k(filed);
+CREATE UNIQUE INDEX ux_form4_txn
+        ON form4_transactions(accession, owner, code, trans_date, shares, COALESCE(price,-1));
+CREATE TABLE broker_13f (
+      broker TEXT, cik TEXT, accession TEXT, filed TEXT, qrank INTEGER,
+      issuer TEXT, cusip TEXT, ticker TEXT, value_k REAL, shares INTEGER,
+      sh_type TEXT,
+      PRIMARY KEY (broker, accession, cusip));
+CREATE INDEX idx_broker13f_tk ON broker_13f(ticker);
+CREATE TABLE broker_13f_state (
+      broker TEXT PRIMARY KEY, cik TEXT,
+      cur_accession TEXT, cur_filed TEXT,
+      prior_accession TEXT, prior_filed TEXT,
+      n_cur INTEGER, n_prior INTEGER, asof TEXT);
+CREATE TABLE fund_13f_confidential (
+        fund TEXT PRIMARY KEY, cik TEXT, accession TEXT, filed TEXT,
+        omitted INTEGER, asof TEXT);
+CREATE TABLE ticker_entry_intact (
+      ticker TEXT PRIMARY KEY,
+      current_px REAL, anchor_px REAL, anchor_source TEXT,
+      vs_entry_pct REAL, bucket TEXT,
+      conviction_score REAL, n_funds INTEGER,
+      n_hyper INTEGER, has_insider_cobuy INTEGER, sum_dollar_m REAL,
+      anchors_seen TEXT);
 CREATE TABLE fund_conviction (
       fund TEXT, ticker TEXT, signals TEXT, raw_score REAL, style_weight REAL,
       score REAL, macro_style TEXT,
@@ -235,3 +244,29 @@ CREATE INDEX idx_us_score ON unified_signal(score DESC);
 CREATE INDEX idx_us_bucket ON unified_signal(mcap_bucket);
 CREATE INDEX idx_us_pb ON unified_signal(max_pct_book DESC);
 CREATE INDEX idx_us_entry ON unified_signal(entry_bucket);
+CREATE TABLE fund_style (
+      fund TEXT PRIMARY KEY, sub_group TEXT, macro_style TEXT,
+      total_rows INTEGER, conviction_n INTEGER, threshold_n INTEGER,
+      new_n INTEGER, adds_n INTEGER);
+CREATE TABLE style_summary (
+      macro_style TEXT PRIMARY KEY,
+      n_funds INTEGER, total_rows INTEGER,
+      n_conviction INTEGER, n_threshold INTEGER, n_new INTEGER, n_adds INTEGER,
+      top_funds TEXT, top_consensus TEXT);
+CREATE TABLE style_consensus (
+      macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
+      sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
+      PRIMARY KEY (macro_style, ticker));
+CREATE TABLE broker_swap_radar (
+      ticker TEXT, name TEXT, broker TEXT,
+      delta_sh_m REAL,          -- share-count change, millions
+      pct_out REAL,             -- delta as % of shares outstanding
+      delta_m REAL,             -- delta at current price, $M
+      cur_m REAL,               -- broker's current position, $M
+      idio_pct REAL,            -- broker delta / sum |all broker deltas|
+      desk_anom REAL,           -- delta vs this desk's median |delta| (x normal)
+      shadow_score REAL,        -- accumulation x idiosyncrasy x context composite
+      mcap_m REAL, score REAL,
+      recent_13d TEXT,          -- 13D/G filers on this name, last 12 months
+      activist_holders TEXT,    -- our activist-style funds currently holding
+      PRIMARY KEY (ticker, broker));

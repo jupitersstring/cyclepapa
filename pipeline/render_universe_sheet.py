@@ -492,11 +492,15 @@ def sheet_qoq_change(wb, conn):
              cur AS (SELECT h.fund, COALESCE(cm.ticker, h.cusip) tk, SUM(h.shares) sh
                      FROM fund_13f_holdings h LEFT JOIN cusip_map cm ON cm.cusip=h.cusip
                      WHERE h.cusip IS NOT NULL AND h.sh_type IN ('SH','')
+                       AND substr(h.cusip,7,1) BETWEEN '0' AND '9'
+                       AND substr(h.cusip,8,1) BETWEEN '0' AND '9'
                        AND h.fund IN (SELECT fund FROM ok_funds)
                      GROUP BY h.fund, tk),
              pri AS (SELECT h.fund, COALESCE(cm.ticker, h.cusip) tk, SUM(h.shares) sh
                      FROM fund_13f_prior h LEFT JOIN cusip_map cm ON cm.cusip=h.cusip
                      WHERE h.cusip IS NOT NULL AND h.sh_type IN ('SH','')
+                       AND substr(h.cusip,7,1) BETWEEN '0' AND '9'
+                       AND substr(h.cusip,8,1) BETWEEN '0' AND '9'
                        AND h.fund IN (SELECT fund FROM ok_funds)
                      GROUP BY h.fund, tk),
              chg AS (
@@ -786,6 +790,39 @@ def sheet_broker_radar(wb, conn):
         ws.cell(row=ridx, column=5).number_format = NUMFMT_M_TO_B
         ws.cell(row=ridx, column=6).number_format = NUMFMT_M_TO_B
         ws.cell(row=ridx, column=7).number_format = '0"%"'
+        ws.cell(row=ridx, column=9).number_format = NUMFMT_MCAP
+    ws.freeze_panes = "B5"
+    autosize(ws)
+    ws.column_dimensions["A"].width = 8
+
+def sheet_broker_radar(wb, conn):
+    """Swap-desk share-count jumps — the pre-13D shadow-accumulation radar."""
+    ws = wb.create_sheet("Broker Swap Radar")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Broker Swap Radar — possible swap-hedge accumulation",
+                "QoQ share-count jumps inside ONE swap-desk broker's 13F. An activist building via cash-settled swaps files nothing — the desk hedging the swap buys the physical and prints HERE first. "
+                "Idio % = this desk's move vs all desks (high = idiosyncratic, low = index flow). Leads, not proof: ETF baskets and custody flows also move desks. Shadow = accumulation × idiosyncrasy × activist-context × cheapness.", 13)
+    hdr = ["Ticker","Shadow","Broker","Δ Sh (M)","Δ % Out","Δ $M","Desk $M","Idio %","Mcap","Score","13D (12mo)","Activist holders","Name"]
+    write_table_header(ws, 4, hdr)
+    rows = list(conn.execute("""SELECT ticker, shadow_score, broker, delta_sh_m,
+               pct_out, delta_m, cur_m, idio_pct, mcap_m, score,
+               recent_13d, activist_holders, name
+        FROM broker_swap_radar ORDER BY shadow_score DESC"""))
+    out = []
+    for r in rows[:200]:
+        out.append([r[0], round(r[1] or 0, 1),
+                    r[2], r[3], r[4], r[5],
+                    r[6], r[7], r[8] or "",
+                    round(r[9], 0) if r[9] is not None else "",
+                    (r[10] or "")[:34], (r[11] or "")[:34],
+                    (r[12] or "")[:36]])
+    write_table_rows(ws, out, 5)
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=4).number_format = '0.0'
+        ws.cell(row=ridx, column=5).number_format = '0.00"%"'
+        ws.cell(row=ridx, column=6).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=7).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=8).number_format = '0"%"'
         ws.cell(row=ridx, column=9).number_format = NUMFMT_MCAP
     ws.freeze_panes = "B5"
     autosize(ws)

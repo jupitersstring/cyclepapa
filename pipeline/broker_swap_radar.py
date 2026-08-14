@@ -39,6 +39,8 @@ def run():
       delta_m REAL,             -- delta at current price, $M
       cur_m REAL,               -- broker's current position, $M
       idio_pct REAL,            -- broker delta / sum |all broker deltas|
+      desk_anom REAL,           -- delta vs this desk's median |delta| (x normal)
+      shadow_score REAL,        -- accumulation x idiosyncrasy x context composite
       mcap_m REAL, score REAL,
       recent_13d TEXT,          -- 13D/G filers on this name, last 12 months
       activist_holders TEXT,    -- our activist-style funds currently holding
@@ -63,6 +65,11 @@ def run():
                    FROM broker_13f b LEFT JOIN cusip_map cm ON cm.cusip = b.cusip
                    WHERE b.sh_type IN ('SH','') AND COALESCE(cm.ticker, b.ticker) IS NOT NULL
                      AND b.broker IN (SELECT broker FROM ok)
+                     -- CUSIP issue code (chars 7-8): letters = DEBT (convertible
+                     -- notes: AKAM 00971TAQ4 booked as "SH" showed as 26M shares).
+                     -- Equity issues are numeric; drop alpha-issue rows.
+                     AND substr(b.cusip,7,1) BETWEEN '0' AND '9'
+                     AND substr(b.cusip,8,1) BETWEEN '0' AND '9'
                    GROUP BY b.broker, tk, b.qrank)
         SELECT cur.broker, cur.tk,
                cur.sh - COALESCE(pri.sh, 0) AS d_sh
@@ -82,8 +89,34 @@ def run():
 
     yf = {r["ticker"]: r for r in conn.execute(
         "SELECT ticker, price, mcap_m, shares_out_m FROM ticker_yf WHERE price > 0")}
+    issuer_of = {r[0]: r[1] for r in conn.execute("""
+        SELECT COALESCE(cm.ticker, b.ticker), MAX(b.issuer)
+        FROM broker_13f b LEFT JOIN cusip_map cm ON cm.cusip = b.cusip
+        WHERE COALESCE(cm.ticker, b.ticker) IS NOT NULL
+        GROUP BY COALESCE(cm.ticker, b.ticker)""")}
     sig = {r["ticker"]: r for r in conn.execute(
-        "SELECT ticker, name, score, sec_type FROM unified_signal")}
+        """SELECT ticker, name, score, sec_type, ev_ebitda,
+                  cat8k_ctrl, cat8k_dir FROM unified_signal""")}
+    # per-desk normalization: what a "normal" quarterly move looks like for
+    # THIS desk ("accumulation too large relative to its normal inventory")
+    desk_med = {}
+    for broker in {b for per in deltas.values() for b in per}:
+        moves = sorted(abs(d) * (yf[t]["price"] if t in yf else 0) / 1e6
+                       for t, per in deltas.items() for b2, d in per.items()
+                       if b2 == broker and d)
+        moves = [x for x in moves if x > 0]
+        desk_med[broker] = moves[len(moves)//2] if moves else 1.0
+    # CTR context: tracked funds CURRENTLY omitting positions confidentially —
+    # a Bayesian multiplier when one of them is a 13D filer/holder on the name
+    try:
+        ctr_funds = {f for (f,) in conn.execute(
+            "SELECT fund FROM fund_13f_confidential WHERE omitted=1")}
+    except sqlite3.OperationalError:
+        ctr_funds = set()
+    ctr_canon = set()
+    for f in ctr_funds:
+        r = conn.execute("SELECT canon FROM fund_canon WHERE fund=?", (f,)).fetchone()
+        ctr_canon.add((r[0] if r and r[0] else f).upper()[:14])
     d13 = {}
     for r in conn.execute("""SELECT subject_ticker t, GROUP_CONCAT(DISTINCT holder) h
             FROM holder_13d WHERE filed >= date('now','-12 months') AND subject_ticker IS NOT NULL
@@ -106,6 +139,15 @@ def run():
             continue
         if s and s["sec_type"] not in (None, "common"):
             continue
+        if "-" in tk and tk.split("-")[0] in yf:
+            continue        # share-class line (TAP-A): % of shares_out is wrong
+        if len(tk) == 5 and tk.endswith(("F", "Y")):
+            continue        # foreign-ordinary OTC line: Yahoo shares_out is the
+                            # wrong basis, % out inflates (TCKRF at "24% out")
+        iss = (issuer_of.get(tk) or "").upper()
+        if any(w in iss for w in (" MUNI", "MUNICIPAL", " FUND", "ISHARES", " ETF",
+                                  "CLOSED END", "CLOSED-END", "SPDR")):
+            continue        # CEF/ETF vehicles that slipped sec_type
         if not (MCAP_LO <= (y["mcap_m"] or 0) <= MCAP_HI):
             continue
         tot_abs = sum(abs(v) for v in per_broker.values()) or 1
@@ -120,24 +162,44 @@ def run():
                 LEFT JOIN cusip_map cm ON cm.cusip = b.cusip
                 WHERE b.broker=? AND b.qrank=0
                   AND COALESCE(cm.ticker, b.ticker)=?""", (broker, tk)).fetchone()[0]
-            conn.execute("INSERT OR REPLACE INTO broker_swap_radar VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+            idio = abs(d_sh) / tot_abs * 100
+            desk_anom = delta_m / (desk_med.get(broker) or 1.0)
+            # Shadow Score: accumulation x idiosyncrasy, multiplied by context.
+            # "Hidden ownership where the owner has a reason and the machinery
+            # to change the outcome" — each multiplier is one of those legs.
+            shadow = 10.0 * pct_out * (idio / 100.0)
+            has_13d = bool(d13.get(tk))
+            has_act = bool(actv.get(tk))
+            ctx = (d13.get(tk, "") or "") + "|" + (actv.get(tk, "") or "")
+            has_ctr = any(cf and cf in ctx.upper() for cf in ctr_canon)
+            ev = s["ev_ebitda"] if s else None
+            cheap = ev is not None and 0 < ev < 8
+            gov8k = bool(s and ((s["cat8k_ctrl"] or 0) or (s["cat8k_dir"] or 0)))
+            if has_13d:  shadow *= 1.5
+            if has_act:  shadow *= 1.25
+            if has_ctr:  shadow *= 1.3
+            if cheap:    shadow *= 1.2
+            if gov8k:    shadow *= 1.3
+            if desk_anom >= 20: shadow *= 1.25
+            conn.execute("INSERT OR REPLACE INTO broker_swap_radar VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 (tk, (s["name"] if s else None), broker,
                  round(d_sh / 1e6, 2), round(pct_out, 2), round(delta_m, 1),
-                 round(cur_m or 0, 1), round(abs(d_sh) / tot_abs * 100, 0),
+                 round(cur_m or 0, 1), round(idio, 0),
+                 round(desk_anom, 1), round(min(shadow, 99.0), 1),
                  round(y["mcap_m"] or 0, 0), (s["score"] if s else None),
                  d13.get(tk), actv.get(tk)))
             n += 1
     conn.commit()
 
     print(f"broker_swap_radar: {n} flags\n")
-    print(f"{'tkr':6s} {'broker':20s} {'Δsh(M)':>7s} {'%out':>5s} {'Δ$M':>7s} {'idio':>4s}  13D/activist context")
+    print(f"{'tkr':6s} {'shadow':>6s} {'broker':20s} {'Δsh(M)':>7s} {'%out':>5s} {'Δ$M':>7s} {'idio':>4s} {'anom':>5s}  13D/activist context")
     for r in conn.execute("""SELECT * FROM broker_swap_radar
-            ORDER BY pct_out * (idio_pct/100.0) DESC LIMIT 30"""):
-        ctx = (r["recent_13d"] or "")[:40]
+            ORDER BY shadow_score DESC LIMIT 30"""):
+        ctx = (r["recent_13d"] or "")[:36]
         if r["activist_holders"]:
-            ctx += (" | " if ctx else "") + r["activist_holders"][:40]
-        print(f"{r['ticker']:6s} {r['broker'][:20]:20s} {r['delta_sh_m']:7.1f} "
-              f"{r['pct_out']:5.2f} {r['delta_m']:7.0f} {r['idio_pct']:4.0f}  {ctx}")
+            ctx += (" | " if ctx else "") + r["activist_holders"][:36]
+        print(f"{r['ticker']:6s} {r['shadow_score']:6.1f} {r['broker'][:20]:20s} {r['delta_sh_m']:7.1f} "
+              f"{r['pct_out']:5.2f} {r['delta_m']:7.0f} {r['idio_pct']:4.0f} {r['desk_anom']:5.0f}  {ctx}")
     conn.close()
 
 if __name__ == "__main__":

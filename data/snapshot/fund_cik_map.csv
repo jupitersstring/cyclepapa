@@ -600,9 +600,9 @@ Wynnefield Capital,1056835,WYNNEFIELD CAPITAL MANAGEMENT LLC,0.67,1,2026-06-19
 Wynnefield Capital,899083,WYNNEFIELD PARTNERS SMALL CAP VALUE LP,0.2,1,2026-06-19
 Yacktman Asset Management LP,905567,YACKTMAN ASSET MANAGEMENT LP,1.0,1,2026-06-19
 Yacktman Asset Management LP,1115419,AMG Funds LLC,0.0,1,2026-06-19
-1 Main Capital (Yaron Naymark),1421097,"SAMLYN CAPITAL, LLC",0.5,1,2026-06-19
-1 Main Capital (Yaron Naymark),1729939,"Cypress Capital, LLC",0.5,1,2026-06-19
-1 Main Capital (Yaron Naymark),1056835,WYNNEFIELD CAPITAL MANAGEMENT LLC,0.33,1,2026-06-19
+1 Main Capital (Yaron Naymark),1421097,"SAMLYN CAPITAL, LLC",no 13F filer (below threshold),0,2026-06-19
+1 Main Capital (Yaron Naymark),1729939,"Cypress Capital, LLC",no 13F filer (below threshold),0,2026-06-19
+1 Main Capital (Yaron Naymark),1056835,WYNNEFIELD CAPITAL MANAGEMENT LLC,no 13F filer (below threshold),0,2026-06-19
 Alluvial Capital (Dave Waters),1695582,"RB Capital Management, LLC",0.33,1,2026-06-19
 Atai Capital Management,1808919,"Hunter Perkins Capital Management, LLC",0.5,1,2026-06-19
 Atai Capital Management,915287,MCKINLEY CAPITAL MANAGEMENT LLC /DELAWARE,0.5,1,2026-06-19
@@ -769,7 +769,7 @@ Jensen Investment Management,1106129,Jensen Investment Management,prior-verified
 Atlantic Investment Management,1063296,Atlantic Investment Management,prior-verified,1,2026-08-13
 Conifer Management,1773994,Conifer Management,prior-verified,1,2026-08-13
 Altarock Partners,1631014,Altarock Partners,prior-verified,1,2026-08-13
-1 Main Capital (Yaron Naymark),1421097,1 Main Capital (Yaron Naymark),prior-verified,1,2026-08-13
+1 Main Capital (Yaron Naymark),1421097,1 Main Capital (Yaron Naymark),no 13F filer (below threshold),0,2026-08-13
 Algebris Investments,1700286,Algebris Investments,prior-verified,1,2026-08-13
 Balyasny Asset Management LP (D,1218710,Balyasny Asset Management LP (D,prior-verified,1,2026-08-13
 Brave Warrior Advisors LLC (Gle,1553733,Brave Warrior Advisors LLC (Gle,prior-verified,1,2026-08-13
@@ -849,3 +849,6 @@ Greenlight Capital (David Einho,1489933,"DME Capital Management, LP (ex-Greenlig
 Sessa Capital,1595849,Sessa Capital,verified,1,2026-08-13
 Lindsell Train Limited,1484150,Lindsell Train Limited,verified,1,2026-08-13
 FPA Crescent Fund,1377581,FPA Crescent Fund,verified,1,2026-08-13
+CAS Investment Partners,1697591,CAS Investment Partners,entity-verified,1,2026-08-13
+Knighthead Capital Management,1512397,Knighthead Capital Management,entity-verified,1,2026-08-13
+Sculptor Capital Management,1054587,Sculptor Capital Management,entity-verified,1,2026-08-13

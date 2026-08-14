@@ -42104,3 +42104,591 @@ NAVN,0001639723,0001628280-26-025732,2026-04-17,,,0,0,0,0,0,0,https://www.sec.go
 NAVN,0001639723,0001628280-26-021033,2026-03-25,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1639723/000162828026021033/
 NAVN,0001639723,0001628280-26-007327,2026-02-11,"5.02,7.01,9.01","5.02: Director/officer change, 7.01: Reg FD, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1639723/000162828026007327/
 NAVN,0001639723,0001628280-26-003867,2026-01-28,"5.02,7.01,9.01","5.02: Director/officer change, 7.01: Reg FD, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1639723/000162828026003867/
+RVMD,0001628171,0001193125-26-335039,2026-08-05,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1628171/000119312526335039/
+TRCK,0001045942,0001437749-26-015798,2026-05-08,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1045942/000143774926015798/
+TRCK,0001045942,0001437749-26-014595,2026-05-04,"1.01,2.03,3.02,5.02,5.03,7.01,9.01","1.01: M&A entered, 2.03: 2.03, 3.02: PIPE/dilution, 5.02: Director/officer change, 5.03: Bylaw change, 7.01: Reg FD, 9.01: Financials",1,1,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1045942/000143774926014595/
+LEGO,0002087450,0001829126-26-008388,2026-08-05,5.02,5.02: Director/officer change,0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2087450/000182912626008388/
+ECHO,0001415404,0001415404-26-000042,2026-08-07,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1415404/000141540426000042/
+ECHO,0001415404,0001415404-26-000038,2026-08-03,"1.03,2.04,5.02,7.01,8.01,9.01","1.03: Bankruptcy, 2.04: 2.04, 5.02: Director/officer change, 7.01: Reg FD, 8.01: Other event, 9.01: Financials",0,1,0,1,0,0,https://www.sec.gov/Archives/edgar/data/1415404/000141540426000038/
+ECHO,0001415404,0001415404-26-000035,2026-07-28,"1.01,1.02,2.01,8.01,9.01","1.01: M&A entered, 1.02: M&A terminated, 2.01: Acquisition closed, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1415404/000141540426000035/
+IVFH,0000312257,0001185185-26-002466,2026-06-11,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/312257/000118518526002466/
+IVFH,0000312257,0001185185-26-000813,2026-03-09,2.01,2.01: Acquisition closed,1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/312257/000118518526000813/
+ARES,0001176948,0001628280-26-051191,2026-07-31,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1176948/000162828026051191/
+SLM,0001032033,0001032033-26-000046,2026-08-05,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1032033/000103203326000046/
+SLM,0001032033,0001032033-26-000041,2026-07-23,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1032033/000103203326000041/
+HEI,0000046619,0001213900-26-078776,2026-07-16,"1.01,2.03,7.01,8.01,9.01","1.01: M&A entered, 2.03: 2.03, 7.01: Reg FD, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/46619/000121390026078776/
+PPLI,0001800227,0001628280-26-051836,2026-08-03,"2.02,5.02,9.01","2.02: Earnings, 5.02: Director/officer change, 9.01: Financials",0,1,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1800227/000162828026051836/
+PPLI,0001800227,0001104659-26-084634,2026-07-17,5.07,5.07: Vote/meeting,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1800227/000110465926084634/
+RELL,0000355948,0001193125-26-312436,2026-07-22,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/355948/000119312526312436/
+RELL,0000355948,0001193125-26-147753,2026-04-08,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/355948/000119312526147753/
+SYBX,0001527599,0001193125-26-322160,2026-07-29,"1.01,5.01,7.01,9.01","1.01: M&A entered, 5.01: Control change, 7.01: Reg FD, 9.01: Financials",1,0,0,0,0,1,https://www.sec.gov/Archives/edgar/data/1527599/000119312526322160/
+EVI,0000065312,0001437749-26-024286,2026-07-23,"1.01,3.02,8.01,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 8.01: Other event, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/65312/000143774926024286/
+EVI,0000065312,0001437749-26-016126,2026-05-11,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/65312/000143774926016126/
+BLUWW,0002050501,0001104659-26-094858,2026-08-12,"1.01,2.03,3.02,9.01","1.01: M&A entered, 2.03: 2.03, 3.02: PIPE/dilution, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/2050501/000110465926094858/
+KUST,0001342958,0001493152-26-035942,2026-08-04,"1.01,2.01,8.01,9.01","1.01: M&A entered, 2.01: Acquisition closed, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1342958/000149315226035942/
+KUST,0001342958,0001493152-26-034719,2026-07-27,"1.01,8.01,9.01","1.01: M&A entered, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1342958/000149315226034719/
+KUST,0001342958,0001493152-26-030046,2026-06-25,"1.01,8.01,9.01","1.01: M&A entered, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1342958/000149315226030046/
+KUST,0001342958,0001493152-26-018464,2026-04-22,"5.03,8.01,9.01","5.03: Bylaw change, 8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1342958/000149315226018464/
+KUST,0001342958,0001493152-26-017152,2026-04-17,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1342958/000149315226017152/
+KUST,0001342958,0001493152-26-016301,2026-04-13,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1342958/000149315226016301/
+CYN,0001874097,0001213900-26-088503,2026-08-13,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1874097/000121390026088503/
+CYN,0001874097,0001213900-26-083386,2026-07-30,5.02,5.02: Director/officer change,0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1874097/000121390026083386/
+CYN,0001874097,0001213900-26-060162,2026-05-21,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1874097/000121390026060162/
+CYN,0001874097,0001213900-26-041070,2026-04-07,"4.01,9.01","4.01: Auditor change, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1874097/000121390026041070/
+CYN,0001874097,0001213900-26-034199,2026-03-25,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1874097/000121390026034199/
+CYN,0001874097,0001213900-26-029129,2026-03-17,"1.01,8.01,9.01","1.01: M&A entered, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1874097/000121390026029129/
+CYN,0001874097,0001213900-26-028325,2026-03-16,5.02,5.02: Director/officer change,0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1874097/000121390026028325/
+XTNT,0001453593,0001493152-26-036979,2026-08-11,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1453593/000149315226036979/
+XTNT,0001453593,0001493152-26-036586,2026-08-07,"5.07,9.01","5.07: Vote/meeting, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1453593/000149315226036586/
+XTNT,0001453593,0001493152-26-022600,2026-05-13,"2.02,8.01,9.01","2.02: Earnings, 8.01: Other event, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1453593/000149315226022600/
+XTNT,0001453593,0001493152-26-016308,2026-04-13,"7.01,8.01,9.01","7.01: Reg FD, 8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1453593/000149315226016308/
+XTNT,0001453593,0001493152-26-013788,2026-03-31,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1453593/000149315226013788/
+XTNT,0001453593,0001493152-26-008453,2026-03-02,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1453593/000149315226008453/
+RNAZ,0001829635,0001104659-26-089805,2026-08-03,"3.03,5.03,9.01","3.03: Material modification of rights, 5.03: Bylaw change, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1829635/000110465926089805/
+RNAZ,0001829635,0001104659-26-085073,2026-07-20,5.07,5.07: Vote/meeting,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1829635/000110465926085073/
+RNAZ,0001829635,0001104659-26-084617,2026-07-17,"3.03,5.03,9.01","3.03: Material modification of rights, 5.03: Bylaw change, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1829635/000110465926084617/
+RNAZ,0001829635,0001104659-26-080311,2026-07-02,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1829635/000110465926080311/
+RNAZ,0001829635,0001104659-26-075440,2026-06-18,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1829635/000110465926075440/
+RNAZ,0001829635,0001104659-26-069810,2026-06-03,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1829635/000110465926069810/
+RNAZ,0001829635,0001104659-26-068647,2026-06-01,5.08,5.08: Shareholder director nominations,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1829635/000110465926068647/
+RNAZ,0001829635,0001104659-26-065728,2026-05-22,3.01,3.01: Delisting notice,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1829635/000110465926065728/
+RNAZ,0001829635,0001104659-26-040171,2026-04-07,"1.01,2.03,3.02,7.01,9.01","1.01: M&A entered, 2.03: 2.03, 3.02: PIPE/dilution, 7.01: Reg FD, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1829635/000110465926040171/
+RNAZ,0001829635,0001104659-26-022830,2026-03-03,"3.02,3.03,5.03,7.01,8.01,9.01","3.02: PIPE/dilution, 3.03: Material modification of rights, 5.03: Bylaw change, 7.01: Reg FD, 8.01: Other event, 9.01: Financials",0,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1829635/000110465926022830/
+RNAZ,0001829635,0001104659-26-018362,2026-02-23,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1829635/000110465926018362/
+LNC,0000059558,0001193125-26-341190,2026-08-10,"5.02,7.01,9.01","5.02: Director/officer change, 7.01: Reg FD, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/59558/000119312526341190/
+LNC,0000059558,0000059558-26-000058,2026-07-30,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/59558/000005955826000058/
+GWAV,0001589149,0001493152-26-025454,2026-05-27,"3.01,7.01,9.01","3.01: Delisting notice, 7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1589149/000149315226025454/
+GWAV,0001589149,0001493152-26-018561,2026-04-22,"3.01,7.01,9.01","3.01: Delisting notice, 7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1589149/000149315226018561/
+SPMA,0001930147,0001829126-26-008651,2026-08-12,"1.01,8.01,9.01","1.01: M&A entered, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1930147/000182912626008651/
+SPMA,0001930147,0001829126-26-007554,2026-07-14,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1930147/000182912626007554/
+SPMA,0001930147,0001829126-26-006189,2026-06-08,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1930147/000182912626006189/
+SPMA,0001930147,0001829126-26-005693,2026-05-27,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1930147/000182912626005693/
+SPMA,0001930147,0001829126-26-005503,2026-05-20,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1930147/000182912626005503/
+SPMA,0001930147,0001829126-26-004956,2026-05-11,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1930147/000182912626004956/
+SPMA,0001930147,0001829126-26-003351,2026-04-09,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1930147/000182912626003351/
+SPMA,0001930147,0001829126-26-002158,2026-03-10,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1930147/000182912626002158/
+MSA,0000066570,0000066570-26-000025,2026-07-30,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/66570/000006657026000025/
+MSA,0000066570,0000066570-26-000022,2026-07-21,5.02,5.02: Director/officer change,0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/66570/000006657026000022/
+ASYS,0000720500,0000720500-26-000011,2026-08-05,"5.02,9.01","5.02: Director/officer change, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/720500/000072050026000011/
+ASYS,0000720500,0000720500-26-000009,2026-08-05,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/720500/000072050026000009/
+ASYS,0000720500,0000720500-26-000008,2026-06-03,"1.01,8.01,9.01","1.01: M&A entered, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/720500/000072050026000008/
+ASYS,0000720500,0001193125-26-211962,2026-05-07,"5.02,9.01","5.02: Director/officer change, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/720500/000119312526211962/
+ASYS,0000720500,0001193125-26-211838,2026-05-07,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/720500/000119312526211838/
+ASYS,0000720500,0001193125-26-195969,2026-04-30,"5.02,9.01","5.02: Director/officer change, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/720500/000119312526195969/
+ASYS,0000720500,0000720500-26-000001,2026-03-06,5.07,5.07: Vote/meeting,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/720500/000072050026000001/
+COCHW,0001840877,0001213900-26-087221,2026-08-10,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1840877/000121390026087221/
+FOXXW,0002013807,0001213900-26-082785,2026-07-29,3.01,3.01: Delisting notice,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2013807/000121390026082785/
+SRZN,0001824893,0001193125-26-338068,2026-08-06,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1824893/000119312526338068/
+SSM,0001840416,0001171843-26-001794,2026-03-19,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1840416/000117184326001794/
+SSM,0001840416,0001171843-26-001589,2026-03-16,"1.01,2.03,8.01,9.01","1.01: M&A entered, 2.03: 2.03, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1840416/000117184326001589/
+SSM,0001840416,0001171843-26-001464,2026-03-10,"1.01,3.02,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1840416/000117184326001464/
+SSM,0001840416,0001171843-26-001054,2026-02-24,"1.01,3.02,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1840416/000117184326001054/
+JBS,0001791942,0001213900-26-087444,2026-08-11,"2.02,5.02,7.01,9.01","2.02: Earnings, 5.02: Director/officer change, 7.01: Reg FD, 9.01: Financials",0,1,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1791942/000121390026087444/
+FLYX-WT,0001843973,0001193125-26-345834,2026-08-12,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1843973/000119312526345834/
+FLYX-WT,0001843973,0001193125-26-302638,2026-07-14,"1.01,2.01,9.01","1.01: M&A entered, 2.01: Acquisition closed, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1843973/000119312526302638/
+BLRK,0002081532,0001213900-26-084282,2026-08-03,"1.01,2.03,3.02,7.01,9.01","1.01: M&A entered, 2.03: 2.03, 3.02: PIPE/dilution, 7.01: Reg FD, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/2081532/000121390026084282/
+ZEOWW,0001865506,0001213900-26-087783,2026-08-11,"5.07,9.01","5.07: Vote/meeting, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1865506/000121390026087783/
+ANSCW,0001854149,0001193125-26-328831,2026-07-31,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1854149/000119312526328831/
+TDW,0000098222,0001437749-26-025451,2026-08-03,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/98222/000143774926025451/
+ORIQW,0002044523,0001493152-26-034076,2026-07-21,3.01,3.01: Delisting notice,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2044523/000149315226034076/
+LITS,0001262104,0001193125-26-325026,2026-07-30,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1262104/000119312526325026/
+LITS,0001262104,0001193125-26-316284,2026-07-24,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1262104/000119312526316284/
+LITS,0001262104,0001193125-26-220697,2026-05-13,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1262104/000119312526220697/
+LITS,0001262104,0001193125-26-053243,2026-02-17,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1262104/000119312526053243/
+WSTNU,0002076192,0001213900-26-082408,2026-07-29,"1.01,5.01,7.01,9.01","1.01: M&A entered, 5.01: Control change, 7.01: Reg FD, 9.01: Financials",1,0,0,0,0,1,https://www.sec.gov/Archives/edgar/data/2076192/000121390026082408/
+BOXL,0001624512,0001628280-26-056308,2026-08-12,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1624512/000162828026056308/
+BOXL,0001624512,0001213900-26-087806,2026-08-11,"1.01,3.02,5.03,8.01,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 5.03: Bylaw change, 8.01: Other event, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1624512/000121390026087806/
+BOXL,0001624512,0001628280-26-052735,2026-08-04,"5.02,9.01","5.02: Director/officer change, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1624512/000162828026052735/
+BOXL,0001624512,0001628280-26-050400,2026-07-29,"5.07,7.01,9.01","5.07: Vote/meeting, 7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1624512/000162828026050400/
+BOXL,0001624512,0001628280-26-046951,2026-07-02,"3.01,9.01","3.01: Delisting notice, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1624512/000162828026046951/
+BOXL,0001624512,0001213900-26-070452,2026-06-22,"3.03,5.03,7.01,9.01","3.03: Material modification of rights, 5.03: Bylaw change, 7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1624512/000121390026070452/
+BOXL,0001624512,0001628280-26-041049,2026-06-05,"5.07,7.01,9.01","5.07: Vote/meeting, 7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1624512/000162828026041049/
+BOXL,0001624512,0001628280-26-035636,2026-05-15,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1624512/000162828026035636/
+BOXL,0001624512,0001628280-26-026846,2026-04-23,"3.01,9.01","3.01: Delisting notice, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1624512/000162828026026846/
+BOXL,0001624512,0001628280-26-024911,2026-04-13,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1624512/000162828026024911/
+BOXL,0001624512,0001628280-26-023984,2026-04-07,"1.01,9.01","1.01: M&A entered, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1624512/000162828026023984/
+BOXL,0001624512,0001628280-26-010677,2026-02-23,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1624512/000162828026010677/
+SSACW,0002081300,0001193125-26-347537,2026-08-13,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2081300/000119312526347537/
+CHARU,0002024459,0001213900-26-085406,2026-08-05,"1.01,2.03,3.02,7.01,9.01","1.01: M&A entered, 2.03: 2.03, 3.02: PIPE/dilution, 7.01: Reg FD, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/2024459/000121390026085406/
+CHARU,0002024459,0001213900-26-082335,2026-07-28,"5.02,9.01","5.02: Director/officer change, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2024459/000121390026082335/
+CCXIW,0002074973,0001213900-26-086928,2026-08-10,"1.01,2.03,9.01","1.01: M&A entered, 2.03: 2.03, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2074973/000121390026086928/
+CCXIW,0002074973,0001213900-26-077978,2026-07-14,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2074973/000121390026077978/
+BNY,0001390777,0001193125-26-347061,2026-08-12,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1390777/000119312526347061/
+BNY,0001390777,0001193125-26-314242,2026-07-23,"5.03,8.01,9.01","5.03: Bylaw change, 8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1390777/000119312526314242/
+BNY,0001390777,0001390777-26-000071,2026-07-15,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1390777/000139077726000071/
+Z,0001617640,0001617640-26-000050,2026-08-05,"2.02,5.02,9.01","2.02: Earnings, 5.02: Director/officer change, 9.01: Financials",0,1,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1617640/000161764026000050/
+XRPN,0002044009,0001193125-26-328607,2026-07-31,"1.01,2.03,9.01","1.01: M&A entered, 2.03: 2.03, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2044009/000119312526328607/
+ET-PI,0001276187,0001276187-26-000033,2026-08-04,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1276187/000127618726000033/
+ET-PI,0001276187,0001193125-26-309155,2026-07-21,"1.01,2.03,9.01","1.01: M&A entered, 2.03: 2.03, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1276187/000119312526309155/
+CLNN,0001822791,0001437749-26-026653,2026-08-10,"7.01,8.01,9.01","7.01: Reg FD, 8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1822791/000143774926026653/
+CLNN,0001822791,0001437749-26-018267,2026-05-22,"1.01,5.02,5.07,9.01","1.01: M&A entered, 5.02: Director/officer change, 5.07: Vote/meeting, 9.01: Financials",1,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1822791/000143774926018267/
+CLNN,0001822791,0001437749-26-016881,2026-05-14,"1.01,2.02,9.01","1.01: M&A entered, 2.02: Earnings, 9.01: Financials",1,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1822791/000143774926016881/
+CLNN,0001822791,0001437749-26-014946,2026-05-05,"1.01,8.01,9.01","1.01: M&A entered, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1822791/000143774926014946/
+CLNN,0001822791,0001437749-26-014542,2026-05-04,"7.01,8.01,9.01","7.01: Reg FD, 8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1822791/000143774926014542/
+CLNN,0001822791,0001437749-26-008482,2026-03-17,"1.01,9.01","1.01: M&A entered, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1822791/000143774926008482/
+CLNN,0001822791,0001437749-26-007828,2026-03-12,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1822791/000143774926007828/
+CLNN,0001822791,0001437749-26-005156,2026-02-24,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1822791/000143774926005156/
+OPI,0001456772,0001456772-26-000034,2026-08-05,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1456772/000145677226000034/
+OPI,0001456772,0001104659-26-076652,2026-06-23,"1.01,1.02,1.03,2.03,3.02,3.03,5.01,5.02,5.03,6.1,6.2,8.01,9.01","1.01: M&A entered, 1.02: M&A terminated, 1.03: Bankruptcy, 2.03: 2.03, 3.02: PIPE/dilution, 3.03: Material modification of rights, 5.01: Control change, 5.02: Director/officer change, 5.03: Bylaw change, 6.1: 6.1, 6.2: 6.2, 8.01: Other event, 9.01: Financials",1,1,0,1,1,1,https://www.sec.gov/Archives/edgar/data/1456772/000110465926076652/
+OPI,0001456772,0001104659-26-070541,2026-06-04,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1456772/000110465926070541/
+OPI,0001456772,0001104659-26-056294,2026-05-06,"7.01,8.01,9.01","7.01: Reg FD, 8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1456772/000110465926056294/
+OPI,0001456772,0001104659-26-050398,2026-04-28,"1.03,7.01,9.01","1.03: Bankruptcy, 7.01: Reg FD, 9.01: Financials",0,0,0,1,0,0,https://www.sec.gov/Archives/edgar/data/1456772/000110465926050398/
+OPI,0001456772,0001104659-26-038561,2026-04-01,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1456772/000110465926038561/
+OPI,0001456772,0001104659-26-027749,2026-03-13,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1456772/000110465926027749/
+OPI,0001456772,0001104659-26-023459,2026-03-04,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1456772/000110465926023459/
+OPI,0001456772,0001104659-26-018140,2026-02-20,7.01,7.01: Reg FD,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1456772/000110465926018140/
+XFLT,0001703079,0001213900-26-087333,2026-08-10,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1703079/000121390026087333/
+XFLT,0001703079,0001213900-26-083432,2026-07-30,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1703079/000121390026083432/
+XFLT,0001703079,0001213900-26-062949,2026-05-29,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1703079/000121390026062949/
+XFLT,0001703079,0001213900-26-059091,2026-05-19,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1703079/000121390026059091/
+MKLY,0002067592,0001213900-26-085663,2026-08-05,"1.01,2.03,3.02,7.01,9.01","1.01: M&A entered, 2.03: 2.03, 3.02: PIPE/dilution, 7.01: Reg FD, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/2067592/000121390026085663/
+LGMK,0001566826,0001213900-26-084705,2026-08-03,"1.01,9.01","1.01: M&A entered, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1566826/000121390026084705/
+LGMK,0001566826,0001213900-26-083402,2026-07-30,"1.01,3.02,3.03,5.02,5.03,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 3.03: Material modification of rights, 5.02: Director/officer change, 5.03: Bylaw change, 9.01: Financials",1,1,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1566826/000121390026083402/
+LGMK,0001566826,0001213900-26-057728,2026-05-15,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1566826/000121390026057728/
+LGMK,0001566826,0001213900-26-035498,2026-03-27,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1566826/000121390026035498/
+STKS,0001399520,0001104659-26-091169,2026-08-05,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1399520/000110465926091169/
+STKS,0001399520,0001104659-26-081303,2026-07-07,"4.01,9.01","4.01: Auditor change, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1399520/000110465926081303/
+STKS,0001399520,0001104659-26-063944,2026-05-19,"5.07,8.01","5.07: Vote/meeting, 8.01: Other event",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1399520/000110465926063944/
+STKS,0001399520,0001104659-26-056358,2026-05-06,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1399520/000110465926056358/
+STKS,0001399520,0001104659-26-031731,2026-03-19,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1399520/000110465926031731/
+STKS,0001399520,0001104659-26-027350,2026-03-13,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1399520/000110465926027350/
+BIO-B,0000012208,0000012208-26-000046,2026-08-04,"2.02,2.05,7.01,9.01","2.02: Earnings, 2.05: Restructuring/exit, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/12208/000001220826000046/
+AREC,0001590715,0001477932-26-004477,2026-07-24,"4.01,4.02,9.01","4.01: Auditor change, 4.02: Non-reliance restate, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1590715/000147793226004477/
+AREC,0001590715,0001654954-26-006850,2026-07-24,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1590715/000165495426006850/
+AREC,0001590715,0001654954-26-006764,2026-07-21,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1590715/000165495426006764/
+AREC,0001590715,0001654954-26-005688,2026-06-04,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1590715/000165495426005688/
+AREC,0001590715,0001654954-26-004174,2026-04-30,"3.01,9.01","3.01: Delisting notice, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1590715/000165495426004174/
+AREC,0001590715,0001654954-26-003670,2026-04-17,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1590715/000165495426003670/
+AREC,0001590715,0001654954-26-003561,2026-04-16,"5.02,5.07","5.02: Director/officer change, 5.07: Vote/meeting",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1590715/000165495426003561/
+AREC,0001590715,0001654954-26-002218,2026-03-13,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1590715/000165495426002218/
+AREC,0001590715,0001654954-26-002177,2026-03-12,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1590715/000165495426002177/
+DNABW,0001830214,0001628280-26-053319,2026-08-05,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1830214/000162828026053319/
+DNABW,0001830214,0001628280-26-051041,2026-07-30,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1830214/000162828026051041/
+AISPW,0001842566,0001654954-26-007329,2026-08-06,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1842566/000165495426007329/
+SF,0000720672,0001193125-26-311288,2026-07-22,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/720672/000119312526311288/
+KDKRW,0001853138,0001628280-26-054331,2026-08-06,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1853138/000162828026054331/
+BELFB,0000729580,0001437749-26-024893,2026-07-29,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/729580/000143774926024893/
+MCHP,0000827054,0000827054-26-000037,2026-08-06,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/827054/000082705426000037/
+MCHP,0000827054,0000827054-26-000031,2026-07-24,5.02,5.02: Director/officer change,0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/827054/000082705426000031/
+AFJKU,0001979005,0001493152-26-036336,2026-08-06,"2.03,9.01","2.03: 2.03, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1979005/000149315226036336/
+AFJKU,0001979005,0001493152-26-032541,2026-07-08,"1.02,7.01,9.01","1.02: M&A terminated, 7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1979005/000149315226032541/
+AFJKU,0001979005,0001493152-26-032151,2026-07-06,"2.03,9.01","2.03: 2.03, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1979005/000149315226032151/
+AFJKU,0001979005,0001493152-26-031065,2026-06-29,"5.02,9.01","5.02: Director/officer change, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1979005/000149315226031065/
+AFJKU,0001979005,0001493152-26-027265,2026-06-04,"2.03,9.01","2.03: 2.03, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1979005/000149315226027265/
+AFJKU,0001979005,0001493152-26-024600,2026-05-20,"3.01,9.01","3.01: Delisting notice, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1979005/000149315226024600/
+AFJKU,0001979005,0001493152-26-021486,2026-05-06,"2.03,9.01","2.03: 2.03, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1979005/000149315226021486/
+AFJKU,0001979005,0001493152-26-018216,2026-04-21,"3.01,9.01","3.01: Delisting notice, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1979005/000149315226018216/
+AFJKU,0001979005,0001493152-26-015512,2026-04-07,"2.03,9.01","2.03: 2.03, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1979005/000149315226015512/
+AFJKU,0001979005,0001493152-26-008853,2026-03-04,"2.03,9.01","2.03: 2.03, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1979005/000149315226008853/
+DYAI,0001213809,0001493152-26-037257,2026-08-12,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1213809/000149315226037257/
+DYAI,0001213809,0001493152-26-034475,2026-07-24,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1213809/000149315226034475/
+DYAI,0001213809,0001493152-26-029504,2026-06-22,5.07,5.07: Vote/meeting,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1213809/000149315226029504/
+DYAI,0001213809,0001493152-26-029214,2026-06-18,3.01,3.01: Delisting notice,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1213809/000149315226029214/
+DYAI,0001213809,0001493152-26-028700,2026-06-15,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1213809/000149315226028700/
+DYAI,0001213809,0001493152-26-025554,2026-05-28,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1213809/000149315226025554/
+DYAI,0001213809,0001493152-26-022727,2026-05-13,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1213809/000149315226022727/
+DYAI,0001213809,0001493152-26-013405,2026-03-30,3.01,3.01: Delisting notice,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1213809/000149315226013405/
+DYAI,0001213809,0001493152-26-012673,2026-03-25,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1213809/000149315226012673/
+DYAI,0001213809,0001493152-26-009179,2026-03-06,"1.01,8.01,9.01","1.01: M&A entered, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1213809/000149315226009179/
+AWHL,0000926617,0000926617-26-000052,2026-07-15,"1.01,2.03,9.01","1.01: M&A entered, 2.03: 2.03, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/926617/000092661726000052/
+AWHL,0000926617,0000926617-26-000047,2026-06-22,5.02,5.02: Director/officer change,0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/926617/000092661726000047/
+AWHL,0000926617,0000926617-26-000045,2026-06-17,5.07,5.07: Vote/meeting,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/926617/000092661726000045/
+AWHL,0000926617,0000926617-26-000042,2026-06-09,"1.01,3.02,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/926617/000092661726000042/
+AWHL,0000926617,0000926617-26-000037,2026-05-26,"1.01,9.01","1.01: M&A entered, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/926617/000092661726000037/
+AWHL,0000926617,0000926617-26-000029,2026-04-30,5.02,5.02: Director/officer change,0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/926617/000092661726000029/
+WINT,0000946486,0001437749-26-024009,2026-07-22,"1.01,9.01","1.01: M&A entered, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/946486/000143774926024009/
+SENEL,0000088948,0001437749-26-027008,2026-08-11,"5.07,9.01","5.07: Vote/meeting, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/88948/000143774926027008/
+CWGL,0001562151,0001628280-26-050043,2026-07-28,5.07,5.07: Vote/meeting,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1562151/000162828026050043/
+NWSA,0001564708,0001564708-26-000179,2026-08-13,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000179/
+NWSA,0001564708,0001564708-26-000178,2026-08-12,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000178/
+NWSA,0001564708,0001564708-26-000177,2026-08-11,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000177/
+NWSA,0001564708,0001564708-26-000176,2026-08-10,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000176/
+NWSA,0001564708,0001564708-26-000174,2026-08-07,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000174/
+NWSA,0001564708,0001564708-26-000172,2026-08-06,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000172/
+NWSA,0001564708,0001564708-26-000171,2026-08-05,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000171/
+NWSA,0001564708,0001564708-26-000167,2026-08-05,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000167/
+NWSA,0001564708,0001564708-26-000166,2026-08-04,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000166/
+NWSA,0001564708,0001564708-26-000165,2026-08-03,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000165/
+NWSA,0001564708,0001564708-26-000164,2026-07-31,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000164/
+NWSA,0001564708,0001564708-26-000163,2026-07-30,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000163/
+NWSA,0001564708,0001564708-26-000162,2026-07-29,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000162/
+NWSA,0001564708,0001564708-26-000161,2026-07-28,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000161/
+NWSA,0001564708,0001564708-26-000160,2026-07-27,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000160/
+NWSA,0001564708,0001564708-26-000159,2026-07-24,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000159/
+NWSA,0001564708,0001564708-26-000158,2026-07-23,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000158/
+NWSA,0001564708,0001564708-26-000157,2026-07-22,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000157/
+NWSA,0001564708,0001564708-26-000156,2026-07-21,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000156/
+NWSA,0001564708,0001564708-26-000155,2026-07-20,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000155/
+NWSA,0001564708,0001564708-26-000154,2026-07-17,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000154/
+NWSA,0001564708,0001564708-26-000153,2026-07-16,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000153/
+NWSA,0001564708,0001564708-26-000152,2026-07-15,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000152/
+NWSA,0001564708,0001564708-26-000151,2026-07-14,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000151/
+NWSA,0001564708,0001564708-26-000150,2026-07-13,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1564708/000156470826000150/
+ATXI,0001644963,0001104659-26-018582,2026-02-23,"1.01,8.01,9.01","1.01: M&A entered, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1644963/000110465926018582/
+AMCI,0001937891,0001493152-26-029881,2026-06-24,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1937891/000149315226029881/
+AMCI,0001937891,0001493152-26-027213,2026-06-04,"1.01,9.01","1.01: M&A entered, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1937891/000149315226027213/
+AMCI,0001937891,0001493152-26-016939,2026-04-16,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1937891/000149315226016939/
+GTN-A,0000043196,0001437749-26-026424,2026-08-07,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/43196/000143774926026424/
+GTN-A,0000043196,0001437749-26-026423,2026-08-07,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/43196/000143774926026423/
+GTN-A,0000043196,0001437749-26-026422,2026-08-07,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/43196/000143774926026422/
+GTN-A,0000043196,0001437749-26-023973,2026-07-21,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/43196/000143774926023973/
+RACC,0002118032,0001193125-26-316954,2026-07-27,"1.01,3.02,7.01,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 7.01: Reg FD, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/2118032/000119312526316954/
+RACC,0002118032,0001193125-26-245567,2026-05-28,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2118032/000119312526245567/
+RACC,0002118032,0001193125-26-234382,2026-05-21,"1.01,3.02,5.02,5.03,8.01,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 5.02: Director/officer change, 5.03: Bylaw change, 8.01: Other event, 9.01: Financials",1,1,0,0,1,0,https://www.sec.gov/Archives/edgar/data/2118032/000119312526234382/
+AIM,0000946644,0001493152-26-036996,2026-08-11,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/946644/000149315226036996/
+AIM,0000946644,0001493152-26-036753,2026-08-10,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/946644/000149315226036753/
+AIM,0000946644,0001493152-26-036408,2026-08-06,"1.01,5.08,9.01","1.01: M&A entered, 5.08: Shareholder director nominations, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/946644/000149315226036408/
+AIM,0000946644,0001493152-26-036104,2026-08-05,1.02,1.02: M&A terminated,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/946644/000149315226036104/
+AIM,0000946644,0001493152-26-033514,2026-07-16,5.07,5.07: Vote/meeting,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/946644/000149315226033514/
+AIM,0000946644,0001493152-26-028615,2026-06-15,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/946644/000149315226028615/
+AIM,0000946644,0001493152-26-028283,2026-06-11,"1.01,3.02,8.01,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 8.01: Other event, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/946644/000149315226028283/
+AIM,0000946644,0001493152-26-028129,2026-06-10,"5.03,9.01","5.03: Bylaw change, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/946644/000149315226028129/
+AIM,0000946644,0001493152-26-027210,2026-06-04,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/946644/000149315226027210/
+AIM,0000946644,0001493152-26-024760,2026-05-21,"1.01,3.02,8.01,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 8.01: Other event, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/946644/000149315226024760/
+AIM,0000946644,0001493152-26-024353,2026-05-19,"1.01,2.02,2.03,7.01,9.01","1.01: M&A entered, 2.02: Earnings, 2.03: 2.03, 7.01: Reg FD, 9.01: Financials",1,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/946644/000149315226024353/
+AIM,0000946644,0001493152-26-022891,2026-05-14,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/946644/000149315226022891/
+AIM,0000946644,0001493152-26-022499,2026-05-12,"3.02,9.01","3.02: PIPE/dilution, 9.01: Financials",0,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/946644/000149315226022499/
+AIM,0000946644,0001493152-26-021863,2026-05-08,"1.01,3.02,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/946644/000149315226021863/
+AIM,0000946644,0001493152-26-016179,2026-04-10,"1.01,9.01","1.01: M&A entered, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/946644/000149315226016179/
+AIM,0000946644,0001493152-26-009190,2026-03-06,"1.01,3.03,5.03,8.01,9.01","1.01: M&A entered, 3.03: Material modification of rights, 5.03: Bylaw change, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/946644/000149315226009190/
+VGASW,0001841425,0001628280-26-055381,2026-08-11,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1841425/000162828026055381/
+APTOF,0000882361,0001193125-26-291114,2026-07-01,"2.01,3.03,5.01,5.02,8.01,9.01","2.01: Acquisition closed, 3.03: Material modification of rights, 5.01: Control change, 5.02: Director/officer change, 8.01: Other event, 9.01: Financials",1,1,0,0,0,1,https://www.sec.gov/Archives/edgar/data/882361/000119312526291114/
+APTOF,0000882361,0001171843-26-004406,2026-07-01,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/882361/000117184326004406/
+APTOF,0000882361,0001171843-26-004119,2026-06-15,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/882361/000117184326004119/
+APTOF,0000882361,0001171843-26-003778,2026-05-29,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/882361/000117184326003778/
+APTOF,0000882361,0001171843-26-003381,2026-05-13,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/882361/000117184326003381/
+APTOF,0000882361,0001171843-26-002877,2026-04-30,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/882361/000117184326002877/
+APTOF,0000882361,0001171843-26-002103,2026-03-31,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/882361/000117184326002103/
+APTOF,0000882361,0001193125-26-134870,2026-03-31,5.07,5.07: Vote/meeting,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/882361/000119312526134870/
+APTOF,0000882361,0001193125-26-119951,2026-03-23,"1.01,5.02,9.01","1.01: M&A entered, 5.02: Director/officer change, 9.01: Financials",1,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/882361/000119312526119951/
+APTOF,0000882361,0001171843-26-001837,2026-03-23,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/882361/000117184326001837/
+APTOF,0000882361,0001171843-26-001777,2026-03-19,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/882361/000117184326001777/
+APTOF,0000882361,0001193125-26-064847,2026-02-24,"1.01,2.03,7.01,9.01","1.01: M&A entered, 2.03: 2.03, 7.01: Reg FD, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/882361/000119312526064847/
+CYCUW,0001868419,0001628280-26-055946,2026-08-12,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1868419/000162828026055946/
+CYCUW,0001868419,0001493152-26-036024,2026-08-04,"1.01,2.01,3.02,8.01,9.01","1.01: M&A entered, 2.01: Acquisition closed, 3.02: PIPE/dilution, 8.01: Other event, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1868419/000149315226036024/
+CYCUW,0001868419,0001493152-26-035854,2026-08-03,"1.01,3.02,8.01,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 8.01: Other event, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1868419/000149315226035854/
+CYCUW,0001868419,0001628280-26-051447,2026-07-31,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1868419/000162828026051447/
+CYCUW,0001868419,0001493152-26-035658,2026-07-31,"1.01,9.01","1.01: M&A entered, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1868419/000149315226035658/
+CYCUW,0001868419,0001493152-26-035138,2026-07-29,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1868419/000149315226035138/
+CYCUW,0001868419,0001628280-26-049641,2026-07-24,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1868419/000162828026049641/
+CYCUW,0001868419,0001493152-26-034443,2026-07-23,"5.02,5.03,5.07,9.01","5.02: Director/officer change, 5.03: Bylaw change, 5.07: Vote/meeting, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1868419/000149315226034443/
+CYCUW,0001868419,0001628280-26-048496,2026-07-16,"3.01,7.01,9.01","3.01: Delisting notice, 7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1868419/000162828026048496/
+BCLI,0001137883,0001104659-26-088728,2026-07-30,"5.02,7.01,9.01","5.02: Director/officer change, 7.01: Reg FD, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1137883/000110465926088728/
+BCLI,0001137883,0001104659-26-067474,2026-05-28,"5.02,7.01,9.01","5.02: Director/officer change, 7.01: Reg FD, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1137883/000110465926067474/
+BCLI,0001137883,0001104659-26-062766,2026-05-15,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1137883/000110465926062766/
+BCLI,0001137883,0001104659-26-037760,2026-03-31,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1137883/000110465926037760/
+BCLI,0001137883,0001104659-26-021613,2026-02-27,"1.01,3.02,5.02,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 5.02: Director/officer change, 9.01: Financials",1,1,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1137883/000110465926021613/
+NMTC,0001500198,0001213900-26-088719,2026-08-13,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1500198/000121390026088719/
+NMTC,0001500198,0001213900-26-068327,2026-06-12,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1500198/000121390026068327/
+NMTC,0001500198,0001213900-26-060600,2026-05-22,"4.02,7.01,9.01","4.02: Non-reliance restate, 7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1500198/000121390026060600/
+NMTC,0001500198,0001213900-26-054744,2026-05-12,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1500198/000121390026054744/
+NMTC,0001500198,0001213900-26-051158,2026-05-04,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1500198/000121390026051158/
+NMTC,0001500198,0001213900-26-049748,2026-04-30,"5.02,9.01","5.02: Director/officer change, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1500198/000121390026049748/
+NMTC,0001500198,0001213900-26-043239,2026-04-14,"5.03,9.01","5.03: Bylaw change, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1500198/000121390026043239/
+NMTC,0001500198,0001213900-26-039992,2026-04-03,"5.02,5.07,9.01","5.02: Director/officer change, 5.07: Vote/meeting, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1500198/000121390026039992/
+NMTC,0001500198,0001213900-26-020400,2026-02-25,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1500198/000121390026020400/
+NMTC,0001500198,0001213900-26-016912,2026-02-17,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1500198/000121390026016912/
+PTIX,0001022899,0001493152-26-015365,2026-04-07,5.02,5.02: Director/officer change,0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1022899/000149315226015365/
+PTIX,0001022899,0001493152-26-008605,2026-03-03,5.02,5.02: Director/officer change,0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1022899/000149315226008605/
+PTIX,0001022899,0001493152-26-007800,2026-02-24,"1.01,1.02,2.01,3.02,8.01,9.01","1.01: M&A entered, 1.02: M&A terminated, 2.01: Acquisition closed, 3.02: PIPE/dilution, 8.01: Other event, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1022899/000149315226007800/
+SKYAW,0001737995,0001493152-26-033796,2026-07-17,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1737995/000149315226033796/
+SKYAW,0001737995,0001493152-26-026534,2026-06-01,"5.03,8.01,9.01","5.03: Bylaw change, 8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1737995/000149315226026534/
+SKYAW,0001737995,0001493152-26-026381,2026-05-29,"1.01,5.02,9.01","1.01: M&A entered, 5.02: Director/officer change, 9.01: Financials",1,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1737995/000149315226026381/
+SKYAW,0001737995,0001493152-26-007758,2026-02-23,"1.01,5.02","1.01: M&A entered, 5.02: Director/officer change",1,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1737995/000149315226007758/
+VXRT,0000072444,0001437749-26-026280,2026-08-06,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/72444/000143774926026280/
+VXRT,0000072444,0001437749-26-024560,2026-07-28,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/72444/000143774926024560/
+VXRT,0000072444,0001437749-26-023762,2026-07-17,"5.07,7.01,9.01","5.07: Vote/meeting, 7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/72444/000143774926023762/
+VXRT,0000072444,0001437749-26-022876,2026-07-07,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/72444/000143774926022876/
+VXRT,0000072444,0001213900-26-074576,2026-07-02,"1.01,7.01,9.01","1.01: M&A entered, 7.01: Reg FD, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/72444/000121390026074576/
+VXRT,0000072444,0001437749-26-021833,2026-06-26,"1.01,8.01,9.01","1.01: M&A entered, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/72444/000143774926021833/
+VXRT,0000072444,0001213900-26-059127,2026-05-19,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/72444/000121390026059127/
+VXRT,0000072444,0001437749-26-015586,2026-05-07,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/72444/000143774926015586/
+VXRT,0000072444,0001437749-26-013195,2026-04-23,"5.02,7.01,9.01","5.02: Director/officer change, 7.01: Reg FD, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/72444/000143774926013195/
+VXRT,0000072444,0001437749-26-012882,2026-04-21,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/72444/000143774926012882/
+VXRT,0000072444,0001437749-26-012623,2026-04-17,"1.01,3.02,7.01,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 7.01: Reg FD, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/72444/000143774926012623/
+VXRT,0000072444,0001437749-26-007968,2026-03-12,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/72444/000143774926007968/
+NAMSW,0001936258,0001193125-26-333827,2026-08-05,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1936258/000119312526333827/
+NAMSW,0001936258,0001193125-26-315163,2026-07-24,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1936258/000119312526315163/
+NAMSW,0001936258,0001193125-26-312390,2026-07-22,5.02,5.02: Director/officer change,0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1936258/000119312526312390/
+NOEMR,0001956648,0001213900-26-084038,2026-07-31,"5.02,9.01","5.02: Director/officer change, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1956648/000121390026084038/
+NOEMR,0001956648,0001213900-26-081876,2026-07-27,"5.03,5.07,8.01,9.01","5.03: Bylaw change, 5.07: Vote/meeting, 8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1956648/000121390026081876/
+NOEMR,0001956648,0001213900-26-079977,2026-07-21,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1956648/000121390026079977/
+NOEMR,0001956648,0001213900-26-079125,2026-07-17,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1956648/000121390026079125/
+NOEMR,0001956648,0001213900-26-077592,2026-07-13,"1.01,2.03,3.02,8.01,9.01","1.01: M&A entered, 2.03: 2.03, 3.02: PIPE/dilution, 8.01: Other event, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1956648/000121390026077592/
+CTRVP,0001583771,0001493152-26-035940,2026-08-04,"1.01,3.02,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1583771/000149315226035940/
+CTRVP,0001583771,0001493152-26-031918,2026-07-02,5.02,5.02: Director/officer change,0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1583771/000149315226031918/
+CTRVP,0001583771,0001493152-26-029085,2026-06-17,5.07,5.07: Vote/meeting,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1583771/000149315226029085/
+CTRVP,0001583771,0001493152-26-018575,2026-04-22,"1.01,3.02,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1583771/000149315226018575/
+CTRVP,0001583771,0001493152-26-016557,2026-04-14,"1.01,5.02","1.01: M&A entered, 5.02: Director/officer change",1,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1583771/000149315226016557/
+CTRVP,0001583771,0001493152-26-011222,2026-03-18,5.02,5.02: Director/officer change,0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1583771/000149315226011222/
+CTRVP,0001583771,0001493152-26-008650,2026-03-03,"1.01,8.01,9.01","1.01: M&A entered, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1583771/000149315226008650/
+CCAP,0001633336,0001193125-26-342415,2026-08-10,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1633336/000119312526342415/
+CCAP,0001633336,0001193125-26-292528,2026-07-01,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1633336/000119312526292528/
+CCAP,0001633336,0001193125-26-281053,2026-06-24,2.03,2.03: 2.03,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1633336/000119312526281053/
+CCAP,0001633336,0001193125-26-241887,2026-05-27,"1.01,8.01,9.01","1.01: M&A entered, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1633336/000119312526241887/
+CCAP,0001633336,0001193125-26-229127,2026-05-18,5.07,5.07: Vote/meeting,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1633336/000119312526229127/
+CCAP,0001633336,0001193125-26-221986,2026-05-13,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1633336/000119312526221986/
+CCAP,0001633336,0001193125-26-214602,2026-05-08,5.02,5.02: Director/officer change,0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1633336/000119312526214602/
+CCAP,0001633336,0001193125-26-098526,2026-03-09,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1633336/000119312526098526/
+CCAP,0001633336,0001193125-26-070903,2026-02-25,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1633336/000119312526070903/
+WHR-PA,0000106640,0000106640-26-000056,2026-08-03,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/106640/000010664026000056/
+WBS,0000801337,0000801337-26-000025,2026-08-05,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/801337/000080133726000025/
+WBS,0000801337,0000801337-26-000021,2026-07-21,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/801337/000080133726000021/
+NWAX-UN,0002074878,0001493152-26-036181,2026-08-05,"5.02,7.01,9.01","5.02: Director/officer change, 7.01: Reg FD, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2074878/000149315226036181/
+NE-WT,0001895262,0001895262-26-000138,2026-07-27,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1895262/000189526226000138/
+LBTYA,0001570585,0001570585-26-000125,2026-08-06,"1.01,2.01,9.01","1.01: M&A entered, 2.01: Acquisition closed, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1570585/000157058526000125/
+LBTYA,0001570585,0001570585-26-000119,2026-08-03,"7.01,8.01,9.01","7.01: Reg FD, 8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1570585/000157058526000119/
+LBTYA,0001570585,0001570585-26-000114,2026-07-28,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1570585/000157058526000114/
+LBTYA,0001570585,0001570585-26-000111,2026-07-24,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1570585/000157058526000111/
+TFC,0000092230,0001193125-26-323732,2026-07-29,"5.03,9.01","5.03: Bylaw change, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/92230/000119312526323732/
+TFC,0000092230,0001193125-26-313404,2026-07-23,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/92230/000119312526313404/
+TFC,0000092230,0000092230-26-000096,2026-07-17,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/92230/000009223026000096/
+TDACW,0001926599,0001104659-26-087086,2026-07-27,"1.01,3.02,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1926599/000110465926087086/
+BFH-PA,0001101215,0001101215-26-000069,2026-07-23,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1101215/000110121526000069/
+BFH-PA,0001101215,0001101215-26-000068,2026-07-23,"2.02,7.01,8.01,9.01","2.02: Earnings, 7.01: Reg FD, 8.01: Other event, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1101215/000110121526000068/
+BFH-PA,0001101215,0001101215-26-000065,2026-07-14,"5.02,7.01,9.01","5.02: Director/officer change, 7.01: Reg FD, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1101215/000110121526000065/
+ALTG-PA,0001759824,0001193125-26-338061,2026-08-06,"2.02,5.02,9.01","2.02: Earnings, 5.02: Director/officer change, 9.01: Financials",0,1,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1759824/000119312526338061/
+SCCO,0001001838,0001104659-26-085515,2026-07-22,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1001838/000110465926085515/
+SCCO,0001001838,0001104659-26-084713,2026-07-17,5.07,5.07: Vote/meeting,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1001838/000110465926084713/
+SCCO,0001001838,0001104659-26-078041,2026-06-26,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1001838/000110465926078041/
+SCCO,0001001838,0001140361-26-026337,2026-06-25,"1.01,2.03,8.01,9.01","1.01: M&A entered, 2.03: 2.03, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1001838/000114036126026337/
+SCCO,0001001838,0001140361-26-025549,2026-06-17,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1001838/000114036126025549/
+SCCO,0001001838,0001104659-26-051713,2026-04-29,5.02,5.02: Director/officer change,0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1001838/000110465926051713/
+SCCO,0001001838,0001104659-26-051281,2026-04-29,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1001838/000110465926051281/
+SCCO,0001001838,0001104659-26-044976,2026-04-17,5.02,5.02: Director/officer change,0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1001838/000110465926044976/
+SCCO,0001001838,0001104659-26-042701,2026-04-13,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1001838/000110465926042701/
+SO,0000092122,0000092122-26-000063,2026-08-06,"2.03,3.02,9.01","2.03: 2.03, 3.02: PIPE/dilution, 9.01: Financials",0,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/92122/000009212226000063/
+SO,0000092122,0000092122-26-000060,2026-08-04,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/92122/000009212226000060/
+SO,0000092122,0000092122-26-000058,2026-08-03,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/92122/000009212226000058/
+SO,0000092122,0000092122-26-000056,2026-07-30,2.02,2.02: Earnings,0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/92122/000009212226000056/
+SOUL-UN,0002025608,0001493152-26-035494,2026-07-30,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2025608/000149315226035494/
+FWONA,0001560385,0001104659-26-093023,2026-08-10,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1560385/000110465926093023/
+FWONA,0001560385,0001560385-26-000022,2026-08-06,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1560385/000156038526000022/
+FWONA,0001560385,0001560385-26-000020,2026-07-15,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1560385/000156038526000020/
+DGXX,0001854368,0001213900-26-084921,2026-08-04,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1854368/000121390026084921/
+DGXX,0001854368,0001213900-26-075755,2026-07-07,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1854368/000121390026075755/
+DGXX,0001854368,0001213900-26-064447,2026-06-03,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1854368/000121390026064447/
+DGXX,0001854368,0001213900-26-057139,2026-05-15,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1854368/000121390026057139/
+DGXX,0001854368,0001213900-26-054026,2026-05-08,"7.01,8.01,9.01","7.01: Reg FD, 8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1854368/000121390026054026/
+DGXX,0001854368,0001213900-26-053566,2026-05-08,"1.01,7.01,9.01","1.01: M&A entered, 7.01: Reg FD, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1854368/000121390026053566/
+DGXX,0001854368,0001213900-26-045361,2026-04-20,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1854368/000121390026045361/
+DGXX,0001854368,0001213900-26-042070,2026-04-09,"1.01,7.01,9.01","1.01: M&A entered, 7.01: Reg FD, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1854368/000121390026042070/
+DGXX,0001854368,0001213900-26-037679,2026-03-31,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1854368/000121390026037679/
+DGXX,0001854368,0001213900-26-032629,2026-03-23,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1854368/000121390026032629/
+DGXX,0001854368,0001213900-26-027983,2026-03-16,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1854368/000121390026027983/
+DGXX,0001854368,0001213900-26-027265,2026-03-13,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1854368/000121390026027265/
+DGXX,0001854368,0001213900-26-022001,2026-03-02,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1854368/000121390026022001/
+DGXX,0001854368,0001213900-26-019560,2026-02-24,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1854368/000121390026019560/
+DGXX,0001854368,0001213900-26-018930,2026-02-23,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1854368/000121390026018930/
+KCAC-WT,0002102713,0001193125-26-340529,2026-08-07,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2102713/000119312526340529/
+KCAC-WT,0002102713,0001193125-26-311388,2026-07-22,"1.01,3.02,7.01,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 7.01: Reg FD, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/2102713/000119312526311388/
+ARCLU,0002073515,0001493152-26-024838,2026-05-21,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2073515/000149315226024838/
+ARCLU,0002073515,0001493152-26-021708,2026-05-07,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2073515/000149315226021708/
+ARCLU,0002073515,0001493152-26-021181,2026-05-05,"1.01,3.02,5.02,5.03,8.01,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 5.02: Director/officer change, 5.03: Bylaw change, 8.01: Other event, 9.01: Financials",1,1,0,0,1,0,https://www.sec.gov/Archives/edgar/data/2073515/000149315226021181/
+BACCU,0002059654,0001185185-26-003212,2026-07-31,"1.01,9.01","1.01: M&A entered, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2059654/000118518526003212/
+AMH,0001562401,0001562401-26-000043,2026-07-30,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1562401/000156240126000043/
+AVLN,0001540171,0001193125-26-345807,2026-08-12,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1540171/000119312526345807/
+AVLN,0001540171,0001193125-26-292834,2026-07-01,"1.01,9.01","1.01: M&A entered, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1540171/000119312526292834/
+AVLN,0001540171,0001193125-26-273405,2026-06-17,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1540171/000119312526273405/
+AVLN,0001540171,0001193125-26-254581,2026-06-03,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1540171/000119312526254581/
+AVLN,0001540171,0001193125-26-201434,2026-05-01,"5.03,9.01","5.03: Bylaw change, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1540171/000119312526201434/
+IMSRW,0002019804,0001104659-26-093776,2026-08-11,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/2019804/000110465926093776/
+IMSRW,0002019804,0002019804-26-000021,2026-07-31,5.02,5.02: Director/officer change,0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2019804/000201980426000021/
+IMSRW,0002019804,0002019804-26-000018,2026-07-28,"5.02,7.01,9.01","5.02: Director/officer change, 7.01: Reg FD, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2019804/000201980426000018/
+IMSRW,0002019804,0002019804-26-000013,2026-07-21,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2019804/000201980426000013/
+IMSRW,0002019804,0002019804-26-000006,2026-07-17,5.02,5.02: Director/officer change,0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2019804/000201980426000006/
+GMRS,0001898718,0001104659-26-095027,2026-08-12,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1898718/000110465926095027/
+GMRS,0001898718,0001104659-26-081586,2026-07-08,"5.02,7.01,9.01","5.02: Director/officer change, 7.01: Reg FD, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1898718/000110465926081586/
+GMRS,0001898718,0001104659-26-068983,2026-06-01,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1898718/000110465926068983/
+GMRS,0001898718,0001104659-26-062932,2026-05-18,"1.01,1.02,3.02,3.03,5.02,5.03,8.01,9.01","1.01: M&A entered, 1.02: M&A terminated, 3.02: PIPE/dilution, 3.03: Material modification of rights, 5.02: Director/officer change, 5.03: Bylaw change, 8.01: Other event, 9.01: Financials",1,1,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1898718/000110465926062932/
+SCIIU,0002076739,0001213900-26-077669,2026-07-13,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2076739/000121390026077669/
+SRG-PA,0001628063,0001193125-26-321213,2026-07-28,"1.01,1.02,2.03,8.01","1.01: M&A entered, 1.02: M&A terminated, 2.03: 2.03, 8.01: Other event",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1628063/000119312526321213/
+FACTU,0002028935,0001213900-26-080046,2026-07-21,"1.02,7.01,9.01","1.02: M&A terminated, 7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2028935/000121390026080046/
+OBAWW,0002034313,0001213900-26-079610,2026-07-20,5.02,5.02: Director/officer change,0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2034313/000121390026079610/
+RANGR,0002035644,0001193125-26-316155,2026-07-24,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2035644/000119312526316155/
+MYXXR,0002080087,0001477932-26-003056,2026-05-13,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2080087/000147793226003056/
+MYXXR,0002080087,0001477932-26-002445,2026-04-21,"2.03,3.02,8.01,9.01","2.03: 2.03, 3.02: PIPE/dilution, 8.01: Other event, 9.01: Financials",0,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/2080087/000147793226002445/
+MYXXR,0002080087,0001477932-26-002212,2026-04-14,"1.01,9.01","1.01: M&A entered, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2080087/000147793226002212/
+CBRS,0002021728,0001628280-26-056186,2026-08-12,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/2021728/000162828026056186/
+CBRS,0002021728,0001628280-26-044941,2026-06-23,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/2021728/000162828026044941/
+CBRS,0002021728,0001628280-26-035605,2026-05-15,"5.03,8.01,9.01","5.03: Bylaw change, 8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2021728/000162828026035605/
+PONOR,0002108164,0001213900-26-086293,2026-08-07,"1.01,9.01","1.01: M&A entered, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2108164/000121390026086293/
+PONOR,0002108164,0001213900-26-085946,2026-08-06,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2108164/000121390026085946/
+RLJ-PA,0001511337,0001511337-26-000019,2026-08-06,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1511337/000151133726000019/
+TPGXL,0001880661,0001880661-26-000046,2026-08-04,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1880661/000188066126000046/
+CETXP,0001435064,0001493152-26-032187,2026-07-06,"2.01,3.02,8.01,9.01","2.01: Acquisition closed, 3.02: PIPE/dilution, 8.01: Other event, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1435064/000149315226032187/
+CETXP,0001435064,0001493152-26-026874,2026-06-02,"3.03,5.03,9.01","3.03: Material modification of rights, 5.03: Bylaw change, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1435064/000149315226026874/
+CETXP,0001435064,0001493152-26-023702,2026-05-15,"5.07,9.01","5.07: Vote/meeting, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1435064/000149315226023702/
+CETXP,0001435064,0001493152-26-011623,2026-03-19,3.02,3.02: PIPE/dilution,0,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1435064/000149315226011623/
+FLG-PU,0000910073,0000910073-26-000065,2026-07-24,"2.02,7.01,8.01,9.01","2.02: Earnings, 7.01: Reg FD, 8.01: Other event, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/910073/000091007326000065/
+METCZ,0001687187,0001104659-26-090417,2026-08-04,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1687187/000110465926090417/
+METCZ,0001687187,0001213900-26-082907,2026-07-29,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1687187/000121390026082907/
+MDAIW,0001833498,0001213900-26-088341,2026-08-12,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1833498/000121390026088341/
+NXNVW,0001865631,0001554855-26-001788,2026-08-11,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1865631/000155485526001788/
+RCKTW,0001281895,0001140361-26-032028,2026-08-10,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1281895/000114036126032028/
+RCKTW,0001281895,0001140361-26-030568,2026-08-03,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1281895/000114036126030568/
+AACBU,0002034334,0001140361-26-032643,2026-08-13,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2034334/000114036126032643/
+ECCV,0001604174,0001104659-26-094308,2026-08-12,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1604174/000110465926094308/
+ECCV,0001604174,0001104659-26-083170,2026-07-13,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1604174/000110465926083170/
+ECCV,0001604174,0001104659-26-071926,2026-06-09,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1604174/000110465926071926/
+ECCV,0001604174,0001104659-26-059400,2026-05-12,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1604174/000110465926059400/
+ECCV,0001604174,0001104659-26-057987,2026-05-08,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1604174/000110465926057987/
+ECCV,0001604174,0001104659-26-043312,2026-04-14,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1604174/000110465926043312/
+ECCV,0001604174,0001104659-26-040456,2026-04-07,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1604174/000110465926040456/
+ECCV,0001604174,0001104659-26-026512,2026-03-12,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1604174/000110465926026512/
+TICAW,0002032966,0001628280-26-053818,2026-08-06,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/2032966/000162828026053818/
+FCNCN,0000798941,0000798941-26-000027,2026-07-23,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/798941/000079894126000027/
+AAC-UN,0002128115,0001104659-26-081855,2026-07-08,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2128115/000110465926081855/
+AAC-UN,0002128115,0001104659-26-080008,2026-07-02,"1.01,3.02,5.03,8.01,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 5.03: Bylaw change, 8.01: Other event, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/2128115/000110465926080008/
+HSPWF,0001946021,0001929980-26-000372,2026-07-21,"1.01,2.03,3.02,9.01","1.01: M&A entered, 2.03: 2.03, 3.02: PIPE/dilution, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1946021/000192998026000372/
+HSPWF,0001946021,0001929980-26-000182,2026-04-23,"1.01,5.03,5.07,8.01,9.01","1.01: M&A entered, 5.03: Bylaw change, 5.07: Vote/meeting, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1946021/000192998026000182/
+HSPWF,0001946021,0001929980-26-000135,2026-04-06,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1946021/000192998026000135/
+ENGNW,0001980845,0001193125-26-344559,2026-08-11,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1980845/000119312526344559/
+ENGNW,0001980845,0001193125-26-307795,2026-07-17,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1980845/000119312526307795/
+ENGNW,0001980845,0001193125-26-305418,2026-07-16,"5.02,7.01,9.01","5.02: Director/officer change, 7.01: Reg FD, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1980845/000119312526305418/
+PNFP-PB,0002082866,0002082866-26-000078,2026-07-31,"5.02,5.03,9.01","5.02: Director/officer change, 5.03: Bylaw change, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2082866/000208286626000078/
+PNFP-PB,0002082866,0002082866-26-000075,2026-07-22,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/2082866/000208286626000075/
+CRBD,0001889539,0001889539-26-000137,2026-08-04,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1889539/000188953926000137/
+CRBD,0001889539,0001140361-26-030260,2026-07-30,"5.07,8.01,9.01","5.07: Vote/meeting, 8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1889539/000114036126030260/
+CRBD,0001889539,0001140361-26-029152,2026-07-21,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1889539/000114036126029152/
+RIBBR,0002035016,0001213900-26-078330,2026-07-15,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2035016/000121390026078330/
+TAVIR,0002020385,0001213900-26-077643,2026-07-13,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2020385/000121390026077643/
+HUMAW,0001818382,0001104659-26-094440,2026-08-12,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1818382/000110465926094440/
+HUMAW,0001818382,0001104659-26-089281,2026-07-31,3.01,3.01: Delisting notice,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1818382/000110465926089281/
+KVACU,0001889983,0001213900-26-083400,2026-07-30,3.01,3.01: Delisting notice,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1889983/000121390026083400/
+KVACU,0001889983,0001213900-26-081921,2026-07-28,"1.01,5.03,5.07,8.01,9.01","1.01: M&A entered, 5.03: Bylaw change, 5.07: Vote/meeting, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1889983/000121390026081921/
+PLMKU,0002030482,0001213900-26-078728,2026-07-16,"5.03,5.07,8.01,9.01","5.03: Bylaw change, 5.07: Vote/meeting, 8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2030482/000121390026078728/
+WHLRL,0001527541,0001527541-26-000272,2026-08-11,3.02,3.02: PIPE/dilution,0,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1527541/000152754126000272/
+WHLRL,0001527541,0001527541-26-000260,2026-08-07,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1527541/000152754126000260/
+WHLRL,0001527541,0001527541-26-000254,2026-08-06,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1527541/000152754126000254/
+WHLRL,0001527541,0001527541-26-000240,2026-08-05,3.02,3.02: PIPE/dilution,0,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1527541/000152754126000240/
+WHLRL,0001527541,0001527541-26-000231,2026-07-22,"3.03,5.03,9.01","3.03: Material modification of rights, 5.03: Bylaw change, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1527541/000152754126000231/
+WHLRL,0001527541,0001527541-26-000223,2026-07-20,3.02,3.02: PIPE/dilution,0,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1527541/000152754126000223/
+WHLRL,0001527541,0001527541-26-000215,2026-07-14,3.02,3.02: PIPE/dilution,0,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1527541/000152754126000215/
+DUKRW,0001638911,0001213900-26-088712,2026-08-13,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1638911/000121390026088712/
+DUKRW,0001638911,0001213900-26-067570,2026-06-11,"5.02,8.01,9.01","5.02: Director/officer change, 8.01: Other event, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1638911/000121390026067570/
+DUKRW,0001638911,0001213900-26-059258,2026-05-20,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1638911/000121390026059258/
+DUKRW,0001638911,0001213900-26-058485,2026-05-18,"1.01,8.01,9.01","1.01: M&A entered, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1638911/000121390026058485/
+DUKRW,0001638911,0001213900-26-036384,2026-03-30,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1638911/000121390026036384/
+DUKRW,0001638911,0001213900-26-024093,2026-03-05,"5.03,8.01,9.01","5.03: Bylaw change, 8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1638911/000121390026024093/
+VECA-RI,0002081690,0001213900-26-056609,2026-05-14,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2081690/000121390026056609/
+VECA-RI,0002081690,0001213900-26-056171,2026-05-14,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2081690/000121390026056171/
+VECA-RI,0002081690,0001213900-26-054503,2026-05-11,"1.01,3.02,5.02,5.03,8.01,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 5.02: Director/officer change, 5.03: Bylaw change, 8.01: Other event, 9.01: Financials",1,1,0,0,1,0,https://www.sec.gov/Archives/edgar/data/2081690/000121390026054503/
+DFUKF,0001805526,0001805526-26-000052,2026-08-12,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1805526/000180552626000052/
+DFUKF,0001805526,0001805526-26-000050,2026-06-26,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1805526/000180552626000050/
+DFUKF,0001805526,0001805526-26-000046,2026-06-10,"5.02,9.01","5.02: Director/officer change, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1805526/000180552626000046/
+DFUKF,0001805526,0001805526-26-000031,2026-05-13,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1805526/000180552626000031/
+DFUKF,0001805526,0001805526-26-000029,2026-05-01,"1.01,8.01,9.01","1.01: M&A entered, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1805526/000180552626000029/
+DFUKF,0001805526,0001805526-26-000010,2026-04-06,"5.02,8.01,9.01","5.02: Director/officer change, 8.01: Other event, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1805526/000180552626000010/
+DFUKF,0001805526,0001805526-26-000009,2026-04-06,"5.02,8.01,9.01","5.02: Director/officer change, 8.01: Other event, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1805526/000180552626000009/
+DFUKF,0001805526,0001805526-26-000005,2026-03-30,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1805526/000180552626000005/
+DFUKF,0001805526,0001213900-26-018400,2026-02-19,5.02,5.02: Director/officer change,0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1805526/000121390026018400/
+DFUKF,0001805526,0001213900-26-017324,2026-02-17,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1805526/000121390026017324/
+IPCXR,0002012318,0001213900-26-085796,2026-08-05,5.07,5.07: Vote/meeting,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2012318/000121390026085796/
+IPCXR,0002012318,0001213900-26-082498,2026-07-29,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2012318/000121390026082498/
+BAC-PS,0000070858,0000070858-26-000364,2026-07-24,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/70858/000007085826000364/
+BAC-PS,0000070858,0000070858-26-000353,2026-07-14,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/70858/000007085826000353/
+SBXD-UN,0002015947,0001104659-26-090712,2026-08-05,"1.01,9.01","1.01: M&A entered, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2015947/000110465926090712/
+FVNNR,0002010653,0001829126-26-007886,2026-07-27,"5.07,8.01,9.01","5.07: Vote/meeting, 8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2010653/000182912626007886/
+FVNNR,0002010653,0001829126-26-007528,2026-07-13,"1.01,2.03,3.02,8.01,9.01","1.01: M&A entered, 2.03: 2.03, 3.02: PIPE/dilution, 8.01: Other event, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/2010653/000182912626007528/
+FOUR-PA,0001794669,0001794669-26-000042,2026-08-06,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1794669/000179466926000042/
+FOUR-PA,0001794669,0001794669-26-000040,2026-07-13,"1.01,2.03,9.01","1.01: M&A entered, 2.03: 2.03, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1794669/000179466926000040/
+VSEEW,0001864531,0001185185-26-003262,2026-08-04,3.01,3.01: Delisting notice,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1864531/000118518526003262/
+VSEEW,0001864531,0001185185-26-003211,2026-07-31,"1.01,2.03,3.02,9.01","1.01: M&A entered, 2.03: 2.03, 3.02: PIPE/dilution, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1864531/000118518526003211/
+VSEEW,0001864531,0001185185-26-003124,2026-07-24,"1.01,3.02","1.01: M&A entered, 3.02: PIPE/dilution",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1864531/000118518526003124/
+DAAQU,0002052162,0001213900-26-083579,2026-07-31,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2052162/000121390026083579/
+IVDAW,0001397183,0001493152-26-009156,2026-03-06,3.01,3.01: Delisting notice,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1397183/000149315226009156/
+CORZR,0001839341,0001839341-26-000016,2026-07-29,"5.02,7.01,9.01","5.02: Director/officer change, 7.01: Reg FD, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1839341/000183934126000016/
+CORZR,0001839341,0001839341-26-000013,2026-07-28,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1839341/000183934126000013/
+CORZR,0001839341,0001839341-26-000012,2026-07-28,"3.02,7.01,9.01","3.02: PIPE/dilution, 7.01: Reg FD, 9.01: Financials",0,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1839341/000183934126000012/
+LILAP,0001712184,0001712184-26-000129,2026-08-05,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1712184/000171218426000129/
+LILAP,0001712184,0001712184-26-000119,2026-07-27,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1712184/000171218426000119/
+LILAP,0001712184,0001712184-26-000111,2026-06-29,"5.07,9.01","5.07: Vote/meeting, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1712184/000171218426000111/
+LILAP,0001712184,0001712184-26-000104,2026-06-03,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1712184/000171218426000104/
+LILAP,0001712184,0001712184-26-000102,2026-06-01,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1712184/000171218426000102/
+LILAP,0001712184,0001712184-26-000097,2026-05-29,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1712184/000171218426000097/
+LILAP,0001712184,0001712184-26-000096,2026-05-29,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1712184/000171218426000096/
+LILAP,0001712184,0001712184-26-000087,2026-05-21,"3.03,7.01,8.01,9.01","3.03: Material modification of rights, 7.01: Reg FD, 8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1712184/000171218426000087/
+LILAP,0001712184,0001712184-26-000083,2026-05-14,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1712184/000171218426000083/
+LILAP,0001712184,0001712184-26-000078,2026-05-07,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1712184/000171218426000078/
+LILAP,0001712184,0001712184-26-000069,2026-04-30,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1712184/000171218426000069/
+LILAP,0001712184,0001712184-26-000060,2026-03-31,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1712184/000171218426000060/
+LILAP,0001712184,0001712184-26-000057,2026-03-19,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1712184/000171218426000057/
+LILAP,0001712184,0001712184-26-000056,2026-03-19,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1712184/000171218426000056/
+LILAP,0001712184,0001712184-26-000025,2026-02-18,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1712184/000171218426000025/
+MAIR,0002098430,0001628280-26-050771,2026-07-30,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/2098430/000162828026050771/
+MAIR,0002098430,0001628280-26-043515,2026-06-16,"5.02,9.01","5.02: Director/officer change, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2098430/000162828026043515/
+MAIR,0002098430,0001628280-26-041148,2026-06-05,"1.01,2.03,9.01","1.01: M&A entered, 2.03: 2.03, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2098430/000162828026041148/
+MAIR,0002098430,0001628280-26-033860,2026-05-12,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/2098430/000162828026033860/
+MAIR,0002098430,0001193125-26-161509,2026-04-17,"1.01,3.02,3.03,5.02,5.03,8.01,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 3.03: Material modification of rights, 5.02: Director/officer change, 5.03: Bylaw change, 8.01: Other event, 9.01: Financials",1,1,0,0,1,0,https://www.sec.gov/Archives/edgar/data/2098430/000119312526161509/
+LPAAU,0002015502,0001213900-26-077654,2026-07-13,"1.01,5.03,5.07,9.01","1.01: M&A entered, 5.03: Bylaw change, 5.07: Vote/meeting, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2015502/000121390026077654/
+BRUNW,0002090646,0001493152-26-036693,2026-08-10,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2090646/000149315226036693/
+BRUNW,0002090646,0001493152-26-034694,2026-07-27,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2090646/000149315226034694/
+BRUNW,0002090646,0001493152-26-032070,2026-07-06,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2090646/000149315226032070/
+BRUNW,0002090646,0001493152-26-026771,2026-06-02,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/2090646/000149315226026771/
+BRUNW,0002090646,0001493152-26-025672,2026-05-28,"1.01,9.01","1.01: M&A entered, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2090646/000149315226025672/
+BRUNW,0002090646,0001493152-26-023208,2026-05-14,"1.01,1.02,2.01,3.01,3.02,3.03,4.01,5.01,5.02,5.03,5.06,7.01,9.01","1.01: M&A entered, 1.02: M&A terminated, 2.01: Acquisition closed, 3.01: Delisting notice, 3.02: PIPE/dilution, 3.03: Material modification of rights, 4.01: Auditor change, 5.01: Control change, 5.02: Director/officer change, 5.03: Bylaw change, 5.06: 5.06, 7.01: Reg FD, 9.01: Financials",1,1,0,0,1,1,https://www.sec.gov/Archives/edgar/data/2090646/000149315226023208/
+BRUNW,0002090646,0001493152-26-022136,2026-05-11,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2090646/000149315226022136/
+PDPA,0001998043,0001214659-26-010005,2026-08-12,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1998043/000121465926010005/
+PDPA,0001998043,0001214659-26-008835,2026-07-22,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1998043/000121465926008835/
+PDPA,0001998043,0001214659-26-007296,2026-06-09,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1998043/000121465926007296/
+PDPA,0001998043,0001214659-26-006212,2026-05-14,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1998043/000121465926006212/
+PDPA,0001998043,0001214659-26-004813,2026-04-17,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1998043/000121465926004813/
+PDPA,0001998043,0001214659-26-003512,2026-03-19,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1998043/000121465926003512/
+PDPA,0001998043,0001214659-26-002137,2026-02-18,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1998043/000121465926002137/
+AXINR,0002057030,0001213900-26-082395,2026-07-28,"1.01,2.03,9.01","1.01: M&A entered, 2.03: 2.03, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2057030/000121390026082395/
+DBRG-PJ,0001679688,0001679688-26-000113,2026-08-04,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1679688/000167968826000113/
+RDACU,0002018145,0001213900-26-082432,2026-07-29,"1.01,2.03,9.01","1.01: M&A entered, 2.03: 2.03, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2018145/000121390026082432/
+EICA,0001754836,0001104659-26-094331,2026-08-12,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1754836/000110465926094331/
+EICA,0001754836,0001104659-26-083169,2026-07-13,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1754836/000110465926083169/
+EICA,0001754836,0001104659-26-071900,2026-06-09,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1754836/000110465926071900/
+EICA,0001754836,0001104659-26-057988,2026-05-08,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1754836/000110465926057988/
+EICA,0001754836,0001104659-26-043321,2026-04-14,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1754836/000110465926043321/
+EICA,0001754836,0001104659-26-026509,2026-03-12,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1754836/000110465926026509/
+EICA,0001754836,0001104659-26-020069,2026-02-26,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1754836/000110465926020069/
+EICA,0001754836,0001104659-26-016402,2026-02-17,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1754836/000110465926016402/
+DTSQU,0002017950,0001493152-26-035502,2026-07-30,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2017950/000149315226035502/
+DTSQU,0002017950,0001493152-26-033932,2026-07-20,"3.01,9.01","3.01: Delisting notice, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2017950/000149315226033932/
+TETWF,0001900679,0001493152-26-014982,2026-04-02,"5.07,9.01","5.07: Vote/meeting, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1900679/000149315226014982/
+TETWF,0001900679,0001493152-26-008193,2026-02-26,"1.01,5.03,5.07,9.01","1.01: M&A entered, 5.03: Bylaw change, 5.07: Vote/meeting, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1900679/000149315226008193/
+AACPR,0002102123,0001213900-26-060608,2026-05-22,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2102123/000121390026060608/
+AACPR,0002102123,0001213900-26-043615,2026-04-14,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2102123/000121390026043615/
+AACPR,0002102123,0001213900-26-042549,2026-04-10,"1.01,3.02,5.02,5.03,8.01,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 5.02: Director/officer change, 5.03: Bylaw change, 8.01: Other event, 9.01: Financials",1,1,0,0,1,0,https://www.sec.gov/Archives/edgar/data/2102123/000121390026042549/
+KARD,0002123613,0001193125-26-343395,2026-08-11,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/2123613/000119312526343395/
+KARD,0002123613,0001193125-26-278429,2026-06-23,"5.03,9.01","5.03: Bylaw change, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2123613/000119312526278429/
+UCFIW,0001901203,0001213900-26-080024,2026-07-21,"3.01,7.01,9.01","3.01: Delisting notice, 7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1901203/000121390026080024/
+SXTPW,0001946563,0001213900-26-086136,2026-08-06,5.07,5.07: Vote/meeting,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1946563/000121390026086136/
+SXTPW,0001946563,0001213900-26-085235,2026-08-04,"1.01,3.02,8.01,9.01","1.01: M&A entered, 3.02: PIPE/dilution, 8.01: Other event, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/1946563/000121390026085235/
+SXTPW,0001946563,0001213900-26-079612,2026-07-20,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1946563/000121390026079612/
+SXTPW,0001946563,0001213900-26-076715,2026-07-09,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1946563/000121390026076715/
+SXTPW,0001946563,0001213900-26-064796,2026-06-03,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1946563/000121390026064796/
+SXTPW,0001946563,0001213900-26-058495,2026-05-18,5.02,5.02: Director/officer change,0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1946563/000121390026058495/
+SXTPW,0001946563,0001213900-26-032352,2026-03-20,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1946563/000121390026032352/
+SXTPW,0001946563,0001213900-26-027756,2026-03-13,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1946563/000121390026027756/
+SXTPW,0001946563,0001213900-26-027008,2026-03-12,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1946563/000121390026027008/
+IPEXR,0002028355,0001213900-26-087932,2026-08-12,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2028355/000121390026087932/
+IPEXR,0002028355,0001213900-26-079194,2026-07-17,"1.01,9.01","1.01: M&A entered, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2028355/000121390026079194/
+IPEXR,0002028355,0001213900-26-043250,2026-04-14,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2028355/000121390026043250/
+IPEXR,0002028355,0001213900-26-039944,2026-04-03,"1.01,2.03,9.01","1.01: M&A entered, 2.03: 2.03, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2028355/000121390026039944/
+OXY-WT,0000797468,0001628280-26-053377,2026-08-05,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/797468/000162828026053377/
+OXY-WT,0000797468,0001628280-26-047886,2026-07-10,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/797468/000162828026047886/
+OXY-WT,0000797468,0001628280-26-030567,2026-05-05,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/797468/000162828026030567/
+OXY-WT,0000797468,0000950157-26-000569,2026-05-04,"5.02,5.07,7.01,9.01","5.02: Director/officer change, 5.07: Vote/meeting, 7.01: Reg FD, 9.01: Financials",0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/797468/000095015726000569/
+OXY-WT,0000797468,0001628280-26-024581,2026-04-10,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/797468/000162828026024581/
+OXY-WT,0000797468,0000950157-26-000265,2026-03-09,"1.01,3.03,8.01,9.01","1.01: M&A entered, 3.03: Material modification of rights, 8.01: Other event, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/797468/000095015726000265/
+OXY-WT,0000797468,0000950157-26-000166,2026-02-19,"7.01,9.01","7.01: Reg FD, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/797468/000095015726000166/
+OXY-WT,0000797468,0001628280-26-009054,2026-02-18,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/797468/000162828026009054/
+COLAR,0002028201,0001213900-26-086245,2026-08-06,"1.01,7.01,9.01","1.01: M&A entered, 7.01: Reg FD, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2028201/000121390026086245/
+COLAR,0002028201,0001213900-26-085084,2026-08-04,"1.01,2.03,3.02,9.01","1.01: M&A entered, 2.03: 2.03, 3.02: PIPE/dilution, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/2028201/000121390026085084/
+COLAR,0002028201,0001213900-26-085077,2026-08-04,"1.01,2.03,3.02,9.01","1.01: M&A entered, 2.03: 2.03, 3.02: PIPE/dilution, 9.01: Financials",1,0,0,0,1,0,https://www.sec.gov/Archives/edgar/data/2028201/000121390026085077/
+COLAR,0002028201,0001213900-26-083647,2026-07-31,3.01,3.01: Delisting notice,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2028201/000121390026083647/
+BHFAP,0001685040,0001685040-26-000026,2026-08-05,"2.02,9.01","2.02: Earnings, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1685040/000168504026000026/
+UYSCR,0002036973,0001185185-26-003361,2026-08-10,5.02,5.02: Director/officer change,0,1,0,0,0,0,https://www.sec.gov/Archives/edgar/data/2036973/000118518526003361/
+RZC,0000898174,0000898174-26-000030,2026-08-06,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/898174/000089817426000030/
+EQH-PC,0001333986,0001333986-26-000035,2026-08-04,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1333986/000133398626000035/
+EQH-PC,0001333986,0000950142-26-002207,2026-07-30,"5.07,8.01,9.01","5.07: Vote/meeting, 8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1333986/000095014226002207/
+EQH-PC,0001333986,0000950142-26-002185,2026-07-28,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1333986/000095014226002185/
+EQH-PC,0001333986,0000950142-26-002136,2026-07-21,8.01,8.01: Other event,0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1333986/000095014226002136/
+RUSHB,0001012019,0001437749-26-025981,2026-08-06,"1.01,9.01","1.01: M&A entered, 9.01: Financials",1,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1012019/000143774926025981/
+RUSHB,0001012019,0001437749-26-024701,2026-07-28,"2.02,7.01,9.01","2.02: Earnings, 7.01: Reg FD, 9.01: Financials",0,0,1,0,0,0,https://www.sec.gov/Archives/edgar/data/1012019/000143774926024701/
+RUSHB,0001012019,0001437749-26-024340,2026-07-23,"8.01,9.01","8.01: Other event, 9.01: Financials",0,0,0,0,0,0,https://www.sec.gov/Archives/edgar/data/1012019/000143774926024340/
