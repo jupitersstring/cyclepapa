@@ -53,8 +53,21 @@ if [ -f "$PROJECT_DIR/run_deep_forever.sh" ] \
         > "$PROJECT_DIR/deep_driver.log" 2>&1 < /dev/null &
     disown $!
     echo "session-start-hook: launched deep enrichment driver (PID $!)" >&2
+elif [ -f "$PROJECT_DIR/.deep_rendered" ] \
+     && [ -f "$PROJECT_DIR/run_otc_deep.sh" ] \
+     && [ ! -f "$PROJECT_DIR/.otc_rendered" ] \
+     && ! pgrep -f "ticker_yf_deep.py" > /dev/null 2>&1 \
+     && ! pgrep -f "run_otc_deep.sh" > /dev/null 2>&1; then
+    # OTC broad-universe deep enrichment is the SOLE Yahoo hitter until it
+    # finishes (.otc_rendered). Running the price-refresh enrichers alongside
+    # it starves everything on the shared-IP throttle and kills the deep run.
+    chmod +x "$PROJECT_DIR/run_otc_deep.sh" 2>/dev/null || true
+    setsid nohup bash "$PROJECT_DIR/run_otc_deep.sh" \
+        > "$PROJECT_DIR/otc_driver.log" 2>&1 < /dev/null &
+    disown $!
+    echo "session-start-hook: launched OTC deep enrichment driver (PID $!)" >&2
 elif [ -f "$PROJECT_DIR/.deep_rendered" ]; then
-    # Deep phase done — resume the standard fundamentals + chart enrichers.
+    # Deep + OTC phases done — resume the standard fundamentals + chart enrichers.
     if [ -f "$PROJECT_DIR/run_ticker_yf_forever.sh" ] \
        && ! pgrep -f "ticker_yf.py" > /dev/null 2>&1 \
        && ! pgrep -f "run_ticker_yf_forever.sh" > /dev/null 2>&1; then
