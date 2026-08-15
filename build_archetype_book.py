@@ -86,6 +86,7 @@ ARCHETYPE_LABELS = {
     'arch_oak_asset_floor': 'Oak Asset Floor',
     'arch_oak_order_conversion': 'Oak Order-Book Conversion',
     'arch_weschler_levered_equity': 'Weschler Levered-Equity Deleveraging',
+    'arch_cheap_sales_scaler': 'Cheap-Sales Scaling to Profit',
 }
 
 
@@ -155,6 +156,15 @@ def load_data(min_mcap: float = 10_000_000):
     if 'market_cap_usd' in df.columns:
         df['market_cap'] = (pd.to_numeric(df['market_cap_usd'], errors='coerce')
                             .fillna(pd.to_numeric(df['market_cap'], errors='coerce')))
+
+    # Confirmation upweight: float names up mildly where several independent
+    # accounting measures confirm the operating-leverage inflection (max +15%
+    # — enough to break ties toward corroborated names, not enough to reorder
+    # the board or shrink the pool). Ranking key; the sheets still DISPLAY the
+    # raw ETA.
+    _eta = pd.to_numeric(df.get('entry_today_asymmetry'), errors='coerce').fillna(0.0)
+    _ols = pd.to_numeric(df.get('oper_leverage_score'), errors='coerce').fillna(0.0)
+    df['entry_confirmed'] = _eta * (1.0 + 0.15 * _ols)
 
     # Apply min mcap + exclude RED
     df = df[df['market_cap'].fillna(0) >= min_mcap]
@@ -287,7 +297,7 @@ def main():
     qm = df['verdict'].map(mult).fillna(1.0)
     if 'entry_today_asymmetry' not in df.columns:
         df['entry_today_asymmetry'] = df['asymmetry_score'].fillna(0) * qm
-    sort_col = 'entry_today_asymmetry'
+    sort_col = 'entry_confirmed'
 
     wb = Workbook()
 

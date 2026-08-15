@@ -31,7 +31,7 @@ from build_harvard_workbook import (
 from build_archetype_book import load_data, ARCHETYPE_LABELS, _sheet_safe
 from openpyxl.styles import Border, Side
 
-SORT_COL = 'entry_today_asymmetry'
+SORT_COL = 'entry_confirmed'
 
 HEADERS = ['#', 'Ticker', 'Name', 'Sector', 'Bucket', 'Mcap (USD)',
            'Verdict', 'ETA', 'Asym', 'EV/EBITDA', 'P/E', 'PEGY', 'EV-GY',

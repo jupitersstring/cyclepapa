@@ -27,7 +27,7 @@ from build_archetype_book import (
     load_data, ARCHETYPE_LABELS, _sheet_safe, _write_archetype_table,
 )
 
-SORT_COL = 'entry_today_asymmetry'
+SORT_COL = 'entry_confirmed'
 OTC_MAP = 'otc_symbols.csv'
 
 

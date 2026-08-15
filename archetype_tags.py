@@ -722,6 +722,71 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
             else pd.Series(np.nan, index=df.index)
         return ~(c.notna() & (c < thresh))
 
+    # ---- Multi-perspective confirmation ----------------------------------
+    # A process (e.g. operating-leverage inflection) is measured several
+    # independent ways, each with different accounting blind spots. We fire
+    # an archetype when ANY available measure confirms (robust to data gaps —
+    # never shrinks the pool) and expose a CONFIRMATION SCORE (fraction of
+    # available measures that agree) used to mildly upweight names where
+    # several agree (robust to a single accounting distortion).
+    def _confirm(checks):
+        """checks = list of (numeric_series, predicate). Returns (any_bool,
+        score_0to1). Only measures that are PRESENT count toward the score."""
+        present = pd.Series(0, index=df.index)
+        agree = pd.Series(0, index=df.index)
+        for series, pred in checks:
+            p = series.notna()
+            present = present + p.astype(int)
+            agree = agree + (p & pred(series).fillna(False)).astype(int)
+        any_ok = agree >= 1
+        score = (agree / present.where(present > 0)).fillna(0.0)
+        return any_ok, score
+
+    def _num(col):
+        return (pd.to_numeric(df[col], errors='coerce')
+                if col in df.columns else pd.Series(np.nan, index=df.index))
+
+    # Operating-leverage inflection, triangulated across accounting angles AND
+    # time bases. Three time bases with different seasonality/latency trade-offs:
+    #   YoY (same-quarter vs year-ago)      — seasonality-robust, lagging
+    #   TTM-sequential (*_qoq_ttm)          — seasonality-robust (rolling 12mo
+    #                                          cancels seasonality), earlier
+    #   raw sequential (*_seq)              — earliest, but SEASONALITY-CONFOUNDED
+    # We fire on any seasonality-robust turn (broadens the pool, catches early
+    # inflections a lagging YoY misses) and count a RAW-sequential bump only
+    # when a seasonality-robust measure corroborates it — i.e. a raw-seq turn
+    # that the TTM/YoY view does NOT see is treated as seasonality and
+    # downweighted, per the seasonality rule.
+    _ebm = _num('ebitda_margin')
+    yoy_any, yoy_score = _confirm([                                # YoY (margins)
+        (_num('ebitda_margin_delta_yoy'), lambda x: x > 0),        # EBITDA margin up
+        (_num('fcf_margin_delta_yoy'),    lambda x: x > 0),        # cash margin up
+        (_num('gross_margin_delta_yoy'),  lambda x: x > 0),        # Tier B: gross margin up
+        (_num('op_margin_delta_yoy'),     lambda x: x > 0),        # Tier B: EBIT margin up
+        (_num('incremental_ebitda_margin'), lambda x: x > _ebm),   # marginal > average
+        (_num('operating_leverage_ratio'), lambda x: x > 1.0),     # %ΔEBITDA/%ΔRev > 1
+    ])
+    ttmseq_any, ttmseq_score = _confirm([                          # TTM-sequential (robust)
+        (_num('ebitda_qoq_ttm'), lambda x: x > 0),
+        (_num('cfo_qoq_ttm'),    lambda x: x > 0),
+        (_num('fcf_qoq_ttm'),    lambda x: x > 0),
+        (_num('rev_qoq_ttm'),    lambda x: x > 0),
+    ])
+    rawseq_any, rawseq_score = _confirm([                          # raw sequential (seasonal)
+        (_num('ebitda_seq'), lambda x: x > 0),
+        (_num('cfo_seq'),    lambda x: x > 0),
+        (_num('fcf_seq'),    lambda x: x > 0),
+    ])
+    season_robust = yoy_any | ttmseq_any
+    # Fire on ANY turn (recover pool — even a raw-seq-only early signal), but…
+    oper_lev_any = season_robust | rawseq_any
+    # …a raw-sequential signal only earns full weight when a seasonality-robust
+    # measure agrees; unconfirmed it contributes at 40% (probable seasonality).
+    _rawseq_eff = rawseq_score * np.where(season_robust, 1.0, 0.4)
+    oper_lev_score = (0.5 * yoy_score + 0.3 * ttmseq_score +
+                      0.2 * _rawseq_eff).clip(0.0, 1.0)
+    df['oper_leverage_score'] = oper_lev_score.round(3)
+
     low_sbc_wolf = _soft_ok_below('sbc_pct_revenue', 0.15)   # Wolf dings excess SBC
     low_sbc_liger = _soft_ok_below('sbc_pct_revenue', 0.10)  # Liger flags diluters
     # `nde` defaults to 99 when net_debt_ebitda is missing (37% of names), so
@@ -756,8 +821,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_wolf_trifecta'] = (
         (mcap >= 10e6) & (mcap <= 300e6) &
         (rev_yoy_c >= 0.15) &                       # "double-digit", not 50%
-        (ebitda_yoy_v > rev_yoy_c) &                # operating leverage (the 3rd leg)
-        (emd_c > 0.0) &                             # margins genuinely improving
+        oper_lev_any &                              # operating leverage (any of 6 angles)
         ((cfo_ttm_v > 0) | (fcf_ttm_v > 0)) &
         (ev_sales_v > 0) & (ev_sales_v < 3.0) &
         wolf_cheap_entry &
@@ -772,7 +836,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((ebitda_first_pos > 0) | (cfo_first_pos > 0) |
          (fcf_first_pos > 0) | (ni_first_pos > 0) |
          (cfo_inflection > 0) | (fcf_inflection > 0) |
-         ((ebitda_inflection > 0) & (emd_c > 0))) &
+         ((ebitda_inflection > 0) & oper_lev_any)) &
         (emd_c >= 0.0) &
         (rev_yoy_c >= 0.0) & rev_present &          # growing (present), not shrinking
         wolf_cheap_entry
@@ -824,7 +888,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (mcap >= 10e6) & (mcap <= 150e6) &
         (rev_yoy_c >= 0.25) & (rev_accel > 0) &     # accelerating streak
         ((cfo_ttm_v > 0) | (fcf_ttm_v > 0)) &
-        (emd_c > 0) &
+        oper_lev_any &
         ((ev_ebitda_v > 0) & (ev_ebitda_v < 12.0)) &
         (pe_w > 0) & (pe_w < 20.0) &
         low_sbc_wolf
@@ -851,7 +915,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # a high absolute growth level — so the growth gate is now accel-aware.
     # Leverage loosened 1.0->1.5 (RCMT ran ~1.3-1.5x) with the ebitda>0 guard.
     df['arch_liger_lagging_inflect'] = (
-        (((rev_yoy_c >= 0.10) & (rev_accel > 0)) | (rev_yoy_c >= 0.15) | (emd_c > 0)) &
+        (((rev_yoy_c >= 0.10) & (rev_accel > 0)) | (rev_yoy_c >= 0.15) | oper_lev_any) &
         ((cash_conv_w >= 0.80) | (fcf_margin_w > 0)) &
         _clean_bs(1.5) &                            # clean b/s (nde OR net-cash)
         (n_analysts_v <= 4) &
@@ -871,7 +935,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((fcf_margin_w >= 0.0) | (op_margin_v >= -0.02)) &
         low_sbc_liger &
         ((off_high <= -0.30) | ((ev_sales_v > 0) & (ev_sales_v <= 2.0))) &
-        ((rev_accel > 0) | (emd_c > 0)) &
+        ((rev_accel > 0) | oper_lev_any) &
         liger_sector_ok
     ).fillna(False).astype(int)
 
@@ -941,7 +1005,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_oak_order_conversion'] = (
         (mcap > 0) & (mcap < 1e9) &
         ((rev_accel > 0) | (rev_yoy_c > 0.05)) &
-        (emd_c > 0) &
+        oper_lev_any &
         ((ebitda_inflection > 0) | (ebitda_yoy_v > 0))
     ).fillna(False).astype(int)
 
@@ -992,6 +1056,30 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((ebitda_yoy_v >= 0) | (ebitda_inflection > 0)) &  # stable/rising -> deleveraging
         _soft_ok_above('interest_coverage', 1.0) &  # can service (soft; 8% cov)
         (mcap > 0) & (mcap < 5e9)                # small/mid, where this is mispriced
+    ).fillna(False).astype(int)
+
+    # ---------- Cheap-sales scaling-to-profit ----------
+    # A grower the market prices cheaply on SALES (low P/S) and cheaply
+    # relative to that growth (low P/S-to-growth), whose operating margins
+    # are IMPROVING (operating-leverage confirmation) and that is at or near
+    # profitability. The classic un-re-rated scaling business: cheap on the
+    # top line today, inflecting toward the profits that justify a re-rate.
+    psg_v = s('psg', 99.0)
+    op_margin_real = _num('op_margin')           # NaN-preserving (missing != 0)
+    near_profit = (
+        (op_margin_real >= -0.15) |              # margin PRESENT & within 15% of breakeven
+        (ebitda_ttm_v > 0) |                     # already EBITDA-profitable
+        (fcf_ttm_v > 0) |                        # cash-generative
+        (ni_first_pos > 0) | (ebitda_first_pos > 0) | (fcf_first_pos > 0)  # just crossed
+    )
+    df['arch_cheap_sales_scaler'] = (
+        (mcap > 0) & (mcap < 5e9) &
+        (p_s_v >= 0.10) & (p_s_v <= 2.0) &       # cheap on revenues (lower bound kills
+                                                 #   near-zero-mcap p_s artifacts)
+        (rev_yoy_c >= 0.10) &                    # actually growing (double-digit)
+        (psg_v >= 0.005) & (psg_v <= 0.10) &     # cheap RELATIVE to growth (PSG)
+        oper_lev_any &                           # operating margins improving (any angle)
+        near_profit                              # at / near / just-crossed profitability
     ).fillna(False).astype(int)
 
     arch_cols = [
@@ -1050,6 +1138,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_oak_asset_floor',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
+        'arch_cheap_sales_scaler',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -1107,6 +1196,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_oak_asset_floor': 'OakAssetFloor',
         'arch_oak_order_conversion': 'OakOrderConversion',
         'arch_weschler_levered_equity': 'WeschlerLeveredEquity',
+        'arch_cheap_sales_scaler': 'CheapSalesScaler',
     }
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(
@@ -1114,7 +1204,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score']]
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score']]
     out.to_csv(out_path, index=False)
 
     # Summary to stderr

@@ -70,6 +70,16 @@ DERIVED_COLUMNS = [
     'cfo_yield',
     'earnings_yield',
     'robust_cash_yield',
+    'incremental_ebitda_margin',
+    'operating_leverage_ratio',
+    'ev_gross_profit',
+    'gross_profitability',
+    'cash_return_ev',
+    'capex_ttm',
+    'capex_intensity',
+    'fcf_conversion',
+    'net_debt_to_fcf',
+    'psg',
     'pegy',
     'ev_ebitda_gy',
 ]
@@ -341,6 +351,45 @@ def main():
     # Robust central estimate: median of the available yields per row.
     _stack = pd.concat([owner_earnings_yield, cfo_yield, earnings_yield], axis=1)
     master['robust_cash_yield'] = _stack.median(axis=1, skipna=True)
+
+    # 11d) Multi-perspective robustness measures. Each captures a process our
+    # archetypes detect (operating-leverage inflection, cheapness, quality,
+    # leverage) via a DIFFERENT accounting angle, so archetypes can fire when
+    # any one confirms (robust to data gaps) and upweight where several agree
+    # (robust to a single accounting distortion). All derivable from existing
+    # levels + growth rates — no re-fetch.
+    ebitda_yoy = _to_num(_s('ebitda_yoy'))
+    rev_yoy = _to_num(_s('rev_yoy'))
+    p_s_now = _to_num(_s('p_s'))
+    p_s_now = p_s_now.where(p_s_now.notna(), _safe_div(mcap, rev, den_must_be_positive=True))
+    # Operating leverage, two derivable angles:
+    #  - incremental EBITDA margin = ΔEBITDA/ΔRevenue (marginal drop-through).
+    #    Marginal > average margin => the business is levering up.
+    d_ebitda = ebitda * ebitda_yoy / (1.0 + ebitda_yoy)
+    d_rev = rev * rev_yoy / (1.0 + rev_yoy)
+    inc = _safe_div(d_ebitda, d_rev, den_must_be_positive=False)
+    master['incremental_ebitda_margin'] = inc.where((d_rev.abs() > 0) & np.isfinite(inc))
+    #  - operating leverage ratio = %ΔEBITDA / %ΔRevenue (>1 = positive leverage)
+    olr = _safe_div(ebitda_yoy, rev_yoy, den_must_be_positive=False)
+    master['operating_leverage_ratio'] = olr.where(rev_yoy.abs() > 1e-6)
+    # Cheapness, industry-robust angles:
+    master['ev_gross_profit'] = _safe_div(ev, gross_profit, den_must_be_positive=True)  # Novy-Marx
+    # Quality, harder-to-game angles:
+    master['gross_profitability'] = _safe_div(gross_profit, ev, den_must_be_positive=True)
+    master['cash_return_ev'] = _safe_div(cfo, ev, den_must_be_positive=True)  # cash ROIC proxy
+    # Capital intensity (reveals when EBITDA overstates real cash):
+    capex = (cfo - fcf).where(cfo.notna() & fcf.notna())
+    master['capex_ttm'] = capex
+    master['capex_intensity'] = _safe_div(capex, rev, den_must_be_positive=True)
+    master['fcf_conversion'] = _safe_div(fcf, ebitda_pos, den_must_be_positive=True)  # FCF/EBITDA
+    # Leverage, cash angle (years of FCF to repay net debt):
+    net_cash_v = _to_num(_s('net_cash'))
+    master['net_debt_to_fcf'] = _safe_div(-net_cash_v, fcf, den_must_be_positive=True)
+    # PSG — price-to-sales-to-growth (the P/S analog of PEG). Cheap-sales
+    # relative to revenue growth. Growth in % points, capped at 100% so a
+    # one-off can't manufacture a sub-0.01 multiple.
+    rgrow = rev_yoy.clip(upper=1.0)
+    master['psg'] = _safe_div(p_s_now, rgrow * 100.0, den_must_be_positive=True)
 
     # 12+13) Lynch multiples (recomputed every run, not gap-filled, so they
     # track the freshest growth/yield inputs).
