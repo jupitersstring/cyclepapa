@@ -178,12 +178,35 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # Use price_yoy where available, otherwise momentum_12m as proxy.
     flat_or_down = ((price_yoy <= 0.0) | (mom12 <= 0.0))
 
+    # ---- Interval-robust inflection (applied throughout) ----
+    # The central inflection detector `inflection_print` (used by ~15
+    # archetypes) traditionally reads annual/YoY flags only, so it MISSES a
+    # business that has turned on a TTM-sequential basis but whose year-ago
+    # comparison hasn't caught up yet. We add a SEASONALITY-ROBUST interval
+    # layer — YoY margin/growth angles + TTM-sequential turns (rolling 12mo
+    # cancels seasonality) — so those early inflections are found here too.
+    # Raw single-quarter sequential is deliberately EXCLUDED (it's
+    # seasonality-confounded); it only contributes to the scored confirmation
+    # used for ranking, never to firing.
+    def _n0(c):
+        return (pd.to_numeric(df[c], errors='coerce')
+                if c in df.columns else pd.Series(np.nan, index=df.index))
+    interval_inflect_any = (
+        (_n0('ebitda_margin_delta_yoy') > 0) | (_n0('fcf_margin_delta_yoy') > 0) |
+        (_n0('gross_margin_delta_yoy') > 0)  | (_n0('op_margin_delta_yoy') > 0) |
+        (_n0('operating_leverage_ratio') > 1.0) |
+        (_n0('ebitda_qoq_ttm') > 0) | (_n0('cfo_qoq_ttm') > 0) |
+        (_n0('fcf_qoq_ttm') > 0)    | (_n0('rev_qoq_ttm') > 0) |
+        (_n0('rev_accel') > 0)      | (_n0('gross_profit_yoy') > 0.05)
+    ).fillna(False)
+
     inflection_print = (
         (ebitda_inflection > 0) | (cfo_inflection > 0) | (fcf_inflection > 0) |
         (rev_inflection > 0) | (roce_inflection > 0) |
         (ebitda_first_pos > 0) | (cfo_first_pos > 0) | (fcf_first_pos > 0) |
         (ni_first_pos > 0) | (roce_first_pos > 0) |
-        (rev_yoy >= 0.10) | (ebitda_margin_delta >= 0.02)
+        (rev_yoy >= 0.10) | (ebitda_margin_delta >= 0.02) |
+        interval_inflect_any                       # interval-robust turns
     )
 
     # ---------- Cluster A: Narrative Lag (modifier) ----------
