@@ -57,10 +57,13 @@ TS_METRICS = {
     "BasicAverageShares": "Basic Average Shares",
     "RepurchaseOfCapitalStock": "Repurchase Of Capital Stock",
     "IssuanceOfCapitalStock": "Issuance Of Capital Stock",
+    "DilutedEPS": "Diluted EPS",
+    "BasicEPS": "Basic EPS",
 }
 # which statement each label belongs to
 _INCOME = {"Total Revenue", "EBITDA", "Operating Income", "Net Income", "Gross Profit",
-           "Diluted Average Shares", "Basic Average Shares"}
+           "Diluted Average Shares", "Basic Average Shares",
+           "Diluted EPS", "Basic EPS"}
 _CASH = {"Operating Cash Flow", "Free Cash Flow", "Capital Expenditure",
          "Repurchase Of Capital Stock", "Issuance Of Capital Stock"}
 _BAL = {"Total Assets", "Current Liabilities", "Total Debt", "Net Debt",

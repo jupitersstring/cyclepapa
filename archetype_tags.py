@@ -63,6 +63,7 @@ def _load_yartseva_union() -> pd.DataFrame:
         'net_buyback_ttm','normalized_ebitda','normalized_ebit','normalized_revenue',
         'earnings_beat_rate','avg_earnings_surprise','earnings_beat_streak',
         'earnings_surprise_inflecting','price_vs_5y_avg','price_pct_of_5y_range',
+        'eps_positive_streak_q','eps_yoy_growth_streak_q','eps_yoy_positive_share',
         'price_yoy','momentum_12m','not_priced_in_score',
         'net_debt_ebitda','net_cash_pct_mcap','cash_pct_ev','ncav_pct_mcap',
         'cash_gt_ev_flag','graham_net_net_flag',
@@ -1243,12 +1244,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # the sell-side estimate quarter after quarter (high cumulative beat rate
     # + streak, or an inflecting surprise). Populates as names re-enrich with
     # the earnings-surprise fields.
+    # Fire on EITHER chronic 4-quarter estimate beats OR — reaching further
+    # back than the 4Q window — durable YoY EPS growth over the last ~2 years.
     beat_rate = _num('earnings_beat_rate')
     df['arch_asleep_at_wheel'] = (
-        (beat_rate >= 0.75) &                    # beat >= 3 of the last 4 quarters
-        (_num('avg_earnings_surprise') > 0.02) & # meaningful average surprise
-        ((_num('earnings_beat_streak') >= 3) |   # a streak…
-         (_num('earnings_surprise_inflecting') > 0))  # …or accelerating surprise
+        ((beat_rate >= 0.75) &                    # beat >= 3 of the last 4 quarters
+         (_num('avg_earnings_surprise') > 0.02) & # meaningful average surprise
+         ((_num('earnings_beat_streak') >= 3) |   # a streak…
+          (_num('earnings_surprise_inflecting') > 0)))  # …or accelerating surprise
+        |
+        ((_num('eps_yoy_positive_share') >= 0.75) &   # grew YoY in >=75% of recent Q…
+         (_num('eps_yoy_growth_streak_q') >= 3))      # …with a 3-quarter growth streak
     ).fillna(False).astype(int)
 
     # ---------- Templeton "maximum pessimism" (cheap vs own history) ----------

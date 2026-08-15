@@ -203,6 +203,9 @@ class TickerRow:
     earnings_surprise_inflecting: int
     price_vs_5y_avg: float
     price_pct_of_5y_range: float
+    eps_positive_streak_q: float
+    eps_yoy_growth_streak_q: float
+    eps_yoy_positive_share: float
     # QoQ growth (latest 4Q TTM vs prior 4Q TTM, i.e. 1-quarter shift)
     rev_qoq_ttm: float
     ebitda_qoq_ttm: float
@@ -342,6 +345,7 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         dsh_q = first_row(qis, INCOME_ALIASES["basic_shares"])
     buyback_a = first_row(acf, CASHFLOW_ALIASES["buyback"])
     issuance_a = first_row(acf, CASHFLOW_ALIASES["issuance"])
+    eps_q = first_row(qis, ["Diluted EPS", "Basic EPS"])   # up to ~20 quarters
 
     # Build FCF if missing on either cadence.
     if fcf_q is None and cfo_q is not None and capex_q is not None:
@@ -487,6 +491,40 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     normalized_ebitda = _avg_annual(ebitda_a)
     normalized_ebit = _avg_annual(ebit_a)
     normalized_revenue = _avg_annual(rev_a)
+
+    # ---- Longer-history earnings CONSISTENCY (further back than the 4Q beats) ----
+    # Quarterly Diluted-EPS actuals reach back ~12-20 quarters, so we can
+    # measure durable earnings quality the 4-quarter estimate-beat window can't:
+    # a positive-EPS streak, a YoY-EPS-growth streak, and the share of the last
+    # 8 quarters with positive YoY EPS growth.
+    eps_positive_streak_q = np.nan
+    eps_yoy_growth_streak_q = np.nan
+    eps_yoy_positive_share = np.nan
+    if eps_q is not None and len(eps_q) >= 2:
+        e = pd.to_numeric(eps_q, errors="coerce")   # newest-first
+        vals = e.tolist()
+        streak = 0
+        for v in vals:
+            if pd.notna(v) and v > 0:
+                streak += 1
+            else:
+                break
+        eps_positive_streak_q = float(streak)
+        if len(e) >= 5:                              # need YoY (4q apart) pairs
+            yoy_pos = []
+            gstreak = 0; broken = False
+            for i in range(len(e) - 4):
+                cur, prior = e.iloc[i], e.iloc[i + 4]
+                if pd.notna(cur) and pd.notna(prior) and prior != 0:
+                    grew = cur > prior
+                    yoy_pos.append(1.0 if grew else 0.0)
+                    if grew and not broken:
+                        gstreak += 1
+                    else:
+                        broken = True
+            if yoy_pos:
+                eps_yoy_positive_share = float(np.mean(yoy_pos[:8]))
+                eps_yoy_growth_streak_q = float(gstreak)
 
     # QoQ on TTM = roll-forward TTM 1 quarter
     rev_qoq_ttm = pct_change(rev_ttm, rev_ttm_q1)
@@ -1360,6 +1398,9 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         earnings_surprise_inflecting=earnings_surprise_inflecting,
         price_vs_5y_avg=price_vs_5y_avg,
         price_pct_of_5y_range=price_pct_of_5y_range,
+        eps_positive_streak_q=eps_positive_streak_q,
+        eps_yoy_growth_streak_q=eps_yoy_growth_streak_q,
+        eps_yoy_positive_share=eps_yoy_positive_share,
         rev_qoq_ttm=rev_qoq_ttm,
         ebitda_qoq_ttm=ebitda_qoq_ttm,
         cfo_qoq_ttm=cfo_qoq_ttm,

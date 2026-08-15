@@ -87,6 +87,7 @@ FILL_COLUMNS = [
     'net_buyback_ttm', 'normalized_ebitda', 'normalized_ebit', 'normalized_revenue',
     'earnings_beat_rate', 'avg_earnings_surprise', 'earnings_beat_streak',
     'earnings_surprise_inflecting', 'price_vs_5y_avg', 'price_pct_of_5y_range',
+    'eps_positive_streak_q', 'eps_yoy_growth_streak_q', 'eps_yoy_positive_share',
 ]
 
 
