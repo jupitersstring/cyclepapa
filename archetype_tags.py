@@ -1190,6 +1190,53 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (mcap > 0) & (mcap < 5e9)                # small/mid, where this is mispriced
     ).fillna(False).astype(int)
 
+    # ---------- Asymmetric Assembly (PSIX-type levered inflection stub) ------
+    # The rare CAUSAL SYSTEM behind exceptional asymmetry (Power Solutions
+    # International, May 2024), where several engines reinforce one another —
+    # remove one and the payoff distribution changes materially, so this is a
+    # deliberately STRICT conjunction (rare by design, not broadened):
+    #  (1) a bad HEADLINE conceals improving unit economics — revenue flat/down
+    #      while margins & gross profit rise on a mix shift (an amateur screen
+    #      rejects "revenue down"; the causal read sees better economics);
+    #  (2) it sits beneath a HEAVY debt load — a small equity stub = convex
+    #      payoff (a modest EV gain multiplies a thin equity claim);
+    #  (3) operating cash is actively DELEVERAGING — value transfers from
+    #      lenders to shareholders as EBITDA rises and debt falls;
+    #  (4) it is priced CHEAPLY on the improving (not the headline) earnings;
+    #  (5) it is BEATEN-DOWN / low-expectations — a latent recognition catalyst;
+    #  (6) it is SURVIVABLE — positive pledgeable cash flow (Holmström-Tirole),
+    #      not a melting-ice going-concern with no internal cash.
+    # The operating-improvement leg uses the multi-angle/multi-interval
+    # confirmation (robust to which margin line the mix shift shows up in).
+    # The concealed improvement must be SUBSTANTIAL (PSIX: gross profit +10% on
+    # revenue -18%, +6.8pp margin, net income +91%) — not a single weak signal.
+    # Strong when confirmed across measures/intervals, OR EBITDA up double
+    # digits, OR the exact PSIX divergence (gross profit growing while revenue
+    # falls, available once names carry the Tier-B gross_profit_yoy field).
+    _gpy = _num('gross_profit_yoy')
+    strong_op_improvement = (
+        (oper_lev_score >= 0.40) |                       # confirmed multi-angle/interval
+        (ebitda_yoy_v >= 0.15) |                          # EBITDA up meaningfully
+        ((_gpy > 0) & (rev_yoy_c < _gpy))                # PSIX divergence (GP up, rev down)
+    )
+    df['arch_asymmetric_assembly'] = (
+        (mcap > 0) & (mcap < 5e9) &
+        # (1) bad headline, SUBSTANTIALLY better economics on a flat/down top line
+        (rev_yoy_c <= 0.05) & oper_lev_any & strong_op_improvement &
+        # (2) levered equity stub -> convexity (EV >> equity)
+        heavy_debt &
+        # (3) survivable + pledgeable income actively DELEVERAGING (EBITDA
+        #     rising cuts the debt/EBITDA ratio and transfers value to equity)
+        (ebitda_ttm_v > 0) & ((fcf_ttm_v > 0) | (cfo_ttm_v > 0)) &
+        ((ebitda_yoy_v > 0) | (ebitda_inflection > 0)) &
+        # (4) cheap on the improving earnings (two independent measures)
+        (((ev_ebitda_v > 0) & (ev_ebitda_v <= 7.0)) | (robust_cy >= 0.15)) &
+        # (5) beaten-down / low expectations (recognition catalyst latent)
+        (off_high <= -0.35) &
+        # (6) high marginal return on an unstretched base (soft guard)
+        _soft_ok_below('capex_intensity', 0.15)
+    ).fillna(False).astype(int)
+
     # ---------- Cheap-sales scaling-to-profit ----------
     # A grower the market prices cheaply on SALES (low P/S) and cheaply
     # relative to that growth (low P/S-to-growth), whose operating margins
@@ -1373,6 +1420,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_growth_algo',
         'arch_asleep_at_wheel',
         'arch_templeton_pessimism',
+        'arch_asymmetric_assembly',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -1436,6 +1484,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_growth_algo': 'GrowthAlgo-Flywheel',
         'arch_asleep_at_wheel': 'AsleepAtWheel-Beats',
         'arch_templeton_pessimism': 'Templeton-MaxPessimism',
+        'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
     }
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(

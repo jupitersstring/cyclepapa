@@ -92,6 +92,7 @@ ARCHETYPE_LABELS = {
     'arch_growth_algo': 'Growth-Algo Compounding Flywheel',
     'arch_asleep_at_wheel': 'Asleep at the Wheel (Chronic Beats)',
     'arch_templeton_pessimism': 'Templeton Maximum Pessimism',
+    'arch_asymmetric_assembly': 'Asymmetric Assembly (PSIX-type Levered Inflection)',
 }
 
 
