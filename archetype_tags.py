@@ -61,6 +61,8 @@ def _load_yartseva_union() -> pd.DataFrame:
         'gross_profit_yoy','gross_margin_delta_yoy','op_margin_delta_yoy',
         'ebit_growth_yoy','shares_yoy','shares_3y_cagr','fcf_per_share_yoy',
         'net_buyback_ttm','normalized_ebitda','normalized_ebit','normalized_revenue',
+        'earnings_beat_rate','avg_earnings_surprise','earnings_beat_streak',
+        'earnings_surprise_inflecting','price_vs_5y_avg','price_pct_of_5y_range',
         'price_yoy','momentum_12m','not_priced_in_score',
         'net_debt_ebitda','net_cash_pct_mcap','cash_pct_ev','ncav_pct_mcap',
         'cash_gt_ev_flag','graham_net_net_flag',
@@ -1236,6 +1238,33 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                                  #   buyback_score as coverage fills in.
     ).fillna(False).astype(int)
 
+    # ---------- "Asleep at the wheel" (chronic estimate beats) ----------
+    # Management/analysts consistently under-estimate the business: it beats
+    # the sell-side estimate quarter after quarter (high cumulative beat rate
+    # + streak, or an inflecting surprise). Populates as names re-enrich with
+    # the earnings-surprise fields.
+    beat_rate = _num('earnings_beat_rate')
+    df['arch_asleep_at_wheel'] = (
+        (beat_rate >= 0.75) &                    # beat >= 3 of the last 4 quarters
+        (_num('avg_earnings_surprise') > 0.02) & # meaningful average surprise
+        ((_num('earnings_beat_streak') >= 3) |   # a streak…
+         (_num('earnings_surprise_inflecting') > 0))  # …or accelerating surprise
+    ).fillna(False).astype(int)
+
+    # ---------- Templeton "maximum pessimism" (cheap vs own history) ----------
+    # Cheap against the company's OWN mid-cycle earnings (EV / normalized 5yr
+    # EBITDA — the cyclical adjustment that makes a trough-earnings cyclical
+    # look expensive on the spot number but cheap normalized), bought when the
+    # price sits near the bottom of its 5-year range / below its 5yr average.
+    # Survivability-gated so it is pessimism, not terminal decline.
+    ev_norm = _num('ev_norm_ebitda')
+    df['arch_templeton_pessimism'] = (
+        (ev_norm > 0) & (ev_norm <= 8.0) &                      # cheap vs mid-cycle
+        ((_num('price_pct_of_5y_range') <= 0.35) |              # near 5y low…
+         (_num('price_vs_5y_avg') <= 0.85)) &                  # …or below 5y avg
+        ((fcf_ttm_v > 0) | (ebitda_ttm_v > 0) | (net_cash_pct >= 0.30))
+    ).fillna(False).astype(int)
+
     arch_cols = [
         'arch_narrative_lag',
         'arch_fixed_cost_demand_shock',
@@ -1296,6 +1325,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_exceptional_evsg',
         'arch_negative_ev_value',
         'arch_growth_algo',
+        'arch_asleep_at_wheel',
+        'arch_templeton_pessimism',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -1357,6 +1388,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_exceptional_evsg': 'ExceptionalEVSG',
         'arch_negative_ev_value': 'NegativeEV-Value',
         'arch_growth_algo': 'GrowthAlgo-Flywheel',
+        'arch_asleep_at_wheel': 'AsleepAtWheel-Beats',
+        'arch_templeton_pessimism': 'Templeton-MaxPessimism',
     }
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(

@@ -141,7 +141,7 @@ class CrumbTicker:
     def history(self, period="2y", interval="1d", auto_adjust=True, **kw):
         """1-2y daily close via v8 chart (for momentum). yfinance shape:
         DataFrame with a 'Close' column indexed by date."""
-        rng = "2y" if "2" in str(period) else "1y"
+        rng = "5y" if "5" in str(period) else "2y" if "2" in str(period) else "1y"
         url = (f"https://query1.finance.yahoo.com/v8/finance/chart/"
                f"{urllib.parse.quote(self._symbol)}?range={rng}&interval=1d")
         try:
@@ -173,8 +173,20 @@ def _info_from_quote(sess: YahooSession, symbol: str) -> dict:
     def g(mod, key):
         v = (result.get(mod) or {}).get(key)
         return v.get("raw") if isinstance(v, dict) else v
+    # Earnings-surprise history (last ~4 quarters of EPS estimate vs actual) —
+    # the "asleep at the wheel" signal (consistently beaten estimates).
+    surprises = []
+    for h in ((result.get("earningsHistory") or {}).get("history") or []):
+        sp = h.get("surprisePercent")
+        sp = sp.get("raw") if isinstance(sp, dict) else sp
+        if sp is not None:
+            try:
+                surprises.append(float(sp))
+            except (TypeError, ValueError):
+                pass
     price = result.get("price", {})
     return {
+        "earnings_surprises": surprises,   # newest-first list of surprise %
         "currency": price.get("currency"),
         "currentPrice": g("financialData", "currentPrice"),
         "regularMarketPrice": g("price", "regularMarketPrice"),

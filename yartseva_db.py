@@ -196,6 +196,13 @@ class TickerRow:
     normalized_ebitda: float
     normalized_ebit: float
     normalized_revenue: float
+    # earnings-surprise ("asleep at the wheel") + Templeton price-vs-history
+    earnings_beat_rate: float
+    avg_earnings_surprise: float
+    earnings_beat_streak: float
+    earnings_surprise_inflecting: int
+    price_vs_5y_avg: float
+    price_pct_of_5y_range: float
     # QoQ growth (latest 4Q TTM vs prior 4Q TTM, i.e. 1-quarter shift)
     rev_qoq_ttm: float
     ebitda_qoq_ttm: float
@@ -735,6 +742,32 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
 
     # Valuation - market cap and enterprise value. yfinance's
     # info.enterpriseValue is sometimes 0 / stale; recompute from the
+    # ---- Tier-B: earnings-surprise ("asleep at the wheel") ----
+    # Consistently-beaten estimates: cumulative beat rate + average surprise +
+    # a beat streak + whether the surprise is INFLECTING (recent > older).
+    _surp = info.get("earnings_surprises") or []   # newest-first surprise %
+    _surp = [x for x in _surp if pd.notna(x)]
+    if _surp:
+        earnings_beat_rate = float(np.mean([1.0 if x > 0 else 0.0 for x in _surp]))
+        avg_earnings_surprise = float(np.mean(_surp))
+        streak = 0
+        for x in _surp:                      # newest-first: count leading beats
+            if x > 0:
+                streak += 1
+            else:
+                break
+        earnings_beat_streak = float(streak)
+        if len(_surp) >= 4:
+            recent = np.mean(_surp[:2]); older = np.mean(_surp[2:4])
+            earnings_surprise_inflecting = 1 if recent > older else 0
+        else:
+            earnings_surprise_inflecting = 0
+    else:
+        earnings_beat_rate = np.nan
+        avg_earnings_surprise = np.nan
+        earnings_beat_streak = np.nan
+        earnings_surprise_inflecting = 0
+
     # latest balance sheet whenever we have the inputs.
     price = info.get("currentPrice") or info.get("regularMarketPrice") or np.nan
     shares = info.get("sharesOutstanding") or info.get("impliedSharesOutstanding")
@@ -841,14 +874,26 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     # Price history is needed for momentum (Berezin's only TA edge) and for
     # the price-vs-fundamentals "not priced in" block further down. Compute
     # once here so both can use it.
+    # Tier-B: fetch 5y (for the Templeton price-vs-own-history gauge); the 1y
+    # slice still drives momentum.
+    price_vs_5y_avg = np.nan
+    price_pct_of_5y_range = np.nan
     try:
-        hist = t.history(period="2y", interval="1d", auto_adjust=True)
+        hist = t.history(period="5y", interval="1d", auto_adjust=True)
         if hist is not None and not hist.empty:
             close = hist["Close"].dropna()
             price_now = float(close.iloc[-1])
             idx_1y = max(0, len(close) - 252)
             price_1y = float(close.iloc[idx_1y])
             price_yoy = pct_change(price_now, price_1y)
+            # Templeton "maximum pessimism": current vs its own 5y mean, and
+            # where it sits in its 5y low-high range (0 = 5y low, 1 = 5y high).
+            p5 = close.iloc[-252 * 5:] if len(close) > 252 else close
+            p5avg = float(p5.mean())
+            price_vs_5y_avg = safe_div(price_now, p5avg)
+            lo, hi = float(p5.min()), float(p5.max())
+            if hi > lo:
+                price_pct_of_5y_range = (price_now - lo) / (hi - lo)
         else:
             price_yoy = np.nan
     except Exception:
@@ -1309,6 +1354,12 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         normalized_ebitda=normalized_ebitda,
         normalized_ebit=normalized_ebit,
         normalized_revenue=normalized_revenue,
+        earnings_beat_rate=earnings_beat_rate,
+        avg_earnings_surprise=avg_earnings_surprise,
+        earnings_beat_streak=earnings_beat_streak,
+        earnings_surprise_inflecting=earnings_surprise_inflecting,
+        price_vs_5y_avg=price_vs_5y_avg,
+        price_pct_of_5y_range=price_pct_of_5y_range,
         rev_qoq_ttm=rev_qoq_ttm,
         ebitda_qoq_ttm=ebitda_qoq_ttm,
         cfo_qoq_ttm=cfo_qoq_ttm,

@@ -85,6 +85,8 @@ FILL_COLUMNS = [
     'gross_profit_yoy', 'gross_margin_delta_yoy', 'op_margin_delta_yoy',
     'ebit_growth_yoy', 'shares_yoy', 'shares_3y_cagr', 'fcf_per_share_yoy',
     'net_buyback_ttm', 'normalized_ebitda', 'normalized_ebit', 'normalized_revenue',
+    'earnings_beat_rate', 'avg_earnings_surprise', 'earnings_beat_streak',
+    'earnings_surprise_inflecting', 'price_vs_5y_avg', 'price_pct_of_5y_range',
 ]
 
 

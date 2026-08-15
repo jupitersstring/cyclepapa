@@ -90,6 +90,8 @@ ARCHETYPE_LABELS = {
     'arch_exceptional_evsg': 'Exceptional EV/Sales vs Growth',
     'arch_negative_ev_value': 'Negative / Low-EV Deep Value',
     'arch_growth_algo': 'Growth-Algo Compounding Flywheel',
+    'arch_asleep_at_wheel': 'Asleep at the Wheel (Chronic Beats)',
+    'arch_templeton_pessimism': 'Templeton Maximum Pessimism',
 }
 
 
