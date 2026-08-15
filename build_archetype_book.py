@@ -89,6 +89,7 @@ ARCHETYPE_LABELS = {
     'arch_cheap_sales_scaler': 'Cheap-Sales Scaling to Profit',
     'arch_exceptional_evsg': 'Exceptional EV/Sales vs Growth',
     'arch_negative_ev_value': 'Negative / Low-EV Deep Value',
+    'arch_growth_algo': 'Growth-Algo Compounding Flywheel',
 }
 
 

@@ -1117,6 +1117,28 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((fcf_ttm_v > 0) | (ebitda_ttm_v > 0) | (net_cash_pct >= 0.5))  # not a cash-burn trap
     ).fillna(False).astype(int)
 
+    # ---------- "Growth algorithm" compounding flywheel ($DLO logic) ----------
+    # The DLocal-style algorithm: gross-profit growth (~20%) + operating
+    # leverage (EBIT growing FASTER, ~25%) + a shrinking share count (~-5%
+    # buybacks) COMPOUND into outsized FCF/share growth (~30%), bought cheap on
+    # EV/FCF (~13x de-rating toward ~5x as FCF compounds). We can screen the
+    # core stack now — top-line growth, operating leverage, FCF compounding,
+    # cheap EV/FCF. The PRECISE legs (gross-profit vs EBIT growth split, and
+    # the share-count −5% / FCF-per-share +30% legs) need gross_profit_yoy,
+    # EBIT growth and a share-count trajectory the enricher must add — the
+    # buyback here is a soft bonus (buyback_yield is only ~4% covered).
+    fcf_yoy_v = s('fcf_yoy')
+    ev_fcf = _num('enterprise_value') / fcf_ttm_v.where(fcf_ttm_v > 0)
+    buyback_bonus = _soft_ok_above('buyback_yield', 0.0)  # doesn't exclude; note only
+    df['arch_growth_algo'] = (
+        (mcap > 0) & (mcap < 50e9) &
+        (rev_yoy_c >= 0.15) &                    # top-line (gross-profit) growth
+        oper_lev_any &                           # operating leverage (EBIT outpaces sales)
+        (fcf_ttm_v > 0) & (fcf_yoy_v >= 0.20) &  # FCF compounding (proxy for FCF/share)
+        (ev_fcf >= 2.0) & (ev_fcf <= 15.0)       # cheap on EV/FCF (~13x; lower bound
+                                                 #   drops near-zero-EV artifacts)
+    ).fillna(False).astype(int)
+
     arch_cols = [
         'arch_narrative_lag',
         'arch_fixed_cost_demand_shock',
@@ -1176,6 +1198,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_cheap_sales_scaler',
         'arch_exceptional_evsg',
         'arch_negative_ev_value',
+        'arch_growth_algo',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -1236,6 +1259,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_cheap_sales_scaler': 'CheapSalesScaler',
         'arch_exceptional_evsg': 'ExceptionalEVSG',
         'arch_negative_ev_value': 'NegativeEV-Value',
+        'arch_growth_algo': 'GrowthAlgo-Flywheel',
     }
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(
