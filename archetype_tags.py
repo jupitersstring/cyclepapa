@@ -1237,6 +1237,24 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _soft_ok_below('capex_intensity', 0.15)
     ).fillna(False).astype(int)
 
+    # ---------- Levered Inflection Stub (looser PSIX — revenue-agnostic) -----
+    # The same convex causal engine as the Asymmetric Assembly WITHOUT the
+    # strict "bad headline / revenue-down" signature: a heavily-levered equity
+    # stub whose operating economics are inflecting and DELEVERAGING, priced
+    # cheaply and beaten down — but revenue may be flat, down, OR growing (a
+    # levered grower re-rating counts too). Broader than the strict PSIX
+    # conjunction; the operating improvement must still be real.
+    df['arch_levered_inflection'] = (
+        (mcap > 0) & (mcap < 5e9) &
+        oper_lev_any & strong_op_improvement &   # real operating improvement (any rev dir.)
+        heavy_debt &                             # levered equity stub -> convexity
+        (ebitda_ttm_v > 0) & ((fcf_ttm_v > 0) | (cfo_ttm_v > 0)) &  # survivable + cash
+        ((ebitda_yoy_v > 0) | (ebitda_inflection > 0)) &           # deleveraging (rising EBITDA)
+        (((ev_ebitda_v > 0) & (ev_ebitda_v <= 8.0)) | (robust_cy >= 0.12)) &  # cheap
+        (off_high <= -0.25) &                    # beaten down / low expectations
+        _soft_ok_below('capex_intensity', 0.15)
+    ).fillna(False).astype(int)
+
     # ---------- Cheap-sales scaling-to-profit ----------
     # A grower the market prices cheaply on SALES (low P/S) and cheaply
     # relative to that growth (low P/S-to-growth), whose operating margins
@@ -1421,6 +1439,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_asleep_at_wheel',
         'arch_templeton_pessimism',
         'arch_asymmetric_assembly',
+        'arch_levered_inflection',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -1485,6 +1504,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_asleep_at_wheel': 'AsleepAtWheel-Beats',
         'arch_templeton_pessimism': 'Templeton-MaxPessimism',
         'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
+        'arch_levered_inflection': 'LeveredInflectionStub',
     }
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(

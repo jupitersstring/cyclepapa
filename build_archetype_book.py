@@ -93,6 +93,7 @@ ARCHETYPE_LABELS = {
     'arch_asleep_at_wheel': 'Asleep at the Wheel (Chronic Beats)',
     'arch_templeton_pessimism': 'Templeton Maximum Pessimism',
     'arch_asymmetric_assembly': 'Asymmetric Assembly (PSIX-type Levered Inflection)',
+    'arch_levered_inflection': 'Levered Inflection Stub (looser PSIX)',
 }
 
 
