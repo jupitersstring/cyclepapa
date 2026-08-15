@@ -160,14 +160,16 @@ def load_data(min_mcap: float = 10_000_000):
         df['market_cap'] = (pd.to_numeric(df['market_cap_usd'], errors='coerce')
                             .fillna(pd.to_numeric(df['market_cap'], errors='coerce')))
 
-    # Confirmation upweight: float names up mildly where several independent
-    # accounting measures confirm the operating-leverage inflection (max +15%
-    # — enough to break ties toward corroborated names, not enough to reorder
-    # the board or shrink the pool). Ranking key; the sheets still DISPLAY the
-    # raw ETA.
+    # Confirmation upweight: float names up mildly where independent accounting
+    # measures corroborate the thesis — combined inflection confirmation
+    # (operating leverage + top-line growth across YoY/QoQ/sequential time
+    # bases, max +20%) and share-count reduction / buybacks (max +10%). Enough to break ties
+    # toward confirmed names, never enough to reorder the board or shrink the
+    # pool. Ranking key only; the sheets still DISPLAY the raw ETA.
     _eta = pd.to_numeric(df.get('entry_today_asymmetry'), errors='coerce').fillna(0.0)
-    _ols = pd.to_numeric(df.get('oper_leverage_score'), errors='coerce').fillna(0.0)
-    df['entry_confirmed'] = _eta * (1.0 + 0.15 * _ols)
+    _ics = pd.to_numeric(df.get('inflection_confirm_score'), errors='coerce').fillna(0.0)
+    _bbs = pd.to_numeric(df.get('buyback_score'), errors='coerce').fillna(0.0)
+    df['entry_confirmed'] = _eta * (1.0 + 0.20 * _ics + 0.10 * _bbs)
 
     # Apply min mcap + exclude RED
     df = df[df['market_cap'].fillna(0) >= min_mcap]

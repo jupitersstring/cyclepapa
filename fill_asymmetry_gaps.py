@@ -80,6 +80,11 @@ FILL_COLUMNS = [
     'cheapness_under_7x_flag', 'cheapness_blend_vs_growth',
     'yartseva_score',
     'inflection_flag', 'inflection_score',
+    # Tier-B: extra operating-leverage angles, share-count trajectory,
+    # normalized (mid-cycle) earnings
+    'gross_profit_yoy', 'gross_margin_delta_yoy', 'op_margin_delta_yoy',
+    'ebit_growth_yoy', 'shares_yoy', 'shares_3y_cagr', 'fcf_per_share_yoy',
+    'net_buyback_ttm', 'normalized_ebitda', 'normalized_ebit', 'normalized_revenue',
 ]
 
 

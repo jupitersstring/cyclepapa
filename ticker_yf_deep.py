@@ -52,10 +52,17 @@ TS_METRICS = {
         "Cash Cash Equivalents And Short Term Investments",
     "StockholdersEquity": "Stockholders Equity",
     "InvestedCapital": "Invested Capital",
+    # Tier-B: diluted-share trajectory + financing-section buybacks
+    "DilutedAverageShares": "Diluted Average Shares",
+    "BasicAverageShares": "Basic Average Shares",
+    "RepurchaseOfCapitalStock": "Repurchase Of Capital Stock",
+    "IssuanceOfCapitalStock": "Issuance Of Capital Stock",
 }
 # which statement each label belongs to
-_INCOME = {"Total Revenue", "EBITDA", "Operating Income", "Net Income", "Gross Profit"}
-_CASH = {"Operating Cash Flow", "Free Cash Flow", "Capital Expenditure"}
+_INCOME = {"Total Revenue", "EBITDA", "Operating Income", "Net Income", "Gross Profit",
+           "Diluted Average Shares", "Basic Average Shares"}
+_CASH = {"Operating Cash Flow", "Free Cash Flow", "Capital Expenditure",
+         "Repurchase Of Capital Stock", "Issuance Of Capital Stock"}
 _BAL = {"Total Assets", "Current Liabilities", "Total Debt", "Net Debt",
         "Cash And Cash Equivalents",
         "Cash Cash Equivalents And Short Term Investments",

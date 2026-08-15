@@ -58,6 +58,9 @@ def _load_yartseva_union() -> pd.DataFrame:
         'ebitda_first_positive','cfo_first_positive','fcf_first_positive',
         'net_income_first_positive','roce_first_positive','roce_inflection',
         'ebitda_margin_delta_yoy','fcf_margin_delta_yoy',
+        'gross_profit_yoy','gross_margin_delta_yoy','op_margin_delta_yoy',
+        'ebit_growth_yoy','shares_yoy','shares_3y_cagr','fcf_per_share_yoy',
+        'net_buyback_ttm','normalized_ebitda','normalized_ebit','normalized_revenue',
         'price_yoy','momentum_12m','not_priced_in_score',
         'net_debt_ebitda','net_cash_pct_mcap','cash_pct_ev','ncav_pct_mcap',
         'cash_gt_ev_flag','graham_net_net_flag',
@@ -435,6 +438,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     largest_segment_share = s('largest_segment_share', np.nan)
     geographic_region_count = s('geographic_region_count', 0)
     fastest_segment_yoy = s('fastest_segment_yoy', np.nan)
+    segment_growth_dispersion = s('segment_growth_dispersion', np.nan)
     customer_concentration_flag = s('customer_concentration_flag', 0)
 
     # AD — Diversified Segments: 4+ segments AND HHI <= 0.40. Real
@@ -458,11 +462,22 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (geographic_region_count >= 4)
     ).astype(int)
 
-    # AG — Fastest Segment Inflection: a single segment growing > 25% YoY
-    # WITHIN a multi-segment business (i.e., a "hidden growth engine"
-    # the consolidated number masks).
+    # AG — Fastest Segment Inflection: a "hidden growth engine" the
+    # consolidated number masks. Made robust by firing on ANY of three
+    # segment-inflection angles (broadens — recovers names the strict >25%
+    # threshold alone missed, without shrinking the pool):
+    #   (a) the fastest segment is growing hard (>25%);
+    #   (b) segments are DIVERGING (high growth dispersion) with a leader
+    #       still growing decently (>15%) — a mix-shift toward the winner;
+    #   (c) the CONSOLIDATED business is inflecting AND a segment is growing
+    #       double digits — the company-level turn is segment-led.
+    seg_inflect_any = (
+        (fastest_segment_yoy >= 0.25) |
+        ((segment_growth_dispersion >= 0.30) & (fastest_segment_yoy >= 0.15)) |
+        (inflection_print & (fastest_segment_yoy >= 0.10))
+    )
     df['arch_fastest_segment'] = (
-        (fastest_segment_yoy >= 0.25) & (segment_count >= 2)
+        (segment_count >= 2) & seg_inflect_any
     ).fillna(False).astype(int)
 
     # Q — Durable Growth: revenue 5y CAGR >= 8% AND topline accelerating
@@ -786,6 +801,59 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     oper_lev_score = (0.5 * yoy_score + 0.3 * ttmseq_score +
                       0.2 * _rawseq_eff).clip(0.0, 1.0)
     df['oper_leverage_score'] = oper_lev_score.round(3)
+
+    # ---- Robust share-count / buyback detection (multi-angle) ----
+    # Is the share count SHRINKING (buybacks, per-share accretive) or GROWING
+    # (dilution)? Triangulated across five independent angles so no single
+    # sparse field decides it. Non-gating — exposed as a score and used to
+    # upweight, never to shrink the pool. (Populates as names re-enrich with
+    # the Tier-B share-trajectory fields.)
+    shares_yoy_v = _num('shares_yoy')
+    fcf_ps_yoy_v = _num('fcf_per_share_yoy')
+    buyback_any, buyback_score = _confirm([
+        (shares_yoy_v,               lambda x: x < -0.01),   # diluted count falling YoY
+        (_num('shares_3y_cagr'),     lambda x: x < -0.01),   # falling over 3y
+        (_num('net_buyback_ttm'),    lambda x: x > 0),       # net cash-flow repurchases
+        (_num('buyback_yield'),      lambda x: x > 0),       # buyback yield (EDGAR)
+        (fcf_ps_yoy_v - _num('fcf_yoy'), lambda x: x > 0.02),  # per-share OUTPACES total
+    ])
+    df['buyback_score'] = buyback_score.round(3)
+    # Clearly diluting = diluted share count up >2% (present). Used as a soft
+    # guard where a low share count matters.
+    not_diluting = ~((shares_yoy_v.notna()) & (shares_yoy_v > 0.02))
+
+    # ---- Templeton normalized (mid-cycle) cheapness ----
+    # Cheap vs the company's OWN mid-cycle earnings, not the trough/peak print
+    # — the cyclical adjustment. EV / normalized(avg 5yr) EBITDA. Confirmation
+    # angle only (never gates).
+    _ev_now = _num('enterprise_value')
+    ev_norm_ebitda = _ev_now / _num('normalized_ebitda').where(_num('normalized_ebitda') > 0)
+    df['ev_norm_ebitda'] = ev_norm_ebitda.round(3)
+    cheap_vs_normalized = (ev_norm_ebitda > 0) & (ev_norm_ebitda <= 8.0)
+
+    # ---- Revenue/top-line growth, same three time bases + seasonality ----
+    # The interval-robustness we apply to operating leverage, applied to
+    # top-line growth too (a consistent layer). YoY + gross-profit growth +
+    # acceleration are seasonality-robust; TTM-sequential (rev_qoq_ttm) is
+    # robust; raw sequential (rev_seq) is seasonal and downweighted unless a
+    # robust base corroborates.
+    rev_yoy_any2, rev_yoy_sc = _confirm([
+        (_num('rev_yoy'),          lambda x: x > 0.05),
+        (_num('rev_accel'),        lambda x: x > 0),
+        (_num('gross_profit_yoy'), lambda x: x > 0.05),
+    ])
+    rev_ttm_any2, rev_ttm_sc = _confirm([(_num('rev_qoq_ttm'), lambda x: x > 0)])
+    rev_raw_any2, rev_raw_sc = _confirm([(_num('rev_seq'), lambda x: x > 0)])
+    _rev_robust = rev_yoy_any2 | rev_ttm_any2
+    _rev_raw_eff = rev_raw_sc * np.where(_rev_robust, 1.0, 0.4)
+    rev_growth_score = (0.5 * rev_yoy_sc + 0.3 * rev_ttm_sc +
+                        0.2 * _rev_raw_eff).clip(0.0, 1.0)
+    df['rev_growth_score'] = rev_growth_score.round(3)
+    # Combined cross-archetype inflection confirmation (operating leverage +
+    # top-line growth). Exposed so every book's ranking can upweight names
+    # whose thesis is corroborated across measures AND time bases.
+    df['inflection_confirm_score'] = (
+        (0.5 * oper_lev_score + 0.5 * rev_growth_score)).round(3)
 
     low_sbc_wolf = _soft_ok_below('sbc_pct_revenue', 0.15)   # Wolf dings excess SBC
     low_sbc_liger = _soft_ok_below('sbc_pct_revenue', 0.10)  # Liger flags diluters
@@ -1135,8 +1203,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (rev_yoy_c >= 0.15) &                    # top-line (gross-profit) growth
         oper_lev_any &                           # operating leverage (EBIT outpaces sales)
         (fcf_ttm_v > 0) & (fcf_yoy_v >= 0.20) &  # FCF compounding (proxy for FCF/share)
-        (ev_fcf >= 2.0) & (ev_fcf <= 15.0)       # cheap on EV/FCF (~13x; lower bound
+        (ev_fcf >= 2.0) & (ev_fcf <= 15.0) &     # cheap on EV/FCF (~13x; lower bound
                                                  #   drops near-zero-EV artifacts)
+        not_diluting                             # not clearly issuing shares (soft:
+                                                 #   excludes only names KNOWN to dilute
+                                                 #   >2%; missing data still qualifies).
+                                                 #   The precise DLO share-count -5% /
+                                                 #   FCF-per-share +30% legs upweight via
+                                                 #   buyback_score as coverage fills in.
     ).fillna(False).astype(int)
 
     arch_cols = [
@@ -1267,7 +1341,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score']]
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score']]
     out.to_csv(out_path, index=False)
 
     # Summary to stderr

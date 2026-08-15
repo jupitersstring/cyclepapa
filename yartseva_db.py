@@ -41,11 +41,21 @@ INCOME_ALIASES = {
     "ebitda": ["EBITDA", "Normalized EBITDA"],
     "ebit": ["EBIT", "Operating Income"],
     "net_income": ["Net Income", "Net Income Common Stockholders"],
+    "gross_profit": ["Gross Profit"],
+    # Diluted share count as a TIME-SERIES (the info-dict sharesOutstanding is
+    # point-in-time only). Used for share-count trajectory / buyback detection.
+    "diluted_shares": ["Diluted Average Shares", "Diluted Average Shares Outstanding"],
+    "basic_shares": ["Basic Average Shares", "Basic Average Shares Outstanding"],
 }
 CASHFLOW_ALIASES = {
     "cfo": ["Operating Cash Flow", "Total Cash From Operating Activities"],
     "capex": ["Capital Expenditure", "Capital Expenditures"],
     "fcf": ["Free Cash Flow"],
+    # Financing-section share activity (net buyback = repurchases − issuance).
+    "buyback": ["Repurchase Of Capital Stock", "Repurchase of Capital Stock",
+                "Common Stock Payments"],
+    "issuance": ["Issuance Of Capital Stock", "Issuance of Capital Stock",
+                 "Common Stock Issuance"],
 }
 BALANCE_ALIASES = {
     "total_assets": ["Total Assets"],
@@ -173,6 +183,19 @@ class TickerRow:
     # Margin delta YoY (pp)
     ebitda_margin_delta_yoy: float
     fcf_margin_delta_yoy: float
+    # Tier-B: extra operating-leverage angles, share-count trajectory,
+    # normalized (mid-cycle) earnings
+    gross_profit_yoy: float
+    gross_margin_delta_yoy: float
+    op_margin_delta_yoy: float
+    ebit_growth_yoy: float
+    shares_yoy: float
+    shares_3y_cagr: float
+    fcf_per_share_yoy: float
+    net_buyback_ttm: float
+    normalized_ebitda: float
+    normalized_ebit: float
+    normalized_revenue: float
     # QoQ growth (latest 4Q TTM vs prior 4Q TTM, i.e. 1-quarter shift)
     rev_qoq_ttm: float
     ebitda_qoq_ttm: float
@@ -301,6 +324,18 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     fcf_a = first_row(acf, CASHFLOW_ALIASES["fcf"])
     capex_a = first_row(acf, CASHFLOW_ALIASES["capex"])
 
+    # Tier-B: gross profit, diluted-share, and buyback/issuance series
+    gp_q = first_row(qis, INCOME_ALIASES["gross_profit"])
+    gp_a = first_row(ais, INCOME_ALIASES["gross_profit"])
+    dsh_q = first_row(qis, INCOME_ALIASES["diluted_shares"])
+    dsh_a = first_row(ais, INCOME_ALIASES["diluted_shares"])
+    if dsh_a is None:
+        dsh_a = first_row(ais, INCOME_ALIASES["basic_shares"])
+    if dsh_q is None:
+        dsh_q = first_row(qis, INCOME_ALIASES["basic_shares"])
+    buyback_a = first_row(acf, CASHFLOW_ALIASES["buyback"])
+    issuance_a = first_row(acf, CASHFLOW_ALIASES["issuance"])
+
     # Build FCF if missing on either cadence.
     if fcf_q is None and cfo_q is not None and capex_q is not None:
         idx = cfo_q.index.intersection(capex_q.index)
@@ -390,6 +425,61 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     ebitda_yoy = pct_change(ebitda_ttm, ebitda_ttm_prev)
     cfo_yoy = pct_change(cfo_ttm, cfo_ttm_prev)
     fcf_yoy = pct_change(fcf_ttm, fcf_ttm_prev)
+
+    # ---- Tier-B: gross-profit / EBIT operating-leverage angles ----
+    gp_ttm = ttm_or_annual(gp_q, gp_a)
+    gp_ttm_prev = ttm_prev_or_annual(gp_q, gp_a)
+    gross_profit_yoy = pct_change(gp_ttm, gp_ttm_prev)
+    gross_margin_now = safe_div(gp_ttm, rev_ttm)
+    gross_margin_prev = safe_div(gp_ttm_prev, rev_ttm_prev)
+    gross_margin_delta_yoy = (gross_margin_now - gross_margin_prev) \
+        if (pd.notna(gross_margin_now) and pd.notna(gross_margin_prev)) else np.nan
+    ebit_ttm_prev_v = ttm_prev_or_annual(ebit_q, ebit_a)
+    ebit_growth_yoy = pct_change(ebit_ttm, ebit_ttm_prev_v)
+    op_margin_now = safe_div(ebit_ttm, rev_ttm)
+    op_margin_prev = safe_div(ebit_ttm_prev_v, rev_ttm_prev)
+    op_margin_delta_yoy = (op_margin_now - op_margin_prev) \
+        if (pd.notna(op_margin_now) and pd.notna(op_margin_prev)) else np.nan
+
+    # ---- Tier-B: robust share-count / buyback detection ----
+    # Diluted-share TIME-SERIES trajectory (info-dict shares is point-in-time).
+    def _sh(series, i):
+        if series is None or len(series) <= i:
+            return np.nan
+        v = series.iloc[i]
+        # income-statement share rows are sometimes negative-signed; use abs
+        return abs(float(v)) if pd.notna(v) and v != 0 else np.nan
+    dsh_now = _sh(dsh_a, 0)
+    dsh_1y = _sh(dsh_a, 1)
+    dsh_3y = _sh(dsh_a, 3)
+    shares_yoy = pct_change(dsh_now, dsh_1y)           # <0 = buybacks, >0 = dilution
+    shares_3y_cagr = ((dsh_now / dsh_3y) ** (1 / 3.0) - 1.0) \
+        if (pd.notna(dsh_now) and pd.notna(dsh_3y) and dsh_3y > 0) else np.nan
+    # FCF-per-share growth = the economic effect (accretive even if the count
+    # is noisy). fcf_ps_prev uses prior FCF over prior shares.
+    fcf_ps_now = safe_div(fcf_ttm, dsh_now)
+    fcf_ps_prev = safe_div(fcf_ttm_prev, dsh_1y)
+    fcf_per_share_yoy = pct_change(fcf_ps_now, fcf_ps_prev)
+    # Net buyback from the financing section (repurchases − issuance),
+    # normalised later by market cap downstream. Both rows are signed by
+    # yfinance (repurchase negative, issuance positive); take magnitudes.
+    _bb = _sh(buyback_a, 0)   # magnitude of repurchases
+    _iss = _sh(issuance_a, 0)  # magnitude of issuance
+    net_buyback_ttm = ((_bb if pd.notna(_bb) else 0.0) -
+                       (_iss if pd.notna(_iss) else 0.0)) \
+        if (pd.notna(_bb) or pd.notna(_iss)) else np.nan
+
+    # ---- Tier-B: Templeton normalized (mid-cycle) earnings ----
+    # Average of up to 5 annual years — the cyclical-neutral earnings base a
+    # cyclical looks "expensive" on at the trough and "cheap" on at the peak.
+    def _avg_annual(series, n=5):
+        if series is None or len(series) == 0:
+            return np.nan
+        vals = pd.to_numeric(series.iloc[:n], errors="coerce").dropna()
+        return float(vals.mean()) if len(vals) >= 2 else np.nan
+    normalized_ebitda = _avg_annual(ebitda_a)
+    normalized_ebit = _avg_annual(ebit_a)
+    normalized_revenue = _avg_annual(rev_a)
 
     # QoQ on TTM = roll-forward TTM 1 quarter
     rev_qoq_ttm = pct_change(rev_ttm, rev_ttm_q1)
@@ -1208,6 +1298,17 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         fcf_yoy=fcf_yoy,
         ebitda_margin_delta_yoy=ebitda_margin_delta_yoy,
         fcf_margin_delta_yoy=fcf_margin_delta_yoy,
+        gross_profit_yoy=gross_profit_yoy,
+        gross_margin_delta_yoy=gross_margin_delta_yoy,
+        op_margin_delta_yoy=op_margin_delta_yoy,
+        ebit_growth_yoy=ebit_growth_yoy,
+        shares_yoy=shares_yoy,
+        shares_3y_cagr=shares_3y_cagr,
+        fcf_per_share_yoy=fcf_per_share_yoy,
+        net_buyback_ttm=net_buyback_ttm,
+        normalized_ebitda=normalized_ebitda,
+        normalized_ebit=normalized_ebit,
+        normalized_revenue=normalized_revenue,
         rev_qoq_ttm=rev_qoq_ttm,
         ebitda_qoq_ttm=ebitda_qoq_ttm,
         cfo_qoq_ttm=cfo_qoq_ttm,
