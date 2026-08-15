@@ -87,6 +87,8 @@ ARCHETYPE_LABELS = {
     'arch_oak_order_conversion': 'Oak Order-Book Conversion',
     'arch_weschler_levered_equity': 'Weschler Levered-Equity Deleveraging',
     'arch_cheap_sales_scaler': 'Cheap-Sales Scaling to Profit',
+    'arch_exceptional_evsg': 'Exceptional EV/Sales vs Growth',
+    'arch_negative_ev_value': 'Negative / Low-EV Deep Value',
 }
 
 

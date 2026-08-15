@@ -80,6 +80,7 @@ DERIVED_COLUMNS = [
     'fcf_conversion',
     'net_debt_to_fcf',
     'psg',
+    'evsg',
     'pegy',
     'ev_ebitda_gy',
 ]
@@ -390,6 +391,13 @@ def main():
     # one-off can't manufacture a sub-0.01 multiple.
     rgrow = rev_yoy.clip(upper=1.0)
     master['psg'] = _safe_div(p_s_now, rgrow * 100.0, den_must_be_positive=True)
+    # EVSG — EV/sales-to-growth, the capital-structure-neutral analog of PSG
+    # (cheap on sales relative to revenue growth). We lack an organic-vs-total
+    # revenue split, so total revenue growth is the organic proxy.
+    ev_sales_now = _to_num(_s('ev_sales'))
+    ev_sales_now = ev_sales_now.where(ev_sales_now.notna(),
+                                      _safe_div(ev, rev, den_must_be_positive=True))
+    master['evsg'] = _safe_div(ev_sales_now, rgrow * 100.0, den_must_be_positive=True)
 
     # 12+13) Lynch multiples (recomputed every run, not gap-filled, so they
     # track the freshest growth/yield inputs).

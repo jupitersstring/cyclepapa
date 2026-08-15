@@ -1082,6 +1082,41 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         near_profit                              # at / near / just-crossed profitability
     ).fillna(False).astype(int)
 
+    # ---------- Exceptional EV/sales vs growth ----------
+    # A fast grower priced at an EXCEPTIONALLY low EV/sales relative to that
+    # growth (EVSG). Capital-structure-neutral (EV, not price) analog of PSG,
+    # so it compares levered and unlevered growers fairly. We have no
+    # organic-vs-total revenue split, so total revenue growth stands in for
+    # organic. A light quality gate keeps out pre-revenue cash-burn shells.
+    evsg_v = s('evsg', 99.0)
+    df['arch_exceptional_evsg'] = (
+        (mcap > 0) & (mcap < 20e9) &
+        (evsg_v >= 0.002) & (evsg_v <= 0.05) &   # EXCEPTIONAL EV/sales-to-growth
+        (rev_yoy_c >= 0.20) &                    # strong (organic-proxy) growth
+        (ev_sales_v >= 0.15) & (ev_sales_v <= 4.0) &  # sales-multiple meaningful (lower
+                                                 #   bound drops razor-margin traders /
+                                                 #   near-zero-EV artifacts) yet not rich
+        ((ebitda_ttm_v > 0) | (fcf_ttm_v > 0) | (op_margin_real >= -0.15))
+    ).fillna(False).astype(int)
+
+    # ---------- Negative / low EV + sub-book deep value ----------
+    # The market cap is at or below net cash (negative or tiny EV — you are
+    # effectively PAID to own the operating business) OR the price is well
+    # below book. A survivability gate (positive cash flow OR a big net-cash
+    # cushion) keeps out the melting-ice cash-burners where the cash is a
+    # depleting, not a protective, asset (the Belluscura lesson).
+    ev_raw2 = _num('enterprise_value')
+    neg_or_low_ev = (
+        (ev_raw2 < 0) |                          # negative EV
+        (cash_gt_ev > 0) |                       # cash exceeds EV
+        (net_cash_pct >= 0.75)                   # net cash >= 75% of market cap
+    )
+    df['arch_negative_ev_value'] = (
+        (mcap > 0) & (mcap < 5e9) &
+        (neg_or_low_ev | ((pb > 0) & (pb < 0.7))) &   # cash floor OR deep sub-book
+        ((fcf_ttm_v > 0) | (ebitda_ttm_v > 0) | (net_cash_pct >= 0.5))  # not a cash-burn trap
+    ).fillna(False).astype(int)
+
     arch_cols = [
         'arch_narrative_lag',
         'arch_fixed_cost_demand_shock',
@@ -1139,6 +1174,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
+        'arch_exceptional_evsg',
+        'arch_negative_ev_value',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -1197,6 +1234,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_oak_order_conversion': 'OakOrderConversion',
         'arch_weschler_levered_equity': 'WeschlerLeveredEquity',
         'arch_cheap_sales_scaler': 'CheapSalesScaler',
+        'arch_exceptional_evsg': 'ExceptionalEVSG',
+        'arch_negative_ev_value': 'NegativeEV-Value',
     }
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(
