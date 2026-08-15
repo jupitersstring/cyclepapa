@@ -169,9 +169,9 @@ def load_data(min_mcap: float = 10_000_000):
     # toward confirmed names, never enough to reorder the board or shrink the
     # pool. Ranking key only; the sheets still DISPLAY the raw ETA.
     _eta = pd.to_numeric(df.get('entry_today_asymmetry'), errors='coerce').fillna(0.0)
-    _ics = pd.to_numeric(df.get('inflection_confirm_score'), errors='coerce').fillna(0.0)
+    _cfo = pd.to_numeric(df.get('confirm_overall'), errors='coerce').fillna(0.0)
     _bbs = pd.to_numeric(df.get('buyback_score'), errors='coerce').fillna(0.0)
-    df['entry_confirmed'] = _eta * (1.0 + 0.20 * _ics + 0.10 * _bbs)
+    df['entry_confirmed'] = _eta * (1.0 + 0.20 * _cfo + 0.10 * _bbs)
 
     # Apply min mcap + exclude RED
     df = df[df['market_cap'].fillna(0) >= min_mcap]

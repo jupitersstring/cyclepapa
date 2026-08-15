@@ -664,7 +664,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #    the paper's beta compression.)
     df['arch_bab_becoming'] = (
         beta_present & (beta_shrunk > 0.85) & (beta_shrunk <= 1.15) &
-        (ebitda_margin_delta >= 0.01) &
+        ((ebitda_margin_delta >= 0.01) | interval_inflect_any) &   # de-risking (any angle)
         ((fcf_inflection > 0) | (ebitda_inflection > 0) | (fcf_margin_v > 0.0)) &
         (nde <= 3.0)
     ).fillna(False).astype(int)
@@ -857,6 +857,37 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['ev_norm_ebitda'] = ev_norm_ebitda.round(3)
     cheap_vs_normalized = (ev_norm_ebitda > 0) & (ev_norm_ebitda <= 8.0)
 
+    # ---- Cheapness triangulation (for VALUE archetypes) ----
+    # A name is "cheap" measured many independent ways, each distorted by
+    # something different (P/E by tax/leverage/one-offs, EV/EBITDA by capex
+    # intensity, EV/sales by margin, P/B by asset mix). Fire on ANY (recover a
+    # name whose favoured multiple is missing) and score the breadth.
+    cheap_any, cheap_score = _confirm([
+        (_num('ev_ebitda'),        lambda x: (x > 0) & (x <= 10)),
+        (_num('ev_ebit'),          lambda x: (x > 0) & (x <= 12)),
+        (_num('ev_gross_profit'),  lambda x: (x > 0) & (x <= 8)),
+        (_num('p_e'),              lambda x: (x > 0) & (x <= 15)),
+        (_num('p_s'),              lambda x: (x > 0) & (x <= 1.0)),
+        (_num('pb'),               lambda x: (x > 0) & (x < 1.0)),
+        (_num('fcf_yield'),        lambda x: x >= 0.08),
+        (_num('robust_cash_yield'),lambda x: x >= 0.08),
+        (ev_norm_ebitda,           lambda x: (x > 0) & (x <= 8)),   # cheap vs mid-cycle
+    ])
+    df['cheapness_score'] = cheap_score.round(3)
+
+    # ---- Quality triangulation (for QUALITY archetypes) ----
+    # Returns/quality confirmed across accrual AND cash-based, harder-to-game
+    # angles (gross profitability and cash return resist accrual games).
+    quality_any, quality_score = _confirm([
+        (_num('roce'),               lambda x: x >= 0.12),
+        (_num('roic_after_sbc'),     lambda x: x >= 0.10),
+        (_num('gross_profitability'),lambda x: x >= 0.15),   # Novy-Marx
+        (_num('cash_return_ev'),     lambda x: x >= 0.08),   # cash ROIC proxy
+        (_num('cash_conversion'),    lambda x: x >= 0.70),
+        (_num('fcf_conversion'),     lambda x: x >= 0.60),
+    ])
+    df['quality_score'] = quality_score.round(3)
+
     # ---- Revenue/top-line growth, same three time bases + seasonality ----
     # The interval-robustness we apply to operating leverage, applied to
     # top-line growth too (a consistent layer). YoY + gross-profit growth +
@@ -878,8 +909,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # Combined cross-archetype inflection confirmation (operating leverage +
     # top-line growth). Exposed so every book's ranking can upweight names
     # whose thesis is corroborated across measures AND time bases.
-    df['inflection_confirm_score'] = (
-        (0.5 * oper_lev_score + 0.5 * rev_growth_score)).round(3)
+    inflection_confirm_score = (0.5 * oper_lev_score + 0.5 * rev_growth_score)
+    df['inflection_confirm_score'] = inflection_confirm_score.round(3)
+    # Overall confirmation for the cross-archetype ranking upweight: a name is
+    # corroborated if strong on WHICHEVER dimension fits its thesis —
+    # inflection, cheapness, or quality. Max (not sum) so a pure value name
+    # cheap across measures ranks up as much as a pure grower inflecting.
+    df['confirm_overall'] = pd.concat(
+        [inflection_confirm_score, cheap_score, quality_score],
+        axis=1).max(axis=1).round(3)
 
     low_sbc_wolf = _soft_ok_below('sbc_pct_revenue', 0.15)   # Wolf dings excess SBC
     low_sbc_liger = _soft_ok_below('sbc_pct_revenue', 0.10)  # Liger flags diluters
@@ -1058,7 +1096,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_oak_deleveraging'] = (
         (fcf_yield >= 0.10) &
         (ebitda_ttm_v > 0) & (nde >= 1.0) & (nde <= 3.0) &
-        ((ebitda_yoy_v > 0) | (ebitda_inflection > 0)) &   # leverage trajectory
+        ((ebitda_yoy_v > 0) | (ebitda_inflection > 0) | oper_lev_any) &   # leverage trajectory (any angle)
         ((div_yield_v >= 0.06) | (s('capital_return_yield', 0.0) >= 0.06)) &
         _soft_ok_above('interest_coverage', 2.0)
     ).fillna(False).astype(int)
@@ -1068,7 +1106,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # Belluscura gate: positive EBITDA alone isn't enough, require FCF/CFO>0).
     df['arch_oak_deep_value'] = (
         (off_high <= -0.50) &
-        (((pb > 0) & (pb < 0.7)) | (ncav_pct >= 0.5)) &
+        (((pb > 0) & (pb < 0.7)) | (ncav_pct >= 0.5) | (cheap_score >= 0.5)) &   # deep sub-book OR net-net OR cheap-across-multiples
         (cash_pct_mcap_v >= 0.20) &
         (ebitda_ttm_v > 0) & ((fcf_ttm_v > 0) | (cfo_ttm_v > 0)) &
         _soft_ok_above('interest_coverage', 1.5)
@@ -1147,7 +1185,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (ebitda_ttm_v > 0) &                     # EBITDA to service the debt
         heavy_debt &                             # enormous debt burden
         (fcf_ttm_v > 0) &                        # cash to amortise (deleverage)
-        ((ebitda_yoy_v >= 0) | (ebitda_inflection > 0)) &  # stable/rising -> deleveraging
+        ((ebitda_yoy_v >= 0) | (ebitda_inflection > 0) | oper_lev_any) &  # stable/rising (any angle)
         _soft_ok_above('interest_coverage', 1.0) &  # can service (soft; 8% cov)
         (mcap > 0) & (mcap < 5e9)                # small/mid, where this is mispriced
     ).fillna(False).astype(int)
@@ -1208,6 +1246,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_negative_ev_value'] = (
         (mcap > 0) & (mcap < 5e9) &
         (neg_or_low_ev | ((pb > 0) & (pb < 0.7))) &   # cash floor OR deep sub-book
+                                                      # (neg_or_low_ev already triangulates
+                                                      #  the EV/cash floor the appropriate way)
         ((fcf_ttm_v > 0) | (ebitda_ttm_v > 0) | (net_cash_pct >= 0.5))  # not a cash-burn trap
     ).fillna(False).astype(int)
 
@@ -1403,7 +1443,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score']]
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall']]
     out.to_csv(out_path, index=False)
 
     # Summary to stderr
