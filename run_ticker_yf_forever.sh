@@ -70,7 +70,7 @@ echo "$(ts) driver: applying Yahoo fundamentals + re-rendering" >> "$DRIVER_LOG"
 "$PYTHON" derive_missing_columns.py >> "$DRIVER_LOG" 2>&1
 "$PYTHON" rebuild_scores.py >> "$DRIVER_LOG" 2>&1   # FX+dedup+rescore (audit fix)
 "$PYTHON" enrich_asymmetry_global.py >> "$DRIVER_LOG" 2>&1
-"$PYTHON" archetype_tags.py >> "$DRIVER_LOG" 2>&1
+"$PYTHON" sec_insider_buys.py 2>/dev/null || true; "$PYTHON" archetype_tags.py >> "$DRIVER_LOG" 2>&1
 "$PYTHON" enrich_asymmetry_global.py >> "$DRIVER_LOG" 2>&1
 
 echo "$(ts) driver: rebuilding workbooks" >> "$DRIVER_LOG"

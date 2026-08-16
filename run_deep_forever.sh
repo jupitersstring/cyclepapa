@@ -72,7 +72,7 @@ echo "$(ts) merging + re-rendering" >> "$LOG"
 "$PY" derive_missing_columns.py     >> "$LOG" 2>&1
 "$PY" rebuild_scores.py            >> "$LOG" 2>&1   # FX+dedup+rescore (audit fix)
 "$PY" enrich_asymmetry_global.py    >> "$LOG" 2>&1
-"$PY" archetype_tags.py             >> "$LOG" 2>&1
+"$PY" sec_insider_buys.py 2>/dev/null || true; "$PY" archetype_tags.py             >> "$LOG" 2>&1
 "$PY" enrich_asymmetry_global.py    >> "$LOG" 2>&1
 "$PY" - <<'PYEOF' >> "$LOG" 2>&1
 import pandas as pd, numpy as np

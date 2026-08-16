@@ -124,6 +124,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     if os.path.exists('edgar_segment_signals.csv'):
         segment_signals = pd.read_csv('edgar_segment_signals.csv')
 
+    # SEC Form 4 revealed-preference insider signals (US filers). Costly
+    # actions — open-market purchases, cluster buying, officer / 10%-owner
+    # buys — not language. Sparse (US only) but high-signal where it fires.
+    insider_signals = None
+    if os.path.exists('sec_insider_signals.csv'):
+        insider_signals = pd.read_csv('sec_insider_signals.csv')
+
     # Merge.  Asym is the primary - everything else is enrichment.
     df = asym.merge(yart, on='symbol', how='left', suffixes=('','_y'))
     if edgar_roiic is not None:
@@ -132,6 +139,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         df = df.merge(edgar_yart, on='symbol', how='left', suffixes=('','_ey'))
     if segment_signals is not None:
         df = df.merge(segment_signals, on='symbol', how='left', suffixes=('','_seg'))
+    if insider_signals is not None:
+        df = df.merge(insider_signals, on='symbol', how='left', suffixes=('','_ins'))
     df = df.merge(pew, on='symbol', how='left')
 
     # Use the asymmetry sector/market_cap as primary; fall back to yartseva.
@@ -915,8 +924,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # corroborated if strong on WHICHEVER dimension fits its thesis —
     # inflection, cheapness, or quality. Max (not sum) so a pure value name
     # cheap across measures ranks up as much as a pure grower inflecting.
+    # Alignment: SEC revealed-preference insider buying (US filers). Cluster
+    # buys strongest, then 10%-owner, officer, then net-buyer.
+    _align = pd.concat([
+        0.4 * s('insider_net_buyer_flag'), 0.6 * s('insider_officer_buy_flag'),
+        0.8 * s('insider_10pct_buy_flag'), 1.0 * s('insider_cluster_buy_flag'),
+    ], axis=1).max(axis=1).clip(0, 1)
+    df['alignment_score'] = _align.round(3)
     df['confirm_overall'] = pd.concat(
-        [inflection_confirm_score, cheap_score, quality_score],
+        [inflection_confirm_score, cheap_score, quality_score, _align],
         axis=1).max(axis=1).round(3)
 
     low_sbc_wolf = _soft_ok_below('sbc_pct_revenue', 0.15)   # Wolf dings excess SBC
@@ -1255,6 +1271,25 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _soft_ok_below('capex_intensity', 0.15)
     ).fillna(False).astype(int)
 
+    # ---------- Insider Conviction (SEC Form 4 revealed preference) ----------
+    # Alignment inferred from COSTLY ACTIONS, not language: officers,
+    # directors or 10%-owners BUYING common stock in the OPEN MARKET (code P)
+    # over the last ~12 months. Cluster buys (>=2 insiders) and 10%-owner
+    # buys are the strongest; require a NET-buyer position (bought more than
+    # sold) and a value-oriented price so it reads as conviction, not a pump.
+    # US-only (SEC filers), sparse but high-signal.
+    insider_cluster = s('insider_cluster_buy_flag')
+    insider_10pct = s('insider_10pct_buy_flag')
+    insider_officer = s('insider_officer_buy_flag')
+    insider_net_flag = s('insider_net_buyer_flag')
+    df['arch_insider_conviction'] = (
+        ((insider_cluster > 0) | (insider_10pct > 0) | (insider_officer > 0)) &
+        (insider_net_flag > 0) &                 # net buyer over the window
+        (mcap > 0) & (mcap < 20e9) &
+        (((ev_ebitda_v > 0) & (ev_ebitda_v <= 15.0)) | ((pb > 0) & (pb < 2.5)) |
+         (fcf_yield >= 0.03) | cheap_any)        # value-oriented, not a momentum chase
+    ).fillna(False).astype(int)
+
     # ---------- Cheap-sales scaling-to-profit ----------
     # A grower the market prices cheaply on SALES (low P/S) and cheaply
     # relative to that growth (low P/S-to-growth), whose operating margins
@@ -1440,6 +1475,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_templeton_pessimism',
         'arch_asymmetric_assembly',
         'arch_levered_inflection',
+        'arch_insider_conviction',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -1505,6 +1541,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_templeton_pessimism': 'Templeton-MaxPessimism',
         'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
         'arch_levered_inflection': 'LeveredInflectionStub',
+        'arch_insider_conviction': 'InsiderConviction-SEC',
     }
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(
@@ -1512,7 +1549,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall']]
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag']]
     out.to_csv(out_path, index=False)
 
     # Summary to stderr
