@@ -262,10 +262,20 @@ class ScreenResult:
     # history present but no detectable base).
     data_gaps: str | None = None
 
+    # Asymmetry — upside distance vs downside distance, in discount pp.
+    # downside = how much wider the discount has been in the last 52w
+    # (widening back to that level is the realistic loss scenario);
+    # upside = discount × recovery (the closure prize). Ratio >= 3 is
+    # the asymmetric-shape threshold.
+    upside_pp: float | None = None
+    downside_pp: float | None = None
+    asymmetry_ratio: float | None = None
+
     # Ranking sleeve tags
     in_setup_sleeve: bool = False        # passes setup gates + score
     in_fundamentals_sleeve: bool = False  # event catalyst + IRR alone
     in_micro_sleeve: bool = False         # gate-failed but catalyst alive
+    in_asymmetry_sleeve: bool = False     # upside/downside >= 3
     micro_position_size_pct: float | None = None  # suggested cap
 
 
@@ -737,6 +747,58 @@ def anchored_vwap(df: pd.DataFrame, anchor_date) -> float | None:
         return float((typical.astype(float) * vol).sum() / tot_vol)
     except Exception:
         return None
+
+
+def compute_asymmetry(
+    current: float | None,
+    fifty_two_w_low: float | None,
+    recovery: float | None,
+    *,
+    min_downside_frac: float = 0.25,
+    floor_downside_pp: float = 3.0,
+) -> tuple[float | None, float | None, float | None]:
+    """Return (upside_pp, downside_pp, ratio) — the asymmetric-shape
+    measure the screener actually hunts.
+
+    upside_pp   = current_discount × recovery × 100
+                  (the closure prize, recovery-adjusted)
+    downside_pp = the REALISTIC loss scenario, taken as the largest of
+      three conservative estimates so a name at its 52-week wides is
+      not naively treated as near-zero risk:
+        (a) reversion to the 52-week widest print: (low − current)×100
+        (b) a proportional gap: min_downside_frac × current × 100 — a
+            50%-discount name can shed a quarter of that discount
+            (12.5pp) in a bad tape regardless of its trailing range;
+            the trailing 12 months is NOT the true floor
+        (c) an absolute floor_downside_pp so tiny discounts don't
+            manufacture huge ratios
+
+    The proportional term (b) is the key guard: 52 weeks is a short
+    window and being at the wides is not a guarantee of support —
+    treating it as ~zero downside is the same naive-extrapolation trap
+    as annualising a single month's buyback.
+
+    NOTE on conventions: discounts are positive fractions
+    (0.30 = 30% discount). AIC's discount_52w_low column, after our
+    sign inversion, is the WIDEST discount of the year (largest
+    positive number). Returns (None, None, None) when discount or
+    recovery is missing or the name trades at a premium; downside/ratio
+    are None when no 52-week history is available at all (we do not
+    fabricate a downside from the proportional term alone — without any
+    range data the shape is unknown, not favourable)."""
+    if current is None or current <= 0 or recovery is None:
+        return None, None, None
+    upside_pp = current * recovery * 100.0
+    if fifty_two_w_low is None:
+        # No range data — report upside only; the name cannot enter the
+        # asymmetry sleeve (unknown downside is not favourable downside).
+        return round(upside_pp, 2), None, None
+    reversion_pp = (fifty_two_w_low - current) * 100.0
+    proportional_pp = min_downside_frac * current * 100.0
+    downside_pp = max(reversion_pp, proportional_pp, floor_downside_pp)
+    ratio = upside_pp / downside_pp if downside_pp > 0 else None
+    return (round(upside_pp, 2), round(downside_pp, 2),
+            round(ratio, 2) if ratio is not None else None)
 
 
 def is_discount_stretched(

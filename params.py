@@ -226,6 +226,15 @@ DISCOUNT_STRETCH_TARGET = "DCM_ACTIVE"
 
 
 # ----------------------------------------------------------------------
+# Asymmetry sleeve — minimum upside/downside ratio (recovery-adjusted
+# closure prize vs mean-reversion to the 52-week widest discount). 3:1
+# is the shape we hunt: three points of potential closure for every
+# point of realistic downside.
+
+ASYMMETRY_MIN_RATIO = 3.0
+
+
+# ----------------------------------------------------------------------
 # Discount sanity band — clamp obviously-broken values from upstream
 # feeds (e.g. JEMA −304%).
 

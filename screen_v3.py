@@ -280,6 +280,12 @@ def screen_one(
     r.expected_total_return = etr
     r.nav_penalty_applied = nav_pen
 
+    # Asymmetry shape — upside vs downside in discount points. Uses
+    # the recovery-adjusted closure prize against reversion to the
+    # 52-week widest print.
+    r.upside_pp, r.downside_pp, r.asymmetry_ratio = core.compute_asymmetry(
+        r.nav_discount_est, r.discount_52w_low, recovery)
+
     # Path-risk haircut: PE/property books can mark down before we see
     # crystallisation. Listed-clean has zero haircut; PE 15%.
     pr = core.path_risk_haircut(r.nav_quality)
@@ -499,6 +505,16 @@ def screen_one(
         and core.check_micro_investability(aic_record, r.catalyst)):
         r.in_micro_sleeve = True
         r.micro_position_size_pct = 1.0
+
+    # ASYMMETRY sleeve — favourable upside/downside shape irrespective
+    # of expected value. A mid-IRR name that can only widen a couple
+    # of points but could close 40 belongs here even if a punchier-IRR
+    # name outranks it on composite. Requires investable + a real
+    # discount (>15%) so we don't reward tiny premia-to-par noise.
+    if (r.investable
+        and (r.asymmetry_ratio or 0) >= params.ASYMMETRY_MIN_RATIO
+        and (r.nav_discount_est or 0) >= 0.15):
+        r.in_asymmetry_sleeve = True
 
     # (Historical discount context populated earlier — used for the
     # discount-stretch promotion test.)
@@ -868,6 +884,25 @@ def main() -> int:
         show("MICRO SLEEVE — gate-failed but catalyst alive (size ≤1% per)",
              micro.sort_values("expected_irr", ascending=False),
              min(args.top, 20))
+
+    # ASYMMETRY sleeve — best upside/downside shape. Ranked by ratio,
+    # not by IRR; a favourable shape at moderate IRR beats a coin-flip
+    # at high IRR.
+    if "in_asymmetry_sleeve" in df.columns:
+        asym = df[(df["in_asymmetry_sleeve"] == True) & (df["error"].isna())]
+        asym_cols = ["ticker", "name", "catalyst", "nav_discount_est",
+                     "discount_52w_low", "upside_pp", "downside_pp",
+                     "asymmetry_ratio", "expected_irr", "resolution_score"]
+        asym_cols = [c for c in asym_cols if c in asym.columns]
+        print(f"\n=== ASYMMETRY SLEEVE — best upside/downside shape "
+              f"(ratio ≥ {params.ASYMMETRY_MIN_RATIO}) ({len(asym)}) ===")
+        if asym.empty:
+            print("(empty)")
+        else:
+            with pd.option_context("display.width", 240,
+                                   "display.max_colwidth", 40):
+                print(asym.sort_values("asymmetry_ratio", ascending=False)
+                      [asym_cols].head(args.top).to_string(index=False))
 
     # Divergence — names where the two sleeves disagree.
     if "in_setup_sleeve" in df.columns and "in_fundamentals_sleeve" in df.columns:

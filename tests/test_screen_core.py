@@ -482,3 +482,40 @@ def test_discount_stretch_premium_no_trigger():
 def test_discount_stretch_null_safe():
     assert core.is_discount_stretched(None, None, None) is False
     assert core.is_discount_stretched(0.3, None, None) is False
+
+
+# ----- Asymmetry ratio ---------------------------------------------
+
+def test_asymmetry_basic_shape():
+    # 40% discount, widest 45%, recovery 0.95:
+    #   upside = 0.40*0.95*100 = 38pp
+    #   downside = max(reversion 5pp, proportional 0.25*40=10pp, 3) = 10pp
+    up, down, ratio = core.compute_asymmetry(0.40, 0.45, 0.95)
+    assert up == pytest.approx(38.0, abs=0.1)
+    assert down == pytest.approx(10.0, abs=0.1)  # proportional dominates
+    assert ratio == pytest.approx(3.8, abs=0.1)
+
+
+def test_asymmetry_at_wides_uses_proportional_not_floor():
+    # Already at the 52w widest -> downside is the proportional gap,
+    # NOT a near-zero floor. 0.25*40 = 10pp.
+    up, down, ratio = core.compute_asymmetry(0.40, 0.40, 0.95)
+    assert down == pytest.approx(10.0)  # proportional, not 2-3pp floor
+    assert ratio == pytest.approx(3.8, abs=0.1)
+
+
+def test_asymmetry_reversion_dominates_when_far_from_wides():
+    # 30% now, has been 55% wide -> reversion 25pp > proportional 7.5pp
+    up, down, ratio = core.compute_asymmetry(0.30, 0.55, 1.0)
+    assert down == pytest.approx(25.0, abs=0.1)
+
+
+def test_asymmetry_premium_returns_none():
+    up, down, ratio = core.compute_asymmetry(-0.05, 0.10, 0.95)
+    assert up is None and ratio is None
+
+
+def test_asymmetry_missing_low_gives_upside_only():
+    up, down, ratio = core.compute_asymmetry(0.30, None, 0.90)
+    assert up == pytest.approx(27.0, abs=0.1)
+    assert down is None and ratio is None
