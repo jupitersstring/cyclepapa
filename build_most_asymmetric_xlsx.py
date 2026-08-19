@@ -1187,14 +1187,15 @@ def build_hidden_asset(wb: Workbook, yf: dict):
     credit agreement sweeping disposition proceeds to debt paydown.
     Source: credit_agreement_mine.json + hidden_asset_watch.json."""
     ws = wb.create_sheet("Hidden Asset Realisation")
-    set_col_widths(ws, [9, 20, 8, 9, 7, 30, 34])
+    set_col_widths(ws, [9, 18, 8, 9, 15, 26, 30])
     write_title_band(
         ws,
         "Hidden-Asset / Incentivised Value Realisation",
-        "Rare under-recognised assets (spectrum, water/mineral rights, "
-        "real estate) inside a small levered equity base, where a credit "
-        "agreement sweeps disposition proceeds to debt paydown — so "
-        "realising the asset is mechanically stub-accretive",
+        "Under-recognised assets across ALL industries (spectrum, "
+        "water/mineral/royalty rights, real estate, NOLs, equity stakes, "
+        "pension surplus, royalty streams) inside a small levered equity "
+        "base, where a credit agreement sweeps disposition proceeds to "
+        "debt paydown — so realising the asset is mechanically stub-accretive",
         n_cols=7,
     )
     data = {}
@@ -1207,37 +1208,43 @@ def build_hidden_asset(wb: Workbook, yf: dict):
     rows = [v for v in data.values()
             if isinstance(v, dict) and (v.get("score") or 0) > 0]
     rows.sort(key=lambda r: -r["score"])
-    headers = ["Ticker", "Name", "Score", "Mand. prepay", "Watch",
+    headers = ["Ticker", "Name", "Score", "Mand. prepay", "Industry",
                "Asset types", "Thesis / feature"]
     write_header_row(ws, 4, headers)
     r = 5
     for i, v in enumerate(rows[:40], 1):
         y = yf.get(v["ticker"], {}) or {}
         mp = "yes" if v.get("mandatory_prepay") else ("no" if v.get("mandatory_prepay") is False else "—")
-        w = "●" if v.get("watch") else "—"
+        cat = ", ".join(v.get("categories") or []) or ("watch" if v.get("watch") else "—")
         assets = ", ".join(v.get("asset_types") or [])
-        thesis = (v.get("credit_agreement_feature") or v.get("hidden_asset") or "")[:34]
+        thesis = (v.get("credit_agreement_feature") or v.get("hidden_asset") or "")[:30]
         write_body_row(ws, r,
-                       [v["ticker"], (y.get("name") or v["ticker"])[:20],
-                        v["score"], mp, w, assets[:30], thesis],
+                       [v["ticker"], (y.get("name") or v["ticker"])[:18],
+                        v["score"], mp, cat[:15], assets[:26], thesis],
                        band=(i % 2 == 0), bold_first=True)
         ws.row_dimensions[r].height = 22
         r += 1
     r += 1
     n = len(rows)
     write_footnote(ws, r,
-        f"{n} hidden-asset / incentivised-realisation setups (top 40). The "
-        "thesis (E.W. Scripps / SSP archetype): a credit agreement that "
-        "MANDATES asset-disposition proceeds be applied to debt paydown "
-        "creates a structural, incentivised path to value realisation — on "
-        "a small equity base, selling a hidden asset retires senior debt "
-        "and lifts the residual stub roughly one-for-one. The high-value "
-        "setup is the CONJUNCTION: a rare valuable asset (spectrum, "
-        "water/mineral/air rights, licences, royalty/real-estate "
-        "portfolio) + the mandatory-prepayment sweep + a small levered "
-        "equity base. 'Watch' names are hand-curated with catalyst "
-        "triggers and counter-risks in hidden_asset_watch.json; the rest "
-        "are mined from EDGAR. Source: credit_agreement_mine.py.", 7)
+        f"{n} hidden-asset / incentivised-realisation setups across all "
+        "industries (top 40). The thesis (E.W. Scripps / SSP archetype): a "
+        "credit agreement that MANDATES asset-disposition proceeds be "
+        "applied to debt paydown creates a structural, incentivised path to "
+        "value realisation — on a small equity base, selling a hidden asset "
+        "retires senior debt and lifts the residual stub roughly one-for-"
+        "one. The high-value setup is the CONJUNCTION: a rare valuable "
+        "asset + the mandatory-prepayment sweep + a small levered equity "
+        "base. The asset taxonomy spans every sector — telecom (spectrum, "
+        "fiber, towers), resources/energy (water/mineral rights, reserves, "
+        "royalty acres, timberland, carbon), real estate (land bank, ground "
+        "leases, air rights), financials (MSRs, securities), IP/healthcare "
+        "(royalty streams, patents, milestones, CVRs), holdco sum-of-parts "
+        "(equity stakes), and cross-industry off-balance-sheet value (NOLs, "
+        "deferred tax assets, pension surplus, litigation/insurance "
+        "recoveries). 'watch' names are hand-curated with catalyst triggers "
+        "and counter-risks (hidden_asset_watch.json); the rest are mined "
+        "from EDGAR. Source: credit_agreement_mine.py.", 7)
     ws.sheet_view.showGridLines = False
     ws.freeze_panes = "A5"
 

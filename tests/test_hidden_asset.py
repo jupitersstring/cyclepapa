@@ -18,10 +18,13 @@ at(not MANDATORY_PREPAY_RX.search(
    "the company may reinvest proceeds at its discretion"), "no false positive")
 
 # hidden-asset table carries spectrum + rights classes with points
-atypes = {a for _, a, _ in HIDDEN_ASSETS}
+atypes = {a for _, a, _, _ in HIDDEN_ASSETS}
 for a in ("spectrum", "water_rights", "mineral_rights", "broadcast_licences"):
     at(a in atypes, f"{a} present")
-at(all(p > 0 for _, _, p in HIDDEN_ASSETS), "all asset points positive")
+at(all(p > 0 for _, _, _, p in HIDDEN_ASSETS), "all asset points positive")
+cats = {c for _, _, c, _ in HIDDEN_ASSETS}
+for c in ("telecom","resources","energy","real_estate","financials","healthcare","tech","holdco","any"):
+    at(c in cats, f"industry category {c} covered")
 
 # ticker gate
 at(_valid("SSP") and _valid("EVC"), "valid tickers")

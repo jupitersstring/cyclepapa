@@ -33,17 +33,57 @@ ROOT = Path("/home/user/cyclepapa")
 OUT = ROOT / "credit_agreement_mine.json"
 WATCH = ROOT / "hidden_asset_watch.json"
 
-# Rare, under-recognised asset classes (points ~ rarity/optionality).
+# Under-recognised asset classes spanning ALL industries. Each:
+# (search phrase, asset_type, industry category, rarity/optionality
+# points). Rarer / more-optionable assets score higher; broad classes
+# (real estate, patents) score low and lean on the conjunction gates
+# (small-cap + net-debt + mandatory-prepay) to avoid false positives.
+# The phrase is kept specific enough to be a real balance-sheet asset,
+# not incidental prose.
 HIDDEN_ASSETS = [
-    ("spectrum usage rights", "spectrum", 14),
-    ("broadcast licenses", "broadcast_licences", 10),
-    ("spectrum licenses", "spectrum", 14),
-    ("mineral rights", "mineral_rights", 10),
-    ("water rights", "water_rights", 12),
-    ("timberland", "timberland", 8),
-    ("royalty interest", "royalty", 8),
-    ("air rights", "air_rights", 10),
-    ("owned real estate", "real_estate", 6),
+    # --- Media / Telecom / Digital infrastructure ---
+    ("spectrum usage rights", "spectrum", "telecom", 14),
+    ("spectrum licenses", "spectrum", "telecom", 14),
+    ("broadcast licenses", "broadcast_licences", "media", 10),
+    ("fcc licenses", "fcc_licences", "telecom", 10),
+    ("fiber network", "fiber", "telecom", 7),
+    ("data center", "data_center", "telecom", 6),
+    ("cell towers", "towers", "telecom", 8),
+    # --- Natural resources / Energy ---
+    ("mineral rights", "mineral_rights", "resources", 10),
+    ("water rights", "water_rights", "resources", 12),
+    ("oil and gas reserves", "og_reserves", "energy", 7),
+    ("proved reserves", "og_reserves", "energy", 6),
+    ("timberland", "timberland", "resources", 8),
+    ("net royalty acres", "royalty_acres", "energy", 12),
+    ("carbon credits", "carbon_credits", "resources", 9),
+    # --- Real estate embedded in operating companies ---
+    ("owned real estate", "real_estate", "real_estate", 6),
+    ("real estate portfolio", "real_estate", "real_estate", 6),
+    ("ground lease", "ground_lease", "real_estate", 9),
+    ("air rights", "air_rights", "real_estate", 10),
+    ("land bank", "land_bank", "real_estate", 8),
+    ("owned and operated stores", "owned_stores", "retail", 6),
+    # --- Financial / off-balance-sheet value ---
+    ("net operating loss carryforward", "nol", "any", 8),
+    ("deferred tax asset", "dta", "any", 5),
+    ("equity method investment", "equity_stake", "any", 7),
+    ("mortgage servicing rights", "msr", "financials", 8),
+    ("overfunded pension", "pension_surplus", "any", 9),
+    ("pension surplus", "pension_surplus", "any", 9),
+    ("investment securities portfolio", "securities", "financials", 5),
+    # --- IP / intangible / contractual ---
+    ("royalty interest", "royalty", "healthcare", 8),
+    ("royalty stream", "royalty", "healthcare", 8),
+    ("patent portfolio", "patents", "tech", 6),
+    ("milestone payments", "milestones", "healthcare", 6),
+    ("contingent value right", "cvr", "any", 9),
+    ("litigation claim", "litigation", "any", 7),
+    ("insurance recovery", "insurance", "any", 6),
+    # --- Holding-company / sum-of-parts ---
+    ("equity stake", "equity_stake", "holdco", 7),
+    ("minority interest in", "minority_stake", "holdco", 6),
+    ("strategic investment in", "strategic_stake", "holdco", 6),
 ]
 # Mandatory-prepayment-on-disposition structure (the mechanism).
 MANDATORY_PREPAY_RX = re.compile(
@@ -126,21 +166,26 @@ def main() -> int:
         if (ROOT / "quarterly_10q_data.json").exists() else {}
     watch = json.loads(WATCH.read_text()) if WATCH.exists() else {}
 
-    # 1. find hidden-asset filers
+    # 1. find hidden-asset filers across ALL industry categories
     per: dict[str, dict] = {}
-    for phrase, atype, pts in HIDDEN_ASSETS:
+    for phrase, atype, category, pts in HIDDEN_ASSETS:
         for h in efts(phrase, start, end):
             tk = (h["ticker"] or "").upper()
             if not _valid(tk):
                 continue
             rec = per.setdefault(tk, {"ticker": tk, "cik": h["cik"],
-                                      "asset_types": {}, "score": 0.0,
-                                      "mandatory_prepay": None,
+                                      "asset_types": {}, "categories": {},
+                                      "score": 0.0, "mandatory_prepay": None,
                                       "latest_accession": h["accession"],
                                       "date": h["date"]})
             if atype not in rec["asset_types"]:
                 rec["asset_types"][atype] = pts
-                rec["score"] += pts
+                rec["categories"][category] = rec["categories"].get(category, 0) + 1
+                # first asset in a category scores full; extra assets in the
+                # SAME category add only a little (diminishing) so a name is
+                # not over-credited for synonyms
+                same_cat = rec["categories"][category]
+                rec["score"] += pts if same_cat == 1 else max(2, pts // 3)
             if (h["date"] or "") > (rec.get("date") or ""):
                 rec["date"] = h["date"]; rec["latest_accession"] = h["accession"]
                 rec["cik"] = h["cik"] or rec["cik"]
@@ -188,18 +233,24 @@ def main() -> int:
     out = {}
     for tk, rec in per.items():
         rec["score"] = round(rec["score"], 1)
-        rec["asset_types"] = list(rec["asset_types"].keys()) if isinstance(rec.get("asset_types"), dict) else rec.get("asset_types")
+        if isinstance(rec.get("asset_types"), dict):
+            rec["asset_types"] = list(rec["asset_types"].keys())
+        if isinstance(rec.get("categories"), dict):
+            rec["categories"] = sorted(rec["categories"].keys())
         out[tk] = rec
     OUT.write_text(json.dumps(out, indent=2))
     scored = [r for r in out.values() if r["score"] > 0]
     print(f"wrote {OUT} ({len(out)} names, {len(scored)} scored)")
+    from collections import Counter
+    cats = Counter(c for r in out.values() for c in (r.get("categories") or []))
+    print(f"  industry categories surfaced: {dict(cats)}", file=sys.stderr)
     print("\n=== TOP HIDDEN-ASSET / INCENTIVISED-REALISATION SETUPS ===")
-    print(f"{'TKR':<7}{'SCR':>6} {'PREPAY':<7}{'WATCH':<6}ASSETS")
-    for r in sorted(out.values(), key=lambda x: -x["score"])[:20]:
+    print(f"{'TKR':<7}{'SCR':>6} {'PREPAY':<7}{'CAT':<12}ASSETS")
+    for r in sorted(out.values(), key=lambda x: -x["score"])[:25]:
         mp = "yes" if r.get("mandatory_prepay") else ("no" if r.get("mandatory_prepay") is False else "?")
-        w = "WATCH" if r.get("watch") else ""
+        cat = ",".join(r.get("categories") or [])[:11] or ("WATCH" if r.get("watch") else "")
         assets = ",".join(r.get("asset_types") or []) or (r.get("hidden_asset", "")[:30])
-        print(f"{r['ticker']:<7}{r['score']:>6.0f} {mp:<7}{w:<6}{assets[:44]}")
+        print(f"{r['ticker']:<7}{r['score']:>6.0f} {mp:<7}{cat:<12}{assets[:40]}")
     return 0
 
 
