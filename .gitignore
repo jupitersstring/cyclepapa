@@ -1,10 +1,12 @@
-# Screener run artifacts (checkpoints are per-run, resumable, not source)
-.ckpt_*.parquet
-*_shortlist.csv
-shortlist.csv
-*.log
 
 # Python
-__pycache__/
+# Screener run artifacts (checkpoints are per-run, resumable, not source)
+*.log
 *.pyc
+*_shortlist.csv
+.ckpt_*.parquet
 .venv/
+__pycache__/
+auction_universe*.csv
+mega_run.log
+shortlist.csv

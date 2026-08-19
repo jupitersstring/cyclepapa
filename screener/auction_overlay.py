@@ -398,12 +398,14 @@ def run(args):
             row.update(analyse_ticker(px, args.harm_depth, args.harm_error / 100,
                                       args.harm_bars))
             rows.append(row)
-            pd.DataFrame(rows).to_parquet(ckpt)
+            if len(rows) % 20 == 0:      # O(n^2) to rewrite every ticker
+                pd.DataFrame(rows).to_parquet(ckpt)
         except Exception as e:
             print(f"  [skip] {t}: {type(e).__name__}: {str(e)[:60]}")
-        if k % 10 == 0:
-            print(f"  {k}/{len(todo)}")
+        if k % 200 == 0:
+            print(f"  {k}/{len(todo)} ({len(rows)} analysed)", flush=True)
         time.sleep(args.sleep)
+    pd.DataFrame(rows).to_parquet(ckpt)
     out = pd.DataFrame(rows)
     if out.empty:
         sys.exit("No auction rows produced.")
