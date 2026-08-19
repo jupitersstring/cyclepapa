@@ -262,6 +262,14 @@ class ScreenResult:
     # history present but no detectable base).
     data_gaps: str | None = None
 
+    # Buyback run-rate — sustained programmes only (one-offs excluded
+    # from annualisation). NAV accretion is the catalyst-independent
+    # return from retiring shares below NAV.
+    buyback_yield_annualised: float | None = None
+    buyback_nav_accretion: float | None = None
+    buyback_sustained: bool | None = None
+    buyback_accel: float | None = None
+
     # Asymmetry — upside distance vs downside distance, in discount pp.
     # downside = how much wider the discount has been in the last 52w
     # (widening back to that level is the realistic loss scenario);

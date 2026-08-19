@@ -1,0 +1,3 @@
+ticker,n_filings_12m,span_days,n_distinct_months,sustained,one_off,shares_bought_parsed,filings_parsed,issued_share_capital,retired_frac_observed,buyback_yield_annualised,buyback_accel
+HAN.L,48,119,5,True,False,3247350,47,67353610,0.046,0.1411,0.3
+CLDN.L,108,209,8,True,False,7420684,80,513562618,0.01424,0.0377,0.42

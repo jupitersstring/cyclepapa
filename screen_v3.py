@@ -88,6 +88,7 @@ def screen_one(
     tender_history: dict | None = None,
     fof_holdings: list[tuple[str, float]] | None = None,
     discount_lookup: dict[str, float] | None = None,
+    buyback_runrate: dict | None = None,
 ) -> core.ScreenResult:
 
     row = metadata.load_universe().get(ticker.upper())
@@ -454,7 +455,24 @@ def screen_one(
         r.catalyst_prob_signal_adj or 0.0)
     r.irr_from_event = irr_event
     r.irr_from_carry = irr_carry
-    r.expected_irr = irr_event + irr_carry
+    # (c) buyback NAV-accretion carry — catalyst-independent return
+    # from a SUSTAINED programme retiring shares below NAV. One-offs
+    # carry yield=None from buyback_analysis and contribute nothing.
+    irr_accretion = 0.0
+    if buyback_runrate and buyback_runrate.get("sustained"):
+        try:
+            import buyback_analysis as _bb
+            acc = _bb.nav_accretion(buyback_runrate.get("yield"),
+                                    r.nav_discount_est)
+            if acc:
+                r.buyback_yield_annualised = buyback_runrate.get("yield")
+                r.buyback_nav_accretion = acc
+                r.buyback_sustained = True
+                r.buyback_accel = buyback_runrate.get("accel")
+                irr_accretion = acc
+        except Exception:
+            pass
+    r.expected_irr = irr_event + irr_carry + irr_accretion
 
     # Setup score — pure technicals
     r.phase_score = params.PHASE_WEIGHT.get(r.phase, 0.10)
@@ -746,6 +764,30 @@ def main() -> int:
         except Exception as exc:
             print(f"[v3] sentiment load failed: {exc}", file=sys.stderr)
 
+    # 4g) Buyback run-rate (sustained programmes only)
+    buyback_by_ticker: dict[str, dict] = {}
+    bb_csv = Path(os.path.dirname(os.path.abspath(__file__))) / "data" / "buyback_runrate.csv"
+    if bb_csv.exists():
+        try:
+            import csv as _csv
+            with open(bb_csv) as f:
+                for row in _csv.DictReader(f):
+                    def _fl(k):
+                        v = row.get(k)
+                        try:
+                            return float(v) if v not in (None, "") else None
+                        except ValueError:
+                            return None
+                    buyback_by_ticker[row["ticker"]] = {
+                        "yield": _fl("buyback_yield_annualised"),
+                        "sustained": str(row.get("sustained", "")).lower() == "true",
+                        "accel": _fl("buyback_accel"),
+                    }
+            print(f"[v3] buyback run-rate loaded: {len(buyback_by_ticker)} ticker(s)",
+                  file=sys.stderr)
+        except Exception as exc:
+            print(f"[v3] buyback load failed: {exc}", file=sys.stderr)
+
     # 4f) Pre-build a ticker -> discount lookup for look-through math
     discount_by_ticker: dict[str, float] = {}
     for sym, rec in aic_summ.items():
@@ -777,6 +819,7 @@ def main() -> int:
                 tender_history=tender_rollup.get(sym),
                 fof_holdings=fof_holdings.get(sym),
                 discount_lookup=discount_by_ticker,
+                buyback_runrate=buyback_by_ticker.get(sym),
             )
             # Peer-relative discount — current vs sector median.
             # Positive = wider than peers (potentially more setup).
