@@ -46,7 +46,12 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 ROOT = Path("/home/user/cyclepapa")
 OUT_JSON = ROOT / "proxy_scan.json"
-EXTRACT_VERSION = "proxy-v1"
+# v2: INCENTIVE_AUDIT fixes R1-R10 + C3 + S2 (comma/million dollar
+# guards, single-trigger negation, retirement/discretionary narrowing,
+# say-on-pay year-aware + widened, appreciation ladders, aggregate
+# covenant-context gate, graduated SOP dissent). Records stamped with an
+# older version are re-analysed on the next run over their ticker.
+EXTRACT_VERSION = "proxy-v2"
 
 
 def recent_def14a(ticker: str, days: int = 450) -> dict | None:
@@ -218,7 +223,14 @@ def main() -> int:
     for i, tk in enumerate(tickers, 1):
         if i > args.limit:
             break
-        if tk in out and out[tk].get("_complete"):
+        # Version-aware resume: skip only records produced by the CURRENT
+        # extraction logic. Older-version records re-analyse so audit
+        # fixes materialise into data without hand-deleting the cache.
+        # (no_def14a absences carry no version and stay final.)
+        prev = out.get(tk) or {}
+        if prev.get("_complete") and (
+                prev.get("no_def14a")
+                or prev.get("_version") == EXTRACT_VERSION):
             continue
         try:
             f = recent_def14a(tk)
