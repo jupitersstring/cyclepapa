@@ -277,6 +277,15 @@ REPRICING = re.compile(
     re.I,
 )
 
+# R10: contexts where an aggregate metric is NOT an LTI performance
+# metric -- debt covenants, peer-group comparisons, plan definitions.
+_AGG_NEGATIVE_CTX = re.compile(
+    r"\b(peer group|peer[- ]company|covenant|credit agreement|indenture|"
+    r"leverage ratio|net debt|as defined|debt[- ]to[- ]|revolving|"
+    r"borrowing base|compliance with|median of|relative to (?:the )?peer)\b",
+    re.I)
+
+
 FRONT_LOADED = re.compile(
     r"\b(front[- ]loaded|one[- ]time grant|special grant|transformational award|"
     r"mega[- ]grant|inducement award)\b",
@@ -330,13 +339,24 @@ def extract_features(ticker: str, comp_text: str) -> PSUFeatures:
     # Metric detection across the full comp section -- aggregate vs
     # per-share metrics often live in performance-metric tables that the
     # narrow PSU window misses.
+    #
+    # R10 (INCENTIVE_AUDIT.md): the aggregate-metric penalty over-fired
+    # on EBITDA/revenue that appears in PEER-GROUP or DEBT-COVENANT
+    # context ("EBITDA as defined in the credit agreement", "leverage
+    # ratio", "peer group median EBITDA") rather than as an LTI metric.
+    # An aggregate metric now counts only if at least one mention sits
+    # OUTSIDE such a context.
     seen_agg: set[str] = set()
     for pat, name in AGGREGATE_PATTERNS:
         if name in seen_agg:
             continue
-        if pat.search(comp_text):
+        for m in pat.finditer(comp_text):
+            ctx = comp_text[max(0, m.start() - 60):m.end() + 60]
+            if _AGG_NEGATIVE_CTX.search(ctx):
+                continue          # peer-group / covenant / definition use
             f.aggregate_metrics.append(name)
             seen_agg.add(name)
+            break
 
     seen_ps: set[str] = set()
     for pat, name in PER_SHARE_PATTERNS:

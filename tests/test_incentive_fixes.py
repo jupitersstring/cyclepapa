@@ -109,4 +109,27 @@ f = extract_features("T", PSU + "the Board approved the repricing of "
                      "outstanding awards")
 assert_eq(f.repricing_language, True, "R9 real repricing fires")
 
+# --------------------------------------------------------------- R10 ---
+# aggregate EBITDA in covenant / peer-group context must NOT flag
+f = extract_features("T", PSU + "PSUs vest on relative TSR. EBITDA as "
+                     "defined in the credit agreement is used only for the "
+                     "leverage ratio covenant.")
+assert_eq(f.aggregate_metrics, [], "R10 covenant EBITDA not an LTI metric")
+# but EBITDA as a real LTI metric still counts
+f = extract_features("T", PSU + "the PSU payout is based 50% on adjusted "
+                     "EBITDA and 50% on TSR")
+assert_true("absolute_ebitda" in f.aggregate_metrics, "R10 real LTI EBITDA fires")
+
+# ---------------------------------------------------------------- S2 ---
+# widened say-on-pay phrasings now extract (were missed -> 39% coverage)
+assert_eq(extract_say_on_pay(
+    "our say-on-pay proposal received the support of 94% of the votes cast"),
+    94.0, "S2 'support of X%'")
+assert_eq(extract_say_on_pay(
+    "the advisory vote on executive compensation was approved by 88% in favour"),
+    88.0, "S2 British 'in favour'")
+assert_eq(extract_say_on_pay(
+    "say-on-pay received support of approximately 72%"),
+    72.0, "S2 reverse 'support of X%'")
+
 print("test_incentive_fixes: all assertions passed")

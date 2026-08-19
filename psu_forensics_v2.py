@@ -43,14 +43,22 @@ NEO_NAME_TITLE = re.compile(
 
 # \d{1,3}: the old \d{1,2} could never capture a 100% approval
 # (INCENTIVE_AUDIT.md R5); values are range-checked to <=100 downstream.
+# S2 (INCENTIVE_AUDIT.md): widened to lift coverage from ~39%. The
+# trailing result group now also matches support / in favour (British) /
+# endorsed / of the shares|votes voted, and the reverse pattern accepts
+# 'support of X%' / 'X% support ... say-on-pay'.
 SAYS_ON_PAY = re.compile(
     r"(?:say[- ]on[- ]pay|advisory\s+vote\s+on\s+(?:executive\s+)?compensation)"
-    r"[^.\n]{0,200}?(\d{1,3}(?:\.\d+)?)\s*%\s+(?:approval|approved|in\s+favor|"
-    r"supported|voted\s+(?:in\s+)?favor|of\s+(?:the\s+)?votes\s+cast)",
+    r"[^.\n]{0,200}?(\d{1,3}(?:\.\d+)?)\s*%\s+(?:approval|approved|in\s+favou?r|"
+    r"support(?:ed|ing)?|endorsed|voted\s+(?:in\s+)?favou?r|"
+    r"of\s+(?:the\s+)?(?:votes|shares)\s+(?:cast|voted))",
     re.I,
 )
 SAYS_ON_PAY_PCT = re.compile(
-    r"(\d{1,3}(?:\.\d+)?)\s*%[^.\n]{0,80}?say[- ]on[- ]pay",
+    r"(\d{1,3}(?:\.\d+)?)\s*%[^.\n]{0,90}?say[- ]on[- ]pay|"
+    r"say[- ]on[- ]pay[^.\n]{0,120}?(?:support(?:ed)?\s+(?:by|of)|"
+    r"received[^.\n]{0,20}?support\s+of)\s+(?:approximately\s+)?"
+    r"(\d{1,3}(?:\.\d+)?)\s*%",
     re.I,
 )
 _NEAR_YEAR = re.compile(r"\b(20[12]\d)\b")
@@ -202,13 +210,19 @@ def extract_say_on_pay(text: str) -> Optional[float]:
     cands: list[tuple[float, Optional[int]]] = []
     for rx in (SAYS_ON_PAY, SAYS_ON_PAY_PCT):
         for m in rx.finditer(text):
+            # a pattern may have several capture groups (alternatives);
+            # take the first that matched a number
+            grp = next((i for i in range(1, (m.re.groups or 0) + 1)
+                        if m.group(i)), None)
+            if grp is None:
+                continue
             try:
-                pct = float(m.group(1))
+                pct = float(m.group(grp))
             except ValueError:
                 continue
             if not (30 <= pct <= 100):
                 continue
-            ctx = text[max(0, m.start(1) - 80):m.end(1) + 80]
+            ctx = text[max(0, m.start(grp) - 80):m.end(grp) + 80]
             years = [int(y) for y in _NEAR_YEAR.findall(ctx)]
             cands.append((pct, max(years) if years else None))
     if not cands:

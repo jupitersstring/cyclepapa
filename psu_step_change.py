@@ -30,6 +30,12 @@ from universe_filter import is_excluded
 
 
 DETAIL_SOURCES = [
+    # Live sources (audit S3 -- a generator now feeds these, so the layer
+    # no longer relies solely on frozen one-off JSONs):
+    "induce_live_detail.json",           # fresh 8-K inducement grants (S1)
+    "proxy_scan.json", "proxy_scan.shard_0.json",
+    "proxy_scan.shard_1.json", "proxy_scan.shard_2.json",
+    # Archival one-off detail scans (dated in layer_freshness):
     "v2_detail.json", "wide180_detail.json", "wide365_detail.json",
     "induce_detail.json", "restruct_v10.json", "missing_v10.json",
     "targets_v4.json", "cap_alloc.json", "cap_alloc_v2.json",
@@ -94,8 +100,11 @@ def build_best_filings() -> dict[str, dict]:
             data = json.loads(p.read_text())
         except Exception:
             continue
-        for r in data:
-            if r.get("error"):
+        # sources are either a list of records or a dict keyed by ticker
+        # (the live proxy_scan shards) -- normalise to an iterable of dicts
+        rows = data.values() if isinstance(data, dict) else data
+        for r in rows:
+            if not isinstance(r, dict) or r.get("error"):
                 continue
             tk = (r.get("ticker") or "").upper()
             fd = r.get("filing_date")
@@ -265,10 +274,14 @@ def pattern_match_score(r: dict, fz: dict | None) -> tuple[float, list[str]]:
         if plan_change_kicker:
             score += min(12, plan_change_kicker)
             reasons.append(f"plan evolution: {'/'.join(k for k,v in pc.items() if v)}")
+        # C3: graduated SOP dissent on the coordinated 80/70 thresholds.
         sop = f.get("say_on_pay_pct")
         if sop and sop < 70:
             score -= 8
-            reasons.append(f"SOP only {sop:.0f}% (concern)")
+            reasons.append(f"SOP only {sop:.0f}% (severe dissent)")
+        elif sop and sop < 80:
+            score -= 4
+            reasons.append(f"SOP {sop:.0f}% (dissent)")
         # NEO skin
         award_vals = f.get("neo_award_values") or []
         max_nv = max((a.get("unvested_usd") or 0 for a in award_vals), default=0)

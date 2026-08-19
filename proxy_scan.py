@@ -155,9 +155,14 @@ def analyze_proxy(ticker: str, text: str, filing_date: str,
         g += 3; g_reasons.append("anti-hedge/pledge")
     if deltas.get("responsive_to_shareholders"):
         g += 3; g_reasons.append("responsive to shareholders")
+    # C3 (INCENTIVE_AUDIT.md): graduated say-on-pay dissent on the
+    # coordinated 80/70 thresholds (was a bare <70 cliff here, <80 in
+    # the improvers sheet -- now consistent).
     sop = fz.get("say_on_pay_pct")
     if sop and sop < 70:
-        g -= 8; g_reasons.append(f"SOP only {sop:.0f}%")
+        g -= 8; g_reasons.append(f"SOP only {sop:.0f}% (severe dissent)")
+    elif sop and sop < 80:
+        g -= 4; g_reasons.append(f"SOP {sop:.0f}% (dissent)")
     g = max(-10.0, min(30.0, g))
 
     fw = freshness_weight(filing_date)

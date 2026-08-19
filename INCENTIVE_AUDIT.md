@@ -219,7 +219,11 @@ inside the PSU-heavy tabs after applying.
 | R7 narrow deltas | **WIDENED** | `forensic_asymmetry.py`: `psu_weight_increased` (verb-gap + reversed order), `new_metric_added` (date prefix optional, metric-noun anchored). Re-check occurrence counts after next scan before trusting the rarity weights. |
 | R9 adjust-targets | **FIXED** | `psu_scoring.py`: alternative removed; genuine resets still fire via reprice/reset/recalibrate/lowered-hurdles. |
 | R8 table harvest | mitigated | R1's guards remove the dominant junk class (comp-table dollars); window unchanged. |
-| S1/S2/S3, R10, C3 | open | Need a scan/poller change, not a regex fix. |
+| R10 aggregate over-fire | **FIXED** | `psu_scoring.py`: aggregate metric counts only if a mention sits OUTSIDE peer-group / covenant / definition context (`_AGG_NEGATIVE_CTX`). |
+| C3 say-on-pay thresholds | **FIXED** | Unified 80/70 graduated dissent across `proxy_scan.py` gov and `psu_step_change.py` (was a bare <70 cliff in each, <80 in improvers). |
+| S2 SOP coverage (39%) | **WIDENED** | `psu_forensics_v2.py`: result group now matches support / in favour / endorsed / shares voted; reverse 'support of X%' pattern added. |
+| S1 8-K inducement grants | **FIXED** | New `inducement_grant_poll.py` sweeps recent 8-Ks for price-hurdle inducement/transformation grants between proxy seasons (the PLBY/Penguin gap) and emits detail records. |
+| S3 frozen detail JSONs | **FIXED** | `psu_step_change.py` now also ingests the LIVE `proxy_scan*.json` shards + `induce_live_detail.json` (a real generator), not only the frozen one-off JSONs; handles dict + list sources. |
 
 All behaviors locked in `tests/test_incentive_fixes.py` (each FP probe
 paired with a genuine-positive probe). **Data note:** the stored
