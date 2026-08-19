@@ -105,15 +105,24 @@ def compute_eta(df: pd.DataFrame, verdicts: pd.DataFrame) -> pd.DataFrame:
     pr.loc[hi] = 0.75 - (mom[hi] - 1.0) / 2.0 * 0.30
     pr.loc[ex] = 0.40
     df['post_rally_factor'] = pr.round(3)
-    df['entry_today_asymmetry'] = df['asymmetry_score'] * boost * df['qual_mult'] * pr
+    # Multi-measure confirmation upweight (pool-preserving, <=30%): float names
+    # up where independent accounting measures + insider alignment agree — the
+    # same "upweight where measures agree" treatment the archetype books apply
+    # via entry_confirmed. Ranking only; raw asymmetry_score is still shown.
+    _cfo = pd.to_numeric(df.get('confirm_overall'), errors='coerce').fillna(0.0)
+    _bbs = pd.to_numeric(df.get('buyback_score'), errors='coerce').fillna(0.0)
+    df['confirm_mult'] = 1.0 + 0.20 * _cfo + 0.10 * _bbs
+    df['entry_today_asymmetry'] = (
+        df['asymmetry_score'] * boost * df['qual_mult'] * pr * df['confirm_mult']
+    )
 
     # Parallel entry-today score for the inflection style. Note: we do NOT
     # apply the post-rally factor here — momentum / breakout names should
     # not be penalised for trending up; that's the whole point of the
-    # composite. Verdict multiplier still applies.
+    # composite. Verdict multiplier + confirmation upweight still apply.
     if 'inflection_asymmetry_score' in df.columns:
         df['entry_today_inflection'] = (
-            df['inflection_asymmetry_score'] * boost * df['qual_mult']
+            df['inflection_asymmetry_score'] * boost * df['qual_mult'] * df['confirm_mult']
         )
     else:
         df['entry_today_inflection'] = np.nan
@@ -185,7 +194,7 @@ def main():
         'asymmetry_score', 'inflection_asymmetry_score',
         'yartseva_score', 'inflection_score', 'inflection_flag',
         'berezin_score',
-        'intrinsic_discount', 'cluster_n',
+        'intrinsic_discount', 'cluster_n', 'confirm_overall',
         # Headline valuation set
         'ev_ebitda', 'ev_ebit', 'p_e', 'p_s', 'pb', 'p_tb',
         'fcf_yield', 'roce', 'net_debt_ebitda',
@@ -329,7 +338,7 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
     #   9 Asym         10 EV/EBITDA    11 P/E         12 P/B
     #  13 FCF yld %    14 ROIC %       15 ND/EBITDA   16 EBITDA margin %
     #  17 Mom 12m %    18 Yartseva     19 Cluster
-    N_COLS = 19
+    N_COLS = 20
 
     def _write_table_row(ws, row, r, cols=N_COLS):
         """Write one country-rank row with valuation headline columns."""
@@ -357,6 +366,7 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
         _put_score(ws, row, 18, r.get('yartseva_score'), font=f_text_muted)
         _cn = r.get('cluster_n')
         _put_int(ws, row, 19, int(_cn) if pd.notna(_cn) else 0, font=f_text_muted)
+        _put_score(ws, row, 20, r.get('confirm_overall'), font=f_text_muted)
 
         # Faint hairline under each row
         for cidx in range(1, cols + 1):
@@ -368,7 +378,7 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
                    'Mcap (USD)', 'Verdict', 'ETA', 'Asym',
                    'EV/EBITDA', 'P/E', 'P/B',
                    'FCF yld %', 'ROIC %', 'ND/EBITDA', 'EBITDA m %',
-                   'Mom 12m %', 'Yartseva', 'Cluster']
+                   'Mom 12m %', 'Yartseva', 'Cluster', 'Confirm']
         for i, h in enumerate(headers, start=1):
             c = ws.cell(row=row, column=i, value=h)
             c.font = f_bold_muted
@@ -385,7 +395,7 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
             1: 4, 2: 11, 3: 32, 4: 16, 5: 11, 6: 17,
             7: 12, 8: 8, 9: 8,
             10: 10, 11: 8, 12: 8, 13: 10, 14: 9, 15: 10, 16: 10, 17: 11,
-            18: 9, 19: 8,
+            18: 9, 19: 8, 20: 9,
         }
         for col, w in widths.items():
             ws.column_dimensions[get_column_letter(col)].width = w

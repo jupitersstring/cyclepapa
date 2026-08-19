@@ -192,7 +192,7 @@ def build_nms_index(ws, top_df: pd.DataFrame):
     _set_col_widths(ws, {1: 4, 2: 5, 3: 14, 4: 38, 5: 8, 6: 18, 7: 12, 8: 14, 9: 10, 10: 14, 11: 4})
     _crimson_banner(ws, 1, "  Global Top 100 — entry-today asymmetry", span_cols=10)
 
-    hdrs = ["#", "Ticker", "Company", "Cntry", "Sector", "Bucket", "Mcap (loc)", "Verdict", "ETA"]
+    hdrs = ["#", "Ticker", "Company", "Cntry", "Sector", "Bucket", "Mcap (loc)", "Verdict", "ETA", "Confirm"]
     for i, h in enumerate(hdrs, start=2):
         c = ws.cell(row=3, column=i, value=h)
         c.font = _font(size=10, bold=True, color=CRIMSON_DARK, name=SANS)
@@ -243,8 +243,9 @@ def build_nms_index(ws, top_df: pd.DataFrame):
         _write_money(ws, row, 8, r.get('market_cap'), font=mono)
         _verdict_badge(ws, row, 9, r.get('verdict', 'UNRESEARCHED'))
         _write_score(ws, row, 10, r.get('entry_today_asymmetry'), font=mono)
+        _write_score(ws, row, 11, r.get('confirm_overall'), font=mono)
 
-        for c in range(2, 11):
+        for c in range(2, 12):
             ws.cell(row=row, column=c).border = _border(color=RULE, bottom="thin")
         ws.row_dimensions[row].height = 17
 
@@ -254,7 +255,7 @@ def build_region_sheet(ws, region_label: str, sub_df: pd.DataFrame):
     _set_col_widths(ws, {1: 4, 2: 5, 3: 14, 4: 38, 5: 8, 6: 18, 7: 12, 8: 14, 9: 10, 10: 10, 11: 4})
     _crimson_banner(ws, 1, f"  {region_label} — Top 25 NMS", span_cols=10)
 
-    hdrs = ["#", "Ticker", "Company", "Cntry", "Sector", "Bucket", "Mcap (loc)", "Verdict", "ETA"]
+    hdrs = ["#", "Ticker", "Company", "Cntry", "Sector", "Bucket", "Mcap (loc)", "Verdict", "ETA", "Confirm"]
     for i, h in enumerate(hdrs, start=2):
         c = ws.cell(row=3, column=i, value=h)
         c.font = _font(size=10, bold=True, color=CRIMSON_DARK, name=SANS)
@@ -294,8 +295,9 @@ def build_region_sheet(ws, region_label: str, sub_df: pd.DataFrame):
         _write_money(ws, row, 8, r.get('market_cap'), font=mono)
         _verdict_badge(ws, row, 9, r.get('verdict', 'UNRESEARCHED'))
         _write_score(ws, row, 10, r.get('entry_today_asymmetry'), font=mono)
+        _write_score(ws, row, 11, r.get('confirm_overall'), font=mono)
 
-        for c in range(2, 11):
+        for c in range(2, 12):
             ws.cell(row=row, column=c).border = _border(color=RULE, bottom="thin")
         ws.row_dimensions[row].height = 17
 

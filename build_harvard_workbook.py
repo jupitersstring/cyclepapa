@@ -196,8 +196,15 @@ def compute_scores(df: pd.DataFrame, verdicts: pd.DataFrame) -> pd.DataFrame:
     pr.loc[ex] = 0.40
     df['post_rally_factor'] = pr.round(3)
 
-    df['entry_today_asymmetry'] = df['asymmetry_score'] * boost * df['qual_mult'] * pr
-    df['entry_today_upside'] = df['upside_score'] * boost * df['qual_mult'] * pr
+    # Multi-measure confirmation upweight (pool-preserving, <=30%): float names
+    # up where independent accounting measures + insider alignment agree — the
+    # same treatment the archetype books apply via entry_confirmed. Ranking
+    # only; the raw asymmetry_score leg is still shown in the decomposition.
+    _cfo = pd.to_numeric(df.get('confirm_overall'), errors='coerce').fillna(0.0)
+    _bbs = pd.to_numeric(df.get('buyback_score'), errors='coerce').fillna(0.0)
+    df['confirm_mult'] = 1.0 + 0.20 * _cfo + 0.10 * _bbs
+    df['entry_today_asymmetry'] = df['asymmetry_score'] * boost * df['qual_mult'] * pr * df['confirm_mult']
+    df['entry_today_upside'] = df['upside_score'] * boost * df['qual_mult'] * pr * df['confirm_mult']
     return df
 
 
@@ -637,6 +644,7 @@ def build_name_sheet(ws: Worksheet, rank: int, r: pd.Series):
         ("Intrinsic discount",   r.get('intrinsic_discount'),     "score"),
         ("Qual multiplier (x)",  r.get('qual_mult') or 1.0,       "ratio"),
         ("Post-rally factor (x)", r.get('post_rally_factor') or 1.0, "ratio"),
+        ("Confirmation (x)",     r.get('confirm_mult') or 1.0,    "ratio"),
         ("Cluster signals (of 7)", int(r['cluster_n']) if pd.notna(r.get('cluster_n')) else 0, "int"),
     ]
     label_font = _font(size=9, bold=True, color=MUTED, name=SANS)

@@ -119,8 +119,16 @@ def amend_scores(df: pd.DataFrame) -> pd.DataFrame:
     }
     df['strict_qual_multiplier'] = df['verdict'].map(strict_mult).fillna(0.85)
 
-    df['adj_asymmetry'] = df['asymmetry_score'] * df['qual_multiplier']
-    df['adj_upside']    = df['upside_score']    * df['qual_multiplier']
+    # Multi-measure confirmation upweight (pool-preserving, <=30%): float names
+    # up where independent accounting measures + insider alignment agree — the
+    # same treatment the archetype books apply via entry_confirmed. Folded into
+    # every ranking key below; the raw asymmetry_score is still shown.
+    _cfo = pd.to_numeric(df.get('confirm_overall'), errors='coerce').fillna(0.0)
+    _bbs = pd.to_numeric(df.get('buyback_score'), errors='coerce').fillna(0.0)
+    df['confirm_mult'] = 1.0 + 0.20 * _cfo + 0.10 * _bbs
+
+    df['adj_asymmetry'] = df['asymmetry_score'] * df['qual_multiplier'] * df['confirm_mult']
+    df['adj_upside']    = df['upside_score']    * df['qual_multiplier'] * df['confirm_mult']
 
     # ----- Discount to intrinsic value (entry-today lens) -----
     # Built from the framework's existing measures of how cheap the stock
@@ -186,19 +194,19 @@ def amend_scores(df: pd.DataFrame) -> pd.DataFrame:
     df['already_multibagged'] = (mom > 1.0).astype(int)
 
     df['entry_today_asymmetry'] = (
-        df['asymmetry_score'] * boost * df['qual_multiplier'] * pr_factor
+        df['asymmetry_score'] * boost * df['qual_multiplier'] * pr_factor * df['confirm_mult']
     )
     df['entry_today_upside']    = (
-        df['upside_score']    * boost * df['qual_multiplier'] * pr_factor
+        df['upside_score']    * boost * df['qual_multiplier'] * pr_factor * df['confirm_mult']
     )
 
     # Strict variants used to sort per-country sheets. RED -> 0 (excluded);
     # GREEN gets +30% boost; YELLOW haircut to 0.70; UNRESEARCHED at 0.85.
     df['country_entry_asymmetry'] = (
-        df['asymmetry_score'] * boost * df['strict_qual_multiplier'] * pr_factor
+        df['asymmetry_score'] * boost * df['strict_qual_multiplier'] * pr_factor * df['confirm_mult']
     )
     df['country_entry_upside']    = (
-        df['upside_score']    * boost * df['strict_qual_multiplier'] * pr_factor
+        df['upside_score']    * boost * df['strict_qual_multiplier'] * pr_factor * df['confirm_mult']
     )
 
     return df
@@ -366,7 +374,7 @@ def main():
         'symbol','name','src','sector','market_cap_bucket','market_cap',
         'verdict',
         'entry_today_asymmetry','entry_today_upside','intrinsic_discount',
-        'adj_asymmetry','asymmetry_score','adj_upside','upside_score',
+        'adj_asymmetry','asymmetry_score','confirm_overall','adj_upside','upside_score',
         'downside_floor_score','cluster_n','yartseva_score','berezin_score',
         'pb','net_cash_pct_mcap','ncav_pct_mcap','cash_pct_ev',
         'not_priced_in_score','insider_ownership_pct',
@@ -605,7 +613,7 @@ def main():
             'verdict',
             'country_entry_asymmetry','country_entry_upside','intrinsic_discount',
             'entry_today_asymmetry','entry_today_upside',
-            'adj_asymmetry','adj_upside','asymmetry_score','upside_score',
+            'adj_asymmetry','adj_upside','asymmetry_score','confirm_overall','upside_score',
             'cluster_n','yartseva_score','berezin_score',
             'pb','net_cash_pct_mcap','ncav_pct_mcap','cash_pct_ev',
             'not_priced_in_score','insider_ownership_pct',
