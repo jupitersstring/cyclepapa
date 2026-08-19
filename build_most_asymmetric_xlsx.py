@@ -1181,6 +1181,81 @@ def build_insider_conviction(wb: Workbook, yf: dict):
     ws.freeze_panes = "A5"
 
 
+def build_uk_events(wb: Workbook, yf: dict):
+    """UK RNS capital events (own-shares buybacks, premium placings,
+    scheme/CVA/restructuring distressed progress, takeover offers).
+    Separate universe -- UK names do NOT enter the US consensus.
+    Source: uk_rns_events.json (investegate monitor)."""
+    ws = wb.create_sheet("UK Capital Events")
+    set_col_widths(ws, [10, 22, 8, 12, 22, 10, 14])
+    write_title_band(
+        ws,
+        "UK Capital Events — RNS revealed-preference & distressed monitor",
+        "UK-listed capital-allocation and distressed-progress events "
+        "(Transaction in Own Shares, placings, schemes of arrangement, "
+        "Part 26A plans, CVAs, tender offers) — investment-trust NAV "
+        "buybacks filtered out; separate universe from the US consensus",
+        n_cols=7,
+    )
+    data = {}
+    p = ROOT / "uk_rns_events.json"
+    if p.exists():
+        try:
+            data = json.loads(p.read_text())
+        except Exception:
+            data = {}
+    rows = [v for v in data.values()
+            if isinstance(v, dict) and (v.get("score") or 0) > 0]
+    rows.sort(key=lambda r: -r["score"])
+    headers = ["Ticker", "Name", "Score", "Family", "Class",
+               "Premium %", "Signals"]
+    write_header_row(ws, 4, headers)
+    r = 5
+    for i, v in enumerate(rows[:45], 1):
+        sig = []
+        if v.get("vs_market"):
+            sig.append(v["vs_market"])
+        if v.get("from_holder"):
+            sig.append("from holder")
+        if v.get("finality"):
+            sig.append("final")
+        if v.get("charges_satisfied"):
+            sig.append(f"{v['charges_satisfied']} charges satisfied")
+        write_body_row(ws, r,
+                       [v["ticker"], v.get("name", "")[:22].replace("-", " "),
+                        v["score"], v.get("family", ""),
+                        v.get("class", "").replace("_", " "),
+                        (v.get("premium_pct") if v.get("premium_pct") is not None else "—"),
+                        "; ".join(sig) or "—"],
+                       band=(i % 2 == 0), bold_first=True)
+        ws.row_dimensions[r].height = 22
+        r += 1
+    if not rows:
+        ws.cell(row=5, column=1,
+                value="No qualifying UK events in the latest poll — the "
+                      "monitor accumulates rare high-signal events (schemes, "
+                      "tenders, restructurings, strategic investments) over "
+                      "repeated runs.").font = BODY_FONT
+    r = max(r, 6) + 1
+    write_footnote(ws, r,
+        f"{len(rows)} UK capital events (top 45). UK terminology per the "
+        "spec: 'Transaction in Own Shares' (own-shares buyback), 'placing'/"
+        "'subscription' (issuance — premium placings are the revealed-"
+        "preference gold), 'scheme of arrangement' / 'Part 26A restructuring "
+        "plan' / 'CVA' (distressed progress), 'tender offer' / 'return of "
+        "capital' (selective own-shares). Investment-trust NAV buybacks are "
+        "filtered (mechanical, low signal). SOURCE LIMITATION: the UK has no "
+        "free EFTS-equivalent; this monitors investegate's recent server-"
+        "rendered RNS listing (shallow snapshot), so it surfaces high-signal "
+        "events as they occur rather than a historical sweep. Deep UK "
+        "coverage (Companies House charges/MR04-MR05 lien releases, full "
+        "history) activates when a free CH_API_KEY is supplied. UK names are "
+        "a SEPARATE universe and do not enter the US consensus. Source: "
+        "uk_rns_scan.py.", 7)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A5"
+
+
 def build_hidden_asset(wb: Workbook, yf: dict):
     """Hidden-asset / incentivised value realisation (the SSP setup):
     rare under-recognised assets inside small levered equity, with a
@@ -2167,6 +2242,7 @@ TAB_INDEX = [
     ("Asymmetry Assembly", "PSIX-recipe conjunction: cheap + inflection + leverage + insider co-occurring."),
     ("Distressed Stub Progress", "Finality-gated capital-structure value-unlock events, waterfall-scored."),
     ("Hidden Asset Realisation", "Spectrum/rights/RE inside levered stubs with mandatory-prepay debt sweeps (SSP-type)."),
+    ("UK Capital Events", "UK RNS revealed-preference & distressed monitor (separate universe; funds filtered)."),
     ("Without Valuation", "Parallel ranking excluding the valuation leg."),
     ("Recent 30d", "Material incentive events disclosed in the last 30 days."),
     ("Foreign Markets", "Japan TSE PBR<1, Korea Value-Up, UK schemes."),
@@ -2329,6 +2405,7 @@ def main() -> int:
     build_asymmetry_assembly(wb, yf)
     build_distressed_stub(wb, yf)
     build_hidden_asset(wb, yf)
+    build_uk_events(wb, yf)
     build_noval_view(wb, yf)
     build_recent_30d(wb, yf)
     build_foreign_markets(wb)

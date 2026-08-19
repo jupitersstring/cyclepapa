@@ -41,4 +41,8 @@ echo "=== selective / own-shares revealed preference ==="
 python3 test_selective_buyback.py
 echo
 
+echo "=== UK RNS monitor ==="
+python3 test_uk_rns.py
+echo
+
 echo "All test suites passed."
