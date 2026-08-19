@@ -70,7 +70,7 @@ def _num(v):
 
 
 def score_components(tk, yf, q10, disc, f4, coval, p11, tender, t13f,
-                     emc, fin, events):
+                     emc, fin, events, preminj=None):
     """Return the component ledger for one ticker."""
     C = {}
     y = yf.get(tk, {}) or {}
@@ -148,6 +148,10 @@ def score_components(tk, yf, q10, disc, f4, coval, p11, tender, t13f,
         ev.append(f"conviction {dc.get('score')}: " + "; ".join(dc.get("flags") or [])[:60])
     elif (f4.get(tk, {}) or {}).get("buyer_set"):
         ins = True; ev.append(f"{len(f4[tk]['buyer_set'])} open-market buyer(s)")
+    if preminj and (preminj.get(tk, {}) or {}).get("score", 0) > 0:
+        ins = True
+        pv = preminj[tk]
+        ev.append(f"premium injection {pv.get('premium_pct')}% (revealed preference)")
     C["C4_revealed_insider"] = {"present": ins, "evidence": "; ".join(ev)}
 
     # C5 RECOGNITION_CATALYST
@@ -296,6 +300,7 @@ def main() -> int:
     emc = _load("emergence_crossfeed.json")
     fin = _load("financials_inflection.json")
     events = _load("asymmetry_events.json")
+    preminj = _load("premium_injection_scan.json")
 
     universe = set(yf) | set(q10) | set(disc) | set(events)
     universe = {t for t in universe if isinstance(t, str) and not t.startswith("_")}
@@ -303,7 +308,7 @@ def main() -> int:
     out = {}
     for tk in universe:
         C, dd = score_components(tk, yf, q10, disc, f4, coval, p11, tender,
-                                 t13f, emc, fin, events)
+                                 t13f, emc, fin, events, preminj)
         res = assemble(C)
         # keep the ledger for auditability + workbook
         res["components"] = {k: {kk: vv for kk, vv in v.items()
