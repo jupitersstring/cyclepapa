@@ -43,3 +43,4 @@ sec_cache/
 rest_enrich.log
 rest_driver.log
 .rest_rendered
+.otc_rendered
