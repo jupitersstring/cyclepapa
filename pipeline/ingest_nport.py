@@ -15,16 +15,19 @@ import json, os, re, sqlite3, subprocess, sys, time
 DB = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "cyclepapa.db")
 UA = "cyclepapa-research admin@example.com"
 
-# Trusts whose series include marquee single-manager equity funds.
+# Trusts whose series include marquee single-manager equity funds (registrant
+# CIKs verified to file NPORT-P for the named equity series).
 TRUSTS = {
     "89043":   "Sequoia Fund (Ruane Cunniff)",
     "1293967": "PRIMECAP Odyssey Funds",
     "1217673": "Baron Select Funds",
-    "1141819": "Dodge & Cox Funds",
-    "915802":  "FPA Funds Trust",
-    "1040587": "Longleaf Partners (Southeastern)",
+    "71701":   "Davis New York Venture (Chris Davis)",
 }
 TOP_N = 40      # keep each series' top-N holdings by value
+# Skip leveraged/index/bond/commodity series that share a trust with equity funds.
+SKIP_SERIES = re.compile(
+    r"direxion|bull|bear|index|treasury|commodit|liquid asset|money market|"
+    r"tactical income|ultra|inverse|bond fund|govt|municipal", re.I)
 
 def curl(url, t=40):
     return subprocess.run(["curl", "-sk", "--compressed", "-m", str(t), "-A", UA, url],
@@ -84,6 +87,8 @@ def run():
             series, rows = parse_nport(cik, acc)
             if not rows or series in seen_series:
                 continue
+            if series and SKIP_SERIES.search(series):
+                continue        # not a single-manager equity fund
             seen_series.add(series)
             for r in rows:
                 tk = r["ticker"] or cmap.get(r["cusip"])

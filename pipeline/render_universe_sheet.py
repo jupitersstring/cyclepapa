@@ -802,11 +802,11 @@ def sheet_broker_radar(wb, conn):
     write_title(ws, "Broker Swap Radar — possible swap-hedge accumulation",
                 "QoQ share-count jumps inside ONE swap-desk broker's 13F. An activist building via cash-settled swaps files nothing — the desk hedging the swap buys the physical and prints HERE first. "
                 "Idio % = this desk's move vs all desks (high = idiosyncratic, low = index flow). Leads, not proof: ETF baskets and custody flows also move desks. Shadow = accumulation × idiosyncrasy × activist-context × cheapness.", 13)
-    hdr = ["Ticker","Shadow","Broker","Δ Sh (M)","Δ % Out","Δ $M","Desk $M","Idio %","Mcap","Score","Disclosed Swap","Live Action","13D Momentum","13D (12mo)","Activist holders","Name"]
+    hdr = ["Ticker","Shadow","Broker","Δ Sh (M)","Δ % Out","Δ $M","Desk $M","Idio %","Mcap","Score","Disclosed Swap","Live Action","13D Momentum","144 Sale (contra)","13D (12mo)","Activist holders","Name"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""SELECT ticker, shadow_score, broker, delta_sh_m,
                pct_out, delta_m, cur_m, idio_pct, mcap_m, score,
-               live_action, d13_momo, recent_13d, activist_holders, name, disclosed_swap
+               live_action, d13_momo, recent_13d, activist_holders, name, disclosed_swap, f144_sale
         FROM broker_swap_radar ORDER BY shadow_score DESC"""))
     out = []
     for r in rows[:200]:
@@ -815,8 +815,8 @@ def sheet_broker_radar(wb, conn):
                     r[6], r[7], r[8] or "",
                     round(r[9], 0) if r[9] is not None else "",
                     (r[15] or "")[:26], (r[10] or "")[:22], (r[11] or "")[:28],
-                    (r[12] or "")[:26], (r[13] or "")[:26],
-                    (r[14] or "")[:34]])
+                    (r[16] or "")[:18], (r[12] or "")[:24], (r[13] or "")[:24],
+                    (r[14] or "")[:32]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=4).number_format = '0.0'

@@ -200,6 +200,46 @@ CREATE TABLE ticker_entry_intact (
       conviction_score REAL, n_funds INTEGER,
       n_hyper INTEGER, has_insider_cobuy INTEGER, sum_dollar_m REAL,
       anchors_seen TEXT);
+CREATE TABLE corp_actions (
+      form TEXT, filed TEXT, company TEXT, ticker TEXT, accession TEXT,
+      PRIMARY KEY (form, accession));
+CREATE INDEX idx_corpact_tk ON corp_actions(ticker);
+CREATE TABLE latent_ownership (
+      ticker TEXT, holder TEXT, accession TEXT PRIMARY KEY, filed TEXT, form TEXT,
+      flags TEXT, blocker_pct REAL, swap_counterparties TEXT, n_features INTEGER);
+CREATE INDEX idx_latent_tk ON latent_ownership(ticker);
+CREATE TABLE entity_alias (
+      entity TEXT, canonical_holder TEXT, accession TEXT,
+      PRIMARY KEY (entity, canonical_holder));
+CREATE TABLE form144 (
+      accession TEXT PRIMARY KEY, ticker TEXT, filer TEXT, filed TEXT,
+      shares REAL, value_usd REAL, broker TEXT, source_url TEXT);
+CREATE INDEX idx_f144_tk ON form144(ticker);
+CREATE TABLE form144_signal (
+      ticker TEXT PRIMARY KEY, n_filers INTEGER, n_filings INTEGER,
+      total_m REAL, last_filed TEXT, pct_mcap REAL);
+CREATE TABLE nport_holdings (
+      trust TEXT, series TEXT, filed TEXT, issuer TEXT, ticker TEXT,
+      cusip TEXT, val_usd REAL, pct REAL);
+CREATE INDEX idx_nport_tk ON nport_holdings(ticker);
+CREATE INDEX idx_nport_series ON nport_holdings(series);
+CREATE TABLE broker_swap_radar (
+      ticker TEXT, name TEXT, broker TEXT,
+      delta_sh_m REAL,          -- share-count change, millions
+      pct_out REAL,             -- delta as % of shares outstanding
+      delta_m REAL,             -- delta at current price, $M
+      cur_m REAL,               -- broker's current position, $M
+      idio_pct REAL,            -- broker delta / sum |all broker deltas|
+      desk_anom REAL,           -- delta vs this desk's median |delta| (x normal)
+      shadow_score REAL,        -- accumulation x idiosyncrasy x context composite
+      mcap_m REAL, score REAL,
+      recent_13d TEXT,          -- 13D/G filers on this name, last 12 months
+      activist_holders TEXT,    -- our activist-style funds currently holding
+      live_action TEXT,         -- contested proxy / tender / 13E-3 in motion
+      d13_momo TEXT,            -- 13D amendment momentum (holder +/-pp)
+      disclosed_swap TEXT,      -- a 13D on this name whose text names a swap
+      f144_sale TEXT,           -- Form 144 proposed-sale pressure (contra)
+      PRIMARY KEY (ticker, broker));
 CREATE TABLE fund_conviction (
       fund TEXT, ticker TEXT, signals TEXT, raw_score REAL, style_weight REAL,
       score REAL, macro_style TEXT,
@@ -257,22 +297,3 @@ CREATE TABLE style_consensus (
       macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
       sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
       PRIMARY KEY (macro_style, ticker));
-CREATE TABLE corp_actions (
-      form TEXT, filed TEXT, company TEXT, ticker TEXT, accession TEXT,
-      PRIMARY KEY (form, accession));
-CREATE INDEX idx_corpact_tk ON corp_actions(ticker);
-CREATE TABLE broker_swap_radar (
-      ticker TEXT, name TEXT, broker TEXT,
-      delta_sh_m REAL,          -- share-count change, millions
-      pct_out REAL,             -- delta as % of shares outstanding
-      delta_m REAL,             -- delta at current price, $M
-      cur_m REAL,               -- broker's current position, $M
-      idio_pct REAL,            -- broker delta / sum |all broker deltas|
-      desk_anom REAL,           -- delta vs this desk's median |delta| (x normal)
-      shadow_score REAL,        -- accumulation x idiosyncrasy x context composite
-      mcap_m REAL, score REAL,
-      recent_13d TEXT,          -- 13D/G filers on this name, last 12 months
-      activist_holders TEXT,    -- our activist-style funds currently holding
-      live_action TEXT,         -- contested proxy / tender / 13E-3 in motion
-      d13_momo TEXT,            -- 13D amendment momentum (holder +/-pp)
-      PRIMARY KEY (ticker, broker));

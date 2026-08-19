@@ -47,6 +47,7 @@ def run():
       live_action TEXT,         -- contested proxy / tender / 13E-3 in motion
       d13_momo TEXT,            -- 13D amendment momentum (holder +/-pp)
       disclosed_swap TEXT,      -- a 13D on this name whose text names a swap
+      f144_sale TEXT,           -- Form 144 proposed-sale pressure (contra)
       PRIMARY KEY (ticker, broker));
     """)
 
@@ -168,6 +169,14 @@ def run():
             GROUP BY ticker""")}
     except sqlite3.OperationalError:
         disc_swap = {}
+    # Form 144 proposed-sale pressure: a CONTRA signal. Desk accumulation while
+    # insiders queue up to sell (WBI: UBS building vs 4 filers proposing 16% of
+    # cap) is a caution flag, not confirmation.
+    try:
+        f144 = {r[0]: (r[1], r[2]) for r in conn.execute(
+            "SELECT ticker, total_m, n_filers FROM form144_signal WHERE n_filers >= 2")}
+    except sqlite3.OperationalError:
+        f144 = {}
 
     n = 0
     for tk, per_broker in deltas.items():
@@ -222,7 +231,9 @@ def run():
             if live.get(tk):   shadow *= 1.4   # control event already in motion
             if momo.get(tk):   shadow *= 1.2   # disclosed holder still moving
             if disc_swap.get(tk): shadow *= 1.6  # filer already disclosed a swap here
-            conn.execute("INSERT OR REPLACE INTO broker_swap_radar VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            fs = f144.get(tk)
+            f144_txt = (f"${fs[0]:.0f}M / {fs[1]} filers" if fs else None)
+            conn.execute("INSERT OR REPLACE INTO broker_swap_radar VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 (tk, (s["name"] if s else None), broker,
                  round(d_sh / 1e6, 2), round(pct_out, 2), round(delta_m, 1),
                  round(cur_m or 0, 1), round(idio, 0),
@@ -230,7 +241,7 @@ def run():
                  round(y["mcap_m"] or 0, 0), (s["score"] if s else None),
                  d13.get(tk), actv.get(tk),
                  live.get(tk), "; ".join(momo.get(tk, [])[:3]) or None,
-                 disc_swap.get(tk)))
+                 disc_swap.get(tk), f144_txt))
             n += 1
     conn.commit()
 
