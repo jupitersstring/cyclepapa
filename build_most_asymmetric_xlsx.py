@@ -1181,6 +1181,67 @@ def build_insider_conviction(wb: Workbook, yf: dict):
     ws.freeze_panes = "A5"
 
 
+def build_hidden_asset(wb: Workbook, yf: dict):
+    """Hidden-asset / incentivised value realisation (the SSP setup):
+    rare under-recognised assets inside small levered equity, with a
+    credit agreement sweeping disposition proceeds to debt paydown.
+    Source: credit_agreement_mine.json + hidden_asset_watch.json."""
+    ws = wb.create_sheet("Hidden Asset Realisation")
+    set_col_widths(ws, [9, 20, 8, 9, 7, 30, 34])
+    write_title_band(
+        ws,
+        "Hidden-Asset / Incentivised Value Realisation",
+        "Rare under-recognised assets (spectrum, water/mineral rights, "
+        "real estate) inside a small levered equity base, where a credit "
+        "agreement sweeps disposition proceeds to debt paydown — so "
+        "realising the asset is mechanically stub-accretive",
+        n_cols=7,
+    )
+    data = {}
+    p = ROOT / "credit_agreement_mine.json"
+    if p.exists():
+        try:
+            data = json.loads(p.read_text())
+        except Exception:
+            data = {}
+    rows = [v for v in data.values()
+            if isinstance(v, dict) and (v.get("score") or 0) > 0]
+    rows.sort(key=lambda r: -r["score"])
+    headers = ["Ticker", "Name", "Score", "Mand. prepay", "Watch",
+               "Asset types", "Thesis / feature"]
+    write_header_row(ws, 4, headers)
+    r = 5
+    for i, v in enumerate(rows[:40], 1):
+        y = yf.get(v["ticker"], {}) or {}
+        mp = "yes" if v.get("mandatory_prepay") else ("no" if v.get("mandatory_prepay") is False else "—")
+        w = "●" if v.get("watch") else "—"
+        assets = ", ".join(v.get("asset_types") or [])
+        thesis = (v.get("credit_agreement_feature") or v.get("hidden_asset") or "")[:34]
+        write_body_row(ws, r,
+                       [v["ticker"], (y.get("name") or v["ticker"])[:20],
+                        v["score"], mp, w, assets[:30], thesis],
+                       band=(i % 2 == 0), bold_first=True)
+        ws.row_dimensions[r].height = 22
+        r += 1
+    r += 1
+    n = len(rows)
+    write_footnote(ws, r,
+        f"{n} hidden-asset / incentivised-realisation setups (top 40). The "
+        "thesis (E.W. Scripps / SSP archetype): a credit agreement that "
+        "MANDATES asset-disposition proceeds be applied to debt paydown "
+        "creates a structural, incentivised path to value realisation — on "
+        "a small equity base, selling a hidden asset retires senior debt "
+        "and lifts the residual stub roughly one-for-one. The high-value "
+        "setup is the CONJUNCTION: a rare valuable asset (spectrum, "
+        "water/mineral/air rights, licences, royalty/real-estate "
+        "portfolio) + the mandatory-prepayment sweep + a small levered "
+        "equity base. 'Watch' names are hand-curated with catalyst "
+        "triggers and counter-risks in hidden_asset_watch.json; the rest "
+        "are mined from EDGAR. Source: credit_agreement_mine.py.", 7)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A5"
+
+
 def build_distressed_stub(wb: Workbook, yf: dict):
     """Distressed-stub progress: stage-gated value-unlock events in
     capital-structure workouts. Source: distressed_stub_progress.json."""
@@ -2098,6 +2159,7 @@ TAB_INDEX = [
     ("Insider Conviction", "Discretionary open-market buying clusters (code P only, role-weighted)."),
     ("Asymmetry Assembly", "PSIX-recipe conjunction: cheap + inflection + leverage + insider co-occurring."),
     ("Distressed Stub Progress", "Finality-gated capital-structure value-unlock events, waterfall-scored."),
+    ("Hidden Asset Realisation", "Spectrum/rights/RE inside levered stubs with mandatory-prepay debt sweeps (SSP-type)."),
     ("Without Valuation", "Parallel ranking excluding the valuation leg."),
     ("Recent 30d", "Material incentive events disclosed in the last 30 days."),
     ("Foreign Markets", "Japan TSE PBR<1, Korea Value-Up, UK schemes."),
@@ -2259,6 +2321,7 @@ def main() -> int:
     build_insider_conviction(wb, yf)
     build_asymmetry_assembly(wb, yf)
     build_distressed_stub(wb, yf)
+    build_hidden_asset(wb, yf)
     build_noval_view(wb, yf)
     build_recent_30d(wb, yf)
     build_foreign_markets(wb)

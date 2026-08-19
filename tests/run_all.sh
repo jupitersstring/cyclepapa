@@ -33,4 +33,8 @@ echo "=== distressed-stub progress engine ==="
 python3 test_distressed_stub.py
 echo
 
+echo "=== hidden-asset / credit-agreement mining ==="
+python3 test_hidden_asset.py
+echo
+
 echo "All test suites passed."

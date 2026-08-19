@@ -1,0 +1,814 @@
+{
+  "ASTS": {
+    "ticker": "ASTS",
+    "cik": "0001780312",
+    "asset_types": [
+      "spectrum"
+    ],
+    "score": 14.0,
+    "mandatory_prepay": false,
+    "latest_accession": "0001193125-26-342550",
+    "date": "2026-08-10"
+  },
+  "EVC": {
+    "ticker": "EVC",
+    "cik": "0001109116",
+    "asset_types": [
+      "spectrum",
+      "broadcast_licences"
+    ],
+    "score": 30.0,
+    "mandatory_prepay": false,
+    "latest_accession": "0001193125-26-342346",
+    "date": "2026-08-10",
+    "small_cap": true
+  },
+  "IRDM": {
+    "ticker": "IRDM",
+    "cik": "0001418819",
+    "asset_types": [
+      "spectrum"
+    ],
+    "score": 14.0,
+    "mandatory_prepay": false,
+    "latest_accession": "0001104659-26-078482",
+    "date": "2026-06-29"
+  },
+  "RKLB": {
+    "ticker": "RKLB",
+    "cik": "0001819994",
+    "asset_types": [
+      "spectrum"
+    ],
+    "score": 14.0,
+    "mandatory_prepay": false,
+    "latest_accession": "0001753926-26-001452",
+    "date": "2026-08-13"
+  },
+  "SSP": {
+    "ticker": "SSP",
+    "cik": "0000832428",
+    "asset_types": [
+      "spectrum",
+      "broadcast_licences"
+    ],
+    "score": 36.0,
+    "mandatory_prepay": true,
+    "latest_accession": "0000832428-26-000017",
+    "date": "2026-05-06",
+    "watch": true,
+    "hidden_asset": "ATSC 3.0 broadcast spectrum (~0.8-1.3bn MHz-pops via ION); flexible-use / datacasting (EdgeBeam 25%); potential lease/sale to carriers or SpaceX/Starlink",
+    "credit_agreement_feature": "April 2026 credit agreement anticipates sale of spectrum usage rights and broadcast licences; after a small threshold, substantially 100% of net cash disposal proceeds are subject to MANDATORY term-loan repayment (70/30 B-2/B-3), up to $50m/yr permitted reinvestment. Deleveraging mechanically transfers value from lenders to the small common-equity stub.",
+    "catalyst_triggers": [
+      "incentive auction",
+      "spectrum usage rights",
+      "EdgeBeam",
+      "datacasting",
+      "channel sharing",
+      "channel-sharing agreement",
+      "ATSC 3.0",
+      "sale of spectrum",
+      "spectrum lease",
+      "Starlink",
+      "strategic review",
+      "INYO",
+      "reacquisition of stations",
+      "flexible use",
+      "FCC reallocation"
+    ],
+    "counter_risks": [
+      "FCC owns the rulebook -- no unilateral conversion to 5G/satellite",
+      "opportunity cost: profitable EdgeBeam lease raises the cost of selling",
+      "not every station equivalent (UHF/VHF, population, channel-share status)",
+      "creditors paid first -- judge by equity value after lost station EBITDA"
+    ]
+  },
+  "TKC": {
+    "ticker": "TKC",
+    "cik": "0001071321",
+    "asset_types": [
+      "spectrum"
+    ],
+    "score": 14.0,
+    "mandatory_prepay": false,
+    "latest_accession": "0001104659-26-044740",
+    "date": "2026-04-17"
+  },
+  "SPCX": {
+    "ticker": "SPCX",
+    "cik": "0001181412",
+    "asset_types": [
+      "spectrum"
+    ],
+    "score": 14.0,
+    "mandatory_prepay": false,
+    "latest_accession": "0001628280-26-052535",
+    "date": "2026-08-04"
+  },
+  "SGA": {
+    "ticker": "SGA",
+    "cik": "0000886136",
+    "asset_types": [
+      "broadcast_licences"
+    ],
+    "score": 10.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001104659-26-097036",
+    "date": "2026-08-14"
+  },
+  "TGNA": {
+    "ticker": "TGNA",
+    "cik": "0000039899",
+    "asset_types": [
+      "broadcast_licences"
+    ],
+    "score": 10.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001193125-26-084392",
+    "date": "2026-03-02"
+  },
+  "MDIA": {
+    "ticker": "MDIA",
+    "cik": "0001784254",
+    "asset_types": [
+      "broadcast_licences"
+    ],
+    "score": 16.0,
+    "mandatory_prepay": false,
+    "latest_accession": "0001784254-26-000009",
+    "date": "2026-03-31",
+    "small_cap": true
+  },
+  "SBGI": {
+    "ticker": "SBGI",
+    "cik": "0001971213",
+    "asset_types": [
+      "broadcast_licences"
+    ],
+    "score": 16.0,
+    "mandatory_prepay": false,
+    "latest_accession": "0001971213-26-000012",
+    "date": "2026-02-27",
+    "small_cap": true
+  },
+  "BBGI": {
+    "ticker": "BBGI",
+    "cik": "0001099160",
+    "asset_types": [
+      "broadcast_licences"
+    ],
+    "score": 10.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001193125-26-246395",
+    "date": "2026-05-29"
+  },
+  "PSKY": {
+    "ticker": "PSKY",
+    "cik": "0002041610",
+    "asset_types": [
+      "broadcast_licences"
+    ],
+    "score": 10.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0002041610-26-000033",
+    "date": "2026-05-13"
+  },
+  "TSQ": {
+    "ticker": "TSQ",
+    "cik": "0001499832",
+    "asset_types": [
+      "broadcast_licences"
+    ],
+    "score": 10.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001499832-26-000045",
+    "date": "2026-08-06"
+  },
+  "WBD": {
+    "ticker": "WBD",
+    "cik": "0001437107",
+    "asset_types": [
+      "broadcast_licences"
+    ],
+    "score": 10.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001104659-26-019772",
+    "date": "2026-02-25"
+  },
+  "NXST": {
+    "ticker": "NXST",
+    "cik": "0001142417",
+    "asset_types": [
+      "broadcast_licences"
+    ],
+    "score": 10.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001193125-26-212539",
+    "date": "2026-05-08"
+  },
+  "CMLS": {
+    "ticker": "CMLS",
+    "cik": "0001058623",
+    "asset_types": [
+      "broadcast_licences"
+    ],
+    "score": 10.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001058623-25-000068",
+    "date": "2025-10-30"
+  },
+  "CCI": {
+    "ticker": "CCI",
+    "cik": "0001051470",
+    "asset_types": [
+      "spectrum"
+    ],
+    "score": 14.0,
+    "mandatory_prepay": false,
+    "latest_accession": "0001051470-26-000003",
+    "date": "2026-01-12"
+  },
+  "SATS": {
+    "ticker": "SATS",
+    "cik": "0001415404",
+    "asset_types": [
+      "spectrum"
+    ],
+    "score": 14.0,
+    "mandatory_prepay": false,
+    "latest_accession": "0001104659-26-058150",
+    "date": "2026-05-11"
+  },
+  "ECHO": {
+    "ticker": "ECHO",
+    "cik": "0001415404",
+    "asset_types": [
+      "spectrum"
+    ],
+    "score": 14.0,
+    "mandatory_prepay": false,
+    "latest_accession": "0001104659-26-089370",
+    "date": "2026-08-03"
+  },
+  "MGNC": {
+    "ticker": "MGNC",
+    "cik": "0001949864",
+    "asset_types": [
+      "mineral_rights"
+    ],
+    "score": 10.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001683168-26-000557",
+    "date": "2026-01-27"
+  },
+  "NRP": {
+    "ticker": "NRP",
+    "cik": "0001171486",
+    "asset_types": [
+      "mineral_rights"
+    ],
+    "score": 10.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001437749-26-025856",
+    "date": "2026-08-05"
+  },
+  "LOGC": {
+    "ticker": "LOGC",
+    "cik": "0002064307",
+    "asset_types": [
+      "mineral_rights"
+    ],
+    "score": 10.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001140361-26-001549",
+    "date": "2026-01-20"
+  },
+  "CDE": {
+    "ticker": "CDE",
+    "cik": "0000215466",
+    "asset_types": [
+      "mineral_rights"
+    ],
+    "score": 10.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001140361-26-010650",
+    "date": "2026-03-23"
+  },
+  "ATCX": {
+    "ticker": "ATCX",
+    "cik": "0001684688",
+    "asset_types": [
+      "mineral_rights"
+    ],
+    "score": 10.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001493152-26-007592",
+    "date": "2026-02-20"
+  },
+  "JUPGF": {
+    "ticker": "JUPGF",
+    "cik": "0001684688",
+    "asset_types": [
+      "mineral_rights"
+    ],
+    "score": 10.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001493152-25-013292",
+    "date": "2025-09-15"
+  },
+  "IPX": {
+    "ticker": "IPX",
+    "cik": "0001898601",
+    "asset_types": [
+      "mineral_rights"
+    ],
+    "score": 10.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001140361-26-025097",
+    "date": "2026-06-15"
+  },
+  "CTGO": {
+    "ticker": "CTGO",
+    "cik": "0001502377",
+    "asset_types": [
+      "mineral_rights"
+    ],
+    "score": 10.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001193125-26-298578",
+    "date": "2026-07-08"
+  },
+  "RYES": {
+    "ticker": "RYES",
+    "cik": "0001424864",
+    "asset_types": [
+      "mineral_rights"
+    ],
+    "score": 10.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001062993-26-002496",
+    "date": "2026-05-12"
+  },
+  "GMTL": {
+    "ticker": "GMTL",
+    "cik": "0002039972",
+    "asset_types": [
+      "water_rights"
+    ],
+    "score": 12.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001654954-26-006023",
+    "date": "2026-06-17"
+  },
+  "LMNR": {
+    "ticker": "LMNR",
+    "cik": "0001342423",
+    "asset_types": [
+      "water_rights",
+      "air_rights"
+    ],
+    "score": 28.0,
+    "mandatory_prepay": false,
+    "latest_accession": "0001342423-26-000023",
+    "date": "2026-06-09",
+    "small_cap": true
+  },
+  "GEBRF": {
+    "ticker": "GEBRF",
+    "cik": "0001570843",
+    "asset_types": [
+      "water_rights"
+    ],
+    "score": 12.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001062993-26-002963",
+    "date": "2026-06-02"
+  },
+  "AG": {
+    "ticker": "AG",
+    "cik": "0001308648",
+    "asset_types": [
+      "water_rights"
+    ],
+    "score": 12.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001062993-26-003952",
+    "date": "2026-07-31"
+  },
+  "PCYO": {
+    "ticker": "PCYO",
+    "cik": "0000276720",
+    "asset_types": [
+      "water_rights"
+    ],
+    "score": 18.0,
+    "mandatory_prepay": false,
+    "latest_accession": "0001104659-26-001739",
+    "date": "2026-01-07",
+    "small_cap": true
+  },
+  "EROK": {
+    "ticker": "EROK",
+    "cik": "0002104882",
+    "asset_types": [
+      "water_rights"
+    ],
+    "score": 12.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001193125-26-231118",
+    "date": "2026-05-19"
+  },
+  "IPI": {
+    "ticker": "IPI",
+    "cik": "0001421461",
+    "asset_types": [
+      "water_rights"
+    ],
+    "score": 18.0,
+    "mandatory_prepay": false,
+    "latest_accession": "0001421461-26-000021",
+    "date": "2026-08-05",
+    "small_cap": true
+  },
+  "EQX": {
+    "ticker": "EQX",
+    "cik": "0001756607",
+    "asset_types": [
+      "water_rights"
+    ],
+    "score": 12.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001171843-26-005594",
+    "date": "2026-08-17"
+  },
+  "WTTR": {
+    "ticker": "WTTR",
+    "cik": "0001693256",
+    "asset_types": [
+      "water_rights"
+    ],
+    "score": 12.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001140361-26-019129",
+    "date": "2026-05-05"
+  },
+  "BMOOF": {
+    "ticker": "BMOOF",
+    "cik": "0001732379",
+    "asset_types": [
+      "water_rights"
+    ],
+    "score": 12.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001104659-26-004291",
+    "date": "2026-01-16"
+  },
+  "LCGMF": {
+    "ticker": "LCGMF",
+    "cik": "0001339688",
+    "asset_types": [
+      "water_rights"
+    ],
+    "score": 12.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001062993-25-016850",
+    "date": "2025-11-14"
+  },
+  "BSAI": {
+    "ticker": "BSAI",
+    "cik": "0001416090",
+    "asset_types": [
+      "water_rights"
+    ],
+    "score": 12.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001096906-25-001456",
+    "date": "2025-09-02"
+  },
+  "CMP": {
+    "ticker": "CMP",
+    "cik": "0001227654",
+    "asset_types": [
+      "water_rights"
+    ],
+    "score": 18.0,
+    "mandatory_prepay": false,
+    "latest_accession": "0001227654-25-000196",
+    "date": "2025-12-08",
+    "small_cap": true
+  },
+  "LODE": {
+    "ticker": "LODE",
+    "cik": "0001120970",
+    "asset_types": [
+      "water_rights"
+    ],
+    "score": 18.0,
+    "mandatory_prepay": false,
+    "latest_accession": "0001437749-26-024415",
+    "date": "2026-07-24",
+    "small_cap": true
+  },
+  "TSBK": {
+    "ticker": "TSBK",
+    "cik": "0001046050",
+    "asset_types": [
+      "timberland"
+    ],
+    "score": 8.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0000939057-26-000145",
+    "date": "2026-07-29"
+  },
+  "RYN": {
+    "ticker": "RYN",
+    "cik": "0000052827",
+    "asset_types": [
+      "timberland"
+    ],
+    "score": 8.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0000052827-26-000059",
+    "date": "2026-04-01"
+  },
+  "PCH": {
+    "ticker": "PCH",
+    "cik": "0001338749",
+    "asset_types": [
+      "timberland"
+    ],
+    "score": 8.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001193125-26-024877",
+    "date": "2026-01-27"
+  },
+  "VFC": {
+    "ticker": "VFC",
+    "cik": "0000103379",
+    "asset_types": [
+      "timberland"
+    ],
+    "score": 8.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0000103379-26-000030",
+    "date": "2026-05-20"
+  },
+  "VCRRX": {
+    "ticker": "VCRRX",
+    "cik": "0001687898",
+    "asset_types": [
+      "timberland"
+    ],
+    "score": 8.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001752724-25-211919",
+    "date": "2025-08-28"
+  },
+  "JAGX": {
+    "ticker": "JAGX",
+    "cik": "0001585608",
+    "asset_types": [
+      "royalty"
+    ],
+    "score": 8.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001193125-26-276103",
+    "date": "2026-06-18"
+  },
+  "ZYME": {
+    "ticker": "ZYME",
+    "cik": "0001937653",
+    "asset_types": [
+      "royalty"
+    ],
+    "score": 8.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001937653-26-000034",
+    "date": "2026-05-07"
+  },
+  "ECTM": {
+    "ticker": "ECTM",
+    "cik": "0001487798",
+    "asset_types": [
+      "royalty"
+    ],
+    "score": 8.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001104659-26-095922",
+    "date": "2026-08-13"
+  },
+  "RGNX": {
+    "ticker": "RGNX",
+    "cik": "0001590877",
+    "asset_types": [
+      "royalty"
+    ],
+    "score": 14.0,
+    "mandatory_prepay": false,
+    "latest_accession": "0001193125-26-336725",
+    "date": "2026-08-06",
+    "small_cap": true
+  },
+  "VNOM": {
+    "ticker": "VNOM",
+    "cik": "0002074176",
+    "asset_types": [
+      "royalty"
+    ],
+    "score": 8.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0002074176-26-000050",
+    "date": "2026-08-03"
+  },
+  "SEG": {
+    "ticker": "SEG",
+    "cik": "0002009684",
+    "asset_types": [
+      "air_rights",
+      "real_estate"
+    ],
+    "score": 16.0,
+    "mandatory_prepay": false,
+    "latest_accession": "0001104659-26-091195",
+    "date": "2026-08-05"
+  },
+  "SNDA": {
+    "ticker": "SNDA",
+    "cik": "0001043000",
+    "asset_types": [
+      "air_rights"
+    ],
+    "score": 16.0,
+    "mandatory_prepay": false,
+    "latest_accession": "0001193125-26-249799",
+    "date": "2026-06-01",
+    "small_cap": true
+  },
+  "BXP": {
+    "ticker": "BXP",
+    "cik": "0001037540",
+    "asset_types": [
+      "air_rights"
+    ],
+    "score": 10.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001037540-26-000031",
+    "date": "2026-07-28"
+  },
+  "VTR": {
+    "ticker": "VTR",
+    "cik": "0000740260",
+    "asset_types": [
+      "air_rights"
+    ],
+    "score": 10.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0000740260-26-000022",
+    "date": "2026-07-29"
+  },
+  "LCDC": {
+    "ticker": "LCDC",
+    "cik": "0002071166",
+    "asset_types": [
+      "air_rights"
+    ],
+    "score": 10.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001213900-25-091006",
+    "date": "2025-09-24"
+  },
+  "CXW": {
+    "ticker": "CXW",
+    "cik": "0001070985",
+    "asset_types": [
+      "air_rights"
+    ],
+    "score": 13.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001193125-26-295590",
+    "date": "2026-07-06"
+  },
+  "MGRX": {
+    "ticker": "MGRX",
+    "cik": "0001938046",
+    "asset_types": [
+      "air_rights"
+    ],
+    "score": 10.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001493152-25-019941",
+    "date": "2025-10-29"
+  },
+  "BXMT": {
+    "ticker": "BXMT",
+    "cik": "0001061630",
+    "asset_types": [
+      "real_estate"
+    ],
+    "score": 9.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001061630-26-000071",
+    "date": "2026-07-30"
+  },
+  "GORV": {
+    "ticker": "GORV",
+    "cik": "0001721741",
+    "asset_types": [
+      "real_estate"
+    ],
+    "score": 6.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001140361-25-039361",
+    "date": "2025-10-27"
+  },
+  "VRNOF": {
+    "ticker": "VRNOF",
+    "cik": "0001848416",
+    "asset_types": [
+      "real_estate"
+    ],
+    "score": 6.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001493152-25-016466",
+    "date": "2025-10-01"
+  },
+  "IMKTA": {
+    "ticker": "IMKTA",
+    "cik": "0000050493",
+    "asset_types": [
+      "real_estate"
+    ],
+    "score": 6.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001140361-26-015672",
+    "date": "2026-04-20"
+  },
+  "IEP": {
+    "ticker": "IEP",
+    "cik": "0000813762",
+    "asset_types": [
+      "real_estate"
+    ],
+    "score": 9.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001104659-26-092784",
+    "date": "2026-08-07"
+  },
+  "AXR": {
+    "ticker": "AXR",
+    "cik": "0000006207",
+    "asset_types": [
+      "real_estate"
+    ],
+    "score": 6.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001104659-26-086659",
+    "date": "2026-07-24"
+  },
+  "SCHL": {
+    "ticker": "SCHL",
+    "cik": "0000866729",
+    "asset_types": [
+      "real_estate"
+    ],
+    "score": 12.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001193125-25-305233",
+    "date": "2025-12-02",
+    "small_cap": true
+  },
+  "H": {
+    "ticker": "H",
+    "cik": "0001468174",
+    "asset_types": [
+      "real_estate"
+    ],
+    "score": 6.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001104659-25-125229",
+    "date": "2025-12-30"
+  },
+  "MCS": {
+    "ticker": "MCS",
+    "cik": "0000062234",
+    "asset_types": [
+      "real_estate"
+    ],
+    "score": 12.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0000062234-25-000049",
+    "date": "2025-11-12",
+    "small_cap": true
+  },
+  "GTBIF": {
+    "ticker": "GTBIF",
+    "cik": "0001795139",
+    "asset_types": [
+      "real_estate"
+    ],
+    "score": 6.0,
+    "mandatory_prepay": null,
+    "latest_accession": "0001193125-26-071672",
+    "date": "2026-02-25"
+  }
+}
