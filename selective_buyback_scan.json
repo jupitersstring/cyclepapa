@@ -1,0 +1,806 @@
+{
+  "PI": {
+    "ticker": "PI",
+    "cik": "0001114995",
+    "classes": [
+      "privately_negotiated"
+    ],
+    "score": 10,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001193125-26-108622",
+    "date": "2026-03-16"
+  },
+  "DOCN": {
+    "ticker": "DOCN",
+    "cik": "0001582961",
+    "classes": [
+      "privately_negotiated"
+    ],
+    "score": 10,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001104659-26-086652",
+    "date": "2026-07-24"
+  },
+  "ZIP": {
+    "ticker": "ZIP",
+    "cik": "0001617553",
+    "classes": [
+      "privately_negotiated"
+    ],
+    "score": 15,
+    "from_holder": null,
+    "vs_market": "discount",
+    "latest_accession": "0001617553-26-000045",
+    "date": "2026-08-05"
+  },
+  "BAND": {
+    "ticker": "BAND",
+    "cik": "0001514416",
+    "classes": [
+      "privately_negotiated"
+    ],
+    "score": 15,
+    "from_holder": null,
+    "vs_market": "discount",
+    "latest_accession": "0001514416-26-000023",
+    "date": "2026-03-02"
+  },
+  "ASTS": {
+    "ticker": "ASTS",
+    "cik": "0001780312",
+    "classes": [
+      "privately_negotiated"
+    ],
+    "score": 10,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001493152-26-007772",
+    "date": "2026-02-23"
+  },
+  "WT": {
+    "ticker": "WT",
+    "cik": "0000880631",
+    "classes": [
+      "privately_negotiated"
+    ],
+    "score": 10,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001214659-26-006842",
+    "date": "2026-05-29"
+  },
+  "GLXZ": {
+    "ticker": "GLXZ",
+    "cik": "0000013156",
+    "classes": [
+      "privately_negotiated"
+    ],
+    "score": 10,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001193125-26-353324",
+    "date": "2026-08-17"
+  },
+  "MARA": {
+    "ticker": "MARA",
+    "cik": "0001507605",
+    "classes": [
+      "privately_negotiated"
+    ],
+    "score": 10,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0000950142-26-000873",
+    "date": "2026-03-26"
+  },
+  "LKFN": {
+    "ticker": "LKFN",
+    "cik": "0000721994",
+    "classes": [
+      "block_from_holder"
+    ],
+    "score": 12,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0000721994-26-000040",
+    "date": "2026-03-06"
+  },
+  "UWMC": {
+    "ticker": "UWMC",
+    "cik": "0001783398",
+    "classes": [
+      "block_from_holder"
+    ],
+    "score": 12,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001783398-26-000114",
+    "date": "2026-08-06"
+  },
+  "RKT": {
+    "ticker": "RKT",
+    "cik": "0001805284",
+    "classes": [
+      "block_from_holder"
+    ],
+    "score": 12,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001104659-26-071607",
+    "date": "2026-06-09"
+  },
+  "AUBN": {
+    "ticker": "AUBN",
+    "cik": "0000750574",
+    "classes": [
+      "block_from_holder"
+    ],
+    "score": 12,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001193125-26-111171",
+    "date": "2026-03-17"
+  },
+  "CMPR": {
+    "ticker": "CMPR",
+    "cik": "0001262976",
+    "classes": [
+      "block_from_holder"
+    ],
+    "score": 12,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001262976-26-000009",
+    "date": "2026-03-31"
+  },
+  "PATH": {
+    "ticker": "PATH",
+    "cik": "0001734722",
+    "classes": [
+      "block_from_holder"
+    ],
+    "score": 12,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001734722-26-000007",
+    "date": "2026-03-11"
+  },
+  "EXFY": {
+    "ticker": "EXFY",
+    "cik": "0001476840",
+    "classes": [
+      "dutch_auction"
+    ],
+    "score": 9,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001476840-26-000073",
+    "date": "2026-08-06"
+  },
+  "SCHL": {
+    "ticker": "SCHL",
+    "cik": "0000866729",
+    "classes": [
+      "dutch_auction"
+    ],
+    "score": 9,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0000866729-26-000015",
+    "date": "2026-07-23"
+  },
+  "ABUS": {
+    "ticker": "ABUS",
+    "cik": "0001447028",
+    "classes": [
+      "dutch_auction"
+    ],
+    "score": 9,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001171843-26-005442",
+    "date": "2026-08-12"
+  },
+  "WEX": {
+    "ticker": "WEX",
+    "cik": "0001309108",
+    "classes": [
+      "dutch_auction"
+    ],
+    "score": 9,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001309108-26-000026",
+    "date": "2026-07-22"
+  },
+  "BCIC": {
+    "ticker": "BCIC",
+    "cik": "0001372807",
+    "classes": [
+      "dutch_auction"
+    ],
+    "score": 9,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001193125-26-215068",
+    "date": "2026-05-08"
+  },
+  "MAIR": {
+    "ticker": "MAIR",
+    "cik": "0002098430",
+    "classes": [
+      "dutch_auction"
+    ],
+    "score": 9,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001628280-26-041148",
+    "date": "2026-06-05"
+  },
+  "RDNT": {
+    "ticker": "RDNT",
+    "cik": "0000790526",
+    "classes": [
+      "dutch_auction"
+    ],
+    "score": 9,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001683168-26-004716",
+    "date": "2026-06-10"
+  },
+  "BXMT": {
+    "ticker": "BXMT",
+    "cik": "0001061630",
+    "classes": [
+      "dutch_auction"
+    ],
+    "score": 9,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001193125-26-231141",
+    "date": "2026-05-19"
+  },
+  "RMBS": {
+    "ticker": "RMBS",
+    "cik": "0000917273",
+    "classes": [
+      "asr"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001193125-26-333887",
+    "date": "2026-08-05"
+  },
+  "ACVA": {
+    "ticker": "ACVA",
+    "cik": "0001637873",
+    "classes": [
+      "asr",
+      "repurchase_agreement"
+    ],
+    "score": 6,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001637873-26-000023",
+    "date": "2026-05-13"
+  },
+  "EPAM": {
+    "ticker": "EPAM",
+    "cik": "0001352010",
+    "classes": [
+      "asr",
+      "repurchase_agreement"
+    ],
+    "score": 6,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001352010-26-000019",
+    "date": "2026-03-05"
+  },
+  "FICO": {
+    "ticker": "FICO",
+    "cik": "0000814547",
+    "classes": [
+      "asr"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001193125-26-260817",
+    "date": "2026-06-08"
+  },
+  "BSX": {
+    "ticker": "BSX",
+    "cik": "0000885725",
+    "classes": [
+      "asr",
+      "repurchase_agreement"
+    ],
+    "score": 6,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0000885725-26-000042",
+    "date": "2026-05-18"
+  },
+  "CXM": {
+    "ticker": "CXM",
+    "cik": "0001569345",
+    "classes": [
+      "asr"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001569345-26-000011",
+    "date": "2026-03-11"
+  },
+  "VRSK": {
+    "ticker": "VRSK",
+    "cik": "0001442145",
+    "classes": [
+      "asr"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001437749-26-013728",
+    "date": "2026-04-29"
+  },
+  "PTC": {
+    "ticker": "PTC",
+    "cik": "0000857005",
+    "classes": [
+      "asr",
+      "repurchase_agreement"
+    ],
+    "score": 6,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001193125-26-323617",
+    "date": "2026-07-29"
+  },
+  "SNPS": {
+    "ticker": "SNPS",
+    "cik": "0000883241",
+    "classes": [
+      "asr",
+      "repurchase_agreement"
+    ],
+    "score": 6,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001193125-26-084396",
+    "date": "2026-03-02"
+  },
+  "JLL": {
+    "ticker": "JLL",
+    "cik": "0001037976",
+    "classes": [
+      "asr"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001037976-26-000043",
+    "date": "2026-03-12"
+  },
+  "CRM": {
+    "ticker": "CRM",
+    "cik": "0001108524",
+    "classes": [
+      "asr"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001193125-26-107403",
+    "date": "2026-03-16"
+  },
+  "VC": {
+    "ticker": "VC",
+    "cik": "0001111335",
+    "classes": [
+      "asr"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001111335-26-000045",
+    "date": "2026-07-23"
+  },
+  "INDV": {
+    "ticker": "INDV",
+    "cik": "0001625297",
+    "classes": [
+      "asr",
+      "repurchase_agreement"
+    ],
+    "score": 6,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001625297-26-000021",
+    "date": "2026-05-04"
+  },
+  "TKO": {
+    "ticker": "TKO",
+    "cik": "0001973266",
+    "classes": [
+      "asr",
+      "repurchase_agreement"
+    ],
+    "score": 6,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001193125-26-219498",
+    "date": "2026-05-12"
+  },
+  "SIG": {
+    "ticker": "SIG",
+    "cik": "0000832988",
+    "classes": [
+      "asr",
+      "repurchase_agreement"
+    ],
+    "score": 6,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0000832988-26-000161",
+    "date": "2026-06-08"
+  },
+  "EXLS": {
+    "ticker": "EXLS",
+    "cik": "0001297989",
+    "classes": [
+      "asr"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001104659-26-030831",
+    "date": "2026-03-18"
+  },
+  "UTHR": {
+    "ticker": "UTHR",
+    "cik": "0001082554",
+    "classes": [
+      "asr"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001104659-26-025331",
+    "date": "2026-03-09"
+  },
+  "ADMA": {
+    "ticker": "ADMA",
+    "cik": "0001368514",
+    "classes": [
+      "asr",
+      "repurchase_agreement"
+    ],
+    "score": 6,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001140361-26-007230",
+    "date": "2026-03-02"
+  },
+  "NCNO": {
+    "ticker": "NCNO",
+    "cik": "0001902733",
+    "classes": [
+      "asr",
+      "repurchase_agreement"
+    ],
+    "score": 6,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001902733-26-000019",
+    "date": "2026-03-31"
+  },
+  "TFX": {
+    "ticker": "TFX",
+    "cik": "0000096943",
+    "classes": [
+      "asr"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0000096943-26-000091",
+    "date": "2026-08-06"
+  },
+  "PINS": {
+    "ticker": "PINS",
+    "cik": "0001506293",
+    "classes": [
+      "asr"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001193125-26-086731",
+    "date": "2026-03-03"
+  },
+  "VSNT": {
+    "ticker": "VSNT",
+    "cik": "0002067876",
+    "classes": [
+      "asr",
+      "repurchase_agreement"
+    ],
+    "score": 6,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0002067876-26-000038",
+    "date": "2026-08-06"
+  },
+  "GPN": {
+    "ticker": "GPN",
+    "cik": "0001123360",
+    "classes": [
+      "asr"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001123360-26-000070",
+    "date": "2026-05-06"
+  },
+  "KTB": {
+    "ticker": "KTB",
+    "cik": "0001760965",
+    "classes": [
+      "asr",
+      "repurchase_agreement"
+    ],
+    "score": 6,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001760965-26-000055",
+    "date": "2026-08-12"
+  },
+  "FLYW": {
+    "ticker": "FLYW",
+    "cik": "0001580560",
+    "classes": [
+      "asr"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001580560-26-000003",
+    "date": "2026-05-05"
+  },
+  "COSO": {
+    "ticker": "COSO",
+    "cik": "0001297107",
+    "classes": [
+      "asr"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001193125-26-199469",
+    "date": "2026-05-01"
+  },
+  "FLXS": {
+    "ticker": "FLXS",
+    "cik": "0000037472",
+    "classes": [
+      "repurchase_agreement"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0000037472-26-000028",
+    "date": "2026-04-28"
+  },
+  "PLBY": {
+    "ticker": "PLBY",
+    "cik": "0001803914",
+    "classes": [
+      "repurchase_agreement"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001628280-26-044510",
+    "date": "2026-06-22"
+  },
+  "SPFI": {
+    "ticker": "SPFI",
+    "cik": "0001163668",
+    "classes": [
+      "repurchase_agreement"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001140361-26-025604",
+    "date": "2026-06-17"
+  },
+  "GOLF": {
+    "ticker": "GOLF",
+    "cik": "0001672013",
+    "classes": [
+      "repurchase_agreement"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001672013-26-000121",
+    "date": "2026-06-08"
+  },
+  "OMC": {
+    "ticker": "OMC",
+    "cik": "0000029989",
+    "classes": [
+      "repurchase_agreement"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0000029989-26-000018",
+    "date": "2026-07-28"
+  },
+  "MKTX": {
+    "ticker": "MKTX",
+    "cik": "0001278021",
+    "classes": [
+      "repurchase_agreement"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001193125-26-324950",
+    "date": "2026-07-30"
+  },
+  "RYAN": {
+    "ticker": "RYAN",
+    "cik": "0001849253",
+    "classes": [
+      "repurchase_agreement"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001849253-26-000023",
+    "date": "2026-04-30"
+  },
+  "AURA": {
+    "ticker": "AURA",
+    "cik": "0001501796",
+    "classes": [
+      "repurchase_agreement"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001193125-26-206804",
+    "date": "2026-05-05"
+  },
+  "INGM": {
+    "ticker": "INGM",
+    "cik": "0001897762",
+    "classes": [
+      "repurchase_agreement"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001628280-26-016059",
+    "date": "2026-03-09"
+  },
+  "LTH": {
+    "ticker": "LTH",
+    "cik": "0001869198",
+    "classes": [
+      "repurchase_agreement"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001869198-26-000034",
+    "date": "2026-05-07"
+  },
+  "KOPN": {
+    "ticker": "KOPN",
+    "cik": "0000771266",
+    "classes": [
+      "repurchase_agreement"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001493152-26-029262",
+    "date": "2026-06-18"
+  },
+  "CRSF": {
+    "ticker": "CRSF",
+    "cik": "0000924396",
+    "classes": [
+      "repurchase_agreement"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001493152-26-034401",
+    "date": "2026-07-23"
+  },
+  "GLRE": {
+    "ticker": "GLRE",
+    "cik": "0001385613",
+    "classes": [
+      "repurchase_agreement"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001385613-26-000097",
+    "date": "2026-08-04"
+  },
+  "MSGM": {
+    "ticker": "MSGM",
+    "cik": "0001821175",
+    "classes": [
+      "repurchase_agreement"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001493152-26-018755",
+    "date": "2026-04-23"
+  },
+  "FIVN": {
+    "ticker": "FIVN",
+    "cik": "0001288847",
+    "classes": [
+      "repurchase_agreement"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001288847-26-000081",
+    "date": "2026-05-05"
+  },
+  "CDE": {
+    "ticker": "CDE",
+    "cik": "0000215466",
+    "classes": [
+      "repurchase_agreement"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0000215466-26-000030",
+    "date": "2026-05-18"
+  },
+  "CSWC": {
+    "ticker": "CSWC",
+    "cik": "0000017313",
+    "classes": [
+      "repurchase_agreement"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0000017313-26-000093",
+    "date": "2026-08-03"
+  },
+  "COLL": {
+    "ticker": "COLL",
+    "cik": "0001267565",
+    "classes": [
+      "repurchase_agreement"
+    ],
+    "score": 3,
+    "from_holder": null,
+    "vs_market": null,
+    "latest_accession": "0001104659-26-095464",
+    "date": "2026-08-13"
+  }
+}

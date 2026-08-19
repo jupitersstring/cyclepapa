@@ -37,4 +37,8 @@ echo "=== hidden-asset / credit-agreement mining ==="
 python3 test_hidden_asset.py
 echo
 
+echo "=== selective / own-shares revealed preference ==="
+python3 test_selective_buyback.py
+echo
+
 echo "All test suites passed."
