@@ -12,11 +12,19 @@ from fredapi import Fred
 import pytz
 import yfinance as yf
 from datetime import datetime, timedelta
+from nav_discount_finder import render_nav_discount_finder
 
 def main():
     st.title("String's Cycle Man Arc v1")
 
-    data_source = st.radio("Select Data Source", ["Upload CSV", "Yahoo Finance", "FRED"])
+    data_source = st.radio(
+        "Select Data Source",
+        ["Upload CSV", "Yahoo Finance", "FRED", "NAV Discount Finder"],
+    )
+
+    if data_source == "NAV Discount Finder":
+        render_nav_discount_finder()
+        return
 
     # Initialize session state to store historical list of tickers or FRED series IDs
     if "history" not in st.session_state:

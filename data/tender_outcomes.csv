@@ -1,0 +1,22 @@
+ticker,epic,date,title,oversubscribed,n_tendered,n_purchased,pct_isc,tender_price
+EWI.L,EWI,2026-04-10,EWIT Result of Tender Offer Resolution,False,,,68.4,
+VIP.L,VIP,2025-09-29,Result of Tender Offer,False,1666142,1495331,3.28,204.0
+RMII.L,RMII,2026-05-01,Result of Tender Offer,True,,16556106,,74.77
+RMII.L,RMII,2025-06-24,Result of General Meeting and Tender Offer,True,,21627821,,80.52
+RMII.L,RMII,2024-09-25,Result of General Meeting &amp; Tender Offer,True,,19738338,,88.59
+BBOX.L,BBOX,2025-11-13,Results of Tender Offer,False,,,,
+BGS.L,BGS,2026-03-02,Baillie Gifford Shin Nippon Tender Offer Results,True,122008687,,,
+MRV.L,MRV,2026-05-26,Result of Tender Offer,False,,,,
+SMIF.L,SMIF,2026-04-07,Tender Results,False,666341,,,
+SMIF.L,SMIF,2026-01-06,Tender Results,False,,,,
+SMIF.L,SMIF,2025-10-06,Tender Results,False,119559,,,
+IEM.L,IEM,2026-04-20,Result of Exit Tender Offer Elections,False,148202139,,,
+IEM.L,IEM,2026-04-16,Results of General Meeting and Tender Offer Update,False,,,,
+CVCE.L,CVCE,2026-02-13,Result of Tender Offer,False,,,,
+CVCE.L,CVCE,2025-08-15,Result of Tender Offer,False,,,,
+BRFI.L,BRFI,2026-02-23,Results of the Tender Offer,False,,,,
+CVCG.L,CVCG,2026-02-13,Result of Tender Offer,False,,,,
+CVCG.L,CVCG,2025-08-15,Result of Tender Offer,False,,,,
+BRLA.L,BRLA,2026-05-29,Result of Tender Offer,True,,7359215,29.6,
+CTHT.L,CTHT,2026-06-03,Results of Quarterly Tender Offer,True,9813337,8386370,,
+INOV.L,INOV,2025-07-25,Result of Tender Offer,True,,,,
