@@ -157,6 +157,20 @@ def load_data(min_mcap: float = 10_000_000):
         mc = ['symbol'] + [c for c in val.columns if c != 'symbol' and c not in df.columns]
         df = df.merge(val[mc], on='symbol', how='left')
 
+    # Segment signals (10-K/10-Q footnotes) — needed so the Fastest-Segment
+    # sheet can rank by the segment's own YoY rather than whole-company
+    # asymmetry (a hidden fast segment masked by a shrinking legacy segment
+    # has muted consolidated multiples).
+    if os.path.exists('edgar_segment_signals.csv'):
+        seg = pd.read_csv('edgar_segment_signals.csv')
+        seg_cols = ['symbol', 'fastest_segment_yoy', 'fastest_segment_name',
+                    'segment_growth_dispersion', 'largest_segment_name',
+                    'largest_segment_share', 'segment_count']
+        seg = seg[[c for c in seg_cols if c in seg.columns]]
+        seg = seg[['symbol'] + [c for c in seg.columns
+                                if c != 'symbol' and c not in df.columns]]
+        df = df.merge(seg, on='symbol', how='left')
+
     # Normalise market_cap to USD for cross-country comparability (the books
     # are USD-labelled). market_cap_usd is produced by fix_pipeline; fall back
     # to raw market_cap only where the USD value is missing.
@@ -432,12 +446,20 @@ def main():
     for s in arch_summary:
         col = s['arch_col']
         sub_df = df[df[col].fillna(0).astype(int) == 1].copy()
-        sub_df = sub_df.nlargest(args.n, sort_col).reset_index(drop=True)
+        # The Fastest-Segment sheet is a hidden-engine view: rank by the
+        # segment's own YoY, not whole-company entry asymmetry (which buries
+        # names like EVC/Smadex whose consolidated multiples are muted by a
+        # shrinking legacy segment). Show a deeper list so real mid-pack
+        # inflections surface.
+        tab_sort, tab_n = sort_col, args.n
+        if col == 'arch_fastest_segment' and 'fastest_segment_yoy' in sub_df.columns:
+            tab_sort, tab_n = 'fastest_segment_yoy', max(args.n, 120)
+        sub_df = sub_df.nlargest(tab_n, tab_sort).reset_index(drop=True)
         if sub_df.empty:
             continue
         sheet_name = _sheet_safe(s['label'])
         ws = wb.create_sheet(sheet_name)
-        _write_archetype_table(ws, sub_df, s['label'], n_total, sort_col)
+        _write_archetype_table(ws, sub_df, s['label'], n_total, tab_sort)
 
     wb.save(args.out)
     from harvard_style import sanitize_nan_text

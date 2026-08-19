@@ -312,29 +312,37 @@ def main():
     _write_segment_table(ws, all_seg, 'All Segment-Covered Names (top by ETA)', n_total, sort_col)
 
     # === Per-archetype tabs ===
+    # Each entry carries its own (sort column, depth). The "Fastest" tab is a
+    # HIDDEN-ENGINE discovery view: it must rank by the segment's own YoY, not
+    # by whole-company entry asymmetry. Names whose fast segment is masked by a
+    # shrinking legacy segment (e.g. EVC/Smadex — AdTech +90% inside a
+    # declining media co) have muted CONSOLIDATED multiples, so an
+    # entry-asymmetry sort buries exactly the population this tab exists to
+    # surface. Rank by fastest_segment_yoy and show a deeper list.
     archetypes = [
         ('Diversified',
          df[(df['segment_count'].fillna(0) >= 4) & (df['segment_revenue_hhi'].fillna(1.0) <= 0.40)],
-         '4+ segments AND HHI <= 0.40'),
+         '4+ segments AND HHI <= 0.40', sort_col, args.n),
         ('Concentrated',
          df[((df['segment_revenue_hhi'].fillna(0) >= 0.70) |
              (df['largest_segment_share'].fillna(0) >= 0.70)) &
             (df['segment_count'].fillna(0) >= 2)],
-         'HHI >= 0.70 or top segment >= 70%'),
+         'HHI >= 0.70 or top segment >= 70%', sort_col, args.n),
         ('Global',
          df[df['geographic_region_count'].fillna(0) >= 4],
-         '4+ reporting geographies'),
+         '4+ reporting geographies', sort_col, args.n),
         ('Fastest',
          df[(df['fastest_segment_yoy'].fillna(0) >= 0.25) & (df['segment_count'].fillna(0) >= 2)],
-         'Single segment growing > 25% YoY'),
+         'Single segment growing > 25% YoY — ranked by segment YoY (hidden engine)',
+         'fastest_segment_yoy', max(args.n, 150)),
     ]
 
-    for label, sub_df, desc in archetypes:
-        sub_df = sub_df.nlargest(args.n, sort_col).reset_index(drop=True)
+    for label, sub_df, desc, tab_sort, tab_n in archetypes:
+        sub_df = sub_df.nlargest(tab_n, tab_sort).reset_index(drop=True)
         if sub_df.empty:
             continue
         ws = wb.create_sheet(_sheet_safe(label))
-        _write_segment_table(ws, sub_df, f"{label} — {desc}", n_total, sort_col)
+        _write_segment_table(ws, sub_df, f"{label} — {desc}", n_total, tab_sort)
 
     wb.save(args.out)
     from harvard_style import sanitize_nan_text
