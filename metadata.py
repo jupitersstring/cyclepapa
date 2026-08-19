@@ -47,6 +47,11 @@ class Row:
     catalyst_date: str = ""
     catalyst_source_url: str = ""
     notes: str = ""
+    # Hard-date governance catalysts (deterministic, P~1 at the date):
+    # fixed-life terminal / wind-up dates, and mandated continuation
+    # votes. IRR-to-terminal is arithmetic when these are set.
+    terminal_date: str = ""
+    continuation_vote_date: str = ""
 
 
 class UniverseError(Exception):
@@ -105,6 +110,9 @@ def load_universe(path: str = UNIVERSE_PATH, force: bool = False) -> dict[str, R
                 catalyst_date=(raw.get("catalyst_date") or "").strip(),
                 catalyst_source_url=(raw.get("catalyst_source_url") or "").strip(),
                 notes=(raw.get("notes") or "").strip(),
+                terminal_date=(raw.get("terminal_date") or "").strip(),
+                continuation_vote_date=(
+                    raw.get("continuation_vote_date") or "").strip(),
             )
     if errors:
         raise UniverseError(

@@ -449,6 +449,29 @@ def screen_one(
                     r.price_vs_avwap_pct = (r.last_close / avwap) - 1.0
         except ValueError:
             pass
+
+    # Hard-date governance catalyst — a fixed terminal / wind-up date
+    # is a DETERMINISTIC event: the discount closes at a known horizon,
+    # P~1, no probability guessing. When set (and sooner than the
+    # catalyst-derived horizon), it overrides both the duration and the
+    # probability: expected_total_return is realised almost surely by
+    # that date. This is the highest-conviction catalyst class.
+    if row and getattr(row, "terminal_date", ""):
+        try:
+            from datetime import datetime as _dt
+            td = _dt.strptime(row.terminal_date, "%Y-%m-%d")
+            months_to_terminal = max(1.0, (td - _dt.utcnow()).days / 30.4)
+            # Only override when the hard date is materially sooner than
+            # the tag-derived horizon (else keep the softer estimate).
+            if months_to_terminal <= months * 1.1:
+                months = months_to_terminal
+                r.catalyst_age_months = r.catalyst_age_months
+                # Near-certain by the date — floor probability high.
+                r.catalyst_prob_signal_adj = max(
+                    0.90, r.catalyst_prob_signal_adj or 0.0)
+                r.catalyst_promoted_by = "hard_date"
+        except ValueError:
+            pass
     r.expected_duration_months = months
 
     # Exit-liquidity sanity check. Sensible position = 1% of a £10m
