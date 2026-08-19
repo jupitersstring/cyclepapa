@@ -212,6 +212,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (_n0('rev_accel') > 0)      | (_n0('gross_profit_yoy') > 0.05)
     ).fillna(False)
 
+    # Operating-leverage-specific interval robustness: the MARGIN / cash-turn
+    # angles ONLY (excludes the pure top-line-growth angles). For archetypes
+    # that already gate on revenue and need the leverage turn to be about
+    # MARGIN — otherwise the growth gate would trivially satisfy the margin leg
+    # and the archetype would lose its operating-leverage identity.
+    margin_inflect_any = (
+        (_n0('ebitda_margin_delta_yoy') > 0) | (_n0('fcf_margin_delta_yoy') > 0) |
+        (_n0('gross_margin_delta_yoy') > 0)  | (_n0('op_margin_delta_yoy') > 0) |
+        (_n0('operating_leverage_ratio') > 1.0) |
+        (_n0('ebitda_qoq_ttm') > 0) | (_n0('cfo_qoq_ttm') > 0) | (_n0('fcf_qoq_ttm') > 0)
+    ).fillna(False)
+
     inflection_print = (
         (ebitda_inflection > 0) | (cfo_inflection > 0) | (fcf_inflection > 0) |
         (rev_inflection > 0) | (roce_inflection > 0) |
@@ -228,7 +240,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_fixed_cost_demand_shock'] = (
         sector.isin(HEAVY_ASSET_SECTORS) &
         (rev_accel > 0) &
-        (ebitda_margin_delta >= 0.02)
+        # Operating-leverage leg made interval-robust: fire on the single-YoY
+        # margin jump OR any seasonality-robust MARGIN/cash turn (not the pure
+        # growth angles — revenue acceleration is already gated above), so early
+        # margin inflections a lagging YoY misses are still caught. Broadens the
+        # pool without collapsing into the revenue gate.
+        ((ebitda_margin_delta >= 0.02) | margin_inflect_any)
     ).astype(int)
 
     # ---------- Cluster E7: Discounted Vehicle ----------
@@ -254,7 +271,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_regime_cyclical'] = (
         sector.isin(HEAVY_ASSET_SECTORS) &
         (price_yoy <= -0.20) &
-        ((ebitda_inflection > 0) | (ebitda_first_pos > 0) | (ebitda_margin_delta >= 0.02)) &
+        # Turn confirmed across margin/cash measures + time bases (interval-
+        # robust), not a single margin print — catches the cyclical upturn
+        # earlier while keeping the profitability-regime-change identity.
+        ((ebitda_inflection > 0) | (ebitda_first_pos > 0) |
+         (ebitda_margin_delta >= 0.02) | margin_inflect_any) &
         (not_priced_in > 0.20)
     ).astype(int)
 
