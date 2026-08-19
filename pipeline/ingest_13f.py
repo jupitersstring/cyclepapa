@@ -21,6 +21,17 @@ NS = {'i': 'http://www.sec.gov/edgar/document/thirteenf/informationtable'}
 # CIK map for our known funds. Keyed by canonical fund name.
 # Add to this as we resolve more CIKs.
 FUND_CIK = {
+    # --- Under-radar long-term compounders (2026-08) ---
+    "Eagle Capital Management (Boykin Curry)": "945631",
+    "SRS Investment Mgmt (Karthik Sarma)": "1503174",
+    "Atreides Management (Gavin Baker)": "1777813",
+    "Markel Group (Tom Gayner)": "1096343",
+    "Ensign Peak Advisors (LDS Church)": "1454984",
+    "Chou Associates (Francis Chou)": "1389403",
+    "Broad Run Investment Mgmt": "1568621",
+    "Findlay Park Partners": "1351950",
+    "WCM Investment Management": "1061186",
+    "Baillie Gifford & Co": "1088875",
     "Pershing Square Capital Managem": "1336528",
     # --- Low-profile / "hidden" exceptional filers (2026-08, verified active) ---
     "Euclidean Capital (Jim Simons FO)":    "1825034",
@@ -371,7 +382,7 @@ def name_to_ticker(name, name_map):
     return None
 
 def run(only=None):
-    conn = sqlite3.connect(DB)
+    conn = sqlite3.connect(DB, timeout=120); conn.execute("PRAGMA busy_timeout=120000")
     conn.executescript("""
     CREATE TABLE IF NOT EXISTS fund_13f_holdings (
       fund TEXT, cik TEXT, accession TEXT, filed TEXT,

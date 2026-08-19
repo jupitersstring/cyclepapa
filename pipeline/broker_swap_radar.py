@@ -46,6 +46,7 @@ def run():
       activist_holders TEXT,    -- our activist-style funds currently holding
       live_action TEXT,         -- contested proxy / tender / 13E-3 in motion
       d13_momo TEXT,            -- 13D amendment momentum (holder +/-pp)
+      disclosed_swap TEXT,      -- a 13D on this name whose text names a swap
       PRIMARY KEY (ticker, broker));
     """)
 
@@ -156,6 +157,17 @@ def run():
             GROUP BY ticker""")}
     except sqlite3.OperationalError:
         live = {}
+    # DISCLOSED swaps: a 13D whose OWN text names a total-return/cash-settled
+    # swap. When a desk-side share jump coincides with a filer who has already
+    # disclosed swap use on the SAME name, the hedge interpretation is no
+    # longer a guess — it is the strongest confirmation on the board.
+    try:
+        disc_swap = {r[0]: r[1] for r in conn.execute("""SELECT ticker,
+            GROUP_CONCAT(DISTINCT holder || COALESCE(' ('||swap_counterparties||')',''))
+            FROM latent_ownership WHERE swap_counterparties IS NOT NULL AND ticker IS NOT NULL
+            GROUP BY ticker""")}
+    except sqlite3.OperationalError:
+        disc_swap = {}
 
     n = 0
     for tk, per_broker in deltas.items():
@@ -209,14 +221,16 @@ def run():
             if desk_anom >= 20: shadow *= 1.25
             if live.get(tk):   shadow *= 1.4   # control event already in motion
             if momo.get(tk):   shadow *= 1.2   # disclosed holder still moving
-            conn.execute("INSERT OR REPLACE INTO broker_swap_radar VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            if disc_swap.get(tk): shadow *= 1.6  # filer already disclosed a swap here
+            conn.execute("INSERT OR REPLACE INTO broker_swap_radar VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 (tk, (s["name"] if s else None), broker,
                  round(d_sh / 1e6, 2), round(pct_out, 2), round(delta_m, 1),
                  round(cur_m or 0, 1), round(idio, 0),
                  round(desk_anom, 1), round(min(shadow, 99.0), 1),
                  round(y["mcap_m"] or 0, 0), (s["score"] if s else None),
                  d13.get(tk), actv.get(tk),
-                 live.get(tk), "; ".join(momo.get(tk, [])[:3]) or None))
+                 live.get(tk), "; ".join(momo.get(tk, [])[:3]) or None,
+                 disc_swap.get(tk)))
             n += 1
     conn.commit()
 
@@ -224,9 +238,11 @@ def run():
     print(f"{'tkr':6s} {'shadow':>6s} {'broker':20s} {'Δsh(M)':>7s} {'%out':>5s} {'Δ$M':>7s} {'idio':>4s} {'anom':>5s}  13D/activist context")
     for r in conn.execute("""SELECT * FROM broker_swap_radar
             ORDER BY shadow_score DESC LIMIT 30"""):
-        ctx = (r["recent_13d"] or "")[:36]
+        ctx = (r["recent_13d"] or "")[:30]
         if r["activist_holders"]:
-            ctx += (" | " if ctx else "") + r["activist_holders"][:36]
+            ctx += (" | " if ctx else "") + r["activist_holders"][:30]
+        if r["disclosed_swap"]:
+            ctx = "★SWAP:" + r["disclosed_swap"][:28] + " | " + ctx
         print(f"{r['ticker']:6s} {r['shadow_score']:6.1f} {r['broker'][:20]:20s} {r['delta_sh_m']:7.1f} "
               f"{r['pct_out']:5.2f} {r['delta_m']:7.0f} {r['idio_pct']:4.0f} {r['desk_anom']:5.0f}  {ctx}")
     conn.close()

@@ -268,6 +268,14 @@ LEGEND = [
         ("Idio %", "This desk's move as a share of ALL tracked desks' movement in the name. High = idiosyncratic (swap-hedge-like); low = every desk moved (index/ETF flow)."),
         ("Why it matters", "An activist building via total-return swaps appears on NO 13F/13D of their own — the counterparty desk hedges with physical shares, which print HERE. Leads, not proof: baskets and custody flows also move desks."),
     ]),
+    ("Latent Ownership (13D text)", [
+        ("# Feat / Hidden Features", "Count and list of economic-control features parsed from the holder's 13D: prefunded/ordinary warrants, convertibles, ownership blocker, board-designation rights, registration rights, ROFR, anti-dilution, standstill, disclosed swap."),
+        ("Blocker %", "The ownership-limitation ceiling (4.99 / 9.99 / 19.99%) — the holder's economic exposure can sit just under it while the header % looks small; the blocker is often contractually raisable."),
+        ("Swap Cpty", "A total-return / cash-settled swap named in the 13D text, with counterparty desk if disclosed — the clearest hidden-economic-exposure tell; cross-check the Broker Swap Radar."),
+    ]),
+    ("N-PORT Monthly", [
+        ("Series (fund)", "A registered fund's monthly N-PORT-P holdings — fresher than quarterly 13F and inclusive of FOREIGN listings 13F never reports. Supplementary RIC data, not counted as 13F smart money."),
+    ]),
     ("Entry / setup", [
         ("Entry / Bucket", "Where the current price sits versus the smart-money cost anchor: below / near / above."),
         ("Anchor $", "Estimated smart-money cost basis (cost_basis / filing text / Form-4 buy average / 80th-percentile)."),

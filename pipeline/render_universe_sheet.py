@@ -802,11 +802,11 @@ def sheet_broker_radar(wb, conn):
     write_title(ws, "Broker Swap Radar — possible swap-hedge accumulation",
                 "QoQ share-count jumps inside ONE swap-desk broker's 13F. An activist building via cash-settled swaps files nothing — the desk hedging the swap buys the physical and prints HERE first. "
                 "Idio % = this desk's move vs all desks (high = idiosyncratic, low = index flow). Leads, not proof: ETF baskets and custody flows also move desks. Shadow = accumulation × idiosyncrasy × activist-context × cheapness.", 13)
-    hdr = ["Ticker","Shadow","Broker","Δ Sh (M)","Δ % Out","Δ $M","Desk $M","Idio %","Mcap","Score","Live Action","13D Momentum","13D (12mo)","Activist holders","Name"]
+    hdr = ["Ticker","Shadow","Broker","Δ Sh (M)","Δ % Out","Δ $M","Desk $M","Idio %","Mcap","Score","Disclosed Swap","Live Action","13D Momentum","13D (12mo)","Activist holders","Name"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""SELECT ticker, shadow_score, broker, delta_sh_m,
                pct_out, delta_m, cur_m, idio_pct, mcap_m, score,
-               live_action, d13_momo, recent_13d, activist_holders, name
+               live_action, d13_momo, recent_13d, activist_holders, name, disclosed_swap
         FROM broker_swap_radar ORDER BY shadow_score DESC"""))
     out = []
     for r in rows[:200]:
@@ -814,9 +814,9 @@ def sheet_broker_radar(wb, conn):
                     r[2], r[3], r[4], r[5],
                     r[6], r[7], r[8] or "",
                     round(r[9], 0) if r[9] is not None else "",
-                    (r[10] or "")[:22], (r[11] or "")[:30],
-                    (r[12] or "")[:30], (r[13] or "")[:30],
-                    (r[14] or "")[:36]])
+                    (r[15] or "")[:26], (r[10] or "")[:22], (r[11] or "")[:28],
+                    (r[12] or "")[:26], (r[13] or "")[:26],
+                    (r[14] or "")[:34]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=4).number_format = '0.0'
@@ -828,6 +828,65 @@ def sheet_broker_radar(wb, conn):
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
+
+def sheet_latent_ownership(wb, conn):
+    """Hidden economic control: warrants/converts/blockers/board rights/swaps
+    named in 13D text — a 4.9% header can mask a far larger latent stake."""
+    try:
+        rows = list(conn.execute("""SELECT lo.ticker, lo.holder, lo.filed, lo.form,
+                   lo.flags, lo.blocker_pct, lo.swap_counterparties, lo.n_features,
+                   u.score, u.mcap_m
+            FROM latent_ownership lo LEFT JOIN unified_signal u ON u.ticker = lo.ticker
+            WHERE lo.n_features >= 1 ORDER BY
+              (lo.swap_counterparties IS NOT NULL) DESC, lo.n_features DESC, lo.filed DESC"""))
+    except sqlite3.OperationalError:
+        return
+    ws = wb.create_sheet("Latent Ownership")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Latent Ownership — hidden economic control in 13D text",
+                "Warrants, convertibles, ownership blockers (+ the % ceiling), board-designation rights, ROFRs and DISCLOSED swaps parsed from each holder's latest 13D/G. "
+                "A small header % with a rich structure = large latent optionality or overhang. Swap rows (top) name a counterparty desk — cross-check the Broker Swap Radar.", 10)
+    hdr = ["Ticker","Holder","Filed","Form","# Feat","Blocker %","Swap Cpty","Hidden Features","Score","Mcap","Name"]
+    write_table_header(ws, 4, hdr)
+    nm = {r[0]: r[1] for r in conn.execute("SELECT ticker, name FROM unified_signal")}
+    out = []
+    for r in rows[:160]:
+        out.append([r[0] or "", (r[1] or "")[:26], r[2], (r[3] or "")[:9],
+                    r[7], r[5] if r[5] else "", (r[6] or "")[:16],
+                    (r[4] or "")[:52], round(r[8],0) if r[8] is not None else "",
+                    r[9] or "", (nm.get(r[0]) or "")[:30]])
+    write_table_rows(ws, out, 5)
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=6).number_format = '0.00"%"'
+        ws.cell(row=ridx, column=10).number_format = NUMFMT_MCAP
+    ws.freeze_panes = "B5"; autosize(ws); ws.column_dimensions["A"].width = 8
+
+def sheet_nport(wb, conn):
+    """Monthly N-PORT holdings of marquee single-manager funds — fresher than
+    13F and includes FOREIGN names 13F omits (Sequoia's Rolls-Royce, etc.)."""
+    try:
+        series = list(conn.execute("""SELECT series, MAX(filed) FROM nport_holdings
+            GROUP BY series ORDER BY MAX(filed) DESC"""))
+    except sqlite3.OperationalError:
+        return
+    if not series:
+        return
+    ws = wb.create_sheet("N-PORT Monthly")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "N-PORT Monthly — marquee fund holdings (fresher than 13F)",
+                "Top holdings from registered funds' monthly N-PORT-P filings. Monthly cadence beats quarterly 13F, and N-PORT reports FOREIGN listings a 13F never shows. Supplementary (RIC data), not counted as 13F smart money.", 8)
+    hdr = ["Series (fund)","Filed","Ticker","Issuer","$M","% Fund"]
+    write_table_header(ws, 4, hdr)
+    out = []
+    for ser, filed in series:
+        for r in conn.execute("""SELECT ticker, issuer, ROUND(val_usd/1e6,1), pct
+            FROM nport_holdings WHERE series=? AND filed=? ORDER BY val_usd DESC LIMIT 15""", (ser, filed)):
+            out.append([ser[:34], filed, r[0] or "", (r[1] or "")[:36], r[2], r[3]])
+    write_table_rows(ws, out, 5)
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=5).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=6).number_format = '0.0"%"'
+    ws.freeze_panes = "C5"; autosize(ws)
 
 def sheet_insider_f4(wb, conn):
     """Insider buying ranked by RECENCY-weighted total. ≤30d buys shown separately."""
@@ -1897,6 +1956,8 @@ def main():
     sheet_whos_buying(wb, conn)
     sheet_activist(wb, conn)
     sheet_broker_radar(wb, conn)
+    sheet_latent_ownership(wb, conn)
+    sheet_nport(wb, conn)
     sheet_insider_recent(wb, conn)
     sheet_insider_f4(wb, conn)
     sheet_clusters(wb, conn)
