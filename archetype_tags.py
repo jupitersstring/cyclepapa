@@ -212,16 +212,35 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (_n0('rev_accel') > 0)      | (_n0('gross_profit_yoy') > 0.05)
     ).fillna(False)
 
-    # Operating-leverage-specific interval robustness: the MARGIN / cash-turn
-    # angles ONLY (excludes the pure top-line-growth angles). For archetypes
-    # that already gate on revenue and need the leverage turn to be about
-    # MARGIN — otherwise the growth gate would trivially satisfy the margin leg
-    # and the archetype would lose its operating-leverage identity.
-    margin_inflect_any = (
-        (_n0('ebitda_margin_delta_yoy') > 0) | (_n0('fcf_margin_delta_yoy') > 0) |
-        (_n0('gross_margin_delta_yoy') > 0)  | (_n0('op_margin_delta_yoy') > 0) |
-        (_n0('operating_leverage_ratio') > 1.0) |
-        (_n0('ebitda_qoq_ttm') > 0) | (_n0('cfo_qoq_ttm') > 0) | (_n0('fcf_qoq_ttm') > 0)
+    # Operating-leverage SHOCK interval robustness: the MARGIN / cash-turn
+    # angles ONLY (excludes the pure top-line-growth angles), each held to the
+    # SAME magnitude standard as the single-measure original — a >=2-point
+    # margin move, disproportionate flow-through, or a material TTM turn. This
+    # is triangulation in the strict sense: different accounting lenses on the
+    # same-sized event, so a name qualifies when ANY lens sees the genuine
+    # shock (robust to which line item the leverage shows up in), but a mere
+    # positive drift on some measure never substitutes for the shock itself.
+    margin_shock_any = (
+        # P&L margin lenses — same >=2-point standard, three structures
+        (_n0('ebitda_margin_delta_yoy') >= 0.02) |
+        (_n0('op_margin_delta_yoy')     >= 0.02) |
+        (_n0('gross_margin_delta_yoy')  >= 0.02) |
+        # Cash lens is noisy solo (working-capital / capex timing): a 2-point
+        # FCF-margin move counts only when a P&L margin lens corroborates
+        # directionally — the seasonality-rule analogue for measurement noise.
+        ((_n0('fcf_margin_delta_yoy') >= 0.02) &
+         ((_n0('ebitda_margin_delta_yoy') > 0) | (_n0('op_margin_delta_yoy') > 0) |
+          (_n0('gross_margin_delta_yoy') > 0))) |
+        # Disproportionate flow-through, artifact-guarded: the ratio explodes
+        # on near-zero revenue growth, so require EBITDA to have actually
+        # moved (>=5%) for the ratio to count as evidence of the shock.
+        ((_n0('operating_leverage_ratio') >= 1.5) & (_n0('ebitda_yoy') >= 0.05)) |
+        # TTM-sequential LEVERAGE (seasonality-robust, earlier than YoY):
+        # EBITDA/CFO outgrowing revenue on a TTM basis — i.e. TTM margin
+        # expansion, not absolute growth (10% EBITDA on 10% revenue is flat
+        # margins). Differential >=10pp ~ a 2-point move on typical margins.
+        ((_n0('ebitda_qoq_ttm') - _n0('rev_qoq_ttm')) >= 0.10) |
+        ((_n0('cfo_qoq_ttm')    - _n0('rev_qoq_ttm')) >= 0.10)
     ).fillna(False)
 
     inflection_print = (
@@ -240,12 +259,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_fixed_cost_demand_shock'] = (
         sector.isin(HEAVY_ASSET_SECTORS) &
         (rev_accel > 0) &
-        # Operating-leverage leg made interval-robust: fire on the single-YoY
-        # margin jump OR any seasonality-robust MARGIN/cash turn (not the pure
-        # growth angles — revenue acceleration is already gated above), so early
-        # margin inflections a lagging YoY misses are still caught. Broadens the
-        # pool without collapsing into the revenue gate.
-        ((ebitda_margin_delta >= 0.02) | margin_inflect_any)
+        # Operating-leverage leg made interval-robust WITHOUT diluting the
+        # spirit: the demand shock must flow through to a SHOCK-sized margin
+        # response — the same >=2-point standard, just visible through any of
+        # several accounting lenses / time bases (margin_shock_any), so a name
+        # whose leverage shows up in gross margin or a material TTM cash turn
+        # is not missed while a mere positive drift still never qualifies.
+        ((ebitda_margin_delta >= 0.02) | margin_shock_any)
     ).astype(int)
 
     # ---------- Cluster E7: Discounted Vehicle ----------
@@ -271,11 +291,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_regime_cyclical'] = (
         sector.isin(HEAVY_ASSET_SECTORS) &
         (price_yoy <= -0.20) &
-        # Turn confirmed across margin/cash measures + time bases (interval-
-        # robust), not a single margin print — catches the cyclical upturn
-        # earlier while keeping the profitability-regime-change identity.
+        # REGIME CHANGE confirmed across margin/cash measures + time bases:
+        # zero-crossings / first-positive prints stay, and the margin leg
+        # accepts a shock-sized (>=2-point / material-TTM) move seen through
+        # any lens (margin_shock_any) — never incremental drift, which is not
+        # a regime change.
         ((ebitda_inflection > 0) | (ebitda_first_pos > 0) |
-         (ebitda_margin_delta >= 0.02) | margin_inflect_any) &
+         (ebitda_margin_delta >= 0.02) | margin_shock_any) &
         (not_priced_in > 0.20)
     ).astype(int)
 
