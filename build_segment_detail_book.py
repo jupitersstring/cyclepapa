@@ -306,6 +306,18 @@ def main():
 
     cover.sheet_view.showGridLines = False
 
+    # Confirmation-upweighted segment inflection for the Fastest tab: the
+    # segment's own YoY is the thesis (primary, so hidden engines like
+    # EVC/Smadex still surface), UPWEIGHTED where independent measures agree —
+    # the consolidated multi-measure confirmation (confirm_overall) and
+    # insider alignment. Same shape as entry_confirmed; ranking only, the pool
+    # is unchanged. This makes the Fastest tab robust in the same manner as
+    # the archetype books (broaden via the tag's fire-on-ANY, upweight here).
+    _fsy = pd.to_numeric(df.get('fastest_segment_yoy'), errors='coerce')
+    _cfo = pd.to_numeric(df.get('confirm_overall'), errors='coerce').fillna(0.0)
+    _aln = pd.to_numeric(df.get('alignment_score'), errors='coerce').fillna(0.0)
+    df['seg_inflect_confirmed'] = _fsy * (1.0 + 0.20 * _cfo + 0.10 * _aln)
+
     # === All Segments tab ===
     all_seg = df.sort_values(sort_col, ascending=False).head(args.detail_n).reset_index(drop=True)
     ws = wb.create_sheet('All Segments')
@@ -333,8 +345,8 @@ def main():
          '4+ reporting geographies', sort_col, args.n),
         ('Fastest',
          df[(df['fastest_segment_yoy'].fillna(0) >= 0.25) & (df['segment_count'].fillna(0) >= 2)],
-         'Single segment growing > 25% YoY — ranked by segment YoY (hidden engine)',
-         'fastest_segment_yoy', max(args.n, 150)),
+         'Single segment growing > 25% YoY — ranked by segment YoY, upweighted where consolidated measures confirm (hidden engine)',
+         'seg_inflect_confirmed', max(args.n, 150)),
     ]
 
     for label, sub_df, desc, tab_sort, tab_n in archetypes:

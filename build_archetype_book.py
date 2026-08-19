@@ -189,6 +189,16 @@ def load_data(min_mcap: float = 10_000_000):
     _bbs = pd.to_numeric(df.get('buyback_score'), errors='coerce').fillna(0.0)
     df['entry_confirmed'] = _eta * (1.0 + 0.20 * _cfo + 0.10 * _bbs)
 
+    # Confirmation-upweighted segment inflection for the Fastest-Segment sheet:
+    # the segment's own YoY is the thesis (primary — hidden engines like
+    # EVC/Smadex still surface), upweighted where the consolidated multi-measure
+    # confirmation and insider alignment independently agree. Same shape as
+    # entry_confirmed; ranking only, pool unchanged.
+    if 'fastest_segment_yoy' in df.columns:
+        _fsy = pd.to_numeric(df.get('fastest_segment_yoy'), errors='coerce')
+        _aln = pd.to_numeric(df.get('alignment_score'), errors='coerce').fillna(0.0)
+        df['seg_inflect_confirmed'] = _fsy * (1.0 + 0.20 * _cfo + 0.10 * _aln)
+
     # Apply min mcap + exclude RED
     df = df[df['market_cap'].fillna(0) >= min_mcap]
     df = df[df['verdict'] != 'RED']
@@ -452,8 +462,8 @@ def main():
         # shrinking legacy segment). Show a deeper list so real mid-pack
         # inflections surface.
         tab_sort, tab_n = sort_col, args.n
-        if col == 'arch_fastest_segment' and 'fastest_segment_yoy' in sub_df.columns:
-            tab_sort, tab_n = 'fastest_segment_yoy', max(args.n, 120)
+        if col == 'arch_fastest_segment' and 'seg_inflect_confirmed' in sub_df.columns:
+            tab_sort, tab_n = 'seg_inflect_confirmed', max(args.n, 120)
         sub_df = sub_df.nlargest(tab_n, tab_sort).reset_index(drop=True)
         if sub_df.empty:
             continue

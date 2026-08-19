@@ -124,7 +124,16 @@ def main():
     print(f'  {len(arch_cols)} archetype columns ({len(edgar_arch_cols)} EDGAR-only, '
           f'{len(non_edgar_arch_cols)} universal)', file=sys.stderr)
 
-    extra_arch = [c for c in ['archetype_count', 'bab_score'] if c in arch_df.columns]
+    # Propagate the multi-measure CONFIRMATION scores into asymmetry_global so
+    # every workbook (not just the three archetype books that merge
+    # archetype_tags directly) can apply the same "upweight where independent
+    # measures agree" treatment. These are non-boolean, so they survive the
+    # arch_-boolean drop at the end.
+    confirm_scores = ['confirm_overall', 'alignment_score', 'buyback_score',
+                      'inflection_confirm_score', 'oper_leverage_score',
+                      'rev_growth_score', 'cheapness_score', 'quality_score']
+    extra_arch = [c for c in (['archetype_count', 'bab_score'] + confirm_scores)
+                  if c in arch_df.columns]
     df = df.merge(arch_df[['symbol'] + arch_cols + extra_arch],
                   on='symbol', how='left', suffixes=('', '_arch'))
     # Drop any pre-existing verdict so the fresh merge wins
