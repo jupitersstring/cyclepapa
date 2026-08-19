@@ -398,6 +398,27 @@ def score_post_ch11_layer(layers: dict, universe: set) -> dict:
     return _load_jscore(ROOT / "post_ch11_emergence.json", universe)
 
 
+def score_distressed_stub_layer(layers: dict, universe: set) -> dict:
+    """Distressed-stub progress: stage-gated, finality-filtered value-
+    unlock events in capital-structure workouts, with stub-waterfall
+    penalties. Only net-positive scores add. See
+    distressed_stub_progress.py. Names without a scored event score 0."""
+    out = {tk: 0.0 for tk in universe}
+    f = ROOT / "distressed_stub_progress.json"
+    if f.exists():
+        try:
+            data = json.loads(f.read_text())
+            for tk, v in data.items():
+                if tk in out and isinstance(v, dict):
+                    try:
+                        out[tk] = max(0.0, float(v.get("score") or 0))
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+    return out
+
+
 def score_asymmetry_assembly_layer(layers: dict, universe: set) -> dict:
     """PSIX-recipe conjunction layer: a gated, convergence-weighted score
     that fires only when the assembled causal system co-occurs (cheap +
@@ -640,6 +661,7 @@ def main() -> int:
         "emergence_crossfeed": score_emergence_crossfeed_layer(layers, universe),
         "sohn_pitch": score_sohn_pitch_layer(layers, universe),
         "asymmetry_assembly": score_asymmetry_assembly_layer(layers, universe),
+        "distressed_stub": score_distressed_stub_layer(layers, universe),
         "internalization": score_internalization_layer(layers, universe),
         "bumpitrage": score_bumpitrage_layer(layers, universe),
         "spinoff_volume": score_spinoff_volume_layer(layers, universe),
@@ -721,6 +743,7 @@ def main() -> int:
             "emergence_crossfeed_pts": layer_scores["emergence_crossfeed"].get(tk, 0),
             "sohn_pitch_pts": layer_scores["sohn_pitch"].get(tk, 0),
             "asymmetry_assembly_pts": layer_scores["asymmetry_assembly"].get(tk, 0),
+            "distressed_stub_pts": layer_scores["distressed_stub"].get(tk, 0),
             "internalization_pts": layer_scores["internalization"].get(tk, 0),
             "bumpitrage_pts": layer_scores["bumpitrage"].get(tk, 0),
             "spinoff_volume_pts": layer_scores["spinoff_volume"].get(tk, 0),

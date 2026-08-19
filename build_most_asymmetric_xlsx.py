@@ -1181,6 +1181,67 @@ def build_insider_conviction(wb: Workbook, yf: dict):
     ws.freeze_panes = "A5"
 
 
+def build_distressed_stub(wb: Workbook, yf: dict):
+    """Distressed-stub progress: stage-gated value-unlock events in
+    capital-structure workouts. Source: distressed_stub_progress.json."""
+    ws = wb.create_sheet("Distressed Stub Progress")
+    set_col_widths(ws, [9, 22, 9, 6, 26, 34, 22])
+    write_title_band(
+        ws,
+        "Distressed-Stub Progress — value-unlock events, waterfall-gated",
+        "Finality-filtered capital-structure progress (debt retired below "
+        "par, claims disallowed, plan effective, distributions) — scored "
+        "only where value reaches the residual security, penalised for "
+        "priming / dilution / MIP leakage",
+        n_cols=7,
+    )
+    data = {}
+    p = ROOT / "distressed_stub_progress.json"
+    if p.exists():
+        try:
+            data = json.loads(p.read_text())
+        except Exception:
+            data = {}
+    rows = [v for v in data.values()
+            if isinstance(v, dict) and (v.get("score") or 0) > 0]
+    rows.sort(key=lambda r: -r["score"])
+    headers = ["Ticker", "Name", "Score", "Stage", "Classification",
+               "Event classes", "Counter-signals"]
+    write_header_row(ws, 4, headers)
+    r = 5
+    for i, v in enumerate(rows[:45], 1):
+        y = yf.get(v["ticker"], {}) or {}
+        cls = ", ".join(sorted({e["class"] for e in (v.get("events") or [])}))
+        ct = ", ".join(v.get("counters") or []) or "—"
+        write_body_row(ws, r,
+                       [v["ticker"], (y.get("name") or v["ticker"])[:22],
+                        v["score"], v.get("max_stage"),
+                        v.get("classification", "").replace("_", " "),
+                        cls[:34], ct[:22]],
+                       band=(i % 2 == 0), bold_first=True)
+        ws.row_dimensions[r].height = 22
+        r += 1
+    r += 1
+    n = len(rows)
+    write_footnote(ws, r,
+        f"{n} distressed stubs with net-positive progress (top 45). The "
+        "engine alerts only on FINALITY (hard completion verbs — retired, "
+        "cancelled, discharged, effective, distributed — not intentions), "
+        "gated to plausibly-distressed names (deep drawdown, sub-$2B, "
+        "post-Ch11, forced-selling), and scores per the stub waterfall: "
+        "permanent senior-principal reduction (+4), claims disallowed "
+        "(+4), stub distribution (+4), plan effective (+3), asset-sale "
+        "cash received (+3), lien release (+2), >12mo maturity extension "
+        "(+1). Counter-signals subtract heavily — equity wipeout (−10), "
+        "priming/superpriority (−4), toxic dilution (−4), new preferred "
+        "(−3) — because progress for the company is not progress for the "
+        "stub. Stage 5 = value reached the residual security. Source: "
+        "distressed_stub_progress.json (US 8-K/EDGAR; recipe table "
+        "extensible to RNS/HKEX/ASX and local-language vocab).", 7)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A5"
+
+
 def build_asymmetry_assembly(wb: Workbook, yf: dict):
     """PSIX-recipe conjunction: names where the assembled causal system
     co-occurs (cheap + operating inflection + survivable leverage +
@@ -2036,6 +2097,7 @@ TAB_INDEX = [
     ("Incentive Improvers", "Latest proxy tightened the incentive architecture (rarity-weighted)."),
     ("Insider Conviction", "Discretionary open-market buying clusters (code P only, role-weighted)."),
     ("Asymmetry Assembly", "PSIX-recipe conjunction: cheap + inflection + leverage + insider co-occurring."),
+    ("Distressed Stub Progress", "Finality-gated capital-structure value-unlock events, waterfall-scored."),
     ("Without Valuation", "Parallel ranking excluding the valuation leg."),
     ("Recent 30d", "Material incentive events disclosed in the last 30 days."),
     ("Foreign Markets", "Japan TSE PBR<1, Korea Value-Up, UK schemes."),
@@ -2196,6 +2258,7 @@ def main() -> int:
     build_incentive_improvers(wb, yf, proxy)
     build_insider_conviction(wb, yf)
     build_asymmetry_assembly(wb, yf)
+    build_distressed_stub(wb, yf)
     build_noval_view(wb, yf)
     build_recent_30d(wb, yf)
     build_foreign_markets(wb)

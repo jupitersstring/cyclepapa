@@ -29,4 +29,8 @@ echo
 echo "=== PSIX May-2024 backtest (point-in-time validation) ==="
 python3 ../asymmetry_backtest.py >/dev/null && echo "PSIX backtest PASS" || echo "PSIX backtest FAIL"
 echo
+echo "=== distressed-stub progress engine ==="
+python3 test_distressed_stub.py
+echo
+
 echo "All test suites passed."

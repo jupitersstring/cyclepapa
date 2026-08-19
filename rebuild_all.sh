@@ -67,6 +67,7 @@ if [ "$DO_SCANS" = "1" ]; then
   run python3 arquitos_subsidiary_anchor.py || true
   run python3 backstopped_rights_offering.py || true
   run python3 post_ch11_emergence.py        || true
+  run python3 distressed_stub_progress.py   --days 150 || true
   run python3 external_manager_internalization.py || true
   run python3 coval_stafford_proxy.py       || true
   # -- Non-US
