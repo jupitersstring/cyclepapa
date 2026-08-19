@@ -1,0 +1,122 @@
+{
+  "BOC": {
+    "period_end": "2026-06-30",
+    "revenue_yoy": -0.2129,
+    "gp_yoy": -0.1413,
+    "gross_margin_delta_pp": -0.15,
+    "interest_exp_yoy": 0.6258,
+    "capex_to_rev": 0.2921,
+    "opinc": -603000,
+    "opinc_to_ppe": -0.003,
+    "debt_latest": 45177000,
+    "debt_delta_qoq": -602000
+  },
+  "DXC": {
+    "period_end": "2026-06-30",
+    "revenue_yoy": -0.0506,
+    "gp_yoy": 0.1869,
+    "interest_exp_yoy": 0.0185,
+    "capex_to_rev": 0.0197,
+    "opinc": 150000000,
+    "opinc_to_ppe": 0.042,
+    "debt_latest": 2370000000,
+    "debt_delta_qoq": -730000000
+  },
+  "GPK": {
+    "period_end": "2026-06-30",
+    "revenue_yoy": -0.0059,
+    "gp_yoy": -0.0386,
+    "gross_margin_delta_pp": -1.78,
+    "interest_exp_yoy": 0.0,
+    "capex_to_rev": 0.0335,
+    "opinc": 95000000,
+    "opinc_to_ppe": 0.017,
+    "debt_latest": 5115000000,
+    "debt_delta_qoq": -88000000
+  },
+  "HDSN": {
+    "period_end": "2026-06-30",
+    "revenue_yoy": 0.0754,
+    "gp_yoy": -0.093,
+    "gross_margin_delta_pp": -4.9,
+    "interest_exp_yoy": -0.8843,
+    "capex_to_rev": 0.0137,
+    "opinc": 7398000,
+    "opinc_to_ppe": 0.334,
+    "debt_latest": 5000000,
+    "debt_delta_qoq": -24335000
+  },
+  "HFFG": {
+    "period_end": "2026-06-30",
+    "revenue_yoy": 0.0284,
+    "gp_yoy": -0.0015,
+    "gross_margin_delta_pp": -0.51,
+    "interest_exp_yoy": -0.0119,
+    "capex_to_rev": 0.0474,
+    "opinc": 2817000,
+    "opinc_to_ppe": 0.02,
+    "debt_latest": 95344000,
+    "debt_delta_qoq": -216000
+  },
+  "MED": {
+    "period_end": "2026-06-30",
+    "revenue_yoy": -0.2764,
+    "gp_yoy": -0.3033,
+    "gross_margin_delta_pp": -2.71,
+    "capex_to_rev": 0.0143,
+    "opinc": -4327000,
+    "opinc_to_ppe": -0.155,
+    "debt_latest": 0,
+    "debt_delta_qoq": 0
+  },
+  "NSPR": {
+    "period_end": "2026-06-30",
+    "revenue_yoy": -0.0039,
+    "gp_yoy": -3.4728,
+    "gross_margin_delta_pp": -61.31,
+    "interest_exp_yoy": -0.3352,
+    "capex_to_rev": 0.1095,
+    "opinc": -14445000,
+    "opinc_to_ppe": -3.744,
+    "debt_latest": 1099000,
+    "debt_delta_qoq": 0
+  },
+  "OSUR": {
+    "period_end": "2026-06-30",
+    "revenue_yoy": -0.0193,
+    "gp_yoy": 0.012,
+    "gross_margin_delta_pp": 1.34,
+    "interest_exp_yoy": -0.7415,
+    "capex_to_rev": 0.0298,
+    "opinc": 5440000,
+    "opinc_to_ppe": 0.141
+  },
+  "SMRT": {
+    "period_end": "2026-06-30",
+    "revenue_yoy": 0.0401,
+    "gp_yoy": 0.2804,
+    "gross_margin_delta_pp": 7.64,
+    "capex_to_rev": 0.0008,
+    "opinc": -6461000,
+    "opinc_to_ppe": -1.379
+  },
+  "SND": {
+    "period_end": "2026-06-30",
+    "revenue_yoy": 0.3414,
+    "gp_yoy": 1.2134,
+    "gross_margin_delta_pp": 6.79,
+    "capex_to_rev": 0.0191,
+    "opinc": 10051000,
+    "opinc_to_ppe": 0.046,
+    "debt_latest": 8596000,
+    "debt_delta_qoq": -560000
+  },
+  "TONX": {
+    "period_end": "2026-06-30",
+    "revenue_yoy": 6.0744,
+    "interest_exp_yoy": -0.7286,
+    "capex_to_rev": 0.0006,
+    "opinc": 479000,
+    "opinc_to_ppe": 1.857
+  }
+}

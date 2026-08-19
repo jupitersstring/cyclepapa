@@ -1,0 +1,25 @@
+{
+  "_meta": {
+    "purpose": "Curated revealed-preference events -- COSTLY ACTIONS that reveal alignment (open-market purchases, maturity extensions, subordination, senior-debt repayment) or MISalignment (dilutive refinancing, backstop withdrawal, hidden claim-count inflation). The PSIX checklist: infer alignment from costly actions, not from optimistic language. Hand-curated from filings; refresh as events are read.",
+    "event_types_pro": ["insider_open_market_buy","sponsor_maturity_extension","sponsor_subordination","senior_debt_repayment","uplisting_relisting","sponsor_board_engagement"],
+    "event_types_counter": ["backstop_expiry","dilutive_refinancing","hidden_claim_count_inflation","related_party_extraction"]
+  },
+  "PSIX": {
+    "_worked_example": true,
+    "_note": "Power Solutions International, the May 2024 archetype. Historical/documented -- the reference assembly, not a live candidate (PSIX has since relisted to Nasdaq and re-rated ~20x).",
+    "events": [
+      {"type":"sponsor_maturity_extension","date":"2024-05-20","side":"pro","strength":"very_strong","desc":"Weichai extended its fully-drawn $25M subordinated shareholder loan (due that day) by one year, AFTER seeing the 7 May inflection; kept its claim behind Standard Chartered."},
+      {"type":"sponsor_maturity_extension","date":"2024-03-22","side":"pro","strength":"strong","desc":"Weichai extended ~$19.8M drawn under a $30M shareholder facility to Mar 2025."},
+      {"type":"insider_open_market_buy","date":"2024-04-30","side":"pro","strength":"strong","desc":"Neil Gagnon (>10% holder) accounts bought 77,618 shares at exactly $2 (~$155k) one week before Q1 results; earlier 5,392 at $2 on Mar 20."},
+      {"type":"senior_debt_repayment","date":"2024-04-30","side":"pro","strength":"moderate","desc":"Repaid $5M senior bank debt in Q1 + $5M in April; interest expense already down $4.7M->$3.3M YoY."},
+      {"type":"sponsor_board_engagement","date":"2024-05-23","side":"pro","strength":"weak","desc":"Weichai executive Kui Jiang appointed to board -- active oversight, not minority protection."},
+      {"type":"backstop_expiry","date":"2024-04-24","side":"counter","strength":"moderate","desc":"$130M Weichai backstop of the senior facility expired and was NOT renewed -- but the SC facility had shrunk $130M->$50M, so partly redundant."}
+    ]
+  },
+  "NNBR": {
+    "events": [
+      {"type":"dilutive_refinancing","date":"2026-01-01","side":"counter","strength":"strong","desc":"Refinanced via large PIPE + preferred exchange; ~82.6M shares now issued vs stale ~50M feeds. Closest PSIX pattern but FAILS the original price test after dilution -- pro-forma EV ~$507M ~= 8-9x EBITDA guide, nowhere near May-2024 PSIX."},
+      {"type":"senior_debt_repayment","date":"2026-06-30","side":"pro","strength":"moderate","desc":"Deleveraging + data-center wins; 2026 adj EBITDA guide $55-65M."}
+    ]
+  }
+}

@@ -1181,6 +1181,79 @@ def build_insider_conviction(wb: Workbook, yf: dict):
     ws.freeze_panes = "A5"
 
 
+def build_asymmetry_assembly(wb: Workbook, yf: dict):
+    """PSIX-recipe conjunction: names where the assembled causal system
+    co-occurs (cheap + operating inflection + survivable leverage +
+    orphaned + insider costly-action + catalyst). Gated -- a name
+    mediocre-on-many does NOT appear; only genuine assemblies with the
+    required spine. Source: asymmetry_assembly.json."""
+    ws = wb.create_sheet("Asymmetry Assembly")
+    set_col_widths(ws, [9, 24, 10, 7, 6, 6, 6, 6, 6, 6, 6, 6, 40])
+    write_title_band(
+        ws,
+        "Asymmetry Assembly — the PSIX recipe",
+        "Conjunction detector: fires only when cheap expectations, an "
+        "operating inflection, survivable leverage and a costly-action "
+        "alignment signal REINFORCE one another — not a sum of weak parts",
+        n_cols=13,
+    )
+    data = {}
+    p = ROOT / "asymmetry_assembly.json"
+    if p.exists():
+        try:
+            data = json.loads(p.read_text())
+        except Exception:
+            data = {}
+    rows = [(tk, v) for tk, v in data.items()
+            if isinstance(v, dict) and (v.get("score") or 0) > 0]
+    rows.sort(key=lambda x: -x[1]["score"])
+
+    comp_order = ["C1_low_expectations", "C2_leveraged_survivor",
+                  "C3_orphaned_drawdown", "C4_revealed_insider",
+                  "C5_recognition_catalyst", "C6_operating_inflection",
+                  "C7_deleveraging", "C8_underused_capacity"]
+    headers = ["Ticker", "Name", "Assembly", "N/8", "Cheap", "Lev",
+               "Orph", "Insdr", "Catl", "Inflx", "Delev", "Cap",
+               "Reasons"]
+    write_header_row(ws, 4, headers)
+    r = 5
+    for i, (tk, v) in enumerate(rows[:45], 1):
+        comps = v.get("components", {})
+        marks = ["●" if comps.get(c, {}).get("present") else "—"
+                 for c in comp_order]
+        y = yf.get(tk, {}) or {}
+        write_body_row(ws, r,
+                       [tk, (y.get("name") or tk)[:24], v.get("score"),
+                        v.get("n_present")] + marks
+                       + ["; ".join(v.get("reasons") or [])[:70]],
+                       band=(i % 2 == 0), bold_first=True)
+        ws.row_dimensions[r].height = 22
+        r += 1
+
+    r += 1
+    n = len(rows)
+    write_footnote(ws, r,
+        f"{n} names pass the assembly SPINE (top 45 shown): low "
+        "expectations AND an engine (operating inflection or leverage "
+        "torque) AND a costly-action alignment signal (open-market "
+        "insider buy or a curated maturity-extension / subordination "
+        "event). A name strong on many unrelated layers but missing a "
+        "spine leg scores ZERO here — that is the point: asymmetry is a "
+        "conjunction, not a sum. Components: Cheap (C1, incl. EV/EBIT), "
+        "Lev (C2 survivable leverage), Orph (C3 drawdown/orphaned), "
+        "Insdr (C4 open-market buys), Catl (C5 emergence/tender/"
+        "activist), Inflx (C6 gross profit up while revenue down / "
+        "margin expansion, from XBRL), Delev (C7 debt & interest "
+        "falling), Cap (C8 low capex + high marginal returns). "
+        "Convergence beyond the spine adds a convexity bonus; dilutive-"
+        "refinancing / backstop-expiry counter-signals subtract. The "
+        "engine is validated point-in-time: it flags May-2024 PSIX "
+        "(@ $2.15, 7/8 components) — see asymmetry_backtest.py. Source: "
+        "asymmetry_assembly.json (+ financials_inflection.json XBRL).", 13)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A5"
+
+
 def build_noval_view(wb: Workbook, yf: dict):
     """Parallel ranking that EXCLUDES the valuation leg. Surfaces
     structurally strong names that may be missing yfinance overlay
@@ -1962,6 +2035,7 @@ TAB_INDEX = [
     ("Caution List", "Convergent names carrying governance red flags."),
     ("Incentive Improvers", "Latest proxy tightened the incentive architecture (rarity-weighted)."),
     ("Insider Conviction", "Discretionary open-market buying clusters (code P only, role-weighted)."),
+    ("Asymmetry Assembly", "PSIX-recipe conjunction: cheap + inflection + leverage + insider co-occurring."),
     ("Without Valuation", "Parallel ranking excluding the valuation leg."),
     ("Recent 30d", "Material incentive events disclosed in the last 30 days."),
     ("Foreign Markets", "Japan TSE PBR<1, Korea Value-Up, UK schemes."),
@@ -2121,6 +2195,7 @@ def main() -> int:
     build_caution_list(wb, proxy, consensus)
     build_incentive_improvers(wb, yf, proxy)
     build_insider_conviction(wb, yf)
+    build_asymmetry_assembly(wb, yf)
     build_noval_view(wb, yf)
     build_recent_30d(wb, yf)
     build_foreign_markets(wb)

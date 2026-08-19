@@ -97,6 +97,12 @@ run python3 buyback_insider_overlay.py     || true
 # copying data/emergence_master.json from the capital-structure branch).
 run python3 emergence_crossfeed.py         || true
 run python3 sohn_pitch_layer.py            || true
+# Asymmetry-assembly conjunction engine (the PSIX recipe): cheap
+# pass emits an XBRL shortlist, financials_inflection enriches it,
+# then the full pass scores the gated conjunction.
+run python3 asymmetry_assembly.py          || true
+run python3 financials_inflection.py --shortlist asymmetry_shortlist.json --limit 60 || true
+run python3 asymmetry_assembly.py          || true
 run python3 full_universe_consensus.py     || true
 run python3 full_universe_consensus_noval.py || true
 run python3 grand_unified_ranker.py        || true

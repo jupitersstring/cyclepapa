@@ -23,4 +23,10 @@ echo
 echo "=== incentive audit fixes (R1-R9) ==="
 python3 test_incentive_fixes.py
 echo
+echo "=== asymmetry assembly (conjunction gates) ==="
+python3 test_asymmetry_assembly.py
+echo
+echo "=== PSIX May-2024 backtest (point-in-time validation) ==="
+python3 ../asymmetry_backtest.py >/dev/null && echo "PSIX backtest PASS" || echo "PSIX backtest FAIL"
+echo
 echo "All test suites passed."
