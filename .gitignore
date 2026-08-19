@@ -40,3 +40,6 @@ yahoo_chart_fill.csv.tmp
 otc_enrich.log
 otc_driver.log
 sec_cache/
+rest_enrich.log
+rest_driver.log
+.rest_rendered

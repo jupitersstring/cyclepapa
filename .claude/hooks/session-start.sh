@@ -66,8 +66,24 @@ elif [ -f "$PROJECT_DIR/.deep_rendered" ] \
         > "$PROJECT_DIR/otc_driver.log" 2>&1 < /dev/null &
     disown $!
     echo "session-start-hook: launched OTC deep enrichment driver (PID $!)" >&2
-elif [ -f "$PROJECT_DIR/.deep_rendered" ]; then
-    # Deep + OTC phases done — resume the standard fundamentals + chart enrichers.
+elif [ -f "$PROJECT_DIR/.deep_rendered" ] \
+     && [ -f "$PROJECT_DIR/.otc_rendered" ] \
+     && [ -f "$PROJECT_DIR/run_rest_deep.sh" ] \
+     && [ ! -f "$PROJECT_DIR/.rest_rendered" ] \
+     && ! pgrep -f "ticker_yf_deep.py" > /dev/null 2>&1 \
+     && ! pgrep -f "run_rest_deep.sh" > /dev/null 2>&1; then
+    # "The rest": deep Tier-B enrichment of the main-universe names that still
+    # lack the deep schema (~26.6k investable, highest-asymmetry first). SOLE
+    # Yahoo hitter until it finishes (.rest_rendered); the deep fetch also
+    # captures Tier-A valuations, so it subsumes the price-refresh enrichers
+    # for the names it covers. Running them alongside starves the throttle.
+    chmod +x "$PROJECT_DIR/run_rest_deep.sh" 2>/dev/null || true
+    setsid nohup bash "$PROJECT_DIR/run_rest_deep.sh" \
+        > "$PROJECT_DIR/rest_driver.log" 2>&1 < /dev/null &
+    disown $!
+    echo "session-start-hook: launched rest deep enrichment driver (PID $!)" >&2
+elif [ -f "$PROJECT_DIR/.deep_rendered" ] && [ -f "$PROJECT_DIR/.rest_rendered" ]; then
+    # Deep + OTC + rest phases done — resume the standard fundamentals + chart enrichers.
     if [ -f "$PROJECT_DIR/run_ticker_yf_forever.sh" ] \
        && ! pgrep -f "ticker_yf.py" > /dev/null 2>&1 \
        && ! pgrep -f "run_ticker_yf_forever.sh" > /dev/null 2>&1; then
