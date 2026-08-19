@@ -54,7 +54,7 @@
     ],
     "first_filed": "2026-02-02",
     "last_filed": "2026-05-15",
-    "score": 26.0
+    "score": 19.5
   },
   "QVCGA": {
     "ticker": "QVCGA",
@@ -238,7 +238,7 @@
     ],
     "first_filed": "2026-04-15",
     "last_filed": "2026-05-15",
-    "score": 23.0
+    "score": 17.2
   },
   "NRDE": {
     "ticker": "NRDE",
@@ -251,7 +251,7 @@
     ],
     "first_filed": "2026-03-26",
     "last_filed": "2026-05-15",
-    "score": 23.0
+    "score": 17.2
   },
   "XBP": {
     "ticker": "XBP",
@@ -264,7 +264,7 @@
     ],
     "first_filed": "2026-03-31",
     "last_filed": "2026-05-15",
-    "score": 23.0
+    "score": 17.2
   },
   "VRM": {
     "ticker": "VRM",
@@ -277,7 +277,7 @@
     ],
     "first_filed": "2026-03-26",
     "last_filed": "2026-05-15",
-    "score": 23.0
+    "score": 17.2
   },
   "WW": {
     "ticker": "WW",
@@ -1184,7 +1184,7 @@
     ],
     "first_filed": "2026-05-20",
     "last_filed": "2026-05-20",
-    "score": 12.0
+    "score": 9.0
   },
   "EROK": {
     "ticker": "EROK",
@@ -1196,7 +1196,7 @@
     ],
     "first_filed": "2026-04-16",
     "last_filed": "2026-05-19",
-    "score": 12.0
+    "score": 9.0
   },
   "RM": {
     "ticker": "RM",
@@ -1208,7 +1208,7 @@
     ],
     "first_filed": "2026-05-19",
     "last_filed": "2026-05-19",
-    "score": 12.0
+    "score": 9.0
   },
   "ROP": {
     "ticker": "ROP",
@@ -1220,7 +1220,7 @@
     ],
     "first_filed": "2026-05-19",
     "last_filed": "2026-05-19",
-    "score": 12.0
+    "score": 9.0
   },
   "ATRC": {
     "ticker": "ATRC",
@@ -1232,7 +1232,7 @@
     ],
     "first_filed": "2026-05-19",
     "last_filed": "2026-05-19",
-    "score": 12.0
+    "score": 9.0
   },
   "LAMR": {
     "ticker": "LAMR",
@@ -1244,7 +1244,7 @@
     ],
     "first_filed": "2026-05-19",
     "last_filed": "2026-05-19",
-    "score": 12.0
+    "score": 9.0
   },
   "GPUS": {
     "ticker": "GPUS",
@@ -1256,7 +1256,7 @@
     ],
     "first_filed": "2026-03-11",
     "last_filed": "2026-05-18",
-    "score": 12.0
+    "score": 9.0
   },
   "ALTS": {
     "ticker": "ALTS",
@@ -1268,7 +1268,7 @@
     ],
     "first_filed": "2026-04-13",
     "last_filed": "2026-05-18",
-    "score": 12.0
+    "score": 9.0
   },
   "GOSS": {
     "ticker": "GOSS",
@@ -1280,7 +1280,7 @@
     ],
     "first_filed": "2026-05-18",
     "last_filed": "2026-05-18",
-    "score": 12.0
+    "score": 9.0
   },
   "CELC": {
     "ticker": "CELC",
@@ -1292,7 +1292,7 @@
     ],
     "first_filed": "2026-05-18",
     "last_filed": "2026-05-18",
-    "score": 12.0
+    "score": 9.0
   },
   "CWK": {
     "ticker": "CWK",
@@ -3200,7 +3200,7 @@
     ],
     "first_filed": "2026-02-19",
     "last_filed": "2026-02-19",
-    "score": 9.0
+    "score": 6.0
   },
   "LNC": {
     "ticker": "LNC",
@@ -3212,7 +3212,7 @@
     ],
     "first_filed": "2026-02-19",
     "last_filed": "2026-02-19",
-    "score": 9.0
+    "score": 6.0
   },
   "GTX": {
     "ticker": "GTX",
@@ -3224,7 +3224,7 @@
     ],
     "first_filed": "2026-02-19",
     "last_filed": "2026-02-19",
-    "score": 9.0
+    "score": 6.0
   },
   "HUM": {
     "ticker": "HUM",
@@ -3236,7 +3236,7 @@
     ],
     "first_filed": "2026-02-19",
     "last_filed": "2026-02-19",
-    "score": 9.0
+    "score": 6.0
   },
   "VC": {
     "ticker": "VC",
@@ -3248,7 +3248,7 @@
     ],
     "first_filed": "2026-02-19",
     "last_filed": "2026-02-19",
-    "score": 9.0
+    "score": 6.0
   },
   "CNP": {
     "ticker": "CNP",
@@ -3260,7 +3260,7 @@
     ],
     "first_filed": "2026-02-19",
     "last_filed": "2026-02-19",
-    "score": 9.0
+    "score": 6.0
   },
   "MET": {
     "ticker": "MET",
@@ -3272,7 +3272,7 @@
     ],
     "first_filed": "2026-02-19",
     "last_filed": "2026-02-19",
-    "score": 9.0
+    "score": 6.0
   },
   "FE": {
     "ticker": "FE",
@@ -3284,7 +3284,7 @@
     ],
     "first_filed": "2026-02-18",
     "last_filed": "2026-02-18",
-    "score": 9.0
+    "score": 6.0
   },
   "CNK": {
     "ticker": "CNK",
@@ -3296,7 +3296,7 @@
     ],
     "first_filed": "2026-02-18",
     "last_filed": "2026-02-18",
-    "score": 9.0
+    "score": 6.0
   },
   "EIX": {
     "ticker": "EIX",
@@ -3308,7 +3308,7 @@
     ],
     "first_filed": "2026-02-18",
     "last_filed": "2026-02-18",
-    "score": 9.0
+    "score": 6.0
   },
   "MCO": {
     "ticker": "MCO",
@@ -3320,7 +3320,7 @@
     ],
     "first_filed": "2026-02-18",
     "last_filed": "2026-02-18",
-    "score": 9.0
+    "score": 6.0
   },
   "ITRI": {
     "ticker": "ITRI",
@@ -3332,7 +3332,7 @@
     ],
     "first_filed": "2026-02-17",
     "last_filed": "2026-02-17",
-    "score": 9.0
+    "score": 6.0
   },
   "WRLD": {
     "ticker": "WRLD",
@@ -3344,7 +3344,7 @@
     ],
     "first_filed": "2026-02-17",
     "last_filed": "2026-02-17",
-    "score": 9.0
+    "score": 6.0
   },
   "AGCO": {
     "ticker": "AGCO",

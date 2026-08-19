@@ -1,6 +1,6 @@
 {
-  "n_raw_layers": 33,
-  "n_effective_layers_at_06": 28,
+  "n_raw_layers": 38,
+  "n_effective_layers_at_06": 33,
   "clusters": [
     [
       "psu_pts"
@@ -53,6 +53,21 @@
     ],
     [
       "sohn_pitch_pts"
+    ],
+    [
+      "asymmetry_assembly_pts"
+    ],
+    [
+      "distressed_stub_pts"
+    ],
+    [
+      "premium_injection_pts"
+    ],
+    [
+      "hidden_asset_pts"
+    ],
+    [
+      "selective_buyback_pts"
     ],
     [
       "internalization_pts"

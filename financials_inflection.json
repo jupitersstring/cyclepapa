@@ -118,5 +118,30 @@
     "capex_to_rev": 0.0006,
     "opinc": 479000,
     "opinc_to_ppe": 1.857
+  },
+  "EXFY": {
+    "period_end": "2026-06-30",
+    "as_of": null,
+    "revenue_yoy": -0.0531,
+    "gp_yoy": -0.121,
+    "gross_margin_delta_pp": -3.72,
+    "capex_to_rev": 0.0,
+    "opinc": -2921000,
+    "opinc_to_ppe": -0.23,
+    "debt_latest": 0,
+    "debt_delta_qoq": 0
+  },
+  "GPN": {
+    "period_end": "2026-06-30",
+    "as_of": null,
+    "revenue_yoy": 0.6971,
+    "gp_yoy": 0.3931,
+    "gross_margin_delta_pp": -13.48,
+    "interest_exp_yoy": 0.728,
+    "capex_to_rev": 0.0787,
+    "opinc": 337121000,
+    "opinc_to_ppe": 0.202,
+    "debt_latest": 22515505000,
+    "debt_delta_qoq": -181455000
   }
 }
