@@ -356,6 +356,10 @@ def screen_one(
         r.tr1_buy_total_pp = getattr(signal, "tr1_buy_total_pp", 0.0) or None
         holders = getattr(signal, "activist_holders", []) or []
         r.activist_holders = "|".join(holders[:5]) if holders else None
+        r.pdmr_distinct_buyers = getattr(signal, "pdmr_distinct_buyers", 0) or None
+        r.pdmr_cluster_30d = getattr(signal, "pdmr_cluster_30d", False)
+        r.pdmr_conviction_score = getattr(signal, "pdmr_conviction_score", 0.0) or None
+        r.pdmr_max_add_frac = getattr(signal, "pdmr_max_add_frac", 0.0) or None
         r.resolution_score = getattr(signal, "resolution_score", 0.0)
     # Apply the multiplier only if at least one source provided usable
     # coverage — else keep the base prob to avoid silent no-news penalty
@@ -391,16 +395,29 @@ def screen_one(
         elif r.n_oversubscribed_tenders_24m == 1:
             tender_mult = 1.05
 
+    # Insider-conviction bump — a genuine cluster (>=3 distinct
+    # directors in 30d) OR a director materially adding to their own
+    # stake (>=25% add) is real conviction, distinct from the counted
+    # buys already in the signal score. Capped small (+15%) so it
+    # sharpens rather than dominates.
+    insider_mult = 1.0
+    if signal is not None:
+        if getattr(signal, "pdmr_cluster_30d", False):
+            insider_mult = 1.15
+        elif (getattr(signal, "pdmr_max_add_frac", 0.0) or 0.0) >= 0.25:
+            insider_mult = 1.10
+
     if signal is not None and (signal.coverage_ok or signal.rns_available):
         mult = 0.70 + 1.30 * signal.signal_score
         res = getattr(signal, "resolution_score", 0.0) or 0.0
         res_mult = 1.0 + 0.40 * res
         r.catalyst_prob_signal_adj = min(
             0.95, base_prob * mult * res_mult * campaign_mult
-            * sent_mult * tender_mult)
+            * sent_mult * tender_mult * insider_mult)
     else:
         r.catalyst_prob_signal_adj = min(
-            0.95, base_prob * campaign_mult * sent_mult * tender_mult)
+            0.95, base_prob * campaign_mult * sent_mult * tender_mult
+            * insider_mult)
 
     # Catalyst-age adjustment for wind-downs / RoC. If the universe
     # row has a catalyst_date, compute months elapsed and apply both

@@ -187,7 +187,10 @@ def test_pdmr_enrich_separates_scrip(monkeypatch, tmp_path):
         cp = inv._pdmr_cache_path(url)
         with open(cp, "w") as f:
             _json.dump({"direction": inv._classify_pdmr_direction(nat),
-                        "gbp_amount": 0.0, "raw_nature": nat}, f)
+                        "gbp_amount": 0.0, "raw_nature": nat,
+                        "role": "", "role_weight": 1.0, "director": "",
+                        "resulting_holding": None, "add_frac": None,
+                        "_schema": inv._PDMR_SCHEMA}, f)
     now = datetime.now(timezone.utc)
     items = [inv.Announcement(
         date=(now - timedelta(days=i*5)).strftime("%Y-%m-%d"),
@@ -459,3 +462,72 @@ def test_fetch_company_uses_cache(tmp_path, monkeypatch):
                     "raw_slug":"tr-1","url":"x"}], f)
     items = inv.fetch_company("TEST", use_cache=True, ttl_hours=999)
     assert len(items) == 1 and items[0].category == "tr1"
+
+
+# ----- PDMR conviction weighting -----------------------------------
+
+def test_role_weight_chair_beats_ned():
+    assert inv._role_weight("CHAIRMAN") > inv._role_weight("NON EXECUTIVE DIRECTOR")
+    assert inv._role_weight("Chief Executive Officer") >= 1.5
+    assert inv._role_weight("") == 1.0
+
+
+def test_pdmr_cluster_needs_three_distinct_directors(tmp_path, monkeypatch):
+    from datetime import datetime, timezone, timedelta
+    import json as _json
+    monkeypatch.setattr(inv, "PDMR_DETAIL_DIR", tmp_path)
+    now = datetime.now(timezone.utc)
+    items = []
+    # 3 different directors within 15 days -> cluster
+    for i, name in enumerate(["alice smith", "bob jones", "carol white"]):
+        url = f"https://x/pdmr/{i}"
+        inv._pdmr_cache_path(url).write_text(_json.dumps({
+            "direction": "buy", "gbp_amount": 1000.0, "raw_nature": "purchase",
+            "role": "Director", "role_weight": 1.0, "director": name,
+            "resulting_holding": 10000, "add_frac": 0.05, "_schema": inv._PDMR_SCHEMA}))
+        items.append(inv.Announcement(
+            date=(now - timedelta(days=i*5)).strftime("%Y-%m-%d"),
+            title="Director/PDMR Shareholding", category="pdmr",
+            raw_slug="director-pdmr-shareholding", url=url))
+    out = inv.enrich_pdmr_directions(items)
+    assert out["pdmr_distinct_buyers"] == 3
+    assert out["pdmr_cluster_30d"] is True
+
+
+def test_pdmr_same_director_repeated_is_not_a_cluster(tmp_path, monkeypatch):
+    from datetime import datetime, timezone, timedelta
+    import json as _json
+    monkeypatch.setattr(inv, "PDMR_DETAIL_DIR", tmp_path)
+    now = datetime.now(timezone.utc)
+    items = []
+    for i in range(3):  # SAME director 3 times
+        url = f"https://x/pdmr/same/{i}"
+        inv._pdmr_cache_path(url).write_text(_json.dumps({
+            "direction": "buy", "gbp_amount": 1000.0, "raw_nature": "purchase",
+            "role": "Director", "role_weight": 1.0, "director": "alice smith",
+            "resulting_holding": 10000, "add_frac": 0.05, "_schema": inv._PDMR_SCHEMA}))
+        items.append(inv.Announcement(
+            date=(now - timedelta(days=i*5)).strftime("%Y-%m-%d"),
+            title="Director/PDMR Shareholding", category="pdmr",
+            raw_slug="director-pdmr-shareholding", url=url))
+    out = inv.enrich_pdmr_directions(items)
+    assert out["pdmr_distinct_buyers"] == 1
+    assert out["pdmr_cluster_30d"] is False   # 3 buys but 1 person != cluster
+
+
+def test_pdmr_conviction_scales_with_role_and_add(tmp_path, monkeypatch):
+    from datetime import datetime, timezone
+    import json as _json
+    monkeypatch.setattr(inv, "PDMR_DETAIL_DIR", tmp_path)
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    # Chair doubling stake vs NED token buy
+    def mk(url, role_w, add):
+        inv._pdmr_cache_path(url).write_text(_json.dumps({
+            "direction": "buy", "gbp_amount": 1000.0, "raw_nature": "purchase",
+            "role": "x", "role_weight": role_w, "director": "d",
+            "resulting_holding": 10000, "add_frac": add, "_schema": inv._PDMR_SCHEMA}))
+        return inv.Announcement(date=now, title="t", category="pdmr",
+                                raw_slug="director-pdmr-shareholding", url=url)
+    strong = inv.enrich_pdmr_directions([mk("https://x/1", 1.4, 1.0)])
+    weak = inv.enrich_pdmr_directions([mk("https://x/2", 1.0, 0.01)])
+    assert strong["pdmr_conviction_score"] > weak["pdmr_conviction_score"] * 2

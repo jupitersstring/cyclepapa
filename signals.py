@@ -70,7 +70,7 @@ CACHE_PATH = "/tmp/signals_v2_cache.pkl"
 # Cache version stamp. Bump whenever scraper / scoring logic changes
 # in a way that would invalidate previously-cached TickerSignals.
 # v3 = PDMR direction enrichment + resolution_score.
-CACHE_SCHEMA_VERSION = "2026-06-21-v4-pdmr-tr1-direction-resolution"
+CACHE_SCHEMA_VERSION = "2026-07-18-v5-pdmr-conviction"
 HISTORY_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                             "signals_history.csv")
 CACHE_TTL_SECONDS = 24 * 3600
@@ -189,6 +189,11 @@ class TickerSignals:
     pdmr_sells: int = 0
     pdmr_buy_gbp: float = 0.0
     pdmr_sell_gbp: float = 0.0
+    # PDMR conviction weighting (role, distinct buyers, cluster, add-frac)
+    pdmr_distinct_buyers: int = 0
+    pdmr_cluster_30d: bool = False
+    pdmr_conviction_score: float = 0.0
+    pdmr_max_add_frac: float = 0.0
     # TR-1 direction enrichment (body-parsed; institutional stake moves)
     tr1_buys: int = 0
     tr1_sells: int = 0
@@ -415,6 +420,10 @@ def fetch_signals_for(
                     sig.pdmr_sells = pdmr_enr.get("pdmr_sells", 0)
                     sig.pdmr_buy_gbp = pdmr_enr.get("pdmr_buy_gbp", 0.0)
                     sig.pdmr_sell_gbp = pdmr_enr.get("pdmr_sell_gbp", 0.0)
+                    sig.pdmr_distinct_buyers = pdmr_enr.get("pdmr_distinct_buyers", 0)
+                    sig.pdmr_cluster_30d = pdmr_enr.get("pdmr_cluster_30d", False)
+                    sig.pdmr_conviction_score = pdmr_enr.get("pdmr_conviction_score", 0.0)
+                    sig.pdmr_max_add_frac = pdmr_enr.get("pdmr_max_add_frac", 0.0)
                 # TR-1 enrichment — fetch bodies for in-window TR-1s
                 # to get holder, new%/prev%, materiality, activist flag.
                 if hasattr(inv_mod, "enrich_tr1_directions") and raw.get("tr1", 0):

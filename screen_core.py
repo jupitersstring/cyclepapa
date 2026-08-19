@@ -262,6 +262,14 @@ class ScreenResult:
     # history present but no detectable base).
     data_gaps: str | None = None
 
+    # Insider conviction (director role + distinct buyers + cluster +
+    # add-fraction). A 3-director cluster with a chair doubling their
+    # stake is a different animal from four £4k NED token buys.
+    pdmr_distinct_buyers: int | None = None
+    pdmr_cluster_30d: bool | None = None
+    pdmr_conviction_score: float | None = None
+    pdmr_max_add_frac: float | None = None
+
     # Buyback run-rate — sustained programmes only (one-offs excluded
     # from annualisation). NAV accretion is the catalyst-independent
     # return from retiring shares below NAV.

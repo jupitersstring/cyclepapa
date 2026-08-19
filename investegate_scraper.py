@@ -349,23 +349,69 @@ _NON_CONVICTION_WORDS = re.compile(
 )
 
 
+# Position/status line — "Position/status NON EXECUTIVE DIRECTOR"
+_ROLE_RE = re.compile(
+    r"position\s*/?\s*status\s*[:\-]?\s*([A-Za-z][A-Za-z &/\-]{2,50})",
+    re.IGNORECASE)
+# Name — MAR PDMR bodies say "Name a) <NAME> b)" or, in the narrative
+# tail, "the total holding of <Title Name> is <n> shares".
+_NAME_RE = re.compile(
+    r"total holding of\s+((?:Mr|Mrs|Ms|Dr|Sir|Lord|Lady|Mr\.|Dame)?\s?"
+    r"[A-Z][A-Za-z.\-]+(?:\s+[A-Z][A-Za-z.\-]+){0,3})\s+is\b",
+    re.IGNORECASE)
+_HOLDING_RE = re.compile(
+    r"total holding of[^0-9]{0,60}?([\d,]{2,})\s*(?:ordinary|shares?)",
+    re.IGNORECASE)
+
+# Role conviction weight — a Chair/CEO/CIO buying is a stronger signal
+# than a NED. Matched as substrings against the parsed role string.
+_ROLE_WEIGHTS = [
+    (re.compile(r"chief exec|ceo\b|managing director", re.I), 1.5),
+    (re.compile(r"chair", re.I),                              1.4),
+    (re.compile(r"chief invest|cio\b|portfolio manager|fund manager", re.I), 1.4),
+    (re.compile(r"chief financ|cfo\b|finance director", re.I), 1.3),
+    (re.compile(r"senior independent", re.I),                 1.1),
+    (re.compile(r"non.?exec", re.I),                          1.0),
+]
+
+
+def _role_weight(role: str) -> float:
+    if not role:
+        return 1.0
+    for rx, w in _ROLE_WEIGHTS:
+        if rx.search(role):
+            return w
+    return 1.0
+
+
 def _pdmr_cache_path(url: str) -> Path:
     PDMR_DETAIL_DIR.mkdir(parents=True, exist_ok=True)
     rns_id = re.sub(r"[^A-Za-z0-9]+", "_", url.rstrip("/").split("/")[-1])
     return PDMR_DETAIL_DIR / f"{rns_id}.json"
 
 
-def fetch_pdmr_detail(url: str, *, use_cache: bool = True) -> dict:
-    """Fetch one PDMR announcement body and parse direction + £.
+# Cache-schema marker: bump when the PDMR record shape changes so old
+# thin records (direction+gbp only) get re-parsed for the new fields.
+_PDMR_SCHEMA = 2
 
-    Returns dict with keys: {direction: 'buy'|'sell'|'unknown',
-    gbp_amount: float, raw_nature: str}. Cached per-URL forever — RNS
-    announcements don't change."""
+
+def fetch_pdmr_detail(url: str, *, use_cache: bool = True) -> dict:
+    """Fetch one PDMR announcement body and parse direction + £ + the
+    conviction fields (role, name, resulting holding).
+
+    Returns {direction, gbp_amount, raw_nature, role, role_weight,
+    director, resulting_holding, add_frac}. add_frac = shares bought /
+    resulting holding (how much the director added relative to their
+    own stake — a doubling is far higher conviction than a token buy).
+    Cached per-URL forever; schema-versioned so older thin records are
+    re-parsed."""
     cp = _pdmr_cache_path(url)
     if use_cache and cp.exists():
         try:
             with open(cp) as f:
-                return json.load(f)
+                rec = json.load(f)
+            if rec.get("_schema") == _PDMR_SCHEMA:
+                return rec
         except Exception:
             pass
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
@@ -373,7 +419,10 @@ def fetch_pdmr_detail(url: str, *, use_cache: bool = True) -> dict:
         with urllib.request.urlopen(req, timeout=20) as resp:
             html = resp.read().decode("utf-8", errors="replace")
     except Exception:
-        return {"direction": "unknown", "gbp_amount": 0.0, "raw_nature": ""}
+        return {"direction": "unknown", "gbp_amount": 0.0, "raw_nature": "",
+                "role": "", "role_weight": 1.0, "director": "",
+                "resulting_holding": None, "add_frac": None,
+                "_schema": _PDMR_SCHEMA}
     text = re.sub(r"<[^>]+>", " ", html)
     text = re.sub(r"&#160;|&nbsp;", " ", text)
     text = re.sub(r"\s+", " ", text)
@@ -381,8 +430,35 @@ def fetch_pdmr_detail(url: str, *, use_cache: bool = True) -> dict:
     raw_nature = nature_m.group(1).strip() if nature_m else ""
     direction = _classify_pdmr_direction(raw_nature)
     gbp = _extract_pdmr_gbp(text, raw_nature)
+    role_m = _ROLE_RE.search(text)
+    role = role_m.group(1).strip() if role_m else ""
+    name_m = _NAME_RE.search(text)
+    director = name_m.group(1).strip() if name_m else ""
+    hold_m = _HOLDING_RE.search(text)
+    resulting_holding = None
+    if hold_m:
+        try:
+            resulting_holding = int(hold_m.group(1).replace(",", ""))
+        except ValueError:
+            pass
+    # Shares bought this filing = gbp / price if we can; else from the
+    # price/volume pair already used for gbp. add_frac needs share count.
+    add_frac = None
+    if resulting_holding and resulting_holding > 0:
+        m = _PRICE_VOL_RE.search(text[text.find("Price(s)"):text.find("Price(s)") + 400]
+                                 if "Price(s)" in text else text[:1500])
+        if m:
+            try:
+                bought = float(m.group(2).replace(",", ""))
+                if bought > 0:
+                    add_frac = round(bought / resulting_holding, 4)
+            except ValueError:
+                pass
     rec = {"direction": direction, "gbp_amount": round(gbp, 2),
-           "raw_nature": raw_nature[:80]}
+           "raw_nature": raw_nature[:80], "role": role[:50],
+           "role_weight": _role_weight(role), "director": director[:60],
+           "resulting_holding": resulting_holding, "add_frac": add_frac,
+           "_schema": _PDMR_SCHEMA}
     if use_cache:
         try:
             with open(cp, "w") as f:
@@ -464,8 +540,17 @@ def enrich_pdmr_directions(
     cutoff = datetime.now(timezone.utc) - timedelta(days=lookback_days)
     out = {"pdmr_buys": 0, "pdmr_sells": 0, "pdmr_scrip": 0,
            "pdmr_unknown": 0,
-           "pdmr_buy_gbp": 0.0, "pdmr_sell_gbp": 0.0}
+           "pdmr_buy_gbp": 0.0, "pdmr_sell_gbp": 0.0,
+           # Conviction fields
+           "pdmr_distinct_buyers": 0,
+           "pdmr_cluster_30d": False,
+           "pdmr_conviction_score": 0.0,
+           "pdmr_max_add_frac": 0.0}
     fetched = 0
+    buy_dates: list = []
+    buyers: set = set()
+    conviction = 0.0
+    max_add = 0.0
     for a in items:
         if a.category != "pdmr" or not a.date:
             continue
@@ -487,6 +572,18 @@ def enrich_pdmr_directions(
         if d == "buy":
             out["pdmr_buys"] += 1
             out["pdmr_buy_gbp"] += gbp
+            buy_dates.append(dt)
+            director = (det.get("director") or "").lower().strip()
+            if director:
+                buyers.add(director)
+            # Per-filing conviction = role_weight × (1 + add_frac).
+            # A chair (1.4) doubling their stake (add_frac~1.0) scores
+            # 2.8; a NED (1.0) adding 2% (0.02) scores ~1.02.
+            rw = float(det.get("role_weight") or 1.0)
+            af = det.get("add_frac")
+            af = float(af) if af is not None else 0.0
+            conviction += rw * (1.0 + min(af, 2.0))
+            max_add = max(max_add, af)
         elif d == "sell":
             out["pdmr_sells"] += 1
             out["pdmr_sell_gbp"] += gbp
@@ -494,6 +591,22 @@ def enrich_pdmr_directions(
             out["pdmr_scrip"] += 1
         else:
             out["pdmr_unknown"] += 1
+    out["pdmr_distinct_buyers"] = len(buyers)
+    # Cluster: >= 3 distinct directors buying within any 30-day window —
+    # the single best-documented insider pattern. Needs distinct names;
+    # if names didn't parse, fall back to >= 3 buys inside 30 days.
+    if buy_dates:
+        buy_dates.sort()
+        window_hit = False
+        for i, d0 in enumerate(buy_dates):
+            in_win = [d for d in buy_dates[i:] if (d - d0).days <= 30]
+            if len(in_win) >= 3:
+                window_hit = True
+                break
+        out["pdmr_cluster_30d"] = bool(
+            window_hit and (len(buyers) >= 3 or not buyers))
+    out["pdmr_conviction_score"] = round(conviction, 3)
+    out["pdmr_max_add_frac"] = round(max_add, 4)
     return out
 
 
