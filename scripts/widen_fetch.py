@@ -14,39 +14,25 @@ from __future__ import annotations
 
 import argparse
 import glob
-import subprocess
 import sys
-import tarfile
 import time
 from pathlib import Path
 
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from earnings_model import config, fundamentals as F, yahoo
-
-
-def _git(*a):
-    return subprocess.run(["git", *a], capture_output=True, text=True, cwd=config.REPO_ROOT)
-
-
-def _branch():
-    return _git("rev-parse", "--abbrev-ref", "HEAD").stdout.strip() or "HEAD"
+from earnings_model import config, fundamentals as F, util, yahoo
 
 
 def _archive_and_push(msg: str) -> None:
-    with tarfile.open(config.DATA_DIR / "raws.tar.gz", "w:gz") as tar:
-        for p in glob.glob(str(config.RAW_CACHE_DIR / "*.json")):
-            tar.add(p, arcname=Path(p).name)
-    _git("add", str(config.DATA_DIR / "raws.tar.gz"), str(config.DATA_DIR / "universe.parquet"))
-    res = _git("commit", "-m", msg)
-    if "nothing to commit" in (res.stdout + res.stderr):
+    """Checkpoint the raws AND the (possibly widened) universe parquet."""
+    try:
+        util.archive_raws()
+    except RuntimeError as err:
+        print(f"  [warn] checkpoint skipped: {err}", flush=True)
         return
-    for i in range(4):
-        if _git("push", "-u", "origin", _branch()).returncode == 0:
-            return
-        time.sleep(2 ** (i + 1))
-    print("  [warn] push failed (raws archived locally)", flush=True)
+    util.commit_paths_and_push(msg, [config.DATA_DIR / "raws.tar.gz",
+                                     config.DATA_DIR / "universe.parquet"])
 
 
 def _cached() -> set[str]:

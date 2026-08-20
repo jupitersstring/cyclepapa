@@ -10,7 +10,7 @@ from pathlib import Path
 import pandas as pd
 
 from . import (aggregate, cluster, config, fundamentals, prebreakout, quality,
-               screens, universe, valuation)
+               screens, universe, util, valuation)
 
 
 def step_universe(
@@ -30,8 +30,7 @@ def step_universe(
             country=country, exchanges=exchanges, currencies=currencies,
             require_industry=require_industry,
         )
-    out.parent.mkdir(parents=True, exist_ok=True)
-    uni.to_parquet(out, index=False)
+    util.atomic_to_parquet(uni, out)
     by_region = uni["region"].value_counts().to_dict() if "region" in uni.columns else {}
     print(f"universe: {len(uni)} names {by_region} -> {out}")
     return uni
@@ -61,8 +60,7 @@ def step_fetch(
         funda = funda.drop(columns=["size_bucket"], errors="ignore").merge(
             uni_filled[["symbol", "size_bucket"]], on="symbol", how="left"
         )
-    out.parent.mkdir(parents=True, exist_ok=True)
-    funda.to_parquet(out, index=False)
+    util.atomic_to_parquet(funda, out)
     ok = int(funda["fetch_ok"].sum()) if "fetch_ok" in funda.columns else len(funda)
     print(f"fundamentals: {len(funda)} rows ({ok} with data) -> {out}")
     return funda
@@ -83,7 +81,7 @@ def step_analyze(
     scored["is_operating"] = valuation.is_operating(scored)
 
     out_dir.mkdir(parents=True, exist_ok=True)
-    scored.to_parquet(out_dir / "scored.parquet", index=False)
+    util.atomic_to_parquet(scored, out_dir / "scored.parquet")
 
     # Industry aggregates and shortlists use operating companies only (warrants,
     # preferreds, CEFs/BDCs and shells would otherwise pollute the medians).

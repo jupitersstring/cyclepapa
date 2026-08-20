@@ -18,39 +18,16 @@ from __future__ import annotations
 
 import argparse
 import glob
-import subprocess
 import sys
-import tarfile
 import time
 from pathlib import Path
 
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from earnings_model import config, edgar, fundamentals as F
+from earnings_model import config, edgar, fundamentals as F, util
 
 
-def _git(*a):
-    return subprocess.run(["git", *a], capture_output=True, text=True, cwd=config.REPO_ROOT)
-
-
-def _branch():
-    return _git("rev-parse", "--abbrev-ref", "HEAD").stdout.strip() or "HEAD"
-
-
-def _archive_and_push(msg: str) -> None:
-    with tarfile.open(config.DATA_DIR / "raws.tar.gz", "w:gz") as tar:
-        for p in glob.glob(str(config.RAW_CACHE_DIR / "*.json")):
-            tar.add(p, arcname=Path(p).name)
-    _git("add", str(config.DATA_DIR / "raws.tar.gz"))
-    res = _git("commit", "-m", msg)
-    if "nothing to commit" in (res.stdout + res.stderr):
-        return
-    for i in range(4):
-        if _git("push", "-u", "origin", _branch()).returncode == 0:
-            return
-        time.sleep(2 ** (i + 1))
-    print("  [warn] push failed (raws archived locally)", flush=True)
 
 
 def main() -> None:
@@ -109,10 +86,10 @@ def main() -> None:
             print(f"  [{i}/{len(todo)}] {upgraded} upgraded, {no_edgar} no-gain, "
                   f"{no_base} no-yf-base", flush=True)
         if not args.no_git and since >= args.commit_every:
-            _archive_and_push(f"fetch_edgar: +{i} overlaid ({upgraded} upgraded)")
+            util.archive_and_push(f"fetch_edgar: +{i} overlaid ({upgraded} upgraded)")
             since = 0
     if not args.no_git and upgraded:
-        _archive_and_push(f"fetch_edgar complete: {upgraded} US names on EDGAR annual backlog")
+        util.archive_and_push(f"fetch_edgar complete: {upgraded} US names on EDGAR annual backlog")
     print(f"FINISHED: {upgraded} upgraded to EDGAR annual / {len(todo)} attempted", flush=True)
 
 

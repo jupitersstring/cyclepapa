@@ -32,7 +32,7 @@ from pathlib import Path
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from earnings_model import config, fundamentals as F, pipeline, surprise_store as S
+from earnings_model import config, fundamentals as F, pipeline, surprise_store as S, util
 
 DATA_DIR = config.DATA_DIR          # repo-anchored; independent of CWD
 RAWS_ARCHIVE = DATA_DIR / "raws.tar.gz"
@@ -67,11 +67,14 @@ def _write_manifest() -> None:
     scored = config.CACHE_DIR / "scored.parquet"
     rows = surp = 0
     if scored.exists():
-        df = pd.read_parquet(scored, columns=[c for c in ["surprise_n"] if True] or None)
+        try:
+            df = pd.read_parquet(scored, columns=["surprise_n"])
+        except Exception:            # scored predates the surprise column
+            df = pd.read_parquet(scored)
         rows = len(df)
         if "surprise_n" in df.columns:
             surp = int((df["surprise_n"].fillna(0) > 0).sum())
-    MANIFEST.write_text(json.dumps({
+    util.atomic_write_text(MANIFEST, json.dumps({
         "schema_version": config.SCHEMA_VERSION,
         "git_sha": _git_sha(),
         "saved_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
@@ -79,6 +82,7 @@ def _write_manifest() -> None:
         "scored_rows": rows,
         "names_with_surprises": surp,
     }, indent=2))
+
 
 
 def _cached_ok_symbols() -> list[str]:
@@ -113,28 +117,32 @@ def rebuild() -> None:
     pipeline.step_analyze()
 
 
-def save(with_raws: bool = False) -> None:
+def save(with_raws: bool = False, force_raws: bool = False) -> None:
     """Copy the cache artifacts into the tracked data/ directory + write manifest.
 
     ``with_raws`` also archives every cache/raw/*.json into data/raws.tar.gz —
     the irreplaceable, network-fetched statements/prices — so a rollback that
     *destroys* (not just reverts) the cache can't force a multi-day refetch.
     It's ~16 MB, so refresh it at milestones rather than on every save.
+
+    All writes are atomic (tmp + rename), and the archive refuses to shrink
+    below 90% of its previous member count unless ``force_raws`` — a partially
+    rehydrated cache must never silently replace the full durable archive.
     """
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     for name in SNAPSHOT_FILES:
         src = config.CACHE_DIR / name
         if src.exists():
-            shutil.copy2(src, DATA_DIR / name)
+            util.atomic_copy(src, DATA_DIR / name)
             print(f"saved {src} -> {DATA_DIR / name} ({src.stat().st_size // 1024} KiB)")
         else:
             print(f"  (skip {name}: not in cache)")
     if with_raws:
-        n = 0
-        with tarfile.open(RAWS_ARCHIVE, "w:gz") as tar:
-            for p in glob.glob(str(config.RAW_CACHE_DIR / "*.json")):
-                tar.add(p, arcname=Path(p).name); n += 1
-        print(f"archived {n} raws -> {RAWS_ARCHIVE} ({RAWS_ARCHIVE.stat().st_size // 1024} KiB)")
+        try:
+            n = util.archive_raws(RAWS_ARCHIVE, force=force_raws)
+            print(f"archived {n} raws -> {RAWS_ARCHIVE} ({RAWS_ARCHIVE.stat().st_size // 1024} KiB)")
+        except RuntimeError as err:
+            print(f"  ⚠ raws archive NOT refreshed: {err}")
     _write_manifest()
     print(f"manifest written (schema v{config.SCHEMA_VERSION}, sha {_git_sha()}). "
           f"commit it:  git add data && git commit -m 'Refresh data snapshot'")
@@ -147,7 +155,7 @@ def restore() -> None:
     for name in SNAPSHOT_FILES:
         src = DATA_DIR / name
         if src.exists():
-            shutil.copy2(src, config.CACHE_DIR / name)
+            util.atomic_copy(src, config.CACHE_DIR / name)
             print(f"restored {src} -> {config.CACHE_DIR / name}")
             restored += 1
         else:
@@ -161,7 +169,10 @@ def restore() -> None:
     if n_raw < 1000 and RAWS_ARCHIVE.exists():
         config.RAW_CACHE_DIR.mkdir(parents=True, exist_ok=True)
         with tarfile.open(RAWS_ARCHIVE, "r:gz") as tar:
-            tar.extractall(config.RAW_CACHE_DIR)
+            try:
+                tar.extractall(config.RAW_CACHE_DIR, filter="data")
+            except TypeError:        # Python < 3.11.4: no filter parameter
+                tar.extractall(config.RAW_CACHE_DIR)
         print(f"extracted raws archive -> {config.RAW_CACHE_DIR} "
               f"(cache had only {n_raw})")
     # Make cache/raw consistent with the durable surprise store too, so a later
@@ -211,9 +222,12 @@ def main() -> None:
     ap.add_argument("cmd", choices=["rebuild", "save", "restore", "status"])
     ap.add_argument("--with-raws", action="store_true",
                     help="(save) also archive cache/raw into data/raws.tar.gz")
+    ap.add_argument("--force-raws", action="store_true",
+                    help="(save) overwrite the archive even if the cache holds "
+                         "far fewer raws than it does (intentional shrink)")
     args = ap.parse_args()
     if args.cmd == "save":
-        save(with_raws=args.with_raws)
+        save(with_raws=args.with_raws, force_raws=args.force_raws)
     else:
         {"rebuild": rebuild, "restore": restore, "status": status}[args.cmd]()
 

@@ -349,7 +349,13 @@ def refresh_market(symbol: str, client: YahooClient, base_raw: dict,
     except Exception:
         return None
     out = dict(base_raw)
-    out["valuation"] = _valuation_from(res)
+    new_val = _valuation_from(res)
+    old_val = base_raw.get("valuation") or {}
+    if new_val.get("marketCap") or not old_val.get("marketCap"):
+        out["valuation"] = new_val
+    # else: quoteSummary answered with an empty shell (modules present, values
+    # null — a transient Yahoo degradation) while the cache holds a real
+    # valuation; keep the older real block, mirroring the chart-leg guard below.
     feats, monthly = _price_block(client, symbol)
     if monthly.get("dates"):                     # chart leg succeeded
         out["prices"] = {**feats, "monthly": monthly}

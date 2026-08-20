@@ -15,9 +15,7 @@ from __future__ import annotations
 import argparse
 import glob
 import json
-import subprocess
 import sys
-import tarfile
 import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -25,30 +23,7 @@ from pathlib import Path
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from earnings_model import config, fundamentals as F, yahoo
-
-
-def _git(*a):
-    return subprocess.run(["git", *a], capture_output=True, text=True, cwd=config.REPO_ROOT)
-
-
-def _branch():
-    return _git("rev-parse", "--abbrev-ref", "HEAD").stdout.strip() or "HEAD"
-
-
-def _archive_and_push(msg: str) -> None:
-    with tarfile.open(config.DATA_DIR / "raws.tar.gz", "w:gz") as tar:
-        for p in glob.glob(str(config.RAW_CACHE_DIR / "*.json")):
-            tar.add(p, arcname=Path(p).name)
-    _git("add", str(config.DATA_DIR / "raws.tar.gz"))
-    res = _git("commit", "-m", msg)
-    if "nothing to commit" in (res.stdout + res.stderr):
-        return
-    for i in range(4):
-        if _git("push", "-u", "origin", _branch()).returncode == 0:
-            return
-        time.sleep(2 ** (i + 1))
-    print("  [warn] push failed (raws archived locally)", flush=True)
+from earnings_model import config, fundamentals as F, util, yahoo
 
 
 def _stale_todo(uni: pd.DataFrame, stale_days: int) -> list[str]:
@@ -69,7 +44,7 @@ def _stale_todo(uni: pd.DataFrame, stale_days: int) -> list[str]:
         try:
             if a and datetime.fromisoformat(a) < cutoff:
                 todo.append(d.get("symbol", sym))
-        except ValueError:
+        except (ValueError, TypeError):   # unparseable / naive-vs-aware asof
             continue
     return todo
 
@@ -108,11 +83,11 @@ def main() -> None:
         if i % 50 == 0 or i == len(todo):
             print(f"  [{i}/{len(todo)}] {done} refreshed", flush=True)
         if not args.no_git and since >= args.commit_every:
-            _archive_and_push(f"refresh_market: +{i} ({done} refreshed)")
+            util.archive_and_push(f"refresh_market: +{i} ({done} refreshed)")
             since = 0
         time.sleep(config.RATE_MIN_INTERVAL)
     if not args.no_git and done:
-        _archive_and_push(f"refresh_market complete: {done} names refreshed")
+        util.archive_and_push(f"refresh_market complete: {done} names refreshed")
     print(f"FINISHED: {done}/{len(todo)} refreshed", flush=True)
 
 

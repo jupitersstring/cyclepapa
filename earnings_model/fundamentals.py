@@ -16,7 +16,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from . import config, metrics
+from . import config, metrics, util
 
 NaN = float("nan")
 
@@ -346,8 +346,9 @@ def load_raw(symbol: str, ttl_days: float = config.CACHE_TTL_DAYS,
 
 
 def save_raw(symbol: str, raw: dict) -> None:
-    config.RAW_CACHE_DIR.mkdir(parents=True, exist_ok=True)
-    _cache_path(symbol).write_text(json.dumps(raw, default=str))
+    # Atomic: a kill mid-write used to truncate the JSON, silently costing the
+    # name its EDGAR deep-history overlay on the next load (load_raw -> None).
+    util.atomic_write_text(_cache_path(symbol), json.dumps(raw, default=str))
 
 
 # --------------------------------------------------------------------------- #
@@ -628,8 +629,7 @@ def _sanitize(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def save_fundamentals(df: pd.DataFrame, path: Path = config.FUNDAMENTALS_PATH) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    df.to_parquet(path, index=False)
+    util.atomic_to_parquet(df, path)
 
 
 def load_fundamentals(path: Path = config.FUNDAMENTALS_PATH) -> pd.DataFrame:

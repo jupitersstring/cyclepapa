@@ -22,7 +22,6 @@ import glob
 import json
 import random
 import re
-import subprocess
 import sys
 import time
 from pathlib import Path
@@ -30,7 +29,7 @@ from pathlib import Path
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from earnings_model import config, fundamentals as F, surprise_store as S
+from earnings_model import config, fundamentals as F, surprise_store as S, util
 
 # Skip clear non-operating securities (no EPS surprise) WITHOUT false-excluding
 # real tickers. Two patterns only:
@@ -43,30 +42,13 @@ from earnings_model import config, fundamentals as F, surprise_store as S
 NONOP = re.compile(r"(-[A-Z]{1,3}$|^[A-Z]{4}[WUPNORMQE]$)")
 
 
-def _git(*args: str) -> subprocess.CompletedProcess:
-    return subprocess.run(["git", *args], capture_output=True, text=True)
-
-
-def _current_branch() -> str:
-    r = _git("rev-parse", "--abbrev-ref", "HEAD")
-    return r.stdout.strip() or "HEAD"
-
-
 def _persist_and_push(msg: str) -> None:
-    """Commit the durable surprise files and push (retry/backoff on network).
+    """Commit ONLY the durable surprise files and push (retry/backoff inside).
 
-    Pushes to whatever branch is checked out (no hardcoded name)."""
-    _git("add", str(S.SURPRISES_PATH), str(S.CHECKED_PATH))
-    res = _git("commit", "-m", msg)
-    if "nothing to commit" in (res.stdout + res.stderr):
-        return
-    branch = _current_branch()
-    for i in range(4):
-        p = _git("push", "-u", "origin", branch)
-        if p.returncode == 0:
-            return
-        time.sleep(2 ** (i + 1))
-    print(f"  [warn] push failed: {p.stderr.strip()[:200]}", flush=True)
+    Runs against the repo root regardless of CWD (the old local _git helper
+    inherited the caller's directory) and pushes whatever branch is checked out.
+    """
+    util.commit_paths_and_push(msg, [S.SURPRISES_PATH, S.CHECKED_PATH])
 
 
 def targets(store: dict, checked: set[str], wanted: set[str]) -> list[str]:

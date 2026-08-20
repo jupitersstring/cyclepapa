@@ -14,40 +14,14 @@ from __future__ import annotations
 import argparse
 import glob
 import json
-import subprocess
 import sys
-import tarfile
 import time
 from pathlib import Path
 
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from earnings_model import config, fundamentals as F
-
-
-def _git(*a):
-    return subprocess.run(["git", *a], capture_output=True, text=True, cwd=config.REPO_ROOT)
-
-
-def _branch():
-    return _git("rev-parse", "--abbrev-ref", "HEAD").stdout.strip() or "HEAD"
-
-
-def _archive_and_push(msg: str) -> None:
-    n = 0
-    with tarfile.open(config.DATA_DIR / "raws.tar.gz", "w:gz") as tar:
-        for p in glob.glob(str(config.RAW_CACHE_DIR / "*.json")):
-            tar.add(p, arcname=Path(p).name); n += 1
-    _git("add", str(config.DATA_DIR / "raws.tar.gz"))
-    res = _git("commit", "-m", msg)
-    if "nothing to commit" in (res.stdout + res.stderr):
-        return
-    for i in range(4):
-        if _git("push", "-u", "origin", _branch()).returncode == 0:
-            return
-        time.sleep(2 ** (i + 1))
-    print(f"  [warn] push failed (archived {n} raws locally)", flush=True)
+from earnings_model import config, fundamentals as F, util
 
 
 def _cached_symbols() -> set[str]:
@@ -90,10 +64,10 @@ def main() -> None:
             extra = f", {mgr.refreshes} refresh(es)" if mgr.refreshes else ""
             print(f"  [{i}/{len(todo)}] fetched, {ok} with data{extra}", flush=True)
         if not args.no_git and since >= args.commit_every:
-            _archive_and_push(f"fetch_new milestone: +{i} fetched ({ok} with data)")
+            util.archive_and_push(f"fetch_new milestone: +{i} fetched ({ok} with data)")
             since = 0
     if not args.no_git:
-        _archive_and_push(f"fetch_new complete: {len(todo)} attempted, {ok} with data")
+        util.archive_and_push(f"fetch_new complete: {len(todo)} attempted, {ok} with data")
     print(f"FINISHED: {ok}/{len(todo)} new names have data", flush=True)
 
 

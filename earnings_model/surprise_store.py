@@ -19,7 +19,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from . import config, fundamentals as F
+from . import config, fundamentals as F, util
 
 _REPO = Path(__file__).resolve().parent.parent
 DATA_DIR = _REPO / "data"
@@ -37,8 +37,8 @@ def load() -> dict[str, list]:
 
 
 def save(store: dict[str, list]) -> None:
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-    SURPRISES_PATH.write_text(json.dumps(store, separators=(",", ":"), sort_keys=True))
+    # Atomic: this file is the DURABLE surprise copy — truncation loses coverage.
+    util.atomic_write_text(SURPRISES_PATH, json.dumps(store, separators=(",", ":"), sort_keys=True))
 
 
 def load_checked() -> set[str]:
@@ -51,8 +51,7 @@ def load_checked() -> set[str]:
 
 
 def save_checked(checked: set[str]) -> None:
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-    CHECKED_PATH.write_text(json.dumps(sorted(checked), separators=(",", ":")))
+    util.atomic_write_text(CHECKED_PATH, json.dumps(sorted(checked), separators=(",", ":")))
 
 
 def seed_from_cache() -> dict[str, list]:
