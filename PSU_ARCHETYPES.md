@@ -57,13 +57,13 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ### A5. Subscriber / ARR target
 
-**Winner: EQIX**
+**Winner: DDOG**
 
 ```
-  EQIX
-  mcap=$107,716M  px=$1092.19  P/B=7.53  DD%=3%
-    PSU core=27.0  gov=-2.0  PSU%LTI=67  per_share=['tsr'] agg=['absolute_net_income', 'market_cap']
-    composite=-12.0  buyback=NO_AUTH(+0.45%)
+  DDOG
+  mcap=$79,379M  px=$223.00  P/B=19.90  DD%=20%
+    PSU core=16.2  gov=8.0  PSU%LTI=50  per_share=['tsr'] agg=['absolute_net_income', 'absolute_op_income', 'market_cap']
+    composite=25.0  buyback=?
     WHY: subscriber_arr_target in plan
 ```
 
@@ -74,7 +74,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 ```
   LMT
   mcap=$117,806M  px=$510.95  P/B=15.69  DD%=26%
-    PSU core=44.1  gov=15.0  PSU%LTI=70  per_share=['eps', 'roic', 'tsr'] agg=['absolute_net_income', 'market_cap']
+    PSU core=29.2  gov=15.0  PSU%LTI=70  per_share=['eps', 'roic', 'tsr'] agg=['absolute_net_income', 'market_cap']
     composite=?  buyback=NO_AUTH(-0.36%)
     WHY: backlog_target in plan
 ```
@@ -93,13 +93,13 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ### A8. PSU vests on SPIN / separation
 
-**Winner: CLW**
+**Winner: GPRO**
 
 ```
-  CLW
-  mcap=$271M  px=$16.79  P/B=0.33  DD%=46%
-    PSU core=39.8  gov=18.0  PSU%LTI=60  per_share=['roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_sales']
-    composite=0.0  buyback=NO_AUTH(+0.54%)
+  GPRO
+  mcap=$137M  px=$0.79  P/B=-71.81  DD%=74%
+    PSU core=30.0  gov=8.0  PSU%LTI=25  per_share=['roe', 'roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_op_income', 'market_cap']
+    composite=43.0  buyback=NO_AUTH(+11.56%)
     WHY: PSU triggers on spin / Form 10
 ```
 
@@ -117,13 +117,13 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ### A10. PSU vests on NAMED ASSET SALE
 
-**Winner: NUS**
+**Winner: BAX**
 
 ```
-  NUS
-  mcap=$244M  px=$5.02  P/B=0.31  DD%=66%
-    PSU core=52.5  gov=11.0  PSU%LTI=50  per_share=['cfroi', 'eps', 'roe', 'roic', 'tsr'] agg=['absolute_net_income', 'absolute_op_income', 'absolute_sales', 'market_cap']
-    composite=4.0  buyback=SHRINKING_NO_AUTH(-1.91%)
+  BAX
+  mcap=$10,273M  px=$19.89  P/B=1.70  DD%=37%
+    PSU core=56.2  gov=18.0  PSU%LTI=57  per_share=['eps', 'roic', 'tsr'] agg=['absolute_net_income', 'absolute_op_income', 'absolute_sales', 'market_cap']
+    composite=?  buyback=NO_AUTH(+0.55%)
     WHY: segment / division divestiture
 ```
 
@@ -141,13 +141,13 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ### A12. PSU vests on RESTRUCTURING milestone
 
-**Winner: ICE**
+**Winner: CMCO**
 
 ```
-  ICE
-  mcap=$75,711M  px=$133.88  P/B=2.57  DD%=29%
-    PSU core=23.4  gov=21.0  PSU%LTI=69  per_share=['eps', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_op_income', 'absolute_revenue', 'market_cap']
-    composite=-2.0  buyback=NO_AUTH(-0.82%)
+  CMCO
+  mcap=$423M  px=$14.69  P/B=0.63  DD%=40%
+    PSU core=40.0  gov=12.0  PSU%LTI=50  per_share=['cfroi', 'eps', 'roe', 'roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_op_income', 'absolute_sales', 'market_cap']
+    composite=?  buyback=NO_AUTH(+0.35%)
     WHY: restructuring_milestone in plan
 ```
 
@@ -165,14 +165,14 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ### A14. DEEP stock-price ladder (>=5x spot)
 
-**Winner: CMLSQ**
+**Winner: INBP**
 
 ```
-  CMLSQ
-  mcap=$0M  px=$0.00  P/B=-0.00  DD%=98%
-    PSU core=0.0  gov=-4.0  PSU%LTI=30  per_share=['tsr'] agg=['absolute_ebitda', 'market_cap']
-    composite=43.0  buyback=NO_AUTH(+1.31%)
-    WHY: top tranche 83.70 ladder
+  INBP
+  mcap=$6M  px=$0.19  P/B=0.31  DD%=55%
+    PSU core=9.6  gov=0.0  PSU%LTI=None  per_share=['eps', 'tsr'] agg=['absolute_net_income']
+    composite=?  buyback=?
+    WHY: top tranche 7600.00 ladder
 ```
 
 ### A15. LONGEST step-tranche ladder (>=5 steps)
@@ -354,13 +354,13 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ### D2. VEST PERIOD EXTENDED in latest filing
 
-**Winner: SD**
+**Winner: HUT**
 
 ```
-  SD
-  mcap=$518M  px=$14.02  P/B=0.98  DD%=24%
-    PSU core=51.3  gov=7.0  PSU%LTI=None  per_share=['cfroi', 'eps', 'roe', 'roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_op_income', 'absolute_revenue', 'absolute_sales']
-    composite=?  buyback=?
+  HUT
+  mcap=$14,011M  px=$124.44  P/B=10.15  DD%=12%
+    PSU core=50.4  gov=20.0  PSU%LTI=50  per_share=['tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_op_income', 'market_cap']
+    composite=?  buyback=NO_AUTH(+6.70%)
     WHY: longer vest schedule than prior plan
 ```
 
@@ -417,13 +417,13 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ### E3. DISCRETIONARY language / gameable hurdle (red flag)
 
-**Winner: GRND**
+**Winner: TBI**
 
 ```
-  GRND
-  mcap=$2,373M  px=$13.35  P/B=2670.00  DD%=42%
-    PSU core=41.0  gov=11.0  PSU%LTI=None  per_share=['eps', 'roe', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_op_income', 'market_cap']
-    composite=53.0  buyback=EXECUTING(-7.42%)
+  TBI
+  mcap=$204M  px=$6.70  P/B=0.79  DD%=14%
+    PSU core=43.0  gov=17.0  PSU%LTI=80  per_share=['eps', 'roe', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'market_cap']
+    composite=?  buyback=?
     WHY: committee discretion language
 ```
 
@@ -446,7 +446,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 ```
   AMT
   mcap=$82,020M  px=$176.05  P/B=23.29  DD%=25%
-    PSU core=41.4  gov=3.0  PSU%LTI=70  per_share=['eps', 'roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_op_income', 'absolute_revenue', 'market_cap']
+    PSU core=42.0  gov=3.0  PSU%LTI=70  per_share=['eps', 'roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_op_income', 'absolute_revenue', 'market_cap']
     composite=33.0  buyback=TOKEN(-1.43%)
     WHY: single-trigger acceleration on CIC
 ```
