@@ -86,6 +86,16 @@ def _quarter_frame(data: bytes) -> pd.DataFrame:
     trn['shares'] = pd.to_numeric(trn['TRANS_SHARES'], errors='coerce')
     trn['price'] = pd.to_numeric(trn['TRANS_PRICEPERSHARE'], errors='coerce')
     trn['value'] = trn['shares'] * trn['price']
+    # Sanity guards: the raw datasets contain price/share unit glitches that
+    # produce quadrillion-dollar "purchases" (e.g. REEMF 4.8e15). A corrupt
+    # VALUE must not poison the dollar aggregates, but the transaction itself
+    # still counts for the count/role/cluster flags — only its dollars are
+    # untrusted. Bounds: price <= $1M/share (BRK.A headroom), shares <= 1e9
+    # per transaction, value <= $5B per transaction.
+    valid = ((trn['price'] > 0) & (trn['price'] <= 1e6) &
+             (trn['shares'] > 0) & (trn['shares'] <= 1e9) &
+             (trn['value'] <= 5e9))
+    trn['value'] = trn['value'].where(valid)
     return trn
 
 
