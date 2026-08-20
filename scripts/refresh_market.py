@@ -52,6 +52,9 @@ def _stale_todo(uni: pd.DataFrame, stale_days: int) -> list[str]:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--stale-days", type=int, default=20)
+    ap.add_argument("--symbols-file", default=None,
+                    help="refresh exactly these symbols (one per line) instead of "
+                         "the stale set — for targeted repairs")
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--commit-every", type=int, default=800)
     ap.add_argument("--rewarm-every", type=int, default=600)
@@ -60,11 +63,17 @@ def main() -> None:
 
     uni = pd.read_parquet(config.UNIVERSE_PATH)
     sym_region = dict(zip(uni["symbol"].astype(str), uni.get("region", pd.Series())))
-    todo = _stale_todo(uni, args.stale_days)
+    if args.symbols_file:
+        want = [s.strip() for s in Path(args.symbols_file).read_text().splitlines() if s.strip()]
+        todo = [s for s in want if F.load_raw(s, ttl_days=None, fail_ttl_days=None)]
+        print(f"refresh_market: {len(todo)}/{len(want)} listed symbols present in cache",
+              flush=True)
+    else:
+        todo = _stale_todo(uni, args.stale_days)
+        print(f"refresh_market: {len(todo)} cached names with market data older than "
+              f"{args.stale_days}d", flush=True)
     if args.limit:
         todo = todo[: args.limit]
-    print(f"refresh_market: {len(todo)} cached names with market data older than "
-          f"{args.stale_days}d", flush=True)
 
     client = yahoo.YahooClient()
     done = since = 0
