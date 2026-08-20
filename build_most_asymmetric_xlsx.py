@@ -534,6 +534,19 @@ def red_flag_count(tk: str, proxy: dict) -> int:
     return len(flags)
 
 
+
+def n_consensus_layers() -> int:
+    """Count scoring layers live from the consensus CSV header, so
+    workbook copy never goes stale as layers are added."""
+    p = ROOT / "full_universe_consensus.csv"
+    try:
+        hdr = p.open().readline().strip().split(",")
+        n = sum(1 for c in hdr if c.endswith("_pts"))
+        return n if n else 30
+    except Exception:
+        return 30
+
+
 def build_turnaround_signal(wb: Workbook, yf: dict):
     """Live-rendered Bollenbach-signal tab: recent 8-K Item 5.02
     executive appointments scored on distress + grant + curated
@@ -2149,14 +2162,18 @@ def build_methodology(wb: Workbook):
          "authoritative NYSE/Nasdaq/AMEX/CBOE set. Foreign names "
          "(JP/KR/UK) live in a separate tab and universe."),
         ("Layer ingestion",
-         "30 additive scoring layers ingested per ticker, spanning PSU "
+         f"{n_consensus_layers()} additive scoring layers ingested per ticker, spanning PSU "
          "forensics, governance, valuation, verified buybacks, tender "
          "mechanics, 10b5-1 direction, Form 4 (raw + Cohen-Malloy "
          "opportunistic), Form 144, quarterly 10-Q, NCAV, Voss CIC, "
          "post-Ch11, internalization, bumpitrage, spinoff timing, "
          "Arquitos, Coval-Stafford proxy + real N-PORT, backstopped "
          "rights, FDIC dark banks, activist letters, 13F-delta, biotech "
-         "PDUFA, and financial-sector primary."),
+         "PDUFA, financial-sector primary, discretionary insider "
+         "conviction, emergence cross-feed, Sohn pitches, asymmetry "
+         "assembly (PSIX recipe), distressed-stub progress, premium "
+         "injections, selective buybacks, and hidden-asset "
+         "realisation."),
         ("Additive discipline",
          "Every layer ADDS to the composite; none modifies another's "
          "score. New legs append fields; existing weights never change. "
@@ -2179,7 +2196,7 @@ def build_methodology(wb: Workbook):
          "sum of per-layer rank-decay contributions across the universe."),
         ("Layer independence",
          "Pairwise Spearman correlation (layer_correlation_pairs.csv) "
-         "collapses 30 raw layers to ~21 effective-independent at "
+         f"collapses {n_consensus_layers()} raw layers to effective-independent at "
          "rho>0.6. Three correlated clusters: PSU+Voss, tender family, "
          "F4+opportunistic. 'Fires 9 layers' ≈ 7-8 true confirmations."),
         ("Freshness weighting",
@@ -2262,7 +2279,7 @@ def build_contents(wb: Workbook):
     set_col_widths(ws, [4, 26, 64])
     write_title_band(ws,
                      "The Asymmetric Equities Workbook",
-                     "Contents — a structural map of the 30-layer "
+                     f"Contents — a structural map of the {n_consensus_layers()}-layer "
                      "universe analysis",
                      n_cols=3)
     write_header_row(ws, 4, ["#", "Tab", "What it contains"])
