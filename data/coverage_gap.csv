@@ -1,185 +1,192 @@
 status,n_screens,screens,symbol,name,region,sector,best_score
-UNVERIFIED,3,"yoy-unpriced,divergence,conviction",7222.T,"Nissan Shatai Co., Ltd.",JP,Consumer Discretionary,0.869
-UNVERIFIED,2,"surprises,new-reality",VIT-B.ST,Vitec Software Group AB (publ),EU,Information Technology,0.967
-UNVERIFIED,2,"inflecting-positive,divergence",600636.SS,"China Reform Culture Holdings Co., Ltd.",CN,Materials,0.92
-UNVERIFIED,2,"asymmetry,new-reality",PTC,PTC Inc.,US,Information Technology,0.902
-UNVERIFIED,2,"yoy-unpriced,accel-unpriced",4222.T,"Kodama Chemical Industry Co.,Ltd.",JP,Consumer Discretionary,0.897
-UNVERIFIED,2,"yoy-unpriced,asymmetry",9612.T,"LuckLand Co., Ltd.",JP,Industrials,0.877
+UNVERIFIED,6,"yoy-unpriced,accel-unpriced,asymmetry,inflecting-positive,divergence,conviction",RUN,Sunrun Inc.,US,Information Technology,0.946
+UNVERIFIED,4,"yoy-unpriced,inflecting-positive,divergence,conviction",GPMT,Granite Point Mortgage Trust Inc.,US,Real Estate,0.905
+UNVERIFIED,4,"yoy-unpriced,accel-unpriced,asymmetry,inflecting-positive",9612.T,"LuckLand Co., Ltd.",JP,Industrials,0.889
+UNVERIFIED,3,"yoy-unpriced,divergence,conviction",ARRY,"Array Technologies, Inc.",US,Information Technology,0.895
+UNVERIFIED,3,"yoy-unpriced,accel-unpriced,conviction",7222.T,"Nissan Shatai Co., Ltd.",JP,Consumer Discretionary,0.879
+UNVERIFIED,2,"surprises,new-reality",VIT-B.ST,Vitec Software Group AB (publ),EU,Information Technology,0.969
+UNVERIFIED,2,"yoy-unpriced,accel-unpriced",4222.T,"Kodama Chemical Industry Co.,Ltd.",JP,Consumer Discretionary,0.904
+UNVERIFIED,2,"inflecting-positive,conviction",GSS.AX,Genetic Signatures Limited,ANZ,Health Care,0.889
+UNVERIFIED,2,"inflecting-positive,divergence",TRITN.BK,Triton Holding Public Company Limited,SEA,Industrials,0.881
 UNVERIFIED,2,"yoy-unpriced,conviction",037560.KS,LG HelloVision Corp.,KR,Communication Services,0.871
-UNVERIFIED,2,"accel-unpriced,inflecting-positive",603639.SS,"Hailir Pesticides and Chemicals Group Co.,Ltd.",CN,Materials,0.865
-UNVERIFIED,2,"yoy-unpriced,conviction",BPT.AX,Beach Energy Limited,ANZ,Energy,0.863
-UNVERIFIED,2,"accel-unpriced,asymmetry",2331.TW,"Elitegroup Computer Systems Co.,Ltd.",TW,Information Technology,0.847
-UNVERIFIED,2,"accel-unpriced,divergence",3540.TWO,"Thermaltake Technology Co., Ltd.",TW,Information Technology,0.844
+UNVERIFIED,2,"yoy-unpriced,accel-unpriced",002489.SZ,"Yotrio Group Co., Ltd.",CN,Consumer Discretionary,0.865
+UNVERIFIED,2,"yoy-unpriced,accel-unpriced",6150.TWO,TUL Corporation,TW,Information Technology,0.857
+UNVERIFIED,2,"asymmetry,forensic",600517.SS,"State Grid Yingda Co.,Ltd.",CN,Industrials,0.855
+UNVERIFIED,2,"asymmetry,inflecting-positive",600741.SS,HUAYU Automotive Systems Company Limited,CN,Consumer Discretionary,0.845
+UNVERIFIED,2,"new-reality,consensus-lagging",PTC,PTC Inc.,US,Information Technology,0.843
+UNVERIFIED,2,"divergence,conviction",GOGO,Gogo Inc.,US,Communication Services,0.835
+UNVERIFIED,2,"divergence,conviction",3540.TWO,"Thermaltake Technology Co., Ltd.",TW,Information Technology,0.835
 UNVERIFIED,2,"forensic,conviction",6596.TWO,Kuang Hong Arts Management Incorporation,TW,Communication Services,0.831
-UNVERIFIED,2,"divergence,conviction",CASP.L,Caspian Sunrise plc,UK,Energy,0.826
-UNVERIFIED,2,"divergence,conviction",VG,Vonage Holdings Corp.,US,Communication Services,0.805
-UNVERIFIED,2,"asymmetry,divergence",XJB.SI,"G.H.Y Culture & Media Holding Co., Limited",SEA,Communication Services,0.8
-UNVERIFIED,1,surprises,DHX,"DHI Group, Inc.",US,Industrials,0.983
-UNVERIFIED,1,surprises,DCH,Dauch Corporation Common Stock,US,Consumer Discretionary,0.983
+UNVERIFIED,2,"divergence,conviction",VNA.F,Vonovia SE,EU,Real Estate,0.815
+UNVERIFIED,2,"divergence,conviction",CASP.L,Caspian Sunrise plc,UK,Energy,0.805
+UNVERIFIED,1,surprises,DHX,"DHI Group, Inc.",US,Industrials,0.982
+UNVERIFIED,1,surprises,DCH,Dauch Corporation Common Stock,US,Consumer Discretionary,0.982
 UNVERIFIED,1,surprises,ROOT,"Root, Inc.",US,Financials,0.98
 UNVERIFIED,1,surprises,ATRC,"AtriCure, Inc.",US,Health Care,0.976
-UNVERIFIED,1,surprises,TKA.DE,thyssenkrupp AG,EU,Industrials,0.975
-UNVERIFIED,1,surprises,M,"Macy's, Inc.",US,Consumer Discretionary,0.966
+UNVERIFIED,1,surprises,NKT.CO,NKT A/S,EU,Industrials,0.966
+UNVERIFIED,1,surprises,PRS.OL,Prosafe SE,EU,Energy,0.965
+UNVERIFIED,1,surprises,M,"Macy's, Inc.",US,Consumer Discretionary,0.965
 UNVERIFIED,1,surprises,CFW.TO,Calfrac Well Services Ltd.,CA,Energy,0.965
-UNVERIFIED,1,surprises,NKT.CO,NKT A/S,EU,Industrials,0.964
-UNVERIFIED,1,surprises,PRS.OL,Prosafe SE,EU,Energy,0.962
-UNVERIFIED,1,surprises,BLFS,"BioLife Solutions, Inc.",US,Health Care,0.962
-UNVERIFIED,1,surprises,KPT.TO,KP Tissue Inc.,CA,Consumer Staples,0.959
+UNVERIFIED,1,surprises,BLFS,"BioLife Solutions, Inc.",US,Health Care,0.961
+UNVERIFIED,1,surprises,KPT.TO,KP Tissue Inc.,CA,Consumer Staples,0.957
+UNVERIFIED,1,surprises,FEV.DE,FORTEC Elektronik AG,EU,Information Technology,0.957
+UNVERIFIED,1,surprises,NOS.LS,"NOS, S.G.P.S., S.A.",EU,Communication Services,0.956
+UNVERIFIED,1,surprises,GRONG.OL,Grong Sparebank,EU,Financials,0.956
 UNVERIFIED,1,surprises,NKE,"Nike, Inc.",US,Consumer Discretionary,0.955
-UNVERIFIED,1,surprises,RELL,"Richardson Electronics, Ltd.",US,Information Technology,0.955
-UNVERIFIED,1,surprises,FEV.F,FORTEC Elektronik AG,EU,Information Technology,0.955
-UNVERIFIED,1,surprises,NOS.LS,"NOS, S.G.P.S., S.A.",EU,Communication Services,0.954
-UNVERIFIED,1,surprises,GRONG.OL,Grong Sparebank,EU,Financials,0.954
+UNVERIFIED,1,surprises,RELL,"Richardson Electronics, Ltd.",US,Information Technology,0.954
 UNVERIFIED,1,surprises,MRCY,"Mercury Systems, Inc.",US,Industrials,0.953
 UNVERIFIED,1,surprises,DINO,HF Sinclair Corporation Common Stock,US,Energy,0.95
-UNVERIFIED,1,new-reality,CSGP,"CoStar Group, Inc.",US,Real Estate,0.922
+UNVERIFIED,1,surprises,MQ,Marqeta Inc. Class A Common Stock,US,Information Technology,0.949
+UNVERIFIED,1,new-reality,LMB,"Limbach Holdings, Inc.",US,Industrials,0.911
+UNVERIFIED,1,new-reality,CSGP,"CoStar Group, Inc.",US,Real Estate,0.908
 UNVERIFIED,1,forensic,3856.T,Abalance Corporation,JP,Information Technology,0.902
-UNVERIFIED,1,new-reality,CCOI,"Cogent Communications Holdings, Inc.",US,Communication Services,0.895
-UNVERIFIED,1,inflecting-positive,0698.HK,Tongda Group Holdings Limited,HK,Information Technology,0.888
-UNVERIFIED,1,inflecting-positive,GSS.AX,Genetic Signatures Limited,ANZ,Health Care,0.888
-UNVERIFIED,1,forensic,NWL.MI,Newlat Food S.p.A.,EU,Consumer Staples,0.882
-UNVERIFIED,1,yoy-unpriced,2700.T,"Kitoku Shinryo Co., Ltd.",JP,Consumer Staples,0.881
-UNVERIFIED,1,forensic,USAK.IS,Usak Seramik Sanayi A.S.,MEA,Industrials,0.875
-UNVERIFIED,1,forensic,4746.TW,"Formosa Laboratories, Inc.",TW,Health Care,0.873
-UNVERIFIED,1,yoy-unpriced,002016.SZ,"Guangdong Shirongzhaoye Co., Ltd.",CN,Real Estate,0.861
-UNVERIFIED,1,new-reality,WING,Wingstop Inc.,US,Consumer Discretionary,0.861
-UNVERIFIED,1,yoy-unpriced,3904.T,KAYAC Inc.,JP,Communication Services,0.86
-UNVERIFIED,1,inflecting-positive,EMBC,Embecta Corp. Common Stock,US,Health Care,0.856
-UNVERIFIED,1,inflecting-positive,OPT.AX,Opthea Limited,ANZ,Health Care,0.855
-UNVERIFIED,1,inflecting-positive,000932.SZ,"Hunan Valin Steel Co., Ltd.",CN,Materials,0.854
-UNVERIFIED,1,inflecting-positive,3933.T,"CHIeru Co.,Ltd.",JP,Information Technology,0.853
-UNVERIFIED,1,accel-unpriced,002489.SZ,"Yotrio Group Co., Ltd.",CN,Consumer Discretionary,0.852
-UNVERIFIED,1,new-reality,CRM,"Salesforce, Inc.",US,Information Technology,0.852
-UNVERIFIED,1,accel-unpriced,2548.TW,"Huaku Development Co., Ltd.",TW,Real Estate,0.851
-UNVERIFIED,1,forensic,ANIM3.SA,Anima Holding S.A.,LATAM,Consumer Staples,0.851
-UNVERIFIED,1,inflecting-positive,ALMRB.PA,Mr. Bricolage SA,EU,Consumer Discretionary,0.848
-UNVERIFIED,1,forensic,600517.SS,"State Grid Yingda Co.,Ltd.",CN,Industrials,0.848
-UNVERIFIED,1,forensic,002731.SZ,"Shenyang Cuihua Gold and Silver Jewelry Co., Ltd.",CN,Consumer Discretionary,0.841
-UNVERIFIED,1,accel-unpriced,6150.TWO,TUL Corporation,TW,Information Technology,0.84
-UNVERIFIED,1,new-reality,MORN,"Morningstar, Inc.",US,Financials,0.833
-UNVERIFIED,1,consensus-lagging,PNDX-B.ST,Pandox AB (publ),EU,Consumer Discretionary,0.833
-UNVERIFIED,1,divergence,OGI.TO,OrganiGram Holdings Inc.,CA,Health Care,0.83
-UNVERIFIED,1,forensic,6186.TWO,"Shin Ruenn development Co., LTD",TW,Real Estate,0.83
-UNVERIFIED,1,divergence,3800.HK,GCL-Poly Energy Holdings Limited,HK,Information Technology,0.828
-UNVERIFIED,1,forensic,600269.SS,"Jiangxi Ganyue Expressway CO.,LTD.",CN,Industrials,0.827
-UNVERIFIED,1,divergence,1202.SR,Middle East Company for Manufacturing and Producing Paper,MEA,Materials,0.824
-UNVERIFIED,1,divergence,000009.SZ,"China Baoan Group Co., Ltd.",CN,Industrials,0.824
-UNVERIFIED,1,forensic,LRH.BK,Laguna Resorts & Hotels Public Company Limited,SEA,Consumer Discretionary,0.824
-UNVERIFIED,1,forensic,603585.SS,"Suli Co., Ltd.",CN,Materials,0.821
-UNVERIFIED,1,forensic,1438.TW,"SanDi Properties Co.,Ltd.",TW,Real Estate,0.821
-UNVERIFIED,1,new-reality,BR,"Broadridge Financial Solutions, Inc.",US,Information Technology,0.82
-UNVERIFIED,1,new-reality,INTU,Intuit Inc.,US,Information Technology,0.819
-UNVERIFIED,1,divergence,2342.HK,Comba Telecom Systems Holdings Limited,HK,Information Technology,0.817
-UNVERIFIED,1,divergence,0202.HK,EverChina Int'l Holdings Company Limited,HK,Real Estate,0.816
-UNVERIFIED,1,new-reality,DLB,"Dolby Laboratories, Inc. Class A",US,Information Technology,0.815
-UNVERIFIED,1,new-reality,MEG,"Montrose Environmental Group, Inc.",US,Industrials,0.814
-UNVERIFIED,1,divergence,4449.T,giftee Inc.,JP,Consumer Discretionary,0.812
-UNVERIFIED,1,asymmetry,IF.MI,Banca IFIS S.p.A.,EU,Financials,0.81
-UNVERIFIED,1,new-reality,DECK,Deckers Outdoor Corporation,US,Consumer Discretionary,0.807
-UNVERIFIED,1,consensus-lagging,4751.T,"CyberAgent, Inc.",JP,Communication Services,0.807
-UNVERIFIED,1,divergence,4564.T,"OncoTherapy Science, Inc.",JP,Health Care,0.804
-UNVERIFIED,1,consensus-lagging,1802.T,Obayashi Corp.,JP,Industrials,0.804
-UNVERIFIED,1,asymmetry,7351.T,"Goodpatch, Inc.",JP,Information Technology,0.803
-UNVERIFIED,1,divergence,7359.T,"TokyoTsushin, Inc.",JP,Communication Services,0.802
-UNVERIFIED,1,divergence,4220.SR,Emaar The Economic City,MEA,Real Estate,0.801
-UNVERIFIED,1,divergence,ARRY,"Array Technologies, Inc.",US,Information Technology,0.8
-UNVERIFIED,1,forensic,AQZ.AX,Alliance Aviation Services Limited,ANZ,Industrials,0.8
-UNVERIFIED,1,new-reality,ANOD-B.ST,Addnode Group AB (publ),EU,Information Technology,0.799
-UNVERIFIED,1,divergence,1587.TW,Cryomax Cooling System Corp.,TW,Consumer Discretionary,0.798
-UNVERIFIED,1,divergence,LAND.SW,Landis+Gyr Group AG,EU,Industrials,0.796
-UNVERIFIED,1,new-reality,TWFG,TWFG Inc. Class A Common Stock,US,Financials,0.795
-UNVERIFIED,1,new-reality,KXS.TO,Kinaxis Inc.,CA,Information Technology,0.794
-UNVERIFIED,1,forensic,PGN.F,paragon GmbH & Co. KGaA,EU,Consumer Discretionary,0.793
-UNVERIFIED,1,forensic,GISS.QA,Gulf International Services Q.P.S.C.,MEA,Energy,0.792
-UNVERIFIED,1,new-reality,LMB,"Limbach Holdings, Inc.",US,Industrials,0.791
-UNVERIFIED,1,asymmetry,600983.SS,"Whirlpool China Co., Ltd.",CN,Consumer Discretionary,0.79
-UNVERIFIED,1,forensic,MPC.TO,Madison Pacific Properties Inc.,CA,Real Estate,0.79
-UNVERIFIED,1,forensic,BST.DE,Bastei Lubbe AG,EU,Communication Services,0.788
-UNVERIFIED,1,new-reality,WSP.TO,WSP Global Inc.,CA,Industrials,0.788
-UNVERIFIED,1,forensic,AALR3.SA,Centro de Imagem Diagnosticos S.A.,LATAM,Health Care,0.787
-UNVERIFIED,1,forensic,9509.T,"Hokkaido Electric Power Company, Incorporated",JP,Utilities,0.787
-UNVERIFIED,1,forensic,8114.TW,"Posiflex Technology, Inc.",TW,Industrials,0.787
-UNVERIFIED,1,asymmetry,600585.SS,Anhui Conch Cement Company Limited,CN,Materials,0.786
-UNVERIFIED,1,forensic,VICO.JK,PT Victoria Investama Tbk,SEA,Financials,0.786
-UNVERIFIED,1,new-reality,EXLS,"ExlService Holdings, Inc.",US,Information Technology,0.785
-UNVERIFIED,1,new-reality,VRSK,"Verisk Analytics, Inc.",US,Industrials,0.784
-UNVERIFIED,1,new-reality,ARHS,Arhaus Inc. Class A Common Stock,US,Industrials,0.783
-UNVERIFIED,1,asymmetry,PARP.PA,Groupe Partouche SA,EU,Consumer Discretionary,0.781
-UNVERIFIED,1,asymmetry,INDB.MI,Indel B S.p.A.,EU,Information Technology,0.78
-UNVERIFIED,1,consensus-lagging,ANTM.JK,PT Aneka Tambang Tbk,SEA,Materials,0.78
-UNVERIFIED,1,asymmetry,9951.TWO,"Macauto Industrial Co., Ltd.",TW,Consumer Discretionary,0.779
-UNVERIFIED,1,new-reality,PLNT,"Planet Fitness, Inc. Class A",US,Consumer Discretionary,0.779
-UNVERIFIED,1,consensus-lagging,5706.T,"Mitsui Mining & Smelting Co., Ltd.",JP,Industrials,0.777
-UNVERIFIED,1,new-reality,GDDY,GoDaddy Inc.,US,Information Technology,0.773
-UNVERIFIED,1,consensus-lagging,ANA.MC,"Acciona, S.A.",EU,Industrials,0.769
-UNVERIFIED,1,new-reality,MKTX,MarketAxess Holdings Inc.,US,Financials,0.768
-UNVERIFIED,1,consensus-lagging,3038.T,"Kobe Bussan Co., Ltd.",JP,Consumer Staples,0.76
-UNVERIFIED,1,consensus-lagging,4385.T,"Mercari, Inc.",JP,Consumer Discretionary,0.752
-UNVERIFIED,1,consensus-lagging,RIPLEY.SN,Ripley Corp S.A.,LATAM,Consumer Discretionary,0.733
-UNVERIFIED,1,consensus-lagging,CATE.ST,Catena AB (publ),EU,Real Estate,0.732
-UNVERIFIED,1,consensus-lagging,NAS.OL,Norwegian Air Shuttle ASA,EU,Industrials,0.727
-UNVERIFIED,1,consensus-lagging,2020.SR,SABIC Agri-Nutrients Company,MEA,Materials,0.724
-UNVERIFIED,1,consensus-lagging,1942.T,"Kandenko Co.,Ltd.",JP,Industrials,0.717
-UNVERIFIED,1,consensus-lagging,JCAP,Jefferson Capital Inc. Common Stock,US,Financials,0.71
-UNVERIFIED,1,consensus-lagging,GTK.NZ,Gentrack Group Limited,ANZ,Information Technology,0.704
-UNVERIFIED,1,consensus-lagging,7649.T,"Sugi Holdings Co.,Ltd.",JP,Health Care,0.696
-UNVERIFIED,1,consensus-lagging,1944.T,Kinden Corporation,JP,Industrials,0.694
-UNVERIFIED,1,consensus-lagging,6508.T,Meidensha Corporation,JP,Industrials,0.684
+UNVERIFIED,1,inflecting-positive,8165.T,"Senshukai Co., Ltd.",JP,Consumer Discretionary,0.899
+UNVERIFIED,1,new-reality,CCOI,"Cogent Communications Holdings, Inc.",US,Communication Services,0.896
+UNVERIFIED,1,divergence,2342.HK,Comba Telecom Systems Holdings Limited,HK,Information Technology,0.893
+UNVERIFIED,1,new-reality,DECK,Deckers Outdoor Corporation,US,Consumer Discretionary,0.882
+UNVERIFIED,1,new-reality,PXED,Phoenix Education Partners Inc. Common Stock,US,Consumer Staples,0.879
+UNVERIFIED,1,forensic,NWL.MI,Newlat Food S.p.A.,EU,Consumer Staples,0.872
+UNVERIFIED,1,forensic,ANIM3.SA,Anima Holding S.A.,LATAM,Consumer Staples,0.871
+UNVERIFIED,1,inflecting-positive,0698.HK,Tongda Group Holdings Limited,HK,Information Technology,0.87
+UNVERIFIED,1,yoy-unpriced,300850.SZ,"Luoyang Xinqianglian Slewing Bearing Co., Ltd.",CN,Industrials,0.868
+UNVERIFIED,1,new-reality,WING,Wingstop Inc.,US,Consumer Discretionary,0.866
+UNVERIFIED,1,yoy-unpriced,2700.T,"Kitoku Shinryo Co., Ltd.",JP,Consumer Staples,0.865
+UNVERIFIED,1,inflecting-positive,SYN.IC,S√Ωn hf.,EU,Communication Services,0.865
+UNVERIFIED,1,divergence,MSIN.JK,PT. MNC Studios International Tbk.,SEA,Communication Services,0.863
+UNVERIFIED,1,yoy-unpriced,BPT.AX,Beach Energy Limited,ANZ,Energy,0.862
+UNVERIFIED,1,inflecting-positive,SGF-R.BK,SGF Capital Public Company Limited,SEA,Financials,0.861
+UNVERIFIED,1,inflecting-positive,000932.SZ,"Hunan Valin Steel Co., Ltd.",CN,Materials,0.86
+UNVERIFIED,1,forensic,USAK.IS,Usak Seramik Sanayi A.S.,MEA,Industrials,0.859
+UNVERIFIED,1,yoy-unpriced,000004.SZ,"Shenzhen GuoHua Network Security Technology Co., Ltd.",CN,Financials,0.857
+UNVERIFIED,1,yoy-unpriced,SPRO,"Spero Therapeutics, Inc.",US,Health Care,0.857
+UNVERIFIED,1,divergence,0202.HK,EverChina Int'l Holdings Company Limited,HK,Real Estate,0.856
+UNVERIFIED,1,yoy-unpriced,3904.T,KAYAC Inc.,JP,Communication Services,0.855
+UNVERIFIED,1,inflecting-positive,NUS,"Nu Skin Enterprises, Inc. Class A",US,Consumer Staples,0.854
+UNVERIFIED,1,forensic,4746.TW,"Formosa Laboratories, Inc.",TW,Health Care,0.853
+UNVERIFIED,1,accel-unpriced,8059.TWO,CastleNet Technology Inc.,TW,Information Technology,0.85
+UNVERIFIED,1,inflecting-positive,EGG.AX,Enero Group Limited,ANZ,Communication Services,0.849
+UNVERIFIED,1,forensic,002731.SZ,"Shenyang Cuihua Gold and Silver Jewelry Co., Ltd.",CN,Consumer Discretionary,0.844
+UNVERIFIED,1,forensic,600269.SS,"Jiangxi Ganyue Expressway CO.,LTD.",CN,Industrials,0.843
+UNVERIFIED,1,forensic,BWG.BK,Better World Green Public Company Limited,SEA,Industrials,0.843
+UNVERIFIED,1,forensic,ANAN.BK,Ananda Development Public Company Limited,SEA,Real Estate,0.842
+UNVERIFIED,1,divergence,600363.SS,"Jiangxi Lianchuang Opto-Electronic Science&Technology Co.,Ltd",CN,Information Technology,0.841
+UNVERIFIED,1,forensic,5994.T,"Fine Sinter Co., Ltd.",JP,Industrials,0.839
+UNVERIFIED,1,accel-unpriced,VXRT,"Vaxart, Inc.",US,Health Care,0.838
+UNVERIFIED,1,forensic,6186.TWO,"Shin Ruenn development Co., LTD",TW,Real Estate,0.836
+UNVERIFIED,1,divergence,ALNY,"Alnylam Pharmaceuticals, Inc.",US,Health Care,0.831
+UNVERIFIED,1,forensic,LRH.BK,Laguna Resorts & Hotels Public Company Limited,SEA,Consumer Discretionary,0.831
+UNVERIFIED,1,accel-unpriced,300443.SZ,"Jinlei Technology Co., Ltd.",CN,Industrials,0.83
+UNVERIFIED,1,divergence,6562.T,"Geniee, Inc.",JP,Communication Services,0.829
+UNVERIFIED,1,forensic,NACON.PA,Nacon S.A.,EU,Communication Services,0.829
+UNVERIFIED,1,forensic,TRN.L,Trainline Plc,UK,Consumer Discretionary,0.829
+UNVERIFIED,1,new-reality,DRVN,Driven Brands Holdings Inc.,US,Consumer Discretionary,0.827
+UNVERIFIED,1,divergence,ENPH,"Enphase Energy, Inc.",US,Information Technology,0.825
+UNVERIFIED,1,new-reality,MEG,"Montrose Environmental Group, Inc.",US,Industrials,0.825
+UNVERIFIED,1,new-reality,ONT,Onterris Inc. Common Stock,US,Industrials,0.823
+UNVERIFIED,1,forensic,1438.TW,"SanDi Properties Co.,Ltd.",TW,Real Estate,0.822
+UNVERIFIED,1,forensic,SIMH3.SA,SIMPAR S.A.,LATAM,Industrials,0.812
+UNVERIFIED,1,forensic,CQE.AX,Charter Hall Social Infrastructure REIT,ANZ,Real Estate,0.812
+UNVERIFIED,1,divergence,CSNA3.SA,Companhia Siderurgica Nacional,LATAM,Materials,0.806
+UNVERIFIED,1,forensic,KARSN.IS,Karsan Otomotiv Sanayii ve Ticaret A.S.,MEA,Consumer Discretionary,0.806
+UNVERIFIED,1,consensus-lagging,1802.T,Obayashi Corp.,JP,Industrials,0.806
+UNVERIFIED,1,divergence,INVEO.IS,Inveo Yatirim Holding A.S.,MEA,Financials,0.804
+UNVERIFIED,1,divergence,4546.TWO,"Chaheng Precision Co., Ltd.",TW,Industrials,0.804
+UNVERIFIED,1,asymmetry,IF.MI,Banca IFIS S.p.A.,EU,Financials,0.801
+UNVERIFIED,1,consensus-lagging,ANTM.JK,PT Aneka Tambang Tbk,SEA,Materials,0.801
+UNVERIFIED,1,new-reality,FRE.F,Fresenius SE & Co. KGaA,EU,Health Care,0.799
+UNVERIFIED,1,asymmetry,PARP.PA,Groupe Partouche SA,EU,Consumer Discretionary,0.797
+UNVERIFIED,1,forensic,GISS.QA,Gulf International Services Q.P.S.C.,MEA,Energy,0.797
+UNVERIFIED,1,new-reality,ANOD-B.ST,Addnode Group AB (publ),EU,Information Technology,0.796
+UNVERIFIED,1,asymmetry,7351.T,"Goodpatch, Inc.",JP,Information Technology,0.794
+UNVERIFIED,1,forensic,CEAB3.SA,C&A Modas S.A.,LATAM,Consumer Discretionary,0.794
+UNVERIFIED,1,forensic,ACS.JO,Acsion Limited,MEA,Real Estate,0.794
+UNVERIFIED,1,new-reality,VRSK,"Verisk Analytics, Inc.",US,Industrials,0.794
+UNVERIFIED,1,asymmetry,2331.TW,"Elitegroup Computer Systems Co.,Ltd.",TW,Information Technology,0.793
+UNVERIFIED,1,divergence,6188.TWO,Quanta Storage Inc.,TW,Information Technology,0.793
+UNVERIFIED,1,asymmetry,INDB.MI,Indel B S.p.A.,EU,Information Technology,0.792
+UNVERIFIED,1,asymmetry,601211.SS,"Guotai Junan Securities Co., Ltd.",CN,Financials,0.792
+UNVERIFIED,1,new-reality,CRM,"Salesforce, Inc.",US,Information Technology,0.792
+UNVERIFIED,1,divergence,UPST,"Upstart Holdings, Inc.",US,Financials,0.791
+UNVERIFIED,1,asymmetry,002034.SZ,"Wangneng Environment Co., Ltd.",CN,Industrials,0.788
+UNVERIFIED,1,asymmetry,601878.SS,"Zheshang Securities Co., Ltd.",CN,Financials,0.787
+UNVERIFIED,1,consensus-lagging,4751.T,"CyberAgent, Inc.",JP,Communication Services,0.787
+UNVERIFIED,1,asymmetry,600585.SS,Anhui Conch Cement Company Limited,CN,Materials,0.784
+UNVERIFIED,1,divergence,300073.SZ,"Beijing Easpring Material Technology CO.,LTD.",CN,Industrials,0.783
+UNVERIFIED,1,asymmetry,3472.T,Ooedo Onsen Reit Investment Corporation,JP,Real Estate,0.782
+UNVERIFIED,1,asymmetry,2533.T,"Oenon Holdings, Inc.",JP,Consumer Staples,0.782
+UNVERIFIED,1,new-reality,INTU,Intuit Inc.,US,Information Technology,0.782
+UNVERIFIED,1,asymmetry,601333.SS,Guangshen Railway Company Limited Class H,CN,Industrials,0.781
+UNVERIFIED,1,new-reality,PLNT,"Planet Fitness, Inc. Class A",US,Consumer Discretionary,0.781
+UNVERIFIED,1,divergence,1529.TW,Klingon Aerospace Inc.,TW,Industrials,0.779
+UNVERIFIED,1,consensus-lagging,5706.T,"Mitsui Mining & Smelting Co., Ltd.",JP,Industrials,0.779
+UNVERIFIED,1,asymmetry,002284.SZ,"Zhejiang Asia-Pacific Mechanical & Electronic Co.,Ltd",CN,Consumer Discretionary,0.778
+UNVERIFIED,1,consensus-lagging,4385.T,"Mercari, Inc.",JP,Consumer Discretionary,0.777
+UNVERIFIED,1,new-reality,ISRG,"Intuitive Surgical, Inc.",US,Health Care,0.773
+UNVERIFIED,1,new-reality,NATR,"Nature's Sunshine Products, Inc.",US,Consumer Staples,0.771
+UNVERIFIED,1,consensus-lagging,PNDX-B.ST,Pandox AB (publ),EU,Consumer Discretionary,0.77
+UNVERIFIED,1,new-reality,BR,"Broadridge Financial Solutions, Inc.",US,Information Technology,0.765
+UNVERIFIED,1,new-reality,GDDY,GoDaddy Inc.,US,Information Technology,0.765
+UNVERIFIED,1,new-reality,ARHS,Arhaus Inc. Class A Common Stock,US,Industrials,0.764
+UNVERIFIED,1,new-reality,CWST,"Casella Waste Systems, Inc.",US,Industrials,0.764
+UNVERIFIED,1,consensus-lagging,CATE.ST,Catena AB (publ),EU,Real Estate,0.762
+UNVERIFIED,1,consensus-lagging,7936.T,ASICS Corporation,JP,Consumer Discretionary,0.751
+UNVERIFIED,1,consensus-lagging,RIPLEY.SN,Ripley Corp S.A.,LATAM,Consumer Discretionary,0.748
+UNVERIFIED,1,consensus-lagging,VG,Vonage Holdings Corp.,US,Communication Services,0.722
+UNVERIFIED,1,consensus-lagging,GTK.NZ,Gentrack Group Limited,ANZ,Information Technology,0.72
+UNVERIFIED,1,consensus-lagging,1942.T,"Kandenko Co.,Ltd.",JP,Industrials,0.72
+UNVERIFIED,1,consensus-lagging,3038.T,"Kobe Bussan Co., Ltd.",JP,Consumer Staples,0.716
+UNVERIFIED,1,consensus-lagging,AALI.JK,PT Astra Agro Lestari Tbk,SEA,Consumer Staples,0.709
+UNVERIFIED,1,consensus-lagging,000729.SZ,"Beijing Yanjing Brewery Co.,Ltd.",CN,Consumer Staples,0.707
+UNVERIFIED,1,consensus-lagging,LTM.SN,LATAM Airlines Group S.A.,LATAM,Industrials,0.706
+UNVERIFIED,1,consensus-lagging,1944.T,Kinden Corporation,JP,Industrials,0.69
+UNVERIFIED,1,consensus-lagging,BLBD,Blue Bird Corporation,US,Consumer Discretionary,0.69
+UNVERIFIED,1,consensus-lagging,ENKAI.IS,Enka Insaat ve Sanayi A.S.,MEA,Industrials,0.687
+UNVERIFIED,1,consensus-lagging,7649.T,"Sugi Holdings Co.,Ltd.",JP,Health Care,0.686
 UNVERIFIED,1,consensus-lagging,3046.T,JINS HOLDINGS Inc.,JP,Health Care,0.684
-UNVERIFIED,1,consensus-lagging,LTM.SN,LATAM Airlines Group S.A.,LATAM,Industrials,0.667
-UNVERIFIED,1,consensus-lagging,6383.T,"Daifuku Co., Ltd.",JP,Industrials,0.666
-UNVERIFIED,1,consensus-lagging,ENKAI.IS,Enka Insaat ve Sanayi A.S.,MEA,Industrials,0.664
-UNVERIFIED,1,consensus-lagging,JHSF3.SA,JHSF Participacoes S.A.,LATAM,Real Estate,0.655
-UNVERIFIED,1,consensus-lagging,WHC.AX,Whitehaven Coal Limited,ANZ,Materials,0.652
-UNVERIFIED,1,consensus-lagging,5805.T,"SWCC Showa Holdings Co., Ltd.",JP,Industrials,0.651
-UNVERIFIED,1,conviction,BTO.TO,B2Gold Corp.,CA,Materials,0.626
-UNVERIFIED,1,conviction,5213.TWO,"YeaShin International Development Co., Ltd.",TW,Real Estate,0.616
-UNVERIFIED,1,conviction,BAVA.CO,Bavarian Nordic A/S,EU,Health Care,0.591
-UNVERIFIED,1,conviction,603185.SS,"Wuxi Shangji Automation Co., Ltd.",CN,Industrials,0.586
-UNVERIFIED,1,conviction,9993.T,"Yamazawa Co., Ltd.",JP,Consumer Staples,0.573
-REJECT,6,"yoy-unpriced,accel-unpriced,asymmetry,inflecting-positive,divergence,conviction",600104.SS,SAIC Motor Corporation Limited,CN,Consumer Discretionary,0.937
-REJECT,5,"yoy-unpriced,accel-unpriced,inflecting-positive,divergence,conviction",PEHA.JK,"PT Phapros, Tbk",SEA,Health Care,0.904
-KEEP,5,"yoy-unpriced,inflecting-positive,divergence,new-reality,conviction",GTM,ZoomInfo Technologies Inc Common Stock,US,Information Technology,0.882
-REJECT,4,"yoy-unpriced,accel-unpriced,asymmetry,inflecting-positive",2442.TW,"Jean Co.,Ltd",TW,Consumer Discretionary,0.968
-REJECT,4,"yoy-unpriced,accel-unpriced,asymmetry,inflecting-positive",PKG1T.TL,AS Pro Kapital Grupp,EU,Real Estate,0.887
-KEEP,4,"yoy-unpriced,accel-unpriced,asymmetry,inflecting-positive",TASK,TaskUs Inc. Class A Common Stock,US,Information Technology,0.867
-REJECT,4,"yoy-unpriced,inflecting-positive,divergence,conviction",VRRM,Verra Mobility Corporation,US,Industrials,0.864
-REJECT,3,"yoy-unpriced,accel-unpriced,inflecting-positive",PALM.JK,PT Provident Agro Tbk,SEA,Consumer Staples,0.921
-SPECULATIVE,3,"yoy-unpriced,accel-unpriced,inflecting-positive",1541.TW,"CHANG TYPE Industrial Co., Ltd.",TW,Industrials,0.898
-REJECT,3,"yoy-unpriced,accel-unpriced,asymmetry",ZEAL.CO,Zealand Pharma A/S,EU,Health Care,0.895
-SPECULATIVE,3,"yoy-unpriced,accel-unpriced,conviction",GPOR,Gulfport Energy Corporation Common Shares,US,Energy,0.88
-SPECULATIVE,3,"yoy-unpriced,accel-unpriced,conviction",BEEF3.SA,Minerva S.A.,LATAM,Consumer Staples,0.873
-KEEP,3,"yoy-unpriced,accel-unpriced,conviction",EXE,Expand Energy Corporation Common Stock,US,Energy,0.871
-REJECT,3,"yoy-unpriced,accel-unpriced,asymmetry",3512.TWO,"Huang Long Development Co.,Ltd.",TW,Real Estate,0.871
-SPECULATIVE,3,"inflecting-positive,forensic,conviction",HAPV3.SA,Hapvida Participacoes e Investimentos S.A.,LATAM,Health Care,0.864
-REJECT,3,"accel-unpriced,divergence,conviction",688022.SS,"Suzhou Harmontronics Automation Technology Co., Ltd",CN,Industrials,0.839
-REJECT,2,"yoy-unpriced,inflecting-positive",5206.TWO,"Kunyue Development Co., Ltd.",TW,Real Estate,0.912
-REJECT,2,"asymmetry,forensic",002612.SZ,"Lancy Co., Ltd.",CN,Consumer Discretionary,0.909
-SPECULATIVE,2,"divergence,conviction",BISI.JK,PT BISI International Tbk,SEA,Materials,0.894
-SPECULATIVE,2,"yoy-unpriced,accel-unpriced",CBZ,"CBIZ, Inc.",US,Industrials,0.878
-SPECULATIVE,2,"asymmetry,inflecting-positive",VTY.L,Vistry Group PLC,UK,Industrials,0.862
-KEEP,2,"accel-unpriced,inflecting-positive",SKB.DE,Koenig & Bauer AG,EU,Industrials,0.86
-KEEP,2,"accel-unpriced,asymmetry",5522.TW,"Farglory Land Development Co., Ltd.",TW,Real Estate,0.839
-REJECT,1,surprises,PTLO,Portillo's Inc. Class A Common Stock,US,Consumer Discretionary,0.978
+UNVERIFIED,1,consensus-lagging,JHSF3.SA,JHSF Participacoes S.A.,LATAM,Real Estate,0.682
+UNVERIFIED,1,consensus-lagging,6383.T,"Daifuku Co., Ltd.",JP,Industrials,0.681
+UNVERIFIED,1,consensus-lagging,PINFRA.MX,"Promotora y Operadora de Infraestructura, S. A. B. de C. V.",LATAM,Industrials,0.675
+UNVERIFIED,1,conviction,OGI.TO,OrganiGram Holdings Inc.,CA,Health Care,0.634
+UNVERIFIED,1,conviction,4540.T,Tsumura & Co.,JP,Health Care,0.58
+UNVERIFIED,1,conviction,601456.SS,"Guolian Securities Co., Ltd.",CN,Financials,0.573
+UNVERIFIED,1,conviction,133820.KS,"Fine Besteel Co., Ltd.",KR,Materials,0.543
+UNVERIFIED,1,conviction,AF.PA,AIR FRANCE - KLM,EU,Industrials,0.535
+UNVERIFIED,1,conviction,9993.T,"Yamazawa Co., Ltd.",JP,Consumer Staples,0.522
+REJECT,6,"yoy-unpriced,accel-unpriced,asymmetry,inflecting-positive,divergence,conviction",PKG1T.TL,AS Pro Kapital Grupp,EU,Real Estate,0.893
+REJECT,5,"yoy-unpriced,accel-unpriced,asymmetry,inflecting-positive,conviction",600104.SS,SAIC Motor Corporation Limited,CN,Consumer Discretionary,0.931
+REJECT,4,"yoy-unpriced,accel-unpriced,asymmetry,inflecting-positive",2442.TW,"Jean Co.,Ltd",TW,Consumer Discretionary,0.946
+SPECULATIVE,4,"inflecting-positive,divergence,forensic,conviction",HAPV3.SA,Hapvida Participacoes e Investimentos S.A.,LATAM,Health Care,0.881
+REJECT,3,"yoy-unpriced,accel-unpriced,inflecting-positive",CIC.L,The Conygar Investment Company PLC,UK,Real Estate,0.909
+SPECULATIVE,3,"yoy-unpriced,accel-unpriced,inflecting-positive",1541.TW,"CHANG TYPE Industrial Co., Ltd.",TW,Industrials,0.88
+REJECT,3,"yoy-unpriced,accel-unpriced,asymmetry",ZEAL.CO,Zealand Pharma A/S,EU,Health Care,0.876
+REJECT,2,"yoy-unpriced,accel-unpriced",PEHA.JK,"PT Phapros, Tbk",SEA,Health Care,0.879
+SPECULATIVE,2,"yoy-unpriced,accel-unpriced",BEEF3.SA,Minerva S.A.,LATAM,Consumer Staples,0.864
+SPECULATIVE,2,"asymmetry,inflecting-positive",VTY.L,Vistry Group PLC,UK,Industrials,0.86
+KEEP,2,"accel-unpriced,inflecting-positive",SKB.DE,Koenig & Bauer AG,EU,Industrials,0.851
+REJECT,2,"accel-unpriced,conviction",XRX,Xerox Holdings Corporation,US,Information Technology,0.841
+REJECT,2,"accel-unpriced,conviction",688022.SS,"Suzhou Harmontronics Automation Technology Co., Ltd",CN,Industrials,0.835
+KEEP,2,"new-reality,conviction",GTM,ZoomInfo Technologies Inc Common Stock,US,Information Technology,0.826
+REJECT,2,"divergence,conviction",MOS,The Mosaic Company,US,Materials,0.781
+REJECT,1,surprises,PTLO,Portillo's Inc. Class A Common Stock,US,Consumer Discretionary,0.977
 KEEP,1,surprises,NEO,"NeoGenomics, Inc.",US,Health Care,0.968
-REJECT,1,surprises,AMH,American Homes 4 Rent,US,Real Estate,0.967
-SPECULATIVE,1,surprises,AMSC,American Superconductor Corporation,US,Industrials,0.961
+REJECT,1,surprises,AMH,American Homes 4 Rent,US,Real Estate,0.966
+SPECULATIVE,1,surprises,AMSC,American Superconductor Corporation,US,Industrials,0.96
 KEEP,1,surprises,ROKU,"Roku, Inc. Class A",US,Communication Services,0.957
-REJECT,1,surprises,INSP,"Inspire Medical Systems, Inc.",US,Health Care,0.953
-REJECT,1,inflecting-positive,CO.PA,"Casino, Guichard-Perrachon Societe Anonyme",EU,Consumer Staples,0.904
-SPECULATIVE,1,new-reality,SPSC,"SPS Commerce, Inc.",US,Information Technology,0.884
-KEEP,1,yoy-unpriced,KROS,"Keros Therapeutics, Inc.",US,Health Care,0.88
-REJECT,1,asymmetry,3479.T,TKP Corporation,JP,Real Estate,0.864
-REJECT,1,inflecting-positive,DH,Definitive Healthcare Corp. Class A Common Stock,US,Information Technology,0.857
-REJECT,1,inflecting-positive,TTEC,"TTEC Holdings, Inc.",US,Information Technology,0.852
-REJECT,1,accel-unpriced,027740.KS,"Maniker.Co.,Ltd",KR,Consumer Staples,0.848
-REJECT,1,accel-unpriced,XRX,Xerox Holdings Corporation,US,Information Technology,0.837
-SPECULATIVE,1,asymmetry,6149.T,"Odawara Engineering Co., Ltd.",JP,Industrials,0.835
-SPECULATIVE,1,asymmetry,000902.SZ,"Xinyangfeng Agricultural Technology Co., Ltd.",CN,Materials,0.805
-SPECULATIVE,1,asymmetry,601766.SS,CRRC Corporation Limited,CN,Industrials,0.795
-KEEP,1,asymmetry,EQT,EQT Corporation,US,Energy,0.794
-SPECULATIVE,1,forensic,BHC.TO,Bausch Health Companies Inc.,CA,Health Care,0.794
-REJECT,1,conviction,3390.HK,Tycoon Group Holdings Limited,HK,Health Care,0.611
-REJECT,1,conviction,MOS,The Mosaic Company,US,Materials,0.581
-REJECT,1,conviction,CRK,"Comstock Resources, Inc.",US,Energy,0.576
-REJECT,1,conviction,6262.T,"Pegasus Sewing Machine Mfg. Co., Ltd.",JP,Industrials,0.569
+REJECT,1,surprises,INSP,"Inspire Medical Systems, Inc.",US,Health Care,0.951
+REJECT,1,inflecting-positive,CO.PA,"Casino, Guichard-Perrachon Societe Anonyme",EU,Consumer Staples,0.905
+REJECT,1,yoy-unpriced,5206.TWO,"Kunyue Development Co., Ltd.",TW,Real Estate,0.886
+KEEP,1,yoy-unpriced,KROS,"Keros Therapeutics, Inc.",US,Health Care,0.874
+REJECT,1,inflecting-positive,TTEC,"TTEC Holdings, Inc.",US,Information Technology,0.87
+REJECT,1,inflecting-positive,DH,Definitive Healthcare Corp. Class A Common Stock,US,Information Technology,0.866
+SPECULATIVE,1,new-reality,SPSC,"SPS Commerce, Inc.",US,Information Technology,0.854
+REJECT,1,accel-unpriced,3512.TWO,"Huang Long Development Co.,Ltd.",TW,Real Estate,0.847
+REJECT,1,inflecting-positive,SUR.DE,SURTECO GROUP SE,EU,Materials,0.847
+SPECULATIVE,1,accel-unpriced,GPOR,Gulfport Energy Corporation Common Shares,US,Energy,0.846
+KEEP,1,accel-unpriced,EXE,Expand Energy Corporation Common Stock,US,Energy,0.84
+REJECT,1,accel-unpriced,PALM.JK,PT Provident Agro Tbk,SEA,Consumer Staples,0.836
+SPECULATIVE,1,asymmetry,6149.T,"Odawara Engineering Co., Ltd.",JP,Industrials,0.836
+REJECT,1,asymmetry,3479.T,TKP Corporation,JP,Real Estate,0.831
+KEEP,1,accel-unpriced,5522.TW,"Farglory Land Development Co., Ltd.",TW,Real Estate,0.828
+REJECT,1,forensic,002612.SZ,"Lancy Co., Ltd.",CN,Consumer Discretionary,0.793
+SPECULATIVE,1,asymmetry,KIO.JO,Kumba Iron Ore Limited,MEA,Materials,0.779
+SPECULATIVE,1,conviction,BISI.JK,PT BISI International Tbk,SEA,Materials,0.616

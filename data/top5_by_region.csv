@@ -1,66 +1,66 @@
-region,rank,symbol,name,industry,mcap_m,score,revenue_growth,ebitda_growth,earnings_growth,enterpriseToEbitda,forwardPE,priceToBook,ret_12m,ret_24m
-US,1,TASK,TaskUs Inc. Class A Common Stock,Software,579.7,0.826,0.19,0.389,1.23,4.458,4.163,0.955,-0.415,-0.321
-US,2,CNX,CNX Resources Corporation,"Oil, Gas & Consumable Fuels",4766.4,0.82,0.489,1.999,,3.344,7.956,1.034,0.044,0.281
-US,3,OPRX,OptimizeRx Corporation,Health Care Providers & Services,97.4,0.804,0.188,,,5.353,4.912,0.759,-0.572,-0.57
-US,4,EQT,EQT Corporation,"Oil, Gas & Consumable Fuels",34357.5,0.8,0.6,1.088,7.844,5.7,11.809,1.368,0.008,0.373
-US,5,ENR,"Energizer Holdings, Inc.",Electrical Equipment,1247.6,0.784,0.023,0.712,5.273,7.188,4.991,7.204,-0.17,-0.297
-EU,1,ZEAL.CO,Zealand Pharma A/S,Biotechnology,22181.5,0.831,145.989,,,1.31,34.445,1.503,-0.11,-0.646
-EU,2,PKG1T.TL,AS Pro Kapital Grupp,Real Estate Management & Development,44.2,0.793,1.928,57.893,,5.308,,0.678,-0.418,-0.228
-EU,3,KOF.PA,Kaufman & Broad S.A.,Construction & Engineering,491.4,0.772,0.055,0.083,0.206,2.648,8.391,2.06,-0.242,0.045
-EU,4,AGFB.BR,Agfa-Gevaert NV,Machinery,69.6,0.745,-0.046,3.333,,12.911,9.98,0.276,-0.573,-0.596
-EU,5,SKB.DE,Koenig & Bauer AG,Machinery,153.5,0.733,0.022,3.739,,8.61,4.12,0.464,-0.324,-0.314
-UK,1,VTY.L,Vistry Group PLC,Construction & Engineering,827.3,0.735,-0.044,0.315,0.852,3.73,4.635,0.251,-0.592,-0.78
-UK,2,REAT.L,REACT Group plc,Professional Services,10.6,0.717,0.202,0.286,-19.889,4.793,5.471,1.069,-0.231,-0.384
-UK,3,FLO.L,Flowtech Fluidpower plc,Trading Companies & Distributors,40.8,0.71,0.09,,,12.69,9.788,0.807,-0.229,-0.557
-UK,4,GEN.L,Genuit Group plc,Building Products,637.0,0.699,0.073,0.132,0.349,7.413,9.051,0.956,-0.357,-0.414
-UK,5,SPR.L,Springfield Properties Plc,Construction & Engineering,111.0,0.691,0.053,0.364,0.868,6.235,11.592,0.645,-0.113,-0.009
-JP,1,3479.T,TKP Corporation,Real Estate Management & Development,56068.8,0.869,0.931,2.239,2.244,6.418,11.116,1.116,-0.169,0.035
-JP,2,4569.T,"KYORIN Holdings, Inc.",Pharmaceuticals,64856.9,0.833,0.088,0.513,0.66,9.191,10.752,0.455,-0.21,-0.27
-JP,3,6149.T,"Odawara Engineering Co., Ltd.",Machinery,12009.6,0.816,0.384,1.118,1.676,0.762,11.352,0.652,0.076,0.269
-JP,4,7351.T,"Goodpatch, Inc.",Software,4131.2,0.792,0.29,4.334,34.298,3.147,13.139,0.956,-0.332,0.08
-JP,5,6638.T,"Mimaki Engineering Co., Ltd.","Electronic Equipment, Instruments & Components",53261.8,0.781,0.11,0.505,0.66,5.231,12.905,1.335,-0.013,0.013
-CN,1,002612.SZ,"Lancy Co., Ltd.","Textiles, Apparel & Luxury Goods",5583.7,0.828,0.028,1.2,2.834,12.704,15.975,1.671,-0.193,0.006
-CN,2,000902.SZ,"Xinyangfeng Agricultural Technology Co., Ltd.",Construction Materials,15646.5,0.814,0.16,0.22,0.226,5.564,8.782,1.293,-0.085,0.091
-CN,3,600332.SS,Guangzhou Baiyunshan Pharmaceutical Holdings Company Limited,Pharmaceuticals,34678.1,0.807,0.036,0.017,0.052,11.177,10.663,0.877,-0.178,-0.24
-CN,4,601766.SS,CRRC Corporation Limited,Road & Rail,161861.6,0.8,0.108,0.091,0.064,6.228,10.03,0.921,-0.164,-0.195
-CN,5,601878.SS,"Zheshang Securities Co., Ltd.",Capital Markets,41667.3,0.798,0.33,0.412,0.249,,11.494,1.096,-0.153,-0.122
-HK,1,0887.HK,Emperor Watch & Jewellery Limited,"Textiles, Apparel & Luxury Goods",1850.5,0.737,0.102,0.254,0.786,1.492,25.5,0.329,-0.385,0.692
-HK,2,0538.HK,Ajisen (China) Holdings Limited,"Hotels, Restaurants & Leisure",1026.0,0.728,0.067,0.454,,0.348,-31.333,0.311,0.116,0.04
-HK,3,0698.HK,Tongda Group Holdings Limited,"Electronic Equipment, Instruments & Components",480.9,0.725,-0.073,,,1.986,1.614,0.17,-0.495,-0.425
-HK,4,0258.HK,Tomson Group Limited,Real Estate Management & Development,4879.5,0.704,6.46,3.928,3.476,2.172,,0.372,-0.193,0.233
-HK,5,3390.HK,Tycoon Group Holdings Limited,Pharmaceuticals,228.0,0.703,0.252,0.538,3.836,10.627,,0.424,-0.311,-0.933
-TW,1,3512.TWO,"Huang Long Development Co.,Ltd.",Real Estate Management & Development,2351.9,0.807,0.629,2.789,3.887,13.762,,0.94,-0.176,-0.445
-TW,2,2331.TW,"Elitegroup Computer Systems Co.,Ltd.","Technology Hardware, Storage & Peripherals",13015.4,0.79,0.15,2.3,,9.529,-122.895,1.194,0.287,-0.26
-TW,3,2442.TW,"Jean Co.,Ltd",Auto Components,5511.0,0.783,8.808,5.126,3.503,6.628,,0.872,-0.18,-0.33
-TW,4,5522.TW,"Farglory Land Development Co., Ltd.",Real Estate Management & Development,58150.7,0.773,0.391,0.677,0.727,9.187,11.791,1.222,0.161,-0.03
-TW,5,1541.TW,"CHANG TYPE Industrial Co., Ltd.",Building Products,1749.4,0.761,0.214,0.388,1.183,6.317,4.577,0.81,-0.261,-0.274
-KR,1,027740.KS,"Maniker.Co.,Ltd",Food & Staples Retailing,32353.9,0.742,0.108,29.876,,10.43,,,-0.422,-0.556
-KR,2,136490.KS,"Sunjin Co.,Ltd.",Household Products,232322.9,0.737,0.127,1.423,20.73,2.678,,,-0.192,0.406
-KR,3,090080.KS,"Pyung Hwa Industrial Co., Ltd.",Auto Components,48094.4,0.713,0.064,0.475,3.097,2.928,,,-0.198,-0.226
-KR,4,071840.KS,"LOTTE Himart Co.,Ltd.",Specialty Retail,154777.9,0.68,-0.024,,,2.784,11.757,,-0.179,-0.203
-KR,5,010690.KS,"HWASHIN CO.,Ltd",Auto Components,341229.7,0.679,0.146,0.062,0.245,5.207,3.903,,0.219,-0.31
-SEA,1,TBLA.JK,PT Tunas Baru Lampung Tbk,Household Products,3482407.7,0.782,0.314,0.19,0.286,6.627,4.849,0.377,-0.211,0.001
-SEA,2,XJB.SI,"G.H.Y Culture & Media Holding Co., Limited",Entertainment,97.3,0.775,0.224,,,8.758,9.1,0.993,-0.442,-0.597
-SEA,3,UNIQ.BK,Unique Engineering and Construction Public Company Limited,Construction & Engineering,3026.8,0.759,0.055,0.46,4.376,8.38,3.182,0.326,-0.012,0.08
-SEA,4,MOLI.JK,PT Madusari Murni Indah Tbk,Chemicals,531187.1,0.759,0.076,0.961,4.827,3.222,,0.42,0.0,-0.375
-SEA,5,JECC.JK,PT Jembo Cable Company Tbk,Electrical Equipment,353808.0,0.738,0.156,0.565,0.507,8.13,,0.386,-0.44,-0.338
-ANZ,1,FWD.AX,Fleetwood Limited,Diversified Financial Services,156.5,0.76,0.208,0.838,2.842,3.629,7.38,0.967,-0.282,0.275
-ANZ,2,RKN.AX,Reckon Limited,Software,45.9,0.755,0.155,0.292,0.667,5.173,5.127,1.784,-0.113,-0.151
-ANZ,3,MTS.AX,Metcash Limited,Food & Staples Retailing,3332.2,0.736,0.089,0.127,0.101,9.537,11.789,2.001,-0.186,-0.055
-ANZ,4,SKC.NZ,SkyCity Entertainment Group Limited,"Hotels, Restaurants & Leisure",551.5,0.733,-0.046,0.503,,7.188,12.438,0.349,-0.468,-0.658
-ANZ,5,CCP.AX,Credit Corp Group Limited,Consumer Finance,786.2,0.728,0.253,0.644,0.856,,6.993,0.88,-0.101,-0.156
-CA,1,ARX.TO,ARC Resources Ltd.,"Oil, Gas & Consumable Fuels",18095.9,0.754,0.176,0.13,0.134,6.129,13.223,2.102,0.14,0.38
-CA,2,BCE.TO,BCE Inc.,Diversified Telecommunication Services,31771.2,0.749,0.002,0.91,17.779,8.882,12.597,1.58,0.173,-0.123
-CA,3,LAS-A.TO,Lassonde Industries Inc.,Beverages,1507.6,0.736,0.128,0.332,0.312,6.108,8.784,1.276,0.076,0.486
-CA,4,CAS.TO,Cascades Inc.,Paper & Forest Products,1104.3,0.735,0.016,0.362,,5.695,8.25,0.628,0.278,0.324
-CA,5,GFL.TO,GFL Environmental Inc.,Transportation Infrastructure,16903.1,0.718,0.078,0.984,,15.311,37.876,2.302,-0.319,-0.121
-LATAM,1,CUERVO.MX,"Becle, S.A.B. de C.V.",Beverages,51677.0,0.722,-0.02,0.861,1.189,6.377,9.906,0.735,-0.342,-0.533
-LATAM,2,BEEF3.SA,Minerva S.A.,Household Products,3535.0,0.715,0.609,1.208,,3.637,3.645,2.806,-0.243,-0.445
-LATAM,3,VULC3.SA,Vulcabras Azaleia S.A.,"Textiles, Apparel & Luxury Goods",4526.4,0.709,0.168,0.422,1.045,5.918,6.249,1.856,-0.145,0.323
-LATAM,4,HBRE3.SA,HBR Realty Empreendimentos Imobiliarios S.A.,Real Estate Management & Development,268.7,0.707,2.268,0.189,-0.423,14.845,-87.0,0.177,-0.169,-0.427
-LATAM,5,ESSBIO-C.SN,Essbio S.A.,Water Utilities,240921.2,0.703,0.051,0.139,0.274,8.326,,0.584,-0.289,-0.279
-MEA,1,KIO.JO,Kumba Iron Ore Limited,Metals & Mining,95041.0,0.75,0.023,0.013,-0.006,3.215,10.045,1.73,0.075,-0.302
-MEA,2,ALBRK.IS,Albaraka Turk Katilim Bankasi A.S.,Banks,20050.0,0.731,0.465,,1.911,,4.312,0.681,0.026,0.563
-MEA,3,BLDN.QA,Baladna Q.P.S.C.,Food & Staples Retailing,2782.9,0.713,0.107,1.027,1.917,16.16,11.8,0.93,0.102,0.123
-MEA,4,QNNS.QA,Qatar Navigation Q.P.S.C.,Marine,11566.2,0.702,0.171,0.179,0.133,9.606,8.144,0.644,-0.053,-0.045
-MEA,5,1302.SR,Bawan Company,Building Products,2614.8,0.678,0.347,1.517,1.059,8.055,18.158,2.326,-0.175,0.006
+region,rank,symbol,name,industry,mcap_m,score,revenue_growth,ebitda_growth,enterpriseToEbitda,forwardPE,ret_12m
+US,1,RUN,Sunrun Inc.,"Technology Hardware, Storage & Peripherals",2218.5,0.806,0.451,,22.108,8.751,-0.418
+US,2,ACIC,Atlas Crest Investment Corp.,Diversified Financial Services,446.7,0.777,0.131,0.379,2.427,8.67,-0.091
+US,3,MEG,"Montrose Environmental Group, Inc.",Transportation Infrastructure,800.8,0.766,0.193,4.711,17.054,13.564,-0.18
+US,4,CRK,"Comstock Resources, Inc.","Oil, Gas & Consumable Fuels",3975.6,0.761,0.77,1.053,7.8,15.586,-0.161
+US,5,PTC,PTC Inc.,Software,16540.7,0.761,0.192,0.558,13.948,17.151,-0.286
+EU,1,ZEAL.CO,Zealand Pharma A/S,Biotechnology,21489.9,0.876,145.989,,3.546,58.375,-0.316
+EU,2,IF.MI,Banca IFIS S.p.A.,Banks,907.6,0.801,0.181,,,7.198,-0.276
+EU,3,PARP.PA,Groupe Partouche SA,"Hotels, Restaurants & Leisure",169.3,0.797,0.06,0.929,,18.905,-0.03
+EU,4,PKG1T.TL,AS Pro Kapital Grupp,Real Estate Management & Development,36.6,0.794,1.928,57.893,4.782,,-0.484
+EU,5,INDB.MI,Indel B S.p.A.,"Electronic Equipment, Instruments & Components",99.5,0.792,0.019,0.479,6.119,7.721,-0.014
+UK,1,VTY.L,Vistry Group PLC,Construction & Engineering,846.1,0.789,-0.044,0.315,3.88,5.884,-0.588
+UK,2,NBB.L,Norman Broadbent plc,Professional Services,3.8,0.771,0.387,4.869,3.13,7.276,-0.204
+UK,3,SAVE.L,Savannah Energy PLC,"Oil, Gas & Consumable Fuels",115.1,0.762,0.055,0.056,6.176,2.495,-0.235
+UK,4,TRT.L,Transense Technologies plc,Auto Components,7.3,0.742,0.235,0.175,5.834,61.538,-0.616
+UK,5,ANGS.L,Angus Energy plc,"Oil, Gas & Consumable Fuels",15.1,0.741,-0.174,0.352,4.207,0.031,
+JP,1,6149.T,"Odawara Engineering Co., Ltd.",Machinery,12823.0,0.836,0.384,1.118,1.535,12.093,-0.203
+JP,2,3479.T,TKP Corporation,Real Estate Management & Development,68808.7,0.831,0.931,2.239,7.333,14.263,-0.024
+JP,3,9612.T,"LuckLand Co., Ltd.",Construction & Engineering,14457.4,0.817,0.187,13.167,1.429,,0.004
+JP,4,7351.T,"Goodpatch, Inc.",Software,4113.7,0.794,0.29,4.334,3.532,13.083,-0.449
+JP,5,3472.T,Ooedo Onsen Reit Investment Corporation,Equity Real Estate Investment Trusts (REITs),29007.8,0.782,0.388,0.456,8.683,40.084,-0.135
+CN,1,600104.SS,SAIC Motor Corporation Limited,Automobiles,117021.9,0.797,0.046,0.419,2.394,6.246,-0.39
+CN,2,601211.SS,"Guotai Junan Securities Co., Ltd.",Capital Markets,307492.7,0.792,0.859,6.897,,9.301,-0.047
+CN,3,002034.SZ,"Wangneng Environment Co., Ltd.",Transportation Infrastructure,7146.0,0.788,0.022,0.112,5.624,8.183,-0.166
+CN,4,601878.SS,"Zheshang Securities Co., Ltd.",Capital Markets,42078.9,0.787,0.33,0.412,,11.608,-0.188
+CN,5,600585.SS,Anhui Conch Cement Company Limited,Construction Materials,93320.7,0.784,-0.093,0.011,4.08,10.176,-0.214
+HK,1,0819.HK,Tianneng Power International Limited,Auto Components,5275.9,0.728,-0.298,0.032,5.244,2.471,-0.487
+HK,2,0698.HK,Tongda Group Holdings Limited,"Electronic Equipment, Instruments & Components",429.3,0.722,-0.073,,1.893,1.441,-0.541
+HK,3,2342.HK,Comba Telecom Systems Holdings Limited,Communications Equipment,2285.2,0.712,0.009,,5.765,5.25,-0.769
+HK,4,1612.HK,Vincent Medical Holdings Limited,Health Care Technology,471.2,0.709,0.165,0.443,2.594,11.917,-0.224
+HK,5,0258.HK,Tomson Group Limited,Real Estate Management & Development,4698.8,0.708,6.46,3.928,2.083,,-0.219
+TW,1,2331.TW,"Elitegroup Computer Systems Co.,Ltd.","Technology Hardware, Storage & Peripherals",11120.2,0.793,0.15,2.3,8.053,-105.0,-0.081
+TW,2,2442.TW,"Jean Co.,Ltd",Auto Components,6342.0,0.781,8.808,5.126,4.261,,-0.241
+TW,3,5522.TW,"Farglory Land Development Co., Ltd.",Real Estate Management & Development,50100.3,0.773,0.391,0.677,7.766,10.613,0.12
+TW,4,3512.TWO,"Huang Long Development Co.,Ltd.",Real Estate Management & Development,2227.5,0.764,0.629,2.789,18.155,,-0.051
+TW,5,9951.TWO,"Macauto Industrial Co., Ltd.",Auto Components,3897.0,0.753,0.146,0.243,4.638,9.694,-0.072
+KR,1,027740.KS,"Maniker.Co.,Ltd",Food & Staples Retailing,40132.8,0.724,0.108,29.876,8.053,,-0.234
+KR,2,136490.KS,"Sunjin Co.,Ltd.",Household Products,241121.2,0.711,0.127,1.423,2.865,,-0.081
+KR,3,037560.KS,LG HelloVision Corp.,Media,125541.4,0.688,0.058,5.832,4.579,,-0.395
+KR,4,117580.KS,"Daesung Energy Co., Ltd.",Gas Utilities,184922.9,0.683,0.023,0.142,4.865,,-0.134
+KR,5,016880.KS,"Woongjin Co., Ltd.",Industrial Conglomerates,168694.5,0.679,0.141,1.9,5.005,,-0.493
+SEA,1,UNIQ.BK,Unique Engineering and Construction Public Company Limited,Construction & Engineering,2983.6,0.767,0.055,0.46,8.672,3.136,-0.112
+SEA,2,TBLA.JK,PT Tunas Baru Lampung Tbk,Household Products,3812636.0,0.739,0.314,0.19,6.39,5.309,-0.052
+SEA,3,RAM.BK,Ramkhamhaeng Hospital Public Company Limited,Health Care Equipment & Supplies,21480.0,0.73,0.495,1.319,18.585,14.979,-0.058
+SEA,4,5UX.SI,Oxley Holdings Limited,Real Estate Management & Development,299.0,0.727,0.087,18.412,17.881,,-0.336
+SEA,5,SEAFCO.BK,Seafco Public Company Limited,Construction & Engineering,2402.9,0.724,0.21,1.805,4.023,11.692,0.365
+ANZ,1,BPT.AX,Beach Energy Limited,"Oil, Gas & Consumable Fuels",,0.765,0.193,,2.864,5.879,-0.211
+ANZ,2,RKN.AX,Reckon Limited,Software,48.7,0.759,0.155,0.292,16.467,6.056,-0.291
+ANZ,3,ARF.AX,Arena REIT,Equity Real Estate Investment Trusts (REITs),984.1,0.736,0.116,0.342,,12.201,-0.349
+ANZ,4,HVN.AX,Harvey Norman Holdings Ltd,Household Durables,5706.7,0.726,0.051,0.269,8.905,12.734,-0.348
+ANZ,5,MMI.AX,Metro Mining Limited,Metals & Mining,431.4,0.722,0.231,,6.701,2.984,-0.263
+CA,1,OGI.TO,OrganiGram Holdings Inc.,Pharmaceuticals,229.8,0.77,0.622,,18.884,49.469,-0.309
+CA,2,BCE.TO,BCE Inc.,Diversified Telecommunication Services,30502.9,0.767,0.002,0.91,8.663,12.264,0.006
+CA,3,MTY.TO,MTY Food Group Inc.,"Hotels, Restaurants & Leisure",799.9,0.738,0.026,0.669,7.983,7.791,-0.055
+CA,4,ARX.TO,ARC Resources Ltd.,"Oil, Gas & Consumable Fuels",19092.6,0.709,0.176,0.13,6.246,13.442,0.315
+CA,5,MRE.TO,Martinrea International Inc.,Auto Components,758.5,0.698,-0.038,0.051,3.852,4.37,0.067
+LATAM,1,HBRE3.SA,HBR Realty Empreendimentos Imobiliarios S.A.,Real Estate Management & Development,218.3,0.738,2.268,0.189,13.78,-70.667,-0.476
+LATAM,2,CSNA3.SA,Companhia Siderurgica Nacional,Metals & Mining,5755.2,0.738,0.025,0.001,6.671,-3.28,-0.43
+LATAM,3,ALLD3.SA,Allied Tecnologia S.A.,Software,488.4,0.721,-0.003,0.948,1.229,5.09,-0.175
+LATAM,4,VULC3.SA,Vulcabras Azaleia S.A.,"Textiles, Apparel & Luxury Goods",4271.9,0.714,0.168,0.422,6.078,5.962,-0.222
+LATAM,5,ESPA3.SA,MPM Corporeos S.A.,"Hotels, Restaurants & Leisure",251.0,0.712,0.061,0.16,3.846,53.846,-0.363
+MEA,1,KIO.JO,Kumba Iron Ore Limited,Metals & Mining,75560.8,0.779,0.023,0.013,3.025,8.525,-0.273
+MEA,2,1302.SR,Bawan Company,Building Products,2074.8,0.768,0.347,1.517,6.7,14.408,-0.415
+MEA,3,BLDN.QA,Baladna Q.P.S.C.,Food & Staples Retailing,2807.4,0.76,0.107,1.027,17.099,11.409,-0.185
+MEA,4,TUREX.IS,Tureks Turizm Tasimacilik Anonim Sirketi,Road & Rail,7419.6,0.732,0.97,2.866,3.135,,-0.223
+MEA,5,ALBRK.IS,Albaraka Turk Katilim Bankasi A.S.,Banks,21450.0,0.719,0.465,,,4.613,0.068

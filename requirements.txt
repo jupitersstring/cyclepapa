@@ -14,3 +14,4 @@ curl_cffi>=0.7          # browser-impersonating session; defeats Yahoo 429s
 #   pip install --no-deps financedatabase
 financedatabase>=2.3
 requests>=2.31
+xlsxwriter

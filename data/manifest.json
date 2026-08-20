@@ -1,8 +1,8 @@
 {
   "schema_version": 2,
-  "git_sha": "7ad1623",
-  "saved_utc": "2026-07-12T23:12:29+00:00",
-  "data_asof": "2026-07-11T02:34:02.710321+00:00",
-  "scored_rows": 24456,
-  "names_with_surprises": 5483
+  "git_sha": "ed55efe",
+  "saved_utc": "2026-08-20T17:28:53+00:00",
+  "data_asof": "2026-08-20T16:09:13.967303+00:00",
+  "scored_rows": 24455,
+  "names_with_surprises": 5533
 }

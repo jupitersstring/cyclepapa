@@ -25,8 +25,8 @@ import pandas as pd
 _NONOP_RE = re.compile(
     r"warrant|preferred|\bpfd\b|depositary|\brights?\b|\bunits?\b|\bbdc\b|%|"
     r"investimento imobili|\bFII\b|closed[- ]end|\bCEF\b|income fund\b|term trust\b|"
-    r"municipal (income )?(fund|trust)|"
-    r"\bfund\b(?!\s*(manage|advis|admin|servic|of canada|holding))|"
+    r"municipal (?:income )?(?:fund|trust)|"
+    r"\bfund\b(?!\s*(?:manage|advis|admin|servic|of canada|holding))|"
     r"\bETF\b|\bSICAV\b|exchange[- ]traded fund",
     re.I,
 )
