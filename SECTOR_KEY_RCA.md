@@ -59,9 +59,24 @@ implements exactly this, per stock:
 
 ## Validation
 
-- **MRNA: #654 (generic) → #91 (sector-aware)** — a 7× improvement, driven
-  entirely by its pharma-ruler loading (Neptune mod-domicile + Mercury station
-  + Pluto angular + Jupiter domicile). The key fit the lock.
+- v1: **MRNA #654 (generic) → #91 (sector-aware)** — 7× improvement from
+  pharma-ruler loading alone.
+- v2 added the three things the "enormous move" demanded: (a) an EXACTNESS
+  fusion bonus, quadratic in tightness, doubling under 0.25° (MRNA's
+  Mars-Neptune 0.01° took Neptune's loading 0.4 → 2.5); (b) a FULL-STACK
+  ×1.3 when ≥3 rulers load simultaneously; (c) key-in-lock weighting *in
+  the score* — transit hits on sector-ruler targets ×1.5, on LOADED rulers
+  ×2; eclipse orb aligned with the main engine (2.0°).
+- **Pre-move backtest (the decisive test): run as-of 2026-04-15, MRNA ranks
+  #7 of 271 tradeable (2017+) unique charts — top 2.6% BEFORE the move —
+  with the peak convergence window dated 2026-07-14 and position-by
+  2026-06-02, matching the actual May-low → July/August run.** Two of the
+  six names above it (Gamida Cell, Milestone Pharma) are biotechs the
+  keyword classifier missed — the mechanism found the right *kind* of chart
+  even where the sector label failed.
+- Forward run (as-of today): MRNA re-enters at #2 among 2017+ uniques with
+  a SECOND window at 2027-08 (the Uranus-opp-Jupiter return pass — Silas's
+  multi-pass rule in action).
 - **Top-100 sector mix**: pharma_biotech 39%, oil_gas 19%, real_estate 6%,
   tech_software 6% — the sectors whose rulers are most *dignifiable* (Neptune
   rules Pisces; Saturn rules both Capricorn and Aquarius and governs oil/land/

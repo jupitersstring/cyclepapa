@@ -41,11 +41,12 @@ from sector_rulerships import (
     DOMICILE, MODERN_DOMICILE, EXALTATION,
 )
 
-START = date(2026, 8, 19)
-END = date(2028, 6, 1)
+import os
+START = date.fromisoformat(os.environ.get("RA_ASOF", "2026-08-19"))
+END = date.fromisoformat(os.environ.get("RA_END", "2028-06-01"))
 STEP_DAYS = 10
 WINDOW_SAMPLES = 95 // STEP_DAYS
-SLOW_ORB, FAST_ORB, ECL_ORB = 1.5, 1.2, 1.5
+SLOW_ORB, FAST_ORB, ECL_ORB = 1.5, 1.2, 2.0  # ECL matches main engine
 
 # Names that carry no sector keyword but are well-known (classifier gap fix).
 SECTOR_OVERRIDE = {
@@ -82,9 +83,18 @@ def natal(date_str):
 
 
 def natal_sector_load(ch, rulers):
-    """How loaded the sector's ruling planets are in the natal chart."""
+    """How loaded the sector's ruling planets are in the natal chart.
+
+    v2 (RCA "enormous move" fix): (a) EXACTNESS fusion bonus -- a hard aspect
+    from the sector ruler to any personal planet scales quadratically with
+    tightness and doubles under 0.25 deg (MRNA Mars-Neptune 0.01);
+    (b) FULL-STACK bonus -- >=3 distinct rulers loaded multiplies by 1.3.
+    Returns (load, detail, loaded_set) so transit hits on loaded rulers can
+    be multiplied in-score (key-in-lock)."""
     load = 0.0
     detail = []
+    loaded = set()
+    n_loaded = 0
     for p, tier, _src in rulers:
         if p not in ch:
             continue
@@ -105,13 +115,31 @@ def natal_sector_load(ch, rulers):
             if r and p != lum:
                 lp += 0.8 * (2.5 - r[1]) / 2.5; why.append(f"{r[0]}{lum}")
                 break
+        # exactness fusion: ruler hard-aspecting a personal planet, quadratic in tightness
+        for pers in ("Mercury", "Venus", "Mars"):
+            if pers == p:
+                continue
+            r = hard_asp(ch[p]["lon"], ch[pers]["lon"], 2.5)
+            if r:
+                ex = 1.5 * ((2.5 - r[1]) / 2.5) ** 2
+                if r[1] <= 0.25:
+                    ex *= 2.0
+                lp += ex
+                why.append(f"{r[0]}{pers}{r[1]:.2f}")
+                break
         if ch[p].get("station"):
             lp += 0.5; why.append("station")
         contrib = lp * TIER_WEIGHT[tier]
         if contrib > 0.05:
             load += contrib
+            n_loaded += 1
+            if contrib >= 0.2:
+                loaded.add(p)
             detail.append(f"{p}({'+'.join(why)}){contrib:.1f}")
-    return load, detail
+    if n_loaded >= 3:
+        load *= 1.3
+        detail.append("FULLSTACKx1.3")
+    return load, detail, loaded
 
 
 def sky_samples():
@@ -150,7 +178,7 @@ def main():
         rulers = SECTOR_RULERS.get(sec, GENERIC_RULERS) if sec else GENERIC_RULERS
         sec_label = sec or "unclassified"
 
-        load, load_detail = natal_sector_load(ch, rulers)
+        load, load_detail, loaded_set = natal_sector_load(ch, rulers)
         fuel = 1.0 + min(load, 3.0)
 
         # targets = generic money axis + the sector's ruling planets (the sympathy channel)
@@ -158,6 +186,12 @@ def main():
         targets = list(dict.fromkeys(list(GENERIC_TARGETS) + ruler_planets))
         tgt_lons = {t: ch[t]["lon"] for t in targets}
 
+        def hit_weight(t):
+            if t in loaded_set:
+                return 2.0            # key turning in a LOADED lock
+            if t in ruler_planets:
+                return 1.5            # sector-sympathy target
+            return 1.0
         slow_active, fast_active = [], []
         for _d, pos in samples:
             s = set()
@@ -187,7 +221,9 @@ def main():
             es = [h for j in js for h in ecl_hits.get(j, [])]
             if not ss or not (fs or es):
                 continue
-            conv = len(ss) + len(fs) + len(es)
+            conv = (sum(hit_weight(h.split(">")[1]) for h in ss)
+                    + sum(hit_weight(h.split(">")[1]) for h in fs)
+                    + sum(hit_weight(h.split(":")[1].lstrip("conjoppsq")) if ":" in h else 1.0 for h in es))
             score = conv * fuel
             if best is None or score > best[0]:
                 center = samples[i + WINDOW_SAMPLES // 2][0]
@@ -209,7 +245,7 @@ def main():
         })
 
     rows.sort(key=lambda r: -r["setup_score"])
-    out = Path("/mnt/user-data/outputs/sector_screener.csv")
+    out = Path(os.environ.get("RA_OUT", "/mnt/user-data/outputs/sector_screener.csv"))
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open("w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0].keys())); w.writeheader(); w.writerows(rows)
