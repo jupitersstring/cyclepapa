@@ -13,4 +13,4 @@ branch `claude/discretionary-insider-conviction`, used by
 Refresh by copying the regenerated files from that branch; the workbook
 builder degrades gracefully when these files are absent.
 
-Snapshot taken: 2026-08-13 (pipeline run of the same date).
+Snapshot taken: 2026-08-20 (post proxy-v2 rescan; 38-layer consensus).
