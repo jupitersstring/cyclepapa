@@ -28,7 +28,7 @@ import urllib.request
 from datetime import date, datetime, timezone
 from pathlib import Path
 
-from . import config
+from . import config, util
 
 NaN = float("nan")
 
@@ -112,8 +112,7 @@ def ticker_cik_map(refresh: bool = False) -> dict[str, int]:
         t = str(row.get("ticker", "")).upper().strip()
         if t:
             out[t] = int(row["cik_str"])
-    _EDGAR_CACHE.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(out))
+    util.atomic_write_text(path, json.dumps(out))
     return out
 
 
@@ -138,7 +137,7 @@ def companyfacts(cik: int, ttl_days: float = config.CACHE_TTL_DAYS,
     if data is None:
         return None
     data["_asof"] = datetime.now(timezone.utc).isoformat()
-    path.write_text(json.dumps(data))
+    util.atomic_write_text(path, json.dumps(data))
     return data
 
 
