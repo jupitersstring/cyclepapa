@@ -12,9 +12,9 @@ Industrials,10,300850.SZ,"Luoyang Xinqianglian Slewing Bearing Co., Ltd.",CN,Bui
 Industrials,11,603187.SS,"Qingdao Hiron Commercial Cold Chain Co., Ltd.",CN,Commercial Services & Supplies,4312.2,0.766,0.184,0.08,4.986,11.05,-0.229
 Industrials,12,MEG,"Montrose Environmental Group, Inc.",US,Transportation Infrastructure,800.8,0.766,0.193,4.711,17.054,13.564,-0.18
 Industrials,13,AB9.F,ABO Wind AG,EU,Construction & Engineering,30.4,0.761,0.489,-0.003,4.673,-0.475,-0.906
-Industrials,14,601766.SS,CRRC Corporation Limited,CN,Road & Rail,,0.761,0.108,0.091,6.734,11.009,-0.142
-Industrials,15,AF.PA,AIR FRANCE - KLM,EU,Airlines,3032.5,0.76,0.049,0.4,3.913,2.607,0.011
-Industrials,16,002689.SZ,"Shenyang Yuanda Intellectual Industry Group Co., Ltd.",CN,Machinery,2931.7,0.76,0.143,1.028,17.341,21.615,-0.29
+Industrials,14,601766.SS,CRRC Corporation Limited,CN,Road & Rail,157843.8,0.761,0.108,0.091,6.734,11.009,-0.142
+Industrials,15,002689.SZ,"Shenyang Yuanda Intellectual Industry Group Co., Ltd.",CN,Machinery,2931.7,0.76,0.143,1.028,17.341,21.615,-0.29
+Industrials,16,AF.PA,AIR FRANCE - KLM,EU,Airlines,3032.5,0.76,0.049,0.4,3.913,2.607,0.011
 Industrials,17,300662.SZ,"Beijing Career International Co., Ltd.",CN,Professional Services,3965.6,0.76,0.234,0.456,13.175,10.55,-0.285
 Industrials,18,688009.SS,China Railway Signal & Communication Corporation Limited,CN,Road & Rail,52419.6,0.754,0.064,0.047,9.135,14.559,-0.05
 Industrials,19,KOF.PA,Kaufman & Broad S.A.,EU,Construction & Engineering,487.8,0.75,0.055,0.083,3.173,8.411,-0.092
@@ -71,7 +71,7 @@ Financials,9,CCP.AX,Credit Corp Group Limited,ANZ,Consumer Finance,908.7,0.721,0
 Financials,10,ALBRK.IS,Albaraka Turk Katilim Bankasi A.S.,MEA,Banks,21450.0,0.719,0.465,,,4.613,0.068
 Financials,11,BBTN.JK,PT Bank Tabungan Negara (Persero) Tbk,SEA,Banks,16911505.0,0.719,0.45,0.18,,4.242,-0.062
 Financials,12,002500.SZ,"Shanxi Securities Co., Ltd.",CN,Capital Markets,18738.6,0.715,0.11,0.046,,16.312,-0.181
-Financials,13,INTRUM.ST,Intrum AB (publ),EU,Consumer Finance,11539.5,0.707,-0.062,1.024,7.082,0.562,-0.93
+Financials,13,INTRUM.ST,Intrum AB (publ),EU,Consumer Finance,11539.5,0.708,-0.062,1.024,7.082,0.562,-0.93
 Financials,14,601555.SS,"Soochow Securities Co., Ltd.",CN,Capital Markets,39302.4,0.703,0.283,0.079,,17.578,-0.159
 Financials,15,601456.SS,"Guolian Securities Co., Ltd.",CN,Capital Markets,50046.0,0.703,1.072,1.333,,18.464,-0.206
 Financials,16,TREE,"LendingTree, Inc.",US,Thrifts & Mortgage Finance,438.3,0.703,0.241,0.292,6.492,4.715,-0.541
@@ -83,10 +83,10 @@ Materials,1,600585.SS,Anhui Conch Cement Company Limited,CN,Construction Materia
 Materials,2,KIO.JO,Kumba Iron Ore Limited,MEA,Metals & Mining,75560.8,0.779,0.023,0.013,3.025,8.525,-0.273
 Materials,3,000902.SZ,"Xinyangfeng Agricultural Technology Co., Ltd.",CN,Construction Materials,17177.3,0.759,0.16,0.22,6.12,9.641,-0.005
 Materials,4,000778.SZ,"Xinxing Ductile Iron Pipes Co., Ltd.",CN,Metals & Mining,14663.8,0.759,0.023,0.431,7.811,14.8,-0.02
-Materials,5,600019.SS,"Baoshan Iron & Steel Co., Ltd.",CN,Metals & Mining,,0.74,-0.014,0.114,5.455,10.714,-0.14
+Materials,5,600019.SS,"Baoshan Iron & Steel Co., Ltd.",CN,Metals & Mining,119365.8,0.74,-0.014,0.114,5.455,10.714,-0.14
 Materials,6,000932.SZ,"Hunan Valin Steel Co., Ltd.",CN,Metals & Mining,24600.9,0.739,-0.159,0.058,5.464,6.411,-0.422
 Materials,7,CSNA3.SA,Companhia Siderurgica Nacional,LATAM,Metals & Mining,5755.2,0.738,0.025,0.001,6.671,-3.28,-0.43
-Materials,8,600486.SS,"Jiangsu Yangnong Chemical Co., Ltd.",CN,Construction Materials,,0.737,0.138,0.08,8.976,12.292,-0.219
+Materials,8,600486.SS,"Jiangsu Yangnong Chemical Co., Ltd.",CN,Construction Materials,20072.2,0.737,0.138,0.08,8.976,12.292,-0.219
 Materials,9,002170.SZ,"Shenzhen Batian Ecotypic Engineering Co., Ltd.",CN,Construction Materials,10878.1,0.736,0.526,1.119,5.932,16.485,0.1
 Materials,10,603799.SS,"Zhejiang Huayou Cobalt Co., Ltd",CN,Metals & Mining,74510.3,0.736,0.329,0.232,7.917,6.344,-0.398
 Materials,11,600873.SS,"MeiHua Holdings Group Co.,Ltd",CN,Chemicals,22013.3,0.735,-0.034,0.091,6.326,10.064,-0.222
@@ -156,7 +156,7 @@ Consumer Staples,14,1215.TW,"Charoen Pokphand Enterprise(Taiwan) Co., Ltd.",TW,F
 Consumer Staples,15,1218.TW,"Taisun Enterprise Co., Ltd.",TW,Food & Staples Retailing,7246.2,0.717,-0.049,2.589,9.266,12.213,-0.164
 Consumer Staples,16,SEK.NZ,Seeka Limited,ANZ,Household Products,229.4,0.713,0.367,3.059,5.061,14.417,0.24
 Consumer Staples,17,2918.T,"Warabeya Nichiyo Holdings Co., Ltd.",JP,Food & Staples Retailing,49177.1,0.712,0.051,0.282,5.565,14.172,-0.021
-Consumer Staples,18,MTS.AX,Metcash Limited,ANZ,Food & Staples Retailing,,0.712,0.089,0.127,9.602,11.521,-0.17
+Consumer Staples,18,MTS.AX,Metcash Limited,ANZ,Food & Staples Retailing,3365.2,0.712,0.089,0.127,9.602,11.521,-0.17
 Consumer Staples,19,136490.KS,"Sunjin Co.,Ltd.",KR,Household Products,241121.2,0.711,0.127,1.423,2.865,,-0.081
 Consumer Staples,20,300999.SZ,"Yihai Kerry Arawana Holdings Co., Ltd",CN,Food & Staples Retailing,138304.8,0.711,0.029,0.108,19.335,26.853,-0.184
 Communication Services,1,BCE.TO,BCE Inc.,CA,Diversified Telecommunication Services,30502.9,0.767,0.002,0.91,8.663,12.264,0.006
@@ -170,7 +170,7 @@ Communication Services,8,GOGO,Gogo Inc.,US,Diversified Telecommunication Service
 Communication Services,9,7359.T,"TokyoTsushin, Inc.",JP,Diversified Telecommunication Services,2619.3,0.703,0.061,6.061,5.666,,-0.345
 Communication Services,10,AREN,The Arena Group Holdings Inc. Common Stock,US,Diversified Telecommunication Services,50.5,0.699,0.071,2.824,6.188,35.333,-0.82
 Communication Services,11,FDEV.L,Frontier Developments plc,UK,Interactive Media & Services,158.5,0.696,0.015,2.962,8.732,12.455,-0.026
-Communication Services,12,BHIT.JK,PT MNC Investama Tbk,SEA,Entertainment,2172111.4,0.696,-0.043,0.113,6.722,,-0.297
+Communication Services,12,BHIT.JK,PT MNC Investama Tbk,SEA,Entertainment,2172111.4,0.695,-0.043,0.113,6.722,,-0.297
 Communication Services,13,4839.T,Wowow Inc.,JP,Media,28649.3,0.691,0.025,0.009,0.555,71.197,-0.29
 Communication Services,14,SXL.AX,Southern Cross Media Group Limited,ANZ,Entertainment,280.1,0.688,-0.155,,5.576,3.835,-0.346
 Communication Services,15,037560.KS,LG HelloVision Corp.,KR,Media,125541.4,0.688,0.058,5.832,4.579,,-0.395
@@ -179,7 +179,7 @@ Communication Services,17,MNCN.JK,PT. Media Nusantara Citra Tbk,SEA,Entertainmen
 Communication Services,18,SSTK,"Shutterstock, Inc.",US,Diversified Telecommunication Services,196.6,0.676,0.058,0.062,2.605,5.978,-0.724
 Communication Services,19,EDL.DE,Edel SE & Co. KGaA,EU,Entertainment,102.1,0.674,0.036,0.075,4.635,7.164,0.196
 Communication Services,20,4057.T,"Interfactory, Inc.",JP,Diversified Telecommunication Services,1428.6,0.673,0.104,1.526,4.678,23.137,-0.23
-Energy,1,BPT.AX,Beach Energy Limited,ANZ,"Oil, Gas & Consumable Fuels",,0.765,0.193,,2.864,5.879,-0.211
+Energy,1,BPT.AX,Beach Energy Limited,ANZ,"Oil, Gas & Consumable Fuels",1996.2,0.765,0.193,,2.864,5.879,-0.211
 Energy,2,SAVE.L,Savannah Energy PLC,UK,"Oil, Gas & Consumable Fuels",115.1,0.762,0.055,0.056,6.176,2.495,-0.235
 Energy,3,CRK,"Comstock Resources, Inc.",US,"Oil, Gas & Consumable Fuels",3975.6,0.761,0.77,1.053,7.8,15.586,-0.161
 Energy,4,EQT,EQT Corporation,US,"Oil, Gas & Consumable Fuels",33552.7,0.756,0.639,1.054,6.104,13.585,0.047
@@ -195,7 +195,7 @@ Energy,13,300471.SZ,"Houpu Clean Energy Co., Ltd.",CN,Energy Equipment & Service
 Energy,14,PEY.TO,Peyto Exploration & Development Corp.,CA,"Oil, Gas & Consumable Fuels",5154.3,0.683,0.215,0.188,5.52,11.602,0.413
 Energy,15,OSG,"Overseas Shipholding Group, Inc.",US,"Oil, Gas & Consumable Fuels",204.5,0.679,0.558,,76.997,8.255,-0.497
 Energy,16,Y35.SI,AnAn International Limited,SEA,"Oil, Gas & Consumable Fuels",80.4,0.673,0.072,2.171,3.522,,-0.136
-Energy,17,PRS.OL,Prosafe SE,EU,Energy Equipment & Services,,0.671,0.345,11.709,44.223,18.475,0.62
+Energy,17,PRS.OL,Prosafe SE,EU,Energy Equipment & Services,1466.6,0.671,0.345,11.709,44.223,18.475,0.62
 Energy,18,NWF.L,NWF Group plc,UK,"Oil, Gas & Consumable Fuels",74.6,0.671,-0.05,0.016,5.279,7.348,-0.152
 Energy,19,SGU,"Star Group, L.P.",US,"Oil, Gas & Consumable Fuels",413.7,0.649,0.01,0.612,3.914,14.33,0.15
 Energy,20,CNQ.TO,Canadian Natural Resources Limited,CA,"Oil, Gas & Consumable Fuels",144841.0,0.646,0.064,0.42,8.297,13.192,0.691
@@ -208,7 +208,7 @@ Utilities,6,000899.SZ,"Jiangxi Ganneng Co., Ltd.",CN,Electric Utilities,9805.6,0
 Utilities,7,SERI.MI,Seri Industrial S.p.A.,EU,Independent Power and Renewable Electricity Producers,130.1,0.712,0.384,-0.062,9.81,8.796,-0.127
 Utilities,8,EIX,Edison International,US,Electric Utilities,28714.8,0.711,0.098,0.782,8.198,11.467,0.403
 Utilities,9,ESSBIO-C.SN,Essbio S.A.,LATAM,Water Utilities,227433.9,0.708,0.051,0.139,7.978,,-0.388
-Utilities,10,EVN.VI,EVN AG,EU,Multi-Utilities,,0.707,0.038,0.07,8.64,11.105,0.243
+Utilities,10,EVN.VI,EVN AG,EU,Multi-Utilities,5126.3,0.707,0.038,0.07,8.64,11.105,0.243
 Utilities,11,9543.T,"Shizuoka Gas Co., Ltd.",JP,Gas Utilities,96142.8,0.7,-0.005,0.027,4.127,15.947,0.131
 Utilities,12,600995.SS,"Yunnan Wenshan Electric Power Co.,Ltd.",CN,Electric Utilities,39406.8,0.699,0.195,0.183,13.248,24.66,0.005
 Utilities,13,9537.T,"Hokuriku Gas Co.,Ltd.",JP,Gas Utilities,20837.1,0.696,0.006,0.58,1.705,,0.183
@@ -216,6 +216,6 @@ Utilities,14,FHW.F,Fernheizwerk Neukolln Aktiengesellschaft,EU,Water Utilities,4
 Utilities,15,RGCO,"RGC Resources, Inc.",US,Gas Utilities,227.8,0.689,0.166,0.084,11.959,15.841,0.02
 Utilities,16,9818.T,"Daimaru Enawin Co., Ltd.",JP,Gas Utilities,11527.3,0.685,0.117,0.111,3.01,,-0.048
 Utilities,17,BPP.BK,Banpu Power Public Company Limited,SEA,Independent Power and Renewable Electricity Producers,36572.8,0.684,0.078,0.176,9.985,8.0,
-Utilities,18,117580.KS,"Daesung Energy Co., Ltd.",KR,Gas Utilities,184922.9,0.683,0.023,0.142,4.865,,-0.134
+Utilities,18,117580.KS,"Daesung Energy Co., Ltd.",KR,Gas Utilities,184922.9,0.684,0.023,0.142,4.865,,-0.134
 Utilities,19,600780.SS,Top Energy Company Ltd.Shanxi,CN,Electric Utilities,6672.6,0.681,0.04,0.084,3.862,,0.056
 Utilities,20,000600.SZ,"Jointo Energy Investment Co., Ltd. Hebei",CN,Electric Utilities,14227.5,0.674,-0.031,0.664,8.022,19.725,0.101
