@@ -107,6 +107,7 @@ run python3 sohn_pitch_layer.py            || true
 # Asymmetry-assembly conjunction engine (the PSIX recipe): cheap
 # pass emits an XBRL shortlist, financials_inflection enriches it,
 # then the full pass scores the gated conjunction.
+run python3 xbrl_frames_store.py           || true
 run python3 asymmetry_assembly.py          || true
 run python3 financials_inflection.py --shortlist asymmetry_shortlist.json --limit 60 || true
 run python3 asymmetry_assembly.py          || true

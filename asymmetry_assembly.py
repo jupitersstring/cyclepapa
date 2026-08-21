@@ -292,6 +292,42 @@ def assemble(C) -> dict:
     }
 
 
+def _frames_adapter(frames: dict):
+    """Convert the universe-wide XBRL frames store (COVERAGE_AUDIT C) into
+    the q10-shaped and fin-shaped dicts the assembly already consumes, so
+    C2 (leverage) and C6/C7 (operating inflection / deleveraging) run over
+    ~5,000 names instead of the 164/28-name samples. Existing quarterly_10q
+    and financials_inflection records take precedence (more complete
+    per-name); frames fill the vast remainder."""
+    q10, fin = {}, {}
+    for tk, r in frames.items():
+        if not isinstance(r, dict):
+            continue
+        q10[tk] = {
+            "equity": r.get("equity"),
+            "long_term_debt": r.get("debt"),
+            "current_assets": r.get("cur_assets"),
+            "current_liab": r.get("cur_liab"),
+            "cash": r.get("cash"),
+            "current_ratio": r.get("current_ratio"),
+            "net_cash": r.get("net_cash"),
+        }
+        rev, rev_p = r.get("revenue"), r.get("revenue_prior")
+        gp, gp_p = r.get("gross_profit"), r.get("gross_profit_prior")
+        ie, ie_p = r.get("interest_expense"), r.get("interest_expense_prior")
+        f = {"opinc": r.get("op_income"), "period_end": r.get("period_duration")}
+        if rev and rev_p:
+            f["revenue_yoy"] = round((rev - rev_p) / abs(rev_p), 4)
+        if gp and gp_p:
+            f["gp_yoy"] = round((gp - gp_p) / abs(gp_p), 4)
+        if rev and rev_p and gp and gp_p:
+            f["gross_margin_delta_pp"] = round((gp / rev - gp_p / rev_p) * 100, 2)
+        if ie is not None and ie_p:
+            f["interest_exp_yoy"] = round((ie - ie_p) / abs(ie_p), 4)
+        fin[tk] = f
+    return q10, fin
+
+
 def main() -> int:
     yf = _load("yfinance_quick.json")
     q10 = _load("quarterly_10q_data.json")
@@ -306,6 +342,17 @@ def main() -> int:
     events = _load("asymmetry_events.json")
     preminj = _load("premium_injection_scan.json")
     selbuy = _load("selective_buyback_scan.json")
+
+    # Universe-wide fundamentals from the frames store fill C2/C6/C7 for
+    # the ~5,000 names the per-ticker samples miss; the richer per-ticker
+    # sources win where present.
+    fr_q10, fr_fin = _frames_adapter(_load("xbrl_frames_store.json"))
+    for tk, r in fr_q10.items():
+        if tk not in q10:
+            q10[tk] = r
+    for tk, r in fr_fin.items():
+        if tk not in fin:
+            fin[tk] = r
 
     universe = set(yf) | set(q10) | set(disc) | set(events)
     universe = {t for t in universe if isinstance(t, str) and not t.startswith("_")}
