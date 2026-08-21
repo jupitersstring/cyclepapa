@@ -22,6 +22,7 @@ import csv
 import glob
 import json
 from pathlib import Path
+import catalyst_decay
 
 ROOT = Path("/home/user/cyclepapa")
 
@@ -371,7 +372,8 @@ def score_tender_mechanism_layer(layers: dict, universe: set) -> dict:
 # timer)
 # ----------------------------------------------------------------------
 
-def _load_jscore(path: Path, universe: set, field: str = "score") -> dict:
+def _load_jscore(path: Path, universe: set, field: str = "score",
+                 decay_layer: str | None = None) -> dict:
     out = {tk: 0.0 for tk in universe}
     if not path.exists():
         return out
@@ -382,7 +384,11 @@ def _load_jscore(path: Path, universe: set, field: str = "score") -> dict:
     for tk, v in data.items():
         if tk in out and isinstance(v, dict):
             try:
-                out[tk] = float(v.get(field) or 0)
+                s = float(v.get(field) or 0)
+                if decay_layer:
+                    s = catalyst_decay.apply(
+                        decay_layer, s, catalyst_decay.record_date(decay_layer, v))
+                out[tk] = s
             except Exception:
                 pass
     return out
@@ -411,7 +417,7 @@ def score_selective_buyback_layer(layers: dict, universe: set) -> dict:
             for tk, v in data.items():
                 if tk in out and isinstance(v, dict):
                     try:
-                        out[tk] = max(0.0, float(v.get("score") or 0))
+                        out[tk] = catalyst_decay.apply("selective_buyback", max(0.0, float(v.get("score") or 0)), catalyst_decay.record_date("selective_buyback", v))
                     except Exception:
                         pass
         except Exception:
@@ -433,7 +439,7 @@ def score_hidden_asset_layer(layers: dict, universe: set) -> dict:
             for tk, v in data.items():
                 if tk in out and isinstance(v, dict):
                     try:
-                        out[tk] = max(0.0, float(v.get("score") or 0))
+                        out[tk] = catalyst_decay.apply("hidden_asset", max(0.0, float(v.get("score") or 0)), catalyst_decay.record_date("hidden_asset", v))
                     except Exception:
                         pass
         except Exception:
@@ -453,7 +459,7 @@ def score_premium_injection_layer(layers: dict, universe: set) -> dict:
             for tk, v in data.items():
                 if tk in out and isinstance(v, dict):
                     try:
-                        out[tk] = max(0.0, float(v.get("score") or 0))
+                        out[tk] = catalyst_decay.apply("premium_injection", max(0.0, float(v.get("score") or 0)), catalyst_decay.record_date("premium_injection", v))
                     except Exception:
                         pass
         except Exception:
@@ -474,7 +480,7 @@ def score_distressed_stub_layer(layers: dict, universe: set) -> dict:
             for tk, v in data.items():
                 if tk in out and isinstance(v, dict):
                     try:
-                        out[tk] = max(0.0, float(v.get("score") or 0))
+                        out[tk] = catalyst_decay.apply("distressed_stub", max(0.0, float(v.get("score") or 0)), catalyst_decay.record_date("distressed_stub", v))
                     except Exception:
                         pass
         except Exception:
@@ -592,7 +598,7 @@ def score_net_net_ncav_layer(layers: dict, universe: set) -> dict:
 
 def score_activist_letter_layer(layers: dict, universe: set) -> dict:
     """Pre-13D + 8-K-letter activist feed."""
-    return _load_jscore(ROOT / "activist_letter_feed.json", universe)
+    return _load_jscore(ROOT / "activist_letter_feed.json", universe, decay_layer="activist_letter")
 
 
 # Audit-driven additive layers (S1.3 + S2 fills)

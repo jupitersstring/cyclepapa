@@ -45,4 +45,8 @@ echo "=== UK RNS monitor ==="
 python3 test_uk_rns.py
 echo
 
+echo "=== catalyst decay ==="
+python3 test_catalyst_decay.py
+echo
+
 echo "All test suites passed."
