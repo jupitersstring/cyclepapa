@@ -134,3 +134,28 @@ one publisher (SEC), one JSON shape, EDGAR-polite.
 Items 1–2 change the shape of the framework's vision; 3–7 are repairs
 and compounding improvements. Nothing above alters any scoring weight —
 additive discipline untouched; these widen what the existing layers see.
+
+---
+
+## Addendum (2026-08-20) — findings while wiring the frames store
+
+- **Frames store shipped** (5,139 names) and wired into the assembly:
+  full assemblies 5 -> 14, C2 leverage 164-capped -> 2,394, C6 inflection
+  28 -> 490, C7 383. The "5 assemblies" was confirmed a sourcing
+  artifact.
+- **Negative book equity (923 names) was an unused signal AND a latent
+  bug.** The assembly's C2 leverage path required `equity > 0`, so it
+  silently skipped the ~900 MOST-levered names. Negative equity is the
+  maximal-torque residual-stub condition; it now fires C2, and
+  negative-equity-plus-positive-operating-income (122 names: HLF, OTIS,
+  LIND, ARRY, WK ...) is tagged as the PSIX residual-stub pattern the
+  whole thesis targets.
+- **P/B backfill from frames is a non-opportunity** (measured): only 8
+  names have yfinance mcap without a p_b, because yfinance p_b coverage
+  already tracks its mcap coverage. The frames store's value is
+  fundamentals breadth (equity/debt/revenue/GP), not price ratios --
+  the price half of the yfinance dependence still needs a daily-price
+  mirror (Stooq).
+- **XBRL unit sanity checked**: no absurd equity values (>$5T) in the
+  store; the frames API's structured USD units avoid the scale-error
+  class that plagued the regex dollar extraction.

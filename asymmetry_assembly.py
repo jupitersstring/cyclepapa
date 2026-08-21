@@ -118,7 +118,22 @@ def score_components(tk, yf, q10, disc, f4, coval, p11, tender, t13f,
     net_cash = _num(q.get("net_cash"))
     cr = _num(q.get("current_ratio"))
     mcap = _num(y.get("mcap"))
-    if ltd and equity and equity > 0 and ltd > equity:
+    # Negative book equity is the MAXIMAL leverage-torque case -- the
+    # residual-stub condition (PSIX had a tiny/near-wiped book beneath a
+    # large debt claim). The old `equity > 0` guard silently skipped the
+    # ~900 most-levered names in the universe; negative equity now fires
+    # C2 directly, and negative-equity-but-operating-cash-positive is
+    # tagged as the residual-stub pattern the whole thesis targets.
+    fr0 = fin.get(tk, {}) or {}
+    opinc0 = _num(fr0.get("opinc"))
+    if equity is not None and equity < 0:
+        lev = True
+        if opinc0 and opinc0 > 0:
+            ev.append(f"NEGATIVE equity {equity/1e6:.0f}M + positive op income "
+                      "(residual stub)")
+        else:
+            ev.append(f"negative book equity {equity/1e6:.0f}M")
+    elif ltd and equity and equity > 0 and ltd > equity:
         lev = True; ev.append(f"LT debt {ltd/1e6:.0f}M > equity {equity/1e6:.0f}M")
     if net_cash is not None and net_cash < 0:
         lev = True; ev.append("net debt position")
