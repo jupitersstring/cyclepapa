@@ -1,17 +1,21 @@
 """
 Full-universe data refresh for the asymmetric-v2 ranking.
 
-Rebuilds asymmetric_v2_universe_audit.csv from scratch with TODAY's data:
-  1. Union all leading_*.csv universes -> unique tickers + meta
-  2. Download fresh OHLC (3y) for every ticker + SPX benchmark
-  3. compute_fip (price FIP, d/w/m) + compute_qulla (RS-FIP, volasym) per ticker
-  4. Pre-filter: smooth FIP winner with real liquidity
-  5. Fetch fresh fundamentals for every pre-filter survivor
-  6. Apply v2 gates (multi-metric floor / catalyst / survival)
-  7. Rank with the NaN-neutral policy and write the audit CSV
+Universe = union of
+  (a) every ticker from the prior leading_* scans (large/mid focus), and
+  (b) the FULL financedatabase Small Cap + Micro Cap universe for the same
+      44 countries (primary listings only) — added on request so small and
+      micro caps are scanned globally, not just in the US.
 
-Output schema matches the previous audit CSV so build_workbook.py runs
-unchanged.
+Pipeline (all data fetched fresh via yahoo_fetch — plain-requests client,
+since yfinance's curl transport is blocked by this environment's proxy):
+  1. Build the universe
+  2. Fetch 3y OHLC per ticker (checkpointed to .ohlc_cache.pkl, resumable)
+  3. compute_fip + compute_qulla per ticker
+  4. Pre-filter: smooth-FIP winner with real liquidity
+  5. Fetch fundamentals for every pre-filter survivor
+  6. v2 gates (multi-metric floor / catalyst / survival)
+  7. NaN-neutral ranking -> asymmetric_v2_universe_audit.csv
 """
 from __future__ import annotations
 
@@ -24,6 +28,7 @@ import pandas as pd
 
 sys.path.insert(0, "/home/user/cyclepapa")
 import frog_in_pan_screener as scr  # noqa: E402
+from yahoo_fetch import YahooClient, wait_until_clear  # noqa: E402
 
 REPO = "/home/user/cyclepapa"
 OUT = f"{REPO}/asymmetric_v2_universe_audit.csv"
@@ -40,31 +45,88 @@ for f in LEADING:
     keep = [c for c in ("symbol", "name", "country", "market_cap_bucket", "sector")
             if c in df.columns]
     frames.append(df[keep])
-uni = pd.concat(frames).drop_duplicates(subset="symbol", keep="first")
-# Drop preferred-share style tickers (same filter as the prior audit).
-uni = uni[~uni["symbol"].astype(str).str.contains(r"-P[A-Z]?$", regex=True)]
-uni = uni.set_index("symbol")
+lead = pd.concat(frames).drop_duplicates(subset="symbol", keep="first")
+lead = lead[~lead["symbol"].astype(str).str.contains(r"-P[A-Z]?$", regex=True)]
+lead = lead.set_index("symbol")
+countries = sorted(lead["country"].dropna().unique())
+print(f"[1] leading universe: {len(lead)} tickers, {len(countries)} countries",
+      flush=True)
+
+print("    pulling FD Small+Micro caps for the same countries ...", flush=True)
+fd_small = scr.load_universe(
+    min_n=0, primary_only=True, countries=countries,
+    market_caps=["Small Cap", "Micro Cap"],
+)
+fd_small = fd_small[~fd_small.index.astype(str).str.contains(r"-P[A-Z]?$", regex=True)]
+fd_meta = pd.DataFrame({
+    "name": fd_small.get("name"),
+    "country": fd_small.get("country"),
+    "market_cap_bucket": fd_small.get("market_cap"),
+    "sector": fd_small.get("sector"),
+}, index=fd_small.index)
+fd_meta.index.name = "symbol"
+print(f"    FD small+micro (primary-only): {len(fd_meta)}", flush=True)
+
+uni = pd.concat([lead, fd_meta[~fd_meta.index.isin(lead.index)]])
+uni = uni[~uni.index.duplicated(keep="first")]
 symbols = list(uni.index.astype(str))
-print(f"[1] universe: {len(symbols)} unique tickers "
-      f"({uni['country'].nunique()} countries)", flush=True)
+print(f"    combined universe: {len(symbols)} tickers", flush=True)
 
 # ------------------------------------------------------------------- OHLC
-print("[2] downloading fresh 3y OHLC ...", flush=True)
-t0 = time.time()
-ohlc_map = scr.download_ohlc(symbols, period="3y", batch=25, sleep_between=1.0,
-                             use_cache=True)
-print(f"    got OHLC for {len(ohlc_map)}/{len(symbols)} "
-      f"({(time.time()-t0)/60:.1f} min)", flush=True)
+client = YahooClient(min_interval=0.30)
+print("[2] cooling down until Yahoo accepts requests ...", flush=True)
+if not wait_until_clear(client):
+    print("Yahoo still rate-limiting after 30 min — aborting.", flush=True)
+    sys.exit(1)
 
-spx = scr.fetch_spx_close(period="3y")
-print(f"    SPX bars: {len(spx)} (last {spx.index[-1].date() if len(spx) else 'n/a'})",
-      flush=True)
+print("    downloading fresh 3y OHLC (checkpointed) ...", flush=True)
+t0 = time.time()
+cache = scr._load_ohlc_cache()
+todo = [s for s in symbols if s not in cache or scr._is_stale(cache.get(s))]
+print(f"    cache holds {len(cache)}; fetching {len(todo)}", flush=True)
+
+from concurrent.futures import ThreadPoolExecutor, as_completed  # noqa: E402
+
+n_ok = n_fail = 0
+lock_save = 0
+with ThreadPoolExecutor(max_workers=4) as pool:
+    futs = {pool.submit(client.get_ohlc, s, "3y"): s for s in todo}
+    for n, fut in enumerate(as_completed(futs), start=1):
+        s = futs[fut]
+        try:
+            frame = fut.result()
+        except Exception:  # noqa: BLE001
+            frame = None
+        if frame is not None and len(frame) > 60:
+            cache[s] = frame
+            n_ok += 1
+        else:
+            n_fail += 1
+        if n % 500 == 0:
+            scr._save_ohlc_cache(cache)
+            rate = n / max(1e-9, time.time() - t0)
+            eta = (len(todo) - n) / max(rate, 1e-9) / 60
+            print(f"    {n}/{len(todo)} fetched ({n_ok} ok, {n_fail} miss) "
+                  f"— {rate:.1f}/s, ~{eta:.0f} min left", flush=True)
+scr._save_ohlc_cache(cache)
+print(f"    OHLC done: {n_ok} new ok, {n_fail} missing "
+      f"({(time.time()-t0)/60:.1f} min); cache={len(cache)}", flush=True)
+
+spx = None
+spx_df = client.get_ohlc("^GSPC", range_="3y")
+if spx_df is not None:
+    spx = spx_df["Close"].dropna()
+print(f"    SPX bars: {len(spx) if spx is not None else 0}", flush=True)
+if spx is None or not len(spx):
+    print("No SPX benchmark — aborting.", flush=True)
+    sys.exit(1)
 
 # ------------------------------------------------- FIP + qulla per ticker
 print("[3] computing FIP + qulla metrics ...", flush=True)
 rows = {}
 n_fip_fail = n_qulla_fail = 0
-for sym, frame in ohlc_map.items():
+have = {s: cache[s] for s in symbols if s in cache}
+for sym, frame in have.items():
     close = frame["Close"].dropna() if "Close" in frame else pd.Series(dtype=float)
     try:
         fip = scr.compute_fip(sym, close)
@@ -108,8 +170,8 @@ for sym, frame in ohlc_map.items():
         "asym_m_dist50": abs(q.asym_m_last - 50.0) if q else float("nan"),
         "va_fip_d": q.va_fip_d if q else float("nan"),
     }
-print(f"    FIP ok for {len(rows)}; fip-fail {n_fip_fail}; qulla-fail {n_qulla_fail}",
-      flush=True)
+print(f"    FIP ok for {len(rows)}; fip-fail {n_fip_fail}; "
+      f"qulla-fail {n_qulla_fail}", flush=True)
 
 tech = pd.DataFrame.from_dict(rows, orient="index")
 
@@ -129,78 +191,56 @@ print(f"[5] fetching fresh fundamentals for {len(pre)} survivors ...", flush=Tru
 
 
 def fetch_extended(symbol: str) -> dict | None:
-    import random
-
-    import yfinance as yf
-    from yfinance.exceptions import YFRateLimitError
-
-    info, tk = {}, None
-    for attempt in range(4):
-        try:
-            tk = yf.Ticker(symbol)
-            info = tk.info or {}
-            break
-        except YFRateLimitError:
-            time.sleep(20 * (2 ** attempt) + random.uniform(0, 5))
-        except Exception as e:  # noqa: BLE001
-            if attempt < 3:
-                time.sleep(2 * (2 ** attempt))
-                continue
-            print(f"    [warn] {symbol}: {type(e).__name__}: {e}", file=sys.stderr)
-            return None
-    if tk is None or not info:
+    raw = client.get_fundamentals(symbol)
+    if raw is None:
         return None
-    meaningful = ("trailingPE", "marketCap", "enterpriseValue",
-                  "totalRevenue", "priceToBook", "revenueGrowth")
-    if not any(info.get(k) is not None for k in meaningful):
+    # Stub guard: require at least one meaningful field.
+    meaningful = ("market_cap", "pb", "ev_ebitda", "ev_sales", "rev_growth_ttm")
+    if not any(raw.get(k) == raw.get(k) and raw.get(k) is not None
+               for k in meaningful):
         return None
 
-    _safe = scr._safe
-    rev = scr._annual_revenues(tk)
+    revs = raw["annual_revenues"]  # most recent first
     rev_growth = rev_growth_prev = float("nan")
-    if len(rev) >= 3:
-        r0, r1, r2 = rev.iloc[0], rev.iloc[1], rev.iloc[2]
+    if len(revs) >= 3:
+        r0, r1, r2 = revs[0], revs[1], revs[2]
         if r1 and r2 and r1 > 0 and r2 > 0:
             rev_growth = (r0 / r1) - 1.0
             rev_growth_prev = (r1 / r2) - 1.0
-    elif len(rev) == 2:
-        r0, r1 = rev.iloc[0], rev.iloc[1]
+    elif len(revs) == 2:
+        r0, r1 = revs[0], revs[1]
         if r1 and r1 > 0:
             rev_growth = (r0 / r1) - 1.0
     if math.isnan(rev_growth):
-        rev_growth = _safe(info.get("revenueGrowth"))
+        rev_growth = raw["rev_growth_ttm"]
     inflection = (
         rev_growth - rev_growth_prev
         if not (math.isnan(rev_growth) or math.isnan(rev_growth_prev))
         else float("nan")
     )
-    mcap = _safe(info.get("marketCap"))
-    fcf = _safe(info.get("freeCashflow"))
+    mcap, fcf = raw["market_cap"], raw["fcf"]
     return {
-        "name": str(info.get("longName") or info.get("shortName") or symbol),
-        "sector_ex": str(info.get("sector") or ""),
+        "name": raw["name"],
+        "sector_ex": raw["sector"],
         "mkt_cap_ex": mcap,
-        "pb_fresh": _safe(info.get("priceToBook")),
-        "ev_ebitda_fresh": _safe(info.get("enterpriseToEbitda")),
-        "ev_sales": _safe(info.get("enterpriseToRevenue")),
+        "pb_fresh": raw["pb"],
+        "ev_ebitda_fresh": raw["ev_ebitda"],
+        "ev_sales": raw["ev_sales"],
         "fcf": fcf,
-        "fcf_yield": (fcf / mcap) if (mcap and not math.isnan(mcap)
-                                      and not math.isnan(fcf) and mcap > 0)
+        "fcf_yield": (fcf / mcap) if (mcap == mcap and fcf == fcf and mcap > 0)
                      else float("nan"),
-        "op_margin_ex": _safe(info.get("operatingMargins")),
-        "roe_ex": _safe(info.get("returnOnEquity")),
-        "debt_to_equity": _safe(info.get("debtToEquity")),
-        "eps_q_growth": _safe(info.get("earningsQuarterlyGrowth")),
+        "op_margin_ex": raw["op_margin"],
+        "roe_ex": raw["roe"],
+        "debt_to_equity": raw["debt_to_equity"],
+        "eps_q_growth": raw["eps_q_growth"],
         "rev_growth_fresh": rev_growth,
         "rev_growth_inflection": inflection,
     }
 
 
-from concurrent.futures import ThreadPoolExecutor, as_completed  # noqa: E402
-
 funda: dict[str, dict] = {}
 syms_pre = list(pre.index.astype(str))
-with ThreadPoolExecutor(max_workers=2) as pool:
+with ThreadPoolExecutor(max_workers=3) as pool:
     futs = {pool.submit(fetch_extended, s): s for s in syms_pre}
     for n, fut in enumerate(as_completed(futs), start=1):
         s = futs[fut]
@@ -210,14 +250,13 @@ with ThreadPoolExecutor(max_workers=2) as pool:
             r = None
         if r is not None:
             funda[s] = r
-        if n % 25 == 0:
+        if n % 50 == 0:
             print(f"    {n}/{len(syms_pre)} ({len(funda)} ok)", flush=True)
 print(f"    fundamentals ok for {len(funda)}/{len(syms_pre)}", flush=True)
 
 fdf = pd.DataFrame.from_dict(funda, orient="index")
 df = pre.join(fdf, how="inner")
 
-# Meta from the universe CSVs (bucket / country as scanned).
 df = df.join(uni[["country", "market_cap_bucket", "sector"]], how="left")
 df["name"] = df["name"].fillna(df.index.to_series())
 df["sector_used"] = df["sector_ex"].replace("", np.nan).fillna(df["sector"])
@@ -293,7 +332,7 @@ cols = ["symbol", "name", "country", "market_cap_bucket", "sector", "market_cap"
 df[cols].to_csv(OUT, index=False)
 print(f"[7] wrote {len(df)} survivors to {OUT}", flush=True)
 
-print("\n=== TOP 25 (fresh data, NaN-neutral scoring) ===", flush=True)
+print("\n=== TOP 25 (fresh data, expanded universe, NaN-neutral) ===", flush=True)
 show = ["symbol", "name", "country", "market_cap_bucket", "sector_used",
         "pret_d", "fip_d", "fip_w", "rev_growth_use", "pb_use",
         "ev_ebitda_use", "fcf_yield", "asym_v2_score"]
