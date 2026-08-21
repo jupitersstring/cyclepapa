@@ -433,10 +433,22 @@ def run(args):
         pd.DataFrame(rows).to_parquet(ckpt)
         print(f"  {min(k + CH, len(todo))}/{len(todo)} "
               f"(+{got}/{len(chunk)} this chunk, {len(rows)} total)", flush=True)
-        # near-total failure on a sizeable chunk = throttled: back off
+        # Near-empty chunk: either throttled or a region of delisted
+        # names. Probe a known-good ticker to tell them apart — only a
+        # failing probe means throttled.
         if len(chunk) >= 20 and got <= len(chunk) // 20:
-            print("  [rate-limited] backing off 300s", flush=True)
-            time.sleep(300)
+            try:
+                probe = yf.download('AAPL', period='5d', interval='1d',
+                                    progress=False, session=sess)
+                throttled = probe is None or probe.empty
+            except Exception:
+                throttled = True
+            if throttled:
+                print("  [rate-limited] probe failed; backing off 300s",
+                      flush=True)
+                time.sleep(300)
+            else:
+                print("  [dead region] probe ok; continuing", flush=True)
         time.sleep(args.sleep)
     pd.DataFrame(rows).to_parquet(ckpt)
     out = pd.DataFrame(rows)
