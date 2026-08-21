@@ -15,3 +15,4 @@ __pycache__/
 # SQLite WAL sidecars (transient; checkpointed into pipeline.db)
 pipeline.db-shm
 pipeline.db-wal
+xbrl_frames/
