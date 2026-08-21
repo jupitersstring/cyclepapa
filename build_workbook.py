@@ -515,6 +515,14 @@ churn_rows = [
     ("Implication",
      "Stale cached fundamentals materially affected ordering. The "
      "all-fresh refetch is the canonical rank."),
+    ("NaN-neutral re-rank (bug-fix pass)",
+     "The scoring bug that mapped a missing metric to the worst possible "
+     "percentile was fixed: missing data now scores a neutral 0.5. "
+     "Entered top 25: 2887.TW (Taiwan Cooperative), 8331.T (Chiba Bank), "
+     "BPE.MI (BPER Banca), BWFG, CFG (Citizens), CLST, HFBL. Exited: "
+     "6806.T, ASTH, DINO, FHI, NUE, SAIL.NS, SANM. Financials benefit "
+     "most — banks legitimately lack EV/EBITDA and FCF yield, and were "
+     "previously penalized as if worst-in-cohort on those legs."),
 ]
 for j, (k, v) in enumerate(churn_rows, start=churn_start):
     fill = fill_band if j % 2 else fill_white
