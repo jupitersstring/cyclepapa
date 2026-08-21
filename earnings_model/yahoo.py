@@ -212,20 +212,45 @@ def _assemble_block(series: dict, quarterly: bool = False) -> dict:
     return out
 
 
-def regrid_quarterly(block: dict) -> dict:
-    """Repair a cached quarterly statement block IN PLACE (no network): rebuild its
-    {date: val} series from the stored parallel lists and re-assemble onto the
-    complete quarter grid. For blocks fetched before the grid fix, this inserts the
-    NaN rows for skipped quarters so positional YoY realigns."""
-    dates = block.get("dates") or []
-    if len(dates) < 2:
-        return block
+def _block_to_series(block: dict) -> dict:
+    """{item -> {date: val}} from a stored block's parallel lists, dropping NaN /
+    non-numeric cells — the inverse of :func:`_assemble_block`."""
+    dates = (block or {}).get("dates") or []
     series = {}
     for key in _TS_ITEMS.values():
         vals = block.get(key) or []
         series[key] = {dt: v for dt, v in zip(dates, vals)
                        if isinstance(v, (int, float)) and v == v}
-    return _assemble_block(series, quarterly=True)
+    return series
+
+
+def regrid_quarterly(block: dict) -> dict:
+    """Repair a cached quarterly statement block IN PLACE (no network): rebuild its
+    {date: val} series from the stored parallel lists and re-assemble onto the
+    complete quarter grid. For blocks fetched before the grid fix, this inserts the
+    NaN rows for skipped quarters so positional YoY realigns."""
+    if len((block or {}).get("dates") or []) < 2:
+        return block
+    return _assemble_block(_block_to_series(block), quarterly=True)
+
+
+def merge_statement_blocks(base: dict, new: dict, quarterly: bool = False) -> dict:
+    """Union two statement blocks by period-END date and re-assemble.
+
+    NEW wins a same-date collision (a restated/updated figure supersedes the
+    original), but base values are RETAINED wherever ``new`` lacks that date — so
+    folding in the ~5y/8q Yahoo timeseries appends the freshly reported periods
+    without truncating deeper cached history (the whole point: never shorten an
+    EDGAR-deep annual series or a long quarterly run to Yahoo's window).
+    """
+    base_s = _block_to_series(base)
+    new_s = _block_to_series(new)
+    merged = {}
+    for key in _TS_ITEMS.values():
+        d = dict(base_s.get(key, {}))
+        d.update(new_s.get(key, {}))          # new supersedes on a date collision
+        merged[key] = d
+    return _assemble_block(merged, quarterly=quarterly)
 
 
 def _price_block(client: YahooClient, symbol: str):
@@ -368,4 +393,36 @@ def refresh_market(symbol: str, client: YahooClient, base_raw: dict,
     has_stmt = any(any(not math.isnan(x) for x in (out.get("annual", {}) or {}).get(k, []))
                    for k in ("revenue", "ebitda", "earnings"))
     out["fetch_ok"] = bool(has_stmt or out["valuation"].get("marketCap"))
+    return out
+
+
+def refresh_statements(symbol: str, client: "YahooClient", base_raw: dict) -> dict | None:
+    """Refresh the STATEMENT blocks by MERGING a fresh Yahoo timeseries into the
+    cached blocks (append newly reported periods; never truncate deep history).
+
+    Complements :func:`refresh_market` (which leaves statements untouched): here
+    the quarterly block — where a just-reported quarter lands, driving q_yoy /
+    acceleration / margin-delta metrics — is always merged, and the annual block
+    is merged too EXCEPT for EDGAR-overlaid names, whose annual is authoritative
+    and deeper than Yahoo's ~5y window (a separate ``fetch_edgar`` refresh owns
+    it; letting Yahoo overwrite it here would both shorten it and risk a
+    cross-source period-end-date mismatch). Valuation/prices/surprises are kept
+    from ``base_raw`` verbatim — those are refresh_market's job.
+
+    Returns None when Yahoo yields no usable statements (transient failure or a
+    genuinely statement-less security), so the caller keeps the cached raw rather
+    than blanking it.
+    """
+    new_ann, new_qtr = _timeseries_blocks(client, symbol)
+    if not ((new_ann.get("dates") or new_qtr.get("dates"))):
+        return None                              # nothing usable came back
+    out = dict(base_raw)
+    if base_raw.get("statement_source") != "edgar-annual":
+        out["annual"] = merge_statement_blocks(base_raw.get("annual"), new_ann)
+    out["quarterly"] = merge_statement_blocks(base_raw.get("quarterly"), new_qtr, quarterly=True)
+    out["asof"] = datetime.now(timezone.utc).isoformat()
+    out["statements_refreshed"] = out["asof"]
+    has_stmt = any(any(not math.isnan(x) for x in (out.get("annual", {}) or {}).get(k, []))
+                   for k in ("revenue", "ebitda", "earnings"))
+    out["fetch_ok"] = bool(has_stmt or (out.get("valuation") or {}).get("marketCap"))
     return out
