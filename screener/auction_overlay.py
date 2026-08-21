@@ -385,26 +385,58 @@ def run(args):
     done = pd.read_parquet(ckpt) if (args.resume and ckpt.exists()) else pd.DataFrame()
     rows = done.to_dict('records') if not done.empty else []
     seen = {r['ticker'] for r in rows}
-    todo = [t for t in tickers if t not in seen]
+    # Skip names the fundamental screen has already proven dead (no price
+    # data after repeated healthy-chunk attempts) — huge win at 67k scale.
+    dead = set()
+    deadf = Path('.ckpt_prices_fails.parquet')
+    if deadf.exists():
+        fd = pd.read_parquet(deadf)
+        dead = set(fd[fd['fails'] >= 3]['ticker'])
+    todo = [t for t in tickers if t not in seen and t not in dead]
     sess = make_session()
-    print(f"Auction overlay on {len(todo)} tickers ({len(seen)} from checkpoint)")
-    for k, t in enumerate(todo):
+    print(f"Auction overlay on {len(todo)} tickers "
+          f"({len(seen)} from checkpoint, {len(dead & set(tickers))} known-dead skipped)")
+    CH = max(1, args.chunk_size)
+    analysed_this_run = 0
+    for k in range(0, len(todo), CH):
+        chunk = todo[k:k + CH]
         try:
-            px = yf.download(t, period='2y', interval='1d', auto_adjust=True,
-                             progress=False, session=sess)
-            if px is None or px.empty:
-                raise RuntimeError('no data')
-            if isinstance(px.columns, pd.MultiIndex):
-                px.columns = px.columns.get_level_values(0)
-            row = {'ticker': t}
-            row.update(analyse_ticker(px, args.harm_error, args.harm_bars))
-            rows.append(row)
-            if len(rows) % 20 == 0:      # O(n^2) to rewrite every ticker
-                pd.DataFrame(rows).to_parquet(ckpt)
+            data = yf.download(chunk, period='2y', interval='1d',
+                               auto_adjust=True, progress=False,
+                               session=sess, threads=8, group_by='ticker')
         except Exception as e:
-            print(f"  [skip] {t}: {type(e).__name__}: {str(e)[:60]}")
-        if k % 200 == 0:
-            print(f"  {k}/{len(todo)} ({len(rows)} analysed)", flush=True)
+            print(f"  [chunk-fail] {type(e).__name__}: {str(e)[:60]}; 120s backoff",
+                  flush=True)
+            time.sleep(120)
+            continue
+        got = 0
+        for t in chunk:
+            try:
+                if len(chunk) == 1:
+                    px = data
+                    if isinstance(px.columns, pd.MultiIndex):
+                        px.columns = px.columns.get_level_values(0)
+                else:
+                    if t not in set(data.columns.get_level_values(0)):
+                        continue
+                    px = data[t]
+                px = px.dropna(subset=['Close'])
+                if px is None or px.empty:
+                    continue
+                row = {'ticker': t}
+                row.update(analyse_ticker(px, args.harm_error, args.harm_bars))
+                rows.append(row)
+                got += 1
+            except Exception:
+                continue
+        analysed_this_run += got
+        pd.DataFrame(rows).to_parquet(ckpt)
+        print(f"  {min(k + CH, len(todo))}/{len(todo)} "
+              f"(+{got}/{len(chunk)} this chunk, {len(rows)} total)", flush=True)
+        # near-total failure on a sizeable chunk = throttled: back off
+        if len(chunk) >= 20 and got <= len(chunk) // 20:
+            print("  [rate-limited] backing off 300s", flush=True)
+            time.sleep(300)
         time.sleep(args.sleep)
     pd.DataFrame(rows).to_parquet(ckpt)
     out = pd.DataFrame(rows)
@@ -426,7 +458,10 @@ def main():
     p.add_argument('--tickers', default='')
     p.add_argument('--out', default='shortlist_auction.csv')
     p.add_argument('--ckpt', default='.ckpt_auction.parquet')
-    p.add_argument('--sleep', type=float, default=0.5)
+    p.add_argument('--sleep', type=float, default=1.0,
+                   help='pause between chunks, seconds')
+    p.add_argument('--chunk-size', type=int, default=80,
+                   help='tickers per batched download')
     p.add_argument('--harm-error', type=float, default=10.0,
                    help='harmonic errorPercent (script default 10)')
     p.add_argument('--harm-bars', type=int, default=15,
