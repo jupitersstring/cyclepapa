@@ -35,7 +35,7 @@ QS_MODULES = ("summaryDetail,defaultKeyStatistics,financialData,price,"
 class YahooClient:
     """Thread-safe, globally-paced Yahoo fetcher over plain requests."""
 
-    def __init__(self, min_interval: float = 0.30):
+    def __init__(self, min_interval: float = 0.70):
         self._min_interval = min_interval
         self._pace_lock = threading.Lock()
         self._next_ok = 0.0
@@ -77,7 +77,8 @@ class YahooClient:
                 time.sleep(2 * (2 ** attempt))
                 continue
             if r.status_code == 429:
-                wait = min(300, 20 * (2 ** attempt)) + random.uniform(0, 5)
+                # Yahoo blocks can run long; wait patiently rather than churn.
+                wait = min(600, 60 * (2 ** attempt)) + random.uniform(0, 10)
                 print(f"  [rate-limit] 429, sleeping {wait:.0f}s ...",
                       file=sys.stderr, flush=True)
                 time.sleep(wait)
@@ -203,14 +204,36 @@ class YahooClient:
 
 
 def wait_until_clear(client: YahooClient, probe: str = "AAPL",
-                     max_wait: float = 1800.0) -> bool:
-    """Block until Yahoo stops 429-ing us (fresh runs after a hammering)."""
+                     max_wait: float = 8 * 3600.0,
+                     probe_every: float = 600.0) -> bool:
+    """Block until Yahoo stops 429-ing us.
+
+    Uses a SINGLE bare request per probe (no internal retries) so the
+    cooldown itself doesn't extend the block, and probes only every
+    `probe_every` seconds. Blocks after a heavy hammering can run for
+    hours — default patience is 8h.
+    """
+    import requests
+
     t0 = time.time()
+    n = 0
     while time.time() - t0 < max_wait:
-        df = client.get_ohlc(probe, range_="5d")
-        if df is not None and len(df):
-            return True
-        print("  [cooldown] Yahoo still rate-limiting, waiting 60s ...",
-              file=sys.stderr, flush=True)
-        time.sleep(60)
+        n += 1
+        try:
+            r = requests.get(
+                CHART_URL.format(sym=probe),
+                params={"range": "5d", "interval": "1d"},
+                headers={"User-Agent": UA}, timeout=20,
+            )
+            if r.status_code == 200:
+                print(f"  [cooldown] clear after {(time.time()-t0)/60:.0f} min "
+                      f"({n} probes)", file=sys.stderr, flush=True)
+                return True
+            status = r.status_code
+        except Exception as e:  # noqa: BLE001
+            status = type(e).__name__
+        print(f"  [cooldown] probe {n}: {status}; elapsed "
+              f"{(time.time()-t0)/60:.0f} min, next probe in "
+              f"{probe_every/60:.0f} min", file=sys.stderr, flush=True)
+        time.sleep(probe_every)
     return False

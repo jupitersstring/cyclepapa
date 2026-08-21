@@ -73,10 +73,11 @@ symbols = list(uni.index.astype(str))
 print(f"    combined universe: {len(symbols)} tickers", flush=True)
 
 # ------------------------------------------------------------------- OHLC
-client = YahooClient(min_interval=0.30)
-print("[2] cooling down until Yahoo accepts requests ...", flush=True)
+client = YahooClient(min_interval=0.70)
+print("[2] cooling down until Yahoo accepts requests (patience: 8h) ...",
+      flush=True)
 if not wait_until_clear(client):
-    print("Yahoo still rate-limiting after 30 min — aborting.", flush=True)
+    print("Yahoo still rate-limiting after 8h — aborting.", flush=True)
     sys.exit(1)
 
 print("    downloading fresh 3y OHLC (checkpointed) ...", flush=True)
