@@ -28,6 +28,7 @@ import sys
 import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+import io_util
 
 ROOT = Path("/home/user/cyclepapa")
 OUT = ROOT / "spinoff_volume_timer.json"
@@ -180,7 +181,7 @@ def main() -> int:
             print(f"  processed {n_processed}/{len(candidates)}",
                   file=sys.stderr, flush=True)
 
-    OUT.write_text(json.dumps(out, indent=2))
+    io_util.write_json(OUT, out)
     print(f"\nwrote {OUT} ({len(out)})")
 
     from collections import Counter

@@ -122,6 +122,10 @@ echo "### Workbook regeneration ###"
 run python3 build_most_asymmetric_xlsx.py  || true
 
 echo
+echo "### Source-health gate ###"
+run python3 io_util.py || echo "  (source-health flagged issues above)"
+
+echo
 echo "=== rebuild complete ==="
 echo "Artifacts:"
 ls -la MOST_ASYMMETRIC.xlsx SYSTEMATIC_RANKINGS.md 2>/dev/null

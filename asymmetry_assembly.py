@@ -46,6 +46,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import io_util
 
 ROOT = Path("/home/user/cyclepapa")
 OUT = ROOT / "asymmetry_assembly.json"
@@ -323,7 +324,7 @@ def main() -> int:
         res["worked_example"] = C["C9_revealed_events"]["worked_example"]
         out[tk] = res
 
-    OUT.write_text(json.dumps(out, indent=2))
+    io_util.write_json(OUT, out)
 
     # shortlist for the XBRL enrichment pass: cheap names with a
     # costly-action alignment signal (the PSIX/Gagnon setup) whose

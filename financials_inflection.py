@@ -26,6 +26,7 @@ import json
 import sys
 import time
 from pathlib import Path
+import io_util
 
 ROOT = Path("/home/user/cyclepapa")
 OUT = ROOT / "financials_inflection.json"
@@ -259,12 +260,12 @@ def main() -> int:
         if rec:
             out[tk] = rec
         if i % 20 == 0:
-            OUT.write_text(json.dumps(out, indent=2))
+            io_util.write_json(OUT, out)
             print(f"  [{i}/{len(tickers)}] {len(out)} with financials",
                   file=sys.stderr, flush=True)
         time.sleep(args.sleep)
 
-    OUT.write_text(json.dumps(out, indent=2))
+    io_util.write_json(OUT, out)
     print(f"wrote {OUT} ({len(out)} tickers)")
     return 0
 

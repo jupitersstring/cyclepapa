@@ -52,6 +52,7 @@ import re
 from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
+import io_util
 
 ROOT = Path("/home/user/cyclepapa")
 SRC = ROOT / "form4_buys.json"
@@ -376,7 +377,7 @@ def main() -> int:
     if skipped:
         print(f"  skipped {skipped} invalid ticker(s)")
 
-    OUT.write_text(json.dumps(out, indent=2))
+    io_util.write_json(OUT, out)
     nz = sum(1 for v in out.values() if v["score"] > 0)
     print(f"wrote {OUT} ({len(out)} tickers, {nz} scoring > 0)")
 

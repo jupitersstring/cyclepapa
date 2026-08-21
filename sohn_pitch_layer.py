@@ -18,6 +18,7 @@ from __future__ import annotations
 import json
 from datetime import datetime, timezone
 from pathlib import Path
+import io_util
 
 ROOT = Path("/home/user/cyclepapa")
 SRC = ROOT / "sohn_pitches.json"
@@ -72,7 +73,7 @@ def main() -> int:
             "presenter": p.get("presenter"), "fund": p.get("fund"),
             "side": p.get("side"), "stage": p.get("stage"),
             "conference_date": conf_date, "points": s})
-    OUT.write_text(json.dumps(out, indent=2))
+    io_util.write_json(OUT, out)
     nz = sum(1 for v in out.values() if v["score"] != 0)
     print(f"wrote {OUT} ({len(out)} tickers, {nz} scoring)")
     for tk, v in sorted(out.items(), key=lambda x: -x[1]["score"]):

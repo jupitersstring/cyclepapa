@@ -53,4 +53,8 @@ echo "=== equity committee ==="
 python3 test_equity_committee.py
 echo
 
+echo "=== io_util (atomic writes + health gate) ==="
+python3 test_io_util.py
+echo
+
 echo "All test suites passed."

@@ -23,6 +23,7 @@ import re
 import sys
 import time
 from pathlib import Path
+import io_util
 
 ROOT = Path("/home/user/cyclepapa")
 OUT = ROOT / "equity_committee_scan.json"
@@ -153,7 +154,7 @@ def main() -> int:
         rec["classes"] = list(rec["classes"].keys())
         if rec["score"] > 0:
             out[tk] = rec
-    OUT.write_text(json.dumps(out, indent=2))
+    io_util.write_json(OUT, out)
     print(f"wrote {OUT} ({len(out)} names)")
     for tk, v in sorted(out.items(), key=lambda x: -x[1]["score"])[:20]:
         d = " DENIED" if v.get("denied") else ""

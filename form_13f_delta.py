@@ -41,6 +41,7 @@ import xml.etree.ElementTree as ET
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+import io_util
 
 ROOT = Path("/home/user/cyclepapa")
 OUT = ROOT / "form_13f_delta.json"
@@ -490,7 +491,7 @@ def main() -> int:
     # consensus loader ignores (not a valid ticker).
     out["_META_FILINGS_USED"] = filer_dates_used
     out["_META_UNRESOLVED_HOLDINGS"] = n_unresolved
-    OUT.write_text(json.dumps(out, indent=2))
+    io_util.write_json(OUT, out)
     print(f"\nwrote {OUT} ({len(out) - 2} tickers, "
           f"{len(filer_dates_used)} filers used, "
           f"{n_unresolved} material holdings unresolved to ticker)")

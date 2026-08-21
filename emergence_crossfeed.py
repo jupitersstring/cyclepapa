@@ -35,6 +35,7 @@ import json
 import re
 from datetime import datetime, timezone
 from pathlib import Path
+import io_util
 
 ROOT = Path("/home/user/cyclepapa")
 SRC = ROOT / "emergence_master_snapshot.json"
@@ -134,7 +135,7 @@ def main() -> int:
         if prev is None or rec["score"] > prev["score"]:
             out[rec["ticker"]] = rec
 
-    OUT.write_text(json.dumps(out, indent=2))
+    io_util.write_json(OUT, out)
     print(f"wrote {OUT} ({len(out)} scored tickers)")
 
     ranked = sorted(out.values(), key=lambda r: -r["score"])

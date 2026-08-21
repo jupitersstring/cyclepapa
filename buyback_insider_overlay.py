@@ -38,6 +38,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import io_util
 
 ROOT = Path("/home/user/cyclepapa")
 OUT = ROOT / "buyback_insider_overlay.json"
@@ -110,7 +111,7 @@ def main() -> int:
             "score_delta": score_delta,
         }
 
-    OUT.write_text(json.dumps(out, indent=2))
+    io_util.write_json(OUT, out)
     print(f"\nwrote {OUT} ({len(out)} tickers)")
 
     # Direction distribution

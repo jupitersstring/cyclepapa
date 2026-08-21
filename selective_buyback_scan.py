@@ -28,6 +28,7 @@ import re
 import sys
 import time
 from pathlib import Path
+import io_util
 
 ROOT = Path("/home/user/cyclepapa")
 OUT = ROOT / "selective_buyback_scan.json"
@@ -168,7 +169,7 @@ def main() -> int:
         rec["classes"] = list(rec["classes"].keys())
         if rec["score"] > 0:
             out[tk] = rec
-    OUT.write_text(json.dumps(out, indent=2))
+    io_util.write_json(OUT, out)
     print(f"wrote {OUT} ({len(out)} selective buybacks)")
     print("\n=== TOP SELECTIVE / REVEALED-VALUATION BUYBACKS ===")
     print(f"{'TKR':<7}{'SCR':>6} {'HOLDER':<7}{'PX':<9}CLASSES")

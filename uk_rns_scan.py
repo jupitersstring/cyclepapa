@@ -37,6 +37,7 @@ import re
 import sys
 import time
 from pathlib import Path
+import io_util
 
 ROOT = Path("/home/user/cyclepapa")
 OUT = ROOT / "uk_rns_events.json"
@@ -222,7 +223,7 @@ def main() -> int:
     out = {tk: r for tk, r in scored.items() if r["score"] > 0}
     for r in out.values():
         r["score"] = round(r["score"], 1)
-    OUT.write_text(json.dumps(out, indent=2))
+    io_util.write_json(OUT, out)
     print(f"wrote {OUT} ({len(out)} UK events)")
     print("\n=== TOP UK RNS EVENTS (recent) ===")
     print(f"{'TICKER':<9}{'SCR':>5} {'FAMILY':<11}{'CLASS':<24}NAME")

@@ -33,6 +33,7 @@ import json
 from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
+import io_util
 
 ROOT = Path("/home/user/cyclepapa")
 OUT = ROOT / "opportunistic_insiders.json"
@@ -144,7 +145,7 @@ def main() -> int:
             "score": round(score, 1),
         }
 
-    OUT.write_text(json.dumps(out, indent=2))
+    io_util.write_json(OUT, out)
     print(f"\nwrote {OUT} ({len(out)} tickers)")
 
     # Top 20

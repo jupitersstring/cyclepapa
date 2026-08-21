@@ -28,6 +28,7 @@ import re
 import sys
 import time
 from pathlib import Path
+import io_util
 
 ROOT = Path("/home/user/cyclepapa")
 OUT = ROOT / "credit_agreement_mine.json"
@@ -238,7 +239,7 @@ def main() -> int:
         if isinstance(rec.get("categories"), dict):
             rec["categories"] = sorted(rec["categories"].keys())
         out[tk] = rec
-    OUT.write_text(json.dumps(out, indent=2))
+    io_util.write_json(OUT, out)
     scored = [r for r in out.values() if r["score"] > 0]
     print(f"wrote {OUT} ({len(out)} names, {len(scored)} scored)")
     from collections import Counter

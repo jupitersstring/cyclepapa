@@ -30,6 +30,7 @@ import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+import io_util
 
 ROOT = Path("/home/user/cyclepapa")
 OUT = ROOT / "coval_stafford_proxy.json"
@@ -113,7 +114,7 @@ def main() -> int:
             "reasons": "; ".join(reasons),
         }
 
-    OUT.write_text(json.dumps(out, indent=2))
+    io_util.write_json(OUT, out)
     print(f"\nwrote {OUT} ({len(out)})")
 
     full = sum(1 for v in out.values() if v.get("full_quadrilateral"))

@@ -29,6 +29,7 @@ import re
 import sys
 import time
 from pathlib import Path
+import io_util
 
 ROOT = Path("/home/user/cyclepapa")
 OUT = ROOT / "premium_injection_scan.json"
@@ -199,7 +200,7 @@ def main() -> int:
                        "subscription_price": sub_price, "governance": gov,
                        "lockup_months": lockup_m, "side_consideration": side,
                        "date": h["date"], "accession": acc, "reasons": reasons}
-    OUT.write_text(json.dumps(out, indent=2))
+    io_util.write_json(OUT, out)
     print(f"wrote {OUT} ({len(out)} premium injections)")
     for tk, v in sorted(out.items(), key=lambda x: -x[1]["score"])[:20]:
         print(f"  {tk:<7}{v['score']:>6.1f}  {'; '.join(v['reasons'])}")

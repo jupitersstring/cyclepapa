@@ -32,6 +32,7 @@ import re
 import sys
 import time
 from pathlib import Path
+import io_util
 
 ROOT = Path("/home/user/cyclepapa")
 OUT = ROOT / "distressed_stub_progress.json"
@@ -300,7 +301,7 @@ def main() -> int:
         rec["classification"] = classify(rec["score"])
         out[tk] = rec
     print(f"  distress gate dropped {dropped} non-distressed names", file=sys.stderr)
-    OUT.write_text(json.dumps(out, indent=2))
+    io_util.write_json(OUT, out)
 
     scored = [r for r in out.values() if r["score"] > 0]
     print(f"wrote {OUT} ({len(out)} names, {len(scored)} net-positive)")
