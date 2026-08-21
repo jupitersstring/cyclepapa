@@ -49,4 +49,8 @@ echo "=== catalyst decay ==="
 python3 test_catalyst_decay.py
 echo
 
+echo "=== equity committee ==="
+python3 test_equity_committee.py
+echo
+
 echo "All test suites passed."

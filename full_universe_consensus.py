@@ -467,6 +467,13 @@ def score_premium_injection_layer(layers: dict, universe: set) -> dict:
     return out
 
 
+def score_equity_committee_layer(layers: dict, universe: set) -> dict:
+    """Official committee of equity security holders -- a judicial finding
+    that the stub is reasonably likely in-the-money. The strongest
+    stub-survival signal (rare). See equity_committee_scan.py."""
+    return _load_jscore(ROOT / "equity_committee_scan.json", universe)
+
+
 def score_distressed_stub_layer(layers: dict, universe: set) -> dict:
     """Distressed-stub progress: stage-gated, finality-filtered value-
     unlock events in capital-structure workouts, with stub-waterfall
@@ -731,6 +738,7 @@ def main() -> int:
         "sohn_pitch": score_sohn_pitch_layer(layers, universe),
         "asymmetry_assembly": score_asymmetry_assembly_layer(layers, universe),
         "distressed_stub": score_distressed_stub_layer(layers, universe),
+        "equity_committee": score_equity_committee_layer(layers, universe),
         "premium_injection": score_premium_injection_layer(layers, universe),
         "hidden_asset": score_hidden_asset_layer(layers, universe),
         "selective_buyback": score_selective_buyback_layer(layers, universe),
@@ -816,6 +824,7 @@ def main() -> int:
             "sohn_pitch_pts": layer_scores["sohn_pitch"].get(tk, 0),
             "asymmetry_assembly_pts": layer_scores["asymmetry_assembly"].get(tk, 0),
             "distressed_stub_pts": layer_scores["distressed_stub"].get(tk, 0),
+            "equity_committee_pts": layer_scores["equity_committee"].get(tk, 0),
             "premium_injection_pts": layer_scores["premium_injection"].get(tk, 0),
             "hidden_asset_pts": layer_scores["hidden_asset"].get(tk, 0),
             "selective_buyback_pts": layer_scores["selective_buyback"].get(tk, 0),
