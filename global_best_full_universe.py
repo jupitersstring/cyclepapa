@@ -349,9 +349,10 @@ out_path = "global_best_full.xlsx"
 with pd.ExcelWriter(out_path, engine="xlsxwriter") as writer:
     for name, sheet_df in sheets.items():
         safe_n = name.replace("/","-").replace(":","-").replace("$","").replace("(","").replace(")","")[:31]
-        if sheet_df.index.name is None and name != "Distribution":
+        if name != "Distribution":
             sheet_df = sheet_df.copy()
-            sheet_df.index.name = "Ticker"
+            if sheet_df.index.name is None:
+                sheet_df.index.name = "Ticker"
             sheet_df = sheet_df.reset_index()
         sheet_df.to_excel(writer, sheet_name=safe_n, index=False)
         ws = writer.sheets[safe_n]
