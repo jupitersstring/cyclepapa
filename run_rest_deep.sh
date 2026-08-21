@@ -44,7 +44,7 @@ while true; do
   echo "$(ts) rest deep chunk #$ATT" >> "$LOG"
   "$PY" ticker_yf_deep.py --symbols-from rest_expansion_universe.csv \
         --out rest_expansion_yartseva.csv --attempts rest_deep_attempts.json \
-        --rate 2.5 --limit 400 >> rest_enrich.log 2>&1
+        --rate 4 --limit 600 >> rest_enrich.log 2>&1
   commit_progress
   REMAIN=$("$PY" - <<'PYEOF'
 import pandas as pd, os, json
