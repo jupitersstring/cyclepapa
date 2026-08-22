@@ -94,3 +94,20 @@ def _run_all():
 
 if __name__ == "__main__":
     _run_all()
+
+
+def test_negative_price_to_sales_nulled():
+    """A negative trailing P/S (impossible for a real operating company) must be
+    nulled by _sanitize so it neither displays nor sorts to 'cheapest'."""
+    import pandas as pd
+    from earnings_model import fundamentals as F
+    df = pd.DataFrame({
+        "symbol": ["A", "B", "C"],
+        "priceToSalesTrailing12Months": [-1.8, 0.0, 2.5],
+        "priceToBook": [-3.0, 1.0, 2.0],          # negative book equity is legitimate
+    })
+    out = F._sanitize(df)
+    ps = out["priceToSalesTrailing12Months"].tolist()
+    assert ps[0] != ps[0] and ps[1] != ps[1]      # -1.8 and 0.0 -> NaN
+    assert ps[2] == 2.5                            # valid P/S untouched
+    assert out["priceToBook"].tolist() == [-3.0, 1.0, 2.0]   # P/B NOT touched

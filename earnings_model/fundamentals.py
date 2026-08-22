@@ -625,6 +625,16 @@ def _sanitize(df: pd.DataFrame) -> pd.DataFrame:
     num = out.select_dtypes(include=["number"]).columns
     if len(num):
         out[num] = out[num].replace([np.inf, -np.inf], np.nan)
+    # Price-to-sales cannot be negative: sales (revenue) is non-negative for a real
+    # operating company, so a negative trailing P/S is a Yahoo data error (financials
+    # whose "total revenue" nets out provisions/interest). Left in, it both DISPLAYS
+    # an impossible multiple and lets a distressed name sort to "cheapest". The
+    # scorer already guards P/S>0, but null it at the source so the stored/displayed
+    # column is clean too. (P/B and EV/EBITDA CAN be legitimately negative — negative
+    # book equity, negative EBITDA — so they are deliberately not touched here.)
+    if "priceToSalesTrailing12Months" in out.columns:
+        ps = out["priceToSalesTrailing12Months"]
+        out["priceToSalesTrailing12Months"] = ps.where(ps > 0)
     return out
 
 
