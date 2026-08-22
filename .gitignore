@@ -44,3 +44,5 @@ rest_enrich.log
 rest_driver.log
 .rest_rendered
 .otc_rendered
+rest_enrich_b.log
+rest_driver_b.log
