@@ -1,0 +1,81 @@
+ticker,alignment_score,harm_signal_d,harm_signal_w,harm_patterns_d,harm_patterns_w,harm_bars_ago_d,harm_bars_ago_w,rr_struct,cs_spread_pct,value_migration_up,otf_up_weeks
+CDM1.F,88.0,buy,,Butterfly+ABCD Ext,,12.0,,0.29,0.457,True,4.0
+CDE.VI,86.5,buy,,Deep Crab+Butterfly+ABCD Ext,,13.0,,0.28,0.431,True,4.0
+N1EM34.SA,84.0,buy,,ABCD,,11.0,,0.26,0.413,False,4.0
+NEM.MX,80.5,buy,buy,ABCD,Gartley+ABCD,10.0,2.0,0.71,0.033,True,4.0
+300016.SZ,80.5,,buy,,Gartley+ABCD+AB=CD,,0.0,0.18,0.945,True,0.0
+300345.SZ,80.0,,buy,,AB=CD,,0.0,0.19,1.363,True,3.0
+002586.SZ,77.0,buy,buy,Butterfly+ABCD+ABCD Ext,Crab,13.0,6.0,0.09,0.906,True,4.0
+IMP.JO,74.5,buy,buy,Gartley+ABCD+ABCD Ext,Gartley,13.0,0.0,0.45,1.012,True,3.0
+AGI.TO,74.5,buy,buy,ABCD+ABCD Ext,ABCD+ABCD Ext,11.0,2.0,0.56,0.589,True,3.0
+TLTZY,74.5,buy,buy,ABCD,Gartley,1.0,0.0,1.11,0.434,True,4.0
+IAG,74.5,buy,,Crab+Gartley,,15.0,,0.4,0.649,True,3.0
+300683.SZ,74.0,,buy,,ABCD,,1.0,0.83,1.37,True,3.0
+TRE.VI,73.0,buy,buy,ABCD,ABCD,0.0,0.0,0.02,0.345,True,1.0
+BASF.BD,73.0,,buy,,Cypher,,5.0,0.52,0.0,True,0.0
+SAPGF,73.0,,buy,,Deep Crab,,11.0,0.17,0.455,True,4.0
+9508.T,73.0,,buy,,Gartley+ABCD,,6.0,0.16,0.573,True,1.0
+MTO.L,72.5,,buy,,Deep Crab+Butterfly,,4.0,0.07,0.697,True,1.0
+GENL.L,71.0,,buy,,ABCD,,2.0,0.4,1.547,True,3.0
+7211.KL,70.5,buy,buy,Butterfly,Butterfly,3.0,1.0,0.33,0.17,False,1.0
+AU,69.5,buy,,Bat+Butterfly+Cypher+Deep Crab+Gartley+Shark,,13.0,,0.52,0.45,True,3.0
+INR,69.5,buy,,Alternate Bat+Bat+Butterfly+Crab+Cypher+Deep Crab+Gartley+Shark,,14.0,,0.75,1.272,True,3.0
+HCL.DE,69.5,buy,,ABCD,,12.0,,0.27,0.667,True,2.0
+1605.TW,69.0,buy,,Butterfly,,12.0,,0.1,0.934,True,3.0
+101400.KQ,69.0,buy,,ABCD+ABCD Ext,,14.0,,1.55,2.212,True,3.0
+SCHO.CO,68.5,buy,,ABCD+ABCD Ext,,9.0,,0.05,0.471,False,2.0
+PRPO,68.0,buy,,Bat+Butterfly+Cypher+Deep Crab+Gartley+Shark,,13.0,,0.28,2.339,True,1.0
+EIA.SG,67.0,buy,buy,Crab,Crab,2.0,0.0,2.06,0.424,True,4.0
+DEQ.VI,67.0,buy,buy,ABCD,ABCD+ABCD Ext,0.0,4.0,0.01,0.197,True,0.0
+600395.SS,67.0,,buy,,Butterfly,,0.0,0.35,1.041,False,3.0
+PKX,66.5,buy,,Butterfly+Gartley,,14.0,,0.03,0.291,True,3.0
+CMEG.VI,66.5,,buy,,Crab,,4.0,0.51,0.145,True,1.0
+JINDALSTEL.BO,66.5,,buy,,Cypher,,3.0,0.02,0.489,True,1.0
+603058.SS,66.5,,buy,,Crab,,3.0,2.03,1.128,True,0.0
+LGSXY,66.5,,buy,,ABCD+ABCD Ext,,8.0,1.28,0.926,True,0.0
+NOBU.JK,66.5,,buy,,ABCD,,2.0,0.68,1.063,True,3.0
+002539.SZ,66.5,,buy,,Crab+ABCD Ext,,3.0,0.48,1.093,True,0.0
+SBOA.F,65.5,buy,buy,Crab+ABCD Ext,Crab+ABCD Ext,9.0,1.0,0.0,0.0,False,1.0
+EDG.F,65.5,buy,buy,ABCD,ABCD,12.0,2.0,0.6,0.023,True,4.0
+JAG.TO,65.5,,buy,,Butterfly,,2.0,0.07,1.172,True,5.0
+300931.SZ,65.0,buy,buy,Crab,Crab,5.0,0.0,0.17,1.409,False,4.0
+CVLB.HM,65.0,buy,,ABCD,,0.0,,0.04,0.162,True,0.0
+HIUC.F,65.0,,buy,,Gartley+ABCD,,6.0,0.87,0.0,True,0.0
+MZ4.F,65.0,,buy,,Butterfly,,4.0,0.05,0.0,True,2.0
+EIA.DU,64.5,buy,buy,Crab,Crab,5.0,0.0,0.31,0.047,False,4.0
+ALBE.VI,64.0,buy,buy,Cypher,Cypher,8.0,1.0,1.92,0.371,False,3.0
+AMC.F,64.0,buy,buy,Cypher,Cypher,8.0,1.0,2.01,0.316,False,3.0
+AMC.DE,64.0,buy,buy,Cypher,Cypher,9.0,1.0,1.84,0.722,False,3.0
+002448.SZ,64.0,buy,buy,Gartley,Gartley,4.0,0.0,0.95,1.024,False,4.0
+NOG,64.0,buy,,Butterfly+Gartley+Shark,,10.0,,0.05,0.514,True,2.0
+OIS,64.0,buy,,Bat+Cypher+Gartley+Shark,,13.0,,1.91,0.881,False,3.0
+RWT,64.0,buy,,Alternate Bat+Butterfly+Crab+Cypher+Deep Crab+Gartley+Shark,,15.0,,0.27,0.805,False,3.0
+060250.KQ,64.0,,buy,,ABCD,,1.0,1.59,1.124,False,3.0
+002490.SZ,64.0,,buy,,Butterfly,,5.0,1.17,1.019,False,3.0
+MITEY,62.5,buy,,ABCD+ABCD Ext,,8.0,,2.41,0.295,False,0.0
+603161.SS,62.5,,buy,,Butterfly,,11.0,0.26,1.081,False,2.0
+OGN.L,62.5,buy,,Cypher,,13.0,,0.07,0.0,False,3.0
+PALAF,62.0,buy,buy,Cypher,Cypher,13.0,1.0,0.51,1.052,True,0.0
+MTYFF,62.0,buy,buy,Deep Crab,Deep Crab,9.0,1.0,0.86,0.031,True,2.0
+ASM,62.0,buy,,Shark+Cypher,,10.0,,0.25,1.09,True,0.0
+002581.SZ,62.0,,buy,,Butterfly,,0.0,0.02,0.935,True,3.0
+3788.HK,62.0,,buy,,Cypher,,4.0,0.33,1.362,True,5.0
+THM,61.5,buy,buy,ABCD,ABCD,8.0,1.0,0.39,1.321,True,2.0
+UTDI.VI,61.5,buy,buy,Butterfly,Butterfly,5.0,0.0,1.08,0.225,True,2.0
+043150.KQ,61.5,buy,buy,Butterfly,Butterfly,9.0,2.0,1.05,0.719,True,0.0
+CNR,61.5,buy,,Cypher+Gartley+Shark,,14.0,,0.12,1.067,True,3.0
+WFRD,61.5,,buy,,Cypher,,3.0,0.69,1.055,True,4.0
+ECOO11.SA,61.5,,buy,,Shark+Cypher,,6.0,9.37,0.041,True,1.0
+ASTRAL.BO,61.5,,buy,,Butterfly+ABCD,,3.0,0.06,0.527,True,1.0
+600251.SS,61.5,,buy,,Cypher,,3.0,0.57,0.93,True,7.0
+RLD.F,61.5,buy,,Shark,,9.0,,0.13,0.069,True,3.0
+300452.SZ,61.5,,buy,,Cypher,,0.0,0.99,0.929,True,3.0
+0OC.SG,61.0,,buy,,ABCD+ABCD Ext,,1.0,0.24,0.892,False,5.0
+ANGPY,60.0,buy,buy,ABCD,ABCD,14.0,3.0,0.14,0.347,True,0.0
+CAPG.VI,60.0,,buy,,Deep Crab,,3.0,0.25,0.283,True,4.0
+1963.HK,60.0,,buy,,Cypher,,3.0,0.36,0.497,True,1.0
+601598.SS,60.0,,buy,,Gartley,,3.0,0.19,0.62,True,7.0
+1112.HK,60.0,,buy,,ABCD,,6.0,0.47,1.386,True,3.0
+601700.SS,60.0,,buy,,Gartley,,15.0,0.25,1.238,True,7.0
+002396.SZ,60.0,,buy,,Gartley+ABCD,,6.0,0.16,1.852,True,3.0
+W05.SI,60.0,,buy,,Gartley,,9.0,0.47,0.425,True,1.0
