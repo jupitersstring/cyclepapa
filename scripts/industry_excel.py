@@ -45,7 +45,7 @@ namecols=["industry","region","symbol","name","size_bucket","revenue_growth","eb
 names=names.sort_values(["industry","name_score"],ascending=[True,False])[namecols]
 
 # ---- WRITE FORMATTED XLSX ----
-path="UK_US_EU_industry_behaviour_growth.xlsx"
+path="industry_behaviour_growth.xlsx"
 w=pd.ExcelWriter(path, engine="xlsxwriter")
 gcols=["industry","n","score","behaviour_change","growth_rank","rev_growth_med","ebitda_growth_med","earnings_growth_med","pct_sales_accel","pct_ebitda_accel","pct_broad_inflection","pct_margin_expanding","fwd_pe_med","ev_ebitda_med","ret_12m_med","ret_24m_med"]
 glob[gcols].to_excel(w,sheet_name="Global Industries",index=False,startrow=1,header=False)
@@ -85,7 +85,7 @@ rows=[("Field","Definition"),
 ("pct_margin_expanding","Share with EBITDA margin expanding over last 3 yrs (all-positive)"),
 ("fwd_pe_med / ev_ebitda_med","Median forward P/E and EV/EBITDA (positive only)"),
 ("ret_12m/24m_med","Median trailing price return — low = market hasn't reacted"),
-("Universe","Operating companies only (warrants/preferreds/CEFs/shells excluded). UK LSE + US + EU primary listings."),
+("Universe","Operating companies only (warrants/preferreds/CEFs/shells excluded). Global primary listings: US, EU, UK, JP, Greater China (CN/HK/TW), KR, SEA, ANZ, CA, LATAM, MEA."),
 ("Source / date",f"yfinance + financedatabase, generated {date.today().isoformat()}. Research scaffold, not advice."),
 ]
 for r,(a,b) in enumerate(rows):
