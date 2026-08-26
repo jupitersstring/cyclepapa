@@ -1547,24 +1547,47 @@ def fair_value_scan(pairs_df: pd.DataFrame, period: str = "1y",
 
 
 def filter_real_arbs(fair_df: pd.DataFrame,
-                     max_moneyness: float = 0.85,
+                     max_moneyness: float = 1.80,
                      min_theoretical: float = 0.50,
                      max_gap_pct: float = -0.70,
+                     near_money_gap_pct: float = -0.30,
+                     near_money_floor: float = 0.85,
                      sigma_low: float = 0.40,
                      sigma_high: float = 1.50) -> pd.DataFrame:
-    """The 'discount no longer makes sense' shortlist: warrant deeply
-    OTM (no redemption-cap pressure), reasonable vol, meaningful
-    theoretical fair value, and large negative gap.
+    """The 'discount no longer makes sense' shortlist, split into two lanes.
+
+    Redemption-cap pressure is the $18 trigger (``days_above_18``), NOT
+    mere in-the-money-ness. So instead of discarding every warrant with
+    moneyness > 0.85, we keep two bands (both still gated on
+    ``days_above_18 == 0``):
+
+      - deep-OTM (moneyness <= near_money_floor): needs a deep discount
+        (gap <= max_gap_pct, default -70%) -- the lottery-ticket lane.
+      - near/ITM (near_money_floor < moneyness <= max_moneyness): a
+        high-delta warrant trades near a *modest* discount, so it
+        qualifies at a shallower gap (near_money_gap_pct, default -30%).
+        A 30% discount on a delta~1 ITM warrant is more reliably
+        realized than an 80% discount on a deep-OTM lottery ticket.
+
+    (Backtest: the old moneyness<=0.85 cap discarded HQWWW -- common
+    $12.20 vs $11.50 strike, moneyness 1.06 -- which then ran +194%
+    May->Aug 2026. The $18 trigger was never in play.)
     """
     if fair_df.empty:
         return fair_df
-    return fair_df[
-        (fair_df["moneyness"] <= max_moneyness)
+    m = fair_df["moneyness"]
+    base = (
+        (m <= max_moneyness)
         & (fair_df["days_above_18"] == 0)
         & (fair_df["sigma_1y"].between(sigma_low, sigma_high))
         & (fair_df["theoretical"] >= min_theoretical)
-        & (fair_df["gap_pct"] <= max_gap_pct)
-    ].copy().reset_index(drop=True)
+    )
+    deep_otm = base & (m <= near_money_floor) & (fair_df["gap_pct"] <= max_gap_pct)
+    near_itm = base & (m > near_money_floor) & (fair_df["gap_pct"] <= near_money_gap_pct)
+    out = fair_df[deep_otm | near_itm].copy()
+    out["money_band"] = np.where(out["moneyness"] <= near_money_floor,
+                                 "deep_otm", "near_itm")
+    return out.reset_index(drop=True)
 
 
 # ---------- business quality + recent inflection scoring ----------
@@ -1688,7 +1711,9 @@ def score_quality_and_inflection(df: pd.DataFrame) -> pd.DataFrame:
 
 def rank_discount_quality_inflection(fair_df: pd.DataFrame,
                                      gap_threshold: float = -0.50,
-                                     max_moneyness: float = 0.90,
+                                     max_moneyness: float = 1.80,
+                                     near_money_gap_pct: float = -0.30,
+                                     near_money_floor: float = 0.85,
                                      top_n_to_score: int = 60) -> pd.DataFrame:
     """End-to-end: take BS fair-value scan, filter to deep-discount survivors,
     pull fundamentals, score quality + inflection, rank by composite.
@@ -1701,10 +1726,14 @@ def rank_discount_quality_inflection(fair_df: pd.DataFrame,
     """
     if fair_df.empty:
         return pd.DataFrame()
+    m = fair_df["moneyness"]
     deep = fair_df[
-        (fair_df["gap_pct"] <= gap_threshold)
-        & (fair_df["moneyness"] <= max_moneyness)
+        (m <= max_moneyness)
         & (fair_df["days_above_18"] == 0)
+        & (
+            ((m <= near_money_floor) & (fair_df["gap_pct"] <= gap_threshold))
+            | ((m > near_money_floor) & (fair_df["gap_pct"] <= near_money_gap_pct))
+        )
     ].copy()
     deep = deep.sort_values("gap_pct").head(top_n_to_score)
     if deep.empty:
@@ -2251,7 +2280,7 @@ def cli():
     s.add_argument("--r", type=float, default=0.045)
     s.add_argument("--dilution", type=float, default=0.90)
     s.add_argument("--gap", type=float, default=-0.50, help="Max gap_pct.")
-    s.add_argument("--money", type=float, default=0.85, help="Max moneyness.")
+    s.add_argument("--money", type=float, default=1.80, help="Max moneyness (near/ITM admitted; $18 trigger guards redemption).")
     s.add_argument("--top", type=int, default=25)
     s.add_argument("--quality", action="store_true",
                   help="Layer business quality + recent inflection scoring.")
@@ -2283,7 +2312,7 @@ def cli():
     s.add_argument("--r", type=float, default=0.045)
     s.add_argument("--dilution", type=float, default=0.90)
     s.add_argument("--gap", type=float, default=-0.50)
-    s.add_argument("--money", type=float, default=0.85)
+    s.add_argument("--money", type=float, default=1.80)
     s.add_argument("--score-n", type=int, default=60,
                   help="Max names to pull fundamentals for.")
     s.add_argument("--top", type=int, default=15)
