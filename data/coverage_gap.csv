@@ -13,7 +13,6 @@ UNVERIFIED,2,"yoy-unpriced,conviction",037560.KS,LG HelloVision Corp.,KR,Communi
 UNVERIFIED,2,"yoy-unpriced,conviction",6150.TWO,TUL Corporation,TW,Information Technology,0.858
 UNVERIFIED,2,"asymmetry,inflecting-positive",600741.SS,HUAYU Automotive Systems Company Limited,CN,Consumer Discretionary,0.849
 UNVERIFIED,2,"inflecting-positive,conviction",9993.T,"Yamazawa Co., Ltd.",JP,Consumer Staples,0.845
-UNVERIFIED,2,"new-reality,consensus-lagging",PTC,PTC Inc.,US,Information Technology,0.843
 UNVERIFIED,2,"divergence,conviction",3540.TWO,"Thermaltake Technology Co., Ltd.",TW,Information Technology,0.836
 UNVERIFIED,2,"divergence,conviction",GOGO,Gogo Inc.,US,Communication Services,0.835
 UNVERIFIED,2,"forensic,conviction",6596.TWO,Kuang Hong Arts Management Incorporation,TW,Communication Services,0.831
@@ -37,7 +36,6 @@ UNVERIFIED,1,surprises,NKE,"Nike, Inc.",US,Consumer Discretionary,0.955
 UNVERIFIED,1,surprises,RELL,"Richardson Electronics, Ltd.",US,Information Technology,0.954
 UNVERIFIED,1,surprises,MRCY,"Mercury Systems, Inc.",US,Industrials,0.953
 UNVERIFIED,1,surprises,DINO,HF Sinclair Corporation Common Stock,US,Energy,0.95
-UNVERIFIED,1,new-reality,LMB,"Limbach Holdings, Inc.",US,Industrials,0.911
 UNVERIFIED,1,new-reality,CSGP,"CoStar Group, Inc.",US,Real Estate,0.908
 UNVERIFIED,1,forensic,3856.T,Abalance Corporation,JP,Information Technology,0.903
 UNVERIFIED,1,inflecting-positive,8165.T,"Senshukai Co., Ltd.",JP,Consumer Discretionary,0.898
@@ -79,7 +77,6 @@ UNVERIFIED,1,accel-unpriced,1533.TW,"Mobiletron Electronics Co.,Ltd.",TW,Consume
 UNVERIFIED,1,accel-unpriced,300443.SZ,"Jinlei Technology Co., Ltd.",CN,Industrials,0.826
 UNVERIFIED,1,divergence,ENPH,"Enphase Energy, Inc.",US,Information Technology,0.825
 UNVERIFIED,1,forensic,TRN.L,Trainline Plc,UK,Consumer Discretionary,0.825
-UNVERIFIED,1,new-reality,MEG,"Montrose Environmental Group, Inc.",US,Industrials,0.825
 UNVERIFIED,1,forensic,1438.TW,"SanDi Properties Co.,Ltd.",TW,Real Estate,0.823
 UNVERIFIED,1,new-reality,ONT,Onterris Inc. Common Stock,US,Industrials,0.823
 UNVERIFIED,1,accel-unpriced,002016.SZ,"Guangdong Shirongzhaoye Co., Ltd.",CN,Real Estate,0.82
@@ -128,7 +125,6 @@ UNVERIFIED,1,new-reality,ISRG,"Intuitive Surgical, Inc.",US,Health Care,0.773
 UNVERIFIED,1,new-reality,NATR,"Nature's Sunshine Products, Inc.",US,Consumer Staples,0.771
 UNVERIFIED,1,consensus-lagging,PNDX-B.ST,Pandox AB (publ),EU,Consumer Discretionary,0.766
 UNVERIFIED,1,new-reality,BR,"Broadridge Financial Solutions, Inc.",US,Information Technology,0.765
-UNVERIFIED,1,new-reality,GDDY,GoDaddy Inc.,US,Information Technology,0.765
 UNVERIFIED,1,new-reality,OTEX.TO,Open Text Corporation,CA,Information Technology,0.764
 UNVERIFIED,1,new-reality,ARHS,Arhaus Inc. Class A Common Stock,US,Industrials,0.764
 UNVERIFIED,1,consensus-lagging,7936.T,ASICS Corporation,JP,Consumer Discretionary,0.762
@@ -165,6 +161,7 @@ REJECT,3,"yoy-unpriced,accel-unpriced,inflecting-positive",5206.TWO,"Kunyue Deve
 REJECT,3,"yoy-unpriced,accel-unpriced,asymmetry",ZEAL.CO,Zealand Pharma A/S,EU,Health Care,0.875
 REJECT,2,"yoy-unpriced,accel-unpriced",PEHA.JK,"PT Phapros, Tbk",SEA,Health Care,0.879
 SPECULATIVE,2,"asymmetry,inflecting-positive",VTY.L,Vistry Group PLC,UK,Industrials,0.859
+KEEP,2,"new-reality,consensus-lagging",PTC,PTC Inc.,US,Information Technology,0.843
 SPECULATIVE,2,"accel-unpriced,conviction",BISI.JK,PT BISI International Tbk,SEA,Materials,0.83
 REJECT,2,"divergence,conviction",MOS,The Mosaic Company,US,Materials,0.782
 REJECT,2,"divergence,conviction",688022.SS,"Suzhou Harmontronics Automation Technology Co., Ltd",CN,Industrials,0.777
@@ -174,6 +171,7 @@ REJECT,1,surprises,AMH,American Homes 4 Rent,US,Real Estate,0.966
 SPECULATIVE,1,surprises,AMSC,American Superconductor Corporation,US,Industrials,0.96
 KEEP,1,surprises,ROKU,"Roku, Inc. Class A",US,Communication Services,0.957
 REJECT,1,surprises,INSP,"Inspire Medical Systems, Inc.",US,Health Care,0.951
+SPECULATIVE,1,new-reality,LMB,"Limbach Holdings, Inc.",US,Industrials,0.911
 REJECT,1,inflecting-positive,CO.PA,"Casino, Guichard-Perrachon Societe Anonyme",EU,Consumer Staples,0.905
 SPECULATIVE,1,yoy-unpriced,1541.TW,"CHANG TYPE Industrial Co., Ltd.",TW,Industrials,0.881
 KEEP,1,yoy-unpriced,KROS,"Keros Therapeutics, Inc.",US,Health Care,0.874
@@ -185,7 +183,9 @@ SPECULATIVE,1,asymmetry,6149.T,"Odawara Engineering Co., Ltd.",JP,Industrials,0.
 REJECT,1,asymmetry,3479.T,TKP Corporation,JP,Real Estate,0.831
 KEEP,1,accel-unpriced,5522.TW,"Farglory Land Development Co., Ltd.",TW,Real Estate,0.829
 KEEP,1,new-reality,GTM,ZoomInfo Technologies Inc Common Stock,US,Information Technology,0.826
+SPECULATIVE,1,new-reality,MEG,"Montrose Environmental Group, Inc.",US,Industrials,0.825
 REJECT,1,accel-unpriced,027740.KS,"Maniker.Co.,Ltd",KR,Consumer Staples,0.818
 REJECT,1,forensic,002612.SZ,"Lancy Co., Ltd.",CN,Consumer Discretionary,0.793
 SPECULATIVE,1,asymmetry,KIO.JO,Kumba Iron Ore Limited,MEA,Materials,0.779
+KEEP,1,new-reality,GDDY,GoDaddy Inc.,US,Information Technology,0.765
 REJECT,1,conviction,XRX,Xerox Holdings Corporation,US,Information Technology,0.586
