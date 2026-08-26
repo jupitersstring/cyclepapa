@@ -1,0 +1,27 @@
+symbol,name,region,sector,tops_screens,best_score,mcap_m,forwardPE,EV_EBITDA,ret_12m,val_confidence
+CAR-UN.TO,Canadian Apartment Properties Real Estate Investment Trust,CA,Real Estate,surprises,0.952,5299,13.6,18.8,-0.2,CHECK-multiples
+3856.T,Abalance Corporation,JP,Information Technology,forensic,0.894,9494,,1.1,-0.24,CHECK-multiples
+NWL.MI,Newlat Food S.p.A.,EU,Consumer Staples,forensic,0.871,637,-42.2,5.1,-0.11,CHECK-multiples
+3904.T,KAYAC Inc.,JP,Communication Services,yoy-unpriced,0.868,6102,,2.6,-0.08,CHECK-multiples
+DLB,"Dolby Laboratories, Inc. Class A",US,Information Technology,new-reality,0.861,5280,12.1,13.1,-0.23,CHECK-multiples
+PCTY,Paylocity Holding Corporation,US,Information Technology,new-reality,0.849,6154,13.2,14.6,-0.4,CHECK-multiples
+INTU,Intuit Inc.,US,Information Technology,new-reality,0.841,90686,12.1,14.2,-0.56,CHECK-multiples
+ZG,"Zillow Group, Inc.",US,Communication Services,new-reality,0.828,8090,11.6,68.4,-0.47,CHECK-multiples
+WDAY,"Workday, Inc. Class A",US,Information Technology,new-reality,0.828,36105,11.6,23.5,-0.41,CHECK-multiples
+ITRI,"Itron, Inc.",US,Information Technology,new-reality,0.823,3657,12.5,12.6,-0.29,CHECK-multiples
+4751.T,"CyberAgent, Inc.",JP,Communication Services,consensus-lagging,0.815,700050,26.9,6.4,-0.14,CHECK-multiples
+HLNE,Hamilton Lane Incorporated,US,Financials,new-reality,0.808,4839,11.8,13.0,-0.41,CHECK-multiples
+7649.T,"Sugi Holdings Co.,Ltd.",JP,Health Care,consensus-lagging,0.682,515592,18.4,7.3,-0.13,CHECK-multiples
+9706.T,"Japan Airport Terminal Co., Ltd.",JP,Industrials,consensus-lagging,0.609,427084,21.3,7.4,0.05,CHECK-multiples
+ROOT,"Root, Inc.",US,Financials,surprises,0.972,824,17.1,6.3,-0.6,high
+SPSC,"SPS Commerce, Inc.",US,Information Technology,new-reality,0.896,2083,10.9,11.0,-0.6,high
+BFAM,Bright Horizons Family Solutions Inc.,US,Consumer Discretionary,new-reality,0.849,3294,10.9,10.9,-0.52,high
+UHS,"Universal Health Services, Inc. Class B",US,Health Care,new-reality,0.814,8845,5.8,5.2,-0.23,high
+DECK,Deckers Outdoor Corporation,US,Consumer Discretionary,new-reality,0.813,15812,13.7,10.7,0.08,high
+KBR,"KBR, Inc.",US,Industrials,forensic,0.809,4431,8.4,10.5,-0.32,high
+SABR,Sabre Corporation,US,Information Technology,forensic,0.808,696,12.1,10.5,-0.3,high
+NRDS,NerdWallet Inc. Class A Common Stock,US,Communication Services,forensic,0.808,566,4.2,4.9,-0.18,high
+PYPL,"PayPal Holdings, Inc.",US,Financials,new-reality,0.805,39474,7.7,6.4,-0.36,high
+EQT,EQT Corporation,US,Energy,asymmetry,0.8,34358,11.8,5.7,0.01,high
+YELP,Yelp Inc.,US,Communication Services,forensic,0.795,1254,5.4,6.3,-0.4,high
+7351.T,"Goodpatch, Inc.",JP,Information Technology,asymmetry,0.792,4131,13.1,3.1,-0.33,high
