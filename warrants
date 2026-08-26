@@ -2158,10 +2158,18 @@ def conviction_scan(pairs_df: pd.DataFrame, period: str = "1y",
         if "w2c_surge" in out.columns else 0.0
     out["z_coil"] = z(out.get("coil_score", pd.Series(dtype=float)).clip(upper=200)) \
         if "coil_score" in out.columns else 0.0
+    def _fired(col, thresh):
+        # Column may be absent when the flow/coil sub-scan returned empty
+        # (e.g. a small universe). Return a 0/1 int Series aligned to out.index.
+        if col not in out.columns:
+            return pd.Series(0, index=out.index, dtype=int)
+        hit = pd.to_numeric(out[col], errors="coerce") >= thresh
+        return hit.fillna(False).astype(int)
+
     fired = (
         (asym_capped >= 5).astype(int)
-        + (pd.to_numeric(out.get("w2c_surge"), errors="coerce") >= 2).fillna(False).astype(int)
-        + (pd.to_numeric(out.get("coil_score"), errors="coerce") >= 20).fillna(False).astype(int)
+        + _fired("w2c_surge", 2)
+        + _fired("coil_score", 20)
     )
     out["screens_fired"] = fired
     out["conviction"] = (out["z_asym"].fillna(0) + out["z_flow"].fillna(0)
