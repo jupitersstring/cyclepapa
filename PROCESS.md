@@ -174,6 +174,30 @@ Two complementary CLI subcommands beyond the BS pipeline:
 The screens layer cleanly. A name fired by **all three** (`opportunities`
 + `flow` + `coil`) is rare and high-conviction (e.g. DYNCW today).
 
+### 2g-bis. Informed-flow screen (literature-grounded)
+
+`flow`/`coil` measure *how much* the warrant traded. The microstructure
+literature on informed trading in derivatives says raw volume is the weak
+form; what predicts the underlying is **directional**, **leveraged** flow
+that **leads** the stock. The `informed` screen builds a composite from:
+
+- **Abnormal O/S** — Roll-Schwartz-Subrahmanyam (2010), Johnson-So (2012):
+  log-abnormal warrant/common dollar-volume ratio vs the name's own median.
+- **Signed order-flow imbalance** — Easley-O'Hara-Srinivas (1998),
+  Pan-Poteshman (2006): direction matters, not turnover. Daily trades signed
+  by close-location value (Bollen-Whaley proxy); net signed $-flow / gross.
+- **Leverage tilt** — Black (1975): warrant elasticity `Ω = Δ·S/W` as a
+  bounded multiplier; informed concentrate where leverage is greatest.
+- **Relative price impact** — Kyle (1985) λ, Amihud (2002): warrant Amihud
+  ÷ common Amihud, the stealth-accumulation footprint.
+- **Lead-lag diagnostic** — corr(warrant flow_t, common ret_{t+1}).
+
+The payoff is a distinction raw volume can't make: BBCQW topped `flow`/`coil`
+(w2c 8.8, coil 399) but its signed imbalance is **negative** — the big
+volume is *distribution*, not accumulation. TLSIW shows the cleanest
+informed signature (ofi +0.58, lead_lag +0.31). Full grounding and
+citations in `LIT.md`.
+
 ### 2h. Real-data gotchas patched along the way
 
 - yfinance silently falls back to the parent ticker when a multi-word
@@ -208,6 +232,7 @@ warrants screen [--quality] [...]      # BS fair-value screen
 warrants opportunities [--resolve-edgar]  # end-to-end ranked list
 warrants flow [--sort surge_5d|...]    # suspicious volume
 warrants coil                          # coiled-spring (pre-breakout)
+warrants informed [--window 10]        # informed-flow rank (see LIT.md)
 warrants parity COMMON W STRIKE EXPIRY # option-vs-warrant parity check
 warrants edgar TICKER [--search]       # recent SEC filings
 ```

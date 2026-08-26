@@ -734,10 +734,44 @@ def _chart_api_history(ticker: str, period: str = "1y") -> pd.DataFrame | None:
         if not ts or not closes:
             return None
         idx = pd.to_datetime(ts, unit="s").normalize()
-        df = pd.DataFrame({"Close": closes, "Volume": vols}, index=idx)
+        # High/Low/Open kept alongside Close/Volume so downstream signed-flow
+        # proxies (close-location value) have the day's range to work with.
+        df = pd.DataFrame({
+            "Open": quote.get("open"),
+            "High": quote.get("high"),
+            "Low": quote.get("low"),
+            "Close": closes,
+            "Volume": vols,
+        }, index=idx)
         return df.dropna(subset=["Close"])
     except Exception:
         return None
+
+
+def batch_load_ohlcv(tickers: list[str], period: str = "1y",
+                     max_workers: int = 8) -> dict:
+    """Per-ticker OHLCV fan-out via the v8 chart API.
+
+    Returns {'open','high','low','close','volume'} -> DataFrame keyed by
+    ticker. The informed-flow screen needs the day's High/Low range (for
+    close-location signing), which the close-only batch loader drops, so
+    it uses this dedicated loader.
+    """
+    from concurrent.futures import ThreadPoolExecutor
+    fields = {"open": {}, "high": {}, "low": {}, "close": {}, "volume": {}}
+    def work(t):
+        return t, _chart_api_history(t, period)
+    with ThreadPoolExecutor(max_workers=max_workers) as ex:
+        for t, df in ex.map(work, tickers):
+            if df is None or df.empty:
+                continue
+            fields["open"][t] = df["Open"]
+            fields["high"][t] = df["High"]
+            fields["low"][t] = df["Low"]
+            fields["close"][t] = df["Close"]
+            fields["volume"][t] = df["Volume"]
+    return {k: (pd.DataFrame(v).sort_index() if v else pd.DataFrame())
+            for k, v in fields.items()}
 
 
 def _batch_load_via_chart_api(tickers: list[str], period: str,
@@ -1330,6 +1364,15 @@ def bs_call(S: float, K: float, T: float, r: float, sigma: float) -> float:
     d1 = (np.log(S / K) + (r + 0.5 * sigma * sigma) * T) / (sigma * np.sqrt(T))
     d2 = d1 - sigma * np.sqrt(T)
     return float(S * _norm.cdf(d1) - K * np.exp(-r * T) * _norm.cdf(d2))
+
+
+def bs_delta(S: float, K: float, T: float, r: float, sigma: float) -> float:
+    """Call delta N(d1). Used to turn a warrant into its underlying-equivalent
+    elasticity for the informed-flow leverage weight."""
+    if T <= 0 or sigma <= 0 or S <= 0 or K <= 0:
+        return 1.0 if S > K else 0.0
+    d1 = (np.log(S / K) + (r + 0.5 * sigma * sigma) * T) / (sigma * np.sqrt(T))
+    return float(_norm.cdf(d1))
 
 
 _SHELL_NAME_RE = re.compile(
@@ -2142,6 +2185,233 @@ def _cmd_coil(args):
         print(f"\nWrote {args.out}")
 
 
+def _cmd_informed(args):
+    """Informed-flow screen — directional, leverage-weighted flow."""
+    pairs = pd.read_csv(args.pairs)
+    print(f"Informed-flow scan on {len(pairs)} pairs "
+          f"(window={args.window}d) — abnormal O/S + signed order-flow "
+          f"imbalance + relative price impact, leverage-weighted...")
+    df = informed_flow_scan(pairs, period=args.period, window=args.window)
+    if df.empty:
+        print("(no pairs with enough trading history)")
+        return
+    if args.min_dvol > 0:
+        df = df[df["dvol_5d"].fillna(0) >= args.min_dvol].reset_index(drop=True)
+    cols = ["common", "warrant", "warrant_px", "abn_os", "ofi",
+            "rel_impact", "lead_lag", "elasticity", "omega_w",
+            "dvol_5d", "informed_score"]
+    print(f"\n== Top {min(args.top, len(df))} by informed_score ==")
+    print("  abn_os=log abnormal warrant/common $-vol (Roll-Schwartz-Subrahmanyam O/S)")
+    print("  ofi=net signed $-flow / gross, close-location signed (Easley-O'Hara-Srinivas)")
+    print("  rel_impact=log(warrant Amihud / common Amihud) (Kyle/Amihud)")
+    print("  lead_lag=corr(warrant flow_t, common ret_t+1)  omega_w=leverage weight")
+    _print_df(df, cols=cols, max_rows=args.top)
+    if args.out:
+        df.to_csv(args.out, index=False)
+        print(f"\nWrote {args.out}")
+
+
+# ---------- informed-flow screen ----------
+#
+# The unusual-volume screens above (flow, coil) measure *how much* the
+# warrant traded. The market-microstructure literature on informed trading
+# in derivatives says raw volume is the weak form of the signal; what
+# predicts the underlying move is (a) DIRECTIONAL flow, (b) concentrated in
+# the LEVERAGED instrument, that (c) LEADS the stock. This screen builds a
+# composite from four literature-grounded components:
+#
+#   1. Abnormal option/stock volume ratio (O/S).
+#      Roll, Schwartz & Subrahmanyam (2010, JFE) and Johnson & So (2012,
+#      JFE): the relative trading activity in the derivative vs the stock
+#      predicts returns; abnormal O/S is an informed-trading proxy. Our
+#      warrant-to-common dollar-volume ratio is the O/S analog; we take its
+#      log-deviation from the name's own trailing median.
+#
+#   2. Signed order-flow imbalance (directional pressure).
+#      Easley, O'Hara & Srinivas (1998, JF) show informed traders take
+#      DIRECTIONAL positions in options; Pan & Poteshman (2006, RFS) show
+#      the predictive content is in *opening buy* volume, not raw volume.
+#      Without tick data we sign each day with the close-location value
+#      (Bollen & Whaley 2004 use quote-based signing; the daily proxy is
+#      CLV = ((C-L)-(H-C))/(H-L) in [-1,1]) and accumulate signed dollar
+#      flow into a net-buy-pressure ratio.
+#
+#   3. Leverage / elasticity tilt.
+#      Black (1975) and Easley-O'Hara-Srinivas: informed migrate to where
+#      leverage is greatest. Warrant elasticity Omega = delta * S/W scales
+#      how much informed conviction one dollar of warrant flow represents;
+#      we use it as a bounded multiplier so the same imbalance counts for
+#      more in a high-convexity (deep-OTM) warrant.
+#
+#   4. Price impact / stealth footprint.
+#      Kyle (1985) lambda and Amihud (2002) illiquidity: informed flow
+#      moves price per unit volume. A warrant whose price responds much
+#      more per traded dollar than its common is being pushed by someone
+#      lifting a thin book -- accumulation that low raw volume would hide.
+#
+# A fifth, lead-lag (options lead the stock; Easley-O'Hara-Srinivas), is
+# reported as diagnostic (corr of warrant net-flow_t with common ret_t+1).
+
+def close_location_value(high, low, close):
+    """Bollen-Whaley-style daily trade-sign proxy in [-1, 1].
+
+    +1 = closed at the high (net buying pressure that day), -1 = closed at
+    the low (net selling). Flat range -> 0. Vectorized over Series.
+    """
+    rng = (high - low)
+    clv = ((close - low) - (high - close)) / rng.replace(0, np.nan)
+    return clv.fillna(0.0).clip(-1, 1)
+
+
+def signed_dollar_flow(high, low, close, volume):
+    """Per-bar signed dollar flow = CLV * price * volume (Series)."""
+    clv = close_location_value(high, low, close)
+    return clv * close.astype(float) * volume.fillna(0).astype(float)
+
+
+def order_flow_imbalance(high, low, close, volume, window: int = 10):
+    """Net signed dollar flow / gross dollar flow over the last `window`
+    trading days, in [-1, 1]. +ve = net accumulation."""
+    sdf = signed_dollar_flow(high, low, close, volume).tail(window)
+    gross = (close.astype(float) * volume.fillna(0).astype(float)).tail(window).sum()
+    if gross <= 0:
+        return float("nan")
+    return float(sdf.sum() / gross)
+
+
+def abnormal_os(w_close, w_vol, c_close, c_vol,
+                window: int = 5, base: int = 60):
+    """Log abnormal option/stock dollar-volume ratio (Roll-Schwartz-
+    Subrahmanyam O/S). log( recent OS / trailing-median OS ). >0 means the
+    warrant is unusually active vs the common relative to its own norm."""
+    w_dv = (w_close.astype(float) * w_vol.fillna(0).astype(float))
+    c_dv = (c_close.astype(float) * c_vol.fillna(0).astype(float))
+    os_ratio = (w_dv / c_dv.replace(0, np.nan)).dropna()
+    if len(os_ratio) < max(10, window + 5):
+        return float("nan")
+    recent = os_ratio.tail(window).mean()
+    hist = os_ratio.iloc[:-window].tail(base)
+    med = hist.median() if len(hist) else float("nan")
+    if not (med and med > 0) or not (recent and recent > 0):
+        return float("nan")
+    return float(np.log(recent / med))
+
+
+def amihud_impact(close, volume, window: int = 20):
+    """Amihud (2002) illiquidity: mean(|daily return| / daily dollar volume)
+    over `window` trading days. Higher = more price impact per dollar."""
+    px = close.astype(float)
+    ret = px.pct_change().abs()
+    dv = px * volume.fillna(0).astype(float)
+    x = (ret / dv.replace(0, np.nan)).dropna().tail(window)
+    return float(x.mean()) if len(x) else float("nan")
+
+
+def lead_lag_corr(high, low, close, volume, c_close, window: int = 40):
+    """Diagnostic: corr( warrant signed-flow_t , common return_{t+1} ) over
+    the last `window` days. Positive = warrant flow tends to lead the
+    common's next-day move (Easley-O'Hara-Srinivas)."""
+    sdf = signed_dollar_flow(high, low, close, volume)
+    c_ret_next = c_close.astype(float).pct_change().shift(-1)
+    df = pd.DataFrame({"f": sdf, "r": c_ret_next}).dropna().tail(window)
+    if len(df) < 15 or df["f"].std() == 0 or df["r"].std() == 0:
+        return float("nan")
+    return float(df["f"].corr(df["r"]))
+
+
+def informed_flow_metrics(w_ohlcv: dict, c_close, c_vol,
+                          elasticity: float | None = None,
+                          window: int = 10) -> dict:
+    """Raw per-pair informed-flow metrics from aligned warrant OHLCV +
+    common close/volume. `elasticity` (Omega = delta*S/W) optional."""
+    H, L, C, V = (w_ohlcv["high"], w_ohlcv["low"],
+                  w_ohlcv["close"], w_ohlcv["volume"])
+    ofi = order_flow_imbalance(H, L, C, V, window=window)
+    aos = abnormal_os(C, V, c_close, c_vol, window=max(3, window // 2))
+    wa = amihud_impact(C, V)
+    ca = amihud_impact(c_close, c_vol)
+    rel_impact = float(np.log(wa / ca)) if (wa and ca and wa > 0 and ca > 0) \
+        else float("nan")
+    ll = lead_lag_corr(H, L, C, V, c_close)
+    return {
+        "ofi": ofi, "abn_os": aos, "rel_impact": rel_impact,
+        "lead_lag": ll, "elasticity": elasticity,
+    }
+
+
+def _zscore(s: pd.Series) -> pd.Series:
+    s = s.astype(float)
+    mu, sd = s.mean(), s.std(ddof=0)
+    if not sd or sd != sd:
+        return pd.Series(0.0, index=s.index)
+    return (s - mu) / sd
+
+
+def informed_flow_scan(pairs_df: pd.DataFrame, period: str = "1y",
+                       window: int = 10, min_trade_days: int = 8,
+                       r: float = 0.045, T: float = 3.0,
+                       default_strike: float = 11.5) -> pd.DataFrame:
+    """Rank pairs by a literature-grounded informed-flow composite.
+
+    informed_score = leverage_weight * ( z(abn_os) + z(ofi)
+                                         + 0.5*z(rel_impact) )
+    with lead_lag reported as a diagnostic. Components z-scored across the
+    cross-section so the composite is a relative ranking on the day.
+    """
+    if pairs_df.empty:
+        return pd.DataFrame()
+    tickers = sorted(set(pairs_df["common"]) | set(pairs_df["warrant"]))
+    bundle = batch_load_ohlcv(tickers, period=period)
+    close, vol = bundle["close"], bundle["volume"]
+    high, low = bundle["high"], bundle["low"]
+    if close.empty:
+        return pd.DataFrame()
+    rows = []
+    for _, p in pairs_df.iterrows():
+        w, c = p["warrant"], p["common"]
+        if w not in close.columns or c not in close.columns:
+            continue
+        V = vol[w].fillna(0) if w in vol.columns else pd.Series(dtype=float)
+        if (V > 0).sum() < min_trade_days:
+            continue
+        w_ohlcv = {"high": high[w], "low": low[w],
+                   "close": close[w].ffill(), "volume": V}
+        c_close = close[c].ffill()
+        c_vol = vol[c].fillna(0) if c in vol.columns else pd.Series(0, index=c_close.index)
+        # leverage weight Omega = delta * S / W, bounded to [1, 5]
+        S = float(c_close.iloc[-1]); W = float(w_ohlcv["close"].iloc[-1])
+        elong = float("nan"); omega = 1.0
+        if S > 0 and W > 0:
+            sigma = 0.8
+            delta = bs_delta(S, default_strike, T, r, sigma)
+            elong = delta * S / W
+            omega = float(np.clip(elong, 1.0, 5.0))
+        m = informed_flow_metrics(w_ohlcv, c_close, c_vol,
+                                  elasticity=elong, window=window)
+        wc = w_ohlcv["close"]
+        dvol_5d = float((V.tail(5) * wc.tail(5)).mean())
+        rows.append({
+            "common": c, "warrant": w,
+            "warrant_px": round(W, 4),
+            "ofi": round(m["ofi"], 3) if m["ofi"] == m["ofi"] else None,
+            "abn_os": round(m["abn_os"], 3) if m["abn_os"] == m["abn_os"] else None,
+            "rel_impact": round(m["rel_impact"], 3) if m["rel_impact"] == m["rel_impact"] else None,
+            "lead_lag": round(m["lead_lag"], 3) if m["lead_lag"] == m["lead_lag"] else None,
+            "elasticity": round(elong, 2) if elong == elong else None,
+            "omega_w": round(omega, 2),
+            "dvol_5d": round(dvol_5d, 0),
+        })
+    out = pd.DataFrame(rows)
+    if out.empty:
+        return out
+    z_os = _zscore(out["abn_os"].fillna(out["abn_os"].median()))
+    z_ofi = _zscore(out["ofi"].fillna(0))
+    z_imp = _zscore(out["rel_impact"].fillna(out["rel_impact"].median()))
+    out["informed_score"] = (out["omega_w"] *
+                             (z_os + z_ofi + 0.5 * z_imp)).round(3)
+    return out.sort_values("informed_score", ascending=False).reset_index(drop=True)
+
+
 def conviction_scan(pairs_df: pd.DataFrame, period: str = "1y",
                     resolve_edgar: bool = False) -> pd.DataFrame:
     """Cross-merge the three screens into one confirmed rank.
@@ -2361,6 +2631,20 @@ def cli():
     s.add_argument("--top", type=int, default=25)
     s.add_argument("--out", default=None)
     s.set_defaults(fn=_cmd_coil)
+
+    # informed — literature-grounded directional flow
+    s = sub.add_parser("informed",
+        help="Informed-flow rank: abnormal O/S + signed order-flow imbalance "
+             "+ relative price impact, leverage-weighted.")
+    s.add_argument("--pairs", default="warrants_universe.csv")
+    s.add_argument("--period", default="1y")
+    s.add_argument("--window", type=int, default=10,
+                  help="Trading-day window for order-flow imbalance / abnormal O/S.")
+    s.add_argument("--min-dvol", type=float, default=0.0,
+                  help="Optional: drop pairs below this 5-day avg warrant $-volume.")
+    s.add_argument("--top", type=int, default=25)
+    s.add_argument("--out", default=None)
+    s.set_defaults(fn=_cmd_informed)
 
     # conviction — cross-screen merge
     s = sub.add_parser("conviction",
