@@ -198,6 +198,13 @@ volume is *distribution*, not accumulation. TLSIW shows the cleanest
 informed signature (ofi +0.58, lead_lag +0.31). Full grounding and
 citations in `LIT.md`.
 
+`conviction` now folds this in as a 4th screen with a twist: since
+`w2c_surge`/`coil_score` are **unsigned**, the gross-flow reward is
+*modulated* by `ofi` (`flow_dir_mult = clip(1+ofi, 0, 2)`), and the
+informed screen only counts toward the breadth bonus on net accumulation
+(`ofi ≥ 0.1`). So a warrant being sold into no longer floats to the top on
+turnover alone — TLSIW (accumulation) overtakes BBCQW (distribution).
+
 ### 2h. Real-data gotchas patched along the way
 
 - yfinance silently falls back to the parent ticker when a multi-word

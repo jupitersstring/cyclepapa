@@ -2416,23 +2416,31 @@ def conviction_scan(pairs_df: pd.DataFrame, period: str = "1y",
                     resolve_edgar: bool = False) -> pd.DataFrame:
     """Cross-merge the three screens into one confirmed rank.
 
-    Runs fair_value_scan (valuation), unusual_volume_scan (flow), and
-    coiled_spring_scan (pre-breakout) over the same universe, then
-    scores each warrant by how many screens fire and how strongly:
+    Runs fair_value_scan (valuation), unusual_volume_scan (flow),
+    coiled_spring_scan (pre-breakout), and informed_flow_scan (directional,
+    leverage-weighted flow; see LIT.md) over the same universe, then scores
+    each warrant by how many screens fire and how strongly:
 
       conviction = z(asymmetry_capped) + z(w2c_surge) + z(coil_score)
-                   + 1.0 per screen fired (breadth bonus)
+                   + z(informed_score) + 1.0 per screen fired
+
+    The informed term is the one that carries *direction*: flow/coil reward
+    gross activity and cannot tell accumulation from distribution, so a
+    high-volume warrant being sold into (ofi < 0) earns a big z_flow/z_coil
+    it does not deserve. z(informed_score) offsets that (its ofi component
+    goes negative on net selling), and the informed screen only counts
+    toward the breadth bonus when the flow is net *accumulation* (ofi>0).
+    So BBCQW-type names -- huge volume, negative signed imbalance -- are
+    demoted rather than floated on turnover alone.
 
     Shells are kept but marked; their asymmetry uses the deal-prob EV.
-    The point: a warrant that is cheap on the model AND seeing
-    warrant-specific flow AND coiling is a different class of signal
-    than any single screen alone.
     """
     fair = fair_value_scan(pairs_df, period=period,
                            resolve_edgar=resolve_edgar)
     flow = unusual_volume_scan(pairs_df, period="3mo", min_dollar_vol_5d=0)
     coil = coiled_spring_scan(pairs_df, period="3mo", min_dollar_vol_5d=0,
                               max_range_pct=10.0, min_vol_accel=0.0)
+    informed = informed_flow_scan(pairs_df, period="1y")
     if fair.empty:
         return pd.DataFrame()
     out = fair[["common", "warrant", "warrant_px", "common_px",
@@ -2445,6 +2453,9 @@ def conviction_scan(pairs_df: pd.DataFrame, period: str = "1y",
         out = out.merge(coil[["warrant", "vol_accel", "range_pct_10d",
                               "persistence", "coil_score"]],
                         on="warrant", how="left")
+    if not informed.empty:
+        out = out.merge(informed[["warrant", "ofi", "abn_os", "lead_lag",
+                                  "informed_score"]], on="warrant", how="left")
 
     def z(s):
         s = pd.to_numeric(s, errors="coerce")
@@ -2457,6 +2468,8 @@ def conviction_scan(pairs_df: pd.DataFrame, period: str = "1y",
         if "w2c_surge" in out.columns else 0.0
     out["z_coil"] = z(out.get("coil_score", pd.Series(dtype=float)).clip(upper=200)) \
         if "coil_score" in out.columns else 0.0
+    out["z_informed"] = z(out.get("informed_score", pd.Series(dtype=float))) \
+        if "informed_score" in out.columns else 0.0
     def _fired(col, thresh):
         # Column may be absent when the flow/coil sub-scan returned empty
         # (e.g. a small universe). Return a 0/1 int Series aligned to out.index.
@@ -2465,14 +2478,40 @@ def conviction_scan(pairs_df: pd.DataFrame, period: str = "1y",
         hit = pd.to_numeric(out[col], errors="coerce") >= thresh
         return hit.fillna(False).astype(int)
 
+    # Informed screen fires only on net accumulation: positive signed
+    # imbalance AND an above-baseline informed_score. Direction-gated so
+    # gross-volume distribution earns no breadth credit.
+    if "informed_score" in out.columns:
+        _ofi = pd.to_numeric(out["ofi"], errors="coerce")
+        _isc = pd.to_numeric(out["informed_score"], errors="coerce")
+        informed_fired = ((_ofi >= 0.10) & (_isc > 0)).fillna(False).astype(int)
+    else:
+        informed_fired = pd.Series(0, index=out.index, dtype=int)
+
     fired = (
         (asym_capped >= 5).astype(int)
         + _fired("w2c_surge", 2)
         + _fired("coil_score", 20)
+        + informed_fired
     )
     out["screens_fired"] = fired
-    out["conviction"] = (out["z_asym"].fillna(0) + out["z_flow"].fillna(0)
-                         + out["z_coil"].fillna(0) + fired)
+    # Direction modulation: unsigned volume (w2c_surge, coil_score) does not
+    # distinguish accumulation from distribution, so the gross-flow reward is
+    # scaled by the signed imbalance. ofi=+1 -> 2x (accumulation amplifies),
+    # 0 -> 1x, -1 -> 0x (pure distribution earns no gross-flow credit).
+    # Missing ofi -> neutral 1.0 (don't punish absent informed data).
+    if "ofi" in out.columns:
+        flow_mult = (1.0 + pd.to_numeric(out["ofi"], errors="coerce")).clip(0.0, 2.0)
+        flow_mult = flow_mult.fillna(1.0)
+    else:
+        flow_mult = pd.Series(1.0, index=out.index)
+    out["flow_dir_mult"] = flow_mult.round(3)
+    out["conviction"] = (
+        out["z_asym"].fillna(0)
+        + (out["z_flow"].fillna(0) + out["z_coil"].fillna(0)) * flow_mult
+        + out["z_informed"].fillna(0)
+        + fired
+    )
     return out.sort_values("conviction", ascending=False).reset_index(drop=True)
 
 
@@ -2487,8 +2526,8 @@ def _cmd_conviction(args):
     if args.no_shells:
         df = df[~df["is_shell"]]
     cols = ["common", "warrant", "warrant_px", "moneyness", "is_shell",
-            "asymmetry", "w2c_surge", "coil_score", "screens_fired",
-            "conviction", "warrant_5d_avg_dvol"]
+            "asymmetry", "w2c_surge", "coil_score", "ofi", "informed_score",
+            "screens_fired", "conviction", "warrant_5d_avg_dvol"]
     cols = [c for c in cols if c in df.columns]
     print(f"\n== Top {min(args.top, len(df))} by conviction ==")
     _print_df(df, cols=cols, max_rows=args.top)
