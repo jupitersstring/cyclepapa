@@ -100,3 +100,36 @@ Sources: profitwiththeplanets.com (financial-astrology, self-study-books,
 testimonials, zoom-mini-classes pages), jessicaadams.com (Apr 2020 The
 Astrology Show; Oct 2022 Wall St Astrology), LinkedIn posts (kate-silas-a13022a),
 X @kates_9999 (referenced, not fetchable).
+
+## Addendum (Sep 2026): her Substack + the Anthropic worked example
+
+Source: profitwiththeplanets.substack.com, "The Anthropic Astrology
+Incorporation." New doctrine revealed [all V]:
+- **Incorporation charts for private companies**, with honest caveats: no
+  verified time -> "the angles are not fixed. I am not married to the
+  Midheaven."
+- **The 3-month news lag**: "with incorporation charts, you may not see
+  the actual news until earnings, up to three months after the astrology."
+- **Scope discipline**: incorporation analysis shows internal company
+  dynamics, "is never used to trade the stock market" — trading stays
+  with IPO/first-trade charts.
+- **Dual-scenario honesty**: Pluto-MC = "BIG MONEY into the IPO... OR the
+  IPO does not happen at all. This scenario fits the astrology equally
+  well... it is not a prediction."
+
+Her Anthropic claims, verified against our ephemeris (all dates check):
+Pluto conj Saturn exact Jan 10 2027 (our orb 0.1 deg that month); Pluto
+conj Sun Mar 2027 (0.6); Pluto sq Uranus Mar-Aug 2027 (0.3/1.2); Aug
+2027 eclipse hits Jupiter+Mercury; Jan 2028 Aquarius eclipse conj
+Sun+Saturn. Reverse-engineered incorporation date: ~2021-01-26 (Sun 7.1
+Aqu, Saturn 4.7 Aqu, Jupiter 8.8 Aqu core stellium; Mars 9.8 conj Uranus
+6.8 Tau squaring it).
+
+Our engines on the same chart (data/anthropic_case.log): AI-sector
+keylock loading 1.6 (Neptune domicile+angular — our empirical AI ruler),
+TECH loading via Saturn domicile. Our top activation windows are
+**Mar 2027 (+229), Jun 2027 (+211), Feb 2027 (+204)** — NOT her proposed
+late-Sep/early-Oct 2026 IPO window, which scores the LOWEST of H2 2026
+(+131-135) and depends entirely on her unfixed MC. If chart energy times
+the event, our read favors **Feb-Jun 2027** (Pluto conj Sun + Pluto sq
+Uranus exact), with her 3-month lag mapping to news by mid-2027.
