@@ -1,0 +1,504 @@
+rank,ticker,name,sector,ipo,age,total_v12,v11_composite,classical_boost,fs_score,helio_score,decl_score,prog_score,royal_natal,oob_fast,firdaria_major,firdaria_minor,prog_phase,almuten,js_phase,nn_cat,sun_sign,Plu_Sun
+1,XYZ,"Block, Inc.",Financials,2025-07-23,1,21.46,7.04,14.43,2.99,0.00,2.14,5.37,0,0,Sun,Sun,prog_balsamic,Mercury,first_q,launch_zone,Leo,3.2
+2,AMD,Advanced Micro Devices,Information Technology,2017-03-20,9,20.95,12.42,8.53,3.67,0.21,0.35,1.77,1,0,Sun,Mars,prog_new,Jupiter,last_q,bottom_zone,Ari,99.0
+3,RJF,Raymond James Financial,Financials,2017-03-20,9,20.95,12.42,8.53,3.67,0.21,0.35,1.77,1,0,Sun,Mars,prog_new,Jupiter,last_q,bottom_zone,Ari,99.0
+4,EXE,Expand Energy,Energy,2025-03-24,1,18.81,4.67,14.14,3.54,0.50,1.63,3.78,2,0,Sun,Sun,prog_last_q,Mars,crescent,launch_zone,Ari,99.0
+5,TKO,TKO Group Holdings,Communication Services,2025-03-24,1,18.81,4.67,14.14,3.54,0.50,1.63,3.78,2,0,Sun,Sun,prog_last_q,Mars,crescent,launch_zone,Ari,99.0
+6,WSM,"Williams-Sonoma, Inc.",Consumer Discretionary,2025-03-24,1,18.81,4.67,14.14,3.54,0.50,1.63,3.78,2,0,Sun,Sun,prog_last_q,Mars,crescent,launch_zone,Ari,99.0
+7,CRH,CRH plc,Materials,2025-12-22,1,18.24,4.12,14.11,3.30,0.54,1.93,4.20,1,0,Sun,Sun,prog_new,Saturn,first_q,launch_zone,Cap,99.0
+8,T,AT&T,Communication Services,1983-11-21,43,17.91,6.92,10.99,3.48,0.11,2.17,0.99,3,0,Saturn,Jupiter,prog_balsamic,Mars,new,mid,Sco,99.0
+9,CPAY,Corpay,Financials,2018-06-20,8,17.90,8.78,9.13,2.99,0.00,1.37,2.51,0,0,Sun,Jupiter,prog_gibbous,Mercury,balsamic,peak_zone,Gem,99.0
+10,BKR,Baker Hughes,Energy,2017-07-07,9,17.25,8.01,9.24,3.38,0.00,3.38,0.00,1,0,Sun,Mars,prog_disseminating,Jupiter,last_q,peak_zone,Can,99.0
+11,FFIV,"F5, Inc.",Information Technology,1999-06-04,27,16.53,3.90,12.63,3.85,0.00,2.75,1.89,2,0,Mercury,Mars,prog_full,Sun,balsamic,peak_zone,Gem,99.0
+12,COHR,Coherent Corp.,Information Technology,2026-03-23,0,16.39,6.92,9.47,0.00,0.41,2.31,4.04,0,0,Sun,Sun,prog_crescent,Sun,first_q,launch_zone,Ari,99.0
+13,SATS,EchoStar,Communication Services,2026-03-23,0,16.39,6.92,9.47,0.00,0.41,2.31,4.04,0,0,Sun,Sun,prog_crescent,Sun,first_q,launch_zone,Ari,99.0
+14,VRT,Vertiv,Industrials,2026-03-23,0,16.39,6.92,9.47,0.00,0.41,2.31,4.04,0,0,Sun,Sun,prog_crescent,Sun,first_q,launch_zone,Ari,99.0
+15,KKR,KKR & Co.,Financials,2024-06-24,2,16.36,5.74,10.62,3.55,0.78,2.54,0.99,1,0,Sun,Venus,prog_disseminating,Mercury,crescent,launch_zone,Can,99.0
+16,AKAM,Akamai Technologies,Information Technology,1999-10-29,27,15.99,10.26,5.74,0.26,0.15,1.39,1.78,1,0,Mercury,Mars,prog_full,Sun,balsamic,peak_zone,Sco,0.6
+17,MS,Morgan Stanley,Financials,1986-03-21,40,15.60,5.48,10.12,4.11,0.42,1.34,0.95,2,0,Moon,Mercury,prog_disseminating,Sun,crescent,mid,Ari,99.0
+18,NTAP,NetApp,Information Technology,1995-11-21,31,15.57,5.31,10.26,3.13,0.15,2.12,1.86,1,0,Mercury,Venus,prog_balsamic,Mars,last_q,bottom_zone,Sco,99.0
+19,LULU,Lululemon Athletica,Consumer Discretionary,2007-07-27,19,15.43,6.02,9.40,3.64,0.54,0.78,1.79,1,0,Mercury,Mercury,prog_new,Saturn,first_q,launch_zone,Leo,0.1
+20,SW,Smurfit Westrock,Materials,2024-07-08,2,15.23,3.36,11.87,4.10,0.00,1.97,1.86,2,0,Sun,Venus,prog_new,Venus,crescent,launch_zone,Can,99.0
+21,VZ,Verizon,Communication Services,2000-07-03,26,15.23,2.81,12.42,3.35,0.00,5.02,0.72,1,0,Mercury,Mars,prog_balsamic,Venus,new,peak_zone,Can,99.0
+22,JBHT,J.B. Hunt,Industrials,1983-11-22,43,15.21,5.30,9.91,3.12,0.52,1.68,1.78,1,0,Saturn,Jupiter,prog_new,Mars,new,mid,Sco,99.0
+23,ALL,Allstate,Financials,1989-09-27,37,15.16,3.89,11.27,2.99,0.40,4.03,1.37,0,0,Moon,Sun,prog_new,Venus,full,setup_zone,Lib,99.0
+24,AAPL,Apple Inc.,Information Technology,1980-12-12,46,15.02,2.00,13.02,3.96,0.00,2.95,1.89,2,0,Saturn,Sun,prog_disseminating,Saturn,balsamic,peak_zone,Sag,99.0
+25,CAT,Caterpillar Inc.,Industrials,1929-12-02,97,15.01,4.53,10.48,4.36,0.00,1.07,0.97,3,0,Mercury,Moon,prog_first_q,Saturn,gibbous,mid,Sag,99.0
+26,DVN,Devon Energy,Energy,2000-08-30,26,14.79,4.12,10.67,4.14,0.00,0.91,1.41,3,0,Mercury,Mars,prog_balsamic,Mercury,new,peak_zone,Vir,99.0
+27,NOC,Northrop Grumman,Industrials,1978-01-01,48,14.76,3.45,11.31,2.99,0.00,4.17,1.53,0,0,Saturn,Mercury,prog_first_q,Saturn,last_q,bottom_zone,Cap,99.0
+28,J,Jacobs Solutions,Industrials,2007-10-26,19,14.75,4.35,10.39,3.47,0.50,1.76,1.76,1,0,Mercury,Mercury,prog_new,Venus,first_q,launch_zone,Sco,1.4
+29,HSIC,Henry Schein,Health Care,1995-11-03,31,14.73,2.90,11.82,3.65,0.00,3.42,1.46,1,0,Mercury,Venus,prog_gibbous,Venus,disseminating,bottom_zone,Sco,6.5
+30,ROL,"Rollins, Inc.",Industrials,2018-10-01,8,14.67,5.91,8.76,2.99,0.00,1.06,2.53,0,0,Sun,Jupiter,prog_balsamic,Saturn,balsamic,peak_zone,Lib,99.0
+31,NKE,"Nike, Inc.",Consumer Discretionary,1980-12-02,46,14.66,3.12,11.54,3.74,0.00,2.35,1.60,2,0,Saturn,Sun,prog_first_q,Saturn,balsamic,peak_zone,Sag,99.0
+32,TJX,TJX Companies,Consumer Discretionary,1987-06-26,39,14.54,4.94,9.60,2.99,0.39,3.21,0.96,0,0,Moon,Venus,prog_first_q,Mercury,first_q,launch_zone,Can,99.0
+33,SBAC,SBA Communications,Real Estate,1999-06-16,27,14.51,4.37,10.14,3.25,0.00,1.82,1.52,2,0,Mercury,Mars,prog_balsamic,Sun,balsamic,peak_zone,Gem,99.0
+34,CBOE,Cboe Global Markets,Financials,2010-06-14,16,14.46,3.70,10.76,4.06,0.00,2.15,1.00,2,0,Venus,Jupiter,prog_full,Mercury,full,setup_zone,Gem,99.0
+35,CMG,Chipotle Mexican Grill,Consumer Discretionary,2006-01-25,20,14.39,4.80,9.59,3.12,0.02,1.23,2.28,1,0,Mercury,Moon,prog_full,Saturn,first_q,launch_zone,Aqu,1.3
+36,KMB,Kimberly-Clark,Consumer Staples,1928-01-01,98,14.27,0.22,14.05,3.45,0.00,3.28,3.24,1,0,Mercury,Saturn,prog_full,Saturn,first_q,mid,Cap,99.0
+37,WEC,WEC Energy Group,Utilities,1928-01-01,98,14.27,0.22,14.05,3.45,0.00,3.28,3.24,1,0,Mercury,Saturn,prog_full,Saturn,first_q,mid,Cap,99.0
+38,ELV,Elevance Health,Health Care,2002-07-25,24,14.24,6.89,7.35,2.99,0.38,2.14,0.41,0,0,Mercury,Saturn,prog_first_q,Sun,new,mid,Leo,1.7
+39,FTNT,Fortinet,Information Technology,2009-11-18,17,14.13,5.63,8.50,3.08,0.00,0.95,1.85,1,0,Venus,Mars,prog_full,Mars,gibbous,setup_zone,Sco,99.0
+40,COO,Cooper Companies (The),Health Care,2016-09-23,10,14.08,5.47,8.61,0.18,0.40,2.25,2.85,1,0,Sun,Mars,prog_new,Venus,last_q,bottom_zone,Lib,99.0
+41,SYK,Stryker Corporation,Health Care,2000-12-12,26,14.05,2.74,11.31,3.30,0.00,2.86,1.89,1,0,Mercury,Jupiter,prog_gibbous,Sun,new,peak_zone,Sag,99.0
+42,LIN,Linde plc,Materials,1996-11-25,30,14.04,3.26,10.78,3.60,0.00,1.35,2.06,2,0,Mercury,Venus,prog_gibbous,Jupiter,last_q,bottom_zone,Sag,99.0
+43,ORCL,Oracle Corporation,Information Technology,1986-03-12,40,13.93,3.17,10.76,1.09,0.00,3.38,2.31,2,0,Saturn,Saturn,prog_gibbous,Mercury,crescent,mid,Pis,99.0
+44,KHC,Kraft Heinz,Consumer Staples,2015-07-06,11,13.89,2.69,11.21,3.35,0.00,1.50,2.96,1,0,Venus,Venus,prog_new,Venus,disseminating,bottom_zone,Can,99.0
+45,CEG,Constellation Energy,Utilities,2006-11-15,20,13.83,4.33,9.50,2.99,0.00,1.97,2.23,0,0,Mercury,Mercury,prog_gibbous,Venus,first_q,launch_zone,Sco,99.0
+46,CRWD,CrowdStrike,Information Technology,2019-06-12,7,13.74,2.93,10.81,2.99,0.00,3.44,1.83,0,0,Sun,Saturn,prog_full,Saturn,balsamic,peak_zone,Gem,99.0
+47,BLK,BlackRock,Financials,1999-10-01,27,13.67,5.06,8.61,3.53,0.00,0.33,2.10,1,0,Mercury,Mars,prog_full,Venus,balsamic,peak_zone,Lib,99.0
+48,STLD,Steel Dynamics,Materials,1996-11-21,30,13.64,4.13,9.51,3.92,0.46,1.84,0.23,2,0,Mercury,Venus,prog_first_q,Mars,last_q,bottom_zone,Sco,99.0
+49,NSC,Norfolk Southern,Industrials,1982-06-01,44,13.64,3.75,9.89,4.30,0.00,1.79,0.00,3,0,Saturn,Mars,prog_last_q,Saturn,new,peak_zone,Gem,99.0
+50,CNP,CenterPoint Energy,Utilities,1906-01-01,120,13.60,3.10,10.49,3.14,0.00,2.59,1.70,1,0,Saturn,Sun,prog_crescent,Venus,crescent,peak_zone,Cap,99.0
+51,COIN,Coinbase,Financials,2007-02-13,19,13.57,4.56,9.00,2.99,0.00,1.62,2.21,0,0,Mercury,Mercury,prog_full,Saturn,first_q,launch_zone,Aqu,99.0
+52,NEM,Newmont,Materials,1940-01-01,86,13.55,3.06,10.49,3.28,0.00,4.03,0.35,1,0,Venus,Venus,prog_disseminating,Saturn,balsamic,bottom_zone,Cap,99.0
+53,EW,Edwards Lifesciences,Health Care,2011-04-01,15,13.45,3.95,9.50,0.90,0.00,2.65,2.25,2,0,Venus,Jupiter,prog_gibbous,Mercury,full,bear_zone,Ari,99.0
+54,AES,AES Corporation,Utilities,1991-06-26,35,13.40,6.55,6.85,2.99,0.38,0.93,1.11,0,0,Moon,Jupiter,prog_full,Jupiter,full,setup_zone,Can,99.0
+55,APTV,Aptiv,Consumer Discretionary,1991-06-26,35,13.40,6.55,6.85,2.99,0.38,0.93,1.11,0,0,Moon,Jupiter,prog_full,Jupiter,full,setup_zone,Can,99.0
+56,EME,Emcor,Industrials,1994-10-28,32,13.34,7.57,5.77,3.10,0.24,0.06,0.62,1,0,Moon,Moon,prog_last_q,Sun,disseminating,bear_zone,Sco,0.8
+57,V,Visa Inc.,Financials,2008-03-19,18,13.25,4.73,8.52,3.27,0.00,0.70,1.92,1,0,Venus,Sun,prog_balsamic,Mercury,gibbous,setup_zone,Pis,99.0
+58,GEN,Gen Digital,Information Technology,1978-06-08,48,13.23,3.33,9.90,3.65,0.00,3.53,0.09,1,0,Saturn,Venus,prog_disseminating,Mercury,balsamic,bottom_zone,Gem,99.0
+59,DDOG,Datadog,Information Technology,2019-09-19,7,13.20,3.44,9.76,2.99,0.00,3.10,1.42,0,0,Sun,Saturn,prog_balsamic,Venus,balsamic,peak_zone,Vir,99.0
+60,TPL,Texas Pacific Land Corporation,Energy,2024-11-26,2,13.14,6.19,6.95,0.00,0.00,2.71,2.29,0,0,Sun,Venus,prog_balsamic,Saturn,first_q,launch_zone,Sag,99.0
+61,GEHC,GE HealthCare,Health Care,2023-01-04,3,13.14,2.33,10.81,3.36,0.00,2.07,1.66,2,0,Sun,Mercury,prog_full,Saturn,new,mid,Cap,99.0
+62,SRE,Sempra,Utilities,1998-06-26,28,13.14,2.29,10.85,2.99,0.26,2.46,2.53,0,0,Mercury,Sun,prog_new,Venus,balsamic,bottom_zone,Can,99.0
+63,KEYS,Keysight Technologies,Information Technology,1996-06-20,30,13.01,2.32,10.69,3.12,0.00,2.82,1.65,1,0,Mercury,Venus,prog_new,Mercury,last_q,bottom_zone,Gem,99.0
+64,SYF,Synchrony Financial,Financials,2014-07-31,12,13.00,3.13,9.87,2.99,0.00,2.69,1.86,0,0,Venus,Mercury,prog_full,Venus,disseminating,bottom_zone,Leo,4.2
+65,RL,Ralph Lauren Corporation,Consumer Discretionary,1995-07-26,31,12.93,6.23,6.70,0.00,1.11,2.24,1.79,0,0,Mercury,Venus,prog_balsamic,Mercury,disseminating,bear_zone,Leo,2.0
+66,ERIE,Erie Indemnity,Financials,2024-09-23,2,12.93,3.66,9.27,2.99,0.57,2.42,1.31,0,0,Sun,Sun,prog_disseminating,Venus,first_q,launch_zone,Lib,99.0
+67,A,Agilent Technologies,Health Care,1999-11-18,27,12.91,3.11,9.80,3.59,0.00,2.74,0.75,1,0,Mercury,Mars,prog_crescent,Sun,balsamic,peak_zone,Sco,99.0
+68,TDY,Teledyne Technologies,Information Technology,2020-06-22,6,12.91,4.76,8.15,2.99,0.86,0.82,1.76,0,0,Sun,Moon,prog_crescent,Mercury,balsamic,mid,Can,99.0
+69,TYL,Tyler Technologies,Information Technology,2020-06-22,6,12.91,4.76,8.15,2.99,0.86,0.82,1.76,0,0,Sun,Moon,prog_crescent,Mercury,balsamic,mid,Can,99.0
+70,PFE,Pfizer,Health Care,1942-06-23,84,12.84,3.97,8.87,3.26,0.75,2.25,0.32,1,0,Sun,Mars,prog_crescent,Venus,new,bottom_zone,Can,99.0
+71,TER,Teradyne,Information Technology,2020-09-21,6,12.84,4.88,7.96,3.10,0.00,1.88,0.66,1,0,Sun,Moon,prog_first_q,Mars,balsamic,mid,Vir,99.0
+72,HWM,Howmet Aerospace,Industrials,1997-11-25,29,12.74,9.27,3.47,0.00,0.18,1.80,0.64,0,0,Mercury,Sun,prog_last_q,Saturn,balsamic,bottom_zone,Sag,99.0
+73,BAX,Baxter International,Health Care,1972-09-30,54,12.71,2.45,10.26,2.99,0.00,3.25,1.63,0,0,Jupiter,Mars,prog_full,Venus,full,setup_zone,Lib,99.0
+74,BDX,Becton Dickinson,Health Care,1972-09-30,54,12.71,2.45,10.26,2.99,0.00,3.25,1.63,0,0,Jupiter,Mars,prog_full,Venus,full,setup_zone,Lib,99.0
+75,ROK,Rockwell Automation,Industrials,2001-06-29,25,12.70,3.10,9.61,3.05,0.00,2.63,1.15,1,0,Mercury,Jupiter,prog_new,Venus,new,peak_zone,Can,99.0
+76,BR,Broadridge Financial Solutions,Industrials,1988-07-07,38,12.64,4.39,8.25,3.36,0.00,1.47,1.00,1,0,Moon,Venus,prog_new,Mercury,gibbous,launch_zone,Can,99.0
+77,CRL,Charles River Laboratories,Health Care,2000-06-23,26,12.61,3.09,9.53,3.24,0.88,1.48,1.36,1,0,Mercury,Mars,prog_full,Venus,new,peak_zone,Can,99.0
+78,ALGN,Align Technology,Health Care,2001-01-26,25,12.60,4.07,8.53,3.10,0.00,1.93,1.00,1,0,Mercury,Jupiter,prog_balsamic,Saturn,new,peak_zone,Aqu,2.6
+79,CMS,CMS Energy,Utilities,1927-01-01,99,12.56,1.96,10.60,2.99,0.00,3.50,1.64,0,0,Mercury,Jupiter,prog_first_q,Saturn,crescent,peak_zone,Cap,99.0
+80,C,Citigroup,Financials,1988-05-31,38,12.37,6.36,6.01,3.60,0.00,0.25,0.38,1,0,Moon,Venus,prog_last_q,Saturn,gibbous,launch_zone,Gem,99.0
+81,JCI,Johnson Controls,Industrials,2010-08-27,16,12.35,2.52,9.83,3.70,0.00,0.87,1.24,3,0,Venus,Jupiter,prog_new,Venus,gibbous,setup_zone,Vir,99.0
+82,QCOM,Qualcomm,Information Technology,1991-12-13,35,12.33,1.61,10.73,4.20,0.00,2.32,0.71,2,0,Moon,Jupiter,prog_first_q,Sun,full,setup_zone,Sag,99.0
+83,AFL,Aflac,Financials,1974-01-01,52,12.33,4.80,7.53,2.99,0.00,1.62,1.22,0,0,Jupiter,Jupiter,prog_new,Saturn,full,bear_zone,Cap,99.0
+84,ARES,Ares Management,Financials,2014-05-02,12,12.32,1.35,10.98,3.33,0.00,3.33,1.24,1,0,Venus,Mercury,prog_gibbous,Mercury,disseminating,bottom_zone,Tau,8.0
+85,CTSH,Cognizant,Information Technology,1998-06-19,28,12.28,3.81,8.48,2.99,0.00,2.25,1.31,0,0,Mercury,Sun,prog_disseminating,Sun,balsamic,bottom_zone,Gem,99.0
+86,CVNA,Carvana,Consumer Discretionary,2017-04-28,9,12.27,3.14,9.13,4.33,0.00,0.91,0.77,2,0,Sun,Mars,prog_first_q,Venus,last_q,peak_zone,Tau,4.3
+87,TECH,Bio-Techne,Health Care,2021-08-30,5,12.27,3.64,8.63,3.46,0.00,1.08,0.99,2,0,Sun,Moon,prog_balsamic,Mercury,new,mid,Vir,99.0
+88,ISRG,Intuitive Surgical,Health Care,2000-06-13,26,12.20,4.08,8.12,3.12,0.00,2.00,0.66,1,0,Mercury,Mars,prog_first_q,Mars,new,peak_zone,Gem,99.0
+89,JKHY,Jack Henry & Associates,Financials,1985-11-20,41,12.20,4.69,7.51,3.41,0.00,0.56,1.25,1,0,Saturn,Saturn,prog_full,Mars,crescent,mid,Sco,99.0
+90,FIS,Fidelity National Information Services,Financials,2001-06-18,25,12.19,3.39,8.81,2.99,0.00,2.42,1.38,0,0,Mercury,Jupiter,prog_disseminating,Venus,new,peak_zone,Gem,99.0
+91,GL,Globe Life,Financials,1989-12-21,37,12.17,3.50,8.67,2.99,0.03,2.99,0.78,0,0,Moon,Sun,prog_balsamic,Saturn,gibbous,setup_zone,Sag,99.0
+92,LYV,Live Nation Entertainment,Communication Services,2019-12-23,7,12.14,3.19,8.95,2.99,0.73,2.00,1.36,0,0,Sun,Saturn,prog_new,Saturn,balsamic,peak_zone,Cap,99.0
+93,ORLY,O’Reilly Automotive,Consumer Discretionary,1993-04-22,33,12.11,2.14,9.96,2.99,0.37,2.65,1.71,0,0,Moon,Saturn,prog_new,Venus,full,bear_zone,Tau,1.7
+94,EG,Everest Group,Financials,2017-06-19,9,12.07,4.82,7.26,2.99,0.00,0.82,1.74,0,0,Sun,Mars,prog_crescent,Sun,last_q,peak_zone,Gem,99.0
+95,WRB,W. R. Berkley Corporation,Financials,2019-12-05,7,12.06,4.52,7.53,2.99,0.00,1.98,0.92,0,0,Sun,Saturn,prog_gibbous,Sun,balsamic,peak_zone,Sag,99.0
+96,SMCI,Supermicro,Information Technology,1996-10-25,30,12.04,3.12,8.92,3.34,0.37,1.32,1.35,1,0,Mercury,Venus,prog_gibbous,Venus,last_q,bottom_zone,Sco,1.7
+97,TAP,Molson Coors Beverage Company,Consumer Staples,1975-06-10,51,12.03,3.90,8.13,3.60,0.00,1.62,0.60,1,0,Saturn,Moon,prog_disseminating,Mercury,last_q,bear_zone,Gem,99.0
+98,FSLR,First Solar,Information Technology,2006-11-16,20,12.00,3.94,8.06,2.99,0.00,1.49,1.69,0,0,Mercury,Mercury,prog_full,Venus,first_q,launch_zone,Sco,99.0
+99,PKG,Packaging Corporation of America,Materials,2000-01-27,26,11.98,3.14,8.85,3.31,0.00,1.03,1.82,1,0,Mercury,Mars,prog_full,Saturn,balsamic,peak_zone,Aqu,2.8
+100,EIX,Edison International,Utilities,1987-07-01,39,11.94,3.26,8.69,2.99,0.00,3.06,0.75,0,0,Moon,Venus,prog_gibbous,Mercury,first_q,launch_zone,Can,99.0
+101,BLDR,Builders FirstSource,Industrials,2005-06-22,21,11.94,2.47,9.48,2.99,0.65,3.51,0.45,0,0,Mercury,Moon,prog_crescent,Venus,crescent,launch_zone,Can,99.0
+102,INVH,Invitation Homes,Real Estate,2017-02-01,9,11.93,2.08,9.85,3.14,0.00,2.63,1.24,1,0,Sun,Mars,prog_gibbous,Sun,last_q,bottom_zone,Aqu,8.8
+103,NVDA,Nvidia,Information Technology,1999-01-21,27,11.93,3.48,8.45,3.58,0.00,0.44,1.86,1,0,Mercury,Mars,prog_new,Venus,balsamic,peak_zone,Aqu,3.0
+104,PNW,Pinnacle West Capital,Utilities,1996-01-01,30,11.88,1.33,10.55,2.99,0.00,3.64,1.49,0,0,Mercury,Venus,prog_gibbous,Venus,last_q,bottom_zone,Cap,99.0
+105,ACGL,Arch Capital Group,Financials,2022-11-01,4,11.87,1.84,10.03,3.41,0.00,1.13,2.45,1,0,Sun,Mercury,prog_first_q,Jupiter,new,mid,Sco,5.0
+106,DVA,DaVita,Health Care,2008-07-31,18,11.84,2.51,9.33,2.99,0.00,2.85,1.36,0,0,Venus,Sun,prog_full,Venus,first_q,setup_zone,Leo,4.6
+107,TFC,Truist Financial,Financials,2019-12-09,7,11.84,2.54,9.30,2.99,0.00,2.78,1.40,0,0,Sun,Saturn,prog_full,Venus,balsamic,peak_zone,Sag,99.0
+108,ICE,Intercontinental Exchange,Financials,1988-04-28,38,11.83,3.91,7.92,3.73,0.00,0.39,1.42,1,0,Moon,Venus,prog_disseminating,Venus,first_q,launch_zone,Tau,4.4
+109,PODD,Insulet Corporation,Health Care,2007-05-14,19,11.83,2.57,9.26,3.21,0.00,1.75,1.55,1,0,Mercury,Mercury,prog_full,Sun,first_q,launch_zone,Tau,99.0
+110,PRU,Prudential Financial,Financials,2001-12-12,25,11.81,0.84,10.97,3.41,0.00,3.20,1.28,1,0,Mercury,Jupiter,prog_disseminating,Mars,new,mid,Sag,99.0
+111,CB,Chubb Limited,Financials,1984-01-01,42,11.80,0.85,10.95,3.51,0.00,3.35,0.53,2,0,Saturn,Jupiter,prog_first_q,Saturn,new,mid,Cap,99.0
+112,BG,Bunge Global,Consumer Staples,2001-08-02,25,11.78,2.65,9.13,2.99,0.00,2.99,1.11,0,0,Mercury,Jupiter,prog_first_q,Venus,new,peak_zone,Leo,6.2
+113,FAST,Fastenal,Industrials,1987-08-20,39,11.76,5.11,6.65,2.99,0.00,0.00,2.04,0,0,Moon,Venus,prog_crescent,Venus,gibbous,launch_zone,Leo,99.0
+114,FOX,Fox Corporation (Class B),Communication Services,1991-08-29,35,11.76,4.29,7.47,3.65,0.00,0.91,0.74,1,0,Moon,Jupiter,prog_last_q,Mercury,full,setup_zone,Vir,99.0
+115,PTC,PTC Inc.,Information Technology,2021-04-20,5,11.76,2.64,9.12,2.99,0.00,1.27,2.58,0,0,Sun,Moon,prog_gibbous,Venus,new,mid,Tau,3.4
+116,HOOD,Robinhood Markets,Financials,2021-07-29,5,11.75,5.62,6.13,2.99,0.00,0.88,0.93,0,0,Sun,Moon,prog_last_q,Sun,new,mid,Leo,2.5
+117,HBAN,Huntington Bancshares,Financials,1997-08-28,29,11.71,6.08,5.63,3.56,0.00,0.00,0.37,1,0,Mercury,Sun,prog_last_q,Mercury,last_q,bottom_zone,Vir,99.0
+118,NVR,"NVR, Inc.",Consumer Discretionary,2019-09-26,7,11.68,3.54,8.14,2.99,0.88,2.42,0.35,0,0,Sun,Saturn,prog_crescent,Venus,balsamic,peak_zone,Lib,99.0
+119,ROP,Roper Technologies,Information Technology,2009-12-23,17,11.65,6.56,5.09,0.22,0.76,2.60,0.45,0,0,Venus,Mars,prog_last_q,Saturn,gibbous,setup_zone,Cap,99.0
+120,PFG,Principal Financial Group,Financials,1992-10-29,34,11.64,1.42,10.22,2.99,0.00,3.98,0.97,0,0,Moon,Saturn,prog_crescent,Mars,disseminating,bear_zone,Sco,2.3
+121,GD,General Dynamics,Industrials,1945-04-25,81,11.64,4.80,6.84,3.29,0.21,1.07,0.33,1,0,Sun,Saturn,prog_crescent,Venus,crescent,peak_zone,Tau,0.9
+122,NDAQ,"Nasdaq, Inc.",Financials,2002-07-01,24,11.64,2.74,8.90,2.99,0.00,2.94,1.00,0,0,Mercury,Jupiter,prog_full,Venus,new,mid,Can,99.0
+123,META,Meta Platforms,Communication Services,2013-12-23,13,11.64,0.59,11.05,2.99,0.88,3.43,1.42,0,0,Venus,Mercury,prog_new,Saturn,disseminating,bear_zone,Cap,99.0
+124,HUBB,Hubbell Incorporated,Industrials,2023-10-18,3,11.62,2.77,8.85,4.42,0.05,0.00,0.73,3,0,Sun,Venus,prog_crescent,Saturn,crescent,launch_zone,Lib,9.2
+125,RF,Regions Financial Corporation,Financials,1998-08-28,28,11.57,4.57,6.99,3.47,0.00,0.40,1.00,1,0,Mercury,Sun,prog_new,Venus,balsamic,bottom_zone,Vir,99.0
+126,UBER,Uber,Industrials,2019-05-10,7,11.56,2.91,8.65,2.99,0.00,1.38,2.18,0,0,Sun,Saturn,prog_gibbous,Venus,balsamic,peak_zone,Tau,99.0
+127,APD,Air Products,Materials,1961-12-01,65,11.55,2.54,9.02,3.30,0.00,2.24,0.90,1,0,Mars,Sun,prog_balsamic,Saturn,new,peak_zone,Sag,99.0
+128,LITE,Lumentum,Information Technology,1997-10-16,29,11.55,1.36,10.20,3.79,0.73,0.79,1.00,3,0,Mercury,Sun,prog_gibbous,Saturn,last_q,bottom_zone,Lib,10.9
+129,FISV,Fiserv,Financials,1986-09-25,40,11.54,3.30,8.24,2.99,0.88,0.91,1.73,0,0,Moon,Mercury,prog_new,Saturn,first_q,launch_zone,Lib,99.0
+130,AVY,Avery Dennison,Materials,1987-12-31,39,11.54,2.33,9.21,2.99,0.00,2.00,2.01,0,0,Moon,Venus,prog_disseminating,Saturn,first_q,launch_zone,Cap,99.0
+131,IR,Ingersoll Rand,Industrials,2020-03-03,6,11.53,4.52,7.01,2.99,0.00,1.34,1.13,0,0,Sun,Saturn,prog_gibbous,Venus,balsamic,peak_zone,Pis,99.0
+132,GNRC,Generac,Industrials,2010-02-10,16,11.52,7.78,3.74,0.22,0.00,2.10,0.50,0,0,Venus,Mars,prog_gibbous,Saturn,gibbous,setup_zone,Aqu,99.0
+133,BXP,"BXP, Inc.",Real Estate,1997-06-17,29,11.52,5.60,5.92,2.99,0.00,1.76,0.03,0,0,Mercury,Sun,prog_first_q,Mars,balsamic,bottom_zone,Gem,99.0
+134,MSI,Motorola Solutions,Information Technology,1991-09-20,35,11.51,4.08,7.43,2.99,0.00,0.91,1.77,0,0,Moon,Jupiter,prog_full,Mars,full,setup_zone,Vir,99.0
+135,ULTA,Ulta Beauty,Consumer Discretionary,2007-10-24,19,11.49,3.07,8.43,2.99,0.00,1.53,1.90,0,0,Mercury,Mercury,prog_new,Venus,first_q,launch_zone,Sco,3.3
+136,OKE,Oneok,Energy,2010-03-15,16,11.47,1.78,9.69,2.99,0.00,2.48,1.92,0,0,Venus,Mars,prog_full,Venus,gibbous,setup_zone,Pis,99.0
+137,REG,Regency Centers,Real Estate,1993-10-29,33,11.47,5.39,6.08,2.99,0.00,0.18,1.50,0,0,Moon,Saturn,prog_full,Sun,disseminating,bear_zone,Sco,2.0
+138,NWSA,News Corp (Class A),Communication Services,2013-06-28,13,11.46,0.00,11.46,2.99,0.00,4.25,1.56,0,0,Venus,Moon,prog_new,Venus,disseminating,bear_zone,Can,99.0
+139,NWS,News Corp (Class B),Communication Services,2013-06-28,13,11.46,0.00,11.46,2.99,0.00,4.25,1.56,0,0,Venus,Moon,prog_new,Venus,disseminating,bear_zone,Can,99.0
+140,MSFT,Microsoft,Information Technology,1986-03-13,40,11.38,0.22,11.16,3.54,0.00,2.63,1.80,1,0,Moon,Mercury,prog_gibbous,Venus,crescent,mid,Pis,99.0
+141,MPC,Marathon Petroleum,Energy,2011-07-01,15,11.37,5.01,6.36,0.00,0.03,3.72,1.00,0,0,Venus,Jupiter,prog_full,Mercury,full,bear_zone,Can,99.0
+142,MU,Micron Technology,Information Technology,1984-06-01,42,11.36,4.80,6.56,0.18,0.00,2.41,1.60,1,0,Saturn,Jupiter,prog_gibbous,Mercury,crescent,mid,Gem,99.0
+143,ES,Eversource Energy,Utilities,2007-11-14,19,11.35,2.60,8.76,2.99,0.00,2.74,1.07,0,0,Mercury,Mercury,prog_last_q,Saturn,first_q,launch_zone,Sco,99.0
+144,PH,Parker Hannifin,Industrials,1964-07-01,62,11.34,1.96,9.38,3.61,0.00,2.35,0.79,1,0,Jupiter,Saturn,prog_last_q,Venus,crescent,peak_zone,Can,99.0
+145,LMT,Lockheed Martin,Industrials,1977-01-01,49,11.32,3.36,7.96,2.99,0.00,1.67,1.47,0,0,Saturn,Mercury,prog_new,Venus,last_q,bottom_zone,Cap,99.0
+146,AVGO,Broadcom,Information Technology,2000-09-26,26,11.31,3.01,8.29,3.65,0.66,1.07,0.18,2,0,Mercury,Jupiter,prog_last_q,Venus,new,peak_zone,Lib,99.0
+147,HON,Honeywell,Industrials,1999-12-01,27,11.28,2.48,8.80,4.13,0.00,0.00,0.96,3,0,Mercury,Mars,prog_disseminating,Mars,balsamic,peak_zone,Sag,99.0
+148,DHR,Danaher Corporation,Health Care,1998-11-18,28,11.27,5.67,5.60,2.99,0.00,0.98,0.50,0,0,Mercury,Mars,prog_balsamic,Mars,balsamic,peak_zone,Sco,99.0
+149,FDS,FactSet,Financials,1996-06-27,30,11.27,1.26,10.01,3.47,0.00,3.31,0.50,1,0,Mercury,Venus,prog_first_q,Venus,last_q,bottom_zone,Can,99.0
+150,LHX,L3Harris,Industrials,2019-07-01,7,11.27,5.86,5.41,0.00,0.01,4.15,0.00,0,0,Sun,Saturn,prog_crescent,Mercury,balsamic,peak_zone,Can,99.0
+151,IQV,IQVIA,Health Care,2017-08-29,9,11.27,2.65,8.62,3.77,0.00,0.76,1.00,2,0,Sun,Jupiter,prog_full,Saturn,balsamic,peak_zone,Vir,99.0
+152,CFG,Citizens Financial Group,Financials,2014-09-24,12,11.27,1.84,9.44,2.99,0.74,2.28,1.43,0,0,Venus,Mercury,prog_gibbous,Venus,disseminating,bottom_zone,Lib,99.0
+153,CMCSA,Comcast,Communication Services,1972-06-29,54,11.26,1.73,9.53,2.99,0.00,3.21,1.18,0,0,Jupiter,Mars,prog_gibbous,Mercury,full,setup_zone,Can,99.0
+154,NI,NiSource,Utilities,1926-01-01,100,11.26,1.88,9.38,2.99,0.00,2.53,1.67,0,0,Mercury,Jupiter,prog_balsamic,Saturn,crescent,peak_zone,Cap,99.0
+155,CTVA,Corteva,Materials,2019-06-03,7,11.23,4.27,6.96,2.99,0.00,2.60,0.00,0,0,Sun,Saturn,prog_crescent,Sun,balsamic,peak_zone,Gem,99.0
+156,DD,DuPont,Materials,2019-06-03,7,11.23,4.27,6.96,2.99,0.00,2.60,0.00,0,0,Sun,Saturn,prog_crescent,Sun,balsamic,peak_zone,Gem,99.0
+157,KDP,Keurig Dr Pepper,Consumer Staples,2022-06-21,4,11.23,3.81,7.42,2.99,0.23,2.77,0.00,0,0,Sun,Mercury,prog_last_q,Mercury,new,mid,Can,99.0
+158,DELL,Dell Technologies,Information Technology,1988-06-22,38,11.19,3.26,7.93,2.99,0.69,1.65,1.00,0,0,Moon,Venus,prog_full,Venus,gibbous,launch_zone,Can,99.0
+159,DRI,Darden Restaurants,Consumer Discretionary,1995-05-31,31,11.18,1.32,9.86,3.88,0.00,0.63,1.86,2,0,Mercury,Venus,prog_new,Mercury,disseminating,bear_zone,Gem,99.0
+160,L,Loews Corporation,Financials,1995-05-31,31,11.18,1.32,9.86,3.88,0.00,0.63,1.86,2,0,Mercury,Venus,prog_new,Mercury,disseminating,bear_zone,Gem,99.0
+161,MA,Mastercard,Financials,2006-05-24,20,11.18,2.08,9.10,3.61,0.00,1.66,1.21,1,0,Mercury,Mercury,prog_full,Sun,first_q,launch_zone,Gem,99.0
+162,CLX,Clorox,Consumer Staples,1928-02-01,98,11.18,0.23,10.95,3.56,0.00,2.92,0.86,2,0,Mercury,Saturn,prog_disseminating,Sun,first_q,mid,Aqu,7.4
+163,EQIX,Equinix,Real Estate,2000-08-10,26,11.14,3.69,7.44,3.60,0.00,0.65,0.98,1,0,Mercury,Mars,prog_crescent,Saturn,new,peak_zone,Leo,99.0
+164,MRNA,Moderna,Health Care,2018-12-07,8,11.10,6.20,4.90,0.00,0.00,2.49,1.11,0,0,Sun,Jupiter,prog_crescent,Saturn,balsamic,peak_zone,Sag,99.0
+165,GILD,Gilead Sciences,Health Care,1983-02-02,43,11.09,4.12,6.97,2.99,0.00,1.07,1.33,0,0,Saturn,Jupiter,prog_new,Saturn,new,peak_zone,Aqu,9.0
+166,HD,Home Depot (The),Consumer Discretionary,1981-09-22,45,11.09,4.60,6.49,0.31,0.00,2.13,1.16,2,0,Saturn,Sun,prog_first_q,Mercury,new,peak_zone,Vir,99.0
+167,SWK,Stanley Black & Decker,Industrials,1982-09-30,44,11.08,2.43,8.65,3.07,0.00,2.54,0.58,1,0,Saturn,Mars,prog_balsamic,Venus,new,peak_zone,Lib,99.0
+168,ALB,Albemarle Corporation,Materials,2016-07-01,10,11.07,1.72,9.35,3.15,0.00,2.64,0.89,1,0,Sun,Mars,prog_crescent,Mercury,last_q,bottom_zone,Can,99.0
+169,FTV,Fortive,Industrials,2016-07-01,10,11.07,1.72,9.35,3.15,0.00,2.64,0.89,1,0,Sun,Mars,prog_crescent,Mercury,last_q,bottom_zone,Can,99.0
+170,LVS,Las Vegas Sands,Consumer Discretionary,2004-12-14,22,11.05,3.80,7.26,2.99,0.00,1.16,1.45,0,0,Mercury,Moon,prog_last_q,Venus,crescent,launch_zone,Sag,99.0
+171,MAS,Masco,Industrials,1981-06-30,45,11.05,2.21,8.84,2.99,0.00,3.46,0.50,0,0,Saturn,Mars,prog_gibbous,Mercury,balsamic,peak_zone,Can,99.0
+172,TRV,Travelers Companies (The),Financials,2004-04-01,22,10.99,0.50,10.48,2.99,0.00,3.12,1.90,0,0,Mercury,Saturn,prog_new,Sun,crescent,mid,Ari,99.0
+173,MPWR,Monolithic Power Systems,Information Technology,2004-11-18,22,10.90,1.72,9.19,3.49,0.00,1.09,1.32,2,0,Mercury,Moon,prog_balsamic,Jupiter,crescent,mid,Sco,99.0
+174,TSLA,"Tesla, Inc.",Consumer Discretionary,2010-06-28,16,10.89,1.81,9.09,3.60,0.00,1.35,1.47,1,0,Venus,Jupiter,prog_new,Mercury,full,setup_zone,Can,99.0
+175,DOW,Dow Inc.,Materials,2019-04-01,7,10.87,3.32,7.56,2.99,0.00,1.48,1.37,0,0,Sun,Saturn,prog_new,Saturn,balsamic,peak_zone,Ari,99.0
+176,DUK,Duke Energy,Utilities,1961-01-01,65,10.86,1.51,9.34,2.99,0.00,3.70,0.63,0,0,Mars,Venus,prog_disseminating,Saturn,balsamic,bottom_zone,Cap,99.0
+177,PAYX,Paychex,Industrials,1983-08-26,43,10.83,1.72,9.10,2.99,0.00,1.86,2.07,0,0,Saturn,Jupiter,prog_new,Venus,new,mid,Vir,99.0
+178,IEX,IDEX Corporation,Industrials,1989-06-02,37,10.81,2.64,8.17,2.99,0.00,3.14,0.33,0,0,Moon,Sun,prog_crescent,Venus,gibbous,setup_zone,Gem,99.0
+179,KIM,Kimco Realty,Real Estate,1991-11-22,35,10.80,4.38,6.42,2.99,0.54,0.91,0.74,0,0,Moon,Jupiter,prog_disseminating,Mars,full,setup_zone,Sco,99.0
+180,LLY,Lilly (Eli),Health Care,1952-04-15,74,10.79,3.11,7.68,2.99,0.00,0.91,1.94,0,0,SN,Mercury,prog_crescent,Venus,full,setup_zone,Ari,8.6
+181,NUE,Nucor,Materials,1971-01-01,55,10.79,1.72,9.07,2.99,0.00,1.88,2.03,0,0,Jupiter,Sun,prog_new,Saturn,full,setup_zone,Cap,99.0
+182,APH,Amphenol,Information Technology,1991-11-08,35,10.73,1.86,8.87,3.50,0.00,0.91,1.80,1,0,Moon,Jupiter,prog_crescent,Mars,full,setup_zone,Sco,11.5
+183,ON,ON Semiconductor,Information Technology,2000-04-27,26,10.70,3.15,7.55,3.24,0.00,0.92,1.11,1,0,Mercury,Mars,prog_disseminating,Venus,balsamic,peak_zone,Tau,3.5
+184,EQT,EQT Corporation,Energy,2022-10-03,4,10.69,2.40,8.29,2.99,0.00,2.56,0.92,0,0,Sun,Mercury,prog_gibbous,Saturn,new,mid,Lib,99.0
+185,CIEN,Ciena,Information Technology,1997-02-07,29,10.68,6.00,4.68,0.22,0.00,2.82,0.50,0,0,Mercury,Sun,prog_balsamic,Saturn,last_q,bottom_zone,Aqu,99.0
+186,CCL,Carnival,Consumer Discretionary,1987-07-24,39,10.65,4.95,5.71,2.99,0.00,0.95,0.59,0,0,Moon,Venus,prog_crescent,Mercury,first_q,launch_zone,Leo,3.0
+187,FOXA,Fox Corporation (Class A),Communication Services,2019-03-19,7,10.65,3.57,7.08,2.99,0.00,2.68,0.00,0,0,Sun,Saturn,prog_disseminating,Mercury,balsamic,peak_zone,Pis,99.0
+188,CPRT,Copart,Industrials,1982-04-02,44,10.65,3.75,6.90,2.99,0.00,1.07,1.28,0,0,Saturn,Mars,prog_disseminating,Sun,new,peak_zone,Ari,99.0
+189,MCK,McKesson Corporation,Health Care,1999-01-13,27,10.63,2.13,8.50,4.11,0.75,0.39,0.47,2,0,Mercury,Mars,prog_last_q,Venus,balsamic,peak_zone,Cap,11.2
+190,DE,Deere & Company,Industrials,1933-09-09,93,10.61,2.12,8.50,3.02,0.00,2.37,0.66,1,0,Venus,Sun,prog_last_q,Venus,disseminating,setup_zone,Vir,99.0
+191,DHI,D. R. Horton,Consumer Discretionary,1992-06-18,34,10.59,5.12,5.46,2.99,0.00,0.99,0.39,0,0,Moon,Jupiter,prog_disseminating,Sun,full,setup_zone,Gem,99.0
+192,DGX,Quest Diagnostics,Health Care,2002-12-12,24,10.53,1.87,8.66,3.51,0.00,1.46,1.17,1,0,Mercury,Saturn,prog_new,Venus,crescent,mid,Sag,99.0
+193,AMGN,Amgen,Health Care,1983-06-17,43,10.52,2.73,7.79,2.99,0.00,2.33,0.79,0,0,Saturn,Jupiter,prog_disseminating,Mercury,new,mid,Gem,99.0
+194,ADBE,Adobe Inc.,Information Technology,1986-08-13,40,10.49,2.03,8.47,2.99,0.00,0.82,2.54,0,0,Moon,Mercury,prog_full,Saturn,first_q,launch_zone,Leo,99.0
+195,AMAT,Applied Materials,Information Technology,1995-03-16,31,10.48,2.97,7.51,0.18,0.00,2.51,1.89,1,1,Moon,Moon,prog_full,Mercury,disseminating,bear_zone,Pis,99.0
+196,BRO,Brown & Brown,Financials,2021-09-20,5,10.48,2.08,8.40,3.25,0.00,1.51,1.17,1,0,Sun,Moon,prog_full,Venus,new,mid,Vir,99.0
+197,ADP,Automatic Data Processing,Industrials,1961-09-01,65,10.43,2.92,7.50,2.99,0.00,0.71,2.00,0,0,Mars,Sun,prog_balsamic,Mercury,new,peak_zone,Vir,99.0
+198,FRT,Federal Realty Investment Trust,Real Estate,1962-01-01,64,10.41,2.60,7.81,2.99,0.00,2.10,1.00,0,0,Mars,Sun,prog_new,Saturn,new,peak_zone,Cap,99.0
+199,EMR,Emerson Electric,Industrials,1978-04-01,48,10.40,8.09,2.31,0.00,0.00,0.73,0.64,0,1,Saturn,Mercury,prog_gibbous,Mars,balsamic,bottom_zone,Ari,99.0
+200,PLTR,Palantir Technologies,Information Technology,2020-09-30,6,10.35,2.83,7.52,2.99,0.00,1.46,1.36,0,0,Sun,Moon,prog_full,Venus,balsamic,mid,Lib,99.0
+201,HPE,Hewlett Packard Enterprise,Information Technology,2015-11-02,11,10.33,4.55,5.78,0.00,0.00,1.35,2.68,0,0,Venus,Venus,prog_new,Mercury,last_q,bottom_zone,Sco,4.7
+202,HII,Huntington Ingalls Industries,Industrials,1985-10-25,41,10.33,2.90,7.42,3.22,0.23,1.49,0.39,1,0,Saturn,Saturn,prog_disseminating,Venus,crescent,mid,Sco,2.0
+203,CSCO,Cisco,Information Technology,1990-02-16,36,10.32,3.77,6.55,2.99,0.00,1.71,0.50,0,0,Moon,Mars,prog_balsamic,Venus,gibbous,setup_zone,Aqu,99.0
+204,AON,Aon plc,Financials,1996-04-23,30,10.31,4.52,5.80,2.99,0.73,0.61,0.46,0,0,Mercury,Venus,prog_crescent,Venus,last_q,bottom_zone,Tau,0.4
+205,CSGP,CoStar Group,Real Estate,2022-09-19,4,10.29,3.75,6.55,2.99,0.00,1.24,0.90,0,0,Sun,Mercury,prog_balsamic,Mercury,crescent,mid,Vir,99.0
+206,WDC,Western Digital,Information Technology,2009-07-01,17,10.29,3.46,6.83,2.99,0.00,1.47,0.88,0,0,Venus,Mars,prog_last_q,Venus,gibbous,setup_zone,Can,99.0
+207,CDW,CDW Corporation,Information Technology,2013-06-26,13,10.28,0.61,9.67,2.99,0.12,3.44,1.00,0,0,Venus,Moon,prog_new,Mercury,disseminating,bear_zone,Can,99.0
+208,TRMB,Trimble Inc.,Information Technology,1990-07-20,36,10.25,5.73,4.52,0.00,0.68,1.98,0.84,0,0,Moon,Mars,prog_crescent,Mercury,full,setup_zone,Can,7.8
+209,COR,Cencora,Health Care,2010-09-22,16,10.25,2.30,7.95,2.99,0.00,2.10,1.09,0,0,Venus,Jupiter,prog_balsamic,Venus,gibbous,setup_zone,Vir,99.0
+210,PG,Procter & Gamble,Consumer Staples,1890-05-08,136,10.24,0.00,10.24,3.53,0.00,2.28,0.96,2,0,Jupiter,Moon,prog_crescent,Venus,gibbous,mid,Tau,99.0
+211,TRGP,Targa Resources,Energy,2010-12-06,16,10.22,1.72,8.50,2.99,0.00,1.19,2.24,0,0,Venus,Jupiter,prog_full,Saturn,gibbous,setup_zone,Sag,99.0
+212,PANW,Palo Alto Networks,Information Technology,2012-07-19,14,10.21,2.47,7.75,0.22,0.00,3.40,1.51,1,0,Venus,Saturn,prog_gibbous,Mercury,full,bear_zone,Can,7.9
+213,CNC,Centene Corporation,Health Care,2016-03-30,10,10.20,4.99,5.21,2.99,0.00,0.00,1.08,0,0,Sun,Mars,prog_new,Jupiter,disseminating,bottom_zone,Ari,99.0
+214,NXPI,NXP Semiconductors,Information Technology,2010-08-05,16,10.19,1.75,8.44,3.70,0.00,1.56,0.78,1,0,Venus,Jupiter,prog_first_q,Sun,full,setup_zone,Leo,8.9
+215,NDSN,Nordson Corporation,Industrials,2022-02-15,4,10.17,3.28,6.90,2.99,0.00,1.39,1.00,0,0,Sun,Mercury,prog_full,Saturn,new,mid,Aqu,99.0
+216,GEV,GE Vernova,Industrials,2024-04-02,2,10.15,8.64,1.50,0.00,0.00,0.41,0.65,0,0,Sun,Venus,prog_last_q,Mars,crescent,launch_zone,Ari,99.0
+217,EFX,Equifax,Industrials,1997-06-19,29,10.06,2.29,7.77,2.99,0.00,1.86,1.18,0,0,Mercury,Sun,prog_gibbous,Saturn,balsamic,bottom_zone,Gem,99.0
+218,GE,GE Aerospace,Industrials,1892-04-15,134,10.06,0.00,10.06,3.34,0.00,2.82,1.06,1,0,Jupiter,Mercury,prog_crescent,Sun,full,mid,Ari,8.1
+219,CARR,Carrier Global,Industrials,2020-04-03,6,10.03,3.03,6.99,0.00,0.00,3.36,1.75,0,0,Sun,Saturn,prog_full,Sun,balsamic,peak_zone,Ari,99.0
+220,OTIS,Otis Worldwide,Industrials,2020-04-03,6,10.03,3.03,6.99,0.00,0.00,3.36,1.75,0,0,Sun,Saturn,prog_full,Sun,balsamic,peak_zone,Ari,99.0
+221,TXT,Textron,Industrials,1923-01-01,103,10.03,2.08,7.95,2.99,0.00,1.52,1.59,0,0,Mercury,Sun,prog_balsamic,Saturn,new,bottom_zone,Cap,99.0
+222,FIX,Comfort Systems USA,Industrials,1997-06-27,29,10.03,6.17,3.86,0.00,0.59,2.03,0.42,0,0,Mercury,Sun,prog_disseminating,Mercury,balsamic,bottom_zone,Can,99.0
+223,GRMN,Garmin,Consumer Discretionary,2000-12-08,26,10.01,2.78,7.23,2.99,0.00,2.81,0.00,0,0,Mercury,Jupiter,prog_crescent,Venus,new,peak_zone,Sag,99.0
+224,CDNS,Cadence Design Systems,Information Technology,2017-09-18,9,10.00,3.32,6.68,3.16,0.00,0.91,0.61,1,0,Sun,Jupiter,prog_crescent,Mercury,balsamic,peak_zone,Vir,99.0
+225,EA,Electronic Arts,Communication Services,1989-09-21,37,10.00,2.45,7.55,2.99,0.00,2.47,0.50,0,0,Moon,Sun,prog_balsamic,Mercury,full,setup_zone,Vir,99.0
+226,WAB,Wabtec,Industrials,1995-06-15,31,9.99,0.00,9.99,3.70,0.00,1.05,1.72,2,0,Mercury,Venus,prog_full,Sun,disseminating,bear_zone,Gem,99.0
+227,JNJ,Johnson & Johnson,Health Care,1944-09-25,82,9.99,3.19,6.80,2.99,0.88,1.02,0.67,0,0,Sun,Saturn,prog_balsamic,Saturn,crescent,peak_zone,Lib,99.0
+228,UDR,"UDR, Inc.",Real Estate,1990-05-01,36,9.98,1.78,8.20,2.99,0.00,1.76,1.55,0,0,Moon,Mars,prog_gibbous,Venus,gibbous,setup_zone,Tau,6.8
+229,JBL,Jabil,Information Technology,2023-12-18,3,9.97,3.66,6.31,2.99,0.00,2.04,0.05,0,0,Sun,Venus,prog_first_q,Sun,crescent,launch_zone,Sag,99.0
+230,SBUX,Starbucks,Consumer Discretionary,1992-06-26,34,9.96,2.03,7.93,2.99,0.09,1.90,1.19,0,0,Moon,Jupiter,prog_balsamic,Venus,full,setup_zone,Can,99.0
+231,FICO,Fair Isaac,Information Technology,2023-03-20,3,9.94,2.53,7.42,3.45,0.03,0.14,1.51,1,0,Sun,Mercury,prog_new,Venus,new,mid,Pis,99.0
+232,BKNG,Booking Holdings,Consumer Discretionary,2009-11-06,17,9.94,2.56,7.38,2.99,0.00,0.96,1.70,0,0,Venus,Mars,prog_crescent,Sun,gibbous,setup_zone,Sco,10.2
+233,FITB,Fifth Third Bancorp,Financials,1996-03-29,30,9.92,2.39,7.53,3.06,0.00,1.86,0.43,1,0,Mercury,Venus,prog_first_q,Sun,last_q,bottom_zone,Ari,99.0
+234,GPN,Global Payments,Financials,2016-04-25,10,9.91,3.59,6.32,2.99,0.00,0.00,1.82,0,0,Sun,Mars,prog_balsamic,Venus,disseminating,bottom_zone,Tau,1.7
+235,GM,General Motors,Consumer Discretionary,2010-11-18,16,9.89,3.10,6.79,2.99,0.00,1.68,0.68,0,0,Venus,Jupiter,prog_balsamic,Venus,gibbous,setup_zone,Sco,99.0
+236,EXPE,Expedia Group,Consumer Discretionary,1999-11-09,27,9.88,2.11,7.77,3.43,0.00,0.72,1.28,1,0,Mercury,Mars,prog_balsamic,Mars,balsamic,peak_zone,Sco,99.0
+237,PPL,PPL Corporation,Utilities,1945-01-01,81,9.85,1.90,7.95,3.59,0.00,2.18,0.00,1,0,Sun,Saturn,prog_first_q,Saturn,crescent,peak_zone,Cap,99.0
+238,EBAY,eBay Inc.,Consumer Discretionary,1995-09-28,31,9.84,2.11,7.73,3.64,0.18,0.92,0.79,1,0,Mercury,Venus,prog_crescent,Mars,disseminating,bottom_zone,Lib,99.0
+239,SPG,Simon Property Group,Real Estate,1993-12-13,33,9.84,0.00,9.84,3.66,0.00,1.60,1.71,1,0,Moon,Moon,prog_new,Saturn,disseminating,bear_zone,Sag,99.0
+240,DASH,DoorDash,Consumer Discretionary,2020-12-09,6,9.83,0.89,8.94,2.99,0.00,2.64,1.28,0,0,Sun,Moon,prog_balsamic,Saturn,balsamic,mid,Sag,99.0
+241,GWW,W. W. Grainger,Industrials,1967-04-14,59,9.82,0.23,9.59,3.88,0.45,0.00,1.92,2,0,Jupiter,Mercury,prog_new,Sun,first_q,mid,Ari,10.2
+242,DLR,Digital Realty,Real Estate,2004-10-28,22,9.80,2.48,7.32,2.99,0.01,1.98,0.77,0,0,Mercury,Moon,prog_crescent,Venus,crescent,mid,Sco,1.4
+243,CHTR,Charter Communications,Communication Services,1999-11-08,27,9.79,1.98,7.81,3.41,0.00,0.91,1.15,1,0,Mercury,Mars,prog_balsamic,Mars,balsamic,peak_zone,Sco,11.6
+244,WMT,Walmart,Consumer Staples,1970-10-01,56,9.78,2.14,7.63,2.99,0.00,1.67,1.25,0,0,Jupiter,Sun,prog_balsamic,Saturn,gibbous,launch_zone,Lib,99.0
+245,ABNB,Airbnb,Consumer Discretionary,2020-12-10,6,9.77,0.90,8.87,3.10,0.00,1.66,1.46,1,0,Sun,Moon,prog_new,Saturn,balsamic,mid,Sag,99.0
+246,FDX,FedEx,Industrials,1978-04-12,48,9.74,6.57,3.18,0.00,0.00,1.58,0.48,0,1,Saturn,Mercury,prog_last_q,Mercury,balsamic,bottom_zone,Ari,99.0
+247,TTD,Trade Desk (The),Communication Services,2016-09-21,10,9.73,2.34,7.39,3.23,0.00,0.42,1.45,1,0,Sun,Mars,prog_balsamic,Mercury,last_q,bottom_zone,Vir,99.0
+248,ZBH,Zimmer Biomet,Health Care,2001-08-07,25,9.71,2.69,7.02,2.99,0.00,1.55,0.95,0,0,Mercury,Jupiter,prog_gibbous,Venus,new,peak_zone,Leo,11.0
+249,CRM,Salesforce,Information Technology,2004-06-22,22,9.67,0.79,8.89,3.43,0.76,1.34,0.97,1,0,Mercury,Moon,prog_balsamic,Venus,crescent,mid,Can,99.0
+250,SNDK,Sandisk,Information Technology,1995-11-07,31,9.67,1.29,8.38,2.99,0.00,2.53,1.00,0,0,Mercury,Venus,prog_full,Venus,disseminating,bottom_zone,Sco,10.6
+251,MDT,Medtronic,Health Care,1986-10-31,40,9.67,3.20,6.46,2.99,0.00,1.05,1.00,0,0,Moon,Mercury,prog_first_q,Venus,first_q,launch_zone,Sco,3.7
+252,EL,Estée Lauder Companies (The),Consumer Staples,1995-11-16,31,9.66,1.83,7.83,2.99,0.00,2.35,0.79,0,0,Mercury,Venus,prog_last_q,Venus,last_q,bottom_zone,Sco,99.0
+253,WAT,Waters Corporation,Health Care,1995-11-16,31,9.66,1.83,7.83,2.99,0.00,2.35,0.79,0,0,Mercury,Venus,prog_last_q,Venus,last_q,bottom_zone,Sco,99.0
+254,STZ,Constellation Brands,Consumer Staples,2005-07-01,21,9.65,1.90,7.75,2.99,0.00,1.63,1.36,0,0,Mercury,Moon,prog_full,Venus,crescent,launch_zone,Can,99.0
+255,CHRW,C.H. Robinson,Industrials,1997-10-15,29,9.63,1.34,8.29,3.32,0.48,0.97,1.18,1,0,Mercury,Sun,prog_gibbous,Venus,last_q,bottom_zone,Lib,11.9
+256,IDXX,Idexx Laboratories,Health Care,1985-09-26,41,9.59,0.77,8.82,2.99,0.88,1.84,1.32,0,0,Saturn,Saturn,prog_disseminating,Venus,crescent,mid,Lib,99.0
+257,ADM,Archer Daniels Midland,Consumer Staples,1957-03-04,69,9.55,2.17,7.38,2.99,0.00,1.59,1.15,0,0,Mars,Saturn,prog_gibbous,Venus,last_q,bear_zone,Pis,99.0
+258,CPB,Campbell's Company (The),Consumer Staples,1957-03-04,69,9.55,2.17,7.38,2.99,0.00,1.59,1.15,0,0,Mars,Saturn,prog_gibbous,Venus,last_q,bear_zone,Pis,99.0
+259,CVS,CVS Health,Health Care,1957-03-04,69,9.55,2.17,7.38,2.99,0.00,1.59,1.15,0,0,Mars,Saturn,prog_gibbous,Venus,last_q,bear_zone,Pis,99.0
+260,ETR,Entergy,Utilities,1957-03-04,69,9.55,2.17,7.38,2.99,0.00,1.59,1.15,0,0,Mars,Saturn,prog_gibbous,Venus,last_q,bear_zone,Pis,99.0
+261,HAL,Halliburton,Energy,1957-03-04,69,9.55,2.17,7.38,2.99,0.00,1.59,1.15,0,0,Mars,Saturn,prog_gibbous,Venus,last_q,bear_zone,Pis,99.0
+262,HIG,Hartford (The),Financials,1957-03-04,69,9.55,2.17,7.38,2.99,0.00,1.59,1.15,0,0,Mars,Saturn,prog_gibbous,Venus,last_q,bear_zone,Pis,99.0
+263,HSY,Hershey Company (The),Consumer Staples,1957-03-04,69,9.55,2.17,7.38,2.99,0.00,1.59,1.15,0,0,Mars,Saturn,prog_gibbous,Venus,last_q,bear_zone,Pis,99.0
+264,IP,International Paper,Materials,1957-03-04,69,9.55,2.17,7.38,2.99,0.00,1.59,1.15,0,0,Mars,Saturn,prog_gibbous,Venus,last_q,bear_zone,Pis,99.0
+265,KR,Kroger,Consumer Staples,1957-03-04,69,9.55,2.17,7.38,2.99,0.00,1.59,1.15,0,0,Mars,Saturn,prog_gibbous,Venus,last_q,bear_zone,Pis,99.0
+266,OXY,Occidental Petroleum,Energy,1957-03-04,69,9.55,2.17,7.38,2.99,0.00,1.59,1.15,0,0,Mars,Saturn,prog_gibbous,Venus,last_q,bear_zone,Pis,99.0
+267,RTX,RTX Corporation,Industrials,1957-03-04,69,9.55,2.17,7.38,2.99,0.00,1.59,1.15,0,0,Mars,Saturn,prog_gibbous,Venus,last_q,bear_zone,Pis,99.0
+268,SLB,Schlumberger,Energy,1957-03-04,69,9.55,2.17,7.38,2.99,0.00,1.59,1.15,0,0,Mars,Saturn,prog_gibbous,Venus,last_q,bear_zone,Pis,99.0
+269,ED,Consolidated Edison,Utilities,1884-10-28,142,9.55,3.58,5.96,2.99,0.00,0.00,1.58,0,0,Mars,Mercury,prog_new,Jupiter,crescent,bottom_zone,Sco,1.5
+270,IVZ,Invesco,Financials,2008-08-21,18,9.54,2.87,6.67,2.99,0.19,1.51,0.63,0,0,Venus,Sun,prog_first_q,Sun,first_q,setup_zone,Leo,99.0
+271,TROW,T. Rowe Price,Financials,1986-04-02,40,9.53,4.79,4.73,0.48,0.00,0.44,1.85,1,0,Saturn,Saturn,prog_new,Mars,first_q,mid,Ari,99.0
+272,CTAS,Cintas,Industrials,1983-08-18,43,9.50,3.69,5.80,2.99,0.00,0.82,0.76,0,0,Saturn,Jupiter,prog_disseminating,Saturn,new,mid,Leo,99.0
+273,VMC,Vulcan Materials Company,Materials,1999-06-30,27,9.49,1.98,7.51,2.99,0.00,2.01,0.88,0,0,Mercury,Mars,prog_gibbous,Venus,balsamic,peak_zone,Can,99.0
+274,BALL,Ball Corporation,Materials,1984-10-31,42,9.49,0.83,8.66,2.99,0.00,2.75,1.00,0,0,Saturn,Saturn,prog_full,Jupiter,crescent,mid,Sco,4.2
+275,STT,State Street Corporation,Financials,1970-01-01,56,9.49,2.50,6.99,2.99,0.00,2.07,0.47,0,0,Jupiter,Sun,prog_disseminating,Saturn,full,launch_zone,Cap,99.0
+276,BF.B,Brown–Forman,Consumer Staples,1982-10-31,44,9.48,4.92,4.56,2.99,0.00,0.00,0.65,0,0,Saturn,Mars,prog_balsamic,Sun,new,peak_zone,Sco,3.7
+277,MMM,3M,Industrials,1946-01-14,80,9.48,0.21,9.27,2.99,0.50,1.50,2.16,0,0,Sun,Moon,prog_new,Venus,first_q,mid,Cap,10.3
+278,LH,Labcorp,Health Care,2004-11-01,22,9.48,2.33,7.15,3.39,0.00,1.09,0.58,1,0,Mercury,Moon,prog_first_q,Sun,crescent,mid,Sco,5.4
+279,LEN,Lennar,Consumer Discretionary,1971-11-01,55,9.47,3.77,5.69,3.19,0.00,0.73,0.08,1,0,Jupiter,Mars,prog_first_q,Venus,full,setup_zone,Sco,4.4
+280,AEP,American Electric Power,Utilities,1949-01-01,77,9.46,0.20,9.26,2.99,0.00,3.82,0.48,0,0,Sun,Venus,prog_disseminating,Saturn,first_q,mid,Cap,99.0
+281,PEG,Public Service Enterprise Group,Utilities,1949-01-01,77,9.46,0.20,9.26,2.99,0.00,3.82,0.48,0,0,Sun,Venus,prog_disseminating,Saturn,first_q,mid,Cap,99.0
+282,SO,Southern Company,Utilities,1949-01-01,77,9.46,0.20,9.26,2.99,0.00,3.82,0.48,0,0,Sun,Venus,prog_disseminating,Saturn,first_q,mid,Cap,99.0
+283,UPS,United Parcel Service,Industrials,1999-11-10,27,9.46,2.11,7.35,3.45,0.00,0.65,1.04,1,0,Mercury,Mars,prog_balsamic,Mars,balsamic,peak_zone,Sco,99.0
+284,SJM,J.M. Smucker Company (The),Consumer Staples,2008-11-06,18,9.43,3.74,5.70,2.99,0.00,1.62,0.01,0,0,Venus,Sun,prog_last_q,Jupiter,first_q,setup_zone,Sco,10.4
+285,TXN,Texas Instruments,Information Technology,2001-03-12,25,9.40,2.60,6.80,0.00,0.00,2.61,2.27,0,0,Mercury,Jupiter,prog_gibbous,Venus,new,peak_zone,Pis,99.0
+286,VLTO,Veralto,Industrials,2023-10-02,3,9.39,3.74,5.65,3.36,0.00,0.00,0.54,1,0,Sun,Venus,prog_disseminating,Venus,crescent,launch_zone,Lib,99.0
+287,O,Realty Income,Real Estate,1994-10-18,32,9.38,1.68,7.69,3.36,0.04,1.02,1.00,1,0,Moon,Moon,prog_full,Venus,disseminating,bear_zone,Lib,9.2
+288,LDOS,Leidos,Industrials,2013-09-27,13,9.36,2.37,7.00,2.99,0.32,2.37,0.01,0,0,Venus,Moon,prog_crescent,Venus,disseminating,bear_zone,Lib,99.0
+289,RSG,Republic Services,Industrials,1998-06-30,28,9.36,2.12,7.24,2.99,0.00,2.51,0.26,0,0,Mercury,Sun,prog_crescent,Mercury,balsamic,bottom_zone,Can,99.0
+290,TEL,TE Connectivity,Information Technology,2011-10-17,15,9.35,0.00,9.35,3.53,0.48,1.21,0.98,2,0,Venus,Saturn,prog_crescent,Saturn,full,bear_zone,Lib,10.3
+291,CHD,Church & Dwight,Consumer Staples,2015-12-29,11,9.35,1.17,8.18,3.28,0.00,1.22,1.24,1,0,Venus,Venus,prog_balsamic,Saturn,last_q,bottom_zone,Cap,99.0
+292,WMB,Williams Companies,Energy,1975-03-31,51,9.33,4.21,5.12,0.00,0.00,2.04,1.64,0,0,Jupiter,Jupiter,prog_first_q,Saturn,disseminating,bear_zone,Ari,99.0
+293,UHS,Universal Health Services,Health Care,2014-09-20,12,9.33,1.75,7.58,3.46,0.00,2.02,0.00,1,0,Venus,Mercury,prog_crescent,Venus,disseminating,bottom_zone,Vir,99.0
+294,HCA,HCA Healthcare,Health Care,1992-02-26,34,9.32,3.14,6.17,2.99,0.00,0.67,1.14,0,0,Moon,Jupiter,prog_balsamic,Venus,full,setup_zone,Pis,99.0
+295,SNPS,Synopsys,Information Technology,1992-02-26,34,9.32,3.14,6.17,2.99,0.00,0.67,1.14,0,0,Moon,Jupiter,prog_balsamic,Venus,full,setup_zone,Pis,99.0
+296,ADI,Analog Devices,Information Technology,1999-10-12,27,9.31,3.03,6.28,3.00,0.00,0.00,1.25,1,0,Mercury,Mars,prog_balsamic,Mars,balsamic,peak_zone,Lib,99.0
+297,MET,MetLife,Financials,2000-04-05,26,9.31,2.47,6.84,2.99,0.00,0.99,1.31,0,0,Mercury,Mars,prog_last_q,Sun,balsamic,peak_zone,Ari,99.0
+298,ACN,Accenture,Information Technology,1986-05-07,40,9.31,2.05,7.26,2.99,0.00,1.23,1.38,0,0,Moon,Mercury,prog_first_q,Venus,first_q,launch_zone,Tau,99.0
+299,SPGI,S&P Global,Financials,1929-06-01,97,9.30,0.00,9.30,3.49,0.00,1.26,1.78,1,0,Mercury,Moon,prog_new,Venus,gibbous,mid,Gem,99.0
+300,COP,ConocoPhillips,Energy,1985-07-19,41,9.30,0.55,8.75,0.00,0.00,3.65,2.68,0,0,Saturn,Saturn,prog_gibbous,Venus,crescent,mid,Can,8.3
+301,NFLX,Netflix,Communication Services,2002-05-23,24,9.30,1.25,8.05,3.19,0.06,1.73,0.74,1,0,Mercury,Jupiter,prog_crescent,Saturn,new,mid,Gem,99.0
+302,LNT,Alliant Energy,Utilities,1998-01-01,28,9.29,6.55,2.74,0.00,0.00,0.95,1.00,0,0,Mercury,Sun,prog_new,Saturn,balsamic,bottom_zone,Cap,99.0
+303,AEE,Ameren,Utilities,1998-01-01,28,9.29,6.55,2.74,0.00,0.00,0.95,1.00,0,0,Mercury,Sun,prog_new,Saturn,balsamic,bottom_zone,Cap,99.0
+304,HST,Host Hotels & Resorts,Real Estate,1998-01-01,28,9.29,6.55,2.74,0.00,0.00,0.95,1.00,0,0,Mercury,Sun,prog_new,Saturn,balsamic,bottom_zone,Cap,99.0
+305,PLD,Prologis,Real Estate,1997-11-21,29,9.27,8.23,1.04,0.00,0.09,0.74,0.00,0,0,Mercury,Sun,prog_disseminating,Mars,balsamic,bottom_zone,Sco,99.0
+306,WY,Weyerhaeuser,Real Estate,1963-01-01,63,9.27,2.55,6.71,2.99,0.00,1.57,0.73,0,0,Mars,Mars,prog_first_q,Saturn,new,peak_zone,Cap,99.0
+307,HLT,Hilton Worldwide,Consumer Discretionary,2013-12-12,13,9.26,0.00,9.26,2.99,0.00,3.52,0.73,0,0,Venus,Mercury,prog_disseminating,Venus,disseminating,bear_zone,Sag,99.0
+308,ECL,Ecolab,Materials,1957-01-01,69,9.26,1.21,8.05,3.39,0.00,2.33,0.10,1,0,Mars,Jupiter,prog_first_q,Saturn,last_q,bear_zone,Cap,99.0
+309,MOS,Mosaic Company (The),Materials,2011-09-26,15,9.25,0.59,8.66,2.99,0.88,2.42,0.70,0,0,Venus,Saturn,prog_gibbous,Venus,full,bear_zone,Lib,99.0
+310,EXC,Exelon,Utilities,1984-04-19,42,9.23,1.79,7.44,2.99,0.00,1.67,1.12,0,0,Saturn,Jupiter,prog_balsamic,Jupiter,crescent,mid,Ari,4.4
+311,USB,U.S. Bancorp,Financials,1969-01-01,57,9.22,2.11,7.11,2.99,0.00,2.71,0.00,0,0,Jupiter,Venus,prog_first_q,Saturn,gibbous,launch_zone,Cap,99.0
+312,UNP,Union Pacific Corporation,Industrials,1969-01-01,57,9.22,2.11,7.11,2.99,0.00,2.71,0.00,0,0,Jupiter,Venus,prog_first_q,Saturn,gibbous,launch_zone,Cap,99.0
+313,WFC,Wells Fargo,Financials,1969-01-01,57,9.22,2.11,7.11,2.99,0.00,2.71,0.00,0,0,Jupiter,Venus,prog_first_q,Saturn,gibbous,launch_zone,Cap,99.0
+314,TGT,Target Corporation,Consumer Staples,1967-10-18,59,9.19,5.83,3.36,0.59,0.00,0.00,1.24,1,0,Jupiter,Mercury,prog_gibbous,Saturn,gibbous,launch_zone,Lib,10.9
+315,AJG,Arthur J. Gallagher & Co.,Financials,2016-05-31,10,9.19,1.72,7.47,3.59,0.00,1.20,0.00,2,0,Sun,Mars,prog_crescent,Sun,last_q,bottom_zone,Gem,99.0
+316,DOV,Dover Corporation,Industrials,1955-01-01,71,9.17,1.86,7.32,2.99,0.00,1.56,1.14,0,0,NN,Mercury,prog_disseminating,Saturn,disseminating,setup_zone,Cap,99.0
+317,MKC,McCormick & Company,Consumer Staples,2003-03-20,23,9.15,0.80,8.35,3.37,0.00,1.60,0.95,1,0,Mercury,Saturn,prog_first_q,Venus,crescent,mid,Pis,99.0
+318,F,Ford Motor Company,Consumer Discretionary,1956-01-18,70,9.12,1.85,7.28,3.11,0.00,0.08,1.76,1,0,NN,Sun,prog_full,Venus,disseminating,bear_zone,Cap,6.7
+319,WYNN,Wynn Resorts,Consumer Discretionary,2002-10-25,24,9.09,1.79,7.30,3.17,0.19,1.07,0.75,1,0,Mercury,Saturn,prog_gibbous,Jupiter,crescent,mid,Sco,2.1
+320,URI,United Rentals,Industrials,1997-12-18,29,9.06,2.78,6.28,2.99,0.00,0.92,1.00,0,0,Mercury,Sun,prog_full,Sun,balsamic,bottom_zone,Sag,99.0
+321,CINF,Cincinnati Financial,Financials,1997-12-18,29,9.06,2.78,6.28,2.99,0.00,0.92,1.00,0,0,Mercury,Sun,prog_full,Sun,balsamic,bottom_zone,Sag,99.0
+322,AZO,AutoZone,Consumer Discretionary,1991-04-01,35,9.05,6.54,2.51,0.00,0.00,0.90,0.63,0,1,Moon,Mars,prog_disseminating,Mars,gibbous,setup_zone,Ari,99.0
+323,BBY,Best Buy,Consumer Discretionary,1999-06-29,27,9.04,1.98,7.06,2.99,0.00,1.42,1.08,0,0,Mercury,Mars,prog_gibbous,Venus,balsamic,peak_zone,Can,99.0
+324,Q,Qnity Electronics,Information Technology,2013-05-08,13,9.03,1.61,7.42,2.99,0.00,2.14,0.70,0,0,Venus,Moon,prog_first_q,Venus,full,bear_zone,Tau,99.0
+325,INCY,Incyte,Health Care,2017-02-28,9,9.03,4.50,4.53,0.22,0.00,1.58,1.48,0,0,Sun,Mars,prog_gibbous,Venus,last_q,bottom_zone,Pis,99.0
+326,INTC,Intel,Information Technology,1976-12-31,50,9.02,1.29,7.73,2.99,0.00,1.52,1.45,0,0,Saturn,Mercury,prog_new,Saturn,last_q,bottom_zone,Cap,99.0
+327,SNA,Snap-on,Industrials,1978-12-01,48,9.02,1.97,7.05,3.24,0.00,0.08,1.50,1,0,Saturn,Venus,prog_disseminating,Saturn,balsamic,bottom_zone,Sag,99.0
+328,BSX,Boston Scientific,Health Care,1992-05-18,34,9.01,3.32,5.69,2.99,0.00,0.98,0.55,0,0,Moon,Jupiter,prog_disseminating,Sun,full,setup_zone,Tau,99.0
+329,EOG,EOG Resources,Energy,1989-10-04,37,8.99,6.21,2.78,0.00,0.00,1.77,0.32,0,0,Moon,Sun,prog_first_q,Saturn,full,setup_zone,Lib,99.0
+330,BIIB,Biogen,Health Care,2003-11-13,23,8.94,0.20,8.74,2.99,0.00,1.35,2.27,0,0,Mercury,Saturn,prog_gibbous,Sun,crescent,mid,Sco,99.0
+331,NCLH,Norwegian Cruise Line Holdings,Consumer Discretionary,2013-01-17,13,8.94,0.00,8.94,2.99,0.00,1.58,2.20,0,0,Venus,Moon,prog_full,Venus,full,bear_zone,Cap,6.5
+332,PEP,PepsiCo,Consumer Staples,1919-03-01,107,8.89,0.31,8.58,2.99,0.00,1.62,1.93,0,0,Moon,Moon,prog_full,Venus,balsamic,bear_zone,Pis,99.0
+333,PCAR,Paccar,Industrials,1968-01-01,58,8.84,1.60,7.24,2.99,0.00,1.53,1.11,0,0,Jupiter,Mercury,prog_new,Saturn,gibbous,launch_zone,Cap,99.0
+334,AMCR,Amcor,Materials,1983-08-31,43,8.81,2.66,6.15,3.26,0.00,0.25,0.74,1,0,Saturn,Jupiter,prog_crescent,Mercury,new,mid,Vir,99.0
+335,CAG,Conagra Brands,Consumer Staples,1983-08-31,43,8.81,2.66,6.15,3.26,0.00,0.25,0.74,1,0,Saturn,Jupiter,prog_crescent,Mercury,new,mid,Vir,99.0
+336,VICI,Vici Properties,Real Estate,2018-02-01,8,8.77,6.56,2.21,0.22,0.00,0.26,1.07,0,0,Sun,Jupiter,prog_last_q,Saturn,balsamic,peak_zone,Aqu,7.8
+337,ITW,Illinois Tool Works,Industrials,1965-01-01,61,8.75,1.15,7.60,2.99,0.00,1.83,1.10,0,0,Jupiter,Moon,prog_new,Saturn,crescent,mid,Cap,99.0
+338,MRSH,Marsh McLennan,Financials,1987-08-31,39,8.74,1.90,6.84,2.99,0.00,0.00,2.17,0,0,Moon,Venus,prog_full,Saturn,first_q,launch_zone,Vir,99.0
+339,EVRG,Evergy,Utilities,1992-08-27,34,8.73,0.00,8.73,3.28,0.00,1.62,1.26,1,0,Moon,Saturn,prog_new,Saturn,full,bear_zone,Vir,99.0
+340,ETN,Eaton Corporation,Industrials,1923-09-13,103,8.72,2.00,6.71,2.99,0.00,0.00,2.09,0,0,Mercury,Sun,prog_full,Venus,new,bottom_zone,Vir,99.0
+341,KLAC,KLA Corporation,Information Technology,1980-10-08,46,8.69,2.12,6.57,2.99,0.00,0.74,1.35,0,0,Saturn,Sun,prog_full,Venus,balsamic,peak_zone,Lib,99.0
+342,KO,Coca-Cola Company (The),Consumer Staples,1919-09-05,107,8.69,1.00,7.69,2.99,0.00,1.57,1.38,0,0,Moon,Moon,prog_balsamic,Venus,balsamic,bear_zone,Vir,99.0
+343,PGR,Progressive Corporation,Financials,1971-04-15,55,8.67,1.86,6.81,2.99,0.04,1.87,0.50,0,0,Jupiter,Sun,prog_gibbous,Jupiter,full,setup_zone,Ari,9.2
+344,AXP,American Express,Financials,1977-05-01,49,8.63,1.29,7.34,2.99,0.00,0.11,2.41,0,0,Saturn,Mercury,prog_new,Venus,last_q,bottom_zone,Tau,6.9
+345,GS,Goldman Sachs,Financials,1999-05-03,27,8.63,2.18,6.45,3.61,0.00,0.00,0.88,1,0,Mercury,Mars,prog_gibbous,Venus,balsamic,peak_zone,Tau,8.6
+346,GOOGL,Alphabet Inc. (Class A),Communication Services,2006-04-03,20,8.62,3.74,4.88,2.99,0.00,0.00,0.86,0,0,Mercury,Moon,prog_last_q,Mercury,first_q,launch_zone,Ari,99.0
+347,CI,Cigna,Health Care,1976-06-30,50,8.61,0.00,8.61,2.99,0.00,1.86,1.73,0,0,Saturn,Moon,prog_last_q,Venus,last_q,bear_zone,Can,99.0
+348,LUV,Southwest Airlines,Industrials,1994-07-01,32,8.60,1.64,6.96,2.99,0.00,2.37,0.19,0,0,Moon,Moon,prog_last_q,Mercury,disseminating,bear_zone,Can,99.0
+349,UNH,UnitedHealth Group,Health Care,1994-07-01,32,8.60,1.64,6.96,2.99,0.00,2.37,0.19,0,0,Moon,Moon,prog_last_q,Mercury,disseminating,bear_zone,Can,99.0
+350,ABBV,AbbVie,Health Care,2012-12-31,14,8.59,0.00,8.59,2.99,0.00,2.44,1.22,0,0,Venus,Moon,prog_new,Saturn,full,bear_zone,Cap,99.0
+351,CME,CME Group,Financials,2002-12-06,24,8.59,2.33,6.26,2.99,0.00,1.18,0.76,0,0,Mercury,Saturn,prog_last_q,Saturn,crescent,mid,Sag,99.0
+352,YUM,Yum! Brands,Consumer Discretionary,1997-10-06,29,8.59,1.54,7.05,2.99,0.00,0.90,1.53,0,0,Mercury,Sun,prog_new,Saturn,last_q,bottom_zone,Lib,99.0
+353,PM,Philip Morris International,Consumer Staples,2008-03-31,18,8.57,2.80,5.77,2.99,0.00,0.84,0.73,0,0,Venus,Sun,prog_gibbous,Sun,gibbous,setup_zone,Ari,99.0
+354,FCX,Freeport-McMoRan,Materials,1988-05-05,38,8.56,3.76,4.80,2.99,0.00,0.00,0.81,0,0,Moon,Venus,prog_balsamic,Venus,first_q,launch_zone,Tau,11.2
+355,PYPL,PayPal,Financials,2002-02-14,24,8.56,1.98,6.58,2.99,0.00,0.86,1.25,0,0,Mercury,Jupiter,prog_balsamic,Venus,new,mid,Aqu,99.0
+356,IRM,Iron Mountain,Real Estate,1996-02-01,30,8.53,2.00,6.53,2.99,0.00,1.48,0.68,0,0,Mercury,Venus,prog_gibbous,Mercury,last_q,bottom_zone,Aqu,7.9
+357,CL,Colgate-Palmolive,Consumer Staples,1936-01-01,90,8.50,1.78,6.72,2.99,0.00,1.50,0.79,0,0,Venus,Jupiter,prog_first_q,Saturn,last_q,setup_zone,Cap,99.0
+358,VST,Vistra Corp.,Utilities,1996-03-11,30,8.49,2.60,5.89,2.99,0.00,1.35,0.36,0,0,Mercury,Venus,prog_disseminating,Jupiter,last_q,bottom_zone,Pis,99.0
+359,CSX,CSX Corporation,Industrials,1980-11-01,46,8.49,2.70,5.78,0.22,0.00,3.73,0.45,0,0,Saturn,Sun,prog_first_q,Venus,balsamic,peak_zone,Sco,4.4
+360,PSA,Public Storage,Real Estate,1980-11-01,46,8.49,2.70,5.78,0.22,0.00,3.73,0.45,0,0,Saturn,Sun,prog_first_q,Venus,balsamic,peak_zone,Sco,4.4
+361,DECK,Deckers Brands,Consumer Discretionary,1993-10-14,33,8.46,0.00,8.46,3.66,0.07,0.71,1.51,1,0,Moon,Saturn,prog_new,Saturn,disseminating,bear_zone,Lib,99.0
+362,PPG,PPG Industries,Materials,1899-07-01,127,8.46,5.65,2.80,0.00,0.01,0.99,1.00,0,0,Jupiter,Jupiter,prog_new,Mercury,balsamic,bear_zone,Can,99.0
+363,BMY,Bristol Myers Squibb,Health Care,1933-01-01,93,8.45,1.64,6.80,2.99,0.00,1.60,0.76,0,0,Mercury,Mercury,prog_first_q,Saturn,disseminating,launch_zone,Cap,99.0
+364,SOLV,Solventum,Health Care,2024-04-01,2,8.45,3.66,4.79,2.99,0.00,0.00,0.80,0,0,Sun,Venus,prog_last_q,Venus,crescent,launch_zone,Ari,99.0
+365,WST,West Pharmaceutical Services,Health Care,2020-05-22,6,8.44,4.29,4.16,0.00,0.74,2.51,0.10,0,0,Sun,Saturn,prog_crescent,Sun,balsamic,peak_zone,Gem,99.0
+366,DTE,DTE Energy,Utilities,1995-01-01,31,8.43,0.49,7.94,2.99,0.00,1.70,1.43,0,0,Moon,Moon,prog_new,Saturn,disseminating,bear_zone,Cap,99.0
+367,AWK,American Water Works,Utilities,2008-04-22,18,8.43,4.03,4.40,2.99,0.52,0.23,0.00,0,0,Venus,Sun,prog_crescent,Venus,gibbous,setup_zone,Tau,1.3
+368,VTRS,Viatris,Health Care,2004-04-23,22,8.43,3.79,4.63,2.99,0.71,0.00,0.23,0,0,Mercury,Saturn,prog_last_q,Venus,crescent,mid,Tau,0.4
+369,GPC,Genuine Parts Company,Consumer Discretionary,1973-12-31,53,8.41,0.27,8.15,2.99,0.00,1.47,1.76,0,0,Jupiter,Jupiter,prog_balsamic,Venus,full,bear_zone,Cap,99.0
+370,NEE,NextEra Energy,Utilities,1950-05-01,76,8.39,1.80,6.59,2.99,0.00,0.19,1.84,0,0,Sun,Sun,prog_new,Venus,gibbous,launch_zone,Tau,6.5
+371,BA,Boeing,Industrials,1962-12-31,64,8.36,2.55,5.81,2.99,0.00,1.43,0.24,0,0,Mars,Mars,prog_first_q,Saturn,new,peak_zone,Cap,99.0
+372,MAR,Marriott International,Consumer Discretionary,1998-05-29,28,8.34,2.89,5.45,0.00,0.00,2.67,1.32,0,0,Mercury,Sun,prog_new,Saturn,balsamic,bottom_zone,Gem,99.0
+373,EXPD,Expeditors International,Industrials,1984-11-08,42,8.34,0.19,8.14,2.99,0.00,2.93,0.50,0,0,Saturn,Saturn,prog_balsamic,Venus,crescent,mid,Sco,99.0
+374,MO,Altria,Consumer Staples,1952-03-10,74,8.28,1.89,6.39,2.99,0.00,0.00,1.87,0,0,SN,Moon,prog_balsamic,Mercury,full,setup_zone,Pis,99.0
+375,VTR,Ventas,Real Estate,1998-05-01,28,8.27,1.67,6.60,2.99,0.00,0.79,1.33,0,0,Mercury,Sun,prog_new,Venus,balsamic,bottom_zone,Tau,6.9
+376,TDG,TransDigm Group,Industrials,2006-03-14,20,8.21,1.96,6.25,2.99,0.00,0.47,1.37,0,0,Mercury,Moon,prog_crescent,Mercury,first_q,launch_zone,Pis,99.0
+377,LOW,Lowe's,Consumer Discretionary,1961-10-10,65,8.16,2.59,5.58,2.99,0.00,0.00,1.33,0,0,Mars,Sun,prog_crescent,Saturn,new,peak_zone,Lib,99.0
+378,HAS,Hasbro,Consumer Discretionary,1984-09-30,42,8.16,0.20,7.96,3.54,0.00,0.73,1.31,1,0,Saturn,Saturn,prog_full,Saturn,crescent,mid,Lib,99.0
+379,AMZN,Amazon,Consumer Discretionary,1997-05-15,29,8.14,2.08,6.06,2.99,0.00,0.54,1.18,0,0,Mercury,Sun,prog_crescent,Venus,balsamic,bottom_zone,Tau,99.0
+380,BX,Blackstone Inc.,Financials,2007-06-21,19,8.12,2.75,5.37,2.99,0.09,0.79,0.45,0,0,Mercury,Mercury,prog_last_q,Mercury,first_q,launch_zone,Gem,99.0
+381,SCHW,Charles Schwab Corporation,Financials,1987-09-22,39,8.09,2.63,5.46,2.99,0.00,1.41,0.03,0,0,Moon,Venus,prog_first_q,Mercury,first_q,launch_zone,Vir,99.0
+382,TT,Trane Technologies,Industrials,1977-01-06,49,8.09,1.56,6.53,3.17,0.00,1.08,0.35,1,0,Saturn,Mercury,prog_crescent,Saturn,last_q,bottom_zone,Cap,99.0
+383,IBM,IBM,Information Technology,1915-09-01,111,8.08,3.05,5.04,2.99,0.00,0.54,0.50,0,0,Moon,Mars,prog_gibbous,Mercury,disseminating,setup_zone,Vir,99.0
+384,KMI,Kinder Morgan,Energy,2011-02-10,15,8.07,1.87,6.20,2.99,0.00,1.26,0.65,0,0,Venus,Jupiter,prog_last_q,Venus,gibbous,setup_zone,Aqu,99.0
+385,ESS,Essex Property Trust,Real Estate,1994-06-06,32,8.07,1.05,7.02,2.99,0.00,1.54,0.96,0,0,Moon,Moon,prog_balsamic,Venus,disseminating,bear_zone,Gem,99.0
+386,RCL,Royal Caribbean Group,Consumer Discretionary,1993-04-27,33,8.06,1.15,6.91,3.08,0.00,1.85,0.00,1,0,Moon,Saturn,prog_first_q,Venus,full,bear_zone,Tau,3.2
+387,APA,APA Corporation,Energy,1997-07-28,29,8.03,3.57,4.46,2.99,0.00,0.46,0.19,0,0,Mercury,Sun,prog_last_q,Venus,last_q,bottom_zone,Leo,1.4
+388,HRL,Hormel Foods,Consumer Staples,2009-03-04,17,8.02,4.40,3.62,2.99,0.00,0.00,0.03,0,0,Venus,Sun,prog_last_q,Venus,gibbous,setup_zone,Pis,99.0
+389,EXR,Extra Space Storage,Real Estate,2004-08-11,22,8.01,2.04,5.97,2.99,0.00,0.68,1.00,0,0,Mercury,Moon,prog_full,Sun,crescent,mid,Leo,99.0
+390,AMT,American Tower,Real Estate,1998-02-26,28,8.00,2.70,5.31,2.99,0.00,0.34,0.85,0,0,Mercury,Sun,prog_balsamic,Venus,balsamic,bottom_zone,Pis,99.0
+391,BEN,Franklin Resources,Financials,1998-04-30,28,7.87,1.67,6.20,2.99,0.00,0.76,1.09,0,0,Mercury,Sun,prog_new,Venus,balsamic,bottom_zone,Tau,5.9
+392,ZBRA,Zebra Technologies,Information Technology,1991-08-15,35,7.85,3.66,4.19,2.99,0.00,0.00,0.40,0,0,Moon,Jupiter,prog_first_q,Sun,full,setup_zone,Leo,99.0
+393,DLTR,Dollar Tree,Consumer Staples,1995-03-06,31,7.83,1.21,6.62,2.99,0.00,0.34,1.73,0,0,Mercury,Venus,prog_crescent,Venus,disseminating,bear_zone,Pis,99.0
+394,ALLE,Allegion,Industrials,2013-12-02,13,7.81,0.00,7.81,3.42,0.00,1.03,1.04,1,0,Venus,Mercury,prog_gibbous,Saturn,disseminating,bear_zone,Sag,99.0
+395,PCG,PG&E Corporation,Utilities,1906-03-30,120,7.77,2.05,5.71,3.46,0.00,0.13,0.40,1,0,Saturn,Sun,prog_crescent,Sun,crescent,peak_zone,Ari,99.0
+396,WBD,Warner Bros. Discovery,Communication Services,2002-02-08,24,7.77,0.90,6.87,2.99,0.00,0.91,1.40,0,0,Mercury,Jupiter,prog_disseminating,Saturn,new,mid,Aqu,99.0
+397,LRCX,Lam Research,Information Technology,1984-05-04,42,7.76,0.21,7.54,2.99,0.00,1.41,1.42,0,0,Saturn,Jupiter,prog_full,Mercury,crescent,mid,Tau,10.2
+398,PWR,Quanta Services,Industrials,1998-02-12,28,7.74,3.07,4.66,2.99,0.00,0.00,0.72,0,0,Mercury,Sun,prog_gibbous,Mars,balsamic,bottom_zone,Aqu,99.0
+399,CCI,Crown Castle,Real Estate,1998-08-18,28,7.72,2.37,5.35,2.99,0.00,1.36,0.00,0,0,Mercury,Sun,prog_last_q,Venus,balsamic,bottom_zone,Leo,99.0
+400,WM,Waste Management,Industrials,1998-08-31,28,7.72,1.58,6.14,2.99,0.00,0.86,0.96,0,0,Mercury,Sun,prog_crescent,Saturn,balsamic,bottom_zone,Vir,99.0
+401,KVUE,Kenvue,Consumer Staples,2023-05-04,3,7.72,1.25,6.47,2.99,0.00,0.66,1.35,0,0,Sun,Venus,prog_full,Venus,crescent,mid,Tau,9.7
+402,UAL,United Airlines Holdings,Industrials,2015-09-03,11,7.71,1.20,6.51,2.99,0.00,0.00,1.95,0,0,Venus,Venus,prog_new,Venus,last_q,bottom_zone,Vir,99.0
+403,CBRE,CBRE Group,Real Estate,2006-11-10,20,7.68,1.86,5.82,2.99,0.00,0.29,1.24,0,0,Mercury,Mercury,prog_first_q,Sun,first_q,launch_zone,Sco,99.0
+404,MSCI,MSCI Inc.,Financials,1983-05-05,43,7.67,0.91,6.77,3.10,0.00,0.44,1.12,1,0,Saturn,Jupiter,prog_crescent,Venus,new,mid,Tau,10.4
+405,REGN,Regeneron Pharmaceuticals,Health Care,1991-04-02,35,7.67,2.18,5.50,2.99,0.00,1.21,0.22,0,0,Moon,Mars,prog_disseminating,Saturn,gibbous,setup_zone,Ari,99.0
+406,D,Dominion Energy,Utilities,1909-01-01,117,7.64,1.08,6.57,2.99,0.00,1.57,0.63,0,0,Saturn,Jupiter,prog_first_q,Saturn,gibbous,mid,Cap,99.0
+407,STE,Steris,Health Care,1992-06-01,34,7.64,2.09,5.55,3.14,0.00,0.50,0.22,1,0,Moon,Jupiter,prog_crescent,Sun,full,setup_zone,Gem,99.0
+408,MDLZ,Mondelez International,Consumer Staples,2012-10-02,14,7.62,1.37,6.25,3.01,0.00,0.26,1.00,1,0,Venus,Moon,prog_new,Venus,disseminating,bear_zone,Lib,99.0
+409,AMP,Ameriprise Financial,Financials,2005-10-03,21,7.62,2.86,4.75,3.29,0.00,0.00,0.00,1,0,Mercury,Moon,prog_disseminating,Venus,crescent,launch_zone,Lib,99.0
+410,NOW,ServiceNow,Information Technology,2012-06-28,14,7.61,0.00,7.61,2.99,0.00,2.36,0.64,0,0,Venus,Saturn,prog_last_q,Venus,full,bear_zone,Can,99.0
+411,MNST,Monster Beverage,Consumer Staples,2012-06-28,14,7.61,0.00,7.61,2.99,0.00,2.36,0.64,0,0,Venus,Saturn,prog_last_q,Venus,full,bear_zone,Can,99.0
+412,PHM,PulteGroup,Consumer Discretionary,1984-04-30,42,7.60,0.20,7.41,2.99,0.00,1.49,1.26,0,0,Saturn,Jupiter,prog_gibbous,Venus,crescent,mid,Tau,6.3
+413,CASY,Casey's,Consumer Staples,1983-10-20,43,7.60,0.87,6.73,3.62,0.00,0.23,0.86,1,0,Saturn,Jupiter,prog_balsamic,Venus,new,mid,Lib,7.5
+414,ADSK,Autodesk,Information Technology,1985-06-28,41,7.59,0.21,7.37,2.99,0.00,1.26,1.43,0,0,Saturn,Saturn,prog_disseminating,Venus,crescent,mid,Can,99.0
+415,VLO,Valero Energy,Energy,2002-12-20,24,7.57,2.08,5.49,2.99,0.00,0.83,0.55,0,0,Mercury,Saturn,prog_first_q,Sun,crescent,mid,Sag,99.0
+416,CF,CF Industries,Materials,2005-08-10,21,7.57,2.49,5.08,2.99,0.00,0.00,1.00,0,0,Mercury,Moon,prog_last_q,Saturn,crescent,launch_zone,Leo,99.0
+417,TSN,Tyson Foods,Consumer Staples,2005-08-10,21,7.57,2.49,5.08,2.99,0.00,0.00,1.00,0,0,Mercury,Moon,prog_last_q,Saturn,crescent,launch_zone,Leo,99.0
+418,CPT,Camden Property Trust,Real Estate,1993-07-22,33,7.57,1.70,5.87,2.99,0.00,1.50,0.22,0,0,Moon,Saturn,prog_crescent,Mercury,full,bear_zone,Can,4.4
+419,GIS,General Mills,Consumer Staples,1928-06-01,98,7.55,2.17,5.38,0.39,0.00,1.97,0.77,1,1,Mercury,Saturn,prog_disseminating,Mars,first_q,mid,Gem,99.0
+420,PSKY,Paramount Skydance Corporation,Communication Services,1994-09-30,32,7.50,0.03,7.47,2.99,0.00,0.60,2.07,0,0,Moon,Moon,prog_balsamic,Venus,disseminating,bear_zone,Lib,99.0
+421,TMUS,T-Mobile US,Communication Services,2013-05-01,13,7.45,0.74,6.71,2.99,0.00,1.25,1.00,0,0,Venus,Moon,prog_new,Venus,full,bear_zone,Tau,7.2
+422,BK,BNY Mellon,Financials,2007-07-01,19,7.38,1.97,5.41,2.99,0.00,1.41,0.00,0,0,Mercury,Mercury,prog_crescent,Venus,first_q,launch_zone,Can,99.0
+423,AME,Ametek,Industrials,2013-09-23,13,7.35,0.59,6.76,2.99,0.44,0.96,1.00,0,0,Venus,Moon,prog_new,Venus,disseminating,bear_zone,Lib,99.0
+424,LII,Lennox International,Industrials,1987-08-04,39,7.33,1.96,5.37,2.99,0.00,0.86,0.45,0,0,Moon,Venus,prog_disseminating,Saturn,first_q,launch_zone,Leo,7.5
+425,STX,Seagate Technology,Information Technology,1988-10-12,38,7.32,1.93,5.39,3.15,0.00,0.45,0.15,1,0,Moon,Sun,prog_first_q,Venus,gibbous,launch_zone,Lib,99.0
+426,GOOG,Alphabet Inc. (Class C),Communication Services,2004-08-19,22,7.32,1.66,5.65,2.99,0.00,1.59,0.00,0,0,Mercury,Moon,prog_last_q,Saturn,crescent,mid,Leo,99.0
+427,AOS,A. O. Smith,Industrials,1973-06-01,53,7.26,1.95,5.31,3.32,0.00,0.41,0.00,1,0,Jupiter,Jupiter,prog_last_q,Sun,disseminating,setup_zone,Gem,99.0
+428,AIG,American International Group,Financials,1969-05-01,57,7.25,1.70,5.54,2.99,0.00,1.51,0.00,0,0,Jupiter,Venus,prog_first_q,Venus,gibbous,launch_zone,Tau,6.9
+429,PNR,Pentair,Industrials,2012-10-01,14,7.23,0.00,7.23,3.65,0.00,0.40,1.02,1,0,Venus,Moon,prog_balsamic,Saturn,disseminating,bear_zone,Lib,99.0
+430,POOL,Pool Corporation,Consumer Discretionary,1987-08-27,39,7.21,2.01,5.20,2.99,0.00,0.00,0.54,1,0,Moon,Venus,prog_gibbous,Venus,gibbous,launch_zone,Vir,99.0
+431,MGM,MGM Resorts,Consumer Discretionary,1997-11-12,29,7.19,1.32,5.87,2.99,0.00,0.00,1.53,0,0,Mercury,Sun,prog_first_q,Venus,last_q,bottom_zone,Sco,99.0
+432,NTRS,Northern Trust,Financials,1998-01-30,28,7.17,1.62,5.55,2.99,0.00,0.00,1.31,0,0,Mercury,Sun,prog_new,Venus,balsamic,bottom_zone,Aqu,6.4
+433,AXON,Axon Enterprise,Industrials,2015-06-11,11,7.17,1.36,5.81,2.99,0.00,1.69,0.02,0,0,Venus,Venus,prog_crescent,Sun,disseminating,bottom_zone,Gem,99.0
+434,CVX,Chevron Corporation,Energy,1921-03-07,105,7.15,1.97,5.18,2.99,0.00,0.00,1.06,0,0,Mercury,Venus,prog_gibbous,Venus,balsamic,bottom_zone,Pis,99.0
+435,DXCM,Dexcom,Health Care,2005-04-13,21,7.13,2.08,5.06,2.99,0.53,0.00,0.63,0,0,Mercury,Moon,prog_last_q,Mercury,crescent,launch_zone,Ari,10.4
+436,GLW,Corning Inc.,Information Technology,1995-02-27,31,7.11,0.62,6.49,2.99,0.00,1.17,0.92,0,0,Mercury,Venus,prog_balsamic,Venus,disseminating,bear_zone,Pis,99.0
+437,XOM,ExxonMobil,Energy,1972-11-30,54,7.10,1.72,5.38,2.99,0.00,1.38,0.00,0,0,Jupiter,Mars,prog_disseminating,Saturn,full,setup_zone,Sag,99.0
+438,JPM,JPMorgan Chase,Financials,1969-03-01,57,7.08,1.76,5.32,2.99,0.00,0.88,0.39,0,0,Jupiter,Venus,prog_first_q,Venus,gibbous,launch_zone,Pis,99.0
+439,IBKR,Interactive Brokers,Financials,2007-05-04,19,7.04,2.04,5.01,2.99,0.00,0.62,0.41,0,0,Mercury,Mercury,prog_crescent,Venus,first_q,launch_zone,Tau,9.6
+440,RVTY,Revvity,Health Care,1985-05-31,41,7.02,0.22,6.80,3.65,0.00,0.18,0.92,1,0,Saturn,Saturn,prog_last_q,Mars,crescent,mid,Gem,99.0
+441,SYY,Sysco,Consumer Staples,1970-03-01,56,7.01,1.79,5.22,2.99,0.00,0.00,1.09,0,0,Jupiter,Sun,prog_disseminating,Venus,full,launch_zone,Pis,99.0
+442,EPAM,EPAM Systems,Information Technology,2012-02-07,14,6.97,0.00,6.97,3.21,0.00,0.84,0.83,1,0,Venus,Saturn,prog_balsamic,Saturn,full,bear_zone,Aqu,99.0
+443,VRTX,Vertex Pharmaceuticals,Health Care,1982-02-04,44,6.91,2.75,4.16,2.99,0.00,0.00,0.38,0,0,Saturn,Mars,prog_last_q,Sun,new,peak_zone,Aqu,11.3
+444,SHW,Sherwin-Williams,Materials,1920-01-01,106,6.91,0.28,6.63,2.99,0.00,1.48,0.75,0,0,Moon,Moon,prog_balsamic,Saturn,balsamic,bear_zone,Cap,99.0
+445,BAC,Bank of America,Financials,1998-09-30,28,6.90,2.00,4.90,2.99,0.00,0.94,0.06,0,0,Mercury,Sun,prog_crescent,Venus,balsamic,peak_zone,Lib,99.0
+446,APO,Apollo Global Management,Financials,2011-03-29,15,6.88,0.00,6.88,3.39,0.00,0.92,0.55,1,0,Venus,Jupiter,prog_first_q,Sun,full,bear_zone,Ari,99.0
+447,RMD,ResMed,Health Care,1995-06-02,31,6.87,0.00,6.87,3.54,0.00,0.57,0.19,2,0,Mercury,Venus,prog_crescent,Saturn,disseminating,bear_zone,Gem,99.0
+448,MCHP,Microchip Technology,Information Technology,1993-03-19,33,6.86,0.59,6.26,3.09,0.00,0.43,0.80,1,0,Moon,Saturn,prog_balsamic,Venus,disseminating,bear_zone,Pis,99.0
+449,SWKS,Skyworks Solutions,Information Technology,2015-03-12,11,6.83,1.29,5.54,2.99,0.00,0.00,1.30,0,0,Venus,Venus,prog_new,Jupiter,disseminating,bottom_zone,Pis,99.0
+450,NRG,NRG Energy,Utilities,1993-10-20,33,6.78,0.00,6.78,3.11,0.00,0.87,0.75,1,0,Moon,Saturn,prog_first_q,Saturn,disseminating,bear_zone,Lib,6.9
+451,XYL,Xylem Inc.,Industrials,2011-11-01,15,6.76,1.81,4.95,3.27,0.00,0.17,0.00,1,0,Venus,Saturn,prog_disseminating,Venus,full,bear_zone,Sco,4.7
+452,DG,Dollar General,Consumer Staples,2009-11-13,17,6.71,1.71,5.00,2.99,0.00,0.51,0.50,0,0,Venus,Mars,prog_gibbous,Venus,gibbous,setup_zone,Sco,99.0
+453,MTD,Mettler Toledo,Health Care,1997-11-13,29,6.60,1.28,5.32,3.02,0.00,0.00,0.59,1,0,Mercury,Sun,prog_gibbous,Venus,last_q,bottom_zone,Sco,99.0
+454,DOC,Healthpeak Properties,Real Estate,2013-07-18,13,6.57,1.17,5.40,2.99,0.00,1.40,0.00,0,0,Venus,Moon,prog_last_q,Venus,disseminating,bear_zone,Can,8.0
+455,LYB,LyondellBasell,Materials,2012-09-05,14,6.54,0.56,5.98,2.99,0.00,0.34,1.30,0,0,Venus,Saturn,prog_new,Mercury,disseminating,bear_zone,Vir,99.0
+456,MRK,Merck & Co.,Health Care,1946-05-15,80,6.52,0.80,5.72,2.99,0.00,1.16,0.42,0,0,Sun,Moon,prog_crescent,Venus,crescent,mid,Tau,99.0
+457,CMI,Cummins,Industrials,1964-12-01,62,6.47,0.20,6.28,3.43,0.00,0.06,0.86,1,0,Jupiter,Moon,prog_balsamic,Mars,crescent,mid,Sag,99.0
+458,HUM,Humana,Health Care,1968-08-14,58,6.46,1.62,4.83,2.99,0.00,0.54,0.36,0,0,Jupiter,Venus,prog_disseminating,Venus,gibbous,launch_zone,Leo,99.0
+459,IT,Gartner,Information Technology,1993-10-04,33,6.45,0.28,6.17,2.99,0.00,0.94,0.91,0,0,Moon,Saturn,prog_disseminating,Venus,disseminating,bear_zone,Lib,99.0
+460,OMC,Omnicom Group,Communication Services,1986-08-01,40,6.44,2.48,3.96,2.99,0.00,0.00,0.25,0,0,Moon,Mercury,prog_crescent,Sun,first_q,launch_zone,Leo,4.9
+461,TTWO,Take-Two Interactive,Communication Services,1997-04-14,29,6.44,1.63,4.81,2.99,0.16,0.00,0.71,0,0,Mercury,Sun,prog_crescent,Moon,balsamic,bottom_zone,Ari,9.5
+462,ATO,Atmos Energy,Utilities,1985-01-01,41,6.43,0.48,5.95,2.99,0.00,1.82,0.00,0,0,Saturn,Saturn,prog_disseminating,Saturn,crescent,mid,Cap,99.0
+463,APP,AppLovin,Information Technology,1994-02-09,32,6.40,0.00,6.40,2.99,0.00,0.34,1.58,0,0,Moon,Moon,prog_new,Saturn,disseminating,bear_zone,Aqu,99.0
+464,VRSK,Verisk Analytics,Industrials,2009-10-06,17,6.38,1.98,4.40,2.99,0.00,0.63,0.00,0,0,Venus,Mars,prog_crescent,Venus,gibbous,setup_zone,Lib,99.0
+465,PSX,Phillips 66,Energy,2012-05-01,14,6.36,0.00,6.36,3.36,0.00,0.00,1.02,1,0,Venus,Saturn,prog_last_q,Venus,full,bear_zone,Tau,7.5
+466,FE,FirstEnergy,Utilities,1997-11-07,29,6.28,1.32,4.96,2.99,0.00,0.00,0.91,0,0,Mercury,Sun,prog_crescent,Jupiter,last_q,bottom_zone,Sco,11.1
+467,MTB,M&T Bank,Financials,2004-02-23,22,6.25,0.89,5.36,2.99,0.00,0.00,1.18,0,0,Mercury,Saturn,prog_last_q,Venus,crescent,mid,Pis,99.0
+468,MCD,McDonald's,Consumer Discretionary,1965-04-21,61,6.25,1.07,5.18,2.99,0.00,0.94,0.24,0,0,Jupiter,Moon,prog_disseminating,Venus,crescent,mid,Tau,2.9
+469,WELL,Welltower,Real Estate,1993-08-12,33,6.24,0.00,6.24,2.99,0.00,0.65,1.21,0,0,Moon,Saturn,prog_balsamic,Sun,full,bear_zone,Leo,99.0
+470,TSCO,Tractor Supply,Consumer Discretionary,1994-02-17,32,6.24,1.28,4.96,2.99,0.11,0.00,0.84,0,0,Moon,Moon,prog_first_q,Venus,disseminating,bear_zone,Aqu,99.0
+471,MAA,Mid-America Apartment Communities,Real Estate,1994-01-28,32,6.21,0.67,5.54,2.99,0.00,0.14,1.18,0,0,Moon,Moon,prog_disseminating,Saturn,disseminating,bear_zone,Aqu,4.3
+472,AIZ,Assurant,Financials,2004-02-04,22,6.17,3.80,2.37,0.00,0.00,0.42,1.22,0,0,Mercury,Saturn,prog_crescent,Mercury,crescent,mid,Aqu,9.9
+473,PNC,PNC Financial Services,Financials,1988-05-01,38,6.15,1.96,4.19,2.99,0.00,0.00,0.40,0,0,Moon,Venus,prog_last_q,Venus,first_q,launch_zone,Tau,7.3
+474,VRSN,Verisign,Information Technology,1998-01-29,28,6.15,5.40,0.75,0.00,0.00,0.00,0.50,0,0,Mercury,Sun,prog_balsamic,Saturn,balsamic,bottom_zone,Aqu,4.3
+475,WTW,Willis Towers Watson,Financials,2001-11-14,25,6.15,0.82,5.33,2.99,0.00,1.34,0.00,0,0,Mercury,Jupiter,prog_last_q,Mars,new,mid,Sco,99.0
+476,DAL,Delta Air Lines,Industrials,2013-09-11,13,6.10,0.00,6.10,2.99,0.00,1.93,0.00,0,0,Venus,Moon,prog_disseminating,Mars,disseminating,bear_zone,Vir,99.0
+477,ODFL,Old Dominion,Industrials,1991-10-24,35,6.08,2.49,3.59,2.99,0.00,0.00,0.00,0,0,Moon,Jupiter,prog_disseminating,Venus,full,setup_zone,Sco,3.5
+478,ROST,Ross Stores,Consumer Discretionary,1985-08-08,41,6.08,0.21,5.87,2.99,0.00,0.61,1.00,0,0,Saturn,Saturn,prog_new,Venus,crescent,mid,Leo,11.8
+479,ANET,Arista Networks,Information Technology,1995-05-02,31,6.05,0.00,6.05,2.99,0.00,0.74,1.00,0,0,Mercury,Venus,prog_new,Venus,disseminating,bear_zone,Tau,7.6
+480,ZTS,Zoetis,Health Care,2013-01-31,13,5.99,0.38,5.61,2.99,0.00,0.00,1.35,0,0,Venus,Moon,prog_new,Saturn,full,bear_zone,Aqu,7.7
+481,BRK.B,Berkshire Hathaway,Financials,1996-05-09,30,5.99,1.26,4.72,2.99,0.00,0.63,0.21,0,0,Mercury,Venus,prog_disseminating,Venus,last_q,bottom_zone,Tau,99.0
+482,DPZ,Domino's,Consumer Discretionary,2004-07-12,22,5.91,0.49,5.42,2.99,0.00,0.06,1.17,0,0,Mercury,Moon,prog_full,Venus,crescent,mid,Can,99.0
+483,EQR,Equity Residential,Real Estate,1993-08-11,33,5.76,0.00,5.76,2.99,0.00,0.57,0.96,0,0,Moon,Saturn,prog_last_q,Venus,full,bear_zone,Leo,99.0
+484,ARE,Alexandria Real Estate Equities,Real Estate,1997-05-27,29,5.72,1.79,3.93,2.99,0.00,0.26,0.00,0,0,Mercury,Sun,prog_disseminating,Sun,balsamic,bottom_zone,Gem,99.0
+485,CAH,Cardinal Health,Health Care,1997-05-27,29,5.72,1.79,3.93,2.99,0.00,0.26,0.00,0,0,Mercury,Sun,prog_disseminating,Sun,balsamic,bottom_zone,Gem,99.0
+486,MLM,Martin Marietta Materials,Materials,1994-02-16,32,5.71,1.82,3.89,2.99,0.00,0.00,0.20,0,0,Moon,Moon,prog_crescent,Venus,disseminating,bear_zone,Aqu,99.0
+487,DIS,Walt Disney Company (The),Communication Services,1957-11-12,69,5.60,0.29,5.31,2.99,0.00,0.00,1.15,0,0,Mars,Saturn,prog_balsamic,Sun,balsamic,bear_zone,Sco,99.0
+488,GDDY,GoDaddy,Information Technology,2015-04-01,11,5.54,1.95,3.59,2.99,0.00,0.00,0.00,0,0,Venus,Venus,prog_disseminating,Mercury,disseminating,bottom_zone,Ari,99.0
+489,TPR,"Tapestry, Inc.",Consumer Discretionary,2004-09-01,22,5.49,0.21,5.27,2.99,0.00,0.82,0.41,0,0,Mercury,Moon,prog_first_q,Venus,crescent,mid,Vir,99.0
+490,COST,Costco,Consumer Staples,1985-11-27,41,5.45,0.21,5.24,2.99,0.00,0.36,0.80,0,0,Saturn,Saturn,prog_last_q,Jupiter,crescent,mid,Sag,99.0
+491,MCO,Moody's Corporation,Financials,1993-08-05,33,5.36,0.00,5.36,2.99,0.00,0.82,0.47,0,0,Moon,Saturn,prog_disseminating,Venus,full,bear_zone,Leo,9.0
+492,COF,Capital One,Financials,1994-11-15,32,5.32,0.36,4.96,2.99,0.00,0.08,0.85,0,0,Moon,Moon,prog_gibbous,Venus,disseminating,bear_zone,Sco,99.0
+493,INTU,Intuit,Information Technology,1993-03-12,33,5.27,0.00,5.27,2.99,0.00,0.43,0.75,0,0,Moon,Saturn,prog_disseminating,Saturn,disseminating,bear_zone,Pis,99.0
+494,IFF,International Flavors & Fragrances,Materials,1976-03-31,50,5.26,0.32,4.94,2.99,0.00,0.00,0.90,0,0,Saturn,Moon,prog_disseminating,Sun,last_q,bear_zone,Ari,99.0
+495,CTRA,Coterra,Energy,1995-02-06,31,5.22,0.00,5.22,3.14,0.00,0.00,0.44,1,0,Moon,Moon,prog_first_q,Venus,disseminating,bear_zone,Aqu,99.0
+496,AVB,AvalonBay Communities,Real Estate,1994-03-10,32,4.99,0.00,4.99,2.99,0.00,0.17,0.79,0,0,Moon,Moon,prog_balsamic,Venus,disseminating,bear_zone,Pis,99.0
+497,XEL,Xcel Energy,Utilities,1993-08-04,33,4.99,0.00,4.99,2.99,0.00,0.41,0.58,0,0,Moon,Saturn,prog_disseminating,Sun,full,bear_zone,Leo,8.1
+498,KEY,KeyCorp,Financials,1994-03-01,32,4.96,0.00,4.96,2.99,0.00,0.00,0.92,0,0,Moon,Moon,prog_disseminating,Venus,disseminating,bear_zone,Pis,99.0
+499,TMO,Thermo Fisher Scientific,Health Care,2004-08-03,22,4.88,0.20,4.68,2.99,0.00,0.84,0.00,0,0,Mercury,Moon,prog_first_q,Venus,crescent,mid,Leo,7.4
+500,FANG,Diamondback Energy,Energy,2012-10-11,14,4.79,0.28,4.52,2.99,0.00,0.10,0.53,0,0,Venus,Moon,prog_first_q,Saturn,disseminating,bear_zone,Lib,99.0
+501,WDAY,"Workday, Inc.",Information Technology,2012-10-11,14,4.79,0.28,4.52,2.99,0.00,0.10,0.53,0,0,Venus,Moon,prog_first_q,Saturn,disseminating,bear_zone,Lib,99.0
+502,ABT,Abbott Laboratories,Health Care,1929-03-01,97,4.54,0.21,4.34,2.99,0.00,0.00,0.50,0,0,Mercury,Saturn,prog_balsamic,Venus,first_q,mid,Pis,99.0
+503,HPQ,HP Inc.,Information Technology,1957-11-06,69,4.32,0.29,4.03,2.99,0.00,0.00,0.30,0,0,Mars,Saturn,prog_last_q,Venus,balsamic,bear_zone,Sco,9.8

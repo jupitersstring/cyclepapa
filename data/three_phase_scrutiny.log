@@ -1,0 +1,75 @@
+Corpus loaded: 152 cases (of 152)
+  same-month bottom=peak: 9  (mid=bottom=peak for these)
+
+=====================================================================================
+ BOTTOM CLAIMS  (claim: elevated at BOTTOM vs PEAK; net = bot% - peak%)
+=====================================================================================
+  ✗ [B1] Neptune on MC ≤3°                          bot   4.6%  mid   5.9%  peak   6.6%   (bot-peak:  -2.0  claim: -6)
+  ✓ [B2] Neptune on ASC ≤3°                         bot   3.9%  mid   6.6%  peak   7.9%   (bot-peak:  -3.9  claim: -5)
+  ✗ [B3] Saturn far (min ≥12° to all natal)         bot  21.1%  mid  21.7%  peak  20.4%   (bot-peak:  +0.7  claim: -8)
+  ✗ [B4] ≥4 retrogrades (among 8 non-luminary)      bot  30.3%  mid  38.8%  peak  25.7%   (bot-peak:  +4.6  claim: -8)
+  ✗ [B5] Pluto-Sun ≤3°                              bot   7.2%  mid   6.6%  peak   5.3%   (bot-peak:  +2.0  claim: -4)
+  ✗ [B3'] Saturn far from Sun+MC ≥12° (both)        bot  53.3%  mid  46.7%  peak  44.1%   (bot-peak:  +9.2  claim: -8)
+
+=====================================================================================
+ MID-RALLY CLAIMS  (claim: peaks at MID, higher than both BOTTOM and PEAK)
+=====================================================================================
+  ✓ [M1] Neptune retrograde                         bot  36.2%  mid  53.9%  peak  37.5%   (claim: 36/54/38)
+  ✓ [M2] Jupiter on ASC ≤3°                         bot   3.9%  mid   7.9%  peak   6.6%   (claim: 13/16/11)
+  ✓ [M3] ≥4 retrogrades                             bot  30.3%  mid  38.8%  peak  25.7%   (claim: 15/20/10)
+
+=====================================================================================
+ PEAK CLAIMS  (claim: signals TURN ON at peak vs bottom)
+=====================================================================================
+  ✓ [P1] Jupiter on MC ≤5°                          bot  11.8%  mid   8.6%  peak   7.2%   (bot-peak:  +4.6  claim: +12)
+  ✗ [P1'] Jupiter on MC ≤3°                         bot   6.6%  mid   5.3%  peak   5.9%   (bot-peak:  +0.7  claim: +8)
+  ✗ [P2] Jupiter retrograde                         bot  23.7%  mid  35.5%  peak  32.9%   (bot-peak:  -9.2  claim: +14)
+  ✗ [P3] Pluto on MC ≤3°                            bot   4.6%  mid   5.3%  peak   6.6%   (bot-peak:  -2.0  claim: +4)
+  ✓ [P4] Saturn on MC ≤3° at peak of ≥25× moves    9.8%  (n=41)  vs <10×:   3.3% (n=61)  claim: 12% vs 3%
+  ✗ [P5] Saturn ≤3° any-natal at peak:      25.0%  (claim: 57%)
+  ✗ [P6] Saturn ≤5° any-natal at peak:      38.2%  (claim: 73%)
+  ✗ [P7] Median Saturn min-orb at peak:     7.15°  (claim: 2.5°)
+
+  Saturn at peak diagnostic:
+    Saturn-Sun: ≤3°=  7.2%  ≤5°=  9.9%  mean=24.19°  med=24.43°
+    Saturn-Moon: ≤3°=  6.6%  ≤5°= 11.8%  mean=21.66°  med=21.14°
+    Saturn-ASC: ≤3°=  6.6%  ≤5°= 10.5%  mean=21.96°  med=22.70°
+    Saturn-MC : ≤3°=  6.6%  ≤5°=  9.9%  mean=21.19°  med=21.06°
+
+=====================================================================================
+ COMPREHENSIVE: every outer × every point × phase
+=====================================================================================
+  % with orb ≤3° to natal point, per phase
+  Transit               BOT    MID   PEAK   bot-peak  signature
+  Jupiter-Sun        6.6    7.9   11.2        -4.6   
+  Jupiter-Moon       7.2    3.3    8.6        -1.3   
+  Jupiter-ASC        3.9    7.9    6.6        -2.6   
+  Jupiter-MC         6.6    5.3    5.9        +0.7   
+  Saturn-Sun        4.6    3.9    7.2        -2.6   
+  Saturn-Moon       3.9    4.6    6.6        -2.6   
+  Saturn-ASC        5.9    2.6    6.6        -0.7   
+  Saturn-MC         6.6    5.3    6.6        +0.0   
+  Uranus-Sun        9.2    3.9    7.2        +2.0   
+  Uranus-Moon       3.9    9.9    9.9        -5.9   
+  Uranus-ASC        5.9    9.9    8.6        -2.6   
+  Uranus-MC         3.9    6.6    7.2        -3.3   
+  Neptune-Sun        7.9    8.6    5.9        +2.0   
+  Neptune-Moon       7.2    7.2    5.9        +1.3   
+  Neptune-ASC        3.9    6.6    7.9        -3.9   
+  Neptune-MC         4.6    5.9    6.6        -2.0   
+  Pluto-Sun        7.2    6.6    5.3        +2.0   
+  Pluto-Moon       9.2    5.3    5.9        +3.3   
+  Pluto-ASC        3.3    6.6    4.6        -1.3   
+  Pluto-MC         4.6    5.3    6.6        -2.0   
+
+  Retrograde signature per phase:
+    Jupiter   retrograde:  BOT  23.7%  MID  35.5%  PEAK  32.9%   Δ(peak-bot)  +9.2
+    Saturn    retrograde:  BOT  38.8%  MID  34.2%  PEAK  25.7%   Δ(peak-bot) -13.2
+    Uranus    retrograde:  BOT  45.4%  MID  52.0%  PEAK  40.1%   Δ(peak-bot)  -5.3
+    Neptune   retrograde:  BOT  36.2%  MID  53.9%  PEAK  37.5%   Δ(peak-bot)  +1.3
+    Pluto     retrograde:  BOT  28.9%  MID  50.0%  PEAK  25.0%   Δ(peak-bot)  -3.9
+    ≥3 retrograde:        BOT  38.8%  MID  58.6%  PEAK  41.4%   Δ(peak-bot)  +2.6
+    ≥4 retrograde:        BOT  30.3%  MID  38.8%  PEAK  25.7%   Δ(peak-bot)  -4.6
+    ≥5 retrograde:        BOT   6.6%  MID   7.2%  PEAK   2.6%   Δ(peak-bot)  -3.9
+
+Exported: data/three_phase_signature.csv

@@ -1,0 +1,123 @@
+Universe: 13626
+  1000/13626  1s
+  2000/13626  3s
+  3000/13626  4s
+  4000/13626  5s
+  5000/13626  7s
+  6000/13626  8s
+  7000/13626  10s
+  8000/13626  11s
+  9000/13626  12s
+  10000/13626  14s
+  11000/13626  15s
+  12000/13626  16s
+  13000/13626  18s
+Scored 13626 in 19s
+Exported 13626 -> /home/user/cyclepapa/data/full_universe_jul2026.csv
+
+============================================================================================================================================
+TOP 40 ALL-UNIVERSE by forward 12mo delta (as of 2026-07-01)
+============================================================================================================================================
+  # Tkr     Src     IPO         Age    Now→    Pk      Δ PkMo     Trd  Name
+  1 CNBB    Ritter  1999-01-29   27   +91→ +341  +249 2027-02    N  CNB Inc, Lake City, Florida
+  2 SGAI    Ritter  1999-01-29   27   +91→ +341  +249 2027-02    N  Smith-Gardner & Associates Inc
+  3 CYDS    Ritter  1993-07-30   33   +53→ +297  +244 2026-08    N  Cygne Designs
+  4 ENP     Ritter  1992-07-30   34   +13→ +250  +238 2027-03    N  Enron Liquids Pipeline
+  5 ATPG    Ritter  2001-02-05   25   +78→ +311  +234 2027-07    N  ATP Oil & Gas Corp
+  6 WEG     Ritter  2001-02-05   25   +78→ +311  +234 2027-07    N  Williams Energy Partners LP
+  7 CIGR    Ritter  1996-07-30   30   +28→ +259  +231 2026-08    N  Caribbean Cigar
+  8 GERN    Ritter  1996-07-30   30   +28→ +259  +231 2026-08    N  Geron
+  9 GKNS    Ritter  1996-07-30   30   +28→ +259  +231 2026-08    N  GKN Holding
+ 10 PYMB    Ritter  1996-07-30   30   +28→ +259  +231 2026-08    N  Perry's Majestic Beer
+ 11 SRSV    Ritter  1996-07-30   30   +28→ +259  +231 2026-08    N  Source Services
+ 12 PYTV    Ritter  1996-07-30   30   +28→ +259  +231 2026-08    N  TV Filme
+ 13 MATX    Ritter  1992-01-28   34   +28→ +253  +226 2026-12    N  Matrix Pharmaceutical
+ 14 PCIS    Ritter  1992-01-28   34   +28→ +253  +226 2026-12    N  PCI Services
+ 15 PDLI    Ritter  1992-01-28   34   +28→ +253  +226 2026-12    N  Protein Design Labs
+ 16 VARS    Ritter  1992-01-28   34   +28→ +253  +226 2026-12    N  Varsity Spirit
+ 17 PAWN    Ritter  1987-01-29   39   +53→ +275  +222 2026-10    N  Cash America Investments
+ 18 DMAAU   Ritter  2025-01-28    1   +57→ +278  +221 2026-12    N  Drugs Made In America Acq
+ 19 SFD     Ritter  2025-01-28    1   +57→ +278  +221 2026-12    N  Smithfield Foods Inc
+ 20 PRGS    Ritter  1991-07-30   35   +20→ +240  +220 2026-10    N  Progress Software
+ 21 WFLT    Ritter  1991-07-30   35   +20→ +240  +220 2026-10    N  Wellfleet Communications
+ 22 CRIM    Ritter  1982-01-29   44   +91→ +311  +220 2026-12    N  CRIME CONTROL
+ 23 CSPI    Ritter  1982-01-29   44   +91→ +311  +220 2026-12    N  CSP INC
+ 24 EDTA    Ritter  1984-07-30   42   +43→ +263  +220 2026-10    N  EDUDATA CORP.
+ 25 INTM    Ritter  1994-01-27   32   +15→ +235  +220 2026-10    N  Interim Services
+ 26 WRLS    Ritter  1994-01-27   32   +15→ +235  +220 2026-10    N  Telular
+ 27 BLV     Ritter  1987-01-28   39   +73→ +291  +218 2026-12    N  Belvedere
+ 28 FEDF    Ritter  1987-01-28   39   +73→ +291  +218 2026-12    N  Federated Financial S & L
+ 29 PRTK    Ritter  1987-01-28   39   +73→ +291  +218 2026-12    N  Presto-Tek
+ 30 ANVS    Ritter  2020-01-29    6   +74→ +290  +216 2026-12    N  Annovis Bio Inc
+ 31 BMEZ    Ritter  2020-01-29    6   +74→ +290  +216 2026-12    N  BlackRock Health Sci Tr II
+ 32 SBP     Ritter  1998-11-19   28   +40→ +254  +215 2026-11    N  Banco Santander de Puerto Rico
+ 33 CMPL    Ritter  1998-11-19   28   +40→ +254  +215 2026-11    N  Computer Literacy Inc
+ 34 TLI     Ritter  1998-11-19   28   +40→ +254  +215 2026-11    N  Travelers Corporate Loan Fund
+ 35 DRTK    Ritter  1986-01-29   40   +69→ +281  +212 2026-10    N  Duratek
+ 36 LAND    Ritter  2013-01-28   13   +55→ +266  +211 2026-11    N  Gladstone Land Corp
+ 37 PCI     Ritter  2013-01-28   13   +55→ +266  +211 2026-11    N  PIMCO Dynamic Credit Income
+ 38 STML    Ritter  2013-01-28   13   +55→ +266  +211 2026-11    N  Stemline Therapeutics Inc
+ 39 DOLE    Ritter  2021-07-30    5   +21→ +232  +211 2027-03    N  Dole Plc
+ 40 IMRX    Ritter  2021-07-30    5   +21→ +232  +211 2027-03    N  Immuneering Corp
+
+============================================================================================================================================
+TOP 40 TRADEABLE by forward 12mo delta (447 tradeable)
+============================================================================================================================================
+  1 CTAS    SP500   1983-08-18   43   +50→ +237  +186 2027-07   Cintas
+  2 ULTA    SP500   2007-10-24   19   +54→ +225  +172 2027-07   Ulta Beauty
+  3 EBAY    Ritter  1998-09-24   28   +48→ +216  +168 2026-11   eBay Inc
+  4 HOOD    SP500   2021-07-29    5   +98→ +264  +166 2026-10   Robinhood Markets
+  5 LNT     SP500   1998-01-01   28   +12→ +167  +155 2027-04   Alliant Energy
+  6 AEE     SP500   1998-01-01   28   +12→ +167  +155 2027-04   Ameren
+  7 HST     SP500   1998-01-01   28   +12→ +167  +155 2027-04   Host Hotels & Resorts
+  8 CCL     SP500   1987-07-24   39   +72→ +226  +154 2027-07   Carnival
+  9 PNW     SP500   1996-01-01   30   +32→ +187  +154 2027-04   Pinnacle West Capital
+ 10 DASH    SP500   2020-12-09    6   +58→ +212  +154 2027-07   DoorDash
+ 11 EQR     SP500   1993-08-11   33   +69→ +217  +149 2027-02   Equity Residential
+ 12 BLK     SP500   1999-10-01   27  +130→ +278  +148 2026-08   BlackRock
+ 13 CIEN    SP500   1997-02-07   29   +57→ +204  +147 2027-01   Ciena
+ 14 V       SP500   2008-03-19   18   +75→ +222  +147 2027-02   Visa Inc.
+ 15 MET     SP500   2000-04-05   26   +52→ +197  +145 2027-07   MetLife
+ 16 MRSH    SP500   1987-08-31   39   +60→ +202  +142 2027-06   Marsh McLennan
+ 17 XYZ     SP500   2025-07-23    1   +99→ +240  +140 2027-07   Block, Inc.
+ 18 WBD     SP500   2002-02-08   24   +97→ +237  +140 2027-01   Warner Bros. Discovery
+ 19 EMR     SP500   1978-04-01   48  +129→ +268  +139 2027-05   Emerson Electric
+ 20 INTC    SP500   1976-12-31   50   +24→ +159  +136 2027-04   Intel
+ 21 TFC     SP500   2019-12-09    7   +67→ +200  +134 2027-07   Truist Financial
+ 22 CCI     SP500   1998-08-18   28  +120→ +253  +133 2027-07   Crown Castle
+ 23 FITB    SP500   1996-03-29   30  +117→ +249  +133 2027-05   Fifth Third Bancorp
+ 24 COO     SP500   2016-09-23   10  +104→ +235  +131 2026-11   Cooper Companies (The)
+ 25 PKG     SP500   2000-01-27   26   +99→ +230  +131 2027-05   Packaging Corporation of Ameri
+ 26 PARA    Ritter  1996-01-22   30   +56→ +186  +130 2026-09   Paramount Financial
+ 27 CFG     SP500   2014-09-24   12   +80→ +209  +129 2026-11   Citizens Financial Group
+ 28 IT      SP500   1993-10-04   33   +92→ +221  +129 2027-02   Gartner
+ 29 DTE     SP500   1995-01-01   31   +58→ +185  +128 2027-04   DTE Energy
+ 30 NOC     SP500   1978-01-01   48   +26→ +152  +126 2027-04   Northrop Grumman
+ 31 KMX     Ritter  1997-02-04   29  +116→ +242  +126 2027-05   CarMax Group
+ 32 MTCH    Ritter  2015-11-19   11   +37→ +163  +126 2026-11   Match Group Inc
+ 33 APP     SP500   1994-02-09   32   +81→ +207  +126 2027-04   AppLovin
+ 34 ROL     SP500   2018-10-01    8  +146→ +271  +125 2026-08   Rollins, Inc.
+ 35 FOX     SP500   1991-08-29   35   +89→ +214  +125 2027-06   Fox Corporation (Class B)
+ 36 DUOL    Ritter  2021-07-28    5  +142→ +266  +125 2027-01   Duolingo Inc
+ 37 CB      SP500   1984-01-01   42   +20→ +144  +124 2027-04   Chubb Limited
+ 38 STLD    SP500   1996-11-21   30  +151→ +273  +122 2027-02   Steel Dynamics
+ 39 FTNT    SP500   2009-11-18   17   +25→ +146  +121 2026-11   Fortinet
+ 40 SYK     SP500   2000-12-12   26  +142→ +263  +121 2027-05   Stryker Corporation
+
+============================================================================================================================================
+TRADEABLE LOW-BASE (now<50) + BIG SHIFT (Δ>=100): 14 names
+============================================================================================================================================
+  1 EBAY    Ritter  1998-09-24   28   +48→ +216  +168 2026-11   eBay Inc
+  2 LNT     SP500   1998-01-01   28   +12→ +167  +155 2027-04   Alliant Energy
+  3 AEE     SP500   1998-01-01   28   +12→ +167  +155 2027-04   Ameren
+  4 HST     SP500   1998-01-01   28   +12→ +167  +155 2027-04   Host Hotels & Resorts
+  5 PNW     SP500   1996-01-01   30   +32→ +187  +154 2027-04   Pinnacle West Capital
+  6 INTC    SP500   1976-12-31   50   +24→ +159  +136 2027-04   Intel
+  7 NOC     SP500   1978-01-01   48   +26→ +152  +126 2027-04   Northrop Grumman
+  8 MTCH    Ritter  2015-11-19   11   +37→ +163  +126 2026-11   Match Group Inc
+  9 CB      SP500   1984-01-01   42   +20→ +144  +124 2027-04   Chubb Limited
+ 10 FTNT    SP500   2009-11-18   17   +25→ +146  +121 2026-11   Fortinet
+ 11 ABBV    SP500   2012-12-31   14   +24→ +141  +117 2027-04   AbbVie
+ 12 MPWR    SP500   2004-11-18   22   +25→ +142  +117 2026-11   Monolithic Power Systems
+ 13 KVYO    Ritter  2023-09-20    3   +45→ +161  +116 2027-03   Klaviyo, Inc.
+ 14 CE      Ritter  2005-01-20   21   +46→ +159  +114 2027-01   Celanese Corp

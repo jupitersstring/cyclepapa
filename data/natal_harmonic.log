@@ -1,0 +1,100 @@
+Parabolic corpus: 152 charts
+Random baseline:  300 charts
+
+========================================================================================================================
+NATAL ASPECT ACTIVATION — % of charts with natal aspect within 3°
+  PARABOLIC (n=152) vs RANDOM (n=300)
+  Showing pairs where parabolic rate >= random + 4pp (or <= -4pp)
+========================================================================================================================
+
+  TOP 50 by absolute lift (parabolic vs random):
+  Aspect         Pair                    Para %  Rand %     Lift
+  Septile_51     Uranu-Neptu              26.3%    9.7%  +16.6pp ★
+  TriDec_108     Uranu-Pluto              20.4%    7.0%  +13.4pp ★
+  1.272 (Butt)   Uranu-Pluto              14.5%    4.0%  +10.5pp ★
+  CONJ_0         Uranu-Neptu               5.3%   15.0%   -9.7pp ★
+  Sextile_60     Uranu-Pluto               4.6%   13.7%   -9.1pp ★
+  Septile_51     Uranu-Pluto               3.9%   11.7%   -7.7pp
+  TriDec_108     Satur-Uranu               7.9%    0.3%   +7.6pp
+  0.886 (Bat)    Uranu-Neptu              10.5%    3.0%   +7.5pp
+  SQ_90          Jupit-Pluto               7.9%    0.7%   +7.2pp
+  0.886 (Bat)    Uranu-Pluto               2.0%    9.0%   -7.0pp
+  Sextile_60     Neptu-Pluto              20.4%   27.0%   -6.6pp
+  Sextile_60     ASC-Mercu                13.2%    7.0%   +6.2pp
+  Phi_137.5      Sun-Pluto                 7.9%    2.0%   +5.9pp
+  Sextile_60     ASC-Venus                10.5%    4.7%   +5.9pp
+  0.886 (Bat)    Mercu-Jupit               7.2%    1.7%   +5.6pp
+  1.272 (Butt)   Mars-Jupit                7.2%    1.7%   +5.6pp
+  Sextile_60     Jupit-Neptu               8.6%    3.0%   +5.6pp
+  SQ_90          Mars-Satur                8.6%    3.0%   +5.6pp
+  Septile_51     MC-Uranu                  7.2%    2.0%   +5.2pp
+  Septile_51     Moon-Uranu                8.6%    3.3%   +5.2pp
+  0.786 (Gart)   Uranu-Pluto               3.3%    8.3%   -5.0pp
+  Quintile_72    Mercu-Uranu               1.3%    6.3%   -5.0pp
+  Biquint_144    Jupit-Neptu               6.6%    1.7%   +4.9pp
+  0.886 (Bat)    ASC-Mars                  7.9%    3.0%   +4.9pp
+  0.886 (Bat)    ASC-Venus                 3.3%    8.0%   -4.7pp
+  TriDec_108     MC-Jupit                  0.7%    5.3%   -4.7pp
+  0.886 (Bat)    Satur-Uranu               0.0%    4.7%   -4.7pp
+  Biquint_144    Mercu-Pluto               5.9%    1.3%   +4.6pp
+  0.786 (Gart)   Mercu-Mars                7.2%    2.7%   +4.6pp
+  Quintile_72    ASC-Neptu                 8.6%    4.0%   +4.6pp
+  Septile_51     Satur-Uranu               2.0%    6.3%   -4.4pp
+  Trine_120      ASC-Satur                 2.0%    6.3%   -4.4pp
+  1.272 (Butt)   Venus-Neptu               1.3%    5.7%   -4.4pp
+  0.886 (Bat)    Sun-MC                   21.7%   26.0%   -4.3pp
+  Trine_120      Jupit-Pluto               4.6%    0.3%   +4.3pp
+  Quintile_72    Moon-Pluto                5.9%    1.7%   +4.3pp
+  1.272 (Butt)   Mercu-Uranu               5.9%    1.7%   +4.3pp
+  Trine_120      Venus-Neptu               6.6%    2.3%   +4.2pp
+  SQ_90          ASC-Venus                 7.2%    3.0%   +4.2pp
+  Septile_51     Jupit-Neptu               8.6%    4.3%   +4.2pp
+  SQ_90          ASC-Mercu                 8.6%    4.3%   +4.2pp
+  0.786 (Gart)   ASC-MC                   12.5%    8.3%   +4.2pp
+  Quintile_72    MC-Venus                  3.3%    7.3%   -4.0pp
+  Phi_137.5      Moon-Uranu                0.7%    4.7%   -4.0pp
+  Biquint_144    Sun-Jupit                 0.7%    4.7%   -4.0pp
+  SQ_90          ASC-Satur                 0.0%    4.0%   -4.0pp
+
+========================================================================================================================
+AGGREGATE — # of pairs where parabolic > random by 5pp+ for each aspect
+========================================================================================================================
+  CONJ_0         (±  0.00°)  para-lifted: 0   random-lifted: 1
+  0.886 (Bat)    (± 41.04°)  para-lifted: 2   random-lifted: 1
+  Septile_51     (± 51.43°)  para-lifted: 3   random-lifted: 1
+  Sextile_60     (± 60.00°)  para-lifted: 3   random-lifted: 2
+  Quintile_72    (± 72.00°)  para-lifted: 0   random-lifted: 1
+  0.786 (Gart)   (± 77.04°)  para-lifted: 0   random-lifted: 1
+  SQ_90          (± 90.00°)  para-lifted: 2   random-lifted: 0
+  1.272 (Butt)   (± 97.92°)  para-lifted: 2   random-lifted: 0
+  TriDec_108     (±108.00°)  para-lifted: 2   random-lifted: 0
+  Phi_137.5      (±137.50°)  para-lifted: 1   random-lifted: 0
+
+========================================================================================================================
+WITHIN-PARABOLIC: do top harmonic configurations associate with BIGGER rallies?
+  (Median rally for charts WITH the aspect vs WITHOUT)
+========================================================================================================================
+  Aspect         Pair                    WITH median  WITHOUT med   Lift WITH n
+  Septile_51     Uranu-Neptu                    8.5×        13.0×  -4.5×    40
+  TriDec_108     Uranu-Pluto                    8.0×        13.0×  -5.0×    31 ★
+  1.272 (Butt)   Uranu-Pluto                    7.5×        12.0×  -4.5×    22
+  CONJ_0         Uranu-Neptu                   13.5×        12.0×  +1.5×     8
+  Sextile_60     Uranu-Pluto                   25.0×        11.0× +14.0×     7 ★
+  Septile_51     Uranu-Pluto                   75.0×        11.5× +63.5×     6 ★
+  TriDec_108     Satur-Uranu                    8.5×        12.0×  -3.5×    12
+  0.886 (Bat)    Uranu-Neptu                    9.5×        12.0×  -2.5×    16
+  SQ_90          Jupit-Pluto                   10.0×        12.0×  -2.0×    12
+  Sextile_60     Neptu-Pluto                   17.0×        11.0×  +6.0×    31 ★
+  Sextile_60     ASC-Mercu                     13.0×        11.0×  +2.0×    20
+  Phi_137.5      Sun-Pluto                     10.0×        12.0×  -2.0×    12
+  Sextile_60     ASC-Venus                     10.5×        12.0×  -1.5×    16
+  0.886 (Bat)    Mercu-Jupit                   16.0×        12.0×  +4.0×    11
+  1.272 (Butt)   Mars-Jupit                    13.0×        12.0×  +1.0×    11
+  Sextile_60     Jupit-Neptu                    8.0×        12.0×  -4.0×    13
+  SQ_90          Mars-Satur                     9.0×        12.0×  -3.0×    13
+  Septile_51     MC-Uranu                      18.0×        12.0×  +6.0×    11 ★
+  Septile_51     Moon-Uranu                    11.0×        12.0×  -1.0×    13
+  0.786 (Gart)   Uranu-Pluto                   12.0×        12.0×  +0.0×     5
+  Biquint_144    Jupit-Neptu                    8.0×        12.0×  -4.0×    10
+  0.886 (Bat)    ASC-Mars                       9.0×        12.0×  -3.0×    12
+  0.886 (Bat)    ASC-Venus                     17.0×        12.0×  +5.0×     5 ★
