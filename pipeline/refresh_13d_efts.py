@@ -78,7 +78,23 @@ def collect_holders(conn):
     # existing holder_13d CIKs (curated activists from ingest_13d.HOLDERS)
     for r in conn.execute("""SELECT DISTINCT holder, holder_cik FROM holder_13d"""):
         out.setdefault(r[1], r[0])
+    # curated microcap / special-sits activist FILERS whose signal is 13D/G,
+    # not 13F (concentrated books below the 13F table or reported by NOTICE).
+    for cik, name in ACTIVIST_SEED.items():
+        out.setdefault(cik, name)
     return list(out.items())
+
+# Pure-13D/G microcap activists (no trackable 13F-HR of their own).
+ACTIVIST_SEED = {
+    "1477326": "JEC II Associates (Michael Torok)",
+    "1380585": "Bradley L. Radoff",
+    "1654186": "FMLP Inc. (Radoff)",
+    "1548312": "Jeffrey Eberwein (Star Equity)",
+    "1590584": "Legion Partners Holdings",
+    "1067621": "Lawndale Capital (Andrew Shapiro)",
+    "1085280": "Costa Brava (Seth Hamot)",
+    "1132524": "Steel Partners (Warren Lichtenstein)",
+}
 
 def run():
     conn = sqlite3.connect(DB, timeout=60); conn.execute('PRAGMA busy_timeout=60000')
@@ -93,6 +109,9 @@ def run():
         print(f"warn: ticker map load failed: {e}")
 
     holders = collect_holders(conn)
+    only = set(sys.argv[1:]) if len(sys.argv) > 1 else None
+    if only:
+        holders = [(c, n) for c, n in holders if str(c) in only]
     print(f"refreshing 13D/G for {len(holders)} holder CIKs (2025-01-01 → today)\n")
 
     n_holders_with_new = n_new_filings = n_parsed = 0

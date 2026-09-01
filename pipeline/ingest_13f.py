@@ -21,6 +21,13 @@ NS = {'i': 'http://www.sec.gov/edgar/document/thirteenf/informationtable'}
 # CIK map for our known funds. Keyed by canonical fund name.
 # Add to this as we resolve more CIKs.
 FUND_CIK = {
+    # --- Concentrated microcap / special-sits big-swing funds (2026-08) ---
+    "Black Diamond Capital (Stephen Deckoff)": "2084285",
+    "Newtyn Management": "1569241",
+    "Roubaix Capital": "1769700",
+    "Hudson Executive Capital (Braunstein)": "1652522",
+    "Palogic Value Management": "1532943",
+    "North Peak Capital Management": "1747888",
     # --- Under-radar long-term compounders (2026-08) ---
     "Eagle Capital Management (Boykin Curry)": "945631",
     "SRS Investment Mgmt (Karthik Sarma)": "1503174",
@@ -494,7 +501,8 @@ def run(only=None):
         # unit-free detector: median ratio ~1000 means full-dollar filing.
         # The old mcap-based check missed megacap-heavy books (a raw-dollar
         # TSM position is still below TSM's mcap) — Gates Trust booked $31.7T.
-        if len(ratios) >= 2 and statistics.median(ratios) > 100:
+        if ((len(ratios) >= 2 and statistics.median(ratios) > 100)
+                or (len(ratios) == 1 and ratios[0] > 100)):
             conn.execute("UPDATE fund_13f_holdings SET value_k=value_k/1000.0 WHERE fund=?",
                          (fund_name,))
             total_v /= 1000.0
