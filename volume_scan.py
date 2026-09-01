@@ -1,5 +1,11 @@
 """Batched resume-safe Dormeier volume-leg scan over the full native
-universe (weekly bars). Appends to /tmp/volume_rank.csv.
+universe. Appends to /tmp/volume_rank.csv.
+
+Emits the composite V leg (weekly bars) plus additive weekly+monthly
+RVOL volume-spike columns (vspike_w_*, vspike_m_*, vspike_wm) that do NOT
+affect the V score. Weekly bars drive V and the weekly spike; monthly bars
+are fetched per batch for the monthly spike (best-effort — a monthly miss
+leaves those columns blank, it never drops the ticker).
 
 Usage: python volume_scan.py [--fresh]
 """
@@ -14,7 +20,7 @@ import pandas as pd
 
 sys.path.insert(0, "/home/user/cyclepapa")
 from mtf_psar_rank import load_universe, is_native, fetch_interval_bulk
-from volume_leg import volume_breakout
+from volume_leg import volume_breakout, volume_spike
 
 warnings.filterwarnings("ignore")
 
@@ -56,6 +62,9 @@ def main():
         if len(weekly) < len(batch) * 0.2:
             print("ABORT: batch fetch rate-limited; exit 2", file=sys.stderr)
             sys.exit(2)
+        # Monthly bars power the monthly spike columns; best-effort (a monthly
+        # miss just leaves that ticker's monthly spike blank, never drops it).
+        monthly = fetch_interval_bulk(batch, "1mo", include_volume=True)
         rows = []
         rej = {"no_fetch": 0, "no_volume": 0, "leg_gate": 0, "exception": 0}
         for t in batch:
@@ -73,6 +82,20 @@ def main():
                 if not r:
                     rej["leg_gate"] += 1   # <30 weekly bars / no volume / tot_w==0
                     continue
+                # --- volume-spike columns (additive; do not affect V) ---
+                sw = volume_spike(w, freq="W", lookback=20)
+                m = monthly.get(t)
+                sm = volume_spike(m, freq="M", lookback=12) if m is not None \
+                    and "Volume" in getattr(m, "columns", []) else {}
+                r["vspike_w_rvol"] = sw.get("rvol", np.nan)
+                r["vspike_w_tier"] = sw.get("tier", 0)
+                r["vspike_w_up"] = sw.get("up", np.nan)
+                r["vspike_m_rvol"] = sm.get("rvol", np.nan)
+                r["vspike_m_tier"] = sm.get("tier", 0)
+                r["vspike_m_up"] = sm.get("up", np.nan)
+                # Both timeframes spiking (>=2x) on accumulation = strongest signal
+                r["vspike_wm"] = bool(sw.get("tier", 0) >= 2 and sm.get("tier", 0) >= 2
+                                      and sw.get("up") and sm.get("up"))
                 r["ticker"] = t
                 rows.append(r)
             except Exception:
@@ -84,7 +107,7 @@ def main():
             print(f"  appended {len(out)} -> {OUT}", file=sys.stderr)
         if sum(rej.values()):
             print(f"  rejected {sum(rej.values())}/{len(batch)}: {rej}", file=sys.stderr)
-        del weekly
+        del weekly, monthly
         gc.collect()
 
     print(f"Volume scan complete -> {OUT}")

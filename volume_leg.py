@@ -68,18 +68,65 @@ def drop_partial_week(bars: pd.DataFrame,
     """Drop the last weekly bar when it belongs to the current, still-open
     ISO week. yfinance's weekly bars include the in-progress week, which
     understates volume and fabricates mid-week 'breakouts'."""
+    return _drop_partial(bars, "W", now)
+
+
+def _drop_partial(bars: pd.DataFrame, freq: str,
+                  now: pd.Timestamp = None) -> pd.DataFrame:
+    """Drop the final bar when it belongs to the current, still-open period.
+    freq='W' → current ISO week; freq='M' → current calendar month. yfinance's
+    weekly/monthly bars include the in-progress period, which understates its
+    volume and fabricates a fake mid-period 'spike'."""
     if bars is None or len(bars) == 0:
         return bars
     if not isinstance(bars.index, pd.DatetimeIndex):
-        return bars          # synthetic/backtest bars with plain indices
+        return bars                      # synthetic/backtest bars
     now = now or pd.Timestamp.utcnow().tz_localize(None)
-    monday = (now - pd.Timedelta(days=now.weekday())).normalize()
     last = bars.index[-1]
     if getattr(last, "tz", None) is not None:
         last = last.tz_localize(None)
-    if last >= monday:
-        return bars.iloc[:-1]
-    return bars
+    if freq == "W":
+        start = (now - pd.Timedelta(days=now.weekday())).normalize()
+    elif freq == "M":
+        start = now.normalize().replace(day=1)
+    else:
+        return bars
+    return bars.iloc[:-1] if last >= start else bars
+
+
+def volume_spike(bars: pd.DataFrame, freq: str = "W", lookback: int = 20,
+                 tiers=(2.0, 3.0, 5.0), completed_only: bool = True) -> dict:
+    """Relative-volume (RVOL) spike detector on any-timeframe OHLCV bars.
+
+    RVOL = last completed bar's volume / median(volume over the prior
+    `lookback` bars, excluding the spike bar itself). ``tier`` is the highest
+    multiple in ``tiers`` that RVOL clears (0 when none). ``up`` records
+    whether the spike bar closed above its open (accumulation vs distribution).
+
+    Timeframe-agnostic: call with freq='W', lookback=20 for weekly and
+    freq='M', lookback=12 for monthly. Returns {} when history is too short.
+    Independent of volume_breakout — it deliberately needs far less history so
+    a name can register a spike even before it qualifies for the full V leg."""
+    if bars is None or not {"Open", "Close", "Volume"}.issubset(bars.columns):
+        return {}
+    if completed_only:
+        bars = _drop_partial(bars, freq)
+    bars = bars.dropna(subset=["Close", "Volume"])
+    if len(bars) < lookback + 1:
+        return {}
+    v = bars["Volume"]
+    v_now = float(v.iloc[-1])
+    base = float(v.iloc[-(lookback + 1):-1].median())
+    if not np.isfinite(base) or base <= 0:
+        return {}
+    rvol = v_now / base
+    up = bool(float(bars["Close"].iloc[-1]) > float(bars["Open"].iloc[-1]))
+    tier = 0
+    for t in sorted(tiers):
+        if rvol >= t:
+            tier = int(t)
+    return {"rvol": float(rvol), "tier": tier, "up": up,
+            "v_now": v_now, "v_med": base}
 
 
 def volume_breakout(bars: pd.DataFrame, completed_weeks_only: bool = True) -> dict:
