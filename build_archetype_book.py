@@ -94,6 +94,10 @@ ARCHETYPE_LABELS = {
     'arch_templeton_pessimism': 'Templeton Maximum Pessimism',
     'arch_asymmetric_assembly': 'Asymmetric Assembly (PSIX-type Levered Inflection)',
     'arch_levered_inflection': 'Levered Inflection Stub (looser PSIX)',
+    'arch_insider_conviction': 'Insider Conviction (SEC Form 4)',
+    'arch_tenbagger_path': 'Ten-Bagger Path (arithmetic closes)',
+    'arch_tenbagger_credible': 'Ten-Bagger Path — Credible',
+    'arch_evsales_derating': 'EV/Sales Derating (unpriced growth)',
 }
 
 
@@ -217,9 +221,9 @@ def _write_archetype_table(ws, df_subset, archetype_label, total_universe, sort_
     t = ws.cell(row=2, column=1, value=archetype_label)
     t.font = f_bold
     t.alignment = _TXT_ALIGN_LEFT
-    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=19)
+    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=20)
     ws.row_dimensions[2].height = 22
-    for c in range(1, 20):
+    for c in range(1, 21):
         ws.cell(row=3, column=c).border = Border(bottom=Side(style='thin', color=INK))
     ws.row_dimensions[3].height = 4
 
@@ -248,7 +252,7 @@ def _write_archetype_table(ws, df_subset, archetype_label, total_universe, sort_
         ws.cell(row=7, column=col, value=sub).font = f_italic_muted
         ws.cell(row=7, column=col).alignment = _TXT_ALIGN_LEFT
     ws.row_dimensions[6].height = 22
-    for c in range(1, 20):
+    for c in range(1, 21):
         ws.cell(row=8, column=c).border = Border(top=Side(style='thin', color=INK))
     ws.row_dimensions[8].height = 4
 
@@ -257,7 +261,7 @@ def _write_archetype_table(ws, df_subset, archetype_label, total_universe, sort_
 
     headers = ['#', 'Ticker', 'Name', 'Country', 'Sector', 'Bucket',
                'Mcap (USD)', 'Verdict', 'ETA', 'Asym',
-               'EV/EBITDA', 'P/E', 'P/B',
+               'EV/EBITDA', 'P/E', 'P/B', 'P/S',
                'FCF yld %', 'ROIC %', 'ND/EBITDA', 'EBITDA m %',
                'Mom 12m %', 'Arch #']
     for i, h in enumerate(headers, start=1):
@@ -266,7 +270,7 @@ def _write_archetype_table(ws, df_subset, archetype_label, total_universe, sort_
         c.alignment = (_TXT_ALIGN_LEFT if i in (2, 3, 4, 5) else
                        _NUM_ALIGN_CENTER if i in (6, 8) else
                        _NUM_ALIGN_RIGHT)
-    for c in range(1, 20):
+    for c in range(1, 21):
         ws.cell(row=12, column=c).border = Border(top=Side(style='thin', color=INK))
 
     # Top-N data rows
@@ -289,13 +293,14 @@ def _write_archetype_table(ws, df_subset, archetype_label, total_universe, sort_
         _write_score(ws, r_idx, 11, r.get('ev_ebitda'), font=f_text)
         _write_score(ws, r_idx, 12, r.get('p_e'), font=f_text)
         _write_score(ws, r_idx, 13, r.get('pb'), font=f_text)
-        _write_pct(ws, r_idx, 14, r.get('fcf_yield'), font=f_text)
-        _write_pct(ws, r_idx, 15, r.get('roce'), font=f_text)
-        _write_score(ws, r_idx, 16, r.get('net_debt_ebitda'), font=f_text)
-        _write_pct(ws, r_idx, 17, r.get('ebitda_margin'), font=f_text)
-        _write_pct(ws, r_idx, 18, r.get('momentum_12m'), font=f_text)
-        _write_int(ws, r_idx, 19, int(r['archetype_count']) if pd.notna(r.get('archetype_count')) else 0, font=f_text_muted)
-        for c in range(1, 20):
+        _write_score(ws, r_idx, 14, r.get('p_s'), font=f_text)
+        _write_pct(ws, r_idx, 15, r.get('fcf_yield'), font=f_text)
+        _write_pct(ws, r_idx, 16, r.get('roce'), font=f_text)
+        _write_score(ws, r_idx, 17, r.get('net_debt_ebitda'), font=f_text)
+        _write_pct(ws, r_idx, 18, r.get('ebitda_margin'), font=f_text)
+        _write_pct(ws, r_idx, 19, r.get('momentum_12m'), font=f_text)
+        _write_int(ws, r_idx, 20, int(r['archetype_count']) if pd.notna(r.get('archetype_count')) else 0, font=f_text_muted)
+        for c in range(1, 21):
             ws.cell(row=r_idx, column=c).border = Border(
                 bottom=Side(style='thin', color=RULE))
         ws.row_dimensions[r_idx].height = 16

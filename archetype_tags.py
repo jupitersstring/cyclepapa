@@ -1454,6 +1454,120 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((fcf_ttm_v > 0) | (ebitda_ttm_v > 0) | (net_cash_pct >= 0.30))
     ).fillna(False).astype(int)
 
+    # ---------- Credible 10-bagger path (probabilistic decomposition) ----------
+    # No 10-bagger is high-probability: 10x over 10y = 25.9% annual compounding.
+    # Decompose it and require the arithmetic to CLOSE at the growth the name is
+    # ACTUALLY printing — project revenue forward at its demonstrated growth,
+    # apply a conservative terminal margin and a NON-HEROIC terminal multiple,
+    # and check whether that clears 10x from today's valuation. Because
+    # price/sales = mktcap/revenue, absolute revenue and mktcap cancel, so the
+    # test is unit-free (no FX):
+    #     implied_10x = (1+g)^N * terminal_margin * terminal_multiple / (P/S)
+    # Gate on (a) the arithmetic closing, (b) growth actually printed AND
+    # confirmed by OPERATING LEVERAGE (profit outpacing sales — the path to the
+    # terminal margin), (c) viable unit economics. Then split Credible vs Spec
+    # on the reality gates the corpus flags: adjusted profit must be REAL
+    # per-share owner cash (not SBC add-backs), and the share count must be
+    # stable (no dilution / recent raises). Appier-type = Credible (growth
+    # prints, operating leverage, real FCF); Flywire/SuperCom-type = Spec
+    # (SBC-heavy adjusted profit / just did an equity raise).
+    N_YRS = 10.0
+    TERM_MULT = 18.0                                    # non-heroic terminal P/E
+    ps_v = _num('p_s')
+    g10 = rev_yoy_c.clip(lower=0.0, upper=0.50)         # cap extrapolation at 50%
+    # Conservative terminal NET margin: reward where already profitable; floor
+    # 10%, cap 22% — never assume a fatter margin than a maturing peer holds.
+    term_margin = pd.concat([
+        _num('op_margin'),
+        _ebm * 0.65,                                    # EBITDA scaled to a net proxy
+        pd.Series(0.12, index=df.index),
+    ], axis=1).max(axis=1).clip(0.10, 0.22)
+    implied_10x = (((1.0 + g10) ** N_YRS) * term_margin * TERM_MULT
+                   / ps_v.where(ps_v > 0))
+    df['tenbagger_implied_return'] = implied_10x.round(2)
+
+    # Operating leverage confirms the path to the terminal margin (profit
+    # outpacing sales), triangulated across measures/time-bases.
+    op_lev_confirm = (
+        oper_lev_any |
+        (_num('ebit_growth_yoy') > rev_yoy_c) |
+        (ebitda_yoy_v > rev_yoy_c)
+    )
+    viable_econ = (
+        (_num('gross_margin') >= 0.20) | (ebitda_ttm_v > 0) | (_num('op_margin') > 0)
+    )
+    df['arch_tenbagger_path'] = (
+        (mcap > 0) & (mcap < 10e9) &                    # 10x easier small/mid ($18m-$2.3bn examples)
+        (ps_v > 0) & (ps_v < 30) &                      # sane P/S (avoid near-zero-sales artifacts)
+        (rev_yoy_c >= 0.15) &                           # growth actually printing
+        op_lev_confirm &                                # ...confirmed by operating leverage
+        viable_econ &                                   # viable unit economics
+        (implied_10x >= 10.0)                           # the 10x arithmetic closes
+    ).fillna(False).astype(int)
+
+    # Reality gates — Credible requires BOTH; failing either drops to Spec.
+    # Owner-cash reality (the Flywire lesson): adjusted profit is NOT owner cash
+    # when real cash is being burned. Credible owner cash requires EITHER
+    # genuinely positive FCF, OR a real FCF INFLECTION — positive earnings AND
+    # positive OPERATING cash conversion AND FCF only marginally negative
+    # (capex / working-capital timing, not a burn). This separates Appier
+    # (FCF yield -1.9%, cash conversion +0.47, positive earnings -> Credible)
+    # from Flywire (FCF yield -9.9%, cash conversion -4.8, 11% SBC -> Spec).
+    # Heavy SBC (>12% of revenue) disqualifies unless FCF is clearly positive.
+    _fy = _num('fcf_yield')
+    at_fcf_inflection = (
+        (_num('earnings_yield') > 0) &
+        (_num('cash_conversion') > 0) &
+        (_fy >= -0.03)
+    )
+    real_owner_cash = (
+        ((_fy > 0) | at_fcf_inflection) &
+        (_soft_ok_below('sbc_pct_revenue', 0.12) | (_fy > 0.02))
+    )
+    stable_share_count = (
+        _soft_ok_below('shares_yoy', 0.05) & _soft_ok_below('shares_3y_cagr', 0.10)
+    )
+    df['arch_tenbagger_credible'] = (
+        (df['arch_tenbagger_path'] == 1) & real_owner_cash & stable_share_count
+    ).fillna(False).astype(int)
+
+    # Score (ranking only): margin-of-safety on the arithmetic (how far implied
+    # clears 10x, saturating at ~30x) + operating-leverage strength + cash
+    # reality + share-count stability.
+    _mos = ((implied_10x / 10.0 - 1.0).clip(0, 2) / 2.0).fillna(0.0)
+    df['tenbagger_score'] = ((0.40 * _mos
+                              + 0.30 * oper_lev_score
+                              + 0.20 * real_owner_cash.astype(float)
+                              + 0.10 * stable_share_count.astype(float))
+                             * df['arch_tenbagger_path']).round(3)
+
+    # ---------- EV/Sales derating while sales rip (unpriced growth) ----------
+    # The market is NOT pricing in rapid sales growth, so EV/Sales compresses
+    # even as revenue compounds: when sales grow 30% but the stock is flat/down,
+    # the sales multiple MECHANICALLY derates ~30%. A coiled spring — continued
+    # growth plus an eventual re-rating from a depressed multiple is the double.
+    # Detect the derating as sales OUTGROWING the stock (rev_yoy - price_yoy),
+    # require the multiple to still have room (not already rich) and viable
+    # unit economics (not a melting-ice value trap). Upweight where EV/sales-to-
+    # growth is genuinely exceptional (evsg) and top-line growth is confirmed
+    # across measures/time-bases (rev_growth_score).
+    mult_compression = rev_yoy_c - price_yoy            # sales growth minus stock return
+    df['evsales_derate_gap'] = mult_compression.round(3)
+    _evsg_exceptional = (evsg_v > 0) & (evsg_v <= 0.08)   # cheap per unit of growth
+    df['arch_evsales_derating'] = (
+        (mcap > 0) & (mcap < 20e9) &
+        (rev_yoy_c >= 0.20) &                           # rapid sales growth
+        (mult_compression >= 0.15) &                    # EV/Sales compressing (sales > stock)
+        (ev_sales_v > 0.10) & (ev_sales_v <= 6.0) &     # room left; lower bound drops artifacts
+        ((_num('gross_margin') >= 0.20) | (ebitda_ttm_v > 0) | (fcf_ttm_v > 0))  # not a trap
+    ).fillna(False).astype(int)
+    # Score: depth of the derate + growth confirmation + exceptional evsg bonus.
+    _derate_depth = (mult_compression.clip(0, 1.0)).fillna(0.0)     # 0..1
+    df['evsales_derate_score'] = ((0.5 * _derate_depth
+                                   + 0.4 * rev_growth_score
+                                   + 0.1 * _evsg_exceptional.astype(float))
+                                  * df['arch_evsales_derating']).round(3)
+
     arch_cols = [
         'arch_narrative_lag',
         'arch_fixed_cost_demand_shock',
@@ -1519,6 +1633,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_asymmetric_assembly',
         'arch_levered_inflection',
         'arch_insider_conviction',
+        'arch_tenbagger_path',
+        'arch_tenbagger_credible',
+        'arch_evsales_derating',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -1585,6 +1702,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
         'arch_levered_inflection': 'LeveredInflectionStub',
         'arch_insider_conviction': 'InsiderConviction-SEC',
+        'arch_tenbagger_path': 'TenBaggerPath',
+        'arch_tenbagger_credible': 'TenBaggerPath-Credible',
+        'arch_evsales_derating': 'EVSalesDerating-UnpricedGrowth',
     }
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(
@@ -1592,7 +1712,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag']]
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap']]
     out.to_csv(out_path, index=False)
 
     # Summary to stderr

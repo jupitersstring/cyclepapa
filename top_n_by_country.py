@@ -338,7 +338,7 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
     #   9 Asym         10 EV/EBITDA    11 P/E         12 P/B
     #  13 FCF yld %    14 ROIC %       15 ND/EBITDA   16 EBITDA margin %
     #  17 Mom 12m %    18 Yartseva     19 Cluster
-    N_COLS = 20
+    N_COLS = 21
 
     def _write_table_row(ws, row, r, cols=N_COLS):
         """Write one country-rank row with valuation headline columns."""
@@ -367,6 +367,7 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
         _cn = r.get('cluster_n')
         _put_int(ws, row, 19, int(_cn) if pd.notna(_cn) else 0, font=f_text_muted)
         _put_score(ws, row, 20, r.get('confirm_overall'), font=f_text_muted)
+        _put_score(ws, row, 21, r.get('p_s'), font=f_text_muted)
 
         # Faint hairline under each row
         for cidx in range(1, cols + 1):
@@ -378,7 +379,7 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
                    'Mcap (USD)', 'Verdict', 'ETA', 'Asym',
                    'EV/EBITDA', 'P/E', 'P/B',
                    'FCF yld %', 'ROIC %', 'ND/EBITDA', 'EBITDA m %',
-                   'Mom 12m %', 'Yartseva', 'Cluster', 'Confirm']
+                   'Mom 12m %', 'Yartseva', 'Cluster', 'Confirm', 'P/S']
         for i, h in enumerate(headers, start=1):
             c = ws.cell(row=row, column=i, value=h)
             c.font = f_bold_muted
@@ -395,7 +396,7 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
             1: 4, 2: 11, 3: 32, 4: 16, 5: 11, 6: 17,
             7: 12, 8: 8, 9: 8,
             10: 10, 11: 8, 12: 8, 13: 10, 14: 9, 15: 10, 16: 10, 17: 11,
-            18: 9, 19: 8, 20: 9,
+            18: 9, 19: 8, 20: 9, 21: 7,
         }
         for col, w in widths.items():
             ws.column_dimensions[get_column_letter(col)].width = w

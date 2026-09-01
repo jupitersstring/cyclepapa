@@ -36,10 +36,10 @@ SORT_COL = 'entry_inflection_confirmed'
 
 HEADERS = ['#', 'Ticker', 'Name', 'Sector', 'Bucket', 'Mcap (USD)',
            'Verdict', 'Infl', 'Asym', 'EV/EBITDA', 'P/E', 'PEGY', 'EV-GY',
-           'FCF yld %', 'ROCE %', 'ND/EBITDA', 'Mom 12m %', 'Arch #']
+           'FCF yld %', 'ROCE %', 'ND/EBITDA', 'Mom 12m %', 'Arch #', 'P/S', 'P/B']
 N_COLS = len(HEADERS)
 WIDTHS = {1: 4, 2: 12, 3: 34, 4: 16, 5: 11, 6: 15, 7: 12, 8: 7, 9: 7,
-          10: 9, 11: 8, 12: 7, 13: 7, 14: 9, 15: 8, 16: 10, 17: 10, 18: 7}
+          10: 9, 11: 8, 12: 7, 13: 7, 14: 9, 15: 8, 16: 10, 17: 10, 18: 7, 19: 7, 20: 7}
 
 
 def _add_inflection_key(df):
@@ -125,6 +125,8 @@ def _write_country_sheet(ws, cdf, country, arch_cols, n_top):
             _write_int(ws, row, 18,
                        int(r['archetype_count']) if pd.notna(r.get('archetype_count')) else 0,
                        font=f_text_muted)
+            _write_score(ws, row, 19, r.get('p_s'), font=f_text)
+            _write_score(ws, row, 20, r.get('pb'), font=f_text)
             for c in range(1, N_COLS + 1):
                 ws.cell(row=row, column=c).border = Border(
                     bottom=Side(style='thin', color=RULE))
