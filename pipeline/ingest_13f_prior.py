@@ -102,6 +102,9 @@ def run():
             conn.execute("INSERT OR REPLACE INTO fund_13f_prior VALUES (?,?,?,?,?,?,?,?,?,?,?)",
                          (fund, cik, acc, filed, r["issuer"], r["cusip"], tkr,
                           r["value_k"], r["shares"], r["type"], pct))
+            conn.execute("INSERT OR REPLACE INTO holding_sec_form VALUES (?,?,?,?)",
+                         (acc, r["cusip"], r.get("title"),
+                          m.classify_sec_form(r.get("title"), r["type"])))
         conn.execute("INSERT OR REPLACE INTO fund_13f_prior_state VALUES (?,?,?,?,?)",
                      (fund, acc, filed, len(rows), total_v))
         conn.commit(); done += 1

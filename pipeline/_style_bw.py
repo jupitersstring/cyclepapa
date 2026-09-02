@@ -262,6 +262,7 @@ LEGEND = [
         ("Net Funds", "(New + Added) − (Trimmed + Exited) funds this quarter vs each fund's prior 13F. Lapis = accumulating, crimson = distributing."),
         ("New / Added / Trimmed / Exited", "Count of funds that started / grew (>5%) / cut (>5%) / closed the position, matched on CUSIP + share count."),
         ("Δ Shares %", "Aggregate share-count change across all funds vs the prior quarter."),
+        ("Form", "Security form being accumulated, from each 13F line's titleOfClass. \"common\" = ordinary common/ordinary shares (a clean directional bet). \"+preferred / +warrant / +unit / +right / +note\" flags that non-common equity forms are held under this ticker — optionality or financing, which should NOT be read as the same conviction as buying common."),
     ]),
     ("Broker Swap Radar", [
         ("Δ Sh (M) / Δ % Out", "Quarter-over-quarter share-count change in ONE swap-desk broker's 13F (UBS, GS, MS, JPM...), absolute and as % of shares outstanding."),

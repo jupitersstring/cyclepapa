@@ -276,12 +276,39 @@ def parse_infotable(xml_bytes):
             "value_k": v,
             "shares":  sh,
             "type":    t("shrsOrPrnAmt/sshPrnamtType"),
+            # titleOfClass is the filer's own security-class label ("COM",
+            # "PFD", "WARRANT", "CL A", "UNIT", "NOTE", "SPON ADR"...). Lets us
+            # tell an add of COMMON (a clean directional bet) from an add of
+            # warrants / preferred / converts (optionality or financing).
+            "title":  t("titleOfClass")[:40],
             # Derivatives are reported at underlying value with putCall set.
             # Booking them as shares corrupts consensus (a PUT is bearish!) —
             # OrbiMed's $286M MDXH call surfaced as an 11x-mcap "holding".
             "put_call": t("putCall").lower(),
         })
     return out
+
+# titleOfClass -> normalized equity form. Order matters (warrant before common
+# so "COM WT" reads as warrant). Falls back to sh_type for bonds (PRN=note).
+def classify_sec_form(title, sh_type=""):
+    tt = (title or "").upper()
+    if sh_type == "PRN" or re.search(r"\bNOTE|\bBOND|\bDEB\b|SR NT|% DUE|CONV NT", tt):
+        return "note"
+    if re.search(r"WARRANT|\bWTS?\b|\bWT\b|\bWS\b", tt):
+        return "warrant"
+    if re.search(r"\bRIGHT|\bRTS?\b|\bRT\b|CVR|CONTINGENT VALUE", tt):
+        return "right"
+    if re.search(r"\bUNIT", tt):
+        return "unit"
+    if re.search(r"\bPFD|PREF|PREFERRED|DEP(OSITARY)?\s+SH|DEP\s+REP|% CUM|% SR", tt):
+        return "preferred"
+    if re.search(r"\bADR|ADS|SPON(SORED)?\s+ADR|AMERICAN DEP", tt):
+        return "adr"
+    if re.search(r"\bCL\s+[A-Z]\b|CLASS\s+[A-Z]\b|SER(IES)?\s+[A-Z]\b", tt):
+        return "class"          # dual-class common (COM CL A / CLASS B)
+    if re.search(r"\bCOM\b|COMMON|\bORD|ORDINARY|\bSHS?\b|SHARES|STK\b|CAP STK|BEN INT|SBI", tt):
+        return "common"
+    return "common" if tt == "" else "other"
 
 def cusip_ticker_map(conn):
     """Build CUSIP -> ticker map from any available source.
@@ -401,6 +428,9 @@ def run(only=None):
     CREATE TABLE IF NOT EXISTS fund_13f_state (
       fund TEXT PRIMARY KEY, cik TEXT, last_accession TEXT, last_filed TEXT,
       n_holdings INTEGER, total_value_k INTEGER, ingested_at TEXT);
+    CREATE TABLE IF NOT EXISTS holding_sec_form (
+      accession TEXT, cusip TEXT, title_class TEXT, sec_form TEXT,
+      PRIMARY KEY (accession, cusip));
     """)
 
     print("loading SEC ticker map...")
@@ -490,6 +520,9 @@ def run(only=None):
                 VALUES (?,?,?,?,?,?,?,?,?,?,?)""",
                 (fund_name, cik, acc, filed, r["issuer"], r["cusip"], tkr,
                  r["value_k"], r["shares"], r["type"], pct))
+            conn.execute("""INSERT OR REPLACE INTO holding_sec_form VALUES (?,?,?,?)""",
+                (acc, r["cusip"], r.get("title"),
+                 classify_sec_form(r.get("title"), r["type"])))
             # PRN rows: shares = bond principal in dollars, which trades near par
             # (~1.0 value per $1) — reference price 1.0 keeps convert-arb books
             # (Linden: mostly bonds, few priced SH rows) inside the detector.

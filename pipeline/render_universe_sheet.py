@@ -470,8 +470,25 @@ def sheet_qoq_change(wb, conn):
     ws.sheet_view.showGridLines = False
     write_title(ws, "QoQ Position Change — building vs quietly trimming",
                 "Current 13F vs each fund's PRIOR filing, matched on CUSIP + share count (mapping/value-unit safe). Net Funds = (new+added) − (trimmed+exited). All-new names are often IPOs/spins; mixed-churn rows (both adds and trims) are the cleanest accumulation/distribution reads.", 10)
-    hdr = ["Ticker","Net Funds","New","Added","Trimmed","Exited","Δ Shares %","Score","Mcap","Name"]
+    hdr = ["Ticker","Net Funds","New","Added","Trimmed","Exited","Δ Shares %","Form","Score","Mcap","Name"]
     write_table_header(ws, 4, hdr)
+    # Per-ticker NON-COMMON equity forms held (preferred / warrant / unit /
+    # right / note): so an accumulation that is really warrants or converts —
+    # optionality/financing, not a clean directional common buy — is flagged
+    # rather than read as conviction. Blank = pure common.
+    formmix = {}
+    try:
+        for tk, forms in conn.execute("""
+            SELECT COALESCE(cm.ticker, h.cusip) tk,
+                   GROUP_CONCAT(DISTINCT sf.sec_form)
+            FROM fund_13f_holdings h
+            LEFT JOIN cusip_map cm ON cm.cusip = h.cusip
+            JOIN holding_sec_form sf ON sf.accession=h.accession AND sf.cusip=h.cusip
+            WHERE sf.sec_form IS NOT NULL AND sf.sec_form NOT IN ('common','class')
+            GROUP BY tk"""):
+            formmix[tk] = forms
+    except sqlite3.OperationalError:
+        pass
     # Match on CUSIP (stable across quarters), not ticker — the two quarters were
     # mapped by different logic, so a ticker-level diff is dominated by mapping
     # noise (Comcast CMCSA vs CCZ). Share counts are unit-independent, so we
@@ -541,16 +558,17 @@ def sheet_qoq_change(wb, conn):
         pure_new = (n_add + n_trim + n_exit) == 0
         out.append([tk, nf, n_new, n_add, n_trim, n_exit,
                     "new" if pure_new else round(max(-99, min(999, d_pct)), 0),
+                    "common" if tk not in formmix else "+" + formmix[tk],
                     round(score or 0, 1), mcap or "", (name or "")[:38]])
     write_table_rows(ws, out, 5, ticker_col=1)
     # colour is data: Net Funds & Δ Shares — lapis building, crimson trimming
     color_directional(ws, 5, 4 + len(out), [2, 7], higher_is_better=True)
     if out:
-        ws.auto_filter.ref = f"A4:J{4+len(out)}"
+        ws.auto_filter.ref = f"A4:K{4+len(out)}"
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=7).number_format = '0"%"'      # Δ Shares % (was $M — wrong unit)
-        ws.cell(row=ridx, column=8).number_format = '0.0'       # Score
-        ws.cell(row=ridx, column=9).number_format = NUMFMT_MCAP
+        ws.cell(row=ridx, column=9).number_format = '0.0'       # Score
+        ws.cell(row=ridx, column=10).number_format = NUMFMT_MCAP
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
@@ -648,8 +666,18 @@ def sheet_whos_buying(wb, conn):
     ws.sheet_view.showGridLines = False
     write_title(ws, "Who's Buying — the funds behind the New / Add counts",
                 "Per name: which funds are INITIATING (S3 new major position) and ADDING (S4 material add), from fund_positions. De-duplicated by canonical manager.", 7)
-    hdr = ["Ticker", "Company", "Score", "# New", "New Initiators (funds)", "# Add", "Material Adders (funds)"]
+    hdr = ["Ticker", "Company", "Score", "Form", "# New", "New Initiators (funds)", "# Add", "Material Adders (funds)"]
     write_table_header(ws, 4, hdr)
+    nc_form = {}
+    try:
+        for tk, forms in conn.execute("""
+            SELECT COALESCE(cm.ticker, h.cusip) tk, GROUP_CONCAT(DISTINCT sf.sec_form)
+            FROM fund_13f_holdings h LEFT JOIN cusip_map cm ON cm.cusip=h.cusip
+            JOIN holding_sec_form sf ON sf.accession=h.accession AND sf.cusip=h.cusip
+            WHERE sf.sec_form NOT IN ('common','class') GROUP BY tk"""):
+            nc_form[tk] = forms
+    except sqlite3.OperationalError:
+        pass
     # canonical-manager de-dupe so a fund's name variants don't list twice
     from _canon import canon
     rows = conn.execute("""
@@ -677,14 +705,15 @@ def sheet_whos_buying(wb, conn):
         new_keys = {_cn2(f) for f in new_f}
         add_f = [f for f in funds_for(tk, 4) if _cn2(f) not in new_keys]
         out.append([tk, (name or "")[:24], round(score or 0, 1),
+                    "common" if tk not in nc_form else "+" + nc_form[tk],
                     len(new_f), ", ".join(new_f)[:70],
                     len(add_f), ", ".join(add_f)[:70]])
     write_table_rows(ws, out, 5, ticker_col=1)
     ws.freeze_panes = "B5"
     if out:
-        ws.auto_filter.ref = f"A4:G{4 + len(out)}"
+        ws.auto_filter.ref = f"A4:H{4 + len(out)}"
     autosize(ws)
-    ws.column_dimensions["E"].width = 60
+    ws.column_dimensions["F"].width = 60
     ws.column_dimensions["G"].width = 60
 
 def sheet_best_in_bucket(wb, conn, per_bucket=20):
