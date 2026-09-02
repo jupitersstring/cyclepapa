@@ -1,0 +1,447 @@
+================================================================================
+POSITIONING DATA METHODOLOGY — Complete Multi-Source Pipeline
+================================================================================
+
+GENERATED:  2026-05-26
+SCOPE:      Ensure systematic pull of fund positioning data from ALL available
+            sources, APIs, and disclosure requests across global jurisdictions.
+
+================================================================================
+DISCLOSURE TYPES BY JURISDICTION
+================================================================================
+
+UNITED STATES — SEC EDGAR
+--------------------------
+Form 13F-HR     Quarterly holdings >$100M AUM threshold
+                Filed 45 days after quarter-end
+                Reports: ticker, shares, value, put/call, voting authority
+                Limitations: 45-day stale, omits shorts, options, sovereign,
+                  private, foreign, and excluded confidential treatment
+
+Form 13F-NT     Combined report when filing covers omitted holdings
+
+Schedule 13D    >5% beneficial ownership w/ INTENT to influence
+                Filed within 10 days of crossing threshold
+                Item 4 = purpose (KEY — read for activist intent)
+                Item 5 = beneficial ownership detail
+                Item 6 = contracts/arrangements
+                Item 7 = exhibits (letters, MoU, agreements)
+                Amendments (13D/A) on any material change
+
+Schedule 13G    >5% beneficial ownership w/ PASSIVE intent
+                Filed within 45 days of year-end (eligible investors)
+                Less actionable than 13D but still useful
+
+Form 4          Insider transactions (officers, directors, 10%+)
+                Filed within 2 business days
+                Reports: purchase, sale, gift, option exercise
+                CRITICAL: insider buying at depressed levels = Yartseva signal
+
+Form 3          Initial insider statement of holdings
+
+Form 5          Annual statement of changes for insiders
+
+Form NPX        Voting records (annual, by Aug 31)
+
+Form ADV        Investment adviser registration (Parts 1, 2A, 2B)
+                Filed annually + amendments
+                Reports: AUM, strategies, custodian, fees, conflicts
+
+Form PF         Private fund reporting (confidential to SEC, occasionally
+                surfaces in litigation)
+
+Form D          Reg D offerings (private placements; can reveal new funds)
+
+SC TO-T         Tender offer schedule (acquirer)
+
+SC TO-I         Issuer self-tender / buyback
+
+S-4 / S-1       Registration statements (M&A, IPO)
+
+DEF 14A         Proxy statements (incl. activist proposals)
+
+DEFC 14A        Contested proxy materials
+
+Item 5.07       8-K item disclosing voting results
+
+10-K / 10-Q     Annual / quarterly reports (insider holdings tables,
+                  related party transactions, segment data)
+
+
+UNITED KINGDOM — FCA + Companies House
+---------------------------------------
+TR-1            Major shareholding notification
+                Threshold: 3%, then each 1% point thereafter
+                Filed within 2 trading days of crossing
+                Reports: party, instrument, voting rights
+                Indirect holdings via swaps/CFDs disclosed separately
+
+Schedule 1 Form Substantial shareholding (UK Listed - subject to DTR 5)
+
+DTR 5 disclosures Continuing disclosure regime
+
+PSC (Companies House) Persons with Significant Control (>25% / control)
+
+
+EUROPEAN UNION — National regulators
+------------------------------------
+France (AMF):       Declaration de franchissement de seuil
+                    Thresholds: 5%, 10%, 15%, 20%, 25%, 30%, 1/3, 50%, 2/3, 90%, 95%
+                    Plus 90% mandatory bid threshold
+
+Germany (BaFin):    Stimmrechtsmitteilung (WpHG §33-34)
+                    Thresholds: 3%, 5%, 10%, 15%, 20%, 25%, 30%, 50%, 75%
+                    Plus financial instruments disclosure
+
+Italy (CONSOB):     Communicazioni delle partecipazioni rilevanti
+                    Thresholds: 3% (small caps 5%), 5%, 10%, 15%, 20%, 25%,
+                                30%, 50%, 66.6%, 90%
+
+Spain (CNMV):       Hechos Relevantes / Otras informaciones
+                    Thresholds: 3%, 5% and each 5%-multiple thereafter
+
+Netherlands (AFM):  Substantial holdings register
+                    Thresholds: 3%, 5%, 10%, 15%, 20%, 25%, 30%, 40%, 50%,
+                                60%, 75%, 95%
+
+Switzerland (SIX):  Significant Shareholders register
+                    Thresholds: 3%, 5%, 10%, 15%, 20%, 25%, 33%, 50%, 66.6%
+
+Sweden (Finansinspektionen): Major shareholdings register
+                    Thresholds: 5%, 10%, 15%, 20%, 25%, 30%, 50%, 66.6%, 90%
+
+Denmark (Finanstilsynet): Same EU thresholds
+
+Norway (FIN):       Same EU thresholds plus 50% mandatory bid
+
+
+CANADA — SEDAR+
+---------------
+Early Warning Report  >10% beneficial ownership (vs US 5%)
+                      Filed within 1 business day
+                      Equivalent to 13D in concept
+
+Alternative Monthly Report (AMR)  Passive investors (similar to 13G)
+
+Insider Reporting     SEDI - System for Electronic Disclosure by Insiders
+                      Filed within 5 days
+
+Form 62-103F1, 62-103F2, 62-103F3 (initial / monthly / change reports)
+
+
+JAPAN — JFSA
+------------
+Large Shareholding Report (大量保有報告書)  >5% threshold
+                                          Filed within 5 days
+Change Report (変更報告書)                 1% change threshold
+
+Tender Offer Disclosure                    Various thresholds
+
+
+AUSTRALIA — ASIC
+----------------
+Substantial Holder Notice  >5% threshold (Form 603, 604, 605)
+                           Filed within 2 business days
+                           1% change reporting
+
+Beneficial Ownership Tracing Notice  Section 672A inquiries
+
+
+HONG KONG — HKEx + SFC
+----------------------
+Disclosure of Interest (DI) Notice  >5% threshold
+                                    Filed within 3 business days
+                                    Each 1% change above 5%
+
+
+SINGAPORE — MAS + SGX
+---------------------
+Substantial Shareholder Notice  >5% threshold
+                                Filed within 2 business days
+
+
+INDIA — SEBI
+------------
+SAST (Substantial Acquisition of Shares and Takeovers) Regulations 2011
+  - Disclosure at 5% threshold and 2% incremental changes
+
+PIT (Prohibition of Insider Trading) Regulations
+  - Insider trading disclosures within 2 days
+
+
+BRAZIL — CVM
+------------
+CVM Instruction 358 / 567
+  - >5% threshold disclosure
+  - Filed within 5 days
+
+
+================================================================================
+DATA SOURCES & APIs (with priority ranking)
+================================================================================
+
+TIER 1 — PRIMARY SOURCES (raw filings)
+---------------------------------------
+1. SEC EDGAR Full-Text Search                  https://efts.sec.gov/LATEST/search-index
+2. SEC EDGAR XBRL Financial Data API           https://data.sec.gov/
+3. SEC EDGAR Filing Index                      https://www.sec.gov/cgi-bin/browse-edgar
+4. SEC RSS Feed (real-time alerts)             https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=SC%2013&dateb=&owner=include&count=40&output=atom
+5. SEDAR+ (Canada)                             https://www.sedarplus.ca/
+6. FCA National Storage Mechanism (UK)         https://data.fca.org.uk/
+7. AMF (France) declaration database           https://www.amf-france.org/en/news-publications/legal-and-regulatory-disclosures
+8. BaFin (Germany) database                    https://www.bafin.de/EN/PublikationenDaten/Datenbanken/datenbanken_node_en.html
+9. CONSOB (Italy)                              https://www.consob.it/web/area-pubblica/comunicazioni
+10. CNMV (Spain)                               https://www.cnmv.es/portal/Consultas/
+11. EDINET (Japan)                             https://disclosure.edinet-fsa.go.jp/
+12. ASIC EDGE (Australia)                      https://connectonline.asic.gov.au/
+13. HKEx HKEXnews                              https://www.hkexnews.hk/
+14. SGX disclosure portal                      https://www.sgx.com/disclosure
+15. SEBI Disclosure System (India)             https://www.sebi.gov.in/
+16. CVM (Brazil)                               https://www.gov.br/cvm/
+
+TIER 2 — AGGREGATORS (cleaned + searchable)
+-------------------------------------------
+1. WhaleWisdom                                 https://whalewisdom.com/
+   - Aggregates 13F + 13D filings
+   - "Whale Index" tracking concentrated holdings
+   - History since 2001
+
+2. 13F.info                                    https://13f.info/
+   - Searchable 13F holdings + clone tracking
+
+3. Dataroma                                    https://www.dataroma.com/
+   - Curated "super investor" portfolios
+   - Free aggregation of ~60 famous investors
+
+4. Stockanalysis.com                           https://stockanalysis.com/
+   - Fundamentals + financial statements (3-5 yr historical)
+   - International coverage (UK, EU, JP via /quote/[exchange]/[ticker])
+
+5. Fintel.io                                   https://fintel.io/
+   - 13F + ownership + insider data
+   - Foreign equity coverage
+
+6. Hedgefollow                                 https://hedgefollow.com/
+
+7. InsiderArbitrage                            https://insiderarbitrage.com/
+   - Curated unusual insider buying signals
+
+8. Quiver Quantitative                         https://www.quiverquant.com/
+   - Congressional trades, government contracts
+
+9. Bullishly                                   https://bullishly.com/
+   - 13D activist tracking
+
+10. Activist Insight                           (paid) - comprehensive activism db
+
+11. SecForm4.com                               https://www.secform4.com/
+
+12. OpenInsider                                http://openinsider.com/
+    - Insider cluster buying screens
+
+13. Smart Insider                              https://www.smartinsider.com/
+    - International insider data
+
+14. Octavia / SimpleSentiment                  (paid)
+
+15. AlphaSense / FinSpace                      (paid) - searchable filings + transcripts
+
+
+TIER 3 — DATA NORMALIZATION & ENRICHMENT
+-----------------------------------------
+1. CapIQ / S&P Global Market Intelligence      (paid - institutional)
+2. FactSet                                     (paid - institutional)
+3. Bloomberg                                   (paid - institutional)
+4. Refinitiv Eikon                             (paid - institutional)
+5. Sentieo                                     (paid - mid-market)
+6. AlphaResearch                               (paid - mid-market)
+7. WhaleWisdom Premium                         (paid - $50/mo)
+8. Fintel Premium                              (paid - $40/mo)
+9. Tikr.com                                    (free + premium)
+10. SimplyWall.st                              (free + premium - international)
+11. Finviz Elite                               (paid - $40/mo)
+12. Yahoo Finance API                          (free - rate limited)
+13. Alpha Vantage API                          (free + premium)
+14. Polygon.io                                 (paid)
+15. IEX Cloud                                  (paid)
+
+
+TIER 4 — ALTERNATIVE DATA / SOFT SIGNALS
+-----------------------------------------
+1. MicroCapClub forums                         https://microcapclub.com/
+2. Value Investors Club                        https://valueinvestorsclub.com/
+3. SumZero                                     https://sumzero.com/
+4. CornerOfBerkshireAndFairfax                 https://thecobf.com/forum/
+5. Investor letters (quarterly + annual)
+   - Compiled by FurtherInvestigation.com, ETFGuide, manually
+6. Substack / Twitter / X concentrated portfolios
+   - Specific handles: @SahilBloom, @InvestorAmnesia, @PunchCardInvest
+7. Conference transcripts (Sohn, Robin Hood, MOI Global, Latticework)
+8. Podcasts (Acquired, Invest Like the Best, Capital Allocators, Joys of Compounding)
+9. YouTube earnings calls + interviews
+10. Reddit communities (r/SecurityAnalysis, r/ValueInvesting)
+
+
+================================================================================
+DATA PULL WORKFLOW (per fund)
+================================================================================
+
+STEP 1: Identify fund identifier(s)
+  - SEC CIK number (search EDGAR by name)
+  - For non-US: equivalent regulator ID
+  - Cross-reference Form ADV for related entities/funds
+
+STEP 2: Pull base 13F (latest quarter)
+  - Source: SEC EDGAR direct OR WhaleWisdom
+  - Extract: ticker, shares, value, % of portfolio, change from prior
+
+STEP 3: Pull 13F history (4-8 quarters back)
+  - Identify: new positions, increases >25%, decreases, exits
+  - Track: position size velocity, concentration trends
+
+STEP 4: Pull 13D/G filings (last 12 months)
+  - Source: SEC EDGAR + 13F.info + Bullishly
+  - For each filing: extract Item 4 purpose, ownership %, target
+
+STEP 5: Pull 13D/A amendments (any material change)
+  - Triggers: ownership change, intent change, agreement amendments
+
+STEP 6: Pull Form 4 (insider transactions if fund principal is insider)
+  - Useful for fund-affiliated boards / Form 4 by manager personally
+
+STEP 7: Pull recent investor letters (last 4 quarters)
+  - Sources: fund website, ValueWalk, MOI Global, Substack archive
+  - Extract: position rationale, conviction level, exits, additions
+
+STEP 8: Search non-US filings if fund has international holdings
+  - UK TR-1, AMF declarations, BaFin notifications, CONSOB filings
+  - SEDAR+ for Canadian holdings
+
+STEP 9: Cross-check insider trading at owned companies
+  - OpenInsider for cluster buying patterns
+  - Compare to fund's own additions
+
+STEP 10: Document in spreadsheet
+  - Tab per fund in fund_activity_last_6mo.xlsx
+  - Standardized columns: Category (Conviction / Adds / New Inits / 5% Disclosure /
+    Material Increase), Ticker, Detail, Source, Filing Date
+
+
+================================================================================
+GAP AREAS IN CURRENT METHODOLOGY (Areas to Improve)
+================================================================================
+
+1. **Non-US disclosure systematic coverage**
+   Current pipeline relies on stockanalysis.com for foreign tickers but does
+   NOT systematically pull TR-1 (UK), AMF (France), BaFin (Germany), CNMV
+   (Spain), CONSOB (Italy), EDINET (Japan), HKEx, SGX, SEBI etc.
+   FIX: Build per-jurisdiction agents to scan each regulator's disclosure feed
+   on a weekly cadence; extract by fund name (e.g., TCI Fund Management,
+   Cevian Capital, Petrus Advisers).
+
+2. **13D/A amendments**
+   Current process pulls initial 13Ds but may miss amendments that increase
+   stakes incrementally.
+   FIX: SEC EDGAR RSS feed monitoring by CIK; flag every 13D/A.
+
+3. **Form 4 cluster detection**
+   Insider buying clusters at fund-owned companies (CEO + CFO + 3 directors
+   buying within a month) is a high-signal pattern not currently captured.
+   FIX: OpenInsider cluster screen weekly; cross-reference against fund 13Fs.
+
+4. **Investor letter capture**
+   Currently anecdotal; many concentrated managers publish detailed letters
+   that reveal conviction levels and thesis evolution.
+   FIX: Build crawler for fund websites + ValueWalk + MOI Global; extract
+   PDFs and run NLP for position mentions.
+
+5. **Voting record / activist proposal tracking**
+   Form NPX votes + DEF 14A proxy proposals reveal activist behavior.
+   FIX: Quarterly NPX scrape; flag against shareholder proposal database.
+
+6. **Sub-$1B microcap coverage**
+   Many P5 investors operate sub-$1B where 13F filings are not required
+   (managers below $100M AUM are exempt).
+   FIX: Use Form ADV Part 1 (PF declarations) + state-level filings + Form D
+   + forum signals (MicroCapClub, VIC) for these names.
+
+7. **Short interest / borrow data**
+   Yartseva framework doesn't use shorts but absent borrow signal misses
+   activist short campaigns.
+   FIX: S3 Partners + Ortex data feeds; cross-reference with 13F shorts.
+
+8. **Options positioning**
+   13Fs report puts/calls but most aggregators flatten to net long; option
+   skew/IV data reveals informed positioning.
+   FIX: CBOE COT-equivalent + OPRA tape sampling.
+
+9. **Form 3/4/5 lag**
+   Form 4 filings are within 2 days but EDGAR indexing has 1-2 day lag.
+   FIX: SEC EDGAR XBRL feed real-time RSS for Form 4 by issuer + filer CIK.
+
+10. **Trust / family office filings**
+    Many wealthy individuals file via grantor trusts or limited partnerships
+    that obscure beneficial ownership.
+    FIX: Cross-reference EDGAR filers by SSN-equivalent identifiers; use
+    DELAW.online / OpenCorporates for entity graph.
+
+11. **PRTC (Pretrade Compliance) leaks**
+    Block trades reported on TRACE / consolidated tape can pre-date 13F by
+    weeks. Same with FINRA TRACE BB data.
+    FIX: FINRA TRACE block trade reports for size signal.
+
+12. **CFD / swap exposures**
+    UK TR-1 captures CFDs but US 13F does not. Many hedge funds use swaps
+    to maintain undisclosed exposure.
+    FIX: Cross-reference UK TR-1 disclosures for fund holdings missing from
+    US 13F. AlphaSense for swap-language extraction.
+
+
+================================================================================
+RECOMMENDED NEW PIPELINE (Round 3 Implementation)
+================================================================================
+
+PHASE 1: Backfill missing 75 funds (per fund_coverage_gap.txt)
+  - 13 P5 + ~50 P4 funds need fund tabs built
+  - For each: pull 13F latest + 4 quarters history + 13D/G last 12mo + Form 4
+  - Estimated 2-4 hours per fund × 75 funds = 150-300 hours total
+  - Parallelize with 10-20 agents = 15-30 hours wall-clock
+
+PHASE 2: Non-US systematic coverage
+  - Per jurisdiction, build crawler for disclosure database
+  - Target managers: TCI (UK), Cevian (Sweden), Petrus (Austria/UK), CIAM (France)
+  - Per fund estimated 1-2 hours initial + 30 min weekly maintenance
+
+PHASE 3: Form 4 cluster screen
+  - Weekly OpenInsider cluster screen for all 443 (368 existing + 75 new) funds
+  - Flag clusters where 3+ insiders buy within 30 days
+  - Cross-reference vs fund 13F positions
+
+PHASE 4: Investor letter NLP pipeline
+  - Quarterly: crawl 50 fund websites for new letters
+  - Extract PDFs; run named entity recognition for tickers
+  - Tag mentions with: conviction language, position size language, exit language
+
+PHASE 5: Real-time alerting
+  - SEC EDGAR RSS by CIK (each tracked fund's CIK has unique feed)
+  - Push notifications for new 13D / 13D/A / Form 4 / 8-K material event
+
+================================================================================
+ESTIMATED INCREMENTAL DISCOVERY
+================================================================================
+
+By closing the 147-fund gap + implementing Phases 1-5 above, expected NEW
+discoveries:
+- 30-50 new sub-$2B Yartseva 6+/7 ticker candidates (microcap-specialist names)
+- 10-20 new 7/7 perfect-score names
+- 50-100 new "material increase" / "new initiation" activity rows in workbook
+- Earlier signal on 5-10 13D campaigns per quarter (vs current ~3 quarterly)
+
+Current Round 2 already discovered 6 new confirmed 7/7s (CARS, CRTO, ROCK, DV,
+GLOB, HRMY, INMD, OPRX). With expanded coverage, the universe of investable
+Yartseva names likely doubles.
+
+
+================================================================================
+END OF METHODOLOGY
+================================================================================

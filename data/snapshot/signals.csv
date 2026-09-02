@@ -1,0 +1,35 @@
+id,ticker,signal_type,actor,pct_of_company,pct_of_book,amount_usd_m,cost_basis,event_date,asof,source_url,note
+1,RPAY,ANCHOR,Forager Capital (Kissel/MacArthur) — CORRECTS earlier 'Veradace' attribution,,,,,,2026-06-09,RPAY 13D/A + DEFC14A + stocktitan 6/4/26,company%:12.4% (11.1M sh) book%:n/a basis:activist cost not disclosed; recent bids $4.80 cash insider:Forager filed contested proxy DEFC14A + urged withhold votes 6/3/26; poison pill adopted by Board (exp Apr 2027)
+2,UA,ANCHOR,Fairfax Financial (Prem Watsa),,,,,,2026-06-09,Bloomberg + stocktitan Form 4 + Investing.com,company%:22% Class A (42M sh) book%:n/a basis:~$5 multi-tranche insider:Fairfax STILL BUYING: 1.18M sh May 12-14 2026 @~$5 + $14.4M earlier + $16.4M earlier 2026
+3,NSP,ANCHOR,founder/CEO insider,,,,,,2026-06-09,Motley Fool 6/9/26 + stockanalysis,company%:n/a book%:n/a basis:$34.05 CEO buy insider:Founder/CEO Sarvadi BOUGHT 233000 sh @$34.05 on 6/3/26 = $7.93M open-market = one of largest CEO buys this quarter
+4,SEER,ANCHOR,Radoff-JEC Group (Radoff+Torok),,,,,,2026-06-09,master_candidates.csv,company%:7.6% (4.28M sh) book%:n/a basis:$2.35 cash bid + CVR (4/24/26) insider:Radoff offered $2.35 cash + CVR for 80% of biz disposition net proceeds (39% premium); white-card proxy slate filed
+5,WGS,ANCHOR,Casdin Capital (Eli Casdin = director),,,,,,2026-06-09,Investing.com + SEC 13D-A + stockanalysis,company%:~$32M of buys May-June 2026 book%:n/a basis:$42.55-43.81 + $52.86-56.44 insider:Casdin bought ~500K sh May 18-20 @$42.55-43.81 (~$21M 13D/A) + 200K more June 4-5 @$52.86-56.44 (~$11M) = $32M in 3 weeks
+6,GPRO,ANCHOR,n/a (board sale process),,,,,,2026-06-09,GoPro 8-K + stocktitan,company%:n/a book%:n/a basis:n/a insider:Board itself: 5/13 RETAINED HOULIHAN LOKEY for potential sale; founder/CEO Woodman (supervoting) backs sale
+7,LAW,ANCHOR,not insider-buy-confirmed,,,,,,2026-06-09,SEC Q1 8-K + SimplyWallSt,company%:n/a book%:n/a basis:n/a insider:management-guided adj-EBITDA BREAKEVEN by Q4 2026; Q1 beat
+8,FCN,ANCHOR,C-suite cluster,,,,,,2026-06-09,HoldingsChannel 5/14/26,company%:n/a book%:n/a basis:~$144.20 insider:CEO Gunby 10000 sh ($1.44M) + CFO Nam 2000 sh ($289K) + CSO Linton 2400 sh ($346K) = $2.08M on 5/13/26
+9,SONO,ANCHOR,Coliseum Capital,,,,,,2026-06-09,StockTitan Form 4s + fool.com,company%:~15% (18.07M sh) book%:19.8% basis:$13-14 Feb-Mar 2026 insider:Coliseum Form 4s WEB-VERIFIED: 647k sh ~$10.2M Feb 12-17 + 611k Feb 23-25 + $12.9M + $4.2M tranches + 228.9k March = ~$35M total
+10,INMD,ANCHOR,Steel Partners,,,,,,2026-06-09,Mizrahy 13D/A + SimplyWallSt,company%:Mizrahy 7.06% book%:25.5% basis:$13.38 Mizrahy actual insider:Founder Mizrahy +800k sh ($10.7M) confirmed via 13D/A; company bought back ~2.9M sh since Mar 13 2026
+11,KBR,ANCHOR,D3 Family Fund (Nierenberg) + Engine Capital ~2% pushing outright sale,,,,,,2026-06-09,KBR PR + stocktitan Form 4s,company%:n/a book%:7.07% basis:~$30 Q1 2026 insider:Director buys verified: Von Thaer 3000 sh @$30.77 May 14 + Sabater 14500 sh @$32.47 May 19
+12,NRP,ANCHOR,Saber Capital + Right Tail,,,,,,2026-06-09,GlobeNewswire 5/6/26,company%:31.75% family book%:17.75% Saber basis:~$105 Right Tail Q1 insider:Robertson family 31.75% permanent
+13,HHH,ANCHOR,Pershing Square,,,,,,2026-06-09,GlobeNewswire 6/4/26 + Pershing tab,company%:46.7% book%:11.25% basis:$100/sh insider:Grandisson (ex-Arch CEO) to board April 2026
+14,PRLD,ANCHOR,Baker Bros 15.5% + OrbiMed 16.0% + RA Capital 9.99%,,,,,,2026-06-09,Baker + OrbiMed + RA 13D/G stocktitan,company%:~41% combined book%:n/a basis:$4.44 underwritten offering 4/21/26 ($90M gross) insider:n/a
+15,OPRX,ANCHOR,Insiders + buyback,,,,,,2026-06-09,SEC 8-K + stockanalysis + GlobeNewswire,company%:14.82% insiders book%:n/a basis:$4-5 buyback insider:Mary Varghese Presti = MICROSOFT Health CVP/COO (NOT Doximity) joined board 4/3/26; NO insider open-market buys
+16,CDRE,ANCHOR,Wynnefield,,,,,,2026-06-09,stockanalysis 6/9/26,company%:n/a book%:23.9% basis:n/a insider:n/a
+17,MRP,ANCHOR,Brave Warrior + Permian,,,,,,2026-06-09,Lennar newsroom + businesswire Dec 1 2025,company%:BW 5.58% book%:6.02% BW basis:~$25 insider:NONE - Lennar sponsor-lock thesis REFUTED
+18,CRTO,ANCHOR,D3 + Petrus Advisers,,,,,,2026-06-09,stockanalysis 6/9/26,company%:n/a book%:9.37% D3 basis:$11.50-14 insider:$200M buyback = 22% of cap
+19,GLOB,ANCHOR,Founders Trust,,,,,,2026-06-09,stockanalysis + PRNewswire 6/9/26,company%:~3% book%:n/a basis:n/a insider:founder 23-yr tenure
+20,FUN,ANCHOR,H Partners + Jana,,,,,,2026-06-09,SEC 8-K + Bloomberg 6/9/26,company%:n/a book%:53.7% (HP) basis:~$22-30 build insider:Jaffer (H Partners) JOINED BOARD post-AGM 5/26/26 via cooperation agreement
+21,SSTI,ANCHOR,Veradace Partners LP (confirmed),,,,,,2026-06-09,master_candidates.csv,company%:16.5% book%:n/a basis:$6.80-7.64 Feb 2026 insider:Activists LOST 6/3/26 AGM - company slate elected
+22,CODI,ANCHOR,ADW Capital,,,,,,2026-06-09,ADW letter 2/24/26,company%:14% economic (not 140%) book%:n/a basis:Feb-Apr 2026 calls insider:ADW $8.6M call buy 4/2/26 + 13D/A
+23,AERO,ANCHOR,Apollo + Delta + Silver Point + SVP,,,,,,2026-06-09,Bloomberg + PE-Insights,company%:9%+ SP book%:n/a basis:IPO $19 insider:n/a
+24,LQDA,ANCHOR,Caligan 23.1% + Harbert + Buckley put-hedged,,,,,,2026-06-09,LQDA 10-Q,company%:n/a book%:n/a basis:n/a insider:n/a
+25,CTMX,ANCHOR,BVF Partners,,,,,,2026-06-09,StockTitan 13G/A,company%:n/a book%:n/a basis:n/a insider:n/a
+26,CELC,ANCHOR,Baker Bros,,,,,,2026-06-09,ApexOnco + Celcuity PR,company%:n/a book%:n/a basis:n/a insider:n/a
+27,MNK,ANCHOR,Silver Point + GoldenTree (UNVERIFIED post-merger),,,,,,2026-06-09,Keenova PR,company%:n/a book%:n/a basis:n/a insider:n/a
+28,PBPB,ANCHOR,Nierenberg/D3 (cashed out),,,,,,2025-10-23,RaceTrac 8-K,company%:n/a book%:n/a basis:n/a insider:n/a
+29,CROX,ANCHOR,Himalaya (Li Lu),,,,,,2026-06-09,GuruFocus + yahoo,company%:~1.25% of co book%:1.5% basis:$83.64 Q4 2025 insider:Li Lu ONLY new Q4 position verified
+30,BW,ANCHOR,Galloway Capital 4.31% (NOT Steel Partners),,,,,,2026-06-09,SEC 13D + benzinga,company%:n/a book%:n/a basis:n/a insider:n/a
+31,PRM,ANCHOR,WindAcre,,,,,,2026-06-09,StockTitan Form 4,company%:n/a book%:5.7% basis:n/a insider:REFUTED: Jun 2025 Form 4 was $0 J-code distribution NOT a buy; CEO Khouri SOLD 229.5k sh May 20-22 2026
+32,TLN,ANCHOR,Sachem Head,,,,,,2026-06-09,yahoo,company%:n/a book%:n/a basis:n/a insider:n/a
+33,BTSG,ANCHOR,Alta Fox (verified ~16% of book),,,,,,2026-06-09,yahoo + 13f.info,company%:n/a book%:16% basis:Q1 2026 insider:n/a
+34,WBD,ANCHOR,Pentwater + multi,,,,,,2026-06-09,Variety + Netflix IR,company%:n/a book%:6.37% Pentwater basis:n/a insider:n/a
