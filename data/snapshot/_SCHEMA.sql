@@ -200,26 +200,6 @@ CREATE TABLE ticker_entry_intact (
       conviction_score REAL, n_funds INTEGER,
       n_hyper INTEGER, has_insider_cobuy INTEGER, sum_dollar_m REAL,
       anchors_seen TEXT);
-CREATE TABLE corp_actions (
-      form TEXT, filed TEXT, company TEXT, ticker TEXT, accession TEXT,
-      PRIMARY KEY (form, accession));
-CREATE INDEX idx_corpact_tk ON corp_actions(ticker);
-CREATE TABLE entity_alias (
-      entity TEXT, canonical_holder TEXT, accession TEXT,
-      PRIMARY KEY (entity, canonical_holder));
-CREATE TABLE form144 (
-      accession TEXT PRIMARY KEY, ticker TEXT, filer TEXT, filed TEXT,
-      shares REAL, value_usd REAL, broker TEXT, source_url TEXT);
-CREATE TABLE form144_signal (
-      ticker TEXT PRIMARY KEY, n_filers INTEGER, n_filings INTEGER,
-      total_m REAL, last_filed TEXT, pct_mcap REAL);
-CREATE TABLE latent_ownership (
-      ticker TEXT, holder TEXT, accession TEXT PRIMARY KEY, filed TEXT, form TEXT,
-      flags TEXT, blocker_pct REAL, swap_counterparties TEXT, n_features INTEGER);
-CREATE TABLE nport_holdings (
-      trust TEXT, series TEXT, filed TEXT, issuer TEXT, ticker TEXT,
-      cusip TEXT, val_usd REAL, pct REAL);
-CREATE TABLE "ticker_yf__old" ("ticker" TEXT, "mcap_m" REAL, "enterprise_value_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "pe_ttm" REAL, "fwd_pe" REAL, "ev_revenue" REAL, "peg" REAL, "price" REAL, "currency" TEXT, "shares_out_m" REAL, "ebitda_m" REAL, "total_debt_m" REAL, "total_cash_m" REAL, "profit_margin" REAL, "rev_growth" REAL, "sector" TEXT, "industry" TEXT, "asof" TEXT, "business_summary" TEXT, "long_name" TEXT);
 CREATE TABLE fund_conviction (
       fund TEXT, ticker TEXT, signals TEXT, raw_score REAL, style_weight REAL,
       score REAL, macro_style TEXT,
@@ -277,6 +257,29 @@ CREATE TABLE style_consensus (
       macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
       sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
       PRIMARY KEY (macro_style, ticker));
+CREATE TABLE corp_actions (
+      form TEXT, filed TEXT, company TEXT, ticker TEXT, accession TEXT,
+      PRIMARY KEY (form, accession));
+CREATE INDEX idx_corpact_tk ON corp_actions(ticker);
+CREATE TABLE entity_alias (
+      entity TEXT, canonical_holder TEXT, accession TEXT,
+      PRIMARY KEY (entity, canonical_holder));
+CREATE TABLE form144 (
+      accession TEXT PRIMARY KEY, ticker TEXT, filer TEXT, filed TEXT,
+      shares REAL, value_usd REAL, broker TEXT, source_url TEXT);
+CREATE TABLE form144_signal (
+      ticker TEXT PRIMARY KEY, n_filers INTEGER, n_filings INTEGER,
+      total_m REAL, last_filed TEXT, pct_mcap REAL);
+CREATE TABLE latent_ownership (
+      ticker TEXT, holder TEXT, accession TEXT PRIMARY KEY, filed TEXT, form TEXT,
+      flags TEXT, blocker_pct REAL, swap_counterparties TEXT, n_features INTEGER);
+CREATE TABLE nport_holdings (
+      trust TEXT, series TEXT, filed TEXT, issuer TEXT, ticker TEXT,
+      cusip TEXT, val_usd REAL, pct REAL);
+CREATE TABLE "ticker_yf__old" ("ticker" TEXT, "mcap_m" REAL, "enterprise_value_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "pe_ttm" REAL, "fwd_pe" REAL, "ev_revenue" REAL, "peg" REAL, "price" REAL, "currency" TEXT, "shares_out_m" REAL, "ebitda_m" REAL, "total_debt_m" REAL, "total_cash_m" REAL, "profit_margin" REAL, "rev_growth" REAL, "sector" TEXT, "industry" TEXT, "asof" TEXT, "business_summary" TEXT, "long_name" TEXT);
+CREATE TABLE holding_sec_form (
+        accession TEXT, cusip TEXT, title_class TEXT, sec_form TEXT,
+        PRIMARY KEY (accession, cusip));
 CREATE TABLE broker_swap_radar (
       ticker TEXT, name TEXT, broker TEXT,
       delta_sh_m REAL,          -- share-count change, millions

@@ -288,16 +288,22 @@ def parse_infotable(xml_bytes):
         })
     return out
 
-# titleOfClass -> normalized equity form. Order matters (warrant before common
-# so "COM WT" reads as warrant). Falls back to sh_type for bonds (PRN=note).
+# titleOfClass -> normalized equity form. Order matters (option/warrant/etf
+# before common so "COM WT" reads warrant, "Equity Option" reads option).
+# Falls back to sh_type for bonds (PRN=note).
 def classify_sec_form(title, sh_type=""):
     tt = (title or "").upper()
     if sh_type == "PRN" or re.search(r"\bNOTE|\bBOND|\bDEB\b|SR NT|% DUE|CONV NT", tt):
         return "note"
-    if re.search(r"WARRANT|\bWTS?\b|\bWT\b|\bWS\b", tt):
+    if re.search(r"OPTION|\bCALL\b|\bPUT\b", tt):
+        return "option"        # slipped past the putCall filter (filer labels it here)
+    if re.search(r"WARRANT|\bWTS?\b|\bWT\b|\bWS\b|\*?W\s+EXP|\bWARR\b", tt):
         return "warrant"
     if re.search(r"\bRIGHT|\bRTS?\b|\bRT\b|CVR|CONTINGENT VALUE", tt):
         return "right"
+    if re.search(r"ETF|\bETP\b|EXCH(ANGE)?[\s-]*TRAD|INDX FD|INDEX FUND|"
+                 r"CLSD FD|CLOSED[\s-]END|SPDR|ISHARES|\bSPD\b|\bCON\b\s*FD", tt):
+        return "etf"
     if re.search(r"\bUNIT", tt):
         return "unit"
     if re.search(r"\bPFD|PREF|PREFERRED|DEP(OSITARY)?\s+SH|DEP\s+REP|% CUM|% SR", tt):
@@ -306,7 +312,10 @@ def classify_sec_form(title, sh_type=""):
         return "adr"
     if re.search(r"\bCL\s+[A-Z]\b|CLASS\s+[A-Z]\b|SER(IES)?\s+[A-Z]\b", tt):
         return "class"          # dual-class common (COM CL A / CLASS B)
-    if re.search(r"\bCOM\b|COMMON|\bORD|ORDINARY|\bSHS?\b|SHARES|STK\b|CAP STK|BEN INT|SBI", tt):
+    # generic common labels: COM/COMMON/ORD/SHS/STK plus the plain "EQUITY",
+    # "COMM", "REIT", "LP/LLC unit" tags some filers use for ordinary equity.
+    if re.search(r"\bCOM\b|COMMON|\bCOMM\b|\bORD|ORDINARY|\bSHS?\b|SHARES|STK\b|"
+                 r"CAP STK|BEN INT|\bSBI\b|\bEQUITY\b|\bREIT\b|\bLP\b|\bLLC\b|\bTR UNIT", tt):
         return "common"
     return "common" if tt == "" else "other"
 
