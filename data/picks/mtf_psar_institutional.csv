@@ -1,0 +1,12 @@
+rk,company,primary,region,mcap_USD_M,adv_USD_M,combined,asset_ma,rel_ma,why
+11,Tesmec,TES.MI,Italy,151.0,2.2,1.8,0.7,0.95,Italian industrial — REAL liquidity
+20,Genesis Energy,GNE.NZ,NZ,3455.0,2.2,1.69,0.97,0.23,REAL primary listing
+54,Relay Therapeutics,RLAY,US,2947.0,49.9,1.43,0.53,0.46,REAL liquid US mid
+57,THK Co,6481.T,Japan,6005.0,54.0,1.42,0.52,0.63,REAL liquid Japan
+63,Indo Count Industries,ICIL.NS,India,765.0,2.2,1.39,0.38,0.58,REAL India listing
+65,Sterlite Technologies,STLTECH.NS,India,3556.0,51.0,1.38,0.54,0.5,"REAL India, liquid"
+66,Electro Optic Systems,EOS.AX,AU,2322.0,23.4,1.38,0.63,0.33,REAL AU defense
+87,Mineral Resources,MIN.AX,AU,13354.0,50.3,1.31,0.6,0.55,REAL AU major
+92,TOYO Co,TOYO,US/Japan,595.0,4.1,1.3,0.63,0.63,REAL listing
+94,Shizuki Electric,6994.T,Japan,229.0,4.2,1.3,0.38,0.58,REAL Japan
+98,Kirloskar Oil Engines,KIRLOSENG.NS,India,3272.0,10.3,1.28,0.24,0.64,REAL India liquid

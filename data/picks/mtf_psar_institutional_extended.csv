@@ -1,0 +1,40 @@
+rk,company,primary,region,mcap_USD_M,adv_USD_M,combined,asset_ma,rel_ma,why,tier,sector
+11,Tesmec,TES.MI,Italy,151.0,2.2,1.8,0.7,0.95,Italian industrial — REAL liquidity,top100,
+20,Genesis Energy,GNE.NZ,NZ,3455.0,2.2,1.69,0.97,0.23,REAL primary listing,top100,
+54,Relay Therapeutics,RLAY,US,2947.0,49.9,1.43,0.53,0.46,REAL liquid US mid,top100,
+57,THK Co,6481.T,Japan,6005.0,54.0,1.42,0.52,0.63,REAL liquid Japan,top100,
+63,Indo Count Industries,ICIL.NS,India,765.0,2.2,1.39,0.38,0.58,REAL India listing,top100,
+65,Sterlite Technologies,STLTECH.NS,India,3556.0,51.0,1.38,0.54,0.5,"REAL India, liquid",top100,
+66,Electro Optic Systems,EOS.AX,AU,2322.0,23.4,1.38,0.63,0.33,REAL AU defense,top100,
+87,Mineral Resources,MIN.AX,AU,13354.0,50.3,1.31,0.6,0.55,REAL AU major,top100,
+92,TOYO Co,TOYO,US/Japan,595.0,4.1,1.3,0.63,0.63,REAL listing,top100,
+94,Shizuki Electric,6994.T,Japan,229.0,4.2,1.3,0.38,0.58,REAL Japan,top100,
+98,Kirloskar Oil Engines,KIRLOSENG.NS,India,3272.0,10.3,1.28,0.24,0.64,REAL India liquid,top100,
+104,New Hope Corp (AU coal),NHC.AX,AU,5130.0,26.5,1.24,0.47,0.65,,101-250,Energy
+105,Equillium (US biotech),EQ,US-micro,186.0,1.9,1.24,0.54,0.39,,101-250,Healthcare
+135,GeoPark (Colombia oil),GPRK,US,684.0,10.9,1.18,0.44,0.49,,101-250,Energy
+136,Taiyo Yuden (Japan tech),6976.T,JP,13959.0,95.5,1.18,0.8,0.68,,101-250,Technology
+140,Elicio Therapeutics (US bio),ELTX,US-micro,253.0,1.7,1.18,0.52,0.47,,101-250,Healthcare
+141,Murata Manufacturing (JP),6981.T,JP,106727.0,80.0,1.18,0.54,0.6,,101-250,Technology
+145,Yankuang Energy (China coal),600188.SS,CN,251423.0,1809.7,1.18,0.53,0.31,,101-250,Energy
+148,Renesas Electronics (JP),6723.T,JP,46410.0,100.0,1.16,0.29,0.7,,101-250,Technology
+167,10x Genomics (US biotech),TXG,US-mid,3941.0,80.4,1.14,0.45,0.37,,101-250,Healthcare
+168,J.S.B. Co (JP REIT),3480.T,JP,1007.0,3.8,1.14,0.5,0.38,,101-250,Real Estate
+174,Digimarc (US tech),DMRC,US-micro,303.0,3.4,1.12,0.47,0.4,,101-250,Technology
+176,ChipMOS Technologies (Taiwan),IMOS,TW (US-listed ADR),2005.0,4.9,1.12,0.5,0.4,,101-250,Technology
+179,Cadence Design Systems,CDNS,US-large,103759.0,895.0,1.11,0.57,0.35,,101-250,Technology
+182,Visteon Corp (US auto),VC,US-mid,3135.0,67.2,1.11,0.41,0.43,,101-250,Cyclical
+191,Ermenegildo Zegna (luxury),ZGN,IT/US-listed,3930.0,11.6,1.09,0.63,0.52,,101-250,Cyclical
+192,Shinkong Synthetic Fibers (TW),1409.TW,TW,1316.0,9.7,1.09,0.68,0.53,,101-250,Cyclical
+195,Wowprime (TW restaurants),2727.TW,TW,656.0,3.4,1.09,0.58,0.16,,101-250,Cyclical
+199,J.B. Hunt Transport (US),JBHT,US-large,26871.0,275.5,1.09,0.6,0.34,,101-250,Industrials
+202,Kmw Inc. (Korea telecom),032500.KQ,KR,1019.0,20.7,1.08,0.52,0.24,,101-250,Technology
+208,CrowdStrike (US cyber),CRWD,US-large,170818.0,2343.6,1.07,0.35,0.48,,101-250,Technology
+227,Vestis Corp (US uniforms),VSTS,US-small,1698.0,20.0,1.05,0.6,0.47,,101-250,Industrials
+233,Allient Inc (US motion),ALNT,US-small,1442.0,18.8,1.04,0.37,0.37,,101-250,Technology
+234,OPTEX GROUP (JP),6914.T,JP,1099.0,5.7,1.04,0.28,0.48,,101-250,Technology
+237,AU Optronics (TW panels),2409.TW,TW,6264.0,280.0,1.04,0.46,0.44,,101-250,Technology
+239,Formosa Chemicals & Fibre (TW),1326.TW,TW,9994.0,68.6,1.03,0.48,0.35,,101-250,Materials
+243,AMC Networks (US media),AMCX,US-small,430.0,4.5,1.03,0.45,0.4,,101-250,Communication
+246,GS Yuasa (JP batteries),6674.T,JP,5135.0,60.9,1.03,0.52,0.46,,101-250,Cyclical
+250,KalVista Pharmaceuticals (US),KALV,US-small,1435.0,92.1,1.02,0.44,0.27,,101-250,Healthcare

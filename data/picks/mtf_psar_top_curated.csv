@@ -1,0 +1,84 @@
+rk,company,primary,region,mcap_USD_M,adv_USD_M,combined,asset_ma,rel_ma,why
+1,Oxford Instruments,OXIG.L,UK,2418.0,,2.0,0.76,0.64,"UK tech, structural high"
+2,Svenska Cellulosa SCA,SCA-B.ST,Sweden,6462.0,,2.0,1.0,0.53,Swedish forestry
+3,Cy4gate,CY4.MI,Italy,203.0,0.5,2.0,0.88,0.68,Italian cyber (same as CY4.MI rk 89)
+4,Vow ASA,VOW.OL,Norway,77.0,,1.99,0.78,0.58,Norwegian waste-to-energy
+5,AMG Critical Materials,AMG.AS,Netherlands,1752.0,,1.99,0.7,0.7,Dutch specialty materials
+6,Idorsia,IDIA.SW,Switzerland,1466.0,,1.98,0.72,0.65,Swiss pharma
+7,Santhera Pharma,SANN.SW,Switzerland,338.0,,1.97,0.82,0.53,Swiss biotech
+8,Sumitomo Electric,5802.T,Japan,54984.0,,1.92,0.86,0.74,Japan industrials major
+9,Goodtech ASA,GOD.OL,Norway,35.0,,1.84,0.78,0.76,Norway industrial micro
+10,Nichicon Corp,6996.T,Japan,1598.0,,1.81,0.63,0.7,Japan capacitors
+11,Tesmec,TES.MI,Italy,151.0,2.2,1.8,0.7,0.95,Italian industrial — REAL liquidity
+12,Anglo American,AAL.L,UK,46288.0,,1.8,0.68,0.57,UK mining major
+13,Outokumpu,OUT1V.HE,Finland,,,1.78,0.8,0.76,Finnish stainless steel
+14,Games Operators,GOP.WA,Poland,18.0,,1.76,1.0,0.45,Polish microcap gaming
+15,AFT Pharmaceuticals,AFP.AX,NZ/AU,341.0,,1.76,0.9,0.52,REAL primary listing
+16,Brother Industries,6448.T,Japan,5016.0,,1.74,0.75,0.68,Japan industrials
+17,Allane SE,LNS.DE,Germany,247.0,,1.74,0.6,0.8,German leasing
+18,Kyocera,6971.T,Japan,27139.0,,1.74,0.72,0.75,Japan industrials major
+19,STMicroelectronics,STM.PA,EU,62713.0,,1.7,1.0,0.63,French/Italian semis
+20,Genesis Energy,GNE.NZ,NZ,3455.0,2.2,1.69,0.97,0.23,REAL primary listing
+21,Billion Industrial Holdings,2299.HK,HK,10617.0,0.1,1.69,0.85,0.32,REAL HK listing
+22,Aberdeen Group,ABDN.L,UK,5725.0,,1.65,0.83,0.62,UK fund manager
+23,DCC plc,DCC.L,Ireland,6738.0,,1.64,0.67,0.6,Irish energy/IT
+24,Salzgitter,SZG.DE,Germany,3462.0,,1.62,0.82,0.83,German steel
+25,Celtic FC,CCP.L,Scotland,323.0,,1.62,0.5,0.6,Scottish football
+26,SGL Carbon,SGL.DE,Germany,,,1.61,0.37,0.8,German carbon fiber
+27,Credit Agricole regional,CRTO.PA,France,,,1.61,0.68,0.6,French regional bank
+31,Ludwig Beck,ECK.DE,Germany,103.0,,1.6,0.67,0.43,German retail micro
+33,ING Groep,INGA.AS,Netherlands,92914.0,0.5,1.58,0.6,0.72,Dutch bank major
+34,CYBERDYNE,7779.T,Japan,394.0,,1.58,0.67,0.65,Japan robotics
+35,Trelleborg,TREL-B.ST,Sweden,8094.0,,1.57,0.83,0.23,Swedish industrials
+37,CFE,CFEB.BR,Belgium,331.0,,1.56,0.88,0.78,Belgian construction
+38,Yamato Holdings,9064.T,Japan,4227.0,,1.56,0.83,0.23,Japan logistics
+40,Voestalpine,VOE.VI,Austria,8221.0,,1.53,0.8,0.54,Austrian steel
+41,Salvatore Ferragamo,SFER.MI,Italy,1530.0,,1.53,0.42,0.72,Italian luxury
+42,AFC Energy,AFC.L,UK,,,1.52,0.47,0.6,UK hydrogen
+43,Osaka Titanium,5726.T,Japan,537.0,,1.51,0.56,0.5,Japan titanium
+44,Kurita Water,6370.T,Japan,5964.0,,1.46,0.65,0.7,Japan water industrials
+47,SeSa,SES.MI,Italy,1508.0,,1.44,0.5,0.48,Italian IT distrib
+48,Swatch Group,UHR.SW,Switzerland,13719.0,,1.44,0.67,0.62,Swiss luxury watches
+49,Ependion AB,EPEN.ST,Sweden,312.0,,1.44,0.6,0.46,Swedish industrial
+50,DAIHEN,6622.T,Japan,1217.0,,1.44,1.0,0.3,Japan industrials
+51,Smart Eye,SEYE.ST,Sweden,312.0,,1.43,0.56,0.56,Swedish AI/sensors
+52,PVA TePla,TPE.DE,Germany,916.0,,1.43,0.8,0.52,German semis-equip
+54,Relay Therapeutics,RLAY,US,2947.0,49.9,1.43,0.53,0.46,REAL liquid US mid
+55,ICTS International,ICTS,US/NL,201.0,,1.43,0.84,0.68,Israeli/Dutch security
+56,Hamamatsu Photonics,6965.T,Japan,5266.0,,1.43,0.86,0.38,Japan photonics
+57,THK Co,6481.T,Japan,6005.0,54.0,1.42,0.52,0.63,REAL liquid Japan
+58,Amada,6113.T,Japan,5796.0,,1.42,0.67,0.53,Japan machinery
+59,Aptiv,APTV,US,75028.0,,1.41,0.7,0.36,US auto tech
+60,Glanbia,GL9.IR,Ireland,5148.0,,1.41,0.52,0.6,Irish nutrition
+61,Nedap,NEDAP.AS,Netherlands,658.0,,1.4,0.88,0.55,Dutch tech
+63,Indo Count Industries,ICIL.NS,India,765.0,2.2,1.39,0.38,0.58,REAL India listing
+64,Ushio Inc,6925.T,Japan,1937.0,,1.38,0.67,0.53,Japan lamps
+65,Sterlite Technologies,STLTECH.NS,India,3556.0,51.0,1.38,0.54,0.5,"REAL India, liquid"
+66,Electro Optic Systems,EOS.AX,AU,2322.0,23.4,1.38,0.63,0.33,REAL AU defense
+67,Norsk Hydro,NHY.OL,Norway,24134.0,,1.37,0.3,0.72,Norway aluminum
+68,APA Group,APA.AX,AU,9968.0,,1.37,0.58,0.33,AU gas pipelines
+69,HOYA Corp,7741.T,Japan,47100.0,,1.37,0.63,0.3,Japan optics
+70,Samsung Electronics,005930.KS,Korea,318594.0,,1.37,0.62,0.68,Korea major
+71,Midsona,MSON-A.ST,Sweden,2211.0,,1.37,0.6,0.56,Swedish food
+72,Eltel,ELTEL.ST,Sweden,165.0,,1.35,0.62,0.72,Swedish infra
+73,Minebea Mitsumi,6479.T,Japan,10763.0,,1.35,0.5,0.46,Japan precision
+74,NRW Holdings,NWH.AX,AU,1957.0,,1.35,0.64,0.46,AU mining services
+76,Boiron,BOI.PA,France,486.0,,1.34,0.54,0.56,French homeopathy
+77,Atlas Arteria,ALX.AX,AU,4266.0,,1.34,0.72,0.42,AU toll roads
+79,Aegon,AGN.AS,Netherlands,10663.0,,1.34,0.67,0.53,Dutch insurance
+80,Motor Oil Hellas,MOH.AT,Greece,4862.0,,1.34,0.6,0.64,Greek refiner
+81,AU Optronics,2409.TW,Taiwan,6264.0,,1.34,0.4,0.62,Taiwan panels
+82,Japan Display,6740.T,Japan,1423.0,,1.33,0.55,0.52,Japan display
+85,Constellium,CSTM,US,4112.0,,1.32,0.44,0.46,US/EU aluminum
+86,Mizuno Corp,8022.T,Japan,1729.0,,1.32,1.0,0.23,Japan sportswear
+87,Mineral Resources,MIN.AX,AU,13354.0,50.3,1.31,0.6,0.55,REAL AU major
+88,Telecom Italia,TIT.MI,Italy,20455.0,,1.31,0.5,0.62,Italian telco
+90,Zhejiang Expressway,0576.HK,HK,4438.0,,1.3,0.48,0.42,China toll roads
+91,Durr AG,DUE.DE,Germany,1882.0,,1.3,0.62,0.3,German automation
+92,TOYO Co,TOYO,US/Japan,595.0,4.1,1.3,0.63,0.63,REAL listing
+94,Shizuki Electric,6994.T,Japan,229.0,4.2,1.3,0.38,0.58,REAL Japan
+95,Metso Oyj,METSO.HE,Finland,14915.0,,1.29,0.33,0.65,Finnish industrial
+96,Flex Ltd,FLEX,US,11616.0,,1.29,0.67,0.47,US industrial
+97,Daido Metal,7245.T,Japan,278.0,,1.28,0.12,0.78,Japan bearings micro
+98,Kirloskar Oil Engines,KIRLOSENG.NS,India,3272.0,10.3,1.28,0.24,0.64,REAL India liquid
+99,Sekisui Chemical,4204.T,Japan,5930.0,,1.27,1.0,0.2,Japan chemicals
