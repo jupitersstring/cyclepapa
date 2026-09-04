@@ -64,14 +64,22 @@ def build_shortlist(limit: int) -> list[str]:
 
 
 def pull(tk):
-    """monthly 10y + weekly 2y close arrays via yfinance."""
+    """OHLC arrays: monthly 10y, quarterly 10y, weekly 2y (yfinance)."""
     import yfinance as yf
     t = yf.Ticker(tk)
-    m = t.history(period="10y", interval="1mo")
-    w = t.history(period="2y", interval="1wk")
-    mon = [round(float(x), 4) for x in m["Close"].tolist() if x == x] if len(m) else []
-    wk = [round(float(x), 4) for x in w["Close"].tolist() if x == x] if len(w) else []
-    return mon, wk
+    def ohlc(df):
+        if not len(df):
+            return [], [], []
+        h = [round(float(x), 4) for x in df["High"].tolist()]
+        l = [round(float(x), 4) for x in df["Low"].tolist()]
+        c = [round(float(x), 4) for x in df["Close"].tolist()]
+        # drop rows with any NaN (keep arrays aligned)
+        keep = [i for i in range(len(c)) if c[i] == c[i] and h[i] == h[i] and l[i] == l[i]]
+        return ([h[i] for i in keep], [l[i] for i in keep], [c[i] for i in keep])
+    mh, ml, mc = ohlc(t.history(period="10y", interval="1mo"))
+    qh, ql, qc = ohlc(t.history(period="10y", interval="3mo"))
+    wh, wl, wc = ohlc(t.history(period="2y", interval="1wk"))
+    return mh, ml, mc, qh, ql, qc, wh, wl, wc
 
 
 def main() -> int:
@@ -87,12 +95,14 @@ def main() -> int:
 
     done = ok = 0
     for tk in shortlist:
-        if tk in out and out[tk].get("monthly"):
+        if tk in out and out[tk].get("monthly_close"):
             continue
         try:
-            mon, wk = pull(tk)
-            if mon:
-                out[tk] = {"monthly": mon, "weekly": wk}
+            mh, ml, mc, qh, ql, qc, wh, wl, wc = pull(tk)
+            if mc:
+                out[tk] = {"monthly_high": mh, "monthly_low": ml, "monthly_close": mc,
+                           "quarterly_high": qh, "quarterly_low": ql, "quarterly_close": qc,
+                           "weekly_high": wh, "weekly_low": wl, "weekly_close": wc}
                 ok += 1
         except Exception as e:
             if "RateLimit" in type(e).__name__ or "Too Many" in str(e):
@@ -107,7 +117,7 @@ def main() -> int:
         time.sleep(args.sleep)
 
     io_util.write_json(OUT, out)
-    priced = sum(1 for v in out.values() if isinstance(v, dict) and v.get("monthly"))
+    priced = sum(1 for v in out.values() if isinstance(v, dict) and v.get("monthly_close"))
     print(f"wrote {OUT} ({priced} priced of {len(shortlist)} shortlisted)")
     return 0
 

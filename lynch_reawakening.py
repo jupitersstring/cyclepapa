@@ -37,10 +37,24 @@ import math
 from pathlib import Path
 
 import io_util
+import squeeze_asym
 
 ROOT = Path("/home/user/cyclepapa")
 SRC = ROOT / "price_history.json"
 OUT = ROOT / "lynch_reawakening.json"
+
+
+def _ohlc(rec, tf):
+    """Pull (high, low, close) arrays for a timeframe from a record.
+    New schema stores {tf}_high/_low/_close; falls back to a close-only
+    array ({tf}) with H=L=C so ROC still works if OHLC is absent."""
+    h = rec.get(f"{tf}_high"); l = rec.get(f"{tf}_low"); c = rec.get(f"{tf}_close")
+    if c:
+        return (h or c), (l or c), c
+    c = rec.get(tf)                        # old close-only schema
+    if c:
+        return c, c, c
+    return None, None, None
 
 
 def roc(series, n):
@@ -68,124 +82,82 @@ def rsi(series, period=14):
     return 100 - 100 / (1 + rs)
 
 
-def _sma(xs, n):
-    return sum(xs[-n:]) / n if len(xs) >= n else None
-
-
-def _std(xs, n):
-    if len(xs) < n:
-        return None
-    m = _sma(xs, n)
-    return math.sqrt(sum((x - m) ** 2 for x in xs[-n:]) / n)
-
-
-def squeeze_state(close, high=None, low=None, n=20, bb_k=2.0, kc_k=1.5):
-    """TTM-style squeeze on the close series. Returns (in_squeeze_now,
-    periods_in_prior_squeeze, periods_since_release). Bollinger inside
-    Keltner = coiled. Without true H/L, ATR is approximated from
-    close-to-close abs moves (a conservative proxy)."""
-    if len(close) < n + 2:
-        return None, 0, None
-    # per-period squeeze flag over the tail
-    flags = []
-    rng = range(n, len(close) + 1)
-    # approximate true range with |close_i - close_{i-1}|
-    tr = [abs(close[i] - close[i - 1]) for i in range(1, len(close))]
-    for end in rng:
-        c = close[:end]
-        m = _sma(c, n); sd = _std(c, n)
-        if m is None or sd is None:
-            flags.append(False); continue
-        atr = _sma(tr[:end - 1], n) if len(tr) >= n else None
-        if atr is None:
-            flags.append(False); continue
-        bb_up, bb_dn = m + bb_k * sd, m - bb_k * sd
-        kc_up, kc_dn = m + kc_k * atr, m - kc_k * atr
-        flags.append(bb_up < kc_up and bb_dn > kc_dn)   # BB inside KC
-    in_now = flags[-1]
-    # count consecutive prior-squeeze periods before the most recent release
-    since_release = None
-    prior = 0
-    if not in_now:
-        # walk back to find last release, count squeeze run before it
-        i = len(flags) - 1
-        while i >= 0 and not flags[i]:
-            i -= 1
-        if i >= 0:
-            since_release = (len(flags) - 1) - i
-            j = i
-            while j >= 0 and flags[j]:
-                prior += 1; j -= 1
-    else:
-        j = len(flags) - 1
-        while j >= 0 and flags[j]:
-            prior += 1; j -= 1
-    return in_now, prior, since_release
-
 
 def score_ticker(rec: dict) -> dict:
-    """rec = {'monthly': [...closes...], 'weekly': [...closes...]}."""
-    m = [x for x in (rec.get("monthly") or []) if x]
-    w = [x for x in (rec.get("weekly") or []) if x]
-    out = {"n_monthly": len(m), "n_weekly": len(w), "score": 0.0, "flags": []}
-    if len(m) < 24:
+    """Score the Lynch reawakening using the precise Squeeze & Release +
+    Volatility Asymmetry methodology (squeeze_asym) on monthly / quarterly
+    / weekly bars, combined with the long-term ROC dormancy-and-
+    concentration test that defines "years of progress rewarded in one"."""
+    mh, ml, mc = _ohlc(rec, "monthly")
+    qh, ql, qc = _ohlc(rec, "quarterly")
+    wh, wl, wc = _ohlc(rec, "weekly")
+    out = {"n_monthly": len(mc or []), "score": 0.0, "flags": []}
+    if not mc or len(mc) < 30:
         return out
 
-    roc_1m, roc_3m = roc(m, 1), roc(m, 3)
-    roc_12m = roc(m, 12)
-    roc_3_5y, roc_10y = roc(m, 42), roc(m, 120)
-    # "dormant window" = the 30 months BEFORE the last 12 (the years of no
-    # reward), measured independently of the recent surge.
-    roc_before = (m[-13] / m[-43] - 1) if len(m) > 43 and m[-43] else None
-    roc_prev_3m = roc(m[:-1], 3)                       # 3m ROC one period ago
+    # ---- long-term ROC context (the "years rewarded in a year" core) ----
+    roc_1m, roc_3m, roc_12m = roc(mc, 1), roc(mc, 3), roc(mc, 12)
+    roc_3_5y, roc_10y = roc(mc, 42), roc(mc, 120)
+    roc_before = (mc[-13] / mc[-43] - 1) if len(mc) > 43 and mc[-43] else None
+    roc_prev_3m = roc(mc[:-1], 3)
     roc_of_roc = (roc_3m - roc_prev_3m) if (roc_3m is not None
                                             and roc_prev_3m is not None) else None
-    rsi_m = rsi(m, 14)
-    rsi_m_prev = rsi(m[:-1], 14)
-    roc_1w = roc(w, 1) if w else None
-    rsi_w = rsi(w, 14) if w else None
-    in_sq, prior_sq, since_rel = squeeze_state(m)
 
-    out.update({"roc_1m": roc_1m, "roc_3m": roc_3m, "roc_12m": roc_12m,
-                "roc_before_30m": roc_before,
+    # ---- precise squeeze & asymmetry on each timeframe ----
+    m_sig = squeeze_asym.compute(mh, ml, mc)
+    q_sig = squeeze_asym.compute(qh, ql, qc) if qc and len(qc) >= 30 else None
+    w_sig = squeeze_asym.compute(wh, wl, wc) if wc and len(wc) >= 30 else None
+
+    out.update({"roc_3m": roc_3m, "roc_12m": roc_12m, "roc_before_30m": roc_before,
                 "roc_3_5y": roc_3_5y, "roc_10y": roc_10y,
                 "roc_of_roc_3m": roc_of_roc,
-                "rsi_monthly": rsi_m, "rsi_weekly": rsi_w,
-                "squeeze_now": in_sq, "prior_squeeze_len": prior_sq,
-                "periods_since_release": since_rel})
+                "monthly": m_sig, "quarterly": q_sig, "weekly": w_sig})
 
     s = 0.0; fl = []
-    # 1. DORMANCY: flat for the ~2.5 years before the recent year (Lynch's
-    #    "years of no reward"), measured on the pre-surge window.
+    # 1. DORMANCY (flat 30mo pre-surge) + CONCENTRATION (recent year did
+    #    most of the multi-year move) -- the Fannie-Mae signature.
     dormant = roc_before is not None and -0.25 <= roc_before <= 0.35
     if dormant:
-        s += 8; fl.append(f"dormant pre-window ({roc_before*100:+.0f}% / 30mo)")
-    # 2. REAWAKENING: a big recent year AND most of the multi-year move is
-    #    concentrated in it -- "several years' worth rewarded in one".
+        s += 8; fl.append(f"dormant pre-window ({roc_before*100:+.0f}%/30mo)")
     if roc_12m is not None and roc_12m > 0.25:
-        s += 8; fl.append(f"12m ROC +{roc_12m*100:.0f}%")
+        s += 6; fl.append(f"12m ROC +{roc_12m*100:.0f}%")
         if dormant and roc_12m > abs(roc_before or 0) + 0.20:
             s += 12; fl.append("years-of-progress concentrated in one year")
-    # 3. ACCELERATION (ROC of ROC > 0)
     if roc_of_roc is not None and roc_of_roc > 0:
-        s += 8; fl.append("ROC accelerating")
-    # 4. RSI crossing up through 50 (the momentum reawakening) -- reward the
-    #    cross / early-confirmed band, skip the exhausted >85 zone.
-    if rsi_m is not None and rsi_m_prev is not None and rsi_m_prev < 50 <= rsi_m:
-        s += 12; fl.append(f"monthly RSI crossed 50 up ({rsi_m:.0f})")
-    elif rsi_m is not None and 50 <= rsi_m <= 78 and (roc_1m or 0) > 0:
-        s += 6; fl.append(f"monthly RSI {rsi_m:.0f} (confirmed, not exhausted)")
-    elif rsi_m is not None and rsi_m > 88:
-        s -= 4; fl.append(f"RSI {rsi_m:.0f} (extended -- late)")
-    # 5. Squeeze release after a long coil (tactical trigger)
-    if in_sq is False and since_rel is not None and since_rel <= 3 \
-            and prior_sq >= 4:
-        s += 14; fl.append(f"fresh squeeze release ({prior_sq}mo coil, "
-                           f"{since_rel}mo ago)")
-    elif in_sq:
-        s += 3; fl.append(f"coiling ({prior_sq}mo squeeze -- watch)")
-    # 6. Weekly tactical confirmation
-    if rsi_w is not None and 45 <= rsi_w <= 68 and (roc_1w or 0) > 0:
+        s += 6; fl.append("ROC accelerating")
+
+    # 2. SQUEEZE RELEASE after a long squeeze (monthly, precise) -- recent
+    #    release + prior coil = the long-term release the spec asks for.
+    if m_sig:
+        if m_sig["release_event"] or (m_sig["state"] == "release"
+                and (m_sig["bars_since_release"] or 99) <= 3
+                and m_sig["prior_squeeze_len"] >= 4):
+            s += 14
+            fl.append(f"squeeze RELEASE ({m_sig['prior_squeeze_len']}mo coil, "
+                      f"{m_sig['bars_since_release']}mo into release)")
+        elif m_sig["state"] == "squeeze" and m_sig["hyper_squeeze"]:
+            s += 4; fl.append("hyper-squeeze coiling (watch for release)")
+        elif m_sig["state"] == "squeeze":
+            s += 2; fl.append("in squeeze")
+
+    # 3. VOLATILITY ASYMMETRY -- positive ROC near/above 50 (upside vol
+    #    dominating) on monthly and/or quarterly.
+    def asym_pts(sig, label):
+        p = 0.0; f = []
+        if not sig:
+            return p, f
+        if sig["upper_asymmetry"]:
+            p += 10; f.append(f"{label} upper vol-asymmetry (upside accel)")
+        elif sig["asymmetry"] >= 50 and sig["asymmetry_rising"]:
+            p += 5; f.append(f"{label} asym {sig['asymmetry']:.0f} rising >50")
+        if sig["lower_asymmetry"]:
+            p -= 6; f.append(f"{label} LOWER vol-asymmetry (downside accel)")
+        return p, f
+    for sig, lbl in ((m_sig, "monthly"), (q_sig, "quarterly")):
+        p, f = asym_pts(sig, lbl); s += p; fl += f
+
+    # 4. WEEKLY tactical timing -- fresh weekly release or upside asymmetry.
+    if w_sig and (w_sig["release_event"] or w_sig["upper_asymmetry"]):
         s += 4; fl.append("weekly timing aligned")
 
     out["score"] = round(max(0.0, s), 1)

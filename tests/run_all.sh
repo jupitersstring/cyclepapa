@@ -57,6 +57,10 @@ echo "=== io_util (atomic writes + health gate) ==="
 python3 test_io_util.py
 echo
 
+echo "=== squeeze_asym (Pine port) ==="
+python3 test_squeeze_asym.py
+echo
+
 echo "=== lynch reawakening ==="
 python3 test_lynch_reawakening.py
 echo
