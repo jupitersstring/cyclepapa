@@ -61,4 +61,8 @@ echo "=== lynch reawakening ==="
 python3 test_lynch_reawakening.py
 echo
 
+echo "=== net buyback ==="
+python3 test_net_buyback.py
+echo
+
 echo "All test suites passed."

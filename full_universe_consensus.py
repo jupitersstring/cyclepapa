@@ -404,6 +404,26 @@ def score_post_ch11_layer(layers: dict, universe: set) -> dict:
     return _load_jscore(ROOT / "post_ch11_emergence.json", universe)
 
 
+def score_net_buyback_layer(layers: dict, universe: set) -> dict:
+    """Net-buyback quality: diluted share COUNT reduction YoY (net of SBC
+    dilution), rewarded when cheap; net dilution scores negative. The
+    substance test gross-authorisation screens miss. See net_buyback.py."""
+    out = {tk: 0.0 for tk in universe}
+    f = ROOT / "net_buyback.json"
+    if f.exists():
+        try:
+            data = json.loads(f.read_text())
+            for tk, v in data.items():
+                if tk in out and isinstance(v, dict):
+                    try:
+                        out[tk] = float(v.get("score") or 0)   # can be negative
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+    return out
+
+
 def score_selective_buyback_layer(layers: dict, universe: set) -> dict:
     """Selective/own-shares revealed preference: negotiated block
     repurchases, Dutch auctions, off-market buybacks -- management
@@ -751,6 +771,7 @@ def main() -> int:
         "premium_injection": score_premium_injection_layer(layers, universe),
         "hidden_asset": score_hidden_asset_layer(layers, universe),
         "selective_buyback": score_selective_buyback_layer(layers, universe),
+        "net_buyback": score_net_buyback_layer(layers, universe),
         "internalization": score_internalization_layer(layers, universe),
         "bumpitrage": score_bumpitrage_layer(layers, universe),
         "spinoff_volume": score_spinoff_volume_layer(layers, universe),
@@ -838,6 +859,7 @@ def main() -> int:
             "premium_injection_pts": layer_scores["premium_injection"].get(tk, 0),
             "hidden_asset_pts": layer_scores["hidden_asset"].get(tk, 0),
             "selective_buyback_pts": layer_scores["selective_buyback"].get(tk, 0),
+            "net_buyback_pts": layer_scores["net_buyback"].get(tk, 0),
             "internalization_pts": layer_scores["internalization"].get(tk, 0),
             "bumpitrage_pts": layer_scores["bumpitrage"].get(tk, 0),
             "spinoff_volume_pts": layer_scores["spinoff_volume"].get(tk, 0),

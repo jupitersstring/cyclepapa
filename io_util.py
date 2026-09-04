@@ -68,6 +68,7 @@ CONSUMED_SOURCES = {
     "equity_committee_scan.json": (1, ["score"]),
     "asymmetry_assembly.json": (100, ["score"]),
     "xbrl_frames_store.json": (3000, ["equity"]),
+    "net_buyback.json": (500, ["score"]),
     "full_universe_consensus.csv": (1000, None),   # csv: row-count only
 }
 
