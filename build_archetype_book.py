@@ -470,6 +470,12 @@ def main():
         tab_sort, tab_n = sort_col, args.n
         if col == 'arch_fastest_segment' and 'seg_inflect_confirmed' in sub_df.columns:
             tab_sort, tab_n = 'seg_inflect_confirmed', max(args.n, 120)
+        # The Lynch-Reward sheet ranks by its OWN completeness/exceptional-leg
+        # key (max of the blended score and the best single leg, with the
+        # exceptional-leg bonus) — whole-company entry asymmetry is not the
+        # thesis here. Deeper list so one-leg monsters surface too.
+        if col == 'arch_lynch_reward' and 'lynch_rank' in sub_df.columns:
+            tab_sort, tab_n = 'lynch_rank', max(args.n, 100)
         sub_df = sub_df.nlargest(tab_n, tab_sort).reset_index(drop=True)
         if sub_df.empty:
             continue

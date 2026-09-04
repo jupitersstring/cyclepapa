@@ -1669,6 +1669,32 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                  + 0.15 * lr_progress_score
                                  + 0.10 * lr_accel_score)
                                 * df['arch_lynch_reward']).round(3)
+    # -- Ranking among firers + EXCEPTIONAL SINGLE LEGS. A blended score
+    #    buries outliers: a 2-year-plus squeeze releasing IS the Fannie moment
+    #    even when the other legs are ordinary. lynch_leg_max = the strongest
+    #    single leg; lynch_exceptional_leg flags leg-specific extremes
+    #    (multi-year coil released, razor-balanced coil tipping hard, deep
+    #    stagnation snapping upward, or 6-of-9 progress lenses agreeing); the
+    #    RANK key takes the better of the blend and the best-leg path and
+    #    bonuses the exceptional flag, so both balanced setups and one-leg
+    #    monsters surface.
+    _legs = pd.concat([lr_coil_score, lr_release_score, lr_roc_score,
+                       lr_progress_score, lr_accel_score], axis=1)
+    lynch_leg_max = _legs.max(axis=1).fillna(0.0)
+    lynch_exceptional = (
+        ((_num('sr_m_squeeze_run') >= 24) & (_num('sr_m_release') > 0)) |
+        (((_num('asym_m') - 50).abs() <= 2) & (_num('asym_m_roc') >= 10)) |
+        (((_num('asym_q') - 50).abs() <= 2) & (_num('asym_q_roc') >= 10)) |
+        ((_num('roc_3_5y') <= -0.30) & (_num('roc_accel_3_5y') >= 0.30)) |
+        (lr_progress_score >= 0.66)
+    ).fillna(False)
+    df['lynch_leg_max'] = (lynch_leg_max * df['arch_lynch_reward']).round(3)
+    df['lynch_exceptional_leg'] = (lynch_exceptional
+                                   & (df['arch_lynch_reward'] == 1)).astype(int)
+    df['lynch_rank'] = (pd.concat([df['lynch_reward_score'],
+                                   0.80 * df['lynch_leg_max']], axis=1).max(axis=1)
+                        + 0.10 * df['lynch_exceptional_leg']
+                        + 0.05 * df['lynch_reward_score']).round(3)   # blend breaks leg ties
 
     arch_cols = [
         'arch_narrative_lag',
@@ -1816,7 +1842,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y'] if c in df.columns]]
     out.to_csv(out_path, index=False)
 
