@@ -57,4 +57,8 @@ echo "=== io_util (atomic writes + health gate) ==="
 python3 test_io_util.py
 echo
 
+echo "=== lynch reawakening ==="
+python3 test_lynch_reawakening.py
+echo
+
 echo "All test suites passed."

@@ -78,6 +78,7 @@ if [ "$DO_SCANS" = "1" ]; then
   # -- Non-US
   run python3 foreign_markets.py            || true
   run python3 uk_rns_scan.py                --pages 15 || true
+  run python3 price_history_pull.py          --limit 400 || true
   run python3 biotech_pdufa_calendar.py     --days 365 --limit 300 || true
 fi
 
@@ -104,6 +105,7 @@ run python3 buyback_insider_overlay.py     || true
 # copying data/emergence_master.json from the capital-structure branch).
 run python3 emergence_crossfeed.py         || true
 run python3 sohn_pitch_layer.py            || true
+run python3 lynch_reawakening.py           || true
 # Asymmetry-assembly conjunction engine (the PSIX recipe): cheap
 # pass emits an XBRL shortlist, financials_inflection enriches it,
 # then the full pass scores the gated conjunction.
