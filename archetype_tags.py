@@ -1604,6 +1604,24 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (op_margin_lindy,                  lambda x: x >= 0.08),   # durable margins
         (inflection_confirm_score,         lambda x: x >= 0.6),    # confirmed inflection
     ])
+    # -- Fundamental ROC-of-ROC: is the progress itself ACCELERATING? The
+    #    second derivative expressed through seven accounting lenses (revenue
+    #    and EBITDA growth accelerating, multi-year CAGR acceleration, ROIC /
+    #    ROIIC acceleration, margins expanding faster than revenue, surprises
+    #    inflecting, EPS growth streaking). Broadens the gate (a name with
+    #    sparse multi-year history but clearly accelerating fundamentals is a
+    #    legitimate progress candidate when >= 2 lenses agree) and feeds the
+    #    score — the price ROC-of-ROC's accounting mirror.
+    lr_accel_any, lr_accel_score = _confirm([
+        (rev_accel,                            lambda x: x > 0),      # rev growth accelerating
+        (_num('ebitda_accel'),                 lambda x: x > 0),      # EBITDA growth accelerating
+        (revenue_accel_lindy,                  lambda x: x > 0),      # 3y CAGR > 5y CAGR
+        (roiic_accel,                          lambda x: x >= 0.03),  # reinvestment accel
+        (roic_acceleration_v,                  lambda x: x > 0),      # ROIC accelerating
+        (_num('op_margin_delta_yoy'),          lambda x: x > 0),      # margin expanding vs rev
+        (_num('earnings_surprise_inflecting'), lambda x: x > 0),      # surprises inflecting
+    ])
+    lr_progress_gate = lr_progress_any | (lr_accel_score >= 0.28)   # 2+ accel lenses
     # -- Coil: firing keeps the reference near-50-rising flags (M or Q);
     #    the SCORE is continuous — closeness to 50 (1 at 50, 0 at +/-10)
     #    where the asymmetry is rising, best of the two timeframes.
@@ -1640,7 +1658,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     lr_roc_score = pd.concat([_set35, _set10], axis=1).max(axis=1)
 
     df['arch_lynch_reward'] = (
-        (mcap > 0) & lr_progress_any & lr_near50 &
+        (mcap > 0) & lr_progress_gate & lr_near50 &
         (lr_release_lt | lr_roc_setup)
     ).fillna(False).astype(int)
     # Continuous completeness score: coil quality + release depth + roc setup
@@ -1648,7 +1666,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['lynch_reward_score'] = ((0.30 * lr_coil_score
                                  + 0.25 * lr_release_score
                                  + 0.20 * lr_roc_score
-                                 + 0.25 * lr_progress_score)
+                                 + 0.15 * lr_progress_score
+                                 + 0.10 * lr_accel_score)
                                 * df['arch_lynch_reward']).round(3)
 
     arch_cols = [
