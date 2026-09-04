@@ -1588,24 +1588,67 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #     state of RELEASE, recently released after a sustained squeeze.
     # Fire on progress + coil + (release OR roc-setup); upweight completeness.
     # (Monthly bars only for now — the weekly tactical layer is deferred.)
+    # -- Years-of-progress leg TRIANGULATED across accounting lenses (the
+    #    standard _confirm treatment): the multi-year advance can show up in
+    #    the top line, gross profit, EPS durability, cash generation, operating
+    #    income durability, reinvestment economics, durable margins, or a
+    #    confirmed inflection. Fire on ANY (broadens the pool); score breadth.
+    lr_progress_any, lr_progress_score = _confirm([
+        (revenue_5y_cagr,                  lambda x: x >= 0.08),   # 5y top line
+        (revenue_3y_cagr_v,                lambda x: x >= 0.10),   # 3y top line
+        (_num('gross_profit_yoy'),         lambda x: x >= 0.08),   # gross profit
+        (_num('eps_yoy_positive_share'),   lambda x: x >= 0.6),    # EPS durability
+        (n_yrs_fcf_pos,                    lambda x: x >= 4),      # FCF durability
+        (n_yrs_opinc_pos,                  lambda x: x >= 4),      # op-income durability
+        (roiic_lindy,                      lambda x: x >= 0.10),   # reinvestment econ
+        (op_margin_lindy,                  lambda x: x >= 0.08),   # durable margins
+        (inflection_confirm_score,         lambda x: x >= 0.6),    # confirmed inflection
+    ])
+    # -- Coil: firing keeps the reference near-50-rising flags (M or Q);
+    #    the SCORE is continuous — closeness to 50 (1 at 50, 0 at +/-10)
+    #    where the asymmetry is rising, best of the two timeframes.
     lr_near50 = ((_num('asym_m_near50_rising') > 0) |
                  (_num('asym_q_near50_rising') > 0))
+    _coil_m = ((1 - (_num('asym_m') - 50).abs() / 10).clip(0, 1)
+               * (_num('asym_m_roc') > 0).astype(float))
+    _coil_q = ((1 - (_num('asym_q') - 50).abs() / 10).clip(0, 1)
+               * (_num('asym_q_roc') > 0).astype(float))
+    lr_coil_score = pd.concat([_coil_m, _coil_q], axis=1).max(axis=1).fillna(0.0)
+    # -- Release: state + sustained pre-release squeeze; score scales with the
+    #    squeeze-run length (a 2-year coil releases harder than a 6-month one)
+    #    and the recency of the release.
     lr_release_lt = ((_num('sr_m_release') > 0) &
                      ((_num('sr_m_release_recent') > 0) |
                       (_num('sr_m_squeeze_run') >= 6)))
-    lr_roc_setup = (((_num('roc_3_5y') <= 0.40) & (_num('roc_accel_3_5y') > 0)) |
-                    ((_num('roc_10y') <= 1.00) & (_num('roc_accel_10y') > 0)))
-    lr_progress = ((revenue_5y_cagr >= 0.08) |
-                   (_num('eps_yoy_positive_share') >= 0.6) |
-                   ((n_yrs_fcf_pos >= 4) & (rev_yoy_c > 0)) |
-                   (inflection_confirm_score >= 0.6))
+    lr_release_score = ((_num('sr_m_release') > 0).astype(float)
+                        * (_num('sr_m_squeeze_run') / 24.0).clip(0, 1)
+                        * (0.6 + 0.4 * (_num('sr_m_release_recent') > 0))).fillna(0.0)
+    # -- "Market hasn't paid" expressed through THREE lenses (any fires):
+    #    subdued 3.5y ROC accelerating, subdued 10y ROC accelerating, or price
+    #    at/below its own 5y average (Tier-B) while the 3.5y ROC accelerates —
+    #    the third lens covers names with short chart history.
+    _acc35 = _num('roc_accel_3_5y')
+    _acc10 = _num('roc_accel_10y')
+    lr_roc_setup = (((_num('roc_3_5y') <= 0.40) & (_acc35 > 0)) |
+                    ((_num('roc_10y') <= 1.00) & (_acc10 > 0)) |
+                    ((_num('price_vs_5y_avg') <= 1.00) & (_acc35 > 0)))
+    # continuous: how subdued the long ROC is x how strong the acceleration
+    _sub35 = ((0.40 - _num('roc_3_5y')) / 0.80).clip(0, 1)
+    _sub10 = ((1.00 - _num('roc_10y')) / 2.00).clip(0, 1)
+    _set35 = (_sub35 * (_acc35 / 0.50).clip(0, 1)).fillna(0.0)
+    _set10 = (_sub10 * (_acc10 / 0.50).clip(0, 1)).fillna(0.0)
+    lr_roc_score = pd.concat([_set35, _set10], axis=1).max(axis=1)
+
     df['arch_lynch_reward'] = (
-        (mcap > 0) & lr_progress & lr_near50 &
+        (mcap > 0) & lr_progress_any & lr_near50 &
         (lr_release_lt | lr_roc_setup)
     ).fillna(False).astype(int)
-    df['lynch_reward_score'] = ((0.35 * lr_near50.astype(float)
-                                 + 0.35 * lr_release_lt.astype(float)
-                                 + 0.30 * lr_roc_setup.astype(float))
+    # Continuous completeness score: coil quality + release depth + roc setup
+    # + breadth of the accounting progress (upweight where lenses agree).
+    df['lynch_reward_score'] = ((0.30 * lr_coil_score
+                                 + 0.25 * lr_release_score
+                                 + 0.20 * lr_roc_score
+                                 + 0.25 * lr_progress_score)
                                 * df['arch_lynch_reward']).round(3)
 
     arch_cols = [
