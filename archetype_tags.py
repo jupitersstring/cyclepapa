@@ -141,6 +141,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         df = df.merge(segment_signals, on='symbol', how='left', suffixes=('','_seg'))
     if insider_signals is not None:
         df = df.merge(insider_signals, on='symbol', how='left', suffixes=('','_ins'))
+    if os.path.exists('lynch_reward_signals.csv'):
+        lynch_signals = pd.read_csv('lynch_reward_signals.csv').drop_duplicates('symbol')
+        df = df.merge(lynch_signals, on='symbol', how='left', suffixes=('','_lr'))
     df = df.merge(pew, on='symbol', how='left')
 
     # Use the asymmetry sector/market_cap as primary; fall back to yartseva.
@@ -1568,6 +1571,43 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                    + 0.1 * _evsg_exceptional.astype(float))
                                   * df['arch_evsales_derating']).round(3)
 
+    # ---------- Lynch "years of progress rewarded in a year" (Fannie Mae) ----
+    # The Beating-the-Street pattern: a business advances fundamentally for
+    # YEARS while the stock goes nowhere, then the market pays it all at once
+    # ($16 -> $42 in 1989). Legs, per the reference S&R + Volatility-Asymmetry
+    # methodology (computed by lynch_reward_enrich.py on W/M/Q bars):
+    #   FUNDAMENTAL progress  — multi-year business advance (any of: 5y revenue
+    #     CAGR, durable EPS growth share, 4-of-5yr FCF, strong confirmed
+    #     inflection).
+    #   PRICE stagnation      — the long ROC says the market hasn't paid:
+    #     3.5y ROC subdued, or 10y ROC modest; with ROC-of-ROC turning
+    #     POSITIVE (the reward beginning to arrive).
+    #   COIL                  — monthly and/or quarterly volatility asymmetry
+    #     NEAR 50 with positive ROC (balanced coil tipping upward).
+    #   RELEASE               — long-term (monthly) Squeeze & Release in a
+    #     state of RELEASE, recently released after a sustained squeeze.
+    # Fire on progress + coil + (release OR roc-setup); upweight completeness.
+    # Weekly asymmetry / weekly S&R are exposed as TACTICAL columns, not gates.
+    lr_near50 = ((_num('asym_m_near50_rising') > 0) |
+                 (_num('asym_q_near50_rising') > 0))
+    lr_release_lt = ((_num('sr_m_release') > 0) &
+                     ((_num('sr_m_release_recent') > 0) |
+                      (_num('sr_m_squeeze_run') >= 6)))
+    lr_roc_setup = (((_num('roc_3_5y') <= 0.40) & (_num('roc_accel_3_5y') > 0)) |
+                    ((_num('roc_10y') <= 1.00) & (_num('roc_accel_10y') > 0)))
+    lr_progress = ((revenue_5y_cagr >= 0.08) |
+                   (_num('eps_yoy_positive_share') >= 0.6) |
+                   ((n_yrs_fcf_pos >= 4) & (rev_yoy_c > 0)) |
+                   (inflection_confirm_score >= 0.6))
+    df['arch_lynch_reward'] = (
+        (mcap > 0) & lr_progress & lr_near50 &
+        (lr_release_lt | lr_roc_setup)
+    ).fillna(False).astype(int)
+    df['lynch_reward_score'] = ((0.35 * lr_near50.astype(float)
+                                 + 0.35 * lr_release_lt.astype(float)
+                                 + 0.30 * lr_roc_setup.astype(float))
+                                * df['arch_lynch_reward']).round(3)
+
     arch_cols = [
         'arch_narrative_lag',
         'arch_fixed_cost_demand_shock',
@@ -1636,6 +1676,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_tenbagger_path',
         'arch_tenbagger_credible',
         'arch_evsales_derating',
+        'arch_lynch_reward',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -1705,6 +1746,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_tenbagger_path': 'TenBaggerPath',
         'arch_tenbagger_credible': 'TenBaggerPath-Credible',
         'arch_evsales_derating': 'EVSalesDerating-UnpricedGrowth',
+        'arch_lynch_reward': 'LynchReward-YearsInOne',
     }
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(
@@ -1712,7 +1754,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap']]
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score']
+             + [c for c in ['asym_m','asym_q','asym_w','sr_m_release','roc_3_5y','roc_accel_3_5y'] if c in df.columns]]
     out.to_csv(out_path, index=False)
 
     # Summary to stderr

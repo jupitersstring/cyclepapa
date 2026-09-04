@@ -82,8 +82,23 @@ elif [ -f "$PROJECT_DIR/.deep_rendered" ] \
         > "$PROJECT_DIR/rest_driver.log" 2>&1 < /dev/null &
     disown $!
     echo "session-start-hook: launched rest deep enrichment driver (PID $!)" >&2
-elif [ -f "$PROJECT_DIR/.deep_rendered" ] && [ -f "$PROJECT_DIR/.rest_rendered" ]; then
-    # Deep + OTC + rest phases done — resume the standard fundamentals + chart enrichers.
+elif [ -f "$PROJECT_DIR/.deep_rendered" ] \
+     && [ -f "$PROJECT_DIR/.rest_rendered" ] \
+     && [ -f "$PROJECT_DIR/run_lynch_enrich.sh" ] \
+     && [ ! -f "$PROJECT_DIR/.lynch_done" ] \
+     && ! pgrep -f "lynch_reward_enrich.py" > /dev/null 2>&1 \
+     && ! pgrep -f "run_lynch_enrich.sh" > /dev/null 2>&1; then
+    # Lynch "years of progress rewarded in a year" price-series enrichment
+    # (10y weekly OHLC -> W/M/Q S&R + volatility asymmetry + long ROC). SOLE
+    # Yahoo hitter until .lynch_done; the price-refresh enrichers stay paused.
+    chmod +x "$PROJECT_DIR/run_lynch_enrich.sh" 2>/dev/null || true
+    setsid nohup bash "$PROJECT_DIR/run_lynch_enrich.sh" \
+        > "$PROJECT_DIR/lynch_driver.log" 2>&1 < /dev/null &
+    disown $!
+    echo "session-start-hook: launched lynch enrichment driver (PID $!)" >&2
+elif [ -f "$PROJECT_DIR/.deep_rendered" ] && [ -f "$PROJECT_DIR/.rest_rendered" ] \
+     && [ -f "$PROJECT_DIR/.lynch_done" ]; then
+    # Deep + OTC + rest + lynch phases done — resume the standard fundamentals + chart enrichers.
     if [ -f "$PROJECT_DIR/run_ticker_yf_forever.sh" ] \
        && ! pgrep -f "ticker_yf.py" > /dev/null 2>&1 \
        && ! pgrep -f "run_ticker_yf_forever.sh" > /dev/null 2>&1; then

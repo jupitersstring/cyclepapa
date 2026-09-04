@@ -98,6 +98,7 @@ ARCHETYPE_LABELS = {
     'arch_tenbagger_path': 'Ten-Bagger Path (arithmetic closes)',
     'arch_tenbagger_credible': 'Ten-Bagger Path — Credible',
     'arch_evsales_derating': 'EV/Sales Derating (unpriced growth)',
+    'arch_lynch_reward': 'Lynch Reward (years paid in one)',
 }
 
 

@@ -46,3 +46,6 @@ rest_driver.log
 .otc_rendered
 rest_enrich_b.log
 rest_driver_b.log
+lynch_enrich.log
+lynch_driver.log
+.lynch_done
