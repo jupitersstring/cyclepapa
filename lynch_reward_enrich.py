@@ -8,7 +8,8 @@ series legs, transcribing the Squeeze & Release + Volatility Asymmetry Pine v5
 methodology EXACTLY (© malikmck, MPL 2.0 — the reference indicator we already
 use elsewhere):
 
-  Volatility asymmetry (per timeframe: weekly / monthly / quarterly):
+  Volatility asymmetry (per timeframe: monthly / quarterly — MONTHLY BARS
+  ONLY are fetched; the weekly tactical layer is deferred):
     upwardMove   = max(high - close[1], 0)
     downwardMove = max(close[1] - low, 0)
     upATR = ema(upwardMove, 14); dnATR = ema(downwardMove, 14)
@@ -16,10 +17,9 @@ use elsewhere):
     asymmetryValueMA = ema(asymmetryValue, 14)
     upper/lower asymmetry flags per ta.roc(upATR/dnATR, 5) vs the 5.0 threshold.
     "near-50 rising" = |asym - 50| <= 5 AND roc(asym,5) > 0 — balanced coil
-    just starting to tip upward (monthly/quarterly = the setup; weekly =
-    tactical timing).
+    just starting to tip upward (monthly/quarterly = the setup).
 
-  Squeeze & Release (monthly = long-term; weekly = tactical):
+  Squeeze & Release (monthly = long-term):
     atr = ema(tr(true), 14); emaOfATR = ema(atr, 28)
     squeezeValue = ema((emaOfATR - atr) / ema(high - low, 28) * 100, 7)
     squeezeValueMA = ema(squeezeValue, 14)
@@ -31,7 +31,7 @@ use elsewhere):
   ROC-of-ROC (the rolling ROC now minus its value 12 months ago) — the
   attractive setup is a subdued long ROC that is ACCELERATING.
 
-One v8-chart request per symbol (range=10y, interval=1wk), OHLC adjusted by
+One v8-chart request per symbol (range=10y, interval=1mo), OHLC adjusted by
 adjclose/close so splits don't distort the EMAs. Output:
 lynch_reward_signals.csv, merged optionally by archetype_tags.py.
 
@@ -156,9 +156,9 @@ def long_roc(monthly_close: pd.Series):
     return out
 
 
-def fetch_weekly(sess: YahooSession, symbol: str) -> pd.DataFrame:
+def fetch_monthly(sess: YahooSession, symbol: str) -> pd.DataFrame:
     url = (f"https://query1.finance.yahoo.com/v8/finance/chart/"
-           f"{urllib.parse.quote(symbol)}?range=10y&interval=1wk")
+           f"{urllib.parse.quote(symbol)}?range=10y&interval=1mo")
     try:
         r = sess.opener.open(url, timeout=15)
         d = json.loads(r.read())
@@ -191,13 +191,12 @@ def resample_ohlc(df: pd.DataFrame, rule: str) -> pd.DataFrame:
                                   'low': 'min', 'close': 'last'}).dropna()
 
 
-def compute_row(symbol: str, wk: pd.DataFrame):
-    if len(wk) < 60:            # need a bit over a year of weekly bars minimum
+def compute_row(symbol: str, mo: pd.DataFrame):
+    if len(mo) < 27:            # asym needs period+smooth+lookback monthly bars
         return None
-    mo = resample_ohlc(wk, 'ME')
-    qt = resample_ohlc(wk, 'QE')
+    qt = resample_ohlc(mo, 'QE')
     row = {'symbol': symbol}
-    for tag, frame in (('w', wk), ('m', mo), ('q', qt)):
+    for tag, frame in (('m', mo), ('q', qt)):
         a = asym_metrics(frame)
         if a:
             row.update({f'{k}_{tag}' if k == 'asym' else k.replace('asym', f'asym_{tag}'): v
@@ -205,9 +204,6 @@ def compute_row(symbol: str, wk: pd.DataFrame):
     sr_m = squeeze_release(mo)
     if sr_m:
         row.update({k.replace('sr_', 'sr_m_'): v for k, v in sr_m.items()})
-    sr_w = squeeze_release(wk)
-    if sr_w:
-        row.update({k.replace('sr_', 'sr_w_'): v for k, v in sr_w.items()})
     row.update(long_roc(mo['close']))
     return row
 
@@ -259,8 +255,8 @@ def main():
             time.sleep(min_int - gap)
         last = time.time()
         try:
-            wk = fetch_weekly(sess, sym)
-            row = compute_row(sym, wk) if len(wk) else None
+            mo = fetch_monthly(sess, sym)
+            row = compute_row(sym, mo) if len(mo) else None
         except StaleCrumb:
             consec += 1
             if not sess.warm(force=True):

@@ -1587,7 +1587,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #   RELEASE               — long-term (monthly) Squeeze & Release in a
     #     state of RELEASE, recently released after a sustained squeeze.
     # Fire on progress + coil + (release OR roc-setup); upweight completeness.
-    # Weekly asymmetry / weekly S&R are exposed as TACTICAL columns, not gates.
+    # (Monthly bars only for now — the weekly tactical layer is deferred.)
     lr_near50 = ((_num('asym_m_near50_rising') > 0) |
                  (_num('asym_q_near50_rising') > 0))
     lr_release_lt = ((_num('sr_m_release') > 0) &
@@ -1755,7 +1755,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     )
 
     out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score']
-             + [c for c in ['asym_m','asym_q','asym_w','sr_m_release','roc_3_5y','roc_accel_3_5y'] if c in df.columns]]
+             + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y'] if c in df.columns]]
     out.to_csv(out_path, index=False)
 
     # Summary to stderr
