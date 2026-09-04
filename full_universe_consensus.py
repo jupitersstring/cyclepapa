@@ -811,12 +811,38 @@ def main() -> int:
     # rank-decay: contribution = max(0, 1 - (rank-1) / topN_threshold)
     # where topN_threshold is layer-specific but the COMPLETE universe
     # is considered, not a truncated file.
+    # Cluster map for the de-correlated count (audit A2): correlated
+    # layers should not each count as an independent confirmation. Load
+    # the rho>0.6 clusters and map each layer_scores key -> cluster id via
+    # its CSV column name (a few columns are aliased vs the score key).
+    _COL_ALIAS = {"opportunistic_insiders": "opportunistic_pts",
+                  "special_situations": "special_sits_pts",
+                  "buyback_insider_overlay": "bb_insider_overlay_pts",
+                  "tender_mechanism": "tender_mech_pts",
+                  "c10b51": "c10b51_pts"}
+    _lk_cluster = {}
+    _ep = ROOT / "effective_layers.json"
+    if _ep.exists():
+        try:
+            _clusters = json.loads(_ep.read_text()).get("clusters", [])
+            _col2c = {col: i for i, cl in enumerate(_clusters) for col in cl}
+            _nid = len(_clusters)
+            for lk in layer_scores:
+                col = _COL_ALIAS.get(lk, lk + "_pts")
+                if col in _col2c:
+                    _lk_cluster[lk] = _col2c[col]
+                else:
+                    _lk_cluster[lk] = _nid; _nid += 1
+        except Exception:
+            _lk_cluster = {}
+
     rows = []
     universe_size = len(universe)
     for tk in universe:
         n_screens = 0
         contrib = 0.0
         per_layer_contrib = {}
+        fired_clusters = set()
         for lk, ranks in layer_ranks.items():
             rk, sc = ranks.get(tk, (universe_size, 0))
             # Layer contributes only if score > 0 (or < 0 for f144)
@@ -827,12 +853,15 @@ def main() -> int:
                 if c > 0:
                     contrib += c
                     n_screens += 1
+                    if _lk_cluster:
+                        fired_clusters.add(_lk_cluster.get(lk, lk))
                 if sc < 0:
                     contrib -= 0.3  # penalty for f144 bearish hits
         rows.append({
             "ticker": tk,
             "consensus_score": round(contrib, 3),
             "n_layers_firing": n_screens,
+            "n_effective_firing": len(fired_clusters) if _lk_cluster else n_screens,
             "psu_pts": layer_scores["psu"].get(tk, 0),
             "valuation_pts": layer_scores["valuation"].get(tk, 0),
             "buyback_pts": layer_scores["buyback"].get(tk, 0),

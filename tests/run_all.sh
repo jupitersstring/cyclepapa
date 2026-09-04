@@ -69,4 +69,8 @@ echo "=== net buyback ==="
 python3 test_net_buyback.py
 echo
 
+echo "=== cluster-aware consensus ==="
+python3 test_cluster_consensus.py
+echo
+
 echo "All test suites passed."
