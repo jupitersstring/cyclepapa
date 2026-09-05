@@ -31,6 +31,7 @@ from build_harvard_workbook import (
 )
 from build_archetype_book import load_data, ARCHETYPE_LABELS, _sheet_safe
 from openpyxl.styles import Border, Side
+from otc_flag import add_otc_mode_arg, apply_otc_mode
 
 SORT_COL = 'entry_inflection_confirmed'
 
@@ -143,9 +144,11 @@ def main():
     ap.add_argument('--min-names', type=int, default=25,
                     help='minimum eligible names for a country to get a sheet')
     ap.add_argument('--out', default='country_archetype_inflection_book.xlsx')
+    add_otc_mode_arg(ap)
     args = ap.parse_args()
 
     df, arch_cols = load_data()
+    df = apply_otc_mode(df, args.otc_mode)
     df = _add_inflection_key(df)
     df['src'] = df['src'].fillna('').astype(str).str.upper()
     print(f'  {len(df):,} eligible rows, {len(arch_cols)} archetypes',

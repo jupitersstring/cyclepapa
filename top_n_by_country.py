@@ -15,6 +15,7 @@ import sys
 
 import numpy as np
 import pandas as pd
+from otc_flag import add_otc_mode_arg, apply_otc_mode
 
 
 def load_verdicts() -> pd.DataFrame:
@@ -157,6 +158,7 @@ def main():
                          'asymmetry or by inflection asymmetry')
     ap.add_argument('--out-csv', default='top_n_by_country.csv')
     ap.add_argument('--out-xlsx', default='top_n_by_country.xlsx')
+    add_otc_mode_arg(ap)
     args = ap.parse_args()
 
     print('loading...', file=sys.stderr)
@@ -167,6 +169,7 @@ def main():
     if 'market_cap_usd' in df.columns:
         df['market_cap'] = (pd.to_numeric(df['market_cap_usd'], errors='coerce')
                             .fillna(pd.to_numeric(df['market_cap'], errors='coerce')))
+    df = apply_otc_mode(df, args.otc_mode)
     df = df[df['market_cap'].fillna(0) >= args.min_mcap]
     if args.exclude_red:
         df = df[df['verdict'] != 'RED']

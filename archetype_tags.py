@@ -1693,11 +1693,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     ).fillna(False).astype(int)
     # Continuous completeness score: coil quality + release depth + roc setup
     # + breadth of the accounting progress (upweight where lenses agree).
-    df['lynch_reward_score'] = ((0.30 * lr_coil_score
-                                 + 0.25 * lr_release_score
-                                 + 0.20 * lr_roc_score
+    # Buyback points: Fannie announced a 5M-share buyback into the 1987
+    # crash — a shrinking share count while the price sleeps is part of the
+    # pattern (and the alignment evidence). buyback_score is the triangulated
+    # 5-angle composite (share count YoY/3y, net repurchases, buyback yield,
+    # per-share outgrowth), so this is robust, not a single field.
+    df['lynch_reward_score'] = ((0.25 * lr_coil_score
+                                 + 0.225 * lr_release_score
+                                 + 0.175 * lr_roc_score
                                  + 0.15 * lr_progress_score
-                                 + 0.10 * lr_accel_score)
+                                 + 0.10 * lr_accel_score
+                                 + 0.10 * buyback_score)
                                 * df['arch_lynch_reward']).round(3)
     # -- Ranking among firers + EXCEPTIONAL SINGLE LEGS. A blended score
     #    buries outliers: a 2-year-plus squeeze releasing IS the Fannie moment
@@ -1718,6 +1724,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((_num('roc_3_5y') <= -0.30) & (_num('roc_accel_3_5y') >= 0.30)) |
         (lr_progress_score >= 0.66)
     ).fillna(False)
+    # GAAP-masked flag (US-exam lesson: TENB P/E 573, NOVT 113, THRM 49 while
+    # EV/EBITDA is modest — GAAP EPS depressed by one-offs/SBC/amortization,
+    # which is often exactly WHY the market ignored the progress). Display
+    # marker, not a gate.
+    df['gaap_masked'] = ((_num('p_e') > 40) &
+                         (_num('ev_ebitda') > 0) & (_num('ev_ebitda') < 16)
+                         ).fillna(False).astype(int)
     df['lynch_leg_max'] = (lynch_leg_max * df['arch_lynch_reward']).round(3)
     df['lynch_exceptional_leg'] = (lynch_exceptional
                                    & (df['arch_lynch_reward'] == 1)).astype(int)
@@ -1873,7 +1886,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     )
 
     out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank']
-             + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape'] if c in df.columns]]
+             + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked'] if c in df.columns]]
     out.to_csv(out_path, index=False)
 
     # Summary to stderr
