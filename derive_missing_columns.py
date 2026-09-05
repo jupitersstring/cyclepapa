@@ -428,6 +428,14 @@ def main():
     coverage_after = {c: int(master[c].notna().sum()) for c in DERIVED_COLUMNS
                       if c in master.columns}
 
+    # Negative-EBITDA guard: a NEGATIVE net_debt/EBITDA is a division artifact
+    # (negative EBITDA), not net cash. Null it at the source so no book or
+    # gate can read a leveraged loss-maker as a clean balance sheet.
+    if 'net_debt_ebitda' in master.columns and 'ebitda_ttm' in master.columns:
+        _e = pd.to_numeric(master['ebitda_ttm'], errors='coerce')
+        _bad = _e.notna() & (_e <= 0)
+        master.loc[_bad, 'net_debt_ebitda'] = float('nan')
+
     master.to_csv(out_path, index=False)
     print(f'\nwrote {out_path}: {len(master):,} rows, '
           f'{len(master.columns)} cols', file=sys.stderr)

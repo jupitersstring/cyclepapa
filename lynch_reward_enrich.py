@@ -145,6 +145,13 @@ def long_roc(monthly_close: pd.Series):
     out = {}
     c = monthly_close.dropna()
     out['price_years'] = round(len(c) / 12.0, 1)
+    # FRESH short-horizon ROC (from the bars just fetched — the master's
+    # momentum_12m can lag by months). Used for the "reward not yet paid"
+    # gate: a release + rising asymmetry AFTER a 100% rally is the payment
+    # already arriving, not the coil Lynch wants to buy.
+    for label, months in (('6m', 6), ('12m', 12)):
+        out[f'roc_{label}'] = (round(float(c.iloc[-1] / c.iloc[-1 - months] - 1.0), 4)
+                               if len(c) > months and c.iloc[-1 - months] > 0 else np.nan)
     for label, months in (('3_5y', 42), ('10y', 120)):
         r = c / c.shift(months) - 1.0
         out[f'roc_{label}'] = (round(float(r.iloc[-1]), 4)
@@ -205,6 +212,13 @@ def compute_row(symbol: str, mo: pd.DataFrame):
     if sr_m:
         row.update({k.replace('sr_', 'sr_m_'): v for k, v in sr_m.items()})
     row.update(long_roc(mo['close']))
+    # Halted / frozen-tape guard (the Icure lesson: a 13-month trading
+    # suspension manufactures a fake "stagnation + release"). A run of
+    # identical closes at the tail, or a last bar far in the past, marks the
+    # tape as not live; the archetype excludes such names.
+    tail = mo['close'].dropna().tail(4)
+    row['stale_tape'] = int(len(tail) >= 3 and tail.nunique() == 1)
+    row['last_bar_age_days'] = int((pd.Timestamp.now() - mo.index[-1]).days)
     return row
 
 

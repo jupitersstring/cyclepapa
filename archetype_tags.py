@@ -792,6 +792,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     fcf_margin_w = s('fcf_margin')
     op_margin_v = s('op_margin')
     ebitda_ttm_v = s('ebitda_ttm')
+    # Negative-EBITDA artifact guard: net_debt/EBITDA flips NEGATIVE when
+    # EBITDA is negative and then reads as NET CASH (Interfor screened at -4x
+    # while carrying $817M of net debt). Treat the ratio as unknown (99 fails
+    # every leverage gate) whenever EBITDA is not positive; genuine net cash is
+    # still caught through net_cash_pct in _clean_bs.
+    nde = nde.where(~(ebitda_ttm_v.notna() & (ebitda_ttm_v <= 0)), 99.0)
     ev_ebitda_v = s('ev_ebitda', 99.0)
     pe_w = s('p_e', 99.0)
     cash_conv_w = s('cash_conversion')
@@ -1621,7 +1627,30 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (_num('op_margin_delta_yoy'),          lambda x: x > 0),      # margin expanding vs rev
         (_num('earnings_surprise_inflecting'), lambda x: x > 0),      # surprises inflecting
     ])
-    lr_progress_gate = lr_progress_any | (lr_accel_score >= 0.28)   # 2+ accel lenses
+    # PROFIT-DURABILITY requirement (validation lesson): acquisition-driven
+    # revenue CAGR (Interfor), base-effect recoveries (Singer) and "EPS
+    # improving from a loss" (Methode) all passed as "years of progress" while
+    # earnings collapsed. Lynch's progress is PROFIT/cash advancing for years,
+    # so at least one profit-durability lens must agree — top-line growth
+    # alone cannot fire it. Global lenses (ROCE, eps-share + real op margin)
+    # cover non-EDGAR names.
+    lr_profit_durable = ((n_yrs_opinc_pos >= 4) | (n_yrs_fcf_pos >= 4) |
+                         (roiic_lindy >= 0.10) | (op_margin_lindy >= 0.08) |
+                         ((_num('roce') >= 0.10) & (ebitda_ttm_v > 0)) |
+                         ((_num('eps_yoy_positive_share') >= 0.75) & (_num('op_margin') > 0.05)))
+    lr_progress_gate = (lr_progress_any | (lr_accel_score >= 0.28)) & lr_profit_durable
+    # LOW-RETURN CAPACITY-BUILDER trap (ACE: MW doubled while profit halved at
+    # 5.5% ROCE) — a business earning <6% on capital has no hidden advance for
+    # the market to reward. Soft: excludes only where ROCE is PRESENT and low.
+    lr_not_capacity_trap = ~(_num('roce').notna() & (_num('roce') < 0.06))
+    # REWARD NOT YET PAID (the biggest systematic miss): six of the top twelve
+    # had already rallied 40-160% — a monthly release + rising asymmetry AFTER
+    # a big rally is the payment arriving, not the coil. Gate on the FRESH
+    # 12-month ROC from the just-fetched bars (fallback: master momentum).
+    _r12 = _num('roc_12m')
+    lr_unpaid = ((_r12 <= 0.35) | (_r12.isna() & (_num('momentum_12m') <= 0.35)))
+    # LIVE TAPE (Icure: a halted stock faked stagnation + release).
+    lr_live_tape = ~((_num('stale_tape') > 0) | (_num('last_bar_age_days') > 45))
     # -- Coil: firing keeps the reference near-50-rising flags (M or Q);
     #    the SCORE is continuous — closeness to 50 (1 at 50, 0 at +/-10)
     #    where the asymmetry is rising, best of the two timeframes.
@@ -1658,7 +1687,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     lr_roc_score = pd.concat([_set35, _set10], axis=1).max(axis=1)
 
     df['arch_lynch_reward'] = (
-        (mcap > 0) & lr_progress_gate & lr_near50 &
+        (mcap > 0) & lr_progress_gate & lr_not_capacity_trap &
+        lr_unpaid & lr_live_tape & lr_near50 &
         (lr_release_lt | lr_roc_setup)
     ).fillna(False).astype(int)
     # Continuous completeness score: coil quality + release depth + roc setup
@@ -1843,7 +1873,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     )
 
     out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank']
-             + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y'] if c in df.columns]]
+             + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape'] if c in df.columns]]
     out.to_csv(out_path, index=False)
 
     # Summary to stderr
