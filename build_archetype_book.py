@@ -108,7 +108,7 @@ def _sheet_safe(s: str) -> str:
     return out[:31]
 
 
-def load_data(min_mcap: float = 10_000_000):
+def load_data(min_mcap: float = 10_000_000, otc_mode: str = 'ex-otc'):
     """Merge asymmetry_global + archetype_tags + verdicts + valuation.
 
     min_mcap: minimum USD market cap to keep (default $10M for listed names;
@@ -203,6 +203,12 @@ def load_data(min_mcap: float = 10_000_000):
         _fsy = pd.to_numeric(df.get('fastest_segment_yoy'), errors='coerce')
         _aln = pd.to_numeric(df.get('alignment_score'), errors='coerce').fillna(0.0)
         df['seg_inflect_confirmed'] = _fsy * (1.0 + 0.20 * _cfo + 0.10 * _aln)
+
+    # OTC policy: general books show genuine exchange listings; OTC tradings
+    # (incl. foreign F/Y tickers venue-tagged src='US') live in the dedicated
+    # OTC books. Callers that manage OTC themselves pass otc_mode='all'.
+    from otc_flag import apply_otc_mode as _apply_otc
+    df = _apply_otc(df, otc_mode)
 
     # Apply min mcap + exclude RED
     df = df[df['market_cap'].fillna(0) >= min_mcap]

@@ -154,6 +154,8 @@ def load_quant() -> pd.DataFrame:
         extra = pd.concat(frames, ignore_index=True).drop_duplicates('symbol', keep='first')
         mc = ['symbol'] + [c for c in extra.columns if c != 'symbol' and c not in df.columns]
         df = df.merge(extra[mc], on='symbol', how='left')
+    from otc_flag import apply_otc_mode as _apply_otc
+    df = _apply_otc(df, 'ex-otc')   # general books: genuine listings only
     return df
 
 

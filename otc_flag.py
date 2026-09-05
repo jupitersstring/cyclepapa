@@ -39,9 +39,9 @@ def is_otc(symbols: pd.Series, src: pd.Series | None = None) -> pd.Series:
 
 
 def add_otc_mode_arg(ap):
-    ap.add_argument('--otc-mode', choices=['all', 'otc', 'ex-otc'], default='all',
-                    help="all (default) | otc (OTC tradings only) | "
-                         "ex-otc (genuine exchange listings only)")
+    ap.add_argument('--otc-mode', choices=['all', 'otc', 'ex-otc'], default='ex-otc',
+                    help="ex-otc (default: genuine exchange listings) | "
+                         "otc (OTC tradings only) | all")
 
 
 def apply_otc_mode(df: pd.DataFrame, mode: str) -> pd.DataFrame:

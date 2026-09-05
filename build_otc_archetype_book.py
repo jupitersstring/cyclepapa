@@ -50,7 +50,7 @@ def main():
     ap.add_argument('--out', default='otc_archetype_book.xlsx')
     args = ap.parse_args()
 
-    df, arch_cols = load_data(min_mcap=args.min_mcap)
+    df, arch_cols = load_data(min_mcap=args.min_mcap, otc_mode='all')
     otc = load_otc_symbols()
     if otc:
         df = df[df['symbol'].isin(otc)].copy()

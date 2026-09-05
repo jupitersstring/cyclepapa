@@ -67,6 +67,8 @@ def load_data():
     if 'entry_today_asymmetry' not in df.columns:
         df['entry_today_asymmetry'] = df.get('asymmetry_score', 0)
     df['entry_today_asymmetry'] = df['entry_today_asymmetry'].fillna(0)
+    from otc_flag import apply_otc_mode as _apply_otc
+    df = _apply_otc(df, 'ex-otc')   # general books: genuine listings only
     if 'market_cap' in df.columns:
         df = df[df['market_cap'].fillna(0) >= 10_000_000]
     if 'verdict' in df.columns:
