@@ -128,6 +128,8 @@ def main():
                     help='top N per archetype per country')
     ap.add_argument('--min-names', type=int, default=25,
                     help='minimum eligible names for a country to get a sheet')
+    ap.add_argument('--global-n', type=int, default=100,
+                    help='top N per archetype on the GLOBAL sheet')
     ap.add_argument('--out', default='country_archetype_book.xlsx')
     add_otc_mode_arg(ap)
     add_high_filter_arg(ap)
@@ -175,6 +177,14 @@ def main():
                    value=(top.iloc[0]['symbol'] if len(top) else '—')).font = f_text_muted
         r += 1
 
+    # GLOBAL sheet first: top N per archetype across the whole universe,
+    # so the cross-market best of every pattern sits beside the per-country
+    # partitions.
+    gws = wb.create_sheet('GLOBAL')
+    _write_country_sheet(gws, df, 'GLOBAL', arch_cols, args.global_n)
+    print(f'  GLOBAL: {len(df):,} names, top {args.global_n}/archetype',
+          file=sys.stderr)
+
     for ctry in countries:
         cdf = df[df['src'] == ctry]
         ws = wb.create_sheet(_sheet_safe(ctry))
@@ -183,7 +193,7 @@ def main():
 
     cover.sheet_view.showGridLines = False
     wb.save(args.out)
-    print(f'wrote {args.out}  ({1 + len(countries)} sheets: Cover + '
+    print(f'wrote {args.out}  ({2 + len(countries)} sheets: Cover + GLOBAL + '
           f'{len(countries)} countries)', file=sys.stderr)
 
 
