@@ -147,7 +147,7 @@ def main():
     add_otc_mode_arg(ap)
     args = ap.parse_args()
 
-    df, arch_cols = load_data()
+    df, arch_cols = load_data(otc_mode='all')
     df = apply_otc_mode(df, args.otc_mode)
     df = _add_inflection_key(df)
     df['src'] = df['src'].fillna('').astype(str).str.upper()
