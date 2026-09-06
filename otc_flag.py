@@ -49,3 +49,18 @@ def apply_otc_mode(df: pd.DataFrame, mode: str) -> pd.DataFrame:
         return df
     mask = is_otc(df['symbol'], df['src'] if 'src' in df.columns else None)
     return df[mask] if mode == 'otc' else df[~mask]
+
+
+def add_high_filter_arg(ap):
+    ap.add_argument('--high-filter', choices=['none', 'abs', 'rel', 'any', 'both'],
+                    default='none',
+                    help="restrict to names at 52-week highs: abs (vs itself) | "
+                         "rel (vs the country index) | any | both | none")
+
+
+def apply_high_filter(df: pd.DataFrame, mode: str) -> pd.DataFrame:
+    if mode == 'none':
+        return df
+    a = pd.to_numeric(df.get('high_52w_abs'), errors='coerce').fillna(0) > 0
+    r = pd.to_numeric(df.get('high_52w_rel'), errors='coerce').fillna(0) > 0
+    return df[{'abs': a, 'rel': r, 'any': a | r, 'both': a & r}[mode]]

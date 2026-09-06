@@ -1739,6 +1739,49 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                         + 0.10 * df['lynch_exceptional_leg']
                         + 0.05 * df['lynch_reward_score']).round(3)   # blend breaks leg ties
 
+    # ---------- 52-week-high flags (absolute / relative-to-index) ----------
+    # From the lynch price-series enricher: is_52w_high (within 3% of the
+    # trailing-12-month high), rel_is_52w_high (the stock/COUNTRY-INDEX ratio
+    # at ITS 52w high — strength against the market), base_depth_12m (where
+    # the name stood vs its own then-high a year ago: low = the current high
+    # is a FRESH emergence from a base, not mid-uptrend).
+    _abs_hi = (_num('is_52w_high') > 0)
+    _rel_hi = (_num('rel_is_52w_high') > 0)
+    df['high_52w_abs'] = _abs_hi.astype(int)
+    df['high_52w_rel'] = _rel_hi.astype(int)
+    df['high_52w_both'] = (_abs_hi & _rel_hi).astype(int)
+
+    # ---------- "Analyst awakening" (screaming buy, re-rating just begun) ----
+    # Analysts are pounding the table but the market has only STARTED to pay:
+    # CONVICTION triangulated across three lenses (consensus rating strength,
+    # target upside, breadth of coverage — fire needs rating AND one other),
+    # and EARLINESS as a fresh 52w high (absolute or vs the index) emerging
+    # from a base (base_depth <= 0.85 a year ago) without an extended trailing
+    # run (fresh 12m ROC <= 50%). The fresh-high-from-base is the robust form
+    # of "re-rating just started": stronger than raw momentum because it
+    # requires BOTH a new high AND a preceding base. Live tape required.
+    _rec = _num('yf_recommendation_mean')
+    _ups = _num('analyst_target_upside_pct')
+    _nan_ = _num('n_analysts').fillna(_num('yf_n_analysts'))
+    _conviction = ((_rec > 0) & (_rec <= 2.2) &
+                   (((_ups >= 25)) | (_nan_ >= 5)))
+    _fresh_high = ((_abs_hi | _rel_hi) &
+                   (_num('base_depth_12m') <= 0.85))
+    _not_extended = ((_num('roc_12m') <= 0.50) |
+                     (_num('roc_12m').isna() & (_num('momentum_12m') <= 0.50)))
+    df['arch_analyst_awakening'] = (
+        (mcap > 0) & (_nan_ >= 3) & _conviction &
+        _fresh_high & _not_extended & lr_live_tape
+    ).fillna(False).astype(int)
+    # Score: rating strength + upside depth + breadth + freshness of the move.
+    _rec_sc = ((2.2 - _rec) / 1.2).clip(0, 1).fillna(0)         # 1.0 -> best
+    _ups_sc = (_ups / 60.0).clip(0, 1).fillna(0)
+    _brd_sc = (_nan_ / 12.0).clip(0, 1).fillna(0)
+    _fresh_sc = ((0.85 - _num('base_depth_12m')) / 0.45).clip(0, 1).fillna(0)
+    df['analyst_awakening_score'] = ((0.35 * _rec_sc + 0.30 * _ups_sc
+                                      + 0.15 * _brd_sc + 0.20 * _fresh_sc)
+                                     * df['arch_analyst_awakening']).round(3)
+
     arch_cols = [
         'arch_narrative_lag',
         'arch_fixed_cost_demand_shock',
@@ -1808,6 +1851,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_tenbagger_credible',
         'arch_evsales_derating',
         'arch_lynch_reward',
+        'arch_analyst_awakening',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -1878,6 +1922,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_tenbagger_credible': 'TenBaggerPath-Credible',
         'arch_evsales_derating': 'EVSalesDerating-UnpricedGrowth',
         'arch_lynch_reward': 'LynchReward-YearsInOne',
+        'arch_analyst_awakening': 'AnalystAwakening-52wHigh',
     }
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(
@@ -1885,8 +1930,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank']
-             + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked'] if c in df.columns]]
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score']
+             + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m'] if c in df.columns]]
     out.to_csv(out_path, index=False)
 
     # Summary to stderr

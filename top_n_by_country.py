@@ -15,7 +15,8 @@ import sys
 
 import numpy as np
 import pandas as pd
-from otc_flag import add_otc_mode_arg, apply_otc_mode
+from otc_flag import (add_otc_mode_arg, apply_otc_mode,
+                      add_high_filter_arg, apply_high_filter)
 
 
 def load_verdicts() -> pd.DataFrame:
@@ -159,6 +160,7 @@ def main():
     ap.add_argument('--out-csv', default='top_n_by_country.csv')
     ap.add_argument('--out-xlsx', default='top_n_by_country.xlsx')
     add_otc_mode_arg(ap)
+    add_high_filter_arg(ap)
     args = ap.parse_args()
 
     print('loading...', file=sys.stderr)
@@ -170,6 +172,7 @@ def main():
         df['market_cap'] = (pd.to_numeric(df['market_cap_usd'], errors='coerce')
                             .fillna(pd.to_numeric(df['market_cap'], errors='coerce')))
     df = apply_otc_mode(df, args.otc_mode)
+    df = apply_high_filter(df, args.high_filter)
     df = df[df['market_cap'].fillna(0) >= args.min_mcap]
     if args.exclude_red:
         df = df[df['verdict'] != 'RED']

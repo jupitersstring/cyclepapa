@@ -163,6 +163,77 @@ def long_roc(monthly_close: pd.Series):
     return out
 
 
+
+
+# ---- 52-week-high block (absolute + relative to the country index) ----
+_BENCH = None
+_SUFFIX_INDEX = {
+    '.T': '^N225', '.KS': '^KS11', '.KQ': '^KS11', '.TW': '^TWII', '.TWO': '^TWII',
+    '.HK': '^HSI', '.SS': '000001.SS', '.SZ': '000001.SS', '.NS': '^NSEI',
+    '.BO': '^NSEI', '.BK': '^SET.BK', '.JK': '^JKSE', '.KL': '^KLSE',
+    '.SI': '^STI', '.AX': '^AXJO', '.L': '^FTSE', '.DE': '^GDAXI',
+    '.F': '^GDAXI', '.PA': '^FCHI', '.SA': '^BVSP', '.MX': '^MXX',
+    '.IS': '^XU100',
+}
+
+
+def _benchmarks():
+    global _BENCH
+    if _BENCH is None:
+        _BENCH = {}
+        if os.path.exists('benchmark_series.csv'):
+            try:
+                b = pd.read_csv('benchmark_series.csv', index_col=0, parse_dates=True)
+                for c in b.columns:
+                    s = b[c].dropna()
+                    s.index = s.index.to_period('M')
+                    _BENCH[c] = s[~s.index.duplicated(keep='last')]
+            except Exception:
+                _BENCH = {}
+    return _BENCH
+
+
+def _index_for(symbol: str):
+    for suf, idx in _SUFFIX_INDEX.items():
+        if symbol.endswith(suf):
+            return idx
+    return '^GSPC'                       # US listings and default
+
+
+def high_metrics(mo: pd.DataFrame, symbol: str):
+    """52-week-high position, absolute and relative to the country index.
+    Monthly bars: 52w = trailing 12 bars. is_high uses a 3% proximity band
+    (monthly closes never sit exactly on the intramonth high). base_depth =
+    where the name stood vs ITS OWN then-52w-high a year ago — a low value
+    means the current high is a FRESH emergence from a base, not the middle
+    of an old uptrend."""
+    out = {}
+    c = mo['close'].dropna()
+    h = mo['high'].dropna()
+    if len(c) < 13:
+        return out
+    hi12 = float(h.tail(12).max())
+    out['pct_52w_high'] = round(float(c.iloc[-1] / hi12), 4) if hi12 > 0 else np.nan
+    out['is_52w_high'] = int(out.get('pct_52w_high', 0) >= 0.97)
+    tail_h = h.tail(12)
+    out['months_since_52w_high'] = int(len(tail_h) - 1 - int(tail_h.values.argmax()))
+    hi12_ago = float(h.iloc[-24:-12].max()) if len(h) >= 24 else np.nan
+    out['base_depth_12m'] = (round(float(c.iloc[-13] / hi12_ago), 4)
+                             if len(c) >= 13 and pd.notna(hi12_ago) and hi12_ago > 0 else np.nan)
+    # relative-strength ratio vs the country benchmark
+    bench = _benchmarks().get(_index_for(symbol))
+    if bench is not None and len(bench):
+        cp = c.copy()
+        cp.index = cp.index.to_period('M')
+        cp = cp[~cp.index.duplicated(keep='last')]
+        ratio = (cp / bench).dropna()
+        if len(ratio) >= 13:
+            rhi12 = float(ratio.tail(12).max())
+            out['rel_pct_52w_high'] = round(float(ratio.iloc[-1] / rhi12), 4) if rhi12 > 0 else np.nan
+            out['rel_is_52w_high'] = int(out.get('rel_pct_52w_high', 0) >= 0.97)
+    return out
+
+
 def fetch_monthly(sess: YahooSession, symbol: str) -> pd.DataFrame:
     url = (f"https://query1.finance.yahoo.com/v8/finance/chart/"
            f"{urllib.parse.quote(symbol)}?range=10y&interval=1mo")
@@ -212,6 +283,7 @@ def compute_row(symbol: str, mo: pd.DataFrame):
     if sr_m:
         row.update({k.replace('sr_', 'sr_m_'): v for k, v in sr_m.items()})
     row.update(long_roc(mo['close']))
+    row.update(high_metrics(mo, symbol))
     # Halted / frozen-tape guard (the Icure lesson: a 13-month trading
     # suspension manufactures a fake "stagnation + release"). A run of
     # identical closes at the tail, or a last bar far in the past, marks the

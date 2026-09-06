@@ -131,7 +131,9 @@ def main():
     # arch_-boolean drop at the end.
     confirm_scores = ['confirm_overall', 'alignment_score', 'buyback_score',
                       'inflection_confirm_score', 'oper_leverage_score',
-                      'rev_growth_score', 'cheapness_score', 'quality_score']
+                      'rev_growth_score', 'cheapness_score', 'quality_score',
+                      'high_52w_abs', 'high_52w_rel', 'high_52w_both',
+                      'analyst_awakening_score', 'lynch_rank']
     extra_arch = [c for c in (['archetype_count', 'bab_score'] + confirm_scores)
                   if c in arch_df.columns]
     df = df.merge(arch_df[['symbol'] + arch_cols + extra_arch],

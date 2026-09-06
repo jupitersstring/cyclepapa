@@ -30,7 +30,8 @@ from build_harvard_workbook import (
 )
 from build_archetype_book import load_data, ARCHETYPE_LABELS, _sheet_safe
 from openpyxl.styles import Border, Side
-from otc_flag import add_otc_mode_arg, apply_otc_mode
+from otc_flag import (add_otc_mode_arg, apply_otc_mode,
+                      add_high_filter_arg, apply_high_filter)
 
 SORT_COL = 'entry_confirmed'
 
@@ -129,10 +130,12 @@ def main():
                     help='minimum eligible names for a country to get a sheet')
     ap.add_argument('--out', default='country_archetype_book.xlsx')
     add_otc_mode_arg(ap)
+    add_high_filter_arg(ap)
     args = ap.parse_args()
 
-    df, arch_cols = load_data()
+    df, arch_cols = load_data(otc_mode='all')
     df = apply_otc_mode(df, args.otc_mode)
+    df = apply_high_filter(df, args.high_filter)
     df['src'] = df['src'].fillna('').astype(str).str.upper()
     print(f'  {len(df):,} eligible rows, {len(arch_cols)} archetypes',
           file=sys.stderr)
