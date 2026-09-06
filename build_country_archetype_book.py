@@ -33,6 +33,7 @@ from build_archetype_book import (load_data, ARCHETYPE_LABELS, _sheet_safe,
 from openpyxl.styles import Border, Side
 from otc_flag import (add_otc_mode_arg, apply_otc_mode,
                       add_high_filter_arg, apply_high_filter)
+from region_map import classify, ordered_countries, REGION_ORDER
 
 SORT_COL = 'entry_confirmed'
 
@@ -44,14 +45,25 @@ WIDTHS = {1: 4, 2: 12, 3: 34, 4: 16, 5: 11, 6: 15, 7: 12, 8: 7, 9: 7,
           10: 9, 11: 8, 12: 7, 13: 7, 14: 9, 15: 8, 16: 10, 17: 10, 18: 7, 19: 7, 20: 7}
 
 
-def _write_country_sheet(ws, cdf, country, arch_cols, n_top):
+def _write_country_sheet(ws, cdf, country, arch_cols, n_top,
+                         show_country=False):
+    """One sheet of stacked per-archetype sections. `show_country=True`
+    (GLOBAL / DM / EM / region sheets) inserts a Ctry column after Name."""
+    o = 1 if show_country else 0                 # column offset past Name
+    headers = HEADERS[:3] + (['Ctry'] if show_country else []) + HEADERS[3:]
+    n_cols = len(headers)
+    widths = {1: 4, 2: 12, 3: 34}
+    if show_country:
+        widths[4] = 6
+    for k in range(4, N_COLS + 1):
+        widths[k + o] = WIDTHS[k]
     f_bold = _font(bold=True, color=INK)
     f_bold_muted = _font(bold=True, color=MUTED)
     f_text = _font(color=INK)
     f_text_muted = _font(color=MUTED)
     f_italic_muted = _font(italic=True, color=MUTED)
 
-    for col, w in WIDTHS.items():
+    for col, w in widths.items():
         ws.column_dimensions[ws.cell(row=1, column=col).column_letter].width = w
 
     t = ws.cell(row=2, column=1,
@@ -59,9 +71,9 @@ def _write_country_sheet(ws, cdf, country, arch_cols, n_top):
                       f"({len(cdf):,} eligible names)")
     t.font = f_bold
     t.alignment = _TXT_ALIGN_LEFT
-    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=N_COLS)
+    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=n_cols)
     ws.row_dimensions[2].height = 22
-    for c in range(1, N_COLS + 1):
+    for c in range(1, n_cols + 1):
         ws.cell(row=3, column=c).border = Border(bottom=Side(style='thin', color=INK))
     ws.row_dimensions[3].height = 4
 
@@ -81,13 +93,13 @@ def _write_country_sheet(ws, cdf, country, arch_cols, n_top):
                .sort_values(tab_sort, ascending=False, na_position='last')
                .head(n_top))
         _section_rule(ws, row, f"{label}   —   {n_match:,} matches in {country}",
-                      span_cols=N_COLS)
+                      span_cols=n_cols)
         row += 1
-        for i, h in enumerate(HEADERS, start=1):
+        for i, h in enumerate(headers, start=1):
             c = ws.cell(row=row, column=i, value=h)
             c.font = f_bold_muted
             c.alignment = (_TXT_ALIGN_LEFT if i in (2, 3, 4) else
-                           _NUM_ALIGN_CENTER if i in (5, 7) else
+                           _NUM_ALIGN_CENTER if i in (5 + o, 7 + o) else
                            _NUM_ALIGN_RIGHT)
         row += 1
         for rank, (_, r) in enumerate(sub.iterrows(), start=1):
@@ -97,28 +109,31 @@ def _write_country_sheet(ws, cdf, country, arch_cols, n_top):
             _t = lambda v: '' if pd.isna(v) else str(v)
             ws.cell(row=row, column=3, value=_t(r.get('name'))[:48]).font = f_text
             ws.cell(row=row, column=3).alignment = _TXT_ALIGN_LEFT
-            ws.cell(row=row, column=4, value=_t(r.get('sector'))[:20]).font = f_text_muted
-            ws.cell(row=row, column=4).alignment = _TXT_ALIGN_LEFT
-            ws.cell(row=row, column=5, value=_t(r.get('market_cap_bucket'))).font = f_text_muted
-            ws.cell(row=row, column=5).alignment = _NUM_ALIGN_CENTER
-            _write_money(ws, row, 6, r.get('market_cap'), font=f_text)
-            _verdict_badge(ws, row, 7, r.get('verdict', 'UNRESEARCHED'))
-            _write_score(ws, row, 8, r.get('entry_today_asymmetry'), font=f_bold)
-            _write_score(ws, row, 9, r.get('asymmetry_score'), font=f_text)
-            _write_score(ws, row, 10, r.get('ev_ebitda'), font=f_text)
-            _write_score(ws, row, 11, r.get('p_e'), font=f_text)
-            _write_score(ws, row, 12, r.get('pegy'), font=f_text)
-            _write_score(ws, row, 13, r.get('ev_ebitda_gy'), font=f_text)
-            _write_pct(ws, row, 14, r.get('fcf_yield'), font=f_text)
-            _write_pct(ws, row, 15, r.get('roce'), font=f_text)
-            _write_score(ws, row, 16, r.get('net_debt_ebitda'), font=f_text)
-            _write_pct(ws, row, 17, r.get('momentum_12m'), font=f_text)
-            _write_int(ws, row, 18,
+            if show_country:
+                ws.cell(row=row, column=4, value=_t(r.get('src'))).font = f_text_muted
+                ws.cell(row=row, column=4).alignment = _TXT_ALIGN_LEFT
+            ws.cell(row=row, column=4 + o, value=_t(r.get('sector'))[:20]).font = f_text_muted
+            ws.cell(row=row, column=4 + o).alignment = _TXT_ALIGN_LEFT
+            ws.cell(row=row, column=5 + o, value=_t(r.get('market_cap_bucket'))).font = f_text_muted
+            ws.cell(row=row, column=5 + o).alignment = _NUM_ALIGN_CENTER
+            _write_money(ws, row, 6 + o, r.get('market_cap'), font=f_text)
+            _verdict_badge(ws, row, 7 + o, r.get('verdict', 'UNRESEARCHED'))
+            _write_score(ws, row, 8 + o, r.get('entry_today_asymmetry'), font=f_bold)
+            _write_score(ws, row, 9 + o, r.get('asymmetry_score'), font=f_text)
+            _write_score(ws, row, 10 + o, r.get('ev_ebitda'), font=f_text)
+            _write_score(ws, row, 11 + o, r.get('p_e'), font=f_text)
+            _write_score(ws, row, 12 + o, r.get('pegy'), font=f_text)
+            _write_score(ws, row, 13 + o, r.get('ev_ebitda_gy'), font=f_text)
+            _write_pct(ws, row, 14 + o, r.get('fcf_yield'), font=f_text)
+            _write_pct(ws, row, 15 + o, r.get('roce'), font=f_text)
+            _write_score(ws, row, 16 + o, r.get('net_debt_ebitda'), font=f_text)
+            _write_pct(ws, row, 17 + o, r.get('momentum_12m'), font=f_text)
+            _write_int(ws, row, 18 + o,
                        int(r['archetype_count']) if pd.notna(r.get('archetype_count')) else 0,
                        font=f_text_muted)
-            _write_score(ws, row, 19, r.get('p_s'), font=f_text)
-            _write_score(ws, row, 20, r.get('pb'), font=f_text)
-            for c in range(1, N_COLS + 1):
+            _write_score(ws, row, 19 + o, r.get('p_s'), font=f_text)
+            _write_score(ws, row, 20 + o, r.get('pb'), font=f_text)
+            for c in range(1, n_cols + 1):
                 ws.cell(row=row, column=c).border = Border(
                     bottom=Side(style='thin', color=RULE))
             ws.row_dimensions[row].height = 15
@@ -163,15 +178,25 @@ def main():
     f_text_muted = _font(color=MUTED)
 
     order = (df.groupby('src').size().sort_values(ascending=False))
-    countries = [c for c, n in order.items()
-                 if c and n >= args.min_names]
+    # Country tabs organized DM-first, grouped by region (region_map), and
+    # by name count within each region.
+    countries = ordered_countries(
+        [c for c, n in order.items() if c and n >= args.min_names])
+    df['_bucket'], df['_region'] = zip(*df['src'].map(classify))
 
-    _section_rule(cover, 7, 'Markets', span_cols=5)
+    _section_rule(cover, 7, 'Markets (DM by region, then EM)', span_cols=5)
     for i, h in enumerate(['#', 'Market', 'Names', 'Multi-arch', 'Top name by ETA'], start=1):
         cover.cell(row=8, column=i, value=h).font = f_bold_muted
     r = 9
+    _last_region = None
     for i, ctry in enumerate(countries, start=1):
         cdf = df[df['src'] == ctry]
+        _bucket, _region = classify(ctry)
+        if _region != _last_region:
+            cover.cell(row=r, column=2,
+                       value=f'{_bucket} — {_region}').font = f_bold_muted
+            r += 1
+            _last_region = _region
         _write_int(cover, r, 1, i, font=f_text_muted)
         cover.cell(row=r, column=2, value=ctry).font = f_text
         _write_int(cover, r, 3, len(cdf), font=f_text)
@@ -182,13 +207,24 @@ def main():
                    value=(top.iloc[0]['symbol'] if len(top) else '—')).font = f_text_muted
         r += 1
 
-    # GLOBAL sheet first: top N per archetype across the whole universe,
-    # so the cross-market best of every pattern sits beside the per-country
-    # partitions.
-    gws = wb.create_sheet('GLOBAL')
-    _write_country_sheet(gws, df, 'GLOBAL', arch_cols, args.global_n)
-    print(f'  GLOBAL: {len(df):,} names, top {args.global_n}/archetype',
-          file=sys.stderr)
+    # Aggregate sheets first (each with a Ctry column): GLOBAL, then the
+    # DM / EM buckets, then each region — the cross-market best of every
+    # pattern at every level of aggregation, beside the country partitions.
+    n_agg_sheets = 0
+    for title, sub_df in ([('GLOBAL', df),
+                           ('DM', df[df['_bucket'] == 'DM']),
+                           ('EM', df[df['_bucket'] == 'EM'])]
+                          + [(reg, df[df['_region'] == reg])
+                             for _b, reg in REGION_ORDER
+                             if (df['_region'] == reg).any()]):
+        if sub_df.empty:
+            continue
+        ws = wb.create_sheet(_sheet_safe(title))
+        _write_country_sheet(ws, sub_df, title, arch_cols, args.global_n,
+                             show_country=True)
+        n_agg_sheets += 1
+        print(f'  {title}: {len(sub_df):,} names, top {args.global_n}/archetype',
+              file=sys.stderr)
 
     for ctry in countries:
         cdf = df[df['src'] == ctry]
@@ -198,7 +234,8 @@ def main():
 
     cover.sheet_view.showGridLines = False
     wb.save(args.out)
-    print(f'wrote {args.out}  ({2 + len(countries)} sheets: Cover + GLOBAL + '
+    print(f'wrote {args.out}  ({1 + n_agg_sheets + len(countries)} sheets: '
+          f'Cover + GLOBAL/DM/EM/regions ({n_agg_sheets}) + '
           f'{len(countries)} countries)', file=sys.stderr)
 
 
