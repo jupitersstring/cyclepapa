@@ -265,7 +265,10 @@ def main():
     ordered = front_existing + [c for c in new_cols if c in df.columns]
     df = df[ordered]
 
-    df.to_csv(args.asym, index=False)
+    import os as _os
+    df.to_csv(args.asym + '.tmp', index=False)
+    _os.replace(args.asym + '.tmp', args.asym)   # atomic — readers never see a torn master
+
     print(f'  wrote enriched {args.asym}: {len(df):,} rows, '
           f'{len(df.columns)} columns', file=sys.stderr)
 

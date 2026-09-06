@@ -2200,7 +2200,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
 
     out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','seg_inflect_score']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m'] if c in df.columns]]
-    out.to_csv(out_path, index=False)
+    import os as _os
+    out.to_csv(out_path + '.tmp', index=False)
+    _os.replace(out_path + '.tmp', out_path)   # atomic — readers never see a torn master
+
 
     # Summary to stderr
     print(f'wrote {out_path}: {len(out)} rows', file=sys.stderr)

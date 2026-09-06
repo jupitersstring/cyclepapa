@@ -192,6 +192,7 @@ def _info_from_quote(sess: YahooSession, symbol: str) -> dict:
         "earnings_surprises": surprises,   # newest-first list of surprise %
         "currency": price.get("currency"),
         "currentPrice": g("financialData", "currentPrice"),
+        "financialCurrency": g("financialData", "financialCurrency"),
         "regularMarketPrice": g("price", "regularMarketPrice"),
         "marketCap": g("price", "marketCap") or g("summaryDetail", "marketCap"),
         "enterpriseValue": g("defaultKeyStatistics", "enterpriseValue"),

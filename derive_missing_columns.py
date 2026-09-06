@@ -319,7 +319,13 @@ def main():
     _fill('ev_sales', _safe_div(ev, rev, den_must_be_positive=True))
     _fill('p_s', _safe_div(mcap, rev, den_must_be_positive=True))
     _fill('pb', _safe_div(mcap, equity, den_must_be_positive=True))
-    _fill('fcf_yield', _safe_div(fcf, mcap, den_must_be_positive=True))
+    _fy = _safe_div(fcf, mcap, den_must_be_positive=True)
+    # FCF > market cap is a unit error, not a bargain — OTC ADRs carry
+    # home-currency fundamentals (CNY/TRY) against USD caps. Null rather
+    # than rank garbage at the top of every yield screen.
+    if _fy is not None and _fy > 1.0:
+        _fy = None
+    _fill('fcf_yield', _fy)
     _fill('ebitda_margin', _safe_div(ebitda, rev, den_must_be_positive=True))
     _fill('gross_margin', _safe_div(gross_profit, rev, den_must_be_positive=True))
 

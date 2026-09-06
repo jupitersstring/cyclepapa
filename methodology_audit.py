@@ -306,6 +306,15 @@ def _integrity(t, g):
                   minted == 0,
                   f"{int(minted)} .L rows with mcap == price*shares (pence)")
 
+        fy = n(t, "fcf_yield")
+        bad_fy = (fy > 1.0).sum()
+        check("integrity: no impossible FCF yields (>100% — ADR home-currency mismatch)",
+              bad_fy == 0, f"{int(bad_fy)} rows with fcf_yield > 1.0")
+        dy = n(t, "dividend_yield")
+        bad_dy = (dy > 0.40).sum()
+        check("integrity: no absurd dividend yields (>40% — stale price / preferred artifacts)",
+              bad_dy == 0, f"{int(bad_dy)} rows with dividend_yield > 0.40")
+
 
 @measure("Composite score ranges",
          "Confirmation/lens composites live in [0, 1] by construction.")
