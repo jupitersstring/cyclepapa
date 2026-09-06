@@ -9,15 +9,15 @@ METHODOLOGY AUDIT — 39 checks, 0 FAIL, 0 WARN
   PASS  arch_oak_deep_value: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 50% depth
   PASS  arch_levered_inflection: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 25% depth
   PASS  arch_asymmetric_assembly: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 35% depth
-  PASS  evsales_derating: median firer gap is compressive  — median gap 0.404
-  PASS  evsales_derating: expanding-multiple firers are the minority  — 1.4% of firers have a negative 1y gap (allowed only when the 3y base compresses)
+  PASS  evsales_derating: median firer gap is compressive  — median gap 0.403
+  PASS  evsales_derating: expanding-multiple firers are the minority  — 1.6% of firers have a negative 1y gap (allowed only when the 3y base compresses)
   PASS  tenbagger: implied 10x closes for every firer  — 0 firers below 10x
   PASS  tenbagger: Credible is a subset of Path
   PASS  lynch_reward: no firer already paid (roc_12m <= 0.35)  — 0 firers with roc_12m > 35%
   PASS  lynch_reward: every firer has a live tape  — 0 stale-tape firers
   PASS  52w: both == abs AND rel
   PASS  awakening: firers with a rating skew strong (<= 2.2)  — 93% of rated firers <= 2.2
-  PASS  awakening: momentum-gated firers not extended (<= ~50%)  — 0 extended among the 1205 momentum-gated firers
+  PASS  awakening: momentum-gated firers not extended (<= ~50%)  — 0 extended among the 836 momentum-gated firers
   PASS  capital_returner: firers inside the 5-30% policy band (small tail = EDGAR-coalesced source not visible here)  — 133 outside on asym-only columns
   PASS  strong_coverage: every firer has positive EBITDA  — 0 non-positive
   PASS  gating: tenbagger_score is 0 outside arch_tenbagger_path  — 0 non-firers with positive score
