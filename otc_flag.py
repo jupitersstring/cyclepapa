@@ -74,3 +74,36 @@ def apply_high_filter(df: pd.DataFrame, mode: str) -> pd.DataFrame:
     a = pd.to_numeric(df.get('high_52w_abs'), errors='coerce').fillna(0) > 0
     r = pd.to_numeric(df.get('high_52w_rel'), errors='coerce').fillna(0) > 0
     return df[{'abs': a, 'rel': r, 'any': a | r, 'both': a & r}[mode]]
+
+
+_NAME_SUFFIX_RE = None
+
+
+def _name_norm_re():
+    global _NAME_SUFFIX_RE
+    if _NAME_SUFFIX_RE is None:
+        import re
+        _NAME_SUFFIX_RE = re.compile(
+            r'\b(plc|ltd|limited|inc|incorporated|corp|corporation|ag|nv|sa|'
+            r'ab|se|spa|s\.a|s\.p\.a|co|company|holdings?|group|adr|'
+            r'sponsored|class [ab]|cl [ab]|-[ab])\b', re.I)
+    return _NAME_SUFFIX_RE
+
+
+def dedupe_display(df: pd.DataFrame, name_col: str = 'name',
+                   within: str | None = None) -> pd.DataFrame:
+    """Collapse cross-listings / dual-class lines of the SAME business to
+    one display row (the caller must have sorted best-first). ~24% of the
+    universe sits in a name-collision group (ADR + home line, A/B share
+    classes) — without this a top-N list double-counts one company.
+    Conservative: keys on the normalized company name only; rows with no
+    name are never collapsed."""
+    if name_col not in df.columns or df.empty:
+        return df
+    names = df[name_col].fillna('').astype(str).str.lower()
+    names = names.str.replace(_name_norm_re(), '', regex=True)
+    names = names.str.replace(r'[^a-z0-9]+', '', regex=True)
+    key = names.where(names != '', df.get('symbol', names))
+    if within is not None and within in df.columns:
+        key = df[within].astype(str) + '|' + key
+    return df[~key.duplicated(keep='first')]

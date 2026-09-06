@@ -113,7 +113,7 @@ SRC_TO_CCY = {
     "US": "USD", "JP": "JPY", "KR": "KRW", "CN": "CNY", "HK": "HKD",
     "TW": "TWD", "TH": "THB", "IN": "INR", "ID": "IDR", "SG": "SGD",
     "MY": "MYR", "AU": "AUD", "NZ": "NZD",
-    "UK": "GBP", "GB": "GBP", "IE": "EUR",
+    "UK": "GBP", "GB": "GBp", "IE": "EUR",
     "DE": "EUR", "FR": "EUR", "IT": "EUR", "NL": "EUR", "BE": "EUR",
     "ES": "EUR", "AT": "EUR", "PT": "EUR", "GR": "EUR", "FI": "EUR",
     "CH": "CHF",

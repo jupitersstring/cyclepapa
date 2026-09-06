@@ -83,6 +83,15 @@ def _quarter_frame(data: bytes) -> pd.DataFrame:
                           lambda s: '|'.join(str(x) for x in s)))
                 .reset_index())
     trn = trn.merge(own_g, on='ACCESSION_NUMBER', how='left')
+    # A Form 4/A amendment restates the SAME purchase under a NEW accession
+    # — without reconciliation both the original and the amendment sum into
+    # the buy aggregates (double count). Collapse identical economic
+    # transactions (issuer, owner, code, shares, price), keeping the row
+    # from the LATEST accession (amendment supersedes original).
+    trn = (trn.sort_values('ACCESSION_NUMBER')
+              .drop_duplicates(['ISSUERTRADINGSYMBOL', 'RPTOWNERCIK',
+                                'TRANS_CODE', 'TRANS_SHARES',
+                                'TRANS_PRICEPERSHARE'], keep='last'))
     trn['shares'] = pd.to_numeric(trn['TRANS_SHARES'], errors='coerce')
     trn['price'] = pd.to_numeric(trn['TRANS_PRICEPERSHARE'], errors='coerce')
     trn['value'] = trn['shares'] * trn['price']

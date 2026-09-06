@@ -31,7 +31,7 @@ use elsewhere):
   ROC-of-ROC (the rolling ROC now minus its value 12 months ago) — the
   attractive setup is a subdued long ROC that is ACCELERATING.
 
-One v8-chart request per symbol (range=10y, interval=1mo), OHLC adjusted by
+One v8-chart request per symbol (range=12y, interval=1mo), OHLC adjusted by
 adjclose/close so splits don't distort the EMAs. Output:
 lynch_reward_signals.csv, merged optionally by archetype_tags.py.
 
@@ -130,7 +130,7 @@ def squeeze_release(df, period=14, smooth=7, ema_len=14,
             run += 1
             j -= 1
         squeeze_run = run
-        release_recent = int(bars_since <= recent_bars and run >= min_run)
+        release_recent = int(bars_since < recent_bars and run >= min_run)  # 6-bar window (0..5)
     return {
         'sr_value': round(float(sq.iloc[-1]), 2),
         'sr_ma': round(float(sq_ma.iloc[-1]), 2),
@@ -153,7 +153,8 @@ def long_roc(monthly_close: pd.Series):
         out[f'roc_{label}'] = (round(float(c.iloc[-1] / c.iloc[-1 - months] - 1.0), 4)
                                if len(c) > months and c.iloc[-1 - months] > 0 else np.nan)
     for label, months in (('3_5y', 42), ('10y', 120)):
-        r = c / c.shift(months) - 1.0
+        r = (c / c.shift(months).where(c.shift(months) > 0) - 1.0)
+        r = r.replace([np.inf, -np.inf], np.nan)
         out[f'roc_{label}'] = (round(float(r.iloc[-1]), 4)
                                if len(c) > months and pd.notna(r.iloc[-1]) else np.nan)
         if len(c) > months + 12 and pd.notna(r.iloc[-1]) and pd.notna(r.iloc[-13]):
@@ -220,9 +221,18 @@ def high_metrics(mo: pd.DataFrame, symbol: str):
     hi12_ago = float(h.iloc[-24:-12].max()) if len(h) >= 24 else np.nan
     out['base_depth_12m'] = (round(float(c.iloc[-13] / hi12_ago), 4)
                              if len(c) >= 13 and pd.notna(hi12_ago) and hi12_ago > 0 else np.nan)
-    # relative-strength ratio vs the country benchmark
+    # relative-strength ratio vs the country benchmark. A STALE or
+    # near-empty benchmark silently anchors the "current" ratio years in
+    # the past (Turkey's ^XU100 froze at 2021; Thailand had 1 point) —
+    # require a live, populated series or emit no rel metrics at all.
     bench = _benchmarks().get(_index_for(symbol))
-    if bench is not None and len(bench):
+    if bench is not None and len(bench) >= 13:
+        _bench_age_mo = (pd.Period.now('M') - bench.index.max()).n
+        if _bench_age_mo > 2:
+            bench = None
+    else:
+        bench = None
+    if bench is not None:
         cp = c.copy()
         cp.index = cp.index.to_period('M')
         cp = cp[~cp.index.duplicated(keep='last')]
@@ -236,7 +246,7 @@ def high_metrics(mo: pd.DataFrame, symbol: str):
 
 def fetch_monthly(sess: YahooSession, symbol: str) -> pd.DataFrame:
     url = (f"https://query1.finance.yahoo.com/v8/finance/chart/"
-           f"{urllib.parse.quote(symbol)}?range=10y&interval=1mo")
+           f"{urllib.parse.quote(symbol)}?range=12y&interval=1mo")
     try:
         r = sess.opener.open(url, timeout=15)
         d = json.loads(r.read())
@@ -256,7 +266,8 @@ def fetch_monthly(sess: YahooSession, symbol: str) -> pd.DataFrame:
         df = pd.DataFrame({'open': q['open'], 'high': q['high'],
                            'low': q['low'], 'close': q['close']}, index=idx)
         if adj is not None:
-            factor = pd.Series(adj, index=idx) / df['close']
+            factor = (pd.Series(adj, index=idx)
+              / df['close'].where(df['close'] > 0))   # 0-close -> NaN, not inf
             for col in ('open', 'high', 'low', 'close'):
                 df[col] = df[col] * factor
         return df.dropna()
@@ -268,6 +279,26 @@ def resample_ohlc(df: pd.DataFrame, rule: str) -> pd.DataFrame:
     return df.resample(rule).agg({'open': 'first', 'high': 'max',
                                   'low': 'min', 'close': 'last'}).dropna()
 
+
+
+# Canonical output schema. compute_row's sections are conditional (short
+# history, no benchmark, thin tape), so raw dicts have VARIABLE key sets —
+# serializing them directly misaligned ~12% of rows (columns shifted past
+# every gap). Every row is normalized to this exact field order.
+ALL_FIELDS = [
+    'symbol',
+    'asym_m', 'asym_m_ma', 'asym_m_roc', 'asym_m_upper', 'asym_m_lower',
+    'asym_m_near50_rising',
+    'asym_q', 'asym_q_ma', 'asym_q_roc', 'asym_q_upper', 'asym_q_lower',
+    'asym_q_near50_rising',
+    'sr_m_value', 'sr_m_ma', 'sr_m_release', 'sr_m_release_recent',
+    'sr_m_squeeze_run',
+    'price_years', 'roc_6m', 'roc_12m', 'roc_3_5y', 'roc_accel_3_5y',
+    'roc_10y', 'roc_accel_10y',
+    'pct_52w_high', 'is_52w_high', 'months_since_52w_high', 'base_depth_12m',
+    'rel_pct_52w_high', 'rel_is_52w_high',
+    'stale_tape', 'last_bar_age_days',
+]
 
 def compute_row(symbol: str, mo: pd.DataFrame):
     if len(mo) < 27:            # asym needs period+smooth+lookback monthly bars
@@ -355,6 +386,7 @@ def main():
         except Exception:
             row = None
         if row is not None:
+            row = {k: row.get(k, np.nan) for k in ALL_FIELDS}   # fixed schema
             pd.DataFrame([row]).to_csv(fout, header=not header_written, index=False)
             header_written = True
             fout.flush()

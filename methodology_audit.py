@@ -273,6 +273,40 @@ def _density(t, g):
               f"{int((io > 1.05).sum())} percent-scale stragglers")
 
 
+@measure("Signal-file integrity",
+         "Appended signal CSVs keep a FIXED schema — a ragged row means "
+         "columns silently shifted (the bug that corrupted 12% of lynch "
+         "rows); country benchmarks must be live, not frozen snapshots.")
+def _integrity(t, g):
+    import csv, os
+    if os.path.exists("lynch_reward_signals.csv"):
+        rd = csv.reader(open("lynch_reward_signals.csv"))
+        hlen = len(next(rd))
+        ragged = sum(1 for r in rd if len(r) != hlen)
+        check("integrity: lynch signal rows all match the header schema",
+              ragged == 0, f"{ragged} ragged rows")
+    if os.path.exists("benchmark_series.csv"):
+        b = pd.read_csv("benchmark_series.csv", index_col=0, parse_dates=True)
+        stale = [c for c in b.columns
+                 if b[c].dropna().empty
+                 or (pd.Timestamp.now() - b[c].dropna().index.max()).days > 62]
+        warn("integrity: country benchmarks are live (<=62d old)",
+             len(stale) <= 1,   # Thailand has no usable Yahoo series
+             f"stale/empty: {stale}")
+    # GBp-pence class: .L market caps must be consistent with price/100
+    lse = g[g["symbol"].astype(str).str.endswith(".L")]
+    if len(lse) > 20:
+        pr, mc = n(lse, "price"), n(lse, "market_cap")
+        sh = n(lse, "shares_outstanding")
+        both = pr.notna() & mc.notna() & sh.notna() & (sh > 0)
+        if both.sum() > 20:
+            ratio = (mc / (pr * sh))[both]
+            minted = ((ratio > 0.5) & (ratio < 2.0)).sum()  # ==1.0 => pence-minted
+            check("integrity: no pence-minted .L market caps",
+                  minted == 0,
+                  f"{int(minted)} .L rows with mcap == price*shares (pence)")
+
+
 @measure("Composite score ranges",
          "Confirmation/lens composites live in [0, 1] by construction.")
 def _ranges(t, g):

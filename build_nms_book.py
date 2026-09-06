@@ -193,11 +193,11 @@ def build_nms_methodology(ws):
 # --- Index sheet (top-100 by entry_today_asymmetry) ----------------------
 def build_nms_index(ws, top_df: pd.DataFrame):
     _set_col_widths(ws, {1: 4, 2: 5, 3: 14, 4: 38, 5: 8, 6: 18, 7: 12, 8: 14,
-                         9: 10, 10: 14, 11: 8, 12: 8, 13: 8, 14: 4})
-    _crimson_banner(ws, 1, "  Global Top 100 — entry-today asymmetry", span_cols=13)
+                         9: 10, 10: 14, 11: 8, 12: 8, 13: 7, 14: 8, 15: 4})
+    _crimson_banner(ws, 1, "  Global Top 100 — entry-today asymmetry", span_cols=14)
 
     hdrs = ["#", "Ticker", "Company", "Cntry", "Sector", "Bucket", "Mcap (USD)",
-            "Verdict", "ETA", "Confirm", "P/B", "P/S"]
+            "Verdict", "ETA", "Confirm", "P/B", "Div %", "P/S"]
     for i, h in enumerate(hdrs, start=2):
         c = ws.cell(row=3, column=i, value=h)
         c.font = _font(size=10, bold=True, color=CRIMSON_DARK, name=SANS)
@@ -251,9 +251,10 @@ def build_nms_index(ws, top_df: pd.DataFrame):
         _write_score(ws, row, 11, r.get('confirm_overall'), font=mono)
         # Mandated valuation display columns
         _write_ratio(ws, row, 12, r.get('pb'), font=mono)
-        _write_ratio(ws, row, 13, r.get('p_s'), font=mono)
+        _write_pct(ws, row, 13, r.get('dividend_yield'), font=mono)
+        _write_ratio(ws, row, 14, r.get('p_s'), font=mono)
 
-        for c in range(2, 14):
+        for c in range(2, 15):
             ws.cell(row=row, column=c).border = _border(color=RULE, bottom="thin")
         ws.row_dimensions[row].height = 17
 
@@ -267,11 +268,11 @@ def build_nms_index(ws, top_df: pd.DataFrame):
 # --- Per-region top-25 sheet ----------------------------------------------
 def build_region_sheet(ws, region_label: str, sub_df: pd.DataFrame):
     _set_col_widths(ws, {1: 4, 2: 5, 3: 14, 4: 38, 5: 8, 6: 18, 7: 12, 8: 14,
-                         9: 10, 10: 10, 11: 8, 12: 8, 13: 4})
-    _crimson_banner(ws, 1, f"  {region_label} — Top 25 NMS", span_cols=12)
+                         9: 10, 10: 10, 11: 8, 12: 7, 13: 8})
+    _crimson_banner(ws, 1, f"  {region_label} — Top 25 NMS", span_cols=13)
 
     hdrs = ["#", "Ticker", "Company", "Cntry", "Sector", "Bucket", "Mcap (USD)",
-            "Verdict", "ETA", "Confirm", "P/B", "P/S"]
+            "Verdict", "ETA", "Confirm", "P/B", "Div %", "P/S"]
     for i, h in enumerate(hdrs, start=2):
         c = ws.cell(row=3, column=i, value=h)
         c.font = _font(size=10, bold=True, color=CRIMSON_DARK, name=SANS)
@@ -314,9 +315,10 @@ def build_region_sheet(ws, region_label: str, sub_df: pd.DataFrame):
         _write_score(ws, row, 11, r.get('confirm_overall'), font=mono)
         # Mandated valuation display columns
         _write_ratio(ws, row, 12, r.get('pb'), font=mono)
-        _write_ratio(ws, row, 13, r.get('p_s'), font=mono)
+        _write_pct(ws, row, 13, r.get('dividend_yield'), font=mono)
+        _write_ratio(ws, row, 14, r.get('p_s'), font=mono)
 
-        for c in range(2, 14):
+        for c in range(2, 15):
             ws.cell(row=row, column=c).border = _border(color=RULE, bottom="thin")
         ws.row_dimensions[row].height = 17
 

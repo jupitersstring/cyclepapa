@@ -53,6 +53,10 @@ Every archetype-specific ranking score is 0 for non-firers — a book sorting on
 
 archetype_count_pct divides by the count of archetypes the row is ELIGIBLE for — it can never exceed 1, and the denominator tracks the LIVE taxonomy, not a frozen constant.
 
+## Signal-file integrity
+
+Appended signal CSVs keep a FIXED schema — a ragged row means columns silently shifted (the bug that corrupted 12% of lynch rows); country benchmarks must be live, not frozen snapshots.
+
 ## Composite score ranges
 
 Confirmation/lens composites live in [0, 1] by construction.

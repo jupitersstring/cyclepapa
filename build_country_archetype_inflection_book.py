@@ -34,6 +34,7 @@ from build_harvard_workbook import (
 from build_archetype_book import (load_data, ARCHETYPE_LABELS, _sheet_safe,
                                   ARCH_SORT_OVERRIDES, arch_sort_col)
 from openpyxl.styles import Border, Side
+from otc_flag import dedupe_display
 from otc_flag import (add_otc_mode_arg, apply_otc_mode,
                       add_high_filter_arg, apply_high_filter)
 from region_map import classify, ordered_countries, REGION_ORDER
@@ -42,10 +43,12 @@ SORT_COL = 'entry_inflection_confirmed'
 
 HEADERS = ['#', 'Ticker', 'Name', 'Sector', 'Bucket', 'Mcap (USD)',
            'Verdict', 'Infl', 'Asym', 'EV/EBITDA', 'P/E', 'PEGY', 'EV-GY',
-           'FCF yld %', 'ROCE %', 'ND/EBITDA', 'Mom 12m %', 'Arch #', 'P/S', 'P/B']
+           'FCF yld %', 'Div %', 'ROCE %', 'ND/EBITDA', 'Mom 12m %', 'Arch #',
+           'P/S', 'P/B']
 N_COLS = len(HEADERS)
 WIDTHS = {1: 4, 2: 12, 3: 34, 4: 16, 5: 11, 6: 15, 7: 12, 8: 7, 9: 7,
-          10: 9, 11: 8, 12: 7, 13: 7, 14: 9, 15: 8, 16: 10, 17: 10, 18: 7, 19: 7, 20: 7}
+          10: 9, 11: 8, 12: 7, 13: 7, 14: 9, 15: 7, 16: 8, 17: 10, 18: 10,
+          19: 7, 20: 7, 21: 7}
 
 
 def _add_inflection_key(df):
@@ -111,8 +114,9 @@ def _write_country_sheet(ws, cdf, country, arch_cols, n_top,
         # Archetype-specific sort where one exists (ARCH_SORT_OVERRIDES);
         # falls back to the confirmed-inflection key when missing/all-NaN.
         tab_sort = arch_sort_col(col, members, SORT_COL)
-        sub = (members
-               .sort_values(tab_sort, ascending=False, na_position='last')
+        sub = (dedupe_display(
+                   members.sort_values(tab_sort, ascending=False,
+                                       na_position='last'))
                .head(n_top))
         _section_rule(ws, row, f"{label}   —   {n_match:,} matches in {country}",
                       span_cols=n_cols)
@@ -147,14 +151,15 @@ def _write_country_sheet(ws, cdf, country, arch_cols, n_top,
             _write_score(ws, row, 12 + o, r.get('pegy'), font=f_text)
             _write_score(ws, row, 13 + o, r.get('ev_ebitda_gy'), font=f_text)
             _write_pct(ws, row, 14 + o, r.get('fcf_yield'), font=f_text)
-            _write_pct(ws, row, 15 + o, r.get('roce'), font=f_text)
-            _write_score(ws, row, 16 + o, r.get('net_debt_ebitda'), font=f_text)
-            _write_pct(ws, row, 17 + o, r.get('momentum_12m'), font=f_text)
-            _write_int(ws, row, 18 + o,
+            _write_pct(ws, row, 15 + o, r.get('dividend_yield'), font=f_text)
+            _write_pct(ws, row, 16 + o, r.get('roce'), font=f_text)
+            _write_score(ws, row, 17 + o, r.get('net_debt_ebitda'), font=f_text)
+            _write_pct(ws, row, 18 + o, r.get('momentum_12m'), font=f_text)
+            _write_int(ws, row, 19 + o,
                        int(r['archetype_count']) if pd.notna(r.get('archetype_count')) else 0,
                        font=f_text_muted)
-            _write_score(ws, row, 19 + o, r.get('p_s'), font=f_text)
-            _write_score(ws, row, 20 + o, r.get('pb'), font=f_text)
+            _write_score(ws, row, 20 + o, r.get('p_s'), font=f_text)
+            _write_score(ws, row, 21 + o, r.get('pb'), font=f_text)
             for c in range(1, n_cols + 1):
                 ws.cell(row=row, column=c).border = Border(
                     bottom=Side(style='thin', color=RULE))

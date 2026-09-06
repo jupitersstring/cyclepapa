@@ -23,6 +23,7 @@ from build_harvard_workbook import (
     Workbook, INK, MUTED, _font, _crimson_banner, _section_rule, _write_int,
     _TXT_ALIGN_LEFT,
 )
+from otc_flag import dedupe_display
 from build_archetype_book import (
     load_data, ARCHETYPE_LABELS, _sheet_safe, _write_archetype_table,
     ARCH_SORT_OVERRIDES, arch_sort_col,
@@ -104,8 +105,9 @@ def main():
         label = ARCHETYPE_LABELS.get(col, col)
         members = df[df[col].fillna(0) == 1]
         tab_sort = arch_sort_col(col, members, SORT_COL)
-        sub_df = (members
-                  .sort_values(tab_sort, ascending=False, na_position='last')
+        sub_df = (dedupe_display(
+                      members.sort_values(tab_sort, ascending=False,
+                                          na_position='last'))
                   .head(args.n).reset_index(drop=True))
         ws = wb.create_sheet(_sheet_safe(label))
         _write_archetype_table(ws, sub_df, label, n_total, tab_sort)

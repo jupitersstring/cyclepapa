@@ -522,16 +522,16 @@ def build_methodology(ws: Worksheet):
 # --- Index sheet --------------------------------------------------------------
 def build_index(ws: Worksheet, top_df: pd.DataFrame):
     _set_col_widths(ws, {1: 4, 2: 5, 3: 14, 4: 38, 5: 8, 6: 18, 7: 10, 8: 14,
-                         9: 8, 10: 8, 11: 4})
-    _crimson_banner(ws, 1, "  Index of Names", span_cols=11)
+                         9: 8, 10: 7, 11: 8, 12: 4})
+    _crimson_banner(ws, 1, "  Index of Names", span_cols=12)
 
     hdrs = ["#", "Ticker", "Company", "Cntry", "Sector", "Verdict", "Score",
-            "P/B", "P/S"]
+            "P/B", "Div %", "P/S"]
     for i, h in enumerate(hdrs, start=2):
         c = ws.cell(row=3, column=i, value=h)
         c.font = _font(size=10, bold=True, color=CRIMSON_DARK, name=SANS)
         c.alignment = _align(h="left" if i in (3, 4, 6) else
-                             "right" if i in (9, 10) else "center")
+                             "right" if i in (9, 10, 11) else "center")
         c.border = _border(color=CRIMSON_DARK, bottom="medium")
     ws.row_dimensions[3].height = 22
 
@@ -562,10 +562,11 @@ def build_index(ws: Worksheet, top_df: pd.DataFrame):
                      font=_font(size=10, name=MONO))
         # Mandated valuation display columns
         _write_ratio(ws, row, 9, r.get('pb'), font=_font(size=10, name=MONO))
-        _write_ratio(ws, row, 10, r.get('p_s'), font=_font(size=10, name=MONO))
+        _write_pct(ws, row, 10, r.get('dividend_yield'), font=_font(size=10, name=MONO))
+        _write_ratio(ws, row, 11, r.get('p_s'), font=_font(size=10, name=MONO))
 
         # Row rule (very light)
-        for c in range(2, 11):
+        for c in range(2, 12):
             ws.cell(row=row, column=c).border = _border(color=RULE, bottom="thin")
         ws.row_dimensions[row].height = 18
 

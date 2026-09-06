@@ -101,14 +101,22 @@ def main() -> int:
     # are duplicates; yahoo_chart_fill.py dedups already but be safe).
     fill = fill.dropna(subset=["symbol"]).drop_duplicates("symbol", keep="last")
 
-    # Left-join keeps the master ordering intact.
+    # Left-join keeps the master ordering intact. Carry the quote currency
+    # through — LSE quotes arrive in PENCE (GBp) and an unguarded
+    # price*shares below minted 100x market caps for 13 .L names.
+    fill_cols = ["symbol", "price", "momentum_12m", "pct_off_52w_high"]
+    if "currency" in fill.columns:
+        fill_cols.append("currency")
     suff = "__y"
     merged = df.merge(
-        fill[["symbol", "price", "momentum_12m", "pct_off_52w_high"]],
+        fill[fill_cols],
         on="symbol",
         how="left",
         suffixes=("", suff),
     )
+    _qcur = (merged["currency__y"] if "currency__y" in merged.columns
+             else merged.get("currency", pd.Series("", index=merged.index)))
+    _pence = _qcur.astype(str).str.upper().isin(["GBP_PENCE", "GBX"]) |         _qcur.astype(str).eq("GBp")
 
     # --- price / momentum_12m / pct_off_52w_high : fill-don't-overwrite -----
     filled = {}
@@ -135,9 +143,15 @@ def main() -> int:
         shares_num = pd.Series([float("nan")] * len(merged), index=merged.index)
 
     need_mcap = mcap_num.isna() & price_num.notna() & shares_num.notna()
-    derived_mcap = price_num * shares_num
+    # pence -> pounds for the derivation; unknown-currency .L symbols are
+    # treated as pence (the LSE default) rather than minting a 100x mcap
+    _sym_l = merged["symbol"].astype(str).str.endswith(".L")
+    _div100 = _pence | (_sym_l & _qcur.isna()) | (_sym_l & _qcur.astype(str).eq(""))
+    derived_mcap = (price_num.where(~_div100, price_num / 100.0)) * shares_num
     merged.loc[need_mcap, "market_cap"] = derived_mcap[need_mcap]
     filled["market_cap (derived)"] = int(need_mcap.sum())
+    if "currency__y" in merged.columns:
+        merged.drop(columns=["currency__y"], inplace=True)
 
     # Refresh after derivation for EV step.
     mcap_num = pd.to_numeric(merged["market_cap"], errors="coerce")

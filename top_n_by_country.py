@@ -180,6 +180,12 @@ def main():
 
     sort_col = ('entry_today_asymmetry' if args.sort_by == 'asymmetry'
                 else 'entry_today_inflection')
+    # Collapse cross-listings / dual-class lines of the same business
+    # within each country (best line survives) BEFORE ranking, so one
+    # company can't hold two top-N slots.
+    from otc_flag import dedupe_display
+    df = dedupe_display(df.sort_values(sort_col, ascending=False),
+                        within='src')
     # Rank within each country by the chosen score
     df['country_rank'] = (
         df.sort_values(sort_col, ascending=False)

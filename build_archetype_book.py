@@ -18,6 +18,8 @@ import sys
 
 import pandas as pd
 
+from otc_flag import dedupe_display
+
 import build_harvard_workbook as bhw
 from build_harvard_workbook import (
     Workbook, Color,
@@ -258,9 +260,9 @@ def _write_archetype_table(ws, df_subset, archetype_label, total_universe, sort_
     t = ws.cell(row=2, column=1, value=archetype_label)
     t.font = f_bold
     t.alignment = _TXT_ALIGN_LEFT
-    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=20)
+    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=21)
     ws.row_dimensions[2].height = 22
-    for c in range(1, 21):
+    for c in range(1, 22):
         ws.cell(row=3, column=c).border = Border(bottom=Side(style='thin', color=INK))
     ws.row_dimensions[3].height = 4
 
@@ -289,17 +291,17 @@ def _write_archetype_table(ws, df_subset, archetype_label, total_universe, sort_
         ws.cell(row=7, column=col, value=sub).font = f_italic_muted
         ws.cell(row=7, column=col).alignment = _TXT_ALIGN_LEFT
     ws.row_dimensions[6].height = 22
-    for c in range(1, 21):
+    for c in range(1, 22):
         ws.cell(row=8, column=c).border = Border(top=Side(style='thin', color=INK))
     ws.row_dimensions[8].height = 4
 
     # Top-N table heading
-    _section_rule(ws, 10, f"Top names matching {archetype_label}", span_cols=19)
+    _section_rule(ws, 10, f"Top names matching {archetype_label}", span_cols=20)
 
     headers = ['#', 'Ticker', 'Name', 'Country', 'Sector', 'Bucket',
                'Mcap (USD)', 'Verdict', 'ETA', 'Asym',
                'EV/EBITDA', 'P/E', 'P/B', 'P/S',
-               'FCF yld %', 'ROIC %', 'ND/EBITDA', 'EBITDA m %',
+               'FCF yld %', 'Div %', 'ROIC %', 'ND/EBITDA', 'EBITDA m %',
                'Mom 12m %', 'Arch #']
     for i, h in enumerate(headers, start=1):
         c = ws.cell(row=11, column=i, value=h)
@@ -307,7 +309,7 @@ def _write_archetype_table(ws, df_subset, archetype_label, total_universe, sort_
         c.alignment = (_TXT_ALIGN_LEFT if i in (2, 3, 4, 5) else
                        _NUM_ALIGN_CENTER if i in (6, 8) else
                        _NUM_ALIGN_RIGHT)
-    for c in range(1, 21):
+    for c in range(1, 22):
         ws.cell(row=12, column=c).border = Border(top=Side(style='thin', color=INK))
 
     # Top-N data rows
@@ -332,12 +334,13 @@ def _write_archetype_table(ws, df_subset, archetype_label, total_universe, sort_
         _write_score(ws, r_idx, 13, r.get('pb'), font=f_text)
         _write_score(ws, r_idx, 14, r.get('p_s'), font=f_text)
         _write_pct(ws, r_idx, 15, r.get('fcf_yield'), font=f_text)
-        _write_pct(ws, r_idx, 16, r.get('roce'), font=f_text)
-        _write_score(ws, r_idx, 17, r.get('net_debt_ebitda'), font=f_text)
-        _write_pct(ws, r_idx, 18, r.get('ebitda_margin'), font=f_text)
-        _write_pct(ws, r_idx, 19, r.get('momentum_12m'), font=f_text)
-        _write_int(ws, r_idx, 20, int(r['archetype_count']) if pd.notna(r.get('archetype_count')) else 0, font=f_text_muted)
-        for c in range(1, 21):
+        _write_pct(ws, r_idx, 16, r.get('dividend_yield'), font=f_text)
+        _write_pct(ws, r_idx, 17, r.get('roce'), font=f_text)
+        _write_score(ws, r_idx, 18, r.get('net_debt_ebitda'), font=f_text)
+        _write_pct(ws, r_idx, 19, r.get('ebitda_margin'), font=f_text)
+        _write_pct(ws, r_idx, 20, r.get('momentum_12m'), font=f_text)
+        _write_int(ws, r_idx, 21, int(r['archetype_count']) if pd.notna(r.get('archetype_count')) else 0, font=f_text_muted)
+        for c in range(1, 22):
             ws.cell(row=r_idx, column=c).border = Border(
                 bottom=Side(style='thin', color=RULE))
         ws.row_dimensions[r_idx].height = 16
@@ -345,7 +348,7 @@ def _write_archetype_table(ws, df_subset, archetype_label, total_universe, sort_
     # Column widths
     widths = {1: 4, 2: 11, 3: 32, 4: 6, 5: 16, 6: 11, 7: 17, 8: 12,
               9: 8, 10: 8, 11: 10, 12: 8, 13: 8, 14: 10, 15: 9,
-              16: 10, 17: 10, 18: 11, 19: 7, 20: 7}
+              16: 7, 17: 10, 18: 10, 19: 11, 20: 7, 21: 7}
     from openpyxl.utils import get_column_letter
     for col, w in widths.items():
         ws.column_dimensions[get_column_letter(col)].width = w
@@ -514,7 +517,9 @@ def main():
             tab_n = max(args.n, 120)
         if col == 'arch_lynch_reward' and tab_sort != sort_col:
             tab_n = max(args.n, 100)
-        sub_df = sub_df.nlargest(tab_n, tab_sort).reset_index(drop=True)
+        sub_df = (dedupe_display(sub_df.sort_values(tab_sort, ascending=False,
+                                                    na_position='last'))
+                  .head(tab_n).reset_index(drop=True))
         if sub_df.empty:
             continue
         sheet_name = _sheet_safe(s['label'])

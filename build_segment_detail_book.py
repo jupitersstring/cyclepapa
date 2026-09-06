@@ -128,7 +128,7 @@ def _write_segment_table(ws, df_subset, label, n_total, sort_col='entry_confirme
     f_text_muted = _font(color=MUTED)
     f_italic_muted = _font(italic=True, color=MUTED)
 
-    NCOLS = 23
+    NCOLS = 24
     # Title
     t = ws.cell(row=2, column=1, value=label)
     t.font = f_bold
@@ -174,12 +174,12 @@ def _write_segment_table(ws, df_subset, label, n_total, sort_col='entry_confirme
 
     headers = ['#', 'Ticker', 'Name', 'Country', 'Sector', 'Mcap (USD)',
                'Verdict',
-               'EV/EBITDA', 'P/E', 'P/B', 'P/S', 'FCF yld %', 'ROIC %',
+               'EV/EBITDA', 'P/E', 'P/B', 'P/S', 'FCF yld %', 'Div %', 'ROIC %',
                'EBITDA m %', 'ND/EBITDA', 'Mom 12m %',
                'Segs', 'HHI', 'Largest segment (share)',
                'Top 3 segments', 'Regs', 'Top regions', 'Fastest segment YoY']
-    text_cols = {2, 3, 4, 5, 19, 20, 22, 23}  # ticker/name/country/sector/segment text
-    center_cols = {7, 17}  # verdict + segs count
+    text_cols = {2, 3, 4, 5, 20, 21, 23, 24}  # ticker/name/country/sector/segment text
+    center_cols = {7, 18}  # verdict + segs count
     for i, h in enumerate(headers, start=1):
         c = ws.cell(row=11, column=i, value=h)
         c.font = f_bold_muted
@@ -210,34 +210,35 @@ def _write_segment_table(ws, df_subset, label, n_total, sort_col='entry_confirme
         _write_score(ws, r_idx, 10, r.get('pb'), font=f_text)
         _write_score(ws, r_idx, 11, r.get('p_s'), font=f_text)
         _write_pct(ws, r_idx, 12, r.get('fcf_yield'), font=f_text)
-        _write_pct(ws, r_idx, 13, r.get('roce'), font=f_text)
-        _write_pct(ws, r_idx, 14, r.get('ebitda_margin'), font=f_text)
-        _write_score(ws, r_idx, 15, r.get('net_debt_ebitda'), font=f_text)
-        _write_pct(ws, r_idx, 16, r.get('momentum_12m'), font=f_text)
+        _write_pct(ws, r_idx, 13, r.get('dividend_yield'), font=f_text)
+        _write_pct(ws, r_idx, 14, r.get('roce'), font=f_text)
+        _write_pct(ws, r_idx, 15, r.get('ebitda_margin'), font=f_text)
+        _write_score(ws, r_idx, 16, r.get('net_debt_ebitda'), font=f_text)
+        _write_pct(ws, r_idx, 17, r.get('momentum_12m'), font=f_text)
         # Segment columns
-        _write_int(ws, r_idx, 17, int(r['segment_count']) if pd.notna(r.get('segment_count')) else 0, font=f_text)
-        _write_ratio(ws, r_idx, 18, r.get('segment_revenue_hhi'), font=f_text)
+        _write_int(ws, r_idx, 18, int(r['segment_count']) if pd.notna(r.get('segment_count')) else 0, font=f_text)
+        _write_ratio(ws, r_idx, 19, r.get('segment_revenue_hhi'), font=f_text)
         ls_name = str(r.get('largest_segment_name') or '')[:22]
         ls_share = r.get('largest_segment_share')
         if pd.notna(ls_share) and ls_share is not None:
             largest_str = f"{ls_name} ({ls_share*100:.0f}%)"
         else:
             largest_str = ls_name
-        ws.cell(row=r_idx, column=19, value=largest_str).font = f_text
-        ws.cell(row=r_idx, column=19).alignment = _TXT_ALIGN_LEFT
-        ws.cell(row=r_idx, column=20, value=str(r.get('top_segments') or '')[:80]).font = f_text_muted
+        ws.cell(row=r_idx, column=20, value=largest_str).font = f_text
         ws.cell(row=r_idx, column=20).alignment = _TXT_ALIGN_LEFT
-        _write_int(ws, r_idx, 21, int(r['geographic_region_count']) if pd.notna(r.get('geographic_region_count')) else 0, font=f_text)
-        ws.cell(row=r_idx, column=22, value=str(r.get('top_regions') or '')[:60]).font = f_text_muted
-        ws.cell(row=r_idx, column=22).alignment = _TXT_ALIGN_LEFT
+        ws.cell(row=r_idx, column=21, value=str(r.get('top_segments') or '')[:80]).font = f_text_muted
+        ws.cell(row=r_idx, column=21).alignment = _TXT_ALIGN_LEFT
+        _write_int(ws, r_idx, 22, int(r['geographic_region_count']) if pd.notna(r.get('geographic_region_count')) else 0, font=f_text)
+        ws.cell(row=r_idx, column=23, value=str(r.get('top_regions') or '')[:60]).font = f_text_muted
+        ws.cell(row=r_idx, column=23).alignment = _TXT_ALIGN_LEFT
         fs_name = str(r.get('fastest_segment_name') or '')[:20]
         fs_yoy = r.get('fastest_segment_yoy')
         if pd.notna(fs_yoy):
             fast_str = f"{fs_name} {fs_yoy*100:+.0f}%"
         else:
             fast_str = fs_name
-        ws.cell(row=r_idx, column=23, value=fast_str).font = f_text
-        ws.cell(row=r_idx, column=23).alignment = _TXT_ALIGN_LEFT
+        ws.cell(row=r_idx, column=24, value=fast_str).font = f_text
+        ws.cell(row=r_idx, column=24).alignment = _TXT_ALIGN_LEFT
         for c in range(1, NCOLS + 1):
             ws.cell(row=r_idx, column=c).border = Border(
                 bottom=Side(style='thin', color=RULE))
@@ -245,8 +246,8 @@ def _write_segment_table(ws, df_subset, label, n_total, sort_col='entry_confirme
 
     # Column widths tuned for the new wider layout
     widths = {1: 4, 2: 10, 3: 22, 4: 6, 5: 14, 6: 14, 7: 12,
-              8: 9, 9: 8, 10: 7, 11: 7, 12: 9, 13: 8, 14: 10, 15: 9, 16: 10,
-              17: 5, 18: 7, 19: 28, 20: 52, 21: 5, 22: 32, 23: 22}
+              8: 9, 9: 8, 10: 7, 11: 7, 12: 9, 13: 7, 14: 8, 15: 10, 16: 9, 17: 10,
+              18: 5, 19: 7, 20: 28, 21: 52, 22: 5, 23: 32, 24: 22}
     for col, w in widths.items():
         ws.column_dimensions[get_column_letter(col)].width = w
 
