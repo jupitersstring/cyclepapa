@@ -172,9 +172,16 @@ def harvest_xbrl_dimensional(cik: int, symbol: str, max_filings: int = 1) -> dic
     except Exception as e:
         return {"cik": cik, "symbol": symbol, "error": f"company_lookup: {e}"[:120]}
 
-    # Latest 10-K only — segment disclosure is annual
+    # Latest TWO 10-Ks + latest 10-Q: two annual reports give FY YoY plus a
+    # prior FY pair for acceleration and mix-shift (share_delta), and the
+    # 10-Q carries the current quarter WITH its year-ago comparative — a true
+    # seasonality-immune quarterly segment YoY from a single filing. Foreign
+    # private issuers file 20-F instead of 10-K.
     try:
-        filings = list(c.get_filings(form="10-K"))[:max_filings]
+        filings = list(c.get_filings(form="10-K"))[:2]
+        if not filings:
+            filings = list(c.get_filings(form="20-F"))[:2]
+        filings += list(c.get_filings(form="10-Q"))[:1]
     except Exception as e:
         return {"cik": cik, "symbol": symbol, "error": f"filings_list: {e}"[:120]}
 
