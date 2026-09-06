@@ -198,15 +198,32 @@ def fix_asymmetry_global(in_path: str = 'asymmetry_global.csv',
 
     # Need currency from a yartseva file - look it up
     import glob
-    ccy_map = {}
+    # Collect ALL candidate currencies per symbol. 620 symbols carry
+    # CONFLICTING labels across the country files (mostly GBp vs GBP, ZAc
+    # vs ZAR) — the old first-alphabetical-file-wins rule picked pence for
+    # names whose master fundamentals are stored in the MAJOR unit,
+    # 100x-crushing their USD caps (HMSO.L: $23.7M instead of ~$2.2B).
+    # On a pence-vs-major conflict prefer the MAJOR unit — the pence-mint
+    # methodology check catches the opposite error loudly, while a wrong
+    # /100 destroys the name silently.
+    _PENCE = {'GBp', 'GBX', 'ZAc', 'ZAC', 'ILA', 'ILa', 'KWf'}
+    _cands: dict = {}
     for f in sorted({p for g in ['*_yartseva.csv'] for p in glob.glob(g)}):
         try:
-            d = pd.read_csv(f, usecols=['symbol','currency'])
+            d = pd.read_csv(f, usecols=['symbol', 'currency'])
             for sym, ccy in zip(d['symbol'], d['currency']):
-                if isinstance(sym, str) and isinstance(ccy, str) and sym not in ccy_map:
-                    ccy_map[sym] = ccy
+                if isinstance(sym, str) and isinstance(ccy, str):
+                    _cands.setdefault(sym, set()).add(ccy)
         except Exception:
             continue
+    ccy_map = {}
+    for sym, cands in _cands.items():
+        if len(cands) == 1:
+            ccy_map[sym] = next(iter(cands))
+        else:
+            major = [c for c in cands if c not in _PENCE]
+            ccy_map[sym] = (sorted(major)[0] if major
+                            else sorted(cands)[0])
     df['currency'] = df['symbol'].map(ccy_map)
 
     df = fx_convert(df, fx)

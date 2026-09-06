@@ -65,7 +65,7 @@ SUFFIX_HOME = {
     '.VS': 'LT', '.RO': 'RO', '.IS': 'TR',
     '.SA': 'BR', '.MX': 'MX', '.SN': 'CL', '.BA': 'AR', '.CN': 'CA',
     '.TO': 'CA', '.V': 'CA', '.JO': 'ZA', '.TA': 'IL', '.SR': 'SA',
-    '.AD': 'AE', '.DU': 'AE', '.QA': 'QA', '.KW': 'KW', '.CA': 'EG',
+    '.AD': 'AE', '.DUx_unused': 'AE'  # was a dup key clobbering .DU->DE, '.QA': 'QA', '.KW': 'KW', '.CA': 'EG',
 }
 
 _NAME_STOP = re.compile(

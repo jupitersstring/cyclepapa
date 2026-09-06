@@ -278,6 +278,13 @@ def stage_xbrl_one(rec, state):
         return ("cached", cik, None)
     try:
         payload = harvest_xbrl_dimensional(cik, sym)
+        # An {"error": ...} stub is a FAILED fetch — caching it and marking
+        # xbrl_done made the failure permanent and unretriable. Leave the
+        # CIK pending so a later pass retries.
+        if payload is not None and payload.get("error"):
+            state.setdefault(str(cik), {})["status"] = "xbrl_error"
+            state[str(cik)]["error"] = str(payload["error"])[:120]
+            return ("error", cik, payload["error"])
         if payload is not None:
             write_json_atomic(cache_path, payload)
         state.setdefault(str(cik), {})["status"] = "xbrl_done"

@@ -46,7 +46,7 @@ def _is_number(v):
 # separators; multiples / scores get two decimals.
 _PCT_HINTS = ("yield", "margin", "_pct", "pct_", "growth", "momentum",
               "roe", "roa", "roce", "_yoy", "_cagr", "tax_rate",
-              "return_yield", "off_52w", "accel")
+              "return_yield", "off_52w", "accel" + ('roic', 'roiic', 'roce')
 _MONEY_HINTS = ("market_cap", "enterprise_value", "revenue", "ebitda_ttm",
                 "fcf_ttm", "cfo_ttm", "cash", "debt", "equity", "assets",
                 "goodwill", "intangibles", "ncav", "net_cash", "_ttm",

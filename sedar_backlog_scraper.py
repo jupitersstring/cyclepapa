@@ -46,10 +46,10 @@ BACKLOG_KEYWORDS = re.compile(
     re.IGNORECASE,
 )
 BOARD_KEYWORDS = re.compile(
-    r"\b(appoint(?:ed|ment|s)?\s+(?:to\s+)?(?:the\s+)?board|"
-    r"appoint(?:ed|s)?\s+.*director|"
-    r"new\s+(?:board\s+member|director|chair(?:man|person)?)|"
-    r"elects?\s+.*director|"
+    r"\b(appoint(?:ed|ment|s)?\s+.{0,80}?(?:board|directors?)|"
+    r"new\s+(?:board\s+member|directors?|chair(?:man|person)?)|"
+    r"elects?\s+.{0,80}?directors?|"
+    r"board\s+of\s+directors?|"
     r"board\s+(?:nomination|appointment))\b",
     re.IGNORECASE,
 )

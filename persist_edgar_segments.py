@@ -67,6 +67,12 @@ def restore():
     parts = sorted(glob.glob(os.path.join(PARTS_DIR, "part_*.csv.gz")))
     if not parts:
         sys.exit(f"no parts in {PARTS_DIR}/ — nothing to restore")
+    # a MISSING MIDDLE PART would silently truncate the restore — verify
+    # the sequence is contiguous from 000
+    nums = [int(os.path.basename(p)[5:8]) for p in parts]
+    if nums != list(range(len(nums))):
+        sys.exit(f"part sequence has gaps: {nums} — refusing a silent "
+                 f"partial restore")
     with open(CSV, "wb") as out:
         for i, p in enumerate(parts):
             with gzip.open(p, "rb") as fh:

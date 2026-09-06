@@ -71,6 +71,7 @@ echo "$(ts) merging + re-rendering" >> "$LOG"
 "$PY" fill_asymmetry_gaps.py        >> "$LOG" 2>&1
 "$PY" derive_missing_columns.py     >> "$LOG" 2>&1
 "$PY" rebuild_scores.py            >> "$LOG" 2>&1   # FX+dedup+rescore (audit fix)
+"$PY" methodology_audit.py >> "$LOG" 2>&1 || echo "METHODOLOGY AUDIT FAILED — books may reflect broken measures" >> "$LOG"
 "$PY" enrich_asymmetry_global.py    >> "$LOG" 2>&1
 "$PY" sec_insider_buys.py 2>/dev/null || true; "$PY" archetype_tags.py             >> "$LOG" 2>&1
 "$PY" enrich_asymmetry_global.py    >> "$LOG" 2>&1
@@ -105,7 +106,12 @@ for cmd in \
   "build_country_archetype_book.py --n 30" "build_country_archetype_inflection_book.py --n 10" \
   "build_otc_archetype_book.py --n 30" \
   "top_n_by_country.py --n 30 --out-csv top_n_by_country.csv --out-xlsx top_n_by_country.xlsx" \
-  "top_n_by_country.py --n 30 --sort-by inflection --out-csv top_n_by_country_inflection.csv --out-xlsx top_n_by_country_inflection.xlsx" ; do
+  "top_n_by_country.py --n 30 --sort-by inflection --out-csv top_n_by_country_inflection.csv --out-xlsx top_n_by_country_inflection.xlsx" \
+  "build_country_archetype_book.py --otc-mode otc --out country_archetype_book_otc.xlsx" \
+  "build_country_archetype_book.py --n 30 --high-filter any --out country_archetype_52w_high.xlsx" \
+  "build_country_archetype_inflection_book.py --otc-mode otc --out country_archetype_inflection_otc.xlsx" \
+  "top_n_by_country.py --n 30 --otc-mode otc --out-csv top_n_otc.csv --out-xlsx top_n_otc.xlsx" \
+  "top_n_by_country.py --n 30 --high-filter any --out-csv top_n_52w_high.csv --out-xlsx top_n_52w_high.xlsx" ; do
   echo "$(ts)  $cmd" >> "$LOG"
   $PY $cmd >> "$LOG" 2>&1
 done

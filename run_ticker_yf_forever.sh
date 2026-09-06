@@ -69,6 +69,7 @@ echo "$(ts) driver: applying Yahoo fundamentals + re-rendering" >> "$DRIVER_LOG"
 "$PYTHON" fill_asymmetry_gaps.py >> "$DRIVER_LOG" 2>&1
 "$PYTHON" derive_missing_columns.py >> "$DRIVER_LOG" 2>&1
 "$PYTHON" rebuild_scores.py >> "$DRIVER_LOG" 2>&1   # FX+dedup+rescore (audit fix)
+"$PYTHON" methodology_audit.py >> "$DRIVER_LOG" 2>&1 || echo "METHODOLOGY AUDIT FAILED — books may reflect broken measures" >> "$DRIVER_LOG"
 "$PYTHON" enrich_asymmetry_global.py >> "$DRIVER_LOG" 2>&1
 "$PYTHON" sec_insider_buys.py 2>/dev/null || true; "$PYTHON" archetype_tags.py >> "$DRIVER_LOG" 2>&1
 "$PYTHON" enrich_asymmetry_global.py >> "$DRIVER_LOG" 2>&1
@@ -84,10 +85,29 @@ for cmd in \
     "build_country_archetype_book.py --n 30" "build_country_archetype_inflection_book.py --n 10" \
     "build_otc_archetype_book.py --n 30" \
     "top_n_by_country.py --n 30 --out-csv top_n_by_country.csv --out-xlsx top_n_by_country.xlsx" \
-    "top_n_by_country.py --n 30 --sort-by inflection --out-csv top_n_by_country_inflection.csv --out-xlsx top_n_by_country_inflection.xlsx" ; do
+    "top_n_by_country.py --n 30 --sort-by inflection --out-csv top_n_by_country_inflection.csv --out-xlsx top_n_by_country_inflection.xlsx" \
+    "build_country_archetype_book.py --otc-mode otc --out country_archetype_book_otc.xlsx" \
+    "build_country_archetype_book.py --n 30 --high-filter any --out country_archetype_52w_high.xlsx" \
+    "build_country_archetype_inflection_book.py --otc-mode otc --out country_archetype_inflection_otc.xlsx" \
+    "top_n_by_country.py --n 30 --otc-mode otc --out-csv top_n_otc.csv --out-xlsx top_n_otc.xlsx" \
+    "top_n_by_country.py --n 30 --high-filter any --out-csv top_n_52w_high.csv --out-xlsx top_n_52w_high.xlsx" ; do
     echo "$(ts) driver:   $cmd" >> "$DRIVER_LOG"
     $PYTHON $cmd >> "$DRIVER_LOG" 2>&1
 done
 
 date > "$SENTINEL"
 echo "$(ts) driver: DONE — sentinel written" >> "$DRIVER_LOG"
+
+# Persist the rendered outputs — this driver previously never committed,
+# so a container reclaim silently discarded every re-rendered artifact.
+git add -A 2>/dev/null
+if ! git diff --cached --quiet 2>/dev/null; then
+  git commit -q -m "Ticker-yf refresh: regenerate workbooks
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01Pk8K7QpC1m36MYjRwkTznS"
+  for i in 1 2 3 4; do
+    git push -q origin claude/yartseva-multibagger-database-lZS4a && break
+    sleep $((2**i))
+  done
+fi

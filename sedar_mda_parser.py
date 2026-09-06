@@ -46,9 +46,9 @@ HEADERS = {
 
 # Sentence-level backlog pattern: $X(.X)? (million|billion|m|b|k)? backlog | order book | unfilled orders
 BACKLOG_SENTENCE_RE = re.compile(
-    r"([^.!?\n]{0,200}?"
+    r"((?:[^.!?\n]|\.(?=\d)){0,200}?"
     r"(?:backlog|order\s+book|order\s+intake|bookings|unfilled\s+orders|book[-\s]to[-\s]bill)"
-    r"[^.!?\n]{0,200}[.!?])",
+    r"(?:[^.!?\n]|\.(?=\d)){0,200}[.!?])",
     re.IGNORECASE,
 )
 
