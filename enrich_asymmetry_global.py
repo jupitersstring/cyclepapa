@@ -265,9 +265,9 @@ def main():
     ordered = front_existing + [c for c in new_cols if c in df.columns]
     df = df[ordered]
 
-    import os as _os
+    from master_versions import versioned_replace
     df.to_csv(args.asym + '.tmp', index=False)
-    _os.replace(args.asym + '.tmp', args.asym)   # atomic — readers never see a torn master
+    versioned_replace(args.asym + '.tmp', args.asym)   # atomic + pre-image snapshot
 
     print(f'  wrote enriched {args.asym}: {len(df):,} rows, '
           f'{len(df.columns)} columns', file=sys.stderr)

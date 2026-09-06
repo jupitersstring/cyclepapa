@@ -2045,9 +2045,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _fresh_sc = ((0.85 - _num('base_depth_12m')) / 0.45).clip(0, 1).fillna(0)
     _hi_sc = ((0.4 * _abs_hi.astype(float) + 0.4 * _rel_hi.astype(float))
               * (0.5 + 0.5 * _fresh_sc)).clip(0, 1)
-    df['analyst_awakening_score'] = ((0.25 * _rec_sc + 0.20 * _ups_sc
-                                      + 0.15 * _brd_sc + 0.10 * conv_score
-                                      + 0.30 * _hi_sc)
+    # Volatility-asymmetry awakening reward: asym oscillator NEAR 50 (|a-50|
+    # <= 5) AND RISING (5-period ROC > 0) on the monthly or quarterly bars —
+    # two-sided volatility resolving upward, i.e. the re-rating is being
+    # traded, not just written about. A reward leg, not a gate (weekly bars
+    # aren't computed; monthly is the shortest asym timeframe).
+    _asym_wake = ((_num('asym_m_near50_rising') == 1)
+                  | (_num('asym_q_near50_rising') == 1)).fillna(False)
+    _asym_sc = _asym_wake.astype(float)
+    df['analyst_awakening_score'] = (((0.25 * _rec_sc + 0.20 * _ups_sc
+                                       + 0.15 * _brd_sc + 0.10 * conv_score
+                                       + 0.30 * _hi_sc
+                                       + 0.10 * _asym_sc).clip(0, 1))
                                      * df['arch_analyst_awakening']).round(3)
 
     arch_cols = [
@@ -2200,9 +2209,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
 
     out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','seg_inflect_score']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m'] if c in df.columns]]
-    import os as _os
+    from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)
-    _os.replace(out_path + '.tmp', out_path)   # atomic — readers never see a torn master
+    versioned_replace(out_path + '.tmp', out_path)   # atomic + pre-image snapshot
 
 
     # Summary to stderr

@@ -54,3 +54,4 @@ lynch_driver.log
 # `python3 persist_edgar_segments.py save` after every extract and
 # `... restore` on a fresh container. Raw harvests must never again exist
 # only inside an ephemeral container.
+master_versions/

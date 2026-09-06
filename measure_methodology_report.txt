@@ -17,7 +17,7 @@ METHODOLOGY AUDIT — 41 checks, 0 FAIL, 0 WARN
   PASS  lynch_reward: every firer has a live tape  — 0 stale-tape firers
   PASS  52w: both == abs AND rel
   PASS  awakening: firers with a rating skew strong (<= 2.2)  — 93% of rated firers <= 2.2
-  PASS  awakening: momentum-gated firers not extended (<= ~50%)  — 0 extended among the 384 momentum-gated firers
+  PASS  awakening: momentum-gated firers not extended (<= ~50%)  — 0 extended among the 320 momentum-gated firers
   PASS  capital_returner: firers inside the 5-30% policy band (small tail = EDGAR-coalesced source not visible here)  — 132 outside on asym-only columns
   PASS  strong_coverage: every firer has positive EBITDA  — 0 non-positive
   PASS  gating: tenbagger_score is 0 outside arch_tenbagger_path  — 0 non-firers with positive score

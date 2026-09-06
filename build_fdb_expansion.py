@@ -175,9 +175,9 @@ def main():
         add = add[master.columns]
         combined = pd.concat([master, add], ignore_index=True)
         combined = combined.drop_duplicates('symbol', keep='first')
-        import os as _os
+        from master_versions import versioned_replace
         combined.to_csv(args.master + '.tmp', index=False)
-        _os.replace(args.master + '.tmp', args.master)   # atomic write
+        versioned_replace(args.master + '.tmp', args.master)   # atomic + pre-image snapshot
 
         print(f'\nappended to {args.master}: {len(master):,} -> {len(combined):,} rows',
               file=sys.stderr)

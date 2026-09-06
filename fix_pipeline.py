@@ -233,9 +233,9 @@ def fix_asymmetry_global(in_path: str = 'asymmetry_global.csv',
     # Add an as_of stamp
     df['as_of'] = date.today().isoformat()
 
-    import os as _os
+    from master_versions import versioned_replace
     df.to_csv(out_path + '.tmp', index=False)
-    _os.replace(out_path + '.tmp', out_path)   # atomic
+    versioned_replace(out_path + '.tmp', out_path)   # atomic + pre-image snapshot
     print(f'  wrote {out_path}: {len(df)} rows', file=sys.stderr)
     return df
 
