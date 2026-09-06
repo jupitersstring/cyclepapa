@@ -49,6 +49,10 @@ A segment the consolidated print masks: multi-segment filer, engine growing doub
 
 Every archetype-specific ranking score is 0 for non-firers — a book sorting on it can never surface a name outside the archetype.
 
+## Coverage-fair archetype density
+
+archetype_count_pct divides by the count of archetypes the row is ELIGIBLE for — it can never exceed 1, and the denominator tracks the LIVE taxonomy, not a frozen constant.
+
 ## Composite score ranges
 
 Confirmation/lens composites live in [0, 1] by construction.
