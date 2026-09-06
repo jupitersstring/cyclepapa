@@ -1,7 +1,9 @@
 """Per-archetype top-N book.
 
-For each of the 30 archetypes, one tab listing the top-N names that
-match it, ranked by entry_today_asymmetry. Plus a Cover with archetype
+For each archetype in archetype_tags.csv (the count is dynamic — read
+from the file), one tab listing the top-N names that match it, ranked
+by entry_confirmed (or the archetype's own score where one exists —
+see ARCH_SORT_OVERRIDES). Plus a Cover with archetype
 counts and a Density tab surfacing the names that match the MOST
 archetypes (cross-archetype winners).
 
@@ -107,6 +109,33 @@ def _sheet_safe(s: str) -> str:
     """Excel sheet names: max 31 chars, no /\\?*[]:"""
     out = ''.join(ch if ch.isalnum() or ch in '_+- ' else '_' for ch in str(s))
     return out[:31]
+
+
+# Per-archetype sort overrides (house doctrine: archetype sheets sort by
+# their archetype-specific score where one exists). Shared by the country,
+# country-inflection and OTC archetype books — each falls back to its own
+# default SORT_COL when the override column is missing / all-NaN.
+ARCH_SORT_OVERRIDES = {
+    'arch_fastest_segment':   'seg_inflect_confirmed',
+    'arch_lynch_reward':      'lynch_rank',
+    'arch_analyst_awakening': 'analyst_awakening_score',
+    'arch_tenbagger_path':    'tenbagger_score',
+    'arch_tenbagger_credible': 'tenbagger_score',
+    'arch_evsales_derating':  'evsales_derate_score',
+}
+
+
+def arch_sort_col(arch_col: str, frame: pd.DataFrame, default: str) -> str:
+    """Resolve the sort column for one archetype section.
+
+    Returns the ARCH_SORT_OVERRIDES entry when that column exists in
+    `frame` and carries at least one non-NaN value; otherwise `default`
+    (the calling book's SORT_COL)."""
+    ov = ARCH_SORT_OVERRIDES.get(arch_col)
+    if ov and ov in frame.columns and \
+            pd.to_numeric(frame[ov], errors='coerce').notna().any():
+        return ov
+    return default
 
 
 def load_data(min_mcap: float = 10_000_000, otc_mode: str = 'ex-otc'):
@@ -316,7 +345,7 @@ def _write_archetype_table(ws, df_subset, archetype_label, total_universe, sort_
     # Column widths
     widths = {1: 4, 2: 11, 3: 32, 4: 6, 5: 16, 6: 11, 7: 17, 8: 12,
               9: 8, 10: 8, 11: 10, 12: 8, 13: 8, 14: 10, 15: 9,
-              16: 10, 17: 10, 18: 11, 19: 7}
+              16: 10, 17: 10, 18: 11, 19: 7, 20: 7}
     from openpyxl.utils import get_column_letter
     for col, w in widths.items():
         ws.column_dimensions[get_column_letter(col)].width = w
@@ -373,8 +402,9 @@ def main():
     sub.font = f_italic
     cover.merge_cells(start_row=5, start_column=2, end_row=5, end_column=7)
 
+    from datetime import date
     note = cover.cell(row=7, column=2,
-                     value="Yartseva-aligned upside  ·  Graham downside floor  ·  30 archetypes  ·  EDGAR XBRL coverage on US filers  ·  As of 24 June 2026")
+                     value=f"Yartseva-aligned upside  ·  Graham downside floor  ·  {len(arch_cols)} archetypes  ·  EDGAR XBRL coverage on US filers  ·  As of {date.today():%d %B %Y}")
     note.font = f_italic_muted
     cover.merge_cells(start_row=7, start_column=2, end_row=7, end_column=7)
 
@@ -410,7 +440,7 @@ def main():
 
     # Archetype index — count + top scorer per archetype, sorted by count
     _section_rule(cover, 15, "Archetype index", span_cols=7)
-    idx_headers = ['Archetype', 'Matches', 'GREEN', 'YELLOW', 'UNR', 'Top scorer', 'Top ETA']
+    idx_headers = ['Archetype', 'Matches', 'GREEN', 'YELLOW', 'UNR', 'Top scorer', 'Top confirmed']
     for i, h in enumerate(idx_headers, start=2):
         c = cover.cell(row=16, column=i, value=h)
         c.font = _font(bold=True, color=MUTED)
@@ -469,20 +499,21 @@ def main():
     for s in arch_summary:
         col = s['arch_col']
         sub_df = df[df[col].fillna(0).astype(int) == 1].copy()
-        # The Fastest-Segment sheet is a hidden-engine view: rank by the
-        # segment's own YoY, not whole-company entry asymmetry (which buries
-        # names like EVC/Smadex whose consolidated multiples are muted by a
-        # shrinking legacy segment). Show a deeper list so real mid-pack
-        # inflections surface.
-        tab_sort, tab_n = sort_col, args.n
-        if col == 'arch_fastest_segment' and 'seg_inflect_confirmed' in sub_df.columns:
-            tab_sort, tab_n = 'seg_inflect_confirmed', max(args.n, 120)
-        # The Lynch-Reward sheet ranks by its OWN completeness/exceptional-leg
-        # key (max of the blended score and the best single leg, with the
-        # exceptional-leg bonus) — whole-company entry asymmetry is not the
-        # thesis here. Deeper list so one-leg monsters surface too.
-        if col == 'arch_lynch_reward' and 'lynch_rank' in sub_df.columns:
-            tab_sort, tab_n = 'lynch_rank', max(args.n, 100)
+        # Archetype-specific sort keys (ARCH_SORT_OVERRIDES): e.g. the
+        # Fastest-Segment sheet is a hidden-engine view ranked by the
+        # segment's own YoY (whole-company entry asymmetry buries names like
+        # EVC/Smadex whose consolidated multiples are muted by a shrinking
+        # legacy segment), and Lynch-Reward ranks by its OWN
+        # completeness/exceptional-leg key. Falls back to entry_confirmed
+        # when the override column is missing/all-NaN.
+        tab_sort = arch_sort_col(col, sub_df, sort_col)
+        tab_n = args.n
+        # Deeper lists on the hidden-engine / one-leg-monster views so real
+        # mid-pack inflections surface.
+        if col == 'arch_fastest_segment' and tab_sort != sort_col:
+            tab_n = max(args.n, 120)
+        if col == 'arch_lynch_reward' and tab_sort != sort_col:
+            tab_n = max(args.n, 100)
         sub_df = sub_df.nlargest(tab_n, tab_sort).reset_index(drop=True)
         if sub_df.empty:
             continue

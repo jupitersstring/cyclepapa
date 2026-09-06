@@ -28,7 +28,8 @@ from build_harvard_workbook import (
     _write_money, _write_pct, _write_score, _write_int,
     _NUM_ALIGN_RIGHT, _NUM_ALIGN_CENTER, _TXT_ALIGN_LEFT,
 )
-from build_archetype_book import load_data, ARCHETYPE_LABELS, _sheet_safe
+from build_archetype_book import (load_data, ARCHETYPE_LABELS, _sheet_safe,
+                                  ARCH_SORT_OVERRIDES, arch_sort_col)
 from openpyxl.styles import Border, Side
 from otc_flag import (add_otc_mode_arg, apply_otc_mode,
                       add_high_filter_arg, apply_high_filter)
@@ -72,8 +73,12 @@ def _write_country_sheet(ws, cdf, country, arch_cols, n_top):
     row = 5
     for col, n_match in counts:
         label = ARCHETYPE_LABELS.get(col, col)
-        sub = (cdf[cdf[col].fillna(0) == 1]
-               .sort_values(SORT_COL, ascending=False, na_position='last')
+        members = cdf[cdf[col].fillna(0) == 1]
+        # Archetype-specific sort where one exists (ARCH_SORT_OVERRIDES);
+        # falls back to entry_confirmed when the column is missing/all-NaN.
+        tab_sort = arch_sort_col(col, members, SORT_COL)
+        sub = (members
+               .sort_values(tab_sort, ascending=False, na_position='last')
                .head(n_top))
         _section_rule(ws, row, f"{label}   —   {n_match:,} matches in {country}",
                       span_cols=N_COLS)

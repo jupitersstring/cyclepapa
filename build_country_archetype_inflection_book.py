@@ -7,7 +7,9 @@ patterns surface first), and within each archetype the names are ranked by the
 inflection analogue of entry_confirmed:
 
     entry_inflection_confirmed = inflection_asymmetry_score
-                                 * (1 + 0.20*confirm_overall + 0.10*buyback_score)
+                                 * (1 + 0.20*confirm_overall
+                                      + 0.15*inflection_confirm_score
+                                      + 0.05*buyback_score)
 
 i.e. the inflection base upweighted where independent measures agree — the same
 pool-preserving confirmation upweight used everywhere else. The displayed
@@ -29,9 +31,11 @@ from build_harvard_workbook import (
     _write_money, _write_pct, _write_score, _write_int,
     _NUM_ALIGN_RIGHT, _NUM_ALIGN_CENTER, _TXT_ALIGN_LEFT,
 )
-from build_archetype_book import load_data, ARCHETYPE_LABELS, _sheet_safe
+from build_archetype_book import (load_data, ARCHETYPE_LABELS, _sheet_safe,
+                                  ARCH_SORT_OVERRIDES, arch_sort_col)
 from openpyxl.styles import Border, Side
-from otc_flag import add_otc_mode_arg, apply_otc_mode
+from otc_flag import (add_otc_mode_arg, apply_otc_mode,
+                      add_high_filter_arg, apply_high_filter)
 
 SORT_COL = 'entry_inflection_confirmed'
 
@@ -44,11 +48,17 @@ WIDTHS = {1: 4, 2: 12, 3: 34, 4: 16, 5: 11, 6: 15, 7: 12, 8: 7, 9: 7,
 
 
 def _add_inflection_key(df):
-    """entry_inflection_confirmed = inflection base * confirmation upweight."""
+    """entry_inflection_confirmed = inflection base * confirmation upweight.
+
+    The inflection lens gets the inflection-specific confirmation folded in:
+    inflection_confirm_score (operating leverage + top-line growth agreeing
+    across time bases) carries the middle weight, alongside the overall
+    multi-measure confirmation and a small buyback leg."""
     infl = pd.to_numeric(df.get('inflection_asymmetry_score'), errors='coerce').fillna(0.0)
     cfo = pd.to_numeric(df.get('confirm_overall'), errors='coerce').fillna(0.0)
+    ics = pd.to_numeric(df.get('inflection_confirm_score'), errors='coerce').fillna(0.0)
     bbs = pd.to_numeric(df.get('buyback_score'), errors='coerce').fillna(0.0)
-    df['entry_inflection_confirmed'] = infl * (1.0 + 0.20 * cfo + 0.10 * bbs)
+    df['entry_inflection_confirmed'] = infl * (1.0 + 0.20 * cfo + 0.15 * ics + 0.05 * bbs)
     return df
 
 
@@ -87,8 +97,12 @@ def _write_country_sheet(ws, cdf, country, arch_cols, n_top):
     row = 5
     for col, n_match, _peak in ranked:
         label = ARCHETYPE_LABELS.get(col, col)
-        sub = (cdf[cdf[col].fillna(0) == 1]
-               .sort_values(SORT_COL, ascending=False, na_position='last')
+        members = cdf[cdf[col].fillna(0) == 1]
+        # Archetype-specific sort where one exists (ARCH_SORT_OVERRIDES);
+        # falls back to the confirmed-inflection key when missing/all-NaN.
+        tab_sort = arch_sort_col(col, members, SORT_COL)
+        sub = (members
+               .sort_values(tab_sort, ascending=False, na_position='last')
                .head(n_top))
         _section_rule(ws, row, f"{label}   —   {n_match:,} matches in {country}",
                       span_cols=N_COLS)
@@ -147,10 +161,12 @@ def main():
                     help='top N per archetype on the GLOBAL sheet')
     ap.add_argument('--out', default='country_archetype_inflection_book.xlsx')
     add_otc_mode_arg(ap)
+    add_high_filter_arg(ap)
     args = ap.parse_args()
 
     df, arch_cols = load_data(otc_mode='all')
     df = apply_otc_mode(df, args.otc_mode)
+    df = apply_high_filter(df, args.high_filter)
     df = _add_inflection_key(df)
     df['src'] = df['src'].fillna('').astype(str).str.upper()
     print(f'  {len(df):,} eligible rows, {len(arch_cols)} archetypes',

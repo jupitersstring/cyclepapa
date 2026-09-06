@@ -338,12 +338,13 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
         ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=span_cols)
         ws.row_dimensions[row].height = 16
 
-    # Table column layout (post-headline-valuation addition):
+    # Table column layout (post-headline-valuation addition, 21 cols):
     #   1 #             2 Ticker        3 Name          4 Sector
-    #   5 Bucket        6 Mcap (USD)    7 Verdict       8 ETA
+    #   5 Bucket        6 Mcap (USD)    7 Verdict       8 ETA/Infl (active sort key)
     #   9 Asym         10 EV/EBITDA    11 P/E         12 P/B
     #  13 FCF yld %    14 ROIC %       15 ND/EBITDA   16 EBITDA margin %
-    #  17 Mom 12m %    18 Yartseva     19 Cluster
+    #  17 Mom 12m %    18 Yartseva     19 Cluster     20 Confirm
+    #  21 P/S
     N_COLS = 21
 
     def _write_table_row(ws, row, r, cols=N_COLS):
@@ -356,7 +357,10 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
                   align=A_CENTER)
         _put_money(ws, row, 6, r.get('market_cap'), font=f_text)
         _verdict_marker(ws, row, 7, r['verdict'])
-        _put_score(ws, row, 8, r.get('entry_today_asymmetry'), font=f_bold)
+        # Col 8 shows the ACTIVE sort key (ETA in asymmetry mode, the
+        # confirmed inflection score in --sort-by inflection mode) so the
+        # displayed column is monotonic with the ranking.
+        _put_score(ws, row, 8, r.get(sort_col), font=f_bold)
         _put_score(ws, row, 9, r.get('asymmetry_score'), font=f_text)
 
         # Headline valuation block (cols 10-17)
@@ -373,7 +377,8 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
         _cn = r.get('cluster_n')
         _put_int(ws, row, 19, int(_cn) if pd.notna(_cn) else 0, font=f_text_muted)
         _put_score(ws, row, 20, r.get('confirm_overall'), font=f_text_muted)
-        _put_score(ws, row, 21, r.get('p_s'), font=f_text_muted)
+        # P/S is a mandated display column — same weight as P/B, not muted
+        _put_score(ws, row, 21, r.get('p_s'), font=f_text)
 
         # Faint hairline under each row
         for cidx in range(1, cols + 1):
@@ -381,8 +386,10 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
                 bottom=Side(style='thin', color=RULE))
 
     def _write_table_header(ws, row):
+        # Col 8 header names the ACTIVE sort key (see _write_table_row)
+        sort_key_hdr = 'Infl' if sort_col == 'entry_today_inflection' else 'ETA'
         headers = ['#', 'Ticker', 'Name', 'Sector', 'Bucket',
-                   'Mcap (USD)', 'Verdict', 'ETA', 'Asym',
+                   'Mcap (USD)', 'Verdict', sort_key_hdr, 'Asym',
                    'EV/EBITDA', 'P/E', 'P/B',
                    'FCF yld %', 'ROIC %', 'ND/EBITDA', 'EBITDA m %',
                    'Mom 12m %', 'Yartseva', 'Cluster', 'Confirm', 'P/S']
@@ -544,15 +551,15 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
                        value=f"{country_name}  ({src_code})")
         t.font = f_bold
         t.alignment = A_LEFT
-        sheet.merge_cells(start_row=2, start_column=1, end_row=2, end_column=19)
+        sheet.merge_cells(start_row=2, start_column=1, end_row=2, end_column=N_COLS)
         sheet.row_dimensions[2].height = 22
 
-        for c in range(1, 20):
+        for c in range(1, N_COLS + 1):
             sheet.cell(row=3, column=c).border = Border(bottom=Side(style='thin', color=INK))
         sheet.row_dimensions[3].height = 4
 
         # Headline figures (country-specific)
-        _section_label(sheet, 5, "Headline figures", span_cols=19)
+        _section_label(sheet, 5, "Headline figures", span_cols=N_COLS)
 
         n_country_total = len(sub_full)
         n_country_nms = int(sub_full['market_cap_bucket'].isin(nms_buckets).sum())
@@ -602,26 +609,27 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
         sheet.row_dimensions[11].height = 22
 
         # Thin rule under headlines
-        for c in range(1, 20):
+        for c in range(1, N_COLS + 1):
             sheet.cell(row=13, column=c).border = Border(top=Side(style='thin', color=INK))
         sheet.row_dimensions[13].height = 4
 
         # Top-N table for this country
-        _section_label(sheet, 15, f"Top {len(sub_top)}  —  ranked by {sort_label}", span_cols=19)
+        _section_label(sheet, 15, f"Top {len(sub_top)}  —  ranked by {sort_label}", span_cols=N_COLS)
         _write_table_header(sheet, 16)
         sheet.row_dimensions[16].height = 18
         # Re-rank within the local frame (in case some rows were dropped)
         sub_top = sub_top.sort_values('country_rank')
         for r_idx, (_, r) in enumerate(sub_top.iterrows(), start=18):
-            _write_table_row(sheet, r_idx, r, 11)
+            _write_table_row(sheet, r_idx, r)
             sheet.row_dimensions[r_idx].height = 16
 
         sheet.sheet_view.showGridLines = False
         sheet.freeze_panes = 'A18'
-        # QoL: sortable/filterable table (header row 17 → last data row)
+        # QoL: sortable/filterable table anchored on the ACTUAL header row
+        # (16); row 17 is only the header underline.
         from openpyxl.utils import get_column_letter as _gcl
         if sheet.max_row >= 18:
-            sheet.auto_filter.ref = f"A17:{_gcl(sheet.max_column)}{sheet.max_row}"
+            sheet.auto_filter.ref = f"A16:{_gcl(sheet.max_column)}{sheet.max_row}"
 
     wb.save(path)
     from harvard_style import sanitize_nan_text

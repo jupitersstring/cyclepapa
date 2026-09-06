@@ -17,14 +17,24 @@ _OTC_SET = None
 
 
 def _otc_universe() -> set:
+    """Union of every OTC membership list we have.
+
+    otc_expansion_universe.csv is the harvested OTC expansion set;
+    otc_symbols.csv is the FinanceDatabase PNK/OQX/OQB list that the
+    dedicated OTC archetype book publishes from. The ex-OTC books must
+    exclude EVERYTHING the OTC book includes, so the classifier takes
+    the union of both files (each if present) — otherwise thousands of
+    names appear in both the ex-OTC and OTC books.
+    """
     global _OTC_SET
     if _OTC_SET is None:
         _OTC_SET = set()
-        if os.path.exists('otc_expansion_universe.csv'):
-            try:
-                _OTC_SET = set(pd.read_csv('otc_expansion_universe.csv')['symbol'].dropna())
-            except Exception:
-                _OTC_SET = set()
+        for path in ('otc_expansion_universe.csv', 'otc_symbols.csv'):
+            if os.path.exists(path):
+                try:
+                    _OTC_SET |= set(pd.read_csv(path, usecols=['symbol'])['symbol'].dropna())
+                except Exception:
+                    pass
     return _OTC_SET
 
 

@@ -49,3 +49,8 @@ rest_driver_b.log
 lynch_enrich.log
 lynch_driver.log
 .lynch_done
+# NOTE: edgar_segments.csv itself stays ignored (can be >100MB), but its
+# split-gzip parts in edgar_segments_parts/ ARE committed — run
+# `python3 persist_edgar_segments.py save` after every extract and
+# `... restore` on a fresh container. Raw harvests must never again exist
+# only inside an ephemeral container.

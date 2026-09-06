@@ -131,7 +131,17 @@ def main():
                       'inflection_confirm_score', 'oper_leverage_score',
                       'rev_growth_score', 'cheapness_score', 'quality_score',
                       'high_52w_abs', 'high_52w_rel', 'high_52w_both',
-                      'analyst_awakening_score', 'lynch_rank']
+                      'analyst_awakening_score', 'lynch_rank',
+                      # Archetype-specific ranking keys, propagated so every
+                      # book (not just the ones merging archetype_tags.csv
+                      # directly) can sort archetype sheets by their own score
+                      'tenbagger_score', 'evsales_derate_score',
+                      'lynch_reward_score', 'lynch_leg_max',
+                      'evsales_derate_gap', 'tenbagger_implied_return',
+                      # Not yet emitted by archetype_tags.py — harmless here
+                      # (the extra_arch list below filters on arch_df.columns)
+                      'seg_inflect_score', 'capital_return_score',
+                      'lynch_value_score']
     extra_arch = [c for c in (['archetype_count', 'bab_score'] + confirm_scores)
                   if c in arch_df.columns]
     # Drop EVERY column the arch merge re-supplies (not just count/bab_score):

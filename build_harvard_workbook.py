@@ -154,6 +154,13 @@ def load_quant() -> pd.DataFrame:
         extra = pd.concat(frames, ignore_index=True).drop_duplicates('symbol', keep='first')
         mc = ['symbol'] + [c for c in extra.columns if c != 'symbol' and c not in df.columns]
         df = df.merge(extra[mc], on='symbol', how='left')
+    # Normalise market_cap to USD for cross-country comparability — the
+    # min-mcap gate and the books are USD-labelled. market_cap_usd is produced
+    # by fix_pipeline; fall back to raw market_cap only where USD is missing
+    # (same idiom as build_archetype_book.load_data).
+    if 'market_cap_usd' in df.columns:
+        df['market_cap'] = (pd.to_numeric(df['market_cap_usd'], errors='coerce')
+                            .fillna(pd.to_numeric(df['market_cap'], errors='coerce')))
     from otc_flag import apply_otc_mode as _apply_otc
     df = _apply_otc(df, 'ex-otc')   # general books: genuine listings only
     return df
@@ -514,14 +521,17 @@ def build_methodology(ws: Worksheet):
 
 # --- Index sheet --------------------------------------------------------------
 def build_index(ws: Worksheet, top_df: pd.DataFrame):
-    _set_col_widths(ws, {1: 4, 2: 5, 3: 14, 4: 38, 5: 8, 6: 18, 7: 10, 8: 14, 9: 4})
-    _crimson_banner(ws, 1, "  Index of Names", span_cols=9)
+    _set_col_widths(ws, {1: 4, 2: 5, 3: 14, 4: 38, 5: 8, 6: 18, 7: 10, 8: 14,
+                         9: 8, 10: 8, 11: 4})
+    _crimson_banner(ws, 1, "  Index of Names", span_cols=11)
 
-    hdrs = ["#", "Ticker", "Company", "Cntry", "Sector", "Verdict", "Score"]
+    hdrs = ["#", "Ticker", "Company", "Cntry", "Sector", "Verdict", "Score",
+            "P/B", "P/S"]
     for i, h in enumerate(hdrs, start=2):
         c = ws.cell(row=3, column=i, value=h)
         c.font = _font(size=10, bold=True, color=CRIMSON_DARK, name=SANS)
-        c.alignment = _align(h="left" if i in (3, 4, 6) else "center")
+        c.alignment = _align(h="left" if i in (3, 4, 6) else
+                             "right" if i in (9, 10) else "center")
         c.border = _border(color=CRIMSON_DARK, bottom="medium")
     ws.row_dimensions[3].height = 22
 
@@ -550,9 +560,12 @@ def build_index(ws: Worksheet, top_df: pd.DataFrame):
 
         _write_score(ws, row, 8, r.get('entry_today_asymmetry'),
                      font=_font(size=10, name=MONO))
+        # Mandated valuation display columns
+        _write_ratio(ws, row, 9, r.get('pb'), font=_font(size=10, name=MONO))
+        _write_ratio(ws, row, 10, r.get('p_s'), font=_font(size=10, name=MONO))
 
         # Row rule (very light)
-        for c in range(2, 9):
+        for c in range(2, 11):
             ws.cell(row=row, column=c).border = _border(color=RULE, bottom="thin")
         ws.row_dimensions[row].height = 18
 

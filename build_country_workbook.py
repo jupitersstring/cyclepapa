@@ -58,6 +58,13 @@ def load_quant(p: str = 'asymmetry_global.csv') -> pd.DataFrame:
         # Avoid clobbering existing columns from asymmetry_global
         merge_cols = ['symbol'] + [c for c in extra.columns if c != 'symbol' and c not in df.columns]
         df = df.merge(extra[merge_cols], on='symbol', how='left')
+    # Normalise market_cap to USD for cross-country comparability — the
+    # min-mcap gate is USD-denominated. market_cap_usd is produced by
+    # fix_pipeline; fall back to raw market_cap only where USD is missing
+    # (same idiom as build_archetype_book.load_data).
+    if 'market_cap_usd' in df.columns:
+        df['market_cap'] = (pd.to_numeric(df['market_cap_usd'], errors='coerce')
+                            .fillna(pd.to_numeric(df['market_cap'], errors='coerce')))
     from otc_flag import apply_otc_mode as _apply_otc
     df = _apply_otc(df, 'ex-otc')   # general books: genuine listings only
     return df
@@ -352,6 +359,21 @@ def main():
             elif c == 'archetype_tags_str':
                 df[c] = df[c].fillna('')
         print(f'merged archetype tags ({len(tags)} rows)', file=sys.stderr)
+
+    # Segment-inflection key for the Fastest-Segment sheet (same shape as
+    # build_archetype_book): the segment's own YoY upweighted where the
+    # consolidated multi-measure confirmation + insider alignment agree.
+    if os.path.exists('edgar_segment_signals.csv'):
+        seg = pd.read_csv('edgar_segment_signals.csv',
+                          usecols=lambda c: c in ('symbol', 'fastest_segment_yoy'))
+        seg = seg.drop_duplicates('symbol')
+        df = df.drop(columns=[c for c in ('fastest_segment_yoy',) if c in df.columns])
+        df = df.merge(seg, on='symbol', how='left')
+        _fsy = pd.to_numeric(df.get('fastest_segment_yoy'), errors='coerce')
+        _cfo = pd.to_numeric(df.get('confirm_overall'), errors='coerce').fillna(0.0)
+        _aln = pd.to_numeric(df.get('alignment_score'), errors='coerce').fillna(0.0)
+        df['seg_inflect_confirmed'] = _fsy * (1.0 + 0.20 * _cfo + 0.10 * _aln)
+
     df['quant_thesis'] = df.apply(compose_thesis, axis=1)
     df['full_thesis']  = df.apply(
         lambda r: (r['thesis'] + ' | ' + r['quant_thesis']).strip(' |'),
@@ -378,7 +400,7 @@ def main():
         'entry_today_asymmetry','entry_today_upside','intrinsic_discount',
         'adj_asymmetry','asymmetry_score','confirm_overall','adj_upside','upside_score',
         'downside_floor_score','cluster_n','yartseva_score','berezin_score',
-        'pb','net_cash_pct_mcap','ncav_pct_mcap','cash_pct_ev',
+        'pb','p_s','net_cash_pct_mcap','ncav_pct_mcap','cash_pct_ev',
         'not_priced_in_score','insider_ownership_pct',
         'cash_gt_ev_flag','graham_net_net_flag',
         'why','full_thesis','thesis',
@@ -403,7 +425,7 @@ def main():
             'archetype_count','archetype_tags_str',
             'entry_today_asymmetry','country_entry_asymmetry','intrinsic_discount',
             'cluster_n','yartseva_score','berezin_score',
-            'pb','net_cash_pct_mcap','cash_pct_ev','insider_ownership_pct',
+            'pb','p_s','net_cash_pct_mcap','cash_pct_ev','insider_ownership_pct',
             'why','full_thesis','thesis',
         ]
         gem_cols_show = [c for c in gem_cols_show if c in df.columns]
@@ -488,7 +510,7 @@ def main():
             'country_entry_asymmetry','entry_today_asymmetry','intrinsic_discount',
             'asymmetry_score','upside_score','cluster_n',
             'yartseva_score','berezin_score',
-            'pb','net_cash_pct_mcap','ncav_pct_mcap','cash_pct_ev',
+            'pb','p_s','net_cash_pct_mcap','ncav_pct_mcap','cash_pct_ev',
             'not_priced_in_score','insider_ownership_pct',
             'cash_gt_ev_flag','graham_net_net_flag',
             'why','full_thesis','thesis',
@@ -533,7 +555,7 @@ def main():
                 'alta_fox_score','alta_fox_strict_match',
                 'af_country_overrep','af_sector_overrep','af_size_lt_2b',
                 'af_cheap_count','af_growth_21pct','af_financially_healthy',
-                'p_s','ev_ebitda','p_e','ebitda_margin','roce',
+                'p_s','pb','ev_ebitda','p_e','ebitda_margin','roce',
                 'rev_3y_cagr','rev_yoy','yartseva_score','archetype_count','archetype_tags_str',
                 'entry_today_asymmetry','intrinsic_discount','insider_ownership_pct',
                 'why','full_thesis','thesis',
@@ -550,34 +572,56 @@ def main():
             top[af_show].to_excel(xl, sheet_name='AltaFox_Top60', index=False)
 
         # ----- Per-archetype top N (one sheet per tag) -----
-        # Eight archetypes from archetype_tags.py (cluster A + C5 + E + F + G).
-        # Each sheet: top 40 names with that tag, GREEN-first then YELLOW then
-        # UNRESEARCHED, sorted by entry_today_asymmetry within each verdict
-        # tier.  RED dropped.
+        # A curated top slice of the 69-archetype taxonomy (all 69 would
+        # explode the workbook — the dedicated archetype books cover the
+        # full set). The original eight (cluster A + C5 + E + F + G) are
+        # kept for continuity: top 40 names with that tag, GREEN-first then
+        # YELLOW then UNRESEARCHED, sorted by country_entry_asymmetry within
+        # each verdict tier. The newer high-signal archetypes each carry
+        # their OWN archetype-specific sort key (house doctrine: archetype
+        # sheets sort by their archetype-specific score where one exists);
+        # they fall back to the legacy ordering when the key is missing /
+        # all-NaN. RED dropped everywhere.
         per_archetype_specs = [
-            ('Arch_NarrativeLag',         'arch_narrative_lag'),
-            ('Arch_FixedCostDemandShock', 'arch_fixed_cost_demand_shock'),
-            ('Arch_DiscountedVehicle',    'arch_discounted_vehicle'),
-            ('Arch_CapitalDiscipline',    'arch_capital_discipline'),
-            ('Arch_RegimeCyclical',       'arch_regime_cyclical'),
-            ('Arch_DeadOption',           'arch_dead_option'),
-            ('Arch_KPIThreshold',         'arch_kpi_threshold'),
-            ('Arch_BlindSpot',            'arch_blindspot'),
+            # (sheet name, tag flag, archetype-specific sort key or None)
+            ('Arch_NarrativeLag',         'arch_narrative_lag',         None),
+            ('Arch_FixedCostDemandShock', 'arch_fixed_cost_demand_shock', None),
+            ('Arch_DiscountedVehicle',    'arch_discounted_vehicle',    None),
+            ('Arch_CapitalDiscipline',    'arch_capital_discipline',    None),
+            ('Arch_RegimeCyclical',       'arch_regime_cyclical',       None),
+            ('Arch_DeadOption',           'arch_dead_option',           None),
+            ('Arch_KPIThreshold',         'arch_kpi_threshold',         None),
+            ('Arch_BlindSpot',            'arch_blindspot',             None),
+            ('Arch_LynchReward',          'arch_lynch_reward',          'lynch_rank'),
+            ('Arch_TenbaggerCredible',    'arch_tenbagger_credible',    'tenbagger_score'),
+            ('Arch_EVSalesDerating',      'arch_evsales_derating',      'evsales_derate_score'),
+            ('Arch_AnalystAwakening',     'arch_analyst_awakening',     'analyst_awakening_score'),
+            ('Arch_FastestSegment',       'arch_fastest_segment',       'seg_inflect_confirmed'),
         ]
-        for sheet_name, flag in per_archetype_specs:
+        for sheet_name, flag, sort_key in per_archetype_specs:
             if flag not in df.columns:
                 continue
             sub = df[(df[flag] == 1) & (df['verdict'] != 'RED')].copy()
             if sub.empty:
                 continue
-            sub['_qrank'] = sub['verdict'].map(qual_rank).fillna(2).astype(int)
-            sub = sub.sort_values(
-                by=['_qrank','country_entry_asymmetry'],
-                ascending=[True, False],
-            ).head(40)
-            sub.drop(columns=['_qrank'])[archetype_cols_show].to_excel(
-                xl, sheet_name=sheet_name[:31], index=False
-            )
+            use_key = (sort_key if sort_key and sort_key in sub.columns
+                       and pd.to_numeric(sub[sort_key], errors='coerce').notna().any()
+                       else None)
+            if use_key:
+                sub = sub.sort_values(use_key, ascending=False,
+                                      na_position='last').head(40)
+                show = archetype_cols_show + (
+                    [use_key] if use_key not in archetype_cols_show else [])
+                sub[show].to_excel(xl, sheet_name=sheet_name[:31], index=False)
+            else:
+                sub['_qrank'] = sub['verdict'].map(qual_rank).fillna(2).astype(int)
+                sub = sub.sort_values(
+                    by=['_qrank','country_entry_asymmetry'],
+                    ascending=[True, False],
+                ).head(40)
+                sub.drop(columns=['_qrank'])[archetype_cols_show].to_excel(
+                    xl, sheet_name=sheet_name[:31], index=False
+                )
 
         # Per-country summary - top 3 per country by the strict country
         # entry-today asymmetry (drops RED, boosts GREEN, treats
@@ -602,6 +646,7 @@ def main():
                     'intrinsic_discount': r.get('intrinsic_discount', 0),
                     'cluster_n': r.get('cluster_n', 0),
                     'pb': r.get('pb', 0),
+                    'p_s': r.get('p_s', 0),
                     'cash_gt_ev_flag': r.get('cash_gt_ev_flag', 0),
                     'insider_ownership_pct': r.get('insider_ownership_pct', 0),
                     'why': r.get('why', ''),
@@ -617,7 +662,7 @@ def main():
             'entry_today_asymmetry','entry_today_upside',
             'adj_asymmetry','adj_upside','asymmetry_score','confirm_overall','upside_score',
             'cluster_n','yartseva_score','berezin_score',
-            'pb','net_cash_pct_mcap','ncav_pct_mcap','cash_pct_ev',
+            'pb','p_s','net_cash_pct_mcap','ncav_pct_mcap','cash_pct_ev',
             'not_priced_in_score','insider_ownership_pct',
             'cash_gt_ev_flag','graham_net_net_flag','why','full_thesis','thesis',
         ]

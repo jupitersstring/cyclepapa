@@ -161,7 +161,10 @@ def build_nms_methodology(ws):
         ("Ranking",
          "Same entry-today asymmetry score as the master Harvard book: "
          "asymmetry_score x intrinsic_boost x qual_multiplier x "
-         "post_rally_factor. Geometric-mean asymmetry (sqrt(upside x floor)) "
+         "post_rally_factor x confirmation multiplier "
+         "(1 + 0.20 x confirm_overall + 0.10 x buyback_score — upweights "
+         "names where independent accounting measures and buybacks agree). "
+         "Geometric-mean asymmetry (sqrt(upside x floor)) "
          "ensures both legs must fire."),
         ("Per-region breakouts",
          "9 region top-25 sheets (NA / LatAm / EU Core / EU Nordics / EU "
@@ -189,10 +192,12 @@ def build_nms_methodology(ws):
 
 # --- Index sheet (top-100 by entry_today_asymmetry) ----------------------
 def build_nms_index(ws, top_df: pd.DataFrame):
-    _set_col_widths(ws, {1: 4, 2: 5, 3: 14, 4: 38, 5: 8, 6: 18, 7: 12, 8: 14, 9: 10, 10: 14, 11: 4})
-    _crimson_banner(ws, 1, "  Global Top 100 — entry-today asymmetry", span_cols=10)
+    _set_col_widths(ws, {1: 4, 2: 5, 3: 14, 4: 38, 5: 8, 6: 18, 7: 12, 8: 14,
+                         9: 10, 10: 14, 11: 8, 12: 8, 13: 8, 14: 4})
+    _crimson_banner(ws, 1, "  Global Top 100 — entry-today asymmetry", span_cols=13)
 
-    hdrs = ["#", "Ticker", "Company", "Cntry", "Sector", "Bucket", "Mcap (loc)", "Verdict", "ETA", "Confirm"]
+    hdrs = ["#", "Ticker", "Company", "Cntry", "Sector", "Bucket", "Mcap (USD)",
+            "Verdict", "ETA", "Confirm", "P/B", "P/S"]
     for i, h in enumerate(hdrs, start=2):
         c = ws.cell(row=3, column=i, value=h)
         c.font = _font(size=10, bold=True, color=CRIMSON_DARK, name=SANS)
@@ -244,18 +249,29 @@ def build_nms_index(ws, top_df: pd.DataFrame):
         _verdict_badge(ws, row, 9, r.get('verdict', 'UNRESEARCHED'))
         _write_score(ws, row, 10, r.get('entry_today_asymmetry'), font=mono)
         _write_score(ws, row, 11, r.get('confirm_overall'), font=mono)
+        # Mandated valuation display columns
+        _write_ratio(ws, row, 12, r.get('pb'), font=mono)
+        _write_ratio(ws, row, 13, r.get('p_s'), font=mono)
 
-        for c in range(2, 12):
+        for c in range(2, 14):
             ws.cell(row=row, column=c).border = _border(color=RULE, bottom="thin")
         ws.row_dimensions[row].height = 17
+
+    # QoL: freeze the header + sortable/filterable table (header row 3)
+    ws.freeze_panes = 'A4'
+    if ws.max_row >= 4:
+        from openpyxl.utils import get_column_letter as _gcl
+        ws.auto_filter.ref = f"B3:{_gcl(ws.max_column)}{ws.max_row}"
 
 
 # --- Per-region top-25 sheet ----------------------------------------------
 def build_region_sheet(ws, region_label: str, sub_df: pd.DataFrame):
-    _set_col_widths(ws, {1: 4, 2: 5, 3: 14, 4: 38, 5: 8, 6: 18, 7: 12, 8: 14, 9: 10, 10: 10, 11: 4})
-    _crimson_banner(ws, 1, f"  {region_label} — Top 25 NMS", span_cols=10)
+    _set_col_widths(ws, {1: 4, 2: 5, 3: 14, 4: 38, 5: 8, 6: 18, 7: 12, 8: 14,
+                         9: 10, 10: 10, 11: 8, 12: 8, 13: 4})
+    _crimson_banner(ws, 1, f"  {region_label} — Top 25 NMS", span_cols=12)
 
-    hdrs = ["#", "Ticker", "Company", "Cntry", "Sector", "Bucket", "Mcap (loc)", "Verdict", "ETA", "Confirm"]
+    hdrs = ["#", "Ticker", "Company", "Cntry", "Sector", "Bucket", "Mcap (USD)",
+            "Verdict", "ETA", "Confirm", "P/B", "P/S"]
     for i, h in enumerate(hdrs, start=2):
         c = ws.cell(row=3, column=i, value=h)
         c.font = _font(size=10, bold=True, color=CRIMSON_DARK, name=SANS)
@@ -296,8 +312,11 @@ def build_region_sheet(ws, region_label: str, sub_df: pd.DataFrame):
         _verdict_badge(ws, row, 9, r.get('verdict', 'UNRESEARCHED'))
         _write_score(ws, row, 10, r.get('entry_today_asymmetry'), font=mono)
         _write_score(ws, row, 11, r.get('confirm_overall'), font=mono)
+        # Mandated valuation display columns
+        _write_ratio(ws, row, 12, r.get('pb'), font=mono)
+        _write_ratio(ws, row, 13, r.get('p_s'), font=mono)
 
-        for c in range(2, 12):
+        for c in range(2, 14):
             ws.cell(row=row, column=c).border = _border(color=RULE, bottom="thin")
         ws.row_dimensions[row].height = 17
 

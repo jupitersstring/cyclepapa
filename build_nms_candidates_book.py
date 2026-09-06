@@ -1,18 +1,34 @@
 """NMS multibagger candidates book — Harvard-formatted XLSX.
 
-Three tiers, each ranked by entry-today asymmetry:
-  STRICT     — archetype_count >= 2 AND cluster_n >= 3 AND asymmetry >= 0.40
-  STRONG     — archetype_count >= 1 AND cluster_n >= 3 AND asymmetry >= 0.35
-  CANDIDATE  — archetype_count >= 1 OR (cluster_n >= 4 AND asymmetry >= 0.35)
+Candidates are rebuilt IN-PROCESS from asymmetry_global.csv +
+archetype_tags.csv (the old standalone producer of
+nms_multibagger_candidates.csv no longer exists in the repo; reading the
+stale file silently froze the tiers). The same CSV is still written as a
+byproduct so downstream consumers of the flat file stay compatible.
 
-Universe = NMS only (Nano + Micro + Small Cap buckets, mcap >= $10M, RED excluded).
+Three tiers, each ranked by confirmed entry-today asymmetry
+(eta = entry_today_asymmetry x (1 + 0.20*confirm_overall + 0.10*buyback_score)):
+  STRICT     — archetype_count >= 5 AND cluster_n >= 3 AND asymmetry >= 0.40
+  STRONG     — archetype_count >= 3 AND cluster_n >= 3 AND asymmetry >= 0.35
+  CANDIDATE  — archetype_count >= 3 OR (cluster_n >= 4 AND asymmetry >= 0.35)
 
-Output: nms_multibagger_candidates.xlsx
+Threshold mapping note: the legacy tiers (STRICT ac>=2, STRONG/CANDIDATE
+ac>=1) were calibrated when archetype_tags.py carried ~27 archetypes.
+archetype_count is now on a 69-archetype taxonomy (~2.5x), so the
+multi-arch gates scale proportionally: 2 -> 5 (STRICT), 1 -> 3
+(STRONG/CANDIDATE). cluster_n (still of 7) and asymmetry_score
+thresholds are on unchanged scales and carry over as-is.
+
+Universe = NMS only (Nano + Micro + Small Cap buckets, mcap >= $10M USD,
+RED excluded).
+
+Output: nms_multibagger_candidates.xlsx (+ nms_multibagger_candidates.csv)
 """
 from __future__ import annotations
 import os
 import sys
 
+import numpy as np
 import pandas as pd
 
 import build_harvard_workbook as bhw
@@ -27,8 +43,128 @@ from build_harvard_workbook import (
 )
 
 
-def load_candidates() -> pd.DataFrame:
-    return pd.read_csv('nms_multibagger_candidates.csv')
+NMS_BUCKETS = {'Nano Cap', 'Micro Cap', 'Small Cap'}
+
+# Legacy flat-file schema kept for downstream compatibility.
+CSV_COLS = [
+    'symbol', 'name', 'src', 'sector', 'industry', 'market_cap_bucket',
+    'market_cap', 'revenue_ttm', 'tier', 'archetype_count',
+    'archetype_tags_str', 'cluster_n', 'verdict', 'asymmetry_score',
+    'upside_score', 'downside_floor_score', 'yartseva_score',
+    'inflection_score', 'inflection_asymmetry_score', 'berezin_score',
+    'alta_fox_score', 'm5_engine_score', 'roic_lindy', 'roiic_lindy',
+    'cash_roiic_lindy', 'cheap_per_roiic_lindy', 'pb', 'momentum_12m', 'eta',
+]
+
+
+def _load_fresh_verdicts() -> pd.DataFrame:
+    """Same fresh-verdict merge pattern as build_archetype_book.load_data."""
+    frames = []
+    for path, default in [
+        ('qualitative_aligned_green.csv', 'GREEN'),
+        ('qualitative_red_avoid.csv', 'RED'),
+        ('qualitative_extended_verdicts.csv', None),
+    ]:
+        if not os.path.exists(path):
+            continue
+        try:
+            d = pd.read_csv(path)
+        except pd.errors.ParserError:
+            d = pd.read_csv(path, engine='python', on_bad_lines='skip', quoting=3)
+        if 'verdict' not in d.columns and default is not None:
+            d['verdict'] = default
+        frames.append(d[[c for c in ['symbol', 'verdict'] if c in d.columns]])
+    if not frames:
+        return pd.DataFrame(columns=['symbol', 'verdict'])
+    return pd.concat(frames, ignore_index=True).drop_duplicates('symbol', keep='last')
+
+
+def load_candidates(min_mcap: float = 10_000_000) -> pd.DataFrame:
+    """Rebuild the NMS multibagger candidates from today's data.
+
+    asymmetry_global.csv + archetype_tags.csv + fresh verdicts, tiered on
+    the current 69-archetype taxonomy (see module docstring for the
+    threshold mapping), ranked by confirmed ETA. Writes
+    nms_multibagger_candidates.csv as a byproduct.
+    """
+    df = pd.read_csv('asymmetry_global.csv').drop_duplicates('symbol')
+    df = df.drop(columns=[c for c in df.columns if c.endswith('_arch')])
+
+    # Archetype counts + tag string + confirmation scores (fresh, from the
+    # current taxonomy — not whatever a stale enrich run left behind).
+    arch_keep = ['symbol', 'archetype_count', 'archetype_tags_str',
+                 'confirm_overall', 'buyback_score']
+    arch = pd.read_csv('archetype_tags.csv',
+                       usecols=lambda c: c in arch_keep)
+    df = df.drop(columns=[c for c in arch.columns
+                          if c != 'symbol' and c in df.columns])
+    df = df.merge(arch, on='symbol', how='left')
+
+    # Legacy-schema extras where their source files still exist
+    if os.path.exists('alta_fox_scores.csv'):
+        af = pd.read_csv('alta_fox_scores.csv',
+                         usecols=['symbol', 'alta_fox_score']).drop_duplicates('symbol')
+        df = df.drop(columns=[c for c in ('alta_fox_score',) if c in df.columns])
+        df = df.merge(af, on='symbol', how='left')
+    if os.path.exists('edgar_roic_roiic.csv'):
+        rr_keep = ['symbol', 'm5_engine_score', 'roic_lindy', 'roiic_lindy',
+                   'cash_roiic_lindy', 'cheap_per_roiic_lindy']
+        rr = pd.read_csv('edgar_roic_roiic.csv',
+                         usecols=lambda c: c in rr_keep).drop_duplicates('symbol')
+        df = df.drop(columns=[c for c in rr.columns
+                              if c != 'symbol' and c in df.columns])
+        df = df.merge(rr, on='symbol', how='left')
+
+    # Fresh verdicts win over anything asymmetry_global carries
+    v = _load_fresh_verdicts()
+    if len(v):
+        df = df.drop(columns=[c for c in ('verdict',) if c in df.columns])
+        df = df.merge(v, on='symbol', how='left')
+    df['verdict'] = df.get('verdict', pd.Series(index=df.index)).fillna('UNRESEARCHED')
+
+    # USD-normalise market cap so the $10M gate is comparable across markets
+    if 'market_cap_usd' in df.columns:
+        df['market_cap'] = (pd.to_numeric(df['market_cap_usd'], errors='coerce')
+                            .fillna(pd.to_numeric(df['market_cap'], errors='coerce')))
+
+    # NMS universe gate: size buckets + mcap floor + RED excluded
+    df = df[df['market_cap_bucket'].isin(NMS_BUCKETS)
+            & (df['market_cap'].fillna(0) >= min_mcap)
+            & (df['verdict'] != 'RED')].copy()
+
+    # Confirmed entry-today asymmetry — the tier ranking key. Upweights
+    # names where independent measures agree (house confirmation multiplier).
+    _eta = pd.to_numeric(df.get('entry_today_asymmetry'), errors='coerce').fillna(0.0)
+    _cfo = pd.to_numeric(df.get('confirm_overall'), errors='coerce').fillna(0.0)
+    _bbs = pd.to_numeric(df.get('buyback_score'), errors='coerce').fillna(0.0)
+    df['eta'] = _eta * (1.0 + 0.20 * _cfo + 0.10 * _bbs)
+
+    # Tier logic — same STRICT/STRONG/CANDIDATE semantics as the legacy
+    # producer, with the multi-arch gates rescaled to the 69-archetype
+    # taxonomy (2 -> 5, 1 -> 3; see module docstring).
+    ac = pd.to_numeric(df['archetype_count'], errors='coerce').fillna(0)
+    cn = pd.to_numeric(df['cluster_n'], errors='coerce').fillna(0)
+    asym = pd.to_numeric(df['asymmetry_score'], errors='coerce').fillna(0)
+    strict = (ac >= 5) & (cn >= 3) & (asym >= 0.40)
+    strong = (ac >= 3) & (cn >= 3) & (asym >= 0.35)
+    cand = (ac >= 3) | ((cn >= 4) & (asym >= 0.35))
+    df['tier'] = np.select([strict, strong, cand],
+                           ['STRICT', 'STRONG', 'CANDIDATE'], default='')
+    df = df[df['tier'] != ''].copy()
+    df['archetype_tags_str'] = df.get(
+        'archetype_tags_str', pd.Series(index=df.index)).fillna('')
+    df = df.sort_values('eta', ascending=False).reset_index(drop=True)
+
+    # Byproduct CSV in the legacy schema (missing columns written as NaN
+    # rather than dropped — downstream readers keep their column set).
+    out = df.copy()
+    for c in CSV_COLS:
+        if c not in out.columns:
+            out[c] = np.nan
+    out[CSV_COLS].to_csv('nms_multibagger_candidates.csv', index=False)
+    print(f'wrote nms_multibagger_candidates.csv: {len(out):,} rows',
+          file=sys.stderr)
+    return df
 
 
 def build_cover(ws, df: pd.DataFrame):
@@ -64,12 +200,15 @@ def build_cover(ws, df: pd.DataFrame):
         "candidates in the NMS sub-universe (mcap < ~$2B, RED-verdicted names "
         "excluded). Each name is assigned a conviction tier based on its "
         "archetype-count, inflection-cluster density and asymmetry score. "
-        f"STRICT ({n_strict}) = 2+ archetypes firing AND 3+ inflection signals "
-        f"AND asymmetry >= 0.40. STRONG ({n_strong}) = 1+ archetype AND 3+ "
+        f"STRICT ({n_strict}) = 5+ archetypes firing AND 3+ inflection signals "
+        f"AND asymmetry >= 0.40. STRONG ({n_strong}) = 3+ archetypes AND 3+ "
         f"inflection signals AND asymmetry >= 0.35. CANDIDATE ({n_cand}) = the "
-        "broader funnel - 1+ archetype or 4+ inflection signals at asymmetry "
-        ">= 0.35. Within each tier, names are ranked by entry-today asymmetry "
-        "(asymmetry_score x qual_multiplier x post-rally factor)."
+        "broader funnel - 3+ archetypes or 4+ inflection signals at asymmetry "
+        ">= 0.35. (Multi-archetype gates are calibrated to the current "
+        "69-archetype taxonomy.) Within each tier, names are ranked by "
+        "confirmed entry-today asymmetry (asymmetry_score x qual_multiplier x "
+        "post-rally factor x confirmation multiplier "
+        "(1 + 0.20 x confirm_overall + 0.10 x buyback_score))."
     )
     a = ws.cell(row=9, column=2, value=abstract)
     a.font = _font(size=11, name=SERIF)
@@ -112,17 +251,20 @@ def build_methodology(ws):
     _crimson_banner(ws, 1, "  Tier methodology", span_cols=4)
     body = [
         ("STRICT",
-         "archetype_count >= 2 AND cluster_n >= 3 AND asymmetry_score >= 0.40. "
-         "Reads as: at least two distinct multibagger archetypes firing on the "
-         "same name (e.g. DiscountedVehicle + CapitalDiscipline), at least three "
-         "of seven inflection signals on, and a geometric-mean asymmetry above "
-         "the 60th percentile. Highest conviction within the funnel."),
+         "archetype_count >= 5 AND cluster_n >= 3 AND asymmetry_score >= 0.40. "
+         "Reads as: at least five distinct multibagger archetypes firing on the "
+         "same name, at least three of seven inflection signals on, and a "
+         "geometric-mean asymmetry above the 60th percentile. Highest "
+         "conviction within the funnel. (Legacy gate was 2+ archetypes on a "
+         "~27-archetype taxonomy; rescaled proportionally to today's 69.)"),
         ("STRONG",
-         "archetype_count >= 1 AND cluster_n >= 3 AND asymmetry_score >= 0.35. "
-         "One archetype + meaningful inflection density + above-median asymmetry. "
-         "Names worth shortlisting for diligence; many UNRESEARCHED here."),
+         "archetype_count >= 3 AND cluster_n >= 3 AND asymmetry_score >= 0.35. "
+         "A few archetypes + meaningful inflection density + above-median "
+         "asymmetry. Names worth shortlisting for diligence; many UNRESEARCHED "
+         "here. (Legacy gate 1+ archetype, rescaled to 3+ on the 69-archetype "
+         "taxonomy.)"),
         ("CANDIDATE",
-         "archetype_count >= 1 OR (cluster_n >= 4 AND asymmetry_score >= 0.35). "
+         "archetype_count >= 3 OR (cluster_n >= 4 AND asymmetry_score >= 0.35). "
          "The broader funnel for screening. Use to surface names that haven't "
          "made the cut on the tighter tiers but still register meaningful "
          "structural multibagger signals."),
@@ -139,10 +281,13 @@ def build_methodology(ws):
          "cheap_under_7x · first_positive (FCF/EBITDA/CFO/NI) · roce_inflect · "
          "fcf_eta_4q · growth_inflect (rev/EBITDA/FCF YoY) · accel_sales > 5pp · "
          "not_priced_in > 10pp."),
-        ("ETA (entry-today)",
+        ("ETA (entry-today, confirmed)",
          "asymmetry_score x qual_mult (GREEN 1.10 / YELLOW 0.85 / RED 0.40) x "
          "post_rally_factor (smooth demotion of names already up >30% over 12m, "
-         "floor 0.40 at +300%+). Used to rank within each tier."),
+         "floor 0.40 at +300%+) x confirmation multiplier "
+         "(1 + 0.20 x confirm_overall + 0.10 x buyback_score — upweights names "
+         "where independent accounting measures and share-count reduction "
+         "agree). Used to rank within each tier."),
     ]
     row = 3
     for k, v in body:

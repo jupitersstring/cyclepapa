@@ -25,6 +25,7 @@ from build_harvard_workbook import (
 )
 from build_archetype_book import (
     load_data, ARCHETYPE_LABELS, _sheet_safe, _write_archetype_table,
+    ARCH_SORT_OVERRIDES, arch_sort_col,
 )
 
 SORT_COL = 'entry_confirmed'
@@ -88,21 +89,26 @@ def main():
         c_label.font = f_text
         c_label.hyperlink = f"#'{sheet_name}'!A1"
         _write_int(cover, r, 2, n_match, font=f_text)
-        top = (df[df[col].fillna(0) == 1]
-               .sort_values(SORT_COL, ascending=False, na_position='last').head(1))
+        members = df[df[col].fillna(0) == 1]
+        top = (members
+               .sort_values(arch_sort_col(col, members, SORT_COL),
+                            ascending=False, na_position='last').head(1))
         cover.cell(row=r, column=3,
                    value=(top.iloc[0]['symbol'] if len(top) else '—')).font = f_text
         r += 1
     cover.sheet_view.showGridLines = False
 
-    # One sheet per archetype: top-N OTC names
+    # One sheet per archetype: top-N OTC names, sorted by the archetype's
+    # own score where one exists (ARCH_SORT_OVERRIDES), else entry_confirmed.
     for col, _n in counts:
         label = ARCHETYPE_LABELS.get(col, col)
-        sub_df = (df[df[col].fillna(0) == 1]
-                  .sort_values(SORT_COL, ascending=False, na_position='last')
+        members = df[df[col].fillna(0) == 1]
+        tab_sort = arch_sort_col(col, members, SORT_COL)
+        sub_df = (members
+                  .sort_values(tab_sort, ascending=False, na_position='last')
                   .head(args.n).reset_index(drop=True))
         ws = wb.create_sheet(_sheet_safe(label))
-        _write_archetype_table(ws, sub_df, label, n_total, SORT_COL)
+        _write_archetype_table(ws, sub_df, label, n_total, tab_sort)
 
     wb.save(args.out)
     print(f'wrote {args.out}  ({1 + len(counts)} sheets: Cover + '
