@@ -1,23 +1,37 @@
 """Derive multi-bagger archetypes from the harvested segment-level XBRL.
 
 Reads edgar_segments.csv (produced by edgar_segments_extract.py) and
-computes per-filer signals that aren't visible in companyfacts JSON:
+computes per-filer signals that aren't visible in companyfacts JSON.
 
-  segment_count                  number of distinct business segments
-  segment_revenue_hhi            Herfindahl index of segment revenue mix
-                                  (0 = perfectly diversified, 1 = single segment)
-  largest_segment_share          % of revenue from the biggest segment
-  geographic_region_count        number of geographic regions reporting
-  largest_region_share           % of revenue from the biggest region
-  segment_growth_dispersion      stdev of YoY growth across segments
-  fastest_segment_yoy            max YoY growth across segments
-  customer_concentration_flag    1 if any Major Customer concept fires
+ROBUSTNESS (v2 — post-audit rewrite). The v1 derivation pivoted facts on
+period_end alone with aggfunc='sum', which (a) summed a quarterly fact and
+a YTD fact sharing an end date into one number, (b) summed the same
+economic fact restated across filings/concepts 4-5x (median filer's
+"segment revenue" was 5x its actual revenue), and (c) let Corporate /
+Elimination rollup members count as segments. Everything here now runs on
+a DURATION-AWARE, DEDUPED panel keyed on (symbol, member, period_start,
+period_end, period_type), compares only like-for-like period types, and
+excludes non-operating members.
 
-Output: edgar_segment_signals.csv (symbol-keyed, can merge into
-asymmetry_global like the EDGAR layer).
+Time-base triangulation (house doctrine): the harvest pulls the latest TWO
+10-Ks + latest 10-Q per filer, giving
+  seg_yoy_fy       latest FY vs prior FY (slow, clean)
+  seg_yoy_q        latest quarter vs the same quarter a year earlier —
+                   true YoY, seasonality-immune (both live in one 10-Q)
+  seg_accel_fy     FY YoY now minus FY YoY a year earlier (2nd derivative)
+plus a SECOND ACCOUNTING MEASURE: segment operating income / gross profit
+(margin level, margin delta, segment operating leverage) — a genuinely
+independent lens agreeing or disagreeing with the revenue story.
+
+Materiality: the "fastest segment" must hold >= 5% of revenue (or be
+rising by >= 1pp) — a 1%-of-revenue segment tripling no longer drives the
+archetype.
+
+Output: edgar_segment_signals.csv (symbol-keyed) + edgar_segment_detail.csv.
 """
 from __future__ import annotations
 import argparse
+import re
 import sys
 
 import numpy as np
@@ -25,232 +39,386 @@ import pandas as pd
 
 
 SEGMENT_AXIS = "us-gaap:StatementBusinessSegmentsAxis"
-GEOGRAPHIC_AXES = {
+GEOGRAPHIC_AXES = [
     "us-gaap:StatementGeographicalAxis",
     "srt:StatementGeographicalAxis",
-}
-PRODUCT_AXIS = "srt:ProductOrServiceAxis"
-PRODUCT_AXIS_ALT = "us-gaap:ProductOrServiceAxis"
-CUSTOMER_AXIS = "us-gaap:MajorCustomersAxis"
-CUSTOMER_RISK_AXIS = "us-gaap:CustomerConcentrationRiskAxis"
+    "srt:GeographicalAxis",
+]
+PRODUCT_AXES = ["srt:ProductOrServiceAxis", "us-gaap:ProductOrServiceAxis"]
+CUSTOMER_AXES = ["us-gaap:MajorCustomersAxis",
+                 "us-gaap:CustomerConcentrationRiskAxis"]
 
 REVENUE_CONCEPTS = {
     "us-gaap:Revenues",
     "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "us-gaap:RevenueFromContractWithCustomerIncludingAssessedTax",
     "us-gaap:SalesRevenueNet",
+    "us-gaap:SalesRevenueGoodsNet",
+    "us-gaap:SalesRevenueServicesNet",
+}
+MARGIN_CONCEPTS = {
+    "us-gaap:OperatingIncomeLoss",
+    "us-gaap:GrossProfit",
 }
 
-
-def _latest_period_per_symbol(df: pd.DataFrame) -> pd.DataFrame:
-    """Pick the latest period_end per symbol; segment facts use the
-    most recent fiscal year to avoid mixing FY and Q periods."""
-    df = df[df.period_end.notna()].copy()
-    df["period_end_dt"] = pd.to_datetime(df.period_end, errors="coerce")
-    df = df.dropna(subset=["period_end_dt"])
-    # Use latest FY where available, else latest period_end
-    fy = df[df.fiscal_period == "FY"]
-    if not fy.empty:
-        latest_fy = fy.groupby("symbol")["period_end_dt"].max().reset_index()
-        latest_fy.columns = ["symbol", "latest_fy_end"]
-        df = df.merge(latest_fy, on="symbol", how="left")
-        return df[df.period_end_dt == df.latest_fy_end].drop(columns=["latest_fy_end"])
-    else:
-        latest = df.groupby("symbol")["period_end_dt"].max().reset_index()
-        latest.columns = ["symbol", "latest_end"]
-        df = df.merge(latest, on="symbol", how="left")
-        return df[df.period_end_dt == df.latest_end].drop(columns=["latest_end"])
+# Members that are NOT operating segments — never counted, never ranked.
+EXCLUDE_MEMBER_RE = re.compile(
+    r"(Corporate|Elimination|Intersegment|Unallocated|AllOther|Consolidat"
+    r"|Reconcil|Total|ParentCompany|Discontinued)", re.I)
 
 
 def _clean_member(m: str) -> str:
-    """Strip XBRL prefixes + 'Member' suffix from a segment label so it
-    reads as a human-friendly business name.
-
-    Examples:
-      met:GroupBenefitsSegmentMember     -> Group Benefits
-      apo:RetirementServicesSegmentMember -> Retirement Services
-      us-gaap:CorporateAndOtherMember     -> Corporate And Other
-    """
+    """Strip XBRL prefixes + 'Member' suffix from a segment label."""
     if not isinstance(m, str):
         return ""
-    # Strip namespace prefix (anything before colon)
     if ":" in m:
         m = m.split(":", 1)[1]
-    # Strip trailing 'Member' and 'Segment'
     for suf in ("Member", "Segment"):
         while m.endswith(suf):
             m = m[: -len(suf)]
-    # CamelCase → spaced (insert space before any capital that follows a lower)
-    import re
     m = re.sub(r"(?<=[a-z])(?=[A-Z])", " ", m)
     m = re.sub(r"(?<=[A-Z])(?=[A-Z][a-z])", " ", m)
     return m.strip()
 
 
-def _mix_table(rev_df: pd.DataFrame, top_n: int = 3):
-    """Given member-keyed revenue facts, return (mix_dict, top_n_list,
-    total_revenue) sorted descending by % share."""
-    if rev_df.empty:
-        return {}, [], None
-    mix = rev_df.groupby("member")["value"].sum()
-    mix = mix[mix > 0]
-    if mix.empty:
-        return {}, [], None
-    total = float(mix.sum())
-    shares = (mix / total).sort_values(ascending=False)
-    top = [(m, float(shares[m])) for m in shares.head(top_n).index]
-    return shares.to_dict(), top, total
+def _panel(df: pd.DataFrame, concepts, axis: str,
+           exclude_rollups: bool = True) -> pd.DataFrame:
+    """Duration-aware, deduped (symbol, member, ps, pe, ptype) fact panel.
+
+    The duration BUCKET is part of the identity key so a quarterly fact and
+    a YTD fact ending the same day never merge; the same economic fact
+    restated across filings (or tagged under two revenue concepts) keeps
+    ONE row (latest accession wins).
+    """
+    p = df[df["concept"].isin(concepts) & (df["axis"] == axis)].copy()
+    if exclude_rollups:
+        p = p[~p["member"].astype(str).str.contains(EXCLUDE_MEMBER_RE)]
+    if p.empty:
+        return p
+    p["ps"] = pd.to_datetime(p["period_start"], errors="coerce")
+    p["pe"] = pd.to_datetime(p["period_end"], errors="coerce")
+    p = p.dropna(subset=["pe"])
+    # Missing period_start (23% of facts): fiscal_period labels the duration.
+    dur = (p["pe"] - p["ps"]).dt.days
+    ptype = pd.cut(dur, [0, 120, 200, 300, 400], labels=["Q", "H", "T3Q", "FY"])
+    fp = p["fiscal_period"].astype(str).str.upper()
+    ptype = ptype.astype(object)
+    ptype = np.where(ptype == None, np.nan, ptype)  # noqa: E711
+    ptype = pd.Series(ptype, index=p.index)
+    ptype = ptype.fillna(fp.map({"FY": "FY", "Q1": "Q", "Q2": "Q",
+                                 "Q3": "Q", "Q4": "Q"}))
+    p["ptype"] = ptype
+    p = p.dropna(subset=["ptype"])
+    p["value"] = pd.to_numeric(p["value"], errors="coerce")
+    p = p.dropna(subset=["value"])
+    # Dedupe restatements/concept double-tags: one row per economic fact.
+    p = (p.sort_values("accession")
+          .drop_duplicates(["symbol", "member", "pe", "ptype"], keep="last"))
+    return p
+
+
+def _yoy_pairs(g: pd.DataFrame, ptype: str, tol_days: int = 21):
+    """Like-for-like YoY pairs for one symbol's panel at one period type.
+
+    Returns list of (member, pe_latest, v_latest, v_prior, yoy) using the
+    fact whose period_end sits ~365 days before the latest, per member.
+    """
+    sub = g[g["ptype"] == ptype]
+    if sub.empty:
+        return []
+    out = []
+    for member, m in sub.groupby("member"):
+        m = m.sort_values("pe")
+        latest = m.iloc[-1]
+        target = latest["pe"] - pd.Timedelta(days=365)
+        prior = m[(m["pe"] - target).abs() <= pd.Timedelta(days=tol_days)]
+        if prior.empty:
+            continue
+        v_l, v_p = float(latest["value"]), float(prior.iloc[-1]["value"])
+        if v_p <= 0:          # negative/zero prior inverts the growth sign
+            continue
+        yoy = (v_l - v_p) / v_p
+        if -1.0 <= yoy <= 5.0:
+            out.append((member, latest["pe"], v_l, v_p, yoy))
+    return out
+
+
+def _fy_series(g: pd.DataFrame):
+    """Per-member FY revenue series (pe-sorted) for acceleration/mix-drift."""
+    sub = g[g["ptype"] == "FY"]
+    return {m: mm.sort_values("pe")[["pe", "value"]]
+            for m, mm in sub.groupby("member")} if not sub.empty else {}
+
+
+def _mix_from_latest(g: pd.DataFrame, top_n: int = 3):
+    """Mix (share dict, top list, total) from the LATEST like-for-like
+    period: prefer the latest FY column; else the latest quarter."""
+    for ptype in ("FY", "Q", "H", "T3Q"):
+        sub = g[g["ptype"] == ptype]
+        if sub.empty:
+            continue
+        latest_pe = sub["pe"].max()
+        snap = sub[sub["pe"] == latest_pe]
+        mix = snap.groupby("member")["value"].sum()
+        mix = mix[mix > 0]
+        if mix.empty:
+            continue
+        total = float(mix.sum())
+        shares = (mix / total).sort_values(ascending=False)
+        top = [(m, float(shares[m])) for m in shares.head(top_n).index]
+        return shares.to_dict(), top, total, latest_pe, ptype
+    return {}, [], None, None, None
+
+
+def _hhi(shares: dict) -> float | None:
+    return float(sum(v * v for v in shares.values())) if shares else None
 
 
 def derive(df: pd.DataFrame) -> pd.DataFrame:
-    """Per-filer aggregate signals + segment-level detail."""
     if df.empty:
         return pd.DataFrame()
 
+    seg_rev = _panel(df, REVENUE_CONCEPTS, SEGMENT_AXIS)
+    seg_opinc = _panel(df, {"us-gaap:OperatingIncomeLoss"}, SEGMENT_AXIS)
+    seg_gp = _panel(df, {"us-gaap:GrossProfit"}, SEGMENT_AXIS)
+    geo_panels = {ax: _panel(df, REVENUE_CONCEPTS, ax, exclude_rollups=False)
+                  for ax in GEOGRAPHIC_AXES}
+    prod_rev = pd.concat([_panel(df, REVENUE_CONCEPTS, ax,
+                                 exclude_rollups=False)
+                          for ax in PRODUCT_AXES], axis=0) \
+        if any(len(_panel(df, REVENUE_CONCEPTS, ax, exclude_rollups=False))
+               for ax in PRODUCT_AXES) else pd.DataFrame()
+
+    cust_syms = set(df[df["axis"].isin(CUSTOMER_AXES)]["symbol"].unique())
+
     rows = []
-    for sym, g in df.groupby("symbol"):
-        # Filter to revenue-concept facts (HHI etc. only meaningful on revenue)
-        rev = g[g.concept.isin(REVENUE_CONCEPTS)]
+    for sym in df["symbol"].unique():
+        g = seg_rev[seg_rev["symbol"] == sym] if not seg_rev.empty else seg_rev
+        rec: dict = {"symbol": sym}
 
-        # Latest-period segment revenue mix
-        seg_rev = rev[rev.axis == SEGMENT_AXIS]
-        seg_n = seg_rev.member.nunique() if not seg_rev.empty else 0
-        seg_shares, seg_top, seg_total = _mix_table(seg_rev)
-        if seg_shares:
-            hhi = float(sum(v * v for v in seg_shares.values()))
-            largest_share = max(seg_shares.values())
-            largest_segment_name = _clean_member(seg_top[0][0]) if seg_top else None
-            top_segments_str = "; ".join(
-                f"{_clean_member(m)} {s*100:.0f}%" for m, s in seg_top
-            )
+        # ---- mix (latest like-for-like snapshot, deduped) ----
+        shares, top, total, mix_pe, mix_ptype = ({}, [], None, None, None)
+        if g is not None and not g.empty:
+            shares, top, total, mix_pe, mix_ptype = _mix_from_latest(g)
+        rec["segment_count"] = int(len(shares))
+        rec["segment_revenue_hhi"] = _hhi(shares)
+        rec["largest_segment_share"] = (max(shares.values()) if shares else None)
+        rec["largest_segment_name"] = (_clean_member(top[0][0]) if top else None)
+        rec["top_segments"] = "; ".join(
+            f"{_clean_member(m)} {s*100:.0f}%" for m, s in top)
+        rec["segment_revenue_total"] = total
+
+        # ---- growth family (like-for-like, per member, material only) ----
+        fy_pairs = _yoy_pairs(g, "FY") if g is not None and not g.empty else []
+        q_pairs = _yoy_pairs(g, "Q") if g is not None and not g.empty else []
+        # Per-member robust growth = best available like-for-like base
+        growth: dict[str, dict] = {}
+        for member, pe, v_l, v_p, yoy in fy_pairs:
+            growth.setdefault(member, {})["fy"] = yoy
+        for member, pe, v_l, v_p, yoy in q_pairs:
+            growth.setdefault(member, {})["q"] = yoy
+        # Materiality + robust per-member growth
+        n_periods = len(fy_pairs) + len(q_pairs)
+        member_rows = []
+        for member, gg in growth.items():
+            share = shares.get(member)
+            robust = np.nanmax([gg.get("fy", np.nan), gg.get("q", np.nan)])
+            member_rows.append((member, share, gg.get("fy"), gg.get("q"),
+                                float(robust)))
+        rec["n_segment_periods"] = n_periods
+
+        # share_delta from the FY series (mix drift toward the winner)
+        fy_by_member = _fy_series(g) if g is not None and not g.empty else {}
+        share_prior: dict[str, float] = {}
+        if fy_by_member:
+            pes = sorted({pe for mm in fy_by_member.values()
+                          for pe in mm["pe"]})
+            if len(pes) >= 2:
+                prior_pe = pes[-2]
+                tot_prior = sum(float(mm[mm["pe"] == prior_pe]["value"].sum())
+                                for mm in fy_by_member.values())
+                if tot_prior > 0:
+                    for m, mm in fy_by_member.items():
+                        v = float(mm[mm["pe"] == prior_pe]["value"].sum())
+                        if v > 0:
+                            share_prior[m] = v / tot_prior
+        rec["segment_hhi_delta"] = (
+            round(_hhi(shares) - _hhi(share_prior), 4)
+            if shares and share_prior else None)
+
+        # fastest MATERIAL segment (share >= 5%, or rising >= 1pp)
+        fastest = None
+        for member, share, fy, q, robust in member_rows:
+            if not np.isfinite(robust):
+                continue
+            sh = share if share is not None else 0.0
+            sh_d = (sh - share_prior.get(member, sh)) if share_prior else 0.0
+            material = (sh >= 0.05) or (sh_d >= 0.01)
+            if not material:
+                continue
+            if fastest is None or robust > fastest[4]:
+                fastest = (member, sh, fy, q, robust, sh_d)
+        if fastest:
+            member, sh, fy, q, robust, sh_d = fastest
+            rec["fastest_segment_name"] = _clean_member(member)
+            rec["fastest_segment_share"] = round(sh, 4)
+            rec["fastest_segment_share_delta"] = round(sh_d, 4)
+            rec["fastest_seg_yoy_fy"] = (round(fy, 4) if fy is not None else None)
+            rec["fastest_seg_yoy_q"] = (round(q, 4) if q is not None else None)
+            rec["fastest_segment_yoy"] = round(robust, 4)   # legacy name
+        robust_all = [r for *_x, r in
+                      [(m, s, f, q, r) for m, s, f, q, r in member_rows]
+                      if np.isfinite(r)]
+        if len(robust_all) >= 2:
+            rec["segment_growth_dispersion"] = round(float(np.std(robust_all,
+                                                                  ddof=1)), 4)
+            rec["seg_growth_range"] = round(float(max(robust_all)
+                                                  - min(robust_all)), 4)
+
+        # FY acceleration for the fastest segment (needs 3 FY points)
+        if fastest and fastest[0] in fy_by_member:
+            mm = fy_by_member[fastest[0]].sort_values("pe")
+            vals = mm["value"].astype(float).tolist()
+            if len(vals) >= 3 and vals[-3] > 0 and vals[-2] > 0:
+                yoy_now = (vals[-1] - vals[-2]) / vals[-2]
+                yoy_prev = (vals[-2] - vals[-3]) / vals[-3]
+                if -1 <= yoy_now <= 5 and -1 <= yoy_prev <= 5:
+                    rec["fastest_seg_accel_fy"] = round(yoy_now - yoy_prev, 4)
+
+        # ---- margin lens (2nd accounting measure) on the fastest segment ----
+        if fastest is not None:
+            member = fastest[0]
+            for panel, tag in ((seg_opinc, "op"), (seg_gp, "gp")):
+                if panel.empty:
+                    continue
+                mp = panel[(panel["symbol"] == sym)
+                           & (panel["member"] == member)]
+                if mp.empty:
+                    continue
+                # margin now + a year ago, matched to the same-revenue period
+                for ptype in ("FY", "Q"):
+                    mm = mp[mp["ptype"] == ptype].sort_values("pe")
+                    gg = g[(g["member"] == member) & (g["ptype"] == ptype)] \
+                        .sort_values("pe")
+                    if mm.empty or gg.empty:
+                        continue
+                    joined = pd.merge(mm[["pe", "value"]],
+                                      gg[["pe", "value"]], on="pe",
+                                      suffixes=("_p", "_r"))
+                    joined = joined[joined["value_r"] > 0]
+                    if joined.empty:
+                        continue
+                    joined["margin"] = joined["value_p"] / joined["value_r"]
+                    m_now = float(joined.iloc[-1]["margin"])
+                    if tag == "op" and "fastest_seg_opmargin" not in rec:
+                        rec["fastest_seg_opmargin"] = round(m_now, 4)
+                    if len(joined) >= 2:
+                        target = joined.iloc[-1]["pe"] - pd.Timedelta(days=365)
+                        prior = joined[(joined["pe"] - target).abs()
+                                       <= pd.Timedelta(days=21)]
+                        if not prior.empty:
+                            d = m_now - float(prior.iloc[-1]["margin"])
+                            key = ("fastest_seg_opmargin_delta_yoy"
+                                   if tag == "op"
+                                   else "fastest_seg_gpmargin_delta_yoy")
+                            if key not in rec:
+                                rec[key] = round(d, 4)
+                            # segment operating leverage: profit vs revenue yoy
+                            if tag == "op" and "seg_oplev" not in rec:
+                                p_prior = float(prior.iloc[-1]["value_p"])
+                                r_prior = float(prior.iloc[-1]["value_r"])
+                                p_now = float(joined.iloc[-1]["value_p"])
+                                r_now = float(joined.iloc[-1]["value_r"])
+                                if p_prior > 0 and r_prior > 0:
+                                    rec["seg_opinc_yoy"] = round(
+                                        (p_now - p_prior) / p_prior, 4)
+                                    rec["seg_oplev"] = round(
+                                        (p_now - p_prior) / p_prior
+                                        - (r_now - r_prior) / r_prior, 4)
+                    break   # first available ptype wins per measure
+        _omd = rec.get("fastest_seg_opmargin_delta_yoy")
+        _gmd = rec.get("fastest_seg_gpmargin_delta_yoy")
+        rec["seg_margin_inflect_flag"] = int(
+            (_omd is not None and _omd >= 0.02)
+            or (_gmd is not None and _gmd >= 0.02))
+
+        # ---- geographic mix: best single axis, never summed across axes ----
+        best_geo = None
+        for ax, panel in geo_panels.items():
+            if panel.empty:
+                continue
+            gp_ = panel[panel["symbol"] == sym]
+            if gp_.empty:
+                continue
+            shares_g, top_g, _t, _pe, _pt = _mix_from_latest(gp_)
+            if shares_g and (best_geo is None
+                             or len(shares_g) > len(best_geo[0])):
+                best_geo = (shares_g, top_g)
+        rec["geographic_region_count"] = (len(best_geo[0]) if best_geo else 0)
+        rec["largest_region_share"] = (max(best_geo[0].values())
+                                       if best_geo else None)
+        rec["largest_region_name"] = (_clean_member(best_geo[1][0][0])
+                                      if best_geo and best_geo[1] else None)
+        rec["top_regions"] = ("; ".join(
+            f"{_clean_member(m)} {s*100:.0f}%" for m, s in best_geo[1])
+            if best_geo else "")
+
+        # ---- product lines / customer concentration ----
+        if not prod_rev.empty:
+            pr = prod_rev[prod_rev["symbol"] == sym]
+            rec["product_line_count"] = int(pr["member"].nunique())
         else:
-            hhi = largest_share = None
-            largest_segment_name = None
-            top_segments_str = ""
+            rec["product_line_count"] = 0
+        rec["customer_concentration_flag"] = int(sym in cust_syms)
 
-        # Geographic mix
-        geo_rev = rev[rev.axis.isin(GEOGRAPHIC_AXES)]
-        geo_n = geo_rev.member.nunique() if not geo_rev.empty else 0
-        geo_shares, geo_top, _ = _mix_table(geo_rev)
-        if geo_shares:
-            geo_largest = max(geo_shares.values())
-            largest_region_name = _clean_member(geo_top[0][0]) if geo_top else None
-            top_regions_str = "; ".join(
-                f"{_clean_member(m)} {s*100:.0f}%" for m, s in geo_top
-            )
-        else:
-            geo_largest = None
-            largest_region_name = None
-            top_regions_str = ""
-
-        # Product / service mix
-        prod_rev = rev[rev.axis.isin([PRODUCT_AXIS, PRODUCT_AXIS_ALT])]
-        prod_n = prod_rev.member.nunique() if not prod_rev.empty else 0
-
-        # Customer concentration — presence of any axis is a flag
-        cust_flag = int(
-            (g.axis == CUSTOMER_AXIS).any()
-            or (g.axis == CUSTOMER_RISK_AXIS).any()
-        )
-
-        # Segment growth — by-member YoY + name of the fastest
-        seg_growth_dispersion = None
-        fastest_seg = None
-        fastest_segment_name = None
-        if not seg_rev.empty:
-            two_period = seg_rev.copy()
-            two_period["period_end_dt"] = pd.to_datetime(
-                two_period.period_end, errors="coerce")
-            two_period = two_period.dropna(subset=["period_end_dt"])
-            pivot = (two_period.pivot_table(
-                index="member", columns="period_end_dt",
-                values="value", aggfunc="sum"
-            ))
-            if pivot.shape[1] >= 2:
-                pivot = pivot.sort_index(axis=1)
-                latest = pivot.iloc[:, -1]
-                prior = pivot.iloc[:, -2]
-                yoy = (latest - prior) / prior.replace({0: np.nan})
-                yoy = yoy[yoy.between(-1, 5)]  # sanity clip
-                if not yoy.empty:
-                    seg_growth_dispersion = float(yoy.std())
-                    fastest_seg = float(yoy.max())
-                    fastest_segment_name = _clean_member(yoy.idxmax())
-
-        rows.append({
-            "symbol": sym,
-            "segment_count": seg_n,
-            "segment_revenue_hhi": hhi,
-            "largest_segment_share": largest_share,
-            "largest_segment_name": largest_segment_name,
-            "top_segments": top_segments_str,
-            "segment_revenue_total": seg_total,
-            "geographic_region_count": geo_n,
-            "largest_region_share": geo_largest,
-            "largest_region_name": largest_region_name,
-            "top_regions": top_regions_str,
-            "product_line_count": prod_n,
-            "customer_concentration_flag": cust_flag,
-            "segment_growth_dispersion": seg_growth_dispersion,
-            "fastest_segment_yoy": fastest_seg,
-            "fastest_segment_name": fastest_segment_name,
-        })
+        rows.append(rec)
     return pd.DataFrame(rows)
 
 
 def derive_detail(df: pd.DataFrame) -> pd.DataFrame:
-    """Long-form (symbol, segment_name, revenue_latest, share_latest, yoy_growth).
-
-    One row per (symbol, member) with revenue level + % share + YoY
-    growth, sorted within each symbol by share desc. Lets the workbook
-    show the full segment table for any name we have data on.
-    """
+    """Long-form (symbol, segment_name, revenue_latest, share, yoy, margin)."""
     if df.empty:
         return pd.DataFrame()
-    rev = df[df.concept.isin(REVENUE_CONCEPTS)]
-    seg_rev = rev[rev.axis == SEGMENT_AXIS].copy()
+    seg_rev = _panel(df, REVENUE_CONCEPTS, SEGMENT_AXIS)
+    seg_opinc = _panel(df, {"us-gaap:OperatingIncomeLoss"}, SEGMENT_AXIS)
     if seg_rev.empty:
         return pd.DataFrame()
-    seg_rev["period_end_dt"] = pd.to_datetime(seg_rev.period_end, errors="coerce")
-    seg_rev = seg_rev.dropna(subset=["period_end_dt"])
 
     rows = []
     for sym, g in seg_rev.groupby("symbol"):
-        pivot = g.pivot_table(index="member", columns="period_end_dt",
-                              values="value", aggfunc="sum")
-        if pivot.empty:
+        shares, top, total, mix_pe, mix_ptype = _mix_from_latest(g, top_n=99)
+        if not shares:
             continue
-        pivot = pivot.sort_index(axis=1)
-        latest_col = pivot.columns[-1]
-        latest = pivot[latest_col]
-        # Prior column for YoY if available
-        prior = pivot.iloc[:, -2] if pivot.shape[1] >= 2 else None
-        total_latest = latest[latest > 0].sum()
-        if not total_latest or total_latest <= 0:
-            continue
-        for member in pivot.index:
-            v_latest = latest.get(member)
-            if pd.isna(v_latest) or v_latest <= 0:
-                continue
-            share = float(v_latest / total_latest)
-            yoy = None
-            if prior is not None:
-                v_prior = prior.get(member)
-                if pd.notna(v_prior) and v_prior > 0:
-                    yoy = float((v_latest - v_prior) / v_prior)
-                    if not -1 <= yoy <= 5:
-                        yoy = None
+        fy_pairs = {m: yoy for m, pe, vl, vp, yoy in _yoy_pairs(g, "FY")}
+        q_pairs = {m: yoy for m, pe, vl, vp, yoy in _yoy_pairs(g, "Q")}
+        snap = g[(g["pe"] == mix_pe) & (g["ptype"] == mix_ptype)]
+        op_snap = seg_opinc[(seg_opinc["symbol"] == sym)
+                            & (seg_opinc["pe"] == mix_pe)
+                            & (seg_opinc["ptype"] == mix_ptype)] \
+            if not seg_opinc.empty else pd.DataFrame()
+        for member, share in sorted(shares.items(), key=lambda kv: -kv[1]):
+            v_latest = float(snap[snap["member"] == member]["value"].sum())
+            yoy = fy_pairs.get(member, q_pairs.get(member))
+            opmargin = None
+            if not op_snap.empty and v_latest > 0:
+                ov = op_snap[op_snap["member"] == member]["value"]
+                if len(ov):
+                    opmargin = round(float(ov.iloc[-1]) / v_latest, 4)
             rows.append({
                 "symbol": sym,
                 "segment_name": _clean_member(member),
                 "segment_member_raw": member,
-                "revenue_latest": float(v_latest),
-                "share_of_revenue": share,
-                "yoy_growth": yoy,
-                "period_end": str(pd.to_datetime(latest_col).date()),
+                "revenue_latest": v_latest,
+                "share_of_revenue": round(float(share), 4),
+                "yoy_growth": (round(yoy, 4) if yoy is not None else None),
+                "op_margin": opmargin,
+                "period_end": str(pd.to_datetime(mix_pe).date()),
+                "period_type": mix_ptype,
             })
     out = pd.DataFrame(rows)
     if not out.empty:
-        out = out.sort_values(["symbol", "share_of_revenue"], ascending=[True, False])
+        out = out.sort_values(["symbol", "share_of_revenue"],
+                              ascending=[True, False])
     return out
 
 
@@ -258,18 +426,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--segments", default="edgar_segments.csv")
     ap.add_argument("--out", default="edgar_segment_signals.csv")
-    ap.add_argument("--detail-out", default="edgar_segment_detail.csv",
-                    help="long-form per-segment-per-name table")
+    ap.add_argument("--detail-out", default="edgar_segment_detail.csv")
     args = ap.parse_args()
 
     print(f"loading {args.segments}...", file=sys.stderr)
-    df = pd.read_csv(args.segments)
+    df = pd.read_csv(args.segments, low_memory=False)
     print(f"  {len(df):,} fact rows, {df.symbol.nunique():,} filers",
           file=sys.stderr)
-
-    # Use latest period per filer for the snapshot signals
-    df_latest = _latest_period_per_symbol(df)
-    print(f"  latest-period rows: {len(df_latest):,}", file=sys.stderr)
 
     out = derive(df)
     out.to_csv(args.out, index=False)
@@ -277,20 +440,14 @@ def main():
 
     detail = derive_detail(df)
     detail.to_csv(args.detail_out, index=False)
-    print(f"wrote {args.detail_out}: {len(detail):,} rows "
-          f"({detail.symbol.nunique() if not detail.empty else 0:,} filers, "
-          f"{detail.segment_name.nunique() if not detail.empty else 0:,} distinct segment labels)",
-          file=sys.stderr)
-    print(f"\nCoverage by field:", file=sys.stderr)
+    print(f"wrote {args.detail_out}: {len(detail):,} rows", file=sys.stderr)
+
+    print("\nCoverage by field:", file=sys.stderr)
     for c in out.columns:
         if c == "symbol":
             continue
-        non_null = out[c].notna().sum() if out[c].dtype != bool else (out[c] != 0).sum()
-        print(f"  {c:30s} {non_null:5d} / {len(out):,}", file=sys.stderr)
-    # Sample
-    print(f"\nSample (top 10 by segment count):", file=sys.stderr)
-    print(out.sort_values("segment_count", ascending=False).head(10).to_string(index=False),
-          file=sys.stderr)
+        non_null = out[c].notna().sum()
+        print(f"  {c:34s} {non_null:5d} / {len(out):,}", file=sys.stderr)
 
 
 if __name__ == "__main__":

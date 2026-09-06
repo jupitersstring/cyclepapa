@@ -215,6 +215,19 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is absent entirely (df.get on a missing column returns a scalar)."""
         return (pd.to_numeric(df[col], errors='coerce') if col in df.columns
                 else pd.Series(np.nan, index=df.index))
+    def _confirm(checks):
+        """checks = list of (numeric_series, predicate). Returns (any_bool,
+        score_0to1). Only measures that are PRESENT count toward the score."""
+        present = pd.Series(0, index=df.index)
+        agree = pd.Series(0, index=df.index)
+        for series, pred in checks:
+            p = series.notna()
+            present = present + p.astype(int)
+            agree = agree + (p & pred(series).fillna(False)).astype(int)
+        any_ok = agree >= 1
+        score = (agree / present.where(present > 0)).fillna(0.0)
+        return any_ok, score
+
     _ebitda_ttm_guard = _ncol('ebitda_ttm')
     nde = nde.where(~(_ebitda_ttm_guard.notna() & (_ebitda_ttm_guard <= 0)), 99.0)
     not_priced_in = s('not_priced_in_score')
@@ -603,22 +616,45 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     ).astype(int)
 
     # AG — Fastest Segment Inflection: a "hidden growth engine" the
-    # consolidated number masks. Made robust by firing on ANY of three
-    # segment-inflection angles (broadens — recovers names the strict >25%
-    # threshold alone missed, without shrinking the pool):
-    #   (a) the fastest segment is growing hard (>25%);
-    #   (b) segments are DIVERGING (high growth dispersion) with a leader
-    #       still growing decently (>15%) — a mix-shift toward the winner;
-    #   (c) the CONSOLIDATED business is inflecting AND a segment is growing
-    #       double digits — the company-level turn is segment-led.
-    seg_inflect_any = (
-        (fastest_segment_yoy >= 0.25) |
-        ((segment_growth_dispersion >= 0.30) & (fastest_segment_yoy >= 0.15)) |
-        (inflection_print & (fastest_segment_yoy >= 0.10))
-    )
+    # consolidated number masks. GENUINELY multi-lens (v2): the legs read
+    # independent measures across independent time bases — quarterly YoY and
+    # FY YoY segment revenue, FY acceleration, the SEGMENT MARGIN lens
+    # (operating income on the segment axis — a second accounting measure),
+    # segment operating leverage, mix shifting toward the winner, and the
+    # consolidated inflection as a stand-alone corroboration leg (no longer
+    # gated behind the revenue column, so it can rescue names with sparse
+    # segment data). Legacy fastest_segment_yoy keeps the gate alive on the
+    # v1 signal file until the re-harvest lands; the v2 columns take over
+    # automatically as they appear.
+    _fs_yoy_q = _ncol('fastest_seg_yoy_q')
+    _fs_yoy_fy = _ncol('fastest_seg_yoy_fy')
+    _fs_accel = _ncol('fastest_seg_accel_fy')
+    _fs_omd = _ncol('fastest_seg_opmargin_delta_yoy')
+    _fs_oplev = _ncol('seg_oplev')
+    _fs_sh_d = _ncol('fastest_segment_share_delta')
+    seg_inflect_any, seg_inflect_score = _confirm([
+        (_fs_yoy_q, lambda x: x >= 0.25),                    # true quarterly YoY
+        (_fs_yoy_fy, lambda x: x >= 0.25),                   # annual base
+        (fastest_segment_yoy, lambda x: x >= 0.25),          # legacy robust max
+        (_fs_accel, lambda x: x >= 0.05),                    # 2nd derivative
+        (_fs_omd, lambda x: x >= 0.02),                      # segment margin inflection
+        (_fs_oplev, lambda x: x >= 0.10),                    # segment operating leverage
+        (_fs_sh_d, lambda x: x >= 0.02),                     # mix shift to the winner
+        (segment_growth_dispersion, lambda x: x >= 0.30),    # segments diverging
+        (pd.to_numeric(df.get('inflection_confirm_score', np.nan),
+                       errors='coerce') if 'inflection_confirm_score'
+         in df.columns else inflection_print.astype(float),
+         lambda x: x >= 0.6),                                # whole-co corroboration
+    ])
+    # A dispersion- or corroboration-only fire still needs a leader growing
+    # double digits — keep the hidden-ENGINE spirit.
+    _seg_any_growth = pd.concat(
+        [_fs_yoy_q, _fs_yoy_fy, fastest_segment_yoy], axis=1).max(axis=1)
     df['arch_fastest_segment'] = (
-        (segment_count >= 2) & seg_inflect_any
+        (segment_count >= 2) & seg_inflect_any & (_seg_any_growth >= 0.10)
     ).fillna(False).astype(int)
+    df['seg_inflect_score'] = (seg_inflect_score
+                               * df['arch_fastest_segment']).round(3)
 
     # Q — Durable Growth: revenue 5y CAGR >= 8% AND topline accelerating
     # (3y CAGR > 5y CAGR) AND asset base growing. Multi-cycle expansion
@@ -931,18 +967,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # never shrinks the pool) and expose a CONFIRMATION SCORE (fraction of
     # available measures that agree) used to mildly upweight names where
     # several agree (robust to a single accounting distortion).
-    def _confirm(checks):
-        """checks = list of (numeric_series, predicate). Returns (any_bool,
-        score_0to1). Only measures that are PRESENT count toward the score."""
-        present = pd.Series(0, index=df.index)
-        agree = pd.Series(0, index=df.index)
-        for series, pred in checks:
-            p = series.notna()
-            present = present + p.astype(int)
-            agree = agree + (p & pred(series).fillna(False)).astype(int)
-        any_ok = agree >= 1
-        score = (agree / present.where(present > 0)).fillna(0.0)
-        return any_ok, score
+    # (_confirm hoisted above — see top of compute)
 
     def _num(col):
         return (pd.to_numeric(df[col], errors='coerce')
@@ -2087,7 +2112,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','seg_inflect_score']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m'] if c in df.columns]]
     out.to_csv(out_path, index=False)
 
