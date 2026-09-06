@@ -1,0 +1,9 @@
+ABSENT COLUMNS (requested by gates, not in frame — gate legs read all-NaN):
+  MISSING  fastest_seg_accel_fy
+  MISSING  fastest_seg_opmargin_delta_yoy
+  MISSING  fastest_seg_yoy_fy
+  MISSING  fastest_seg_yoy_q
+  MISSING  fastest_segment_share_delta
+  MISSING  seg_oplev
+NEAR-EMPTY COLUMNS (<2% coverage — legs almost never fire):
+  SPARSE   cheap_per_roiic_lindy                 1.76%
