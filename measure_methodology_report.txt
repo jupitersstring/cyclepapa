@@ -1,6 +1,6 @@
-METHODOLOGY AUDIT — 34 checks, 0 FAIL, 0 WARN
+METHODOLOGY AUDIT — 36 checks, 0 FAIL, 0 WARN
   PASS  units: dividend_yield is a fraction  — median |dividend_yield| = 0.027 (fraction-scale cap 1.5)
-  PASS  units: fcf_yield is a fraction  — median |fcf_yield| = 0.071 (fraction-scale cap 3.0)
+  PASS  units: fcf_yield is a fraction  — median |fcf_yield| = 0.077 (fraction-scale cap 3.0)
   PASS  units: analyst_target_upside_pct is a fraction  — median |analyst_target_upside_pct| = 0.261 (fraction-scale cap 5.0)
   PASS  units: roce is a fraction  — median |roce| = 0.115 (fraction-scale cap 5.0)
   PASS  units: sbc_pct_revenue is a fraction  — median |sbc_pct_revenue| = 0.018 (fraction-scale cap 3.0)
@@ -25,6 +25,8 @@ METHODOLOGY AUDIT — 34 checks, 0 FAIL, 0 WARN
   PASS  gating: lynch_reward_score is 0 outside arch_lynch_reward  — 0 non-firers with positive score
   PASS  gating: analyst_awakening_score is 0 outside arch_analyst_awakening  — 0 non-firers with positive score
   PASS  gating: seg_inflect_score is 0 outside arch_fastest_segment  — 0 non-firers with positive score
+  PASS  density: archetype_count_pct <= 1  — max 0.523
+  PASS  units: insider_ownership_pct is a fraction (<= 1.05)  — 0 percent-scale stragglers
   PASS  range: confirm_overall within [0,1]  — min 0.000 max 1.000
   PASS  range: oper_leverage_score within [0,1]  — min 0.000 max 1.000
   PASS  range: buyback_score within [0,1]  — min 0.000 max 1.000

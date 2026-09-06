@@ -112,7 +112,7 @@ def main():
     # STALE archetype_count/bab_score in place (would silently freeze counts
     # whenever new archetypes are added).
     df = df.drop(columns=[c for c in df.columns if c.endswith('_arch')])
-    arch_df = pd.read_csv(args.arch)
+    arch_df = pd.read_csv(args.arch).drop_duplicates('symbol')
     verdicts = load_verdicts()
     intrinsic_in = load_intrinsic_inputs()
 
@@ -185,7 +185,9 @@ def main():
     df['intrinsic_discount'] = (
         0.30 * nc + 0.20 * ncav + 0.20 * sub_book + 0.15 * cash_ev + 0.15 * npi
     ).round(4)
-    intrinsic_boost = (1.0 + (df['intrinsic_discount'] - 0.25)).clip(0.5, 1.5)
+    # intrinsic_discount is confined to [0,1] -> boost range is
+    # [0.75, 1.5] by construction (a 0.5 floor was dead code).
+    intrinsic_boost = (1.0 + (df['intrinsic_discount'] - 0.25)).clip(0.75, 1.5)
 
     # ----- qual_mult + post_rally_factor -----
     soft_mult = {'GREEN': 1.10, 'YELLOW': 0.85, 'RED': 0.40}
@@ -218,10 +220,15 @@ def main():
         for marker in ('roic_lindy', 'm5_engine_score', 'tangible_equity_pct'):
             if marker in df.columns:
                 has_edgar_data = has_edgar_data | df[marker].notna()
-        archetypes_eligible = np.where(has_edgar_data, args.total_archetypes,
+        # EDGAR-covered rows are eligible for the FULL live taxonomy —
+        # derive the denominator from the file, never a CLI constant (the
+        # old --total-archetypes default froze at 34 while the taxonomy
+        # grew to 69, silently re-inflating the US-coverage bias this
+        # column exists to remove).
+        archetypes_eligible = np.where(has_edgar_data, len(arch_cols),
                                        len(non_edgar_arch_cols))
     else:
-        archetypes_eligible = args.total_archetypes
+        archetypes_eligible = len(arch_cols)
     df['archetypes_eligible'] = archetypes_eligible
     df['archetype_count'] = df['archetype_count'].fillna(0)
     df['archetype_count_pct'] = (df['archetype_count'] / archetypes_eligible).round(4)

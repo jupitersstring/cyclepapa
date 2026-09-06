@@ -257,6 +257,22 @@ def _gating(t, g):
               f"{leak} non-firers with positive score")
 
 
+@measure("Coverage-fair archetype density",
+         "archetype_count_pct divides by the count of archetypes the row is "
+         "ELIGIBLE for — it can never exceed 1, and the denominator tracks "
+         "the LIVE taxonomy, not a frozen constant.")
+def _density(t, g):
+    pct = n(g, "archetype_count_pct").dropna()
+    if len(pct):
+        check("density: archetype_count_pct <= 1",
+              (pct <= 1.0 + 1e-9).all(), f"max {pct.max():.3f}")
+    io = n(g, "insider_ownership_pct").dropna()
+    if len(io):
+        check("units: insider_ownership_pct is a fraction (<= 1.05)",
+              (io <= 1.05).mean() > 0.999,
+              f"{int((io > 1.05).sum())} percent-scale stragglers")
+
+
 @measure("Composite score ranges",
          "Confirmation/lens composites live in [0, 1] by construction.")
 def _ranges(t, g):

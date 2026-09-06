@@ -193,7 +193,7 @@ def compute_scores(df: pd.DataFrame, verdicts: pd.DataFrame) -> pd.DataFrame:
     df['intrinsic_discount'] = (
         0.30 * nc + 0.20 * ncav + 0.20 * sub_book + 0.15 * cash_ev + 0.15 * npi
     )
-    boost = (1.0 + (df['intrinsic_discount'] - 0.25)).clip(0.5, 1.5)
+    boost = (1.0 + (df['intrinsic_discount'] - 0.25)).clip(0.75, 1.5)  # true floor (discount in [0,1])
 
     mom = col('momentum_12m').clip(-0.5, None)
     pr = pd.Series(1.0, index=df.index)

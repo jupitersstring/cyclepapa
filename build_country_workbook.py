@@ -178,7 +178,7 @@ def amend_scores(df: pd.DataFrame) -> pd.DataFrame:
     # The boost factor sits in roughly [0.5, 1.5] so a name with strong
     # framework-measured discount gets a meaningful lift, weak ones get a
     # haircut, but neither dominates the existing quant ranking.
-    boost = (1.0 + (df['intrinsic_discount'] - 0.25)).clip(0.5, 1.5)
+    boost = (1.0 + (df['intrinsic_discount'] - 0.25)).clip(0.75, 1.5)  # true floor (discount in [0,1])
 
     # POST-RALLY PENALTY (added 2026-06-15 after WDC bug, revised):
     # A name already up >100 pct in 12m is no longer a 'multibagger setup' -

@@ -436,6 +436,15 @@ def main():
         _bad = _e.notna() & (_e <= 0)
         master.loc[_bad, 'net_debt_ebitda'] = float('nan')
 
+    # insider_ownership_pct is a FRACTION everywhere; a handful of rows
+    # arrive percent-scaled from non-yfinance paths that skip the (0,1)
+    # validator (e.g. 100.75 = heldPercentInsiders*100). Normalize the
+    # percent-scale stragglers, null the truly impossible.
+    if 'insider_ownership_pct' in master.columns:
+        _io = pd.to_numeric(master['insider_ownership_pct'], errors='coerce')
+        master['insider_ownership_pct'] = _io.where(
+            _io <= 1.05, (_io / 100.0).where(_io <= 100.75))
+
     master.to_csv(out_path, index=False)
     print(f'\nwrote {out_path}: {len(master):,} rows, '
           f'{len(master.columns)} cols', file=sys.stderr)

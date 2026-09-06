@@ -96,7 +96,7 @@ def compute_eta(df: pd.DataFrame, verdicts: pd.DataFrame) -> pd.DataFrame:
     df['intrinsic_discount'] = (
         0.30 * nc + 0.20 * ncav + 0.20 * sub_book + 0.15 * cash_ev + 0.15 * npi
     )
-    boost = (1.0 + (df['intrinsic_discount'] - 0.25)).clip(0.5, 1.5)
+    boost = (1.0 + (df['intrinsic_discount'] - 0.25)).clip(0.75, 1.5)  # true floor (discount in [0,1])
 
     mom = col('momentum_12m').clip(-0.5, None)
     pr = pd.Series(1.0, index=df.index)
@@ -338,14 +338,14 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
         ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=span_cols)
         ws.row_dimensions[row].height = 16
 
-    # Table column layout (post-headline-valuation addition, 21 cols):
+    # Table column layout (post-div-yield addition, 22 cols):
     #   1 #             2 Ticker        3 Name          4 Sector
     #   5 Bucket        6 Mcap (USD)    7 Verdict       8 ETA/Infl (active sort key)
     #   9 Asym         10 EV/EBITDA    11 P/E         12 P/B
-    #  13 FCF yld %    14 ROIC %       15 ND/EBITDA   16 EBITDA margin %
-    #  17 Mom 12m %    18 Yartseva     19 Cluster     20 Confirm
-    #  21 P/S
-    N_COLS = 21
+    #  13 FCF yld %    14 Div %        15 ROIC %      16 ND/EBITDA
+    #  17 EBITDA margin %  18 Mom 12m %  19 Yartseva   20 Cluster
+    #  21 Confirm      22 P/S
+    N_COLS = 22
 
     def _write_table_row(ws, row, r, cols=N_COLS):
         """Write one country-rank row with valuation headline columns."""
@@ -368,17 +368,18 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
         _put_score(ws, row, 11, r.get('p_e'), font=f_text)
         _put_score(ws, row, 12, r.get('pb'), font=f_text)
         _put_pct(ws, row, 13, r.get('fcf_yield'), font=f_text)
-        _put_pct(ws, row, 14, r.get('roce'), font=f_text)
-        _put_score(ws, row, 15, r.get('net_debt_ebitda'), font=f_text)
-        _put_pct(ws, row, 16, r.get('ebitda_margin'), font=f_text)
-        _put_pct(ws, row, 17, r.get('momentum_12m'), font=f_text)
+        _put_pct(ws, row, 14, r.get('dividend_yield'), font=f_text)
+        _put_pct(ws, row, 15, r.get('roce'), font=f_text)
+        _put_score(ws, row, 16, r.get('net_debt_ebitda'), font=f_text)
+        _put_pct(ws, row, 17, r.get('ebitda_margin'), font=f_text)
+        _put_pct(ws, row, 18, r.get('momentum_12m'), font=f_text)
 
-        _put_score(ws, row, 18, r.get('yartseva_score'), font=f_text_muted)
+        _put_score(ws, row, 19, r.get('yartseva_score'), font=f_text_muted)
         _cn = r.get('cluster_n')
-        _put_int(ws, row, 19, int(_cn) if pd.notna(_cn) else 0, font=f_text_muted)
-        _put_score(ws, row, 20, r.get('confirm_overall'), font=f_text_muted)
+        _put_int(ws, row, 20, int(_cn) if pd.notna(_cn) else 0, font=f_text_muted)
+        _put_score(ws, row, 21, r.get('confirm_overall'), font=f_text_muted)
         # P/S is a mandated display column — same weight as P/B, not muted
-        _put_score(ws, row, 21, r.get('p_s'), font=f_text)
+        _put_score(ws, row, 22, r.get('p_s'), font=f_text)
 
         # Faint hairline under each row
         for cidx in range(1, cols + 1):
@@ -391,7 +392,7 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
         headers = ['#', 'Ticker', 'Name', 'Sector', 'Bucket',
                    'Mcap (USD)', 'Verdict', sort_key_hdr, 'Asym',
                    'EV/EBITDA', 'P/E', 'P/B',
-                   'FCF yld %', 'ROIC %', 'ND/EBITDA', 'EBITDA m %',
+                   'FCF yld %', 'Div %', 'ROIC %', 'ND/EBITDA', 'EBITDA m %',
                    'Mom 12m %', 'Yartseva', 'Cluster', 'Confirm', 'P/S']
         for i, h in enumerate(headers, start=1):
             c = ws.cell(row=row, column=i, value=h)
@@ -408,8 +409,8 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
         widths = {
             1: 4, 2: 11, 3: 32, 4: 16, 5: 11, 6: 17,
             7: 12, 8: 8, 9: 8,
-            10: 10, 11: 8, 12: 8, 13: 10, 14: 9, 15: 10, 16: 10, 17: 11,
-            18: 9, 19: 8, 20: 9, 21: 7,
+            10: 10, 11: 8, 12: 8, 13: 10, 14: 7, 15: 9, 16: 10, 17: 10, 18: 11,
+            19: 9, 20: 8, 21: 9, 22: 7,
         }
         for col, w in widths.items():
             ws.column_dimensions[get_column_letter(col)].width = w
