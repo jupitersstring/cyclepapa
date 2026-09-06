@@ -1758,32 +1758,35 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # Analysts are pounding the table but the market has only STARTED to pay:
     # CONVICTION triangulated across three lenses (consensus rating strength,
     # target upside, breadth of coverage — fire needs rating AND one other),
-    # and EARLINESS as a fresh 52w high (absolute or vs the index) emerging
-    # from a base (base_depth <= 0.85 a year ago) without an extended trailing
-    # run (fresh 12m ROC <= 50%). The fresh-high-from-base is the robust form
-    # of "re-rating just started": stronger than raw momentum because it
-    # requires BOTH a new high AND a preceding base. Live tape required.
+    # without an extended trailing run (fresh 12m ROC <= 50%, momentum
+    # fallback where the lynch tape is not yet fetched). A fresh 52w high
+    # (absolute or vs the index) emerging from a base (base_depth <= 0.85 a
+    # year ago) is NOT required to fire — it is the strongest POSITIVE, the
+    # robust form of "re-rating just started" (a new high AND a preceding
+    # base), and carries the largest score weight so names where the tape
+    # confirms the awakening rank first. Live tape required where covered.
     _rec = _num('yf_recommendation_mean')
     _ups = _num('analyst_target_upside_pct')
     _nan_ = (_num('n_analysts').fillna(_num('n_analysts_pew'))
              .fillna(_num('yf_n_analysts')))
     _conviction = ((_rec > 0) & (_rec <= 2.2) &
                    (((_ups >= 25)) | (_nan_ >= 5)))
-    _fresh_high = ((_abs_hi | _rel_hi) &
-                   (_num('base_depth_12m') <= 0.85))
     _not_extended = ((_num('roc_12m') <= 0.50) |
                      (_num('roc_12m').isna() & (_num('momentum_12m') <= 0.50)))
     df['arch_analyst_awakening'] = (
         (mcap > 0) & (_nan_ >= 3) & _conviction &
-        _fresh_high & _not_extended & lr_live_tape
+        _not_extended & lr_live_tape
     ).fillna(False).astype(int)
-    # Score: rating strength + upside depth + breadth + freshness of the move.
+    # Score: rating strength + upside depth + breadth, upweighted where the
+    # tape agrees — 52w high (abs and/or rel) scaled by base freshness.
     _rec_sc = ((2.2 - _rec) / 1.2).clip(0, 1).fillna(0)         # 1.0 -> best
     _ups_sc = (_ups / 60.0).clip(0, 1).fillna(0)
     _brd_sc = (_nan_ / 12.0).clip(0, 1).fillna(0)
     _fresh_sc = ((0.85 - _num('base_depth_12m')) / 0.45).clip(0, 1).fillna(0)
-    df['analyst_awakening_score'] = ((0.35 * _rec_sc + 0.30 * _ups_sc
-                                      + 0.15 * _brd_sc + 0.20 * _fresh_sc)
+    _hi_sc = ((0.4 * _abs_hi.astype(float) + 0.4 * _rel_hi.astype(float))
+              * (0.5 + 0.5 * _fresh_sc)).clip(0, 1)
+    df['analyst_awakening_score'] = ((0.30 * _rec_sc + 0.25 * _ups_sc
+                                      + 0.15 * _brd_sc + 0.30 * _hi_sc)
                                      * df['arch_analyst_awakening']).round(3)
 
     arch_cols = [
