@@ -112,8 +112,6 @@ def main():
     # STALE archetype_count/bab_score in place (would silently freeze counts
     # whenever new archetypes are added).
     df = df.drop(columns=[c for c in df.columns if c.endswith('_arch')])
-    df = df.drop(columns=[c for c in ('archetype_count', 'bab_score')
-                          if c in df.columns])
     arch_df = pd.read_csv(args.arch)
     verdicts = load_verdicts()
     intrinsic_in = load_intrinsic_inputs()
@@ -136,6 +134,10 @@ def main():
                       'analyst_awakening_score', 'lynch_rank']
     extra_arch = [c for c in (['archetype_count', 'bab_score'] + confirm_scores)
                   if c in arch_df.columns]
+    # Drop EVERY column the arch merge re-supplies (not just count/bab_score):
+    # any of them already present from a prior enrich run would otherwise
+    # collide, get suffixed to *_arch, and silently freeze at its stale value.
+    df = df.drop(columns=[c for c in extra_arch if c in df.columns])
     df = df.merge(arch_df[['symbol'] + arch_cols + extra_arch],
                   on='symbol', how='left', suffixes=('', '_arch'))
     # Drop any pre-existing verdict so the fresh merge wins

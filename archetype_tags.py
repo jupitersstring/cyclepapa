@@ -144,7 +144,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     if os.path.exists('lynch_reward_signals.csv'):
         lynch_signals = pd.read_csv('lynch_reward_signals.csv').drop_duplicates('symbol')
         df = df.merge(lynch_signals, on='symbol', how='left', suffixes=('','_lr'))
-    df = df.merge(pew, on='symbol', how='left')
+    # pew and asym both carry n_analysts; suffix pew's copy so downstream
+    # _num('n_analysts') keeps reading the asym column instead of vanishing
+    # into n_analysts_x/_y (which silently zeroed the analyst-awakening gate).
+    df = df.merge(pew, on='symbol', how='left', suffixes=('', '_pew'))
 
     # Use the asymmetry sector/market_cap as primary; fall back to yartseva.
     for c in ('sector','industry','market_cap'):
@@ -1762,7 +1765,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # requires BOTH a new high AND a preceding base. Live tape required.
     _rec = _num('yf_recommendation_mean')
     _ups = _num('analyst_target_upside_pct')
-    _nan_ = _num('n_analysts').fillna(_num('yf_n_analysts'))
+    _nan_ = (_num('n_analysts').fillna(_num('n_analysts_pew'))
+             .fillna(_num('yf_n_analysts')))
     _conviction = ((_rec > 0) & (_rec <= 2.2) &
                    (((_ups >= 25)) | (_nan_ >= 5)))
     _fresh_high = ((_abs_hi | _rel_hi) &
