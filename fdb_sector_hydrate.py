@@ -186,7 +186,10 @@ def main() -> int:
     final_cols = orig_cols + new_cols
     new_master = new_master[final_cols]
 
-    new_master.to_csv(out_path, index=False)
+    import os as _os
+    new_master.to_csv(out_path + '.tmp', index=False)
+    _os.replace(out_path + '.tmp', out_path)   # atomic — no truncated master
+
     print(f'\n[fdb-hydrate] wrote {out_path}: {len(new_master):,} rows, '
           f'{len(new_master.columns)} cols', file=sys.stderr)
     return 0

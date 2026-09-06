@@ -175,7 +175,10 @@ def main():
         add = add[master.columns]
         combined = pd.concat([master, add], ignore_index=True)
         combined = combined.drop_duplicates('symbol', keep='first')
-        combined.to_csv(args.master, index=False)
+        import os as _os
+        combined.to_csv(args.master + '.tmp', index=False)
+        _os.replace(args.master + '.tmp', args.master)   # atomic write
+
         print(f'\nappended to {args.master}: {len(master):,} -> {len(combined):,} rows',
               file=sys.stderr)
 
