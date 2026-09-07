@@ -24,6 +24,7 @@ from build_harvard_workbook import (
     _TXT_ALIGN_LEFT,
 )
 from otc_flag import dedupe_display
+import tab_colors
 from build_archetype_book import (
     load_data, ARCHETYPE_LABELS, _sheet_safe, _write_archetype_table,
     ARCH_SORT_OVERRIDES, arch_sort_col,
@@ -62,6 +63,7 @@ def main():
 
     wb = Workbook()
     cover = wb.active
+    tab_colors.set_tab(cover, tab_colors.COVER)
     cover.title = 'Cover'
     for col, w in {1: 30, 2: 10, 3: 12, 4: 30}.items():
         cover.column_dimensions[cover.cell(row=1, column=col).column_letter].width = w
@@ -110,8 +112,11 @@ def main():
                                           na_position='last'))
                   .head(args.n).reset_index(drop=True))
         ws = wb.create_sheet(_sheet_safe(label))
+        tab_colors.set_tab(ws, tab_colors.arch_color(col))
         _write_archetype_table(ws, sub_df, label, n_total, tab_sort)
 
+    tab_colors.write_legend(cover, 9, 9, tab_colors.family_legend(),
+                            title='Tab colours — archetype family')
     wb.save(args.out)
     print(f'wrote {args.out}  ({1 + len(counts)} sheets: Cover + '
           f'{len(counts)} archetypes)', file=sys.stderr)

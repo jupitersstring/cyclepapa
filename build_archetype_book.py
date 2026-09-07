@@ -19,6 +19,7 @@ import sys
 import pandas as pd
 
 from otc_flag import dedupe_display
+import tab_colors
 
 import build_harvard_workbook as bhw
 from build_harvard_workbook import (
@@ -381,6 +382,7 @@ def main():
 
     # === Cover ===
     cover = wb.active
+    tab_colors.set_tab(cover, tab_colors.COVER)
     cover.title = 'Cover'
     cover.column_dimensions['A'].width = 6
     for col_letter in 'BCDEFG':
@@ -485,10 +487,13 @@ def main():
             cover.cell(row=row_i, column=c).border = Border(
                 bottom=Side(style='thin', color=RULE))
 
+    tab_colors.write_legend(cover, 9, 9, tab_colors.family_legend(),
+                            title='Tab colours — archetype family')
     cover.sheet_view.showGridLines = False
 
     # === Density tab — top names by archetype_count ===
     density_sheet = wb.create_sheet('Density')
+    tab_colors.set_tab(density_sheet, tab_colors.COVER)
     df_density = df.copy()
     df_density['_arch_n'] = df_density[arch_cols].fillna(0).astype(int).sum(axis=1)
     df_density_top = df_density.sort_values(
@@ -524,6 +529,7 @@ def main():
             continue
         sheet_name = _sheet_safe(s['label'])
         ws = wb.create_sheet(sheet_name)
+        tab_colors.set_tab(ws, tab_colors.arch_color(col))
         _write_archetype_table(ws, sub_df, s['label'], n_total, tab_sort)
 
     wb.save(args.out)

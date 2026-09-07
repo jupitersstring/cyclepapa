@@ -38,6 +38,7 @@ from otc_flag import dedupe_display
 from otc_flag import (add_otc_mode_arg, apply_otc_mode,
                       add_high_filter_arg, apply_high_filter)
 from region_map import classify, ordered_countries, REGION_ORDER
+import tab_colors
 
 SORT_COL = 'entry_inflection_confirmed'
 
@@ -192,6 +193,7 @@ def main():
 
     wb = Workbook()
     cover = wb.active
+    tab_colors.set_tab(cover, tab_colors.COVER)
     cover.title = 'Cover'
     for col, w in {1: 8, 2: 22, 3: 12, 4: 14, 5: 30}.items():
         cover.column_dimensions[cover.cell(row=1, column=col).column_letter].width = w
@@ -240,6 +242,7 @@ def main():
         if sub_df.empty:
             continue
         ws = wb.create_sheet(_sheet_safe(title))
+        tab_colors.set_tab(ws, tab_colors.AGGREGATE)
         _write_country_sheet(ws, sub_df, title, arch_cols, args.global_n,
                              show_country=True)
         n_agg_sheets += 1
@@ -249,9 +252,12 @@ def main():
     for ctry in countries:
         cdf = df[df['src'] == ctry]
         ws = wb.create_sheet(_sheet_safe(ctry))
+        tab_colors.set_tab(ws, tab_colors.region_color(ctry))
         _write_country_sheet(ws, cdf, ctry, arch_cols, args.n)
         print(f'  {ctry}: {len(cdf):,} names', file=sys.stderr)
 
+    tab_colors.write_legend(cover, 9, 9, tab_colors.region_legend(),
+                            title='Tab colours — region')
     cover.sheet_view.showGridLines = False
     wb.save(args.out)
     print(f'wrote {args.out}  ({1 + n_agg_sheets + len(countries)} sheets: '

@@ -23,6 +23,7 @@ import os
 import sys
 
 import pandas as pd
+import tab_colors
 
 import build_harvard_workbook as bhw
 from build_harvard_workbook import (
@@ -279,6 +280,7 @@ def main():
 
     wb = Workbook()
     cover = wb.active
+    tab_colors.set_tab(cover, tab_colors.COVER)
     cover.title = 'Cover'
     cover.column_dimensions['A'].width = 6
     for col_letter in 'BCDEFG':
@@ -373,6 +375,7 @@ def main():
     # === All Segments tab ===
     all_seg = df.sort_values(sort_col, ascending=False).head(args.detail_n).reset_index(drop=True)
     ws = wb.create_sheet('All Segments')
+    tab_colors.set_tab(ws, tab_colors.AGGREGATE)
     _write_segment_table(ws, all_seg, 'All Segment-Covered Names (top by confirmed ETA)', n_total, sort_col)
 
     # === Per-archetype tabs ===
@@ -406,6 +409,7 @@ def main():
         if sub_df.empty:
             continue
         ws = wb.create_sheet(_sheet_safe(label))
+        tab_colors.set_tab(ws, tab_colors.FAMILY_COLORS['segment'])
         _write_segment_table(ws, sub_df, f"{label} — {desc}", n_total, tab_sort)
 
     wb.save(args.out)

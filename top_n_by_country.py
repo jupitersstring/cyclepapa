@@ -15,6 +15,7 @@ import sys
 
 import numpy as np
 import pandas as pd
+import tab_colors
 from otc_flag import (add_otc_mode_arg, apply_otc_mode,
                       add_high_filter_arg, apply_high_filter)
 
@@ -424,6 +425,7 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
     # ===== COVER SHEET =====
     ws = wb.active
     ws.title = 'Cover'
+    tab_colors.set_tab(ws, tab_colors.COVER)
     ws.column_dimensions['A'].width = 6
     for col_letter, w in [('B', 24), ('C', 24), ('D', 24), ('E', 24), ('F', 24), ('G', 24)]:
         ws.column_dimensions[col_letter].width = w
@@ -540,6 +542,8 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
                 bottom=Side(style='thin', color=RULE))
         row_i += 1
 
+    tab_colors.write_legend(ws, 9, 10, tab_colors.region_legend(),
+                            title='Tab colours — region')
     ws.sheet_view.showGridLines = False
 
     # ===== PER-COUNTRY TABS =====
@@ -551,6 +555,7 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
 
         sheet_name = _country_sheet_name(src_code)
         sheet = wb.create_sheet(sheet_name)
+        tab_colors.set_tab(sheet, tab_colors.region_color(src_code))
         _common_col_widths(sheet)
 
         # Masthead
