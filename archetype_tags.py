@@ -1052,14 +1052,19 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # perfection growth name).
     _ey = s('earnings_yield')                       # E/P (0.05 = P/E 20)
     _ebit_g = s('ebit_growth_yoy')
+    # EBITDA/EV yield = EBITDA / enterprise value = 1 / (EV/EBITDA). Cheaper
+    # and more globally-available than the P/E-based earnings yield (no net
+    # income / EDGAR dependence). Good yield >= 0.08 (EV/EBITDA <= 12.5).
+    _ev_ebitda_yield = (1.0 / ev_ebitda_v).where(ev_ebitda_v > 0, np.nan)
     _roiic_quality = (
         (roiic_lindy >= 0.15) |                     # strong ROIIC
         (roiic_acceleration_v > 0) |                # accelerating / growing ROIIC
         (cash_roiic_lindy >= 0.15)                  # strong cash ROIIC
     )
+    _val_good = (_ey >= 0.05) | (_ev_ebitda_yield >= 0.08)   # good E/P OR EBITDA/EV yield
     _ey_good_growing = (
-        (_ey >= 0.05) &                             # good earnings yield
-        ((_ebit_g > 0) | (rev_yoy_c >= 0.08))       # ...that's growing (earnings/rev up)
+        _val_good &                                 # attractively priced
+        ((_ebit_g > 0) | (rev_yoy_c >= 0.08))       # ...on a growing earnings/rev stream
     )
     df['arch_midcap_garp'] = (
         (mcap >= 2e9) &                             # mid cap and above
