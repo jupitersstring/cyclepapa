@@ -1044,23 +1044,27 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     net_cash_pct_c = net_cash_pct.clip(-2.0, 2.0)
 
     # ---------- Mid-Cap+ GARP / Quality ----------
-    # Growth At a Reasonable Price at mid-cap-and-above scale: a profitable,
-    # cash-generative, non-diluting business growing at a real clip and NOT
-    # priced for perfection. Complements QARP (ROIIC-based, EDGAR-sparse) and
-    # Lynch-PEGY with globally-available growth / quality / valuation signals
-    # so it fires outside the US, and sits above the screen's small-cap tilt.
-    _garp_growth = (rev_yoy_c >= 0.10) | (revenue_3y_cagr_v >= 0.08)
-    _garp_cheap = (((pegy_v > 0) & (pegy_v <= 1.5)) |
-                   ((ev_ebitda_v > 0) & (ev_ebitda_v <= 15.0)) |
-                   ((pe_w > 0) & (pe_w <= 22.0)))
+    # Reinvestment quality bought on a GROWING earnings stream, at mid-cap-
+    # and-above scale: strong OR accelerating return on INCREMENTAL invested
+    # capital (the compounding engine), paired with a good earnings yield
+    # that is actually growing (attractive E/P where earnings are RISING — a
+    # cheap-and-improving compounder, not a value trap or a priced-for-
+    # perfection growth name).
+    _ey = s('earnings_yield')                       # E/P (0.05 = P/E 20)
+    _ebit_g = s('ebit_growth_yoy')
+    _roiic_quality = (
+        (roiic_lindy >= 0.15) |                     # strong ROIIC
+        (roiic_acceleration_v > 0) |                # accelerating / growing ROIIC
+        (cash_roiic_lindy >= 0.15)                  # strong cash ROIIC
+    )
+    _ey_good_growing = (
+        (_ey >= 0.05) &                             # good earnings yield
+        ((_ebit_g > 0) | (rev_yoy_c >= 0.08))       # ...that's growing (earnings/rev up)
+    )
     df['arch_midcap_garp'] = (
-        (mcap >= 2e9) &                                     # mid cap and above
-        _garp_growth &                                      # real growth
-        (ebitda_margin >= 0.12) &                           # quality margins
-        ((fcf_yield > 0) | (n_yrs_fcf_pos >= 3)) &          # cash-generative
-        ((nde < 3.0) | (net_cash_pct_c > 0)) &              # sound balance sheet
-        (shares_growth_3y.fillna(0) <= 0.03) &              # not diluting
-        _garp_cheap                                         # reasonable price
+        (mcap >= 2e9) &                             # mid cap and above
+        _roiic_quality &
+        _ey_good_growing
     ).fillna(False).astype(int)
 
     def _soft_ok_below(colname, thresh):
