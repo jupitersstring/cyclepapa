@@ -209,8 +209,18 @@ def compute_asymmetry(df: pd.DataFrame) -> pd.DataFrame:
     df["d_graham"] = df["graham_net_net_flag"].fillna(0).astype(int)
     df["d_sub_book"] = ((df["pb"].fillna(99) > 0) & (df["pb"].fillna(99) < 1.0)).astype(int)
     df["d_profitable"] = df["ebitda_positive_proxy"]
+    # net_debt_ebitda < 1.5 is only a safety signal when EBITDA is POSITIVE.
+    # A loss-maker with real debt produces a NEGATIVE ratio (negative EBITDA
+    # denominator) that spuriously passes < 1.5 — 1,592 leveraged
+    # loss-makers were being credited "low debt" (JET2.L's -2.2 is genuine
+    # net cash w/ +margin and still qualifies; 002758.SZ at -2.4 w/ +3%
+    # margin does too — the guard only rejects the ebitda<=0 cases). Gate the
+    # ebitda path on positive ebitda_margin; keep the debt/equity path
+    # unconditional.
+    _ebm = df["ebitda_margin"].fillna(np.nan)
+    _nde_safe = (df["net_debt_ebitda"].fillna(99) < 1.5) & (_ebm > 0)
     df["d_low_debt"] = (
-        (df["net_debt_ebitda"].fillna(99) < 1.5) | (df["debt_to_equity"].fillna(99) < 0.5)
+        _nde_safe | (df["debt_to_equity"].fillna(99) < 0.5)
     ).astype(int)
     df["d_net_cash"] = (df["net_cash_pct_mcap"].fillna(-1) > 0).astype(int)
     df["d_insider"] = (df["insider_ownership_pct"].fillna(0) >= 0.20).astype(int)

@@ -40,10 +40,36 @@ def main():
     # 2) Recompute the asymmetry scores over the full (deduped, FX'd) universe
     df = pd.read_csv(args.path, low_memory=False)
     before = int(df['asymmetry_score'].notna().sum()) if 'asymmetry_score' in df.columns else 0
+
+    # Refresh momentum_12m from the live lynch tape BEFORE compute_asymmetry
+    # so the upside leg (u_mom) uses fresh momentum in the SAME pass that
+    # enrich later uses it for post_rally_factor — otherwise asymmetry_score
+    # lags one full cycle behind. Stored momentum goes stale while the lynch
+    # drive owns Yahoo (corr 0.13 with live). roc_12m is already a fraction.
+    try:
+        import numpy as _np
+        _lm = pd.read_csv('lynch_reward_signals.csv',
+                          usecols=['symbol', 'roc_12m', 'stale_tape',
+                                   'last_bar_age_days']).drop_duplicates('symbol')
+        _lm = df[['symbol']].merge(_lm, on='symbol', how='left')
+        _roc = pd.to_numeric(_lm['roc_12m'], errors='coerce').values
+        _st = pd.to_numeric(_lm['stale_tape'], errors='coerce').fillna(0).values
+        _ag = pd.to_numeric(_lm['last_bar_age_days'], errors='coerce').values
+        _ok = (~_np.isnan(_roc)) & (_st != 1) & (_np.isnan(_ag) | (_ag <= 21))
+        if 'momentum_12m' in df.columns:
+            _cur = pd.to_numeric(df['momentum_12m'], errors='coerce').values
+            df['momentum_12m'] = _np.where(_ok, _roc, _cur)
+            print(f'  refreshed momentum_12m from live tape on '
+                  f'{int(_ok.sum())} rows before rescore', file=sys.stderr)
+    except Exception as _e:
+        print(f'  momentum refresh skipped ({_e})', file=sys.stderr)
+
     df = asymmetry_rank.compute_asymmetry(df)
     df = df.copy()  # de-fragment
     after = int(df['asymmetry_score'].notna().sum())
-    df.to_csv(args.path, index=False)
+    from master_versions import versioned_replace
+    df.to_csv(args.path + '.tmp', index=False)
+    versioned_replace(args.path + '.tmp', args.path)   # atomic + pre-image snapshot
     print(f'  asymmetry_score coverage: {before:,} -> {after:,} of {len(df):,}',
           file=sys.stderr)
 

@@ -159,6 +159,32 @@ def main():
                        if c != 'symbol' and c not in df.columns]
     df = df.merge(intrinsic_in[mc], on='symbol', how='left')
 
+    # ----- FRESH MOMENTUM COALESCE (before ETA uses it) -----
+    # Stored momentum_12m goes stale while the lynch drive owns Yahoo
+    # (corr with the live tape just 0.13; UTZ stored -44% vs live +38%).
+    # momentum_12m feeds BOTH the upside leg (u_mom, via the next
+    # rebuild_scores cycle) AND post_rally_factor here — the anti-chasing
+    # multiplier on ETA, the #1 book ranking key. A name that has already
+    # run but shows stale-negative momentum escapes the rally penalty and
+    # ranks as a fresh entry. Override from the live lynch roc_12m where the
+    # tape is fresh. NB: lynch roc_12m is already a fraction (0.38 = +38%),
+    # same scale as momentum_12m.
+    try:
+        _lm = pd.read_csv('lynch_reward_signals.csv',
+                          usecols=['symbol', 'roc_12m', 'stale_tape',
+                                   'last_bar_age_days']).drop_duplicates('symbol')
+        _lm = df[['symbol']].merge(_lm, on='symbol', how='left')
+        _roc = pd.to_numeric(_lm['roc_12m'], errors='coerce').values
+        _st = pd.to_numeric(_lm['stale_tape'], errors='coerce').fillna(0).values
+        _ag = pd.to_numeric(_lm['last_bar_age_days'], errors='coerce').values
+        _ok = (~np.isnan(_roc)) & (_st != 1) & (np.isnan(_ag) | (_ag <= 21))
+        _cur = pd.to_numeric(df.get('momentum_12m'), errors='coerce').values
+        df['momentum_12m'] = np.where(_ok, _roc, _cur)
+        print(f'  refreshed momentum_12m from live lynch tape on '
+              f'{int(_ok.sum())} rows', file=sys.stderr)
+    except Exception as _e:
+        print(f'  momentum refresh skipped ({_e})', file=sys.stderr)
+
     # ----- mcap_proxy (book-equity fallback for ranking) -----
     # Used to scale size-dependent legs when yfinance market_cap is NaN.
     mcap = df['market_cap'].copy() if 'market_cap' in df.columns else pd.Series(np.nan, index=df.index)
