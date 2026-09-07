@@ -100,6 +100,20 @@ def dedupe_display(df: pd.DataFrame, name_col: str = 'name',
     name are never collapsed."""
     if name_col not in df.columns or df.empty:
         return df
+    # Non-common security lines are display noise for an equity multibagger
+    # screen: preferred series (COF-PI ranked #2 in the US top-30 on an
+    # 'asymmetry' that is really a rate artifact), warrants, units, rights.
+    # Name normalization cannot collapse them into the common (their names
+    # carry long depositary tails), so filter explicitly. Master keeps them.
+    _sym = df.get('symbol', pd.Series('', index=df.index)).astype(str)
+    _nm = df[name_col].fillna('').astype(str).str.lower()
+    _noncommon = (_sym.str.match(r'^[A-Z]{1,5}-P[A-Z]?$')
+                  | _sym.str.match(r'^[A-Z]{1,5}[-.](?:WT|WS|U|UN|R|RT)$')
+                  | _nm.str.contains(r'preferred|% notes|depositary sh|'
+                                     r'perpetual pref|warrant', regex=True))
+    df = df[~_noncommon]
+    if df.empty:
+        return df
     names = df[name_col].fillna('').astype(str).str.lower()
     names = names.str.replace(_name_norm_re(), '', regex=True)
     names = names.str.replace(r'[^a-z0-9]+', '', regex=True)

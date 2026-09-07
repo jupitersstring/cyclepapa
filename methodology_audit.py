@@ -300,8 +300,14 @@ def _integrity(t, g):
         sh = n(lse, "shares_outstanding")
         both = pr.notna() & mc.notna() & sh.notna() & (sh > 0)
         if both.sum() > 20:
-            ratio = (mc / (pr * sh))[both]
-            minted = ((ratio > 0.5) & (ratio < 2.0)).sum()  # ==1.0 => pence-minted
+            ratio = mc / (pr * sh)
+            rv = n(lse, "revenue_ttm")
+            # ratio ~1 alone is NOT proof: internationals quote .L in
+            # EUR/USD/GBP (Compass, IHG, Glanbia) where mcap==p*s is
+            # correct. Absurd mcap/revenue (>100x, or no revenue at a
+            # pence-scale price) is the discriminator.
+            minted = (both & ratio.between(0.5, 2.0)
+                      & ((mc / rv > 100) | (rv.isna() & (pr >= 200)))).sum()
             check("integrity: no pence-minted .L market caps",
                   minted == 0,
                   f"{int(minted)} .L rows with mcap == price*shares (pence)")
@@ -310,6 +316,15 @@ def _integrity(t, g):
         bad_fy = (fy > 1.0).sum()
         check("integrity: no impossible FCF yields (>100% — ADR home-currency mismatch)",
               bad_fy == 0, f"{int(bad_fy)} rows with fcf_yield > 1.0")
+        # 52w self-consistency: a row flagged AT its 52w high must not
+        # display a deeply negative pct_off_52w_high (stale-quote leak)
+        if "high_52w_abs" in t.columns and "pct_off_52w_high" in t.columns:
+            _hi = n(t, "high_52w_abs")
+            _off = n(t, "pct_off_52w_high")
+            clash = ((_hi == 1) & (_off < -0.10)).sum()
+            check("integrity: 52w flags agree with displayed pct_off_52w_high",
+                  clash == 0, f"{int(clash)} rows flagged at-high but showing <-10% off")
+
         dy = n(t, "dividend_yield")
         bad_dy = (dy > 0.40).sum()
         check("integrity: no absurd dividend yields (>40% — stale price / preferred artifacts)",

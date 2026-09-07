@@ -165,6 +165,21 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                 df[_c] = pd.to_numeric(df[_c], errors='coerce').fillna(
                     pd.to_numeric(df[_c + _suf], errors='coerce'))
 
+    # FRESHNESS COALESCE for the 52w system: the master's quote-time
+    # pct_off_52w_high can be WEEKS stale (price-refresh enrichers pause
+    # while the lynch drive owns Yahoo) — ground-truth audit caught UTZ at
+    # its 52w high showing -48% in the books. The lynch tape is refetched
+    # per name (age tracked); where it is live, its pct_52w_high (price/high)
+    # OVERRIDES the stale quote-time column, so the displayed % and the
+    # fresh high_52w flags can never disagree.
+    if 'pct_52w_high' in df.columns:
+        _lp = pd.to_numeric(df['pct_52w_high'], errors='coerce')
+        _age = pd.to_numeric(df.get('last_bar_age_days'), errors='coerce')
+        _stale = pd.to_numeric(df.get('stale_tape'), errors='coerce').fillna(0)
+        _fresh = _lp.notna() & (_stale != 1) & (_age.isna() | (_age <= 21))
+        df['pct_off_52w_high'] = (_lp - 1.0).where(
+            _fresh, pd.to_numeric(df.get('pct_off_52w_high'), errors='coerce'))
+
     # Use the asymmetry sector/market_cap as primary; fall back to yartseva.
     for c in ('sector','industry','market_cap'):
         if c + '_y' in df.columns:

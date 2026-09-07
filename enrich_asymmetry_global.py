@@ -265,6 +265,49 @@ def main():
     ordered = front_existing + [c for c in new_cols if c in df.columns]
     df = df[ordered]
 
+    # ---- FINAL INTEGRITY GATE (last writer before the master lands) ----
+    import numpy as _np
+    # 1. Pence-minted .L market caps: mcap == price*shares with an ABSURD
+    #    mcap/revenue (>100x) — Celtic at £21B, Investec at £644B. Plenty of
+    #    .L rows legitimately satisfy mcap==p*s (internationals quoting in
+    #    EUR/USD/GBP: Compass, IHG, Glanbia) so the revenue test is the
+    #    discriminator, not the ratio alone. Null rather than re-import the
+    #    minted value from the source files on every enrich.
+    _p = pd.to_numeric(df.get('price'), errors='coerce')
+    _sh = pd.to_numeric(df.get('shares_outstanding'), errors='coerce')
+    _mc = pd.to_numeric(df.get('market_cap'), errors='coerce')
+    _rv = pd.to_numeric(df.get('revenue_ttm'), errors='coerce')
+    _ratio = _mc / (_p * _sh)
+    _minted = (df['symbol'].astype(str).str.endswith('.L')
+               & _ratio.between(0.5, 2.0)
+               & ((_mc / _rv > 100) | (_rv.isna() & (_p >= 200))))
+    if _minted.any():
+        print(f'  final gate: nulled {int(_minted.sum())} pence-minted .L '
+              f'mcaps: {df.loc[_minted, "symbol"].tolist()[:6]}', file=sys.stderr)
+        df.loc[_minted, ['market_cap', 'market_cap_usd']] = _np.nan
+
+    # 2. 52w freshness: quote-time pct_off_52w_high goes stale while the
+    #    lynch drive owns Yahoo (UTZ at its 52w high displayed as -48%).
+    #    Where the per-name lynch tape is live, its pct_52w_high overrides.
+    try:
+        _ls = pd.read_csv('lynch_reward_signals.csv',
+                          usecols=['symbol', 'pct_52w_high', 'stale_tape',
+                                   'last_bar_age_days']).drop_duplicates('symbol')
+        _ls = df[['symbol']].merge(_ls, on='symbol', how='left')
+        _lp = pd.to_numeric(_ls['pct_52w_high'], errors='coerce').values
+        _stale = pd.to_numeric(_ls['stale_tape'], errors='coerce').fillna(0).values
+        _age = pd.to_numeric(_ls['last_bar_age_days'], errors='coerce').values
+        _fresh = (~_np.isnan(_lp)) & (_stale != 1) & (_np.isnan(_age) | (_age <= 21))
+        _cur = pd.to_numeric(df['pct_off_52w_high'], errors='coerce').values
+        df['pct_off_52w_high'] = _np.where(_fresh, _lp - 1.0, _cur)
+        print(f'  final gate: refreshed pct_off_52w_high from live lynch tape '
+              f'on {int(_fresh.sum())} rows', file=sys.stderr)
+    except Exception as _e:
+        print(f'  final gate: 52w refresh skipped ({_e})', file=sys.stderr)
+
+    if 'name' in df.columns:
+        df['name'] = df['name'].astype(str).str.replace('\xa0', ' ', regex=False)
+
     from master_versions import versioned_replace
     df.to_csv(args.asym + '.tmp', index=False)
     versioned_replace(args.asym + '.tmp', args.asym)   # atomic + pre-image snapshot
