@@ -81,6 +81,7 @@ ARCH_FAMILY = {
     'arch_no_dilution': 'quality', 'arch_tax_efficient': 'quality',
     'arch_cash_reinvest': 'quality', 'arch_wolf_seal': 'quality',
     'arch_large_cap_quality': 'quality',
+    'arch_midcap_garp': 'growth',
     # inflection / turnaround / cyclical
     'arch_double_inflect': 'inflection', 'arch_reinvest_inflect': 'inflection',
     'arch_roic_inflect': 'inflection', 'arch_levered_inflection': 'inflection',
