@@ -1056,11 +1056,26 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # and more globally-available than the P/E-based earnings yield (no net
     # income / EDGAR dependence). Good yield >= 0.08 (EV/EBITDA <= 12.5).
     _ev_ebitda_yield = (1.0 / ev_ebitda_v).where(ev_ebitda_v > 0, np.nan)
-    _roiic_quality = (
+    # True ROIIC (EDGAR multi-year) for filers that have it...
+    _roiic_true = (
         (roiic_lindy >= 0.15) |                     # strong ROIIC
         (roiic_acceleration_v > 0) |                # accelerating / growing ROIIC
         (cash_roiic_lindy >= 0.15)                  # strong cash ROIIC
     )
+    # ...and a GLOBAL APPROXIMATION where ROIIC is unavailable (non-US filers
+    # / no EDGAR history): high returns on capital (ROE or EBITDA margin) that
+    # are being reinvested at improving incremental economics (margin
+    # expansion, or exceptional ROE). Only substitutes when no true ROIIC
+    # exists, so US names keep the exact measure.
+    _roe = s('roe')
+    _opmd = s('op_margin_delta_yoy')
+    _roiic_absent = ~(roiic_lindy.notna() | roiic_acceleration_v.notna()
+                      | cash_roiic_lindy.notna())
+    _roiic_proxy = (
+        ((_roe >= 0.15) | (ebitda_margin >= 0.18)) &    # high returns on capital
+        ((emd_c > 0) | (_opmd > 0) | (_roe >= 0.20))    # improving / exceptional
+    )
+    _roiic_quality = _roiic_true | (_roiic_absent & _roiic_proxy)
     _val_good = (_ey >= 0.05) | (_ev_ebitda_yield >= 0.08)   # good E/P OR EBITDA/EV yield
     _ey_good_growing = (
         _val_good &                                 # attractively priced
