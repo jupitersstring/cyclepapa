@@ -89,6 +89,8 @@ for cmd in \
     "build_country_archetype_book.py --otc-mode otc --out country_archetype_book_otc.xlsx" \
     "build_country_archetype_book.py --n 30 --high-filter any --out country_archetype_52w_high.xlsx" \
     "build_country_archetype_inflection_book.py --otc-mode otc --out country_archetype_inflection_otc.xlsx" \
+    "build_country_archetype_book.py --min-mcap 2e9 --min-names 10 --out country_archetype_midcap_plus.xlsx" \
+    "build_country_archetype_inflection_book.py --min-mcap 2e9 --min-names 10 --out country_archetype_inflection_midcap_plus.xlsx" \
     "top_n_by_country.py --n 30 --otc-mode otc --out-csv top_n_otc.csv --out-xlsx top_n_otc.xlsx" \
     "top_n_by_country.py --n 30 --high-filter any --out-csv top_n_52w_high.csv --out-xlsx top_n_52w_high.xlsx" ; do
     echo "$(ts) driver:   $cmd" >> "$DRIVER_LOG"

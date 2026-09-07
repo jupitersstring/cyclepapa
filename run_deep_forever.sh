@@ -110,6 +110,8 @@ for cmd in \
   "build_country_archetype_book.py --otc-mode otc --out country_archetype_book_otc.xlsx" \
   "build_country_archetype_book.py --n 30 --high-filter any --out country_archetype_52w_high.xlsx" \
   "build_country_archetype_inflection_book.py --otc-mode otc --out country_archetype_inflection_otc.xlsx" \
+  "build_country_archetype_book.py --min-mcap 2e9 --min-names 10 --out country_archetype_midcap_plus.xlsx" \
+  "build_country_archetype_inflection_book.py --min-mcap 2e9 --min-names 10 --out country_archetype_inflection_midcap_plus.xlsx" \
   "top_n_by_country.py --n 30 --otc-mode otc --out-csv top_n_otc.csv --out-xlsx top_n_otc.xlsx" \
   "top_n_by_country.py --n 30 --high-filter any --out-csv top_n_52w_high.csv --out-xlsx top_n_52w_high.xlsx" ; do
   echo "$(ts)  $cmd" >> "$LOG"
@@ -122,10 +124,7 @@ date > "$SENTINEL"
 # result survives a container re-clone.
 git add asymmetry_global.csv archetype_tags.csv \
   fdb_expansion_yartseva.csv fdb_deep_attempts.json \
-  asymmetry_country_workbook.xlsx asymmetry_harvard_workbook.xlsx asymmetry_nms_book.xlsx \
-  top_by_archetype_book.xlsx nms_multibagger_candidates.xlsx segment_detail_book.xlsx \
-  top_n_by_country.xlsx top_n_by_country_inflection.xlsx country_archetype_book.xlsx otc_archetype_book.xlsx \
-  top_n_by_country.csv top_n_by_country_inflection.csv 2>/dev/null
+  *.xlsx *.csv 2>/dev/null
 if ! git diff --cached --quiet 2>/dev/null; then
   git commit -q -m "Deep enrichment complete: merge + regenerate all workbooks" 2>>"$LOG"
   for i in 1 2 3 4; do
