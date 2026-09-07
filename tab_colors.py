@@ -80,6 +80,7 @@ ARCH_FAMILY = {
     'arch_lindy_growth': 'quality', 'arch_lindy_margin': 'quality',
     'arch_no_dilution': 'quality', 'arch_tax_efficient': 'quality',
     'arch_cash_reinvest': 'quality', 'arch_wolf_seal': 'quality',
+    'arch_large_cap_quality': 'quality',
     # inflection / turnaround / cyclical
     'arch_double_inflect': 'inflection', 'arch_reinvest_inflect': 'inflection',
     'arch_roic_inflect': 'inflection', 'arch_levered_inflection': 'inflection',

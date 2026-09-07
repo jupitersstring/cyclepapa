@@ -853,6 +853,22 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (n_yrs_fcf_pos >= 4)
     ).fillna(False).astype(int)
 
+    # ---------- Large-Cap Quality (compounder at scale) ----------
+    # A durable large-cap franchise: big, highly profitable, cash-generative,
+    # conservatively financed, and either returning cash or compounding at a
+    # high rate. The asymmetry/multibagger screen is small-cap-tilted, so
+    # these quality giants never surface there — this archetype gives them a
+    # home. Core gate uses GLOBALLY-available quality signals (margin / FCF /
+    # leverage / payout); ROIC is a bonus qualifier where EDGAR provides it.
+    df['arch_large_cap_quality'] = (
+        (mcap >= 10e9) &                                    # large + mega cap
+        (ebitda_margin >= 0.15) &                           # healthy profitability
+        ((fcf_yield > 0) | (n_yrs_fcf_pos >= 3)) &          # cash-generative
+        (nde < 3.0) &                                       # investment-grade leverage
+        ((capital_return_yield >= 0.02) | (dividend_yield >= 0.015) |
+         (roic_after_sbc >= 0.15) | (roic_lindy >= 0.12))   # returns cash OR high ROIC
+    ).fillna(False).astype(int)
+
     # Y — Capital-Light Pivot: revenue growing AND assets growing slower
     # AND ROIC turning up. The asset-light transition (franchise / IP /
     # platform mode).
@@ -2100,6 +2116,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_reinvest_inflect',
         'arch_double_inflect',
         'arch_cash_quality',
+        'arch_large_cap_quality',
         'arch_capital_light_pivot',
         'arch_capital_returner',
         'arch_low_sbc_quality',
@@ -2156,6 +2173,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_blindspot': 'BlindSpot',
         'arch_micro_activist_inflect': 'MicroActivistInflect',
         'arch_durable_reinvestment': 'DurableReinvest',
+        'arch_large_cap_quality': 'LargeCapQuality',
         'arch_cash_reinvest': 'CashReinvest',
         'arch_roic_inflect': 'ROICInflect',
         'arch_cheap_per_roiic': 'CheapPerROIIC',

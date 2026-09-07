@@ -61,6 +61,7 @@ ARCHETYPE_LABELS = {
     'arch_reinvest_inflect': 'Reinvestment Inflection',
     'arch_double_inflect': 'Double Inflection',
     'arch_cash_quality': 'Cash Quality',
+    'arch_large_cap_quality': 'Large-Cap Quality',
     'arch_capital_light_pivot': 'Capital-Light Pivot',
     'arch_capital_returner': 'Capital Returner',
     'arch_low_sbc_quality': 'Low-SBC Quality',
