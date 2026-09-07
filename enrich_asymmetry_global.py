@@ -213,7 +213,13 @@ def main():
     ).round(4)
     # intrinsic_discount is confined to [0,1] -> boost range is
     # [0.75, 1.5] by construction (a 0.5 floor was dead code).
-    intrinsic_boost = (1.0 + (df['intrinsic_discount'] - 0.25)).clip(0.75, 1.5)
+    # Floor lifted 0.75 -> 0.90: intrinsic_discount is a deep-value signal
+    # (net cash / ncav / sub-book) large caps structurally lack, so the old
+    # 0.75 floor docked every quality large cap 25% on ETA purely for not
+    # being asset-cheap. 0.90 keeps the deep-value UPSIDE (up to 1.5x) while
+    # cutting the size penalty; pairs with the earnings/solvency downside
+    # legs so large caps aren't penalised for size.
+    intrinsic_boost = (1.0 + (df['intrinsic_discount'] - 0.25)).clip(0.90, 1.5)
 
     # ----- qual_mult + post_rally_factor -----
     soft_mult = {'GREEN': 1.10, 'YELLOW': 0.85, 'RED': 0.40}

@@ -96,6 +96,11 @@ def main():
     ap.add_argument('--include-nan-mcap', action='store_true',
                     help='also include names FDB has no cap bucket for '
                          '(mostly dead tickers; excluded by default)')
+    ap.add_argument('--buckets', default='',
+                    help='comma-separated FDB cap buckets to keep '
+                         '(e.g. "Large Cap,Mega Cap"). Empty = all sized '
+                         'buckets. Targets a size band without pulling the '
+                         'nano/micro long tail.')
     args = ap.parse_args()
 
     import financedatabase as fd
@@ -126,6 +131,13 @@ def main():
         new = new[new['market_cap'].notna()]
         print(f'  dropped {before - len(new):,} no-cap-bucket rows '
               f'-> {len(new):,}', file=sys.stderr)
+
+    if args.buckets:
+        keep = {b.strip() for b in args.buckets.split(',') if b.strip()}
+        before = len(new)
+        new = new[new['market_cap'].isin(keep)]
+        print(f'  cap-bucket filter {sorted(keep)}: {before} -> {len(new):,}',
+              file=sys.stderr)
 
     # Within-expansion dedup: one listing per company, prefer the line
     # whose suffix matches the company's home market.

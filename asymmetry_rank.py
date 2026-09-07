@@ -144,6 +144,9 @@ def compute_asymmetry(df: pd.DataFrame) -> pd.DataFrame:
         "rev_inflection", "ebitda_inflection", "fcf_inflection",
         "cheapness_under_7x_flag", "not_priced_in_score",
         "ebitda_margin", "net_debt_ebitda",
+        # earnings/solvency floor inputs (size-neutral — large caps earn these)
+        "interest_coverage", "roic_after_sbc", "fcf_margin", "fcf_yield",
+        "capital_return_yield",
         # PEW-derived (merged in)
         "pew_forgotten_score", "pew_platform_hits", "pew_has_platform_hint",
         "pew_negative_ev_flag", "pew_below_net_cash_flag",
@@ -227,16 +230,37 @@ def compute_asymmetry(df: pd.DataFrame) -> pd.DataFrame:
     df["d_forgotten"] = (df["pew_forgotten_score"].fillna(0) >= 0.50).astype(int)
     df["d_pew_negev"] = df["pew_negative_ev_flag"].fillna(0).astype(int)
 
+    # ---- earnings / solvency floor (size-neutral) ----
+    # Deep-value asset legs (net-net, sub-book, net-cash, negative-EV) are
+    # structurally small-cap: a profitable mega-cap almost never trades below
+    # book or net cash, so it earned almost no downside floor and its
+    # sqrt(upside*floor) collapsed (big-cap floor median 0.22 vs 0.30 small).
+    # These legs reward EARNINGS-power downside protection a strong large cap
+    # genuinely has: it can service debt through a cycle, compounds capital at
+    # a high rate, self-funds from FCF, and returns cash.
+    df["d_coverage"] = (df["interest_coverage"].fillna(0) >= 6.0).astype(int)
+    df["d_roic_quality"] = (df["roic_after_sbc"].fillna(-1) >= 0.15).astype(int)
+    _fcf_pos = (df["fcf_margin"].fillna(-1) > 0.03) | (df["fcf_yield"].fillna(-1) > 0.03)
+    df["d_durable_fcf"] = _fcf_pos.astype(int)
+    df["d_capital_return"] = (df["capital_return_yield"].fillna(0) >= 0.03).astype(int)
+
     downside_components = {
-        "d_cash_ev":    (None, 0.18),
-        "d_graham":     (None, 0.14),
-        "d_pew_negev":  (None, 0.10),
-        "d_sub_book":   (None, 0.10),
-        "d_profitable": (None, 0.12),
-        "d_low_debt":   (None, 0.10),
-        "d_net_cash":   (None, 0.10),
-        "d_insider":    (None, 0.10),
-        "d_forgotten":  (None, 0.06),
+        # asset / liquidation floor (deep value — small-cap-tilted)
+        "d_cash_ev":       (None, 0.12),
+        "d_graham":        (None, 0.09),
+        "d_pew_negev":     (None, 0.07),
+        "d_sub_book":      (None, 0.08),
+        "d_net_cash":      (None, 0.07),
+        # earnings / solvency floor (size-neutral — large caps earn this)
+        "d_profitable":    (None, 0.10),
+        "d_low_debt":      (None, 0.09),
+        "d_coverage":      ("interest_coverage",    0.08),
+        "d_durable_fcf":   ("fcf_yield",             0.09),
+        "d_roic_quality":  ("roic_after_sbc",       0.08),
+        "d_capital_return":("capital_return_yield",  0.06),
+        # ownership / neglect
+        "d_insider":       (None, 0.05),
+        "d_forgotten":     (None, 0.02),
     }
     df = _weighted_renormalised(df, downside_components, out_col="downside_floor_score")
 
