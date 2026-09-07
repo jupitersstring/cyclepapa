@@ -150,7 +150,7 @@ def _write_country_sheet(ws, cdf, country, arch_cols, n_top,
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--n', type=int, default=5,
+    ap.add_argument('--n', type=int, default=30,
                     help='top N per archetype per country')
     ap.add_argument('--min-names', type=int, default=25,
                     help='minimum eligible names for a country to get a sheet')

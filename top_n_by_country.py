@@ -150,7 +150,7 @@ COUNTRY_NAMES = {
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--n', type=int, default=10, help='top N per country')
+    ap.add_argument('--n', type=int, default=30, help='top N per country')
     ap.add_argument('--min-mcap', type=float, default=10_000_000)
     ap.add_argument('--exclude-red', action='store_true', default=True)
     ap.add_argument('--include-red', dest='exclude_red', action='store_false')
