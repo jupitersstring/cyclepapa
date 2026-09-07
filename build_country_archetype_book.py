@@ -157,11 +157,13 @@ def main():
     ap.add_argument('--global-n', type=int, default=100,
                     help='top N per archetype on the GLOBAL sheet')
     ap.add_argument('--out', default='country_archetype_book.xlsx')
+    ap.add_argument('--min-mcap', type=float, default=0,
+                    help='USD market-cap floor (e.g. 2e9 for a mid-cap-\n                         and-above book). 0 = full universe.')
     add_otc_mode_arg(ap)
     add_high_filter_arg(ap)
     args = ap.parse_args()
 
-    df, arch_cols = load_data(otc_mode='all')
+    df, arch_cols = load_data(min_mcap=args.min_mcap, otc_mode='all')
     df = apply_otc_mode(df, args.otc_mode)
     df = apply_high_filter(df, args.high_filter)
     df['src'] = df['src'].fillna('').astype(str).str.upper()
@@ -177,7 +179,8 @@ def main():
     _crimson_banner(cover, 2, 'COUNTRY x ARCHETYPE', span_cols=5)
     sub = cover.cell(row=4, column=1,
                      value=f'Top {args.n} names per archetype within each market '
-                           f'— so no single country dominates the ranking')
+                           f'— so no single country dominates the ranking'
+                     + ('   \u00b7  MID-CAP & ABOVE only (\u2265$%.0fB)' % (args.min_mcap/1e9) if args.min_mcap >= 1e9 else ''))
     sub.font = _font(italic=True, color=MUTED)
     sub.alignment = _TXT_ALIGN_LEFT
     f_bold_muted = _font(bold=True, color=MUTED)

@@ -179,11 +179,13 @@ def main():
     ap.add_argument('--global-n', type=int, default=100,
                     help='top N per archetype on the GLOBAL sheet')
     ap.add_argument('--out', default='country_archetype_inflection_book.xlsx')
+    ap.add_argument('--min-mcap', type=float, default=0,
+                    help='USD market-cap floor (e.g. 2e9 for a mid-cap-\n                         and-above book). 0 = full universe.')
     add_otc_mode_arg(ap)
     add_high_filter_arg(ap)
     args = ap.parse_args()
 
-    df, arch_cols = load_data(otc_mode='all')
+    df, arch_cols = load_data(min_mcap=args.min_mcap, otc_mode='all')
     df = apply_otc_mode(df, args.otc_mode)
     df = apply_high_filter(df, args.high_filter)
     df = _add_inflection_key(df)
