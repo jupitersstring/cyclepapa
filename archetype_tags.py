@@ -415,8 +415,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # "lagging". (G9) tighten beyond flat_or_down: the tape must be genuinely
     # DOWN on at least one present lens (a real lag, not merely flat/stale).
     _lag_tape = ((_py_raw < 0.0) | (_m12_raw < 0.0))
-    df['arch_narrative_lag'] = (_lag_tape &
-                                ((_adv_breadth >= 2) | _first_pos_any)).astype(int)
+    # (audit re-check) tightened from ~28% of the universe toward the spirit
+    # (price/narrative LAGS genuinely improving fundamentals): require a real
+    # multi-lens advance (not a lone first-positive), investable operating
+    # scale, survivability (not a double cash-burner), and a cheapness anchor
+    # so the narrative is actually LAGGING a reasonable valuation.
+    df['arch_narrative_lag'] = (
+        _lag_tape &
+        (_adv_breadth >= 2) &
+        is_operating & (mcap >= 50e6) &
+        ((s('fcf_ttm') > 0) | (s('ebitda_ttm') > 0) | _first_pos_any) &
+        (((pb > 0) & (pb < 3.0)) | (fcf_yield >= 0.03))
+    ).fillna(False).astype(int)
 
     # ---------- Cluster C5: Fixed-Cost Asset + Demand Shock ----------
     df['arch_fixed_cost_demand_shock'] = (
@@ -617,7 +627,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # equity (real assets, not goodwill).
     df['arch_tangible_value'] = (
         is_operating &                          # (G1) exclude financials/REITs/utilities
-        (p_tb > 0) & (p_tb < 0.7) & (tangible_equity_pct > 0.50)
+        (mcap >= 50e6) &                        # investable scale (was firing on $2k shells)
+        (p_tb > 0) & (p_tb < 0.7) & (tangible_equity_pct > 0.50) &
+        ((s('fcf_ttm') > 0) | (s('cfo_ttm') > 0) | (s('ebitda_ttm') > 0))  # survivable, not melting the 'floor'
     ).fillna(False).astype(int)
 
     # ---------- N-Q: Lindy durability archetypes (EDGAR multi-year) ----------
@@ -643,6 +655,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (op_margin_lindy >= 0.10) &
         (ebitda_margin_lindy >= 0.12) &
         (years_of_history >= 5)
+    
+        & is_operating   # (G1 ext) revenue-multiple/margin meaningless for financials
     ).fillna(False).astype(int)
 
     # O — Consistent FCF: positive FCF in 4 of last 5 years AND positive
@@ -724,7 +738,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _neg_ev = (((_ncol('enterprise_value') < 0) | (cash_gt_ev > 0))
                & is_operating).fillna(False)
     df['arch_balance_sheet_return'] = (
-        (mcap > 0) & (_uncovered | _neg_ev)
+        is_operating & (mcap > 0) & (_uncovered | _neg_ev)
     ).fillna(False).astype(int)
 
     # AA — Low-SBC Quality: clean accounting (SBC < 2% of revenue) AND
@@ -1504,6 +1518,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (emd_c >= 0.0) &
         (rev_yoy_c >= 0.0) & rev_present &          # growing (present), not shrinking
         wolf_cheap_entry
+    
+        & is_operating   # (G1 ext) EV-multiple meaningless for financials
     ).fillna(False).astype(int)
 
     # C — Value + catalyst (repurposed). He is NOT a net-net investor; his
@@ -1518,6 +1534,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (cfo_ttm_v > 0) &
         ((fcf_yield >= 0.08) |
          ((ev_ebitda_v > 0) & (ev_ebitda_v < 6.0)))
+    
+        & is_operating   # (G1 ext) EV-multiple meaningless for financials
     ).fillna(False).astype(int)
 
     # D — Emerging-sector profitability (his cautious cannabis bets). His one
@@ -1542,6 +1560,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (mom12 >= 0.10) &
         not_too_deep_any(0.50) &
         (((ev_ebitda_v > 0) & (ev_ebitda_v < 15.0)) | ((pe_w > 0) & (pe_w < 25.0)))
+    
+        & is_operating   # (G1 ext) revenue-multiple/margin meaningless for financials
     ).fillna(False).astype(int)
 
     # F — NEW: Wolf Compounder — his signature winner (NCI/ZOMD/KITS-at-entry):
@@ -1556,6 +1576,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (((ev_ebitda_v > 0) & (ev_ebitda_v < 12.0)) |
          ((pe_w > 0) & (pe_w < 20.0))) &
         low_sbc_wolf
+    
+        & is_operating   # (G1 ext) EV-multiple meaningless for financials
     ).fillna(False).astype(int)
 
     # ---------- Liger Cub / Byron Street family ----------
@@ -1840,6 +1862,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                                  #   EVSG analog when PSG missing)
         oper_lev_any &                           # operating margins improving (any angle)
         near_profit                              # at / near / just-crossed profitability
+    
+        & is_operating   # (G1 ext) revenue-multiple/margin meaningless for financials
     ).fillna(False).astype(int)
 
     # ---------- Exceptional EV/sales vs growth ----------
@@ -1860,6 +1884,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                                  #   bound drops razor-margin traders /
                                                  #   near-zero-EV artifacts) yet not rich
         ((ebitda_ttm_v > 0) | (fcf_ttm_v > 0) | (op_margin_real >= -0.15))
+    
+        & is_operating   # (G1 ext) revenue-multiple/margin meaningless for financials
     ).fillna(False).astype(int)
 
     # ---------- Negative / low EV + sub-book deep value ----------
@@ -1912,6 +1938,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                                  #   The precise DLO share-count -5% /
                                                  #   FCF-per-share +30% legs upweight via
                                                  #   buyback_score as coverage fills in.
+    
+        & is_operating   # (G1 ext) revenue-multiple/margin meaningless for financials
     ).fillna(False).astype(int)
 
     # ---------- "Asleep at the wheel" (chronic estimate beats) ----------
@@ -2016,6 +2044,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         op_lev_confirm &                                # ...confirmed by operating leverage
         viable_econ &                                   # viable unit economics
         (implied_10x >= 10.0)                           # the 10x arithmetic closes
+    
+        & is_operating   # (G1 ext) revenue-multiple/margin meaningless for financials
     ).fillna(False).astype(int)
 
     # Reality gates — Credible requires BOTH; failing either drops to Spec.
@@ -2097,6 +2127,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (ev_sales_v > 0.10) & (ev_sales_v <= 6.0) &     # room left; lower bound drops artifacts
         ((_num('gross_margin') >= 0.20) | (ebitda_ttm_v > 0) | (fcf_ttm_v > 0)) &  # not a trap
         ~((ebitda_ttm_v < 0) & (fcf_ttm_v < 0))         # (G6) cash sanity: not burning on BOTH EBITDA & FCF
+    
+        & is_operating   # (G1 ext) EV-multiple meaningless for financials
     ).fillna(False).astype(int)
     # Score: depth of the derate + growth confirmation + exceptional evsg bonus.
     _derate_depth = (mult_compression.clip(0, 1.0)).fillna(0.0)     # 0..1
