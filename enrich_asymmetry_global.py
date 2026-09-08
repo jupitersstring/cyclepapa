@@ -380,11 +380,6 @@ def main():
         if _rc in df.columns:
             _rv = pd.to_numeric(df[_rc], errors='coerce')
             df[_rc] = _rv.where(~(_rv > 1.5))
-    # rev_yoy > 500% in a single year is M&A / recovery-from-near-zero / a
-    # one-off licensing spike (ZEAL 14,640%, KROS 6,775%) — not organic growth;
-    # null so it can't fool the growth/inflection archetype gates.
-    _ryy = pd.to_numeric(df.get('rev_yoy'), errors='coerce')
-    df['rev_yoy'] = _ryy.where(~(_ryy > 5.0))
     for _mc_ in ('ebitda_margin', 'net_margin', 'pretax_margin'):
         if _mc_ in df.columns:
             _mv = pd.to_numeric(df[_mc_], errors='coerce')

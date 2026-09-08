@@ -2697,15 +2697,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         | _nm_nc.str.contains(r'preferred|pfd| pref |depositary|% notes|perpetual|warrant',
                               case=False, regex=True)
     ).fillna(False)
+    _GATED_SCORES = [c for c in ['tenbagger_score', 'tenbagger_implied_return',
+                     'evsales_derate_score', 'evsales_derate_gap',
+                     'lynch_reward_score', 'lynch_leg_max', 'lynch_rank',
+                     'lynch_exceptional_leg', 'analyst_awakening_score',
+                     'seg_inflect_score', 'oneil_score', 'weinstein_score',
+                     'kullamagie_score', 'cundill_score'] if c in df.columns]
+    _scrub_cols = arch_cols + _GATED_SCORES
     if _is_noncommon.any():
-        _gated_scores = ['tenbagger_score', 'tenbagger_implied_return',
-                         'evsales_derate_score', 'evsales_derate_gap',
-                         'lynch_reward_score', 'lynch_leg_max', 'lynch_rank',
-                         'lynch_exceptional_leg', 'analyst_awakening_score',
-                         'seg_inflect_score', 'oneil_score',
-                         'weinstein_score', 'kullamagie_score',
-                         'cundill_score']
-        _scrub_cols = arch_cols + [c for c in _gated_scores if c in df.columns]
         df.loc[_is_noncommon.values, _scrub_cols] = 0
         print(f'  scrubbed archetype flags + gated scores on '
               f'{int(_is_noncommon.sum())} non-common securities', file=sys.stderr)
@@ -2725,36 +2724,51 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # one-off, not operations (KROS topped lindy_margin/tax_efficient). Zero
     # these names' flags on the QUALITY/durable archetypes; their genuine
     # inflection/growth/deep-value theses elsewhere are untouched. =====
+    # ===== SYSTEMATIC BIOTECH CLASSIFIER =====
+    # A drug developer (Biotechnology / Pharmaceuticals / drug manufacturer)
+    # whose fundamentals are meaningless while PRE-COMMERCIAL: revenue is lumpy
+    # licensing, "earnings" are one-off collaboration payments, cash flow is
+    # R&D burn, outcomes are binary FDA events. A CLINICAL-stage name must not
+    # populate any FUNDAMENTAL value/quality/growth/inflection archetype.
+    # COMMERCIAL pharma (sustained revenue + profitability: Gilead/Vertex/
+    # Novartis) is retained. Exposed as columns for downstream use.
     _ind_b = (df['industry'].fillna('').astype(str).str.lower()
               if 'industry' in df.columns else pd.Series('', index=df.index))
+    _sec_b = (df['sector'].fillna('').astype(str).str.lower()
+              if 'sector' in df.columns else pd.Series('', index=df.index))
     _nm_b = (df['name'].fillna('').astype(str).str.lower()
              if 'name' in df.columns else pd.Series('', index=df.index))
+    _is_drug_dev = (
+        _ind_b.str.contains('biotechnolog') | _ind_b.str.contains('pharmaceutic')
+        | _ind_b.str.contains('drug manufactur')
+        | (_sec_b.str.contains('health')
+           & _nm_b.str.contains('therapeut|biopharm|biosci|pharma|oncolog|genomic|genetic'))
+    ).fillna(False)
     _revb = pd.to_numeric(df.get('revenue_ttm'), errors='coerce')
-    _ebb = pd.to_numeric(df.get('ebitda_ttm'), errors='coerce')
-    _bio_ind = (_ind_b.str.contains('biotech') | _ind_b.str.contains('pharmaceutic')
-                | _nm_b.str.contains('therapeut|biosci|biopharm'))
+    _fcfb = pd.to_numeric(df.get('fcf_ttm'), errors='coerce')
+    _embg = pd.to_numeric(df.get('ebitda_margin'), errors='coerce')
     _nyfcf = pd.to_numeric(df.get('n_yrs_positive_fcf'), errors='coerce')
     _nyroic = pd.to_numeric(df.get('n_yrs_positive_roic'), errors='coerce')
-    _sustained_bio = (_nyfcf >= 4) | (_nyroic >= 4)   # durable commercial pharma keeps its quality flags
-    # clinical-stage biotech: no sustained profitable history OR still pre-
-    # revenue/burning — a one-off licensing windfall (KROS: $244M rev, ROCE
-    # 207%) must not read as durable quality.
-    _is_prerev_bio = _bio_ind & (~_sustained_bio
-                                 | (_revb.fillna(0) < 10e6) | (_ebb < 0))
-    _quality_arch = [c for c in ['arch_lindy_margin', 'arch_lindy_fcf',
-                     'arch_lindy_growth', 'arch_cash_quality', 'arch_low_sbc_quality',
-                     'arch_durable_reinvestment', 'arch_tax_efficient',
-                     'arch_large_cap_quality', 'arch_capital_discipline',
-                     'arch_owner_operator', 'arch_quiet_compounder',
-                     'arch_wolf_compounder', 'arch_strong_coverage',
-                     'arch_oak_deep_value', 'arch_dead_option',
-                     'arch_cheap_per_roiic', 'arch_reinvest_inflect',
-                     'arch_roic_inflect', 'arch_double_inflect',
-                     'arch_midcap_garp'] if c in df.columns]
-    if _is_prerev_bio.any():
-        df.loc[_is_prerev_bio.values, _quality_arch] = 0
-        print(f'  scrubbed {int(_is_prerev_bio.sum())} pre-revenue biotech from '
-              f'quality archetypes', file=sys.stderr)
+    # Commercially established: a sustained profitable history (EDGAR streaks)
+    # OR a large, self-funding, sanely-profitable global pharma.
+    _commercial = ((_nyfcf >= 4) | (_nyroic >= 4)
+                   | ((_revb >= 500e6) & (_fcfb > 0) & (_embg > 0) & (_embg < 0.6)))
+    _is_clinical_biotech = (_is_drug_dev & ~_commercial.fillna(False))
+    df['is_drug_developer'] = _is_drug_dev.astype(int)
+    df['is_clinical_biotech'] = _is_clinical_biotech.astype(int)
+    # Price-action / catalyst archetypes where a biotech legitimately belongs
+    # are exempt; every other (fundamental) archetype is scrubbed.
+    _biotech_ok = {'arch_analyst_awakening', 'arch_oneil_canslim',
+                   'arch_weinstein_stage2', 'arch_kullamagie_breakout'}
+    _fund_arch = [c for c in arch_cols if c not in _biotech_ok]
+    _fund_scrub = _fund_arch + [c for c in _GATED_SCORES
+                                if c not in ('analyst_awakening_score',
+                                             'oneil_score', 'weinstein_score',
+                                             'kullamagie_score')]
+    if _is_clinical_biotech.any():
+        df.loc[_is_clinical_biotech.values, _fund_scrub] = 0
+        print(f'  scrubbed {int(_is_clinical_biotech.sum())} clinical-stage '
+              f'biotech from fundamental archetypes', file=sys.stderr)
 
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(
@@ -2762,7 +2776,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','is_drug_developer','is_clinical_biotech']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m'] if c in df.columns]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)

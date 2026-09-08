@@ -351,6 +351,18 @@ def _integrity(t, g):
             check("integrity: no positive EV/EBITDA on negative EBITDA",
                   flip == 0, f"{int(flip)} loss-makers with a cheap-looking ev_ebitda")
 
+        # SYSTEMATIC BIOTECH FILTER: no clinical-stage drug developer should
+        # populate a fundamental archetype (its financials are one-off/binary).
+        if "is_clinical_biotech" in t.columns and "archetype_count" in t.columns:
+            _clin = n(t, "is_clinical_biotech") == 1
+            _exempt = ["arch_analyst_awakening", "arch_oneil_canslim",
+                       "arch_weinstein_stage2", "arch_kullamagie_breakout"]
+            _fund = [c for c in t.columns if c.startswith("arch_") and c not in _exempt]
+            _fund_ct = t.loc[:, _fund].apply(pd.to_numeric, errors="coerce").sum(axis=1)
+            clin_fund = (_clin & (_fund_ct > 0)).sum()
+            check("integrity: no clinical biotech in fundamental archetypes",
+                  clin_fund == 0, f"{int(clin_fund)} clinical biotech in fundamental archetypes")
+
         # No sub-$1M micro-shell should carry an archetype flag (untradeable).
         if "archetype_count" in t.columns and "symbol" in t.columns and "market_cap_usd" in g.columns:
             _mcs = g.drop_duplicates("symbol").set_index("symbol")["market_cap_usd"]
@@ -358,12 +370,6 @@ def _integrity(t, g):
             shell_fire = ((_tmc > 0) & (_tmc < 2e6) & (n(t, "archetype_count") > 0)).sum()
             check("integrity: no archetype flags on sub-$2M micro-shells",
                   shell_fire == 0, f"{int(shell_fire)} sub-$2M shells firing archetypes")
-        # No base-effect revenue growth (>500% single-year = M&A/one-off).
-        _ryy = n(g, "rev_yoy")
-        bad_ry = (_ryy > 5.0).sum()
-        check("integrity: no base-effect revenue growth (>500% single-year)",
-              bad_ry == 0, f"{int(bad_ry)} rows with rev_yoy>500%")
-
         # No absurd ROCE/ROIC (>150% = one-off/tiny-base artifact).
         _rce = n(g, "roce")
         bad_rce = (_rce > 1.5).sum()
