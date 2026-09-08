@@ -351,6 +351,19 @@ def _integrity(t, g):
             check("integrity: no positive EV/EBITDA on negative EBITDA",
                   flip == 0, f"{int(flip)} loss-makers with a cheap-looking ev_ebitda")
 
+        # No sub-$1M micro-shell should carry an archetype flag (untradeable).
+        if "archetype_count" in t.columns and "symbol" in t.columns and "market_cap_usd" in g.columns:
+            _mcs = g.drop_duplicates("symbol").set_index("symbol")["market_cap_usd"]
+            _tmc = pd.to_numeric(t["symbol"].map(_mcs), errors="coerce")
+            shell_fire = ((_tmc > 0) & (_tmc < 2e6) & (n(t, "archetype_count") > 0)).sum()
+            check("integrity: no archetype flags on sub-$2M micro-shells",
+                  shell_fire == 0, f"{int(shell_fire)} sub-$2M shells firing archetypes")
+        # No absurd ROCE/ROIC (>150% = one-off/tiny-base artifact).
+        _rce = n(g, "roce")
+        bad_rce = (_rce > 1.5).sum()
+        check("integrity: no absurd ROCE (>150% = one-off/tiny-base)",
+              bad_rce == 0, f"{int(bad_rce)} rows with roce>1.5")
+
         # No non-common security (preferred/warrant/unit) should carry an
         # archetype flag — their P/E, book, yields belong to the parent.
         if "symbol" in t.columns and "archetype_count" in t.columns:

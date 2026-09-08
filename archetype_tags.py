@@ -2710,6 +2710,48 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         print(f'  scrubbed archetype flags + gated scores on '
               f'{int(_is_noncommon.sum())} non-common securities', file=sys.stderr)
 
+    # ===== MICRO-SHELL SCRUB: a sub-$1M market cap is untradeable and almost
+    # always a delisted/data-corrupt shell (YYAI $0M, Zodiac Ventures $1M were
+    # topping archetypes by ETA). Zero every archetype flag + gated score. =====
+    _mc_scrub = pd.to_numeric(df.get('market_cap_usd'), errors='coerce')
+    _is_shell = (_mc_scrub > 0) & (_mc_scrub < 2e6)
+    if _is_shell.any():
+        df.loc[_is_shell.values, _scrub_cols] = 0
+        print(f'  scrubbed {int(_is_shell.sum())} sub-$2M micro-shells',
+              file=sys.stderr)
+
+    # ===== PRE-REVENUE BIOTECH SCRUB (durable/quality archetypes only): a
+    # clinical-stage biotech's "5-year durable margin / quality" is a licensing
+    # one-off, not operations (KROS topped lindy_margin/tax_efficient). Zero
+    # these names' flags on the QUALITY/durable archetypes; their genuine
+    # inflection/growth/deep-value theses elsewhere are untouched. =====
+    _ind_b = (df['industry'].fillna('').astype(str).str.lower()
+              if 'industry' in df.columns else pd.Series('', index=df.index))
+    _nm_b = (df['name'].fillna('').astype(str).str.lower()
+             if 'name' in df.columns else pd.Series('', index=df.index))
+    _revb = pd.to_numeric(df.get('revenue_ttm'), errors='coerce')
+    _ebb = pd.to_numeric(df.get('ebitda_ttm'), errors='coerce')
+    _bio_ind = (_ind_b.str.contains('biotech') | _ind_b.str.contains('pharmaceutic')
+                | _nm_b.str.contains('therapeut|biosci|biopharm'))
+    _nyfcf = pd.to_numeric(df.get('n_yrs_positive_fcf'), errors='coerce')
+    _nyroic = pd.to_numeric(df.get('n_yrs_positive_roic'), errors='coerce')
+    _sustained_bio = (_nyfcf >= 4) | (_nyroic >= 4)   # durable commercial pharma keeps its quality flags
+    # clinical-stage biotech: no sustained profitable history OR still pre-
+    # revenue/burning — a one-off licensing windfall (KROS: $244M rev, ROCE
+    # 207%) must not read as durable quality.
+    _is_prerev_bio = _bio_ind & (~_sustained_bio
+                                 | (_revb.fillna(0) < 10e6) | (_ebb < 0))
+    _quality_arch = [c for c in ['arch_lindy_margin', 'arch_lindy_fcf',
+                     'arch_lindy_growth', 'arch_cash_quality', 'arch_low_sbc_quality',
+                     'arch_durable_reinvestment', 'arch_tax_efficient',
+                     'arch_large_cap_quality', 'arch_capital_discipline',
+                     'arch_owner_operator', 'arch_quiet_compounder',
+                     'arch_wolf_compounder', 'arch_strong_coverage'] if c in df.columns]
+    if _is_prerev_bio.any():
+        df.loc[_is_prerev_bio.values, _quality_arch] = 0
+        print(f'  scrubbed {int(_is_prerev_bio.sum())} pre-revenue biotech from '
+              f'quality archetypes', file=sys.stderr)
+
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(
         lambda r: ', '.join(pretty[c] for c in arch_cols if r[c] == 1),

@@ -374,6 +374,12 @@ def main():
     # investment income) masquerading as an operating margin.
     _gm = pd.to_numeric(df.get('gross_margin'), errors='coerce')
     df['gross_margin'] = _gm.where(~(_gm > 1.0))
+    # ROCE/ROIC > 150% is a one-off-earnings / tiny-capital-base artifact
+    # (KROS a licensing windfall showed ROCE 207%) — not a sustainable return.
+    for _rc in ('roce', 'roic', 'roic_after_sbc', 'roe'):
+        if _rc in df.columns:
+            _rv = pd.to_numeric(df[_rc], errors='coerce')
+            df[_rc] = _rv.where(~(_rv > 1.5))
     for _mc_ in ('ebitda_margin', 'net_margin', 'pretax_margin'):
         if _mc_ in df.columns:
             _mv = pd.to_numeric(df[_mc_], errors='coerce')

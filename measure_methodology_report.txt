@@ -1,8 +1,8 @@
-METHODOLOGY AUDIT — 52 checks, 0 FAIL, 0 WARN
+METHODOLOGY AUDIT — 54 checks, 0 FAIL, 0 WARN
   PASS  units: dividend_yield is a fraction  — median |dividend_yield| = 0.028 (fraction-scale cap 1.5)
   PASS  units: fcf_yield is a fraction  — median |fcf_yield| = 0.070 (fraction-scale cap 3.0)
   PASS  units: analyst_target_upside_pct is a fraction  — median |analyst_target_upside_pct| = 0.261 (fraction-scale cap 5.0)
-  PASS  units: roce is a fraction  — median |roce| = 0.115 (fraction-scale cap 5.0)
+  PASS  units: roce is a fraction  — median |roce| = 0.112 (fraction-scale cap 5.0)
   PASS  units: sbc_pct_revenue is a fraction  — median |sbc_pct_revenue| = 0.018 (fraction-scale cap 3.0)
   PASS  units: momentum_12m is a fraction  — median |momentum_12m| = 0.224 (fraction-scale cap 20.0)
   PASS  arch_dead_option: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 40% depth
@@ -18,7 +18,7 @@ METHODOLOGY AUDIT — 52 checks, 0 FAIL, 0 WARN
   PASS  52w: both == abs AND rel
   PASS  awakening: firers with a rating skew strong (<= 2.2)  — 94% of rated firers <= 2.2
   PASS  awakening: momentum-gated firers not extended (<= ~50%)  — 0 extended among the 151 momentum-gated firers
-  PASS  capital_returner: firers inside the 5-30% policy band (small tail = EDGAR-coalesced source not visible here)  — 57 outside on asym-only columns
+  PASS  capital_returner: firers inside the 5-30% policy band (small tail = EDGAR-coalesced source not visible here)  — 55 outside on asym-only columns
   PASS  strong_coverage: every firer has positive EBITDA  — 0 non-positive
   PASS  gating: tenbagger_score is 0 outside arch_tenbagger_path  — 0 non-firers with positive score
   PASS  gating: evsales_derate_score is 0 outside arch_evsales_derating  — 0 non-firers with positive score
@@ -37,6 +37,8 @@ METHODOLOGY AUDIT — 52 checks, 0 FAIL, 0 WARN
   PASS  integrity: arch_oak_asset_floor excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities in arch_oak_asset_floor
   PASS  integrity: arch_strong_coverage excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities in arch_strong_coverage
   PASS  integrity: no positive EV/EBITDA on negative EBITDA  — 0 loss-makers with a cheap-looking ev_ebitda
+  PASS  integrity: no archetype flags on sub-$2M micro-shells  — 0 sub-$2M shells firing archetypes
+  PASS  integrity: no absurd ROCE (>150% = one-off/tiny-base)  — 0 rows with roce>1.5
   PASS  integrity: no archetype flags on preferred/warrant/unit lines  — 0 non-common securities firing archetypes
   PASS  integrity: no impossible margins (gross>1.0, ebitda>1.2)  — 0 gross>1.0, 0 ebitda>1.2
   PASS  integrity: no impossible P/E (<0.5) or sub-0.02 sales multiple  — 0 p_e<0.5, 0 p_s<0.02
