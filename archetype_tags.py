@@ -1465,6 +1465,95 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & _durable_growth & _self_funding & _not_pricey
     ).fillna(False).astype(int)
 
+    # ==================================================================
+    # TREND / MOMENTUM TRADER SETUPS — O'Neil (CAN SLIM), Weinstein
+    # (Stage 2), Kullamagi (breakout). SETUP-DETECTION layer ONLY: this
+    # database persists weekly-derived price signals + fundamentals, NOT
+    # daily/intraday OHLCV or volume. The EXECUTION layer each trader
+    # specifies — ADR/ATR stops, RVOL breakout volume, base-geometry
+    # contraction/VDU, MA-surfing, opening-range-high triggers, position
+    # sizing, exit state-machines — needs a live daily+intraday feed and is
+    # OUT OF SCOPE here. Rule classes in comments: [C]=canonical (author
+    # states it), [P]=proxy (our formalization of a qualitative rule),
+    # [R]=research parameter (author gives no cutoff; fitted/sensitivity).
+    # ==================================================================
+    _mom12 = _num('momentum_12m'); _roc6 = _num('roc_6m')
+    _live_tape = pd.to_numeric(df.get('stale_tape'), errors='coerce').fillna(0) != 1
+    def _pctrank(x):
+        return (x.where(_live_tape).rank(pct=True) * 100.0)
+    _pr6 = _pctrank(_roc6); _pr12 = _pctrank(_mom12)
+    _leader_pr = pd.concat([_pr6, _pr12], axis=1).max(axis=1)      # [P] union of momentum scans
+    _off_high = _num('pct_off_52w_high'); _pct52 = _num('pct_52w_high')
+    _is_52w = _num('is_52w_high'); _rel_52 = _num('rel_pct_52w_high')
+    _rel_is_52 = _num('rel_is_52w_high'); _base_depth = _num('base_depth_12m')
+    _squeeze = _num('sr_m_squeeze_run'); _price5y = _num('price_pct_of_5y_range')
+    _prior_run = pd.concat([_roc6, _mom12], axis=1).max(axis=1)    # best prior advance
+    def _ramp(x, lo, hi):
+        return ((x - lo) / (hi - lo)).clip(0.0, 1.0).fillna(0.0)
+    # tightness proxy (all three traders' "tight base"): a volatility squeeze
+    # OR a shallow, contained 12m base. [P] for the concept, [R] for the cuts.
+    _tight_score = pd.concat([_ramp(_squeeze, 2, 10),
+                              _ramp(0.35 - _base_depth, 0.0, 0.35)], axis=1).max(axis=1)
+
+    # ---------- Kullamagi common breakout SETUP ----------
+    # [C] leader across momentum scans; [C] large prior advance (>=30%); [P]
+    # orderly tightening near rising highs; consolidating, not crashed. The
+    # ORH trigger + low-of-day stop within 1 ADR need intraday data (omitted).
+    _kk_leader = (_pr6 >= 95) | (_pr12 >= 95)
+    _kk_impulse = _prior_run >= 0.30
+    _kk_tight = (_squeeze >= 3) | ((_base_depth > 0) & (_base_depth <= 0.35))
+    _kk_near = (_off_high >= -0.25) & (_off_high <= -0.005)
+    df['arch_kullamagie_breakout'] = (
+        _live_tape & _kk_leader & _kk_impulse & _kk_tight & _kk_near
+    ).fillna(False).astype(int)
+    df['kullamagie_score'] = ((0.30 * _ramp(_leader_pr, 90, 100)
+                               + 0.25 * _ramp(_prior_run, 0.30, 1.50)
+                               + 0.20 * _tight_score
+                               + 0.15 * _ramp(_pct52, 0.75, 1.0)
+                               + 0.10 * _ramp(_rel_52, 0.80, 1.0))
+                              * df['arch_kullamagie_breakout']).round(3)
+
+    # ---------- Weinstein Stage 2A / early Stage 2 SETUP ----------
+    # [C] price advancing above its long trend into little overhead resistance
+    # (near 52w/all-time high) with strengthening relative strength; NOT
+    # requiring MRS>0 (improving RS below zero is allowed). [P] 30-week MA
+    # slope unavailable -> proxied by 12m momentum>0 and upper 5y-range.
+    _st2_trend = (_mom12 > 0) & (_price5y >= 0.55)
+    _st2_rs = (_rel_52 >= 0.80) | (_rel_is_52 == 1)
+    _st2_overhead = (_off_high >= -0.10) | (_is_52w == 1)
+    _not_st4 = _mom12 > -0.05
+    df['arch_weinstein_stage2'] = (
+        _live_tape & _st2_trend & _st2_rs & _st2_overhead & _not_st4
+    ).fillna(False).astype(int)
+    df['weinstein_score'] = ((0.30 * _ramp(_price5y, 0.55, 1.0)
+                              + 0.30 * _ramp(_rel_52, 0.80, 1.0)
+                              + 0.25 * _ramp(_pct52, 0.85, 1.0)
+                              + 0.15 * _ramp(_mom12, 0.0, 0.60))
+                             * df['arch_weinstein_stage2']).round(3)
+
+    # ---------- O'Neil CAN SLIM SETUP ----------
+    # [C] C: strong/accelerating current earnings; [C] A: durable annual
+    # growth + ROE>=~17% (roce proxy); [C] N: new price high; [C] L: RS leader
+    # (percentile>=80). I/M/S (institutional sponsorship trend, market
+    # follow-through regime, breakout volume) need ownership/index/volume
+    # feeds not persisted here — noted, not faked.
+    _eps_streak = _num('eps_yoy_growth_streak_q'); _eps_pos = _num('eps_yoy_positive_share')
+    _revg = _num('rev_yoy'); _roce_v = _num('roce')
+    _accel = ((_num('op_margin_delta_yoy') > 0) | (_num('ebit_growth_yoy') > _revg)).fillna(False)
+    _on_C = (_eps_streak >= 2) | (_revg >= 0.20)
+    _on_A = (_roce_v >= 0.15) & ((_eps_pos >= 0.75) | (_revg >= 0.10))
+    _on_N = (_off_high >= -0.15) | (_is_52w == 1)
+    _on_L = (_leader_pr >= 80)
+    df['arch_oneil_canslim'] = (
+        _live_tape & _on_C & _on_A & _on_N & _on_L
+    ).fillna(False).astype(int)
+    df['oneil_score'] = ((0.30 * _ramp(_revg, 0.10, 0.50)
+                          + 0.20 * _ramp(_roce_v, 0.10, 0.35)
+                          + 0.20 * _ramp(_leader_pr, 80, 100)
+                          + 0.15 * _ramp(_pct52, 0.85, 1.0)
+                          + 0.15 * _accel.astype(float))
+                         * df['arch_oneil_canslim']).round(3)
+
     low_sbc_wolf = _soft_ok_below('sbc_pct_revenue', 0.15)   # Wolf dings excess SBC
     low_sbc_liger = _soft_ok_below('sbc_pct_revenue', 0.10)  # Liger flags diluters
     # `nde` defaults to 99 when net_debt_ebitda is missing (37% of names), so
@@ -2423,6 +2512,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_financials_value',
         'arch_net_cash_returner',
         'arch_sustainable_scaler',
+        'arch_oneil_canslim',
+        'arch_weinstein_stage2',
+        'arch_kullamagie_breakout',
         'arch_low_sbc_quality',
         'arch_tax_efficient',
         'arch_strong_coverage',
@@ -2500,6 +2592,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_financials_value': 'FinancialsValue',
         'arch_net_cash_returner': 'NetCashReturner',
         'arch_sustainable_scaler': 'SustainableScaler',
+        'arch_oneil_canslim': 'ONeil-CANSLIM',
+        'arch_weinstein_stage2': 'Weinstein-Stage2',
+        'arch_kullamagie_breakout': 'Kullamagi-Breakout',
         'arch_low_sbc_quality': 'LowSBCQuality',
         'arch_tax_efficient': 'TaxEfficient',
         'arch_strong_coverage': 'StrongCoverage',
@@ -2563,7 +2658,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                          'evsales_derate_score', 'evsales_derate_gap',
                          'lynch_reward_score', 'lynch_leg_max', 'lynch_rank',
                          'lynch_exceptional_leg', 'analyst_awakening_score',
-                         'seg_inflect_score']
+                         'seg_inflect_score', 'oneil_score',
+                         'weinstein_score', 'kullamagie_score']
         _scrub_cols = arch_cols + [c for c in _gated_scores if c in df.columns]
         df.loc[_is_noncommon.values, _scrub_cols] = 0
         print(f'  scrubbed archetype flags + gated scores on '
@@ -2575,7 +2671,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','seg_inflect_score']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m'] if c in df.columns]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)

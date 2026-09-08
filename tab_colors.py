@@ -58,6 +58,7 @@ FAMILY_COLORS = {
     'lynch_screen': 'FFAD1457',   # magenta — Lynch / QARP / derating screens
     'segment':      'FF3949AB',   # indigo  — hidden-engine / segment lenses
     'contrarian':   'FF5D6D7E',   # grey    — neglect / narrative-lag / dead-option
+    'momentum':     'FFB71C1C',   # crimson — trend/breakout traders (O'Neil/Weinstein/Kullamagi)
 }
 
 # Explicit archetype -> family. Named-investor packs stay together; the rest
@@ -101,6 +102,8 @@ ARCH_FAMILY = {
     'arch_net_cash_returner': 'capital',
     'arch_financials_value': 'deep_value',
     'arch_sustainable_scaler': 'growth',
+    'arch_oneil_canslim': 'momentum', 'arch_weinstein_stage2': 'momentum',
+    'arch_kullamagie_breakout': 'momentum',
     # Lynch / screen value
     'arch_lynch_reward': 'lynch_screen', 'arch_lynch_pegy': 'lynch_screen',
     'arch_lynch_evgy': 'lynch_screen', 'arch_qarp': 'lynch_screen',
@@ -139,6 +142,7 @@ def family_legend() -> list[tuple[str, str]]:
         'inflection': 'Inflection / turnaround', 'growth': 'Growth / multibagger',
         'capital': 'Capital return / insider', 'lynch_screen': 'Lynch / screen value',
         'segment': 'Segment / hidden-engine', 'contrarian': 'Contrarian / neglect',
+        'momentum': 'Trend/breakout traders',
     }
     return [(labels[f], c) for f, c in FAMILY_COLORS.items()]
 
