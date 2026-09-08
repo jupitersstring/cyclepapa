@@ -344,6 +344,23 @@ def main():
     df['fcf_yield'] = _fy.where(_fy <= 1.0)                      # >100% = ADR fx mismatch
     _dy = pd.to_numeric(df.get('dividend_yield'), errors='coerce')
     df['dividend_yield'] = _dy.where(_dy <= 0.40)                # >40% = stale/preferred
+    # P/B corruption (ADR/units mismatch put Berkshire at pb=0.001, Asian
+    # banks at <0.005) — recompute from mcap_usd/equity where that's sane,
+    # else null; a <0.05x-book going concern is a data artifact, not value.
+    _pb = pd.to_numeric(df.get('pb'), errors='coerce')
+    _eq = pd.to_numeric(df.get('equity'), errors='coerce')
+    _mc0 = pd.to_numeric(df.get('market_cap_usd'), errors='coerce')
+    _impl = (_mc0 / _eq.where(_eq > 0))
+    _impl = _impl.where((_impl >= 0.1) & (_impl <= 20))
+    _pb_corrupt = (_pb > 0) & (_pb < 0.05)
+    if _pb_corrupt.any():
+        df['pb'] = _pb.where(~_pb_corrupt, _impl)
+        print(f'  final gate: repaired {int(_pb_corrupt.sum())} corrupt pb '
+              f'(<0.05x book, ADR/units)', file=sys.stderr)
+    if 'p_tb' in df.columns:
+        _ptb = pd.to_numeric(df['p_tb'], errors='coerce')
+        df['p_tb'] = _ptb.where(~((_ptb > 0) & (_ptb < 0.05)))
+
     _mc = pd.to_numeric(df.get('market_cap_usd'), errors='coerce')
     _pr = pd.to_numeric(df.get('price'), errors='coerce')
     _bad_scale = (_mc <= 0) | (_pr <= 0)

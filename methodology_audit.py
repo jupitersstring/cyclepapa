@@ -361,6 +361,12 @@ def _integrity(t, g):
             check("integrity: no archetype flags on preferred/warrant/unit lines",
                   nc_fire == 0, f"{int(nc_fire)} non-common securities firing archetypes")
 
+        # No absurd P/B (<0.05x book = ADR/units data artifact, not value).
+        _pbc = n(g, "pb")
+        bad_pb = ((_pbc > 0) & (_pbc < 0.05)).sum()
+        check("integrity: no corrupt P/B (<0.05x book — ADR/units artifact)",
+              bad_pb == 0, f"{int(bad_pb)} rows with pb in (0, 0.05)")
+
         # No zero/negative market cap or price in the ranked universe.
         _mc = n(g, "market_cap_usd"); _pr = n(g, "price")
         bad_scale = ((_mc <= 0) | (_pr <= 0)).sum()

@@ -2022,8 +2022,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _ebm * 0.65,                                    # EBITDA scaled to a net proxy
         pd.Series(0.12, index=df.index),
     ], axis=1).max(axis=1).clip(0.10, 0.22)
+    # Floor the P/S denominator (a near-zero P/S exploded the ratio to 953M x)
+    # and clamp the implied return to a sane ceiling — a 100x implied multiple
+    # is already extraordinary; anything above is a denominator artifact.
     implied_10x = (((1.0 + g10) ** N_YRS) * term_margin * TERM_MULT
-                   / ps_v.where(ps_v > 0))
+                   / ps_v.where(ps_v > 0.05)).clip(lower=0.0, upper=100.0)
     df['tenbagger_implied_return'] = implied_10x.round(2)
 
     # Operating leverage confirms the path to the terminal margin (profit
@@ -2104,9 +2107,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # Stock return through ANY lens: price_yoy with momentum/fresh-ROC
     # fallbacks — the old 0-defaulted read gave names with NO price history a
     # free "stock flat" derate. NaN everywhere now means no derate evidence.
+    # Clamp the stock-return input: a data-artifact price_yoy (e.g. +14,000,000%)
+    # produced a -144,130 'derate gap'. A stock can't lose >100%; cap the upside
+    # at +1000%. rev_yoy_c is already clipped to [-1, 10].
     _stk_ret = (_num('price_yoy').fillna(_num('momentum_12m'))
-                .fillna(_num('roc_12m')))
-    mult_compression = rev_yoy_c - _stk_ret             # sales growth minus stock return
+                .fillna(_num('roc_12m'))).clip(-1.0, 10.0)
+    mult_compression = (rev_yoy_c - _stk_ret).clip(-11.0, 11.0)  # sales growth minus stock return
     df['evsales_derate_gap'] = mult_compression.round(3)
     _evsg_exceptional = (evsg_v > 0) & (evsg_v <= 0.08)   # cheap per unit of growth
     # The derate itself, seen through more than one base: the 1y gap, a 3y
