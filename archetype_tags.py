@@ -2558,6 +2558,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_weinstein_stage2',
         'arch_kullamagie_breakout',
         'arch_cundill_deep_value',
+        'arch_biotech_deep_value',
         'arch_low_sbc_quality',
         'arch_tax_efficient',
         'arch_strong_coverage',
@@ -2639,6 +2640,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_weinstein_stage2': 'Weinstein-Stage2',
         'arch_kullamagie_breakout': 'Kullamagi-Breakout',
         'arch_cundill_deep_value': 'Cundill-DeepValue',
+        'arch_biotech_deep_value': 'Biotech-DeepValue',
         'arch_low_sbc_quality': 'LowSBCQuality',
         'arch_tax_efficient': 'TaxEfficient',
         'arch_strong_coverage': 'StrongCoverage',
@@ -2689,6 +2691,68 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # warrant/unit; e.g. BAC preferreds in Financials-Value). Zero EVERY
     # archetype flag for them at the source (the books' display-dedup already
     # hid them, but this makes the flags and counts honest).
+    # ===== SYSTEMATIC BIOTECH CLASSIFIER (defined before the scrubs) =====
+    # is_drug_developer: Biotech/Pharma/drug-mfr, or a health-sector drug name.
+    # is_clinical_biotech: a drug developer WITHOUT sustained profitability
+    # (a large self-funding pharma or a >=4yr positive-FCF/ROIC streak is
+    # "commercial" and retained). Clinical names are scrubbed from every
+    # FUNDAMENTAL archetype below EXCEPT price-action/catalyst ones and their
+    # own dedicated deep-value screen.
+    _ind_b = (df['industry'].fillna('').astype(str).str.lower()
+              if 'industry' in df.columns else pd.Series('', index=df.index))
+    _sec_b = (df['sector'].fillna('').astype(str).str.lower()
+              if 'sector' in df.columns else pd.Series('', index=df.index))
+    _nm_b = (df['name'].fillna('').astype(str).str.lower()
+             if 'name' in df.columns else pd.Series('', index=df.index))
+    _is_drug_dev = (
+        _ind_b.str.contains('biotechnolog') | _ind_b.str.contains('pharmaceutic')
+        | _ind_b.str.contains('drug manufactur')
+        | (_sec_b.str.contains('health')
+           & _nm_b.str.contains('therapeut|biopharm|biosci|pharma|oncolog|genomic|genetic'))
+    ).fillna(False)
+    _revb = pd.to_numeric(df.get('revenue_ttm'), errors='coerce')
+    _fcfb = pd.to_numeric(df.get('fcf_ttm'), errors='coerce')
+    _embg = pd.to_numeric(df.get('ebitda_margin'), errors='coerce')
+    _nyfcf = pd.to_numeric(df.get('n_yrs_positive_fcf'), errors='coerce')
+    _nyroic = pd.to_numeric(df.get('n_yrs_positive_roic'), errors='coerce')
+    _commercial = ((_nyfcf >= 4) | (_nyroic >= 4)
+                   | ((_revb >= 500e6) & (_fcfb > 0) & (_embg > 0) & (_embg < 0.6)))
+    _is_clinical_biotech = (_is_drug_dev & ~_commercial.fillna(False))
+    df['is_drug_developer'] = _is_drug_dev.astype(int)
+    df['is_clinical_biotech'] = _is_clinical_biotech.astype(int)
+
+    # ---------- Biotech Deep Value (below-cash special situation) ----------
+    # A drug developer trading at/below its NET CASH: the market pays you to
+    # own the cash and hands you a free option on the pipeline. Downside is
+    # the balance sheet, not the binary trial. Requires a real cash cushion
+    # AND enough runway not to face imminent dilution. This is the home for
+    # the clinical biotechs the systematic filter removes from every other
+    # fundamental value screen.
+    _bdv_ncash = _num('net_cash_pct_mcap'); _bdv_cashev = _num('cash_gt_ev_flag')
+    _bdv_ncav = _num('ncav_pct_mcap'); _bdv_cashpct = _num('cash_pct_mcap')
+    # Cash runway (years) = gross cash / annual burn; ample (99) when not
+    # burning, NaN when cash data is missing.
+    _bdv_cash_abs = _bdv_ncash.clip(lower=0) * mcap            # net cash (USD; better coverage than gross)
+    _bdv_burn = -_num('fcf_ttm')                               # >0 = burning
+    _bdv_runway = (_bdv_cash_abs / _bdv_burn.where(_bdv_burn > 0)).where(
+        _bdv_burn > 0, 99.0)
+    df['biotech_cash_runway_yrs'] = _bdv_runway.where(_bdv_runway >= 0).clip(upper=99).round(2)
+    # The below-cash NET-CASH cushion is the margin of safety; require a real
+    # cash cushion (no fragile runway gate — a name at multiples of net cash
+    # is protected regardless of the exact burn estimate).
+    df['arch_biotech_deep_value'] = (
+        _is_drug_dev
+        & (mcap >= 2e6)
+        & ((_bdv_ncash >= 0.5) | (_bdv_cashev > 0) | (_bdv_ncav >= 0.8))
+    ).fillna(False).astype(int)
+    df['biotech_deep_value_score'] = ((
+        0.35 * _ramp(_bdv_ncash, 0.5, 1.2)
+        + 0.20 * (_bdv_cashev > 0).astype(float)
+        + 0.20 * _ramp(_bdv_runway, 1.0, 4.0)
+        + 0.15 * _ramp(_bdv_ncav, 0.8, 2.0)
+        + 0.10 * (1.0 - _ramp(_num('shares_yoy'), 0.0, 0.20))
+    ) * df['arch_biotech_deep_value']).round(3)
+
     _sym_nc = df['symbol'].astype(str)
     _nm_nc = df['name'].astype(str) if 'name' in df.columns else pd.Series('', index=df.index)
     _is_noncommon = (
@@ -2702,7 +2766,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                      'lynch_reward_score', 'lynch_leg_max', 'lynch_rank',
                      'lynch_exceptional_leg', 'analyst_awakening_score',
                      'seg_inflect_score', 'oneil_score', 'weinstein_score',
-                     'kullamagie_score', 'cundill_score'] if c in df.columns]
+                     'kullamagie_score', 'cundill_score',
+                     'biotech_deep_value_score', 'biotech_cash_runway_yrs'] if c in df.columns]
     _scrub_cols = arch_cols + _GATED_SCORES
     if _is_noncommon.any():
         df.loc[_is_noncommon.values, _scrub_cols] = 0
@@ -2732,39 +2797,19 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # populate any FUNDAMENTAL value/quality/growth/inflection archetype.
     # COMMERCIAL pharma (sustained revenue + profitability: Gilead/Vertex/
     # Novartis) is retained. Exposed as columns for downstream use.
-    _ind_b = (df['industry'].fillna('').astype(str).str.lower()
-              if 'industry' in df.columns else pd.Series('', index=df.index))
-    _sec_b = (df['sector'].fillna('').astype(str).str.lower()
-              if 'sector' in df.columns else pd.Series('', index=df.index))
-    _nm_b = (df['name'].fillna('').astype(str).str.lower()
-             if 'name' in df.columns else pd.Series('', index=df.index))
-    _is_drug_dev = (
-        _ind_b.str.contains('biotechnolog') | _ind_b.str.contains('pharmaceutic')
-        | _ind_b.str.contains('drug manufactur')
-        | (_sec_b.str.contains('health')
-           & _nm_b.str.contains('therapeut|biopharm|biosci|pharma|oncolog|genomic|genetic'))
-    ).fillna(False)
-    _revb = pd.to_numeric(df.get('revenue_ttm'), errors='coerce')
-    _fcfb = pd.to_numeric(df.get('fcf_ttm'), errors='coerce')
-    _embg = pd.to_numeric(df.get('ebitda_margin'), errors='coerce')
-    _nyfcf = pd.to_numeric(df.get('n_yrs_positive_fcf'), errors='coerce')
-    _nyroic = pd.to_numeric(df.get('n_yrs_positive_roic'), errors='coerce')
-    # Commercially established: a sustained profitable history (EDGAR streaks)
-    # OR a large, self-funding, sanely-profitable global pharma.
-    _commercial = ((_nyfcf >= 4) | (_nyroic >= 4)
-                   | ((_revb >= 500e6) & (_fcfb > 0) & (_embg > 0) & (_embg < 0.6)))
-    _is_clinical_biotech = (_is_drug_dev & ~_commercial.fillna(False))
-    df['is_drug_developer'] = _is_drug_dev.astype(int)
-    df['is_clinical_biotech'] = _is_clinical_biotech.astype(int)
-    # Price-action / catalyst archetypes where a biotech legitimately belongs
-    # are exempt; every other (fundamental) archetype is scrubbed.
+    # (_is_drug_dev / _is_clinical_biotech computed above, before the scrubs.)
+    # Exempt price-action/catalyst archetypes AND the biotech's own dedicated
+    # deep-value screen; every other (fundamental) archetype is scrubbed.
     _biotech_ok = {'arch_analyst_awakening', 'arch_oneil_canslim',
-                   'arch_weinstein_stage2', 'arch_kullamagie_breakout'}
+                   'arch_weinstein_stage2', 'arch_kullamagie_breakout',
+                   'arch_biotech_deep_value'}
     _fund_arch = [c for c in arch_cols if c not in _biotech_ok]
     _fund_scrub = _fund_arch + [c for c in _GATED_SCORES
                                 if c not in ('analyst_awakening_score',
                                              'oneil_score', 'weinstein_score',
-                                             'kullamagie_score')]
+                                             'kullamagie_score',
+                                             'biotech_deep_value_score',
+                                             'biotech_cash_runway_yrs')]
     if _is_clinical_biotech.any():
         df.loc[_is_clinical_biotech.values, _fund_scrub] = 0
         print(f'  scrubbed {int(_is_clinical_biotech.sum())} clinical-stage '
@@ -2776,7 +2821,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','is_drug_developer','is_clinical_biotech']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m'] if c in df.columns]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)

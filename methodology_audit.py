@@ -356,7 +356,8 @@ def _integrity(t, g):
         if "is_clinical_biotech" in t.columns and "archetype_count" in t.columns:
             _clin = n(t, "is_clinical_biotech") == 1
             _exempt = ["arch_analyst_awakening", "arch_oneil_canslim",
-                       "arch_weinstein_stage2", "arch_kullamagie_breakout"]
+                       "arch_weinstein_stage2", "arch_kullamagie_breakout",
+                       "arch_biotech_deep_value"]
             _fund = [c for c in t.columns if c.startswith("arch_") and c not in _exempt]
             _fund_ct = t.loc[:, _fund].apply(pd.to_numeric, errors="coerce").sum(axis=1)
             clin_fund = (_clin & (_fund_ct > 0)).sum()

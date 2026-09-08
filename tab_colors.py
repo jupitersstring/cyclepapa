@@ -105,6 +105,7 @@ ARCH_FAMILY = {
     'arch_oneil_canslim': 'momentum', 'arch_weinstein_stage2': 'momentum',
     'arch_kullamagie_breakout': 'momentum',
     'arch_cundill_deep_value': 'deep_value',
+    'arch_biotech_deep_value': 'deep_value',
     # Lynch / screen value
     'arch_lynch_reward': 'lynch_screen', 'arch_lynch_pegy': 'lynch_screen',
     'arch_lynch_evgy': 'lynch_screen', 'arch_qarp': 'lynch_screen',

@@ -73,6 +73,7 @@ ARCHETYPE_LABELS = {
     'arch_weinstein_stage2': 'Weinstein Stage 2',
     'arch_kullamagie_breakout': 'Kullamagi Breakout',
     'arch_cundill_deep_value': 'Cundill Deep Value',
+    'arch_biotech_deep_value': 'Biotech Deep Value (below cash)',
     'arch_low_sbc_quality': 'Low-SBC Quality',
     'arch_tax_efficient': 'Tax Efficient',
     'arch_strong_coverage': 'Strong Coverage',
