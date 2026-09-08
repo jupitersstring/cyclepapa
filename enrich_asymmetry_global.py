@@ -337,6 +337,34 @@ def main():
     except Exception as _e:
         print(f'  final gate: 52w refresh skipped ({_e})', file=sys.stderr)
 
+    # Final data-integrity sanitizers (apply_ticker_yf re-fetches raw Yahoo
+    # values that bypass the derive-layer guards — these caught 291 impossible
+    # FCF yields, 35 zero/neg market caps, 13 absurd div yields on 2026-09-08).
+    _fy = pd.to_numeric(df.get('fcf_yield'), errors='coerce')
+    df['fcf_yield'] = _fy.where(_fy <= 1.0)                      # >100% = ADR fx mismatch
+    _dy = pd.to_numeric(df.get('dividend_yield'), errors='coerce')
+    df['dividend_yield'] = _dy.where(_dy <= 0.40)                # >40% = stale/preferred
+    _mc = pd.to_numeric(df.get('market_cap_usd'), errors='coerce')
+    _pr = pd.to_numeric(df.get('price'), errors='coerce')
+    _bad_scale = (_mc <= 0) | (_pr <= 0)
+    for _c in ('market_cap_usd', 'market_cap', 'price'):
+        if _c in df.columns:
+            df.loc[_bad_scale.fillna(False), _c] = _np.nan
+    if _bad_scale.sum():
+        print(f'  final gate: nulled scale on {int(_bad_scale.sum())} '
+              f'zero/neg mcap-or-price rows', file=sys.stderr)
+
+    # 52w flag consistency: after refreshing pct_off_52w_high above, a stale
+    # high_52w_abs flag can disagree with the fresh percentage — turn the flag
+    # off where it now contradicts (>10% below high).
+    if 'high_52w_abs' in df.columns and 'pct_off_52w_high' in df.columns:
+        _hi = pd.to_numeric(df['high_52w_abs'], errors='coerce')
+        _offc = pd.to_numeric(df['pct_off_52w_high'], errors='coerce')
+        _clash = (_hi == 1) & (_offc < -0.10)
+        for _fc in ('high_52w_abs', 'high_52w_both'):
+            if _fc in df.columns:
+                df.loc[_clash.fillna(False), _fc] = 0
+
     if 'name' in df.columns:
         df['name'] = df['name'].astype(str).str.replace('\xa0', ' ', regex=False)
 

@@ -312,37 +312,62 @@ def _integrity(t, g):
                   minted == 0,
                   f"{int(minted)} .L rows with mcap == price*shares (pence)")
 
-        fy = n(t, "fcf_yield")
+        # NOTE: these integrity checks read the MASTER g (which carries the
+        # fundamentals). archetype_tags.csv `t` lacks fcf_yield/ev_ebitda/
+        # sector, so reading t made the checks pass vacuously (fixed 2026-09-08).
+        fy = n(g, "fcf_yield")
         bad_fy = (fy > 1.0).sum()
         check("integrity: no impossible FCF yields (>100% — ADR home-currency mismatch)",
               bad_fy == 0, f"{int(bad_fy)} rows with fcf_yield > 1.0")
         # 52w self-consistency: a row flagged AT its 52w high must not
         # display a deeply negative pct_off_52w_high (stale-quote leak)
-        if "high_52w_abs" in t.columns and "pct_off_52w_high" in t.columns:
-            _hi = n(t, "high_52w_abs")
-            _off = n(t, "pct_off_52w_high")
+        if "high_52w_abs" in g.columns and "pct_off_52w_high" in g.columns:
+            _hi = n(g, "high_52w_abs")
+            _off = n(g, "pct_off_52w_high")
             clash = ((_hi == 1) & (_off < -0.10)).sum()
             check("integrity: 52w flags agree with displayed pct_off_52w_high",
                   clash == 0, f"{int(clash)} rows flagged at-high but showing <-10% off")
 
         # Operating value/quality archetypes must exclude Financials/REITs
-        # (their EV/net-cash/margin legs are meaningless there).
-        if "arch_negative_ev_value" in t.columns and "sector" in t.columns:
-            _secl = t["sector"].fillna("").astype(str).str.lower()
-            _finre = _secl.str.contains("financ") | _secl.str.contains("real estate")
-            leak = ((n(t, "arch_negative_ev_value") == 1) & _finre).sum()
-            check("integrity: operating value archetypes exclude Financials/REITs",
-                  leak == 0, f"{int(leak)} financials/REITs in arch_negative_ev_value")
+        # (EV/net-cash/margin legs meaningless there). arch cols live in t,
+        # sector in g — map sector onto t by symbol.
+        if "arch_negative_ev_value" in t.columns and "symbol" in t.columns \
+                and "sector" in g.columns:
+            _secmap = g.drop_duplicates("symbol").set_index("symbol")["sector"]
+            _tsec = t["symbol"].map(_secmap).fillna("").astype(str).str.lower()
+            _finre = (_tsec.str.contains("financ") | _tsec.str.contains("real estate")
+                      | _tsec.str.contains("utilit"))
+            for _ac in ("arch_negative_ev_value", "arch_tangible_value",
+                        "arch_oak_asset_floor", "arch_strong_coverage"):
+                if _ac in t.columns:
+                    leak = ((n(t, _ac) == 1) & _finre).sum()
+                    check(f"integrity: {_ac} excludes Financials/REITs/Utilities",
+                          leak == 0, f"{int(leak)} financials/REITs/utilities in {_ac}")
 
-        # ev_ebitda must never be positive for a negative-EBITDA firm
-        # (a cheap multiple on a loss-maker fools every cheapness gate).
-        if "ev_ebitda" in t.columns and "ebitda_ttm" in t.columns:
-            _eve = n(t, "ev_ebitda"); _ebt = n(t, "ebitda_ttm")
+        # ev_ebitda must never be positive for a negative-EBITDA firm.
+        if "ev_ebitda" in g.columns and "ebitda_ttm" in g.columns:
+            _eve = n(g, "ev_ebitda"); _ebt = n(g, "ebitda_ttm")
             flip = ((_eve > 0) & (_ebt < 0)).sum()
             check("integrity: no positive EV/EBITDA on negative EBITDA",
                   flip == 0, f"{int(flip)} loss-makers with a cheap-looking ev_ebitda")
 
-        dy = n(t, "dividend_yield")
+        # No non-common security (preferred/warrant/unit) should carry an
+        # archetype flag — their P/E, book, yields belong to the parent.
+        if "symbol" in t.columns and "archetype_count" in t.columns:
+            _s = t["symbol"].astype(str)
+            _ncmask = (_s.str.match(r"^[A-Z]{1,5}-P[A-Z]?$")
+                       | _s.str.match(r"^[A-Z]{1,5}[-.](?:WT|WS|U|UN|R|RT)$"))
+            nc_fire = ((_ncmask) & (n(t, "archetype_count") > 0)).sum()
+            check("integrity: no archetype flags on preferred/warrant/unit lines",
+                  nc_fire == 0, f"{int(nc_fire)} non-common securities firing archetypes")
+
+        # No zero/negative market cap or price in the ranked universe.
+        _mc = n(g, "market_cap_usd"); _pr = n(g, "price")
+        bad_scale = ((_mc <= 0) | (_pr <= 0)).sum()
+        check("integrity: no zero/negative market cap or price",
+              bad_scale == 0, f"{int(bad_scale)} rows with mcap<=0 or price<=0")
+
+        dy = n(g, "dividend_yield")
         bad_dy = (dy > 0.40).sum()
         check("integrity: no absurd dividend yields (>40% — stale price / preferred artifacts)",
               bad_dy == 0, f"{int(bad_dy)} rows with dividend_yield > 0.40")

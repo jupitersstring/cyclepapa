@@ -2537,6 +2537,32 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_lynch_reward': 'LynchReward-YearsInOne',
         'arch_analyst_awakening': 'AnalystAwakening-52wHigh',
     }
+    # ===== NON-COMMON SECURITY SCRUB (audit re-check 2026-09-08) =====
+    # Preferred shares, warrants, units and rights are NOT common equity —
+    # their P/E, book value, capital-return yield etc. belong to the parent,
+    # so they were firing equity value/quality/capital screens (467 pref + 77
+    # warrant/unit; e.g. BAC preferreds in Financials-Value). Zero EVERY
+    # archetype flag for them at the source (the books' display-dedup already
+    # hid them, but this makes the flags and counts honest).
+    _sym_nc = df['symbol'].astype(str)
+    _nm_nc = df['name'].astype(str) if 'name' in df.columns else pd.Series('', index=df.index)
+    _is_noncommon = (
+        _sym_nc.str.match(r'^[A-Z]{1,5}-P[A-Z]?$')
+        | _sym_nc.str.match(r'^[A-Z]{1,5}[-.](?:WT|WS|U|UN|R|RT)$')
+        | _nm_nc.str.contains(r'preferred|pfd| pref |depositary|% notes|perpetual|warrant',
+                              case=False, regex=True)
+    ).fillna(False)
+    if _is_noncommon.any():
+        _gated_scores = ['tenbagger_score', 'tenbagger_implied_return',
+                         'evsales_derate_score', 'evsales_derate_gap',
+                         'lynch_reward_score', 'lynch_leg_max', 'lynch_rank',
+                         'lynch_exceptional_leg', 'analyst_awakening_score',
+                         'seg_inflect_score']
+        _scrub_cols = arch_cols + [c for c in _gated_scores if c in df.columns]
+        df.loc[_is_noncommon.values, _scrub_cols] = 0
+        print(f'  scrubbed archetype flags + gated scores on '
+              f'{int(_is_noncommon.sum())} non-common securities', file=sys.stderr)
+
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(
         lambda r: ', '.join(pretty[c] for c in arch_cols if r[c] == 1),
