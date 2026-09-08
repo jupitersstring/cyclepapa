@@ -2815,6 +2815,39 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         print(f'  scrubbed {int(_is_clinical_biotech.sum())} clinical-stage '
               f'biotech from fundamental archetypes', file=sys.stderr)
 
+    # ===== SEGMENT SURVIVABILITY SCRUB: a hidden-engine / segment-value
+    # thesis needs a SURVIVING company. Zero the segment archetypes for double
+    # cash-burners (EBITDA<0 AND FCF<0 AND CFO<=0). =====
+    _srv_eb = pd.to_numeric(df.get('ebitda_ttm'), errors='coerce')
+    _srv_fcf = pd.to_numeric(df.get('fcf_ttm'), errors='coerce')
+    _srv_cfo = pd.to_numeric(df.get('cfo_ttm'), errors='coerce')
+    _not_survivable = ((_srv_eb < 0) & (_srv_fcf < 0)
+                       & ~(_srv_cfo > 0)).fillna(False)
+    _segment_arch = [c for c in ['arch_geographic_global', 'arch_fastest_segment',
+                     'arch_concentrated_segments', 'arch_diversified_segments',
+                     'arch_reinvest_inflect'] if c in df.columns]
+    _segment_scrub = _segment_arch + [c for c in ('seg_inflect_score',)
+                                      if c in df.columns]
+    if _not_survivable.any():
+        df.loc[_not_survivable.values, _segment_scrub] = 0
+        print(f'  scrubbed {int(_not_survivable.sum())} cash-burners from '
+              f'segment/reinvest archetypes', file=sys.stderr)
+
+    # ===== DURABILITY BASE-EFFECT SCRUB: a >500% single-year revenue spike
+    # (M&A / one-off) contradicts a multi-year DURABILITY claim — it distorts
+    # the "lindy" averages. Base-effect stays fine for GROWTH archetypes; here
+    # it disqualifies the durability/consistency ones only. =====
+    _spike = (pd.to_numeric(df.get('rev_yoy'), errors='coerce') > 5.0).fillna(False)
+    _durable_arch = [c for c in ['arch_lindy_growth', 'arch_lindy_margin',
+                     'arch_lindy_fcf', 'arch_tax_efficient', 'arch_low_sbc_quality',
+                     'arch_durable_reinvestment', 'arch_cash_quality',
+                     'arch_double_inflect', 'arch_quiet_compounder',
+                     'arch_owner_operator'] if c in df.columns]
+    if _spike.any():
+        df.loc[_spike.values, _durable_arch] = 0
+        print(f'  scrubbed {int(_spike.sum())} recent-spike names from '
+              f'durability archetypes', file=sys.stderr)
+
     df['archetype_count'] = df[arch_cols].sum(axis=1)
     df['archetype_tags_str'] = df[arch_cols].apply(
         lambda r: ', '.join(pretty[c] for c in arch_cols if r[c] == 1),
