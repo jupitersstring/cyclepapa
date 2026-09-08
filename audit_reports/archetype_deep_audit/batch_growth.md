@@ -104,14 +104,14 @@ growth makes a 10x total return arithmetically credible on a sane sales multiple
 **Worst false-positive pattern:** **base-effect growth + near-zero-P/S
 artifacts.** 774 firers (19%) have rev<$20M and **712 (18%) have rev_yoy>100%**.
 A shell restarting looks like the world's best compounder: PADAMCO.BO (rev
-$6.5M, rev_yoy 13,497%), AVIVA.BO (rev_yoy 2,562%), MBO.V (1,630%), FLCX/flooidCX
-(rev_yoy 1,679%, **p_s 0.002** — a near-zero-P/S artifact that makes implied_10x
-explode), GXAI/Gaxos.AI (rev_yoy 922%, op_margin −249%). The g10 cap at 0.50 and
+$6.5M, rev grew ~13,500x off a shell base), AVIVA.BO (~2,563x), MBO.V (~1,631x), FLCX/flooidCX
+(rev grew ~1,679x, **p_s 0.002** — a near-zero-P/S artifact that makes implied_10x
+explode), GXAI/Gaxos.AI (rev grew ~9.2x, op_margin −249%). The g10 cap at 0.50 and
 the `_g_confirmed` two-base rule do NOT help when both rev_yoy and rev_3y are
 inflated by the same crushed base. **Sector contamination:** 525 Financials
 fire a P/S-based 10x rule that is meaningless for banks/REITs/holdcos —
-ARR/Armour Residential REIT fired with **negative revenue (−$128k)** and
-rev_yoy 926%.
+ARR/Armour Residential REIT fired with **negative revenue (−$128k)** and a
+meaningless rev_yoy print (926 as a fraction, off a negative base).
 **Robustness proposal:** (1) revenue base floor `revenue_ttm >= 25e6`;
 (2) organic-growth guard — cap the per-base growth used in g10 at e.g. 60% and
 require rev_3y_cagr (multi-period, base-effect-resistant) itself >= 0.15 rather
@@ -131,8 +131,8 @@ growth — with improving operating margins, at/near profitability.
 **Worst false-positive pattern:** the **PSG gate is gamed by base effects** — a
 crushed-base revenue explosion makes psg = P/S ÷ growth% tiny and thus "cheap
 relative to growth," so the artifact actively passes the discriminating gate.
-223 firers have rev<$10M; 209 have rev_yoy>100%: AVIVA.BO (rev_yoy 2,562%,
-psg 0.024), MBO.V (1,630%, psg 0.008), CONSTRONICS.BO (1,159%, psg 0.011) —
+223 firers have rev<$10M; 209 have rev_yoy>100%: AVIVA.BO (rev grew ~2,563x,
+psg 0.024), MBO.V (~1,631x, psg 0.008), CONSTRONICS.BO (~1,159x, psg 0.011) —
 all tiny Indian BSE / micro names. Separately, `near_profit` (op_margin>=−0.15
 OR ebitda>0 OR just-crossed) still admits **275 firers with op_margin<−5%**
 (e.g. KAMANWALA −58%, BioStem −145%, WITHTECH −26%) — "cheap because melting."
@@ -153,9 +153,9 @@ growth (capital-structure-neutral PSG analog).
 **Rule gist:** `mcap<20e9 & evsg in [0.002,0.05] (or psg analog) & rev_yoy>=0.20
 & 0.15<=ev_sales<=4.0 & light quality`.
 **Worst false-positive pattern:** identical EVSG base-effect gaming — 201 firers
-have rev<$10M; 382 (20%) have rev_yoy>100%. PADAMCO.BO (rev_yoy 13,497%, evsg
-0.0187), AVIVA.BO (2,562%, evsg 0.018), KAKTEX.BO (2,371%, evsg 0.015), FLCX
-(1,679%, evsg 0.006) all sit inside the "exceptional" window BECAUSE growth is
+have rev<$10M; 382 (20%) have rev_yoy>100%. PADAMCO.BO (rev grew ~13,500x, evsg
+0.0187), AVIVA.BO (~2,563x, evsg 0.018), KAKTEX.BO (~2,371x, evsg 0.015), FLCX
+(~1,679x, evsg 0.006) all sit inside the "exceptional" window BECAUSE growth is
 astronomical. The "light quality gate" (`ebitda>0 | fcf>0 | op_margin>=−0.15`)
 still lets **346 firers with op_margin<0** through, plus 194 Financials.
 **Robustness proposal:** same as cheap_sales_scaler — revenue floor, cap the
@@ -225,4 +225,167 @@ recent pullback from a higher high rather than raw 12m momentum; (3) exclude
 Financials; (4) add a revenue base floor.
 
 ---
+
+## arch_wolf_turnaround (N=1,328)
+
+**Spirit:** a microcap loss-maker crossing into the black while still growing,
+bought cheap.
+**Rule gist:** `10e6<=mcap<=200e6 & (a profit/cash first-positive or inflection)
+& emd>=0 & rev_yoy>=0 & rev_present & wolf_cheap_entry`.
+**Worst false-positive pattern:** base-effect "turnarounds" and Financials. 107
+firers rev<$10M; PETZ/Tdh Holdings (rev $1.25M, rev grew ~747x), ALFREDHE.BO (rev
+$1.1M, 129%). **197 Financials (15%)** where a first-positive EBITDA/NI print off
+bank/insurer accounting is meaningless (MEC.AX Morphic Ethical Equities Fund — a
+closed-end fund flagged as a "turnaround"). The `rev_yoy>=0` floor accepts flat
+revenue, so the "still growing" spirit isn't enforced.
+**Robustness proposal:** revenue base floor `revenue_ttm>=15e6`; require genuine
+growth `rev_yoy>=0.05` not just >=0; exclude Financials/closed-end funds;
+require the first-positive print to be on operating cash (cfo/fcf), not
+accounting NI, to avoid one-off gains.
+
+## arch_wolf_trifecta (N=940)
+
+**Spirit:** the Wolf Trifecta — double-digit revenue growth + improving margins +
+operating leverage, bought at an undemanding EV/sales.
+**Rule gist:** `10e6<=mcap<=300e6 & rev_yoy>=0.15 & oper_lev_any & (cfo|fcf>0) &
+0<ev_sales<3 & wolf_cheap_entry & low_sbc`.
+**Worst false-positive pattern:** the tightest wolf gate (cfo/fcf>0 + ev_sales<3
+does real work), but still 69 firers rev_yoy>100% (base-effect, e.g. SCAGRO.BO
+rev $4.7M, rev grew ~65x; JPOLYINVST.BO rev $1.2M, ~48x) and
+93 Financials (TETAA/Teton Advisors). `oper_lev_any` is a near-tautology so the
+"operating leverage" leg carries little information.
+**Robustness proposal:** revenue base floor; require `oper_lev_score>=0.3` (a
+confirmed multi-angle move) not `oper_lev_any`; cap rev_yoy contribution or use
+rev_3y_cagr; exclude Financials.
+
+## arch_wolf_value_catalyst (N=760)
+
+**Spirit:** a growing, cash-generative microcap with a fortress (net-cash)
+balance sheet at a cheap FCF yield.
+**Rule gist:** `mcap<200e6 & (net_cash_pct>=0.20 | cash_gt_ev | ncav>=0.50) &
+(rev_yoy>=0.10 | rev_growth_score>=0.5) & cfo>0 & (fcf_yield>=0.08 | ev_ebitda<6)`.
+**Worst false-positive pattern:** **127 Financials/holdcos (17%)** where "net
+cash + cheap" describes the entire balance sheet with no operating catalyst —
+Elysee Development Corp (financial shell), Ramsons Projects, ObjectOne (rev
+$1.6M, rev grew ~210x, base effect). The net-cash screen structurally selects
+investment holdcos and cash-shells, the opposite of the intended operating
+microcap.
+**Robustness proposal:** exclude Financials/Real Estate holdcos; revenue base
+floor; require the cash to sit on a real operating business (positive op_margin
+or a revenue floor), not a shell.
+
+## arch_wolf_emerging (N=7) — clean
+
+Hard-gated to cannabis/hemp/tobacco names with positive operating cash flow,
+clean SBC, and a cheap multiple. Only 7 firers, tightly specified per the HASH
+lesson. No action.
+
+## arch_tenbagger_credible (N=2,157)
+
+**Spirit:** arch_tenbagger_path PLUS owner-cash reality and share-count stability
+(the Flywire lesson).
+**Worst false-positive pattern:** the credibility gate (real_owner_cash +
+stable_share_count) filters cash-burners but does NOT touch the inherited
+base-effect and sector flaws — **287 firers rev<$20M, 234 (11%) rev_yoy>100%,
+265 Financials**: OONE.BO (rev $1.6M, rev grew ~210x), RGIL.BO (rev $3.5M, ~87x),
+JPOLYINVST.BO (financial holdco, rev $1.2M, ~48x). A profitable tiny shell
+with no dilution still passes as a "credible tenbagger."
+**Robustness proposal:** inherit all tenbagger_path fixes (revenue floor, cap
+per-base growth / require rev_3y_cagr, exclude Financials, P/S lower bound). The
+cash/dilution gate is a good addition but insufficient alone.
+
+## arch_midcap_garp (N=1,504) — mostly sound
+
+The mcap>=2e9 floor eliminates base-effect micro noise (only 1 firer rev<$20M).
+Two residual issues: **33 firers rev_yoy>100% are lumpy-revenue biotech**
+(BioArctic rev grew ~4.5x, Zealand Pharma ~147x, Lakefront Biotherapeutics) where
+the `_roiic_proxy` fires off roe/ebitda_margin and licensing-milestone revenue is
+read as growth; and **133 Financials** where the ROE-based reinvestment-quality
+proxy conflates balance-sheet leverage with genuine incremental returns.
+**Robustness proposal:** exclude pre-commercial Health Care (or require
+`revenue durable / rev_3y_cagr` not a single lumpy yoy); for Financials, don't
+let a raw ROE stand in for ROIIC quality. Otherwise the cleanest of the batch.
+
+## arch_levered_inflection (N=544) — mostly sound
+
+The `ebitda_ttm>0 & (fcf|cfo>0)` survivability gate does real work — only 9
+firers have negative equity, and the negative-equity names (AREN, etc.) are
+genuine levered stubs, which is the intent. Two minor leaks: **69 firers (13%)
+have ebitda_margin_delta_yoy>20pp** (one-off swings passing `strong_op_improvement`
+via the `ebitda_yoy>=0.15` leg on a small EBITDA base) and 105 have op_margin<0
+(positive EBITDA, heavy D&A — acceptable).
+**Robustness proposal:** cap the margin/ebitda_yoy improvement leg to a plausible
+band and require it confirmed across >=2 measures (`oper_lev_score>=0.3`), so a
+single-year EBITDA jump off a depressed base doesn't certify a "deleveraging
+inflection." Low priority.
+
+## ROIIC family — arch_roic_inflect (254), arch_double_inflect (58), arch_reinvest_inflect (129), arch_capital_light_pivot (250), arch_cheap_per_roiic (488)
+
+EDGAR/US-only, low counts, and mostly reasonable (median roiic_lindy is healthy:
+reinvest 0.18, cheap_per_roiic 0.32, capital_light 0.13). The shared weakness is
+**ROIIC / ROIC-crossing artifacts on tiny or volatile invested capital, plus
+biotech contamination:**
+- **arch_double_inflect (worst of the five):** requires NOPAT-ROIC AND cash-ROIC
+  both crossing zero from below in a *single* latest year — a one-year double
+  zero-cross on a small capital base. **14 of 58 (24%) have |roiic_lindy|>2**
+  (e.g. KROS/Keros Therapeutics roiic_lindy 7.94 = 794%) and **11 of 58 are
+  Health Care** (Vaxart, Vertex, Arrowhead, ImmuCell) — clinical biotech whose
+  "inflection" is a lumpy collaboration payment, not durable reinvestment.
+- **arch_roic_inflect:** 48/254 (19%) op_margin<0, 29 biotech — a ROIC zero-cross
+  in a pre-commercial pharma is a milestone blip.
+**Robustness proposal:** (1) require a minimum invested-capital base (drop names
+whose |roiic| exceeds a sane cap, e.g. >1.0, as denominator artifacts);
+(2) require the inflection to persist (roiic_lindy>0 AND a positive latest, or
+>=2 consecutive positive years — `n_yrs_positive_roic>=2`) rather than a single
+zero-cross year; (3) exclude pre-revenue/pre-profit Health Care from
+"reinvestment compounder" archetypes. reinvest_inflect, capital_light_pivot and
+cheap_per_roiic already require positive roiic_lindy and asset growth / years of
+positive ROIC and are largely clean — apply only the tiny-capital cap and the
+biotech guard.
+
+---
+
+## TOP 5 HIGHEST-IMPACT FIXES (across the batch)
+
+1. **Kill base-effect revenue explosions with a revenue base floor + a
+   base-effect-resistant growth measure.** A single `rev_yoy` of hundreds–
+   thousands of percent from sub-$10M revenue is the dominant false positive
+   across tenbagger_path (712 firers >100% yoy), cheap_sales_scaler (209),
+   exceptional_evsg (382), fixed_cost_demand_shock, and every wolf variant.
+   Add `revenue_ttm >= ~20-25M` and cap/replace the growth input with
+   `rev_3y_cagr` (or a capped yoy) wherever a growth threshold or a PSG/EVSG
+   ratio is used. This one fix removes ~15-20% of firers from the five
+   highest-count growth rules.
+
+2. **Fix the PSG/EVSG denominator so a crushed base can't manufacture
+   "cheapness."** In cheap_sales_scaler, exceptional_evsg (and tenbagger),
+   `psg = P/S ÷ growth%` and `evsg` go tiny precisely because growth is a
+   base-effect artifact — the artifact PASSES the discriminating gate. Compute
+   the growth% in these ratios from durable multi-period growth, not a single
+   explosive yoy.
+
+3. **Cap and sanity-bound the margin/operating-leverage legs.** In
+   fixed_cost_demand_shock (732 firers |margin delta|>20pp, 230 with
+   ebitda_margin>60%) and regime_cyclical (555 firers, 107) and levered_inflection,
+   read a >20pp one-off swing or a >100% ebitda_margin (holdco/non-operating) as
+   an artifact, not "operating leverage." Bound
+   `ebitda_margin_delta_yoy.between(0.02,0.20)`, require `0<ebitda_margin<0.5`,
+   and require rising revenue to accompany the margin move. Replace the
+   near-tautological `oper_lev_any` with `oper_lev_score>=0.3` in the growth rules.
+
+4. **Add a sector guard (exclude Financials/Real Estate from P/S-, EV/Sales- and
+   FCF-based rules; exclude pre-revenue biotech from "quality/compounder"
+   rules).** Financials contaminate tenbagger (525), tenbagger_credible (265),
+   wolf_seal (520), wolf_turnaround (197), growth_algo (171), exceptional_evsg
+   (194); a REIT (ARR) fired tenbagger with negative revenue. Biotech
+   contaminates double_inflect, roic_inflect, midcap_garp, bab_low_beta.
+
+5. **Repair the BAB beta artifact.** 628 bab_low_beta and 623 bab_multibagger
+   firers have raw `yf_beta <= 0` (another ~1,600 with 0<beta<0.3), an
+   illiquidity/stale-price artifact that the shrinkage (→0.40) launders into a
+   "genuine low-beta quality" pass, concentrated in illiquid EM markets. Gate on
+   a liquidity floor and treat non-positive/near-zero raw beta as unusable
+   (`yf_beta >= 0.20`, or require a minimum # of return observations) rather than
+   rewarding it.
+
 
