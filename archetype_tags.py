@@ -2746,7 +2746,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                      'arch_durable_reinvestment', 'arch_tax_efficient',
                      'arch_large_cap_quality', 'arch_capital_discipline',
                      'arch_owner_operator', 'arch_quiet_compounder',
-                     'arch_wolf_compounder', 'arch_strong_coverage'] if c in df.columns]
+                     'arch_wolf_compounder', 'arch_strong_coverage',
+                     'arch_oak_deep_value', 'arch_dead_option',
+                     'arch_cheap_per_roiic', 'arch_reinvest_inflect',
+                     'arch_roic_inflect', 'arch_double_inflect',
+                     'arch_midcap_garp'] if c in df.columns]
     if _is_prerev_bio.any():
         df.loc[_is_prerev_bio.values, _quality_arch] = 0
         print(f'  scrubbed {int(_is_prerev_bio.sum())} pre-revenue biotech from '

@@ -1,4 +1,4 @@
-METHODOLOGY AUDIT — 54 checks, 0 FAIL, 0 WARN
+METHODOLOGY AUDIT — 55 checks, 0 FAIL, 0 WARN
   PASS  units: dividend_yield is a fraction  — median |dividend_yield| = 0.028 (fraction-scale cap 1.5)
   PASS  units: fcf_yield is a fraction  — median |fcf_yield| = 0.070 (fraction-scale cap 3.0)
   PASS  units: analyst_target_upside_pct is a fraction  — median |analyst_target_upside_pct| = 0.261 (fraction-scale cap 5.0)
@@ -9,7 +9,7 @@ METHODOLOGY AUDIT — 54 checks, 0 FAIL, 0 WARN
   PASS  arch_oak_deep_value: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 50% depth
   PASS  arch_levered_inflection: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 25% depth
   PASS  arch_asymmetric_assembly: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 35% depth
-  PASS  evsales_derating: median firer gap is compressive  — median gap 0.348
+  PASS  evsales_derating: median firer gap is compressive  — median gap 0.345
   PASS  evsales_derating: expanding-multiple firers are the minority  — 1.9% of firers have a negative 1y gap (allowed only when the 3y base compresses)
   PASS  tenbagger: implied 10x closes for every firer  — 0 firers below 10x
   PASS  tenbagger: Credible is a subset of Path
@@ -38,6 +38,7 @@ METHODOLOGY AUDIT — 54 checks, 0 FAIL, 0 WARN
   PASS  integrity: arch_strong_coverage excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities in arch_strong_coverage
   PASS  integrity: no positive EV/EBITDA on negative EBITDA  — 0 loss-makers with a cheap-looking ev_ebitda
   PASS  integrity: no archetype flags on sub-$2M micro-shells  — 0 sub-$2M shells firing archetypes
+  PASS  integrity: no base-effect revenue growth (>500% single-year)  — 0 rows with rev_yoy>500%
   PASS  integrity: no absurd ROCE (>150% = one-off/tiny-base)  — 0 rows with roce>1.5
   PASS  integrity: no archetype flags on preferred/warrant/unit lines  — 0 non-common securities firing archetypes
   PASS  integrity: no impossible margins (gross>1.0, ebitda>1.2)  — 0 gross>1.0, 0 ebitda>1.2

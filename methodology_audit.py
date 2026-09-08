@@ -358,6 +358,12 @@ def _integrity(t, g):
             shell_fire = ((_tmc > 0) & (_tmc < 2e6) & (n(t, "archetype_count") > 0)).sum()
             check("integrity: no archetype flags on sub-$2M micro-shells",
                   shell_fire == 0, f"{int(shell_fire)} sub-$2M shells firing archetypes")
+        # No base-effect revenue growth (>500% single-year = M&A/one-off).
+        _ryy = n(g, "rev_yoy")
+        bad_ry = (_ryy > 5.0).sum()
+        check("integrity: no base-effect revenue growth (>500% single-year)",
+              bad_ry == 0, f"{int(bad_ry)} rows with rev_yoy>500%")
+
         # No absurd ROCE/ROIC (>150% = one-off/tiny-base artifact).
         _rce = n(g, "roce")
         bad_rce = (_rce > 1.5).sum()
