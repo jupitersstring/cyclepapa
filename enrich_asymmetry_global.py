@@ -360,6 +360,24 @@ def main():
     if 'p_tb' in df.columns:
         _ptb = pd.to_numeric(df['p_tb'], errors='coerce')
         df['p_tb'] = _ptb.where(~((_ptb > 0) & (_ptb < 0.05)))
+    # Sibling ratio artifacts (same ADR/units/pass-through class as pb):
+    # P/E<0.5 is impossible for sustainable earnings; a sub-0.02 sales
+    # multiple isn't genuine cheapness (units error or commodity pass-through).
+    _pe = pd.to_numeric(df.get('p_e'), errors='coerce')
+    df['p_e'] = _pe.where(~((_pe > 0) & (_pe < 0.5)))
+    _ps = pd.to_numeric(df.get('p_s'), errors='coerce')
+    df['p_s'] = _ps.where(~((_ps > 0) & (_ps < 0.02)))
+    _evs = pd.to_numeric(df.get('ev_sales'), errors='coerce')
+    df['ev_sales'] = _evs.where(~((_evs > 0) & (_evs < 0.02)))
+    # Impossible margins: gross margin CANNOT exceed revenue (>1.0); an
+    # ebitda/net margin >1.2 is non-operating income (one-off gains, holdco
+    # investment income) masquerading as an operating margin.
+    _gm = pd.to_numeric(df.get('gross_margin'), errors='coerce')
+    df['gross_margin'] = _gm.where(~(_gm > 1.0))
+    for _mc_ in ('ebitda_margin', 'net_margin', 'pretax_margin'):
+        if _mc_ in df.columns:
+            _mv = pd.to_numeric(df[_mc_], errors='coerce')
+            df[_mc_] = _mv.where(~(_mv > 1.2))
 
     _mc = pd.to_numeric(df.get('market_cap_usd'), errors='coerce')
     _pr = pd.to_numeric(df.get('price'), errors='coerce')

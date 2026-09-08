@@ -361,6 +361,20 @@ def _integrity(t, g):
             check("integrity: no archetype flags on preferred/warrant/unit lines",
                   nc_fire == 0, f"{int(nc_fire)} non-common securities firing archetypes")
 
+        # No impossible margins (gross>100%, or ebitda/net >120% = one-off).
+        _gm = n(g, "gross_margin"); _em = n(g, "ebitda_margin")
+        bad_m = (_gm > 1.0).sum() + (_em > 1.2).sum()
+        check("integrity: no impossible margins (gross>1.0, ebitda>1.2)",
+              bad_m == 0, f"{int((_gm>1.0).sum())} gross>1.0, {int((_em>1.2).sum())} ebitda>1.2")
+
+        # No impossible P/E (<0.5x = earn back whole mcap in <6mo) or
+        # sub-0.02 sales multiple (units/pass-through, not real cheapness).
+        _pe = n(g, "p_e"); _ps = n(g, "p_s")
+        bad_pe = ((_pe > 0) & (_pe < 0.5)).sum()
+        bad_ps = ((_ps > 0) & (_ps < 0.02)).sum()
+        check("integrity: no impossible P/E (<0.5) or sub-0.02 sales multiple",
+              (bad_pe + bad_ps) == 0, f"{int(bad_pe)} p_e<0.5, {int(bad_ps)} p_s<0.02")
+
         # No absurd P/B (<0.05x book = ADR/units data artifact, not value).
         _pbc = n(g, "pb")
         bad_pb = ((_pbc > 0) & (_pbc < 0.05)).sum()
