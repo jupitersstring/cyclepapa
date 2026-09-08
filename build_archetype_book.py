@@ -65,6 +65,7 @@ ARCHETYPE_LABELS = {
     'arch_midcap_garp': 'Mid-Cap+ GARP / Quality',
     'arch_capital_light_pivot': 'Capital-Light Pivot',
     'arch_capital_returner': 'Capital Returner',
+    'arch_balance_sheet_return': 'Balance-Sheet Return / Cash-Rich',
     'arch_low_sbc_quality': 'Low-SBC Quality',
     'arch_tax_efficient': 'Tax Efficient',
     'arch_strong_coverage': 'Strong Coverage',

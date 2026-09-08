@@ -325,6 +325,14 @@ def _integrity(t, g):
             check("integrity: 52w flags agree with displayed pct_off_52w_high",
                   clash == 0, f"{int(clash)} rows flagged at-high but showing <-10% off")
 
+        # ev_ebitda must never be positive for a negative-EBITDA firm
+        # (a cheap multiple on a loss-maker fools every cheapness gate).
+        if "ev_ebitda" in t.columns and "ebitda_ttm" in t.columns:
+            _eve = n(t, "ev_ebitda"); _ebt = n(t, "ebitda_ttm")
+            flip = ((_eve > 0) & (_ebt < 0)).sum()
+            check("integrity: no positive EV/EBITDA on negative EBITDA",
+                  flip == 0, f"{int(flip)} loss-makers with a cheap-looking ev_ebitda")
+
         dy = n(t, "dividend_yield")
         bad_dy = (dy > 0.40).sum()
         check("integrity: no absurd dividend yields (>40% — stale price / preferred artifacts)",

@@ -316,6 +316,15 @@ def main():
     # genuine gap). Price ratios require a positive book/sales.
     ebitda_pos = ebitda.where(ebitda > 0)
     _fill('ev_ebitda', _safe_div(ev, ebitda_pos, den_must_be_positive=True))
+    # SANITIZE fetched multiples (not just the gap-fill): a source-provided
+    # ev_ebitda / ev_ebit is POSITIVE for negative-EBITDA/EBIT firms (the feed
+    # drops the sign), so 1,709 loss-makers read as ultra-cheap and fool every
+    # EV/EBITDA cheapness gate. Force the multiple to NaN wherever the
+    # denominator is not positive, regardless of where the value came from.
+    if 'ev_ebitda' in master.columns:
+        master['ev_ebitda'] = _to_num(master['ev_ebitda']).where(ebitda > 0)
+    if 'ev_ebit' in master.columns:
+        master['ev_ebit'] = _to_num(master['ev_ebit']).where(opinc > 0)
     _fill('ev_sales', _safe_div(ev, rev, den_must_be_positive=True))
     _fill('p_s', _safe_div(mcap, rev, den_must_be_positive=True))
     _fill('pb', _safe_div(mcap, equity, den_must_be_positive=True))

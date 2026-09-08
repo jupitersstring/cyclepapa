@@ -9,7 +9,7 @@ METHODOLOGY AUDIT — 41 checks, 0 FAIL, 0 WARN
   PASS  arch_oak_deep_value: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 50% depth
   PASS  arch_levered_inflection: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 25% depth
   PASS  arch_asymmetric_assembly: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 35% depth
-  PASS  evsales_derating: median firer gap is compressive  — median gap 0.404
+  PASS  evsales_derating: median firer gap is compressive  — median gap 0.414
   PASS  evsales_derating: expanding-multiple firers are the minority  — 1.7% of firers have a negative 1y gap (allowed only when the 3y base compresses)
   PASS  tenbagger: implied 10x closes for every firer  — 0 firers below 10x
   PASS  tenbagger: Credible is a subset of Path
@@ -18,14 +18,14 @@ METHODOLOGY AUDIT — 41 checks, 0 FAIL, 0 WARN
   PASS  52w: both == abs AND rel
   PASS  awakening: firers with a rating skew strong (<= 2.2)  — 93% of rated firers <= 2.2
   PASS  awakening: momentum-gated firers not extended (<= ~50%)  — 0 extended among the 289 momentum-gated firers
-  PASS  capital_returner: firers inside the 5-30% policy band (small tail = EDGAR-coalesced source not visible here)  — 133 outside on asym-only columns
+  PASS  capital_returner: firers inside the 5-30% policy band (small tail = EDGAR-coalesced source not visible here)  — 97 outside on asym-only columns
   PASS  strong_coverage: every firer has positive EBITDA  — 0 non-positive
   PASS  gating: tenbagger_score is 0 outside arch_tenbagger_path  — 0 non-firers with positive score
   PASS  gating: evsales_derate_score is 0 outside arch_evsales_derating  — 0 non-firers with positive score
   PASS  gating: lynch_reward_score is 0 outside arch_lynch_reward  — 0 non-firers with positive score
   PASS  gating: analyst_awakening_score is 0 outside arch_analyst_awakening  — 0 non-firers with positive score
   PASS  gating: seg_inflect_score is 0 outside arch_fastest_segment  — 0 non-firers with positive score
-  PASS  density: archetype_count_pct <= 1  — max 0.500
+  PASS  density: archetype_count_pct <= 1  — max 0.489
   PASS  units: insider_ownership_pct is a fraction (<= 1.05)  — 0 percent-scale stragglers
   PASS  integrity: lynch signal rows all match the header schema  — 0 ragged rows
   PASS  integrity: country benchmarks are live (<=62d old)  — stale/empty: []
