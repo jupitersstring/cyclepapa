@@ -231,6 +231,25 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     cash_gt_ev = s('cash_gt_ev_flag')
     net_cash_pct = s('net_cash_pct_mcap')
     insider = s('insider_ownership_pct')
+    # ===== SHARED ROBUSTNESS GUARDS (archetype audit 2026-09-08) =====
+    # (G1) Sector guard: Financials / REITs / Utilities break EV, net-cash,
+    # NCAV, margin, ROIC and coverage legs (deposits & float drive EV hugely
+    # negative; "net cash" is an investment portfolio; margins/ROIC/coverage
+    # aren't comparable). Rules for OPERATING businesses gate on is_operating;
+    # financials get their own book-value archetypes.
+    _ind_all = (df['industry'].fillna('').astype(str).str.lower()
+                if 'industry' in df.columns else pd.Series('', index=df.index))
+    _sec_l = sector.astype(str).str.lower()
+    is_financial = _sec_l.str.contains('financ')
+    is_reit = _sec_l.str.contains('real estate') | _ind_all.str.contains('reit')
+    is_utility = _sec_l.str.contains('utilit')
+    is_operating = ~(is_financial | is_reit | is_utility)
+    # (G2) Denominator-sanity clamps: cash > 100% of mcap for an OPERATING
+    # value thesis is a shell/holdco artifact; a real EBITDA margin sits in
+    # (0, 0.6) — above that is one-off asset-sale / non-operating income.
+    net_cash_pct_sane = net_cash_pct.where(net_cash_pct <= 1.0)
+    ebitda_margin_sane = ebitda_margin.where((ebitda_margin > 0)
+                                             & (ebitda_margin < 0.6))
     nde = s('net_debt_ebitda', 99.0)
     # Negative-EBITDA artifact guard applied AT FIRST DEFINITION (not 600
     # lines later): net_debt/EBITDA flips negative on negative EBITDA and
@@ -409,8 +428,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
 
     # ---------- Cluster E7: Discounted Vehicle ----------
     df['arch_discounted_vehicle'] = (
+        is_operating &                                   # (G1) exclude financials/REITs/utilities
         (pb > 0) & (pb < 0.85) &
-        ((cash_gt_ev > 0) | (net_cash_pct > 0.20)) &
+        ((cash_gt_ev > 0) | (net_cash_pct_sane > 0.20)) &  # (G2) drop >100%-of-mcap shells
         (mcap > 0) & (mcap < 2e9)   # mcap>0: missing mcap must not auto-pass the size gate
     ).astype(int)
 
@@ -418,13 +438,20 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # Proxy: founder/insider-aligned, lightly levered, durable margin, not
     # already re-rated.  We don't have a direct buyback signal in fundamentals
     # so this is a "compounder-pattern" proxy.
-    _own_aligned = ((insider >= 0.20) |
-                    (_ncol('shares_growth_3y') <= -0.01) |
-                    (_ncol('buyback_yield') >= 0.02))
+    # (G6) require a real capital-allocation ACTION (buyback / share shrink),
+    # OR pair high insider ownership with a genuine return gate — insider
+    # ownership alone is not capital discipline (91% passed on it before).
+    _action_leg = ((_ncol('shares_growth_3y') <= -0.01) |
+                   (_ncol('buyback_yield') >= 0.02))
+    _insider_plus_return = ((insider >= 0.20) &
+                            ((_ncol('roic_after_sbc') >= 0.10) |
+                             (fcf_yield > 0)))
+    _own_aligned = (_action_leg | _insider_plus_return)
     df['arch_capital_discipline'] = (
+        is_operating &                          # (G1) exclude financials/REITs/utilities
         _own_aligned &
         (nde <= 1.5) &
-        (ebitda_margin >= 0.05) &
+        (ebitda_margin_sane >= 0.05) &          # (G2) drop one-off >60% margins
         (price_yoy <= 0.30) &
         (yart_score >= 0.45)
     ).astype(int)
@@ -542,13 +569,19 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # I — Durable reinvestment: lindy ROIIC > 15% over a multi-cycle history.
     # The Mauboussin / Mayer compounder signature.
     df['arch_durable_reinvestment'] = (
-        (roiic_lindy > 0.15) & (asset_3y_cagr > 0.05)
+        (roic_lindy >= 0.10) &                       # (G3) positive base ROIC
+        (s('n_yrs_positive_roic', 0) >= 4) &         # (G3) require ROIC history
+        (roiic_lindy >= 0.15) & (roiic_lindy <= 1.0) &  # (G3) sane ROIIC band
+        (asset_3y_cagr > 0.05)
     ).fillna(False).astype(int)
 
     # J — Cash-confirmed reinvestment: cash ROIIC lindy > 12% (lower bar than
     # NOPAT because FCF includes capex outflows).
     df['arch_cash_reinvest'] = (
-        (cash_roiic_lindy > 0.12) & (asset_3y_cagr > 0.05)
+        (cash_roic_lindy >= 0.10) &                  # (G3) positive base cash ROIC
+        (s('n_yrs_positive_roic', 0) >= 4) &         # (G3) require ROIC history
+        (cash_roiic_lindy >= 0.12) & (cash_roiic_lindy <= 1.0) &  # (G3) sane band
+        (asset_3y_cagr > 0.05)
     ).fillna(False).astype(int)
 
     # K — ROIC inflection: latest ROIC crossed zero from below AND cash ROIC
@@ -568,6 +601,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # M — Tangible-value floor: P/TB < 0.7 with tangible equity > 50% of book
     # equity (real assets, not goodwill).
     df['arch_tangible_value'] = (
+        is_operating &                          # (G1) exclude financials/REITs/utilities
         (p_tb > 0) & (p_tb < 0.7) & (tangible_equity_pct > 0.50)
     ).fillna(False).astype(int)
 
@@ -608,9 +642,16 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # FCF positive 4 of 5 AND ROIC positive 4 of 5. The Mayer / Mauboussin
     # owner-operator pattern - reinvesting at high returns without
     # constantly tapping equity holders.
+    # (G10) reverse-split guard: a one-period share-count drop < -30% is a
+    # split / restructuring, not a buyback — it only counts as "no dilution"
+    # when corroborated by a real buyback yield.
+    _buyback_corrob = (_ncol('buyback_yield') > 0)
+    _not_split_3y = (shares_growth_3y >= -0.30) | _buyback_corrob
+    _not_split_yoy = (_ncol('shares_yoy') >= -0.30) | _buyback_corrob
     df['arch_no_dilution'] = (
-        ((shares_growth_3y <= 0.02) |
-         (_ncol('shares_growth_3y').isna() & (_ncol('shares_yoy') <= 0.01))) &
+        (((shares_growth_3y <= 0.02) & _not_split_3y) |
+         (_ncol('shares_growth_3y').isna() & (_ncol('shares_yoy') <= 0.01)
+          & _not_split_yoy)) &
         (n_yrs_fcf_pos >= 4) &
         (n_yrs_roic_pos >= 4)
     ).fillna(False).astype(int)
@@ -646,6 +687,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _fcf_y = _ncol('fcf_yield')
     _covered = (_fcf_y > 0) | _fcf_y.isna()
     df['arch_capital_returner'] = (
+        is_operating &                                    # (G1) exclude REIT/BDC mandatory payouts
         (((capital_return_yield >= 0.05) & (capital_return_yield <= 0.30)) |
          ((_tot_yield >= 0.05) & (_tot_yield <= 0.30)))   # >30% total yield =
                                                           # stale price / return-
@@ -662,7 +704,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _returns_any = ((capital_return_yield >= 0.02) |
                     (_tot_yield >= 0.02)).fillna(False)
     _uncovered = _returns_any & (_fcf_y < 0)
-    _neg_ev = ((_ncol('enterprise_value') < 0) | (cash_gt_ev > 0)).fillna(False)
+    # (G1) the negative-EV leg must exclude financials/REITs/utilities, whose
+    # EV goes hugely negative on deposits/float (not distributable cash).
+    _neg_ev = (((_ncol('enterprise_value') < 0) | (cash_gt_ev > 0))
+               & is_operating).fillna(False)
     df['arch_balance_sheet_return'] = (
         (mcap > 0) & (_uncovered | _neg_ev)
     ).fillna(False).astype(int)
@@ -685,6 +730,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # from "no tax because no profit."
     pretax_pos = s('pretax_income_ttm', np.nan)
     df['arch_tax_efficient'] = (
+        is_operating &                          # (G1) exclude financials/REITs/utilities
         (effective_tax_rate > 0) & (effective_tax_rate < 0.15) &
         (pretax_pos > 0)
     ).fillna(False).astype(int)
@@ -693,11 +739,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # ANY lens — interest coverage (7% covered), EBITDA vs interest expense,
     # near-zero net leverage, or outright net cash. All require positive
     # EBITDA so a loss-maker cannot back in.
+    # (G6) the coverage CLAIM uses real interest coverage; the net-cash paths
+    # are alternate "no interest burden" evidence but the percent-of-mcap lens
+    # must be sane (net_cash_pct_sane, <=100% of mcap). (G2) profitability
+    # guard uses the sane EBITDA margin (drops one-off >60% prints). (G1)
+    # operating businesses only, at investable scale.
     df['arch_strong_coverage'] = (
-        ((interest_coverage >= 8.0) |
-         (nde <= 0.0) |                  # outright net cash (guarded series)
-         (net_cash_pct >= 0.20)) &       # deep net cash = no interest burden
-        (_ebitda_ttm_guard > 0)
+        is_operating & (mcap >= 50e6) &
+        ((interest_coverage >= 8.0) |        # real coverage leg
+         (nde <= 0.0) |                      # outright net cash (guarded series)
+         (net_cash_pct_sane >= 0.20)) &      # deep net cash, sane denominator
+        (_ebitda_ttm_guard > 0) &
+        (ebitda_margin_sane > 0)             # sane operating profitability
     ).fillna(False).astype(int)
 
     # ---------- AD-AG: Segment-level archetypes (edgartools dimensional) ----
@@ -884,8 +937,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # home. Core gate uses GLOBALLY-available quality signals (margin / FCF /
     # leverage / payout); ROIC is a bonus qualifier where EDGAR provides it.
     df['arch_large_cap_quality'] = (
+        is_operating &                                      # (G1) exclude financials/REITs/utilities
         (mcap >= 10e9) &                                    # large + mega cap
-        (ebitda_margin >= 0.15) &                           # healthy profitability
+        (ebitda_margin_sane >= 0.15) &                      # (G2) sane healthy profitability
         ((fcf_yield > 0) | (n_yrs_fcf_pos >= 3)) &          # cash-generative
         (nde < 3.0) &                                       # investment-grade leverage
         ((capital_return_yield >= 0.02) | (dividend_yield >= 0.015) |
