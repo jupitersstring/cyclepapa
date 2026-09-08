@@ -1554,6 +1554,48 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                           + 0.15 * _accel.astype(float))
                          * df['arch_oneil_canslim']).round(3)
 
+    # ---------- Peter Cundill deep value ----------
+    # His published six-point checklist (There's Always Something to Do). A
+    # Graham-lineage, balance-sheet-first, contrarian global value discipline:
+    # bought near ~2/3 of NAV with a hard margin of safety, patient, catalyst-
+    # agnostic. All six points below are his stated "MUST"s [C]; the
+    # "preferably" refinements become the quality score. Financials are NOT
+    # excluded (Cundill bought insurers/banks on book value) but are exempted
+    # from the operating-debt test, whose leverage is structural for them.
+    _cpb = _num('pb'); _coff = _num('pct_off_52w_high'); _c5y = _num('price_pct_of_5y_range')
+    _cpe = _num('p_e'); _croce = _num('roce'); _ceb = _num('ebitda_ttm')
+    _cdiv = _num('dividend_yield'); _cnde = _num('net_debt_ebitda'); _cd2e = _num('debt_to_equity')
+    _cncash = _num('net_cash_pct_mcap'); _cncav = _num('ncav_pct_mcap')
+    _cgraham = _num('graham_net_net_flag'); _ceps_pos = _num('eps_yoy_positive_share')
+    # (1) price < book value  [C]
+    _c1 = (_cpb > 0) & (_cpb < 1.0)
+    # (2) price < half the former high, or near an all-time low  [C]
+    _c2 = (_coff <= -0.50) | (_c5y <= 0.20)
+    # (3) P/E < 10 (or inverse of the LT bond rate, whichever is less)  [C]
+    _c3 = (_cpe > 0) & (_cpe <= 10.0)
+    # (4) profitable; preferably no deficits over 5y  [C]
+    _c4 = ((_croce > 0) | (_ceb > 0)) & ((_ceps_pos >= 0.6) | _ceps_pos.isna())
+    # (5) paying dividends  [C]
+    _c5 = _cdiv > 0
+    # (6) debt judiciously employed, room to expand  [C] (financials exempt)
+    _c6 = (((_cnde.fillna(99) < 2.5) | (_cd2e.fillna(99) < 1.0) | (_cncash > 0))
+           | is_financial)
+    df['arch_cundill_deep_value'] = (
+        _c1 & _c2 & _c3 & _c4 & _c5 & _c6
+    ).fillna(False).astype(int)
+    # Score = depth of discount to book (his 2/3-NAV sweet spot ~0.67),
+    # net-net bonus, closeness to lows, cheapness, no-deficit earnings,
+    # dividend, and balance-sheet strength (room to expand debt).
+    _c_netnet = ((_cncav >= 1.0) | (_cgraham > 0)).fillna(False)
+    df['cundill_score'] = ((0.25 * _ramp(1.0 - _cpb, 0.20, 0.60)
+                            + 0.15 * _c_netnet.astype(float)
+                            + 0.15 * _ramp(0.30 - _c5y, 0.0, 0.30)
+                            + 0.15 * _ramp(10.0 - _cpe, 0.0, 8.0)
+                            + 0.10 * _ramp(_ceps_pos, 0.6, 1.0)
+                            + 0.10 * (_cdiv > 0).astype(float)
+                            + 0.10 * _ramp(_cncash, 0.0, 0.5))
+                           * df['arch_cundill_deep_value']).round(3)
+
     low_sbc_wolf = _soft_ok_below('sbc_pct_revenue', 0.15)   # Wolf dings excess SBC
     low_sbc_liger = _soft_ok_below('sbc_pct_revenue', 0.10)  # Liger flags diluters
     # `nde` defaults to 99 when net_debt_ebitda is missing (37% of names), so
@@ -2515,6 +2557,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_oneil_canslim',
         'arch_weinstein_stage2',
         'arch_kullamagie_breakout',
+        'arch_cundill_deep_value',
         'arch_low_sbc_quality',
         'arch_tax_efficient',
         'arch_strong_coverage',
@@ -2595,6 +2638,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_oneil_canslim': 'ONeil-CANSLIM',
         'arch_weinstein_stage2': 'Weinstein-Stage2',
         'arch_kullamagie_breakout': 'Kullamagi-Breakout',
+        'arch_cundill_deep_value': 'Cundill-DeepValue',
         'arch_low_sbc_quality': 'LowSBCQuality',
         'arch_tax_efficient': 'TaxEfficient',
         'arch_strong_coverage': 'StrongCoverage',
@@ -2659,7 +2703,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                          'lynch_reward_score', 'lynch_leg_max', 'lynch_rank',
                          'lynch_exceptional_leg', 'analyst_awakening_score',
                          'seg_inflect_score', 'oneil_score',
-                         'weinstein_score', 'kullamagie_score']
+                         'weinstein_score', 'kullamagie_score',
+                         'cundill_score']
         _scrub_cols = arch_cols + [c for c in _gated_scores if c in df.columns]
         df.loc[_is_noncommon.values, _scrub_cols] = 0
         print(f'  scrubbed archetype flags + gated scores on '
@@ -2671,7 +2716,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m'] if c in df.columns]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)
