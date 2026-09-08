@@ -198,3 +198,104 @@ survivability/inflection lens. Keep the geography+size+illiquidity as the covera
 the name to clear a floor a random nanocap wouldn't.
 
 ---
+
+## 9. arch_asleep_at_wheel — 3,304 firers (7.1%)  [moderate: short-window beat rate, no coverage floor]
+
+**SPIRIT:** Management/analysts chronically under-estimate the business — a structural
+earnings-surprise machine.
+**RULE (line 1776):** `((beat_rate>=0.75)&(beat_legs>=2)) | ((eps_yoy_positive_share>=0.75)&(eps_yoy_growth_streak_q>=3))`.
+
+**Findings:** all 3,304 firers came through the beat-rate path (the EPS-YoY alternative fired 0 —
+those columns are effectively empty). `earnings_beat_rate` is a coarse 4-quarter ratio (observed
+values only 0, .25, .33, .5, .67, .75, 1.0); **1,896 firers have beat_rate == 1.0** (beat 4/4). With
+sell-side estimates set to be beatable, "beat 3-4 of the last 4 quarters" is common and cyclically
+fragile, and there is **no analyst-coverage floor** — a name followed by one analyst who lowballed
+4 quarters counts the same as a widely-covered one. The `beat_legs>=2` corroboration
+(avg_surprise>0.02 / streak>=3 / inflecting) is present for all firers, which helps.
+
+**ROBUSTNESS PROPOSAL:** (a) Add a coverage floor (`n_analysts >= 3`) so a chronic beat is a real
+consensus miss, not a one-analyst artifact. (b) Require the beat to be MATERIAL and durable: a
+longer window (streak>=4) or a minimum average surprise magnitude (avg_earnings_surprise >= 0.03),
+not merely 4/4 tiny beats. Reasonably sound otherwise.
+
+---
+
+## 10. arch_fastest_segment — 1,014 firers (2.2%)  [guard gap: fastest "engine" can be a rounding-error slice]
+
+**SPIRIT (AG):** A hidden growth engine the consolidated number masks — a fast-growing SEGMENT big
+enough to matter.
+**RULE (line 771):** `segment_count>=2 & seg_inflect_any & (_seg_any_growth>=0.10)`.
+
+**Gap:** no MATERIALITY floor on the fastest segment's share of revenue. **119 firers have the
+fastest segment at < 10% of revenue, 21 at < 5%** (min 1.8%). A 2% segment growing 30% cannot move
+the consolidated number — it isn't a hidden engine. The dispersion/corroboration legs
+(`segment_growth_dispersion>=0.30`, whole-co `_adv_breadth>=3`) can also carry the fire with only a
+weak leader.
+
+**ROBUSTNESS PROPOSAL:** Require the fastest segment to be material: `fastest_segment_share >= 0.10`
+(ideally >=0.15) so growth in it actually flows through, OR require the segment to be large enough
+that its growth contributes a minimum number of points to consolidated revenue growth
+(share x fastest_seg_yoy >= ~0.03). Keep the multi-lens inflection logic; just gate on materiality.
+
+---
+
+## 11. arch_geographic_global — 820 firers (1.8%)  [minor guard gap: "global" can be nominal]
+
+**SPIRIT (AF):** Genuine geographic diversification (currency + market).
+**RULE (line 733):** `geographic_region_count >= 4`. No dispersion guard.
+
+**Gap:** **40 firers have their largest region >= 90% of revenue** — 4 regions are *reported* but
+one dominates, so the diversification is nominal. Small in count but a clean fix.
+
+**ROBUSTNESS PROPOSAL:** Add a concentration guard: `largest_region_share <= 0.75` (or a geographic
+HHI cap), so "global" means revenue is actually spread across regions, not disclosed across regions.
+
+---
+
+## 12. arch_concentrated_segments — 663 firers (1.4%)  [CLEAN]
+
+`(segment_hhi>=0.70 | largest_segment_share>=0.70) & segment_count>=2`. Fires as an explicit
+NEGATIVE/risk flag; 482 firers have exactly 2 segments (a legitimately concentrated 2-segment mix).
+The `segment_count>=2` guard already prevents single-segment artifacts. Sound for its stated purpose.
+
+## 13. arch_diversified_segments — 277 firers (0.6%)  [CLEAN]
+
+`segment_count>=4 & segment_hhi<=0.40`. Both a count and a real HHI dispersion guard; tight and
+faithful to the spirit. No fix needed.
+
+## 14. arch_lynch_reward — 729 firers (1.6%)  [CLEAN — heavily gated]
+
+Multi-gate (progress + profit-durability + not-capacity-trap + reward-not-yet-paid + live-tape +
+coil + release/roc-setup), median firer $1.1B. 63 lossmakers (8.6%) slip through the
+profit-durability gate's `eps_yoy_positive_share + op_margin>0.05` path — a minor leak worth a
+glance, but the archetype is one of the soundest in the batch.
+
+## 15. arch_qarp — 187 firers (0.4%)  [CLEAN — tightest in the batch]
+
+`roiic_lindy>=0.15 & _qarp_cheap & n_yrs_roic_pos>=4 & shares_growth_3y<=0.02`, median firer $3.9B,
+only 6 lossmakers. Requires proven multi-year incremental returns + no dilution + a real cheapness
+lens. Faithful to the QARP spirit; no fix needed.
+
+---
+
+## TOP-5 HIGHEST-IMPACT FIXES (across this batch)
+
+1. **arch_narrative_lag (29.3% -> target <10%):** gate the "advance" on PROFIT not a top-line twitch
+   (`ebitda_margin>0` / profit-durability lens), fix the stale-tape 0.0-reads-as-flat artifact
+   (require live tape, 518 firers affected), and drop the single-first-positive shortcut. Biggest
+   single reduction in near-noise.
+2. **arch_lynch_evgy (23.5%):** quarantine the sales (psg/evsg) fallback behind `ebitda_margin>0 &
+   ebitda_yoy>0` (2,738 mislabeled firers, incl. negative-EBITDA names) and add an EV/EBITDA floor
+   to kill the distressed near-zero-EV denominator artifact (2,024 firers).
+3. **arch_kpi_threshold (13.0%):** add the `mcap>=50e6` scale gate the comment already promises but
+   the code omits, and require a positive earnings base (removes 851 sub-$10M and 1,051 lossmaking
+   penny-stock firers).
+4. **arch_analyst_awakening (8.7%):** make the consensus RATING a hard requirement (1,551 firers /
+   38% currently fire with no rating, on optimistic price targets alone — selecting speculative
+   biotech), and cap/penalize extreme target upside.
+5. **arch_evsales_derating (8.7%):** fix the "not a trap" gate so `gross_margin>=0.20` cannot admit
+   cash-burners on its own (393 firers burning on both EBITDA and FCF), and add a `mcap>=50e6` floor
+   plus a real multiple-compression requirement.
+
+(Honorable mentions: dead_option needs an actual optionality leg; blindspot needs a quality overlay;
+fastest_segment needs a segment-materiality floor.)
