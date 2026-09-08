@@ -98,6 +98,9 @@ ARCH_FAMILY = {
     # capital return / insider
     'arch_capital_returner': 'capital', 'arch_insider_conviction': 'capital',
     'arch_balance_sheet_return': 'capital',
+    'arch_net_cash_returner': 'capital',
+    'arch_financials_value': 'deep_value',
+    'arch_sustainable_scaler': 'growth',
     # Lynch / screen value
     'arch_lynch_reward': 'lynch_screen', 'arch_lynch_pegy': 'lynch_screen',
     'arch_lynch_evgy': 'lynch_screen', 'arch_qarp': 'lynch_screen',

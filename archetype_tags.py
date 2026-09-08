@@ -410,20 +410,30 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _first_pos_any = ((ebitda_first_pos > 0) | (cfo_first_pos > 0) |
                       (fcf_first_pos > 0) | (ni_first_pos > 0) |
                       (roce_first_pos > 0))
-    df['arch_narrative_lag'] = (flat_or_down &
+    # (G5) require a genuine, PRESENT, non-zero tape — a literal
+    # price_yoy==0.0 & momentum_12m==0.0 stale/missing tape no longer reads as
+    # "lagging". (G9) tighten beyond flat_or_down: the tape must be genuinely
+    # DOWN on at least one present lens (a real lag, not merely flat/stale).
+    _lag_tape = ((_py_raw < 0.0) | (_m12_raw < 0.0))
+    df['arch_narrative_lag'] = (_lag_tape &
                                 ((_adv_breadth >= 2) | _first_pos_any)).astype(int)
 
     # ---------- Cluster C5: Fixed-Cost Asset + Demand Shock ----------
     df['arch_fixed_cost_demand_shock'] = (
         sector.isin(HEAVY_ASSET_SECTORS) &
         (rev_accel > 0) &
+        (rev_yoy > 0) &                 # (G8) a demand SHOCK has RISING revenue,
+                                        # not a declining top line
         # Operating-leverage leg made interval-robust WITHOUT diluting the
         # spirit: the demand shock must flow through to a SHOCK-sized margin
         # response — the same >=2-point standard, just visible through any of
         # several accounting lenses / time bases (margin_shock_any), so a name
         # whose leverage shows up in gross margin or a material TTM cash turn
         # is not missed while a mere positive drift still never qualifies.
-        ((ebitda_margin_delta >= 0.02) | margin_shock_any)
+        # (G8) the direct margin leg is capped at +20pp so a single one-off
+        # margin swing cannot alone qualify the name.
+        (((ebitda_margin_delta >= 0.02) & (ebitda_margin_delta <= 0.20))
+         | margin_shock_any)
     ).astype(int)
 
     # ---------- Cluster E7: Discounted Vehicle ----------
@@ -460,13 +470,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_regime_cyclical'] = (
         sector.isin(HEAVY_ASSET_SECTORS) &
         beaten_down_any(0.20) &
+        (rev_yoy > 0) &                 # (G8) a genuine regime change shows RISING
+                                        # revenue, not a still-declining top line
         # REGIME CHANGE confirmed across margin/cash measures + time bases:
         # zero-crossings / first-positive prints stay, and the margin leg
         # accepts a shock-sized (>=2-point / material-TTM) move seen through
         # any lens (margin_shock_any) — never incremental drift, which is not
-        # a regime change.
+        # a regime change. (G8) the direct margin leg is capped at +20pp so a
+        # single one-off margin swing cannot alone qualify.
         ((ebitda_inflection > 0) | (ebitda_first_pos > 0) |
-         (ebitda_margin_delta >= 0.02) | margin_shock_any) &
+         ((ebitda_margin_delta >= 0.02) & (ebitda_margin_delta <= 0.20)) |
+         margin_shock_any) &
         (not_priced_in > 0.20)
     ).astype(int)
 
@@ -500,7 +514,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                          (_ncol('roce_delta_yoy') > 0.01)).fillna(False)
     roce_today = s('roce') >= 0.05
     df['arch_kpi_threshold'] = (
-        first_pos_print & (margin_confirming | roce_today)
+        first_pos_print & (margin_confirming | roce_today) &
+        (mcap >= 50e6)                          # (G6) restore investable-scale floor
     ).astype(int)
 
     # ---------- Cluster G12: Regional Blind-Spot ----------
@@ -866,10 +881,19 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
 
     # S — Buyback Compounder: shrinking share count + durable ROIC + clean
     # balance sheet. Greenblatt / capital-allocation classic.
+    # (G10) reverse-split guard: a share-count drop < -30% in one period is a
+    # split / restructuring, not a buyback — such a drop counts only when a
+    # real buyback yield corroborates it. A direct buyback_yield>=0.03 stays.
+    _bb_yield_pos = (_ncol('buyback_yield') > 0)
+    _shares_shrink = (
+        ((shares_growth_5y <= -0.05) &
+         ((shares_growth_5y >= -0.30) | _bb_yield_pos)) |
+        ((_ncol('shares_growth_3y') <= -0.03) &
+         ((_ncol('shares_growth_3y') >= -0.30) | _bb_yield_pos)) |
+        (_ncol('buyback_yield') >= 0.03)
+    )
     df['arch_buyback_compounder'] = (
-        ((shares_growth_5y <= -0.05) |
-         (_ncol('shares_growth_3y') <= -0.03) |
-         (_ncol('buyback_yield') >= 0.03)) &
+        _shares_shrink &
         (roic_lindy >= 0.08) &
         (n_yrs_roic_pos >= 4) &
         (nde <= 1.5)
@@ -1000,8 +1024,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
 
     # 1) Pure BAB long side: genuine low beta + quality. Buffett in this lens —
     #    "long safe, profitable, low-beta assets" (the leg the paper levers up).
+    # (G7) require the RAW beta present and >= 0.20: a stale/illiquid yf_beta
+    # <= 0 is laundered by shrinkage into ~0.40 and falsely passes "low beta".
+    # Liquidity floor (present-illiquid names only; missing ADV defaults high).
     df['arch_bab_low_beta'] = (
-        beta_present & (beta_shrunk <= 0.85) & bab_quality
+        beta_present & (beta_raw >= 0.20) &
+        (beta_shrunk <= 0.85) & bab_quality &
+        (adv >= 1e5)
     ).fillna(False).astype(int)
 
     # 2) Becoming more BAB-like: beta still moderate, but the business is
@@ -1020,7 +1049,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #    a yartseva multibagger OR very cheap. Boring safety + embedded compounding
     #    (financial or reinvestment leverage) at a price the market underrates.
     df['arch_bab_multibagger'] = (
-        beta_present & (beta_shrunk <= 1.0) & bab_quality &
+        beta_present & (beta_raw >= 0.20) &        # (G7) raw beta present & >= 0.20
+        (beta_shrunk <= 1.0) & bab_quality &
+        (adv >= 1e5) &                             # (G7) liquidity floor
         (bab_multibagger_leg | bab_cheap_leg)
     ).fillna(False).astype(int)
 
@@ -1068,10 +1099,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_lynch_pegy'] = (
         (pegy_v > 0) & (pegy_v <= 1.0)
     ).fillna(False).astype(int)
+    # (G9) require real positive EBITDA on the EBITDA-yield path (a negative
+    # EBITDA makes the ratio meaningless), and drop the sales (psg/evsg)
+    # fallback for negative-EBITDA names while guarding a near-zero-EV
+    # denominator (ev_sales >= 0.05 rejects the EV~0 artifact that otherwise
+    # passes the cheap gate spuriously).
+    _ebitda_ttm_e = _ncol('ebitda_ttm')
+    _ev_sales_g = s('ev_sales', 99.0)
     df['arch_lynch_evgy'] = (
-        ((evgy_v > 0) & (evgy_v <= 0.6)) |
-        (_evgy_missing & (((_psg_e > 0) & (_psg_e <= 0.06)) |
-                          ((_evsg_e > 0) & (_evsg_e <= 0.05))))
+        ((evgy_v > 0) & (evgy_v <= 0.6) & (_ebitda_ttm_e > 0)) |
+        (_evgy_missing & (_ebitda_ttm_e > 0) & (_ev_sales_g >= 0.05) &
+         (((_psg_e > 0) & (_psg_e <= 0.06)) |
+          ((_evsg_e > 0) & (_evsg_e <= 0.05))))
     ).fillna(False).astype(int)
 
     # ======================================================================
@@ -1112,6 +1151,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     ncav_pct = s('ncav_pct_mcap')
     n_analysts_v = (_ncol('n_analysts').fillna(_ncol('n_analysts_pew'))
                     .fillna(0.0))           # pew fallback; missing -> neglected
+    # (G5) PRESENCE mask: a NaN n_analysts (unrated) must NOT read as
+    # "maximally neglected". Neglect gates require the field actually present.
+    n_analysts_present = (_ncol('n_analysts')
+                          .fillna(_ncol('n_analysts_pew'))).notna()
     off_high = s('pct_off_52w_high')        # negative = below the 52w high
     # (drawdown helpers hoisted above — see after flat_or_down)
     # Clamped growth/margin inputs (kill the data-artifact tail)
@@ -1359,6 +1402,55 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _breadth_bonus = (0.05 * (_dims - 1).clip(lower=0)).clip(0.0, 0.12)
     df['confirm_overall'] = (_co_base + _breadth_bonus).clip(0.0, 1.0).round(3)
 
+    # ===== NEW MEASURES (audit follow-up 2026-09-08) — homes for the cases
+    # the robustness guards excluded, rather than just dropping them. =====
+
+    # Financials Value/Quality: banks/insurers can't use EV/margin, so screen
+    # them on BOOK: cheap on book (P/B < 1) with real returns (ROE >= 10%) and
+    # not expensive on earnings. The home for the financials the operating
+    # value archetypes now exclude.
+    _fpb = _num('pb'); _froe = _num('roe'); _fpe = _num('p_e')
+    df['arch_financials_value'] = (
+        is_financial & (mcap >= 50e6)
+        & (_fpb > 0) & (_fpb < 1.0)
+        & (_froe >= 0.10)
+        & (((_fpe > 0) & (_fpe <= 15)) | _fpe.isna())
+    ).fillna(False).astype(int)
+
+    # Net-Cash Returner: net cash >= 30% of market cap AND the company is
+    # ACTIVELY returning it (buybacks / dividends / shrinking share count) —
+    # the legitimate, rewarded form of "cash exceeds EV" (vs the dormant
+    # balance-sheet hoards that go to arch_balance_sheet_return). Operating
+    # businesses only (financial holdcos' "cash" is a portfolio).
+    _nbb = _num('net_buyback_ttm'); _nby = _num('buyback_yield')
+    _ndy = _num('dividend_yield'); _nsh3 = _num('shares_3y_cagr')
+    _returning = ((_nby > 0) | (_ndy > 0.01) | (_nsh3 < -0.01)
+                  | (_nbb > 0)).fillna(False)
+    df['arch_net_cash_returner'] = (
+        is_operating & (mcap > 0)
+        & (net_cash_pct >= 0.30)
+        & _returning
+    ).fillna(False).astype(int)
+
+    # Sustainable Scaler: small-cap durable growth that is REAL — a genuine
+    # revenue base (>= $20M, not a base-effect pop), NOT funded by dilution
+    # (share count flat/down), growth confirmed either by a durable 3y CAGR or
+    # by PER-SHARE FCF growth (immune to acquisition-by-dilution), self-funding
+    # unit economics, and not overpriced on EV/sales. The home for genuine
+    # small-cap compounders the base-effect growth guards now exclude.
+    _sr3 = _num('rev_3y_cagr'); _sry = _num('rev_yoy'); _sfps = _num('fcf_per_share_yoy')
+    _sfm = _num('fcf_margin'); _ssh3 = _num('shares_3y_cagr'); _srev = _num('revenue_ttm')
+    _sroic = _num('roic_after_sbc'); _sevs = _num('ev_sales')
+    _durable_growth = (((_sr3 >= 0.15) & (_sr3 <= 1.0))
+                       | ((_sry >= 0.15) & (_sry <= 1.0) & (_sfps > 0)))
+    _self_funding = (_sfps > 0) | (_sfm > 0.03) | (_sroic >= 0.10)
+    _not_pricey = ((_sevs > 0) & (_sevs <= 8)) | _sevs.isna()
+    df['arch_sustainable_scaler'] = (
+        is_operating & (mcap < 2e9) & (_srev >= 20e6)
+        & (_ssh3.fillna(0) <= 0.05)
+        & _durable_growth & _self_funding & _not_pricey
+    ).fillna(False).astype(int)
+
     low_sbc_wolf = _soft_ok_below('sbc_pct_revenue', 0.15)   # Wolf dings excess SBC
     low_sbc_liger = _soft_ok_below('sbc_pct_revenue', 0.10)  # Liger flags diluters
     # `nde` defaults to 99 when net_debt_ebitda is missing (37% of names), so
@@ -1474,9 +1566,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # (this gate correctly REJECTS the WATT cash-burner, whose edge was pure
     # OSINT), depressed/off-highs, and NOT mining/biotech/crypto.
     df['arch_liger_asset_backed'] = (
+        is_operating &                              # (G1) exclude financials/REITs/utilities
         (mcap > 0) & (mcap < 400e6) &
         (net_cash_pct_c >= 0.20) &                  # 0.60 excluded every real long
-        (n_analysts_v <= 4) &
+        (n_analysts_present & (n_analysts_v <= 4)) &  # (G5) require rating present
         ((op_margin_v >= -0.05) | (ebitda_margin >= 0.0)) &
         low_sbc_liger &
         liger_sector_ok
@@ -1487,10 +1580,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # a high absolute growth level — so the growth gate is now accel-aware.
     # Leverage loosened 1.0->1.5 (RCMT ran ~1.3-1.5x) with the ebitda>0 guard.
     df['arch_liger_lagging_inflect'] = (
+        is_operating &                              # (G1) exclude financials/REITs/utilities
         (((rev_yoy_c >= 0.10) & (rev_accel > 0)) | (rev_yoy_c >= 0.15) | oper_lev_any) &
         ((cash_conv_w >= 0.80) | (fcf_margin_w > 0)) &
         _clean_bs(1.5) &                            # clean b/s (nde OR net-cash)
-        (n_analysts_v <= 4) &
+        (n_analysts_present & (n_analysts_v <= 4)) &  # (G5) require rating present
         low_sbc_liger &
         liger_sector_ok &
         (flat_or_down | beaten_down_any(0.30))    # presence-aware lag/drawdown
@@ -1501,8 +1595,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # inflection and room to re-rate on a material catalyst. RCMT & VTSI pass;
     # WATT is intentionally rejected by the near-breakeven gate.
     df['arch_liger_neglected_survivor'] = (
+        is_operating &                              # (G1) exclude financials/REITs/utilities
         (mcap >= 20e6) & (mcap <= 400e6) &
-        (n_analysts_v <= 3) &
+        (n_analysts_present & (n_analysts_v <= 3)) &  # (G5) require rating present
         ((net_cash_pct_c >= 0.15) | ((ebitda_ttm_v > 0) & (nde <= 1.5))) &
         ((fcf_margin_w >= 0.0) | (op_margin_v >= -0.02)) &
         low_sbc_liger &
@@ -1569,15 +1664,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # Well-captured on the CASH leg (net cash or NCAV >= mcap = Graham floor);
     # does NOT see hidden real-estate-at-market or private-stake value.
     df['arch_oak_asset_floor'] = (
+        is_operating &                              # (G1) exclude financials/REITs/utilities
         (mcap > 0) & (mcap < 500e6) &
         ((net_cash_pct_c >= 0.40) | (ncav_pct >= 0.80)) &
-        (pb > 0) & (pb < 1.5)
+        (pb > 0) & (pb < 1.5) &
+        ((fcf_ttm_v > 0) | (cfo_ttm_v > 0))         # (G6) survivability (match oak siblings)
     ).fillna(False).astype(int)
 
     # NEW: Oak order-book conversion (backlog->revenue, the MPAC pattern).
     # LAGGING proxy: we can't see order intake / book-to-bill, only the P&L
     # footprint once it lands — accelerating revenue + margin expansion.
     df['arch_oak_order_conversion'] = (
+        is_operating &                              # (G1) exclude financials/REITs/utilities
         (mcap > 0) & (mcap < 1e9) &
         ((rev_accel > 0) | (rev_yoy_c > 0.05)) &
         oper_lev_any &
@@ -1774,14 +1872,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     neg_or_low_ev = (
         (ev_raw2 < 0) |                          # negative EV
         (cash_gt_ev > 0) |                       # cash exceeds EV
-        (net_cash_pct >= 0.75)                   # net cash >= 75% of market cap
+        (net_cash_pct_sane >= 0.75)              # (G2) net cash 75-100% of mcap (sane)
     )
     df['arch_negative_ev_value'] = (
+        is_operating &                                # (G1) exclude financials/REITs/utilities
         (mcap > 0) & (mcap < 5e9) &
         (neg_or_low_ev | ((pb > 0) & (pb < 0.7))) &   # cash floor OR deep sub-book
                                                       # (neg_or_low_ev already triangulates
                                                       #  the EV/cash floor the appropriate way)
-        ((fcf_ttm_v > 0) | (ebitda_ttm_v > 0) | (net_cash_pct >= 0.5))  # not a cash-burn trap
+        ((fcf_ttm_v > 0) | (ebitda_ttm_v > 0) | (net_cash_pct_sane >= 0.5))  # (G2) not a cash-burn trap
     ).fillna(False).astype(int)
 
     # ---------- "Growth algorithm" compounding flywheel ($DLO logic) ----------
@@ -1992,11 +2091,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
          ((mult_compression >= 0) | (_derate_3y >= 0)))
     ).fillna(False)
     df['arch_evsales_derating'] = (
-        (mcap > 0) & (mcap < 20e9) &
+        (mcap >= 50e6) & (mcap < 20e9) &                # (G6) investable-size floor
         ((rev_yoy_c >= 0.20) | (rev_growth_score >= 0.6)) &   # rapid sales growth (any base)
         derate_any &                                    # EV/Sales compressing (any base)
         (ev_sales_v > 0.10) & (ev_sales_v <= 6.0) &     # room left; lower bound drops artifacts
-        ((_num('gross_margin') >= 0.20) | (ebitda_ttm_v > 0) | (fcf_ttm_v > 0))  # not a trap
+        ((_num('gross_margin') >= 0.20) | (ebitda_ttm_v > 0) | (fcf_ttm_v > 0)) &  # not a trap
+        ~((ebitda_ttm_v < 0) & (fcf_ttm_v < 0))         # (G6) cash sanity: not burning on BOTH EBITDA & FCF
     ).fillna(False).astype(int)
     # Score: depth of the derate + growth confirmation + exceptional evsg bonus.
     _derate_depth = (mult_compression.clip(0, 1.0)).fillna(0.0)     # 0..1
@@ -2222,8 +2322,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _conviction = conv_any & (conv_score >= 0.5)  # >=half the AVAILABLE lenses
     _not_extended = ((_num('roc_12m') <= 0.50) |
                      (_num('roc_12m').isna() & (_num('momentum_12m') <= 0.50)))
+    # (G6) require a REAL consensus rating present and reasonable (not bearish)
+    # — the awakening cannot fire on price-target optimism alone (38% did).
+    _rating_present = (_rec.notna()) & (_rec > 0) & (_rec <= 3.0)
     df['arch_analyst_awakening'] = (
-        (mcap > 0) & (_nan_ >= 3) & _conviction &
+        (mcap > 0) & (_nan_ >= 3) & _rating_present & _conviction &
         _not_extended & lr_live_tape
     ).fillna(False).astype(int)
     # Score: rating strength + upside depth + breadth, upweighted where the
@@ -2279,6 +2382,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_capital_light_pivot',
         'arch_capital_returner',
         'arch_balance_sheet_return',
+        'arch_financials_value',
+        'arch_net_cash_returner',
+        'arch_sustainable_scaler',
         'arch_low_sbc_quality',
         'arch_tax_efficient',
         'arch_strong_coverage',
@@ -2353,6 +2459,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_capital_light_pivot': 'CapitalLightPivot',
         'arch_capital_returner': 'CapitalReturner',
         'arch_balance_sheet_return': 'BalanceSheetReturn',
+        'arch_financials_value': 'FinancialsValue',
+        'arch_net_cash_returner': 'NetCashReturner',
+        'arch_sustainable_scaler': 'SustainableScaler',
         'arch_low_sbc_quality': 'LowSBCQuality',
         'arch_tax_efficient': 'TaxEfficient',
         'arch_strong_coverage': 'StrongCoverage',

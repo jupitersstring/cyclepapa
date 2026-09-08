@@ -325,6 +325,15 @@ def _integrity(t, g):
             check("integrity: 52w flags agree with displayed pct_off_52w_high",
                   clash == 0, f"{int(clash)} rows flagged at-high but showing <-10% off")
 
+        # Operating value/quality archetypes must exclude Financials/REITs
+        # (their EV/net-cash/margin legs are meaningless there).
+        if "arch_negative_ev_value" in t.columns and "sector" in t.columns:
+            _secl = t["sector"].fillna("").astype(str).str.lower()
+            _finre = _secl.str.contains("financ") | _secl.str.contains("real estate")
+            leak = ((n(t, "arch_negative_ev_value") == 1) & _finre).sum()
+            check("integrity: operating value archetypes exclude Financials/REITs",
+                  leak == 0, f"{int(leak)} financials/REITs in arch_negative_ev_value")
+
         # ev_ebitda must never be positive for a negative-EBITDA firm
         # (a cheap multiple on a loss-maker fools every cheapness gate).
         if "ev_ebitda" in t.columns and "ebitda_ttm" in t.columns:
