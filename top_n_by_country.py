@@ -546,6 +546,69 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
                             title='Tab colours — region')
     ws.sheet_view.showGridLines = False
 
+    # ===== GLOBAL + REGION ROLL-UP TABS (asymmetry-ranked) =====
+    # A cross-country GLOBAL ranking plus DM/EM and fine-region roll-ups, all
+    # ranked by the active score (ETA / asymmetry). These sit right after the
+    # Cover so a reader can see the best names WORLDWIDE and per-region without
+    # hopping across 50 country tabs.
+    GLOBAL_N, BUCKET_N, REGION_N = 200, 150, 80
+
+    def _write_ranked_tab(sheet_name, title, subset, color, ntab):
+        s = subset.sort_values(sort_col, ascending=False).head(ntab).reset_index(drop=True)
+        if s.empty:
+            return
+        s['country_rank'] = range(1, len(s) + 1)
+        sheet = wb.create_sheet(sheet_name)
+        tab_colors.set_tab(sheet, color)
+        _common_col_widths(sheet)
+        t = sheet.cell(row=2, column=1, value=title)
+        t.font = f_bold
+        t.alignment = A_LEFT
+        sheet.merge_cells(start_row=2, start_column=1, end_row=2, end_column=N_COLS)
+        sheet.row_dimensions[2].height = 22
+        _mean_asym = s['asymmetry_score'].mean() if 'asymmetry_score' in s.columns else None
+        _section_label(sheet, 4,
+                       f"Top {len(s)}  —  ranked by {sort_label}"
+                       f"   (mean asymmetry {(_mean_asym or 0):.3f}, "
+                       f"{int((s['verdict']=='GREEN').sum())} GREEN)",
+                       span_cols=N_COLS)
+        _write_table_header(sheet, 5)
+        sheet.row_dimensions[5].height = 18
+        for r_idx, (_, r) in enumerate(s.iterrows(), start=7):
+            _write_table_row(sheet, r_idx, r)
+            sheet.row_dimensions[r_idx].height = 16
+        sheet.sheet_view.showGridLines = False
+        sheet.freeze_panes = 'A7'
+        if sheet.max_row >= 7:
+            sheet.auto_filter.ref = f"A5:{get_column_letter(sheet.max_column)}{sheet.max_row}"
+
+    try:
+        import region_map
+        _fg = full_df.copy()
+        if 'country_name' not in _fg.columns:
+            _fg['country_name'] = _fg['src'].map(COUNTRY_NAMES).fillna(_fg['src'])
+        _classif = {s: region_map.classify(s) for s in _fg['src'].dropna().unique()}
+        _fg['_bucket'] = _fg['src'].map(lambda s: (_classif.get(s) or (None, None))[0])
+        _fg['_region'] = _fg['src'].map(lambda s: (_classif.get(s) or (None, None))[1])
+        # GLOBAL
+        _write_ranked_tab('GLOBAL', 'Global — best names across all regions',
+                          _fg, tab_colors.AGGREGATE, GLOBAL_N)
+        # DM / EM buckets
+        for _bkt in ('DM', 'EM'):
+            _sub = _fg[_fg['_bucket'] == _bkt]
+            _write_ranked_tab(_bkt, f'{_bkt} — developed markets' if _bkt == 'DM'
+                              else f'{_bkt} — emerging markets',
+                              _sub, tab_colors.AGGREGATE, BUCKET_N)
+        # Fine regions (in the tab_colors region palette order)
+        for (_bkt, _region) in tab_colors.REGION_COLORS:
+            _sub = _fg[(_fg['_bucket'] == _bkt) & (_fg['_region'] == _region)]
+            if len(_sub) >= 5:
+                _write_ranked_tab(_region[:31], f'{_bkt} · {_region}',
+                                  _sub, tab_colors.REGION_COLORS[(_bkt, _region)],
+                                  REGION_N)
+    except Exception as _e:
+        print(f'  (region roll-up tabs skipped: {_e})', file=sys.stderr)
+
     # ===== PER-COUNTRY TABS =====
     for cr in country_rows:
         src_code = cr['src']
@@ -646,8 +709,8 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
     wb.save(path)
     from harvard_style import sanitize_nan_text
     sanitize_nan_text(path)
-    print(f'  wrote {path}  ({len(wb.worksheets)} sheets: Cover + {len(country_rows)} countries)',
-          file=sys.stderr)
+    print(f'  wrote {path}  ({len(wb.worksheets)} sheets: Cover + GLOBAL + '
+          f'region roll-ups + {len(country_rows)} countries)', file=sys.stderr)
 
 
 def _country_sheet_name(src_code: str) -> str:
