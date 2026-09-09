@@ -200,6 +200,18 @@ def _m(t, g):
     g2 = add_row(g, symbol="MUTV", sector="Financials")
     return t2, g2
 
+@case("tail financials in qarp", "arch_qarp excludes Financials", MA._regression)
+def _m(t, g):
+    t2 = add_row(t, symbol="MUTQ", arch_qarp=1, archetype_count=1)
+    g2 = add_row(g, symbol="MUTQ", sector="Financials")
+    return t2, g2
+
+@case("tail melter in inflection", "arch_micro_activist_inflect carries no deep operating loss-maker", MA._regression)
+def _m(t, g):
+    t2 = add_row(t, symbol="MUTN", arch_micro_activist_inflect=1, archetype_count=1)
+    g2 = add_row(g, symbol="MUTN", roce=-0.5)
+    return t2, g2
+
 
 def main():
     # negative control: real data — every targeted check must currently PASS

@@ -260,8 +260,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
              if 'name' in df.columns else pd.Series('', index=df.index))
     _name_is_financial = (_sec_missing & _ind_missing & _nm_l.str.contains(
         r'\binsurance\b|\bbancorp\b|\bbancshares\b|\bbank\b|reinsurance|'
-        r'\bfinancial\b|\bholdings? (?:ltd|inc|corp)', regex=True))
-    is_financial = _sec_l.str.contains('financ') | _ind_is_financial | _name_is_financial
+        r'\bfinancial\b|\bholdings? (?:ltd|inc|corp)|'
+        # (tail) foreign-language financial name terms — a NULL-sector/industry
+        # insurer/bank still reads as financial (TUGU 'Asuransi').
+        r'asuransi|seguros|segur|assicuraz|versicherung|banco|banque|'
+        r'sigorta|ubezpiecze', regex=True))
+    # (tail) known investment holdcos mis-tagged as operating sectors in the
+    # source data — Dundee Corp is tagged "Consumer Staples/Household Products"
+    # so is_operating can't catch it, and it leaks into 3 operating screens.
+    _known_holdco = (df['symbol'].astype(str)
+                     .isin({'DDEJF', 'DC-A.TO', 'DC.TO'}))
+    is_financial = (_sec_l.str.contains('financ') | _ind_is_financial
+                    | _name_is_financial | _known_holdco)
     is_reit = _sec_l.str.contains('real estate') | _ind_all.str.contains('reit')
     is_utility = _sec_l.str.contains('utilit') | (
         _sec_missing & _ind_all.str.contains('utilit'))
@@ -284,6 +294,20 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # there — but a KNOWN-negative current roce fails the durability claim).
     _roce_now = s('roce', np.nan)
     _roce_now_ok = ~(_roce_now.notna() & (_roce_now < 0.0))
+    # (tail-audit 2026-09-09) "not melting": the deep-tail sweep found the same
+    # class of escape across many archetypes — a positive one-off EBITDA (or a
+    # working-capital CFO swing) lets a CONFIRMED operating loss-maker that is
+    # ALSO burning cash honour a boolean survivability leg while the thesis
+    # (a viable, floor-holding business) is violated (SOGP, FORA, TUSK, VEEE,
+    # PRISMX...). _not_melting FAILS a name only when it is KNOWN to be both an
+    # operating loss-maker AND an FCF burner, or its current ROCE is deeply
+    # negative. Missing data stays permissive; a genuine turnaround with
+    # positive FCF or unknown margins is NOT excluded — this trims confirmed
+    # floor-melters, not pre-profit-but-cash-generative names.
+    _opm_now = s('op_margin', np.nan)
+    _fcf_now = s('fcf_ttm', np.nan)
+    _not_melting = ~(((_opm_now < 0) & (_fcf_now < 0)) |
+                     (_roce_now.notna() & (_roce_now < -0.05)))
     # Genuine-net-cash guard: net_cash_pct and net_debt_ebitda sometimes
     # CONTRADICT (stale/mismatched snapshots) — a name reads "net cash" on one
     # and carries real net debt on the other (TTEC nde -93 artifact, WINE.L
@@ -468,6 +492,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _lag_tape &
         (_adv_breadth >= 2) &
         is_operating & (mcap >= 50e6) &
+        _roce_now_ok &                          # (tail) lag on IMPROVING fundamentals, not a deteriorating name (UCID/ILINK)
         ((s('fcf_ttm') > 0) | (s('ebitda_ttm') > 0) | _first_pos_any) &
         (((pb > 0) & (pb < 3.0)) | (fcf_yield >= 0.03))
     ).fillna(False).astype(int)
@@ -478,6 +503,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (rev_accel > 0) &
         (rev_yoy > 0) &                 # (G8) a demand SHOCK has RISING revenue,
                                         # not a declining top line
+        _not_melting &                  # (tail) not a loss NARROWING off a negative base (VEEE/NEXE/ODV)
+        ~((nde > 6.0) & (nde < 90)) &   # (tail) leverage cap — exclude KNOWN 24-38x zombies (AWLCF/China Primary); nde 99 = unknown stays permissive
         # Operating-leverage leg made interval-robust WITHOUT diluting the
         # spirit: the demand shock must flow through to a SHOCK-sized margin
         # response — the same >=2-point standard, just visible through any of
@@ -495,6 +522,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating &                                   # (G1) exclude financials/REITs/utilities
         (pb > 0) & (pb < 0.85) &
         ((cash_gt_ev > 0) | (net_cash_pct_sane > 0.20)) &  # (G2) drop >100%-of-mcap shells
+        ~((nde >= 1.0) & (nde < 90)) &                   # (tail) net-cash claim not contradicted by REAL net debt (nde 99 = unknown, stays permissive; Newtree nde+2.1 excluded)
         (mcap > 0) & (mcap < 2e9)   # mcap>0: missing mcap must not auto-pass the size gate
     ).astype(int)
 
@@ -541,6 +569,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         beaten_down_any(0.20) &
         (rev_yoy > 0) &                 # (G8) a genuine regime change shows RISING
                                         # revenue, not a still-declining top line
+        _not_melting &                  # (tail) not a loss narrowing off a negative base (VEEE/ODV)
+        ~((nde > 6.0) & (nde < 90)) &   # (tail) leverage cap — exclude KNOWN over-levered zombies
         # REGIME CHANGE confirmed across margin/cash measures + time bases:
         # zero-crossings / first-positive prints stay, and the margin leg
         # accepts a shock-sized (>=2-point / material-TTM) move seen through
@@ -587,6 +617,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     roce_today = s('roce') >= 0.05
     df['arch_kpi_threshold'] = (
         is_operating &                          # (R1b) exclude financials/REITs (KPI/margin lens is operating-only)
+        _not_melting &                          # (tail) a loss-narrowing margin delta must not substitute for the returns floor (MKTW roce-75%)
         first_pos_print & (margin_confirming | roce_today) &
         (mcap >= 50e6)                          # (G6) restore investable-scale floor
     ).fillna(False).astype(int)
@@ -632,6 +663,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_micro_activist_inflect'] = (
         is_operating &                  # (R1b) exclude financials/REITs
         (rev_yoy > 0) &                 # (R5) inflection with a GROWING top line, not a cost-cut blip in decline
+        _not_melting &                  # (tail) EBITDA-margin "profitable" alone let op-loss burners in (SOGP roce -95%)
         (mcap > 0) & (mcap < 250e6) &
         profitable &
         inflection_now &
@@ -890,6 +922,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # FIRES as a NEGATIVE signal — kept for transparency, downstream
     # consumers can flip the sign.
     df['arch_concentrated_segments'] = (
+        is_operating &                          # (tail) segment-mix lens is operating-only (sibling diversified_segments gates the same way)
         ((segment_hhi >= 0.70) | (largest_segment_share >= 0.70))
         & (segment_count >= 2)
     ).fillna(False).astype(int)
@@ -939,6 +972,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         [_fs_yoy_q, _fs_yoy_fy, fastest_segment_yoy], axis=1).max(axis=1)
     df['arch_fastest_segment'] = (
         is_operating &                          # (R8) financials/land-sale one-offs excluded
+        (_ncol('revenue_ttm_usd') >= 20e6) &    # (tail) a hidden GROWTH ENGINE needs a real base, not a $0.84M shell (CKX/BYAH)
+        _not_melting &                          # (tail) not a -952%-EBITDA-margin burner (BYAH)
         (segment_count >= 2) & seg_inflect_any & (_seg_any_growth >= 0.10)
     ).fillna(False).astype(int)
     df['seg_inflect_score'] = (seg_inflect_score
@@ -1012,6 +1047,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # 100-bagger archetype.
     df['arch_owner_operator'] = (
         is_operating &                          # (R1b) exclude financials/REITs
+        _roce_now_ok & (rev_yoy > -0.15) &      # (tail) current-state floor — not a now-collapsing owner (FF/MGPI/KHC)
         (insider >= 0.20) &
         (n_yrs_roic_pos >= 4) &
         (n_yrs_fcf_pos >= 4) &
@@ -1029,6 +1065,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                     ((_ncol('enterprise_value')
                       / _ncol('fcf_ttm').where(_ncol('fcf_ttm') > 0)) <= 15)))
     df['arch_qarp'] = (
+        is_operating &                          # (tail) sibling EDGAR-quality rules all gate; closes CABO/OPFI financials leak
+        _roce_now_ok &                          # (tail) current returns not negative
         (roiic_lindy >= 0.15) &
         _qarp_cheap &
         (n_yrs_roic_pos >= 4) &
@@ -1161,6 +1199,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating &                          # (R1b) exclude financials/REITs/utilities
         (_ncol('revenue_ttm_usd') >= 20e6) &    # real business, not a sub-scale loss-maker "becoming safe"
         (fcf_margin_v > -0.05) &                # de-risking toward safety is not a -49%-margin burner (RFT.AX)
+        _roce_now_ok & (rev_yoy > -0.05) &      # (tail) "de-risking" is not a negative-ROCE / declining name (lastminute roce-24%, Ming Yuan)
         beta_present & (beta_shrunk > 0.85) & (beta_shrunk <= 1.15) &
         ((ebitda_margin_delta >= 0.01) | interval_inflect_any) &   # de-risking (any angle)
         ((fcf_inflection > 0) | (ebitda_inflection > 0) | (fcf_margin_v > 0.0)) &
@@ -1229,10 +1268,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _ebitda_ttm_e = _ncol('ebitda_ttm')
     _ev_sales_g = s('ev_sales', 99.0)
     df['arch_lynch_evgy'] = (
-        ((evgy_v > 0) & (evgy_v <= 0.6) & (_ebitda_ttm_e > 0)) |
-        (_evgy_missing & (_ebitda_ttm_e > 0) & (_ev_sales_g >= 0.05) &
-         (((_psg_e > 0) & (_psg_e <= 0.06)) |
-          ((_evsg_e > 0) & (_evsg_e <= 0.05))))
+        is_operating &                          # (tail) EV/EBITDA-based → meaningless for financials (TUGU/Indara insurers); P/E-based lynch_pegy correctly omits this
+        (((evgy_v > 0) & (evgy_v <= 0.6) & (_ebitda_ttm_e > 0)) |
+         (_evgy_missing & (_ebitda_ttm_e > 0) & (_ev_sales_g >= 0.05) &
+          (((_psg_e > 0) & (_psg_e <= 0.06)) |
+           ((_evsg_e > 0) & (_evsg_e <= 0.05)))))
     ).fillna(False).astype(int)
 
     # ======================================================================
@@ -1543,8 +1583,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # not expensive on earnings. The home for the financials the operating
     # value archetypes now exclude.
     _fpb = _num('pb'); _froe = _num('roe'); _fpe = _num('p_e')
+    # (tail) banks/insurers ONLY — a P/B<1 on a REIT is the IFRS-revaluation
+    # value trap, and on a closed-end fund / BDC it is a discount-to-NAV whose
+    # "ROE" is just the distribution rate. Those are NAV vehicles (they belong
+    # in oak_nav_discount), not book-value-cheap operating financials.
+    _fin_fund_vehicle = _ind_all.str.contains(
+        r'closed-end|business development|investment trust|\bfund\b|'
+        r'asset manage', regex=True)
     df['arch_financials_value'] = (
-        is_financial & (mcap >= 50e6)
+        is_financial & ~is_reit & ~_fin_fund_vehicle & (mcap >= 50e6)
         & (_fpb >= 0.15) & (_fpb < 1.0)         # pb floor: <0.15x book is an ADR/currency artifact (FDCT 0.108), not a real bank
         & (_froe >= 0.10)
         & (((_fpe > 0) & (_fpe <= 15)) | _fpe.isna())
@@ -1766,6 +1813,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (rev_yoy_c >= 0.15) &                       # "double-digit", not 50%
         oper_lev_any &                              # operating leverage (any of 6 angles)
         ((cfo_ttm_v > 0) | (fcf_ttm_v > 0)) &
+        _not_melting &                              # (tail) op_margin>0 floor sibling wolf_compounder carries (Writeup op-48%)
         (ev_sales_v > 0) & (ev_sales_v < 3.0) &
         wolf_cheap_entry &
         low_sbc_wolf
@@ -1776,14 +1824,16 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # flat/declining Thermal Energy). Cheap-entry ceiling added.
     df['arch_wolf_turnaround'] = (
         (mcap >= 10e6) & (mcap <= 200e6) &
+        (_num('revenue_ttm_usd') >= 10e6) &         # (tail) real revenue base — not a $2.8M base-effect shell (CTO.SI rev+2626%)
         ((ebitda_first_pos > 0) | (cfo_first_pos > 0) |
          (fcf_first_pos > 0) | (ni_first_pos > 0) |
          (cfo_inflection > 0) | (fcf_inflection > 0) |
          ((ebitda_inflection > 0) & oper_lev_any)) &
         # a genuine TURNAROUND is a low-margin business crossing to black, NOT an
         # already-solidly-profitable compounder whose CFO merely ticked up. Cap
-        # the current operating margin so established earners fall out.
-        (s('op_margin', np.nan) < 0.15) &
+        # the current operating margin so established earners fall out; the LOWER
+        # bound keeps it a name approaching black, not a deep loss-maker (op-65%).
+        (s('op_margin', np.nan) < 0.15) & (s('op_margin', np.nan) > -0.30) &
         (emd_c >= 0.0) &
         (rev_yoy_c >= 0.0) & rev_present &          # growing (present), not shrinking
         wolf_cheap_entry
@@ -1801,6 +1851,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((net_cash_pct_c >= 0.20) | (cash_gt_ev > 0) | (ncav_pct >= 0.50)) &
         ((rev_yoy_c >= 0.10) | ((rev_growth_score >= 0.5) & (rev_yoy_c >= 0))) &  # a GROWING thesis is not a declining top line (TTEC rev -3.2%)
         (cfo_ttm_v > 0) &
+        _not_melting &                              # (tail) a working-capital CFO must not mask a deep operating loss (SOGP roce-95%)
         ((fcf_yield >= 0.08) |
          ((ev_ebitda_v > 0) & (ev_ebitda_v < 6.0)))
     
@@ -1968,10 +2019,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _nav_vehicle = (_ind_all.str.contains(
         r'asset manag|closed-end|investment trust|holding|capital market|'
         r'\bfund\b|diversified financ|investment compan', regex=True)
-        & ~_ind_all.str.contains(r'bank|insur|thrift|mortgage|reinsur|credit',
-                                 regex=True))
+        # (tail) exclude OPERATING broker-dealers/exchanges — a "Capital Markets"
+        # securities house is not a NAV vehicle (Daishin/Kyobo Securities).
+        & ~_ind_all.str.contains(
+            r'bank|insur|thrift|mortgage|reinsur|credit|securit|broker|exchange',
+            regex=True))
+    # (tail) a NAV-discount thesis needs NAV that is HOLDING, not eroding. A
+    # BDC/holdco bleeding book value via losses (MLCI roce-0.84, BBXIA fcf-0.92,
+    # OCCI fcf-0.50) is a melting discount, not a covered one. Require ROE not
+    # known-negative (permissive on missing).
+    _nav_not_eroding = ~(_num('roe').notna() & (_num('roe') < 0.0))
     df['arch_oak_nav_discount'] = (
-        sector.isin({'Financials'}) & _nav_vehicle &
+        sector.isin({'Financials'}) & _nav_vehicle & _nav_not_eroding &
         (((pb > 0) & (pb < 0.7)) | ((_ptb_nav > 0) & (_ptb_nav < 0.7))) &
         ((div_yield_v >= 0.05) | (_ncol('capital_return_yield') >= 0.06))
     ).fillna(False).astype(int)
@@ -1995,6 +2054,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (mcap > 0) & (mcap < 1e9) &
         (ebitda_ttm_v > 0) &                        # survivability: real backlog conversion has POSITIVE EBITDA (not a less-negative decliner)
         ((cfo_ttm_v > 0) | (fcf_ttm_v > 0)) &       # cash-generative, not a melting shell (Futaba/DeTai)
+        _not_melting &                              # (tail) a CFO working-capital swing must not mask a deep operating loss (PRISMX op-407%, DDEJF op-125%)
         ((rev_accel > 0) | (rev_yoy_c > 0.05)) &
         oper_lev_any &
         ((ebitda_inflection > 0) | (ebitda_yoy_v > 0))
@@ -2155,6 +2215,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((insider_cluster > 0) | (insider_10pct > 0) | (insider_officer > 0)) &
         (insider_net_flag > 0) &                 # net buyer over the window
         (mcap > 0) & (mcap < 20e9) &
+        _not_melting &                           # (tail) a bare low-P/B value leg admitted deep burners (SNES op-242%, AVX op-1323%)
         (((ev_ebitda_v > 0) & (ev_ebitda_v <= 15.0)) | ((pb > 0) & (pb < _pb_cap_ic)) |
          (fcf_yield >= 0.03) | cheap_any)        # value-oriented, not a momentum chase
     ).fillna(False).astype(int)
@@ -2290,8 +2351,16 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating & (rev_yoy >= 0) & (s('op_margin', np.nan) > 0) &
         (_num('revenue_ttm_usd') >= 20e6)
     )
+    # (tail) the chronic-beats branch had NO quality floor, so a name beating a
+    # low-balled estimate while the business collapses fired "good business
+    # underestimated" (MED rev-43%/PE240, AMTD op-336%). Mirror a lightweight
+    # survivability floor onto it — not melting, revenue not deeply declining.
+    _asleep_beats_branch = (
+        (beat_rate >= 0.75) & (_beat_legs >= 2)
+        & _not_melting & (rev_yoy > -0.15)
+    )
     df['arch_asleep_at_wheel'] = (
-        ((beat_rate >= 0.75) & (_beat_legs >= 2))  # chronic beats + >=1 corroborating lens
+        _asleep_beats_branch
         | _asleep_eps_branch
     ).fillna(False).astype(int)
 
@@ -2305,6 +2374,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _ev_norm_ebit = (_num('enterprise_value')
                      / _num('normalized_ebit').where(_num('normalized_ebit') > 0))
     df['arch_templeton_pessimism'] = (
+        is_operating &                                         # (tail) EV/normalized-EBITDA lens is meaningless for financials/REITs/utilities
         (((ev_norm > 0) & (ev_norm <= 8.0)) |                   # cheap vs mid-cycle
          (ev_norm.isna() & (_ev_norm_ebit > 0) & (_ev_norm_ebit <= 10.0))) &
         ((_num('price_pct_of_5y_range') <= 0.35) |              # near 5y low…
@@ -2594,7 +2664,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     lr_roc_score = pd.concat([_set35, _set10], axis=1).max(axis=1)
 
     df['arch_lynch_reward'] = (
-        (mcap > 0) & lr_progress_gate & lr_not_capacity_trap &
+        (mcap > 0) & is_operating & _not_melting &   # (tail) "progress not yet paid" needs a viable operating business, not a melter (EDUC op-57%)
+        lr_progress_gate & lr_not_capacity_trap &
         lr_unpaid & lr_live_tape & lr_near50 &
         (lr_release_lt | lr_roc_setup)
     ).fillna(False).astype(int)
@@ -2985,9 +3056,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # sheet is being handed to new holders, not to us.
     _bdv_not_gushing_dilution = ~(_num('shares_yoy') > 0.50)
     df['arch_biotech_deep_value'] = (
-        _is_drug_dev
+        _is_clinical_biotech                   # (tail) CLINICAL developers only — a solidly-profitable major (Otsuka/Ono/Shionogi) below "cash" is a negative-EV artifact, not a binary-option play
         & (mcap >= 2e6)
-        & ((_bdv_ncash >= 0.5) | (_bdv_cashev > 0) | (_bdv_ncav >= 0.8))
+        # (tail) clamp the net-cash leg to a sane band — net_cash_pct is FX-
+        # corruptible (Kalbe 2094x, Sundrug 6.8x); at/below cash is ~0.5-3x, not 2000x.
+        & (((_bdv_ncash >= 0.5) & (_bdv_ncash <= 3.0)) | (_bdv_cashev > 0)
+           | ((_bdv_ncav >= 0.8) & (_bdv_ncav <= 3.0)))
         & (_bdv_runway >= 1.0)                 # docstring runway floor (non-burners = 99)
         & _bdv_not_gushing_dilution
     ).fillna(False).astype(int)

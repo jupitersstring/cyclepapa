@@ -1,4 +1,4 @@
-METHODOLOGY AUDIT — 81 checks, 0 FAIL, 0 WARN
+METHODOLOGY AUDIT — 97 checks, 0 FAIL, 0 WARN
   PASS  units: dividend_yield is a fraction  — median |dividend_yield| = 0.028 (fraction-scale cap 1.5)
   PASS  units: fcf_yield is a fraction  — median |fcf_yield| = 0.070 (fraction-scale cap 3.0)
   PASS  units: analyst_target_upside_pct is a fraction  — median |analyst_target_upside_pct| = 0.261 (fraction-scale cap 5.0)
@@ -22,7 +22,7 @@ METHODOLOGY AUDIT — 81 checks, 0 FAIL, 0 WARN
   PASS  strong_coverage: every firer has positive EBITDA  — 0 non-positive
   PASS  fastest_segment: segment_count is present (not a vacuous audit)  — segment_count absent from BOTH archetype_tags.csv and asymmetry_global.csv
   PASS  fastest_segment: every firer is multi-segment  — 0 single-segment
-  PASS  fastest_segment: no impossible growth artifacts (>500%)  — max 4.88
+  PASS  fastest_segment: no impossible growth artifacts (>500%)  — max 4.67
   PASS  gating: tenbagger_score is 0 outside arch_tenbagger_path  — 0 non-firers with positive score
   PASS  gating: evsales_derate_score is 0 outside arch_evsales_derating  — 0 non-firers with positive score
   PASS  gating: lynch_reward_score is 0 outside arch_lynch_reward  — 0 non-firers with positive score
@@ -72,6 +72,22 @@ METHODOLOGY AUDIT — 81 checks, 0 FAIL, 0 WARN
   PASS  regression(R1): arch_no_dilution excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
   PASS  regression(R1): arch_oak_deleveraging excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
   PASS  regression(R1): arch_fastest_segment excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_qarp excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_templeton_pessimism excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_lynch_reward excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_lynch_evgy excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_concentrated_segments excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(tail): arch_micro_activist_inflect carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression(tail): arch_fixed_cost_demand_shock carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression(tail): arch_regime_cyclical carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression(tail): arch_kpi_threshold carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression(tail): arch_oak_order_conversion carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression(tail): arch_insider_conviction carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression(tail): arch_fastest_segment carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression(tail): arch_wolf_trifecta carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression(tail): arch_wolf_value_catalyst carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression(tail): arch_wolf_turnaround keeps a real USD revenue base  — 0 sub-floor-revenue firers
+  PASS  regression(tail): arch_fastest_segment keeps a real USD revenue base  — 0 sub-floor-revenue firers
   PASS  range: confirm_overall within [0,1]  — min 0.000 max 1.000
   PASS  range: oper_leverage_score within [0,1]  — min 0.000 max 1.000
   PASS  range: buyback_score within [0,1]  — min 0.000 max 1.000

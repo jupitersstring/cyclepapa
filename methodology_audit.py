@@ -511,11 +511,41 @@ def _regression(t, g):
     for _ac in ("arch_durable_reinvestment", "arch_cash_reinvest",
                 "arch_lindy_fcf", "arch_lindy_growth", "arch_owner_operator",
                 "arch_cash_quality", "arch_low_sbc_quality", "arch_no_dilution",
-                "arch_oak_deleveraging", "arch_fastest_segment"):
+                "arch_oak_deleveraging", "arch_fastest_segment",
+                # tail-audit additions
+                "arch_qarp", "arch_templeton_pessimism", "arch_lynch_reward",
+                "arch_lynch_evgy", "arch_concentrated_segments"):
         if _ac in t.columns:
             leak = int(((n(t, _ac) == 1) & _finre).sum())
             check(f"regression(R1): {_ac} excludes Financials/REITs/Utilities",
                   leak == 0, f"{leak} financials/REITs/utilities firers")
+
+    # tail — "not melting": survivability legs (positive EBITDA / a CFO swing)
+    # must not admit a CONFIRMED deep operating loss-maker. Pin it as: no firer
+    # with a known deeply-negative current ROCE (< -5%).
+    _roce_now = gcol("roce")
+    # (arch_wolf_turnaround is deliberately EXCLUDED — a turnaround crossing to
+    # black legitimately still shows negative current ROCE; it is bounded
+    # instead by op_margin > -30% and a real revenue base, not by a roce floor.)
+    for _ac in ("arch_micro_activist_inflect", "arch_fixed_cost_demand_shock",
+                "arch_regime_cyclical", "arch_kpi_threshold",
+                "arch_oak_order_conversion", "arch_insider_conviction",
+                "arch_fastest_segment", "arch_wolf_trifecta",
+                "arch_wolf_value_catalyst"):
+        if _ac in t.columns:
+            leak = int(((n(t, _ac) == 1) & (_roce_now < -0.05)).sum())
+            check(f"regression(tail): {_ac} carries no deep operating loss-maker (roce<-5%)",
+                  leak == 0, f"{leak} firers with roce < -5%")
+
+    # tail — real revenue base on the microcap turnaround/segment engines that
+    # gained a floor (a hidden growth engine / turnaround needs a real business).
+    for _ac, _floor in (("arch_wolf_turnaround", 10e6),
+                        ("arch_fastest_segment", 20e6)):
+        if _ac in t.columns:
+            leak = int(((n(t, _ac) == 1) & (_rev_usd > 0)
+                        & (_rev_usd < _floor)).sum())
+            check(f"regression(tail): {_ac} keeps a real USD revenue base",
+                  leak == 0, f"{leak} sub-floor-revenue firers")
 
 
 @measure("Composite score ranges",
