@@ -240,9 +240,24 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _ind_all = (df['industry'].fillna('').astype(str).str.lower()
                 if 'industry' in df.columns else pd.Series('', index=df.index))
     _sec_l = sector.astype(str).str.lower()
-    is_financial = _sec_l.str.contains('financ')
+    # (R1a) NULL-sector hole: a name whose sector is blank/NaN must NOT
+    # auto-pass is_operating. Back-stop on the industry string so financial
+    # names with a missing sector (banks/insurers/REITs/thrifts via industry
+    # only) are still classed as financial rather than slipping through as
+    # "operating". _sec_missing marks the rows where the sector is unusable.
+    _sec_missing = _sec_l.isin(('', 'nan', 'none', 'null')) | sector.isna()
+    _fin_ind_kw = ('bank', 'insur', 'thrift', 'mortgage', 'capital market',
+                   'asset manage', 'financ', 'reit', 'brokerage',
+                   'savings', 'lending', 'credit servic')
+    _ind_is_financial = _ind_all.str.contains('|'.join(_fin_ind_kw))
+    is_financial = _sec_l.str.contains('financ') | _ind_is_financial
     is_reit = _sec_l.str.contains('real estate') | _ind_all.str.contains('reit')
-    is_utility = _sec_l.str.contains('utilit')
+    is_utility = _sec_l.str.contains('utilit') | (
+        _sec_missing & _ind_all.str.contains('utilit'))
+    # A NULL-sector name whose industry looks financial/REIT/utility is NOT
+    # operating; a NULL-sector name with no financial industry signal is left
+    # operating (genuine unknown-sector operating co) — the backstop only
+    # closes the financial-leak hole, it doesn't fail every unknown sector.
     is_operating = ~(is_financial | is_reit | is_utility)
     # (G2) Denominator-sanity clamps: cash > 100% of mcap for an OPERATING
     # value thesis is a shell/holdco artifact; a real EBITDA margin sits in
@@ -250,6 +265,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     net_cash_pct_sane = net_cash_pct.where(net_cash_pct <= 1.0)
     ebitda_margin_sane = ebitda_margin.where((ebitda_margin > 0)
                                              & (ebitda_margin < 0.6))
+    # (R4) Current-state floor for backward-looking multi-year gates. A lindy
+    # ROIC streak or an n-year FCF count is a HISTORY; a name whose returns
+    # have since turned negative (melting ice cube) must not still qualify as
+    # "durable". _roce_now_ok requires the CURRENT roce to be non-negative
+    # (NaN roce is left permissive — the multi-year gate carries the weight
+    # there — but a KNOWN-negative current roce fails the durability claim).
+    _roce_now = s('roce', np.nan)
+    _roce_now_ok = ~(_roce_now.notna() & (_roce_now < 0.0))
     nde = s('net_debt_ebitda', 99.0)
     # Negative-EBITDA artifact guard applied AT FIRST DEFINITION (not 600
     # lines later): net_debt/EBITDA flips negative on negative EBITDA and
@@ -463,9 +486,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # ownership alone is not capital discipline (91% passed on it before).
     _action_leg = ((_ncol('shares_growth_3y') <= -0.01) |
                    (_ncol('buyback_yield') >= 0.02))
+    # (R2) roic_after_sbc is EDGAR-only (NA for all non-US filers), so the
+    # returns leg used to collapse to "insider>=0.20 & any positive FCF" for
+    # ex-US names. Add globally-available roce>=0.12 as the real returns leg,
+    # and lift the FCF fallback to a meaningful yield (not a trivial +epsilon).
     _insider_plus_return = ((insider >= 0.20) &
                             ((_ncol('roic_after_sbc') >= 0.10) |
-                             (fcf_yield > 0)))
+                             (_ncol('roce') >= 0.12) |
+                             (fcf_yield >= 0.04)))
     _own_aligned = (_action_leg | _insider_plus_return)
     df['arch_capital_discipline'] = (
         is_operating &                          # (G1) exclude financials/REITs/utilities
@@ -567,12 +595,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                        ((_ncol('p_e') > 0) & (_ncol('p_e') <= 8.0)) |
                        ((pb > 0) & (pb <= 0.8)))
     df['arch_micro_activist_inflect'] = (
+        is_operating &                  # (R1b) exclude financials/REITs
+        (rev_yoy > 0) &                 # (R5) inflection with a GROWING top line, not a cost-cut blip in decline
         (mcap > 0) & (mcap < 250e6) &
         profitable &
         inflection_now &
         clean_balance_sheet &
         cheap_on_ebitda
-    ).astype(int)
+    ).fillna(False).astype(int)
 
     # ---------- Cluster I-L: EDGAR XBRL-derived archetypes (US filers only) ----
     # These rely on multi-year ROIC/ROIIC fields from edgar_roic_roiic.py.
@@ -594,6 +624,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # I — Durable reinvestment: lindy ROIIC > 15% over a multi-cycle history.
     # The Mauboussin / Mayer compounder signature.
     df['arch_durable_reinvestment'] = (
+        is_operating &                               # (R1b) exclude financials/REITs
+        _roce_now_ok &                               # (R4) current returns not negative
         (roic_lindy >= 0.10) &                       # (G3) positive base ROIC
         (s('n_yrs_positive_roic', 0) >= 4) &         # (G3) require ROIC history
         (roiic_lindy >= 0.15) & (roiic_lindy <= 1.0) &  # (G3) sane ROIIC band
@@ -603,6 +635,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # J — Cash-confirmed reinvestment: cash ROIIC lindy > 12% (lower bar than
     # NOPAT because FCF includes capex outflows).
     df['arch_cash_reinvest'] = (
+        is_operating &                               # (R1b) exclude financials/REITs
+        _roce_now_ok &                               # (R4) current returns not negative
         (cash_roic_lindy >= 0.10) &                  # (G3) positive base cash ROIC
         (s('n_yrs_positive_roic', 0) >= 4) &         # (G3) require ROIC history
         (cash_roiic_lindy >= 0.12) & (cash_roiic_lindy <= 1.0) &  # (G3) sane band
@@ -612,9 +646,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # K — ROIC inflection: latest ROIC crossed zero from below AND cash ROIC
     # also positive (confirms the inflection is real, not accounting).
     df['arch_roic_inflect'] = (
+        is_operating &                               # (R1b) exclude financials/REITs
         ((roic_inflect == 1) | (cash_roic_inflect == 1))
         & (cash_roic_lindy.fillna(-1) > 0)
-    ).astype(int)
+        & (rev_yoy > 0)                              # (R5) not a cost-cut blip in a shrinking co
+    ).fillna(False).astype(int)
 
     # L — Cheap per reinvestment yield (PEG analogue on ROIIC). Lower
     # cheap_per_roiic = more reinvestment yield per multiple paid. Threshold
@@ -652,10 +688,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # 5+ years (compounder signature). Distinct from the point-in-time
     # CapitalDiscipline tag, which can fire on a single good year.
     df['arch_lindy_margin'] = (
-        (op_margin_lindy >= 0.10) &
-        (ebitda_margin_lindy >= 0.12) &
+        (op_margin_lindy >= 0.10) & (op_margin_lindy <= 0.6) &   # cap: royalty holdco / one-off (INVA 95%)
+        (ebitda_margin_lindy >= 0.12) & (ebitda_margin_lindy <= 0.8) &
         (years_of_history >= 5)
-    
         & is_operating   # (G1 ext) revenue-multiple/margin meaningless for financials
     ).fillna(False).astype(int)
 
@@ -663,9 +698,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # operating income in 4 of last 5. Cash-generation durability test
     # that strips out the accounting noise.
     df['arch_lindy_fcf'] = (
+        is_operating &                               # (R1b) exclude financials/REITs
+        _roce_now_ok &                               # (R4) current returns not negative
+        (years_of_history >= 5) &                    # (R4) real multi-cycle history, not a 1-yr shell
         (n_yrs_fcf_pos >= 4) &
         (n_yrs_opinc_pos >= 4)
-    ).astype(int)
+    ).fillna(False).astype(int)
 
     # P — No Dilution (Clean Compounder): shares roughly flat over 3y AND
     # FCF positive 4 of 5 AND ROIC positive 4 of 5. The Mayer / Mauboussin
@@ -678,6 +716,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _not_split_3y = (shares_growth_3y >= -0.30) | _buyback_corrob
     _not_split_yoy = (_ncol('shares_yoy') >= -0.30) | _buyback_corrob
     df['arch_no_dilution'] = (
+        is_operating &                               # (R1b) exclude financials/REITs
         (((shares_growth_3y <= 0.02) & _not_split_3y) |
          (_ncol('shares_growth_3y').isna() & (_ncol('shares_yoy') <= 0.01)
           & _not_split_yoy)) &
@@ -749,6 +788,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _roic_asbc = _ncol('roic_after_sbc')
     _roce_n = _ncol('roce')
     df['arch_low_sbc_quality'] = (
+        is_operating &                          # (R1b) exclude financials/REITs
         (((sbc_pct_revenue >= 0.0) & (sbc_pct_revenue < 0.02)) |
          ((_roic_asbc > 0.10) & ((_roce_n - _roic_asbc).abs() < 0.02))) &
         (ebitda_margin > 0.05)
@@ -851,6 +891,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _seg_any_growth = pd.concat(
         [_fs_yoy_q, _fs_yoy_fy, fastest_segment_yoy], axis=1).max(axis=1)
     df['arch_fastest_segment'] = (
+        is_operating &                          # (R8) financials/land-sale one-offs excluded
         (segment_count >= 2) & seg_inflect_any & (_seg_any_growth >= 0.10)
     ).fillna(False).astype(int)
     df['seg_inflect_score'] = (seg_inflect_score
@@ -860,6 +901,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # (3y CAGR > 5y CAGR) AND asset base growing. Multi-cycle expansion
     # without the single-year base-effect noise.
     df['arch_lindy_growth'] = (
+        is_operating &                          # (R1b) exclude financials/REITs
         (revenue_5y_cagr >= 0.08) &
         (revenue_accel_lindy > 0) &
         (asset_5y_cagr > 0.03) &
@@ -917,6 +959,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # discipline. Russo's "capacity to suffer" / Mayer's owner-operator
     # 100-bagger archetype.
     df['arch_owner_operator'] = (
+        is_operating &                          # (R1b) exclude financials/REITs
         (insider >= 0.20) &
         (n_yrs_roic_pos >= 4) &
         (n_yrs_fcf_pos >= 4) &
@@ -953,17 +996,21 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # from below in the latest year. Confirms the inflection is real
     # cash, not accounting-driven (D&A timing, accruals).
     df['arch_double_inflect'] = (
+        is_operating &                          # (R1b) exclude financials/REITs
         (roic_inflect_v == 1) &
-        (cash_roic_inflect_v == 1)
-    ).astype(int)
+        (cash_roic_inflect_v == 1) &
+        (rev_yoy > 0)                           # (R5) not a cost-cut blip in a shrinking co
+    ).fillna(False).astype(int)
 
     # X — Cash Quality: cash-ROIC running materially ahead of NOPAT-ROIC
     # over the lindy window. "Earnings hide the cash" — quality-of-
     # earnings tell that Mauboussin emphasises.
     df['arch_cash_quality'] = (
+        is_operating &                          # (R1b) exclude financials/REITs
         (cash_roic_lindy > 0.08) &
         (roic_lindy > 0) &
         ((cash_roic_lindy - roic_lindy) >= 0.05) &
+        (shares_growth_3y <= 0.05) &            # non-dilution: the cash-earnings gap must not be an SBC add-back on a serial diluter
         (n_yrs_fcf_pos >= 4)
     ).fillna(False).astype(int)
 
@@ -1044,7 +1091,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_bab_low_beta'] = (
         beta_present & (beta_raw >= 0.20) &
         (beta_shrunk <= 0.85) & bab_quality &
-        (adv >= 1e5)
+        adv_has & (adv >= 1e5)                     # (R10) missing ADV (1e12 default) must FAIL the liquidity gate
     ).fillna(False).astype(int)
 
     # 2) Becoming more BAB-like: beta still moderate, but the business is
@@ -1065,7 +1112,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_bab_multibagger'] = (
         beta_present & (beta_raw >= 0.20) &        # (G7) raw beta present & >= 0.20
         (beta_shrunk <= 1.0) & bab_quality &
-        (adv >= 1e5) &                             # (G7) liquidity floor
+        adv_has & (adv >= 1e5) &                   # (G7/R10) liquidity floor; missing ADV must FAIL
         (bab_multibagger_leg | bab_cheap_leg)
     ).fillna(False).astype(int)
 
@@ -1189,7 +1236,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # EBITDA/EV yield = EBITDA / enterprise value = 1 / (EV/EBITDA). Cheaper
     # and more globally-available than the P/E-based earnings yield (no net
     # income / EDGAR dependence). Good yield >= 0.08 (EV/EBITDA <= 12.5).
-    _ev_ebitda_yield = (1.0 / ev_ebitda_v).where(ev_ebitda_v > 0, np.nan)
+    # (R3) FX-corrupt EV (cross-listing ADR / currency mismatch) makes EV/EBITDA
+    # absurdly low (Nitori 0.04 -> yield 25x, auto-passing "cheap"). Guard the
+    # EV-multiple lens to a sane enterprise-value band (EV between 0.2x and 5x
+    # mcap) AND a floor on EV/EBITDA itself, so a corrupt near-zero EV can't
+    # read as ultra-cheap. A genuinely cheap name still clears EV/EBITDA >= 2.
+    _ev_mcap_garp = (_ncol('enterprise_value') / mcap.where(mcap > 0))
+    _ev_sane_garp = (_ev_mcap_garp >= 0.2) & (_ev_mcap_garp <= 5.0)
+    _ev_ebitda_yield = (1.0 / ev_ebitda_v).where(
+        (ev_ebitda_v >= 2.0) & _ev_sane_garp, np.nan)
     # True ROIIC (EDGAR multi-year) for filers that have it...
     _roiic_true = (
         (roiic_lindy >= 0.15) |                     # strong ROIIC
@@ -1543,7 +1598,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _on_C = (_eps_streak >= 2) | (_revg >= 0.20)
     _on_A = (_roce_v >= 0.15) & ((_eps_pos >= 0.75) | (_revg >= 0.10))
     _on_N = (_off_high >= -0.15) | (_is_52w == 1)
-    _on_L = (_leader_pr >= 80)
+    # (R10) a high RS PERCENTILE in a broadly-down tape can flag a name that is
+    # itself DOWN on both horizons as a "leader". Require genuine positive
+    # recent momentum on at least one horizon for the leadership claim.
+    _on_L = (_leader_pr >= 80) & (_prior_run > 0)
     df['arch_oneil_canslim'] = (
         _live_tape & _on_C & _on_A & _on_N & _on_L
     ).fillna(False).astype(int)
@@ -1744,6 +1802,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # Leverage loosened 1.0->1.5 (RCMT ran ~1.3-1.5x) with the ebitda>0 guard.
     df['arch_liger_lagging_inflect'] = (
         is_operating &                              # (G1) exclude financials/REITs/utilities
+        (rev_yoy_c > 0) &                           # (R5) revenue not declining (blocks cost-cut-blip oper-lev path)
         (((rev_yoy_c >= 0.10) & (rev_accel > 0)) | (rev_yoy_c >= 0.15) | oper_lev_any) &
         ((cash_conv_w >= 0.80) | (fcf_margin_w > 0)) &
         _clean_bs(1.5) &                            # clean b/s (nde OR net-cash)
@@ -1782,7 +1841,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         sector.isin({'Materials', 'Energy'}) &
         (ev_ebitda_v > 0) & (ev_ebitda_v < 8.0) &
         _clean_bs(1.5) &
-        (cash_pct_mcap_v >= 0.20) &                 # net-cash survivability
+        (net_cash_pct_c >= 0.20) &                  # NET-cash survivability (not gross cash)
         (ebitda_margin >= 0.25) &                   # cost-curve proxy
         ((fcf_yield >= 0.08) | (_ncol('robust_cash_yield') >= 0.08) |
          (_ncol('owner_earnings_yield') >= 0.08)) &
@@ -1793,6 +1852,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # EBITDA mechanically cuts the ratio = his actual thesis), material
     # shareholder return. Yield floor raised to DEC-scale; solvency soft gate.
     df['arch_oak_deleveraging'] = (
+        is_operating &                              # (R1b) exclude financials/REITs (mandatory-leverage biz)
         ((fcf_yield >= 0.10) | (_ncol('robust_cash_yield') >= 0.10) |
          (_ncol('owner_earnings_yield') >= 0.10)) &
         (ebitda_ttm_v > 0) & (nde >= 1.0) & (nde <= 3.0) &
@@ -1817,8 +1877,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # deep book discount with a high yield. Cannot capture true NAV (marks on
     # unlisted assets) or his dividend-cover >=1.2x test.
     _ptb_nav = _ncol('p_tb')
+    # (rank520) narrow to REAL NAV vehicles — closed-end funds, investment
+    # trusts, holdcos, asset managers — where book ~ NAV. An operating bank or
+    # insurer at 0.7x book is just a cheap financial, NOT a NAV-discount holdco;
+    # exclude them so the discount reads against NAV, not against a lending book.
+    _nav_vehicle = (_ind_all.str.contains(
+        r'asset manag|closed-end|investment trust|holding|capital market|'
+        r'\bfund\b|diversified financ|investment compan', regex=True)
+        & ~_ind_all.str.contains(r'bank|insur|thrift|mortgage|reinsur|credit',
+                                 regex=True))
     df['arch_oak_nav_discount'] = (
-        sector.isin({'Financials'}) &
+        sector.isin({'Financials'}) & _nav_vehicle &
         (((pb > 0) & (pb < 0.7)) | ((_ptb_nav > 0) & (_ptb_nav < 0.7))) &
         ((div_yield_v >= 0.05) | (_ncol('capital_return_yield') >= 0.06))
     ).fillna(False).astype(int)
@@ -1881,8 +1950,25 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # Upper bounds reject near-zero-mcap data artifacts (a yield of 55,000,000x
     # or EV/mcap of 130,000,000x is a broken market cap, not a cheap stub).
     # Genuine Weschler zone: P/cash ~0.5-6.7x, EV a few x equity.
-    heavy_debt = ((nde_real >= 3.0) & (nde_real <= 30.0)) | \
-                 ((ev_over_mcap >= 1.75) & (ev_over_mcap <= 30.0))
+    # (R3) FX-corrupt EV can read a NET-CASH firm as "levered" via ev_over_mcap
+    # alone. Require a REAL positive-leverage corroborator (net debt / equity)
+    # on the EV path so a cross-listing artifact can't flag a net-cash balance
+    # sheet as a levered stub. The nde path is already net-debt-based.
+    # A levered equity stub REQUIRES positive net debt: a net-cash firm (more
+    # cash than debt) is never a levered stub, whatever its FX-corrupt EV or
+    # gross debt/equity says. So the EV-path corroborator is genuine net debt
+    # (nde) OR simply "not net cash" — gross debt/equity alone does NOT qualify
+    # a firm whose cash exceeds its debt.
+    _real_leverage = (nde_real >= 1.0) | (net_cash_pct <= 0.0)
+    # Known-net-cash veto: some names carry CONTRADICTORY balance-sheet fields
+    # (net_cash_pct says net cash, net_debt_ebitda says heavily levered — stale
+    # / mismatched snapshots). For a levered-stub thesis the conservative call
+    # is to NOT call a firm a levered stub whenever a balance-sheet measure
+    # clearly says it is net cash. Missing net_cash_pct stays permissive.
+    _not_known_netcash = ~(net_cash_pct.notna() & (net_cash_pct > 0.10))
+    heavy_debt = _not_known_netcash & (
+        ((nde_real >= 3.0) & (nde_real <= 30.0)) |
+        ((ev_over_mcap >= 1.75) & (ev_over_mcap <= 30.0) & _real_leverage))
     df['arch_weschler_levered_equity'] = (
         (robust_cy >= 0.15) & (robust_cy <= 2.0) &  # cheap on ROBUST cash (Lindy)
         (owner_ey >= 0.08) & (owner_ey <= 2.0) &    # corroborated by reported FCF
@@ -1994,6 +2080,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     )
     df['arch_cheap_sales_scaler'] = (
         (mcap > 0) & (mcap < 5e9) &
+        (_num('revenue_ttm') >= 20e6) &          # (R6) real revenue base — % growth is noise below this
         (p_s_v >= 0.10) & (p_s_v <= 2.0) &       # cheap on revenues (lower bound kills
                                                  #   near-zero-mcap p_s artifacts)
         (rev_yoy_c >= 0.10) &                    # actually growing (double-digit)
@@ -2016,6 +2103,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     evsg_v = s('evsg', 99.0)
     df['arch_exceptional_evsg'] = (
         (mcap > 0) & (mcap < 20e9) &
+        (_num('revenue_ttm') >= 20e6) &          # (R6) real revenue base — % growth is noise below this
         (((evsg_v >= 0.002) & (evsg_v <= 0.05)) |
          (_ncol('evsg').isna() & (_ncol('psg') >= 0.0025) &
           (_ncol('psg') <= 0.06))) &               # EXCEPTIONAL EV/sales-to-growth
@@ -2064,6 +2152,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     ev_fcf = _num('enterprise_value') / fcf_ttm_v.where(fcf_ttm_v > 0)
     df['arch_growth_algo'] = (
         (mcap > 0) & (mcap < 50e9) &
+        (_num('revenue_ttm') >= 20e6) &          # (R6) real revenue base — % growth is noise below this
         (rev_yoy_c >= 0.15) &                    # top-line (gross-profit) growth
         oper_lev_any &                           # operating leverage (EBIT outpaces sales)
         (fcf_ttm_v > 0) &
@@ -2182,6 +2271,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     )
     df['arch_tenbagger_path'] = (
         (mcap > 0) & (mcap < 10e9) &                    # 10x easier small/mid ($18m-$2.3bn examples)
+        (_num('revenue_ttm') >= 20e6) &                 # (R6) real revenue base — % growth is noise below this
         (ps_v > 0) & (ps_v < 30) &                      # sane P/S (avoid near-zero-sales artifacts)
         (g10 >= 0.15) &                                 # durable growth printing (median of bases)
         (_g_confirmed | (rev_growth_score >= 0.5)) &    # >=2 bases (or robust composite) agree
@@ -2504,9 +2594,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # (G6) require a REAL consensus rating present and reasonable (not bearish)
     # — the awakening cannot fire on price-target optimism alone (38% did).
     _rating_present = (_rec.notna()) & (_rec > 0) & (_rec <= 3.0)
+    # (R9) a genuine EARLY re-rating is not a name in freefall. Target-upside
+    # mechanically inflates after a crash, so a stock >35% off its 52w high with
+    # no recent momentum is a falling knife, not an awakening. Require it be
+    # NOT collapsing: within 35% of the high, or showing positive recent momentum.
+    _not_freefall = ((_num('pct_off_52w_high') >= -0.35) |
+                     (_num('momentum_12m') > 0) | (_num('roc_6m') > 0))
     df['arch_analyst_awakening'] = (
         (mcap > 0) & (_nan_ >= 3) & _rating_present & _conviction &
-        _not_extended & lr_live_tape
+        _not_extended & _not_freefall & lr_live_tape
     ).fillna(False).astype(int)
     # Score: rating strength + upside depth + breadth, upweighted where the
     # tape agrees — 52w high (abs and/or rel) scaled by base freshness.
@@ -2768,6 +2864,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _is_noncommon = (
         _sym_nc.str.match(r'^[A-Z]{1,5}-P[A-Z]?$')
         | _sym_nc.str.match(r'^[A-Z]{1,5}[-.](?:WT|WS|U|UN|R|RT)$')
+        # (R7) suffixed foreign/Canadian preferred lines the anchored US
+        # pattern misses — kept narrow so exchange suffixes (.PA Paris, .PR
+        # never terminal here) are NOT caught: TICK.PR.G, TICK-PR-A, TICK PFD.
+        | _sym_nc.str.contains(r'\.PR\.[A-Z]$', regex=True)          # GWO.PR.G (Canadian pref)
+        | _sym_nc.str.contains(r'-PR[-.]?[A-Z]?$', regex=True)       # BAM-PR-A, X-PR
+        | _sym_nc.str.contains(r'[-. ]PFD\b', case=False, regex=True)
         | _nm_nc.str.contains(r'preferred|pfd| pref |depositary|% notes|perpetual|warrant',
                               case=False, regex=True)
     ).fillna(False)
