@@ -119,6 +119,10 @@ ARCHETYPE_LABELS = {
     'arch_analyst_rerating_confirmed': 'Re-Rating Confirmed (at 52w-High)',
     'arch_bottleneck': 'Bottleneck / Chokepoint (pricing power)',
     'arch_flyover': 'Flyover (undiscovered quiet quality)',
+    'arch_spinoff': 'Spin-Off (Form 10, cheap + forced-selling)',
+    'arch_post_reorg': 'Post-Reorg (fresh-start, EBIT-yield>20%)',
+    'arch_special_situation': 'Special Situation (merger/tender/going-private)',
+    'arch_nol_shell': 'NOL Shell (tax asset > half market cap)',
 }
 
 

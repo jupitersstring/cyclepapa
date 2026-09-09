@@ -59,6 +59,7 @@ FAMILY_COLORS = {
     'segment':      'FF3949AB',   # indigo  — hidden-engine / segment lenses
     'contrarian':   'FF5D6D7E',   # grey    — neglect / narrative-lag / dead-option
     'momentum':     'FFB71C1C',   # crimson — trend/breakout traders (O'Neil/Weinstein/Kullamagi)
+    'event':        'FF4E342E',   # dark brown — event-driven special situations
 }
 
 # Explicit archetype -> family. Named-investor packs stay together; the rest
@@ -122,6 +123,9 @@ ARCH_FAMILY = {
     # analyst re-rating CONFIRMED by 52w-high price strength — a momentum-
     # confirmed cousin of analyst_awakening, grouped with the trend/breakout set.
     'arch_analyst_rerating_confirmed': 'momentum',
+    # event-driven special situations (EDGAR filing signals)
+    'arch_spinoff': 'event', 'arch_post_reorg': 'event',
+    'arch_special_situation': 'event', 'arch_nol_shell': 'event',
 }
 
 
@@ -148,7 +152,7 @@ def family_legend() -> list[tuple[str, str]]:
         'inflection': 'Inflection / turnaround', 'growth': 'Growth / multibagger',
         'capital': 'Capital return / insider', 'lynch_screen': 'Lynch / screen value',
         'segment': 'Segment / hidden-engine', 'contrarian': 'Contrarian / neglect',
-        'momentum': 'Trend/breakout traders',
+        'momentum': 'Trend/breakout traders', 'event': 'Event / special situation',
     }
     return [(labels[f], c) for f, c in FAMILY_COLORS.items()]
 

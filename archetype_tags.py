@@ -144,6 +144,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     if os.path.exists('lynch_reward_signals.csv'):
         lynch_signals = pd.read_csv('lynch_reward_signals.csv').drop_duplicates('symbol')
         df = df.merge(lynch_signals, on='symbol', how='left', suffixes=('','_lr'))
+    # EDGAR event-driven / special-situations signals (US filers): Form-10 spins,
+    # tenders/mergers/going-private, NOL carryforwards, post-reorg fresh-start.
+    if os.path.exists('edgar_event_signals.csv'):
+        _evt = pd.read_csv('edgar_event_signals.csv').drop_duplicates('symbol')
+        _evt_keep = ['symbol', 'spin_flag', 'tender_flag', 'merger_flag',
+                     'going_private_flag', 'distress_flag', 'nol_usd', 'reorg_flag']
+        _evt = _evt[[c for c in _evt_keep if c in _evt.columns]]
+        df = df.merge(_evt, on='symbol', how='left', suffixes=('', '_evt'))
     # pew and asym both carry n_analysts; suffix pew's copy so downstream
     # _num('n_analysts') keeps reading the asym column instead of vanishing
     # into n_analysts_x/_y (which silently zeroed the analyst-awakening gate).
@@ -2966,6 +2974,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_analyst_rerating_confirmed',
         'arch_bottleneck',
         'arch_flyover',
+        'arch_spinoff',
+        'arch_post_reorg',
+        'arch_special_situation',
+        'arch_nol_shell',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -3051,6 +3063,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_analyst_rerating_confirmed': 'ReratingConfirmed-52wHigh',
         'arch_bottleneck': 'Bottleneck-Chokepoint',
         'arch_flyover': 'Flyover-QuietQuality',
+        'arch_spinoff': 'SpinOff-Form10',
+        'arch_post_reorg': 'PostReorg-FreshStart',
+        'arch_special_situation': 'SpecialSit-Catalyst',
+        'arch_nol_shell': 'NOL-Shell',
     }
     # ===== NON-COMMON SECURITY SCRUB (audit re-check 2026-09-08) =====
     # Preferred shares, warrants, units and rights are NOT common equity —
@@ -3166,6 +3182,54 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (s('op_margin', np.nan) > 0) &                  # profitable
         _not_melting &
         (nde <= 2.0)                                    # low leverage (strong balance sheet)
+    ).fillna(False).astype(int)
+
+    # ---------- Event-driven / Special-Situations sleeve (EDGAR, US filers) ----
+    # The Special-Situations taxonomy (Master Reference III/VIII; Compendium
+    # Part II). Each is a HARD, DATED corporate-action catalyst with a
+    # structurally BOUNDED downside, paired — per the user's refinement — with
+    # EXCELLENT VALUATION (a high EBIT yield, FCF yield, or earnings yield).
+    # US-only: non-EDGAR filers carry no event signal (fields are NaN -> 0).
+    _spin = s('spin_flag', 0); _tender = s('tender_flag', 0)
+    _merger = s('merger_flag', 0); _gopriv = s('going_private_flag', 0)
+    _reorg = s('reorg_flag', 0); _nol_usd = _num('nol_usd')
+    _ebit_yield = (1.0 / s('ev_ebit', 0)).where(s('ev_ebit', 0) > 0, np.nan)
+    _earn_yield = _num('earnings_yield')
+    # "Excellent valuation": cheap on ANY of the three yield lenses.
+    _excellent_value = ((fcf_yield >= 0.08) | (_earn_yield >= 0.08)
+                        | (_ebit_yield >= 0.10))
+
+    # Spin-off (Form 10 registration): forced-selling / identity-vacuum — a
+    # viable operating business, cheap, not melting.
+    df['arch_spinoff'] = (
+        (_spin == 1) & is_operating & _not_melting & (mcap > 0)
+        & _excellent_value
+    ).fillna(False).astype(int)
+
+    # Post-reorg / fresh-start (Assembly Theory): the single most powerful screen
+    # is EBIT yield > 20% at emergence (Verdad: +61% 2yr); de-levering + intact
+    # moat is gating — we proxy the moat with a high EBIT yield + not-melting.
+    df['arch_post_reorg'] = (
+        (_reorg == 1) & is_operating & _not_melting
+        & (_ebit_yield >= 0.20)
+        & (nde <= 3.0)
+    ).fillna(False).astype(int)
+
+    # Special-situation catalyst: a dated merger / tender / going-private event
+    # with a bounded downside, bought cheap so value holds if the deal breaks.
+    df['arch_special_situation'] = (
+        ((_merger == 1) | (_tender == 1) | (_gopriv == 1)) & (mcap > 0)
+        & _excellent_value
+    ).fillna(False).astype(int)
+
+    # NOL shell: a large net-operating-loss carryforward relative to market cap
+    # (a monetizable tax asset — WMIH/Mr. Cooper), on a survivable balance sheet.
+    _nol_to_mcap = (_nol_usd / mcap.where(mcap > 0))
+    df['arch_nol_shell'] = (
+        is_operating & (mcap > 0)
+        & (_nol_to_mcap >= 0.5)
+        & ((net_cash_pct_sane >= 0.10) | _excellent_value | (cash_gt_ev > 0))
+        & _not_melting
     ).fillna(False).astype(int)
 
     _sym_nc = df['symbol'].astype(str)
