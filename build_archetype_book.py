@@ -135,6 +135,7 @@ ARCH_SORT_OVERRIDES = {
     'arch_lynch_reward':      'lynch_rank',
     'arch_analyst_awakening': 'analyst_awakening_score',
     'arch_analyst_rerating_confirmed': 'analyst_rerating_score',
+    'arch_asleep_at_wheel': 'asleep_score',   # quality-upweighted rank (no quality gate)
     'arch_tenbagger_path':    'tenbagger_score',
     'arch_tenbagger_credible': 'tenbagger_score',
     'arch_evsales_derating':  'evsales_derate_score',

@@ -267,6 +267,7 @@ def _gating(t, g):
                         ("arch_lynch_reward", "lynch_reward_score"),
                         ("arch_analyst_awakening", "analyst_awakening_score"),
                         ("arch_analyst_rerating_confirmed", "analyst_rerating_score"),
+                        ("arch_asleep_at_wheel", "asleep_score"),
                         ("arch_fastest_segment", "seg_inflect_score")]:
         if flag not in t.columns or score not in t.columns:
             continue

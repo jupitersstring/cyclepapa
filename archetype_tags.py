@@ -2340,29 +2340,44 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                   + (_num('avg_earnings_surprise') > 0.02).fillna(False).astype(int)
                   + ((_num('earnings_beat_streak') >= 3) |
                      (_num('earnings_surprise_inflecting') > 0)).fillna(False).astype(int))
-    # The EPS-streak fallback branch fired on collapsing-revenue / lossmaking /
-    # nano shells (CORALFINAC rev -54%, MDX op -78%, PHUN rev $2.5M): a growing
-    # EPS off a shrinking, lossmaking or sub-scale base is not "the market
-    # under-estimating a good business". Gate it to a real, growing, profitable
-    # operating company. (The chronic-beats branch is already high-signal.)
+    # DESIGN (per user): asleep_at_wheel does NOT impose a quality FLOOR — a
+    # genuinely underestimated business can beat estimates through a rough
+    # patch, and gating on quality would drop exactly those names. Quality is
+    # instead UPWEIGHTED in asleep_score (below), so the high-quality
+    # underestimated names rank first without excluding the rest. The only
+    # guards kept are VALIDITY guards (not quality): the EPS-fallback branch
+    # still requires a real, non-shrinking, investable-scale operating base so
+    # a growing EPS off a base-effect / sub-scale shell (a data artifact, not a
+    # beat) does not fire.
     _asleep_eps_branch = (
         (_num('eps_yoy_positive_share') >= 0.75) &    # grew YoY in >=75% of recent Q…
         (_num('eps_yoy_growth_streak_q') >= 3) &      # …with a 3-quarter growth streak
-        is_operating & (rev_yoy >= 0) & (s('op_margin', np.nan) > 0) &
-        (_num('revenue_ttm_usd') >= 20e6)
+        is_operating & (rev_yoy >= 0) &               # validity: not a shrinking-base artifact
+        (_num('revenue_ttm_usd') >= 20e6)             # validity: investable scale
     )
-    # (tail) the chronic-beats branch had NO quality floor, so a name beating a
-    # low-balled estimate while the business collapses fired "good business
-    # underestimated" (MED rev-43%/PE240, AMTD op-336%). Mirror a lightweight
-    # survivability floor onto it — not melting, revenue not deeply declining.
-    _asleep_beats_branch = (
-        (beat_rate >= 0.75) & (_beat_legs >= 2)
-        & _not_melting & (rev_yoy > -0.15)
-    )
+    _asleep_beats_branch = ((beat_rate >= 0.75) & (_beat_legs >= 2))
     df['arch_asleep_at_wheel'] = (
         _asleep_beats_branch
         | _asleep_eps_branch
     ).fillna(False).astype(int)
+    # Quality-UPWEIGHTED ranking score: the underestimation signal earns a name
+    # into the archetype, but quality (returns on capital, margins, profitability,
+    # conservative leverage) carries the majority of the RANK weight, so the
+    # market-underestimating-a-GOOD-business names surface first.
+    _asl_quality = (
+        0.35 * _ramp(s('roce'), 0.0, 0.25)                              # returns on capital
+        + 0.25 * _ramp(ebitda_margin, 0.0, 0.30)                        # margin quality
+        + 0.20 * (s('op_margin', np.nan) > 0).fillna(False).astype(float)  # profitable
+        + 0.20 * (~((nde > 1.5) & (nde < 90))).astype(float)            # conservative leverage
+    ).clip(0, 1)
+    _asl_beat = (
+        0.5 * _ramp(beat_rate, 0.5, 1.0)
+        + 0.3 * _ramp(_num('avg_earnings_surprise'), 0.0, 0.10)
+        + 0.2 * ((_num('earnings_beat_streak') >= 3)
+                 | (_num('earnings_surprise_inflecting') > 0)).fillna(False).astype(float)
+    ).clip(0, 1)
+    df['asleep_score'] = (((0.6 * _asl_quality + 0.4 * _asl_beat).clip(0, 1))  # quality upweighted (60%)
+                          * df['arch_asleep_at_wheel']).round(3)
 
     # ---------- Templeton "maximum pessimism" (cheap vs own history) ----------
     # Cheap against the company's OWN mid-cycle earnings (EV / normalized 5yr
@@ -3093,7 +3108,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                      'lynch_exceptional_leg', 'analyst_awakening_score',
                      'seg_inflect_score', 'oneil_score', 'weinstein_score',
                      'kullamagie_score', 'cundill_score',
-                     'analyst_rerating_score',
+                     'analyst_rerating_score', 'asleep_score',
                      'biotech_deep_value_score', 'biotech_cash_runway_yrs'] if c in df.columns]
     _scrub_cols = arch_cols + _GATED_SCORES
     if _is_noncommon.any():
@@ -3182,7 +3197,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m','segment_count','fastest_segment_yoy'] if c in df.columns]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)
