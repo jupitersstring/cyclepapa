@@ -139,6 +139,12 @@ ARCH_SORT_OVERRIDES = {
     'arch_tenbagger_path':    'tenbagger_score',
     'arch_tenbagger_credible': 'tenbagger_score',
     'arch_evsales_derating':  'evsales_derate_score',
+    # (fresh) momentum/breakout theses must rank on their OWN technical score,
+    # NOT on entry_today_asymmetry (a cheap+beaten score is antithetical to a
+    # breakout leader — kullamagie was surfacing names 25% off their highs).
+    'arch_oneil_canslim':      'oneil_score',
+    'arch_weinstein_stage2':   'weinstein_score',
+    'arch_kullamagie_breakout': 'kullamagie_score',
 }
 
 

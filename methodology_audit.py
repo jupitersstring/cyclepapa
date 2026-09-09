@@ -409,7 +409,10 @@ def _integrity(t, g):
     if "symbol" in t.columns and "archetype_count" in t.columns:
         _s = t["symbol"].astype(str)
         _ncmask = (_s.str.match(r"^[A-Z]{1,5}-P[A-Z]?$")
-                   | _s.str.match(r"^[A-Z]{1,5}[-.](?:WT|WS|U|UN|R|RT)$"))
+                   | _s.str.match(r"^[A-Z]{1,5}[-.](?:WT|WS|U|UN|R|RT)$")
+                   | _s.str.contains(r"\.PR\.[A-Z]$", regex=True)
+                   | _s.str.contains(r"-PR[-.]?[A-Z]?$", regex=True)
+                   | _s.str.contains(r"-P[A-Z]?\.[A-Z]{1,3}$", regex=True))
         nc_fire = ((_ncmask) & (n(t, "archetype_count") > 0)).sum()
         check("integrity: no archetype flags on preferred/warrant/unit lines",
               nc_fire == 0, f"{int(nc_fire)} non-common securities firing archetypes")
@@ -532,7 +535,9 @@ def _regression(t, g):
                 "arch_regime_cyclical", "arch_kpi_threshold",
                 "arch_oak_order_conversion", "arch_insider_conviction",
                 "arch_fastest_segment", "arch_wolf_trifecta",
-                "arch_wolf_value_catalyst", "arch_capital_discipline"):
+                "arch_wolf_value_catalyst", "arch_capital_discipline",
+                "arch_dead_option", "arch_wolf_compounder",
+                "arch_cheap_per_roiic"):
         if _ac in t.columns:
             leak = int(((n(t, _ac) == 1) & (_roce_now < -0.05)).sum())
             check(f"regression(tail): {_ac} carries no deep operating loss-maker (roce<-5%)",

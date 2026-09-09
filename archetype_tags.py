@@ -265,11 +265,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # insurer/bank still reads as financial (TUGU 'Asuransi').
         r'asuransi|seguros|segur|assicuraz|versicherung|banco|banque|'
         r'sigorta|ubezpiecze', regex=True))
-    # (tail) known investment holdcos mis-tagged as operating sectors in the
-    # source data — Dundee Corp is tagged "Consumer Staples/Household Products"
-    # so is_operating can't catch it, and it leaks into 3 operating screens.
+    # (tail/fresh) known financial businesses mis-tagged as operating sectors in
+    # the source data, so is_operating can't catch them and they leak into
+    # operating screens: Dundee Corp (holdco tagged Consumer Staples); Jiayin /
+    # 9F (Chinese consumer LENDERS tagged Communication Services / Software).
     _known_holdco = (df['symbol'].astype(str)
-                     .isin({'DDEJF', 'DC-A.TO', 'DC.TO'}))
+                     .isin({'DDEJF', 'DC-A.TO', 'DC.TO', 'JFIN', 'JFU'})
+                     # name backstop for the same lenders across any listing line
+                     | _nm_l.str.contains(r'jiayin|9f inc', regex=True))
     is_financial = (_sec_l.str.contains('financ') | _ind_is_financial
                     | _name_is_financial | _known_holdco)
     is_reit = _sec_l.str.contains('real estate') | _ind_all.str.contains('reit')
@@ -596,6 +599,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _cash_yield_any &
         (ebitda_margin > 0) &
         (s('op_margin', np.nan) > 0) &          # real operating cow, not a one-off/near-liquidation FCF spike
+        _roce_now_ok &                          # (fresh) sibling floor — not a capital-destroyer on a one-off FCF spike (TTEC roe-101%)
         (nde <= 3.0)
     ).fillna(False).astype(int)
 
@@ -726,7 +730,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # 1.5 means "you're paying < 1.5x EV/EBITDA per percent of lindy ROIIC".
     df['arch_cheap_per_roiic'] = (
         is_operating &                          # (R1b) exclude financials/REITs
-        _roce_now_ok &                          # (R4) current returns not negative (TTEC, RMNI melting ice cubes)
+        _roce_now_ok & _not_melting &           # (R4/fresh) current returns not negative + not a cash-burner (KPLT fcf-41%)
         (cheap_per_roiic > 0) & (cheap_per_roiic <= 1.5) & (roiic_lindy > 0.10)
     ).fillna(False).astype(int)
 
@@ -737,6 +741,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (mcap >= 50e6) &                        # investable scale (was firing on $2k shells)
         (p_tb > 0) & (p_tb < 0.7) & (tangible_equity_pct > 0.50) &
         ((s('fcf_ttm') > 0) | (s('cfo_ttm') > 0)) &   # REAL cash generation (EBITDA-alone let levered melters KSS fcf -0.60 pass)
+        ~(_ncol('fcf_yield') < -0.15) &         # (fresh) not deeply FCF-negative via capex burn — the CFO fallback let cyclicals melt the floor (BATL fcf -153%, MOS, HPK)
         (nde <= 4.0)                            # not melting the 'floor' under a heavy debt load
     ).fillna(False).astype(int)
 
@@ -864,9 +869,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating &                          # (R1b) exclude financials/REITs
         _roce_now_ok &                          # (R4) not a current loss-maker (SOGP roce -0.96)
         ~(_ncol('shares_growth_3y') > 0.10) &   # not a serial diluter (CCLD +135% shares); missing => pass
-        (((sbc_pct_revenue >= 0.0) & (sbc_pct_revenue < 0.02)) |
+        # (fresh) SBC must be PRESENT and low — a MISSING sbc_pct_revenue (every
+        # non-US filer) used to satisfy "<2%", so the screen degenerated to
+        # "not-US + thin profit" and topped out on distressed neg-EV micro-ADRs.
+        (((_ncol('sbc_pct_revenue') >= 0.0) & (_ncol('sbc_pct_revenue') < 0.02)) |
          ((_roic_asbc > 0.10) & ((_roce_n - _roic_asbc).abs() < 0.02))) &
-        (ebitda_margin > 0.05)
+        (ebitda_margin > 0.05) &
+        ((_ncol('roce') >= 0.08) | (_roic_asbc >= 0.10))   # (fresh) a real returns floor (JFU roce 0.3% out)
     ).fillna(False).astype(int)
 
     # AB — Tax-Efficient (real not loss-driven): effective tax rate < 15%
@@ -1068,6 +1077,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_qarp'] = (
         is_operating &                          # (tail) sibling EDGAR-quality rules all gate; closes CABO/OPFI financials leak
         _roce_now_ok &                          # (tail) current returns not negative
+        ~(_ncol('roce').notna() & (_ncol('roce') < 0.03)) &  # (fresh) a high lindy-ROIIC at ~0% current ROCE is a base-effect, not QARP quality (MHH roce 0.002%)
         (roiic_lindy >= 0.15) &
         _qarp_cheap &
         (n_yrs_roic_pos >= 4) &
@@ -1121,8 +1131,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (ebitda_margin_sane >= 0.15) &                      # (G2) sane healthy profitability
         ((fcf_yield > 0) | (n_yrs_fcf_pos >= 3)) &          # cash-generative
         (nde < 3.0) &                                       # investment-grade leverage
+        # (fresh) a QUALITY compounder needs real returns on capital — a 1.5%
+        # dividend must not, on its own, admit a 3%-ROCE cyclical giant
+        # (Ericsson/AngloPlat/Subaru). Require a genuine returns floor; the
+        # payout is a supporting signal, not a substitute for quality.
+        ((s('roce', np.nan) >= 0.10) | (roic_after_sbc >= 0.15)
+         | (roic_lindy >= 0.12)) &
         ((capital_return_yield >= 0.02) | (dividend_yield >= 0.015) |
-         (roic_after_sbc >= 0.15) | (roic_lindy >= 0.12))   # returns cash OR high ROIC
+         (fcf_yield > 0.02))                                # ...and returns/generates cash
     ).fillna(False).astype(int)
 
     # Y — Capital-Light Pivot: revenue growing AND assets growing slower
@@ -1167,6 +1183,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating &                          # (R1b) financials/REITs/utilities: margin/nde/roce not comparable
         (fcf_margin_v > 0.0) &
         (ebitda_margin >= 0.10) &
+        (s('op_margin', np.nan) > 0) &          # (fresh) a D&A-heavy operating loss-maker is not "safe quality" (GENL.L op-47%)
         (nde <= 2.5) &
         ((roce_v >= 0.10) | (cash_conv_v >= 0.60))
     )
@@ -1364,8 +1381,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                       | cash_roiic_lindy.notna())
     _roiic_proxy = (
         # cap ebitda_margin at 0.6: a holdco whose "EBITDA margin" is >100%
-        # equity-method income (PAH3 Porsche SE 106%) is not an operating return
-        ((_roe >= 0.15) | ((ebitda_margin >= 0.18) & (ebitda_margin <= 0.6))) &
+        # equity-method income (PAH3 Porsche SE 106%) is not an operating return.
+        # (fresh) the high-margin branch must ALSO show real returns on capital —
+        # a fat EBITDA margin at 1% ROCE is not GARP quality (Jet2 airline).
+        ((_roe >= 0.15) |
+         ((ebitda_margin >= 0.18) & (ebitda_margin <= 0.6)
+          & ((s('roce', np.nan) >= 0.10) | (_roe >= 0.10)))) &
         ((emd_c > 0) | (_opmd > 0) | (_roe >= 0.20))    # improving / exceptional
     )
     _roiic_quality = _roiic_true | (_roiic_absent & _roiic_proxy)
@@ -1902,6 +1923,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (rev_yoy_c >= 0.25) & (rev_yoy_c <= 1.5) &  # accelerating streak, NOT a base-effect explosion
         (rev_accel > 0) &
         (s('op_margin', np.nan) > 0) &              # profitable compounder, not Bengal Tea op_margin -160%
+        _roce_now_ok &                              # (fresh) a compounder does not destroy capital (SOGP roce-96%)
         ~(_num('shares_yoy') > 0.20) &              # low dilution — not ADESE (+400% shares)
         ((cfo_ttm_v > 0) | (fcf_ttm_v > 0)) &
         oper_lev_any &
@@ -2020,11 +2042,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _nav_vehicle = (_ind_all.str.contains(
         r'asset manag|closed-end|investment trust|holding|capital market|'
         r'\bfund\b|diversified financ|investment compan', regex=True)
-        # (tail) exclude OPERATING broker-dealers/exchanges — a "Capital Markets"
-        # securities house is not a NAV vehicle (Daishin/Kyobo Securities).
+        # (tail/fresh) exclude OPERATING broker-dealers/exchanges. The GICS
+        # INDUSTRY for an Asian securities house is "Capital Markets" (no
+        # securit/broker token), so the industry filter alone can't catch them
+        # (Daishin/Kyobo/Yuhwa/Hanyang/Orient Securities) — match the NAME too.
         & ~_ind_all.str.contains(
             r'bank|insur|thrift|mortgage|reinsur|credit|securit|broker|exchange',
-            regex=True))
+            regex=True)
+        & ~_nm_l.str.contains(r'securit|broker|\bbank\b|insur', regex=True))
     # (tail) a NAV-discount thesis needs NAV that is HOLDING, not eroding. A
     # BDC/holdco bleeding book value via losses (MLCI roce-0.84, BBXIA fcf-0.92,
     # OCCI fcf-0.50) is a melting discount, not a covered one. Require ROE not
@@ -2106,7 +2131,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # gross debt/equity says. So the EV-path corroborator is genuine net debt
     # (nde) OR simply "not net cash" — gross debt/equity alone does NOT qualify
     # a firm whose cash exceeds its debt.
-    _real_leverage = (nde_real >= 1.0) | (net_cash_pct <= 0.0)
+    # (fresh) a convex LEVERED STUB needs MEANINGFUL net debt, not merely "not
+    # net cash" — the EV-path admitted trivially-levered names (nde<1) whose
+    # equity carries no real torque. Require confirmable net debt >= 1.5x EBITDA.
+    _real_leverage = (nde_real >= 1.5)
     # Known-net-cash veto: some names carry CONTRADICTORY balance-sheet fields
     # (net_cash_pct says net cash, net_debt_ebitda says heavily levered — stale
     # / mismatched snapshots). For a levered-stub thesis the conservative call
@@ -3099,6 +3127,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # never terminal here) are NOT caught: TICK.PR.G, TICK-PR-A, TICK PFD.
         | _sym_nc.str.contains(r'\.PR\.[A-Z]$', regex=True)          # GWO.PR.G (Canadian pref)
         | _sym_nc.str.contains(r'-PR[-.]?[A-Z]?$', regex=True)       # BAM-PR-A, X-PR
+        # (fresh) exchange-suffixed pref line: TICKER-P<series>.TO / .V etc.
+        # ($-anchored US pattern misses these — GWO-PI.TO, SLF-PC.TO leaked).
+        | _sym_nc.str.contains(r'-P[A-Z]?\.[A-Z]{1,3}$', regex=True)
         | _sym_nc.str.contains(r'[-. ]PFD\b', case=False, regex=True)
         | _nm_nc.str.contains(r'preferred|pfd| pref |depositary|% notes|perpetual|warrant',
                               case=False, regex=True)
