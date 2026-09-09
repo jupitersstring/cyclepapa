@@ -1571,8 +1571,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _c1 = (_cpb > 0) & (_cpb < 1.0)
     # (2) price < half the former high, or near an all-time low  [C]
     _c2 = (_coff <= -0.50) | (_c5y <= 0.20)
-    # (3) P/E < 10 (or inverse of the LT bond rate, whichever is less)  [C]
-    _c3 = (_cpe > 0) & (_cpe <= 10.0)
+    # (3) P/E < min(10, 1/LT-corporate-bond-rate) — the earnings yield must
+    #     also clear the bond yield [C]. In a low-rate regime 10 binds; in a
+    #     high-rate regime 1/rate binds (r=12% -> P/E<8.3). Rate is a research
+    #     parameter [R]; set to a current LT investment-grade corporate yield.
+    _LT_CORP_BOND_RATE = 0.055
+    _cundill_pe_cap = min(10.0, 1.0 / _LT_CORP_BOND_RATE)
+    _c3 = (_cpe > 0) & (_cpe <= _cundill_pe_cap)
     # (4) profitable; preferably no deficits over 5y  [C]
     _c4 = ((_croce > 0) | (_ceb > 0)) & ((_ceps_pos >= 0.6) | _ceps_pos.isna())
     # (5) paying dividends  [C]
@@ -1587,13 +1592,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # net-net bonus, closeness to lows, cheapness, no-deficit earnings,
     # dividend, and balance-sheet strength (room to expand debt).
     _c_netnet = ((_cncav >= 1.0) | (_cgraham > 0)).fillna(False)
-    df['cundill_score'] = ((0.25 * _ramp(1.0 - _cpb, 0.20, 0.60)
-                            + 0.15 * _c_netnet.astype(float)
-                            + 0.15 * _ramp(0.30 - _c5y, 0.0, 0.30)
-                            + 0.15 * _ramp(10.0 - _cpe, 0.0, 8.0)
-                            + 0.10 * _ramp(_ceps_pos, 0.6, 1.0)
-                            + 0.10 * (_cdiv > 0).astype(float)
-                            + 0.10 * _ramp(_cncash, 0.0, 0.5))
+    # "preferably INCREASED earnings over 5yr" (criterion 4 refinement):
+    # a positive EPS-growth streak captures the rising trend, distinct from
+    # the no-deficit share already in the gate.
+    _c_eps_rising = _ramp(_num('eps_yoy_growth_streak_q'), 1, 4)
+    df['cundill_score'] = ((0.22 * _ramp(1.0 - _cpb, 0.20, 0.60)   # discount to book
+                            + 0.14 * _c_netnet.astype(float)        # net-net (NWC-LTD)
+                            + 0.13 * _ramp(0.30 - _c5y, 0.0, 0.30)  # near all-time low
+                            + 0.13 * _ramp(_cundill_pe_cap - _cpe, 0.0, 8.0)  # cheapness vs cap
+                            + 0.10 * _ramp(_ceps_pos, 0.6, 1.0)     # no deficits
+                            + 0.10 * _c_eps_rising                  # increasing earnings
+                            + 0.08 * (_cdiv > 0).astype(float)      # dividend
+                            + 0.10 * _ramp(_cncash, 0.0, 0.5))      # balance-sheet strength
                            * df['arch_cundill_deep_value']).round(3)
 
     low_sbc_wolf = _soft_ok_below('sbc_pct_revenue', 0.15)   # Wolf dings excess SBC
