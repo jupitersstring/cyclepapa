@@ -445,6 +445,79 @@ def _integrity(t, g):
           bad_dy == 0, f"{int(bad_dy)} rows with dividend_yield > 0.40")
 
 
+@measure("Regression guards (this session's fixes as invariants)",
+         "Each fix made to the archetype rules is pinned as a load-bearing "
+         "invariant so it cannot silently regress: net-cash firms are never "
+         "levered stubs, growth rules keep a real USD revenue base, cost/margin "
+         "inflections never fire on declining revenue, the re-rating-confirmed "
+         "screen is genuinely at a 52w high, and operating-quality rules exclude "
+         "financials.")
+def _regression(t, g):
+    if "symbol" not in t.columns or "symbol" not in g.columns:
+        return
+    _by = g.drop_duplicates("symbol").set_index("symbol")
+
+    def gcol(name):
+        return (pd.to_numeric(t["symbol"].map(_by[name]), errors="coerce")
+                if name in g.columns else pd.Series(np.nan, index=t.index))
+
+    # R3 — levered-stub archetypes must NOT flag net-cash firms (net_cash_pct
+    # > 0.10 means more cash than debt; a levered equity stub requires net debt).
+    _ncp = gcol("net_cash_pct_mcap")
+    for _ac in ("arch_weschler_levered_equity", "arch_asymmetric_assembly",
+                "arch_levered_inflection"):
+        if _ac in t.columns:
+            leak = int(((n(t, _ac) == 1) & (_ncp > 0.10)).sum())
+            check(f"regression(R3): {_ac} carries no net-cash firm",
+                  leak == 0, f"{leak} net-cash (>10% of mcap) firers")
+
+    # R6 — growth/scaler archetypes keep a real USD revenue base (>=$20M);
+    # below it a % growth rate is sub-scale noise (FX-blind floors leaked).
+    _rev_usd = gcol("revenue_ttm_usd")
+    for _ac in ("arch_cheap_sales_scaler", "arch_exceptional_evsg",
+                "arch_growth_algo", "arch_tenbagger_path"):
+        if _ac in t.columns:
+            leak = int(((n(t, _ac) == 1) & (_rev_usd > 0)
+                        & (_rev_usd < 20e6)).sum())
+            check(f"regression(R6): {_ac} keeps a >=$20M USD revenue base",
+                  leak == 0, f"{leak} sub-$20M-USD-revenue firers")
+
+    # R5 — margin/cost inflection archetypes never fire on DECLINING revenue
+    # (a cost-cut blip in a shrinking business is not an inflection).
+    _ry = gcol("rev_yoy")
+    for _ac in ("arch_roic_inflect", "arch_double_inflect",
+                "arch_micro_activist_inflect", "arch_liger_lagging_inflect"):
+        if _ac in t.columns:
+            leak = int(((n(t, _ac) == 1) & (_ry < 0)).sum())
+            check(f"regression(R5): {_ac} not firing on declining revenue",
+                  leak == 0, f"{leak} firers with rev_yoy < 0")
+
+    # New archetype — every re-rating-CONFIRMED firer is actually at a 52w high
+    # (absolute OR relative-to-index); it is the price-validated cut.
+    if "arch_analyst_rerating_confirmed" in t.columns:
+        _ah = gcol("high_52w_abs"); _rh = gcol("high_52w_rel")
+        at_hi = (_ah > 0) | (_rh > 0)
+        leak = int(((n(t, "arch_analyst_rerating_confirmed") == 1)
+                    & ~at_hi).sum())
+        check("regression: arch_analyst_rerating_confirmed every firer at a 52w high",
+              leak == 0, f"{leak} firers not at a 52w high")
+
+    # R1 — operating-quality / operating-value archetypes exclude Financials/
+    # REITs/Utilities (EV / net-cash / margin / ROIC legs are meaningless there).
+    _sec = t["symbol"].map(_by["sector"]).fillna("").astype(str).str.lower() \
+        if "sector" in g.columns else pd.Series("", index=t.index)
+    _finre = (_sec.str.contains("financ") | _sec.str.contains("real estate")
+              | _sec.str.contains("utilit"))
+    for _ac in ("arch_durable_reinvestment", "arch_cash_reinvest",
+                "arch_lindy_fcf", "arch_lindy_growth", "arch_owner_operator",
+                "arch_cash_quality", "arch_low_sbc_quality", "arch_no_dilution",
+                "arch_oak_deleveraging", "arch_fastest_segment"):
+        if _ac in t.columns:
+            leak = int(((n(t, _ac) == 1) & _finre).sum())
+            check(f"regression(R1): {_ac} excludes Financials/REITs/Utilities",
+                  leak == 0, f"{leak} financials/REITs/utilities firers")
+
+
 @measure("Composite score ranges",
          "Confirmation/lens composites live in [0, 1] by construction.")
 def _ranges(t, g):

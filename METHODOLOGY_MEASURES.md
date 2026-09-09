@@ -57,6 +57,10 @@ archetype_count_pct divides by the count of archetypes the row is ELIGIBLE for â
 
 Appended signal CSVs keep a FIXED schema â€” a ragged row means columns silently shifted (the bug that corrupted 12% of lynch rows); country benchmarks must be live, not frozen snapshots.
 
+## Regression guards (this session's fixes as invariants)
+
+Each fix made to the archetype rules is pinned as a load-bearing invariant so it cannot silently regress: net-cash firms are never levered stubs, growth rules keep a real USD revenue base, cost/margin inflections never fire on declining revenue, the re-rating-confirmed screen is genuinely at a 52w high, and operating-quality rules exclude financials.
+
 ## Composite score ranges
 
 Confirmation/lens composites live in [0, 1] by construction.

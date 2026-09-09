@@ -169,6 +169,37 @@ def _m(t, g):
     g2.loc[g2["symbol"].isin(fire), "pct_off_52w_high"] = 0.0
     return t, g2
 
+# ---- regression guards (this session's fixes as invariants) ----
+@case("R3 net-cash levered stub", "arch_weschler_levered_equity carries no net-cash", MA._regression)
+def _m(t, g):
+    t2 = add_row(t, symbol="MUTX", arch_weschler_levered_equity=1, archetype_count=1)
+    g2 = add_row(g, symbol="MUTX", net_cash_pct_mcap=0.5)
+    return t2, g2
+
+@case("R6 sub-scale revenue", "arch_tenbagger_path keeps a >=$20M", MA._regression)
+def _m(t, g):
+    t2 = add_row(t, symbol="MUTY", arch_tenbagger_path=1, archetype_count=1)
+    g2 = add_row(g, symbol="MUTY", revenue_ttm_usd=1.0e6)
+    return t2, g2
+
+@case("R5 declining-rev inflection", "arch_roic_inflect not firing on declining", MA._regression)
+def _m(t, g):
+    t2 = add_row(t, symbol="MUTZ", arch_roic_inflect=1, archetype_count=1)
+    g2 = add_row(g, symbol="MUTZ", rev_yoy=-0.2)
+    return t2, g2
+
+@case("rerating not-at-high", "arch_analyst_rerating_confirmed every firer at a 52w high", MA._regression)
+def _m(t, g):
+    t2 = add_row(t, symbol="MUTW", arch_analyst_rerating_confirmed=1, archetype_count=1)
+    g2 = add_row(g, symbol="MUTW", high_52w_abs=0, high_52w_rel=0)
+    return t2, g2
+
+@case("R1 financials in quality", "arch_durable_reinvestment excludes Financials", MA._regression)
+def _m(t, g):
+    t2 = add_row(t, symbol="MUTV", arch_durable_reinvestment=1, archetype_count=1)
+    g2 = add_row(g, symbol="MUTV", sector="Financials")
+    return t2, g2
+
 
 def main():
     # negative control: real data — every targeted check must currently PASS
