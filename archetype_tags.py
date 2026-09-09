@@ -3209,9 +3209,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # Post-reorg / fresh-start (Assembly Theory): the single most powerful screen
     # is EBIT yield > 20% at emergence (Verdad: +61% 2yr); de-levering + intact
     # moat is gating — we proxy the moat with a high EBIT yield + not-melting.
+    # Assembly Theory's EBIT-yield>20% is measured AT EMERGENCE, which we can't
+    # observe; on CURRENT price only ~1 of ~44 fresh-start names clears 20%, so
+    # gate on the user's EXCELLENT-VALUATION test (EBIT / FCF / earnings yield)
+    # instead — it still surfaces the genuinely-cheap emergers (Gulfport,
+    # Pilgrim's Pride, Lear, Bristow) while _not_melting drops the burners.
     df['arch_post_reorg'] = (
         (_reorg == 1) & is_operating & _not_melting
-        & (_ebit_yield >= 0.20)
+        & _excellent_value
         & (nde <= 3.0)
     ).fillna(False).astype(int)
 

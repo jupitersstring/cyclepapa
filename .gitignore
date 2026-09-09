@@ -55,4 +55,3 @@ lynch_driver.log
 # `... restore` on a fresh container. Raw harvests must never again exist
 # only inside an ephemeral container.
 master_versions/
-edgar_event_signals.csv
