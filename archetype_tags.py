@@ -3278,6 +3278,69 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         print(f'  scrubbed {int(_is_shell.sum())} sub-$2M micro-shells',
               file=sys.stderr)
 
+    # ===== PRICE-GHOST DEDUP SCRUB: a duplicate line of the SAME security with
+    # a WRONG (low) price — same normalized name + same EXACT shares
+    # outstanding + same currency as a sibling, but a materially lower market
+    # cap (its price is the corrupt-low outlier). Its price ratios (P/B, P/E,
+    # P/S) are understated by the price error, so it fires fake-cheap value
+    # archetypes and out-ranks the real listing in the dedup — e.g. UMBFO, a
+    # ghost of UMB Financial (UMBF), showing P/B 0.26 vs the real 1.48. Zero its
+    # archetype flags and mark is_price_ghost so enrich drops it from the ETA
+    # ranking. Preferreds/warrants/units are EXCLUDED (real separate securities,
+    # already handled by the non-common scrub); grouping is same-CURRENCY so
+    # genuine cross-listings/ADRs (different currency) are never touched. =====
+    _is_price_ghost = pd.Series(False, index=df.index)
+    if {'shares_outstanding', 'name'}.issubset(df.columns):
+        _sh_g = pd.to_numeric(df.get('shares_outstanding'), errors='coerce').round(0)
+        _cur_g = df.get('currency', pd.Series('', index=df.index)).astype(str)
+        _mc_g = pd.to_numeric(df.get('market_cap_usd'), errors='coerce')
+        _nm_g = (df['name'].fillna('').astype(str).str.lower()
+                 .str.replace(r'[^a-z0-9 ]', '', regex=True)
+                 .str.replace(r'\b(corp|corporation|inc|incorporated|company|co|'
+                              r'ltd|limited|plc|holdings?|group|sa|ag|nv|the|adr|'
+                              r'sponsored|ordinary|shares?|class [a-z]|cl [a-z])\b',
+                              '', regex=True)
+                 .str.replace(r'\s+', ' ', regex=True).str.strip())
+        _pr_g = pd.to_numeric(df.get('price'), errors='coerce')
+        _gv = pd.DataFrame({'sym': df['symbol'].astype(str), 'nm': _nm_g,
+                            'sh': _sh_g, 'cur': _cur_g, 'mc': _mc_g,
+                            'pr': _pr_g, 'nc': _is_noncommon.values})
+        _gv['_i'] = np.arange(len(_gv))
+        _valid = (~_gv['nc']) & (_gv['nm'] != '') & (_gv['sh'] > 0) & (_gv['mc'] > 0)
+        _gvv = _gv[_valid].copy()
+        if len(_gvv):
+            # A GHOST is a strict PREFIX-EXTENSION of a shorter sibling ticker
+            # (base + 1-2 chars: UMBF->UMBFO, POWW->POWWP, WSBC->WSBCO, IMPP->
+            # IMPPP) whose price DIVERGES >=1.3x from that sibling — i.e. an OTC
+            # ghost or a no-dash preferred/note carrying the parent name + the
+            # common's shares but a wrong (or par) price. The prefix rule is what
+            # keeps this SAFE: a real large-cap whose baby-bonds trade under a
+            # DIFFERENT ticker (AMG vs MGR, RGA/DTE/CUBI) is never a prefix of
+            # them, so it is never scrubbed; and the 1.3x price gate spares
+            # genuine same-price dual share-classes (NWS/NWSA).
+            for (_nm, _sh, _cur), _grp in _gvv.groupby(['nm', 'sh', 'cur']):
+                if len(_grp) < 2:
+                    continue
+                _rows = _grp.sort_values('sym', key=lambda s: s.str.len()).to_dict('records')
+                for _ti in range(len(_rows)):
+                    _T = _rows[_ti]
+                    for _ki in range(_ti):
+                        _K = _rows[_ki]
+                        _dl = len(_T['sym']) - len(_K['sym'])
+                        if 1 <= _dl <= 2 and _T['sym'].startswith(_K['sym']):
+                            _pT, _pK = _T['pr'], _K['pr']
+                            _div = (max(_pT, _pK) / max(min(_pT, _pK), 1e-9)
+                                    if pd.notna(_pT) and pd.notna(_pK) and min(_pT, _pK) > 0
+                                    else 99.0)
+                            if _div >= 1.3:
+                                _is_price_ghost.iloc[int(_T['_i'])] = True
+                                break
+    df['is_price_ghost'] = _is_price_ghost.astype(int)
+    if _is_price_ghost.any():
+        df.loc[_is_price_ghost.values, _scrub_cols] = 0
+        print(f'  scrubbed {int(_is_price_ghost.sum())} price-ghost duplicate '
+              f'lines (wrong-price duplicates of a real listing)', file=sys.stderr)
+
     # ===== PRE-REVENUE BIOTECH SCRUB (durable/quality archetypes only): a
     # clinical-stage biotech's "5-year durable margin / quality" is a licensing
     # one-off, not operations (KROS topped lindy_margin/tax_efficient). Zero
@@ -3350,7 +3413,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     )
 
     out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech']
-             + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m','segment_count','fastest_segment_yoy'] if c in df.columns]]
+             + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m','segment_count','fastest_segment_yoy','is_price_ghost'] if c in df.columns]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)
     versioned_replace(out_path + '.tmp', out_path)   # atomic + pre-image snapshot

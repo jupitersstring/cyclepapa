@@ -142,7 +142,8 @@ def main():
                       # (the extra_arch list below filters on arch_df.columns)
                       'seg_inflect_score', 'capital_return_score',
                       'lynch_value_score']
-    extra_arch = [c for c in (['archetype_count', 'bab_score'] + confirm_scores)
+    extra_arch = [c for c in (['archetype_count', 'bab_score', 'is_price_ghost']
+                              + confirm_scores)
                   if c in arch_df.columns]
     # Drop EVERY column the arch merge re-supplies (not just count/bab_score):
     # any of them already present from a prior enrich run would otherwise
@@ -234,6 +235,24 @@ def main():
     pr.loc[hi] = 0.75 - (mom[hi] - 1.0) / 2.0 * 0.30
     pr.loc[ex] = 0.40
     df['post_rally_factor'] = pr.round(3)
+
+    # ----- PRICE-GHOST DEDUP: drop wrong-price duplicate lines from ranking -----
+    # archetype_tags flags is_price_ghost on a duplicate line of the same
+    # security carrying a corrupt-low price (e.g. UMBFO, a ghost of UMBF, at
+    # P/B 0.26 vs the real 1.48). Null its ranking scores and its price-derived
+    # ratios so it can neither rank in the books nor display a misleading
+    # valuation, and the real listing wins the name-dedup.
+    if 'is_price_ghost' in df.columns:
+        _ghost = pd.to_numeric(df['is_price_ghost'], errors='coerce').fillna(0) == 1
+        if _ghost.any():
+            for _c in ('asymmetry_score', 'archetype_asymmetry_score',
+                       'entry_today_upside', 'yartseva_score', 'berezin_score',
+                       'pb', 'p_tb', 'p_e', 'p_s', 'ev_sales', 'ev_ebitda',
+                       'ev_ebit', 'fcf_yield', 'earnings_yield', 'dividend_yield'):
+                if _c in df.columns:
+                    df.loc[_ghost, _c] = np.nan
+            print(f'  final gate: nulled {int(_ghost.sum())} price-ghost '
+                  f'duplicate lines (ranking + ratios)', file=sys.stderr)
 
     # ----- entry_today_asymmetry -----
     df['entry_today_asymmetry'] = (

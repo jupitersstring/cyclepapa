@@ -1,6 +1,6 @@
-METHODOLOGY AUDIT — 107 checks, 0 FAIL, 0 WARN
+METHODOLOGY AUDIT — 109 checks, 0 FAIL, 0 WARN
   PASS  units: dividend_yield is a fraction  — median |dividend_yield| = 0.028 (fraction-scale cap 1.5)
-  PASS  units: fcf_yield is a fraction  — median |fcf_yield| = 0.070 (fraction-scale cap 3.0)
+  PASS  units: fcf_yield is a fraction  — median |fcf_yield| = 0.069 (fraction-scale cap 3.0)
   PASS  units: analyst_target_upside_pct is a fraction  — median |analyst_target_upside_pct| = 0.261 (fraction-scale cap 5.0)
   PASS  units: roce is a fraction  — median |roce| = 0.112 (fraction-scale cap 5.0)
   PASS  units: sbc_pct_revenue is a fraction  — median |sbc_pct_revenue| = 0.018 (fraction-scale cap 3.0)
@@ -10,7 +10,7 @@ METHODOLOGY AUDIT — 107 checks, 0 FAIL, 0 WARN
   PASS  arch_levered_inflection: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 25% depth
   PASS  arch_asymmetric_assembly: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 35% depth
   PASS  evsales_derating: median firer gap is compressive  — median gap 0.345
-  PASS  evsales_derating: expanding-multiple firers are the minority  — 1.7% of firers have a negative 1y gap (allowed only when the 3y base compresses)
+  PASS  evsales_derating: expanding-multiple firers are the minority  — 1.8% of firers have a negative 1y gap (allowed only when the 3y base compresses)
   PASS  tenbagger: implied 10x closes for every firer  — 0 firers below 10x
   PASS  tenbagger: Credible is a subset of Path
   PASS  lynch_reward: no firer already paid (roc_12m <= 0.35)  — 0 firers with roc_12m > 35%
@@ -18,7 +18,7 @@ METHODOLOGY AUDIT — 107 checks, 0 FAIL, 0 WARN
   PASS  52w: both == abs AND rel
   PASS  awakening: firers with a rating skew strong (<= 2.2)  — 95% of rated firers <= 2.2
   PASS  awakening: momentum-gated firers not extended (<= ~50%)  — 0 extended among the 86 momentum-gated firers
-  PASS  capital_returner: firers inside the 5-30% policy band (small tail = EDGAR-coalesced source not visible here)  — 51 outside on asym-only columns
+  PASS  capital_returner: firers inside the 5-30% policy band (small tail = EDGAR-coalesced source not visible here)  — 52 outside on asym-only columns
   PASS  strong_coverage: every firer has positive EBITDA  — 0 non-positive
   PASS  fastest_segment: segment_count is present (not a vacuous audit)  — segment_count absent from BOTH archetype_tags.csv and asymmetry_global.csv
   PASS  fastest_segment: every firer is multi-segment  — 0 single-segment
@@ -96,6 +96,8 @@ METHODOLOGY AUDIT — 107 checks, 0 FAIL, 0 WARN
   PASS  regression(tail): arch_dead_option carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
   PASS  regression(tail): arch_wolf_compounder carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
   PASS  regression(tail): arch_cheap_per_roiic carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression: price-ghost duplicates fire no archetypes  — 0 price-ghost lines firing archetypes
+  PASS  regression: price-ghost duplicates do not rank (ETA=0)  — 0 price-ghost lines with ETA>0
   PASS  regression(tail): arch_wolf_turnaround keeps a real USD revenue base  — 0 sub-floor-revenue firers
   PASS  regression(tail): arch_fastest_segment keeps a real USD revenue base  — 0 sub-floor-revenue firers
   PASS  range: confirm_overall within [0,1]  — min 0.000 max 1.000

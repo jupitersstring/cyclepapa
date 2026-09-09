@@ -547,6 +547,18 @@ def _regression(t, g):
             check(f"regression(tail): {_ac} carries no deep operating loss-maker (roce<-5%)",
                   leak == 0, f"{leak} firers with roce < -5%")
 
+    # price-ghost dedup: a wrong-price duplicate line of a real security must
+    # neither fire an archetype nor rank (UMBFO, a ghost of UMBF, at P/B 0.26).
+    if "is_price_ghost" in t.columns and "archetype_count" in t.columns:
+        _gh = n(t, "is_price_ghost") == 1
+        leak = int((_gh & (n(t, "archetype_count") > 0)).sum())
+        check("regression: price-ghost duplicates fire no archetypes",
+              leak == 0, f"{leak} price-ghost lines firing archetypes")
+        _eta_g = gcol("entry_today_asymmetry")
+        leak2 = int((_gh & (_eta_g > 0)).sum())
+        check("regression: price-ghost duplicates do not rank (ETA=0)",
+              leak2 == 0, f"{leak2} price-ghost lines with ETA>0")
+
     # tail — real revenue base on the microcap turnaround/segment engines that
     # gained a floor (a hidden growth engine / turnaround needs a real business).
     for _ac, _floor in (("arch_wolf_turnaround", 10e6),

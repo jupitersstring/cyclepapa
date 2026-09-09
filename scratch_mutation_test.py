@@ -212,6 +212,10 @@ def _m(t, g):
     g2 = add_row(g, symbol="MUTN", roce=-0.5)
     return t2, g2
 
+@case("price-ghost fires archetype", "price-ghost duplicates fire no archetypes", MA._regression)
+def _m(t, g):
+    return add_row(t, symbol="MUTGH", is_price_ghost=1, archetype_count=1), g
+
 
 def main():
     # negative control: real data — every targeted check must currently PASS
