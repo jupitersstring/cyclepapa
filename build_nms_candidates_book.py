@@ -44,6 +44,7 @@ from build_harvard_workbook import (
 
 
 NMS_BUCKETS = {'Nano Cap', 'Micro Cap', 'Small Cap'}
+MIDPLUS_BUCKETS = {'Mid Cap', 'Large Cap', 'Mega Cap'}
 
 # Legacy flat-file schema kept for downstream compatibility.
 CSV_COLS = [
@@ -79,7 +80,7 @@ def _load_fresh_verdicts() -> pd.DataFrame:
     return pd.concat(frames, ignore_index=True).drop_duplicates('symbol', keep='last')
 
 
-def load_candidates(min_mcap: float = 10_000_000) -> pd.DataFrame:
+def load_candidates(min_mcap: float = 10_000_000, buckets=None) -> pd.DataFrame:
     """Rebuild the NMS multibagger candidates from today's data.
 
     asymmetry_global.csv + archetype_tags.csv + fresh verdicts, tiered on
@@ -127,8 +128,10 @@ def load_candidates(min_mcap: float = 10_000_000) -> pd.DataFrame:
         df['market_cap'] = (pd.to_numeric(df['market_cap_usd'], errors='coerce')
                             .fillna(pd.to_numeric(df['market_cap'], errors='coerce')))
 
-    # NMS universe gate: size buckets + mcap floor + RED excluded
-    df = df[df['market_cap_bucket'].isin(NMS_BUCKETS)
+    # Universe gate: size buckets + mcap floor + RED excluded. Default is the
+    # NMS small-cap universe; the mid-cap+ variant passes MIDPLUS_BUCKETS.
+    _bkts = buckets if buckets is not None else NMS_BUCKETS
+    df = df[df['market_cap_bucket'].isin(_bkts)
             & (df['market_cap'].fillna(0) >= min_mcap)
             & (df['verdict'] != 'RED')].copy()
 
@@ -375,7 +378,20 @@ def build_tier_sheet(ws, tier_name: str, df: pd.DataFrame):
 
 
 def main():
-    df = load_candidates()
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--midcap-plus', action='store_true',
+                    help='mid-cap-and-above universe (>=$2B) instead of NMS small-caps')
+    ap.add_argument('--min-mcap', type=float, default=None)
+    ap.add_argument('--out', default=None)
+    args = ap.parse_args()
+    if args.midcap_plus:
+        df = load_candidates(min_mcap=args.min_mcap if args.min_mcap else 2e9,
+                             buckets=MIDPLUS_BUCKETS)
+        out_default = 'nms_multibagger_candidates_midcap_plus.xlsx'
+    else:
+        df = load_candidates(min_mcap=args.min_mcap if args.min_mcap else 10_000_000)
+        out_default = 'nms_multibagger_candidates.xlsx'
     print(f'loaded {len(df):,} candidates', file=sys.stderr)
 
     wb = Workbook()
@@ -405,7 +421,7 @@ def main():
         ws.sheet_view.showGridLines = False
         ws.sheet_properties.tabColor = Color(rgb=CRIMSON)
 
-    out = 'nms_multibagger_candidates.xlsx'
+    out = args.out or out_default
     wb.save(out)
     from harvard_style import sanitize_nan_text
     sanitize_nan_text(out)

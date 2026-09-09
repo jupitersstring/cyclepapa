@@ -553,8 +553,9 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
     # hopping across 50 country tabs.
     GLOBAL_N, BUCKET_N, REGION_N = 200, 150, 80
 
-    def _write_ranked_tab(sheet_name, title, subset, color, ntab):
-        s = subset.sort_values(sort_col, ascending=False).head(ntab).reset_index(drop=True)
+    def _write_ranked_tab(sheet_name, title, subset, color, ntab, by=None):
+        _bycol = by if (by and by in subset.columns) else sort_col
+        s = subset.sort_values(_bycol, ascending=False).head(ntab).reset_index(drop=True)
         if s.empty:
             return
         s['country_rank'] = range(1, len(s) + 1)
@@ -593,6 +594,14 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
         # GLOBAL
         _write_ranked_tab('GLOBAL', 'Global — best names across all regions',
                           _fg, tab_colors.AGGREGATE, GLOBAL_N)
+        # GLOBAL by CONVERGENCE (the reference's master rank: multi-thesis
+        # breadth x asymmetry x liquidity) — surfaces names carrying many
+        # independent archetypes at once, which the single-score sort scatters.
+        if 'convergence_score' in _fg.columns:
+            _write_ranked_tab('GLOBAL_Convergence',
+                              'Global — highest conviction (multi-thesis convergence)',
+                              _fg, tab_colors.AGGREGATE, GLOBAL_N,
+                              by='convergence_score')
         # DM / EM buckets
         for _bkt in ('DM', 'EM'):
             _sub = _fg[_fg['_bucket'] == _bkt]
