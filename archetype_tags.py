@@ -2626,6 +2626,32 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                        + 0.10 * _asym_sc).clip(0, 1))
                                      * df['arch_analyst_awakening']).round(3)
 
+    # ---------- Analyst re-rating CONFIRMED by 52-week highs ----------
+    # Companion to arch_analyst_awakening. Where the awakening screen catches
+    # the re-rating EARLY (not-in-freefall, not-yet-extended), THIS one requires
+    # the market has already CONFIRMED it with price: the same analyst-conviction
+    # legs (real rating, breadth, target upside) AND the stock is ACTUALLY
+    # printing a fresh 52-week high — absolute or relative to its country index.
+    # So it is the "re-rating begun AND price agrees" cut, not the "target
+    # upside inflated after a crash" trap. A generous blow-off guard keeps out
+    # parabolic chases (up >150% on the year is O'Neil/Kullamagie territory, not
+    # an early confirmed re-rating). No _not_freefall / _not_extended gates —
+    # the 52w-high requirement makes both moot.
+    _at_52w_high = (_abs_hi | _rel_hi)
+    _not_blownoff = ((_num('roc_12m') <= 1.5) |
+                     (_num('roc_12m').isna() & (_num('momentum_12m') <= 1.5)))
+    df['arch_analyst_rerating_confirmed'] = (
+        (mcap > 0) & (_nan_ >= 3) & _rating_present & _conviction &
+        _at_52w_high & _not_blownoff & lr_live_tape
+    ).fillna(False).astype(int)
+    # Score: same conviction stack, but the 52w-high confirmation carries the
+    # largest weight (it is the defining, market-validated signal here).
+    df['analyst_rerating_score'] = (((0.20 * _rec_sc + 0.15 * _ups_sc
+                                      + 0.12 * _brd_sc + 0.08 * conv_score
+                                      + 0.45 * _hi_sc)
+                                     .clip(0, 1))
+                                    * df['arch_analyst_rerating_confirmed']).round(3)
+
     arch_cols = [
         'arch_narrative_lag',
         'arch_fixed_cost_demand_shock',
@@ -2707,6 +2733,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_evsales_derating',
         'arch_lynch_reward',
         'arch_analyst_awakening',
+        'arch_analyst_rerating_confirmed',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -2789,6 +2816,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_evsales_derating': 'EVSalesDerating-UnpricedGrowth',
         'arch_lynch_reward': 'LynchReward-YearsInOne',
         'arch_analyst_awakening': 'AnalystAwakening-52wHigh',
+        'arch_analyst_rerating_confirmed': 'ReratingConfirmed-52wHigh',
     }
     # ===== NON-COMMON SECURITY SCRUB (audit re-check 2026-09-08) =====
     # Preferred shares, warrants, units and rights are NOT common equity —
@@ -2879,6 +2907,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                      'lynch_exceptional_leg', 'analyst_awakening_score',
                      'seg_inflect_score', 'oneil_score', 'weinstein_score',
                      'kullamagie_score', 'cundill_score',
+                     'analyst_rerating_score',
                      'biotech_deep_value_score', 'biotech_cash_runway_yrs'] if c in df.columns]
     _scrub_cols = arch_cols + _GATED_SCORES
     if _is_noncommon.any():
@@ -2912,7 +2941,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # (_is_drug_dev / _is_clinical_biotech computed above, before the scrubs.)
     # Exempt price-action/catalyst archetypes AND the biotech's own dedicated
     # deep-value screen; every other (fundamental) archetype is scrubbed.
-    _biotech_ok = {'arch_analyst_awakening', 'arch_oneil_canslim',
+    _biotech_ok = {'arch_analyst_awakening', 'arch_analyst_rerating_confirmed',
+                   'arch_oneil_canslim',
                    'arch_weinstein_stage2', 'arch_kullamagie_breakout',
                    'arch_biotech_deep_value'}
     _fund_arch = [c for c in arch_cols if c not in _biotech_ok]
@@ -2966,7 +2996,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m'] if c in df.columns]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)

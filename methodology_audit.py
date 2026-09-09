@@ -248,6 +248,7 @@ def _gating(t, g):
                         ("arch_evsales_derating", "evsales_derate_score"),
                         ("arch_lynch_reward", "lynch_reward_score"),
                         ("arch_analyst_awakening", "analyst_awakening_score"),
+                        ("arch_analyst_rerating_confirmed", "analyst_rerating_score"),
                         ("arch_fastest_segment", "seg_inflect_score")]:
         if flag not in t.columns or score not in t.columns:
             continue
@@ -355,7 +356,8 @@ def _integrity(t, g):
         # populate a fundamental archetype (its financials are one-off/binary).
         if "is_clinical_biotech" in t.columns and "archetype_count" in t.columns:
             _clin = n(t, "is_clinical_biotech") == 1
-            _exempt = ["arch_analyst_awakening", "arch_oneil_canslim",
+            _exempt = ["arch_analyst_awakening", "arch_analyst_rerating_confirmed",
+                       "arch_oneil_canslim",
                        "arch_weinstein_stage2", "arch_kullamagie_breakout",
                        "arch_biotech_deep_value"]
             _fund = [c for c in t.columns if c.startswith("arch_") and c not in _exempt]

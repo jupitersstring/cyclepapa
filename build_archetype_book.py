@@ -116,6 +116,7 @@ ARCHETYPE_LABELS = {
     'arch_evsales_derating': 'EV/Sales Derating (unpriced growth)',
     'arch_lynch_reward': 'Lynch Reward (years paid in one)',
     'arch_analyst_awakening': 'Analyst Awakening (52w-High Start)',
+    'arch_analyst_rerating_confirmed': 'Re-Rating Confirmed (at 52w-High)',
 }
 
 
@@ -133,6 +134,7 @@ ARCH_SORT_OVERRIDES = {
     'arch_fastest_segment':   'seg_inflect_confirmed',
     'arch_lynch_reward':      'lynch_rank',
     'arch_analyst_awakening': 'analyst_awakening_score',
+    'arch_analyst_rerating_confirmed': 'analyst_rerating_score',
     'arch_tenbagger_path':    'tenbagger_score',
     'arch_tenbagger_credible': 'tenbagger_score',
     'arch_evsales_derating':  'evsales_derate_score',
