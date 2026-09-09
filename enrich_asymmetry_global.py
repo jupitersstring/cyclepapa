@@ -281,10 +281,31 @@ def main():
         * df['post_rally_factor']
     ).round(6)
 
+    # ----- convergence_score (Compendium master ranking) -----
+    # The reference's OWN top-level rank: (archetype COUNT) x (asymmetry) x
+    # (liquidity tier), with the "3+ simultaneous archetypes = highest
+    # conviction" line made explicit. Distinct from archetype_asymmetry_score
+    # (which is a density x downside geometric mean) because it (a) rewards raw
+    # multi-thesis BREADTH and (b) folds in a LIQUIDITY tier the reference
+    # insists on — so a name carrying many independent theses at a tradeable
+    # size surfaces, instead of being scattered across single-archetype sorts.
+    _adv = pd.to_numeric(df.get('avg_dollar_volume'), errors='coerce')
+    _liq_tier = np.where(_adv >= 5e6, 1.0,
+                np.where(_adv >= 5e5, 0.7,
+                np.where(_adv >= 5e4, 0.4, 0.2)))
+    _cnt = pd.to_numeric(df['archetype_count'], errors='coerce').fillna(0).clip(0, 12)
+    _breadth = (_cnt / 6.0).clip(0, 1)                 # 6 archetypes -> full breadth
+    _conv_bonus = np.where(_cnt >= 3, 1.0, 0.6)        # 3+ = the reference's conviction line
+    df['convergence_score'] = (
+        _breadth * _conv_bonus
+        * pd.to_numeric(df['asymmetry_score'], errors='coerce').fillna(0).clip(0, 1)
+        * _liq_tier
+    ).round(4)
+
     # Reorder columns so the new ones land in a logical place
     new_cols = ['entry_today_asymmetry', 'archetype_count', 'archetype_count_pct',
                 'archetypes_eligible', 'archetype_asymmetry_score',
-                'entry_today_archetype_asymmetry',
+                'entry_today_archetype_asymmetry', 'convergence_score',
                 'mcap_proxy', 'intrinsic_discount', 'qual_mult',
                 'post_rally_factor', 'verdict']
     # Drop the per-archetype boolean columns we merged in — they're

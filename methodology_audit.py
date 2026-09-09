@@ -518,7 +518,9 @@ def _regression(t, g):
                 "arch_oak_deleveraging", "arch_fastest_segment",
                 # tail-audit additions
                 "arch_qarp", "arch_templeton_pessimism", "arch_lynch_reward",
-                "arch_lynch_evgy", "arch_concentrated_segments"):
+                "arch_lynch_evgy", "arch_concentrated_segments",
+                # reference-gap additions (new archetypes)
+                "arch_bottleneck", "arch_flyover"):
         if _ac in t.columns:
             leak = int(((n(t, _ac) == 1) & _finre).sum())
             check(f"regression(R1): {_ac} excludes Financials/REITs/Utilities",

@@ -117,6 +117,8 @@ ARCHETYPE_LABELS = {
     'arch_lynch_reward': 'Lynch Reward (years paid in one)',
     'arch_analyst_awakening': 'Analyst Awakening (52w-High Start)',
     'arch_analyst_rerating_confirmed': 'Re-Rating Confirmed (at 52w-High)',
+    'arch_bottleneck': 'Bottleneck / Chokepoint (pricing power)',
+    'arch_flyover': 'Flyover (undiscovered quiet quality)',
 }
 
 

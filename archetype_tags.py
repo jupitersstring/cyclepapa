@@ -311,6 +311,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _fcf_now = s('fcf_ttm', np.nan)
     _not_melting = ~(((_opm_now < 0) & (_fcf_now < 0)) |
                      (_roce_now.notna() & (_roce_now < -0.05)))
+    # (reference II) "Some measure of profitability present and robust" is the
+    # ONE point every multibagger study agrees on; Yartseva further shows it is
+    # the LEVEL of profitability/FCF that drives returns, not the growth RATE.
+    # Our growth family gates on rate — anchor it to a profitability LEVEL so a
+    # pure-rate name with no cash generation cannot qualify on growth alone.
+    _profit_present = ((s('ebitda_ttm', np.nan) > 0) | (s('op_margin', np.nan) > 0)
+                       | (fcf_yield > 0))
     # Genuine-net-cash guard: net_cash_pct and net_debt_ebitda sometimes
     # CONTRADICT (stale/mismatched snapshots) — a name reads "net cash" on one
     # and carries real net debt on the other (TTEC nde -93 artifact, WINE.L
@@ -1651,6 +1658,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating & (mcap < 2e9) & (_srev >= 20e6)
         & (_ssh3.fillna(0) <= 0.05)
         & _durable_growth & _self_funding & _not_pricey
+        & _profit_present                        # (reference II) profitability LEVEL present
     ).fillna(False).astype(int)
 
     # ==================================================================
@@ -2274,7 +2282,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
           (_ncol('evsg') <= 0.08))) &              # cheap RELATIVE to growth (PSG,
                                                  #   EVSG analog when PSG missing)
         oper_lev_any &                           # operating margins improving (any angle)
-        near_profit                              # at / near / just-crossed profitability
+        near_profit &                            # at / near / just-crossed profitability
+        _profit_present                          # (reference II) a real profitability LEVEL, not rate alone
     
         & is_operating   # (G1 ext) revenue-multiple/margin meaningless for financials
     ).fillna(False).astype(int)
@@ -2297,8 +2306,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (ev_sales_v >= 0.15) & (ev_sales_v <= 4.0) &  # sales-multiple meaningful (lower
                                                  #   bound drops razor-margin traders /
                                                  #   near-zero-EV artifacts) yet not rich
-        ((ebitda_ttm_v > 0) | (fcf_ttm_v > 0) | (op_margin_real >= -0.15))
-    
+        _profit_present                          # (reference II) a profitability LEVEL, not a -15%-margin grower on rate alone
+
         & is_operating   # (G1 ext) revenue-multiple/margin meaningless for financials
     ).fillna(False).astype(int)
 
@@ -2496,8 +2505,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (_g_confirmed | (rev_growth_score >= 0.5)) &    # >=2 bases (or robust composite) agree
         op_lev_confirm &                                # ...confirmed by operating leverage
         viable_econ &                                   # viable unit economics
+        _profit_present &                               # (reference II) profitability LEVEL present, not just a growth rate
         (implied_10x >= 10.0)                           # the 10x arithmetic closes
-    
+
         & is_operating   # (G1 ext) revenue-multiple/margin meaningless for financials
     ).fillna(False).astype(int)
 
@@ -2954,6 +2964,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_lynch_reward',
         'arch_analyst_awakening',
         'arch_analyst_rerating_confirmed',
+        'arch_bottleneck',
+        'arch_flyover',
     ]
     pretty = {
         'arch_narrative_lag': 'NarrativeLag',
@@ -3037,6 +3049,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_lynch_reward': 'LynchReward-YearsInOne',
         'arch_analyst_awakening': 'AnalystAwakening-52wHigh',
         'arch_analyst_rerating_confirmed': 'ReratingConfirmed-52wHigh',
+        'arch_bottleneck': 'Bottleneck-Chokepoint',
+        'arch_flyover': 'Flyover-QuietQuality',
     }
     # ===== NON-COMMON SECURITY SCRUB (audit re-check 2026-09-08) =====
     # Preferred shares, warrants, units and rights are NOT common equity —
@@ -3116,6 +3130,43 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         + 0.15 * _ramp(_bdv_ncav, 0.8, 2.0)
         + 0.10 * (1.0 - _ramp(_num('shares_yoy'), 0.0, 0.20))
     ) * df['arch_biotech_deep_value']).round(3)
+
+    # ---------- The Constraint: bottleneck / pricing-power chokepoint ----------
+    # Master Reference domain I.B ("owns a bottleneck; a large system can't scale
+    # without the small component") + the Akre AMT bottleneck-asset archetype. We
+    # cannot screen "sole-source" (that is scuttlebutt), but the ECONOMIC
+    # footprint of a chokepoint IS screenable: durable HIGH + non-eroding gross
+    # margin (pricing power), high returns on capital (a toll road), and
+    # CAPITAL-LIGHT economics (a chokepoint earns without heavy reinvestment).
+    _bn_gm = _num('gross_margin'); _bn_gmd = _num('gross_margin_delta_yoy')
+    _bn_capint = _num('capex_intensity')
+    df['arch_bottleneck'] = (
+        is_operating &
+        _not_melting &
+        (_num('revenue_ttm_usd') >= 20e6) &             # a real business, not a nano
+        (_bn_gm >= 0.40) &                              # pricing power: fat gross margin
+        ~(_bn_gmd < -0.03) &                            # ...not eroding (missing => pass)
+        ((s('roce', np.nan) >= 0.15) | (s('roic_lindy', np.nan) >= 0.15)) &  # toll-road returns
+        (s('op_margin', np.nan) > 0.05) &               # genuinely profitable
+        ~(_bn_capint > 0.10)                            # capital-light chokepoint (missing => pass)
+    ).fillna(False).astype(int)
+
+    # ---------- Flyover Stocks: high-quality, low-coverage, owner-controlled ----
+    # Todd Wenning / quiet-compounder blueprint (Master Reference IV): durable
+    # moat (ROIC>15%) + boring essential business + family/insider control +
+    # strong FCF + LOW analyst coverage (<5, ideally 0). The low-coverage
+    # discovery gap is DEFINITIONAL here — it is exactly what quiet_compounder and
+    # owner_operator do not require, so this is the "undiscovered quality" lens.
+    df['arch_flyover'] = (
+        is_operating &
+        ~(n_analysts_v > 5) &                           # low / no coverage (missing => undiscovered => pass)
+        (insider >= 0.20) &                             # family / insider control
+        ((s('roce', np.nan) >= 0.15) | (s('roic_lindy', np.nan) >= 0.15)) &  # high ROIC (>15%) = the moat
+        ((_num('fcf_ttm') > 0) | (s('n_yrs_positive_fcf', 0) >= 3)) &  # strong / durable FCF
+        (s('op_margin', np.nan) > 0) &                  # profitable
+        _not_melting &
+        (nde <= 2.0)                                    # low leverage (strong balance sheet)
+    ).fillna(False).astype(int)
 
     _sym_nc = df['symbol'].astype(str)
     _nm_nc = df['name'].astype(str) if 'name' in df.columns else pd.Series('', index=df.index)
