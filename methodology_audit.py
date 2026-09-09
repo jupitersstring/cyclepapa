@@ -532,7 +532,7 @@ def _regression(t, g):
                 "arch_regime_cyclical", "arch_kpi_threshold",
                 "arch_oak_order_conversion", "arch_insider_conviction",
                 "arch_fastest_segment", "arch_wolf_trifecta",
-                "arch_wolf_value_catalyst"):
+                "arch_wolf_value_catalyst", "arch_capital_discipline"):
         if _ac in t.columns:
             leak = int(((n(t, _ac) == 1) & (_roce_now < -0.05)).sum())
             check(f"regression(tail): {_ac} carries no deep operating loss-maker (roce<-5%)",

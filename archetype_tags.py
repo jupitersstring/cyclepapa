@@ -556,6 +556,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating &                          # (G1) exclude financials/REITs/utilities
         _own_aligned &
         _cd_returns_floor &                     # real returns on capital (not a value-destroyer)
+        _roce_now_ok &                          # (verify) a one-off FCF yield must not let a capital DESTROYER through the returns-floor OR (MKTW roce-76%)
         (s('op_margin', np.nan) > 0) &          # positive operating profit (Hinduja op -9.9% out)
         (nde <= 1.5) &
         (ebitda_margin_sane >= 0.05) &          # (G2) drop one-off >60% margins
