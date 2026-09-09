@@ -59,8 +59,11 @@ def dump(arch):
     if len(m) > 29:
         print('\n----- RANKS 30-50 -----')
         print(m.iloc[29:50].to_string())
-    else:
-        print(f'\n(only {len(m)} firers — no rank 30-50 band)')
+    if len(m) > 49:
+        print('\n----- RANKS 50-100 (deep tail) -----')
+        print(m.iloc[49:100].to_string())
+    if len(m) <= 29:
+        print(f'\n(only {len(m)} firers — no deeper bands)')
 
 
 if __name__ == '__main__':
