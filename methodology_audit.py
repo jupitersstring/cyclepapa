@@ -225,19 +225,37 @@ def _coverage(t, g):
          "segment/margin/mix/whole-company lenses.")
 def _fastseg(t, g):
     f = t[t.get("arch_fastest_segment", 0) == 1]
-    seg_cols = [c for c in ("segment_count", "fastest_segment_yoy")
-                if c in g.columns]
-    if not seg_cols:
+    if not len(f):
         return
-    m = f.merge(g[["symbol"] + seg_cols], on="symbol", how="left")
-    sc = n(m, "segment_count").dropna()
-    if len(sc):
-        check("fastest_segment: every firer is multi-segment",
-              (sc >= 2).all(), f"{int((sc < 2).sum())} single-segment")
-    fy = n(m, "fastest_segment_yoy").dropna()
-    if len(fy):
-        check("fastest_segment: no impossible growth artifacts (>500%)",
-              (fy <= 5.0).all(), f"max {fy.max():.2f}")
+
+    # segment_count / fastest_segment_yoy are persisted into archetype_tags.csv
+    # (t). Read from t first, fall back to g. If NEITHER frame carries the
+    # column the check RAISES (not silently skips) — a vacuous fastest_segment
+    # audit is itself a defect (these columns used to be in neither file, so
+    # both checks never ran; guard against regressing to that).
+    def col(name):
+        if name in f.columns:
+            return pd.to_numeric(f[name], errors="coerce")
+        if name in g.columns:
+            mm = f.merge(g[["symbol", name]], on="symbol", how="left")
+            return pd.to_numeric(mm[name], errors="coerce")
+        return None
+
+    sc = col("segment_count")
+    check("fastest_segment: segment_count is present (not a vacuous audit)",
+          sc is not None,
+          "segment_count absent from BOTH archetype_tags.csv and asymmetry_global.csv")
+    if sc is not None:
+        sc = sc.dropna()
+        if len(sc):
+            check("fastest_segment: every firer is multi-segment",
+                  (sc >= 2).all(), f"{int((sc < 2).sum())} single-segment")
+    fy = col("fastest_segment_yoy")
+    if fy is not None:
+        fy = fy.dropna()
+        if len(fy):
+            check("fastest_segment: no impossible growth artifacts (>500%)",
+                  (fy <= 5.0).all(), f"max {fy.max():.2f}")
 
 
 @measure("Score gating",
@@ -313,112 +331,118 @@ def _integrity(t, g):
                   minted == 0,
                   f"{int(minted)} .L rows with mcap == price*shares (pence)")
 
-        # NOTE: these integrity checks read the MASTER g (which carries the
-        # fundamentals). archetype_tags.csv `t` lacks fcf_yield/ev_ebitda/
-        # sector, so reading t made the checks pass vacuously (fixed 2026-09-08).
-        fy = n(g, "fcf_yield")
-        bad_fy = (fy > 1.0).sum()
-        check("integrity: no impossible FCF yields (>100% — ADR home-currency mismatch)",
-              bad_fy == 0, f"{int(bad_fy)} rows with fcf_yield > 1.0")
-        # 52w self-consistency: a row flagged AT its 52w high must not
-        # display a deeply negative pct_off_52w_high (stale-quote leak)
-        if "high_52w_abs" in g.columns and "pct_off_52w_high" in g.columns:
-            _hi = n(g, "high_52w_abs")
-            _off = n(g, "pct_off_52w_high")
-            clash = ((_hi == 1) & (_off < -0.10)).sum()
-            check("integrity: 52w flags agree with displayed pct_off_52w_high",
-                  clash == 0, f"{int(clash)} rows flagged at-high but showing <-10% off")
+    # NOTE: these integrity checks read the MASTER g (which carries the
+    # fundamentals). archetype_tags.csv `t` lacks fcf_yield/ev_ebitda/
+    # sector, so reading t made the checks pass vacuously (fixed 2026-09-08).
+    # STRUCTURAL FIX (2026-09-09): these UNIVERSAL integrity checks were
+    # previously nested INSIDE `if len(lse) > 20:` — so on any run whose
+    # universe lacked >20 London (.L) listings they were SILENTLY SKIPPED and
+    # passed vacuously. They are load-bearing data-integrity gates and must
+    # NOT depend on the presence of UK listings, so they now run at function
+    # scope (unconditionally). Only the pence-`.L` check stays gated on `.L`.
+    fy = n(g, "fcf_yield")
+    bad_fy = (fy > 1.0).sum()
+    check("integrity: no impossible FCF yields (>100% — ADR home-currency mismatch)",
+          bad_fy == 0, f"{int(bad_fy)} rows with fcf_yield > 1.0")
+    # 52w self-consistency: a row flagged AT its 52w high must not
+    # display a deeply negative pct_off_52w_high (stale-quote leak)
+    if "high_52w_abs" in g.columns and "pct_off_52w_high" in g.columns:
+        _hi = n(g, "high_52w_abs")
+        _off = n(g, "pct_off_52w_high")
+        clash = ((_hi == 1) & (_off < -0.10)).sum()
+        check("integrity: 52w flags agree with displayed pct_off_52w_high",
+              clash == 0, f"{int(clash)} rows flagged at-high but showing <-10% off")
 
-        # Operating value/quality archetypes must exclude Financials/REITs
-        # (EV/net-cash/margin legs meaningless there). arch cols live in t,
-        # sector in g — map sector onto t by symbol.
-        if "arch_negative_ev_value" in t.columns and "symbol" in t.columns \
-                and "sector" in g.columns:
-            _secmap = g.drop_duplicates("symbol").set_index("symbol")["sector"]
-            _tsec = t["symbol"].map(_secmap).fillna("").astype(str).str.lower()
-            _finre = (_tsec.str.contains("financ") | _tsec.str.contains("real estate")
-                      | _tsec.str.contains("utilit"))
-            for _ac in ("arch_negative_ev_value", "arch_tangible_value",
-                        "arch_oak_asset_floor", "arch_strong_coverage"):
-                if _ac in t.columns:
-                    leak = ((n(t, _ac) == 1) & _finre).sum()
-                    check(f"integrity: {_ac} excludes Financials/REITs/Utilities",
-                          leak == 0, f"{int(leak)} financials/REITs/utilities in {_ac}")
+    # Operating value/quality archetypes must exclude Financials/REITs
+    # (EV/net-cash/margin legs meaningless there). arch cols live in t,
+    # sector in g — map sector onto t by symbol.
+    if "arch_negative_ev_value" in t.columns and "symbol" in t.columns \
+            and "sector" in g.columns:
+        _secmap = g.drop_duplicates("symbol").set_index("symbol")["sector"]
+        _tsec = t["symbol"].map(_secmap).fillna("").astype(str).str.lower()
+        _finre = (_tsec.str.contains("financ") | _tsec.str.contains("real estate")
+                  | _tsec.str.contains("utilit"))
+        for _ac in ("arch_negative_ev_value", "arch_tangible_value",
+                    "arch_oak_asset_floor", "arch_strong_coverage"):
+            if _ac in t.columns:
+                leak = ((n(t, _ac) == 1) & _finre).sum()
+                check(f"integrity: {_ac} excludes Financials/REITs/Utilities",
+                      leak == 0, f"{int(leak)} financials/REITs/utilities in {_ac}")
 
-        # ev_ebitda must never be positive for a negative-EBITDA firm.
-        if "ev_ebitda" in g.columns and "ebitda_ttm" in g.columns:
-            _eve = n(g, "ev_ebitda"); _ebt = n(g, "ebitda_ttm")
-            flip = ((_eve > 0) & (_ebt < 0)).sum()
-            check("integrity: no positive EV/EBITDA on negative EBITDA",
-                  flip == 0, f"{int(flip)} loss-makers with a cheap-looking ev_ebitda")
+    # ev_ebitda must never be positive for a negative-EBITDA firm.
+    if "ev_ebitda" in g.columns and "ebitda_ttm" in g.columns:
+        _eve = n(g, "ev_ebitda"); _ebt = n(g, "ebitda_ttm")
+        flip = ((_eve > 0) & (_ebt < 0)).sum()
+        check("integrity: no positive EV/EBITDA on negative EBITDA",
+              flip == 0, f"{int(flip)} loss-makers with a cheap-looking ev_ebitda")
 
-        # SYSTEMATIC BIOTECH FILTER: no clinical-stage drug developer should
-        # populate a fundamental archetype (its financials are one-off/binary).
-        if "is_clinical_biotech" in t.columns and "archetype_count" in t.columns:
-            _clin = n(t, "is_clinical_biotech") == 1
-            _exempt = ["arch_analyst_awakening", "arch_analyst_rerating_confirmed",
-                       "arch_oneil_canslim",
-                       "arch_weinstein_stage2", "arch_kullamagie_breakout",
-                       "arch_biotech_deep_value"]
-            _fund = [c for c in t.columns if c.startswith("arch_") and c not in _exempt]
-            _fund_ct = t.loc[:, _fund].apply(pd.to_numeric, errors="coerce").sum(axis=1)
-            clin_fund = (_clin & (_fund_ct > 0)).sum()
-            check("integrity: no clinical biotech in fundamental archetypes",
-                  clin_fund == 0, f"{int(clin_fund)} clinical biotech in fundamental archetypes")
+    # SYSTEMATIC BIOTECH FILTER: no clinical-stage drug developer should
+    # populate a fundamental archetype (its financials are one-off/binary).
+    if "is_clinical_biotech" in t.columns and "archetype_count" in t.columns:
+        _clin = n(t, "is_clinical_biotech") == 1
+        _exempt = ["arch_analyst_awakening", "arch_analyst_rerating_confirmed",
+                   "arch_oneil_canslim",
+                   "arch_weinstein_stage2", "arch_kullamagie_breakout",
+                   "arch_biotech_deep_value"]
+        _fund = [c for c in t.columns if c.startswith("arch_") and c not in _exempt]
+        _fund_ct = t.loc[:, _fund].apply(pd.to_numeric, errors="coerce").sum(axis=1)
+        clin_fund = (_clin & (_fund_ct > 0)).sum()
+        check("integrity: no clinical biotech in fundamental archetypes",
+              clin_fund == 0, f"{int(clin_fund)} clinical biotech in fundamental archetypes")
 
-        # No sub-$1M micro-shell should carry an archetype flag (untradeable).
-        if "archetype_count" in t.columns and "symbol" in t.columns and "market_cap_usd" in g.columns:
-            _mcs = g.drop_duplicates("symbol").set_index("symbol")["market_cap_usd"]
-            _tmc = pd.to_numeric(t["symbol"].map(_mcs), errors="coerce")
-            shell_fire = ((_tmc > 0) & (_tmc < 2e6) & (n(t, "archetype_count") > 0)).sum()
-            check("integrity: no archetype flags on sub-$2M micro-shells",
-                  shell_fire == 0, f"{int(shell_fire)} sub-$2M shells firing archetypes")
-        # No absurd ROCE/ROIC (>150% = one-off/tiny-base artifact).
-        _rce = n(g, "roce")
-        bad_rce = (_rce > 1.5).sum()
-        check("integrity: no absurd ROCE (>150% = one-off/tiny-base)",
-              bad_rce == 0, f"{int(bad_rce)} rows with roce>1.5")
+    # No sub-$1M micro-shell should carry an archetype flag (untradeable).
+    if "archetype_count" in t.columns and "symbol" in t.columns and "market_cap_usd" in g.columns:
+        _mcs = g.drop_duplicates("symbol").set_index("symbol")["market_cap_usd"]
+        _tmc = pd.to_numeric(t["symbol"].map(_mcs), errors="coerce")
+        shell_fire = ((_tmc > 0) & (_tmc < 2e6) & (n(t, "archetype_count") > 0)).sum()
+        check("integrity: no archetype flags on sub-$2M micro-shells",
+              shell_fire == 0, f"{int(shell_fire)} sub-$2M shells firing archetypes")
+    # No absurd ROCE/ROIC (>150% = one-off/tiny-base artifact).
+    _rce = n(g, "roce")
+    bad_rce = (_rce > 1.5).sum()
+    check("integrity: no absurd ROCE (>150% = one-off/tiny-base)",
+          bad_rce == 0, f"{int(bad_rce)} rows with roce>1.5")
 
-        # No non-common security (preferred/warrant/unit) should carry an
-        # archetype flag — their P/E, book, yields belong to the parent.
-        if "symbol" in t.columns and "archetype_count" in t.columns:
-            _s = t["symbol"].astype(str)
-            _ncmask = (_s.str.match(r"^[A-Z]{1,5}-P[A-Z]?$")
-                       | _s.str.match(r"^[A-Z]{1,5}[-.](?:WT|WS|U|UN|R|RT)$"))
-            nc_fire = ((_ncmask) & (n(t, "archetype_count") > 0)).sum()
-            check("integrity: no archetype flags on preferred/warrant/unit lines",
-                  nc_fire == 0, f"{int(nc_fire)} non-common securities firing archetypes")
+    # No non-common security (preferred/warrant/unit) should carry an
+    # archetype flag — their P/E, book, yields belong to the parent.
+    if "symbol" in t.columns and "archetype_count" in t.columns:
+        _s = t["symbol"].astype(str)
+        _ncmask = (_s.str.match(r"^[A-Z]{1,5}-P[A-Z]?$")
+                   | _s.str.match(r"^[A-Z]{1,5}[-.](?:WT|WS|U|UN|R|RT)$"))
+        nc_fire = ((_ncmask) & (n(t, "archetype_count") > 0)).sum()
+        check("integrity: no archetype flags on preferred/warrant/unit lines",
+              nc_fire == 0, f"{int(nc_fire)} non-common securities firing archetypes")
 
-        # No impossible margins (gross>100%, or ebitda/net >120% = one-off).
-        _gm = n(g, "gross_margin"); _em = n(g, "ebitda_margin")
-        bad_m = (_gm > 1.0).sum() + (_em > 1.2).sum()
-        check("integrity: no impossible margins (gross>1.0, ebitda>1.2)",
-              bad_m == 0, f"{int((_gm>1.0).sum())} gross>1.0, {int((_em>1.2).sum())} ebitda>1.2")
+    # No impossible margins (gross>100%, or ebitda/net >120% = one-off).
+    _gm = n(g, "gross_margin"); _em = n(g, "ebitda_margin")
+    bad_m = (_gm > 1.0).sum() + (_em > 1.2).sum()
+    check("integrity: no impossible margins (gross>1.0, ebitda>1.2)",
+          bad_m == 0, f"{int((_gm>1.0).sum())} gross>1.0, {int((_em>1.2).sum())} ebitda>1.2")
 
-        # No impossible P/E (<0.5x = earn back whole mcap in <6mo) or
-        # sub-0.02 sales multiple (units/pass-through, not real cheapness).
-        _pe = n(g, "p_e"); _ps = n(g, "p_s")
-        bad_pe = ((_pe > 0) & (_pe < 0.5)).sum()
-        bad_ps = ((_ps > 0) & (_ps < 0.02)).sum()
-        check("integrity: no impossible P/E (<0.5) or sub-0.02 sales multiple",
-              (bad_pe + bad_ps) == 0, f"{int(bad_pe)} p_e<0.5, {int(bad_ps)} p_s<0.02")
+    # No impossible P/E (<0.5x = earn back whole mcap in <6mo) or
+    # sub-0.02 sales multiple (units/pass-through, not real cheapness).
+    _pe = n(g, "p_e"); _ps = n(g, "p_s")
+    bad_pe = ((_pe > 0) & (_pe < 0.5)).sum()
+    bad_ps = ((_ps > 0) & (_ps < 0.02)).sum()
+    check("integrity: no impossible P/E (<0.5) or sub-0.02 sales multiple",
+          (bad_pe + bad_ps) == 0, f"{int(bad_pe)} p_e<0.5, {int(bad_ps)} p_s<0.02")
 
-        # No absurd P/B (<0.05x book = ADR/units data artifact, not value).
-        _pbc = n(g, "pb")
-        bad_pb = ((_pbc > 0) & (_pbc < 0.05)).sum()
-        check("integrity: no corrupt P/B (<0.05x book — ADR/units artifact)",
-              bad_pb == 0, f"{int(bad_pb)} rows with pb in (0, 0.05)")
+    # No absurd P/B (<0.05x book = ADR/units data artifact, not value).
+    _pbc = n(g, "pb")
+    bad_pb = ((_pbc > 0) & (_pbc < 0.05)).sum()
+    check("integrity: no corrupt P/B (<0.05x book — ADR/units artifact)",
+          bad_pb == 0, f"{int(bad_pb)} rows with pb in (0, 0.05)")
 
-        # No zero/negative market cap or price in the ranked universe.
-        _mc = n(g, "market_cap_usd"); _pr = n(g, "price")
-        bad_scale = ((_mc <= 0) | (_pr <= 0)).sum()
-        check("integrity: no zero/negative market cap or price",
-              bad_scale == 0, f"{int(bad_scale)} rows with mcap<=0 or price<=0")
+    # No zero/negative market cap or price in the ranked universe.
+    _mc = n(g, "market_cap_usd"); _pr = n(g, "price")
+    bad_scale = ((_mc <= 0) | (_pr <= 0)).sum()
+    check("integrity: no zero/negative market cap or price",
+          bad_scale == 0, f"{int(bad_scale)} rows with mcap<=0 or price<=0")
 
-        dy = n(g, "dividend_yield")
-        bad_dy = (dy > 0.40).sum()
-        check("integrity: no absurd dividend yields (>40% — stale price / preferred artifacts)",
-              bad_dy == 0, f"{int(bad_dy)} rows with dividend_yield > 0.40")
+    dy = n(g, "dividend_yield")
+    bad_dy = (dy > 0.40).sum()
+    check("integrity: no absurd dividend yields (>40% — stale price / preferred artifacts)",
+          bad_dy == 0, f"{int(bad_dy)} rows with dividend_yield > 0.40")
 
 
 @measure("Composite score ranges",
