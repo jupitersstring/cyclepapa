@@ -1,4 +1,4 @@
-METHODOLOGY AUDIT — 109 checks, 0 FAIL, 0 WARN
+METHODOLOGY AUDIT — 121 checks, 0 FAIL, 0 WARN
   PASS  units: dividend_yield is a fraction  — median |dividend_yield| = 0.028 (fraction-scale cap 1.5)
   PASS  units: fcf_yield is a fraction  — median |fcf_yield| = 0.069 (fraction-scale cap 3.0)
   PASS  units: analyst_target_upside_pct is a fraction  — median |analyst_target_upside_pct| = 0.261 (fraction-scale cap 5.0)
@@ -9,8 +9,8 @@ METHODOLOGY AUDIT — 109 checks, 0 FAIL, 0 WARN
   PASS  arch_oak_deep_value: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 50% depth
   PASS  arch_levered_inflection: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 25% depth
   PASS  arch_asymmetric_assembly: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 35% depth
-  PASS  evsales_derating: median firer gap is compressive  — median gap 0.345
-  PASS  evsales_derating: expanding-multiple firers are the minority  — 1.8% of firers have a negative 1y gap (allowed only when the 3y base compresses)
+  PASS  evsales_derating: median firer gap is compressive  — median gap 0.420
+  PASS  evsales_derating: expanding-multiple firers are the minority  — 1.4% of firers have a negative 1y gap (allowed only when the 3y base compresses)
   PASS  tenbagger: implied 10x closes for every firer  — 0 firers below 10x
   PASS  tenbagger: Credible is a subset of Path
   PASS  lynch_reward: no firer already paid (roc_12m <= 0.35)  — 0 firers with roc_12m > 35%
@@ -30,7 +30,7 @@ METHODOLOGY AUDIT — 109 checks, 0 FAIL, 0 WARN
   PASS  gating: analyst_rerating_score is 0 outside arch_analyst_rerating_confirmed  — 0 non-firers with positive score
   PASS  gating: asleep_score is 0 outside arch_asleep_at_wheel  — 0 non-firers with positive score
   PASS  gating: seg_inflect_score is 0 outside arch_fastest_segment  — 0 non-firers with positive score
-  PASS  density: archetype_count_pct <= 1  — max 0.500
+  PASS  density: archetype_count_pct <= 1  — max 0.387
   PASS  units: insider_ownership_pct is a fraction (<= 1.05)  — 0 percent-scale stragglers
   PASS  integrity: lynch signal rows all match the header schema  — 0 ragged rows
   PASS  integrity: country benchmarks are live (<=62d old)  — stale/empty: []
@@ -96,6 +96,18 @@ METHODOLOGY AUDIT — 109 checks, 0 FAIL, 0 WARN
   PASS  regression(tail): arch_dead_option carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
   PASS  regression(tail): arch_wolf_compounder carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
   PASS  regression(tail): arch_cheap_per_roiic carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression(tail): arch_discounted_vehicle carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression(tail): arch_net_cash_returner carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression(tail): arch_negative_ev_value carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression(tail): arch_oak_deep_value carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression(tail): arch_oak_asset_floor carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression(tail): arch_diversified_segments carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression(tail): arch_no_dilution carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression(tail): arch_lindy_fcf carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression(tail): arch_owner_operator carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression(tail): arch_wolf_seal carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression(tail): arch_levered_inflection carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
+  PASS  regression(tail): arch_templeton_pessimism carries no deep operating loss-maker (roce<-5%)  — 0 firers with roce < -5%
   PASS  regression: price-ghost duplicates fire no archetypes  — 0 price-ghost lines firing archetypes
   PASS  regression: price-ghost duplicates do not rank (ETA=0)  — 0 price-ghost lines with ETA>0
   PASS  regression(tail): arch_wolf_turnaround keeps a real USD revenue base  — 0 sub-floor-revenue firers

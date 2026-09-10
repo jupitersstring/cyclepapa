@@ -545,7 +545,17 @@ def _regression(t, g):
                 "arch_fastest_segment", "arch_wolf_trifecta",
                 "arch_wolf_value_catalyst", "arch_capital_discipline",
                 "arch_dead_option", "arch_wolf_compounder",
-                "arch_cheap_per_roiic"):
+                "arch_cheap_per_roiic",
+                # (deep-audit) the cheap-cash / durability / levered gates that
+                # gained a _not_melting or _roce_now_ok floor this pass — each
+                # had 100-800 confirmed operating value-traps a one-off FCF print
+                # slipped past the cash legs. Lock the floor in.
+                "arch_discounted_vehicle", "arch_net_cash_returner",
+                "arch_negative_ev_value", "arch_oak_deep_value",
+                "arch_oak_asset_floor", "arch_diversified_segments",
+                "arch_no_dilution", "arch_lindy_fcf", "arch_owner_operator",
+                "arch_wolf_seal", "arch_levered_inflection",
+                "arch_templeton_pessimism"):
         if _ac in t.columns:
             leak = int(((n(t, _ac) == 1) & (_roce_now < -0.05)).sum())
             check(f"regression(tail): {_ac} carries no deep operating loss-maker (roce<-5%)",
