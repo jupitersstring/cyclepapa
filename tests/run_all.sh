@@ -17,6 +17,9 @@ echo
 echo "=== discretionary insider conviction ==="
 python3 test_discretionary_conviction.py
 echo
+echo "=== form 4 filing-time classifier ==="
+python3 test_form4_timing.py
+echo
 echo "=== emergence cross-feed ==="
 python3 test_emergence_crossfeed.py
 echo

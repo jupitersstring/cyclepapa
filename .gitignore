@@ -16,3 +16,7 @@ __pycache__/
 pipeline.db-shm
 pipeline.db-wal
 xbrl_frames/
+# Rebuildable EDGAR acceptance-datetime cache for form4_timing (~16MB of
+# per-issuer submissions blocks). The distilled result -- form4_timing.json
+# -- is committed; this raw cache is refetched by form4_timing.py.
+form4_acceptance.json

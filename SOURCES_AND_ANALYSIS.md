@@ -118,6 +118,31 @@ top-decile assemblies did next. That is the PSIX backtest generalized
 from anecdote to distribution — and it is the prerequisite for trusting
 A1's weight recalibration.
 
+**A7 — First outcome-tested layer: Form 4 filing TIME.** The `form4_timing`
+layer is the one exception to A1 — it was built *from* a measured test, not
+hand-set judgment. Hypothesis: open-market insider buys accepted by EDGAR
+OFF-hours (evenings / Friday evening / outside 09:30-16:00 ET) are quiet
+accumulators worth following, while buys accepted DURING market hours are
+"price support" worth fading. Test (702 code-P buys, 548 with a buy-to-now
+return proxy = current price ÷ avg exec price − 1, cohort-demeaned to control
+for the common window):
+
+| bucket | n | median ret | win rate |
+|---|---|---|---|
+| MARKET_HOURS (09:30–16:00 ET) | 147 | **−8.0%** | 37% |
+| AFTER_HOURS (eve / pre-mkt) | 401 | **+3.7%** | 63% |
+| Friday-evening subset | 58 | +4.1% | 62% |
+
+Off-minus-market median differential **+11.7pp**; verdict SUPPORTED, and it
+survives capping returns at +300% (median is outlier-immune) and spans 39 vs
+177 distinct tickers (not single-name). Caveats kept honest: the alpha proxy
+is buy-to-now over a shared window (not benchmark-subtracted; cohort-demeaning
+is the control), EDGAR stamps most "weekend" submissions to a business day so
+that bucket is empty, and the coefficients that convert the finding into layer
+points (+12 fully off-hours, −8 fully market-hours, +3 Friday-evening) are
+calibrated to the observed medians. This is A1's event-study harness in
+miniature for one dimension; the general daily-price version still stands.
+
 ## Part 3 — Engineering errors & blind spots
 
 All evidence first-hand from this project's own history or measured

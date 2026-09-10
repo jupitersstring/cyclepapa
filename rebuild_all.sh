@@ -100,6 +100,11 @@ run python3 gen_orphan_scorers.py          || true
 run python3 opportunistic_insiders.py      || true
 run python3 discretionary_insider_conviction.py || true
 run python3 buyback_insider_overlay.py     || true
+# Filing-TIME signal: off-hours/Friday-evening P-buys (quiet accumulators,
+# follow) vs market-hours P-buys (price support, fade). Fetches EDGAR
+# acceptance datetimes (cached in form4_acceptance.json). Runs before
+# consensus, which ingests form4_timing.json.
+run python3 form4_timing.py                 || true
 # Emergence cross-feed from the pollers subsystem (skips gracefully if
 # emergence_master_snapshot.json is absent; refresh the snapshot by
 # copying data/emergence_master.json from the capital-structure branch).

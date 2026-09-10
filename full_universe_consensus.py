@@ -404,6 +404,37 @@ def score_post_ch11_layer(layers: dict, universe: set) -> dict:
     return _load_jscore(ROOT / "post_ch11_emergence.json", universe)
 
 
+def score_form4_timing_layer(layers: dict, universe: set) -> dict:
+    """Form 4 filing-TIME signal (see form4_timing.py). Empirically tested:
+    open-market insider buys ACCEPTED off-hours (evenings / Friday evening /
+    outside 09:30-16:00 ET) carry a positive median buy-to-now return and a
+    63% win rate -- quiet accumulators worth following -- while buys accepted
+    during market hours show a NEGATIVE median return and 37% win rate
+    ("supporting the price"). Score is positive for off-hours-weighted names,
+    negative for market-hours-weighted names. Names without a scored row = 0.
+
+    Source: form4_timing.json (built by form4_timing.py)."""
+    return _load_jscore_nested(ROOT / "form4_timing.json", universe)
+
+
+def _load_jscore_nested(path: Path, universe: set, field: str = "score") -> dict:
+    """Like _load_jscore but reads the nested {'scores': {...}} block."""
+    out = {tk: 0.0 for tk in universe}
+    if not path.exists():
+        return out
+    try:
+        data = json.loads(path.read_text()).get("scores", {})
+    except Exception:
+        return out
+    for tk, v in data.items():
+        if tk in out and isinstance(v, dict):
+            try:
+                out[tk] = float(v.get(field) or 0)   # can be negative
+            except Exception:
+                pass
+    return out
+
+
 def score_net_buyback_layer(layers: dict, universe: set) -> dict:
     """Net-buyback quality: diluted share COUNT reduction YoY (net of SBC
     dilution), rewarded when cheap; net dilution scores negative. The
@@ -772,6 +803,7 @@ def main() -> int:
         "hidden_asset": score_hidden_asset_layer(layers, universe),
         "selective_buyback": score_selective_buyback_layer(layers, universe),
         "net_buyback": score_net_buyback_layer(layers, universe),
+        "form4_timing": score_form4_timing_layer(layers, universe),
         "internalization": score_internalization_layer(layers, universe),
         "bumpitrage": score_bumpitrage_layer(layers, universe),
         "spinoff_volume": score_spinoff_volume_layer(layers, universe),
@@ -889,6 +921,7 @@ def main() -> int:
             "hidden_asset_pts": layer_scores["hidden_asset"].get(tk, 0),
             "selective_buyback_pts": layer_scores["selective_buyback"].get(tk, 0),
             "net_buyback_pts": layer_scores["net_buyback"].get(tk, 0),
+            "form4_timing_pts": layer_scores["form4_timing"].get(tk, 0),
             "internalization_pts": layer_scores["internalization"].get(tk, 0),
             "bumpitrage_pts": layer_scores["bumpitrage"].get(tk, 0),
             "spinoff_volume_pts": layer_scores["spinoff_volume"].get(tk, 0),
