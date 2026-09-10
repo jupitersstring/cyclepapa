@@ -326,15 +326,20 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # pure-rate name with no cash generation cannot qualify on growth alone.
     _profit_present = ((s('ebitda_ttm', np.nan) > 0) | (s('op_margin', np.nan) > 0)
                        | (fcf_yield > 0))
-    # (judgment review) a CURRENT roce of 60-150% on an operating company is
-    # almost always a ONE-OFF — an estate/asset sale (James Warren Tea 1.00), a
-    # base-effect print (Dong A Eltek 1.38), or plain corruption below the >1.5
-    # nulling line — unless a multi-year record corroborates it. Archetypes
-    # whose DEFINING signal is high roce must not accept an uncorroborated
-    # one-off print; sub-60% roce and corroborated compounders are untouched.
+    # (judgment review — narrowed per "don't drop opportunities on a rough
+    # rule") a very high CURRENT roce is only SUSPECT when it is CONTRADICTED by
+    # the operating margin. A genuinely capital-light business (royalty / IP /
+    # asset-light software) can earn 70-120% on capital WITH a fat op margin —
+    # that is a real, rare compounder we must KEEP. What is not real is roce
+    # >100% while the op margin is thin/negative (an asset-sale one-off or a
+    # tiny-denominator artifact: James Warren Tea roce 1.00 on a low-margin tea
+    # business, Dong A Eltek 1.38 with a base-effect print). So: suspect only if
+    # roce > 1.0 AND op margin is NOT high (< 20%) AND no multi-year record
+    # corroborates it. High-margin high-roce names and sub-100% roce are kept.
     _roce_corroborated = ((s('roic_lindy', np.nan) >= 0.30)
-                          | (s('n_yrs_positive_roic', 0) >= 4))
-    _roce_oneoff_suspect = (_roce_now.notna() & (_roce_now > 0.60)
+                          | (s('n_yrs_positive_roic', 0) >= 4)
+                          | (s('op_margin', np.nan) >= 0.20))
+    _roce_oneoff_suspect = (_roce_now.notna() & (_roce_now > 1.0)
                             & ~_roce_corroborated)
     # Genuine-net-cash guard: net_cash_pct and net_debt_ebitda sometimes
     # CONTRADICT (stale/mismatched snapshots) — a name reads "net cash" on one
@@ -1644,8 +1649,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         r'closed-end|business development|investment trust|\bfund\b|'
         r'asset manage', regex=True)
     df['arch_financials_value'] = (
-        is_financial & ~is_reit & ~_fin_fund_vehicle & ~_known_holdco & (mcap >= 50e6)
-        & (_fpb >= 0.15) & (_fpb < 1.0)         # pb floor: <0.15x book is an ADR/currency artifact (FDCT 0.108), not a real bank; ~_known_holdco drops NAV holdcos (Dundee) the industry regex misses
+        is_financial & ~is_reit & ~_fin_fund_vehicle & (mcap >= 50e6)
+        & (_fpb >= 0.15) & (_fpb < 1.0)         # pb floor: <0.15x book is an ADR/currency artifact (FDCT 0.108), not a real bank
+                                                # (NOT excluding _known_holdco here — that would also cut real lenders like JFIN; a discounted financial holdco is a legitimate member of the pool)
         & (_froe >= 0.10)
         & (((_fpe > 0) & (_fpe <= 15)) | _fpe.isna())
     ).fillna(False).astype(int)
@@ -3371,36 +3377,22 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                             if _div >= 1.3:
                                 _is_price_ghost.iloc[int(_T['_i'])] = True
                                 break
-    # FX-SECONDARY GHOST: a line on a SECONDARY venue — Frankfurt/German
-    # regionals (.F/.MU/.HM/.BE/.DU/.SG) or a Shanghai/Shenzhen B-share
-    # (900xxx.SS / 200xxx.SZ) — that DUPLICATES a same-name primary listed on a
-    # real home exchange, and carries FX-corrupt ratios (local-currency
-    # fundamentals over a foreign-currency price: B9A.F BioArctic EV/Sales 0.52
-    # vs true 27.7; 900936 B-share fcf 99%). Scrub it ONLY when a same-name
-    # sibling exists on a NON-secondary venue (so a name whose only line we have
-    # IS the secondary is kept). is_otc already removes the US OTC F/Y lines;
-    # this catches the exchange-listed secondaries that reach the ex-OTC books.
-    if 'name' in df.columns:
-        _sym2 = df['symbol'].astype(str)
-        _sfx2 = _sym2.str.extract(r'(\.[A-Z]{1,2})$', expand=False)
-        _is_sec_venue = (_sfx2.isin(['.F', '.MU', '.HM', '.BE', '.DU', '.SG'])
-                         | _sym2.str.match(r'^900\d{3}\.SS$')
-                         | _sym2.str.match(r'^200\d{3}\.SZ$'))
-        _nm2 = (df['name'].fillna('').astype(str).str.lower()
-                .str.replace(r'[^a-z0-9 ]', '', regex=True)
-                .str.replace(r'\b(corp|corporation|inc|incorporated|company|co|'
-                             r'ltd|limited|plc|holdings?|group|sa|ag|nv|the|adr|'
-                             r'ab|se|oyj|asa|spa|nv|bhd)\b', '', regex=True)
-                .str.replace(r'\s+', ' ', regex=True).str.strip())
-        _primary_names = set(_nm2[(~_is_sec_venue) & (_nm2 != '')])
-        _is_fx_secondary = (_is_sec_venue & (_nm2 != '') & _nm2.isin(_primary_names))
-        _is_price_ghost = _is_price_ghost | _is_fx_secondary
+    # NOTE: an earlier version ALSO scrubbed "FX-secondary" lines by a coarse
+    # VENUE heuristic (Frankfurt/German-regional suffixes + Shanghai/Shenzhen
+    # B-shares) whenever a same-name primary existed. REVERSED — that is exactly
+    # the kind of rough rule that drops real opportunities: a China B-share
+    # trades at a genuine, persistent DISCOUNT to its A/H sibling (a distinct,
+    # legitimately-cheaper claim), and a foreign secondary is a real tradeable
+    # line for some accounts. We keep only the TIGHT price-ghost rule above
+    # (a wrong-price prefix-extension of the SAME ticker, e.g. UMBFO) — genuine
+    # data corruption, not a separate security. FX ratio corruption on those
+    # lines is a DATA problem to fix upstream (currency normalisation), not a
+    # reason to remove the name from the pool.
     df['is_price_ghost'] = _is_price_ghost.astype(int)
     if _is_price_ghost.any():
         df.loc[_is_price_ghost.values, _scrub_cols] = 0
-        print(f'  scrubbed {int(_is_price_ghost.sum())} price-ghost + FX-secondary '
-              f'duplicate lines (wrong-price / redundant secondary listings)',
-              file=sys.stderr)
+        print(f'  scrubbed {int(_is_price_ghost.sum())} price-ghost duplicate '
+              f'lines (wrong-price duplicates of the SAME ticker)', file=sys.stderr)
 
     # ===== PRE-REVENUE BIOTECH SCRUB (durable/quality archetypes only): a
     # clinical-stage biotech's "5-year durable margin / quality" is a licensing
