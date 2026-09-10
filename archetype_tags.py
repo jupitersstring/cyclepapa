@@ -3260,16 +3260,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
 
     # NOL shell: a large net-operating-loss carryforward relative to market cap
     # (a monetizable tax asset — WMIH/Mr. Cooper), on a survivable balance sheet.
-    # (topcheck) US filers ONLY — the §382 NOL-monetization thesis (WMIH/Mr.
-    # Cooper) is a US-tax mechanic, AND nol_usd is only trustworthy for USD
-    # filers (a foreign filer's NOL is reported in its home currency; the
-    # re-scrape now takes USD-only, but domicile-gating is the belt-and-braces).
-    _us_domicile = ((df.get('country', pd.Series('', index=df.index)).astype(str)
-                     == 'United States')
-                    | (df.get('src', pd.Series('', index=df.index)).astype(str) == 'US'))
+    # The RMB-as-USD inflation is fixed at the SOURCE (the re-scrape reads
+    # USD-only NOL), so no domicile gate is needed — a US-listed foreign filer
+    # that reports a genuine USD NOL is a legitimate member of the pool and is
+    # kept. We only strip CORRUPTION (out-of-band ratio) and BURNERS, not assets.
     _nol_to_mcap = (_nol_usd / mcap.where(mcap > 0))
     df['arch_nol_shell'] = (
-        is_operating & (mcap > 0) & _us_domicile
+        is_operating & (mcap > 0)
         & (_nol_to_mcap >= 0.5) & (_nol_to_mcap <= 20.0)   # sane band (a >20x ratio is a currency/mcap artifact)
         & ((net_cash_pct_sane >= 0.10) | _excellent_value | (cash_gt_ev > 0))
         & (s('op_margin', np.nan) > -0.30)                 # (topcheck) survivable, not a >100%-mcap/yr burner (ONCO/ASTC)
