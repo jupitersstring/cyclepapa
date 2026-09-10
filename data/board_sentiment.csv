@@ -1,0 +1,51 @@
+ticker,epic,date,score,method,n_defensive,n_constructive,title
+RESI.L,RESI,2026-06-24,0.87,heuristic,0,1,Interim Results to 31 March 2026
+JEGI.L,JEGI,2026-06-23,0.0,heuristic,2,2,Final Results
+NESF.L,NESF,2026-06-22,0.0,heuristic,3,3,Final Results
+CORD.L,CORD,2026-06-19,-0.347,heuristic,5,1,Full Year Results for the Year Ended 31 March 2026
+UEM.L,UEM,2026-06-19,0.107,heuristic,3,6,Annual Financial Report
+JEDT.L,JEDT,2026-06-19,0.394,heuristic,1,8,Final Results
+ANII.L,ANII,2026-06-18,0.0,heuristic,4,4,Annual Financial Report
+SYNC.L,SYNC,2026-06-18,-0.088,heuristic,8,4,Final Results
+MVCT.L,MVCT,2026-06-18,-0.923,heuristic,3,0,Final Results
+PNL.L,PNL,2026-06-17,0.317,heuristic,1,4,Final Results
+OOA.L,OOA,2026-06-17,-0.417,heuristic,11,1,Final Results
+HHV.L,HHV,2026-06-17,-0.93,heuristic,4,0,Unaudited Interim Results
+OIT.L,OIT,2026-06-17,0.018,heuristic,6,7,Annual Financial Report
+CCJI.L,CCJI,2026-06-17,-0.93,heuristic,4,0,Half-Year Results - 30 April 2026
+VIP.L,VIP,2026-06-12,0.442,heuristic,1,18,Annual Financial Report
+PUAL.L,PUAL,2026-06-12,0.0,heuristic,0,0,Annual Financial Report for Year Ended 28 Feb 2026
+PU13.L,PU13,2026-06-12,0.0,heuristic,0,0,Annual Financial Report for Year Ended 28 Feb 2026
+PCTN.L,PCTN,2026-06-12,0.198,heuristic,3,20,Preliminary Annual Results
+JZCP.L,JZCP,2026-06-12,0.87,heuristic,0,1,Annual results for the year ended 28 February...
+BSV.L,BSV,2026-06-11,0.0,heuristic,0,0,Annual Financial Report
+SEQI.L,SEQI,2026-06-11,-0.368,heuristic,6,1,Final Results
+SMIF.L,SMIF,2026-06-10,-0.943,heuristic,10,0,Interim results for the six months ended 31 M...
+TRY.L,TRY,2026-06-10,0.169,heuristic,2,5,Annual Financial Report
+LTI.L,LTI,2026-06-09,-0.942,heuristic,9,0,Annual Financial Report for the year ended 31...
+GROW.L,GROW,2026-06-09,0.0,heuristic,0,0,Annual Financial Report and Notice of AGM
+GROW.L,GROW,2026-06-09,-0.317,heuristic,4,1,FINAL RESULTS FOR THE YEAR ENDED 31 MARCH 202...
+FCSS.L,FCSS,2026-06-09,-0.941,heuristic,8,0,Annual Financial Report
+WWH.L,WWH,2026-06-05,-0.084,heuristic,5,3,Annual Financial Report
+CGT.L,CGT,2026-06-04,0.0,heuristic,2,2,Final Results for the Year Ended 31 March 202...
+BIOG.L,BIOG,2026-06-03,-0.137,heuristic,4,2,Annual Financial Report
+PVN.L,PVN,2026-06-03,0.0,heuristic,0,0,ProVen VCT plc: Annual Financial Report
+EGL.L,EGL,2026-06-03,0.0,heuristic,2,2,Half Year Results
+TEM.L,TEM,2026-06-02,0.138,heuristic,4,16,Statement of Annual Results
+MIG1.L,MIG1,2026-06-02,-0.935,heuristic,5,0,Annual Financial Report
+PAIM.L,PAIM,2026-06-02,0.0,heuristic,0,0,Annual Financial Report for Year Ended 28 Feb 2026
+SMT.L,SMT,2026-06-01,0.0,heuristic,0,0,Annual Financial Report
+CHI.L,CHI,2026-05-29,-0.909,heuristic,2,0,Annual Financial Report
+CHIB.L,CHIB,2026-05-29,-0.909,heuristic,2,0,Annual Financial Report
+HVPE.L,HVPE,2026-05-28,-0.016,heuristic,11,9,Annual Financial Report
+PGV.L,PGV,2026-05-28,0.0,heuristic,0,0,Annual Financial Report &amp; Notice of AGM
+SMT.L,SMT,2026-05-27,-0.368,heuristic,6,1,Scottish Mortgage Final Results
+HICL.L,HICL,2026-05-27,-0.169,heuristic,5,2,ANNUAL RESULTS FOR THE YEAR ENDED 31 MARCH 2026
+CTUK.L,CTUK,2026-05-22,-0.87,heuristic,1,0,Interim Results and Dividend Announcement
+OAP3.L,OAP3,2026-05-22,-0.941,heuristic,8,0,Final Results
+HLCL.L,HLCL,2026-05-22,0.368,heuristic,1,6,Annual Results for the Year to 31 March 2026
+EDIN.L,EDIN,2026-05-21,-0.347,heuristic,5,1,Annual Financial Report
+CGT.L,CGT,2026-05-21,0.0,heuristic,0,0,Notice of Annual Results Webinars
+MRV.L,MRV,2026-05-20,0.211,heuristic,3,28,Annual Financial Report
+STS.L,STS,2026-05-19,0.014,heuristic,7,8,Final Results
+CLDN.L,CLDN,2026-05-19,-0.43,heuristic,14,1,Final Results
