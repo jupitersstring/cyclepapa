@@ -590,8 +590,16 @@ def nav_trajectory_penalty(navtr_1y: float | None) -> float:
     illusory — the NAV target is itself moving down."""
     if navtr_1y is None:
         return 1.0
-    # NAVTR1Y from AIC is in percent (e.g. -15.5 means -15.5%)
-    tr = navtr_1y / 100.0 if abs(navtr_1y) > 1.5 else navtr_1y
+    # NAVTR1Y from AIC is ALWAYS in percent (e.g. -15.5 = -15.5%, and
+    # -1.06 = -1.06%, a negligible move). The previous
+    # `abs()>1.5 ? /100 : as-fraction` heuristic catastrophically
+    # misread small NAV moves: -1.06% was taken as a -106% fraction and
+    # floored the penalty to 0.50, corrupting recovery (and IRR) for
+    # every name with a sub-1.5% NAV total return — 12 names in the
+    # 2026-09-10 run, including USF (0.80 recovery wrongly cut to 0.40,
+    # driving IRR to -24%). AIC is the only caller and it is always
+    # percent, so divide unconditionally.
+    tr = navtr_1y / 100.0
     # Interpolate the penalty table
     items = sorted(params.NAV_DECLINE_PENALTY.items())
     if tr >= items[-1][0]:

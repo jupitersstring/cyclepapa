@@ -519,3 +519,23 @@ def test_asymmetry_missing_low_gives_upside_only():
     up, down, ratio = core.compute_asymmetry(0.30, None, 0.90)
     assert up == pytest.approx(27.0, abs=0.1)
     assert down is None and ratio is None
+
+
+# ----- NAV-trajectory units regression (2026-09-10) ----------------
+
+def test_nav_trajectory_small_decline_not_misread_as_catastrophic():
+    """-1.06% NAV move is negligible, NOT -106%. The old abs()>1.5
+    heuristic read it as a fraction and floored the penalty to 0.50,
+    corrupting recovery/IRR for USF and 11 other names."""
+    p = core.nav_trajectory_penalty(-1.06)   # -1.06 PERCENT
+    assert p > 0.95, f"a ~1% NAV decline must be near-neutral, got {p}"
+
+
+def test_nav_trajectory_still_penalises_real_declines():
+    # Genuine -20% still maps to ~0.70 (percent input)
+    assert 0.65 <= core.nav_trajectory_penalty(-20.0) <= 0.75
+
+
+def test_nav_trajectory_one_percent_band_neutral():
+    for v in (-1.4, -0.5, 0.5, 1.4):
+        assert core.nav_trajectory_penalty(v) > 0.95
