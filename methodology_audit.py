@@ -532,13 +532,26 @@ def _regression(t, g):
             check(f"regression(R1): {_ac} excludes Financials/REITs/Utilities",
                   leak == 0, f"{leak} financials/REITs/utilities firers")
 
-    # tail — "not melting": survivability legs (positive EBITDA / a CFO swing)
-    # must not admit a CONFIRMED deep operating loss-maker. Pin it as: no firer
-    # with a known deeply-negative current ROCE (< -5%).
+    # tail — "not melting": survivability legs must not admit a GENUINE ICE CUBE.
+    # (user directive) a deeply-ROCE-negative name is NOT a defect when it is
+    # cash-on-cash-generative OR its returns are improving — those are kept
+    # (and DEMOTED via melt_demotion, not barred). The real invariant is that no
+    # archetype carries a genuine ice cube: negative current returns AND no cash
+    # generation on ANY sign-meaningful lens AND not improving.
     _roce_now = gcol("roce")
-    # (arch_wolf_turnaround is deliberately EXCLUDED — a turnaround crossing to
-    # black legitimately still shows negative current ROCE; it is bounded
-    # instead by op_margin > -30% and a real revenue base, not by a roce floor.)
+    _opm_now = gcol("op_margin")
+    _cash_ok_a = ((gcol("fcf_yield") > 0) | (gcol("owner_earnings_yield") > 0)
+                  | (gcol("robust_cash_yield") > 0) | (gcol("cfo_yield") > 0)
+                  | (gcol("fcf_margin") > 0))
+    _improving_a = ((gcol("roce_delta_yoy") > 0) | (gcol("roce_inflection") > 0)
+                    | (gcol("roce_first_positive") > 0) | (gcol("fcf_inflection") > 0)
+                    | (gcol("op_margin_delta_yoy") > 0) | (gcol("ebitda_inflection") > 0))
+    _ice_cube = (((_roce_now < -0.05) | (_opm_now < 0))
+                 & ~_cash_ok_a & ~_improving_a)
+    # (arch_wolf_turnaround AND arch_templeton_pessimism are deliberately EXCLUDED
+    # — a turnaround crossing to black / a Templeton trough cyclical at a 5y low
+    # legitimately shows a negative current op margin with positive EBITDA + net
+    # cash; that IS the thesis, and melt_demotion downranks the genuine ice cubes.)
     for _ac in ("arch_micro_activist_inflect", "arch_fixed_cost_demand_shock",
                 "arch_regime_cyclical", "arch_kpi_threshold",
                 "arch_oak_order_conversion", "arch_insider_conviction",
@@ -546,20 +559,17 @@ def _regression(t, g):
                 "arch_wolf_value_catalyst", "arch_capital_discipline",
                 "arch_dead_option", "arch_wolf_compounder",
                 "arch_cheap_per_roiic",
-                # (deep-audit) the cheap-cash / durability / levered gates that
-                # gained a _not_melting or _roce_now_ok floor this pass — each
-                # had 100-800 confirmed operating value-traps a one-off FCF print
-                # slipped past the cash legs. Lock the floor in.
+                # the cheap-cash / durability / levered gates whose survivability
+                # leg is now the cash-aware _not_melting — same ice-cube invariant.
                 "arch_discounted_vehicle", "arch_net_cash_returner",
                 "arch_negative_ev_value", "arch_oak_deep_value",
                 "arch_oak_asset_floor", "arch_diversified_segments",
                 "arch_no_dilution", "arch_lindy_fcf", "arch_owner_operator",
-                "arch_wolf_seal", "arch_levered_inflection",
-                "arch_templeton_pessimism"):
+                "arch_wolf_seal", "arch_levered_inflection"):
         if _ac in t.columns:
-            leak = int(((n(t, _ac) == 1) & (_roce_now < -0.05)).sum())
-            check(f"regression(tail): {_ac} carries no deep operating loss-maker (roce<-5%)",
-                  leak == 0, f"{leak} firers with roce < -5%")
+            leak = int(((n(t, _ac) == 1) & _ice_cube).sum())
+            check(f"regression(tail): {_ac} carries no genuine ice cube (neg returns, no cash, not improving)",
+                  leak == 0, f"{leak} ice-cube firers")
 
     # price-ghost dedup: a wrong-price duplicate line of a real security must
     # neither fire an archetype nor rank (UMBFO, a ghost of UMBF, at P/B 0.26).

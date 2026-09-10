@@ -310,21 +310,47 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # (NaN roce is left permissive — the multi-year gate carries the weight
     # there — but a KNOWN-negative current roce fails the durability claim).
     _roce_now = s('roce', np.nan)
-    _roce_now_ok = ~(_roce_now.notna() & (_roce_now < 0.0))
-    # (tail-audit 2026-09-09) "not melting": the deep-tail sweep found the same
-    # class of escape across many archetypes — a positive one-off EBITDA (or a
-    # working-capital CFO swing) lets a CONFIRMED operating loss-maker that is
-    # ALSO burning cash honour a boolean survivability leg while the thesis
-    # (a viable, floor-holding business) is violated (SOGP, FORA, TUSK, VEEE,
-    # PRISMX...). _not_melting FAILS a name only when it is KNOWN to be both an
-    # operating loss-maker AND an FCF burner, or its current ROCE is deeply
-    # negative. Missing data stays permissive; a genuine turnaround with
-    # positive FCF or unknown margins is NOT excluded — this trims confirmed
-    # floor-melters, not pre-profit-but-cash-generative names.
     _opm_now = s('op_margin', np.nan)
     _fcf_now = s('fcf_ttm', np.nan)
-    _not_melting = ~(((_opm_now < 0) & (_fcf_now < 0)) |
-                     (_roce_now.notna() & (_roce_now < -0.05)))
+    # (user directive: "cash-on-cash returns and various implementations of it
+    # are as important as ROCE; be more benign if ROCE is improving; demote if
+    # melt, don't bar"). CASH-ON-CASH RETURN present through ANY robust lens —
+    # a name generating owner cash is NOT melting even if its accounting ROCE
+    # reads poorly. Uses the durable cash yields preferentially (owner-earnings /
+    # robust cash yield / CFO yield / cash conversion / FCF margin), so a single
+    # working-capital FCF blip is not the whole story but real cash generation
+    # exempts a name from the melt judgement.
+    # NOTE: only SIGN-MEANINGFUL absolute cash yields — NOT cash_conversion
+    # (=CFO/EBITDA), a ratio that reads positive when BOTH are negative (FOM.CO
+    # CFO-63% shows cash_conversion 0.84) and would wrongly exempt a dead name.
+    _cash_return_ok = ((fcf_yield > 0)
+                       | (s('owner_earnings_yield', np.nan) > 0)
+                       | (s('robust_cash_yield', np.nan) > 0)
+                       | (s('cfo_yield', np.nan) > 0)
+                       | (s('fcf_margin', np.nan) > 0))
+    # RETURNS IMPROVING — a negative-but-inflecting name is a turnaround, not an
+    # ice cube; be benign (do not bar, and demote less).
+    _returns_improving = ((s('roce_delta_yoy', np.nan) > 0)
+                          | (s('roce_inflection', np.nan) > 0)
+                          | (s('roce_first_positive', np.nan) > 0)
+                          | (s('fcf_inflection', np.nan) > 0)
+                          | (s('op_margin_delta_yoy', np.nan) > 0)
+                          | (s('ebitda_inflection', np.nan) > 0))
+    # (R4) Current-state floor for backward-looking multi-year gates — now
+    # cash-aware and improvement-lenient: a KNOWN-negative current ROCE fails
+    # the durability claim ONLY when the name is ALSO not generating cash on any
+    # lens AND not improving. A cash-generative or inflecting name passes.
+    _roce_now_ok = ~(_roce_now.notna() & (_roce_now < 0.0)
+                     & ~_cash_return_ok & ~_returns_improving)
+    # "not melting" (used as the survivability leg across ~30 archetypes). A name
+    # is melting ONLY when it is losing money on the operating line OR deeply
+    # ROCE-negative, AND generating no cash on ANY lens, AND not improving. This
+    # credits cash-on-cash returns equally with ROCE and is benign to genuine
+    # turnarounds (SOGP/FORA-type one-off-EBITDA shells with real burn still
+    # fail; cash-generative or inflecting names pass). Melters are additionally
+    # DEMOTED (not just gate-tested) via melt_demotion in enrich_asymmetry_global.
+    _not_melting = ~(((_opm_now < 0) | (_roce_now < -0.05))
+                     & ~_cash_return_ok & ~_returns_improving)
     # (reference II) "Some measure of profitability present and robust" is the
     # ONE point every multibagger study agrees on; Yartseva further shows it is
     # the LEVEL of profitability/FCF that drives returns, not the growth RATE.
@@ -1909,8 +1935,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (rev_yoy_c >= 0.15) &                       # "double-digit", not 50%
         oper_lev_any &                              # operating leverage (any of 6 angles)
         ((cfo_ttm_v > 0) | (fcf_ttm_v > 0)) &
-        _not_melting &                              # (tail) op_margin>0 floor sibling wolf_compounder carries (Writeup op-48%)
-        (s('op_margin', np.nan) > -0.30) &          # (deep-audit) a working-capital-positive CFO bypasses _not_melting: 9271.T op-114%, 6580.T op-48% passed while "improving margins" is the thesis. Explicit op floor closes it.
+        _not_melting &                              # (tail) survivability — now cash-on-cash-aware + improvement-lenient; a cash-generative or inflecting name is NOT barred here, only genuine ice cubes (per user: demote via melt_demotion, don't bar).
         (ev_sales_v > 0) & (ev_sales_v < 3.0) &
         wolf_cheap_entry &
         low_sbc_wolf
@@ -1948,8 +1973,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((net_cash_pct_c >= 0.20) | (cash_gt_ev > 0) | (ncav_pct >= 0.50)) &
         ((rev_yoy_c >= 0.10) | ((rev_growth_score >= 0.5) & (rev_yoy_c >= 0))) &  # a GROWING thesis is not a declining top line (TTEC rev -3.2%)
         (cfo_ttm_v > 0) &
-        _not_melting &                              # (tail) a working-capital CFO must not mask a deep operating loss (SOGP roce-95%)
-        (s('op_margin', np.nan) > -0.30) &          # (deep-audit) _not_melting is bypassed by a working-capital CFO with positive roce: BENGALT.BO op-160%/roce+23% passed. wolf_compounder's op floor, applied here too.
+        _not_melting &                              # (tail) survivability — cash-on-cash-aware + improvement-lenient (per user: demote melters via melt_demotion, don't bar cash-generative/inflecting names).
         ((fcf_yield >= 0.08) |
          ((ev_ebitda_v > 0) & (ev_ebitda_v < 6.0)))
 
@@ -2230,7 +2254,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (ebitda_ttm_v > 0) &                     # EBITDA to service the debt
         heavy_debt &                             # enormous debt burden
         (fcf_ttm_v > 0) &                        # cash to amortise (deleverage)
-        ((s('op_margin', np.nan) > -0.20) | (s('roce', np.nan) >= 0)) &  # (deep-audit) the levered STUB must be operationally viable — a -228%/-336% op margin (SIHBY, F10.SI op-38%/roce-16%) cannot amortise debt; it is a melting over-levered stub, the anti-thesis. Floors on cash-yield alone let those through.
+        _not_melting &   # (deep-audit) the levered stub must be operationally viable — now via the cash-on-cash-aware + improvement-lenient survivability leg (AMTD, a misclassified financial holdco, is handled at the source via _known_holdco; a genuinely cash-generating levered stub is kept, per user: demote don't bar on margin alone).
         ((ebitda_yoy_v >= 0) | (ebitda_inflection > 0) | oper_lev_any) &  # stable/rising (any angle)
         _soft_ok_above('interest_coverage', 1.0) &  # can service (soft; 8% cov)
         (mcap > 0) & (mcap < 5e9)                # small/mid, where this is mispriced
@@ -2297,7 +2321,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         oper_lev_any & strong_op_improvement &   # real operating improvement (any rev dir.)
         heavy_debt &                             # levered equity stub -> convexity
         (ebitda_ttm_v > 0) & ((fcf_ttm_v > 0) | (cfo_ttm_v > 0)) &  # survivable + cash
-        _not_melting & (s('op_margin', np.nan) > -0.25) &  # (deep-audit) the leakiest levered gate (no rev-conjunction, no melting floor): LINK.JK op-47%/fcf-/roce-9% is a melting-ice cube, ARCHIES op-49%/ev-ebitda-147 a wrecked base — "improvement" off a ruined base + heavy debt is NOT inflection. _not_melting alone misses working-capital-FCF names (ARCHIES); the op floor closes it. Aligns with asymmetric_assembly's effective strictness.
+        _not_melting &   # (deep-audit) the leakiest levered gate gains the survivability leg — now cash-on-cash-aware + improvement-lenient, so a genuine melting-ice stub with no cash and no inflection (LINK.JK op-47%/fcf-/roce-9%) fails, but a cash-generative or inflecting levered stub is kept (per user: demote, don't bar on op-margin alone).
         ((ebitda_yoy_v > 0) | (ebitda_inflection > 0)) &           # deleveraging (rising EBITDA)
         (((ev_ebitda_v > 0) & (ev_ebitda_v <= 8.0)) | (robust_cy >= 0.12)) &  # cheap
         beaten_down_any(0.25) &                  # beaten down / low expectations (any lens)

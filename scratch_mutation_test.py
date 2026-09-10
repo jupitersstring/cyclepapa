@@ -206,10 +206,17 @@ def _m(t, g):
     g2 = add_row(g, symbol="MUTQ", sector="Financials")
     return t2, g2
 
-@case("tail melter in inflection", "arch_micro_activist_inflect carries no deep operating loss-maker", MA._regression)
+@case("tail ice-cube in inflection", "arch_micro_activist_inflect carries no genuine ice cube", MA._regression)
 def _m(t, g):
+    # a GENUINE ice cube: deeply ROCE-negative AND generating no cash on any lens
+    # AND not improving. (A cash-generative or inflecting roce<0 name is now kept
+    # and demoted, not barred — per the user directive — so it must NOT be here.)
     t2 = add_row(t, symbol="MUTN", arch_micro_activist_inflect=1, archetype_count=1)
-    g2 = add_row(g, symbol="MUTN", roce=-0.5)
+    g2 = add_row(g, symbol="MUTN", roce=-0.5, op_margin=-0.5,
+                 fcf_yield=-0.3, owner_earnings_yield=-0.3, robust_cash_yield=-0.3,
+                 cfo_yield=-0.3, fcf_margin=-0.3,
+                 roce_delta_yoy=-0.2, roce_inflection=0.0, roce_first_positive=0.0,
+                 fcf_inflection=0.0, op_margin_delta_yoy=-0.1, ebitda_inflection=0.0)
     return t2, g2
 
 @case("price-ghost fires archetype", "price-ghost duplicates fire no archetypes", MA._regression)

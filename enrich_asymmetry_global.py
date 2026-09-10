@@ -236,6 +236,37 @@ def main():
     pr.loc[ex] = 0.40
     df['post_rally_factor'] = pr.round(3)
 
+    # ----- melt_demotion: DEMOTE genuine melters in ranking, do NOT bar them ---
+    # Per user directive ("just demote if melt, not bar; cash-on-cash returns are
+    # as important as ROCE; be more benign if ROCE is improving"): a melting name
+    # stays in the pool and in every archetype it qualifies for, but sinks in the
+    # ranking rather than being excluded. "Melting" credits cash-on-cash returns
+    # equally with ROCE (any robust cash lens exempts) and is lenient to improving
+    # returns. A name is a genuine ice cube ONLY when it loses money on the
+    # operating line AND/OR is deeply ROCE-negative, generates cash on NO lens,
+    # AND is not improving. Cash-generative or inflecting names keep factor 1.0.
+    _opm_d = col('op_margin'); _roce_d = col('roce')
+    # only SIGN-MEANINGFUL absolute cash yields (NOT cash_conversion=CFO/EBITDA,
+    # which reads positive when both are negative and would exempt a dead name).
+    _cash_ok_d = ((col('fcf_yield') > 0) | (col('owner_earnings_yield') > 0)
+                  | (col('robust_cash_yield') > 0) | (col('cfo_yield') > 0)
+                  | (col('fcf_margin') > 0))
+    _improving_d = ((col('roce_delta_yoy') > 0) | (col('roce_inflection') > 0)
+                    | (col('roce_first_positive') > 0) | (col('fcf_inflection') > 0)
+                    | (col('op_margin_delta_yoy') > 0) | (col('ebitda_inflection') > 0))
+    _exempt_d = _cash_ok_d | _improving_d
+    _op_bad_d = _opm_d < 0
+    _roce_bad_d = _roce_d < -0.05
+    _melt_hard_d = _op_bad_d & _roce_bad_d & ~_exempt_d          # loss AND bad ROCE, no cash, not improving
+    _melt_soft_d = (_op_bad_d | _roce_bad_d) & ~_exempt_d & ~_melt_hard_d
+    melt_demotion = pd.Series(1.0, index=df.index)
+    melt_demotion.loc[_melt_soft_d] = 0.65
+    melt_demotion.loc[_melt_hard_d] = 0.40
+    df['melt_demotion'] = melt_demotion.round(3)
+    print(f'  melt_demotion: {int(_melt_hard_d.sum())} hard (x0.40) + '
+          f'{int((_melt_soft_d).sum())} soft (x0.65) demoted; '
+          f'{int((melt_demotion >= 1.0).sum())} unaffected', file=sys.stderr)
+
     # ----- PRICE-GHOST DEDUP: drop wrong-price duplicate lines from ranking -----
     # archetype_tags flags is_price_ghost on a duplicate line of the same
     # security carrying a corrupt-low price (e.g. UMBFO, a ghost of UMBF, at
@@ -260,6 +291,7 @@ def main():
         * intrinsic_boost
         * df['qual_mult']
         * df['post_rally_factor']
+        * df['melt_demotion']          # (user) demote melters, don't bar them
     ).round(6)
 
     # ----- archetype_count_pct (region-fair denominator) -----
@@ -298,6 +330,7 @@ def main():
         df['archetype_asymmetry_score']
         * df['qual_mult']
         * df['post_rally_factor']
+        * df['melt_demotion']          # (user) demote melters, don't bar them
     ).round(6)
 
     # ----- convergence_score (Compendium master ranking) -----
@@ -326,7 +359,7 @@ def main():
                 'archetypes_eligible', 'archetype_asymmetry_score',
                 'entry_today_archetype_asymmetry', 'convergence_score',
                 'mcap_proxy', 'intrinsic_discount', 'qual_mult',
-                'post_rally_factor', 'verdict']
+                'post_rally_factor', 'melt_demotion', 'verdict']
     # Drop the per-archetype boolean columns we merged in — they're
     # available via archetype_tags.csv if anyone wants them. Keeps
     # asymmetry_global slim.
