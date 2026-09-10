@@ -524,7 +524,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_narrative_lag'] = (
         _lag_tape &
         (_adv_breadth >= 2) &
-        is_operating & (mcap >= 50e6) &
+        is_operating & (mcap >= 10e6) &
         _roce_now_ok &                          # (tail) lag on IMPROVING fundamentals, not a deteriorating name (UCID/ILINK)
         ((s('fcf_ttm') > 0) | (s('ebitda_ttm') > 0) | _first_pos_any) &
         (((pb > 0) & (pb < 3.0)) | (fcf_yield >= 0.03))
@@ -624,7 +624,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                        (_ncol('cash_return_ev') > 0.05))
     df['arch_dead_option'] = (
         is_operating &                          # (R1b) exclude financials/REITs (Wanda Hotel, Shimao)
-        (mcap >= 50e6) &                        # investable scale — drops one-off-FCF sub-scale ADRs (JFU, SOGP)
+        (mcap >= 10e6) &                        # investable scale — drops one-off-FCF sub-scale ADRs (JFU, SOGP)
         beaten_down_any(0.40) &
         _cash_yield_any &
         (ebitda_margin > 0) &
@@ -654,7 +654,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating &                          # (R1b) exclude financials/REITs (KPI/margin lens is operating-only)
         _not_melting &                          # (tail) a loss-narrowing margin delta must not substitute for the returns floor (MKTW roce-75%)
         first_pos_print & (margin_confirming | roce_today) &
-        (mcap >= 50e6)                          # (G6) restore investable-scale floor
+        (mcap >= 10e6)                          # (G6) restore investable-scale floor
     ).fillna(False).astype(int)
 
     # ---------- Cluster G12: Regional Blind-Spot ----------
@@ -769,7 +769,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # equity (real assets, not goodwill).
     df['arch_tangible_value'] = (
         is_operating &                          # (G1) exclude financials/REITs/utilities
-        (mcap >= 50e6) &                        # investable scale (was firing on $2k shells)
+        (mcap >= 10e6) &                        # investable scale (was firing on $2k shells)
         (p_tb > 0) & (p_tb < 0.7) & (tangible_equity_pct > 0.50) &
         ((s('fcf_ttm') > 0) | (s('cfo_ttm') > 0)) &   # REAL cash generation (EBITDA-alone let levered melters KSS fcf -0.60 pass)
         ~(_ncol('fcf_yield') < -0.15) &         # (fresh) not deeply FCF-negative via capex burn — the CFO fallback let cyclicals melt the floor (BATL fcf -153%, MOS, HPK)
@@ -1136,7 +1136,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (cash_roic_inflect_v == 1) &
         (rev_yoy > 0) &                         # (R5) not a cost-cut blip in a shrinking co
         _not_melting &                          # (topcheck) a real cash inflection, not a one-off-EBITDA print (MSGM)
-        ~(_num('shares_yoy') > 0.15)            # (topcheck) not funded by heavy dilution (MSGM +66% shares); missing => pass
+        ~(_ncol('shares_yoy') > 0.15)           # (topcheck) not funded by heavy dilution (MSGM +66% shares); missing => pass
     ).fillna(False).astype(int)
 
     # X — Cash Quality: cash-ROIC running materially ahead of NOPAT-ROIC
@@ -1685,7 +1685,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _self_funding = (_sfps > 0) | (_sfm > 0.03) | (_sroic >= 0.10)
     _not_pricey = ((_sevs > 0) & (_sevs <= 8)) | _sevs.isna()
     df['arch_sustainable_scaler'] = (
-        is_operating & (mcap < 2e9) & (_srev >= 20e6)
+        is_operating & (mcap < 2e9) & (_srev >= 5e6)
         & (_ssh3.fillna(0) <= 0.05)
         & _durable_growth & _self_funding & _not_pricey
         & _profit_present                        # (reference II) profitability LEVEL present
@@ -1983,7 +1983,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (mcap > 0) & (mcap < 400e6) &
         (net_cash_pct_c >= 0.20) & _netcash_not_contradicted &  # GENUINE net cash (nde not materially positive)
         ((pb > 0) & (pb < 3.0)) &                   # "asset-backed" needs a real book anchor (WINE.L pb 75 is not asset-backed)
-        (n_analysts_present & (n_analysts_v <= 4)) &  # (G5) require rating present
+        (~(n_analysts_v > 4)) &                       # (twosided) MISSING coverage = MOST neglected (the thesis); mcap cap prevents mega-cap re-admit
         ((op_margin_v >= -0.05) | (ebitda_margin >= 0.0)) &
         low_sbc_liger &
         liger_sector_ok
@@ -2000,7 +2000,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (((rev_yoy_c >= 0.10) & (rev_accel > 0)) | (rev_yoy_c >= 0.15) | oper_lev_any) &
         ((cash_conv_w >= 0.80) | (fcf_margin_w > 0)) &
         _clean_bs(1.5) &                            # clean b/s (nde OR net-cash)
-        (n_analysts_present & (n_analysts_v <= 4)) &  # (G5) require rating present
+        (~(n_analysts_v > 4)) &                       # (twosided) MISSING coverage = MOST neglected (the thesis); mcap cap prevents mega-cap re-admit
         low_sbc_liger &
         liger_sector_ok &
         (flat_or_down | beaten_down_any(0.30))    # presence-aware lag/drawdown
@@ -2013,7 +2013,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_liger_neglected_survivor'] = (
         is_operating &                              # (G1) exclude financials/REITs/utilities
         (mcap >= 20e6) & (mcap <= 400e6) &
-        (n_analysts_present & (n_analysts_v <= 3)) &  # (G5) require rating present
+        (~(n_analysts_v > 3)) &                       # (twosided) MISSING coverage = MOST neglected (the thesis)
         (((net_cash_pct_c >= 0.15) & _netcash_not_contradicted) | ((ebitda_ttm_v > 0) & (nde <= 1.5))) &
         ((fcf_margin_w >= 0.0) | (op_margin_v >= -0.02)) &
         low_sbc_liger &
@@ -2308,7 +2308,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     )
     df['arch_cheap_sales_scaler'] = (
         (mcap > 0) & (mcap < 5e9) &
-        (_num('revenue_ttm_usd') >= 20e6) &      # (R6+FX) real USD revenue base — % growth is noise below this
+        (_num('revenue_ttm_usd') >= 5e6) &      # (R6+FX) real USD revenue base — % growth is noise below this
         (p_s_v >= 0.10) & (p_s_v <= 2.0) &       # cheap on revenues (lower bound kills
                                                  #   near-zero-mcap p_s artifacts)
         (rev_yoy_c >= 0.10) &                    # actually growing (double-digit)
@@ -2332,7 +2332,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     evsg_v = s('evsg', 99.0)
     df['arch_exceptional_evsg'] = (
         (mcap > 0) & (mcap < 20e9) &
-        (_num('revenue_ttm_usd') >= 20e6) &      # (R6+FX) real USD revenue base — % growth is noise below this
+        (_num('revenue_ttm_usd') >= 5e6) &      # (R6+FX) real USD revenue base — % growth is noise below this
         (((evsg_v >= 0.002) & (evsg_v <= 0.05)) |
          (_ncol('evsg').isna() & (_ncol('psg') >= 0.0025) &
           (_ncol('psg') <= 0.06))) &               # EXCEPTIONAL EV/sales-to-growth
@@ -2534,7 +2534,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     )
     df['arch_tenbagger_path'] = (
         (mcap > 0) & (mcap < 10e9) &                    # 10x easier small/mid ($18m-$2.3bn examples)
-        (_num('revenue_ttm_usd') >= 20e6) &             # (R6+FX) real USD revenue base — % growth is noise below this
+        (_num('revenue_ttm_usd') >= 5e6) &             # (R6+FX) real USD revenue base — % growth is noise below this
         (ps_v > 0) & (ps_v < 30) &                      # sane P/S (avoid near-zero-sales artifacts)
         (g10 >= 0.15) &                                 # durable growth printing (median of bases)
         (_g_confirmed | (rev_growth_score >= 0.5)) &    # >=2 bases (or robust composite) agree
@@ -3186,7 +3186,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_bottleneck'] = (
         is_operating &
         _not_melting &
-        (_num('revenue_ttm_usd') >= 20e6) &             # a real business, not a nano
+        (_num('revenue_ttm_usd') >= 5e6) &             # a real business, not a nano
         (_bn_gm >= 0.40) &                              # pricing power: fat gross margin
         ~(_bn_gmd < -0.03) &                            # ...not eroding (missing => pass)
         (((s('roce', np.nan) >= 0.15) & ~_roce_oneoff_suspect)

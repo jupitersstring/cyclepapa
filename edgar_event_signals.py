@@ -41,6 +41,12 @@ BASE_CONCEPT = ("https://data.sec.gov/api/xbrl/companyconcept/"
 # recent-window: a filing older than this many days no longer counts as a "live"
 # event signal (a 2016 spin is history, not a current setup).
 WINDOW_DAYS = 730
+# Reorg gets a wider window than the form flags: a post-reorg equity keeps
+# re-rating well past Verdad's ~2yr alpha window, so a 2021-22 emergence
+# (Gulfport, Bristow) is still a valid cheap-emerger — but a 2009 fresh-start
+# (Pilgrim's Pride, Lear) is not. 5 years captures the live cohort, drops the
+# ancient ones.
+REORG_WINDOW_DAYS = 1825
 
 SPIN = {"10-12B", "10-12G", "10-12B/A", "10-12G/A"}
 TENDER = {"SC TO-I", "SC TO-T", "SC 14D9", "SC TO-I/A", "SC 14D9/A"}
@@ -135,7 +141,7 @@ def process(cik):
     # LEA) is not a live special situation. Window it like the form flags.
     rv, rv_end = _concept_latest(cik, "ReorganizationValue")
     if rv is not None and rv_end:
-        _cut = (pd.Timestamp.now() - pd.Timedelta(days=WINDOW_DAYS)).strftime("%Y-%m-%d")
+        _cut = (pd.Timestamp.now() - pd.Timedelta(days=REORG_WINDOW_DAYS)).strftime("%Y-%m-%d")
         if rv_end >= _cut:
             row["reorg_flag"] = 1
             row["reorg_date"] = rv_end

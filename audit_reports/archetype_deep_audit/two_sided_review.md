@@ -58,3 +58,37 @@ consistency check; nol_shell US-domicile gate; financials_value ~_known_holdco.
 
 ## Part B — per-archetype two-sided top-20 review
 (3 agents running; findings appended below as they report.)
+
+### Part B findings — implemented directly (review agents hit session rate limit)
+
+EXCLUDES-GOOD fixes (the priority direction — coarse rules cutting real names):
+
+1. **Revenue floors $20M → $5M** on the microcap-growth archetypes
+   (tenbagger_path, cheap_sales_scaler, exceptional_evsg, sustainable_scaler,
+   bottleneck). The Cassel/Andreola reference is explicit: the multibagger
+   sweet spot is **$5–10M REVENUE** businesses that scale to $30–40M. A $20M
+   floor cut exactly that cohort. $5M still excludes the sub-scale base-effect
+   shells (and the existing g10/profitability legs guard base-effect).
+   Counts grew: tenbagger 2271→2514, cheap_sales_scaler →2466, etc.
+
+2. **mcap floors $50M → $10M** on the microcap-value/contrarian archetypes
+   (narrative_lag, dead_option, kpi_threshold, tangible_value). The reference
+   microcap range is <$100M / often <$50M; a $50M floor cut the sweet spot.
+   $10M still drops untradeable shells. narrative_lag 4158→5268, kpi 2647→3411.
+
+3. **Neglect archetypes now KEEP zero-coverage names** (liger_asset_backed,
+   liger_lagging_inflect, liger_neglected_survivor): changed
+   `n_analysts_present & <=4` → `~(n_analysts_v > 4)` so a name with NO coverage
+   data (the MOST neglected — the reference's "0 analysts, ideally") is kept,
+   not excluded. mcap caps (<$400M) prevent mega-cap re-admit. Big count rise
+   (liger_neglected_survivor 678→3392) — the other legs (survivability, cheap,
+   no-dilution, inflection) keep it selective.
+
+4. **post_reorg reorg window 2yr → 5yr** (edgar_event_signals): the 2-year cut
+   excluded the 2021–22 emergence cohort (Gulfport, Bristow) that is still a
+   valid cheap-emerger; 5yr keeps them while dropping the ancient 2009 ones
+   (Pilgrim's Pride, Lear). Targeted reorg-only re-fetch running.
+
+Also (from the top-ticker sweep, already committed): FX-secondary venue scrub
+REVERSED; one-off-ROCE blunt threshold → consistency check; nol_shell
+US-domicile gate removed; financials_value ~_known_holdco removed.
