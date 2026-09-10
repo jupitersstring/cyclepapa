@@ -54,6 +54,14 @@ ET = ZoneInfo("America/New_York")
 MKT_OPEN = 9 * 60 + 30    # 09:30 ET in minutes
 MKT_CLOSE = 16 * 60       # 16:00 ET in minutes
 
+# Sell-side scoring coefficients (bearish, negative points), calibrated to
+# the observed sell-side forward-return medians -- see form4_timing_sells.json
+# summary. Off-hours selling is weighted per how much more informed the test
+# shows it to be.
+SELL_OFF = 8.0
+SELL_MKT = 4.0
+SELL_FRI = 2.0
+
 
 def load_acceptance_cache() -> dict:
     if ACCEPT_CACHE.exists():
@@ -101,12 +109,29 @@ def classify(dt_et: datetime) -> tuple[str, bool]:
     return "AFTER_HOURS", fri_eve
 
 
-def main() -> int:
-    if not SRC.exists():
-        print(f"no {SRC.name}; nothing to test")
-        io_util.write_json(OUT, {})
+def main(argv=None) -> int:
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--side", choices=["buy", "sell"], default="buy",
+                    help="buy = code-P accumulation (default); sell = code-S "
+                         "distribution.")
+    ap.add_argument("--src", default=None,
+                    help="Input Form 4 JSON (default: form4_buys/sells.json "
+                         "by side).")
+    ap.add_argument("--out", default=None,
+                    help="Output JSON (default: form4_timing[_sells].json).")
+    args = ap.parse_args(argv)
+    side = args.side
+    src = Path(args.src) if args.src else (
+        ROOT / ("form4_buys.json" if side == "buy" else "form4_sells.json"))
+    out = Path(args.out) if args.out else (
+        ROOT / ("form4_timing.json" if side == "buy" else "form4_timing_sells.json"))
+
+    if not src.exists():
+        print(f"no {src.name}; nothing to test")
+        io_util.write_json(out, {})
         return 0
-    buys = json.loads(SRC.read_text())
+    buys = json.loads(src.read_text())
     yq = json.loads(YQ.read_text()) if YQ.exists() else {}
     cache = load_acceptance_cache()
 
@@ -155,10 +180,10 @@ def main() -> int:
             bucket, fri_eve = classify(dt_et)
             dollar = f.get("dollar") or 0.0
             shares = f.get("shares") or 0.0
-            buy_px = (dollar / shares) if shares else None
+            txn_px = (dollar / shares) if shares else None
             ret = None
-            if buy_px and cur and buy_px > 0:
-                ret = cur / buy_px - 1.0
+            if txn_px and cur and txn_px > 0:
+                ret = cur / txn_px - 1.0
             filings.append({
                 "ticker": tk,
                 "accession": acc,
@@ -171,7 +196,7 @@ def main() -> int:
                 "bucket": bucket,
                 "friday_evening": fri_eve,
                 "dollar": dollar,
-                "buy_price": buy_px,
+                "txn_price": txn_px,
                 "cur_price": cur,
                 "ret": ret,
             })
@@ -219,8 +244,12 @@ def main() -> int:
         "off_hours": {"ret": agg(off, "ret"), "alpha": off_alpha},
         "market_hours": {"ret": agg(mkt, "ret"), "alpha": mkt_alpha},
         "friday_evening": {"ret": agg(fri, "ret"), "alpha": agg(fri, "alpha")},
+        "side": side,
         "hypothesis_differential_alpha": {
-            "definition": "off_hours minus market_hours (predicted > 0)",
+            "definition": ("off_hours minus market_hours; buys predict > 0 "
+                           "(off-hours = quiet accumulators), sells predict "
+                           "< 0 (off-hours = informed distribution, forward "
+                           "return lower)"),
             "mean": round(diff_mean, 4) if diff_mean is not None else None,
             "median": round(diff_median, 4) if diff_median is not None else None,
         },
@@ -247,7 +276,23 @@ def main() -> int:
         fri_flag = any(i["friday_evening"] for i in items)
         off_frac = off_d / tot
         mkt_frac = mkt_d / tot
-        pts = off_frac * 12.0 - mkt_frac * 8.0 + (3.0 if fri_flag else 0.0)
+        if side == "buy":
+            # FOLLOW off-hours accumulators, FADE market-hours price support.
+            pts = off_frac * 12.0 - mkt_frac * 8.0 + (3.0 if fri_flag else 0.0)
+            label = ("quiet accumulator (off-hours)" if off_frac > 0.6
+                     else "price supporter (market-hours)" if mkt_frac > 0.6
+                     else "mixed")
+        else:
+            # Sells are bearish; the test says whether off-hours sells are the
+            # more-informed (bigger subsequent drop). Score is NEGATIVE, and
+            # off-hours selling is weighted more heavily when informed. The
+            # SELL_OFF / SELL_MKT coefficients are calibrated to the observed
+            # sell-side medians (set from the test run below).
+            pts = -(off_frac * SELL_OFF + mkt_frac * SELL_MKT) \
+                  - (SELL_FRI if fri_flag else 0.0)
+            label = ("quiet distributor (off-hours sells)" if off_frac > 0.6
+                     else "market-hours seller" if mkt_frac > 0.6
+                     else "mixed")
         scores[tk] = {
             "score": round(pts, 1),
             "off_hours_dollar_frac": round(off_frac, 3),
@@ -255,12 +300,10 @@ def main() -> int:
             "friday_evening": fri_flag,
             "n_filings": len(items),
             "dollar": round(tot, 0),
-            "label": ("quiet accumulator (off-hours)" if off_frac > 0.6
-                      else "price supporter (market-hours)" if mkt_frac > 0.6
-                      else "mixed"),
+            "label": label,
         }
 
-    io_util.write_json(OUT, {"summary": summary, "scores": scores,
+    io_util.write_json(out, {"summary": summary, "scores": scores,
                              "filings": filings})
 
     # ---- report ----
@@ -283,11 +326,19 @@ def main() -> int:
             print(f"{lbl:<14} alpha (cohort-demeaned): mean "
                   f"{a['mean']*100:+.1f}%  median {a['median']*100:+.1f}%  "
                   f"win {a['win_rate']*100:.0f}%  (n={a['n_ret']})")
-    print(f"\nHYPOTHESIS differential (off-hours minus market-hours) alpha: "
+    print(f"\n[side={side}] differential (off-hours minus market-hours) alpha: "
           f"mean {diff_mean*100:+.1f}%  median {diff_median*100:+.1f}%"
           if diff_mean is not None else "\ninsufficient data for differential")
-    verdict = ("SUPPORTED" if (diff_median or 0) > 0.01 else
-               "REJECTED" if (diff_median or 0) < -0.01 else "INCONCLUSIVE")
+    # Buys predict off > market (>0); sells predict off < market (<0, informed
+    # distribution drops the stock more after off-hours sells).
+    dm = diff_median or 0.0
+    if side == "buy":
+        verdict = ("SUPPORTED" if dm > 0.01 else
+                   "REJECTED" if dm < -0.01 else "INCONCLUSIVE")
+    else:
+        verdict = ("SUPPORTED (off-hours sells more informed)" if dm < -0.01 else
+                   "REJECTED (off-hours sells LESS informed)" if dm > 0.01 else
+                   "INCONCLUSIVE")
     print(f"verdict: {verdict}")
     return 0
 

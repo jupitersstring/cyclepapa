@@ -95,8 +95,9 @@
         "win_rate": 0.586
       }
     },
+    "side": "buy",
     "hypothesis_differential_alpha": {
-      "definition": "off_hours minus market_hours (predicted > 0)",
+      "definition": "off_hours minus market_hours; buys predict > 0 (off-hours = quiet accumulators), sells predict < 0 (off-hours = informed distribution, forward return lower)",
       "mean": 0.3616,
       "median": 0.1172
     }
@@ -2843,7 +2844,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 22697.5,
-      "buy_price": 47.78421052631579,
+      "txn_price": 47.78421052631579,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -2860,7 +2861,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 372150.0,
-      "buy_price": 24.81,
+      "txn_price": 24.81,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -2877,7 +2878,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 2198098.536,
-      "buy_price": 36.6349756,
+      "txn_price": 36.6349756,
       "cur_price": 37.52,
       "ret": 0.02415790881542179,
       "alpha": 8.519498057024677e-07
@@ -2894,7 +2895,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 2198098.536,
-      "buy_price": 36.6349756,
+      "txn_price": 36.6349756,
       "cur_price": 37.52,
       "ret": 0.02415790881542179,
       "alpha": 8.519498057024677e-07
@@ -2911,7 +2912,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 2198102.193,
-      "buy_price": 36.63503655,
+      "txn_price": 36.63503655,
       "cur_price": 37.52,
       "ret": 0.024156204915810386,
       "alpha": -8.519498057024677e-07
@@ -2928,7 +2929,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 262397.7,
-      "buy_price": 0.8746590000000001,
+      "txn_price": 0.8746590000000001,
       "cur_price": 1.005,
       "ret": 0.14901921777515548,
       "alpha": 0.12486216090953939
@@ -2945,7 +2946,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 15000.0,
-      "buy_price": 15.0,
+      "txn_price": 15.0,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -2962,7 +2963,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 2838325.2500000005,
-      "buy_price": 189.22168333333337,
+      "txn_price": 189.22168333333337,
       "cur_price": 185.77,
       "ret": -0.018241478843906478,
       "alpha": -0.04239853570952257
@@ -2979,7 +2980,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 257814.117,
-      "buy_price": 3.5415,
+      "txn_price": 3.5415,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -2996,7 +2997,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4460.6652,
-      "buy_price": 3.5346,
+      "txn_price": 3.5346,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -3013,7 +3014,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 24814.0,
-      "buy_price": 4.9628,
+      "txn_price": 4.9628,
       "cur_price": 5.27,
       "ret": 0.06190054001773193,
       "alpha": 0.03774348315211584
@@ -3030,7 +3031,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 25350.0,
-      "buy_price": 4.875,
+      "txn_price": 4.875,
       "cur_price": 5.27,
       "ret": 0.08102564102564092,
       "alpha": 0.056868584160024827
@@ -3047,7 +3048,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 2664.75,
-      "buy_price": 4.845,
+      "txn_price": 4.845,
       "cur_price": 5.27,
       "ret": 0.08771929824561409,
       "alpha": 0.063562241379998
@@ -3064,7 +3065,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 24814.0,
-      "buy_price": 4.9628,
+      "txn_price": 4.9628,
       "cur_price": 5.27,
       "ret": 0.06190054001773193,
       "alpha": 0.03774348315211584
@@ -3081,7 +3082,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 24200.0,
-      "buy_price": 4.84,
+      "txn_price": 4.84,
       "cur_price": 5.27,
       "ret": 0.08884297520661155,
       "alpha": 0.06468591834099546
@@ -3098,7 +3099,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 25092.0,
-      "buy_price": 4.92,
+      "txn_price": 4.92,
       "cur_price": 5.27,
       "ret": 0.07113821138211374,
       "alpha": 0.04698115451649765
@@ -3115,7 +3116,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 24474.999999999996,
-      "buy_price": 4.895,
+      "txn_price": 4.895,
       "cur_price": 5.27,
       "ret": 0.07660878447395292,
       "alpha": 0.05245172760833683
@@ -3132,7 +3133,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 28580.944,
-      "buy_price": 24.724,
+      "txn_price": 24.724,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -3149,7 +3150,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 3911979.7883,
-      "buy_price": 12.970884286978983,
+      "txn_price": 12.970884286978983,
       "cur_price": 13.52,
       "ret": 0.04233448551940722,
       "alpha": 0.018177428653791128
@@ -3166,7 +3167,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 9456495.712000001,
-      "buy_price": 12.608660949333334,
+      "txn_price": 12.608660949333334,
       "cur_price": 13.52,
       "ret": 0.07227881329578079,
       "alpha": 0.0481217564301647
@@ -3183,7 +3184,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 124117.0,
-      "buy_price": 12.4117,
+      "txn_price": 12.4117,
       "cur_price": 13.52,
       "ret": 0.08929477831401011,
       "alpha": 0.06513772144839403
@@ -3200,7 +3201,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 20227.21,
-      "buy_price": 3.357213278008299,
+      "txn_price": 3.357213278008299,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -3217,7 +3218,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 16799.5,
-      "buy_price": 3.3599,
+      "txn_price": 3.3599,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -3234,7 +3235,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 8475.0,
-      "buy_price": 3.39,
+      "txn_price": 3.39,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -3251,7 +3252,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 318000.0,
-      "buy_price": 31.8,
+      "txn_price": 31.8,
       "cur_price": 38.07,
       "ret": 0.19716981132075473,
       "alpha": 0.17301275445513864
@@ -3268,7 +3269,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 100346.99999999999,
-      "buy_price": 32.37,
+      "txn_price": 32.37,
       "cur_price": 38.07,
       "ret": 0.17608897126969425,
       "alpha": 0.15193191440407816
@@ -3285,7 +3286,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 138004.59,
-      "buy_price": 5.244132466940265,
+      "txn_price": 5.244132466940265,
       "cur_price": 7.84,
       "ret": 0.4950041879041849,
       "alpha": 0.4708471310385688
@@ -3302,7 +3303,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 105140.0,
-      "buy_price": 15.02,
+      "txn_price": 15.02,
       "cur_price": 16.42,
       "ret": 0.09320905459387507,
       "alpha": 0.06905199772825898
@@ -3319,7 +3320,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 313110.0,
-      "buy_price": 14.91,
+      "txn_price": 14.91,
       "cur_price": 16.42,
       "ret": 0.10127431254191821,
       "alpha": 0.07711725567630212
@@ -3336,7 +3337,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 110950.0,
-      "buy_price": 15.85,
+      "txn_price": 15.85,
       "cur_price": 16.42,
       "ret": 0.03596214511041018,
       "alpha": 0.011805088244794093
@@ -3353,7 +3354,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 242200.0,
-      "buy_price": 24.22,
+      "txn_price": 24.22,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -3370,7 +3371,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 736350.0,
-      "buy_price": 49.09,
+      "txn_price": 49.09,
       "cur_price": 48.22,
       "ret": -0.017722550417600402,
       "alpha": -0.04187960728321649
@@ -3387,7 +3388,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 12999987.770000001,
-      "buy_price": 19.69,
+      "txn_price": 19.69,
       "cur_price": 24.99,
       "ret": 0.26917216861350934,
       "alpha": 0.24501511174789325
@@ -3404,7 +3405,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 295350.0,
-      "buy_price": 19.69,
+      "txn_price": 19.69,
       "cur_price": 24.99,
       "ret": 0.26917216861350934,
       "alpha": 0.24501511174789325
@@ -3421,7 +3422,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 12999987.770000001,
-      "buy_price": 19.69,
+      "txn_price": 19.69,
       "cur_price": 24.99,
       "ret": 0.26917216861350934,
       "alpha": 0.24501511174789325
@@ -3438,7 +3439,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 295350.0,
-      "buy_price": 19.69,
+      "txn_price": 19.69,
       "cur_price": 24.99,
       "ret": 0.26917216861350934,
       "alpha": 0.24501511174789325
@@ -3455,7 +3456,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 92310.0,
-      "buy_price": 30.77,
+      "txn_price": 30.77,
       "cur_price": 32.82,
       "ret": 0.06662333441663959,
       "alpha": 0.0424662775510235
@@ -3472,7 +3473,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 256275.0,
-      "buy_price": 30.6,
+      "txn_price": 30.6,
       "cur_price": 32.82,
       "ret": 0.0725490196078431,
       "alpha": 0.04839196274222701
@@ -3489,7 +3490,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 104650.0,
-      "buy_price": 29.9,
+      "txn_price": 29.9,
       "cur_price": 42.87,
       "ret": 0.4337792642140468,
       "alpha": 0.4096222073484307
@@ -3506,7 +3507,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 302000.0,
-      "buy_price": 30.2,
+      "txn_price": 30.2,
       "cur_price": 42.87,
       "ret": 0.4195364238410595,
       "alpha": 0.3953793669754434
@@ -3523,7 +3524,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 5632.0,
-      "buy_price": 3.52,
+      "txn_price": 3.52,
       "cur_price": 3.76,
       "ret": 0.06818181818181812,
       "alpha": 0.04402476131620203
@@ -3540,7 +3541,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 9930.45,
-      "buy_price": 3.5850000000000004,
+      "txn_price": 3.5850000000000004,
       "cur_price": 3.76,
       "ret": 0.04881450488145034,
       "alpha": 0.02465744801583425
@@ -3557,7 +3558,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 29353.2,
-      "buy_price": 3.66,
+      "txn_price": 3.66,
       "cur_price": 3.76,
       "ret": 0.027322404371584508,
       "alpha": 0.003165347505968419
@@ -3574,7 +3575,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 26932.8,
-      "buy_price": 3.62,
+      "txn_price": 3.62,
       "cur_price": 3.76,
       "ret": 0.03867403314917128,
       "alpha": 0.014516976283555194
@@ -3591,7 +3592,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 21320.0,
-      "buy_price": 5.33,
+      "txn_price": 5.33,
       "cur_price": 5.08,
       "ret": -0.046904315196998114,
       "alpha": -0.0710613720626142
@@ -3608,7 +3609,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 5000000.002619999,
-      "buy_price": 10.11,
+      "txn_price": 10.11,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -3625,7 +3626,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 22159.5,
-      "buy_price": 147.73,
+      "txn_price": 147.73,
       "cur_price": 143.3,
       "ret": -0.029987138698977733,
       "alpha": -0.05414419556459382
@@ -3642,7 +3643,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 27500.0,
-      "buy_price": 13.75,
+      "txn_price": 13.75,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -3659,7 +3660,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 27100.0,
-      "buy_price": 13.55,
+      "txn_price": 13.55,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -3676,7 +3677,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 27700.0,
-      "buy_price": 13.85,
+      "txn_price": 13.85,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -3693,7 +3694,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 27980.0,
-      "buy_price": 13.99,
+      "txn_price": 13.99,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -3710,7 +3711,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 27040.0,
-      "buy_price": 13.52,
+      "txn_price": 13.52,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -3727,7 +3728,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 30220.0,
-      "buy_price": 15.11,
+      "txn_price": 15.11,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -3744,7 +3745,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 289123.25,
-      "buy_price": 17.00725,
+      "txn_price": 17.00725,
       "cur_price": 17.49,
       "ret": 0.02838495347572345,
       "alpha": 0.004227896610107362
@@ -3761,7 +3762,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 290315.80000000005,
-      "buy_price": 17.077400000000004,
+      "txn_price": 17.077400000000004,
       "cur_price": 17.49,
       "ret": 0.02416058650614228,
       "alpha": 3.529640526189759e-06
@@ -3778,7 +3779,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 283392.387,
-      "buy_price": 17.095517102008806,
+      "txn_price": 17.095517102008806,
       "cur_price": 17.49,
       "ret": 0.023075224670731975,
       "alpha": -0.0010818321948841136
@@ -3795,7 +3796,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 66000.0,
-      "buy_price": 13.2,
+      "txn_price": 13.2,
       "cur_price": 12.88,
       "ret": -0.024242424242424176,
       "alpha": -0.048399481108040265
@@ -3812,7 +3813,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 49960.22,
-      "buy_price": 13.21,
+      "txn_price": 13.21,
       "cur_price": 12.88,
       "ret": -0.02498107494322488,
       "alpha": -0.04913813180884097
@@ -3829,7 +3830,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 49873.666000000005,
-      "buy_price": 35.1223,
+      "txn_price": 35.1223,
       "cur_price": 35.1,
       "ret": -0.0006349242504050112,
       "alpha": -0.0247919811160211
@@ -3846,7 +3847,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 51110.326199999996,
-      "buy_price": 34.0735508,
+      "txn_price": 34.0735508,
       "cur_price": 35.1,
       "ret": 0.030124515229566384,
       "alpha": 0.005967458363950295
@@ -3863,7 +3864,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 49613.5,
-      "buy_price": 33.5,
+      "txn_price": 33.5,
       "cur_price": 35.1,
       "ret": 0.047761194029850795,
       "alpha": 0.023604137164234706
@@ -3880,7 +3881,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 99515.178,
-      "buy_price": 33.8487,
+      "txn_price": 33.8487,
       "cur_price": 35.1,
       "ret": 0.03696744631256155,
       "alpha": 0.012810389446945458
@@ -3897,7 +3898,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 169700.0,
-      "buy_price": 33.94,
+      "txn_price": 33.94,
       "cur_price": 35.1,
       "ret": 0.03417796110783744,
       "alpha": 0.010020904242221351
@@ -3914,7 +3915,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 100470.0,
-      "buy_price": 33.49,
+      "txn_price": 33.49,
       "cur_price": 35.1,
       "ret": 0.048074051955807606,
       "alpha": 0.023916995090191517
@@ -3931,7 +3932,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 50645.100000000006,
-      "buy_price": 33.99,
+      "txn_price": 33.99,
       "cur_price": 35.1,
       "ret": 0.032656663724624835,
       "alpha": 0.008499606859008746
@@ -3948,7 +3949,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 34000.0,
-      "buy_price": 34.0,
+      "txn_price": 34.0,
       "cur_price": 35.1,
       "ret": 0.032352941176470695,
       "alpha": 0.008195884310854606
@@ -3965,7 +3966,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 19997.965,
-      "buy_price": 34.30182675814751,
+      "txn_price": 34.30182675814751,
       "cur_price": 35.1,
       "ret": 0.023269117632719105,
       "alpha": -0.0008879392328969837
@@ -3982,7 +3983,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 99989.89391999999,
-      "buy_price": 108.52,
+      "txn_price": 108.52,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -3999,7 +4000,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 48753.0,
-      "buy_price": 108.34,
+      "txn_price": 108.34,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -4016,7 +4017,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 99375.0,
-      "buy_price": 37.5,
+      "txn_price": 37.5,
       "cur_price": 34.37,
       "ret": -0.08346666666666669,
       "alpha": -0.10762372353228278
@@ -4033,7 +4034,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 184450.0,
-      "buy_price": 36.89,
+      "txn_price": 36.89,
       "cur_price": 34.37,
       "ret": -0.06831119544592035,
       "alpha": -0.09246825231153644
@@ -4050,7 +4051,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 99568.0,
-      "buy_price": 35.56,
+      "txn_price": 35.56,
       "cur_price": 34.37,
       "ret": -0.03346456692913402,
       "alpha": -0.05762162379475011
@@ -4067,7 +4068,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 173649.99999999997,
-      "buy_price": 34.73,
+      "txn_price": 34.73,
       "cur_price": 34.37,
       "ret": -0.010365678088108288,
       "alpha": -0.03452273495372438
@@ -4084,7 +4085,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 9630.0,
-      "buy_price": 19.26,
+      "txn_price": 19.26,
       "cur_price": 18.78,
       "ret": -0.024922118380062308,
       "alpha": -0.0490791752456784
@@ -4101,7 +4102,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 39990.2594,
-      "buy_price": 19.7678,
+      "txn_price": 19.7678,
       "cur_price": 18.78,
       "ret": -0.04997015348192513,
       "alpha": -0.07412721034754122
@@ -4118,7 +4119,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 20190.0,
-      "buy_price": 20.19,
+      "txn_price": 20.19,
       "cur_price": 18.78,
       "ret": -0.06983655274888556,
       "alpha": -0.09399360961450165
@@ -4135,7 +4136,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 97496.1,
-      "buy_price": 19.49922,
+      "txn_price": 19.49922,
       "cur_price": 18.78,
       "ret": -0.03688455230516907,
       "alpha": -0.06104160917078516
@@ -4152,7 +4153,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 40006.4,
-      "buy_price": 18.8,
+      "txn_price": 18.8,
       "cur_price": 18.78,
       "ret": -0.0010638297872340718,
       "alpha": -0.02522088665285016
@@ -4169,7 +4170,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 50320.0,
-      "buy_price": 12.58,
+      "txn_price": 12.58,
       "cur_price": 14.42,
       "ret": 0.1462639109697934,
       "alpha": 0.12210685410417732
@@ -4186,7 +4187,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 100030.52034,
-      "buy_price": 12.34,
+      "txn_price": 12.34,
       "cur_price": 14.42,
       "ret": 0.16855753646677463,
       "alpha": 0.14440047960115854
@@ -4203,7 +4204,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 50514.75,
-      "buy_price": 12.87,
+      "txn_price": 12.87,
       "cur_price": 14.42,
       "ret": 0.12043512043512039,
       "alpha": 0.0962780635695043
@@ -4220,7 +4221,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 141364.0,
-      "buy_price": 33.538315539739024,
+      "txn_price": 33.538315539739024,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -4237,7 +4238,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 382099.80519999994,
-      "buy_price": 31.371084170771752,
+      "txn_price": 31.371084170771752,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -4254,7 +4255,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 818257.0898999999,
-      "buy_price": 26.753542256007844,
+      "txn_price": 26.753542256007844,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -4271,7 +4272,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 24690.0,
-      "buy_price": 8.23,
+      "txn_price": 8.23,
       "cur_price": 10.41,
       "ret": 0.26488456865127574,
       "alpha": 0.24072751178565965
@@ -4288,7 +4289,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 385.21,
-      "buy_price": 385.21,
+      "txn_price": 385.21,
       "cur_price": 355.11,
       "ret": -0.07813919680174441,
       "alpha": -0.1022962536673605
@@ -4305,7 +4306,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 381.1,
-      "buy_price": 381.1,
+      "txn_price": 381.1,
       "cur_price": 355.11,
       "ret": -0.06819732353712937,
       "alpha": -0.09235438040274546
@@ -4322,7 +4323,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 393.71,
-      "buy_price": 393.71,
+      "txn_price": 393.71,
       "cur_price": 355.11,
       "ret": -0.09804170582408367,
       "alpha": -0.12219876268969976
@@ -4339,7 +4340,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 401.32,
-      "buy_price": 401.32,
+      "txn_price": 401.32,
       "cur_price": 355.11,
       "ret": -0.11514502142928329,
       "alpha": -0.13930207829489938
@@ -4356,7 +4357,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 419.02,
-      "buy_price": 419.02,
+      "txn_price": 419.02,
       "cur_price": 355.11,
       "ret": -0.15252255262278647,
       "alpha": -0.17667960948840256
@@ -4373,7 +4374,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 432.71,
-      "buy_price": 432.71,
+      "txn_price": 432.71,
       "cur_price": 355.11,
       "ret": -0.1793348894178548,
       "alpha": -0.2034919462834709
@@ -4390,7 +4391,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 438.69,
-      "buy_price": 438.69,
+      "txn_price": 438.69,
       "cur_price": 355.11,
       "ret": -0.19052178075634274,
       "alpha": -0.21467883762195883
@@ -4407,7 +4408,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 433.13,
-      "buy_price": 433.13,
+      "txn_price": 433.13,
       "cur_price": 355.11,
       "ret": -0.18013067670214478,
       "alpha": -0.20428773356776087
@@ -4424,7 +4425,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 436.8,
-      "buy_price": 436.8,
+      "txn_price": 436.8,
       "cur_price": 355.11,
       "ret": -0.18701923076923077,
       "alpha": -0.21117628763484686
@@ -4441,7 +4442,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 435.76,
-      "buy_price": 435.76,
+      "txn_price": 435.76,
       "cur_price": 355.11,
       "ret": -0.18507894253717638,
       "alpha": -0.20923599940279247
@@ -4458,7 +4459,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 435.73,
-      "buy_price": 435.73,
+      "txn_price": 435.73,
       "cur_price": 355.11,
       "ret": -0.1850228352420077,
       "alpha": -0.20917989210762378
@@ -4475,7 +4476,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 436.44,
-      "buy_price": 436.44,
+      "txn_price": 436.44,
       "cur_price": 355.11,
       "ret": -0.186348638988177,
       "alpha": -0.21050569585379308
@@ -4492,7 +4493,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 435.4,
-      "buy_price": 435.4,
+      "txn_price": 435.4,
       "cur_price": 355.11,
       "ret": -0.18440514469453373,
       "alpha": -0.20856220156014982
@@ -4509,7 +4510,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 436.73,
-      "buy_price": 436.73,
+      "txn_price": 436.73,
       "cur_price": 355.11,
       "ret": -0.18688892450713257,
       "alpha": -0.21104598137274866
@@ -4526,7 +4527,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 437.87,
-      "buy_price": 437.87,
+      "txn_price": 437.87,
       "cur_price": 355.11,
       "ret": -0.18900586932194485,
       "alpha": -0.21316292618756094
@@ -4543,7 +4544,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 441.84,
-      "buy_price": 441.84,
+      "txn_price": 441.84,
       "cur_price": 355.11,
       "ret": -0.19629277566539916,
       "alpha": -0.22044983253101524
@@ -4560,7 +4561,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 427.65,
-      "buy_price": 427.65,
+      "txn_price": 427.65,
       "cur_price": 355.11,
       "ret": -0.16962469309014372,
       "alpha": -0.1937817499557598
@@ -4577,7 +4578,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 419.94,
-      "buy_price": 419.94,
+      "txn_price": 419.94,
       "cur_price": 355.11,
       "ret": -0.15437919702814684,
       "alpha": -0.17853625389376293
@@ -4594,7 +4595,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 424.47,
-      "buy_price": 424.47,
+      "txn_price": 424.47,
       "cur_price": 355.11,
       "ret": -0.1634037741183123,
       "alpha": -0.1875608309839284
@@ -4611,7 +4612,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 419.26,
-      "buy_price": 419.26,
+      "txn_price": 419.26,
       "cur_price": 355.11,
       "ret": -0.1530076801984448,
       "alpha": -0.17716473706406088
@@ -4628,7 +4629,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 413.96,
-      "buy_price": 413.96,
+      "txn_price": 413.96,
       "cur_price": 355.11,
       "ret": -0.1421634940573968,
       "alpha": -0.1663205509230129
@@ -4645,7 +4646,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 414.88,
-      "buy_price": 414.88,
+      "txn_price": 414.88,
       "cur_price": 355.11,
       "ret": -0.14406575395295018,
       "alpha": -0.16822281081856627
@@ -4662,7 +4663,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 407.06,
-      "buy_price": 407.06,
+      "txn_price": 407.06,
       "cur_price": 355.11,
       "ret": -0.1276224635188915,
       "alpha": -0.1517795203845076
@@ -4679,7 +4680,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 401.64,
-      "buy_price": 401.64,
+      "txn_price": 401.64,
       "cur_price": 355.11,
       "ret": -0.11585001493875102,
       "alpha": -0.1400070718043671
@@ -4696,7 +4697,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 1347.0,
-      "buy_price": 449.0,
+      "txn_price": 449.0,
       "cur_price": 355.11,
       "ret": -0.20910913140311804,
       "alpha": -0.23326618826873413
@@ -4713,7 +4714,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 447.12,
-      "buy_price": 447.12,
+      "txn_price": 447.12,
       "cur_price": 355.11,
       "ret": -0.20578368223295762,
       "alpha": -0.2299407390985737
@@ -4730,7 +4731,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 443.42,
-      "buy_price": 443.42,
+      "txn_price": 443.42,
       "cur_price": 355.11,
       "ret": -0.19915655586126024,
       "alpha": -0.22331361272687633
@@ -4747,7 +4748,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 443.26,
-      "buy_price": 443.26,
+      "txn_price": 443.26,
       "cur_price": 355.11,
       "ret": -0.1988674818391012,
       "alpha": -0.22302453870471728
@@ -4764,7 +4765,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 454.04,
-      "buy_price": 454.04,
+      "txn_price": 454.04,
       "cur_price": 355.11,
       "ret": -0.21788829178045988,
       "alpha": -0.24204534864607596
@@ -4781,7 +4782,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 470.18,
-      "buy_price": 470.18,
+      "txn_price": 470.18,
       "cur_price": 355.11,
       "ret": -0.2447360585307754,
       "alpha": -0.2688931153963915
@@ -4798,7 +4799,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 494.25,
-      "buy_price": 494.25,
+      "txn_price": 494.25,
       "cur_price": 355.11,
       "ret": -0.28151745068285283,
       "alpha": -0.3056745075484689
@@ -4815,7 +4816,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 1044.3400000000001,
-      "buy_price": 522.1700000000001,
+      "txn_price": 522.1700000000001,
       "cur_price": 355.11,
       "ret": -0.31993412107168173,
       "alpha": -0.3440911779372978
@@ -4832,7 +4833,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 538.37,
-      "buy_price": 538.37,
+      "txn_price": 538.37,
       "cur_price": 355.11,
       "ret": -0.34039786763749835,
       "alpha": -0.36455492450311444
@@ -4849,7 +4850,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 534.94,
-      "buy_price": 534.94,
+      "txn_price": 534.94,
       "cur_price": 355.11,
       "ret": -0.33616854226642245,
       "alpha": -0.36032559913203854
@@ -4866,7 +4867,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 529.07,
-      "buy_price": 529.07,
+      "txn_price": 529.07,
       "cur_price": 355.11,
       "ret": -0.3288033719545618,
       "alpha": -0.35296042882017786
@@ -4883,7 +4884,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 533.81,
-      "buy_price": 533.81,
+      "txn_price": 533.81,
       "cur_price": 355.11,
       "ret": -0.3347633052958917,
       "alpha": -0.3589203621615078
@@ -4900,7 +4901,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 527.28,
-      "buy_price": 527.28,
+      "txn_price": 527.28,
       "cur_price": 355.11,
       "ret": -0.3265248065543923,
       "alpha": -0.3506818634200084
@@ -4917,7 +4918,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 531.96,
-      "buy_price": 531.96,
+      "txn_price": 531.96,
       "cur_price": 355.11,
       "ret": -0.3324498082562599,
       "alpha": -0.356606865121876
@@ -4934,7 +4935,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 525.47,
-      "buy_price": 525.47,
+      "txn_price": 525.47,
       "cur_price": 355.11,
       "ret": -0.3242049974308714,
       "alpha": -0.3483620542964875
@@ -4951,7 +4952,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 524.58,
-      "buy_price": 524.58,
+      "txn_price": 524.58,
       "cur_price": 355.11,
       "ret": -0.3230584467574059,
       "alpha": -0.347215503623022
@@ -4968,7 +4969,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 529.1,
-      "buy_price": 529.1,
+      "txn_price": 529.1,
       "cur_price": 355.11,
       "ret": -0.32884142884142886,
       "alpha": -0.35299848570704495
@@ -4985,7 +4986,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 532.02,
-      "buy_price": 532.02,
+      "txn_price": 532.02,
       "cur_price": 355.11,
       "ret": -0.3325250930416149,
       "alpha": -0.356682149907231
@@ -5002,7 +5003,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 523.28,
-      "buy_price": 523.28,
+      "txn_price": 523.28,
       "cur_price": 355.11,
       "ret": -0.3213767008102736,
       "alpha": -0.3455337576758897
@@ -5019,7 +5020,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 526.83,
-      "buy_price": 526.83,
+      "txn_price": 526.83,
       "cur_price": 355.11,
       "ret": -0.3259495472922954,
       "alpha": -0.3501066041579115
@@ -5036,7 +5037,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 527.22,
-      "buy_price": 527.22,
+      "txn_price": 527.22,
       "cur_price": 355.11,
       "ret": -0.3264481620575851,
       "alpha": -0.3506052189232012
@@ -5053,7 +5054,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 526.43,
-      "buy_price": 526.43,
+      "txn_price": 526.43,
       "cur_price": 355.11,
       "ret": -0.32543738008852074,
       "alpha": -0.34959443695413683
@@ -5070,7 +5071,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 529.46,
-      "buy_price": 529.46,
+      "txn_price": 529.46,
       "cur_price": 355.11,
       "ret": -0.32929777509160274,
       "alpha": -0.35345483195721883
@@ -5087,7 +5088,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 530.21,
-      "buy_price": 530.21,
+      "txn_price": 530.21,
       "cur_price": 355.11,
       "ret": -0.3302465061013561,
       "alpha": -0.3544035629669722
@@ -5104,7 +5105,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 522.34,
-      "buy_price": 522.34,
+      "txn_price": 522.34,
       "cur_price": 355.11,
       "ret": -0.3201554543017958,
       "alpha": -0.3443125111674119
@@ -5121,7 +5122,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 524.01,
-      "buy_price": 524.01,
+      "txn_price": 524.01,
       "cur_price": 355.11,
       "ret": -0.3223220930898265,
       "alpha": -0.3464791499554426
@@ -5138,7 +5139,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 517.29,
-      "buy_price": 517.29,
+      "txn_price": 517.29,
       "cur_price": 355.11,
       "ret": -0.31351852925824963,
       "alpha": -0.3376755861238657
@@ -5155,7 +5156,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 507.39,
-      "buy_price": 507.39,
+      "txn_price": 507.39,
       "cur_price": 355.11,
       "ret": -0.3001241648436114,
       "alpha": -0.32428122170922746
@@ -5172,7 +5173,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 456852.75,
-      "buy_price": 510.45,
+      "txn_price": 510.45,
       "cur_price": 355.11,
       "ret": -0.3043197178959741,
       "alpha": -0.3284767747615902
@@ -5189,7 +5190,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 510.65,
-      "buy_price": 510.65,
+      "txn_price": 510.65,
       "cur_price": 355.11,
       "ret": -0.30459218642906094,
       "alpha": -0.32874924329467703
@@ -5206,7 +5207,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 520.15,
-      "buy_price": 520.15,
+      "txn_price": 520.15,
       "cur_price": 355.11,
       "ret": -0.3172930885321541,
       "alpha": -0.3414501453977702
@@ -5223,7 +5224,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 519.85,
-      "buy_price": 519.85,
+      "txn_price": 519.85,
       "cur_price": 355.11,
       "ret": -0.31689910551120515,
       "alpha": -0.34105616237682124
@@ -5240,7 +5241,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 504.28,
-      "buy_price": 504.28,
+      "txn_price": 504.28,
       "cur_price": 355.11,
       "ret": -0.2958078845086063,
       "alpha": -0.3199649413742224
@@ -5257,7 +5258,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 469.18,
-      "buy_price": 469.18,
+      "txn_price": 469.18,
       "cur_price": 355.11,
       "ret": -0.2431263054691163,
       "alpha": -0.2672833623347324
@@ -5274,7 +5275,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 435.13,
-      "buy_price": 435.13,
+      "txn_price": 435.13,
       "cur_price": 355.11,
       "ret": -0.18389906464734673,
       "alpha": -0.20805612151296282
@@ -5291,7 +5292,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 425.55,
-      "buy_price": 425.55,
+      "txn_price": 425.55,
       "cur_price": 355.11,
       "ret": -0.16552696510398313,
       "alpha": -0.18968402196959921
@@ -5308,7 +5309,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 426.38,
-      "buy_price": 426.38,
+      "txn_price": 426.38,
       "cur_price": 355.11,
       "ret": -0.16715136732492142,
       "alpha": -0.1913084241905375
@@ -5325,7 +5326,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 395.39,
-      "buy_price": 395.39,
+      "txn_price": 395.39,
       "cur_price": 355.11,
       "ret": -0.10187409899086974,
       "alpha": -0.12603115585648583
@@ -5342,7 +5343,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 406.26,
-      "buy_price": 406.26,
+      "txn_price": 406.26,
       "cur_price": 355.11,
       "ret": -0.12590459311770785,
       "alpha": -0.15006164998332394
@@ -5359,7 +5360,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 39890.0,
-      "buy_price": 39.89,
+      "txn_price": 39.89,
       "cur_price": 40.19,
       "ret": 0.007520681875156532,
       "alpha": -0.016636374990459557
@@ -5376,7 +5377,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 190000.0,
-      "buy_price": 38.0,
+      "txn_price": 38.0,
       "cur_price": 40.19,
       "ret": 0.057631578947368256,
       "alpha": 0.03347452208175217
@@ -5393,7 +5394,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 5538.0,
-      "buy_price": 27.69,
+      "txn_price": 27.69,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -5410,7 +5411,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 2765.0,
-      "buy_price": 27.65,
+      "txn_price": 27.65,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -5427,7 +5428,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 4901.099999999999,
-      "buy_price": 28.83,
+      "txn_price": 28.83,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -5444,7 +5445,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 266630.0,
-      "buy_price": 8.464444444444444,
+      "txn_price": 8.464444444444444,
       "cur_price": 7.98,
       "ret": -0.05723286951955886,
       "alpha": -0.08138992638517495
@@ -5461,7 +5462,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 50179.0,
-      "buy_price": 26.41,
+      "txn_price": 26.41,
       "cur_price": 27.36,
       "ret": 0.03597122302158273,
       "alpha": 0.011814166155966643
@@ -5478,7 +5479,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 29731.364999999998,
-      "buy_price": 8.985,
+      "txn_price": 8.985,
       "cur_price": 9.23,
       "ret": 0.027267668336115936,
       "alpha": 0.0031106114704998467
@@ -5495,7 +5496,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 25072.244199999997,
-      "buy_price": 9.0383,
+      "txn_price": 9.0383,
       "cur_price": 9.23,
       "ret": 0.02120974076983506,
       "alpha": -0.0029473160957810274
@@ -5512,7 +5513,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 102467.20000000001,
-      "buy_price": 9.3152,
+      "txn_price": 9.3152,
       "cur_price": 9.23,
       "ret": -0.009146341463414642,
       "alpha": -0.03330339832903073
@@ -5529,7 +5530,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 20027.4215,
-      "buy_price": 9.0745,
+      "txn_price": 9.0745,
       "cur_price": 9.23,
       "ret": 0.017135930354289508,
       "alpha": -0.007021126511326581
@@ -5546,7 +5547,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 9366.02,
-      "buy_price": 64.59324137931034,
+      "txn_price": 64.59324137931034,
       "cur_price": 91.34,
       "ret": 0.41407983326962805,
       "alpha": 0.38992277640401196
@@ -5563,7 +5564,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 49999.1871,
-      "buy_price": 20.01,
+      "txn_price": 20.01,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -5580,7 +5581,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 499982.434,
-      "buy_price": 19.922,
+      "txn_price": 19.922,
       "cur_price": 20.78,
       "ret": 0.04306796506374866,
       "alpha": 0.01891090819813257
@@ -5597,7 +5598,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 999986.6228,
-      "buy_price": 19.9034,
+      "txn_price": 19.9034,
       "cur_price": 20.78,
       "ret": 0.04404272636835915,
       "alpha": 0.019885669502743064
@@ -5614,7 +5615,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 249273.30950000003,
-      "buy_price": 71.73332647482016,
+      "txn_price": 71.73332647482016,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -5631,7 +5632,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 251963.3432,
-      "buy_price": 73.82459513624377,
+      "txn_price": 73.82459513624377,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -5648,7 +5649,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 166840.0,
-      "buy_price": 8.342,
+      "txn_price": 8.342,
       "cur_price": 9.42,
       "ret": 0.1292256053704146,
       "alpha": 0.10506854850479852
@@ -5665,7 +5666,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 713403.2331999999,
-      "buy_price": 10.581791705479247,
+      "txn_price": 10.581791705479247,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -5682,7 +5683,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 102350.0,
-      "buy_price": 51.175,
+      "txn_price": 51.175,
       "cur_price": 70.72,
       "ret": 0.38192476795310215,
       "alpha": 0.35776771108748606
@@ -5699,7 +5700,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 5202.0,
-      "buy_price": 1.02,
+      "txn_price": 1.02,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -5716,7 +5717,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 17325.0,
-      "buy_price": 1.155,
+      "txn_price": 1.155,
       "cur_price": 0.71,
       "ret": -0.38528138528138534,
       "alpha": -0.4094384421470014
@@ -5733,7 +5734,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 25200.0,
-      "buy_price": 1.2,
+      "txn_price": 1.2,
       "cur_price": 0.71,
       "ret": -0.4083333333333333,
       "alpha": -0.4324903901989494
@@ -5750,7 +5751,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 88026.15999999999,
-      "buy_price": 1.1639668896940205,
+      "txn_price": 1.1639668896940205,
       "cur_price": 0.71,
       "ret": -0.3900170131242803,
       "alpha": -0.41417406998989637
@@ -5767,7 +5768,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 88026.15999999999,
-      "buy_price": 1.1639668896940205,
+      "txn_price": 1.1639668896940205,
       "cur_price": 0.71,
       "ret": -0.3900170131242803,
       "alpha": -0.41417406998989637
@@ -5784,7 +5785,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 102637.5,
-      "buy_price": 1.15,
+      "txn_price": 1.15,
       "cur_price": 0.71,
       "ret": -0.3826086956521739,
       "alpha": -0.40676575251779
@@ -5801,7 +5802,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 106200.0,
-      "buy_price": 1.18,
+      "txn_price": 1.18,
       "cur_price": 0.71,
       "ret": -0.39830508474576276,
       "alpha": -0.42246214161137885
@@ -5818,7 +5819,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 17500.0,
-      "buy_price": 0.875,
+      "txn_price": 0.875,
       "cur_price": 0.71,
       "ret": -0.1885714285714286,
       "alpha": -0.2127284854370447
@@ -5835,7 +5836,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 5640.0,
-      "buy_price": 2.82,
+      "txn_price": 2.82,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -5852,7 +5853,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 1112976.9433,
-      "buy_price": 13.989327961638532,
+      "txn_price": 13.989327961638532,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -5869,7 +5870,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 711054.88,
-      "buy_price": 13.997143307086615,
+      "txn_price": 13.997143307086615,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -5886,7 +5887,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 67340.0,
-      "buy_price": 67.34,
+      "txn_price": 67.34,
       "cur_price": 81.7,
       "ret": 0.21324621324621318,
       "alpha": 0.1890891563805971
@@ -5903,7 +5904,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 2521.72236,
-      "buy_price": 40.58,
+      "txn_price": 40.58,
       "cur_price": 43.77,
       "ret": 0.07861015278462302,
       "alpha": 0.05445309591900693
@@ -5920,7 +5921,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 912689.9999999999,
-      "buy_price": 9.1269,
+      "txn_price": 9.1269,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -5937,7 +5938,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 6632410.0,
-      "buy_price": 9.47487142857143,
+      "txn_price": 9.47487142857143,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -5954,7 +5955,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 19570.0,
-      "buy_price": 5.15,
+      "txn_price": 5.15,
       "cur_price": 7.52,
       "ret": 0.4601941747572813,
       "alpha": 0.4360371178916652
@@ -5971,7 +5972,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 13765344.690000001,
-      "buy_price": 39.18702744019609,
+      "txn_price": 39.18702744019609,
       "cur_price": 59.92,
       "ret": 0.5290774502211175,
       "alpha": 0.5049203933555014
@@ -5988,7 +5989,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 46806729.120000005,
-      "buy_price": 38.83902056761541,
+      "txn_price": 38.83902056761541,
       "cur_price": 59.92,
       "ret": 0.5427783482769453,
       "alpha": 0.5186212914113292
@@ -6005,7 +6006,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 13460089.629999999,
-      "buy_price": 79.40072103161259,
+      "txn_price": 79.40072103161259,
       "cur_price": 59.92,
       "ret": -0.24534690338462462,
       "alpha": -0.2695039602502407
@@ -6022,7 +6023,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 345696.0,
-      "buy_price": 144.04,
+      "txn_price": 144.04,
       "cur_price": 145.58,
       "ret": 0.010691474590391659,
       "alpha": -0.01346558227522443
@@ -6039,7 +6040,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1441707.8,
-      "buy_price": 144.17078,
+      "txn_price": 144.17078,
       "cur_price": 145.58,
       "ret": 0.009774657527690467,
       "alpha": -0.014382399337925622
@@ -6056,7 +6057,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 289180.0,
-      "buy_price": 144.59,
+      "txn_price": 144.59,
       "cur_price": 145.58,
       "ret": 0.006846946538488163,
       "alpha": -0.017310110327127926
@@ -6073,7 +6074,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 961500.0,
-      "buy_price": 19.23,
+      "txn_price": 19.23,
       "cur_price": 19.82,
       "ret": 0.03068122724908995,
       "alpha": 0.00652417038347386
@@ -6090,7 +6091,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 338000.0,
-      "buy_price": 0.8,
+      "txn_price": 0.8,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -6107,7 +6108,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 338000.0,
-      "buy_price": 0.8,
+      "txn_price": 0.8,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -6124,7 +6125,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 109000.0,
-      "buy_price": 10.9,
+      "txn_price": 10.9,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -6141,7 +6142,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 10740.0,
-      "buy_price": 10.74,
+      "txn_price": 10.74,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -6158,7 +6159,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 36981.7,
-      "buy_price": 1.1845515695067264,
+      "txn_price": 1.1845515695067264,
       "cur_price": 1.16,
       "ret": -0.020726467414964644,
       "alpha": -0.04488352428058073
@@ -6175,7 +6176,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 12000.0,
-      "buy_price": 1.2,
+      "txn_price": 1.2,
       "cur_price": 1.16,
       "ret": -0.033333333333333326,
       "alpha": -0.057490390198949415
@@ -6192,7 +6193,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 11993.855,
-      "buy_price": 1.1993855,
+      "txn_price": 1.1993855,
       "cur_price": 1.16,
       "ret": -0.03283806582620852,
       "alpha": -0.05699512269182461
@@ -6209,7 +6210,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 135759.8,
-      "buy_price": 295.13,
+      "txn_price": 295.13,
       "cur_price": 288.6,
       "ret": -0.022125842848913946,
       "alpha": -0.046282899714530035
@@ -6226,7 +6227,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 119000.0,
-      "buy_price": 1.19,
+      "txn_price": 1.19,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -6243,7 +6244,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1375000.0,
-      "buy_price": 27.5,
+      "txn_price": 27.5,
       "cur_price": 32.43,
       "ret": 0.17927272727272725,
       "alpha": 0.15511567040711116
@@ -6260,7 +6261,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 47812.5,
-      "buy_price": 19.125,
+      "txn_price": 19.125,
       "cur_price": 24.94,
       "ret": 0.30405228758169933,
       "alpha": 0.27989523071608324
@@ -6277,7 +6278,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 190799.99999999997,
-      "buy_price": 19.08,
+      "txn_price": 19.08,
       "cur_price": 24.94,
       "ret": 0.3071278825995809,
       "alpha": 0.2829708257339648
@@ -6294,7 +6295,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 100000.64,
-      "buy_price": 2.06,
+      "txn_price": 2.06,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -6311,7 +6312,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 100000.64,
-      "buy_price": 2.06,
+      "txn_price": 2.06,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -6328,7 +6329,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 27637.5,
-      "buy_price": 3.685,
+      "txn_price": 3.685,
       "cur_price": 4.54,
       "ret": 0.23202170963364988,
       "alpha": 0.2078646527680338
@@ -6345,7 +6346,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1680496.7500000002,
-      "buy_price": 39.95,
+      "txn_price": 39.95,
       "cur_price": 43.8536,
       "ret": 0.09771214017521901,
       "alpha": 0.07355508330960292
@@ -6362,7 +6363,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 5869079.217499999,
-      "buy_price": 4.9807859313579055,
+      "txn_price": 4.9807859313579055,
       "cur_price": 5.87,
       "ret": 0.1785288669090963,
       "alpha": 0.15437181004348022
@@ -6379,7 +6380,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 100000.4064,
-      "buy_price": 62.584743403594864,
+      "txn_price": 62.584743403594864,
       "cur_price": 79.82,
       "ret": 0.2753907048121753,
       "alpha": 0.2512336479465592
@@ -6396,7 +6397,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 61370.0,
-      "buy_price": 61.37,
+      "txn_price": 61.37,
       "cur_price": 79.82,
       "ret": 0.30063548965292486,
       "alpha": 0.27647843278730877
@@ -6413,7 +6414,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 125060.0,
-      "buy_price": 62.53,
+      "txn_price": 62.53,
       "cur_price": 79.82,
       "ret": 0.27650727650727647,
       "alpha": 0.2523502196416604
@@ -6430,7 +6431,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 427030.0,
-      "buy_price": 17.0812,
+      "txn_price": 17.0812,
       "cur_price": 17.83,
       "ret": 0.043837669484579456,
       "alpha": 0.019680612618963367
@@ -6447,7 +6448,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 430250.0,
-      "buy_price": 17.21,
+      "txn_price": 17.21,
       "cur_price": 17.83,
       "ret": 0.03602556653108646,
       "alpha": 0.011868509665470373
@@ -6464,7 +6465,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 50295.0,
-      "buy_price": 134.12,
+      "txn_price": 134.12,
       "cur_price": 126.23,
       "ret": -0.05882791529973164,
       "alpha": -0.08298497216534773
@@ -6481,7 +6482,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 266840.0,
-      "buy_price": 133.42,
+      "txn_price": 133.42,
       "cur_price": 126.23,
       "ret": -0.053889971518512825,
       "alpha": -0.07804702838412891
@@ -6498,7 +6499,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 96709.04000000001,
-      "buy_price": 50.108310880829016,
+      "txn_price": 50.108310880829016,
       "cur_price": 56.18,
       "ret": 0.12117129898094325,
       "alpha": 0.09701424211532717
@@ -6515,7 +6516,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 159036.3,
-      "buy_price": 24.9,
+      "txn_price": 24.9,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -6532,7 +6533,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1268594.26,
-      "buy_price": 24.749195442662607,
+      "txn_price": 24.749195442662607,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -6549,7 +6550,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 231502.3337,
-      "buy_price": 67.35593066627872,
+      "txn_price": 67.35593066627872,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -6566,7 +6567,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 122468.0,
-      "buy_price": 7.90116129032258,
+      "txn_price": 7.90116129032258,
       "cur_price": 9.71,
       "ret": 0.22893327236502614,
       "alpha": 0.20477621549941005
@@ -6583,7 +6584,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 507074.0,
-      "buy_price": 11.120043859649122,
+      "txn_price": 11.120043859649122,
       "cur_price": 9.71,
       "ret": -0.12680200523000573,
       "alpha": -0.15095906209562182
@@ -6600,7 +6601,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 3589826.4,
-      "buy_price": 21.037426160337553,
+      "txn_price": 21.037426160337553,
       "cur_price": 24.05,
       "ret": 0.14320068513619488,
       "alpha": 0.1190436282705788
@@ -6617,7 +6618,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 37198.5,
-      "buy_price": 23.2490625,
+      "txn_price": 23.2490625,
       "cur_price": 31.71,
       "ret": 0.3639259647566433,
       "alpha": 0.3397689078910272
@@ -6634,7 +6635,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 13439603.540000001,
-      "buy_price": 255.1468189239473,
+      "txn_price": 255.1468189239473,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -6651,7 +6652,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 32929750.0,
-      "buy_price": 16.673291139240508,
+      "txn_price": 16.673291139240508,
       "cur_price": 14.68,
       "ret": -0.11954995103212152,
       "alpha": -0.1437070078977376
@@ -6668,7 +6669,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 32929750.0,
-      "buy_price": 16.673291139240508,
+      "txn_price": 16.673291139240508,
       "cur_price": 14.68,
       "ret": -0.11954995103212152,
       "alpha": -0.1437070078977376
@@ -6685,7 +6686,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 207200.0,
-      "buy_price": 20.72,
+      "txn_price": 20.72,
       "cur_price": 28.63,
       "ret": 0.3817567567567568,
       "alpha": 0.3575996998911407
@@ -6702,7 +6703,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 102950.0,
-      "buy_price": 20.59,
+      "txn_price": 20.59,
       "cur_price": 28.63,
       "ret": 0.390480815930063,
       "alpha": 0.3663237590644469
@@ -6719,7 +6720,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 500000.0,
-      "buy_price": 50.0,
+      "txn_price": 50.0,
       "cur_price": 52.21,
       "ret": 0.04420000000000002,
       "alpha": 0.020042943134383928
@@ -6736,7 +6737,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 512673.36,
-      "buy_price": 51.267336,
+      "txn_price": 51.267336,
       "cur_price": 52.21,
       "ret": 0.018387224177203176,
       "alpha": -0.0057698326884129125
@@ -6753,7 +6754,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 491400.0,
-      "buy_price": 49.14,
+      "txn_price": 49.14,
       "cur_price": 52.21,
       "ret": 0.0624745624745624,
       "alpha": 0.03831750560894631
@@ -6770,7 +6771,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 624645.0,
-      "buy_price": 49.9716,
+      "txn_price": 49.9716,
       "cur_price": 52.21,
       "ret": 0.04479344267543972,
       "alpha": 0.020636385809823632
@@ -6787,7 +6788,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 247700.0,
-      "buy_price": 49.54,
+      "txn_price": 49.54,
       "cur_price": 50.48,
       "ret": 0.01897456600726688,
       "alpha": -0.005182490858349209
@@ -6804,7 +6805,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 231050.0,
-      "buy_price": 46.21,
+      "txn_price": 46.21,
       "cur_price": 50.48,
       "ret": 0.09240424150616744,
       "alpha": 0.06824718464055135
@@ -6821,7 +6822,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 38106.32,
-      "buy_price": 0.8840553080920565,
+      "txn_price": 0.8840553080920565,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -6838,7 +6839,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 38106.32,
-      "buy_price": 0.8840553080920565,
+      "txn_price": 0.8840553080920565,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -6855,7 +6856,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 165000.01075,
-      "buy_price": 98.04999999999998,
+      "txn_price": 98.04999999999998,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -6872,7 +6873,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 165000.01075,
-      "buy_price": 98.04999999999998,
+      "txn_price": 98.04999999999998,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -6889,7 +6890,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 5280.0,
-      "buy_price": 5.28,
+      "txn_price": 5.28,
       "cur_price": 4.69,
       "ret": -0.1117424242424242,
       "alpha": -0.1358994811080403
@@ -6906,7 +6907,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 5280.0,
-      "buy_price": 5.28,
+      "txn_price": 5.28,
       "cur_price": 4.69,
       "ret": -0.1117424242424242,
       "alpha": -0.1358994811080403
@@ -6923,7 +6924,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 51500.0,
-      "buy_price": 5.15,
+      "txn_price": 5.15,
       "cur_price": 4.69,
       "ret": -0.0893203883495145,
       "alpha": -0.11347744521513059
@@ -6940,7 +6941,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 94717.8,
-      "buy_price": 5.21,
+      "txn_price": 5.21,
       "cur_price": 4.69,
       "ret": -0.09980806142034537,
       "alpha": -0.12396511828596146
@@ -6957,7 +6958,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 3388.7000000000003,
-      "buy_price": 5.15,
+      "txn_price": 5.15,
       "cur_price": 4.69,
       "ret": -0.0893203883495145,
       "alpha": -0.11347744521513059
@@ -6974,7 +6975,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 15510.0,
-      "buy_price": 5.17,
+      "txn_price": 5.17,
       "cur_price": 4.69,
       "ret": -0.09284332688588004,
       "alpha": -0.11700038375149613
@@ -6991,7 +6992,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 25800.0,
-      "buy_price": 5.16,
+      "txn_price": 5.16,
       "cur_price": 4.69,
       "ret": -0.0910852713178294,
       "alpha": -0.11524232818344549
@@ -7008,7 +7009,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 10240.0,
-      "buy_price": 5.12,
+      "txn_price": 5.12,
       "cur_price": 4.69,
       "ret": -0.08398437499999989,
       "alpha": -0.10814143186561598
@@ -7025,7 +7026,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 25850.0,
-      "buy_price": 5.17,
+      "txn_price": 5.17,
       "cur_price": 4.69,
       "ret": -0.09284332688588004,
       "alpha": -0.11700038375149613
@@ -7042,7 +7043,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 51000.0,
-      "buy_price": 5.1,
+      "txn_price": 5.1,
       "cur_price": 4.69,
       "ret": -0.08039215686274492,
       "alpha": -0.10454921372836101
@@ -7059,7 +7060,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 25900.0,
-      "buy_price": 5.18,
+      "txn_price": 5.18,
       "cur_price": 4.69,
       "ret": -0.09459459459459452,
       "alpha": -0.1187516514602106
@@ -7076,7 +7077,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 65125.0,
-      "buy_price": 5.21,
+      "txn_price": 5.21,
       "cur_price": 4.69,
       "ret": -0.09980806142034537,
       "alpha": -0.12396511828596146
@@ -7093,7 +7094,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 30480.0,
-      "buy_price": 5.08,
+      "txn_price": 5.08,
       "cur_price": 4.69,
       "ret": -0.07677165354330706,
       "alpha": -0.10092871040892315
@@ -7110,7 +7111,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 17381.0,
-      "buy_price": 17.381,
+      "txn_price": 17.381,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -7127,7 +7128,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 375505.2446,
-      "buy_price": 2.4421040471374775,
+      "txn_price": 2.4421040471374775,
       "cur_price": 4.19,
       "ret": 0.7157336129520471,
       "alpha": 0.691576556086431
@@ -7144,7 +7145,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 177915.0,
-      "buy_price": 3.5583,
+      "txn_price": 3.5583,
       "cur_price": 4.19,
       "ret": 0.17752859511564512,
       "alpha": 0.15337153825002903
@@ -7161,7 +7162,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 3101.2584,
-      "buy_price": 7.12,
+      "txn_price": 7.12,
       "cur_price": 6.76,
       "ret": -0.050561797752809,
       "alpha": -0.07471885461842509
@@ -7178,7 +7179,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 1914.3,
-      "buy_price": 7.09,
+      "txn_price": 7.09,
       "cur_price": 6.76,
       "ret": -0.046544428772919644,
       "alpha": -0.07070148563853573
@@ -7195,7 +7196,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 3001.2246,
-      "buy_price": 7.38,
+      "txn_price": 7.38,
       "cur_price": 6.76,
       "ret": -0.0840108401084011,
       "alpha": -0.10816789697401719
@@ -7212,7 +7213,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 200264.40000000002,
-      "buy_price": 7.152300000000001,
+      "txn_price": 7.152300000000001,
       "cur_price": 6.76,
       "ret": -0.05484948897557451,
       "alpha": -0.0790065458411906
@@ -7229,7 +7230,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 23456.540000000005,
-      "buy_price": 9.382616000000002,
+      "txn_price": 9.382616000000002,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -7246,7 +7247,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 23700.0,
-      "buy_price": 9.48,
+      "txn_price": 9.48,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -7263,7 +7264,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 39200.64,
-      "buy_price": 9.228022598870057,
+      "txn_price": 9.228022598870057,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -7280,7 +7281,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 547400.0,
-      "buy_price": 18.246666666666666,
+      "txn_price": 18.246666666666666,
       "cur_price": 17.09,
       "ret": -0.06339057362075262,
       "alpha": -0.08754763048636871
@@ -7297,7 +7298,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 974581.96,
-      "buy_price": 18.969965158150853,
+      "txn_price": 18.969965158150853,
       "cur_price": 17.09,
       "ret": -0.09910219351895255,
       "alpha": -0.12325925038456864
@@ -7314,7 +7315,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 261849.0,
-      "buy_price": 13.09245,
+      "txn_price": 13.09245,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -7331,7 +7332,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 300059.5,
-      "buy_price": 71.02,
+      "txn_price": 71.02,
       "cur_price": 71.29,
       "ret": 0.003801745987046079,
       "alpha": -0.02035531087857001
@@ -7348,7 +7349,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 100990.40000000001,
-      "buy_price": 71.12,
+      "txn_price": 71.12,
       "cur_price": 71.29,
       "ret": 0.0023903262092239697,
       "alpha": -0.02176673065639212
@@ -7365,7 +7366,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 176263.62,
-      "buy_price": 11.754826275425142,
+      "txn_price": 11.754826275425142,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -7382,7 +7383,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 200508.0,
-      "buy_price": 12.0,
+      "txn_price": 12.0,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -7399,7 +7400,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 77257.23,
-      "buy_price": 12.181840113528855,
+      "txn_price": 12.181840113528855,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -7416,7 +7417,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 533315.24,
-      "buy_price": 22.085275799238033,
+      "txn_price": 22.085275799238033,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -7433,7 +7434,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 65460.0,
-      "buy_price": 21.82,
+      "txn_price": 21.82,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -7450,7 +7451,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 557863.22,
-      "buy_price": 22.16733767781928,
+      "txn_price": 22.16733767781928,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -7467,7 +7468,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 100515.0,
-      "buy_price": 1.25,
+      "txn_price": 1.25,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -7484,7 +7485,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 12324.0,
-      "buy_price": 1.3,
+      "txn_price": 1.3,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -7501,7 +7502,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 28477.68,
-      "buy_price": 112.56,
+      "txn_price": 112.56,
       "cur_price": 120.97,
       "ret": 0.07471570717839371,
       "alpha": 0.05055865031277762
@@ -7518,7 +7519,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 49137.387,
-      "buy_price": 121.929,
+      "txn_price": 121.929,
       "cur_price": 120.97,
       "ret": -0.00786523304546094,
       "alpha": -0.03202228991107703
@@ -7535,7 +7536,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 5521.95,
-      "buy_price": 3.15,
+      "txn_price": 3.15,
       "cur_price": 3.79,
       "ret": 0.20317460317460312,
       "alpha": 0.17901754630898703
@@ -7552,7 +7553,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1268797.07,
-      "buy_price": 8.57,
+      "txn_price": 8.57,
       "cur_price": 9.34,
       "ret": 0.08984830805134192,
       "alpha": 0.06569125118572583
@@ -7569,7 +7570,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 100125.0,
-      "buy_price": 8.01,
+      "txn_price": 8.01,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -7586,7 +7587,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 100125.0,
-      "buy_price": 8.01,
+      "txn_price": 8.01,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -7603,7 +7604,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 217420.0,
-      "buy_price": 15.53,
+      "txn_price": 15.53,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -7620,7 +7621,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 29776.2,
-      "buy_price": 3.8836833181166037,
+      "txn_price": 3.8836833181166037,
       "cur_price": 4.63,
       "ret": 0.19216723423405258,
       "alpha": 0.1680101773684365
@@ -7637,7 +7638,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 7360.0,
-      "buy_price": 3.68,
+      "txn_price": 3.68,
       "cur_price": 4.63,
       "ret": 0.25815217391304346,
       "alpha": 0.23399511704742737
@@ -7654,7 +7655,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 250650.0,
-      "buy_price": 250.65,
+      "txn_price": 250.65,
       "cur_price": 269.12,
       "ret": 0.07368841013365257,
       "alpha": 0.04953135326803648
@@ -7671,7 +7672,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 13749.99815,
-      "buy_price": 9.73,
+      "txn_price": 9.73,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -7688,7 +7689,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 36940.0,
-      "buy_price": 9.235,
+      "txn_price": 9.235,
       "cur_price": 8.75,
       "ret": -0.052517596101786634,
       "alpha": -0.07667465296740272
@@ -7705,7 +7706,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1436864.575,
-      "buy_price": 3.3843696046956957,
+      "txn_price": 3.3843696046956957,
       "cur_price": 4.77,
       "ret": 0.40942052941906515,
       "alpha": 0.38526347255344906
@@ -7722,7 +7723,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 101150.0,
-      "buy_price": 2.89,
+      "txn_price": 2.89,
       "cur_price": 4.77,
       "ret": 0.6505190311418683,
       "alpha": 0.6263619742762522
@@ -7739,7 +7740,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1759471.0,
-      "buy_price": 175.9471,
+      "txn_price": 175.9471,
       "cur_price": 198.99,
       "ret": 0.13096493207333348,
       "alpha": 0.1068078752077174
@@ -7756,7 +7757,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 99981.0,
-      "buy_price": 190.44,
+      "txn_price": 190.44,
       "cur_price": 198.99,
       "ret": 0.04489603024574684,
       "alpha": 0.020738973380130754
@@ -7773,7 +7774,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 193065.0,
-      "buy_price": 193.065,
+      "txn_price": 193.065,
       "cur_price": 198.99,
       "ret": 0.030689146142490964,
       "alpha": 0.006532089276874875
@@ -7790,7 +7791,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 1900000.0,
-      "buy_price": 190.0,
+      "txn_price": 190.0,
       "cur_price": 198.99,
       "ret": 0.0473157894736842,
       "alpha": 0.02315873260806811
@@ -7807,7 +7808,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 90208.56,
-      "buy_price": 194.415,
+      "txn_price": 194.415,
       "cur_price": 198.99,
       "ret": 0.023532134866137033,
       "alpha": -0.0006249219994790556
@@ -7824,7 +7825,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1025000.0,
-      "buy_price": 205.0,
+      "txn_price": 205.0,
       "cur_price": 198.99,
       "ret": -0.029317073170731622,
       "alpha": -0.05347413003634771
@@ -7841,7 +7842,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1090000.0,
-      "buy_price": 218.0,
+      "txn_price": 218.0,
       "cur_price": 198.99,
       "ret": -0.08720183486238531,
       "alpha": -0.1113588917280014
@@ -7858,7 +7859,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 300162.233,
-      "buy_price": 213.6386,
+      "txn_price": 213.6386,
       "cur_price": 198.99,
       "ret": -0.06856719712636195,
       "alpha": -0.09272425399197803
@@ -7875,7 +7876,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1215810.0,
-      "buy_price": 218.6708633093525,
+      "txn_price": 218.6708633093525,
       "cur_price": 198.99,
       "ret": -0.0900022207417277,
       "alpha": -0.11415927760734379
@@ -7892,7 +7893,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 224750.0,
-      "buy_price": 2.9966666666666666,
+      "txn_price": 2.9966666666666666,
       "cur_price": 4.25,
       "ret": 0.41824249165739724,
       "alpha": 0.39408543479178115
@@ -7909,7 +7910,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 5015.5,
-      "buy_price": 14.33,
+      "txn_price": 14.33,
       "cur_price": 15.49,
       "ret": 0.0809490579204466,
       "alpha": 0.05679200105483051
@@ -7926,7 +7927,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 20600.0,
-      "buy_price": 10.3,
+      "txn_price": 10.3,
       "cur_price": 9.4,
       "ret": -0.0873786407766991,
       "alpha": -0.11153569764231519
@@ -7943,7 +7944,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 31700.0,
-      "buy_price": 0.10566666666666667,
+      "txn_price": 0.10566666666666667,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -7960,7 +7961,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 56391.129,
-      "buy_price": 0.112782258,
+      "txn_price": 0.112782258,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -7977,7 +7978,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 501343.5,
-      "buy_price": 75.39,
+      "txn_price": 75.39,
       "cur_price": 78.71,
       "ret": 0.044037670778617866,
       "alpha": 0.019880613913001777
@@ -7994,7 +7995,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 151750.0,
-      "buy_price": 75.875,
+      "txn_price": 75.875,
       "cur_price": 78.71,
       "ret": 0.03736408566721572,
       "alpha": 0.01320702880159963
@@ -8011,7 +8012,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 233273.40000000002,
-      "buy_price": 77.7578,
+      "txn_price": 77.7578,
       "cur_price": 78.71,
       "ret": 0.012245716828408026,
       "alpha": -0.011911340037208062
@@ -8028,7 +8029,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1843.5600000000002,
-      "buy_price": 1.08,
+      "txn_price": 1.08,
       "cur_price": 1.01,
       "ret": -0.06481481481481488,
       "alpha": -0.08897187168043097
@@ -8045,7 +8046,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 25000.0,
-      "buy_price": 1.0,
+      "txn_price": 1.0,
       "cur_price": 0.9157,
       "ret": -0.08430000000000004,
       "alpha": -0.10845705686561613
@@ -8062,7 +8063,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 1999875.12,
-      "buy_price": 185.08793336418327,
+      "txn_price": 185.08793336418327,
       "cur_price": 198.78,
       "ret": 0.07397600906200563,
       "alpha": 0.04981895219638954
@@ -8079,7 +8080,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 1999868.3399999999,
-      "buy_price": 185.0530526510595,
+      "txn_price": 185.0530526510595,
       "cur_price": 198.78,
       "ret": 0.07417844316691369,
       "alpha": 0.0500213863012976
@@ -8096,7 +8097,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 499953.04000000004,
-      "buy_price": 185.4425222551929,
+      "txn_price": 185.4425222551929,
       "cur_price": 198.78,
       "ret": 0.07192243495509087,
       "alpha": 0.047765378089474786
@@ -8113,7 +8114,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 20828.1,
-      "buy_price": 20.8281,
+      "txn_price": 20.8281,
       "cur_price": 21.73,
       "ret": 0.04330207748186354,
       "alpha": 0.019145020616247455
@@ -8130,7 +8131,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 5153.6124,
-      "buy_price": 21.7452,
+      "txn_price": 21.7452,
       "cur_price": 21.73,
       "ret": -0.0006990048378492375,
       "alpha": -0.024856061703465326
@@ -8147,7 +8148,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 217.452,
-      "buy_price": 21.7452,
+      "txn_price": 21.7452,
       "cur_price": 21.73,
       "ret": -0.0006990048378492375,
       "alpha": -0.024856061703465326
@@ -8164,7 +8165,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 10627.449999999999,
-      "buy_price": 21.2549,
+      "txn_price": 21.2549,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -8181,7 +8182,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 16766.25,
-      "buy_price": 21.25,
+      "txn_price": 21.25,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -8198,7 +8199,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 47005.0,
-      "buy_price": 21.25,
+      "txn_price": 21.25,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -8215,7 +8216,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 42500.0,
-      "buy_price": 21.25,
+      "txn_price": 21.25,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -8232,7 +8233,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 251586.9745,
-      "buy_price": 95.87918235518293,
+      "txn_price": 95.87918235518293,
       "cur_price": 101.83,
       "ret": 0.062065794666170016,
       "alpha": 0.03790873780055393
@@ -8249,7 +8250,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 47995.792,
-      "buy_price": 92.2996,
+      "txn_price": 92.2996,
       "cur_price": 101.83,
       "ret": 0.10325505202622765,
       "alpha": 0.07909799516061156
@@ -8266,7 +8267,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 200585.77500000002,
-      "buy_price": 102.8645,
+      "txn_price": 102.8645,
       "cur_price": 101.83,
       "ret": -0.010056919539783049,
       "alpha": -0.03421397640539914
@@ -8283,7 +8284,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 51000.0,
-      "buy_price": 102.0,
+      "txn_price": 102.0,
       "cur_price": 101.83,
       "ret": -0.0016666666666667052,
       "alpha": -0.025823723532282794
@@ -8300,7 +8301,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 149999.90706,
-      "buy_price": 102.78,
+      "txn_price": 102.78,
       "cur_price": 101.83,
       "ret": -0.009243043393656336,
       "alpha": -0.033400100259272425
@@ -8317,7 +8318,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 244655.52000000002,
-      "buy_price": 101.9398,
+      "txn_price": 101.9398,
       "cur_price": 101.83,
       "ret": -0.0010771062921450802,
       "alpha": -0.02523416315776117
@@ -8334,7 +8335,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 99750.7,
-      "buy_price": 99.7507,
+      "txn_price": 99.7507,
       "cur_price": 101.83,
       "ret": 0.02084496650148826,
       "alpha": -0.0033120903641278288
@@ -8351,7 +8352,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 2922713.4000000004,
-      "buy_price": 24.478336683417087,
+      "txn_price": 24.478336683417087,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -8368,7 +8369,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4847652.6,
-      "buy_price": 26.489904918032785,
+      "txn_price": 26.489904918032785,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -8385,7 +8386,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 28600.0,
-      "buy_price": 28.6,
+      "txn_price": 28.6,
       "cur_price": 33.04,
       "ret": 0.15524475524475512,
       "alpha": 0.13108769837913903
@@ -8402,7 +8403,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 15345.0,
-      "buy_price": 30.69,
+      "txn_price": 30.69,
       "cur_price": 28.43,
       "ret": -0.07363962202671881,
       "alpha": -0.0977966788923349
@@ -8419,7 +8420,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 91290.0,
-      "buy_price": 30.43,
+      "txn_price": 30.43,
       "cur_price": 28.43,
       "ret": -0.06572461386789352,
       "alpha": -0.08988167073350961
@@ -8436,7 +8437,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 197485.0,
-      "buy_price": 29.99924046787179,
+      "txn_price": 29.99924046787179,
       "cur_price": 28.43,
       "ret": -0.05230933994986953,
       "alpha": -0.07646639681548562
@@ -8453,7 +8454,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 1792496.6400000001,
-      "buy_price": 32.96,
+      "txn_price": 32.96,
       "cur_price": 28.43,
       "ret": -0.1374393203883495,
       "alpha": -0.16159637725396558
@@ -8470,7 +8471,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 164431.5,
-      "buy_price": 32.8863,
+      "txn_price": 32.8863,
       "cur_price": 28.43,
       "ret": -0.13550627464932208,
       "alpha": -0.15966333151493817
@@ -8487,7 +8488,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 350519.00000000006,
-      "buy_price": 35.0519,
+      "txn_price": 35.0519,
       "cur_price": 28.43,
       "ret": -0.1889170059254991,
       "alpha": -0.21307406279111518
@@ -8504,7 +8505,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 36089.16,
-      "buy_price": 36.08916000000001,
+      "txn_price": 36.08916000000001,
       "cur_price": 28.43,
       "ret": -0.21222882438937363,
       "alpha": -0.23638588125498972
@@ -8521,7 +8522,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 355.0,
-      "buy_price": 35.5,
+      "txn_price": 35.5,
       "cur_price": 28.43,
       "ret": -0.19915492957746483,
       "alpha": -0.22331198644308092
@@ -8538,7 +8539,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 20139.649999999998,
-      "buy_price": 34.135,
+      "txn_price": 34.135,
       "cur_price": 28.43,
       "ret": -0.16713051120550748,
       "alpha": -0.19128756807112357
@@ -8555,7 +8556,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 33340.0,
-      "buy_price": 33.34,
+      "txn_price": 33.34,
       "cur_price": 28.43,
       "ret": -0.1472705458908219,
       "alpha": -0.17142760275643798
@@ -8572,7 +8573,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 176218.0,
-      "buy_price": 35.2436,
+      "txn_price": 35.2436,
       "cur_price": 28.43,
       "ret": -0.19332871783813232,
       "alpha": -0.2174857747037484
@@ -8589,7 +8590,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 66298.27649999999,
-      "buy_price": 29.904499999999995,
+      "txn_price": 29.904499999999995,
       "cur_price": 28.43,
       "ret": -0.04930696049089589,
       "alpha": -0.07346401735651198
@@ -8606,7 +8607,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 618931.895,
-      "buy_price": 29.19490070754717,
+      "txn_price": 29.19490070754717,
       "cur_price": 28.43,
       "ret": -0.02619980506902142,
       "alpha": -0.05035686193463751
@@ -8623,7 +8624,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1184000.0,
-      "buy_price": 29.6,
+      "txn_price": 29.6,
       "cur_price": 28.43,
       "ret": -0.03952702702702704,
       "alpha": -0.06368408389264313
@@ -8640,7 +8641,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1509440.0,
-      "buy_price": 28.48,
+      "txn_price": 28.48,
       "cur_price": 28.43,
       "ret": -0.0017556179775281011,
       "alpha": -0.02591267484314419
@@ -8657,7 +8658,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 738750.0,
-      "buy_price": 29.55,
+      "txn_price": 29.55,
       "cur_price": 28.43,
       "ret": -0.03790186125211514,
       "alpha": -0.06205891811773123
@@ -8674,7 +8675,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 1006335.2799999999,
-      "buy_price": 34.12,
+      "txn_price": 34.12,
       "cur_price": 28.43,
       "ret": -0.1667643610785463,
       "alpha": -0.1909214179441624
@@ -8691,7 +8692,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1212688.54,
-      "buy_price": 38.37864864864865,
+      "txn_price": 38.37864864864865,
       "cur_price": 28.43,
       "ret": -0.2592235265948831,
       "alpha": -0.2833805834604992
@@ -8708,7 +8709,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 34975.0,
-      "buy_price": 13.99,
+      "txn_price": 13.99,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -8725,7 +8726,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 440456.88,
-      "buy_price": 14.440262277883418,
+      "txn_price": 14.440262277883418,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -8742,7 +8743,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 212957.6,
-      "buy_price": 15.211257142857143,
+      "txn_price": 15.211257142857143,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -8759,7 +8760,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 25383.7,
-      "buy_price": 1.45,
+      "txn_price": 1.45,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -8776,7 +8777,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 25000002.0,
-      "buy_price": 18.0,
+      "txn_price": 18.0,
       "cur_price": 16.69,
       "ret": -0.07277777777777772,
       "alpha": -0.09693483464339381
@@ -8793,7 +8794,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 19999998.0,
-      "buy_price": 18.0,
+      "txn_price": 18.0,
       "cur_price": 16.69,
       "ret": -0.07277777777777772,
       "alpha": -0.09693483464339381
@@ -8810,7 +8811,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 9999990.0,
-      "buy_price": 18.0,
+      "txn_price": 18.0,
       "cur_price": 16.69,
       "ret": -0.07277777777777772,
       "alpha": -0.09693483464339381
@@ -8827,7 +8828,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 20000.0,
-      "buy_price": 20.0,
+      "txn_price": 20.0,
       "cur_price": 16.69,
       "ret": -0.16549999999999998,
       "alpha": -0.18965705686561607
@@ -8844,7 +8845,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 100000.0,
-      "buy_price": 20.0,
+      "txn_price": 20.0,
       "cur_price": 16.69,
       "ret": -0.16549999999999998,
       "alpha": -0.18965705686561607
@@ -8861,7 +8862,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 19999998.0,
-      "buy_price": 18.0,
+      "txn_price": 18.0,
       "cur_price": 16.69,
       "ret": -0.07277777777777772,
       "alpha": -0.09693483464339381
@@ -8878,7 +8879,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 199998.0,
-      "buy_price": 18.0,
+      "txn_price": 18.0,
       "cur_price": 16.69,
       "ret": -0.07277777777777772,
       "alpha": -0.09693483464339381
@@ -8895,7 +8896,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1999950.0488800001,
-      "buy_price": 6.86,
+      "txn_price": 6.86,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -8912,7 +8913,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 214132.33750000002,
-      "buy_price": 4.508049210526316,
+      "txn_price": 4.508049210526316,
       "cur_price": 4.06,
       "ret": -0.09938871329978372,
       "alpha": -0.1235457701653998
@@ -8929,7 +8930,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 13725.0,
-      "buy_price": 27.45,
+      "txn_price": 27.45,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -8946,7 +8947,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 40500.0,
-      "buy_price": 27.0,
+      "txn_price": 27.0,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -8963,7 +8964,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 109999.06221,
-      "buy_price": 55.74226896786228,
+      "txn_price": 55.74226896786228,
       "cur_price": 51.79,
       "ret": -0.07090254919728733,
       "alpha": -0.09505960606290342
@@ -8980,7 +8981,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 7986.599999999999,
-      "buy_price": 29.58,
+      "txn_price": 29.58,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -8997,7 +8998,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 74999992.32,
-      "buy_price": 11.52,
+      "txn_price": 11.52,
       "cur_price": 7.42,
       "ret": -0.3559027777777778,
       "alpha": -0.3800598346433939
@@ -9014,7 +9015,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 636500.0,
-      "buy_price": 1.34,
+      "txn_price": 1.34,
       "cur_price": 1.23,
       "ret": -0.08208955223880599,
       "alpha": -0.10624660910442207
@@ -9031,7 +9032,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 142080.0,
-      "buy_price": 17.76,
+      "txn_price": 17.76,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -9048,7 +9049,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 117600.0,
-      "buy_price": 5.88,
+      "txn_price": 5.88,
       "cur_price": 6.71,
       "ret": 0.14115646258503411,
       "alpha": 0.11699940571941803
@@ -9065,7 +9066,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 49850.525,
-      "buy_price": 23.795,
+      "txn_price": 23.795,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -9082,7 +9083,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 2789589.9851,
-      "buy_price": 1.4293605029116614,
+      "txn_price": 1.4293605029116614,
       "cur_price": 1.65,
       "ret": 0.1543623855835441,
       "alpha": 0.130205328717928
@@ -9099,7 +9100,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 27876.4977,
-      "buy_price": 27.012110174418606,
+      "txn_price": 27.012110174418606,
       "cur_price": 27.54,
       "ret": 0.019542709628117994,
       "alpha": -0.004614347237498095
@@ -9116,7 +9117,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 48944.0,
-      "buy_price": 26.6,
+      "txn_price": 26.6,
       "cur_price": 27.54,
       "ret": 0.03533834586466167,
       "alpha": 0.01118128899904558
@@ -9133,7 +9134,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 6418320.0,
-      "buy_price": 27.312,
+      "txn_price": 27.312,
       "cur_price": 27.54,
       "ret": 0.008347978910369092,
       "alpha": -0.015809077955246997
@@ -9150,7 +9151,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 30665.0,
-      "buy_price": 30.665,
+      "txn_price": 30.665,
       "cur_price": 27.54,
       "ret": -0.10190771237567264,
       "alpha": -0.12606476924128873
@@ -9167,7 +9168,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 60465.6,
-      "buy_price": 6.84,
+      "txn_price": 6.84,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -9184,7 +9185,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 117850.00000000001,
-      "buy_price": 1.1785,
+      "txn_price": 1.1785,
       "cur_price": 1.13,
       "ret": -0.04115400933389923,
       "alpha": -0.06531106619951532
@@ -9201,7 +9202,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 99186.0,
-      "buy_price": 61.0,
+      "txn_price": 61.0,
       "cur_price": 67.22,
       "ret": 0.10196721311475399,
       "alpha": 0.0778101562491379
@@ -9218,7 +9219,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 125250.0,
-      "buy_price": 62.625,
+      "txn_price": 62.625,
       "cur_price": 67.22,
       "ret": 0.07337325349301405,
       "alpha": 0.04921619662739796
@@ -9235,7 +9236,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 90630.62,
-      "buy_price": 10.61,
+      "txn_price": 10.61,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -9252,7 +9253,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 100528321.9685,
-      "buy_price": 201.3990222748673,
+      "txn_price": 201.3990222748673,
       "cur_price": 204.94,
       "ret": 0.017581901268120426,
       "alpha": -0.006575155597495663
@@ -9269,7 +9270,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 15943101.7,
-      "buy_price": 41.03758481338481,
+      "txn_price": 41.03758481338481,
       "cur_price": 39.4,
       "ret": -0.0399045124324835,
       "alpha": -0.06406156929809959
@@ -9286,7 +9287,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 19999990.0,
-      "buy_price": 17.0,
+      "txn_price": 17.0,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -9303,7 +9304,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 92840.0,
-      "buy_price": 92.84,
+      "txn_price": 92.84,
       "cur_price": 88.94,
       "ret": -0.04200775527789746,
       "alpha": -0.06616481214351355
@@ -9320,7 +9321,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1027770.0,
-      "buy_price": 93.43363636363637,
+      "txn_price": 93.43363636363637,
       "cur_price": 88.94,
       "ret": -0.048094418011812023,
       "alpha": -0.07225147487742811
@@ -9337,7 +9338,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 345034.5,
-      "buy_price": 93.40403356794802,
+      "txn_price": 93.40403356794802,
       "cur_price": 88.94,
       "ret": -0.047792727973579474,
       "alpha": -0.07194978483919556
@@ -9354,7 +9355,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 42200.0,
-      "buy_price": 4.22,
+      "txn_price": 4.22,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -9371,7 +9372,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 200748.08000000002,
-      "buy_price": 5.36,
+      "txn_price": 5.36,
       "cur_price": 6.8,
       "ret": 0.26865671641791034,
       "alpha": 0.24449965955229425
@@ -9388,7 +9389,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 74500.0,
-      "buy_price": 2.98,
+      "txn_price": 2.98,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -9405,7 +9406,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 100656.6,
-      "buy_price": 3.02,
+      "txn_price": 3.02,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -9422,7 +9423,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 124278.0,
-      "buy_price": 231.0,
+      "txn_price": 231.0,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -9439,7 +9440,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 99992.65,
-      "buy_price": 19.13002678400612,
+      "txn_price": 19.13002678400612,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -9456,7 +9457,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 73381.5,
-      "buy_price": 34.5,
+      "txn_price": 34.5,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -9473,7 +9474,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 46240.0,
-      "buy_price": 5.78,
+      "txn_price": 5.78,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -9490,7 +9491,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 12160.0,
-      "buy_price": 121.6,
+      "txn_price": 121.6,
       "cur_price": 127.12,
       "ret": 0.045394736842105265,
       "alpha": 0.021237679976489177
@@ -9507,7 +9508,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 100364.54000000001,
-      "buy_price": 62.03000000000001,
+      "txn_price": 62.03000000000001,
       "cur_price": 61.59,
       "ret": -0.007093341931323605,
       "alpha": -0.03125039879693969
@@ -9524,7 +9525,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 63006.3,
-      "buy_price": 63.0063,
+      "txn_price": 63.0063,
       "cur_price": 61.59,
       "ret": -0.02247870451050138,
       "alpha": -0.04663576137611747
@@ -9541,7 +9542,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 69825.0,
-      "buy_price": 13.965,
+      "txn_price": 13.965,
       "cur_price": 16.59,
       "ret": 0.18796992481203012,
       "alpha": 0.16381286794641403
@@ -9558,7 +9559,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 53973.90788682,
-      "buy_price": 122.99115969467952,
+      "txn_price": 122.99115969467952,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -9575,7 +9576,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 75000000.00909999,
-      "buy_price": 26.15,
+      "txn_price": 26.15,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -9592,7 +9593,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 29999999.9784,
-      "buy_price": 26.16,
+      "txn_price": 26.16,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -9609,7 +9610,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 68553.25764334,
-      "buy_price": 130.6830263556171,
+      "txn_price": 130.6830263556171,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -9626,7 +9627,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 7611750.000000001,
-      "buy_price": 152.235,
+      "txn_price": 152.235,
       "cur_price": 153.97,
       "ret": 0.01139685354878961,
       "alpha": -0.01276020331682648
@@ -9643,7 +9644,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 126134.15999999999,
-      "buy_price": 5.56,
+      "txn_price": 5.56,
       "cur_price": 6.74,
       "ret": 0.21223021582733814,
       "alpha": 0.18807315896172205
@@ -9660,7 +9661,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 10050.0,
-      "buy_price": 10.05,
+      "txn_price": 10.05,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -9677,7 +9678,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 199813.94999999998,
-      "buy_price": 87.255,
+      "txn_price": 87.255,
       "cur_price": 108.44,
       "ret": 0.24279410922010203,
       "alpha": 0.21863705235448594
@@ -9694,7 +9695,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 43390.4917,
-      "buy_price": 4.338615308469153,
+      "txn_price": 4.338615308469153,
       "cur_price": 4.46,
       "ret": 0.027977749327970924,
       "alpha": 0.0038206924623548355
@@ -9711,7 +9712,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 20128.0,
-      "buy_price": 50.32,
+      "txn_price": 50.32,
       "cur_price": 49.02,
       "ret": -0.025834658187599335,
       "alpha": -0.049991715053215424
@@ -9728,7 +9729,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 18011.52,
-      "buy_price": 3.18,
+      "txn_price": 3.18,
       "cur_price": 3.49,
       "ret": 0.09748427672955984,
       "alpha": 0.07332721986394375
@@ -9745,7 +9746,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 7750.0,
-      "buy_price": 3.1,
+      "txn_price": 3.1,
       "cur_price": 3.49,
       "ret": 0.12580645161290316,
       "alpha": 0.10164939474728707
@@ -9762,7 +9763,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 19999.02,
-      "buy_price": 3.18,
+      "txn_price": 3.18,
       "cur_price": 3.49,
       "ret": 0.09748427672955984,
       "alpha": 0.07332721986394375
@@ -9779,7 +9780,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 5154.599999999999,
-      "buy_price": 3.3,
+      "txn_price": 3.3,
       "cur_price": 3.49,
       "ret": 0.05757575757575761,
       "alpha": 0.033418700710141525
@@ -9796,7 +9797,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 97600.0,
-      "buy_price": 48.8,
+      "txn_price": 48.8,
       "cur_price": 50.18,
       "ret": 0.028278688524590256,
       "alpha": 0.0041216316589741675
@@ -9813,7 +9814,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 8913.800000000001,
-      "buy_price": 63.67000000000001,
+      "txn_price": 63.67000000000001,
       "cur_price": 67.96,
       "ret": 0.06737867127375496,
       "alpha": 0.043221614408138875
@@ -9830,7 +9831,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 468000.0,
-      "buy_price": 23.4,
+      "txn_price": 23.4,
       "cur_price": 25.72,
       "ret": 0.09914529914529924,
       "alpha": 0.07498824227968315
@@ -9847,7 +9848,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 490772.10000000003,
-      "buy_price": 23.3701,
+      "txn_price": 23.3701,
       "cur_price": 25.72,
       "ret": 0.10055155947129024,
       "alpha": 0.07639450260567415
@@ -9864,7 +9865,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 409774.8,
-      "buy_price": 24.1044,
+      "txn_price": 24.1044,
       "cur_price": 25.72,
       "ret": 0.06702510744926249,
       "alpha": 0.0428680505836464
@@ -9881,7 +9882,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 454705.89999999997,
-      "buy_price": 22.735294999999997,
+      "txn_price": 22.735294999999997,
       "cur_price": 25.72,
       "ret": 0.13128068054538122,
       "alpha": 0.10712362367976513
@@ -9898,7 +9899,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 43515365.0,
-      "buy_price": 11.900824559004512,
+      "txn_price": 11.900824559004512,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -9915,7 +9916,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 22390.0,
-      "buy_price": 11.195,
+      "txn_price": 11.195,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -9932,7 +9933,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 26120.0,
-      "buy_price": 8.706666666666667,
+      "txn_price": 8.706666666666667,
       "cur_price": 9.42,
       "ret": 0.08192955589586526,
       "alpha": 0.05777249903024917
@@ -9949,7 +9950,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 44400.00000000001,
-      "buy_price": 8.88,
+      "txn_price": 8.88,
       "cur_price": 9.42,
       "ret": 0.060810810810810745,
       "alpha": 0.036653753945194656
@@ -9966,7 +9967,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 60949.00000000001,
-      "buy_price": 8.707,
+      "txn_price": 8.707,
       "cur_price": 9.42,
       "ret": 0.08188813598254274,
       "alpha": 0.057731079116926654
@@ -9983,7 +9984,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 522060.0,
-      "buy_price": 189.84,
+      "txn_price": 189.84,
       "cur_price": 176.03,
       "ret": -0.0727454698693637,
       "alpha": -0.09690252673497979
@@ -10000,7 +10001,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 250021.46,
-      "buy_price": 190.42,
+      "txn_price": 190.42,
       "cur_price": 176.03,
       "ret": -0.07556979308896117,
       "alpha": -0.09972684995457726
@@ -10017,7 +10018,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1813700.0,
-      "buy_price": 181.37,
+      "txn_price": 181.37,
       "cur_price": 176.03,
       "ret": -0.02944257594971611,
       "alpha": -0.0535996328153322
@@ -10034,7 +10035,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 909335.046,
-      "buy_price": 13.420334809173823,
+      "txn_price": 13.420334809173823,
       "cur_price": 13.8,
       "ret": 0.028290292025102692,
       "alpha": 0.0041332351594866035
@@ -10051,7 +10052,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 72577.5,
-      "buy_price": 72.5775,
+      "txn_price": 72.5775,
       "cur_price": 75.79,
       "ret": 0.0442630291757089,
       "alpha": 0.020105972310092812
@@ -10068,7 +10069,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 106819.5,
-      "buy_price": 10.68195,
+      "txn_price": 10.68195,
       "cur_price": 10.51,
       "ret": -0.016097248161618505,
       "alpha": -0.040254305027234594
@@ -10085,7 +10086,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 100377.59999999999,
-      "buy_price": 15.36,
+      "txn_price": 15.36,
       "cur_price": 17.19,
       "ret": 0.11914062500000022,
       "alpha": 0.09498356813438413
@@ -10102,7 +10103,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 352153.0,
-      "buy_price": 57.73,
+      "txn_price": 57.73,
       "cur_price": 63.68,
       "ret": 0.1030659968820371,
       "alpha": 0.07890894001642101
@@ -10119,7 +10120,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 50020.130000000005,
-      "buy_price": 8.669,
+      "txn_price": 8.669,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -10136,7 +10137,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 250411.5,
-      "buy_price": 6.87,
+      "txn_price": 6.87,
       "cur_price": 6.58,
       "ret": -0.042212518195050897,
       "alpha": -0.06636957506066699
@@ -10153,7 +10154,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 50079.848,
-      "buy_price": 6.879099999999999,
+      "txn_price": 6.879099999999999,
       "cur_price": 6.58,
       "ret": -0.04347952493785512,
       "alpha": -0.06763658180347121
@@ -10170,7 +10171,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 50625.0,
-      "buy_price": 6.75,
+      "txn_price": 6.75,
       "cur_price": 6.58,
       "ret": -0.0251851851851852,
       "alpha": -0.04934224205080129
@@ -10187,7 +10188,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 379990.0,
-      "buy_price": 26.0,
+      "txn_price": 26.0,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -10204,7 +10205,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 56891.520000000004,
-      "buy_price": 10.71,
+      "txn_price": 10.71,
       "cur_price": 104.65,
       "ret": 8.771241830065359,
       "alpha": 8.747084773199742
@@ -10221,7 +10222,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 11210.0,
-      "buy_price": 11.21,
+      "txn_price": 11.21,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -10238,7 +10239,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 10575.000000000002,
-      "buy_price": 4.23,
+      "txn_price": 4.23,
       "cur_price": 5.14,
       "ret": 0.2151300236406617,
       "alpha": 0.1909729667750456
@@ -10255,7 +10256,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 1204.86,
-      "buy_price": 14.009999999999998,
+      "txn_price": 14.009999999999998,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -10272,7 +10273,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 107120.0,
-      "buy_price": 26.78,
+      "txn_price": 26.78,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -10289,7 +10290,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 300306.2,
-      "buy_price": 4.28,
+      "txn_price": 4.28,
       "cur_price": 4.26,
       "ret": -0.004672897196261738,
       "alpha": -0.028829954061877827
@@ -10306,7 +10307,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 1499.99743948,
-      "buy_price": 45.8398,
+      "txn_price": 45.8398,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -10323,7 +10324,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 2999.99946294,
-      "buy_price": 45.8398,
+      "txn_price": 45.8398,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -10340,7 +10341,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 315232.0,
-      "buy_price": 63.0464,
+      "txn_price": 63.0464,
       "cur_price": 65.51,
       "ret": 0.039075982133793596,
       "alpha": 0.014918925268177508
@@ -10357,7 +10358,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 80600.0,
-      "buy_price": 62.0,
+      "txn_price": 62.0,
       "cur_price": 65.51,
       "ret": 0.05661290322580648,
       "alpha": 0.03245584636019039
@@ -10374,7 +10375,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 315232.0,
-      "buy_price": 63.0464,
+      "txn_price": 63.0464,
       "cur_price": 65.51,
       "ret": 0.039075982133793596,
       "alpha": 0.014918925268177508
@@ -10391,7 +10392,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 29583.025,
-      "buy_price": 17.939978775015163,
+      "txn_price": 17.939978775015163,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -10408,7 +10409,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 41830.8,
-      "buy_price": 25.229674306393246,
+      "txn_price": 25.229674306393246,
       "cur_price": 38.39,
       "ret": 0.5216209109077521,
       "alpha": 0.497463854042136
@@ -10425,7 +10426,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 62950.0,
-      "buy_price": 12.59,
+      "txn_price": 12.59,
       "cur_price": 11.04,
       "ret": -0.12311358220810176,
       "alpha": -0.14727063907371785
@@ -10442,7 +10443,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 6500.0,
-      "buy_price": 32.5,
+      "txn_price": 32.5,
       "cur_price": 34.78,
       "ret": 0.07015384615384623,
       "alpha": 0.045996789288230144
@@ -10459,7 +10460,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 2909.2799999999997,
-      "buy_price": 33.44,
+      "txn_price": 33.44,
       "cur_price": 34.78,
       "ret": 0.04007177033492826,
       "alpha": 0.01591471346931217
@@ -10476,7 +10477,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 97734.0,
-      "buy_price": 214.8,
+      "txn_price": 214.8,
       "cur_price": 218.25,
       "ret": 0.0160614525139664,
       "alpha": -0.008095604351649688
@@ -10493,7 +10494,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 149737.08,
-      "buy_price": 209.13,
+      "txn_price": 209.13,
       "cur_price": 218.25,
       "ret": 0.043609238272844575,
       "alpha": 0.019452181407228486
@@ -10510,7 +10511,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 498771.02999999997,
-      "buy_price": 207.8212625,
+      "txn_price": 207.8212625,
       "cur_price": 218.25,
       "ret": 0.05018128258170895,
       "alpha": 0.026024225716092864
@@ -10527,7 +10528,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 97952.125,
-      "buy_price": 206.215,
+      "txn_price": 206.215,
       "cur_price": 218.25,
       "ret": 0.058361418907450835,
       "alpha": 0.034204362041834746
@@ -10544,7 +10545,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 501426.45,
-      "buy_price": 16.149,
+      "txn_price": 16.149,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -10561,7 +10562,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 302788.0,
-      "buy_price": 13.547561521252796,
+      "txn_price": 13.547561521252796,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -10578,7 +10579,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 20223.7,
-      "buy_price": 58.45,
+      "txn_price": 58.45,
       "cur_price": 59.69,
       "ret": 0.02121471343028225,
       "alpha": -0.0029423434353338385
@@ -10595,7 +10596,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 12975.900000000001,
-      "buy_price": 58.45000000000001,
+      "txn_price": 58.45000000000001,
       "cur_price": 59.69,
       "ret": 0.02121471343028203,
       "alpha": -0.0029423434353340605
@@ -10612,7 +10613,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 7832.3,
-      "buy_price": 58.45,
+      "txn_price": 58.45,
       "cur_price": 59.69,
       "ret": 0.02121471343028225,
       "alpha": -0.0029423434353338385
@@ -10629,7 +10630,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 487800.0,
-      "buy_price": 4.878,
+      "txn_price": 4.878,
       "cur_price": 4.47,
       "ret": -0.08364083640836417,
       "alpha": -0.10779789327398026
@@ -10646,7 +10647,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 7999995.0,
-      "buy_price": 15.0,
+      "txn_price": 15.0,
       "cur_price": 13.73,
       "ret": -0.08466666666666667,
       "alpha": -0.10882372353228276
@@ -10663,7 +10664,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 45000.0,
-      "buy_price": 15.0,
+      "txn_price": 15.0,
       "cur_price": 13.73,
       "ret": -0.08466666666666667,
       "alpha": -0.10882372353228276
@@ -10680,7 +10681,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 999990.0,
-      "buy_price": 15.0,
+      "txn_price": 15.0,
       "cur_price": 13.73,
       "ret": -0.08466666666666667,
       "alpha": -0.10882372353228276
@@ -10697,7 +10698,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1875000.0,
-      "buy_price": 15.0,
+      "txn_price": 15.0,
       "cur_price": 13.73,
       "ret": -0.08466666666666667,
       "alpha": -0.10882372353228276
@@ -10714,7 +10715,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 105000.0,
-      "buy_price": 15.0,
+      "txn_price": 15.0,
       "cur_price": 13.73,
       "ret": -0.08466666666666667,
       "alpha": -0.10882372353228276
@@ -10731,7 +10732,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 7999995.0,
-      "buy_price": 15.0,
+      "txn_price": 15.0,
       "cur_price": 13.73,
       "ret": -0.08466666666666667,
       "alpha": -0.10882372353228276
@@ -10748,7 +10749,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 501.59999999999997,
-      "buy_price": 20.9,
+      "txn_price": 20.9,
       "cur_price": 21.89,
       "ret": 0.047368421052631726,
       "alpha": 0.023211364187015637
@@ -10765,7 +10766,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 390197.49079999997,
-      "buy_price": 406.0327687825182,
+      "txn_price": 406.0327687825182,
       "cur_price": 421.77,
       "ret": 0.03875852499459498,
       "alpha": 0.01460146812897889
@@ -10782,7 +10783,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 5002.5,
-      "buy_price": 3.335,
+      "txn_price": 3.335,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -10799,7 +10800,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 691900.0,
-      "buy_price": 69.19,
+      "txn_price": 69.19,
       "cur_price": 79.92,
       "ret": 0.15508021390374327,
       "alpha": 0.13092315703812718
@@ -10816,7 +10817,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4100.0,
-      "buy_price": 20.0,
+      "txn_price": 20.0,
       "cur_price": 19.74,
       "ret": -0.013000000000000123,
       "alpha": -0.03715705686561621
@@ -10833,7 +10834,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 161490.0,
-      "buy_price": 8.0745,
+      "txn_price": 8.0745,
       "cur_price": 4.8,
       "ret": -0.4055359464982352,
       "alpha": -0.4296930033638513
@@ -10850,7 +10851,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 248100.0,
-      "buy_price": 16.54,
+      "txn_price": 16.54,
       "cur_price": 20.44,
       "ret": 0.23579201934703753,
       "alpha": 0.21163496248142144
@@ -10867,7 +10868,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 521394.21,
-      "buy_price": 17.69417348220043,
+      "txn_price": 17.69417348220043,
       "cur_price": 20.44,
       "ret": 0.15518252494595197,
       "alpha": 0.13102546808033588
@@ -10884,7 +10885,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 196992.0,
-      "buy_price": 17.28,
+      "txn_price": 17.28,
       "cur_price": 20.44,
       "ret": 0.18287037037037046,
       "alpha": 0.15871331350475437
@@ -10901,7 +10902,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4964.0,
-      "buy_price": 1.46,
+      "txn_price": 1.46,
       "cur_price": 1.14,
       "ret": -0.21917808219178092,
       "alpha": -0.243335139057397
@@ -10918,7 +10919,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 4867.2,
-      "buy_price": 1.248,
+      "txn_price": 1.248,
       "cur_price": 1.14,
       "ret": -0.08653846153846156,
       "alpha": -0.11069551840407765
@@ -10935,7 +10936,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 24087.5,
-      "buy_price": 51.25,
+      "txn_price": 51.25,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -10952,7 +10953,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 15593.999999999998,
-      "buy_price": 25.99,
+      "txn_price": 25.99,
       "cur_price": 28.23,
       "ret": 0.08618699499807625,
       "alpha": 0.06202993813246016
@@ -10969,7 +10970,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 3878.2799999999997,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -10986,7 +10987,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4309.2,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11003,7 +11004,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 3662.8199999999997,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11020,7 +11021,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4237.379999999999,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11037,7 +11038,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 3519.18,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11054,7 +11055,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 3519.18,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11071,7 +11072,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 2154.6,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11088,7 +11089,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 3016.4399999999996,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11105,7 +11106,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 3806.4599999999996,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11122,7 +11123,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4021.9199999999996,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11139,7 +11140,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 2441.8799999999997,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11156,7 +11157,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4237.379999999999,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11173,7 +11174,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 3662.8199999999997,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11190,7 +11191,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 3160.08,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11207,7 +11208,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4740.12,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11224,7 +11225,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 3806.4599999999996,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11241,7 +11242,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4237.379999999999,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11258,7 +11259,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 3950.0999999999995,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11275,7 +11276,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 3734.6399999999994,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11292,7 +11293,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 5386.499999999999,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11309,7 +11310,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 5386.499999999999,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11326,7 +11327,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 3447.3599999999997,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11343,7 +11344,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4093.74,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11360,7 +11361,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 3447.3599999999997,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11377,7 +11378,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4021.9199999999996,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11394,7 +11395,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 3519.18,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11411,7 +11412,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 11491.199999999999,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11428,7 +11429,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4740.12,
-      "buy_price": 71.82,
+      "txn_price": 71.82,
       "cur_price": 436.69,
       "ret": 5.080339738234476,
       "alpha": 5.05618268136886
@@ -11445,7 +11446,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 13870.0,
-      "buy_price": 13.87,
+      "txn_price": 13.87,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -11462,7 +11463,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4937.9,
-      "buy_price": 7.369999999999999,
+      "txn_price": 7.369999999999999,
       "cur_price": 8.43,
       "ret": 0.14382632293080055,
       "alpha": 0.11966926606518447
@@ -11479,7 +11480,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 577500.0,
-      "buy_price": 11.55,
+      "txn_price": 11.55,
       "cur_price": 12.96,
       "ret": 0.12207792207792201,
       "alpha": 0.09792086521230592
@@ -11496,7 +11497,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 171620.0,
-      "buy_price": 85.81,
+      "txn_price": 85.81,
       "cur_price": 77.05,
       "ret": -0.10208600396224221,
       "alpha": -0.1262430608278583
@@ -11513,7 +11514,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 50000.5,
-      "buy_price": 2.75,
+      "txn_price": 2.75,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -11530,7 +11531,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 248780.62550000002,
-      "buy_price": 16.0039,
+      "txn_price": 16.0039,
       "cur_price": 17.91,
       "ret": 0.11910221883415906,
       "alpha": 0.09494516196854297
@@ -11547,7 +11548,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 249768.879,
-      "buy_price": 15.7305,
+      "txn_price": 15.7305,
       "cur_price": 17.91,
       "ret": 0.13855249356345967,
       "alpha": 0.11439543669784358
@@ -11564,7 +11565,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 109340.0,
-      "buy_price": 54.67,
+      "txn_price": 54.67,
       "cur_price": 55.01,
       "ret": 0.00621913297969634,
       "alpha": -0.01793792388591975
@@ -11581,7 +11582,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 24998.399999999998,
-      "buy_price": 2.88,
+      "txn_price": 2.88,
       "cur_price": 2.79,
       "ret": -0.03125,
       "alpha": -0.05540705686561609
@@ -11598,7 +11599,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 24998.399999999998,
-      "buy_price": 2.88,
+      "txn_price": 2.88,
       "cur_price": 2.79,
       "ret": -0.03125,
       "alpha": -0.05540705686561609
@@ -11615,7 +11616,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 768987.5,
-      "buy_price": 6.1519,
+      "txn_price": 6.1519,
       "cur_price": 5.5,
       "ret": -0.10596726214665397,
       "alpha": -0.13012431901227006
@@ -11632,7 +11633,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 9270.0,
-      "buy_price": 0.0618,
+      "txn_price": 0.0618,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -11649,7 +11650,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 153991.6,
-      "buy_price": 10.9994,
+      "txn_price": 10.9994,
       "cur_price": 10.71,
       "ret": -0.026310526028692327,
       "alpha": -0.050467582894308416
@@ -11666,7 +11667,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 200000.7650776,
-      "buy_price": 11.1868,
+      "txn_price": 11.1868,
       "cur_price": 10.71,
       "ret": -0.042621661243608444,
       "alpha": -0.06677871810922453
@@ -11683,7 +11684,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 199194.4154,
-      "buy_price": 11.362410324567907,
+      "txn_price": 11.362410324567907,
       "cur_price": 10.71,
       "ret": -0.05741830350530985,
       "alpha": -0.08157536037092594
@@ -11700,7 +11701,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 501098.5538,
-      "buy_price": 11.3171,
+      "txn_price": 11.3171,
       "cur_price": 10.71,
       "ret": -0.05364448489453999,
       "alpha": -0.07780154176015608
@@ -11717,7 +11718,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 2215000.0,
-      "buy_price": 10.0,
+      "txn_price": 10.0,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -11734,7 +11735,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4744255.45,
-      "buy_price": 9.35,
+      "txn_price": 9.35,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -11751,7 +11752,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 11355.300000000001,
-      "buy_price": 3.7,
+      "txn_price": 3.7,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -11768,7 +11769,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 409225.0,
-      "buy_price": 40.9225,
+      "txn_price": 40.9225,
       "cur_price": 45.06,
       "ret": 0.10110574867126898,
       "alpha": 0.07694869180565289
@@ -11785,7 +11786,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 199780.6,
-      "buy_price": 43.85,
+      "txn_price": 43.85,
       "cur_price": 45.06,
       "ret": 0.027594070695553086,
       "alpha": 0.0034370138299369968
@@ -11802,7 +11803,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 6371500.0,
-      "buy_price": 42.47666666666667,
+      "txn_price": 42.47666666666667,
       "cur_price": 45.06,
       "ret": 0.06081770383740093,
       "alpha": 0.03666064697178484
@@ -11819,7 +11820,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 9702040.0,
-      "buy_price": 41.110338983050845,
+      "txn_price": 41.110338983050845,
       "cur_price": 45.06,
       "ret": 0.09607463997262444,
       "alpha": 0.07191758310700835
@@ -11836,7 +11837,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 103500.0,
-      "buy_price": 41.4,
+      "txn_price": 41.4,
       "cur_price": 45.06,
       "ret": 0.08840579710144936,
       "alpha": 0.06424874023583327
@@ -11853,7 +11854,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 197225.0,
-      "buy_price": 39.445,
+      "txn_price": 39.445,
       "cur_price": 45.06,
       "ret": 0.14235010774496137,
       "alpha": 0.11819305087934528
@@ -11870,7 +11871,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 255921.0,
-      "buy_price": 8.5307,
+      "txn_price": 8.5307,
       "cur_price": 7.37,
       "ret": -0.13606151898437402,
       "alpha": -0.1602185758499901
@@ -11887,7 +11888,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 255921.0,
-      "buy_price": 8.5307,
+      "txn_price": 8.5307,
       "cur_price": 7.37,
       "ret": -0.13606151898437402,
       "alpha": -0.1602185758499901
@@ -11904,7 +11905,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 996192.3500000001,
-      "buy_price": 7.379202592592593,
+      "txn_price": 7.379202592592593,
       "cur_price": 8.81,
       "ret": 0.19389593786782244,
       "alpha": 0.16973888100220635
@@ -11921,7 +11922,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 21760.0,
-      "buy_price": 5.44,
+      "txn_price": 5.44,
       "cur_price": 5.8,
       "ret": 0.06617647058823528,
       "alpha": 0.04201941372261919
@@ -11938,7 +11939,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 15868.5,
-      "buy_price": 21.158,
+      "txn_price": 21.158,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -11955,7 +11956,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 745694.9500000001,
-      "buy_price": 206.05,
+      "txn_price": 206.05,
       "cur_price": 218.41,
       "ret": 0.05998544042708076,
       "alpha": 0.03582838356146467
@@ -11972,7 +11973,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 83200.0,
-      "buy_price": 8.32,
+      "txn_price": 8.32,
       "cur_price": 9.58,
       "ret": 0.1514423076923077,
       "alpha": 0.12728525082669162
@@ -11989,7 +11990,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 469070.00000000006,
-      "buy_price": 67.01,
+      "txn_price": 67.01,
       "cur_price": 72.07,
       "ret": 0.07551111774362007,
       "alpha": 0.05135406087800398
@@ -12006,7 +12007,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 49863.75,
-      "buy_price": 66.485,
+      "txn_price": 66.485,
       "cur_price": 69.59,
       "ret": 0.04670226366849661,
       "alpha": 0.022545206802880524
@@ -12023,7 +12024,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 35730.0,
-      "buy_price": 3.97,
+      "txn_price": 3.97,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -12040,7 +12041,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 249512.427,
-      "buy_price": 8.89500319295103,
+      "txn_price": 8.89500319295103,
       "cur_price": 8.6,
       "ret": -0.033165046324526326,
       "alpha": -0.057322103190142415
@@ -12057,7 +12058,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 450651.5,
-      "buy_price": 72.98,
+      "txn_price": 72.98,
       "cur_price": 82.88,
       "ret": 0.13565360372704838,
       "alpha": 0.11149654686143229
@@ -12074,7 +12075,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 268720.5,
-      "buy_price": 1791.47,
+      "txn_price": 1791.47,
       "cur_price": 1847.16,
       "ret": 0.031086202950649566,
       "alpha": 0.006929146085033477
@@ -12091,7 +12092,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 4060500.0,
-      "buy_price": 81.21,
+      "txn_price": 81.21,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -12108,7 +12109,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 23396.899999999998,
-      "buy_price": 23.3969,
+      "txn_price": 23.3969,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -12125,7 +12126,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 61295.0,
-      "buy_price": 12.259,
+      "txn_price": 12.259,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -12142,7 +12143,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 13632.0,
-      "buy_price": 34.08,
+      "txn_price": 34.08,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -12159,7 +12160,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 995068.16,
-      "buy_price": 173.72,
+      "txn_price": 173.72,
       "cur_price": 126.23,
       "ret": -0.27337094174533727,
       "alpha": -0.29752799861095336
@@ -12176,7 +12177,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 175460.0,
-      "buy_price": 175.46,
+      "txn_price": 175.46,
       "cur_price": 126.23,
       "ret": -0.2805767696341046,
       "alpha": -0.3047338264997207
@@ -12193,7 +12194,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1194621.2664,
-      "buy_price": 172.2349,
+      "txn_price": 172.2349,
       "cur_price": 126.23,
       "ret": -0.26710556339046265,
       "alpha": -0.29126262025607874
@@ -12210,7 +12211,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 882500.0,
-      "buy_price": 7.06,
+      "txn_price": 7.06,
       "cur_price": 9.26,
       "ret": 0.3116147308781869,
       "alpha": 0.28745767401257083
@@ -12227,7 +12228,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 717174.2799999999,
-      "buy_price": 6.357477129281611,
+      "txn_price": 6.357477129281611,
       "cur_price": 9.26,
       "ret": 0.45655262483757797,
       "alpha": 0.4323955679719619
@@ -12244,7 +12245,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 1687972.3,
-      "buy_price": 5.9,
+      "txn_price": 5.9,
       "cur_price": 9.26,
       "ret": 0.5694915254237287,
       "alpha": 0.5453344685581126
@@ -12261,7 +12262,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 486382.44999999995,
-      "buy_price": 5.790474064549924,
+      "txn_price": 5.790474064549924,
       "cur_price": 9.26,
       "ret": 0.5991782187042316,
       "alpha": 0.5750211618386155
@@ -12278,7 +12279,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 702617.55,
-      "buy_price": 6.056891201089627,
+      "txn_price": 6.056891201089627,
       "cur_price": 9.26,
       "ret": 0.5288371034853883,
       "alpha": 0.5046800466197722
@@ -12295,7 +12296,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 750000.0,
-      "buy_price": 6.0,
+      "txn_price": 6.0,
       "cur_price": 9.26,
       "ret": 0.5433333333333332,
       "alpha": 0.5191762764677171
@@ -12312,7 +12313,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 250400.0,
-      "buy_price": 6.26,
+      "txn_price": 6.26,
       "cur_price": 9.26,
       "ret": 0.4792332268370607,
       "alpha": 0.4550761699714446
@@ -12329,7 +12330,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 698200.0,
-      "buy_price": 5.818333333333333,
+      "txn_price": 5.818333333333333,
       "cur_price": 9.26,
       "ret": 0.5915210541392151,
       "alpha": 0.567363997273599
@@ -12346,7 +12347,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1644500.0000000002,
-      "buy_price": 5.98,
+      "txn_price": 5.98,
       "cur_price": 9.26,
       "ret": 0.5484949832775918,
       "alpha": 0.5243379264119757
@@ -12363,7 +12364,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 103314.42,
-      "buy_price": 6.45715125,
+      "txn_price": 6.45715125,
       "cur_price": 9.26,
       "ret": 0.4340689324878366,
       "alpha": 0.40991187562222053
@@ -12380,7 +12381,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 499671.3826,
-      "buy_price": 20.6869,
+      "txn_price": 20.6869,
       "cur_price": 21.99,
       "ret": 0.06299155504207965,
       "alpha": 0.03883449817646356
@@ -12397,7 +12398,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 783772.507,
-      "buy_price": 21.4087,
+      "txn_price": 21.4087,
       "cur_price": 21.99,
       "ret": 0.027152512763502612,
       "alpha": 0.002995455897886523
@@ -12414,7 +12415,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 327074.9075,
-      "buy_price": 20.1587,
+      "txn_price": 20.1587,
       "cur_price": 21.99,
       "ret": 0.09084415165660475,
       "alpha": 0.06668709479098867
@@ -12431,7 +12432,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 264706.25,
-      "buy_price": 21.1765,
+      "txn_price": 21.1765,
       "cur_price": 21.99,
       "ret": 0.038415224423299366,
       "alpha": 0.014258167557683277
@@ -12448,7 +12449,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 510475.0,
-      "buy_price": 37.81296296296296,
+      "txn_price": 37.81296296296296,
       "cur_price": 38.21,
       "ret": 0.010500024486997495,
       "alpha": -0.013657032378618594
@@ -12465,7 +12466,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 48789.0,
-      "buy_price": 36.14,
+      "txn_price": 36.14,
       "cur_price": 38.21,
       "ret": 0.05727725511898174,
       "alpha": 0.03312019825336565
@@ -12482,7 +12483,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 360700.0,
-      "buy_price": 36.07,
+      "txn_price": 36.07,
       "cur_price": 38.21,
       "ret": 0.059329082339894645,
       "alpha": 0.035172025474278557
@@ -12499,7 +12500,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 5269550.0,
-      "buy_price": 36.85,
+      "txn_price": 36.85,
       "cur_price": 38.21,
       "ret": 0.036906377204884544,
       "alpha": 0.012749320339268455
@@ -12516,7 +12517,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 2128735.49,
-      "buy_price": 13.490000000000002,
+      "txn_price": 13.490000000000002,
       "cur_price": 13.46,
       "ret": -0.002223869532987477,
       "alpha": -0.026380926398603566
@@ -12533,7 +12534,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4552360.0,
-      "buy_price": 13.38929411764706,
+      "txn_price": 13.38929411764706,
       "cur_price": 13.46,
       "ret": 0.0052807774429086685,
       "alpha": -0.01887627942270742
@@ -12550,7 +12551,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 3342856.0,
-      "buy_price": 13.155670995670995,
+      "txn_price": 13.155670995670995,
       "cur_price": 13.46,
       "ret": 0.023132913891594553,
       "alpha": -0.0010241429740215358
@@ -12567,7 +12568,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 842820.0,
-      "buy_price": 12.77,
+      "txn_price": 12.77,
       "cur_price": 13.46,
       "ret": 0.05403288958496488,
       "alpha": 0.029875832719348794
@@ -12584,7 +12585,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 129400.0,
-      "buy_price": 12.94,
+      "txn_price": 12.94,
       "cur_price": 13.46,
       "ret": 0.040185471406491535,
       "alpha": 0.016028414540875446
@@ -12601,7 +12602,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 99999.996495,
-      "buy_price": 12.495,
+      "txn_price": 12.495,
       "cur_price": 13.46,
       "ret": 0.07723089235694292,
       "alpha": 0.053073835491326826
@@ -12618,7 +12619,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 103785.6,
-      "buy_price": 12.9732,
+      "txn_price": 12.9732,
       "cur_price": 13.46,
       "ret": 0.03752351000524157,
       "alpha": 0.013366453139625478
@@ -12635,7 +12636,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 99930.5,
-      "buy_price": 12.73,
+      "txn_price": 12.73,
       "cur_price": 13.46,
       "ret": 0.057344854673998524,
       "alpha": 0.033187797808382435
@@ -12652,7 +12653,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 49525.8,
-      "buy_price": 12.57,
+      "txn_price": 12.57,
       "cur_price": 13.46,
       "ret": 0.0708035003977725,
       "alpha": 0.04664644353215641
@@ -12669,7 +12670,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 34076.0,
-      "buy_price": 85.19,
+      "txn_price": 85.19,
       "cur_price": 87.37,
       "ret": 0.025589857964549934,
       "alpha": 0.0014328010989338447
@@ -12686,7 +12687,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 880000.0,
-      "buy_price": 88.0,
+      "txn_price": 88.0,
       "cur_price": 87.37,
       "ret": -0.007159090909090837,
       "alpha": -0.031316147774706926
@@ -12703,7 +12704,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 886670.5,
-      "buy_price": 88.22592039800995,
+      "txn_price": 88.22592039800995,
       "cur_price": 87.37,
       "ret": -0.009701461816988277,
       "alpha": -0.033858518682604366
@@ -12720,7 +12721,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 85500.0,
-      "buy_price": 85.5,
+      "txn_price": 85.5,
       "cur_price": 87.37,
       "ret": 0.02187134502923982,
       "alpha": -0.0022857118363762696
@@ -12737,7 +12738,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 505018.47500000003,
-      "buy_price": 87.8293,
+      "txn_price": 87.8293,
       "cur_price": 87.37,
       "ret": -0.005229462149874853,
       "alpha": -0.02938651901549094
@@ -12754,7 +12755,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1136821.0,
-      "buy_price": 113.6821,
+      "txn_price": 113.6821,
       "cur_price": 87.37,
       "ret": -0.23145332466588842,
       "alpha": -0.2556103815315045
@@ -12771,7 +12772,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 5820.0,
-      "buy_price": 116.4,
+      "txn_price": 116.4,
       "cur_price": 87.37,
       "ret": -0.24939862542955327,
       "alpha": -0.27355568229516936
@@ -12788,7 +12789,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 7365.0,
-      "buy_price": 122.75,
+      "txn_price": 122.75,
       "cur_price": 87.37,
       "ret": -0.28822810590631365,
       "alpha": -0.31238516277192974
@@ -12805,7 +12806,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 2873235.58,
-      "buy_price": 28.7323558,
+      "txn_price": 28.7323558,
       "cur_price": 36.22,
       "ret": 0.26059973126185487,
       "alpha": 0.23644267439623878
@@ -12822,7 +12823,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4688790.35,
-      "buy_price": 23.213327342848796,
+      "txn_price": 23.213327342848796,
       "cur_price": 36.22,
       "ret": 0.5603105692281594,
       "alpha": 0.5361535123625433
@@ -12839,7 +12840,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 23880.0,
-      "buy_price": 19.9,
+      "txn_price": 19.9,
       "cur_price": 36.22,
       "ret": 0.820100502512563,
       "alpha": 0.7959434456469469
@@ -12856,7 +12857,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 24100.0,
-      "buy_price": 19.28,
+      "txn_price": 19.28,
       "cur_price": 36.22,
       "ret": 0.8786307053941906,
       "alpha": 0.8544736485285745
@@ -12873,7 +12874,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 204500.0,
-      "buy_price": 20.45,
+      "txn_price": 20.45,
       "cur_price": 36.22,
       "ret": 0.7711491442542788,
       "alpha": 0.7469920873886627
@@ -12890,7 +12891,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 500266.13200000004,
-      "buy_price": 194.58037028393622,
+      "txn_price": 194.58037028393622,
       "cur_price": 151.78,
       "ret": -0.21996242591933046,
       "alpha": -0.24411948278494655
@@ -12907,7 +12908,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 500178.28300000005,
-      "buy_price": 194.6219,
+      "txn_price": 194.6219,
       "cur_price": 151.78,
       "ret": -0.2201288755273687,
       "alpha": -0.2442859323929848
@@ -12924,7 +12925,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 180000.0,
-      "buy_price": 180.0,
+      "txn_price": 180.0,
       "cur_price": 173.8,
       "ret": -0.03444444444444439,
       "alpha": -0.05860150131006048
@@ -12941,7 +12942,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 179200.0,
-      "buy_price": 179.2,
+      "txn_price": 179.2,
       "cur_price": 173.8,
       "ret": -0.030133928571428492,
       "alpha": -0.05429098543704458
@@ -12958,7 +12959,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 90080.0,
-      "buy_price": 180.16,
+      "txn_price": 180.16,
       "cur_price": 173.8,
       "ret": -0.035301953818827614,
       "alpha": -0.0594590106844437
@@ -12975,7 +12976,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 248.68,
-      "buy_price": 31.085,
+      "txn_price": 31.085,
       "cur_price": 38.3,
       "ret": 0.2321055171304487,
       "alpha": 0.2079484602648326
@@ -12992,7 +12993,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 29953.1,
-      "buy_price": 31.865,
+      "txn_price": 31.865,
       "cur_price": 38.3,
       "ret": 0.20194570845755533,
       "alpha": 0.17778865159193924
@@ -13009,7 +13010,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1009.3600000000001,
-      "buy_price": 32.56,
+      "txn_price": 32.56,
       "cur_price": 38.3,
       "ret": 0.176289926289926,
       "alpha": 0.15213286942430992
@@ -13026,7 +13027,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 7499.95721,
-      "buy_price": 96.71,
+      "txn_price": 96.71,
       "cur_price": 76.64,
       "ret": -0.2075276600144762,
       "alpha": -0.2316847168800923
@@ -13043,7 +13044,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 7499.95721,
-      "buy_price": 96.71,
+      "txn_price": 96.71,
       "cur_price": 76.64,
       "ret": -0.2075276600144762,
       "alpha": -0.2316847168800923
@@ -13060,7 +13061,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 7499.95721,
-      "buy_price": 96.71,
+      "txn_price": 96.71,
       "cur_price": 76.64,
       "ret": -0.2075276600144762,
       "alpha": -0.2316847168800923
@@ -13077,7 +13078,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 7499.95721,
-      "buy_price": 96.71,
+      "txn_price": 96.71,
       "cur_price": 76.64,
       "ret": -0.2075276600144762,
       "alpha": -0.2316847168800923
@@ -13094,7 +13095,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 7499.95721,
-      "buy_price": 96.71,
+      "txn_price": 96.71,
       "cur_price": 76.64,
       "ret": -0.2075276600144762,
       "alpha": -0.2316847168800923
@@ -13111,7 +13112,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 7499.95721,
-      "buy_price": 96.71,
+      "txn_price": 96.71,
       "cur_price": 76.64,
       "ret": -0.2075276600144762,
       "alpha": -0.2316847168800923
@@ -13128,7 +13129,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 5018.31,
-      "buy_price": 12.330000000000002,
+      "txn_price": 12.330000000000002,
       "cur_price": 56.2,
       "ret": 3.5579886455798864,
       "alpha": 3.5338315887142704
@@ -13145,7 +13146,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 29156.12,
-      "buy_price": 8.68,
+      "txn_price": 8.68,
       "cur_price": 56.2,
       "ret": 5.474654377880185,
       "alpha": 5.450497321014569
@@ -13162,7 +13163,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 528.5,
-      "buy_price": 10.57,
+      "txn_price": 10.57,
       "cur_price": 56.2,
       "ret": 4.316934720908231,
       "alpha": 4.292777664042615
@@ -13179,7 +13180,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 503.4055,
-      "buy_price": 7.7447,
+      "txn_price": 7.7447,
       "cur_price": 56.2,
       "ret": 6.256575464511214,
       "alpha": 6.232418407645598
@@ -13196,7 +13197,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 103.0272,
-      "buy_price": 12.8784,
+      "txn_price": 12.8784,
       "cur_price": 56.2,
       "ret": 3.363896136165984,
       "alpha": 3.339739079300368
@@ -13213,7 +13214,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 15042.999999999998,
-      "buy_price": 10.745,
+      "txn_price": 10.745,
       "cur_price": 56.2,
       "ret": 4.23033969288041,
       "alpha": 4.206182636014794
@@ -13230,7 +13231,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 73996.8,
-      "buy_price": 90.24000000000001,
+      "txn_price": 90.24000000000001,
       "cur_price": 82.05,
       "ret": -0.09075797872340441,
       "alpha": -0.1149150355890205
@@ -13247,7 +13248,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 69240.6,
-      "buy_price": 6.924060000000001,
+      "txn_price": 6.924060000000001,
       "cur_price": 8.0,
       "ret": 0.15539148996398056,
       "alpha": 0.13123443309836447
@@ -13264,7 +13265,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 136633.04,
-      "buy_price": 6.831652,
+      "txn_price": 6.831652,
       "cur_price": 8.0,
       "ret": 0.1710198353194805,
       "alpha": 0.14686277845386442
@@ -13281,7 +13282,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 339915.20999999996,
-      "buy_price": 6.7983042,
+      "txn_price": 6.7983042,
       "cur_price": 8.0,
       "ret": 0.1767640524235441,
       "alpha": 0.152606995557928
@@ -13298,7 +13299,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 119865.0,
-      "buy_price": 26.2,
+      "txn_price": 26.2,
       "cur_price": 30.96,
       "ret": 0.1816793893129771,
       "alpha": 0.15752233244736102
@@ -13315,7 +13316,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4723500.0,
-      "buy_price": 94.47,
+      "txn_price": 94.47,
       "cur_price": 90.53,
       "ret": -0.041706361807981374,
       "alpha": -0.06586341867359746
@@ -13332,7 +13333,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4390500.0,
-      "buy_price": 87.81,
+      "txn_price": 87.81,
       "cur_price": 90.53,
       "ret": 0.030975970846145007,
       "alpha": 0.006818913980528918
@@ -13349,7 +13350,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4428000.0,
-      "buy_price": 88.56,
+      "txn_price": 88.56,
       "cur_price": 90.53,
       "ret": 0.022244805781391097,
       "alpha": -0.0019122510842249918
@@ -13366,7 +13367,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 2021585.9999999998,
-      "buy_price": 90.96,
+      "txn_price": 90.96,
       "cur_price": 90.53,
       "ret": -0.0047273526824976875,
       "alpha": -0.028884409548113776
@@ -13383,7 +13384,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4514428.8,
-      "buy_price": 102.89999999999999,
+      "txn_price": 102.89999999999999,
       "cur_price": 90.53,
       "ret": -0.1202137998056364,
       "alpha": -0.1443708566712525
@@ -13400,7 +13401,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 12773530.16,
-      "buy_price": 102.18824128,
+      "txn_price": 102.18824128,
       "cur_price": 90.53,
       "ret": -0.1140859372269255,
       "alpha": -0.1382429940925416
@@ -13417,7 +13418,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 12833087.34,
-      "buy_price": 102.66469872,
+      "txn_price": 102.66469872,
       "cur_price": 90.53,
       "ret": -0.11819738304687644,
       "alpha": -0.14235443991249253
@@ -13434,7 +13435,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 1999556.0100000002,
-      "buy_price": 543.21,
+      "txn_price": 543.21,
       "cur_price": 581.19,
       "ret": 0.06991771138233838,
       "alpha": 0.04576065451672229
@@ -13451,7 +13452,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 3560238.7999999993,
-      "buy_price": 523.5645294117646,
+      "txn_price": 523.5645294117646,
       "cur_price": 581.19,
       "ret": 0.11006374066818236,
       "alpha": 0.08590668380256627
@@ -13468,7 +13469,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 14548.8,
-      "buy_price": 1.796148148148148,
+      "txn_price": 1.796148148148148,
       "cur_price": 1.89,
       "ret": 0.05225173210161671,
       "alpha": 0.02809467523600062
@@ -13485,7 +13486,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 4400.0,
-      "buy_price": 1.76,
+      "txn_price": 1.76,
       "cur_price": 1.89,
       "ret": 0.07386363636363624,
       "alpha": 0.049706579498020154
@@ -13502,7 +13503,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 15027.9687,
-      "buy_price": 1.7961,
+      "txn_price": 1.7961,
       "cur_price": 1.89,
       "ret": 0.05227993986971757,
       "alpha": 0.028122883004101484
@@ -13519,7 +13520,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 6959.6,
-      "buy_price": 1.7399,
+      "txn_price": 1.7399,
       "cur_price": 1.89,
       "ret": 0.08626932582332314,
       "alpha": 0.06211226895770705
@@ -13536,7 +13537,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1000118.1334500001,
-      "buy_price": 42.27,
+      "txn_price": 42.27,
       "cur_price": 45.2,
       "ret": 0.06931629997634259,
       "alpha": 0.0451592431107265
@@ -13553,7 +13554,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 999999.832275,
-      "buy_price": 42.265,
+      "txn_price": 42.265,
       "cur_price": 45.2,
       "ret": 0.06944280137229386,
       "alpha": 0.04528574450667777
@@ -13570,7 +13571,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1060750.0,
-      "buy_price": 42.43,
+      "txn_price": 42.43,
       "cur_price": 45.2,
       "ret": 0.06528399717181244,
       "alpha": 0.04112694030619635
@@ -13587,7 +13588,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 173360.0,
-      "buy_price": 43.34,
+      "txn_price": 43.34,
       "cur_price": 45.2,
       "ret": 0.0429164743885555,
       "alpha": 0.018759417522939414
@@ -13604,7 +13605,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 500002.06428,
-      "buy_price": 42.44,
+      "txn_price": 42.44,
       "cur_price": 45.2,
       "ret": 0.06503298774740829,
       "alpha": 0.0408759308817922
@@ -13621,7 +13622,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 494590.50000000006,
-      "buy_price": 151.02,
+      "txn_price": 151.02,
       "cur_price": 121.36,
       "ret": -0.19639782810223816,
       "alpha": -0.22055488496785425
@@ -13638,7 +13639,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 999977.9999999999,
-      "buy_price": 164.2,
+      "txn_price": 164.2,
       "cur_price": 121.36,
       "ret": -0.26090133982947616,
       "alpha": -0.28505839669509225
@@ -13655,7 +13656,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 0.0,
-      "buy_price": 0.0,
+      "txn_price": 0.0,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -13672,7 +13673,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 0.0,
-      "buy_price": 0.0,
+      "txn_price": 0.0,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -13689,7 +13690,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 0.0,
-      "buy_price": 0.0,
+      "txn_price": 0.0,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -13706,7 +13707,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 1251.0,
-      "buy_price": 12.51,
+      "txn_price": 12.51,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -13723,7 +13724,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1000004.274,
-      "buy_price": 127.9596,
+      "txn_price": 127.9596,
       "cur_price": 101.3,
       "ret": -0.20834388353824174,
       "alpha": -0.23250094040385783
@@ -13740,7 +13741,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 26970.0,
-      "buy_price": 53.94,
+      "txn_price": 53.94,
       "cur_price": 49.56,
       "ret": -0.08120133481646263,
       "alpha": -0.10535839168207872
@@ -13757,7 +13758,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 90337.0,
-      "buy_price": 34.745,
+      "txn_price": 34.745,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -13774,7 +13775,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 152700.0,
-      "buy_price": 50.9,
+      "txn_price": 50.9,
       "cur_price": 53.09,
       "ret": 0.043025540275049234,
       "alpha": 0.018868483409433146
@@ -13791,7 +13792,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 129975.0,
-      "buy_price": 51.99,
+      "txn_price": 51.99,
       "cur_price": 53.09,
       "ret": 0.021157914983650716,
       "alpha": -0.0029991418819653726
@@ -13808,7 +13809,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 19998.0,
-      "buy_price": 4.5,
+      "txn_price": 4.5,
       "cur_price": 4.79,
       "ret": 0.06444444444444453,
       "alpha": 0.04028738757882844
@@ -13825,7 +13826,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 1000.96,
-      "buy_price": 58.88,
+      "txn_price": 58.88,
       "cur_price": 61.45,
       "ret": 0.04364809782608692,
       "alpha": 0.01949104096047083
@@ -13842,7 +13843,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1005006.0,
-      "buy_price": 17.0,
+      "txn_price": 17.0,
       "cur_price": 16.01,
       "ret": -0.05823529411764694,
       "alpha": -0.08239235098326303
@@ -13859,7 +13860,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 21532.5,
-      "buy_price": 14.355,
+      "txn_price": 14.355,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -13876,7 +13877,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 71491.088,
-      "buy_price": 2.777,
+      "txn_price": 2.777,
       "cur_price": 2.53,
       "ret": -0.08894490457328064,
       "alpha": -0.11310196143889673
@@ -13893,7 +13894,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 258638.464,
-      "buy_price": 2.744,
+      "txn_price": 2.744,
       "cur_price": 2.53,
       "ret": -0.07798833819242001,
       "alpha": -0.1021453950580361
@@ -13910,7 +13911,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 3470.562,
-      "buy_price": 20.907,
+      "txn_price": 20.907,
       "cur_price": 25.19,
       "ret": 0.20485961639642225,
       "alpha": 0.18070255953080616
@@ -13927,7 +13928,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 1965.258,
-      "buy_price": 20.907,
+      "txn_price": 20.907,
       "cur_price": 25.19,
       "ret": 0.20485961639642225,
       "alpha": 0.18070255953080616
@@ -13944,7 +13945,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 111562.0,
-      "buy_price": 223.124,
+      "txn_price": 223.124,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -13961,7 +13962,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 55830.0,
-      "buy_price": 223.32,
+      "txn_price": 223.32,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -13978,7 +13979,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 195611.52,
-      "buy_price": 11.744207492795388,
+      "txn_price": 11.744207492795388,
       "cur_price": 11.41,
       "ret": -0.028457219697490155,
       "alpha": -0.052614276563106244
@@ -13995,7 +13996,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 273939.9,
-      "buy_price": 6.538101147998759,
+      "txn_price": 6.538101147998759,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -14012,7 +14013,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 575.0,
-      "buy_price": 2.3,
+      "txn_price": 2.3,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -14029,7 +14030,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 4000.0,
-      "buy_price": 2.0,
+      "txn_price": 2.0,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -14046,7 +14047,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 7620.0,
-      "buy_price": 0.762,
+      "txn_price": 0.762,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -14063,7 +14064,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 71893.8,
-      "buy_price": 0.12000000000000001,
+      "txn_price": 0.12000000000000001,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -14080,7 +14081,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 138226.5,
-      "buy_price": 0.09,
+      "txn_price": 0.09,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -14097,7 +14098,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 671249.9843,
-      "buy_price": 13.226079451056115,
+      "txn_price": 13.226079451056115,
       "cur_price": 13.14,
       "ret": -0.006508311958555613,
       "alpha": -0.0306653688241717
@@ -14114,7 +14115,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 24674.76,
-      "buy_price": 228.47,
+      "txn_price": 228.47,
       "cur_price": 227.95,
       "ret": -0.0022760099794284505,
       "alpha": -0.02643306684504454
@@ -14131,7 +14132,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 101136.8,
-      "buy_price": 3.285155590203339,
+      "txn_price": 3.285155590203339,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -14148,7 +14149,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 39900.0,
-      "buy_price": 7.6,
+      "txn_price": 7.6,
       "cur_price": 6.04,
       "ret": -0.20526315789473681,
       "alpha": -0.2294202147603529
@@ -14165,7 +14166,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 2184.84,
-      "buy_price": 2.89,
+      "txn_price": 2.89,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -14182,7 +14183,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 4105.08,
-      "buy_price": 2.715,
+      "txn_price": 2.715,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -14199,7 +14200,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 6010.0,
-      "buy_price": 6.01,
+      "txn_price": 6.01,
       "cur_price": 5.91,
       "ret": -0.016638935108153063,
       "alpha": -0.04079599197376915
@@ -14216,7 +14217,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 77749.0,
-      "buy_price": 5.9806923076923075,
+      "txn_price": 5.9806923076923075,
       "cur_price": 5.91,
       "ret": -0.011820087718170003,
       "alpha": -0.03597714458378609
@@ -14233,7 +14234,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 523700.0,
-      "buy_price": 104.74,
+      "txn_price": 104.74,
       "cur_price": 107.28,
       "ret": 0.02425052510979575,
       "alpha": 9.346824417966193e-05
@@ -14250,7 +14251,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 20156.510000000002,
-      "buy_price": 14.459476327116214,
+      "txn_price": 14.459476327116214,
       "cur_price": 15.45,
       "ret": 0.06850342643642171,
       "alpha": 0.04434636957080562
@@ -14267,7 +14268,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 24825.0,
-      "buy_price": 0.993,
+      "txn_price": 0.993,
       "cur_price": 1.31,
       "ret": 0.31923464249748235,
       "alpha": 0.29507758563186626
@@ -14284,7 +14285,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 2149.5,
-      "buy_price": 14.33,
+      "txn_price": 14.33,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -14301,7 +14302,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 44624.9,
-      "buy_price": 9.916644444444445,
+      "txn_price": 9.916644444444445,
       "cur_price": 10.28,
       "ret": 0.0366409784671784,
       "alpha": 0.012483921601562309
@@ -14318,7 +14319,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 1564.6799999999998,
-      "buy_price": 10.03,
+      "txn_price": 10.03,
       "cur_price": 10.28,
       "ret": 0.024925224327019047,
       "alpha": 0.0007681674614029577
@@ -14335,7 +14336,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 2507.5,
-      "buy_price": 10.03,
+      "txn_price": 10.03,
       "cur_price": 10.28,
       "ret": 0.024925224327019047,
       "alpha": 0.0007681674614029577
@@ -14352,7 +14353,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 20018205.6,
-      "buy_price": 80.3944,
+      "txn_price": 80.3944,
       "cur_price": 86.36,
       "ret": 0.07420417342501451,
       "alpha": 0.05004711655939842
@@ -14369,7 +14370,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 222313.86000000002,
-      "buy_price": 4.320633186924243,
+      "txn_price": 4.320633186924243,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -14386,7 +14387,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 344400.0,
-      "buy_price": 11.48,
+      "txn_price": 11.48,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -14403,7 +14404,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 15000000.0,
-      "buy_price": 8.0,
+      "txn_price": 8.0,
       "cur_price": 11.89,
       "ret": 0.48625000000000007,
       "alpha": 0.462092943134384
@@ -14420,7 +14421,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 15000000.0,
-      "buy_price": 8.0,
+      "txn_price": 8.0,
       "cur_price": 11.89,
       "ret": 0.48625000000000007,
       "alpha": 0.462092943134384
@@ -14437,7 +14438,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 24230.75,
-      "buy_price": 9.6923,
+      "txn_price": 9.6923,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -14454,7 +14455,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4999999.6195,
-      "buy_price": 0.5855,
+      "txn_price": 0.5855,
       "cur_price": 1.58,
       "ret": 1.6985482493595216,
       "alpha": 1.6743911924939057
@@ -14471,7 +14472,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4590.0199999999995,
-      "buy_price": 2.57,
+      "txn_price": 2.57,
       "cur_price": 2.8,
       "ret": 0.08949416342412442,
       "alpha": 0.06533710655850833
@@ -14488,7 +14489,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 5890.44,
-      "buy_price": 2.57,
+      "txn_price": 2.57,
       "cur_price": 2.8,
       "ret": 0.08949416342412442,
       "alpha": 0.06533710655850833
@@ -14505,7 +14506,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 5471.53,
-      "buy_price": 2.57,
+      "txn_price": 2.57,
       "cur_price": 2.8,
       "ret": 0.08949416342412442,
       "alpha": 0.06533710655850833
@@ -14522,7 +14523,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4065.74,
-      "buy_price": 2.57,
+      "txn_price": 2.57,
       "cur_price": 2.8,
       "ret": 0.08949416342412442,
       "alpha": 0.06533710655850833
@@ -14539,7 +14540,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4700.53,
-      "buy_price": 2.57,
+      "txn_price": 2.57,
       "cur_price": 2.8,
       "ret": 0.08949416342412442,
       "alpha": 0.06533710655850833
@@ -14556,7 +14557,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 4988.46,
-      "buy_price": 23.42,
+      "txn_price": 23.42,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -14573,7 +14574,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 4929.3796134,
-      "buy_price": 305.81175093988463,
+      "txn_price": 305.81175093988463,
       "cur_price": 264.64,
       "ret": -0.1346310297539156,
       "alpha": -0.1587880866195317
@@ -14590,7 +14591,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 64634.0,
-      "buy_price": 6.4634,
+      "txn_price": 6.4634,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -14607,7 +14608,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 421367.1,
-      "buy_price": 18.869999999999997,
+      "txn_price": 18.869999999999997,
       "cur_price": 21.67,
       "ret": 0.14838367779544281,
       "alpha": 0.12422662092982673
@@ -14624,7 +14625,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 434713.77229999995,
-      "buy_price": 5.89538327999132,
+      "txn_price": 5.89538327999132,
       "cur_price": 6.91,
       "ret": 0.1721036057913734,
       "alpha": 0.14794654892575732
@@ -14641,7 +14642,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 7375.05,
-      "buy_price": 0.45,
+      "txn_price": 0.45,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -14658,7 +14659,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 25000.2,
-      "buy_price": 0.45,
+      "txn_price": 0.45,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -14675,7 +14676,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 5092807.95,
-      "buy_price": 19.05,
+      "txn_price": 19.05,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -14692,7 +14693,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 78650.0,
-      "buy_price": 3.9325,
+      "txn_price": 3.9325,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -14709,7 +14710,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 28715.0,
-      "buy_price": 28.715,
+      "txn_price": 28.715,
       "cur_price": 29.68,
       "ret": 0.03360612920076611,
       "alpha": 0.009449072335150022
@@ -14726,7 +14727,7 @@
       "bucket": "MARKET_HOURS",
       "friday_evening": false,
       "dollar": 81600.0,
-      "buy_price": 0.96,
+      "txn_price": 0.96,
       "cur_price": null,
       "ret": null,
       "alpha": null
@@ -14743,7 +14744,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": false,
       "dollar": 6778.0,
-      "buy_price": 16.945,
+      "txn_price": 16.945,
       "cur_price": 17.07,
       "ret": 0.007376807317792888,
       "alpha": -0.0167802495478232
@@ -14760,7 +14761,7 @@
       "bucket": "AFTER_HOURS",
       "friday_evening": true,
       "dollar": 2005740.0000000002,
-      "buy_price": 111.43,
+      "txn_price": 111.43,
       "cur_price": 128.37,
       "ret": 0.1520236920039486,
       "alpha": 0.12786663513833252

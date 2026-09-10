@@ -24,6 +24,13 @@ from edgar import _get, _ticker_index, SEC_WWW
 from recent import EFTS, requests_quote
 from universe_filter import is_excluded
 
+# Transaction code this sweep extracts: "P" (open-market purchase, the
+# default -- preserves the original buy behavior) or "S" (open-market sale).
+# main() overrides it from --code. The acquired/disposed code that must
+# accompany it: P->A (acquired), S->D (disposed).
+KEEP_CODE = "P"
+_AD_FOR = {"P": "A", "S": "D"}
+
 
 def pull_form4_index(start_date: str, end_date: str, limit: int = 8000) -> list[dict]:
     """Walk EDGAR FTS for all Form 4 filings in the window."""
@@ -164,7 +171,7 @@ def parse_form4(xml_text: str) -> dict | None:
             if _strip_ns(tx.tag) != "nonDerivativeTransaction":
                 continue
             code = _value(tx, "transactionCoding", "transactionCode")
-            if code != "P":
+            if code != KEEP_CODE:
                 continue
             try:
                 shares = float(_value(tx, "transactionAmounts", "transactionShares") or 0)
@@ -180,7 +187,7 @@ def parse_form4(xml_text: str) -> dict | None:
                 post = float(_value(tx, "postTransactionAmounts", "sharesOwnedFollowingTransaction") or 0)
             except (TypeError, ValueError):
                 post = 0.0
-            if ad == "A" and shares > 0:  # Acquired (purchase)
+            if ad == _AD_FOR.get(KEEP_CODE, "A") and shares > 0:  # A=buy, D=sell
                 txs.append({
                     "date": date, "shares": shares,
                     "price": price, "dollar": shares * price,
@@ -208,11 +215,21 @@ def main() -> int:
                    help="Days back to sweep Form 4s.")
     p.add_argument("--limit", type=int, default=6000)
     p.add_argument("--sleep", type=float, default=0.15)
-    p.add_argument("--out", default="form4_buys.json")
+    p.add_argument("--code", choices=["P", "S"], default="P",
+                   help="P=open-market buys (default), S=open-market sales.")
+    p.add_argument("--start", default=None, help="YYYY-MM-DD window start (overrides --days).")
+    p.add_argument("--end", default=None, help="YYYY-MM-DD window end (default: today).")
+    p.add_argument("--out", default=None)
     args = p.parse_args()
 
-    end = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    start = (datetime.now(timezone.utc) - timedelta(days=args.days)).strftime("%Y-%m-%d")
+    global KEEP_CODE
+    KEEP_CODE = args.code
+    if args.out is None:
+        args.out = "form4_buys.json" if args.code == "P" else "form4_sells.json"
+
+    end = args.end or datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    start = args.start or (datetime.now(timezone.utc)
+                           - timedelta(days=args.days)).strftime("%Y-%m-%d")
     print(f"Pulling Form 4 index {start} .. {end} (limit {args.limit})",
           file=sys.stderr)
 
@@ -286,7 +303,7 @@ def main() -> int:
             "dollar": tot_dol,
             "shares": tot_sh,
             # --- enriched, additive fields (older files omit these) ---
-            "code": "P",  # parse_form4 keeps only open-market purchases
+            "code": KEEP_CODE,  # P=open-market purchase, S=open-market sale
             "price": round(avg_price, 4),
             "post_shares": post_shares,
             "txn_date": (txns[0].get("date") if txns else None),
