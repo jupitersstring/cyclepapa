@@ -74,20 +74,22 @@ def _get(url):
 
 
 def _concept_latest(cik, tag):
-    """Latest USD value for an xbrl concept, or None (404 = company lacks it)."""
+    """(latest USD value, latest end-date) for an xbrl concept, or (None, None).
+    USD-ONLY — a foreign filer's NOL is reported in its home currency (RMB/JPY);
+    taking the first non-USD unit and treating it as dollars (the old fallback)
+    inflated nol_usd and let RMB-210M shells fire the NOL screen. If the filer
+    has no USD unit for the concept we simply do not have a comparable figure."""
     d, err = _get(BASE_CONCEPT.format(cik=cik, tag=tag))
     if not d:
-        return None
-    units = d.get("units", {})
-    pts = units.get("USD") or (list(units.values())[0] if units else [])
+        return None, None
+    pts = d.get("units", {}).get("USD")
     if not pts:
-        return None
-    # latest by end-date
+        return None, None
     try:
         pts = sorted(pts, key=lambda p: p.get("end", ""))
-        return float(pts[-1].get("val"))
+        return float(pts[-1].get("val")), pts[-1].get("end", "")
     except Exception:
-        return None
+        return None, None
 
 
 def _recent_forms(cik):
@@ -110,7 +112,7 @@ def process(cik):
     hits, err = _recent_forms(cik)
     row = {"cik": cik, "spin_flag": 0, "spin_date": "", "tender_flag": 0,
            "merger_flag": 0, "going_private_flag": 0, "distress_flag": 0,
-           "nol_usd": "", "reorg_flag": 0, "err": err or ""}
+           "nol_usd": "", "reorg_flag": 0, "reorg_date": "", "err": err or ""}
     if hits is not None:
         def any_form(s):
             got = [(f, hits[f]) for f in hits if f in s]
@@ -124,12 +126,19 @@ def process(cik):
         row["going_private_flag"] = int(bool(any_form(GOINGPRIV)))
         row["distress_flag"] = int(bool(any_form(DISTRESS)))
     # NOL + reorg concepts (light; 404 for the vast majority)
-    nol = _concept_latest(cik, "OperatingLossCarryforwards")
+    nol, _ = _concept_latest(cik, "OperatingLossCarryforwards")
     if nol is not None:
         row["nol_usd"] = nol
-    rv = _concept_latest(cik, "ReorganizationValue")
-    if rv is not None:
-        row["reorg_flag"] = 1
+    # Post-reorg fresh-start: flag ONLY when the ReorganizationValue mark is
+    # RECENT. Verdad's post-reorg alpha is in the first ~2 years after
+    # emergence; a 2009 fresh-start value that lingers in company facts (PPC,
+    # LEA) is not a live special situation. Window it like the form flags.
+    rv, rv_end = _concept_latest(cik, "ReorganizationValue")
+    if rv is not None and rv_end:
+        _cut = (pd.Timestamp.now() - pd.Timedelta(days=WINDOW_DAYS)).strftime("%Y-%m-%d")
+        if rv_end >= _cut:
+            row["reorg_flag"] = 1
+            row["reorg_date"] = rv_end
     return row
 
 
@@ -161,7 +170,8 @@ def main():
     header = not os.path.exists(OUT)
     fh = open(OUT, "a")
     cols = ["symbol", "cik", "spin_flag", "spin_date", "tender_flag", "merger_flag",
-            "going_private_flag", "distress_flag", "nol_usd", "reorg_flag", "err"]
+            "going_private_flag", "distress_flag", "nol_usd", "reorg_flag",
+            "reorg_date", "err"]
     if header:
         fh.write(",".join(cols) + "\n")
     start = time.time()

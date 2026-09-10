@@ -377,6 +377,40 @@ def main():
     except Exception as _e:
         print(f'  final gate: 52w refresh skipped ({_e})', file=sys.stderr)
 
+    # ----- exchange-suffix -> src correction -----
+    # src comes from WHICH SCAN FILE a name appeared in, so a line scanned in
+    # the wrong batch lands on the wrong COUNTRY TAB (042420.KQ, a KOSDAQ line,
+    # was tagged src=JP and topped Japanese tabs). Where the suffix reliably
+    # marks the HOME/PRIMARY market, override src from it. DELIBERATELY EXCLUDED:
+    # Frankfurt (.F) and the German regional exchanges (.HM/.MU/.BE/.SG/.DU) and
+    # Xetra (.DE) — those venues host thousands of foreign UNSPONSORED
+    # SECONDARY listings, so mapping them to DE would scatter foreign ghosts
+    # onto the German tab (where within-country dedup can't collapse them). This
+    # map is only home-primary venues with low foreign-secondary contamination.
+    _SUFFIX_SRC = {
+        '.KQ': 'KR', '.KS': 'KR', '.T': 'JP', '.BK': 'TH', '.SI': 'SG',
+        '.HK': 'HK', '.SS': 'CN', '.SZ': 'CN', '.JK': 'ID', '.NS': 'IN',
+        '.BO': 'IN', '.AX': 'AU', '.NZ': 'NZ', '.MI': 'IT', '.TO': 'CA',
+        '.V': 'CA', '.SA': 'BR', '.MC': 'ES', '.ST': 'SE', '.OL': 'NO',
+        '.CO': 'DK', '.HE': 'FI', '.WA': 'PL', '.TA': 'IL', '.KL': 'MY',
+        '.L': 'UK', '.PA': 'FR', '.AS': 'NL', '.SW': 'CH', '.BR': 'BE',
+        '.AT': 'GR', '.VI': 'AT', '.IS': 'TR', '.BD': 'HU', '.PR': 'CZ',
+        '.IC': 'IS', '.LS': 'PT', '.MX': 'MX',
+        # NOTE: .F (Frankfurt) and .DE (Xetra) intentionally OMITTED — they host
+        # thousands of foreign unsponsored secondaries; mapping them to DE would
+        # flood the German tab with foreign ghosts.
+    }
+    if 'src' in df.columns:
+        _sym_s = df['symbol'].astype(str)
+        _sfx = _sym_s.str.extract(r'(\.[A-Z]{1,2})$', expand=False)
+        _should = _sfx.map(_SUFFIX_SRC)
+        _fixmask = _should.notna() & (df['src'].astype(str) != _should)
+        if _fixmask.any():
+            df.loc[_fixmask, 'src'] = _should[_fixmask]
+            print(f'  final gate: corrected src by exchange suffix on '
+                  f'{int(_fixmask.sum())} lines (e.g. .KQ scanned in a JP batch)',
+                  file=sys.stderr)
+
     # Final data-integrity sanitizers (apply_ticker_yf re-fetches raw Yahoo
     # values that bypass the derive-layer guards — these caught 291 impossible
     # FCF yields, 35 zero/neg market caps, 13 absurd div yields on 2026-09-08).

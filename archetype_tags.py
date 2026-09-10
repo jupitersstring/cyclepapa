@@ -326,6 +326,16 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # pure-rate name with no cash generation cannot qualify on growth alone.
     _profit_present = ((s('ebitda_ttm', np.nan) > 0) | (s('op_margin', np.nan) > 0)
                        | (fcf_yield > 0))
+    # (judgment review) a CURRENT roce of 60-150% on an operating company is
+    # almost always a ONE-OFF — an estate/asset sale (James Warren Tea 1.00), a
+    # base-effect print (Dong A Eltek 1.38), or plain corruption below the >1.5
+    # nulling line — unless a multi-year record corroborates it. Archetypes
+    # whose DEFINING signal is high roce must not accept an uncorroborated
+    # one-off print; sub-60% roce and corroborated compounders are untouched.
+    _roce_corroborated = ((s('roic_lindy', np.nan) >= 0.30)
+                          | (s('n_yrs_positive_roic', 0) >= 4))
+    _roce_oneoff_suspect = (_roce_now.notna() & (_roce_now > 0.60)
+                            & ~_roce_corroborated)
     # Genuine-net-cash guard: net_cash_pct and net_debt_ebitda sometimes
     # CONTRADICT (stale/mismatched snapshots) — a name reads "net cash" on one
     # and carries real net debt on the other (TTEC nde -93 artifact, WINE.L
@@ -746,6 +756,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_cheap_per_roiic'] = (
         is_operating &                          # (R1b) exclude financials/REITs
         _roce_now_ok & _not_melting &           # (R4/fresh) current returns not negative + not a cash-burner (KPLT fcf-41%)
+        (roic_lindy >= 0.05) &                  # (G3/topcheck) POSITIVE base ROIC — ROIIC on a negative base (KPLT roic_lindy -0.15) is loss-narrowing noise, not reinvestment
         (cheap_per_roiic > 0) & (cheap_per_roiic <= 1.5) & (roiic_lindy > 0.10)
     ).fillna(False).astype(int)
 
@@ -1010,6 +1021,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_lindy_growth'] = (
         is_operating &                          # (R1b) exclude financials/REITs
         _roce_now_ok &                          # (R4) durable growth is not a current loss-maker (PRCH roe -1.03, FEED roce -449%)
+        (_ncol('revenue_ttm_usd') >= 20e6) &    # (topcheck) real revenue base — this leg lacked the floor its siblings have (QDMI $13.9M)
         (revenue_5y_cagr >= 0.08) &
         (revenue_accel_lindy > 0) &
         (asset_5y_cagr > 0.03) &
@@ -1117,7 +1129,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating &                          # (R1b) exclude financials/REITs
         (roic_inflect_v == 1) &
         (cash_roic_inflect_v == 1) &
-        (rev_yoy > 0)                           # (R5) not a cost-cut blip in a shrinking co
+        (rev_yoy > 0) &                         # (R5) not a cost-cut blip in a shrinking co
+        _not_melting &                          # (topcheck) a real cash inflection, not a one-off-EBITDA print (MSGM)
+        ~(_num('shares_yoy') > 0.15)            # (topcheck) not funded by heavy dilution (MSGM +66% shares); missing => pass
     ).fillna(False).astype(int)
 
     # X — Cash Quality: cash-ROIC running materially ahead of NOPAT-ROIC
@@ -1150,7 +1164,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # dividend must not, on its own, admit a 3%-ROCE cyclical giant
         # (Ericsson/AngloPlat/Subaru). Require a genuine returns floor; the
         # payout is a supporting signal, not a substitute for quality.
-        ((s('roce', np.nan) >= 0.10) | (roic_after_sbc >= 0.15)
+        (((s('roce', np.nan) >= 0.10) & ~_roce_oneoff_suspect)
+         | (roic_after_sbc >= 0.15)
          | (roic_lindy >= 0.12)) &
         ((capital_return_yield >= 0.02) | (dividend_yield >= 0.015) |
          (fcf_yield > 0.02))                                # ...and returns/generates cash
@@ -1401,7 +1416,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # a fat EBITDA margin at 1% ROCE is not GARP quality (Jet2 airline).
         ((_roe >= 0.15) |
          ((ebitda_margin >= 0.18) & (ebitda_margin <= 0.6)
-          & ((s('roce', np.nan) >= 0.10) | (_roe >= 0.10)))) &
+          & (((s('roce', np.nan) >= 0.10) & ~_roce_oneoff_suspect)
+             | (_roe >= 0.10)))) &
         ((emd_c > 0) | (_opmd > 0) | (_roe >= 0.20))    # improving / exceptional
     )
     _roiic_quality = _roiic_true | (_roiic_absent & _roiic_proxy)
@@ -1628,8 +1644,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         r'closed-end|business development|investment trust|\bfund\b|'
         r'asset manage', regex=True)
     df['arch_financials_value'] = (
-        is_financial & ~is_reit & ~_fin_fund_vehicle & (mcap >= 50e6)
-        & (_fpb >= 0.15) & (_fpb < 1.0)         # pb floor: <0.15x book is an ADR/currency artifact (FDCT 0.108), not a real bank
+        is_financial & ~is_reit & ~_fin_fund_vehicle & ~_known_holdco & (mcap >= 50e6)
+        & (_fpb >= 0.15) & (_fpb < 1.0)         # pb floor: <0.15x book is an ADR/currency artifact (FDCT 0.108), not a real bank; ~_known_holdco drops NAV holdcos (Dundee) the industry regex misses
         & (_froe >= 0.10)
         & (((_fpe > 0) & (_fpe <= 15)) | _fpe.isna())
     ).fillna(False).astype(int)
@@ -2261,8 +2277,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (insider_net_flag > 0) &                 # net buyer over the window
         (mcap > 0) & (mcap < 20e9) &
         _not_melting &                           # (tail) a bare low-P/B value leg admitted deep burners (SNES op-242%, AVX op-1323%)
-        (((ev_ebitda_v > 0) & (ev_ebitda_v <= 15.0)) | ((pb > 0) & (pb < _pb_cap_ic)) |
-         (fcf_yield >= 0.03) | cheap_any)        # value-oriented, not a momentum chase
+        # (topcheck) financials/REITs are valued on BOOK ONLY — the EV/EBITDA,
+        # FCF-yield and cheap_any lenses are meaningless for a bank and were
+        # letting >1x-book banks (FXNC 1.48x, PCB 1.19x) bypass the pb<1.0 gate.
+        (((is_financial | is_reit) & (pb > 0) & (pb < 1.0))
+         | (~(is_financial | is_reit)
+            & (((ev_ebitda_v > 0) & (ev_ebitda_v <= 15.0)) | ((pb > 0) & (pb < _pb_cap_ic))
+               | (fcf_yield >= 0.03) | cheap_any)))
     ).fillna(False).astype(int)
 
     # ---------- Cheap-sales scaling-to-profit ----------
@@ -3162,7 +3183,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (_num('revenue_ttm_usd') >= 20e6) &             # a real business, not a nano
         (_bn_gm >= 0.40) &                              # pricing power: fat gross margin
         ~(_bn_gmd < -0.03) &                            # ...not eroding (missing => pass)
-        ((s('roce', np.nan) >= 0.15) | (s('roic_lindy', np.nan) >= 0.15)) &  # toll-road returns
+        (((s('roce', np.nan) >= 0.15) & ~_roce_oneoff_suspect)
+         | (s('roic_lindy', np.nan) >= 0.15)) &  # toll-road returns (no uncorroborated one-off roce)
         (s('op_margin', np.nan) > 0.05) &               # genuinely profitable
         ~(_bn_capint > 0.10)                            # capital-light chokepoint (missing => pass)
     ).fillna(False).astype(int)
@@ -3177,7 +3199,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating &
         ~(n_analysts_v > 5) &                           # low / no coverage (missing => undiscovered => pass)
         (insider >= 0.20) &                             # family / insider control
-        ((s('roce', np.nan) >= 0.15) | (s('roic_lindy', np.nan) >= 0.15)) &  # high ROIC (>15%) = the moat
+        (((s('roce', np.nan) >= 0.15) & ~_roce_oneoff_suspect)
+         | (s('roic_lindy', np.nan) >= 0.15)) &  # high ROIC (>15%) = the moat (no uncorroborated one-off roce)
         ((_num('fcf_ttm') > 0) | (s('n_yrs_positive_fcf', 0) >= 3)) &  # strong / durable FCF
         (s('op_margin', np.nan) > 0) &                  # profitable
         _not_melting &
@@ -3194,7 +3217,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _merger = s('merger_flag', 0); _gopriv = s('going_private_flag', 0)
     _reorg = s('reorg_flag', 0); _nol_usd = _num('nol_usd')
     _ebit_yield = (1.0 / s('ev_ebit', 0)).where(s('ev_ebit', 0) > 0, np.nan)
-    _earn_yield = _num('earnings_yield')
+    # (topcheck) DERIVE the earnings-yield leg from p_e, not the raw
+    # earnings_yield field — the latter is FX-corruptible and was internally
+    # INCONSISTENT with p_e on several event names (SUNB ey 0.19 vs p_e 21.8;
+    # STG ey 0.91; PXLW ey 1.72 while loss-making). 1/p_e (p_e>0) is the
+    # consistent, self-checking cheapness lens.
+    _pe_v = s('p_e', np.nan)
+    _earn_yield = (1.0 / _pe_v).where(_pe_v > 0, np.nan)
     # "Excellent valuation": cheap on ANY of the three yield lenses.
     _excellent_value = ((fcf_yield >= 0.08) | (_earn_yield >= 0.08)
                         | (_ebit_yield >= 0.10))
@@ -3203,6 +3232,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # viable operating business, cheap, not melting.
     df['arch_spinoff'] = (
         (_spin == 1) & is_operating & _not_melting & (mcap > 0)
+        & (s('op_margin', np.nan) > -0.05)      # (topcheck) a viable spun business, not a deep loss-maker
         & _excellent_value
     ).fillna(False).astype(int)
 
@@ -3224,16 +3254,25 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # with a bounded downside, bought cheap so value holds if the deal breaks.
     df['arch_special_situation'] = (
         ((_merger == 1) | (_tender == 1) | (_gopriv == 1)) & (mcap > 0)
+        & _not_melting                          # (topcheck) not a deep loss-maker (PXLW op-106%)
         & _excellent_value
     ).fillna(False).astype(int)
 
     # NOL shell: a large net-operating-loss carryforward relative to market cap
     # (a monetizable tax asset — WMIH/Mr. Cooper), on a survivable balance sheet.
+    # (topcheck) US filers ONLY — the §382 NOL-monetization thesis (WMIH/Mr.
+    # Cooper) is a US-tax mechanic, AND nol_usd is only trustworthy for USD
+    # filers (a foreign filer's NOL is reported in its home currency; the
+    # re-scrape now takes USD-only, but domicile-gating is the belt-and-braces).
+    _us_domicile = ((df.get('country', pd.Series('', index=df.index)).astype(str)
+                     == 'United States')
+                    | (df.get('src', pd.Series('', index=df.index)).astype(str) == 'US'))
     _nol_to_mcap = (_nol_usd / mcap.where(mcap > 0))
     df['arch_nol_shell'] = (
-        is_operating & (mcap > 0)
-        & (_nol_to_mcap >= 0.5)
+        is_operating & (mcap > 0) & _us_domicile
+        & (_nol_to_mcap >= 0.5) & (_nol_to_mcap <= 20.0)   # sane band (a >20x ratio is a currency/mcap artifact)
         & ((net_cash_pct_sane >= 0.10) | _excellent_value | (cash_gt_ev > 0))
+        & (s('op_margin', np.nan) > -0.30)                 # (topcheck) survivable, not a >100%-mcap/yr burner (ONCO/ASTC)
         & _not_melting
     ).fillna(False).astype(int)
 
@@ -3335,11 +3374,36 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                             if _div >= 1.3:
                                 _is_price_ghost.iloc[int(_T['_i'])] = True
                                 break
+    # FX-SECONDARY GHOST: a line on a SECONDARY venue — Frankfurt/German
+    # regionals (.F/.MU/.HM/.BE/.DU/.SG) or a Shanghai/Shenzhen B-share
+    # (900xxx.SS / 200xxx.SZ) — that DUPLICATES a same-name primary listed on a
+    # real home exchange, and carries FX-corrupt ratios (local-currency
+    # fundamentals over a foreign-currency price: B9A.F BioArctic EV/Sales 0.52
+    # vs true 27.7; 900936 B-share fcf 99%). Scrub it ONLY when a same-name
+    # sibling exists on a NON-secondary venue (so a name whose only line we have
+    # IS the secondary is kept). is_otc already removes the US OTC F/Y lines;
+    # this catches the exchange-listed secondaries that reach the ex-OTC books.
+    if 'name' in df.columns:
+        _sym2 = df['symbol'].astype(str)
+        _sfx2 = _sym2.str.extract(r'(\.[A-Z]{1,2})$', expand=False)
+        _is_sec_venue = (_sfx2.isin(['.F', '.MU', '.HM', '.BE', '.DU', '.SG'])
+                         | _sym2.str.match(r'^900\d{3}\.SS$')
+                         | _sym2.str.match(r'^200\d{3}\.SZ$'))
+        _nm2 = (df['name'].fillna('').astype(str).str.lower()
+                .str.replace(r'[^a-z0-9 ]', '', regex=True)
+                .str.replace(r'\b(corp|corporation|inc|incorporated|company|co|'
+                             r'ltd|limited|plc|holdings?|group|sa|ag|nv|the|adr|'
+                             r'ab|se|oyj|asa|spa|nv|bhd)\b', '', regex=True)
+                .str.replace(r'\s+', ' ', regex=True).str.strip())
+        _primary_names = set(_nm2[(~_is_sec_venue) & (_nm2 != '')])
+        _is_fx_secondary = (_is_sec_venue & (_nm2 != '') & _nm2.isin(_primary_names))
+        _is_price_ghost = _is_price_ghost | _is_fx_secondary
     df['is_price_ghost'] = _is_price_ghost.astype(int)
     if _is_price_ghost.any():
         df.loc[_is_price_ghost.values, _scrub_cols] = 0
-        print(f'  scrubbed {int(_is_price_ghost.sum())} price-ghost duplicate '
-              f'lines (wrong-price duplicates of a real listing)', file=sys.stderr)
+        print(f'  scrubbed {int(_is_price_ghost.sum())} price-ghost + FX-secondary '
+              f'duplicate lines (wrong-price / redundant secondary listings)',
+              file=sys.stderr)
 
     # ===== PRE-REVENUE BIOTECH SCRUB (durable/quality archetypes only): a
     # clinical-stage biotech's "5-year durable margin / quality" is a licensing
