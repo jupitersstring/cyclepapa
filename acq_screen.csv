@@ -136,6 +136,7 @@ SDGR,Schrodinger Inc,2020-02-06,US,2017+,9.26,2027-02-06 annular_solar conjSun 0
 MANU,Manchester United PLC,2012-08-09,US,2010-16,9.16,2027-02-06 annular_solar oppSun 0.27
 PFMT,Performant Financial Corp,2012-08-09,US,2010-16,9.16,2027-02-06 annular_solar oppSun 0.27
 R3NK,Renk Group,2024-02-07,XETRA,conf:high,9.09,2027-02-06 annular_solar conjSun 0.39
+THEON,Theon International,2024-02-07,Euronext-AMS,conf:medium,9.09,2027-02-06 annular_solar conjSun 0.39
 CPKI,California Pizza Kitchen Inc,2000-08-02,US,old,8.93,2027-08-02 total_solar conjSun 0.63
 DGEN,Deltagen Inc,2000-08-02,US,old,8.93,2027-08-02 total_solar conjSun 0.63
 EVC,Entravision Communications,2000-08-02,US,old,8.93,2027-08-02 total_solar conjSun 0.63
@@ -308,6 +309,7 @@ ZIM,Zim Integrated Shipping Svcs,2021-01-28,US,2017+,3.15,2027-08-02 total_solar
 DRVN,Driven Brands Holdings Inc,2021-01-15,US,2017+,3.09,2027-07-18 penumbral_lun conjSun 0.30 [Saturn:sq1.1]
 PLTK,Playtika Holding Corp,2021-01-15,US,2017+,3.09,2027-07-18 penumbral_lun conjSun 0.30 [Saturn:sq1.1]
 WLKP,Westlake Chemical Partners LP,2014-07-30,US,2010-16,3.07,2028-01-26 annular_solar oppSun 1.14 [Pluto:opp1.4]
+MUSTI,Musti Group,2020-02-13,Nasdaq-HEL,conf:medium,3.07,2027-08-17 penumbral_lun conjSun 0.01
 DBTX,Decibel Therapeutics Inc,2021-02-12,US,2017+,3.03,2027-08-17 penumbral_lun conjSun 0.02
 NEXI,NexImmune Inc,2021-02-12,US,2017+,3.03,2027-08-17 penumbral_lun conjSun 0.02
 TLIS,Talis Biomedical Corp,2021-02-12,US,2017+,3.03,2027-08-17 penumbral_lun conjSun 0.02
@@ -337,6 +339,7 @@ VITL,Vital Farms Inc,2020-07-31,US,2017+,2.76,2027-08-02 total_solar conjSun 1.1
 CROX,Crocs Inc,2006-02-07,US,old,2.66,2027-02-06 annular_solar conjSun 1.05
 DRTX,Durata Therapeutics Inc,2012-07-18,US,2010-16,2.66,2027-07-18 penumbral_lun oppSun 0.36 [Saturn:sq1.1]
 FIVE,Five Below Inc,2012-07-18,US,2010-16,2.66,2027-07-18 penumbral_lun oppSun 0.36 [Saturn:sq1.1]
+FERGR,Ferrari Group,2025-01-16,Euronext-AMS,conf:low,2.63,2027-07-18 penumbral_lun conjSun 0.48 [Saturn:sq1.0]
 OTWO,O2Wireless Solutions Inc,2000-08-16,US,old,2.61,2027-08-17 penumbral_lun oppSun 0.10
 PEOP,PeoplePC Inc,2000-08-16,US,old,2.61,2027-08-17 penumbral_lun oppSun 0.10
 HIBE,Hibernia Homestead Bancorp Inc,2009-01-28,US,old,2.61,2027-08-02 total_solar oppSun 1.11
@@ -389,6 +392,7 @@ INOV,Inovalon Holdings Inc,2015-02-12,US,2010-16,1.99,2027-08-17 penumbral_lun c
 NVTA,Invitae Corp,2015-02-12,US,2010-16,1.99,2027-08-17 penumbral_lun conjSun 0.53
 AFYA,Afya Ltd,2019-07-19,US,2017+,1.99,2027-07-18 penumbral_lun oppSun 0.65 [Saturn:sq0.8]
 MDLA,Medallia Inc,2019-07-19,US,2017+,1.99,2027-07-18 penumbral_lun oppSun 0.65 [Saturn:sq0.8]
+DIAG,Diagnostyka,2025-02-07,WSE,conf:low,1.97,2027-02-06 annular_solar conjSun 1.16
 CPPL,Columbia Pipeline Partners LP,2015-02-05,US,2010-16,1.93,2027-02-06 annular_solar conjSun 1.17
 DEA,Easterly Government Properties,2015-02-05,US,2010-16,1.93,2027-02-06 annular_solar conjSun 1.17
 MMYT,MakeMyTrip Ltd,2010-08-11,US,2010-16,1.84,2027-02-06 annular_solar oppSun 1.15

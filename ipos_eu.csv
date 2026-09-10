@@ -48,3 +48,92 @@ ZAB,Zabka Group,2024-10-17,WSE,Europe/Warsaw,52.23,21.01,9,0,medium
 EQT,EQT AB,2019-09-24,Nasdaq-STO,Europe/Stockholm,59.33,18.06,9,0,high
 VOLCAR,Volvo Cars,2021-10-29,Nasdaq-STO,Europe/Stockholm,59.33,18.06,9,0,high
 H2O,Hidroelectrica,2023-07-12,BVB,Europe/Bucharest,44.43,26.10,10,0,medium
+GLEN,Glencore,2011-05-19,LSE,Europe/London,51.515,-0.099,8,0,high
+OCDO,Ocado,2010-07-21,LSE,Europe/London,51.515,-0.099,8,0,high
+RMG,Royal Mail,2013-10-11,LSE,Europe/London,51.515,-0.099,8,0,high
+JE,Just Eat,2014-04-03,LSE,Europe/London,51.515,-0.099,8,0,high
+AUTO,Auto Trader,2015-03-19,LSE,Europe/London,51.515,-0.099,8,0,high
+BOO,Boohoo,2014-03-14,AIM,Europe/London,51.515,-0.099,8,0,medium
+FEVR,Fevertree Drinks,2014-11-07,AIM,Europe/London,51.515,-0.099,8,0,medium
+ZPLA,Zoopla,2014-06-18,LSE,Europe/London,51.515,-0.099,8,0,medium
+SSPG,SSP Group,2014-07-09,LSE,Europe/London,51.515,-0.099,8,0,medium
+VM,Virgin Money,2014-11-13,LSE,Europe/London,51.515,-0.099,8,0,medium
+SOPH,Sophos,2015-06-26,LSE,Europe/London,51.515,-0.099,8,0,medium
+WPY,Worldpay,2015-10-13,LSE,Europe/London,51.515,-0.099,8,0,high
+MTRO,Metro Bank,2016-03-07,LSE,Europe/London,51.515,-0.099,8,0,medium
+CMCX,CMC Markets,2016-02-05,LSE,Europe/London,51.515,-0.099,8,0,medium
+CTEC,ConvaTec,2016-10-26,LSE,Europe/London,51.515,-0.099,8,0,medium
+AML,Aston Martin Lagonda,2018-10-03,LSE,Europe/London,51.515,-0.099,8,0,high
+FCH,Funding Circle,2018-09-28,LSE,Europe/London,51.515,-0.099,8,0,medium
+TRN,Trainline,2019-06-21,LSE,Europe/London,51.515,-0.099,8,0,high
+AAF,Airtel Africa,2019-06-28,LSE,Europe/London,51.515,-0.099,8,0,medium
+WOSG,Watches of Switzerland,2019-05-30,LSE,Europe/London,51.515,-0.099,8,0,medium
+NETW,Network International,2019-04-10,LSE,Europe/London,51.515,-0.099,8,0,medium
+VIC,Victorian Plumbing,2021-06-22,AIM,Europe/London,51.515,-0.099,8,0,medium
+MADE,Made.com,2021-06-16,LSE,Europe/London,51.515,-0.099,8,0,medium
+AIRA,Air Astana GDR,2024-02-09,LSE,Europe/London,51.515,-0.099,8,0,medium
+ABN,ABN AMRO,2015-11-20,Euronext-AMS,Europe/Amsterdam,52.37,4.90,9,0,high
+BFIT,Basic-Fit,2016-06-10,Euronext-AMS,Europe/Amsterdam,52.37,4.90,9,0,medium
+TKWY,Takeaway.com,2016-09-30,Euronext-AMS,Europe/Amsterdam,52.37,4.90,9,0,high
+JDEP,JDE Peets,2020-05-29,Euronext-AMS,Europe/Amsterdam,52.37,4.90,9,0,high
+ALLFG,Allfunds,2021-04-23,Euronext-AMS,Europe/Amsterdam,52.37,4.90,9,0,medium
+MAJ,Majorel,2021-09-24,Euronext-AMS,Europe/Amsterdam,52.37,4.90,9,0,medium
+AZRN,Azerion,2022-02-02,Euronext-AMS,Europe/Amsterdam,52.37,4.90,9,0,low
+THEON,Theon International,2024-02-07,Euronext-AMS,Europe/Amsterdam,52.37,4.90,9,0,medium
+FERGR,Ferrari Group,2025-01-16,Euronext-AMS,Europe/Amsterdam,52.37,4.90,9,0,low
+WLN,Worldline,2014-06-27,Euronext-PAR,Europe/Paris,48.87,2.34,9,0,medium
+AMUN,Amundi,2015-11-12,Euronext-PAR,Europe/Paris,48.87,2.34,9,0,medium
+FDJ,La Francaise des Jeux,2019-11-21,Euronext-PAR,Europe/Paris,48.87,2.34,9,0,high
+VRLA,Verallia,2019-10-03,Euronext-PAR,Europe/Paris,48.87,2.34,9,0,medium
+EXN,Exclusive Networks,2021-09-23,Euronext-PAR,Europe/Paris,48.87,2.34,9,0,medium
+DEEZR,Deezer,2022-07-05,Euronext-PAR,Europe/Paris,48.87,2.34,9,0,low
+PLX,Pluxee,2024-02-01,Euronext-PAR,Europe/Paris,48.87,2.34,9,0,medium
+AZE,Azelis,2021-09-17,Euronext-BRU,Europe/Brussels,50.85,4.35,9,0,medium
+AUTOST,Autostore,2021-10-20,Oslo-Bors,Europe/Oslo,59.91,10.75,9,0,high
+KAHOT,Kahoot,2021-03-23,Oslo-Bors,Europe/Oslo,59.91,10.75,9,0,medium
+VAR,Var Energi,2022-02-16,Oslo-Bors,Europe/Oslo,59.91,10.75,9,0,medium
+STOR,Storskogen,2021-10-06,Nasdaq-STO,Europe/Stockholm,59.33,18.06,9,0,medium
+TRUE,Truecaller,2021-10-08,Nasdaq-STO,Europe/Stockholm,59.33,18.06,9,0,high
+ASKER,Asker Healthcare,2025-03-27,Nasdaq-STO,Europe/Stockholm,59.33,18.06,9,0,medium
+MUSTI,Musti Group,2020-02-13,Nasdaq-HEL,Europe/Helsinki,60.17,24.94,10,0,medium
+NETC,Netcompany,2018-06-07,Nasdaq-CPH,Europe/Copenhagen,55.68,12.57,9,0,medium
+SVITZR,Svitzer,2024-04-30,Nasdaq-CPH,Europe/Copenhagen,55.68,12.57,9,0,medium
+ZAL,Zalando,2014-10-01,XETRA,Europe/Berlin,50.11,8.68,9,0,high
+RKET,Rocket Internet,2014-10-02,XETRA,Europe/Berlin,50.11,8.68,9,0,high
+G24,Scout24,2015-10-01,XETRA,Europe/Berlin,50.11,8.68,9,0,medium
+COV,Covestro,2015-10-06,XETRA,Europe/Berlin,50.11,8.68,9,0,high
+UN01,Uniper,2016-09-12,XETRA,Europe/Berlin,50.11,8.68,9,0,medium
+IGY,Innogy,2016-10-07,XETRA,Europe/Berlin,50.11,8.68,9,0,high
+SAE,Shop Apotheke,2016-10-13,XETRA,Europe/Berlin,50.11,8.68,9,0,medium
+DHER,Delivery Hero,2017-06-30,XETRA,Europe/Berlin,50.11,8.68,9,0,high
+HFG,HelloFresh,2017-11-02,XETRA,Europe/Berlin,50.11,8.68,9,0,high
+DWS,DWS Group,2018-03-23,XETRA,Europe/Berlin,50.11,8.68,9,0,medium
+SHL,Siemens Healthineers,2018-03-16,XETRA,Europe/Berlin,50.11,8.68,9,0,high
+KBX,Knorr-Bremse,2018-10-12,XETRA,Europe/Berlin,50.11,8.68,9,0,high
+TMV,Teamviewer,2019-09-25,XETRA,Europe/Berlin,50.11,8.68,9,0,high
+8TRA,Traton,2019-06-28,XETRA,Europe/Berlin,50.11,8.68,9,0,medium
+SUSE,Suse,2021-05-19,XETRA,Europe/Berlin,50.11,8.68,9,0,medium
+SYAB,Synlab,2021-04-30,XETRA,Europe/Berlin,50.11,8.68,9,0,medium
+YOU-DE,About You,2021-06-16,XETRA,Europe/Berlin,50.11,8.68,9,0,medium
+VTSC,Vitesco,2021-09-16,XETRA,Europe/Berlin,50.11,8.68,9,0,medium
+OBK,Ottobock,2025-10-09,XETRA,Europe/Berlin,50.11,8.68,9,0,low
+VACN,VAT Group,2016-04-14,SIX,Europe/Zurich,47.37,8.54,9,0,medium
+LAND,Landis+Gyr,2017-07-21,SIX,Europe/Zurich,47.37,8.54,9,0,medium
+SRAIL,Stadler Rail,2019-04-12,SIX,Europe/Zurich,47.37,8.54,9,0,medium
+SWON,SoftwareONE,2019-10-25,SIX,Europe/Zurich,47.37,8.54,9,0,medium
+PPGN,PolyPeptide,2021-04-29,SIX,Europe/Zurich,47.37,8.54,9,0,medium
+ACLN,Accelleron,2022-10-03,SIX,Europe/Zurich,47.37,8.54,9,0,medium
+SUNN,Sunrise,2024-11-15,SIX,Europe/Zurich,47.37,8.54,9,0,medium
+MONC,Moncler,2013-12-16,Borsa-Italiana,Europe/Rome,45.46,9.19,9,0,high
+BC,Brunello Cucinelli,2012-04-27,Borsa-Italiana,Europe/Rome,45.46,9.19,9,0,medium
+TGYM,Technogym,2016-05-03,Borsa-Italiana,Europe/Rome,45.46,9.19,9,0,medium
+PIRC,Pirelli,2017-10-04,Borsa-Italiana,Europe/Rome,45.46,9.19,9,0,medium
+NEXI,Nexi,2019-04-16,Borsa-Italiana,Europe/Rome,45.46,9.19,9,0,high
+IVG,Iveco Group,2022-01-03,Borsa-Italiana,Europe/Rome,45.46,9.19,9,0,medium
+EGLA,EuroGroup Laminations,2023-02-10,Borsa-Italiana,Europe/Rome,45.46,9.19,9,0,low
+AENA,Aena,2015-02-11,BME,Europe/Madrid,40.42,-3.70,9,0,high
+CLNX,Cellnex,2015-05-07,BME,Europe/Madrid,40.42,-3.70,9,0,high
+LDA,Linea Directa,2021-04-29,BME,Europe/Madrid,40.42,-3.70,9,0,low
+CIRSA,Cirsa,2025-07-09,BME,Europe/Madrid,40.42,-3.70,9,0,low
+PCO-PL,Pepco Group,2021-05-26,WSE,Europe/Warsaw,52.23,21.01,9,0,medium
+DIAG,Diagnostyka,2025-02-07,WSE,Europe/Warsaw,52.23,21.01,9,0,low
