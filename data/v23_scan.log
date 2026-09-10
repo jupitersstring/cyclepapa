@@ -1,0 +1,33 @@
+Building eclipse DB...
+Universe: 12086
+  1000/12086  7s
+  2000/12086  14s
+  3000/12086  21s
+  4000/12086  28s
+  5000/12086  35s
+  6000/12086  41s
+  7000/12086  48s
+  8000/12086  55s
+  9000/12086  62s
+  10000/12086  69s
+  11000/12086  76s
+  12000/12086  82s
+Scan done: 83s, kept 3571
+Sector distribution:
+  UNK         11651
+  TECH           92
+  FINANCE        69
+  RETAIL         65
+  INDUSTRIAL     49
+  HEALTH         35
+  REIT           27
+  MEDIA          24
+  ENERGY         23
+  UTILS          13
+  METALS         12
+  BIOPHARM       12
+  EV              6
+  CRYPTO          4
+  CANNABIS        3
+  MATERIALS       1
+Exported 3571 -> /home/user/cyclepapa/data/universe_sectoraware_v23.csv

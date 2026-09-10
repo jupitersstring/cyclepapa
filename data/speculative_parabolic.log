@@ -1,0 +1,154 @@
+Loading event-study keys...
+Looking up IPO dates...
+Scanning speculative universe...
+  BBAI no IPO date — skipping
+  SOUN no IPO date — skipping
+  RKLB no IPO date — skipping
+  UEC no IPO date — skipping
+  UUUU no IPO date — skipping
+  DNN no IPO date — skipping
+  LEU no IPO date — skipping
+  URG no IPO date — skipping
+  URA no IPO date — skipping
+  URNM no IPO date — skipping
+  CCJ no IPO date — skipping
+  SLOW no IPO date — skipping
+  TLN no IPO date — skipping
+  NPWR no IPO date — skipping
+  ASTS no IPO date — skipping
+  KTOS no IPO date — skipping
+  IRDM no IPO date — skipping
+  ACHR no IPO date — skipping
+  JOBY no IPO date — skipping
+  BNTX no IPO date — skipping
+  ARCT no IPO date — skipping
+  RCEL no IPO date — skipping
+  CRDF no IPO date — skipping
+  TGTX no IPO date — skipping
+  LCID no IPO date — skipping
+  XPEV no IPO date — skipping
+  LI no IPO date — skipping
+  MARA no IPO date — skipping
+  RIOT no IPO date — skipping
+  CLSK no IPO date — skipping
+  HUT no IPO date — skipping
+  WULF no IPO date — skipping
+  BTBT no IPO date — skipping
+  NVTS no IPO date — skipping
+  HIMS no IPO date — skipping
+  SOFI no IPO date — skipping
+  STEM no IPO date — skipping
+
+============================================================================================================================================================================================================================
+OFF-SP500 PARABOLIC R/R CANDIDATES — composite convexity score
+  Score combines: event-study delta forward + AVIS-DNA + GC + macro × sector + Neptune/Pluto activation + multi-aspect + age bonus - elevated penalty
+============================================================================================================================================================================================================================
+ Rk Tkr   ModSec        Age  Now   Pk    Δ PkMo      Mac AVI  GC  NpSn  NpMo  PlSn #tt  pr12     $    CVX  Name
+  1 SATS  SATELLITES      0 +182 +273 + 91 2027-03  1.85   ★      0.0° 29.3° 32.5°   2 +490% 123.9   +783  EchoStar
+  2 DUOL  TECH            5 +96 +266 +171 2027-01  1.50         32.8°  0.6°  0.3°   2  -68% 102.6   +741  Duolingo Inc
+  3 SMR   NUCLEAR         4 +118 +218 +100 2026-09  2.23       ★ 40.2° 19.1°  7.7°   2  -14%  11.7   +703  NuScale Power
+  4 AVAV  DRONES         19 +54 +196 +142 2026-10  1.85       ★ 29.2° 15.2°  3.3°   1  +46% 210.1   +690  AeroVironment Inc
+  5 ALAB  AI_QUANTUM      2 +177 +173 + -4 2026-04  1.89   ★   ★  2.5° 36.6° 35.0°   2 +253% 192.0   +612  Astera Labs
+  6 CEG   NUCLEAR        20 +76 +153 + 78 2026-10  2.23       ★ 39.9°  8.7° 17.6°   1  +44% 277.7   +600  Constellation Ener
+  7 RDDT  FRESH           2 +145 +234 + 89 2026-11  1.10   ★   ★  1.5° 41.5° 34.0°   1  +67% 156.8   +583  Reddit
+  8 OKLO  NUCLEAR         2 +92 +132 + 41 2026-12  2.23       ★ 42.6° 10.2° 15.0°   1 +207%  62.6   +572  Oklo
+  9 LUNR  SPACE          36 +58 +214 +156 2027-03  1.85         41.4° 28.9° 16.1°   3 +295%  27.8   +570  Lunar
+ 10 NXE   URANIUM        24 +133 +196 + 63 2026-04  2.32       ★  0.6° 43.1° 33.1°   2 +172%  12.2   +552  Nuveen Arizona Div
+ 11 IONQ  AI_QUANTUM      5 +101 +237 +136 2026-08  1.89          5.6° 34.2° 26.8°   3  +93%  46.3   +543  IonQ
+ 12 INGM  TECH            2 +53 +145 + 92 2026-07  1.50       ★ 28.7° 31.8°  3.8°   1  +94%  30.9   +529  Ingram Micro Holdi
+ 13 ASPI  URANIUM         2 +103 +154 + 51 2026-04  2.32       ★ 36.6° 40.6° 20.9°   3   -7%   5.1   +516  ASP Isotopes
+ 14 KVYO  TECH            3 +76 +161 + 85 2027-03  1.50       ★  5.6° 32.8° 38.1°   1  -18%  20.3   +514  Klaviyo, Inc.
+ 15 VST   NUCLEAR        30 +124 +197 + 73 2026-09  2.23       ★ 11.7° 26.1° 44.2°   1  +45% 154.9   +511  Vistra Corp.
+ 16 QBTS  AI_QUANTUM      4 +167 +201 + 34 2026-08  1.89       ★ 43.1°  5.5° 10.6°   1 +226%  20.4   +485  D-Wave Quantum
+ 17 MELI  TECH           29 +60 +231 +171 2026-09  1.50         19.0° 27.6° 38.5°   1  -10% 1854.2   +475  Melita Internation
+ 18 TEM   AI_QUANTUM      2 +209 +209 + -0 2026-04  1.89       ★  9.0°  4.8° 41.4°   2  +35%  55.2   +464  Tempus AI
+ 19 CRWV  AI_QUANTUM      1 +175 +193 + 18 2027-04  1.89       ★  5.2°  6.8° 27.3°   2 +225% 115.2   +450  CoreWeave
+ 20 ANET  AI_QUANTUM     31 +131 +247 +116 2027-02  1.89         38.7° 19.8°  6.3°   3 +155% 172.9   +425  Arista Networks
+ 21 PLTR  AI_QUANTUM      6 +106 +228 +122 2026-08  1.89          4.9°  9.1° 27.6°   3  +61% 146.0   +404  Palantir Technolog
+ 22 ARM   AI_QUANTUM      3 +52 +100 + 48 2026-12  1.89       ★ 11.5° 16.6° 43.9°   1  +81% 175.5   +393  Arm Holdings
+ 23 NNE   NUCLEAR         2 +108 +135 + 27 2027-04  2.23       ★ 44.5° 38.3° 13.0°   1  +28%  23.8   +389  Nano Nuclear
+ 24 RBRK  CYBERSEC        2 +187 +223 + 36 2027-04  1.25       ★ 32.9° 38.8°  0.4°   2   -9%  54.0   +389  Rubrik, Inc.
+ 25 ROOT  FINANCE         6 +52 +207 +155 2026-10  1.05         32.6°  0.1°  0.2°   2  -54%  53.9   +389  Root Inc
+ 26 FSLR  CLEAN          20 +67 +153 + 86 2026-11  1.30       ★ 38.9°  3.0° 18.6°   3  +52% 186.6   +387  First Solar
+ 27 HOOD  FINANCE         5 +188 +307 +119 2026-04  1.05         33.7° 12.0°  1.2°   3 +117%  86.4   +382  Robinhood Markets
+ 28 SMCI  AI_QUANTUM     19 +189 +197 +  8 2027-04  1.89       ★  5.5° 39.5° 26.9°   2   -4%  28.4   +371  Super Micro Comput
+ 29 SNOW  TECH           12 +326 +336 + 10 2026-04  1.50         38.7° 41.3°  6.2°   2  +10% 150.8   +358  Intrawest Resorts 
+ 30 SEDG  CLEAN          11 +179 +274 + 94 2026-08  1.30          2.6°  5.8° 29.9°   3 +235%  40.6   +348  SolarEdge Technolo
+ 31 MSTR  CRYPTO         28 +138 +254 +116 2026-04  1.10       ★ 13.5°  8.5° 44.1°   0  -48% 164.0   +337  MicroStrategy Inc
+ 32 APP   AI_QUANTUM     32 +143 +207 + 63 2027-04  1.89         42.4° 35.8° 15.2°   3 +107% 473.2   +337  AppLovin
+ 33 AI    AI_QUANTUM      6 +111 +200 + 90 2026-09  1.89         15.0°  5.6° 42.5°   2  -52%   9.2   +324  C3.ai
+ 34 SE    TECH           30 +157 +190 + 33 2026-12  1.50       ★ 14.7° 23.4° 42.8°   2  -25%  86.8   +303  Sterling Commerce
+ 35 RIVN  EV              5 +71 +146 + 75 2026-04  1.15         44.6° 33.7° 12.9°   2  +54%  17.1   +300  Rivian Automotive 
+ 36 NBIS  FRESH           2 +124 +188 + 65 2026-05  1.10       ★ 25.7°  7.8°  6.8°   0 +656% 156.6   +285  Nebius Group
+ 37 CRH   FRESH           1 +62 +87 + 25 2026-06  1.10       ★  2.0° 26.3° 34.5°   3  +42% 117.4   +280  CRH plc
+ 38 ABOS  BIOTECH         5 +211 +255 + 44 2026-04  1.15          7.0°  3.8° 25.5°   2 +158%   2.7   +267  Acumen Pharmaceuti
+ 39 EDIT  BIOTECH        33 +97 +155 + 58 2027-03  1.15          0.9° 44.7° 33.3°   2 +148%   3.3   +262  RGB Computer & Vid
+ 40 NIO   EV             35 +58 +146 + 88 2026-10  1.15          6.8° 33.3° 39.3°   1  +79%   6.4   +259  Nuveen Insured Mun
+
+========================================================================================================================
+TOP 5 PER MACRO-FAVORED SECTOR
+========================================================================================================================
+
+  AI_QUANTUM (macro 1.89×):
+    ALAB   Age 2  Score +177→+173 (+ -4)  Peak 2026-04  AVIS:True   GC:True   NepSun: 2.5°  pr12: +253%  Conv:  +612  (Astera Labs)
+    IONQ   Age 5  Score +101→+237 (+136)  Peak 2026-08  AVIS:False  GC:False  NepSun: 5.6°  pr12:  +93%  Conv:  +543  (IonQ)
+    QBTS   Age 4  Score +167→+201 (+ 34)  Peak 2026-08  AVIS:False  GC:True   NepSun:43.1°  pr12: +226%  Conv:  +485  (D-Wave Quantum)
+    TEM    Age 2  Score +209→+209 (+ -0)  Peak 2026-04  AVIS:False  GC:True   NepSun: 9.0°  pr12:  +35%  Conv:  +464  (Tempus AI)
+    CRWV   Age 1  Score +175→+193 (+ 18)  Peak 2027-04  AVIS:False  GC:True   NepSun: 5.2°  pr12: +225%  Conv:  +450  (CoreWeave)
+
+  URANIUM (macro 2.32×):
+    NXE    Age24  Score +133→+196 (+ 63)  Peak 2026-04  AVIS:False  GC:True   NepSun: 0.6°  pr12: +172%  Conv:  +552  (Nuveen Arizona Dividend)
+    ASPI   Age 2  Score +103→+154 (+ 51)  Peak 2026-04  AVIS:False  GC:True   NepSun:36.6°  pr12:   -7%  Conv:  +516  (ASP Isotopes)
+
+  NUCLEAR (macro 2.23×):
+    SMR    Age 4  Score +118→+218 (+100)  Peak 2026-09  AVIS:False  GC:True   NepSun:40.2°  pr12:  -14%  Conv:  +703  (NuScale Power)
+    CEG    Age20  Score  +76→+153 (+ 78)  Peak 2026-10  AVIS:False  GC:True   NepSun:39.9°  pr12:  +44%  Conv:  +600  (Constellation Energy)
+    OKLO   Age 2  Score  +92→+132 (+ 41)  Peak 2026-12  AVIS:False  GC:True   NepSun:42.6°  pr12: +207%  Conv:  +572  (Oklo)
+    VST    Age30  Score +124→+197 (+ 73)  Peak 2026-09  AVIS:False  GC:True   NepSun:11.7°  pr12:  +45%  Conv:  +511  (Vistra Corp.)
+    NNE    Age 2  Score +108→+135 (+ 27)  Peak 2027-04  AVIS:False  GC:True   NepSun:44.5°  pr12:  +28%  Conv:  +389  (Nano Nuclear)
+
+  SPACE (macro 1.85×):
+    LUNR   Age36  Score  +58→+214 (+156)  Peak 2027-03  AVIS:False  GC:False  NepSun:41.4°  pr12: +295%  Conv:  +570  (Lunar)
+
+  DRONES (macro 1.85×):
+    AVAV   Age19  Score  +54→+196 (+142)  Peak 2026-10  AVIS:False  GC:True   NepSun:29.2°  pr12:  +46%  Conv:  +690  (AeroVironment Inc)
+
+  CYBERSEC (macro 1.25×):
+    RBRK   Age 2  Score +187→+223 (+ 36)  Peak 2027-04  AVIS:False  GC:True   NepSun:32.9°  pr12:   -9%  Conv:  +389  (Rubrik, Inc.)
+    S      Age 5  Score +214→+228 (+ 14)  Peak 2026-12  AVIS:False  GC:False  NepSun: 6.0°  pr12:  -11%  Conv:  +247  (SentinelOne Inc)
+
+  CLEAN (macro 1.30×):
+    FSLR   Age20  Score  +67→+153 (+ 86)  Peak 2026-11  AVIS:False  GC:True   NepSun:38.9°  pr12:  +52%  Conv:  +387  (First Solar)
+    SEDG   Age11  Score +179→+274 (+ 94)  Peak 2026-08  AVIS:False  GC:False  NepSun: 2.6°  pr12: +235%  Conv:  +348  (SolarEdge Technologies Inc)
+    ENPH   Age14  Score +184→+227 (+ 43)  Peak 2027-04  AVIS:False  GC:False  NepSun: 6.3°  pr12:  -35%  Conv:  +226  (Enphase Energy Inc)
+    BE     Age 8  Score +162→+185 (+ 23)  Peak 2026-12  AVIS:False  GC:False  NepSun:29.6°  pr12:+1249%  Conv:  +206  (Bloom Energy Corp)
+    NOVA   Age27  Score +201→+214 (+ 13)  Peak 2026-09  AVIS:False  GC:False  NepSun:37.8°  pr12:  n/a  Conv:  +201  (NovaMed Eyecare Inc)
+
+  TECH (macro 1.50×):
+    DUOL   Age 5  Score  +96→+266 (+171)  Peak 2027-01  AVIS:False  GC:False  NepSun:32.8°  pr12:  -68%  Conv:  +741  (Duolingo Inc)
+    INGM   Age 2  Score  +53→+145 (+ 92)  Peak 2026-07  AVIS:False  GC:True   NepSun:28.7°  pr12:  +94%  Conv:  +529  (Ingram Micro Holding Corp)
+    KVYO   Age 3  Score  +76→+161 (+ 85)  Peak 2027-03  AVIS:False  GC:True   NepSun: 5.6°  pr12:  -18%  Conv:  +514  (Klaviyo, Inc.)
+    MELI   Age29  Score  +60→+231 (+171)  Peak 2026-09  AVIS:False  GC:False  NepSun:19.0°  pr12:  -10%  Conv:  +475  (Melita International Corp)
+    SNOW   Age12  Score +326→+336 (+ 10)  Peak 2026-04  AVIS:False  GC:False  NepSun:38.7°  pr12:  +10%  Conv:  +358  (Intrawest Resorts Holdings)
+
+  BIOTECH (macro 1.15×):
+    ABOS   Age 5  Score +211→+255 (+ 44)  Peak 2026-04  AVIS:False  GC:False  NepSun: 7.0°  pr12: +158%  Conv:  +267  (Acumen Pharmaceuticals Inc)
+    EDIT   Age33  Score  +97→+155 (+ 58)  Peak 2027-03  AVIS:False  GC:False  NepSun: 0.9°  pr12: +148%  Conv:  +262  (RGB Computer & Video)
+    VKTX   Age11  Score  +70→+152 (+ 82)  Peak 2026-06  AVIS:False  GC:False  NepSun:36.0°  pr12:  +42%  Conv:  +252  (Viking Therapeutics Inc)
+    NTLA   Age10  Score +127→+224 (+ 97)  Peak 2027-04  AVIS:False  GC:False  NepSun:43.5°  pr12:  +93%  Conv:  +219  (Intellia Therapeutics Inc)
+    CRSP   Age10  Score +107→+208 (+101)  Peak 2026-06  AVIS:False  GC:False  NepSun:23.7°  pr12:  +47%  Conv:  +208  (CRISPR Therapeutics AG)
+
+  EV (macro 1.15×):
+    RIVN   Age 5  Score  +71→+146 (+ 75)  Peak 2026-04  AVIS:False  GC:False  NepSun:44.6°  pr12:  +54%  Conv:  +300  (Rivian Automotive Inc)
+    NIO    Age35  Score  +58→+146 (+ 88)  Peak 2026-10  AVIS:False  GC:False  NepSun: 6.8°  pr12:  +79%  Conv:  +259  (Nuveen Insured Municipal Fund)
+
+  CRYPTO (macro 1.10×):
+    MSTR   Age28  Score +138→+254 (+116)  Peak 2026-04  AVIS:False  GC:True   NepSun:13.5°  pr12:  -48%  Conv:  +337  (MicroStrategy Inc)
+    COIN   Age 5  Score +104→+135 (+ 31)  Peak 2026-11  AVIS:False  GC:False  NepSun:21.9°  pr12:  +12%  Conv:  +139  (Coinbase)
+
+  MEME (macro 0.75×):
+    BBBY   Age34  Score  +70→+211 (+141)  Peak 2026-09  AVIS:False  GC:False  NepSun:18.8°  pr12:  +51%  Conv:  +211  (Bed Bath & Beyond)
+    AMC    Age35  Score +111→+204 (+ 92)  Peak 2026-09  AVIS:False  GC:False  NepSun:29.2°  pr12:  -38%  Conv:  +180  (Agricultural Minerals LP)
+    GME    Age24  Score +117→+243 (+127)  Peak 2026-09  AVIS:False  GC:False  NepSun:39.3°  pr12:   -9%  Conv:  +161  (GameStop Corp)
+
+Exported -> data/speculative_parabolic.csv

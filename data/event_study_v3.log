@@ -1,0 +1,75 @@
+Loading winners + controls...
+Panel: 42 stocks (19 W, 23 C)
+Precomputing planet grid 1990-2026...
+Running event study...
+  34s, 253090 activations across 384 keys
+
+========================================================================================================================
+WINNERS vs CONTROLS event-study delta (12mo) — keys with n_w>=10 and n_c>=10
+========================================================================================================================
+Transit   Nat   Asp          nW   nC |   W12mo   C12mo       Δ
+Neptune   MC    sq_90        13   39 | +103.1%   +2.9% +100.2pp
+Pluto     Moon  qnt_72       20   36 |  +59.2%   +4.7%  +54.4pp
+Uranus    Sun   gart_77      24   43 |  +56.7%   +3.8%  +52.8pp
+Neptune   Sun   sxt_60       14   43 |  +55.2%   +6.5%  +48.7pp
+Pluto     MC    butt_98      25   13 |  +31.0%  -14.5%  +45.5pp
+Neptune   ASC   gart_77      22   35 |  +42.7%   -2.7%  +45.4pp
+Uranus    ASC   bat_41       18   50 |  +59.2%  +14.5%  +44.7pp
+Neptune   MC    gart_77      17   36 |  +45.7%   +1.9%  +43.9pp
+Uranus    Sun   sq_90        26   41 |  +46.1%   +4.8%  +41.4pp
+Neptune   Moon  sq_90        11   29 |  +43.1%   +3.2%  +40.0pp
+Uranus    Sun   qnt_72       25   48 |  +48.8%   +9.4%  +39.3pp
+Neptune   MC    qnt_72       23   40 |  +48.4%   +9.4%  +38.9pp
+Uranus    Sun   bat_41       32   47 |  +40.5%   +1.7%  +38.8pp
+Neptune   ASC   qnt_72       22   30 |  +36.5%   -0.1%  +36.6pp
+Uranus    ASC   qnt_72       30   49 |  +32.6%   -2.8%  +35.4pp
+Uranus    Moon  butt_98      22   43 |  +39.1%   +3.8%  +35.3pp
+Pluto     Sun   butt_98      18   29 |  +28.2%   -6.2%  +34.4pp
+Pluto     ASC   biq_144      21   19 |  +41.1%   +6.8%  +34.3pp
+Neptune   MC    bat_41       21   36 |  +32.2%   -2.0%  +34.2pp
+Saturn    ASC   butt_98      67  103 |  +34.7%   +1.7%  +33.0pp
+Neptune   Sun   gart_77      23   28 |  +29.0%   -3.7%  +32.7pp
+Pluto     MC    tri_120      27   21 |  +31.0%   -0.6%  +31.6pp
+Neptune   Sun   sept_51      12   40 |  +50.9%  +20.1%  +30.8pp
+Neptune   Sun   bat_41       15   40 |  +32.3%   +1.6%  +30.7pp
+Saturn    ASC   sq_90        63   95 |  +33.9%   +3.2%  +30.7pp
+Pluto     Sun   sxt_60       20   35 |  +34.4%   +3.9%  +30.5pp
+Uranus    Moon  opp_180      13   38 |  +33.1%   +2.9%  +30.2pp
+Saturn    Moon  sq_90        56  101 |  +32.1%   +2.1%  +30.0pp
+Pluto     MC    sq_90        24   16 |  +24.7%   -3.3%  +28.1pp
+Pluto     Moon  gart_77      23   36 |  +40.6%  +13.5%  +27.1pp
+Uranus    Moon  sxt_60       30   44 |  +40.3%  +13.5%  +26.9pp
+Pluto     MC    gart_77      14   22 |  +37.9%  +11.2%  +26.7pp
+Uranus    Sun   phi_137      33   38 |  +29.3%   +2.7%  +26.6pp
+Saturn    ASC   phi_137      67  103 |  +30.6%   +4.6%  +26.1pp
+Uranus    MC    conj_0       14   17 |  +35.7%  +11.0%  +24.7pp
+Saturn    MC    phi_137      59   96 |  +31.3%   +6.7%  +24.6pp
+Saturn    ASC   sxt_60       55   85 |  +25.8%   +1.9%  +23.9pp
+Uranus    MC    bat_41       18   42 |  +20.0%   -3.8%  +23.8pp
+Saturn    MC    sept_51      55  101 |  +33.8%  +10.4%  +23.4pp
+Saturn    Sun   phi_137      62  106 |  +25.6%   +2.2%  +23.4pp
+
+  Most NEGATIVE delta (winners *underperform* controls on this aspect):
+Pluto     MC    bat_41       10   43 |  -22.3%   +6.7%  -28.9pp
+Pluto     Sun   bat_41       17   35 |   +4.9%  +25.9%  -20.9pp
+Neptune   Sun   sq_90        21   21 |   -2.7%  +17.3%  -20.0pp
+Neptune   ASC   sept_51      16   22 |  -10.7%   +7.5%  -18.2pp
+Neptune   MC    opp_180      15   13 |   +6.5%  +21.4%  -14.9pp
+Neptune   MC    tri_120      16   22 |  +15.7%  +28.9%  -13.2pp
+Saturn    MC    qnt_72       63   92 |   -5.7%   +6.7%  -12.4pp
+Pluto     ASC   conj_0       14   14 |   +4.9%  +17.0%  -12.1pp
+Saturn    MC    gart_77      60  102 |   +4.8%  +15.7%  -11.0pp
+Uranus    MC    sq_90        22   54 |   -2.1%   +8.8%  -10.9pp
+Saturn    ASC   conj_0       26   51 |   +4.9%  +14.9%  -10.0pp
+Pluto     ASC   bat_41       18   39 |   -0.6%   +9.4%  -10.0pp
+Neptune   Sun   biq_144      14   21 |   -0.8%   +8.1%   -9.0pp
+Pluto     Moon  bat_41       11   29 |   -1.8%   +5.9%   -7.7pp
+Neptune   MC    sxt_60       23   38 |   -6.8%   +0.6%   -7.4pp
+Saturn    Moon  conj_0       28   50 |   +0.8%   +8.2%   -7.4pp
+Neptune   ASC   sxt_60       20   22 |  +12.3%  +19.7%   -7.4pp
+Saturn    Sun   conj_0       24   39 |   +6.0%  +13.2%   -7.2pp
+Uranus    Sun   butt_98      24   44 |   +9.1%  +15.3%   -6.3pp
+Saturn    ASC   gart_77      61   93 |   +4.1%  +10.2%   -6.1pp
+
+Saved 384 key statistics to data/event_study_keys.pkl
+  These will be used in the today-active scan on full SP500

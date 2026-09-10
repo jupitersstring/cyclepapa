@@ -1,0 +1,100 @@
+Loaded 152 cases
+Baseline pool: 456
+
+========================================================================================================================
+PLANET-PAIR × HARMONIC-ASPECT activation rates (% within 3° at any phase)
+  Showing pairs with peak-bot lift OR vs-baseline lift > 4pp
+========================================================================================================================
+
+  TOP 50 by max lift over baseline:
+  Aspect                 Pair                     BOT   MID  PEAK  BASE MaxLift   B-P
+  Septile_51.4           tPlu-nNeptu            32.2% 29.6% 30.3% 15.4%  +16.9pp  -2.0
+  Triple_decile_108      tUra-nPluto            23.0% 23.7% 19.7%  7.5%  +16.2pp  -3.3
+  Septile_51.4           tUra-nNeptu            25.0% 21.1% 20.4%  8.8%  +16.2pp  -4.6
+  0.886 (Bat/Shark_D)    tSat-nNeptu             7.2%  7.2% 14.5%  4.4%  +10.1pp  +7.2
+  Septile_51.4           tNep-nSatur            10.5% 10.5% 14.5%  5.3%   +9.2pp  +3.9
+  1.272 (Butterfly_D)    tSat-nUranu             9.2%  9.9% 11.2%  2.6%   +8.6pp  +2.0
+  Novile_40              tSat-nNeptu             6.6%  7.2% 12.5%  4.2%   +8.3pp  +5.9
+  0.786 (Gartley_D)      tMoo-nPluto             1.3%  1.3% 10.5%  2.6%   +7.9pp  +9.2
+  Septile_51.4           tJup-nNeptu             9.9%  8.6%  5.9%  2.4%   +7.5pp  -3.9
+  Septile_51.4           tNep-nUranu            17.1% 16.4% 15.8% 10.1%   +7.0pp  -1.3
+  1.618 (Crab_D / Phi)   tJup-nPluto             3.3%  7.2%  9.2%  2.6%   +6.6pp  +5.9
+  Septile_51.4           tUra-nMoon              8.6%  4.6%  3.3%  2.2%   +6.4pp  -5.3
+  Triple_decile_108      tUra-nSatur            10.5%  5.9%  6.6%  4.6%   +5.9pp  -3.9
+  1.618 (Crab_D / Phi)   tSat-nASC               5.3%  9.2%  4.6%  3.5%   +5.7pp  -0.7
+  1.618 (Crab_D / Phi)   tVen-nASC               2.0%  3.3%  7.2%  1.5%   +5.7pp  +5.3
+  Quintile_72            tMoo-nSatur             1.3%  3.3%  7.2%  1.8%   +5.5pp  +5.9
+  Novile_40              tVen-nNeptu             2.0%  3.9%  8.6%  3.3%   +5.3pp  +6.6
+  0.886 (Bat/Shark_D)    tPlu-nNeptu             7.9%  7.2%  3.3% 12.9%   -5.0pp  -4.6
+  0.786 (Gartley_D)      tMer-nMoon              7.2%  1.3%  3.9%  2.2%   +5.0pp  -3.3
+  1.272 (Butterfly_D)    tVen-nSatur             6.6%  8.6%  5.3%  3.5%   +5.0pp  -1.3
+  1.272 (Butterfly_D)    tMar-nSun               2.6%  4.6%  7.2%  2.2%   +5.0pp  +4.6
+  1.618 (Crab_D / Phi)   tMar-nPluto             7.2%  3.9%  6.6%  2.2%   +5.0pp  -0.7
+  0.886 (Bat/Shark_D)    tMer-nPluto             9.2%  1.3%  5.3%  4.4%   +4.8pp  -3.9
+  0.786 (Gartley_D)      tJup-nUranu             1.3%  7.2%  6.6%  2.4%   +4.8pp  +5.3
+  0.886 (Bat/Shark_D)    tSat-nMercu             5.9%  4.6%  7.9%  3.1%   +4.8pp  +2.0
+  1.272 (Butterfly_D)    tMer-nPluto             4.6%  7.2%  2.6%  2.4%   +4.8pp  -2.0
+  1.618 (Crab_D / Phi)   tSat-nSun               2.0%  3.9%  7.9%  3.1%   +4.8pp  +5.9
+  Quintile_72            tJup-nUranu             2.0%  7.9%  6.6%  3.1%   +4.8pp  +4.6
+  Novile_40              tVen-nMC                4.6%  5.9%  1.3%  1.3%   +4.6pp  -3.3
+  0.786 (Gartley_D)      tVen-nNeptu             7.2%  0.7%  3.3%  2.6%   +4.6pp  -3.9
+  0.886 (Bat/Shark_D)    tVen-nNeptu             3.3%  4.6%  8.6%  3.9%   +4.6pp  +5.3
+  1.272 (Butterfly_D)    tSun-nMoon              8.6%  5.9%  3.9%  3.9%   +4.6pp  -4.6
+  1.272 (Butterfly_D)    tMar-nSatur             2.0%  3.3%  6.6%  2.0%   +4.6pp  +4.6
+  1.272 (Butterfly_D)    tUra-nMoon              7.2%  3.3%  4.6%  2.6%   +4.6pp  -2.6
+  Biquintile_144         tMoo-nMars              3.9%  6.6%  2.6%  2.0%   +4.6pp  -1.3
+  Biquintile_144         tUra-nSatur             7.2%  4.6%  6.6%  2.6%   +4.6pp  -0.7
+  Septile_51.4           tJup-nMoon              6.6%  3.3%  4.6%  2.0%   +4.6pp  -2.0
+  Septile_51.4           tSat-nJupit             5.3%  7.2%  7.9%  3.3%   +4.6pp  +2.6
+  Septile_51.4           tSat-nNeptu             7.9%  7.2%  4.6%  3.3%   +4.6pp  -3.3
+  Triple_decile_108      tMoo-nSatur             1.3%  6.6%  5.9%  2.0%   +4.6pp  +4.6
+  Triple_decile_108      tVen-nPluto             8.6%  3.9%  3.3%  3.9%   +4.6pp  -5.3
+  0.886 (Bat/Shark_D)    tVen-nMC                5.3%  5.9%  2.0%  1.5%   +4.4pp  -3.3
+  0.786 (Gartley_D)      tVen-nJupit             5.3%  7.2%  5.3%  2.9%   +4.4pp  +0.0
+  1.272 (Butterfly_D)    tVen-nMars              4.6%  5.3%  6.6%  2.2%   +4.4pp  +2.0
+  1.618 (Crab_D / Phi)   tJup-nVenus             7.2%  6.6%  5.9%  2.9%   +4.4pp  -1.3
+  Biquintile_144         tVen-nJupit             7.2%  5.3%  0.0%  2.9%   +4.4pp  -7.2
+  Biquintile_144         tVen-nPluto             3.9%  6.6%  1.3%  2.2%   +4.4pp  -2.6
+  Triple_decile_108      tMar-nNeptu             2.6%  7.2%  3.3%  2.9%   +4.4pp  +0.7
+  Triple_decile_108      tNep-nSun               6.6%  5.3%  4.6%  2.2%   +4.4pp  -2.0
+  Novile_40              tNep-nUranu            11.8% 12.5% 16.4% 12.1%   +4.4pp  +4.6
+
+========================================================================================================================
+  AGGREGATE — for each harmonic aspect, count pairs with >+5pp lift
+========================================================================================================================
+  0.786 (Gartley_D)      ( 77.04°)  POSITIVE pairs: 2   NEGATIVE: 0
+  0.886 (Bat/Shark_D)    ( 41.04°)  POSITIVE pairs: 1   NEGATIVE: 1
+  1.272 (Butterfly_D)    ( 97.92°)  POSITIVE pairs: 3   NEGATIVE: 0
+  1.618 (Crab_D / Phi)   (137.50°)  POSITIVE pairs: 4   NEGATIVE: 0
+  Quintile_72            ( 72.00°)  POSITIVE pairs: 1   NEGATIVE: 0
+  Septile_51.4           ( 51.43°)  POSITIVE pairs: 6   NEGATIVE: 0
+  Novile_40              ( 40.00°)  POSITIVE pairs: 2   NEGATIVE: 0
+  Triple_decile_108      (108.00°)  POSITIVE pairs: 2   NEGATIVE: 0
+
+========================================================================================================================
+  TRANSIT-TRANSIT harmonics — pure planetary cycle timing
+  (Asks: are transit Mars-Jup, Venus-Sun, Saturn-Pluto etc. at phi-aspect on event days?)
+========================================================================================================================
+  Aspect                 Pair                     BOT   MID  PEAK  BASE MaxLift
+  0.786 (Gartley_D)      Mar-Sat                 3.9%  8.6%  2.0%  3.3%   +5.3pp
+  0.786 (Gartley_D)      Mer-Jup                11.2%  5.3%  0.0%  4.8%   +6.4pp
+  0.786 (Gartley_D)      Jup-Ura                 1.3%  2.6% 12.5%  2.4%  +10.1pp
+  0.886 (Bat/Shark_D)    Ven-Mar                 9.9%  2.6%  1.3%  4.6%   +5.3pp
+  0.886 (Bat/Shark_D)    Jup-Sat                15.1%  1.3%  5.3%  7.9%   +7.2pp
+  0.886 (Bat/Shark_D)    Jup-Ura                 7.9%  1.3%  1.3%  2.6%   +5.3pp
+  0.886 (Bat/Shark_D)    Sat-Plu                 2.0% 12.5% 12.5%  3.7%   +8.8pp
+  0.886 (Bat/Shark_D)    Ura-Nep                 7.9%  3.9%  5.9% 18.9%  -11.0pp
+  0.886 (Bat/Shark_D)    Sat-Nep                 3.3%  9.9% 24.3%  3.9%  +20.4pp
+  1.272 (Butterfly_D)    Mar-Jup                 3.9% 10.5% 15.1%  2.9%  +12.3pp
+  1.272 (Butterfly_D)    Mer-Mar                 1.3%  4.6% 15.8%  4.6%  +11.2pp
+  1.272 (Butterfly_D)    Sun-Jup                10.5%  0.7%  0.0%  2.9%   +7.7pp
+  1.272 (Butterfly_D)    Sat-Nep                 0.0%  2.0%  7.2%  1.1%   +6.1pp
+  1.272 (Butterfly_D)    Mar-Plu                 9.9%  9.2%  5.3%  3.5%   +6.4pp
+  Quintile_72            Jup-Ura                 2.6%  8.6%  8.6%  1.3%   +7.2pp
+  Biquintile_144         Sun-Mar                 6.6%  6.6%  0.7%  0.7%   +5.9pp
+  Septile_51.4           Mar-Jup                 2.6%  7.2%  6.6%  0.4%   +6.8pp
+  Septile_51.4           Ven-Mar                 3.9%  6.6% 11.8%  2.9%   +9.0pp
+  Septile_51.4           Ura-Nep                36.2% 34.9% 27.0% 21.1%  +15.1pp
+  Septile_51.4           Sat-Nep                18.4% 17.8%  3.9%  3.9%  +14.5pp
+  Novile_40              Jup-Sat                13.8%  0.0%  2.0%  5.7%   +8.1pp
+  Novile_40              Sat-Plu                 1.3% 13.8% 13.8%  3.7%  +10.1pp

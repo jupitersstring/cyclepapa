@@ -1,0 +1,99 @@
+Loading panel + finding explosive inflections (6mo +100%)...
+  370 pre-inflection windows (3mo + 6mo)
+  104 baseline windows
+  185 unique inflection events
+  Inflections per ticker:
+    NVDA   18
+    WDC    16
+    NFLX   15
+    INCY   15
+    AMZN   11
+    BIIB   11
+    TSLA   10
+    BLDR   10
+    AAPL    9
+    DECK    9
+    GME     8
+    APP     8
+    SMCI    8
+    PLTR    7
+    F       6
+
+Aggregating aspect activations in pre-inflection vs baseline...
+
+========================================================================================================================
+PRE-INFLECTION SIGNATURES — % of pre-inflection windows with aspect active vs baseline
+========================================================================================================================
+Transit   Nat   Aspect      inf_n   inf%  base%    lift
+
+  TOP 30 BULLISH pre-inflection signatures (% lift over baseline):
+  Neptune   MC    gart_77       28   7.6%   1.0%   +6.6pp
+  Pluto     ASC   biq_144       28   7.6%   1.0%   +6.6pp
+  Neptune   Moon  sxt_60        24   6.5%   0.0%   +6.5pp
+  Uranus    Sun   sq_90         22   5.9%   0.0%   +5.9pp
+  Saturn    ASC   tri_120       18   4.9%   0.0%   +4.9pp
+  Neptune   MC    sq_90         17   4.6%   0.0%   +4.6pp
+  Mars      ASC   sept_51       16   4.3%   0.0%   +4.3pp
+  Pluto     MC    phi_137       10   2.7%   7.7%   -5.0pp
+  Mars      ASC   sxt_60        10   2.7%   7.7%   -5.0pp
+  Saturn    Moon  phi_137       11   3.0%   9.6%   -6.6pp
+
+  BOTTOM 15 BEARISH (aspects LESS COMMON in pre-inflection):
+  Saturn    Moon  phi_137       11   3.0%   9.6%   -6.6pp
+  Pluto     MC    phi_137       10   2.7%   7.7%   -5.0pp
+  Mars      ASC   sxt_60        10   2.7%   7.7%   -5.0pp
+  Mars      ASC   sept_51       16   4.3%   0.0%   +4.3pp
+  Neptune   MC    sq_90         17   4.6%   0.0%   +4.6pp
+  Saturn    ASC   tri_120       18   4.9%   0.0%   +4.9pp
+  Uranus    Sun   sq_90         22   5.9%   0.0%   +5.9pp
+  Neptune   Moon  sxt_60        24   6.5%   0.0%   +6.5pp
+  Neptune   MC    gart_77       28   7.6%   1.0%   +6.6pp
+  Pluto     ASC   biq_144       28   7.6%   1.0%   +6.6pp
+
+======================================================================================================================================================
+SP500 — STOCKS WITH MOST PRE-INFLECTION SIGNATURE ACTIVE TODAY
+  Higher score = chart most resembles historical 'about-to-double' configurations
+======================================================================================================================================================
+ Rk Tkr    GICS                     Score #pos #neg  Top pre-inflection signatures matched today (lift)
+  1 AEP    Utilities               +16.7    1    0  Mar-ASC sept_51 (+4)   (American Electric )
+  2 PEG    Utilities               +16.7    1    0  Mar-ASC sept_51 (+4)   (Public Service Ent)
+  3 SO     Utilities               +16.7    1    0  Mar-ASC sept_51 (+4)   (Southern Company)
+  4 ATO    Utilities               +16.7    1    0  Mar-ASC sept_51 (+4)   (Atmos Energy)
+  5 DUK    Utilities               +16.4    1    0  Mar-ASC sept_51 (+4)   (Duke Energy)
+  6 FRT    Real Estate             +15.7    1    0  Mar-ASC sept_51 (+4)   (Federal Realty Inv)
+  7 PPL    Utilities               +15.3    1    0  Mar-ASC sept_51 (+4)   (PPL Corporation)
+  8 CNP    Utilities               +15.2    1    0  Mar-ASC sept_51 (+4)   (CenterPoint Energy)
+  9 USB    Financials              +15.1    1    0  Mar-ASC sept_51 (+4)   (U.S. Bancorp)
+ 10 UNP    Industrials             +15.1    1    0  Mar-ASC sept_51 (+4)   (Union Pacific Corp)
+ 11 WFC    Financials              +15.1    1    0  Mar-ASC sept_51 (+4)   (Wells Fargo)
+ 12 ITW    Industrials             +15.0    1    0  Mar-ASC sept_51 (+4)   (Illinois Tool Work)
+ 13 ECL    Materials               +14.9    1    0  Mar-ASC sept_51 (+4)   (Ecolab)
+ 14 TXT    Industrials             +14.6    1    0  Mar-ASC sept_51 (+4)   (Textron)
+ 15 STT    Financials              +14.3    1    0  Mar-ASC sept_51 (+4)   (State Street Corpo)
+ 16 LMT    Industrials             +13.4    1    0  Mar-ASC sept_51 (+4)   (Lockheed Martin)
+ 17 NOC    Industrials             +13.2    1    0  Mar-ASC sept_51 (+4)   (Northrop Grumman)
+ 18 CMS    Utilities               +12.8    1    0  Mar-ASC sept_51 (+4)   (CMS Energy)
+ 19 NUE    Materials               +12.7    1    0  Mar-ASC sept_51 (+4)   (Nucor)
+ 20 D      Utilities               +12.7    1    0  Mar-ASC sept_51 (+4)   (Dominion Energy)
+ 21 BMY    Health Care             +12.7    1    0  Mar-ASC sept_51 (+4)   (Bristol Myers Squi)
+ 22 PNW    Utilities               +12.6    1    0  Mar-ASC sept_51 (+4)   (Pinnacle West Capi)
+ 23 WY     Real Estate             +12.3    1    0  Mar-ASC sept_51 (+4)   (Weyerhaeuser)
+ 24 PCAR   Industrials             +12.2    1    0  Mar-ASC sept_51 (+4)   (Paccar)
+ 25 DTE    Utilities               +12.1    1    0  Mar-ASC sept_51 (+4)   (DTE Energy)
+ 26 AFL    Financials              +12.0    1    0  Mar-ASC sept_51 (+4)   (Aflac)
+ 27 ABBV   Health Care             +12.0    1    0  Mar-ASC sept_51 (+4)   (AbbVie)
+ 28 DOV    Industrials             +11.9    1    0  Mar-ASC sept_51 (+4)   (Dover Corporation)
+ 29 CB     Financials              +11.6    1    0  Mar-ASC sept_51 (+4)   (Chubb Limited)
+ 30 AVB    Real Estate             +10.9    1    0  Mar-ASC sept_51 (+4)   (AvalonBay Communit)
+ 31 TT     Industrials             +10.8    0    0     (Trane Technologies)
+ 32 NI     Utilities               +10.5    1    0  Mar-ASC sept_51 (+4)   (NiSource)
+ 33 MO     Consumer Staples        +10.3    1    0  Mar-ASC sept_51 (+4)   (Altria)
+ 34 LUV    Industrials             +10.0    0    0     (Southwest Airlines)
+ 35 UNH    Health Care             +10.0    0    0     (UnitedHealth Group)
+ 36 GPC    Consumer Discretionar    +9.9    1    0  Mar-ASC sept_51 (+4)   (Genuine Parts Comp)
+ 37 KMB    Consumer Staples         +9.7    1    0  Mar-ASC sept_51 (+4)   (Kimberly-Clark)
+ 38 WEC    Utilities                +9.7    1    0  Mar-ASC sept_51 (+4)   (WEC Energy Group)
+ 39 NEM    Materials                +9.5    1    0  Mar-ASC sept_51 (+4)   (Newmont)
+ 40 MAS    Industrials              +9.3    0    0     (Masco)
+
+Exported 503 ranked SP500 -> data/sp500_pre_inflection.csv

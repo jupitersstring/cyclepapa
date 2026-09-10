@@ -1,0 +1,213 @@
+Building eclipse DB...
+Universe after age filter + dedupe: 12086
+  500/12086  4s  (kept: 3)
+  1000/12086  8s  (kept: 22)
+  1500/12086  12s  (kept: 120)
+  2000/12086  16s  (kept: 227)
+  2500/12086  19s  (kept: 393)
+  3000/12086  23s  (kept: 594)
+  3500/12086  26s  (kept: 743)
+  4000/12086  30s  (kept: 925)
+  4500/12086  33s  (kept: 1075)
+  5000/12086  37s  (kept: 1260)
+  5500/12086  40s  (kept: 1414)
+  6000/12086  43s  (kept: 1555)
+  6500/12086  47s  (kept: 1737)
+  7000/12086  50s  (kept: 1918)
+  7500/12086  54s  (kept: 2074)
+  8000/12086  57s  (kept: 2199)
+  8500/12086  61s  (kept: 2375)
+  9000/12086  64s  (kept: 2558)
+  9500/12086  67s  (kept: 2752)
+  10000/12086  71s  (kept: 2910)
+  10500/12086  74s  (kept: 3101)
+  11000/12086  77s  (kept: 3264)
+  11500/12086  81s  (kept: 3462)
+  12000/12086  84s  (kept: 3570)
+Scan done: 84s  filtered=3577
+Exported 3577 rows -> /home/user/cyclepapa/data/universe_asymmetric_v22.csv
+
+=====================================================================================================================================================================
+TOP 60 MOST ASYMMETRIC (Saturn-safe, improving>=4, bubblish_peak>=2, score_now<18)
+=====================================================================================================================================================================
+ Rk Tkr    IPO         Age Src       Now  Peak     Δ PkMo     Run BubPk BubMo      Asym  Name
+  1 ARST   2008-02-14   18 Ritter    5.4  26.5 +21.1 2026-08    4  4.55 2026-10   24.39  ArcSight Inc
+  2 GHQ    2008-02-14   18 Ritter    5.4  26.5 +21.1 2026-08    4  4.55 2026-10   24.39  GHL Acquisition Corp
+  3 MHGC   2006-02-13   20 Ritter    4.7  23.3 +18.6 2027-03   11  4.73 2027-04   23.63  Morgans Hotel Group Co
+  4 UCLP   2006-10-16   20 Ritter    5.3  22.6 +17.3 2026-08    4  4.86 2026-09   21.86  Universal Compression Partne
+  5 AQA    2001-02-09   25 Ritter    4.8  26.3 +21.5 2026-08    4  3.70 2026-09   20.94  Aquacell Technologies Inc
+  6 TWTI   2001-02-09   25 Ritter    4.8  26.3 +21.5 2026-08    4  3.70 2026-09   20.94  Third Wave Technologies Inc
+  7 DPM    2005-12-01   21 Ritter    4.8  26.7 +21.9 2026-09    5  3.46 2026-09   19.88  DCP Midstream Partners
+  8 MPAQU  2005-04-12   21 Ritter    9.0  29.7 +20.6 2026-11    7  4.52 2027-04   19.85  Mercator Partners Acq Corp
+  9 PRB    2005-04-12   21 Ritter    9.0  29.7 +20.6 2026-11    7  4.52 2027-04   19.85  PRB Gas Transportation Inc
+ 10 EMAG   2005-02-09   21 Ritter    5.6  26.8 +21.2 2026-07    3  3.70 2026-10   19.71  Emageon Inc
+ 11 PBH    2005-02-09   21 Ritter    5.6  26.8 +21.2 2026-07    3  3.70 2026-10   19.71  Prestige Brands Holdings Inc
+ 12 IVZ    2008-08-21   18 SP500     5.6  25.4 +19.8 2027-04   12  3.86 2027-06   19.23  Invesco
+ 13 BYNOU  2022-02-09    4 Ritter    5.4  25.3 +19.9 2026-08    4  3.70 2026-09   18.86  byNordic Acquisition Corp
+ 14 CPAQU  2022-02-09    4 Ritter    5.4  25.3 +19.9 2026-08    4  3.70 2026-09   18.86  Counter Press Acquisition Co
+ 15 EVGRU  2022-02-09    4 Ritter    5.4  25.3 +19.9 2026-08    4  3.70 2026-09   18.86  Evergreen Corp
+ 16 FNET   2006-01-31   20 Ritter   12.6  28.0 +15.4 2026-09    5  6.10 2026-09   18.14  Fortunet Inc
+ 17 KOP    2006-01-31   20 Ritter   12.6  28.0 +15.4 2026-09    5  6.10 2026-09   18.14  Koppers Holdings Inc
+ 18 SGXP   2006-01-31   20 Ritter   12.6  28.0 +15.4 2026-09    5  6.10 2026-09   18.14  SGX Pharmaceuticals Inc
+ 19 NLST   2006-11-30   20 Ritter    7.4  24.9 +17.5 2026-11    7  4.43 2027-04   18.12  Netlist
+ 20 CCO    2005-11-10   21 Ritter    4.5  19.2 +14.7 2027-04   12  4.43 2027-04   18.09  Clear Channel Outdoor Holdin
+ 21 AGMH   2018-04-18    8 Ritter    6.6  27.0 +20.3 2026-09    5  3.70 2028-03   17.93  AGM Group Holdings Inc
+ 22 GCA    2005-09-22   21 Ritter    5.3  20.7 +15.4 2026-12    8  4.41 2026-12   17.86  Global Cash Access Holdings
+ 23 ESD    2003-12-01   23 Ritter    7.2  25.4 +18.2 2026-09    5  4.13 2026-08   17.61  Salomon Brothers Emerging Mk
+ 24 SMXT   2024-02-27    2 Ritter    4.5  23.9 +19.3 2026-08    4  3.30 2028-01   17.30  Solarmax Technology Inc
+ 25 BOFI   2005-03-14   21 Ritter    5.4  22.4 +17.0 2026-07    3  3.84 2026-09   16.90  BofI Holding Inc
+ 26 CHRW   1997-10-15   29 SP500     5.6  25.8 +20.2 2026-08    4  3.27 2026-06   16.70  C.H. Robinson
+ 27 CCRD   1997-10-15   29 Ritter    5.6  25.8 +20.2 2026-08    4  3.27 2026-06   16.70  Concord Communications Inc
+ 28 SSAG   2005-05-26   21 Ritter    7.9  25.5 +17.6 2027-02   10  4.14 2027-03   16.60  SSA Global Technologies Inc
+ 29 XRM    2005-05-16   21 Ritter    7.0  23.5 +16.5 2027-04   12  4.15 2027-03   16.36  Xerium Technologies Inc
+ 30 ROSG   2007-02-26   19 Ritter   10.2  29.3 +19.1 2026-12    8  4.17 2027-04   16.31  Rosetta Genomics Ltd
+ 31 VIGN   1999-02-18   27 Ritter    8.4  25.2 +16.8 2027-04   12  4.32 2026-07   16.21  Vignette Corp
+ 32 FFD    2008-08-22   18 Ritter    4.8  22.1 +17.3 2027-04   12  3.48 2026-10   16.20  Morgan Stanley Frontier Inc
+ 33 DKS    2002-10-15   24 Ritter    6.1  24.1 +18.1 2026-08    4  3.57 2026-08   16.04  Dicks Sporting Goods Inc
+ 34 TAYC   2002-10-15   24 Ritter    6.1  24.1 +18.1 2026-08    4  3.57 2026-08   16.04  Taylor Capital Group Inc
+ 35 UTOB   2000-10-25   26 Ritter    7.7  23.8 +16.1 2026-09    5  4.28 2026-07   15.95  Utek Corp
+ 36 SFHG   2024-10-15    2 Ritter    8.2  24.1 +15.9 2026-08    4  4.40 2028-01   15.86  SAMFINE CREATION HOLDINGS GR
+ 37 AVTC   1994-12-08   32 Ritter    5.3  21.5 +16.3 2026-10    6  3.70 2026-08   15.81  Applied Voice Technology
+ 38 APLX   1994-12-08   32 Ritter    5.3  21.5 +16.3 2026-10    6  3.70 2026-08   15.81  Applix
+ 39 MCRL   1994-12-08   32 Ritter    5.3  21.5 +16.3 2026-10    6  3.70 2026-08   15.81  Micrel
+ 40 DTLK   1999-08-06   27 Ritter   11.1  27.8 +16.8 2026-07    3  4.67 2026-07   15.75  Datalink Corp
+ 41 HON    1999-12-01   27 SP500     6.7  23.7 +17.0 2026-09    5  3.80 2026-07   15.59  Honeywell
+ 42 KNOT   1999-12-01   27 Ritter    6.7  23.7 +17.0 2026-09    5  3.80 2026-07   15.59  Knot Inc
+ 43 MTLK   1999-12-01   27 Ritter    6.7  23.7 +17.0 2026-09    5  3.80 2026-07   15.59  Metalink LTD
+ 44 HMB    2004-07-13   22 Ritter    6.1  23.9 +17.8 2026-09    5  3.49 2026-09   15.50  Homebanc Corp
+ 45 CMTTF  1994-08-23   32 Ritter    5.4  21.3 +15.9 2026-07    3  3.70 2026-11   15.39  Comet Software International
+ 46 ARP    2005-02-03   21 Ritter   11.7  27.7 +16.0 2026-07    3  4.87 2026-09   15.37  American Reprographics Co
+ 47 DRYS   2005-02-03   21 Ritter   11.7  27.7 +16.0 2026-07    3  4.87 2026-09   15.37  DryShips Inc
+ 48 FRP    2005-02-03   21 Ritter   11.7  27.7 +16.0 2026-07    3  4.87 2026-09   15.37  FairPoint Communications Inc
+ 49 ICGN   2005-02-03   21 Ritter   11.7  27.7 +16.0 2026-07    3  4.87 2026-09   15.37  Icagen Inc
+ 50 THLD   2005-02-03   21 Ritter   11.7  27.7 +16.0 2026-07    3  4.87 2026-09   15.37  Threshold Pharmaceuticals In
+ 51 LACQU  2017-12-01    9 Ritter    5.9  25.8 +20.0 2026-10    6  3.08 2027-09   15.29  Leisure Acquisition Corp
+ 52 EGEO   1997-08-05   29 Ritter    9.5  29.0 +19.5 2026-11    7  3.70 2026-11   15.21  Eagle Geophysical Inc
+ 53 ICH    1997-08-05   29 Ritter    9.5  29.0 +19.5 2026-11    7  3.70 2026-11   15.21  IMH Commercial Holdings Inc
+ 54 IBKR   2007-05-04   19 SP500    11.7  27.2 +15.5 2026-11    7  4.91 2026-10   15.04  Interactive Brokers
+ 55 SQL    2021-08-27    5 Ritter    7.0  28.0 +21.1 2027-11   19  4.36 2027-11   14.99  SeqLL Inc
+ 56 TER    2020-09-21    6 SP500     5.4  20.4 +15.0 2027-01    9  3.78 2027-01   14.90  Teradyne
+ 57 SGAMU  2020-11-30    6 Ritter    5.0  23.6 +18.6 2026-09    5  3.02 2028-04   14.84  Seaport Global Acquisition
+ 58 GPATU  2024-05-09    2 Ritter    5.7  24.3 +18.6 2026-08    4  3.12 2028-02   14.76  GP-Act III Acquisition Corp.
+ 59 SVCO   2024-05-09    2 Ritter    5.7  24.3 +18.6 2026-08    4  3.12 2028-02   14.76  Silvaco Group, Inc.
+ 60 CYSV   1999-10-15   27 Ritter    6.6  22.8 +16.2 2026-10    6  3.70 2026-11   14.65  Cysive Inc
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+IMMINENT (1-4 mo)  — top 25 by asymmetry
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Rk Tkr    IPO         Age Src       Now  Peak     Δ PkMo     Run BubPk   Asym  Name
+  1 ARST   2008-02-14   18 Ritter    5.4  26.5 +21.1 2026-08    4  4.55  24.39  ArcSight Inc
+  2 GHQ    2008-02-14   18 Ritter    5.4  26.5 +21.1 2026-08    4  4.55  24.39  GHL Acquisition Corp
+  3 UCLP   2006-10-16   20 Ritter    5.3  22.6 +17.3 2026-08    4  4.86  21.86  Universal Compression Partners
+  4 AQA    2001-02-09   25 Ritter    4.8  26.3 +21.5 2026-08    4  3.70  20.94  Aquacell Technologies Inc
+  5 TWTI   2001-02-09   25 Ritter    4.8  26.3 +21.5 2026-08    4  3.70  20.94  Third Wave Technologies Inc
+  6 EMAG   2005-02-09   21 Ritter    5.6  26.8 +21.2 2026-07    3  3.70  19.71  Emageon Inc
+  7 PBH    2005-02-09   21 Ritter    5.6  26.8 +21.2 2026-07    3  3.70  19.71  Prestige Brands Holdings Inc
+  8 BYNOU  2022-02-09    4 Ritter    5.4  25.3 +19.9 2026-08    4  3.70  18.86  byNordic Acquisition Corp
+  9 CPAQU  2022-02-09    4 Ritter    5.4  25.3 +19.9 2026-08    4  3.70  18.86  Counter Press Acquisition Corp
+ 10 EVGRU  2022-02-09    4 Ritter    5.4  25.3 +19.9 2026-08    4  3.70  18.86  Evergreen Corp
+ 11 SMXT   2024-02-27    2 Ritter    4.5  23.9 +19.3 2026-08    4  3.30  17.30  Solarmax Technology Inc
+ 12 BOFI   2005-03-14   21 Ritter    5.4  22.4 +17.0 2026-07    3  3.84  16.90  BofI Holding Inc
+ 13 CHRW   1997-10-15   29 SP500     5.6  25.8 +20.2 2026-08    4  3.27  16.70  C.H. Robinson
+ 14 CCRD   1997-10-15   29 Ritter    5.6  25.8 +20.2 2026-08    4  3.27  16.70  Concord Communications Inc
+ 15 DKS    2002-10-15   24 Ritter    6.1  24.1 +18.1 2026-08    4  3.57  16.04  Dicks Sporting Goods Inc
+ 16 TAYC   2002-10-15   24 Ritter    6.1  24.1 +18.1 2026-08    4  3.57  16.04  Taylor Capital Group Inc
+ 17 SFHG   2024-10-15    2 Ritter    8.2  24.1 +15.9 2026-08    4  4.40  15.86  SAMFINE CREATION HOLDINGS GRP
+ 18 DTLK   1999-08-06   27 Ritter   11.1  27.8 +16.8 2026-07    3  4.67  15.75  Datalink Corp
+ 19 CMTTF  1994-08-23   32 Ritter    5.4  21.3 +15.9 2026-07    3  3.70  15.39  Comet Software International
+ 20 ARP    2005-02-03   21 Ritter   11.7  27.7 +16.0 2026-07    3  4.87  15.37  American Reprographics Co
+ 21 DRYS   2005-02-03   21 Ritter   11.7  27.7 +16.0 2026-07    3  4.87  15.37  DryShips Inc
+ 22 FRP    2005-02-03   21 Ritter   11.7  27.7 +16.0 2026-07    3  4.87  15.37  FairPoint Communications Inc
+ 23 ICGN   2005-02-03   21 Ritter   11.7  27.7 +16.0 2026-07    3  4.87  15.37  Icagen Inc
+ 24 THLD   2005-02-03   21 Ritter   11.7  27.7 +16.0 2026-07    3  4.87  15.37  Threshold Pharmaceuticals Inc
+ 25 GPATU  2024-05-09    2 Ritter    5.7  24.3 +18.6 2026-08    4  3.12  14.76  GP-Act III Acquisition Corp.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+NEAR (5-9 mo)  — top 25 by asymmetry
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Rk Tkr    IPO         Age Src       Now  Peak     Δ PkMo     Run BubPk   Asym  Name
+  1 DPM    2005-12-01   21 Ritter    4.8  26.7 +21.9 2026-09    5  3.46  19.88  DCP Midstream Partners
+  2 MPAQU  2005-04-12   21 Ritter    9.0  29.7 +20.6 2026-11    7  4.52  19.85  Mercator Partners Acq Corp
+  3 PRB    2005-04-12   21 Ritter    9.0  29.7 +20.6 2026-11    7  4.52  19.85  PRB Gas Transportation Inc
+  4 FNET   2006-01-31   20 Ritter   12.6  28.0 +15.4 2026-09    5  6.10  18.14  Fortunet Inc
+  5 KOP    2006-01-31   20 Ritter   12.6  28.0 +15.4 2026-09    5  6.10  18.14  Koppers Holdings Inc
+  6 SGXP   2006-01-31   20 Ritter   12.6  28.0 +15.4 2026-09    5  6.10  18.14  SGX Pharmaceuticals Inc
+  7 NLST   2006-11-30   20 Ritter    7.4  24.9 +17.5 2026-11    7  4.43  18.12  Netlist
+  8 AGMH   2018-04-18    8 Ritter    6.6  27.0 +20.3 2026-09    5  3.70  17.93  AGM Group Holdings Inc
+  9 GCA    2005-09-22   21 Ritter    5.3  20.7 +15.4 2026-12    8  4.41  17.86  Global Cash Access Holdings
+ 10 ESD    2003-12-01   23 Ritter    7.2  25.4 +18.2 2026-09    5  4.13  17.61  Salomon Brothers Emerging Mkts
+ 11 ROSG   2007-02-26   19 Ritter   10.2  29.3 +19.1 2026-12    8  4.17  16.31  Rosetta Genomics Ltd
+ 12 UTOB   2000-10-25   26 Ritter    7.7  23.8 +16.1 2026-09    5  4.28  15.95  Utek Corp
+ 13 AVTC   1994-12-08   32 Ritter    5.3  21.5 +16.3 2026-10    6  3.70  15.81  Applied Voice Technology
+ 14 APLX   1994-12-08   32 Ritter    5.3  21.5 +16.3 2026-10    6  3.70  15.81  Applix
+ 15 MCRL   1994-12-08   32 Ritter    5.3  21.5 +16.3 2026-10    6  3.70  15.81  Micrel
+ 16 HON    1999-12-01   27 SP500     6.7  23.7 +17.0 2026-09    5  3.80  15.59  Honeywell
+ 17 KNOT   1999-12-01   27 Ritter    6.7  23.7 +17.0 2026-09    5  3.80  15.59  Knot Inc
+ 18 MTLK   1999-12-01   27 Ritter    6.7  23.7 +17.0 2026-09    5  3.80  15.59  Metalink LTD
+ 19 HMB    2004-07-13   22 Ritter    6.1  23.9 +17.8 2026-09    5  3.49  15.50  Homebanc Corp
+ 20 LACQU  2017-12-01    9 Ritter    5.9  25.8 +20.0 2026-10    6  3.08  15.29  Leisure Acquisition Corp
+ 21 EGEO   1997-08-05   29 Ritter    9.5  29.0 +19.5 2026-11    7  3.70  15.21  Eagle Geophysical Inc
+ 22 ICH    1997-08-05   29 Ritter    9.5  29.0 +19.5 2026-11    7  3.70  15.21  IMH Commercial Holdings Inc
+ 23 IBKR   2007-05-04   19 SP500    11.7  27.2 +15.5 2026-11    7  4.91  15.04  Interactive Brokers
+ 24 TER    2020-09-21    6 SP500     5.4  20.4 +15.0 2027-01    9  3.78  14.90  Teradyne
+ 25 SGAMU  2020-11-30    6 Ritter    5.0  23.6 +18.6 2026-09    5  3.02  14.84  Seaport Global Acquisition
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+MEDIUM (10-15 mo)  — top 25 by asymmetry
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Rk Tkr    IPO         Age Src       Now  Peak     Δ PkMo     Run BubPk   Asym  Name
+  1 MHGC   2006-02-13   20 Ritter    4.7  23.3 +18.6 2027-03   11  4.73  23.63  Morgans Hotel Group Co
+  2 IVZ    2008-08-21   18 SP500     5.6  25.4 +19.8 2027-04   12  3.86  19.23  Invesco
+  3 CCO    2005-11-10   21 Ritter    4.5  19.2 +14.7 2027-04   12  4.43  18.09  Clear Channel Outdoor Holdings
+  4 SSAG   2005-05-26   21 Ritter    7.9  25.5 +17.6 2027-02   10  4.14  16.60  SSA Global Technologies Inc
+  5 XRM    2005-05-16   21 Ritter    7.0  23.5 +16.5 2027-04   12  4.15  16.36  Xerium Technologies Inc
+  6 VIGN   1999-02-18   27 Ritter    8.4  25.2 +16.8 2027-04   12  4.32  16.21  Vignette Corp
+  7 FFD    2008-08-22   18 Ritter    4.8  22.1 +17.3 2027-04   12  3.48  16.20  Morgan Stanley Frontier Inc
+  8 JUDG   1997-02-14   29 Ritter    6.3  23.3 +17.0 2027-04   12  3.39  14.26  Judge Group Inc
+  9 SACM   1997-02-14   29 Ritter    6.3  23.3 +17.0 2027-04   12  3.39  14.26  SAC Technologies Inc
+ 10 TTRF   1997-02-14   29 Ritter    6.3  23.3 +17.0 2027-04   12  3.39  14.26  TTR Inc
+ 11 NFLX   2002-05-23   24 SP500     5.7  25.5 +19.8 2027-06   14  4.04  14.08  Netflix
+ 12 ATRS   2002-05-23   24 Ritter    5.7  25.5 +19.8 2027-06   14  4.04  14.08  Altiris Inc
+ 13 JVA    2005-05-02   21 Ritter   15.9  29.7 +13.9 2027-04   12  5.56  13.64  Coffee Holding Co
+ 14 MORN   2005-05-02   21 Ritter   15.9  29.7 +13.9 2027-04   12  5.56  13.64  Morningstar Inc
+ 15 AGO    2004-04-22   22 Ritter    7.8  26.2 +18.5 2027-03   11  3.22  13.52  Assured Guaranty Ltd
+ 16 EVLO   2018-05-09    8 Ritter    8.7  25.0 +16.3 2027-02   10  3.70  13.37  Evelo Biosciences Inc
+ 17 OBNK   2018-05-09    8 Ritter    8.7  25.0 +16.3 2027-02   10  3.70  13.37  Origin Bancorp Inc
+ 18 MSTMU  2003-08-25   23 Ritter    6.7  27.4 +20.6 2027-06   14  3.80  13.01  Millstream Acquisition Corp
+ 19 CROX   2006-02-07   20 Ritter    5.4  17.5 +12.1 2027-04   12  3.98  12.97  Crocs Inc
+ 20 EROC   2006-10-24   20 Ritter    6.6  20.3 +13.7 2027-04   12  3.67  12.54  Eagle Rock Energy LP
+ 21 IRR    2006-10-24   20 Ritter    6.6  20.3 +13.7 2027-04   12  3.67  12.54  I N G RISK MANAGED NATUR RES F
+ 22 RSF    2004-03-18   22 Ritter    6.4  22.9 +16.5 2027-04   12  3.08  12.52  RMK Strategic Income Fund
+ 23 WSR    2010-08-25   16 Ritter   12.7  28.6 +15.9 2027-06   14  5.62  11.98  Whitestone REIT
+ 24 IVGN   1999-02-26   27 Ritter    5.9  18.2 +12.3 2027-04   12  3.70  11.91  Invitrogen Corp
+ 25 HBAN   1997-08-28   29 SP500     8.3  26.6 +18.3 2027-03   11  2.91  11.83  Huntington Bancshares
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+LONG (16-24 mo)  — top 25 by asymmetry
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Rk Tkr    IPO         Age Src       Now  Peak     Δ PkMo     Run BubPk   Asym  Name
+  1 SQL    2021-08-27    5 Ritter    7.0  28.0 +21.1 2027-11   19  4.36  14.99  SeqLL Inc
+  2 BPS    1999-08-24   27 Ritter    5.6  25.8 +20.3 2028-02   22  3.79  13.58  Blackrock PA Strategic Muni Tr
+  3 BSD    1999-08-24   27 Ritter    5.6  25.8 +20.3 2028-02   22  3.79  13.58  BlackRock Strategic Municipal
+  4 DTEA   2015-06-05   11 Ritter    4.3  20.9 +16.6 2027-11   19  3.72  12.03  DAVIDsTea Inc
+  5 EVH    2015-06-05   11 Ritter    4.3  20.9 +16.6 2027-11   19  3.72  12.03  Evolent Health Inc
+  6 DTRTU  2021-09-02    5 Ritter    7.1  27.3 +20.2 2028-03   23  3.61  11.89  DTRT Health Acquisition Corp
+  7 INAQ.  2021-09-02    5 Ritter    7.1  27.3 +20.2 2028-03   23  3.61  11.89  Insight Acquisition Corp
+  8 KOYNU  2025-08-27    1 Ritter    7.0  26.2 +19.2 2027-10   18  3.70  11.68  CSLM Digital Asset Acquisition
+  9 MBVIU  2025-08-27    1 Ritter    7.0  26.2 +19.2 2027-10   18  3.70  11.68  M3-Brigade Acquisition VI Corp
+ 10 CAPAU  2020-09-04    6 Ritter   10.0  30.7 +20.7 2028-04   24  3.86  11.46  HighCape Capital Acq Corp
+ 11 TWND   2020-09-04    6 Ritter   10.0  30.7 +20.7 2028-04   24  3.86  11.46  Tailwind Acquisition Corp
+ 12 HCDI   2020-08-28    6 Ritter    8.6  27.2 +18.6 2027-10   18  4.01  11.44  Harbor Custom Development Inc
+ 13 MJN    2009-02-10   17 Ritter   11.7  28.0 +16.4 2027-11   19  5.03  11.38  Mead Johnson Nutrition Co
+ 14 BMR    2023-02-28    3 Ritter    7.6  23.8 +16.1 2028-03   23  4.27  11.17  BEAMR Imaging LTD
+ 15 SBXC   2023-02-28    3 Ritter    7.6  23.8 +16.1 2028-03   23  4.27  11.17  SilverBox Corp III
+ 16 DWACU  2021-09-03    5 Ritter   11.5  29.2 +17.7 2028-03   23  4.59  11.16  Digital World Acquisition Corp
+ 17 OXUSU  2021-09-03    5 Ritter   11.5  29.2 +17.7 2028-03   23  4.59  11.16  Oxus Acquisition Corp
+ 18 GBL    1999-02-10   27 Ritter    6.1  23.2 +17.1 2027-10   18  3.70  11.11  Gabelli Asset Management Inc
+ 19 KFY    1999-02-10   27 Ritter    6.1  23.2 +17.1 2027-10   18  3.70  11.11  Korn/Ferry International
+ 20 PRGY   1999-02-10   27 Ritter    6.1  23.2 +17.1 2027-10   18  3.70  11.11  Prodigy Communications Inc
+ 21 HTPA.  2020-12-03    6 Ritter    5.9  25.7 +19.8 2027-12   20  3.22  11.11  Highland Transcend Partners I
+ 22 SPFR.  2020-12-03    6 Ritter    5.9  25.7 +19.8 2027-12   20  3.22  11.11  Jaws Spitfire Acquisition Corp
+ 23 KNTE   2020-12-03    6 Ritter    5.9  25.7 +19.8 2027-12   20  3.22  11.11  Kinnate Biopharma Inc
+ 24 LOKB.  2020-12-03    6 Ritter    5.9  25.7 +19.8 2027-12   20  3.22  11.11  Live Oak Acquisition Corp II
+ 25 HLCS   2007-05-23   19 Ritter    7.9  23.8 +15.9 2028-02   22  4.30  10.96  Helicos BioSciences Corp
