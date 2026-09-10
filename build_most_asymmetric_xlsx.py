@@ -2172,8 +2172,12 @@ def build_methodology(wb: Workbook):
          "PDUFA, financial-sector primary, discretionary insider "
          "conviction, emergence cross-feed, Sohn pitches, asymmetry "
          "assembly (PSIX recipe), distressed-stub progress, premium "
-         "injections, selective buybacks, and hidden-asset "
-         "realisation."),
+         "injections, selective buybacks, hidden-asset realisation, "
+         "net buyback (diluted-share reduction net of SBC), the Lynch "
+         "reawakening momentum leg, and the Form 4 filing-TIME signal "
+         "(off-hours / Friday-evening open-market buys = quiet "
+         "accumulators followed; market-hours buys = price support, "
+         "faded)."),
         ("Additive discipline",
          "Every layer ADDS to the composite; none modifies another's "
          "score. New legs append fields; existing weights never change. "
@@ -2191,7 +2195,7 @@ def build_methodology(wb: Workbook):
          "of each archetype across the universe (PSU_ARCHETYPES.md 38 + "
          "ASYMMETRIC_BY_ARCHETYPE.md 19)."),
         ("Consensus meta-ranking",
-         "n_layers_firing = how many of the 30 independent layers "
+         f"n_layers_firing = how many of the {n_consensus_layers()} independent layers "
          "produce a non-zero score for the ticker. consensus_score = "
          "sum of per-layer rank-decay contributions across the universe."),
         ("Layer independence",
@@ -2215,10 +2219,13 @@ def build_methodology(wb: Workbook):
          "leg or multi-flag. Basket (<1% each): sub-archetype groups, "
          "Cohen-Malloy stack, R2000-boundary, NOL shells, foreign."),
         ("Honest limitations",
-         "No realized-return backtest yet (AUDIT.md S1.1) — the "
+         "Most layers are not yet return-validated (AUDIT.md S1.1) — the "
          "composite is a structurally-sound pattern-recognition system, "
-         "not yet validated alpha. Cohen-Malloy needs deeper Form 4 "
-         "history. Coval-Stafford proxy supplements but does not replace "
+         "not yet validated alpha. The one exception is the Form 4 "
+         "filing-time layer, built FROM a measured test: off-hours buys "
+         "showed a +3.7% median vs -8.0% for market-hours buys (+11.7pp "
+         "differential, buy-to-now proxy). Cohen-Malloy needs deeper Form "
+         "4 history. Coval-Stafford proxy supplements but does not replace "
          "the N-PORT real signal. See AUDIT.md for the full ledger."),
     ]
     r = 5
