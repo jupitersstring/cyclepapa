@@ -1,0 +1,11 @@
+ticker,kind,from,to,summary
+AERI.L,SLEEVE_ENTERED_SETUP,no,yes,in_setup_sleeve entered
+AERI.L,SLEEVE_ENTERED_FUND,no,yes,in_fundamentals_sleeve entered
+CHRY.L,SLEEVE_EXITED_SETUP,yes,no,in_setup_sleeve exited
+CHRY.L,IRR_JUMP,-23.3,-11.9,IRR -23.3% → -11.9% ▲
+RKW.L,SLEEVE_ENTERED_SETUP,no,yes,in_setup_sleeve entered
+SEIT.L,SLEEVE_ENTERED_SETUP,no,yes,in_setup_sleeve entered
+SEIT.L,AVWAP_BREAKDOWN,-0.048,-0.12,price vs avwap -4.8% → -12.0%
+SSIT.L,SLEEVE_ENTERED_SETUP,no,yes,in_setup_sleeve entered
+USF.L,SLEEVE_ENTERED_SETUP,no,yes,in_setup_sleeve entered
+USF.L,IRR_JUMP,4.4,-23.8,IRR 4.4% → -23.8% ▼
