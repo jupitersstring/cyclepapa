@@ -542,7 +542,7 @@ def _regression(t, g):
     _opm_now = gcol("op_margin")
     _cash_ok_a = ((gcol("fcf_yield") > 0) | (gcol("owner_earnings_yield") > 0)
                   | (gcol("robust_cash_yield") > 0) | (gcol("cfo_yield") > 0)
-                  | (gcol("fcf_margin") > 0))
+                  | (gcol("fcf_margin") > 0) | (gcol("fcf_ttm") > 0))
     _improving_a = ((gcol("roce_delta_yoy") > 0) | (gcol("roce_inflection") > 0)
                     | (gcol("roce_first_positive") > 0) | (gcol("fcf_inflection") > 0)
                     | (gcol("op_margin_delta_yoy") > 0) | (gcol("ebitda_inflection") > 0))
@@ -605,6 +605,71 @@ def _ranges(t, g):
             check(f"range: {col} within [0,1]",
                   (v.between(-1e-9, 1 + 1e-9)).all(),
                   f"min {v.min():.3f} max {v.max():.3f}")
+
+
+@measure("Valuation internal consistency (yf process)",
+         "Every stored ratio must equal what the row's own components say. "
+         "The apply_ticker_yf reconcile (levels bend to authoritative Yahoo "
+         "ratios; ratios recomputed from components) is the process; these "
+         "checks are the gate that keeps DEEPINDS-class staleness out.")
+def _valuation_consistency(t, g):
+    def gc(c):
+        return pd.to_numeric(g.get(c), errors="coerce") if c in g.columns \
+            else pd.Series(np.nan, index=g.index)
+    price, sh, mc = gc("price"), gc("shares_outstanding"), gc("market_cap")
+    ev, eb, rv = gc("enterprise_value"), gc("ebitda_ttm"), gc("revenue_ttm")
+    ni, fcf = gc("net_income_ttm"), gc("fcf_ttm")
+    evb, evs, eve = gc("ev_ebitda"), gc("ev_sales"), gc("ev_ebit")
+    pe, fy, ebm = gc("p_e"), gc("fcf_yield"), gc("ebitda_margin")
+
+    def _r(a, b):
+        return (a / b).where(b != 0)
+
+    def vrate(name, pred, base, max_pct, hard_top=True):
+        b = int(base.sum())
+        v = int((pred & base).sum())
+        pct = 100.0 * v / max(1, b)
+        check(f"valuation: {name} <= {max_pct}% of covered rows",
+              pct <= max_pct, f"{v}/{b} rows ({pct:.2f}%)")
+        return pred & base
+
+    # exact identities (post-reconcile these are near-zero; a rebound means the
+    # apply_ticker_yf pass was skipped or broken)
+    viol = vrate("mcap != price*shares (>10% dev)",
+                 (_r(mc, price * sh) - 1).abs() > 0.10,
+                 mc.notna() & price.notna() & sh.notna() & (price * sh > 0), 0.5)
+    viol |= vrate("p_e != mcap/NI (>25% dev)",
+                  (_r(pe, _r(mc, ni)) - 1).abs() > 0.25,
+                  (pe > 0) & (ni > 0) & mc.notna(), 1.0)
+    viol |= vrate("fcf_yield != fcf/mcap (>25% dev)",
+                  (_r(fy, _r(fcf, mc)) - 1).abs() > 0.25,
+                  fy.notna() & fcf.notna() & (mc > 0), 1.0)
+    check("valuation: no ev_ebit below ev_ebitda (impossible ordering)",
+          int(((eve < evb * 0.95) & (eve > 0) & (evb > 0)).sum()) == 0,
+          f"{int(((eve < evb * 0.95) & (eve > 0) & (evb > 0)).sum())} rows")
+    check("valuation: no positive ev_ebitda on ebitda<=0",
+          int(((evb > 0) & (eb <= 0) & eb.notna()).sum()) == 0,
+          f"{int(((evb > 0) & (eb <= 0) & eb.notna()).sum())} rows")
+    # soft identities (extreme-multiple tails are left un-bent by design)
+    viol |= vrate("ev_ebitda != EV/ebitda (>25% dev)",
+                  (_r(evb, _r(ev, eb)) - 1).abs() > 0.25,
+                  evb.notna() & (ev > 0) & (eb > 0), 6.0)
+    viol |= vrate("ev_sales != EV/revenue (>25% dev)",
+                  (_r(evs, _r(ev, rv)) - 1).abs() > 0.25,
+                  evs.notna() & (ev > 0) & (rv > 0), 6.0)
+    check("valuation: no EV multiple stored on EV<=0 (meaningless)",
+          int(((ev <= 0) & ev.notna() & (evb.notna() | evs.notna() | eve.notna())).sum()) == 0,
+          f"{int(((ev <= 0) & ev.notna() & (evb.notna() | evs.notna() | eve.notna())).sum())} rows")
+    viol |= vrate("ebitda_margin != ebitda/revenue (>25% dev)",
+                  (_r(ebm, _r(eb, rv)) - 1).abs() > 0.25,
+                  ebm.notna() & (rv > 0) & eb.notna(), 6.0)
+    # the names people actually SEE must be spotless: top 100 by ETA carry
+    # zero cross-field violations of any kind.
+    eta = gc("entry_today_asymmetry")
+    top_idx = eta.sort_values(ascending=False).head(100).index
+    n_top_viol = int(viol.reindex(top_idx).fillna(False).sum())
+    check("valuation: top-100 by ETA carry ZERO cross-field violations",
+          n_top_viol == 0, f"{n_top_viol} of top 100 rows inconsistent")
 
 
 def main():

@@ -64,3 +64,7 @@ Each fix made to the archetype rules is pinned as a load-bearing invariant so it
 ## Composite score ranges
 
 Confirmation/lens composites live in [0, 1] by construction.
+
+## Valuation internal consistency (yf process)
+
+Every stored ratio must equal what the row's own components say. The apply_ticker_yf reconcile (levels bend to authoritative Yahoo ratios; ratios recomputed from components) is the process; these checks are the gate that keeps DEEPINDS-class staleness out.

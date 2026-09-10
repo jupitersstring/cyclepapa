@@ -1,4 +1,3 @@
 NEAR-EMPTY COLUMNS (<2% coverage — legs almost never fire):
   SPARSE   seg_oplev                             1.52%
   SPARSE   cheap_per_roiic_lindy                 1.76%
-  ZERO     arch_post_reorg fires on NOBODY — investigate
