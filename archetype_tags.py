@@ -3246,13 +3246,21 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # is EBIT yield > 20% at emergence (Verdad: +61% 2yr); de-levering + intact
     # moat is gating — we proxy the moat with a high EBIT yield + not-melting.
     # Assembly Theory's EBIT-yield>20% is measured AT EMERGENCE, which we can't
-    # observe; on CURRENT price only ~1 of ~44 fresh-start names clears 20%, so
-    # gate on the user's EXCELLENT-VALUATION test (EBIT / FCF / earnings yield)
-    # instead — it still surfaces the genuinely-cheap emergers (Gulfport,
-    # Pilgrim's Pride, Lear, Bristow) while _not_melting drops the burners.
+    # observe; on CURRENT price only ~1 of ~44 fresh-start names clears 20%.
+    # CRITICAL: the value test here must NOT use the earnings-yield (1/p_e) leg.
+    # A fresh-start company's trailing net income is systematically contaminated
+    # by the one-off debt-discharge / reorganization gain — WeightWatchers (WW)
+    # posts $1.02B "net income" on $701M revenue (mcap $180M), a p_e of 1.56 that
+    # is pure discharge gain, not earnings. That fake earnings yield sailed
+    # through the generic _excellent_value and only the leverage cap accidentally
+    # caught it. So gate post-reorg on OPERATING yield only (EV/EBIT or FCF) — the
+    # exact lens Verdad uses, and the one discharge gains cannot inflate. WW's
+    # real EV/EBIT yield is 5.8% and FCF is negative, so it is now robustly
+    # excluded on value, not by luck of leverage.
+    _reorg_value = ((_ebit_yield >= 0.10) | (fcf_yield >= 0.08))
     df['arch_post_reorg'] = (
         (_reorg == 1) & is_operating & _not_melting
-        & _excellent_value
+        & _reorg_value
         & (nde <= 3.0)
     ).fillna(False).astype(int)
 

@@ -30,7 +30,7 @@ METHODOLOGY AUDIT — 109 checks, 0 FAIL, 0 WARN
   PASS  gating: analyst_rerating_score is 0 outside arch_analyst_rerating_confirmed  — 0 non-firers with positive score
   PASS  gating: asleep_score is 0 outside arch_asleep_at_wheel  — 0 non-firers with positive score
   PASS  gating: seg_inflect_score is 0 outside arch_fastest_segment  — 0 non-firers with positive score
-  PASS  density: archetype_count_pct <= 1  — max 0.403
+  PASS  density: archetype_count_pct <= 1  — max 0.500
   PASS  units: insider_ownership_pct is a fraction (<= 1.05)  — 0 percent-scale stragglers
   PASS  integrity: lynch signal rows all match the header schema  — 0 ragged rows
   PASS  integrity: country benchmarks are live (<=62d old)  — stale/empty: []
@@ -54,10 +54,10 @@ METHODOLOGY AUDIT — 109 checks, 0 FAIL, 0 WARN
   PASS  regression(R3): arch_weschler_levered_equity carries no net-cash firm  — 0 net-cash (>10% of mcap) firers
   PASS  regression(R3): arch_asymmetric_assembly carries no net-cash firm  — 0 net-cash (>10% of mcap) firers
   PASS  regression(R3): arch_levered_inflection carries no net-cash firm  — 0 net-cash (>10% of mcap) firers
-  PASS  regression(R6): arch_cheap_sales_scaler keeps a >=$20M USD revenue base  — 0 sub-$20M-USD-revenue firers
-  PASS  regression(R6): arch_exceptional_evsg keeps a >=$20M USD revenue base  — 0 sub-$20M-USD-revenue firers
-  PASS  regression(R6): arch_growth_algo keeps a >=$20M USD revenue base  — 0 sub-$20M-USD-revenue firers
-  PASS  regression(R6): arch_tenbagger_path keeps a >=$20M USD revenue base  — 0 sub-$20M-USD-revenue firers
+  PASS  regression(R6): arch_cheap_sales_scaler keeps a >=$5M USD revenue base  — 0 sub-$5M-USD-revenue firers
+  PASS  regression(R6): arch_exceptional_evsg keeps a >=$5M USD revenue base  — 0 sub-$5M-USD-revenue firers
+  PASS  regression(R6): arch_growth_algo keeps a >=$5M USD revenue base  — 0 sub-$5M-USD-revenue firers
+  PASS  regression(R6): arch_tenbagger_path keeps a >=$5M USD revenue base  — 0 sub-$5M-USD-revenue firers
   PASS  regression(R5): arch_roic_inflect not firing on declining revenue  — 0 firers with rev_yoy < 0
   PASS  regression(R5): arch_double_inflect not firing on declining revenue  — 0 firers with rev_yoy < 0
   PASS  regression(R5): arch_micro_activist_inflect not firing on declining revenue  — 0 firers with rev_yoy < 0

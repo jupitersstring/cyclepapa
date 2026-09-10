@@ -475,16 +475,20 @@ def _regression(t, g):
             check(f"regression(R3): {_ac} carries no net-cash firm",
                   leak == 0, f"{leak} net-cash (>10% of mcap) firers")
 
-    # R6 — growth/scaler archetypes keep a real USD revenue base (>=$20M);
-    # below it a % growth rate is sub-scale noise (FX-blind floors leaked).
+    # R6 — growth/scaler archetypes keep a real USD revenue base (>=$5M). The
+    # floor is the Cassel/Andreola microcap sweet spot ($5-10M REVENUE scaling to
+    # $30-40M), NOT $20M — a $20M floor cut exactly the multibagger cohort the
+    # reference targets. Below $5M a % growth rate is sub-scale base-effect noise
+    # (and the g10/profitability legs still guard base-effect). FX-blind (a raw
+    # home-currency floor) would leak, so the test is on revenue_ttm_usd.
     _rev_usd = gcol("revenue_ttm_usd")
     for _ac in ("arch_cheap_sales_scaler", "arch_exceptional_evsg",
                 "arch_growth_algo", "arch_tenbagger_path"):
         if _ac in t.columns:
             leak = int(((n(t, _ac) == 1) & (_rev_usd > 0)
-                        & (_rev_usd < 20e6)).sum())
-            check(f"regression(R6): {_ac} keeps a >=$20M USD revenue base",
-                  leak == 0, f"{leak} sub-$20M-USD-revenue firers")
+                        & (_rev_usd < 5e6)).sum())
+            check(f"regression(R6): {_ac} keeps a >=$5M USD revenue base",
+                  leak == 0, f"{leak} sub-$5M-USD-revenue firers")
 
     # R5 — margin/cost inflection archetypes never fire on DECLINING revenue
     # (a cost-cut blip in a shrinking business is not an inflection).
