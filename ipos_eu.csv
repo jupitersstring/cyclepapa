@@ -1,0 +1,50 @@
+ticker,name,date,exchange,tz,lat,lon,open_h,open_m,confidence
+THG,THG plc,2020-09-16,LSE,Europe/London,51.515,-0.099,8,0,high
+BYIT,Bytes Technology,2020-12-17,LSE,Europe/London,51.515,-0.099,8,0,medium
+DOCS,Dr Martens,2021-01-29,LSE,Europe/London,51.515,-0.099,8,0,high
+MOON,Moonpig,2021-02-02,LSE,Europe/London,51.515,-0.099,8,0,high
+ATG,Auction Technology Group,2021-02-23,LSE,Europe/London,51.515,-0.099,8,0,medium
+TRST,Trustpilot,2021-03-23,LSE,Europe/London,51.515,-0.099,8,0,high
+ROO,Deliveroo,2021-03-31,LSE,Europe/London,51.515,-0.099,8,0,high
+PBEE,PensionBee,2021-04-21,LSE,Europe/London,51.515,-0.099,8,0,medium
+DARK,Darktrace,2021-04-30,LSE,Europe/London,51.515,-0.099,8,0,high
+AWE,Alphawave IP,2021-05-13,LSE,Europe/London,51.515,-0.099,8,0,medium
+WISE,Wise plc,2021-07-07,LSE,Europe/London,51.515,-0.099,8,0,high
+BPT,Bridgepoint Group,2021-07-21,LSE,Europe/London,51.515,-0.099,8,0,medium
+PHLL,Petershill Partners,2021-09-28,LSE,Europe/London,51.515,-0.099,8,0,medium
+ONT,Oxford Nanopore,2021-09-30,LSE,Europe/London,51.515,-0.099,8,0,high
+RPI,Raspberry Pi,2024-06-11,LSE,Europe/London,51.515,-0.099,8,0,high
+APN,Applied Nutrition,2024-10-25,LSE,Europe/London,51.515,-0.099,8,0,low
+CAN,Canal+,2024-12-16,LSE,Europe/London,51.515,-0.099,8,0,medium
+ADYEN,Adyen,2018-06-13,Euronext-AMS,Europe/Amsterdam,52.37,4.90,9,0,high
+INPST,InPost,2021-01-27,Euronext-AMS,Europe/Amsterdam,52.37,4.90,9,0,high
+UMG,Universal Music Group,2021-09-21,Euronext-AMS,Europe/Amsterdam,52.37,4.90,9,0,high
+CVC,CVC Capital Partners,2024-04-26,Euronext-AMS,Europe/Amsterdam,52.37,4.90,9,0,high
+BELIEVE,Believe,2021-06-10,Euronext-PAR,Europe/Paris,48.87,2.34,9,0,medium
+ANTIN,Antin Infrastructure,2021-09-24,Euronext-PAR,Europe/Paris,48.87,2.34,9,0,medium
+OVH,OVHcloud,2021-10-15,Euronext-PAR,Europe/Paris,48.87,2.34,9,0,high
+EAPI,Euroapi,2022-05-06,Euronext-PAR,Europe/Paris,48.87,2.34,9,0,medium
+PLNW,Planisware,2024-04-18,Euronext-PAR,Europe/Paris,48.87,2.34,9,0,medium
+EXENS,Exosens,2024-06-07,Euronext-PAR,Europe/Paris,48.87,2.34,9,0,low
+AUTO1,Auto1 Group,2021-02-04,XETRA,Europe/Berlin,50.11,8.68,9,0,high
+VTWR,Vantage Towers,2021-03-18,XETRA,Europe/Berlin,50.11,8.68,9,0,high
+DTG,Daimler Truck,2021-12-10,XETRA,Europe/Berlin,50.11,8.68,9,0,high
+P911,Porsche AG,2022-09-29,XETRA,Europe/Berlin,50.11,8.68,9,0,high
+IOS,Ionos Group,2023-02-08,XETRA,Europe/Berlin,50.11,8.68,9,0,medium
+NCH2,thyssenkrupp nucera,2023-07-07,XETRA,Europe/Berlin,50.11,8.68,9,0,high
+1SXP,Schott Pharma,2023-09-28,XETRA,Europe/Berlin,50.11,8.68,9,0,medium
+R3NK,Renk Group,2024-02-07,XETRA,Europe/Berlin,50.11,8.68,9,0,high
+DOU,Douglas AG,2024-03-21,XETRA,Europe/Berlin,50.11,8.68,9,0,high
+SPG,Springer Nature,2024-10-04,XETRA,Europe/Berlin,50.11,8.68,9,0,medium
+SDZ,Sandoz Group,2023-10-04,SIX,Europe/Zurich,47.37,8.54,9,0,high
+GALD,Galderma,2024-03-22,SIX,Europe/Zurich,47.37,8.54,9,0,high
+LTMC,Lottomatica,2023-05-03,Borsa-Italiana,Europe/Rome,45.46,9.19,9,0,medium
+DNR,Industrie De Nora,2022-06-30,Borsa-Italiana,Europe/Rome,45.46,9.19,9,0,medium
+ANE,Acciona Energia,2021-07-01,BME,Europe/Madrid,40.42,-3.70,9,0,medium
+PUIG,Puig Brands,2024-05-03,BME,Europe/Madrid,40.42,-3.70,9,0,high
+HBX,HBX Group,2025-02-13,BME,Europe/Madrid,40.42,-3.70,9,0,low
+ALE,Allegro,2020-10-12,WSE,Europe/Warsaw,52.23,21.01,9,0,high
+ZAB,Zabka Group,2024-10-17,WSE,Europe/Warsaw,52.23,21.01,9,0,medium
+EQT,EQT AB,2019-09-24,Nasdaq-STO,Europe/Stockholm,59.33,18.06,9,0,high
+VOLCAR,Volvo Cars,2021-10-29,Nasdaq-STO,Europe/Stockholm,59.33,18.06,9,0,high
+H2O,Hidroelectrica,2023-07-12,BVB,Europe/Bucharest,44.43,26.10,10,0,medium
