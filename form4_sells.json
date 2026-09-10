@@ -171,10 +171,11 @@
       "Asbill Richard Brandon | General Counsel",
       "Ross Kade | Chief Information Officer",
       "Bottorff Rebecca | Chief People Officer",
-      "Morken David A. | Chairman & CEO"
+      "Morken David A. | Chairman & CEO",
+      "Raiford Daryl E | Chief Financial Officer"
     ],
-    "total_dollar": 908631.9618999999,
-    "total_shares": 15441.0,
+    "total_dollar": 1412937.6372999998,
+    "total_shares": 23630.0,
     "filings": [
       {
         "accession": "0002029692-26-000020",
@@ -264,6 +265,21 @@
         "txn_date": "2026-05-29",
         "is_officer": true,
         "is_director": true,
+        "is_10pct": false
+      },
+      {
+        "accession": "0001405026-26-000037",
+        "date": "2026-06-01",
+        "person": "Raiford Daryl E",
+        "title": "Chief Financial Officer",
+        "dollar": 504305.67539999995,
+        "shares": 8189.0,
+        "code": "S",
+        "price": 61.5833,
+        "post_shares": 43619.0,
+        "txn_date": "2026-05-29",
+        "is_officer": true,
+        "is_director": false,
         "is_10pct": false
       }
     ]
@@ -429,10 +445,11 @@
     "issuer_name": "General Motors Co",
     "issuer_cik": "0001467858",
     "buyer_set": [
-      "Harvey Rory | Executive Vice President"
+      "Harvey Rory | Executive Vice President",
+      "Hatto Christopher | Vice President & CAO"
     ],
-    "total_dollar": 775266.28,
-    "total_shares": 9124.0,
+    "total_dollar": 1361341.28,
+    "total_shares": 16019.0,
     "filings": [
       {
         "accession": "0001976795-26-000010",
@@ -444,6 +461,21 @@
         "code": "S",
         "price": 84.97,
         "post_shares": 37395.0,
+        "txn_date": "2026-05-28",
+        "is_officer": true,
+        "is_director": false,
+        "is_10pct": false
+      },
+      {
+        "accession": "0001292153-26-000008",
+        "date": "2026-06-01",
+        "person": "Hatto Christopher",
+        "title": "Vice President & CAO",
+        "dollar": 586075.0,
+        "shares": 6895.0,
+        "code": "S",
+        "price": 85.0,
+        "post_shares": 25794.0,
         "txn_date": "2026-05-28",
         "is_officer": true,
         "is_director": false,
@@ -2461,6 +2493,884 @@
         "code": "S",
         "price": 25.0,
         "post_shares": 56181.0,
+        "txn_date": "2026-05-28",
+        "is_officer": false,
+        "is_director": true,
+        "is_10pct": false
+      }
+    ]
+  },
+  "SNOW": {
+    "ticker": "SNOW",
+    "issuer_name": "Snowflake Inc.",
+    "issuer_cik": "0001640147",
+    "buyer_set": [
+      "Slootman Frank | Director",
+      "GARRETT MARK | Director"
+    ],
+    "total_dollar": 135333052.801,
+    "total_shares": 537076.0,
+    "filings": [
+      {
+        "accession": "0001402348-26-000010",
+        "date": "2026-06-01",
+        "person": "Slootman Frank",
+        "title": null,
+        "dollar": 110332852.80100001,
+        "shares": 437076.0,
+        "code": "S",
+        "price": 252.434,
+        "post_shares": 352257.0,
+        "txn_date": "2026-05-29",
+        "is_officer": false,
+        "is_director": true,
+        "is_10pct": false
+      },
+      {
+        "accession": "0001246215-26-000001",
+        "date": "2026-06-01",
+        "person": "GARRETT MARK",
+        "title": null,
+        "dollar": 25000200.0,
+        "shares": 100000.0,
+        "code": "S",
+        "price": 250.002,
+        "post_shares": 8801.0,
+        "txn_date": "2026-05-29",
+        "is_officer": false,
+        "is_director": true,
+        "is_10pct": false
+      }
+    ]
+  },
+  "TRUP": {
+    "ticker": "TRUP",
+    "issuer_name": "TRUPANION, INC.",
+    "issuer_cik": "0001371285",
+    "buyer_set": [
+      "GALLAGHER JOHN R | Chief Operating Officer"
+    ],
+    "total_dollar": 78153.3936,
+    "total_shares": 3603.0,
+    "filings": [
+      {
+        "accession": "0001371285-26-000146",
+        "date": "2026-06-01",
+        "person": "GALLAGHER JOHN R",
+        "title": "Chief Operating Officer",
+        "dollar": 78153.3936,
+        "shares": 3603.0,
+        "code": "S",
+        "price": 21.6912,
+        "post_shares": 33065.0,
+        "txn_date": "2026-05-28",
+        "is_officer": true,
+        "is_director": false,
+        "is_10pct": false
+      }
+    ]
+  },
+  "DIOD": {
+    "ticker": "DIOD",
+    "issuer_name": "DIODES INC /DEL/",
+    "issuer_cik": "0000029002",
+    "buyer_set": [
+      "White Richard Dallas | Corporate Secretary",
+      "Tang Francis | Chief Technology Officer"
+    ],
+    "total_dollar": 2036120.923,
+    "total_shares": 18330.0,
+    "filings": [
+      {
+        "accession": "0001368889-26-000002",
+        "date": "2026-06-01",
+        "person": "White Richard Dallas",
+        "title": "Corporate Secretary",
+        "dollar": 318500.19999999995,
+        "shares": 3000.0,
+        "code": "S",
+        "price": 106.1667,
+        "post_shares": 10071.0,
+        "txn_date": "2026-05-29",
+        "is_officer": true,
+        "is_director": false,
+        "is_10pct": false
+      },
+      {
+        "accession": "0001363562-26-000006",
+        "date": "2026-06-01",
+        "person": "Tang Francis",
+        "title": "Chief Technology Officer",
+        "dollar": 1717620.723,
+        "shares": 15330.0,
+        "code": "S",
+        "price": 112.0431,
+        "post_shares": 71438.0,
+        "txn_date": "2026-05-29",
+        "is_officer": true,
+        "is_director": false,
+        "is_10pct": false
+      }
+    ]
+  },
+  "MSTR": {
+    "ticker": "MSTR",
+    "issuer_name": "Strategy Inc",
+    "issuer_cik": "0001050446",
+    "buyer_set": [
+      "Patten Jarrod M | Director"
+    ],
+    "total_dollar": 3402892.5,
+    "total_shares": 22300.0,
+    "filings": [
+      {
+        "accession": "0001309191-26-000022",
+        "date": "2026-06-01",
+        "person": "Patten Jarrod M",
+        "title": null,
+        "dollar": 3402892.5,
+        "shares": 22300.0,
+        "code": "S",
+        "price": 152.5961,
+        "post_shares": 34550.0,
+        "txn_date": "2026-05-28",
+        "is_officer": false,
+        "is_director": true,
+        "is_10pct": false
+      }
+    ]
+  },
+  "MTG": {
+    "ticker": "MTG",
+    "issuer_name": "MGIC INVESTMENT CORP",
+    "issuer_cik": "0000876437",
+    "buyer_set": [
+      "Maggio Paula C | EVP and General Counsel"
+    ],
+    "total_dollar": 534940.35,
+    "total_shares": 20937.0,
+    "filings": [
+      {
+        "accession": "0001293826-26-000007",
+        "date": "2026-06-01",
+        "person": "Maggio Paula C",
+        "title": "EVP and General Counsel",
+        "dollar": 534940.35,
+        "shares": 20937.0,
+        "code": "S",
+        "price": 25.55,
+        "post_shares": 169619.68,
+        "txn_date": "2026-05-29",
+        "is_officer": true,
+        "is_director": false,
+        "is_10pct": false
+      }
+    ]
+  },
+  "BBD": {
+    "ticker": "BBD",
+    "issuer_name": "BANK BRADESCO",
+    "issuer_cik": "0001160330",
+    "buyer_set": [
+      "Camara Rogerio Pedro | Director"
+    ],
+    "total_dollar": 2638474.14,
+    "total_shares": 146338.0,
+    "filings": [
+      {
+        "accession": "0001292814-26-003265",
+        "date": "2026-06-01",
+        "person": "Camara Rogerio Pedro",
+        "title": null,
+        "dollar": 2638474.14,
+        "shares": 146338.0,
+        "code": "S",
+        "price": 18.03,
+        "post_shares": 241817.0,
+        "txn_date": "2026-05-28",
+        "is_officer": false,
+        "is_director": true,
+        "is_10pct": false
+      }
+    ]
+  },
+  "R": {
+    "ticker": "R",
+    "issuer_name": "RYDER SYSTEM INC",
+    "issuer_cik": "0000085961",
+    "buyer_set": [
+      "Fatovic Robert D | EVP, CLO & Corp. Secretary"
+    ],
+    "total_dollar": 1249250.0,
+    "total_shares": 5000.0,
+    "filings": [
+      {
+        "accession": "0001292248-26-000010",
+        "date": "2026-06-01",
+        "person": "Fatovic Robert D",
+        "title": "EVP, CLO & Corp. Secretary",
+        "dollar": 1249250.0,
+        "shares": 5000.0,
+        "code": "S",
+        "price": 249.85,
+        "post_shares": 88826.0,
+        "txn_date": "2026-05-29",
+        "is_officer": true,
+        "is_director": false,
+        "is_10pct": false
+      }
+    ]
+  },
+  "FSLR": {
+    "ticker": "FSLR",
+    "issuer_name": "FIRST SOLAR, INC.",
+    "issuer_cik": "0001274494",
+    "buyer_set": [
+      "Stockdale Caroline | Chief People and Comm. Officer"
+    ],
+    "total_dollar": 2929076.8000000003,
+    "total_shares": 10628.0,
+    "filings": [
+      {
+        "accession": "0001274494-26-000149",
+        "date": "2026-06-01",
+        "person": "Stockdale Caroline",
+        "title": "Chief People and Comm. Officer",
+        "dollar": 2929076.8000000003,
+        "shares": 10628.0,
+        "code": "S",
+        "price": 275.6,
+        "post_shares": 23792.0,
+        "txn_date": "2026-05-28",
+        "is_officer": true,
+        "is_director": false,
+        "is_10pct": false
+      }
+    ]
+  },
+  "GGN": {
+    "ticker": "GGN",
+    "issuer_name": "GAMCO Global Gold, Natural Resources & Income Trust",
+    "issuer_cik": "0001313510",
+    "buyer_set": [
+      "VANEKRIS ANTHONIE C | Director"
+    ],
+    "total_dollar": 12834.0,
+    "total_shares": 2300.0,
+    "filings": [
+      {
+        "accession": "0001247238-26-000002",
+        "date": "2026-06-01",
+        "person": "VANEKRIS ANTHONIE C",
+        "title": null,
+        "dollar": 12834.0,
+        "shares": 2300.0,
+        "code": "S",
+        "price": 5.58,
+        "post_shares": 0,
+        "txn_date": "2026-02-18",
+        "is_officer": false,
+        "is_director": true,
+        "is_10pct": false
+      }
+    ]
+  },
+  "MCB": {
+    "ticker": "MCB",
+    "issuer_name": "Metropolitan Bank Holding Corp.",
+    "issuer_cik": "0001476034",
+    "buyer_set": [
+      "GUTMAN HARVEY | Director"
+    ],
+    "total_dollar": 268746.6,
+    "total_shares": 3000.0,
+    "filings": [
+      {
+        "accession": "0001229895-26-000004",
+        "date": "2026-06-01",
+        "person": "GUTMAN HARVEY",
+        "title": null,
+        "dollar": 268746.6,
+        "shares": 3000.0,
+        "code": "S",
+        "price": 89.5822,
+        "post_shares": 18243.0,
+        "txn_date": "2026-05-29",
+        "is_officer": false,
+        "is_director": true,
+        "is_10pct": false
+      }
+    ]
+  },
+  "TWST": {
+    "ticker": "TWST",
+    "issuer_name": "Twist Bioscience Corp",
+    "issuer_cik": "0001581280",
+    "buyer_set": [
+      "Leproust Emily M. | Chief Executive Officer",
+      "Starovasnik Melissa A. | Director"
+    ],
+    "total_dollar": 1288554.5741,
+    "total_shares": 18970.0,
+    "filings": [
+      {
+        "accession": "0001214659-26-006967",
+        "date": "2026-06-01",
+        "person": "Leproust Emily M.",
+        "title": "Chief Executive Officer",
+        "dollar": 1118554.5741,
+        "shares": 16470.0,
+        "code": "S",
+        "price": 67.9147,
+        "post_shares": 861860.0,
+        "txn_date": "2026-05-28",
+        "is_officer": true,
+        "is_director": true,
+        "is_10pct": false
+      },
+      {
+        "accession": "0001214659-26-006966",
+        "date": "2026-06-01",
+        "person": "Starovasnik Melissa A.",
+        "title": null,
+        "dollar": 170000.0,
+        "shares": 2500.0,
+        "code": "S",
+        "price": 68.0,
+        "post_shares": 22222.0,
+        "txn_date": "2026-05-28",
+        "is_officer": false,
+        "is_director": true,
+        "is_10pct": false
+      }
+    ]
+  },
+  "AGO": {
+    "ticker": "AGO",
+    "issuer_name": "ASSURED GUARANTY LTD",
+    "issuer_cik": "0001273813",
+    "buyer_set": [
+      "Radtke Lorin | Director"
+    ],
+    "total_dollar": 77813.04,
+    "total_shares": 1047.0,
+    "filings": [
+      {
+        "accession": "0001213900-26-063595",
+        "date": "2026-06-01",
+        "person": "Radtke Lorin",
+        "title": null,
+        "dollar": 77813.04,
+        "shares": 1047.0,
+        "code": "S",
+        "price": 74.32,
+        "post_shares": 9307.0,
+        "txn_date": "2026-05-29",
+        "is_officer": false,
+        "is_director": true,
+        "is_10pct": false
+      }
+    ]
+  },
+  "MTRN": {
+    "ticker": "MTRN",
+    "issuer_name": "MATERION Corp",
+    "issuer_cik": "0001104657",
+    "buyer_set": [
+      "PHILLIPPY ROBERT J | Director"
+    ],
+    "total_dollar": 765163.7000000001,
+    "total_shares": 3500.0,
+    "filings": [
+      {
+        "accession": "0001213190-26-000015",
+        "date": "2026-06-01",
+        "person": "PHILLIPPY ROBERT J",
+        "title": null,
+        "dollar": 765163.7000000001,
+        "shares": 3500.0,
+        "code": "S",
+        "price": 218.6182,
+        "post_shares": 5844.0,
+        "txn_date": "2026-05-29",
+        "is_officer": false,
+        "is_director": true,
+        "is_10pct": false
+      }
+    ]
+  },
+  "RDVT": {
+    "ticker": "RDVT",
+    "issuer_name": "Red Violet, Inc.",
+    "issuer_cik": "0001720116",
+    "buyer_set": [
+      "DELL JEFFREY ALAN | Chief Information Officer",
+      "Dubner Derek | Chief Executive Officer",
+      "MacLachlan Daniel | Chief Financial Officer",
+      "Reilly James Patrick | President"
+    ],
+    "total_dollar": 2641830.0,
+    "total_shares": 46000.0,
+    "filings": [
+      {
+        "accession": "0001193125-26-252047",
+        "date": "2026-06-01",
+        "person": "DELL JEFFREY ALAN",
+        "title": "Chief Information Officer",
+        "dollar": 574350.0,
+        "shares": 10000.0,
+        "code": "S",
+        "price": 57.435,
+        "post_shares": 160889.0,
+        "txn_date": "2026-06-01",
+        "is_officer": true,
+        "is_director": false,
+        "is_10pct": false
+      },
+      {
+        "accession": "0001193125-26-252042",
+        "date": "2026-06-01",
+        "person": "Dubner Derek",
+        "title": "Chief Executive Officer",
+        "dollar": 689160.0,
+        "shares": 12000.0,
+        "code": "S",
+        "price": 57.43,
+        "post_shares": 563273.0,
+        "txn_date": "2026-06-01",
+        "is_officer": true,
+        "is_director": true,
+        "is_10pct": false
+      },
+      {
+        "accession": "0001193125-26-252039",
+        "date": "2026-06-01",
+        "person": "MacLachlan Daniel",
+        "title": "Chief Financial Officer",
+        "dollar": 689160.0,
+        "shares": 12000.0,
+        "code": "S",
+        "price": 57.43,
+        "post_shares": 364902.0,
+        "txn_date": "2026-06-01",
+        "is_officer": true,
+        "is_director": false,
+        "is_10pct": false
+      },
+      {
+        "accession": "0001193125-26-252034",
+        "date": "2026-06-01",
+        "person": "Reilly James Patrick",
+        "title": "President",
+        "dollar": 689160.0,
+        "shares": 12000.0,
+        "code": "S",
+        "price": 57.43,
+        "post_shares": 238351.0,
+        "txn_date": "2026-06-01",
+        "is_officer": true,
+        "is_director": false,
+        "is_10pct": false
+      }
+    ]
+  },
+  "GOOGL": {
+    "ticker": "GOOGL",
+    "issuer_name": "Alphabet Inc.",
+    "issuer_cik": "0001652044",
+    "buyer_set": [
+      "ARNOLD FRANCES | Director"
+    ],
+    "total_dollar": 38862.0,
+    "total_shares": 102.0,
+    "filings": [
+      {
+        "accession": "0001193125-26-252002",
+        "date": "2026-06-01",
+        "person": "ARNOLD FRANCES",
+        "title": null,
+        "dollar": 38862.0,
+        "shares": 102.0,
+        "code": "S",
+        "price": 381.0,
+        "post_shares": 18721.0,
+        "txn_date": "2026-05-29",
+        "is_officer": false,
+        "is_director": true,
+        "is_10pct": false
+      }
+    ]
+  },
+  "MDLN": {
+    "ticker": "MDLN",
+    "issuer_name": "Medline Inc.",
+    "issuer_cik": "0002046386",
+    "buyer_set": [
+      "Hellman & Friedman Capital Partners X (Parallel), L.P. | 10%",
+      "BCP 8 Holdings Mozart Manager L.L.C. | 10%",
+      "BX Mozart ML-2 Holdco L.P. | 10%"
+    ],
+    "total_dollar": 3599085698.1875,
+    "total_shares": 98503885.0,
+    "filings": [
+      {
+        "accession": "0001193125-26-251924",
+        "date": "2026-06-01",
+        "person": "Hellman & Friedman Capital Partners X (Parallel), L.P.",
+        "title": null,
+        "dollar": 1164385709.3874998,
+        "shares": 31868237.0,
+        "code": "S",
+        "price": 36.5375,
+        "post_shares": 62591526.0,
+        "txn_date": "2026-05-28",
+        "is_officer": false,
+        "is_director": false,
+        "is_10pct": true
+      },
+      {
+        "accession": "0001193125-26-251451",
+        "date": "2026-06-01",
+        "person": "BCP 8 Holdings Mozart Manager L.L.C.",
+        "title": null,
+        "dollar": 1217349994.4,
+        "shares": 33317824.0,
+        "code": "S",
+        "price": 36.5375,
+        "post_shares": 89537913.0,
+        "txn_date": "2026-05-28",
+        "is_officer": false,
+        "is_director": false,
+        "is_10pct": true
+      },
+      {
+        "accession": "0001193125-26-251449",
+        "date": "2026-06-01",
+        "person": "BX Mozart ML-2 Holdco L.P.",
+        "title": null,
+        "dollar": 1217349994.4,
+        "shares": 33317824.0,
+        "code": "S",
+        "price": 36.5375,
+        "post_shares": 89537913.0,
+        "txn_date": "2026-05-28",
+        "is_officer": false,
+        "is_director": false,
+        "is_10pct": true
+      }
+    ]
+  },
+  "VRSK": {
+    "ticker": "VRSK",
+    "issuer_name": "Verisk Analytics, Inc.",
+    "issuer_cik": "0001442145",
+    "buyer_set": [
+      "Hansen Bruce Edward | Director"
+    ],
+    "total_dollar": 408776.64,
+    "total_shares": 2336.0,
+    "filings": [
+      {
+        "accession": "0001193125-26-251842",
+        "date": "2026-06-01",
+        "person": "Hansen Bruce Edward",
+        "title": null,
+        "dollar": 408776.64,
+        "shares": 2336.0,
+        "code": "S",
+        "price": 174.99,
+        "post_shares": 15868.0,
+        "txn_date": "2026-06-01",
+        "is_officer": false,
+        "is_director": true,
+        "is_10pct": false
+      }
+    ]
+  },
+  "CRSP": {
+    "ticker": "CRSP",
+    "issuer_name": "CRISPR Therapeutics AG",
+    "issuer_cik": "0001674416",
+    "buyer_set": [
+      "Patel Naimish | Chief Medical Officer"
+    ],
+    "total_dollar": 210577.31999999998,
+    "total_shares": 3786.0,
+    "filings": [
+      {
+        "accession": "0001193125-26-251817",
+        "date": "2026-06-01",
+        "person": "Patel Naimish",
+        "title": "Chief Medical Officer",
+        "dollar": 210577.31999999998,
+        "shares": 3786.0,
+        "code": "S",
+        "price": 55.62,
+        "post_shares": 19357.0,
+        "txn_date": "2026-05-29",
+        "is_officer": true,
+        "is_director": false,
+        "is_10pct": false
+      }
+    ]
+  },
+  "NEGG": {
+    "ticker": "NEGG",
+    "issuer_name": "Newegg Commerce, Inc.",
+    "issuer_cik": "0001474627",
+    "buyer_set": [
+      "CHANG FRED FACHING | Director"
+    ],
+    "total_dollar": 354180.0,
+    "total_shares": 20000.0,
+    "filings": [
+      {
+        "accession": "0001193125-26-251749",
+        "date": "2026-06-01",
+        "person": "CHANG FRED FACHING",
+        "title": null,
+        "dollar": 354180.0,
+        "shares": 20000.0,
+        "code": "S",
+        "price": 17.709,
+        "post_shares": 3146646.0,
+        "txn_date": "2026-05-28",
+        "is_officer": false,
+        "is_director": true,
+        "is_10pct": true
+      }
+    ]
+  },
+  "CXW": {
+    "ticker": "CXW",
+    "issuer_name": "CoreCivic, Inc.",
+    "issuer_cik": "0001070985",
+    "buyer_set": [
+      "Carter, Cole G. | Chief Administrative Officer"
+    ],
+    "total_dollar": 262500.0,
+    "total_shares": 12500.0,
+    "filings": [
+      {
+        "accession": "0001193125-26-251617",
+        "date": "2026-06-01",
+        "person": "Carter, Cole G.",
+        "title": "Chief Administrative Officer",
+        "dollar": 262500.0,
+        "shares": 12500.0,
+        "code": "S",
+        "price": 21.0,
+        "post_shares": 215883.0,
+        "txn_date": "2026-06-01",
+        "is_officer": true,
+        "is_director": false,
+        "is_10pct": false
+      }
+    ]
+  },
+  "NXST": {
+    "ticker": "NXST",
+    "issuer_name": "NEXSTAR MEDIA GROUP, INC.",
+    "issuer_cik": "0001142417",
+    "buyer_set": [
+      "ALFORD ANDREW | President, Broadcasting"
+    ],
+    "total_dollar": 112124.65000000001,
+    "total_shares": 605.0,
+    "filings": [
+      {
+        "accession": "0001193125-26-251574",
+        "date": "2026-06-01",
+        "person": "ALFORD ANDREW",
+        "title": "President, Broadcasting",
+        "dollar": 112124.65000000001,
+        "shares": 605.0,
+        "code": "S",
+        "price": 185.33,
+        "post_shares": 11689.0,
+        "txn_date": "2026-05-28",
+        "is_officer": true,
+        "is_director": false,
+        "is_10pct": false
+      }
+    ]
+  },
+  "BJRI": {
+    "ticker": "BJRI",
+    "issuer_name": "BJs RESTAURANTS INC",
+    "issuer_cik": "0001013488",
+    "buyer_set": [
+      "Elbogen Noah A. | Director",
+      "Krakower Brian S | EVP & Chief Info. Officer"
+    ],
+    "total_dollar": 356071.48,
+    "total_shares": 7524.0,
+    "filings": [
+      {
+        "accession": "0001193125-26-251535",
+        "date": "2026-06-01",
+        "person": "Elbogen Noah A.",
+        "title": null,
+        "dollar": 193744.65,
+        "shares": 4049.0,
+        "code": "S",
+        "price": 47.85,
+        "post_shares": 76235.0,
+        "txn_date": "2026-05-29",
+        "is_officer": false,
+        "is_director": true,
+        "is_10pct": false
+      },
+      {
+        "accession": "0001193125-26-251533",
+        "date": "2026-06-01",
+        "person": "Krakower Brian S",
+        "title": "EVP & Chief Info. Officer",
+        "dollar": 162326.83000000002,
+        "shares": 3475.0,
+        "code": "S",
+        "price": 46.7128,
+        "post_shares": 4721.0,
+        "txn_date": "2026-05-28",
+        "is_officer": true,
+        "is_director": false,
+        "is_10pct": false
+      }
+    ]
+  },
+  "GLUE": {
+    "ticker": "GLUE",
+    "issuer_name": "Monte Rosa Therapeutics, Inc.",
+    "issuer_cik": "0001826457",
+    "buyer_set": [
+      "Townson Sharon | Chief Scientific Officer"
+    ],
+    "total_dollar": 119220.0,
+    "total_shares": 6000.0,
+    "filings": [
+      {
+        "accession": "0001193125-26-251395",
+        "date": "2026-06-01",
+        "person": "Townson Sharon",
+        "title": "Chief Scientific Officer",
+        "dollar": 119220.0,
+        "shares": 6000.0,
+        "code": "S",
+        "price": 19.87,
+        "post_shares": 67845.0,
+        "txn_date": "2026-05-29",
+        "is_officer": true,
+        "is_director": false,
+        "is_10pct": false
+      }
+    ]
+  },
+  "SO": {
+    "ticker": "SO",
+    "issuer_name": "SOUTHERN CO",
+    "issuer_cik": "0000092122",
+    "buyer_set": [
+      "Kim Matthew M. | Comptroller"
+    ],
+    "total_dollar": 9116.0,
+    "total_shares": 100.0,
+    "filings": [
+      {
+        "accession": "0001193125-26-251358",
+        "date": "2026-06-01",
+        "person": "Kim Matthew M.",
+        "title": "Comptroller",
+        "dollar": 9116.0,
+        "shares": 100.0,
+        "code": "S",
+        "price": 91.16,
+        "post_shares": 6688.0,
+        "txn_date": "2026-06-01",
+        "is_officer": true,
+        "is_director": false,
+        "is_10pct": false
+      }
+    ]
+  },
+  "TG": {
+    "ticker": "TG",
+    "issuer_name": "TREDEGAR CORP",
+    "issuer_cik": "0000850429",
+    "buyer_set": [
+      "GOTTWALD JOHN D | 10%",
+      "GOTTWALD WILLIAM M | 10%",
+      "Gottwald James T. | 10%"
+    ],
+    "total_dollar": 101017.294,
+    "total_shares": 12591.0,
+    "filings": [
+      {
+        "accession": "0001193125-26-250969",
+        "date": "2026-06-01",
+        "person": "GOTTWALD JOHN D",
+        "title": null,
+        "dollar": 33680.439,
+        "shares": 4198.0,
+        "code": "S",
+        "price": 8.023,
+        "post_shares": 457639.0,
+        "txn_date": "2026-05-28",
+        "is_officer": false,
+        "is_director": false,
+        "is_10pct": true
+      },
+      {
+        "accession": "0001193125-26-250954",
+        "date": "2026-06-01",
+        "person": "GOTTWALD WILLIAM M",
+        "title": null,
+        "dollar": 33672.439,
+        "shares": 4197.0,
+        "code": "S",
+        "price": 8.023,
+        "post_shares": 457639.0,
+        "txn_date": "2026-05-28",
+        "is_officer": false,
+        "is_director": false,
+        "is_10pct": true
+      },
+      {
+        "accession": "0001193125-26-250918",
+        "date": "2026-06-01",
+        "person": "Gottwald James T.",
+        "title": null,
+        "dollar": 33664.416,
+        "shares": 4196.0,
+        "code": "S",
+        "price": 8.023,
+        "post_shares": 457639.0,
+        "txn_date": "2026-05-28",
+        "is_officer": false,
+        "is_director": false,
+        "is_10pct": true
+      }
+    ]
+  },
+  "DAO": {
+    "ticker": "DAO",
+    "issuer_name": "Youdao, Inc.",
+    "issuer_cik": "0001781753",
+    "buyer_set": [
+      "Lai Jimmy Y. | Director"
+    ],
+    "total_dollar": 0.0,
+    "total_shares": 3997.0,
+    "filings": [
+      {
+        "accession": "0001193125-26-249602",
+        "date": "2026-06-01",
+        "person": "Lai Jimmy Y.",
+        "title": null,
+        "dollar": 0.0,
+        "shares": 3997.0,
+        "code": "S",
+        "price": 0.0,
+        "post_shares": 50221.0,
         "txn_date": "2026-05-28",
         "is_officer": false,
         "is_director": true,
