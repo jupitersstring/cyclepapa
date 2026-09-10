@@ -1,0 +1,1237 @@
+ticker,date,name,n_lens,mean_pct,n_top_decile,detail
+MPO,2012-04-19,Midstates Petroleum Co Inc,4,96.7,4,asym_v4:97 plateau:97 sector_key:95 delta_hold:97
+KITE,2014-06-20,Kite Pharma Inc,4,96.6,4,asym_v4:97 plateau:97 sector_key:96 delta_hold:97
+ANTH,2010-03-01,Anthera Pharmaceuticals Inc,5,96.5,5,asym_v4:98 plateau:98 sector_key:93 convergence:96 delta_hold:98
+SNBA,2000-10-27,Sun Bancshares Inc,5,93.8,5,asym_v4:92 plateau:92 sector_key:97 convergence:96 delta_hold:92
+CSAV,2000-05-19,coolsavings.com inc,4,93.4,4,asym_v4:91 plateau:93 sector_key:99 delta_hold:91
+PRTHV,2000-05-19,Parthus Technologies PLC,4,93.4,4,asym_v4:91 plateau:93 sector_key:99 delta_hold:91
+PSIT,2000-03-16,PSi Technologies Inc,5,93.2,4,asym_v4:97 plateau:98 sector_key:97 convergence:76 delta_hold:97
+NRG,2000-05-30,NRG Energy Inc,5,93.0,4,asym_v4:99 plateau:99 sector_key:69 convergence:99 delta_hold:99
+CPHD,2000-06-21,Cepheid,5,92.9,4,asym_v4:99 plateau:98 sector_key:92 convergence:76 delta_hold:99
+LOUD,2000-03-15,Loudeye Technologies Inc,5,92.9,4,asym_v4:96 plateau:96 sector_key:100 convergence:76 delta_hold:96
+FHRX,2000-05-31,First Horizon Pharmaceutical,5,92.9,4,asym_v4:99 plateau:99 sector_key:70 convergence:99 delta_hold:99
+CTR,2012-06-26,ClearBridge Energy MLP Total,5,92.4,4,asym_v4:97 plateau:98 sector_key:91 convergence:80 delta_hold:97
+EQM,2012-06-26,EQT Midstream Partners LP,5,92.4,4,asym_v4:97 plateau:98 sector_key:91 convergence:80 delta_hold:97
+PRVL,2019-06-20,Prevail Therapeutics Inc,4,92.3,4,asym_v4:91 plateau:93 sector_key:93 delta_hold:92
+AKRO,2019-06-20,Akero Therapeutics Inc,4,92.3,4,asym_v4:91 plateau:93 sector_key:93 delta_hold:92
+NVEE.,2013-03-27,NV5 Holdings Inc,5,92.3,4,asym_v4:94 plateau:94 sector_key:100 convergence:80 delta_hold:94
+SHOC,2000-03-15,Shochet Holding Corp,5,92.1,4,asym_v4:96 plateau:96 sector_key:96 convergence:76 delta_hold:96
+IMPV,2000-03-15,ImproveNet Inc,5,92.1,4,asym_v4:96 plateau:96 sector_key:96 convergence:76 delta_hold:96
+TEUR,2000-03-15,Tele1 Europe Holding AB,5,92.1,4,asym_v4:96 plateau:96 sector_key:96 convergence:76 delta_hold:96
+NRGN,1989-10-03,Neurogen,4,92.0,3,asym_v4:91 plateau:86 sector_key:99 delta_hold:92
+ESRT,2013-10-02,Empire State Realty Trust,4,90.5,3,asym_v4:94 plateau:94 sector_key:79 delta_hold:94
+PETX,2013-06-26,Aratana Therapeutics Inc,4,89.6,3,asym_v4:96 plateau:95 sector_key:71 delta_hold:96
+ONIS,2000-05-31,ONI Systems Corp,5,89.2,4,asym_v4:99 plateau:99 sector_key:51 convergence:99 delta_hold:99
+LMIN,2000-03-14,Lastminute.com,5,89.0,4,asym_v4:91 plateau:92 sector_key:94 convergence:76 delta_hold:91
+IISX,2000-03-17,Integrated Information Systems,5,89.0,3,asym_v4:95 plateau:97 sector_key:78 convergence:80 delta_hold:95
+TEP,2013-05-13,Tallgrass Energy Partners LP,5,89.0,2,asym_v4:90 plateau:92 sector_key:94 convergence:80 delta_hold:90
+AKBA,2014-03-20,Akebia Therapeutics Inc,4,88.9,3,asym_v4:100 plateau:100 sector_key:57 delta_hold:100
+CGEN,2000-08-11,Compugen Ltd,5,88.7,2,asym_v4:88 plateau:93 sector_key:75 convergence:99 delta_hold:88
+TELK,2000-08-11,Telik Inc,5,88.7,2,asym_v4:88 plateau:93 sector_key:75 convergence:99 delta_hold:88
+UAXS,2000-03-16,Universal Access Inc,5,88.4,3,asym_v4:97 plateau:98 sector_key:73 convergence:76 delta_hold:97
+EXA,2012-06-28,Exa Corp,5,88.0,3,asym_v4:98 plateau:99 sector_key:64 convergence:80 delta_hold:99
+TSRO,2012-06-27,Tesaro Inc,5,87.6,3,asym_v4:98 plateau:98 sector_key:64 convergence:80 delta_hold:98
+VCLK,2000-03-30,Valueclick Inc,5,87.5,4,asym_v4:90 plateau:91 sector_key:92 convergence:74 delta_hold:90
+PTR,2000-03-30,PetroChina,5,87.5,4,asym_v4:90 plateau:91 sector_key:92 convergence:74 delta_hold:90
+LMNX,2000-03-30,Luminex Corp,5,87.5,4,asym_v4:90 plateau:91 sector_key:92 convergence:74 delta_hold:90
+APTX,2018-06-21,Aptinyx Inc,4,87.4,2,asym_v4:93 plateau:88 sector_key:76 delta_hold:93
+KZR,2018-06-21,Kezar Life Sciences Inc,4,87.4,2,asym_v4:93 plateau:88 sector_key:76 delta_hold:93
+ECOR,2018-06-21,ElectroCore Llc,4,87.4,2,asym_v4:93 plateau:88 sector_key:76 delta_hold:93
+IIIV,2018-06-21,I3 Verticals,4,87.4,2,asym_v4:93 plateau:88 sector_key:76 delta_hold:93
+MZF,2003-08-26,MBIA Cap/Claymore Managed,5,87.4,1,asym_v4:87 plateau:84 sector_key:82 convergence:96 delta_hold:88
+PFL,2003-08-26,Pimco Floating Rate Income,5,87.4,1,asym_v4:87 plateau:84 sector_key:82 convergence:96 delta_hold:88
+FTF,2003-08-26,Frank Temp Lim Dur Inc Trust,5,87.4,1,asym_v4:87 plateau:84 sector_key:82 convergence:96 delta_hold:88
+FLC,2003-08-26,Flaherty & Crumrine/Claymore,5,87.4,1,asym_v4:87 plateau:84 sector_key:82 convergence:96 delta_hold:88
+FVD,2003-08-26,First Trust Val Line Div Fund,5,87.4,1,asym_v4:87 plateau:84 sector_key:82 convergence:96 delta_hold:88
+CWLD,2000-06-01,CrossWorlds Software Inc,5,87.3,4,asym_v4:97 plateau:97 sector_key:47 convergence:99 delta_hold:97
+VHS,2011-06-22,Vanguard Health Systems Inc,5,87.2,2,asym_v4:89 plateau:90 sector_key:92 convergence:74 delta_hold:89
+MMD,2012-06-26,MainStay DefinedTerm Municipal,5,87.1,3,asym_v4:97 plateau:98 sector_key:64 convergence:80 delta_hold:97
+UCO,2000-05-23,Universal Compression Holdings,5,87.1,3,asym_v4:92 plateau:95 sector_key:77 convergence:80 delta_hold:92
+IFX,2000-03-13,Infineon Technologies AG,5,87.1,1,asym_v4:90 plateau:91 sector_key:88 convergence:76 delta_hold:90
+APAM,2013-03-06,Artisan Partners Asset Mgmt In,5,87.0,1,asym_v4:82 plateau:86 sector_key:89 convergence:96 delta_hold:83
+NPLI,2000-03-17,Netpliance Inc,5,86.8,3,asym_v4:95 plateau:97 sector_key:67 convergence:80 delta_hold:95
+CQP,2007-03-20,Cheniere Energy Partners LP,4,86.8,3,asym_v4:100 plateau:99 sector_key:49 delta_hold:100
+TWLL,2006-06-21,Techwell Inc,4,86.8,3,asym_v4:99 plateau:97 sector_key:51 delta_hold:99
+OIS,2001-02-08,Oil States International Inc,5,86.3,2,asym_v4:91 plateau:84 sector_key:86 convergence:80 delta_hold:91
+IBEM,2000-05-17,iBeam Broadcasting Corp,4,86.0,2,asym_v4:94 plateau:82 sector_key:74 delta_hold:94
+HED,2000-09-28,Head NV,5,85.9,0,asym_v4:87 plateau:90 sector_key:86 convergence:80 delta_hold:87
+ASR,2000-09-28,Grupo Aeroportuario del,5,85.9,0,asym_v4:87 plateau:90 sector_key:86 convergence:80 delta_hold:87
+ARDI,2000-09-28,#NAME?,5,85.9,0,asym_v4:87 plateau:90 sector_key:86 convergence:80 delta_hold:87
+VAST,2000-09-28,Vastera Inc,5,85.9,0,asym_v4:87 plateau:90 sector_key:86 convergence:80 delta_hold:87
+TBIO,2000-07-18,Transgenomic Inc,5,85.6,1,asym_v4:85 plateau:87 sector_key:94 convergence:76 delta_hold:85
+ESPR,2000-08-09,Esperion Therapeutics Inc,5,85.2,2,asym_v4:80 plateau:73 sector_key:94 convergence:99 delta_hold:80
+CPC,2009-06-23,ChemSpec International Ltd,5,85.2,1,asym_v4:81 plateau:86 sector_key:97 convergence:80 delta_hold:82
+XXIA,2000-10-17,IXIA Communications,5,84.7,2,asym_v4:83 plateau:93 sector_key:69 convergence:96 delta_hold:83
+AMC,2013-12-18,AMC Entertainment Holdings,4,84.6,3,asym_v4:90 plateau:92 sector_key:66 delta_hold:90
+DRRX,2000-09-27,DURECT Corp,5,84.6,0,asym_v4:85 plateau:89 sector_key:85 convergence:80 delta_hold:85
+UOPX,2000-09-27,University of Phoenix Online,5,84.6,0,asym_v4:85 plateau:89 sector_key:85 convergence:80 delta_hold:85
+FATE,2013-10-01,Fate Therapeutics,4,84.4,0,asym_v4:83 plateau:86 sector_key:87 delta_hold:83
+CRXL,2000-10-26,Crucell N.V.,5,84.2,1,asym_v4:86 plateau:90 sector_key:63 convergence:96 delta_hold:86
+HYGS,2000-10-26,Hydrogenics Corp,5,84.2,1,asym_v4:86 plateau:90 sector_key:63 convergence:96 delta_hold:86
+MCLS,2000-10-26,MediChem Life Sciences Inc,5,84.2,1,asym_v4:86 plateau:90 sector_key:63 convergence:96 delta_hold:86
+PDSN,2004-06-09,PowerDsine Ltd,5,83.9,0,asym_v4:86 plateau:89 sector_key:79 convergence:80 delta_hold:86
+MCDT,2000-08-09,McData Corp,5,83.7,1,asym_v4:80 plateau:73 sector_key:87 convergence:99 delta_hold:80
+RADV,2000-08-09,RadView Software Ltd,5,83.7,1,asym_v4:80 plateau:73 sector_key:87 convergence:99 delta_hold:80
+EVLV,2000-08-09,Evolve Software Inc,5,83.7,1,asym_v4:80 plateau:73 sector_key:87 convergence:99 delta_hold:80
+PYPL,2002-02-14,Paypal Inc,5,83.7,0,asym_v4:85 plateau:86 sector_key:83 convergence:80 delta_hold:85
+ADMA,2013-10-17,ADMA Biologics,5,83.6,2,asym_v4:79 plateau:90 sector_key:95 convergence:74 delta_hold:79
+TTPH,2013-03-19,Tetraphase Pharmaceuticals Inc,5,83.4,3,asym_v4:99 plateau:99 sector_key:87 convergence:32 delta_hold:99
+CSTR,2016-09-22,Capstar Financial Holdings Inc,4,83.4,3,asym_v4:95 plateau:96 sector_key:48 delta_hold:95
+VMW,2007-08-13,VMware Inc,5,83.3,3,asym_v4:98 plateau:89 sector_key:97 convergence:35 delta_hold:98
+CNTB,2021-03-19,Connect Biopharma Hldg Ltd,4,83.2,2,asym_v4:98 plateau:80 sector_key:57 delta_hold:98
+TIL,2021-03-19,Instil Bio Inc,4,83.2,2,asym_v4:98 plateau:80 sector_key:57 delta_hold:98
+FNCH,2021-03-19,Finch Therapeutics Group Inc,4,83.2,2,asym_v4:98 plateau:80 sector_key:57 delta_hold:98
+CTLM,2000-05-23,Centillium Communications Inc,5,82.9,3,asym_v4:92 plateau:95 sector_key:55 convergence:80 delta_hold:92
+ICH,2001-02-08,Investors Capital Holdings Ltd,5,82.9,2,asym_v4:91 plateau:84 sector_key:69 convergence:80 delta_hold:91
+AGIX,2000-08-09,AtheroGenics Inc,5,82.7,1,asym_v4:80 plateau:73 sector_key:81 convergence:99 delta_hold:80
+TVIA,2000-08-09,Tvia Inc,5,82.7,1,asym_v4:80 plateau:73 sector_key:81 convergence:99 delta_hold:80
+PHST,2000-08-09,Pharsight Corp,5,82.7,1,asym_v4:80 plateau:73 sector_key:81 convergence:99 delta_hold:80
+MCEL,2000-08-09,Millennium Cell Inc,5,82.7,1,asym_v4:80 plateau:73 sector_key:81 convergence:99 delta_hold:80
+GO,2019-06-20,Grocery Outlet Holding Corp,4,82.6,3,asym_v4:91 plateau:93 sector_key:54 delta_hold:92
+EPRT,2018-06-21,Essential Properties Realty,4,82.0,2,asym_v4:93 plateau:88 sector_key:54 delta_hold:93
+BUYX,2000-02-07,Buy.com Inc,4,82.0,0,asym_v4:86 plateau:82 sector_key:73 delta_hold:86
+ARPT,2000-03-30,ArrowPoint Communications Inc,5,81.7,3,asym_v4:90 plateau:91 sector_key:63 convergence:74 delta_hold:90
+LION,2000-08-10,Lion Bioscience AG,5,81.7,2,asym_v4:70 plateau:75 sector_key:100 convergence:94 delta_hold:70
+LSBC,2000-08-10,Large Scale Biology Corp,5,81.7,2,asym_v4:70 plateau:75 sector_key:100 convergence:94 delta_hold:70
+VINA,2000-08-10,Vina Technologies Inc,5,81.6,2,asym_v4:70 plateau:75 sector_key:99 convergence:94 delta_hold:70
+RTIX,2000-08-10,Regeneration Technologies Inc,5,81.6,2,asym_v4:70 plateau:75 sector_key:99 convergence:94 delta_hold:70
+AIRG,2016-08-12,Airgain Inc,5,81.5,3,asym_v4:98 plateau:91 sector_key:87 convergence:35 delta_hold:98
+AMMD,2000-08-10,American Medical Systems Hold,5,81.5,2,asym_v4:70 plateau:75 sector_key:99 convergence:94 delta_hold:70
+AGLE,2016-04-06,Aeglea BioTherapeutics Inc,4,81.5,0,asym_v4:86 plateau:84 sector_key:70 delta_hold:86
+BLOG,2007-07-24,BladeLogic Inc,5,81.3,2,asym_v4:75 plateau:67 sector_key:96 convergence:94 delta_hold:75
+TYPE,2007-07-24,Monotype Imaging Holdings Inc,5,81.3,2,asym_v4:75 plateau:67 sector_key:96 convergence:94 delta_hold:75
+VR,2007-07-24,Validus Holdings Ltd,5,81.3,2,asym_v4:75 plateau:67 sector_key:96 convergence:94 delta_hold:75
+HPOW,2000-08-09,H Power Corp,5,81.3,1,asym_v4:80 plateau:73 sector_key:75 convergence:99 delta_hold:80
+ULAB,2001-06-05,Unilab Corp,4,81.2,3,asym_v4:95 plateau:96 sector_key:39 delta_hold:95
+TAP,2002-03-21,Travelers Property Casualty,4,81.2,3,asym_v4:95 plateau:97 sector_key:36 delta_hold:95
+SMM,2012-05-24,Salient Midstream & MLP Fund,5,81.1,3,asym_v4:93 plateau:95 sector_key:89 convergence:35 delta_hold:93
+FFN,2011-05-10,FriendFinder Networks Inc,4,81.1,0,asym_v4:84 plateau:82 sector_key:75 delta_hold:84
+LX,2017-12-21,LexinFintech Holdings,4,80.8,3,asym_v4:95 plateau:97 sector_key:36 delta_hold:96
+GHY,2012-12-21,Prudential Global Short,5,80.7,3,asym_v4:99 plateau:99 sector_key:27 convergence:80 delta_hold:99
+KOS,2011-05-10,Kosmos Energy Ltd,4,80.4,0,asym_v4:84 plateau:82 sector_key:72 delta_hold:84
+ALTU,2006-01-26,Altus Pharmaceuticals Inc,5,80.3,3,asym_v4:95 plateau:87 sector_key:90 convergence:35 delta_hold:95
+PEOP,2000-08-16,PeoplePC Inc,5,80.3,1,asym_v4:78 plateau:70 sector_key:95 convergence:80 delta_hold:78
+GME,2002-02-12,GameStop Corp,5,80.3,0,asym_v4:83 plateau:84 sector_key:72 convergence:80 delta_hold:83
+IPDN,2013-03-05,Professional Diversity Network,5,80.1,1,asym_v4:83 plateau:86 sector_key:52 convergence:96 delta_hold:83
+REXX,2007-07-24,Rex Energy Corp,5,80.1,1,asym_v4:75 plateau:67 sector_key:90 convergence:94 delta_hold:75
+VRNG,2010-06-21,Vringo Inc,4,79.9,3,asym_v4:99 plateau:99 sector_key:22 delta_hold:99
+GOF,2007-07-26,CLAYMORE GUGGENHEIM STRAT OPP,5,79.9,2,asym_v4:72 plateau:66 sector_key:96 convergence:94 delta_hold:72
+ETJ,2007-07-26,Eaton Vance Risk-Managed Div,5,79.9,2,asym_v4:72 plateau:66 sector_key:96 convergence:94 delta_hold:72
+INB,2007-07-26,COHEN & STEERS GLBL INC BLDR I,5,79.9,2,asym_v4:72 plateau:66 sector_key:96 convergence:94 delta_hold:72
+PSNL,2019-06-20,Personalis Inc,4,79.8,3,asym_v4:91 plateau:93 sector_key:43 delta_hold:92
+BCEL,2019-06-20,Atreca Inc,4,79.8,3,asym_v4:91 plateau:93 sector_key:43 delta_hold:92
+EXLT,2000-06-02,Exult Inc,5,79.8,0,asym_v4:85 plateau:86 sector_key:63 convergence:80 delta_hold:86
+HCA,2011-03-09,HCA Holdings Inc,5,79.4,3,asym_v4:98 plateau:98 sector_key:69 convergence:35 delta_hold:98
+WRC,2000-10-19,Westport Resources Corp,5,79.4,2,asym_v4:62 plateau:86 sector_key:90 convergence:96 delta_hold:63
+BLOX,2012-04-19,Infoblox Inc,4,79.2,3,asym_v4:97 plateau:97 sector_key:25 delta_hold:97
+PFPT,2012-04-19,Proofpoint Inc,4,79.2,3,asym_v4:97 plateau:97 sector_key:25 delta_hold:97
+BURL,2013-10-02,Burlington Stores Inc,4,79.1,3,asym_v4:94 plateau:94 sector_key:33 delta_hold:94
+ACL,2002-03-20,Alcon Inc,4,79.0,3,asym_v4:99 plateau:100 sector_key:17 delta_hold:100
+MODN,2013-03-19,Model N Inc,5,78.8,3,asym_v4:99 plateau:99 sector_key:64 convergence:32 delta_hold:99
+OPHM,2000-03-09,OraPharma Inc,5,78.6,3,asym_v4:96 plateau:95 sector_key:72 convergence:35 delta_hold:96
+PF,2013-03-28,Pinnacle Foods,5,78.4,3,asym_v4:96 plateau:96 sector_key:24 convergence:80 delta_hold:96
+REGS,2000-10-17,Regus PLC,5,78.4,2,asym_v4:83 plateau:93 sector_key:38 convergence:96 delta_hold:83
+MON,2000-10-17,Monsanto Co,5,78.4,2,asym_v4:83 plateau:93 sector_key:38 convergence:96 delta_hold:83
+ENWV,2000-10-17,EndWave Corp,5,78.4,2,asym_v4:83 plateau:93 sector_key:38 convergence:96 delta_hold:83
+CIPH,2000-09-28,Ciphergen Biosystems Inc,5,78.4,0,asym_v4:87 plateau:90 sector_key:48 convergence:80 delta_hold:87
+PRTN,2000-09-28,Proton Energy Systems Inc,5,78.4,0,asym_v4:87 plateau:90 sector_key:48 convergence:80 delta_hold:87
+ELAS,2000-09-28,Elastic Networks Inc,5,78.4,0,asym_v4:87 plateau:90 sector_key:48 convergence:80 delta_hold:87
+UAN,2011-04-07,CVR Partners LP,4,78.3,0,asym_v4:79 plateau:83 sector_key:72 delta_hold:79
+ZNGN,2000-09-21,Zengine Inc,5,78.1,3,asym_v4:94 plateau:95 sector_key:73 convergence:35 delta_hold:94
+ALGN,2001-01-26,Align Technology,5,78.0,3,asym_v4:96 plateau:97 sector_key:67 convergence:35 delta_hold:96
+OESX,2007-12-18,Orion Energy Systems Inc,4,77.9,2,asym_v4:98 plateau:70 sector_key:46 delta_hold:98
+PTCT,2013-06-19,PTC Therapeutics Inc,4,77.9,1,asym_v4:69 plateau:81 sector_key:93 delta_hold:69
+LDK,2007-05-31,LDK Solar Co Ltd,5,77.8,0,asym_v4:85 plateau:81 sector_key:59 convergence:80 delta_hold:85
+SGNT,2011-04-19,Sagent Pharmaceuticals Inc,4,77.7,1,asym_v4:68 plateau:82 sector_key:94 delta_hold:68
+NFM,2001-01-23,Nuveen MD Div Adv Muni  Fund,5,77.6,2,asym_v4:92 plateau:89 sector_key:79 convergence:35 delta_hold:92
+DTAS,2000-03-13,Digitas Inc,5,77.6,1,asym_v4:90 plateau:91 sector_key:41 convergence:76 delta_hold:90
+RVSN,2000-03-13,RADVision Ltd,5,77.6,1,asym_v4:90 plateau:91 sector_key:41 convergence:76 delta_hold:90
+FAIM,2000-03-13,FairMarket Inc,5,77.6,1,asym_v4:90 plateau:91 sector_key:41 convergence:76 delta_hold:90
+JPW,2013-06-26,Nuveen Flexible Invest Inc Fd,4,77.5,3,asym_v4:96 plateau:95 sector_key:22 delta_hold:96
+GGM,2013-06-26,Guggenheim Credit Allocation,4,77.5,3,asym_v4:96 plateau:95 sector_key:22 delta_hold:96
+PTGX,2016-08-11,Protagonist Therapeutics Inc,5,77.4,1,asym_v4:88 plateau:80 sector_key:96 convergence:35 delta_hold:88
+ICST,2000-05-22,Integrated Circuit Systems Inc,5,77.4,0,asym_v4:79 plateau:81 sector_key:68 convergence:80 delta_hold:79
+CAMT,2000-07-28,Camtek Ltd,5,77.2,0,asym_v4:72 plateau:86 sector_key:77 convergence:80 delta_hold:72
+CBG,2004-06-09,CB Richard Ellis Group Inc,5,77.2,0,asym_v4:86 plateau:89 sector_key:46 convergence:80 delta_hold:86
+DRAD,2004-06-09,Digirad Corp,5,77.2,0,asym_v4:86 plateau:89 sector_key:46 convergence:80 delta_hold:86
+PWRD,2007-07-25,Perfect World Co Ltd,5,77.0,2,asym_v4:66 plateau:63 sector_key:97 convergence:94 delta_hold:66
+VOLT,2007-07-25,Voltaire Ltd,5,77.0,2,asym_v4:66 plateau:63 sector_key:97 convergence:94 delta_hold:66
+SLRC,2010-02-08,Solar Capital Ltd,5,77.0,0,asym_v4:81 plateau:72 sector_key:71 convergence:80 delta_hold:81
+KERX,2000-07-28,Keryx Biopharmaceuticals Inc,5,76.9,0,asym_v4:72 plateau:86 sector_key:75 convergence:80 delta_hold:72
+ARNA,2000-07-28,Arena Pharmaceuticals Inc,5,76.9,0,asym_v4:72 plateau:86 sector_key:75 convergence:80 delta_hold:72
+GU,2007-12-18,Gushan Environmental Energy,4,76.7,2,asym_v4:98 plateau:70 sector_key:41 delta_hold:98
+JAZZ,2007-05-31,Jazz Pharmaceuticals Inc,5,76.7,0,asym_v4:85 plateau:81 sector_key:54 convergence:80 delta_hold:85
+SECO,2017-09-22,Secoo Holding Ltd,5,76.6,3,asym_v4:97 plateau:97 sector_key:18 convergence:74 delta_hold:97
+XERS,2018-06-21,Xeris Pharmaceuticals Inc,4,76.6,2,asym_v4:93 plateau:88 sector_key:33 delta_hold:93
+AVRO,2018-06-21,AVROBIO Inc,4,76.6,2,asym_v4:93 plateau:88 sector_key:33 delta_hold:93
+MGTA,2018-06-21,Magenta Therapeutics,4,76.6,2,asym_v4:93 plateau:88 sector_key:33 delta_hold:93
+AUTL,2018-06-21,Autolus Therapeutics Ltd,4,76.6,2,asym_v4:93 plateau:88 sector_key:33 delta_hold:93
+GLUU,2007-03-21,Glu Mobile Inc,5,76.5,3,asym_v4:99 plateau:97 sector_key:88 convergence:0 delta_hold:99
+CALD,2000-03-21,Caldera Systems Inc,5,76.5,3,asym_v4:92 plateau:94 sector_key:69 convergence:35 delta_hold:92
+SPRT,2000-07-18,Support.com Inc,5,76.3,0,asym_v4:85 plateau:87 sector_key:48 convergence:76 delta_hold:85
+SNOW,2000-03-20,Snowball.com Inc,4,76.2,2,asym_v4:100 plateau:100 sector_key:71 convergence:35
+BLMN,2012-08-08,Bloomin' Brands Inc,5,76.1,0,asym_v4:81 plateau:84 sector_key:59 convergence:76 delta_hold:81
+ICFN,2000-11-08,Inficon Holding AG,5,76.0,0,asym_v4:85 plateau:89 sector_key:45 convergence:76 delta_hold:85
+FXCM,2010-12-01,FXCM Inc,5,75.5,3,asym_v4:91 plateau:94 sector_key:66 convergence:35 delta_hold:91
+GTTLO,2000-03-09,GT Group Telecom Inc,5,75.4,3,asym_v4:96 plateau:95 sector_key:56 convergence:35 delta_hold:96
+EIDX,2018-06-20,Eidos Therapeutics Inc,4,75.4,0,asym_v4:84 plateau:87 sector_key:46 delta_hold:84
+HOMG,2000-03-09,HomeGrocer.com,5,75.3,3,asym_v4:96 plateau:95 sector_key:55 convergence:35 delta_hold:96
+UPG,2006-12-21,Universal Power Group,5,75.2,4,asym_v4:95 plateau:94 sector_key:91 convergence:0 delta_hold:95
+SEA,2000-03-29,Bio Aqua Systems Inc,5,75.2,1,asym_v4:69 plateau:72 sector_key:72 convergence:94 delta_hold:69
+QLNX,2000-08-10,Quintalinux Ltd,5,75.2,1,asym_v4:70 plateau:75 sector_key:67 convergence:94 delta_hold:70
+EQIX,2000-08-10,Equinix Inc,5,75.2,1,asym_v4:70 plateau:75 sector_key:67 convergence:94 delta_hold:70
+AQA,2001-02-09,Aquacell Technologies Inc,5,75.1,0,asym_v4:70 plateau:77 sector_key:80 convergence:80 delta_hold:70
+TWTI,2001-02-09,Third Wave Technologies Inc,5,75.1,0,asym_v4:70 plateau:77 sector_key:80 convergence:80 delta_hold:70
+TLLP,2011-04-19,Tesoro Logistics LP,4,75.0,0,asym_v4:68 plateau:82 sector_key:83 delta_hold:68
+PEET,2001-01-25,Peet's Coffee & Tea,5,74.9,0,asym_v4:89 plateau:87 sector_key:74 convergence:35 delta_hold:89
+NFC,2001-01-25,Nuveen CT Div Adv Muni Fund,5,74.9,0,asym_v4:89 plateau:87 sector_key:74 convergence:35 delta_hold:89
+NRB,2001-01-25,Nuveen North Carolina,5,74.9,0,asym_v4:89 plateau:87 sector_key:74 convergence:35 delta_hold:89
+DCGN,2000-07-18,deCode Genetics Inc,5,74.8,0,asym_v4:85 plateau:87 sector_key:40 convergence:76 delta_hold:85
+TUSK,2016-10-14,Mammoth Energy Services Inc,5,74.7,2,asym_v4:91 plateau:86 sector_key:72 convergence:35 delta_hold:91
+FNGN,2010-03-15,Financial Engines Inc,4,74.7,0,asym_v4:73 plateau:82 sector_key:71 delta_hold:73
+SMDI,2000-05-25,Stanford Microdevices Inc,5,74.5,0,asym_v4:85 plateau:90 sector_key:33 convergence:80 delta_hold:85
+STDY,2015-03-20,SteadyMed Ltd,4,74.3,3,asym_v4:99 plateau:99 convergence:0 delta_hold:99
+PSMI,2012-08-08,Peregrine Semiconductor Corp,5,74.3,0,asym_v4:81 plateau:84 sector_key:50 convergence:76 delta_hold:81
+INSN,2000-03-22,inSilicon Corp,5,74.1,1,asym_v4:86 plateau:91 sector_key:73 convergence:35 delta_hold:86
+BRZE,2000-03-22,BreezeCOM Inc,5,74.1,1,asym_v4:86 plateau:91 sector_key:73 convergence:35 delta_hold:86
+SAMG,2013-06-26,Silvercrest Asset Management,4,74.0,3,asym_v4:96 plateau:95 sector_key:8 delta_hold:96
+TRDR,2000-03-30,Trader.com (Hebdo Mag Europe),5,73.8,3,asym_v4:90 plateau:91 sector_key:24 convergence:74 delta_hold:90
+IW,2000-03-30,Imageware Systems Inc,5,73.8,3,asym_v4:90 plateau:91 sector_key:24 convergence:74 delta_hold:90
+AXSM,2015-11-19,Axsome Therapeutics Inc,4,73.8,0,asym_v4:64 plateau:77 sector_key:90 delta_hold:64
+STTS,2000-01-28,ST Assembly Test Services Pte,4,73.8,0,asym_v4:78 plateau:81 sector_key:59 delta_hold:78
+LNTY,2000-01-28,L90 Inc,4,73.8,0,asym_v4:78 plateau:81 sector_key:59 delta_hold:78
+CAMZ,2000-01-28,Caminus Corp,4,73.8,0,asym_v4:78 plateau:81 sector_key:59 delta_hold:78
+APRE,2019-10-03,Aprea Therapeutics Inc,4,73.5,0,asym_v4:65 plateau:75 sector_key:89 delta_hold:65
+FREQ,2019-10-03,Frequency Therapeutics Inc,4,73.5,0,asym_v4:65 plateau:75 sector_key:89 delta_hold:65
+VIE,2019-10-03,Viela Bio Inc,4,73.5,0,asym_v4:65 plateau:75 sector_key:89 delta_hold:65
+NTG,2000-01-27,NATCO Group Inc,5,73.3,3,asym_v4:93 plateau:93 sector_key:52 convergence:35 delta_hold:94
+SVNX,2000-01-27,724 Solutions Inc,5,73.3,3,asym_v4:93 plateau:93 sector_key:52 convergence:35 delta_hold:94
+PKG,2000-01-27,Packaging Corp of America,5,73.3,3,asym_v4:93 plateau:93 sector_key:52 convergence:35 delta_hold:94
+CHFN,2010-09-23,Charter Financial Corp,5,73.2,3,asym_v4:98 plateau:98 sector_key:72 convergence:0 delta_hold:98
+XNPT,2005-06-02,XenoPort Inc,4,73.1,0,asym_v4:78 plateau:77 sector_key:60 delta_hold:78
+PRTS,2000-03-22,Partsbase.com Inc,5,73.0,1,asym_v4:86 plateau:91 sector_key:67 convergence:35 delta_hold:86
+BLZE,2000-03-22,Blaze Software Inc,5,73.0,1,asym_v4:86 plateau:91 sector_key:67 convergence:35 delta_hold:86
+ACLA,2000-03-21,Aclara Biosciences Inc,5,72.9,3,asym_v4:92 plateau:94 sector_key:51 convergence:35 delta_hold:92
+PSXP,2013-07-22,Phillips 66 Partners LP,5,72.9,1,asym_v4:89 plateau:97 sector_key:57 convergence:32 delta_hold:89
+SONS,2000-05-24,Sonus Networks Inc,5,72.5,1,asym_v4:86 plateau:92 sector_key:63 convergence:35 delta_hold:86
+NGLS,2007-02-08,Targa Resources Partners LP,4,72.5,0,asym_v4:81 plateau:64 sector_key:63 delta_hold:82
+AEGR,2010-10-22,Aegerion Pharmaceuticals Inc,5,72.5,0,asym_v4:63 plateau:72 sector_key:90 convergence:74 delta_hold:63
+HAND,2000-06-20,Handspring Inc,5,72.4,3,asym_v4:99 plateau:99 sector_key:33 convergence:32 delta_hold:99
+BCC,2013-02-05,Boise Cascade Co,5,71.9,1,asym_v4:85 plateau:85 sector_key:11 convergence:94 delta_hold:85
+IMRX,2007-07-25,ImaRx Therapeutics Inc,5,71.8,1,asym_v4:66 plateau:63 sector_key:71 convergence:94 delta_hold:66
+CLSD,2016-06-02,Clearside Biomedical Inc,5,71.8,0,asym_v4:67 plateau:64 sector_key:81 convergence:80 delta_hold:67
+NH,2016-06-02,NantHealth Inc,5,71.8,0,asym_v4:67 plateau:64 sector_key:81 convergence:80 delta_hold:67
+MNTA,2004-06-21,Momenta Pharmaceuticals Inc,5,71.4,2,asym_v4:91 plateau:87 sector_key:53 convergence:35 delta_hold:91
+TPVG,2014-03-05,TriplePoint Venture Growth BDC,4,71.4,1,asym_v4:78 plateau:90 sector_key:38 delta_hold:78
+ENTA,2013-03-20,Enanta Pharmaceuticals Inc,5,71.1,3,asym_v4:100 plateau:100 sector_key:56 convergence:0 delta_hold:100
+ENH,2003-02-27,Endurance Specialty Holdings,5,71.1,0,asym_v4:73 plateau:43 sector_key:85 convergence:80 delta_hold:73
+EMO,2011-06-09,ClearBridge Energy MLP Opport,4,71.1,0,asym_v4:66 plateau:75 sector_key:77 delta_hold:66
+BRDR,2014-03-21,Borderfree Inc,4,70.8,3,asym_v4:92 plateau:98 convergence:0 delta_hold:93
+VSAR,2014-03-21,Versartis Inc,4,70.8,3,asym_v4:92 plateau:98 convergence:0 delta_hold:93
+AMBR,2014-03-21,Amber Road Inc,4,70.8,3,asym_v4:92 plateau:98 convergence:0 delta_hold:93
+GMED,2012-08-02,Globus Medical Inc,5,70.6,3,asym_v4:91 plateau:91 sector_key:45 convergence:35 delta_hold:91
+ENBL,2014-04-11,Enable Midstream Partners LP,5,70.5,1,asym_v4:89 plateau:85 sector_key:90 convergence:0 delta_hold:89
+PAHC,2014-04-11,Phibro Animal Health Corp,5,70.5,1,asym_v4:89 plateau:85 sector_key:90 convergence:0 delta_hold:89
+UTOB,2000-10-25,Utek Corp,5,70.5,0,asym_v4:80 plateau:85 sector_key:27 convergence:80 delta_hold:80
+RJET,2004-05-26,Republic Airways Holdings Inc,5,70.5,0,asym_v4:73 plateau:63 sector_key:64 convergence:80 delta_hold:73
+SURF,2018-04-19,Surface Oncology Inc,4,70.5,0,asym_v4:81 plateau:64 sector_key:56 delta_hold:81
+SLAB,2000-03-23,Silicon Laboratories Inc,5,70.3,0,asym_v4:82 plateau:82 sector_key:71 convergence:35 delta_hold:82
+FDUS,2011-06-20,Fidus Investment Corp,4,70.1,3,asym_v4:91 plateau:92 sector_key:7 delta_hold:91
+MNDO,2000-08-08,Mind C.T.I. Ltd,5,70.0,2,asym_v4:48 plateau:63 sector_key:93 convergence:99 delta_hold:48
+AVR,2006-06-28,Aventine Renewable Energy Hlds,5,70.0,0,asym_v4:72 plateau:53 sector_key:73 convergence:80 delta_hold:72
+WNRL,2013-10-10,Western Refining Logistics LP,5,69.9,1,asym_v4:84 plateau:87 sector_key:95 convergence:0 delta_hold:84
+SRV,2007-08-27,Cushing MLP Total,5,69.9,1,asym_v4:90 plateau:79 sector_key:56 convergence:35 delta_hold:90
+FPHC,2001-11-13,Fisher & Paykel Healthcare Ltd,5,69.9,1,asym_v4:88 plateau:78 sector_key:95 convergence:0 delta_hold:88
+AHS,2001-11-13,AMN Healthcare Services Inc,5,69.9,1,asym_v4:88 plateau:78 sector_key:95 convergence:0 delta_hold:88
+AVIV,2013-03-20,Aviv REIT Inc,5,69.7,3,asym_v4:100 plateau:100 sector_key:49 convergence:0 delta_hold:100
+SDR,2012-04-17,SandRidge Mississippian,4,69.7,0,asym_v4:84 plateau:85 sector_key:25 delta_hold:84
+COR,2010-09-22,CoreSite Realty Corporation,5,69.6,3,asym_v4:98 plateau:99 sector_key:53 convergence:0 delta_hold:98
+VRNS,2014-02-28,Varonis Systems,5,69.6,1,asym_v4:79 plateau:90 sector_key:23 convergence:76 delta_hold:79
+SLC,2000-03-23,Sun Life Finl Svcs of Canada,5,69.5,0,asym_v4:82 plateau:82 sector_key:67 convergence:35 delta_hold:82
+PCO,2002-04-30,Premcor Inc,5,69.4,1,asym_v4:89 plateau:92 sector_key:41 convergence:35 delta_hold:90
+CLR,2007-05-14,Continental Resources Inc,5,69.3,0,asym_v4:74 plateau:81 sector_key:82 convergence:35 delta_hold:74
+LMNS,2014-02-27,Lumenis Ltd,5,69.2,0,asym_v4:64 plateau:86 sector_key:56 convergence:76 delta_hold:64
+MTWV,2000-04-26,Metawave Communications,5,69.1,0,asym_v4:89 plateau:88 sector_key:80 convergence:0 delta_hold:89
+PRCS,2000-04-26,Praecis Pharmaceuticals Inc,5,69.1,0,asym_v4:89 plateau:88 sector_key:80 convergence:0 delta_hold:89
+KCIN,2001-02-07,KPMG Consulting,5,69.0,1,asym_v4:64 plateau:78 sector_key:43 convergence:96 delta_hold:64
+VLLY,2004-09-23,Valley Bancorp,5,68.9,3,asym_v4:91 plateau:92 sector_key:36 convergence:35 delta_hold:91
+PFMT,2012-08-09,Performant Financial Corp,5,68.9,0,asym_v4:79 plateau:78 sector_key:32 convergence:76 delta_hold:79
+ITMN,2000-03-24,Intermune Pharmaceuticals Inc,5,68.6,0,asym_v4:78 plateau:77 sector_key:74 convergence:35 delta_hold:79
+CAFD,2015-06-19,8point3 Energy Partners LP,4,68.5,0,asym_v4:81 plateau:68 sector_key:45 delta_hold:81
+ETIN,2000-03-24,ETINUUM INC,5,68.4,0,asym_v4:78 plateau:77 sector_key:73 convergence:35 delta_hold:79
+DCIN,2012-04-17,Digital Cinema Destinations,4,68.4,0,asym_v4:84 plateau:85 sector_key:20 delta_hold:84
+VITC,2009-09-23,Vitacost.com Inc,5,68.4,0,asym_v4:59 plateau:67 sector_key:78 convergence:80 delta_hold:59
+LEVL,2018-04-20,Level One Bancorp Inc,4,68.4,0,asym_v4:83 plateau:70 sector_key:37 delta_hold:83
+EEEE,2000-03-24,e Machines Inc,5,68.4,0,asym_v4:78 plateau:77 sector_key:73 convergence:35 delta_hold:79
+AONE,2009-09-23,A123 Systems Inc,5,68.4,0,asym_v4:59 plateau:67 sector_key:78 convergence:80 delta_hold:59
+EZGO,2021-01-26,EZGO Technologies Ltd,5,68.4,0,asym_v4:63 plateau:73 sector_key:63 convergence:80 delta_hold:63
+EPRS,2000-03-24,Eprise Corp,5,68.4,0,asym_v4:78 plateau:77 sector_key:73 convergence:35 delta_hold:79
+BFD,2007-03-27,Blackrock Global Eq Inc Trust,5,68.3,1,asym_v4:57 plateau:56 sector_key:96 convergence:74 delta_hold:57
+IAE,2007-03-27,ING Asia Pacific High Dividend,5,68.3,1,asym_v4:57 plateau:56 sector_key:96 convergence:74 delta_hold:57
+FHO,2007-03-27,First Trust Strategic High III,5,68.3,1,asym_v4:57 plateau:56 sector_key:96 convergence:74 delta_hold:57
+EOD,2007-03-27,Evergreen Global Dividend,5,68.3,1,asym_v4:57 plateau:56 sector_key:96 convergence:74 delta_hold:57
+RGCI,2000-01-24,Regent Communications Inc,5,68.2,3,asym_v4:97 plateau:97 sector_key:49 convergence:0 delta_hold:97
+ZOES,2014-04-11,Zoe's Kitchen Inc,5,68.2,0,asym_v4:89 plateau:85 sector_key:78 convergence:0 delta_hold:89
+FPI,2014-04-11,Farmland Partners Inc,5,68.2,0,asym_v4:89 plateau:85 sector_key:78 convergence:0 delta_hold:89
+CHY,2003-05-27,Calamos Cvt and High Inc Fund,5,68.2,0,asym_v4:77 plateau:45 sector_key:62 convergence:80 delta_hold:77
+EVV,2003-05-27,Eaton Vance Limited Duration,5,68.2,0,asym_v4:77 plateau:45 sector_key:62 convergence:80 delta_hold:77
+DLEX,2000-10-20,Datalex PLC,5,68.1,0,asym_v4:76 plateau:81 sector_key:27 convergence:80 delta_hold:77
+ALCA,2000-10-20,Alcatel Optronics,5,68.1,0,asym_v4:76 plateau:81 sector_key:27 convergence:80 delta_hold:77
+OTWO,2000-08-16,O2Wireless Solutions Inc,5,68.0,0,asym_v4:78 plateau:70 sector_key:34 convergence:80 delta_hold:78
+XONE,2013-02-06,ExOne Co,5,67.9,1,asym_v4:83 plateau:68 sector_key:11 convergence:94 delta_hold:83
+NXTP,2000-02-22,Nextel Partners Inc,5,67.9,0,asym_v4:83 plateau:85 sector_key:11 convergence:76 delta_hold:83
+LEVI,2019-03-21,Levi Strauss & Co,5,67.9,0,asym_v4:83 plateau:86 sector_key:88 convergence:0 delta_hold:83
+EONC,2000-02-04,eOn Communications Corp,4,67.9,0,asym_v4:79 plateau:83 sector_key:31 delta_hold:79
+OAK,2012-04-11,Oaktree Capital Group LLC,5,67.8,0,asym_v4:75 plateau:80 sector_key:34 convergence:74 delta_hold:75
+RAP,2006-05-26,RMR Asia Pacific Real Estate,5,67.8,0,asym_v4:79 plateau:36 sector_key:64 convergence:80 delta_hold:80
+EMES,2013-05-08,Emerge Energy Services LP,4,67.8,0,asym_v4:70 plateau:76 sector_key:55 delta_hold:71
+SPLK,2012-04-18,Splunk Inc,4,67.7,0,asym_v4:81 plateau:83 sector_key:25 delta_hold:81
+TUMI,2012-04-18,Tumi Holdings Inc,4,67.7,0,asym_v4:81 plateau:83 sector_key:25 delta_hold:81
+IWAV,2000-01-28,interWAVE Communications,4,67.6,0,asym_v4:78 plateau:81 sector_key:34 delta_hold:78
+MDSO,2009-06-24,Medidata Solutions Inc,5,67.6,0,asym_v4:73 plateau:70 sector_key:43 convergence:80 delta_hold:73
+IVR,2009-06-25,Invesco Mortgage Capital Inc,5,67.5,0,asym_v4:73 plateau:79 sector_key:79 convergence:35 delta_hold:73
+IGI,2009-06-25,Wstn Asset Invest Grade Define,5,67.5,0,asym_v4:73 plateau:79 sector_key:79 convergence:35 delta_hold:73
+JTX,2004-06-21,Jackson Hewitt Tax Service Inc,5,67.4,2,asym_v4:91 plateau:87 sector_key:33 convergence:35 delta_hold:91
+SNMX,2004-06-21,Senomyx Inc,5,67.4,2,asym_v4:91 plateau:87 sector_key:33 convergence:35 delta_hold:91
+REPH,2014-03-06,Recro Pharma Inc,4,67.4,0,asym_v4:62 plateau:79 sector_key:66 delta_hold:62
+AQXP,2014-03-06,Aquinox Pharmaceuticals Inc,4,67.4,0,asym_v4:62 plateau:79 sector_key:66 delta_hold:62
+COGT,2004-09-23,Cogent Inc,5,67.2,3,asym_v4:91 plateau:92 sector_key:27 convergence:35 delta_hold:91
+STOK,2019-06-19,Stoke Therapeutics Inc,4,67.1,1,asym_v4:52 plateau:67 sector_key:97 delta_hold:52
+MEDP,2016-08-11,Medpace Inc,5,67.1,0,asym_v4:88 plateau:80 sector_key:45 convergence:35 delta_hold:88
+ALDX,2014-05-02,Aldeyra Therapeutics Inc,4,66.8,0,asym_v4:60 plateau:84 sector_key:62 delta_hold:60
+BTZ,2006-12-21,Blackrock Preferred and Equity,5,66.6,3,asym_v4:95 plateau:94 sector_key:48 convergence:0 delta_hold:95
+XCO,2006-02-08,EXCO Resources Inc,4,66.5,0,asym_v4:87 plateau:65 sector_key:27 delta_hold:87
+MRIN,2013-03-21,Marin Software Inc,5,66.4,3,asym_v4:92 plateau:96 sector_key:52 convergence:0 delta_hold:92
+RVDP,2000-03-09,Riverdeep Interactive Learning,5,66.4,3,asym_v4:96 plateau:95 sector_key:11 convergence:35 delta_hold:96
+SLTC,2000-03-09,Selectica Inc,5,66.4,3,asym_v4:96 plateau:95 sector_key:11 convergence:35 delta_hold:96
+VG,2000-03-23,Viasystems Group,5,66.4,0,asym_v4:82 plateau:82 sector_key:51 convergence:35 delta_hold:82
+DWG,2009-06-24,Duoyuan Global Water Inc,5,66.3,0,asym_v4:73 plateau:70 sector_key:36 convergence:80 delta_hold:73
+NEXT,2006-03-21,Nextest Systems Corp,5,66.2,3,asym_v4:97 plateau:92 sector_key:11 convergence:35 delta_hold:97
+GDL,2007-01-26,Gabelli Global Deal Fund,5,66.2,0,asym_v4:88 plateau:77 sector_key:43 convergence:35 delta_hold:88
+OTGS,2000-03-10,OTG Software Inc,5,66.2,0,asym_v4:87 plateau:89 sector_key:67 convergence:0 delta_hold:88
+OCLS,2007-01-26,Oculus Innovative Sciences Inc,5,66.2,0,asym_v4:88 plateau:77 sector_key:43 convergence:35 delta_hold:88
+FET,2012-04-11,Forum Energy Technologies Inc,5,66.1,0,asym_v4:75 plateau:80 sector_key:25 convergence:74 delta_hold:75
+MRC,2012-04-11,MRC Global Inc,5,66.1,0,asym_v4:75 plateau:80 sector_key:25 convergence:74 delta_hold:75
+RESN,2014-05-29,Resonant Inc,5,66.0,3,asym_v4:94 plateau:94 sector_key:48 convergence:0 delta_hold:94
+SKH,2007-05-15,Skilled Healthcare Group Inc,5,66.0,0,asym_v4:67 plateau:78 sector_key:82 convergence:35 delta_hold:68
+ALNY,2004-05-27,Alnylam Pharmaceuticals Inc,5,65.9,0,asym_v4:54 plateau:70 sector_key:72 convergence:80 delta_hold:54
+CURN,2000-09-21,Curon Medical Inc,5,65.8,3,asym_v4:94 plateau:95 sector_key:11 convergence:35 delta_hold:94
+KCAP,2006-12-11,Kohlberg Capital Group,5,65.7,0,asym_v4:78 plateau:65 sector_key:73 convergence:35 delta_hold:78
+OIIM,2000-08-23,02 Micro International Limited,5,65.6,0,asym_v4:84 plateau:87 sector_key:37 convergence:35 delta_hold:85
+PDI,2012-05-24,PIMCO Dynamic Income Fund,5,65.5,3,asym_v4:93 plateau:95 sector_key:11 convergence:35 delta_hold:93
+EAD,2003-02-26,Evergreen Income Adv Fund,5,65.4,0,asym_v4:70 plateau:38 sector_key:70 convergence:80 delta_hold:71
+ASPM,2000-01-27,Aspect Medical Systems Inc,5,65.1,3,asym_v4:93 plateau:93 sector_key:11 convergence:35 delta_hold:94
+TTMI,2000-09-21,TTM Technologies Inc,5,65.0,3,asym_v4:94 plateau:95 sector_key:7 convergence:35 delta_hold:94
+INRG,2000-09-21,INRANGE Technologies Corp,5,65.0,3,asym_v4:94 plateau:95 sector_key:7 convergence:35 delta_hold:94
+MDCO,2000-08-07,Medicines Co,5,65.0,1,asym_v4:46 plateau:60 sector_key:80 convergence:94 delta_hold:46
+NRGP,2005-06-20,Inergy Holdings LP,4,64.8,0,asym_v4:86 plateau:86 sector_key:1 delta_hold:86
+NEOF,2000-01-24,Neoforma.com Inc,5,64.7,3,asym_v4:97 plateau:97 sector_key:32 convergence:0 delta_hold:97
+EPZM,2013-05-30,Epizyme Inc,5,64.6,1,asym_v4:89 plateau:92 sector_key:19 convergence:35 delta_hold:89
+PINN,2007-05-14,Pinnacle Gas Resources Inc,5,64.4,0,asym_v4:74 plateau:81 sector_key:58 convergence:35 delta_hold:74
+NBCB,2013-05-09,First NBC Bank Holding Co,4,64.4,0,asym_v4:71 plateau:78 sector_key:37 delta_hold:72
+ACPW,2000-08-07,Active Power Inc,5,64.2,1,asym_v4:46 plateau:60 sector_key:76 convergence:94 delta_hold:46
+SDAY,2000-03-10,SUNDAY Communications Ltd,5,64.2,0,asym_v4:87 plateau:89 sector_key:57 convergence:0 delta_hold:88
+CDAK,2020-10-14,Codiak Biosciences Inc,4,64.2,0,asym_v4:83 plateau:41 sector_key:49 delta_hold:83
+RBKB,2019-01-17,Rhinebeck Bancorp,5,64.2,0,asym_v4:49 plateau:66 sector_key:76 convergence:80 delta_hold:50
+RPTR,2000-08-08,Repeater Technologies Inc,5,64.0,1,asym_v4:48 plateau:63 sector_key:63 convergence:99 delta_hold:48
+TSYS,2000-08-08,TeleCommunications Systems Inc,5,64.0,1,asym_v4:48 plateau:63 sector_key:63 convergence:99 delta_hold:48
+CHPC,2000-08-08,ChipPAC Inc,5,64.0,1,asym_v4:48 plateau:63 sector_key:63 convergence:99 delta_hold:48
+PVTL,2018-04-20,Pivotal Software,4,64.0,0,asym_v4:83 plateau:70 sector_key:19 delta_hold:83
+CFP,2007-09-10,Cornerstone Prog Return Fund,4,63.9,0,asym_v4:83 plateau:51 sector_key:39 delta_hold:83
+DBTK,2006-12-15,Double-Take Software,5,63.8,1,asym_v4:76 plateau:40 sector_key:92 convergence:35 delta_hold:76
+ISLN,2006-12-15,Isilon Systems,5,63.8,1,asym_v4:76 plateau:40 sector_key:92 convergence:35 delta_hold:76
+OMED,2013-07-17,OncoMed Pharmaceuticals Inc,5,63.8,0,asym_v4:44 plateau:64 sector_key:86 convergence:80 delta_hold:45
+SYNA,2002-01-28,Synaptics Inc,5,63.8,0,asym_v4:67 plateau:73 sector_key:78 convergence:35 delta_hold:67
+AFB,2002-01-28,Alliance National Municipal,5,63.8,0,asym_v4:67 plateau:73 sector_key:78 convergence:35 delta_hold:67
+AKP,2002-01-28,Alliance California Municipal,5,63.8,0,asym_v4:67 plateau:73 sector_key:78 convergence:35 delta_hold:67
+CMLE,1988-09-20,Casual Male,5,63.6,1,asym_v4:61 plateau:82 sector_key:20 convergence:94 delta_hold:61
+FIF,2011-09-28,First Trust Energy Infrastruct,5,63.5,1,asym_v4:73 plateau:76 sector_key:96 convergence:0 delta_hold:73
+OEH,2000-08-10,Orient-Express Hotels Ltd,5,63.4,1,asym_v4:70 plateau:75 sector_key:8 convergence:94 delta_hold:70
+EOE,2006-05-26,Eaton Vance Credit Opport,5,63.4,0,asym_v4:79 plateau:36 sector_key:42 convergence:80 delta_hold:80
+GMKT,2006-06-28,GMarket Inc,5,63.4,0,asym_v4:72 plateau:53 sector_key:40 convergence:80 delta_hold:72
+TSC,2013-05-08,TriState Capital Holdings Inc,4,63.3,0,asym_v4:70 plateau:76 sector_key:37 delta_hold:71
+ANGO,2004-05-26,AngioDynamics Inc,5,63.2,0,asym_v4:73 plateau:63 sector_key:27 convergence:80 delta_hold:73
+AR,2013-10-10,Antero Resources,5,63.1,0,asym_v4:84 plateau:87 sector_key:61 convergence:0 delta_hold:84
+STAN,2004-05-27,Standard Parking Corp,5,63.0,0,asym_v4:54 plateau:70 sector_key:57 convergence:80 delta_hold:54
+CATM,2007-12-10,Cardtronics Inc,5,62.9,0,asym_v4:75 plateau:11 sector_key:73 convergence:80 delta_hold:76
+CEDU,2007-12-10,ChinaEdu Corp,5,62.9,0,asym_v4:75 plateau:11 sector_key:73 convergence:80 delta_hold:76
+CLAY,2006-03-23,Clayton Holdings Inc,5,62.8,1,asym_v4:44 plateau:36 sector_key:90 convergence:99 delta_hold:45
+THI,2006-03-23,Tim Hortons Inc,5,62.8,1,asym_v4:44 plateau:36 sector_key:90 convergence:99 delta_hold:45
+CTMI,2002-06-20,CTI Molecular Imaging Inc,5,62.8,0,asym_v4:81 plateau:82 sector_key:34 convergence:35 delta_hold:81
+CLNY,2009-09-23,Colony Financial Inc,5,62.8,0,asym_v4:59 plateau:67 sector_key:50 convergence:80 delta_hold:59
+ART,2009-09-23,Artio Global Investors Inc,5,62.8,0,asym_v4:59 plateau:67 sector_key:50 convergence:80 delta_hold:59
+PFLT,2011-04-08,PennantPark Floating Rate,4,62.7,0,asym_v4:55 plateau:70 sector_key:71 delta_hold:55
+OAKS,2013-03-21,Five Oaks Investment Corp,5,62.6,3,asym_v4:92 plateau:96 sector_key:33 convergence:0 delta_hold:92
+CRTX,2004-05-26,Critical Therapeutics Inc,5,62.6,0,asym_v4:73 plateau:63 sector_key:24 convergence:80 delta_hold:73
+HFFIU,2008-03-19,Healthy Fast Food Inc,5,62.6,0,asym_v4:84 plateau:89 sector_key:56 convergence:0 delta_hold:84
+ACAD,2004-05-26,Acadia Pharmaceuticals,5,62.6,0,asym_v4:73 plateau:63 sector_key:24 convergence:80 delta_hold:73
+SDT,2011-04-06,SandRidge Mississippian Trust,4,62.4,1,asym_v4:47 plateau:64 sector_key:92 delta_hold:47
+OTIC,2014-08-13,Otonomy Inc,5,62.1,1,asym_v4:90 plateau:92 sector_key:39 convergence:0 delta_hold:90
+JRN,2003-09-23,Journal Co,5,61.9,2,asym_v4:92 plateau:87 sector_key:39 convergence:0 delta_hold:92
+AMIS,2003-09-23,AMIS Holdings,5,61.9,2,asym_v4:92 plateau:87 sector_key:39 convergence:0 delta_hold:92
+EYES,2014-11-19,Second Sight Med Prod Inc,5,61.9,0,asym_v4:69 plateau:65 sector_key:27 convergence:80 delta_hold:69
+PGRE,2014-11-19,Paramount Group Inc,5,61.9,0,asym_v4:69 plateau:65 sector_key:27 convergence:80 delta_hold:69
+AH,2010-05-20,Accretive Health Inc,4,61.9,0,asym_v4:67 plateau:82 sector_key:32 delta_hold:67
+PMIC,2009-10-16,Penn Millers Holding Corp,5,61.6,1,asym_v4:79 plateau:23 sector_key:92 convergence:35 delta_hold:79
+CPSI,2002-05-21,Computer Programs & Systems,4,61.6,0,asym_v4:50 plateau:66 sector_key:81 delta_hold:50
+AWAY,2011-06-28,HomeAway Inc,5,61.5,0,asym_v4:80 plateau:85 sector_key:27 convergence:35 delta_hold:80
+PODD,2007-05-14,Insulet Corp,5,61.4,0,asym_v4:74 plateau:81 sector_key:43 convergence:35 delta_hold:74
+DHG,2006-11-21,DWS Dreman Value IncomEdge,5,61.3,0,asym_v4:59 plateau:34 sector_key:74 convergence:80 delta_hold:59
+WLDN,2006-11-21,Willdan Group,5,61.3,0,asym_v4:59 plateau:34 sector_key:74 convergence:80 delta_hold:59
+APO,2011-03-29,Apollo Global Management LLC,5,61.3,0,asym_v4:69 plateau:83 sector_key:53 convergence:32 delta_hold:69
+AER,2006-11-21,AerCap Holdings,5,61.3,0,asym_v4:59 plateau:34 sector_key:74 convergence:80 delta_hold:59
+ARI,2009-09-23,Apollo Coml RE Fin Inc,5,61.3,0,asym_v4:59 plateau:67 sector_key:43 convergence:80 delta_hold:59
+ARUN,2007-03-26,Aruba Networks Inc,5,61.2,1,asym_v4:58 plateau:54 sector_key:43 convergence:94 delta_hold:58
+FMSA,2014-10-03,FMSA Holdings Inc,5,61.2,0,asym_v4:51 plateau:44 sector_key:83 convergence:76 delta_hold:51
+DERM,2014-10-03,Dermira Inc,5,61.2,0,asym_v4:51 plateau:44 sector_key:83 convergence:76 delta_hold:51
+YDLE,2014-10-03,Yodlee Inc,5,61.2,0,asym_v4:51 plateau:44 sector_key:83 convergence:76 delta_hold:51
+CWH,2016-10-07,Camping World Holdings Inc,5,61.1,0,asym_v4:63 plateau:75 sector_key:70 convergence:35 delta_hold:63
+HCD,2007-02-21,Highland Distressed Opp. Fund,5,61.1,0,asym_v4:85 plateau:64 sector_key:37 convergence:35 delta_hold:85
+CRWN,2000-05-03,Crown Media Holdings Inc,5,61.1,0,asym_v4:61 plateau:65 sector_key:84 convergence:35 delta_hold:61
+INVH,2017-02-01,Invitation Homes Inc,4,61.0,0,asym_v4:63 plateau:76 sector_key:42 delta_hold:63
+OPTR,2007-02-09,Optimer Pharmaceuticals Inc,4,60.9,1,asym_v4:68 plateau:15 sector_key:93 delta_hold:68
+CYS,2009-06-11,Cypress Sharpridge Investments,5,60.7,0,asym_v4:62 plateau:73 sector_key:72 convergence:35 delta_hold:62
+IFS,2004-05-06,InfraSource Services Inc,5,60.7,0,asym_v4:71 plateau:80 sector_key:47 convergence:35 delta_hold:71
+CKSW,2000-06-22,Clicksoftware Ltd,5,60.6,0,asym_v4:80 plateau:80 sector_key:32 convergence:32 delta_hold:80
+ACCL,2000-06-22,Accelerated Networks Inc,5,60.6,0,asym_v4:80 plateau:80 sector_key:32 convergence:32 delta_hold:80
+FHY,2006-03-28,FIRST TRUST STRAT HIGH INC FD,5,60.5,0,asym_v4:75 plateau:55 sector_key:63 convergence:35 delta_hold:75
+CEM,2010-06-24,ClearBridge Energy MLP Fund,5,60.4,0,asym_v4:59 plateau:74 sector_key:74 convergence:35 delta_hold:60
+PDGM,2000-05-05,Paradigm Genetics Inc,5,60.2,0,asym_v4:67 plateau:67 sector_key:64 convergence:35 delta_hold:67
+DPM,2005-12-01,DCP Midstream Partners,5,59.9,0,asym_v4:78 plateau:84 sector_key:24 convergence:35 delta_hold:78
+PTY,2002-12-23,PIMCO Corp Opp Fund,5,59.8,2,asym_v4:42 plateau:27 sector_key:92 convergence:96 delta_hold:42
+AOLA,2000-08-07,America Online Latin America,5,59.8,1,asym_v4:46 plateau:60 sector_key:54 convergence:94 delta_hold:46
+PMTR,2000-08-07,Pemstar Inc,5,59.8,1,asym_v4:46 plateau:60 sector_key:54 convergence:94 delta_hold:46
+FWIS,2000-03-07,FirstWorld Communications Inc,5,59.7,0,asym_v4:60 plateau:69 sector_key:75 convergence:35 delta_hold:60
+HCF,2006-06-23,Highland Credit Strategies,4,59.6,0,asym_v4:77 plateau:56 sector_key:27 delta_hold:77
+ROSG,2007-02-26,Rosetta Genomics Ltd,5,59.5,0,asym_v4:68 plateau:23 sector_key:59 convergence:80 delta_hold:68
+ENOC,2007-05-17,EnerNOC Inc,4,59.4,0,asym_v4:73 plateau:69 sector_key:23 delta_hold:73
+AVNC,2003-10-16,Advancis Pharmaceutical Corp,5,59.4,0,asym_v4:78 plateau:66 sector_key:39 convergence:35 delta_hold:79
+CSUN,2007-05-17,China Sunergy Co Ltd,4,59.4,0,asym_v4:73 plateau:69 sector_key:23 delta_hold:73
+TRS,2007-05-17,TriMas Corp,4,59.4,0,asym_v4:73 plateau:69 sector_key:23 delta_hold:73
+MRLN,2003-11-11,Marlin Business Services Inc,5,59.4,0,asym_v4:71 plateau:62 sector_key:59 convergence:35 delta_hold:71
+IBTX,2013-04-02,Independent Bank Group Inc,4,59.3,0,asym_v4:55 plateau:71 sector_key:56 delta_hold:55
+HJLI,2018-05-31,Hancock Jaffe Laboratories,5,59.3,0,asym_v4:72 plateau:79 sector_key:74 convergence:0 delta_hold:72
+HOMB,2006-06-22,"Home Bancshares Inc,Conway,AR",4,58.9,0,asym_v4:83 plateau:42 sector_key:27 delta_hold:83
+MOBE,2000-06-30,Mobility Electronics Inc,4,58.9,0,asym_v4:61 plateau:70 sector_key:43 delta_hold:61
+EXAM,2010-10-27,Examworks Group Inc,5,58.8,0,asym_v4:47 plateau:62 sector_key:59 convergence:80 delta_hold:47
+MXRE,2001-08-14,Max Re Capital LTD,5,58.8,0,asym_v4:83 plateau:86 sector_key:42 convergence:0 delta_hold:83
+BOX,2010-10-27,SeaCube Container Leasing Ltd,5,58.8,0,asym_v4:47 plateau:62 sector_key:59 convergence:80 delta_hold:47
+OSTK,2002-05-30,Overstock.com,5,58.7,0,asym_v4:77 plateau:71 sector_key:68 convergence:0 delta_hold:77
+VIT,2007-12-11,VanceInfo Technologies Inc,5,58.7,0,asym_v4:78 plateau:21 sector_key:37 convergence:80 delta_hold:78
+ALXA,2006-03-08,Alexza Pharmaceuticals Inc,5,58.6,0,asym_v4:67 plateau:63 sector_key:61 convergence:35 delta_hold:67
+NA,2010-10-25,Asia Carbon Industries Inc,5,58.5,1,asym_v4:48 plateau:64 sector_key:97 convergence:35 delta_hold:48
+JHA,2015-11-12,Nuveen High Income Dec 2018,5,58.5,0,asym_v4:89 plateau:74 sector_key:39 convergence:0 delta_hold:90
+GMLP,2011-04-06,Golar LNG Partners LP,4,58.5,0,asym_v4:47 plateau:64 sector_key:77 delta_hold:47
+RARX,2016-10-26,Ra Pharmaceuticals Inc,5,58.4,0,asym_v4:51 plateau:67 sector_key:89 convergence:35 delta_hold:51
+VATA,2000-03-03,Versata Inc,5,58.4,0,asym_v4:82 plateau:82 sector_key:11 convergence:35 delta_hold:82
+BCX,2011-03-28,BlackRock Resources & Commodit,5,58.4,0,asym_v4:64 plateau:77 sector_key:88 convergence:0 delta_hold:64
+TBET,2011-01-24,Tibet Pharmaceuticals Inc,5,58.3,3,asym_v4:91 plateau:92 sector_key:18 convergence:0 delta_hold:91
+TTPY,2007-05-08,Tomotherapy Incorporated,5,58.3,0,asym_v4:74 plateau:71 sector_key:37 convergence:35 delta_hold:74
+EFH,2002-04-09,Empire Financial Holdings Co,5,58.1,0,asym_v4:72 plateau:71 sector_key:75 convergence:0 delta_hold:72
+EDF,2010-12-22,Stone Harbor Emerging Markets,5,57.8,1,asym_v4:86 plateau:91 sector_key:25 convergence:0 delta_hold:87
+PFNX,2014-07-24,Pfenex Inc,4,57.8,0,asym_v4:41 plateau:61 sector_key:89 delta_hold:41
+INNL,2014-07-24,Innocoll AG,4,57.8,0,asym_v4:41 plateau:61 sector_key:89 delta_hold:41
+LOCO,2014-07-24,El Pollo Loco Holdings Inc,4,57.8,0,asym_v4:41 plateau:61 sector_key:89 delta_hold:41
+OEC,2014-07-24,Orion Engineered Carbons SA,4,57.8,0,asym_v4:41 plateau:61 sector_key:89 delta_hold:41
+TSLX,2014-03-21,TPG Specialty Lending Inc,5,57.5,3,asym_v4:92 plateau:98 sector_key:4 convergence:0 delta_hold:93
+APTI,2000-08-07,Advanced Power Technology Inc,5,57.5,1,asym_v4:46 plateau:60 sector_key:42 convergence:94 delta_hold:46
+GORX,2000-11-09,Go2pharmacy.com Inc,5,57.5,0,asym_v4:88 plateau:84 sector_key:27 convergence:0 delta_hold:89
+NITE,2017-09-28,Nightstar Therapeutics Ltd,5,57.4,1,asym_v4:32 plateau:52 sector_key:91 convergence:80 delta_hold:32
+DCPH,2017-09-28,Deciphera Pharmaceuticals LLC,5,57.4,1,asym_v4:32 plateau:52 sector_key:91 convergence:80 delta_hold:32
+GNSL,2000-05-05,Genomic Solutions Inc,5,57.4,0,asym_v4:67 plateau:67 sector_key:51 convergence:35 delta_hold:67
+ETEL,2007-03-27,eTelecare Global Solutions,5,57.3,0,asym_v4:57 plateau:56 sector_key:41 convergence:74 delta_hold:57
+EXG,2007-02-22,Eaton Vance Tax-Managed Global,5,57.3,0,asym_v4:76 plateau:36 sector_key:64 convergence:35 delta_hold:76
+GMZ,2013-11-25,Goldman Sachs MLP Income,5,57.2,3,asym_v4:94 plateau:94 sector_key:4 convergence:0 delta_hold:94
+BDE,2005-05-06,Bois d'Arc Energy Inc,4,57.2,0,asym_v4:75 plateau:59 sector_key:20 delta_hold:75
+SPR,2006-11-21,Spirit Aerosystems Holdings,5,57.2,0,asym_v4:59 plateau:34 sector_key:53 convergence:80 delta_hold:59
+AWE,2000-04-27,AT&T Wireless Group,5,57.2,0,asym_v4:73 plateau:73 sector_key:67 convergence:0 delta_hold:74
+EVHC,2013-08-14,Envision Healthcare Holdings,4,57.1,0,asym_v4:57 plateau:81 sector_key:33 delta_hold:57
+CLDR,2017-04-28,Cloudera Inc,5,57.1,0,asym_v4:75 plateau:68 sector_key:68 convergence:0 delta_hold:75
+SMLR,2014-02-21,Semler Scientific,5,57.0,1,asym_v4:81 plateau:91 sector_key:32 convergence:0 delta_hold:81
+FN,2010-06-24,Fabrinet,4,57.0,0,asym_v4:59 plateau:74 convergence:35 delta_hold:60
+EXD,2010-06-24,Eaton Vance Tax-Advantaged Bon,4,57.0,0,asym_v4:59 plateau:74 convergence:35 delta_hold:60
+UCP,2013-07-17,UCP Inc,5,56.9,0,asym_v4:44 plateau:64 sector_key:52 convergence:80 delta_hold:45
+ATEN,2014-03-21,A10 Networks Inc,5,56.8,3,asym_v4:92 plateau:98 sector_key:1 convergence:0 delta_hold:93
+XIN,2007-12-11,Xinyuan Real Estate Co Ltd,5,56.8,0,asym_v4:78 plateau:21 sector_key:27 convergence:80 delta_hold:78
+SERV,2000-04-26,Stratus Services Group Inc,5,56.7,0,asym_v4:89 plateau:88 sector_key:18 convergence:0 delta_hold:89
+BLCM,2014-12-18,Bellicum Pharmaceuticals Inc,4,56.7,0,asym_v4:55 plateau:57 sector_key:59 delta_hold:56
+ONNN,2000-04-27,ON Semiconductor,5,56.6,0,asym_v4:73 plateau:73 sector_key:63 convergence:0 delta_hold:74
+ENP,2007-09-11,Encore Energy Partners LP,4,56.6,0,asym_v4:77 plateau:37 sector_key:34 delta_hold:77
+WTW,2001-11-14,Weight Watchers International,5,56.6,0,asym_v4:85 plateau:87 sector_key:26 convergence:0 delta_hold:85
+STCS,2000-04-27,Software Technologies Corp,5,56.6,0,asym_v4:73 plateau:73 sector_key:63 convergence:0 delta_hold:74
+LMNE,2000-11-09,Luminent Inc(MRV Comm),5,56.5,0,asym_v4:88 plateau:84 sector_key:22 convergence:0 delta_hold:89
+KIOR,2011-06-23,KiOR Inc,5,56.4,0,asym_v4:59 plateau:72 sector_key:18 convergence:74 delta_hold:59
+ILMN,2000-07-27,Illumina Inc,5,56.3,0,asym_v4:35 plateau:54 sector_key:77 convergence:80 delta_hold:35
+CORV,2000-07-27,Corvis Corp,5,56.3,0,asym_v4:35 plateau:54 sector_key:77 convergence:80 delta_hold:35
+VLCT,2000-07-27,ValiCert Inc,5,56.3,0,asym_v4:35 plateau:54 sector_key:77 convergence:80 delta_hold:35
+MSPR,2000-07-27,Mainspring Inc,5,56.3,0,asym_v4:35 plateau:54 sector_key:77 convergence:80 delta_hold:35
+GCOR,2000-07-27,Genencor International Inc,5,56.3,0,asym_v4:35 plateau:54 sector_key:77 convergence:80 delta_hold:35
+DPII,2000-07-27,Discovery Partners Int'l Inc,5,56.3,0,asym_v4:35 plateau:54 sector_key:77 convergence:80 delta_hold:35
+LXNT,2000-07-27,Lexent Inc,5,56.3,0,asym_v4:35 plateau:54 sector_key:77 convergence:80 delta_hold:35
+FVRR,2019-06-13,Fiverr International Ltd,5,56.2,0,asym_v4:69 plateau:66 sector_key:43 convergence:35 delta_hold:69
+TRFC,2006-01-25,Traffic.com Inc,5,56.1,0,asym_v4:65 plateau:53 sector_key:62 convergence:35 delta_hold:65
+MLNX,2007-02-07,Mellanox Technologies Ltd,4,56.0,0,asym_v4:59 plateau:38 sector_key:69 delta_hold:59
+SDXC,2007-02-07,Switch And Data Inc,4,56.0,0,asym_v4:59 plateau:38 sector_key:69 delta_hold:59
+MY,2010-09-30,China Ming Yang Wind Power Grp,5,55.8,0,asym_v4:62 plateau:72 sector_key:82 convergence:0 delta_hold:63
+LQDT,2006-02-22,Liquidity Services Inc,5,55.8,0,asym_v4:59 plateau:43 sector_key:83 convergence:35 delta_hold:59
+FOF,2006-11-20,Cohen & Steers Closed-End,5,55.7,1,asym_v4:58 plateau:36 sector_key:32 convergence:94 delta_hold:59
+AFFY,2006-12-15,Affymax,5,55.6,0,asym_v4:76 plateau:40 sector_key:51 convergence:35 delta_hold:76
+ETE,2006-02-03,Energy Transfer Equity LP,4,55.6,0,asym_v4:77 plateau:33 sector_key:34 delta_hold:78
+AIMC,2006-12-15,Altra Holdings,5,55.6,0,asym_v4:76 plateau:40 sector_key:51 convergence:35 delta_hold:76
+GAME,2009-09-24,Shanda Games Ltd,5,55.6,0,asym_v4:77 plateau:10 sector_key:34 convergence:80 delta_hold:77
+NEOT,2014-11-20,Neothetics Inc,5,55.5,0,asym_v4:57 plateau:41 sector_key:43 convergence:80 delta_hold:57
+HABT,2014-11-20,The Habit Restaurants Inc,5,55.5,0,asym_v4:57 plateau:41 sector_key:43 convergence:80 delta_hold:57
+CNV,2014-11-20,Cnova NV,5,55.5,0,asym_v4:57 plateau:41 sector_key:43 convergence:80 delta_hold:57
+LEAF,2013-10-16,Springleaf Holdings,5,55.4,0,asym_v4:77 plateau:89 sector_key:34 convergence:0 delta_hold:77
+EVEP,2006-09-26,EV Energy Partners LP,5,55.4,0,asym_v4:61 plateau:34 sector_key:85 convergence:35 delta_hold:62
+PAGP,2013-10-16,Plains GP Holdings,5,55.4,0,asym_v4:77 plateau:89 sector_key:34 convergence:0 delta_hold:77
+NDRAU,2017-05-09,ENDRA Life Sciences Inc,5,55.3,1,asym_v4:61 plateau:49 sector_key:11 convergence:94 delta_hold:61
+YMAB,2018-09-21,Y-MABS Therapeutics Inc,5,55.3,1,asym_v4:61 plateau:26 sector_key:92 convergence:35 delta_hold:62
+SFXE,2013-10-09,SFX Entertainment,5,55.3,0,asym_v4:64 plateau:73 sector_key:75 convergence:0 delta_hold:65
+ACOR,2006-02-09,Acorda Therapeutics Inc,4,55.3,0,asym_v4:69 plateau:22 sector_key:61 delta_hold:69
+OCUL,2014-07-24,Ocular Therapeutix Inc,4,55.0,0,asym_v4:41 plateau:61 sector_key:78 delta_hold:41
+N,2007-12-19,NetSuite Inc,5,54.7,2,asym_v4:95 plateau:58 sector_key:25 convergence:0 delta_hold:95
+FAV,2007-09-20,First Trust Act Div Income,4,54.7,0,asym_v4:69 plateau:38 sector_key:43 delta_hold:69
+ABCO,2001-11-13,Advisory Board Co,5,54.4,0,asym_v4:88 plateau:78 sector_key:17 convergence:0 delta_hold:88
+SQI,2010-09-24,SciQuest Inc,5,54.4,0,asym_v4:78 plateau:68 sector_key:48 convergence:0 delta_hold:78
+NEFF,2014-11-21,Neff Corp,5,54.4,0,asym_v4:54 plateau:41 sector_key:43 convergence:80 delta_hold:55
+MVO,2007-01-19,MV Oil Trust,4,54.3,0,asym_v4:61 plateau:54 sector_key:42 delta_hold:61
+QIHU,2011-03-29,Qihoo 360 Technology Co Ltd,5,54.3,0,asym_v4:69 plateau:83 sector_key:18 convergence:32 delta_hold:69
+NEV,2009-09-24,Nuveen Enhanced Municipal,5,54.3,0,asym_v4:77 plateau:10 sector_key:27 convergence:80 delta_hold:77
+ET,2012-03-21,ExactTarget Inc,5,54.2,1,asym_v4:41 plateau:58 sector_key:96 convergence:35 delta_hold:41
+CSTE,2012-03-21,CaesarStone Sdot-Yam Ltd,5,54.2,1,asym_v4:41 plateau:58 sector_key:96 convergence:35 delta_hold:41
+GNTY,2017-05-09,Guaranty Bancshares Inc,5,54.2,1,asym_v4:61 plateau:49 sector_key:5 convergence:94 delta_hold:61
+VNTV,2012-03-21,Vantiv Inc,5,54.2,1,asym_v4:41 plateau:58 sector_key:96 convergence:35 delta_hold:41
+BBRG,2010-10-21,Bravo Brio Restaurant Grp Inc,5,54.2,0,asym_v4:62 plateau:66 sector_key:5 convergence:74 delta_hold:63
+CFB,2019-08-15,Crossfirst Bankshares Inc,4,54.2,0,asym_v4:41 plateau:61 sector_key:74 delta_hold:41
+IPRT,2000-03-07,iprint.com Inc,5,54.1,0,asym_v4:60 plateau:69 sector_key:47 convergence:35 delta_hold:60
+NPTE,2005-09-23,North Pointe Holdings Corp,4,54.0,0,asym_v4:69 plateau:79 convergence:0 delta_hold:69
+AKAO,2014-03-12,Achaogen Inc,5,53.9,0,asym_v4:44 plateau:77 sector_key:69 convergence:35 delta_hold:45
+BGIO,2017-02-28,BlackRock 2022 Global Income,5,53.9,0,asym_v4:81 plateau:73 sector_key:34 convergence:0 delta_hold:81
+RMG,2008-01-24,RiskMetrics Group Inc,4,53.7,0,asym_v4:79 plateau:32 sector_key:25 delta_hold:79
+HTHT,2010-03-25,China Lodging Group Ltd,5,53.6,0,asym_v4:70 plateau:78 sector_key:51 convergence:0 delta_hold:70
+MRVL,2000-06-26,Marvell Technology Group Ltd,5,53.6,0,asym_v4:66 plateau:71 sector_key:32 convergence:32 delta_hold:66
+ESD,2003-12-01,Salomon Brothers Emerging Mkts,5,53.5,0,asym_v4:40 plateau:56 sector_key:52 convergence:80 delta_hold:40
+RITA,2000-07-27,Rita Medical Systems Inc,5,53.4,0,asym_v4:35 plateau:54 sector_key:62 convergence:80 delta_hold:35
+WEBX,2000-07-27,Webex Communications Inc,5,53.4,0,asym_v4:35 plateau:54 sector_key:62 convergence:80 delta_hold:35
+SOLF,2006-12-20,Solarfun Power Holdings,5,53.3,0,asym_v4:66 plateau:50 sector_key:84 convergence:0 delta_hold:66
+CLMT,2006-01-25,Calumet Specialty Products,5,53.3,0,asym_v4:65 plateau:53 sector_key:48 convergence:35 delta_hold:65
+AMEV,2000-07-26,Applied Molecular Evolution,5,53.3,0,asym_v4:38 plateau:33 sector_key:77 convergence:80 delta_hold:39
+TCM,2000-07-26,TyCom Ltd(Tyco Intl Ltd),5,53.3,0,asym_v4:38 plateau:33 sector_key:77 convergence:80 delta_hold:39
+GENU,2000-06-27,Genuity Inc,5,53.2,0,asym_v4:81 plateau:83 sector_key:20 convergence:0 delta_hold:81
+BUSY,2000-06-27,BusyBox.com Inc,5,53.1,0,asym_v4:81 plateau:83 sector_key:19 convergence:0 delta_hold:81
+TXTR,2013-06-06,Textura Corp,5,53.0,1,asym_v4:49 plateau:63 sector_key:11 convergence:94 delta_hold:49
+AVCI,2000-07-27,Avici Systems Inc,5,53.0,0,asym_v4:35 plateau:54 sector_key:60 convergence:80 delta_hold:35
+PTLA,2013-05-21,Portola Pharmaceuticals Inc,5,53.0,0,asym_v4:54 plateau:73 sector_key:84 convergence:0 delta_hold:54
+SGM,2013-10-10,Stonegate Mortgage,5,53.0,0,asym_v4:84 plateau:87 sector_key:10 convergence:0 delta_hold:84
+MGNX,2013-10-10,MacroGenics,5,53.0,0,asym_v4:84 plateau:87 sector_key:10 convergence:0 delta_hold:84
+GNET,2006-03-23,Global Traffic Network Inc,5,52.9,1,asym_v4:44 plateau:36 sector_key:40 convergence:99 delta_hold:45
+HLNE,2017-03-01,Hamilton Lane Inc,5,52.9,0,asym_v4:80 plateau:85 sector_key:19 convergence:0 delta_hold:81
+FTCH,2018-09-21,Farfetch Ltd,5,52.8,0,asym_v4:61 plateau:26 sector_key:80 convergence:35 delta_hold:62
+GROY,2021-03-09,Gold Royalty Corp,4,52.8,0,asym_v4:84 plateau:43 sector_key:0 delta_hold:84
+QTNTU,2014-04-25,Quotient Ltd,5,52.7,1,asym_v4:38 plateau:57 sector_key:95 convergence:35 delta_hold:38
+VSE,2006-06-13,Verasun Energy Corp,5,52.7,0,asym_v4:82 plateau:43 sector_key:57 convergence:0 delta_hold:82
+SKIS,2014-11-21,Peak Resorts Inc,5,52.5,0,asym_v4:54 plateau:41 sector_key:34 convergence:80 delta_hold:55
+NKBP,2009-12-10,China Nuokang Bio-Pharmac,5,52.4,0,asym_v4:71 plateau:27 sector_key:58 convergence:35 delta_hold:72
+MAPP,2007-10-04,MAP Pharmaceuticals Inc,4,52.3,0,asym_v4:53 plateau:37 sector_key:67 delta_hold:53
+QLYS,2012-09-27,Qualys Inc,5,52.2,1,asym_v4:37 plateau:57 sector_key:95 convergence:35 delta_hold:37
+GLMD,2014-03-13,Galmed Pharmaceuticals Ltd,5,52.1,0,asym_v4:38 plateau:70 sector_key:80 convergence:35 delta_hold:38
+DPRX,2014-03-13,Dipexium Pharmaceuticals LLC,5,52.1,0,asym_v4:38 plateau:70 sector_key:80 convergence:35 delta_hold:38
+UCL,2020-06-10,UCloudLink Group Inc,5,52.0,1,asym_v4:65 plateau:24 sector_key:11 convergence:94 delta_hold:66
+VOLC,2006-06-14,Volcano Corp,5,52.0,0,asym_v4:85 plateau:62 sector_key:27 convergence:0 delta_hold:85
+HWCC,2006-06-14,Houston Wire & Cable Co,5,52.0,0,asym_v4:85 plateau:62 sector_key:27 convergence:0 delta_hold:85
+GOLF,2006-06-14,Golfsmith Intl Hldg Inc,5,52.0,0,asym_v4:85 plateau:62 sector_key:27 convergence:0 delta_hold:85
+VRA,2010-10-20,Vera Bradley Inc,5,52.0,0,asym_v4:48 plateau:67 sector_key:23 convergence:74 delta_hold:48
+SFBC,2012-08-15,Sound Financial Bancorp Inc,5,51.9,1,asym_v4:40 plateau:51 sector_key:93 convergence:35 delta_hold:40
+IVTA,2000-07-06,InfoVista SA,5,51.9,0,asym_v4:61 plateau:66 sector_key:71 convergence:0 delta_hold:62
+RPTX,2020-06-19,Repare Therapeutics Inc,5,51.9,0,asym_v4:56 plateau:19 sector_key:52 convergence:76 delta_hold:56
+EGLT,2006-03-08,Eagle Test Systems Inc,5,51.9,0,asym_v4:67 plateau:63 sector_key:27 convergence:35 delta_hold:67
+FMTX,2020-06-19,Forma Therapeutics Hldg Inc,5,51.9,0,asym_v4:56 plateau:19 sector_key:52 convergence:76 delta_hold:56
+BAOS,2021-02-08,Baosheng Media Group Holdings,4,51.8,0,asym_v4:84 plateau:14 sector_key:26 delta_hold:84
+CRSP,2016-10-19,CRISPR Therapeutics AG,5,51.6,0,asym_v4:58 plateau:59 sector_key:83 convergence:0 delta_hold:58
+TITN,2007-12-06,Titan Machinery Inc,4,51.5,0,asym_v4:74 plateau:16 sector_key:43 delta_hold:74
+WH,2007-12-06,WSP Holdings Ltd,4,51.5,0,asym_v4:74 plateau:16 sector_key:43 delta_hold:74
+GTS,2007-12-06,Triple-S Management Corp,4,51.5,0,asym_v4:74 plateau:16 sector_key:43 delta_hold:74
+SMLP,2012-09-27,Summit Midstream Partners LP,5,51.2,0,asym_v4:37 plateau:57 sector_key:90 convergence:35 delta_hold:37
+MWK,2019-06-12,Mohawk Group Holdings Inc,4,51.1,0,asym_v4:69 plateau:67 convergence:0 delta_hold:69
+GNVC,2000-12-11,GenVec,5,51.1,0,asym_v4:67 plateau:75 sector_key:11 convergence:35 delta_hold:67
+BWP,2005-11-08,Boardwalk Pipeline Partners LP,5,51.0,2,asym_v4:20 plateau:31 sector_key:90 convergence:94 delta_hold:20
+IHD,2011-04-27,ING Emerging Markets High,5,51.0,0,asym_v4:42 plateau:65 sector_key:27 convergence:80 delta_hold:42
+USBE,2006-12-15,U.S. BioEnergy,5,50.9,0,asym_v4:76 plateau:40 sector_key:27 convergence:35 delta_hold:76
+MGG,2006-02-09,Magellan Midstream Holdings LP,4,50.8,0,asym_v4:69 plateau:22 sector_key:43 delta_hold:69
+NINE,2004-12-02,Ninetowns,5,50.8,0,asym_v4:45 plateau:64 sector_key:26 convergence:74 delta_hold:45
+VEEV,2013-10-16,Veeva Systems,5,50.6,0,asym_v4:77 plateau:89 sector_key:10 convergence:0 delta_hold:77
+AFCB,2010-01-06,Athens Bancshares Corp,4,50.6,0,asym_v4:44 plateau:52 sector_key:62 delta_hold:44
+JMLP,2014-03-26,Nuveen All Cap Energy MLP,5,50.5,0,asym_v4:52 plateau:80 sector_key:68 convergence:0 delta_hold:53
+MCBK,2012-10-03,Madison County Financial Inc,4,50.4,0,asym_v4:56 plateau:71 sector_key:18 delta_hold:56
+FOLD,2007-05-30,Amicus Therapeutics Inc,5,50.4,0,asym_v4:48 plateau:65 sector_key:55 convergence:35 delta_hold:49
+CRL,2000-06-23,Charles River Labs Int Inc,5,50.4,0,asym_v4:52 plateau:60 sector_key:57 convergence:32 delta_hold:52
+RCOM,2000-03-02,Register.com Inc,5,50.1,0,asym_v4:64 plateau:74 sector_key:49 convergence:0 delta_hold:64
+JMP,2007-05-10,JMP Group Inc,5,50.1,0,asym_v4:77 plateau:59 sector_key:37 convergence:0 delta_hold:77
+BIOD,2007-05-10,Biodel Inc,5,50.1,0,asym_v4:77 plateau:59 sector_key:37 convergence:0 delta_hold:77
+XTEX,2002-12-12,Crosstex Energy LP,5,50.0,1,asym_v4:34 plateau:32 sector_key:56 convergence:94 delta_hold:34
+IIPR,2016-12-01,Innovative Industrial Ppty Inc,5,50.0,0,asym_v4:82 plateau:85 sector_key:1 convergence:0 delta_hold:82
+XRM,2005-05-16,Xerium Technologies Inc,5,50.0,0,asym_v4:47 plateau:50 sector_key:72 convergence:35 delta_hold:47
+TPRE,2013-08-14,Third Point Reinsurance Ltd,4,50.0,0,asym_v4:57 plateau:81 sector_key:4 delta_hold:57
+HCLP,2012-08-15,Hi-Crush Partners LP,5,50.0,0,asym_v4:40 plateau:51 sector_key:83 convergence:35 delta_hold:40
+CSLT,2014-03-13,Castlight Health Inc,5,49.8,0,asym_v4:38 plateau:70 sector_key:68 convergence:35 delta_hold:38
+WCAA,2004-06-22,WCA Waste Corp,5,49.6,0,asym_v4:65 plateau:62 sector_key:22 convergence:35 delta_hold:65
+WMS,2014-07-24,Advanced Drainage Systems Inc,4,49.6,0,asym_v4:41 plateau:61 sector_key:56 delta_hold:41
+CHOM,2000-03-08,New China Homes Ltd,5,49.6,0,asym_v4:66 plateau:77 sector_key:5 convergence:35 delta_hold:66
+CLRK,2004-06-22,Color Kinetics Inc,5,49.6,0,asym_v4:65 plateau:62 sector_key:22 convergence:35 delta_hold:65
+ORGN,2004-05-05,Origen Financial Inc,5,49.6,0,asym_v4:48 plateau:65 sector_key:52 convergence:35 delta_hold:49
+TAST,2006-12-15,Carrols Restaurant Group,5,49.4,0,asym_v4:76 plateau:40 sector_key:20 convergence:35 delta_hold:76
+STLW,2000-06-26,Stratos Lightwave Inc,5,49.3,0,asym_v4:66 plateau:71 sector_key:11 convergence:32 delta_hold:66
+EFDS,2000-06-26,eFunds Corp,5,49.3,0,asym_v4:66 plateau:71 sector_key:11 convergence:32 delta_hold:66
+CKCM,2000-06-26,Click Commerce Inc,5,49.3,0,asym_v4:66 plateau:71 sector_key:11 convergence:32 delta_hold:66
+SJH,2001-03-06,Stelmar Shipping Ltd,5,49.0,0,asym_v4:55 plateau:72 sector_key:64 convergence:0 delta_hold:55
+FND,2017-04-27,Floor & Decor Holdings Inc,5,48.9,0,asym_v4:67 plateau:64 sector_key:47 convergence:0 delta_hold:67
+AAAP,2015-11-11,Advanced Accelerator,5,48.9,0,asym_v4:44 plateau:42 sector_key:81 convergence:35 delta_hold:44
+WVE,2015-11-11,WaVe Life Sciences Ltd,5,48.9,0,asym_v4:44 plateau:42 sector_key:81 convergence:35 delta_hold:44
+FAMI,2018-02-16,Farmmi Inc,5,48.8,2,asym_v4:11 plateau:23 sector_key:98 convergence:99 delta_hold:12
+HTBX,2013-07-23,Heat Biologics Inc,5,48.7,0,asym_v4:29 plateau:65 sector_key:85 convergence:35 delta_hold:30
+AGIO,2013-07-23,Agios Pharmaceuticals Inc,5,48.7,0,asym_v4:29 plateau:65 sector_key:85 convergence:35 delta_hold:30
+AIMT,2015-08-06,Aimmune Therapeutics Inc,4,48.6,1,asym_v4:25 plateau:44 sector_key:100 delta_hold:26
+VEH,2006-07-13,Valero GP Holdings Inc,5,48.6,0,asym_v4:69 plateau:60 sector_key:11 convergence:35 delta_hold:69
+CPST,2000-06-28,Capstone Turbine Corp,5,48.4,0,asym_v4:71 plateau:74 sector_key:26 convergence:0 delta_hold:71
+OXBRU,2014-03-26,Oxbridge Re Holdings Ltd,5,48.4,0,asym_v4:52 plateau:80 sector_key:58 convergence:0 delta_hold:53
+CARE,2000-06-28,CareScience Inc,5,48.4,0,asym_v4:71 plateau:74 sector_key:26 convergence:0 delta_hold:71
+NORD,2014-03-26,Nord Anglia Education,5,48.4,0,asym_v4:52 plateau:80 sector_key:58 convergence:0 delta_hold:53
+FPL,2014-03-26,First Trust New Opportunities,5,48.4,0,asym_v4:52 plateau:80 sector_key:58 convergence:0 delta_hold:53
+VRGE,2000-06-28,Virage Inc,5,48.4,0,asym_v4:71 plateau:74 sector_key:26 convergence:0 delta_hold:71
+CCIH,2010-09-30,ChinaCache Intl Hldg Ltd,5,48.3,0,asym_v4:62 plateau:72 sector_key:44 convergence:0 delta_hold:63
+ELT,2010-09-30,Elster Group SE,5,48.3,0,asym_v4:62 plateau:72 sector_key:44 convergence:0 delta_hold:63
+KEYW,2010-09-30,The KEYW Holding Corp,5,48.3,0,asym_v4:62 plateau:72 sector_key:44 convergence:0 delta_hold:63
+OBLN,2016-10-06,Obalon Therapeutics Inc,4,48.2,1,asym_v4:26 plateau:45 sector_key:95 delta_hold:26
+NEWS,2006-12-14,NewStar Financial,5,48.2,0,asym_v4:54 plateau:28 sector_key:70 convergence:35 delta_hold:54
+WSFG,2006-12-14,WSB Financial Group,5,48.2,0,asym_v4:54 plateau:28 sector_key:70 convergence:35 delta_hold:54
+HPP,2010-06-23,Hudson Pacific Properties Inc,5,48.2,0,asym_v4:68 plateau:64 sector_key:5 convergence:35 delta_hold:68
+MRAM,2016-10-07,EverSpin Technologies,5,48.2,0,asym_v4:63 plateau:75 sector_key:5 convergence:35 delta_hold:63
+NTES,2000-06-30,Netease.com Inc,4,48.2,0,asym_v4:61 plateau:70 sector_key:0 delta_hold:61
+LSF,2020-09-23,Laird Superfood Inc,5,48.2,0,asym_v4:57 plateau:55 sector_key:72 convergence:0 delta_hold:57
+FDEU,2015-09-24,First Tr Dynamic Europe Eq,5,48.1,0,asym_v4:84 plateau:71 sector_key:1 convergence:0 delta_hold:84
+WAFU,2019-04-30,Wah Fu Education Group Ltd,5,48.1,0,asym_v4:52 plateau:40 sector_key:23 convergence:74 delta_hold:52
+VRGY,2006-06-12,Verigy Ltd,5,48.1,0,asym_v4:81 plateau:50 sector_key:27 convergence:0 delta_hold:82
+APM,2018-12-18,Aptorum Grp Ltd,5,48.0,0,asym_v4:51 plateau:53 sector_key:49 convergence:35 delta_hold:52
+ACCD,2000-06-28,Accord Networks Ltd,5,47.9,0,asym_v4:71 plateau:74 sector_key:23 convergence:0 delta_hold:71
+DFH,2021-01-21,Dream Finders Homes Inc,5,47.9,0,asym_v4:71 plateau:23 sector_key:74 convergence:0 delta_hold:71
+MYOK,2015-10-29,MyoKardia Inc,5,47.9,0,asym_v4:49 plateau:42 sector_key:66 convergence:35 delta_hold:49
+XNCR,2013-12-02,Xencor Inc,5,47.9,0,asym_v4:71 plateau:89 sector_key:8 convergence:0 delta_hold:71
+TBNK,2009-07-13,Territorial Bancorp Inc,5,47.9,0,asym_v4:52 plateau:67 sector_key:34 convergence:35 delta_hold:52
+BPP,2003-02-25,Blackrock Preferred Opp Trust,5,47.9,0,asym_v4:50 plateau:37 sector_key:68 convergence:35 delta_hold:50
+PLTE,2006-12-19,Claymont Steel Holdings,5,47.8,0,asym_v4:68 plateau:56 sector_key:46 convergence:0 delta_hold:68
+LXFR,2012-10-03,Luxfer Holdings PLC,4,47.8,0,asym_v4:56 plateau:71 sector_key:8 delta_hold:56
+JMI,2012-10-03,JAVELIN Mortgage Invstmnt Corp,4,47.8,0,asym_v4:56 plateau:71 sector_key:8 delta_hold:56
+BERY,2012-10-03,Berry Plastics Group Inc,4,47.8,0,asym_v4:56 plateau:71 sector_key:8 delta_hold:56
+BDJ,2005-08-25,Blackrock Enhanced Div Ach Trs,5,47.7,0,asym_v4:40 plateau:31 sector_key:54 convergence:74 delta_hold:40
+OLA,2005-08-25,Old Mutual/Claymore Long-Short,5,47.7,0,asym_v4:40 plateau:31 sector_key:54 convergence:74 delta_hold:40
+TNSI,2000-07-12,Triton Network Systems Inc,5,47.7,0,asym_v4:70 plateau:79 sector_key:19 convergence:0 delta_hold:70
+MGU,2005-08-25,Macquarie Global Infrastructur,5,47.7,0,asym_v4:40 plateau:31 sector_key:54 convergence:74 delta_hold:40
+SOHU,2000-07-12,Sohu.com Inc,5,47.7,0,asym_v4:70 plateau:79 sector_key:19 convergence:0 delta_hold:70
+RSTN,2001-02-15,Riverstone Networks Inc,5,47.7,0,asym_v4:34 plateau:56 sector_key:80 convergence:35 delta_hold:34
+BWTR,2006-05-11,Basin Water Inc,4,47.6,0,asym_v4:74 plateau:18 sector_key:24 delta_hold:74
+IMAB,2020-01-17,I-MAB,5,47.4,0,asym_v4:43 plateau:41 sector_key:76 convergence:35 delta_hold:43
+LIZI,2020-01-17,Lizhi Inc,5,47.4,0,asym_v4:43 plateau:41 sector_key:76 convergence:35 delta_hold:43
+DNK,2020-01-17,Phoenix Tree Holdings Ltd,5,47.4,0,asym_v4:43 plateau:41 sector_key:76 convergence:35 delta_hold:43
+BCF,2006-09-26,BlackRock Real Asset Equity Tr,5,47.3,0,asym_v4:61 plateau:34 sector_key:44 convergence:35 delta_hold:62
+EIG,2007-01-30,Employers Holdings Inc,5,47.3,0,asym_v4:64 plateau:57 sector_key:51 convergence:0 delta_hold:65
+HF,2007-01-30,HFF,5,47.3,0,asym_v4:64 plateau:57 sector_key:51 convergence:0 delta_hold:65
+PAC,2006-02-23,Grupo Aeroportuario Pacifico,5,47.2,0,asym_v4:61 plateau:31 sector_key:49 convergence:35 delta_hold:61
+BTA,2006-02-23,BlackRock Long-term Muni,5,47.2,0,asym_v4:61 plateau:31 sector_key:49 convergence:35 delta_hold:61
+DSUP,2006-12-20,Dayton Superior,5,47.2,0,asym_v4:66 plateau:50 sector_key:54 convergence:0 delta_hold:66
+DEP,2007-01-30,Duncan Energy Partners LP,5,47.1,0,asym_v4:64 plateau:57 sector_key:50 convergence:0 delta_hold:65
+RGF,2021-11-05,Real Good Food Company Inc,4,47.1,0,asym_v4:29 plateau:48 sector_key:81 delta_hold:30
+PRPX,2004-01-23,Portec Rail Products Inc,5,47.0,0,asym_v4:51 plateau:45 sector_key:53 convergence:35 delta_hold:51
+AFCO,2015-10-20,American Farmland Co,5,47.0,0,asym_v4:28 plateau:27 sector_key:72 convergence:80 delta_hold:28
+GHL,2004-05-05,Greenhill & Co Inc,5,46.9,0,asym_v4:48 plateau:65 sector_key:38 convergence:35 delta_hold:49
+CIE,2009-12-16,Cobalt International Energy,4,46.8,0,asym_v4:57 plateau:15 sector_key:58 delta_hold:58
+STX,2002-12-11,Seagate Technology,5,46.7,0,asym_v4:48 plateau:57 sector_key:47 convergence:35 delta_hold:48
+DATA,2013-05-16,Tableau Software Inc,5,46.7,0,asym_v4:38 plateau:61 sector_key:60 convergence:35 delta_hold:39
+CODI,2006-05-10,Compass Diversified Trust,5,46.6,0,asym_v4:87 plateau:58 sector_key:1 convergence:0 delta_hold:87
+AHH,2013-05-07,Armada Hoffler Properties Inc,4,46.4,0,asym_v4:55 plateau:63 sector_key:11 delta_hold:56
+SNCR,2006-06-15,Synchronoss Technologies Inc,5,46.3,0,asym_v4:86 plateau:54 sector_key:5 convergence:0 delta_hold:86
+OMTR,2006-06-27,Omniture Inc,5,46.2,0,asym_v4:68 plateau:49 sector_key:11 convergence:35 delta_hold:68
+TRIV,2014-04-16,TriVascular Technologies Inc,4,46.2,0,asym_v4:31 plateau:50 sector_key:72 delta_hold:32
+RDYN,2006-06-27,Replidyne Inc,5,46.2,0,asym_v4:68 plateau:49 sector_key:11 convergence:35 delta_hold:68
+JCG,2006-06-27,J Crew Group Inc,5,46.2,0,asym_v4:68 plateau:49 sector_key:11 convergence:35 delta_hold:68
+PGTI,2006-06-27,PGT Inc,5,46.2,0,asym_v4:68 plateau:49 sector_key:11 convergence:35 delta_hold:68
+JGG,2006-06-27,Nuveen Global Government,5,46.2,0,asym_v4:68 plateau:49 sector_key:11 convergence:35 delta_hold:68
+IMS,2014-04-04,IMS Health Holdings Inc,4,46.2,0,asym_v4:44 plateau:59 sector_key:38 delta_hold:44
+PAX,2021-01-22,Patria Investments Ltd,4,46.1,1,asym_v4:41 plateau:10 sector_key:91 delta_hold:41
+CHIP,2007-02-09,VeriChip Corp,4,46.1,0,asym_v4:68 plateau:15 sector_key:34 delta_hold:68
+SQNS,2011-04-14,Sequans Communications SA,4,46.1,0,asym_v4:39 plateau:61 sector_key:45 delta_hold:39
+SALE,2013-07-18,RetailMeNot Inc,5,46.0,1,asym_v4:20 plateau:52 sector_key:42 convergence:96 delta_hold:20
+SONM,2019-05-10,Sonim Technologies Inc,4,46.0,0,asym_v4:61 plateau:37 sector_key:24 delta_hold:61
+ECST,2004-08-27,Ecost Com Inc,5,45.9,0,asym_v4:77 plateau:68 sector_key:8 convergence:0 delta_hold:77
+NIE,2007-02-23,Nicholas-Applegate Eq & Cvt Fd,5,45.9,0,asym_v4:66 plateau:11 sector_key:52 convergence:35 delta_hold:66
+BCYC,2019-05-23,Bicycle Therapeutics Ltd,5,45.7,1,asym_v4:49 plateau:35 sector_key:95 convergence:0 delta_hold:49
+IDYA,2019-05-23,Ideaya Biosciences Inc,5,45.7,1,asym_v4:49 plateau:35 sector_key:95 convergence:0 delta_hold:49
+ASV,2017-05-12,ASV Holdings,4,45.7,0,asym_v4:60 plateau:62 sector_key:1 delta_hold:60
+VERI,2017-05-12,Veritone Inc,4,45.7,0,asym_v4:60 plateau:62 sector_key:1 delta_hold:60
+GDI,2017-05-12,Gardner Denver Holdings Inc,4,45.7,0,asym_v4:60 plateau:62 sector_key:1 delta_hold:60
+QTS,2013-10-09,QTS Realty Trust,5,45.7,0,asym_v4:64 plateau:73 sector_key:27 convergence:0 delta_hold:65
+SOI,2017-05-12,Solaris Oilfield,4,45.7,0,asym_v4:60 plateau:62 sector_key:1 delta_hold:60
+REXR,2013-07-18,Rexford Industrial Realty Inc,5,45.6,1,asym_v4:20 plateau:52 sector_key:39 convergence:96 delta_hold:20
+DOC,2013-07-18,Physicians Realty Trust,5,45.6,1,asym_v4:20 plateau:52 sector_key:39 convergence:96 delta_hold:20
+DRII,2013-07-18,Diamond Resorts International,5,45.6,1,asym_v4:20 plateau:52 sector_key:39 convergence:96 delta_hold:20
+EEX,2017-04-28,Emerald Expositions Events Inc,5,45.6,0,asym_v4:75 plateau:68 sector_key:11 convergence:0 delta_hold:75
+CVNA,2017-04-28,Carvana Co,5,45.6,0,asym_v4:75 plateau:68 sector_key:11 convergence:0 delta_hold:75
+NCSM,2017-04-28,NCS Multistage Holdings Inc,5,45.6,0,asym_v4:75 plateau:68 sector_key:11 convergence:0 delta_hold:75
+XRF,2017-04-28,China Rapid Finance,5,45.6,0,asym_v4:75 plateau:68 sector_key:11 convergence:0 delta_hold:75
+SRTI,2000-07-12,Sunrise Telecom Inc,5,45.6,0,asym_v4:70 plateau:79 sector_key:8 convergence:0 delta_hold:70
+ZYME,2017-04-28,Zymeworks Inc,5,45.6,0,asym_v4:75 plateau:68 sector_key:11 convergence:0 delta_hold:75
+NCMI,2007-02-07,National CineMedia Inc,4,45.4,0,asym_v4:59 plateau:38 sector_key:27 delta_hold:59
+JEMD,2017-09-27,Nuveen Emerg Mrkts Debt 2022,5,45.3,1,asym_v4:27 plateau:46 sector_key:27 convergence:99 delta_hold:27
+RYB,2017-09-27,Ryb Education Inc,5,45.3,1,asym_v4:27 plateau:46 sector_key:27 convergence:99 delta_hold:27
+AOD,2007-01-25,Alpine Total Dynamic,5,45.3,0,asym_v4:52 plateau:44 sector_key:43 convergence:35 delta_hold:52
+ORCH,2000-05-04,Orchid BioSciences Inc,5,45.2,0,asym_v4:51 plateau:54 sector_key:34 convergence:35 delta_hold:51
+XCOM,2015-11-13,Xtera Communications Inc,5,45.0,0,asym_v4:64 plateau:47 sector_key:50 convergence:0 delta_hold:64
+FLXN,2014-02-12,Flexion Therapeutics,4,45.0,0,asym_v4:23 plateau:44 sector_key:90 delta_hold:23
+TBBK,2004-02-02,"Bancorp Bank,Wilmington,DE",4,45.0,0,asym_v4:42 plateau:62 sector_key:34 delta_hold:42
+YMM,2021-06-22,Full Truck Alliance Co Ltd,5,45.0,0,asym_v4:40 plateau:6 sector_key:63 convergence:76 delta_hold:40
+EGRX,2014-02-12,Eagle Pharmaceuticals,4,45.0,0,asym_v4:23 plateau:44 sector_key:90 delta_hold:23
+RPAI,2012-04-05,Retail Ppty of Americas Inc,5,45.0,0,asym_v4:45 plateau:58 sector_key:1 convergence:76 delta_hold:45
+CRIC,2009-10-16,China Real Estate Information,5,45.0,0,asym_v4:79 plateau:23 sector_key:8 convergence:35 delta_hold:79
+BNK,2014-08-14,C1 Financial Inc,5,44.8,0,asym_v4:47 plateau:71 sector_key:24 convergence:35 delta_hold:47
+NCNA,2017-09-28,NuCana plc,5,44.7,0,asym_v4:32 plateau:52 sector_key:27 convergence:80 delta_hold:32
+RICE,2014-01-24,Rice Energy,4,44.7,0,asym_v4:23 plateau:58 sector_key:74 delta_hold:23
+JONE,2013-07-23,Jones Energy Inc,5,44.6,0,asym_v4:29 plateau:65 sector_key:64 convergence:35 delta_hold:30
+NMM,2007-11-12,Navios Maritime Partners LP,5,44.6,0,asym_v4:82 plateau:8 sector_key:51 convergence:0 delta_hold:82
+SMOD,2006-02-02,Smart Modular Technologies Inc,4,44.5,0,asym_v4:58 plateau:54 sector_key:8 delta_hold:58
+DMGI,2006-02-02,Digital Music Group Inc,4,44.5,0,asym_v4:58 plateau:54 sector_key:8 delta_hold:58
+ANW,2006-12-08,Aegean Marine Petroleum Ntwrk,5,44.4,0,asym_v4:44 plateau:49 sector_key:84 convergence:0 delta_hold:44
+MMLP,2002-11-01,Martin Midstream Partners LP,5,44.3,0,asym_v4:32 plateau:39 sector_key:83 convergence:35 delta_hold:32
+VOC,2011-05-05,VOC Energy Tr,4,44.1,0,asym_v4:37 plateau:55 sector_key:47 delta_hold:37
+NMFC,2011-05-19,New Mountain Finance Corp,5,44.1,0,asym_v4:31 plateau:41 sector_key:82 convergence:35 delta_hold:31
+BBIO,2019-06-27,BridgeBio Pharma Inc,5,44.1,0,asym_v4:27 plateau:44 sector_key:89 convergence:35 delta_hold:27
+NRPH,2004-08-05,New River Pharmaceuticals Inc,4,44.0,1,asym_v4:22 plateau:39 sector_key:92 delta_hold:22
+SC,2014-01-23,Santander Consumer USA Hold,4,44.0,0,asym_v4:49 plateau:77 sector_key:0 delta_hold:50
+FFHL,2006-12-19,Fuwei Films (Holdings),5,44.0,0,asym_v4:68 plateau:56 sector_key:27 convergence:0 delta_hold:68
+TSL,2006-12-19,Trina Solar Limited,5,44.0,0,asym_v4:68 plateau:56 sector_key:27 convergence:0 delta_hold:68
+AHII,2007-01-30,Animal Health International,5,44.0,0,asym_v4:64 plateau:57 sector_key:34 convergence:0 delta_hold:65
+QBAK,2000-06-23,Qualstar Corp,5,43.9,0,asym_v4:52 plateau:60 sector_key:24 convergence:32 delta_hold:52
+GEG,2001-05-17,Global Power Equipment Group,4,43.9,0,asym_v4:34 plateau:51 sector_key:57 delta_hold:34
+TOO,2006-12-14,Teekay Offshore Partners L.P.,5,43.9,0,asym_v4:54 plateau:28 sector_key:49 convergence:35 delta_hold:54
+MSV,2000-06-23,Manufacturers Services,5,43.9,0,asym_v4:52 plateau:60 sector_key:24 convergence:32 delta_hold:52
+GLS,2006-12-14,Genesis Lease,5,43.9,0,asym_v4:54 plateau:28 sector_key:49 convergence:35 delta_hold:54
+DVR,2006-12-14,Cal Dive International,5,43.9,0,asym_v4:54 plateau:28 sector_key:49 convergence:35 delta_hold:54
+PT,2018-10-25,Pintec Tech Hldg Ltd,5,43.8,0,asym_v4:32 plateau:46 sector_key:74 convergence:35 delta_hold:32
+YETI,2018-10-25,Yeti Holdings Inc,5,43.8,0,asym_v4:32 plateau:46 sector_key:74 convergence:35 delta_hold:32
+VLGC,2000-05-02,Virologic Inc,5,43.8,0,asym_v4:44 plateau:56 sector_key:39 convergence:35 delta_hold:45
+ATHN,2007-09-19,athenahealth Inc,4,43.8,0,asym_v4:72 plateau:31 sector_key:1 delta_hold:72
+WNET,2000-05-02,WHEREVER.net Holdings Corp,5,43.8,0,asym_v4:44 plateau:56 sector_key:39 convergence:35 delta_hold:45
+STNE,2018-10-25,Stoneco Ltd,5,43.8,0,asym_v4:32 plateau:46 sector_key:74 convergence:35 delta_hold:32
+GTH,2020-06-19,Genetron Hldg Ltd,5,43.7,0,asym_v4:56 plateau:19 sector_key:11 convergence:76 delta_hold:56
+NGSX,2007-05-01,Neurogesx Inc,4,43.7,0,asym_v4:28 plateau:43 sector_key:75 delta_hold:28
+PROG,2020-06-19,Progenity Inc,5,43.7,0,asym_v4:56 plateau:19 sector_key:11 convergence:76 delta_hold:56
+ATUS,2017-06-22,Altice USA Inc,5,43.6,1,asym_v4:33 plateau:22 sector_key:95 convergence:35 delta_hold:33
+SGBX,2017-06-22,SG Blocks Inc,5,43.6,1,asym_v4:33 plateau:22 sector_key:95 convergence:35 delta_hold:33
+SAFE,2017-06-22,Safety Income & Growth Inc,5,43.6,1,asym_v4:33 plateau:22 sector_key:95 convergence:35 delta_hold:33
+NTLA,2016-05-06,Intellia Therapeutics Inc,5,43.6,0,asym_v4:47 plateau:47 sector_key:42 convergence:35 delta_hold:47
+CERC,2015-10-15,Cerecor Inc,5,43.6,0,asym_v4:63 plateau:59 sector_key:32 convergence:0 delta_hold:63
+HEBT,2016-12-23,Hebron Technology Co Ltd,5,43.6,0,asym_v4:57 plateau:69 sector_key:1 convergence:35 delta_hold:57
+BSTZ,2019-06-26,BlackRock Science and Tech II,5,43.5,0,asym_v4:40 plateau:59 sector_key:43 convergence:35 delta_hold:40
+RGNC,2006-01-30,Regency Energy Partners LP,4,43.5,0,asym_v4:47 plateau:40 sector_key:40 delta_hold:47
+ANPC,2020-01-30,Anpac Bio Med Science Co Ltd,5,43.4,0,asym_v4:25 plateau:22 sector_key:71 convergence:74 delta_hold:25
+BDTX,2020-01-30,Black Diamond Therapeutics Inc,5,43.4,0,asym_v4:25 plateau:22 sector_key:71 convergence:74 delta_hold:25
+AFMD,2014-09-12,Affimed Therapeutics BV,5,43.2,0,asym_v4:43 plateau:44 sector_key:50 convergence:35 delta_hold:43
+BRSS,2013-05-23,Global Brass & Copper Holdings,5,43.1,0,asym_v4:62 plateau:73 sector_key:18 convergence:0 delta_hold:62
+VEL,2020-01-17,Velocity Financial LLC,5,43.1,0,asym_v4:43 plateau:41 sector_key:54 convergence:35 delta_hold:43
+DFP,2013-05-23,Flaherty & Crumrine Dynamic,5,43.1,0,asym_v4:62 plateau:73 sector_key:18 convergence:0 delta_hold:62
+SDH,2021-02-09,Global Internet Of People Inc,4,43.0,0,asym_v4:60 plateau:17 sector_key:34 delta_hold:61
+SBPH,2016-05-06,Spring Bank Pharms Inc,5,43.0,0,asym_v4:47 plateau:47 sector_key:39 convergence:35 delta_hold:47
+ENTR,2007-12-06,Entropic Communications Inc,4,42.9,0,asym_v4:74 plateau:16 sector_key:8 delta_hold:74
+VISN,2007-12-06,VisionChina Media Inc,4,42.9,0,asym_v4:74 plateau:16 sector_key:8 delta_hold:74
+RGLS,2012-10-04,Regulus Therapeutics Inc,5,42.8,1,asym_v4:37 plateau:47 sector_key:94 convergence:0 delta_hold:37
+INST,2015-11-13,Instructure Inc,5,42.8,0,asym_v4:64 plateau:47 sector_key:39 convergence:0 delta_hold:64
+AIO,2019-10-29,AllianzGI Artificial Int Fund,5,42.6,0,asym_v4:30 plateau:32 sector_key:86 convergence:35 delta_hold:30
+EDU,2006-09-06,New Oriental Education,4,42.5,0,asym_v4:55 plateau:59 sector_key:1 delta_hold:55
+EQBK,2015-11-11,Equity Bancshares Inc,5,42.5,0,asym_v4:44 plateau:42 sector_key:49 convergence:35 delta_hold:44
+VYGR,2015-11-11,Voyager Therapeutics Inc,5,42.4,0,asym_v4:44 plateau:42 sector_key:48 convergence:35 delta_hold:44
+MYTE,2021-01-21,MYT Netherlands Parent BV,5,42.4,0,asym_v4:71 plateau:23 sector_key:46 convergence:0 delta_hold:71
+RTLR,2019-05-23,Rattler Midstream Partners LP,5,42.3,0,asym_v4:49 plateau:35 sector_key:78 convergence:0 delta_hold:49
+SWAV,2019-03-07,Shockwave Medical Inc,5,42.2,0,asym_v4:35 plateau:51 sector_key:54 convergence:35 delta_hold:36
+OPWR,2014-04-04,Opower Inc,4,42.2,0,asym_v4:44 plateau:59 sector_key:22 delta_hold:44
+NYLD,2013-07-16,NRG Yield Inc,5,42.1,0,asym_v4:33 plateau:58 sector_key:51 convergence:35 delta_hold:34
+PSW,2003-07-29,Preferred & Corporate Income,5,42.1,0,asym_v4:34 plateau:46 sector_key:61 convergence:35 delta_hold:34
+CVLT,2006-09-21,CommVault Systems Inc,4,42.0,0,asym_v4:50 plateau:48 sector_key:20 delta_hold:50
+LDRH,2013-10-09,LDR Holding,5,42.0,0,asym_v4:64 plateau:73 sector_key:8 convergence:0 delta_hold:65
+THLD,2005-02-03,Threshold Pharmaceuticals Inc,4,41.9,0,asym_v4:34 plateau:52 sector_key:46 delta_hold:35
+MMPI,2007-01-24,Meruelo Maddux Properties Inc,5,41.9,0,asym_v4:50 plateau:47 sector_key:27 convergence:35 delta_hold:50
+RETA,2016-05-26,Reata Pharmaceuticals Inc,5,41.8,0,asym_v4:51 plateau:35 sector_key:38 convergence:35 delta_hold:51
+BWY,2007-06-12,Bway Holding Co,5,41.8,0,asym_v4:32 plateau:50 sector_key:61 convergence:35 delta_hold:32
+MWE,2002-05-21,MarkWest Energy Partners LP,4,41.7,0,asym_v4:50 plateau:66 sector_key:1 delta_hold:50
+FISH,2013-07-25,Marlin Midstream Partners LP,5,41.7,0,asym_v4:19 plateau:48 sector_key:87 convergence:35 delta_hold:19
+NBLX,2016-09-15,Noble Midstream Partners LP,4,41.7,0,asym_v4:26 plateau:46 sector_key:68 delta_hold:27
+CTRN,2005-05-17,Citi Trends Inc,5,41.5,0,asym_v4:42 plateau:37 sector_key:51 convergence:35 delta_hold:42
+CRXX,2005-11-09,Combinatorx Inc,5,41.4,1,asym_v4:26 plateau:28 sector_key:27 convergence:99 delta_hold:26
+VAPN,2003-12-11,Vaso Active Pharmaceuticals,4,41.4,0,asym_v4:30 plateau:48 sector_key:57 delta_hold:30
+CSE,2003-08-06,Capitalsource Inc,4,41.3,0,asym_v4:40 plateau:57 sector_key:27 delta_hold:40
+KUN,2007-06-18,China Shenghuo Pharmaceutical,4,41.3,0,asym_v4:25 plateau:43 sector_key:71 delta_hold:26
+CNCE,2014-02-13,Concert Pharmaceuaticals,4,41.3,0,asym_v4:17 plateau:42 sector_key:89 delta_hold:17
+VRNT,2002-05-16,Verint Systems Inc,4,41.2,1,asym_v4:20 plateau:33 sector_key:91 delta_hold:21
+RGDO,2013-08-22,Regado Biosciences Inc,5,41.2,0,asym_v4:34 plateau:71 sector_key:67 convergence:0 delta_hold:34
+PRME,2000-03-02,Prime Response Inc,5,41.1,0,asym_v4:64 plateau:74 sector_key:4 convergence:0 delta_hold:64
+UTSI,2000-03-02,UTStarcom Inc,5,41.1,0,asym_v4:64 plateau:74 sector_key:4 convergence:0 delta_hold:64
+SWBD,2000-03-02,Switchboard Inc,5,41.1,0,asym_v4:64 plateau:74 sector_key:4 convergence:0 delta_hold:64
+ASIA,2000-03-02,AsiaInfo Holdings Inc,5,41.1,0,asym_v4:64 plateau:74 sector_key:4 convergence:0 delta_hold:64
+DVIN,2000-07-11,Divine Interventures Inc,5,41.0,0,asym_v4:54 plateau:71 sector_key:25 convergence:0 delta_hold:55
+ASTT,2000-07-11,ASAT Holdings Ltd,5,41.0,0,asym_v4:54 plateau:71 sector_key:25 convergence:0 delta_hold:55
+RGNX,2015-09-17,Regenxbio Inc,5,41.0,0,asym_v4:12 plateau:24 sector_key:80 convergence:76 delta_hold:12
+MOGU,2018-12-06,Mogu Inc,5,40.9,1,asym_v4:13 plateau:26 sector_key:54 convergence:99 delta_hold:13
+LYRA,2020-05-01,Lyra Therapeutics Inc,4,40.9,0,asym_v4:37 plateau:10 sector_key:79 delta_hold:37
+MITT,2011-06-29,AG Mortgage Investment Trust,5,40.8,0,asym_v4:23 plateau:39 sector_key:41 convergence:80 delta_hold:23
+FBNK,2011-06-29,First Connecticut Bancorp Inc,5,40.8,0,asym_v4:23 plateau:39 sector_key:41 convergence:80 delta_hold:23
+ZYNE,2015-08-05,Zynerba Pharmaceuticals Inc,4,40.7,1,asym_v4:18 plateau:33 sector_key:93 delta_hold:18
+BMEZ,2020-01-29,BlackRock Health Sci Tr II,5,40.7,0,asym_v4:35 plateau:31 sector_key:26 convergence:74 delta_hold:36
+FBK,2016-09-16,FB Financial Corp,4,40.7,0,asym_v4:33 plateau:54 sector_key:42 delta_hold:33
+ANVS,2020-01-29,Annovis Bio Inc,5,40.7,0,asym_v4:35 plateau:31 sector_key:26 convergence:74 delta_hold:36
+DSP,2021-02-10,Viant Technology Inc,4,40.4,1,asym_v4:18 plateau:30 sector_key:95 delta_hold:19
+CIO,2014-04-15,City Office REIT Inc,5,40.4,0,asym_v4:42 plateau:77 sector_key:5 convergence:35 delta_hold:43
+PAYC,2014-04-15,Paycom Software Inc,5,40.4,0,asym_v4:42 plateau:77 sector_key:5 convergence:35 delta_hold:43
+MPEL,2006-12-19,Melco PBL Entertainment,5,40.3,0,asym_v4:68 plateau:56 sector_key:8 convergence:0 delta_hold:68
+CRSR,2020-09-23,Corsair Gaming Inc,5,40.3,0,asym_v4:57 plateau:55 sector_key:33 convergence:0 delta_hold:57
+SGEN,2001-03-06,Seattle Genetics Inc,5,40.2,0,asym_v4:55 plateau:72 sector_key:20 convergence:0 delta_hold:55
+MKTO,2013-05-16,Marketo Inc,5,40.1,0,asym_v4:38 plateau:61 sector_key:27 convergence:35 delta_hold:39
+XTNT,2007-01-31,Xtent Inc,5,39.8,0,asym_v4:43 plateau:36 sector_key:42 convergence:35 delta_hold:43
+EURX,2007-05-16,Eurand NV,5,39.8,0,asym_v4:54 plateau:69 sector_key:23 convergence:0 delta_hold:54
+CAP,2007-05-16,CAI Int Inc,5,39.8,0,asym_v4:54 plateau:69 sector_key:23 convergence:0 delta_hold:54
+TTGT,2007-05-16,TechTarget Inc,5,39.8,0,asym_v4:54 plateau:69 sector_key:23 convergence:0 delta_hold:54
+HPLA,2001-07-31,HPL Technologies Inc,4,39.8,0,asym_v4:34 plateau:50 sector_key:42 delta_hold:34
+JUNO,2014-12-19,Juno Therapeutics Inc,4,39.7,0,asym_v4:32 plateau:31 sector_key:63 delta_hold:33
+TTO,2007-02-01,Tortoise Capital Resources,5,39.6,0,asym_v4:39 plateau:29 sector_key:56 convergence:35 delta_hold:39
+DWMA,2002-05-16,Dickie Walker Marine Inc,4,39.6,0,asym_v4:20 plateau:33 sector_key:84 delta_hold:21
+OFSI,2006-09-29,Omni Financial Services Inc,5,39.5,0,asym_v4:49 plateau:39 sector_key:26 convergence:35 delta_hold:49
+NTKK,2000-03-06,Net 2000 Communications Inc,5,39.4,0,asym_v4:40 plateau:51 sector_key:66 convergence:0 delta_hold:40
+FEO,2006-08-28,First Trust/Aberdeen Emerging,5,39.4,0,asym_v4:49 plateau:8 sector_key:11 convergence:80 delta_hold:49
+AWH,2006-07-11,Allied World Assurance,5,39.3,0,asym_v4:59 plateau:52 sector_key:26 convergence:0 delta_hold:59
+PACB,2010-10-26,Pacific Biosciences of CA Inc,5,39.3,0,asym_v4:29 plateau:39 sector_key:64 convergence:35 delta_hold:29
+ORIC,2020-04-24,Oric Pharmaceuticals Inc,5,39.2,0,asym_v4:46 plateau:14 sector_key:56 convergence:35 delta_hold:46
+MR,2006-09-25,Mindray Medical International,5,39.2,0,asym_v4:53 plateau:27 sector_key:27 convergence:35 delta_hold:54
+MRNA,2018-12-07,Moderna Inc,5,39.1,1,asym_v4:5 plateau:12 sector_key:97 convergence:76 delta_hold:5
+HMIN,2006-10-25,Home Inns & Hotels Management,5,39.1,0,asym_v4:34 plateau:41 sector_key:86 convergence:0 delta_hold:34
+APFH,2016-07-15,AdvancePierre Foods Hldg Inc,5,39.1,0,asym_v4:53 plateau:54 sector_key:34 convergence:0 delta_hold:54
+KALA,2017-07-20,Kala Pharmaceuticals Inc,4,39.0,0,asym_v4:31 plateau:50 sector_key:45 delta_hold:31
+CMBM,2019-06-26,Cambium Networks Corp,5,38.9,0,asym_v4:40 plateau:59 sector_key:20 convergence:35 delta_hold:40
+KIO,2013-07-25,KKR Income Opportunities Fund,5,38.9,0,asym_v4:19 plateau:48 sector_key:73 convergence:35 delta_hold:19
+VSTA,2002-12-18,VistaCare,4,38.9,0,asym_v4:53 plateau:39 sector_key:11 delta_hold:53
+LIQD,2013-07-25,Liquid Holdings Group Inc,5,38.9,0,asym_v4:19 plateau:48 sector_key:73 convergence:35 delta_hold:19
+BLSW,2007-06-28,Bridgeline Software Inc,5,38.8,0,asym_v4:55 plateau:37 sector_key:47 convergence:0 delta_hold:55
+RLX,2021-01-22,RLX Technology Inc,4,38.8,0,asym_v4:41 plateau:10 sector_key:63 delta_hold:41
+ACTS,2005-11-29,Actions Semiconductor,5,38.7,0,asym_v4:15 plateau:20 sector_key:64 convergence:80 delta_hold:15
+RNOW,2004-08-05,RightNow Technologies Inc,4,38.6,0,asym_v4:22 plateau:39 sector_key:71 delta_hold:22
+KING,2014-03-26,King Digital Entertainment plc,5,38.5,0,asym_v4:52 plateau:80 sector_key:8 convergence:0 delta_hold:53
+MIPI,2007-02-01,Molecular Insight Pharm Inc,5,38.5,0,asym_v4:39 plateau:29 sector_key:51 convergence:35 delta_hold:39
+SAXN,2004-09-20,Saxon REIT Inc,4,38.4,0,asym_v4:42 plateau:63 sector_key:7 delta_hold:42
+SFUN,2005-11-08,Saifun Semiconductors Ltd,5,38.3,1,asym_v4:20 plateau:31 sector_key:27 convergence:94 delta_hold:20
+FDC,2015-10-15,First Data Corp,5,38.2,0,asym_v4:63 plateau:59 sector_key:5 convergence:0 delta_hold:63
+ENPH,2012-03-29,Enphase Energy Inc,4,38.2,0,asym_v4:20 plateau:30 sector_key:83 delta_hold:20
+OMPI,2006-12-14,Obagi Medical Products,5,38.2,0,asym_v4:54 plateau:28 sector_key:20 convergence:35 delta_hold:54
+TIXT,2021-02-03,TELUS International (Cda) Inc,5,38.2,0,asym_v4:56 plateau:21 sector_key:23 convergence:35 delta_hold:56
+ONTF,2021-02-03,ON24 Inc,5,38.2,0,asym_v4:56 plateau:21 sector_key:23 convergence:35 delta_hold:56
+EXFO,2000-06-29,Exfo Electro Optical,5,38.1,0,asym_v4:48 plateau:60 sector_key:34 convergence:0 delta_hold:48
+CBF,2006-09-27,CBRE Realty Finance,5,38.1,0,asym_v4:49 plateau:30 sector_key:27 convergence:35 delta_hold:50
+SLRY,2007-02-15,Salary.com Inc,4,38.0,0,asym_v4:49 plateau:20 sector_key:34 delta_hold:49
+DCW,2007-06-27,Dividend Capital Strategic,5,37.9,1,asym_v4:35 plateau:27 sector_key:91 convergence:0 delta_hold:36
+GRX,2007-06-19,GABELLI HEALTHCARE & WELLNESS,4,37.7,0,asym_v4:44 plateau:62 sector_key:0 delta_hold:44
+WAAS,2016-10-06,AquaVenture Holdings LLC,4,37.6,0,asym_v4:26 plateau:45 sector_key:53 delta_hold:26
+VTAE,2014-09-24,Vitae Pharmaceuticals Inc,5,37.6,0,asym_v4:12 plateau:9 sector_key:81 convergence:74 delta_hold:12
+ACHN,2006-10-25,Achillion Pharmaceuticals Inc,5,37.6,0,asym_v4:34 plateau:41 sector_key:79 convergence:0 delta_hold:34
+EMS,2005-12-16,Emergency Medical Services,4,37.6,0,asym_v4:52 plateau:45 sector_key:1 delta_hold:52
+ADSW,2016-10-06,Advanced Disposal Services Inc,4,37.6,0,asym_v4:26 plateau:45 sector_key:53 delta_hold:26
+HPI,2002-08-22,John Hancock Preferred Income,5,37.6,0,asym_v4:37 plateau:49 sector_key:65 convergence:0 delta_hold:37
+ARTE,2006-12-20,Artes Medical,5,37.5,0,asym_v4:66 plateau:50 sector_key:5 convergence:0 delta_hold:66
+CHNG,2019-06-27,Change Healthcare Inc,5,37.5,0,asym_v4:27 plateau:44 sector_key:56 convergence:35 delta_hold:27
+OMIC,2021-05-27,Singular Genomics Systems Inc,5,37.3,1,asym_v4:3 plateau:7 sector_key:97 convergence:76 delta_hold:3
+IRBT,2005-11-08,iROBOT CORP,5,37.3,1,asym_v4:20 plateau:31 sector_key:22 convergence:94 delta_hold:20
+DAWN,2021-05-27,Day One Biopharmaceuticals Inc,5,37.3,1,asym_v4:3 plateau:7 sector_key:97 convergence:76 delta_hold:3
+MSBI,2016-05-24,Midland States Bancorp Inc,5,37.3,0,asym_v4:37 plateau:35 sector_key:47 convergence:32 delta_hold:37
+OMP,2017-09-21,Oasis Midstream Partners LP,5,37.3,0,asym_v4:38 plateau:55 sector_key:56 convergence:0 delta_hold:38
+ATKR,2016-06-10,Atkore International Group Inc,4,37.3,0,asym_v4:22 plateau:37 sector_key:68 delta_hold:22
+LTRN,2020-06-11,Lantern Pharma Inc,5,37.1,1,asym_v4:6 plateau:14 sector_key:65 convergence:94 delta_hold:6
+HUDI,2021-01-22,Huadi International Group Co,4,37.1,0,asym_v4:41 plateau:10 sector_key:56 delta_hold:41
+MNTK,2021-01-22,Montauk Renewables Inc,4,37.1,0,asym_v4:41 plateau:10 sector_key:56 delta_hold:41
+MACK,2012-03-28,Merrimack Pharmaceuticals Inc,4,37.1,0,asym_v4:34 plateau:36 sector_key:45 delta_hold:34
+IPCC,2003-02-11,Infinity Prop & Casualty Corp,5,37.0,0,asym_v4:38 plateau:58 sector_key:51 convergence:0 delta_hold:38
+CAVM,2007-05-01,Cavium Networks Inc,4,37.0,0,asym_v4:28 plateau:43 sector_key:48 delta_hold:28
+TYG,2004-02-24,Tortoise Energy Infrastructure,5,36.9,0,asym_v4:13 plateau:5 sector_key:79 convergence:74 delta_hold:13
+ELOS,2004-08-05,Syneron Medical Ltd,4,36.8,0,asym_v4:22 plateau:39 sector_key:63 delta_hold:22
+MVE,2006-12-07,Smart Move Inc,5,36.8,0,asym_v4:49 plateau:53 sector_key:32 convergence:0 delta_hold:50
+DDI,2021-08-31,DoubleDown Interactive Co Ltd,5,36.7,1,asym_v4:1 plateau:2 sector_key:86 convergence:94 delta_hold:1
+AMBA,2012-10-09,Ambarella Inc,5,36.6,1,asym_v4:23 plateau:32 sector_key:11 convergence:94 delta_hold:23
+FFA,2004-08-26,First Trst/Fid Asset Man Cvd C,5,36.5,0,asym_v4:53 plateau:68 sector_key:8 convergence:0 delta_hold:53
+SFLY,2006-09-29,Shutterfly Inc,5,36.5,0,asym_v4:49 plateau:39 sector_key:11 convergence:35 delta_hold:49
+ADHD,2013-05-21,Alcobra Ltd,5,36.4,0,asym_v4:54 plateau:73 sector_key:1 convergence:0 delta_hold:54
+ASTIU,2006-07-10,Ascent Solar Technologies Inc,5,36.4,0,asym_v4:55 plateau:51 sector_key:20 convergence:0 delta_hold:56
+FOODU,2007-06-27,Vaughan Foods Inc,5,36.4,0,asym_v4:35 plateau:27 sector_key:83 convergence:0 delta_hold:36
+CCO,2005-11-10,Clear Channel Outdoor Holdings,5,36.3,1,asym_v4:16 plateau:23 sector_key:27 convergence:99 delta_hold:16
+IHS,2005-11-10,IHS Inc,5,36.3,1,asym_v4:16 plateau:23 sector_key:27 convergence:99 delta_hold:16
+EHT,2016-05-26,Eaton Vance High Income 2021,5,36.3,0,asym_v4:51 plateau:35 sector_key:11 convergence:35 delta_hold:51
+TARG,2007-10-09,Targanta Therapeutics Corp,5,36.3,0,asym_v4:42 plateau:23 sector_key:75 convergence:0 delta_hold:42
+COTV,2016-05-26,Cotiviti Holdings Inc,5,36.3,0,asym_v4:51 plateau:35 sector_key:11 convergence:35 delta_hold:51
+GMS,2016-05-26,GMS Inc,5,36.3,0,asym_v4:51 plateau:35 sector_key:11 convergence:35 delta_hold:51
+VTA,2007-06-26,Van Kampen Dynamic Credit,5,36.2,1,asym_v4:14 plateau:24 sector_key:95 convergence:35 delta_hold:14
+HURN,2004-10-12,Huron Consulting Group Inc,5,36.2,0,asym_v4:38 plateau:58 sector_key:11 convergence:35 delta_hold:39
+ADMS,2014-04-10,Adamas Pharmaceuticals Inc,5,36.2,0,asym_v4:21 plateau:59 sector_key:80 convergence:0 delta_hold:22
+CERU,2014-04-10,Cerulean Pharma Inc,5,36.2,0,asym_v4:21 plateau:59 sector_key:80 convergence:0 delta_hold:22
+DGI,2009-05-13,DigitalGlobe Inc,4,36.1,0,asym_v4:20 plateau:36 sector_key:67 delta_hold:21
+ATH,2001-10-30,Anthem Inc,5,36.0,0,asym_v4:30 plateau:38 sector_key:81 convergence:0 delta_hold:30
+GDRX,2020-09-23,GoodRx Holdings Inc,5,36.0,0,asym_v4:57 plateau:55 sector_key:11 convergence:0 delta_hold:57
+PEB,2009-12-09,Pebblebrook Hotel Trust,5,36.0,0,asym_v4:54 plateau:18 sector_key:20 convergence:35 delta_hold:54
+SXTC,2019-01-04,China Sxt Pharms Inc,4,36.0,0,asym_v4:31 plateau:50 sector_key:33 delta_hold:31
+CDL,2003-07-31,Citadel Broadcasting Corp,5,35.9,0,asym_v4:20 plateau:31 sector_key:74 convergence:35 delta_hold:20
+KCI,2004-02-23,Kinetic Concepts Inc,4,35.9,0,asym_v4:24 plateau:20 convergence:74 delta_hold:25
+USFD,2016-05-26,US Foods Holding Corp,5,35.8,0,asym_v4:51 plateau:35 sector_key:8 convergence:35 delta_hold:51
+AHGP,2006-05-09,Alliance Holdings GP LP,5,35.8,0,asym_v4:64 plateau:27 sector_key:24 convergence:0 delta_hold:65
+NOVC,2006-05-09,Novacea Inc,5,35.8,0,asym_v4:64 plateau:27 sector_key:24 convergence:0 delta_hold:65
+HGAT,2000-01-25,HealthGate Data Corp,5,35.8,0,asym_v4:46 plateau:44 sector_key:42 convergence:0 delta_hold:47
+CNTA,2021-05-28,Centessa Pharmaceuticals plc,5,35.7,1,asym_v4:1 plateau:3 sector_key:97 convergence:76 delta_hold:1
+GWRE,2012-01-24,Guidewire Software Inc,5,35.6,0,asym_v4:52 plateau:68 sector_key:5 convergence:0 delta_hold:52
+MIST,2019-05-09,Milestone Pharmaceuticals Inc,4,35.5,1,asym_v4:14 plateau:14 sector_key:99 delta_hold:15
+MM,2012-03-28,Millennial Media Inc,4,35.5,0,asym_v4:34 plateau:36 sector_key:38 delta_hold:34
+TIRX,2021-01-27,Tian Ruixiang Holdings Ltd,5,35.5,0,asym_v4:33 plateau:49 sector_key:63 convergence:0 delta_hold:33
+PDO,2021-01-27,Pimco Dynamic Income Opp,5,35.5,0,asym_v4:33 plateau:49 sector_key:63 convergence:0 delta_hold:33
+PRO,2007-06-27,Pros Holdings Inc,5,35.4,0,asym_v4:35 plateau:27 sector_key:78 convergence:0 delta_hold:36
+PPO,2007-06-27,Polypore International Inc,5,35.4,0,asym_v4:35 plateau:27 sector_key:78 convergence:0 delta_hold:36
+RWLK,2014-09-12,ReWalk Robotics Ltd,5,35.4,0,asym_v4:43 plateau:44 sector_key:11 convergence:35 delta_hold:43
+BSY,2020-09-23,Bentley Systems Inc,5,35.4,0,asym_v4:57 plateau:55 sector_key:8 convergence:0 delta_hold:57
+NTGR,2003-07-30,NETGEAR Inc,5,35.4,0,asym_v4:20 plateau:34 sector_key:67 convergence:35 delta_hold:20
+SELB,2016-06-22,Selecta Biosciences Inc,5,35.2,1,asym_v4:29 plateau:23 sector_key:94 convergence:0 delta_hold:29
+COWN,2006-07-12,Cowen Group Inc,5,35.2,0,asym_v4:39 plateau:27 sector_key:36 convergence:35 delta_hold:39
+PRSE,2000-06-29,Precise Software Solutions Ltd,5,35.1,0,asym_v4:48 plateau:60 sector_key:19 convergence:0 delta_hold:48
+MBT,2000-06-29,Mobile Telesystems OJSC,5,35.1,0,asym_v4:48 plateau:60 sector_key:19 convergence:0 delta_hold:48
+STOR,2000-06-29,Storagenetworks Inc,5,35.1,0,asym_v4:48 plateau:60 sector_key:19 convergence:0 delta_hold:48
+IPGP,2006-12-13,IPG Photonics,5,35.0,0,asym_v4:28 plateau:7 sector_key:76 convergence:35 delta_hold:28
+MCOX,2010-10-26,Mecox Lane Ltd,5,35.0,0,asym_v4:29 plateau:39 sector_key:43 convergence:35 delta_hold:29
+HYI,2010-10-26,Western Asset High Yield,5,35.0,0,asym_v4:29 plateau:39 sector_key:43 convergence:35 delta_hold:29
+MORF,2019-06-27,Morphic Holding Inc,5,35.0,0,asym_v4:27 plateau:44 sector_key:43 convergence:35 delta_hold:27
+MEDE,2006-12-13,MEDecision,5,35.0,0,asym_v4:28 plateau:7 sector_key:76 convergence:35 delta_hold:28
+DCT,2006-12-13,DCT Industrial,5,35.0,0,asym_v4:28 plateau:7 sector_key:76 convergence:35 delta_hold:28
+GBAB,2010-10-26,Guggenheim Build America Bonds,5,35.0,0,asym_v4:29 plateau:39 sector_key:43 convergence:35 delta_hold:29
+LQ,2014-04-09,La Quinta Holdings Inc,5,34.9,0,asym_v4:18 plateau:54 sector_key:84 convergence:0 delta_hold:18
+ICFI,2006-09-27,ICF International Inc,5,34.9,0,asym_v4:49 plateau:30 sector_key:11 convergence:35 delta_hold:50
+OVID,2017-05-05,Ovid Therapeutics Inc,5,34.8,0,asym_v4:22 plateau:36 sector_key:63 convergence:32 delta_hold:22
+AZYO,2020-10-08,Aziyo Biologics Inc,5,34.8,0,asym_v4:28 plateau:35 sector_key:84 convergence:0 delta_hold:28
+KRTX,2019-06-28,Karuna Therapeutics Inc,5,34.8,0,asym_v4:15 plateau:27 sector_key:82 convergence:35 delta_hold:15
+SRQ,2002-10-28,Scudder RREEF Real Estate Fund,5,34.8,0,asym_v4:31 plateau:42 sector_key:36 convergence:35 delta_hold:31
+BNR,2020-06-12,Burning Rock Biotech Ltd,5,34.6,1,asym_v4:1 plateau:4 sector_key:73 convergence:94 delta_hold:1
+GBIO,2020-06-12,Generation Bio Co,5,34.6,1,asym_v4:1 plateau:4 sector_key:73 convergence:94 delta_hold:1
+BBEP,2006-10-04,BreitBurn Energy Partners L.P.,5,34.5,0,asym_v4:38 plateau:18 sector_key:79 convergence:0 delta_hold:38
+ALLI,2005-06-22,Allion Healthcare Inc,4,34.5,0,asym_v4:53 plateau:21 sector_key:10 delta_hold:53
+EGLE,2005-06-22,Eagle Bulk Shipping Inc,4,34.5,0,asym_v4:53 plateau:21 sector_key:10 delta_hold:53
+IFE,2000-03-06,IFCO Systems NV,5,34.5,0,asym_v4:40 plateau:51 sector_key:42 convergence:0 delta_hold:40
+SB,2008-05-28,Safe Bulkers Inc,5,34.5,0,asym_v4:40 plateau:6 sector_key:11 convergence:76 delta_hold:40
+HIE,2014-11-26,Miller/Howard High Income,5,34.4,0,asym_v4:48 plateau:41 sector_key:1 convergence:35 delta_hold:48
+ALGT,2006-12-08,Allegiant Travel Company,5,34.3,0,asym_v4:44 plateau:49 sector_key:34 convergence:0 delta_hold:44
+HLYS,2006-12-08,Heelys,5,34.3,0,asym_v4:44 plateau:49 sector_key:34 convergence:0 delta_hold:44
+CHW,2007-06-26,Calamos Global Dynamic,5,34.2,0,asym_v4:14 plateau:24 sector_key:85 convergence:35 delta_hold:14
+SCOR,2007-06-26,Comscore Inc,5,34.2,0,asym_v4:14 plateau:24 sector_key:85 convergence:35 delta_hold:14
+AUTH,2007-06-26,AuthenTec Inc,5,34.2,0,asym_v4:14 plateau:24 sector_key:85 convergence:35 delta_hold:14
+MTP,2007-06-26,MLP & Strategic Equity,5,34.2,0,asym_v4:14 plateau:24 sector_key:85 convergence:35 delta_hold:14
+DRP,2007-06-26,DWS RREEF World Real Est & Tac,5,34.2,0,asym_v4:14 plateau:24 sector_key:85 convergence:35 delta_hold:14
+JTD,2007-06-26,NUVEEN TAX ADVANTAGE DIV GRTH,5,34.2,0,asym_v4:14 plateau:24 sector_key:85 convergence:35 delta_hold:14
+ALLY,2014-04-10,Ally Financial Inc,5,34.1,0,asym_v4:21 plateau:59 sector_key:69 convergence:0 delta_hold:22
+ACRS,2015-10-07,Aclaris Therapeutics Inc,4,34.0,0,asym_v4:13 plateau:25 sector_key:85 delta_hold:13
+ACM,2007-05-09,AECOM Technology Corp,5,33.9,0,asym_v4:42 plateau:39 sector_key:11 convergence:35 delta_hold:43
+GSX,2019-06-06,Gsx Techedu Inc,4,33.8,0,asym_v4:22 plateau:39 sector_key:53 delta_hold:22
+BARE,2006-09-28,Bare Escentuals Inc,5,33.7,0,asym_v4:45 plateau:32 sector_key:11 convergence:35 delta_hold:45
+CAF,2006-09-28,Morgan Stanley China A Share,5,33.7,0,asym_v4:45 plateau:32 sector_key:11 convergence:35 delta_hold:45
+FTHM,2020-07-31,Fathom Holdings Inc,5,33.6,0,asym_v4:11 plateau:22 sector_key:88 convergence:35 delta_hold:11
+HETC,2002-07-12,Healthetech Inc,5,33.6,0,asym_v4:64 plateau:40 sector_key:0 convergence:0 delta_hold:64
+CCM,2009-12-11,Concord Medical Services Ltd,4,33.6,0,asym_v4:55 plateau:18 sector_key:5 delta_hold:55
+GOED,2020-07-31,1847 Goedeker Inc,5,33.6,0,asym_v4:11 plateau:22 sector_key:88 convergence:35 delta_hold:11
+IRTC,2016-10-20,iRhythm Technologies Inc,5,33.5,0,asym_v4:50 plateau:66 sector_key:1 convergence:0 delta_hold:50
+FRTA,2016-10-20,Forterra Inc,5,33.5,0,asym_v4:50 plateau:66 sector_key:1 convergence:0 delta_hold:50
+FRP,2005-02-03,FairPoint Communications Inc,4,33.2,0,asym_v4:34 plateau:52 sector_key:11 delta_hold:35
+KRYS,2017-09-20,Krystal Biotech Inc,5,33.0,1,asym_v4:19 plateau:32 sector_key:96 convergence:0 delta_hold:19
+BLDR,2005-06-22,Builders FirstSource Inc,4,33.0,0,asym_v4:53 plateau:21 sector_key:5 delta_hold:53
+ANR,2005-02-14,Alpha Natural Resources Inc,4,33.0,0,asym_v4:23 plateau:38 sector_key:47 delta_hold:24
+LINC,2005-06-22,Lincoln Educational Svcs Corp,4,33.0,0,asym_v4:53 plateau:21 sector_key:5 delta_hold:53
+EOT,2009-05-26,Eaton Vance Natl Municipal Opp,5,32.9,0,asym_v4:48 plateau:10 sector_key:25 convergence:35 delta_hold:48
+QLI,2021-01-12,Qilian International Holding,5,32.7,0,asym_v4:11 plateau:20 sector_key:41 convergence:80 delta_hold:11
+KUKE,2021-01-12,Kuke Music Holding Ltd,5,32.7,0,asym_v4:11 plateau:20 sector_key:41 convergence:80 delta_hold:11
+FLTX,2012-10-04,Fleetmatics Group PLC,5,32.6,0,asym_v4:37 plateau:47 sector_key:42 convergence:0 delta_hold:37
+SGMEU,2011-05-04,SMG Indium Resources Ltd,4,32.6,0,asym_v4:20 plateau:34 sector_key:56 delta_hold:20
+RMI,2018-10-26,RiverNorth Opportunistic Munic,5,32.4,1,asym_v4:8 plateau:15 sector_key:97 convergence:35 delta_hold:8
+GMDA,2018-10-26,Gamida Cell Ltd,5,32.4,1,asym_v4:8 plateau:15 sector_key:97 convergence:35 delta_hold:8
+UDRL,2005-11-21,Union Drilling,5,32.3,0,asym_v4:32 plateau:44 sector_key:54 convergence:0 delta_hold:32
+FRNK,2011-04-28,Franklin Financial Corp,5,32.2,0,asym_v4:40 plateau:58 sector_key:23 convergence:0 delta_hold:40
+GAIN,2005-06-22,Gladstone Investment Corp,4,32.1,0,asym_v4:53 plateau:21 sector_key:1 delta_hold:53
+GSVC,2011-04-28,NeXt Innovation Corp,5,32.1,0,asym_v4:40 plateau:58 sector_key:22 convergence:0 delta_hold:40
+IVH,2013-05-28,Ivy High Income Opportunities,5,32.1,0,asym_v4:12 plateau:30 sector_key:27 convergence:80 delta_hold:12
+MNE,2003-07-29,Muni New York Intermediate,5,32.1,0,asym_v4:34 plateau:46 sector_key:11 convergence:35 delta_hold:34
+MUI,2003-07-29,Muni Intermediate Duration,5,32.1,0,asym_v4:34 plateau:46 sector_key:11 convergence:35 delta_hold:34
+WIFI,2011-05-03,Boingo Wireless Inc,4,32.0,0,asym_v4:25 plateau:52 sector_key:26 delta_hold:25
+SEP,2007-06-26,Spectra Energy Partners LP,5,31.9,0,asym_v4:14 plateau:24 sector_key:74 convergence:35 delta_hold:14
+SHLS,2021-01-27,Shoals Technologies Group Inc,5,31.8,0,asym_v4:33 plateau:49 sector_key:44 convergence:0 delta_hold:33
+CTUY,2010-09-28,Century Next Financial Corp,5,31.7,0,asym_v4:25 plateau:37 sector_key:71 convergence:0 delta_hold:25
+JUPW,2020-10-30,Jupiter Wellness Inc,5,31.6,0,asym_v4:0 plateau:1 sector_key:77 convergence:80 delta_hold:0
+LU,2020-10-30,Lufax Hldg Ltd,5,31.6,0,asym_v4:0 plateau:1 sector_key:77 convergence:80 delta_hold:0
+CNEY,2021-02-05,CN Energy Group Inc,5,31.5,1,asym_v4:8 plateau:8 sector_key:98 convergence:35 delta_hold:9
+LINE,2006-01-12,Linn Energy LLC,4,31.3,0,asym_v4:38 plateau:38 sector_key:10 delta_hold:39
+FIGS,2021-05-27,Figs Inc,5,31.3,0,asym_v4:3 plateau:7 sector_key:67 convergence:76 delta_hold:3
+ALLO,2018-10-11,Allogene Therapeutics Inc.,4,31.1,0,asym_v4:36 plateau:33 sector_key:19 delta_hold:36
+PAGS,2018-01-24,Pagseguro Digital Ltd.,5,31.1,0,asym_v4:44 plateau:8 sector_key:24 convergence:35 delta_hold:44
+BOLD,2016-07-20,Audentes Therapeutics Inc,5,31.0,0,asym_v4:27 plateau:41 sector_key:59 convergence:0 delta_hold:28
+BIOF,2007-06-14,Biofuel Energy Corp,5,31.0,0,asym_v4:27 plateau:45 sector_key:24 convergence:32 delta_hold:27
+TDG,2006-03-14,Transdigm Group Inc,5,30.5,0,asym_v4:25 plateau:24 sector_key:42 convergence:35 delta_hold:26
+SIBN,2018-10-17,SI-Bone Inc,5,30.5,0,asym_v4:18 plateau:18 sector_key:64 convergence:35 delta_hold:18
+GUID,2006-12-13,Guidance Software,5,30.5,0,asym_v4:28 plateau:7 sector_key:54 convergence:35 delta_hold:28
+FGI,2005-12-22,SunAmerica Focused Alpha,4,30.4,0,asym_v4:34 plateau:52 convergence:0 delta_hold:35
+VECT,2021-04-09,VectivBio Holding AG,4,30.1,0,asym_v4:10 plateau:20 sector_key:81 delta_hold:10
+AVIR,2020-10-30,Atea Pharmaceuticals Inc,5,30.1,0,asym_v4:0 plateau:1 sector_key:69 convergence:80 delta_hold:0
+RPHM,2021-04-09,Reneo Pharmaceuticals Inc,4,30.1,0,asym_v4:10 plateau:20 sector_key:81 delta_hold:10
+SQZ,2020-10-30,SQZ Biotechnologies Co,5,30.1,0,asym_v4:0 plateau:1 sector_key:69 convergence:80 delta_hold:0
+PZC,2002-10-28,PIMCO California Municipal III,5,29.9,0,asym_v4:31 plateau:42 sector_key:11 convergence:35 delta_hold:31
+PTP,2002-10-28,Platinum Underwriters Holdings,5,29.9,0,asym_v4:31 plateau:42 sector_key:11 convergence:35 delta_hold:31
+BAF,2002-10-28,Blackrock Florida Insured Muni,5,29.9,0,asym_v4:31 plateau:42 sector_key:11 convergence:35 delta_hold:31
+PMX,2002-10-28,Pimco Municipal Income III,5,29.9,0,asym_v4:31 plateau:42 sector_key:11 convergence:35 delta_hold:31
+TKC,2000-07-10,Turkcell Iletisim Hizmetleri,5,29.9,0,asym_v4:38 plateau:50 sector_key:23 convergence:0 delta_hold:38
+ENTG,2000-07-10,Entegris Inc,5,29.9,0,asym_v4:38 plateau:50 sector_key:23 convergence:0 delta_hold:38
+BSE,2002-10-28,Blackrock NY Insured Muni,5,29.9,0,asym_v4:31 plateau:42 sector_key:11 convergence:35 delta_hold:31
+BYM,2002-10-28,Blackrock Insured Muni Income,5,29.9,0,asym_v4:31 plateau:42 sector_key:11 convergence:35 delta_hold:31
+BCK,2002-10-28,Blackrock Cali Insured Muni,5,29.9,0,asym_v4:31 plateau:42 sector_key:11 convergence:35 delta_hold:31
+PYN,2002-10-28,PIMCO New York Municipal 3,5,29.9,0,asym_v4:31 plateau:42 sector_key:11 convergence:35 delta_hold:31
+CCSC,2010-09-27,Country Style Cooking,5,29.6,0,asym_v4:32 plateau:51 sector_key:32 convergence:0 delta_hold:33
+AMRS,2010-09-27,Amyris Inc,5,29.6,0,asym_v4:32 plateau:51 sector_key:32 convergence:0 delta_hold:33
+CTMX,2015-10-08,CytomX Therapeutics Inc,4,29.6,0,asym_v4:7 plateau:16 sector_key:89 delta_hold:7
+SQBK,2014-03-27,Square 1 Financial,5,29.5,0,asym_v4:25 plateau:33 sector_key:63 convergence:0 delta_hold:26
+PQG,2017-09-29,PQ Group Holdings Inc,5,29.4,0,asym_v4:38 plateau:59 sector_key:11 convergence:0 delta_hold:39
+VITL,2020-07-31,Vital Farms Inc,5,29.4,0,asym_v4:11 plateau:22 sector_key:67 convergence:35 delta_hold:11
+OPTM,2006-10-26,Optium Corp,5,29.3,1,asym_v4:6 plateau:2 sector_key:97 convergence:35 delta_hold:6
+INDO,2019-12-19,Indonesia Energy Corp Ltd,5,29.2,0,asym_v4:27 plateau:6 sector_key:86 convergence:0 delta_hold:27
+NBRV,2015-09-18,Nabriva Therapeutics,5,29.2,0,asym_v4:11 plateau:20 sector_key:73 convergence:32 delta_hold:11
+CATZ,2000-11-10,Computer Access Technology,5,29.0,0,asym_v4:26 plateau:60 sector_key:32 convergence:0 delta_hold:26
+ACLS,2000-07-10,Axcelis Technologies Inc,5,29.0,0,asym_v4:38 plateau:50 sector_key:19 convergence:0 delta_hold:38
+PGEM,2013-05-22,Ply Gem Holdings Inc,5,28.9,0,asym_v4:46 plateau:48 sector_key:5 convergence:0 delta_hold:46
+SEM,2009-09-25,Select Medical Holdings Corp,5,28.9,0,asym_v4:7 plateau:1 sector_key:49 convergence:80 delta_hold:7
+CSTM,2013-05-22,Constellium NV,5,28.9,0,asym_v4:46 plateau:48 sector_key:5 convergence:0 delta_hold:46
+ECOM,2013-05-22,ChannelAdvisor Corp,5,28.9,0,asym_v4:46 plateau:48 sector_key:5 convergence:0 delta_hold:46
+PRVA,2021-04-29,Privia Health Group Inc,4,28.6,0,asym_v4:50 plateau:3 sector_key:11 delta_hold:51
+AVAH,2021-04-29,Aveanna Healthcare Holdings In,4,28.6,0,asym_v4:50 plateau:3 sector_key:11 delta_hold:51
+RRST,2006-10-31,RRSat Global Communications,5,28.4,0,asym_v4:6 plateau:3 sector_key:47 convergence:80 delta_hold:6
+NCST,2005-12-22,NUCRYST Pharmaceuticals,5,28.3,0,asym_v4:34 plateau:52 sector_key:20 convergence:0 delta_hold:35
+DAVA,2018-07-27,Endava Ltd,5,28.2,0,asym_v4:6 plateau:12 sector_key:85 convergence:32 delta_hold:6
+OPRA,2018-07-27,Opera Ltd,5,28.2,0,asym_v4:6 plateau:12 sector_key:85 convergence:32 delta_hold:6
+POSH,2021-01-14,Poshmark Inc,5,28.1,0,asym_v4:28 plateau:38 sector_key:11 convergence:35 delta_hold:29
+STTK,2020-10-09,Shattuck Labs Inc,5,27.9,1,asym_v4:13 plateau:20 sector_key:94 convergence:0 delta_hold:13
+KRON,2020-10-09,Kronos Bio Inc,5,27.9,1,asym_v4:13 plateau:20 sector_key:94 convergence:0 delta_hold:13
+SPRB,2020-10-09,Spruce Biosciences Inc,5,27.9,1,asym_v4:13 plateau:20 sector_key:94 convergence:0 delta_hold:13
+STON,2004-09-14,Stonemor Partners LP,5,27.7,0,asym_v4:7 plateau:8 sector_key:81 convergence:35 delta_hold:7
+PETZ,2017-09-21,TDH Holdings Inc,5,27.6,0,asym_v4:38 plateau:55 sector_key:7 convergence:0 delta_hold:38
+FUV,2017-09-21,Arcimoto,5,27.6,0,asym_v4:38 plateau:55 sector_key:7 convergence:0 delta_hold:38
+MNPR,2019-12-19,Monopar Therapeutics,5,27.6,0,asym_v4:27 plateau:6 sector_key:78 convergence:0 delta_hold:27
+IGMS,2019-09-18,IGM Biosciences Inc,5,27.5,0,asym_v4:5 plateau:11 sector_key:82 convergence:35 delta_hold:5
+LWSN,2001-12-06,Lawson Software Inc,5,27.3,0,asym_v4:37 plateau:31 sector_key:32 convergence:0 delta_hold:37
+SWIM,2021-04-23,Latham Group Inc,5,27.2,0,asym_v4:10 plateau:19 sector_key:63 convergence:35 delta_hold:10
+HCAP,2013-05-02,Harvest Capital Credit Corp,4,27.2,0,asym_v4:14 plateau:24 sector_key:58 delta_hold:14
+AGTI,2021-04-23,Agiliti Inc,5,27.2,0,asym_v4:10 plateau:19 sector_key:63 convergence:35 delta_hold:10
+NVST,2019-09-18,Envista Hldg Corp,5,27.2,0,asym_v4:5 plateau:11 sector_key:81 convergence:35 delta_hold:5
+BLND,2021-07-16,Blend Labs Inc,5,27.0,1,asym_v4:4 plateau:0 sector_key:93 convergence:35 delta_hold:4
+IMGO,2021-07-16,Imago BioSciences Inc,5,27.0,1,asym_v4:4 plateau:0 sector_key:93 convergence:35 delta_hold:4
+TCRX,2021-07-16,TScan Therapeutics Inc,5,27.0,1,asym_v4:4 plateau:0 sector_key:93 convergence:35 delta_hold:4
+REDE,2003-09-24,RedEnvelope Inc,5,27.0,0,asym_v4:22 plateau:29 sector_key:27 convergence:35 delta_hold:22
+REAL,2019-06-28,The Realreal Inc,5,27.0,0,asym_v4:15 plateau:27 sector_key:43 convergence:35 delta_hold:15
+AGCC,2003-09-24,Anchor Glass Container Corp,5,27.0,0,asym_v4:22 plateau:29 sector_key:27 convergence:35 delta_hold:22
+THOR,2018-12-07,Synthorx Inc,5,26.9,0,asym_v4:5 plateau:12 sector_key:36 convergence:76 delta_hold:5
+AEGN,2000-11-10,AeroGen Inc,5,26.8,0,asym_v4:26 plateau:60 sector_key:22 convergence:0 delta_hold:26
+THRX,2004-10-05,Theravance Inc,5,26.7,1,asym_v4:2 plateau:1 sector_key:94 convergence:35 delta_hold:2
+ATN,2006-12-13,Atlas Energy Resources LLC,5,26.5,0,asym_v4:28 plateau:7 sector_key:34 convergence:35 delta_hold:28
+TGH,2007-10-09,Textainer Grp Hldg Ltd,5,26.5,0,asym_v4:42 plateau:23 sector_key:26 convergence:0 delta_hold:42
+CRFH,2000-03-06,Crayfish Co Ltd,5,26.4,0,asym_v4:40 plateau:51 sector_key:1 convergence:0 delta_hold:40
+CRCM,2014-01-24,Care.com,4,26.4,0,asym_v4:23 plateau:58 sector_key:0 delta_hold:23
+ILSE,2004-10-06,IntraLase Corp,5,26.4,0,asym_v4:9 plateau:19 sector_key:60 convergence:35 delta_hold:9
+NWY,2004-10-06,New York & Co Inc,5,26.4,0,asym_v4:9 plateau:19 sector_key:60 convergence:35 delta_hold:9
+PDD,2018-07-26,Pinduoduo Inc,5,26.2,0,asym_v4:4 plateau:10 sector_key:81 convergence:32 delta_hold:4
+FSLY,2019-05-17,Fastly Inc,5,26.2,0,asym_v4:21 plateau:36 sector_key:53 convergence:0 delta_hold:21
+LK,2019-05-17,Luckin Coffee Inc,5,26.2,0,asym_v4:21 plateau:36 sector_key:53 convergence:0 delta_hold:21
+TENB,2018-07-26,Tenable Holdings Inc,5,26.2,0,asym_v4:4 plateau:10 sector_key:81 convergence:32 delta_hold:4
+CANG,2018-07-26,Cango Inc,5,26.2,0,asym_v4:4 plateau:10 sector_key:81 convergence:32 delta_hold:4
+JG,2018-07-26,Aurora Mobile Ltd,5,26.2,0,asym_v4:4 plateau:10 sector_key:81 convergence:32 delta_hold:4
+AVTR,2019-05-17,Avantor Inc,5,26.2,0,asym_v4:21 plateau:36 sector_key:53 convergence:0 delta_hold:21
+BRY,2018-07-26,Berry Petro Corp,5,26.2,0,asym_v4:4 plateau:10 sector_key:81 convergence:32 delta_hold:4
+TLCR,2009-09-30,Talecris Biotherapeutics Hldg,5,26.0,0,asym_v4:5 plateau:3 sector_key:85 convergence:32 delta_hold:6
+BE,2018-07-25,Bloom Energy Corp,5,26.0,0,asym_v4:5 plateau:6 sector_key:82 convergence:32 delta_hold:5
+BGF,2004-10-07,B&G Foods Holdings Corp,5,25.8,0,asym_v4:3 plateau:2 sector_key:87 convergence:35 delta_hold:3
+IMPL,2021-04-23,Impel NeuroPharma Inc,5,25.7,0,asym_v4:10 plateau:19 sector_key:55 convergence:35 delta_hold:10
+OFED,2011-01-14,Oconee Federal Financial Corp,5,25.7,0,asym_v4:24 plateau:38 sector_key:41 convergence:0 delta_hold:25
+RAIN,2021-04-23,Rain Therapeutics Inc,5,25.7,0,asym_v4:10 plateau:19 sector_key:55 convergence:35 delta_hold:10
+ADCT,2020-05-15,ADC Therapeutics SA,4,25.6,1,asym_v4:0 plateau:2 sector_key:99 delta_hold:1
+VM,2007-10-10,"Virgin Mobile USA, Inc",5,25.6,0,asym_v4:30 plateau:16 sector_key:20 convergence:32 delta_hold:31
+TSON,2007-10-16,Trans1 Inc,5,25.6,0,asym_v4:35 plateau:16 sector_key:40 convergence:0 delta_hold:36
+KANG,2014-04-09,iKang Healthcare Group Inc,5,25.6,0,asym_v4:18 plateau:54 sector_key:38 convergence:0 delta_hold:18
+IGR,2004-02-24,ING Clarion Real Estate Income,5,25.1,0,asym_v4:13 plateau:5 sector_key:20 convergence:74 delta_hold:13
+TYRA,2021-09-15,Tyra Biosciences Inc,5,25.0,0,asym_v4:8 plateau:16 sector_key:59 convergence:35 delta_hold:8
+PING,2019-09-19,Ping Identity Holding Corp,5,25.0,0,asym_v4:2 plateau:6 sector_key:80 convergence:35 delta_hold:2
+XGN,2019-09-19,Exagen Inc,5,25.0,0,asym_v4:2 plateau:6 sector_key:80 convergence:35 delta_hold:2
+DICE,2021-09-15,DICE Therapeutics Inc,5,25.0,0,asym_v4:8 plateau:16 sector_key:59 convergence:35 delta_hold:8
+KTTA,2021-09-15,Pasithea Therapeutics Corp,5,25.0,0,asym_v4:8 plateau:16 sector_key:59 convergence:35 delta_hold:8
+NSTC,2004-09-29,Ness Technologies Inc,5,25.0,0,asym_v4:3 plateau:9 sector_key:74 convergence:35 delta_hold:3
+CFG,2014-09-24,Citizens Financial Group Inc,5,25.0,0,asym_v4:12 plateau:9 sector_key:18 convergence:74 delta_hold:12
+SRAD,2021-09-14,Sportradar Group AG,5,24.8,0,asym_v4:21 plateau:35 sector_key:11 convergence:35 delta_hold:22
+LABP,2021-02-04,Landos Biopharma Inc,5,24.5,0,asym_v4:7 plateau:15 sector_key:59 convergence:35 delta_hold:7
+SNSE,2021-02-04,Sensei Biotherapeutics Inc,5,24.5,0,asym_v4:7 plateau:15 sector_key:59 convergence:35 delta_hold:7
+SANA,2021-02-04,Sana Biotechnology Inc,5,24.5,0,asym_v4:7 plateau:15 sector_key:59 convergence:35 delta_hold:7
+ATRA,2014-10-16,Atara Biotherapeutics Inc,4,24.4,0,asym_v4:21 plateau:2 sector_key:54 delta_hold:21
+AZEK,2020-06-12,AZEK Co Inc,5,24.3,1,asym_v4:1 plateau:4 sector_key:22 convergence:94 delta_hold:1
+PCVX,2020-06-12,Vaxcyte Inc,5,24.3,1,asym_v4:1 plateau:4 sector_key:22 convergence:94 delta_hold:1
+ICLK,2017-12-22,iClick Interactive Asia Group,5,24.3,0,asym_v4:24 plateau:40 sector_key:1 convergence:32 delta_hold:25
+CFD,2010-09-28,Nuveen Diversified Commodity,5,24.2,0,asym_v4:25 plateau:37 sector_key:34 convergence:0 delta_hold:25
+FSD,2010-09-28,First Trust High Income Long,5,24.2,0,asym_v4:25 plateau:37 sector_key:34 convergence:0 delta_hold:25
+TELN,2000-12-04,Telenor AS(Norway),5,24.1,0,asym_v4:22 plateau:30 sector_key:11 convergence:35 delta_hold:22
+BRDG,2021-07-16,Bridge Investment Group Holdin,5,24.1,0,asym_v4:4 plateau:0 sector_key:78 convergence:35 delta_hold:4
+BLFY,2021-07-16,Blue Foundry Bancorp,5,24.1,0,asym_v4:4 plateau:0 sector_key:78 convergence:35 delta_hold:4
+IKAN,2005-09-21,Ikanos Communications Inc,4,24.1,0,asym_v4:20 plateau:35 sector_key:21 delta_hold:20
+AXLA,2019-05-09,Axcella Health Inc,4,24.1,0,asym_v4:14 plateau:14 sector_key:54 delta_hold:15
+DH,2021-09-15,Definitive Healthcare Corp,5,24.0,0,asym_v4:8 plateau:16 sector_key:53 convergence:35 delta_hold:8
+EVDY,2014-03-28,Everyday Health,5,24.0,0,asym_v4:17 plateau:30 sector_key:56 convergence:0 delta_hold:17
+TNET,2014-03-27,TriNet Group,5,24.0,0,asym_v4:25 plateau:33 sector_key:36 convergence:0 delta_hold:26
+KREF,2017-05-05,KKR Real Estate Fin Trust,5,23.9,0,asym_v4:22 plateau:36 sector_key:8 convergence:32 delta_hold:22
+RLAY,2020-07-16,Relay Therapeutics Inc,4,23.8,0,asym_v4:22 plateau:4 sector_key:47 delta_hold:22
+TERN,2021-02-05,Terns Pharmaceuticals Inc,5,23.7,0,asym_v4:8 plateau:8 sector_key:59 convergence:35 delta_hold:9
+IMCR,2021-02-05,Immunocore Hldg Ltd,5,23.7,0,asym_v4:8 plateau:8 sector_key:59 convergence:35 delta_hold:9
+BOLT,2021-02-05,Bolt Biotherapeutics Inc,5,23.7,0,asym_v4:8 plateau:8 sector_key:59 convergence:35 delta_hold:9
+ADIL,2018-07-27,Adial Pharmaceuticals Inc,5,23.7,0,asym_v4:6 plateau:12 sector_key:63 convergence:32 delta_hold:6
+VOR,2021-02-05,Vor Biopharma Inc,5,23.7,0,asym_v4:8 plateau:8 sector_key:59 convergence:35 delta_hold:9
+EVAX,2021-02-05,Evaxion Biotech AS,5,23.7,0,asym_v4:8 plateau:8 sector_key:59 convergence:35 delta_hold:9
+QD,2017-10-18,Qudian Inc,5,23.7,0,asym_v4:16 plateau:30 sector_key:56 convergence:0 delta_hold:16
+MSGM,2021-01-13,Motorsport Games,5,23.7,0,asym_v4:10 plateau:18 sector_key:45 convergence:35 delta_hold:10
+OAS,2010-06-16,Oasis Petroleum Inc,4,23.6,0,asym_v4:26 plateau:33 sector_key:8 delta_hold:26
+RNO,2010-09-29,Rhino Resource Partners LP,5,23.6,0,asym_v4:30 plateau:20 sector_key:38 convergence:0 delta_hold:30
+NIV,2009-03-12,NIVS IntelliMedia Tech Gp Inc,4,23.5,0,asym_v4:31 plateau:5 sector_key:27 delta_hold:31
+TPZ,2009-07-29,Tortoise Power & Energy,5,23.4,0,asym_v4:3 plateau:5 sector_key:72 convergence:35 delta_hold:3
+CML,2007-10-09,Compellent Technologies Inc,5,23.3,0,asym_v4:42 plateau:23 sector_key:10 convergence:0 delta_hold:42
+PRVB,2018-07-24,Provention Bio Inc,5,23.3,0,asym_v4:11 plateau:19 sector_key:43 convergence:32 delta_hold:12
+MASS,2020-12-18,908 Devices Inc.,5,23.3,0,asym_v4:23 plateau:38 sector_key:33 convergence:0 delta_hold:23
+SYRS,2016-06-30,Syros Pharmaceuticals Inc,5,23.2,0,asym_v4:18 plateau:6 sector_key:74 convergence:0 delta_hold:18
+AGNC,2008-05-14,American Capital Agency Corp,4,22.9,0,asym_v4:4 plateau:2 sector_key:81 delta_hold:4
+BKD,2005-11-21,Brookdale Senior Living,5,22.5,0,asym_v4:32 plateau:44 sector_key:5 convergence:0 delta_hold:32
+MNRL,2019-04-18,Brigham Minerals Inc,4,22.5,0,asym_v4:12 plateau:11 sector_key:54 delta_hold:12
+ATC,2021-02-04,Atotech Ltd,5,22.5,0,asym_v4:7 plateau:15 sector_key:49 convergence:35 delta_hold:7
+SOVO,2021-09-23,Sovos Brands Inc,5,22.5,0,asym_v4:15 plateau:28 sector_key:19 convergence:35 delta_hold:15
+TRX,2005-11-21,Tronox,5,22.5,0,asym_v4:32 plateau:44 sector_key:5 convergence:0 delta_hold:32
+MDLY,2014-09-24,Medley Management Inc,5,22.4,0,asym_v4:12 plateau:9 sector_key:5 convergence:74 delta_hold:12
+SFS,2014-09-24,Smart & Final Stores Inc,5,22.4,0,asym_v4:12 plateau:9 sector_key:5 convergence:74 delta_hold:12
+DMTX,2015-10-22,Dimension Therapeutics Inc,4,22.4,0,asym_v4:5 plateau:2 sector_key:78 delta_hold:5
+INSY,2013-05-02,Insys Therapeutics Inc,4,22.3,0,asym_v4:14 plateau:24 sector_key:38 delta_hold:14
+RSF,2004-03-18,RMK Strategic Income Fund,4,22.3,0,asym_v4:17 plateau:27 sector_key:27 delta_hold:17
+DRVN,2021-01-15,Driven Brands Holdings Inc,5,22.3,0,asym_v4:27 plateau:37 sector_key:20 convergence:0 delta_hold:28
+BEAT,2008-03-18,CardioNet Inc,5,22.0,0,asym_v4:32 plateau:7 sector_key:38 convergence:0 delta_hold:33
+TPGI,2004-10-06,Thomas Properties Group Inc,5,21.9,0,asym_v4:9 plateau:19 sector_key:38 convergence:35 delta_hold:9
+BTT,2012-08-29,BlackRock Muni Target Tr,5,21.9,0,asym_v4:28 plateau:43 sector_key:11 convergence:0 delta_hold:28
+TXRH,2004-10-04,Texas Roadhouse Inc,5,21.8,0,asym_v4:12 plateau:9 sector_key:41 convergence:35 delta_hold:12
+GOCO,2020-07-15,GoHealth Inc,4,21.8,0,asym_v4:20 plateau:3 sector_key:45 delta_hold:20
+URGN,2017-05-04,Urogen Pharma Ltd,5,21.7,0,asym_v4:11 plateau:21 sector_key:34 convergence:32 delta_hold:11
+NCOM,2015-03-19,National Commerce Corp,4,21.7,0,asym_v4:23 plateau:40 convergence:0 delta_hold:23
+BHVN,2017-05-04,Biohaven Pharmaceutical Hldg,5,21.7,0,asym_v4:11 plateau:21 sector_key:34 convergence:32 delta_hold:11
+FOCS,2018-07-26,Focus Financial Partners Inc,5,21.5,0,asym_v4:4 plateau:10 sector_key:57 convergence:32 delta_hold:4
+GKIS,2004-10-06,Gold Kist Holdings Inc,5,21.5,0,asym_v4:9 plateau:19 sector_key:36 convergence:35 delta_hold:9
+HTD,2004-02-24,John Hancock Tax-Adv Div Inc F,5,21.3,0,asym_v4:13 plateau:5 sector_key:1 convergence:74 delta_hold:13
+CYBR,2014-09-24,CyberArk Software Ltd,5,21.3,0,asym_v4:12 plateau:9 sector_key:0 convergence:74 delta_hold:12
+SCD,2004-02-24,Salomon Brothers Cap and Inc,5,21.3,0,asym_v4:13 plateau:5 sector_key:1 convergence:74 delta_hold:13
+RVBD,2006-09-20,Riverbed Technology Inc,4,21.3,0,asym_v4:27 plateau:25 sector_key:5 delta_hold:27
+UTG,2004-02-24,Reaves Utility Income Fund,5,21.3,0,asym_v4:13 plateau:5 sector_key:1 convergence:74 delta_hold:13
+BGR,2004-12-22,BlackRock Global Energy,5,21.2,0,asym_v4:28 plateau:45 sector_key:5 convergence:0 delta_hold:28
+TMCI,2021-04-23,Treace Medical Concepts Inc,5,21.2,0,asym_v4:10 plateau:19 sector_key:33 convergence:35 delta_hold:10
+SPRD,2007-06-26,Spreadtrum Communications Inc,5,21.2,0,asym_v4:14 plateau:24 sector_key:20 convergence:35 delta_hold:14
+BRLT,2021-09-23,"Brilliant Earth Group, Inc.",5,20.9,0,asym_v4:15 plateau:28 sector_key:11 convergence:35 delta_hold:15
+ESMT,2021-09-23,EngageSmart Inc,5,20.9,0,asym_v4:15 plateau:28 sector_key:11 convergence:35 delta_hold:15
+STER,2021-09-23,Sterling Check Corp,5,20.9,0,asym_v4:15 plateau:28 sector_key:11 convergence:35 delta_hold:15
+RELY,2021-09-23,Remitly Global Inc,5,20.9,0,asym_v4:15 plateau:28 sector_key:11 convergence:35 delta_hold:15
+LHDX,2021-02-05,Lucira Health Inc,5,20.8,0,asym_v4:8 plateau:8 sector_key:45 convergence:35 delta_hold:9
+BBND,2007-03-14,Bigband Networks Inc,4,20.7,0,asym_v4:30 plateau:17 sector_key:5 delta_hold:30
+CONR,2004-12-14,Conor Medsystems Inc,4,20.7,0,asym_v4:25 plateau:24 sector_key:8 delta_hold:25
+THRN,2021-09-23,Thorne Healthtech Inc,5,20.6,0,asym_v4:15 plateau:28 sector_key:10 convergence:35 delta_hold:15
+FMO,2004-12-22,FIDUCIARY/CLAYMORE MLP,5,20.3,0,asym_v4:28 plateau:45 sector_key:1 convergence:0 delta_hold:28
+PHD,2004-12-22,Pioneer Floating Rate Trust,5,20.3,0,asym_v4:28 plateau:45 sector_key:1 convergence:0 delta_hold:28
+REDU,2017-10-20,RISE Education Cayman Ltd,5,20.0,0,asym_v4:16 plateau:28 sector_key:39 convergence:0 delta_hold:16
+BRG,2014-03-28,Bluerock Residential Growth,5,20.0,0,asym_v4:17 plateau:30 sector_key:36 convergence:0 delta_hold:17
+LYL,2017-10-20,Dragon Victory Intl Ltd,5,20.0,0,asym_v4:16 plateau:28 sector_key:39 convergence:0 delta_hold:16
+WATT,2014-03-28,Energous,5,20.0,0,asym_v4:17 plateau:30 sector_key:36 convergence:0 delta_hold:17
+TWOU,2014-03-28,"2U, Inc",5,20.0,0,asym_v4:17 plateau:30 sector_key:36 convergence:0 delta_hold:17
+CBSO,2014-03-28,CBS Outdoor Americas,5,20.0,0,asym_v4:17 plateau:30 sector_key:36 convergence:0 delta_hold:17
+SE,2017-10-20,Sea Ltd,5,20.0,0,asym_v4:16 plateau:28 sector_key:39 convergence:0 delta_hold:16
+YAYO,2019-11-13,YayYo Inc,4,19.8,0,asym_v4:18 plateau:5 sector_key:37 delta_hold:19
+PAVMU,2016-04-28,PAVmed Inc,4,19.8,0,asym_v4:18 plateau:32 sector_key:11 delta_hold:18
+SMI,2004-03-11,Semiconductor Mnfg Intl Corp,5,19.6,0,asym_v4:18 plateau:16 sector_key:11 convergence:35 delta_hold:18
+PMT,2009-07-29,Pennymac Mtg Invest Tr,5,19.5,0,asym_v4:3 plateau:5 sector_key:52 convergence:35 delta_hold:3
+WISA,2018-07-27,Summit Semiconductor Inc,5,19.5,0,asym_v4:6 plateau:12 sector_key:42 convergence:32 delta_hold:6
+STVN,2021-07-16,Stevanato Group SpA,5,19.3,0,asym_v4:4 plateau:0 sector_key:54 convergence:35 delta_hold:4
+ERAS,2021-07-16,Erasca Inc,5,19.3,0,asym_v4:4 plateau:0 sector_key:54 convergence:35 delta_hold:4
+LQDA,2018-07-26,Liquidia Technologies Inc,5,18.9,0,asym_v4:4 plateau:10 sector_key:45 convergence:32 delta_hold:4
+DDUP,2007-06-26,Data Domain Inc,5,18.9,0,asym_v4:14 plateau:24 sector_key:8 convergence:35 delta_hold:14
+BCOW,2019-01-09,1895 Bancorp of Wisconsin,5,18.8,0,asym_v4:13 plateau:25 sector_key:43 convergence:0 delta_hold:13
+FPT,2002-12-19,Federated Premier Intermediate,4,18.7,0,asym_v4:26 plateau:14 sector_key:8 delta_hold:27
+BOFL,2003-02-10,Bancshares of Florida Inc,5,18.6,0,asym_v4:29 plateau:30 sector_key:5 convergence:0 delta_hold:29
+RMX,2005-08-23,Ready Mix Inc,5,18.5,0,asym_v4:7 plateau:16 sector_key:63 convergence:0 delta_hold:7
+PLTK,2021-01-15,Playtika Holding Corp,5,18.5,0,asym_v4:27 plateau:37 sector_key:1 convergence:0 delta_hold:28
+EPE,2005-08-23,Enterprise GP Holdings LP,5,18.5,0,asym_v4:7 plateau:16 sector_key:63 convergence:0 delta_hold:7
+SLQT,2020-05-21,SelectQuote Inc,5,18.3,0,asym_v4:37 plateau:10 sector_key:7 convergence:0 delta_hold:37
+FUBO,2020-10-08,fuboTV Inc.,5,18.3,0,asym_v4:28 plateau:35 sector_key:1 convergence:0 delta_hold:28
+LSE,2004-03-18,Capital Lease Funding Inc,4,18.3,0,asym_v4:17 plateau:27 sector_key:11 delta_hold:17
+GTHX,2017-05-17,G1 Therapeutics Inc,4,18.3,0,asym_v4:8 plateau:15 sector_key:42 delta_hold:8
+DESP,2017-09-20,Despegar.com Corp,5,17.9,0,asym_v4:19 plateau:32 sector_key:20 convergence:0 delta_hold:19
+EVG,2005-02-23,Eaton Vance Shrt Dur Div IF,5,17.8,0,asym_v4:14 plateau:3 sector_key:21 convergence:35 delta_hold:15
+NFJ,2005-02-23,NFJ Div Int Prem Strat Fnd,5,17.8,0,asym_v4:14 plateau:3 sector_key:21 convergence:35 delta_hold:15
+RCON,2009-07-29,Recon Technology Ltd,5,17.6,0,asym_v4:3 plateau:5 sector_key:43 convergence:35 delta_hold:3
+OPRT,2019-09-26,Oportun Financial Corp,5,17.2,0,asym_v4:6 plateau:13 sector_key:61 convergence:0 delta_hold:6
+AFRM,2021-01-13,Affirm Holdings Inc,5,17.0,0,asym_v4:10 plateau:18 sector_key:11 convergence:35 delta_hold:10
+AGTC,2014-03-27,Applied Genetic Technologies,5,16.9,0,asym_v4:25 plateau:33 sector_key:0 convergence:0 delta_hold:26
+PRS,2004-09-29,Primus Guaranty Ltd,5,16.5,0,asym_v4:3 plateau:9 sector_key:31 convergence:35 delta_hold:3
+FORM,2003-06-11,FormFactor Inc,5,16.5,0,asym_v4:22 plateau:31 sector_key:8 convergence:0 delta_hold:22
+CALL,2004-09-29,Callwave Inc,5,16.5,0,asym_v4:3 plateau:9 sector_key:31 convergence:35 delta_hold:3
+HPJ,2008-06-19,Hong Kong Highpower Tech Inc,4,16.4,0,asym_v4:12 plateau:21 sector_key:20 delta_hold:12
+AQST,2018-07-25,Aquestive Therapeutics Inc,5,16.3,0,asym_v4:5 plateau:6 sector_key:34 convergence:32 delta_hold:5
+NBH,2002-09-24,Neuberger Berman Intermediate,5,16.3,0,asym_v4:3 plateau:6 sector_key:34 convergence:35 delta_hold:3
+FVL,2003-06-12,First Trst Value Line 100 Fund,5,16.2,0,asym_v4:16 plateau:30 sector_key:18 convergence:0 delta_hold:16
+ALZN,2021-06-15,Alzamend Neuro Inc,5,16.1,0,asym_v4:0 plateau:2 sector_key:78 convergence:0 delta_hold:0
+VIRI,2020-12-17,Virios Therapeutics LLC,5,16.0,0,asym_v4:16 plateau:26 sector_key:22 convergence:0 delta_hold:16
+MTC,2019-01-09,Mmtec Inc,5,15.7,0,asym_v4:13 plateau:25 sector_key:27 convergence:0 delta_hold:13
+ANGN,2021-02-05,Angion Biomedica Corp,5,15.6,0,asym_v4:8 plateau:8 sector_key:19 convergence:35 delta_hold:9
+PHVS,2021-02-05,Pharvaris BV,5,15.6,0,asym_v4:8 plateau:8 sector_key:19 convergence:35 delta_hold:9
+BMEA,2021-04-16,Biomea Fusion Inc,5,15.6,0,asym_v4:1 plateau:5 sector_key:71 convergence:0 delta_hold:1
+EZFL,2021-09-15,EzFill Holdings Inc,5,15.5,0,asym_v4:8 plateau:16 sector_key:11 convergence:35 delta_hold:8
+PRCT,2021-09-15,Procept Biorobotics Corp,5,15.5,0,asym_v4:8 plateau:16 sector_key:11 convergence:35 delta_hold:8
+ONON,2021-09-15,On Holding AG,5,15.5,0,asym_v4:8 plateau:16 sector_key:11 convergence:35 delta_hold:8
+TWKS,2021-09-15,"Thoughtworks Holding, Inc",5,15.5,0,asym_v4:8 plateau:16 sector_key:11 convergence:35 delta_hold:8
+ZLAB,2017-09-20,Zai Lab Ltd,5,15.4,0,asym_v4:19 plateau:32 sector_key:7 convergence:0 delta_hold:19
+BSTI,2017-09-20,BEST Inc,5,15.4,0,asym_v4:19 plateau:32 sector_key:7 convergence:0 delta_hold:19
+CELC,2017-09-20,Celcuity LLC,5,15.4,0,asym_v4:19 plateau:32 sector_key:7 convergence:0 delta_hold:19
+TWLO,2016-06-23,Twilio Inc,5,15.4,0,asym_v4:4 plateau:2 sector_key:33 convergence:35 delta_hold:4
+NARI,2020-05-22,Inari Medical Inc,5,15.2,0,asym_v4:8 plateau:14 sector_key:47 convergence:0 delta_hold:8
+DCA,2005-02-23,Dividend Capital Realty Income,5,15.0,0,asym_v4:14 plateau:3 sector_key:8 convergence:35 delta_hold:15
+PEN,2015-09-18,Penumbra Inc,5,14.9,0,asym_v4:11 plateau:20 sector_key:1 convergence:32 delta_hold:11
+AVAV,2007-01-22,AeroVironment Inc,5,14.9,0,asym_v4:21 plateau:21 sector_key:11 convergence:0 delta_hold:21
+FSL,2004-07-16,Freescale Semiconductor Inc,4,14.8,0,asym_v4:16 plateau:18 sector_key:8 delta_hold:17
+ARCC,2004-10-05,Ares Capital Co,5,14.5,0,asym_v4:2 plateau:1 sector_key:32 convergence:35 delta_hold:2
+PSTG,2015-10-07,Pure Storage Inc,4,13.9,0,asym_v4:13 plateau:25 sector_key:5 delta_hold:13
+BRBR,2019-10-17,BellRing Brands Inc,4,13.8,0,asym_v4:16 plateau:11 sector_key:11 delta_hold:17
+YGMZ,2020-10-21,Mingzhu Logistics Holdings Ltd,4,13.5,0,asym_v4:1 plateau:3 sector_key:50 delta_hold:1
+MPSX,2015-10-22,Multi Packaging Solutions,4,13.0,0,asym_v4:5 plateau:2 sector_key:41 delta_hold:5
+HIVE,2014-03-28,Aerohive Networks,5,12.8,0,asym_v4:17 plateau:30 sector_key:0 convergence:0 delta_hold:17
+JRJC,2004-10-15,China Finance Online Co Ltd,5,12.7,0,asym_v4:21 plateau:20 sector_key:1 convergence:0 delta_hold:21
+CTRX,2004-10-15,CoTherix Inc,5,12.7,0,asym_v4:21 plateau:20 sector_key:1 convergence:0 delta_hold:21
+MDJH,2019-01-08,Mdjm Ltd,5,12.1,0,asym_v4:8 plateau:18 sector_key:27 convergence:0 delta_hold:8
+NBW,2002-09-24,Neuberger Berman Cali  Fund,4,11.8,0,asym_v4:3 plateau:6 convergence:35 delta_hold:3
+NBO,2002-09-24,Neuberger Berman NY Fund,4,11.8,0,asym_v4:3 plateau:6 convergence:35 delta_hold:3
+MRM,2020-12-29,Medirom Healthcare Tech Inc,5,11.8,0,asym_v4:0 plateau:1 sector_key:58 convergence:0 delta_hold:0
+GRU,2004-10-13,Gurunet Corp,5,11.6,0,asym_v4:16 plateau:26 sector_key:1 convergence:0 delta_hold:16
+LGBT,2004-10-13,PlanetOut Inc,5,11.6,0,asym_v4:16 plateau:26 sector_key:1 convergence:0 delta_hold:16
+IOTS,2015-10-27,Adesto Technologies Corp,5,11.4,0,asym_v4:5 plateau:11 sector_key:1 convergence:35 delta_hold:5
+ECHO,2009-10-01,Echo Global Logistics Inc,4,10.0,0,asym_v4:2 plateau:1 sector_key:36 delta_hold:2
+IH,2020-10-09,iHuman Inc.,5,10.0,0,asym_v4:13 plateau:20 sector_key:5 convergence:0 delta_hold:13
+HTX,2004-10-07,Hutchison Telecommun Intl Ltd,5,8.6,0,asym_v4:3 plateau:2 sector_key:0 convergence:35 delta_hold:3
+ABTX,2015-10-08,Allegiance Bancshares Inc,4,8.6,0,asym_v4:7 plateau:16 sector_key:5 delta_hold:7
+AIP,2021-10-27,Arteris Inc,5,7.0,0,asym_v4:6 plateau:13 sector_key:11 convergence:0 delta_hold:6
+MEGI,2021-10-27,MainStay CBRE Global Infrastru,5,7.0,0,asym_v4:6 plateau:13 sector_key:11 convergence:0 delta_hold:6
+RENT,2021-10-27,Rent The Runway Inc,5,7.0,0,asym_v4:6 plateau:13 sector_key:11 convergence:0 delta_hold:6
+MRAI,2021-10-27,Marpai Inc,5,7.0,0,asym_v4:6 plateau:13 sector_key:11 convergence:0 delta_hold:6
+KC,2020-05-08,Kingsoft Cloud Holdings Ltd,4,7.0,0,asym_v4:1 plateau:2 sector_key:24 delta_hold:1
+AKYA,2021-04-16,Akoya Biosciences Inc,5,6.0,0,asym_v4:1 plateau:5 sector_key:23 convergence:0 delta_hold:1
+RXRX,2021-04-16,Recursion Pharmaceuticals Inc,5,6.0,0,asym_v4:1 plateau:5 sector_key:23 convergence:0 delta_hold:1
+INFA,2021-10-27,Informatica Inc,5,4.9,0,asym_v4:6 plateau:13 sector_key:1 convergence:0 delta_hold:6
+CIL,2010-06-17,China Intelligent Lighting & E,5,4.5,0,asym_v4:5 plateau:11 sector_key:1 convergence:0 delta_hold:5
+MOTR,2010-06-17,Motricity Inc,5,4.5,0,asym_v4:5 plateau:11 sector_key:1 convergence:0 delta_hold:5
+DOMO,2018-06-29,Domo Inc,5,3.5,0,asym_v4:5 plateau:3 sector_key:4 convergence:0 delta_hold:5
+EBET,2021-04-15,eSports Technologies Inc,4,2.8,0,asym_v4:2 plateau:5 sector_key:1 delta_hold:2
+PSPT,2004-09-30,PeopleSupport Inc,5,0.2,0,asym_v4:0 plateau:0 sector_key:1 convergence:0 delta_hold:0
