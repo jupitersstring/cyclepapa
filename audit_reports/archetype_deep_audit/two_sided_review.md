@@ -92,3 +92,61 @@ EXCLUDES-GOOD fixes (the priority direction — coarse rules cutting real names)
 Also (from the top-ticker sweep, already committed): FX-secondary venue scrub
 REVERSED; one-off-ROCE blunt threshold → consistency check; nol_shell
 US-domicile gate removed; financials_value ~_known_holdco removed.
+
+### Part B — data-driven junk scan (all 87 archetypes, top-20 firers)
+
+Scanned every archetype's top firers for red flags (deep operating loss,
+extreme leverage, cash burn, sub-scale revenue, out-of-band P/B). 28/87 are
+totally clean. Of the flagged rest, MOST are THESIS-CONSISTENT, not defects:
+
+- biotech_deep_value (melt/burn): by DESIGN — the thesis is cash-rich burners
+  trading below net cash. The burn IS the setup. Correct.
+- levered_inflection, weschler_levered_equity, asymmetric_assembly (leverage):
+  leverage is in the thesis (a levered equity stub / rollup). Correct.
+- financials_value, analyst_awakening (financial names showing "melt"/"burn"):
+  op_margin and fcf_yield are not meaningful lenses for banks/insurers — a
+  metric artifact, not junk. The archetypes gate is_financial correctly.
+- asleep_at_wheel (a melter like MDX.BK topping the ETA sort): NOT a defect.
+  There is an explicit user design decision (no quality FLOOR; quality is
+  UPWEIGHTED in asleep_score instead) — the melter is a real estimate-beater
+  that asleep_score correctly ranks near the bottom. My scan sorted by GLOBAL
+  ETA, so it over-flagged names that top the list via OTHER archetypes. Lesson:
+  judge an archetype by its OWN rank score, not global ETA.
+
+GENUINE promotes-junk found and FIXED this pass:
+
+5. **post_reorg — gate on OPERATING yield, not p_e.** A fresh-start company's
+   trailing net income is inflated by the one-off debt-discharge gain:
+   WeightWatchers posts $1.02B "net income" on $701M revenue (mcap $180M) — a
+   p_e of 1.56 that is pure reorg gain, not earnings. That fake earnings yield
+   passed the generic _excellent_value; only the leverage cap accidentally
+   caught it. Now gated on EV/EBIT or FCF yield (Verdad's lens, immune to
+   discharge gains). WW is robustly excluded on value (real EV/EBIT yield 5.8%,
+   FCF negative). post_reorg fires 0 today — HONEST: the reorg XBRL concept only
+   marks 9 names in the 5yr window and none is operationally cheap. Not forced.
+
+6. **diversified_segments — add the sibling's distressed-shell guard.** It was
+   a bare structural label (4+ segments, HHI<=0.40) with NO survivability gate,
+   while its sibling geographic_global already drops shells with
+   (fcf_ttm>0)|(ebitda_margin>0.05). So CETX (fcf -131%) and AMTD (op -336%)
+   wore a "diversified = resilient" label their numbers contradict. Mirrored the
+   sibling's guard: 208→192 firers (dropped 16 distressed shells, kept every
+   real diversified operator). A consistency fix, not a new heuristic.
+
+Not changed (deliberate): nol_shell burn (a monetizable-NOL shell need not be
+FCF-positive; _not_melting already guards it); momentum archetypes
+(oneil_canslim, weinstein_stage2, kullamagie_breakout) admitting growth burners
+— a momentum screen legitimately prices growth, and these carry their own
+technical gates.
+
+### Pipeline note (for reproducibility)
+The canonical asymmetry_global.csv is the ENRICHED base (fcf_yield, cfo_*,
+op_margin, …) built up across sessions from yfinance/EDGAR merges. Re-running
+`asymmetry_rank.py` (step 1 of build_asymmetry_global.sh) REBUILDS the base from
+the per-country yartseva snapshots and DROPS those enrichments (they are not in
+the raw snapshots), which then breaks archetype_tags/enrich with scalar-vs-Series
+errors. Correct refresh path: keep the committed asymmetry_global.csv as the
+base, run archetype_tags.py then enrich_asymmetry_global.py directly (both are
+idempotent w.r.t. the base fundamentals; enrich re-derives ETA + nulls 213
+price-ghosts + corrects src suffixes each run). The full rebuild is only valid
+after re-fetching the source enrichments.

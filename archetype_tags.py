@@ -956,6 +956,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_diversified_segments'] = (
         is_operating &                          # (R1b) segment-revenue-HHI is the wrong lens for financials
         (segment_count >= 4) & (segment_hhi <= 0.40)
+        # (topcheck) survivability: same distressed-shell guard the sibling
+        # geographic_global already carries. Diversification is a POSITIVE
+        # resilience label; a deep burner (CETX fcf -131%, AMTD op -336%) whose
+        # diversification plainly did NOT protect it should not wear it. Drops
+        # only genuine distress, keeps every real diversified operator.
+        & ((s('fcf_ttm') > 0) | (ebitda_margin > 0.05))
     ).fillna(False).astype(int)
 
     # AE — Concentrated Segment Risk: HHI >= 0.70 OR largest segment >= 70%.

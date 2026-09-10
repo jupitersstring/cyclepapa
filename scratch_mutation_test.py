@@ -176,7 +176,7 @@ def _m(t, g):
     g2 = add_row(g, symbol="MUTX", net_cash_pct_mcap=0.5)
     return t2, g2
 
-@case("R6 sub-scale revenue", "arch_tenbagger_path keeps a >=$20M", MA._regression)
+@case("R6 sub-scale revenue", "arch_tenbagger_path keeps a >=$5M", MA._regression)
 def _m(t, g):
     t2 = add_row(t, symbol="MUTY", arch_tenbagger_path=1, archetype_count=1)
     g2 = add_row(g, symbol="MUTY", revenue_ttm_usd=1.0e6)
