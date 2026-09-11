@@ -250,9 +250,13 @@ def main():
     # the level consistent with the p_e we just overwrote.
     y = y.copy()
     if "yf_profit_margin" in y.columns and "yf_revenue" in y.columns:
-        y["yf_net_income_implied"] = (
-            pd.to_numeric(y["yf_profit_margin"], errors="coerce")
-            * pd.to_numeric(y["yf_revenue"], errors="coerce"))
+        _ni_margin = (pd.to_numeric(y["yf_profit_margin"], errors="coerce")
+                      * pd.to_numeric(y["yf_revenue"], errors="coerce"))
+        # DIRECT netIncomeToCommon (fetched as yf_net_income) outranks the
+        # margin-implied construction; the implied value is last resort only.
+        _ni_direct = pd.to_numeric(y.get("yf_net_income"), errors="coerce") \
+            if "yf_net_income" in y.columns else pd.Series(np.nan, index=y.index)
+        y["yf_net_income_implied"] = _ni_direct.combine_first(_ni_margin)
     # Where Yahoo supplies the RATIO but not the LEVEL, derive the level from
     # Yahoo's own internally-consistent pair (EV / ratio) so the reconcile can
     # still bend the master level to the authoritative source.
@@ -434,44 +438,21 @@ def main():
         m.loc[stale | fillm, colname] = fresh[stale | fillm]
         recon[colname] = recon.get(colname, 0) + int((stale | fillm).sum())
 
-    # capex_ttm — PRIMARY-SOURCE waterfall (root-cause correction, 2026-09-12).
-    # Provenance analysis showed capex_ttm was NEVER an independent figure:
-    # derive computed it as cfo - fcf, so a MIXED-VINTAGE cfo/fcf pair
-    # manufactured garbage (088910.KQ: stale cfo 7.1B minus fresher fcf 23.6B
-    # = "capex" -16.6B; ~15% negative across ALL markets, US included — not a
-    # sign-convention issue). Order of authority now:
-    #   1. audited EDGAR capex (fresh-gated, positive-magnitude tag);
-    #   2. Yahoo STATEMENT capex (|trailingCapitalExpenditure|, validated);
-    #   3. the identity cfo - fcf, LAST resort only, >=0 required.
+    # capex_ttm — PRIMARY SOURCES ONLY (user directive: no identity
+    # derivation where an alternative exists; and since every historical value
+    # was identity-manufactured, the column is REBUILT from primaries each run
+    # so no relic survives): audited EDGAR capex (fresh-gated) -> Yahoo
+    # STATEMENT capex (|trailingCapitalExpenditure|) -> NaN (honest absence).
     if "capex_ttm" in m.columns:
-        _cx_cur0 = pd.to_numeric(m["capex_ttm"], errors="coerce")
         _cx_ed = edgar_col("capex_ttm")
-        _r_ce = (_cx_cur0 / _cx_ed).where(_cx_ed > 0)
-        _dis_ce = _cx_ed.notna() & (_cx_ed > 0) & _cx_cur0.notna() \
-            & ((_r_ce > 1.4) | (_r_ce < 1 / 1.4) | (_cx_cur0 < 0))
-        m.loc[_dis_ce, "capex_ttm"] = _cx_ed[_dis_ce]
-        recon["capex_ttm (EDGAR audited)"] = int(_dis_ce.sum())
+        _cx_ed = _cx_ed.where(_cx_ed >= 0)
         _cx_stmt = pd.to_numeric(y.get("yf_capex_stmt"), errors="coerce").reindex(m.index).abs() \
             if "yf_capex_stmt" in y.columns else pd.Series(np.nan, index=m.index)
-        _cx_cur1 = pd.to_numeric(m["capex_ttm"], errors="coerce")
-        _r_cs = (_cx_cur1 / _cx_stmt).where(_cx_stmt > 0)
-        _dis_cs = _cx_stmt.notna() & (_cx_stmt > 0) & _cx_cur1.notna() & _cx_ed.isna() \
-            & ((_r_cs > 1.4) | (_r_cs < 1 / 1.4) | (_cx_cur1 < 0))
-        m.loc[_dis_cs, "capex_ttm"] = _cx_stmt[_dis_cs]
-        recon["capex_ttm (Yahoo statement)"] = int(_dis_cs.sum())
-        _cx_cur = pd.to_numeric(m["capex_ttm"], errors="coerce")
-        _cfo_cx = pd.to_numeric(m.get("cfo_ttm"), errors="coerce")
-        _fcf_cx = pd.to_numeric(m.get("fcf_ttm"), errors="coerce")
-        _cx_imp = (_cfo_cx - _fcf_cx).where(_cfo_cx.notna() & _fcf_cx.notna())
-        _cx_imp = _cx_imp.where(_cx_imp >= 0)
-        _r_cx = (_cx_cur / _cx_imp).where(_cx_imp > 0)
-        _bad_cx = _cx_cur.notna() & _cx_imp.notna() \
-            & ((_cx_cur < 0) | (_r_cx > 1.4) | (_r_cx < 1 / 1.4))
-        m.loc[_bad_cx, "capex_ttm"] = _cx_imp[_bad_cx]
-        recon["capex_ttm (identity: cfo - fcf)"] = int(_bad_cx.sum())
-        _null_cx = _cx_cur.notna() & (_cx_cur < 0) & _cx_imp.isna()
-        m.loc[_null_cx, "capex_ttm"] = np.nan
-        recon["capex_ttm nulled (negative, no identity)"] = int(_null_cx.sum())
+        _cx_new = _cx_ed.combine_first(_cx_stmt)
+        _changed_cx = ~((_cx_new == pd.to_numeric(m["capex_ttm"], errors="coerce"))
+                        | (_cx_new.isna() & pd.to_numeric(m["capex_ttm"], errors="coerce").isna()))
+        m["capex_ttm"] = _cx_new
+        recon["capex_ttm (rebuilt: EDGAR -> statement -> NaN)"] = int(_changed_cx.sum())
 
     # fcf_ttm policy — ADJUDICATED AGAINST AUDITED ACCOUNTS (EDGAR XBRL, US
     # names, n=2,821): Yahoo's FCF agrees with the audited CFO-minus-capex on
@@ -513,14 +494,9 @@ def main():
         _dis_s = _fcf_stmt.notna() & _fcf_cur.notna() & _fcf_ed.isna() \
             & ((_r_s > 1.4) | (_r_s < 1 / 1.4))
         _apply_fcf(_fcf_stmt, _dis_s, "fcf_ttm (Yahoo statement trailing, non-EDGAR)")
-        # identity fallback for everything neither EDGAR nor statements cover
-        _fcf_cur = pd.to_numeric(m["fcf_ttm"], errors="coerce")
-        _fcf_new = (_cfoB - _cx).where(_cfoB.notna() & _cx.notna())
-        _ratio_f = (_fcf_cur / _fcf_new).where(_fcf_new != 0)
-        _imposs = _fcf_cur.notna() & (_cfoB > 0) & (_fcf_cur > _cfoB * 1.05) & (_cx > 0)
-        _dis_f = _fcf_new.notna() & _fcf_cur.notna() & _fcf_ed.isna() & _fcf_stmt.isna() \
-            & ((_ratio_f > 1.4) | (_ratio_f < 1 / 1.4) | _imposs)
-        _apply_fcf(_fcf_new, _dis_f, "fcf_ttm (cfo - capex identity, fallback)")
+        # (identity fallback REMOVED per user directive — where neither the
+        # audited nor the statement source covers a name, its snapshot fcf
+        # stands or the field stays honestly absent.)
 
     # price_52w_high: a running max is definitionally valid — the stored high
     # can never sit BELOW the current price.
@@ -695,15 +671,9 @@ def main():
     _qc_flag(edgar_won, "edgar_grounded")
     _qc_flag(_qc_flag_pending_currency, "edgar_currency_arbitration")
     _row_consistent("p_e", (_mc / _ni2).where(_ni2 > 0), _pe_yf, band=(0, 2000))
-    # where Yahoo's p_e IS authoritative but NI still disagrees (margin-implied
-    # NI was unavailable), derive the level from the ratio: NI := mcap / p_e.
-    _pe_cur = pd.to_numeric(m.get("p_e"), errors="coerce")
-    _ni_imp = (_mc / _pe_cur).where((_pe_cur > 0) & (_mc > 0))
-    _dev_ni = (_ni2 / _ni_imp)
-    _fix_ni = _pe_yf & _ni_imp.notna() & _ni2.notna() & (_ni2 > 0) \
-        & ((_dev_ni > 1.25) | (_dev_ni < 1 / 1.25))
-    m.loc[_fix_ni, "net_income_ttm"] = _ni_imp[_fix_ni]
-    recon["net_income_ttm (from authoritative p_e)"] = int(_fix_ni.sum())
+    # (NI-from-p_e derivation REMOVED per user directive: NI now comes from
+    # audited EDGAR, Yahoo's DIRECT netIncomeToCommon (yf_net_income), or the
+    # margin-implied last resort — never back-derived from a ratio.)
     # EV/EBIT ordering: after every repair, a multiple still sitting BELOW
     # EV/EBITDA (EBIT <= EBITDA makes that impossible) is provably wrong —
     # and a wrong multiple is worse than a missing one. Null the survivors.

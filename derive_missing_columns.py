@@ -424,9 +424,13 @@ def main():
     _ufy_approx = _safe_div(fcf, ev, den_must_be_positive=True)
     master['ufcf_yield'] = _ufy_unlev.where(
         _ufy_unlev.notna(), _ufy_approx.where(_lev_immaterial))
-    # Capital intensity (reveals when EBITDA overstates real cash):
-    capex = (cfo - fcf).where(cfo.notna() & fcf.notna())
-    master['capex_ttm'] = capex
+    # Capital intensity (reveals when EBITDA overstates real cash).
+    # capex_ttm is NEVER derived here any more (user directive: figures come
+    # from primary sources as directly as possible; the old cfo-minus-fcf
+    # identity manufactured garbage from mixed-vintage pairs). The column is
+    # populated exclusively by the harmonizer's primary waterfall
+    # (audited EDGAR capex -> Yahoo statement capex -> NaN).
+    capex = _to_num(_s('capex_ttm'))
     master['capex_intensity'] = _safe_div(capex, rev, den_must_be_positive=True)
     master['fcf_conversion'] = _safe_div(fcf, ebitda_pos, den_must_be_positive=True)  # FCF/EBITDA
     # Leverage, cash angle (years of FCF to repay net debt):
