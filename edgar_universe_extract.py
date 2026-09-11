@@ -28,6 +28,8 @@ Output:
 """
 from __future__ import annotations
 import argparse
+import gzip
+import threading
 import json
 import os
 import sys
@@ -48,6 +50,72 @@ TICKERS_URL = "https://www.sec.gov/files/company_tickers.json"
 FACTS_URL = "https://data.sec.gov/api/xbrl/companyfacts/CIK{cik:010d}.json"
 CACHE_DIR = Path("edgar_cache")
 MAX_CACHE_AGE_DAYS = 30.0   # facts older than a month are refetched
+# COMMITTED consolidated cache (survives container recycles — the raw
+# edgar_cache/ dir is gitignored and container-local, which is how the whole
+# universe went stale once). Holds ONLY the concepts the extractor reads,
+# trimmed to recent observations, with a per-CIK fetch date.
+OBS_CACHE_PATH = Path("edgar_obs_cache.json.gz")
+OBS_KEEP_YEARS = 7
+_obs_cache: dict = {}
+_obs_cache_lock = threading.Lock()
+
+
+def _needed_concepts() -> set:
+    out = set()
+    for name, val in globals().items():
+        if name.endswith("_ALIASES") and isinstance(val, list):
+            out.update(v for v in val if isinstance(v, str))
+    return out
+
+
+def trim_facts(facts: dict) -> dict:
+    """Keep only needed concepts and recent observations (compact for git)."""
+    keep = _needed_concepts()
+    cutoff = (datetime.now().replace(microsecond=0)
+              ).strftime("%Y-%m-%d")
+    cut_year = int(cutoff[:4]) - OBS_KEEP_YEARS
+    gaap = _safe_get(facts, "us-gaap") or {}
+    slim = {}
+    for c, cval in gaap.items():
+        if c not in keep or not isinstance(cval, dict):
+            continue
+        units = cval.get("units") or {}
+        slim_units = {}
+        for u, obs_list in units.items():
+            if not isinstance(obs_list, list):
+                continue
+            kept = [{k: o.get(k) for k in ("start", "end", "fp", "val")}
+                    for o in obs_list
+                    if isinstance(o, dict) and o.get("end")
+                    and int(str(o["end"])[:4]) >= cut_year]
+            if kept:
+                slim_units[u] = kept
+        if slim_units:
+            slim[c] = {"units": slim_units}
+    return {"us-gaap": slim}
+
+
+def load_obs_cache():
+    global _obs_cache
+    if OBS_CACHE_PATH.exists():
+        try:
+            with gzip.open(OBS_CACHE_PATH, "rt") as fh:
+                _obs_cache = json.load(fh)
+            print(f"  consolidated obs cache: {len(_obs_cache):,} CIKs",
+                  file=sys.stderr)
+        except Exception as e:
+            print(f"  obs cache unreadable ({e}) — starting empty", file=sys.stderr)
+            _obs_cache = {}
+
+
+def save_obs_cache():
+    try:
+        with gzip.open(OBS_CACHE_PATH, "wt") as fh:
+            json.dump(_obs_cache, fh)
+        print(f"  wrote {OBS_CACHE_PATH} ({len(_obs_cache):,} CIKs, "
+              f"{OBS_CACHE_PATH.stat().st_size/1e6:.1f} MB)", file=sys.stderr)
+    except Exception as e:
+        print(f"  obs cache write failed: {e}", file=sys.stderr)
 CACHE_DIR.mkdir(exist_ok=True)
 
 
@@ -296,13 +364,22 @@ def ttm_value(facts: dict, aliases: list[str], unit: str = "USD"):
 def fetch_companyfacts(cik: int) -> dict | None:
     """Fetch and cache companyfacts JSON for one CIK."""
     cache_path = CACHE_DIR / f"CIK{cik:010d}.json"
+    # L2: consolidated COMMITTED cache (fresh entries only)
+    _k = str(cik)
+    _ent = _obs_cache.get(_k)
+    if _ent and (time.time() - _ent.get("fetched_at", 0)) / 86400.0 <= MAX_CACHE_AGE_DAYS:
+        return {"facts": _ent["facts"]}
     if cache_path.exists():
         # NEVER-EXPIRING cache was the staleness root cause (Q1-2026 facts
         # served in September). Serve from cache only while fresh.
         age_days = (time.time() - cache_path.stat().st_mtime) / 86400.0
         if age_days <= MAX_CACHE_AGE_DAYS:
             try:
-                return json.loads(cache_path.read_text())
+                data = json.loads(cache_path.read_text())
+                with _obs_cache_lock:
+                    _obs_cache[_k] = {"fetched_at": cache_path.stat().st_mtime,
+                                      "facts": trim_facts(data.get("facts", {}))}
+                return data
             except json.JSONDecodeError:
                 pass
     url = FACTS_URL.format(cik=cik)
@@ -319,6 +396,9 @@ def fetch_companyfacts(cik: int) -> dict | None:
             r.raise_for_status()
             data = r.json()
             cache_path.write_text(json.dumps(data))
+            with _obs_cache_lock:
+                _obs_cache[_k] = {"fetched_at": time.time(),
+                                  "facts": trim_facts(data.get("facts", {}))}
             return data
         except (requests.HTTPError, requests.ConnectionError, requests.Timeout):
             if attempt < 2:
@@ -505,6 +585,7 @@ def main():
                     help="resume from index N (after sorted alpha by symbol)")
     args = ap.parse_args()
 
+    load_obs_cache()
     print("loading SEC ticker map...", file=sys.stderr)
     tmap = load_ticker_map().sort_values("symbol").reset_index(drop=True)
     if args.start_at:
@@ -544,6 +625,7 @@ def main():
                       file=sys.stderr)
                 # Periodic checkpoint
                 pd.DataFrame(rows).to_csv(args.out + ".partial", index=False)
+    save_obs_cache()
 
     df = pd.DataFrame(rows)
     df.to_csv(args.out, index=False)
