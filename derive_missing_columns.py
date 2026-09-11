@@ -145,20 +145,23 @@ def derive_enterprise_value(master: pd.DataFrame) -> pd.Series:
     ev_sales = _g('ev_sales')
     ev_ebitda = _g('ev_ebitda')
 
-    # Path 1: ev_sales * revenue_ttm (most common and best signal)
-    ev = ev_sales * rev
+    # Path 1 (audit F4/F5 reorder): balance-sheet reconstruction FIRST —
+    # mcap/debt/cash share one vintage and (post-restatement) one currency,
+    # while a stored ratio times a freshly-backfilled base reconstructs an
+    # EV that never existed at any single point in time.
+    ev = mcap + debt.fillna(0) - cash.fillna(0)
+    ev = ev.where(mcap.notna() & (mcap > 0))
     ev = ev.where(np.isfinite(ev) & (ev > 0))
 
-    # Path 2: ev_ebitda * ebitda_ttm -- only useful when ebitda_ttm > 0
+    # Path 2: ev_sales * revenue_ttm fills the gaps
+    ev1 = ev_sales * rev
+    ev1 = ev1.where(np.isfinite(ev1) & (ev1 > 0))
+    ev = ev.where(ev.notna(), ev1)
+
+    # Path 3: ev_ebitda * ebitda_ttm -- only when ebitda_ttm > 0
     ev2 = ev_ebitda * ebitda
     ev2 = ev2.where(np.isfinite(ev2) & (ev2 > 0) & (ebitda > 0))
     ev = ev.where(ev.notna(), ev2)
-
-    # Path 3: balance-sheet reconstruction. Requires mcap.
-    ev3 = mcap + debt.fillna(0) - cash.fillna(0)
-    ev3 = ev3.where(mcap.notna() & (mcap > 0))
-    ev3 = ev3.where(np.isfinite(ev3) & (ev3 > 0))
-    ev = ev.where(ev.notna(), ev3)
 
     return ev
 
@@ -322,7 +325,11 @@ def main():
     # EV/EBITDA cheapness gate. Force the multiple to NaN wherever the
     # denominator is not positive, regardless of where the value came from.
     if 'ev_ebitda' in master.columns:
-        master['ev_ebitda'] = _to_num(master['ev_ebitda']).where(ebitda > 0)
+        # null only on KNOWN-bad denominator — `ebitda > 0` is False for
+        # NaN too, which wiped sourced multiples wherever ebitda_ttm was
+        # merely missing (the same wrong-universe class as ev_ebit's fix)
+        master['ev_ebitda'] = _to_num(master['ev_ebitda']).where(
+            ebitda.isna() | (ebitda > 0))
     if 'ev_ebit' in master.columns:
         # The denominator evidence must cover the row's OWN universe: opinc
         # is the EDGAR (US-only) series, so `.where(opinc > 0)` silently
@@ -394,11 +401,16 @@ def main():
     #    Marginal > average margin => the business is levering up.
     d_ebitda = ebitda * ebitda_yoy / (1.0 + ebitda_yoy)
     d_rev = rev * rev_yoy / (1.0 + rev_yoy)
+    # incremental margin is only meaningful on a POSITIVE revenue delta —
+    # both-negative deltas print a spuriously positive drop-through
     inc = _safe_div(d_ebitda, d_rev, den_must_be_positive=False)
-    master['incremental_ebitda_margin'] = inc.where((d_rev.abs() > 0) & np.isfinite(inc))
+    master['incremental_ebitda_margin'] = inc.where((d_rev > 0) & np.isfinite(inc))
     #  - operating leverage ratio = %ΔEBITDA / %ΔRevenue (>1 = positive leverage)
+    # leverage ratio needs GROWTH context and a MATERIAL base: both-negative
+    # legs print positive "leverage" for a shrinking name, and a 0.1% revenue
+    # move explodes the ratio (base effect)
     olr = _safe_div(ebitda_yoy, rev_yoy, den_must_be_positive=False)
-    master['operating_leverage_ratio'] = olr.where(rev_yoy.abs() > 1e-6)
+    master['operating_leverage_ratio'] = olr.where(rev_yoy > 0.02)
     # Cheapness, industry-robust angles:
     master['ev_gross_profit'] = _safe_div(ev, gross_profit, den_must_be_positive=True)  # Novy-Marx
     # Quality, harder-to-game angles:
@@ -451,7 +463,7 @@ def main():
     # PSG — price-to-sales-to-growth (the P/S analog of PEG). Cheap-sales
     # relative to revenue growth. Growth in % points, capped at 100% so a
     # one-off can't manufacture a sub-0.01 multiple.
-    rgrow = rev_yoy.clip(upper=1.0)
+    rgrow = rev_yoy.clip(upper=1.0).where(rev_yoy > 0.02)  # floor: near-zero growth explodes the ratio
     master['psg'] = _safe_div(p_s_now, rgrow * 100.0, den_must_be_positive=True)
     # EVSG — EV/sales-to-growth, the capital-structure-neutral analog of PSG
     # (cheap on sales relative to revenue growth). We lack an organic-vs-total

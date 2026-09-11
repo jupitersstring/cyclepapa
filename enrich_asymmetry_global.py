@@ -204,6 +204,18 @@ def main():
     def c01(s):
         return s.clip(0, 1).fillna(0)
 
+    # (audit F1) the pb-corruption repair used to run in the FINAL gate —
+    # after this score had already consumed the corrupt value (pb=0.001
+    # reads as near-maximal deep-value credit). Repair FIRST, score after.
+    _pb_e = pd.to_numeric(df.get('pb'), errors='coerce')
+    _eq_e = pd.to_numeric(df.get('equity'), errors='coerce')
+    _mc_e = pd.to_numeric(df.get('market_cap'), errors='coerce')
+    _impl_e = (_mc_e / _eq_e.where(_eq_e > 0))
+    _impl_e = _impl_e.where((_impl_e >= 0.1) & (_impl_e <= 20))
+    _pbc_e = (_pb_e > 0) & (_pb_e < 0.05)
+    if _pbc_e.any():
+        df['pb'] = _pb_e.where(~_pbc_e, _impl_e)
+
     nc = c01(col('net_cash_pct_mcap'))
     ncav = c01(col('ncav_pct_mcap'))
     sub_book = c01(1.0 - col('pb', 2.0).clip(lower=0.01))
@@ -286,8 +298,10 @@ def main():
                   f'duplicate lines (ranking + ratios)', file=sys.stderr)
 
     # ----- entry_today_asymmetry -----
+    # (audit F3) a missing asymmetry_score means UNRANKED, not worst —
+    # force-filling 0 sank legitimately unscored rows to the bottom
     df['entry_today_asymmetry'] = (
-        df['asymmetry_score'].fillna(0)
+        pd.to_numeric(df['asymmetry_score'], errors='coerce')
         * intrinsic_boost
         * df['qual_mult']
         * df['post_rally_factor']
@@ -320,7 +334,8 @@ def main():
     # Same geometric-mean structure as the existing asymmetry_score, but
     # using archetype density as the upside leg. Wires the archetype
     # framework into a parallel ranking.
-    floor = df['downside_floor_score'].fillna(0).clip(0, 1)
+    # (audit F3) missing floor = unranked, not worst-case
+    floor = pd.to_numeric(df['downside_floor_score'], errors='coerce').clip(0, 1)
     df['archetype_asymmetry_score'] = np.sqrt(
         df['archetype_count_pct'].clip(0, 1) * floor
     ).round(6)
@@ -350,7 +365,7 @@ def main():
     _conv_bonus = np.where(_cnt >= 3, 1.0, 0.6)        # 3+ = the reference's conviction line
     df['convergence_score'] = (
         _breadth * _conv_bonus
-        * pd.to_numeric(df['asymmetry_score'], errors='coerce').fillna(0).clip(0, 1)
+        * pd.to_numeric(df['asymmetry_score'], errors='coerce').clip(0, 1)
         * _liq_tier
     ).round(4)
 
@@ -456,7 +471,10 @@ def main():
     # else null; a <0.05x-book going concern is a data artifact, not value.
     _pb = pd.to_numeric(df.get('pb'), errors='coerce')
     _eq = pd.to_numeric(df.get('equity'), errors='coerce')
-    _mc0 = pd.to_numeric(df.get('market_cap_usd'), errors='coerce')
+    # (audit F2) LOCAL mcap over LOCAL equity — the USD numerator over a
+    # statement-currency denominator was the same mixing class this
+    # repair exists to fix
+    _mc0 = pd.to_numeric(df.get('market_cap'), errors='coerce')
     _impl = (_mc0 / _eq.where(_eq > 0))
     _impl = _impl.where((_impl >= 0.1) & (_impl <= 20))
     _pb_corrupt = (_pb > 0) & (_pb < 0.05)

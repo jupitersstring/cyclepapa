@@ -13,7 +13,7 @@ Outputs:
     Sheets 3-N: One per country with top 15-20 + verdicts
 
 Qualitative amendment logic:
-  GREEN  -> adj_asymmetry = asymmetry_score * 1.10  (10% boost)
+  GREEN  -> adj_asymmetry = asymmetry_score * 1.10 * confirm_mult (10% boost + confirmation)
   YELLOW -> adj_asymmetry = asymmetry_score * 0.85  (15% haircut)
   RED    -> adj_asymmetry = asymmetry_score * 0.40  (60% haircut - effectively removes from upper ranks)
   (not researched) -> adj_asymmetry = asymmetry_score (unchanged)
@@ -134,7 +134,10 @@ def amend_scores(df: pd.DataFrame) -> pd.DataFrame:
     # every ranking key below; the raw asymmetry_score is still shown.
     _cfo = pd.to_numeric(df.get('confirm_overall'), errors='coerce').fillna(0.0)
     _bbs = pd.to_numeric(df.get('buyback_score'), errors='coerce').fillna(0.0)
-    df['confirm_mult'] = 1.0 + 0.20 * _cfo + 0.10 * _bbs
+    # (audit F2) inputs clipped and the product capped so the documented
+    # <=30% bound actually holds
+    df['confirm_mult'] = (1.0 + 0.20 * _cfo.clip(0, 1)
+                          + 0.10 * _bbs.clip(0, 1)).clip(1.0, 1.30)
 
     df['adj_asymmetry'] = df['asymmetry_score'] * df['qual_multiplier'] * df['confirm_mult']
     df['adj_upside']    = df['upside_score']    * df['qual_multiplier'] * df['confirm_mult']
@@ -178,7 +181,9 @@ def amend_scores(df: pd.DataFrame) -> pd.DataFrame:
     # The boost factor sits in roughly [0.5, 1.5] so a name with strong
     # framework-measured discount gets a meaningful lift, weak ones get a
     # haircut, but neither dominates the existing quant ranking.
-    boost = (1.0 + (df['intrinsic_discount'] - 0.25)).clip(0.75, 1.5)  # true floor (discount in [0,1])
+    # (audit F1) floor 0.90 matches the enrich fix — the old 0.75 docked
+    # every quality large cap 25% purely for not being asset-cheap
+    boost = (1.0 + (df['intrinsic_discount'] - 0.25)).clip(0.90, 1.5)  # true floor (discount in [0,1])
 
     # POST-RALLY PENALTY (added 2026-06-15 after WDC bug, revised):
     # A name already up >100 pct in 12m is no longer a 'multibagger setup' -
@@ -319,7 +324,7 @@ def compose_why(row) -> str:
     if pd.notna(ida):
         parts.append(
             f"intrinsic discount {ida:.2f} "
-            f"(boost {1.0 + (ida - 0.25):.2f}x)"
+            f"(boost {min(1.5, max(0.90, 1.0 + (ida - 0.25))):.2f}x)"
         )
 
     return " | ".join(parts)
@@ -372,7 +377,11 @@ def main():
         _fsy = pd.to_numeric(df.get('fastest_segment_yoy'), errors='coerce')
         _cfo = pd.to_numeric(df.get('confirm_overall'), errors='coerce').fillna(0.0)
         _aln = pd.to_numeric(df.get('alignment_score'), errors='coerce').fillna(0.0)
-        df['seg_inflect_confirmed'] = _fsy * (1.0 + 0.20 * _cfo + 0.10 * _aln)
+        # (audit F3) fastest-segment yoy is the MAX across segments — the
+    # single most base-effect-exposed growth number; cap before ranking
+    df['seg_inflect_confirmed'] = (_fsy.clip(-1.0, 1.0)
+                                   * (1.0 + 0.20 * _cfo.clip(0, 1)
+                                      + 0.10 * _aln.clip(0, 1)))
 
     df['quant_thesis'] = df.apply(compose_thesis, axis=1)
     df['full_thesis']  = df.apply(

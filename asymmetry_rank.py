@@ -210,7 +210,10 @@ def compute_asymmetry(df: pd.DataFrame) -> pd.DataFrame:
     # ----- DOWNSIDE FLOOR leg -----
     df["d_cash_ev"] = df["cash_gt_ev_flag"].fillna(0).astype(int)
     df["d_graham"] = df["graham_net_net_flag"].fillna(0).astype(int)
-    df["d_sub_book"] = ((df["pb"].fillna(99) > 0) & (df["pb"].fillna(99) < 1.0)).astype(int)
+    # (audit F1) pb here is RAW (the corruption repair lives downstream):
+    # a 0.001-0.05x "book" is the documented ADR/units artifact, not deep
+    # value — exclude it from the flag rather than award it full weight
+    df["d_sub_book"] = ((df["pb"].fillna(99) > 0.05) & (df["pb"].fillna(99) < 1.0)).astype(int)
     df["d_profitable"] = df["ebitda_positive_proxy"]
     # net_debt_ebitda < 1.5 is only a safety signal when EBITDA is POSITIVE.
     # A loss-maker with real debt produces a NEGATIVE ratio (negative EBITDA
@@ -274,8 +277,10 @@ def compute_asymmetry(df: pd.DataFrame) -> pd.DataFrame:
     # downside-protected framework rank inflection / breakout / momentum
     # names alongside the value-and-contra Yartseva names.
     if "inflection_score" in df.columns:
+        # (audit F2) both legs must be PRESENT — fillna(0) ranked every
+        # row lacking inflection data as the single worst candidate
         df["inflection_asymmetry_score"] = np.sqrt(
-            df["inflection_score"].fillna(0).clip(0, 1)
+            pd.to_numeric(df["inflection_score"], errors="coerce").clip(0, 1)
             * df["downside_floor_score"].clip(0, 1)
         )
     else:

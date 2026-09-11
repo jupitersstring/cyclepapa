@@ -2338,3 +2338,103 @@
   ufcf_yield nulled (levered, no interest data) 1
   ufcf_yield nulled (outside stored band -50,50) 25
   yf_institution_pct nulled (outside stored band 0,1.2) 95
+
+=== 2026-09-11T09:57:00.861138Z apply_ticker_yf on asymmetry_global.csv ===
+  EDGAR multi-year fields merged (averages/forensic) 58123
+  EV/price ratios rebuilt on cross-ccy lines   2576
+  buyback_yield                                0
+  capex_ttm (rebuilt: EDGAR -> statement -> NaN) 486
+  capital_return_yield                         0
+  cash (directional: master under half of Yahoo) 1088
+  cash_pct_ev nulled (cash>20x mcap, ccy-mismatch class) 366
+  cash_pct_mcap nulled (cash>20x mcap, ccy-mismatch class) 692
+  cash_return_ev nulled (levered, no interest data) 2
+  cash_return_ev nulled (outside stored band -50,50) 15
+  cfo_ttm                                      962
+  cfo_yield                                    494
+  cfo_yield nulled (outside stored band -50,50) 579
+  cross-ccy line levels restated to quote currency (twin) 602
+  cross-ccy restated (DECLARED financial currency) 970
+  currency arbitration (EDGAR usd adopted)     70
+  earnings_yield                               227
+  earnings_yield nulled (outside stored band -50,50) 365
+  ebitda_margin                                181
+  ebitda_margin nulled (de-minimis revenue)    3031
+  ebitda_margin nulled (outside stored band -5,5) 276
+  ebitda_ttm                                   1351
+  ebitda_ttm unit-repaired (from in-band ev_ebitda) 85
+  equity adopted from audited EDGAR            2
+  ev_ebit                                      5670
+  ev_ebit nulled (ebitda<=0)                   681
+  ev_ebit nulled (impossible ordering)         3928
+  ev_ebitda (row-consistency)                  2519
+  ev_ebitda nulled (ebitda<=0)                 6452
+  ev_ebitda nulled (inconsistent with own EV/denominator) 10
+  ev_sales (row-consistency)                   1644
+  ev_sales nulled (de-minimis revenue)         2955
+  fcf_conversion nulled (outside stored band -50,50) 97
+  fcf_ttm (EDGAR audited, preferred)           2
+  fcf_ttm (Yahoo statement trailing, non-EDGAR) 369
+  fcf_yield                                    1009
+  fcf_yield nulled (impossible level/components) 1751
+  goodwill_intangibles_pct_assets nulled (outside stored band 0,1.05) 59
+  gross_margin                                 1157
+  gross_margin nulled (de-minimis revenue)     2899
+  gross_margin nulled (extreme < op_margin)    269
+  gross_margin nulled (outside stored band -1.5,1.5) 37
+  incremental_ebitda_margin nulled (outside stored band -10,10) 919
+  momentum_12m nulled (>10000%, no evidence)   11
+  momentum_12m nulled (return exceeds 52w-range evidence) 19
+  ncav_gt_equity flagged (unresolved contradiction, kept) 189
+  ncav_pct_mcap                                308
+  ncav_pct_mcap nulled (cash>20x mcap, ccy-mismatch class) 47
+  net_cash_pct_mcap                            314
+  net_cash_pct_mcap nulled (cash>20x mcap, ccy-mismatch class) 628
+  net_cash_pct_mcap nulled (outside stored band -50,50) 314
+  net_debt_ebitda                              90
+  net_income_ttm                               1166
+  net_margin                                   0
+  no-anchor mixed-ccy group: quote-vs-level ratios nulled 720
+  not_priced_in_score nulled (no sane component) 0
+  not_priced_in_score repaired/refilled from guarded components 660
+  op_margin                                    207
+  op_margin nulled (>100%, impossible)         10
+  op_margin nulled (de-minimis revenue)        1107
+  op_margin nulled (extreme > ebitda_margin)   3250
+  op_margin nulled (outside stored band -5,5)  30
+  operating_leverage_ratio nulled (outside stored band -100,100) 55
+  owner_earnings_yield rebuilt as true OE (was fcf alias) 3894
+  p_e (row-consistency)                        2742
+  p_s (row-consistency)                        1576
+  p_s nulled (de-minimis revenue)              2913
+  p_tb                                         245
+  pb constructed from primary book (equity/bookValue) 700
+  pb recomputed on cross-ccy lines (NI/roe equity) 2336
+  pb repaired /100 (pence-vs-pounds, evidence-confirmed) 122
+  pb repaired from fetched bookValue evidence  29
+  pretax_margin nulled (outside stored band -5,5) 413
+  price_52w_high lifted to price               0
+  qc_flag ccy_mismatch_suspect                 720
+  qc_flag ccy_restated                         1572
+  qc_flag edgar_currency_arbitration           70
+  qc_flag edgar_grounded                       5492
+  qc_flag ev_comp_gap                          6069
+  qc_flag fcf_gt_cfo                           1699
+  qc_flag fcf_yf_adopted                       0
+  qc_flag fx_twin_dev                          9
+  qc_flag gross_lt_op_margin                   465
+  qc_flag ncav_gt_equity                       189
+  qc_flag neg_ev                               1661
+  qc_flag op_gt_ebitda_margin                  2642
+  qc_flag pence_pb_repaired                    151
+  qc_flag unit_repaired                        35
+  revenue_ttm                                  1294
+  revenue_ttm unit-repaired (from in-band ev_sales) 35
+  robust_cash_yield                            509
+  robust_cash_yield nulled (outside stored band -50,50) 553
+  roe                                          0
+  shares_outstanding                           0
+  total_debt                                   1190
+  ufcf_yield nulled (levered, no interest data) 2
+  ufcf_yield nulled (outside stored band -50,50) 19
+  yf_institution_pct nulled (outside stored band 0,1.2) 95

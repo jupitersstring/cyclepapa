@@ -604,8 +604,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # (G6) require a real capital-allocation ACTION (buyback / share shrink),
     # OR pair high insider ownership with a genuine return gate — insider
     # ownership alone is not capital discipline (91% passed on it before).
+    # (gate audit #4) a buyback claim is corroborated against the share
+    # count — SBC out-diluting the buyback is not discipline (TTEC class)
     _action_leg = ((_ncol('shares_growth_3y') <= -0.01) |
-                   (_ncol('buyback_yield') >= 0.02))
+                   ((_ncol('buyback_yield') >= 0.02)
+                    & ~(_ncol('shares_yoy') > 0)))
     # (R2) roic_after_sbc is EDGAR-only (NA for all non-US filers), so the
     # returns leg used to collapse to "insider>=0.20 & any positive FCF" for
     # ex-US names. Add globally-available roce>=0.12 as the real returns leg,
@@ -1480,11 +1483,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # equity-method income (PAH3 Porsche SE 106%) is not an operating return.
         # (fresh) the high-margin branch must ALSO show real returns on capital —
         # a fat EBITDA margin at 1% ROCE is not GARP quality (Jet2 airline).
-        ((_roe >= 0.15) |
+        # (gate audit #5) ROE = NI/equity reads spuriously positive when
+        # BOTH are negative — every ROE leg requires positive earnings
+        (((_roe >= 0.15) & (s('net_income_ttm', np.nan) > 0)) |
          ((ebitda_margin >= 0.18) & (ebitda_margin <= 0.6)
           & (((s('roce', np.nan) >= 0.10) & ~_roce_oneoff_suspect)
-             | (_roe >= 0.10)))) &
-        ((emd_c > 0) | (_opmd > 0) | (_roe >= 0.20))    # improving / exceptional
+             | ((_roe >= 0.10) & (s('net_income_ttm', np.nan) > 0))))) &
+        ((emd_c > 0) | (_opmd > 0)
+         | ((_roe >= 0.20) & (s('net_income_ttm', np.nan) > 0)))
     )
     _roiic_quality = _roiic_true | (_roiic_absent & _roiic_proxy)
     _val_good = (_ey >= 0.05) | (_ev_ebitda_yield >= 0.08)   # good E/P OR EBITDA/EV yield
@@ -2066,7 +2072,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _roce_now_ok &                              # (R4) current returns not negative (Genie Music roce -22%)
         (rev_yoy_c > 0) & (rev_yoy_c <= 1.0) &      # (R5) not declining; upper cap drops inorganic M&A pops (Newlat +130%)
         (((rev_yoy_c >= 0.10) & (rev_accel > 0)) | (rev_yoy_c >= 0.15) | oper_lev_any) &
-        ((cash_conv_w >= 0.80) | (fcf_margin_w > 0)) &
+        # (gate audit #3) cash_conversion reads falsely positive when CFO
+        # and EBITDA are BOTH negative — trust it only over positive EBITDA
+        (((cash_conv_w >= 0.80) & (ebitda_ttm_v > 0)) | (fcf_margin_w > 0)) &
         _clean_bs(1.5) &                            # clean b/s (nde OR net-cash)
         (~(n_analysts_v > 4)) &                       # (twosided) MISSING coverage = MOST neglected (the thesis); mcap cap prevents mega-cap re-admit
         low_sbc_liger &
@@ -2161,7 +2169,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # BDC/holdco bleeding book value via losses (MLCI roce-0.84, BBXIA fcf-0.92,
     # OCCI fcf-0.50) is a melting discount, not a covered one. Require ROE not
     # known-negative (permissive on missing).
-    _nav_not_eroding = ~(_num('roe').notna() & (_num('roe') < 0.0))
+    # (gate audit #5) a negative-NAV vehicle with negative income shows a
+    # falsely POSITIVE roe — treat NI<0 with book not-positive as eroding
+    _nav_not_eroding = (~(_num('roe').notna() & (_num('roe') < 0.0))
+                        & ~((_num('net_income_ttm') < 0) & ~(_num('pb') > 0)))
     df['arch_oak_nav_discount'] = (
         sector.isin({'Financials'}) & _nav_vehicle & _nav_not_eroding &
         (((pb > 0) & (pb < 0.7)) | ((_ptb_nav > 0) & (_ptb_nav < 0.7))) &
@@ -2205,8 +2216,21 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _mc_ha = _ncol('market_cap')
     _hidden_pct = ((_ev_ha + _ca_ha - _mc_ha - _td_ha)
                    / _mc_ha.where(_mc_ha > 0))
+    _fx_m_g = _ncol('market_cap_usd') / _ncol('market_cap')
+    _fx_r_g = _ncol('revenue_ttm_usd') / _ncol('revenue_ttm')
+    _fx_coherent = ~(((_fx_m_g / _fx_r_g) - 1).abs() > 0.10)
+    # ...but twins that AGREE AT WRONG VALUES (unconverted — the JFU class)
+    # defeat twin detection, so provable cross-currency LINES are excluded
+    # from mcap-vs-level gates directly: Frankfurt .F cross-lines and
+    # USD-quoted Shanghai B-shares (9xxxxx.SS). Their HOME listings stay in
+    # the pool — no name is lost, only the wrong-basis duplicate line.
+    _sym_g = df['symbol'].astype(str)
+    _fx_coherent = _fx_coherent & ~(_sym_g.str.endswith('.F')
+                                    | _sym_g.str.match(r'^9\d{5}\.SS$'))
+
     df['arch_hidden_assets'] = (
         is_operating &
+        _fx_coherent &                              # (gate audit #2) the motivating cross-ccy case
         (mcap > 0) &
         (_hidden_pct >= 0.25) &                     # off-EV assets >= 25% of mcap
         ((net_cash_pct_c >= 0.10) | (cash_pct_mcap_v >= 0.30)) &  # genuinely cash/asset-rich (not a minority-interest artifact)
@@ -2274,6 +2298,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _gp_mcap = (_gm_loc * _rev_loc / _mc_loc.where(_mc_loc > 0))
     df['arch_expensed_growth_value'] = (
         is_operating &
+        _fx_coherent &                              # (gate audit #2) GP/mcap is level-over-mcap
         (_ncol('revenue_ttm_usd') >= 5e6) &        # base-effect guard (microcap sweet spot kept)
         (_gm_loc >= 0.40) & (_gm_loc <= 0.98) &    # real unit economics; exactly-100% GM = missing-COGS artifact, not a margin
         (_gp_mcap >= 0.50) &                       # gross earnings power >= 50% of the price
@@ -2291,17 +2316,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # its mcap). Coherent = the fx implied by the mcap USD-twin matches the fx
     # implied by the revenue USD-twin within 10% (NaN-permissive: home-listed
     # rows without twins pass).
-    _fx_m_g = _ncol('market_cap_usd') / _ncol('market_cap')
-    _fx_r_g = _ncol('revenue_ttm_usd') / _ncol('revenue_ttm')
-    _fx_coherent = ~(((_fx_m_g / _fx_r_g) - 1).abs() > 0.10)
-    # ...but twins that AGREE AT WRONG VALUES (unconverted — the JFU class)
-    # defeat twin detection, so provable cross-currency LINES are excluded
-    # from mcap-vs-level gates directly: Frankfurt .F cross-lines and
-    # USD-quoted Shanghai B-shares (9xxxxx.SS). Their HOME listings stay in
-    # the pool — no name is lost, only the wrong-basis duplicate line.
-    _sym_g = df['symbol'].astype(str)
-    _fx_coherent = _fx_coherent & ~(_sym_g.str.endswith('.F')
-                                    | _sym_g.str.match(r'^9\d{5}\.SS$'))
+    # (_fx_coherent is constructed earlier, above arch_hidden_assets)
 
     # F4 — Cash-adjusted P/E, negative-or-cheap (user spec). The doctrine:
     # NEGATIVE is only CHEAP when the earnings are POSITIVE — a negative EV on
@@ -3729,8 +3744,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         | (_sec_b.str.contains('health')
            & _nm_b.str.contains('therapeut|biopharm|biosci|pharma|oncolog|genomic|genetic'))
     ).fillna(False)
-    _revb = pd.to_numeric(df.get('revenue_ttm'), errors='coerce')
-    _fcfb = pd.to_numeric(df.get('fcf_ttm'), errors='coerce')
+    # USD twins (gate audit #1): the $500M commercial floor against RAW
+    # revenue_ttm let a KRW/JPY clinical-stage name clear "500e6" with a
+    # few million dollars of revenue and dodge the scrub entirely.
+    _revb = pd.to_numeric(df.get('revenue_ttm_usd'), errors='coerce')
+    _fx_bt = (pd.to_numeric(df.get('market_cap_usd'), errors='coerce')
+              / pd.to_numeric(df.get('market_cap'), errors='coerce'))
+    _fcfb = pd.to_numeric(df.get('fcf_ttm'), errors='coerce') * _fx_bt
     _embg = pd.to_numeric(df.get('ebitda_margin'), errors='coerce')
     _nyfcf = pd.to_numeric(df.get('n_yrs_positive_fcf'), errors='coerce')
     _nyroic = pd.to_numeric(df.get('n_yrs_positive_roic'), errors='coerce')
