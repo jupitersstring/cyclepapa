@@ -3020,6 +3020,64 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _not_melting
     ).fillna(False).astype(int)
 
+    # ---------- XR27-XR28: LATENT + ASYMMETRIC (user request) ----------
+    # The LATENT counterpart of the XR inflection theses: catch the setup one
+    # stage EARLIER — while the trajectory is improving but has NOT yet
+    # crossed into the confirming print — which is dangerous UNLESS floored.
+    # Each requires a hard downside FLOOR (net cash, NCAV, deep book
+    # discount, or hidden assets) so being early is ASYMMETRIC: the option
+    # on the turn is bought below a liquidation/asset support.
+    _floor_lat = ((net_cash_pct_c >= 0.20) | (ncav_pct >= 0.50)
+                  | ((pb > 0) & (pb < 0.80)) | (_hidden_pct >= 0.30)
+                  | (cash_pct_mcap_v >= 0.50))
+
+    # XR27 — Latent inflection under a floor ('XR-LatentInflectionFloor'):
+    # returns/margins/cash are IMPROVING toward positive but have not yet
+    # crossed (so no first_positive has fired) — pre-recognition — while the
+    # floor protects the wait. The early, floored version of XR3.
+    _improving_lat = (((_num('roce_delta_yoy') > 0) & (_num('roce') <= 0.05))
+                      | ((_num('op_margin_delta_yoy') > 0.02) & (s('op_margin', np.nan) <= 0.06))
+                      | ((_num('ebitda_margin_delta_yoy') > 0.02)
+                         & (_num('ebitda_margin_delta_yoy') <= 0.30) & (ebitda_margin <= 0.10))
+                      | ((_num('fcf_eta_quarters') > 0) & (_num('fcf_eta_quarters') <= 5)
+                         & (_num('fcf_yield') < 0)))
+    _not_yet_crossed = ~((ebitda_first_pos > 0) | (cfo_first_pos > 0)
+                         | (fcf_first_pos > 0) | (ni_first_pos > 0))
+    df['arch_xr_latent_inflection_floor'] = (
+        is_operating & (mcap > 0) & _fx_coherent &
+        ~_financing_fragile &
+        _improving_lat & _not_yet_crossed &
+        _floor_lat &                                      # asymmetric floor
+        (rev_yoy_c >= -0.05) &                            # business not collapsing
+        ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR28 — Latent bath under a floor ('XR-LatentBathFloor'): a one-off has
+    # DEPRESSED the trailing line (EBITDA below its normalized base, or NI
+    # negative) but operating CASH is still positive (the hit was non-cash)
+    # AND a hard asset/cash floor covers the price — the free option on the
+    # normalization, floored. The asymmetric, pre-rebound version of XR13:
+    # here the FLOOR does the work XR13 got from a beaten-down tape, so it
+    # fires before the drawdown is even complete.
+    _nrm28 = _ncol('normalized_ebitda')
+    _evn28 = (_ncol('enterprise_value') / _nrm28.where(_nrm28 > 0))
+    # a HARD floor for XR28 (cash/NCAV/hidden — not sub-book alone, which is
+    # ubiquitous among depressed cyclicals) so the option is genuinely floored
+    _hardfloor_28 = ((net_cash_pct_c >= 0.30) | (ncav_pct >= 0.60)
+                     | (_hidden_pct >= 0.40) | (cash_pct_mcap_v >= 0.50))
+    df['arch_xr_latent_bath_floor'] = (
+        is_operating & (mcap > 0) & _fx_coherent &
+        (_nrm28 > 0) &
+        ((ebitda_ttm_v < 0.7 * _nrm28) | (_ncol('net_income_ttm') < 0)) &  # depressed line
+        (_evn28 > 0) & (_evn28 <= 8.0) &                  # cheap on the RECOVERED base
+        (_num('cfo_yield') > 0) &                         # the hit was non-cash
+        _hardfloor_28 &                                   # asymmetric HARD floor
+        (rev_yoy_c >= -0.10) &
+        ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
     # F6 — Forensic payout confirmation (the user's BOOST leg). Any forensic /
     # hidden-value member that is ALSO returning capital — buying back shares
     # or paying a dividend — earns an EXTRA archetype count, which is this
@@ -4040,6 +4098,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_reusable_assembler',
         'arch_xr_asset_owner_catalyst',
         'arch_xr_pre_scale_margin',
+        'arch_xr_latent_inflection_floor',
+        'arch_xr_latent_bath_floor',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -4179,6 +4239,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_reusable_assembler': 'XR-ReusableAssembler',
         'arch_xr_asset_owner_catalyst': 'XR-AssetOwnerCatalyst',
         'arch_xr_pre_scale_margin': 'XR-PreScaleMargin',
+        'arch_xr_latent_inflection_floor': 'XR-LatentInflectionFloor',
+        'arch_xr_latent_bath_floor': 'XR-LatentBathFloor',
         'arch_templeton_pessimism': 'Templeton-MaxPessimism',
         'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
         'arch_levered_inflection': 'LeveredInflectionStub',
