@@ -254,6 +254,24 @@ def main():
         m.loc[_fix_sh, "shares_outstanding"] = _imp[_fix_sh]
         recon["shares_outstanding"] = int(_fix_sh.sum())
 
+    # ----- MARGIN RECONCILE -----
+    # op/gross/net margins were fill-only and NEVER re-touched, so corrupt or
+    # stale snapshot margins (KROS op_margin +246% on a burning biotech) sat
+    # beside reconciled levels and violated hard orderings (EBIT <= EBITDA).
+    # Margins are bounded quantities: reconcile on ABSOLUTE disagreement
+    # (>0.10) with Yahoo's own margin, which shares the basis of the levels
+    # we just reconciled. op_margin feeds the melt logic — correctness matters.
+    for _ymc, _mmc in (("yf_operating_margin", "op_margin"),
+                       ("yf_gross_margin", "gross_margin"),
+                       ("yf_profit_margin", "net_margin"),
+                       ("yf_roe", "roe")):
+        if _ymc in y.columns and _mmc in m.columns:
+            _ysrc = pd.to_numeric(y[_ymc], errors="coerce").reindex(m.index)
+            _mcur = pd.to_numeric(m[_mmc], errors="coerce")
+            _dis = _ysrc.notna() & _mcur.notna() & ((_mcur - _ysrc).abs() > 0.10)
+            m.loc[_dis, _mmc] = _ysrc[_dis]
+            recon[_mmc] = recon.get(_mmc, 0) + int(_dis.sum())
+
     # ----- DERIVED-RATIO RECOMPUTE (the rigorous-process core) -----
     # A ratio the pipeline can derive from current components must NEVER be a
     # carried snapshot value: price/mcap/EV refresh every run, so any stored
@@ -279,6 +297,33 @@ def main():
         fillm = ok & cur.isna()
         m.loc[stale | fillm, colname] = fresh[stale | fillm]
         recon[colname] = recon.get(colname, 0) + int((stale | fillm).sum())
+
+    # fcf_ttm on OUR basis (= cfo_ttm − capex_ttm; the identity holds exactly
+    # on 36k rows) recomputed against the RECONCILED cfo — a stale fcf beside a
+    # fresh cfo produced impossible fcf>cfo rows. Yahoo's levered-FCF measure is
+    # still never used; this stays CFO-minus-capex. USD twin rescaled.
+    _cx = pd.to_numeric(m.get("capex_ttm"), errors="coerce")
+    _cfoB = pd.to_numeric(m.get("cfo_ttm"), errors="coerce")
+    if "fcf_ttm" in m.columns:
+        _fcf_new = (_cfoB - _cx).where(_cfoB.notna() & _cx.notna())
+        _fcf_cur = pd.to_numeric(m["fcf_ttm"], errors="coerce")
+        _ratio_f = (_fcf_cur / _fcf_new).where(_fcf_new != 0)
+        _imposs = _fcf_cur.notna() & (_cfoB > 0) & (_fcf_cur > _cfoB * 1.05) & (_cx > 0)
+        _dis_f = _fcf_new.notna() & _fcf_cur.notna()             & ((_ratio_f > 1.4) | (_ratio_f < 1 / 1.4) | _imposs)
+        if "fcf_ttm_usd" in m.columns:
+            _usd_f = pd.to_numeric(m["fcf_ttm_usd"], errors="coerce")
+            _fac = (_fcf_new / _fcf_cur).where(_dis_f & (_fcf_cur != 0))
+            m.loc[_dis_f, "fcf_ttm_usd"] = (_usd_f * _fac)[_dis_f]
+        m.loc[_dis_f, "fcf_ttm"] = _fcf_new[_dis_f]
+        recon["fcf_ttm (cfo - capex, own basis)"] = int(_dis_f.sum())
+
+    # price_52w_high: a running max is definitionally valid — the stored high
+    # can never sit BELOW the current price.
+    if "price_52w_high" in m.columns:
+        _hi = pd.to_numeric(m["price_52w_high"], errors="coerce")
+        _lift = _hi.notna() & (_p > _hi)
+        m.loc[_lift, "price_52w_high"] = _p[_lift]
+        recon["price_52w_high lifted to price"] = int(_lift.sum())
 
     # fcf_yield = fcf_ttm / market_cap (repo convention, median dev 0.005).
     # fcf_ttm is LEVERED FCF (CFO - capex, post-interest) — an equity-holder
@@ -387,6 +432,24 @@ def main():
 
     _row_consistent("ev_ebitda", (_ev / _eb2).where(_eb2 > 0), _evb_yf, band=(0, 500))
     _row_consistent("ev_sales", (_ev / _rv2).where(_rv2 > 0), _evs_yf, band=(0, 500))
+    _row_consistent("p_s", (_mc / _rv2).where((_rv2 > 0) & (_mc > 0)),
+                    _yf_ok("yf_ps", "p_s"), band=(0, 500))
+    # residual margin-ordering violations after the Yahoo reconcile: the
+    # ebitda_margin side is tied to the reconciled LEVELS, so the other side
+    # is the provably-wrong figure — null it (wrong is worse than missing;
+    # NaN stays permissive in every gate).
+    _om2 = pd.to_numeric(m.get("op_margin"), errors="coerce")
+    _ebm2 = pd.to_numeric(m.get("ebitda_margin"), errors="coerce")
+    _gm2 = pd.to_numeric(m.get("gross_margin"), errors="coerce")
+    if "op_margin" in m.columns:
+        _bad_om = _om2.notna() & _ebm2.notna() & (_om2 > _ebm2 + 0.02)
+        m.loc[_bad_om, "op_margin"] = np.nan
+        recon["op_margin nulled (> ebitda_margin)"] = int(_bad_om.sum())
+    if "gross_margin" in m.columns:
+        _om3 = pd.to_numeric(m.get("op_margin"), errors="coerce")
+        _bad_gm = _gm2.notna() & _om3.notna() & (_gm2 < _om3 - 0.02)
+        m.loc[_bad_gm, "gross_margin"] = np.nan
+        recon["gross_margin nulled (< op_margin)"] = int(_bad_gm.sum())
     _row_consistent("p_e", (_mc / _ni2).where(_ni2 > 0), _pe_yf, band=(0, 2000))
     # where Yahoo's p_e IS authoritative but NI still disagrees (margin-implied
     # NI was unavailable), derive the level from the ratio: NI := mcap / p_e.
