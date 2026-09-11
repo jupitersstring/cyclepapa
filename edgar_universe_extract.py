@@ -232,6 +232,13 @@ PRETAX_INCOME_ALIASES = [
     "IncomeLossFromContinuingOperationsBeforeIncomeTaxes",
 ]
 RETAINED_EARNINGS_ALIASES = ["RetainedEarningsAccumulatedDeficit"]
+# (concepts review) claims SENIOR/PARALLEL to common equity: Graham NCAV is
+# the COMMON holder's claim (current assets - total liabilities - preferred
+# - NCI), and a constructed EV owes both alongside debt.
+MINORITY_INTEREST_ALIASES = ["MinorityInterest",
+                             "NoncontrollingInterests"]          # ifrs
+PREFERRED_EQUITY_ALIASES = ["PreferredStockValue",
+                            "PreferredStockValueOutstanding"]
 EPS_BASIC_ALIASES = ["EarningsPerShareBasic"]
 EPS_DILUTED_ALIASES = ["EarningsPerShareDiluted"]
 PPE_NET_ALIASES = [
@@ -554,6 +561,8 @@ def extract_row(ticker: str, cik: int, data: dict) -> dict:
     pt(SHARES_ALIASES, "shares_outstanding", units="shares")
     # Capital-allocation balance-sheet point-in-time
     pt(RETAINED_EARNINGS_ALIASES, "retained_earnings")
+    pt(MINORITY_INTEREST_ALIASES, "minority_interest")
+    pt(PREFERRED_EQUITY_ALIASES, "preferred_equity")
     pt(PPE_NET_ALIASES, "ppe_net")
 
     # ---- MULTI-YEAR AVERAGES (Graham/Templeton smoothing; robustness to

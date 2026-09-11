@@ -63,11 +63,20 @@ EQUITY_ALIASES = [
     "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
 ]
 CASH_ALIASES = [
-    "CashAndCashEquivalentsAtCarryingValue",
-    "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents", "Cash",
+    "CashAndCashEquivalentsAtCarryingValue", "Cash",
+    # restricted-inclusive rollup strictly last resort (different measure)
+    "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
 ]
-LT_DEBT_ALIASES = ["LongTermDebtNoncurrent", "LongTermDebt"]
+# (concepts review) LongTermDebt is a TOTAL (current portion included) —
+# pooling it with an ST bucket double-counted current maturities.
+LT_DEBT_ALIASES = ["LongTermDebtNoncurrent"]
+TOTAL_DEBT_ALIASES = ["LongTermDebt"]
 ST_DEBT_ALIASES = ["LongTermDebtCurrent", "ShortTermBorrowings"]
+TAX_EXPENSE_ALIASES = ["IncomeTaxExpenseBenefit"]
+PRETAX_INCOME_ALIASES = [
+    "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+    "IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
+]
 CFO_ALIASES = ["NetCashProvidedByUsedInOperatingActivities"]
 CAPEX_ALIASES = [
     "PaymentsToAcquirePropertyPlantAndEquipment",
@@ -140,6 +149,9 @@ def compute_multi_year(facts: dict, n_years: int = 6) -> pd.DataFrame:
     cash = _point_in_time_fy(facts, CASH_ALIASES)
     lt_d = _point_in_time_fy(facts, LT_DEBT_ALIASES)
     st_d = _point_in_time_fy(facts, ST_DEBT_ALIASES)
+    tot_d = _point_in_time_fy(facts, TOTAL_DEBT_ALIASES)
+    tax_e = _fy_series(facts, TAX_EXPENSE_ALIASES)
+    pretax = _fy_series(facts, PRETAX_INCOME_ALIASES)
     cfo = _fy_series(facts, CFO_ALIASES)
     capex = _fy_series(facts, CAPEX_ALIASES)
     rev = _fy_series(facts, REVENUE_ALIASES)
@@ -158,6 +170,9 @@ def compute_multi_year(facts: dict, n_years: int = 6) -> pd.DataFrame:
     df["cash"] = cash.reindex(years)
     df["lt_debt"] = lt_d.reindex(years)
     df["st_debt"] = st_d.reindex(years)
+    df["total_debt_standalone"] = tot_d.reindex(years)
+    df["tax_expense"] = tax_e.reindex(years)
+    df["pretax_income"] = pretax.reindex(years)
     df["cfo"] = cfo.reindex(years)
     df["capex"] = capex.reindex(years)
     df["revenue"] = rev.reindex(years)
@@ -165,11 +180,22 @@ def compute_multi_year(facts: dict, n_years: int = 6) -> pd.DataFrame:
     df["assets"] = assets.reindex(years)
     df["shares"] = shares.reindex(years)
 
-    # Derived
-    df["total_debt"] = df[["lt_debt", "st_debt"]].fillna(0).sum(axis=1)
+    # Derived. total debt: pure-noncurrent + current split when observed,
+    # else the standalone TOTAL concept (current portion already included —
+    # never summed with the ST bucket).
+    _split = df[["lt_debt", "st_debt"]].notna().any(axis=1)
+    df["total_debt"] = np.where(
+        _split, df[["lt_debt", "st_debt"]].fillna(0).sum(axis=1),
+        df["total_debt_standalone"])
     # (audit #2) unobserved equity must never fabricate IC = debt - cash
-    df["ic"] = df["equity"] + df["total_debt"] - df["cash"].fillna(0)
-    df["nopat"] = df["opinc"] * (1 - EFFECTIVE_TAX)
+    df["ic"] = df["equity"] + pd.to_numeric(df["total_debt"], errors="coerce").fillna(0) - df["cash"].fillna(0)
+    # NOPAT with the COMPANY'S OWN effective tax per year (concepts review:
+    # a flat 25% mis-states after-tax returns for every non-25% payer —
+    # zero-tax REIT-likes, 30%+ jurisdictions); clipped to a sane band,
+    # constant only as fallback.
+    _etr_y = (df["tax_expense"] / df["pretax_income"]).where(df["pretax_income"] > 0)
+    _etr_y = _etr_y.clip(0.0, 0.45).fillna(EFFECTIVE_TAX)
+    df["nopat"] = df["opinc"] * (1 - _etr_y)
     df["fcf"] = df["cfo"] - df["capex"]
     df["ebitda"] = df["opinc"].fillna(0) + df["da"].fillna(0)
 

@@ -213,10 +213,13 @@ def derive(df: pd.DataFrame) -> pd.DataFrame:
         q_pairs = _yoy_pairs(g, "Q") if g is not None and not g.empty else []
         # Per-member robust growth = best available like-for-like base
         growth: dict[str, dict] = {}
+        _hist: dict[str, list] = {}
         for member, pe, v_l, v_p, yoy in fy_pairs:
             growth.setdefault(member, {})["fy"] = yoy
+            _hist.setdefault(member, []).append((str(pe), float(yoy)))
         for member, pe, v_l, v_p, yoy in q_pairs:
             growth.setdefault(member, {})["q"] = yoy
+            _hist.setdefault(member, []).append((str(pe), float(yoy)))
         # Materiality + robust per-member growth
         n_periods = len(fy_pairs) + len(q_pairs)
         member_rows = []
@@ -274,6 +277,21 @@ def derive(df: pd.DataFrame) -> pd.DataFrame:
             rec["fastest_seg_yoy_fy"] = (round(fy, 4) if fy is not None else None)
             rec["fastest_seg_yoy_q"] = (round(q, 4) if q is not None else None)
             rec["fastest_segment_yoy"] = round(robust, 4)   # legacy name
+            # (user directive) the latest QUARTER is not the base number but
+            # it is CORROBORATION: a fresh quarter confirming the FY growth,
+            # and a streak of consecutive growing periods, are upweighted by
+            # the book blends rather than cherry-picked into the base.
+            _qc_seg = (q is not None and np.isfinite(q) and q > 0
+                       and (fy is None or not np.isfinite(fy) or q >= 0.5 * fy))
+            rec["fastest_seg_q_confirm"] = int(bool(_qc_seg))
+            _hh = sorted(_hist.get(member, []), key=lambda t: t[0], reverse=True)
+            _streak = 0
+            for _pe_h, _yy_h in _hh:
+                if np.isfinite(_yy_h) and _yy_h > 0:
+                    _streak += 1
+                else:
+                    break
+            rec["fastest_seg_consec_growth"] = int(_streak)
         robust_all = [r for *_x, r in
                       [(m, s, f, q, r) for m, s, f, q, r in member_rows]
                       if np.isfinite(r)]

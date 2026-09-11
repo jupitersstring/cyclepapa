@@ -1111,7 +1111,18 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
                                                      "Total Liab", "Total Liabilities"])
     ca_v = q(cur_assets, 0) if cur_assets is not None else np.nan
     tl_v = q(total_liab, 0) if total_liab is not None else np.nan
-    ncav = (ca_v - tl_v) if (pd.notna(ca_v) and pd.notna(tl_v)) else np.nan
+    # (concepts review) NCAV is the COMMON holder's claim: the liabilities
+    # row is NET of minority interest (NCI sits in equity) and preferred
+    # ranks ahead of common — both must come out. Missing rows mean none.
+    _nci_row = first_row_with_fallback(qbs, abs_, ["Minority Interest",
+                                                   "Total Equity Non Controlling Interests"])
+    _prf_row = first_row_with_fallback(qbs, abs_, ["Preferred Stock",
+                                                   "Preferred Stock Equity"])
+    _nci_v = q(_nci_row, 0) if _nci_row is not None else np.nan
+    _prf_v = q(_prf_row, 0) if _prf_row is not None else np.nan
+    _nci_v = 0.0 if pd.isna(_nci_v) else _nci_v
+    _prf_v = 0.0 if pd.isna(_prf_v) else _prf_v
+    ncav = (ca_v - tl_v - _nci_v - _prf_v) if (pd.notna(ca_v) and pd.notna(tl_v)) else np.nan
     ncav_pct_mcap = safe_div(ncav, market_cap) if (pd.notna(ncav) and market_cap) else np.nan
 
     # Cash as a fraction of market cap and EV. cash_pct_ev > 1 means cash on

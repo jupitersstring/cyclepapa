@@ -176,7 +176,13 @@ def build_yartseva_row(edgar_row: pd.Series, price_row: pd.Series | None) -> dic
         r["mcap_src"] = "derived_price_x_shares"
     if market_cap is not None and market_cap > 0:
         r["market_cap"] = market_cap
-        r["enterprise_value"] = market_cap + (edgar_row.get("total_debt") or 0) - (edgar_row.get("cash") or 0)
+        # constructed EV owes preferred + NCI alongside debt (concepts review)
+        _pref_ev = edgar_row.get("preferred_equity"); _nci_ev = edgar_row.get("minority_interest")
+        _pref_ev = 0.0 if (_pref_ev is None or pd.isna(_pref_ev)) else float(_pref_ev)
+        _nci_ev = 0.0 if (_nci_ev is None or pd.isna(_nci_ev)) else float(_nci_ev)
+        r["enterprise_value"] = (market_cap + (edgar_row.get("total_debt") or 0)
+                                 + _pref_ev + _nci_ev
+                                 - (edgar_row.get("cash") or 0))
     r["price"] = price
 
     # Bucket from FDB convention (USD)
@@ -251,6 +257,8 @@ def build_yartseva_row(edgar_row: pd.Series, price_row: pd.Series | None) -> dic
     if _as_f:
         r["goodwill_intangibles_pct_assets"] = (_gw_f + _ig_f) / _as_f
     r["ppe_net"] = edgar_row.get("ppe_net")
+    r["minority_interest"] = edgar_row.get("minority_interest")
+    r["preferred_equity"] = edgar_row.get("preferred_equity")
     # TTM provenance passthrough (audit Y6): downstream can distinguish a
     # real roll-forward TTM from an FY served as TTM, and see staleness.
     for _pv in ("revenue_ttm_end", "revenue_ttm_kind", "cfo_ttm_end",
@@ -332,9 +340,16 @@ def build_yartseva_row(edgar_row: pd.Series, price_row: pd.Series | None) -> dic
         if price:
             r["pct_above_tb"] = (price - edgar_row["tangible_book_per_share"]) / edgar_row["tangible_book_per_share"]
 
-    # NCAV (Graham): current_assets - total_liabilities
+    # NCAV (Graham, concepts review): the COMMON holder's claim — current
+    # assets minus total liabilities minus claims senior/parallel to common
+    # (preferred stock; noncontrolling interests sit in EQUITY under GAAP so
+    # "Liabilities" never includes them). Unobserved legitimately means none.
     if edgar_row.get("current_assets") is not None and edgar_row.get("liabilities") is not None:
-        ncav = edgar_row["current_assets"] - edgar_row["liabilities"]
+        def _nz(k):
+            v = edgar_row.get(k)
+            return 0.0 if (v is None or pd.isna(v)) else float(v)
+        ncav = (edgar_row["current_assets"] - edgar_row["liabilities"]
+                - _nz("preferred_equity") - _nz("minority_interest"))
         r["ncav"] = ncav
         if market_cap:
             r["ncav_pct_mcap"] = ncav / market_cap

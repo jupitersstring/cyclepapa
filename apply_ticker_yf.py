@@ -173,7 +173,8 @@ def main():
                                  "net_working_capital",
                                  "goodwill_intangibles_pct_assets",
                                  "capital_return_ttm", "dividends_ttm",
-                                 "buybacks_ttm"}
+                                 "buybacks_ttm", "minority_interest",
+                                 "preferred_equity"}
                              ).drop_duplicates("symbol").set_index("symbol")
         _n_avg = 0
         for _ac in _edavg.columns:
@@ -1582,6 +1583,14 @@ def main():
     _fx2 = (_ebu3 / _eb3).where(_eb3 != 0)
     _fx_bad = (_fx1 > 0) & (_fx2 > 0) & ((_fx1 / _fx2 > 1.10) | (_fx2 / _fx1 > 1.10))
     _qc_flag(_fx_bad, "fx_twin_dev")
+    # (concepts review) Yahoo's EV = mcap + debt - cash omits preferred and
+    # NCI; where those audited claims are MATERIAL (>5% of |EV|) the EV
+    # multiples run light — identifiable, never silent.
+    _nci_q = pd.to_numeric(m.get("minority_interest"), errors="coerce").fillna(0)
+    _prf_q = pd.to_numeric(m.get("preferred_equity"), errors="coerce").fillna(0)
+    _sen_q = _nci_q + _prf_q
+    _qc_flag((_sen_q > 0.05 * _ev_now.abs()) & (_sen_q > 0) & _ev_now.notna(),
+             "ev_ex_senior_claims")
     m["qc_flags"] = m["qc_flags"].str.lstrip("|")
 
     # REPAIR-MAGNITUDE DRIFT DETECTOR: our own manipulations are watched. A
