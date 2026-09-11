@@ -54,13 +54,18 @@ ET = ZoneInfo("America/New_York")
 MKT_OPEN = 9 * 60 + 30    # 09:30 ET in minutes
 MKT_CLOSE = 16 * 60       # 16:00 ET in minutes
 
-# Sell-side scoring coefficients (bearish, negative points), calibrated to
-# the observed sell-side forward-return medians -- see form4_timing_sells.json
-# summary. Off-hours selling is weighted per how much more informed the test
-# shows it to be.
-SELL_OFF = 8.0
-SELL_MKT = 4.0
-SELL_FRI = 2.0
+# Sell-side scoring coefficients. TESTED 2026-09 on 849 code-S sells: the
+# buy-side filing-time asymmetry does NOT replicate for sells (off-hours minus
+# market-hours median = -0.8%, verdict INCONCLUSIVE). Mechanism: off-hours
+# BUYING is a rare discretionary act (meaningful), whereas ~85% of sells file
+# after-hours by default (10b5-1 / batch filing), so after-hours carries no
+# information for sells. The only apparent tell (Friday-evening sells -2%) was
+# confounded -- all from a single Friday (2026-05-29). Coefficients are
+# therefore 0: no sell-timing score is assigned and this layer is NOT wired
+# into the consensus. Revisit only with a wider multi-Friday sample.
+SELL_OFF = 0.0
+SELL_MKT = 0.0
+SELL_FRI = 0.0
 
 
 def load_acceptance_cache() -> dict:

@@ -143,6 +143,30 @@ points (+12 fully off-hours, −8 fully market-hours, +3 Friday-evening) are
 calibrated to the observed medians. This is A1's event-study harness in
 miniature for one dimension; the general daily-price version still stands.
 
+**A7b — The mirror test on SELLS: filing time does NOT transfer.** The same
+methodology was run on 849 open-market code-S SALES (form4_timing.py --side
+sell; form4_timing_sells.json). Result — INCONCLUSIVE, and instructively so:
+
+| bucket | n | median ret | win rate |
+|---|---|---|---|
+| MARKET_HOURS | 84 | +1.4% | 56% |
+| AFTER_HOURS | 551 | +0.6% | 52% |
+| Friday-evening subset | 112 | −2.0% | 42% |
+
+Off-minus-market median differential is only −0.8% (verdict INCONCLUSIVE),
+and the one apparent tell — Friday-evening sells underperforming — is
+confounded: all 148 Friday-evening sells came from a SINGLE Friday
+(2026-05-29), so it is one event cluster, not a pattern. The mechanism
+explains the null: ~85% of sells are filed after-hours *by default*
+(10b5-1 plans and batch/compliance filing dominate), so "after-hours" is the
+routine baseline for sells and carries no information — whereas off-hours
+*buying* is a rare, discretionary act, which is exactly why it was
+informative. Conclusion: the sell-side timing layer is deliberately NOT
+wired into the consensus (scoring coefficients set to 0); a wider,
+multi-Friday sample would be needed before revisiting the Friday-evening
+distribution question. Reporting the negative result is the point — it
+guards against over-fitting the buy-side finding into a symmetric prior.
+
 ## Part 3 — Engineering errors & blind spots
 
 All evidence first-hand from this project's own history or measured
