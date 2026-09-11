@@ -140,6 +140,17 @@ def main():
     def edgar_col(c, yahoo_series=None):
         if len(ed) and c in ed.columns:
             v = pd.to_numeric(ed[c], errors="coerce").reindex(m.index)
+            # ABSENCE-OF-EVIDENCE GUARD (balance-sheet items): EDGAR's alias
+            # sets are partial — a revolver under LineOfCredit or cash parked
+            # in money-market instruments simply is not seen, producing a
+            # HOLLOW low (TTEC: EDGAR debt 0 vs real $933M; STG: cash $82M vs
+            # real $858M). An audited figure that is a SMALL FRACTION of the
+            # fresh Yahoo figure is treated as incomplete coverage, not truth:
+            # for cash/debt, EDGAR only wins when >= half of Yahoo's figure.
+            if c in ("cash", "total_debt") and yahoo_series is not None:
+                _hollow = v.notna() & yahoo_series.notna() \
+                    & (yahoo_series > 0) & (v < 0.5 * yahoo_series)
+                v = v.where(~_hollow)
             # SIGN-FLIP SUPERSESSION: when the audited and the fresh source
             # disagree in SIGN, a regime change (loss->profit or the reverse)
             # rolled through between their windows — only the FRESHER source
@@ -284,9 +295,11 @@ def main():
         src = _src_e.combine_first(_src_y)      # EDGAR preferred, Yahoo fills
         edgar_won |= _src_e.notna()
         cur = pd.to_numeric(m[mcol], errors="coerce")
-        both = src.notna() & cur.notna() & (src != 0) & (cur != 0)
+        # cur == 0 IS a value and must be repairable: a hollow zero (TTEC
+        # debt 0 vs real $933M) was immortal under a nonzero-cur guard.
+        both = src.notna() & cur.notna() & (src != 0)
         ratio = (cur / src).where(both)
-        disagree = both & ((ratio > 1.4) | (ratio < 1 / 1.4))
+        disagree = both & ((ratio > 1.4) | (ratio < 1 / 1.4) | (cur == 0))
         if usd_col and usd_col in m.columns:
             usd = pd.to_numeric(m[usd_col], errors="coerce")
             factor = (src / cur).where(disagree)
@@ -294,6 +307,19 @@ def main():
         m.loc[disagree, mcol] = src[disagree]
         recon[mcol] = int(disagree.sum())
         repaired_any |= disagree
+
+    # cash — DIRECTIONAL reconcile: the broad-basis defense says master cash
+    # (incl. investments) may legitimately EXCEED Yahoo's narrow totalCash —
+    # but it can never legitimately sit at a FRACTION of it (STG: master 82M
+    # vs Yahoo 858M = missing money-market instruments). Adopt Yahoo when the
+    # master is under half of it; the broad side stays untouched.
+    if "cash" in m.columns and "yf_cash" in y.columns:
+        _ca_cur = pd.to_numeric(m["cash"], errors="coerce")
+        _ca_y = pd.to_numeric(y["yf_cash"], errors="coerce").reindex(m.index)
+        _poor = _ca_y.notna() & _ca_cur.notna() & (_ca_y > 0) \
+            & (_ca_cur < 0.5 * _ca_y)
+        m.loc[_poor, "cash"] = _ca_y[_poor]
+        recon["cash (directional: master under half of Yahoo)"] = int(_poor.sum())
 
     # shares_outstanding: mcap and price are BOTH Yahoo-fresh, and shares is
     # definitionally mcap/price — a stale share count (splits, new issues) is
@@ -407,6 +433,28 @@ def main():
         fillm = ok & cur.isna()
         m.loc[stale | fillm, colname] = fresh[stale | fillm]
         recon[colname] = recon.get(colname, 0) + int((stale | fillm).sum())
+
+    # capex_ttm sign/identity normalization: our convention stores capex as a
+    # POSITIVE magnitude and derives fcf = cfo - capex. Negative stored capex
+    # (088910.KQ at -16.6B vs the real +1.9B) both breaks the D&A-vs-capex
+    # forensic gates and INFLATES fcf through the identity. Where cfo and fcf
+    # are both present, the identity implies capex = cfo - fcf: adopt it when
+    # the stored value disagrees in SIGN or by >1.4x and the implied value is
+    # plausible (>=0). A stored negative with no identity rescue is nulled.
+    if "capex_ttm" in m.columns:
+        _cx_cur = pd.to_numeric(m["capex_ttm"], errors="coerce")
+        _cfo_cx = pd.to_numeric(m.get("cfo_ttm"), errors="coerce")
+        _fcf_cx = pd.to_numeric(m.get("fcf_ttm"), errors="coerce")
+        _cx_imp = (_cfo_cx - _fcf_cx).where(_cfo_cx.notna() & _fcf_cx.notna())
+        _cx_imp = _cx_imp.where(_cx_imp >= 0)
+        _r_cx = (_cx_cur / _cx_imp).where(_cx_imp > 0)
+        _bad_cx = _cx_cur.notna() & _cx_imp.notna() \
+            & ((_cx_cur < 0) | (_r_cx > 1.4) | (_r_cx < 1 / 1.4))
+        m.loc[_bad_cx, "capex_ttm"] = _cx_imp[_bad_cx]
+        recon["capex_ttm (identity: cfo - fcf)"] = int(_bad_cx.sum())
+        _null_cx = _cx_cur.notna() & (_cx_cur < 0) & _cx_imp.isna()
+        m.loc[_null_cx, "capex_ttm"] = np.nan
+        recon["capex_ttm nulled (negative, no identity)"] = int(_null_cx.sum())
 
     # fcf_ttm policy — ADJUDICATED AGAINST AUDITED ACCOUNTS (EDGAR XBRL, US
     # names, n=2,821): Yahoo's FCF agrees with the audited CFO-minus-capex on

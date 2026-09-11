@@ -89,3 +89,24 @@ the band-reject left the stored value standing; now a provably-corrupt
 recomputation NULLS the stored yield too (59 more nulled). Final:
 0 ERROR, 76/133 fully clean, all WARNs in the established explained classes
 (EV composition basis 31, roe period-basis 29, small level drifts).
+
+## Round 6 — XR gate-critical figures (2026-09-12)
+
+18 top XR firers x 10 gate-critical fields vs a fresh statements-mode pull:
+24/155 disagreements in four classes, two fixed at the root immediately:
+1. NEGATIVE CAPEX corruption (088910.KQ -16.6B vs real +1.9B) inflating FCF
+   through the identity -> capex normalized to the cfo-fcf identity (118
+   repaired) and 4,949 negative-no-rescue capex values nulled.
+2. HOLLOW EDGAR BALANCE ITEMS adopted as truth: TTEC debt ZERO vs the real
+   $933M (revolver outside the alias set), STG cash $82M vs real $858M
+   (money-market instruments unseen). Fixes: (a) absence-of-evidence guard —
+   EDGAR cash/debt only wins when >= half of Yahoo's figure; (b) zeros are
+   VALUES and must be repairable (the reconcile's nonzero-cur guard made a
+   hollow zero immortal) — 1,720 debts repaired; (c) cash's broad-basis
+   defense made DIRECTIONAL (master may exceed Yahoo's narrow cash, never
+   sit under half of it) — 1,969 repaired.
+3. CFO/FCF staleness on non-US names — heals via the statements merge.
+4. Dividend-yield freshness lag (~1.5x on two names) — accepted, noted.
+Re-verified post-fix: 8 -> 1 disagreement on balance/level fields (the
+survivor is the documented broad-cash basis). XR6 tightened 339 -> 174 as
+capex corrections flowed through owner earnings.
