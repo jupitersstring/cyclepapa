@@ -148,7 +148,7 @@ METHODOLOGY AUDIT — 180 checks, 0 FAIL, 0 WARN
   PASS  valuation: fcf_yield != fcf/mcap (>25% dev) <= 1.0% of covered rows  — 0/32210 rows (0.00%)
   PASS  cross-ccy: EV rebuilt from restated components on restated lines  — 0 restated rows with mixed-ccy EV
   PASS  valuation: pb != mcap/equity where audited equity exists (>25% dev) <= 1.0% of covered rows  — 0/4930 rows (0.00%)
-  PASS  valuation: cfo_yield != cfo_ttm/mcap (>25% dev) <= 1.5% of covered rows  — 1/34472 rows (0.00%)
+  PASS  valuation: cfo_yield != cfo_ttm/mcap (>25% dev) <= 1.5% of covered rows  — 5/34473 rows (0.01%)
   PASS  valuation: earnings_yield != net_income_ttm/mcap (>25% dev) <= 1.5% of covered rows  — 0/31221 rows (0.00%)
   PASS  valuation: no ev_ebit below ev_ebitda (impossible ordering)  — 0 rows
   PASS  valuation: owner_earnings_yield != (NI+D&A−capex)/mcap (>25% dev) <= 1.0% of covered rows  — 0/3842 rows (0.00%)

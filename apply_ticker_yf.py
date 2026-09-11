@@ -321,6 +321,14 @@ def main():
                 y[_lvl] = _cur0.fillna(_implied)
             else:
                 y[_lvl] = _implied
+    # CFO window coherence (deep-trace round 9): fcf and capex adopt
+    # STATEMENT-window figures where present, so cfo must prefer the same
+    # window (yf_cfo_stmt) over the snapshot — mixing windows manufactured
+    # fcf-vs-(cfo-capex) divergences on JP/OTC names.
+    if "yf_cfo_stmt" in y.columns:
+        _cfo_st0 = pd.to_numeric(y["yf_cfo_stmt"], errors="coerce")
+        _cfo_sn0 = pd.to_numeric(y.get("yf_cfo"), errors="coerce")
+        y["yf_cfo"] = _cfo_st0.where(_cfo_st0.notna(), _cfo_sn0)
     # NOTE: yf_fcf is deliberately NOT reconciled. Yahoo's freeCashflow is its
     # "levered FCF" — a methodologically different, systematically LOWER measure
     # than this pipeline's CFO-minus-capex fcf_ttm (MSFT: Yahoo 16.5B vs real
@@ -383,10 +391,14 @@ def main():
     if "cash" in m.columns and "yf_cash" in y.columns:
         _ca_cur = pd.to_numeric(m["cash"], errors="coerce")
         _ca_y = pd.to_numeric(y["yf_cash"], errors="coerce").reindex(m.index)
+        # (deep-trace round 9, GASS) stale-LOW cash at 0.59x Yahoo survived
+        # the old half-rule: the broad-basis defense only ever justifies the
+        # master sitting ABOVE Yahoo's narrow cash — BELOW it by more than
+        # the reconcile tolerance is staleness, not basis. Adopt at <1/1.4.
         _poor = _ca_y.notna() & _ca_cur.notna() & (_ca_y > 0) \
-            & (_ca_cur < 0.5 * _ca_y)
+            & (_ca_cur < _ca_y / 1.4)
         m.loc[_poor, "cash"] = _ca_y[_poor]
-        recon["cash (directional: master under half of Yahoo)"] = int(_poor.sum())
+        recon["cash (directional: master stale-low vs Yahoo)"] = int(_poor.sum())
 
     # shares_outstanding: mcap and price are BOTH Yahoo-fresh, and shares is
     # definitionally mcap/price — a stale share count (splits, new issues) is
@@ -1567,6 +1579,14 @@ def main():
     _cfo3 = pd.to_numeric(m.get("cfo_ttm"), errors="coerce")
     _cx3 = pd.to_numeric(m.get("capex_ttm"), errors="coerce")
     _qc_flag((_cfo3 > 0) & (_fcf3 > _cfo3 * 1.05), "fcf_gt_cfo")
+    # independent primaries (statement FCF vs CFO/capex) may straddle
+    # reporting windows — a >40% divergence between fcf and cfo-capex is
+    # KEPT (never identity-derived away, by directive) but must be
+    # identifiable (deep-trace round 9: SKUYF sign-flip class).
+    _fc_id3 = _cfo3 - _cx3
+    _wmm = (_fcf3.notna() & _fc_id3.notna() & (_fc_id3 != 0)
+            & (((_fcf3 / _fc_id3) - 1).abs() > 0.40))
+    _qc_flag(_wmm, "fcf_window_mismatch")
     _td3 = pd.to_numeric(m.get("total_debt"), errors="coerce")
     _ca3 = pd.to_numeric(m.get("cash"), errors="coerce")
     # gap measured on BOTH bases: relative to mcap (equity materiality) and
@@ -1590,8 +1610,12 @@ def main():
     # (concepts review) Yahoo's EV = mcap + debt - cash omits preferred and
     # NCI; where those audited claims are MATERIAL (>5% of |EV|) the EV
     # multiples run light — identifiable, never silent.
-    _nci_q = pd.to_numeric(m.get("minority_interest"), errors="coerce").fillna(0)
-    _prf_q = pd.to_numeric(m.get("preferred_equity"), errors="coerce").fillna(0)
+    _nci_q = (pd.to_numeric(m["minority_interest"], errors="coerce").fillna(0)
+              if "minority_interest" in m.columns
+              else pd.Series(0.0, index=m.index))
+    _prf_q = (pd.to_numeric(m["preferred_equity"], errors="coerce").fillna(0)
+              if "preferred_equity" in m.columns
+              else pd.Series(0.0, index=m.index))
     _sen_q = _nci_q + _prf_q
     _qc_flag((_sen_q > 0.05 * _ev_now.abs()) & (_sen_q > 0) & _ev_now.notna(),
              "ev_ex_senior_claims")
