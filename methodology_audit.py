@@ -720,6 +720,9 @@ def _figure_coverage(t, g):
         "distress_flag", "nol_usd", "reorg_flag", "is_price_ghost", "is_otc",
         # scores/composites checked by their own range suite
         "yartseva_score", "not_priced_in_score", "cheap_score",
+        # ev_sales_change_yoy: build-guarded (equity-slice deflation, M12),
+        # stored-band enforced (+/-10), consumed by arch_asleep_unrerated
+        "ev_sales_change_yoy",
         # misc bounded/threshold-only consumption
         "earnings_beat_rate", "avg_earnings_surprise", "earnings_beat_streak",
         "earnings_surprise_inflecting", "eps_yoy_positive_share",

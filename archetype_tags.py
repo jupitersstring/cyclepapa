@@ -3028,6 +3028,40 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['asleep_score'] = (((0.6 * _asl_quality + 0.4 * _asl_beat).clip(0, 1))  # quality upweighted (60%)
                           * df['arch_asleep_at_wheel']).round(3)
 
+    # ---------- "Asleep + unrerated" (chronic beats, LITTLE multiple expansion) --
+    # (user spec) The deepest form of the asleep trade: the market has been
+    # REPEATEDLY told (the same chronic-beats / durable-EPS entry test as
+    # arch_asleep_at_wheel) and STILL has not re-rated the name — over the
+    # past year the multiple expanded little or not at all, through ANY lens:
+    #   (a) the EV/Sales multiple's own change <= +10% (or compressed),
+    #   (b) the price return lagged the fundamentals (price_yoy <= median of
+    #       revenue/EBITDA growth — the beats landed, the price did not),
+    #   (c) implied P/E expansion (price return vs fundamental growth)
+    #       <= +10%.
+    # A modest not-already-rich guard keeps out names whose multiple never
+    # expanded because it already prices perfection (missing = permissive,
+    # per breadth doctrine — richness unknown is not richness).
+    _esc_au = _num('ev_sales_change_yoy')
+    _pyw_au = _num('price_yoy')
+    _fund_g_au = pd.concat([rev_yoy, _num('ebitda_yoy')],
+                           axis=1).median(axis=1, skipna=True)
+    _pe_exp_au = ((1.0 + _pyw_au)
+                  / (1.0 + _fund_g_au.where(_fund_g_au > -0.9)) - 1.0)
+    _no_rerate_au = ((_esc_au <= 0.10)
+                     | ((_pyw_au <= _fund_g_au)
+                        & _pyw_au.notna() & _fund_g_au.notna())
+                     | (_pe_exp_au <= 0.10))
+    _pe_au = _num('p_e')
+    _not_rich_au = (((_pe_au > 0) & (_pe_au <= 25))
+                    | ((ev_ebitda_v > 0) & (ev_ebitda_v <= 14))
+                    | (_pe_au.isna() & ev_ebitda_v.isna()))
+    df['arch_asleep_unrerated'] = (
+        (df['arch_asleep_at_wheel'] == 1) &
+        _no_rerate_au.fillna(False) &
+        _not_rich_au.fillna(False) &
+        _not_melting
+    ).fillna(False).astype(int)
+
     # ---------- Templeton "maximum pessimism" (cheap vs own history) ----------
     # Cheap against the company's OWN mid-cycle earnings (EV / normalized 5yr
     # EBITDA — the cyclical adjustment that makes a trough-earnings cyclical
@@ -3589,6 +3623,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_negative_ev_value',
         'arch_growth_algo',
         'arch_asleep_at_wheel',
+        'arch_asleep_unrerated',
         'arch_templeton_pessimism',
         'arch_asymmetric_assembly',
         'arch_levered_inflection',
@@ -3701,6 +3736,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_negative_ev_value': 'NegativeEV-Value',
         'arch_growth_algo': 'GrowthAlgo-Flywheel',
         'arch_asleep_at_wheel': 'AsleepAtWheel-Beats',
+        'arch_asleep_unrerated': 'AsleepUnrerated-BeatsNoRerate',
         'arch_templeton_pessimism': 'Templeton-MaxPessimism',
         'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
         'arch_levered_inflection': 'LeveredInflectionStub',
