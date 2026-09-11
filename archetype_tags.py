@@ -2691,6 +2691,24 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _not_melting
     ).fillna(False).astype(int)
 
+    # ---------- FINANCING FRAGILITY (Baron prehistory: the Motient lesson) --
+    # "A large future market is insufficient when the investor's claim cannot
+    # survive the financing PATH required to reach it." Growth that depends on
+    # CONTINUOUS external capital with a weak balance sheet is the lineage the
+    # 2000-02 selection event destroyed (Motient/NTL/telecom). Encoded as a
+    # DEMOTION mask applied to the growth XR gates so refinancing-fragile
+    # expansion is never flagged as exceptional risk/reward. Fragile =
+    # burning cash (negative FCF) AND raising outside capital or diluting,
+    # AND without the balance sheet to survive a closed capital market.
+    _ff_burn = (fcf_yield < 0)
+    _ff_raise = ((_ncol('financing_cf_ttm') > 0) | (_ncol('shares_yoy') > 0.05))
+    _ff_weak = (((_ncol('interest_coverage') < 3) & _ncol('interest_coverage').notna())
+                | (nde >= 3.0) | ((net_cash_pct_c < 0) & (nde >= 2.0)))
+    _financing_fragile = (_ff_burn & _ff_raise & _ff_weak).fillna(False)
+    # surfaced as a WARN flag (not an opportunity) — a financing-fragile
+    # grower is exactly the Motient trap the record selected against
+    df['financing_fragile_flag'] = _financing_fragile.astype(int)
+
     # ---------- XR12-XR16: VIOLENT-RERATING ENGINES (user request) ----------
     # Each models a FAMOUS accounting nuance that forensic readers caught
     # before the market, producing some of the most violent re-ratings on
@@ -2853,6 +2871,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # profit, and trailing screens still price the loss-maker.
     df['arch_xr_leverage_detonation'] = (
         is_operating & (mcap > 0) & _fx_coherent &
+        ~_financing_fragile &                              # Motient guard
         ((ebitda_first_pos > 0) | (fcf_first_pos > 0)
          | ((_num('fcf_eta_quarters') > 0) & (_num('fcf_eta_quarters') <= 2))) &
         (_num('incremental_ebitda_margin') >= 0.35) &
@@ -2876,6 +2895,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _om_x22 = s('op_margin', np.nan)
     df['arch_xr_baron_compounder'] = (
         is_operating & (mcap > 0) & _fx_coherent &
+        ~_financing_fragile &                              # Motient guard
         (_ins_x22 >= 0.10) &                                  # owner-operator
         ((_ncol('rev_yoy_pos_share_12q') >= 0.75)             # audited duration...
          | (_ncol('rev_yoy_streak_q') >= 6)
@@ -2905,6 +2925,64 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((s('gross_margin_delta_yoy', np.nan) >= -0.03)
          | (_oe_loc > 0) | (_ncol('oe_avg') > 0)) &           # economics intact
         ((nde < 3.0) | (net_cash_pct_c >= 0)) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR24 — Reusable assembler ('XR-ReusableAssembler', Baron Generation III,
+    # the TERMINAL phenotype). The decisive variable of Baron's forty-year
+    # selection: how much of the PREVIOUS assembly is reused in the next one.
+    # The forensic tell of reuse is operating leverage from a built substrate:
+    # incremental margins running ABOVE the average margin (each new dollar
+    # mostly profit because data/software/brand/installed-base is already
+    # paid for), an ASSET-LIGHT base (low capex intensity, or an intangible
+    # substrate), growth that is SELF-FUNDED (no external-capital dependence,
+    # no dilution — the module that SURVIVED 2000-02), durable, and bought at
+    # a growth-adjusted (not cheap-screen) price. CoStar/Gartner/FactSet/
+    # MSCI/IDEXX class.
+    _inc_x24 = _num('incremental_ebitda_margin')
+    _reuse_x24 = ((_inc_x24 >= 0.30) & (_inc_x24 > ebitda_margin))     # marginal >> average
+    _assetlite_x24 = ((_ncol('capex_intensity') <= 0.06)
+                      | (_ncol('goodwill_intangibles_pct_assets') >= 0.25))
+    _selffund_x24 = ((_ncol('financing_cf_ttm') <= 0) | _ncol('financing_cf_ttm').isna())
+    df['arch_xr_reusable_assembler'] = (
+        is_operating & (mcap > 0) & _fx_coherent &
+        ~_financing_fragile &
+        _reuse_x24 & _assetlite_x24 & _selffund_x24 &
+        (ebitda_margin >= 0.15) &
+        ((_ncol('rev_yoy_streak_q') >= 6) | (_ncol('rev_3y_cagr') >= 0.12)
+         | (rev_yoy_c >= 0.12)) &
+        ((nde <= 2.0) | (net_cash_pct_c >= 0)) &
+        (((_ncol('evsg') > 0) & (_ncol('evsg') <= 0.40))
+         | ((_ncol('ev_ebit') > 0) & (_ncol('ev_ebit') <= 22))) &
+        ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR25 — Asset, owner, catalyst ('XR-AssetOwnerCatalyst', Baron
+    # Generation I, the original primitive: the 14-year-old's Monmouth bank
+    # trade). A completed object priced BELOW its reproduction/realisable
+    # value, a credible OWNER-operator who can build the next stage, and a
+    # CATALYST already in motion (an inflection, capital return, or a
+    # restructuring/harvest) — the special-situation ancestor of the whole
+    # method, before compounding was ever the plan.
+    # DEEP asset floor (a real discount to realisable value, not merely
+    # sub-book) and a catalyst ALREADY IN MOTION (a first-positive
+    # inflection, an accelerating operating-leverage turn, or an active
+    # buyback) — harvest alone is too common to count as a catalyst here.
+    _av_x25 = (((pb > 0) & (pb < 0.8)) | (net_cash_pct_c >= 0.40)
+               | (ncav_pct >= 0.80) | (_hidden_pct >= 0.40))
+    _cat_x25 = ((ebitda_first_pos > 0) | (cfo_first_pos > 0) | (fcf_first_pos > 0)
+                | (ni_first_pos > 0) | ((rev_accel > 0) & oper_lev_any)
+                | (_ncol('buyback_yield') >= 0.02) | (_ncol('net_buyback_ttm') > 0))
+    df['arch_xr_asset_owner_catalyst'] = (
+        is_operating & (mcap > 0) & _fx_coherent &
+        (_ncol('insider_ownership_pct') >= 0.15) &         # strong owner-operator
+        _av_x25 & _cat_x25 &
+        beaten_down_any(0.25) &                            # entered on a DISLOCATION
+        (((_ncol('net_income_ttm') > 0) | (_ncol('ni_avg') > 0))
+         | (_ncol('cfo_yield') > 0)) &                     # a real business, not a shell
+        ((nde < 3.0) | (net_cash_pct_c >= 0)) &
+        ~(_ncol('shares_yoy') > 0.05) &
         _not_melting
     ).fillna(False).astype(int)
 
@@ -3925,6 +4003,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_confluence',
         'arch_xr_baron_compounder',
         'arch_xr_insider_capitulation',
+        'arch_xr_reusable_assembler',
+        'arch_xr_asset_owner_catalyst',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -4061,6 +4141,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_confluence': 'XR-Confluence',
         'arch_xr_baron_compounder': 'XR-BaronCompounder',
         'arch_xr_insider_capitulation': 'XR-InsiderCapitulation',
+        'arch_xr_reusable_assembler': 'XR-ReusableAssembler',
+        'arch_xr_asset_owner_catalyst': 'XR-AssetOwnerCatalyst',
         'arch_templeton_pessimism': 'Templeton-MaxPessimism',
         'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
         'arch_levered_inflection': 'LeveredInflectionStub',
@@ -4468,7 +4550,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m','segment_count','fastest_segment_yoy','is_price_ghost'] if c in df.columns]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)
