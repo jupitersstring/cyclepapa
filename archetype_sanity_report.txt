@@ -12,3 +12,4 @@ NEAR-EMPTY COLUMNS (<2% coverage — legs almost never fire):
   ZERO     arch_capex_famine_harvest fires on NOBODY — investigate
   ZERO     arch_self_funded_returner fires on NOBODY — investigate
   ZERO     arch_book_compounder_discount fires on NOBODY — investigate
+  ZERO     arch_xr_paydown_yield fires on NOBODY — investigate

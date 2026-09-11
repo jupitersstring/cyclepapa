@@ -2284,6 +2284,25 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _not_melting
     ).fillna(False).astype(int)
 
+    # FX-COHERENCE guard for every gate dividing a LEVEL by MARKET CAP: on a
+    # cross-listed line (USD-quoted Shanghai B-shares, Frankfurt .F lines) the
+    # mcap is LISTING-currency while financials are REPORTING-currency — the
+    # ratio silently mixes currencies (900920.SS showed owner earnings at 5x
+    # its mcap). Coherent = the fx implied by the mcap USD-twin matches the fx
+    # implied by the revenue USD-twin within 10% (NaN-permissive: home-listed
+    # rows without twins pass).
+    _fx_m_g = _ncol('market_cap_usd') / _ncol('market_cap')
+    _fx_r_g = _ncol('revenue_ttm_usd') / _ncol('revenue_ttm')
+    _fx_coherent = ~(((_fx_m_g / _fx_r_g) - 1).abs() > 0.10)
+    # ...but twins that AGREE AT WRONG VALUES (unconverted — the JFU class)
+    # defeat twin detection, so provable cross-currency LINES are excluded
+    # from mcap-vs-level gates directly: Frankfurt .F cross-lines and
+    # USD-quoted Shanghai B-shares (9xxxxx.SS). Their HOME listings stay in
+    # the pool — no name is lost, only the wrong-basis duplicate line.
+    _sym_g = df['symbol'].astype(str)
+    _fx_coherent = _fx_coherent & ~(_sym_g.str.endswith('.F')
+                                    | _sym_g.str.match(r'^9\d{5}\.SS$'))
+
     # F4 — Cash-adjusted P/E, negative-or-cheap (user spec). The doctrine:
     # NEGATIVE is only CHEAP when the earnings are POSITIVE — a negative EV on
     # positive EBITDA means you are paid to own the earnings; the same logic at
@@ -2299,6 +2318,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _adj_pe = ((_mc_ca - _nc_ca) / _ni_ca.where(_ni_ca > 0))
     df['arch_cash_adjusted_pe'] = (
         is_operating & (_mc_ca > 0) &
+        _fx_coherent &
         (_ni_ca > 0) &                              # POSITIVE earnings mandatory (negative only cheap on real E)
         ((_ni_ca / _mc_ca) >= 0.02) &               # material earnings, not a rounding artifact
         (_nc_ca > 0) &                              # a genuine net-cash balance sheet
@@ -2322,14 +2342,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _oe_ratio = (_oe_loc / _ni_ca).where(_ni_ca > 0)
     df['arch_owner_earnings_power'] = (
         is_operating & (_mc_ca > 0) &
+        _fx_coherent &
         (_ni_ca > 0) & (_dna_loc > 0) & (_capex_loc >= 0) &
         (_oe_ratio >= 1.4) &                        # owner earnings far above accounting earnings
         # cheap on the truer measure — LATEST OE, or (Graham/Templeton) the
         # 5-YEAR AVERAGE OE with the latest still positive: one weak or quirky
         # accounting year must neither admit nor exclude a name on its own.
-        ((((_mc_ca / _oe_loc.where(_oe_loc > 0)) <= 10.0))
-         | (((_mc_ca / _ncol('oe_avg').where(_ncol('oe_avg') > 0)) <= 10.0)
-            & (_oe_loc > 0))) &
+        (((((_mc_ca / _oe_loc.where(_oe_loc > 0)) <= 10.0)
+           & ((_mc_ca / _oe_loc.where(_oe_loc > 0)) >= 1.5))
+         | ((((_mc_ca / _ncol('oe_avg').where(_ncol('oe_avg') > 0)) <= 10.0)
+             & ((_mc_ca / _ncol('oe_avg').where(_ncol('oe_avg') > 0)) >= 1.5))
+            & (_oe_loc > 0)))) &
         ~(_ncol('shares_yoy') > 0.05) &
         _not_melting
     ).fillna(False).astype(int)
@@ -2345,6 +2368,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _mc_f7 = _ncol('market_cap')
     df['arch_retained_earnings_discount'] = (
         is_operating & (_mc_f7 > 0) & (_re_f7 > 0) &
+        _fx_coherent &
         ((_re_f7 / _mc_f7) >= 1.0) &                 # retained history >= the whole price
         ((_ncol('net_income_ttm') > 0) | (_ncol('ni_avg') > 0)) &
         (pb > 0) & (pb < 1.5) &
@@ -2534,6 +2558,75 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating & (mcap > 0) &
         _xr_quality & _xr_crisis & _xr_cheap &
         ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # ---------- XR x FORENSIC crossovers (user request) ----------
+    # XR5 — Forensic floor under growth ('XR-ForensicFloorGrowth'): the floor
+    # is INVISIBLE to standard screens — off-EV securities (hidden-asset gap),
+    # retained earnings above 1.5x the price, or an over-depreciated asset
+    # base — while the business on top GROWS. Convexity nobody screens for
+    # because the support is not in standard metrics.
+    _xr5_floor = ((_hidden_pct >= 0.50)
+                  | ((_ncol('retained_earnings') / _ncol('market_cap').where(_ncol('market_cap') > 0)) >= 1.5)
+                  | ((_dna_loc > 0) & (_capex_loc >= 0)
+                     & (_capex_loc <= 0.5 * _dna_loc) & ((_dna_loc / _rev_loc.where(_rev_loc > 0)) >= 0.05)))
+    df['arch_xr_forensic_floor_growth'] = (
+        is_operating & (mcap > 0) &
+        _fx_coherent &
+        _xr5_floor &
+        (rev_yoy_c >= 0.10) & (rev_yoy_c <= 1.0) &
+        _profit_present &
+        ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR6 — Headline-vs-forensic multiple gap ('XR-ForensicMultipleGap'): the
+    # market prices the ACCOUNTING multiple (p_e >= 15 or meaningless) while
+    # the FORENSIC earnings power — owner earnings (latest or 5-yr average) —
+    # implies <= 6x. The spread between the two numbers is the upside, paid
+    # out when the accounting catches up with the cash.
+    _oe_best = _oe_loc.where(_oe_loc > 0).combine_first(_ncol('oe_avg').where(_ncol('oe_avg') > 0))
+    _pe_head = _ncol('p_e')
+    df['arch_xr_forensic_multiple_gap'] = (
+        is_operating & (_mc_ca > 0) &
+        _fx_coherent &
+        ((_mc_ca / _oe_best) <= 6.0) &                 # forensic multiple: cheap...
+        ((_mc_ca / _oe_best) >= 1.5) &                 # ...but a sub-1.5x "multiple" is a currency artifact, not a bargain (900920.SS at 0.2x)
+        ((_pe_head >= 15.0) | _pe_head.isna()) &       # headline: dear or meaningless
+        (_ncol('net_income_ttm') > 0) &                # real (not loss-masked) accounting
+        ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR7 — Harvest distribution ('XR-HarvestDistribution'): forensic evidence
+    # of a CONTROLLED asset-base harvest — capex <= half of D&A (the base is
+    # being converted to cash) — handed BACK to owners at >=6% combined
+    # payout, priced below book as if terminally dying. The distribution
+    # stream alone can return the price while the pessimism unwinds.
+    _payout_x7 = (_ncol('dividend_yield').fillna(0) + _ncol('buyback_yield').fillna(0))
+    df['arch_xr_harvest_distribution'] = (
+        is_operating & (mcap > 0) &
+        _fx_coherent &
+        (_dna_loc > 0) & (_capex_loc >= 0) & (_capex_loc <= 0.5 * _dna_loc) &
+        (_payout_x7 >= 0.06) &
+        (pb > 0) & (pb < 1.0) &
+        ((_oe_loc > 0) | (_ncol('oe_avg') > 0)) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR8 — Paydown yield ('XR-PaydownYield'): the FINANCING LINE proves a
+    # massive annual transfer to capital providers (>=10% of mcap flowing out)
+    # against a still-heavy debt load with stable EBITDA — the equity claim
+    # accretes mechanically at a double-digit rate per year while priced as a
+    # levered afterthought (the Weschler transfer, forensically verified).
+    _paydown_y = (-_ncol('financing_cf_ttm') / _ncol('market_cap').where(_ncol('market_cap') > 0))
+    df['arch_xr_paydown_yield'] = (
+        is_operating & (mcap > 0) &
+        (_paydown_y >= 0.10) &
+        (nde >= 2.0) & (nde < 90) &
+        (ebitda_ttm_v > 0) &
+        ((ebitda_yoy_v >= -0.05) | (ebitda_inflection > 0)) &
         _not_melting
     ).fillna(False).astype(int)
 
@@ -3466,6 +3559,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_triple_floor',
         'arch_xr_floor_inflection',
         'arch_xr_quality_crisis',
+        'arch_xr_forensic_floor_growth',
+        'arch_xr_forensic_multiple_gap',
+        'arch_xr_harvest_distribution',
+        'arch_xr_paydown_yield',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -3574,6 +3671,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_triple_floor': 'XR-TripleFloor',
         'arch_xr_floor_inflection': 'XR-FloorInflection',
         'arch_xr_quality_crisis': 'XR-QualityAtCrisis',
+        'arch_xr_forensic_floor_growth': 'XR-ForensicFloorGrowth',
+        'arch_xr_forensic_multiple_gap': 'XR-ForensicMultipleGap',
+        'arch_xr_harvest_distribution': 'XR-HarvestDistribution',
+        'arch_xr_paydown_yield': 'XR-PaydownYield',
         'arch_oak_order_conversion': 'OakOrderConversion',
         'arch_weschler_levered_equity': 'WeschlerLeveredEquity',
         'arch_cheap_sales_scaler': 'CheapSalesScaler',

@@ -574,7 +574,9 @@ def _regression(t, g):
                 "arch_tax_verified_earnings", "arch_cannibal_at_discount",
                 "arch_self_funded_returner", "arch_book_compounder_discount",
                 "arch_xr_neg_ev_growth", "arch_xr_triple_floor",
-                "arch_xr_floor_inflection", "arch_xr_quality_crisis"):
+                "arch_xr_floor_inflection", "arch_xr_quality_crisis",
+                "arch_xr_forensic_floor_growth", "arch_xr_forensic_multiple_gap",
+                "arch_xr_harvest_distribution", "arch_xr_paydown_yield"):
         if _ac in t.columns:
             leak = int(((n(t, _ac) == 1) & _ice_cube).sum())
             check(f"regression(tail): {_ac} carries no genuine ice cube (neg returns, no cash, not improving)",
