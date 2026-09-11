@@ -40,6 +40,8 @@ sys.exit(r.returncode)
 PY
 echo "[6/7] mutation test (gate)..."
 python3 scratch_mutation_test.py | grep RESULT
-echo "[7/7] valuation_crosscheck top-60 (gate)..."
+echo "[7/8] valuation_crosscheck top-60 (gate)..."
 python3 valuation_crosscheck.py --top 60
+echo "[8/8] claims_conformance (gate: we implement what we document)..."
+python3 claims_conformance.py | tail -1
 echo "REFRESH COMPLETE — all gates green."
