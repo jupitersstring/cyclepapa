@@ -223,6 +223,15 @@ def build_yartseva_row(edgar_row: pd.Series, price_row: pd.Series | None) -> dic
     r["roic_after_sbc"] = edgar_row.get("roic_after_sbc")
     r["interest_coverage"] = edgar_row.get("interest_coverage")
     r["retained_earnings"] = edgar_row.get("retained_earnings")
+    # forensic round 2 fields
+    r["capex_avg"] = edgar_row.get("capex_avg")
+    _ca_f = edgar_row.get("current_assets"); _cl_f = edgar_row.get("current_liab")   # extractor key
+    if _ca_f is not None and _cl_f is not None:
+        r["net_working_capital"] = _ca_f - _cl_f
+    _gw_f = edgar_row.get("goodwill") or 0; _ig_f = edgar_row.get("intangibles") or 0
+    _as_f = edgar_row.get("assets")
+    if _as_f:
+        r["goodwill_intangibles_pct_assets"] = (_gw_f + _ig_f) / _as_f
     r["ppe_net"] = edgar_row.get("ppe_net")
     r["eps_basic_ttm"] = edgar_row.get("eps_basic_ttm")
     r["eps_diluted_ttm"] = edgar_row.get("eps_diluted_ttm")

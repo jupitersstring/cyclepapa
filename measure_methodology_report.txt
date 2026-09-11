@@ -1,4 +1,4 @@
-METHODOLOGY AUDIT — 154 checks, 0 FAIL, 0 WARN
+METHODOLOGY AUDIT — 158 checks, 0 FAIL, 0 WARN
   PASS  units: dividend_yield is a fraction  — median |dividend_yield| = 0.028 (fraction-scale cap 1.5)
   PASS  units: fcf_yield is a fraction  — median |fcf_yield| = 0.067 (fraction-scale cap 3.0)
   PASS  units: analyst_target_upside_pct is a fraction  — median |analyst_target_upside_pct| = 0.261 (fraction-scale cap 5.0)
@@ -30,7 +30,7 @@ METHODOLOGY AUDIT — 154 checks, 0 FAIL, 0 WARN
   PASS  gating: analyst_rerating_score is 0 outside arch_analyst_rerating_confirmed  — 0 non-firers with positive score
   PASS  gating: asleep_score is 0 outside arch_asleep_at_wheel  — 0 non-firers with positive score
   PASS  gating: seg_inflect_score is 0 outside arch_fastest_segment  — 0 non-firers with positive score
-  PASS  density: archetype_count_pct <= 1  — max 0.391
+  PASS  density: archetype_count_pct <= 1  — max 0.370
   PASS  units: insider_ownership_pct is a fraction (<= 1.05)  — 0 percent-scale stragglers
   PASS  integrity: lynch signal rows all match the header schema  — 0 ragged rows
   PASS  integrity: country benchmarks are live (<=62d old)  — stale/empty: []
@@ -113,6 +113,10 @@ METHODOLOGY AUDIT — 154 checks, 0 FAIL, 0 WARN
   PASS  regression(tail): arch_expensed_growth_value carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
   PASS  regression(tail): arch_cash_adjusted_pe carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
   PASS  regression(tail): arch_owner_earnings_power carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_retained_earnings_discount carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_customer_float carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_capex_famine_harvest carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_dividend_verified_value carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
   PASS  regression: price-ghost duplicates fire no archetypes  — 0 price-ghost lines firing archetypes
   PASS  regression: price-ghost duplicates do not rank (ETA=0)  — 0 price-ghost lines with ETA>0
   PASS  regression(tail): arch_wolf_turnaround keeps a real USD revenue base  — 0 sub-floor-revenue firers

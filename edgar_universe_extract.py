@@ -514,6 +514,10 @@ def extract_row(ticker: str, cik: int, data: dict) -> dict:
     if _fcf_avg is not None:
         row["fcf_avg"] = _fcf_avg
         row["fcf_avg_years"] = _fcf_n
+    _cx_avg, _cx_n = _avg_over([_cx_s])
+    if _cx_avg is not None:
+        row["capex_avg"] = _cx_avg
+        row["capex_avg_years"] = _cx_n
 
     # Flow items: TTM + annual
     def fl(aliases, field):

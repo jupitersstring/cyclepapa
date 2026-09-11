@@ -1,3 +1,10 @@
+ABSENT COLUMNS (requested by gates, not in frame — gate legs read all-NaN):
+  MISSING  capex_avg
+  MISSING  net_working_capital
+  MISSING  ni_avg
+  MISSING  oe_avg
 NEAR-EMPTY COLUMNS (<2% coverage — legs almost never fire):
   SPARSE   seg_oplev                             1.52%
   SPARSE   cheap_per_roiic_lindy                 1.76%
+  ZERO     arch_customer_float fires on NOBODY — investigate
+  ZERO     arch_capex_famine_harvest fires on NOBODY — investigate

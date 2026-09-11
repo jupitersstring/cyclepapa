@@ -115,6 +115,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                      'effective_tax_rate', 'roic_after_sbc',
                                      'interest_coverage', 'retained_earnings',
                                      'pretax_income_ttm',
+                                     'capex_avg', 'net_working_capital',
+                                     'goodwill_intangibles_pct_assets',
+                                     'oe_avg', 'ni_avg', 'fcf_avg',
+                                     'oe_avg_years',
                                  })
 
     # Segment signals from the edgartools dimensional harvest. Coverage
@@ -2329,6 +2333,70 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _not_melting
     ).fillna(False).astype(int)
 
+
+    # ---------- FORENSIC round 2 (user request): latent value via EDGAR ------
+    # F7 — Retained-earnings discount (Buffett's dollar-retained test, priced).
+    # Decades of ACCUMULATED retained profit exceed the whole market cap while
+    # the business still earns: the market prices the company below its own
+    # retained history. Audited EDGAR retained_earnings; profitability may
+    # qualify on the LATEST year or the 5-YEAR AVERAGE (quirk-robust).
+    _re_f7 = _ncol('retained_earnings')
+    _mc_f7 = _ncol('market_cap')
+    df['arch_retained_earnings_discount'] = (
+        is_operating & (_mc_f7 > 0) & (_re_f7 > 0) &
+        ((_re_f7 / _mc_f7) >= 1.0) &                 # retained history >= the whole price
+        ((_ncol('net_income_ttm') > 0) | (_ncol('ni_avg') > 0)) &
+        (pb > 0) & (pb < 1.5) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # F8 — Customer float (negative working capital, INVERTED forensic read).
+    # A "weak" current ratio that is actually customers funding the business:
+    # negative net working capital WITH real profitability and CFO above NI
+    # (the float shows up as cash before it shows up as earnings).
+    _nwc_f8 = _ncol('net_working_capital')
+    df['arch_customer_float'] = (
+        is_operating & (_mc_f7 > 0) &
+        (_nwc_f8 < 0) &                              # customers/suppliers fund operations
+        (s('op_margin', np.nan) > 0.03) &
+        (rev_yoy_c >= 0.0) &                         # float grows WITH the business, not a liquidation
+        ((_ncol('cfo_ttm') / _ncol('net_income_ttm').where(_ncol('net_income_ttm') > 0)) >= 1.1) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # F9 — Capex-famine harvest: the investment cycle is ENDING (current capex
+    # far below the audited 5-year average) while revenue holds — the FCF
+    # inflection is mechanically loaded before it prints. Needs capex_avg
+    # (EDGAR annual series).
+    _cx_f9 = _ncol('capex_ttm')
+    _cxa_f9 = _ncol('capex_avg')
+    df['arch_capex_famine_harvest'] = (
+        is_operating & (_mc_f7 > 0) &
+        (_cxa_f9 > 0) & (_cx_f9 >= 0) &
+        (_cx_f9 <= 0.6 * _cxa_f9) &                  # spending far below its own history
+        (rev_yoy_c >= -0.05) &                       # the installed base still produces
+        (s('op_margin', np.nan) > 0) &
+        (pb > 0) & (pb < 2.0) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # F10 — Dividend-verified value (GLOBAL — the non-EDGAR forensic lens).
+    # Dividends are the hardest accounting item to fake: a fat payout covered
+    # by BOTH earnings and FCF at a sub-book price is forensic PROOF the
+    # earnings are cash. div <= 70% of NI and <= 70% of FCF.
+    _dy_f10 = _ncol('dividend_yield')
+    _div_paid = _dy_f10 * _mc_f7
+    _ni_f10 = _ncol('net_income_ttm')
+    _fcf_f10 = _ncol('fcf_ttm')
+    df['arch_dividend_verified_value'] = (
+        is_operating & (_mc_f7 > 0) &
+        (_dy_f10 >= 0.06) &                          # a fat, real payout
+        (_ni_f10 > 0) & (_div_paid <= 0.70 * _ni_f10) &
+        (_fcf_f10 > 0) & (_div_paid <= 0.70 * _fcf_f10) &
+        (pb > 0) & (pb < 1.0) &                      # and the market still prices sub-book
+        _not_melting
+    ).fillna(False).astype(int)
+
     # F6 — Forensic payout confirmation (the user's BOOST leg). Any forensic /
     # hidden-value member that is ALSO returning capital — buying back shares
     # or paying a dividend — earns an EXTRA archetype count, which is this
@@ -2339,6 +2407,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                    | (_ncol('buyback_yield') > 0)
                    | (_ncol('shares_yoy') < -0.01))
     _forensic_any = ((df['arch_hidden_assets'] == 1)
+                     | (df['arch_retained_earnings_discount'] == 1)
+                     | (df['arch_customer_float'] == 1)
+                     | (df['arch_capex_famine_harvest'] == 1)
+                     | (df['arch_dividend_verified_value'] == 1)
                      | (df['arch_overdepreciated_assets'] == 1)
                      | (df['arch_understated_earnings'] == 1)
                      | (df['arch_expensed_growth_value'] == 1)
@@ -3238,6 +3310,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_cash_adjusted_pe',
         'arch_owner_earnings_power',
         'arch_forensic_payout_confirmed',
+        'arch_retained_earnings_discount',
+        'arch_customer_float',
+        'arch_capex_famine_harvest',
+        'arch_dividend_verified_value',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -3334,6 +3410,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_cash_adjusted_pe': 'CashAdjPE-NegOrCheap',
         'arch_owner_earnings_power': 'Forensic-OwnerEarnings',
         'arch_forensic_payout_confirmed': 'Forensic-PayoutConfirmed',
+        'arch_retained_earnings_discount': 'Forensic-RetainedEarnings',
+        'arch_customer_float': 'Forensic-CustomerFloat',
+        'arch_capex_famine_harvest': 'Forensic-CapexFamine',
+        'arch_dividend_verified_value': 'Forensic-DividendProof',
         'arch_oak_order_conversion': 'OakOrderConversion',
         'arch_weschler_levered_equity': 'WeschlerLeveredEquity',
         'arch_cheap_sales_scaler': 'CheapSalesScaler',
