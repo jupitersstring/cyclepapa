@@ -491,6 +491,24 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     normalized_ebitda = _avg_annual(ebitda_a)
     normalized_ebit = _avg_annual(ebit_a)
     normalized_revenue = _avg_annual(rev_a)
+    # SAME-YEAR ALIGNMENT for the EBIT/EBITDA pair: averaged over different
+    # year sets the pair can invert (avg EBIT > avg EBITDA — impossible in
+    # any single filing, since it requires negative D&A). When inverted,
+    # recompute BOTH over only the years where BOTH exist; if the inversion
+    # survives even year-aligned (inconsistent source rows), the EBIT
+    # average is not trusted and stays NaN — never publish an impossible pair.
+    if (pd.notna(normalized_ebit) and pd.notna(normalized_ebitda)
+            and normalized_ebit > normalized_ebitda
+            and ebitda_a is not None and ebit_a is not None):
+        _pair = pd.concat([pd.to_numeric(ebitda_a, errors="coerce"),
+                           pd.to_numeric(ebit_a, errors="coerce")],
+                          axis=1, keys=["ebd", "ebt"]).dropna().iloc[:5]
+        if len(_pair) >= 2:
+            normalized_ebitda = float(_pair["ebd"].mean())
+            normalized_ebit = float(_pair["ebt"].mean())
+        if not (pd.notna(normalized_ebit) and pd.notna(normalized_ebitda)
+                and normalized_ebit <= normalized_ebitda):
+            normalized_ebit = np.nan
 
     # ---- Longer-history earnings CONSISTENCY (further back than the 4Q beats) ----
     # Quarterly Diluted-EPS actuals reach back ~12-20 quarters, so we can
@@ -1103,17 +1121,29 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     price_minus_ebitda_yoy = (price_yoy - ebitda_yoy) if (pd.notna(price_yoy) and pd.notna(ebitda_yoy)) else np.nan
     price_minus_fcf_yoy = (price_yoy - fcf_yoy) if (pd.notna(price_yoy) and pd.notna(fcf_yoy)) else np.nan
 
-    # "Not priced in" score: positive when fundamentals up but multiple compressed / price lagged
+    # "Not priced in" score: positive when fundamentals up but multiple compressed / price lagged.
+    # BASE-EFFECT GUARD: a growth rate off a near-zero prior year prints
+    # astronomically (fcf_yoy of 1.65e6 was observed) and is an arithmetic
+    # artifact, not information — beyond ±1000% a component is DROPPED, and
+    # every kept differential is clipped to ±300pp so no single lens can
+    # dominate the mean. The score is therefore bounded to [-3, 3] by
+    # construction (the harmonizer nulls anything outside as corrupt).
+    def _npi_comp(growth, price_ret):
+        if pd.isna(growth) or pd.isna(price_ret):
+            return None
+        if abs(growth) > 10.0 or abs(price_ret) > 10.0:
+            return None
+        return float(np.clip(growth - price_ret, -3.0, 3.0))
+
     components_npi = []
-    if pd.notna(rev_yoy) and pd.notna(price_yoy):
-        components_npi.append(rev_yoy - price_yoy)
-    if pd.notna(ebitda_yoy) and pd.notna(price_yoy):
-        components_npi.append(ebitda_yoy - price_yoy)
-    if pd.notna(fcf_yoy) and pd.notna(price_yoy):
-        components_npi.append(fcf_yoy - price_yoy)
-    if pd.notna(ev_sales_change_yoy) and pd.notna(rev_yoy) and rev_yoy > 0:
+    for _g in (rev_yoy, ebitda_yoy, fcf_yoy):
+        _c = _npi_comp(_g, price_yoy)
+        if _c is not None:
+            components_npi.append(_c)
+    if (pd.notna(ev_sales_change_yoy) and abs(ev_sales_change_yoy) <= 10.0
+            and pd.notna(rev_yoy) and rev_yoy > 0):
         # Multiple compressed while sales grew = "not priced in"
-        components_npi.append(-ev_sales_change_yoy)
+        components_npi.append(float(np.clip(-ev_sales_change_yoy, -3.0, 3.0)))
     not_priced_in_score = float(np.mean(components_npi)) if components_npi else np.nan
 
     # ----- Yartseva composite -----

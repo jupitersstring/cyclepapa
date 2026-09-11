@@ -788,8 +788,7 @@ def _valuation_consistency(t, g):
                   fy.notna() & fcf.notna() & (mc > 0), 1.0)
     # the whole equity-cash-yield family (LEVERED measures over MARKET CAP —
     # user rule) must stay recomputed against current mcap
-    for _yc, _lvl_c in (("owner_earnings_yield", "fcf_ttm"),
-                        ("cfo_yield", "cfo_ttm"),
+    for _yc, _lvl_c in (("cfo_yield", "cfo_ttm"),
                         ("earnings_yield", "net_income_ttm")):
         _yv, _lv = gc(_yc), gc(_lvl_c)
         viol |= vrate(f"{_yc} != {_lvl_c}/mcap (>25% dev)",
@@ -798,6 +797,36 @@ def _valuation_consistency(t, g):
     check("valuation: no ev_ebit below ev_ebitda (impossible ordering)",
           int(((eve < evb * 0.95) & (eve > 0) & (evb > 0)).sum()) == 0,
           f"{int(((eve < evb * 0.95) & (eve > 0) & (evb > 0)).sum())} rows")
+    # owner_earnings_yield is TRUE Buffett OE (NI + implied D&A − capex over
+    # mcap) — it must NEVER be an alias of another measure and must match its
+    # own same-row construction. Where set, capex_ttm must exist (no
+    # component, no figure — the old FCF-alias relic had no capex behind it).
+    _oey = gc("owner_earnings_yield")
+    _cxo = gc("capex_ttm")
+    _oe_lvl_chk = (gc("net_income_ttm")
+                   + (gc("ebitda_ttm") - gc("op_margin") * gc("revenue_ttm"))
+                   - _cxo)
+    viol |= vrate("owner_earnings_yield != (NI+D&A−capex)/mcap (>25% dev)",
+                  (_r(_oey, _r(_oe_lvl_chk, mc)) - 1).abs() > 0.25,
+                  _oey.notna() & _oe_lvl_chk.notna() & (mc > 0), 1.0)
+    check("owner earnings: no yield without a capex component (alias relic)",
+          int((_oey.notna() & _cxo.isna()).sum()) == 0,
+          f"{int((_oey.notna() & _cxo.isna()).sum())} rows carry OE yield with no capex")
+    # normalized pair ordering: avg EBIT above avg EBITDA needs negative D&A —
+    # impossible; yartseva_db aligns years at build, the harmonizer nulls
+    # survivors, this gate keeps both honest.
+    _nbe_a = gc("normalized_ebit")
+    _nbd_a = gc("normalized_ebitda")
+    check("normalized: no normalized_ebit above normalized_ebitda",
+          int((_nbe_a.notna() & _nbd_a.notna() & (_nbe_a > _nbd_a)).sum()) == 0,
+          f"{int((_nbe_a.notna() & _nbd_a.notna() & (_nbe_a > _nbd_a)).sum())} inverted pairs")
+    # not_priced_in_score is bounded [-3,3] by construction (base-effect
+    # components dropped, differentials clipped) — anything outside is the
+    # 1.65e6-class artifact that auto-passed every (>0.20) gate leg.
+    _npi_a = gc("not_priced_in_score")
+    check("not_priced_in_score inside construction band [-3,3]",
+          int((_npi_a.abs() > 3.0).sum()) == 0,
+          f"{int((_npi_a.abs() > 3.0).sum())} out-of-band rows (max {_npi_a.abs().max():.3g})")
     # forensic archetypes: their defining ratios re-verified from LOCAL
     # components for every firer (same currency-mix guard as hidden_assets)
     _gset = g.set_index("symbol")

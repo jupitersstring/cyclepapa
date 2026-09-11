@@ -528,7 +528,28 @@ def main():
     # the melt logic (_cash_return_ok) and the weschler/liger cheapness gates.
     _cfo2 = pd.to_numeric(m.get("cfo_ttm"), errors="coerce")
     _ni3 = pd.to_numeric(m.get("net_income_ttm"), errors="coerce")
-    _recompute("owner_earnings_yield", (_fcf / _mc).where(_mc > 0), band=(-50, 50))
+    # owner_earnings_yield = TRUE Buffett owner earnings (NI + D&A − capex)
+    # over mcap — REBUILT WHOLESALE each run. The column historically held
+    # fcf/mcap under this name: one measure living under two names silently
+    # double-counted the FCF lens in every downstream OR-leg and in
+    # robust_cash_yield, so no aliased relic may survive. D&A is implied
+    # EBITDA − EBIT within the same row (same-source pair, the construction
+    # the forensic archetypes use); capex is the PRIMARY column only. Rows
+    # missing a component leave the field honestly absent. Levered measure →
+    # mcap denominator; same ±100% impossibility band as fcf_yield.
+    _ebd_oe = pd.to_numeric(m.get("ebitda_ttm"), errors="coerce")
+    _opm_oe = pd.to_numeric(m.get("op_margin"), errors="coerce")
+    _rev_oe = pd.to_numeric(m.get("revenue_ttm"), errors="coerce")
+    _cx_oe = pd.to_numeric(m.get("capex_ttm"), errors="coerce")
+    _dna_oe = (_ebd_oe - _opm_oe * _rev_oe).where(lambda s: s >= 0)
+    _oe_lvl = (_ni3 + _dna_oe - _cx_oe).where(_cx_oe >= 0)
+    _oe_yield = (_oe_lvl / _mc).where(_mc > 0)
+    _oe_yield = _oe_yield.where(_oe_yield.abs() <= 1.0)
+    if "owner_earnings_yield" in m.columns:
+        _oe_old = pd.to_numeric(m["owner_earnings_yield"], errors="coerce")
+        recon["owner_earnings_yield rebuilt as true OE (was fcf alias)"] = int(
+            (_oe_old.notna() | _oe_yield.notna()).sum())
+    m["owner_earnings_yield"] = _oe_yield
     _recompute("cfo_yield", (_cfo2 / _mc).where(_mc > 0), band=(-50, 50))
     _recompute("earnings_yield", (_ni3 / _mc).where(_mc > 0), band=(-50, 50))
     if "robust_cash_yield" in m.columns:
@@ -763,6 +784,34 @@ def main():
             m.loc[_hit, _dc] = np.nan
             if int(_hit.sum()):
                 recon[f"{_dc} nulled (de-minimis revenue)"] =                     recon.get(f"{_dc} nulled (de-minimis revenue)", 0) + int(_hit.sum())
+
+    # NORMALIZED-PAIR ORDERING: normalized_ebit (5yr avg EBIT) can only exceed
+    # normalized_ebitda (5yr avg EBITDA) through negative D&A — impossible in
+    # any filing — so an inverted pair means the two averages were taken over
+    # DIFFERENT year sets or inconsistent source rows (yartseva_db now aligns
+    # them at build; this heals rows built before the fix). The EBIT average
+    # is the dangerous one (an inflated denominator understates EV/normEBIT,
+    # faking cheapness) — null it; the EBITDA average stands on its own years.
+    if "normalized_ebit" in m.columns and "normalized_ebitda" in m.columns:
+        _nbe = pd.to_numeric(m["normalized_ebit"], errors="coerce")
+        _nbd = pd.to_numeric(m["normalized_ebitda"], errors="coerce")
+        _inv = _nbe.notna() & _nbd.notna() & (_nbe > _nbd)
+        m.loc[_inv, "normalized_ebit"] = np.nan
+        if int(_inv.sum()):
+            recon["normalized_ebit nulled (exceeds normalized_ebitda)"] = int(_inv.sum())
+
+    # NOT-PRICED-IN BAND: the score is a mean of (growth − price-return)
+    # differentials; yartseva_db now drops >1000%-base-effect components and
+    # clips each to ±3, so |score| > 3 is definitionally impossible under the
+    # honest construction — a stored value beyond it is a base-effect artifact
+    # (fcf_yoy off a near-zero prior printed 1.65e6) that auto-passed every
+    # (not_priced_in > 0.20) gate leg. Null, never keep, out-of-band scores.
+    if "not_priced_in_score" in m.columns:
+        _npi = pd.to_numeric(m["not_priced_in_score"], errors="coerce")
+        _npi_bad = _npi.notna() & (_npi.abs() > 3.0)
+        m.loc[_npi_bad, "not_priced_in_score"] = np.nan
+        if int(_npi_bad.sum()):
+            recon["not_priced_in_score nulled (base-effect out-of-band)"] = int(_npi_bad.sum())
 
     # remaining identifiability flags: anomalies that are KEPT (legitimate
     # accounting can produce them) but must never be silent.

@@ -6,6 +6,7 @@ ABSENT COLUMNS (requested by gates, not in frame — gate legs read all-NaN):
   MISSING  ni_avg
   MISSING  oe_avg
 NEAR-EMPTY COLUMNS (<2% coverage — legs almost never fire):
+  SPARSE   owner_earnings_yield                  0.02%
   SPARSE   capex_ttm                             0.02%
   SPARSE   capex_intensity                       0.02%
   SPARSE   seg_oplev                             1.52%

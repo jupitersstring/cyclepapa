@@ -2703,7 +2703,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # quirk) can qualify a name. We additionally require a conservative
     # reported-FCF floor so the equity's cash is real after capex.
     robust_cy = s('robust_cash_yield')
-    owner_ey = s('owner_earnings_yield')   # = reported FCF / mcap
+    # The corroborating leg here always MEANT "reported FCF over mcap" (its
+    # own comment said so) — reference fcf_yield by name now that
+    # owner_earnings_yield honestly carries Buffett OE (NI + D&A − capex)
+    # instead of an FCF alias.
+    owner_ey = s('fcf_yield')              # reported FCF / mcap
     # Upper bounds reject near-zero-mcap data artifacts (a yield of 55,000,000x
     # or EV/mcap of 130,000,000x is a broken market cap, not a cheap stub).
     # Genuine Weschler zone: P/cash ~0.5-6.7x, EV a few x equity.
