@@ -124,8 +124,11 @@ ARCH_FAMILY = {
     # confirmed cousin of analyst_awakening, grouped with the trend/breakout set.
     'arch_analyst_rerating_confirmed': 'momentum',
     # event-driven special situations (EDGAR filing signals)
-    'arch_spinoff': 'event', 'arch_post_reorg': 'event',
+    'arch_spinoff_value': 'event', 'arch_spinoff_quality': 'event',
+    'arch_post_reorg': 'event',
     'arch_special_situation': 'event', 'arch_nol_shell': 'event',
+    # Greenblatt Magic Formula: a cheap+quality FACTOR sleeve (not event-driven)
+    'arch_greenblatt_magic': 'quality',
 }
 
 

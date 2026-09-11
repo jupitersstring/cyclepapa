@@ -526,7 +526,10 @@ def _regression(t, g):
                 # reference-gap additions (new archetypes)
                 "arch_bottleneck", "arch_flyover",
                 # event-driven sleeve (operating-gated ones)
-                "arch_spinoff", "arch_post_reorg", "arch_nol_shell"):
+                "arch_spinoff_value", "arch_spinoff_quality",
+                "arch_post_reorg", "arch_nol_shell",
+                # cheap+quality factor sleeve (operating-gated)
+                "arch_greenblatt_magic"):
         if _ac in t.columns:
             leak = int(((n(t, _ac) == 1) & _finre).sum())
             check(f"regression(R1): {_ac} excludes Financials/REITs/Utilities",

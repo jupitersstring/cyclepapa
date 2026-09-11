@@ -4363,7 +4363,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_analyst_rerating_confirmed',
         'arch_bottleneck',
         'arch_flyover',
-        'arch_spinoff',
+        'arch_spinoff_value',
+        'arch_spinoff_quality',
+        'arch_greenblatt_magic',
         'arch_post_reorg',
         'arch_special_situation',
         'arch_nol_shell',
@@ -4501,7 +4503,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_analyst_rerating_confirmed': 'ReratingConfirmed-52wHigh',
         'arch_bottleneck': 'Bottleneck-Chokepoint',
         'arch_flyover': 'Flyover-QuietQuality',
-        'arch_spinoff': 'SpinOff-Form10',
+        'arch_spinoff_value': 'SpinOff-Value-Form10',
+        'arch_spinoff_quality': 'SpinOff-Quality-Franchise',
+        'arch_greenblatt_magic': 'Greenblatt-MagicFormula',
         'arch_post_reorg': 'PostReorg-FreshStart',
         'arch_special_situation': 'SpecialSit-Catalyst',
         'arch_nol_shell': 'NOL-Shell',
@@ -4671,15 +4675,54 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # commodity cyclical spins (SanDisk into a memory peak; cement) get the
     # mid-cycle lens; and guard the DIRTY SPIN (parent offloading debt: RHLD
     # emerged at net-debt/EBITDA 13.9x).
+    # (user directive) Split the spin sleeve by THESIS, and drop the leverage
+    # guard entirely — a levered spin can still be the opportunity, and the
+    # guard was silently excluding SanDisk-class quality carve-outs and dirty-
+    # balance-sheet orphans that the market misprices for exactly that reason.
+    #
+    # (1) VALUE spin (arch_spinoff_value): the classic forced-selling / orphan
+    #     discount — a viable operating business trading cheap on an OPERATING
+    #     yield. Leverage-agnostic (no balance-sheet cap): a cheap, viable,
+    #     non-melting spun business qualifies whatever its debt.
     _spin_noncyc_val = (_excellent_value | (_ebitda_y_ev >= 0.10))
     _spin_cyc_val = ((_midcyc_y_ev.notna() & (_midcyc_y_ev >= 0.10))
                      | (_midcyc_y_ev.isna() & ((_ebitda_y_ev >= 0.10) | (fcf_yield >= 0.08))))
     _spin_value = ((_is_cyc_ev & _spin_cyc_val) | (~_is_cyc_ev & _spin_noncyc_val))
-    df['arch_spinoff'] = (
+    df['arch_spinoff_value'] = (
         (_spin == 1) & is_operating & _not_melting & (mcap > 0)
         & (s('op_margin', np.nan) > -0.05)      # a viable spun business, not a deep loss-maker
         & _spin_value
-        & ((nde <= 5.0) | (net_cash_pct_c >= 0))  # dirty-spin leverage guard
+    ).fillna(False).astype(int)
+
+    # (2) QUALITY spin (arch_spinoff_quality): a high-return FRANCHISE cast off
+    #     at a fair (not-bubble) multiple. SanDisk spun with roce 0.35,
+    #     op-margin 0.61, net cash, EV/EBIT 20.2 — a ~5% earnings yield, so it
+    #     was NEVER deep-cheap and the value spin above cannot catch it. This
+    #     thesis keys on RETURNS + MARGINS + a SOUND balance sheet + a SANE
+    #     price, deliberately NOT on cheapness (a great business rarely spins
+    #     cheap; the edge is the forced-selling orphan discount on quality).
+    _spin_reasonable_mult = (((s('ev_ebit', np.nan) > 0) & (s('ev_ebit', np.nan) <= 22.0))
+                             | ((_ev_ebitda_ev > 0) & (_ev_ebitda_ev <= 20.0)))
+    df['arch_spinoff_quality'] = (
+        (_spin == 1) & is_operating & _not_melting & (mcap > 0)
+        & (_num('roce') >= 0.20)                 # genuine return on capital (SNDK 0.35)
+        & (s('op_margin', np.nan) >= 0.15)       # fat operating margin — a real franchise (SNDK 0.61)
+        & _spin_reasonable_mult                  # bought at a sane price, not a bubble (SNDK EV/EBIT 20.2)
+        & ((nde <= 3.0) | (net_cash_pct_c >= 0)) # sound balance sheet (SNDK is net cash)
+    ).fillna(False).astype(int)
+
+    # Greenblatt Magic Formula: the intersection of a HIGH EARNINGS YIELD
+    # (EBIT/EV) and a HIGH RETURN ON CAPITAL — cheap AND good, the two legs
+    # Greenblatt ranks the universe on. We use EBIT/EV (1/ev_ebit, discharge-
+    # and D&A-basis-agnostic vs 1/p_e) and roce as the return-on-capital proxy
+    # (roic_after_sbc is too sparse in the universe to gate on). Operating-only
+    # (EBIT/EV and roce are meaningless for banks/REITs/utilities) and not
+    # melting.
+    _greenblatt_ey = (1.0 / s('ev_ebit', 0)).where(s('ev_ebit', 0) > 0, np.nan)
+    df['arch_greenblatt_magic'] = (
+        is_operating & _not_melting & (mcap > 0)
+        & (_greenblatt_ey >= 0.10)               # cheap: EBIT/EV in the top ~quartile
+        & (_num('roce') >= 0.25)                 # good: return on capital in the top ~decile-ish
     ).fillna(False).astype(int)
 
     # Post-reorg / fresh-start (Assembly Theory): the single most powerful screen

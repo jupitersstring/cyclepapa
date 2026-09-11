@@ -1,4 +1,4 @@
-METHODOLOGY AUDIT — 180 checks, 0 FAIL, 0 WARN
+METHODOLOGY AUDIT — 182 checks, 0 FAIL, 0 WARN
   PASS  units: dividend_yield is a fraction  — median |dividend_yield| = 0.028 (fraction-scale cap 1.5)
   PASS  units: fcf_yield is a fraction  — median |fcf_yield| = 0.064 (fraction-scale cap 3.0)
   PASS  units: analyst_target_upside_pct is a fraction  — median |analyst_target_upside_pct| = 0.260 (fraction-scale cap 5.0)
@@ -30,7 +30,7 @@ METHODOLOGY AUDIT — 180 checks, 0 FAIL, 0 WARN
   PASS  gating: analyst_rerating_score is 0 outside arch_analyst_rerating_confirmed  — 0 non-firers with positive score
   PASS  gating: asleep_score is 0 outside arch_asleep_at_wheel  — 0 non-firers with positive score
   PASS  gating: seg_inflect_score is 0 outside arch_fastest_segment  — 0 non-firers with positive score
-  PASS  density: archetype_count_pct <= 1  — max 0.331
+  PASS  density: archetype_count_pct <= 1  — max 0.326
   PASS  units: insider_ownership_pct is a fraction (<= 1.05)  — 0 percent-scale stragglers
   PASS  integrity: lynch signal rows all match the header schema  — 0 ragged rows
   PASS  integrity: country benchmarks are live (<=62d old)  — stale/empty: []
@@ -80,9 +80,11 @@ METHODOLOGY AUDIT — 180 checks, 0 FAIL, 0 WARN
   PASS  regression(R1): arch_concentrated_segments excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
   PASS  regression(R1): arch_bottleneck excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
   PASS  regression(R1): arch_flyover excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
-  PASS  regression(R1): arch_spinoff excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_spinoff_value excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_spinoff_quality excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
   PASS  regression(R1): arch_post_reorg excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
   PASS  regression(R1): arch_nol_shell excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_greenblatt_magic excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
   PASS  regression(tail): arch_micro_activist_inflect carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
   PASS  regression(tail): arch_fixed_cost_demand_shock carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
   PASS  regression(tail): arch_regime_cyclical carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
