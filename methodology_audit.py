@@ -662,13 +662,16 @@ def _valuation_consistency(t, g):
     # soft identities (extreme-multiple tails are left un-bent by design)
     viol |= vrate("ev_ebitda != EV/ebitda (>25% dev)",
                   (_r(evb, _r(ev, eb)) - 1).abs() > 0.25,
-                  evb.notna() & (ev > 0) & (eb > 0), 6.0)
+                  evb.notna() & ev.notna() & (eb > 0), 6.0)
     viol |= vrate("ev_sales != EV/revenue (>25% dev)",
                   (_r(evs, _r(ev, rv)) - 1).abs() > 0.25,
-                  evs.notna() & (ev > 0) & (rv > 0), 6.0)
-    check("valuation: no EV multiple stored on EV<=0 (meaningless)",
-          int(((ev <= 0) & ev.notna() & (evb.notna() | evs.notna() | eve.notna())).sum()) == 0,
-          f"{int(((ev <= 0) & ev.notna() & (evb.notna() | evs.notna() | eve.notna())).sum())} rows")
+                  evs.notna() & ev.notna() & (rv > 0), 6.0)
+    # negative-EV multiples are VALID (negative EV / positive denominator) —
+    # but the SIGN must agree with EV when the denominator is positive.
+    _sign_bad = evb.notna() & ev.notna() & (eb > 0) \
+        & (np.sign(evb) != np.sign(ev)) & (ev != 0)
+    check("valuation: ev_ebitda sign matches EV (denominator>0)",
+          int(_sign_bad.sum()) == 0, f"{int(_sign_bad.sum())} sign mismatches")
     viol |= vrate("ebitda_margin != ebitda/revenue (>25% dev)",
                   (_r(ebm, _r(eb, rv)) - 1).abs() > 0.25,
                   ebm.notna() & (rv > 0) & eb.notna(), 6.0)

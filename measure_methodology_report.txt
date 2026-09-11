@@ -120,15 +120,15 @@ METHODOLOGY AUDIT — 133 checks, 0 FAIL, 0 WARN
   PASS  range: inflection_confirm_score within [0,1]  — min 0.000 max 1.000
   PASS  range: seg_inflect_score within [0,1]  — min 0.000 max 1.000
   PASS  valuation: mcap != price*shares (>10% dev) <= 0.5% of covered rows  — 4/34799 rows (0.01%)
-  PASS  valuation: p_e != mcap/NI (>25% dev) <= 1.0% of covered rows  — 21/19022 rows (0.11%)
+  PASS  valuation: p_e != mcap/NI (>25% dev) <= 1.0% of covered rows  — 21/20481 rows (0.10%)
   PASS  valuation: fcf_yield != fcf/mcap (>25% dev) <= 1.0% of covered rows  — 13/33858 rows (0.04%)
   PASS  valuation: owner_earnings_yield != fcf_ttm/mcap (>25% dev) <= 1.5% of covered rows  — 0/35419 rows (0.00%)
   PASS  valuation: cfo_yield != cfo_ttm/mcap (>25% dev) <= 1.5% of covered rows  — 0/35656 rows (0.00%)
   PASS  valuation: earnings_yield != net_income_ttm/mcap (>25% dev) <= 1.5% of covered rows  — 104/31956 rows (0.33%)
   PASS  valuation: no ev_ebit below ev_ebitda (impossible ordering)  — 0 rows
   PASS  valuation: no positive ev_ebitda on ebitda<=0  — 0 rows
-  PASS  valuation: ev_ebitda != EV/ebitda (>25% dev) <= 6.0% of covered rows  — 107/22531 rows (0.47%)
-  PASS  valuation: ev_sales != EV/revenue (>25% dev) <= 6.0% of covered rows  — 82/31472 rows (0.26%)
-  PASS  valuation: no EV multiple stored on EV<=0 (meaningless)  — 0 rows
+  PASS  valuation: ev_ebitda != EV/ebitda (>25% dev) <= 6.0% of covered rows  — 106/23449 rows (0.45%)
+  PASS  valuation: ev_sales != EV/revenue (>25% dev) <= 6.0% of covered rows  — 82/33173 rows (0.25%)
+  PASS  valuation: ev_ebitda sign matches EV (denominator>0)  — 0 sign mismatches
   PASS  valuation: ebitda_margin != ebitda/revenue (>25% dev) <= 6.0% of covered rows  — 257/31122 rows (0.83%)
   PASS  valuation: top-100 by ETA carry ZERO cross-field violations  — 0 of top 100 rows inconsistent

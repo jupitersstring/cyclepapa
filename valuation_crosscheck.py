@@ -84,11 +84,11 @@ def main():
         d = dev(mc, price * sh) if np.isfinite(price) and np.isfinite(sh) else np.nan
         if np.isfinite(d) and d > 0.10:
             flag("ERROR", f"mcap {mc:.3g} != price*shares {price*sh:.3g} (dev {d:.0%})")
-        if np.isfinite(ev) and ev > 0 and np.isfinite(eb) and eb > 0 and np.isfinite(evb):
+        if np.isfinite(ev) and np.isfinite(eb) and eb > 0 and np.isfinite(evb):
             d = dev(evb, ev / eb)
             if d > 0.25:
                 flag("ERROR", f"ev_ebitda {evb:.2f} != EV/ebitda {ev/eb:.2f} (dev {d:.0%})")
-        if np.isfinite(ev) and ev > 0 and np.isfinite(rv) and rv > 0 and np.isfinite(evs):
+        if np.isfinite(ev) and np.isfinite(rv) and rv > 0 and np.isfinite(evs):
             d = dev(evs, ev / rv)
             if d > 0.25:
                 flag("ERROR", f"ev_sales {evs:.2f} != EV/revenue {ev/rv:.2f} (dev {d:.0%})")
@@ -124,12 +124,20 @@ def main():
         dvy = num(r, "dividend_yield")
         ncp = num(r, "net_cash_pct_mcap")
         # hard accounting identities (violation = corrupted figure, not noise)
+        # Margin orderings are STRONG heuristics, not inalienable laws
+        # (associates' income / other operating income / period bases bend
+        # them). Policy: mild violation is KEPT + qc-FLAGGED (WARN here);
+        # only an extreme gap — which the harmonizer nulls — is an ERROR.
         if np.isfinite(ebm) and np.isfinite(om) and ebm < om - 0.02:
-            flag("ERROR", f"ebitda_margin {ebm:.3f} < op_margin {om:.3f} "
-                          f"(impossible: D&A >= 0 — mixed-basis figures)")
+            sev_m = "ERROR" if (om - ebm) > 0.15 else "WARN"
+            flag(sev_m, f"ebitda_margin {ebm:.3f} < op_margin {om:.3f} "
+                        f"(gap {om-ebm:.2f} — kept & qc-flagged"
+                        f"{'' if sev_m=='WARN' else '; EXTREME, should be nulled'})")
         if np.isfinite(gm) and np.isfinite(om) and gm < om - 0.02:
-            flag("ERROR", f"gross_margin {gm:.3f} < op_margin {om:.3f} "
-                          f"(impossible: opex >= 0 — mixed-basis figures)")
+            sev_m = "ERROR" if (om - gm) > 0.15 else "WARN"
+            flag(sev_m, f"gross_margin {gm:.3f} < op_margin {om:.3f} "
+                        f"(gap {om-gm:.2f} — kept & qc-flagged"
+                        f"{'' if sev_m=='WARN' else '; EXTREME, should be nulled'})")
         if np.isfinite(gm) and gm > 1.02:
             flag("ERROR", f"gross_margin {gm:.3f} > 100% of revenue")
         # near-hard: FCF cannot exceed CFO with capex >= 0 (asset-sale years rare)

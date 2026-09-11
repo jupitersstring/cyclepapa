@@ -120,10 +120,10 @@ def main():
     # nulls, but the band keeps us from filling a gap with garbage too.
     #   (lo, hi) inclusive bounds; None = unbounded on that side.
     BANDS = {
-        "ev_ebitda": (0, 150),
+        "ev_ebitda": (-150, 150),   # negative EV / positive EBITDA is a REAL multiple (paid to own the earnings)
         "p_e": (0, 500),
         "pb": (0, 100),
-        "ev_sales": (0, 100),
+        "ev_sales": (-100, 100),    # ditto for negative-EV sales multiples
         "p_s": (0, 100),
         "market_cap": (0, None),
         "enterprise_value": (None, None),  # EV can be negative (net cash)
@@ -425,31 +425,50 @@ def main():
         # The ratio ALWAYS bends to the row's own components in the end — even a
         # Yahoo-precomputed ratio (enterpriseToEbitda lags Yahoo's own
         # price-fresh EV). The Yahoo ratio's role was arbitrating LEVELS above;
-        # the final stored ratio must equal what the components say.
-        fix = off
+        # the final stored ratio must equal what the components say. A MISSING
+        # ratio with valid components is filled the same way (this is also what
+        # restores negative-EV multiples: negative EV / positive denominator is
+        # a real, interpretable number — per user, do NOT null those).
+        fix = off | (ok & cur.isna())
         m.loc[fix, ratio_col] = comp[fix]
         recon[f"{ratio_col} (row-consistency)"] = int(fix.sum())
 
-    _row_consistent("ev_ebitda", (_ev / _eb2).where(_eb2 > 0), _evb_yf, band=(0, 500))
-    _row_consistent("ev_sales", (_ev / _rv2).where(_rv2 > 0), _evs_yf, band=(0, 500))
+    _row_consistent("ev_ebitda", (_ev / _eb2).where(_eb2 > 0), _evb_yf, band=(-500, 500))
+    _row_consistent("ev_sales", (_ev / _rv2).where(_rv2 > 0), _evs_yf, band=(-500, 500))
     _row_consistent("p_s", (_mc / _rv2).where((_rv2 > 0) & (_mc > 0)),
                     _yf_ok("yf_ps", "p_s"), band=(0, 500))
-    # residual margin-ordering violations after the Yahoo reconcile: the
-    # ebitda_margin side is tied to the reconciled LEVELS, so the other side
-    # is the provably-wrong figure — null it (wrong is worse than missing;
-    # NaN stays permissive in every gate).
+    # Margin-ordering anomalies after the Yahoo reconcile. These orderings are
+    # STRONG heuristics, not inalienable laws (associates' income, other
+    # operating income, period-basis gaps can legitimately bend them) — so
+    # (per user) a mild violation is KEPT and FLAGGED in qc_flags (identifiable,
+    # never silent), and only the EXTREME / definitionally-impossible cases
+    # (gap > 15pts, or op margin > 102% of revenue) are nulled.
+    if "qc_flags" not in m.columns:
+        m["qc_flags"] = ""
+    m["qc_flags"] = m["qc_flags"].fillna("").astype(str)
+
+    def _qc_flag(mask, tag):
+        mask = mask.fillna(False)
+        m.loc[mask, "qc_flags"] = (m.loc[mask, "qc_flags"]
+                                   .str.replace(tag, "", regex=False) + "|" + tag)
+        recon[f"qc_flag {tag}"] = int(mask.sum())
+
     _om2 = pd.to_numeric(m.get("op_margin"), errors="coerce")
     _ebm2 = pd.to_numeric(m.get("ebitda_margin"), errors="coerce")
     _gm2 = pd.to_numeric(m.get("gross_margin"), errors="coerce")
     if "op_margin" in m.columns:
-        _bad_om = _om2.notna() & _ebm2.notna() & (_om2 > _ebm2 + 0.02)
-        m.loc[_bad_om, "op_margin"] = np.nan
-        recon["op_margin nulled (> ebitda_margin)"] = int(_bad_om.sum())
+        _viol_om = _om2.notna() & _ebm2.notna() & (_om2 > _ebm2 + 0.02)
+        _null_om = _viol_om & ((_om2 > _ebm2 + 0.15) | (_om2 > 1.02))
+        m.loc[_null_om, "op_margin"] = np.nan
+        recon["op_margin nulled (extreme > ebitda_margin)"] = int(_null_om.sum())
+        _qc_flag(_viol_om & ~_null_om, "op_gt_ebitda_margin")
     if "gross_margin" in m.columns:
         _om3 = pd.to_numeric(m.get("op_margin"), errors="coerce")
-        _bad_gm = _gm2.notna() & _om3.notna() & (_gm2 < _om3 - 0.02)
-        m.loc[_bad_gm, "gross_margin"] = np.nan
-        recon["gross_margin nulled (< op_margin)"] = int(_bad_gm.sum())
+        _viol_gm = _gm2.notna() & _om3.notna() & (_gm2 < _om3 - 0.02)
+        _null_gm = _viol_gm & (_gm2 < _om3 - 0.15)
+        m.loc[_null_gm, "gross_margin"] = np.nan
+        recon["gross_margin nulled (extreme < op_margin)"] = int(_null_gm.sum())
+        _qc_flag(_viol_gm & ~_null_gm, "gross_lt_op_margin")
     _row_consistent("p_e", (_mc / _ni2).where(_ni2 > 0), _pe_yf, band=(0, 2000))
     # where Yahoo's p_e IS authoritative but NI still disagrees (margin-implied
     # NI was unavailable), derive the level from the ratio: NI := mcap / p_e.
@@ -483,17 +502,54 @@ def main():
             m.loc[_bad, _mult] = np.nan
             if int(_bad.sum()):
                 recon[f"{_mult} nulled (ebitda<=0)"] = int(_bad.sum())
-    # NEGATIVE-EV names (cash > mcap — the deep-value backbone): an EV multiple
-    # is meaningless there (a negative "multiple" is not a cheapness number;
-    # the negative-EV fact is its own signal via cash_gt_ev / neg-EV flags).
-    # Null the EV multiples so books never display an uninterpretable ratio.
+    # NEGATIVE-EV multiples are KEPT (per user): negative EV over a positive
+    # denominator is a real, interpretable number — you are paid to own the
+    # earnings/sales. Only a NON-POSITIVE DENOMINATOR makes a multiple
+    # meaningless (handled above). Flag the negative-EV rows so the state is
+    # identifiable at a glance, and enforce SIGN consistency: with a positive
+    # denominator the multiple must carry EV's sign.
     _ev_now = pd.to_numeric(m.get("enterprise_value"), errors="coerce")
-    for _mult in ("ev_ebitda", "ev_ebit", "ev_sales"):
+    _qc_flag(( _ev_now < 0) & _ev_now.notna(), "neg_ev")
+    for _mult, _den in (("ev_ebitda", _eb_now),):
         if _mult in m.columns:
-            _bad = (_ev_now <= 0) & pd.to_numeric(m[_mult], errors="coerce").notna()
-            m.loc[_bad, _mult] = np.nan
-            if int(_bad.sum()):
-                recon[f"{_mult} nulled (EV<=0)"] = int(_bad.sum())
+            _mv = pd.to_numeric(m[_mult], errors="coerce")
+            _wrong_sign = (_den > 0) & _mv.notna() & _ev_now.notna()                 & (np.sign(_mv) != np.sign(_ev_now)) & (_ev_now != 0)
+            m.loc[_wrong_sign, _mult] = (_ev_now / _den)[_wrong_sign]
+            if int(_wrong_sign.sum()):
+                recon[f"{_mult} sign-fixed"] = int(_wrong_sign.sum())
+
+    # remaining identifiability flags: anomalies that are KEPT (legitimate
+    # accounting can produce them) but must never be silent.
+    _fcf3 = pd.to_numeric(m.get("fcf_ttm"), errors="coerce")
+    _cfo3 = pd.to_numeric(m.get("cfo_ttm"), errors="coerce")
+    _cx3 = pd.to_numeric(m.get("capex_ttm"), errors="coerce")
+    _qc_flag((_cfo3 > 0) & (_fcf3 > _cfo3 * 1.05), "fcf_gt_cfo")
+    _td3 = pd.to_numeric(m.get("total_debt"), errors="coerce")
+    _ca3 = pd.to_numeric(m.get("cash"), errors="coerce")
+    _gap3 = ((_ev_now - (_mc + _td3 - _ca3)).abs() / _mc).where(_mc > 0)
+    _qc_flag(_gap3 > 0.25, "ev_comp_gap")
+    _rvu3 = pd.to_numeric(m.get("revenue_ttm_usd"), errors="coerce")
+    _rv3 = pd.to_numeric(m.get("revenue_ttm"), errors="coerce")
+    _ebu3 = pd.to_numeric(m.get("ebitda_ttm_usd"), errors="coerce")
+    _eb3 = pd.to_numeric(m.get("ebitda_ttm"), errors="coerce")
+    _fx1 = (_rvu3 / _rv3).where(_rv3 != 0)
+    _fx2 = (_ebu3 / _eb3).where(_eb3 != 0)
+    _fx_bad = (_fx1 > 0) & (_fx2 > 0) & ((_fx1 / _fx2 > 1.10) | (_fx2 / _fx1 > 1.10))
+    _qc_flag(_fx_bad, "fx_twin_dev")
+    m["qc_flags"] = m["qc_flags"].str.lstrip("|")
+
+    # persist the repair record — every reconciliation batch is identifiable
+    # after the fact, not just in scrollback.
+    try:
+        import datetime as _dt, os as _os
+        _os.makedirs("audit_reports", exist_ok=True)
+        with open("audit_reports/reconcile_log.txt", "a") as _lf:
+            _lf.write(f"\n=== {_dt.datetime.utcnow().isoformat()}Z "
+                      f"apply_ticker_yf on {args.master} ===\n")
+            for _c, _k in sorted(recon.items()):
+                _lf.write(f"  {_c:44s} {_k}\n")
+    except Exception as _e:
+        print(f"  (reconcile log write failed: {_e})", file=sys.stderr)
 
     if recon:
         print("\nLevel/ratio reconciliation (master -> Yahoo where materially "
