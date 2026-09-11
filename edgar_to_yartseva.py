@@ -225,6 +225,7 @@ def build_yartseva_row(edgar_row: pd.Series, price_row: pd.Series | None) -> dic
     r["retained_earnings"] = edgar_row.get("retained_earnings")
     # forensic round 2 fields
     r["capex_avg"] = edgar_row.get("capex_avg")
+    r["capex_ttm"] = edgar_row.get("capex_ttm")   # audited primary for the capex waterfall
     r["equity_cagr_5y"] = edgar_row.get("equity_cagr_5y")
     r["financing_cf_ttm"] = edgar_row.get("financing_cf_ttm")
     _ca_f = edgar_row.get("current_assets"); _cl_f = edgar_row.get("current_liab")   # extractor key

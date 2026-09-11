@@ -915,3 +915,62 @@
   shares_outstanding                           0
   total_debt                                   1720
   ufcf_yield nulled (levered, no interest data) 84
+
+=== 2026-09-11T05:08:23.447245Z apply_ticker_yf on asymmetry_global.csv ===
+  capex_ttm (EDGAR audited)                    0
+  capex_ttm (Yahoo statement)                  1
+  capex_ttm (identity: cfo - fcf)              1
+  capex_ttm nulled (negative, no identity)     0
+  cash (directional: master under half of Yahoo) 67
+  cfo_ttm                                      109
+  cfo_yield                                    0
+  currency arbitration (EDGAR usd adopted)     109
+  earnings_yield                               99
+  ebitda_margin                                1620
+  ebitda_margin nulled (de-minimis revenue)    2912
+  ebitda_ttm                                   154
+  ebitda_ttm unit-repaired (from in-band ev_ebitda) 90
+  ev_ebit                                      4282
+  ev_ebit nulled (ebitda<=0)                   639
+  ev_ebit nulled (impossible ordering)         3498
+  ev_ebitda (row-consistency)                  2526
+  ev_ebitda nulled (ebitda<=0)                 6704
+  ev_sales (row-consistency)                   2424
+  ev_sales nulled (de-minimis revenue)         2457
+  fcf_ttm (EDGAR audited, preferred)           0
+  fcf_ttm (Yahoo statement trailing, non-EDGAR) 0
+  fcf_ttm (cfo - capex identity, fallback)     0
+  fcf_yield                                    80
+  gross_margin                                 0
+  gross_margin nulled (de-minimis revenue)     2522
+  gross_margin nulled (extreme < op_margin)    248
+  net_cash_pct_mcap                            0
+  net_debt_ebitda                              0
+  net_income_ttm                               104
+  net_income_ttm (from authoritative p_e)      104
+  net_margin                                   0
+  op_margin                                    2
+  op_margin nulled (de-minimis revenue)        1079
+  op_margin nulled (extreme > ebitda_margin)   3342
+  owner_earnings_yield                         0
+  p_e (row-consistency)                        4245
+  p_s (row-consistency)                        2493
+  p_s nulled (de-minimis revenue)              2417
+  p_tb                                         203
+  price_52w_high lifted to price               0
+  qc_flag edgar_currency_arbitration           109
+  qc_flag edgar_grounded                       219
+  qc_flag ev_comp_gap                          6110
+  qc_flag fcf_gt_cfo                           1721
+  qc_flag fcf_yf_adopted                       0
+  qc_flag fx_twin_dev                          0
+  qc_flag gross_lt_op_margin                   468
+  qc_flag neg_ev                               1914
+  qc_flag op_gt_ebitda_margin                  2635
+  qc_flag unit_repaired                        25
+  revenue_ttm                                  132
+  revenue_ttm unit-repaired (from in-band ev_sales) 25
+  robust_cash_yield                            0
+  roe                                          0
+  shares_outstanding                           0
+  total_debt                                   94

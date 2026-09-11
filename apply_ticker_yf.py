@@ -123,7 +123,7 @@ def main():
                          usecols=lambda c: c in {
                              "symbol", "revenue_ttm", "ebitda_ttm", "cfo_ttm",
                              "fcf_ttm", "cash", "total_debt", "op_margin",
-                             "balance_sheet_date"}
+                             "capex_ttm", "balance_sheet_date"}
                          ).drop_duplicates("symbol").set_index("symbol")
         # FRESHNESS GATE (user rule): prefer Yahoo when the EDGAR data is more
         # stale than ONE QUARTER — a period end older than ~135 days (one
@@ -434,14 +434,31 @@ def main():
         m.loc[stale | fillm, colname] = fresh[stale | fillm]
         recon[colname] = recon.get(colname, 0) + int((stale | fillm).sum())
 
-    # capex_ttm sign/identity normalization: our convention stores capex as a
-    # POSITIVE magnitude and derives fcf = cfo - capex. Negative stored capex
-    # (088910.KQ at -16.6B vs the real +1.9B) both breaks the D&A-vs-capex
-    # forensic gates and INFLATES fcf through the identity. Where cfo and fcf
-    # are both present, the identity implies capex = cfo - fcf: adopt it when
-    # the stored value disagrees in SIGN or by >1.4x and the implied value is
-    # plausible (>=0). A stored negative with no identity rescue is nulled.
+    # capex_ttm — PRIMARY-SOURCE waterfall (root-cause correction, 2026-09-12).
+    # Provenance analysis showed capex_ttm was NEVER an independent figure:
+    # derive computed it as cfo - fcf, so a MIXED-VINTAGE cfo/fcf pair
+    # manufactured garbage (088910.KQ: stale cfo 7.1B minus fresher fcf 23.6B
+    # = "capex" -16.6B; ~15% negative across ALL markets, US included — not a
+    # sign-convention issue). Order of authority now:
+    #   1. audited EDGAR capex (fresh-gated, positive-magnitude tag);
+    #   2. Yahoo STATEMENT capex (|trailingCapitalExpenditure|, validated);
+    #   3. the identity cfo - fcf, LAST resort only, >=0 required.
     if "capex_ttm" in m.columns:
+        _cx_cur0 = pd.to_numeric(m["capex_ttm"], errors="coerce")
+        _cx_ed = edgar_col("capex_ttm")
+        _r_ce = (_cx_cur0 / _cx_ed).where(_cx_ed > 0)
+        _dis_ce = _cx_ed.notna() & (_cx_ed > 0) & _cx_cur0.notna() \
+            & ((_r_ce > 1.4) | (_r_ce < 1 / 1.4) | (_cx_cur0 < 0))
+        m.loc[_dis_ce, "capex_ttm"] = _cx_ed[_dis_ce]
+        recon["capex_ttm (EDGAR audited)"] = int(_dis_ce.sum())
+        _cx_stmt = pd.to_numeric(y.get("yf_capex_stmt"), errors="coerce").reindex(m.index).abs() \
+            if "yf_capex_stmt" in y.columns else pd.Series(np.nan, index=m.index)
+        _cx_cur1 = pd.to_numeric(m["capex_ttm"], errors="coerce")
+        _r_cs = (_cx_cur1 / _cx_stmt).where(_cx_stmt > 0)
+        _dis_cs = _cx_stmt.notna() & (_cx_stmt > 0) & _cx_cur1.notna() & _cx_ed.isna() \
+            & ((_r_cs > 1.4) | (_r_cs < 1 / 1.4) | (_cx_cur1 < 0))
+        m.loc[_dis_cs, "capex_ttm"] = _cx_stmt[_dis_cs]
+        recon["capex_ttm (Yahoo statement)"] = int(_dis_cs.sum())
         _cx_cur = pd.to_numeric(m["capex_ttm"], errors="coerce")
         _cfo_cx = pd.to_numeric(m.get("cfo_ttm"), errors="coerce")
         _fcf_cx = pd.to_numeric(m.get("fcf_ttm"), errors="coerce")
