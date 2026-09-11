@@ -101,7 +101,7 @@ def _load_fundamentals() -> pd.DataFrame:
     if 'roce' in df.columns:
         df.loc[(df['roce'] > 5.0) | (df['roce'] < -1.0), 'roce'] = float('nan')
     if 'ev_ebit' in df.columns:
-        df.loc[(df['ev_ebit'] < 2.0), 'ev_ebit'] = float('nan')
+        df.loc[((df['ev_ebit'] > 0) & (df['ev_ebit'] < 2.0)), 'ev_ebit'] = np.nan  # sub-2x POSITIVE only, per comment
     return df
 
 
@@ -279,18 +279,47 @@ def compute(out_path: str = 'alta_fox_scores.csv') -> pd.DataFrame:
     # not-extreme filter, not a positive signal, per the TSR
     # decomposition); moat proxies (ROCE + gross margin + insider) added
     # with moderate weights; M&A hint added with light weight.
-    df['alta_fox_score'] = (
-        geo_score.astype(float)         * 0.15
-        + sector_score.astype(float)    * 0.15
-        + val_score.astype(float)       * 0.10  # was 0.20; not-extreme filter only
-        + growth_score.astype(float)    * 0.15
-        + margin_score.astype(float)    * 0.10
-        + health_score.clip(0, 1)       * 0.10  # was 0.05; raised toward 88% prevalence
-        + roce_score.astype(float)      * 0.10  # NEW - moat proxy 1
-        + gm_score.astype(float)        * 0.05  # NEW - moat proxy 2
-        + insider_score.astype(float)   * 0.05  # NEW - owner-operator proxy
-        + ma_hint_score.astype(float)   * 0.05  # NEW - light M&A hint
-    ).round(3)
+    # (audit #11) RENORMALIZED over the legs actually OBSERVED: the old
+    # fixed-weight sum treated every missing fundamental as a FAILED test
+    # (sentinel fills), so an under-covered name scored as if it flunked
+    # ~70% of the checklist instead of being scored on what is known.
+    # Requires at least half the total weight observed to emit a score.
+    _present = {
+        'geo': pd.Series(True, index=df.index),
+        'sector': pd.Series(True, index=df.index),
+        'val': df['p_s'].notna() | df['ev_ebitda'].notna() | df['p_e'].notna(),
+        'growth': df['rev_3y_cagr'].notna() | df['rev_yoy'].notna(),
+        'margin': df['ebitda_margin'].notna(),
+        'health': df['ebitda_margin'].notna() & df['net_debt_ebitda'].notna(),
+        'roce': (df['roce'].notna() if 'roce' in df.columns
+                 else pd.Series(False, index=df.index)),
+        'gm': (df['gross_margin'].notna() if 'gross_margin' in df.columns
+               else pd.Series(False, index=df.index)),
+        'insider': (df['insider_ownership_pct'].notna()
+                    if 'insider_ownership_pct' in df.columns
+                    else pd.Series(False, index=df.index)),
+        'ma': (df['rev_3y_cagr'].notna() if 'rev_3y_cagr' in df.columns
+               else pd.Series(False, index=df.index)),
+    }
+    _leg_vals = {
+        'geo': (geo_score.astype(float), 0.15),
+        'sector': (sector_score.astype(float), 0.15),
+        'val': (val_score.astype(float), 0.10),
+        'growth': (growth_score.astype(float), 0.15),
+        'margin': (margin_score.astype(float), 0.10),
+        'health': (health_score.clip(0, 1), 0.10),
+        'roce': (roce_score.astype(float), 0.10),
+        'gm': (gm_score.astype(float), 0.05),
+        'insider': (insider_score.astype(float), 0.05),
+        'ma': (ma_hint_score.astype(float), 0.05),
+    }
+    _num_af = pd.Series(0.0, index=df.index)
+    _den_af = pd.Series(0.0, index=df.index)
+    for _k, (_sv, _w) in _leg_vals.items():
+        _p = _present[_k]
+        _num_af = _num_af + _sv.where(_p, 0.0) * _w
+        _den_af = _den_af + _p.astype(float) * _w
+    df['alta_fox_score'] = (_num_af / _den_af.where(_den_af >= 0.5)).round(3)
 
     # Also surface a 'strict Alta Fox checklist' boolean
     df['alta_fox_strict_match'] = (

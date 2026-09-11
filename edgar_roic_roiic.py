@@ -167,7 +167,8 @@ def compute_multi_year(facts: dict, n_years: int = 6) -> pd.DataFrame:
 
     # Derived
     df["total_debt"] = df[["lt_debt", "st_debt"]].fillna(0).sum(axis=1)
-    df["ic"] = df["equity"].fillna(0) + df["total_debt"] - df["cash"].fillna(0)
+    # (audit #2) unobserved equity must never fabricate IC = debt - cash
+    df["ic"] = df["equity"] + df["total_debt"] - df["cash"].fillna(0)
     df["nopat"] = df["opinc"] * (1 - EFFECTIVE_TAX)
     df["fcf"] = df["cfo"] - df["capex"]
     df["ebitda"] = df["opinc"].fillna(0) + df["da"].fillna(0)
@@ -195,13 +196,24 @@ def lindy_aggregates(df: pd.DataFrame) -> dict:
     def roiic_window(years: int, num_col: str, denom_col: str) -> float:
         if len(df) < years + 1:
             return np.nan
+        # (audit #4) positional offsets assume consecutive fiscal years — a
+        # skipped year (transition period, M&A) silently mislabels the window
+        try:
+            _y_hi = int(df.index[-1]); _y_lo = int(df.index[-(years + 1)])
+            if _y_hi - _y_lo != years:
+                return np.nan
+        except Exception:
+            pass
         d_num = df[num_col].iloc[-1] - df[num_col].iloc[-(years + 1)]
         d_den = df[denom_col].iloc[-1] - df[denom_col].iloc[-(years + 1)]
         ic_latest = df[denom_col].iloc[-1]
         # Guard: denominator must be (a) absolutely meaningful AND (b) at
         # least 5% of latest IC. ΔIC < 5% of IC is structural noise — the
         # business hasn't reinvested enough to compute a clean ROIIC.
-        if (d_den is None or pd.isna(d_den) or abs(d_den) < 1e6
+        # (audit #1) ROIIC is only meaningful when incremental capital was
+        # DEPLOYED: shrinking IC beside falling NOPAT is a ratio of two
+        # negatives reading as "great incremental returns"
+        if (d_den is None or pd.isna(d_den) or d_den <= 0 or abs(d_den) < 1e6
                 or (ic_latest and ic_latest > 0 and abs(d_den) / ic_latest < 0.05)):
             return np.nan
         v = d_num / d_den
@@ -223,10 +235,10 @@ def lindy_aggregates(df: pd.DataFrame) -> dict:
     for i in range(3, len(df)):
         d_n = df["nopat"].iloc[i] - df["nopat"].iloc[i - 3]
         d_ic = df["ic"].iloc[i] - df["ic"].iloc[i - 3]
-        if pd.notna(d_n) and pd.notna(d_ic) and abs(d_ic) >= 1e6:
+        if pd.notna(d_n) and pd.notna(d_ic) and d_ic >= 1e6:
             rolling_roiic.append(d_n / d_ic)
         d_f = df["fcf"].iloc[i] - df["fcf"].iloc[i - 3]
-        if pd.notna(d_f) and pd.notna(d_ic) and abs(d_ic) >= 1e6:
+        if pd.notna(d_f) and pd.notna(d_ic) and d_ic >= 1e6:
             rolling_cash.append(d_f / d_ic)
     out["roiic_lindy"] = float(np.median(rolling_roiic)) if rolling_roiic else np.nan
     out["cash_roiic_lindy"] = float(np.median(rolling_cash)) if rolling_cash else np.nan
@@ -273,7 +285,7 @@ def lindy_aggregates(df: pd.DataFrame) -> dict:
             a4 = float(df["assets"].iloc[-4])
             a0 = float(df["assets"].iloc[-1])
             if a4 > 0 and a0 > 0:
-                out["asset_3y_cagr"] = (a0 / a4) ** (1 / 3) - 1
+                out["asset_3y_cagr"] = min(10.0, max(-10.0, (a0 / a4) ** (1 / 3) - 1))
         except (ValueError, TypeError):
             pass
 
@@ -282,7 +294,7 @@ def lindy_aggregates(df: pd.DataFrame) -> dict:
         r4 = float(df["revenue"].iloc[-4])
         r0 = float(df["revenue"].iloc[-1])
         if r4 > 0 and r0 > 0:
-            out["revenue_3y_cagr"] = (r0 / r4) ** (1 / 3) - 1
+            out["revenue_3y_cagr"] = min(10.0, max(-10.0, (r0 / r4) ** (1 / 3) - 1))
 
     # ----- Lindy durability fields -----
     # These let the archetype layer score multi-cycle resilience without
@@ -322,7 +334,7 @@ def lindy_aggregates(df: pd.DataFrame) -> dict:
         r5 = float(df["revenue"].iloc[-6])
         r0 = float(df["revenue"].iloc[-1])
         if r5 > 0 and r0 > 0:
-            out["revenue_5y_cagr"] = (r0 / r5) ** (1 / 5) - 1
+            out["revenue_5y_cagr"] = min(10.0, max(-10.0, (r0 / r5) ** (1 / 5) - 1))
             # Accelerating topline: 3y CAGR > 5y CAGR (more recent growth faster)
             if pd.notna(out.get("revenue_3y_cagr")):
                 out["revenue_acceleration_lindy"] = (
@@ -334,7 +346,7 @@ def lindy_aggregates(df: pd.DataFrame) -> dict:
         a5 = float(df["assets"].iloc[-6])
         a0 = float(df["assets"].iloc[-1])
         if a5 > 0 and a0 > 0:
-            out["asset_5y_cagr"] = (a0 / a5) ** (1 / 5) - 1
+            out["asset_5y_cagr"] = min(10.0, max(-10.0, (a0 / a5) ** (1 / 5) - 1))
 
     # Dilution check: shares outstanding growth over the last 3 years.
     # Lindy compounder pattern is shares flat or declining (buybacks)
@@ -344,12 +356,12 @@ def lindy_aggregates(df: pd.DataFrame) -> dict:
         s_then = df["shares"].iloc[-4]
         s_now = df["shares"].iloc[-1]
         if pd.notna(s_then) and pd.notna(s_now) and s_then > 0:
-            out["shares_growth_3y"] = (s_now - s_then) / s_then
+            out["shares_growth_3y"] = min(10.0, max(-10.0, (s_now - s_then) / s_then))
     if "shares" in df.columns and len(df) >= 6:
         s_then = df["shares"].iloc[-6]
         s_now = df["shares"].iloc[-1]
         if pd.notna(s_then) and pd.notna(s_now) and s_then > 0:
-            out["shares_growth_5y"] = (s_now - s_then) / s_then
+            out["shares_growth_5y"] = min(10.0, max(-10.0, (s_now - s_then) / s_then))
 
     return out
 

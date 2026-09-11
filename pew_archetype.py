@@ -124,6 +124,16 @@ class PewRow:
 def _trailing_sum(series: Optional[pd.Series], n: int = 4) -> Optional[float]:
     if series is None or len(series) < n:
         return None
+    # (audit #9) the n columns must actually be consecutive ~quarters — a
+    # reporting gap or semi-annual cadence silently makes the "TTM" span
+    # more or less than 12 months
+    try:
+        idx = pd.to_datetime(series.index[:n])
+        gaps = [(idx[i] - idx[i + 1]).days for i in range(n - 1)]
+        if any(g < 60 or g > 130 for g in gaps):
+            return None
+    except Exception:
+        pass
     vals = series.iloc[:n].astype(float)
     if vals.isna().any():
         return None
@@ -258,6 +268,13 @@ def fetch_pew(symbol: str, info_meta: dict) -> Optional[PewRow]:
     except Exception:
         balance_sheet_date = ""
 
+    # (audit #8) quote vs financial currency: when they differ, every
+    # mcap/EV-vs-balance-level ratio below is cross-currency garbage — the
+    # row's cheapness figures are skipped rather than silently wrong
+    _q_ccy = str(info.get("currency") or "").upper().replace("GBX", "GBP").replace("GBP0.01", "GBP")
+    _f_ccy = str(info.get("financialCurrency") or "").upper()
+    _ccy_ok = (not _q_ccy) or (not _f_ccy) or (_q_ccy == _f_ccy) or (
+        _q_ccy == "GBP" and _f_ccy == "GBP")
     # Market cap / EV with recompute when yfinance info is stale or zero
     price = info.get("currentPrice") or info.get("regularMarketPrice")
     shares = info.get("sharesOutstanding") or info.get("impliedSharesOutstanding")
@@ -279,10 +296,16 @@ def fetch_pew(symbol: str, info_meta: dict) -> Optional[PewRow]:
     else:
         enterprise_value = np.nan
 
-    net_cash_pct_mcap = safe_div(net_cash, market_cap)
+    if not _ccy_ok:
+        # quote/financial currency mismatch: mcap-vs-level ratios are
+        # cross-currency garbage — leave them absent (audit #8)
+        net_cash = np.nan
+    net_cash_pct_mcap = safe_div(net_cash, market_cap) if _ccy_ok else np.nan
     cash_pct_mcap = safe_div(cash_v, market_cap)
-    cash_pct_ev = safe_div(cash_v, enterprise_value) if (pd.notna(cash_v) and pd.notna(enterprise_value) and enterprise_value > 0) else np.nan
-    ev_to_mcap = safe_div(enterprise_value, market_cap)
+    cash_pct_ev = (safe_div(cash_v, enterprise_value)
+                   if (_ccy_ok and pd.notna(cash_v) and pd.notna(enterprise_value)
+                       and enterprise_value > 0) else np.nan)
+    ev_to_mcap = safe_div(enterprise_value, market_cap) if _ccy_ok else np.nan
     negative_ev_flag = int(pd.notna(enterprise_value) and enterprise_value < 0)
     below_net_cash_flag = int(pd.notna(net_cash) and pd.notna(market_cap) and net_cash > market_cap)
     cash_gt_ev_flag = int(
@@ -297,8 +320,8 @@ def fetch_pew(symbol: str, info_meta: dict) -> Optional[PewRow]:
     ca_v = float(cur_assets.iloc[0]) if (cur_assets is not None and pd.notna(cur_assets.iloc[0])) else np.nan
     tl_v = float(total_liab.iloc[0]) if (total_liab is not None and pd.notna(total_liab.iloc[0])) else np.nan
     ncav = (ca_v - tl_v) if (pd.notna(ca_v) and pd.notna(tl_v)) else np.nan
-    ncav_pct_mcap = safe_div(ncav, market_cap) if (pd.notna(ncav) and market_cap) else np.nan
-    mcap_to_ncav = safe_div(market_cap, ncav) if (pd.notna(ncav) and ncav > 0 and market_cap) else np.nan
+    ncav_pct_mcap = safe_div(ncav, market_cap) if (_ccy_ok and pd.notna(ncav) and market_cap) else np.nan
+    mcap_to_ncav = safe_div(market_cap, ncav) if (_ccy_ok and pd.notna(ncav) and ncav > 0 and market_cap) else np.nan
     graham_net_net_flag = int(
         pd.notna(mcap_to_ncav) and mcap_to_ncav > 0 and mcap_to_ncav < (2.0 / 3.0)
     )

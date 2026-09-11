@@ -170,7 +170,8 @@ def main() -> int:
 
     need_ev = (
         ev_num.isna()
-        & price_num.notna()
+        # (audit #16) price is not an input to mcap+debt-cash — requiring it
+        # blocked legitimate EV fills where mcap came from another source
         & mcap_num.notna()
         & debt_num.notna()
         & cash_num.notna()

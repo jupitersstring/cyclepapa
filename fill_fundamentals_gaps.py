@@ -125,8 +125,8 @@ def apply_fallbacks(row: pd.Series, info: dict) -> dict[str, float]:
     # Direct yfinance-info ratios
     patch('pb', 'priceToBook', sanity=lambda x: 0 < x < 100)
     patch('p_e', 'trailingPE', sanity=lambda x: 0 < x < 2000)
-    if 'p_e' in out and out['p_e'] is None:
-        patch('p_e', 'forwardPE', sanity=lambda x: 0 < x < 2000)
+    # (audit #15) the forwardPE fallback was dead code (unreachable) AND
+    # against doctrine — a forward multiple must never wear a trailing name.
     patch('p_s', 'priceToSalesTrailing12Months', sanity=lambda x: 0 < x < 200)
     patch('ev_ebitda', 'enterpriseToEbitda', sanity=lambda x: x != 0 and abs(x) < 500)
     patch('ev_sales', 'enterpriseToRevenue', sanity=lambda x: x != 0 and 0 < x < 200)
@@ -171,16 +171,13 @@ def apply_fallbacks(row: pd.Series, info: dict) -> dict[str, float]:
     # ROCE proxy: when our primary extraction returned NaN (typically
     # because we couldn't compute invested capital cleanly), fall back
     # to returnOnEquity which is the closest proxy yfinance exposes.
-    if 'roce' in row.index and pd.isna(row['roce']):
-        roe = _safe_float(info.get('returnOnEquity'))
-        if roe is not None and -1 < roe < 5:
-            out['roce'] = roe
+    # (audit #13) ROE-as-ROCE alias REMOVED: NI/equity (levered) written
+    # into an EBIT/capital-employed column silently scored levered names
+    # against ROCE-calibrated thresholds (alta_fox AF8). Honest absence.
 
-    # ebitda_margin: secondary fallback from operatingMargins
-    if 'ebitda_margin' in row.index and pd.isna(row['ebitda_margin']) and 'ebitda_margin' not in out:
-        op_m = _safe_float(info.get('operatingMargins'))
-        if op_m is not None and -1 < op_m < 1:
-            out['ebitda_margin'] = op_m  # operating margin as lower-bound proxy
+    # (audit #14) operatingMargins-as-ebitda_margin fallback REMOVED — a
+    # post-D&A margin under a pre-D&A name systematically understated the
+    # figure for capital-intensive names (same fix as the build stage).
 
     return out
 

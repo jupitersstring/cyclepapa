@@ -150,15 +150,17 @@ def long_roc(monthly_close: pd.Series):
     # gate: a release + rising asymmetry AFTER a 100% rally is the payment
     # already arriving, not the coil Lynch wants to buy.
     for label, months in (('6m', 6), ('12m', 12)):
-        out[f'roc_{label}'] = (round(float(c.iloc[-1] / c.iloc[-1 - months] - 1.0), 4)
+        # (audit #7) capped +/-1000%: a near-zero prior price prints a
+        # multi-thousand-percent "ROC" that is a base artifact, not a return
+        out[f'roc_{label}'] = (round(float(np.clip(c.iloc[-1] / c.iloc[-1 - months] - 1.0, -10.0, 10.0)), 4)
                                if len(c) > months and c.iloc[-1 - months] > 0 else np.nan)
     for label, months in (('3_5y', 42), ('10y', 120)):
         r = (c / c.shift(months).where(c.shift(months) > 0) - 1.0)
         r = r.replace([np.inf, -np.inf], np.nan)
-        out[f'roc_{label}'] = (round(float(r.iloc[-1]), 4)
+        out[f'roc_{label}'] = (round(float(np.clip(r.iloc[-1], -10.0, 10.0)), 4)
                                if len(c) > months and pd.notna(r.iloc[-1]) else np.nan)
         if len(c) > months + 12 and pd.notna(r.iloc[-1]) and pd.notna(r.iloc[-13]):
-            out[f'roc_accel_{label}'] = round(float(r.iloc[-1] - r.iloc[-13]), 4)
+            out[f'roc_accel_{label}'] = round(float(np.clip(r.iloc[-1] - r.iloc[-13], -10.0, 10.0)), 4)
         else:
             out[f'roc_accel_{label}'] = np.nan
     return out

@@ -222,7 +222,12 @@ def derive(df: pd.DataFrame) -> pd.DataFrame:
         member_rows = []
         for member, gg in growth.items():
             share = shares.get(member)
-            robust = np.nanmax([gg.get("fy", np.nan), gg.get("q", np.nan)])
+            # (audit #5) FY preferred, Q only as FALLBACK — nanmax cherry-picked
+            # the more flattering of two noisy estimates, inflating
+            # fastest_segment_yoy by construction
+            robust = gg.get("fy", np.nan)
+            if pd.isna(robust):
+                robust = gg.get("q", np.nan)
             member_rows.append((member, share, gg.get("fy"), gg.get("q"),
                                 float(robust)))
         rec["n_segment_periods"] = n_periods
@@ -242,9 +247,12 @@ def derive(df: pd.DataFrame) -> pd.DataFrame:
                         v = float(mm[mm["pe"] == prior_pe]["value"].sum())
                         if v > 0:
                             share_prior[m] = v / tot_prior
+        # (audit #6) prior mix is FY-only; the delta is meaningful only when
+        # the CURRENT mix is FY-basis too (a Q-basis latest vs FY prior
+        # compares concentration over different-duration windows)
         rec["segment_hhi_delta"] = (
             round(_hhi(shares) - _hhi(share_prior), 4)
-            if shares and share_prior else None)
+            if shares and share_prior and mix_ptype == "FY" else None)
 
         # fastest MATERIAL segment (share >= 5%, or rising >= 1pp)
         fastest = None
