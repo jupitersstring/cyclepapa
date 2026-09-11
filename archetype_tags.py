@@ -4365,6 +4365,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_flyover',
         'arch_spinoff_value',
         'arch_spinoff_quality',
+        'arch_spinoff_asset',
         'arch_greenblatt_magic',
         'arch_post_reorg',
         'arch_special_situation',
@@ -4505,6 +4506,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_flyover': 'Flyover-QuietQuality',
         'arch_spinoff_value': 'SpinOff-Value-Form10',
         'arch_spinoff_quality': 'SpinOff-Quality-Franchise',
+        'arch_spinoff_asset': 'SpinOff-Asset-Backing',
         'arch_greenblatt_magic': 'Greenblatt-MagicFormula',
         'arch_post_reorg': 'PostReorg-FreshStart',
         'arch_special_situation': 'SpecialSit-Catalyst',
@@ -4709,6 +4711,27 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & (s('op_margin', np.nan) >= 0.15)       # fat operating margin — a real franchise (SNDK 0.61)
         & _spin_reasonable_mult                  # bought at a sane price, not a bubble (SNDK EV/EBIT 20.2)
         & ((nde <= 3.0) | (net_cash_pct_c >= 0)) # sound balance sheet (SNDK is net cash)
+    ).fillna(False).astype(int)
+
+    # (3) ASSET spin (arch_spinoff_asset): forced-selling of a spun entity can
+    #     leave it priced below its ASSET backing regardless of earnings — the
+    #     classic sum-of-parts / net-net / hidden-real-estate / deep-net-cash
+    #     orphan (a spin often carries the parent's under-marked assets). Keys
+    #     on a BALANCE-SHEET floor, NOT on yield (value spin) or returns
+    #     (quality spin), but still requires a non-melting business so the asset
+    #     value is not being torched. All legs are same-currency (mcap-relative
+    #     levels straight from source), except the off-EV asset gap which is
+    #     guarded by _fx_coherent (the hidden_assets currency-mix lesson).
+    _spin_asset_floor = (
+        ((pb > 0) & (pb < 1.0))                   # priced below book
+        | (ncav_pct >= 0.5)                       # net-net: NCAV covers half+ of mcap
+        | (net_cash_pct_c >= 0.20)                # deep net cash
+        | (cash_gt_ev > 0)                        # cash exceeds enterprise value
+        | (_fx_coherent & (_hidden_pct >= 0.25))  # off-EV asset pile >= 25% of mcap
+    )
+    df['arch_spinoff_asset'] = (
+        (_spin == 1) & is_operating & _not_melting & (mcap > 0)
+        & _spin_asset_floor
     ).fillna(False).astype(int)
 
     # Greenblatt Magic Formula: the intersection of a HIGH EARNINGS YIELD

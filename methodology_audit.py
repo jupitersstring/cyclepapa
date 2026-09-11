@@ -527,6 +527,7 @@ def _regression(t, g):
                 "arch_bottleneck", "arch_flyover",
                 # event-driven sleeve (operating-gated ones)
                 "arch_spinoff_value", "arch_spinoff_quality",
+                "arch_spinoff_asset",
                 "arch_post_reorg", "arch_nol_shell",
                 # cheap+quality factor sleeve (operating-gated)
                 "arch_greenblatt_magic"):

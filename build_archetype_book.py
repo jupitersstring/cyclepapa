@@ -121,6 +121,7 @@ ARCHETYPE_LABELS = {
     'arch_flyover': 'Flyover (undiscovered quiet quality)',
     'arch_spinoff_value': 'Spin-Off Value (Form 10, cheap + forced-selling)',
     'arch_spinoff_quality': 'Spin-Off Quality (Form 10, franchise at fair price)',
+    'arch_spinoff_asset': 'Spin-Off Asset (Form 10, below asset backing)',
     'arch_greenblatt_magic': 'Greenblatt Magic Formula (cheap + high ROC)',
     'arch_post_reorg': 'Post-Reorg (fresh-start, EBIT-yield>20%)',
     'arch_special_situation': 'Special Situation (merger/tender/going-private)',
