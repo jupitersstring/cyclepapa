@@ -374,8 +374,8 @@ def main():
     # most base-effect-exposed number; cap before it drives a ranking
     # (user directive) latest-quarter corroboration and a consecutive-
     # growth streak UPWEIGHT the FY-based number (never replace it)
-    _qcf_s = pd.to_numeric(df.get('fastest_seg_q_confirm'), errors='coerce').fillna(0).clip(0, 1)
-    _stk_s = pd.to_numeric(df.get('fastest_seg_consec_growth'), errors='coerce').fillna(0).clip(0, 3) / 3.0
+    _qcf_s = pd.to_numeric(df['fastest_seg_q_confirm'], errors='coerce').fillna(0).clip(0, 1) if 'fastest_seg_q_confirm' in df.columns else pd.Series(0.0, index=df.index)
+    _stk_s = (pd.to_numeric(df['fastest_seg_consec_growth'], errors='coerce').fillna(0).clip(0, 3) / 3.0) if 'fastest_seg_consec_growth' in df.columns else pd.Series(0.0, index=df.index)
     df['seg_inflect_confirmed'] = (_fsy.clip(-1.0, 1.0)
                                    * (1.0 + 0.20 * _cfo.clip(0, 1)
                                       + 0.10 * _aln.clip(0, 1)
