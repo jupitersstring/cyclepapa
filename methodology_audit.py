@@ -703,6 +703,27 @@ def _valuation_consistency(t, g):
         _orph = int(((n(t, "arch_forensic_payout_confirmed") == 1) & (_par == 0)).sum())
         check("regression: forensic_payout_confirmed is a subset of the forensic family",
               _orph == 0, f"{_orph} orphan firers")
+    # EDGAR grounding (user directive: audited accounts preferred where possible)
+    try:
+        _ed = pd.read_csv("us_edgar_yartseva.csv", low_memory=False,
+                          usecols=["symbol", "ebitda_ttm", "balance_sheet_date"]
+                          ).drop_duplicates("symbol")
+        # same gates as the harmonizer: audited-but-STALE (>270d) and
+        # sign-flipped rows are deliberately NOT grounded
+        _bsd = pd.to_datetime(_ed["balance_sheet_date"], errors="coerce")
+        _ed = _ed[((pd.Timestamp.now() - _bsd).dt.days <= 270).fillna(False)]
+        _edj = g[["symbol", "ebitda_ttm"]].merge(
+            _ed[["symbol", "ebitda_ttm"]], on="symbol",
+            suffixes=("_m", "_e"), how="inner")
+        _me = pd.to_numeric(_edj["ebitda_ttm_m"], errors="coerce")
+        _ee = pd.to_numeric(_edj["ebitda_ttm_e"], errors="coerce")
+        _okb = _me.notna() & _ee.notna() & (_ee != 0) & (_me != 0) \
+            & (np.sign(_me) == np.sign(_ee))
+        _ag = ((_me / _ee).where(_okb).between(1 / 1.4, 1.4)).sum() / max(1, int(_okb.sum()))
+        check("valuation: US names EDGAR-grounded (master EBITDA within 1.4x of audited for >=95%)",
+              _ag >= 0.95, f"{_ag*100:.1f}% agreement on {int(_okb.sum())} EDGAR-covered names")
+    except FileNotFoundError:
+        pass
     # hidden_assets: the gap must be real in LOCAL currency for every firer
     if "arch_hidden_assets" in t.columns:
         _f = t["arch_hidden_assets"] == 1

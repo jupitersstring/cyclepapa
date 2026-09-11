@@ -157,3 +157,90 @@
   roe                                          0
   shares_outstanding                           0
   total_debt                                   3600
+
+=== 2026-09-11T02:34:22.778324Z apply_ticker_yf on asymmetry_global.csv ===
+  cfo_ttm                                      3402
+  cfo_yield                                    3262
+  earnings_yield                               99
+  ebitda_margin                                1874
+  ebitda_ttm                                   1686
+  ev_ebit                                      4256
+  ev_ebit nulled (ebitda<=0)                   692
+  ev_ebit nulled (impossible ordering)         3700
+  ev_ebitda (row-consistency)                  3274
+  ev_ebitda nulled (ebitda<=0)                 6838
+  ev_ebitda sign-fixed                         5
+  ev_sales (row-consistency)                   2318
+  fcf_ttm (EDGAR audited, preferred)           654
+  fcf_ttm (cfo - capex identity, non-EDGAR)    489
+  fcf_yield                                    2438
+  gross_margin                                 0
+  gross_margin nulled (extreme < op_margin)    282
+  net_cash_pct_mcap                            1617
+  net_debt_ebitda                              1094
+  net_income_ttm                               104
+  net_income_ttm (from authoritative p_e)      104
+  net_margin                                   0
+  op_margin                                    1535
+  op_margin nulled (extreme > ebitda_margin)   3078
+  owner_earnings_yield                         1072
+  p_e (row-consistency)                        4241
+  p_s (row-consistency)                        2482
+  p_tb                                         203
+  price_52w_high lifted to price               0
+  qc_flag edgar_grounded                       7012
+  qc_flag ev_comp_gap                          7091
+  qc_flag fcf_gt_cfo                           1717
+  qc_flag fcf_yf_adopted                       0
+  qc_flag fx_twin_dev                          0
+  qc_flag gross_lt_op_margin                   467
+  qc_flag neg_ev                               1914
+  qc_flag op_gt_ebitda_margin                  2443
+  revenue_ttm                                  885
+  robust_cash_yield                            2387
+  roe                                          0
+  shares_outstanding                           0
+  total_debt                                   1923
+
+=== 2026-09-11T02:36:57.943632Z apply_ticker_yf on asymmetry_global.csv ===
+  cfo_ttm                                      903
+  cfo_yield                                    872
+  earnings_yield                               99
+  ebitda_margin                                470
+  ebitda_ttm                                   384
+  ev_ebit                                      4555
+  ev_ebit nulled (ebitda<=0)                   637
+  ev_ebit nulled (impossible ordering)         3688
+  ev_ebitda (row-consistency)                  3169
+  ev_ebitda nulled (ebitda<=0)                 6716
+  ev_sales (row-consistency)                   2171
+  fcf_ttm (EDGAR audited, preferred)           0
+  fcf_ttm (cfo - capex identity, non-EDGAR)    775
+  fcf_yield                                    2130
+  gross_margin                                 0
+  gross_margin nulled (extreme < op_margin)    270
+  net_cash_pct_mcap                            85
+  net_debt_ebitda                              84
+  net_income_ttm                               104
+  net_income_ttm (from authoritative p_e)      104
+  net_margin                                   0
+  op_margin                                    154
+  op_margin nulled (extreme > ebitda_margin)   3119
+  owner_earnings_yield                         753
+  p_e (row-consistency)                        4241
+  p_s (row-consistency)                        2279
+  p_tb                                         203
+  price_52w_high lifted to price               0
+  qc_flag edgar_grounded                       6530
+  qc_flag ev_comp_gap                          7067
+  qc_flag fcf_gt_cfo                           1723
+  qc_flag fcf_yf_adopted                       0
+  qc_flag fx_twin_dev                          0
+  qc_flag gross_lt_op_margin                   466
+  qc_flag neg_ev                               1914
+  qc_flag op_gt_ebitda_margin                  2466
+  revenue_ttm                                  85
+  robust_cash_yield                            852
+  roe                                          0
+  shares_outstanding                           0
+  total_debt                                   114

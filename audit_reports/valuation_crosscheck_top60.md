@@ -2,7 +2,7 @@
 
 Master: asymmetry_global.csv | Source: ticker_yf.csv
 
-**0 ERROR, 28 WARN, 32 clean.**
+**0 ERROR, 29 WARN, 31 clean.**
 
 ## 088910.KQ (KR, yahoo) — WARN
 - WARN: fcf_ttm 2.36e+10 > cfo_ttm 7.07e+09 (negative capex? check basis)
@@ -44,6 +44,10 @@ Master: asymmetry_global.csv | Source: ticker_yf.csv
 
 ## 014570.KQ (KR, yahoo) — WARN
 - WARN: roe 0.087 vs pb/p_e 0.018 (dev 376% — one of roe/pb/pe on a different period or equity basis)
+
+## KROS (US, yahoo) — WARN
+- WARN: revenue_ttm 2.88e+07 vs FRESH Yahoo 1.5e+07 (EDGAR-preferred divergence)
+- WARN: revenue_ttm 2.88e+07 vs Yahoo 1.5e+07 (EDGAR-preferred divergence)
 
 ## 3798.HK (HK, yahoo) — WARN
 - WARN: ebitda_margin 0.131 < op_margin 0.193 (gap 0.06 — kept & qc-flagged)
@@ -98,4 +102,4 @@ Master: asymmetry_global.csv | Source: ticker_yf.csv
 
 
 ## Clean names
-AWC.SI, IRC.BK, 6155.T, TPP.BK, ALGEV.PA, 120240.KQ, 7722.T, 0057.HK, ENEFI.BD, CTTMF, LSIP.JK, 2348.HK, METCO.BK, ZODIACVEN.BO, 6907.T, 219420.KQ, ZENIFIB.BO, 2101.HK, 0114.HK, BENGALT.BO, 1281.HK, TCID.JK, 264450.KQ, 052330.KQ, KROS, FPIP.ST, S23.SI, 4625.T, 7871.T, 1V5.F, B9A.F, 0559.HK
+AWC.SI, IRC.BK, 6155.T, TPP.BK, ALGEV.PA, 120240.KQ, 7722.T, 0057.HK, ENEFI.BD, CTTMF, LSIP.JK, 2348.HK, METCO.BK, ZODIACVEN.BO, 6907.T, 219420.KQ, ZENIFIB.BO, 2101.HK, 0114.HK, BENGALT.BO, 1281.HK, TCID.JK, 264450.KQ, 052330.KQ, FPIP.ST, S23.SI, 4625.T, 7871.T, 1V5.F, B9A.F, 0559.HK

@@ -24,3 +24,21 @@ Conclusion
   measure, referred to the underlying accounts — FCF = reconciled CFO minus
   capex (the identity holds exactly on 36k rows) — is PRIMARY; yf_fcf is
   gap-fill only and never conflict-adopted.
+
+## Extension — Yahoo MULTIPLES and FCF YIELD vs EDGAR-implied (US names)
+
+| Ratio | n | median yf/EDGAR-implied | within 1.4x |
+|---|---|---|---|
+| EV/Sales | 3,978 | 0.956 | 82% (validated) |
+| EV/EBITDA | 2,157 | 0.874 | 68% (Yahoo EBITDA ~14% above audited; acceptable, but EDGAR-grounded recompute preferred) |
+| **FCF yield** | 2,640 | 0.920 | **29% (unreliable — matches the level study)** |
+
+## Final trust hierarchy (user directive: "EDGAR where possible")
+1. AUDITED EDGAR levels (revenue/EBITDA/CFO/FCF/cash/debt/op-margin) are the
+   PREFERRED source for US filers — they win every level conflict and ground
+   the recomputed multiples. Provenance: qc_flags 'edgar_grounded'.
+2. Market data (price/mcap/EV) is always Yahoo (EDGAR has no prices).
+3. Non-US names: constructed from Yahoo figures under the full
+   internal-identity suite (every ratio == its own components) — the audited
+   cross-check is unavailable, so internal consistency is the guard.
+4. Yahoo FCF (level or yield) is never conflict-adopted anywhere.

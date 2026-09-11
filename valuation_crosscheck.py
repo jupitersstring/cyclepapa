@@ -198,8 +198,10 @@ def main():
                 if np.isfinite(fv) and fv != 0 and np.isfinite(mv2) and mv2 != 0:
                     ratio = mv2 / fv
                     if ratio > 1.4 or ratio < 1 / 1.4:
-                        flag("ERROR", f"{nm2} {mv2:.3g} vs FRESH Yahoo {fv:.3g} "
-                                      f"(level moved outside tolerance)")
+                        _qcf2 = str(r.get("qc_flags", "") or "")
+                        sev = "WARN" if "edgar_grounded" in _qcf2 else "ERROR"
+                        flag(sev, f"{nm2} {mv2:.3g} vs FRESH Yahoo {fv:.3g} "
+                                  f"({'EDGAR-preferred divergence' if sev == 'WARN' else 'level moved outside tolerance'})")
 
         # --- source agreement (Yahoo)
         if len(y) and sym in y.index:
@@ -211,14 +213,19 @@ def main():
                 d = dev(mv, yv)
                 if np.isfinite(d) and d > tol:
                     flag("ERROR", f"{name} {mv:.4g} != Yahoo {yv:.4g} (dev {d:.0%})")
+            _qcf = str(r.get("qc_flags", "") or "")
+            _edgar_row = "edgar_grounded" in _qcf
             for yc, mv, name in (("yf_ebitda", eb, "ebitda_ttm"),
                                  ("yf_revenue", rv, "revenue_ttm")):
                 yv = pd.to_numeric(pd.Series([yr.get(yc)]), errors="coerce").iloc[0]
                 if np.isfinite(yv) and yv != 0 and np.isfinite(mv) and mv != 0:
                     ratio = mv / yv
                     if ratio > 1.4 or ratio < 1 / 1.4:
-                        flag("ERROR", f"{name} {mv:.3g} vs Yahoo {yv:.3g} "
-                                      f"(outside reconcile tolerance)")
+                        # audited EDGAR outranks Yahoo BY DESIGN — divergence on
+                        # an edgar_grounded row is the hierarchy working
+                        sev = "WARN" if _edgar_row else "ERROR"
+                        flag(sev, f"{name} {mv:.3g} vs Yahoo {yv:.3g} "
+                                  f"({'EDGAR-preferred divergence' if _edgar_row else 'outside reconcile tolerance'})")
             src_tag = "yahoo"
         else:
             src_tag = "snapshot-only"

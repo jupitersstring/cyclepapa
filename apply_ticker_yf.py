@@ -7,7 +7,13 @@ US *and* foreign tickers, which is the gap SEC XBRL can't reach.
 Policy (the rigorous valuation process)
 ---------------------------------------
 Trust hierarchy, applied in order, so every row ends INTERNALLY CONSISTENT:
-  1. price / market_cap / enterprise_value: Yahoo, authoritative (overwrite).
+  0. AUDITED EDGAR levels (us_edgar_yartseva.csv) are THE PREFERRED source
+     for US filers — they win every level conflict; Yahoo arbitrates only
+     where EDGAR has no figure (validated: Yahoo FCF/FCF-yield agree with
+     audited accounts on only 30%/29% of names; see
+     audit_reports/fcf_source_study.md). Provenance: qc_flags edgar_grounded.
+  1. price / market_cap / enterprise_value: Yahoo, authoritative (overwrite —
+     EDGAR carries no market data).
   2. LEVELS (ebitda/revenue/cfo/net-income/shares): gap-fill, PLUS a
      reconcile — where the stored level disagrees >1.4x (or by sign) with
      Yahoo's level (or the level implied by Yahoo's own EV/ratio pair, or
@@ -108,6 +114,41 @@ def main():
 
     m = master.set_index("symbol")
     y = yf.set_index("symbol")
+    # AUDITED EDGAR levels (us_edgar_yartseva.csv) — THE PREFERRED SOURCE where
+    # present (user directive): audited accounts outrank Yahoo for every level;
+    # Yahoo arbitrates only where EDGAR has no figure. Market data (price/mcap/
+    # EV) stays Yahoo — EDGAR carries no prices.
+    try:
+        ed = pd.read_csv("us_edgar_yartseva.csv", low_memory=False,
+                         usecols=lambda c: c in {
+                             "symbol", "revenue_ttm", "ebitda_ttm", "cfo_ttm",
+                             "fcf_ttm", "cash", "total_debt", "op_margin",
+                             "balance_sheet_date"}
+                         ).drop_duplicates("symbol").set_index("symbol")
+        # FRESHNESS GATE: audited-but-STALE yields to fresh Yahoo. An EDGAR row
+        # older than ~9 months describes a different TTM window (KROS: the
+        # audited window still contained a one-off milestone year at +72M
+        # EBITDA while the current TTM burns -97M).
+        _bsd = pd.to_datetime(ed.get("balance_sheet_date"), errors="coerce")
+        _fresh_ed = (pd.Timestamp.now() - _bsd).dt.days <= 270
+        ed = ed[_fresh_ed.fillna(False)]
+    except FileNotFoundError:
+        ed = pd.DataFrame()
+
+    def edgar_col(c, yahoo_series=None):
+        if len(ed) and c in ed.columns:
+            v = pd.to_numeric(ed[c], errors="coerce").reindex(m.index)
+            # SIGN-FLIP SUPERSESSION: when the audited and the fresh source
+            # disagree in SIGN, a regime change (loss->profit or the reverse)
+            # rolled through between their windows — only the FRESHER source
+            # sees it, so Yahoo supersedes for that cell.
+            if yahoo_series is not None:
+                _flip = v.notna() & yahoo_series.notna() \
+                    & (np.sign(v) != np.sign(yahoo_series)) \
+                    & (v != 0) & (yahoo_series != 0)
+                v = v.where(~_flip)
+            return v
+        return pd.Series(np.nan, index=m.index)
     common = m.index.intersection(y.index)
     print(f"  {len(common):,} symbols overlap", file=sys.stderr)
 
@@ -232,10 +273,14 @@ def main():
                  ("yf_total_debt", "total_debt", None)]
     recon = {}
     repaired_any = pd.Series(False, index=m.index)
+    edgar_won = pd.Series(False, index=m.index)
     for yf_col, mcol, usd_col in RECONCILE:
         if yf_col not in y.columns or mcol not in m.columns:
             continue
-        src = pd.to_numeric(y[yf_col], errors="coerce").reindex(m.index)
+        _src_y = pd.to_numeric(y[yf_col], errors="coerce").reindex(m.index)
+        _src_e = edgar_col(mcol, _src_y)
+        src = _src_e.combine_first(_src_y)      # EDGAR preferred, Yahoo fills
+        edgar_won |= _src_e.notna()
         cur = pd.to_numeric(m[mcol], errors="coerce")
         both = src.notna() & cur.notna() & (src != 0) & (cur != 0)
         ratio = (cur / src).where(both)
@@ -274,6 +319,8 @@ def main():
                        ("yf_roe", "roe")):
         if _ymc in y.columns and _mmc in m.columns:
             _ysrc = pd.to_numeric(y[_ymc], errors="coerce").reindex(m.index)
+            if _mmc == "op_margin":
+                _ysrc = edgar_col("op_margin").combine_first(_ysrc)  # audited margin preferred
             _mcur = pd.to_numeric(m[_mmc], errors="coerce")
             _dis = _ysrc.notna() & _mcur.notna() & ((_mcur - _ysrc).abs() > 0.10)
             m.loc[_dis, _mmc] = _ysrc[_dis]
@@ -327,13 +374,21 @@ def main():
             m.loc[mask, "fcf_ttm"] = new_vals[mask]
             recon[label] = int(mask.sum())
 
+        # EDGAR audited FCF (same CFO-minus-capex basis) is PRIMARY where present
+        _fcf_cur = pd.to_numeric(m["fcf_ttm"], errors="coerce")
+        _fcf_ed = edgar_col("fcf_ttm", (_cfoB - _cx))
+        _r_e = (_fcf_cur / _fcf_ed).where(_fcf_ed != 0)
+        _dis_e = _fcf_ed.notna() & _fcf_cur.notna() \
+            & ((_r_e > 1.4) | (_r_e < 1 / 1.4))
+        _apply_fcf(_fcf_ed, _dis_e, "fcf_ttm (EDGAR audited, preferred)")
+        # identity fallback for everything EDGAR does not cover
         _fcf_cur = pd.to_numeric(m["fcf_ttm"], errors="coerce")
         _fcf_new = (_cfoB - _cx).where(_cfoB.notna() & _cx.notna())
         _ratio_f = (_fcf_cur / _fcf_new).where(_fcf_new != 0)
         _imposs = _fcf_cur.notna() & (_cfoB > 0) & (_fcf_cur > _cfoB * 1.05) & (_cx > 0)
-        _dis_f = _fcf_new.notna() & _fcf_cur.notna() \
+        _dis_f = _fcf_new.notna() & _fcf_cur.notna() & _fcf_ed.isna() \
             & ((_ratio_f > 1.4) | (_ratio_f < 1 / 1.4) | _imposs)
-        _apply_fcf(_fcf_new, _dis_f, "fcf_ttm (cfo - capex, accounts-referred primary)")
+        _apply_fcf(_fcf_new, _dis_f, "fcf_ttm (cfo - capex identity, non-EDGAR)")
 
     # price_52w_high: a running max is definitionally valid — the stored high
     # can never sit BELOW the current price.
@@ -494,6 +549,7 @@ def main():
         recon["gross_margin nulled (extreme < op_margin)"] = int(_null_gm.sum())
         _qc_flag(_viol_gm & ~_null_gm, "gross_lt_op_margin")
     _qc_flag(_fcf_adopted_yf, "fcf_yf_adopted")
+    _qc_flag(edgar_won, "edgar_grounded")
     _row_consistent("p_e", (_mc / _ni2).where(_ni2 > 0), _pe_yf, band=(0, 2000))
     # where Yahoo's p_e IS authoritative but NI still disagrees (margin-implied
     # NI was unavailable), derive the level from the ratio: NI := mcap / p_e.
