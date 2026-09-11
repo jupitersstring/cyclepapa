@@ -727,6 +727,50 @@ def _valuation_consistency(t, g):
               _ag >= 0.95, f"{_ag*100:.1f}% agreement on {int(_okb.sum())} EDGAR-covered names")
     except FileNotFoundError:
         pass
+    # FLOW-THROUGH (user directive: fixes must propagate appropriately).
+    # Recompute two deterministic, pure-function archetype gates and the melt
+    # demotion DIRECTLY from the current master and require agreement with the
+    # stored outputs — if any data fix landed without the downstream chain
+    # re-running (tags/enrich stale vs master), these trip immediately.
+    def _gm(c):
+        return pd.to_numeric(g.get(c), errors="coerce") if c in g.columns             else pd.Series(np.nan, index=g.index)
+    # (a) arch_cash_adjusted_pe recomputed from master fields
+    if "arch_cash_adjusted_pe" in t.columns:
+        _gi = g.set_index("symbol")
+        def _gs(c):
+            return pd.to_numeric(_gi.get(c), errors="coerce") if c in _gi.columns                 else pd.Series(np.nan, index=_gi.index)
+        _ni_f = _gs("net_income_ttm"); _mc_f = _gs("market_cap")
+        _nc_f = _gs("cash") - _gs("total_debt")
+        _adj = (_mc_f - _nc_f) / _ni_f.where(_ni_f > 0)
+        _sec = _gi.get("sector", pd.Series("", index=_gi.index)).fillna("").astype(str).str.lower()
+        # necessary-condition check only (full gate has helpers): every FIRER
+        # must satisfy the core arithmetic legs from the CURRENT master
+        _t_idx = t.set_index("symbol")
+        _fir = _t_idx.index[_t_idx["arch_cash_adjusted_pe"] == 1]
+        _adj_f = _adj.reindex(_fir); _ni_ff = _ni_f.reindex(_fir); _nc_ff = _nc_f.reindex(_fir)
+        _viol_ft = int(((_ni_ff <= 0) | (_nc_ff <= 0) | (_adj_f > 8.0)).fillna(True).sum())
+        check("flow-through: cash_adjusted_pe firers satisfy the gate on the CURRENT master",
+              _viol_ft == 0, f"{_viol_ft} firers stale vs master (chain not re-run?)")
+    # (b) melt_demotion recomputed from master fields must match stored
+    if "melt_demotion" in g.columns:
+        _opm_f = _gm("op_margin"); _roce_f = _gm("roce")
+        _cash_ok_f = ((_gm("fcf_yield") > 0) | (_gm("owner_earnings_yield") > 0)
+                      | (_gm("robust_cash_yield") > 0) | (_gm("cfo_yield") > 0)
+                      | (_gm("fcf_margin") > 0))
+        _impr_f = ((_gm("roce_delta_yoy") > 0) | (_gm("roce_inflection") > 0)
+                   | (_gm("roce_first_positive") > 0) | (_gm("fcf_inflection") > 0)
+                   | (_gm("op_margin_delta_yoy") > 0) | (_gm("ebitda_inflection") > 0))
+        _ex_f = _cash_ok_f | _impr_f
+        _hard_f = (_opm_f < 0) & (_roce_f < -0.05) & ~_ex_f
+        _soft_f = ((_opm_f < 0) | (_roce_f < -0.05)) & ~_ex_f & ~_hard_f
+        _exp_md = pd.Series(1.0, index=g.index)
+        _exp_md[_soft_f.fillna(False)] = 0.65
+        _exp_md[_hard_f.fillna(False)] = 0.40
+        _stored_md = _gm("melt_demotion")
+        _mis_md = int((_stored_md.round(2) != _exp_md.round(2)).sum())
+        check("flow-through: melt_demotion matches recomputation from the CURRENT master",
+              _mis_md == 0, f"{_mis_md} rows stale vs master (enrich not re-run?)")
+
     # PAIRING RULE (levered flows / MCAP, unlevered flows / EV): a levered name
     # must never carry the un-adjusted CFO/EV approximation in cash_return_ev
     # (only permitted where leverage is immaterial or interest was backed out).
@@ -768,8 +812,10 @@ def _valuation_consistency(t, g):
         & (np.sign(evb) != np.sign(ev)) & (ev != 0)
     check("valuation: ev_ebitda sign matches EV (denominator>0)",
           int(_sign_bad.sum()) == 0, f"{int(_sign_bad.sum())} sign mismatches")
-    viol |= vrate("ebitda_margin != ebitda/revenue (>25% dev)",
-                  (_r(ebm, _r(eb, rv)) - 1).abs() > 0.25,
+    _ebm_comp = _r(eb, rv)
+    viol |= vrate("ebitda_margin != ebitda/revenue (>25% dev, |gap|>3pts)",
+                  ((_r(ebm, _ebm_comp) - 1).abs() > 0.25)
+                  & ((ebm - _ebm_comp).abs() > 0.03),
                   ebm.notna() & (rv > 0) & eb.notna(), 6.0)
     # the names people actually SEE must be spotless: top 100 by ETA carry
     # zero cross-field violations of any kind.

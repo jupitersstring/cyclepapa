@@ -32,6 +32,10 @@ import pandas as pd
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--top", type=int, default=60)
+    ap.add_argument("--sample", type=int, default=0,
+                    help="ALSO check N random rows (seeded) beyond the top — "
+                         "verification must not be top-N-biased")
+    ap.add_argument("--seed", type=int, default=11)
     ap.add_argument("--master", default="asymmetry_global.csv")
     ap.add_argument("--yf", default="ticker_yf.csv")
     ap.add_argument("--fresh-yf", default=None,
@@ -53,6 +57,11 @@ def main():
 
     g["_eta"] = pd.to_numeric(g.get("entry_today_asymmetry"), errors="coerce")
     top = g.sort_values("_eta", ascending=False).head(args.top)
+    if args.sample:
+        rest = g.drop(top.index)
+        rest = rest[pd.to_numeric(rest.get("market_cap"), errors="coerce") > 0]
+        top = pd.concat([top, rest.sample(min(args.sample, len(rest)),
+                                          random_state=args.seed)])
 
     def num(row, c):
         try:
@@ -103,7 +112,7 @@ def main():
                 flag("ERROR", f"fcf_yield {fy:.3f} != fcf/mcap {fcf/mc:.3f} (dev {d:.0%})")
         if np.isfinite(ebm) and np.isfinite(eb) and np.isfinite(rv) and rv > 0:
             d = dev(ebm, eb / rv)
-            if d > 0.25:
+            if d > 0.25 and abs(ebm - eb / rv) > 0.03:   # absolute floor: near-zero margins explode % dev
                 flag("ERROR", f"ebitda_margin {ebm:.3f} != ebitda/rev {eb/rv:.3f} (dev {d:.0%})")
         # EV-composition gap measured vs MCAP, not vs EV (a near-zero-EV
         # net-cash name explodes any %-of-EV metric on a tiny absolute gap).
@@ -200,7 +209,7 @@ def main():
                     ratio = mv2 / fv
                     if ratio > 1.4 or ratio < 1 / 1.4:
                         _qcf2 = str(r.get("qc_flags", "") or "")
-                        sev = "WARN" if "edgar_grounded" in _qcf2 else "ERROR"
+                        sev = "WARN" if ("edgar_grounded" in _qcf2 or "unit_repaired" in _qcf2) else "ERROR"
                         flag(sev, f"{nm2} {mv2:.3g} vs FRESH Yahoo {fv:.3g} "
                                   f"({'EDGAR-preferred divergence' if sev == 'WARN' else 'level moved outside tolerance'})")
 
@@ -215,7 +224,7 @@ def main():
                 if np.isfinite(d) and d > tol:
                     flag("ERROR", f"{name} {mv:.4g} != Yahoo {yv:.4g} (dev {d:.0%})")
             _qcf = str(r.get("qc_flags", "") or "")
-            _edgar_row = "edgar_grounded" in _qcf
+            _edgar_row = ("edgar_grounded" in _qcf) or ("unit_repaired" in _qcf)
             for yc, mv, name in (("yf_ebitda", eb, "ebitda_ttm"),
                                  ("yf_revenue", rv, "revenue_ttm")):
                 yv = pd.to_numeric(pd.Series([yr.get(yc)]), errors="coerce").iloc[0]

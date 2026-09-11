@@ -420,7 +420,13 @@ def main():
     # fcf_ttm is LEVERED FCF (CFO - capex, post-interest) — an equity-holder
     # cash flow — so its yield is against MARKET CAP, never EV (user rule).
     _fcf = pd.to_numeric(m.get("fcf_ttm"), errors="coerce")
-    _recompute("fcf_yield", (_fcf / _mc).where(_mc > 0), band=(-50, 1.0))  # >100% of mcap = ADR home-currency mismatch, not a bargain (restores derive's null my recompute had lost)
+    _recompute("fcf_yield", (_fcf / _mc).where(_mc > 0), band=(-1.0, 1.0))  # |FCF| beyond 100% of mcap in EITHER sign is a unit/ADR mismatch, not information (YYAI at -33x/+77x)
+    if "fcf_yield" in m.columns:
+        _fy_now = pd.to_numeric(m["fcf_yield"], errors="coerce")
+        _fy_bad = _fy_now.abs() > 1.0
+        m.loc[_fy_bad, "fcf_yield"] = np.nan
+        if int(_fy_bad.sum()):
+            recon["fcf_yield nulled (|yield|>100% of mcap)"] = int(_fy_bad.sum())
     # The whole equity-cash-yield family shares the mcap denominator and the
     # same price-staleness disease (computed once at derive-time, then price
     # moves): recompute them all from current components every run. These feed
@@ -630,6 +636,43 @@ def main():
             m.loc[_bad_uc, _uc] = np.nan
             if int(_bad_uc.sum()):
                 recon[f"{_uc} nulled (levered, no interest data)"] = int(_bad_uc.sum())
+
+    # UNIT-SANITY LEVEL REPAIR: when the components imply an ABSURD multiple
+    # (outside (0.001, 500) — a KRW-vs-thousands / mixed-unit level) while the
+    # stored ratio is in-band and plausible, the LEVEL is the corrupt side:
+    # repair it from EV / stored-ratio (USD twin rescaled).
+    for _rat_c, _lvl_c, _usd_c in (("ev_ebitda", "ebitda_ttm", "ebitda_ttm_usd"),
+                                   ("ev_sales", "revenue_ttm", "revenue_ttm_usd")):
+        if _rat_c not in m.columns or _lvl_c not in m.columns:
+            continue
+        _rv_u = pd.to_numeric(m[_rat_c], errors="coerce")
+        _lv_u = pd.to_numeric(m[_lvl_c], errors="coerce")
+        _ev_u = pd.to_numeric(m.get("enterprise_value"), errors="coerce")
+        _impl_mult = (_ev_u / _lv_u).where((_lv_u > 0) & (_ev_u > 0))
+        _absurd = _impl_mult.notna() & ((_impl_mult > 500) | (_impl_mult < 1e-3))
+        _plaus = _rv_u.notna() & (_rv_u > 1e-3) & (_rv_u <= 500)
+        _fix_u = _absurd & _plaus
+        _new_lvl = (_ev_u / _rv_u).where(_fix_u)
+        if _usd_c in m.columns:
+            _usd_u = pd.to_numeric(m[_usd_c], errors="coerce")
+            _fac_u = (_new_lvl / _lv_u).where(_fix_u & (_lv_u != 0))
+            m.loc[_fix_u, _usd_c] = (_usd_u * _fac_u)[_fix_u]
+        m.loc[_fix_u, _lvl_c] = _new_lvl[_fix_u]
+        if int(_fix_u.sum()):
+            recon[f"{_lvl_c} unit-repaired (from in-band {_rat_c})"] = int(_fix_u.sum())
+            _qc_flag(_fix_u, "unit_repaired")
+
+    # DE-MINIMIS REVENUE: under $0.5M USD TTM revenue a sales multiple or a
+    # margin is arithmetic noise on a near-empty denominator (ASCLF-class
+    # shells showing P/S 695) — null the revenue-denominated ratios there.
+    _rvu_dm = pd.to_numeric(m.get("revenue_ttm_usd"), errors="coerce")
+    _dm = (_rvu_dm > 0) & (_rvu_dm < 2e6)   # $2M: no gate reads a sales ratio below the $5M revenue floors anyway (ASCLF at $0.9M rev / $1.4B mcap showed P/S 695)
+    for _dc in ("p_s", "ev_sales", "ebitda_margin", "gross_margin", "op_margin"):
+        if _dc in m.columns:
+            _hit = _dm & pd.to_numeric(m[_dc], errors="coerce").notna()
+            m.loc[_hit, _dc] = np.nan
+            if int(_hit.sum()):
+                recon[f"{_dc} nulled (de-minimis revenue)"] =                     recon.get(f"{_dc} nulled (de-minimis revenue)", 0) + int(_hit.sum())
 
     # remaining identifiability flags: anomalies that are KEPT (legitimate
     # accounting can produce them) but must never be silent.
