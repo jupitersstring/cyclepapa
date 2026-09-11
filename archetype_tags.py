@@ -2986,6 +2986,40 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _not_melting
     ).fillna(False).astype(int)
 
+    # XR26 — Pre-scale margin ('XR-PreScaleMargin', user request): catch the
+    # name BEFORE it re-rates, while its QUALITY (real unit economics, shown
+    # in a fat GROSS margin) has not yet flowed into the OPERATING line
+    # because the fixed-cost base is not yet covered — the gross-to-operating
+    # GAP is the latent operating leverage the market has not priced. The
+    # scaling is proven to be REAL, not hoped-for, by either a high
+    # incremental drop-through (each marginal dollar mostly profit, so the
+    # fixed base IS being absorbed) OR margins already beginning to inflect;
+    # and revenue is growing fast enough to spread the base. Priced on the
+    # thin TRAILING margin (modest EV/gross-profit), so the re-rate to the
+    # scaled margin is still ahead.
+    _gm_x26 = s('gross_margin', np.nan)
+    _om_x26 = s('op_margin', np.nan)
+    _gap_x26 = (_gm_x26 - _om_x26)
+    _inc_x26 = _num('incremental_ebitda_margin')
+    _scaling_x26 = (((_inc_x26 >= 0.30) & (_inc_x26 > ebitda_margin))   # marginal >> average
+                    | (_num('op_margin_delta_yoy') > 0.02)             # op margin turning up
+                    | ((_num('ebitda_margin_delta_yoy') > 0.02)        # ...through EBITDA too
+                       & (_num('ebitda_margin_delta_yoy') <= 0.30)))
+    df['arch_xr_pre_scale_margin'] = (
+        is_operating & (mcap > 0) & _fx_coherent &
+        ~_financing_fragile &                             # Motient guard (a growth gate)
+        (_gm_x26 >= 0.40) &                               # real product economics...
+        (_om_x26 <= 0.12) &                               # ...not yet in the operating line
+        (_gap_x26 >= 0.30) &                              # a heavy fixed base to leverage
+        _scaling_x26 &                                    # the gap is provably closing
+        (rev_yoy_c >= 0.15) & (rev_yoy_c <= 1.5) &        # spreading the base, not a pop
+        (((_ncol('ev_gross_profit') > 0) & (_ncol('ev_gross_profit') <= 8.0))
+         | ((_ncol('ev_sales') > 0) & (_ncol('ev_sales') <= 4.0))) &  # not yet re-rated
+        (_ncol('revenue_ttm_usd') >= 15e6) &              # not a base-effect shell
+        ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
     # F6 — Forensic payout confirmation (the user's BOOST leg). Any forensic /
     # hidden-value member that is ALSO returning capital — buying back shares
     # or paying a dividend — earns an EXTRA archetype count, which is this
@@ -4005,6 +4039,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_insider_capitulation',
         'arch_xr_reusable_assembler',
         'arch_xr_asset_owner_catalyst',
+        'arch_xr_pre_scale_margin',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -4143,6 +4178,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_insider_capitulation': 'XR-InsiderCapitulation',
         'arch_xr_reusable_assembler': 'XR-ReusableAssembler',
         'arch_xr_asset_owner_catalyst': 'XR-AssetOwnerCatalyst',
+        'arch_xr_pre_scale_margin': 'XR-PreScaleMargin',
         'arch_templeton_pessimism': 'Templeton-MaxPessimism',
         'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
         'arch_levered_inflection': 'LeveredInflectionStub',
