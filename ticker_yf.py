@@ -100,6 +100,12 @@ def fetch_statements(sess, symbol, timeout=15):
 # Fields we extract → output column. (module, yahoo_key, our_column)
 FIELD_MAP = [
     ("defaultKeyStatistics", "netIncomeToCommon", "yf_net_income"),
+    # Quote vs financial currency: when these DIFFER (Frankfurt .F lines, OTC
+    # pinksheet lines of foreign stocks) every level-over-mcap ratio is
+    # cross-currency garbage unless the levels are converted. Fetch both so
+    # the harmonizer can convert instead of guessing from magnitudes.
+    ("price", "currency", "yf_quote_currency"),
+    ("financialData", "financialCurrency", "yf_financial_currency"),
     ("price", "regularMarketPrice", "yf_price"),
     ("price", "marketCap", "yf_market_cap"),
     ("summaryDetail", "marketCap", "yf_market_cap"),  # fallback

@@ -18,7 +18,7 @@
  "cfo_yield": 0,
  "earnings_yield": 99,
  "robust_cash_yield": 0,
- "net_cash_pct_mcap": 0,
+ "net_cash_pct_mcap": 353,
  "p_tb": 203,
  "ebitda_margin": 1620,
  "net_debt_ebitda": 0,
@@ -60,7 +60,15 @@
  "capex_ttm (EDGAR audited)": 0,
  "capex_ttm (Yahoo statement)": 1,
  "capex_ttm (rebuilt: EDGAR -> statement -> NaN)": 0,
- "owner_earnings_yield rebuilt as true OE (was fcf alias)": 35425,
+ "owner_earnings_yield rebuilt as true OE (was fcf alias)": 7,
  "normalized_ebit nulled (exceeds normalized_ebitda)": 3008,
- "not_priced_in_score nulled (base-effect out-of-band)": 3729
+ "not_priced_in_score nulled (base-effect out-of-band)": 3729,
+ "net_cash_pct_mcap nulled (cash>20x mcap, ccy-mismatch class)": 383,
+ "cash_pct_mcap nulled (cash>20x mcap, ccy-mismatch class)": 208,
+ "ncav_pct_mcap nulled (cash>20x mcap, ccy-mismatch class)": 9,
+ "cash_pct_ev nulled (cash>20x mcap, ccy-mismatch class)": 630,
+ "qc_flag ccy_mismatch_suspect": 928,
+ "ncav_pct_mcap nulled (exceeds 1.5x book equity, impossible)": 306,
+ "cash_conversion nulled (|CFO/EBITDA|>50 base effect)": 147,
+ "op_margin nulled (>100%, impossible)": 2
 }

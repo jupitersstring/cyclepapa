@@ -1,4 +1,4 @@
-METHODOLOGY AUDIT — 173 checks, 0 FAIL, 0 WARN
+METHODOLOGY AUDIT — 177 checks, 0 FAIL, 0 WARN
   PASS  units: dividend_yield is a fraction  — median |dividend_yield| = 0.028 (fraction-scale cap 1.5)
   PASS  units: fcf_yield is a fraction  — median |fcf_yield| = 0.067 (fraction-scale cap 3.0)
   PASS  units: analyst_target_upside_pct is a fraction  — median |analyst_target_upside_pct| = 0.261 (fraction-scale cap 5.0)
@@ -153,6 +153,10 @@ METHODOLOGY AUDIT — 173 checks, 0 FAIL, 0 WARN
   PASS  owner earnings: no yield without a capex component (alias relic)  — 0 rows carry OE yield with no capex
   PASS  normalized: no normalized_ebit above normalized_ebitda  — 0 inverted pairs
   PASS  not_priced_in_score inside construction band [-3,3]  — 0 out-of-band rows (max 3)
+  PASS  cash family: no net_cash_pct_mcap above 20x (ccy-mismatch class)  — 0 rows
+  PASS  ncav: never above 1.5x book equity (impossible identity)  — 0 rows
+  PASS  cash_conversion inside +/-50 (base-effect band)  — 0 rows
+  PASS  op_margin never above 100%  — 0 rows
   PASS  regression: arch_understated_earnings CFO/NI in [1.4, 4.2] for every firer  — 0 violating firers
   PASS  regression: arch_expensed_growth_value gross-profit/mcap >= 0.45 (local)  — 0 violating firers
   PASS  regression: arch_overdepreciated_assets capex <= ~0.65x implied D&A (local)  — 0 violating firers

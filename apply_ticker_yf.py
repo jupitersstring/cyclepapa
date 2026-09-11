@@ -785,6 +785,69 @@ def main():
             if int(_hit.sum()):
                 recon[f"{_dc} nulled (de-minimis revenue)"] =                     recon.get(f"{_dc} nulled (de-minimis revenue)", 0) + int(_hit.sum())
 
+    # CROSS-CURRENCY CASH-FAMILY IMPOSSIBILITY BAND: net cash above 20x market
+    # cap cannot persist in a real market (someone tenders) — every observed
+    # case is a listing whose BALANCE LEVELS are home-currency while mcap is
+    # quote-currency (Frankfurt .F lines, OTC ...F pinksheets: T3O.F showed
+    # "74x mcap" in cash = JPY levels over a EUR mcap). fx_to_usd is keyed off
+    # the QUOTE currency, so the *_usd twins agree with each other and can't
+    # catch it — the magnitude itself is the only in-band evidence. Null the
+    # mcap-vs-level cash family on those rows and flag them; the real cure
+    # (fetching financialCurrency and converting levels) lands with the next
+    # full fetch (ticker_yf now requests it).
+    _ca_x = pd.to_numeric(m.get("cash"), errors="coerce")
+    _td_x = pd.to_numeric(m.get("total_debt"), errors="coerce")
+    _ccy_bad = ((((_ca_x - _td_x) / _mc) > 20) | ((_ca_x / _mc) > 20)) & (_mc > 0)
+    _ccy_bad = _ccy_bad.fillna(False)
+    for _cc_col in ("net_cash_pct_mcap", "cash_pct_mcap", "ncav_pct_mcap", "cash_pct_ev"):
+        if _cc_col in m.columns:
+            _ccv_s = pd.to_numeric(m[_cc_col], errors="coerce")
+            # component evidence — or the STORED value itself beyond the band
+            # (WIMI rule: a provably-impossible stored figure never survives
+            # just because its components went missing). cash_pct_ev is
+            # exempt from the stored test: a near-zero EV legitimately
+            # explodes that ratio, so only component evidence applies there.
+            _hit = _ccy_bad & _ccv_s.notna()
+            if _cc_col != "cash_pct_ev":
+                _hit |= _ccv_s > 20
+            m.loc[_hit, _cc_col] = np.nan
+            if int(_hit.sum()):
+                recon[f"{_cc_col} nulled (cash>20x mcap, ccy-mismatch class)"] = int(_hit.sum())
+    _qc_flag(_ccy_bad, "ccy_mismatch_suspect")
+
+    # NCAV-VS-EQUITY IDENTITY: NCAV (current assets − total liabilities) can
+    # NEVER exceed total equity (equity adds non-current assets on top) — a
+    # violation beyond 1.5x is not vintage drift but a corrupt pair (mixed
+    # sources/currencies; 900920.SS-class). The dangerous direction is a
+    # fake net-net, so the NCAV side is nulled.
+    _pb_x = pd.to_numeric(m.get("pb"), errors="coerce")
+    _ncv_x = pd.to_numeric(m.get("ncav_pct_mcap"), errors="coerce")
+    _eq_x = (1.0 / _pb_x).where(_pb_x > 0)
+    _ncv_bad = (_ncv_x > 1.5 * _eq_x) & (_ncv_x > 0) & _eq_x.notna()
+    if "ncav_pct_mcap" in m.columns:
+        m.loc[_ncv_bad.fillna(False), "ncav_pct_mcap"] = np.nan
+        if int(_ncv_bad.fillna(False).sum()):
+            recon["ncav_pct_mcap nulled (exceeds 1.5x book equity, impossible)"] = int(_ncv_bad.fillna(False).sum())
+
+    # CASH-CONVERSION BASE-EFFECT BAND: CFO/EBITDA beyond ±50x is a near-zero
+    # EBITDA denominator artifact, not information (same disease as the NPI
+    # base effects). Consumers read its SIGN — an artifact magnitude may not
+    # carry one.
+    if "cash_conversion" in m.columns:
+        _ccv = pd.to_numeric(m["cash_conversion"], errors="coerce")
+        _ccv_bad = _ccv.abs() > 50
+        m.loc[_ccv_bad.fillna(False), "cash_conversion"] = np.nan
+        if int(_ccv_bad.fillna(False).sum()):
+            recon["cash_conversion nulled (|CFO/EBITDA|>50 base effect)"] = int(_ccv_bad.fillna(False).sum())
+
+    # op_margin above 100% of revenue is impossible for an OPERATING margin.
+    if "op_margin" in m.columns:
+        _opm_x = pd.to_numeric(m["op_margin"], errors="coerce")
+        _opm_bad = _opm_x > 1.0
+        m.loc[_opm_bad.fillna(False), "op_margin"] = np.nan
+        if int(_opm_bad.fillna(False).sum()):
+            recon["op_margin nulled (>100%, impossible)"] = int(_opm_bad.fillna(False).sum())
+
     # NORMALIZED-PAIR ORDERING: normalized_ebit (5yr avg EBIT) can only exceed
     # normalized_ebitda (5yr avg EBITDA) through negative D&A — impossible in
     # any filing — so an inverted pair means the two averages were taken over

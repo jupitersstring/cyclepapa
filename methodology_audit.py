@@ -827,6 +827,27 @@ def _valuation_consistency(t, g):
     check("not_priced_in_score inside construction band [-3,3]",
           int((_npi_a.abs() > 3.0).sum()) == 0,
           f"{int((_npi_a.abs() > 3.0).sum())} out-of-band rows (max {_npi_a.abs().max():.3g})")
+    # cross-currency cash-family impossibility: net cash above 20x mcap is
+    # the home-currency-levels-over-quote-currency-mcap disease (T3O.F class)
+    # and must be nulled+flagged by the harmonizer, never gate a net-cash
+    # archetype.
+    _ncm_a = gc("net_cash_pct_mcap")
+    check("cash family: no net_cash_pct_mcap above 20x (ccy-mismatch class)",
+          int((_ncm_a > 20).sum()) == 0, f"{int((_ncm_a > 20).sum())} rows")
+    # NCAV can never exceed book equity (equity adds non-current assets);
+    # >1.5x violation = corrupt pair, the fake-net-net direction.
+    _pb_a = gc("pb")
+    _ncv_a = gc("ncav_pct_mcap")
+    _eqx_a = (1.0 / _pb_a).where(_pb_a > 0)
+    _ncv_v = int(((_ncv_a > 1.5 * _eqx_a) & (_ncv_a > 0)).sum())
+    check("ncav: never above 1.5x book equity (impossible identity)",
+          _ncv_v == 0, f"{_ncv_v} rows")
+    _ccv_a = gc("cash_conversion")
+    check("cash_conversion inside +/-50 (base-effect band)",
+          int((_ccv_a.abs() > 50).sum()) == 0, f"{int((_ccv_a.abs() > 50).sum())} rows")
+    _opm_a2 = gc("op_margin")
+    check("op_margin never above 100%", int((_opm_a2 > 1.0).sum()) == 0,
+          f"{int((_opm_a2 > 1.0).sum())} rows")
     # forensic archetypes: their defining ratios re-verified from LOCAL
     # components for every firer (same currency-mix guard as hidden_assets)
     _gset = g.set_index("symbol")
