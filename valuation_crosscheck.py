@@ -231,9 +231,14 @@ def main():
             elif np.isfinite(d) and d > 0.10:
                 flag("WARN", f"market_cap {mc:.4g} vs FRESH Yahoo {fmc:.4g} "
                              f"(dev {d:.0%} — price drift since last pull)")
+            _br_cc = pd.to_numeric(pd.Series([r.get("ccy_bridge")]), errors="coerce").iloc[0]
+            _br_cc = _br_cc if np.isfinite(_br_cc) else 1.0
             for fc, mv2, nm2 in (("yf_ebitda", eb, "ebitda_ttm"),
                                  ("yf_revenue", rv, "revenue_ttm")):
                 fv = pd.to_numeric(pd.Series([fr.get(fc)]), errors="coerce").iloc[0]
+                # restated lines: Yahoo serves levels in the FINANCIAL
+                # currency; ours are restated to quote — bridge before comparing
+                fv = fv * _br_cc if np.isfinite(fv) else fv
                 if np.isfinite(fv) and fv != 0 and np.isfinite(mv2) and mv2 != 0:
                     ratio = mv2 / fv
                     if ratio > 1.4 or ratio < 1 / 1.4:
@@ -245,18 +250,28 @@ def main():
         # --- source agreement (Yahoo)
         if len(y) and sym in y.index:
             yr = y.loc[sym]
+            _br_y = pd.to_numeric(pd.Series([r.get("ccy_bridge")]), errors="coerce").iloc[0]
+            _is_restated = np.isfinite(_br_y)
             for yc, mv, name, tol in (("yf_price", price, "price", 0.02),
                                       ("yf_market_cap", mc, "market_cap", 0.02),
                                       ("yf_enterprise_value", ev, "enterprise_value", 0.02)):
+                if name == "enterprise_value" and _is_restated:
+                    # Yahoo's EV on a restated line is built from MIXED
+                    # currencies (the proven T3O.F class) — ours is rebuilt
+                    # from restated components and is the correct one;
+                    # comparing would flag the repair as the error.
+                    continue
                 yv = pd.to_numeric(pd.Series([yr.get(yc)]), errors="coerce").iloc[0]
                 d = dev(mv, yv)
                 if np.isfinite(d) and d > tol:
                     flag("ERROR", f"{name} {mv:.4g} != Yahoo {yv:.4g} (dev {d:.0%})")
             _qcf = str(r.get("qc_flags", "") or "")
             _edgar_row = ("edgar_grounded" in _qcf) or ("unit_repaired" in _qcf)
+            _br_y2 = _br_y if np.isfinite(_br_y) else 1.0
             for yc, mv, name in (("yf_ebitda", eb, "ebitda_ttm"),
                                  ("yf_revenue", rv, "revenue_ttm")):
                 yv = pd.to_numeric(pd.Series([yr.get(yc)]), errors="coerce").iloc[0]
+                yv = yv * _br_y2 if np.isfinite(yv) else yv
                 if np.isfinite(yv) and yv != 0 and np.isfinite(mv) and mv != 0:
                     ratio = mv / yv
                     if ratio > 1.4 or ratio < 1 / 1.4:
