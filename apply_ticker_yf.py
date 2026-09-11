@@ -1381,6 +1381,69 @@ def main():
             (_oe_old.notna() | _oe_yield.notna()).sum())
     m["owner_earnings_yield"] = _oe_yield
 
+    # ---- STORED-VALUE BAND ENFORCEMENT (the WIMI rule, generalized) ----
+    # _recompute's bands reject bad FRESH values, but a stored value beyond
+    # the band survived whenever its components went missing — cfo_yield
+    # carried 1e8, net_cash_pct_mcap -1.6e6, ebitda_margin -34,000. A value
+    # outside its own construction's band is arithmetic noise (near-zero
+    # denominators, unit corruption), not information: there is no true
+    # value to repair TO, so it is nulled with the band documented here.
+    _STORED_BANDS = {
+        "cfo_yield": (-50, 50), "earnings_yield": (-50, 50),
+        "robust_cash_yield": (-50, 50), "ufcf_yield": (-50, 50),
+        "cash_return_ev": (-50, 50), "fcf_conversion": (-50, 50),
+        "net_cash_pct_mcap": (-50, 50), "cash_pct_mcap": (-50, 50),
+        "ncav_pct_mcap": (-50, 50),
+        "ebitda_margin": (-5, 5), "op_margin": (-5, 5),
+        "net_margin": (-5, 5), "gross_margin": (-1.5, 1.5),
+        "pretax_margin": (-5, 5),
+        "sbc_pct_revenue": (0, 100),
+        "analyst_target_upside_pct": (-1, 20),
+        "yf_institution_pct": (0, 1.2),
+        # goodwill+intangibles are a SUBSET of total assets — above 1 is an
+        # accounting impossibility, not a tail
+        "goodwill_intangibles_pct_assets": (0, 1.05),
+    }
+    # build-time growth family: beyond +/-1000% a yoy/delta is a base-effect
+    # artifact (near-zero prior), the same class the NPI guard drops — the
+    # true growth off a ~zero base is undefined, so nothing exists to
+    # repair to. Sign-consumers are unaffected in-band.
+    for _gcol2 in ("rev_yoy", "ebitda_yoy", "cfo_yoy", "fcf_yoy",
+                   "gross_profit_yoy", "ebit_growth_yoy", "fcf_per_share_yoy",
+                   "ebitda_margin_delta_yoy", "op_margin_delta_yoy",
+                   "gross_margin_delta_yoy", "fcf_margin_delta_yoy",
+                   "roce_delta_yoy", "ev_sales_change_yoy",
+                   "incremental_ebitda_margin", "fcf_margin"):
+        _STORED_BANDS[_gcol2] = (-10, 10)
+    _STORED_BANDS["operating_leverage_ratio"] = (-100, 100)
+    for _bc2, (_blo2, _bhi2) in _STORED_BANDS.items():
+        if _bc2 in m.columns:
+            _bv3 = pd.to_numeric(m[_bc2], errors="coerce")
+            _bad3 = ((_bv3 < _blo2) | (_bv3 > _bhi2)).fillna(False)
+            if int(_bad3.sum()):
+                m.loc[_bad3, _bc2] = np.nan
+                recon[f"{_bc2} nulled (outside stored band {_blo2},{_bhi2})"] = int(_bad3.sum())
+    # price_yoy absolute fallback where the 52w-range evidence is missing:
+    # a +10,000%+ print with no range corroboration is a redenomination
+    # artifact; the derived price_minus_* differentials inherit the null.
+    for _pyc2 in ("price_yoy", "momentum_12m"):
+        if _pyc2 in m.columns:
+            _pv2 = pd.to_numeric(m[_pyc2], errors="coerce")
+            _pbad2 = (_pv2 > 100).fillna(False)
+            m.loc[_pbad2, _pyc2] = np.nan
+            if int(_pbad2.sum()):
+                recon[f"{_pyc2} nulled (>10000%, no evidence)"] = int(_pbad2.sum())
+    if "price_yoy" in m.columns:
+        _pyN = pd.to_numeric(m["price_yoy"], errors="coerce")
+        for _dcp in ("price_minus_rev_yoy", "price_minus_ebitda_yoy",
+                     "price_minus_fcf_yoy"):
+            if _dcp in m.columns:
+                _dv3 = pd.to_numeric(m[_dcp], errors="coerce")
+                _dbad = (_pyN.isna() & _dv3.notna()) | (_dv3.abs() > 20)
+                m.loc[_dbad.fillna(False), _dcp] = np.nan
+                if int(_dbad.fillna(False).sum()):
+                    recon[f"{_dcp} nulled (inherits price_yoy evidence)"] = int(_dbad.fillna(False).sum())
+
     # NO-ANCHOR MIXED-CCY GROUPS (detected in the restatement pass): siblings
     # share identical raw levels across different quote currencies with no
     # home line to anchor the financial currency (New China Life NWWCF/NCL.F)
