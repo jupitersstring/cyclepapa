@@ -29,3 +29,27 @@ Conclusions
 - Negative-EV multiples are kept as real, interpretable numbers (negative EV
   over a positive denominator); only non-positive denominators null a multiple.
 - Every reconciliation batch is persisted to audit_reports/reconcile_log.txt.
+
+## Round 2 — archetype-consequential figures (2026-09-11)
+
+Method: top-5 firers of each NEW archetype (CashAdjPE, OwnerEarnings,
+UnderstatedE, OverDepreciated, ExpensedGrowth, HiddenAssets) = 21 unique
+names; the 9 gate-critical fields each (cash, debt, NI, CFO, EBITDA, revenue,
+gross margin, shares, mcap) compared against a JUST-FETCHED source pull.
+189 field-checks -> 9 disagreements, three classes, two fixed at the root:
+
+1. total_debt stale/narrow on 5 names (4629.T carried Y5M vs the real,
+   lease-inclusive Y300M). Consequential in the worst direction: stale-LOW
+   debt overstates net cash and therefore CashAdjPE / HiddenAssets cheapness.
+   FIX: total_debt joined the conflict reconcile (fresher, lease-inclusive
+   measure wins; 3,600 names repaired) and net_cash_pct_mcap — which gates
+   the entire net-cash archetype family — joined the derived recompute
+   (13,881 rows refreshed).
+2. cfo_ttm drift on 3 names at 1.38-1.48x: the STORED source file had aged
+   past new quarters. Fresh rows folded in; the two residuals (1.38x, 1.37x)
+   sit inside the deliberate 1.4x non-churn tolerance.
+3. 2230.HK cash 372M vs narrow 249M: the documented broad-cash
+   (investments) basis — correct by design, qc-flagged.
+
+Post-fix: 6/8 actionable disagreements cleared exactly (ratio 1.00); gates
+146 checks 0 FAIL, mutation 32/0, top-60 crosscheck 0 ERROR / 32 clean.

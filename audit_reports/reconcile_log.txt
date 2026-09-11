@@ -116,3 +116,44 @@
   robust_cash_yield                            9793
   roe                                          0
   shares_outstanding                           0
+
+=== 2026-09-11T02:30:43.960236Z apply_ticker_yf on asymmetry_global.csv ===
+  cfo_ttm                                      1
+  cfo_yield                                    1
+  earnings_yield                               99
+  ebitda_margin                                82
+  ebitda_ttm                                   0
+  ev_ebit                                      4256
+  ev_ebit nulled (ebitda<=0)                   640
+  ev_ebit nulled (impossible ordering)         3473
+  ev_ebitda (row-consistency)                  2465
+  ev_ebitda nulled (ebitda<=0)                 6705
+  ev_sales (row-consistency)                   1533
+  fcf_ttm (cfo - capex, accounts-referred primary) 1
+  fcf_yield                                    1389
+  gross_margin                                 0
+  gross_margin nulled (extreme < op_margin)    248
+  net_cash_pct_mcap                            13881
+  net_debt_ebitda                              1301
+  net_income_ttm                               104
+  net_income_ttm (from authoritative p_e)      104
+  net_margin                                   0
+  op_margin                                    0
+  op_margin nulled (extreme > ebitda_margin)   3395
+  owner_earnings_yield                         1
+  p_e (row-consistency)                        4241
+  p_s (row-consistency)                        1714
+  p_tb                                         203
+  price_52w_high lifted to price               0
+  qc_flag ev_comp_gap                          6676
+  qc_flag fcf_gt_cfo                           1903
+  qc_flag fcf_yf_adopted                       0
+  qc_flag fx_twin_dev                          0
+  qc_flag gross_lt_op_margin                   461
+  qc_flag neg_ev                               1914
+  qc_flag op_gt_ebitda_margin                  2628
+  revenue_ttm                                  0
+  robust_cash_yield                            1
+  roe                                          0
+  shares_outstanding                           0
+  total_debt                                   3600

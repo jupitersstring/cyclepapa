@@ -222,7 +222,14 @@ def main():
     RECONCILE = [("yf_ebitda", "ebitda_ttm", "ebitda_ttm_usd"),
                  ("yf_revenue", "revenue_ttm", "revenue_ttm_usd"),
                  ("yf_cfo", "cfo_ttm", None),
-                 ("yf_net_income_implied", "net_income_ttm", None)]
+                 ("yf_net_income_implied", "net_income_ttm", None),
+                 # (spot-check finding) debt must be FRESH and lease-inclusive:
+                 # Yahoo totalDebt capitalizes leases; master copies were stale
+                 # (4629.T Y5M vs Y300M). A stale-LOW debt OVERSTATES net cash
+                 # and therefore CashAdjPE/HiddenAssets cheapness — the
+                 # conservative direction is the fresher, larger measure. Cash
+                 # keeps its broad-basis exception; debt gets none.
+                 ("yf_total_debt", "total_debt", None)]
     recon = {}
     repaired_any = pd.Series(False, index=m.index)
     for yf_col, mcol, usd_col in RECONCILE:
@@ -356,6 +363,12 @@ def main():
                               (_ni3 / _mc).where(_mc > 0)],
                              axis=1).median(axis=1, skipna=True)
         _recompute("robust_cash_yield", _rcy_new, band=(-50, 50))
+    # net_cash_pct_mcap = (broad cash - fresh debt) / current mcap — gates the
+    # net-cash archetype family (liger/oak/negative-EV) and was never refreshed.
+    _ca_nc = pd.to_numeric(m.get("cash"), errors="coerce")
+    _td_nc = pd.to_numeric(m.get("total_debt"), errors="coerce")
+    _recompute("net_cash_pct_mcap",
+               ((_ca_nc - _td_nc) / _mc).where(_mc > 0), band=(-50, 50))
     # p_tb = mcap / tangible_equity (verified convention, median drift 12%)
     _te = pd.to_numeric(m.get("tangible_equity"), errors="coerce")
     _recompute("p_tb", (_mc / _te).where((_te > 0) & (_mc > 0)), band=(0, 500))
