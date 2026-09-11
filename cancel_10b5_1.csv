@@ -1,0 +1,81 @@
+rank,ticker,n_quarters_scanned,n_events,term_sell,adopt_sell,term_buy,adopt_buy,modify_pair,score,reasons
+1,CRM,4,4,1,3,0,0,0,29.0,"BULLISH terminate sell: Marc Benioff (Chair and Chief Executive Offi) 351,607sh [+38] | weak BEARISH adopt sell (small): Sabastian Niles (President) 7,000sh [-3] | weak BEARISH adopt sell (small): Sundeep Reddy (Executive Vice President) 7,000sh [-3] | weak BEARISH adopt sell (small): Marc Benioff (Chair and Chief Executive Offi) 7,000sh [-3]"
+2,KMPR,4,4,0,0,0,0,0,20.0,neutral terminate (type unknown): an insider (Director) [+5] | neutral terminate (type unknown): an insider (Director) [+5] | neutral terminate (type unknown): an insider (Director) [+5] | neutral terminate (type unknown): an insider (Director) [+5]
+3,OCUL,4,2,0,0,0,0,0,10.0,neutral terminate (type unknown): to time (director) [+5] | neutral terminate (type unknown): to time (director) [+5]
+4,TONX,4,0,0,0,0,0,0,0.0,
+5,AGBK,0,0,0,0,0,0,0,0.0,
+6,HDSN,4,0,0,0,0,0,0,0.0,
+7,PATK,4,0,0,0,0,0,0,0.0,
+8,GO,4,0,0,0,0,0,0,0.0,
+9,SRAD,0,0,0,0,0,0,0,0.0,
+10,POOL,4,0,0,0,0,0,0,0.0,
+11,ODTX,0,0,0,0,0,0,0,0.0,
+12,GSHD,4,1,0,0,0,0,0,0.0,
+13,OI,4,0,0,0,0,0,0,0.0,
+14,XRN,4,0,0,0,0,0,0,0.0,
+15,EVTC,4,0,0,0,0,0,0,0.0,
+16,OLED,4,0,0,0,0,0,0,0.0,
+17,HFFG,4,0,0,0,0,0,0,0.0,
+18,MRP,4,0,0,0,0,0,0,0.0,
+19,ONON,0,0,0,0,0,0,0,0.0,
+20,MOBI,1,0,0,0,0,0,0,0.0,
+21,NSP,4,0,0,0,0,0,0,0.0,
+22,PSN,4,0,0,0,0,0,0,0.0,
+23,FCN,4,0,0,0,0,0,0,0.0,
+24,HUBS,4,0,0,0,0,0,0,0.0,
+25,GRNT,4,0,0,0,0,0,0,0.0,
+26,KKR,4,0,0,0,0,0,0,0.0,
+27,IBP,4,0,0,0,0,0,0,0.0,
+28,CCI,4,0,0,0,0,0,0,0.0,
+29,TPL,4,0,0,0,0,0,0,0.0,
+30,ADT,4,0,0,0,0,0,0,0.0,
+31,GRND,4,0,0,0,0,0,0,0.0,
+32,KDP,4,0,0,0,0,0,0,0.0,
+33,VSNT,1,0,0,0,0,0,0,0.0,
+34,AVBC,4,0,0,0,0,0,0,0.0,
+35,PLSE,4,0,0,0,0,0,0,0.0,
+36,NXG,0,0,0,0,0,0,0,0.0,
+37,INFU,4,0,0,0,0,0,0,0.0,
+38,NCLH,4,0,0,0,0,0,0,0.0,
+39,PCSA,4,0,0,0,0,0,0,0.0,
+40,NSPR,4,0,0,0,0,0,0,0.0,
+41,ACON,4,0,0,0,0,0,0,0.0,
+42,AGIG,4,0,0,0,0,0,0,0.0,
+43,STRT,4,0,0,0,0,0,0,0.0,
+44,CSPI,4,0,0,0,0,0,0,0.0,
+45,CZNC,4,0,0,0,0,0,0,0.0,
+46,LW,4,0,0,0,0,0,0,0.0,
+47,CHTR,4,0,0,0,0,0,0,0.0,
+48,VRSK,4,0,0,0,0,0,0,0.0,
+49,PLBY,4,0,0,0,0,0,0,0.0,
+50,CP,4,0,0,0,0,0,0,0.0,
+51,WTRG,4,0,0,0,0,0,0,0.0,
+52,GOSS,4,0,0,0,0,0,0,0.0,
+53,WRB,4,0,0,0,0,0,0,0.0,
+54,SPOK,4,0,0,0,0,0,0,0.0,
+55,CLPR,4,0,0,0,0,0,0,0.0,
+56,ARRY,4,0,0,0,0,0,0,0.0,
+57,EVRG,4,0,0,0,0,0,0,0.0,
+58,CG,4,0,0,0,0,0,0,0.0,
+59,DOV,4,0,0,0,0,0,0,0.0,
+60,ADSK,4,0,0,0,0,0,0,0.0,
+61,DNUT,4,0,0,0,0,0,0,0.0,
+62,BIIB,4,0,0,0,0,0,0,0.0,
+63,PLD,4,0,0,0,0,0,0,0.0,
+64,ENPH,4,0,0,0,0,0,0,0.0,
+65,D,4,0,0,0,0,0,0,0.0,
+66,CAVA,4,0,0,0,0,0,0,0.0,
+67,OPCH,4,2,1,1,0,0,0,-1.0,"BULLISH terminate sell: Luke Whitworth (Chief Operating Officer) 60,000sh [+22] | BEARISH adopt sell: John C. Rademacher (Chief Executive Officer) 200,000sh [-23]"
+68,ZTS,4,1,0,1,0,0,0,-3.0,"weak BEARISH adopt sell (small): Kristin Peck (Chief Executive Officer) 1,359sh [-3]"
+69,TKO,4,5,0,2,0,2,0,-4.0,"BEARISH adopt sell: an insider (director) 67,127sh [-12] | BULLISH adopt buy: an insider (?) 3,161,430sh [+8] | BULLISH adopt buy: an insider (?) [+8] | BEARISH adopt sell: Andrew Schleimer (Chief Financial Officer) 10,595sh [-8]"
+70,BETR,4,1,0,1,0,0,0,-8.0,"BEARISH adopt sell: Chad Smith (President and Chief Operating ) 18,000sh [-8]"
+71,GPGI,4,1,0,1,0,0,0,-12.0,"BEARISH adopt sell: an insider (?) 55,521sh [-12]"
+72,ROST,4,1,0,1,0,0,0,-12.0,"BEARISH adopt sell: an insider (director) 49,000sh [-12]"
+73,EYE,4,1,0,1,0,0,0,-15.0,"BEARISH adopt sell: an insider (director) 150,000sh [-15]"
+74,PCG,4,1,0,1,0,0,0,-15.0,"BEARISH adopt sell: an insider (Executive Vice President) 374,428sh [-15]"
+75,FLUT,4,5,0,1,0,0,0,-20.0,BEARISH adopt sell: Peter Jackson (Chief Executive Officer) [-20]
+76,WST,4,1,0,1,0,0,0,-20.0,"BEARISH adopt sell: Eric M. Green (President and Chief Executive ) 83,616sh [-20]"
+77,NKE,4,2,0,2,0,0,0,-27.0,"BEARISH adopt sell: Venkatesh Alagirisamy (Executive Vice President) 53,331sh [-12] | BEARISH adopt sell: Matthew Friend (Executive Vice President and) 153,128sh [-15]"
+78,EPAM,4,5,0,3,0,0,2,-29.0,"BEARISH adopt sell: Arkadiy Dobkin (Executive Chair) 150,000sh [-23] | weak BEARISH adopt sell (small): Jason Peterson (Senior Vice President) 4,200sh [-3] | weak BEARISH adopt sell (small): Balazs Fejes (President) 4,200sh [-3]"
+79,SOFI,4,4,0,2,0,0,0,-33.0,"BEARISH adopt sell: Kelli Keough (Executive Vice President) 244,374sh [-15] | BEARISH adopt sell: Jeremy Rishel (Chief Technology Officer) 815,253sh [-18]"
+80,LAZ,4,2,0,2,0,0,0,-34.0,"BEARISH adopt sell: an insider (Chief Financial Officer) 206,083sh [-19] | BEARISH adopt sell: an insider (Director) 226,003sh [-15]"

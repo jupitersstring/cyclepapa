@@ -1,0 +1,18 @@
+ticker,core,conf,total,pattern,depth,psu_pct,metrics,n_fwd_cond,mcap,px,fday,notes,reasons
+HFFG,62.3,8.0,70.3,53.0,35.755,50,"TSR,Revenue,EBITDA",1,98.394768,1.84,2026-04-24,4 F4 buys,3-tranche price ladder $4-$8 | top hurdle $8 = 4.2x current | double-trigger CIC | transfo
+CRM,52.2,8.0,60.2,48.0,21.04,67,"TSR,EPS,Revenue",0,143611.65824,175.35,2026-04-16,10b5-1 -5 | buyback EXECUTING,9-tranche price ladder $3-$668 | top hurdle $668 = 3.7x current | double-trigger CIC | ret
+DOV,29.7,8.0,37.7,44.0,16.53,0,,0,0.0,0,2026-03-24,buyback EXECUTING,ROIC metric (per-share return) | 3 per-share metrics (deep stack) | double-trigger CIC | r
+WST,26.6,8.0,34.6,40.0,14.3,0,,0,0.0,0,2026-03-12,buyback EXECUTING,ROIC metric (per-share return) | 3 per-share metrics (deep stack) | 3-tranche price ladder
+CCI,30.2,3.0,33.2,44.0,17.349999999999998,0,,0,40402.358272,92.57,2026-04-06,,ROIC metric (per-share return) | transformation signal
+EVRG,32.6,0.0,32.6,49.0,17.52,0,,0,0.0,0,2026-03-26,,ROIC metric (per-share return) | 3 per-share metrics (deep stack) | 4-tranche price ladder
+OCUL,25.7,6.0,31.7,34.0,17.324,0,,0,1854.594176,8.47,2026-04-30,10b5-1 +10,3-tranche price ladder $7-$30 | top hurdle $30 = 3.2x current | double-trigger CIC
+CP,31.5,0.0,31.5,47.0,17.200000000000003,0,,0,0.0,0,2026-03-25,,ROIC metric (per-share return) | 3 per-share metrics (deep stack) | filtered 1 implausible
+CG,28.1,0.0,28.1,42.0,15.33,0,,0,0.0,0,2026-04-23,,ROIC metric (per-share return) | filtered 2 implausible hurdles (>8x current) | 15-tranche
+DNUT,28.1,0.0,28.1,42.0,15.33,0,,0,0.0,0,2026-04-27,,ROIC metric (per-share return) | 3 per-share metrics (deep stack) | 3-tranche price ladder
+WTRG,27.9,0.0,27.9,42.0,15.015,0,,0,0.0,0,2026-03-17,,3 per-share metrics (deep stack) | filtered 1 implausible hurdles (>8x current) | double-t
+ADSK,29.0,-1.8,27.2,43.0,16.095,0,,0,46722.220032,221.28,2026-05-06,10b5-1 -3,FCF/share metric | 3 per-share metrics (deep stack) | 4-tranche price ladder $1-$253 | dou
+BIIB,27.0,0.0,27.0,40.0,15.000000000000002,0,,0,0.0,0,2026-04-28,,double-trigger CIC | transformation signal
+PLD,26.6,0.0,26.6,40.0,14.3,0,,0,0.0,0,2026-03-19,,3-tranche price ladder $13-$999 | top hurdle $999 = 6.9x current $144.09 | double-trigger 
+D,25.9,0.0,25.9,39.0,13.940000000000001,0,,0,58267.705344,66.25,2026-03-19,,5-tranche price ladder $3-$11 | double-trigger CIC | retirement carveout
+CAVA,25.4,-4.2,21.2,38.0,13.870000000000001,0,,0,9499.60704,81.56,2026-04-24,10b5-1 -7,ROIC metric (per-share return) | 3 per-share metrics (deep stack)
+LAZ,33.9,-29.0,4.9,51.0,18.23,0,,0,4656.1024,47.3,2026-04-07,10b5-1 -67 | 144 -8 | buyback DILUTING,filtered 1 implausible hurdles (>8x current) | 4-tranche price ladder $4-$254 | top hurdle

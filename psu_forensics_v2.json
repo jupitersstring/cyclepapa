@@ -1,0 +1,2795 @@
+{
+  "MX": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Camillo Martino",
+          "title": "Chairman"
+        },
+        {
+          "name": "and Interim",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "Shinyoung Park",
+          "title": "Chief Financial Officer"
+        },
+        {
+          "name": "Lead Director",
+          "title": "cto"
+        },
+        {
+          "name": "appointed Interim",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "was also",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "served as",
+          "title": "Chief Operating Officer"
+        },
+        {
+          "name": "as a director",
+          "title": "cto"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {
+        "psu_pct": 64,
+        "rsu_pct": 50
+      },
+      "performance_metrics": [
+        "TSR",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Compensia",
+      "grant_dates": [
+        "June 1, 2024",
+        "February 16, 2023",
+        "October 1, 2025"
+      ],
+      "neo_award_values": [
+        {
+          "name": "Above-Market Non-Qualified",
+          "unvested_usd": 404764.0
+        },
+        {
+          "name": "Non-Qualified Deferred",
+          "unvested_usd": 14346.0
+        },
+        {
+          "name": "Above-Market Non-Qualified",
+          "unvested_usd": 81930.0
+        }
+      ],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 19.0,
+    "reasons": [
+      "PSU 64% of LTI (heavy)"
+    ],
+    "accession": "0001193125-26-197484"
+  },
+  "HFFG": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Lin Director",
+          "title": "cto"
+        },
+        {
+          "name": "LETTER FROM",
+          "title": "PRESIDENT"
+        },
+        {
+          "name": "Letter from",
+          "title": "President"
+        },
+        {
+          "name": "Annual Meeting",
+          "title": "chair"
+        },
+        {
+          "name": "role as",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "recommendation of",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "serve as",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "served as",
+          "title": "President"
+        }
+      ],
+      "say_on_pay_pct": 87.0,
+      "lti_mix": {
+        "psu_pct": 50,
+        "rsu_pct": 50
+      },
+      "performance_metrics": [
+        "TSR",
+        "Revenue",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Mercer",
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 11.0,
+    "reasons": [
+      "PSU 50% of LTI",
+      "2 aggregate metrics"
+    ],
+    "accession": "0001680873-26-000021"
+  },
+  "AMCX": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "L. Dolan",
+          "title": "Chairman"
+        },
+        {
+          "name": "Chairman and",
+          "title": "Chairman"
+        },
+        {
+          "name": "Executive Vice",
+          "title": "Executive Vice President"
+        },
+        {
+          "name": "Office of",
+          "title": "Chairman"
+        },
+        {
+          "name": "President and",
+          "title": "President"
+        },
+        {
+          "name": "Former Executive",
+          "title": "Chairman"
+        },
+        {
+          "name": "selection of",
+          "title": "Chairman"
+        },
+        {
+          "name": "roles of",
+          "title": "Chairman"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {
+        "rsu_pct": 50
+      },
+      "performance_metrics": [
+        "TSR"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Pay Governance",
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [
+        101
+      ],
+      "plan_changes": {
+        "shareholder_feedback_response": true
+      }
+    },
+    "score": 14.0,
+    "reasons": [
+      "Responded to shareholder feedback"
+    ],
+    "accession": "0001193125-26-194208"
+  },
+  "QTRX": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Everett Cunningham",
+          "title": "President"
+        },
+        {
+          "name": "that prevent",
+          "title": "chair"
+        },
+        {
+          "name": "and as",
+          "title": "President"
+        },
+        {
+          "name": "served as",
+          "title": "Chief Commercial Officer"
+        },
+        {
+          "name": "he was",
+          "title": "Chief Commercial Officer"
+        },
+        {
+          "name": "President and",
+          "title": "President"
+        },
+        {
+          "name": "brings as",
+          "title": "President"
+        },
+        {
+          "name": "including as",
+          "title": "chief financial officer"
+        }
+      ],
+      "say_on_pay_pct": 84.0,
+      "lti_mix": {
+        "rsu_pct": 70,
+        "option_pct": 30
+      },
+      "performance_metrics": [
+        "TSR",
+        "Revenue"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Pay Governance",
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 3.0,
+    "reasons": [],
+    "accession": "0001104659-26-048166"
+  },
+  "NCLH": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Daniel S. Farkas",
+          "title": "Executive Vice President"
+        },
+        {
+          "name": "precautions in",
+          "title": "coo"
+        },
+        {
+          "name": "Executive Vice",
+          "title": "Executive Vice President"
+        },
+        {
+          "name": "President and",
+          "title": "President"
+        },
+        {
+          "name": "Consumer and",
+          "title": "Chairman"
+        },
+        {
+          "name": "CEO and",
+          "title": "CEO"
+        },
+        {
+          "name": "ELLEN BYNG-THORNE",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "Director and",
+          "title": "cto"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {
+        "psu_pct": 60
+      },
+      "performance_metrics": [
+        "TSR",
+        "EPS",
+        "ROIC",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": null,
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [
+        200
+      ],
+      "plan_changes": {}
+    },
+    "score": 21.0,
+    "reasons": [
+      "PSU 60% of LTI (heavy)",
+      "3 per-share metrics",
+      "Avg payout 200% (lax)"
+    ],
+    "accession": "0001104659-26-052146"
+  },
+  "DLTR": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "recently as",
+          "title": "Chair"
+        },
+        {
+          "name": "year as",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "Glendinning as",
+          "title": "Chief Financial Officer"
+        },
+        {
+          "name": "or Independent",
+          "title": "Chair"
+        },
+        {
+          "name": "Executive Vice",
+          "title": "Executive Vice President"
+        },
+        {
+          "name": "Utilities and",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "Founder and",
+          "title": "Founder"
+        },
+        {
+          "name": "President and",
+          "title": "President"
+        }
+      ],
+      "say_on_pay_pct": 95.0,
+      "lti_mix": {
+        "psu_pct": 50,
+        "rsu_pct": 50
+      },
+      "performance_metrics": [
+        "TSR",
+        "EPS",
+        "Revenue"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Meridian Compensation",
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 26.0,
+    "reasons": [
+      "PSU 50% of LTI",
+      "SOP 95% (clean)"
+    ],
+    "accession": "0001104659-26-053500"
+  },
+  "TONX": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Stotz Executive",
+          "title": "Chairman"
+        },
+        {
+          "name": "as Vice",
+          "title": "Chairman"
+        },
+        {
+          "name": "is also",
+          "title": "Founder"
+        },
+        {
+          "name": "Co-Founder and",
+          "title": "Founder"
+        },
+        {
+          "name": "experience as",
+          "title": "Chief Financial Officer"
+        },
+        {
+          "name": "served as",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "serves as",
+          "title": "Chairman"
+        },
+        {
+          "name": "and Vice",
+          "title": "President"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {
+        "rsu_pct": 50
+      },
+      "performance_metrics": [
+        "TSR"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": null,
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 4.0,
+    "reasons": [],
+    "accession": "0001493152-26-020423"
+  },
+  "RYAM": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Sutton as",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "Mr. Sutton",
+          "title": "President"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {},
+      "performance_metrics": [],
+      "performance_periods_yrs": [],
+      "comp_consultant": null,
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 0.0,
+    "reasons": [],
+    "accession": "0001140361-26-000258"
+  },
+  "OLLI": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "der Valk",
+          "title": "President"
+        },
+        {
+          "name": "Senior Vice",
+          "title": "Senior Vice President"
+        },
+        {
+          "name": "plus Executive",
+          "title": "Chairman"
+        },
+        {
+          "name": "President and",
+          "title": "President"
+        },
+        {
+          "name": "may contact",
+          "title": "General Counsel"
+        },
+        {
+          "name": "promotion to",
+          "title": "President"
+        },
+        {
+          "name": "an independent",
+          "title": "Chair"
+        },
+        {
+          "name": "serves as",
+          "title": "Chief Executive Officer"
+        }
+      ],
+      "say_on_pay_pct": 92.0,
+      "lti_mix": {
+        "rsu_pct": 50,
+        "option_pct": 40
+      },
+      "performance_metrics": [
+        "TSR",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Pearl Meyer",
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 8.0,
+    "reasons": [],
+    "accession": "0001140361-26-018292"
+  },
+  "ALIT": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Rohit Verma",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "prior experiences.",
+          "title": "CEO"
+        },
+        {
+          "name": "experience as",
+          "title": "chief executive officer"
+        },
+        {
+          "name": "Russell P. Fradin",
+          "title": "Chairman"
+        },
+        {
+          "name": "serving as",
+          "title": "chairman"
+        },
+        {
+          "name": "served as",
+          "title": "president"
+        },
+        {
+          "name": "he was",
+          "title": "CEO"
+        },
+        {
+          "name": "is currently",
+          "title": "chairman"
+        }
+      ],
+      "say_on_pay_pct": 94.0,
+      "lti_mix": {
+        "rsu_pct": 50
+      },
+      "performance_metrics": [
+        "TSR",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Aon Hewitt",
+      "grant_dates": [
+        "March 10, 2025"
+      ],
+      "neo_award_values": [
+        {
+          "name": "Table Total",
+          "unvested_usd": 533067.0
+        }
+      ],
+      "payout_history_pcts": [
+        100
+      ],
+      "plan_changes": {}
+    },
+    "score": 12.0,
+    "reasons": [],
+    "accession": "0001628280-26-027616"
+  },
+  "ADV": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "David Peacock",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "served as",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "and was",
+          "title": "founder"
+        },
+        {
+          "name": "and vice",
+          "title": "president"
+        },
+        {
+          "name": "Officer and",
+          "title": "Chairman"
+        },
+        {
+          "name": "member of",
+          "title": "President"
+        },
+        {
+          "name": "to his",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "Hershey including",
+          "title": "Chief Operating Officer"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {
+        "rsu_pct": 50
+      },
+      "performance_metrics": [
+        "TSR",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Mercer",
+      "grant_dates": [
+        "April 1, 2025"
+      ],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 3.0,
+    "reasons": [],
+    "accession": "0001193125-26-170691"
+  },
+  "CRON": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Michael Gorenstein",
+          "title": "Chairman"
+        },
+        {
+          "name": "President and",
+          "title": "President"
+        },
+        {
+          "name": "sent to",
+          "title": "Chair"
+        },
+        {
+          "name": "extended by",
+          "title": "Chair"
+        },
+        {
+          "name": "United States",
+          "title": "Chairman"
+        },
+        {
+          "name": "States Vice",
+          "title": "President"
+        },
+        {
+          "name": "and Associate",
+          "title": "General Counsel"
+        },
+        {
+          "name": "ON Canada",
+          "title": "Chief Financial Officer"
+        }
+      ],
+      "say_on_pay_pct": 94.0,
+      "lti_mix": {},
+      "performance_metrics": [
+        "TSR",
+        "Revenue",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Mercer",
+      "grant_dates": [
+        "March 1, 2023"
+      ],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 5.0,
+    "reasons": [
+      "2 aggregate metrics"
+    ],
+    "accession": "0001656472-26-000021"
+  },
+  "ALLO": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Earl Douglas",
+          "title": "Senior Vice President"
+        },
+        {
+          "name": "served as",
+          "title": "President"
+        },
+        {
+          "name": "to becoming",
+          "title": "President"
+        },
+        {
+          "name": "Officer and",
+          "title": "Senior Vice President"
+        },
+        {
+          "name": "as Vice",
+          "title": "President"
+        },
+        {
+          "name": "David Saxon",
+          "title": "President"
+        },
+        {
+          "name": "appointed by",
+          "title": "President"
+        },
+        {
+          "name": "Obama to",
+          "title": "President"
+        }
+      ],
+      "say_on_pay_pct": 98.0,
+      "lti_mix": {
+        "psu_pct": 55,
+        "option_pct": 25
+      },
+      "performance_metrics": [
+        "TSR",
+        "EPS"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Compensia",
+      "grant_dates": [
+        "January 25, 2024",
+        "April 16, 2026"
+      ],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 29.0,
+    "reasons": [
+      "PSU 55% of LTI",
+      "SOP 98% (clean)"
+    ],
+    "accession": "0001628280-26-028948"
+  },
+  "NNBR": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Harold C. Bevis",
+          "title": "President"
+        },
+        {
+          "name": "Jami A. Statham",
+          "title": "General Counsel"
+        },
+        {
+          "name": "President and",
+          "title": "President"
+        },
+        {
+          "name": "except for",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "Independent presiding",
+          "title": "Chairman"
+        },
+        {
+          "name": "serves as",
+          "title": "Chair"
+        },
+        {
+          "name": "three as",
+          "title": "Chairman"
+        },
+        {
+          "name": "including as",
+          "title": "Chairman"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {
+        "psu_pct": 86
+      },
+      "performance_metrics": [
+        "TSR",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Meridian Compensation",
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 19.0,
+    "reasons": [
+      "PSU 86% of LTI (heavy)"
+    ],
+    "accession": "0000918541-25-000022"
+  },
+  "UPWK": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Hayden Brown",
+          "title": "President"
+        },
+        {
+          "name": "omas Layton",
+          "title": "Chair"
+        },
+        {
+          "name": "applicable to",
+          "title": "CEO"
+        },
+        {
+          "name": "serving as",
+          "title": "chair"
+        },
+        {
+          "name": "salary for",
+          "title": "President"
+        },
+        {
+          "name": "to as",
+          "title": "CEO"
+        },
+        {
+          "name": "Claire Bramley",
+          "title": "CFO"
+        },
+        {
+          "name": "David Lissy",
+          "title": "CEO"
+        }
+      ],
+      "say_on_pay_pct": 94.0,
+      "lti_mix": {
+        "psu_pct": 60,
+        "rsu_pct": 60
+      },
+      "performance_metrics": [
+        "TSR",
+        "Revenue",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Semler Brossy",
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {
+        "shareholder_feedback_response": true
+      }
+    },
+    "score": 25.0,
+    "reasons": [
+      "PSU 60% of LTI (heavy)",
+      "2 aggregate metrics",
+      "Responded to shareholder feedback"
+    ],
+    "accession": "0001627475-26-000026"
+  },
+  "FRPT": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "and gently",
+          "title": "coo"
+        },
+        {
+          "name": "transition of",
+          "title": "Chief Financial Officer"
+        },
+        {
+          "name": "William B. Cyr",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "George III",
+          "title": "Chair"
+        },
+        {
+          "name": "Chair and",
+          "title": "Chair"
+        },
+        {
+          "name": "positions of",
+          "title": "Chair"
+        },
+        {
+          "name": "require that",
+          "title": "Chair"
+        },
+        {
+          "name": "positions allows",
+          "title": "Chief Executive Officer"
+        }
+      ],
+      "say_on_pay_pct": 97.0,
+      "lti_mix": {
+        "rsu_pct": 50
+      },
+      "performance_metrics": [
+        "TSR",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Willis Towers Watson",
+      "grant_dates": [],
+      "neo_award_values": [
+        {
+          "name": "Grant Date",
+          "unvested_usd": 4585198.0
+        },
+        {
+          "name": "Grant Date",
+          "unvested_usd": 901432.0
+        },
+        {
+          "name": "Change in",
+          "unvested_usd": 753211.0
+        }
+      ],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 11.0,
+    "reasons": [
+      "SOP 97% (clean)"
+    ],
+    "accession": "0001140361-26-017084"
+  },
+  "KDP": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "recently as",
+          "title": "Chair"
+        },
+        {
+          "name": "Controller and",
+          "title": "Chief Accounting Officer"
+        },
+        {
+          "name": "named incoming",
+          "title": "Chief Financial Officer"
+        },
+        {
+          "name": "Group and",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "Timothy Cofer",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "President and",
+          "title": "President"
+        },
+        {
+          "name": "Former Executive",
+          "title": "Chairman"
+        },
+        {
+          "name": "LLC and",
+          "title": "Founder"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {
+        "psu_pct": 75,
+        "rsu_pct": 67,
+        "option_pct": 10
+      },
+      "performance_metrics": [
+        "TSR",
+        "EPS",
+        "ROIC",
+        "Revenue"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Frederic W. Cook",
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {
+        "shareholder_feedback_response": true
+      }
+    },
+    "score": 31.0,
+    "reasons": [
+      "PSU 75% of LTI (heavy)",
+      "3 per-share metrics",
+      "Responded to shareholder feedback"
+    ],
+    "accession": "0001193125-26-177266"
+  },
+  "GOSS": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Faheem Hasnain",
+          "title": "Chairman"
+        },
+        {
+          "name": "President and",
+          "title": "President"
+        },
+        {
+          "name": "Officer and",
+          "title": "Chairman"
+        },
+        {
+          "name": "served as",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "and as",
+          "title": "Chairman"
+        },
+        {
+          "name": "Hasnain was",
+          "title": "President"
+        },
+        {
+          "name": "recently as",
+          "title": "Executive Vice President"
+        },
+        {
+          "name": "he was",
+          "title": "President"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {},
+      "performance_metrics": [
+        "TSR"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": null,
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [
+        65
+      ],
+      "plan_changes": {}
+    },
+    "score": 4.0,
+    "reasons": [],
+    "accession": "0001728117-26-000027"
+  },
+  "NLCP": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Anthony Coniglio",
+          "title": "President"
+        },
+        {
+          "name": "Lisa Meyer",
+          "title": "Chief Financial Officer"
+        },
+        {
+          "name": "served as",
+          "title": "Chairman"
+        },
+        {
+          "name": "After becoming",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "serves as",
+          "title": "Chair"
+        },
+        {
+          "name": "and is",
+          "title": "Chair"
+        },
+        {
+          "name": "over as",
+          "title": "CEO"
+        },
+        {
+          "name": "as Vice",
+          "title": "President"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {},
+      "performance_metrics": [],
+      "performance_periods_yrs": [],
+      "comp_consultant": null,
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 0.0,
+    "reasons": [],
+    "accession": "0001854964-26-000011"
+  },
+  "MGX": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "roles of",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "offices of",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "serving as",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "not require",
+          "title": "chair"
+        },
+        {
+          "name": "served as",
+          "title": "Chairman"
+        },
+        {
+          "name": "role as",
+          "title": "Chief Financial Officer"
+        },
+        {
+          "name": "Executive Vice",
+          "title": "Executive Vice President"
+        },
+        {
+          "name": "directors and",
+          "title": "cto"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {},
+      "performance_metrics": [],
+      "performance_periods_yrs": [],
+      "comp_consultant": null,
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 0.0,
+    "reasons": [],
+    "accession": "0001193125-26-182325"
+  },
+  "CLNE": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "served as",
+          "title": "President"
+        },
+        {
+          "name": "was appointed",
+          "title": "Chairman"
+        },
+        {
+          "name": "Scully was",
+          "title": "founder"
+        },
+        {
+          "name": "terms as",
+          "title": "Chairman"
+        },
+        {
+          "name": "is also",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "also vice",
+          "title": "chair"
+        },
+        {
+          "name": "one of",
+          "title": "founder"
+        },
+        {
+          "name": "Assistant to",
+          "title": "President"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {
+        "psu_pct": 67,
+        "rsu_pct": 50,
+        "option_pct": 50
+      },
+      "performance_metrics": [
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Semler Brossy",
+      "grant_dates": [
+        "February 27, 2025"
+      ],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 15.0,
+    "reasons": [
+      "PSU 67% of LTI (heavy)"
+    ],
+    "accession": "0001104659-26-052378"
+  },
+  "BLND": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "no quorum",
+          "title": "chair"
+        },
+        {
+          "name": "served as",
+          "title": "CEO"
+        },
+        {
+          "name": "and as",
+          "title": "President"
+        },
+        {
+          "name": "as its",
+          "title": "Executive Vice President"
+        },
+        {
+          "name": "Administrative Officer",
+          "title": "General Counsel"
+        },
+        {
+          "name": "Sheth is",
+          "title": "Founder"
+        },
+        {
+          "name": "Brian was",
+          "title": "President"
+        },
+        {
+          "name": "Advisor to",
+          "title": "CEO"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {},
+      "performance_metrics": [],
+      "performance_periods_yrs": [],
+      "comp_consultant": null,
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 0.0,
+    "reasons": [],
+    "accession": "0001855747-26-000023"
+  },
+  "SKIN": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "serves as",
+          "title": "President"
+        },
+        {
+          "name": "as Interim",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "served as",
+          "title": "Chairman"
+        },
+        {
+          "name": "President and",
+          "title": "President"
+        },
+        {
+          "name": "role as",
+          "title": "President"
+        },
+        {
+          "name": "role of",
+          "title": "Chairman"
+        },
+        {
+          "name": "was named",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "Senior Vice",
+          "title": "Senior Vice President"
+        }
+      ],
+      "say_on_pay_pct": 99.62,
+      "lti_mix": {
+        "psu_pct": 50,
+        "rsu_pct": 25
+      },
+      "performance_metrics": [
+        "TSR",
+        "Revenue",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Frederic W. Cook",
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 19.0,
+    "reasons": [
+      "PSU 50% of LTI",
+      "2 aggregate metrics",
+      "SOP 100% (clean)"
+    ],
+    "accession": "0001683168-26-003189"
+  },
+  "ROCK": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "and Financing",
+          "title": "Coo"
+        },
+        {
+          "name": "shall reasonably",
+          "title": "coo"
+        },
+        {
+          "name": "Affiliates to",
+          "title": "coo"
+        },
+        {
+          "name": "shall be",
+          "title": "coo"
+        },
+        {
+          "name": "Purchaser shall",
+          "title": "coo"
+        },
+        {
+          "name": "provide such",
+          "title": "coo"
+        },
+        {
+          "name": "any such",
+          "title": "coo"
+        },
+        {
+          "name": "with any",
+          "title": "coo"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {},
+      "performance_metrics": [],
+      "performance_periods_yrs": [],
+      "comp_consultant": null,
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 0.0,
+    "reasons": [],
+    "accession": "0001140361-25-042426"
+  },
+  "LCID": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "serving as",
+          "title": "COO"
+        },
+        {
+          "name": "Silvio assuming",
+          "title": "CEO"
+        },
+        {
+          "name": "Turqi Alnowaiser",
+          "title": "Chairman"
+        },
+        {
+          "name": "Brian K. Tomkiel",
+          "title": "General Counsel"
+        },
+        {
+          "name": "to designate",
+          "title": "Chairman"
+        },
+        {
+          "name": "and as",
+          "title": "Chairman"
+        },
+        {
+          "name": "growth as",
+          "title": "Chairman"
+        },
+        {
+          "name": "served as",
+          "title": "Chief Executive Officer"
+        }
+      ],
+      "say_on_pay_pct": 99.0,
+      "lti_mix": {
+        "psu_pct": 50,
+        "rsu_pct": 25
+      },
+      "performance_metrics": [
+        "TSR",
+        "Revenue"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Pay Governance",
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 22.0,
+    "reasons": [
+      "PSU 50% of LTI",
+      "SOP 99% (clean)"
+    ],
+    "accession": "0001628280-26-026842"
+  },
+  "LULU": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "labor costs.",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "for a permanent",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "for Economic",
+          "title": "Coo"
+        },
+        {
+          "name": "for a new",
+          "title": "chief executive officer"
+        },
+        {
+          "name": "called by",
+          "title": "chairman"
+        },
+        {
+          "name": "and its",
+          "title": "president"
+        },
+        {
+          "name": "Officer and",
+          "title": "Chief Financial Officer"
+        },
+        {
+          "name": "MORFITT Executive",
+          "title": "Chair"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {},
+      "performance_metrics": [
+        "EPS",
+        "Revenue"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": null,
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 1.0,
+    "reasons": [],
+    "accession": "0001397187-26-000020"
+  },
+  "CRM": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Letter from",
+          "title": "Chair"
+        },
+        {
+          "name": "Marc Benioff",
+          "title": "Chair"
+        },
+        {
+          "name": "of Directors",
+          "title": "cto"
+        },
+        {
+          "name": "Sabastian Niles",
+          "title": "President"
+        },
+        {
+          "name": "Laura Alber",
+          "title": "President"
+        },
+        {
+          "name": "Amy Chang",
+          "title": "CEO"
+        },
+        {
+          "name": "Craig Conway",
+          "title": "President"
+        },
+        {
+          "name": "Former Vice",
+          "title": "President"
+        }
+      ],
+      "say_on_pay_pct": 77.0,
+      "lti_mix": {
+        "psu_pct": 67,
+        "rsu_pct": 50
+      },
+      "performance_metrics": [
+        "TSR",
+        "EPS",
+        "Revenue"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Semler Brossy",
+      "grant_dates": [
+        "April 8, 2023",
+        "January 29, 2024"
+      ],
+      "neo_award_values": [],
+      "payout_history_pcts": [
+        112
+      ],
+      "plan_changes": {}
+    },
+    "score": 27.0,
+    "reasons": [
+      "PSU 67% of LTI (heavy)"
+    ],
+    "accession": "0001108524-26-000085"
+  },
+  "THRY": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "serve as",
+          "title": "Chairman"
+        },
+        {
+          "name": "director or",
+          "title": "cto"
+        },
+        {
+          "name": "served as",
+          "title": "Chairman"
+        },
+        {
+          "name": "serving as",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "has been",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "well-suited to",
+          "title": "chair"
+        },
+        {
+          "name": "as both",
+          "title": "Chairman"
+        },
+        {
+          "name": "absence of",
+          "title": "Chairman"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {
+        "psu_pct": 60,
+        "rsu_pct": 40
+      },
+      "performance_metrics": [
+        "TSR",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Lyons Benenson",
+      "grant_dates": [
+        "November 18, 2019",
+        "January 5, 2023",
+        "January 5, 2024",
+        "January 6, 2025"
+      ],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {
+        "ownership_requirements_added": true
+      }
+    },
+    "score": 24.0,
+    "reasons": [
+      "PSU 60% of LTI (heavy)",
+      "New ownership requirements"
+    ],
+    "accession": "0001556739-26-000029"
+  },
+  "PLBY": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Ben Kohn",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "Chris Riley",
+          "title": "General Counsel"
+        },
+        {
+          "name": "Executive Officer",
+          "title": "President"
+        },
+        {
+          "name": "served as",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "Yaffe is",
+          "title": "founder"
+        },
+        {
+          "name": "Officer and",
+          "title": "Chief Operating Officer"
+        },
+        {
+          "name": "he was",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "President and",
+          "title": "President"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {
+        "psu_pct": 50,
+        "option_pct": 50
+      },
+      "performance_metrics": [
+        "TSR",
+        "Revenue",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Exequity",
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 11.0,
+    "reasons": [
+      "PSU 50% of LTI",
+      "2 aggregate metrics"
+    ],
+    "accession": "0001628280-26-028967"
+  },
+  "ORGO": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Director and",
+          "title": "cto"
+        },
+        {
+          "name": "serves as",
+          "title": "Chief Financial Officer"
+        },
+        {
+          "name": "partners with",
+          "title": "CEO"
+        },
+        {
+          "name": "served as",
+          "title": "Chief Financial Officer"
+        },
+        {
+          "name": "and as",
+          "title": "Chair"
+        },
+        {
+          "name": "Officer and",
+          "title": "Chief Financial Officer"
+        },
+        {
+          "name": "as its",
+          "title": "Chief Operating Officer"
+        },
+        {
+          "name": "positions as",
+          "title": "Senior Vice President"
+        }
+      ],
+      "say_on_pay_pct": 91.4,
+      "lti_mix": {
+        "rsu_pct": 30,
+        "option_pct": 20
+      },
+      "performance_metrics": [
+        "TSR",
+        "Revenue",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Pearl Meyer",
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 5.0,
+    "reasons": [
+      "2 aggregate metrics"
+    ],
+    "accession": "0001193125-26-197357"
+  },
+  "SPOK": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Chair and",
+          "title": "Chair"
+        },
+        {
+          "name": "President and",
+          "title": "President"
+        },
+        {
+          "name": "agreements. Only",
+          "title": "CEO"
+        },
+        {
+          "name": "directly to",
+          "title": "CEO"
+        },
+        {
+          "name": "for Economic",
+          "title": "Coo"
+        },
+        {
+          "name": "positions of",
+          "title": "Chair"
+        },
+        {
+          "name": "position of",
+          "title": "Chair"
+        },
+        {
+          "name": "has allowed",
+          "title": "CEO"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {
+        "psu_pct": 50,
+        "rsu_pct": 66,
+        "option_pct": 10
+      },
+      "performance_metrics": [
+        "TSR",
+        "EPS",
+        "Revenue",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": null,
+      "grant_dates": [
+        "January 2, 2024"
+      ],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 13.0,
+    "reasons": [
+      "PSU 50% of LTI",
+      "2 aggregate metrics"
+    ],
+    "accession": "0001289945-26-000028"
+  },
+  "LAW": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Susan Garcia",
+          "title": "Executive Vice President"
+        },
+        {
+          "name": "served as",
+          "title": "Chief Financial Officer"
+        },
+        {
+          "name": "and Vice",
+          "title": "President"
+        },
+        {
+          "name": "including as",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "Officer and",
+          "title": "Chief Financial Officer"
+        },
+        {
+          "name": "Inc. and",
+          "title": "Chief Financial Officer"
+        },
+        {
+          "name": "serves as",
+          "title": "chair"
+        },
+        {
+          "name": "and its",
+          "title": "Chief Financial Officer"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {},
+      "performance_metrics": [
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Compensia",
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [
+        100
+      ],
+      "plan_changes": {}
+    },
+    "score": 3.0,
+    "reasons": [],
+    "accession": "0001625641-26-000097"
+  },
+  "FDP": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "in close",
+          "title": "coo"
+        },
+        {
+          "name": "Mohammad Abu-Ghazaleh",
+          "title": "Chairman"
+        },
+        {
+          "name": "Chairman and",
+          "title": "Chairman"
+        },
+        {
+          "name": "President and",
+          "title": "President"
+        },
+        {
+          "name": "as a CEO",
+          "title": "CEO"
+        },
+        {
+          "name": "served as",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "Principal and",
+          "title": "founder"
+        },
+        {
+          "name": "its non-executive",
+          "title": "Chairman"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {
+        "psu_pct": 50,
+        "rsu_pct": 50
+      },
+      "performance_metrics": [
+        "TSR",
+        "EPS",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Willis Towers Watson",
+      "grant_dates": [
+        "March 1, 2024",
+        "March 3, 2025",
+        "April 1, 2024",
+        "September 6, 2024"
+      ],
+      "neo_award_values": [],
+      "payout_history_pcts": [
+        50,
+        150,
+        50,
+        150,
+        150
+      ],
+      "plan_changes": {}
+    },
+    "score": 22.0,
+    "reasons": [
+      "PSU 50% of LTI"
+    ],
+    "accession": "0001193125-26-175837"
+  },
+  "NSPR": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "signed by",
+          "title": "chief executive officer"
+        },
+        {
+          "name": "and by",
+          "title": "chief financial officer"
+        },
+        {
+          "name": "of its",
+          "title": "chief financial officer"
+        },
+        {
+          "name": "Marvin Slosman",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "Michael Lawless",
+          "title": "Chief Financial Officer"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {},
+      "performance_metrics": [],
+      "performance_periods_yrs": [],
+      "comp_consultant": null,
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 0.0,
+    "reasons": [],
+    "accession": "0001493152-26-015127"
+  },
+  "EP": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "LETTER FROM",
+          "title": "CHAIRMAN"
+        },
+        {
+          "name": "Phil E. Mulacek",
+          "title": "Chairman"
+        },
+        {
+          "name": "Michael R. Morrisett",
+          "title": "President"
+        },
+        {
+          "name": "experience. As",
+          "title": "President"
+        },
+        {
+          "name": "Senior Vice",
+          "title": "Senior Vice President"
+        },
+        {
+          "name": "Executive Vice",
+          "title": "Executive Vice President"
+        },
+        {
+          "name": "Vice President",
+          "title": "President"
+        },
+        {
+          "name": "Founder and",
+          "title": "Founder"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {},
+      "performance_metrics": [
+        "TSR",
+        "EPS",
+        "ROIC",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": null,
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 9.0,
+    "reasons": [
+      "3 per-share metrics"
+    ],
+    "accession": "0001072613-26-000353"
+  },
+  "CRVO": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "William Elder",
+          "title": "Chief Financial Officer"
+        },
+        {
+          "name": "revocation to",
+          "title": "Chief Financial Officer"
+        },
+        {
+          "name": "votes and",
+          "title": "Chief Financial Officer"
+        },
+        {
+          "name": "Annual Meeting",
+          "title": "Chief Financial Officer"
+        },
+        {
+          "name": "served as",
+          "title": "President"
+        },
+        {
+          "name": "President and",
+          "title": "President"
+        },
+        {
+          "name": "Officer and",
+          "title": "Executive Vice President"
+        },
+        {
+          "name": "president and",
+          "title": "president"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {},
+      "performance_metrics": [
+        "TSR"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": null,
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 4.0,
+    "reasons": [],
+    "accession": "0001437749-26-014032"
+  },
+  "OPEN": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "STOCKHOLDERS FROM",
+          "title": "CHIEF EXECUTIVE OFFICER"
+        },
+        {
+          "name": "Kaz Nejatian",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "Executive Officer",
+          "title": "Chief Financial Officer"
+        },
+        {
+          "name": "CEO and",
+          "title": "CEO"
+        },
+        {
+          "name": "responsible for",
+          "title": "coo"
+        },
+        {
+          "name": "launches. Additionally",
+          "title": "CEO"
+        },
+        {
+          "name": "determined by",
+          "title": "chair"
+        },
+        {
+          "name": "not present",
+          "title": "chair"
+        }
+      ],
+      "say_on_pay_pct": 97.0,
+      "lti_mix": {
+        "psu_pct": 26,
+        "rsu_pct": 20
+      },
+      "performance_metrics": [
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Compensia",
+      "grant_dates": [],
+      "neo_award_values": [
+        {
+          "name": "Grant Date",
+          "unvested_usd": 428470922.0
+        },
+        {
+          "name": "Value at",
+          "unvested_usd": 12044925.0
+        },
+        {
+          "name": "Date Fair",
+          "unvested_usd": 64558478.0
+        },
+        {
+          "name": "Fair Value",
+          "unvested_usd": 11832656.0
+        }
+      ],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 31.0,
+    "reasons": [
+      "NEO unvested $50M+ ($428M)",
+      "SOP 97% (clean)"
+    ],
+    "accession": "0001140361-26-017460"
+  },
+  "SOFI": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Anthony Noto",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "Annual Meeting",
+          "title": "chair"
+        },
+        {
+          "name": "served as",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "capacity of",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "was previously",
+          "title": "Chairman"
+        },
+        {
+          "name": "as interim",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "co-founder and",
+          "title": "founder"
+        },
+        {
+          "name": "Corporate Vice",
+          "title": "President"
+        }
+      ],
+      "say_on_pay_pct": 76.2,
+      "lti_mix": {
+        "psu_pct": 25,
+        "rsu_pct": 50
+      },
+      "performance_metrics": [
+        "TSR",
+        "Revenue",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Compensia",
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [
+        100,
+        80,
+        100
+      ],
+      "plan_changes": {
+        "shareholder_feedback_response": true
+      }
+    },
+    "score": 14.0,
+    "reasons": [
+      "2 aggregate metrics",
+      "Responded to shareholder feedback"
+    ],
+    "accession": "0001818874-26-000032"
+  },
+  "SNDX": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Michael A. Metzger",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "Luke J. Albrecht",
+          "title": "General Counsel"
+        },
+        {
+          "name": "no quorum",
+          "title": "chair"
+        },
+        {
+          "name": "serving as",
+          "title": "Chairman"
+        },
+        {
+          "name": "was previously",
+          "title": "Chairman"
+        },
+        {
+          "name": "Pierre was",
+          "title": "president"
+        },
+        {
+          "name": "served as",
+          "title": "CFO"
+        },
+        {
+          "name": "Pharma and",
+          "title": "CAO"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {},
+      "performance_metrics": [
+        "TSR",
+        "EPS",
+        "Revenue"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": null,
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 5.0,
+    "reasons": [],
+    "accession": "0001193125-26-197859"
+  },
+  "OPTU": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Michael E. Olsen",
+          "title": "General Counsel"
+        },
+        {
+          "name": "Mark Mullen",
+          "title": "Chair"
+        },
+        {
+          "name": "programs for",
+          "title": "chief executive officer"
+        },
+        {
+          "name": "Frederic W.",
+          "title": "Coo"
+        },
+        {
+          "name": "and FW",
+          "title": "Coo"
+        },
+        {
+          "name": "LEADERSHIP STRUCTURE",
+          "title": "Chairman"
+        },
+        {
+          "name": "positions of",
+          "title": "Chairman"
+        },
+        {
+          "name": "offices of",
+          "title": "Chairman"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {
+        "rsu_pct": 50,
+        "option_pct": 50
+      },
+      "performance_metrics": [
+        "TSR",
+        "Revenue",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Willis Towers Watson",
+      "grant_dates": [
+        "September 16, 2024",
+        "October 1, 2025",
+        "June 29, 2025"
+      ],
+      "neo_award_values": [],
+      "payout_history_pcts": [
+        100
+      ],
+      "plan_changes": {}
+    },
+    "score": 4.0,
+    "reasons": [
+      "2 aggregate metrics"
+    ],
+    "accession": "0001702780-26-000023"
+  },
+  "BALY": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "by its",
+          "title": "chairman"
+        },
+        {
+          "name": "its vice",
+          "title": "president"
+        },
+        {
+          "name": "senior or",
+          "title": "executive vice president"
+        },
+        {
+          "name": "financial matters",
+          "title": "chief financial officer"
+        },
+        {
+          "name": "Lender shall",
+          "title": "coo"
+        },
+        {
+          "name": "Exhibit G from",
+          "title": "chief financial officer"
+        },
+        {
+          "name": "agrees to",
+          "title": "coo"
+        },
+        {
+          "name": "participant to",
+          "title": "coo"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {},
+      "performance_metrics": [
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": null,
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 0.0,
+    "reasons": [],
+    "accession": "0001213900-26-017495"
+  },
+  "PMCB": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "former Executive",
+          "title": "Chairman"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {
+        "rsu_pct": 33
+      },
+      "performance_metrics": [
+        "EPS"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": null,
+      "grant_dates": [
+        "February 23, 2023"
+      ],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 4.0,
+    "reasons": [],
+    "accession": "0001683168-25-008512"
+  },
+  "DVA": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Director and",
+          "title": "cto"
+        },
+        {
+          "name": "presented below.",
+          "title": "President"
+        },
+        {
+          "name": "served as",
+          "title": "President"
+        },
+        {
+          "name": "including as",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "and as",
+          "title": "Executive Vice President"
+        },
+        {
+          "name": "Chairman and",
+          "title": "Chairman"
+        },
+        {
+          "name": "as Independent",
+          "title": "Chair"
+        },
+        {
+          "name": "recently as",
+          "title": "President"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {
+        "psu_pct": 75,
+        "rsu_pct": 50
+      },
+      "performance_metrics": [
+        "TSR",
+        "EPS"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Compensia",
+      "grant_dates": [
+        "March 15, 2025"
+      ],
+      "neo_award_values": [
+        {
+          "name": "Fair Value",
+          "unvested_usd": 14577341.0
+        },
+        {
+          "name": "Change in",
+          "unvested_usd": 643329.0
+        },
+        {
+          "name": "Date Fair",
+          "unvested_usd": 3050454.0
+        }
+      ],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 32.0,
+    "reasons": [
+      "PSU 75% of LTI (heavy)"
+    ],
+    "accession": "0000927066-26-000053"
+  },
+  "ACET": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Chen Schor",
+          "title": "President"
+        },
+        {
+          "name": "served as",
+          "title": "Executive Vice President"
+        },
+        {
+          "name": "Officer and",
+          "title": "Executive Vice President"
+        },
+        {
+          "name": "Senior Vice",
+          "title": "Senior Vice President"
+        },
+        {
+          "name": "Counsel and",
+          "title": "Senior Vice President"
+        },
+        {
+          "name": "including Vice",
+          "title": "President"
+        },
+        {
+          "name": "and Vice",
+          "title": "President"
+        },
+        {
+          "name": "of director",
+          "title": "cto"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {},
+      "performance_metrics": [
+        "TSR"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": null,
+      "grant_dates": [
+        "January 31, 2025"
+      ],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 4.0,
+    "reasons": [],
+    "accession": "0001720580-26-000027"
+  },
+  "SNDA": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Michael Simanovsky",
+          "title": "Chairman"
+        },
+        {
+          "name": "Brandon M. Ribar",
+          "title": "President"
+        },
+        {
+          "name": "Tabitha T. Bailey",
+          "title": "Senior Vice President"
+        },
+        {
+          "name": "service as",
+          "title": "President"
+        },
+        {
+          "name": "Executive Officer",
+          "title": "President"
+        },
+        {
+          "name": "has been",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "as its",
+          "title": "Executive Vice President"
+        },
+        {
+          "name": "served as",
+          "title": "Senior Vice President"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {
+        "psu_pct": 50,
+        "rsu_pct": 50
+      },
+      "performance_metrics": [
+        "TSR",
+        "EPS",
+        "Revenue",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Meridian Compensation",
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 15.0,
+    "reasons": [
+      "PSU 50% of LTI",
+      "2 aggregate metrics"
+    ],
+    "accession": "0001193125-26-182027"
+  },
+  "PAVM": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Officer and",
+          "title": "Chairman"
+        },
+        {
+          "name": "President and",
+          "title": "President"
+        },
+        {
+          "name": "Dennis M. McGrath",
+          "title": "President"
+        },
+        {
+          "name": "Michael A. Gordon",
+          "title": "General Counsel"
+        },
+        {
+          "name": "Chairman and",
+          "title": "Chairman"
+        },
+        {
+          "name": "has been",
+          "title": "Chairman"
+        },
+        {
+          "name": "as Executive",
+          "title": "Chairman"
+        },
+        {
+          "name": "served as",
+          "title": "Chairman"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {
+        "option_pct": 10
+      },
+      "performance_metrics": [
+        "TSR"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": null,
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 4.0,
+    "reasons": [],
+    "accession": "0001493152-26-020705"
+  },
+  "SKLZ": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Andrew Paradise",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "director nominees.",
+          "title": "cto"
+        },
+        {
+          "name": "Officer and",
+          "title": "Chairman"
+        },
+        {
+          "name": "ANDREW PARADISE",
+          "title": "Chief Executive Officer"
+        },
+        {
+          "name": "member and",
+          "title": "president"
+        },
+        {
+          "name": "served as",
+          "title": "Chief Financial Officer"
+        },
+        {
+          "name": "as Interim",
+          "title": "Chief Financial Officer"
+        },
+        {
+          "name": "as its",
+          "title": "Chief Financial Officer"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {
+        "psu_pct": 50,
+        "rsu_pct": 50
+      },
+      "performance_metrics": [
+        "TSR",
+        "EPS",
+        "Revenue",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Pearl Meyer",
+      "grant_dates": [],
+      "neo_award_values": [
+        {
+          "name": "Add fair",
+          "unvested_usd": 929993.0
+        },
+        {
+          "name": "Add fair",
+          "unvested_usd": 27555.0
+        }
+      ],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 15.0,
+    "reasons": [
+      "PSU 50% of LTI",
+      "2 aggregate metrics"
+    ],
+    "accession": "0001140361-26-018357"
+  },
+  "ENZND": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Viskase to",
+          "title": "coo"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {},
+      "performance_metrics": [
+        "EPS",
+        "EBITDA"
+      ],
+      "performance_periods_yrs": [],
+      "comp_consultant": "Mercer",
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 3.0,
+    "reasons": [],
+    "accession": "0001104659-26-053523"
+  },
+  "KUST": {
+    "forensics": {
+      "neos": [
+        {
+          "name": "Chairman And",
+          "title": "Chairman"
+        }
+      ],
+      "say_on_pay_pct": null,
+      "lti_mix": {},
+      "performance_metrics": [],
+      "performance_periods_yrs": [],
+      "comp_consultant": null,
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 0.0,
+    "reasons": [],
+    "accession": "0001493152-25-028677"
+  },
+  "KKR": {
+    "forensics": {
+      "neos": [],
+      "say_on_pay_pct": null,
+      "lti_mix": {},
+      "performance_metrics": [],
+      "performance_periods_yrs": [],
+      "comp_consultant": null,
+      "grant_dates": [],
+      "neo_award_values": [],
+      "payout_history_pcts": [],
+      "plan_changes": {}
+    },
+    "score": 0.0,
+    "reasons": [],
+    "accession": "0001404912-26-000011"
+  }
+}

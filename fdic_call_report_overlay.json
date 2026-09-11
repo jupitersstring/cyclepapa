@@ -1,0 +1,17 @@
+{
+  "FFIC": {
+    "fdic_cert": 18734,
+    "lead_bank_name": "Newtek Bank, National Association",
+    "lead_bank_state": "Florida",
+    "lead_bank_assets_thousands": 2162070,
+    "report_date": "20260331",
+    "tier1_rwa_pct": 11.08,
+    "eq_to_assets": 0.0843931972600332,
+    "nonperforming_loans_pct": 4.561693192172316,
+    "roe": 46.2,
+    "roa": 4.152200415970278,
+    "score": 16.0,
+    "reasons": "T1 11.1%; ROE 46.2%",
+    "going_dark_date": "2026-06-11"
+  }
+}

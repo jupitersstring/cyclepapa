@@ -1,0 +1,13 @@
+ticker,n_screens,n_archetypes_won,consensus_score,screens,archetypes,best_rank_grand_unified,best_rank_composite,best_rank_info_buys,best_rank_bastian
+HFFG,6,4,6.668,"grand_unified,informational_buys,psu_asymmetric_full,psu_gov_asymmetry,special_situations,unified_composite","ASYMME:A1,PSUARC:A1,PSUARC:C3,PSUARC:E1",6,12,27,
+CSGP,4,5,5.858,"grand_unified,psu_asymmetric_full,psu_gov_asymmetry,unified_composite","PSUARC:A2,PSUARC:C1,PSUARC:C6,PSUARC:D1,PSUARC:F1",18,5,,
+LE,4,4,4.787,"bastian_forcing,grand_unified,psu_gov_asymmetry,unified_composite","PSUARC:A15,PSUARC:B2,PSUARC:B5,PSUARC:E6",2,132,,16
+NUS,4,2,4.242,"bastian_forcing,grand_unified,psu_asymmetric_full,psu_valcreate","ASYMME:A8,PSUARC:A10",8,,,9
+ADT,4,2,2.737,"grand_unified,informational_buys,psu_gov_asymmetry,unified_composite","ASYMME:A10,PSUARC:B1",82,107,90,
+GO,4,1,3.753,"informational_buys,psu_asymmetric_full,psu_gov_asymmetry,unified_composite",PSUARC:E5,,34,18,
+KMPR,3,3,4.027,"grand_unified,psu_gov_asymmetry,unified_composite","PSUARC:B6,PSUARC:C2,PSUARC:E2",68,4,,
+MAT,3,2,3.36,"grand_unified,psu_gov_asymmetry,psu_valcreate","ASYMME:A2,ASYMME:A3",13,,,
+LMT,3,2,2.287,"grand_unified,psu_gov_asymmetry,psu_valcreate","PSUARC:A3,PSUARC:A6",31,,,
+RNR,3,1,2.727,"psu_gov_asymmetry,psu_valcreate,unified_composite",PSUARC:B3,,59,,
+GPRO,3,1,2.562,"psu_asymmetric_full,psu_gov_asymmetry,unified_composite",PSUARC:A8,,41,,
+CDE,3,1,2.033,"psu_asymmetric_full,psu_gov_asymmetry,unified_composite",ASYMME:B4,,61,,

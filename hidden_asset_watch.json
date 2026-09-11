@@ -1,0 +1,25 @@
+{
+  "_meta": {
+    "purpose": "Curated watch for hidden/undervalued assets inside distressed or levered capital structures, where a CREDIT AGREEMENT mandates disposition proceeds to debt paydown -- an INCENTIVISED, revealed path to value realisation. On a small equity base, a mandatory-prepayment asset sale is stub-accretive: $X of proceeds retires $X of debt, lifting equity ~$X. Monitor the catalyst triggers; the credit-agreement structure is the mechanism.",
+    "fields": "hidden_asset, thesis, credit_agreement_feature, catalyst_triggers (phrases to watch in filings/news), counter_risks",
+    "refresh": "hand-curated from filings + credit agreements; credit_agreement_mine.py auto-detects the mandatory-prepayment structure across the universe."
+  },
+  "SSP": {
+    "name": "E.W. Scripps",
+    "hidden_asset": "ATSC 3.0 broadcast spectrum (~0.8-1.3bn MHz-pops via ION); flexible-use / datacasting (EdgeBeam 25%); potential lease/sale to carriers or SpaceX/Starlink",
+    "thesis": "Nationwide low-band wireless pipes inside a distressed media capital structure. Market does not need $3bn realisation for the equity to change radically -- a $300-500m selective monetisation is already material on the small equity base.",
+    "credit_agreement_feature": "April 2026 credit agreement anticipates sale of spectrum usage rights and broadcast licences; after a small threshold, substantially 100% of net cash disposal proceeds are subject to MANDATORY term-loan repayment (70/30 B-2/B-3), up to $50m/yr permitted reinvestment. Deleveraging mechanically transfers value from lenders to the small common-equity stub.",
+    "catalyst_triggers": [
+      "incentive auction", "spectrum usage rights", "EdgeBeam", "datacasting",
+      "channel sharing", "channel-sharing agreement", "ATSC 3.0",
+      "sale of spectrum", "spectrum lease", "Starlink", "strategic review",
+      "INYO", "reacquisition of stations", "flexible use", "FCC reallocation"
+    ],
+    "counter_risks": [
+      "FCC owns the rulebook -- no unilateral conversion to 5G/satellite",
+      "opportunity cost: profitable EdgeBeam lease raises the cost of selling",
+      "not every station equivalent (UHF/VHF, population, channel-share status)",
+      "creditors paid first -- judge by equity value after lost station EBITDA"
+    ]
+  }
+}

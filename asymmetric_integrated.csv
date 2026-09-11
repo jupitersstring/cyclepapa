@@ -1,0 +1,53 @@
+rank,ticker,name,mcap_musd,price,drawdown_pct,composite,prior_asymmetry,cancel_10b5_1_score,cluster,ceo,cfo,tot_insider_musd,10b5_term_sell,10b5_adopt_sell,step_change_score,forensic_psu_score,10b5_reasons
+1,CRM,,148738.0,181.82000732421875,,65.6,40.6,29.0,2,False,False,1.0,1,3,57.2,21.04,"BULLISH terminate sell: Marc Benioff (Chair and Chief Executive Offi) 351,607sh [+38] | weak BEARISH adopt sell (small): Sabastian Niles (President) 7,000sh [-3] | weak BEARISH adopt sell (small): Sundeep Reddy (Executive Vice President) 7,"
+2,TONX,TON Strategy Company,213.0,3.76,7.2,56.0,56.0,0.0,4,True,True,0.07,0,0,,,
+3,AGBK,AGI Inc,1081.0,6.76,6.2,50.0,50.0,0.0,4,True,False,0.21,0,0,,,
+4,HDSN,"Hudson Technologies, Inc.",222.0,5.27,10.7,49.0,49.0,0.0,7,True,False,0.15,0,0,,,
+5,SRAD,Sportradar Group AG,3984.0,13.46,8.8,47.0,47.0,0.0,7,True,False,11.35,0,0,,,
+6,PATK,"Patrick Industries, Inc.",2982.0,90.65,10.4,47.0,47.0,0.0,5,True,False,3.54,0,0,,,
+7,GO,Grocery Outlet Holding Corp.,818.0,8.27,19.0,47.0,47.0,0.0,6,True,False,7.92,0,0,,,
+8,POOL,Pool Corporation,6585.0,180.69,4.6,46.0,46.0,0.0,4,False,False,7.67,0,0,,,
+9,ODTX,"Odyssey Therapeutics, Inc.",787.0,16.69,27.1,45.0,45.0,0.0,7,False,True,75.32,0,0,,,
+10,OI,"O-I Glass, Inc.",1222.0,7.97,0.6,44.0,44.0,0.0,4,False,True,0.18,0,0,,,
+11,GSHD,"Goosehead Insurance, Inc.",1224.0,34.37,0.9,44.0,44.0,0.0,3,True,True,0.56,0,0,,,
+12,XRN,Chiron Real Estate Inc.,501.0,34.87,53.5,43.0,43.0,0.0,9,True,True,0.62,0,0,,,
+13,OLED,Universal Display Corporation,4247.0,90.84,9.0,42.0,42.0,0.0,3,True,False,1.47,0,0,,,
+14,EVTC,"Evertec, Inc.",1391.0,22.57,4.6,42.0,42.0,0.0,4,False,False,1.82,0,0,,,
+15,HFFG,,102.0,1.899999976158142,,41.0,41.0,0.0,4,True,True,0.04,0,0,,35.755,
+16,MRP,"Millrose Properties, Inc.",4573.0,27.54,12.8,40.0,40.0,0.0,3,False,False,6.53,0,0,,,
+17,ONON,On Holding AG,13055.0,37.52,22.8,40.0,40.0,0.0,3,True,False,6.59,0,0,,,
+18,BETR,Better Home & Finance Holding C,498.0,26.41,18.7,39.0,47.0,-8.0,6,True,True,9.21,0,1,,,"BEARISH adopt sell: Chad Smith (President and Chief Operating ) 18,000sh [-8]"
+19,OPCH,"Option Care Health, Inc.",3224.0,20.53,13.4,39.0,40.0,-1.0,4,True,True,1.88,1,1,,,"BULLISH terminate sell: Luke Whitworth (Chief Operating Officer) 60,000sh [+22] | BEARISH adopt sell: John C. Rademacher (Chief Executive Officer) 200,000sh [-23]"
+20,MOBI,"Mobia Medical, Inc.",454.0,13.73,77.3,39.0,39.0,0.0,6,False,False,19.02,0,0,,,
+21,NSP,"Insperity, Inc.",1282.0,33.6,32.9,38.0,38.0,0.0,4,True,True,7.81,0,0,,,
+22,HUBS,"HubSpot, Inc.",11387.0,222.45,11.2,36.0,36.0,0.0,3,True,False,2.59,0,0,,,
+23,FCN,"FTI Consulting, Inc.",4662.0,154.66,28.5,36.0,36.0,0.0,3,True,True,2.08,0,0,,,
+24,PSN,Parsons Corporation,6413.0,59.95,28.4,36.0,36.0,0.0,4,True,False,2.13,0,0,,,
+25,GRNT,"Granite Ridge Resources, Inc.",658.0,4.99,31.9,36.0,36.0,0.0,5,True,True,0.41,0,0,,,
+26,FLUT,Flutter Entertainment plc,17461.0,100.7,4.1,36.0,56.0,-20.0,7,True,False,1.05,0,1,,,BEARISH adopt sell: Peter Jackson (Chief Executive Officer) [-20]
+27,IBP,"Installed Building Products, In",5435.0,201.74,21.0,32.0,32.0,0.0,4,False,True,0.84,0,0,,,
+28,KKR,KKR & Co. Inc.,84414.0,90.53,11.0,32.0,32.0,0.0,4,True,False,45.68,0,0,,,
+29,CCI,,39530.0,90.56999969482422,,31.0,31.0,0.0,1,False,False,0.07,0,0,53.3,20.6,
+30,TPL,,27190.0,394.20001220703125,,29.8,29.8,0.0,2,False,False,0.49,0,0,59.6,,
+31,ZTS,Zoetis Inc.,32528.0,77.59,5.3,29.0,32.0,-3.0,3,False,False,0.89,0,1,,,"weak BEARISH adopt sell (small): Kristin Peck (Chief Executive Officer) 1,359sh [-3]"
+32,ADT,ADT Inc.,5065.0,6.66,15.3,29.0,29.0,0.0,3,False,False,0.35,0,0,,,
+33,GRND,,2551.0,13.779999732971191,,28.0,28.0,0.0,0,False,False,0.0,0,0,78.4,,
+34,KDP,,39579.0,29.09000015258789,,27.0,27.0,0.0,0,False,False,0.0,0,0,58.3,12.184999999999999,
+35,INFU,"InfuSystems Holdings, Inc.",182.0,9.03,64.5,26.0,26.0,0.0,3,True,True,0.13,0,0,,,
+36,PLSE,"Pulse Biosciences, Inc",1730.0,24.99,80.6,26.0,26.0,0.0,2,True,False,26.59,0,0,,,
+37,TKO,"TKO Group Holdings, Inc.",37952.0,198.57,62.0,26.0,30.0,-4.0,3,True,True,4.5,0,2,,,"BEARISH adopt sell: an insider (director) 67,127sh [-12] | BULLISH adopt buy: an insider (?) 3,161,430sh [+8] | BULLISH adopt buy: an insider (?) [+8] | BEARISH adopt sell: Andrew Schleimer (Chief Financial Officer) 10,595sh [-8]"
+38,NXG,733085,339.0,59.69,92.7,26.0,26.0,0.0,3,True,True,0.04,0,0,,,
+39,VSNT,"Versant Media Group, Inc.",5690.0,40.21,41.0,26.0,26.0,0.0,4,False,False,6.19,0,0,,,
+40,AVBC,"Avidia Bancorp, Inc.",349.0,18.78,64.3,26.0,26.0,0.0,3,True,False,0.21,0,0,,,
+41,NCLH,,8569.0,18.809999465942383,,25.0,25.0,0.0,3,False,False,0.97,0,0,,20.19,
+42,EPAM,"EPAM Systems, Inc.",5082.0,97.28,6.0,23.0,48.0,-29.0,6,True,True,0.04,0,3,,,"BEARISH adopt sell: Arkadiy Dobkin (Executive Chair) 150,000sh [-23] | weak BEARISH adopt sell (small): Jason Peterson (Senior Vice President) 4,200sh [-3] | weak BEARISH adopt sell (small): Balazs Fejes (President) 4,200sh [-3]"
+43,KMPR,,,,,20.0,0.0,20.0,,,,,0,0,,,neutral terminate (type unknown): an insider (Director) [+5] | neutral terminate (type unknown): an insider (Director) [+5] | neutral terminate (type unknown): an insider (Director) [+5] | neutral terminate (type unknown): an insider (Direc
+44,NKE,"Nike, Inc.",64878.0,43.81,6.3,15.0,40.0,-27.0,4,True,False,3.73,0,2,,,"BEARISH adopt sell: Venkatesh Alagirisamy (Executive Vice President) 53,331sh [-12] | BEARISH adopt sell: Matthew Friend (Executive Vice President and) 153,128sh [-15]"
+45,OCUL,,,,,10.0,0.0,10.0,,,,,0,0,,,neutral terminate (type unknown): to time (director) [+5] | neutral terminate (type unknown): to time (director) [+5]
+46,SOFI,,21054.0,16.43000030517578,,3.0,28.0,-33.0,1,True,False,0.5,0,2,53.3,,"BEARISH adopt sell: Kelli Keough (Executive Vice President) 244,374sh [-15] | BEARISH adopt sell: Jeremy Rishel (Chief Technology Officer) 815,253sh [-18]"
+47,GPGI,,,,,-12.0,0.0,-12.0,,,,,0,1,,,"BEARISH adopt sell: an insider (?) 55,521sh [-12]"
+48,ROST,,,,,-12.0,0.0,-12.0,,,,,0,1,,,"BEARISH adopt sell: an insider (director) 49,000sh [-12]"
+49,EYE,,,,,-15.0,0.0,-15.0,,,,,0,1,,,"BEARISH adopt sell: an insider (director) 150,000sh [-15]"
+50,PCG,,,,,-15.0,0.0,-15.0,,,,,0,1,,,"BEARISH adopt sell: an insider (Executive Vice President) 374,428sh [-15]"
+51,WST,,,,,-20.0,0.0,-20.0,,,,,0,1,,,"BEARISH adopt sell: Eric M. Green (President and Chief Executive ) 83,616sh [-20]"
+52,LAZ,,,,,-25.0,0.0,-34.0,,,,,0,2,,,"BEARISH adopt sell: an insider (Chief Financial Officer) 206,083sh [-19] | BEARISH adopt sell: an insider (Director) 226,003sh [-15]"

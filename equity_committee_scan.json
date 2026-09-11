@@ -1,0 +1,32 @@
+{
+  "WW": {
+    "ticker": "WW",
+    "cik": "0000105319",
+    "score": 22.0,
+    "classes": [
+      "official_equity_committee"
+    ],
+    "latest_accession": "0001731122-25-000699",
+    "date": "2025-05-09"
+  },
+  "MEHCQ": {
+    "ticker": "MEHCQ",
+    "cik": "0001804591",
+    "score": 22.0,
+    "classes": [
+      "official_equity_committee"
+    ],
+    "latest_accession": "0001193125-25-308060",
+    "date": "2025-12-04"
+  },
+  "NRDE": {
+    "ticker": "NRDE",
+    "cik": "0001759546",
+    "score": 22.0,
+    "classes": [
+      "official_equity_committee"
+    ],
+    "latest_accession": "0001493152-26-019501",
+    "date": "2026-04-29"
+  }
+}

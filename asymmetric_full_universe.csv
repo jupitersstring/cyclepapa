@@ -1,0 +1,462 @@
+rank,ticker,name,mcap_musd,price,drawdown_pct,score,cluster,ceo_cfo,tot_insider_musd,step_change,cancel_10b5_1,10b5_term_sell,10b5_adopt_sell,10b5_reasons,reasons
+1,CRM,,,,,63.6,2,False,1.0,57.2,29.0,1,3,"BULLISH terminate sell: Marc Benioff (Chair and Chief Executive Offi) 351,607sh [+38] | weak BEARISH adopt sell (small): Sabastian Niles (President) 7,000sh [-3] | weak BEARISH adopt sell (small): Sundeep Reddy (Executive Vice President) 7,",step-change 57 | forensic-PSU 21 | 10b5-1 leg +25
+2,TONX,TON Strategy Company,212.55512,3.76,7.173447537473233,56.0,4,True,0.07,,0.0,0,0,,4-buyer cluster 24d ago | CEO+CFO bought | 7% above 52w low | P/B 0.5
+3,NSPR,InspireMD Inc.,44.970084,0.9601,4.835748792270529,56.0,4,False,0.44,,0.0,0,0,,4-buyer cluster 30d ago | CEO bought | 5% above 52w low | P/B 1.0 | 13D filed
+4,PCSA,"Processa Pharmaceuticals, Inc.",7.700484,2.8,5.821438567030506,55.0,5,True,0.02,,0.0,0,0,,5-buyer cluster 6d ago | CEO+CFO bought | 6% above 52w low
+5,AGBK,AGI Inc,1081.127296,6.76,6.196213425129078,50.0,4,False,0.21,,0.0,0,0,,4-buyer cluster 27d ago | CEO bought | 6% above 52w low | P/B 1.2
+6,HDSN,"Hudson Technologies, Inc.",221.702512,5.27,10.714285714285712,49.0,7,False,0.15,,0.0,0,0,,7-buyer cluster 23d ago | CEO bought | 11% above 52w low | P/B 0.9
+7,SRAD,Sportradar Group AG,3983.509248,13.46,8.754863813229576,47.0,7,False,11.35,,0.0,0,0,,7-buyer cluster 34d ago | CEO bought | $11.3M insider buys | 9% above 52w low
+8,GO,Grocery Outlet Holding Corp.,818.09056,8.27,19.011268629589235,47.0,6,False,7.92,,0.0,0,0,,6-buyer cluster 90d ago | CEO bought | $7.9M insider buys | 19% above 52w low | P/B 1.0
+9,POOL,Pool Corporation,6584.886272,180.69,4.648328690807794,46.0,4,False,7.67,,0.0,0,0,,4-buyer cluster 30d ago | $7.7M insider buys | 5% above 52w low
+10,ODTX,"Odyssey Therapeutics, Inc.",787.336704,16.69,27.070707070707094,45.0,7,False,75.32,,0.0,0,0,,7-buyer cluster 27d ago | $75.3M insider buys | 13D filed
+11,GSHD,"Goosehead Insurance, Inc.",1223.780096,34.37,0.8698940998487112,44.0,3,True,0.56,,0.0,0,0,,3-buyer cluster 23d ago | CEO+CFO bought | 1% above 52w low
+12,OI,"O-I Glass, Inc.",1221.797504,7.97,0.611450806003332,44.0,4,False,0.18,,0.0,0,0,,4-buyer cluster 26d ago | 1% above 52w low | P/B 0.9
+13,ACON,"Aclarion, Inc.",8.593253,3.49,11.86790505675955,44.0,4,False,0.05,,0.0,0,0,,4-buyer cluster 30d ago | CEO bought | 12% above 52w low | P/B 0.4
+14,XRN,Chiron Real Estate Inc.,501.455488,34.87,53.49264705882351,43.0,9,True,0.62,,0.0,0,0,,9-buyer cluster 27d ago | CEO+CFO bought | P/B 1.2
+15,EVTC,"Evertec, Inc.",1390.7712,22.57,4.629629629629629,42.0,4,False,1.82,,0.0,0,0,,4-buyer cluster 27d ago | 5% above 52w low
+16,OLED,Universal Display Corporation,4246.850816,90.84,9.048636420761596,42.0,3,False,1.47,,0.0,0,0,,3-buyer cluster 27d ago | CEO bought | 9% above 52w low
+17,ONON,On Holding AG,13055.26272,37.52,22.76453055141581,40.0,3,False,6.59,,0.0,0,0,,3-buyer cluster 23d ago | CEO bought | $6.6M insider buys | 23% above 52w low
+18,MRP,"Millrose Properties, Inc.",4572.959744,27.54,12.78350515463916,40.0,3,False,6.53,,0.0,0,0,,3-buyer cluster 25d ago | $6.5M insider buys | 13% above 52w low | P/B 0.8
+19,BETR,Better Home & Finance Holding C,498.352064,26.41,18.689903846153847,39.0,6,True,9.21,,-8.0,0,1,"BEARISH adopt sell: Chad Smith (President and Chief Operating ) 18,000sh [-8]",6-buyer cluster 62d ago | CEO+CFO bought | $9.2M insider buys | 19% above 52w low | 10b5-1 leg -8
+20,MOBI,"Mobia Medical, Inc.",454.262432,13.73,77.29257641921399,39.0,6,False,19.02,,0.0,0,0,,6-buyer cluster 27d ago | $19.0M insider buys | 13D filed
+21,HFFG,,,,,39.0,4,True,0.04,,0.0,0,0,,4-buyer cluster 81d ago | CEO+CFO bought | forensic-PSU 36
+22,OPCH,"Option Care Health, Inc.",3223.77472,20.53,13.41138903672166,39.0,4,True,1.88,,-1.0,1,1,"BULLISH terminate sell: Luke Whitworth (Chief Operating Officer) 60,000sh [+22] | BEARISH adopt sell: John C. Rademacher (Chief Executive Officer) 200,000sh [-23]",4-buyer cluster 34d ago | CEO+CFO bought | 13% above 52w low | 10b5-1 leg -1
+23,NSP,"Insperity, Inc.",1282.48448,33.6,32.92442497261775,38.0,4,True,7.81,,0.0,0,0,,4-buyer cluster 88d ago | CEO+CFO bought | $7.8M insider buys
+24,TSM,Taiwan Semiconductor Manufactur,2264881.430528,436.69,94.5645456173785,37.0,28,True,0.12,,0.0,0,0,,28-buyer cluster 27d ago | CEO+CFO bought
+25,PATK,"Patrick Industries, Inc.",2981.770752,90.65,10.365664704059515,37.0,5,False,3.54,,0.0,0,0,,5-buyer cluster 32d ago | CEO bought | 10% above 52w low
+26,PSN,Parsons Corporation,6413.362176,59.95,28.398352314029573,36.0,4,False,2.13,,0.0,0,0,,4-buyer cluster 27d ago | CEO bought
+27,HUBS,"HubSpot, Inc.",11387.372544,222.45,11.239291833238147,36.0,3,False,2.59,,0.0,0,0,,3-buyer cluster 26d ago | CEO bought | 11% above 52w low
+28,FCN,"FTI Consulting, Inc.",4662.077952,154.66,28.518365662401962,36.0,3,True,2.08,,0.0,0,0,,3-buyer cluster 24d ago | CEO+CFO bought
+29,NONE,,,,,33.0,8,False,54.37,,0.0,0,0,,8-buyer cluster 30d ago | $54.4M insider buys
+30,FLUT,Flutter Entertainment plc,17461.428224,100.7,4.132064006481672,33.0,7,False,1.05,,-20.0,0,1,BEARISH adopt sell: Peter Jackson (Chief Executive Officer) [-20],7-buyer cluster 26d ago | CEO bought | 4% above 52w low | 10b5-1 leg -20
+31,GRNT,"Granite Ridge Resources, Inc.",658.16096,4.99,31.88976377952758,33.0,5,True,0.41,,0.0,0,0,,5-buyer cluster 88d ago | CEO+CFO bought
+32,IBP,"Installed Building Products, In",5435.018752,201.74,21.01480369019524,32.0,4,False,0.84,,0.0,0,0,,4-buyer cluster 26d ago | 21% above 52w low
+33,SRE,,,,,32.0,0,False,0.0,60.2,10.0,0,0,neutral terminate (type unknown): used herein (director) [+5] | neutral terminate (type unknown): used herein (director) [+5],step-change 60 | 10b5-1 leg +10
+34,BHF,,,,,32.0,0,False,0.0,49.9,20.0,0,0,neutral terminate (type unknown): an insider (Director) [+5] | neutral terminate (type unknown): an insider (Director) [+5] | neutral terminate (type unknown): an insider (Director) [+5] | neutral terminate (type unknown): an insider (Direc,step-change 50 | 10b5-1 leg +20
+35,LCNB,,,,,31.0,1,False,0.01,,32.0,0,0,"BULLISH adopt buy: an insider (?) 310,922sh [+8] | BULLISH adopt buy: an insider (?) 310,922sh [+8] | BULLISH adopt buy: an insider (?) [+8] | BULLISH adopt buy: an insider (?) [+8]",CEO bought | 10b5-1 leg +25
+36,UUU,,,,,31.0,0,False,0.0,,41.0,2,0,BULLISH terminate sell: an insider (director) [+18] | BULLISH terminate sell: an insider (director) [+18] | neutral terminate (type unknown): an insider (director) [+5],13D filed | 10b5-1 leg +25
+37,CURI,,,,,31.0,1,False,0.33,,38.0,1,0,"neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | BULLISH terminate sell: an insider (Chief Financial Officer) 90,052sh [+28]",CEO bought | 10b5-1 leg +25
+38,CCI,,,,,31.0,1,False,0.07,53.3,0.0,0,0,,step-change 53 | forensic-PSU 21
+39,KKR,KKR & Co. Inc.,84413.93152,90.53,11.039325842696627,31.0,4,False,45.68,,0.0,0,0,,4-buyer cluster 109d ago | CEO bought | $45.7M insider buys | 11% above 52w low
+40,BB,,,,,31.0,0,False,0.0,,33.0,1,0,neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | BULLISH terminate sell: an insider (director) [+18] | neutral terminate (type unknown): an insider (director) [+5],13D filed | 10b5-1 leg +25
+41,GENC,,,,,31.0,0,False,0.0,,33.0,1,0,BULLISH terminate sell: an insider (director) [+18] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5],13D filed | 10b5-1 leg +25
+42,TPL,,,,,29.5,2,False,0.49,59.6,0.0,0,0,,step-change 60 | 13D filed
+43,ZTS,Zoetis Inc.,32527.908864,77.59,5.255194674198111,29.0,3,False,0.89,,-3.0,0,1,"weak BEARISH adopt sell (small): Kristin Peck (Chief Executive Officer) 1,359sh [-3]",3-buyer cluster 26d ago | 5% above 52w low | 10b5-1 leg -3
+44,GRND,,,,,28.0,0,False,0.0,78.4,0.0,0,0,,step-change 78 | 13D filed
+45,KDP,,,,,27.0,0,False,0.0,58.3,0.0,0,0,,step-change 58 | PSU 75% LTI
+46,TKO,"TKO Group Holdings, Inc.",37951.946752,198.57,61.995981245813795,26.0,3,True,4.5,,-4.0,0,2,"BEARISH adopt sell: an insider (director) 67,127sh [-12] | BULLISH adopt buy: an insider (?) 3,161,430sh [+8] | BULLISH adopt buy: an insider (?) [+8] | BEARISH adopt sell: Andrew Schleimer (Chief Financial Officer) 10,595sh [-8]",3-buyer cluster 25d ago | CEO+CFO bought | 10b5-1 leg -4
+47,STRT,,,,,26.0,3,True,0.29,,0.0,0,0,,3-buyer cluster 24d ago | CEO+CFO bought
+48,BLMN,,,,,26.0,0,False,0.0,,20.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): Vice President (Chief Legal Officer) [+5] | neutral terminate (type unknown): an,13D filed | 10b5-1 leg +20
+49,INFU,"InfuSystems Holdings, Inc.",182.240784,9.03,64.48763250883393,26.0,3,True,0.13,,0.0,0,0,,3-buyer cluster 26d ago | CEO+CFO bought
+50,DIBS,,,,,26.0,1,False,0.21,,20.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (direc,CEO bought | 10b5-1 leg +20
+51,KWY,,,,,26.0,3,True,0.05,,0.0,0,0,,3-buyer cluster 6d ago | CEO+CFO bought
+52,AVBC,"Avidia Bancorp, Inc.",348.754592,18.78,64.33378196500674,26.0,3,False,0.21,,0.0,0,0,,3-buyer cluster 27d ago | CEO bought | P/B 0.9
+53,PLSE,"Pulse Biosciences, Inc",1729.55072,24.99,80.60959792477301,26.0,2,False,26.59,,0.0,0,0,,CEO bought | $26.6M insider buys | 13D filed
+54,ADT,ADT Inc.,5065.271808,6.66,15.270018621973932,26.0,3,False,0.35,,0.0,0,0,,3-buyer cluster 26d ago | 15% above 52w low
+55,FWONB,,,,,26.0,0,False,0.0,,20.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (direc,13D filed | 10b5-1 leg +20
+56,NXG,733085,339.211264,59.69,92.7169094363521,26.0,3,True,0.04,,0.0,0,0,,3-buyer cluster 30d ago | CEO+CFO bought
+57,VSNT,"Versant Media Group, Inc.",5689.635328,40.21,40.967640590637764,26.0,4,False,6.19,,0.0,0,0,,4-buyer cluster 90d ago | $6.2M insider buys | P/B 0.6
+58,BCO,,,,,25.0,0,False,0.0,,30.0,0,0,neutral terminate (type unknown): Mark Eubanks (President and Chief Executive ) [+10] | neutral terminate (type unknown): Mark Eubanks (President and Chief Executive ) [+10] | neutral terminate (type unknown): Mark Eubanks (President and Ch,10b5-1 leg +25
+59,WEST,,,,,25.0,1,False,0.27,,33.0,1,0,"neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | BULLISH terminate sell: an insider (director) 30,00",10b5-1 leg +25
+60,APT,,,,,25.0,0,False,0.0,,72.0,4,0,BULLISH terminate sell: an insider (director) [+18] | BULLISH terminate sell: an insider (director) [+18] | BULLISH terminate sell: an insider (director) [+18] | BULLISH terminate sell: an insider (director) [+18],10b5-1 leg +25
+61,CMLSQ,,,,,25.0,0,False,0.0,,33.0,1,0,BULLISH terminate sell: an insider (director) [+18] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5],10b5-1 leg +25
+62,MA,,,,,25.0,0,False,0.0,,60.0,3,0,"BULLISH terminate sell: an insider (director) 3,977sh [+18] | BULLISH terminate sell: Sachin Mehra (Chief Financial Officer) 35,079sh [+24] | BULLISH terminate sell: Julius Genachowski (Director) 622sh [+18]",10b5-1 leg +25
+63,NVDA,,,,,25.0,0,False,0.0,,80.0,4,0,"BULLISH terminate sell: an insider (Director) 37,890sh [+18] | BULLISH terminate sell: an insider (Director) 97,075sh [+22] | BULLISH terminate sell: an insider (Director) 387,158sh [+26] | BULLISH terminate sell: Huang President (Chief Exe",10b5-1 leg +25
+64,APP,,,,,25.0,0,False,0.0,,72.0,4,1,"BEARISH adopt sell: Victoria Valenzuela (Chief Legal Officer) 60,000sh [-12] | BULLISH terminate sell: Victoria Valenzuela (Chief Legal Officer) 56,058sh [+22] | BULLISH terminate sell: Victoria Valenzuela (Chief Legal Officer) 40,000sh [+1",10b5-1 leg +25
+65,SCHW,,,,,25.0,0,False,0.0,,36.0,2,0,"BULLISH terminate sell: an insider (?) [+18] | BULLISH terminate sell: an insider (director) 13,216sh [+18]",10b5-1 leg +25
+66,GOOG,,,,,25.0,0,False,0.0,,28.0,2,1,"BULLISH terminate sell: Ruth M. Porat (President and Chief Investment) 154,486sh [+22] | BEARISH adopt sell: an insider (director) [-12] | BULLISH terminate sell: Kent Walker (President) 11,112sh [+18]",10b5-1 leg +25
+67,IRON,,,,,25.0,0,False,0.0,,72.0,4,0,BULLISH terminate sell: an insider (director) [+18] | BULLISH terminate sell: an insider (director) [+18] | BULLISH terminate sell: an insider (director) [+18] | BULLISH terminate sell: an insider (director) [+18],10b5-1 leg +25
+68,STT,,,,,25.0,0,False,0.0,,30.0,1,0,BULLISH terminate sell: of Chairman (Chief Executive Officer) [+30],10b5-1 leg +25
+69,LXFR,,,,,25.0,0,False,0.0,,28.0,1,0,BULLISH terminate sell: an insider (Director) [+18] | neutral terminate (type unknown): an insider (Director) [+5] | neutral terminate (type unknown): an insider (Director) [+5],10b5-1 leg +25
+70,PCTY,,,,,25.0,0,False,0.0,,80.0,4,0,"BULLISH terminate sell: Williams President (Chief Executive Officer) [+30] | BULLISH terminate sell: an insider (director) [+18] | BULLISH terminate sell: an insider (director) 165,000sh [+22] | BULLISH terminate sell: an insider (director)",10b5-1 leg +25
+71,FCFS,,,,,25.0,0,False,0.0,,46.0,2,0,"neutral terminate (type unknown): Rick L. Wessel (Chief Executive Officer) [+10] | BULLISH terminate sell: Brent Stuart (Chief Operating Officer) 35,348sh [+18] | BULLISH terminate sell: Douglas Orr (Executive Vice President and) 44,000sh [",10b5-1 leg +25
+72,ITRI,,,,,25.0,0,False,0.0,,78.0,3,0,"BULLISH terminate sell: John F. Marcolini (Senior Vice President) 11,400sh [+18] | BULLISH terminate sell: Thomas L. Deitrich (President and Chief Executive ) 9,540sh [+30] | BULLISH terminate sell: Thomas L. Deitrich (President and Chief E",10b5-1 leg +25
+73,BE,,,,,25.0,0,False,0.0,,30.0,1,1,"BULLISH terminate sell: KR Sridhar (Chief Executive Officer) 375,000sh [+38] | BEARISH adopt sell: an insider (director) 20,000sh [-8]",10b5-1 leg +25
+74,XEL,,,,,25.0,0,False,0.0,,46.0,2,0,BULLISH terminate sell: an insider (director) [+18] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | BULLISH terminate sell: an insider (director) [+18],10b5-1 leg +25
+75,AMD,,,,,25.0,0,False,0.0,,36.0,2,0,BULLISH terminate sell: Vice President (General Counsel) [+18] | BULLISH terminate sell: Vice President (General Counsel) [+18],10b5-1 leg +25
+76,CDE,,,,,25.0,0,False,0.0,,56.0,3,2,"BULLISH terminate sell: Casey M. Nault (Senior Vice President) 202,257sh [+22] | BULLISH terminate sell: Mitchell J. Krebs (Chairman) 202,257sh [+34] | BULLISH terminate sell: Mitchell J. Krebs (Chairman) 250,000sh [+38] | BEARISH adopt sel",10b5-1 leg +25
+77,ZLAB,,,,,25.0,0,False,0.0,,46.0,2,0,neutral terminate (type unknown): an insider (director) [+5] | BULLISH terminate sell: an insider (director) [+18] | neutral terminate (type unknown): an insider (director) [+5] | BULLISH terminate sell: an insider (director) [+18],10b5-1 leg +25
+78,WMT,,,,,25.0,0,False,0.0,,74.0,3,0,"BULLISH terminate sell: Daniel J. Bartlett (Executive Vice President) 155,328sh [+22] | BULLISH terminate sell: David Rainey (Executive Vice President and) 40,000sh [+18] | BULLISH terminate sell: Douglas McMillon (President and Chief Execu",10b5-1 leg +25
+79,LCUT,,,,,25.0,0,False,0.0,,40.0,0,0,neutral terminate (type unknown): Robert B. Kay (Chief Executive Officer) [+10] | neutral terminate (type unknown): Robert B. Kay (Chief Executive Officer) [+10] | neutral terminate (type unknown): Robert B. Kay (Chief Executive Officer) [+,10b5-1 leg +25
+80,SRRK,,,,,25.0,0,False,0.0,,36.0,2,0,BULLISH terminate sell: an insider (director) [+18] | BULLISH terminate sell: Ted Myles (COO) [+18],10b5-1 leg +25
+81,NOW,,,,,25.0,0,False,0.0,,80.0,4,4,"BULLISH terminate sell: William R. McDermott (Chief Executive Officer) 3,700sh [+30] | BULLISH terminate sell: Gina Mastantuono (President and Chief Financial ) 3,700sh [+24] | BULLISH terminate sell: Nick Tzitzon (Vice Chairman) 3,700sh [+",10b5-1 leg +25
+82,MGRC,,,,,25.0,0,False,0.0,,38.0,1,0,"BULLISH terminate sell: an insider (CEO) 1,886,409sh [+38]",10b5-1 leg +25
+83,GOOGL,,,,,25.0,0,False,0.0,,28.0,2,1,"BULLISH terminate sell: Ruth M. Porat (President and Chief Investment) 154,486sh [+22] | BEARISH adopt sell: an insider (director) [-12] | BULLISH terminate sell: Kent Walker (President) 11,112sh [+18]",10b5-1 leg +25
+84,EG,,,,,25.0,0,False,0.0,,30.0,1,0,BULLISH terminate sell: James Williamson (President and Chief Executive ) [+30],10b5-1 leg +25
+85,EYPT,,,,,25.0,0,False,0.0,,59.0,3,0,"BULLISH terminate sell: an insider (director) [+18] | BULLISH terminate sell: an insider (director) 19,667sh [+18] | BULLISH terminate sell: an insider (director) [+18] | neutral terminate (type unknown): an insider (director) [+5]",10b5-1 leg +25
+86,BRBS,,,,,25.0,0,False,0.0,,33.0,2,0,"BULLISH terminate sell: an insider (director) [+18] | BEARISH terminate buy: an insider (director) 9,116sh [-8] | neutral terminate (type unknown): an insider (director) [+5] | BULLISH terminate sell: an insider (director) [+18]",10b5-1 leg +25
+87,DDOG,,,,,25.0,0,False,0.0,,28.0,1,0,"BULLISH terminate sell: David Obstler (Chief Financial Officer) 107,500sh [+28]",10b5-1 leg +25
+88,MQ,,,,,24.0,0,False,0.0,,24.0,2,2,"BULLISH terminate sell: Todd Pollak (Chief Revenue Officer) 75,100sh [+22] | BULLISH terminate sell: an insider (director) 3,321,000sh [+26] | BEARISH adopt sell: an insider (director) 69,366sh [-12] | BEARISH adopt sell: an insider (direct",10b5-1 leg +24
+89,OPEN,,,,,24.0,1,False,0.49,,18.0,1,0,BULLISH terminate sell: an insider (?) [+18],CEO bought | 10b5-1 leg +18
+90,PRLD,,,,,24.0,0,False,0.0,,18.0,1,0,BULLISH terminate sell: an insider (director) [+18],13D filed | 10b5-1 leg +18
+91,PGEN,,,,,24.0,0,False,0.0,,18.0,1,1,BULLISH terminate sell: Helen Sabzevari (Chief Executive Officer) [+30] | BEARISH adopt sell: an insider (director) [-12],13D filed | 10b5-1 leg +18
+92,KYMR,,,,,24.0,0,False,0.0,,24.0,2,1,BULLISH terminate sell: an insider (Director) [+18] | BEARISH adopt sell: an insider (director) [-12] | BULLISH terminate sell: an insider (director) [+18],10b5-1 leg +24
+93,NCLH,,,,,23.0,3,False,0.97,,0.0,0,0,,3-buyer cluster 27d ago | forensic-PSU 20
+94,CRNX,,,,,23.0,0,False,0.0,,23.0,1,0,BULLISH terminate sell: an insider (Director) [+18] | neutral terminate (type unknown): an insider (Director) [+5],10b5-1 leg +23
+95,UNIT,,,,,23.0,0,False,0.0,,23.0,1,0,BULLISH terminate sell: an insider (director) [+18] | neutral terminate (type unknown): an insider (director) [+5],10b5-1 leg +23
+96,RH,,,,,22.0,0,False,0.0,69.0,0.0,0,0,,step-change 69
+97,GEGGL,,,,,22.0,0,False,0.0,,16.0,0,0,"BULLISH adopt buy: an insider (?) 4,000,000sh [+8] | BULLISH adopt buy: an insider (?) 4,000,000sh [+8]",13D filed | 10b5-1 leg +16
+98,TSLA,,,,,22.0,0,False,0.0,,22.0,1,1,"neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | BULLISH terminate sell: an insider (director) 240,000sh [+22] | BEARISH adopt sell: an insider (director) 240,000s",10b5-1 leg +22
+99,AMCX,,,,,22.0,0,False,0.0,70.9,0.0,0,0,,step-change 71
+100,PRCT,,,,,22.0,0,False,0.0,,22.0,1,0,"BULLISH terminate sell: an insider (Chief Legal Officer) 76,978sh [+22]",10b5-1 leg +22
+101,AQST,,,,,22.0,0,False,0.0,,22.0,1,0,"BULLISH terminate sell: an insider (Chief Operating Officer) 88,000sh [+22]",10b5-1 leg +22
+102,DLTR,,,,,22.0,0,False,0.0,60.2,0.0,0,0,,step-change 60
+103,ENPH,,,,,22.0,0,False,0.0,51.8,0.0,0,0,,step-change 52
+104,MX,,,,,22.0,0,False,0.0,52.5,0.0,0,0,,step-change 52
+105,AUPH,,,,,22.0,0,False,0.0,,16.0,0,0,BULLISH adopt buy: an insider (?) [+8] | BULLISH adopt buy: an insider (?) [+8],13D filed | 10b5-1 leg +16
+106,ULTA,,,,,22.0,0,False,0.0,51.8,0.0,0,0,,step-change 52
+107,LODE,,,,,22.0,2,False,1.54,,0.0,0,0,,CEO bought | 13D filed
+108,WDAY,,,,,22.0,0,False,0.0,71.5,0.0,0,0,,step-change 72
+109,D,,,,,22.0,0,False,0.0,55.3,0.0,0,0,,step-change 55
+110,SBAC,,,,,22.0,0,False,0.0,51.8,0.0,0,0,,step-change 52
+111,ETR,,,,,22.0,0,False,0.0,51.9,0.0,0,0,,step-change 52
+112,AMT,,,,,22.0,0,False,0.0,56.4,0.0,0,0,,step-change 56
+113,RNR,,,,,22.0,0,False,0.0,51.2,0.0,0,0,,step-change 51
+114,CSGP,,,,,22.0,0,False,0.0,65.8,0.0,0,0,,step-change 66
+115,PLBY,,,,,21.0,0,False,0.0,,0.0,0,0,,forensic-PSU 30 | 13D filed
+116,INSE,,,,,20.4,3,False,0.55,,0.0,0,0,,3-buyer cluster 72d ago | CEO bought | 13D filed
+117,REFI,,,,,20.0,0,False,0.0,,20.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (direc,10b5-1 leg +20
+118,CUBE,,,,,20.0,0,False,0.0,,20.0,0,0,neutral terminate (type unknown): an insider (?) [+5] | neutral terminate (type unknown): an insider (?) [+5] | neutral terminate (type unknown): an insider (?) [+5] | neutral terminate (type unknown): an insider (?) [+5],10b5-1 leg +20
+119,CINF,,,,,20.0,0,False,0.0,,20.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (direc,10b5-1 leg +20
+120,PCAR,,,,,20.0,0,False,0.0,,20.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (direc,10b5-1 leg +20
+121,JMSB,,,,,20.0,0,False,0.0,,20.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (direc,10b5-1 leg +20
+122,FOSL,,,,,20.0,0,False,0.0,,20.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (direc,10b5-1 leg +20
+123,CCRN,,,,,20.0,0,False,0.0,,20.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): Executive Officer (Director) [+5] | neutral terminate (type unknown): Executive Officer (Director) [+5] | neutral terminate (type unknown): Exe,10b5-1 leg +20
+124,KMPR,,,,,20.0,0,False,0.0,,20.0,0,0,neutral terminate (type unknown): an insider (Director) [+5] | neutral terminate (type unknown): an insider (Director) [+5] | neutral terminate (type unknown): an insider (Director) [+5] | neutral terminate (type unknown): an insider (Direc,10b5-1 leg +20
+125,UHT,,,,,20.0,0,False,0.0,,20.0,0,0,neutral terminate (type unknown): an insider (?) [+5] | neutral terminate (type unknown): an insider (?) [+5] | neutral terminate (type unknown): an insider (?) [+5] | neutral terminate (type unknown): an insider (?) [+5],10b5-1 leg +20
+126,QTTB,,,,,20.0,2,False,30.0,,0.0,0,0,,$30.0M insider buys | 13D filed
+127,NXST,,,,,20.0,0,False,0.0,,20.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (direc,10b5-1 leg +20
+128,IOVA,,,,,20.0,0,False,0.0,,20.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (direc,10b5-1 leg +20
+129,GBLI,,,,,20.0,0,False,0.0,,20.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (direc,10b5-1 leg +20
+130,IQV,,,,,20.0,0,False,0.0,,20.0,1,0,neutral terminate (type unknown): an insider (director) [+5] | BULLISH terminate sell: an insider (director) [+18] | BEARISH terminate buy: an insider (director) [-8] | neutral terminate (type unknown): an insider (director) [+5],10b5-1 leg +20
+131,EPAM,"EPAM Systems, Inc.",5082.340352,97.28,6.024909963985595,20.0,6,True,0.04,,-29.0,0,3,"BEARISH adopt sell: Arkadiy Dobkin (Executive Chair) 150,000sh [-23] | weak BEARISH adopt sell (small): Jason Peterson (Senior Vice President) 4,200sh [-3] | weak BEARISH adopt sell (small): Balazs Fejes (President) 4,200sh [-3]",6-buyer cluster 34d ago | CEO+CFO bought | 6% above 52w low | 10b5-1 leg -25
+132,AGIG,,,,,20.0,3,False,0.06,,0.0,0,0,,3-buyer cluster 24d ago | CEO bought
+133,DT,,,,,19.0,0,False,0.0,,13.0,1,1,neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | BULLISH terminate sell: an insider (director) [+18] | BEARISH adopt sell: Dan Zugelder (Executive Vice President) ,13D filed | 10b5-1 leg +13
+134,CHTR,,,,,18.4,3,False,2.37,,0.0,0,0,,3-buyer cluster 40d ago | CEO bought
+135,CACC,,,,,18.0,0,False,0.0,,18.0,1,0,"BULLISH terminate sell: an insider (Director) 2,163sh [+18]",10b5-1 leg +18
+136,CRBU,,,,,18.0,0,False,0.0,,18.0,1,0,"BULLISH terminate sell: an insider (?) 29,675sh [+18]",10b5-1 leg +18
+137,SMG,,,,,18.0,0,False,0.0,,18.0,1,0,BULLISH terminate sell: an insider (director) [+18],10b5-1 leg +18
+138,BREZ,,,,,18.0,2,True,0.0,,0.0,0,0,,CEO+CFO bought
+139,HROW,,,,,18.0,2,True,0.41,,0.0,0,0,,CEO+CFO bought
+140,PCOR,,,,,18.0,0,False,0.0,,18.0,1,0,BULLISH terminate sell: an insider (director) [+18],10b5-1 leg +18
+141,ACM,,,,,18.0,2,True,0.4,,0.0,0,0,,CEO+CFO bought
+142,ILMN,,,,,18.0,0,False,0.0,,18.0,1,0,"BULLISH terminate sell: Scott Ericksen (Chief Accounting Officer) 2,271sh [+18]",10b5-1 leg +18
+143,JKHY,,,,,18.0,2,True,0.32,,0.0,0,0,,CEO+CFO bought
+144,CRSP,,,,,18.0,0,False,0.0,,18.0,1,1,BULLISH terminate sell: an insider (Chief Executive Officer) [+30] | BEARISH adopt sell: an insider (director) [-12],10b5-1 leg +18
+145,SPRY,,,,,18.0,0,False,0.0,,18.0,1,0,BULLISH terminate sell: an insider (director) [+18],10b5-1 leg +18
+146,MCHPP,,,,,18.0,0,False,0.0,,18.0,1,0,"BULLISH terminate sell: Eric Bjornholt (Senior Vice President and) 25,910sh [+18]",10b5-1 leg +18
+147,PEN,,,,,18.0,0,False,0.0,,18.0,1,0,BULLISH terminate sell: Arani Bose (Director) [+18],10b5-1 leg +18
+148,CVGI,,,,,17.0,0,False,0.0,,17.0,0,0,BEARISH terminate buy: James R. Ray (President and Chief Executive ) [-8] | neutral terminate (type unknown): James R. Ray (President and Chief Executive ) [+10] | neutral terminate (type unknown): an insider (director) [+5] | neutral termi,10b5-1 leg +17
+149,LW,,,,,16.4,3,False,16.98,,0.0,0,0,,3-buyer cluster 61d ago | $17.0M insider buys
+150,IMA,,,,,16.0,0,False,0.0,,10.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5],13D filed | 10b5-1 leg +10
+151,BKNG,,,,,16.0,0,False,0.0,54.3,-6.0,0,2,"weak BEARISH adopt sell (small): Glenn D. Fogel (Chief Executive Officer) 1,000sh [-3] | weak BEARISH adopt sell (small): Vanessa Wittman (Director) 180sh [-3]",step-change 54 | 10b5-1 leg -6
+152,SHOP,,,,,16.0,0,False,0.0,,16.0,2,2,"BULLISH terminate sell: an insider (director) 20,000sh [+18] | BEARISH adopt sell: an insider (director) 20,000sh [-8] | BULLISH terminate sell: an insider (director) 41,430sh [+18] | BEARISH adopt sell: an insider (director) 41,430sh [-12]",10b5-1 leg +16
+153,DOCN,,,,,16.0,0,False,0.0,,10.0,0,0,"neutral terminate (type unknown): Padmanabhan Srinivasan (Chief Executive Officer) 46,726sh [+10]",13D filed | 10b5-1 leg +10
+154,ANGI,,,,,16.0,0,False,0.0,,16.0,2,2,"BEARISH adopt sell: an insider (Chief Operating Officer) 19,100sh [-8] | BEARISH adopt sell: Jeff W. Kip (Chief Executive Officer) 57,500sh [-20] | BULLISH terminate sell: an insider (director) 986sh [+18] | BULLISH terminate sell: an insid",10b5-1 leg +16
+155,CAT,,,,,16.0,0,False,0.0,,16.0,0,0,"BULLISH adopt buy: an insider (President) 46,000sh [+8] | BULLISH adopt buy: Umpleby III (Executive Chairman of the Boar) 58,000sh [+8]",10b5-1 leg +16
+156,ALEC,,,,,16.0,0,False,0.0,,16.0,1,1,"BULLISH terminate sell: an insider (Chief Financial Officer) 14,000sh [+24] | BEARISH adopt sell: an insider (director) 14,000sh [-8]",10b5-1 leg +16
+157,BAC,,,,,15.0,1,False,0.05,,15.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5],10b5-1 leg +15
+158,VABK,,,,,15.0,0,False,0.0,,15.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5],10b5-1 leg +15
+159,OMC,,,,,15.0,0,False,0.0,,15.0,0,0,"neutral terminate (type unknown): an insider (director) 268,350sh [+5] | neutral terminate (type unknown): an insider (director) 122,607sh [+5] | neutral terminate (type unknown): an insider (director) 11,945sh [+5]",10b5-1 leg +15
+160,NKE,"Nike, Inc.",64877.662208,43.81,6.336939721792892,15.0,4,False,3.73,,-27.0,0,2,"BEARISH adopt sell: Venkatesh Alagirisamy (Executive Vice President) 53,331sh [-12] | BEARISH adopt sell: Matthew Friend (Executive Vice President and) 153,128sh [-15]",4-buyer cluster 60d ago | CEO bought | 6% above 52w low | 10b5-1 leg -25
+161,ASTS,,,,,14.0,0,False,0.0,,8.0,0,0,BULLISH adopt buy: an insider (Director) [+8],13D filed | 10b5-1 leg +8
+162,SERV,,,,,14.0,0,False,0.0,,14.0,1,2,"BEARISH adopt sell: Brian Read (Chief Financial Officer) 60,000sh [-16] | BEARISH adopt sell: Evan Dunn (General Counsel) 15,000sh [-8] | BULLISH terminate sell: Ali Kashani (Chief Executive Officer) 600,000sh [+38]",10b5-1 leg +14
+163,CFBK,,,,,14.0,0,False,0.0,,14.0,1,1,"BULLISH terminate sell: Executive Officer (President and a director of th) 289,622sh [+26] | BEARISH adopt sell: Executive Officer (President and a director of th) 75,000sh [-12]",10b5-1 leg +14
+164,VVX,,,,,14.0,0,False,0.0,,8.0,0,0,"BULLISH adopt buy: an insider (?) 7,000sh [+8]",13D filed | 10b5-1 leg +8
+165,IEP,,,,,14.0,0,False,0.0,,8.0,0,0,"BULLISH adopt buy: an insider (?) 878,212sh [+8]",13D filed | 10b5-1 leg +8
+166,LCID,,,,,14.0,0,False,0.0,,8.0,1,1,"BULLISH terminate sell: an insider (director) 25,393sh [+18] | BEARISH adopt sell: an insider (director) 25,393sh [-12] | neutral terminate (type unknown): an insider (director) [+5] | BEARISH terminate buy: an insider (director) [-8] | neu",13D filed | 10b5-1 leg +8
+167,KRP,,,,,13.0,0,False,0.0,,7.0,0,0,BEARISH terminate buy: an insider (director) [-8] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5],13D filed | 10b5-1 leg +7
+168,TRVI,,,,,12.0,0,False,0.0,,6.0,1,1,BULLISH terminate sell: an insider (director) [+18] | BEARISH adopt sell: an insider (Director) [-12],13D filed | 10b5-1 leg +6
+169,TRUP,,,,,12.0,0,False,0.0,,12.0,1,2,"BULLISH terminate sell: an insider (Director) 20,020sh [+18] | weak BEARISH adopt sell (small): John Gallagher (Chief Operating Officer) 5,167sh [-3] | weak BEARISH adopt sell (small): Margi Tooth (President) 2,294sh [-3]",10b5-1 leg +12
+170,MYO,,,,,12.0,1,False,0.02,,12.0,1,1,BULLISH terminate sell: an insider (Chief Financial Officer) [+24] | BEARISH adopt sell: an insider (director) [-12],10b5-1 leg +12
+171,VNOM,,,,,11.0,0,False,0.0,,5.0,0,0,neutral terminate (type unknown): an insider (director) [+5],13D filed | 10b5-1 leg +5
+172,FEED,,,,,11.0,0,False,0.0,,5.0,0,0,neutral terminate (type unknown): an insider (director) [+5],13D filed | 10b5-1 leg +5
+173,OCUL,,,,,10.0,0,False,0.0,,10.0,0,0,neutral terminate (type unknown): to time (director) [+5] | neutral terminate (type unknown): to time (director) [+5],10b5-1 leg +10
+174,INMB,,,,,10.0,0,False,0.0,,10.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5],10b5-1 leg +10
+175,PCVX,,,,,10.0,0,False,0.0,,10.0,2,2,"BEARISH adopt sell: Grant Pickering (Chief Executive Officer) 44,473sh [-20] | BEARISH adopt sell: Andrew Guggenhime (President and Chief Financial ) 28,000sh [-16] | BULLISH terminate sell: an insider (director) 13,200sh [+18] | BULLISH te",10b5-1 leg +10
+176,RXST,,,,,10.0,0,False,0.0,,10.0,0,0,neutral terminate (type unknown): an insider (Director) [+5] | neutral terminate (type unknown): an insider (Director) [+5],10b5-1 leg +10
+177,MASS,,,,,10.0,0,False,0.0,,10.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5],10b5-1 leg +10
+178,MU,,,,,10.0,0,False,0.0,,10.0,1,2,"BULLISH terminate sell: Sanjay Mehrotra (Chairman of the Board) 80,000sh [+34] | BEARISH adopt sell: April Arnzen (Executive Vice President and) 80,000sh [-12] | BEARISH adopt sell: Michael Ray (Senior Vice President) 30,501sh [-12]",10b5-1 leg +10
+179,CVBF,,,,,9.0,1,False,1.5,,5.0,0,0,neutral terminate (type unknown): an insider (director) [+5],10b5-1 leg +5
+180,TRIP,,,,,9.0,0,False,0.0,,3.0,0,1,"BEARISH adopt sell: an insider (?) 94,702sh [-12] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): certain circumstances (Chair of the Board) [+10]",13D filed | 10b5-1 leg +3
+181,SES,,,,,8.0,0,False,0.0,,8.0,1,2,"BEARISH adopt sell: an insider (?) [-12] | BEARISH adopt sell: an insider (director) [-12] | BULLISH terminate sell: an insider (Chief Financial Officer) 870,000sh [+32]",10b5-1 leg +8
+182,SBET,,,,,8.0,0,False,0.0,,2.0,0,0,"neutral terminate (type unknown): an insider (director) [+5] | BEARISH terminate buy: an insider (director) 1,938,450sh [-8] | neutral terminate (type unknown): an insider (director) [+5]",13D filed | 10b5-1 leg +2
+183,DLPN,,,,,8.0,1,False,0.01,,2.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | BEARISH terminate buy: an insider (director) [-8] | BULLISH adopt buy: an insider (Chief Executive Officer) [+8] | BEARISH terminate buy: an insider (director) [-8] | neutral te,CEO bought | 10b5-1 leg +2
+184,ADP,,,,,8.0,1,False,0.75,,8.0,0,0,BULLISH adopt buy: Robert H. Swan (Director) [+8],10b5-1 leg +8
+185,WMS,,,,,8.0,0,False,0.0,,8.0,0,0,"BULLISH adopt buy: Craig Taylor (Executive Vice President of) 5,702sh [+8]",10b5-1 leg +8
+186,SAMG,,,,,8.0,0,False,0.0,,8.0,0,0,"BULLISH adopt buy: an insider (Director) 1,059,870sh [+8]",10b5-1 leg +8
+187,GRDN,,,,,8.0,0,False,0.0,,2.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | BEARISH terminate buy: an insider (director) [-8] | neutral terminate (type unknown): an insider (director) [+5],13D filed | 10b5-1 leg +2
+188,BLND,,,,,7.0,1,False,2.79,,-3.0,4,7,"BULLISH terminate sell: an insider (?) 50,000sh [+22] | BEARISH adopt sell: an insider (?) [-12] | BEARISH adopt sell: an insider (director) 50,000sh [-12] | BULLISH terminate sell: an insider (?) 1,190,000sh [+26] | BEARISH adopt sell: an ",13D filed | 10b5-1 leg -3
+189,BCPC,,,,,7.0,0,False,0.0,,7.0,0,0,"BEARISH terminate buy: an insider (director) 159,539sh [-8] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (direct",10b5-1 leg +7
+190,ENTG,,,,,7.0,0,False,0.0,,7.0,1,2,"BEARISH adopt sell: Clint Haris (Senior Vice President and) 12,678sh [-8] | weak BEARISH adopt sell (small): Joseph Colella (Senior Vice President) 9,392sh [-3] | BULLISH terminate sell: Olivier Blachier (Senior Vice President and) 4,010sh ",10b5-1 leg +7
+191,TXRH,,,,,6.0,0,False,0.0,,6.0,1,1,BULLISH terminate sell: an insider (General Counsel) [+18] | BEARISH adopt sell: an insider (director) [-12],10b5-1 leg +6
+192,PINS,,,,,6.0,0,False,0.0,,6.0,1,1,"BULLISH terminate sell: an insider (director) 40,000sh [+18] | BEARISH adopt sell: an insider (?) 40,000sh [-12]",10b5-1 leg +6
+193,ALKS,,,,,6.0,0,False,0.0,,6.0,1,1,BULLISH terminate sell: an insider (director) [+18] | BEARISH adopt sell: an insider (director) [-12],10b5-1 leg +6
+194,AAPL,,,,,6.0,0,False,0.0,,6.0,1,1,BULLISH terminate sell: an insider (Senior Vice President) [+18] | BEARISH adopt sell: an insider (Senior Vice President) [-12],10b5-1 leg +6
+195,QVCCQ,,,,,5.0,0,False,0.0,,5.0,0,0,neutral terminate (type unknown): an insider (director) [+5],10b5-1 leg +5
+196,TSEOF,,,,,5.0,0,False,0.0,,5.0,0,0,neutral terminate (type unknown): an insider (director) [+5],10b5-1 leg +5
+197,SN,,,,,5.0,0,False,0.0,,5.0,0,0,"neutral terminate (type unknown): an insider (director) 193,135sh [+5]",10b5-1 leg +5
+198,LUNR,,,,,5.0,0,False,0.0,,5.0,0,0,"neutral terminate (type unknown): an insider (director) 1,000,000sh [+5]",10b5-1 leg +5
+199,FEMY,,,,,5.0,0,False,0.0,,5.0,0,0,neutral terminate (type unknown): an insider (director) [+5],10b5-1 leg +5
+200,AMSF,,,,,5.0,0,False,0.0,,5.0,0,0,neutral terminate (type unknown): an insider (director) [+5],10b5-1 leg +5
+201,ALKT,,,,,4.0,2,False,65.86,,-16.0,0,1,"BEARISH adopt sell: Bryan Hill (Chief Financial Officer) 84,977sh [-16]",$65.9M insider buys | 13D filed | 10b5-1 leg -16
+202,VVV,,,,,3.0,2,False,0.42,,-3.0,0,1,"weak BEARISH adopt sell (small): an insider (Senior Vice President) 3,834sh [-3]",10b5-1 leg -3
+203,STRR,,,,,3.0,1,False,0.2,,-3.0,0,0,"BEARISH terminate buy: an insider (director) 350,000sh [-8] | neutral terminate (type unknown): an insider (director) 40,267sh [+5]",CEO bought | 10b5-1 leg -3
+204,SOFI,,,,,3.0,1,False,0.5,53.3,-33.0,0,2,"BEARISH adopt sell: Kelli Keough (Executive Vice President) 244,374sh [-15] | BEARISH adopt sell: Jeremy Rishel (Chief Technology Officer) 815,253sh [-18]",CEO bought | step-change 53 | 10b5-1 leg -25
+205,STRRP,,,,,3.0,0,False,0.0,,-3.0,0,0,"BEARISH terminate buy: an insider (director) 350,000sh [-8] | neutral terminate (type unknown): an insider (director) 40,267sh [+5]",13D filed | 10b5-1 leg -3
+206,FABC,,,,,3.0,0,False,0.0,,-3.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | BEARISH terminate buy: an insider (director) [-8],13D filed | 10b5-1 leg -3
+207,MMSI,,,,,3.0,2,False,0.22,,-3.0,0,1,"weak BEARISH adopt sell (small): an insider (Director) 5,021sh [-3]",10b5-1 leg -3
+208,NMRA,,,,,3.0,0,False,0.0,,-3.0,0,0,BEARISH terminate buy: an insider (director) [-8] | neutral terminate (type unknown): an insider (director) [+5],13D filed | 10b5-1 leg -3
+209,INGN,,,,,2.0,0,False,0.0,,2.0,1,2,"BULLISH terminate sell: Yi Boyer (Executive Vice President) [+18] | BEARISH adopt sell: Gregoire Ramade (Chief Commercial Officer) 18,000sh [-8] | BEARISH adopt sell: Yi Boyer (Executive Vice President) 18,000sh [-8]",10b5-1 leg +2
+210,RYM,,,,,2.0,0,False,0.0,,2.0,1,0,BULLISH terminate sell: an insider (director) [+18] | BEARISH terminate buy: an insider (director) [-8] | BEARISH terminate buy: an insider (director) [-8],10b5-1 leg +2
+211,CARS,,,,,2.0,0,False,0.0,,2.0,0,1,"BEARISH adopt sell: Sonia Jain (Chief Financial Officer) 14,818sh [-8] | neutral terminate (type unknown): an insider (Director) [+5] | neutral terminate (type unknown): an insider (director) [+5]",10b5-1 leg +2
+212,GPGI,,,,,2.0,3,False,0.2,,-12.0,0,1,"BEARISH adopt sell: an insider (?) 55,521sh [-12]",3-buyer cluster 24d ago | 10b5-1 leg -12
+213,ZIP,,,,,2.0,0,False,0.0,,2.0,0,1,"weak BEARISH adopt sell (small): Boris Shimanovsky (Executive Vice President) 2,027sh [-3] | neutral terminate (type unknown): an insider (director) [+5]",10b5-1 leg +2
+214,UZD,,,,,0.0,0,False,0.0,,-6.0,0,0,BEARISH terminate buy: an insider (director) [-8] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | BEARISH terminate buy: an insider (director) [-8],13D filed | 10b5-1 leg -6
+215,MSCI,,,,,-0.5,2,False,5.56,,-16.0,0,1,BEARISH adopt sell: Andrew C. Wiechmann (Chief Financial Officer) [-16],CEO bought | $5.6M insider buys | 10b5-1 leg -16
+216,GCMG,,,,,-1.0,0,False,0.0,,-1.0,1,1,"neutral terminate (type unknown): an insider (director) [+5] | BULLISH terminate sell: an insider (director) 80,000sh [+22] | BEARISH adopt sell: an insider (director) 80,000sh [-12] | BEARISH terminate buy: an insider (director) [-8] | BEA",10b5-1 leg -1
+217,PAYC,,,,,-1.0,0,False,0.0,69.2,-23.0,0,1,"BEARISH adopt sell: Chad Richison (Chief Executive Officer) 480,000sh [-23]",step-change 69 | 10b5-1 leg -23
+218,TASK,,,,,-1.0,0,False,0.0,,-1.0,1,2,"BULLISH terminate sell: Claudia Walsh (General Counsel) 205,008sh [+22] | BEARISH adopt sell: an insider (?) 24,233sh [-8] | BEARISH adopt sell: an insider (?) 145,986sh [-15]",10b5-1 leg -1
+219,HWKE,,,,,-2.0,0,False,0.0,,-8.0,0,0,BEARISH terminate buy: an insider (director) [-8],13D filed | 10b5-1 leg -8
+220,ZSQR,,,,,-2.0,0,False,0.0,,-8.0,0,1,"BEARISH adopt sell: Daniel Yerace (Vice President of) 20,000sh [-8]",13D filed | 10b5-1 leg -8
+221,JBL,,,,,-2.0,0,False,0.0,,-2.0,1,2,"BEARISH adopt sell: an insider (Chief Executive Officer) 54,381sh [-20] | BULLISH terminate sell: Mark T. Mondello (Executive Chairman of the Boar) [+30] | BEARISH adopt sell: Matthew Crowley (Executive Vice President) [-12]",10b5-1 leg -2
+222,EWTX,,,,,-2.0,0,False,0.0,,-8.0,1,2,"BEARISH adopt sell: an insider (director) 200,000sh [-15] | BEARISH adopt sell: Badreddin Edris (Director) 115,471sh [-15] | BULLISH terminate sell: an insider (director) 75,000sh [+22]",13D filed | 10b5-1 leg -8
+223,URBN,,,,,-2.0,0,False,0.0,,-2.0,1,1,BULLISH terminate sell: an insider (director) [+18] | BEARISH adopt sell: Richard A. Hayne (Chief Executive Officer) [-20],10b5-1 leg -2
+224,SNTI,,,,,-2.0,0,False,0.0,,-8.0,0,1,"BEARISH adopt sell: Kanya Rajangam (President and Chief Medical Of) 12,628sh [-8]",13D filed | 10b5-1 leg -8
+225,PRKS,,,,,-2.0,0,False,0.0,,-8.0,0,1,"BEARISH adopt sell: Marc Swanson (Chief Executive Officer) 22,948sh [-8]",13D filed | 10b5-1 leg -8
+226,NCDL,,,,,-2.0,2,False,0.12,,-8.0,0,0,"BEARISH terminate buy: an insider (?) 161,033sh [-8]",10b5-1 leg -8
+227,KROS,,,,,-3.0,0,False,0.0,,-3.0,0,1,"weak BEARISH adopt sell (small): an insider (director) 2,201sh [-3]",10b5-1 leg -3
+228,OCGN,,,,,-3.0,0,False,0.0,,-3.0,0,0,BEARISH terminate buy: an insider (director) [-8] | neutral terminate (type unknown): an insider (director) [+5],10b5-1 leg -3
+229,CL,,,,,-3.0,0,False,0.0,,-3.0,0,1,"weak BEARISH adopt sell (small): the Board (President and Chief Executive ) 6,000sh [-3]",10b5-1 leg -3
+230,MORN,,,,,-3.0,0,False,0.0,,-3.0,0,1,weak BEARISH adopt sell (small): Michael Holt (Chief Financial Officer) 648sh [-3],10b5-1 leg -3
+231,SPAI,,,,,-3.0,0,False,0.0,,-3.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | BEARISH terminate buy: an insider (director) [-8],10b5-1 leg -3
+232,MZTI,,,,,-3.0,0,False,0.0,,-3.0,0,1,weak BEARISH adopt sell (small): Thomas K. Pigott (Vice President) 261sh [-3],10b5-1 leg -3
+233,QCLS,,,,,-3.0,1,False,0.01,,-3.0,0,0,neutral terminate (type unknown): an insider (director) [+5] | BEARISH terminate buy: an insider (director) [-8],10b5-1 leg -3
+234,PFG,,,,,-3.0,0,False,0.0,,-3.0,0,1,"weak BEARISH adopt sell (small): Kenneth McCullum (Executive Vice President and) 5,130sh [-3]",10b5-1 leg -3
+235,BWXT,,,,,-3.0,0,False,0.0,,-3.0,0,1,weak BEARISH adopt sell (small): Rex Geveden (President and Chief Executive ) 152sh [-3],10b5-1 leg -3
+236,RGR,,,,,-4.0,2,False,0.23,,-16.0,0,2,"BEARISH adopt sell: an insider (Senior Vice President) 22,612sh [-8] | BEARISH adopt sell: an insider (?) 20,000sh [-8]",13D filed | 10b5-1 leg -16
+237,MPWR,,,,,-4.0,0,False,0.0,,-4.0,0,1,BEARISH adopt sell: Deming Xiao (Executive Vice President) [-12] | BULLISH adopt buy: an insider (director) [+8],10b5-1 leg -4
+238,AMWL,,,,,-5.0,1,False,0.0,,-11.0,0,2,"weak BEARISH adopt sell (small): an insider (director) 9,750sh [-3] | BEARISH adopt sell: an insider (director) 13,593sh [-8]",CEO bought | 10b5-1 leg -11
+239,LULU,,,,,-5.4,2,False,1.49,,-40.0,0,2,BEARISH adopt sell: Calvin McDonald (Chief Executive Officer) [-20] | BEARISH adopt sell: Calvin McDonald (Chief Executive Officer) [-20],CEO bought | 13D filed | 10b5-1 leg -25
+240,RNAC,,,,,-6.0,0,False,0.0,,-12.0,0,1,"BEARISH adopt sell: an insider (?) 30,528sh [-12]",13D filed | 10b5-1 leg -12
+241,SMR,,,,,-6.0,0,False,0.0,,-12.0,0,1,BEARISH adopt sell: Bill Cooper (Chief Legal Officer) [-12],13D filed | 10b5-1 leg -12
+242,XPRO,,,,,-6.0,0,False,0.0,,-12.0,0,1,BEARISH adopt sell: an insider (Director) [-12],13D filed | 10b5-1 leg -12
+243,AMRX,,,,,-6.0,0,False,0.0,,-12.0,0,1,"BEARISH adopt sell: an insider (director) 34,819sh [-12]",13D filed | 10b5-1 leg -12
+244,COHR,,,,,-6.0,0,False,0.0,,-6.0,0,2,"weak BEARISH adopt sell (small): Enrico DiGirolamo (Chairman) 2,272sh [-3] | weak BEARISH adopt sell (small): Enrico DiGirolamo (Chairman) 5,795sh [-3]",10b5-1 leg -6
+245,RDW,,,,,-6.0,0,False,0.0,,-12.0,0,1,"BEARISH adopt sell: an insider (director) 40,000sh [-12]",13D filed | 10b5-1 leg -12
+246,TH,,,,,-6.0,0,False,0.0,,-12.0,0,1,"BEARISH adopt sell: Vice President (General Counsel) 89,972sh [-12]",13D filed | 10b5-1 leg -12
+247,NPB,,,,,-6.0,1,False,0.86,,-12.0,0,1,"BEARISH adopt sell: David S. Hooker (Director) 89,000sh [-12]",CEO bought | 10b5-1 leg -12
+248,FULC,,,,,-8.0,0,False,0.0,,-8.0,1,2,"BULLISH terminate sell: an insider (Director) 124,713sh [+22] | BEARISH adopt sell: an insider (?) 124,713sh [-15] | BEARISH adopt sell: Curtis Oltmans (chief legal officer) 180,000sh [-15]",10b5-1 leg -8
+249,SATS,,,,,-8.0,0,False,0.0,,-14.0,1,1,"BEARISH adopt sell: Hamid Akhavan (Chief Executive Officer) 53,700sh [-20] | BULLISH terminate sell: an insider (Director) 52,874sh [+22] | BEARISH terminate buy: an insider (Director) [-8] | BEARISH terminate buy: an insider (Director) [-8",13D filed | 10b5-1 leg -14
+250,XNCR,,,,,-8.0,0,False,0.0,,-8.0,0,0,BEARISH terminate buy: an insider (director) [-8],10b5-1 leg -8
+251,WKC,,,,,-8.0,0,False,0.0,,-8.0,0,1,"BEARISH adopt sell: an insider (director) 13,000sh [-8]",10b5-1 leg -8
+252,OPRX,,,,,-8.0,0,False,0.0,,-8.0,0,1,"BEARISH adopt sell: Mr. Edward Stelmakh (Chief Financial Officer) 11,120sh [-8]",10b5-1 leg -8
+253,CF,,,,,-8.0,0,False,0.0,,-8.0,0,1,"BEARISH adopt sell: Bert A. Frost (Executive Vice President) 21,003sh [-8]",10b5-1 leg -8
+254,TNL,,,,,-8.0,0,False,0.0,,-8.0,0,1,"BEARISH adopt sell: Erik Hoag (Chief Financial Officer) 24,541sh [-8]",10b5-1 leg -8
+255,GME,,,,,-8.0,0,False,0.0,,-8.0,0,1,"BEARISH adopt sell: an insider (Director) 11,719sh [-8]",10b5-1 leg -8
+256,SYK,,,,,-8.0,0,False,0.0,,-14.0,0,3,"weak BEARISH adopt sell (small): Spencer Stiles (President and Chief Operating ) 7,849sh [-3] | weak BEARISH adopt sell (small): Robert Fletcher (Vice President) 7,849sh [-3] | BEARISH adopt sell: Kathryn Fink (Vice President) 16,132sh [-8]",13D filed | 10b5-1 leg -14
+257,INDV,,,,,-8.4,2,False,0.03,,-12.0,0,1,"BEARISH adopt sell: Jeffrey Burris (Chief Legal Officer) 50,000sh [-12]",10b5-1 leg -12
+258,CELC,,,,,-9.0,0,False,0.0,,-15.0,0,1,"BEARISH adopt sell: an insider (?) 229,335sh [-15]",13D filed | 10b5-1 leg -15
+259,SYRE,,,,,-9.0,0,False,0.0,,-15.0,0,1,"BEARISH adopt sell: an insider (director) 100,000sh [-15]",13D filed | 10b5-1 leg -15
+260,ECPG,,,,,-9.0,0,False,0.0,,-9.0,0,3,"weak BEARISH adopt sell (small): John Yung (President) 9,085sh [-3] | weak BEARISH adopt sell (small): an insider (director) 1,423sh [-3] | weak BEARISH adopt sell (small): John Yung (President) 6,000sh [-3]",10b5-1 leg -9
+261,GYRE,,,,,-10.0,0,False,0.0,,-16.0,0,0,BEARISH terminate buy: an insider (director) [-8] | BEARISH terminate buy: an insider (director) [-8],13D filed | 10b5-1 leg -16
+262,SMC,,,,,-10.0,0,False,0.0,,-16.0,0,2,"BEARISH adopt sell: Vice President (General Counsel) 10,400sh [-8] | BEARISH adopt sell: Vice President (General Counsel) 14,000sh [-8]",13D filed | 10b5-1 leg -16
+263,RENT,,,,,-10.0,0,False,0.0,,-16.0,0,2,"BEARISH adopt sell: Dhiren Fonseca (Executive Chairman) 20,335sh [-8] | BEARISH adopt sell: an insider (?) 17,034sh [-8]",13D filed | 10b5-1 leg -16
+264,GRAL,,,,,-10.0,0,False,0.0,,-10.0,1,2,"BULLISH terminate sell: an insider (director) 6,210sh [+18] | BEARISH adopt sell: Aaron Freidin (Chief Financial Officer) 64,000sh [-16] | BEARISH adopt sell: Joshua Ofman (President) 92,269sh [-12]",10b5-1 leg -10
+265,INDI,,,,,-10.0,0,False,0.0,,-10.0,1,2,"BEARISH adopt sell: Michael Wittmann (Chief Operating Officer) 344,472sh [-15] | BEARISH adopt sell: Donald McClymont (Chief Executive Officer) 344,472sh [-23] | BULLISH terminate sell: Singh Bal (Chief Financial Officer) 246,315sh [+28]",10b5-1 leg -10
+266,SND,,,,,-11.0,1,False,0.02,,-11.0,0,0,"neutral terminate (type unknown): an insider (director) [+5] | BEARISH terminate buy: an insider (?) 1,003,602sh [-8] | BEARISH terminate buy: an insider (?) 989,975sh [-8]",10b5-1 leg -11
+267,LMB,,,,,-11.0,0,False,0.0,,-11.0,0,2,"BEARISH adopt sell: Jay A. Sharp (Executive Vice President) 19,965sh [-8] | weak BEARISH adopt sell (small): an insider (director) 8,000sh [-3]",10b5-1 leg -11
+268,APPF,,,,,-11.0,0,False,0.0,,-11.0,1,4,"BULLISH terminate sell: Evan Pickering (General Counsel) 1,650sh [+18] | weak BEARISH adopt sell (small): Don Rigler (Vice President of) 3,500sh [-3] | weak BEARISH adopt sell (small): Tim Eaton (Chief Financial Officer) 1,554sh [-3] | BEAR",10b5-1 leg -11
+269,ULS,,,,,-11.0,1,False,0.01,,-11.0,0,2,"weak BEARISH adopt sell (small): Karen K. Pepping (Senior Vice President and) 5,529sh [-3] | BEARISH adopt sell: Alberto Uggetti (Executive Vice President and) 21,880sh [-8]",10b5-1 leg -11
+270,XENE,,,,,-12.0,0,False,0.0,,-12.0,0,1,BEARISH adopt sell: an insider (Director) [-12],10b5-1 leg -12
+271,CDXS,,,,,-12.0,0,False,0.0,,-12.0,0,1,"BEARISH adopt sell: Kevin Norrett (Chief Operating Officer) 66,602sh [-12]",10b5-1 leg -12
+272,CNTA,,,,,-12.0,0,False,0.0,,-12.0,0,1,BEARISH adopt sell: our officers (director) [-12],10b5-1 leg -12
+273,PACS,,,,,-12.0,0,False,0.0,,-12.0,0,1,"BEARISH adopt sell: Michelle Lewis (Chief Accounting Officer) 45,000sh [-12]",10b5-1 leg -12
+274,URGN,,,,,-12.0,0,False,0.0,,-12.0,0,1,BEARISH adopt sell: an insider (?) [-12],10b5-1 leg -12
+275,GLP,,,,,-12.0,1,False,0.74,,-12.0,0,1,BEARISH adopt sell: an insider (director) [-12],10b5-1 leg -12
+276,HLMN,,,,,-12.0,0,False,0.0,,-12.0,0,1,BEARISH adopt sell: Scott K. Moore (President) [-12],10b5-1 leg -12
+277,EVER,,,,,-12.0,0,False,0.0,,-12.0,0,1,BEARISH adopt sell: an insider (?) [-12],10b5-1 leg -12
+278,CGEM,,,,,-12.0,0,False,0.0,,-12.0,0,1,"BEARISH adopt sell: an insider (?) 83,606sh [-12]",10b5-1 leg -12
+279,ACAD,,,,,-12.0,0,False,0.0,,-12.0,0,1,"BEARISH adopt sell: Mark C. Schneyer (Executive Vice President and) 64,625sh [-12]",10b5-1 leg -12
+280,LTH,,,,,-12.0,0,False,0.0,,-18.0,0,1,"BEARISH adopt sell: an insider (Executive Vice President) 1,170,345sh [-18]",13D filed | 10b5-1 leg -18
+281,SI,,,,,-12.0,0,False,0.0,,-12.0,0,1,"BEARISH adopt sell: Matthew Ahearn (Chief Operating Officer) 67,500sh [-12]",10b5-1 leg -12
+282,PAY,,,,,-12.0,0,False,0.0,,-12.0,0,1,"BEARISH adopt sell: an insider (director) 27,909sh [-12]",10b5-1 leg -12
+283,SEPN,,,,,-12.0,0,False,0.0,,-12.0,0,1,"BEARISH adopt sell: an insider (Senior Vice President) 45,000sh [-12]",10b5-1 leg -12
+284,HSIC,,,,,-12.0,1,False,0.69,,-12.0,0,1,BEARISH adopt sell: an insider (?) [-12],10b5-1 leg -12
+285,OPLN,,,,,-12.0,0,False,0.0,,-12.0,0,1,BEARISH adopt sell: an insider (Director) [-12],10b5-1 leg -12
+286,MRVI,,,,,-12.0,0,False,0.0,,-12.0,0,1,"BEARISH adopt sell: Kurt Oreshack (Executive Vice President) 50,000sh [-12]",10b5-1 leg -12
+287,PED,,,,,-12.0,0,False,0.0,,-12.0,0,1,"BEARISH adopt sell: Paul A. Pinkston (Chief Accounting Officer) 84,962sh [-12]",10b5-1 leg -12
+288,ABOS,,,,,-12.0,0,False,0.0,,-12.0,1,3,"BULLISH terminate sell: Matthew Zuga (Chief Financial Officer) 83,110sh [+28] | BEARISH adopt sell: an insider (?) [-12] | BEARISH adopt sell: Russell Barton (Chief Operating Officer) [-12] | BEARISH adopt sell: Matt Zuga (Chief Financial O",10b5-1 leg -12
+289,APLD,,,,,-12.0,0,False,0.0,,-12.0,0,1,"BEARISH adopt sell: an insider (?) 26,823sh [-12]",10b5-1 leg -12
+290,ROST,,,,,-12.0,0,False,0.0,,-12.0,0,1,"BEARISH adopt sell: an insider (director) 49,000sh [-12]",10b5-1 leg -12
+291,RELY,,,,,-12.0,0,False,0.0,,-12.0,0,1,"BEARISH adopt sell: an insider (director) 60,000sh [-12]",10b5-1 leg -12
+292,OSCR,,,,,-12.0,0,False,0.0,,-12.0,1,2,"BEARISH adopt sell: an insider (Chief Financial Officer) 210,000sh [-19] | BEARISH adopt sell: Schlosser Co-Founder (President) 127,003sh [-15] | BULLISH terminate sell: an insider (?) 211,774sh [+22]",10b5-1 leg -12
+293,AHCO,,,,,-12.0,0,False,0.0,,-12.0,0,1,BEARISH adopt sell: an insider (Chief Commercial Officer) [-12],10b5-1 leg -12
+294,PVLA,,,,,-12.0,0,False,0.0,,-12.0,0,1,BEARISH adopt sell: Kathleen Goin (Chief Operating Officer) [-12],10b5-1 leg -12
+295,CDNA,,,,,-12.0,0,False,0.0,,-12.0,0,1,"BEARISH adopt sell: Jeffrey A. Novack (General Counsel) 45,123sh [-12]",10b5-1 leg -12
+296,CAMP,,,,,-12.0,0,False,0.0,,-12.0,0,1,"BEARISH adopt sell: an insider (director) 50,000sh [-12]",10b5-1 leg -12
+297,OKLO,,,,,-13.0,0,False,0.0,,-19.0,0,1,"BEARISH adopt sell: an insider (Chief Financial Officer) 233,714sh [-19]",13D filed | 10b5-1 leg -19
+298,HIG,,,,,-13.0,0,False,0.0,48.7,-36.0,0,3,"BEARISH adopt sell: Beth A. Costello (Executive Vice President and) 35,339sh [-12] | BEARISH adopt sell: Adin M. Tooker (President) 35,339sh [-12] | BEARISH adopt sell: Amy Stepnowski (Executive Vice President) 48,690sh [-12]",step-change 49 | 10b5-1 leg -25
+299,JSM,,,,,-13.0,0,False,0.0,,-19.0,0,0,neutral terminate (type unknown): an insider (Director) [+5] | BEARISH terminate buy: an insider (Director) [-8] | BEARISH terminate buy: an insider (Director) [-8] | BEARISH terminate buy: an insider (Director) [-8],13D filed | 10b5-1 leg -19
+300,XOMAP,,,,,-13.0,0,False,0.0,,-19.0,0,1,"BEARISH adopt sell: Thomas Burns (Chief Financial Officer) 142,278sh [-19]",13D filed | 10b5-1 leg -19
+301,REPX,,,,,-14.0,0,False,0.0,,-20.0,0,1,"BEARISH adopt sell: Bobby Riley (Chief Executive Officer) 50,000sh [-20]",13D filed | 10b5-1 leg -20
+302,CHGG,,,,,-14.0,0,False,0.0,,-20.0,0,1,"BEARISH adopt sell: Nathan Schultz (Chief Executive Officer) 27,973sh [-20]",13D filed | 10b5-1 leg -20
+303,ENVX,,,,,-15.0,0,False,0.0,,-15.0,0,1,"BEARISH adopt sell: Ajay Marathe (Chief Operating Officer) 268,338sh [-15]",10b5-1 leg -15
+304,AEE,,,,,-15.0,0,False,0.0,,-15.0,0,2,"weak BEARISH adopt sell (small): Theresa A. Shaw (Senior Vice President) 1,300sh [-3] | BEARISH adopt sell: an insider (director) 62,686sh [-12]",10b5-1 leg -15
+305,PCG,,,,,-15.0,0,False,0.0,,-15.0,0,1,"BEARISH adopt sell: an insider (Executive Vice President) 374,428sh [-15]",10b5-1 leg -15
+306,HLF,,,,,-15.0,0,False,0.0,,-15.0,0,1,"BEARISH adopt sell: Robert Levy (President) 216,524sh [-15]",10b5-1 leg -15
+307,RMNI,,,,,-15.0,0,False,0.0,,-15.0,0,1,"BEARISH adopt sell: an insider (Executive Vice President) 205,377sh [-15]",10b5-1 leg -15
+308,PEGA,,,,,-15.0,0,False,0.0,,-15.0,0,1,"BEARISH adopt sell: an insider (?) 100,000sh [-15]",10b5-1 leg -15
+309,CRMD,,,,,-15.0,0,False,0.0,,-15.0,0,1,"BEARISH adopt sell: an insider (director) 112,500sh [-15]",10b5-1 leg -15
+310,STRD,,,,,-15.0,0,False,0.0,,-15.0,0,1,"BEARISH adopt sell: Ming Shao (Executive Vice President and) 250,000sh [-15]",10b5-1 leg -15
+311,KODK,,,,,-15.0,1,False,0.02,,-15.0,0,1,"BEARISH adopt sell: Roger W. Byrd (General Counsel) 135,201sh [-15]",10b5-1 leg -15
+312,SIBN,,,,,-15.0,0,False,0.0,,-15.0,0,1,"BEARISH adopt sell: an insider (director) 128,067sh [-15]",10b5-1 leg -15
+313,WEAV,,,,,-15.0,0,False,0.0,,-15.0,0,1,"BEARISH adopt sell: Erin Goodsell (Chief Legal Officer) 219,680sh [-15]",10b5-1 leg -15
+314,ASIX,,,,,-15.0,0,False,0.0,,-15.0,0,2,"BEARISH adopt sell: Vice President (General Counsel) 72,500sh [-12] | weak BEARISH adopt sell (small): Vice President (General Counsel) 2,000sh [-3]",10b5-1 leg -15
+315,AMPL,,,,,-15.0,0,False,0.0,,-15.0,1,3,"BULLISH terminate sell: Spenser Skates (Chief Executive Officer) 1,010,000sh [+38] | BEARISH adopt sell: Spenser Skates (Chief Executive Officer) 1,010,000sh [-26] | BEARISH adopt sell: Thomas Hansen (President) 210,000sh [-15] | BEARISH ad",10b5-1 leg -15
+316,MTB,,,,,-15.0,0,False,0.0,,-15.0,0,2,"weak BEARISH adopt sell (small): Kevin J. Pearson (Vice Chairman) 6,000sh [-3] | BEARISH adopt sell: an insider (director) [-12]",10b5-1 leg -15
+317,BDTX,,,,,-15.0,0,False,0.0,,-15.0,0,1,"BEARISH adopt sell: an insider (director) 208,750sh [-15]",10b5-1 leg -15
+318,EYE,,,,,-15.0,0,False,0.0,,-15.0,0,1,"BEARISH adopt sell: an insider (director) 150,000sh [-15]",10b5-1 leg -15
+319,NGS,,,,,-15.0,0,False,0.0,,-15.0,0,1,"BEARISH adopt sell: an insider (Director) 100,000sh [-15]",10b5-1 leg -15
+320,CENX,,,,,-15.0,0,False,0.0,,-15.0,0,1,"BEARISH adopt sell: an insider (President) 300,000sh [-15]",10b5-1 leg -15
+321,ADUS,,,,,-16.0,0,False,0.0,,-16.0,0,1,BEARISH adopt sell: Poff EVP (Chief Financial Officer) [-16],10b5-1 leg -16
+322,LFMDP,,,,,-16.0,0,False,0.0,,-16.0,1,2,"BEARISH adopt sell: Eric Yecies (Chief Legal Officer) 200,000sh [-15] | BULLISH terminate sell: an insider (?) [+18] | BEARISH adopt sell: Marc Benathen (Chief Financial Officer) 200,000sh [-19]",10b5-1 leg -16
+323,CMRC,,,,,-16.0,0,False,0.0,,-16.0,0,1,"BEARISH adopt sell: an insider (Chief Financial Officer) 53,800sh [-16]",10b5-1 leg -16
+324,ABEO,,,,,-16.0,0,False,0.0,,-16.0,0,1,"BEARISH adopt sell: an insider (chief financial officer) 63,456sh [-16]",10b5-1 leg -16
+325,GMED,,,,,-16.0,0,False,0.0,,-16.0,0,1,"BEARISH adopt sell: Kyle R. Kline (Chief Financial Officer) 80,000sh [-16]",10b5-1 leg -16
+326,LAZ,,,,,-16.0,0,False,0.0,,-34.0,0,2,"BEARISH adopt sell: an insider (Chief Financial Officer) 206,083sh [-19] | BEARISH adopt sell: an insider (Director) 226,003sh [-15]",forensic-PSU 21 | 10b5-1 leg -25
+327,ATAI,,,,,-18.0,0,False,0.0,,-18.0,0,1,"BEARISH adopt sell: an insider (director) 875,000sh [-18]",10b5-1 leg -18
+328,AVTR,,,,,-18.0,1,False,0.08,,-18.0,0,1,"BEARISH adopt sell: Michael Stubblefield (Director) 906,204sh [-18]",10b5-1 leg -18
+329,STUB,,,,,-18.0,0,False,0.0,,-18.0,0,1,"BEARISH adopt sell: an insider (President and Chief Product Of) 836,000sh [-18]",10b5-1 leg -18
+330,BSY,,,,,-18.0,0,False,0.0,,-18.0,1,3,BEARISH adopt sell: an insider (Director) [-12] | BEARISH adopt sell: an insider (Director) [-12] | BULLISH terminate sell: an insider (Director) [+18] | BEARISH adopt sell: an insider (Director) [-12],10b5-1 leg -18
+331,CNTY,,,,,-18.0,0,False,0.0,,-18.0,0,1,"BEARISH adopt sell: an insider (?) 1,029,657sh [-18]",10b5-1 leg -18
+332,COMP,,,,,-18.0,0,False,0.0,,-18.0,0,1,"BEARISH adopt sell: Pamela Thomas-Graham (Director) 3,411,111sh [-18]",10b5-1 leg -18
+333,ORGO,,,,,-18.0,0,False,0.0,,-18.0,0,1,"BEARISH adopt sell: an insider (director) 827,688sh [-18]",10b5-1 leg -18
+334,LXU,,,,,-19.0,0,False,0.0,,-80.0,0,8,"BEARISH adopt sell: Kristy D. Carver (Senior Vice President and) 29,554sh [-12] | BEARISH adopt sell: Michael J. Foster (Executive Vice President) 29,554sh [-12] | BEARISH adopt sell: Michael J. Foster (Executive Vice President) 29,800sh [-",13D filed | 10b5-1 leg -25
+335,MLTX,,,,,-19.0,0,False,0.0,,-56.0,0,3,BEARISH adopt sell: da Silva (Chief Executive Officer) [-20] | BEARISH adopt sell: da Silva (Chief Executive Officer) [-20] | BEARISH adopt sell: Mr. Matthias Bodenstedt (Chief Financial Officer) [-16],13D filed | 10b5-1 leg -25
+336,LZ,,,,,-19.0,1,False,0.77,,-27.0,0,2,"BEARISH adopt sell: Nicole Miller (Chief Legal Officer) 98,874sh [-12] | BEARISH adopt sell: Noel Watson (Chief Operating Officer) 241,816sh [-15]",CEO bought | 10b5-1 leg -25
+337,KHC,,,,,-19.0,0,False,0.0,,-74.0,0,5,"BEARISH adopt sell: Carlos Abrams-Rivera (Chief Executive Officer) 182,183sh [-23] | BEARISH adopt sell: Melissa Werneck (Executive Vice President and) 81,438sh [-12] | BEARISH adopt sell: Eloi Lima (Executive Vice President and) 177,149sh ",13D filed | 10b5-1 leg -25
+338,PRCH,,,,,-19.0,0,False,0.0,,-50.0,0,3,"BEARISH adopt sell: Matthew Ehrlichman (Chairman and Chief Executive O) 584,998sh [-26] | BEARISH adopt sell: an insider (Director) 40,000sh [-12] | BEARISH adopt sell: an insider (Director) 40,000sh [-12]",13D filed | 10b5-1 leg -25
+339,BBIO,,,,,-19.0,0,False,0.0,,-58.0,0,5,"weak BEARISH adopt sell (small): an insider (Director) 7,152sh [-3] | BEARISH adopt sell: Maricel M. Apuli (Chief Accounting Officer) [-12] | BEARISH adopt sell: an insider (Director) 300,000sh [-15] | BEARISH adopt sell: an insider (Direct",13D filed | 10b5-1 leg -25
+340,TMUSL,,,,,-19.0,0,False,0.0,,-44.0,0,6,"BEARISH adopt sell: an insider (Chief Operating Officer) 23,739sh [-8] | BEARISH adopt sell: an insider (Chief People Officer) 23,596sh [-8] | BEARISH adopt sell: an insider (Chief People Officer) 20,868sh [-8] | BULLISH adopt buy: an insid",13D filed | 10b5-1 leg -25
+341,BRCB,,,,,-19.0,0,False,0.0,,-49.0,0,2,"BEARISH adopt sell: Jeff Hernandez (Chairman) 539,019sh [-26] | BEARISH adopt sell: Jeff Hernandez (Chairman) 348,000sh [-23]",13D filed | 10b5-1 leg -25
+342,LBRT,,,,,-19.0,0,False,0.0,,-19.0,0,1,"BEARISH adopt sell: Michael Stock (Chief Financial Officer) 399,964sh [-19]",10b5-1 leg -19
+343,PAR,,,,,-19.0,0,False,0.0,,-38.0,0,3,"BEARISH adopt sell: Bryan Menar (Chief Financial Officer) 102,093sh [-19] | BEARISH adopt sell: Bryan Menar (Chief Financial Officer) 26,000sh [-16] | weak BEARISH adopt sell (small): Cathy King (Chief Legal Officer) 6,000sh [-3]",13D filed | 10b5-1 leg -25
+344,PAHC,,,,,-19.0,0,False,0.0,,-26.0,0,1,"BEARISH adopt sell: Jack C. Bendheim (Chairman of the Board) 528,000sh [-26]",13D filed | 10b5-1 leg -25
+345,ORKA,,,,,-19.0,0,False,0.0,,-27.0,0,2,"BEARISH adopt sell: Arjun Agarwal (Senior Vice President) 97,965sh [-12] | BEARISH adopt sell: Laura Sandler (Chief Operating Officer) 151,000sh [-15]",13D filed | 10b5-1 leg -25
+346,FUBO,,,,,-19.0,0,False,0.0,,-76.0,1,5,"BULLISH terminate sell: an insider (director) 76,641sh [+22] | BEARISH adopt sell: an insider (Chief Executive Officer) 3,414,889sh [-26] | BEARISH adopt sell: an insider (Chief Financial Officer) 919,692sh [-22] | BEARISH adopt sell: an in",13D filed | 10b5-1 leg -25
+347,CIFR,,,,,-19.0,0,False,0.0,,-30.0,1,3,"BULLISH terminate sell: an insider (President and Chief Operating ) 289,271sh [+26] | BEARISH adopt sell: an insider (director) 289,271sh [-15] | BEARISH adopt sell: an insider (director) 414,204sh [-15] | BEARISH adopt sell: Tyler Page (Ch",13D filed | 10b5-1 leg -25
+348,RDDT,,,,,-19.0,0,False,0.0,,-39.0,0,3,"BEARISH adopt sell: an insider (director) 21,678sh [-8] | BEARISH adopt sell: an insider (director) 350,000sh [-15] | BEARISH adopt sell: an insider (Chief Financial Officer) 50,000sh [-16]",13D filed | 10b5-1 leg -25
+349,EBAY,,,,,-19.0,0,False,0.0,,-39.0,0,3,"BEARISH adopt sell: Cornelius Boone (Senior Vice President) 88,600sh [-12] | BEARISH adopt sell: Mazen Rawashdeh (Senior Vice President) [-12] | BEARISH adopt sell: Cornelius Boone (Senior Vice President) 130,000sh [-15]",13D filed | 10b5-1 leg -25
+350,WVE,,,,,-19.0,0,False,0.0,,-60.0,0,4,BEARISH adopt sell: an insider (director) [-12] | BEARISH adopt sell: an insider (Senior Vice President) [-12] | BEARISH adopt sell: an insider (President and Chief Executive ) [-20] | BEARISH adopt sell: an insider (Chief Financial Officer,13D filed | 10b5-1 leg -25
+351,IBTA,,,,,-19.0,0,False,0.0,,-73.0,0,4,"BEARISH adopt sell: our Founder (Chief Executive Officer) 477,706sh [-23] | BEARISH adopt sell: Luke Swanson (Chief Technology Officer) 477,706sh [-15] | BEARISH adopt sell: our Founder (Chief Executive Officer) 281,532sh [-23] | BEARISH ad",13D filed | 10b5-1 leg -25
+352,APG,,,,,-19.0,0,False,0.0,,-54.0,0,3,"BEARISH adopt sell: Martin Franklin (director) 1,003,567sh [-18] | BEARISH adopt sell: Jim Lillie (director) 759,000sh [-18] | BEARISH adopt sell: Jim Lillie (director) 2,700,000sh [-18]",13D filed | 10b5-1 leg -25
+353,APGE,,,,,-19.0,0,False,0.0,,-34.0,0,2,"BEARISH adopt sell: an insider (director) 340,000sh [-15] | BEARISH adopt sell: an insider (Chief Financial Officer) 132,000sh [-19]",13D filed | 10b5-1 leg -25
+354,CVNA,,,,,-19.0,0,False,0.0,,-42.0,0,6,"BEARISH adopt sell: an insider (director) 10,027sh [-8] | weak BEARISH adopt sell (small): an insider (director) 8,714sh [-3] | BEARISH adopt sell: Vice President (General Counsel) 15,000sh [-8] | BEARISH adopt sell: Vice President (General",13D filed | 10b5-1 leg -25
+355,INCY,,,,,-19.0,0,False,0.0,,-41.0,0,5,"BEARISH adopt sell: Thomas Tray (Vice President) 15,000sh [-8] | BEARISH adopt sell: Steven Stein (Executive Vice President and) 187,500sh [-15] | BEARISH adopt sell: Lee Heeson (Executive Vice President and) 69,435sh [-12] | weak BEARISH a",13D filed | 10b5-1 leg -25
+356,RKLB,,,,,-19.0,0,False,0.0,,-58.0,1,5,"BEARISH adopt sell: an insider (director) [-12] | BEARISH adopt sell: Vice President (General Counsel) 634,335sh [-18] | BEARISH adopt sell: Adam Spice (Chief Financial Officer) [-16] | BEARISH adopt sell: an insider (Chief Executive Office",13D filed | 10b5-1 leg -25
+357,MKL,,,,,-20.0,1,False,0.27,,-20.0,0,1,BEARISH adopt sell: Steven A. Markel (Chair of the Board) [-20],10b5-1 leg -20
+358,XERS,,,,,-20.0,0,False,0.0,,-20.0,0,1,"BEARISH adopt sell: Marla Persky (Chairperson) 31,000sh [-20]",10b5-1 leg -20
+359,MCO,,,,,-20.0,0,False,0.0,,-20.0,0,1,"BEARISH adopt sell: an insider (Chief Executive Officer) 43,204sh [-20]",10b5-1 leg -20
+360,WST,,,,,-20.0,0,False,0.0,,-20.0,0,1,"BEARISH adopt sell: Eric M. Green (President and Chief Executive ) 83,616sh [-20]",10b5-1 leg -20
+361,ICFI,,,,,-20.0,0,False,0.0,,-20.0,0,1,"BEARISH adopt sell: John Wasson (Chair and Chief Executive Offi) 37,133sh [-20]",10b5-1 leg -20
+362,STZ,,,,,-20.0,0,False,0.0,,-20.0,0,1,BEARISH adopt sell: William A. Newlands (President and Chief Executive ) [-20],10b5-1 leg -20
+363,AIRG,,,,,-20.0,0,False,0.0,,-20.0,0,2,"BEARISH adopt sell: Ali Sadri (Chief Technology Officer) 16,000sh [-8] | BEARISH adopt sell: an insider (Director) 91,000sh [-12]",10b5-1 leg -20
+364,FIS,,,,,-20.0,0,False,0.0,,-20.0,0,1,BEARISH adopt sell: Stephanie Ferris (Chief Executive Officer) [-20],10b5-1 leg -20
+365,AEP,,,,,-21.0,0,False,0.0,,-21.0,0,4,"weak BEARISH adopt sell (small): Phillip R. Ulrich (Executive Vice President and) 8,860sh [-3] | BEARISH adopt sell: Kelly J. Ferneau (Executive Vice President and) 25,000sh [-12] | weak BEARISH adopt sell (small): David M. Feinberg (Execut",10b5-1 leg -21
+366,CRSR,,,,,-22.0,0,False,0.0,,-22.0,0,1,"BEARISH adopt sell: Michael Potter (Chief Financial Officer) 767,934sh [-22]",10b5-1 leg -22
+367,NDAQ,,,,,-22.0,0,False,0.0,,-22.0,0,4,"weak BEARISH adopt sell (small): Bryan Smith (Chief People Officer) 7,556sh [-3] | BEARISH adopt sell: Bryan Smith (Chief People Officer) 10,633sh [-8] | weak BEARISH adopt sell (small): Adena T. Friedman (Chair and Chief Executive Offi) 4,",10b5-1 leg -22
+368,BETA,,,,,-23.0,0,False,0.0,,-23.0,0,1,"BEARISH adopt sell: an insider (Chief Executive Officer) 180,000sh [-23]",10b5-1 leg -23
+369,TPR,,,,,-23.0,0,False,0.0,,-23.0,0,1,"BEARISH adopt sell: Joanne Crevoiserat (Chief Executive Officer) 264,247sh [-23]",10b5-1 leg -23
+370,HRTG,,,,,-23.0,0,False,0.0,,-23.0,0,1,"BEARISH adopt sell: Richard Widdicombe (Chairman) 250,000sh [-23]",10b5-1 leg -23
+371,PPLC,,,,,-23.0,0,False,0.0,,-23.0,0,3,"BEARISH adopt sell: Gregory Cornett (President) [-12] | BEARISH adopt sell: Crockett III (President) 15,791sh [-8] | weak BEARISH adopt sell (small): Ms. Angela K. Gosman (Executive Vice President and) 6,533sh [-3]",10b5-1 leg -23
+372,PPL,,,,,-23.0,0,False,0.0,,-23.0,0,3,"BEARISH adopt sell: Gregory Cornett (President) [-12] | BEARISH adopt sell: Crockett III (President) 15,791sh [-8] | weak BEARISH adopt sell (small): Ms. Angela K. Gosman (Executive Vice President and) 6,533sh [-3]",10b5-1 leg -23
+373,FENC,,,,,-23.0,0,False,0.0,,-23.0,0,2,"BEARISH adopt sell: an insider (Director) 109,184sh [-15] | BEARISH adopt sell: an insider (Director) 18,406sh [-8]",10b5-1 leg -23
+374,EXC,,,,,-23.0,0,False,0.0,,-23.0,0,1,"BEARISH adopt sell: an insider (President and Chief Executive ) 246,000sh [-23]",10b5-1 leg -23
+375,CYRX,,,,,-23.0,0,False,0.0,,-23.0,0,1,"BEARISH adopt sell: Jerrell Shelton (Chief Executive Officer) 356,064sh [-23]",10b5-1 leg -23
+376,IR,,,,,-23.0,0,False,0.0,,-23.0,0,1,"BEARISH adopt sell: an insider (Chairman) 496,746sh [-23]",10b5-1 leg -23
+377,FDMT,,,,,-23.0,0,False,0.0,,-23.0,0,1,"BEARISH adopt sell: an insider (President and Chief Executive ) 450,000sh [-23]",10b5-1 leg -23
+378,UTHR,,,,,-23.0,0,False,0.0,,-23.0,0,2,weak BEARISH adopt sell (small): an insider (?) 720sh [-3] | BEARISH adopt sell: Dr. Martine Rothblatt (Chairperson and Chief Executiv) [-20],10b5-1 leg -23
+379,CTMX,,,,,-23.0,0,False,0.0,,-23.0,0,1,"BEARISH adopt sell: Sean McCarthy (Chief Executive Officer) 200,000sh [-23]",10b5-1 leg -23
+380,NXPI,,,,,-24.0,0,False,0.0,,-24.0,0,2,BEARISH adopt sell: Andrew Micallef (Executive Vice President and) [-12] | BEARISH adopt sell: Jennifer Wuamett (Executive Vice President) [-12],10b5-1 leg -24
+381,LOVE,,,,,-24.0,0,False,0.0,,-24.0,0,1,"neutral terminate (type unknown): an insider (Director) [+5] | neutral terminate (type unknown): an insider (Director) [+5] | BEARISH terminate buy: an insider (director) 13,711sh [-8] | BEARISH terminate buy: an insider (director) 630,698s",10b5-1 leg -24
+382,RPC,,,,,-24.0,0,False,0.0,,-24.0,0,0,BEARISH terminate buy: an insider (director) [-8] | BEARISH terminate buy: an insider (Director) [-8] | BEARISH terminate buy: an insider (director) [-8],10b5-1 leg -24
+383,HBANP,,,,,-24.0,0,False,0.0,,-24.0,0,2,"BEARISH adopt sell: an insider (Director) 49,650sh [-12] | BEARISH adopt sell: an insider (Executive Vice President) 54,800sh [-12]",10b5-1 leg -24
+384,RIVN,,,,,-25.0,0,False,0.0,,-45.0,0,2,"BEARISH adopt sell: an insider (Chief Financial Officer) 237,712sh [-19] | BEARISH adopt sell: an insider (Chief Executive Officer) 3,500,000sh [-26]",10b5-1 leg -25
+385,OUT,,,,,-25.0,0,False,0.0,,-36.0,0,3,"BEARISH adopt sell: Vice President (General Counsel) 35,000sh [-12] | BEARISH adopt sell: an insider (director) 33,812sh [-12] | BEARISH adopt sell: Vice President (General Counsel) 50,000sh [-12]",10b5-1 leg -25
+386,ARQT,,,,,-25.0,0,False,0.0,,-41.0,0,4,"weak BEARISH adopt sell (small): Franklin Watanabe (Chief Executive Officer) 7,609sh [-3] | weak BEARISH adopt sell (small): an insider (Director) 1,232sh [-3] | BEARISH adopt sell: Franklin Watanabe (Chief Executive Officer) 135,000sh [-23",10b5-1 leg -25
+387,TSCO,,,,,-25.0,0,False,0.0,,-70.0,0,6,"weak BEARISH adopt sell (small): an insider (Director) 3,213sh [-3] | BEARISH adopt sell: Vice President (General Counsel) 18,035sh [-8] | BEARISH adopt sell: Vice President (Chief Financial Officer) 92,455sh [-16] | BEARISH adopt sell: Vic",10b5-1 leg -25
+388,CRCT,,,,,-25.0,1,False,0.04,,-26.0,0,1,"BEARISH adopt sell: Ashish Arora (Chief Executive Officer) 2,797,223sh [-26]",10b5-1 leg -25
+389,MP,,,,,-25.0,0,False,0.0,,-38.0,0,2,"BEARISH adopt sell: an insider (Chairman of the Board) 1,400,000sh [-26] | BEARISH adopt sell: Elliot D. Hoops (General Counsel) 41,020sh [-12]",10b5-1 leg -25
+390,BROS,,,,,-25.0,1,False,0.1,,-40.0,0,2,"BEARISH adopt sell: Travis Boersma (Executive Chairman) [-20] | BEARISH adopt sell: Christine Barone (Chief Executive Officer) 42,031sh [-20]",10b5-1 leg -25
+391,APO,,,,,-25.0,0,False,0.0,,-26.0,0,1,"BEARISH adopt sell: James Belardi (Executive Chairman and Chief I) 1,500,000sh [-26]",10b5-1 leg -25
+392,AEVA,,,,,-25.0,0,False,0.0,,-70.0,0,3,"BEARISH adopt sell: Soroush Salehian (Chief Executive Officer) 580,448sh [-26] | BEARISH adopt sell: Mina Rezk (Chief Technology Officer) 580,448sh [-18] | BEARISH adopt sell: Soroush Salehian (Chief Executive Officer) 700,000sh [-26]",10b5-1 leg -25
+393,COIN,,,,,-25.0,0,False,0.0,,-80.0,2,10,"BULLISH terminate sell: an insider (director) 64,973sh [+22] | BULLISH terminate sell: an insider (director) 2,543,770sh [+26] | BEARISH adopt sell: an insider (director) 64,973sh [-12] | BEARISH adopt sell: an insider (?) 30,000sh [-12] | ",10b5-1 leg -25
+394,PENG,,,,,-25.0,0,False,0.0,,-36.0,0,3,"BEARISH adopt sell: Joseph Clark (President) 52,943sh [-12] | BEARISH adopt sell: Anne Kuykendall (Senior Vice President and) 52,943sh [-12] | BEARISH adopt sell: Jack Pacheco (Executive Vice President) 63,447sh [-12]",10b5-1 leg -25
+395,QTWO,,,,,-25.0,0,False,0.0,,-80.0,0,8,"BEARISH adopt sell: Jonathan Price (Chief Financial Officer) 14,940sh [-8] | BEARISH adopt sell: Michael Volanoski (Chief Revenue Officer) 130,872sh [-15] | BEARISH adopt sell: Scott Kerr (Senior Vice President) 125,987sh [-15] | BEARISH ad",10b5-1 leg -25
+396,AAOI,,,,,-25.0,0,False,0.0,,-28.0,0,2,"BEARISH adopt sell: Stefan Murry (Chief Financial Officer) 72,000sh [-16] | BEARISH adopt sell: David Kuo (Senior Vice President and) 44,500sh [-12]",10b5-1 leg -25
+397,CLOV,,,,,-25.0,0,False,0.0,,-49.0,0,2,"BEARISH adopt sell: Jamie Reynoso (Chief Executive Officer) 236,240sh [-23] | BEARISH adopt sell: Jamie Reynoso (Chief Executive Officer) 1,725,426sh [-26]",10b5-1 leg -25
+398,ROOT,,,,,-25.0,0,False,0.0,,-30.0,0,2,"BEARISH terminate buy: an insider (director) [-8] | BEARISH terminate buy: an insider (director) [-8] | BEARISH terminate buy: an insider (director) [-8] | weak BEARISH adopt sell (small): an insider (Director) 2,853sh [-3] | weak BEARISH a",10b5-1 leg -25
+399,ALL,,,,,-25.0,0,False,0.0,,-32.0,0,2,"BEARISH adopt sell: Suren Gupta (President) 48,400sh [-12] | BEARISH adopt sell: Thomas J. Wilson (Chairman of the Board) 48,400sh [-20]",10b5-1 leg -25
+400,TEAM,,,,,-25.0,0,False,0.0,,-30.0,1,5,"BULLISH terminate sell: an insider (Chief Executive Officer) 1,916,250sh [+38] | BEARISH adopt sell: an insider (Director) 1,916,250sh [-18] | BEARISH adopt sell: an insider (Chief Technology Officer) 34,457sh [-12] | BEARISH adopt sell: an",10b5-1 leg -25
+401,LRCX,,,,,-25.0,0,False,0.0,,-26.0,1,4,"BULLISH terminate sell: an insider (director) 109,000sh [+22] | BEARISH adopt sell: an insider (Director) 109,000sh [-15] | BEARISH adopt sell: Abhijit Y. Talwalkar (Chair of the Board) 121,400sh [-23] | BEARISH adopt sell: Neil J. Fernande",10b5-1 leg -25
+402,SVV,,,,,-25.0,0,False,0.0,,-73.0,0,4,"BEARISH adopt sell: Mark Walsh (Chief Executive Officer) 445,000sh [-23] | BEARISH adopt sell: Michael Maher (Chief Financial Officer) 445,000sh [-19] | BEARISH adopt sell: Richard Medway (General Counsel) 49,742sh [-12] | BEARISH adopt sel",10b5-1 leg -25
+403,CRWV,,,,,-25.0,0,False,0.0,,-80.0,0,8,"BEARISH adopt sell: an insider (?) 59,234sh [-12] | BEARISH adopt sell: an insider (?) 2,468,000sh [-18] | BEARISH adopt sell: an insider (director) 1,600,000sh [-18] | BEARISH adopt sell: an insider (Chief Financial Officer) 260,805sh [-19",10b5-1 leg -25
+404,GDDY,,,,,-25.0,0,False,0.0,,-40.0,0,3,"BEARISH adopt sell: an insider (Director) 54,000sh [-12] | BEARISH adopt sell: Roger Chen (Chief Operating Officer) 18,000sh [-8] | BEARISH adopt sell: Aman Bhutani (Chief Executive Officer) 72,000sh [-20]",10b5-1 leg -25
+405,DIS,,,,,-25.0,0,False,0.0,,-44.0,0,3,"BEARISH adopt sell: an insider (?) 61,245sh [-12] | BEARISH adopt sell: an insider (?) [-12] | BEARISH adopt sell: an insider (Chief Executive Officer) [-20]",10b5-1 leg -25
+406,RVLV,,,,,-25.0,0,False,0.0,,-56.0,0,3,"BEARISH adopt sell: Jesse Timmermans (chief financial officer) 197,714sh [-19] | BEARISH adopt sell: an insider (director) 3,750,125sh [-18] | BEARISH adopt sell: Jesse Timmermans (chief financial officer) 127,362sh [-19]",10b5-1 leg -25
+407,WBD,,,,,-25.0,0,False,0.0,,-75.0,0,6,"BEARISH adopt sell: Priya Aiyar (Chief Legal Officer) 465,338sh [-15] | BEARISH adopt sell: Priya Aiyar (Chief Legal Officer) 77,243sh [-12] | BEARISH adopt sell: Gunnar Wiedenfels (Chief Financial Officer) 290,307sh [-19] | BEARISH adopt s",10b5-1 leg -25
+408,ARES,,,,,-25.0,0,False,0.0,,-32.0,0,2,"BEARISH adopt sell: Antony Ressler (Executive Chairman) 42,000sh [-20] | BEARISH adopt sell: Bennett Rosenthal (Director) [-12]",10b5-1 leg -25
+409,BWMN,,,,,-25.0,0,False,0.0,,-74.0,1,9,"BEARISH adopt sell: an insider (director) 560,983sh [-18] | weak BEARISH adopt sell (small): an insider (director) 3,301sh [-3] | weak BEARISH adopt sell (small): an insider (director) 1,230sh [-3] | BEARISH adopt sell: an insider (Chief Fi",10b5-1 leg -25
+410,FIG,,,,,-25.0,0,False,0.0,,-80.0,0,8,"BEARISH adopt sell: our Co-Founder (President) 750,000sh [-18] | BEARISH adopt sell: our Co-Founder (President) 2,000,000sh [-18] | BEARISH adopt sell: Praveer Melwani (Chief Financial Officer) 565,326sh [-22] | BEARISH adopt sell: Brendan ",10b5-1 leg -25
+411,NEE,,,,,-25.0,0,False,0.0,,-80.0,0,8,"BEARISH adopt sell: Charles E. Sieving (Executive Vice President) 132,184sh [-15] | BEARISH adopt sell: John W. Ketchum (Chairman) 132,184sh [-23] | BEARISH adopt sell: Charles E. Sieving (Executive Vice President) 88,605sh [-12] | BEARISH ",10b5-1 leg -25
+412,MCK,,,,,-25.0,0,False,0.0,,-66.0,0,8,"weak BEARISH adopt sell (small): Britt J. Vitalone (Executive Vice President and) 9,871sh [-3] | BEARISH adopt sell: Brian S. Tyler (Chief Executive Officer) 48,657sh [-20] | weak BEARISH adopt sell (small): Thomas Rodgers (Executive Vice P",10b5-1 leg -25
+413,TWLO,,,,,-25.0,0,False,0.0,,-50.0,0,4,"BEARISH adopt sell: Khozema Shipchandler (Chief Executive Officer) 245,716sh [-23] | BEARISH adopt sell: Aidan Viggiano (Chief Financial Officer) [-16] | weak BEARISH adopt sell (small): Khozema Shipchandler (Chief Executive Officer) 7,000s",10b5-1 leg -25
+414,ZNTL,,,,,-25.0,0,False,0.0,,-27.0,0,2,"BEARISH adopt sell: an insider (Senior Vice President) [-12] | BEARISH adopt sell: an insider (?) 104,221sh [-15]",10b5-1 leg -25
+415,RYTM,,,,,-25.0,0,False,0.0,,-43.0,0,3,"BEARISH adopt sell: an insider (director) 29,566sh [-12] | BEARISH adopt sell: an insider (director) 65,431sh [-12] | BEARISH adopt sell: an insider (Chief Financial Officer) 121,185sh [-19]",10b5-1 leg -25
+416,LITE,,,,,-25.0,0,False,0.0,,-80.0,0,9,"BEARISH adopt sell: Pamela Fletcher (director) 12,000sh [-8] | weak BEARISH adopt sell (small): Pamela Fletcher (director) 3,155sh [-3] | BEARISH adopt sell: Jae Kim (Senior Vice President) 38,594sh [-12] | weak BEARISH adopt sell (small): ",10b5-1 leg -25
+417,QS,,,,,-25.0,0,False,0.0,,-37.0,1,3,"BULLISH terminate sell: an insider (Director) [+18] | BEARISH adopt sell: Dr. Timothy Holme (Chief Technology Officer) 2,714,753sh [-18] | BEARISH adopt sell: Kevin Hettrich (Chief Financial Officer) 2,714,753sh [-22] | BEARISH adopt sell: ",10b5-1 leg -25
+418,NTRA,,,,,-25.0,0,False,0.0,,-69.0,0,4,"BEARISH adopt sell: Matthew Rabinowitz (executive chairman) 180,643sh [-23] | BEARISH adopt sell: Mike Brophy (chief financial officer) 128,846sh [-19] | BEARISH adopt sell: an insider (Director) 122,596sh [-15] | BEARISH adopt sell: an ins",10b5-1 leg -25
+419,IMAX,,,,,-25.0,0,False,0.0,,-25.0,0,2,"BEARISH adopt sell: an insider (President) [-12] | BEARISH adopt sell: an insider (Chief Legal Officer) 1,495,900sh [-18] | neutral terminate (type unknown): an insider (director) [+5]",10b5-1 leg -25
+420,ACMR,,,,,-25.0,0,False,0.0,,-80.0,0,8,"BEARISH adopt sell: an insider (?) 18,750sh [-8] | BEARISH adopt sell: Fuping Chen (Vice President) 50,000sh [-12] | BEARISH adopt sell: Mark McKechnie (Chief Financial Officer) 120,000sh [-19] | BEARISH adopt sell: Mark McKechnie (Chief Fi",10b5-1 leg -25
+421,AIP,,,,,-25.0,0,False,0.0,,-80.0,0,5,"BEARISH adopt sell: Nicholas B. Hawkins (Chief Financial Officer) 97,092sh [-16] | BEARISH adopt sell: Charles Janac (Chief Executive Officer) 186,757sh [-23] | BEARISH adopt sell: Charles Janac (CEO) 840,000sh [-26] | BEARISH adopt sell: P",10b5-1 leg -25
+422,DKS,,,,,-25.0,0,False,0.0,,-32.0,0,2,"BEARISH adopt sell: Lauren Hobart (President and Chief Executive ) 40,166sh [-20] | BEARISH adopt sell: Navdeep Gupta (Executive Vice President and) 26,725sh [-12]",10b5-1 leg -25
+423,RXRX,,,,,-25.0,0,False,0.0,,-49.0,0,3,"BEARISH adopt sell: an insider (Director) 12,735sh [-8] | BEARISH adopt sell: Ben Taylor (Chief Financial Officer) 3,868,000sh [-22] | BEARISH adopt sell: Ben Taylor (Chief Financial Officer) 299,317sh [-19]",10b5-1 leg -25
+424,APOS,,,,,-25.0,0,False,0.0,,-26.0,0,1,"BEARISH adopt sell: James Belardi (Executive Chairman and Chief I) 1,500,000sh [-26]",10b5-1 leg -25
+425,VICR,,,,,-25.0,0,False,0.0,,-26.0,0,1,"BEARISH adopt sell: Patrizio Vinciarelli (Chairman of the Board) 1,000,000sh [-26]",10b5-1 leg -25
+426,VTR,,,,,-25.0,0,False,0.0,,-30.0,0,2,"BEARISH adopt sell: Robert F. Probst (Executive Vice President and) 320,057sh [-15] | BEARISH adopt sell: Peter J. Bulgarelli (Executive Vice President) 320,057sh [-15]",10b5-1 leg -25
+427,TRS,,,,,-25.0,1,False,0.0,,-34.0,0,2,"BEARISH adopt sell: an insider (Chairman of the Board) 1,487,057sh [-26] | BEARISH adopt sell: an insider (President and Chief Executive ) 20,491sh [-8]",10b5-1 leg -25
+428,BXMT,,,,,-25.0,0,False,0.0,,-36.0,0,3,"BEARISH adopt sell: Marcin Urbaszek (Chief Financial Officer) 15,337sh [-8] | BEARISH adopt sell: Katharine A. Keenan (Chief Executive Officer) 51,850sh [-20] | BEARISH adopt sell: an insider (Chief Financial Officer) 12,000sh [-8]",10b5-1 leg -25
+429,DSP,,,,,-25.0,0,False,0.0,,-55.0,0,3,"BEARISH adopt sell: Chris Vanderhook (Chief Operating Officer) 900,000sh [-18] | BEARISH adopt sell: Larry Madden (Chief Financial Officer) 300,095sh [-19] | BEARISH adopt sell: Chris Vanderhook (Chief Operating Officer) 900,000sh [-18]",10b5-1 leg -25
+430,KLAC,,,,,-25.0,0,False,0.0,,-36.0,0,3,BEARISH adopt sell: Vice President (Chief Legal Officer) [-12] | BEARISH adopt sell: an insider (Director) [-12] | BEARISH adopt sell: Vice President (Chief Legal Officer) [-12],10b5-1 leg -25
+431,ONT,,,,,-25.0,1,False,0.1,,-28.0,0,2,"BEARISH adopt sell: Allan Dicks (Chief Financial Officer) 89,142sh [-16] | BEARISH adopt sell: Nasym Afsari (General Counsel) 40,027sh [-12]",10b5-1 leg -25
+432,PRTHU,,,,,-25.0,0,False,0.0,,-48.0,0,4,BEARISH adopt sell: an insider (Director) [-12] | BEARISH adopt sell: an insider (Director) [-12] | BEARISH adopt sell: an insider (Director) [-12] | BEARISH adopt sell: an insider (Director) [-12],10b5-1 leg -25
+433,ROP,,,,,-25.0,0,False,0.0,,-40.0,0,2,BEARISH adopt sell: Neil Hunn (President and Chief Executive ) [-20] | BEARISH adopt sell: Neil Hunn (President and Chief Executive ) [-20],10b5-1 leg -25
+434,PLRX,,,,,-25.0,0,False,0.0,,-35.0,0,2,"BEARISH adopt sell: Bernard Coulie (Chief Executive Officer) 81,756sh [-20] | BEARISH adopt sell: an insider (?) 104,327sh [-15]",10b5-1 leg -25
+435,GCT,,,,,-25.0,0,False,0.0,,-41.0,0,2,"BEARISH adopt sell: Lei Wu (Chief Executive Officer) 800,000sh [-26] | BEARISH adopt sell: Mr. Xinyan Hao (Chief Operating Officer) 450,000sh [-15]",10b5-1 leg -25
+436,TOST,,,,,-25.0,0,False,0.0,,-80.0,0,6,"BEARISH adopt sell: Brian Elworthy (General Counsel) 108,000sh [-15] | BEARISH adopt sell: Jonathan Vassil (Chief Revenue Officer) 108,000sh [-15] | BEARISH adopt sell: Aman Narang (Chief Executive Officer) 108,000sh [-23] | BEARISH adopt s",10b5-1 leg -25
+437,RXT,,,,,-25.0,0,False,0.0,,-38.0,0,2,"BEARISH adopt sell: Gajen Kandiah (Chief Executive Officer) 200,000sh [-23] | BEARISH adopt sell: Kellie Teal-Guess (Executive Vice President and) 200,000sh [-15]",10b5-1 leg -25
+438,QLYS,,,,,-25.0,0,False,0.0,,-39.0,0,7,"weak BEARISH adopt sell (small): Jeffrey P. Hank (chair) 2,000sh [-3] | weak BEARISH adopt sell (small): Jeffrey P. Hank (chair) 940sh [-3] | weak BEARISH adopt sell (small): Sumedh S. Thakar (Chief Executive Officer) 1,450sh [-3] | BEARISH",10b5-1 leg -25
+439,LASR,,,,,-25.0,0,False,0.0,,-42.0,0,2,"BEARISH adopt sell: Joseph Corso (Chief Financial Officer) 156,714sh [-19] | BEARISH adopt sell: Scott Keeney (President and Chief Executive ) 430,868sh [-23]",10b5-1 leg -25
+440,MARA,,,,,-25.0,0,False,0.0,,-65.0,0,5,"neutral terminate (type unknown): an insider (Director) 21,551sh [+5] | BEARISH adopt sell: Salman Khan (Chief Financial Officer) 21,551sh [-8] | BEARISH adopt sell: Zabi Nowaid (General Counsel) 176,000sh [-15] | BEARISH adopt sell: Fred T",10b5-1 leg -25
+441,VSAT,,,,,-25.0,0,False,0.0,,-59.0,0,4,"BEARISH adopt sell: Craig Miller (President) 62,288sh [-12] | BEARISH adopt sell: Ben Palmer (President) 62,288sh [-12] | BEARISH adopt sell: Ben Palmer (President) 27,430sh [-12] | BEARISH adopt sell: Mark Dankberg (Chief Executive Officer",10b5-1 leg -25
+442,PLTR,,,,,-25.0,0,False,0.0,,-65.0,0,5,"BEARISH adopt sell: Jeffrey Buckley (Chief Accounting Officer) 1,520,000sh [-18] | neutral terminate (type unknown): David Glazer (Chief Financial Officer) [+5] | BEARISH adopt sell: Jeffrey Buckley (Chief Accounting Officer) 11,628sh [-8] ",10b5-1 leg -25
+443,QCOM,,,,,-25.0,0,False,0.0,,-74.0,0,4,"BEARISH adopt sell: our EVP (General Counsel) 425,224sh [-15] | BEARISH adopt sell: our EVP (Chief Financial Officer) 30,000sh [-16] | BEARISH adopt sell: Cristiano Amon (President and Chief Executive ) 40,000sh [-20] | BEARISH adopt sell: ",10b5-1 leg -25
+444,VRSN,,,,,-25.0,1,False,0.0,,-54.0,0,3,"BEARISH adopt sell: Executive Chairman (President and Chief Executive ) 100,000sh [-23] | BEARISH adopt sell: Executive Chairman (President and Chief Executive ) 144,000sh [-23] | BEARISH adopt sell: Vice President (General Counsel) 12,000s",10b5-1 leg -25
+445,PGR,,,,,-25.0,0,False,0.0,,-36.0,0,3,BEARISH adopt sell: an insider (?) [-12] | BEARISH adopt sell: an insider (?) [-12] | BEARISH adopt sell: an insider (?) [-12],10b5-1 leg -25
+446,AVGO,,,,,-25.0,0,False,0.0,,-27.0,0,3,"BEARISH adopt sell: an insider (?) [-12] | BEARISH adopt sell: an insider (?) [-12] | weak BEARISH adopt sell (small): an insider (Director) 7,200sh [-3]",10b5-1 leg -25
+447,ADPT,,,,,-25.0,0,False,0.0,,-78.0,0,4,"BEARISH adopt sell: Chad Robins (Chief Executive Officer) 1,150,000sh [-26] | BEARISH adopt sell: Sharon Benzeno (Chief Commercial Officer) 220,000sh [-15] | BEARISH adopt sell: Kyle Piskel (Chief Financial Officer) 173,901sh [-19] | BEARIS",10b5-1 leg -25
+448,AVIR,,,,,-25.0,0,False,0.0,,-30.0,0,2,"BEARISH adopt sell: John Vavricka (Chief Commercial Officer) 305,000sh [-15] | BEARISH adopt sell: John Vavricka (Chief Commercial Officer) 200,000sh [-15]",10b5-1 leg -25
+449,OMDA,,,,,-25.0,0,False,0.0,,-80.0,0,8,"BEARISH adopt sell: Sean Duffy (Chief Executive Officer) 750,000sh [-26] | BEARISH adopt sell: Steve Cook (Chief Financial Officer) 146,332sh [-19] | BEARISH adopt sell: Li Shao (President) 66,514sh [-12] | BEARISH adopt sell: Craig Gracey ",10b5-1 leg -25
+450,AMZN,,,,,-25.0,0,False,0.0,,-37.0,0,5,"BEARISH adopt sell: Matthew S. Garman (CEO) 80,246sh [-20] | weak BEARISH adopt sell (small): an insider (Director) 1,900sh [-3] | weak BEARISH adopt sell (small): Andrew R. Jassy (President and Chief Executive ) 1,900sh [-3] | BEARISH adop",10b5-1 leg -25
+451,ZUMZ,,,,,-25.0,0,False,0.0,,-38.0,0,2,"BEARISH adopt sell: an insider (Chief Commercial Officer) 105,181sh [-15] | BEARISH adopt sell: an insider (Chairman of the Board) 100,000sh [-23]",10b5-1 leg -25
+452,BRLT,,,,,-25.0,0,False,0.0,,-54.0,0,3,"BEARISH adopt sell: an insider (?) 44,524sh [-12] | BEARISH adopt sell: an insider (Chief Executive Officer) 40,856sh [-20] | BEARISH adopt sell: an insider (Chief Financial Officer) 1,500,000sh [-22]",10b5-1 leg -25
+453,FSLY,,,,,-25.0,0,False,0.0,,-67.0,0,4,"BEARISH adopt sell: an insider (Director) 20,000sh [-8] | BEARISH adopt sell: an insider (Chief Executive Officer) 441,000sh [-23] | BEARISH adopt sell: an insider (Chief Technology Officer) 2,917,357sh [-18] | BEARISH adopt sell: Scott Lov",10b5-1 leg -25
+454,LENZ,,,,,-25.0,0,False,0.0,,-38.0,0,2,"BEARISH adopt sell: Evert Schimmelpennink (Chief Executive Officer) 225,000sh [-23] | BEARISH adopt sell: Shawn Olsson (Chief Commercial Officer) 225,000sh [-15]",10b5-1 leg -25
+455,JBI,,,,,-25.0,0,False,0.0,,-33.0,0,2,"BEARISH adopt sell: Morgan Hodges (Executive Vice President) 7,276,549sh [-18] | BEARISH adopt sell: Morgan Hodges (Executive Vice President) 250,000sh [-15]",10b5-1 leg -25
+456,VST,,,,,-25.0,0,False,0.0,,-43.0,0,5,"BEARISH adopt sell: an insider (director) 50,000sh [-12] | BEARISH adopt sell: an insider (Director) 25,000sh [-12] | weak BEARISH adopt sell (small): an insider (Director) 488sh [-3] | BEARISH adopt sell: an insider (Director) 15,000sh [-8",10b5-1 leg -25
+457,META,,,,,-25.0,0,False,0.0,,-52.0,1,7,"BULLISH terminate sell: an insider (director) 639,347sh [+26] | BEARISH adopt sell: an insider (Chairman) 639,347sh [-26] | weak BEARISH adopt sell (small): Mark Zuckerberg (Chief Executive Officer) 1,504sh [-3] | weak BEARISH adopt sell (s",10b5-1 leg -25
+458,VEL,,,,,-25.0,0,False,0.0,,-80.0,0,10,"BEARISH adopt sell: Jeffrey T. Taylor (Executive Vice President) 25,980sh [-12] | BEARISH adopt sell: Mark R. Szczepaniak (Chief Financial Officer) 25,980sh [-16] | BEARISH adopt sell: Fiona L. Tam (Chief Accounting Officer) 24,000sh [-8] |",10b5-1 leg -25
+459,ANTX,,,,,-25.0,0,False,0.0,,-49.0,0,3,"BEARISH adopt sell: Eric Easom (Chief Executive Officer) 450,000sh [-23] | BEARISH adopt sell: an insider (director) 582,288sh [-18] | BEARISH adopt sell: Eric Easom (Chief Executive Officer) 20,000sh [-8]",10b5-1 leg -25
+460,HTFL,,,,,-25.0,0,False,0.0,,-50.0,0,3,"BEARISH adopt sell: an insider (President and Chief Executive ) [-20] | BEARISH adopt sell: an insider (?) 427,900sh [-15] | BEARISH adopt sell: an insider (director) 254,144sh [-15]",10b5-1 leg -25
+461,TARS,,,,,-25.0,0,False,0.0,,-71.0,0,8,"weak BEARISH adopt sell (small): an insider (Director) 5,187sh [-3] | BEARISH adopt sell: Bobak Azamian (Chief Executive Officer) 24,000sh [-8] | BEARISH adopt sell: Bobak Azamian (Chief Executive Officer) 57,925sh [-20] | BEARISH adopt sel",10b5-1 leg -25

@@ -1,0 +1,51 @@
+rank,ticker,company,market_cap_musd,current_price,step_score,cleaned_conditionalities,n_unique_buyers,n_buys_30d,n_buys_90d,total_insider_musd,asymmetry_score
+1,CRM,"Salesforce, Inc.",148738.5,181.82000732421875,43.2,regulatory_milestone;revenue_target_dollar;margin_target,2,0,2,1.0,52.3
+2,HFFG,HF Foods Group Inc. ,101.6,1.899999976158142,47.7,revenue_target_dollar,4,0,4,0.041,47.1
+3,NCLH,Norwegian Cruise Line Holdings Ltd. ,8568.8,18.809999465942383,27.0,regulatory_milestone,3,3,3,0.966,46.8
+4,SPOK,"Spok Holdings, Inc ",220.8,10.649999618530273,29.7,regulatory_milestone;ebitda_target_dollar;revenue_target_dollar,1,1,1,0.107,45.0
+5,ARRY,"Array Technologies, Inc.",1318.3,8.569999694824219,37.8,spin_separation;regulatory_milestone;ebitda_target_dollar,0,0,0,0.0,39.1
+6,WTRG,"Essential Utilities, Inc.",10627.7,37.470001220703125,44.2,merger_close;regulatory_milestone,0,0,0,0.0,33.7
+7,CCI,CROWN CASTLE INC.,39529.5,90.56999969482422,39.6,debt_reduction_target,1,1,1,0.074,32.9
+8,DNUT,"Krispy Kreme, Inc. ",658.5,3.819999933242798,37.8,spin_separation;ebitda_target_dollar,0,0,0,0.0,31.1
+9,LAZ,"Lazard, Inc.",4732.9,48.08000183105469,51.3,revenue_target_dollar,0,0,0,0.0,28.5
+10,WST,WEST PHARMACEUTICAL SERVICES INC,23025.5,325.9200134277344,30.0,fcf_target_dollar;margin_target,0,0,0,0.0,28.0
+11,ENPH,"Enphase Energy, Inc.",4804.0,36.45000076293945,30.0,regulatory_milestone;fcf_target_dollar,0,0,0,0.0,28.0
+12,KMPR,KEMPER Corp,1783.3,30.290000915527344,30.0,regulatory_milestone;debt_reduction_target,0,0,0,0.0,28.0
+13,WRB,BERKLEY W R CORP,24451.1,65.68000030517578,48.6,regulatory_milestone,0,0,0,0.0,27.4
+14,PLBY,"Playboy, Inc. ",197.2,1.7100000381469727,41.4,merger_close,0,0,0,0.0,24.6
+15,CG,Carlyle Group Inc.,18218.7,50.630001068115234,41.4,regulatory_milestone,0,0,0,0.0,24.6
+16,GOSS,"Gossamer Bio, Inc. ",86.8,0.3700000047683716,36.9,regulatory_milestone,0,0,0,0.0,22.8
+17,BIIB,BIOGEN INC. ,27617.0,187.05999755859375,36.0,regulatory_milestone,0,0,0,0.0,22.4
+18,EYE,"National Vision Holdings, Inc. ",1774.6,22.34000015258789,54.0,,0,0,0,0.0,21.6
+19,PCG,PG&E Corp,35389.8,16.06999969482422,33.3,regulatory_milestone,0,0,0,0.0,21.3
+20,CAT,CATERPILLAR INC ,413952.2,889.6699829101562,29.7,backlog_book_to_bill,0,0,0,0.0,19.9
+21,EXLS,"ExlService Holdings, Inc. ",4849.3,31.739999771118164,29.7,regulatory_milestone,0,0,0,0.0,19.9
+22,D,"DOMINION ENERGY, INC",54429.5,61.88999938964844,29.2,regulatory_milestone,0,0,0,0.0,19.7
+23,INSW,"International Seaways, Inc. ",4214.8,85.13999938964844,28.8,spin_separation,0,0,0,0.0,19.5
+24,IRWD,IRONWOOD PHARMACEUTICALS INC ,730.9,4.440000057220459,27.9,regulatory_milestone,0,0,0,0.0,19.2
+25,HST,"HOST HOTELS & RESORTS, INC.",15450.6,22.270000457763672,27.9,regulatory_milestone,0,0,0,0.0,19.2
+26,SF,STIFEL FINANCIAL CORP,11765.3,76.5,27.0,revenue_target_dollar,0,0,0,0.0,18.8
+27,CGABL,Carlyle Group Inc. ,0.0,17.1299991607666,26.1,regulatory_milestone,0,0,0,0.0,18.4
+28,KDP,Keurig Dr Pepper Inc. ,39578.7,29.09000015258789,26.1,revenue_target_dollar,0,0,0,0.0,18.4
+29,CLPR,Clipper Realty Inc. ,138.0,3.25,45.9,,0,0,0,0.0,18.4
+30,TARS,"Tarsus Pharmaceuticals, Inc. ",2737.2,63.619998931884766,25.2,revenue_target_dollar,0,0,0,0.0,18.1
+31,REGN,"REGENERON PHARMACEUTICALS, INC. ",73536.2,701.4199829101562,24.3,regulatory_milestone,0,0,0,0.0,17.7
+32,CP,CANADIAN PACIFIC KANSAS CITY LTD/CN ,74166.1,83.08999633789062,44.2,,0,0,0,0.0,17.7
+33,ADSK,"Autodesk, Inc.",51625.0,244.5,43.0,,0,0,0,0.0,17.2
+34,EVRG,"Evergy, Inc.",18851.4,81.77999877929688,36.8,,0,0,0,0.0,14.7
+35,CAVA,"CAVA GROUP, INC. ",10591.2,90.9800033569336,34.2,,0,0,0,0.0,13.7
+36,DOV,DOVER Corp,29602.6,219.8300018310547,33.0,,0,0,0,0.0,13.2
+37,ROST,"ROSS STORES, INC.",73037.1,225.80999755859375,32.4,,0,0,0,0.0,13.0
+38,DXPE,DXP ENTERPRISES INC ,2695.8,173.6750030517578,31.5,,0,0,0,0.0,12.6
+39,SCOR,"COMSCORE, INC. ",109.4,7.28000020980835,30.6,,0,0,0,0.0,12.2
+40,OCUL,"OCULAR THERAPEUTIX, INC ",2052.8,9.430000305175781,30.6,,0,0,0,0.0,12.2
+41,UFPT,UFP TECHNOLOGIES INC ,1452.3,188.27999877929688,30.6,,0,0,0,0.0,12.2
+42,PLD,"Prologis, Inc.",134340.6,144.08999633789062,30.0,,0,0,0,0.0,12.0
+43,FTRE,Fortrea Holdings Inc. ,1152.0,12.180000305175781,29.7,,0,0,0,0.0,11.9
+44,HBIO,HARVARD BIOSCIENCE INC ,28.7,6.360000133514404,29.7,,0,0,0,0.0,11.9
+45,ROP,ROPER TECHNOLOGIES INC,34646.9,343.32000732421875,27.9,,0,0,0,0.0,11.2
+46,WBI,WaterBridge Infrastructure LLC ,1396.8,29.709999084472656,27.0,,0,0,0,0.0,10.8
+47,BKD,Brookdale Senior Living Inc. ,3327.1,13.989899635314941,27.0,,0,0,0,0.0,10.8
+48,IR,Ingersoll Rand Inc. ,30520.4,77.98999786376953,25.2,,0,0,0,0.0,10.1
+49,SNDA,"SONIDA SENIOR LIVING, INC. ",1774.0,37.470001220703125,24.3,,0,0,0,0.0,9.7
+50,CLOV,"CLOVER HEALTH INVESTMENTS, CORP. /DE ",1424.7,2.7100000381469727,24.3,,0,0,0,0.0,9.7

@@ -1,0 +1,264 @@
+ticker,company,kind,filing_date,accession,mcap_M,px,p_b,score,reasons
+FUBO,FuboTV Inc. ,RESTRUCT_8K,2026-01-07,0001493152-26-000807,286.0,9.73,0.35272792,48.0,8-K restructuring/debt-haircut keyword hit; microcap $286M; P/B 0.35; PSU.merger_acquisition_close; gov 15.0
+WBD,"Warner Bros. Discovery, Inc. ",RESTRUCT_8K,2026-05-27,0001193125-26-240646,66590.0,26.56,1.8338742,46.0,8-K restructuring/debt-haircut keyword hit; PSU 70%LTI; live TARGET 14D-9
+FSK,FS KKR Capital Corp ,RESTRUCT_8K,2025-12-23,0001104659-25-124199,0.0,,,40.0,8-K restructuring/debt-haircut keyword hit; live TARGET 14D-9
+RPAY,Repay Holdings Corp ,RESTRUCT_8K,2026-06-15,0001720592-26-000004,294.0,3.34,0.5637131,39.0,8-K restructuring/debt-haircut keyword hit; microcap $294M; P/B 0.56; PSU 75%LTI; gov 15.0
+CTEV,Claritev Corp ,RESTRUCT_8K,2026-02-23,0001793229-26-000012,527.0,30.89,-2.177806,36.0,8-K restructuring/debt-haircut keyword hit; microcap $527M; PSU.ebitda_dollar_target; PSU.revenue_dollar_target
+EBS,Emergent BioSolutions Inc. ,RESTRUCT_8K,2026-04-17,0001367644-26-000038,429.0,8.32,0.82392555,36.0,8-K restructuring/debt-haircut keyword hit; microcap $429M; P/B 0.82; PSU.fda_phase_milestone
+CIK0002117580,HarbourVest Private Equity Secondaries Fund,FORM_10_SPINOFF,2026-06-16,0001193125-26-272456,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002097887,HarbourVest Private Equity Secondaries Fund L.P. ,FORM_10_SPINOFF,2026-06-16,0001193125-26-272445,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002121708,"Imricor Medical Systems, Inc. ",FORM_10_SPINOFF,2026-05-15,0001437749-26-017396,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0001772918,ADAMS STREET CREDIT SOLUTIONS FUND ,FORM_10_SPINOFF,2026-05-15,0001193125-26-227113,0.0,,,35.0,Form 10-12B spinoff registration
+SPQS,"SportsQuest, Inc. ",FORM_10_SPINOFF,2026-05-14,0001683168-26-003868,0.0,,,35.0,Form 10-12B spinoff registration
+BRLL,Barrel Energy Inc. ,FORM_10_SPINOFF,2026-05-08,0001477932-26-002858,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002089975,HPS Real Assets Lending Co LP ,FORM_10_SPINOFF,2026-04-24,0001193125-26-177671,0.0,,,35.0,Form 10-12B spinoff registration
+ILXP,ECOMINAS CORP. ,FORM_10_SPINOFF,2026-04-09,0001477932-26-002091,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002107762,HPS Net Lease Income REIT ,FORM_10_SPINOFF,2026-04-09,0001193125-26-149886,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002102386,"Shefford Small Business, Inc. ",FORM_10_SPINOFF,2026-04-01,0001477932-26-001917,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002066811,TCW SPECIALTY LENDING LLC ,FORM_10_SPINOFF,2026-03-31,0001193125-26-134548,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002033382,Silver Point Private Credit Fund ,FORM_10_SPINOFF,2026-03-31,0001193125-26-134080,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002108121,JDEV Acquisition Corp ,FORM_10_SPINOFF,2026-03-27,0001213900-26-035633,0.0,,,35.0,Form 10-12B spinoff registration
+LEEEF,Leef Brands Inc. ,FORM_10_SPINOFF,2026-03-26,0001493152-26-012756,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002082557,Golub Capital Private Income Fund S ,FORM_10_SPINOFF,2026-03-24,0001104659-26-033965,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002082559,Golub Capital Private Income Fund I ,FORM_10_SPINOFF,2026-03-24,0001104659-26-033964,0.0,,,35.0,Form 10-12B spinoff registration
+HYOR,HyOrc Corp ,FORM_10_SPINOFF,2026-03-23,0001493152-26-012036,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002107057,TCW Specialty Lending IX LLC ,FORM_10_SPINOFF,2026-03-19,0001193125-26-116167,0.0,,,35.0,Form 10-12B spinoff registration
+CSDX,CS DIAGNOSTICS CORP. ,FORM_10_SPINOFF,2026-03-12,0001214659-26-003205,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0001289047,AI Technology Group Inc. ,FORM_10_SPINOFF,2026-03-05,0001477932-26-001197,0.0,,,35.0,Form 10-12B spinoff registration
+RITE,MINERALRITE Corp ,FORM_10_SPINOFF,2026-03-04,0001539497-26-000849,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0001984739,Investcorp US Private Credit BDC II ,FORM_10_SPINOFF,2026-03-04,0001193125-26-089532,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002096330,"CVC-PE Global Private Equity Fund, LP ",FORM_10_SPINOFF,2026-02-18,0001193125-26-057161,0.0,,,35.0,Form 10-12B spinoff registration
+AGGID,"Allied Energy, Inc. ",FORM_10_SPINOFF,2026-02-13,0001683168-26-000980,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002061174,Sound Point Direct Lending BDC ,FORM_10_SPINOFF,2026-02-12,0001829126-26-001261,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002083477,"APS BDC, LLC ",FORM_10_SPINOFF,2026-02-03,0001193125-26-035874,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0000095572,"KiNRG, Inc. ",FORM_10_SPINOFF,2026-01-23,0001213900-26-007267,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002095486,Blackstone Multi-Strategy Hedge Fund L.P. ,FORM_10_SPINOFF,2026-01-15,0001193125-26-014271,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002025369,Third Point Private Capital Partners ,FORM_10_SPINOFF,2026-01-05,0001104659-26-000253,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0001938649,"Partners Group Lending Fund, LLC ",FORM_10_SPINOFF,2025-12-19,0001398344-25-022745,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002082015,Augusta SpinCo Corp ,FORM_10_SPINOFF,2025-12-19,0001193125-25-327056,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002074450,"Apollo IG Core Replacement, L.P. ",FORM_10_SPINOFF,2025-12-19,0001193125-25-326963,0.0,,,35.0,Form 10-12B spinoff registration
+ZICX,Zicix Corp ,FORM_10_SPINOFF,2025-12-16,0001683168-25-009184,0.0,,,35.0,Form 10-12B spinoff registration
+SPST,Superstar Platforms Inc. ,FORM_10_SPINOFF,2025-12-15,0001493152-25-027728,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002046946,"Ares Sports, Media & Entertainment Opportunities LP ",FORM_10_SPINOFF,2025-12-15,0001104659-25-121226,0.0,,,35.0,Form 10-12B spinoff registration
+GTAO,Grayscale Bittensor Trust,FORM_10_SPINOFF,2025-12-09,0001193125-25-312006,0.0,,,35.0,Form 10-12B spinoff registration
+FCCI,"FAST CASUAL CONCEPTS, INC. ",FORM_10_SPINOFF,2025-12-09,0001171520-25-000364,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002089126,PennantPark Private Income Fund ,FORM_10_SPINOFF,2025-12-05,0001193125-25-309940,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002027033,Eagle Point Trinity Senior Secured Lending Co ,FORM_10_SPINOFF,2025-12-05,0001104659-25-118913,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002081628,Rithm Perpetual Life Residential Trust ,FORM_10_SPINOFF,2025-11-25,0001104659-25-115977,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002085428,Nuveen Farmland REIT ,FORM_10_SPINOFF,2025-11-05,0000930413-25-003388,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002035713,"Crestline Lending Solutions, LLC ",FORM_10_SPINOFF,2025-11-04,0001628280-25-049005,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002082826,"Warburg Pincus Access Fund, L.P. ",FORM_10_SPINOFF,2025-10-16,0001193125-25-240555,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002073537,PIMCO Asset-Based Lending Co LLC ,FORM_10_SPINOFF,2025-10-15,0001193125-25-239603,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002043133,TCW Steel City Perpetual Levered Fund LP ,FORM_10_SPINOFF,2025-10-10,0001193125-25-237195,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002032020,EQT Private Equity Co LLC ,FORM_10_SPINOFF,2025-09-29,0001193125-25-223380,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002077250,Stone Point Credit Income Fund - Select ,FORM_10_SPINOFF,2025-09-26,0001104659-25-093941,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002073653,FBRED-C Feeder REIT Trust ,FORM_10_SPINOFF,2025-09-26,0001104659-25-093937,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002079966,"Macquarie Infrastructure Fund, L.P. ",FORM_10_SPINOFF,2025-09-24,0001213900-25-091204,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0001953940,Blackstone Private Equity Strategies Fund,FORM_10_SPINOFF,2025-09-23,0001193125-25-211746,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002075239,Var Acquisition Corp. ,FORM_10_SPINOFF,2025-09-19,0001213900-25-089482,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002075109,Los Altos Ventures Corp. ,FORM_10_SPINOFF,2025-09-19,0001213900-25-089462,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002033362,"Audax Private Credit Fund, LLC ",FORM_10_SPINOFF,2025-09-19,0001193125-25-209131,0.0,,,35.0,Form 10-12B spinoff registration
+MDLK,International Endeavors Corp ,FORM_10_SPINOFF,2025-09-18,0001683168-25-007099,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002052153,Apollo Origination II,FORM_10_SPINOFF,2025-09-09,0001193125-25-199186,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002052152,Apollo Origination II,FORM_10_SPINOFF,2025-09-09,0001193125-25-199183,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002074065,Brookfield Private Equity Fund LP ,FORM_10_SPINOFF,2025-08-22,0001104659-25-081887,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0001997284,"Shefford & Companies, Inc. ",FORM_10_SPINOFF,2025-08-15,0001477932-25-005945,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002069692,Blue Owl Digital Infrastructure Trust ,FORM_10_SPINOFF,2025-08-08,0001628280-25-039061,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002065337,"Carlyle Private Equity Partners Fund, L.P. ",FORM_10_SPINOFF,2025-08-06,0001628280-25-038306,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002012139,Fortress Private Lending Fund ,FORM_10_SPINOFF,2025-08-04,0001140361-25-028557,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002071136,Nuveen Churchill BDC V ,FORM_10_SPINOFF,2025-08-01,0001628280-25-037264,0.0,,,35.0,Form 10-12B spinoff registration
+CIK0002045370,Remora Capital Corp ,FORM_10_SPINOFF,2025-07-28,0001213900-25-067875,0.0,,,35.0,Form 10-12B spinoff registration
+AMCX,AMC Networks Inc. ,RESTRUCT_8K,2026-02-23,0001514991-26-000019,436.0,9.92,0.45617583,35.0,8-K restructuring/debt-haircut keyword hit; microcap $436M; P/B 0.46
+KUST,"DIGITAL ALLY, INC. ",RESTRUCT_8K,2025-12-22,0001493152-25-028677,1.0,1.7,0.20856337,35.0,8-K restructuring/debt-haircut keyword hit; microcap $1M; P/B 0.21
+BYND,"BEYOND MEAT, INC. ",RESTRUCT_8K,2025-12-23,0001193125-25-329436,351.0,0.6813,-14.810869,31.0,8-K restructuring/debt-haircut keyword hit; microcap $351M; PSU 83%LTI; gov 18.0
+DVA,DAVITA INC. ,RESTRUCT_8K,2026-06-08,0001206774-26-000316,12743.0,198.54,-17.392904,31.0,8-K restructuring/debt-haircut keyword hit; PSU 75%LTI; buyback EXECUTING -9.1%
+AGO,ASSURED GUARANTY LTD ,RESTRUCT_8K,2026-03-23,0001273813-26-000047,3364.0,75.97,0.61095655,29.0,8-K restructuring/debt-haircut keyword hit; P/B 0.61; organic shrink -7.0%
+PRGO,PERRIGO Co plc ,RESTRUCT_8K,2026-03-23,0001585364-26-000028,1469.0,10.615,0.58665854,29.0,8-K restructuring/debt-haircut keyword hit; P/B 0.59; PSU 87%LTI
+BV,"BrightView Holdings, Inc. ",RESTRUCT_8K,2026-05-05,0001193125-26-206439,1199.0,12.87,0.96963763,29.0,8-K restructuring/debt-haircut keyword hit; P/B 0.97; organic shrink -1.8%
+GOSS,"Gossamer Bio, Inc. ",RESTRUCT_8K,2026-06-17,0001728117-26-000054,79.0,0.1619,-0.23531976,28.0,8-K restructuring/debt-haircut keyword hit; microcap $79M; PSU.fda_phase_milestone
+CMCO,COLUMBUS MCKINNON CORP ,RESTRUCT_8K,2026-02-04,0001193125-26-037694,399.0,13.83,0.59663504,28.0,8-K restructuring/debt-haircut keyword hit; microcap $399M; P/B 0.60
+CCO,"Clear Channel Outdoor Holdings, Inc. ",RESTRUCT_8K,2026-02-09,0001193125-26-043066,1227.0,2.41,-0.34816527,28.0,8-K restructuring/debt-haircut keyword hit; PSU.asset_sale_named; gov 15.0
+ORMP,ORAMED PHARMACEUTICALS INC. ,RESTRUCT_8K,2026-01-14,0001213900-26-004382,158.0,3.87,0.66472,28.0,8-K restructuring/debt-haircut keyword hit; microcap $158M; P/B 0.66
+FDP,FRESH DEL MONTE PRODUCE INC ,RESTRUCT_8K,2026-02-12,0001047340-26-000009,1370.0,28.8051,0.6801515,28.0,8-K restructuring/debt-haircut keyword hit; P/B 0.68; gov 15.0
+BCO,BRINKS CO ,RESTRUCT_8K,2026-04-06,0000078890-26-000021,4224.0,102.57,16.129894,27.0,8-K restructuring/debt-haircut keyword hit; PSU 75%LTI; organic shrink -1.7%
+MMS,"MAXIMUS, INC. ",RESTRUCT_8K,2026-05-28,0001032220-26-000030,3207.0,61.045,1.910522,26.0,8-K restructuring/debt-haircut keyword hit; PSU 88%LTI; gov 15.0
+TSEOF,Trinseo PLC ,RESTRUCT_8K,2026-05-14,0001104659-26-060590,0.0,0.013,,25.0,8-K restructuring/debt-haircut keyword hit; microcap $0M; gov 15.0
+GPGI,"CompoSecure, Inc. ",RESTRUCT_8K,2026-01-14,0000950142-26-000161,3339.0,11.52,1.0715282,23.0,8-K restructuring/debt-haircut keyword hit; PSU.spin_separation
+BXMT,"BLACKSTONE MORTGAGE TRUST, INC. ",RESTRUCT_8K,2026-05-19,0001193125-26-231141,3100.0,18.38,0.92102623,23.0,8-K restructuring/debt-haircut keyword hit; P/B 0.92
+SATS,EchoStar CORP ,RESTRUCT_8K,2026-03-19,0001415404-26-000006,33842.0,116.77,5.9986644,23.0,8-K restructuring/debt-haircut keyword hit; PSU.merger_acquisition_close
+ARRY,"Array Technologies, Inc. ",RESTRUCT_8K,2026-02-18,0001193125-26-057110,1195.0,7.77,-5.573888,23.0,8-K restructuring/debt-haircut keyword hit; PSU.ebitda_dollar_target
+APG,APi Group Corp ,RESTRUCT_8K,2026-05-18,0001193125-26-229096,18923.0,43.68,5.42811,23.0,8-K restructuring/debt-haircut keyword hit; PSU.ebitda_dollar_target
+THR,"Thermon Group Holdings, Inc. ",RESTRUCT_8K,2026-02-24,0001104659-26-018826,2014.0,61.14,3.7278216,23.0,8-K restructuring/debt-haircut keyword hit; PSU.ebitda_dollar_target
+BTU,PEABODY ENERGY CORP ,RESTRUCT_8K,2026-06-15,0001193125-26-270268,3198.0,26.245,0.91458744,23.0,8-K restructuring/debt-haircut keyword hit; P/B 0.91
+CNM,"Core & Main, Inc. ",RESTRUCT_8K,2026-04-10,0001193125-26-150369,9881.0,49.44,4.552905,23.0,8-K restructuring/debt-haircut keyword hit; PSU.ebitda_dollar_target
+AHCO,AdaptHealth Corp. ,RESTRUCT_8K,2026-04-13,0001628280-26-024835,1335.0,9.81,0.86622524,23.0,8-K restructuring/debt-haircut keyword hit; P/B 0.87
+PRMB,Primo Brands Corp ,RESTRUCT_8K,2026-04-01,0001193125-26-135834,8763.0,24.15,2.9639175,23.0,8-K restructuring/debt-haircut keyword hit; PSU.merger_acquisition_close
+BLCO,Bausch & Lomb Corp ,RESTRUCT_8K,2026-01-02,0000950103-26-000051,5377.0,15.08,0.84250516,23.0,8-K restructuring/debt-haircut keyword hit; P/B 0.84
+ACH,ACCENDRA HEALTH INC/VA/ ,RESTRUCT_8K,2026-05-22,0001193125-26-236869,0.0,,,21.0,8-K restructuring/debt-haircut keyword hit; PSU 75%LTI
+IQV,IQVIA HOLDINGS INC. ,RESTRUCT_8K,2026-06-11,0001193125-26-267763,31085.0,186.25,4.996781,21.0,8-K restructuring/debt-haircut keyword hit; organic shrink -3.2%
+WOLF,"WOLFSPEED, INC. ",RESTRUCT_8K,2026-03-26,0001193125-26-126483,0.0,,,21.0,8-K restructuring/debt-haircut keyword hit; PSU 90%LTI
+OGN,Organon & Co. ,RESTRUCT_8K,2026-04-27,0001193125-26-178718,3525.0,13.425,3.9048867,21.0,8-K restructuring/debt-haircut keyword hit; PSU 70%LTI
+ECPG,ENCORE CAPITAL GROUP INC ,RESTRUCT_8K,2026-05-26,0001084961-26-000046,1770.0,82.57,1.715455,21.0,8-K restructuring/debt-haircut keyword hit; PSU 75%LTI
+ASTS,"AST SpaceMobile, Inc. ",RESTRUCT_8K,2026-05-11,0001193125-26-216946,34431.0,88.71,12.732883,21.0,8-K restructuring/debt-haircut keyword hit; organic shrink -18.1%
+MUR,MURPHY OIL CORP ,RESTRUCT_8K,2026-01-06,0000950103-26-000187,5297.0,36.95,1.0387968,21.0,8-K restructuring/debt-haircut keyword hit; PSU 80%LTI
+PENN,"PENN Entertainment, Inc. ",RESTRUCT_8K,2026-04-16,0001104659-26-044358,2902.0,21.68,1.5068113,21.0,8-K restructuring/debt-haircut keyword hit; PSU 70%LTI
+CMPR,CIMPRESS plc ,RESTRUCT_8K,2026-06-04,0001262976-26-000020,2227.0,91.9,-4.247747,21.0,8-K restructuring/debt-haircut keyword hit; PSU 75%LTI
+LITE,Lumentum Holdings Inc. ,RESTRUCT_8K,2025-12-22,0001193125-25-328691,63933.0,821.76,69.30589,21.0,8-K restructuring/debt-haircut keyword hit; PSU 70%LTI
+BZH,BEAZER HOMES USA INC ,RESTRUCT_8K,2026-03-17,0000915840-26-000034,0.0,,,21.0,8-K restructuring/debt-haircut keyword hit; PSU 71%LTI
+GTE,GRAN TIERRA ENERGY INC. ,RESTRUCT_8K,2026-03-06,0001104659-26-024683,288.0,8.14,2.6419995,20.0,8-K restructuring/debt-haircut keyword hit; microcap $288M
+SNTI,"Senti Biosciences, Inc. ",RESTRUCT_8K,2026-05-01,0001628280-26-029320,28.0,0.9057,5.0038676,20.0,8-K restructuring/debt-haircut keyword hit; microcap $28M
+CPS,Cooper-Standard Holdings Inc. ,RESTRUCT_8K,2026-03-04,0001320461-26-000057,529.0,29.78,-4.585066,20.0,8-K restructuring/debt-haircut keyword hit; microcap $529M
+BIRD,"Allbirds, Inc. ",RESTRUCT_8K,2026-04-20,0001193125-26-164338,32.0,3.66,1.9698601,20.0,8-K restructuring/debt-haircut keyword hit; microcap $32M
+CMLSQ,CUMULUS MEDIA INC ,RESTRUCT_8K,2026-03-05,0001104659-26-023855,0.0,0.0039,-0.0003314917,20.0,8-K restructuring/debt-haircut keyword hit; microcap $0M
+SITE,"SiteOne Landscape Supply, Inc. ",RESTRUCT_8K,2026-04-27,0001104659-26-048750,0.0,,,20.0,8-K restructuring/debt-haircut keyword hit; gov 15.0
+ENTG,ENTEGRIS INC ,RESTRUCT_8K,2026-04-29,0001104659-26-051610,20462.0,134.35,5.0532217,20.0,8-K restructuring/debt-haircut keyword hit; gov 18.0
+ALSN,Allison Transmission Holdings Inc ,RESTRUCT_8K,2026-01-02,0001193125-26-000343,9733.0,117.35,5.120206,20.0,8-K restructuring/debt-haircut keyword hit; gov 15.0
+ATEC,"Alphatec Holdings, Inc. ",RESTRUCT_8K,2026-05-05,0001193125-26-206530,1255.0,8.16,-233.14285,20.0,8-K restructuring/debt-haircut keyword hit; gov 20.0
+NXST,"NEXSTAR MEDIA GROUP, INC. ",RESTRUCT_8K,2026-03-30,0001193125-26-129955,5484.0,179.57,2.5293686,20.0,8-K restructuring/debt-haircut keyword hit; gov 15.0
+HNI,HNI CORP ,RESTRUCT_8K,2026-06-10,0000950103-26-008782,2383.0,33.1,1.3435622,20.0,8-K restructuring/debt-haircut keyword hit; gov 15.0
+TTMI,TTM TECHNOLOGIES INC ,RESTRUCT_8K,2026-06-03,0001193125-26-255711,0.0,,,20.0,8-K restructuring/debt-haircut keyword hit; gov 15.0
+CRC,California Resources Corp ,RESTRUCT_8K,2026-04-17,0001609253-26-000086,0.0,,,20.0,8-K restructuring/debt-haircut keyword hit; gov 15.0
+ZSQR,Z Squared Inc. ,RESTRUCT_8K,2026-06-01,0001683168-26-004425,531.0,10.33,,20.0,8-K restructuring/debt-haircut keyword hit; microcap $531M
+EPSN,Epsilon Energy Ltd. ,RESTRUCT_8K,2026-01-13,0001104659-26-003368,179.0,5.93,1.4445797,20.0,8-K restructuring/debt-haircut keyword hit; microcap $179M
+PSKY,Paramount Skydance Corp ,RESTRUCT_8K,2026-05-19,0001104659-26-063952,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+BHC,Bausch Health Companies Inc. ,RESTRUCT_8K,2025-12-23,0000885590-25-000057,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+SABR,Sabre Corp ,RESTRUCT_8K,2025-12-23,0001193125-25-331055,692.0,1.75,-0.6648936,15.0,8-K restructuring/debt-haircut keyword hit
+ADV,Advantage Solutions Inc. ,RESTRUCT_8K,2026-03-11,0001193125-26-102465,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+CIK0001193311,ONCOR ELECTRIC DELIVERY CO LLC ,RESTRUCT_8K,2026-03-20,0001193125-26-117626,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+BBGI,BEASLEY BROADCAST GROUP INC ,RESTRUCT_8K,2026-04-29,0001193125-26-189109,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+CIK0002066811,TCW SPECIALTY LENDING LLC ,RESTRUCT_8K,2026-04-07,0001193125-26-145523,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+TPTA,"Terra Property Trust, Inc. ",RESTRUCT_8K,2026-06-11,0001104659-26-072549,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+UONEK,"URBAN ONE, INC. ",RESTRUCT_8K,2026-03-17,0001041657-26-000010,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+MVIS,"MICROVISION, INC. ",RESTRUCT_8K,2026-02-24,0001493152-26-007835,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+CEG,Constellation Energy Corp ,RESTRUCT_8K,2026-01-15,0001868275-26-000009,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+AMC,"AMC ENTERTAINMENT HOLDINGS, INC. ",RESTRUCT_8K,2026-02-13,0001104659-26-014607,1765.0,2.34,-0.73515546,15.0,8-K restructuring/debt-haircut keyword hit
+ADTX,"Aditxt, Inc. ",RESTRUCT_8K,2026-06-09,0001213900-26-066823,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+WMG,Warner Music Group Corp. ,RESTRUCT_8K,2026-03-11,0001193125-26-102112,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+CDE,"Coeur Mining, Inc. ",RESTRUCT_8K,2026-03-23,0001140361-26-010650,16581.0,16.09,1.5986091,15.0,8-K restructuring/debt-haircut keyword hit
+CVSI,"CV Sciences, Inc. ",RESTRUCT_8K,2026-03-10,0001193125-26-100436,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+CIK0001930087,Golub Capital Private Credit Fund ,RESTRUCT_8K,2026-01-29,0001104659-26-008030,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+CIK0001812554,Blue Owl Credit Income Corp. ,RESTRUCT_8K,2026-06-11,0001628280-26-042497,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+TBH,"Brag House Holdings, Inc. ",RESTRUCT_8K,2026-05-08,0001213900-26-053894,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+NE-WT,Noble Corp plc ,RESTRUCT_8K,2026-06-01,0001895262-26-000129,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+MDLN,Medline Inc. ,RESTRUCT_8K,2026-06-02,0001193125-26-252557,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+VST,Vistra Corp. ,RESTRUCT_8K,2026-01-27,0001193125-26-024837,49303.0,146.22,18.859797,15.0,8-K restructuring/debt-haircut keyword hit
+QXO-PB,"QXO, Inc. ",RESTRUCT_8K,2026-06-17,0000950142-26-001816,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+CIK0001916099,Diameter Credit Co ,RESTRUCT_8K,2026-03-27,0001193125-26-129150,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+PAVM,PAVmed Inc. ,RESTRUCT_8K,2026-02-04,0001493152-26-005023,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+TH,Target Hospitality Corp. ,RESTRUCT_8K,2025-12-29,0001104659-25-124455,1637.0,16.44,4.368855,15.0,8-K restructuring/debt-haircut keyword hit
+NVACW,"Profusa, Inc. ",RESTRUCT_8K,2026-04-06,0001213900-26-040111,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+BWIN,"Baldwin Insurance Group, Inc. ",RESTRUCT_8K,2026-01-02,0001781755-26-000004,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+NRG,"NRG ENERGY, INC. ",RESTRUCT_8K,2026-04-28,0001104659-26-050486,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+KIDZW,"Classover Holdings, Inc. ",RESTRUCT_8K,2026-05-29,0001477932-26-003478,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+WHR-PA,WHIRLPOOL CORP /DE/ ,RESTRUCT_8K,2026-06-16,0001193125-26-272923,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+IPW,iPower Inc. ,RESTRUCT_8K,2026-05-19,0001683168-26-004092,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+UGRO,"urban-gro, Inc. ",RESTRUCT_8K,2026-04-14,0001213900-26-043145,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+SPWRW,SunPower Inc. ,RESTRUCT_8K,2026-04-22,0001213900-26-046407,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+CIK0001859919,Barings Private Credit Corp ,RESTRUCT_8K,2026-05-27,0001859919-26-000047,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+LFWD,Lifeward Ltd. ,RESTRUCT_8K,2026-01-13,0001178913-26-000132,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+PRM,"Perimeter Solutions, Inc. ",RESTRUCT_8K,2026-01-02,0001493152-26-000112,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+CIK0001838126,HPS Corporate Lending Fund ,RESTRUCT_8K,2026-03-26,0001193125-26-126619,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+TCPC,BlackRock TCP Capital Corp. ,RESTRUCT_8K,2026-06-01,0001140361-26-023577,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+LRHC,La Rosa Holdings Corp. ,RESTRUCT_8K,2026-01-09,0001213900-26-002685,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+MEHA,Functional Brands Inc. ,RESTRUCT_8K,2026-03-13,0001213900-26-027715,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+CBLO,"C2 Blockchain, Inc. ",RESTRUCT_8K,2026-06-02,0001882781-26-000041,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+NXXT,"NEXTNRG, INC. ",RESTRUCT_8K,2026-04-10,0001493152-26-016197,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+NXGLW,"NEXGEL, INC. ",RESTRUCT_8K,2026-02-11,0001493152-26-006124,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+HLF,HERBALIFE LTD. ,RESTRUCT_8K,2026-05-01,0001213900-26-051010,1171.0,11.3,-2.6463702,15.0,8-K restructuring/debt-haircut keyword hit
+FNGR,"FingerMotion, Inc. ",RESTRUCT_8K,2026-05-14,0001520138-26-000163,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+PHXE-P,"Phoenix Energy One, LLC ",RESTRUCT_8K,2026-02-13,0001193125-26-051726,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+GAMG,"Global Asset Management Group, Inc. ",RESTRUCT_8K,2026-03-24,0001477932-26-001558,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+SHC,Sotera Health Co ,RESTRUCT_8K,2026-05-20,0001193125-26-232585,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+CIK0001634452,AB Private Credit Investors Corp ,RESTRUCT_8K,2025-12-23,0001193125-25-330756,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+CIK0002044112,INTEGRATED RAIL & RESOURCES INC. ,RESTRUCT_8K,2026-02-20,0001213900-26-018878,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+FFAIW,FARADAY FUTURE INTELLIGENT ELECTRIC INC. ,RESTRUCT_8K,2026-04-16,0001213900-26-044633,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+VACHW,Voyager Acquisition Corp./Cayman Islands ,RESTRUCT_8K,2026-05-29,0001829126-26-005814,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+GNVR,Genvor Inc ,RESTRUCT_8K,2026-04-22,0001903596-26-000160,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+BNZIW,"Banzai International, Inc. ",RESTRUCT_8K,2026-02-13,0001493152-26-006807,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+MITI,"Mitesco, Inc. ",RESTRUCT_8K,2026-02-27,0001185185-26-000695,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+CIK0001982701,AB Private Lending Fund ,RESTRUCT_8K,2026-02-13,0001193125-26-051081,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+TDG,TransDigm Group INC ,RESTRUCT_8K,2026-02-13,0001193125-26-051416,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+QVCGQ,"QVC Group, Inc. ",RESTRUCT_8K,2026-04-17,0001104659-26-044521,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+MRVI,"MARAVAI LIFESCIENCES HOLDINGS, INC. ",RESTRUCT_8K,2026-06-03,0001823239-26-000049,1881.0,5.1,3.5564852,15.0,8-K restructuring/debt-haircut keyword hit
+MAIR,Madison Air Solutions Corp ,RESTRUCT_8K,2026-06-05,0001628280-26-041148,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+COMP,"Compass, Inc. ",RESTRUCT_8K,2026-01-09,0001563190-26-000019,6104.0,8.17,2.1619475,15.0,8-K restructuring/debt-haircut keyword hit
+CIK0001918712,ARES STRATEGIC INCOME FUND ,RESTRUCT_8K,2025-12-22,0001104659-25-123808,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+SDSTW,Stardust Power Inc. ,RESTRUCT_8K,2025-12-31,0001493152-25-029844,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+VNRX,VOLITIONRX LTD ,RESTRUCT_8K,2026-01-08,0001477932-26-000107,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+WMS,"ADVANCED DRAINAGE SYSTEMS, INC. ",RESTRUCT_8K,2026-02-27,0001193125-26-082558,10393.0,135.69,5.3039126,15.0,8-K restructuring/debt-haircut keyword hit
+VTOL,Bristow Group Inc. ,RESTRUCT_8K,2026-01-27,0001193125-26-023418,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+PFGC,Performance Food Group Co ,RESTRUCT_8K,2026-02-19,0001193125-26-059455,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+VSAT,VIASAT INC ,RESTRUCT_8K,2026-01-26,0001193125-26-022564,8732.0,63.94,1.9003744,15.0,8-K restructuring/debt-haircut keyword hit
+OTF,Blue Owl Technology Finance Corp. ,RESTRUCT_8K,2025-12-22,0001193125-25-328823,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+WCC,WESCO INTERNATIONAL INC ,RESTRUCT_8K,2026-02-27,0001193125-26-083054,16277.0,334.19,3.231793,15.0,8-K restructuring/debt-haircut keyword hit
+W,Wayfair Inc. ,RESTRUCT_8K,2026-05-18,0001193125-26-229012,9064.0,68.67,-3.2172976,15.0,8-K restructuring/debt-haircut keyword hit
+OTLC,"Oncotelic Therapeutics, Inc. ",RESTRUCT_8K,2026-01-29,0001493152-26-004237,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+HLT,Hilton Worldwide Holdings Inc. ,RESTRUCT_8K,2026-05-11,0001193125-26-217102,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+RUMBW,Rumble Inc. ,RESTRUCT_8K,2026-06-17,0001213900-26-069733,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+FVNNR,Future Vision II Acquisition Corp. ,RESTRUCT_8K,2026-01-20,0001829126-26-000388,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+BBBY-WT,"BED BATH & BEYOND, INC. ",RESTRUCT_8K,2026-04-02,0001140361-26-012893,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+PLMKU,"Plum Acquisition Corp, IV ",RESTRUCT_8K,2026-03-12,0001213900-26-026265,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+DAAQU,Digital Asset Acquisition Corp. ,RESTRUCT_8K,2026-01-13,0001213900-26-003691,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+HCACR,Hall Chadwick Acquisition Corp ,RESTRUCT_8K,2026-06-03,0001829126-26-006011,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+CSTUF,Constellation Acquisition Corp I ,RESTRUCT_8K,2026-04-09,0001213900-26-042083,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+TACHU,Titan Acquisition Corp. ,RESTRUCT_8K,2026-06-01,0001829126-26-005923,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+DBRG-PJ,"DigitalBridge Group, Inc. ",RESTRUCT_8K,2026-05-27,0001104659-26-066617,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+LUMN,"Lumen Technologies, Inc. ",RESTRUCT_8K,2026-05-14,0001193125-26-222375,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+ENHA,Enhanced Group Inc. ,RESTRUCT_8K,2026-05-08,0001628280-26-032558,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+NOTV,"Inotiv, Inc. ",RESTRUCT_8K,2026-05-18,0001104659-26-063032,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+SSP,E.W. SCRIPPS Co ,RESTRUCT_8K,2026-05-06,0000832428-26-000017,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+CIK0001758057,"Luminar Technologies, Inc./DE ",RESTRUCT_8K,2026-01-05,0001140361-26-000305,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+ALISU,Calisa Acquisition Corp ,RESTRUCT_8K,2026-03-09,0001493152-26-009317,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+TFX,TELEFLEX INC ,RESTRUCT_8K,2026-05-27,0001193125-26-242184,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+QVCDQ,QVC INC ,RESTRUCT_8K,2026-04-17,0001104659-26-044600,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+NINE,"Nine Energy Service, Inc. ",RESTRUCT_8K,2026-02-02,0001213900-26-010501,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+FLYYQ,"Spirit Aviation Holdings, Inc. ",RESTRUCT_8K,2026-03-16,0000950103-26-003790,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+NFE,New Fortress Energy Inc. ,RESTRUCT_8K,2026-05-12,0001749723-26-000054,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+CIK0001220754,ModivCare Inc ,RESTRUCT_8K,2025-12-29,0001437749-25-038831,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+OPITQ,OFFICE PROPERTIES INCOME TRUST ,RESTRUCT_8K,2026-04-28,0001104659-26-050398,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+CIK0000846475,ZYNEX INC ,RESTRUCT_8K,2026-03-20,0001104659-26-032723,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+CIK0001159167,IROBOT CORP ,RESTRUCT_8K,2026-01-26,0001159167-26-000006,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+VREOD,Vireo Growth Inc. ,RESTRUCT_8K,2026-03-25,0001104659-26-034509,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+BGS,"B&G Foods, Inc. ",RESTRUCT_8K,2026-01-16,0001104659-26-004534,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+CP,CANADIAN PACIFIC KANSAS CITY LTD/CN ,RESTRUCT_8K,2026-03-25,0001193125-26-124134,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+RILYZ,"BRC Group Holdings, Inc. ",RESTRUCT_8K,2026-02-10,0001464790-26-000015,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+KLXE,"KLX Energy Services Holdings, Inc. ",RESTRUCT_8K,2026-06-02,0001738827-26-000023,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+ACDC,ProFrac Holding Corp. ,RESTRUCT_8K,2026-03-09,0001104659-26-025192,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+USFD,US Foods Holding Corp. ,RESTRUCT_8K,2026-06-02,0001665918-26-000041,20551.0,93.32,4.7775555,15.0,8-K restructuring/debt-haircut keyword hit
+BSY,BENTLEY SYSTEMS INC ,RESTRUCT_8K,2026-04-27,0001104659-26-049444,10059.0,33.11,8.450741,15.0,8-K restructuring/debt-haircut keyword hit
+GENVR,Gen Digital Inc. ,RESTRUCT_8K,2026-03-27,0000849399-26-000011,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+MZTI,MARZETTI CO ,RESTRUCT_8K,2026-05-01,0001193125-26-201554,3017.0,110.01,2.8874018,15.0,8-K restructuring/debt-haircut keyword hit
+PBI-PB,PITNEY BOWES INC /DE/ ,RESTRUCT_8K,2026-05-19,0001628280-26-036154,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+DK,"Delek US Holdings, Inc. ",RESTRUCT_8K,2026-04-10,0001193125-26-151245,2942.0,48.01,55.95571,15.0,8-K restructuring/debt-haircut keyword hit
+CIFR,Cipher Digital Inc. ,RESTRUCT_8K,2026-03-25,0000950103-26-004609,9422.0,23.035,13.073213,15.0,8-K restructuring/debt-haircut keyword hit
+PUMP,ProPetro Holding Corp. ,RESTRUCT_8K,2026-05-04,0001104659-26-054472,1848.0,15.07,1.8941679,15.0,8-K restructuring/debt-haircut keyword hit
+IBP,"Installed Building Products, Inc. ",RESTRUCT_8K,2026-01-06,0001628280-26-000785,5435.0,201.74,8.091934,15.0,8-K restructuring/debt-haircut keyword hit
+NVRI,Enviri II Corp ,RESTRUCT_8K,2026-06-01,0001193125-26-251752,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+BE,Bloom Energy Corp ,RESTRUCT_8K,2025-12-23,0001628280-25-058618,73844.0,259.61,80.0771,15.0,8-K restructuring/debt-haircut keyword hit
+XPO,"XPO, Inc. ",RESTRUCT_8K,2026-06-01,0001104659-26-068522,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+BYD,BOYD GAMING CORP ,RESTRUCT_8K,2026-01-21,0001193125-26-017988,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+SM,SM Energy Co ,RESTRUCT_8K,2026-03-04,0001104659-26-023191,7871.0,32.83,1.1457789,15.0,8-K restructuring/debt-haircut keyword hit
+BSQKZ,"Block, Inc. ",RESTRUCT_8K,2026-01-14,0001193125-26-012944,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+BALY,Bally's Corp ,RESTRUCT_8K,2026-02-17,0001213900-26-017495,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+KNF,Knife River Corp ,RESTRUCT_8K,2026-05-18,0001628280-26-036006,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+TIPT,TIPTREE INC. ,RESTRUCT_8K,2026-05-29,0001393726-26-000034,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+PRPL,"Purple Innovation, Inc. ",RESTRUCT_8K,2026-03-31,0001213900-26-036891,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+ASPI,ASP Isotopes Inc. ,RESTRUCT_8K,2026-03-24,0001477932-26-001559,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+OCAC-UN,Ocean Capital Acquisition Corp ,RESTRUCT_8K,2026-06-17,0001493152-26-028972,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+OHACR,Oceanhawk Acquisition Corp. ,RESTRUCT_8K,2026-05-29,0001213900-26-062793,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+CHUC,"Charlie's Holdings, Inc. ",RESTRUCT_8K,2026-05-21,0001437749-26-017985,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+JAB,JAB Acquisition Corp I ,RESTRUCT_8K,2026-06-17,0001213900-26-069635,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+FMACU,Future Money Acquisition Corp ,RESTRUCT_8K,2026-04-03,0001493152-26-015100,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+NBRGU,Newbridge Acquisition Ltd ,RESTRUCT_8K,2026-02-05,0001213900-26-012753,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+CIK0001692951,"Cottonwood Communities, Inc. ",RESTRUCT_8K,2026-03-06,0001692951-26-000040,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+APURU,Aperture AC ,RESTRUCT_8K,2026-05-29,0001213900-26-062836,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+QLEP-UN,Quantum Leap Acquisition Corp ,RESTRUCT_8K,2026-05-11,0001213900-26-054048,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+PLUN-UN,Plutonian Acquisition Corp. II ,RESTRUCT_8K,2026-05-06,0001477932-26-002772,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+BREZU,Breeze Acquisition Corp. II ,RESTRUCT_8K,2026-06-02,0001213900-26-063622,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+TWLVR,Twelve Seas Investment Co III/Cayman ,RESTRUCT_8K,2025-12-22,0001213900-25-124053,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+MTNE-UN,CH4 Natural Solutions Corp ,RESTRUCT_8K,2026-05-08,0001193125-26-215042,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+BRKHU,BurTech Acquisition Corp II ,RESTRUCT_8K,2026-06-02,0001213900-26-063614,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+MCAHU,Mountain Crest Acquisition 6 Corp. ,RESTRUCT_8K,2026-05-07,0001829126-26-004742,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+OTAI-UN,Starlink AI Acquisition Corp ,RESTRUCT_8K,2026-05-15,0001493152-26-023650,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+VECA-RI,Vernal Capital Acquisition Corp. ,RESTRUCT_8K,2026-05-14,0001213900-26-056171,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
+BRUNW,Boost Run Inc. ,RESTRUCT_8K,2026-05-14,0001493152-26-023208,0.0,,,15.0,8-K restructuring/debt-haircut keyword hit
