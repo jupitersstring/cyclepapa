@@ -2464,6 +2464,79 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _not_melting
     ).fillna(False).astype(int)
 
+    # ---------- XR: EXCEPTIONAL RISK/REWARD (user request) ----------
+    # Convexity through COINCIDENCE: independent floors under the price while
+    # an upside engine runs. Each gate demands a rare conjunction — value,
+    # growth and asset supports at once — so counts stay small by design.
+
+    # XR1 — Paid to grow ('XR-NegEVGrowth'): cash covers the whole price (or
+    # nearly) while the business GROWS with profitability present. The market
+    # pays you to own the growth. The rarest, cleanest asymmetry in the book.
+    df['arch_xr_neg_ev_growth'] = (
+        is_operating & (mcap > 0) &
+        ((cash_gt_ev > 0) | (net_cash_pct_c >= 0.80)) &
+        (rev_yoy_c >= 0.15) & (rev_yoy_c <= 1.0) &
+        _profit_present &
+        ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR2 — Triple floor ('XR-TripleFloor'): three INDEPENDENT downside
+    # supports — a net-cash balance sheet, real earnings (latest or the 5-yr
+    # Graham average), and a PAID dividend — while revenue still grows. Each
+    # floor can fail alone; together the downside is triply covered and the
+    # payout funds the wait.
+    df['arch_xr_triple_floor'] = (
+        is_operating & (mcap > 0) &
+        (net_cash_pct_c >= 0.40) &
+        ((_ncol('net_income_ttm') > 0) | (_ncol('ni_avg') > 0)) &
+        (_ncol('dividend_yield') >= 0.03) &
+        (rev_yoy_c >= 0.08) &
+        (pb > 0) & (pb < 1.5) &
+        ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR3 — Floor + inflection ('XR-FloorInflection'): Graham-and-catalyst.
+    # Priced at/below a HARD asset floor (net-net, deep net cash, or the
+    # hidden-asset gap) exactly as operating INFLECTION evidence appears
+    # (a first-positive print, or acceleration with operating leverage), on a
+    # beaten-down tape. Downside = the floor; upside = the re-rate.
+    _xr_floor = ((ncav_pct >= 0.80) | (net_cash_pct_c >= 0.50)
+                 | (_hidden_pct >= 0.40))
+    _xr_inflect = ((ebitda_first_pos > 0) | (cfo_first_pos > 0)
+                   | (fcf_first_pos > 0) | (ni_first_pos > 0)
+                   | ((rev_accel > 0) & oper_lev_any))
+    df['arch_xr_floor_inflection'] = (
+        is_operating & (mcap > 0) &
+        _xr_floor & _xr_inflect &
+        beaten_down_any(0.30) &
+        ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR4 — Quality at a crisis price ('XR-QualityAtCrisis'): MULTI-YEAR
+    # proven quality (durable FCF years, audited book compounding, Lindy
+    # ROIC, or positive 5-yr average owner earnings) marked at a CRISIS price
+    # (>=40% off the high, or the bottom third of the 5-year range) and cheap
+    # on at least one lens. Quality that persists through its own drawdown is
+    # the Templeton entry.
+    _xr_quality = ((s('n_yrs_positive_fcf', 0) >= 4)
+                   | (_ncol('equity_cagr_5y') >= 0.10)
+                   | (roic_lindy >= 0.12)
+                   | ((_ncol('oe_avg') > 0) & (_ncol('ni_avg') > 0)))
+    _xr_crisis = ((_num('pct_off_52w_high') <= -0.40)
+                  | (_num('price_pct_of_5y_range') <= 0.30))
+    _xr_cheap = (((pb > 0) & (pb < 1.2))
+                 | ((_ncol('p_e') > 0) & (_ncol('p_e') <= 10.0))
+                 | (fcf_yield >= 0.10))
+    df['arch_xr_quality_crisis'] = (
+        is_operating & (mcap > 0) &
+        _xr_quality & _xr_crisis & _xr_cheap &
+        ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
     # F6 — Forensic payout confirmation (the user's BOOST leg). Any forensic /
     # hidden-value member that is ALSO returning capital — buying back shares
     # or paying a dividend — earns an EXTRA archetype count, which is this
@@ -3389,6 +3462,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_cannibal_at_discount',
         'arch_self_funded_returner',
         'arch_book_compounder_discount',
+        'arch_xr_neg_ev_growth',
+        'arch_xr_triple_floor',
+        'arch_xr_floor_inflection',
+        'arch_xr_quality_crisis',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -3493,6 +3570,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_cannibal_at_discount': 'Forensic-CannibalDiscount',
         'arch_self_funded_returner': 'Forensic-SelfFunded',
         'arch_book_compounder_discount': 'Forensic-BookCompounder',
+        'arch_xr_neg_ev_growth': 'XR-NegEVGrowth',
+        'arch_xr_triple_floor': 'XR-TripleFloor',
+        'arch_xr_floor_inflection': 'XR-FloorInflection',
+        'arch_xr_quality_crisis': 'XR-QualityAtCrisis',
         'arch_oak_order_conversion': 'OakOrderConversion',
         'arch_weschler_levered_equity': 'WeschlerLeveredEquity',
         'arch_cheap_sales_scaler': 'CheapSalesScaler',
