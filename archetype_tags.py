@@ -811,7 +811,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_tangible_value'] = (
         is_operating &                          # (G1) exclude financials/REITs/utilities
         (mcap >= 10e6) &                        # investable scale (was firing on $2k shells)
-        (p_tb > 0) & (p_tb < 0.7) & (tangible_equity_pct > 0.50) &
+        (p_tb > 0) & (p_tb < 0.7) &
+        # (non-XR review) tangible_equity_pct is NOT a master column -> was
+        # DEAD; derive the ratio from present levels (tangible_equity/equity),
+        # permissive when either is absent so non-EDGAR names are not excluded
+        (~((_ncol('tangible_equity') / _ncol('equity').where(_ncol('equity') > 0)) <= 0.50)) &
         ((s('fcf_ttm') > 0) | (s('cfo_ttm') > 0)) &   # REAL cash generation (EBITDA-alone let levered melters KSS fcf -0.60 pass)
         ~(_ncol('fcf_yield') < -0.15) &         # (fresh) not deeply FCF-negative via capex burn — the CFO fallback let cyclicals melt the floor (BATL fcf -153%, MOS, HPK)
         ~(net_cash_pct > 1.0) &                 # (deep-audit) drop >100%-of-mcap cash operating shells: HOLO (net-cash 677%, pb 0.11), MLGO (366%) are RED-verdict reverse-split ADR pumps where the sub-book print is a serial-dilution artifact, not tangible value.
@@ -1463,7 +1467,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # EV-multiple lens to a sane enterprise-value band (EV between 0.2x and 5x
     # mcap) AND a floor on EV/EBITDA itself, so a corrupt near-zero EV can't
     # read as ultra-cheap. A genuinely cheap name still clears EV/EBITDA >= 2.
-    _ev_mcap_garp = (_ncol('enterprise_value') / mcap.where(mcap > 0))
+    _ev_mcap_garp = (_ncol('enterprise_value_usd') / mcap.where(mcap > 0))  # (non-XR review) USD/USD
     _ev_sane_garp = (_ev_mcap_garp >= 0.2) & (_ev_mcap_garp <= 5.0)
     _ev_ebitda_yield = (1.0 / ev_ebitda_v).where(
         (ev_ebitda_v >= 2.0) & _ev_sane_garp, np.nan)
@@ -2218,8 +2222,16 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _td_ha = _ncol('total_debt')
     _ca_ha = _ncol('cash')
     _mc_ha = _ncol('market_cap')
-    _hidden_pct = ((_ev_ha + _ca_ha - _mc_ha - _td_ha)
-                   / _mc_ha.where(_mc_ha > 0))
+    # (non-XR review) the old measure (providerEV - mcap - net debt) was
+    # IDENTICALLY ZERO on the ~23% of rows whose EV is reconstructed as
+    # mcap+debt-cash, and on provider-EV rows it captured minority/preferred,
+    # NOT the off-EV investment portfolio the thesis wants. Measure the actual
+    # non-operating assets directly: associate/equity-method stakes + net cash,
+    # all local-currency, over mcap. Falls back to net-cash alone where the
+    # associate line is absent (so non-EDGAR names still qualify on deep cash).
+    _assoc_ha = _ncol('investments_associates')
+    _nonop_ha = (_assoc_ha.fillna(0) + (_ca_ha - _td_ha))
+    _hidden_pct = (_nonop_ha / _mc_ha.where(_mc_ha > 0))
     _fx_m_g = _ncol('market_cap_usd') / _ncol('market_cap')
     _fx_r_g = _ncol('revenue_ttm_usd') / _ncol('revenue_ttm')
     _fx_coherent = ~(((_fx_m_g / _fx_r_g) - 1).abs() > 0.10)
@@ -2463,10 +2475,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # Cheap on those verified earnings = forensic value. (Inverse cousin of
     # arch_tax_efficient, which hunts LOW structural rates.)
     _etr_f11 = _ncol('effective_tax_rate')
-    _pretax_f11 = _ncol('pretax_income_ttm')
+    # (non-XR review) pretax_income_ttm is NOT a master column -> the gate was
+    # DEAD (all-NaN -> False everywhere). effective_tax_rate is only written
+    # when pretax > 0, so the 0.18-0.40 band already implies positive pretax;
+    # corroborate with positive NI as the "verified earnings" floor.
     df['arch_tax_verified_earnings'] = (
         is_operating & (mcap > 0) &
-        (_pretax_f11 > 0) &
+        (_ncol('net_income_ttm') > 0) &
         (_etr_f11 >= 0.18) & (_etr_f11 <= 0.40) &     # really paying the state
         (_ncol('p_e') > 0) & (_ncol('p_e') <= 12.0) &  # cheap on tax-verified E
         _not_melting
@@ -3472,6 +3487,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (p_s_v >= 0.10) & (p_s_v <= 2.0) &       # cheap on revenues (lower bound kills
                                                  #   near-zero-mcap p_s artifacts)
         (rev_yoy_c >= 0.10) &                    # actually growing (double-digit)
+        ((rev_yoy_c <= 1.0) | (_ncol('rev_3y_cagr') >= 0.15)) &  # (non-XR review) base-effect/M&A guard (sibling has it)
         (((psg_v >= 0.005) & (psg_v <= 0.10)) |
          (_ncol('psg').isna() & (_ncol('evsg') >= 0.004) &
           (_ncol('evsg') <= 0.08))) &              # cheap RELATIVE to growth (PSG,
@@ -3545,7 +3561,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # never EV/FCF: pairing an enterprise numerator with a levered denominator
     # over-penalises exactly the levered growers. Same 2-15x band (P/FCF 15 ~
     # a 6.7% FCF yield; lower bound still drops near-zero artifacts).
-    p_fcf = mcap / fcf_ttm_v.where(fcf_ttm_v > 0)
+    # (non-XR review) mcap is USD (market_cap_usd) — divide by USD FCF, not
+    # local, or the P/FCF band silently excludes the ~62% non-USD universe
+    _fcf_usd_ga = _num('fcf_ttm_usd')
+    p_fcf = mcap / _fcf_usd_ga.where(_fcf_usd_ga > 0)
     df['arch_growth_algo'] = (
         (mcap > 0) & (mcap < 50e9) &
         (_num('revenue_ttm_usd') >= 20e6) &      # (R6+FX) real USD revenue base — % growth is noise below this
@@ -3746,7 +3765,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # look expensive on the spot number but cheap normalized), bought when the
     # price sits near the bottom of its 5-year range / below its 5yr average.
     # Survivability-gated so it is pessimism, not terminal decline.
-    ev_norm = _num('ev_norm_ebitda')
+    # (non-XR review) margin-based mid-cycle (inflation-neutral) instead of
+    # the nominal 5yr-EBITDA average, matching the XR fix — else inflationary
+    # regimes bias ev_norm high (drop cheap cyclicals) and revenue-decliners
+    # bias it low (admit secular decline).
+    ev_norm = (_num('enterprise_value') / _midcyc_ebitda.where(_midcyc_ebitda > 0))
     _ev_norm_ebit = (_num('enterprise_value')
                      / _num('normalized_ebit').where(_num('normalized_ebit') > 0))
     df['arch_templeton_pessimism'] = (
@@ -4536,7 +4559,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # Cash runway (years) = gross cash / annual burn; ample (99) when not
     # burning, NaN when cash data is missing.
     _bdv_cash_abs = _bdv_ncash.clip(lower=0) * mcap            # net cash (USD; better coverage than gross)
-    _bdv_burn = -_num('fcf_ttm')                               # >0 = burning
+    _bdv_burn = -_num('fcf_ttm_usd')                           # (non-XR review) USD burn vs USD cash
     _bdv_runway = (_bdv_cash_abs / _bdv_burn.where(_bdv_burn > 0)).where(
         _bdv_burn > 0, 99.0)
     df['biotech_cash_runway_yrs'] = _bdv_runway.where(_bdv_runway >= 0).clip(upper=99).round(2)

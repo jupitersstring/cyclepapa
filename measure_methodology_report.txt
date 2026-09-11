@@ -30,7 +30,7 @@ METHODOLOGY AUDIT — 180 checks, 0 FAIL, 0 WARN
   PASS  gating: analyst_rerating_score is 0 outside arch_analyst_rerating_confirmed  — 0 non-firers with positive score
   PASS  gating: asleep_score is 0 outside arch_asleep_at_wheel  — 0 non-firers with positive score
   PASS  gating: seg_inflect_score is 0 outside arch_fastest_segment  — 0 non-firers with positive score
-  PASS  density: archetype_count_pct <= 1  — max 0.324
+  PASS  density: archetype_count_pct <= 1  — max 0.331
   PASS  units: insider_ownership_pct is a fraction (<= 1.05)  — 0 percent-scale stragglers
   PASS  integrity: lynch signal rows all match the header schema  — 0 ragged rows
   PASS  integrity: country benchmarks are live (<=62d old)  — stale/empty: []
@@ -170,7 +170,7 @@ METHODOLOGY AUDIT — 180 checks, 0 FAIL, 0 WARN
   PASS  flow-through: cash_adjusted_pe firers satisfy the gate on the CURRENT master  — 0 firers stale vs master (chain not re-run?)
   PASS  flow-through: melt_demotion matches recomputation from the CURRENT master  — 0 rows stale vs master (enrich not re-run?)
   PASS  pairing: no levered name holds an unadjusted CFO/EV cash_return_ev  — 0 rows
-  PASS  regression: arch_hidden_assets gap >= ~25% of mcap in LOCAL currency (currency-mix guard)  — 0 sub-gap firers
+  PASS  regression: arch_hidden_assets non-op assets >= ~25% of mcap (local)  — 0 sub-gap firers
   PASS  valuation: no positive ev_ebitda on ebitda<=0  — 0 rows
   PASS  valuation: ev_ebitda != EV/ebitda (>25% dev) <= 6.0% of covered rows  — 3/23635 rows (0.01%)
   PASS  valuation: ev_sales != EV/revenue (>25% dev) <= 6.0% of covered rows  — 1/30450 rows (0.00%)

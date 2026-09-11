@@ -734,6 +734,9 @@ def _figure_coverage(t, g):
         # look-through stakes, and the mid-cycle revenue denominator — all
         # audited EDGAR levels, structurally merged, band/identity-guarded
         "da_ttm", "deferred_revenue", "investments_associates", "normalized_revenue",
+        # audited equity level + USD EV twin — consumed by tangible_value and
+        # the FX-coherent midcap-garp EV/mcap sanity band
+        "equity", "enterprise_value_usd",
         # fcf_eta_quarters: audited in the completeness pass (cadence-scaled
         # to quarter units, stored-banded 0-40); consumed by XR20
         "fcf_eta_quarters",
@@ -1047,14 +1050,15 @@ def _valuation_consistency(t, g):
         _fs = t.loc[_f, "symbol"]
         _gm = g.set_index("symbol")
         _gg = _gm.reindex(_fs)
-        _hp = ((pd.to_numeric(_gg.get("enterprise_value"), errors="coerce")
+        # (aligned to the new measure) non-operating assets = associate
+        # stakes + net cash, over mcap — all local-currency
+        _hp = ((pd.to_numeric(_gg.get("investments_associates"), errors="coerce").fillna(0)
                 + pd.to_numeric(_gg.get("cash"), errors="coerce")
-                - pd.to_numeric(_gg.get("market_cap"), errors="coerce")
                 - pd.to_numeric(_gg.get("total_debt"), errors="coerce"))
                / pd.to_numeric(_gg.get("market_cap"), errors="coerce"))
         _bad_h = int((_hp.notna() & (_hp < 0.20)).sum())
-        check("regression: arch_hidden_assets gap >= ~25% of mcap in LOCAL currency "
-              "(currency-mix guard)", _bad_h == 0, f"{_bad_h} sub-gap firers")
+        check("regression: arch_hidden_assets non-op assets >= ~25% of mcap (local)",
+              _bad_h == 0, f"{_bad_h} sub-gap firers")
     check("valuation: no positive ev_ebitda on ebitda<=0",
           int(((evb > 0) & (eb <= 0) & eb.notna()).sum()) == 0,
           f"{int(((evb > 0) & (eb <= 0) & eb.notna()).sum())} rows")
