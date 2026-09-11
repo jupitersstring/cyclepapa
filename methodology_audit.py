@@ -727,6 +727,9 @@ def _figure_coverage(t, g):
         # consecutive-quarter, Q4-synthesized, base-guarded; stored bands
         # 0-30/0-40) — consumed by XR9/XR11 and the quality lenses
         "rev_yoy_streak_q", "ni_yoy_streak_q", "streak_quarters_n",
+        # ppe_net: audited EDGAR point-in-time level (PropertyPlantAndEquipmentNet),
+        # structurally merged; consumed by XR14 depreciation-cliff
+        "ppe_net",
         "rev_yoy_pos_share_12q", "roiic_lindy",
         # misc bounded/threshold-only consumption
         "earnings_beat_rate", "avg_earnings_surprise", "earnings_beat_streak",

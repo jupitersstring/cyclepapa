@@ -174,7 +174,8 @@ def main():
                                  "goodwill_intangibles_pct_assets",
                                  "capital_return_ttm", "dividends_ttm",
                                  "buybacks_ttm", "minority_interest",
-                                 "preferred_equity"}
+                                 "preferred_equity", "ppe_net",
+                                 "retained_earnings"}
                              ).drop_duplicates("symbol").set_index("symbol")
         _n_avg = 0
         for _ac in _edavg.columns:

@@ -2691,6 +2691,105 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _not_melting
     ).fillna(False).astype(int)
 
+    # ---------- XR12-XR16: VIOLENT-RERATING ENGINES (user request) ----------
+    # Each models a FAMOUS accounting nuance that forensic readers caught
+    # before the market, producing some of the most violent re-ratings on
+    # record. The tell is measurable; the market prices the polluted or
+    # lagging headline; the re-rate is mechanical when the accounting
+    # catches up.
+
+    # XR12 — Float compounding ('XR-FloatCompounding'): customers PREPAY
+    # (deferred revenue/negative working capital float) so cash collections
+    # run ahead of GAAP revenue — the SaaS/Ryanair engine where the P&L
+    # understates bookings. Tell: deep negative NWC, CFO far above NI
+    # persistently, revenue now ACCELERATING while the market still prices
+    # the trailing P&L (P/E dear or meaningless) — yet on collected CASH
+    # the price is ordinary.
+    _nwc_x12 = _ncol('net_working_capital')
+    _cfo_ni_x12 = (_ncol('cfo_ttm') / _ncol('net_income_ttm')).where(_ncol('net_income_ttm') > 0)
+    df['arch_xr_float_compounding'] = (
+        is_operating & (mcap > 0) & _fx_coherent &
+        (_nwc_x12 < 0) &                                   # the float exists
+        ((_cfo_ni_x12 >= 1.3) | (_ncol('cash_conversion') >= 1.2)) &
+        ((rev_accel > 0) | (rev_yoy_c >= 0.15)) &          # bookings engine turning
+        ((_ncol('p_e') >= 20) | _ncol('p_e').isna()) &     # headline looks dear/meaningless
+        ((_ncol('market_cap') / _ncol('cfo_ttm').where(_ncol('cfo_ttm') > 0)) <= 15) &
+        ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR13 — Big-bath rebound ('XR-BigBathRebound'): a massive one-off
+    # writedown (the Renault-class unusual item) has POLLUTED the trailing
+    # line — EBITDA-with-unusuals sits far below the multi-year normalized
+    # base while OPERATING cash stays healthy (baths are non-cash). The
+    # market prices the bath year; the re-rate is mechanical as the unusual
+    # rolls off the trailing window. Basis machinery: the same-basis
+    # normalized pair built after the RNO.PA fix.
+    _nrm_eb_x13 = _ncol('normalized_ebitda')
+    _ev_nrm_x13 = (_ncol('enterprise_value') / _nrm_eb_x13.where(_nrm_eb_x13 > 0))
+    df['arch_xr_bigbath_rebound'] = (
+        is_operating & (mcap > 0) & _fx_coherent &
+        (_nrm_eb_x13 > 0) &
+        ((ebitda_ttm_v < 0.6 * _nrm_eb_x13) | (_ncol('net_income_ttm') < 0)) &
+        (_ncol('cfo_yield') > 0) &                          # the bath was non-cash
+        (_ev_nrm_x13 > 0) & (_ev_nrm_x13 <= 6.0) &          # cheap on the NORMAL base
+        beaten_down_any(0.30) &
+        ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR14 — Depreciation cliff ('XR-DepreciationCliff'): the asset base is
+    # nearly fully depreciated (implied D&A large against a small remaining
+    # net PP&E) while replacement spend stays low — reported earnings are a
+    # coiled spring that RELEASES mechanically as charges roll off, and the
+    # cash was real all along. Priced on the depressed accounting earnings.
+    _ppe_x14 = _ncol('ppe_net')
+    _dna_ppe_x14 = (_dna_loc / _ppe_x14.where(_ppe_x14 > 0))
+    df['arch_xr_depreciation_cliff'] = (
+        is_operating & (_mc_ca > 0) & _fx_coherent &
+        (_dna_loc > 0) & (_dna_ppe_x14 >= 0.35) &           # < ~3yr of book life left
+        (_capex_loc >= 0) & (_capex_loc <= 0.6 * _dna_loc) &
+        (_oe_loc > 0) & ((_mc_ca / _oe_loc) <= 10.0) &      # cheap on the true cash take
+        ((_ncol('p_e') >= 12) | _ncol('p_e').isna()) &      # dear/meaningless on polluted E
+        ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR15 — Working-capital normalization ('XR-WCNormalization'): a
+    # one-cycle inventory/receivables GLUT crushed reported FCF (screens
+    # flee the "cash burn") while margins and demand stay intact — the
+    # Kohl's-cycle tell. When the working capital unwinds, FCF snaps back
+    # violently. Entry: broken FCF optics, UNBROKEN business.
+    _fy_x15 = _num('fcf_yield')
+    df['arch_xr_wc_normalization'] = (
+        is_operating & (mcap > 0) & _fx_coherent &
+        (_fy_x15 < 0.02) &                                  # FCF optics broken...
+        (_num('earnings_yield') >= 0.08) &                  # ...but earnings power real
+        (_num('cash_conversion') < 0.7) &                   # WC eating the cash
+        (ebitda_ttm_v > 0) &
+        (rev_yoy_c >= -0.05) &                              # demand intact
+        (_num('gross_margin_delta_yoy') >= -0.03) &         # margins intact
+        (nde < 3.0) &                                       # survives the cycle
+        ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR16 — Amortization mask ('XR-AmortizationMask'): the serial-acquirer
+    # engine (Constellation/Heico class) — GAAP EPS is crushed by acquired-
+    # intangible amortization that has NO cash cost, so owner earnings run
+    # far above NI exactly where the intangible base is heavy. The market
+    # prices the masked EPS; the cash compounds regardless.
+    df['arch_xr_amortization_mask'] = (
+        is_operating & (_mc_ca > 0) & _fx_coherent &
+        (_ncol('goodwill_intangibles_pct_assets') >= 0.30) &   # the mask exists
+        (_ni_ca > 0) & (_oe_ratio >= 1.5) &                    # OE >> NI through the mask
+        (fcf_yield >= 0.07) &                                  # cash confirms
+        ((_ncol('p_e') >= 15) | _ncol('p_e').isna()) &         # priced on masked EPS
+        ((_mc_ca / _oe_loc.where(_oe_loc > 0)) <= 12.0) &      # ordinary on OWNER earnings
+        ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
     # F6 — Forensic payout confirmation (the user's BOOST leg). Any forensic /
     # hidden-value member that is ALSO returning capital — buying back shares
     # or paying a dividend — earns an EXTRA archetype count, which is this
@@ -3685,6 +3784,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_audited_streak_unrerated',
         'arch_xr_clean_net_net',
         'arch_xr_compounding_deployer',
+        'arch_xr_float_compounding',
+        'arch_xr_bigbath_rebound',
+        'arch_xr_depreciation_cliff',
+        'arch_xr_wc_normalization',
+        'arch_xr_amortization_mask',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -3809,6 +3913,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_audited_streak_unrerated': 'XR-AuditedStreakUnrerated',
         'arch_xr_clean_net_net': 'XR-CleanNetNet',
         'arch_xr_compounding_deployer': 'XR-CompoundingDeployer',
+        'arch_xr_float_compounding': 'XR-FloatCompounding',
+        'arch_xr_bigbath_rebound': 'XR-BigBathRebound',
+        'arch_xr_depreciation_cliff': 'XR-DepreciationCliff',
+        'arch_xr_wc_normalization': 'XR-WCNormalization',
+        'arch_xr_amortization_mask': 'XR-AmortizationMask',
         'arch_templeton_pessimism': 'Templeton-MaxPessimism',
         'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
         'arch_levered_inflection': 'LeveredInflectionStub',
