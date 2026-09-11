@@ -332,8 +332,11 @@ def main():
     # FCF > market cap is a unit error, not a bargain — OTC ADRs carry
     # home-currency fundamentals (CNY/TRY) against USD caps. Null rather
     # than rank garbage at the top of every yield screen.
-    if _fy is not None and _fy > 1.0:
-        _fy = None
+    # (was `if _fy > 1.0:` on a SERIES — an ambiguous-truth ValueError that
+    # crashed this script silently for every run since the guard was added,
+    # so none of the recompute-every-run multiples below were refreshing.)
+    if _fy is not None:
+        _fy = _fy.where(_fy <= 1.0)
     _fill('fcf_yield', _fy)
     _fill('ebitda_margin', _safe_div(ebitda, rev, den_must_be_positive=True))
     _fill('gross_margin', _safe_div(gross_profit, rev, den_must_be_positive=True))

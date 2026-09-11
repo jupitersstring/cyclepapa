@@ -2447,7 +2447,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # EBIT growth and a share-count trajectory the enricher must add — the
     # buyback here is a soft bonus (buyback_yield is only ~4% covered).
     fcf_yoy_v = s('fcf_yoy')
-    ev_fcf = _num('enterprise_value') / fcf_ttm_v.where(fcf_ttm_v > 0)
+    # (user rule) fcf_ttm is LEVERED FCF (CFO - capex, post-interest) — an
+    # equity-holder cash flow — so the cheapness multiple is P/FCF (mcap/FCF),
+    # never EV/FCF: pairing an enterprise numerator with a levered denominator
+    # over-penalises exactly the levered growers. Same 2-15x band (P/FCF 15 ~
+    # a 6.7% FCF yield; lower bound still drops near-zero artifacts).
+    p_fcf = mcap / fcf_ttm_v.where(fcf_ttm_v > 0)
     df['arch_growth_algo'] = (
         (mcap > 0) & (mcap < 50e9) &
         (_num('revenue_ttm_usd') >= 20e6) &      # (R6+FX) real USD revenue base — % growth is noise below this
@@ -2458,8 +2463,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
          (_ncol('fcf_per_share_yoy') >= 0.20) |
          (_ncol('fcf_yoy').isna() & _ncol('fcf_per_share_yoy').isna()
           & (_ncol('cfo_yoy') >= 0.20))) &        # FCF compounding (any per-share/agg lens)
-        (ev_fcf >= 2.0) & (ev_fcf <= 15.0) &     # cheap on EV/FCF (~13x; lower bound
-                                                 #   drops near-zero-EV artifacts)
+        (p_fcf >= 2.0) & (p_fcf <= 15.0) &       # cheap on P/FCF (levered FCF vs MCAP,
+                                                 #   per the levered-measure rule; lower
+                                                 #   bound drops near-zero artifacts)
         not_diluting                             # not clearly issuing shares (soft:
                                                  #   excludes only names KNOWN to dilute
                                                  #   >2%; missing data still qualifies).

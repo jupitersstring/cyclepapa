@@ -644,6 +644,15 @@ def _valuation_consistency(t, g):
     viol |= vrate("fcf_yield != fcf/mcap (>25% dev)",
                   (_r(fy, _r(fcf, mc)) - 1).abs() > 0.25,
                   fy.notna() & fcf.notna() & (mc > 0), 1.0)
+    # the whole equity-cash-yield family (LEVERED measures over MARKET CAP —
+    # user rule) must stay recomputed against current mcap
+    for _yc, _lvl_c in (("owner_earnings_yield", "fcf_ttm"),
+                        ("cfo_yield", "cfo_ttm"),
+                        ("earnings_yield", "net_income_ttm")):
+        _yv, _lv = gc(_yc), gc(_lvl_c)
+        viol |= vrate(f"{_yc} != {_lvl_c}/mcap (>25% dev)",
+                      (_r(_yv, _r(_lv, mc)) - 1).abs() > 0.25,
+                      _yv.notna() & _lv.notna() & (mc > 0), 1.5)
     check("valuation: no ev_ebit below ev_ebitda (impossible ordering)",
           int(((eve < evb * 0.95) & (eve > 0) & (evb > 0)).sum()) == 0,
           f"{int(((eve < evb * 0.95) & (eve > 0) & (evb > 0)).sum())} rows")

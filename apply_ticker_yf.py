@@ -280,9 +280,29 @@ def main():
         m.loc[stale | fillm, colname] = fresh[stale | fillm]
         recon[colname] = recon.get(colname, 0) + int((stale | fillm).sum())
 
-    # fcf_yield = fcf_ttm / market_cap (repo convention, median dev 0.005)
+    # fcf_yield = fcf_ttm / market_cap (repo convention, median dev 0.005).
+    # fcf_ttm is LEVERED FCF (CFO - capex, post-interest) — an equity-holder
+    # cash flow — so its yield is against MARKET CAP, never EV (user rule).
     _fcf = pd.to_numeric(m.get("fcf_ttm"), errors="coerce")
     _recompute("fcf_yield", (_fcf / _mc).where(_mc > 0), band=(-50, 50))
+    # The whole equity-cash-yield family shares the mcap denominator and the
+    # same price-staleness disease (computed once at derive-time, then price
+    # moves): recompute them all from current components every run. These feed
+    # the melt logic (_cash_return_ok) and the weschler/liger cheapness gates.
+    _cfo2 = pd.to_numeric(m.get("cfo_ttm"), errors="coerce")
+    _ni3 = pd.to_numeric(m.get("net_income_ttm"), errors="coerce")
+    _recompute("owner_earnings_yield", (_fcf / _mc).where(_mc > 0), band=(-50, 50))
+    _recompute("cfo_yield", (_cfo2 / _mc).where(_mc > 0), band=(-50, 50))
+    _recompute("earnings_yield", (_ni3 / _mc).where(_mc > 0), band=(-50, 50))
+    if "robust_cash_yield" in m.columns:
+        _rcy_new = pd.concat([(_fcf / _mc).where(_mc > 0),
+                              (_cfo2 / _mc).where(_mc > 0),
+                              (_ni3 / _mc).where(_mc > 0)],
+                             axis=1).median(axis=1, skipna=True)
+        _recompute("robust_cash_yield", _rcy_new, band=(-50, 50))
+    # p_tb = mcap / tangible_equity (verified convention, median drift 12%)
+    _te = pd.to_numeric(m.get("tangible_equity"), errors="coerce")
+    _recompute("p_tb", (_mc / _te).where((_te > 0) & (_mc > 0)), band=(0, 500))
     # ebitda_margin = ebitda_ttm / revenue_ttm
     _recompute("ebitda_margin", (_eb / _rv).where(_rv > 0), band=(-100, 5))  # a pre-revenue burner CAN sit at -6x revenue; keeping a wrong-SIGN stored margin (KROS +28% vs true -645%) is worse than an extreme true one
     # net_debt_ebitda — only where all components are present and EBITDA is
