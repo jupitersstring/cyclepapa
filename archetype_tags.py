@@ -154,7 +154,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     if os.path.exists('edgar_event_signals.csv'):
         _evt = pd.read_csv('edgar_event_signals.csv').drop_duplicates('symbol')
         _evt_keep = ['symbol', 'spin_flag', 'tender_flag', 'merger_flag',
-                     'going_private_flag', 'distress_flag', 'nol_usd', 'reorg_flag']
+                     'going_private_flag', 'distress_flag', 'nol_usd', 'reorg_flag',
+                     'spin_date', 'reorg_date']
         _evt = _evt[[c for c in _evt_keep if c in _evt.columns]]
         df = df.merge(_evt, on='symbol', how='left', suffixes=('', '_evt'))
     # pew and asym both carry n_analysts; suffix pew's copy so downstream
@@ -4649,12 +4650,36 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _excellent_value = ((fcf_yield >= 0.08) | (_earn_yield >= 0.08)
                         | (_ebit_yield >= 0.10))
 
+    # SHARED event-sleeve value helpers (used by spinoff AND post-reorg):
+    # EBITDA yield is D&A-immune (survives fresh-start write-downs / carve-out
+    # D&A shifts); commodity cyclicals emerging or spinning near a PEAK show
+    # fat trailing earnings that will not persist -> Energy/Materials names are
+    # judged on MID-CYCLE (margin-based) EBITDA where a standalone history
+    # exists (excludes a peak, admits a trough).
+    _ev_ebitda_ev = s('ev_ebitda', np.nan)
+    _ebitda_y_ev = (1.0 / _ev_ebitda_ev).where(_ev_ebitda_ev > 0, np.nan)
+    _midcyc_y_ev = (_midcyc_ebitda / _num('enterprise_value')).where(_num('enterprise_value') > 0, np.nan)
+    _is_cyc_ev = sector.isin({'Energy', 'Materials'})
+    _dna_ev = _ncol('da_ttm'); _cx_ev = _ncol('capex_ttm')
+    _dna_ok_ev = ~((_dna_ev < 0.5 * _cx_ev) & _dna_ev.notna() & _cx_ev.notna())
+
     # Spin-off (Form 10 registration): forced-selling / identity-vacuum — a
     # viable operating business, cheap, not melting.
+    # (diligence) a spin carries NO fresh-start discharge gain (1/p_e usable),
+    # but trailing earnings are noised by carve-out allocations + separation
+    # one-offs and the D&A basis can shift -> add the D&A-immune EBITDA yield;
+    # commodity cyclical spins (SanDisk into a memory peak; cement) get the
+    # mid-cycle lens; and guard the DIRTY SPIN (parent offloading debt: RHLD
+    # emerged at net-debt/EBITDA 13.9x).
+    _spin_noncyc_val = (_excellent_value | (_ebitda_y_ev >= 0.10))
+    _spin_cyc_val = ((_midcyc_y_ev.notna() & (_midcyc_y_ev >= 0.10))
+                     | (_midcyc_y_ev.isna() & ((_ebitda_y_ev >= 0.10) | (fcf_yield >= 0.08))))
+    _spin_value = ((_is_cyc_ev & _spin_cyc_val) | (~_is_cyc_ev & _spin_noncyc_val))
     df['arch_spinoff'] = (
         (_spin == 1) & is_operating & _not_melting & (mcap > 0)
-        & (s('op_margin', np.nan) > -0.05)      # (topcheck) a viable spun business, not a deep loss-maker
-        & _excellent_value
+        & (s('op_margin', np.nan) > -0.05)      # a viable spun business, not a deep loss-maker
+        & _spin_value
+        & ((nde <= 5.0) | (net_cash_pct_c >= 0))  # dirty-spin leverage guard
     ).fillna(False).astype(int)
 
     # Post-reorg / fresh-start (Assembly Theory): the single most powerful screen
@@ -4921,7 +4946,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','xr_family_count','xr_confidence','xr_score']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','xr_family_count','xr_confidence','xr_score','spin_date','reorg_date']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m','segment_count','fastest_segment_yoy','is_price_ghost'] if c in df.columns]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)
