@@ -2790,6 +2790,79 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _not_melting
     ).fillna(False).astype(int)
 
+    # ---------- XR17-XR20: ONCE-IN-A-LIFETIME CLASSES (user request) ----------
+    # The rarest, most violent asymmetries on record, each with a measurable
+    # audited tell. Counts are meant to be TINY.
+
+    # XR17 — Treasury cannibal below cash ('XR-CannibalBelowCash'): the
+    # market cap sits BELOW net cash while management BUYS BACK stock —
+    # every repurchased share is bought with the company's own cash at a
+    # discount to that cash, mechanically accreting value per share. The
+    # Teledyne/2022-China-ADR class; among the rarest trades that exist.
+    df['arch_xr_cannibal_below_cash'] = (
+        is_operating & (mcap > 0) & _fx_coherent &
+        (net_cash_pct_c >= 1.0) &                           # price fully covered by net cash
+        ((_ncol('buyback_yield') >= 0.02)
+         | (_ncol('net_buyback_ttm') > 0)) &                # ...and they are BUYING
+        ~(_ncol('shares_yoy') > 0.0) &                      # count actually not growing
+        ((_ncol('net_income_ttm') > 0) | (_ncol('ni_avg') > 0)
+         | (_ncol('cfo_yield') > 0)) &                      # a real business attached
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR18 — Double trough ('XR-DoubleTrough'): a TROUGH MULTIPLE on TROUGH
+    # EARNINGS — price near multi-year lows, EV cheap against the MID-CYCLE
+    # (normalized) base, and current earnings sitting BELOW that base (so
+    # the cheapness is not peak-margin illusion), with survival assured.
+    # Two discounts compound: the multiple re-rates AND earnings mean-revert.
+    _nrm18 = _ncol('normalized_ebitda')
+    _evn18 = (_ncol('enterprise_value') / _nrm18.where(_nrm18 > 0))
+    _surv18 = ((net_cash_pct_c >= 0) | (_ncol('interest_coverage') >= 4)
+               | ((nde > -90) & (nde <= 1.5)))
+    df['arch_xr_double_trough'] = (
+        is_operating & (mcap > 0) & _fx_coherent &
+        ((_num('pct_off_52w_high') <= -0.50)
+         | (_num('price_pct_of_5y_range') <= 0.15)) &
+        (_evn18 > 0) & (_evn18 <= 5.0) &                    # cheap on MID-CYCLE earnings
+        (ebitda_ttm_v > 0) & (ebitda_ttm_v <= 0.85 * _nrm18) &  # earnings AT the trough
+        _surv18 &
+        ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR19 — Forced-seller dislocation ('XR-ForcedSeller'): the price
+    # COLLAPSED >=40% in a year in which the BUSINESS GREW on both lines
+    # with no dilution — a seller-driven, not business-driven, mark
+    # (index deletions, fund liquidations, spin-off orphans). Buying a
+    # growing business from someone who must sell at any price.
+    df['arch_xr_forced_seller'] = (
+        is_operating & (mcap > 0) & _fx_coherent &
+        (_num('price_yoy') <= -0.40) &
+        (rev_yoy_c >= 0.05) &
+        ((ebitda_yoy_v >= 0) | (_ncol('net_income_ttm') > 0)) &
+        ~(_ncol('shares_yoy') > 0.02) &
+        ((nde < 3.0) | (net_cash_pct_c >= 0)) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR20 — Operating-leverage detonation ('XR-LeverageDetonation'): the
+    # breakeven CROSSING with high drop-through — losses just flipped (or
+    # are one step from flipping) while incremental margins run >=35% on
+    # 20%+ growth. Historically the most violent PERCENTAGE re-ratings
+    # occur exactly here: each new revenue dollar is suddenly mostly
+    # profit, and trailing screens still price the loss-maker.
+    df['arch_xr_leverage_detonation'] = (
+        is_operating & (mcap > 0) & _fx_coherent &
+        ((ebitda_first_pos > 0) | (fcf_first_pos > 0)
+         | ((_num('fcf_eta_quarters') > 0) & (_num('fcf_eta_quarters') <= 2))) &
+        (_num('incremental_ebitda_margin') >= 0.35) &
+        (rev_yoy_c >= 0.20) & (rev_yoy_c <= 1.5) &
+        ((_ncol('p_s') <= 3.0) | (_ncol('ev_sales') <= 3.0)) &
+        (_ncol('revenue_ttm_usd') >= 10e6) &                # not a base-effect shell
+        ~(_ncol('shares_yoy') > 0.10) &
+        _not_melting
+    ).fillna(False).astype(int)
+
     # F6 — Forensic payout confirmation (the user's BOOST leg). Any forensic /
     # hidden-value member that is ALSO returning capital — buying back shares
     # or paying a dividend — earns an EXTRA archetype count, which is this
@@ -3225,6 +3298,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _not_rich_au.fillna(False) &
         _not_melting
     ).fillna(False).astype(int)
+
+    # XR21 — Confluence ('XR-Confluence', the once-in-a-lifetime meta-gate):
+    # the historic outliers were rarely ONE signal — they were CONFLUENCE:
+    # a floor AND an engine AND a forensic tell AND a dislocation at once.
+    # Fires when >=3 independent XR classes agree on the same name. By
+    # construction the rarest flag in the book.
+    _xr_cols_meta = [c for c in df.columns if c.startswith('arch_xr_')
+                     and c != 'arch_xr_confluence']
+    df['arch_xr_confluence'] = (
+        (df[_xr_cols_meta].sum(axis=1) >= 3)
+    ).astype(int)
 
 
     # ---------- Templeton "maximum pessimism" (cheap vs own history) ----------
@@ -3789,6 +3873,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_depreciation_cliff',
         'arch_xr_wc_normalization',
         'arch_xr_amortization_mask',
+        'arch_xr_cannibal_below_cash',
+        'arch_xr_double_trough',
+        'arch_xr_forced_seller',
+        'arch_xr_leverage_detonation',
+        'arch_xr_confluence',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -3918,6 +4007,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_depreciation_cliff': 'XR-DepreciationCliff',
         'arch_xr_wc_normalization': 'XR-WCNormalization',
         'arch_xr_amortization_mask': 'XR-AmortizationMask',
+        'arch_xr_cannibal_below_cash': 'XR-CannibalBelowCash',
+        'arch_xr_double_trough': 'XR-DoubleTrough',
+        'arch_xr_forced_seller': 'XR-ForcedSeller',
+        'arch_xr_leverage_detonation': 'XR-LeverageDetonation',
+        'arch_xr_confluence': 'XR-Confluence',
         'arch_templeton_pessimism': 'Templeton-MaxPessimism',
         'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
         'arch_levered_inflection': 'LeveredInflectionStub',

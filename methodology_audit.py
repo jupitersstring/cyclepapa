@@ -730,6 +730,9 @@ def _figure_coverage(t, g):
         # ppe_net: audited EDGAR point-in-time level (PropertyPlantAndEquipmentNet),
         # structurally merged; consumed by XR14 depreciation-cliff
         "ppe_net",
+        # fcf_eta_quarters: audited in the completeness pass (cadence-scaled
+        # to quarter units, stored-banded 0-40); consumed by XR20
+        "fcf_eta_quarters",
         "rev_yoy_pos_share_12q", "roiic_lindy",
         # misc bounded/threshold-only consumption
         "earnings_beat_rate", "avg_earnings_surprise", "earnings_beat_streak",
