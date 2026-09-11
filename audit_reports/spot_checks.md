@@ -67,3 +67,25 @@ fits its known cash-machine profile); 035610.KQ 1.64x -> statement value.
 Every input behind the negative adjusted-P/E cohort verified CLEAN — the
 free-earnings claims stand on checked figures. FPIP.ST returned no fresh
 Yahoo row (source miss, noted). Post-merge sweep: 0 ERROR.
+
+## Round 4 — live SEC end-to-end + currency arbitration (2026-09-11)
+
+Six edgar_grounded names re-verified against LIVE companyfacts with the fixed
+roll-forward: 10/12 field comparisons exact (KROS self-healed since round 2).
+The 2 disagreements were ONE name — JFU/9F, a 20-F ANNUAL-only Chinese ADR
+whose audited USD figures were excluded by the one-quarter gate while Yahoo
+served CNY levels against a USD mcap. Fixed as a class: CURRENCY ARBITRATION —
+when BOTH flow fields sit >2x above audited EDGAR (age<=500d), the audited USD
+levels win regardless of the quarterly gate (stale-but-right-currency beats
+fresh-but-wrong-currency). 109 rows healed; JFU now $19.2M/$29.7M, P/S 1.56.
+
+## Round 5 — EVERY archetype sampled (2026-09-11)
+
+valuation_crosscheck gained --per-archetype: top-ETA + seeded-random firer
+from EVERY archetype (94 archetypes -> 133 unique names), full per-name suite
+each. One ERROR found and fixed as a class: WIMI (CNY-ADR) held a stale
+plausible-looking fcf_yield beside components proving |fcf/mcap| = 4.16 —
+the band-reject left the stored value standing; now a provably-corrupt
+recomputation NULLS the stored yield too (59 more nulled). Final:
+0 ERROR, 76/133 fully clean, all WARNs in the established explained classes
+(EV composition basis 31, roe period-basis 29, small level drifts).

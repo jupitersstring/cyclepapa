@@ -129,7 +129,7 @@ METHODOLOGY AUDIT — 154 checks, 0 FAIL, 0 WARN
   PASS  coverage: every gate-consumed master figure is checked or exempted  — UNCHECKED gate inputs: []
   PASS  valuation: mcap != price*shares (>10% dev, pence-aware) <= 0.5% of covered rows  — 4/34805 rows (0.01%)
   PASS  valuation: p_e != mcap/NI (>25% dev) <= 1.0% of covered rows  — 21/20481 rows (0.10%)
-  PASS  valuation: fcf_yield != fcf/mcap (>25% dev) <= 1.0% of covered rows  — 36/31991 rows (0.11%)
+  PASS  valuation: fcf_yield != fcf/mcap (>25% dev) <= 1.0% of covered rows  — 0/31932 rows (0.00%)
   PASS  valuation: owner_earnings_yield != fcf_ttm/mcap (>25% dev) <= 1.5% of covered rows  — 11/35425 rows (0.03%)
   PASS  valuation: cfo_yield != cfo_ttm/mcap (>25% dev) <= 1.5% of covered rows  — 13/35662 rows (0.04%)
   PASS  valuation: earnings_yield != net_income_ttm/mcap (>25% dev) <= 1.5% of covered rows  — 104/31961 rows (0.33%)

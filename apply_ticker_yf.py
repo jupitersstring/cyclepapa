@@ -472,10 +472,15 @@ def main():
     _recompute("fcf_yield", (_fcf / _mc).where(_mc > 0), band=(-1.0, 1.0))  # |FCF| beyond 100% of mcap in EITHER sign is a unit/ADR mismatch, not information (YYAI at -33x/+77x)
     if "fcf_yield" in m.columns:
         _fy_now = pd.to_numeric(m["fcf_yield"], errors="coerce")
-        _fy_bad = _fy_now.abs() > 1.0
+        _fy_fresh_imposs = ((_fcf / _mc).abs() > 1.0) & _fcf.notna() & (_mc > 0)
+        # when the COMPONENTS prove corruption (|fcf/mcap|>1, the ADR unit
+        # class — WIMI at -4.16x), the stored yield is equally untrustworthy:
+        # null it too, never let a stale plausible-looking number survive a
+        # provably-corrupt recomputation (band-reject alone left it standing).
+        _fy_bad = (_fy_now.abs() > 1.0) | (_fy_fresh_imposs & _fy_now.notna())
         m.loc[_fy_bad, "fcf_yield"] = np.nan
         if int(_fy_bad.sum()):
-            recon["fcf_yield nulled (|yield|>100% of mcap)"] = int(_fy_bad.sum())
+            recon["fcf_yield nulled (impossible level/components)"] = int(_fy_bad.sum())
     # The whole equity-cash-yield family shares the mcap denominator and the
     # same price-staleness disease (computed once at derive-time, then price
     # moves): recompute them all from current components every run. These feed

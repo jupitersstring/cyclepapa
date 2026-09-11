@@ -32,6 +32,10 @@ import pandas as pd
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--top", type=int, default=60)
+    ap.add_argument("--per-archetype", type=int, default=0,
+                    help="sample N firers from EVERY archetype (top-ETA + "
+                         "seeded random) and check those instead of/besides "
+                         "the top-N")
     ap.add_argument("--sample", type=int, default=0,
                     help="ALSO check N random rows (seeded) beyond the top — "
                          "verification must not be top-N-biased")
@@ -57,6 +61,31 @@ def main():
 
     g["_eta"] = pd.to_numeric(g.get("entry_today_asymmetry"), errors="coerce")
     top = g.sort_values("_eta", ascending=False).head(args.top)
+    if args.per_archetype:
+        try:
+            tt = pd.read_csv("archetype_tags.csv", low_memory=False)
+            gi = g.set_index("symbol")
+            picks = []
+            rng = np.random.RandomState(args.seed)
+            for a in [c for c in tt.columns if c.startswith("arch_")]:
+                f = tt.loc[tt[a] == 1, "symbol"]
+                if not len(f):
+                    continue
+                etas = gi.reindex(f)["_eta"] if "_eta" in gi.columns else None
+                f_eta = pd.Series(
+                    pd.to_numeric(gi.reindex(f).get("entry_today_asymmetry"),
+                                  errors="coerce").values, index=f)
+                picks.append(f_eta.idxmax() if f_eta.notna().any() else f.iloc[0])
+                extra = min(max(args.per_archetype - 1, 0), len(f) - 1)
+                if extra:
+                    picks += list(rng.choice(f[f != picks[-1]], size=extra,
+                                             replace=False))
+            uniq = list(dict.fromkeys(picks))
+            top = pd.concat([top, g[g["symbol"].isin(uniq)]]).drop_duplicates("symbol")
+            print(f"  per-archetype sample: {len(uniq)} unique firers added",
+                  file=sys.stderr)
+        except FileNotFoundError:
+            pass
     if args.sample:
         rest = g.drop(top.index)
         rest = rest[pd.to_numeric(rest.get("market_cap"), errors="coerce") > 0]
