@@ -313,6 +313,55 @@ def main():
         m.loc[_fix_sh, "shares_outstanding"] = _imp[_fix_sh]
         recon["shares_outstanding"] = int(_fix_sh.sum())
 
+    # ----- CURRENCY ARBITRATION (EDGAR, any age <= 500d) -----
+    # Foreign private issuers (20-F, annual-only) are ALWAYS older than the
+    # one-quarter gate — and their Yahoo levels are exactly the population
+    # with home-currency-vs-USD corruption (JFU/9F: Yahoo served CNY 289.9M
+    # revenue & 207.7M CFO against a USD mcap; EDGAR audited USD 19.2M/29.7M,
+    # and CFO/6.99 == EDGAR exactly = the FX rate). Detection: revenue AND cfo
+    # both disagree with audited EDGAR by the SAME factor (within 30%), factor
+    # in [2, 500] — a rate, not a restatement. Action: adopt the audited USD
+    # levels for every field EDGAR carries, set USD twins equal (EDGAR is
+    # USD), flag edgar_currency_arbitration. Stale-but-right-currency beats
+    # fresh-but-wrong-currency.
+    try:
+        _edA = pd.read_csv("us_edgar_yartseva.csv", low_memory=False,
+                           usecols=lambda c: c in {
+                               "symbol", "revenue_ttm", "ebitda_ttm", "cfo_ttm",
+                               "fcf_ttm", "cash", "total_debt",
+                               "balance_sheet_date"}).drop_duplicates(
+                           "symbol").set_index("symbol")
+        _bsdA = pd.to_datetime(_edA.get("balance_sheet_date"), errors="coerce")
+        _edA = _edA[(((pd.Timestamp.now() - _bsdA).dt.days <= 500)).fillna(False)]
+    except FileNotFoundError:
+        _edA = pd.DataFrame()
+    if len(_edA):
+        def _ea(c):
+            return pd.to_numeric(_edA.get(c), errors="coerce").reindex(m.index)
+        _r_rev = pd.to_numeric(m.get("revenue_ttm"), errors="coerce") / _ea("revenue_ttm")
+        _r_cfo = pd.to_numeric(m.get("cfo_ttm"), errors="coerce") / _ea("cfo_ttm")
+        # both flow fields inflated >2x vs audited USD is corruption regardless
+        # of whether the factors cohere as one clean FX rate (JFU: 15.1x rev /
+        # 7.0x cfo — messier than a rate, still wrong; audited wins).
+        _fx_like = (_r_rev > 2) & (_r_rev < 500) & (_r_cfo > 2) & (_r_cfo < 500)
+        _fx_like = _fx_like.fillna(False)
+        if int(_fx_like.sum()):
+            for _lvl in ("revenue_ttm", "ebitda_ttm", "cfo_ttm", "fcf_ttm",
+                         "cash", "total_debt"):
+                if _lvl in m.columns:
+                    _ev_l = _ea(_lvl)
+                    _mask_l = _fx_like & _ev_l.notna()
+                    m.loc[_mask_l, _lvl] = _ev_l[_mask_l]
+                    _twin = _lvl + "_usd"
+                    if _twin in m.columns:
+                        m.loc[_mask_l, _twin] = _ev_l[_mask_l]   # EDGAR is USD
+            recon["currency arbitration (EDGAR usd adopted)"] = int(_fx_like.sum())
+            _qc_flag_pending_currency = _fx_like
+        else:
+            _qc_flag_pending_currency = pd.Series(False, index=m.index)
+    else:
+        _qc_flag_pending_currency = pd.Series(False, index=m.index)
+
     # ----- MARGIN RECONCILE -----
     # op/gross/net margins were fill-only and NEVER re-touched, so corrupt or
     # stale snapshot margins (KROS op_margin +246% on a burning biotech) sat
@@ -574,6 +623,7 @@ def main():
         _qc_flag(_viol_gm & ~_null_gm, "gross_lt_op_margin")
     _qc_flag(_fcf_adopted_yf, "fcf_yf_adopted")
     _qc_flag(edgar_won, "edgar_grounded")
+    _qc_flag(_qc_flag_pending_currency, "edgar_currency_arbitration")
     _row_consistent("p_e", (_mc / _ni2).where(_ni2 > 0), _pe_yf, band=(0, 2000))
     # where Yahoo's p_e IS authoritative but NI still disagrees (margin-implied
     # NI was unavailable), derive the level from the ratio: NI := mcap / p_e.
