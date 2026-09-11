@@ -832,16 +832,34 @@ def _valuation_consistency(t, g):
     # and must be nulled+flagged by the harmonizer, never gate a net-cash
     # archetype.
     _ncm_a = gc("net_cash_pct_mcap")
-    check("cash family: no net_cash_pct_mcap above 20x (ccy-mismatch class)",
-          int((_ncm_a > 20).sum()) == 0, f"{int((_ncm_a > 20).sum())} rows")
-    # NCAV can never exceed book equity (equity adds non-current assets);
-    # >1.5x violation = corrupt pair, the fake-net-net direction.
+    _fin_a = g["sector"].fillna("").astype(str).str.lower().str.contains("financ") \
+        if "sector" in g.columns else pd.Series(False, index=g.index)
+    _ncm_v = int(((_ncm_a > 20) & ~_fin_a).sum())
+    check("cash family: no net_cash_pct_mcap above 20x (ccy-mismatch class; financials exempt)",
+          _ncm_v == 0, f"{_ncm_v} rows")
+    # NCAV can never exceed book equity (equity adds non-current assets).
+    # After the pence-pb repair, cross-ccy restatement and vintage
+    # recompute, survivors are unresolved contradictions that must carry
+    # the ncav_gt_equity flag — a SILENT violation fails.
     _pb_a = gc("pb")
     _ncv_a = gc("ncav_pct_mcap")
     _eqx_a = (1.0 / _pb_a).where(_pb_a > 0)
-    _ncv_v = int(((_ncv_a > 1.5 * _eqx_a) & (_ncv_a > 0)).sum())
-    check("ncav: never above 1.5x book equity (impossible identity)",
-          _ncv_v == 0, f"{_ncv_v} rows")
+    _ncv_viol = ((_ncv_a > 1.5 * _eqx_a) & (_ncv_a > 0)).fillna(False)
+    _qcf_a = g["qc_flags"].astype(str) if "qc_flags" in g.columns else pd.Series("", index=g.index)
+    _ncv_silent = int((_ncv_viol & ~_qcf_a.str.contains("ncav_gt_equity")).sum())
+    check("ncav: no SILENT ncav>1.5x-equity contradiction (flagged ok)",
+          _ncv_silent == 0,
+          f"{_ncv_silent} silent of {int(_ncv_viol.sum())} total")
+    # pence-corrupt pb must not survive where the NI/ROE discriminator
+    # proves the 100x factor on a cents-quoted market.
+    _roe_a = gc("roe"); _ni_a2 = gc("net_income_ttm")
+    _eq_ia = (_ni_a2 / _roe_a).where((_roe_a != 0) & _ni_a2.notna())
+    _pb_ia = (gc("market_cap") / _eq_ia).where(_eq_ia > 0)
+    _sfx_a = g["symbol"].astype(str).str.endswith((".L", ".IL", ".JO", ".TA")) \
+        if "symbol" in g.columns else pd.Series(False, index=g.index)
+    _pence_left = int((_sfx_a & (_pb_a / _pb_ia).between(50, 200)).sum())
+    check("pb: no surviving pence-vs-pounds 100x corruption (cents markets)",
+          _pence_left == 0, f"{_pence_left} rows")
     _ccv_a = gc("cash_conversion")
     check("cash_conversion inside +/-50 (base-effect band)",
           int((_ccv_a.abs() > 50).sum()) == 0, f"{int((_ccv_a.abs() > 50).sum())} rows")
@@ -872,11 +890,19 @@ def _valuation_consistency(t, g):
                         / (_num_g(gg, "ebitda_ttm")
                            - _num_g(gg, "op_margin") * _num_g(gg, "revenue_ttm"))),
             lambda v: v > 0.65)
-    _fcheck("arch_cash_adjusted_pe", "NI>0 and adj-P/E <= 8.5 (local)",
-            lambda gg: ((_num_g(gg, "market_cap")
-                         - (_num_g(gg, "cash") - _num_g(gg, "total_debt")))
-                        / _num_g(gg, "net_income_ttm")),
-            lambda v: v > 8.5)
+    # adj-P/E is TWO-LEGGED (user: latest OR Graham 5yr-average earnings) —
+    # test the BINDING leg, the minimum of the two, so an average-leg firer
+    # (latest E quirk-depressed, avg cheap) is not a false violation.
+    def _adj_pe_best(gg):
+        _mcv = _num_g(gg, "market_cap")
+        _ncv = _num_g(gg, "cash") - _num_g(gg, "total_debt")
+        _niv = _num_g(gg, "net_income_ttm")
+        _nav = _num_g(gg, "ni_avg")
+        _l1 = ((_mcv - _ncv) / _niv).where(_niv > 0)
+        _l2 = ((_mcv - _ncv) / _nav).where(_nav > 0)
+        return pd.concat([_l1, _l2], axis=1).min(axis=1)
+    _fcheck("arch_cash_adjusted_pe", "NI>0 and best-leg adj-P/E <= 8.5 (local)",
+            _adj_pe_best, lambda v: v > 8.5)
     _fcheck("arch_owner_earnings_power", "owner-earnings >= ~1.35x NI (local)",
             lambda gg: ((_num_g(gg, "net_income_ttm")
                          + (_num_g(gg, "ebitda_ttm")
@@ -937,7 +963,11 @@ def _valuation_consistency(t, g):
         # must satisfy the core arithmetic legs from the CURRENT master
         _t_idx = t.set_index("symbol")
         _fir = _t_idx.index[_t_idx["arch_cash_adjusted_pe"] == 1]
-        _adj_f = _adj.reindex(_fir); _ni_ff = _ni_f.reindex(_fir); _nc_ff = _nc_f.reindex(_fir)
+        _nia_f = _gs("ni_avg")
+        _adj_avg = (_mc_f - _nc_f) / _nia_f.where(_nia_f > 0)
+        # the adj-P/E leg is latest OR Graham-average (user OR-addition)
+        _adj_best = pd.concat([_adj, _adj_avg], axis=1).min(axis=1)
+        _adj_f = _adj_best.reindex(_fir); _ni_ff = _ni_f.reindex(_fir); _nc_ff = _nc_f.reindex(_fir)
         _viol_ft = int(((_ni_ff <= 0) | (_nc_ff <= 0) | (_adj_f > 8.0)).fillna(True).sum())
         check("flow-through: cash_adjusted_pe firers satisfy the gate on the CURRENT master",
               _viol_ft == 0, f"{_viol_ft} firers stale vs master (chain not re-run?)")

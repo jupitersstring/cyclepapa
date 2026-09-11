@@ -136,6 +136,32 @@ def main():
         ed = ed[_fresh_ed.fillna(False)]
     except FileNotFoundError:
         ed = pd.DataFrame()
+    _edavg_merged_n = 0
+    # Audited MULTI-YEAR fields (Graham/Templeton averages, equity CAGR,
+    # forensic balance items) merge STRUCTURALLY here — they were previously
+    # carried into master by a one-off merge, so a rebuild silently dropped
+    # them (the ni_avg-leg gates went dark). No TTM freshness gate: a 5-year
+    # average is not invalidated by a missed quarter.
+    try:
+        _edavg = pd.read_csv("us_edgar_yartseva.csv", low_memory=False,
+                             usecols=lambda c: c in {
+                                 "symbol", "oe_avg", "ni_avg", "fcf_avg",
+                                 "capex_avg", "oe_avg_years",
+                                 "equity_cagr_5y", "financing_cf_ttm",
+                                 "net_working_capital",
+                                 "goodwill_intangibles_pct_assets"}
+                             ).drop_duplicates("symbol").set_index("symbol")
+        _n_avg = 0
+        for _ac in _edavg.columns:
+            if _ac not in m.columns:
+                m[_ac] = np.nan
+            _vv = pd.to_numeric(_edavg[_ac], errors="coerce").reindex(m.index)
+            _upd = _vv.notna()
+            m.loc[_upd, _ac] = _vv[_upd]
+            _n_avg += int(_upd.sum())
+        _edavg_merged_n = _n_avg
+    except FileNotFoundError:
+        pass
 
     def edgar_col(c, yahoo_series=None):
         if len(ed) and c in ed.columns:
@@ -289,6 +315,8 @@ def main():
                  # keeps its broad-basis exception; debt gets none.
                  ("yf_total_debt", "total_debt", None)]
     recon = {}
+    if _edavg_merged_n:
+        recon["EDGAR multi-year fields merged (averages/forensic)"] = _edavg_merged_n
     repaired_any = pd.Series(False, index=m.index)
     edgar_won = pd.Series(False, index=m.index)
     for yf_col, mcol, usd_col in RECONCILE:
@@ -498,6 +526,168 @@ def main():
         # audited nor the statement source covers a name, its snapshot fcf
         # stands or the field stays honestly absent.)
 
+    # ---- CROSS-CURRENCY LINE RESTATEMENT (root repair, not a null) ----
+    # A secondary listing (Frankfurt .F, OTC pinksheet, LSE line of a foreign
+    # company, B-share) quotes in one currency while Yahoo serves its
+    # statement LEVELS in the company's FINANCIAL currency. Every
+    # level-over-mcap and level-over-EV ratio on such a line is then off by
+    # exactly the fx factor — 150x for a JPY company on a USD line, and the
+    # moderate cases (GBP/USD, 1.3x) sit INSIDE every sanity band, silently.
+    # Evidence-based repair: rows sharing a normalized company name form a
+    # group; the group's financial currency is the home line's quote currency
+    # (the line whose quote currency matches its country's currency). A
+    # sibling line whose raw levels MATCH the home line's (unconverted
+    # evidence) while its quote currency differs gets its level columns
+    # RESTATED into its own quote currency via the fx bridge
+    # b = fx_fin_to_usd / fx_quote_to_usd, so every downstream recompute
+    # (yields, multiples, EV, net-cash family) is automatically correct.
+    # Price-quoted ratios Yahoo built cross-currency (pb, p_e) divide by b.
+    _restated_mask = pd.Series(False, index=m.index)
+    _noanchor_mask = pd.Series(False, index=m.index)
+    _CTRY_CCY = {
+        "United States": "USD", "Japan": "JPY", "United Kingdom": "GBP",
+        "Canada": "CAD", "Australia": "AUD", "Hong Kong": "HKD",
+        "China": "CNY", "South Korea": "KRW", "Taiwan": "TWD",
+        "India": "INR", "Singapore": "SGD", "Thailand": "THB",
+        "Malaysia": "MYR", "Indonesia": "IDR", "Sweden": "SEK",
+        "Norway": "NOK", "Denmark": "DKK", "Finland": "EUR",
+        "Germany": "EUR", "France": "EUR", "Netherlands": "EUR",
+        "Italy": "EUR", "Spain": "EUR", "Belgium": "EUR",
+        "Austria": "EUR", "Portugal": "EUR", "Ireland": "EUR",
+        "Greece": "EUR", "Switzerland": "CHF", "Poland": "PLN",
+        "Turkey": "TRY", "Israel": "ILS", "Brazil": "BRL",
+        "Mexico": "MXN", "South Africa": "ZAR", "New Zealand": "NZD",
+        "Philippines": "PHP", "Vietnam": "VND", "Chile": "CLP",
+        "Saudi Arabia": "SAR", "United Arab Emirates": "AED",
+        "Qatar": "QAR", "Kuwait": "KWD", "Egypt": "EGP",
+    }
+    _LEVEL_COLS = [c for c in (
+        "cash", "total_debt", "revenue_ttm", "ebitda_ttm", "net_income_ttm",
+        "cfo_ttm", "fcf_ttm", "capex_ttm", "ncav", "net_cash", "ebit_ttm",
+        "gross_profit_ttm", "financing_cf_ttm", "net_working_capital",
+        "oe_avg", "ni_avg", "fcf_avg", "capex_avg", "normalized_ebitda",
+        "normalized_ebit", "normalized_revenue", "net_buyback_ttm",
+    ) if c in m.columns]
+    if "name" in m.columns and "currency" in m.columns and "fx_to_usd" in m.columns:
+        import re as _re_ccy
+        _nn = m["name"].map(lambda s: _re_ccy.sub(
+            r"[^a-z0-9]", "", _re_ccy.sub(
+                r"\b(inc|corp|corporation|ltd|limited|plc|co|company|holdings?"
+                r"|group|ag|se|sa|nv|kk|gmbh|the|adr)\b", "",
+                str(s).lower())))
+        _cur = m["currency"].astype(str).str.upper().replace({"GBP": "GBP", "GBX": "GBP", "GBP0.01": "GBP"})
+        _fx = pd.to_numeric(m["fx_to_usd"], errors="coerce")
+        # fx per currency code (mode across rows — one rate per code)
+        _fx_by_ccy = _fx.groupby(_cur).median()
+        _fin_ccy_row = m["country"].map(_CTRY_CCY) if "country" in m.columns else pd.Series(np.nan, index=m.index)
+        _grp = pd.DataFrame({"nn": _nn, "cur": _cur, "fin": _fin_ccy_row,
+                             "rev": pd.to_numeric(m.get("revenue_ttm"), errors="coerce"),
+                             "ca": pd.to_numeric(m.get("cash"), errors="coerce")})
+        _grp = _grp[_grp["nn"].str.len() > 3]
+        # group financial currency = home line's quote currency: the line
+        # whose quote currency equals its own country's currency.
+        _home = _grp[_grp["cur"] == _grp["fin"]]
+        _fin_by_name = _home.groupby("nn")["fin"].agg(
+            lambda s: s.mode().iloc[0] if len(s.mode()) else np.nan)
+        _ref_rev = _home.groupby("nn")["rev"].median()
+        _ref_ca = _home.groupby("nn")["ca"].median()
+        _g_fin = _grp["nn"].map(_fin_by_name)
+        _g_rrev = _grp["nn"].map(_ref_rev)
+        _g_rca = _grp["nn"].map(_ref_ca)
+        # unconverted evidence: raw levels match the home line's raw levels.
+        # Band ±10%: TTM vintages drift between fetch dates (Chudenko's OTC
+        # line sat at 1.054x its home line and was missed at ±5%), while a
+        # REAL fx factor is >=1.25x by the bridge gate below — the two are
+        # not confusable.
+        _lvl_match = (((_grp["rev"] / _g_rrev).between(0.90, 1.10))
+                      | (_grp["rev"].isna() & (_grp["ca"] / _g_rca).between(0.90, 1.10)))
+        _b = _g_fin.map(_fx_by_ccy) / _grp["cur"].map(_fx_by_ccy)
+        _need = (_g_fin.notna() & (_grp["cur"] != _g_fin)
+                 & _lvl_match.fillna(False)
+                 & _b.notna() & ((_b > 1.25) | (_b < 0.8)))
+        _restated_mask = _need.reindex(m.index).fillna(False)
+        if int(_restated_mask.sum()):
+            _bv = _b.reindex(m.index)
+            for _lc in _LEVEL_COLS:
+                _v = pd.to_numeric(m[_lc], errors="coerce")
+                m.loc[_restated_mask, _lc] = (_v * _bv)[_restated_mask]
+            # pb: Yahoo is INCONSISTENT across secondary lines — some carry
+            # price_quote/bookvalue_fin (needs /b), others already-converted
+            # book (correct as stored; HOIEF showed 0.83 correct, and a
+            # blanket /b would print 133). Never scale blindly: recompute
+            # from the row's own CONVERTED net income and its currency-free
+            # roe (equity = NI/roe, now in quote ccy) where that evidence
+            # exists; otherwise leave the stored value (row is flagged).
+            if "pb" in m.columns:
+                _ever_rs = _restated_mask
+                if "qc_flags" in m.columns:
+                    _ever_rs = _ever_rs | m["qc_flags"].fillna("").astype(str) \
+                        .str.contains("ccy_restated")
+                _ni_cv = pd.to_numeric(m["net_income_ttm"], errors="coerce")
+                _roe_cv = pd.to_numeric(m.get("roe"), errors="coerce")
+                _eq_cv = (_ni_cv / _roe_cv).where(_roe_cv != 0)
+                _pb_tru = (_mc / _eq_cv).where(_eq_cv > 0)
+                _has_pb = _ever_rs & _pb_tru.notna()
+                m.loc[_has_pb, "pb"] = _pb_tru[_has_pb]
+                recon["pb recomputed on cross-ccy lines (NI/roe equity)"] = int(_has_pb.sum())
+            # p_e is recomputed outright from the RESTATED net income — the
+            # identity, not a scaled guess (the p_e-vs-mcap/NI audit gate
+            # verifies it).
+            if "p_e" in m.columns:
+                _ever_rs2 = _restated_mask
+                if "qc_flags" in m.columns:
+                    _ever_rs2 = _ever_rs2 | m["qc_flags"].fillna("").astype(str) \
+                        .str.contains("ccy_restated")
+                _ni_rs = pd.to_numeric(m["net_income_ttm"], errors="coerce")
+                _pe_rs = (_mc / _ni_rs).where(_ni_rs > 0)
+                m.loc[_ever_rs2, "p_e"] = _pe_rs[_ever_rs2]
+            # *_usd columns: converted level (quote ccy) x quote fx == level_fin x fx_fin
+            for _uc, _lc in (("revenue_ttm_usd", "revenue_ttm"),
+                             ("ebitda_ttm_usd", "ebitda_ttm"),
+                             ("fcf_ttm_usd", "fcf_ttm"),
+                             ("net_cash_usd", "net_cash"),
+                             ("ncav_usd", "ncav")):
+                if _uc in m.columns and _lc in m.columns:
+                    _lv = pd.to_numeric(m[_lc], errors="coerce")
+                    m.loc[_restated_mask, _uc] = (_lv * _fx)[_restated_mask]
+            pass
+        # NO-ANCHOR MIXED GROUPS: siblings share IDENTICAL raw levels while
+        # quoting in DIFFERENT currencies, but no home line exists in master
+        # to anchor the financial currency (New China Life: NWWCF/USD and
+        # NCL.F/EUR share raw CNY levels; at most one quote currency can be
+        # coherent and neither is provable). Every quote-vs-level ratio on
+        # such rows is unverifiable-and-likely-corrupt — and the moderate
+        # cases (p_s 0.24 from JPY-over-USD) sit INSIDE every band. Null the
+        # quote-vs-level ratios on ALL group members and flag; repairable
+        # once yf_financial_currency arrives with the next fetch.
+        _n_ccy = _grp.groupby("nn")["cur"].transform("nunique")
+        _has_home = _grp["nn"].map(_fin_by_name).notna()
+        _noanchor_mask = ((_n_ccy > 1) & ~_has_home).reindex(m.index).fillna(False)
+        # only rows whose group actually shares raw levels (true mixed group)
+        _grp_ref_rev = _grp.groupby("nn")["rev"].transform("median")
+        _shares_lvl = ((_grp["rev"] / _grp_ref_rev).between(0.90, 1.10)).reindex(m.index).fillna(False)
+        _noanchor_mask &= _shares_lvl
+        # NEVER null the group's principal line: without a country anchor the
+        # largest-mcap-USD line is presumed home (Freddie Mac's US OTC line
+        # was being nulled beside its tiny Frankfurt satellite because its
+        # country field is empty). Satellites are duplicates — the company
+        # stays represented through the presumed-home line. (A presumed-home
+        # line whose financials are in yet another currency — the XP/BRL
+        # class — is undetectable until yf_financial_currency lands.)
+        _mcu_g = (pd.to_numeric(m.get("market_cap"), errors="coerce") * _fx)
+        _gmax = pd.DataFrame({"nn": _nn, "mcu": _mcu_g}).groupby("nn")["mcu"].transform("max")
+        _is_principal = (_mcu_g >= _gmax * 0.999).fillna(False)
+        _noanchor_mask &= ~_is_principal.reindex(m.index).fillna(False)
+        # (the actual ratio nulls happen in the LATE sanitation region — after
+        # every recompute — or they would be refilled from the raw levels)
+        if int(_restated_mask.sum()):
+            # persist the bridge so later merges of financial-currency data
+            # onto a restated row can convert without re-deriving the twin
+            if "ccy_bridge" not in m.columns:
+                m["ccy_bridge"] = np.nan
+            m.loc[_restated_mask, "ccy_bridge"] = _bv[_restated_mask]
+            recon["cross-ccy line levels restated to quote currency"] = int(_restated_mask.sum())
+
     # price_52w_high: a running max is definitionally valid — the stored high
     # can never sit BELOW the current price.
     if "price_52w_high" in m.columns:
@@ -528,28 +718,10 @@ def main():
     # the melt logic (_cash_return_ok) and the weschler/liger cheapness gates.
     _cfo2 = pd.to_numeric(m.get("cfo_ttm"), errors="coerce")
     _ni3 = pd.to_numeric(m.get("net_income_ttm"), errors="coerce")
-    # owner_earnings_yield = TRUE Buffett owner earnings (NI + D&A − capex)
-    # over mcap — REBUILT WHOLESALE each run. The column historically held
-    # fcf/mcap under this name: one measure living under two names silently
-    # double-counted the FCF lens in every downstream OR-leg and in
-    # robust_cash_yield, so no aliased relic may survive. D&A is implied
-    # EBITDA − EBIT within the same row (same-source pair, the construction
-    # the forensic archetypes use); capex is the PRIMARY column only. Rows
-    # missing a component leave the field honestly absent. Levered measure →
-    # mcap denominator; same ±100% impossibility band as fcf_yield.
-    _ebd_oe = pd.to_numeric(m.get("ebitda_ttm"), errors="coerce")
-    _opm_oe = pd.to_numeric(m.get("op_margin"), errors="coerce")
-    _rev_oe = pd.to_numeric(m.get("revenue_ttm"), errors="coerce")
-    _cx_oe = pd.to_numeric(m.get("capex_ttm"), errors="coerce")
-    _dna_oe = (_ebd_oe - _opm_oe * _rev_oe).where(lambda s: s >= 0)
-    _oe_lvl = (_ni3 + _dna_oe - _cx_oe).where(_cx_oe >= 0)
-    _oe_yield = (_oe_lvl / _mc).where(_mc > 0)
-    _oe_yield = _oe_yield.where(_oe_yield.abs() <= 1.0)
-    if "owner_earnings_yield" in m.columns:
-        _oe_old = pd.to_numeric(m["owner_earnings_yield"], errors="coerce")
-        recon["owner_earnings_yield rebuilt as true OE (was fcf alias)"] = int(
-            (_oe_old.notna() | _oe_yield.notna()).sum())
-    m["owner_earnings_yield"] = _oe_yield
+    # (owner_earnings_yield is rebuilt in the LATE sanitation region — after
+    # the margin ordering/de-minimis nulls — because its implied D&A uses
+    # op_margin: built here it could hold a value its FINAL components no
+    # longer reproduce, the KTTA class.)
     _recompute("cfo_yield", (_cfo2 / _mc).where(_mc > 0), band=(-50, 50))
     _recompute("earnings_yield", (_ni3 / _mc).where(_mc > 0), band=(-50, 50))
     if "robust_cash_yield" in m.columns:
@@ -795,9 +967,23 @@ def main():
     # mcap-vs-level cash family on those rows and flag them; the real cure
     # (fetching financialCurrency and converting levels) lands with the next
     # full fetch (ticker_yf now requests it).
+    # flag hygiene: this tag is re-derived from CURRENT evidence each run
+    # (both here and in the no-anchor block) — a row that no longer earns it
+    # (a principal line spared by the presumed-home rule) must not keep it.
+    if "qc_flags" in m.columns:
+        m["qc_flags"] = m["qc_flags"].fillna("").astype(str).str.replace(
+            "ccy_mismatch_suspect", "", regex=False)
     _ca_x = pd.to_numeric(m.get("cash"), errors="coerce")
     _td_x = pd.to_numeric(m.get("total_debt"), errors="coerce")
     _ccy_bad = ((((_ca_x - _td_x) / _mc) > 20) | ((_ca_x / _mc) > 20)) & (_mc > 0)
+    # FINANCIALS EXEMPTION: a bank/insurer/broker legitimately holds cash
+    # far above a depressed market cap (Freddie Mac in conservatorship:
+    # real cash >20x mcap) — that is balance-sheet reality, not currency
+    # corruption. Financials are already excluded from the operating
+    # archetypes this band protects.
+    if "sector" in m.columns:
+        _is_fin_x = m["sector"].fillna("").astype(str).str.lower().str.contains("financ")
+        _ccy_bad &= ~_is_fin_x
     _ccy_bad = _ccy_bad.fillna(False)
     for _cc_col in ("net_cash_pct_mcap", "cash_pct_mcap", "ncav_pct_mcap", "cash_pct_ev"):
         if _cc_col in m.columns:
@@ -815,19 +1001,84 @@ def main():
                 recon[f"{_cc_col} nulled (cash>20x mcap, ccy-mismatch class)"] = int(_hit.sum())
     _qc_flag(_ccy_bad, "ccy_mismatch_suspect")
 
-    # NCAV-VS-EQUITY IDENTITY: NCAV (current assets − total liabilities) can
-    # NEVER exceed total equity (equity adds non-current assets on top) — a
-    # violation beyond 1.5x is not vintage drift but a corrupt pair (mixed
-    # sources/currencies; 900920.SS-class). The dangerous direction is a
-    # fake net-net, so the NCAV side is nulled.
+    # PENCE-CORRUPT P/B REPAIR (root-caused, repaired — not nulled): on LSE
+    # (and other cents-quoted markets: .IL, .JO ZAc, .TA agorot) Yahoo's
+    # priceToBook divides a PENCE price by a POUNDS book value — exactly
+    # 100x. p_e and p_s are computed consistently (verified: .L medians
+    # match world), ONLY priceToBook carries the disease, and it EXCLUDED
+    # cheap UK names from every pb-floor gate (Hunting stored 94.8 vs real
+    # 0.63; Jupiter 92.4 vs ~0.9). Per-row evidence, never a blanket /100:
+    # Yahoo's own NI/ROE gives a pence-immune equity, so pb vs mcap*roe/NI
+    # ~100x proves corruption while a GENUINE high-P/B name shows ~1x
+    # (Games Workshop stored 21.28 vs independent 21.29 — untouched).
+    # Loss-makers (no ROE leg) use the NCAV identity as secondary evidence:
+    # /100 must restore equity >= NCAV where stored pb violates it.
     _pb_x = pd.to_numeric(m.get("pb"), errors="coerce")
-    _ncv_x = pd.to_numeric(m.get("ncav_pct_mcap"), errors="coerce")
-    _eq_x = (1.0 / _pb_x).where(_pb_x > 0)
-    _ncv_bad = (_ncv_x > 1.5 * _eq_x) & (_ncv_x > 0) & _eq_x.notna()
-    if "ncav_pct_mcap" in m.columns:
-        m.loc[_ncv_bad.fillna(False), "ncav_pct_mcap"] = np.nan
-        if int(_ncv_bad.fillna(False).sum()):
-            recon["ncav_pct_mcap nulled (exceeds 1.5x book equity, impossible)"] = int(_ncv_bad.fillna(False).sum())
+    _pence_sfx = m.index.to_series().astype(str).str.endswith((".L", ".IL", ".JO", ".TA"))
+    _roe_pp = pd.to_numeric(m.get("roe"), errors="coerce")
+    _ni_pp = pd.to_numeric(m.get("net_income_ttm"), errors="coerce")
+    _eq_ind = (_ni_pp / _roe_pp).where((_roe_pp != 0) & _ni_pp.notna())
+    _pb_ind = (_mc / _eq_ind).where(_eq_ind > 0)
+    _ratio_pp = _pb_x / _pb_ind
+    _ncav_lvl_pp = pd.to_numeric(m.get("ncav"), errors="coerce")
+    _pence_hit = _pence_sfx & (
+        _ratio_pp.between(50, 200)
+        | (_pb_ind.isna() & (_pb_x > 15) & (_ncav_lvl_pp > 0)
+           & ((_mc / (_pb_x / 100.0)) >= 0.66 * _ncav_lvl_pp)
+           & ((_mc / _pb_x) < 0.66 * _ncav_lvl_pp)))
+    _pence_hit = _pence_hit.fillna(False)
+    if "pb" in m.columns and int(_pence_hit.sum()):
+        m.loc[_pence_hit, "pb"] = _pb_x[_pence_hit] / 100.0
+        recon["pb repaired /100 (pence-vs-pounds, evidence-confirmed)"] = int(_pence_hit.sum())
+    # DIRECT BOOK-VALUE EVIDENCE (fetched adjudication file): for suspects
+    # with neither an NI/ROE discriminator nor an NCAV identity leg, the
+    # decisive evidence was fetched from the source itself — Yahoo's
+    # defaultKeyStatistics.bookValue is in MAJOR units while price.currency
+    # says "GBp"/"ZAc" explicitly, so pb_true = price/100/bookValue with no
+    # inference at all (Virgin Wines 0.75, Derwent London 0.59).
+    try:
+        _bvev = pd.read_csv("audit_reports/pence_bookvalue_evidence.csv"
+                            ).drop_duplicates("symbol").set_index("symbol")
+        _bv_v = pd.to_numeric(_bvev["bookValue"], errors="coerce").reindex(m.index)
+        _px_v = pd.to_numeric(_bvev["price"], errors="coerce").reindex(m.index)
+        _cc_v = _bvev["quote_ccy"].astype(str).reindex(m.index)
+        _cents = _cc_v.isin(["GBp", "ZAc", "ILA", "GBX"])
+        _px_maj = _px_v.where(~_cents, _px_v / 100.0)
+        _pb_ev = (_px_maj / _bv_v).where(_bv_v > 0)
+        _ev_hit = _pb_ev.notna() & (_pb_x > 15) & ~_pence_hit \
+            & ((_pb_x / _pb_ev).between(50, 200))
+        if int(_ev_hit.sum()):
+            m.loc[_ev_hit, "pb"] = _pb_ev[_ev_hit]
+            recon["pb repaired from fetched bookValue evidence"] = int(_ev_hit.sum())
+        _pence_hit = _pence_hit | _ev_hit.fillna(False)
+    except FileNotFoundError:
+        pass
+    _qc_pence_mask = _pence_hit
+
+    # NCAV VINTAGE RECOMPUTE (root repair): ncav_pct_mcap was computed at
+    # build time and never refreshed against the CURRENT mcap (unlike the
+    # cash family), so a price move since build fakes an identity violation
+    # against fresh pb. Recompute from the stored NCAV level (restated above
+    # where cross-currency) over today's mcap.
+    if "ncav_pct_mcap" in m.columns and "ncav" in m.columns:
+        _ncv_lvl2 = pd.to_numeric(m["ncav"], errors="coerce")
+        _recompute("ncav_pct_mcap", (_ncv_lvl2 / _mc).where(_mc > 0), band=(-50, 50))
+
+    # NCAV-VS-EQUITY IDENTITY: NCAV can never exceed total equity (equity
+    # adds non-current assets on top). After the pence repair, the
+    # cross-currency restatement and the vintage recompute above, a
+    # surviving violation is a contradiction we cannot yet adjudicate —
+    # FLAGGED (identifiable, kept), never silently consumed and never
+    # nulled without understanding.
+    _pb_x2 = pd.to_numeric(m.get("pb"), errors="coerce")
+    _ncv_x2 = pd.to_numeric(m.get("ncav_pct_mcap"), errors="coerce")
+    _eq_x2 = (1.0 / _pb_x2).where(_pb_x2 > 0)
+    _ncv_contra = ((_ncv_x2 > 1.5 * _eq_x2) & (_ncv_x2 > 0) & _eq_x2.notna()).fillna(False)
+    if int(_ncv_contra.sum()):
+        recon["ncav_gt_equity flagged (unresolved contradiction, kept)"] = int(_ncv_contra.sum())
+    _qc_flag(_ncv_contra, "ncav_gt_equity")
+    _qc_flag(_qc_pence_mask, "pence_pb_repaired")
+    _qc_flag(_restated_mask, "ccy_restated")
 
     # CASH-CONVERSION BASE-EFFECT BAND: CFO/EBITDA beyond ±50x is a near-zero
     # EBITDA denominator artifact, not information (same disease as the NPI
@@ -848,6 +1099,51 @@ def main():
         if int(_opm_bad.fillna(False).sum()):
             recon["op_margin nulled (>100%, impossible)"] = int(_opm_bad.fillna(False).sum())
 
+    # owner_earnings_yield = TRUE Buffett owner earnings (NI + D&A − capex)
+    # over mcap — REBUILT WHOLESALE each run, HERE, after every margin
+    # sanitation (its implied D&A uses op_margin; building it earlier left
+    # values the final components could not reproduce — the KTTA class).
+    # The column historically held fcf/mcap under this name: one measure
+    # living under two names silently double-counted the FCF lens in every
+    # downstream OR-leg and in robust_cash_yield, so no aliased relic may
+    # survive. D&A is implied EBITDA − EBIT within the same row (the
+    # construction the forensic archetypes use); capex is the PRIMARY column
+    # only. Rows missing a component leave the field honestly absent.
+    # Levered measure → mcap denominator; ±100% impossibility band.
+    _ebd_oe = pd.to_numeric(m.get("ebitda_ttm"), errors="coerce")
+    _opm_oe = pd.to_numeric(m.get("op_margin"), errors="coerce")
+    _rev_oe = pd.to_numeric(m.get("revenue_ttm"), errors="coerce")
+    _cx_oe = pd.to_numeric(m.get("capex_ttm"), errors="coerce")
+    _ni_oe = pd.to_numeric(m.get("net_income_ttm"), errors="coerce")
+    _dna_oe = (_ebd_oe - _opm_oe * _rev_oe).where(lambda s: s >= 0)
+    _oe_lvl = (_ni_oe + _dna_oe - _cx_oe).where(_cx_oe >= 0)
+    _oe_yield = (_oe_lvl / _mc).where(_mc > 0)
+    _oe_yield = _oe_yield.where(_oe_yield.abs() <= 1.0)
+    if "owner_earnings_yield" in m.columns:
+        _oe_old = pd.to_numeric(m["owner_earnings_yield"], errors="coerce")
+        recon["owner_earnings_yield rebuilt as true OE (was fcf alias)"] = int(
+            (_oe_old.notna() | _oe_yield.notna()).sum())
+    m["owner_earnings_yield"] = _oe_yield
+
+    # NO-ANCHOR MIXED-CCY GROUPS (detected in the restatement pass): siblings
+    # share identical raw levels across different quote currencies with no
+    # home line to anchor the financial currency (New China Life NWWCF/NCL.F)
+    # — every quote-vs-level ratio is unverifiable-and-likely-corrupt, and the
+    # moderate cases (p_s 0.24 from CNY-over-USD) sit INSIDE every band.
+    # Nulled HERE, after all recomputes, or they would be refilled from the
+    # raw levels. Repairable once yf_financial_currency lands with the next
+    # full fetch.
+    if int(_noanchor_mask.sum()):
+        for _rc2 in ("p_s", "p_e", "pb", "ev_sales", "ev_ebitda", "ev_ebit",
+                     "fcf_yield", "cfo_yield", "earnings_yield",
+                     "owner_earnings_yield", "robust_cash_yield",
+                     "net_cash_pct_mcap", "cash_pct_mcap", "ncav_pct_mcap",
+                     "cash_pct_ev", "not_priced_in_score"):
+            if _rc2 in m.columns:
+                m.loc[_noanchor_mask, _rc2] = np.nan
+        recon["no-anchor mixed-ccy group: quote-vs-level ratios nulled"] = int(_noanchor_mask.sum())
+        _qc_flag(_noanchor_mask, "ccy_mismatch_suspect")
+
     # NORMALIZED-PAIR ORDERING: normalized_ebit (5yr avg EBIT) can only exceed
     # normalized_ebitda (5yr avg EBITDA) through negative D&A — impossible in
     # any filing — so an inverted pair means the two averages were taken over
@@ -863,18 +1159,38 @@ def main():
         if int(_inv.sum()):
             recon["normalized_ebit nulled (exceeds normalized_ebitda)"] = int(_inv.sum())
 
-    # NOT-PRICED-IN BAND: the score is a mean of (growth − price-return)
-    # differentials; yartseva_db now drops >1000%-base-effect components and
-    # clips each to ±3, so |score| > 3 is definitionally impossible under the
-    # honest construction — a stored value beyond it is a base-effect artifact
-    # (fcf_yoy off a near-zero prior printed 1.65e6) that auto-passed every
-    # (not_priced_in > 0.20) gate leg. Null, never keep, out-of-band scores.
+    # NOT-PRICED-IN REPAIR: the score is a mean of (growth − price-return)
+    # differentials; a growth rate off a near-zero prior year (ANSC's fcf_yoy
+    # of 3.29e6 — a SPAC's first real cash year) is an arithmetic artifact
+    # that flooded the mean and auto-passed every (not_priced_in > 0.20) gate
+    # leg. ROOT-CAUSE VERIFIED per name, and REPAIRED, not nulled: recompute
+    # from the stored yoy components with the same guards yartseva_db now
+    # applies at build (drop any component whose input moved >1000% — base
+    # effect, not information; clip kept differentials to ±300pp). Rows out
+    # of band or missing get the guarded recomputation; only rows with NO
+    # sane component left stay honestly absent (e.g. 1841.T, whose price_yoy
+    # of +14,413,000% is its own corruption, tracked separately).
     if "not_priced_in_score" in m.columns:
         _npi = pd.to_numeric(m["not_priced_in_score"], errors="coerce")
+        _rev_np = pd.to_numeric(m.get("rev_yoy"), errors="coerce")
+        _ebd_np = pd.to_numeric(m.get("ebitda_yoy"), errors="coerce")
+        _fcf_np = pd.to_numeric(m.get("fcf_yoy"), errors="coerce")
+        _px_np = pd.to_numeric(m.get("price_yoy"), errors="coerce")
+        _px_ok = _px_np.where(_px_np.abs() <= 10.0)
+        _comps = pd.concat(
+            [(gr.where(gr.abs() <= 10.0) - _px_ok).clip(-3.0, 3.0)
+             for gr in (_rev_np, _ebd_np, _fcf_np)], axis=1)
+        _npi_new = _comps.mean(axis=1, skipna=True)
         _npi_bad = _npi.notna() & (_npi.abs() > 3.0)
-        m.loc[_npi_bad, "not_priced_in_score"] = np.nan
-        if int(_npi_bad.sum()):
-            recon["not_priced_in_score nulled (base-effect out-of-band)"] = int(_npi_bad.sum())
+        # repair out-of-band rows AND refill rows previously nulled (or
+        # never built) where the guarded components support a score.
+        _fix = (_npi_bad | _npi.isna()) & _npi_new.notna()
+        m.loc[_fix, "not_priced_in_score"] = _npi_new[_fix]
+        _dead = _npi_bad & _npi_new.isna()
+        m.loc[_dead, "not_priced_in_score"] = np.nan
+        if int(_fix.sum()) or int(_dead.sum()):
+            recon["not_priced_in_score repaired/refilled from guarded components"] = int(_fix.sum())
+            recon["not_priced_in_score nulled (no sane component)"] = int(_dead.sum())
 
     # remaining identifiability flags: anomalies that are KEPT (legitimate
     # accounting can produce them) but must never be silent.

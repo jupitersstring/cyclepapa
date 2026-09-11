@@ -324,7 +324,16 @@ def main():
     if 'ev_ebitda' in master.columns:
         master['ev_ebitda'] = _to_num(master['ev_ebitda']).where(ebitda > 0)
     if 'ev_ebit' in master.columns:
-        master['ev_ebit'] = _to_num(master['ev_ebit']).where(opinc > 0)
+        # The denominator evidence must cover the row's OWN universe: opinc
+        # is the EDGAR (US-only) series, so `.where(opinc > 0)` silently
+        # WIPED ev_ebit for every non-EDGAR name (16,708 -> 2,266 observed).
+        # Null only where a KNOWN denominator is non-positive — EDGAR opinc
+        # where present, else the row's implied EBIT (op_margin x revenue);
+        # rows with no denominator evidence keep their sourced multiple.
+        _ebit_known = opinc.where(opinc.notna(),
+                                  (_to_num(_s('op_margin')) * rev))
+        master['ev_ebit'] = _to_num(master['ev_ebit']).where(
+            _ebit_known.isna() | (_ebit_known > 0))
     _fill('ev_sales', _safe_div(ev, rev, den_must_be_positive=True))
     _fill('p_s', _safe_div(mcap, rev, den_must_be_positive=True))
     _fill('pb', _safe_div(mcap, equity, den_must_be_positive=True))

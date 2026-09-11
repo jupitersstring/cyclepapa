@@ -329,6 +329,26 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     rev_a = first_row(ais, INCOME_ALIASES["revenue"])
     ebitda_a = first_row(ais, INCOME_ALIASES["ebitda"])
     ebit_a = first_row(ais, INCOME_ALIASES["ebit"])
+    # BASIS COHERENCE (root-caused on RNO.PA/Renault FY2025): Yahoo's
+    # "EBITDA" row INCLUDES unusual items while the "Normalized EBITDA"
+    # fallback EXCLUDES them, and "EBIT" includes them while "Operating
+    # Income" excludes them — so the alias pair can mix bases, and a year
+    # with a large unusual item (Renault's -11.6B Nissan writedown) makes
+    # avg EBIT exceed avg EBITDA, which is impossible in any single filing
+    # (needs negative D&A). Rebuild each year on ONE basis: keep EBITDA
+    # where it is coherent with EBIT (EBITDA >= EBIT), else the
+    # definitional same-filing construction EBIT + Reconciled Depreciation.
+    if ebitda_a is not None and ebit_a is not None:
+        _da_a = first_row(ais, ["Reconciled Depreciation",
+                                "Depreciation And Amortization In Income Statement"])
+        _eb_n = pd.to_numeric(ebitda_a, errors="coerce")
+        _ei_n = pd.to_numeric(ebit_a, errors="coerce")
+        _coh = _eb_n.notna() & _ei_n.notna() & (_eb_n >= _ei_n)
+        _reb = pd.Series(np.nan, index=_eb_n.index)
+        if _da_a is not None:
+            _da_n = pd.to_numeric(_da_a, errors="coerce").reindex(_eb_n.index)
+            _reb = (_ei_n + _da_n).where(_ei_n.notna() & _da_n.notna() & (_da_n >= 0))
+        ebitda_a = _eb_n.where(_coh, _reb)
     ni_a = first_row(ais, INCOME_ALIASES["net_income"])
     cfo_a = first_row(acf, CASHFLOW_ALIASES["cfo"])
     fcf_a = first_row(acf, CASHFLOW_ALIASES["fcf"])
