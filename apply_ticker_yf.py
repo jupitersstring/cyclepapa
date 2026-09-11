@@ -125,12 +125,14 @@ def main():
                              "fcf_ttm", "cash", "total_debt", "op_margin",
                              "balance_sheet_date"}
                          ).drop_duplicates("symbol").set_index("symbol")
-        # FRESHNESS GATE: audited-but-STALE yields to fresh Yahoo. An EDGAR row
-        # older than ~9 months describes a different TTM window (KROS: the
-        # audited window still contained a one-off milestone year at +72M
-        # EBITDA while the current TTM burns -97M).
+        # FRESHNESS GATE (user rule): prefer Yahoo when the EDGAR data is more
+        # stale than ONE QUARTER — a period end older than ~135 days (one
+        # 90-day quarter + ~45-day filing lag) means a newer filing exists
+        # that this snapshot missed, and its TTM window is behind (KROS: the
+        # stale audited window held a +72M milestone year vs the current
+        # -97M burn).
         _bsd = pd.to_datetime(ed.get("balance_sheet_date"), errors="coerce")
-        _fresh_ed = (pd.Timestamp.now() - _bsd).dt.days <= 270
+        _fresh_ed = (pd.Timestamp.now() - _bsd).dt.days <= 135
         ed = ed[_fresh_ed.fillna(False)]
     except FileNotFoundError:
         ed = pd.DataFrame()

@@ -47,6 +47,7 @@ HEADERS = {
 TICKERS_URL = "https://www.sec.gov/files/company_tickers.json"
 FACTS_URL = "https://data.sec.gov/api/xbrl/companyfacts/CIK{cik:010d}.json"
 CACHE_DIR = Path("edgar_cache")
+MAX_CACHE_AGE_DAYS = 30.0   # facts older than a month are refetched
 CACHE_DIR.mkdir(exist_ok=True)
 
 
@@ -184,68 +185,104 @@ def latest_annual_value(facts: dict, aliases: list[str], unit: str = "USD"):
 
 
 def ttm_value(facts: dict, aliases: list[str], unit: str = "USD"):
-    """Sum the most recent 4 unique quarter-end observations.
+    """Trailing-twelve-month value, built ROBUSTLY (methodology audit 2026-09-11).
 
-    XBRL flow items (revenue, op-income, net-income, CFO, capex) come
-    in fp = Q1/Q2/Q3/Q4 for the trailing quarter (val is the quarter's
-    flow) or FY for the full year. We want the rolling 4-quarter sum.
+    The old implementation summed the 4 most recent 3-month rows with NO
+    consecutiveness or recency requirement (its docstring promised a 380-day
+    window that was never coded) — when the Q4 3-month row was absent (very
+    common in XBRL companyfacts) it silently summed NON-consecutive quarters
+    (e.g. Q3'25+Q2'25+Q1'25+Q3'24), double-counting one season and skipping
+    another. That, plus a never-expiring cache, was the source of the wild
+    EDGAR-vs-Yahoo divergences.
+
+    New construction, in order of preference:
+      1. ROLL-FORWARD (standard XBRL method): TTM = FY + R - P, where R is the
+         newest flow observation (any duration: 3m quarter, 6m/9m YTD), P is
+         the SAME-duration observation ending ~1 year before R, and FY is the
+         annual observation ending between P and R. Exact for every fiscal
+         calendar; needs no Q4 row.
+      2. FOUR CONSECUTIVE 3-month quarters (successive ends 80-100 days apart).
+      3. FY directly, when it is the newest period available.
+    Returns {"val", "end", "concept", "kind"} or None.
     """
-    # Collect observations from any alias; prefer concepts with more data
     obs_pool: list[dict] = []
     for c in aliases:
         for o in _facts_unit_iter(facts, c, unit=unit):
-            if o.get("fp") in ("Q1", "Q2", "Q3", "Q4", "FY"):
+            if o.get("end") and o.get("val") is not None:
                 obs_pool.append({**o, "_concept": c})
     if not obs_pool:
         return None
-    # Dedupe by (end, fp, val) and sort newest first
+
+    def _d(x):
+        try:
+            return datetime.strptime(x, "%Y-%m-%d")
+        except Exception:
+            return None
+
     seen = set()
     unique = []
     for o in obs_pool:
-        key = (o.get("end"), o.get("fp"), o.get("val"))
+        key = (o.get("start"), o.get("end"), o.get("val"))
         if key in seen:
             continue
         seen.add(key)
-        unique.append(o)
-    unique.sort(key=lambda o: (o.get("end") or "", o.get("fp") or ""), reverse=True)
-
-    # Strategy: pick the latest period end. If it's an FY, return its val
-    # directly (already trailing-twelve). If it's a Q quarter, sum the last
-    # 4 quarter-end observations whose ends fall within the last 380 days.
-    latest = unique[0]
-    if latest.get("fp") == "FY":
-        return {"val": latest["val"], "end": latest.get("end"),
-                "concept": latest.get("_concept"), "kind": "FY"}
-
-    # Quarterly: build 4-quarter trailing sum.
-    # Each Q in XBRL companyfacts is a YTD figure with 3-month duration.
-    # We need to back into 3-month quarter values: pick the 4 most recent
-    # quarter-ends, ensure their durations are ~quarterly, and sum.
-    quart_obs = [o for o in unique if o.get("fp") in ("Q1", "Q2", "Q3", "Q4")]
-    if not quart_obs:
+        dur = None
+        if o.get("start"):
+            ds, de = _d(o["start"]), _d(o["end"])
+            if ds and de:
+                dur = (de - ds).days
+        o["_dur"] = dur
+        o["_end_dt"] = _d(o["end"])
+        if o["_end_dt"] is not None:
+            unique.append(o)
+    if not unique:
         return None
-    # Filter to quarter-duration only (3 months ~= 90 days).
-    def dur_days(o):
-        try:
-            s = datetime.strptime(o["start"], "%Y-%m-%d")
-            e = datetime.strptime(o["end"], "%Y-%m-%d")
-            return (e - s).days
-        except Exception:
-            return None
-    q3m = [o for o in quart_obs if (dur_days(o) is not None and 60 <= dur_days(o) <= 100)]
+    unique.sort(key=lambda o: o["_end_dt"], reverse=True)
+
+    annuals = [o for o in unique if (o.get("fp") == "FY" and (o["_dur"] is None or o["_dur"] >= 330))
+               or (o["_dur"] is not None and 330 <= o["_dur"] <= 380)]
+    flows = [o for o in unique if o["_dur"] is not None and 60 <= o["_dur"] <= 290]
+
+    # --- 1) roll-forward: TTM = FY + R - P
+    for R in flows[:3]:                      # try the newest few flow rows
+        for P in flows:
+            if P is R or P["_dur"] is None or R["_dur"] is None:
+                continue
+            gap = (R["_end_dt"] - P["_end_dt"]).days
+            if not (330 <= gap <= 395):
+                continue
+            if abs(P["_dur"] - R["_dur"]) > 20:
+                continue
+            for F in annuals:
+                if P["_end_dt"] <= F["_end_dt"] < R["_end_dt"]:
+                    return {"val": F["val"] + R["val"] - P["val"],
+                            "end": R.get("end"),
+                            "concept": R.get("_concept"),
+                            "kind": "TTM_rollfwd"}
+    # --- 2) four CONSECUTIVE 3-month quarters
+    q3m = [o for o in flows if 60 <= (o["_dur"] or 0) <= 100]
     if len(q3m) >= 4:
-        last4 = q3m[:4]
-        return {"val": sum(o["val"] for o in last4),
-                "end": last4[0].get("end"),
-                "concept": last4[0].get("_concept"),
-                "kind": "TTM4Q"}
-    # Fallback: if duration filter rejected too many, just use first 4
-    if len(quart_obs) >= 4:
-        last4 = quart_obs[:4]
-        return {"val": sum(o["val"] for o in last4),
-                "end": last4[0].get("end"),
-                "concept": last4[0].get("_concept"),
-                "kind": "TTM4Q_loose"}
+        chain = [q3m[0]]
+        for o in q3m[1:]:
+            if len(chain) == 4:
+                break
+            gap = (chain[-1]["_end_dt"] - o["_end_dt"]).days
+            if 80 <= gap <= 100:
+                chain.append(o)
+            elif gap > 100:
+                break                        # a hole in the quarter chain — stop
+        if len(chain) == 4:
+            return {"val": sum(o["val"] for o in chain),
+                    "end": chain[0].get("end"),
+                    "concept": chain[0].get("_concept"),
+                    "kind": "TTM4Q"}
+    # --- 3) FY directly when it is the newest thing we have
+    if annuals:
+        F = annuals[0]
+        newest_flow = flows[0]["_end_dt"] if flows else None
+        if newest_flow is None or (newest_flow - F["_end_dt"]).days <= 100:
+            return {"val": F["val"], "end": F.get("end"),
+                    "concept": F.get("_concept"), "kind": "FY"}
     return None
 
 
@@ -253,10 +290,14 @@ def fetch_companyfacts(cik: int) -> dict | None:
     """Fetch and cache companyfacts JSON for one CIK."""
     cache_path = CACHE_DIR / f"CIK{cik:010d}.json"
     if cache_path.exists():
-        try:
-            return json.loads(cache_path.read_text())
-        except json.JSONDecodeError:
-            pass
+        # NEVER-EXPIRING cache was the staleness root cause (Q1-2026 facts
+        # served in September). Serve from cache only while fresh.
+        age_days = (time.time() - cache_path.stat().st_mtime) / 86400.0
+        if age_days <= MAX_CACHE_AGE_DAYS:
+            try:
+                return json.loads(cache_path.read_text())
+            except json.JSONDecodeError:
+                pass
     url = FACTS_URL.format(cik=cik)
     for attempt in range(3):
         try:

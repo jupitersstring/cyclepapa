@@ -711,7 +711,7 @@ def _valuation_consistency(t, g):
         # same gates as the harmonizer: audited-but-STALE (>270d) and
         # sign-flipped rows are deliberately NOT grounded
         _bsd = pd.to_datetime(_ed["balance_sheet_date"], errors="coerce")
-        _ed = _ed[((pd.Timestamp.now() - _bsd).dt.days <= 270).fillna(False)]
+        _ed = _ed[((pd.Timestamp.now() - _bsd).dt.days <= 135).fillna(False)]  # one-quarter rule
         _edj = g[["symbol", "ebitda_ttm"]].merge(
             _ed[["symbol", "ebitda_ttm"]], on="symbol",
             suffixes=("_m", "_e"), how="inner")
