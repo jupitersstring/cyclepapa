@@ -795,6 +795,40 @@ def main():
             recon["cross-ccy line levels restated (pb-anchored, twinless)"] = int(_need2.sum())
             _restated_mask = _restated_mask | _need2
 
+        # ---- EV/PRICE RATIO REBUILD on every EVER-restated line ----
+        # Yahoo's own enterpriseValue and its multiples are built from the
+        # MIXED-currency raw levels on these lines (T3O.F proof: EV ≈ quote
+        # mcap + raw JPY net debt), and every run's Yahoo overwrite
+        # re-adopts them — so EV, EV multiples and the price ratios are
+        # reconstructed HERE from the restated components on every run.
+        # Yahoo's pre-computed ratios stay authoritative everywhere else.
+        _ever_rs3 = _restated_mask
+        if "qc_flags" in m.columns:
+            _ever_rs3 = _ever_rs3 | m["qc_flags"].fillna("").astype(str) \
+                .str.contains("ccy_restated")
+        if int(_ever_rs3.sum()):
+            _ca_r = pd.to_numeric(m.get("cash"), errors="coerce")
+            _td_r = pd.to_numeric(m.get("total_debt"), errors="coerce")
+            _eb_r = pd.to_numeric(m.get("ebitda_ttm"), errors="coerce")
+            _rv_r = pd.to_numeric(m.get("revenue_ttm"), errors="coerce")
+            _om_r = pd.to_numeric(m.get("op_margin"), errors="coerce")
+            _ni_r3 = pd.to_numeric(m.get("net_income_ttm"), errors="coerce")
+            _ev_r = (_mc + _td_r.fillna(0) - _ca_r.fillna(0)).where(_mc.notna())
+            if "enterprise_value" in m.columns:
+                m.loc[_ever_rs3, "enterprise_value"] = _ev_r[_ever_rs3]
+            if "enterprise_value_usd" in m.columns:
+                m.loc[_ever_rs3, "enterprise_value_usd"] = (_ev_r * _fx)[_ever_rs3]
+            for _rcol, _num_s, _den_s in (
+                    ("ev_ebitda", _ev_r, _eb_r),
+                    ("ev_sales", _ev_r, _rv_r),
+                    ("ev_ebit", _ev_r, _om_r * _rv_r),
+                    ("p_e", _mc, _ni_r3),
+                    ("p_s", _mc, _rv_r)):
+                if _rcol in m.columns:
+                    _mv = (_num_s / _den_s).where(_den_s > 0)
+                    m.loc[_ever_rs3, _rcol] = _mv[_ever_rs3]
+            recon["EV/price ratios rebuilt on cross-ccy lines"] = int(_ever_rs3.sum())
+
     # price_52w_high: a running max is definitionally valid — the stored high
     # can never sit BELOW the current price.
     if "price_52w_high" in m.columns:

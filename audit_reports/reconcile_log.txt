@@ -1976,3 +1976,77 @@
   roe                                          0
   shares_outstanding                           0
   total_debt                                   747
+
+=== 2026-09-11T06:37:00.625915Z apply_ticker_yf on asymmetry_global.csv ===
+  EDGAR multi-year fields merged (averages/forensic) 44465
+  EV/price ratios rebuilt on cross-ccy lines   1878
+  capex_ttm (rebuilt: EDGAR -> statement -> NaN) 83
+  cash (directional: master under half of Yahoo) 752
+  cfo_ttm                                      617
+  cfo_yield                                    929
+  cross-ccy line levels restated to quote currency (twin) 727
+  currency arbitration (EDGAR usd adopted)     70
+  earnings_yield                               825
+  ebitda_margin                                1695
+  ebitda_margin nulled (de-minimis revenue)    2933
+  ebitda_ttm                                   786
+  ebitda_ttm unit-repaired (from in-band ev_ebitda) 86
+  equity adopted from audited EDGAR            1
+  ev_ebit                                      5135
+  ev_ebit nulled (ebitda<=0)                   643
+  ev_ebit nulled (impossible ordering)         3828
+  ev_ebitda (row-consistency)                  2671
+  ev_ebitda nulled (ebitda<=0)                 6541
+  ev_sales (row-consistency)                   2606
+  ev_sales nulled (de-minimis revenue)         2476
+  fcf_ttm (EDGAR audited, preferred)           1
+  fcf_ttm (Yahoo statement trailing, non-EDGAR) 95
+  fcf_yield                                    1369
+  gross_margin                                 0
+  gross_margin nulled (de-minimis revenue)     2537
+  gross_margin nulled (extreme < op_margin)    258
+  ncav_gt_equity flagged (unresolved contradiction, kept) 190
+  ncav_pct_mcap                                210
+  ncav_pct_mcap nulled (cash>20x mcap, ccy-mismatch class) 48
+  net_cash_pct_mcap                            924
+  net_cash_pct_mcap nulled (cash>20x mcap, ccy-mismatch class) 210
+  net_debt_ebitda                              10
+  net_income_ttm                               682
+  net_margin                                   0
+  no-anchor mixed-ccy group: quote-vs-level ratios nulled 827
+  not_priced_in_score nulled (no sane component) 0
+  not_priced_in_score repaired/refilled from guarded components 769
+  op_margin                                    174
+  op_margin nulled (>100%, impossible)         10
+  op_margin nulled (de-minimis revenue)        1127
+  op_margin nulled (extreme > ebitda_margin)   3210
+  owner_earnings_yield rebuilt as true OE (was fcf alias) 3846
+  p_e (row-consistency)                        3124
+  p_s (row-consistency)                        2620
+  p_s nulled (de-minimis revenue)              2436
+  p_tb                                         203
+  pb constructed from primary book (equity/bookValue) 776
+  pb recomputed on cross-ccy lines (NI/roe equity) 1683
+  pb repaired /100 (pence-vs-pounds, evidence-confirmed) 119
+  pb repaired from fetched bookValue evidence  31
+  price_52w_high lifted to price               0
+  qc_flag ccy_mismatch_suspect                 827
+  qc_flag ccy_restated                         727
+  qc_flag edgar_currency_arbitration           70
+  qc_flag edgar_grounded                       5492
+  qc_flag ev_comp_gap                          5475
+  qc_flag fcf_gt_cfo                           1628
+  qc_flag fcf_yf_adopted                       0
+  qc_flag fx_twin_dev                          0
+  qc_flag gross_lt_op_margin                   465
+  qc_flag ncav_gt_equity                       190
+  qc_flag neg_ev                               1761
+  qc_flag op_gt_ebitda_margin                  2620
+  qc_flag pence_pb_repaired                    150
+  qc_flag unit_repaired                        35
+  revenue_ttm                                  816
+  revenue_ttm unit-repaired (from in-band ev_sales) 35
+  robust_cash_yield                            1003
+  roe                                          0
+  shares_outstanding                           0
+  total_debt                                   747

@@ -786,6 +786,17 @@ def _valuation_consistency(t, g):
     viol |= vrate("fcf_yield != fcf/mcap (>25% dev)",
                   (_r(fy, _r(fcf, mc)) - 1).abs() > 0.25,
                   fy.notna() & fcf.notna() & (mc > 0), 1.0)
+    # cross-ccy restated lines: Yahoo's own EV/multiples are mixed-currency
+    # on these rows and re-adopted each run — the harmonizer must have
+    # rebuilt them from restated components (EV = mcap + debt - cash).
+    _qcf_ev = g["qc_flags"].astype(str) if "qc_flags" in g.columns \
+        else pd.Series("", index=g.index)
+    _rs_ev = _qcf_ev.str.contains("ccy_restated")
+    _evc_a = mc + gc("total_debt").fillna(0) - gc("cash").fillna(0)
+    _ev_dev_a = (_r(ev, _evc_a) - 1).abs()
+    _ev_bad_a = int((_rs_ev & (_ev_dev_a > 0.25) & ev.notna() & mc.notna()).sum())
+    check("cross-ccy: EV rebuilt from restated components on restated lines",
+          _ev_bad_a == 0, f"{_ev_bad_a} restated rows with mixed-ccy EV")
     # pb is CONSTRUCTED from the primary equity level wherever one exists
     # (user directive) — a stored pb drifting >25% from mcap/equity means
     # the construction stopped flowing through.
