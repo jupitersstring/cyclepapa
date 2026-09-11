@@ -2863,6 +2863,51 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _not_melting
     ).fillna(False).astype(int)
 
+    # XR22 — Baron-style compounder ('XR-BaronCompounder', user request):
+    # Ron Baron's engine — FOUNDER/OWNER-led businesses with DECADE-length
+    # growth durability, reinvesting so heavily that current earnings are
+    # suppressed (the growth is bought through the P&L or capex), balance
+    # sheet built to survive the journey, bought at a growth-ADJUSTED fair
+    # price (never a cheap-screen price), while still small enough for the
+    # runway to matter. Duration evidence is AUDITED (12-quarter positive
+    # share / long streaks), not a single hot year.
+    _ins_x22 = _ncol('insider_ownership_pct')
+    _gm_x22 = s('gross_margin', np.nan)
+    _om_x22 = s('op_margin', np.nan)
+    df['arch_xr_baron_compounder'] = (
+        is_operating & (mcap > 0) & _fx_coherent &
+        (_ins_x22 >= 0.10) &                                  # owner-operator
+        ((_ncol('rev_yoy_pos_share_12q') >= 0.75)             # audited duration...
+         | (_ncol('rev_yoy_streak_q') >= 6)
+         | (_ncol('rev_3y_cagr') >= 0.15)) &
+        (rev_yoy_c >= 0.12) &                                 # ...still alive now
+        (((_gm_x22 - _om_x22) >= 0.15) & (_gm_x22 >= 0.35)    # reinvesting through P&L
+         | (_ncol('capex_intensity') >= 0.08)) &              # or building ahead
+        ((nde <= 2.0) | (net_cash_pct_c >= 0)) &              # survives the decade
+        (((_ncol('evsg') > 0) & (_ncol('evsg') <= 0.40))      # growth-adjusted fair price
+         | ((_ncol('p_s') > 0) & (_ncol('p_s') <= 6.0))) &
+        (_ncol('revenue_ttm_usd') >= 25e6) &
+        (_ncol('market_cap_usd') <= 25e9) &                   # runway still open
+        ~(_ncol('shares_yoy') > 0.08) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR23 — Insider capitulation buy ('XR-InsiderCapitulation'): the people
+    # with the MOST information CLUSTER-BUY their own crash — >=40% off the
+    # high while demand and margins hold. Historically among the highest
+    # hit-rate "once" signals: outside sellers capitulating into the hands
+    # of the operators.
+    df['arch_xr_insider_capitulation'] = (
+        is_operating & (mcap > 0) & _fx_coherent &
+        (s('insider_cluster_buy_flag', 0) >= 1) &
+        beaten_down_any(0.40) &
+        (rev_yoy_c >= -0.10) &                                # business not collapsing
+        ((s('gross_margin_delta_yoy', np.nan) >= -0.03)
+         | (_oe_loc > 0) | (_ncol('oe_avg') > 0)) &           # economics intact
+        ((nde < 3.0) | (net_cash_pct_c >= 0)) &
+        _not_melting
+    ).fillna(False).astype(int)
+
     # F6 — Forensic payout confirmation (the user's BOOST leg). Any forensic /
     # hidden-value member that is ALSO returning capital — buying back shares
     # or paying a dividend — earns an EXTRA archetype count, which is this
@@ -3878,6 +3923,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_forced_seller',
         'arch_xr_leverage_detonation',
         'arch_xr_confluence',
+        'arch_xr_baron_compounder',
+        'arch_xr_insider_capitulation',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -4012,6 +4059,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_forced_seller': 'XR-ForcedSeller',
         'arch_xr_leverage_detonation': 'XR-LeverageDetonation',
         'arch_xr_confluence': 'XR-Confluence',
+        'arch_xr_baron_compounder': 'XR-BaronCompounder',
+        'arch_xr_insider_capitulation': 'XR-InsiderCapitulation',
         'arch_templeton_pessimism': 'Templeton-MaxPessimism',
         'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
         'arch_levered_inflection': 'LeveredInflectionStub',

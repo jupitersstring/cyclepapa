@@ -722,8 +722,11 @@ def extract_row(ticker: str, cik: int, data: dict) -> dict:
     # Margins: numerator and denominator on the SAME cadence — both TTM
     # (ends matching) or both FY; never a TTM numerator over an FY
     # denominator.
-    def _pair(num_ttm, num_end, num_fy, den_ttm_ok):
-        if row.get(num_ttm) is not None and den_ttm_ok                 and _ends_match(num_end, "revenue_ttm_end"):
+    def _pair(num_ttm, num_end, num_fy):
+        """Coherent numerator/revenue pair: both-TTM with matching ends,
+        else both-FY — never a cross-cadence mix."""
+        if row.get(num_ttm) is not None and row.get("revenue_ttm") is not None \
+                and _ends_match(num_end, "revenue_ttm_end"):
             return row[num_ttm], row.get("revenue_ttm")
         if row.get(num_fy) is not None and row.get("revenue_fy") is not None:
             return row[num_fy], row.get("revenue_fy")
