@@ -570,7 +570,9 @@ def _regression(t, g):
                 "arch_understated_earnings", "arch_expensed_growth_value",
                 "arch_cash_adjusted_pe", "arch_owner_earnings_power",
                 "arch_retained_earnings_discount", "arch_customer_float",
-                "arch_capex_famine_harvest", "arch_dividend_verified_value"):
+                "arch_capex_famine_harvest", "arch_dividend_verified_value",
+                "arch_tax_verified_earnings", "arch_cannibal_at_discount",
+                "arch_self_funded_returner", "arch_book_compounder_discount"):
         if _ac in t.columns:
             leak = int(((n(t, _ac) == 1) & _ice_cube).sum())
             check(f"regression(tail): {_ac} carries no genuine ice cube (neg returns, no cash, not improving)",
@@ -706,7 +708,7 @@ def _figure_coverage(t, g):
         "oe_avg_yield", "avg_earnings_yield", "fcf_avg_yield",
         "capex_avg", "capex_avg_years", "ni_avg_years", "fcf_avg_years",
         "net_working_capital", "goodwill_intangibles_pct_assets",
-        "retained_earnings",
+        "retained_earnings", "equity_cagr_5y", "financing_cf_ttm",
         # descriptive / categorical / event flags
         "sector", "industry", "currency", "src", "name", "country",
         "insider_ownership_pct", "n_analysts", "avg_dollar_volume", "beta",
@@ -834,7 +836,9 @@ def _valuation_consistency(t, g):
                 + n(t, "arch_understated_earnings") + n(t, "arch_expensed_growth_value")
                 + n(t, "arch_cash_adjusted_pe") + n(t, "arch_owner_earnings_power")
                 + n(t, "arch_retained_earnings_discount") + n(t, "arch_customer_float")
-                + n(t, "arch_capex_famine_harvest") + n(t, "arch_dividend_verified_value"))
+                + n(t, "arch_capex_famine_harvest") + n(t, "arch_dividend_verified_value")
+                + n(t, "arch_tax_verified_earnings") + n(t, "arch_cannibal_at_discount")
+                + n(t, "arch_self_funded_returner") + n(t, "arch_book_compounder_discount"))
         _orph = int(((n(t, "arch_forensic_payout_confirmed") == 1) & (_par == 0)).sum())
         check("regression: forensic_payout_confirmed is a subset of the forensic family",
               _orph == 0, f"{_orph} orphan firers")

@@ -118,7 +118,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                      'capex_avg', 'net_working_capital',
                                      'goodwill_intangibles_pct_assets',
                                      'oe_avg', 'ni_avg', 'fcf_avg',
-                                     'oe_avg_years',
+                                     'oe_avg_years', 'equity_cagr_5y',
+                                     'financing_cf_ttm',
                                  })
 
     # Segment signals from the edgartools dimensional harvest. Coverage
@@ -2397,6 +2398,72 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _not_melting
     ).fillna(False).astype(int)
 
+    # F11 — Tax-verified earnings ('Forensic-TaxProof', EDGAR). You do not pay
+    # real cash taxes on fake earnings: a FULL effective tax rate (18-40%) on
+    # positive pretax income is the tax authority auditing the P&L for us.
+    # Cheap on those verified earnings = forensic value. (Inverse cousin of
+    # arch_tax_efficient, which hunts LOW structural rates.)
+    _etr_f11 = _ncol('effective_tax_rate')
+    _pretax_f11 = _ncol('pretax_income_ttm')
+    df['arch_tax_verified_earnings'] = (
+        is_operating & (mcap > 0) &
+        (_pretax_f11 > 0) &
+        (_etr_f11 >= 0.18) & (_etr_f11 <= 0.40) &     # really paying the state
+        (_ncol('p_e') > 0) & (_ncol('p_e') <= 12.0) &  # cheap on tax-verified E
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # F12 — Cannibal at a discount ('Forensic-CannibalDiscount', GLOBAL).
+    # Management retiring stock BELOW BOOK: every share bought back under 1x
+    # book is mechanically accretive, and the buyback is the strongest
+    # insider signal there is. Corroborated shrinkage only (reverse-split
+    # guard via buyback_yield), positive owner economics on the latest year
+    # or the 5-yr average.
+    # net shrinkage is the FACT that matters: a buyback yield fully offset by
+    # SBC issuance (TTEC: buybacks claimed while shares GREW +1.3%) is not
+    # cannibalization — the buyback leg must not be contradicted by net growth.
+    _shrink_f12 = ((_ncol('shares_yoy') <= -0.02)
+                   | ((_ncol('buyback_yield') >= 0.03)
+                      & ~(_ncol('shares_yoy') > 0)))
+    df['arch_cannibal_at_discount'] = (
+        is_operating & (mcap > 0) &
+        (pb > 0) & (pb < 1.0) &                       # buying below book
+        _shrink_f12 &
+        ~(_ncol('shares_yoy') < -0.30) &              # a -30% collapse is a restructuring, not a buyback
+        ((_ncol('net_income_ttm') > 0) | (_ncol('ni_avg') > 0)
+         | (fcf_yield > 0)) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # F13 — Self-funded returner ('Forensic-SelfFunded', EDGAR financing line).
+    # The no-Ponzi-financing test: the FINANCING cash-flow line has been a net
+    # OUTFLOW (returning capital / repaying debt, never raising) while free
+    # cash is positive — self-funding proven by the statement's own plumbing,
+    # not by ratios. Cheap on earnings or book.
+    _fincf_f13 = _ncol('financing_cf_ttm')
+    df['arch_self_funded_returner'] = (
+        is_operating & (mcap > 0) &
+        (_fincf_f13 < 0) &                            # net capital OUT to providers
+        (_ncol('fcf_ttm') > 0) &
+        (((_ncol('p_e') > 0) & (_ncol('p_e') <= 15.0)) | ((pb > 0) & (pb < 1.5))) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # F14 — Book compounder at a discount ('Forensic-BookCompounder', EDGAR
+    # equity series). Audited book value compounding >=8%/yr over the last
+    # ~5 FYs while the market prices it BELOW book — BV growth is the hardest
+    # series to fake (audited, cumulative), and a discount on a compounding
+    # book is latent value by arithmetic. REITs excluded; financials ALLOWED
+    # (book compounding is the native lens there).
+    _eqc_f14 = _ncol('equity_cagr_5y')
+    df['arch_book_compounder_discount'] = (
+        ~is_reit & (mcap > 0) &
+        (_eqc_f14 >= 0.08) &
+        (pb > 0) & (pb < 1.0) &
+        ((_ncol('net_income_ttm') > 0) | (_ncol('ni_avg') > 0)) &
+        _not_melting
+    ).fillna(False).astype(int)
+
     # F6 — Forensic payout confirmation (the user's BOOST leg). Any forensic /
     # hidden-value member that is ALSO returning capital — buying back shares
     # or paying a dividend — earns an EXTRA archetype count, which is this
@@ -2411,6 +2478,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                      | (df['arch_customer_float'] == 1)
                      | (df['arch_capex_famine_harvest'] == 1)
                      | (df['arch_dividend_verified_value'] == 1)
+                     | (df['arch_tax_verified_earnings'] == 1)
+                     | (df['arch_cannibal_at_discount'] == 1)
+                     | (df['arch_self_funded_returner'] == 1)
+                     | (df['arch_book_compounder_discount'] == 1)
                      | (df['arch_overdepreciated_assets'] == 1)
                      | (df['arch_understated_earnings'] == 1)
                      | (df['arch_expensed_growth_value'] == 1)
@@ -3314,6 +3385,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_customer_float',
         'arch_capex_famine_harvest',
         'arch_dividend_verified_value',
+        'arch_tax_verified_earnings',
+        'arch_cannibal_at_discount',
+        'arch_self_funded_returner',
+        'arch_book_compounder_discount',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -3414,6 +3489,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_customer_float': 'Forensic-CustomerFloat',
         'arch_capex_famine_harvest': 'Forensic-CapexFamine',
         'arch_dividend_verified_value': 'Forensic-DividendProof',
+        'arch_tax_verified_earnings': 'Forensic-TaxProof',
+        'arch_cannibal_at_discount': 'Forensic-CannibalDiscount',
+        'arch_self_funded_returner': 'Forensic-SelfFunded',
+        'arch_book_compounder_discount': 'Forensic-BookCompounder',
         'arch_oak_order_conversion': 'OakOrderConversion',
         'arch_weschler_levered_equity': 'WeschlerLeveredEquity',
         'arch_cheap_sales_scaler': 'CheapSalesScaler',

@@ -549,6 +549,15 @@ def extract_row(ticker: str, cik: int, data: dict) -> dict:
     if _cx_avg is not None:
         row["capex_avg"] = _cx_avg
         row["capex_avg_years"] = _cx_n
+    # audited book-value compounding (F14): equity 5y CAGR from FY series
+    _eq_s = _annual_series(EQUITY_ALIASES)
+    if len(_eq_s) >= 3:
+        _yrs_eq = sorted(_eq_s, reverse=True)[:5]
+        _new_e, _old_e = _eq_s[_yrs_eq[0]], _eq_s[_yrs_eq[-1]]
+        _span = int(_yrs_eq[0]) - int(_yrs_eq[-1])
+        if _new_e > 0 and _old_e > 0 and _span >= 2:
+            row["equity_cagr_5y"] = (_new_e / _old_e) ** (1.0 / _span) - 1.0
+            row["equity_cagr_years"] = _span
 
     # Flow items: TTM + annual
     def fl(aliases, field):
