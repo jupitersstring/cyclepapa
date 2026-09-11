@@ -110,9 +110,14 @@ def load_obs_cache():
 
 def save_obs_cache():
     try:
+        # snapshot under the lock: fetch threads mutate the store concurrently
+        # and json.dump iterating a live dict raises "dictionary changed size"
+        # (caught live at the 2026-09-11 checkpoint).
+        with _obs_cache_lock:
+            _snap = dict(_obs_cache)
         with gzip.open(OBS_CACHE_PATH, "wt") as fh:
-            json.dump(_obs_cache, fh)
-        print(f"  wrote {OBS_CACHE_PATH} ({len(_obs_cache):,} CIKs, "
+            json.dump(_snap, fh)
+        print(f"  wrote {OBS_CACHE_PATH} ({len(_snap):,} CIKs, "
               f"{OBS_CACHE_PATH.stat().st_size/1e6:.1f} MB)", file=sys.stderr)
     except Exception as e:
         print(f"  obs cache write failed: {e}", file=sys.stderr)
