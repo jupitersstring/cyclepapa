@@ -2297,7 +2297,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (_ni_ca > 0) &                              # POSITIVE earnings mandatory (negative only cheap on real E)
         ((_ni_ca / _mc_ca) >= 0.02) &               # material earnings, not a rounding artifact
         (_nc_ca > 0) &                              # a genuine net-cash balance sheet
-        (_adj_pe <= 8.0) &                          # negative (cash > mcap: earnings come FREE) or cheap ex-cash
+        # cheap ex-cash on the LATEST year — or on GRAHAM AVERAGE EARNINGS
+        # (5-yr NI average): the average leg keeps a name whose latest E is
+        # quirk-depressed and drops none (pure OR-addition).
+        ((_adj_pe <= 8.0)
+         | (((_mc_ca - _nc_ca)
+             / _ncol('ni_avg').where(_ncol('ni_avg') > 0)) <= 8.0)) &
         ~(_ncol('shares_yoy') > 0.05) &
         _not_melting
     ).fillna(False).astype(int)
@@ -2314,7 +2319,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating & (_mc_ca > 0) &
         (_ni_ca > 0) & (_dna_loc > 0) & (_capex_loc >= 0) &
         (_oe_ratio >= 1.4) &                        # owner earnings far above accounting earnings
-        ((_mc_ca / _oe_loc.where(_oe_loc > 0)) <= 10.0) &   # cheap on the truer measure
+        # cheap on the truer measure — LATEST OE, or (Graham/Templeton) the
+        # 5-YEAR AVERAGE OE with the latest still positive: one weak or quirky
+        # accounting year must neither admit nor exclude a name on its own.
+        ((((_mc_ca / _oe_loc.where(_oe_loc > 0)) <= 10.0))
+         | (((_mc_ca / _ncol('oe_avg').where(_ncol('oe_avg') > 0)) <= 10.0)
+            & (_oe_loc > 0))) &
         ~(_ncol('shares_yoy') > 0.05) &
         _not_melting
     ).fillna(False).astype(int)

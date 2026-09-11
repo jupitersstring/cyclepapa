@@ -699,6 +699,9 @@ def _figure_coverage(t, g):
         "op_margin_lindy", "ebitda_margin_lindy", "revenue_5y_cagr",
         "revenue_accel_lindy", "asset_5y_cagr", "asset_3y_cagr",
         "capital_return_yield", "buyback_yield", "sbc_ttm", "dividends_ttm",
+        # Graham/Templeton multi-year averages (audited EDGAR annual series)
+        "oe_avg", "ni_avg", "fcf_avg", "oe_avg_years",
+        "oe_avg_yield", "avg_earnings_yield", "fcf_avg_yield",
         # descriptive / categorical / event flags
         "sector", "industry", "currency", "src", "name", "country",
         "insider_ownership_pct", "n_analysts", "avg_dollar_volume", "beta",

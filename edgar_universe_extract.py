@@ -461,6 +461,60 @@ def extract_row(ticker: str, cik: int, data: dict) -> dict:
     pt(RETAINED_EARNINGS_ALIASES, "retained_earnings")
     pt(PPE_NET_ALIASES, "ppe_net")
 
+    # ---- MULTI-YEAR AVERAGES (Graham/Templeton smoothing; robustness to
+    # single-year accounting quirks). Per-FY series aligned by fiscal year:
+    # OE_fy = NI + D&A - capex; averaged over up to the last 5 FYs (>=3
+    # required). Also average NI (Graham average earnings) and average FCF.
+    def _annual_series(aliases):
+        out = {}
+        for c in aliases:
+            for o in _facts_unit_iter(facts, c, unit="USD"):
+                if o.get("val") is None or not o.get("end"):
+                    continue
+                dur = None
+                if o.get("start"):
+                    try:
+                        dur = (datetime.strptime(o["end"], "%Y-%m-%d")
+                               - datetime.strptime(o["start"], "%Y-%m-%d")).days
+                    except Exception:
+                        dur = None
+                if (o.get("fp") == "FY" and (dur is None or dur >= 330)) or                         (dur is not None and 330 <= dur <= 380):
+                    y = o["end"][:4]
+                    if y not in out:          # newest wins per year
+                        out[y] = float(o["val"])
+        return out
+
+    def _avg_over(series_list, n=5, min_years=3):
+        """Average the SUM of aligned per-year values over the last n years."""
+        if not series_list:
+            return None, 0
+        common = set(series_list[0])
+        for sd in series_list[1:]:
+            common &= set(sd)
+        years = sorted(common, reverse=True)[:n]
+        if len(years) < min_years:
+            return None, len(years)
+        vals = [sum(sd[y] for sd in series_list) for y in years]
+        return sum(vals) / len(vals), len(years)
+
+    _ni_s = _annual_series(NETINCOME_ALIASES)
+    _da_s = _annual_series(DA_ALIASES)
+    _cx_s = _annual_series(CAPEX_ALIASES)
+    _cfo_s = _annual_series(CFO_ALIASES)
+    _neg_cx = {y: -v for y, v in _cx_s.items()}
+    _oe_avg, _oe_n = _avg_over([_ni_s, _da_s, _neg_cx])
+    if _oe_avg is not None:
+        row["oe_avg"] = _oe_avg
+        row["oe_avg_years"] = _oe_n
+    _ni_avg, _ni_n = _avg_over([_ni_s])
+    if _ni_avg is not None:
+        row["ni_avg"] = _ni_avg
+        row["ni_avg_years"] = _ni_n
+    _fcf_avg, _fcf_n = _avg_over([_cfo_s, _neg_cx])
+    if _fcf_avg is not None:
+        row["fcf_avg"] = _fcf_avg
+        row["fcf_avg_years"] = _fcf_n
+
     # Flow items: TTM + annual
     def fl(aliases, field):
         ttm = ttm_value(facts, aliases)

@@ -201,6 +201,18 @@ def build_yartseva_row(edgar_row: pd.Series, price_row: pd.Series | None) -> dic
     r["shares_outstanding"] = edgar_row.get("shares_outstanding")
     # NEW (audit June 2026): capital-allocation + quality fields
     r["dividends_ttm"] = edgar_row.get("dividends_ttm")
+    # Graham/Templeton multi-year averages (levered flows -> yields vs MCAP)
+    r["oe_avg"] = edgar_row.get("oe_avg")
+    r["ni_avg"] = edgar_row.get("ni_avg")
+    r["fcf_avg"] = edgar_row.get("fcf_avg")
+    r["oe_avg_years"] = edgar_row.get("oe_avg_years")
+    if market_cap:
+        for _src_c, _y_c in (("oe_avg", "oe_avg_yield"),
+                             ("ni_avg", "avg_earnings_yield"),
+                             ("fcf_avg", "fcf_avg_yield")):
+            _v = edgar_row.get(_src_c)
+            if _v is not None:
+                r[_y_c] = _v / market_cap
     r["buybacks_ttm"] = edgar_row.get("buybacks_ttm")
     r["capital_return_ttm"] = edgar_row.get("capital_return_ttm")
     r["sbc_ttm"] = edgar_row.get("sbc_ttm")
