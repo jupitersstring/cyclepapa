@@ -2254,8 +2254,23 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # below that depressed book = the forensic depreciation-gap trade.
     _rev_loc = _ncol('revenue_ttm')
     _ebit_loc = s('op_margin', np.nan) * _rev_loc
-    _dna_loc = _ncol('ebitda_ttm') - _ebit_loc
+    # D&A: AUDITED (EDGAR DepreciationDepletionAndAmortization) preferred over
+    # the implied EBITDA-EBIT reconstruction, which mixes a level with a
+    # margin-rebuild and can go negative across sources. Implied is the
+    # fallback where audited is absent; floored at >=0.
+    _dna_audited = _ncol('da_ttm')
+    _dna_implied = (_ncol('ebitda_ttm') - _ebit_loc)
+    _dna_loc = _dna_audited.where(_dna_audited.notna(), _dna_implied)
+    _dna_loc = _dna_loc.where(_dna_loc >= 0)
     _capex_loc = _ncol('capex_ttm')
+    # MARGIN-BASED MID-CYCLE (inflation-neutral, per user): the nominal 5yr
+    # EBITDA average is depressed by inflation vs current nominal, faking a
+    # "trough". Mid-cycle MARGIN x CURRENT revenue is the correct Graham/
+    # Templeton normalization and carries no inflation drift.
+    _norm_eb = _ncol('normalized_ebitda')
+    _norm_rv = _ncol('normalized_revenue')
+    _midcyc_margin = (_norm_eb / _norm_rv).where(_norm_rv > 0)
+    _midcyc_ebitda = (_midcyc_margin * _ncol('revenue_ttm')).where(_midcyc_margin.notna())
     df['arch_overdepreciated_assets'] = (
         is_operating & (mcap > 0) &
         (_dna_loc > 0) & (_rev_loc > 0) &
@@ -2731,9 +2746,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # the price is ordinary.
     _nwc_x12 = _ncol('net_working_capital')
     _cfo_ni_x12 = (_ncol('cfo_ttm') / _ncol('net_income_ttm')).where(_ncol('net_income_ttm') > 0)
+    # TRUE float tell (rigour B.i): a material DEFERRED-REVENUE balance
+    # (customers prepaid) — the actual SaaS/insurance/Ryanair float —
+    # rather than the NWC proxy alone (which also flags stretched payables).
+    # Deferred revenue >= 10% of revenue is a real prepayment book. Where the
+    # audited balance is absent, the negative-NWC proxy still qualifies (so
+    # non-EDGAR names are not excluded), corroborated as before.
+    _defrev_x12 = _ncol('deferred_revenue')
+    _defrev_ratio12 = (_defrev_x12 / _rev_loc).where(_rev_loc > 0)
+    _float_exists12 = ((_defrev_ratio12 >= 0.10) | (_nwc_x12 < 0))
     df['arch_xr_float_compounding'] = (
         is_operating & (mcap > 0) & _fx_coherent &
-        (_nwc_x12 < 0) &                                   # the float exists
+        _float_exists12 &                                  # the float exists (deferred-rev or NWC)
         ((_cfo_ni_x12 >= 1.3) | (_ncol('cash_conversion') >= 1.2)) &
         ((rev_accel > 0) | (rev_yoy_c >= 0.15)) &          # bookings engine turning
         ((_ncol('p_e') >= 20) | _ncol('p_e').isna()) &     # headline looks dear/meaningless
@@ -2749,7 +2773,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # market prices the bath year; the re-rate is mechanical as the unusual
     # rolls off the trailing window. Basis machinery: the same-basis
     # normalized pair built after the RNO.PA fix.
-    _nrm_eb_x13 = _ncol('normalized_ebitda')
+    _nrm_eb_x13 = _midcyc_ebitda   # margin-based mid-cycle (inflation-neutral)
     _ev_nrm_x13 = (_ncol('enterprise_value') / _nrm_eb_x13.where(_nrm_eb_x13 > 0))
     df['arch_xr_bigbath_rebound'] = (
         is_operating & (mcap > 0) & _fx_coherent &
@@ -2839,7 +2863,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # (normalized) base, and current earnings sitting BELOW that base (so
     # the cheapness is not peak-margin illusion), with survival assured.
     # Two discounts compound: the multiple re-rates AND earnings mean-revert.
-    _nrm18 = _ncol('normalized_ebitda')
+    _nrm18 = _midcyc_ebitda   # margin-based mid-cycle
     _evn18 = (_ncol('enterprise_value') / _nrm18.where(_nrm18 > 0))
     _surv18 = ((net_cash_pct_c >= 0) | (_ncol('interest_coverage') >= 4)
                | ((nde > -90) & (nde <= 1.5)))
@@ -3066,7 +3090,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # normalization, floored. The asymmetric, pre-rebound version of XR13:
     # here the FLOOR does the work XR13 got from a beaten-down tape, so it
     # fires before the drawdown is even complete.
-    _nrm28 = _ncol('normalized_ebitda')
+    _nrm28 = _midcyc_ebitda   # margin-based mid-cycle
     _evn28 = (_ncol('enterprise_value') / _nrm28.where(_nrm28 > 0))
     # a HARD floor for XR28 (cash/NCAV/hidden — not sub-book alone, which is
     # ubiquitous among depressed cyclicals) so the option is genuinely floored
@@ -3094,7 +3118,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # a compounder; a mean-reversion asset play priced for permanent trough.
     _cyc_sectors = {'Materials', 'Energy', 'Industrials',
                     'Consumer Discretionary'}
-    _nrm29 = _ncol('normalized_ebitda')
+    _nrm29 = _midcyc_ebitda   # margin-based mid-cycle
     df['arch_xr_cyclical_trough'] = (
         is_operating & (mcap > 0) & _fx_coherent &
         sector.isin(_cyc_sectors) &
@@ -3116,12 +3140,20 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # classic post-reorg / turnaround re-rate.
     _re30 = _ncol('retained_earnings')
     _etr30 = _ncol('effective_tax_rate')
+    # (rigour B.ii) the low cash-tax rate must be OBSERVED (not merely
+    # missing) — a missing ETR is not evidence of a shield. And the deficit
+    # must be a real LOSS deficit, not a buyback-driven negative retained
+    # earnings: a heavy repurchaser shows negative RE with a HIGH roe. Require
+    # modest/negative roe OR a book still discounted (pb) so we are not
+    # tagging a cash-returning compounder as a tax-shield turnaround.
+    _re_is_loss30 = (~(s('roe', np.nan) > 0.20)) | ((pb > 0) & (pb < 2.0))
     df['arch_xr_nol_shield'] = (
         is_operating & (mcap > 0) & _fx_coherent &
-        (_re30 < 0) &                                      # accumulated deficit = NOL bank
+        (_re30 < 0) &                                      # accumulated deficit
+        _re_is_loss30 &                                    # ...a LOSS deficit, not buyback-driven
         (_ncol('net_income_ttm') > 0) &                    # now profitable = shield active
         (_ncol('cfo_yield') > 0) &                         # real cash, not accrual
-        ((_etr30.isna()) | ((_etr30 >= 0) & (_etr30 <= 0.15))) &  # low cash tax confirms
+        (_etr30 >= 0) & (_etr30 <= 0.15) &                 # OBSERVED low cash tax = the shield
         (rev_yoy_c >= 0.05) &                              # growing into the shield
         (((_ncol('p_e') > 0) & (_ncol('p_e') <= 25)) | (fcf_yield >= 0.05)) &
         ~(_ncol('shares_yoy') > 0.08) &
@@ -3137,10 +3169,22 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # replacement depreciation) are far higher than reported FCF; the market
     # prices the suppressed FCF. Tell: capex >= 1.5x D&A, strong returns,
     # CFO healthy, growing — and cheap on the MAINTENANCE cash take.
-    _dna31 = _dna_loc
+    _dna31 = _dna_loc                                     # AUDITED D&A preferred
     _cx31 = _capex_loc
     _cfo31 = _ncol('cfo_ttm')
-    _maint_oe31 = (_cfo31 - _dna31)                        # CFO less REPLACEMENT capex
+    # GREENWALD maintenance-capex split: growth-capex is roughly the capex
+    # attributable to the revenue INCREASE (prior capex-intensity x revenue
+    # growth); maintenance capex is the remainder. Use BOTH lenses (user):
+    #  (a) CFO less REPLACEMENT depreciation (audited D&A), and
+    #  (b) CFO less Greenwald MAINTENANCE capex.
+    # Take the more CONSERVATIVE (lower) maintenance take so the "fat
+    # maintenance cash" claim is not overstated.
+    _cap_int31 = (_cx31 / _rev_loc).where(_rev_loc > 0)
+    _growth_cx31 = (_cap_int31 * (rev_yoy_c.clip(lower=0) * _rev_loc)).where(_cap_int31.notna())
+    _maint_cx31 = (_cx31 - _growth_cx31).clip(lower=0)
+    _maint_oe_a = (_cfo31 - _dna31)                       # replacement-depreciation lens
+    _maint_oe_b = (_cfo31 - _maint_cx31)                  # Greenwald maintenance-capex lens
+    _maint_oe31 = pd.concat([_maint_oe_a, _maint_oe_b], axis=1).min(axis=1)  # conservative
     _maint_y31 = (_maint_oe31 / _mc_ca.where(_mc_ca > 0))
     df['arch_xr_growth_capex_masked'] = (
         is_operating & (_mc_ca > 0) & _fx_coherent &
@@ -3152,6 +3196,40 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (_maint_y31 >= 0.07) &                             # ...but maintenance cash take is fat
         ~(_ncol('shares_yoy') > 0.05) &
         ~_financing_fragile &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR32 — Look-through value ('XR-LookThroughValue', section C): equity-
+    # method / associate investments carried at cost or equity value on the
+    # balance sheet understate the parent's real worth — a holdco or strategic
+    # owner whose off-consolidated stakes are MATERIAL relative to its own
+    # market cap, while the consolidated business is real and priced cheaply.
+    # The stakes are the hidden kicker the market prices at zero.
+    _assoc32 = _ncol('investments_associates')
+    _assoc_pct32 = (_assoc32 / mcap).where(mcap > 0)
+    df['arch_xr_look_through_value'] = (
+        is_operating & (mcap > 0) & _fx_coherent &
+        (_assoc_pct32 >= 0.30) &                          # off-consol stakes >= 30% of mcap
+        _profit_present &                                  # consolidated business is real
+        (((pb > 0) & (pb < 1.5)) | ((ev_ebitda_v > 0) & (ev_ebitda_v <= 10))) &  # cheap on consol
+        ((nde < 3.0) | (net_cash_pct_c >= 0)) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR33 — Cannibal below tangible book ('XR-CannibalBelowTangibleBook',
+    # section C): distinct from XR17 (below net CASH) — management BUYS BACK
+    # stock while it trades below TANGIBLE book and the business EARNS, so
+    # every repurchased share is bought below the hard-asset value per share,
+    # accreting tangible book per share mechanically. The Teledyne trade one
+    # step out from pure net-cash.
+    _ptb33 = _ncol('p_tb')
+    df['arch_xr_cannibal_below_tbook'] = (
+        is_operating & (mcap > 0) & _fx_coherent &
+        (_ptb33 > 0) & (_ptb33 < 1.0) &                   # below TANGIBLE book
+        ((_ncol('buyback_yield') >= 0.02) | (_ncol('net_buyback_ttm') > 0)) &
+        ~(_ncol('shares_yoy') > 0.0) &                    # count actually shrinking
+        ((_ncol('net_income_ttm') > 0) | (_ncol('ni_avg') > 0)) &  # earning
+        ((nde < 3.0) | (net_cash_pct_c >= 0)) &
         _not_melting
     ).fillna(False).astype(int)
 
@@ -3596,11 +3674,66 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # a floor AND an engine AND a forensic tell AND a dislocation at once.
     # Fires when >=3 independent XR classes agree on the same name. By
     # construction the rarest flag in the book.
-    _xr_cols_meta = [c for c in df.columns if c.startswith('arch_xr_')
-                     and c != 'arch_xr_confluence']
-    df['arch_xr_confluence'] = (
-        (df[_xr_cols_meta].sum(axis=1) >= 3)
-    ).astype(int)
+    # FAMILY-BASED CONFLUENCE (rigour A4): the historic outliers were a
+    # conjunction of INDEPENDENT supports, not one thesis counted many times.
+    # Several XR gates key off the SAME signal (e.g. current EBITDA < mid-
+    # cycle trips bigbath/double-trough/latent-bath/cyclical at once), so a
+    # raw >=3-gate count overstates independence. Group the gates into four
+    # independent FAMILIES and require >=3 DISTINCT families.
+    _XR_FAMILIES = {
+        'floor': ['arch_xr_neg_ev_growth', 'arch_xr_triple_floor',
+                  'arch_xr_floor_inflection', 'arch_xr_clean_net_net',
+                  'arch_xr_cannibal_below_cash', 'arch_xr_cannibal_below_tbook',
+                  'arch_xr_latent_inflection_floor', 'arch_xr_latent_bath_floor',
+                  'arch_xr_asset_owner_catalyst'],
+        'dislocation': ['arch_xr_forced_seller', 'arch_xr_insider_capitulation',
+                        'arch_xr_double_trough', 'arch_xr_quality_crisis'],
+        'forensic': ['arch_xr_forensic_floor_growth', 'arch_xr_forensic_multiple_gap',
+                     'arch_xr_bigbath_rebound', 'arch_xr_depreciation_cliff',
+                     'arch_xr_wc_normalization', 'arch_xr_amortization_mask',
+                     'arch_xr_nol_shield', 'arch_xr_growth_capex_masked',
+                     'arch_xr_look_through_value', 'arch_xr_float_compounding'],
+        'engine': ['arch_xr_compounding_deployer', 'arch_xr_reusable_assembler',
+                   'arch_xr_pre_scale_margin', 'arch_xr_leverage_detonation',
+                   'arch_xr_baron_compounder', 'arch_xr_audited_streak_unrerated',
+                   'arch_xr_harvest_distribution', 'arch_xr_paydown_yield',
+                   'arch_xr_cyclical_trough'],
+    }
+    _fam_fired = pd.DataFrame(index=df.index)
+    for _fam, _cols in _XR_FAMILIES.items():
+        _present = [c for c in _cols if c in df.columns]
+        _fam_fired[_fam] = (df[_present].sum(axis=1) > 0).astype(int) if _present else 0
+    _xr_family_count = _fam_fired.sum(axis=1)
+    df['xr_family_count'] = _xr_family_count.astype(int)
+    df['arch_xr_confluence'] = (_xr_family_count >= 3).astype(int)
+
+    # GRADED XR CONVICTION (rigour A5 / B.iv / B.v — down/up-weights that
+    # modulate ranking rather than gate membership). Base = distinct families;
+    # then:
+    #  A5 (soft, cycles can run long): a trough/cyclical firing on a business
+    #     with a long NEGATIVE revenue trend is more likely secular decline
+    #     than a cycle -> downweight (never excluded).
+    #  B.iv: an operating-leverage firing where the revenue DELTA is thin
+    #     (< 5%) rests on a fragile incremental margin -> downweight.
+    #  B.v: a once-in-a-lifetime firing WITH strong survival (deep net cash or
+    #     high interest coverage) is higher-conviction -> upweight.
+    _xr_conf = pd.Series(1.0, index=df.index)
+    _cyc_fired = (df.get('arch_xr_double_trough', 0) + df.get('arch_xr_cyclical_trough', 0)
+                  + df.get('arch_xr_bigbath_rebound', 0) + df.get('arch_xr_latent_bath_floor', 0)) > 0
+    _secular_decline = (_ncol('rev_3y_cagr') < -0.03)
+    _xr_conf = _xr_conf.where(~(_cyc_fired & _secular_decline.fillna(False)), _xr_conf * 0.75)
+    _oplev_fired = (df.get('arch_xr_leverage_detonation', 0) + df.get('arch_xr_reusable_assembler', 0)
+                    + df.get('arch_xr_pre_scale_margin', 0)) > 0
+    _thin_delta = (rev_yoy_c < 0.05)
+    _xr_conf = _xr_conf.where(~(_oplev_fired & _thin_delta.fillna(False)), _xr_conf * 0.85)
+    _once_fired = (df.get('arch_xr_cannibal_below_cash', 0) + df.get('arch_xr_double_trough', 0)
+                   + df.get('arch_xr_forced_seller', 0) + df.get('arch_xr_leverage_detonation', 0)
+                   + df.get('arch_xr_confluence', 0)) > 0
+    _strong_survival = ((net_cash_pct_c >= 0.30) | (_ncol('interest_coverage') >= 5))
+    _xr_conf = _xr_conf.where(~(_once_fired & _strong_survival.fillna(False)), _xr_conf * 1.20)
+    df['xr_confidence'] = _xr_conf.clip(0.5, 1.5).round(3)
+    # a graded XR conviction for ranking the XR tabs: families x confidence
+    df['xr_score'] = (_xr_family_count * _xr_conf).round(3)
 
 
     # ---------- Templeton "maximum pessimism" (cheap vs own history) ----------
@@ -4180,6 +4313,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_cyclical_trough',
         'arch_xr_nol_shield',
         'arch_xr_growth_capex_masked',
+        'arch_xr_look_through_value',
+        'arch_xr_cannibal_below_tbook',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -4324,6 +4459,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_cyclical_trough': 'XR-CyclicalTrough',
         'arch_xr_nol_shield': 'XR-NOLShield',
         'arch_xr_growth_capex_masked': 'XR-GrowthCapexMasked',
+        'arch_xr_look_through_value': 'XR-LookThroughValue',
+        'arch_xr_cannibal_below_tbook': 'XR-CannibalBelowTangibleBook',
         'arch_templeton_pessimism': 'Templeton-MaxPessimism',
         'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
         'arch_levered_inflection': 'LeveredInflectionStub',
@@ -4731,7 +4868,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','xr_family_count','xr_confidence','xr_score']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m','segment_count','fastest_segment_yoy','is_price_ghost'] if c in df.columns]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)

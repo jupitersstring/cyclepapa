@@ -730,6 +730,10 @@ def _figure_coverage(t, g):
         # ppe_net: audited EDGAR point-in-time level (PropertyPlantAndEquipmentNet),
         # structurally merged; consumed by XR14 depreciation-cliff
         "ppe_net",
+        # audited D&A (over implied), deferred-revenue float, associate
+        # look-through stakes, and the mid-cycle revenue denominator — all
+        # audited EDGAR levels, structurally merged, band/identity-guarded
+        "da_ttm", "deferred_revenue", "investments_associates", "normalized_revenue",
         # fcf_eta_quarters: audited in the completeness pass (cadence-scaled
         # to quarter units, stored-banded 0-40); consumed by XR20
         "fcf_eta_quarters",
@@ -918,10 +922,14 @@ def _valuation_consistency(t, g):
             lambda gg: (_num_g(gg, "gross_margin") * _num_g(gg, "revenue_ttm")
                         / _num_g(gg, "market_cap")),
             lambda v: v < 0.45)
-    _fcheck("arch_overdepreciated_assets", "capex <= ~0.65x implied D&A (local)",
-            lambda gg: (_num_g(gg, "capex_ttm")
-                        / (_num_g(gg, "ebitda_ttm")
-                           - _num_g(gg, "op_margin") * _num_g(gg, "revenue_ttm"))),
+    def _dna_best(gg):
+        # AUDITED D&A (da_ttm) preferred over implied EBITDA-EBIT, floored >=0,
+        # matching the gate construction.
+        _aud = _num_g(gg, "da_ttm")
+        _imp = _num_g(gg, "ebitda_ttm") - _num_g(gg, "op_margin") * _num_g(gg, "revenue_ttm")
+        return _aud.where(_aud.notna(), _imp).clip(lower=0)
+    _fcheck("arch_overdepreciated_assets", "capex <= ~0.65x D&A (audited-pref, local)",
+            lambda gg: (_num_g(gg, "capex_ttm") / _dna_best(gg)),
             lambda v: v > 0.65)
     # adj-P/E is TWO-LEGGED (user: latest OR Graham 5yr-average earnings) —
     # test the BINDING leg, the minimum of the two, so an average-leg firer
@@ -936,10 +944,8 @@ def _valuation_consistency(t, g):
         return pd.concat([_l1, _l2], axis=1).min(axis=1)
     _fcheck("arch_cash_adjusted_pe", "NI>0 and best-leg adj-P/E <= 8.5 (local)",
             _adj_pe_best, lambda v: v > 8.5)
-    _fcheck("arch_owner_earnings_power", "owner-earnings >= ~1.35x NI (local)",
-            lambda gg: ((_num_g(gg, "net_income_ttm")
-                         + (_num_g(gg, "ebitda_ttm")
-                            - _num_g(gg, "op_margin") * _num_g(gg, "revenue_ttm"))
+    _fcheck("arch_owner_earnings_power", "owner-earnings >= ~1.35x NI (audited-pref D&A)",
+            lambda gg: ((_num_g(gg, "net_income_ttm") + _dna_best(gg)
                          - _num_g(gg, "capex_ttm"))
                         / _num_g(gg, "net_income_ttm")),
             lambda v: v < 1.35)

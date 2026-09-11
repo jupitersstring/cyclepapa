@@ -9,7 +9,7 @@ METHODOLOGY AUDIT — 180 checks, 0 FAIL, 0 WARN
   PASS  arch_oak_deep_value: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 50% depth
   PASS  arch_levered_inflection: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 25% depth
   PASS  arch_asymmetric_assembly: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 35% depth
-  PASS  evsales_derating: median firer gap is compressive  — median gap 0.417
+  PASS  evsales_derating: median firer gap is compressive  — median gap 0.418
   PASS  evsales_derating: expanding-multiple firers are the minority  — 1.6% of firers have a negative 1y gap (allowed only when the 3y base compresses)
   PASS  tenbagger: implied 10x closes for every firer  — 0 firers below 10x
   PASS  tenbagger: Credible is a subset of Path
@@ -30,7 +30,7 @@ METHODOLOGY AUDIT — 180 checks, 0 FAIL, 0 WARN
   PASS  gating: analyst_rerating_score is 0 outside arch_analyst_rerating_confirmed  — 0 non-firers with positive score
   PASS  gating: asleep_score is 0 outside arch_asleep_at_wheel  — 0 non-firers with positive score
   PASS  gating: seg_inflect_score is 0 outside arch_fastest_segment  — 0 non-firers with positive score
-  PASS  density: archetype_count_pct <= 1  — max 0.328
+  PASS  density: archetype_count_pct <= 1  — max 0.324
   PASS  units: insider_ownership_pct is a fraction (<= 1.05)  — 0 percent-scale stragglers
   PASS  integrity: lynch signal rows all match the header schema  — 0 ragged rows
   PASS  integrity: country benchmarks are live (<=62d old)  — stale/empty: []
@@ -144,11 +144,11 @@ METHODOLOGY AUDIT — 180 checks, 0 FAIL, 0 WARN
   PASS  fingerprint: key-figure medians within band of baseline  — all stable
   PASS  coverage: every gate-consumed master figure is checked or exempted  — UNCHECKED gate inputs: []
   PASS  valuation: mcap != price*shares (>10% dev, pence-aware) <= 0.5% of covered rows  — 0/36777 rows (0.00%)
-  PASS  valuation: p_e != mcap/NI (>25% dev) <= 1.0% of covered rows  — 34/21246 rows (0.16%)
+  PASS  valuation: p_e != mcap/NI (>25% dev) <= 1.0% of covered rows  — 34/21228 rows (0.16%)
   PASS  valuation: fcf_yield != fcf/mcap (>25% dev) <= 1.0% of covered rows  — 0/33155 rows (0.00%)
   PASS  cross-ccy: EV rebuilt from restated components on restated lines  — 0 restated rows with mixed-ccy EV
   PASS  valuation: pb != mcap/equity where audited equity exists (>25% dev) <= 1.0% of covered rows  — 0/4631 rows (0.00%)
-  PASS  valuation: cfo_yield != cfo_ttm/mcap (>25% dev) <= 1.5% of covered rows  — 1/35670 rows (0.00%)
+  PASS  valuation: cfo_yield != cfo_ttm/mcap (>25% dev) <= 1.5% of covered rows  — 3/35670 rows (0.01%)
   PASS  valuation: earnings_yield != net_income_ttm/mcap (>25% dev) <= 1.5% of covered rows  — 148/32371 rows (0.46%)
   PASS  valuation: no ev_ebit below ev_ebitda (impossible ordering)  — 0 rows
   PASS  valuation: owner_earnings_yield != (NI+D&A−capex)/mcap (>25% dev) <= 1.0% of covered rows  — 0/3714 rows (0.00%)
@@ -162,9 +162,9 @@ METHODOLOGY AUDIT — 180 checks, 0 FAIL, 0 WARN
   PASS  op_margin never above 100%  — 0 rows
   PASS  regression: arch_understated_earnings CFO/NI in [1.4, 4.2] for every firer  — 0 violating firers
   PASS  regression: arch_expensed_growth_value gross-profit/mcap >= 0.45 (local)  — 0 violating firers
-  PASS  regression: arch_overdepreciated_assets capex <= ~0.65x implied D&A (local)  — 0 violating firers
+  PASS  regression: arch_overdepreciated_assets capex <= ~0.65x D&A (audited-pref, local)  — 0 violating firers
   PASS  regression: arch_cash_adjusted_pe NI>0 and best-leg adj-P/E <= 8.5 (local)  — 0 violating firers
-  PASS  regression: arch_owner_earnings_power owner-earnings >= ~1.35x NI (local)  — 0 violating firers
+  PASS  regression: arch_owner_earnings_power owner-earnings >= ~1.35x NI (audited-pref D&A)  — 0 violating firers
   PASS  regression: forensic_payout_confirmed is a subset of the forensic family  — 0 orphan firers
   PASS  valuation: US names EDGAR-grounded (master EBITDA within 1.4x of audited for >=95%)  — 99.7% agreement on 2501 EDGAR-covered names
   PASS  flow-through: cash_adjusted_pe firers satisfy the gate on the CURRENT master  — 0 firers stale vs master (chain not re-run?)
@@ -173,9 +173,9 @@ METHODOLOGY AUDIT — 180 checks, 0 FAIL, 0 WARN
   PASS  regression: arch_hidden_assets gap >= ~25% of mcap in LOCAL currency (currency-mix guard)  — 0 sub-gap firers
   PASS  valuation: no positive ev_ebitda on ebitda<=0  — 0 rows
   PASS  valuation: ev_ebitda != EV/ebitda (>25% dev) <= 6.0% of covered rows  — 3/23635 rows (0.01%)
-  PASS  valuation: ev_sales != EV/revenue (>25% dev) <= 6.0% of covered rows  — 1/30446 rows (0.00%)
+  PASS  valuation: ev_sales != EV/revenue (>25% dev) <= 6.0% of covered rows  — 1/30450 rows (0.00%)
   PASS  valuation: ev_ebitda sign matches EV (denominator>0)  — 0 sign mismatches
-  PASS  valuation: ebitda_margin != ebitda/revenue (>25% dev, |gap|>3pts) <= 6.0% of covered rows  — 118/28258 rows (0.42%)
+  PASS  valuation: ebitda_margin != ebitda/revenue (>25% dev, |gap|>3pts) <= 6.0% of covered rows  — 118/28262 rows (0.42%)
   PASS  valuation: market_cap_usd implies implausible fx <= 0.5% of covered rows  — 0/37776 rows (0.00%)
   PASS  valuation: market_cap_usd fx != revenue-twin fx (>10%) <= 2.0% of covered rows  — 0/33911 rows (0.00%)
   PASS  valuation: top-100 by ETA carry ZERO cross-field violations  — 0 of top 100 rows inconsistent

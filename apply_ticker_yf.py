@@ -175,7 +175,8 @@ def main():
                                  "capital_return_ttm", "dividends_ttm",
                                  "buybacks_ttm", "minority_interest",
                                  "preferred_equity", "ppe_net",
-                                 "retained_earnings"}
+                                 "retained_earnings", "da_ttm",
+                                 "deferred_revenue", "investments_associates"}
                              ).drop_duplicates("symbol").set_index("symbol")
         _n_avg = 0
         for _ac in _edavg.columns:

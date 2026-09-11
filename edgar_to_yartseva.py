@@ -257,6 +257,9 @@ def build_yartseva_row(edgar_row: pd.Series, price_row: pd.Series | None) -> dic
     if _as_f:
         r["goodwill_intangibles_pct_assets"] = (_gw_f + _ig_f) / _as_f
     r["ppe_net"] = edgar_row.get("ppe_net")
+    r["da_ttm"] = edgar_row.get("da_ttm")                       # AUDITED D&A (over implied EBITDA-EBIT)
+    r["deferred_revenue"] = edgar_row.get("deferred_revenue")  # customer-prepayment float (XR12)
+    r["investments_associates"] = edgar_row.get("investments_associates")  # look-through value (XR C)
     r["minority_interest"] = edgar_row.get("minority_interest")
     r["preferred_equity"] = edgar_row.get("preferred_equity")
     # TTM provenance passthrough (audit Y6): downstream can distinguish a
