@@ -187,6 +187,22 @@ def main():
         _edavg_merged_n = _n_avg
     except FileNotFoundError:
         pass
+    # AUDITED LONG STREAKS (user directive: longer than the provider's
+    # 4-quarter cap) — consecutive quarterly YoY growth streaks from ~7
+    # years of EDGAR filings (single-concept, consecutive-quarter,
+    # base-guarded; edgar_streaks.py). Multi-year audited facts, ungated.
+    try:
+        _stk = pd.read_csv("us_edgar_streaks.csv").drop_duplicates("symbol").set_index("symbol")
+        for _sc in ("rev_yoy_streak_q", "ni_yoy_streak_q",
+                    "rev_yoy_pos_share_12q", "streak_quarters_n"):
+            if _sc in _stk.columns:
+                if _sc not in m.columns:
+                    m[_sc] = np.nan
+                _sv = pd.to_numeric(_stk[_sc], errors="coerce").reindex(m.index)
+                m.loc[_sv.notna(), _sc] = _sv[_sv.notna()]
+                _edavg_merged_n += int(_sv.notna().sum())
+    except FileNotFoundError:
+        pass
 
     def edgar_col(c, yahoo_series=None):
         if len(ed) and c in ed.columns:

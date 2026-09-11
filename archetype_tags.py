@@ -2430,6 +2430,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _fcf_f10 = _ncol('fcf_ttm')
     df['arch_dividend_verified_value'] = (
         is_operating & (_mc_f7 > 0) &
+        _fx_coherent &                              # (gate audit #2, completed) payout vs local NI/FCF
         (_dy_f10 >= 0.06) &                          # a fat, real payout
         (_ni_f10 > 0) & (_div_paid <= 0.70 * _ni_f10) &
         (_fcf_f10 > 0) & (_div_paid <= 0.70 * _fcf_f10) &
@@ -2513,8 +2514,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # pays you to own the growth. The rarest, cleanest asymmetry in the book.
     df['arch_xr_neg_ev_growth'] = (
         is_operating & (mcap > 0) &
+        _fx_coherent &                              # net cash vs mcap is level-over-mcap
         ((cash_gt_ev > 0) | (net_cash_pct_c >= 0.80)) &
-        (rev_yoy_c >= 0.15) & (rev_yoy_c <= 1.0) &
+        # growth: the point YoY, or an AUDITED long streak (>=8 consecutive
+        # quarters of filed revenue growth substitutes for a point estimate)
+        (((rev_yoy_c >= 0.15) & (rev_yoy_c <= 1.0))
+         | (_ncol('rev_yoy_streak_q') >= 8)) &
         _profit_present &
         ~(_ncol('shares_yoy') > 0.05) &
         _not_melting
@@ -2527,6 +2532,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # payout funds the wait.
     df['arch_xr_triple_floor'] = (
         is_operating & (mcap > 0) &
+        _fx_coherent &
         (net_cash_pct_c >= 0.40) &
         ((_ncol('net_income_ttm') > 0) | (_ncol('ni_avg') > 0)) &
         (_ncol('dividend_yield') >= 0.03) &
@@ -2548,6 +2554,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                    | ((rev_accel > 0) & oper_lev_any))
     df['arch_xr_floor_inflection'] = (
         is_operating & (mcap > 0) &
+        _fx_coherent &
         _xr_floor & _xr_inflect &
         beaten_down_any(0.30) &
         ~(_ncol('shares_yoy') > 0.05) &
@@ -2563,7 +2570,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _xr_quality = ((s('n_yrs_positive_fcf', 0) >= 4)
                    | (_ncol('equity_cagr_5y') >= 0.10)
                    | (roic_lindy >= 0.12)
-                   | ((_ncol('oe_avg') > 0) & (_ncol('ni_avg') > 0)))
+                   | ((_ncol('oe_avg') > 0) & (_ncol('ni_avg') > 0))
+                   # audited MULTI-YEAR persistence: 8+ consecutive filed
+                   # quarters of NI or revenue growth (user: longer than 4Q)
+                   | (_ncol('ni_yoy_streak_q') >= 8)
+                   | (_ncol('rev_yoy_streak_q') >= 8))
     _xr_crisis = ((_num('pct_off_52w_high') <= -0.40)
                   | (_num('price_pct_of_5y_range') <= 0.30))
     _xr_cheap = (((pb > 0) & (pb < 1.2))
@@ -2638,10 +2649,45 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _paydown_y = (-_ncol('financing_cf_ttm') / _ncol('market_cap').where(_ncol('market_cap') > 0))
     df['arch_xr_paydown_yield'] = (
         is_operating & (mcap > 0) &
+        _fx_coherent &                              # (gate audit #2, completed) financing_cf vs mcap
         (_paydown_y >= 0.10) &
         (nde >= 2.0) & (nde < 90) &
         (ebitda_ttm_v > 0) &
         ((ebitda_yoy_v >= -0.05) | (ebitda_inflection > 0)) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR10 — Clean net-net, earning and paying ('XR-CleanNetNet'): the
+    # concepts-hardened Graham trifecta — NCAV (now NET of preferred and
+    # minority interests) covering the WHOLE price, positive earnings power
+    # on the Graham average (or latest), and management PAYING owners while
+    # you wait. Each leg is audited-basis; together the downside is a
+    # liquidation floor that pays a coupon.
+    df['arch_xr_clean_net_net'] = (
+        is_operating & (mcap > 0) &
+        _fx_coherent &
+        (ncav_pct >= 1.0) &
+        ((_ncol('ni_avg') > 0) | (_ncol('net_income_ttm') > 0)) &
+        ((_ncol('dividend_yield') >= 0.02) | (_ncol('buyback_yield') > 0)) &
+        ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR11 — Self-funded compounding deployer ('XR-CompoundingDeployer'):
+    # high AUDITED incremental returns on capital actually DEPLOYED
+    # (roiic_lindy under the positive-deployment rule), financed internally
+    # (financing line flat/negative — no dilution, no borrowing binge),
+    # revenue still compounding, and the market pricing it at an ordinary
+    # multiple. The rare growth engine whose fuel is its own cash.
+    df['arch_xr_compounding_deployer'] = (
+        is_operating & (mcap > 0) &
+        (roic_lindy >= 0.12) &
+        (_ncol('roiic_lindy') >= 0.20) &
+        (_ncol('financing_cf_ttm') <= 0) &
+        ((_ncol('rev_yoy_streak_q') >= 4) | (rev_yoy_c >= 0.10)) &
+        (((_ncol('ev_ebit') > 0) & (_ncol('ev_ebit') <= 14))
+         | ((_ncol('p_e') > 0) & (_ncol('p_e') <= 18))) &
+        ~(_ncol('shares_yoy') > 0.02) &
         _not_melting
     ).fillna(False).astype(int)
 
@@ -3061,6 +3107,26 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _not_rich_au.fillna(False) &
         _not_melting
     ).fillna(False).astype(int)
+
+    # XR9 — Audited streak, unrerated ('XR-AuditedStreakUnrerated'):
+    # (user: streaks LONGER than four quarters) 8+ CONSECUTIVE quarters of
+    # FILED growth (revenue or parent NI, from ~7yr of EDGAR quarterlies
+    # with the missing-Q4 synthesized — not estimates, not provider caps),
+    # with an honest window (>=8 comparisons available), while the market
+    # has NOT re-rated (the asleep_unrerated no-rerate evidence) and the
+    # multiple is not already rich. The longest-duration told-and-ignored
+    # signal the data supports.
+    _stk_best = pd.concat([_ncol('ni_yoy_streak_q'),
+                           _ncol('rev_yoy_streak_q')], axis=1).max(axis=1)
+    df['arch_xr_audited_streak_unrerated'] = (
+        is_operating & (mcap > 0) &
+        (_stk_best >= 8) &
+        (_ncol('streak_quarters_n') >= 8) &
+        _no_rerate_au.fillna(False) &
+        _not_rich_au.fillna(False) &
+        _not_melting
+    ).fillna(False).astype(int)
+
 
     # ---------- Templeton "maximum pessimism" (cheap vs own history) ----------
     # Cheap against the company's OWN mid-cycle earnings (EV / normalized 5yr
@@ -3616,6 +3682,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_forensic_multiple_gap',
         'arch_xr_harvest_distribution',
         'arch_xr_paydown_yield',
+        'arch_xr_audited_streak_unrerated',
+        'arch_xr_clean_net_net',
+        'arch_xr_compounding_deployer',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -3737,6 +3806,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_growth_algo': 'GrowthAlgo-Flywheel',
         'arch_asleep_at_wheel': 'AsleepAtWheel-Beats',
         'arch_asleep_unrerated': 'AsleepUnrerated-BeatsNoRerate',
+        'arch_xr_audited_streak_unrerated': 'XR-AuditedStreakUnrerated',
+        'arch_xr_clean_net_net': 'XR-CleanNetNet',
+        'arch_xr_compounding_deployer': 'XR-CompoundingDeployer',
         'arch_templeton_pessimism': 'Templeton-MaxPessimism',
         'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
         'arch_levered_inflection': 'LeveredInflectionStub',

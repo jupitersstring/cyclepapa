@@ -723,6 +723,11 @@ def _figure_coverage(t, g):
         # ev_sales_change_yoy: build-guarded (equity-slice deflation, M12),
         # stored-band enforced (+/-10), consumed by arch_asleep_unrerated
         "ev_sales_change_yoy",
+        # audited EDGAR long streaks (edgar_streaks.py: single-concept,
+        # consecutive-quarter, Q4-synthesized, base-guarded; stored bands
+        # 0-30/0-40) — consumed by XR9/XR11 and the quality lenses
+        "rev_yoy_streak_q", "ni_yoy_streak_q", "streak_quarters_n",
+        "rev_yoy_pos_share_12q", "roiic_lindy",
         # misc bounded/threshold-only consumption
         "earnings_beat_rate", "avg_earnings_surprise", "earnings_beat_streak",
         "earnings_surprise_inflecting", "eps_yoy_positive_share",
