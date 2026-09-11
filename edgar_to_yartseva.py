@@ -231,7 +231,11 @@ def build_yartseva_row(edgar_row: pd.Series, price_row: pd.Series | None) -> dic
     _ca_f = edgar_row.get("current_assets"); _cl_f = edgar_row.get("current_liab")   # extractor key
     if _ca_f is not None and _cl_f is not None:
         r["net_working_capital"] = _ca_f - _cl_f
-    _gw_f = edgar_row.get("goodwill") or 0; _ig_f = edgar_row.get("intangibles") or 0
+    # CSV NaN is truthy — "or 0" never fired, NaN-poisoning the ratio for
+    # every goodwill-free company (exactly the tangible-value names).
+    _gw_f = edgar_row.get("goodwill"); _ig_f = edgar_row.get("intangibles")
+    _gw_f = 0 if (_gw_f is None or pd.isna(_gw_f)) else _gw_f
+    _ig_f = 0 if (_ig_f is None or pd.isna(_ig_f)) else _ig_f
     _as_f = edgar_row.get("assets")
     if _as_f:
         r["goodwill_intangibles_pct_assets"] = (_gw_f + _ig_f) / _as_f
@@ -247,12 +251,24 @@ def build_yartseva_row(edgar_row: pd.Series, price_row: pd.Series | None) -> dic
     r["gross_margin"] = None  # not separately extracted from XBRL; left for downstream
 
     # Quality / capital efficiency
-    if r.get("cfo_ttm") and r.get("ebitda_ttm") and r["ebitda_ttm"] != 0:
+    # positive-EBITDA guard: CFO over a NEGATIVE EBITDA prints a
+    # sign-flipped "conversion" (both-negative reads healthy); and a
+    # legitimate zero CFO must not be dropped by truthiness.
+    if r.get("cfo_ttm") is not None and r.get("ebitda_ttm") is not None \
+            and not pd.isna(r["cfo_ttm"]) and not pd.isna(r["ebitda_ttm"]) \
+            and r["ebitda_ttm"] > 0:
         r["cash_conversion"] = r["cfo_ttm"] / r["ebitda_ttm"]
     r["roce"] = edgar_row.get("roce")
-    if edgar_row.get("total_debt") and edgar_row.get("ebitda_ttm") and edgar_row["ebitda_ttm"] != 0:
-        nd = edgar_row["total_debt"] - (edgar_row.get("cash") or 0)
-        r["net_debt_ebitda"] = nd / edgar_row["ebitda_ttm"]
+    # net_debt/EBITDA: EBITDA must be POSITIVE (negative EBITDA under
+    # positive debt printed a negative ratio any "nde < x" screen reads
+    # as net cash — sign-inverted risk); and a debt-free company
+    # (total_debt == 0) is a MEANINGFUL net-cash ratio, not a skip.
+    _td_map = edgar_row.get("total_debt")
+    _eb_map = edgar_row.get("ebitda_ttm")
+    if _td_map is not None and not pd.isna(_td_map) \
+            and _eb_map is not None and not pd.isna(_eb_map) and _eb_map > 0:
+        nd = _td_map - (edgar_row.get("cash") or 0)
+        r["net_debt_ebitda"] = nd / _eb_map
     if edgar_row.get("total_debt") is not None and edgar_row.get("equity") and edgar_row["equity"] > 0:
         r["debt_to_equity"] = edgar_row["total_debt"] / edgar_row["equity"]
 

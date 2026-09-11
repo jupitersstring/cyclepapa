@@ -142,11 +142,13 @@ REVENUE_ALIASES = [
 ]
 OPINCOME_ALIASES = ["OperatingIncomeLoss", "ProfitLossFromOperatingActivities"]
 NETINCOME_ALIASES = [
-    "ProfitLoss", "ProfitLossAttributableToOwnersOfParent",
-
+    # PARENT-ATTRIBUTABLE first (methodology audit): us-gaap ProfitLoss
+    # INCLUDES noncontrolling interests — the mcap in P/E's numerator owns
+    # only the parent share, so NetIncomeLoss must outrank it.
     "NetIncomeLoss",
-    "ProfitLoss",
+    "ProfitLossAttributableToOwnersOfParent",
     "NetIncomeLossAvailableToCommonStockholdersBasic",
+    "ProfitLoss",
 ]
 ASSETS_ALIASES = ["Assets"]
 CURRENT_ASSETS_ALIASES = ["AssetsCurrent", "CurrentAssets"]
@@ -165,13 +167,24 @@ INTANGIBLE_ALIASES = [
 ]
 CASH_ALIASES = [
     "CashAndCashEquivalents",
-
     "CashAndCashEquivalentsAtCarryingValue",
-    "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
     "Cash",
+    # restricted-inclusive concept is LAST RESORT only (it is a different
+    # measure — ASU 2016-18 restricted-cash rollup)
+    "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
 ]
-LT_DEBT_ALIASES = ["LongTermDebtNoncurrent", "LongTermDebt", "NoncurrentBorrowings", "Borrowings"]
-ST_DEBT_ALIASES = ["LongTermDebtCurrent", "ShortTermBorrowings", "CurrentBorrowings"]
+# PURE noncurrent concepts only — us-gaap LongTermDebt and ifrs Borrowings
+# are TOTALS (current portion INCLUDED); adding an ST bucket on top of them
+# double-counted current maturities. Totals live in their own list and are
+# used standalone, never summed with ST.
+LT_DEBT_ALIASES = ["LongTermDebtNoncurrent", "NoncurrentBorrowings",
+                   "FinanceLeaseLiabilityNoncurrent"]
+TOTAL_DEBT_ALIASES = ["LongTermDebt", "Borrowings",
+                      "DebtLongtermAndShorttermCombinedAmount"]
+ST_DEBT_ALIASES = ["LongTermDebtCurrent", "ShortTermBorrowings",
+                   "CurrentBorrowings", "DebtCurrent", "NotesPayableCurrent",
+                   "CommercialPaper", "LinesOfCreditCurrent",
+                   "FinanceLeaseLiabilityCurrent"]
 CFO_ALIASES = ["NetCashProvidedByUsedInOperatingActivities",
                "CashFlowsFromUsedInOperatingActivities"]
 CAPEX_ALIASES = [
@@ -194,10 +207,10 @@ DA_ALIASES = [
 # dividends + buybacks, instead of inferring from share-count deltas).
 DIVIDEND_ALIASES = [
     "DividendsPaidClassifiedAsFinancingActivities", "DividendsPaid",
-
     "PaymentsOfDividendsCommonStock",
     "PaymentsOfDividends",
-    "PaymentsOfDividendsMinorityInterest",
+    # PaymentsOfDividendsMinorityInterest REMOVED — cash to NCI holders of
+    # subsidiaries is not a return to this company's shareholders.
 ]
 BUYBACK_ALIASES = [
     "PaymentsForRepurchaseOfCommonStock",
@@ -223,7 +236,10 @@ PPE_NET_ALIASES = [
     "PropertyPlantAndEquipmentNet",
     "PropertyPlantAndEquipmentNetOfDepreciation",
 ]
-INTEREST_PAID_ALIASES = ["InterestPaidNet", "InterestPaid"]
+# interest EXPENSE preferred over cash interest PAID (capitalized/PIK/
+# timing gaps make paid understate the true charge and overstate coverage)
+INTEREST_PAID_ALIASES = ["InterestExpense", "InterestExpenseNonoperating",
+                         "FinanceCosts", "InterestPaidNet", "InterestPaid"]
 FIN_CF_ALIASES = ["NetCashProvidedByUsedInFinancingActivities"]
 INV_CF_ALIASES = ["NetCashProvidedByUsedInInvestingActivities"]
 
@@ -256,39 +272,54 @@ def _facts_unit_iter(facts: dict, concept: str, unit: str = "USD"):
 
 
 def latest_point_value(facts: dict, aliases: list[str], unit: str = "USD"):
-    """Pick the most recent observation across alias concepts (point-in-time).
-
-    Used for balance-sheet items where we want the latest snapshot
-    regardless of fiscal period."""
-    best = None
+    """FIRST alias with observations wins; newest snapshot WITHIN that
+    concept. Pooling across aliases mixed different measures (restricted-
+    inclusive cash beating clean cash, total-debt beating noncurrent) —
+    the alias order is the documented priority and is now honored."""
     for c in aliases:
+        best = None
         for obs in _facts_unit_iter(facts, c, unit=unit):
             end = obs.get("end")
-            if not end:
+            if not end or obs.get("val") is None:
                 continue
             if best is None or end > best.get("end", ""):
                 best = obs
-                best["_concept"] = c
-    return best
+        if best is not None:
+            best["_concept"] = c
+            return best
+    return None
 
 
 def latest_annual_value(facts: dict, aliases: list[str], unit: str = "USD"):
-    """Pick the most recent FY (annual) observation."""
-    best = None
+    """Most recent TRUE-annual observation: first alias with one wins, and
+    the row must span >= 330 days — a Q4 3-month row tagged fp=FY (or a
+    short transition period) must never masquerade as a fiscal year."""
     for c in aliases:
+        best = None
         for obs in _facts_unit_iter(facts, c, unit=unit):
             if obs.get("fp") != "FY":
                 continue
             end = obs.get("end")
-            if not end:
+            if not end or obs.get("val") is None:
                 continue
+            if obs.get("start"):
+                try:
+                    dur = (datetime.strptime(end, "%Y-%m-%d")
+                           - datetime.strptime(obs["start"], "%Y-%m-%d")).days
+                    if dur < 330:
+                        continue
+                except Exception:
+                    pass
             if best is None or end > best.get("end", ""):
                 best = obs
-                best["_concept"] = c
-    return best
+        if best is not None:
+            best["_concept"] = c
+            return best
+    return None
 
 
-def ttm_value(facts: dict, aliases: list[str], unit: str = "USD"):
+def ttm_value(facts: dict, aliases: list[str], unit: str = "USD",
+              allow_rollfwd: bool = True):
     """Trailing-twelve-month value, built ROBUSTLY (methodology audit 2026-09-11).
 
     The old implementation summed the 4 most recent 3-month rows with NO
@@ -309,13 +340,25 @@ def ttm_value(facts: dict, aliases: list[str], unit: str = "USD"):
       3. FY directly, when it is the newest period available.
     Returns {"val", "end", "concept", "kind"} or None.
     """
-    obs_pool: list[dict] = []
-    for c in aliases:
-        for o in _facts_unit_iter(facts, c, unit=unit):
-            if o.get("end") and o.get("val") is not None:
-                obs_pool.append({**o, "_concept": c})
-    if not obs_pool:
-        return None
+    # SINGLE-CONCEPT construction: F, R and P (and every chained quarter)
+    # must come from the SAME concept — pooling let the roll-forward
+    # difference e.g. Revenue-excluding-tax against Revenue-including-tax,
+    # or parent NetIncomeLoss against NCI-inclusive ProfitLoss, yielding a
+    # "TTM" of nothing. Aliases are tried IN ORDER; the first concept that
+    # yields a TTM by any strategy wins.
+    for _c_try in aliases:
+        obs_pool = [{**o, "_concept": _c_try}
+                    for o in _facts_unit_iter(facts, _c_try, unit=unit)
+                    if o.get("end") and o.get("val") is not None]
+        if not obs_pool:
+            continue
+        _res = _ttm_from_pool(obs_pool, allow_rollfwd)
+        if _res is not None:
+            return _res
+    return None
+
+
+def _ttm_from_pool(obs_pool: list, allow_rollfwd: bool = True):
 
     def _d(x):
         try:
@@ -355,7 +398,8 @@ def ttm_value(facts: dict, aliases: list[str], unit: str = "USD"):
         F = annuals[0]
         return {"val": F["val"], "end": F.get("end"),
                 "concept": F.get("_concept"), "kind": "FY"}
-    for R in flows[:3]:                      # try the newest few flow rows
+    for R in (flows[:3] if allow_rollfwd else []):   # newest few flow rows
+        _r_start = _d(R.get("start")) if R.get("start") else None
         for P in flows:
             if P is R or P["_dur"] is None or R["_dur"] is None:
                 continue
@@ -365,11 +409,20 @@ def ttm_value(facts: dict, aliases: list[str], unit: str = "USD"):
             if abs(P["_dur"] - R["_dur"]) > 20:
                 continue
             for F in annuals:
-                if P["_end_dt"] <= F["_end_dt"] < R["_end_dt"]:
-                    return {"val": F["val"] + R["val"] - P["val"],
-                            "end": R.get("end"),
-                            "concept": R.get("_concept"),
-                            "kind": "TTM_rollfwd"}
+                if not (P["_end_dt"] <= F["_end_dt"] < R["_end_dt"]):
+                    continue
+                # R must START at the fiscal-year end (the post-FY YTD
+                # stub) — a bare Q3 3-month row satisfies every other
+                # check yet makes FY + R - P swap current-year H1 for
+                # prior-year H1. Small tolerance for 52/53-week calendars.
+                if _r_start is not None:
+                    _off = (_r_start - F["_end_dt"]).days
+                    if not (-7 <= _off <= 21):
+                        continue
+                return {"val": F["val"] + R["val"] - P["val"],
+                        "end": R.get("end"),
+                        "concept": R.get("_concept"),
+                        "kind": "TTM_rollfwd"}
     # --- 2) four CONSECUTIVE 3-month quarters
     q3m = [o for o in flows if 60 <= (o["_dur"] or 0) <= 100]
     if len(q3m) >= 4:
@@ -464,9 +517,13 @@ def extract_row(ticker: str, cik: int, data: dict) -> dict:
         "symbol": ticker,
         "cik": cik,
         "name": data.get("entityName"),
-        "concept_count": len(facts.get("us-gaap") or {}),
+        "concept_count": (len(facts.get("us-gaap") or {})
+                          + len(facts.get("ifrs-full") or {})),
     }
-    if not facts.get("us-gaap"):
+    # BOTH namespaces count — a pure-IFRS 20-F filer (the population the
+    # dual-namespace support exists for) was returned EMPTY here and then
+    # dropped downstream on concept_count == 0.
+    if not (facts.get("us-gaap") or facts.get("ifrs-full")):
         return row
 
     # Balance sheet (latest point-in-time)
@@ -487,6 +544,7 @@ def extract_row(ticker: str, cik: int, data: dict) -> dict:
     pt(CASH_ALIASES, "cash")
     pt(LT_DEBT_ALIASES, "lt_debt")
     pt(ST_DEBT_ALIASES, "st_debt")
+    pt(TOTAL_DEBT_ALIASES, "total_debt_standalone")
     pt(SHARES_ALIASES, "shares_outstanding", units="shares")
     # Capital-allocation balance-sheet point-in-time
     pt(RETAINED_EARNINGS_ALIASES, "retained_earnings")
@@ -589,7 +647,11 @@ def extract_row(ticker: str, cik: int, data: dict) -> dict:
 
     # EPS uses a different unit (USD/shares)
     def fl_units(aliases, field, units):
-        ttm = ttm_value(facts, aliases, unit=units)
+        # per-share series are NOT additive flows: FY-EPS + Q-EPS - Q-EPS
+        # divides by three different weighted share counts. Only the
+        # 4-consecutive-quarter sum (conventional approximation) or the FY
+        # itself is admissible.
+        ttm = ttm_value(facts, aliases, unit=units, allow_rollfwd=False)
         if ttm:
             row[field + "_ttm"] = ttm["val"]
         ann = latest_annual_value(facts, aliases, unit=units)
@@ -599,53 +661,88 @@ def extract_row(ticker: str, cik: int, data: dict) -> dict:
     fl_units(EPS_BASIC_ALIASES, "eps_basic", "USD/shares")
     fl_units(EPS_DILUTED_ALIASES, "eps_diluted", "USD/shares")
 
-    # Derived
-    equity = row.get("equity") or 0
+    # Derived — a value is only computed from OBSERVED constituents; a
+    # missing goodwill/intangibles concept legitimately means none, but a
+    # missing EQUITY concept must never fabricate tangible_equity = 0.
+    equity = row.get("equity")
     goodwill = row.get("goodwill") or 0
     intangibles = row.get("intangibles") or 0
-    row["tangible_equity"] = equity - goodwill - intangibles
-    if row.get("shares_outstanding"):
-        row["tangible_book_per_share"] = row["tangible_equity"] / row["shares_outstanding"]
-    # Total debt
-    row["total_debt"] = (row.get("lt_debt") or 0) + (row.get("st_debt") or 0)
-    row["net_cash"] = (row.get("cash") or 0) - row["total_debt"]
-    # FCF = CFO - capex (capex is reported positive as cash outflow, so subtract)
-    if "cfo_ttm" in row and "capex_ttm" in row:
+    if equity is not None:
+        row["tangible_equity"] = equity - goodwill - intangibles
+        if row.get("shares_outstanding"):
+            row["tangible_book_per_share"] = row["tangible_equity"] / row["shares_outstanding"]
+    # Total debt: the pure-noncurrent + current split when observed; else a
+    # STANDALONE total concept (LongTermDebt/Borrowings — current portion
+    # already included, never summed with ST). When NO debt concept was
+    # observed the field stays ABSENT — "we saw no debt tag" is not "zero
+    # debt" (the revolver-under-unseen-alias lesson).
+    if row.get("lt_debt") is not None or row.get("st_debt") is not None:
+        row["total_debt"] = (row.get("lt_debt") or 0) + (row.get("st_debt") or 0)
+    elif row.get("total_debt_standalone") is not None:
+        row["total_debt"] = row["total_debt_standalone"]
+    if row.get("cash") is not None and row.get("total_debt") is not None:
+        row["net_cash"] = row["cash"] - row["total_debt"]
+    # WINDOW-MATCHED pairs: a subtraction or ratio of two TTMs is only
+    # meaningful when both windows end together (one component a quarter
+    # fresher, or one an FY-fallback, silently mixes periods).
+    def _ends_match(a, b, days=14):
+        ea, eb = row.get(a), row.get(b)
+        if not ea or not eb:
+            return True          # missing end metadata: keep old behavior
+        try:
+            return abs((datetime.strptime(str(ea)[:10], "%Y-%m-%d")
+                        - datetime.strptime(str(eb)[:10], "%Y-%m-%d")).days) <= days
+        except Exception:
+            return True
+    # FCF = CFO - capex (capex reported as positive outflow)
+    if "cfo_ttm" in row and "capex_ttm" in row             and _ends_match("cfo_ttm_end", "capex_ttm_end"):
         row["fcf_ttm"] = row["cfo_ttm"] - row["capex_ttm"]
     if "cfo_fy" in row and "capex_fy" in row:
         row["fcf_fy"] = row["cfo_fy"] - row["capex_fy"]
-    # EBITDA proxy = op income + D&A
-    if "opinc_ttm" in row and "da_ttm" in row:
+    # EBITDA = op income + D&A (same-filing definitional construction)
+    if "opinc_ttm" in row and "da_ttm" in row             and _ends_match("opinc_ttm_end", "da_ttm_end"):
         row["ebitda_ttm"] = row["opinc_ttm"] + row["da_ttm"]
     if "opinc_fy" in row and "da_fy" in row:
         row["ebitda_fy"] = row["opinc_fy"] + row["da_fy"]
-    # Margins (TTM-preferred, FY fallback)
-    rev = row.get("revenue_ttm") or row.get("revenue_fy")
-    opi = row.get("opinc_ttm") or row.get("opinc_fy")
-    ebi = row.get("ebitda_ttm") or row.get("ebitda_fy")
-    ni = row.get("netinc_ttm") or row.get("netinc_fy")
-    fcf = row.get("fcf_ttm") or row.get("fcf_fy")
-    if rev and rev > 0:
-        if opi is not None:
-            row["op_margin"] = opi / rev
-        if ebi is not None:
-            row["ebitda_margin"] = ebi / rev
-        if ni is not None:
-            row["net_margin"] = ni / rev
-        if fcf is not None:
-            row["fcf_margin"] = fcf / rev
-    # ROIC / ROCE (EBIT proxy = opinc)
-    invested = equity + row.get("total_debt", 0) - (row.get("cash") or 0)
+    # Margins: numerator and denominator on the SAME cadence — both TTM
+    # (ends matching) or both FY; never a TTM numerator over an FY
+    # denominator.
+    def _pair(num_ttm, num_end, num_fy, den_ttm_ok):
+        if row.get(num_ttm) is not None and den_ttm_ok                 and _ends_match(num_end, "revenue_ttm_end"):
+            return row[num_ttm], row.get("revenue_ttm")
+        if row.get(num_fy) is not None and row.get("revenue_fy") is not None:
+            return row[num_fy], row.get("revenue_fy")
+        return None, None
+    _has_rev_ttm = row.get("revenue_ttm") is not None
+    rev = row.get("revenue_ttm") if _has_rev_ttm else row.get("revenue_fy")
+    opi = row.get("opinc_ttm") if _has_rev_ttm and row.get("opinc_ttm") is not None else row.get("opinc_fy")
+    ebi = row.get("ebitda_ttm") if _has_rev_ttm and row.get("ebitda_ttm") is not None else row.get("ebitda_fy")
+    ni = row.get("netinc_ttm") if _has_rev_ttm and row.get("netinc_ttm") is not None else row.get("netinc_fy")
+    fcf = row.get("fcf_ttm") if _has_rev_ttm and row.get("fcf_ttm") is not None else row.get("fcf_fy")
+    for _mk, _nt, _ne, _nf in (("op_margin", "opinc_ttm", "opinc_ttm_end", "opinc_fy"),
+                               ("ebitda_margin", "ebitda_ttm", "opinc_ttm_end", "ebitda_fy"),
+                               ("net_margin", "netinc_ttm", "netinc_ttm_end", "netinc_fy"),
+                               ("fcf_margin", "fcf_ttm", "cfo_ttm_end", "fcf_fy")):
+        _n, _r = _pair(_nt, _ne, _nf)
+        if _n is not None and _r and _r > 0:
+            row[_mk] = _n / _r
+    # ROIC / ROCE (EBIT proxy = opinc) — requires an OBSERVED equity level
+    # (equity silently defaulted to 0 made invested = debt - cash and
+    # printed wildly inflated returns).
+    invested = None
+    if equity is not None:
+        invested = equity + (row.get("total_debt") or 0) - (row.get("cash") or 0)
     if invested and invested > 0 and opi is not None:
         row["roce"] = opi / invested
 
     # ----- Capital-allocation derived (audit June 2026) -----
-    div = row.get("dividends_ttm") or 0
-    bb = row.get("buybacks_ttm") or 0
-    # Total capital returned to shareholders. Dividends + buybacks are
-    # already-paid cash; treat both as positive returns (XBRL reports
-    # them as positive outflows in financing activities).
-    row["capital_return_ttm"] = div + bb
+    div = row.get("dividends_ttm")
+    bb = row.get("buybacks_ttm")
+    # Total capital returned to shareholders (positive outflow magnitudes).
+    # Written ONLY when at least one payout concept was observed — "no
+    # concept found" must stay distinguishable from "returned nothing".
+    if div is not None or bb is not None:
+        row["capital_return_ttm"] = (div or 0) + (bb or 0)
 
     # Real effective tax rate (clipped to sensible range).
     tax = row.get("tax_expense_ttm")

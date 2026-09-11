@@ -104,6 +104,33 @@ def pct_change(curr, prior) -> float:
     return (curr - prior) / abs(prior)
 
 
+
+# Static quote-ccy -> USD rates for THRESHOLD conversion only (documented
+# dollar cutoffs — "sub-$200M", "EV < $250M" — were compared against
+# local-currency levels, scoring every Japanese large cap as "small").
+# Ratios never use these; refresh periodically at build time.
+FX_TO_USD_STATIC = {
+    "USD": 1.0, "EUR": 1.15, "GBP": 1.34, "GBP0.01": 1.34, "GBX": 1.34,
+    "JPY": 0.0067, "CNY": 0.14, "HKD": 0.128, "KRW": 0.00072, "TWD": 0.033,
+    "INR": 0.0113, "AUD": 0.66, "CAD": 0.73, "SGD": 0.78, "THB": 0.031,
+    "MYR": 0.24, "IDR": 0.000061, "SEK": 0.106, "NOK": 0.10, "DKK": 0.155,
+    "CHF": 1.26, "PLN": 0.27, "TRY": 0.024, "ILS": 0.30, "BRL": 0.19,
+    "MXN": 0.054, "ZAR": 0.058, "NZD": 0.60, "PHP": 0.0175, "VND": 0.000038,
+    "CLP": 0.00104, "SAR": 0.2667, "AED": 0.2723,
+}
+
+
+def _threshold_usd(value, info):
+    """Convert a local-currency LEVEL to USD for dollar-threshold tests.
+    Unknown currency -> None (the threshold test is then skipped honestly
+    rather than comparing apples to yen)."""
+    if value is None or pd.isna(value):
+        return None
+    ccy = str(info.get("currency") or "USD").upper()
+    fx = FX_TO_USD_STATIC.get(ccy)
+    return float(value) * fx if fx else None
+
+
 def trailing_sum(series: pd.Series, n: int = 4) -> Optional[float]:
     """Sum the most recent n columns of a yfinance financial series.
 
@@ -383,9 +410,39 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     have_a = col_count(rev_a) >= 2
 
     # ---- Pick TTM level: prefer 4-quarter trailing if dense enough, else most recent annual ----
+    # ---- CADENCE VALIDATION (methodology audit): yfinance serves
+    # semi-annual reporters (much of the EU/UK small-cap universe) inside
+    # the "quarterly" frames as 6-month columns. Summing 4 of those = 24
+    # months labeled TTM, and index-4 comparisons become 2-year "YoY".
+    # Detect periods-per-year from the column-date gaps ONCE and size
+    # every window with it; an unrecognizable cadence disables the
+    # quarterly math entirely (annual fallbacks take over honestly).
+    def _ppy(series):
+        if series is None or len(series) < 2:
+            return None
+        try:
+            idx = pd.to_datetime(series.index)
+            gaps = pd.Series((idx[:-1] - idx[1:]).days)
+            med = float(gaps.median())
+        except Exception:
+            return None
+        if 60 <= med <= 130:
+            return 4
+        if 150 <= med <= 230:
+            return 2
+        return None
+
+    _PPY = None
+    for _cand_s in (rev_q, ebitda_q, cfo_q, ni_q):
+        _PPY = _ppy(_cand_s)
+        if _PPY is not None:
+            break
+    _NQ = _PPY or 4          # periods per year when quarterly math is usable
+    _q_usable = _PPY is not None
+
     def ttm_or_annual(qseries, aseries):
-        if qseries is not None and len(qseries) >= 4:
-            v = trailing_sum(qseries, 4)
+        if _q_usable and qseries is not None and len(qseries) >= _NQ:
+            v = trailing_sum(qseries, _NQ)
             if v is not None:
                 return v
         if aseries is not None and len(aseries) >= 1:
@@ -402,8 +459,8 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
 
     # Prior TTM (8q->4q earlier) or prior annual
     def ttm_prev_or_annual(qseries, aseries):
-        if qseries is not None and len(qseries) >= 8:
-            v = trailing_sum(qseries.iloc[4:], 4)
+        if _q_usable and qseries is not None and len(qseries) >= 2 * _NQ:
+            v = trailing_sum(qseries.iloc[_NQ:], _NQ)
             if v is not None:
                 return v
         if aseries is not None and len(aseries) >= 2:
@@ -418,17 +475,26 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     ni_ttm_prev = ttm_prev_or_annual(ni_q, ni_a)
 
     # 1-quarter shifted TTM (only meaningful with full quarterly data)
-    rev_ttm_q1 = trailing_sum(rev_q.iloc[1:], 4) if (rev_q is not None and len(rev_q) >= 5) else None
-    ebitda_ttm_q1 = trailing_sum(ebitda_q.iloc[1:], 4) if (ebitda_q is not None and len(ebitda_q) >= 5) else None
-    cfo_ttm_q1 = trailing_sum(cfo_q.iloc[1:], 4) if (cfo_q is not None and len(cfo_q) >= 5) else None
-    fcf_ttm_q1 = trailing_sum(fcf_q.iloc[1:], 4) if (fcf_q is not None and len(fcf_q) >= 5) else None
+    def _ttm_shift1(qseries):
+        if _q_usable and qseries is not None and len(qseries) >= _NQ + 1:
+            return trailing_sum(qseries.iloc[1:], _NQ)
+        return None
+    rev_ttm_q1 = _ttm_shift1(rev_q)
+    ebitda_ttm_q1 = _ttm_shift1(ebitda_q)
+    cfo_ttm_q1 = _ttm_shift1(cfo_q)
+    fcf_ttm_q1 = _ttm_shift1(fcf_q)
 
-    # Aliases for downstream code that expects q-series; fall back to annual if quarterly missing.
-    rev = rev_q if rev_q is not None else rev_a
-    ebitda = ebitda_q if ebitda_q is not None else ebitda_a
-    cfo = cfo_q if cfo_q is not None else cfo_a
-    fcf = fcf_q if fcf_q is not None else fcf_a
-    ebit = ebit_q if ebit_q is not None else ebit_a
+    # PERIOD-INDEXED series: GENUINELY sub-annual only (methodology audit:
+    # the old alias fell back to the ANNUAL series, so index-4 "YoY"
+    # became a 4-YEAR change and its non-NaN garbage blocked the honest
+    # annual fallbacks downstream). With no usable sub-annual cadence
+    # these stay None and every q() lookup returns NaN, letting the
+    # annual paths fire as designed.
+    rev = rev_q if _q_usable else None
+    ebitda = ebitda_q if _q_usable else None
+    cfo = cfo_q if _q_usable else None
+    fcf = fcf_q if _q_usable else None
+    ebit = ebit_q if _q_usable else None
 
     # ---- Single-quarter ----
     def q(series, i):
@@ -437,10 +503,12 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         v = series.iloc[i]
         return float(v) if pd.notna(v) else np.nan
 
-    rev_q0, rev_q1, rev_q4, rev_q5 = q(rev, 0), q(rev, 1), q(rev, 4), q(rev, 5)
-    ebitda_q0, ebitda_q1, ebitda_q4, ebitda_q5 = q(ebitda, 0), q(ebitda, 1), q(ebitda, 4), q(ebitda, 5)
-    cfo_q0, cfo_q1, cfo_q4, cfo_q5 = q(cfo, 0), q(cfo, 1), q(cfo, 4), q(cfo, 5)
-    fcf_q0, fcf_q1, fcf_q4, fcf_q5 = q(fcf, 0), q(fcf, 1), q(fcf, 4), q(fcf, 5)
+    # the year-ago index is CADENCE-SIZED (4 for quarterly, 2 for
+    # semi-annual reporters), never a hardcoded 4
+    rev_q0, rev_q1, rev_q4, rev_q5 = q(rev, 0), q(rev, 1), q(rev, _NQ), q(rev, _NQ + 1)
+    ebitda_q0, ebitda_q1, ebitda_q4, ebitda_q5 = q(ebitda, 0), q(ebitda, 1), q(ebitda, _NQ), q(ebitda, _NQ + 1)
+    cfo_q0, cfo_q1, cfo_q4, cfo_q5 = q(cfo, 0), q(cfo, 1), q(cfo, _NQ), q(cfo, _NQ + 1)
+    fcf_q0, fcf_q1, fcf_q4, fcf_q5 = q(fcf, 0), q(fcf, 1), q(fcf, _NQ), q(fcf, _NQ + 1)
 
     # YoY growth on single-quarter and on TTM
     rev_yoy_q = pct_change(rev_q0, rev_q4)
@@ -721,8 +789,16 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         balance_sheet_date = ""
 
     invested_capital = (eq_v + debt_v - cash_v) if (pd.notna(eq_v) and pd.notna(debt_v) and pd.notna(cash_v)) else np.nan
-    roce = safe_div(ebit_ttm, invested_capital) if pd.notna(invested_capital) else np.nan
-    net_debt_ebitda = safe_div(nd_v, ebitda_ttm) if pd.notna(nd_v) else np.nan
+    # invested capital must be POSITIVE — deep net-cash names cross zero
+    # and flip ROCE's sign (best balance sheets read worst)
+    roce = (safe_div(ebit_ttm, invested_capital)
+            if (pd.notna(invested_capital) and invested_capital > 0) else np.nan)
+    # EBITDA must be POSITIVE: positive net debt over negative EBITDA
+    # printed a NEGATIVE ratio that leverage screens read as net cash,
+    # and the inflection leverage subscore scored burners best.
+    net_debt_ebitda = (safe_div(nd_v, ebitda_ttm)
+                       if (pd.notna(nd_v) and pd.notna(ebitda_ttm)
+                           and ebitda_ttm > 0) else np.nan)
 
     # yfinance-info fallbacks. (Define _info_float here too since this is
     # earlier in the function than the valuation block where the other
@@ -821,7 +897,17 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     # ---- Tier-B: earnings-surprise ("asleep at the wheel") ----
     # Consistently-beaten estimates: cumulative beat rate + average surprise +
     # a beat streak + whether the surprise is INFLECTING (recent > older).
-    _surp = info.get("earnings_surprises") or []   # newest-first surprise %
+    # (methodology audit) "earnings_surprises" is NOT a yfinance info key —
+    # these four fields were silently dead for every ticker. The real data
+    # lives in Ticker.earnings_history (epsActual/epsEstimate/
+    # surprisePercent, oldest-first) — reversed here to newest-first.
+    _surp = []
+    try:
+        _eh = t.earnings_history
+        if _eh is not None and len(_eh) and "surprisePercent" in _eh.columns:
+            _surp = [float(x) for x in _eh["surprisePercent"].iloc[::-1].tolist()]
+    except Exception:
+        _surp = []
     _surp = [x for x in _surp if pd.notna(x)]
     if _surp:
         earnings_beat_rate = float(np.mean([1.0 if x > 0 else 0.0 for x in _surp]))
@@ -996,12 +1082,11 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     p_s = safe_div(market_cap, rev_ttm) if (market_cap and rev_ttm) else np.nan
     p_e_yf = info.get("trailingPE")
     p_e = float(p_e_yf) if (p_e_yf is not None and pd.notna(p_e_yf) and p_e_yf > 0) else np.nan
-    if pd.isna(p_e):
-        # Fall back to forwardPE when trailing is missing (typically because
-        # trailing earnings are negative).
-        v = _info_float("forwardPE")
-        if v is not None and 0 < v < 2000:
-            p_e = v
+    # (methodology audit) NO forward-PE fallback: trailing PE is missing
+    # precisely when trailing earnings are negative, and filling with an
+    # estimate-based forward multiple handed loss-makers an optically low
+    # "trailing" P/E. Forward lives under its own name.
+    p_e_fwd = _info_float("forwardPE")
     p_ocf = safe_div(market_cap, cfo_ttm) if (market_cap and cfo_ttm and cfo_ttm > 0) else np.nan
 
     debt_to_equity = safe_div(debt_v, eq_v) if (pd.notna(debt_v) and pd.notna(eq_v) and eq_v > 0) else np.nan
@@ -1023,7 +1108,8 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     #   sub-$200m mcap, P/S < 0.5, P/B < 1.0, gross profit > mcap, positive
     #   revenue growth, positive operating cash flow, debt/equity < 1.0.
     berezin_classic_flag = int(
-        pd.notna(market_cap) and market_cap < 200_000_000
+        (_threshold_usd(market_cap, info) is not None
+         and _threshold_usd(market_cap, info) < 200_000_000)
         and pd.notna(p_s) and p_s < 0.5
         and pd.notna(pb) and pb > 0 and pb < 1.0
         and pd.notna(gross_profit_to_mcap) and gross_profit_to_mcap > 1.0
@@ -1050,7 +1136,8 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     insider_score = clip01_b((insider_ownership_pct - 0.03) / 0.25) if pd.notna(insider_ownership_pct) else np.nan
     target_score = clip01_b((analyst_target_upside_pct - 0.0) / 0.40) if pd.notna(analyst_target_upside_pct) else np.nan
     mom12_score = clip01_b((momentum_12m + 0.10) / 0.40) if pd.notna(momentum_12m) else np.nan
-    microcap_score = clip01_b((200_000_000 - market_cap) / 150_000_000) if pd.notna(market_cap) else np.nan
+    _mc_usd_thr = _threshold_usd(market_cap, info)
+    microcap_score = clip01_b((200_000_000 - _mc_usd_thr) / 150_000_000) if _mc_usd_thr is not None else np.nan
 
     berezin_weights = {
         "p_s":              0.16,
@@ -1094,11 +1181,20 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     #    blend = 1/3 sales_yoy + 1/3 ebitda_yoy + 1/6 fcf_yoy + 1/6 ncav_pct_mcap
     #    cheapness1 = ev_ebit / blend (lower = cheaper). Flag fires when
     #    EV/EBIT < 7x AND blend > 0 (growing cheap company).
+    # base-effect discipline (same as _npi_comp): a growth rate off a
+    # near-zero prior (fcf_yoy printed 1.65e6) must not drive the blend —
+    # drop beyond +/-1000%, clip the kept components to +/-300pp.
+    def _blend_g(x):
+        if pd.isna(x) or abs(x) > 10.0:
+            return None
+        return float(np.clip(x, -3.0, 3.0))
     blend_components = []
-    if pd.notna(rev_yoy):    blend_components.append((1/3, rev_yoy))
-    if pd.notna(ebitda_yoy): blend_components.append((1/3, ebitda_yoy))
-    if pd.notna(fcf_yoy):    blend_components.append((1/6, fcf_yoy))
-    if pd.notna(ncav_pct_mcap): blend_components.append((1/6, ncav_pct_mcap))
+    for _w_b, _x_b in ((1/3, rev_yoy), (1/3, ebitda_yoy), (1/6, fcf_yoy)):
+        _g_b = _blend_g(_x_b)
+        if _g_b is not None:
+            blend_components.append((_w_b, _g_b))
+    if pd.notna(ncav_pct_mcap):
+        blend_components.append((1/6, float(np.clip(ncav_pct_mcap, -3.0, 3.0))))
     if blend_components:
         wsum = sum(w for w, _ in blend_components)
         cheapness_growth_blend = sum(w * v for w, v in blend_components) / wsum
@@ -1131,7 +1227,12 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
 
     # Approx prior EV/Sales using prior TTM and current EV deflated by price change
     if pd.notna(price_yoy) and pd.notna(ev_sales) and rev_ttm_prev:
-        ev_prev_est = enterprise_value / (1 + price_yoy) if (1 + price_yoy) != 0 else np.nan
+        # only the EQUITY slice of EV moves with price; deflating the whole
+        # EV (debt included) overstated prior multiples for levered
+        # decliners, biasing not_priced_in upward
+        _nd_prev = (enterprise_value - market_cap) if (pd.notna(enterprise_value) and market_cap) else 0.0
+        ev_prev_est = (market_cap / (1 + price_yoy) + _nd_prev) \
+            if (market_cap and (1 + price_yoy) != 0) else np.nan
         ev_sales_prev = safe_div(ev_prev_est, rev_ttm_prev)
         ev_sales_change_yoy = pct_change(ev_sales, ev_sales_prev)
     else:
@@ -1200,16 +1301,18 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
 
     # 3. Small size. EV under $250M scores 1.0; degrades to 0 by $5B.
     # Mcap floor of $10M (below = likely shell) caps score at 1.0 not above.
-    if pd.notna(enterprise_value) and enterprise_value > 0:
-        ev_m = enterprise_value / 1e6
+    _ev_usd_thr = _threshold_usd(enterprise_value, info)
+    _mc_usd_thr2 = _threshold_usd(market_cap, info)
+    if _ev_usd_thr is not None and _ev_usd_thr > 0:
+        ev_m = _ev_usd_thr / 1e6
         if ev_m < 250:
             size_score = 1.0
         elif ev_m < 5000:
             size_score = max(0.0, (5000 - ev_m) / (5000 - 250))
         else:
             size_score = 0.0
-    elif pd.notna(market_cap) and market_cap > 0:
-        mc_m = market_cap / 1e6
+    elif _mc_usd_thr2 is not None and _mc_usd_thr2 > 0:
+        mc_m = _mc_usd_thr2 / 1e6
         if mc_m < 250:
             size_score = 1.0
         elif mc_m < 5000:
