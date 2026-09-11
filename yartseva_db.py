@@ -971,7 +971,11 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     fcf_run_rate_delta = np.nan
     if pd.notna(fcf_ttm) and pd.notna(fcf_ttm_q1):
         eta_q, d_q = periods_to_positive(fcf_ttm, None, prev_seq=fcf_ttm_q1)
-        fcf_eta_quarters = eta_q
+        # (completeness audit) the one-period step is a QUARTER only at
+        # quarterly cadence — a semi-annual reporter's step is half a year,
+        # so the eta must scale to quarter units or the <=4-quarters flag
+        # reads twice as permissive for that cohort
+        fcf_eta_quarters = eta_q * (4.0 / _NQ) if pd.notna(eta_q) else eta_q
         fcf_run_rate_delta = d_q
     if pd.notna(fcf_ttm) and pd.notna(fcf_ttm_prev):
         eta_y, d_y = periods_to_positive(fcf_ttm, None, prev_seq=fcf_ttm_prev)

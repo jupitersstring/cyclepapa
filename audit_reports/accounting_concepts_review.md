@@ -75,3 +75,28 @@ audit, the mutation test (32/0), stored-value bands (38 columns), and
 the flow-through gates hold each fix in place. The two CONVENTION rows
 and the one KNOWN LIMITATION are documented here and in the provenance
 ledger rather than silently divergent.
+
+## Completeness proof (are ALL measures covered?)
+Mechanical enumeration of all 268 master columns -> 192 classified as
+accounting measures -> name-diffed against this review + the provenance
+ledger + the formula-audit scopes. The diff surfaced 89 name-mismatches;
+cross-referencing showed all but six were audited at their formula sites
+(the growth/inflection family under the cadence findings, cheapness
+blends under M11, ROCE windows under M3, price differentials under the
+evidence bounds, beat streaks under M8/L4, tenbagger_implied_return and
+evsales_derate_gap verified already fully guarded in place). The six
+genuinely unreviewed measures were then audited:
+- fcf_run_rate_delta / fcf_eta_quarters / fcf_projected_positive_in_n
+  (FCF runway family): construction sound (improving-only, one-cadence
+  step) EXCEPT the quarter-unit label — at semi-annual cadence one step
+  is half a year, so eta now scales by 4/periods-per-year (the
+  <=4-quarters flag was twice as permissive for that cohort). Stored
+  band 0-40 quarters added.
+- net_debt_to_fcf: construction sound (positive-FCF denominator, signed
+  net debt); stored band (-100, 200) years added (near-zero-FCF tail).
+- tenbagger_implied_return, evsales_derate_gap: verified sound as built
+  (clipped lenses, floored P/S, capped output; artifact-clamped stock
+  return, NaN-means-no-evidence).
+Every accounting measure in the master now traces to a reviewed
+construction; the claims-conformance gate holds the documented ones to
+their implementations on every run.

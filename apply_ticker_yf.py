@@ -1422,6 +1422,10 @@ def main():
         "cash_return_ev": (-50, 50), "fcf_conversion": (-50, 50),
         "net_cash_pct_mcap": (-50, 50), "cash_pct_mcap": (-50, 50),
         "ncav_pct_mcap": (-50, 50),
+        # years-to-repay net debt from FCF: beyond 200 the figure is a
+        # near-zero-FCF artifact, not a leverage measure
+        "net_debt_to_fcf": (-100, 200),
+        "fcf_eta_quarters": (0, 40),   # a 10-year "runway to positive" is noise
         "ebitda_margin": (-5, 5), "op_margin": (-5, 5),
         "net_margin": (-5, 5), "gross_margin": (-1.5, 1.5),
         "pretax_margin": (-5, 5),
