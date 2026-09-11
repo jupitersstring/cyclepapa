@@ -2708,6 +2708,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # surfaced as a WARN flag (not an opportunity) — a financing-fragile
     # grower is exactly the Motient trap the record selected against
     df['financing_fragile_flag'] = _financing_fragile.astype(int)
+    # QUALITY-OF-EARNINGS WARNING (SBC pollution): where stock-based comp is a
+    # large share of revenue, "adjusted" EBITDA/FCF overstate true economics
+    # (SBC is a real, dilutive cost added back to flatter cash). A warning
+    # column OUTSIDE the arch_ namespace — it never boosts density, it marks
+    # names whose apparent cash generation is SBC-inflated.
+    df['sbc_polluted_flag'] = (_ncol('sbc_pct_revenue') >= 0.15).fillna(False).astype(int)
 
     # ---------- XR12-XR16: VIOLENT-RERATING ENGINES (user request) ----------
     # Each models a FAMOUS accounting nuance that forensic readers caught
@@ -3075,6 +3081,77 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _hardfloor_28 &                                   # asymmetric HARD floor
         (rev_yoy_c >= -0.10) &
         ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # ---------- XR29-XR31: MORE ACCOUNTING NUANCE (user request) ----------
+
+    # XR29 — Cyclical trough asset ('XR-CyclicalTrough', user request: the
+    # sub-book depressed cyclical is its own thesis). A CYCLICAL business at
+    # a genuine ASSET discount (below book) with earnings DEPRESSED against
+    # its own mid-cycle (normalized) base — bought where the physical asset
+    # base floors the downside and the cycle mean-reverts the earnings. Not
+    # a compounder; a mean-reversion asset play priced for permanent trough.
+    _cyc_sectors = {'Materials', 'Energy', 'Industrials',
+                    'Consumer Discretionary'}
+    _nrm29 = _ncol('normalized_ebitda')
+    df['arch_xr_cyclical_trough'] = (
+        is_operating & (mcap > 0) & _fx_coherent &
+        sector.isin(_cyc_sectors) &
+        (pb > 0) & (pb < 1.0) &                            # asset discount
+        (_nrm29 > 0) & (ebitda_ttm_v < 0.75 * _nrm29) &    # earnings BELOW mid-cycle
+        ((_ncol('enterprise_value') / _nrm29.where(_nrm29 > 0)) <= 7.0) &  # cheap on normal
+        ((nde < 3.5) | (net_cash_pct_c >= 0)) &            # survives the trough
+        (s('op_margin', np.nan) > -0.05) &                 # not structurally broken
+        ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR30 — Loss-carryforward shield ('XR-NOLShield', deferred-tax nuance):
+    # an accumulated DEFICIT (negative retained earnings — a bank of tax
+    # losses) in a business that has TURNED profitable means little or no
+    # CASH tax for years, so cash earnings run far above GAAP after-tax
+    # income. The market prices the taxed GAAP number; the shielded cash is
+    # the edge. Confirmed by a low effective tax rate where observed. The
+    # classic post-reorg / turnaround re-rate.
+    _re30 = _ncol('retained_earnings')
+    _etr30 = _ncol('effective_tax_rate')
+    df['arch_xr_nol_shield'] = (
+        is_operating & (mcap > 0) & _fx_coherent &
+        (_re30 < 0) &                                      # accumulated deficit = NOL bank
+        (_ncol('net_income_ttm') > 0) &                    # now profitable = shield active
+        (_ncol('cfo_yield') > 0) &                         # real cash, not accrual
+        ((_etr30.isna()) | ((_etr30 >= 0) & (_etr30 <= 0.15))) &  # low cash tax confirms
+        (rev_yoy_c >= 0.05) &                              # growing into the shield
+        (((_ncol('p_e') > 0) & (_ncol('p_e') <= 25)) | (fcf_yield >= 0.05)) &
+        ~(_ncol('shares_yoy') > 0.08) &
+        ~_financing_fragile &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # XR31 — Growth-capex-masked owner earnings ('XR-GrowthCapexMasked',
+    # the capex-vs-D&A nuance in the OTHER direction from the harvest):
+    # capex running FAR ABOVE depreciation is VOLUNTARY growth investment,
+    # not maintenance — it depresses reported FCF while the base business
+    # earns high returns. Maintenance owner earnings (CFO less only
+    # replacement depreciation) are far higher than reported FCF; the market
+    # prices the suppressed FCF. Tell: capex >= 1.5x D&A, strong returns,
+    # CFO healthy, growing — and cheap on the MAINTENANCE cash take.
+    _dna31 = _dna_loc
+    _cx31 = _capex_loc
+    _cfo31 = _ncol('cfo_ttm')
+    _maint_oe31 = (_cfo31 - _dna31)                        # CFO less REPLACEMENT capex
+    _maint_y31 = (_maint_oe31 / _mc_ca.where(_mc_ca > 0))
+    df['arch_xr_growth_capex_masked'] = (
+        is_operating & (_mc_ca > 0) & _fx_coherent &
+        (_dna31 > 0) & (_cx31 >= 1.5 * _dna31) &           # capex FAR above replacement
+        (_cfo31 > 0) &
+        ((s('roce', np.nan) >= 0.12) | (_ncol('ebitda_margin') >= 0.20)) &  # returns justify it
+        (rev_yoy_c >= 0.10) &                              # the growth is real
+        (fcf_yield < 0.04) &                               # reported FCF suppressed
+        (_maint_y31 >= 0.07) &                             # ...but maintenance cash take is fat
+        ~(_ncol('shares_yoy') > 0.05) &
+        ~_financing_fragile &
         _not_melting
     ).fillna(False).astype(int)
 
@@ -4100,6 +4177,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_pre_scale_margin',
         'arch_xr_latent_inflection_floor',
         'arch_xr_latent_bath_floor',
+        'arch_xr_cyclical_trough',
+        'arch_xr_nol_shield',
+        'arch_xr_growth_capex_masked',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -4241,6 +4321,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_pre_scale_margin': 'XR-PreScaleMargin',
         'arch_xr_latent_inflection_floor': 'XR-LatentInflectionFloor',
         'arch_xr_latent_bath_floor': 'XR-LatentBathFloor',
+        'arch_xr_cyclical_trough': 'XR-CyclicalTrough',
+        'arch_xr_nol_shield': 'XR-NOLShield',
+        'arch_xr_growth_capex_masked': 'XR-GrowthCapexMasked',
         'arch_templeton_pessimism': 'Templeton-MaxPessimism',
         'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
         'arch_levered_inflection': 'LeveredInflectionStub',
@@ -4648,7 +4731,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m','segment_count','fastest_segment_yoy','is_price_ghost'] if c in df.columns]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)
