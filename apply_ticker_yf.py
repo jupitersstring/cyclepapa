@@ -1519,8 +1519,16 @@ def main():
     _qc_flag((_cfo3 > 0) & (_fcf3 > _cfo3 * 1.05), "fcf_gt_cfo")
     _td3 = pd.to_numeric(m.get("total_debt"), errors="coerce")
     _ca3 = pd.to_numeric(m.get("cash"), errors="coerce")
-    _gap3 = ((_ev_now - (_mc + _td3 - _ca3)).abs() / _mc).where(_mc > 0)
-    _qc_flag(_gap3 > 0.25, "ev_comp_gap")
+    # gap measured on BOTH bases: relative to mcap (equity materiality) and
+    # relative to |EV| (every EV multiple is distorted by exactly that
+    # fraction) — a net-cash name with tiny EV escaped the mcap basis while
+    # its multiples were 48% off components (088910.KQ class, spot-check
+    # round 9). Near-zero EV uses a 5%-of-mcap floor so the ratio basis
+    # cannot explode.
+    _gap_abs3 = (_ev_now - (_mc + _td3 - _ca3)).abs()
+    _gap3 = (_gap_abs3 / _mc).where(_mc > 0)
+    _gap_ev3 = _gap_abs3 / np.maximum(_ev_now.abs(), 0.05 * _mc)
+    _qc_flag((_gap3 > 0.25) | (_gap_ev3 > 0.25), "ev_comp_gap")
     _rvu3 = pd.to_numeric(m.get("revenue_ttm_usd"), errors="coerce")
     _rv3 = pd.to_numeric(m.get("revenue_ttm"), errors="coerce")
     _ebu3 = pd.to_numeric(m.get("ebitda_ttm_usd"), errors="coerce")
