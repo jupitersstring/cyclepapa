@@ -110,3 +110,85 @@ recomputation NULLS the stored yield too (59 more nulled). Final:
 Re-verified post-fix: 8 -> 1 disagreement on balance/level fields (the
 survivor is the documented broad-cash basis). XR6 tightened 339 -> 174 as
 capex corrections flowed through owner earnings.
+
+## Round 7 — "nonsensical methods" hunt: root-cause and REPAIR (2026-09-11)
+
+Directive: institutional grade; every measure must be what it is described
+as; never null what can be understood and repaired. Every class below was
+root-caused with named evidence before any fix.
+
+1. owner_earnings_yield was literally fcf/mcap under a Buffett label (one
+   measure under two names = silent double-count in every OR-leg and in
+   robust_cash_yield). Rebuilt as TRUE OE = NI + implied D&A - capex over
+   mcap, built AFTER margin sanitation (KTTA held an OE its final
+   components could not reproduce), with EDGAR-audited + Yahoo-statement
+   capex (~3.9k rows). Audit gates: OE matches its own same-row
+   construction; no OE without a capex component. Spot-verified 6/6
+   reproducible post-fix.
+2. normalized_ebit > normalized_ebitda (3,008 rows, impossible: needs
+   negative D&A). ROOT CAUSE proven live on RNO.PA/Renault: alias pair
+   mixed BASES — Yahoo "EBITDA" INCLUDES unusual items (Renault FY2025
+   carries the -11.6B Nissan writedown: EBIT -9.9B, EBITDA -5.6B) while
+   fallbacks "Normalized EBITDA"/"Operating Income" EXCLUDE them
+   (+5.9B/+3.6B) — plus NaN-year misalignment of the two averages.
+   REPAIRED 2,990/3,008 by refetch on ONE basis (EBITDA := EBIT +
+   Reconciled D&A per matched year, both averages over the same years);
+   yartseva_db now constructs that way at source; 18 refused (no coherent
+   series). 0 inverted pairs remain.
+3. not_priced_in_score unbounded (max 1.65e6). ROOT CAUSE per name: yoy
+   growth off near-zero priors — ANSC (SPAC) fcf_yoy 3.29e6 = first real
+   cash year; 1841.T price_yoy +14,413,000% is its own price-history
+   corruption. REPAIRED by guarded recomputation from stored components
+   (drop >1000% base-effect inputs, clip differentials to ±300pp):
+   3,466 refilled; score bounded [-3,3] by construction + audit gate.
+4. NCAV > book equity (693 at 1.05x / 312 at 1.5x — impossible;
+   equity = NCAV + non-current assets). THREE distinct causes found:
+   (a) UK pence-vs-pounds pb — Yahoo priceToBook divides GBp price by
+   GBP book (~100x exactly) on cents-quoted markets while p_e/p_s are
+   consistent. Repaired with PER-ROW evidence, never blanket: NI/ROE
+   independent equity (Hunting 94.8 -> 0.95 vs known ~0.9; Games
+   Workshop 21.28 vs independent 21.29 — genuine, untouched), NCAV
+   identity for loss-makers, and for the evidence-less residue a fetched
+   bookValue adjudication (Yahoo's price.currency says "GBp" itself):
+   Virgin Wines 0.75, Derwent London 0.59, AngloGold 6.0. 172 repaired.
+   (b) vintage: ncav_pct_mcap was never recomputed against current mcap
+   — joined the recompute family (7,764 refreshed).
+   (c) cross-currency lines (below). Survivors are FLAGGED
+   ncav_gt_equity (kept, identifiable); audit fails only SILENT ones.
+5. Net cash > 20x mcap (352) => THE QUOTE-vs-FINANCIAL-CURRENCY HOLE:
+   fx_to_usd is keyed off the quote currency while Yahoo serves levels
+   in the financial currency, so secondary lines (.F, OTC pinksheets,
+   B-shares) held every level-over-mcap ratio off by exactly the fx
+   factor — T3O.F showed "74x mcap" in cash (JPY over EUR), and the
+   MODERATE cases (GBP/USD 1.3x) sat inside every band. REPAIRS:
+   (a) name-twin restatement — home line (quote ccy == country ccy)
+   anchors the financial currency; siblings with matching raw levels
+   get levels restated into their own quote ccy via the exact fx bridge
+   (persisted as ccy_bridge): 900920.SS B-share P/B 0.52, Chudenko OTC
+   0.96, Hokuriku OTC 0.91 (a blanket pb/b would have printed 133 —
+   Yahoo is inconsistent per line, so pb/p_e are recomputed from
+   restated NI, never scaled);
+   (b) pb-anchored TWINLESS restatement — where the home listing is not
+   in master but Yahoo's pb is converted-and-sane, the bridge
+   (mcap/pb)/(NI/roe) is accepted only within ±20% of a REAL currency
+   pair's rate and snapped to that exact rate: 393 more lines (SKY
+   Perfect JSAT to its true 7.0x earnings, ALNPY 6.7x, OYOCF 18.3x);
+   (c) no-anchor mixed groups (New China Life NWWCF/NCL.F share raw CNY
+   levels across USD/EUR quotes, neither provable): quote-vs-level
+   ratios nulled+flagged on SATELLITE lines only — the largest-mcap
+   line is presumed home so no company goes unrepresented (the Freddie
+   Mac class), and financials are exempt from the 20x band
+   (conservatorship cash >20x a depressed mcap is REAL).
+   ticker_yf now fetches yf_quote_currency + yf_financial_currency so
+   the next full pull converts everything at source.
+6. Structural finds: derive's ev_ebit guard keyed to the EDGAR-only
+   opinc series wiped 14,442 non-US multiples (16,708 -> 2,266) — now
+   conditioned on known denominators only; the EDGAR multi-year
+   averages (oe_avg/ni_avg family) had been merged one-off and silently
+   died on rebuild — now merged structurally in the harmonizer every
+   run (44,465 cells); the F4 audit checks now test the BINDING leg
+   (latest OR Graham-average earnings).
+
+Verification: 178 audit checks 0 FAIL (1 known WARN class), mutation
+32/0, per-archetype crosscheck across ALL archetypes (154 firers):
+0 ERROR, every WARN in the established documented classes.
