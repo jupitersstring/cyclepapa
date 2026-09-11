@@ -20,13 +20,12 @@ Master: asymmetry_global.csv | Source: ticker_yf.csv
 - WARN: roe 0.064 vs pb/p_e 0.039 (dev 67% — one of roe/pb/pe on a different period or equity basis)
 
 ## 042420.KQ (KR, yahoo) — WARN
-- WARN: EV 1.77e+11 vs mcap+debt-cash -2.09e+11 (gap 261% of mcap — likely broad-cash/investments basis vs Yahoo totalCash)
+- WARN: EV 1.77e+11 vs mcap+debt-cash -2.1e+11 (gap 263% of mcap — likely broad-cash/investments basis vs Yahoo totalCash)
 - WARN: roe 0.083 vs pb/p_e 0.058 (dev 44% — one of roe/pb/pe on a different period or equity basis)
-- WARN: net_cash_pct_mcap 2.77 vs (cash-debt)/mcap 2.41 (basis gap > 30pts of mcap)
+- WARN: net_cash_pct_mcap 2.77 vs (cash-debt)/mcap 2.42 (basis gap > 30pts of mcap)
 
 ## 035610.KQ (KR, yahoo) — WARN
 - WARN: EV 1.51e+10 vs mcap+debt-cash -4.77e+10 (gap 46% of mcap — likely broad-cash/investments basis vs Yahoo totalCash)
-- WARN: fcf_ttm 1.77e+10 > cfo_ttm 1.1e+10 (negative capex? check basis)
 - WARN: roe 0.172 vs pb/p_e 0.099 (dev 73% — one of roe/pb/pe on a different period or equity basis)
 
 ## 4629.T (JP, yahoo) — WARN
@@ -298,4 +297,4 @@ Master: asymmetry_global.csv | Source: ticker_yf.csv
 
 
 ## Clean names
-AWC.SI, IRC.BK, 6155.T, TPP.BK, ALGEV.PA, 120240.KQ, 7722.T, 0057.HK, ENEFI.BD, CTTMF, LSIP.JK, 2348.HK, METCO.BK, ZODIACVEN.BO, 6907.T, 219420.KQ, ZENIFIB.BO, 2101.HK, 0114.HK, BENGALT.BO, 1281.HK, TCID.JK, 264450.KQ, 052330.KQ, KROS, FPIP.ST, S23.SI, 4625.T, 7871.T, 1V5.F, B9A.F, 0559.HK, 348350.KQ, 7877.T, 11C.SG, 1905.T, 0887.HK, 200570.SZ, 053980.KQ, 047820.KQ, 4976.T, 095660.KQ, 3954.T, 1795.T, 7219.T, 052790.KQ, 0169.HK, BEC.BK, 7614.T, 3908.T, 5951.T, WHLM, BAI.SI, 088130.KQ, 7057.T, 7851.T, 010240.KQ, KAMANWALA.BO, 081580.KQ, 214320.KS, HGS.NS, 0926.HK, 8147.T, 9625.T, 3828.HK, SFG1T.TL, POONADAL.BO, HCO.PA, 0321.HK, 8104.T, WEBJF, 083640.KQ, 7446.T, 9867.T, 7266.T, 270870.KQ, PRISMX.BO, 0927.HK, CSC.BK, 0243.HK, CMPNF, THANA.BK, PEMC.V, PCHK, 688418.SS, SHGANEL.BO, ZENLABS.BO, CSQ, ABAT, ALDLS.PA, TILE, INWI.ST, TWMIF, 600207.SS, NGIL.BO, KAKATCEM.NS, 603106.SS, PLAN.SW, INN-PE, 8354.T, 9502.T
+AWC.SI, IRC.BK, 6155.T, TPP.BK, ALGEV.PA, 120240.KQ, 7722.T, 0057.HK, ENEFI.BD, CTTMF, 2348.HK, METCO.BK, LSIP.JK, ZODIACVEN.BO, 6907.T, 219420.KQ, ZENIFIB.BO, 2101.HK, 0114.HK, BENGALT.BO, 1281.HK, TCID.JK, 264450.KQ, 052330.KQ, KROS, FPIP.ST, S23.SI, 4625.T, 7871.T, 1V5.F, B9A.F, 0559.HK, 348350.KQ, 7877.T, 11C.SG, 1905.T, 0887.HK, 200570.SZ, 053980.KQ, 047820.KQ, 4976.T, 095660.KQ, 3954.T, 1795.T, 7219.T, 052790.KQ, 0169.HK, BEC.BK, 7614.T, 3908.T, 5951.T, WHLM, BAI.SI, 088130.KQ, 7057.T, 7851.T, 010240.KQ, KAMANWALA.BO, 081580.KQ, 214320.KS, HGS.NS, 0926.HK, 8147.T, 9625.T, 3828.HK, SFG1T.TL, POONADAL.BO, HCO.PA, 0321.HK, 8104.T, WEBJF, 083640.KQ, 7446.T, 9867.T, 7266.T, 270870.KQ, PRISMX.BO, 0927.HK, CSC.BK, 0243.HK, CMPNF, THANA.BK, PEMC.V, PCHK, 688418.SS, SHGANEL.BO, ZENLABS.BO, CSQ, ABAT, ALDLS.PA, TILE, INWI.ST, TWMIF, 600207.SS, NGIL.BO, KAKATCEM.NS, 603106.SS, PLAN.SW, INN-PE, 8354.T, 9502.T

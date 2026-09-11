@@ -53,3 +53,17 @@ gross margin, shares, mcap) compared against a JUST-FETCHED source pull.
 
 Post-fix: 6/8 actionable disagreements cleared exactly (ratio 1.00); gates
 146 checks 0 FAIL, mutation 32/0, top-60 crosscheck 0 ERROR / 32 clean.
+
+## Round 3 — boldest claims + unsampled markets (2026-09-11)
+
+Targets: all 8 top NEGATIVE adjusted-P/E names (the "earnings come free"
+claim — cash, debt, NI, mcap each verified against a fresh source pull) and
+the top name in 8 previously-unsampled markets (BR, TR, IN, PL, ID, SE, MY,
+TW). 112 field comparisons -> 2 disagreements, BOTH the known FCF-source
+class, and both HEALED live by the new statement-grade hierarchy the moment
+the rows merged ("fcf_ttm (Yahoo statement trailing, non-EDGAR) repaired 2"):
+0057.HK (Chen Hsong) master -170M -> statement +428M (a 45% FCF yield that
+fits its known cash-machine profile); 035610.KQ 1.64x -> statement value.
+Every input behind the negative adjusted-P/E cohort verified CLEAN — the
+free-earnings claims stand on checked figures. FPIP.ST returned no fresh
+Yahoo row (source miss, noted). Post-merge sweep: 0 ERROR.
