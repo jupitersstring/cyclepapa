@@ -58,6 +58,45 @@ UA_POOL = [
 
 MODULES = "summaryDetail,defaultKeyStatistics,financialData,price,earningsHistory"
 
+# STATEMENT-GRADE trailing cash-flow lines (fundamentals-timeseries — the API
+# behind Yahoo's own statements page). Validated 2026-09-11 against audited
+# XBRL: trailingOperatingCashFlow == statement CFO TTM (AAPL exact),
+# trailingFreeCashFlow == trailingOCF - trailingCapex (their standardized,
+# slightly broader capex). NOTE financialData.freeCashflow is NOT this — it is
+# the third-party "levered FCF" metric and must never be treated as CFO-capex.
+TS_TYPES = ("trailingFreeCashFlow,trailingOperatingCashFlow,"
+            "trailingCapitalExpenditure")
+
+
+def fetch_statements(sess, symbol, timeout=15):
+    """Return {yf_fcf_stmt, yf_cfo_stmt, yf_capex_stmt, yf_stmt_end} or {}."""
+    import time as _t
+    p2 = int(_t.time()); p1 = p2 - 2 * 365 * 86400
+    url = (f"https://query1.finance.yahoo.com/ws/fundamentals-timeseries/v1/"
+           f"finance/timeseries/{urllib.parse.quote(symbol)}"
+           f"?type={TS_TYPES}&period1={p1}&period2={p2}&merge=false")
+    try:
+        r = sess.opener.open(url, timeout=timeout)
+        d = json.loads(r.read())
+    except Exception:
+        return {}
+    out = {}
+    keymap = {"trailingFreeCashFlow": "yf_fcf_stmt",
+              "trailingOperatingCashFlow": "yf_cfo_stmt",
+              "trailingCapitalExpenditure": "yf_capex_stmt"}
+    for res in (d.get("timeseries", {}).get("result") or []):
+        for t, col in keymap.items():
+            vals = res.get(t)
+            if not vals:
+                continue
+            rows = [(v.get("asOfDate"), (v.get("reportedValue") or {}).get("raw"))
+                    for v in vals if v and (v.get("reportedValue") or {}).get("raw") is not None]
+            if rows:
+                rows.sort()
+                out[col] = rows[-1][1]
+                out["yf_stmt_end"] = rows[-1][0]
+    return out
+
 # Fields we extract → output column. (module, yahoo_key, our_column)
 FIELD_MAP = [
     ("price", "regularMarketPrice", "yf_price"),
@@ -99,7 +138,8 @@ FIELD_MAP = [
     ("financialData", "numberOfAnalystOpinions", "yf_n_analysts"),
 ]
 
-OUT_COLUMNS = ["symbol"] + sorted({c for _, _, c in FIELD_MAP})
+OUT_COLUMNS = (["symbol"] + sorted({c for _, _, c in FIELD_MAP})
+               + ["yf_fcf_stmt", "yf_cfo_stmt", "yf_capex_stmt", "yf_stmt_end"])
 
 
 class YahooSession:
@@ -278,6 +318,9 @@ def main():
                     help="re-warm the cookie/crumb session after N consecutive failures")
     ap.add_argument("--limit", type=int, default=0,
                     help="cap tickers this run (0 = all)")
+    ap.add_argument("--with-statements", action="store_true",
+                    help="also fetch statement-grade trailing FCF/OCF/capex "
+                         "(fundamentals-timeseries; ~2x requests)")
     ap.add_argument("--only-missing-valuation", action="store_true",
                     help="only fetch symbols where ev_ebitda is null in the input")
     args = ap.parse_args()
@@ -362,6 +405,8 @@ def main():
 
         if result:
             row = extract_row(sym, result)
+            if args.with_statements:
+                row.update(fetch_statements(sess, sym))
             if len(row) > 1:  # got at least one field
                 writer.writerow(row)
                 fout.flush()

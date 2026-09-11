@@ -383,14 +383,25 @@ def main():
         _dis_e = _fcf_ed.notna() & _fcf_cur.notna() \
             & ((_r_e > 1.4) | (_r_e < 1 / 1.4))
         _apply_fcf(_fcf_ed, _dis_e, "fcf_ttm (EDGAR audited, preferred)")
-        # identity fallback for everything EDGAR does not cover
+        # Yahoo STATEMENT-grade trailing FCF (fundamentals-timeseries; validated
+        # == audited CFO-minus-capex, AAPL exact) — the arbiter where EDGAR has
+        # no figure. NOT financialData.freeCashflow (that is third-party
+        # levered FCF and stays retired).
+        _fcf_stmt = pd.to_numeric(y.get("yf_fcf_stmt"), errors="coerce").reindex(m.index) \
+            if "yf_fcf_stmt" in y.columns else pd.Series(np.nan, index=m.index)
+        _fcf_cur = pd.to_numeric(m["fcf_ttm"], errors="coerce")
+        _r_s = (_fcf_cur / _fcf_stmt).where(_fcf_stmt != 0)
+        _dis_s = _fcf_stmt.notna() & _fcf_cur.notna() & _fcf_ed.isna() \
+            & ((_r_s > 1.4) | (_r_s < 1 / 1.4))
+        _apply_fcf(_fcf_stmt, _dis_s, "fcf_ttm (Yahoo statement trailing, non-EDGAR)")
+        # identity fallback for everything neither EDGAR nor statements cover
         _fcf_cur = pd.to_numeric(m["fcf_ttm"], errors="coerce")
         _fcf_new = (_cfoB - _cx).where(_cfoB.notna() & _cx.notna())
         _ratio_f = (_fcf_cur / _fcf_new).where(_fcf_new != 0)
         _imposs = _fcf_cur.notna() & (_cfoB > 0) & (_fcf_cur > _cfoB * 1.05) & (_cx > 0)
-        _dis_f = _fcf_new.notna() & _fcf_cur.notna() & _fcf_ed.isna() \
+        _dis_f = _fcf_new.notna() & _fcf_cur.notna() & _fcf_ed.isna() & _fcf_stmt.isna() \
             & ((_ratio_f > 1.4) | (_ratio_f < 1 / 1.4) | _imposs)
-        _apply_fcf(_fcf_new, _dis_f, "fcf_ttm (cfo - capex identity, non-EDGAR)")
+        _apply_fcf(_fcf_new, _dis_f, "fcf_ttm (cfo - capex identity, fallback)")
 
     # price_52w_high: a running max is definitionally valid — the stored high
     # can never sit BELOW the current price.

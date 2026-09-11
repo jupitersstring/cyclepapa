@@ -64,3 +64,28 @@ Additional findings from the spot round:
   (2013) or missing. The one-quarter freshness gate excludes them from EDGAR
   preference (they fall to Yahoo-constructed, correctly); adding ifrs-full
   coverage is a future extension.
+
+## RESOLVED — why yf FCF differs (2026-09-11, decomposition via Yahoo's own statements API)
+
+Three different Yahoo numbers were being conflated:
+1. financialData.operatingCashflow == the plain STATEMENT CFO, TTM — CORRECT
+   (AAPL 146.7B matches audited to the decimal; MSFT 182.9B = the just-filed
+   FY26). This is "how they calculate OCF": straight from the cash-flow
+   statement.
+2. fundamentals-timeseries trailingFreeCashFlow (the STATEMENTS PAGE) ==
+   trailingOCF - trailingCapitalExpenditure — ALSO CORRECT (AAPL 136.7B =
+   audited exactly; MSFT 67.0B = 182.9 - 115.9 under Yahoo's standardized,
+   slightly broader capex that includes intangibles/lease-related additions
+   beyond raw PP&E: 115.9B vs us-gaap PP&E-only 97.2B).
+3. financialData.freeCashflow (what ticker_yf scraped as yf_fcf) is NEITHER of
+   those: MSFT 16.5B vs their own statements' 67.0B; AAPL 107.7B vs 136.7B.
+   It is the third-party LEVERED Free Cash Flow metric (EBITDA - interest -
+   taxes - dWC - capex - mandatory payments), not derivable from statements.
+   The user's levered-vs-unlevered hypothesis was exactly right; it was never
+   a TTM-window issue.
+
+Policy consequence: ticker_yf now fetches the STATEMENT lines
+(--with-statements: yf_fcf_stmt / yf_cfo_stmt / yf_capex_stmt), and the FCF
+hierarchy is EDGAR-audited -> Yahoo STATEMENT trailing FCF (validated
+same-basis; covers non-US names) -> CFO-minus-capex identity. The levered
+financialData.freeCashflow is fully retired from all reconciliation.
