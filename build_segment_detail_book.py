@@ -370,7 +370,11 @@ def main():
     _fsy = pd.to_numeric(df.get('fastest_segment_yoy'), errors='coerce')
     _cfo = pd.to_numeric(df.get('confirm_overall'), errors='coerce').fillna(0.0)
     _aln = pd.to_numeric(df.get('alignment_score'), errors='coerce').fillna(0.0)
-    df['seg_inflect_confirmed'] = _fsy * (1.0 + 0.20 * _cfo + 0.10 * _aln)
+    # (books audit #4/#5) fastest-segment yoy is max-across-segments — the
+    # most base-effect-exposed number; cap before it drives a ranking
+    df['seg_inflect_confirmed'] = (_fsy.clip(-1.0, 1.0)
+                                   * (1.0 + 0.20 * _cfo.clip(0, 1)
+                                      + 0.10 * _aln.clip(0, 1)))
 
     # === All Segments tab ===
     all_seg = df.sort_values(sort_col, ascending=False).head(args.detail_n).reset_index(drop=True)

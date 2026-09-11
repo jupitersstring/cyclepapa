@@ -63,7 +63,11 @@ def _add_inflection_key(df):
     cfo = pd.to_numeric(df.get('confirm_overall'), errors='coerce').fillna(0.0)
     ics = pd.to_numeric(df.get('inflection_confirm_score'), errors='coerce').fillna(0.0)
     bbs = pd.to_numeric(df.get('buyback_score'), errors='coerce').fillna(0.0)
-    df['entry_inflection_confirmed'] = infl * (1.0 + 0.20 * cfo + 0.15 * ics + 0.05 * bbs)
+    # (books audit #7) inputs clipped, product capped — the documented
+    # <=40% confirmation bound must be enforced, not assumed
+    df['entry_inflection_confirmed'] = infl * (1.0 + 0.20 * cfo.clip(0, 1)
+                                               + 0.15 * ics.clip(0, 1)
+                                               + 0.05 * bbs.clip(0, 1)).clip(1.0, 1.40)
     return df
 
 

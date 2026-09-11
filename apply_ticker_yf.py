@@ -114,6 +114,28 @@ def main():
 
     m = master.set_index("symbol")
     y = yf.set_index("symbol")
+    # ---- SOURCE-FRAME CURRENCY BRIDGE (crosscheck round-2 root cause) ----
+    # On a bridged (cross-currency) row, EVERY later adoption from y —
+    # reconcile pull-backs, the statement-FCF waterfall, the capex rebuild —
+    # must arrive already in the row's QUOTE currency. Re-adopting raw
+    # financial-currency values per-column while re-restatement was
+    # all-or-nothing left MIXED rows (ERIXF: raw-SEK EBITDA beside
+    # converted-USD revenue). Bridging the source frame ONCE up front makes
+    # every downstream path basis-coherent by construction. Yahoo's own EV
+    # is deliberately NOT bridged (mixed by construction; rebuilt later).
+    if "ccy_bridge" in m.columns:
+        _br_src = pd.to_numeric(m["ccy_bridge"], errors="coerce")
+        _br_y0 = _br_src.reindex(y.index)
+        _has_br0 = _br_y0.notna() & (_br_y0 != 0)
+        if int(_has_br0.sum()):
+            for _ylc in ("yf_revenue", "yf_ebitda", "yf_cash", "yf_total_debt",
+                         "yf_cfo", "yf_fcf", "yf_net_income", "yf_fcf_stmt",
+                         "yf_cfo_stmt", "yf_capex_stmt", "yf_book_value"):
+                if _ylc in y.columns:
+                    _yv0 = pd.to_numeric(y[_ylc], errors="coerce")
+                    y.loc[_has_br0, _ylc] = (_yv0 * _br_y0)[_has_br0]
+            print(f"  bridged {int(_has_br0.sum())} cross-ccy source rows to quote currency",
+                  file=sys.stderr)
     # AUDITED EDGAR levels (us_edgar_yartseva.csv) — THE PREFERRED SOURCE where
     # present (user directive): audited accounts outrank Yahoo for every level;
     # Yahoo arbitrates only where EDGAR has no figure. Market data (price/mcap/
@@ -621,6 +643,11 @@ def main():
         # and a 15% EUR/USD error is still an error.
         _needD = (_decl_known & (_decl_fin != _decl_q)
                   & _bD.notna() & (_bD != 1.0)).fillna(False)
+        # rows already carrying a bridge are maintained by the SOURCE-frame
+        # conversion (their incoming levels arrive pre-converted) — running
+        # the in-master multiplication again would double-convert them
+        if "ccy_bridge" in m.columns:
+            _needD &= ~pd.to_numeric(m["ccy_bridge"], errors="coerce").notna()
         # UN-RESTATEMENT (spot-check round 8 finding): the country/twin
         # inference restated USD-REPORTING foreign companies (Genel, Yara,
         # Hunting OTC — financial ccy != country ccy), corrupting correct

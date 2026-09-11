@@ -193,7 +193,9 @@ def compute_scores(df: pd.DataFrame, verdicts: pd.DataFrame) -> pd.DataFrame:
     df['intrinsic_discount'] = (
         0.30 * nc + 0.20 * ncav + 0.20 * sub_book + 0.15 * cash_ev + 0.15 * npi
     )
-    boost = (1.0 + (df['intrinsic_discount'] - 0.25)).clip(0.75, 1.5)  # true floor (discount in [0,1])
+    # (books audit #1/#2) floor 0.90 matches the enrich fix; the old 0.75
+    # docked quality large caps 25% for not being asset-cheap
+    boost = (1.0 + (df['intrinsic_discount'] - 0.25)).clip(0.90, 1.5)  # true floor (discount in [0,1])
 
     mom = col('momentum_12m').clip(-0.5, None)
     pr = pd.Series(1.0, index=df.index)
@@ -211,8 +213,11 @@ def compute_scores(df: pd.DataFrame, verdicts: pd.DataFrame) -> pd.DataFrame:
     # only; the raw asymmetry_score leg is still shown in the decomposition.
     _cfo = pd.to_numeric(df.get('confirm_overall'), errors='coerce').fillna(0.0)
     _bbs = pd.to_numeric(df.get('buyback_score'), errors='coerce').fillna(0.0)
-    df['confirm_mult'] = 1.0 + 0.20 * _cfo + 0.10 * _bbs
-    df['entry_today_asymmetry'] = df['asymmetry_score'] * boost * df['qual_mult'] * pr * df['confirm_mult']
+    df['confirm_mult'] = (1.0 + 0.20 * _cfo.clip(0, 1) + 0.10 * _bbs.clip(0, 1)).clip(1.0, 1.30)
+    _melt_bb = pd.to_numeric(df.get('melt_demotion'), errors='coerce').fillna(1.0)
+    # (books audit) melt_demotion was dropped by this recompute — melters
+    # must stay demoted in the delivered books
+    df['entry_today_asymmetry'] = df['asymmetry_score'] * boost * df['qual_mult'] * pr * df['confirm_mult'] * _melt_bb
     df['entry_today_upside'] = df['upside_score'] * boost * df['qual_mult'] * pr * df['confirm_mult']
     return df
 

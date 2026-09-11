@@ -261,7 +261,11 @@ def load_data(min_mcap: float = 10_000_000, otc_mode: str = 'ex-otc'):
     if 'fastest_segment_yoy' in df.columns:
         _fsy = pd.to_numeric(df.get('fastest_segment_yoy'), errors='coerce')
         _aln = pd.to_numeric(df.get('alignment_score'), errors='coerce').fillna(0.0)
-        df['seg_inflect_confirmed'] = _fsy * (1.0 + 0.20 * _cfo + 0.10 * _aln)
+        # (books audit #4/#5) fastest-segment yoy is max-across-segments — the
+    # most base-effect-exposed number; cap before it drives a ranking
+    df['seg_inflect_confirmed'] = (_fsy.clip(-1.0, 1.0)
+                                   * (1.0 + 0.20 * _cfo.clip(0, 1)
+                                      + 0.10 * _aln.clip(0, 1)))
 
     # OTC policy: general books show genuine exchange listings; OTC tradings
     # (incl. foreign F/Y tickers venue-tagged src='US') live in the dedicated
@@ -401,7 +405,7 @@ def main():
     mult = {'GREEN': 1.10, 'YELLOW': 0.85, 'RED': 0.40}
     qm = df['verdict'].map(mult).fillna(1.0)
     if 'entry_today_asymmetry' not in df.columns:
-        df['entry_today_asymmetry'] = df['asymmetry_score'].fillna(0) * qm
+        df['entry_today_asymmetry'] = pd.to_numeric(df['asymmetry_score'], errors='coerce') * qm  # NaN = unranked, never worst-case
     sort_col = 'entry_confirmed'
 
     wb = Workbook()
