@@ -1194,6 +1194,108 @@ def build_insider_conviction(wb: Workbook, yf: dict):
     ws.freeze_panes = "A5"
 
 
+def build_insider_timing(wb: Workbook, yf: dict):
+    """Insider filing-TIME signal (the tested logic). Open-market buys
+    (Form 4 code P) whose EDGAR acceptance timestamp lands OFF-hours
+    (evenings / Friday evening / outside 09:30-16:00 ET) are quiet
+    accumulators to FOLLOW; buys accepted DURING market hours read as
+    price support to FADE. Empirically measured, not assumed.
+
+    Source: form4_timing.json (built by form4_timing.py)."""
+    ws = wb.create_sheet("Insider Filing-Time")
+    set_col_widths(ws, [9, 26, 11, 11, 11, 8, 8, 11, 34])
+
+    d = {}
+    p = ROOT / "form4_timing.json"
+    if p.exists():
+        try:
+            d = json.loads(p.read_text())
+        except Exception:
+            d = {}
+    summ = d.get("summary", {})
+    scores = d.get("scores", {})
+
+    def _med(side):
+        try:
+            return summ["by_bucket"][side]["ret"]["median"] * 100
+        except Exception:
+            return None
+    mkt_med, aft_med = _med("MARKET_HOURS"), _med("AFTER_HOURS")
+    diff = (summ.get("hypothesis_differential_alpha", {}) or {}).get("median")
+    sub = ("Open-market buys by EDGAR acceptance time — off-hours = quiet "
+           "accumulators (follow), market-hours = price support (fade). ")
+    if mkt_med is not None and aft_med is not None:
+        sub += (f"Tested: after-hours median {aft_med:+.1f}% vs market-hours "
+                f"{mkt_med:+.1f}% (buy-to-now proxy"
+                + (f", +{diff*100:.1f}pp differential" if diff else "") + ").")
+    write_title_band(ws, "Insider Filing-Time — quiet accumulators vs price support",
+                     sub, n_cols=9)
+
+    rows = []
+    for tk, v in scores.items():
+        if not isinstance(v, dict):
+            continue
+        y = yf.get(tk, {}) or {}
+        rows.append({
+            "tk": tk, "name": (y.get("name") or tk),
+            "score": v.get("score", 0.0),
+            "off": (v.get("off_hours_dollar_frac") or 0) * 100,
+            "mkt": (v.get("market_hours_dollar_frac") or 0) * 100,
+            "fri": "Fri-eve" if v.get("friday_evening") else "—",
+            "n": v.get("n_filings", 0),
+            "m": (v.get("dollar") or 0) / 1e6,
+            "label": v.get("label", ""),
+        })
+    rows.sort(key=lambda r: -r["score"])
+
+    headers = ["Ticker", "Name", "Timing pts", "Off-hrs $%", "Mkt-hrs $%",
+               "Friday", "Filings", "Total $M", "Read"]
+    write_header_row(ws, 4, headers)
+    r = 5
+    # FOLLOW section: positive-score off-hours accumulators.
+    follow = [x for x in rows if x["score"] > 0][:35]
+    fade = [x for x in rows if x["score"] < 0]
+    fade.sort(key=lambda r: r["score"])            # most-negative first
+    fade = fade[:15]
+    for section, items in (("FOLLOW — off-hours quiet accumulators", follow),
+                           ("FADE — market-hours price support", fade)):
+        if not items:
+            continue
+        c = ws.cell(row=r, column=1, value=section)
+        c.font = BODY_BOLD
+        ws.row_dimensions[r].height = 20
+        r += 1
+        for i, row in enumerate(items, 1):
+            write_body_row(ws, r,
+                           [row["tk"], row["name"][:26], row["score"],
+                            round(row["off"], 0), round(row["mkt"], 0),
+                            row["fri"], row["n"], round(row["m"], 2),
+                            row["label"][:34]],
+                           band=(i % 2 == 0), bold_first=True)
+            ws.row_dimensions[r].height = 22
+            r += 1
+        r += 1
+
+    n_follow = sum(1 for x in rows if x["score"] > 0)
+    n_fade = sum(1 for x in rows if x["score"] < 0)
+    write_footnote(ws, r,
+        f"{len(scores)} names carry an insider filing-time read "
+        f"({n_follow} follow / off-hours-weighted, {n_fade} fade / "
+        "market-hours-weighted). The score is dollar-weighted across a "
+        "name's code-P buys: +12 for fully off-hours, -8 for fully "
+        "market-hours, +3 for a Friday-evening buy — coefficients "
+        "calibrated to the measured medians. This is the framework's one "
+        "return-VALIDATED layer (form4_timing_pts in the consensus): the "
+        "acceptance-datetime test showed off-hours buys carrying a "
+        "positive median forward return (buy-to-now) and market-hours "
+        "buys a negative one. NOTE: the mirror test on SELLS was "
+        "inconclusive (see SOURCES_AND_ANALYSIS.md A7b) — ~85% of sells "
+        "file after-hours by routine, so the tell is buy-side only. "
+        "Source: form4_timing.py / form4_timing.json.", 9)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A5"
+
+
 def build_uk_events(wb: Workbook, yf: dict):
     """UK RNS capital events (own-shares buybacks, premium placings,
     scheme/CVA/restructuring distressed progress, takeover offers).
@@ -2263,6 +2365,7 @@ TAB_INDEX = [
     ("Caution List", "Convergent names carrying governance red flags."),
     ("Incentive Improvers", "Latest proxy tightened the incentive architecture (rarity-weighted)."),
     ("Insider Conviction", "Discretionary open-market buying clusters (code P only, role-weighted)."),
+    ("Insider Filing-Time", "Off-hours quiet accumulators (follow) vs market-hours price support (fade) — tested."),
     ("Asymmetry Assembly", "PSIX-recipe conjunction: cheap + inflection + leverage + insider co-occurring."),
     ("Distressed Stub Progress", "Finality-gated capital-structure value-unlock events, waterfall-scored."),
     ("Hidden Asset Realisation", "Spectrum/rights/RE inside levered stubs with mandatory-prepay debt sweeps (SSP-type)."),
@@ -2426,6 +2529,7 @@ def main() -> int:
     build_caution_list(wb, proxy, consensus)
     build_incentive_improvers(wb, yf, proxy)
     build_insider_conviction(wb, yf)
+    build_insider_timing(wb, yf)
     build_asymmetry_assembly(wb, yf)
     build_distressed_stub(wb, yf)
     build_hidden_asset(wb, yf)
