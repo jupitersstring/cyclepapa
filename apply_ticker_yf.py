@@ -687,6 +687,52 @@ def main():
                 m["ccy_bridge"] = np.nan
             m.loc[_restated_mask, "ccy_bridge"] = _bv[_restated_mask]
             recon["cross-ccy line levels restated to quote currency"] = int(_restated_mask.sum())
+        # ---- SECOND PASS, PB-ANCHORED (no twin needed) ----
+        # An unconverted line whose home listing is NOT in master has no
+        # twin — but Yahoo's priceToBook on such lines is CONVERTED and
+        # sane (SKY Perfect JSAT OTC: pb 0.88 correct while NI/roe equity
+        # is raw JPY), so pb anchors the bridge: b = (mcap/pb)/(NI/roe).
+        # The noisy estimate is only ACCEPTED when it sits within ±20% of a
+        # REAL currency pair's fx ratio, and then the EXACT rate is used —
+        # never the estimate itself.
+        _pb_a2 = pd.to_numeric(m.get("pb"), errors="coerce")
+        _roe_a2 = pd.to_numeric(m.get("roe"), errors="coerce")
+        _ni_a2 = pd.to_numeric(m.get("net_income_ttm"), errors="coerce")
+        _eq_q = (_mc / _pb_a2).where((_pb_a2 > 0.05) & (_pb_a2 < 50))
+        _eq_f = (_ni_a2 / _roe_a2).where((_roe_a2 != 0) & _ni_a2.notna())
+        _b_raw = (_eq_q / _eq_f).where(_eq_f.abs() > 0)
+        _cur_m = _cur.reindex(m.index)
+        _fx_q2 = _cur_m.map(_fx_by_ccy)
+        _cand = None
+        for _k, _fxk in _fx_by_ccy.items():
+            _b_k = _fxk / _fx_q2      # exact rate for candidate fin ccy k
+            _close = (_b_raw / _b_k).between(0.8, 1.25) & ((_b_k > 1.25) | (_b_k < 0.8))
+            _cand = _b_k.where(_close) if _cand is None else _cand.where(_cand.notna(), _b_k.where(_close))
+        _need2 = (_cand.notna() & ~_restated_mask.reindex(m.index).fillna(False)
+                  & ((_b_raw > 20) | (_b_raw < 0.05)))   # unambiguous, far-fx class only
+        _need2 = _need2.fillna(False)
+        if int(_need2.sum()):
+            _bv2 = _cand
+            for _lc in _LEVEL_COLS:
+                _v = pd.to_numeric(m[_lc], errors="coerce")
+                m.loc[_need2, _lc] = (_v * _bv2)[_need2]
+            for _uc, _lc in (("revenue_ttm_usd", "revenue_ttm"),
+                             ("ebitda_ttm_usd", "ebitda_ttm"),
+                             ("fcf_ttm_usd", "fcf_ttm"),
+                             ("net_cash_usd", "net_cash"),
+                             ("ncav_usd", "ncav")):
+                if _uc in m.columns and _lc in m.columns:
+                    _lv = pd.to_numeric(m[_lc], errors="coerce")
+                    m.loc[_need2, _uc] = (_lv * _fx)[_need2]
+            if "p_e" in m.columns:
+                _ni_r2 = pd.to_numeric(m["net_income_ttm"], errors="coerce")
+                _pe_r2 = (_mc / _ni_r2).where(_ni_r2 > 0)
+                m.loc[_need2, "p_e"] = _pe_r2[_need2]
+            if "ccy_bridge" not in m.columns:
+                m["ccy_bridge"] = np.nan
+            m.loc[_need2, "ccy_bridge"] = _bv2[_need2]
+            recon["cross-ccy line levels restated (pb-anchored, twinless)"] = int(_need2.sum())
+            _restated_mask = _restated_mask | _need2
 
     # price_52w_high: a running max is definitionally valid — the stored high
     # can never sit BELOW the current price.
