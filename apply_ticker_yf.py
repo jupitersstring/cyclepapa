@@ -736,6 +736,17 @@ def main():
             m.loc[_needD, "ccy_bridge"] = _bD[_needD]
             recon["cross-ccy restated (DECLARED financial currency)"] = int(_needD.sum())
         _restated_mask = _restated_mask | _needD
+        # BRIDGE RECONCILIATION (authoritative declaration): the stored
+        # ccy_bridge must ALWAYS agree with the declaration where one exists,
+        # regardless of whether this run restated the row — a stale bridge
+        # from a prior run's inference, on a row now carrying a declaration,
+        # is a contradiction (caught by the conformance gate). Force it:
+        # declared mismatch -> the declared bridge; declared same -> cleared.
+        if "ccy_bridge" not in m.columns:
+            m["ccy_bridge"] = np.nan
+        _decl_mism = (_decl_known & (_decl_fin != _decl_q)).fillna(False)
+        m.loc[_decl_mism, "ccy_bridge"] = _bD[_decl_mism]
+        m.loc[_decl_same, "ccy_bridge"] = np.nan
         # group financial currency = home line's quote currency: the line
         # whose quote currency equals its own country's currency.
         _home = _grp[_grp["cur"] == _grp["fin"]]
@@ -1740,6 +1751,31 @@ def main():
     has_yf_val = pd.to_numeric(y.get("yf_ev_ebitda"), errors="coerce").reindex(m.index).notna() \
         if "yf_ev_ebitda" in y.columns else pd.Series(False, index=m.index)
     m.loc[has_yf_val.fillna(False), "valuation_source"] = "yahoo"
+
+    # USD-TWIN CONSISTENCY (recompute from CURRENT levels): the _usd twins
+    # were built once by fix_pipeline (level x fx_to_usd) and go stale the
+    # moment the harmonizer moves a level — a fresh-fetch merge or a
+    # cross-currency restatement changed the level but not its twin, so the
+    # twin-implied fx diverged from the mcap-implied fx (the fx-twin audit
+    # gate). Rebuild every twin from its post-harmonization level x the
+    # row's fx_to_usd so market_cap_usd/market_cap == revenue_ttm_usd/
+    # revenue_ttm == fx_to_usd by construction. On restated rows the level
+    # is already in quote currency and fx_to_usd is the quote-ccy rate, so
+    # this stays exact.
+    if "fx_to_usd" in m.columns:
+        _fx_tw = pd.to_numeric(m["fx_to_usd"], errors="coerce")
+        for _uc, _lc in (("market_cap_usd", "market_cap"),
+                         ("revenue_ttm_usd", "revenue_ttm"),
+                         ("ebitda_ttm_usd", "ebitda_ttm"),
+                         ("fcf_ttm_usd", "fcf_ttm"),
+                         ("enterprise_value_usd", "enterprise_value"),
+                         ("net_cash_usd", "net_cash"),
+                         ("ncav_usd", "ncav")):
+            if _uc in m.columns and _lc in m.columns:
+                _lv_tw = pd.to_numeric(m[_lc], errors="coerce")
+                _new_tw = (_lv_tw * _fx_tw).where(_lv_tw.notna() & _fx_tw.notna())
+                m.loc[_new_tw.notna(), _uc] = _new_tw[_new_tw.notna()]
+        recon["USD twins recomputed from current levels"] = int(_fx_tw.notna().sum())
 
     out = m.reset_index()
     # Sanitize any inf that slipped through (e.g. Yahoo forward PE / zero
