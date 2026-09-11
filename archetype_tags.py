@@ -1045,9 +1045,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _fs_oplev = _ncol('seg_oplev')
     _fs_sh_d = _ncol('fastest_segment_share_delta')
     seg_inflect_any, seg_inflect_score = _confirm([
-        (_fs_yoy_q, lambda x: x >= 0.25),                    # true quarterly YoY
-        (_fs_yoy_fy, lambda x: x >= 0.25),                   # annual base
-        (fastest_segment_yoy, lambda x: x >= 0.25),          # legacy robust max
+        (_fs_yoy_q, lambda x: (x >= 0.25) & (x <= 2.0)),     # true quarterly YoY (capped: base-effect)
+        (_fs_yoy_fy, lambda x: (x >= 0.25) & (x <= 2.0)),    # annual base (capped)
+        (fastest_segment_yoy, lambda x: (x >= 0.25) & (x <= 2.0)),  # legacy robust max (capped)
         (_fs_accel, lambda x: x >= 0.05),                    # 2nd derivative
         (_fs_omd, lambda x: x >= 0.02),                      # segment margin inflection
         (_fs_oplev, lambda x: x >= 0.10),                    # segment operating leverage
@@ -1060,7 +1060,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # A dispersion- or corroboration-only fire still needs a leader growing
     # double digits — keep the hidden-ENGINE spirit.
     _seg_any_growth = pd.concat(
-        [_fs_yoy_q, _fs_yoy_fy, fastest_segment_yoy], axis=1).max(axis=1)
+        [_fs_yoy_q, _fs_yoy_fy, fastest_segment_yoy], axis=1).max(axis=1).clip(upper=2.0)
     df['arch_fastest_segment'] = (
         is_operating &                          # (R8) financials/land-sale one-offs excluded
         (_ncol('revenue_ttm_usd') >= 20e6) &    # (tail) a hidden GROWTH ENGINE needs a real base, not a $0.84M shell (CKX/BYAH)
@@ -1131,7 +1131,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
          ((shares_growth_5y >= -0.30) | _bb_yield_pos)) |
         ((_ncol('shares_growth_3y') <= -0.03) &
          ((_ncol('shares_growth_3y') >= -0.30) | _bb_yield_pos)) |
-        (_ncol('buyback_yield') >= 0.03)
+        # (non-XR review) the gross-buyback-yield leg must be corroborated by
+        # net non-dilution — a serial-SBC issuer out-diluting a token buyback
+        # is not a cannibal (TTEC class)
+        ((_ncol('buyback_yield') >= 0.03) & ~(_ncol('shares_yoy') > 0.02))
     )
     df['arch_buyback_compounder'] = (
         is_operating &                          # (R1b) exclude financials/utilities/lenders (buybacks funded by float/book)
@@ -1186,6 +1189,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_reinvest_inflect'] = (
         is_operating &                          # (R1b) exclude financials/REITs (sibling durable/cash_reinvest carry this)
         _roce_now_ok &                          # (R4) current returns not negative (melting-name guard)
+        (roic_lindy > 0) &                      # (non-XR review) incremental return on a NON-negative base
         (roiic_lindy >= 0.05) &
         (roiic_acceleration_v >= 0.05) &
         (asset_3y_cagr_v >= 0.05)
@@ -1753,7 +1757,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _self_funding = (_sfps > 0) | (_sfm > 0.03) | (_sroic >= 0.10)
     _not_pricey = ((_sevs > 0) & (_sevs <= 8)) | _sevs.isna()
     df['arch_sustainable_scaler'] = (
-        is_operating & (mcap < 2e9) & (_srev >= 5e6)
+        is_operating & (mcap < 2e9) & (_srev >= 20e6)  # (non-XR review) match documented $20M base
         & (_ssh3.fillna(0) <= 0.05)
         & _durable_growth & _self_funding & _not_pricey
         & _profit_present                        # (reference II) profitability LEVEL present
