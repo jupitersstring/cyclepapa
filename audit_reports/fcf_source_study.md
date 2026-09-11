@@ -42,3 +42,25 @@ Conclusion
    internal-identity suite (every ratio == its own components) — the audited
    cross-check is unavailable, so internal consistency is the guard.
 4. Yahoo FCF (level or yield) is never conflict-adopted anywhere.
+
+## Direct spot verification vs AUDITED accounts (live XBRL, new TTM method, 2026-09-11)
+
+| Name | Audited TTM CFO | capex | FCF (audited) | Yahoo freeCashflow | yf/audited |
+|---|---|---|---|---|---|
+| MSFT | 170.1B | 97.2B | **72.9B** | 16.5B | 0.23 |
+| AAPL | 146.7B | 10.0B | **136.7B** | 107.7B | 0.79 |
+| KSS | 1.4B | 0.3B | **1.0B** | 0.9B | 0.85 |
+
+Even with MSFT's AI-capex surge fully reflected (capex genuinely 97B), Yahoo's
+scraped freeCashflow does NOT reproduce the documented CFO-minus-capex formula
+against the audited statements. The never-adopt-yf_fcf policy is CONFIRMED by
+primary sources.
+
+Additional findings from the spot round:
+- Roll-forward ordering bug (fixed): an ANNUAL row newer than every flow row
+  must win (MSFT's Jun-2026 FY vs a Mar-2026 roll-forward window).
+- FOREIGN PRIVATE ISSUERS (20-F filers, e.g. GASS) file under the ifrs-full
+  namespace, invisible to the us-gaap lookup -> their "EDGAR" rows are ancient
+  (2013) or missing. The one-quarter freshness gate excludes them from EDGAR
+  preference (they fall to Yahoo-constructed, correctly); adding ifrs-full
+  coverage is a future extension.

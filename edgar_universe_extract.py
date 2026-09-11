@@ -244,6 +244,13 @@ def ttm_value(facts: dict, aliases: list[str], unit: str = "USD"):
     flows = [o for o in unique if o["_dur"] is not None and 60 <= o["_dur"] <= 290]
 
     # --- 1) roll-forward: TTM = FY + R - P
+    # ...but an ANNUAL row NEWER than every flow row IS the freshest TTM
+    # (a June-FY 10-K lands with no Q4 flow row; MSFT's Jun-2026 FY must beat
+    # a Mar-2026 roll-forward). FY wins when it is the newest period.
+    if annuals and flows and annuals[0]["_end_dt"] >= flows[0]["_end_dt"]:
+        F = annuals[0]
+        return {"val": F["val"], "end": F.get("end"),
+                "concept": F.get("_concept"), "kind": "FY"}
     for R in flows[:3]:                      # try the newest few flow rows
         for P in flows:
             if P is R or P["_dur"] is None or R["_dur"] is None:
