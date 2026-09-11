@@ -13,7 +13,7 @@ data than yfinance's parsed statements. Captures:
 Plus derived fields specific to multibagger work:
   - tangible_equity = equity - goodwill - intangibles
   - tangible_book_per_share = tangible_equity / shares_outstanding
-  - ebitda_proxy = op_income + (capex / 4)  (D&A proxy when D&A row missing)
+  - ebitda_ttm = op_income + D&A (same-filing definitional construction)
   - fcf_yield (filled later when price + shares are joined)
 
 API:
@@ -75,7 +75,7 @@ def trim_facts(facts: dict) -> dict:
     cutoff = (datetime.now().replace(microsecond=0)).strftime("%Y-%m-%d")
     cut_year = int(cutoff[:4]) - OBS_KEEP_YEARS
     out = {}
-    for ns in ("us-gaap", "ifrs-full"):
+    for ns in ("us-gaap", "ifrs-full", "dei"):
         gaap = _safe_get(facts, ns) or {}
         slim = {}
         for c, cval in gaap.items():
@@ -195,7 +195,9 @@ CAPEX_ALIASES = [
     "PaymentsForCapitalImprovements",
     "PaymentsToAcquireProductiveAssets",
 ]
-SHARES_ALIASES = ["CommonStockSharesOutstanding"]
+SHARES_ALIASES = ["CommonStockSharesOutstanding",
+                  "NumberOfSharesOutstanding",          # ifrs-full
+                  "EntityCommonStockSharesOutstanding"] # dei cover page
 DA_ALIASES = [
     "DepreciationAndAmortisationExpense",
 
@@ -268,6 +270,10 @@ def _facts_unit_iter(facts: dict, concept: str, unit: str = "USD"):
     if info:
         return info
     info = _safe_get(facts, "ifrs-full", concept, "units", unit)
+    if info:
+        return info
+    # dei carries the cover-page share count (the most reliable one)
+    info = _safe_get(facts, "dei", concept, "units", unit)
     return info or []
 
 
@@ -757,9 +763,14 @@ def extract_row(ticker: str, cik: int, data: dict) -> dict:
     if sbc is not None and rev and rev > 0:
         row["sbc_pct_revenue"] = sbc / rev
 
-    # SBC-adjusted operating income & ROIC
-    if sbc is not None and opi is not None:
-        row["cash_ebit_ttm"] = opi - sbc
+    # SBC-adjusted operating income & ROIC. A company with NO SBC concept
+    # is treated as sbc = 0 (flagged via sbc_observed) — requiring the
+    # concept excluded every non-SBC reporter from ROIC screens and biased
+    # them toward tech names (audit L3).
+    _sbc_eff = sbc if sbc is not None else (0.0 if opi is not None else None)
+    row["sbc_observed"] = int(sbc is not None)
+    if _sbc_eff is not None and opi is not None:
+        row["cash_ebit_ttm"] = opi - _sbc_eff
         if invested and invested > 0:
             # Use real tax rate when available, fall back to 0.25
             t = row.get("effective_tax_rate", 0.25)

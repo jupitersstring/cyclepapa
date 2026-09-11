@@ -1423,6 +1423,24 @@ def main():
             if int(_bad3.sum()):
                 m.loc[_bad3, _bc2] = np.nan
                 recon[f"{_bc2} nulled (outside stored band {_blo2},{_bhi2})"] = int(_bad3.sum())
+    # EV-MULTIPLE SELF-CONSISTENCY (HOLO class — the WIMI rule for
+    # multiples): a stored EV multiple must agree with the row's OWN stored
+    # EV over its own denominator; when the band-reject left a stale
+    # multiple standing beside components that prove a different one
+    # (HOLO: stored -209 vs -6,233 from its own EV/EBITDA), the stored
+    # value is unfounded and is nulled.
+    _ev_sc = pd.to_numeric(m.get("enterprise_value"), errors="coerce")
+    for _mc_col, _dn_s in (("ev_ebitda", pd.to_numeric(m.get("ebitda_ttm"), errors="coerce")),
+                           ("ev_sales", pd.to_numeric(m.get("revenue_ttm"), errors="coerce"))):
+        if _mc_col in m.columns:
+            _st_v = pd.to_numeric(m[_mc_col], errors="coerce")
+            _im_v = (_ev_sc / _dn_s).where(_dn_s > 0)
+            _inc = _st_v.notna() & _im_v.notna() & (
+                ((_st_v / _im_v) - 1).abs() > 0.5)
+            m.loc[_inc.fillna(False), _mc_col] = np.nan
+            if int(_inc.fillna(False).sum()):
+                recon[f"{_mc_col} nulled (inconsistent with own EV/denominator)"] = int(_inc.fillna(False).sum())
+
     # price_yoy absolute fallback where the 52w-range evidence is missing:
     # a +10,000%+ print with no range corroboration is a redenomination
     # artifact; the derived price_minus_* differentials inherit the null.

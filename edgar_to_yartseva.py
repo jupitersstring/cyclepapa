@@ -42,9 +42,14 @@ def fetch_prices_cached() -> pd.DataFrame:
     """
     import glob
     keep = ['symbol', 'price', 'market_cap', 'momentum_12m',
-            'enterprise_value', 'sector', 'industry']
+            'enterprise_value', 'sector', 'industry', 'price_asof']
     frames = []
-    for f in sorted(glob.glob('*_yartseva.csv')):
+    import os as _os
+    # FRESHEST source first (mtime): the dedup keeps the first populated
+    # row per symbol, so file order IS the vintage preference (audit Y1 —
+    # the old alphabetical order could keep an arbitrarily stale price).
+    for f in sorted(glob.glob('*_yartseva.csv'),
+                    key=lambda p: _os.path.getmtime(p), reverse=True):
         # Skip our own output so we don't pick up empty-price rows from a
         # prior failed run — that would shadow the populated cached prices.
         if f == 'us_edgar_yartseva.csv':
@@ -54,6 +59,7 @@ def fetch_prices_cached() -> pd.DataFrame:
         except Exception:
             continue
         if 'symbol' in d.columns:
+            d['price_asof'] = pd.Timestamp(_os.path.getmtime(f), unit='s').strftime('%Y-%m-%d')
             frames.append(d)
     if not frames:
         return pd.DataFrame(columns=keep)
@@ -109,6 +115,8 @@ def fetch_prices_bulk(symbols: list[str]) -> pd.DataFrame:
                     close = data[sym]["Close"].dropna()
                 if close.empty:
                     continue
+                if len(close) < 230:   # a 3-month IPO is not 12m momentum
+                    continue
                 p_now = float(close.iloc[-1])
                 p_1y = float(close.iloc[0])
                 hi_52w = float(close.max())
@@ -162,7 +170,10 @@ def build_yartseva_row(edgar_row: pd.Series, price_row: pd.Series | None) -> dic
     # Fallback: derive mcap from EDGAR shares × yfinance price if cache
     # had a price but no mcap.
     if market_cap is None and price is not None and shares and pd.notna(shares):
+        # price vintage and share-count vintage may straddle a split —
+        # identifiable provenance, never silent (audit Y2)
         market_cap = price * shares
+        r["mcap_src"] = "derived_price_x_shares"
     if market_cap is not None and market_cap > 0:
         r["market_cap"] = market_cap
         r["enterprise_value"] = market_cap + (edgar_row.get("total_debt") or 0) - (edgar_row.get("cash") or 0)
@@ -240,6 +251,14 @@ def build_yartseva_row(edgar_row: pd.Series, price_row: pd.Series | None) -> dic
     if _as_f:
         r["goodwill_intangibles_pct_assets"] = (_gw_f + _ig_f) / _as_f
     r["ppe_net"] = edgar_row.get("ppe_net")
+    # TTM provenance passthrough (audit Y6): downstream can distinguish a
+    # real roll-forward TTM from an FY served as TTM, and see staleness.
+    for _pv in ("revenue_ttm_end", "revenue_ttm_kind", "cfo_ttm_end",
+                "cfo_ttm_kind", "netinc_ttm_end", "netinc_ttm_kind"):
+        if edgar_row.get(_pv) is not None:
+            r[_pv] = edgar_row.get(_pv)
+    if price_row is not None and price_row.get("price_asof") is not None:
+        r["price_asof"] = price_row.get("price_asof")
     r["eps_basic_ttm"] = edgar_row.get("eps_basic_ttm")
     r["eps_diluted_ttm"] = edgar_row.get("eps_diluted_ttm")
 
@@ -295,16 +314,11 @@ def build_yartseva_row(edgar_row: pd.Series, price_row: pd.Series | None) -> dic
         r["fcf_yield"] = r["fcf_ttm"] / market_cap
 
     # Capital-return yield = (dividends + buybacks paid TTM) / market_cap
-    cr = edgar_row.get("capital_return_ttm")
-    if cr is not None and market_cap and market_cap > 0:
-        r["capital_return_yield"] = cr / market_cap
-        # Dividend + buyback yield separately
-        div = edgar_row.get("dividends_ttm")
-        bb = edgar_row.get("buybacks_ttm")
-        if div is not None:
-            r["dividend_yield"] = div / market_cap
-        if bb is not None:
-            r["buyback_yield"] = bb / market_cap
+    # (audit Y1) the payout YIELDS are NOT written here any more — a yield
+    # frozen against the map-time mcap goes stale the moment price moves.
+    # The audited LEVELS below are the payload; the harmonizer recomputes
+    # capital_return_yield / buyback_yield from them against the CURRENT
+    # market cap on every run. dividend_yield stays Yahoo-fresh there too.
     # store the LEVELS too — a yield frozen against map-time mcap goes
     # stale the moment price moves; the harmonizer recomputes the yields
     # from these audited flows against the CURRENT mcap every run.

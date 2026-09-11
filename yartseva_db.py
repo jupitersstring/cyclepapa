@@ -152,6 +152,7 @@ class TickerRow:
     industry: str
     market_cap_bucket: str
     currency: str
+    financial_currency: str
     market_cap: float
     enterprise_value: float
     price: float
@@ -347,6 +348,22 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
 
     rev_q = first_row(qis, INCOME_ALIASES["revenue"])
     ebitda_q = first_row(qis, INCOME_ALIASES["ebitda"])
+    # BASIS COHERENCE for the quarterly frame too (the annual fix alone
+    # left ebitda_ttm/yoy/margins on the raw mixed-basis rows): keep the
+    # EBITDA row where coherent with EBIT, else rebuild EBIT + Reconciled
+    # Depreciation within the same quarter.
+    _ebit_q_raw = first_row(qis, INCOME_ALIASES["ebit"])
+    if ebitda_q is not None and _ebit_q_raw is not None:
+        _da_qrow = first_row(qis, ["Reconciled Depreciation",
+                                   "Depreciation And Amortization In Income Statement"])
+        _ebq_n = pd.to_numeric(ebitda_q, errors="coerce")
+        _eiq_n = pd.to_numeric(_ebit_q_raw, errors="coerce")
+        _cohq = _ebq_n.notna() & _eiq_n.notna() & (_ebq_n >= _eiq_n)
+        _rebq = pd.Series(np.nan, index=_ebq_n.index)
+        if _da_qrow is not None:
+            _daq_n = pd.to_numeric(_da_qrow, errors="coerce").reindex(_ebq_n.index)
+            _rebq = (_eiq_n + _daq_n).where(_eiq_n.notna() & _daq_n.notna() & (_daq_n >= 0))
+        ebitda_q = _ebq_n.where(_cohq, _rebq)
     ebit_q = first_row(qis, INCOME_ALIASES["ebit"])
     ni_q = first_row(qis, INCOME_ALIASES["net_income"])
     cfo_q = first_row(qcf, CASHFLOW_ALIASES["cfo"])
@@ -529,13 +546,31 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     gp_ttm = ttm_or_annual(gp_q, gp_a)
     gp_ttm_prev = ttm_prev_or_annual(gp_q, gp_a)
     gross_profit_yoy = pct_change(gp_ttm, gp_ttm_prev)
-    gross_margin_now = safe_div(gp_ttm, rev_ttm)
-    gross_margin_prev = safe_div(gp_ttm_prev, rev_ttm_prev)
+    def _coh_ttm_pair(qn, an, qd, ad, prev=False):
+        if _q_usable and qn is not None and qd is not None:
+            need = (2 * _NQ) if prev else _NQ
+            if len(qn) >= need and len(qd) >= need:
+                _sn = qn.iloc[_NQ:] if prev else qn
+                _sd = qd.iloc[_NQ:] if prev else qd
+                vn, vd = trailing_sum(_sn, _NQ), trailing_sum(_sd, _NQ)
+                if vn is not None and vd is not None:
+                    return vn, vd
+        ix = 1 if prev else 0
+        if an is not None and ad is not None and len(an) > ix and len(ad) > ix:
+            vn, vd = an.iloc[ix], ad.iloc[ix]
+            if pd.notna(vn) and pd.notna(vd):
+                return float(vn), float(vd)
+        return None, None
+    _gpn, _rvn = _coh_ttm_pair(gp_q, gp_a, rev_q, rev_a)
+    gross_margin_now = safe_div(_gpn, _rvn) if _gpn is not None else np.nan
+    _gpp, _rvp = _coh_ttm_pair(gp_q, gp_a, rev_q, rev_a, prev=True)
+    gross_margin_prev = safe_div(_gpp, _rvp) if _gpp is not None else np.nan
     gross_margin_delta_yoy = (gross_margin_now - gross_margin_prev) \
         if (pd.notna(gross_margin_now) and pd.notna(gross_margin_prev)) else np.nan
     ebit_ttm_prev_v = ttm_prev_or_annual(ebit_q, ebit_a)
     ebit_growth_yoy = pct_change(ebit_ttm, ebit_ttm_prev_v)
-    op_margin_now = safe_div(ebit_ttm, rev_ttm)
+    _opn, _rvn2 = _coh_ttm_pair(ebit_q, ebit_a, rev_q, rev_a)
+    op_margin_now = safe_div(_opn, _rvn2) if _opn is not None else np.nan
     op_margin_prev = safe_div(ebit_ttm_prev_v, rev_ttm_prev)
     op_margin_delta_yoy = (op_margin_now - op_margin_prev) \
         if (pd.notna(op_margin_now) and pd.notna(op_margin_prev)) else np.nan
@@ -548,8 +583,14 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         v = series.iloc[i]
         # income-statement share rows are sometimes negative-signed; use abs
         return abs(float(v)) if pd.notna(v) and v != 0 else np.nan
-    dsh_now = _sh(dsh_a, 0)
-    dsh_1y = _sh(dsh_a, 1)
+    # quarterly share series where usable (annual-only detection was up to
+    # ~a year stale on buybacks — audit L6); year-ago = cadence-sized lag
+    if _q_usable and dsh_q is not None and len(dsh_q) >= _NQ + 1:
+        dsh_now = _sh(dsh_q, 0)
+        dsh_1y = _sh(dsh_q, _NQ)
+    else:
+        dsh_now = _sh(dsh_a, 0)
+        dsh_1y = _sh(dsh_a, 1)
     dsh_3y = _sh(dsh_a, 3)
     shares_yoy = pct_change(dsh_now, dsh_1y)           # <0 = buybacks, >0 = dilution
     shares_3y_cagr = ((dsh_now / dsh_3y) ** (1 / 3.0) - 1.0) \
@@ -562,8 +603,19 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     # Net buyback from the financing section (repurchases − issuance),
     # normalised later by market cap downstream. Both rows are signed by
     # yfinance (repurchase negative, issuance positive); take magnitudes.
-    _bb = _sh(buyback_a, 0)   # magnitude of repurchases
-    _iss = _sh(issuance_a, 0)  # magnitude of issuance
+    # TRUE TTM where the quarterly cash flow supports it (the annual-only
+    # figure is up to ~12 months stale under a _ttm name — audit M6);
+    # annual fallback retained for annual-only reporters.
+    _bb_qrow = first_row(qcf, CASHFLOW_ALIASES["buyback"]) if qcf is not None else None
+    _iss_qrow = first_row(qcf, CASHFLOW_ALIASES["issuance"]) if qcf is not None else None
+    _bb = trailing_sum(_bb_qrow, _NQ) if (_q_usable and _bb_qrow is not None
+                                          and len(_bb_qrow) >= _NQ) else None
+    _iss = trailing_sum(_iss_qrow, _NQ) if (_q_usable and _iss_qrow is not None
+                                            and len(_iss_qrow) >= _NQ) else None
+    if _bb is None:
+        _bb = _sh(buyback_a, 0)
+    if _iss is None:
+        _iss = _sh(issuance_a, 0)
     net_buyback_ttm = ((_bb if pd.notna(_bb) else 0.0) -
                        (_iss if pd.notna(_iss) else 0.0)) \
         if (pd.notna(_bb) or pd.notna(_iss)) else np.nan
@@ -629,11 +681,19 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
                     else:
                         broken = True
             if yoy_pos:
-                eps_yoy_positive_share = float(np.mean(yoy_pos[:8]))
+                # yoy_pos was built newest-first over ALL pairs; the
+                # share is of the LAST 8 QUARTERS' pairs specifically
+                eps_yoy_positive_share = float(np.mean(yoy_pos[:8])) \
+                    if len(yoy_pos) >= 4 else np.nan
                 eps_yoy_growth_streak_q = float(gstreak)
 
     # QoQ on TTM = roll-forward TTM 1 quarter
-    rev_qoq_ttm = pct_change(rev_ttm, rev_ttm_q1)
+    # qoq is only meaningful when BOTH windows are quarterly-TTM (an
+    # annual-fallback current vs a shifted quarterly TTM is a mixed
+    # comparison — audit L7)
+    _rev_ttm_isq = (_q_usable and rev_q is not None and len(rev_q) >= _NQ
+                    and trailing_sum(rev_q, _NQ) is not None)
+    rev_qoq_ttm = pct_change(rev_ttm, rev_ttm_q1) if _rev_ttm_isq else np.nan
     ebitda_qoq_ttm = pct_change(ebitda_ttm, ebitda_ttm_q1)
     cfo_qoq_ttm = pct_change(cfo_ttm, cfo_ttm_q1)
     fcf_qoq_ttm = pct_change(fcf_ttm, fcf_ttm_q1)
@@ -714,16 +774,19 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     # computed below, we recompute it here in a self-contained block since
     # the balance-sheet rows are needed.
     def prior_bs_value(qdf, adf, names):
-        # Prefer second annual column (i.e. one year ago) if present, else
-        # second quarterly column (one quarter ago) as a fallback.
+        # WINDOW-MATCHED prior (methodology audit): the CURRENT invested
+        # capital prefers the latest QUARTERLY balance sheet, so the prior
+        # must prefer the quarterly column one YEAR back (cadence-sized) —
+        # the old annual-first order compared a Q2 denominator against a
+        # Dec one and called it YoY.
+        qdf_row = first_row(qdf, names) if qdf is not None else None
+        if _q_usable and qdf_row is not None and len(qdf_row) >= _NQ + 1:
+            v = qdf_row.iloc[_NQ]  # one year back at the detected cadence
+            if pd.notna(v):
+                return float(v)
         adf_row = first_row(adf, names) if adf is not None else None
         if adf_row is not None and len(adf_row) >= 2:
             v = adf_row.iloc[1]
-            if pd.notna(v):
-                return float(v)
-        qdf_row = first_row(qdf, names) if qdf is not None else None
-        if qdf_row is not None and len(qdf_row) >= 5:
-            v = qdf_row.iloc[4]  # 4 quarters back
             if pd.notna(v):
                 return float(v)
         return None
@@ -747,18 +810,46 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
             v = None
         if v is not None and -1 < v < 1 and np.isfinite(v):
             ebitda_margin = v
-        else:
-            om = info.get("operatingMargins")
-            try:
-                om = float(om) if om is not None else None
-            except (TypeError, ValueError):
-                om = None
-            if om is not None and -1 < om < 1 and np.isfinite(om):
-                ebitda_margin = om
+        # (methodology audit) the operatingMargins fallback is REMOVED — an
+        # operating margin under the EBITDA-margin name is systematically
+        # low by D&A/revenue; a missing figure stays honestly missing.
     fcf_margin = safe_div(fcf_ttm, rev_ttm)
-    cash_conversion = safe_div(cfo_ttm, ebitda_ttm)
-    ebitda_margin_prev = safe_div(ebitda_ttm_prev, rev_ttm_prev)
-    fcf_margin_prev = safe_div(fcf_ttm_prev, rev_ttm_prev)
+    # CFO over NEGATIVE EBITDA reads positive for a dying name — guard.
+    cash_conversion = (safe_div(cfo_ttm, ebitda_ttm)
+                       if (ebitda_ttm is not None and pd.notna(ebitda_ttm)
+                           and ebitda_ttm > 0) else np.nan)
+    # margin PAIRS must be cadence-coherent per side: a quarterly-TTM
+    # numerator over an annual-fallback denominator (or vice versa) is a
+    # mixed-window ratio (methodology audit M1/M2). Same-cadence pairs:
+    def _pair_ttm(qn, an, qd, ad):
+        if _q_usable and qn is not None and qd is not None \
+                and len(qn) >= _NQ and len(qd) >= _NQ:
+            vn, vd = trailing_sum(qn, _NQ), trailing_sum(qd, _NQ)
+            if vn is not None and vd is not None:
+                return vn, vd
+        if an is not None and ad is not None and len(an) >= 1 and len(ad) >= 1:
+            vn, vd = an.iloc[0], ad.iloc[0]
+            if pd.notna(vn) and pd.notna(vd):
+                return float(vn), float(vd)
+        return None, None
+
+    def _pair_prev(qn, an, qd, ad):
+        if _q_usable and qn is not None and qd is not None \
+                and len(qn) >= 2 * _NQ and len(qd) >= 2 * _NQ:
+            vn = trailing_sum(qn.iloc[_NQ:], _NQ)
+            vd = trailing_sum(qd.iloc[_NQ:], _NQ)
+            if vn is not None and vd is not None:
+                return vn, vd
+        if an is not None and ad is not None and len(an) >= 2 and len(ad) >= 2:
+            vn, vd = an.iloc[1], ad.iloc[1]
+            if pd.notna(vn) and pd.notna(vd):
+                return float(vn), float(vd)
+        return None, None
+
+    _ebn_p, _rvd_p = _pair_prev(ebitda_q, ebitda_a, rev_q, rev_a)
+    ebitda_margin_prev = safe_div(_ebn_p, _rvd_p) if _ebn_p is not None else np.nan
+    _fcn_p, _rvd_p2 = _pair_prev(fcf_q, fcf_a, rev_q, rev_a)
+    fcf_margin_prev = safe_div(_fcn_p, _rvd_p2) if _fcn_p is not None else np.nan
     ebitda_margin_delta_yoy = (ebitda_margin - ebitda_margin_prev) if (pd.notna(ebitda_margin) and pd.notna(ebitda_margin_prev)) else np.nan
     fcf_margin_delta_yoy = (fcf_margin - fcf_margin_prev) if (pd.notna(fcf_margin) and pd.notna(fcf_margin_prev)) else np.nan
 
@@ -778,8 +869,15 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     debt_v = q(debt, 0)
     cash_v = q(cash_bs, 0)
     nd_v = q(net_debt_row, 0)
-    if pd.isna(nd_v) and pd.notna(debt_v) and pd.notna(cash_v):
-        nd_v = debt_v - cash_v
+    if pd.isna(nd_v) and pd.notna(debt_v):
+        # basis-match the primary "Net Debt" row (debt - NARROW cash): the
+        # broad bucket (incl. ST investments) gave the same field two
+        # different definitions across tickers (audit L3).
+        _cn_row = first_row_with_fallback(qbs, abs_, BALANCE_ALIASES["cash_narrow"])
+        _cn_v = q(_cn_row, 0) if _cn_row is not None else np.nan
+        _cash_for_nd = _cn_v if pd.notna(_cn_v) else cash_v
+        if pd.notna(_cash_for_nd):
+            nd_v = debt_v - _cash_for_nd
 
     # Record the BS as-of date for transparency on staleness
     bs_date_src = qbs if (qbs is not None and not qbs.empty) else abs_
@@ -788,7 +886,13 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     except Exception:
         balance_sheet_date = ""
 
-    invested_capital = (eq_v + debt_v - cash_v) if (pd.notna(eq_v) and pd.notna(debt_v) and pd.notna(cash_v)) else np.nan
+    # PRIMARY first (house rule): the filing's own "Invested Capital" row
+    # (debt + equity) when tagged; the identity is the FALLBACK only.
+    _ic_row = first_row_with_fallback(qbs, abs_, BALANCE_ALIASES["invested_capital"])
+    _ic_primary = q(_ic_row, 0) if _ic_row is not None else np.nan
+    invested_capital = _ic_primary if pd.notna(_ic_primary) else (
+        (eq_v + debt_v - cash_v)
+        if (pd.notna(eq_v) and pd.notna(debt_v) and pd.notna(cash_v)) else np.nan)
     # invested capital must be POSITIVE — deep net-cash names cross zero
     # and flip ROCE's sign (best balance sheets read worst)
     roce = (safe_div(ebit_ttm, invested_capital)
@@ -811,12 +915,16 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         except (TypeError, ValueError):
             return None
 
+    _roce_is_stmt = pd.notna(roce)   # statement-derived EBIT/IC
     if pd.isna(roce):
         # ROE is the closest yfinance-info proxy when invested_capital is
-        # unknown (typically caused by missing equity or debt rows).
+        # unknown — usable as a LEVEL, but it must never form a delta
+        # against a statement-derived prior (a cross-measure "inflection").
         roe = __info_float("returnOnEquity")
         if roe is not None and -1 < roe < 5:
             roce = roe
+    if not _roce_is_stmt:
+        roce_prev = np.nan   # kills roce_delta/inflection on proxy levels
     if pd.isna(net_debt_ebitda):
         td = __info_float("totalDebt")
         tc = __info_float("totalCash")
@@ -944,12 +1052,18 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         enterprise_value = float(yf_ev)
     elif market_cap and pd.notna(nd_v):
         enterprise_value = float(market_cap) + float(nd_v)
-    elif market_cap:
-        enterprise_value = float(market_cap)
+    # (methodology audit M9) EV no longer silently aliases market cap when
+    # net debt is unknown — an "EV" assuming zero net debt flattered every
+    # levered name with a sparse balance sheet. It stays honestly absent.
     else:
         enterprise_value = np.nan
-    ev_sales = safe_div(enterprise_value, rev_ttm) if rev_ttm else np.nan
-    ev_ebitda = safe_div(enterprise_value, ebitda_ttm) if ebitda_ttm else np.nan
+    ev_sales = safe_div(enterprise_value, rev_ttm) \
+        if (rev_ttm and rev_ttm > 0) else np.nan
+    # positive-denominator policy (matches ev_ebit and the harmonizer):
+    # a multiple is meaningful only over a positive denominator — EV may
+    # be negative, EBITDA may not.
+    ev_ebitda = safe_div(enterprise_value, ebitda_ttm) \
+        if (ebitda_ttm and ebitda_ttm > 0) else np.nan
     ev_ebit = safe_div(enterprise_value, ebit_ttm) if (ebit_ttm and ebit_ttm > 0) else np.nan
     pb = safe_div(market_cap, eq_v) if (market_cap and pd.notna(eq_v) and eq_v > 0) else np.nan
     fcf_yield = safe_div(fcf_ttm, market_cap) if market_cap else np.nan
@@ -970,7 +1084,7 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         v = _info_float("priceToBook")
         if v is not None and 0 < v < 100:
             pb = v
-    if pd.isna(ev_ebitda):
+    if pd.isna(ev_ebitda) and ebitda_ttm and ebitda_ttm > 0:
         v = _info_float("enterpriseToEbitda")
         if v is not None and v != 0 and abs(v) < 500:
             ev_ebitda = v
@@ -1045,9 +1159,11 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         if hist is not None and not hist.empty:
             close = hist["Close"].dropna()
             price_now = float(close.iloc[-1])
-            idx_1y = max(0, len(close) - 252)
-            price_1y = float(close.iloc[idx_1y])
-            price_yoy = pct_change(price_now, price_1y)
+            if len(close) >= 230:      # ~a trading year required — a
+                idx_1y = len(close) - 252  # 3-month IPO is not 12m momentum
+                idx_1y = max(0, idx_1y)
+                price_1y = float(close.iloc[idx_1y])
+                price_yoy = pct_change(price_now, price_1y)
             # Templeton "maximum pessimism": current vs its own 5y mean, and
             # where it sits in its 5y low-high range (0 = 5y low, 1 = 5y high).
             p5 = close.iloc[-252 * 5:] if len(close) > 252 else close
@@ -1131,7 +1247,12 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     gp_mcap_score = clip01_b(gross_profit_to_mcap / 2.0) if pd.notna(gross_profit_to_mcap) else np.nan
     gm_score = clip01_b((gross_margin - 0.15) / 0.45) if pd.notna(gross_margin) else np.nan
     rev_growth_score_b = clip01_b((rev_yoy + 0.05) / 0.30) if pd.notna(rev_yoy) else np.nan
-    earnings_growth_score = clip01_b((ebitda_yoy + 0.05) / 0.40) if pd.notna(ebitda_yoy) else np.nan
+    # an EARNINGS-growth subscore should use earnings growth: NI-based
+    # yoy preferred; EBITDA growth is the documented fallback (it was
+    # silently the only source — audit alias note)
+    _ni_yoy_b = pct_change(ni_ttm, ni_ttm_prev)
+    _eg_src = _ni_yoy_b if pd.notna(_ni_yoy_b) else ebitda_yoy
+    earnings_growth_score = clip01_b((_eg_src + 0.05) / 0.40) if pd.notna(_eg_src) else np.nan
     de_score = clip01_b((1.0 - debt_to_equity) / 1.0) if pd.notna(debt_to_equity) else np.nan
     insider_score = clip01_b((insider_ownership_pct - 0.03) / 0.25) if pd.notna(insider_ownership_pct) else np.nan
     target_score = clip01_b((analyst_target_upside_pct - 0.0) / 0.40) if pd.notna(analyst_target_upside_pct) else np.nan
@@ -1338,13 +1459,18 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
     profit_parts = [s for s in (em_score, roce_lvl_score) if pd.notna(s)]
     profit_level_score = float(np.mean(profit_parts)) if profit_parts else np.nan
 
-    # 5. "Asset growth <= EBITDA growth" gate. We don't currently extract
-    # asset_growth_yoy; proxy with sales_yoy <= ebitda_yoy (same spirit:
-    # earnings keep up with or outpace the topline expansion). Hard 0 if
-    # EBITDA growth lags sales growth materially; 1.0 if EBITDA growth
-    # matches or exceeds sales growth.
-    if pd.notna(rev_yoy) and pd.notna(ebitda_yoy):
-        # spread = ebitda_yoy - sales_yoy; >0 = healthy; <-10pp = penalty
+    # 5. "Asset growth <= EBITDA growth" gate — HER ONLY 100%-HIT-RATE
+    # SIGNAL, now built from the PRIMARY (annual Total Assets, already
+    # fetched in abs_) rather than the old sales-growth proxy; the proxy
+    # remains only where the balance sheet lacks two years.
+    _ta_row = first_row(abs_, ["Total Assets"]) if abs_ is not None else None
+    _ta_now = _sh(_ta_row, 0) if _ta_row is not None else np.nan
+    _ta_prev = _sh(_ta_row, 1) if _ta_row is not None else np.nan
+    asset_growth_yoy = pct_change(_ta_now, _ta_prev)
+    if pd.notna(asset_growth_yoy) and pd.notna(ebitda_yoy):
+        spread = ebitda_yoy - asset_growth_yoy
+        asset_growth_gate_score = clip01((spread + 0.10) / 0.20)
+    elif pd.notna(rev_yoy) and pd.notna(ebitda_yoy):
         spread = ebitda_yoy - rev_yoy
         asset_growth_gate_score = clip01((spread + 0.10) / 0.20)
     else:
@@ -1484,6 +1610,7 @@ def fetch_ticker(symbol: str, info_meta: dict) -> Optional[TickerRow]:
         industry=info_meta.get("industry", ""),
         market_cap_bucket=info_meta.get("market_cap", ""),
         currency=info_meta.get("currency", info.get("currency", "")),
+        financial_currency=str(info.get("financialCurrency") or ""),
         market_cap=float(market_cap) if market_cap else np.nan,
         enterprise_value=float(enterprise_value) if enterprise_value else np.nan,
         price=float(price) if pd.notna(price) else np.nan,
