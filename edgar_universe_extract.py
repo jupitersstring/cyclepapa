@@ -69,30 +69,34 @@ def _needed_concepts() -> set:
 
 
 def trim_facts(facts: dict) -> dict:
-    """Keep only needed concepts and recent observations (compact for git)."""
+    """Keep only needed concepts and recent observations (compact for git).
+    Covers BOTH us-gaap and ifrs-full namespaces."""
     keep = _needed_concepts()
-    cutoff = (datetime.now().replace(microsecond=0)
-              ).strftime("%Y-%m-%d")
+    cutoff = (datetime.now().replace(microsecond=0)).strftime("%Y-%m-%d")
     cut_year = int(cutoff[:4]) - OBS_KEEP_YEARS
-    gaap = _safe_get(facts, "us-gaap") or {}
-    slim = {}
-    for c, cval in gaap.items():
-        if c not in keep or not isinstance(cval, dict):
-            continue
-        units = cval.get("units") or {}
-        slim_units = {}
-        for u, obs_list in units.items():
-            if not isinstance(obs_list, list):
+    out = {}
+    for ns in ("us-gaap", "ifrs-full"):
+        gaap = _safe_get(facts, ns) or {}
+        slim = {}
+        for c, cval in gaap.items():
+            if c not in keep or not isinstance(cval, dict):
                 continue
-            kept = [{k: o.get(k) for k in ("start", "end", "fp", "val")}
-                    for o in obs_list
-                    if isinstance(o, dict) and o.get("end")
-                    and int(str(o["end"])[:4]) >= cut_year]
-            if kept:
-                slim_units[u] = kept
-        if slim_units:
-            slim[c] = {"units": slim_units}
-    return {"us-gaap": slim}
+            units = cval.get("units") or {}
+            slim_units = {}
+            for u, obs_list in units.items():
+                if not isinstance(obs_list, list):
+                    continue
+                kept = [{k: o.get(k) for k in ("start", "end", "fp", "val")}
+                        for o in obs_list
+                        if isinstance(o, dict) and o.get("end")
+                        and int(str(o["end"])[:4]) >= cut_year]
+                if kept:
+                    slim_units[u] = kept
+            if slim_units:
+                slim[c] = {"units": slim_units}
+        if slim:
+            out[ns] = slim
+    return out
 
 
 def load_obs_cache():
@@ -127,23 +131,30 @@ CACHE_DIR.mkdir(exist_ok=True)
 # --- Concept alias chains -------------------------------------------------
 # Try each name in order; use the first that has any observations in USD.
 REVENUE_ALIASES = [
+    # ifrs-full
+    "Revenue", "RevenueFromContractsWithCustomers",
+
     "RevenueFromContractWithCustomerExcludingAssessedTax",
     "Revenues",
     "SalesRevenueNet",
     "SalesRevenueGoodsNet",
     "RevenueFromContractWithCustomerIncludingAssessedTax",
 ]
-OPINCOME_ALIASES = ["OperatingIncomeLoss"]
+OPINCOME_ALIASES = ["OperatingIncomeLoss", "ProfitLossFromOperatingActivities"]
 NETINCOME_ALIASES = [
+    "ProfitLoss", "ProfitLossAttributableToOwnersOfParent",
+
     "NetIncomeLoss",
     "ProfitLoss",
     "NetIncomeLossAvailableToCommonStockholdersBasic",
 ]
 ASSETS_ALIASES = ["Assets"]
-CURRENT_ASSETS_ALIASES = ["AssetsCurrent"]
+CURRENT_ASSETS_ALIASES = ["AssetsCurrent", "CurrentAssets"]
 LIAB_ALIASES = ["Liabilities"]
-CURRENT_LIAB_ALIASES = ["LiabilitiesCurrent"]
+CURRENT_LIAB_ALIASES = ["LiabilitiesCurrent", "CurrentLiabilities"]
 EQUITY_ALIASES = [
+    "Equity", "EquityAttributableToOwnersOfParent",
+
     "StockholdersEquity",
     "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest",
 ]
@@ -153,20 +164,28 @@ INTANGIBLE_ALIASES = [
     "FiniteLivedIntangibleAssetsNet",
 ]
 CASH_ALIASES = [
+    "CashAndCashEquivalents",
+
     "CashAndCashEquivalentsAtCarryingValue",
     "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
     "Cash",
 ]
-LT_DEBT_ALIASES = ["LongTermDebtNoncurrent", "LongTermDebt"]
-ST_DEBT_ALIASES = ["LongTermDebtCurrent", "ShortTermBorrowings"]
-CFO_ALIASES = ["NetCashProvidedByUsedInOperatingActivities"]
+LT_DEBT_ALIASES = ["LongTermDebtNoncurrent", "LongTermDebt", "NoncurrentBorrowings", "Borrowings"]
+ST_DEBT_ALIASES = ["LongTermDebtCurrent", "ShortTermBorrowings", "CurrentBorrowings"]
+CFO_ALIASES = ["NetCashProvidedByUsedInOperatingActivities",
+               "CashFlowsFromUsedInOperatingActivities"]
 CAPEX_ALIASES = [
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+    "PurchaseOfPropertyPlantAndEquipment",
+
     "PaymentsToAcquirePropertyPlantAndEquipment",
     "PaymentsForCapitalImprovements",
     "PaymentsToAcquireProductiveAssets",
 ]
 SHARES_ALIASES = ["CommonStockSharesOutstanding"]
 DA_ALIASES = [
+    "DepreciationAndAmortisationExpense",
+
     "DepreciationDepletionAndAmortization",
     "DepreciationAndAmortization",
     "Depreciation",
@@ -174,6 +193,8 @@ DA_ALIASES = [
 # Capital-allocation concepts (audit June 2026 — direct cash spent on
 # dividends + buybacks, instead of inferring from share-count deltas).
 DIVIDEND_ALIASES = [
+    "DividendsPaidClassifiedAsFinancingActivities", "DividendsPaid",
+
     "PaymentsOfDividendsCommonStock",
     "PaymentsOfDividends",
     "PaymentsOfDividendsMinorityInterest",
@@ -189,6 +210,8 @@ SBC_ALIASES = [
 ]
 TAX_EXPENSE_ALIASES = ["IncomeTaxExpenseBenefit"]
 PRETAX_INCOME_ALIASES = [
+    "ProfitLossBeforeTax",
+
     "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
     "IncomeLossFromContinuingOperationsBeforeIncomeTaxesMinorityInterestAndIncomeLossFromEquityMethodInvestments",
     "IncomeLossFromContinuingOperationsBeforeIncomeTaxes",
@@ -217,11 +240,19 @@ def _safe_get(d, *path, default=None):
 
 
 def _facts_unit_iter(facts: dict, concept: str, unit: str = "USD"):
-    """Yield observations for a concept in the requested unit."""
+    """Yield observations for a concept in the requested unit.
+
+    Looks in BOTH the us-gaap and ifrs-full namespaces: 20-F foreign private
+    issuers (GASS-class) file under ifrs-full and were previously invisible,
+    which made their "EDGAR" rows ancient or missing. USD-units-only remains
+    the policy — home-currency IFRS filers stay Yahoo-constructed rather than
+    risk unit mixing (the NOL lesson).
+    """
     info = _safe_get(facts, "us-gaap", concept, "units", unit)
-    if not info:
-        return []
-    return info
+    if info:
+        return info
+    info = _safe_get(facts, "ifrs-full", concept, "units", unit)
+    return info or []
 
 
 def latest_point_value(facts: dict, aliases: list[str], unit: str = "USD"):
