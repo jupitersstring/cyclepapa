@@ -595,6 +595,47 @@ def main():
                              "rev": pd.to_numeric(m.get("revenue_ttm"), errors="coerce"),
                              "ca": pd.to_numeric(m.get("cash"), errors="coerce")})
         _grp = _grp[_grp["nn"].str.len() > 3]
+        # ---- PASS 0: DECLARED FINANCIAL CURRENCY (authoritative) ----
+        # Yahoo's financialData.financialCurrency names the statements'
+        # currency outright (1900.HK: quote HKD, financialCurrency CNY) —
+        # where fetched, it SUPERSEDES every inference below: a declared
+        # mismatch is restated with the exact fx bridge, a declared match
+        # is verified-coherent and exempt from the no-anchor treatment.
+        _CENTS_MAJ = {"GBP": "GBP", "GBX": "GBP", "ZAC": "ZAR", "ILA": "ILS"}
+        _decl_fin = (y["yf_financial_currency"].astype(str).str.upper()
+                     .reindex(m.index)
+                     if "yf_financial_currency" in y.columns
+                     else pd.Series(np.nan, index=m.index))
+        _decl_fin = _decl_fin.replace({"NAN": np.nan, "NONE": np.nan, "": np.nan})
+        _decl_q = (y["yf_quote_currency"].astype(str).str.upper().reindex(m.index)
+                   if "yf_quote_currency" in y.columns
+                   else _cur.reindex(m.index))
+        _decl_q = _decl_q.replace(_CENTS_MAJ).replace({"NAN": np.nan, "": np.nan})
+        _decl_q = _decl_q.where(_decl_q.notna(), _cur.reindex(m.index))
+        _decl_known = _decl_fin.notna() & _decl_q.notna()
+        _bD = _decl_fin.map(_fx_by_ccy) / _decl_q.map(_fx_by_ccy)
+        _needD = (_decl_known & (_decl_fin != _decl_q) & _bD.notna()
+                  & ((_bD > 1.25) | (_bD < 0.8))).fillna(False)
+        if int(_needD.sum()):
+            for _lc in _LEVEL_COLS:
+                _v = pd.to_numeric(m[_lc], errors="coerce")
+                m.loc[_needD, _lc] = (_v * _bD)[_needD]
+            for _uc, _lc in (("revenue_ttm_usd", "revenue_ttm"),
+                             ("ebitda_ttm_usd", "ebitda_ttm"),
+                             ("fcf_ttm_usd", "fcf_ttm"),
+                             ("net_cash_usd", "net_cash"),
+                             ("ncav_usd", "ncav")):
+                if _uc in m.columns and _lc in m.columns:
+                    _lv = pd.to_numeric(m[_lc], errors="coerce")
+                    m.loc[_needD, _uc] = (_lv * _fx)[_needD]
+            if "p_e" in m.columns:
+                _ni_d = pd.to_numeric(m["net_income_ttm"], errors="coerce")
+                m.loc[_needD, "p_e"] = ((_mc / _ni_d).where(_ni_d > 0))[_needD]
+            if "ccy_bridge" not in m.columns:
+                m["ccy_bridge"] = np.nan
+            m.loc[_needD, "ccy_bridge"] = _bD[_needD]
+            recon["cross-ccy restated (DECLARED financial currency)"] = int(_needD.sum())
+        _restated_mask = _restated_mask | _needD
         # group financial currency = home line's quote currency: the line
         # whose quote currency equals its own country's currency.
         _home = _grp[_grp["cur"] == _grp["fin"]]
@@ -615,13 +656,18 @@ def main():
         _b = _g_fin.map(_fx_by_ccy) / _grp["cur"].map(_fx_by_ccy)
         _need = (_g_fin.notna() & (_grp["cur"] != _g_fin)
                  & _lvl_match.fillna(False)
-                 & _b.notna() & ((_b > 1.25) | (_b < 0.8)))
-        _restated_mask = _need.reindex(m.index).fillna(False)
-        if int(_restated_mask.sum()):
+                 & _b.notna() & ((_b > 1.25) | (_b < 0.8))
+                 # rows already restated by the DECLARED pass are done —
+                 # (_grp holds pre-conversion levels, so without this the
+                 # twin evidence would re-match and double-convert them)
+                 & ~_needD.reindex(_grp.index).fillna(False))
+        _twin_mask = _need.reindex(m.index).fillna(False)
+        _restated_mask = _restated_mask | _twin_mask
+        if int(_twin_mask.sum()):
             _bv = _b.reindex(m.index)
             for _lc in _LEVEL_COLS:
                 _v = pd.to_numeric(m[_lc], errors="coerce")
-                m.loc[_restated_mask, _lc] = (_v * _bv)[_restated_mask]
+                m.loc[_twin_mask, _lc] = (_v * _bv)[_twin_mask]
             # pb: Yahoo is INCONSISTENT across secondary lines — some carry
             # price_quote/bookvalue_fin (needs /b), others already-converted
             # book (correct as stored; HOIEF showed 0.83 correct, and a
@@ -660,7 +706,7 @@ def main():
                              ("ncav_usd", "ncav")):
                 if _uc in m.columns and _lc in m.columns:
                     _lv = pd.to_numeric(m[_lc], errors="coerce")
-                    m.loc[_restated_mask, _uc] = (_lv * _fx)[_restated_mask]
+                    m.loc[_twin_mask, _uc] = (_lv * _fx)[_twin_mask]
             pass
         # NO-ANCHOR MIXED GROUPS: siblings share IDENTICAL raw levels while
         # quoting in DIFFERENT currencies, but no home line exists in master
@@ -678,6 +724,10 @@ def main():
         _grp_ref_rev = _grp.groupby("nn")["rev"].transform("median")
         _shares_lvl = ((_grp["rev"] / _grp_ref_rev).between(0.90, 1.10)).reindex(m.index).fillna(False)
         _noanchor_mask &= _shares_lvl
+        # a row with a DECLARED financial currency is not unknowable: a
+        # declared match is verified-coherent, a declared mismatch was
+        # restated above — either way it leaves the no-anchor class.
+        _noanchor_mask &= ~_decl_known.fillna(False)
         # NEVER null the group's principal line: without a country anchor the
         # largest-mcap-USD line is presumed home (Freddie Mac's US OTC line
         # was being nulled beside its tiny Frankfurt satellite because its
@@ -691,13 +741,13 @@ def main():
         _noanchor_mask &= ~_is_principal.reindex(m.index).fillna(False)
         # (the actual ratio nulls happen in the LATE sanitation region — after
         # every recompute — or they would be refilled from the raw levels)
-        if int(_restated_mask.sum()):
+        if int(_twin_mask.sum()):
             # persist the bridge so later merges of financial-currency data
             # onto a restated row can convert without re-deriving the twin
             if "ccy_bridge" not in m.columns:
                 m["ccy_bridge"] = np.nan
-            m.loc[_restated_mask, "ccy_bridge"] = _bv[_restated_mask]
-            recon["cross-ccy line levels restated to quote currency"] = int(_restated_mask.sum())
+            m.loc[_twin_mask, "ccy_bridge"] = _bv[_twin_mask]
+            recon["cross-ccy line levels restated to quote currency (twin)"] = int(_twin_mask.sum())
         # ---- SECOND PASS, PB-ANCHORED (no twin needed) ----
         # An unconverted line whose home listing is NOT in master has no
         # twin — but Yahoo's priceToBook on such lines is CONVERTED and
