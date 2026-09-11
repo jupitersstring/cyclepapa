@@ -2,7 +2,10 @@
 
 Master: asymmetry_global.csv | Source: ticker_yf.csv
 
-**0 ERROR, 32 WARN, 28 clean.**
+**0 ERROR, 35 WARN, 25 clean.**
+
+## 088910.KQ (KR, yahoo) — WARN
+- WARN: fcf_ttm 2.36e+10 > cfo_ttm 7.07e+09 (negative capex? check basis)
 
 ## 2230.HK (HK, yahoo) — WARN
 - WARN: EV 1.55e+08 vs mcap+debt-cash 3.43e+07 (gap 30% of mcap — likely broad-cash/investments basis vs Yahoo totalCash)
@@ -49,12 +52,12 @@ Master: asymmetry_global.csv | Source: ticker_yf.csv
 
 ## 054800.KQ (KR, yahoo) — WARN
 - WARN: EV 4.64e+11 vs mcap+debt-cash -6.33e+10 (gap 403% of mcap — likely broad-cash/investments basis vs Yahoo totalCash)
+- WARN: fcf_ttm 7.15e+10 > cfo_ttm 6.65e+10 (negative capex? check basis)
 
 ## SIAM.BK (TH, yahoo) — WARN
 - WARN: EV 3.8e+08 vs mcap+debt-cash 2.25e+08 (gap 28% of mcap — likely broad-cash/investments basis vs Yahoo totalCash)
 
 ## 014570.KQ (KR, yahoo) — WARN
-- WARN: fcf_ttm 1.67e+10 > cfo_ttm 1.11e+10 (negative capex? check basis)
 - WARN: roe 0.087 vs pb/p_e 0.018 (dev 376% — one of roe/pb/pe on a different period or equity basis)
 
 ## 0057.HK (HK, yahoo) — WARN
@@ -70,6 +73,10 @@ Master: asymmetry_global.csv | Source: ticker_yf.csv
 
 ## 3798.HK (HK, yahoo) — WARN
 - WARN: ebitda_margin 0.131 < op_margin 0.193 (gap 0.06 — kept & qc-flagged)
+- WARN: fcf_ttm 1.98e+08 > cfo_ttm 1.28e+08 (negative capex? check basis)
+
+## SPG.BK (TH, yahoo) — WARN
+- WARN: fcf_ttm 5.79e+08 > cfo_ttm 3.15e+08 (negative capex? check basis)
 
 ## 1798.T (JP, yahoo) — WARN
 - WARN: EV 1.03e+10 vs mcap+debt-cash 3.61e+09 (gap 58% of mcap — likely broad-cash/investments basis vs Yahoo totalCash)
@@ -80,10 +87,12 @@ Master: asymmetry_global.csv | Source: ticker_yf.csv
 ## 1281.HK (HK, yahoo) — WARN
 - WARN: net_cash_pct_mcap 0.92 vs (cash-debt)/mcap 1.36 (basis gap > 30pts of mcap)
 
+## 6820.HK (HK, yahoo) — WARN
+- WARN: fcf_ttm 1.15e+08 > cfo_ttm 5.8e+07 (negative capex? check basis)
+
 ## BUI.BK (TH, yahoo) — WARN
 - WARN: ebitda_margin 0.132 < op_margin 0.280 (gap 0.15 — kept & qc-flagged)
 - WARN: gross_margin 0.158 < op_margin 0.280 (gap 0.12 — kept & qc-flagged)
-- WARN: fcf_ttm 3.8e+08 > cfo_ttm 1.54e+08 (negative capex? check basis)
 
 ## 031510.KQ (KR, yahoo) — WARN
 - WARN: EV 3.29e+09 vs mcap+debt-cash 1.09e+10 (gap 27% of mcap — likely broad-cash/investments basis vs Yahoo totalCash)
@@ -92,7 +101,6 @@ Master: asymmetry_global.csv | Source: ticker_yf.csv
 - WARN: roe 0.005 vs pb/p_e 0.009 (dev 43% — one of roe/pb/pe on a different period or equity basis)
 
 ## DC-A.TO (CA, yahoo) — WARN
-- WARN: fcf_ttm 2.3e+07 > cfo_ttm 1.16e+07 (negative capex? check basis)
 - WARN: roe 0.553 vs pb/p_e 0.383 (dev 45% — one of roe/pb/pe on a different period or equity basis)
 - WARN: net_cash_pct_mcap 1.33 vs (cash-debt)/mcap 0.38 (basis gap > 30pts of mcap)
 
@@ -104,6 +112,7 @@ Master: asymmetry_global.csv | Source: ticker_yf.csv
 - WARN: net_cash_pct_mcap 2.09 vs (cash-debt)/mcap 1.54 (basis gap > 30pts of mcap)
 
 ## 2033.HK (HK, yahoo) — WARN
+- WARN: fcf_ttm 1.41e+08 > cfo_ttm 5.73e+07 (negative capex? check basis)
 - WARN: net_cash_pct_mcap 1.84 vs (cash-debt)/mcap 2.50 (basis gap > 30pts of mcap)
 
 ## 0725.HK (HK, yahoo) — WARN
@@ -118,4 +127,4 @@ Master: asymmetry_global.csv | Source: ticker_yf.csv
 
 
 ## Clean names
-088910.KQ, AWC.SI, IRC.BK, 6155.T, TPP.BK, ALGEV.PA, 120240.KQ, LSIP.JK, 7722.T, ZENIFIB.BO, CTTMF, FPIP.ST, 2348.HK, METCO.BK, S23.SI, BENGALT.BO, TCID.JK, 052330.KQ, KROS, 348350.KQ, SPG.BK, 6820.HK, 7871.T, 1V5.F, B9A.F, 0559.HK, 11C.SG, 1905.T
+AWC.SI, IRC.BK, 6155.T, TPP.BK, ALGEV.PA, 120240.KQ, LSIP.JK, 7722.T, ZENIFIB.BO, CTTMF, FPIP.ST, 2348.HK, METCO.BK, S23.SI, BENGALT.BO, TCID.JK, 052330.KQ, KROS, 348350.KQ, 7871.T, 1V5.F, B9A.F, 0559.HK, 11C.SG, 1905.T

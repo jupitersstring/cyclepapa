@@ -298,17 +298,18 @@ def main():
         m.loc[stale | fillm, colname] = fresh[stale | fillm]
         recon[colname] = recon.get(colname, 0) + int((stale | fillm).sum())
 
-    # fcf_ttm conflict policy (per user): when the stored FCF CONFLICTS with a
-    # source measure, GO WITH THE YFINANCE MEASURE. Waterfall:
-    #   1. yf_fcf present and master disagrees >1.4x (or by sign) -> adopt
-    #      Yahoo's figure (its levered-FCF basis is conservative/lower; the
-    #      adoption is recorded in qc_flags as fcf_yf_adopted, never silent).
-    #   2. else fall back to the internal identity cfo_ttm - capex_ttm when the
-    #      stored value disagrees with it (or is impossibly above CFO).
-    # USD twin rescaled either way; fcf_yield recomputes downstream.
+    # fcf_ttm policy — ADJUDICATED AGAINST AUDITED ACCOUNTS (EDGAR XBRL, US
+    # names, n=2,821): Yahoo's FCF agrees with the audited CFO-minus-capex on
+    # only 30% of names (median 0.91, q25 = 0.53 — a QUARTER of names at half
+    # the audited value), while the same-definition CFO control agrees 44%
+    # (freshness scatter only) and revenue/EBITDA agree 81%/64%. Yahoo FCF is
+    # therefore a DIFFERENT MEASURE, not a fresher one — so the identity
+    # FCF = reconciled CFO - capex (exact on 36k rows) is PRIMARY, and yf_fcf
+    # is never conflict-adopted (gap-fill only, in MERGE_SPEC). Study:
+    # audit_reports/fcf_source_study.md.
     _cx = pd.to_numeric(m.get("capex_ttm"), errors="coerce")
     _cfoB = pd.to_numeric(m.get("cfo_ttm"), errors="coerce")
-    _fcf_adopted_yf = pd.Series(False, index=m.index)
+    _fcf_adopted_yf = pd.Series(False, index=m.index)   # retained for the qc flag (now marks nothing)
     if "fcf_ttm" in m.columns:
         def _apply_fcf(new_vals, mask, label):
             if "fcf_ttm_usd" in m.columns:
@@ -320,21 +321,12 @@ def main():
             recon[label] = int(mask.sum())
 
         _fcf_cur = pd.to_numeric(m["fcf_ttm"], errors="coerce")
-        _yfcf = pd.to_numeric(y.get("yf_fcf"), errors="coerce").reindex(m.index) \
-            if "yf_fcf" in y.columns else pd.Series(np.nan, index=m.index)
-        _r_y = (_fcf_cur / _yfcf).where(_yfcf != 0)
-        _conf_y = _yfcf.notna() & _fcf_cur.notna() \
-            & ((_r_y > 1.4) | (_r_y < 1 / 1.4))
-        _apply_fcf(_yfcf, _conf_y, "fcf_ttm (yahoo measure adopted on conflict)")
-        _fcf_adopted_yf = _conf_y
-
-        _fcf_cur = pd.to_numeric(m["fcf_ttm"], errors="coerce")
         _fcf_new = (_cfoB - _cx).where(_cfoB.notna() & _cx.notna())
         _ratio_f = (_fcf_cur / _fcf_new).where(_fcf_new != 0)
         _imposs = _fcf_cur.notna() & (_cfoB > 0) & (_fcf_cur > _cfoB * 1.05) & (_cx > 0)
-        _dis_f = _fcf_new.notna() & _fcf_cur.notna() & ~_fcf_adopted_yf \
+        _dis_f = _fcf_new.notna() & _fcf_cur.notna() \
             & ((_ratio_f > 1.4) | (_ratio_f < 1 / 1.4) | _imposs)
-        _apply_fcf(_fcf_new, _dis_f, "fcf_ttm (cfo - capex identity fallback)")
+        _apply_fcf(_fcf_new, _dis_f, "fcf_ttm (cfo - capex, accounts-referred primary)")
 
     # price_52w_high: a running max is definitionally valid — the stored high
     # can never sit BELOW the current price.

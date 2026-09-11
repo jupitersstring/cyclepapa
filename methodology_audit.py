@@ -567,7 +567,8 @@ def _regression(t, g):
                 "arch_no_dilution", "arch_lindy_fcf", "arch_owner_operator",
                 "arch_wolf_seal", "arch_levered_inflection",
                 "arch_hidden_assets", "arch_overdepreciated_assets",
-                "arch_understated_earnings", "arch_expensed_growth_value"):
+                "arch_understated_earnings", "arch_expensed_growth_value",
+                "arch_cash_adjusted_pe", "arch_owner_earnings_power"):
         if _ac in t.columns:
             leak = int(((n(t, _ac) == 1) & _ice_cube).sum())
             check(f"regression(tail): {_ac} carries no genuine ice cube (neg returns, no cash, not improving)",
@@ -682,6 +683,26 @@ def _valuation_consistency(t, g):
                         / (_num_g(gg, "ebitda_ttm")
                            - _num_g(gg, "op_margin") * _num_g(gg, "revenue_ttm"))),
             lambda v: v > 0.65)
+    _fcheck("arch_cash_adjusted_pe", "NI>0 and adj-P/E <= 8.5 (local)",
+            lambda gg: ((_num_g(gg, "market_cap")
+                         - (_num_g(gg, "cash") - _num_g(gg, "total_debt")))
+                        / _num_g(gg, "net_income_ttm")),
+            lambda v: v > 8.5)
+    _fcheck("arch_owner_earnings_power", "owner-earnings >= ~1.35x NI (local)",
+            lambda gg: ((_num_g(gg, "net_income_ttm")
+                         + (_num_g(gg, "ebitda_ttm")
+                            - _num_g(gg, "op_margin") * _num_g(gg, "revenue_ttm"))
+                         - _num_g(gg, "capex_ttm"))
+                        / _num_g(gg, "net_income_ttm")),
+            lambda v: v < 1.35)
+    # payout-confirmed is a strict SUBSET of the forensic family + a real payout
+    if "arch_forensic_payout_confirmed" in t.columns:
+        _par = (n(t, "arch_hidden_assets") + n(t, "arch_overdepreciated_assets")
+                + n(t, "arch_understated_earnings") + n(t, "arch_expensed_growth_value")
+                + n(t, "arch_cash_adjusted_pe") + n(t, "arch_owner_earnings_power"))
+        _orph = int(((n(t, "arch_forensic_payout_confirmed") == 1) & (_par == 0)).sum())
+        check("regression: forensic_payout_confirmed is a subset of the forensic family",
+              _orph == 0, f"{_orph} orphan firers")
     # hidden_assets: the gap must be real in LOCAL currency for every firer
     if "arch_hidden_assets" in t.columns:
         _f = t["arch_hidden_assets"] == 1

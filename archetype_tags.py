@@ -2279,6 +2279,65 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _not_melting
     ).fillna(False).astype(int)
 
+    # F4 — Cash-adjusted P/E, negative-or-cheap (user spec). The doctrine:
+    # NEGATIVE is only CHEAP when the earnings are POSITIVE — a negative EV on
+    # positive EBITDA means you are paid to own the earnings; the same logic at
+    # the earnings line is (mcap - net cash) / NI. When net cash exceeds market
+    # cap WITH real positive earnings, the multiple goes NEGATIVE: the whole
+    # operating business comes free plus change. 0 < adj P/E <= 8 is the cheap
+    # band. All components LOCAL currency. CAVEAT (documented): the data has no
+    # restricted-cash split, so `cash` may include some restricted balances —
+    # the net-of-debt construction is the partial mitigation.
+    _ni_ca = _ncol('net_income_ttm')
+    _nc_ca = _ncol('cash') - _ncol('total_debt')
+    _mc_ca = _ncol('market_cap')
+    _adj_pe = ((_mc_ca - _nc_ca) / _ni_ca.where(_ni_ca > 0))
+    df['arch_cash_adjusted_pe'] = (
+        is_operating & (_mc_ca > 0) &
+        (_ni_ca > 0) &                              # POSITIVE earnings mandatory (negative only cheap on real E)
+        ((_ni_ca / _mc_ca) >= 0.02) &               # material earnings, not a rounding artifact
+        (_nc_ca > 0) &                              # a genuine net-cash balance sheet
+        (_adj_pe <= 8.0) &                          # negative (cash > mcap: earnings come FREE) or cheap ex-cash
+        ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # F5 — Owner-earnings power (Buffett's adjustment as a forensic lens).
+    # Owner earnings = NI + D&A - capex: when depreciation persistently
+    # overstates true asset consumption (D&A >> replacement capex), accounting
+    # NI UNDERSTATES the cash the owner actually keeps. Fire when owner
+    # earnings run >=1.4x reported NI and the price is <=10x OWNER earnings —
+    # cheap on the truer measure while the market prices the accounting one.
+    _oe_loc = _ni_ca + (_dna_loc - _capex_loc)
+    _oe_ratio = (_oe_loc / _ni_ca).where(_ni_ca > 0)
+    df['arch_owner_earnings_power'] = (
+        is_operating & (_mc_ca > 0) &
+        (_ni_ca > 0) & (_dna_loc > 0) & (_capex_loc >= 0) &
+        (_oe_ratio >= 1.4) &                        # owner earnings far above accounting earnings
+        ((_mc_ca / _oe_loc.where(_oe_loc > 0)) <= 10.0) &   # cheap on the truer measure
+        ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # F6 — Forensic payout confirmation (the user's BOOST leg). Any forensic /
+    # hidden-value member that is ALSO returning capital — buying back shares
+    # or paying a dividend — earns an EXTRA archetype count, which is this
+    # system's native ranking boost (archetype density feeds ETA and the
+    # convergence score). Revealed preference: management monetising the
+    # hidden value for owners, not hoarding it.
+    _payout_any = ((_ncol('dividend_yield') >= 0.005)
+                   | (_ncol('buyback_yield') > 0)
+                   | (_ncol('shares_yoy') < -0.01))
+    _forensic_any = ((df['arch_hidden_assets'] == 1)
+                     | (df['arch_overdepreciated_assets'] == 1)
+                     | (df['arch_understated_earnings'] == 1)
+                     | (df['arch_expensed_growth_value'] == 1)
+                     | (df['arch_cash_adjusted_pe'] == 1)
+                     | (df['arch_owner_earnings_power'] == 1))
+    df['arch_forensic_payout_confirmed'] = (
+        _forensic_any & _payout_any
+    ).fillna(False).astype(int)
+
     # NEW: Oak order-book conversion (backlog->revenue, the MPAC pattern).
     # LAGGING proxy: we can't see order intake / book-to-bill, only the P&L
     # footprint once it lands — accelerating revenue + margin expansion.
@@ -3166,6 +3225,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_overdepreciated_assets',
         'arch_understated_earnings',
         'arch_expensed_growth_value',
+        'arch_cash_adjusted_pe',
+        'arch_owner_earnings_power',
+        'arch_forensic_payout_confirmed',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -3259,6 +3321,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_overdepreciated_assets': 'Forensic-OverDepreciated',
         'arch_understated_earnings': 'Forensic-UnderstatedE',
         'arch_expensed_growth_value': 'Forensic-ExpensedGrowth',
+        'arch_cash_adjusted_pe': 'CashAdjPE-NegOrCheap',
+        'arch_owner_earnings_power': 'Forensic-OwnerEarnings',
+        'arch_forensic_payout_confirmed': 'Forensic-PayoutConfirmed',
         'arch_oak_order_conversion': 'OakOrderConversion',
         'arch_weschler_levered_equity': 'WeschlerLeveredEquity',
         'arch_cheap_sales_scaler': 'CheapSalesScaler',
