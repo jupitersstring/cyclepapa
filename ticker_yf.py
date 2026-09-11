@@ -65,7 +65,15 @@ MODULES = "summaryDetail,defaultKeyStatistics,financialData,price,earningsHistor
 # slightly broader capex). NOTE financialData.freeCashflow is NOT this — it is
 # the third-party "levered FCF" metric and must never be treated as CFO-capex.
 TS_TYPES = ("trailingFreeCashFlow,trailingOperatingCashFlow,"
-            "trailingCapitalExpenditure")
+            "trailingCapitalExpenditure,"
+            # (rigour A1) financing cash flow + D&A + net issuance so the
+            # capex/financing-dependent XR gates (float, dep-cliff, growth-
+            # capex, NOL, Motient guard) reach the NON-US universe, not just
+            # the ~13% EDGAR-covered names.
+            "trailingCashFlowFromContinuingFinancingActivities,"
+            "trailingDepreciationAndAmortization,"
+            "trailingNetIssuancePaymentsOfDebt,"
+            "trailingRepurchaseOfCapitalStock")
 
 
 def fetch_statements(sess, symbol, timeout=15):
@@ -82,6 +90,10 @@ def fetch_statements(sess, symbol, timeout=15):
         return {}
     out = {}
     keymap = {"trailingFreeCashFlow": "yf_fcf_stmt",
+              "trailingCashFlowFromContinuingFinancingActivities": "yf_financing_cf_stmt",
+              "trailingDepreciationAndAmortization": "yf_da_stmt",
+              "trailingNetIssuancePaymentsOfDebt": "yf_net_debt_issuance_stmt",
+              "trailingRepurchaseOfCapitalStock": "yf_buyback_stmt",
               "trailingOperatingCashFlow": "yf_cfo_stmt",
               "trailingCapitalExpenditure": "yf_capex_stmt"}
     for res in (d.get("timeseries", {}).get("result") or []):
@@ -151,7 +163,9 @@ FIELD_MAP = [
 ]
 
 OUT_COLUMNS = (["symbol"] + sorted({c for _, _, c in FIELD_MAP})
-               + ["yf_fcf_stmt", "yf_cfo_stmt", "yf_capex_stmt", "yf_stmt_end"])
+               + ["yf_fcf_stmt", "yf_cfo_stmt", "yf_capex_stmt", "yf_stmt_end",
+                  "yf_financing_cf_stmt", "yf_da_stmt",
+                  "yf_net_debt_issuance_stmt", "yf_buyback_stmt"])
 
 
 class YahooSession:
