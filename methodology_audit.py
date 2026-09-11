@@ -566,7 +566,8 @@ def _regression(t, g):
                 "arch_oak_asset_floor", "arch_diversified_segments",
                 "arch_no_dilution", "arch_lindy_fcf", "arch_owner_operator",
                 "arch_wolf_seal", "arch_levered_inflection",
-                "arch_hidden_assets"):
+                "arch_hidden_assets", "arch_overdepreciated_assets",
+                "arch_understated_earnings", "arch_expensed_growth_value"):
         if _ac in t.columns:
             leak = int(((n(t, _ac) == 1) & _ice_cube).sum())
             check(f"regression(tail): {_ac} carries no genuine ice cube (neg returns, no cash, not improving)",
@@ -657,6 +658,30 @@ def _valuation_consistency(t, g):
     check("valuation: no ev_ebit below ev_ebitda (impossible ordering)",
           int(((eve < evb * 0.95) & (eve > 0) & (evb > 0)).sum()) == 0,
           f"{int(((eve < evb * 0.95) & (eve > 0) & (evb > 0)).sum())} rows")
+    # forensic archetypes: their defining ratios re-verified from LOCAL
+    # components for every firer (same currency-mix guard as hidden_assets)
+    _gset = g.set_index("symbol")
+    def _fcheck(arch, name, fn, tol_bad):
+        if arch not in t.columns:
+            return
+        _fs = t.loc[t[arch] == 1, "symbol"]
+        _gg = _gset.reindex(_fs)
+        _v = fn(_gg)
+        _nb = int((_v.notna() & tol_bad(_v)).sum())
+        check(f"regression: {arch} {name}", _nb == 0, f"{_nb} violating firers")
+    _num_g = lambda gg, c: pd.to_numeric(gg.get(c), errors="coerce")
+    _fcheck("arch_understated_earnings", "CFO/NI in [1.4, 4.2] for every firer",
+            lambda gg: _num_g(gg, "cfo_ttm") / _num_g(gg, "net_income_ttm"),
+            lambda v: (v < 1.4) | (v > 4.2))
+    _fcheck("arch_expensed_growth_value", "gross-profit/mcap >= 0.45 (local)",
+            lambda gg: (_num_g(gg, "gross_margin") * _num_g(gg, "revenue_ttm")
+                        / _num_g(gg, "market_cap")),
+            lambda v: v < 0.45)
+    _fcheck("arch_overdepreciated_assets", "capex <= ~0.65x implied D&A (local)",
+            lambda gg: (_num_g(gg, "capex_ttm")
+                        / (_num_g(gg, "ebitda_ttm")
+                           - _num_g(gg, "op_margin") * _num_g(gg, "revenue_ttm"))),
+            lambda v: v > 0.65)
     # hidden_assets: the gap must be real in LOCAL currency for every firer
     if "arch_hidden_assets" in t.columns:
         _f = t["arch_hidden_assets"] == 1

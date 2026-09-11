@@ -2210,6 +2210,75 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((s('op_margin', np.nan) > 0) | (fcf_yield > 0) | (ebitda_ttm_v > 0))
     ).fillna(False).astype(int)
 
+    # ---------- FORENSIC-ACCOUNTING archetypes (user request) ----------
+    # Balance-sheet accounting NUANCES that OBSCURE deep value — forensic
+    # techniques run in reverse: instead of hunting overstatement, hunt the
+    # conventions that systematically UNDERSTATE. All components are LOCAL
+    # currency from the same source rows (currency-neutral by construction —
+    # the hidden_assets currency-mix lesson).
+
+    # F1 — Over-depreciated asset base ("harvest mode"). Economic vs
+    # accounting depreciation: implied D&A (EBITDA - EBIT) runs far above
+    # replacement capex while revenue HOLDS — the book writes assets down
+    # faster than they actually wear out (long-held plant/property carried at
+    # depressed cost), so P/B understates the real asset backing. Buying at or
+    # below that depressed book = the forensic depreciation-gap trade.
+    _rev_loc = _ncol('revenue_ttm')
+    _ebit_loc = s('op_margin', np.nan) * _rev_loc
+    _dna_loc = _ncol('ebitda_ttm') - _ebit_loc
+    _capex_loc = _ncol('capex_ttm')
+    df['arch_overdepreciated_assets'] = (
+        is_operating & (mcap > 0) &
+        (_dna_loc > 0) & (_rev_loc > 0) &
+        ((_dna_loc / _rev_loc) >= 0.05) &          # a real fixed-asset business (D&A >= 5% of sales)
+        (_capex_loc >= 0) & (_capex_loc <= 0.6 * _dna_loc) &  # replacement FAR below depreciation
+        (s('op_margin', np.nan) > 0) &             # profitable harvest, not decay
+        (rev_yoy_c >= -0.05) &                     # the "worn-out" assets still produce
+        (pb > 0) & (pb < 1.2) &                    # priced at/below the depressed book
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # F2 — Understated earnings (the accruals red-flag INVERTED). Forensic
+    # accounting flags NI >> CFO as inflation; the reverse — CFO persistently
+    # far ABOVE net income (deferred-revenue float, conservative provisioning,
+    # heavy non-cash charges) — means the P&L UNDERSTATES cash economics,
+    # and a market pricing the understated E via P/E misprices the business.
+    _ni_loc = _ncol('net_income_ttm')
+    _cfo_loc = _ncol('cfo_ttm')
+    _cfo_ni = (_cfo_loc / _ni_loc).where(_ni_loc > 0)
+    _pe_ue = _ncol('p_e')
+    df['arch_understated_earnings'] = (
+        is_operating & (mcap > 0) &
+        (_ni_loc > 0) &
+        (_cfo_ni >= 1.5) & (_cfo_ni <= 4.0) &      # cash well above book earnings; sane band (beyond 4x = distortion, not conservatism)
+        ((_ncol('cash_conversion') >= 1.1) | (fcf_yield >= 0.10)) &  # durability corroboration, not one working-capital swing
+        (_pe_ue > 0) & (_pe_ue <= 15) &            # the market is pricing the UNDERSTATED E
+        ~(_ncol('shares_yoy') > 0.05) &
+        _not_melting
+    ).fillna(False).astype(int)
+
+    # F3 — Expensed growth spend (intangible investment through the P&L).
+    # Companies expensing R&D/brand/customer-acquisition show BOTH a thin op
+    # margin and an understated book — the classic reason quality growth looks
+    # "expensive on E, cheap on nothing". The forensic tell: FAT gross margins
+    # (real IP/moat economics) with a thin op margin, while revenue grows and
+    # the share count does NOT — the gap is self-funded reinvestment, and on
+    # gross earnings power the name is objectively cheap (Novy-Marx lens).
+    _gm_loc = s('gross_margin', np.nan)
+    _mc_loc = _ncol('market_cap')
+    _gp_mcap = (_gm_loc * _rev_loc / _mc_loc.where(_mc_loc > 0))
+    df['arch_expensed_growth_value'] = (
+        is_operating &
+        (_ncol('revenue_ttm_usd') >= 5e6) &        # base-effect guard (microcap sweet spot kept)
+        (_gm_loc >= 0.40) & (_gm_loc <= 0.98) &    # real unit economics; exactly-100% GM = missing-COGS artifact, not a margin
+        (_gp_mcap >= 0.50) &                       # gross earnings power >= 50% of the price
+        (s('op_margin', np.nan) < 0.10) &          # the gap IS the expensed growth spend...
+        (s('op_margin', np.nan) > -0.15) &         # ...reinvestment-THIN, not collapse (ALDNE op-228% is not spending discipline)
+        (rev_yoy_c >= 0.10) & (rev_yoy_c <= 1.0) & # the spend is buying growth; base-effect pops capped
+        ~(_ncol('shares_yoy') > 0.05) &            # self-funded, not dilution-funded
+        _not_melting
+    ).fillna(False).astype(int)
+
     # NEW: Oak order-book conversion (backlog->revenue, the MPAC pattern).
     # LAGGING proxy: we can't see order intake / book-to-bill, only the P&L
     # footprint once it lands — accelerating revenue + margin expansion.
@@ -3094,6 +3163,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_oak_nav_discount',
         'arch_oak_asset_floor',
         'arch_hidden_assets',
+        'arch_overdepreciated_assets',
+        'arch_understated_earnings',
+        'arch_expensed_growth_value',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -3184,6 +3256,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_oak_nav_discount': 'OakNAVDiscount',
         'arch_oak_asset_floor': 'OakAssetFloor',
         'arch_hidden_assets': 'HiddenAssets-Overcap',
+        'arch_overdepreciated_assets': 'Forensic-OverDepreciated',
+        'arch_understated_earnings': 'Forensic-UnderstatedE',
+        'arch_expensed_growth_value': 'Forensic-ExpensedGrowth',
         'arch_oak_order_conversion': 'OakOrderConversion',
         'arch_weschler_levered_equity': 'WeschlerLeveredEquity',
         'arch_cheap_sales_scaler': 'CheapSalesScaler',
