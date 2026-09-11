@@ -610,6 +610,128 @@ def _ranges(t, g):
                   f"min {v.min():.3f} max {v.max():.3f}")
 
 
+@measure("Distribution fingerprint (medians vs committed baseline)",
+         "A rescale/unit bug can shift a whole column while every per-row "
+         "identity still holds. Key figures' medians must stay inside a "
+         "band around the committed baseline; refresh the baseline "
+         "deliberately (delete the json) after an intentional shift.")
+def _fingerprint(t, g):
+    import json as _json, os as _os
+    KEY = ["fcf_yield", "ebitda_margin", "p_e", "pb", "ev_ebitda", "ev_sales",
+           "net_debt_ebitda", "op_margin", "gross_margin", "roce",
+           "owner_earnings_yield", "cfo_yield", "earnings_yield",
+           "net_cash_pct_mcap", "melt_demotion", "entry_today_asymmetry"]
+    path = "audit_reports/distribution_baseline.json"
+    med = {}
+    for c in KEY:
+        v = n(g, c).dropna()
+        if len(v) > 500:
+            med[c] = float(v.median())
+    if not _os.path.exists(path):
+        _json.dump(med, open(path, "w"), indent=1)
+        check("fingerprint: baseline created (first run)", True,
+              f"{len(med)} column medians recorded")
+        return
+    base = _json.load(open(path))
+    drifted = []
+    for c, m in med.items():
+        b = base.get(c)
+        if b is None:
+            continue
+        tol = max(abs(b) * 0.5, 0.02)
+        if abs(m - b) > tol:
+            drifted.append(f"{c}: {m:.4g} vs baseline {b:.4g}")
+    check("fingerprint: key-figure medians within band of baseline",
+          len(drifted) == 0, "; ".join(drifted[:6]) or "all stable")
+
+
+@measure("Figure coverage (no unchecked figure feeds a gate)",
+         "Every master column consumed by an archetype gate must be either "
+         "covered by an integrity/identity/units check or explicitly "
+         "exempted with a reason — a NEW gate input without a check FAILS "
+         "here, so silent-creep via unchecked figures is structurally "
+         "impossible.")
+def _figure_coverage(t, g):
+    import re as _re
+    try:
+        src = open("archetype_tags.py").read()
+    except FileNotFoundError:
+        return
+    consumed = set(_re.findall(r"(?:_ncol|_num|s)\(\s*['\"]([a-z0-9_]+)['\"]", src))
+    consumed &= set(g.columns)          # only master-fed figures
+    CHECKED = {
+        # identity / valuation-consistency suite
+        "market_cap", "price", "shares_outstanding", "enterprise_value",
+        "ebitda_ttm", "revenue_ttm", "net_income_ttm", "fcf_ttm", "cfo_ttm",
+        "ev_ebitda", "ev_ebit", "ev_sales", "p_e", "p_s", "pb", "p_tb",
+        "fcf_yield", "ebitda_margin", "owner_earnings_yield", "cfo_yield",
+        "earnings_yield", "robust_cash_yield", "cash_return_ev", "ufcf_yield",
+        "net_debt_ebitda", "cash", "total_debt", "net_cash_pct_mcap",
+        "capex_ttm", "op_margin", "gross_margin", "roe",
+        # units-map suite
+        "dividend_yield", "roce", "sbc_pct_revenue", "momentum_12m",
+        "analyst_target_upside_pct",
+        # 52w / tape suite
+        "pct_off_52w_high", "price_52w_high", "roc_12m", "stale_tape",
+        "pct_52w_high", "last_bar_age_days",
+        # reconciled-at-source EDGAR/derive fields
+        "revenue_ttm_usd", "ebitda_ttm_usd", "fcf_ttm_usd", "interest_coverage",
+        "effective_tax_rate", "cash_pct_mcap", "cash_pct_ev", "ncav_pct_mcap",
+        "net_income_first_positive", "market_cap_usd",
+    }
+    EXEMPT = {
+        # growth/deltas & inflection FLAGS: bounded by construction upstream
+        # (clips/caps at source) and consumed only as signs/thresholds
+        "rev_yoy", "ebitda_yoy", "fcf_yoy", "rev_accel", "ebitda_accel",
+        "rev_3y_cagr", "revenue_3y_cagr", "shares_yoy", "shares_growth_3y",
+        "shares_3y_cagr", "fcf_per_share_yoy", "rev_qoq_ttm", "ebitda_qoq_ttm",
+        "rev_seq", "ebitda_seq", "cfo_yoy", "price_yoy", "gross_profit_yoy",
+        "op_margin_delta_yoy", "gross_margin_delta_yoy", "roce_delta_yoy",
+        "ebitda_margin_delta_yoy", "fcf_margin_delta_yoy", "ebit_growth_yoy",
+        "rev_inflection", "ebitda_inflection", "cfo_inflection",
+        "fcf_inflection", "roce_inflection", "roce_first_positive",
+        "ebitda_first_positive", "cfo_first_positive", "fcf_first_positive",
+        "ni_first_positive", "roce_prev", "ebitda_eta_years",
+        # EDGAR multi-year lindy family: audited-source durations/counts
+        "roic_lindy", "roiic_lindy", "cash_roic_lindy", "n_yrs_positive_roic",
+        "n_yrs_positive_fcf", "years_of_history", "roic_after_sbc",
+        "roic_latest", "roic_acceleration", "roiic_acceleration",
+        "op_margin_lindy", "ebitda_margin_lindy", "revenue_5y_cagr",
+        "revenue_accel_lindy", "asset_5y_cagr", "asset_3y_cagr",
+        "capital_return_yield", "buyback_yield", "sbc_ttm", "dividends_ttm",
+        # descriptive / categorical / event flags
+        "sector", "industry", "currency", "src", "name", "country",
+        "insider_ownership_pct", "n_analysts", "avg_dollar_volume", "beta",
+        "spin_flag", "tender_flag", "merger_flag", "going_private_flag",
+        "distress_flag", "nol_usd", "reorg_flag", "is_price_ghost", "is_otc",
+        # scores/composites checked by their own range suite
+        "yartseva_score", "not_priced_in_score", "cheap_score",
+        # misc bounded/threshold-only consumption
+        "earnings_beat_rate", "avg_earnings_surprise", "earnings_beat_streak",
+        "earnings_surprise_inflecting", "eps_yoy_positive_share",
+        "eps_yoy_growth_streak_q", "eps_positive_streak_q",
+        "price_vs_5y_avg", "price_pct_of_5y_range", "normalized_ebitda",
+        "normalized_ebit", "ev_norm_ebitda", "enterprise_value_norm",
+        "cash_conversion", "fcf_margin", "capex_intensity", "debt_to_equity",
+        "segment_count", "segment_hhi", "largest_segment_share",
+        "geographic_region_count", "cash_gt_ev_flag", "graham_net_net_flag",
+        "mcap_to_ncav", "cash_flow_yield", "ev_gross_profit",
+        "gross_profit_to_mcap", "tangible_equity", "evsg", "psg", "pegy",
+        "ev_ebitda_gy", "net_buyback_ttm", "eps_basic_ttm", "eps_diluted_ttm",
+        "pretax_income_ttm", "tax_expense_ttm", "cheapness_ev_ebit_vs_growth",
+        # (coverage-gate first run) quarterly deltas & composites, threshold-only
+        "cfo_qoq_ttm", "cfo_seq", "fcf_qoq_ttm", "fcf_seq",
+        "incremental_ebitda_margin", "operating_leverage_ratio",
+        "fcf_conversion", "gross_profitability", "berezin_score",
+        "cheapness_under_7x_flag", "symbol",
+        "yf_beta", "yf_recommendation_mean",   # Yahoo-native bounded sentiment passthroughs
+    }
+    unchecked = sorted(consumed - CHECKED - EXEMPT)
+    check("coverage: every gate-consumed master figure is checked or exempted",
+          len(unchecked) == 0,
+          f"UNCHECKED gate inputs: {unchecked[:12]}{'...' if len(unchecked)>12 else ''}")
+
+
 @measure("Valuation internal consistency (yf process)",
          "Every stored ratio must equal what the row's own components say. "
          "The apply_ticker_yf reconcile (levels bend to authoritative Yahoo "
@@ -817,6 +939,19 @@ def _valuation_consistency(t, g):
                   ((_r(ebm, _ebm_comp) - 1).abs() > 0.25)
                   & ((ebm - _ebm_comp).abs() > 0.03),
                   ebm.notna() & (rv > 0) & eb.notna(), 6.0)
+    # market_cap_usd: the USD normalization must imply a PLAUSIBLE fx rate and
+    # the SAME rate the revenue USD-twin implies (a one-sided renormalization
+    # is exactly the silent-creep class).
+    _mcu = gc("market_cap_usd")
+    _fx_m = _r(_mcu, mc)
+    _fx_r = _r(gc("revenue_ttm_usd"), gc("revenue_ttm"))
+    _fx_pl = (_fx_m > 0) & ((_fx_m < 1e-5) | (_fx_m > 4.5))
+    viol |= vrate("market_cap_usd implies implausible fx", _fx_pl,
+                  _mcu.notna() & mc.notna() & (mc != 0), 0.5)
+    _fx_dev = ((_fx_m / _fx_r) - 1).abs()
+    viol |= vrate("market_cap_usd fx != revenue-twin fx (>10%)",
+                  _fx_dev > 0.10,
+                  _fx_m.notna() & _fx_r.notna() & (_fx_r > 0), 2.0)
     # the names people actually SEE must be spotless: top 100 by ETA carry
     # zero cross-field violations of any kind.
     eta = gc("entry_today_asymmetry")

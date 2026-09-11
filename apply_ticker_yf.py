@@ -694,6 +694,31 @@ def main():
     _qc_flag(_fx_bad, "fx_twin_dev")
     m["qc_flags"] = m["qc_flags"].str.lstrip("|")
 
+    # REPAIR-MAGNITUDE DRIFT DETECTOR: our own manipulations are watched. A
+    # column whose repair count JUMPS vs the committed baseline (>3x + 100)
+    # signals creep in the machinery itself — shout, never silently absorb.
+    try:
+        import json as _json
+        _bl_path = "audit_reports/reconcile_baseline.json"
+        try:
+            _bl = _json.load(open(_bl_path))
+        except Exception:
+            _bl = {}
+        _alerts = []
+        for _c, _k in recon.items():
+            _b = _bl.get(_c)
+            if _b is not None and _k > 3 * _b + 100:
+                _alerts.append(f"{_c}: {_k} vs baseline {_b}")
+        if _alerts:
+            print("\n!! REPAIR-DRIFT ALERT (counts far above baseline — check "
+                  "the machinery before trusting this run):", file=sys.stderr)
+            for _a in _alerts:
+                print(f"   {_a}", file=sys.stderr)
+        _json.dump({**_bl, **{k: int(v) for k, v in recon.items()}},
+                   open(_bl_path, "w"), indent=1)
+    except Exception as _e:
+        print(f"  (drift detector failed: {_e})", file=sys.stderr)
+
     # persist the repair record — every reconciliation batch is identifiable
     # after the fact, not just in scrollback.
     try:

@@ -65,6 +65,14 @@ Each fix made to the archetype rules is pinned as a load-bearing invariant so it
 
 Confirmation/lens composites live in [0, 1] by construction.
 
+## Distribution fingerprint (medians vs committed baseline)
+
+A rescale/unit bug can shift a whole column while every per-row identity still holds. Key figures' medians must stay inside a band around the committed baseline; refresh the baseline deliberately (delete the json) after an intentional shift.
+
+## Figure coverage (no unchecked figure feeds a gate)
+
+Every master column consumed by an archetype gate must be either covered by an integrity/identity/units check or explicitly exempted with a reason — a NEW gate input without a check FAILS here, so silent-creep via unchecked figures is structurally impossible.
+
 ## Valuation internal consistency (yf process)
 
 Every stored ratio must equal what the row's own components say. The apply_ticker_yf reconcile (levels bend to authoritative Yahoo ratios; ratios recomputed from components) is the process; these checks are the gate that keeps DEEPINDS-class staleness out.
