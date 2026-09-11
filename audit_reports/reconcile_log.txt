@@ -244,3 +244,137 @@
   roe                                          0
   shares_outstanding                           0
   total_debt                                   114
+
+=== 2026-09-11T03:03:48.560344Z apply_ticker_yf on asymmetry_global.csv ===
+  cfo_ttm                                      2276
+  cfo_yield                                    2171
+  earnings_yield                               109
+  ebitda_margin                                1324
+  ebitda_ttm                                   1148
+  ev_ebit                                      19073
+  ev_ebit nulled (ebitda<=0)                   692
+  ev_ebit nulled (impossible ordering)         3519
+  ev_ebitda (row-consistency)                  2483
+  ev_ebitda nulled (ebitda<=0)                 6705
+  ev_sales (row-consistency)                   1481
+  fcf_ttm (EDGAR audited, preferred)           0
+  fcf_ttm (Yahoo statement trailing, non-EDGAR) 0
+  fcf_ttm (cfo - capex identity, fallback)     2180
+  fcf_yield                                    3359
+  gross_margin                                 99
+  gross_margin nulled (extreme < op_margin)    255
+  net_cash_pct_mcap                            1435
+  net_debt_ebitda                              1049
+  net_income_ttm                               104
+  net_income_ttm (from authoritative p_e)      104
+  net_margin                                   0
+  op_margin                                    1305
+  op_margin nulled (extreme > ebitda_margin)   3383
+  owner_earnings_yield                         2095
+  p_e (row-consistency)                        4241
+  p_s (row-consistency)                        1507
+  p_tb                                         203
+  price_52w_high lifted to price               0
+  qc_flag edgar_grounded                       220
+  qc_flag ev_comp_gap                          6705
+  qc_flag fcf_gt_cfo                           1723
+  qc_flag fcf_yf_adopted                       0
+  qc_flag fx_twin_dev                          0
+  qc_flag gross_lt_op_margin                   465
+  qc_flag neg_ev                               1914
+  qc_flag op_gt_ebitda_margin                  2626
+  revenue_ttm                                  743
+  robust_cash_yield                            1979
+  roe                                          0
+  shares_outstanding                           0
+  total_debt                                   1730
+
+=== 2026-09-11T03:08:29.956067Z apply_ticker_yf on asymmetry_global.csv ===
+  cfo_ttm                                      0
+  cfo_yield                                    0
+  earnings_yield                               0
+  ebitda_margin                                0
+  ebitda_ttm                                   0
+  ev_ebit                                      4231
+  ev_ebit nulled (ebitda<=0)                   639
+  ev_ebit nulled (impossible ordering)         3491
+  ev_ebitda (row-consistency)                  2466
+  ev_ebitda nulled (ebitda<=0)                 6705
+  ev_sales (row-consistency)                   1448
+  fcf_ttm (EDGAR audited, preferred)           0
+  fcf_ttm (Yahoo statement trailing, non-EDGAR) 0
+  fcf_ttm (cfo - capex identity, fallback)     0
+  fcf_yield                                    0
+  gross_margin                                 0
+  gross_margin nulled (extreme < op_margin)    249
+  net_cash_pct_mcap                            0
+  net_debt_ebitda                              0
+  net_income_ttm                               104
+  net_income_ttm (from authoritative p_e)      104
+  net_margin                                   0
+  op_margin                                    0
+  op_margin nulled (extreme > ebitda_margin)   3383
+  owner_earnings_yield                         0
+  p_e (row-consistency)                        4086
+  p_s (row-consistency)                        1414
+  p_tb                                         0
+  price_52w_high lifted to price               0
+  qc_flag edgar_grounded                       220
+  qc_flag ev_comp_gap                          6705
+  qc_flag fcf_gt_cfo                           1723
+  qc_flag fcf_yf_adopted                       0
+  qc_flag fx_twin_dev                          0
+  qc_flag gross_lt_op_margin                   465
+  qc_flag neg_ev                               1914
+  qc_flag op_gt_ebitda_margin                  2626
+  revenue_ttm                                  0
+  robust_cash_yield                            0
+  roe                                          0
+  shares_outstanding                           610
+  total_debt                                   0
+
+=== 2026-09-11T03:09:58.117828Z apply_ticker_yf on asymmetry_global.csv ===
+  cash_return_ev nulled (levered, no interest data) 41
+  cfo_ttm                                      0
+  cfo_yield                                    0
+  earnings_yield                               99
+  ebitda_margin                                83
+  ebitda_ttm                                   0
+  ev_ebit                                      4275
+  ev_ebit nulled (ebitda<=0)                   639
+  ev_ebit nulled (impossible ordering)         3491
+  ev_ebitda (row-consistency)                  2495
+  ev_ebitda nulled (ebitda<=0)                 6705
+  ev_sales (row-consistency)                   1525
+  fcf_ttm (EDGAR audited, preferred)           0
+  fcf_ttm (Yahoo statement trailing, non-EDGAR) 0
+  fcf_ttm (cfo - capex identity, fallback)     0
+  fcf_yield                                    85
+  gross_margin                                 0
+  gross_margin nulled (extreme < op_margin)    249
+  net_cash_pct_mcap                            0
+  net_debt_ebitda                              0
+  net_income_ttm                               104
+  net_income_ttm (from authoritative p_e)      104
+  net_margin                                   0
+  op_margin                                    0
+  op_margin nulled (extreme > ebitda_margin)   3383
+  owner_earnings_yield                         0
+  p_e (row-consistency)                        4241
+  p_s (row-consistency)                        1705
+  p_tb                                         203
+  price_52w_high lifted to price               0
+  qc_flag edgar_grounded                       220
+  qc_flag ev_comp_gap                          6705
+  qc_flag fcf_gt_cfo                           1723
+  qc_flag fcf_yf_adopted                       0
+  qc_flag fx_twin_dev                          0
+  qc_flag gross_lt_op_margin                   465
+  qc_flag neg_ev                               1914
+  qc_flag op_gt_ebitda_margin                  2626
+  revenue_ttm                                  0
+  robust_cash_yield                            0
+  roe                                          0
+  shares_outstanding                           0
+  total_debt                                   0
+  ufcf_yield nulled (levered, no interest data) 41

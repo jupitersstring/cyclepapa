@@ -81,9 +81,10 @@ def main():
             issues.append((sev, msg))
 
         # --- internal identities
-        d = dev(mc, price * sh) if np.isfinite(price) and np.isfinite(sh) else np.nan
+        _effp = price / 100.0 if str(sym).endswith(".L") else price  # GBp lines
+        d = dev(mc, _effp * sh) if np.isfinite(price) and np.isfinite(sh) else np.nan
         if np.isfinite(d) and d > 0.10:
-            flag("ERROR", f"mcap {mc:.3g} != price*shares {price*sh:.3g} (dev {d:.0%})")
+            flag("ERROR", f"mcap {mc:.3g} != price*shares {_effp*sh:.3g} (dev {d:.0%})")
         if np.isfinite(ev) and np.isfinite(eb) and eb > 0 and np.isfinite(evb):
             d = dev(evb, ev / eb)
             if d > 0.25:

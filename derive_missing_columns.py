@@ -75,6 +75,7 @@ DERIVED_COLUMNS = [
     'ev_gross_profit',
     'gross_profitability',
     'cash_return_ev',
+    'ufcf_yield',
     'capex_ttm',
     'capex_intensity',
     'fcf_conversion',
@@ -395,7 +396,34 @@ def main():
     master['ev_gross_profit'] = _safe_div(ev, gross_profit, den_must_be_positive=True)  # Novy-Marx
     # Quality, harder-to-game angles:
     master['gross_profitability'] = _safe_div(gross_profit, ev, den_must_be_positive=True)
-    master['cash_return_ev'] = _safe_div(cfo, ev, den_must_be_positive=True)  # cash ROIC proxy
+    # cash_return_ev — an ENTERPRISE (EV) yield must carry an UNLEVERED flow
+    # (pairing rule: levered flows go over MCAP, unlevered over EV). CFO is
+    # post-interest, so raw CFO/EV understates the enterprise yield in
+    # proportion to leverage. Unlever with backed-out after-tax interest
+    # (interest = EBIT / interest_coverage) where coverage exists; where it
+    # does not, allow the CFO approximation ONLY when leverage is immaterial
+    # (net cash, or net debt <= 0.5x EBITDA — CFO ~= UFCF there); else NaN.
+    _icov = _to_num(_s('interest_coverage'))
+    _opm_d = _to_num(_s('op_margin'))
+    _ebit_d = _opm_d * rev
+    _tax_d = _to_num(_s('effective_tax_rate')).fillna(0.25).clip(0, 0.6)
+    _int_d = _safe_div(_ebit_d, _icov, den_must_be_positive=True)
+    _int_d = _int_d.where((_int_d > 0) & (_ebit_d > 0))
+    _ucfo = cfo + _int_d.fillna(pd.NA) * (1 - _tax_d)
+    _nde_d = _to_num(_s('net_debt_ebitda'))
+    _ncp_d = _to_num(_s('net_cash_pct_mcap'))
+    _lev_immaterial = ((_ncp_d >= 0) | ((_nde_d > -90) & (_nde_d <= 0.5))).fillna(False)
+    _cre_unlev = _safe_div(_to_num(_ucfo), ev, den_must_be_positive=True)
+    _cre_approx = _safe_div(cfo, ev, den_must_be_positive=True)
+    master['cash_return_ev'] = _cre_unlev.where(
+        _cre_unlev.notna(), _cre_approx.where(_lev_immaterial))
+    # ufcf_yield — the explicit unlevered-FCF enterprise yield, same rule
+    # (levered fcf_yield stays over MCAP; this is the EV-paired sibling).
+    _ufcf = fcf + _int_d.fillna(pd.NA) * (1 - _tax_d)
+    _ufy_unlev = _safe_div(_to_num(_ufcf), ev, den_must_be_positive=True)
+    _ufy_approx = _safe_div(fcf, ev, den_must_be_positive=True)
+    master['ufcf_yield'] = _ufy_unlev.where(
+        _ufy_unlev.notna(), _ufy_approx.where(_lev_immaterial))
     # Capital intensity (reveals when EBITDA overstates real cash):
     capex = (cfo - fcf).where(cfo.notna() & fcf.notna())
     master['capex_ttm'] = capex

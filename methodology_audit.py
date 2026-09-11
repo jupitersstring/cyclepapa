@@ -638,9 +638,12 @@ def _valuation_consistency(t, g):
 
     # exact identities (post-reconcile these are near-zero; a rebound means the
     # apply_ticker_yf pass was skipped or broken)
-    viol = vrate("mcap != price*shares (>10% dev)",
-                 (_r(mc, price * sh) - 1).abs() > 0.10,
-                 mc.notna() & price.notna() & sh.notna() & (price * sh > 0), 0.5)
+    # pence-aware: London (.L) lines quote in GBp against GBP mcaps
+    _sym_s = g["symbol"].astype(str)
+    _eff_price = price.where(~_sym_s.str.endswith(".L"), price / 100.0)
+    viol = vrate("mcap != price*shares (>10% dev, pence-aware)",
+                 (_r(mc, _eff_price * sh) - 1).abs() > 0.10,
+                 mc.notna() & price.notna() & sh.notna() & (_eff_price * sh > 0), 0.5)
     viol |= vrate("p_e != mcap/NI (>25% dev)",
                   (_r(pe, _r(mc, ni)) - 1).abs() > 0.25,
                   (pe > 0) & (ni > 0) & mc.notna(), 1.0)
@@ -724,6 +727,17 @@ def _valuation_consistency(t, g):
               _ag >= 0.95, f"{_ag*100:.1f}% agreement on {int(_okb.sum())} EDGAR-covered names")
     except FileNotFoundError:
         pass
+    # PAIRING RULE (levered flows / MCAP, unlevered flows / EV): a levered name
+    # must never carry the un-adjusted CFO/EV approximation in cash_return_ev
+    # (only permitted where leverage is immaterial or interest was backed out).
+    _cre_a = gc("cash_return_ev")
+    _nde_a = gc("net_debt_ebitda")
+    _ncp_a = gc("net_cash_pct_mcap")
+    _icov_a = gc("interest_coverage")
+    _lev_noint = (_nde_a > 0.5) & (_nde_a < 90) & (_ncp_a < 0) & _icov_a.isna()
+    check("pairing: no levered name holds an unadjusted CFO/EV cash_return_ev",
+          int((_lev_noint & _cre_a.notna()).sum()) == 0,
+          f"{int((_lev_noint & _cre_a.notna()).sum())} rows")
     # hidden_assets: the gap must be real in LOCAL currency for every firer
     if "arch_hidden_assets" in t.columns:
         _f = t["arch_hidden_assets"] == 1

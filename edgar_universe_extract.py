@@ -369,6 +369,19 @@ def fetch_companyfacts(cik: int) -> dict | None:
     _ent = _obs_cache.get(_k)
     if _ent and (time.time() - _ent.get("fetched_at", 0)) / 86400.0 <= MAX_CACHE_AGE_DAYS:
         return {"facts": _ent["facts"]}
+    gz_path = Path(str(cache_path) + ".gz")
+    if gz_path.exists():
+        age_days = (time.time() - gz_path.stat().st_mtime) / 86400.0
+        if age_days <= MAX_CACHE_AGE_DAYS:
+            try:
+                with gzip.open(gz_path, "rt") as _gz:
+                    data = json.loads(_gz.read())
+                with _obs_cache_lock:
+                    _obs_cache[_k] = {"fetched_at": gz_path.stat().st_mtime,
+                                      "facts": trim_facts(data.get("facts", {}))}
+                return data
+            except Exception:
+                pass
     if cache_path.exists():
         # NEVER-EXPIRING cache was the staleness root cause (Q1-2026 facts
         # served in September). Serve from cache only while fresh.
@@ -395,7 +408,8 @@ def fetch_companyfacts(cik: int) -> dict | None:
                 continue
             r.raise_for_status()
             data = r.json()
-            cache_path.write_text(json.dumps(data))
+            with gzip.open(str(cache_path) + ".gz", "wt") as _gz:
+                _gz.write(json.dumps(data))
             with _obs_cache_lock:
                 _obs_cache[_k] = {"fetched_at": time.time(),
                                   "facts": trim_facts(data.get("facts", {}))}
@@ -625,6 +639,7 @@ def main():
                       file=sys.stderr)
                 # Periodic checkpoint
                 pd.DataFrame(rows).to_csv(args.out + ".partial", index=False)
+                save_obs_cache()   # crash-safe L2 checkpoint
     save_obs_cache()
 
     df = pd.DataFrame(rows)

@@ -302,7 +302,12 @@ def main():
     _mc = pd.to_numeric(m.get("market_cap"), errors="coerce")
     if "shares_outstanding" in m.columns:
         _sh = pd.to_numeric(m["shares_outstanding"], errors="coerce")
-        _imp = (_mc / _p).where((_p > 0) & (_mc > 0))
+        # London lines are PENCE-priced (GBp) against GBP market caps — the
+        # implied share count there is mcap/(price/100). The naive mcap/price
+        # snap corrupted 6 .L names by 100x (caught by the pence-mint gate).
+        _is_L = m.index.to_series().astype(str).str.endswith(".L")
+        _eff_p = _p.where(~_is_L, _p / 100.0)
+        _imp = (_mc / _eff_p).where((_eff_p > 0) & (_mc > 0))
         _dev = (_sh / _imp)
         _fix_sh = _imp.notna() & _sh.notna() & ((_dev > 1.10) | (_dev < 1 / 1.10))
         m.loc[_fix_sh, "shares_outstanding"] = _imp[_fix_sh]
@@ -415,7 +420,7 @@ def main():
     # fcf_ttm is LEVERED FCF (CFO - capex, post-interest) — an equity-holder
     # cash flow — so its yield is against MARKET CAP, never EV (user rule).
     _fcf = pd.to_numeric(m.get("fcf_ttm"), errors="coerce")
-    _recompute("fcf_yield", (_fcf / _mc).where(_mc > 0), band=(-50, 50))
+    _recompute("fcf_yield", (_fcf / _mc).where(_mc > 0), band=(-50, 1.0))  # >100% of mcap = ADR home-currency mismatch, not a bargain (restores derive's null my recompute had lost)
     # The whole equity-cash-yield family shares the mcap denominator and the
     # same price-staleness disease (computed once at derive-time, then price
     # moves): recompute them all from current components every run. These feed
@@ -611,6 +616,20 @@ def main():
             m.loc[_wrong_sign, _mult] = (_ev_now / _den)[_wrong_sign]
             if int(_wrong_sign.sum()):
                 recon[f"{_mult} sign-fixed"] = int(_wrong_sign.sum())
+
+    # PAIRING ENFORCEMENT after reconciliation: debt/nde just changed, so a
+    # name that BECAME materially levered must not keep a CFO/EV approximation
+    # computed under its old balance sheet (unlevered flows only over EV).
+    _nde_pr = pd.to_numeric(m.get("net_debt_ebitda"), errors="coerce")
+    _ncp_pr = pd.to_numeric(m.get("net_cash_pct_mcap"), errors="coerce")
+    _icov_pr = pd.to_numeric(m.get("interest_coverage"), errors="coerce")
+    _lev_pr = (_nde_pr > 0.5) & (_nde_pr < 90) & (_ncp_pr < 0) & _icov_pr.isna()
+    for _uc in ("cash_return_ev", "ufcf_yield"):
+        if _uc in m.columns:
+            _bad_uc = _lev_pr & pd.to_numeric(m[_uc], errors="coerce").notna()
+            m.loc[_bad_uc, _uc] = np.nan
+            if int(_bad_uc.sum()):
+                recon[f"{_uc} nulled (levered, no interest data)"] = int(_bad_uc.sum())
 
     # remaining identifiability flags: anomalies that are KEPT (legitimate
     # accounting can produce them) but must never be silent.
