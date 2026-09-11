@@ -4672,7 +4672,33 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # exact lens Verdad uses, and the one discharge gains cannot inflate. WW's
     # real EV/EBIT yield is 5.8% and FCF is negative, so it is now robustly
     # excluded on value, not by luck of leverage.
-    _reorg_value = ((_ebit_yield >= 0.10) | (fcf_yield >= 0.08))
+    # (diligence) The trailing EBIT lens is doubly contaminated at emergence:
+    #  (a) fresh-start accounting writes assets to fair value (usually DOWN in
+    #      bankruptcy) -> understated D&A -> INFLATED EBIT -> false cheapness;
+    #  (b) CYCLICALS dominate emergences (Seadrill, Gulfport, Talen, Nine
+    #      Energy, coal, shipping) and often emerge near a commodity PEAK, so
+    #      trailing EBIT/EBITDA is peak-cycle earnings that will not persist
+    #      (Verdad's own caution).
+    # Fixes: prefer the D&A-IMMUNE EBITDA yield; trust the EBIT lens only when
+    # D&A is not suspiciously low vs maintenance capex; and for commodity
+    # cyclicals judge cheapness on MID-CYCLE (margin-based) EBITDA, not
+    # trailing — which correctly EXCLUDES a peak emerger (fat trailing, thin
+    # normalized) and ADMITS a trough emerger (thin trailing, fat normalized).
+    _ebitda_y_pr = (1.0 / s('ev_ebitda', np.nan)).where(s('ev_ebitda', np.nan) > 0, np.nan)
+    _midcyc_y_pr = (_midcyc_ebitda / _num('enterprise_value')).where(_num('enterprise_value') > 0, np.nan)
+    _is_cyc_pr = sector.isin({'Energy', 'Materials'})
+    _dna_pr = _ncol('da_ttm'); _cx_pr = _ncol('capex_ttm')
+    _dna_ok_pr = ~((_dna_pr < 0.5 * _cx_pr) & _dna_pr.notna() & _cx_pr.notna())  # else EBIT write-down-inflated
+    _noncyc_value = ((_ebitda_y_pr >= 0.10)
+                     | ((_ebit_yield >= 0.10) & _dna_ok_pr)
+                     | (fcf_yield >= 0.08))
+    # commodity cyclical at re-emergence: mid-cycle yield is the honest lens;
+    # fall back to the D&A-immune EBITDA yield only where no mid-cycle exists
+    # (fresh entity, <3yr history).
+    _cyc_value = ((_midcyc_y_pr.notna() & (_midcyc_y_pr >= 0.10))
+                  | (_midcyc_y_pr.isna() & (_ebitda_y_pr >= 0.10))
+                  | (fcf_yield >= 0.08))
+    _reorg_value = ((_is_cyc_pr & _cyc_value) | (~_is_cyc_pr & _noncyc_value))
     df['arch_post_reorg'] = (
         (_reorg == 1) & is_operating & _not_melting
         & _reorg_value
