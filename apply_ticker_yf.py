@@ -1522,6 +1522,53 @@ def main():
                 if int(_dbad.fillna(False).sum()):
                     recon[f"{_dcp} nulled (inherits price_yoy evidence)"] = int(_dbad.fillna(False).sum())
 
+    # ---- NON-COMMON SECURITIES (JPM-PK class, user find) ----
+    # Preferred-share series, ETNs, warrants, units and rights resolve to
+    # the ISSUER's CIK in the SEC ticker map (and Yahoo serves issuer
+    # financials for them), so parent earnings land over the SECURITY's own
+    # market cap: JPM preferreds carried p_e 0.7-1.7 and pb 0.13 — fake
+    # deep-value that detonates every cheapness gate. The issuer's
+    # fundamentals DO NOT belong to these securities: null them (the rows
+    # remain as price-only securities) and flag. Detection is three-way:
+    # US-preferred symbol convention (hyphen-P; dot suffixes are
+    # EXCHANGES), security-type names (plain "Depositary Shares" = common
+    # ADS and stays), and issuer-duplicates carrying the ratio signature
+    # (same name+NI as a >=2x-larger primary line with pb under half of
+    # the primary's — the AMJB/VYLD ETN case with no symbol/name tell).
+    _sym_nc = m.index.to_series().astype(str)
+    _nm_nc = m["name"].astype(str) if "name" in m.columns else pd.Series("", index=m.index)
+    _nc_sym = (_sym_nc.str.match(r".*-P[A-Z]{0,2}$")
+               | (_sym_nc.str.endswith(("-WS", "-WT", ".WS", ".WT", "-U", "-R"))
+                  & ~_sym_nc.str.endswith(".UN")))
+    _nc_name = _nm_nc.str.contains(
+        r"preferred|notes due|% notes|capital trust|debenture|warrant|"
+        r"\brights\b|depositary.{0,40}preferred", case=False, regex=True)
+    _ni_nc = pd.to_numeric(m.get("net_income_ttm"), errors="coerce")
+    _pb_nc = pd.to_numeric(m.get("pb"), errors="coerce")
+    _nnk = (_nm_nc.str.lower().str.replace(r"[^a-z0-9]", "", regex=True)
+            + "|" + _ni_nc.round(-5).astype(str))
+    _gmx_nc = _mc.groupby(_nnk).transform("max")
+    _gpb_nc = _pb_nc.groupby(_nnk).transform("max")
+    _nc_dup = (_ni_nc.notna() & (_mc < 0.5 * _gmx_nc)
+               & (_pb_nc < 0.5 * _gpb_nc))
+    _noncommon = (_nc_sym | _nc_name | _nc_dup).fillna(False)
+    if int(_noncommon.sum()):
+        for _fc_nc in ("net_income_ttm", "revenue_ttm", "ebitda_ttm",
+                       "cfo_ttm", "fcf_ttm", "capex_ttm", "equity", "cash",
+                       "total_debt", "ni_avg", "oe_avg", "fcf_avg",
+                       "capex_avg", "ncav", "net_cash",
+                       "p_e", "p_s", "pb", "ev_ebitda", "ev_sales", "ev_ebit",
+                       "fcf_yield", "cfo_yield", "earnings_yield",
+                       "owner_earnings_yield", "robust_cash_yield",
+                       "net_cash_pct_mcap", "cash_pct_mcap", "ncav_pct_mcap",
+                       "cash_pct_ev", "net_debt_ebitda", "ebitda_margin",
+                       "op_margin", "net_margin", "gross_margin",
+                       "enterprise_value", "enterprise_value_usd"):
+            if _fc_nc in m.columns:
+                m.loc[_noncommon, _fc_nc] = np.nan
+        recon["non-common securities: issuer fundamentals nulled"] = int(_noncommon.sum())
+        _qc_flag(_noncommon, "noncommon_security")
+
     # NO-ANCHOR MIXED-CCY GROUPS (detected in the restatement pass): siblings
     # share identical raw levels across different quote currencies with no
     # home line to anchor the financial currency (New China Life NWWCF/NCL.F)
