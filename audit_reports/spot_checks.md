@@ -192,3 +192,41 @@ root-caused with named evidence before any fix.
 Verification: 178 audit checks 0 FAIL (1 known WARN class), mutation
 32/0, per-archetype crosscheck across ALL archetypes (154 firers):
 0 ERROR, every WARN in the established documented classes.
+
+## Round 8 — provenance verification against fresh primitives (2026-09-11)
+
+Method: the priority-ordered full-universe refetch (declared currencies +
+bookValue) provides a fresh, independent comparator for the top ~4,900
+names; every variable family was verified against it, and the
+cross-currency INFERENCE was adjudicated against Yahoo's own DECLARED
+financialCurrency.
+
+Results:
+- Levels vs fresh pull (coherent rows): revenue 98.4%, EBITDA 98.1%,
+  CFO 99.1%, debt 98.0%, NI 94.7%, cash 89.4% (broad-basis class,
+  documented) within the 1.4x reconcile tolerance.
+- Constructed pb vs fresh price/bookValue primitives: 97.3% within 25%,
+  median ratio 1.000.
+- Restatement inference vs declarations: 235/256 CONFIRMED (92%).
+  The 21 contradictions were OUR false positives — USD-REPORTING foreign
+  companies (Genel, Yara, Hunting OTC, BlackBerry) where the
+  country->currency home assumption fails. FIXED: declarations now fully
+  supersede inference (any declared mismatch restates, NO magnitude
+  threshold — a 15% EUR/USD error is still an error; declared-same rows
+  are UN-restated via the stored ccy_bridge and re-adopted raw levels —
+  25 undone, Hunting back to its true $987M revenue), and BOTH inference
+  passes skip declaration-covered rows entirely. Declared-mismatch rows
+  confirmed to carry RAW financial-currency levels (converted-assumption
+  median p_s 0.18 vs absurd 0.03 unconverted).
+- Provenance defects found and fixed this round:
+  (a) gross_profitability was GP/EV — a cheapness yield wearing the
+      Novy-Marx quality label; now GP/ASSETS (the EV face lives in
+      ev_gross_profit).
+  (b) buyback_yield / capital_return_yield were frozen against map-time
+      mcap; the audited EDGAR flow LEVELS now merge and the yields are
+      recomputed against current mcap every run (5,015 / 2,795 rows).
+  (c) price_yoy/momentum_12m carried redenomination artifacts
+      (1841.T +14,413,000%); now evidence-bounded by the 52-week range
+      (95 nulled).
+- Full ledger: audit_reports/provenance_ledger.md (source, construction,
+  guards and audit gate for every one of the 121 gate-consumed columns).

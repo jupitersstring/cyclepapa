@@ -402,7 +402,12 @@ def main():
     # Cheapness, industry-robust angles:
     master['ev_gross_profit'] = _safe_div(ev, gross_profit, den_must_be_positive=True)  # Novy-Marx
     # Quality, harder-to-game angles:
-    master['gross_profitability'] = _safe_div(gross_profit, ev, den_must_be_positive=True)
+    # Novy-Marx gross profitability is GP / TOTAL ASSETS — a QUALITY measure.
+    # It was being constructed as GP/EV, which is a cheapness yield wearing a
+    # quality label (its consumer comments "# Novy-Marx"): a mislabeled
+    # measure of exactly the owner_earnings_yield class. The EV-denominated
+    # cheapness face already exists under its own name (ev_gross_profit).
+    master['gross_profitability'] = _safe_div(gross_profit, assets, den_must_be_positive=True)
     # cash_return_ev — an ENTERPRISE (EV) yield must carry an UNLEVERED flow
     # (pairing rule: levered flows go over MCAP, unlevered over EV). CFO is
     # post-interest, so raw CFO/EV understates the enterprise yield in

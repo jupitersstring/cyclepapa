@@ -289,6 +289,12 @@ def build_yartseva_row(edgar_row: pd.Series, price_row: pd.Series | None) -> dic
             r["dividend_yield"] = div / market_cap
         if bb is not None:
             r["buyback_yield"] = bb / market_cap
+    # store the LEVELS too — a yield frozen against map-time mcap goes
+    # stale the moment price moves; the harmonizer recomputes the yields
+    # from these audited flows against the CURRENT mcap every run.
+    for _lvl_k in ("capital_return_ttm", "dividends_ttm", "buybacks_ttm"):
+        if edgar_row.get(_lvl_k) is not None:
+            r[_lvl_k] = edgar_row[_lvl_k]
 
     # Tangible book per share
     if edgar_row.get("tangible_book_per_share"):

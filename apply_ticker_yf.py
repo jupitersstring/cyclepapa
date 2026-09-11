@@ -149,7 +149,9 @@ def main():
                                  "capex_avg", "oe_avg_years",
                                  "equity_cagr_5y", "financing_cf_ttm",
                                  "net_working_capital",
-                                 "goodwill_intangibles_pct_assets"}
+                                 "goodwill_intangibles_pct_assets",
+                                 "capital_return_ttm", "dividends_ttm",
+                                 "buybacks_ttm"}
                              ).drop_duplicates("symbol").set_index("symbol")
         _n_avg = 0
         for _ac in _edavg.columns:
@@ -614,8 +616,49 @@ def main():
         _decl_q = _decl_q.where(_decl_q.notna(), _cur.reindex(m.index))
         _decl_known = _decl_fin.notna() & _decl_q.notna()
         _bD = _decl_fin.map(_fx_by_ccy) / _decl_q.map(_fx_by_ccy)
-        _needD = (_decl_known & (_decl_fin != _decl_q) & _bD.notna()
-                  & ((_bD > 1.25) | (_bD < 0.8))).fillna(False)
+        # ANY declared mismatch restates — no magnitude threshold: the
+        # declaration removes the ambiguity the threshold guarded against,
+        # and a 15% EUR/USD error is still an error.
+        _needD = (_decl_known & (_decl_fin != _decl_q)
+                  & _bD.notna() & (_bD != 1.0)).fillna(False)
+        # UN-RESTATEMENT (spot-check round 8 finding): the country/twin
+        # inference restated USD-REPORTING foreign companies (Genel, Yara,
+        # Hunting OTC — financial ccy != country ccy), corrupting correct
+        # levels by the bridge. Where Yahoo now DECLARES quote==financial,
+        # a previously-restated row is un-restated: reconcile-covered
+        # levels re-adopt the fresh raw figure, build-only levels divide
+        # by the stored ccy_bridge, and the flag clears.
+        _decl_same = (_decl_known & (_decl_fin == _decl_q)).fillna(False)
+        _was_rs0 = (m["qc_flags"].fillna("").astype(str)
+                    .str.contains("ccy_restated")
+                    if "qc_flags" in m.columns
+                    else pd.Series(False, index=m.index))
+        _undo = _decl_same & _was_rs0
+        if int(_undo.sum()) and "ccy_bridge" in m.columns:
+            _obr = pd.to_numeric(m["ccy_bridge"], errors="coerce")
+            for _mcol_u, _ycol_u in (("revenue_ttm", "yf_revenue"),
+                                     ("ebitda_ttm", "yf_ebitda"),
+                                     ("cash", "yf_cash"),
+                                     ("total_debt", "yf_total_debt"),
+                                     ("cfo_ttm", "yf_cfo"),
+                                     ("net_income_ttm", "yf_net_income")):
+                if _mcol_u in m.columns and _ycol_u in y.columns:
+                    _yv_u = pd.to_numeric(y[_ycol_u], errors="coerce").reindex(m.index)
+                    _hit_u = _undo & _yv_u.notna()
+                    m.loc[_hit_u, _mcol_u] = _yv_u[_hit_u]
+            for _bcol_u in ("ncav", "net_cash", "net_buyback_ttm",
+                            "normalized_ebitda", "normalized_ebit",
+                            "normalized_revenue", "gross_profit_ttm",
+                            "ebit_ttm"):
+                if _bcol_u in m.columns:
+                    _bv_u = pd.to_numeric(m[_bcol_u], errors="coerce")
+                    _hit_u = _undo & _obr.notna() & (_obr != 0)
+                    m.loc[_hit_u, _bcol_u] = (_bv_u / _obr)[_hit_u]
+            m.loc[_undo, "ccy_bridge"] = np.nan
+            m["qc_flags"] = m["qc_flags"].astype(str).where(
+                ~_undo, m["qc_flags"].astype(str)
+                .str.replace("ccy_restated", "", regex=False))
+            recon["cross-ccy restatement UNDONE (declared same-currency)"] = int(_undo.sum())
         if int(_needD.sum()):
             for _lc in _LEVEL_COLS:
                 _v = pd.to_numeric(m[_lc], errors="coerce")
@@ -657,10 +700,11 @@ def main():
         _need = (_g_fin.notna() & (_grp["cur"] != _g_fin)
                  & _lvl_match.fillna(False)
                  & _b.notna() & ((_b > 1.25) | (_b < 0.8))
-                 # rows already restated by the DECLARED pass are done —
-                 # (_grp holds pre-conversion levels, so without this the
-                 # twin evidence would re-match and double-convert them)
-                 & ~_needD.reindex(_grp.index).fillna(False))
+                 # any row with a DECLARED currency is settled by PASS 0 —
+                 # inference must never override or double-convert it (the
+                 # country/twin heuristic mis-restated USD-reporting
+                 # foreign firms; declarations retire it row by row)
+                 & ~_decl_known.reindex(_grp.index).fillna(False))
         _twin_mask = _need.reindex(m.index).fillna(False)
         _restated_mask = _restated_mask | _twin_mask
         if int(_twin_mask.sum()):
@@ -770,6 +814,7 @@ def main():
             _close = (_b_raw / _b_k).between(0.8, 1.25) & ((_b_k > 1.25) | (_b_k < 0.8))
             _cand = _b_k.where(_close) if _cand is None else _cand.where(_cand.notna(), _b_k.where(_close))
         _need2 = (_cand.notna() & ~_restated_mask.reindex(m.index).fillna(False)
+                  & ~_decl_known.reindex(m.index).fillna(False)
                   & ((_b_raw > 20) | (_b_raw < 0.05)))   # unambiguous, far-fx class only
         _need2 = _need2.fillna(False)
         if int(_need2.sum()):
@@ -871,6 +916,30 @@ def main():
                               (_ni3 / _mc).where(_mc > 0)],
                              axis=1).median(axis=1, skipna=True)
         _recompute("robust_cash_yield", _rcy_new, band=(-50, 50))
+    # payout yields — audited EDGAR flow LEVELS over CURRENT mcap (they were
+    # frozen against map-time mcap, the ncav vintage disease).
+    for _yc2, _lc2 in (("capital_return_yield", "capital_return_ttm"),
+                       ("buyback_yield", "buybacks_ttm")):
+        if _lc2 in m.columns:
+            _lv2 = pd.to_numeric(m[_lc2], errors="coerce")
+            _recompute(_yc2, (_lv2 / _mc).where(_mc > 0), band=(0, 2))
+    # PRICE-HISTORY EVIDENCE BOUND: a 1-year return cannot exceed the 52-week
+    # range by multiples — 1841.T's price_yoy of +14,413,000% is a
+    # redenomination artifact, not a return. Null price_yoy (and its alias
+    # momentum_12m) where (1+yoy) is over 3x the high/low span, or where
+    # yoy < -1 (price below zero — impossible).
+    _hi_py = pd.to_numeric(m.get("price_52w_high"), errors="coerce")
+    _lo_py = pd.to_numeric(m.get("yf_52w_low"), errors="coerce")
+    _span_py = (_hi_py / _lo_py).where((_lo_py > 0) & (_hi_py > 0))
+    for _pyc in ("price_yoy", "momentum_12m"):
+        if _pyc in m.columns:
+            _pyv = pd.to_numeric(m[_pyc], errors="coerce")
+            _py_bad = ((_pyv < -1)
+                       | (_span_py.notna() & ((1 + _pyv) > 3 * _span_py))).fillna(False)
+            m.loc[_py_bad, _pyc] = np.nan
+            if int(_py_bad.sum()):
+                recon[f"{_pyc} nulled (return exceeds 52w-range evidence)"] = int(_py_bad.sum())
+
     # net_cash_pct_mcap = (broad cash - fresh debt) / current mcap — gates the
     # net-cash archetype family (liger/oak/negative-EV) and was never refreshed.
     _ca_nc = pd.to_numeric(m.get("cash"), errors="coerce")
