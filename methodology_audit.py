@@ -565,7 +565,8 @@ def _regression(t, g):
                 "arch_negative_ev_value", "arch_oak_deep_value",
                 "arch_oak_asset_floor", "arch_diversified_segments",
                 "arch_no_dilution", "arch_lindy_fcf", "arch_owner_operator",
-                "arch_wolf_seal", "arch_levered_inflection"):
+                "arch_wolf_seal", "arch_levered_inflection",
+                "arch_hidden_assets"):
         if _ac in t.columns:
             leak = int(((n(t, _ac) == 1) & _ice_cube).sum())
             check(f"regression(tail): {_ac} carries no genuine ice cube (neg returns, no cash, not improving)",
@@ -656,6 +657,20 @@ def _valuation_consistency(t, g):
     check("valuation: no ev_ebit below ev_ebitda (impossible ordering)",
           int(((eve < evb * 0.95) & (eve > 0) & (evb > 0)).sum()) == 0,
           f"{int(((eve < evb * 0.95) & (eve > 0) & (evb > 0)).sum())} rows")
+    # hidden_assets: the gap must be real in LOCAL currency for every firer
+    if "arch_hidden_assets" in t.columns:
+        _f = t["arch_hidden_assets"] == 1
+        _fs = t.loc[_f, "symbol"]
+        _gm = g.set_index("symbol")
+        _gg = _gm.reindex(_fs)
+        _hp = ((pd.to_numeric(_gg.get("enterprise_value"), errors="coerce")
+                + pd.to_numeric(_gg.get("cash"), errors="coerce")
+                - pd.to_numeric(_gg.get("market_cap"), errors="coerce")
+                - pd.to_numeric(_gg.get("total_debt"), errors="coerce"))
+               / pd.to_numeric(_gg.get("market_cap"), errors="coerce"))
+        _bad_h = int((_hp.notna() & (_hp < 0.20)).sum())
+        check("regression: arch_hidden_assets gap >= ~25% of mcap in LOCAL currency "
+              "(currency-mix guard)", _bad_h == 0, f"{_bad_h} sub-gap firers")
     check("valuation: no positive ev_ebitda on ebitda<=0",
           int(((evb > 0) & (eb <= 0) & eb.notna()).sum()) == 0,
           f"{int(((evb > 0) & (eb <= 0) & eb.notna()).sum())} rows")

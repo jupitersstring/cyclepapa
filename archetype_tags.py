@@ -2175,6 +2175,41 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _not_melting   # (deep-audit) the Graham cash floor protects the balance sheet but not against operations eating it: DCGO roce-95%, 0738.HK roce-70% passed. Add the returns floor (SOGP roce-96%/op+7% is a denominator artifact, correctly kept).
     ).fillna(False).astype(int)
 
+    # NEW (user request): Hidden-asset overcapitalized balance sheet — a
+    # BALANCE-SHEET-NUANCE lens born from the valuation QC work. The EV
+    # composition gap (EV + broad_cash - mcap - debt, as % of mcap) measures
+    # assets the EV arithmetic does NOT net out: our `cash` is the broad
+    # cash+investments figure while Yahoo's EV nets only narrow totalCash, so a
+    # LARGE POSITIVE gap = a securities/investment portfolio sitting under the
+    # operating business that the market's own EV math is not crediting
+    # (Moriya 1798.T: ~58% of mcap in securities — the classic Japanese
+    # overcapitalized net-net shape; also HK family holdcos). Require the gap
+    # to be big, the stock priced at/below book (so the portfolio really is
+    # free), a survivable cash-rich balance sheet (so the gap is ASSETS, not a
+    # minority-interest/pref-claim artifact — those come with leverage), and a
+    # real operating business underneath. Financials excluded (their
+    # "investments" are the float, not hidden treasure).
+    # ALL FOUR components in LOCAL currency (the raw master columns): the
+    # tags-level `mcap` variable is the USD-normalized cap, and mixing it with
+    # local-currency ev/cash/debt inflated the gap ~1500x for KRW names — the
+    # exact currency-mix corruption class this pipeline guards against. The
+    # ratio below is same-currency throughout, hence currency-neutral.
+    _ev_ha = _ncol('enterprise_value')
+    _td_ha = _ncol('total_debt')
+    _ca_ha = _ncol('cash')
+    _mc_ha = _ncol('market_cap')
+    _hidden_pct = ((_ev_ha + _ca_ha - _mc_ha - _td_ha)
+                   / _mc_ha.where(_mc_ha > 0))
+    df['arch_hidden_assets'] = (
+        is_operating &
+        (mcap > 0) &
+        (_hidden_pct >= 0.25) &                     # off-EV assets >= 25% of mcap
+        ((net_cash_pct_c >= 0.10) | (cash_pct_mcap_v >= 0.30)) &  # genuinely cash/asset-rich (not a minority-interest artifact)
+        (pb > 0) & (pb < 1.5) &                     # the portfolio is not being paid for
+        _not_melting &                              # a real business under the portfolio
+        ((s('op_margin', np.nan) > 0) | (fcf_yield > 0) | (ebitda_ttm_v > 0))
+    ).fillna(False).astype(int)
+
     # NEW: Oak order-book conversion (backlog->revenue, the MPAC pattern).
     # LAGGING proxy: we can't see order intake / book-to-bill, only the P&L
     # footprint once it lands — accelerating revenue + margin expansion.
@@ -3058,6 +3093,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_oak_deep_value',
         'arch_oak_nav_discount',
         'arch_oak_asset_floor',
+        'arch_hidden_assets',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -3147,6 +3183,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_oak_deep_value': 'OakDeepValue',
         'arch_oak_nav_discount': 'OakNAVDiscount',
         'arch_oak_asset_floor': 'OakAssetFloor',
+        'arch_hidden_assets': 'HiddenAssets-Overcap',
         'arch_oak_order_conversion': 'OakOrderConversion',
         'arch_weschler_levered_equity': 'WeschlerLeveredEquity',
         'arch_cheap_sales_scaler': 'CheapSalesScaler',

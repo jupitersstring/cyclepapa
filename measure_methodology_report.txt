@@ -1,6 +1,6 @@
-METHODOLOGY AUDIT — 133 checks, 0 FAIL, 0 WARN
+METHODOLOGY AUDIT — 135 checks, 0 FAIL, 0 WARN
   PASS  units: dividend_yield is a fraction  — median |dividend_yield| = 0.028 (fraction-scale cap 1.5)
-  PASS  units: fcf_yield is a fraction  — median |fcf_yield| = 0.074 (fraction-scale cap 3.0)
+  PASS  units: fcf_yield is a fraction  — median |fcf_yield| = 0.072 (fraction-scale cap 3.0)
   PASS  units: analyst_target_upside_pct is a fraction  — median |analyst_target_upside_pct| = 0.261 (fraction-scale cap 5.0)
   PASS  units: roce is a fraction  — median |roce| = 0.112 (fraction-scale cap 5.0)
   PASS  units: sbc_pct_revenue is a fraction  — median |sbc_pct_revenue| = 0.018 (fraction-scale cap 3.0)
@@ -10,7 +10,7 @@ METHODOLOGY AUDIT — 133 checks, 0 FAIL, 0 WARN
   PASS  arch_levered_inflection: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 25% depth
   PASS  arch_asymmetric_assembly: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 35% depth
   PASS  evsales_derating: median firer gap is compressive  — median gap 0.421
-  PASS  evsales_derating: expanding-multiple firers are the minority  — 1.5% of firers have a negative 1y gap (allowed only when the 3y base compresses)
+  PASS  evsales_derating: expanding-multiple firers are the minority  — 1.6% of firers have a negative 1y gap (allowed only when the 3y base compresses)
   PASS  tenbagger: implied 10x closes for every firer  — 0 firers below 10x
   PASS  tenbagger: Credible is a subset of Path
   PASS  lynch_reward: no firer already paid (roc_12m <= 0.35)  — 0 firers with roc_12m > 35%
@@ -30,7 +30,7 @@ METHODOLOGY AUDIT — 133 checks, 0 FAIL, 0 WARN
   PASS  gating: analyst_rerating_score is 0 outside arch_analyst_rerating_confirmed  — 0 non-firers with positive score
   PASS  gating: asleep_score is 0 outside arch_asleep_at_wheel  — 0 non-firers with positive score
   PASS  gating: seg_inflect_score is 0 outside arch_fastest_segment  — 0 non-firers with positive score
-  PASS  density: archetype_count_pct <= 1  — max 0.371
+  PASS  density: archetype_count_pct <= 1  — max 0.365
   PASS  units: insider_ownership_pct is a fraction (<= 1.05)  — 0 percent-scale stragglers
   PASS  integrity: lynch signal rows all match the header schema  — 0 ragged rows
   PASS  integrity: country benchmarks are live (<=62d old)  — stale/empty: []
@@ -107,6 +107,7 @@ METHODOLOGY AUDIT — 133 checks, 0 FAIL, 0 WARN
   PASS  regression(tail): arch_owner_operator carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
   PASS  regression(tail): arch_wolf_seal carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
   PASS  regression(tail): arch_levered_inflection carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_hidden_assets carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
   PASS  regression: price-ghost duplicates fire no archetypes  — 0 price-ghost lines firing archetypes
   PASS  regression: price-ghost duplicates do not rank (ETA=0)  — 0 price-ghost lines with ETA>0
   PASS  regression(tail): arch_wolf_turnaround keeps a real USD revenue base  — 0 sub-floor-revenue firers
@@ -121,11 +122,12 @@ METHODOLOGY AUDIT — 133 checks, 0 FAIL, 0 WARN
   PASS  range: seg_inflect_score within [0,1]  — min 0.000 max 1.000
   PASS  valuation: mcap != price*shares (>10% dev) <= 0.5% of covered rows  — 4/34799 rows (0.01%)
   PASS  valuation: p_e != mcap/NI (>25% dev) <= 1.0% of covered rows  — 21/20481 rows (0.10%)
-  PASS  valuation: fcf_yield != fcf/mcap (>25% dev) <= 1.0% of covered rows  — 13/33858 rows (0.04%)
-  PASS  valuation: owner_earnings_yield != fcf_ttm/mcap (>25% dev) <= 1.5% of covered rows  — 0/35419 rows (0.00%)
+  PASS  valuation: fcf_yield != fcf/mcap (>25% dev) <= 1.0% of covered rows  — 159/33676 rows (0.47%)
+  PASS  valuation: owner_earnings_yield != fcf_ttm/mcap (>25% dev) <= 1.5% of covered rows  — 208/35419 rows (0.59%)
   PASS  valuation: cfo_yield != cfo_ttm/mcap (>25% dev) <= 1.5% of covered rows  — 0/35656 rows (0.00%)
   PASS  valuation: earnings_yield != net_income_ttm/mcap (>25% dev) <= 1.5% of covered rows  — 104/31956 rows (0.33%)
   PASS  valuation: no ev_ebit below ev_ebitda (impossible ordering)  — 0 rows
+  PASS  regression: arch_hidden_assets gap >= ~25% of mcap in LOCAL currency (currency-mix guard)  — 0 sub-gap firers
   PASS  valuation: no positive ev_ebitda on ebitda<=0  — 0 rows
   PASS  valuation: ev_ebitda != EV/ebitda (>25% dev) <= 6.0% of covered rows  — 106/23449 rows (0.45%)
   PASS  valuation: ev_sales != EV/revenue (>25% dev) <= 6.0% of covered rows  — 82/33173 rows (0.25%)
