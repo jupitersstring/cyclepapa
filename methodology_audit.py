@@ -786,6 +786,14 @@ def _valuation_consistency(t, g):
     viol |= vrate("fcf_yield != fcf/mcap (>25% dev)",
                   (_r(fy, _r(fcf, mc)) - 1).abs() > 0.25,
                   fy.notna() & fcf.notna() & (mc > 0), 1.0)
+    # pb is CONSTRUCTED from the primary equity level wherever one exists
+    # (user directive) — a stored pb drifting >25% from mcap/equity means
+    # the construction stopped flowing through.
+    _eqA = gc("equity")
+    _pbA = gc("pb")
+    viol |= vrate("pb != mcap/equity where audited equity exists (>25% dev)",
+                  (_r(_pbA, _r(mc, _eqA)) - 1).abs() > 0.25,
+                  _pbA.notna() & (_eqA > 0) & (mc > 0), 1.0)
     # the whole equity-cash-yield family (LEVERED measures over MARKET CAP —
     # user rule) must stay recomputed against current mcap
     for _yc, _lvl_c in (("cfo_yield", "cfo_ttm"),

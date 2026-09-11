@@ -106,6 +106,11 @@ FIELD_MAP = [
     # the harmonizer can convert instead of guessing from magnitudes.
     ("price", "currency", "yf_quote_currency"),
     ("financialData", "financialCurrency", "yf_financial_currency"),
+    # PRIMARY book value per share (major units, financial currency) — pb is
+    # CONSTRUCTED from this, never adopted from Yahoo's priceToBook, which
+    # divides cents prices by major-unit book on GBp/ZAc/ILA markets and is
+    # inconsistent across cross-currency lines.
+    ("defaultKeyStatistics", "bookValue", "yf_book_value"),
     ("price", "regularMarketPrice", "yf_price"),
     ("price", "marketCap", "yf_market_cap"),
     ("summaryDetail", "marketCap", "yf_market_cap"),  # fallback

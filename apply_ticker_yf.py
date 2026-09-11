@@ -123,7 +123,7 @@ def main():
                          usecols=lambda c: c in {
                              "symbol", "revenue_ttm", "ebitda_ttm", "cfo_ttm",
                              "fcf_ttm", "cash", "total_debt", "op_margin",
-                             "capex_ttm", "balance_sheet_date"}
+                             "capex_ttm", "equity", "balance_sheet_date"}
                          ).drop_duplicates("symbol").set_index("symbol")
         # FRESHNESS GATE (user rule): prefer Yahoo when the EDGAR data is more
         # stale than ONE QUARTER — a period end older than ~135 days (one
@@ -317,6 +317,16 @@ def main():
     recon = {}
     if _edavg_merged_n:
         recon["EDGAR multi-year fields merged (averages/forensic)"] = _edavg_merged_n
+    # audited EQUITY level (fresh-gated EDGAR) — the PRIMARY behind pb.
+    _eq_ed_adopt = edgar_col("equity")
+    if "equity" not in m.columns:
+        m["equity"] = np.nan
+    _eq_cur0 = pd.to_numeric(m["equity"], errors="coerce")
+    _eq_upd0 = _eq_ed_adopt.notna() & (
+        _eq_cur0.isna() | ((_eq_cur0 / _eq_ed_adopt) - 1).abs().gt(0.10))
+    m.loc[_eq_upd0, "equity"] = _eq_ed_adopt[_eq_upd0]
+    if int(_eq_upd0.sum()):
+        recon["equity adopted from audited EDGAR"] = int(_eq_upd0.sum())
     repaired_any = pd.Series(False, index=m.index)
     edgar_won = pd.Series(False, index=m.index)
     for yf_col, mcol, usd_col in RECONCILE:
@@ -567,6 +577,7 @@ def main():
         "gross_profit_ttm", "financing_cf_ttm", "net_working_capital",
         "oe_avg", "ni_avg", "fcf_avg", "capex_avg", "normalized_ebitda",
         "normalized_ebit", "normalized_revenue", "net_buyback_ttm",
+        "equity", "tangible_equity",
     ) if c in m.columns]
     if "name" in m.columns and "currency" in m.columns and "fx_to_usd" in m.columns:
         import re as _re_ccy
@@ -1100,6 +1111,52 @@ def main():
     except FileNotFoundError:
         pass
     _qc_pence_mask = _pence_hit
+
+    # P/B FROM PRIMARIES (user directive: construct from the source figures,
+    # never approximate where a primary exists). Yahoo's priceToBook is a
+    # LAST resort — it divides cents prices by major-unit book on GBp/ZAc/
+    # ILA markets and is inconsistent across cross-currency lines. Order:
+    #   A. equity LEVEL (audited EDGAR fresh-gated for US filers; build-time
+    #      balance sheet elsewhere; restated where cross-ccy)  -> mcap/equity
+    #   B. fetched bookValue per share (major units): the adjudication file
+    #      today, yf_book_value universally at the next full pull, valid
+    #      when the quote and financial currencies agree -> price_maj/bvps
+    #   C. Yahoo priceToBook with the per-row evidence guards above.
+    # A/B override a stored pb deviating >25% (non-churn tolerance absorbs
+    # minority-interest basis differences).
+    _eq_pA = pd.to_numeric(m.get("equity"), errors="coerce")
+    _pb_primary = (_mc / _eq_pA).where(_eq_pA > 0)
+    if "yf_book_value" in y.columns:
+        _bvy = pd.to_numeric(y["yf_book_value"], errors="coerce").reindex(m.index)
+        _qcy = (y["yf_quote_currency"].astype(str).reindex(m.index)
+                if "yf_quote_currency" in y.columns
+                else pd.Series("", index=m.index))
+        _pxm = _p.where(~_qcy.isin(["GBp", "GBX", "ZAc", "ILA"]), _p / 100.0)
+        _pb_bv = (_pxm / _bvy).where(_bvy > 0)
+        if "yf_financial_currency" in y.columns:
+            _fcy = y["yf_financial_currency"].astype(str).reindex(m.index)
+            _qmaj = _qcy.replace({"GBp": "GBP", "GBX": "GBP",
+                                  "ZAc": "ZAR", "ILA": "ILS"})
+            _pb_bv = _pb_bv.where(_fcy == _qmaj)
+        _pb_primary = _pb_primary.combine_first(_pb_bv)
+    try:
+        _bvev2 = pd.read_csv("audit_reports/pence_bookvalue_evidence.csv"
+                             ).drop_duplicates("symbol").set_index("symbol")
+        _bv2 = pd.to_numeric(_bvev2["bookValue"], errors="coerce").reindex(m.index)
+        _px2 = pd.to_numeric(_bvev2["price"], errors="coerce").reindex(m.index)
+        _cc2 = _bvev2["quote_ccy"].astype(str).reindex(m.index)
+        _pxm2 = _px2.where(~_cc2.isin(["GBp", "GBX", "ZAc", "ILA"]), _px2 / 100.0)
+        _pb_primary = _pb_primary.combine_first((_pxm2 / _bv2).where(_bv2 > 0))
+    except FileNotFoundError:
+        pass
+    if "pb" in m.columns:
+        _pb_cur2 = pd.to_numeric(m["pb"], errors="coerce")
+        _pb_dev2 = _pb_cur2 / _pb_primary
+        _pb_fix2 = _pb_primary.notna() & (
+            _pb_cur2.isna() | (_pb_dev2 > 1.25) | (_pb_dev2 < 0.8))
+        m.loc[_pb_fix2, "pb"] = _pb_primary[_pb_fix2]
+        if int(_pb_fix2.sum()):
+            recon["pb constructed from primary book (equity/bookValue)"] = int(_pb_fix2.sum())
 
     # NCAV VINTAGE RECOMPUTE (root repair): ncav_pct_mcap was computed at
     # build time and never refreshed against the CURRENT mcap (unlike the

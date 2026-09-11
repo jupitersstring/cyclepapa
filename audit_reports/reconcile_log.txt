@@ -1827,3 +1827,79 @@
   shares_outstanding                           0
   total_debt                                   741
   ufcf_yield nulled (levered, no interest data) 2
+
+=== 2026-09-11T06:22:02.192692Z apply_ticker_yf on asymmetry_global.csv ===
+  EDGAR multi-year fields merged (averages/forensic) 44465
+  capex_ttm (rebuilt: EDGAR -> statement -> NaN) 133
+  cash (directional: master under half of Yahoo) 1091
+  cash_return_ev nulled (levered, no interest data) 2
+  cfo_ttm                                      864
+  cfo_yield                                    1150
+  cross-ccy line levels restated to quote currency 727
+  currency arbitration (EDGAR usd adopted)     70
+  earnings_yield                               1159
+  ebitda_margin                                1751
+  ebitda_margin nulled (de-minimis revenue)    2925
+  ebitda_ttm                                   1054
+  ebitda_ttm unit-repaired (from in-band ev_ebitda) 160
+  equity adopted from audited EDGAR            2543
+  ev_ebit                                      5102
+  ev_ebit nulled (ebitda<=0)                   636
+  ev_ebit nulled (impossible ordering)         3856
+  ev_ebitda (row-consistency)                  3436
+  ev_ebitda nulled (ebitda<=0)                 6707
+  ev_sales (row-consistency)                   3681
+  ev_sales nulled (de-minimis revenue)         2463
+  fcf_ttm (EDGAR audited, preferred)           11
+  fcf_ttm (Yahoo statement trailing, non-EDGAR) 139
+  fcf_yield                                    1389
+  fcf_yield nulled (impossible level/components) 38
+  gross_margin                                 0
+  gross_margin nulled (de-minimis revenue)     2529
+  gross_margin nulled (extreme < op_margin)    258
+  ncav_gt_equity flagged (unresolved contradiction, kept) 190
+  ncav_pct_mcap                                210
+  ncav_pct_mcap nulled (cash>20x mcap, ccy-mismatch class) 48
+  net_cash_pct_mcap                            1082
+  net_cash_pct_mcap nulled (cash>20x mcap, ccy-mismatch class) 271
+  net_debt_ebitda                              246
+  net_income_ttm                               1063
+  net_margin                                   0
+  no-anchor mixed-ccy group: quote-vs-level ratios nulled 827
+  not_priced_in_score nulled (no sane component) 0
+  not_priced_in_score repaired/refilled from guarded components 769
+  op_margin                                    175
+  op_margin nulled (>100%, impossible)         10
+  op_margin nulled (de-minimis revenue)        1119
+  op_margin nulled (extreme > ebitda_margin)   3210
+  owner_earnings_yield rebuilt as true OE (was fcf alias) 3874
+  p_e (row-consistency)                        3124
+  p_s (row-consistency)                        3702
+  p_s nulled (de-minimis revenue)              2422
+  p_tb                                         206
+  pb constructed from primary book (equity/bookValue) 995
+  pb recomputed on cross-ccy lines (NI/roe equity) 1683
+  pb repaired /100 (pence-vs-pounds, evidence-confirmed) 119
+  pb repaired from fetched bookValue evidence  31
+  price_52w_high lifted to price               0
+  qc_flag ccy_mismatch_suspect                 827
+  qc_flag ccy_restated                         727
+  qc_flag edgar_currency_arbitration           70
+  qc_flag edgar_grounded                       5492
+  qc_flag ev_comp_gap                          6493
+  qc_flag fcf_gt_cfo                           1628
+  qc_flag fcf_yf_adopted                       0
+  qc_flag fx_twin_dev                          0
+  qc_flag gross_lt_op_margin                   465
+  qc_flag ncav_gt_equity                       190
+  qc_flag neg_ev                               1926
+  qc_flag op_gt_ebitda_margin                  2620
+  qc_flag pence_pb_repaired                    150
+  qc_flag unit_repaired                        58
+  revenue_ttm                                  1170
+  revenue_ttm unit-repaired (from in-band ev_sales) 58
+  robust_cash_yield                            1252
+  roe                                          0
+  shares_outstanding                           0
+  total_debt                                   1100
+  ufcf_yield nulled (levered, no interest data) 2
