@@ -98,6 +98,23 @@ def _concept_latest(cik, tag):
         return None, None
 
 
+def _concept_earliest_end(cik, tag):
+    """EARLIEST end-date an xbrl concept appears, or None. ReorganizationValue
+    is the fresh-start enterprise value struck AT emergence, so its FIRST
+    observation dates the emergence itself — the latest observation is only the
+    most recent comparative period and mis-dates the event years too recent."""
+    d, err = _get(BASE_CONCEPT.format(cik=cik, tag=tag))
+    if not d:
+        return None
+    pts = d.get("units", {}).get("USD")
+    if not pts:
+        return None
+    try:
+        return sorted(pts, key=lambda p: p.get("end", ""))[0].get("end", "")
+    except Exception:
+        return None
+
+
 def _recent_forms(cik):
     """Return the set of forms filed in the last WINDOW_DAYS + latest dates."""
     d, err = _get(BASE_SUB.format(cik=cik))
@@ -157,7 +174,17 @@ def process(cik):
             _reorg_ends.append(_ri_end)
     if _reorg_ends:
         row["reorg_flag"] = 1
-        row["reorg_date"] = max(_reorg_ends)
+        # (gate-audit) reorg_date = true EMERGENCE date, not the latest
+        # comparative period. The fresh-start ReorganizationValue mark's
+        # EARLIEST observation dates the emergence; fall back to the earliest
+        # ReorganizationItems, then to the windowed max only if neither exists.
+        _emg = _concept_earliest_end(cik, "ReorganizationValue")
+        if not _emg:
+            for _t in ("ReorganizationItems", "ReorganizationItemsNet"):
+                _emg = _concept_earliest_end(cik, _t)
+                if _emg:
+                    break
+        row["reorg_date"] = _emg or max(_reorg_ends)
     return row
 
 

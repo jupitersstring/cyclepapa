@@ -245,6 +245,25 @@ PPE_NET_ALIASES = [
     "PropertyPlantAndEquipmentNet",
     "PropertyPlantAndEquipmentNetOfDepreciation",
 ]
+# ---- FORENSIC balance-sheet nuances (hidden-asset / tax-shield lenses) ----
+# LIFO reserve: inventory carried below current cost — a hidden asset that
+# understates book value and (via COGS) earnings. The classic Graham forensic
+# understatement.
+LIFO_RESERVE_ALIASES = ["InventoryLIFOReserve", "LIFOInventoryAmount"]
+# Pension funded status: POSITIVE = an overfunded plan (a hidden asset that
+# reverts to equity); large NEGATIVE is a hidden liability. The direct concept
+# is DefinedBenefitPlanFundedStatusOfPlan (NOT the ...Amount variant, which is
+# unused); where absent, derive it from plan assets minus benefit obligation.
+PENSION_FUNDED_ALIASES = ["DefinedBenefitPlanFundedStatusOfPlan"]
+PENSION_ASSETS_ALIASES = ["DefinedBenefitPlanFairValueOfPlanAssets"]
+PENSION_OBLIGATION_ALIASES = ["DefinedBenefitPlanBenefitObligation"]
+# Deferred-tax assets (net) and the VALUATION ALLOWANCE against them. A large
+# NOL-driven DTA with a full valuation allowance that then REVERSES (allowance
+# shrinks) is the forensic tell that management now expects to USE the losses —
+# future earnings compound tax-free. Track both so the reversal is observable.
+DTA_NET_ALIASES = ["DeferredTaxAssetsNet", "DeferredTaxAssetsNetNoncurrent",
+                   "DeferredTaxAssetsLiabilitiesNet"]
+DTA_VALUATION_ALLOWANCE_ALIASES = ["DeferredTaxAssetsValuationAllowance"]
 # interest EXPENSE preferred over cash interest PAID (capitalized/PIK/
 # timing gaps make paid understate the true charge and overstate coverage)
 INTEREST_PAID_ALIASES = ["InterestExpense", "InterestExpenseNonoperating",
@@ -564,6 +583,19 @@ def extract_row(ticker: str, cik: int, data: dict) -> dict:
     pt(MINORITY_INTEREST_ALIASES, "minority_interest")
     pt(PREFERRED_EQUITY_ALIASES, "preferred_equity")
     pt(PPE_NET_ALIASES, "ppe_net")
+    # forensic balance-sheet nuances
+    pt(LIFO_RESERVE_ALIASES, "lifo_reserve")
+    pt(PENSION_FUNDED_ALIASES, "pension_funded_status")
+    pt(PENSION_ASSETS_ALIASES, "pension_plan_assets")
+    pt(PENSION_OBLIGATION_ALIASES, "pension_obligation")
+    pt(DTA_NET_ALIASES, "deferred_tax_assets_net")
+    pt(DTA_VALUATION_ALLOWANCE_ALIASES, "deferred_tax_valuation_allowance")
+    # derive funded status where the direct concept is absent (assets - PBO)
+    if row.get("pension_funded_status") is None \
+            and row.get("pension_plan_assets") is not None \
+            and row.get("pension_obligation") is not None:
+        row["pension_funded_status"] = (row["pension_plan_assets"]
+                                        - row["pension_obligation"])
 
     # ---- MULTI-YEAR AVERAGES (Graham/Templeton smoothing; robustness to
     # single-year accounting quirks). Per-FY series aligned by fiscal year:
