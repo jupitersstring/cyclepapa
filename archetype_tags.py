@@ -871,6 +871,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_lindy_fcf'] = (
         is_operating &                               # (R1b) exclude financials/REITs
         _roce_now_ok & _not_melting &                # (R4) current returns not negative; (deep-audit) _roce_now_ok is NaN-permissive, so a NaN-roce op&fcf melter (DSNY op-21.6%/fcf-0.8%/roce NaN) slipped through — _not_melting closes the leak.
+        ~(_ncol('roic_after_sbc').notna() & (_ncol('roic_after_sbc') < 0)) &  # (gate-audit) 87 firers earn NEGATIVE returns once SBC is expensed — "durable FCF" flattered by the stock-comp add-back
         (years_of_history >= 5) &                    # (R4) real multi-cycle history, not a 1-yr shell
         (n_yrs_fcf_pos >= 4) &
         (n_yrs_opinc_pos >= 4)
@@ -2860,6 +2861,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((rev_accel > 0) | (rev_yoy_c >= 0.15)) &          # bookings engine turning
         ((_ncol('p_e') >= 20) | _ncol('p_e').isna()) &     # headline looks dear/meaningless
         ((_ncol('market_cap') / _ncol('cfo_ttm').where(_ncol('cfo_ttm') > 0)) <= 15) &
+        ~(_ncol('roic_after_sbc').notna() & (_ncol('roic_after_sbc') < 0)) &  # (gate-audit) exclude SBC-flattered SaaS (negative after-SBC returns)
         ~(_ncol('shares_yoy') > 0.05) &
         _not_melting
     ).fillna(False).astype(int)
@@ -3055,6 +3057,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
          | ((_ncol('p_s') > 0) & (_ncol('p_s') <= 6.0))) &
         (_ncol('revenue_ttm_usd') >= 25e6) &
         (_ncol('market_cap_usd') <= 25e9) &                   # runway still open
+        ~(_ncol('roic_after_sbc').notna() & (_ncol('roic_after_sbc') < 0)) &  # (gate-audit) reinvestment SUPPRESSES current earnings, but NEGATIVE after-SBC returns is value destruction, not reinvestment — exclude the SBC-flattered ones
         ~(_ncol('shares_yoy') > 0.08) &
         _not_melting
     ).fillna(False).astype(int)
@@ -5048,6 +5051,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # debt) — a false promotion. Scrub the 5-letter Q-suffix line when it is
         # also penny-priced (<$5), so a genuine 5-letter Q ticker is untouched.
         | (_sym_nc.str.match(r'^[A-Z]{4}Q$') & (_num('price') < 5.0))
+        # (audit) GSE / agency PREFERRED-series stubs (Fannie/Freddie in
+        # conservatorship): FNMAx / FMCCx / FMCKx / FREJx 5-char series lines
+        # carry the common's equity_cagr and a corrupt tiny net income, firing
+        # book_compounder. The 4-char commons (FNMA/FMCC) are NOT matched.
+        | _sym_nc.str.match(r'^(FNMA|FMCC|FMCK|FREJ)[A-Z]$')
         # (surgical audit) COMMODITY/CRYPTO ETF & ETN wrappers: null-sector fund
         # lines (PALL/PPLT/SGOL physical-metal, FBTC bitcoin, AMJB/VYLD ETNs)
         # leak into cannibal/value gates — is_operating is True on a null sector
