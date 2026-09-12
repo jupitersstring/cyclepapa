@@ -1083,10 +1083,21 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # double digits — keep the hidden-ENGINE spirit.
     _seg_any_growth = pd.concat(
         [_fs_yoy_q, _fs_yoy_fy, fastest_segment_yoy], axis=1).max(axis=1).clip(upper=2.0)
+    # (gate-audit) _not_melting keys on CONSOLIDATED op/roce/cash — but the
+    # thesis is a hidden engine the CONSOLIDATED number MASKS, so a genuine
+    # mix-shift name with weak consolidated optics can be wrongly barred. Add a
+    # SEGMENT-level escape (cross-referencing the segment detail): a fastest
+    # segment whose OP MARGIN is inflecting up (fastest_seg_opmargin_delta_yoy>0
+    # or the audited seg_margin_inflect_flag) is a real profitable engine — let
+    # it pass even when consolidated melts, BOUNDED so a catastrophic burner
+    # (BYAH -952% EBITDA margin) still fails and the whole-company revenue-
+    # decline guard still bars wind-downs.
+    _seg_engine_ok = (((_fs_omd > 0) | (s('seg_margin_inflect_flag', 0) == 1))
+                      & (ebitda_margin > -0.20))
     df['arch_fastest_segment'] = (
         is_operating &                          # (R8) financials/land-sale one-offs excluded
         (_ncol('revenue_ttm_usd') >= 20e6) &    # (tail) a hidden GROWTH ENGINE needs a real base, not a $0.84M shell (CKX/BYAH)
-        _not_melting &                          # (tail) not a -952%-EBITDA-margin burner (BYAH)
+        (_not_melting | _seg_engine_ok) &       # consolidated survivability OR a genuinely inflecting profitable SEGMENT (the masked-engine case)
         (_ncol('rev_yoy') > -0.10) & ~(_ncol('revenue_3y_cagr') < -0.05) &  # (deep-audit) whole-company decline guard: a "hidden growth engine" inside a company whose TOTAL revenue is collapsing (VISN rev-84%, TRS/THRY shrinking) is a divestiture/wind-down, not a hidden engine. Mix-shift requires the parent not to be melting away (missing => pass).
         (segment_count >= 2) & seg_inflect_any & (_seg_any_growth >= 0.10)
     ).fillna(False).astype(int)

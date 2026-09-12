@@ -129,7 +129,7 @@ def _write_segment_table(ws, df_subset, label, n_total, sort_col='entry_confirme
     f_text_muted = _font(color=MUTED)
     f_italic_muted = _font(italic=True, color=MUTED)
 
-    NCOLS = 24
+    NCOLS = 27
     # Title
     t = ws.cell(row=2, column=1, value=label)
     t.font = f_bold
@@ -178,9 +178,13 @@ def _write_segment_table(ws, df_subset, label, n_total, sort_col='entry_confirme
                'EV/EBITDA', 'P/E', 'P/B', 'P/S', 'FCF yld %', 'Div %', 'ROIC %',
                'EBITDA m %', 'ND/EBITDA', 'Mom 12m %',
                'Segs', 'HHI', 'Largest segment (share)',
-               'Top 3 segments', 'Regs', 'Top regions', 'Fastest segment YoY']
+               'Top 3 segments', 'Regs', 'Top regions', 'Fastest segment YoY',
+               # FORENSIC segment signals — a hidden PROFITABLE engine (segment
+               # growing revenue AND expanding margin / operating leverage),
+               # not just revenue growth.
+               'Fast seg OpMgn ΔYoY %', 'Seg OpLev', 'MgnInflect']
     text_cols = {2, 3, 4, 5, 20, 21, 23, 24}  # ticker/name/country/sector/segment text
-    center_cols = {7, 18}  # verdict + segs count
+    center_cols = {7, 18, 27}  # verdict + segs count + margin-inflect flag
     for i, h in enumerate(headers, start=1):
         c = ws.cell(row=11, column=i, value=h)
         c.font = f_bold_muted
@@ -240,6 +244,14 @@ def _write_segment_table(ws, df_subset, label, n_total, sort_col='entry_confirme
             fast_str = fs_name
         ws.cell(row=r_idx, column=24, value=fast_str).font = f_text
         ws.cell(row=r_idx, column=24).alignment = _TXT_ALIGN_LEFT
+        # FORENSIC segment signals: segment-level op-margin inflection +
+        # operating leverage = the tell of a hidden PROFITABLE engine.
+        _write_pct(ws, r_idx, 25, r.get('fastest_seg_opmargin_delta_yoy'), font=f_text)
+        _write_score(ws, r_idx, 26, r.get('seg_oplev'), font=f_text)
+        _mif = r.get('seg_margin_inflect_flag')
+        ws.cell(row=r_idx, column=27,
+                value='✓' if (pd.notna(_mif) and _mif == 1) else '').font = f_text
+        ws.cell(row=r_idx, column=27).alignment = _NUM_ALIGN_CENTER
         for c in range(1, NCOLS + 1):
             ws.cell(row=r_idx, column=c).border = Border(
                 bottom=Side(style='thin', color=RULE))
@@ -248,7 +260,8 @@ def _write_segment_table(ws, df_subset, label, n_total, sort_col='entry_confirme
     # Column widths tuned for the new wider layout
     widths = {1: 4, 2: 10, 3: 22, 4: 6, 5: 14, 6: 14, 7: 12,
               8: 9, 9: 8, 10: 7, 11: 7, 12: 9, 13: 7, 14: 8, 15: 10, 16: 9, 17: 10,
-              18: 5, 19: 7, 20: 28, 21: 52, 22: 5, 23: 32, 24: 22}
+              18: 5, 19: 7, 20: 28, 21: 52, 22: 5, 23: 32, 24: 22,
+              25: 18, 26: 9, 27: 10}
     for col, w in widths.items():
         ws.column_dimensions[get_column_letter(col)].width = w
 
