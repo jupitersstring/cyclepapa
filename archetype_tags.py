@@ -2277,10 +2277,27 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # margin-rebuild and can go negative across sources. Implied is the
     # fallback where audited is absent; floored at >=0.
     _dna_audited = _ncol('da_ttm')
+    # (audit #3) the implied fallback (EBITDA − EBIT) equals D&A only when EBIT
+    # is a genuine positive margin; an impairment / near-zero op_margin dumps
+    # the charge (or all of EBITDA) into "D&A" — MHK.AX op −40% → implied D&A
+    # 226% of revenue; HUSQF op 0% → implied D&A = full EBITDA. Now that audited
+    # da_ttm covers 25.6k names, trust implied ONLY where op_margin>0 and the
+    # result is bounded (≤ EBITDA and ≤ 35% of revenue); else leave D&A missing.
     _dna_implied = (_ncol('ebitda_ttm') - _ebit_loc)
+    _dna_implied = _dna_implied.where(
+        (s('op_margin', np.nan) > 0)
+        & (_dna_implied <= _ncol('ebitda_ttm'))
+        & (_dna_implied <= 0.35 * _rev_loc))
     _dna_loc = _dna_audited.where(_dna_audited.notna(), _dna_implied)
     _dna_loc = _dna_loc.where(_dna_loc >= 0)
     _capex_loc = _ncol('capex_ttm')
+    # (audit #2/#4/#5) MAINTENANCE capex = the CONSERVATIVE (higher) of the
+    # single TTM window and the 5yr EDGAR annual average. The harvest / owner-
+    # earnings gates were faked by a momentarily-collapsed TTM window (FLNG
+    # capex_ttm=$0 vs 5yr avg $59M; NVGS $1.3M vs $80.6M) — reading a "harvest"
+    # or inflated owner earnings where real replacement spend is normal.
+    _capex_avg_loc = _ncol('capex_avg')
+    _maint_capex = pd.concat([_capex_loc, _capex_avg_loc], axis=1).max(axis=1)
     # MARGIN-BASED MID-CYCLE (inflation-neutral, per user): the nominal 5yr
     # EBITDA average is depressed by inflation vs current nominal, faking a
     # "trough". Mid-cycle MARGIN x CURRENT revenue is the correct Graham/
@@ -2293,7 +2310,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating & (mcap > 0) &
         (_dna_loc > 0) & (_rev_loc > 0) &
         ((_dna_loc / _rev_loc) >= 0.05) &          # a real fixed-asset business (D&A >= 5% of sales)
-        (_capex_loc >= 0) & (_capex_loc <= 0.6 * _dna_loc) &  # replacement FAR below depreciation
+        (_maint_capex >= 0) & (_maint_capex <= 0.6 * _dna_loc) &  # replacement (incl. 5yr avg) FAR below depreciation — not a single collapsed TTM window
         (s('op_margin', np.nan) > 0) &             # profitable harvest, not decay
         (rev_yoy_c >= -0.05) &                     # the "worn-out" assets still produce
         (pb > 0) & (pb < 1.2) &                    # priced at/below the depressed book
@@ -2391,7 +2408,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # NI UNDERSTATES the cash the owner actually keeps. Fire when owner
     # earnings run >=1.4x reported NI and the price is <=10x OWNER earnings —
     # cheap on the truer measure while the market prices the accounting one.
-    _oe_loc = _ni_ca + (_dna_loc - _capex_loc)
+    _oe_loc = _ni_ca + (_dna_loc - _maint_capex)   # (audit #2) subtract MAINTENANCE capex (max of TTM and 5yr avg), so a collapsed TTM window (FLNG capex_ttm=$0) can't inflate owner earnings
     _oe_ratio = (_oe_loc / _ni_ca).where(_ni_ca > 0)
     df['arch_owner_earnings_power'] = (
         is_operating & (_mc_ca > 0) &
@@ -2676,7 +2693,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_xr_harvest_distribution'] = (
         is_operating & (mcap > 0) &
         _fx_coherent &
-        (_dna_loc > 0) & (_capex_loc >= 0) & (_capex_loc <= 0.5 * _dna_loc) &
+        (_dna_loc > 0) & (_maint_capex >= 0) & (_maint_capex <= 0.5 * _dna_loc) &  # (audit #5) harvest measured on MAINTENANCE capex (incl. 5yr avg), not a single collapsed TTM window (KSS/LKQ)
         (_payout_x7 >= 0.06) &
         (pb > 0) & (pb < 1.0) &
         ((_oe_loc > 0) | (_ncol('oe_avg') > 0)) &
