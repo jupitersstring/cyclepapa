@@ -4790,10 +4790,22 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                   | (_midcyc_y_pr.isna() & (_ebitda_y_pr >= 0.10))
                   | (fcf_yield >= 0.08))
     _reorg_value = ((_is_cyc_pr & _cyc_value) | (~_is_cyc_pr & _noncyc_value))
+    # Leverage discipline is central to the post-reorg thesis (Verdad: de-
+    # levering + intact moat), BUT (user) trailing net-debt/EBITDA is a CYCLE
+    # ARTIFACT for a commodity emerger at a trough: depressed trough EBITDA
+    # inflates the ratio even when the balance sheet is absolutely de-levered.
+    # So judge a cyclical's leverage on MID-CYCLE EBITDA (rescale trailing nde
+    # by trailing/mid-cycle EBITDA) — a trough name with sound mid-cycle
+    # leverage passes; a genuinely over-levered one (iHeart 14x, non-cyclical,
+    # no relaxation) still fails.
+    _midcyc_nde = (nde * (ebitda_ttm_v / _midcyc_ebitda)).where(
+        (_midcyc_ebitda > 0) & (ebitda_ttm_v > 0), np.nan)
+    _reorg_lev_ok = ((nde <= 3.0) | (net_cash_pct_c >= 0)
+                     | (_is_cyc_pr & _midcyc_nde.notna() & (_midcyc_nde <= 3.0)))
     df['arch_post_reorg'] = (
         (_reorg == 1) & is_operating & _not_melting
         & _reorg_value
-        & (nde <= 3.0)
+        & _reorg_lev_ok
     ).fillna(False).astype(int)
 
     # Special-situation catalyst: a dated merger / tender / going-private event
@@ -4842,6 +4854,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         | _sym_nc.str.contains(r'[-. ]PFD\b', case=False, regex=True)
         | _nm_nc.str.contains(r'preferred|pfd| pref |depositary|% notes|perpetual|warrant',
                               case=False, regex=True)
+        # (surgical audit) BANKRUPTCY STUB: the old 5th-letter-Q convention
+        # (OPIRQ, BLIAQ/BLIBQ) marks a security still IN Chapter 11 / delisted,
+        # not an emerged post-reorg equity. Broadening reorg detection to
+        # ReorganizationItems surfaced OPIRQ (a $0.31, $23M stub with $2.4B net
+        # debt) — a false promotion. Scrub the 5-letter Q-suffix line when it is
+        # also penny-priced (<$5), so a genuine 5-letter Q ticker is untouched.
+        | (_sym_nc.str.match(r'^[A-Z]{4}Q$') & (_num('price') < 5.0))
     ).fillna(False)
     _GATED_SCORES = [c for c in ['tenbagger_score', 'tenbagger_implied_return',
                      'evsales_derate_score', 'evsales_derate_gap',
