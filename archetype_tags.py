@@ -3352,8 +3352,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & (net_cash_pct_c >= 0.20)                        # net-cash survivability
         & (_nol_ratio_tri >= 0.30) & (_nol_ratio_tri <= 20.0)  # monetizable NOL (sane band)
         & _inflecting_tri                                 # the turn is happening now
-        & _profit_present                                 # a REAL current profitability signal (ebitda>0 | op>0 | fcf>0) — excludes data-empty shells (ONCO) and cash bonfires (ASTC fcf -96%) that pass _not_melting vacuously on missing margins
-        & (fcf_yield > -0.15)                             # not deeply burning while it "inflects"
+        & (ebitda_margin > 0.03)                          # GENUINE operating profitability NOW — the NOL must have real earnings to shield and the turn must be real, not a working-capital FCF blip on a still-lossmaking business (HMDCF ebitda -5%, API ebitda ~0 / fcf -6% excluded). Also excludes data-empty shells (ONCO) that pass _not_melting vacuously.
+        & (fcf_yield > -0.05)                             # not burning cash while it "inflects"
         & _not_melting
     ).fillna(False).astype(int)
 
