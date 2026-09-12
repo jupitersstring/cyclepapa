@@ -650,7 +650,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _op_viable(0) &          # positive operating profit (impairment-robust: a writedown-hit but cash-generative operator is kept)
         (nde <= 1.5) &
         (ebitda_margin_sane >= 0.05) &          # (G2) drop one-off >60% margins
-        (price_yoy <= 0.30) &
+        (price_yoy <= 3.0) &                    # (gate-audit) was <=0.30, a mean-reversion/run-up screen alien to a capital-ALLOCATION-quality thesis — it ejected 882 rewarded compounders; loosened to a data-artifact guard only
         (yart_score >= 0.45)
     ).fillna(False).astype(int)
 
@@ -1130,7 +1130,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # (22 firers total). Add a global current-ROIC path (base-effect-guarded)
     # alongside the strong US EDGAR path; both share the quiet-tape + insider core.
     _qc_common = (is_operating & _roce_now_ok & (insider >= 0.10)
-                  & (_m12_raw.fillna(_py_raw).between(-0.10, 0.30)
+                  & (_m12_raw.fillna(_py_raw).between(-0.10, 0.50)   # (gate-audit) upper bound 0.30->0.50: a +30% ceiling ejected a quality compounder the moment it began re-rating (the inflection you want to still own)
                      & (_m12_raw.notna() | _py_raw.notna())))
     _qc_us = ((roic_lindy >= 0.15) & (n_yrs_roic_pos >= 4)
               & (shares_growth_3y <= 0.03) & (years_of_history >= 5))
@@ -2773,7 +2773,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (_ncol('financing_cf_ttm') <= 0) &
         ((_ncol('rev_yoy_streak_q') >= 4) | (rev_yoy_c >= 0.10)) &
         (((_ncol('ev_ebit') > 0) & (_ncol('ev_ebit') <= 14))
-         | ((_ncol('p_e') > 0) & (_ncol('p_e') <= 18))) &
+         | ((_ncol('p_e') > 0) & (_ncol('p_e') <= 18))
+         | ((_ncol('evsg') > 0) & (_ncol('evsg') <= 0.40))) &   # (gate-audit) growth-adjusted fair price, matching sibling engines (reusable_assembler/baron) — a top high-ROIIC compounder at 16-20x EV/EBIT was barred by the raw multiple ceiling alone
         ~(_ncol('shares_yoy') > 0.02) &
         _not_melting
     ).fillna(False).astype(int)
@@ -4854,8 +4855,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #     thesis keys on RETURNS + MARGINS + a SOUND balance sheet + a SANE
     #     price, deliberately NOT on cheapness (a great business rarely spins
     #     cheap; the edge is the forced-selling orphan discount on quality).
-    _spin_reasonable_mult = (((s('ev_ebit', np.nan) > 0) & (s('ev_ebit', np.nan) <= 22.0))
-                             | ((_ev_ebitda_ev > 0) & (_ev_ebitda_ev <= 20.0)))
+    # (gate-audit) SanDisk lesson: this is an explicitly-QUALITY thesis (roce &
+    # op-margin already gate quality), so the multiple ceiling should exclude
+    # only egregious BUBBLES, not fairly-priced premium spins. Raised 22->35x
+    # EV/EBIT (20->30x EV/EBITDA) — a franchise spun at 25x is still the trade.
+    _spin_reasonable_mult = (((s('ev_ebit', np.nan) > 0) & (s('ev_ebit', np.nan) <= 35.0))
+                             | ((_ev_ebitda_ev > 0) & (_ev_ebitda_ev <= 30.0)))
     df['arch_spinoff_quality'] = (
         (_spin == 1) & is_operating & _not_melting & (mcap > 0)
         & (_num('roce') >= 0.20)                 # genuine return on capital (SNDK 0.35)
