@@ -127,6 +127,7 @@ ARCHETYPE_LABELS = {
     'arch_pension_overfunded': 'Pension Overfunded (hidden surplus)',
     'arch_dta_reversal': 'DTA / Valuation-Allowance Reversal (tax shield)',
     'arch_xr_contracted_backlog': 'Contracted Backlog (RPO not priced in)',
+    'arch_xr_hidden_segment_compounder': 'Hidden Segment Compounder (mispriced sum-of-parts)',
     'arch_post_reorg': 'Post-Reorg (fresh-start, EBIT-yield>20%)',
     'arch_special_situation': 'Special Situation (merger/tender/going-private)',
     'arch_nol_shell': 'NOL Shell (tax asset > half market cap)',

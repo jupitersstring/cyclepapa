@@ -3483,6 +3483,34 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & _not_melting
     ).fillna(False).astype(int)
 
+    # XR37 — Hidden segment compounder ('XR-HiddenSegmentCompounder'): the
+    # forensic sum-of-parts XR. A fast-growing segment whose OPERATING MARGIN is
+    # inflecting (a genuinely PROFITABLE engine, not just top-line) and that is
+    # GAINING SHARE of the company, but is still < 60% of it — so the sluggish
+    # LEGACY segment drags the consolidated numbers and MASKS the emerging one —
+    # while the market prices that cheap consolidated whole. The segment-level
+    # forensics reveal the compounder the trailing consolidated figures hide;
+    # the re-rate comes as the mix shifts and the market catches up.
+    _seg_ct_x37 = _ncol('segment_count')
+    _seg_inflecting_x37 = ((_ncol('fastest_seg_opmargin_delta_yoy') > 0)
+                           | (s('seg_margin_inflect_flag', 0) == 1)
+                           | (_ncol('seg_oplev') >= 0.10))   # segment MARGIN / operating leverage turning up
+    _seg_cheap_x37 = (((_ncol('ev_sales') > 0) & (_ncol('ev_sales') <= 3.0))
+                      | ((ev_ebitda_v > 0) & (ev_ebitda_v <= 12.0))
+                      | ((pb > 0) & (pb < 2.0))
+                      | (fcf_yield >= 0.03))                 # market prices the sluggish CONSOLIDATED whole
+    df['arch_xr_hidden_segment_compounder'] = (
+        is_operating & (mcap > 0) & _fx_coherent
+        & (_ncol('revenue_ttm_usd') >= 20e6)
+        & (_seg_ct_x37 >= 2)                                # a real segment mix — the mask exists
+        & (_ncol('fastest_segment_yoy') >= 0.20)            # fast-growing segment
+        & _seg_inflecting_x37                               # ...and its MARGIN is inflecting (profitable engine)
+        & (_ncol('fastest_segment_share_delta') >= 0.02)    # gaining share of the company
+        & (_ncol('fastest_segment_share') <= 0.60)          # still HIDDEN — not yet the whole (consolidated masks it)
+        & _seg_cheap_x37
+        & _not_melting
+    ).fillna(False).astype(int)
+
     # F6 — Forensic payout confirmation (the user's BOOST leg). Any forensic /
     # hidden-value member that is ALSO returning capital — buying back shares
     # or paying a dividend — earns an EXTRA archetype count, which is this
@@ -3955,7 +3983,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                    'arch_xr_pre_scale_margin', 'arch_xr_leverage_detonation',
                    'arch_xr_baron_compounder', 'arch_xr_audited_streak_unrerated',
                    'arch_xr_harvest_distribution', 'arch_xr_paydown_yield',
-                   'arch_xr_cyclical_trough'],
+                   'arch_xr_cyclical_trough', 'arch_xr_hidden_segment_compounder'],
     }
     _fam_fired = pd.DataFrame(index=df.index)
     for _fam, _cols in _XR_FAMILIES.items():
@@ -4586,6 +4614,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_oneoff_loss_mask',
         'arch_xr_monetization_trifecta',
         'arch_xr_contracted_backlog',
+        'arch_xr_hidden_segment_compounder',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -4741,6 +4770,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_oneoff_loss_mask': 'XR-OneOffLossMask',
         'arch_xr_monetization_trifecta': 'XR-MonetizationTrifecta',
         'arch_xr_contracted_backlog': 'XR-ContractedBacklog',
+        'arch_xr_hidden_segment_compounder': 'XR-HiddenSegmentCompounder',
         'arch_templeton_pessimism': 'Templeton-MaxPessimism',
         'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
         'arch_levered_inflection': 'LeveredInflectionStub',

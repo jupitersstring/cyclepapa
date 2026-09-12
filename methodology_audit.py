@@ -533,7 +533,8 @@ def _regression(t, g):
                 "arch_greenblatt_magic",
                 # forensic balance-sheet nuances (operating-gated)
                 "arch_lifo_hidden_reserve", "arch_pension_overfunded",
-                "arch_dta_reversal", "arch_xr_contracted_backlog"):
+                "arch_dta_reversal", "arch_xr_contracted_backlog",
+                "arch_xr_hidden_segment_compounder"):
         if _ac in t.columns:
             leak = int(((n(t, _ac) == 1) & _finre).sum())
             check(f"regression(R1): {_ac} excludes Financials/REITs/Utilities",
