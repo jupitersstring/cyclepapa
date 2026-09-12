@@ -5000,10 +5000,25 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _reorg_lev_ok = ((nde <= 4.0) | (net_cash_pct_c >= 0)
                      | (_is_cyc_pr & _midcyc_nde.notna() & (_midcyc_nde <= 3.0)
                         & (nde <= 6.0) & (ebitda_margin > 0)))
+    # (gate-audit) FRESHNESS — now that reorg_date is the TRUE emergence date
+    # (earliest ReorganizationValue mark), a post-reorg equity is a live special
+    # situation only while the re-rate is still running. Verdad's alpha is the
+    # first ~2 years, but a fresh-start equity keeps re-rating past that, so use
+    # a 5-year emergence window: this correctly drops names that emerged >5yr
+    # ago (WFRD 2019, EXE 2018) whose reorg_flag only lingered via recent
+    # comparative-period ReorganizationItems. Missing date stays permissive.
+    # NB: use the RAW column, not s() — s() coerces to numeric, which turns the
+    # date STRINGS into NaN (vacuously "fresh").
+    _emg_dt = (pd.to_datetime(df['reorg_date'], errors='coerce')
+               if 'reorg_date' in df.columns
+               else pd.Series(pd.NaT, index=df.index))
+    _emg_cut = pd.Timestamp.now() - pd.Timedelta(days=1825)
+    _emg_fresh = _emg_dt.isna() | (_emg_dt >= _emg_cut)
     df['arch_post_reorg'] = (
         (_reorg == 1) & is_operating & _not_melting
         & _reorg_value
         & _reorg_lev_ok
+        & _emg_fresh
     ).fillna(False).astype(int)
 
     # Special-situation catalyst: a dated merger / tender / going-private event
