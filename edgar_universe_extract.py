@@ -264,6 +264,18 @@ PENSION_OBLIGATION_ALIASES = ["DefinedBenefitPlanBenefitObligation"]
 DTA_NET_ALIASES = ["DeferredTaxAssetsNet", "DeferredTaxAssetsNetNoncurrent",
                    "DeferredTaxAssetsLiabilitiesNet"]
 DTA_VALUATION_ALLOWANCE_ALIASES = ["DeferredTaxAssetsValuationAllowance"]
+# ---- CONTRACTED / OFF-BALANCE-SHEET forensic signals (not-priced-in) ----
+# RPO (remaining performance obligation): signed contracts NOT yet recognized
+# as revenue — future revenue the trailing top line doesn't show. Large/growing
+# RPO vs trailing revenue = contract wins / backlog the market hasn't priced.
+RPO_ALIASES = ["RevenueRemainingPerformanceObligation"]
+# Contract assets: revenue EARNED but not yet billed (work delivered ahead of
+# invoicing) — a receivable-like hidden claim.
+CONTRACT_ASSET_ALIASES = ["ContractWithCustomerAssetNet",
+                          "ContractWithCustomerAssetNetCurrent"]
+# Equity-method stakes carried at cost — off-BS value where the stake is worth
+# a multiple of book (a hidden-asset / look-through lens).
+EQUITY_METHOD_ALIASES = ["EquityMethodInvestments"]
 # interest EXPENSE preferred over cash interest PAID (capitalized/PIK/
 # timing gaps make paid understate the true charge and overstate coverage)
 INTEREST_PAID_ALIASES = ["InterestExpense", "InterestExpenseNonoperating",
@@ -590,6 +602,10 @@ def extract_row(ticker: str, cik: int, data: dict) -> dict:
     pt(PENSION_OBLIGATION_ALIASES, "pension_obligation")
     pt(DTA_NET_ALIASES, "deferred_tax_assets_net")
     pt(DTA_VALUATION_ALLOWANCE_ALIASES, "deferred_tax_valuation_allowance")
+    # contracted / off-balance-sheet (not-priced-in)
+    pt(RPO_ALIASES, "rpo")
+    pt(CONTRACT_ASSET_ALIASES, "contract_assets")
+    pt(EQUITY_METHOD_ALIASES, "equity_method_investments")
     # derive funded status where the direct concept is absent (assets - PBO)
     if row.get("pension_funded_status") is None \
             and row.get("pension_plan_assets") is not None \

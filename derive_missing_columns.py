@@ -118,6 +118,7 @@ def load_edgar_facts(path: str) -> pd.DataFrame:
         # forensic balance-sheet nuances (hidden-asset / tax-shield lenses)
         'lifo_reserve', 'pension_funded_status',
         'deferred_tax_assets_net', 'deferred_tax_valuation_allowance',
+        'rpo', 'contract_assets', 'equity_method_investments',
     ]
     try:
         ed = pd.read_csv(path, usecols=lambda c: c in keep, low_memory=False)
@@ -207,7 +208,8 @@ def main():
         for col in ['cash', 'total_debt', 'shares_outstanding',
                     'fcf_ttm', 'assets', 'revenue_ttm', 'eps_diluted_ttm',
                     'lifo_reserve', 'pension_funded_status',
-                    'deferred_tax_assets_net', 'deferred_tax_valuation_allowance']:
+                    'deferred_tax_assets_net', 'deferred_tax_valuation_allowance',
+                    'rpo', 'contract_assets', 'equity_method_investments']:
             if col in edgar.columns:
                 edgar_col = edgar[col].reindex(master.index)
                 if col in master.columns:

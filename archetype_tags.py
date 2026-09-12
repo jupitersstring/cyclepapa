@@ -3464,6 +3464,25 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & _not_melting
     ).fillna(False).astype(int)
 
+    # XR36 — Contracted backlog not priced in ('XR-ContractedBacklog'): the
+    # remaining performance obligation (RPO) — signed contracts NOT yet in the
+    # trailing top line — is >= a full year of revenue, while the market prices
+    # the TRAILING numbers (cheap on sales/EBITDA). The contracted growth
+    # converts mechanically; the trailing screens can't see it. A forensic
+    # "contract wins the tape hasn't caught" setup. RPO is USD (EDGAR); use
+    # revenue_ttm_usd for a same-currency coverage ratio.
+    _rpo_x36 = _ncol('rpo')
+    _rpo_cov36 = (_rpo_x36 / _ncol('revenue_ttm_usd').where(_ncol('revenue_ttm_usd') > 0))
+    df['arch_xr_contracted_backlog'] = (
+        is_operating & (mcap > 0) & _fx_coherent
+        & (_rpo_x36 > 0) & (_rpo_cov36 >= 1.0)            # >= 1yr of contracted revenue in backlog
+        & (((_ncol('ev_sales') > 0) & (_ncol('ev_sales') <= 4.0))
+           | ((ev_ebitda_v > 0) & (ev_ebitda_v <= 15.0))
+           | (fcf_yield >= 0.03))                         # market prices TRAILING, backlog unpriced
+        & (rev_yoy_c >= 0.0)                              # backlog converting, not a stale/declining book
+        & _not_melting
+    ).fillna(False).astype(int)
+
     # F6 — Forensic payout confirmation (the user's BOOST leg). Any forensic /
     # hidden-value member that is ALSO returning capital — buying back shares
     # or paying a dividend — earns an EXTRA archetype count, which is this
@@ -3930,7 +3949,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                      'arch_xr_wc_normalization', 'arch_xr_amortization_mask',
                      'arch_xr_nol_shield', 'arch_xr_growth_capex_masked',
                      'arch_xr_look_through_value', 'arch_xr_float_compounding',
-                     'arch_xr_oneoff_loss_mask'],
+                     'arch_xr_oneoff_loss_mask',
+                     'arch_xr_contracted_backlog'],
         'engine': ['arch_xr_compounding_deployer', 'arch_xr_reusable_assembler',
                    'arch_xr_pre_scale_margin', 'arch_xr_leverage_detonation',
                    'arch_xr_baron_compounder', 'arch_xr_audited_streak_unrerated',
@@ -4565,6 +4585,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_cannibal_below_tbook',
         'arch_xr_oneoff_loss_mask',
         'arch_xr_monetization_trifecta',
+        'arch_xr_contracted_backlog',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -4719,6 +4740,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_cannibal_below_tbook': 'XR-CannibalBelowTangibleBook',
         'arch_xr_oneoff_loss_mask': 'XR-OneOffLossMask',
         'arch_xr_monetization_trifecta': 'XR-MonetizationTrifecta',
+        'arch_xr_contracted_backlog': 'XR-ContractedBacklog',
         'arch_templeton_pessimism': 'Templeton-MaxPessimism',
         'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
         'arch_levered_inflection': 'LeveredInflectionStub',

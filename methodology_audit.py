@@ -533,7 +533,7 @@ def _regression(t, g):
                 "arch_greenblatt_magic",
                 # forensic balance-sheet nuances (operating-gated)
                 "arch_lifo_hidden_reserve", "arch_pension_overfunded",
-                "arch_dta_reversal"):
+                "arch_dta_reversal", "arch_xr_contracted_backlog"):
         if _ac in t.columns:
             leak = int(((n(t, _ac) == 1) & _finre).sum())
             check(f"regression(R1): {_ac} excludes Financials/REITs/Utilities",
@@ -696,6 +696,7 @@ def _figure_coverage(t, g):
         # forensic balance-sheet nuances (EDGAR scrape — hidden asset / tax shield)
         "lifo_reserve", "pension_funded_status", "deferred_tax_assets_net",
         "deferred_tax_valuation_allowance",
+        "rpo", "contract_assets", "equity_method_investments",
     }
     EXEMPT = {
         # growth/deltas & inflection FLAGS: bounded by construction upstream
