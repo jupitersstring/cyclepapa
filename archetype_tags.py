@@ -757,7 +757,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (rev_yoy > 0) &                 # (R5) inflection with a GROWING top line, not a cost-cut blip in decline
         _not_melting &                  # (tail) EBITDA-margin "profitable" alone let op-loss burners in (SOGP roce -95%)
         (mcap > 0) & (mcap < 250e6) &
-        profitable &
+        (ebitda_margin > 0) &           # (gate-audit) was ebitda_margin>=0.05, which zeroed the thesis's OWN "first-positive print" arm (a name printing its first positive EBITDA sits near 0%, not 5%): 0 of 620 firers were pre-profit, 244 blocked incl. 108 first-positive prints. _not_melting already carries survivability.
         inflection_now &
         clean_balance_sheet &
         cheap_on_ebitda
@@ -2156,8 +2156,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((fcf_yield >= 0.10) | (_ncol('robust_cash_yield') >= 0.10) |
          (_ncol('owner_earnings_yield') >= 0.10)) &
         (ebitda_ttm_v > 0) & (nde >= 1.0) & (nde <= 3.0) &
-        ((ebitda_yoy_v > 0) | (ebitda_inflection > 0) | oper_lev_any) &   # leverage trajectory (any angle)
-        ((div_yield_v >= 0.06) | (s('capital_return_yield', 0.0) >= 0.06)) &
+        ((ebitda_yoy_v > 0) | (ebitda_inflection > 0) | oper_lev_any) &   # leverage trajectory (any angle) — the deleveraging PROOF
+        ~(_ncol('shares_yoy') > 0.02) &   # de-levering via FCF, not equity issuance — an equity-raiser is off-thesis
+        # (gate-audit) a 6% SHAREHOLDER-PAYOUT floor contradicts a DELEVERAGING
+        # thesis whose cash routes to LENDERS, not a fat dividend — it blocked
+        # 646 of 802 (81%) matching names. The rising-EBITDA trajectory above +
+        # heavy FCF + moderate falling debt already define "cash paying down
+        # debt"; the payout floor is removed.
         _soft_ok_above('interest_coverage', 2.0)
     ).fillna(False).astype(int)
 
@@ -2216,8 +2221,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (mcap > 0) & (mcap < 500e6) &
         ((net_cash_pct_c >= 0.40) | (ncav_pct >= 0.80)) &
         (pb > 0) & (pb < 1.5) &
-        ((fcf_ttm_v > 0) | (cfo_ttm_v > 0)) &        # (G6) survivability (match oak siblings)
-        _not_melting   # (deep-audit) the Graham cash floor protects the balance sheet but not against operations eating it: DCGO roce-95%, 0738.HK roce-70% passed. Add the returns floor (SOGP roce-96%/op+7% is a denominator artifact, correctly kept).
+        # (gate-audit) the positive-cash mandate (fcf>0 | cfo>0) contradicts a
+        # GRAHAM LIQUIDATION-FLOOR thesis — it excluded 549 non-melting loss-
+        # making net-nets, the exact names this archetype exists to find.
+        # _not_melting already carries survivability against operations eating
+        # the floor (DCGO/0738.HK-type capital destroyers still fail).
+        _not_melting
     ).fillna(False).astype(int)
 
     # NEW (user request): Hidden-asset overcapitalized balance sheet — a
@@ -3219,12 +3228,21 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating & (mcap > 0) & _fx_coherent &
         sector.isin(_cyc_sectors) &
         (pb > 0) & (pb < 1.0) &                            # asset discount
-        (_nrm29 > 0) & (ebitda_ttm_v < 0.75 * _nrm29) &    # earnings BELOW mid-cycle
+        (_nrm29 > 0) & (ebitda_ttm_v < 0.75 * _nrm29) &    # earnings BELOW mid-cycle (INCLUDING negative — the deepest trough)
         ((_ncol('enterprise_value') / _nrm29.where(_nrm29 > 0)) <= 7.0) &  # cheap on normal
-        ((nde < 3.5) | (net_cash_pct_c >= 0)) &            # survives the trough
-        _op_viable(-0.05) &                                # not structurally broken (impairment-robust: a writedown-hit but cash-generative trough name is kept)
         ~(_ncol('shares_yoy') > 0.05) &
-        _not_melting
+        # (gate-audit) the deepest, highest-asymmetry troughs run NEGATIVE
+        # trailing EBITDA against a strong mid-cycle base — the same lesson
+        # applied to double_trough, un-applied here (it excluded ~213 CFO-
+        # positive survivable deep troughs). Positive-EBITDA trough keeps the
+        # standard viability + not-melting; the negative-EBITDA (deep) trough
+        # substitutes a HARD balance-sheet fortress (the pb<1 asset discount +
+        # net cash / very low leverage), since at a real trough the melt gate
+        # would bar the entry by design.
+        (((ebitda_ttm_v > 0) & ((nde < 3.5) | (net_cash_pct_c >= 0))
+          & _op_viable(-0.05) & _not_melting)
+         | ((ebitda_ttm_v <= 0)
+            & ((net_cash_pct_c >= 0.20) | ((nde > -90) & (nde <= 1.0)))))
     ).fillna(False).astype(int)
 
     # XR30 — Loss-carryforward shield ('XR-NOLShield', deferred-tax nuance):
@@ -4937,7 +4955,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # relaxation at a moderate trailing leverage (<=6x — a real trough cyclical
     # is de-levered in absolute terms, not 9x) and require positive trailing
     # EBITDA (a positive margin to normalize from at all).
-    _reorg_lev_ok = ((nde <= 3.0) | (net_cash_pct_c >= 0)
+    # (gate-audit) a post-reorg emerger's thesis IS elevated-but-FALLING
+    # leverage, so a flat nde<=3 was too tight and its mid-cycle relief was
+    # limited to Energy/Materials — it excluded non-E/M operating emergers still
+    # de-levering (WW, the comment's own poster child, at nde 3.44). Lift the
+    # flat cap to 4.0 (a de-levering emerger runs elevated), keeping the deeper
+    # mid-cycle relaxation for cyclicals.
+    _reorg_lev_ok = ((nde <= 4.0) | (net_cash_pct_c >= 0)
                      | (_is_cyc_pr & _midcyc_nde.notna() & (_midcyc_nde <= 3.0)
                         & (nde <= 6.0) & (ebitda_margin > 0)))
     df['arch_post_reorg'] = (
