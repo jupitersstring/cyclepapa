@@ -233,6 +233,19 @@ def compute_asymmetry(df: pd.DataFrame) -> pd.DataFrame:
     df["d_forgotten"] = (df["pew_forgotten_score"].fillna(0) >= 0.50).astype(int)
     df["d_pew_negev"] = df["pew_negative_ev_flag"].fillna(0).astype(int)
 
+    # (user) FINANCIALS & REITs: net cash / net-net / cash>EV / negative-EV are
+    # MEANINGLESS as an asset floor — customer deposits (banks), float
+    # (insurers) and property leverage (REITs) inflate cash and distort EV and
+    # NCAV. A financial's balance-sheet floor is PRICE-TO-BOOK (d_sub_book): a
+    # bank/insurer/REIT below book has a genuine asset floor; its "net cash" does
+    # not. Zero the deposit/float-distorted legs for these rows and let P/B carry
+    # the asset floor (the earnings/solvency legs still apply).
+    _finre_rk = (df["sector"].fillna("").astype(str).str.lower()
+                 .str.contains("financ|real estate|insurance", regex=True)
+                 if "sector" in df.columns else pd.Series(False, index=df.index))
+    for _fc in ("d_cash_ev", "d_graham", "d_net_cash", "d_pew_negev"):
+        df.loc[_finre_rk, _fc] = 0
+
     # ---- earnings / solvency floor (size-neutral) ----
     # Deep-value asset legs (net-net, sub-book, net-cash, negative-EV) are
     # structurally small-cap: a profitable mega-cap almost never trades below

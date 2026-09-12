@@ -357,6 +357,21 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # DEMOTED (not just gate-tested) via melt_demotion in enrich_asymmetry_global.
     _not_melting = ~(((_opm_now < 0) | (_roce_now < -0.05))
                      & ~_cash_return_ok & ~_returns_improving)
+    # (user #3) IMPAIRMENT-ROBUST operating viability — the MOST FLEXIBLE
+    # reading, to PREVENT GOOD OPPORTUNITIES BEING LOST. op_margin is GAAP-
+    # impairment contaminated (WW op -30% on +14% EBITDA / +72% gross — a
+    # goodwill writedown, not an operating loss). Where a gate uses op_margin
+    # as a VIABILITY FLOOR (op > threshold, "not structurally broken"), credit
+    # instead a name clearly viable on EBITDA + gross margin that is generating
+    # cash — so an impairment-hit-but-healthy name is kept. Paired with
+    # _not_melting (already cash-aware) in every gate, so a genuine cash-burning
+    # shell still fails. This is a FLOOR-substitute, deliberately NOT a change
+    # to the melt gate (which must keep barring ice cubes).
+    def _op_viable(op_thresh):
+        return ((s('op_margin', np.nan) > op_thresh)
+                | ((ebitda_margin > 0.05)
+                   & (s('gross_margin', np.nan) > 0.10)
+                   & _cash_return_ok))
     # (reference II) "Some measure of profitability present and robust" is the
     # ONE point every multibagger study agrees on; Yartseva further shows it is
     # the LEVEL of profitability/FCF that drives returns, not the growth RATE.
@@ -632,7 +647,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _own_aligned &
         _cd_returns_floor &                     # real returns on capital (not a value-destroyer)
         _roce_now_ok &                          # (verify) a one-off FCF yield must not let a capital DESTROYER through the returns-floor OR (MKTW roce-76%)
-        (s('op_margin', np.nan) > 0) &          # positive operating profit (Hinduja op -9.9% out)
+        _op_viable(0) &          # positive operating profit (impairment-robust: a writedown-hit but cash-generative operator is kept)
         (nde <= 1.5) &
         (ebitda_margin_sane >= 0.05) &          # (G2) drop one-off >60% margins
         (price_yoy <= 0.30) &
@@ -670,7 +685,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         beaten_down_any(0.40) &
         _cash_yield_any &
         (ebitda_margin > 0) &
-        (s('op_margin', np.nan) > 0) &          # real operating cow, not a one-off/near-liquidation FCF spike
+        _op_viable(0) &          # real operating cow (impairment-robust), not a one-off/near-liquidation FCF spike
         _roce_now_ok &                          # (fresh) sibling floor — not a capital-destroyer on a one-off FCF spike (TTEC roe-101%)
         (nde <= 3.0)
     ).fillna(False).astype(int)
@@ -794,7 +809,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((roic_inflect == 1) | (cash_roic_inflect == 1))
         & (cash_roic_lindy.fillna(-1) > 0)
         & (rev_yoy > 0)                              # (R5) not a cost-cut blip in a shrinking co
-        & (s('op_margin', np.nan) > 0)               # (R4) inflection is REAL now — positive operating result (GitLab op -6%, Azenta -33% out)
+        & _op_viable(0)               # (R4) inflection is REAL now — positive operating result (impairment-robust: a cash-generative writedown-hit inflector is kept)
     ).fillna(False).astype(int)
 
     # L — Cheap per reinvestment yield (PEG analogue on ROIIC). Lower
@@ -966,7 +981,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating &                          # (G1) exclude financials/REITs/utilities
         (effective_tax_rate >= 0.03) & (effective_tax_rate < 0.15) &  # etr floor: a near-0% rate is NOL/credit, not structure
         (pretax_pos > 0) &
-        (s('op_margin', np.nan) > 0)            # real OPERATING profit, not a cash-pile interest print (WIMI op_margin -9%)
+        _op_viable(0)            # real OPERATING profit (impairment-robust), not a cash-pile interest print (WIMI op_margin -9%)
     ).fillna(False).astype(int)
 
     # AC — Strong Coverage: debt burden trivially serviceable, seen through
@@ -2048,7 +2063,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (_num('revenue_ttm_usd') >= 10e6) &         # real revenue base (base-effect guard: Dong A Eltek +234%)
         (rev_yoy_c >= 0.25) & (rev_yoy_c <= 1.5) &  # accelerating streak, NOT a base-effect explosion
         (rev_accel > 0) &
-        (s('op_margin', np.nan) > 0) &              # profitable compounder, not Bengal Tea op_margin -160%
+        _op_viable(0) &              # profitable compounder (impairment-robust), not Bengal Tea op_margin -160%
         _roce_now_ok &                              # (fresh) a compounder does not destroy capital (SOGP roce-96%)
         ~(_num('shares_yoy') > 0.20) &              # low dilution — not ADESE (+400% shares)
         ((cfo_ttm_v > 0) | (fcf_ttm_v > 0)) &
@@ -2137,7 +2152,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # shareholder return. Yield floor raised to DEC-scale; solvency soft gate.
     df['arch_oak_deleveraging'] = (
         is_operating &                              # (R1b) exclude financials/REITs (mandatory-leverage biz)
-        _roce_now_ok & (s('op_margin', np.nan) > 0) &  # returns floor: a deleveraging compounder earns real operating profit (NIC Autotec p/e 169 out)
+        _roce_now_ok & _op_viable(0) &  # returns floor (impairment-robust): a deleveraging compounder earns real operating profit / cash (NIC Autotec p/e 169 out)
         ((fcf_yield >= 0.10) | (_ncol('robust_cash_yield') >= 0.10) |
          (_ncol('owner_earnings_yield') >= 0.10)) &
         (ebitda_ttm_v > 0) & (nde >= 1.0) & (nde <= 3.0) &
@@ -2778,6 +2793,19 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # names whose apparent cash generation is SBC-inflated.
     df['sbc_polluted_flag'] = (_ncol('sbc_pct_revenue') >= 0.15).fillna(False).astype(int)
 
+    # (user) ONE-OFF / DISCHARGE-GAIN EARNINGS marker. Net income ABOVE EBITDA
+    # is anomalous — normally D&A, interest and tax pull NI below EBITDA — so
+    # NI > EBITDA means a NON-OPERATING gain (fresh-start debt discharge, asset
+    # sale, tax benefit, equity-method income) inflated reported earnings above
+    # the operating cash proxy. That makes a 1/P·E cheapness read a mirage
+    # (FriendTimes: p_e 3.8 but NI 7.4x EBITDA). A warning column OUTSIDE the
+    # arch_ namespace — it never boosts density; it MARKS the names whose low
+    # P/E is a one-off, so they can be isolated rather than screened as cheap.
+    _ni_oe = _ncol('net_income_ttm'); _eb_oe = _ncol('ebitda_ttm')
+    df['earnings_oneoff_flag'] = (
+        (_eb_oe > 0) & (_ni_oe > 1.1 * _eb_oe)
+    ).fillna(False).astype(int)
+
     # ---------- XR12-XR16: VIOLENT-RERATING ENGINES (user request) ----------
     # Each models a FAMOUS accounting nuance that forensic readers caught
     # before the market, producing some of the most violent re-ratings on
@@ -3176,7 +3204,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (_nrm29 > 0) & (ebitda_ttm_v < 0.75 * _nrm29) &    # earnings BELOW mid-cycle
         ((_ncol('enterprise_value') / _nrm29.where(_nrm29 > 0)) <= 7.0) &  # cheap on normal
         ((nde < 3.5) | (net_cash_pct_c >= 0)) &            # survives the trough
-        (s('op_margin', np.nan) > -0.05) &                 # not structurally broken
+        _op_viable(-0.05) &                                # not structurally broken (impairment-robust: a writedown-hit but cash-generative trough name is kept)
         ~(_ncol('shares_yoy') > 0.05) &
         _not_melting
     ).fillna(False).astype(int)
@@ -4717,19 +4745,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #     discount — a viable operating business trading cheap on an OPERATING
     #     yield. Leverage-agnostic (no balance-sheet cap): a cheap, viable,
     #     non-melting spun business qualifies whatever its debt.
-    # (user #3) op_margin is GAAP-impairment contaminated (WW op -30% on a
-    # +14% EBITDA / +72% gross margin — a goodwill writedown, not an operating
-    # loss). A viability floor keyed on op_margin ALONE loses impairment-hit-
-    # but-healthy names, so credit a clearly-viable operating profile (positive
-    # EBITDA & gross margin, and not burning cash) as ALSO satisfying the floor.
-    # The cash-burn guard (fcf_yield > -0.15) still excludes a melting asset
-    # pile (NVRI op -89% / fcf -68%), so this loosens toward keeping good names
-    # without re-admitting cash bonfires.
-    def _op_viable(op_thresh):
-        return ((s('op_margin', np.nan) > op_thresh)
-                | ((ebitda_margin > 0.05)
-                   & (s('gross_margin', np.nan) > 0.10)
-                   & (fcf_yield > -0.15)))
+    # (_op_viable — the impairment-robust operating-viability floor — is defined
+    # once near _not_melting and reused here.)
     _spin_noncyc_val = (_excellent_value | (_ebitda_y_ev >= 0.10))
     _spin_cyc_val = ((_midcyc_y_ev.notna() & (_midcyc_y_ev >= 0.10))
                      | (_midcyc_y_ev.isna() & ((_ebitda_y_ev >= 0.10) | (fcf_yield >= 0.08))))
@@ -5140,7 +5157,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','xr_family_count','xr_confidence','xr_score','spin_date','reorg_date']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','xr_family_count','xr_confidence','xr_score','spin_date','reorg_date']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m','segment_count','fastest_segment_yoy','is_price_ghost'] if c in df.columns]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)
