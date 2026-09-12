@@ -832,7 +832,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # DEAD; derive the ratio from present levels (tangible_equity/equity),
         # permissive when either is absent so non-EDGAR names are not excluded
         (~((_ncol('tangible_equity') / _ncol('equity').where(_ncol('equity') > 0)) <= 0.50)) &
-        ((s('fcf_ttm') > 0) | (s('cfo_ttm') > 0)) &   # REAL cash generation (EBITDA-alone let levered melters KSS fcf -0.60 pass)
+        _not_melting &                          # (gate-audit) was a positive-cash mandate (fcf>0|cfo>0) — a P/TB<0.7 Graham asset play excludes exactly the money-losing-but-asset-rich names it exists to find; _not_melting + the deep-burn guard below carry survivability
         ~(_ncol('fcf_yield') < -0.15) &         # (fresh) not deeply FCF-negative via capex burn — the CFO fallback let cyclicals melt the floor (BATL fcf -153%, MOS, HPK)
         ~(net_cash_pct > 1.0) &                 # (deep-audit) drop >100%-of-mcap cash operating shells: HOLO (net-cash 677%, pb 0.11), MLGO (366%) are RED-verdict reverse-split ADR pumps where the sub-book print is a serial-dilution artifact, not tangible value.
         (nde <= 4.0)                            # not melting the 'floor' under a heavy debt load
@@ -1995,7 +1995,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # already-solidly-profitable compounder whose CFO merely ticked up. Cap
         # the current operating margin so established earners fall out; the LOWER
         # bound keeps it a name approaching black, not a deep loss-maker (op-65%).
-        (s('op_margin', np.nan) < 0.15) & (s('op_margin', np.nan) > -0.30) &
+        (s('op_margin', np.nan) < 0.15) & _op_viable(-0.30) &   # (gate-audit) raw op>-0.30 barred 230 impairment-hit deep turnarounds; _op_viable admits a writedown-hit name that is cash-healthy (the WW pattern) while keeping the "not an established earner" upper bound
         (emd_c >= 0.0) &
         (rev_yoy_c >= 0.0) & rev_present &          # growing (present), not shrinking
         wolf_cheap_entry
@@ -3634,9 +3634,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
           (_ncol('evsg') <= 0.08))) &              # cheap RELATIVE to growth (PSG,
                                                  #   EVSG analog when PSG missing)
         oper_lev_any &                           # operating margins improving (any angle)
-        near_profit &                            # at / near / just-crossed profitability
-        _profit_present                          # (reference II) a real profitability LEVEL, not rate alone
-    
+        near_profit                              # at / near / just-crossed profitability — (gate-audit) dropped _profit_present, which CONTRADICTED near_profit's own sub-breakeven (op>=-15%) arm and excluded 115 near-breakeven scalers the thesis targets
+
         & is_operating   # (G1 ext) revenue-multiple/margin meaningless for financials
     ).fillna(False).astype(int)
 
@@ -3679,11 +3678,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_negative_ev_value'] = (
         is_operating &                                # (G1) exclude financials/REITs/utilities
         (mcap > 0) & (mcap < 5e9) &
-        (neg_or_low_ev | ((pb > 0) & (pb < 0.7))) &   # cash floor OR deep sub-book
-                                                      # (neg_or_low_ev already triangulates
-                                                      #  the EV/cash floor the appropriate way)
-        ((fcf_ttm_v > 0) | (ebitda_ttm_v > 0) | (net_cash_pct_sane >= 0.5)) &  # (G2) not a cash-burn trap
-        _not_melting   # (deep-audit) the ebitda>0-alone leg was too weak: FOM roce-98%, WLN roce-99% passed while operationally melting. Cash-below-EV thesis intact; only the burning-operating subset is removed.
+        # (gate-audit) the survivability floor belongs on the NEG-EV/CASH branch
+        # (a cash-below-EV shell needs cash generation or a real cushion); on the
+        # deep SUB-BOOK branch it reduces to a profitability floor that excludes
+        # 265 non-melting cheap turnarounds the thesis wants — there, _not_melting
+        # alone is the correct survivability gate.
+        ((neg_or_low_ev & ((fcf_ttm_v > 0) | (ebitda_ttm_v > 0) | (net_cash_pct_sane >= 0.5)))
+         | ((pb > 0) & (pb < 0.7))) &
+        _not_melting   # (deep-audit) FOM roce-98%, WLN roce-99% operationally melting still removed on BOTH branches
     ).fillna(False).astype(int)
 
     # ---------- "Growth algorithm" compounding flywheel ($DLO logic) ----------
@@ -3994,7 +3996,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (_g_confirmed | (rev_growth_score >= 0.5)) &    # >=2 bases (or robust composite) agree
         op_lev_confirm &                                # ...confirmed by operating leverage
         viable_econ &                                   # viable unit economics
-        _profit_present &                               # (reference II) profitability LEVEL present, not just a growth rate
+        (_profit_present                                # profitability LEVEL present (Yartseva) ...
+         | ((s('gross_margin', np.nan) >= 0.40)         # ...OR a genuine pre-profit hypergrowth: fat gross margin
+            & ((fcf_first_pos > 0) | (fcf_inflection > 0)))) &  # with a real FCF INFLECTION (the early-Amazon path the raw floor lost)
         (implied_10x >= 10.0)                           # the 10x arithmetic closes
 
         & is_operating   # (G1 ext) revenue-multiple/margin meaningless for financials
@@ -4972,16 +4976,19 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
 
     # Special-situation catalyst: a dated merger / tender / going-private event
     # with a bounded downside, bought cheap so value holds if the deal breaks.
+    # (gate-audit) On a DEFINITIVE deal (announced merger / going-private) the
+    # return is the SPREAD to the deal price — the target's trailing
+    # profitability and independent cheapness are irrelevant, so the viability +
+    # value floor wrongly excluded 83 event names (biotech/tech takeout targets
+    # where op<0). Fire definitive deals on the EVENT alone; keep the
+    # viability + value/NAV floor only on the softer TENDER path (rumored /
+    # partial → the downside floor matters if the deal breaks).
     df['arch_special_situation'] = (
-        ((_merger == 1) | (_tender == 1) | (_gopriv == 1)) & (mcap > 0)
-        & _not_melting                          # (topcheck) not a deep loss-maker (PXLW op-106%)
-        # (deep-audit) right event, right value LENS. An operating special-sit is
-        # cheap on yield (_excellent_value); a closed-end fund / financial under a
-        # tender (43% of firers — BGY/BOE/VTN/BDJ) is cheap on DISCOUNT-TO-NAV, and
-        # was wrongly validated on its pass-through "op_margin"/earnings yield.
-        # Keep both — operating via yield, financials via pb<1.0 (NAV discount).
-        & ((is_operating & _excellent_value)
-           | ((is_financial | is_reit) & (pb > 0) & (pb < 1.0)))
+        (mcap > 0) &
+        (((_merger == 1) | (_gopriv == 1))              # definitive/cash deal — spread capture
+         | ((_tender == 1) & _not_melting
+            & ((is_operating & _excellent_value)
+               | ((is_financial | is_reit) & (pb > 0) & (pb < 1.0)))))
     ).fillna(False).astype(int)
 
     # NOL shell: a large net-operating-loss carryforward relative to market cap
