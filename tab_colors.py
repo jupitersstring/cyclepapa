@@ -130,6 +130,7 @@ ARCH_FAMILY = {
     'arch_special_situation': 'event', 'arch_nol_shell': 'event',
     # Greenblatt Magic Formula: a cheap+quality FACTOR sleeve (not event-driven)
     'arch_greenblatt_magic': 'quality',
+    'arch_lifo_hidden_reserve': 'deep_value', 'arch_pension_overfunded': 'deep_value', 'arch_dta_reversal': 'deep_value',
 }
 
 

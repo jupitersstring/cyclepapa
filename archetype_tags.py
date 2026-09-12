@@ -2608,6 +2608,50 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _not_melting
     ).fillna(False).astype(int)
 
+    # ---------- F15-F17: FORENSIC balance-sheet nuances (EDGAR scrape) --------
+    # Hidden assets / tax shields the reported book and P&L understate, from the
+    # freshly-extracted companyfacts lines. All levels USD (EDGAR US filers);
+    # mcap is the USD-normalized cap, so the ratios are currency-coherent.
+
+    # F15 — LIFO hidden reserve: inventory carried below current cost, so the
+    # LIFO reserve is a hidden asset that understates book (and, via COGS,
+    # earnings). Buy at/below the LIFO-ADJUSTED book (reported book + reserve).
+    _lifo_f15 = _ncol('lifo_reserve')
+    _lifo_pct_f15 = (_lifo_f15 / mcap.where(mcap > 0))
+    _adj_book_f15 = (1.0 / pb).where(pb > 0, np.nan) + _lifo_pct_f15   # (book + LIFO)/mcap
+    _real_sector_f = ~_sec_l.isin(['', 'nan', 'none', 'null'])   # a real operating company, not a null-sector ETN/artifact mapped to an issuer CIK (VYLD = a JPMorgan ETN inheriting JPM's pension)
+    df['arch_lifo_hidden_reserve'] = (
+        is_operating & _real_sector_f & (mcap > 0) & (_lifo_f15 > 0)
+        & (_lifo_pct_f15 >= 0.10)              # reserve material vs mcap
+        & (_adj_book_f15 >= 1.0)               # priced at/below LIFO-adjusted book
+        & _not_melting
+    ).fillna(False).astype(int)
+
+    # F16 — Overfunded pension: a POSITIVE funded status (plan assets > benefit
+    # obligation) is a hidden asset that reverts to equity; the market prices
+    # the operating business, not the surplus.
+    _pfs_f16 = _ncol('pension_funded_status')
+    _pfs_pct_f16 = (_pfs_f16 / mcap.where(mcap > 0))
+    df['arch_pension_overfunded'] = (
+        is_operating & _real_sector_f & (mcap > 0) & (_pfs_f16 > 0)
+        & (_pfs_pct_f16 >= 0.10)               # surplus material vs mcap
+        & ((fcf_yield > 0.03) | ((pb > 0) & (pb < 2.0)))  # operating business itself not dear
+        & _not_melting
+    ).fillna(False).astype(int)
+
+    # F17 — Deferred-tax shield / valuation-allowance reversal: a large DTA with
+    # a VALUATION ALLOWANCE in a business that has TURNED profitable — the
+    # allowance reverses (a one-off equity boost) and future earnings then
+    # compound tax-free. The forensic, data-precise cousin of the NOL shell.
+    _dtva_f17 = _ncol('deferred_tax_valuation_allowance')
+    _dtva_pct_f17 = (_dtva_f17 / mcap.where(mcap > 0))
+    df['arch_dta_reversal'] = (
+        is_operating & _real_sector_f & (mcap > 0)
+        & (_dtva_f17 > 0) & (_dtva_pct_f17 >= 0.15)   # material allowance available to reverse
+        & ((s('op_margin', np.nan) > 0) | (_num('roce') > 0))  # turned profitable -> reversal becoming likely
+        & _not_melting
+    ).fillna(False).astype(int)
+
     # ---------- XR: EXCEPTIONAL RISK/REWARD (user request) ----------
     # Convexity through COINCIDENCE: independent floors under the price while
     # an upside engine runs. Each gate demands a rare conjunction — value,
@@ -4483,6 +4527,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_cannibal_at_discount',
         'arch_self_funded_returner',
         'arch_book_compounder_discount',
+        'arch_lifo_hidden_reserve',
+        'arch_pension_overfunded',
+        'arch_dta_reversal',
         'arch_xr_neg_ev_growth',
         'arch_xr_triple_floor',
         'arch_xr_floor_inflection',
@@ -4626,6 +4673,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_cannibal_at_discount': 'Forensic-CannibalDiscount',
         'arch_self_funded_returner': 'Forensic-SelfFunded',
         'arch_book_compounder_discount': 'Forensic-BookCompounder',
+        'arch_lifo_hidden_reserve': 'Forensic-LIFOReserve',
+        'arch_pension_overfunded': 'Forensic-PensionSurplus',
+        'arch_dta_reversal': 'Forensic-DTAReversal',
         'arch_xr_neg_ev_growth': 'XR-NegEVGrowth',
         'arch_xr_triple_floor': 'XR-TripleFloor',
         'arch_xr_floor_inflection': 'XR-FloorInflection',

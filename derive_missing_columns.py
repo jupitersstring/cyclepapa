@@ -115,6 +115,9 @@ def load_edgar_facts(path: str) -> pd.DataFrame:
         'symbol', 'opinc_ttm', 'pretax_income_ttm', 'netinc_ttm',
         'revenue_ttm', 'cash', 'total_debt', 'shares_outstanding',
         'fcf_ttm', 'assets', 'eps_diluted_ttm',
+        # forensic balance-sheet nuances (hidden-asset / tax-shield lenses)
+        'lifo_reserve', 'pension_funded_status',
+        'deferred_tax_assets_net', 'deferred_tax_valuation_allowance',
     ]
     try:
         ed = pd.read_csv(path, usecols=lambda c: c in keep, low_memory=False)
@@ -202,7 +205,9 @@ def main():
         # Backfill (fill-only, never overwrite) structural fields from
         # edgar so we get derivations on more rows.
         for col in ['cash', 'total_debt', 'shares_outstanding',
-                    'fcf_ttm', 'assets', 'revenue_ttm', 'eps_diluted_ttm']:
+                    'fcf_ttm', 'assets', 'revenue_ttm', 'eps_diluted_ttm',
+                    'lifo_reserve', 'pension_funded_status',
+                    'deferred_tax_assets_net', 'deferred_tax_valuation_allowance']:
             if col in edgar.columns:
                 edgar_col = edgar[col].reindex(master.index)
                 if col in master.columns:
