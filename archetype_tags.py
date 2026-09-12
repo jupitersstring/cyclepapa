@@ -877,6 +877,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (((shares_growth_3y <= 0.02) & _not_split_3y) |
          (_ncol('shares_growth_3y').isna() & (_ncol('shares_yoy') <= 0.01)
           & _not_split_yoy)) &
+        ~(_ncol('shares_yoy') > 0.02) &   # (audit) CURRENT-year dilution veto: a flat 3yr count can hide a name issuing heavily NOW (STGW +91%, OMC +58% via M&A stock) — a "no dilution" gate must not pass an active diluter
         (n_yrs_fcf_pos >= 4) &
         (n_yrs_roic_pos >= 4)
     ).fillna(False).astype(int)
@@ -2376,6 +2377,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
          | (((_mc_ca - _nc_ca)
              / _ncol('ni_avg').where(_ncol('ni_avg') > 0)) <= 8.0)) &
         ~(_ncol('shares_yoy') > 0.05) &
+        # (audit) CASH corroboration: a low adj-P/E on POSITIVE reported NI is a
+        # false bargain when the earnings are non-cash / one-off — 177 firers had
+        # NI>0 but NEGATIVE CFO (032190.KQ NI +₩253B / CFO −₩12T). Require CFO to
+        # confirm the earnings where CFO is known (missing CFO stays permissive).
+        ~(_ncol('cfo_ttm').notna() & (_ncol('cfo_ttm') < 0.3 * _ni_ca)) &
         _not_melting
     ).fillna(False).astype(int)
 
@@ -2499,7 +2505,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # cannibalization — the buyback leg must not be contradicted by net growth.
     _shrink_f12 = ((_ncol('shares_yoy') <= -0.02)
                    | ((_ncol('buyback_yield') >= 0.03)
-                      & ~(_ncol('shares_yoy') > 0)))
+                      & ((_ncol('net_buyback_ttm') > 0) | (_ncol('shares_yoy') < 0))))  # (audit) CORROBORATE the buyback claim with real $ retired or actual shrinkage — RVP/JVA show 30%+ buyback_yield at 0% share change (a creation/redemption artifact)
     df['arch_cannibal_at_discount'] = (
         is_operating & (mcap > 0) &
         (pb > 0) & (pb < 1.0) &                       # buying below book
@@ -2532,7 +2538,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # (book compounding is the native lens there).
     _eqc_f14 = _ncol('equity_cagr_5y')
     df['arch_book_compounder_discount'] = (
-        ~is_reit & (mcap > 0) &
+        (is_operating | is_financial) & ~is_utility & (mcap > 0) &   # (audit) exclude UTILITY preferreds (DTE/WEL stubs) that passed ~is_reit; keep financials (book-compounding is native there)
         (_eqc_f14 >= 0.08) &
         (pb > 0) & (pb < 1.0) &
         ((_ncol('net_income_ttm') > 0) | (_ncol('ni_avg') > 0)) &
@@ -2618,6 +2624,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_xr_quality_crisis'] = (
         is_operating & (mcap > 0) &
         _xr_quality & _xr_crisis & _xr_cheap &
+        (ebitda_margin > -0.05) &                   # (audit) quality must PERSIST through the drawdown: a deeply-negative current EBITDA (MBLY -204%, LUCY -314%) is not "quality that held" on the strength of stale 4yr-FCF history
         ~(_ncol('shares_yoy') > 0.05) &
         _not_melting
     ).fillna(False).astype(int)
@@ -2870,9 +2877,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_xr_cannibal_below_cash'] = (
         is_operating & (mcap > 0) & _fx_coherent &
         (net_cash_pct_c >= 1.0) &                           # price fully covered by net cash
-        ((_ncol('buyback_yield') >= 0.02)
-         | (_ncol('net_buyback_ttm') > 0)) &                # ...and they are BUYING
-        ~(_ncol('shares_yoy') > 0.0) &                      # count actually not growing
+        ((_ncol('buyback_yield') >= 0.02) | (_ncol('net_buyback_ttm') > 0)) &  # a buyback SIGNAL...
+        ((_ncol('net_buyback_ttm') > 0) | (_ncol('shares_yoy') < 0)) &  # (audit) ...CORROBORATED by real $ retired or actual shrinkage — a bare buyback_yield at 0% shrinkage is a creation/redemption artifact (RVP/JVA/ETNs)
+        ~(_ncol('shares_yoy') > 0.02) &                     # and NOT net-diluting (SBC-offset buyback illusion)
         ((_ncol('net_income_ttm') > 0) | (_ncol('ni_avg') > 0)
          | (_ncol('cfo_yield') > 0)) &                      # a real business attached
         _not_melting
@@ -2905,6 +2912,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # growing business from someone who must sell at any price.
     df['arch_xr_forced_seller'] = (
         is_operating & (mcap > 0) & _fx_coherent &
+        (_ncol('revenue_ttm_usd') >= 10e6) &        # (audit) revenue-base floor: the "business grew" leg is pure noise on a $43K micro (WESTLEIRES.BO +185%). Sibling leverage_detonation already carries this.
         (_num('price_yoy') <= -0.40) &
         (rev_yoy_c >= 0.05) &
         ((ebitda_yoy_v >= 0) | (_ncol('net_income_ttm') > 0)) &
@@ -2974,6 +2982,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (rev_yoy_c >= -0.10) &                                # business not collapsing
         ((s('gross_margin_delta_yoy', np.nan) >= -0.03)
          | (_oe_loc > 0) | (_ncol('oe_avg') > 0)) &           # economics intact
+        ((ebitda_margin > -0.10) | (fcf_yield > 0)) &         # (audit) current-economics floor: an insider cluster-buy does not redeem a -130%-margin cash bonfire (FLY, NEOV)
         ((nde < 3.0) | (net_cash_pct_c >= 0)) &
         _not_melting
     ).fillna(False).astype(int)
@@ -3246,8 +3255,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_xr_cannibal_below_tbook'] = (
         is_operating & (mcap > 0) & _fx_coherent &
         (_ptb33 > 0) & (_ptb33 < 1.0) &                   # below TANGIBLE book
-        ((_ncol('buyback_yield') >= 0.02) | (_ncol('net_buyback_ttm') > 0)) &
-        ~(_ncol('shares_yoy') > 0.0) &                    # count actually shrinking
+        ((_ncol('buyback_yield') >= 0.02) | (_ncol('net_buyback_ttm') > 0)) &  # a buyback SIGNAL...
+        ((_ncol('net_buyback_ttm') > 0) | (_ncol('shares_yoy') < 0)) &  # (audit) ...CORROBORATED by real $ or actual shrinkage — excludes commodity/crypto ETF lines (PALL/PPLT/FBTC) whose buyback_yield is a creation/redemption artifact
+        ~(_ncol('shares_yoy') > 0.02) &                    # and NOT net-diluting (SBC-offset buyback illusion)
         ((_ncol('net_income_ttm') > 0) | (_ncol('ni_avg') > 0)) &  # earning
         ((nde < 3.0) | (net_cash_pct_c >= 0)) &
         _not_melting
@@ -4731,6 +4741,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     )
     df['arch_spinoff_asset'] = (
         (_spin == 1) & is_operating & _not_melting & (mcap > 0)
+        & (s('op_margin', np.nan) > -0.05)        # (audit) viability floor like the value spin: NVRI fired on pb<1 alone with op_margin -89% (goodwill impairment) and fcf_yield -68% — a melting asset pile, not a floor
         & _spin_asset_floor
     ).fillna(False).astype(int)
 
@@ -4746,6 +4757,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating & _not_melting & (mcap > 0)
         & (_greenblatt_ey >= 0.10)               # cheap: EBIT/EV in the top ~quartile
         & (_num('roce') >= 0.25)                 # good: return on capital in the top ~decile-ish
+        & ~_roce_oneoff_suspect                  # (audit) drop tiny-denominator ROCE artifacts (KPLT 1.05 on ~0% op-margin) — the guard sibling large_cap_quality already uses
     ).fillna(False).astype(int)
 
     # Post-reorg / fresh-start (Assembly Theory): the single most powerful screen
@@ -4800,8 +4812,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # no relaxation) still fails.
     _midcyc_nde = (nde * (ebitda_ttm_v / _midcyc_ebitda)).where(
         (_midcyc_ebitda > 0) & (ebitda_ttm_v > 0), np.nan)
+    # (audit A2) the mid-cycle relaxation must not admit a genuinely TERMINAL
+    # balance sheet: NINE at trailing nde 8.98x with negative op and a pure
+    # discharge-gain p_e cleared on a generous normalized estimate. Cap the
+    # relaxation at a moderate trailing leverage (<=6x — a real trough cyclical
+    # is de-levered in absolute terms, not 9x) and require positive trailing
+    # EBITDA (a positive margin to normalize from at all).
     _reorg_lev_ok = ((nde <= 3.0) | (net_cash_pct_c >= 0)
-                     | (_is_cyc_pr & _midcyc_nde.notna() & (_midcyc_nde <= 3.0)))
+                     | (_is_cyc_pr & _midcyc_nde.notna() & (_midcyc_nde <= 3.0)
+                        & (nde <= 6.0) & (ebitda_margin > 0)))
     df['arch_post_reorg'] = (
         (_reorg == 1) & is_operating & _not_melting
         & _reorg_value
@@ -4861,6 +4880,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # debt) — a false promotion. Scrub the 5-letter Q-suffix line when it is
         # also penny-priced (<$5), so a genuine 5-letter Q ticker is untouched.
         | (_sym_nc.str.match(r'^[A-Z]{4}Q$') & (_num('price') < 5.0))
+        # (surgical audit) COMMODITY/CRYPTO ETF & ETN wrappers: null-sector fund
+        # lines (PALL/PPLT/SGOL physical-metal, FBTC bitcoin, AMJB/VYLD ETNs)
+        # leak into cannibal/value gates — is_operating is True on a null sector
+        # and their "buyback_yield" is a creation/redemption artifact. Match the
+        # fund tell in the NAME, gated on a missing sector so real crypto/mining
+        # OPERATORS (which carry a sector) are untouched.
+        | (sector.str.lower().isin(['nan', 'none', ''])
+           & _nm_nc.str.contains(
+               r'\bETF\b|\bETN\b|ishares|\bSPDR\b|proshares|exchange.traded'
+               r'|physical (gold|silver|platinum|palladium|metal)'
+               r'|bitcoin|ethereum|\bether\b',
+               case=False, regex=True))
     ).fillna(False)
     _GATED_SCORES = [c for c in ['tenbagger_score', 'tenbagger_implied_return',
                      'evsales_derate_score', 'evsales_derate_gap',
@@ -4875,6 +4906,19 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         df.loc[_is_noncommon.values, _scrub_cols] = 0
         print(f'  scrubbed archetype flags + gated scores on '
               f'{int(_is_noncommon.sum())} non-common securities', file=sys.stderr)
+
+    # (surgical audit) DATA-CORRUPTION scrub: EBITDA > revenue is physically
+    # impossible for an operating company (EBITDA <= gross profit <= revenue).
+    # SUNB fired spinoff_value on ebitda_ttm $4.49B / revenue $2.51B (179%) —
+    # Ashtead parent-consolidated figures mapped onto the spun line. Scrub any
+    # operating row whose EBITDA exceeds revenue by >10%.
+    _eb_corrupt = (is_operating
+                   & (_ncol('ebitda_ttm') > 1.10 * _ncol('revenue_ttm'))
+                   & (_ncol('revenue_ttm') > 0))
+    if _eb_corrupt.any():
+        df.loc[_eb_corrupt.values, _scrub_cols] = 0
+        print(f'  scrubbed {int(_eb_corrupt.sum())} EBITDA>revenue '
+              f'data-corrupt rows', file=sys.stderr)
 
     # ===== MICRO-SHELL SCRUB: a sub-$1M market cap is untradeable and almost
     # always a delisted/data-corrupt shell (YYAI $0M, Zodiac Ventures $1M were

@@ -17,8 +17,8 @@ METHODOLOGY AUDIT — 183 checks, 0 FAIL, 0 WARN
   PASS  lynch_reward: every firer has a live tape  — 0 stale-tape firers
   PASS  52w: both == abs AND rel
   PASS  awakening: firers with a rating skew strong (<= 2.2)  — 95% of rated firers <= 2.2
-  PASS  awakening: momentum-gated firers not extended (<= ~50%)  — 0 extended among the 98 momentum-gated firers
-  PASS  capital_returner: firers inside the 5-30% policy band (small tail = EDGAR-coalesced source not visible here)  — 9 outside on asym-only columns
+  PASS  awakening: momentum-gated firers not extended (<= ~50%)  — 0 extended among the 97 momentum-gated firers
+  PASS  capital_returner: firers inside the 5-30% policy band (small tail = EDGAR-coalesced source not visible here)  — 7 outside on asym-only columns
   PASS  strong_coverage: every firer has positive EBITDA  — 0 non-positive
   PASS  fastest_segment: segment_count is present (not a vacuous audit)  — segment_count absent from BOTH archetype_tags.csv and asymmetry_global.csv
   PASS  fastest_segment: every firer is multi-segment  — 0 single-segment
