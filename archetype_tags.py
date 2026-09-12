@@ -788,7 +788,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (roic_lindy >= 0.10) &                       # (G3) positive base ROIC
         (s('n_yrs_positive_roic', 0) >= 4) &         # (G3) require ROIC history
         (roiic_lindy >= 0.15) & (roiic_lindy <= 1.0) &  # (G3) sane ROIIC band
-        (asset_3y_cagr > 0.05)
+        ((asset_3y_cagr > 0.05) | (roiic_lindy >= 0.20))   # (gate-audit) asset growth OR strong ROIIC: the 5% asset-growth floor biased to asset-HEAVY reinvestment and dropped 29 top-tier asset-LIGHT compounders (IP/software/franchise) that grow earnings without growing the balance sheet — roiic already proves profitable reinvestment
     ).fillna(False).astype(int)
 
     # J — Cash-confirmed reinvestment: cash ROIIC lindy > 12% (lower bar than
@@ -2010,7 +2010,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # + positive CFO; FCF-yield as the cheapness catalyst.
     df['arch_wolf_value_catalyst'] = (
         (mcap > 0) & (mcap < 200e6) &
-        ((net_cash_pct_c >= 0.20) | (cash_gt_ev > 0) | (ncav_pct >= 0.50)) &
+        ((net_cash_pct_c >= 0.20) | (cash_gt_ev > 0) | (ncav_pct >= 0.50)
+         | ((fcf_yield >= 0.10) & (nde <= 1.5))) &   # (gate-audit) net-cash is an ALTERNATIVE strengthener, not mandatory: a growing, CFO-positive microcap cheap on a fat FCF yield with a sound balance sheet is the thesis even without a net-cash fortress (195 were excluded solely for lacking net cash)
         ((rev_yoy_c >= 0.10) | ((rev_growth_score >= 0.5) & (rev_yoy_c >= 0))) &  # a GROWING thesis is not a declining top line (TTEC rev -3.2%)
         (cfo_ttm_v > 0) &
         _not_melting &                              # (tail) survivability — cash-on-cash-aware + improvement-lenient (per user: demote melters via melt_demotion, don't bar cash-generative/inflecting names).
@@ -2158,11 +2159,16 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (ebitda_ttm_v > 0) & (nde >= 1.0) & (nde <= 3.0) &
         ((ebitda_yoy_v > 0) | (ebitda_inflection > 0) | oper_lev_any) &   # leverage trajectory (any angle) — the deleveraging PROOF
         ~(_ncol('shares_yoy') > 0.02) &   # de-levering via FCF, not equity issuance — an equity-raiser is off-thesis
-        # (gate-audit) a 6% SHAREHOLDER-PAYOUT floor contradicts a DELEVERAGING
-        # thesis whose cash routes to LENDERS, not a fat dividend — it blocked
-        # 646 of 802 (81%) matching names. The rising-EBITDA trajectory above +
-        # heavy FCF + moderate falling debt already define "cash paying down
-        # debt"; the payout floor is removed.
+        # (gate-audit) the 6% SHAREHOLDER-PAYOUT floor contradicted the thesis
+        # (cash routes to LENDERS, not a fat dividend). Replaced with the
+        # thesis-pure DEBT-REDUCTION confirmation: cash actually flowing OUT to
+        # capital providers — a negative financing cash flow (debt repayment
+        # and/or buyback) OR an actual share-count shrink. (No prior-period debt
+        # column exists for a literal falling-nde-YoY; this is the closest
+        # available "cash to capital providers" signal, and the rising-EBITDA
+        # leg above already confirms the ratio is mechanically falling.)
+        ((_ncol('financing_cf_ttm') < 0) | (_ncol('net_buyback_ttm') > 0)
+         | (_ncol('shares_yoy') < 0)) &
         _soft_ok_above('interest_coverage', 2.0)
     ).fillna(False).astype(int)
 
@@ -2680,8 +2686,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # retained earnings above 1.5x the price, or an over-depreciated asset
     # base — while the business on top GROWS. Convexity nobody screens for
     # because the support is not in standard metrics.
+    _re_mc_x5 = (_ncol('retained_earnings') / _mc_ca.where(_mc_ca > 0))   # (gate-audit) currency-adjusted mcap (_mc_ca), matching the sibling multiple_gap
     _xr5_floor = ((_hidden_pct >= 0.50)
-                  | ((_ncol('retained_earnings') / _ncol('market_cap').where(_ncol('market_cap') > 0)) >= 1.5)
+                  | ((_re_mc_x5 >= 1.5) & (_re_mc_x5 <= 5.0))   # (gate-audit) upper cap: raw RE/mcap>10x (ANG-PD, LGNDZ) is a scale/currency artifact, not a bargain — mirror the >=1.5 lower guard the sibling already carries
                   | ((_dna_loc > 0) & (_capex_loc >= 0)
                      & (_capex_loc <= 0.5 * _dna_loc) & ((_dna_loc / _rev_loc.where(_rev_loc > 0)) >= 0.05)))
     df['arch_xr_forensic_floor_growth'] = (
@@ -2706,7 +2713,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _fx_coherent &
         ((_mc_ca / _oe_best) <= 6.0) &                 # forensic multiple: cheap...
         ((_mc_ca / _oe_best) >= 1.5) &                 # ...but a sub-1.5x "multiple" is a currency artifact, not a bargain (900920.SS at 0.2x)
-        ((_pe_head >= 15.0) | _pe_head.isna()) &       # headline: dear or meaningless
+        # (gate-audit) the thesis is a SPREAD (headline multiple >> forensic
+        # owner-earnings multiple), so gate on the RATIO, not an absolute
+        # headline P/E>=15 floor — a name at P/E 10 with a 2x forensic multiple
+        # is a 5x gap the old floor wrongly excluded.
+        (_pe_head.isna()
+         | ((_pe_head > 0) & ((_pe_head / (_mc_ca / _oe_best)) >= 2.5))) &
         (_ncol('net_income_ttm') > 0) &                # real (not loss-masked) accounting
         ~(_ncol('shares_yoy') > 0.05) &
         _not_melting
@@ -4082,11 +4094,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     ).fillna(False)
     df['arch_evsales_derating'] = (
         (mcap >= 50e6) & (mcap < 20e9) &                # (G6) investable-size floor
+        (_num('revenue_ttm_usd') >= 5e6) &              # (gate-audit) MISSING revenue-base floor: rev_yoy>=0.15 off a near-zero base is base-effect noise; every sibling growth gate carries this
         (rev_yoy_c >= 0.15) & ~(_ncol('rev_3y_cagr') < 0) &  # (deep-audit) HARD positive top-line floor. The old rev_growth_score>=0.6 OR-branch admitted FALLING-sales names (TTEC rev_yoy-3.2%/3y-4.4%/roce-9.7%) because that composite stays high while sales fall, and derate_any rewards a collapsing STOCK — a melting value trap, the anti-thesis. rev_growth_score stays an upweight in the score, not a gate-opener.
         derate_any &                                    # EV/Sales compressing (any base)
         (ev_sales_v > 0.10) & (ev_sales_v <= 6.0) &     # room left; lower bound drops artifacts
         ((_num('gross_margin') >= 0.20) | (ebitda_ttm_v > 0) | (fcf_ttm_v > 0)) &  # not a trap
-        ~((ebitda_ttm_v < 0) & (fcf_ttm_v < 0))         # (G6) cash sanity: not burning on BOTH EBITDA & FCF
+        ~((ebitda_ttm_v < 0) & (fcf_ttm_v < 0) & (_num('gross_margin') < 0.40))   # (gate-audit) cash sanity, but EXEMPT high-gross-margin (>=40%) pre-profit SaaS scalers — the coiled-spring the thesis is built for (12 were wrongly barred)
     
         & is_operating   # (G1 ext) EV-multiple meaningless for financials
     ).fillna(False).astype(int)
