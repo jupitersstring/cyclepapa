@@ -5355,6 +5355,42 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         print(f'  scrubbed {int(_spike.sum())} recent-spike names from '
               f'durability archetypes', file=sys.stderr)
 
+    # ---------- FORENSIC-XR ASYMMETRY SCORE (user) ----------
+    # Combine the forensic hidden-value signals with valuation and NORMALIZE to
+    # size so names are comparable: express each hidden/unpriced asset as a
+    # fraction of MARKET CAP (a $899M LIFO reserve at Ford vs a small-cap's is
+    # then apples-to-apples). Sum the asset-like signals into a single
+    # "hidden forensic value as a share of price", then rank the MOST ASYMMETRIC
+    # names — those carrying the most hidden value per dollar of price where the
+    # VISIBLE business is ALSO cheap (the hidden value is then pure upside) and
+    # not melting. All levels are USD (EDGAR) over USD-normalized mcap.
+    _fx_mc = mcap.where(mcap > 0)
+    _cap2 = lambda x: x.clip(lower=0, upper=2.0)      # floor at 0 (assets only), cap so no artifact dominates
+    _fx_lifo    = _cap2(_ncol('lifo_reserve') / _fx_mc).fillna(0)
+    _fx_pension = _cap2(_ncol('pension_funded_status') / _fx_mc).fillna(0)   # only overfunding counts (clipped >=0)
+    # a DTA valuation allowance only monetizes if the company EARNS (a perpetual
+    # loss-maker's allowance never reverses) — count it only when profitable.
+    _fx_profitable = ((s('op_margin', np.nan) > 0) | (_num('roce') > 0)).fillna(False)
+    _fx_dta     = _cap2(_ncol('deferred_tax_valuation_allowance') / _fx_mc).where(_fx_profitable, 0).fillna(0)
+    _fx_equity  = _cap2(_ncol('equity_method_investments') / _fx_mc).fillna(0)         # off-BS stakes at cost
+    _fx_hidden  = _cap2(_hidden_pct.where(_fx_coherent)).fillna(0)                     # off-EV assets (fx-guarded)
+    # RPO valued CONSERVATIVELY as the gross profit embedded in the backlog
+    _fx_backlog = _cap2((_ncol('rpo') * s('gross_margin', np.nan)) / _fx_mc).fillna(0)
+    _forensic_hidden = (_fx_lifo + _fx_pension + _fx_dta + _fx_equity
+                        + _fx_hidden + _fx_backlog)
+    # meaningless for financials/REITs (float / deposits distort every line)
+    _forensic_hidden = _forensic_hidden.where(is_operating, 0.0)
+    df['forensic_hidden_pct'] = _forensic_hidden.round(4)
+    # asymmetry RANKING: hidden value per $ of price, but only where it is a
+    # REAL, MONETIZABLE opportunity — a tradeable size (mcap>=$50M, else
+    # dividing by a collapsed distressed mcap manufactures a 400%-of-mcap
+    # artifact: CTRM/FBIO-type shells) and NOT melting (a melter cannot
+    # monetize the hidden value). x1.5 when the visible business is ALSO cheap.
+    _fx_eligible = ((_ncol('market_cap_usd') >= 50e6) & _not_melting.fillna(False))
+    _fx_cheap = np.where(_excellent_value.fillna(False).values, 1.5, 1.0)
+    df['forensic_xr_score'] = (df['forensic_hidden_pct'] * _fx_cheap
+                               * _fx_eligible.astype(float)).round(4)
+
     # (user) archetype_count feeds convergence_score / archetype_asymmetry
     # (the density-ranked books), so a name that fires SEVERAL variants of ONE
     # thesis was over-credited. Collapse ONLY genuine same-thesis THRESHOLD
@@ -5380,7 +5416,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','xr_family_count','xr_confidence','xr_score','spin_date','reorg_date']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','xr_family_count','xr_confidence','xr_score','forensic_hidden_pct','forensic_xr_score','spin_date','reorg_date']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m','segment_count','fastest_segment_yoy','is_price_ghost'] if c in df.columns]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)
