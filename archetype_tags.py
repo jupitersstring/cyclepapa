@@ -3312,6 +3312,51 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _not_melting
     ).fillna(False).astype(int)
 
+    # XR34 — One-off LOSS mask ('XR-OneOffLossMask'): the exact inverse of the
+    # earnings_oneoff_flag. A business GUSHING cash (fat EBITDA margin, real
+    # gross margin, positive FCF) that nonetheless reports a GAAP NET LOSS —
+    # a goodwill impairment, restructuring charge, litigation reserve or heavy
+    # D&A drove reported earnings below zero. Every earnings/P·E screen marks it
+    # a loss-maker and passes over it, yet it trades cheap on EV/EBITDA. Buying
+    # a cash-generative franchise the headline number hides. Guard leverage
+    # (nde<=3 | net cash) so the loss is a NON-STRUCTURAL charge, not an
+    # interest-eaten levered zombie; cash generation (fcf>3%) proves it is not
+    # actually melting despite the negative NI.
+    _ni_lm = _ncol('net_income_ttm'); _eve_lm = s('ev_ebitda', np.nan)
+    df['arch_xr_oneoff_loss_mask'] = (
+        is_operating & (mcap > 0) & _fx_coherent &
+        (_ni_lm < 0) &                                    # HEADLINE loss (screens skip it)
+        (ebitda_margin > 0.15) &                          # ...but a fat operating cash margin
+        (s('gross_margin', np.nan) > 0.15) &              # a real business, not a shell
+        (fcf_yield > 0.03) &                              # genuinely cash-generative (the loss is non-cash / one-off)
+        (_eve_lm > 0) & (_eve_lm <= 9.0) &                # cheap on the D&A-immune lens
+        ((nde <= 3.0) | (net_cash_pct_c >= 0))            # loss is a CHARGE, not leverage eating a zombie
+    ).fillna(False).astype(int)
+
+    # XR35 — Monetization trifecta ('XR-MonetizationTrifecta'): the rare
+    # three-way confluence that defines a once-in-a-cycle special situation —
+    #  (a) NET CASH (cannot die while the thesis plays out),
+    #  (b) a monetizable NOL tax shield >= 30% of market cap (future earnings
+    #      compound tax-free — the WMIH / Mr. Cooper asset), and
+    #  (c) returns / FCF JUST INFLECTING positive (the turn is happening NOW).
+    # Survivability + a tax asset + an earnings turn, together, is vanishingly
+    # rare and is exactly the setup where the re-rate is largest.
+    _nol_tri = _num('nol_usd')
+    _nol_ratio_tri = (_nol_tri / mcap.where(mcap > 0))
+    _inflecting_tri = ((s('roce_first_positive', np.nan) > 0)
+                       | (s('fcf_first_positive', np.nan) > 0)
+                       | (s('roce_inflection', np.nan) > 0)
+                       | (s('cfo_first_positive', np.nan) > 0))
+    df['arch_xr_monetization_trifecta'] = (
+        is_operating & (mcap > 0)
+        & (net_cash_pct_c >= 0.20)                        # net-cash survivability
+        & (_nol_ratio_tri >= 0.30) & (_nol_ratio_tri <= 20.0)  # monetizable NOL (sane band)
+        & _inflecting_tri                                 # the turn is happening now
+        & _profit_present                                 # a REAL current profitability signal (ebitda>0 | op>0 | fcf>0) — excludes data-empty shells (ONCO) and cash bonfires (ASTC fcf -96%) that pass _not_melting vacuously on missing margins
+        & (fcf_yield > -0.15)                             # not deeply burning while it "inflects"
+        & _not_melting
+    ).fillna(False).astype(int)
+
     # F6 — Forensic payout confirmation (the user's BOOST leg). Any forensic /
     # hidden-value member that is ALSO returning capital — buying back shares
     # or paying a dividend — earns an EXTRA archetype count, which is this
@@ -3768,14 +3813,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                   'arch_xr_floor_inflection', 'arch_xr_clean_net_net',
                   'arch_xr_cannibal_below_cash', 'arch_xr_cannibal_below_tbook',
                   'arch_xr_latent_inflection_floor', 'arch_xr_latent_bath_floor',
-                  'arch_xr_asset_owner_catalyst'],
+                  'arch_xr_asset_owner_catalyst', 'arch_xr_monetization_trifecta'],
         'dislocation': ['arch_xr_forced_seller', 'arch_xr_insider_capitulation',
                         'arch_xr_double_trough', 'arch_xr_quality_crisis'],
         'forensic': ['arch_xr_forensic_floor_growth', 'arch_xr_forensic_multiple_gap',
                      'arch_xr_bigbath_rebound', 'arch_xr_depreciation_cliff',
                      'arch_xr_wc_normalization', 'arch_xr_amortization_mask',
                      'arch_xr_nol_shield', 'arch_xr_growth_capex_masked',
-                     'arch_xr_look_through_value', 'arch_xr_float_compounding'],
+                     'arch_xr_look_through_value', 'arch_xr_float_compounding',
+                     'arch_xr_oneoff_loss_mask'],
         'engine': ['arch_xr_compounding_deployer', 'arch_xr_reusable_assembler',
                    'arch_xr_pre_scale_margin', 'arch_xr_leverage_detonation',
                    'arch_xr_baron_compounder', 'arch_xr_audited_streak_unrerated',
@@ -4402,6 +4448,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_growth_capex_masked',
         'arch_xr_look_through_value',
         'arch_xr_cannibal_below_tbook',
+        'arch_xr_oneoff_loss_mask',
+        'arch_xr_monetization_trifecta',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -4551,6 +4599,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_growth_capex_masked': 'XR-GrowthCapexMasked',
         'arch_xr_look_through_value': 'XR-LookThroughValue',
         'arch_xr_cannibal_below_tbook': 'XR-CannibalBelowTangibleBook',
+        'arch_xr_oneoff_loss_mask': 'XR-OneOffLossMask',
+        'arch_xr_monetization_trifecta': 'XR-MonetizationTrifecta',
         'arch_templeton_pessimism': 'Templeton-MaxPessimism',
         'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
         'arch_levered_inflection': 'LeveredInflectionStub',
