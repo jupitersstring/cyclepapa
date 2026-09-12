@@ -1146,6 +1146,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating &                          # (R1b) exclude financials/utilities/lenders (buybacks funded by float/book)
         _roce_now_ok &                          # (R4) current returns not negative
         _shares_shrink &
+        ~(_ncol('shares_yoy') > 0.02) &         # (audit) current-year non-dilution on ALL shrink legs, not just the buyback-yield leg: OMC fired via a 5yr shrink while issuing +58% NOW (IPG-merger stock)
         (roic_lindy >= 0.08) &
         (n_yrs_roic_pos >= 4) &
         (nde <= 1.5)
@@ -1223,6 +1224,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (roic_lindy > 0) &
         ((cash_roic_lindy - roic_lindy) >= 0.05) &
         (shares_growth_3y <= 0.05) &            # non-dilution: the cash-earnings gap must not be an SBC add-back on a serial diluter
+        ~(_ncol('roic_after_sbc').notna() & (_ncol('roic_after_sbc') < 0)) &  # (audit) share-count is not enough — 45/266 firers earn NEGATIVE returns once SBC is expensed (DOCU roic_after_sbc -0.16 on roce +0.25). The cash-earnings gap must not BE the SBC add-back.
         (n_yrs_fcf_pos >= 4)
     ).fillna(False).astype(int)
 
