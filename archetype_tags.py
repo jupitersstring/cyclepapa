@@ -4937,6 +4937,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         print(f'  scrubbed {int(_eb_corrupt.sum())} EBITDA>revenue '
               f'data-corrupt rows', file=sys.stderr)
 
+    # (surgical audit) CORRUPT-PRICE scrub: a company with material revenue
+    # cannot have a near-zero market cap — SNBR (Sleep Number) carried a
+    # $0.125 price (real ~$13) → mcap_usd $2.9M on ~$1.7B revenue, slipping past
+    # the $2M micro-shell floor and firing nol_shell on a 100x-low price. Scrub
+    # any row whose USD market cap is < $20M while USD revenue exceeds $200M.
+    _px_corrupt = ((_ncol('market_cap_usd') < 20e6)
+                   & (_ncol('revenue_ttm_usd') > 200e6))
+    if _px_corrupt.any():
+        df.loc[_px_corrupt.values, _scrub_cols] = 0
+        print(f'  scrubbed {int(_px_corrupt.sum())} corrupt-price '
+              f'(mcap<<revenue) rows', file=sys.stderr)
+
     # ===== MICRO-SHELL SCRUB: a sub-$1M market cap is untradeable and almost
     # always a delisted/data-corrupt shell (YYAI $0M, Zodiac Ventures $1M were
     # topping archetypes by ETA). Zero every archetype flag + gated score. =====
