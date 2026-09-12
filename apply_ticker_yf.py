@@ -547,6 +547,29 @@ def main():
         m["capex_ttm"] = _cx_new
         recon["capex_ttm (rebuilt: EDGAR -> statement -> NaN)"] = int(_changed_cx.sum())
 
+    # da_ttm / financing_cf_ttm — GAP-FILL ONLY from the Yahoo statement feed
+    # (trailingDepreciationAndAmortization / trailingCashFlowFromFinancing).
+    # (user directive) NEVER override an audited EDGAR value: fill strictly
+    # where the master is NaN, leave every existing figure untouched. Both are
+    # in yf_financial_currency at fill time; da_ttm is registered in _LEVEL_COLS
+    # below and financing_cf_ttm already is, so the cross-ccy fx bridge restates
+    # both into quote currency in the same pass as capex. Sign/magnitude were
+    # adjudicated against the audited accounts (US names, n>4.7k): yf/EDGAR
+    # median = 1.000 for both (same sign, no scale drift), so the statement
+    # figure is a clean extension of the same measure, not a different one.
+    if "da_ttm" in m.columns and "yf_da_stmt" in y.columns:
+        _da_cur = pd.to_numeric(m["da_ttm"], errors="coerce")
+        _da_stmt = pd.to_numeric(y["yf_da_stmt"], errors="coerce").reindex(m.index)
+        _da_fill = _da_cur.isna() & _da_stmt.notna()
+        m.loc[_da_fill, "da_ttm"] = _da_stmt[_da_fill]
+        recon["da_ttm (gap-fill from Yahoo statement)"] = int(_da_fill.sum())
+    if "financing_cf_ttm" in m.columns and "yf_financing_cf_stmt" in y.columns:
+        _fin_cur = pd.to_numeric(m["financing_cf_ttm"], errors="coerce")
+        _fin_stmt = pd.to_numeric(y["yf_financing_cf_stmt"], errors="coerce").reindex(m.index)
+        _fin_fill = _fin_cur.isna() & _fin_stmt.notna()
+        m.loc[_fin_fill, "financing_cf_ttm"] = _fin_stmt[_fin_fill]
+        recon["financing_cf_ttm (gap-fill from Yahoo statement)"] = int(_fin_fill.sum())
+
     # fcf_ttm policy — ADJUDICATED AGAINST AUDITED ACCOUNTS (EDGAR XBRL, US
     # names, n=2,821): Yahoo's FCF agrees with the audited CFO-minus-capex on
     # only 30% of names (median 0.91, q25 = 0.53 — a QUARTER of names at half
@@ -628,7 +651,7 @@ def main():
     }
     _LEVEL_COLS = [c for c in (
         "cash", "total_debt", "revenue_ttm", "ebitda_ttm", "net_income_ttm",
-        "cfo_ttm", "fcf_ttm", "capex_ttm", "ncav", "net_cash", "ebit_ttm",
+        "cfo_ttm", "fcf_ttm", "capex_ttm", "da_ttm", "ncav", "net_cash", "ebit_ttm",
         "gross_profit_ttm", "financing_cf_ttm", "net_working_capital",
         "oe_avg", "ni_avg", "fcf_avg", "capex_avg", "normalized_ebitda",
         "normalized_ebit", "normalized_revenue", "net_buyback_ttm",
