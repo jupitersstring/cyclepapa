@@ -2943,15 +2943,33 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _evn18 = (_ncol('enterprise_value') / _nrm18.where(_nrm18 > 0))
     _surv18 = ((net_cash_pct_c >= 0) | (_ncol('interest_coverage') >= 4)
                | ((nde > -90) & (nde <= 1.5)))
+    # (user) a DOUBLE TROUGH is at its highest asymmetry when trailing EBITDA
+    # is NEGATIVE while the MID-CYCLE base is strongly positive — the deepest
+    # trough. The old `ebitda>0` floor excluded all of those (0 of 263 firers
+    # were negative-EBITDA). Remove it: admit trailing EBITDA at OR BELOW the
+    # trough including negative, valued on the mid-cycle base. For the
+    # negative-EBITDA case, HARD survivability (net cash or genuinely low
+    # leverage) does the work _not_melting otherwise would — at a real trough
+    # the name IS "melting" on trailing metrics (that is the entry), so the
+    # balance-sheet floor, not the melt gate, is the correct protection.
+    _at_trough_18 = (ebitda_ttm_v <= 0.85 * _nrm18)         # includes negative trailing
+    # a negative-EBITDA trough is burning cash NOW, so it needs a genuine
+    # FORTRESS to survive to mean-reversion — a real net-cash cushion (>=20% of
+    # mcap) or very low leverage — not merely "not net-debt" (a 2%-net-cash
+    # burner has no runway).
+    _deep_surv18 = ((net_cash_pct_c >= 0.20) | ((nde > -90) & (nde <= 1.0)))
     df['arch_xr_double_trough'] = (
         is_operating & (mcap > 0) & _fx_coherent &
         ((_num('pct_off_52w_high') <= -0.50)
          | (_num('price_pct_of_5y_range') <= 0.15)) &
         (_evn18 > 0) & (_evn18 <= 5.0) &                    # cheap on MID-CYCLE earnings
-        (ebitda_ttm_v > 0) & (ebitda_ttm_v <= 0.85 * _nrm18) &  # earnings AT the trough
-        _surv18 &
-        ~(_ncol('shares_yoy') > 0.05) &
-        _not_melting
+        _at_trough_18 &                                     # earnings AT/BELOW the trough (incl. negative)
+        # positive-EBITDA trough: standard survivability + not-melting.
+        # negative-EBITDA (deep) trough: HARD balance-sheet survivability
+        # instead (the melt gate would bar a trough by design).
+        (((ebitda_ttm_v > 0) & _surv18 & _not_melting)
+         | ((ebitda_ttm_v <= 0) & _deep_surv18)) &
+        ~(_ncol('shares_yoy') > 0.05)
     ).fillna(False).astype(int)
 
     # XR19 — Forced-seller dislocation ('XR-ForcedSeller'): the price
