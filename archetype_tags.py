@@ -1119,7 +1119,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                      & (_m12_raw.notna() | _py_raw.notna())))
     _qc_us = ((roic_lindy >= 0.15) & (n_yrs_roic_pos >= 4)
               & (shares_growth_3y <= 0.03) & (years_of_history >= 5))
-    _qc_global = ((country != 'US') & (s('roce', np.nan) >= 0.15)
+    _qc_global = (((country != 'US') | roic_lindy.isna())   # (user #5) a FOREIGN compounder on a US OTC line carries src='US' with no EDGAR lindy — it fell through BOTH paths (Nongfu Spring roce 80%, Anta 32%, Paycom). Take the ROCE path whenever the EDGAR lindy series is absent.
+                  & (s('roce', np.nan) >= 0.15)
                   & ~_roce_oneoff_suspect & _not_melting
                   & ~(_ncol('shares_yoy') > 0.03))
     df['arch_quiet_compounder'] = (
@@ -1164,7 +1165,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                   & (rev_yoy > -0.15) & (insider >= 0.20))
     _oo_us = ((n_yrs_roic_pos >= 4) & (n_yrs_fcf_pos >= 4)
               & (shares_growth_3y <= 0.02) & (years_of_history >= 5))
-    _oo_global = ((country != 'US') & (s('roce', np.nan) >= 0.12)
+    _oo_global = (((country != 'US') | roic_lindy.isna())   # (user #5) foreign owner-operators on US OTC lines (src='US', no EDGAR lindy) fell through both paths
+                  & (s('roce', np.nan) >= 0.12)
                   & ~_roce_oneoff_suspect & (fcf_yield > 0)
                   & ~(_ncol('shares_yoy') > 0.02))
     df['arch_owner_operator'] = (
@@ -4715,13 +4717,26 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #     discount — a viable operating business trading cheap on an OPERATING
     #     yield. Leverage-agnostic (no balance-sheet cap): a cheap, viable,
     #     non-melting spun business qualifies whatever its debt.
+    # (user #3) op_margin is GAAP-impairment contaminated (WW op -30% on a
+    # +14% EBITDA / +72% gross margin — a goodwill writedown, not an operating
+    # loss). A viability floor keyed on op_margin ALONE loses impairment-hit-
+    # but-healthy names, so credit a clearly-viable operating profile (positive
+    # EBITDA & gross margin, and not burning cash) as ALSO satisfying the floor.
+    # The cash-burn guard (fcf_yield > -0.15) still excludes a melting asset
+    # pile (NVRI op -89% / fcf -68%), so this loosens toward keeping good names
+    # without re-admitting cash bonfires.
+    def _op_viable(op_thresh):
+        return ((s('op_margin', np.nan) > op_thresh)
+                | ((ebitda_margin > 0.05)
+                   & (s('gross_margin', np.nan) > 0.10)
+                   & (fcf_yield > -0.15)))
     _spin_noncyc_val = (_excellent_value | (_ebitda_y_ev >= 0.10))
     _spin_cyc_val = ((_midcyc_y_ev.notna() & (_midcyc_y_ev >= 0.10))
                      | (_midcyc_y_ev.isna() & ((_ebitda_y_ev >= 0.10) | (fcf_yield >= 0.08))))
     _spin_value = ((_is_cyc_ev & _spin_cyc_val) | (~_is_cyc_ev & _spin_noncyc_val))
     df['arch_spinoff_value'] = (
         (_spin == 1) & is_operating & _not_melting & (mcap > 0)
-        & (s('op_margin', np.nan) > -0.05)      # a viable spun business, not a deep loss-maker
+        & _op_viable(-0.05)                     # viable spun business (impairment-robust), not a deep loss-maker
         & _spin_value
     ).fillna(False).astype(int)
 
@@ -4760,7 +4775,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     )
     df['arch_spinoff_asset'] = (
         (_spin == 1) & is_operating & _not_melting & (mcap > 0)
-        & (s('op_margin', np.nan) > -0.05)        # (audit) viability floor like the value spin: NVRI fired on pb<1 alone with op_margin -89% (goodwill impairment) and fcf_yield -68% — a melting asset pile, not a floor
+        & _op_viable(-0.05)                       # (audit) viability floor (impairment-robust): NVRI (op -89% impairment, fcf -68%) is a melting asset pile and still fails; a healthy impairment-hit spin is kept
         & _spin_asset_floor
     ).fillna(False).astype(int)
 
@@ -5100,7 +5115,26 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         print(f'  scrubbed {int(_spike.sum())} recent-spike names from '
               f'durability archetypes', file=sys.stderr)
 
-    df['archetype_count'] = df[arch_cols].sum(axis=1)
+    # (user) archetype_count feeds convergence_score / archetype_asymmetry
+    # (the density-ranked books), so a name that fires SEVERAL variants of ONE
+    # thesis was over-credited. Collapse ONLY genuine same-thesis THRESHOLD
+    # variants (a stricter refinement of the same signal) to count once —
+    # deliberately NOT distinct-but-correlated lenses (net-cash vs hidden-
+    # assets, the Wolf/liger/lindy facets), which are real independent
+    # confirmations and stay counted separately.
+    _DEDUP_CLUSTERS = [
+        ['arch_tenbagger_path', 'arch_tenbagger_credible'],   # credible = stricter path
+        ['arch_bab_low_beta', 'arch_bab_multibagger'],        # one betting-against-beta signal
+        ['arch_asleep_at_wheel', 'arch_asleep_unrerated'],    # unrerated = refined asleep
+    ]
+    _clustered = {c for cl in _DEDUP_CLUSTERS for c in cl if c in df.columns}
+    _independent = [c for c in arch_cols if c not in _clustered]
+    _count = df[_independent].sum(axis=1)
+    for _cl in _DEDUP_CLUSTERS:
+        _mem = [c for c in _cl if c in df.columns]
+        if _mem:
+            _count = _count + (df[_mem].sum(axis=1) > 0).astype(int)  # cluster contributes at most 1
+    df['archetype_count'] = _count
     df['archetype_tags_str'] = df[arch_cols].apply(
         lambda r: ', '.join(pretty[c] for c in arch_cols if r[c] == 1),
         axis=1,

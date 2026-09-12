@@ -105,6 +105,22 @@ def main():
     master = pd.read_csv(args.master).drop_duplicates("symbol")
     print(f"  {len(master):,} rows", file=sys.stderr)
 
+    # (audit #6) KNOWN provider sector/industry misclassifications that wrongly
+    # route an OPERATING company to the financial bucket, blocking every
+    # operating archetype. SOLS = Solstice Advanced Materials (Honeywell's
+    # specialty-materials spin) is tagged sector AND industry "Financials /
+    # Diversified Financial Services", blocking the quality-spin it clearly
+    # meets (roce 0.21, op 0.18, EV/EBIT 14.9, nde 1.8). Correct at the source
+    # so the master, tags, audit and books all agree.
+    _SECTOR_FIX = {"SOLS": ("Materials", "Specialty Chemicals")}
+    for _symfix, (_secfix, _indfix) in _SECTOR_FIX.items():
+        _mrow = master["symbol"].astype(str) == _symfix
+        if _mrow.any():
+            if "sector" in master.columns:
+                master.loc[_mrow, "sector"] = _secfix
+            if "industry" in master.columns:
+                master.loc[_mrow, "industry"] = _indfix
+
     try:
         yf = pd.read_csv(args.yf).drop_duplicates("symbol", keep="last")
     except FileNotFoundError:
