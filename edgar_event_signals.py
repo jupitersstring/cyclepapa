@@ -139,12 +139,25 @@ def process(cik):
     # RECENT. Verdad's post-reorg alpha is in the first ~2 years after
     # emergence; a 2009 fresh-start value that lingers in company facts (PPC,
     # LEA) is not a live special situation. Window it like the form flags.
+    # BROADENED (spot-check finding): keying only on ReorganizationValue missed
+    # ~19 of 20 known recent emergers (Hertz, Chord/Whiting, Valaris) — most
+    # fresh-start filers never tag that concept, or it ages out while the
+    # company is still re-rating. ReorganizationItems (the P&L reorg line) is
+    # reported through emergence and the comparative periods after, and catches
+    # them. Flag on EITHER concept, recent; the downstream archetype's
+    # operating/not-melting/leverage gates exclude any name still IN bankruptcy.
+    _cut = (pd.Timestamp.now() - pd.Timedelta(days=REORG_WINDOW_DAYS)).strftime("%Y-%m-%d")
+    _reorg_ends = []
     rv, rv_end = _concept_latest(cik, "ReorganizationValue")
-    if rv is not None and rv_end:
-        _cut = (pd.Timestamp.now() - pd.Timedelta(days=REORG_WINDOW_DAYS)).strftime("%Y-%m-%d")
-        if rv_end >= _cut:
-            row["reorg_flag"] = 1
-            row["reorg_date"] = rv_end
+    if rv is not None and rv_end and rv_end >= _cut:
+        _reorg_ends.append(rv_end)
+    for _tag in ("ReorganizationItems", "ReorganizationItemsNet"):
+        _ri, _ri_end = _concept_latest(cik, _tag)
+        if _ri is not None and _ri_end and _ri_end >= _cut:
+            _reorg_ends.append(_ri_end)
+    if _reorg_ends:
+        row["reorg_flag"] = 1
+        row["reorg_date"] = max(_reorg_ends)
     return row
 
 
