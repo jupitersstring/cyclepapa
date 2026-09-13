@@ -5671,6 +5671,79 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['forensic_xr_score'] = (df['forensic_hidden_pct'] * _fx_cheap
                                * _fx_eligible.astype(float)).round(4)
 
+    # ===== TRULY-XR: forensic CONFLUENCE (the grossest, least-arbitraged
+    # mispricings). Part II thesis: the biggest re-ratings are not one gap but
+    # SEVERAL independent GAAP-vs-economic gaps STACKED in one cheap name, with a
+    # MECHANICAL (self-executing) catalyst. We count DISTINCT forensic tells by
+    # gap-GROUP (so sibling archetypes of one thesis count once — dedup by
+    # construction), upweight names whose firing tells carry self-executing
+    # catalysts, and gate to a cheap, tradeable, non-melting opportunity. A
+    # "truly XR" setup requires >= 3 independent tells.
+    _XR_GAP_GROUPS = {
+        # gap-group : (member archetypes, mechanical/self-executing catalyst?)
+        'expensed_growth':   (['arch_xr_growth_capex_masked', 'arch_expensed_growth_value'], False),      # G1 (semi)
+        'segment_sotp':      (['arch_xr_hidden_segment_compounder', 'arch_xr_segment_justifies_whole',
+                               'arch_xr_margin_mixshift'], False),                                        # G2 (disclosure/spin)
+        'hidden_assets':     (['arch_hidden_assets', 'arch_xr_owned_realestate_value',
+                               'arch_overdepreciated_assets', 'arch_lifo_hidden_reserve',
+                               'arch_pension_overfunded', 'arch_tangible_value'], False),                 # G3 (sale/activist)
+        'look_through':      (['arch_xr_look_through_value'], False),                                     # off-BS stakes
+        'da_rolloff':        (['arch_xr_depreciation_cliff', 'arch_xr_amortization_mask'], True),         # G4 MECHANICAL (rolls off)
+        'deferred_backlog':  (['arch_xr_contracted_backlog', 'arch_xr_deferred_revenue_lead',
+                               'arch_xr_float_compounding'], True),                                       # G5 MECHANICAL (converts)
+        'oneoff_discops':    (['arch_xr_oneoff_loss_mask', 'arch_xr_bigbath_rebound',
+                               'arch_xr_discops_mask'], True),                                            # G6 MECHANICAL (annualises out/divested)
+        'tax_shield':        (['arch_xr_nol_shield', 'arch_dta_reversal',
+                               'arch_xr_cash_tax_advantage', 'arch_nol_shell'], True),                    # G7 MECHANICAL (release/burn)
+        'cyclical':          (['arch_xr_cyclical_trough', 'arch_xr_double_trough',
+                               'arch_xr_latent_bath_floor'], True),                                       # G8 MECHANICAL (mean-reversion)
+        'margin_leverage':   (['arch_xr_peer_margin_gap', 'arch_xr_gross_margin_lead',
+                               'arch_xr_pre_scale_margin', 'arch_xr_reusable_assembler',
+                               'arch_xr_leverage_detonation'], False),                                    # G9 (execution)
+        'crossover_mandate': (['arch_xr_gaap_profit_crossover'], True),                                   # G10 MECHANICAL (inclusion)
+        'cannibal_return':   (['arch_xr_cannibal_below_cash', 'arch_xr_cannibal_below_tbook',
+                               'arch_self_funded_returner', 'arch_xr_paydown_yield',
+                               'arch_xr_harvest_distribution'], False),                                   # buyback/return compounding
+        'reorg_special':     (['arch_post_reorg', 'arch_special_situation', 'arch_spinoff_value',
+                               'arch_spinoff_quality', 'arch_spinoff_asset'], True),                      # event-driven MECHANICAL
+        'balance_floor':     (['arch_negative_ev_value', 'arch_xr_neg_ev_growth',
+                               'arch_xr_clean_net_net', 'arch_xr_triple_floor'], False),                  # asset/net-cash floor
+    }
+    _tell_count = pd.Series(0, index=df.index)
+    _mech_count = pd.Series(0, index=df.index)
+    _tells_present = {}   # group -> bool Series
+    for _g, (_members, _mech) in _XR_GAP_GROUPS.items():
+        _mem = [c for c in _members if c in df.columns]
+        _fired = (df[_mem].sum(axis=1) > 0) if _mem else pd.Series(False, index=df.index)
+        _tells_present[_g] = _fired
+        _tell_count = _tell_count + _fired.astype(int)
+        if _mech:
+            _mech_count = _mech_count + _fired.astype(int)
+    df['truly_xr_tell_count'] = _tell_count.astype(int)
+    df['truly_xr_mech_count'] = _mech_count.astype(int)
+    # cheapness: the visible business must ALSO be cheap (a hidden gap is only XR
+    # when the market prices the whole cheaply). Broad OR of value lenses.
+    _truly_cheap = (_excellent_value.fillna(False)
+                    | ((ev_ebitda_v > 0) & (ev_ebitda_v <= 10.0))
+                    | (fcf_yield >= 0.05)
+                    | ((pb > 0) & (pb < 1.5))).fillna(False)
+    _truly_eligible = (is_operating & (_ncol('market_cap_usd') >= 50e6)
+                       & _not_melting.fillna(False))
+    # score = independent tells x mechanical-catalyst upweight x cheapness, only
+    # where tradeable/non-melting. Ranks the confluence; the flag is the >=3 bar.
+    _truly_cheap_mult = np.where(_excellent_value.fillna(False).values, 1.5, 1.0)
+    df['truly_xr_score'] = (_tell_count
+                            * (1.0 + 0.20 * _mech_count)
+                            * _truly_cheap_mult
+                            * (_truly_cheap & _truly_eligible).astype(float)).round(3)
+    df['truly_xr_flag'] = ((_tell_count >= 3) & _truly_cheap & _truly_eligible).astype(int)
+    # human-readable breakdown: which gap-groups fire (mechanical marked *)
+    _grp_order = list(_XR_GAP_GROUPS.keys())
+    def _tells_str(i):
+        return ', '.join((_g + ('*' if _XR_GAP_GROUPS[_g][1] else ''))
+                         for _g in _grp_order if _tells_present[_g].iloc[i])
+    df['truly_xr_tells_str'] = [_tells_str(i) for i in range(len(df))]
+
     # (user) archetype_count feeds convergence_score / archetype_asymmetry
     # (the density-ranked books), so a name that fires SEVERAL variants of ONE
     # thesis was over-credited. Collapse ONLY genuine same-thesis THRESHOLD
@@ -5696,7 +5769,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','segment_rot_flag','xr_family_count','xr_confidence','xr_score','forensic_hidden_pct','forensic_xr_score','spin_date','reorg_date']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','segment_rot_flag','xr_family_count','xr_confidence','xr_score','forensic_hidden_pct','forensic_xr_score','truly_xr_score','truly_xr_flag','truly_xr_tell_count','truly_xr_mech_count','truly_xr_tells_str','spin_date','reorg_date']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m','segment_count','fastest_segment_yoy','is_price_ghost'] if c in df.columns]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)
