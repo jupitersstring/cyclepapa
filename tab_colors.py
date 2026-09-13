@@ -133,6 +133,9 @@ ARCH_FAMILY = {
     # Greenblatt Magic Formula: a cheap+quality FACTOR sleeve (not event-driven)
     'arch_greenblatt_magic': 'quality',
     'arch_lifo_hidden_reserve': 'deep_value', 'arch_pension_overfunded': 'deep_value', 'arch_dta_reversal': 'deep_value',
+    # forensic re-rating tells: operating-leverage coil, mandate-unlock crossover, deferred-revenue forward book
+    'arch_xr_gross_margin_lead': 'inflection', 'arch_xr_gaap_profit_crossover': 'inflection',
+    'arch_xr_deferred_revenue_lead': 'deep_value',
 }
 
 

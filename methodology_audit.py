@@ -536,7 +536,10 @@ def _regression(t, g):
                 "arch_dta_reversal", "arch_xr_contracted_backlog",
                 "arch_xr_hidden_segment_compounder",
                 # segment sum-of-parts / mix-shift XR (operating-gated)
-                "arch_xr_segment_justifies_whole", "arch_xr_margin_mixshift"):
+                "arch_xr_segment_justifies_whole", "arch_xr_margin_mixshift",
+                # forensic re-rating tells (operating-gated)
+                "arch_xr_gross_margin_lead", "arch_xr_gaap_profit_crossover",
+                "arch_xr_deferred_revenue_lead"):
         if _ac in t.columns:
             leak = int(((n(t, _ac) == 1) & _finre).sum())
             check(f"regression(R1): {_ac} excludes Financials/REITs/Utilities",

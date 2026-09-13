@@ -233,3 +233,185 @@ being rebuilt anyway.
 
 *Companion: the EDGAR ticker-coverage broadening is tracked separately; the Wave 2
 concepts should be added in that same cache-rebuild pass.*
+
+---
+---
+
+# Part II — Why forensic accounting unveils *gross* mispricings (first principles)
+
+*Deeper theory, requested follow-up. Part I asked "what were the tells." Part II
+asks "why do these tells exist at all, and where are they structurally largest,"
+then derives further signals from the theory rather than from anecdote.*
+
+## II.1 The anchor-number theory
+
+The marginal price-setter — the trade that clears the market — anchors on **one or
+two headline numbers**: trailing P/E, EV/EBITDA, revenue growth, or P/B. Screens,
+factor models, and most analyst notes are built on those anchors. **A gross
+mispricing is not possible when the true economics live in the anchor** — the
+crowd competes it away. It is *only* possible when the true economics live in a
+number the anchor does not see:
+
+| If the crowd anchors on… | …the gross mispricing hides in | Forensic reconstruction |
+|---|---|---|
+| Trailing P/E | Earnings understated (expensed growth, D&A>maintenance, DTL, discops drag, one-offs) | Normalise earnings to owner-earnings |
+| EV/EBITDA | EV overstated by non-operating claims (equity stakes, land, overfunded pension, NOLs, net cash) | Strip non-operating assets from EV |
+| Revenue growth | Revenue understated (deferred/subscription recognition) | Billings = revenue + Δdeferred |
+| P/B | Book meaningless (historical-cost land, contra-equity buybacks, expensed intangibles) | Reconstruct economic book |
+
+**The forensic edge is definitionally the act of computing the NON-anchor number.**
+The magnitude of available alpha in a name is the *distance* between its anchor
+number and its economic-reality number — this is precisely what `forensic_xr_score`
+tries to size, and the sharpening below is to always express the gap **relative to
+the anchor the crowd is actually using** for that name.
+
+## II.2 GAAP is systematically conservative — the under-practiced mirror of fraud detection
+
+Forensic accounting is overwhelmingly taught and practised as **overstatement
+detection** — finding fraud, aggressive revenue, capitalised expense, the short
+side. That skill is crowded (short sellers, the SEC, auditors, activists all hunt
+it). The **mirror discipline — finding systematic *understatement*** — is
+under-practised, therefore its findings are less arbitraged, therefore the
+mispricings are grosser and more durable. US GAAP has *structural* conservative
+biases that permanently understate value and never self-correct:
+
+1. **Historical cost, no upward revaluation** (unlike IFRS): land, buildings, and
+   long-held assets are frozen at acquisition cost. Land is never depreciated *and*
+   never marked up → a 1960s parcel sits at 1960s cost forever. (Signal N3.)
+2. **Immediate expensing of intangible investment** (R&D, brand, software,
+   customer acquisition): the invested capital and the current earnings of an
+   intangible-heavy grower are both understated — no asset appears, and the P&L
+   is charged for investment as if it were cost. (Signal N-ext-3 below.)
+3. **Impairments are one-way**: written down on a bath or a cyclical low, never
+   written back up under US GAAP even as the asset's economics recover — a
+   permanent understatement after every trough. (Adjacent to `bigbath_rebound`.)
+4. **Full depreciation of still-productive assets**: a plant at zero net book that
+   still produces carries *no* depreciation drag and its owner defers replacement
+   capex — cash earnings exceed reported. (Sharper `depreciation_cliff`; N-ext-4.)
+5. **LIFO inventory**, **overfunded pensions**, **reversible DTA allowances**,
+   **equity-method stakes below fair value** — already in the net.
+
+The theoretical point: **stacking multiple independent conservative biases in one
+name multiplies the gap** and is rarer than any single one, so the confluence is
+where the grossest, least-arbitraged mispricings sit. This is the justification for
+keeping `forensic_xr_score` as a *sum of independent size-normalised components*
+and rewarding confluence — the theory says confluence is the edge, not the average.
+
+## II.3 The cash-vs-accrual wedge (the single most powerful lens)
+
+The most reliable forensic reconstruction is **owner earnings (cash the owner can
+extract) vs. reported accrual earnings**. Sloan (1996) established the *accrual
+anomaly*: high-accrual firms subsequently underperform, low/negative-accrual firms
+outperform — the market over-weights the accrual component of earnings and
+under-weights the cash component, because accruals are less persistent than cash
+but look identical in headline EPS.
+
+For the **long/XR side**, the tell is the inverse of the fraud tell: a firm whose
+**cash earnings persistently and materially EXCEED accrual earnings** (CFO ≫ NI,
+low or negative accruals) is one whose headline P/E *overstates* the price of its
+true cash generation. This is a distinct, measurable, academically-grounded signal
+we do not yet isolate as an XR archetype (we use `owner_earnings_yield` as a level,
+not the *cash-beats-accrual persistence* as a signal). → **Signal N-ext-1.**
+
+The wedge decomposes into the exact items forensic accounting reconstructs:
+`Owner earnings ≈ NI + D&A − maintenance capex + non-cash charges (impairment,
+SBC¹, deferred tax provision) ± working-capital release`. Every term is a place the
+accrual number diverges from cash — and every divergence we can measure is a
+component of the same score. *(¹SBC is a real economic cost; it is the one add-back
+forensic rigour must NOT make — the system already expenses it via `roic_after_sbc`.)*
+
+## II.4 The disclosure-granularity gradient
+
+Alpha concentrates at a specific granularity of disclosure: **fine enough that a
+diligent reader can reconstruct economic reality, coarse enough (or buried enough)
+that a screen cannot.** Face financial statements are read by every algorithm; the
+**footnotes are read by almost no automated price-setter.** So the gradient of
+mispricing runs:
+
+`face statements (fully arbitraged) → MD&A prose (semi) → footnotes (barely) →
+off-balance-sheet & contractual-obligations tables (essentially unread by machines)`
+
+This is the structural reason our **EDGAR XBRL footnote extraction is the moat**:
+segment notes, tax footnotes (DTA/DTL/NOL/rate-reconciliation), pension notes, lease
+notes, revenue-recognition rollforwards (deferred revenue, RPO), and related-party
+notes are *tagged* in XBRL and therefore machine-readable **by us** but not consumed
+by the crowd's face-statement screens. Every incremental footnote concept we tag
+moves us further down the gradient into less-arbitraged territory — which is the
+theoretical case for the Wave-2 concept additions (cash-tax, gross PP&E, discops,
+restructuring) being *worth more per name* than adding more tickers of face data.
+
+## II.5 Mechanical vs. discretionary catalysts (avoiding the value trap)
+
+A hidden asset with **no catalyst is a permanent discount** — the classic value
+trap. The forensic edge only becomes an XR *setup* when convergence is forced.
+Catalysts are not equal; rank them by **who controls the trigger**:
+
+- **Mechanical / self-executing (highest conviction):** DTA valuation-allowance
+  release when profits return, NOL burn-through, pension surplus swinging with
+  rates, D&A rolling off as assets fully depreciate, deferred revenue converting to
+  P&L, a one-off/restructuring charge annualising out of the trailing window, a
+  cyclical trough mean-reverting. **The clock does the work — no dependence on
+  anyone's decision.**
+- **Semi-mechanical:** index/mandate inclusion on first GAAP profit or crossing a
+  size threshold (N8) — automatic *once* the accounting condition is met.
+- **Discretionary (lower conviction, longer/uncertain):** management sale-leaseback,
+  spin, buyback initiation, dividend initiation, segment-reporting change, or an
+  activist forcing any of the above.
+
+**Refinement proposal (overlay, not a new archetype):** tag every forensic-family
+member by its catalyst class and **upweight self-executing over discretionary** in
+the ranking. Our current forensic score is catalyst-agnostic; the theory says a
+mechanically-converging gap deserves a higher rank than an identically-sized gap
+that needs a boardroom to act. → **Signal N-ext-2 (a `catalyst_class` overlay).**
+
+## II.6 Mandate blind spots — "re-rate by inclusion"
+
+Some multiples are set not by economics but by **who is structurally forbidden from
+owning the stock.** When the constraint releases, price snaps to where the newly-
+eligible buyers value it — a re-rate with *no* change in fundamentals:
+
+- **GAAP-unprofitable** → excluded from S&P index inclusion and most institutional
+  profitability screens. First GAAP profit unlocks. *(N8 — built.)*
+- **Sub-threshold size / liquidity** → excluded from indices and large funds.
+- **Negative book equity** (buyback cannibals) → excluded by P/B value screens even
+  when FCF is a fortress. *(`cannibal` family — built.)*
+- **No dividend** → excluded by income mandates; initiation unlocks a buyer class.
+- **OTC / no major-exchange listing** → excluded by nearly all institutions;
+  uplisting unlocks. *(We already flag `is_otc`/`is_price_ghost`.)*
+
+The unifying idea: **the multiple was a function of the eligible-buyer base, not of
+cash flows.** Forensic accounting's role here is to identify names *about to* cross
+an eligibility line (first profit, first dividend, size threshold) — the accounting
+event that mechanically widens the buyer base.
+
+## II.7 Further signals derived from the theory (beyond N1–N8)
+
+These fall out of the theory above rather than from case anecdote; listed for the
+research record (not built now):
+
+- **N-ext-1 — Cash-beats-accrual persistence** (§II.3): CFO persistently and
+  materially > NI with low/negative accruals, cheap on owner-earnings yield. The
+  academically-grounded accrual-anomaly long. *Buildable from existing CFO/NI.*
+- **N-ext-2 — Catalyst-class overlay** (§II.5): tag each forensic member
+  mechanical / semi / discretionary and upweight self-executing convergence.
+  *A ranking overlay over existing archetypes; no new data.*
+- **N-ext-3 — Capitalised-intangible ROIC** (§II.2 bias 2): reconstruct an R&D /
+  brand asset (capitalise and amortise historical R&D/S&M), revealing true invested
+  capital and a true ROIC the market misses on intangible-heavy compounders.
+  *Needs R&D-expense history (new EDGAR concept, Wave 2+).*
+- **N-ext-4 — Fully-depreciated productive asset** (§II.2 bias 4): net PP&E near
+  zero relative to gross, revenue/output stable → the asset earns with no
+  depreciation drag and replacement is deferred. *Needs gross PP&E + accumulated
+  depreciation (the same Wave-2 concepts as N3).*
+
+## II.8 Synthesis — the ranking implication
+
+The theory says the grossest, most durable, least-arbitraged mispricings are those
+that are simultaneously: **(a)** off the anchor number the crowd uses, **(b)** a
+product of GAAP's conservative (understatement) biases rather than aggressive ones,
+**(c)** visible only in the footnotes (down the disclosure-granularity gradient),
+**(d)** converging via a mechanical/self-executing catalyst, and **(e)** stacked —
+multiple independent conservative biases in one name. `forensic_xr_score` already
+captures (b) and (e). The highest-leverage refinements this study points to are:
+express each component **relative to the crowd's actual anchor** (a), keep pushing
+footnote-concept extraction (c), and add a **catalyst-class upweight** (d).

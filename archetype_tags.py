@@ -3566,6 +3566,70 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # rests on a decaying foundation.
     df['segment_rot_flag'] = (_ncol('seg_core_declining') == 1).fillna(False).astype(int)
 
+    # XR40 — Gross-margin lead / operating-leverage coil ('XR-GrossMarginLead').
+    # Backwards-induction tell (Monster-class): before the OPERATING-margin
+    # explosion, GROSS margin inflects first (mix / pricing / scale) while SG&A
+    # hasn't yet scaled down, so operating margin LAGS and the trailing op-margin
+    # UNDERSTATES the earnings power that is coming. The coil = gross margin
+    # rising materially faster than operating margin, on a GROWING revenue base
+    # (so the gross gain is scale/pricing, not a shrinking-mix / attrition
+    # artifact), with real gross margin to harvest. The re-rate comes as fixed
+    # SG&A is absorbed and the gross gain drops through to operating.
+    _gmd_x40 = _ncol('gross_margin_delta_yoy')
+    _opmd_x40 = _ncol('op_margin_delta_yoy')
+    df['arch_xr_gross_margin_lead'] = (
+        is_operating & (mcap > 0) & _fx_coherent
+        & (_ncol('revenue_ttm_usd') >= 20e6)
+        & (_gmd_x40 >= 0.02)                                # gross margin up >= 2pp YoY (the lead)
+        & (rev_yoy_c >= 0.05)                               # ...on a GROWING base (scale/pricing, not attrition)
+        & (_ncol('gross_margin') >= 0.20)                   # real gross margin exists to leverage
+        & (_opmd_x40 < _gmd_x40 * 0.5)                      # operating captured < half the gross gain (SG&A drag => latent leverage)
+        & _not_melting
+    ).fillna(False).astype(int)
+
+    # XR41 — GAAP-profitability crossover ('XR-GAAPProfitCrossover'). A mandate /
+    # inclusion re-rate (gap G10): the multiple was capped near zero not by
+    # economics but by WHO COULD NOT OWN IT — passive index funds (S&P inclusion
+    # requires GAAP profitability), profitability-screened institutions, and the
+    # simplest quant screens all exclude a loss-maker. The turn to a first GAAP
+    # net profit mechanically unlocks that latent demand. We require the profit
+    # to be OPERATIONAL (op or EBITDA positive) — not a one-off gain flattering
+    # the line — on a listed (non-ghost, non-OTC), non-melting, real-revenue base.
+    _ni_now_x41 = _ncol('net_income_ttm')
+    df['arch_xr_gaap_profit_crossover'] = (
+        is_operating & (mcap > 0) & _fx_coherent
+        & (_ncol('market_cap_usd') >= 250e6)                # mandate/index unlock only bites at a size institutions can own
+        & (_ncol('revenue_ttm_usd') >= 20e6)
+        & (s('net_income_first_positive', 0) == 1)          # NI crossed <=0 -> >0 (the mandate-unlock trigger)
+        & (_ni_now_x41 > 0)
+        & ((_ncol('op_margin') > 0) | (ebitda_ttm_v > 0))   # OPERATIONAL profit, not a one-off gain
+        & ~(s('is_price_ghost', 0) == 1) & ~(s('is_otc', 0) == 1)  # listing exists for the demand to unlock into
+        & _not_melting
+    ).fillna(False).astype(int)
+
+    # XR42 — Deferred-revenue forward book ('XR-DeferredRevenueLead'). A sibling
+    # to contracted_backlog (RPO), using the older/broader DEFERRED-REVENUE
+    # disclosure (invoiced-and-collected but not yet recognised — the SaaS /
+    # subscription / prepaid book). A material forward book (>= 15% of revenue)
+    # that is BUILDING (revenue growing) is contracted revenue already sitting on
+    # the balance sheet, yet the market prices the CHEAP trailing tape (a
+    # transition or conservative recognition depresses reported revenue). This is
+    # deliberately the MIRROR of float_compounding: that catches the beloved SaaS
+    # (dear/meaningless P/E); this catches the MISPRICED book — priced cheap on
+    # trailing sales/FCF while the deferred balance pre-loads forward revenue.
+    _defrev_x42 = _ncol('deferred_revenue')
+    _defrev_ratio_x42 = (_defrev_x42 / _rev_loc).where(_rev_loc > 0)
+    _cheap_x42 = (((_ncol('ev_sales') > 0) & (_ncol('ev_sales') <= 3.0))
+                  | ((ev_ebitda_v > 0) & (ev_ebitda_v <= 12.0))
+                  | (fcf_yield >= 0.03))
+    df['arch_xr_deferred_revenue_lead'] = (
+        is_operating & (mcap > 0) & _fx_coherent
+        & (_defrev_ratio_x42 >= 0.15)                       # a real forward book already collected
+        & (rev_yoy_c >= 0.05)                               # ...and BUILDING (subscriptions/prepayments growing)
+        & _cheap_x42                                        # yet priced on the cheap TRAILING tape (the mispricing)
+        & _not_melting
+    ).fillna(False).astype(int)
+
     # F6 — Forensic payout confirmation (the user's BOOST leg). Any forensic /
     # hidden-value member that is ALSO returning capital — buying back shares
     # or paying a dividend — earns an EXTRA archetype count, which is this
@@ -4034,13 +4098,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                      'arch_xr_look_through_value', 'arch_xr_float_compounding',
                      'arch_xr_oneoff_loss_mask',
                      'arch_xr_contracted_backlog',
-                     'arch_xr_segment_justifies_whole'],
+                     'arch_xr_segment_justifies_whole',
+                     'arch_xr_deferred_revenue_lead'],
         'engine': ['arch_xr_compounding_deployer', 'arch_xr_reusable_assembler',
                    'arch_xr_pre_scale_margin', 'arch_xr_leverage_detonation',
                    'arch_xr_baron_compounder', 'arch_xr_audited_streak_unrerated',
                    'arch_xr_harvest_distribution', 'arch_xr_paydown_yield',
                    'arch_xr_cyclical_trough', 'arch_xr_hidden_segment_compounder',
-                   'arch_xr_margin_mixshift'],
+                   'arch_xr_margin_mixshift', 'arch_xr_gross_margin_lead',
+                   'arch_xr_gaap_profit_crossover'],
     }
     _fam_fired = pd.DataFrame(index=df.index)
     for _fam, _cols in _XR_FAMILIES.items():
@@ -4674,6 +4740,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_hidden_segment_compounder',
         'arch_xr_segment_justifies_whole',
         'arch_xr_margin_mixshift',
+        'arch_xr_gross_margin_lead',
+        'arch_xr_gaap_profit_crossover',
+        'arch_xr_deferred_revenue_lead',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -4832,6 +4901,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_hidden_segment_compounder': 'XR-HiddenSegmentCompounder',
         'arch_xr_segment_justifies_whole': 'XR-SegmentJustifiesWhole',
         'arch_xr_margin_mixshift': 'XR-MarginMixShift',
+        'arch_xr_gross_margin_lead': 'XR-GrossMarginLead',
+        'arch_xr_gaap_profit_crossover': 'XR-GAAPProfitCrossover',
+        'arch_xr_deferred_revenue_lead': 'XR-DeferredRevenueLead',
         'arch_templeton_pessimism': 'Templeton-MaxPessimism',
         'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
         'arch_levered_inflection': 'LeveredInflectionStub',

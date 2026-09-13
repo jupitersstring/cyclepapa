@@ -1,3 +1,5 @@
+ABSENT COLUMNS (requested by gates, not in frame — gate legs read all-NaN):
+  MISSING  is_otc
 NEAR-EMPTY COLUMNS (<2% coverage — legs almost never fire):
   SPARSE   lifo_reserve                          0.55%
   SPARSE   seg_best_ebit_usd                     1.24%
