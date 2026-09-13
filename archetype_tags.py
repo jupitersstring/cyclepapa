@@ -3511,6 +3511,61 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & _not_melting
     ).fillna(False).astype(int)
 
+    # XR38 — Segment justifies the whole ('XR-SegmentJustifiesWhole'): the
+    # segment-level sum-of-parts XR. The single BEST segment, valued alone at a
+    # conservative ~12x its own operating EBIT, already covers the ENTIRE
+    # enterprise value — so every OTHER segment (plus any net cash) comes free.
+    # seg_best_ebit_usd is the highest-EBIT reportable segment's operating
+    # income (USD, from the EDGAR segment harvest); enterprise_value_usd is USD,
+    # so the comparison is same-currency. We require a real multi-segment mix
+    # (segment_count >= 2) and that the OTHER segments are net-positive
+    # contributors (seg_total_ebit > seg_best_ebit) — that is the free
+    # optionality the consolidated multiple gives away. A forensic SOTP the
+    # trailing whole-company numbers can't surface.
+    _sbest_x38 = _ncol('seg_best_ebit_usd')
+    _stot_x38 = _ncol('seg_total_ebit_usd')
+    _ev_usd_x38 = _ncol('enterprise_value_usd')
+    df['arch_xr_segment_justifies_whole'] = (
+        is_operating & (mcap > 0) & _fx_coherent
+        & (_ncol('revenue_ttm_usd') >= 20e6)
+        & (_ncol('segment_count') >= 2)                     # a real segment mix — "the rest" exists
+        & (_sbest_x38 > 0) & (_ev_usd_x38 > 0)              # positive best-segment EBIT and a real EV
+        & (_sbest_x38 * 12.0 >= _ev_usd_x38)                # best segment alone at ~12x EBIT >= the whole EV
+        & (_stot_x38 > _sbest_x38)                          # other segments are NET-POSITIVE contributors (free)
+        & _not_melting
+    ).fillna(False).astype(int)
+
+    # XR39 — Margin mix-shift ('XR-MarginMixShift'): the fastest-growing segment
+    # earns a materially HIGHER operating margin than the company's blended
+    # average (seg_mix_uplift = fastest-segment margin - blended margin) AND it
+    # is GAINING share of the revenue base. Mechanically, as the high-margin
+    # engine takes mix from the low-margin legacy, the CONSOLIDATED margin must
+    # expand — but the trailing blended figure the market prices can't yet show
+    # it. A forensic margin-inflection the segment detail reveals ahead of the
+    # tape, gated to a cheap consolidated whole so the re-rate is unpriced.
+    _mix_x39 = _ncol('seg_mix_uplift')
+    _cheap_x39 = (((_ncol('ev_sales') > 0) & (_ncol('ev_sales') <= 3.0))
+                  | ((ev_ebitda_v > 0) & (ev_ebitda_v <= 12.0))
+                  | ((pb > 0) & (pb < 2.0))
+                  | (fcf_yield >= 0.03))
+    df['arch_xr_margin_mixshift'] = (
+        is_operating & (mcap > 0) & _fx_coherent
+        & (_ncol('revenue_ttm_usd') >= 20e6)
+        & (_ncol('segment_count') >= 2)
+        & (_mix_x39 >= 0.05)                                # fastest segment >=5pp richer than the blend
+        & (_ncol('fastest_segment_share_delta') > 0)        # ...and taking mix from the legacy
+        & _cheap_x39                                        # market prices the cheap blended whole
+        & _not_melting
+    ).fillna(False).astype(int)
+
+    # Segment rot flag (WARNING, not an archetype). seg_core_declining marks a
+    # LARGE core segment (>=25% of revenue) shrinking >=10% YoY — the consolidated
+    # top line may look flat only because a growing minor segment is masking a
+    # rotting core. Lives outside the arch_ namespace (like earnings_oneoff_flag):
+    # it never promotes a name, it warns the reader when a segment-driven thesis
+    # rests on a decaying foundation.
+    df['segment_rot_flag'] = (_ncol('seg_core_declining') == 1).fillna(False).astype(int)
+
     # F6 — Forensic payout confirmation (the user's BOOST leg). Any forensic /
     # hidden-value member that is ALSO returning capital — buying back shares
     # or paying a dividend — earns an EXTRA archetype count, which is this
@@ -3978,12 +4033,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                      'arch_xr_nol_shield', 'arch_xr_growth_capex_masked',
                      'arch_xr_look_through_value', 'arch_xr_float_compounding',
                      'arch_xr_oneoff_loss_mask',
-                     'arch_xr_contracted_backlog'],
+                     'arch_xr_contracted_backlog',
+                     'arch_xr_segment_justifies_whole'],
         'engine': ['arch_xr_compounding_deployer', 'arch_xr_reusable_assembler',
                    'arch_xr_pre_scale_margin', 'arch_xr_leverage_detonation',
                    'arch_xr_baron_compounder', 'arch_xr_audited_streak_unrerated',
                    'arch_xr_harvest_distribution', 'arch_xr_paydown_yield',
-                   'arch_xr_cyclical_trough', 'arch_xr_hidden_segment_compounder'],
+                   'arch_xr_cyclical_trough', 'arch_xr_hidden_segment_compounder',
+                   'arch_xr_margin_mixshift'],
     }
     _fam_fired = pd.DataFrame(index=df.index)
     for _fam, _cols in _XR_FAMILIES.items():
@@ -4615,6 +4672,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_monetization_trifecta',
         'arch_xr_contracted_backlog',
         'arch_xr_hidden_segment_compounder',
+        'arch_xr_segment_justifies_whole',
+        'arch_xr_margin_mixshift',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -4771,6 +4830,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_monetization_trifecta': 'XR-MonetizationTrifecta',
         'arch_xr_contracted_backlog': 'XR-ContractedBacklog',
         'arch_xr_hidden_segment_compounder': 'XR-HiddenSegmentCompounder',
+        'arch_xr_segment_justifies_whole': 'XR-SegmentJustifiesWhole',
+        'arch_xr_margin_mixshift': 'XR-MarginMixShift',
         'arch_templeton_pessimism': 'Templeton-MaxPessimism',
         'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
         'arch_levered_inflection': 'LeveredInflectionStub',
@@ -5446,7 +5507,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','xr_family_count','xr_confidence','xr_score','forensic_hidden_pct','forensic_xr_score','spin_date','reorg_date']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','segment_rot_flag','xr_family_count','xr_confidence','xr_score','forensic_hidden_pct','forensic_xr_score','spin_date','reorg_date']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m','segment_count','fastest_segment_yoy','is_price_ghost'] if c in df.columns]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)

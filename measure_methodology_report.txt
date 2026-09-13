@@ -1,4 +1,4 @@
-METHODOLOGY AUDIT — 188 checks, 0 FAIL, 0 WARN
+METHODOLOGY AUDIT — 190 checks, 0 FAIL, 0 WARN
   PASS  units: dividend_yield is a fraction  — median |dividend_yield| = 0.028 (fraction-scale cap 1.5)
   PASS  units: fcf_yield is a fraction  — median |fcf_yield| = 0.068 (fraction-scale cap 3.0)
   PASS  units: analyst_target_upside_pct is a fraction  — median |analyst_target_upside_pct| = 0.260 (fraction-scale cap 5.0)
@@ -91,6 +91,8 @@ METHODOLOGY AUDIT — 188 checks, 0 FAIL, 0 WARN
   PASS  regression(R1): arch_dta_reversal excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
   PASS  regression(R1): arch_xr_contracted_backlog excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
   PASS  regression(R1): arch_xr_hidden_segment_compounder excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_xr_segment_justifies_whole excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_xr_margin_mixshift excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
   PASS  regression(tail): arch_micro_activist_inflect carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
   PASS  regression(tail): arch_fixed_cost_demand_shock carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
   PASS  regression(tail): arch_regime_cyclical carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
@@ -174,7 +176,7 @@ METHODOLOGY AUDIT — 188 checks, 0 FAIL, 0 WARN
   PASS  regression: arch_cash_adjusted_pe NI>0 and best-leg adj-P/E <= 8.5 (local)  — 0 violating firers
   PASS  regression: arch_owner_earnings_power owner-earnings >= ~1.35x NI (audited-pref D&A)  — 0 violating firers
   PASS  regression: forensic_payout_confirmed is a subset of the forensic family  — 0 orphan firers
-  PASS  valuation: US names EDGAR-grounded (master EBITDA within 1.4x of audited for >=95%)  — 99.7% agreement on 2501 EDGAR-covered names
+  PASS  valuation: US names EDGAR-grounded (master EBITDA within 1.4x of audited for >=95%)  — 99.8% agreement on 2474 EDGAR-covered names
   PASS  flow-through: cash_adjusted_pe firers satisfy the gate on the CURRENT master  — 0 firers stale vs master (chain not re-run?)
   PASS  flow-through: melt_demotion matches recomputation from the CURRENT master  — 0 rows stale vs master (enrich not re-run?)
   PASS  pairing: no levered name holds an unadjusted CFO/EV cash_return_ev  — 0 rows

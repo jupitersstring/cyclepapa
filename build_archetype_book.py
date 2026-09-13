@@ -128,6 +128,8 @@ ARCHETYPE_LABELS = {
     'arch_dta_reversal': 'DTA / Valuation-Allowance Reversal (tax shield)',
     'arch_xr_contracted_backlog': 'Contracted Backlog (RPO not priced in)',
     'arch_xr_hidden_segment_compounder': 'Hidden Segment Compounder (mispriced sum-of-parts)',
+    'arch_xr_segment_justifies_whole': 'Segment Justifies Whole (best segment >= full EV, rest free)',
+    'arch_xr_margin_mixshift': 'Margin Mix-Shift (rich segment gaining share -> consolidated margin lift)',
     'arch_post_reorg': 'Post-Reorg (fresh-start, EBIT-yield>20%)',
     'arch_special_situation': 'Special Situation (merger/tender/going-private)',
     'arch_nol_shell': 'NOL Shell (tax asset > half market cap)',

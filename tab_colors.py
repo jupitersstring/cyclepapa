@@ -116,6 +116,8 @@ ARCH_FAMILY = {
     'arch_fastest_segment': 'segment', 'arch_concentrated_segments': 'segment',
     'arch_diversified_segments': 'segment', 'arch_geographic_global': 'segment',
     'arch_kpi_threshold': 'segment',
+    'arch_xr_hidden_segment_compounder': 'segment',
+    'arch_xr_segment_justifies_whole': 'segment', 'arch_xr_margin_mixshift': 'segment',
     # contrarian / neglect
     'arch_narrative_lag': 'contrarian', 'arch_blindspot': 'contrarian',
     'arch_asleep_at_wheel': 'contrarian', 'arch_dead_option': 'contrarian',

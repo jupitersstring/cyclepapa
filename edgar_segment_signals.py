@@ -461,12 +461,27 @@ def main():
           file=sys.stderr)
 
     out = derive(df)
-    out.to_csv(args.out, index=False)
-    print(f"\nwrote {args.out}: {len(out):,} filers", file=sys.stderr)
 
     detail = derive_detail(df)
     detail.to_csv(args.detail_out, index=False)
     print(f"wrote {args.detail_out}: {len(detail):,} rows", file=sys.stderr)
+
+    # Fold in segment sum-of-parts / mix-shift valuation features (durable):
+    # computed from the detail rows and currency-reconciled against consolidated
+    # revenue, so a segment-signals rebuild always carries these columns.
+    try:
+        from compute_segment_valuation import compute_segment_valuation, _load_cons_rev
+        val = compute_segment_valuation(detail, _load_cons_rev())
+        val.to_csv("segment_valuation.csv", index=False)
+        out = out.drop(columns=[c for c in val.columns if c != "symbol" and c in out.columns],
+                       errors="ignore").merge(val, on="symbol", how="left")
+        print(f"  merged segment valuation: best_ebit cov "
+              f"{int(val['seg_best_ebit_usd'].notna().sum())}", file=sys.stderr)
+    except Exception as e:  # never let the valuation add-on break the core signals
+        print(f"  WARN segment valuation skipped: {e}", file=sys.stderr)
+
+    out.to_csv(args.out, index=False)
+    print(f"\nwrote {args.out}: {len(out):,} filers", file=sys.stderr)
 
     print("\nCoverage by field:", file=sys.stderr)
     for c in out.columns:

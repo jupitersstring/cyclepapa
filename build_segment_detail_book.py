@@ -52,6 +52,8 @@ def load_data():
     # carry a tab per segment SETUP, not just the raw segment-structure cuts
     if os.path.exists('archetype_tags.csv'):
         _seg_arch = ['arch_fastest_segment', 'arch_xr_hidden_segment_compounder',
+                     'arch_xr_segment_justifies_whole', 'arch_xr_margin_mixshift',
+                     'segment_rot_flag',
                      'arch_concentrated_segments', 'arch_diversified_segments',
                      'arch_geographic_global']
         _at = pd.read_csv('archetype_tags.csv', low_memory=False)
@@ -372,6 +374,8 @@ def main():
         ("Global", f"top {args.n:,}", "4+ reporting geographies"),
         ("Fastest", f"top {args.n:,}", "single segment growing > 25% YoY (hidden engine)"),
         ("Hidden Compounder", "top 60", "XR: margin-inflecting fast segment gaining share, still <60%, cheap consolidated"),
+        ("Segment Justifies Whole", "top 60", "XR SOTP: best segment @ ~12x EBIT >= full EV (rest free); revenue-reconciled"),
+        ("Margin Mix-Shift", "top 60", "XR: rich segment (>=5pp over blend) gaining share -> coming consolidated margin lift"),
         ("Hidden Engine (all)", f"top {max(args.n,150):,}", "arch_fastest_segment — broad hidden growth-engine tag"),
     ]
     for i, (tab, n, desc) in enumerate(rows_meta, start=16):
@@ -445,6 +449,18 @@ def main():
          'XR sum-of-parts: fast segment with MARGIN inflecting + gaining share but <60% of the co, '
          'while the consolidated whole is priced cheap — the compounder the trailing numbers mask',
          'seg_inflect_confirmed', max(args.n, 60)),
+        ('Segment Justifies Whole',
+         df[df.get('arch_xr_segment_justifies_whole', 0).fillna(0) == 1]
+         if 'arch_xr_segment_justifies_whole' in df.columns else df.iloc[0:0],
+         'XR SOTP: the single best segment valued alone at ~12x its own operating EBIT already covers the '
+         'ENTIRE enterprise value — every other (net-positive) segment comes free; segment revenue reconciled to consolidated USD',
+         sort_col, max(args.n, 60)),
+        ('Margin Mix-Shift',
+         df[df.get('arch_xr_margin_mixshift', 0).fillna(0) == 1]
+         if 'arch_xr_margin_mixshift' in df.columns else df.iloc[0:0],
+         'XR: the fastest-growing segment earns a materially richer margin (>=5pp over the blend) AND is gaining share — '
+         'as mix shifts the consolidated margin must expand, but the trailing blended figure the market prices cannot yet show it',
+         sort_col, max(args.n, 60)),
         ('Hidden Engine (all)',
          df[df.get('arch_fastest_segment', 0).fillna(0) == 1]
          if 'arch_fastest_segment' in df.columns else df.iloc[0:0],
