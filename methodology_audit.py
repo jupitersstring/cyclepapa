@@ -712,6 +712,9 @@ def _figure_coverage(t, g):
         "ppe_gross", "accumulated_depreciation", "operating_lease_rou",
         "income_continuing_ops_ttm", "income_discontinued_ops_ttm",
         "assets_held_for_sale",
+        # total assets (audited EDGAR balance-sheet level) — used as the
+        # denominator in the owned-real-estate property-share test
+        "assets",
     }
     EXEMPT = {
         # growth/deltas & inflection FLAGS: bounded by construction upstream
