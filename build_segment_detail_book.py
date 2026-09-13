@@ -48,6 +48,17 @@ def load_data():
     df = df.drop(columns=[c for c in df.columns if c.endswith('_arch')])
     df = df.merge(sig, on='symbol', how='left')
 
+    # segment-archetype membership flags (from the tags output) so the book can
+    # carry a tab per segment SETUP, not just the raw segment-structure cuts
+    if os.path.exists('archetype_tags.csv'):
+        _seg_arch = ['arch_fastest_segment', 'arch_xr_hidden_segment_compounder',
+                     'arch_concentrated_segments', 'arch_diversified_segments',
+                     'arch_geographic_global']
+        _at = pd.read_csv('archetype_tags.csv', low_memory=False)
+        _keep = ['symbol'] + [c for c in _seg_arch if c in _at.columns]
+        df = df.drop(columns=[c for c in _seg_arch if c in df.columns], errors='ignore')
+        df = df.merge(_at[_keep].drop_duplicates('symbol'), on='symbol', how='left')
+
     # Pull valuation ratios from per-country yartseva CSVs (master is sparse)
     val_cols = ['symbol', 'ev_ebitda', 'p_e', 'pb', 'p_s', 'fcf_yield', 'roce',
                 'net_debt_ebitda', 'ebitda_margin', 'momentum_12m']
@@ -360,6 +371,8 @@ def main():
         ("Concentrated", f"top {args.n:,}", "HHI >= 0.70 or top segment >= 70% (single-segment risk)"),
         ("Global", f"top {args.n:,}", "4+ reporting geographies"),
         ("Fastest", f"top {args.n:,}", "single segment growing > 25% YoY (hidden engine)"),
+        ("Hidden Compounder", "top 60", "XR: margin-inflecting fast segment gaining share, still <60%, cheap consolidated"),
+        ("Hidden Engine (all)", f"top {max(args.n,150):,}", "arch_fastest_segment — broad hidden growth-engine tag"),
     ]
     for i, (tab, n, desc) in enumerate(rows_meta, start=16):
         cover.cell(row=i, column=2, value=tab).font = f_bold
@@ -424,6 +437,18 @@ def main():
         ('Fastest',
          df[(df['fastest_segment_yoy'].fillna(0) >= 0.25) & (df['segment_count'].fillna(0) >= 2)],
          'Single segment growing > 25% YoY — ranked by segment YoY, upweighted where consolidated measures confirm (hidden engine)',
+         'seg_inflect_confirmed', max(args.n, 150)),
+        # FORENSIC-XR setups (archetype membership from the tags output)
+        ('Hidden Compounder',
+         df[df.get('arch_xr_hidden_segment_compounder', 0).fillna(0) == 1]
+         if 'arch_xr_hidden_segment_compounder' in df.columns else df.iloc[0:0],
+         'XR sum-of-parts: fast segment with MARGIN inflecting + gaining share but <60% of the co, '
+         'while the consolidated whole is priced cheap — the compounder the trailing numbers mask',
+         'seg_inflect_confirmed', max(args.n, 60)),
+        ('Hidden Engine (all)',
+         df[df.get('arch_fastest_segment', 0).fillna(0) == 1]
+         if 'arch_fastest_segment' in df.columns else df.iloc[0:0],
+         'arch_fastest_segment — the broad hidden growth-engine tag (segment inflection, no valuation gate)',
          'seg_inflect_confirmed', max(args.n, 150)),
     ]
 
