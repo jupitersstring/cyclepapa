@@ -1,0 +1,198 @@
+METHODOLOGY AUDIT — 197 checks, 0 FAIL, 0 WARN
+  PASS  units: dividend_yield is a fraction  — median |dividend_yield| = 0.028 (fraction-scale cap 1.5)
+  PASS  units: fcf_yield is a fraction  — median |fcf_yield| = 0.068 (fraction-scale cap 3.0)
+  PASS  units: analyst_target_upside_pct is a fraction  — median |analyst_target_upside_pct| = 0.260 (fraction-scale cap 5.0)
+  PASS  units: roce is a fraction  — median |roce| = 0.112 (fraction-scale cap 5.0)
+  PASS  units: sbc_pct_revenue is a fraction  — median |sbc_pct_revenue| = 0.018 (fraction-scale cap 3.0)
+  PASS  units: momentum_12m is a fraction  — median |momentum_12m| = 0.224 (fraction-scale cap 20.0)
+  PASS  arch_dead_option: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 40% depth
+  PASS  arch_oak_deep_value: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 50% depth
+  PASS  arch_levered_inflection: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 25% depth
+  PASS  arch_asymmetric_assembly: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 35% depth
+  PASS  evsales_derating: median firer gap is compressive  — median gap 0.423
+  PASS  evsales_derating: expanding-multiple firers are the minority  — 1.7% of firers have a negative 1y gap (allowed only when the 3y base compresses)
+  PASS  tenbagger: implied 10x closes for every firer  — 0 firers below 10x
+  PASS  tenbagger: Credible is a subset of Path
+  PASS  lynch_reward: no firer already paid (roc_12m <= 0.35)  — 0 firers with roc_12m > 35%
+  PASS  lynch_reward: every firer has a live tape  — 0 stale-tape firers
+  PASS  52w: both == abs AND rel
+  PASS  awakening: firers with a rating skew strong (<= 2.2)  — 95% of rated firers <= 2.2
+  PASS  awakening: momentum-gated firers not extended (<= ~50%)  — 0 extended among the 97 momentum-gated firers
+  PASS  capital_returner: firers inside the 5-30% policy band (small tail = EDGAR-coalesced source not visible here)  — 7 outside on asym-only columns
+  PASS  strong_coverage: every firer has positive EBITDA  — 0 non-positive
+  PASS  fastest_segment: segment_count is present (not a vacuous audit)  — segment_count absent from BOTH archetype_tags.csv and asymmetry_global.csv
+  PASS  fastest_segment: every firer is multi-segment  — 0 single-segment
+  PASS  fastest_segment: no impossible growth artifacts (>500%)  — max 4.67
+  PASS  gating: tenbagger_score is 0 outside arch_tenbagger_path  — 0 non-firers with positive score
+  PASS  gating: evsales_derate_score is 0 outside arch_evsales_derating  — 0 non-firers with positive score
+  PASS  gating: lynch_reward_score is 0 outside arch_lynch_reward  — 0 non-firers with positive score
+  PASS  gating: analyst_awakening_score is 0 outside arch_analyst_awakening  — 0 non-firers with positive score
+  PASS  gating: analyst_rerating_score is 0 outside arch_analyst_rerating_confirmed  — 0 non-firers with positive score
+  PASS  gating: asleep_score is 0 outside arch_asleep_at_wheel  — 0 non-firers with positive score
+  PASS  gating: seg_inflect_score is 0 outside arch_fastest_segment  — 0 non-firers with positive score
+  PASS  density: archetype_count_pct <= 1  — max 0.285
+  PASS  units: insider_ownership_pct is a fraction (<= 1.05)  — 0 percent-scale stragglers
+  PASS  integrity: lynch signal rows all match the header schema  — 0 ragged rows
+  PASS  integrity: country benchmarks are live (<=62d old)  — stale/empty: []
+  PASS  integrity: no pence-minted .L market caps  — 0 .L rows with mcap == price*shares (pence)
+  PASS  integrity: no impossible FCF yields (>100% — ADR home-currency mismatch)  — 0 rows with fcf_yield > 1.0
+  PASS  integrity: 52w flags agree with displayed pct_off_52w_high  — 0 rows flagged at-high but showing <-10% off
+  PASS  integrity: arch_negative_ev_value excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities in arch_negative_ev_value
+  PASS  integrity: arch_tangible_value excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities in arch_tangible_value
+  PASS  integrity: arch_oak_asset_floor excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities in arch_oak_asset_floor
+  PASS  integrity: arch_strong_coverage excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities in arch_strong_coverage
+  PASS  integrity: no positive EV/EBITDA on negative EBITDA  — 0 loss-makers with a cheap-looking ev_ebitda
+  PASS  integrity: no clinical biotech in fundamental archetypes  — 0 clinical biotech in fundamental archetypes
+  PASS  integrity: no archetype flags on sub-$2M micro-shells  — 0 sub-$2M shells firing archetypes
+  PASS  integrity: no absurd ROCE (>150% = one-off/tiny-base)  — 0 rows with roce>1.5
+  PASS  integrity: no archetype flags on preferred/warrant/unit lines  — 0 non-common securities firing archetypes
+  PASS  integrity: no impossible margins (gross>1.0, ebitda>1.2)  — 0 gross>1.0, 0 ebitda>1.2
+  PASS  integrity: no impossible P/E (<0.5) or sub-0.02 sales multiple  — 0 p_e<0.5, 0 p_s<0.02
+  PASS  integrity: no corrupt P/B (<0.05x book — ADR/units artifact)  — 0 rows with pb in (0, 0.05)
+  PASS  integrity: no zero/negative market cap or price  — 0 rows with mcap<=0 or price<=0
+  PASS  integrity: no absurd dividend yields (>40% — stale price / preferred artifacts)  — 0 rows with dividend_yield > 0.40
+  PASS  regression(R3): arch_weschler_levered_equity carries no net-cash firm  — 0 net-cash (>10% of mcap) firers
+  PASS  regression(R3): arch_asymmetric_assembly carries no net-cash firm  — 0 net-cash (>10% of mcap) firers
+  PASS  regression(R3): arch_levered_inflection carries no net-cash firm  — 0 net-cash (>10% of mcap) firers
+  PASS  regression(R6): arch_cheap_sales_scaler keeps a >=$5M USD revenue base  — 0 sub-$5M-USD-revenue firers
+  PASS  regression(R6): arch_exceptional_evsg keeps a >=$5M USD revenue base  — 0 sub-$5M-USD-revenue firers
+  PASS  regression(R6): arch_growth_algo keeps a >=$5M USD revenue base  — 0 sub-$5M-USD-revenue firers
+  PASS  regression(R6): arch_tenbagger_path keeps a >=$5M USD revenue base  — 0 sub-$5M-USD-revenue firers
+  PASS  regression(R5): arch_roic_inflect not firing on declining revenue  — 0 firers with rev_yoy < 0
+  PASS  regression(R5): arch_double_inflect not firing on declining revenue  — 0 firers with rev_yoy < 0
+  PASS  regression(R5): arch_micro_activist_inflect not firing on declining revenue  — 0 firers with rev_yoy < 0
+  PASS  regression(R5): arch_liger_lagging_inflect not firing on declining revenue  — 0 firers with rev_yoy < 0
+  PASS  regression: arch_analyst_rerating_confirmed every firer at a 52w high  — 0 firers not at a 52w high
+  PASS  regression(R1): arch_durable_reinvestment excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_cash_reinvest excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_lindy_fcf excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_lindy_growth excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_owner_operator excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_cash_quality excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_low_sbc_quality excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_no_dilution excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_oak_deleveraging excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_fastest_segment excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_qarp excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_templeton_pessimism excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_lynch_reward excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_lynch_evgy excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_concentrated_segments excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_bottleneck excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_flyover excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_spinoff_value excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_spinoff_quality excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_spinoff_asset excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_post_reorg excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_nol_shell excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_greenblatt_magic excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_lifo_hidden_reserve excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_pension_overfunded excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_dta_reversal excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_xr_contracted_backlog excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_xr_hidden_segment_compounder excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_xr_segment_justifies_whole excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_xr_margin_mixshift excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_xr_gross_margin_lead excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_xr_gaap_profit_crossover excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_xr_deferred_revenue_lead excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_xr_cash_tax_advantage excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_xr_owned_realestate_value excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_xr_discops_mask excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_xr_peer_margin_gap excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(tail): arch_micro_activist_inflect carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_fixed_cost_demand_shock carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_regime_cyclical carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_kpi_threshold carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_oak_order_conversion carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_insider_conviction carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_fastest_segment carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_wolf_trifecta carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_wolf_value_catalyst carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_capital_discipline carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_dead_option carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_wolf_compounder carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_cheap_per_roiic carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_discounted_vehicle carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_net_cash_returner carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_negative_ev_value carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_oak_deep_value carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_oak_asset_floor carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_diversified_segments carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_no_dilution carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_lindy_fcf carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_owner_operator carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_wolf_seal carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_levered_inflection carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_hidden_assets carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_overdepreciated_assets carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_understated_earnings carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_expensed_growth_value carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_cash_adjusted_pe carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_owner_earnings_power carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_retained_earnings_discount carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_customer_float carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_capex_famine_harvest carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_dividend_verified_value carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_tax_verified_earnings carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_cannibal_at_discount carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_self_funded_returner carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_book_compounder_discount carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_xr_neg_ev_growth carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_xr_triple_floor carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_xr_floor_inflection carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_xr_quality_crisis carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_xr_forensic_floor_growth carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_xr_forensic_multiple_gap carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_xr_harvest_distribution carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_xr_paydown_yield carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression: price-ghost duplicates fire no archetypes  — 0 price-ghost lines firing archetypes
+  PASS  regression: price-ghost duplicates do not rank (ETA=0)  — 0 price-ghost lines with ETA>0
+  PASS  regression(tail): arch_wolf_turnaround keeps a real USD revenue base  — 0 sub-floor-revenue firers
+  PASS  regression(tail): arch_fastest_segment keeps a real USD revenue base  — 0 sub-floor-revenue firers
+  PASS  range: confirm_overall within [0,1]  — min 0.000 max 1.000
+  PASS  range: oper_leverage_score within [0,1]  — min 0.000 max 1.000
+  PASS  range: buyback_score within [0,1]  — min 0.000 max 1.000
+  PASS  range: rev_growth_score within [0,1]  — min 0.000 max 1.000
+  PASS  range: cheapness_score within [0,1]  — min 0.000 max 1.000
+  PASS  range: quality_score within [0,1]  — min 0.000 max 1.000
+  PASS  range: inflection_confirm_score within [0,1]  — min 0.000 max 1.000
+  PASS  range: seg_inflect_score within [0,1]  — min 0.000 max 1.000
+  PASS  fingerprint: key-figure medians within band of baseline  — all stable
+  PASS  coverage: every gate-consumed master figure is checked or exempted  — UNCHECKED gate inputs: []
+  PASS  valuation: mcap != price*shares (>10% dev, pence-aware) <= 0.5% of covered rows  — 0/36805 rows (0.00%)
+  PASS  valuation: p_e != mcap/NI (>25% dev) <= 1.0% of covered rows  — 34/21244 rows (0.16%)
+  PASS  valuation: fcf_yield != fcf/mcap (>25% dev) <= 1.0% of covered rows  — 0/33140 rows (0.00%)
+  PASS  cross-ccy: EV rebuilt from restated components on restated lines  — 0 restated rows with mixed-ccy EV
+  PASS  valuation: pb != mcap/equity where audited equity exists (>25% dev) <= 1.0% of covered rows  — 0/4605 rows (0.00%)
+  PASS  valuation: cfo_yield != cfo_ttm/mcap (>25% dev) <= 1.5% of covered rows  — 0/35612 rows (0.00%)
+  PASS  valuation: earnings_yield != net_income_ttm/mcap (>25% dev) <= 1.5% of covered rows  — 0/32257 rows (0.00%)
+  PASS  valuation: no ev_ebit below ev_ebitda (impossible ordering)  — 0 rows
+  PASS  valuation: owner_earnings_yield != (NI+D&A−capex)/mcap (>25% dev) <= 1.0% of covered rows  — 0/17343 rows (0.00%)
+  PASS  owner earnings: no yield without a capex component (alias relic)  — 0 rows carry OE yield with no capex
+  PASS  normalized: no normalized_ebit above normalized_ebitda  — 0 inverted pairs
+  PASS  not_priced_in_score inside construction band [-3,3]  — 0 out-of-band rows (max 3)
+  PASS  cash family: no net_cash_pct_mcap above 20x (ccy-mismatch class; financials exempt)  — 0 rows
+  PASS  ncav: no SILENT ncav>1.5x-equity contradiction (flagged ok)  — 0 silent of 197 total
+  PASS  pb: no surviving pence-vs-pounds 100x corruption (cents markets)  — 0 rows
+  PASS  cash_conversion inside +/-50 (base-effect band)  — 0 rows
+  PASS  op_margin never above 100%  — 0 rows
+  PASS  regression: arch_understated_earnings CFO/NI in [1.4, 4.2] for every firer  — 0 violating firers
+  PASS  regression: arch_expensed_growth_value gross-profit/mcap >= 0.45 (local)  — 0 violating firers
+  PASS  regression: arch_overdepreciated_assets capex <= ~0.65x D&A (audited-pref, local)  — 0 violating firers
+  PASS  regression: arch_cash_adjusted_pe NI>0 and best-leg adj-P/E <= 8.5 (local)  — 0 violating firers
+  PASS  regression: arch_owner_earnings_power owner-earnings >= ~1.35x NI (audited-pref D&A)  — 0 violating firers
+  PASS  regression: forensic_payout_confirmed is a subset of the forensic family  — 0 orphan firers
+  PASS  valuation: US names EDGAR-grounded (master EBITDA within 1.4x of audited for >=95%)  — 99.8% agreement on 2458 EDGAR-covered names
+  PASS  flow-through: cash_adjusted_pe firers satisfy the gate on the CURRENT master  — 0 firers stale vs master (chain not re-run?)
+  PASS  flow-through: melt_demotion matches recomputation from the CURRENT master  — 0 rows stale vs master (enrich not re-run?)
+  PASS  pairing: no levered name holds an unadjusted CFO/EV cash_return_ev  — 0 rows
+  PASS  regression: arch_hidden_assets non-op assets >= ~25% of mcap (local)  — 0 sub-gap firers
+  PASS  valuation: no positive ev_ebitda on ebitda<=0  — 0 rows
+  PASS  valuation: ev_ebitda != EV/ebitda (>25% dev) <= 6.0% of covered rows  — 3/23619 rows (0.01%)
+  PASS  valuation: ev_sales != EV/revenue (>25% dev) <= 6.0% of covered rows  — 1/30422 rows (0.00%)
+  PASS  valuation: ev_ebitda sign matches EV (denominator>0)  — 0 sign mismatches
+  PASS  valuation: ebitda_margin != ebitda/revenue (>25% dev, |gap|>3pts) <= 6.0% of covered rows  — 115/28243 rows (0.41%)
+  PASS  valuation: market_cap_usd implies implausible fx <= 0.5% of covered rows  — 0/37776 rows (0.00%)
+  PASS  valuation: market_cap_usd fx != revenue-twin fx (>10%) <= 2.0% of covered rows  — 0/33862 rows (0.00%)
+  PASS  valuation: top-100 by ETA carry ZERO cross-field violations  — 0 of top 100 rows inconsistent

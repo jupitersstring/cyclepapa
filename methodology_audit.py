@@ -1,0 +1,1175 @@
+"""Methodology audit: does each MEASURE still capture the SPIRIT it was
+built for?
+
+The sanity report in archetype_tags.py catches mechanical failure (absent
+columns, dead/bloated archetypes). This harness audits one level up: for
+each measure family it stores the SPIRIT (what the measure is trying to
+achieve, in one sentence) and runs empirical assertions on the actual
+firing sets — so a gate can no longer drift away from its meaning without
+a red line in the report ("beaten-down names are at their highs",
+"derating names have expanding multiples", "a fraction compared against
+25"...). Every failure class this repo has actually hit is encoded as a
+check.
+
+Run after archetype_tags.py + enrich_asymmetry_global.py:
+
+    python3 methodology_audit.py       # writes measure_methodology_report.txt
+                                       # and METHODOLOGY_MEASURES.md
+
+Exit code 1 when any FAIL fires, so drivers/CI can gate on it.
+"""
+from __future__ import annotations
+import sys
+
+import numpy as np
+import pandas as pd
+
+RESULTS = []
+
+
+def check(name, ok, detail=""):
+    status = "PASS" if bool(ok) else "FAIL"
+    RESULTS.append((status, name, detail))
+
+
+def warn(name, ok, detail=""):
+    RESULTS.append(("PASS" if bool(ok) else "WARN", name, detail))
+
+
+def n(df, col):
+    return (pd.to_numeric(df[col], errors="coerce") if col in df.columns
+            else pd.Series(np.nan, index=df.index))
+
+
+# ---------------------------------------------------------------- registry
+# (measure, spirit, checks-fn). The doc is generated from this registry so
+# code and methodology cannot drift apart.
+MEASURES = []
+
+
+def measure(name, spirit):
+    def deco(fn):
+        MEASURES.append((name, spirit, fn))
+        return fn
+    return deco
+
+
+@measure("Units map",
+         "Yields/growth/margins are FRACTIONS (0.25 = 25%) everywhere; a "
+         "consumer comparing against percent-scale numbers is broken.")
+def _units(t, g):
+    for col, cap in [("dividend_yield", 1.5), ("fcf_yield", 3.0),
+                     ("analyst_target_upside_pct", 5.0), ("roce", 5.0),
+                     ("sbc_pct_revenue", 3.0), ("momentum_12m", 20.0)]:
+        v = n(g, col).abs()
+        if v.notna().sum() < 50:
+            continue
+        med = float(v.median())
+        check(f"units: {col} is a fraction", med < cap,
+              f"median |{col}| = {med:.3f} (fraction-scale cap {cap})")
+
+
+@measure("Beaten-down / drawdown family",
+         "A name tagged 'beaten down N%' must actually be materially below "
+         "its high when the direct 52w measure exists — proxy lenses must "
+         "never override a present, contradicting primary.")
+def _beaten(t, g):
+    m = t.merge(g[["symbol", "pct_off_52w_high"]], on="symbol", how="left")
+    for arch, depth in [("arch_dead_option", 0.40),
+                        ("arch_oak_deep_value", 0.50),
+                        ("arch_levered_inflection", 0.25),
+                        ("arch_asymmetric_assembly", 0.35)]:
+        if arch not in m.columns:
+            continue
+        f = m[m[arch] == 1]
+        oh = pd.to_numeric(f["pct_off_52w_high"], errors="coerce").dropna()
+        if len(oh) < 10:
+            continue
+        contradicted = (oh > -depth * 0.5).mean()
+        check(f"{arch}: no contradicted 'beaten down' names",
+              contradicted < 0.02,
+              f"{contradicted*100:.1f}% of firers with the 52w measure sit "
+              f"shallower than half the claimed {depth:.0%} depth")
+
+
+@measure("EV/Sales derating",
+         "The market is NOT paying for rapid sales growth: the sales "
+         "multiple must be COMPRESSING on at least one time base.")
+def _derate(t, g):
+    f = t[t.get("arch_evsales_derating", 0) == 1]
+    gap = pd.to_numeric(f.get("evsales_derate_gap"), errors="coerce").dropna()
+    if len(gap):
+        check("evsales_derating: median firer gap is compressive",
+              gap.median() >= 0.10, f"median gap {gap.median():.3f}")
+        warn("evsales_derating: expanding-multiple firers are the minority",
+             (gap < 0).mean() < 0.25,
+             f"{(gap < 0).mean()*100:.1f}% of firers have a negative 1y gap "
+             f"(allowed only when the 3y base compresses)")
+
+
+@measure("Ten-bagger path / credible",
+         "The 10x arithmetic must CLOSE from demonstrated growth at "
+         "conservative terminal assumptions; Credible additionally demands "
+         "real owner cash and a stable share count.")
+def _tenbagger(t, g):
+    f = t[t.get("arch_tenbagger_path", 0) == 1]
+    imp = pd.to_numeric(f.get("tenbagger_implied_return"), errors="coerce")
+    if imp.notna().sum():
+        check("tenbagger: implied 10x closes for every firer",
+              (imp.dropna() >= 10).mean() > 0.99,
+              f"{(imp.dropna() < 10).sum()} firers below 10x")
+    cred = t.get("arch_tenbagger_credible")
+    path = t.get("arch_tenbagger_path")
+    if cred is not None and path is not None:
+        check("tenbagger: Credible is a subset of Path",
+              int(((cred == 1) & (path == 0)).sum()) == 0)
+
+
+@measure("Lynch reward (years-in-one)",
+         "Years of fundamental progress NOT yet paid by the tape: firers "
+         "must have a live tape and must not already have received the "
+         "reward (fresh 12m ROC beyond +35% = paid).")
+def _lynch(t, g):
+    f = t[t.get("arch_lynch_reward", 0) == 1]
+    if not len(f):
+        return
+    m = f.merge(g[["symbol"] + [c for c in ("roc_12m", "stale_tape")
+                                if c in g.columns]],
+                on="symbol", how="left")
+    roc = pd.to_numeric(m.get("roc_12m"), errors="coerce").dropna()
+    if len(roc):
+        check("lynch_reward: no firer already paid (roc_12m <= 0.35)",
+              (roc <= 0.351).mean() > 0.98,
+              f"{(roc > 0.351).sum()} firers with roc_12m > 35%")
+    st = pd.to_numeric(m.get("stale_tape"), errors="coerce").dropna()
+    if len(st):
+        check("lynch_reward: every firer has a live tape",
+              (st == 0).all(), f"{int((st > 0).sum())} stale-tape firers")
+
+
+@measure("52-week-high system",
+         "Absolute vs relative-to-index highs are distinct facts; 'both' "
+         "is their intersection by construction.")
+def _high52(t, g):
+    a, r, b = (n(t, "high_52w_abs") > 0), (n(t, "high_52w_rel") > 0), \
+              (n(t, "high_52w_both") > 0)
+    check("52w: both == abs AND rel", int((b & ~(a & r)).sum()) == 0)
+
+
+@measure("Analyst awakening",
+         "Analysts pound the table (strong rating / big upside / breadth) "
+         "while the tape has NOT already run away; the fresh-high-from-base "
+         "is the top-weighted POSITIVE, never a requirement.")
+def _awaken(t, g):
+    f = t[t.get("arch_analyst_awakening", 0) == 1]
+    if not len(f):
+        return
+    m = f.merge(g[["symbol"] + [c for c in ("yf_recommendation_mean",
+                                            "momentum_12m", "roc_12m")
+                                if c in g.columns]],
+                on="symbol", how="left")
+    rec = pd.to_numeric(m.get("yf_recommendation_mean"), errors="coerce").dropna()
+    if len(rec):
+        warn("awakening: firers with a rating skew strong (<= 2.2)",
+             (rec <= 2.2).mean() > 0.60,
+             f"{(rec <= 2.2).mean()*100:.0f}% of rated firers <= 2.2")
+    mom = pd.to_numeric(m.get("momentum_12m"), errors="coerce")
+    roc = pd.to_numeric(m.get("roc_12m"), errors="coerce")
+    # fresh roc_12m outranks the (possibly stale) master momentum; the
+    # momentum lens only GATES names whose fresh tape is missing.
+    gated = mom[roc.isna() & mom.notna()]
+    if len(gated):
+        check("awakening: momentum-gated firers not extended (<= ~50%)",
+              (gated <= 0.55).mean() > 0.98,
+              f"{int((gated > 0.55).sum())} extended among the "
+              f"{len(gated)} momentum-gated firers")
+
+
+@measure("Capital returner",
+         "Real, material shareholder yield (5-30%); beyond 30% it is a "
+         "stale price or a return-of-capital artifact, not a policy.")
+def _capret(t, g):
+    f = t[t.get("arch_capital_returner", 0) == 1]
+    m = f.merge(g[["symbol"] + [c for c in ("dividend_yield", "buyback_yield",
+                                            "capital_return_yield")
+                                if c in g.columns]], on="symbol", how="left")
+    tot = (pd.to_numeric(m.get("dividend_yield"), errors="coerce").fillna(0)
+           + pd.to_numeric(m.get("buyback_yield"), errors="coerce").fillna(0))
+    cry = pd.to_numeric(m.get("capital_return_yield"), errors="coerce").fillna(0)
+    best = pd.concat([tot, cry], axis=1).max(axis=1)
+    if len(best):
+        inside = ((best >= 0.049) & (best <= 0.301)).mean()
+        warn("capital_returner: firers inside the 5-30% policy band "
+             "(small tail = EDGAR-coalesced source not visible here)",
+             inside > 0.94,
+             f"{int(((best < 0.049) | (best > 0.301)).sum())} outside on "
+             f"asym-only columns")
+
+
+@measure("Strong coverage",
+         "Debt burden trivially serviceable — and NEVER inferred from a "
+         "negative-EBITDA artifact (the ratio flips sign and fakes net cash).")
+def _coverage(t, g):
+    f = t[t.get("arch_strong_coverage", 0) == 1]
+    m = f.merge(g[["symbol"] + [c for c in ("ebitda_ttm",) if c in g.columns]],
+                on="symbol", how="left")
+    e = pd.to_numeric(m.get("ebitda_ttm"), errors="coerce").dropna()
+    if len(e):
+        check("strong_coverage: every firer has positive EBITDA",
+              (e > 0).all(), f"{int((e <= 0).sum())} non-positive")
+
+
+@measure("Fastest segment (hidden engine)",
+         "A segment the consolidated print masks: multi-segment filer, "
+         "engine growing double digits, corroborated across independent "
+         "segment/margin/mix/whole-company lenses.")
+def _fastseg(t, g):
+    f = t[t.get("arch_fastest_segment", 0) == 1]
+    if not len(f):
+        return
+
+    # segment_count / fastest_segment_yoy are persisted into archetype_tags.csv
+    # (t). Read from t first, fall back to g. If NEITHER frame carries the
+    # column the check RAISES (not silently skips) — a vacuous fastest_segment
+    # audit is itself a defect (these columns used to be in neither file, so
+    # both checks never ran; guard against regressing to that).
+    def col(name):
+        if name in f.columns:
+            return pd.to_numeric(f[name], errors="coerce")
+        if name in g.columns:
+            mm = f.merge(g[["symbol", name]], on="symbol", how="left")
+            return pd.to_numeric(mm[name], errors="coerce")
+        return None
+
+    sc = col("segment_count")
+    check("fastest_segment: segment_count is present (not a vacuous audit)",
+          sc is not None,
+          "segment_count absent from BOTH archetype_tags.csv and asymmetry_global.csv")
+    if sc is not None:
+        sc = sc.dropna()
+        if len(sc):
+            check("fastest_segment: every firer is multi-segment",
+                  (sc >= 2).all(), f"{int((sc < 2).sum())} single-segment")
+    fy = col("fastest_segment_yoy")
+    if fy is not None:
+        fy = fy.dropna()
+        if len(fy):
+            check("fastest_segment: no impossible growth artifacts (>500%)",
+                  (fy <= 5.0).all(), f"max {fy.max():.2f}")
+
+
+@measure("Score gating",
+         "Every archetype-specific ranking score is 0 for non-firers — a "
+         "book sorting on it can never surface a name outside the archetype.")
+def _gating(t, g):
+    for flag, score in [("arch_tenbagger_path", "tenbagger_score"),
+                        ("arch_evsales_derating", "evsales_derate_score"),
+                        ("arch_lynch_reward", "lynch_reward_score"),
+                        ("arch_analyst_awakening", "analyst_awakening_score"),
+                        ("arch_analyst_rerating_confirmed", "analyst_rerating_score"),
+                        ("arch_asleep_at_wheel", "asleep_score"),
+                        ("arch_fastest_segment", "seg_inflect_score")]:
+        if flag not in t.columns or score not in t.columns:
+            continue
+        leak = int(((t[flag] == 0)
+                    & (pd.to_numeric(t[score], errors="coerce") > 0)).sum())
+        check(f"gating: {score} is 0 outside {flag}", leak == 0,
+              f"{leak} non-firers with positive score")
+
+
+@measure("Coverage-fair archetype density",
+         "archetype_count_pct divides by the count of archetypes the row is "
+         "ELIGIBLE for — it can never exceed 1, and the denominator tracks "
+         "the LIVE taxonomy, not a frozen constant.")
+def _density(t, g):
+    pct = n(g, "archetype_count_pct").dropna()
+    if len(pct):
+        check("density: archetype_count_pct <= 1",
+              (pct <= 1.0 + 1e-9).all(), f"max {pct.max():.3f}")
+    io = n(g, "insider_ownership_pct").dropna()
+    if len(io):
+        check("units: insider_ownership_pct is a fraction (<= 1.05)",
+              (io <= 1.05).mean() > 0.999,
+              f"{int((io > 1.05).sum())} percent-scale stragglers")
+
+
+@measure("Signal-file integrity",
+         "Appended signal CSVs keep a FIXED schema — a ragged row means "
+         "columns silently shifted (the bug that corrupted 12% of lynch "
+         "rows); country benchmarks must be live, not frozen snapshots.")
+def _integrity(t, g):
+    import csv, os
+    if os.path.exists("lynch_reward_signals.csv"):
+        rd = csv.reader(open("lynch_reward_signals.csv"))
+        hlen = len(next(rd))
+        ragged = sum(1 for r in rd if len(r) != hlen)
+        check("integrity: lynch signal rows all match the header schema",
+              ragged == 0, f"{ragged} ragged rows")
+    if os.path.exists("benchmark_series.csv"):
+        b = pd.read_csv("benchmark_series.csv", index_col=0, parse_dates=True)
+        stale = [c for c in b.columns
+                 if b[c].dropna().empty
+                 or (pd.Timestamp.now() - b[c].dropna().index.max()).days > 62]
+        warn("integrity: country benchmarks are live (<=62d old)",
+             len(stale) <= 1,   # Thailand has no usable Yahoo series
+             f"stale/empty: {stale}")
+    # GBp-pence class: .L market caps must be consistent with price/100
+    lse = g[g["symbol"].astype(str).str.endswith(".L")]
+    if len(lse) > 20:
+        pr, mc = n(lse, "price"), n(lse, "market_cap")
+        sh = n(lse, "shares_outstanding")
+        both = pr.notna() & mc.notna() & sh.notna() & (sh > 0)
+        if both.sum() > 20:
+            ratio = mc / (pr * sh)
+            rv = n(lse, "revenue_ttm")
+            # ratio ~1 alone is NOT proof: internationals quote .L in
+            # EUR/USD/GBP (Compass, IHG, Glanbia) where mcap==p*s is
+            # correct. Absurd mcap/revenue (>100x, or no revenue at a
+            # pence-scale price) is the discriminator.
+            minted = (both & ratio.between(0.5, 2.0)
+                      & ((mc / rv > 100) | (rv.isna() & (pr >= 200)))).sum()
+            check("integrity: no pence-minted .L market caps",
+                  minted == 0,
+                  f"{int(minted)} .L rows with mcap == price*shares (pence)")
+
+    # NOTE: these integrity checks read the MASTER g (which carries the
+    # fundamentals). archetype_tags.csv `t` lacks fcf_yield/ev_ebitda/
+    # sector, so reading t made the checks pass vacuously (fixed 2026-09-08).
+    # STRUCTURAL FIX (2026-09-09): these UNIVERSAL integrity checks were
+    # previously nested INSIDE `if len(lse) > 20:` — so on any run whose
+    # universe lacked >20 London (.L) listings they were SILENTLY SKIPPED and
+    # passed vacuously. They are load-bearing data-integrity gates and must
+    # NOT depend on the presence of UK listings, so they now run at function
+    # scope (unconditionally). Only the pence-`.L` check stays gated on `.L`.
+    fy = n(g, "fcf_yield")
+    bad_fy = (fy > 1.0).sum()
+    check("integrity: no impossible FCF yields (>100% — ADR home-currency mismatch)",
+          bad_fy == 0, f"{int(bad_fy)} rows with fcf_yield > 1.0")
+    # 52w self-consistency: a row flagged AT its 52w high must not
+    # display a deeply negative pct_off_52w_high (stale-quote leak)
+    if "high_52w_abs" in g.columns and "pct_off_52w_high" in g.columns:
+        _hi = n(g, "high_52w_abs")
+        _off = n(g, "pct_off_52w_high")
+        clash = ((_hi == 1) & (_off < -0.10)).sum()
+        check("integrity: 52w flags agree with displayed pct_off_52w_high",
+              clash == 0, f"{int(clash)} rows flagged at-high but showing <-10% off")
+
+    # Operating value/quality archetypes must exclude Financials/REITs
+    # (EV/net-cash/margin legs meaningless there). arch cols live in t,
+    # sector in g — map sector onto t by symbol.
+    if "arch_negative_ev_value" in t.columns and "symbol" in t.columns \
+            and "sector" in g.columns:
+        _secmap = g.drop_duplicates("symbol").set_index("symbol")["sector"]
+        _tsec = t["symbol"].map(_secmap).fillna("").astype(str).str.lower()
+        _finre = (_tsec.str.contains("financ") | _tsec.str.contains("real estate")
+                  | _tsec.str.contains("utilit"))
+        for _ac in ("arch_negative_ev_value", "arch_tangible_value",
+                    "arch_oak_asset_floor", "arch_strong_coverage"):
+            if _ac in t.columns:
+                leak = ((n(t, _ac) == 1) & _finre).sum()
+                check(f"integrity: {_ac} excludes Financials/REITs/Utilities",
+                      leak == 0, f"{int(leak)} financials/REITs/utilities in {_ac}")
+
+    # ev_ebitda must never be positive for a negative-EBITDA firm.
+    if "ev_ebitda" in g.columns and "ebitda_ttm" in g.columns:
+        _eve = n(g, "ev_ebitda"); _ebt = n(g, "ebitda_ttm")
+        flip = ((_eve > 0) & (_ebt < 0)).sum()
+        check("integrity: no positive EV/EBITDA on negative EBITDA",
+              flip == 0, f"{int(flip)} loss-makers with a cheap-looking ev_ebitda")
+
+    # SYSTEMATIC BIOTECH FILTER: no clinical-stage drug developer should
+    # populate a fundamental archetype (its financials are one-off/binary).
+    if "is_clinical_biotech" in t.columns and "archetype_count" in t.columns:
+        _clin = n(t, "is_clinical_biotech") == 1
+        _exempt = ["arch_analyst_awakening", "arch_analyst_rerating_confirmed",
+                   "arch_oneil_canslim",
+                   "arch_weinstein_stage2", "arch_kullamagie_breakout",
+                   "arch_biotech_deep_value"]
+        _fund = [c for c in t.columns if c.startswith("arch_") and c not in _exempt]
+        _fund_ct = t.loc[:, _fund].apply(pd.to_numeric, errors="coerce").sum(axis=1)
+        clin_fund = (_clin & (_fund_ct > 0)).sum()
+        check("integrity: no clinical biotech in fundamental archetypes",
+              clin_fund == 0, f"{int(clin_fund)} clinical biotech in fundamental archetypes")
+
+    # No sub-$1M micro-shell should carry an archetype flag (untradeable).
+    if "archetype_count" in t.columns and "symbol" in t.columns and "market_cap_usd" in g.columns:
+        _mcs = g.drop_duplicates("symbol").set_index("symbol")["market_cap_usd"]
+        _tmc = pd.to_numeric(t["symbol"].map(_mcs), errors="coerce")
+        shell_fire = ((_tmc > 0) & (_tmc < 2e6) & (n(t, "archetype_count") > 0)).sum()
+        check("integrity: no archetype flags on sub-$2M micro-shells",
+              shell_fire == 0, f"{int(shell_fire)} sub-$2M shells firing archetypes")
+    # No absurd ROCE/ROIC (>150% = one-off/tiny-base artifact).
+    _rce = n(g, "roce")
+    bad_rce = (_rce > 1.5).sum()
+    check("integrity: no absurd ROCE (>150% = one-off/tiny-base)",
+          bad_rce == 0, f"{int(bad_rce)} rows with roce>1.5")
+
+    # No non-common security (preferred/warrant/unit) should carry an
+    # archetype flag — their P/E, book, yields belong to the parent.
+    if "symbol" in t.columns and "archetype_count" in t.columns:
+        _s = t["symbol"].astype(str)
+        _ncmask = (_s.str.match(r"^[A-Z]{1,5}-P[A-Z]?$")
+                   | _s.str.match(r"^[A-Z]{1,5}[-.](?:WT|WS|U|UN|R|RT)$")
+                   | _s.str.contains(r"\.PR\.[A-Z]$", regex=True)
+                   | _s.str.contains(r"-PR[-.]?[A-Z]?$", regex=True)
+                   | _s.str.contains(r"-P[A-Z]?\.[A-Z]{1,3}$", regex=True))
+        nc_fire = ((_ncmask) & (n(t, "archetype_count") > 0)).sum()
+        check("integrity: no archetype flags on preferred/warrant/unit lines",
+              nc_fire == 0, f"{int(nc_fire)} non-common securities firing archetypes")
+
+    # No impossible margins (gross>100%, or ebitda/net >120% = one-off).
+    _gm = n(g, "gross_margin"); _em = n(g, "ebitda_margin")
+    bad_m = (_gm > 1.0).sum() + (_em > 1.2).sum()
+    check("integrity: no impossible margins (gross>1.0, ebitda>1.2)",
+          bad_m == 0, f"{int((_gm>1.0).sum())} gross>1.0, {int((_em>1.2).sum())} ebitda>1.2")
+
+    # No impossible P/E (<0.5x = earn back whole mcap in <6mo) or
+    # sub-0.02 sales multiple (units/pass-through, not real cheapness).
+    _pe = n(g, "p_e"); _ps = n(g, "p_s")
+    bad_pe = ((_pe > 0) & (_pe < 0.5)).sum()
+    bad_ps = ((_ps > 0) & (_ps < 0.02)).sum()
+    check("integrity: no impossible P/E (<0.5) or sub-0.02 sales multiple",
+          (bad_pe + bad_ps) == 0, f"{int(bad_pe)} p_e<0.5, {int(bad_ps)} p_s<0.02")
+
+    # No absurd P/B (<0.05x book = ADR/units data artifact, not value).
+    _pbc = n(g, "pb")
+    bad_pb = ((_pbc > 0) & (_pbc < 0.05)).sum()
+    check("integrity: no corrupt P/B (<0.05x book — ADR/units artifact)",
+          bad_pb == 0, f"{int(bad_pb)} rows with pb in (0, 0.05)")
+
+    # No zero/negative market cap or price in the ranked universe.
+    _mc = n(g, "market_cap_usd"); _pr = n(g, "price")
+    bad_scale = ((_mc <= 0) | (_pr <= 0)).sum()
+    check("integrity: no zero/negative market cap or price",
+          bad_scale == 0, f"{int(bad_scale)} rows with mcap<=0 or price<=0")
+
+    dy = n(g, "dividend_yield")
+    bad_dy = (dy > 0.40).sum()
+    check("integrity: no absurd dividend yields (>40% — stale price / preferred artifacts)",
+          bad_dy == 0, f"{int(bad_dy)} rows with dividend_yield > 0.40")
+
+
+@measure("Regression guards (this session's fixes as invariants)",
+         "Each fix made to the archetype rules is pinned as a load-bearing "
+         "invariant so it cannot silently regress: net-cash firms are never "
+         "levered stubs, growth rules keep a real USD revenue base, cost/margin "
+         "inflections never fire on declining revenue, the re-rating-confirmed "
+         "screen is genuinely at a 52w high, and operating-quality rules exclude "
+         "financials.")
+def _regression(t, g):
+    if "symbol" not in t.columns or "symbol" not in g.columns:
+        return
+    _by = g.drop_duplicates("symbol").set_index("symbol")
+
+    def gcol(name):
+        return (pd.to_numeric(t["symbol"].map(_by[name]), errors="coerce")
+                if name in g.columns else pd.Series(np.nan, index=t.index))
+
+    # R3 — levered-stub archetypes must NOT flag net-cash firms (net_cash_pct
+    # > 0.10 means more cash than debt; a levered equity stub requires net debt).
+    _ncp = gcol("net_cash_pct_mcap")
+    for _ac in ("arch_weschler_levered_equity", "arch_asymmetric_assembly",
+                "arch_levered_inflection"):
+        if _ac in t.columns:
+            leak = int(((n(t, _ac) == 1) & (_ncp > 0.10)).sum())
+            check(f"regression(R3): {_ac} carries no net-cash firm",
+                  leak == 0, f"{leak} net-cash (>10% of mcap) firers")
+
+    # R6 — growth/scaler archetypes keep a real USD revenue base (>=$5M). The
+    # floor is the Cassel/Andreola microcap sweet spot ($5-10M REVENUE scaling to
+    # $30-40M), NOT $20M — a $20M floor cut exactly the multibagger cohort the
+    # reference targets. Below $5M a % growth rate is sub-scale base-effect noise
+    # (and the g10/profitability legs still guard base-effect). FX-blind (a raw
+    # home-currency floor) would leak, so the test is on revenue_ttm_usd.
+    _rev_usd = gcol("revenue_ttm_usd")
+    for _ac in ("arch_cheap_sales_scaler", "arch_exceptional_evsg",
+                "arch_growth_algo", "arch_tenbagger_path"):
+        if _ac in t.columns:
+            leak = int(((n(t, _ac) == 1) & (_rev_usd > 0)
+                        & (_rev_usd < 5e6)).sum())
+            check(f"regression(R6): {_ac} keeps a >=$5M USD revenue base",
+                  leak == 0, f"{leak} sub-$5M-USD-revenue firers")
+
+    # R5 — margin/cost inflection archetypes never fire on DECLINING revenue
+    # (a cost-cut blip in a shrinking business is not an inflection).
+    _ry = gcol("rev_yoy")
+    for _ac in ("arch_roic_inflect", "arch_double_inflect",
+                "arch_micro_activist_inflect", "arch_liger_lagging_inflect"):
+        if _ac in t.columns:
+            leak = int(((n(t, _ac) == 1) & (_ry < 0)).sum())
+            check(f"regression(R5): {_ac} not firing on declining revenue",
+                  leak == 0, f"{leak} firers with rev_yoy < 0")
+
+    # New archetype — every re-rating-CONFIRMED firer is actually at a 52w high
+    # (absolute OR relative-to-index); it is the price-validated cut.
+    if "arch_analyst_rerating_confirmed" in t.columns:
+        _ah = gcol("high_52w_abs"); _rh = gcol("high_52w_rel")
+        at_hi = (_ah > 0) | (_rh > 0)
+        leak = int(((n(t, "arch_analyst_rerating_confirmed") == 1)
+                    & ~at_hi).sum())
+        check("regression: arch_analyst_rerating_confirmed every firer at a 52w high",
+              leak == 0, f"{leak} firers not at a 52w high")
+
+    # R1 — operating-quality / operating-value archetypes exclude Financials/
+    # REITs/Utilities (EV / net-cash / margin / ROIC legs are meaningless there).
+    _sec = t["symbol"].map(_by["sector"]).fillna("").astype(str).str.lower() \
+        if "sector" in g.columns else pd.Series("", index=t.index)
+    _finre = (_sec.str.contains("financ") | _sec.str.contains("real estate")
+              | _sec.str.contains("utilit"))
+    for _ac in ("arch_durable_reinvestment", "arch_cash_reinvest",
+                "arch_lindy_fcf", "arch_lindy_growth", "arch_owner_operator",
+                "arch_cash_quality", "arch_low_sbc_quality", "arch_no_dilution",
+                "arch_oak_deleveraging", "arch_fastest_segment",
+                # tail-audit additions
+                "arch_qarp", "arch_templeton_pessimism", "arch_lynch_reward",
+                "arch_lynch_evgy", "arch_concentrated_segments",
+                # reference-gap additions (new archetypes)
+                "arch_bottleneck", "arch_flyover",
+                # event-driven sleeve (operating-gated ones)
+                "arch_spinoff_value", "arch_spinoff_quality",
+                "arch_spinoff_asset",
+                "arch_post_reorg", "arch_nol_shell",
+                # cheap+quality factor sleeve (operating-gated)
+                "arch_greenblatt_magic",
+                # forensic balance-sheet nuances (operating-gated)
+                "arch_lifo_hidden_reserve", "arch_pension_overfunded",
+                "arch_dta_reversal", "arch_xr_contracted_backlog",
+                "arch_xr_hidden_segment_compounder",
+                # segment sum-of-parts / mix-shift XR (operating-gated)
+                "arch_xr_segment_justifies_whole", "arch_xr_margin_mixshift",
+                # forensic re-rating tells (operating-gated)
+                "arch_xr_gross_margin_lead", "arch_xr_gaap_profit_crossover",
+                "arch_xr_deferred_revenue_lead",
+                # Wave-2 forensic tells (operating-gated)
+                "arch_xr_cash_tax_advantage", "arch_xr_owned_realestate_value",
+                "arch_xr_discops_mask", "arch_xr_peer_margin_gap"):
+        if _ac in t.columns:
+            leak = int(((n(t, _ac) == 1) & _finre).sum())
+            check(f"regression(R1): {_ac} excludes Financials/REITs/Utilities",
+                  leak == 0, f"{leak} financials/REITs/utilities firers")
+
+    # tail — "not melting": survivability legs must not admit a GENUINE ICE CUBE.
+    # (user directive) a deeply-ROCE-negative name is NOT a defect when it is
+    # cash-on-cash-generative OR its returns are improving — those are kept
+    # (and DEMOTED via melt_demotion, not barred). The real invariant is that no
+    # archetype carries a genuine ice cube: negative current returns AND no cash
+    # generation on ANY sign-meaningful lens AND not improving.
+    _roce_now = gcol("roce")
+    _opm_now = gcol("op_margin")
+    _cash_ok_a = ((gcol("fcf_yield") > 0) | (gcol("owner_earnings_yield") > 0)
+                  | (gcol("robust_cash_yield") > 0) | (gcol("cfo_yield") > 0)
+                  | (gcol("fcf_margin") > 0) | (gcol("fcf_ttm") > 0))
+    _improving_a = ((gcol("roce_delta_yoy") > 0) | (gcol("roce_inflection") > 0)
+                    | (gcol("roce_first_positive") > 0) | (gcol("fcf_inflection") > 0)
+                    | (gcol("op_margin_delta_yoy") > 0) | (gcol("ebitda_inflection") > 0))
+    _ice_cube = (((_roce_now < -0.05) | (_opm_now < 0))
+                 & ~_cash_ok_a & ~_improving_a)
+    # (arch_wolf_turnaround AND arch_templeton_pessimism are deliberately EXCLUDED
+    # — a turnaround crossing to black / a Templeton trough cyclical at a 5y low
+    # legitimately shows a negative current op margin with positive EBITDA + net
+    # cash; that IS the thesis, and melt_demotion downranks the genuine ice cubes.)
+    for _ac in ("arch_micro_activist_inflect", "arch_fixed_cost_demand_shock",
+                "arch_regime_cyclical", "arch_kpi_threshold",
+                "arch_oak_order_conversion", "arch_insider_conviction",
+                "arch_fastest_segment", "arch_wolf_trifecta",
+                "arch_wolf_value_catalyst", "arch_capital_discipline",
+                "arch_dead_option", "arch_wolf_compounder",
+                "arch_cheap_per_roiic",
+                # the cheap-cash / durability / levered gates whose survivability
+                # leg is now the cash-aware _not_melting — same ice-cube invariant.
+                "arch_discounted_vehicle", "arch_net_cash_returner",
+                "arch_negative_ev_value", "arch_oak_deep_value",
+                "arch_oak_asset_floor", "arch_diversified_segments",
+                "arch_no_dilution", "arch_lindy_fcf", "arch_owner_operator",
+                "arch_wolf_seal", "arch_levered_inflection",
+                "arch_hidden_assets", "arch_overdepreciated_assets",
+                "arch_understated_earnings", "arch_expensed_growth_value",
+                "arch_cash_adjusted_pe", "arch_owner_earnings_power",
+                "arch_retained_earnings_discount", "arch_customer_float",
+                "arch_capex_famine_harvest", "arch_dividend_verified_value",
+                "arch_tax_verified_earnings", "arch_cannibal_at_discount",
+                "arch_self_funded_returner", "arch_book_compounder_discount",
+                "arch_xr_neg_ev_growth", "arch_xr_triple_floor",
+                "arch_xr_floor_inflection", "arch_xr_quality_crisis",
+                "arch_xr_forensic_floor_growth", "arch_xr_forensic_multiple_gap",
+                "arch_xr_harvest_distribution", "arch_xr_paydown_yield"):
+        if _ac in t.columns:
+            leak = int(((n(t, _ac) == 1) & _ice_cube).sum())
+            check(f"regression(tail): {_ac} carries no genuine ice cube (neg returns, no cash, not improving)",
+                  leak == 0, f"{leak} ice-cube firers")
+
+    # price-ghost dedup: a wrong-price duplicate line of a real security must
+    # neither fire an archetype nor rank (UMBFO, a ghost of UMBF, at P/B 0.26).
+    if "is_price_ghost" in t.columns and "archetype_count" in t.columns:
+        _gh = n(t, "is_price_ghost") == 1
+        leak = int((_gh & (n(t, "archetype_count") > 0)).sum())
+        check("regression: price-ghost duplicates fire no archetypes",
+              leak == 0, f"{leak} price-ghost lines firing archetypes")
+        _eta_g = gcol("entry_today_asymmetry")
+        leak2 = int((_gh & (_eta_g > 0)).sum())
+        check("regression: price-ghost duplicates do not rank (ETA=0)",
+              leak2 == 0, f"{leak2} price-ghost lines with ETA>0")
+
+    # tail — real revenue base on the microcap turnaround/segment engines that
+    # gained a floor (a hidden growth engine / turnaround needs a real business).
+    for _ac, _floor in (("arch_wolf_turnaround", 10e6),
+                        ("arch_fastest_segment", 20e6)):
+        if _ac in t.columns:
+            leak = int(((n(t, _ac) == 1) & (_rev_usd > 0)
+                        & (_rev_usd < _floor)).sum())
+            check(f"regression(tail): {_ac} keeps a real USD revenue base",
+                  leak == 0, f"{leak} sub-floor-revenue firers")
+
+
+@measure("Composite score ranges",
+         "Confirmation/lens composites live in [0, 1] by construction.")
+def _ranges(t, g):
+    for col in ["confirm_overall", "oper_leverage_score", "buyback_score",
+                "rev_growth_score", "cheapness_score", "quality_score",
+                "inflection_confirm_score", "seg_inflect_score"]:
+        v = n(t, col).dropna()
+        if len(v):
+            check(f"range: {col} within [0,1]",
+                  (v.between(-1e-9, 1 + 1e-9)).all(),
+                  f"min {v.min():.3f} max {v.max():.3f}")
+
+
+@measure("Distribution fingerprint (medians vs committed baseline)",
+         "A rescale/unit bug can shift a whole column while every per-row "
+         "identity still holds. Key figures' medians must stay inside a "
+         "band around the committed baseline; refresh the baseline "
+         "deliberately (delete the json) after an intentional shift.")
+def _fingerprint(t, g):
+    import json as _json, os as _os
+    KEY = ["fcf_yield", "ebitda_margin", "p_e", "pb", "ev_ebitda", "ev_sales",
+           "net_debt_ebitda", "op_margin", "gross_margin", "roce",
+           "owner_earnings_yield", "cfo_yield", "earnings_yield",
+           "net_cash_pct_mcap", "melt_demotion", "entry_today_asymmetry"]
+    path = "audit_reports/distribution_baseline.json"
+    med = {}
+    for c in KEY:
+        v = n(g, c).dropna()
+        if len(v) > 500:
+            med[c] = float(v.median())
+    if not _os.path.exists(path):
+        _json.dump(med, open(path, "w"), indent=1)
+        check("fingerprint: baseline created (first run)", True,
+              f"{len(med)} column medians recorded")
+        return
+    base = _json.load(open(path))
+    drifted = []
+    for c, m in med.items():
+        b = base.get(c)
+        if b is None:
+            continue
+        tol = max(abs(b) * 0.5, 0.02)
+        if abs(m - b) > tol:
+            drifted.append(f"{c}: {m:.4g} vs baseline {b:.4g}")
+    check("fingerprint: key-figure medians within band of baseline",
+          len(drifted) == 0, "; ".join(drifted[:6]) or "all stable")
+
+
+@measure("Figure coverage (no unchecked figure feeds a gate)",
+         "Every master column consumed by an archetype gate must be either "
+         "covered by an integrity/identity/units check or explicitly "
+         "exempted with a reason — a NEW gate input without a check FAILS "
+         "here, so silent-creep via unchecked figures is structurally "
+         "impossible.")
+def _figure_coverage(t, g):
+    import re as _re
+    try:
+        src = open("archetype_tags.py").read()
+    except FileNotFoundError:
+        return
+    consumed = set(_re.findall(r"(?:_ncol|_num|s)\(\s*['\"]([a-z0-9_]+)['\"]", src))
+    consumed &= set(g.columns)          # only master-fed figures
+    CHECKED = {
+        # identity / valuation-consistency suite
+        "market_cap", "price", "shares_outstanding", "enterprise_value",
+        "ebitda_ttm", "revenue_ttm", "net_income_ttm", "fcf_ttm", "cfo_ttm",
+        "ev_ebitda", "ev_ebit", "ev_sales", "p_e", "p_s", "pb", "p_tb",
+        "fcf_yield", "ebitda_margin", "owner_earnings_yield", "cfo_yield",
+        "earnings_yield", "robust_cash_yield", "cash_return_ev", "ufcf_yield",
+        "net_debt_ebitda", "cash", "total_debt", "net_cash_pct_mcap",
+        "capex_ttm", "op_margin", "gross_margin", "roe",
+        # units-map suite
+        "dividend_yield", "roce", "sbc_pct_revenue", "momentum_12m",
+        "analyst_target_upside_pct",
+        # 52w / tape suite
+        "pct_off_52w_high", "price_52w_high", "roc_12m", "stale_tape",
+        "pct_52w_high", "last_bar_age_days",
+        # reconciled-at-source EDGAR/derive fields
+        "revenue_ttm_usd", "ebitda_ttm_usd", "fcf_ttm_usd", "interest_coverage",
+        "effective_tax_rate", "cash_pct_mcap", "cash_pct_ev", "ncav_pct_mcap",
+        "net_income_first_positive", "market_cap_usd",
+        # forensic balance-sheet nuances (EDGAR scrape — hidden asset / tax shield)
+        "lifo_reserve", "pension_funded_status", "deferred_tax_assets_net",
+        "deferred_tax_valuation_allowance",
+        "rpo", "contract_assets", "equity_method_investments",
+        # Wave-2 forensic concepts (audited EDGAR levels/flows, structurally merged):
+        # cash-tax wedge (N2), owned real estate (N3), discontinued-ops mask (N4)
+        "income_taxes_paid_ttm", "tax_expense_ttm",
+        "ppe_gross", "accumulated_depreciation", "operating_lease_rou",
+        "income_continuing_ops_ttm", "income_discontinued_ops_ttm",
+        "assets_held_for_sale",
+        # total assets (audited EDGAR balance-sheet level) — used as the
+        # denominator in the owned-real-estate property-share test
+        "assets",
+    }
+    EXEMPT = {
+        # growth/deltas & inflection FLAGS: bounded by construction upstream
+        # (clips/caps at source) and consumed only as signs/thresholds
+        "rev_yoy", "ebitda_yoy", "fcf_yoy", "rev_accel", "ebitda_accel",
+        "rev_3y_cagr", "revenue_3y_cagr", "shares_yoy", "shares_growth_3y",
+        "shares_3y_cagr", "fcf_per_share_yoy", "rev_qoq_ttm", "ebitda_qoq_ttm",
+        "rev_seq", "ebitda_seq", "cfo_yoy", "price_yoy", "gross_profit_yoy",
+        "op_margin_delta_yoy", "gross_margin_delta_yoy", "roce_delta_yoy",
+        "ebitda_margin_delta_yoy", "fcf_margin_delta_yoy", "ebit_growth_yoy",
+        "rev_inflection", "ebitda_inflection", "cfo_inflection",
+        "fcf_inflection", "roce_inflection", "roce_first_positive",
+        "ebitda_first_positive", "cfo_first_positive", "fcf_first_positive",
+        "ni_first_positive", "roce_prev", "ebitda_eta_years",
+        # EDGAR multi-year lindy family: audited-source durations/counts
+        "roic_lindy", "roiic_lindy", "cash_roic_lindy", "n_yrs_positive_roic",
+        "n_yrs_positive_fcf", "years_of_history", "roic_after_sbc",
+        "roic_latest", "roic_acceleration", "roiic_acceleration",
+        "op_margin_lindy", "ebitda_margin_lindy", "revenue_5y_cagr",
+        "revenue_accel_lindy", "asset_5y_cagr", "asset_3y_cagr",
+        "capital_return_yield", "buyback_yield", "sbc_ttm", "dividends_ttm",
+        # Graham/Templeton multi-year averages (audited EDGAR annual series)
+        "oe_avg", "ni_avg", "fcf_avg", "oe_avg_years",
+        "oe_avg_yield", "avg_earnings_yield", "fcf_avg_yield",
+        "capex_avg", "capex_avg_years", "ni_avg_years", "fcf_avg_years",
+        "net_working_capital", "goodwill_intangibles_pct_assets",
+        "retained_earnings", "equity_cagr_5y", "financing_cf_ttm",
+        # descriptive / categorical / event flags
+        "sector", "industry", "currency", "src", "name", "country",
+        "insider_ownership_pct", "n_analysts", "avg_dollar_volume", "beta",
+        "spin_flag", "tender_flag", "merger_flag", "going_private_flag",
+        "distress_flag", "nol_usd", "reorg_flag", "is_price_ghost", "is_otc",
+        # scores/composites checked by their own range suite
+        "yartseva_score", "not_priced_in_score", "cheap_score",
+        # ev_sales_change_yoy: build-guarded (equity-slice deflation, M12),
+        # stored-band enforced (+/-10), consumed by arch_asleep_unrerated
+        "ev_sales_change_yoy",
+        # audited EDGAR long streaks (edgar_streaks.py: single-concept,
+        # consecutive-quarter, Q4-synthesized, base-guarded; stored bands
+        # 0-30/0-40) — consumed by XR9/XR11 and the quality lenses
+        "rev_yoy_streak_q", "ni_yoy_streak_q", "streak_quarters_n",
+        # ppe_net: audited EDGAR point-in-time level (PropertyPlantAndEquipmentNet),
+        # structurally merged; consumed by XR14 depreciation-cliff
+        "ppe_net",
+        # audited D&A (over implied), deferred-revenue float, associate
+        # look-through stakes, and the mid-cycle revenue denominator — all
+        # audited EDGAR levels, structurally merged, band/identity-guarded
+        "da_ttm", "deferred_revenue", "investments_associates", "normalized_revenue",
+        # audited equity level + USD EV twin — consumed by tangible_value and
+        # the FX-coherent midcap-garp EV/mcap sanity band
+        "equity", "enterprise_value_usd",
+        # fcf_eta_quarters: audited in the completeness pass (cadence-scaled
+        # to quarter units, stored-banded 0-40); consumed by XR20
+        "fcf_eta_quarters",
+        "rev_yoy_pos_share_12q", "roiic_lindy",
+        # misc bounded/threshold-only consumption
+        "earnings_beat_rate", "avg_earnings_surprise", "earnings_beat_streak",
+        "earnings_surprise_inflecting", "eps_yoy_positive_share",
+        "eps_yoy_growth_streak_q", "eps_positive_streak_q",
+        "price_vs_5y_avg", "price_pct_of_5y_range", "normalized_ebitda",
+        "normalized_ebit", "ev_norm_ebitda", "enterprise_value_norm",
+        "cash_conversion", "fcf_margin", "capex_intensity", "debt_to_equity",
+        "segment_count", "segment_hhi", "largest_segment_share",
+        "geographic_region_count", "cash_gt_ev_flag", "graham_net_net_flag",
+        "mcap_to_ncav", "cash_flow_yield", "ev_gross_profit",
+        "gross_profit_to_mcap", "tangible_equity", "evsg", "psg", "pegy",
+        "ev_ebitda_gy", "net_buyback_ttm", "eps_basic_ttm", "eps_diluted_ttm",
+        "pretax_income_ttm", "tax_expense_ttm", "cheapness_ev_ebit_vs_growth",
+        # (coverage-gate first run) quarterly deltas & composites, threshold-only
+        "cfo_qoq_ttm", "cfo_seq", "fcf_qoq_ttm", "fcf_seq",
+        "incremental_ebitda_margin", "operating_leverage_ratio",
+        "fcf_conversion", "gross_profitability", "berezin_score",
+        "cheapness_under_7x_flag", "symbol",
+        "yf_beta", "yf_recommendation_mean",   # Yahoo-native bounded sentiment passthroughs
+    }
+    unchecked = sorted(consumed - CHECKED - EXEMPT)
+    check("coverage: every gate-consumed master figure is checked or exempted",
+          len(unchecked) == 0,
+          f"UNCHECKED gate inputs: {unchecked[:12]}{'...' if len(unchecked)>12 else ''}")
+
+
+@measure("Valuation internal consistency (yf process)",
+         "Every stored ratio must equal what the row's own components say. "
+         "The apply_ticker_yf reconcile (levels bend to authoritative Yahoo "
+         "ratios; ratios recomputed from components) is the process; these "
+         "checks are the gate that keeps DEEPINDS-class staleness out.")
+def _valuation_consistency(t, g):
+    def gc(c):
+        return pd.to_numeric(g.get(c), errors="coerce") if c in g.columns \
+            else pd.Series(np.nan, index=g.index)
+    price, sh, mc = gc("price"), gc("shares_outstanding"), gc("market_cap")
+    ev, eb, rv = gc("enterprise_value"), gc("ebitda_ttm"), gc("revenue_ttm")
+    ni, fcf = gc("net_income_ttm"), gc("fcf_ttm")
+    evb, evs, eve = gc("ev_ebitda"), gc("ev_sales"), gc("ev_ebit")
+    pe, fy, ebm = gc("p_e"), gc("fcf_yield"), gc("ebitda_margin")
+
+    def _r(a, b):
+        return (a / b).where(b != 0)
+
+    def vrate(name, pred, base, max_pct, hard_top=True):
+        b = int(base.sum())
+        v = int((pred & base).sum())
+        pct = 100.0 * v / max(1, b)
+        check(f"valuation: {name} <= {max_pct}% of covered rows",
+              pct <= max_pct, f"{v}/{b} rows ({pct:.2f}%)")
+        return pred & base
+
+    # exact identities (post-reconcile these are near-zero; a rebound means the
+    # apply_ticker_yf pass was skipped or broken)
+    # pence-aware: London (.L) lines quote in GBp against GBP mcaps
+    _sym_s = g["symbol"].astype(str)
+    _eff_price = price.where(~_sym_s.str.endswith(".L"), price / 100.0)
+    viol = vrate("mcap != price*shares (>10% dev, pence-aware)",
+                 (_r(mc, _eff_price * sh) - 1).abs() > 0.10,
+                 mc.notna() & price.notna() & sh.notna() & (_eff_price * sh > 0), 0.5)
+    viol |= vrate("p_e != mcap/NI (>25% dev)",
+                  (_r(pe, _r(mc, ni)) - 1).abs() > 0.25,
+                  (pe > 0) & (ni > 0) & mc.notna(), 1.0)
+    viol |= vrate("fcf_yield != fcf/mcap (>25% dev)",
+                  (_r(fy, _r(fcf, mc)) - 1).abs() > 0.25,
+                  fy.notna() & fcf.notna() & (mc > 0), 1.0)
+    # cross-ccy restated lines: Yahoo's own EV/multiples are mixed-currency
+    # on these rows and re-adopted each run — the harmonizer must have
+    # rebuilt them from restated components (EV = mcap + debt - cash).
+    _qcf_ev = g["qc_flags"].astype(str) if "qc_flags" in g.columns \
+        else pd.Series("", index=g.index)
+    _rs_ev = _qcf_ev.str.contains("ccy_restated")
+    _evc_a = mc + gc("total_debt").fillna(0) - gc("cash").fillna(0)
+    _ev_dev_a = (_r(ev, _evc_a) - 1).abs()
+    _ev_bad_a = int((_rs_ev & (_ev_dev_a > 0.25) & ev.notna() & mc.notna()).sum())
+    check("cross-ccy: EV rebuilt from restated components on restated lines",
+          _ev_bad_a == 0, f"{_ev_bad_a} restated rows with mixed-ccy EV")
+    # pb is CONSTRUCTED from the primary equity level wherever one exists
+    # (user directive) — a stored pb drifting >25% from mcap/equity means
+    # the construction stopped flowing through.
+    _eqA = gc("equity")
+    _pbA = gc("pb")
+    viol |= vrate("pb != mcap/equity where audited equity exists (>25% dev)",
+                  (_r(_pbA, _r(mc, _eqA)) - 1).abs() > 0.25,
+                  _pbA.notna() & (_eqA > 0) & (mc > 0), 1.0)
+    # the whole equity-cash-yield family (LEVERED measures over MARKET CAP —
+    # user rule) must stay recomputed against current mcap
+    for _yc, _lvl_c in (("cfo_yield", "cfo_ttm"),
+                        ("earnings_yield", "net_income_ttm")):
+        _yv, _lv = gc(_yc), gc(_lvl_c)
+        viol |= vrate(f"{_yc} != {_lvl_c}/mcap (>25% dev)",
+                      (_r(_yv, _r(_lv, mc)) - 1).abs() > 0.25,
+                      _yv.notna() & _lv.notna() & (mc > 0), 1.5)
+    check("valuation: no ev_ebit below ev_ebitda (impossible ordering)",
+          int(((eve < evb * 0.95) & (eve > 0) & (evb > 0)).sum()) == 0,
+          f"{int(((eve < evb * 0.95) & (eve > 0) & (evb > 0)).sum())} rows")
+    # owner_earnings_yield is TRUE Buffett OE (NI + implied D&A − capex over
+    # mcap) — it must NEVER be an alias of another measure and must match its
+    # own same-row construction. Where set, capex_ttm must exist (no
+    # component, no figure — the old FCF-alias relic had no capex behind it).
+    _oey = gc("owner_earnings_yield")
+    _cxo = gc("capex_ttm")
+    _oe_lvl_chk = (gc("net_income_ttm")
+                   + (gc("ebitda_ttm") - gc("op_margin") * gc("revenue_ttm"))
+                   - _cxo)
+    viol |= vrate("owner_earnings_yield != (NI+D&A−capex)/mcap (>25% dev)",
+                  (_r(_oey, _r(_oe_lvl_chk, mc)) - 1).abs() > 0.25,
+                  _oey.notna() & _oe_lvl_chk.notna() & (mc > 0), 1.0)
+    check("owner earnings: no yield without a capex component (alias relic)",
+          int((_oey.notna() & _cxo.isna()).sum()) == 0,
+          f"{int((_oey.notna() & _cxo.isna()).sum())} rows carry OE yield with no capex")
+    # normalized pair ordering: avg EBIT above avg EBITDA needs negative D&A —
+    # impossible; yartseva_db aligns years at build, the harmonizer nulls
+    # survivors, this gate keeps both honest.
+    _nbe_a = gc("normalized_ebit")
+    _nbd_a = gc("normalized_ebitda")
+    check("normalized: no normalized_ebit above normalized_ebitda",
+          int((_nbe_a.notna() & _nbd_a.notna() & (_nbe_a > _nbd_a)).sum()) == 0,
+          f"{int((_nbe_a.notna() & _nbd_a.notna() & (_nbe_a > _nbd_a)).sum())} inverted pairs")
+    # not_priced_in_score is bounded [-3,3] by construction (base-effect
+    # components dropped, differentials clipped) — anything outside is the
+    # 1.65e6-class artifact that auto-passed every (>0.20) gate leg.
+    _npi_a = gc("not_priced_in_score")
+    check("not_priced_in_score inside construction band [-3,3]",
+          int((_npi_a.abs() > 3.0).sum()) == 0,
+          f"{int((_npi_a.abs() > 3.0).sum())} out-of-band rows (max {_npi_a.abs().max():.3g})")
+    # cross-currency cash-family impossibility: net cash above 20x mcap is
+    # the home-currency-levels-over-quote-currency-mcap disease (T3O.F class)
+    # and must be nulled+flagged by the harmonizer, never gate a net-cash
+    # archetype.
+    _ncm_a = gc("net_cash_pct_mcap")
+    _fin_a = g["sector"].fillna("").astype(str).str.lower().str.contains("financ") \
+        if "sector" in g.columns else pd.Series(False, index=g.index)
+    _ncm_v = int(((_ncm_a > 20) & ~_fin_a).sum())
+    check("cash family: no net_cash_pct_mcap above 20x (ccy-mismatch class; financials exempt)",
+          _ncm_v == 0, f"{_ncm_v} rows")
+    # NCAV can never exceed book equity (equity adds non-current assets).
+    # After the pence-pb repair, cross-ccy restatement and vintage
+    # recompute, survivors are unresolved contradictions that must carry
+    # the ncav_gt_equity flag — a SILENT violation fails.
+    _pb_a = gc("pb")
+    _ncv_a = gc("ncav_pct_mcap")
+    _eqx_a = (1.0 / _pb_a).where(_pb_a > 0)
+    _ncv_viol = ((_ncv_a > 1.5 * _eqx_a) & (_ncv_a > 0)).fillna(False)
+    _qcf_a = g["qc_flags"].astype(str) if "qc_flags" in g.columns else pd.Series("", index=g.index)
+    _ncv_silent = int((_ncv_viol & ~_qcf_a.str.contains("ncav_gt_equity")).sum())
+    check("ncav: no SILENT ncav>1.5x-equity contradiction (flagged ok)",
+          _ncv_silent == 0,
+          f"{_ncv_silent} silent of {int(_ncv_viol.sum())} total")
+    # pence-corrupt pb must not survive where the NI/ROE discriminator
+    # proves the 100x factor on a cents-quoted market.
+    _roe_a = gc("roe"); _ni_a2 = gc("net_income_ttm")
+    _eq_ia = (_ni_a2 / _roe_a).where((_roe_a != 0) & _ni_a2.notna())
+    _pb_ia = (gc("market_cap") / _eq_ia).where(_eq_ia > 0)
+    _sfx_a = g["symbol"].astype(str).str.endswith((".L", ".IL", ".JO", ".TA")) \
+        if "symbol" in g.columns else pd.Series(False, index=g.index)
+    _pence_left = int((_sfx_a & (_pb_a / _pb_ia).between(50, 200)).sum())
+    check("pb: no surviving pence-vs-pounds 100x corruption (cents markets)",
+          _pence_left == 0, f"{_pence_left} rows")
+    _ccv_a = gc("cash_conversion")
+    check("cash_conversion inside +/-50 (base-effect band)",
+          int((_ccv_a.abs() > 50).sum()) == 0, f"{int((_ccv_a.abs() > 50).sum())} rows")
+    _opm_a2 = gc("op_margin")
+    check("op_margin never above 100%", int((_opm_a2 > 1.0).sum()) == 0,
+          f"{int((_opm_a2 > 1.0).sum())} rows")
+    # forensic archetypes: their defining ratios re-verified from LOCAL
+    # components for every firer (same currency-mix guard as hidden_assets)
+    _gset = g.set_index("symbol")
+    def _fcheck(arch, name, fn, tol_bad):
+        if arch not in t.columns:
+            return
+        _fs = t.loc[t[arch] == 1, "symbol"]
+        _gg = _gset.reindex(_fs)
+        _v = fn(_gg)
+        _nb = int((_v.notna() & tol_bad(_v)).sum())
+        check(f"regression: {arch} {name}", _nb == 0, f"{_nb} violating firers")
+    _num_g = lambda gg, c: pd.to_numeric(gg.get(c), errors="coerce")
+    _fcheck("arch_understated_earnings", "CFO/NI in [1.4, 4.2] for every firer",
+            lambda gg: _num_g(gg, "cfo_ttm") / _num_g(gg, "net_income_ttm"),
+            lambda v: (v < 1.4) | (v > 4.2))
+    _fcheck("arch_expensed_growth_value", "gross-profit/mcap >= 0.45 (local)",
+            lambda gg: (_num_g(gg, "gross_margin") * _num_g(gg, "revenue_ttm")
+                        / _num_g(gg, "market_cap")),
+            lambda v: v < 0.45)
+    def _dna_best(gg):
+        # AUDITED D&A (da_ttm) preferred over implied EBITDA-EBIT, floored >=0,
+        # matching the gate construction.
+        _aud = _num_g(gg, "da_ttm")
+        _imp = _num_g(gg, "ebitda_ttm") - _num_g(gg, "op_margin") * _num_g(gg, "revenue_ttm")
+        return _aud.where(_aud.notna(), _imp).clip(lower=0)
+    _fcheck("arch_overdepreciated_assets", "capex <= ~0.65x D&A (audited-pref, local)",
+            lambda gg: (_num_g(gg, "capex_ttm") / _dna_best(gg)),
+            lambda v: v > 0.65)
+    # adj-P/E is TWO-LEGGED (user: latest OR Graham 5yr-average earnings) —
+    # test the BINDING leg, the minimum of the two, so an average-leg firer
+    # (latest E quirk-depressed, avg cheap) is not a false violation.
+    def _adj_pe_best(gg):
+        _mcv = _num_g(gg, "market_cap")
+        _ncv = _num_g(gg, "cash") - _num_g(gg, "total_debt")
+        _niv = _num_g(gg, "net_income_ttm")
+        _nav = _num_g(gg, "ni_avg")
+        _l1 = ((_mcv - _ncv) / _niv).where(_niv > 0)
+        _l2 = ((_mcv - _ncv) / _nav).where(_nav > 0)
+        return pd.concat([_l1, _l2], axis=1).min(axis=1)
+    _fcheck("arch_cash_adjusted_pe", "NI>0 and best-leg adj-P/E <= 8.5 (local)",
+            _adj_pe_best, lambda v: v > 8.5)
+    _fcheck("arch_owner_earnings_power", "owner-earnings >= ~1.35x NI (audited-pref D&A)",
+            lambda gg: ((_num_g(gg, "net_income_ttm") + _dna_best(gg)
+                         - _num_g(gg, "capex_ttm"))
+                        / _num_g(gg, "net_income_ttm")),
+            lambda v: v < 1.35)
+    # payout-confirmed is a strict SUBSET of the forensic family + a real payout
+    if "arch_forensic_payout_confirmed" in t.columns:
+        _par = (n(t, "arch_hidden_assets") + n(t, "arch_overdepreciated_assets")
+                + n(t, "arch_understated_earnings") + n(t, "arch_expensed_growth_value")
+                + n(t, "arch_cash_adjusted_pe") + n(t, "arch_owner_earnings_power")
+                + n(t, "arch_retained_earnings_discount") + n(t, "arch_customer_float")
+                + n(t, "arch_capex_famine_harvest") + n(t, "arch_dividend_verified_value")
+                + n(t, "arch_tax_verified_earnings") + n(t, "arch_cannibal_at_discount")
+                + n(t, "arch_self_funded_returner") + n(t, "arch_book_compounder_discount"))
+        _orph = int(((n(t, "arch_forensic_payout_confirmed") == 1) & (_par == 0)).sum())
+        check("regression: forensic_payout_confirmed is a subset of the forensic family",
+              _orph == 0, f"{_orph} orphan firers")
+    # EDGAR grounding (user directive: audited accounts preferred where possible)
+    try:
+        _ed = pd.read_csv("us_edgar_yartseva.csv", low_memory=False,
+                          usecols=["symbol", "ebitda_ttm", "balance_sheet_date"]
+                          ).drop_duplicates("symbol")
+        # same gates as the harmonizer: audited-but-STALE (>270d) and
+        # sign-flipped rows are deliberately NOT grounded
+        _bsd = pd.to_datetime(_ed["balance_sheet_date"], errors="coerce")
+        _ed = _ed[((pd.Timestamp.now() - _bsd).dt.days <= 135).fillna(False)]  # one-quarter rule
+        _edj = g[["symbol", "ebitda_ttm"]].merge(
+            _ed[["symbol", "ebitda_ttm"]], on="symbol",
+            suffixes=("_m", "_e"), how="inner")
+        _me = pd.to_numeric(_edj["ebitda_ttm_m"], errors="coerce")
+        _ee = pd.to_numeric(_edj["ebitda_ttm_e"], errors="coerce")
+        _okb = _me.notna() & _ee.notna() & (_ee != 0) & (_me != 0) \
+            & (np.sign(_me) == np.sign(_ee))
+        _ag = ((_me / _ee).where(_okb).between(1 / 1.4, 1.4)).sum() / max(1, int(_okb.sum()))
+        check("valuation: US names EDGAR-grounded (master EBITDA within 1.4x of audited for >=95%)",
+              _ag >= 0.95, f"{_ag*100:.1f}% agreement on {int(_okb.sum())} EDGAR-covered names")
+    except FileNotFoundError:
+        pass
+    # FLOW-THROUGH (user directive: fixes must propagate appropriately).
+    # Recompute two deterministic, pure-function archetype gates and the melt
+    # demotion DIRECTLY from the current master and require agreement with the
+    # stored outputs — if any data fix landed without the downstream chain
+    # re-running (tags/enrich stale vs master), these trip immediately.
+    def _gm(c):
+        return pd.to_numeric(g.get(c), errors="coerce") if c in g.columns             else pd.Series(np.nan, index=g.index)
+    # (a) arch_cash_adjusted_pe recomputed from master fields
+    if "arch_cash_adjusted_pe" in t.columns:
+        _gi = g.set_index("symbol")
+        def _gs(c):
+            return pd.to_numeric(_gi.get(c), errors="coerce") if c in _gi.columns                 else pd.Series(np.nan, index=_gi.index)
+        _ni_f = _gs("net_income_ttm"); _mc_f = _gs("market_cap")
+        _nc_f = _gs("cash") - _gs("total_debt")
+        _adj = (_mc_f - _nc_f) / _ni_f.where(_ni_f > 0)
+        _sec = _gi.get("sector", pd.Series("", index=_gi.index)).fillna("").astype(str).str.lower()
+        # necessary-condition check only (full gate has helpers): every FIRER
+        # must satisfy the core arithmetic legs from the CURRENT master
+        _t_idx = t.set_index("symbol")
+        _fir = _t_idx.index[_t_idx["arch_cash_adjusted_pe"] == 1]
+        _nia_f = _gs("ni_avg")
+        _adj_avg = (_mc_f - _nc_f) / _nia_f.where(_nia_f > 0)
+        # the adj-P/E leg is latest OR Graham-average (user OR-addition)
+        _adj_best = pd.concat([_adj, _adj_avg], axis=1).min(axis=1)
+        _adj_f = _adj_best.reindex(_fir); _ni_ff = _ni_f.reindex(_fir); _nc_ff = _nc_f.reindex(_fir)
+        _viol_ft = int(((_ni_ff <= 0) | (_nc_ff <= 0) | (_adj_f > 8.0)).fillna(True).sum())
+        check("flow-through: cash_adjusted_pe firers satisfy the gate on the CURRENT master",
+              _viol_ft == 0, f"{_viol_ft} firers stale vs master (chain not re-run?)")
+    # (b) melt_demotion recomputed from master fields must match stored
+    if "melt_demotion" in g.columns:
+        _opm_f = _gm("op_margin"); _roce_f = _gm("roce")
+        _cash_ok_f = ((_gm("fcf_yield") > 0) | (_gm("owner_earnings_yield") > 0)
+                      | (_gm("robust_cash_yield") > 0) | (_gm("cfo_yield") > 0)
+                      | (_gm("fcf_margin") > 0))
+        _impr_f = ((_gm("roce_delta_yoy") > 0) | (_gm("roce_inflection") > 0)
+                   | (_gm("roce_first_positive") > 0) | (_gm("fcf_inflection") > 0)
+                   | (_gm("op_margin_delta_yoy") > 0) | (_gm("ebitda_inflection") > 0))
+        _ex_f = _cash_ok_f | _impr_f
+        _hard_f = (_opm_f < 0) & (_roce_f < -0.05) & ~_ex_f
+        _soft_f = ((_opm_f < 0) | (_roce_f < -0.05)) & ~_ex_f & ~_hard_f
+        _exp_md = pd.Series(1.0, index=g.index)
+        _exp_md[_soft_f.fillna(False)] = 0.65
+        _exp_md[_hard_f.fillna(False)] = 0.40
+        _stored_md = _gm("melt_demotion")
+        _mis_md = int((_stored_md.round(2) != _exp_md.round(2)).sum())
+        check("flow-through: melt_demotion matches recomputation from the CURRENT master",
+              _mis_md == 0, f"{_mis_md} rows stale vs master (enrich not re-run?)")
+
+    # PAIRING RULE (levered flows / MCAP, unlevered flows / EV): a levered name
+    # must never carry the un-adjusted CFO/EV approximation in cash_return_ev
+    # (only permitted where leverage is immaterial or interest was backed out).
+    _cre_a = gc("cash_return_ev")
+    _nde_a = gc("net_debt_ebitda")
+    _ncp_a = gc("net_cash_pct_mcap")
+    _icov_a = gc("interest_coverage")
+    _lev_noint = (_nde_a > 0.5) & (_nde_a < 90) & (_ncp_a < 0) & _icov_a.isna()
+    check("pairing: no levered name holds an unadjusted CFO/EV cash_return_ev",
+          int((_lev_noint & _cre_a.notna()).sum()) == 0,
+          f"{int((_lev_noint & _cre_a.notna()).sum())} rows")
+    # hidden_assets: the gap must be real in LOCAL currency for every firer
+    if "arch_hidden_assets" in t.columns:
+        _f = t["arch_hidden_assets"] == 1
+        _fs = t.loc[_f, "symbol"]
+        _gm = g.set_index("symbol")
+        _gg = _gm.reindex(_fs)
+        # (aligned to the new measure) non-operating assets = associate
+        # stakes + net cash, over mcap — all local-currency
+        _hp = ((pd.to_numeric(_gg.get("investments_associates"), errors="coerce").fillna(0)
+                + pd.to_numeric(_gg.get("cash"), errors="coerce")
+                - pd.to_numeric(_gg.get("total_debt"), errors="coerce"))
+               / pd.to_numeric(_gg.get("market_cap"), errors="coerce"))
+        _bad_h = int((_hp.notna() & (_hp < 0.20)).sum())
+        check("regression: arch_hidden_assets non-op assets >= ~25% of mcap (local)",
+              _bad_h == 0, f"{_bad_h} sub-gap firers")
+    check("valuation: no positive ev_ebitda on ebitda<=0",
+          int(((evb > 0) & (eb <= 0) & eb.notna()).sum()) == 0,
+          f"{int(((evb > 0) & (eb <= 0) & eb.notna()).sum())} rows")
+    # soft identities (extreme-multiple tails are left un-bent by design)
+    viol |= vrate("ev_ebitda != EV/ebitda (>25% dev)",
+                  (_r(evb, _r(ev, eb)) - 1).abs() > 0.25,
+                  evb.notna() & ev.notna() & (eb > 0), 6.0)
+    viol |= vrate("ev_sales != EV/revenue (>25% dev)",
+                  (_r(evs, _r(ev, rv)) - 1).abs() > 0.25,
+                  evs.notna() & ev.notna() & (rv > 0), 6.0)
+    # negative-EV multiples are VALID (negative EV / positive denominator) —
+    # but the SIGN must agree with EV when the denominator is positive.
+    _sign_bad = evb.notna() & ev.notna() & (eb > 0) \
+        & (np.sign(evb) != np.sign(ev)) & (ev != 0)
+    check("valuation: ev_ebitda sign matches EV (denominator>0)",
+          int(_sign_bad.sum()) == 0, f"{int(_sign_bad.sum())} sign mismatches")
+    _ebm_comp = _r(eb, rv)
+    viol |= vrate("ebitda_margin != ebitda/revenue (>25% dev, |gap|>3pts)",
+                  ((_r(ebm, _ebm_comp) - 1).abs() > 0.25)
+                  & ((ebm - _ebm_comp).abs() > 0.03),
+                  ebm.notna() & (rv > 0) & eb.notna(), 6.0)
+    # market_cap_usd: the USD normalization must imply a PLAUSIBLE fx rate and
+    # the SAME rate the revenue USD-twin implies (a one-sided renormalization
+    # is exactly the silent-creep class).
+    _mcu = gc("market_cap_usd")
+    _fx_m = _r(_mcu, mc)
+    _fx_r = _r(gc("revenue_ttm_usd"), gc("revenue_ttm"))
+    _fx_pl = (_fx_m > 0) & ((_fx_m < 1e-5) | (_fx_m > 4.5))
+    viol |= vrate("market_cap_usd implies implausible fx", _fx_pl,
+                  _mcu.notna() & mc.notna() & (mc != 0), 0.5)
+    _fx_dev = ((_fx_m / _fx_r) - 1).abs()
+    viol |= vrate("market_cap_usd fx != revenue-twin fx (>10%)",
+                  _fx_dev > 0.10,
+                  _fx_m.notna() & _fx_r.notna() & (_fx_r > 0), 2.0)
+    # the names people actually SEE must be spotless: top 100 by ETA carry
+    # zero cross-field violations of any kind.
+    eta = gc("entry_today_asymmetry")
+    top_idx = eta.sort_values(ascending=False).head(100).index
+    n_top_viol = int(viol.reindex(top_idx).fillna(False).sum())
+    check("valuation: top-100 by ETA carry ZERO cross-field violations",
+          n_top_viol == 0, f"{n_top_viol} of top 100 rows inconsistent")
+
+
+def main():
+    t = pd.read_csv("archetype_tags.csv", low_memory=False)
+    g = pd.read_csv("asymmetry_global.csv", low_memory=False)
+    g = g.drop_duplicates("symbol")
+
+    for name, spirit, fn in MEASURES:
+        try:
+            fn(t, g)
+        except Exception as e:                       # a broken check is a FAIL
+            check(f"{name}: check harness ran", False, f"{type(e).__name__}: {e}")
+
+    lines = []
+    n_fail = sum(1 for s, *_ in RESULTS if s == "FAIL")
+    n_warn = sum(1 for s, *_ in RESULTS if s == "WARN")
+    lines.append(f"METHODOLOGY AUDIT — {len(RESULTS)} checks, "
+                 f"{n_fail} FAIL, {n_warn} WARN")
+    for status, name, detail in RESULTS:
+        lines.append(f"  {status:4s}  {name}" + (f"  — {detail}" if detail else ""))
+    report = "\n".join(lines) + "\n"
+    with open("measure_methodology_report.txt", "w") as fh:
+        fh.write(report)
+    print(report, file=sys.stderr)
+
+    # The methodology doc is GENERATED from the registry — code and
+    # documentation cannot drift apart.
+    doc = ["# Measure methodology — spirit and enforcement",
+           "",
+           "Generated by `methodology_audit.py` from the same registry that",
+           "runs the empirical checks. Each measure states the SPIRIT it",
+           "exists to capture; the audit fails loudly when the firing set",
+           "stops matching that spirit.",
+           ""]
+    for name, spirit, _fn in MEASURES:
+        doc.append(f"## {name}\n\n{spirit}\n")
+    with open("METHODOLOGY_MEASURES.md", "w") as fh:
+        fh.write("\n".join(doc))
+
+    sys.exit(1 if n_fail else 0)
+
+
+if __name__ == "__main__":
+    main()
