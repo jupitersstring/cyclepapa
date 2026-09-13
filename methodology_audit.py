@@ -539,7 +539,10 @@ def _regression(t, g):
                 "arch_xr_segment_justifies_whole", "arch_xr_margin_mixshift",
                 # forensic re-rating tells (operating-gated)
                 "arch_xr_gross_margin_lead", "arch_xr_gaap_profit_crossover",
-                "arch_xr_deferred_revenue_lead"):
+                "arch_xr_deferred_revenue_lead",
+                # Wave-2 forensic tells (operating-gated)
+                "arch_xr_cash_tax_advantage", "arch_xr_owned_realestate_value",
+                "arch_xr_discops_mask", "arch_xr_peer_margin_gap"):
         if _ac in t.columns:
             leak = int(((n(t, _ac) == 1) & _finre).sum())
             check(f"regression(R1): {_ac} excludes Financials/REITs/Utilities",
@@ -703,6 +706,12 @@ def _figure_coverage(t, g):
         "lifo_reserve", "pension_funded_status", "deferred_tax_assets_net",
         "deferred_tax_valuation_allowance",
         "rpo", "contract_assets", "equity_method_investments",
+        # Wave-2 forensic concepts (audited EDGAR levels/flows, structurally merged):
+        # cash-tax wedge (N2), owned real estate (N3), discontinued-ops mask (N4)
+        "income_taxes_paid_ttm", "tax_expense_ttm",
+        "ppe_gross", "accumulated_depreciation", "operating_lease_rou",
+        "income_continuing_ops_ttm", "income_discontinued_ops_ttm",
+        "assets_held_for_sale",
     }
     EXEMPT = {
         # growth/deltas & inflection FLAGS: bounded by construction upstream

@@ -3633,6 +3633,109 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & _not_melting
     ).fillna(False).astype(int)
 
+    # XR43 — Cash-tax advantage / DTL cushion ('XR-CashTaxAdvantage', N2). Gap
+    # G7: the crowd anchors on GAAP EPS, which is struck after the FULL book tax
+    # provision (IncomeTaxExpenseBenefit). When CASH taxes actually paid run
+    # materially below that book provision, the difference is a deferred-tax-
+    # liability cushion — an interest-free government loan — and owner earnings
+    # are understated by the wedge. We require a real book tax charge on positive
+    # pre-tax income, cash tax <= 60% of it (a >= 40% cash-vs-book wedge), a
+    # material uplift to GAAP NI, and a cheapness floor (so it is a value setup,
+    # not a quality premium). NB: single-period cash-tax can be timing-noisy —
+    # the >=40% wedge threshold is deliberately wide to filter transient blips.
+    _tax_book_x43 = _ncol('tax_expense_ttm')
+    _tax_cash_x43 = _ncol('income_taxes_paid_ttm')
+    _tax_wedge_x43 = (_tax_book_x43 - _tax_cash_x43)
+    _ni_x43 = _ncol('net_income_ttm')
+    df['arch_xr_cash_tax_advantage'] = (
+        is_operating & (mcap > 0) & _fx_coherent
+        & (_ncol('pretax_income_ttm') > 0) & (_tax_book_x43 > 0)   # a real book tax charge on real pre-tax profit
+        & (_tax_cash_x43 >= 0) & (_tax_cash_x43 <= _tax_book_x43 * 0.6)  # cash tax << book tax (>=40% wedge)
+        & (_ni_x43 > 0) & (_tax_wedge_x43 / _ni_x43 >= 0.10)      # owner earnings >= 10% above GAAP NI from the wedge
+        & (((_ncol('p_e') > 0) & (_ncol('p_e') <= 20)) | (_ncol('earnings_yield') >= 0.05) | (fcf_yield >= 0.03))
+        & _not_melting
+    ).fillna(False).astype(int)
+
+    # XR44 — Owned real estate at historical cost ('XR-OwnedRealEstateValue', N3).
+    # Gap G3: US GAAP freezes property at acquisition cost and never revalues it
+    # up; land is never depreciated. A property-heavy operator that OWNS (rather
+    # than leases) its footprint therefore carries real estate worth a multiple
+    # of net book, invisible to a P/B screen. Tell: a high accumulated-
+    # depreciation ratio (assets largely written down => OLD, at historical
+    # cost), gross original cost large vs. market cap, small operating-lease ROU
+    # relative to owned PP&E (an OWNER, not a lessee), PP&E a big share of assets,
+    # and a cheap book multiple. (is_operating already excludes financials/REITs.)
+    _ppe_gross_x44 = _ncol('ppe_gross')
+    _accum_dep_x44 = _ncol('accumulated_depreciation')
+    _rou_x44 = _ncol('operating_lease_rou')
+    _ppe_net_x44 = _ncol('ppe_net')
+    _accum_ratio_x44 = (_accum_dep_x44 / _ppe_gross_x44.where(_ppe_gross_x44 > 0))
+    _owns_x44 = ~(( _rou_x44 / _ppe_net_x44.where(_ppe_net_x44 > 0)) > 0.5).fillna(False)  # ROU small vs owned PPE (or ROU missing) => owner
+    df['arch_xr_owned_realestate_value'] = (
+        is_operating & (mcap > 0) & _fx_coherent
+        & (_ppe_gross_x44 > 0) & (_accum_dep_x44 > 0)
+        & (_accum_ratio_x44 >= 0.5)                          # assets >= half depreciated => old, at historical cost
+        & (_ppe_gross_x44 / mcap >= 0.75)                    # original cost large vs. market cap (room for hidden value)
+        & (_ppe_net_x44 / _ncol('assets').where(_ncol('assets') > 0) >= 0.25)  # property-heavy balance sheet
+        & _owns_x44                                          # OWNS its footprint (not a lessee)
+        & (((pb > 0) & (pb < 2.0)) | ((_ncol('ev_sales') > 0) & (_ncol('ev_sales') <= 2.0)))  # cheap book/EV
+        & _not_melting
+    ).fillna(False).astype(int)
+
+    # XR45 — Discontinued-ops / held-for-sale mask ('XR-DiscOpsMask', N4). Gap
+    # G6: consolidated net income is depressed (or negative) BECAUSE of a losing
+    # unit in discontinued operations or held for sale, while CONTINUING
+    # operations are solidly profitable. A screen on consolidated NI/EPS rejects
+    # the name; the re-rate comes when the drag is divested and continuing-ops
+    # earnings stand alone. Tell: continuing-ops income positive and well above
+    # consolidated NI (or a discops drag / large held-for-sale block), with the
+    # CONTINUING earnings alone making the stock cheap.
+    _cont_x45 = _ncol('income_continuing_ops_ttm')
+    _disc_x45 = _ncol('income_discontinued_ops_ttm')
+    _ahfs_x45 = _ncol('assets_held_for_sale')
+    _cont_yield_x45 = (_cont_x45 / mcap.where(mcap > 0))
+    _mask_present_x45 = (
+        ((_ni_x43 <= _cont_x45 * 0.6))                       # consolidated NI well below continuing-ops (a real drag)
+        | ((_disc_x45 < 0) & ((-_disc_x45) >= _cont_x45 * 0.20))  # discops loss material vs the core
+        | ((_ahfs_x45 / mcap) >= 0.15)                       # a large block being divested
+    )
+    df['arch_xr_discops_mask'] = (
+        is_operating & (mcap > 0) & _fx_coherent
+        & (_cont_x45 > 0)                                    # the CORE (continuing ops) is profitable
+        & _mask_present_x45                                  # ...but a discontinued/held-for-sale drag masks it
+        & (_cont_yield_x45 >= 0.06)                          # on continuing-ops earnings alone, the stock is cheap
+        & _not_melting
+    ).fillna(False).astype(int)
+
+    # XR46 — Peer-relative margin gap + self-help turn ('XR-PeerMarginGap', N5).
+    # The first explicitly COMPARABLE-normalised forensic lens (gap G9): a
+    # business earning an operating margin far BELOW its sector's median is either
+    # structurally inferior or sitting on latent margin (bloated cost base, bad
+    # mix, pre-self-help). We admit it only WITH a turn signal (margin delta up,
+    # or a fresh capital-return / insider-buy corroboration) and a cheap multiple,
+    # and we bar the genuinely melting (deeply negative margin, secular revenue
+    # decline). The re-rate is the market pricing mean-reversion once execution
+    # shows. Sector median computed over operating names with a real margin.
+    _opm_x46 = _ncol('op_margin')
+    _sec_g46 = df['sector'].fillna('') if 'sector' in df.columns else pd.Series('', index=df.index)
+    _opm_for_med = _opm_x46.where(is_operating & (_ncol('revenue_ttm_usd') >= 20e6) & _opm_x46.between(-0.5, 0.6))
+    _sec_med_opm = _opm_for_med.groupby(_sec_g46).transform('median')
+    _margin_gap_x46 = (_sec_med_opm - _opm_x46)
+    _turn_x46 = ((_ncol('op_margin_delta_yoy') > 0) | (_ncol('gross_margin_delta_yoy') > 0)
+                 | (_ncol('buyback_yield') > 0) | (_ncol('shares_yoy') < -0.01)
+                 | (insider >= 0.10))
+    df['arch_xr_peer_margin_gap'] = (
+        is_operating & (mcap > 0) & _fx_coherent
+        & (_ncol('revenue_ttm_usd') >= 20e6)
+        & _sec_med_opm.notna() & (_sec_med_opm > 0.05)       # a sector with a meaningful margin norm to revert toward
+        & (_margin_gap_x46 >= 0.05)                          # >= 5pp below the sector median (latent margin)
+        & (_opm_x46 >= -0.05)                                # a real underearner, not a melting loss-maker
+        & _turn_x46                                          # ...with a self-help TURN in evidence
+        & (((_ncol('ev_sales') > 0) & (_ncol('ev_sales') <= 2.0)) | ((ev_ebitda_v > 0) & (ev_ebitda_v <= 10.0)) | (fcf_yield >= 0.04))
+        & ~(_ncol('rev_3y_cagr') < -0.05)                    # not in secular decline (margin gap then is terminal, not latent)
+        & _not_melting
+    ).fillna(False).astype(int)
+
     # F6 — Forensic payout confirmation (the user's BOOST leg). Any forensic /
     # hidden-value member that is ALSO returning capital — buying back shares
     # or paying a dividend — earns an EXTRA archetype count, which is this
@@ -4102,14 +4205,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                      'arch_xr_oneoff_loss_mask',
                      'arch_xr_contracted_backlog',
                      'arch_xr_segment_justifies_whole',
-                     'arch_xr_deferred_revenue_lead'],
+                     'arch_xr_deferred_revenue_lead',
+                     'arch_xr_cash_tax_advantage',
+                     'arch_xr_owned_realestate_value',
+                     'arch_xr_discops_mask'],
         'engine': ['arch_xr_compounding_deployer', 'arch_xr_reusable_assembler',
                    'arch_xr_pre_scale_margin', 'arch_xr_leverage_detonation',
                    'arch_xr_baron_compounder', 'arch_xr_audited_streak_unrerated',
                    'arch_xr_harvest_distribution', 'arch_xr_paydown_yield',
                    'arch_xr_cyclical_trough', 'arch_xr_hidden_segment_compounder',
                    'arch_xr_margin_mixshift', 'arch_xr_gross_margin_lead',
-                   'arch_xr_gaap_profit_crossover'],
+                   'arch_xr_gaap_profit_crossover', 'arch_xr_peer_margin_gap'],
     }
     _fam_fired = pd.DataFrame(index=df.index)
     for _fam, _cols in _XR_FAMILIES.items():
@@ -4746,6 +4852,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_gross_margin_lead',
         'arch_xr_gaap_profit_crossover',
         'arch_xr_deferred_revenue_lead',
+        'arch_xr_cash_tax_advantage',
+        'arch_xr_owned_realestate_value',
+        'arch_xr_discops_mask',
+        'arch_xr_peer_margin_gap',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -4907,6 +5017,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_gross_margin_lead': 'XR-GrossMarginLead',
         'arch_xr_gaap_profit_crossover': 'XR-GAAPProfitCrossover',
         'arch_xr_deferred_revenue_lead': 'XR-DeferredRevenueLead',
+        'arch_xr_cash_tax_advantage': 'XR-CashTaxAdvantage',
+        'arch_xr_owned_realestate_value': 'XR-OwnedRealEstateValue',
+        'arch_xr_discops_mask': 'XR-DiscOpsMask',
+        'arch_xr_peer_margin_gap': 'XR-PeerMarginGap',
         'arch_templeton_pessimism': 'Templeton-MaxPessimism',
         'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
         'arch_levered_inflection': 'LeveredInflectionStub',

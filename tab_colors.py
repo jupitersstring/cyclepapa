@@ -136,6 +136,9 @@ ARCH_FAMILY = {
     # forensic re-rating tells: operating-leverage coil, mandate-unlock crossover, deferred-revenue forward book
     'arch_xr_gross_margin_lead': 'inflection', 'arch_xr_gaap_profit_crossover': 'inflection',
     'arch_xr_deferred_revenue_lead': 'deep_value',
+    # Wave-2 forensic tells: cash-tax cushion, owned real estate, discops mask, peer margin gap
+    'arch_xr_cash_tax_advantage': 'deep_value', 'arch_xr_owned_realestate_value': 'deep_value',
+    'arch_xr_discops_mask': 'deep_value', 'arch_xr_peer_margin_gap': 'inflection',
 }
 
 

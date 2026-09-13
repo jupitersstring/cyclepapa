@@ -276,6 +276,28 @@ CONTRACT_ASSET_ALIASES = ["ContractWithCustomerAssetNet",
 # Equity-method stakes carried at cost — off-BS value where the stake is worth
 # a multiple of book (a hidden-asset / look-through lens).
 EQUITY_METHOD_ALIASES = ["EquityMethodInvestments"]
+# --- Wave-2 forensic concepts (N2 cash-tax, N3 owned-RE, N4 discontinued-ops) ---
+# N2: CASH taxes paid (cash-flow supplemental). vs. book IncomeTaxExpenseBenefit,
+# the gap is owner-earnings understatement (DTL cushion / interest-free gov't loan).
+INCOME_TAXES_PAID_ALIASES = ["IncomeTaxesPaidNet", "IncomeTaxesPaid"]
+# N3: gross PP&E + accumulated depreciation -> the accum-dep RATIO reveals OLD
+# assets carried at historical cost (land never revalued); low lease ROU asset
+# distinguishes an OWNER from a lessee.
+PPE_GROSS_ALIASES = ["PropertyPlantAndEquipmentGross"]
+ACCUM_DEP_ALIASES = ["AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment"]
+ROU_ASSET_ALIASES = ["OperatingLeaseRightOfUseAsset"]
+# N4: continuing-ops income vs. consolidated NI (a discontinued/held-for-sale
+# unit masking a profitable core), plus the held-for-sale asset balance.
+CONTINUING_OPS_ALIASES = [
+    "IncomeLossFromContinuingOperations",
+    "IncomeLossFromContinuingOperationsIncludingPortionAttributableToNoncontrollingInterest"]
+DISCONTINUED_OPS_ALIASES = [
+    "IncomeLossFromDiscontinuedOperationsNetOfTax",
+    "IncomeLossFromDiscontinuedOperationsNetOfTaxAttributableToReportingEntity"]
+ASSETS_HELD_FOR_SALE_ALIASES = [
+    "DisposalGroupIncludingDiscontinuedOperationAssets",
+    "AssetsHeldForSaleNotPartOfDisposalGroupCurrent",
+    "AssetsHeldForSaleCurrent"]
 # interest EXPENSE preferred over cash interest PAID (capitalized/PIK/
 # timing gaps make paid understate the true charge and overstate coverage)
 INTEREST_PAID_ALIASES = ["InterestExpense", "InterestExpenseNonoperating",
@@ -606,6 +628,11 @@ def extract_row(ticker: str, cik: int, data: dict) -> dict:
     pt(RPO_ALIASES, "rpo")
     pt(CONTRACT_ASSET_ALIASES, "contract_assets")
     pt(EQUITY_METHOD_ALIASES, "equity_method_investments")
+    # Wave-2 forensic instants (N3 owned real estate, N4 held-for-sale)
+    pt(PPE_GROSS_ALIASES, "ppe_gross")
+    pt(ACCUM_DEP_ALIASES, "accumulated_depreciation")
+    pt(ROU_ASSET_ALIASES, "operating_lease_rou")
+    pt(ASSETS_HELD_FOR_SALE_ALIASES, "assets_held_for_sale")
     # derive funded status where the direct concept is absent (assets - PBO)
     if row.get("pension_funded_status") is None \
             and row.get("pension_plan_assets") is not None \
@@ -704,6 +731,10 @@ def extract_row(ticker: str, cik: int, data: dict) -> dict:
     fl(SBC_ALIASES, "sbc")
     fl(TAX_EXPENSE_ALIASES, "tax_expense")
     fl(PRETAX_INCOME_ALIASES, "pretax_income")
+    # Wave-2 forensic flows (N2 cash tax, N4 continuing/discontinued ops)
+    fl(INCOME_TAXES_PAID_ALIASES, "income_taxes_paid")
+    fl(CONTINUING_OPS_ALIASES, "income_continuing_ops")
+    fl(DISCONTINUED_OPS_ALIASES, "income_discontinued_ops")
     fl(INTEREST_PAID_ALIASES, "interest_paid")
     fl(FIN_CF_ALIASES, "financing_cf")
     fl(INV_CF_ALIASES, "investing_cf")

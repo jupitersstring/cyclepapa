@@ -119,6 +119,11 @@ def load_edgar_facts(path: str) -> pd.DataFrame:
         'lifo_reserve', 'pension_funded_status',
         'deferred_tax_assets_net', 'deferred_tax_valuation_allowance',
         'rpo', 'contract_assets', 'equity_method_investments',
+        # Wave-2 forensic concepts (N2 cash-tax, N3 owned-RE, N4 discontinued-ops)
+        'income_taxes_paid_ttm', 'tax_expense_ttm',
+        'ppe_gross', 'accumulated_depreciation', 'operating_lease_rou',
+        'income_continuing_ops_ttm', 'income_discontinued_ops_ttm',
+        'assets_held_for_sale',
     ]
     try:
         ed = pd.read_csv(path, usecols=lambda c: c in keep, low_memory=False)
@@ -209,7 +214,11 @@ def main():
                     'fcf_ttm', 'assets', 'revenue_ttm', 'eps_diluted_ttm',
                     'lifo_reserve', 'pension_funded_status',
                     'deferred_tax_assets_net', 'deferred_tax_valuation_allowance',
-                    'rpo', 'contract_assets', 'equity_method_investments']:
+                    'rpo', 'contract_assets', 'equity_method_investments',
+                    'income_taxes_paid_ttm', 'tax_expense_ttm',
+                    'ppe_gross', 'accumulated_depreciation', 'operating_lease_rou',
+                    'income_continuing_ops_ttm', 'income_discontinued_ops_ttm',
+                    'assets_held_for_sale']:
             if col in edgar.columns:
                 edgar_col = edgar[col].reindex(master.index)
                 if col in master.columns:
