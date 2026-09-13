@@ -3595,10 +3595,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # net profit mechanically unlocks that latent demand. We require the profit
     # to be OPERATIONAL (op or EBITDA positive) — not a one-off gain flattering
     # the line — on a listed (non-ghost, non-OTC), non-melting, real-revenue base.
+    # No market-cap floor (fire-broad, rank-later): the first-profit inflection
+    # sheds the loss-maker stigma for the WHOLE buyer base, not only index funds,
+    # so it is a legitimate re-rate trigger at any size — larger names, where
+    # index/institutional inclusion is also in play, simply rank higher on ETA.
     _ni_now_x41 = _ncol('net_income_ttm')
     df['arch_xr_gaap_profit_crossover'] = (
         is_operating & (mcap > 0) & _fx_coherent
-        & (_ncol('market_cap_usd') >= 250e6)                # mandate/index unlock only bites at a size institutions can own
         & (_ncol('revenue_ttm_usd') >= 20e6)
         & (s('net_income_first_positive', 0) == 1)          # NI crossed <=0 -> >0 (the mandate-unlock trigger)
         & (_ni_now_x41 > 0)
