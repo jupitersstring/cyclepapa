@@ -3647,10 +3647,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _tax_cash_x43 = _ncol('income_taxes_paid_ttm')
     _tax_wedge_x43 = (_tax_book_x43 - _tax_cash_x43)
     _ni_x43 = _ncol('net_income_ttm')
+    _book_rate_x43 = (_tax_book_x43 / _ncol('pretax_income_ttm').where(_ncol('pretax_income_ttm') > 0))
     df['arch_xr_cash_tax_advantage'] = (
         is_operating & (mcap > 0) & _fx_coherent
         & (_ncol('pretax_income_ttm') > 0) & (_tax_book_x43 > 0)   # a real book tax charge on real pre-tax profit
-        & (_tax_cash_x43 >= 0) & (_tax_cash_x43 <= _tax_book_x43 * 0.6)  # cash tax << book tax (>=40% wedge)
+        & _book_rate_x43.between(0.10, 0.45)                       # (refine) a NORMAL book tax year, not a distorted one-off (refund/settlement/true-up)
+        & (_tax_cash_x43 > 0) & (_tax_cash_x43 <= _tax_book_x43 * 0.6)  # they DO pay cash tax, but << book (>=40% wedge; excludes refund/NOL years)
         & (_ni_x43 > 0) & (_tax_wedge_x43 / _ni_x43 >= 0.10)      # owner earnings >= 10% above GAAP NI from the wedge
         & (((_ncol('p_e') > 0) & (_ncol('p_e') <= 20)) | (_ncol('earnings_yield') >= 0.05) | (fcf_yield >= 0.03))
         & _not_melting
@@ -3679,6 +3681,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & (_ppe_net_x44 / _ncol('assets').where(_ncol('assets') > 0) >= 0.25)  # property-heavy balance sheet
         & _owns_x44                                          # OWNS its footprint (not a lessee)
         & (((pb > 0) & (pb < 2.0)) | ((_ncol('ev_sales') > 0) & (_ncol('ev_sales') <= 2.0)))  # cheap book/EV
+        & ((_ncol('op_margin') > 0) | (fcf_ttm_v > 0))       # (refine) a VIABLE operator — else impaired assets / forced-sale value trap, not hidden value
         & _not_melting
     ).fillna(False).astype(int)
 
@@ -3695,7 +3698,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _ahfs_x45 = _ncol('assets_held_for_sale')
     _cont_yield_x45 = (_cont_x45 / mcap.where(mcap > 0))
     _mask_present_x45 = (
-        ((_ni_x43 <= _cont_x45 * 0.6))                       # consolidated NI well below continuing-ops (a real drag)
+        # (refine) require an actual consolidated LOSS with a profitable core — a
+        # clean mask. (The bare NI<continuing test was noisy: continuing-ops is
+        # pre-minority-interest while NI is attributable-to-parent, so the gap
+        # could be just NCI, not a discontinued drag.)
+        ((_ni_x43 <= 0) & (_cont_x45 > 0))                   # consolidated LOSS but continuing ops profitable
         | ((_disc_x45 < 0) & ((-_disc_x45) >= _cont_x45 * 0.20))  # discops loss material vs the core
         | ((_ahfs_x45 / mcap) >= 0.15)                       # a large block being divested
     )
@@ -3720,6 +3727,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _sec_g46 = df['sector'].fillna('') if 'sector' in df.columns else pd.Series('', index=df.index)
     _opm_for_med = _opm_x46.where(is_operating & (_ncol('revenue_ttm_usd') >= 20e6) & _opm_x46.between(-0.5, 0.6))
     _sec_med_opm = _opm_for_med.groupby(_sec_g46).transform('median')
+    _sec_peer_n = _opm_for_med.groupby(_sec_g46).transform('count')   # (refine) peers behind the median
     _margin_gap_x46 = (_sec_med_opm - _opm_x46)
     _turn_x46 = ((_ncol('op_margin_delta_yoy') > 0) | (_ncol('gross_margin_delta_yoy') > 0)
                  | (_ncol('buyback_yield') > 0) | (_ncol('shares_yoy') < -0.01)
@@ -3727,7 +3735,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_xr_peer_margin_gap'] = (
         is_operating & (mcap > 0) & _fx_coherent
         & (_ncol('revenue_ttm_usd') >= 20e6)
-        & _sec_med_opm.notna() & (_sec_med_opm > 0.05)       # a sector with a meaningful margin norm to revert toward
+        & _sec_med_opm.notna() & (_sec_med_opm > 0.05) & (_sec_peer_n >= 20)  # a sector with a meaningful, well-populated margin norm to revert toward
         & (_margin_gap_x46 >= 0.05)                          # >= 5pp below the sector median (latent margin)
         & (_opm_x46 >= -0.05)                                # a real underearner, not a melting loss-maker
         & _turn_x46                                          # ...with a self-help TURN in evidence
@@ -5737,12 +5745,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                             * _truly_cheap_mult
                             * (_truly_cheap & _truly_eligible).astype(float)).round(3)
     df['truly_xr_flag'] = ((_tell_count >= 3) & _truly_cheap & _truly_eligible).astype(int)
-    # human-readable breakdown: which gap-groups fire (mechanical marked *)
-    _grp_order = list(_XR_GAP_GROUPS.keys())
-    def _tells_str(i):
-        return ', '.join((_g + ('*' if _XR_GAP_GROUPS[_g][1] else ''))
-                         for _g in _grp_order if _tells_present[_g].iloc[i])
-    df['truly_xr_tells_str'] = [_tells_str(i) for i in range(len(df))]
+    # human-readable breakdown: which gap-groups fire (mechanical marked *).
+    # Vectorised elementwise string build (per-row .iloc over 14 groups x 46k
+    # rows was needlessly slow).
+    _acc = pd.Series('', index=df.index)
+    for _g in _XR_GAP_GROUPS:
+        _lbl = _g + ('*' if _XR_GAP_GROUPS[_g][1] else '')
+        _acc = _acc + pd.Series(np.where(_tells_present[_g].values, _lbl + ', ', ''),
+                                index=df.index)
+    df['truly_xr_tells_str'] = _acc.str.rstrip(', ')
 
     # (user) archetype_count feeds convergence_score / archetype_asymmetry
     # (the density-ranked books), so a name that fires SEVERAL variants of ONE
