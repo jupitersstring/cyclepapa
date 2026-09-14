@@ -3878,6 +3878,44 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & _not_melting
     ).fillna(False).astype(int)
 
+    # VALUE-UNLOCK CONVICTION (language x forensics x footprint x alignment). The
+    # strongest setup is when the WORDS (catalyst), the NUMBERS (a real forensic
+    # gap to unlock), the BALANCE SHEET (a divestiture actually on the books) and
+    # the INCENTIVES (insider-aligned management) all point the same way — and it
+    # is FRESH. A ranking score over the arch_xr_value_unlock members, plus a
+    # value_unlock_confirmed flag for the subset the forensics substantiate.
+    _vu_cat = (0.55 * _vu_distinctive.fillna(False).astype(float)          # distinctive language
+               + 0.20 * (_vu_np.fillna(0).clip(0, 4) / 4.0)               # multiple phrases
+               + 0.25 * _vu_event.astype(float)).clip(0, 1)              # structured event in motion
+    _vu_fresh = (1.0 - (_vu_days.clip(0, 400) / 400.0)).fillna(0.0)       # live catalyst decay
+    # forensic CONFIRMATION — a matching hidden-value archetype proves the claim
+    _vu_forensic = (
+        (df.get('arch_xr_segment_justifies_whole', 0) == 1)              # "sum-of-the-parts" proven
+        | (df.get('arch_xr_stake_fv_gap', 0) == 1) | (df.get('arch_xr_investment_remark', 0) == 1)  # "monetise stake"
+        | (df.get('arch_xr_owned_realestate_value', 0) == 1)            # "real-estate value"
+        | (df.get('arch_oak_nav_discount', 0) == 1)                    # "holdco/conglomerate discount"
+        | (df.get('arch_hidden_assets', 0) == 1)
+        | (s('forensic_hidden_pct', 0) >= 0.25)                        # large hidden value
+        | (net_cash_pct >= 0.40)                                       # cash to actually return
+    ).fillna(False)
+    # execution FOOTPRINT — the divestiture is really happening on the books
+    _vu_footprint = ((_ncol('assets_held_for_sale') > 0)
+                     | (_ncol('income_discontinued_ops_ttm').abs() > 0)).fillna(False)
+    # ALIGNMENT — management personally benefits from the unlock
+    _vu_align = ((s('governance_score', 0) >= 0.15)
+                 | (_ncol('insider_ownership_pct') >= 0.10)).fillna(False)
+    _vu_member = (df['arch_xr_value_unlock'] == 1)
+    df['value_unlock_score'] = (
+        _vu_cat * (0.4 + 0.6 * _vu_fresh)
+        * (1.0 + 0.60 * _vu_forensic.astype(float)
+           + 0.25 * _vu_footprint.astype(float)
+           + 0.15 * _vu_align.astype(float))
+        * _vu_member.astype(float)
+    ).clip(0, 3).round(3)
+    # the high-conviction subset: cheap + live catalyst AND the forensics confirm
+    # there is real value to unlock
+    df['value_unlock_confirmed'] = (_vu_member & _vu_forensic).astype(int)
+
     # F6 — Forensic payout confirmation (the user's BOOST leg). Any forensic /
     # hidden-value member that is ALSO returning capital — buying back shares
     # or paying a dividend — earns an EXTRA archetype count, which is this
@@ -5940,7 +5978,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','governance_score','governance_tier','insider_distinct_buyers','insider_net_buy_value','insider_officer_buy_flag','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','segment_rot_flag','data_quality_flag','xr_family_count','xr_confidence','xr_score','forensic_hidden_pct','forensic_xr_score','truly_xr_score','truly_xr_flag','truly_xr_tell_count','truly_xr_mech_count','truly_xr_tells_str','spin_date','reorg_date']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','governance_score','governance_tier','insider_distinct_buyers','insider_net_buy_value','insider_officer_buy_flag','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','segment_rot_flag','data_quality_flag','xr_family_count','xr_confidence','xr_score','forensic_hidden_pct','forensic_xr_score','value_unlock_score','value_unlock_confirmed','truly_xr_score','truly_xr_flag','truly_xr_tell_count','truly_xr_mech_count','truly_xr_tells_str','spin_date','reorg_date']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m','segment_count','fastest_segment_yoy','is_price_ghost'] if c in df.columns]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)
