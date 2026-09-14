@@ -189,10 +189,10 @@ METHODOLOGY AUDIT — 197 checks, 0 FAIL, 0 WARN
   PASS  pairing: no levered name holds an unadjusted CFO/EV cash_return_ev  — 0 rows
   PASS  regression: arch_hidden_assets non-op assets >= ~25% of mcap (local)  — 0 sub-gap firers
   PASS  valuation: no positive ev_ebitda on ebitda<=0  — 0 rows
-  PASS  valuation: ev_ebitda != EV/ebitda (>25% dev) <= 6.0% of covered rows  — 3/23585 rows (0.01%)
-  PASS  valuation: ev_sales != EV/revenue (>25% dev) <= 6.0% of covered rows  — 1/30350 rows (0.00%)
+  PASS  valuation: ev_ebitda != EV/ebitda (>25% dev) <= 6.0% of covered rows  — 3/23635 rows (0.01%)
+  PASS  valuation: ev_sales != EV/revenue (>25% dev) <= 6.0% of covered rows  — 1/30456 rows (0.00%)
   PASS  valuation: ev_ebitda sign matches EV (denominator>0)  — 0 sign mismatches
-  PASS  valuation: ebitda_margin != ebitda/revenue (>25% dev, |gap|>3pts) <= 6.0% of covered rows  — 113/28276 rows (0.40%)
+  PASS  valuation: ebitda_margin != ebitda/revenue (>25% dev, |gap|>3pts) <= 6.0% of covered rows  — 114/28276 rows (0.40%)
   PASS  valuation: market_cap_usd implies implausible fx <= 0.5% of covered rows  — 0/37776 rows (0.00%)
   PASS  valuation: market_cap_usd fx != revenue-twin fx (>10%) <= 2.0% of covered rows  — 0/33913 rows (0.00%)
   PASS  valuation: top-100 by ETA carry ZERO cross-field violations  — 0 of top 100 rows inconsistent
