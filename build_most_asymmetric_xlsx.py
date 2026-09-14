@@ -1552,6 +1552,90 @@ def build_rerate_catalysts(wb: Workbook, yf: dict):
     ws.freeze_panes = "A5"
 
 
+def build_rerate_backtest(wb: Workbook, yf: dict):
+    """Historical re-rate event study — what corporate-action catalysts
+    actually returned. Source: rerate_backtest.json."""
+    ws = wb.create_sheet("Re-Rate Backtest")
+    set_col_widths(ws, [20, 8, 10, 8, 10, 34])
+    d = {}
+    p = ROOT / "rerate_backtest.json"
+    if p.exists():
+        try:
+            d = json.loads(p.read_text())
+        except Exception:
+            d = {}
+    bt = d.get("by_type", {})
+    write_title_band(
+        ws,
+        "Re-Rate Backtest — did these catalysts pay, historically?",
+        f"Corporate-action announcements in {d.get('window','')} "
+        f"({d.get('n_events_priced','?')} events), realized forward return "
+        "measured to +12 months, absolute and vs SPY. The evidence behind the "
+        "catalyst weights.",
+        n_cols=6,
+    )
+    r = 4
+    write_header_row(ws, r, ["Catalyst", "N", "12m median", "Hit %",
+                             "12m vs SPY", "Read"])
+    r += 1
+    reads = {
+        "SPINOFF": "most tail winners; reliable in large-caps",
+        "ASSET_SALE": "~market on median; tail-driven",
+        "SALE_OF_COMPANY": "deal already priced at 8-K; little forward juice",
+        "STRATEGIC_REVIEW": "worst median — most reviews fizzle; pure optionality",
+    }
+    order = sorted(bt.items(),
+                   key=lambda kv: -((kv[1].get("ret_12m") or {}).get("median") or -9))
+    for ctype, v in order:
+        r12 = v.get("ret_12m") or {}; xs = v.get("excess_12m") or {}
+        write_body_row(ws, r,
+                       [ctype.replace("_", " ").title(), v.get("n_events", 0),
+                        f"{(r12.get('median') or 0)*100:+.0f}%",
+                        f"{(r12.get('hit_rate') or 0)*100:.0f}%",
+                        f"{(xs.get('median') or 0)*100:+.0f}%",
+                        reads.get(ctype, "")],
+                       band=(r % 2 == 0), bold_first=True)
+        r += 1
+    ov = (d.get("overall") or {}).get("ret_12m") or {}
+    write_body_row(ws, r, ["OVERALL", ov.get("n", 0),
+                           f"{(ov.get('median') or 0)*100:+.0f}%",
+                           f"{(ov.get('hit_rate') or 0)*100:.0f}%", "", ""],
+                   band=False, bold_first=True)
+    r += 2
+
+    # top realized winners
+    ws.cell(row=r, column=1, value="BIGGEST REALIZED RE-RATES (12m)").font = BODY_BOLD
+    r += 1
+    write_header_row(ws, r, ["Ticker", "Catalyst", "Date", "", "12m", ""])
+    r += 1
+    for e in (d.get("events") or [])[:12]:
+        r12 = e.get("ret_12m")
+        if r12 is None:
+            continue
+        write_body_row(ws, r,
+                       [e.get("ticker", ""), e.get("catalyst", "").replace("_", " ").title(),
+                        e.get("date", ""), "", f"{r12*100:+.0f}%", ""],
+                       band=(r % 2 == 0), bold_first=True)
+        r += 1
+    r += 1
+    write_footnote(ws, r,
+        "THE LESSON, from the data. On the MEDIAN, every corporate-action "
+        "catalyst UNDERPERFORMED SPY over the next year — buying a spin/sale/"
+        "review indiscriminately is a losing trade. The payoff is a RIGHT TAIL: "
+        "~15% of events returned >+50% in 12 months, and spin-offs produced the "
+        "most of them (SanDisk +1235%, GE Vernova +141%, Grail +122%). "
+        "Counter-intuitively, small-cap catalyst plays were LOTTERY tickets "
+        "(median −24%, 35% hit), while large-cap spin-offs were the reliable "
+        "sweet spot (+4% median, 57% hit). Calibration consequences, applied to "
+        "the Re-Rate Catalysts weights: spin-offs up, strategic-reviews down "
+        "(worst median), already-announced deals down (deal priced), and the "
+        "catalyst credit is scaled by payoff-geometry room so the engine leans "
+        "toward the setups where the tail actually lives — not the bare "
+        "catalyst. Sample is modest (8–40 per type); treat as directional. "
+        "Source: rerate_backtest.py.", 6)
+    ws.sheet_view.showGridLines = False
+
+
 def build_winners_study(wb: Workbook, yf: dict):
     """Winners forensics -- feature lifts of realized 1-year re-raters, with
     the honest data caveat. Source: winners_forensics.json."""
@@ -2712,6 +2796,7 @@ TAB_INDEX = [
     ("Payoff Geometry", "Capped asset-backed downside vs sector re-rate upside — the asymmetry ratio per name."),
     ("Mechanism Gates", "Exceptional-return archetypes as hard causal conjunctions; 2+ machines = highest conviction."),
     ("Re-Rate Catalysts", "Spin-offs / separations / asset sales / sale-of-company / strategic reviews x geometry room."),
+    ("Re-Rate Backtest", "What those catalysts actually returned historically — the evidence behind the weights."),
     ("Winners Study", "What realized 1-year re-raters had in common — feature/sector lifts, with the pre-move-data caveat."),
     ("Asymmetry Assembly", "PSIX-recipe conjunction: cheap + inflection + leverage + insider co-occurring."),
     ("Distressed Stub Progress", "Finality-gated capital-structure value-unlock events, waterfall-scored."),
@@ -2881,6 +2966,7 @@ def main() -> int:
     build_payoff_geometry(wb, yf)
     build_mechanism_gates(wb, yf)
     build_rerate_catalysts(wb, yf)
+    build_rerate_backtest(wb, yf)
     build_winners_study(wb, yf)
     build_asymmetry_assembly(wb, yf)
     build_distressed_stub(wb, yf)

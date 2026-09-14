@@ -60,12 +60,20 @@ PROXY_MAP = {
     "asset_sale_named": "ASSET_SALE",
     "merger_acquisition_close": "SALE_OF_COMPANY",
 }
-# per-source base weight by hardness.
-W_INCENTIVE = {"SPINOFF": 10, "ASSET_SALE": 10, "SALE_OF_COMPANY": 8,
-               "SEPARATION": 10, "STRATEGIC_REVIEW": 6}
-W_TENDER = 12                 # active bid (TARGET)
-W_NARRATIVE = {"SPINOFF": 6, "SEPARATION": 6, "SALE_OF_COMPANY": 6,
-               "ASSET_SALE": 5, "STRATEGIC_REVIEW": 5}
+# per-source base weight by hardness. CALIBRATED to the historical event
+# study (rerate_backtest.py, 2024-01..2025-06, 113 events): on the median
+# every catalyst UNDERPERFORMED SPY, so raw catalyst is not broadly bullish
+# -- the payoff is a right tail (15% of events > +50% / 12m). SPIN-OFFS
+# produced the most tail winners and were reliable in large-caps (+4% median,
+# 57% hit); STRATEGIC_REVIEW had the worst median (-10%, -27% excess) -- most
+# reviews fizzle -- so it is down-weighted to pure optionality; an ALREADY-
+# ANNOUNCED sale (tender TARGET) has little forward juice (deal already
+# priced), so it is down-weighted vs an emerging catalyst.
+W_INCENTIVE = {"SPINOFF": 11, "ASSET_SALE": 9, "SALE_OF_COMPANY": 7,
+               "SEPARATION": 11, "STRATEGIC_REVIEW": 4}
+W_TENDER = 7                  # active bid, but deal largely priced already
+W_NARRATIVE = {"SPINOFF": 7, "SEPARATION": 7, "SALE_OF_COMPANY": 5,
+               "ASSET_SALE": 5, "STRATEGIC_REVIEW": 3}
 TRIANGULATION_BONUS = 5       # a bucket named by 2+ independent sources
 MULTI_TYPE_BONUS = 4         # 2+ distinct catalyst types
 
