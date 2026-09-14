@@ -1,78 +1,80 @@
 {
-  "FWDI": {
-    "ticker": "FWDI",
-    "catalyst_date": "2026-03-09",
-    "months_since": 6.3,
-    "drift_since_catalyst": 0.485,
-    "state": "CONFIRMED",
-    "tail_prob_base": 0.405,
-    "tail_prob_confirmed": 0.56,
+  "USAR": {
+    "ticker": "USAR",
+    "catalyst_date": "2026-09-04",
+    "months_since": 0.3,
+    "drift_since_catalyst": 0.0,
+    "state": "PENDING",
+    "tail_prob_base": 0.285,
+    "tail_prob_confirmed": 0.285,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
-    "geometry_ratio": 12.91,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 9.7
+    "geometry_ratio": null,
+    "sector": "Basic Materials",
+    "rerate_score": 7.0
   },
-  "TASK": {
-    "ticker": "TASK",
-    "catalyst_date": "2026-03-17",
-    "months_since": 6.0,
-    "drift_since_catalyst": 0.285,
-    "state": "CONFIRMED",
-    "tail_prob_base": 0.37,
-    "tail_prob_confirmed": 0.523,
-    "catalyst_types": [
-      "CAPITAL_RETURN"
-    ],
-    "geometry_ratio": 4.32,
-    "sector": "Technology",
-    "rerate_score": 9.0
-  },
-  "PAR": {
-    "ticker": "PAR",
-    "catalyst_date": "2026-02-26",
-    "months_since": 6.7,
-    "drift_since_catalyst": 0.388,
-    "state": "CONFIRMED",
-    "tail_prob_base": 0.37,
-    "tail_prob_confirmed": 0.523,
-    "catalyst_types": [
-      "BUYBACK_AUTH"
-    ],
-    "geometry_ratio": 15.5,
-    "sector": "Technology",
-    "rerate_score": 7.5
-  },
-  "PD": {
-    "ticker": "PD",
-    "catalyst_date": "2026-05-28",
-    "months_since": 3.6,
-    "drift_since_catalyst": 0.509,
-    "state": "CONFIRMED",
-    "tail_prob_base": 0.37,
-    "tail_prob_confirmed": 0.523,
-    "catalyst_types": [
-      "BUYBACK_AUTH"
-    ],
-    "geometry_ratio": 1.41,
-    "sector": "Technology",
-    "rerate_score": 5.8
-  },
-  "ALKT": {
-    "ticker": "ALKT",
-    "catalyst_date": "2026-04-29",
-    "months_since": 4.6,
-    "drift_since_catalyst": 0.1,
+  "AMS": {
+    "ticker": "AMS",
+    "catalyst_date": "2026-07-28",
+    "months_since": 1.6,
+    "drift_since_catalyst": 0.01,
     "state": "NEUTRAL",
-    "tail_prob_base": 0.37,
-    "tail_prob_confirmed": 0.37,
+    "tail_prob_base": 0.27,
+    "tail_prob_confirmed": 0.27,
     "catalyst_types": [
-      "BUYBACK_AUTH"
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": 60.0,
+    "sector": "Healthcare",
+    "rerate_score": 10.5
+  },
+  "BTAI": {
+    "ticker": "BTAI",
+    "catalyst_date": "2026-03-27",
+    "months_since": 5.7,
+    "drift_since_catalyst": 0.0,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.27,
+    "tail_prob_confirmed": 0.27,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
     ],
     "geometry_ratio": null,
-    "sector": "Technology",
+    "sector": "Healthcare",
     "rerate_score": 5.0
+  },
+  "SUNE": {
+    "ticker": "SUNE",
+    "catalyst_date": "2026-09-08",
+    "months_since": 0.2,
+    "drift_since_catalyst": 0.0,
+    "state": "PENDING",
+    "tail_prob_base": 0.248,
+    "tail_prob_confirmed": 0.248,
+    "catalyst_types": [
+      "SALE_OF_COMPANY",
+      "STRATEGIC_REVIEW",
+      "UPLISTING"
+    ],
+    "geometry_ratio": 60.0,
+    "sector": "Technology",
+    "rerate_score": 27.0
+  },
+  "JTAI": {
+    "ticker": "JTAI",
+    "catalyst_date": "2026-01-15",
+    "months_since": 8.1,
+    "drift_since_catalyst": -0.397,
+    "state": "FADING",
+    "tail_prob_base": 0.248,
+    "tail_prob_confirmed": 0.219,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": 60.0,
+    "sector": "Technology",
+    "rerate_score": 10.5
   },
   "OPTU": {
     "ticker": "OPTU",
@@ -80,8 +82,8 @@
     "months_since": 1.3,
     "drift_since_catalyst": 0.015,
     "state": "NEUTRAL",
-    "tail_prob_base": 0.352,
-    "tail_prob_confirmed": 0.352,
+    "tail_prob_base": 0.241,
+    "tail_prob_confirmed": 0.241,
     "catalyst_types": [
       "SALE_OF_COMPANY",
       "TENDER_OFFER"
@@ -90,330 +92,65 @@
     "sector": "Communication Services",
     "rerate_score": 25.5
   },
-  "ORBS": {
-    "ticker": "ORBS",
-    "catalyst_date": "2025-12-29",
-    "months_since": 8.6,
-    "drift_since_catalyst": -0.34,
-    "state": "FADING",
-    "tail_prob_base": 0.352,
-    "tail_prob_confirmed": 0.316,
-    "catalyst_types": [
-      "BUYBACK_AUTH"
-    ],
-    "geometry_ratio": 1.27,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 5.6
-  },
-  "AIRE": {
-    "ticker": "AIRE",
-    "catalyst_date": "2026-08-25",
-    "months_since": 0.7,
-    "drift_since_catalyst": 0.025,
-    "state": "PENDING",
-    "tail_prob_base": 0.351,
-    "tail_prob_confirmed": 0.351,
-    "catalyst_types": [
-      "SALE_OF_COMPANY"
-    ],
-    "geometry_ratio": null,
-    "sector": "Real Estate",
-    "rerate_score": 7.0
-  },
-  "LE": {
-    "ticker": "LE",
-    "catalyst_date": "2026-03-26",
-    "months_since": 5.7,
-    "drift_since_catalyst": -0.067,
+  "FULC": {
+    "ticker": "FULC",
+    "catalyst_date": "2026-07-30",
+    "months_since": 1.5,
+    "drift_since_catalyst": -0.023,
     "state": "NEUTRAL",
-    "tail_prob_base": 0.341,
-    "tail_prob_confirmed": 0.341,
+    "tail_prob_base": 0.233,
+    "tail_prob_confirmed": 0.233,
     "catalyst_types": [
-      "SALE_OF_COMPANY",
-      "STRATEGIC_REVIEW",
-      "TENDER_OFFER"
-    ],
-    "geometry_ratio": 5.09,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 28.5
-  },
-  "MNRO": {
-    "ticker": "MNRO",
-    "catalyst_date": "2026-05-27",
-    "months_since": 3.7,
-    "drift_since_catalyst": -0.254,
-    "state": "FADING",
-    "tail_prob_base": 0.341,
-    "tail_prob_confirmed": 0.306,
-    "catalyst_types": [
-      "SALE_OF_COMPANY",
       "STRATEGIC_REVIEW"
     ],
-    "geometry_ratio": 1.81,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 15.5
-  },
-  "LUCK": {
-    "ticker": "LUCK",
-    "catalyst_date": "2025-10-24",
-    "months_since": 10.8,
-    "drift_since_catalyst": -0.284,
-    "state": "FADING",
-    "tail_prob_base": 0.341,
-    "tail_prob_confirmed": 0.306,
-    "catalyst_types": [
-      "SALE_OF_COMPANY"
-    ],
-    "geometry_ratio": null,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 7.0
-  },
-  "SUNE": {
-    "ticker": "SUNE",
-    "catalyst_date": "2026-09-08",
-    "months_since": 0.2,
-    "drift_since_catalyst": 0.0,
-    "state": "PENDING",
-    "tail_prob_base": 0.339,
-    "tail_prob_confirmed": 0.339,
-    "catalyst_types": [
-      "SALE_OF_COMPANY",
-      "STRATEGIC_REVIEW",
-      "UPLISTING"
-    ],
-    "geometry_ratio": 60.0,
-    "sector": "Technology",
-    "rerate_score": 34.5
-  },
-  "JTAI": {
-    "ticker": "JTAI",
-    "catalyst_date": "2026-01-15",
-    "months_since": 8.1,
-    "drift_since_catalyst": -0.401,
-    "state": "FADING",
-    "tail_prob_base": 0.339,
-    "tail_prob_confirmed": 0.304,
-    "catalyst_types": [
-      "SALE_OF_COMPANY"
-    ],
-    "geometry_ratio": 60.0,
-    "sector": "Technology",
-    "rerate_score": 10.5
-  },
-  "CLVT": {
-    "ticker": "CLVT",
-    "catalyst_date": "2026-07-06",
-    "months_since": 2.3,
-    "drift_since_catalyst": -0.08,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.331,
-    "tail_prob_confirmed": 0.331,
-    "catalyst_types": [
-      "ASSET_SALE"
-    ],
-    "geometry_ratio": 60.0,
-    "sector": "Technology",
-    "rerate_score": 10.5
-  },
-  "BLND": {
-    "ticker": "BLND",
-    "catalyst_date": "2026-03-02",
-    "months_since": 6.5,
-    "drift_since_catalyst": -0.021,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.331,
-    "tail_prob_confirmed": 0.331,
-    "catalyst_types": [
-      "ASSET_SALE"
-    ],
-    "geometry_ratio": null,
-    "sector": "Technology",
-    "rerate_score": 7.0
-  },
-  "DXLG": {
-    "ticker": "DXLG",
-    "catalyst_date": "2026-08-19",
-    "months_since": 0.9,
-    "drift_since_catalyst": -0.022,
-    "state": "PENDING",
-    "tail_prob_base": 0.321,
-    "tail_prob_confirmed": 0.321,
-    "catalyst_types": [
-      "SALE_OF_COMPANY",
-      "TENDER_OFFER"
-    ],
-    "geometry_ratio": 60.0,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 36.0
-  },
-  "FPH": {
-    "ticker": "FPH",
-    "catalyst_date": "2026-04-23",
-    "months_since": 4.8,
-    "drift_since_catalyst": 0.003,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.32,
-    "tail_prob_confirmed": 0.32,
-    "catalyst_types": [
-      "BUYBACK_AUTH"
-    ],
-    "geometry_ratio": 45.79,
-    "sector": "Real Estate",
-    "rerate_score": 6.9
-  },
-  "SITC": {
-    "ticker": "SITC",
-    "catalyst_date": "2026-08-03",
-    "months_since": 1.4,
-    "drift_since_catalyst": 0.014,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.315,
-    "tail_prob_confirmed": 0.315,
-    "catalyst_types": [
-      "ASSET_SALE",
-      "SPINOFF"
-    ],
-    "geometry_ratio": 2.78,
-    "sector": "Real Estate",
-    "rerate_score": 30.0
-  },
-  "FMC": {
-    "ticker": "FMC",
-    "catalyst_date": "2026-07-01",
-    "months_since": 2.5,
-    "drift_since_catalyst": 0.049,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.312,
-    "tail_prob_confirmed": 0.312,
-    "catalyst_types": [
-      "TENDER_OFFER"
-    ],
-    "geometry_ratio": 6.12,
-    "sector": "Basic Materials",
-    "rerate_score": 11.1
-  },
-  "IBEX": {
-    "ticker": "IBEX",
-    "catalyst_date": "2026-05-13",
-    "months_since": 4.1,
-    "drift_since_catalyst": 0.352,
-    "state": "CONFIRMED",
-    "tail_prob_base": 0.309,
-    "tail_prob_confirmed": 0.455,
-    "catalyst_types": [
-      "BUYBACK_AUTH"
-    ],
-    "geometry_ratio": 2.8,
-    "sector": "Technology",
-    "rerate_score": 6.9
-  },
-  "IIIV": {
-    "ticker": "IIIV",
-    "catalyst_date": "2026-05-12",
-    "months_since": 4.2,
-    "drift_since_catalyst": -0.259,
-    "state": "FADING",
-    "tail_prob_base": 0.309,
-    "tail_prob_confirmed": 0.276,
-    "catalyst_types": [
-      "BUYBACK_AUTH"
-    ],
-    "geometry_ratio": 2.46,
-    "sector": "Technology",
-    "rerate_score": 6.3
-  },
-  "VREOF": {
-    "ticker": "VREOF",
-    "catalyst_date": "2026-04-06",
-    "months_since": 5.4,
-    "drift_since_catalyst": -0.071,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.303,
-    "tail_prob_confirmed": 0.303,
-    "catalyst_types": [
-      "SALE_OF_COMPANY"
-    ],
-    "geometry_ratio": 0.9,
+    "geometry_ratio": 8.29,
     "sector": "Healthcare",
-    "rerate_score": 7.9
+    "rerate_score": 12.5
   },
-  "SIGA": {
-    "ticker": "SIGA",
-    "catalyst_date": "2026-08-06",
-    "months_since": 1.3,
-    "drift_since_catalyst": 0.01,
+  "NDRA": {
+    "ticker": "NDRA",
+    "catalyst_date": "2026-03-25",
+    "months_since": 5.8,
+    "drift_since_catalyst": 0.156,
     "state": "NEUTRAL",
-    "tail_prob_base": 0.303,
-    "tail_prob_confirmed": 0.303,
+    "tail_prob_base": 0.233,
+    "tail_prob_confirmed": 0.233,
     "catalyst_types": [
-      "CAPITAL_RETURN"
+      "STRATEGIC_REVIEW"
     ],
-    "geometry_ratio": 0.5,
+    "geometry_ratio": null,
     "sector": "Healthcare",
-    "rerate_score": 6.3
-  },
-  "ANGX": {
-    "ticker": "ANGX",
-    "catalyst_date": "2026-04-13",
-    "months_since": 5.1,
-    "drift_since_catalyst": 1.009,
-    "state": "CONFIRMED",
-    "tail_prob_base": 0.302,
-    "tail_prob_confirmed": 0.447,
-    "catalyst_types": [
-      "UPLISTING"
-    ],
-    "geometry_ratio": null,
-    "sector": "Communication Services",
-    "rerate_score": 7.0
-  },
-  "UPWK": {
-    "ticker": "UPWK",
-    "catalyst_date": "2026-02-18",
-    "months_since": 6.9,
-    "drift_since_catalyst": -0.203,
-    "state": "FADING",
-    "tail_prob_base": 0.302,
-    "tail_prob_confirmed": 0.269,
-    "catalyst_types": [
-      "BUYBACK_AUTH"
-    ],
-    "geometry_ratio": null,
-    "sector": "Communication Services",
     "rerate_score": 5.0
   },
-  "FOXF": {
-    "ticker": "FOXF",
-    "catalyst_date": "2026-08-06",
-    "months_since": 1.3,
-    "drift_since_catalyst": -0.003,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.294,
-    "tail_prob_confirmed": 0.294,
+  "NEUP": {
+    "ticker": "NEUP",
+    "catalyst_date": "2026-05-15",
+    "months_since": 4.1,
+    "drift_since_catalyst": -0.135,
+    "state": "FADING",
+    "tail_prob_base": 0.233,
+    "tail_prob_confirmed": 0.206,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
-    "geometry_ratio": 1.12,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 5.5
+    "geometry_ratio": 3.86,
+    "sector": "Healthcare",
+    "rerate_score": 3.7
   },
-  "DEC": {
-    "ticker": "DEC",
-    "catalyst_date": "2026-02-26",
-    "months_since": 6.7,
-    "drift_since_catalyst": -0.143,
+  "NERV": {
+    "ticker": "NERV",
+    "catalyst_date": "2026-05-05",
+    "months_since": 4.4,
+    "drift_since_catalyst": -0.258,
     "state": "FADING",
-    "tail_prob_base": 0.292,
-    "tail_prob_confirmed": 0.26,
+    "tail_prob_base": 0.233,
+    "tail_prob_confirmed": 0.206,
     "catalyst_types": [
-      "ASSET_SALE",
-      "BUYBACK_AUTH",
-      "CH11_EMERGENCE",
-      "TENDER_OFFER"
+      "STRATEGIC_REVIEW"
     ],
-    "geometry_ratio": 2.28,
-    "sector": "Energy",
-    "rerate_score": 41.9
+    "geometry_ratio": null,
+    "sector": "Healthcare",
+    "rerate_score": 3.0
   },
   "CMTL": {
     "ticker": "CMTL",
@@ -421,24 +158,24 @@
     "months_since": 3.0,
     "drift_since_catalyst": -0.11,
     "state": "FADING",
-    "tail_prob_base": 0.292,
-    "tail_prob_confirmed": 0.26,
+    "tail_prob_base": 0.212,
+    "tail_prob_confirmed": 0.186,
     "catalyst_types": [
       "ASSET_SALE",
       "STRATEGIC_REVIEW"
     ],
     "geometry_ratio": 11.53,
     "sector": "Technology",
-    "rerate_score": 21.0
+    "rerate_score": 25.5
   },
   "AGPU": {
     "ticker": "AGPU",
     "catalyst_date": "2026-05-15",
     "months_since": 4.1,
-    "drift_since_catalyst": 0.451,
+    "drift_since_catalyst": 0.436,
     "state": "CONFIRMED",
-    "tail_prob_base": 0.292,
-    "tail_prob_confirmed": 0.435,
+    "tail_prob_base": 0.212,
+    "tail_prob_confirmed": 0.334,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -450,10 +187,10 @@
     "ticker": "GPRO",
     "catalyst_date": "2026-07-08",
     "months_since": 2.3,
-    "drift_since_catalyst": 0.574,
+    "drift_since_catalyst": 0.599,
     "state": "CONFIRMED",
-    "tail_prob_base": 0.292,
-    "tail_prob_confirmed": 0.435,
+    "tail_prob_base": 0.212,
+    "tail_prob_confirmed": 0.334,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -465,10 +202,10 @@
     "ticker": "DOMO",
     "catalyst_date": "2026-07-22",
     "months_since": 1.8,
-    "drift_since_catalyst": 0.041,
+    "drift_since_catalyst": 0.044,
     "state": "NEUTRAL",
-    "tail_prob_base": 0.292,
-    "tail_prob_confirmed": 0.292,
+    "tail_prob_base": 0.212,
+    "tail_prob_confirmed": 0.212,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -482,8 +219,8 @@
     "months_since": 1.2,
     "drift_since_catalyst": 0.0,
     "state": "NEUTRAL",
-    "tail_prob_base": 0.292,
-    "tail_prob_confirmed": 0.292,
+    "tail_prob_base": 0.212,
+    "tail_prob_confirmed": 0.212,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -491,246 +228,111 @@
     "sector": "Technology",
     "rerate_score": 7.5
   },
-  "ETD": {
-    "ticker": "ETD",
-    "catalyst_date": "2026-07-29",
-    "months_since": 1.6,
-    "drift_since_catalyst": -0.057,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.292,
-    "tail_prob_confirmed": 0.292,
-    "catalyst_types": [
-      "CAPITAL_RETURN"
-    ],
-    "geometry_ratio": 1.41,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 6.8
-  },
-  "ARHS": {
-    "ticker": "ARHS",
-    "catalyst_date": "2026-05-07",
-    "months_since": 4.3,
-    "drift_since_catalyst": -0.017,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.292,
-    "tail_prob_confirmed": 0.292,
-    "catalyst_types": [
-      "CAPITAL_RETURN"
-    ],
-    "geometry_ratio": 0.27,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 6.2
-  },
-  "KPLT": {
-    "ticker": "KPLT",
-    "catalyst_date": "2026-09-11",
-    "months_since": 0.1,
-    "drift_since_catalyst": 0.0,
+  "HHS": {
+    "ticker": "HHS",
+    "catalyst_date": "2026-08-19",
+    "months_since": 0.9,
+    "drift_since_catalyst": 0.029,
     "state": "PENDING",
-    "tail_prob_base": 0.29,
-    "tail_prob_confirmed": 0.29,
+    "tail_prob_base": 0.209,
+    "tail_prob_confirmed": 0.209,
     "catalyst_types": [
-      "GOING_PRIVATE"
+      "SALE_OF_COMPANY"
     ],
-    "geometry_ratio": 11.79,
-    "sector": "Technology",
-    "rerate_score": 13.5
+    "geometry_ratio": 6.89,
+    "sector": "Industrials",
+    "rerate_score": 10.5
   },
-  "EXFY": {
-    "ticker": "EXFY",
-    "catalyst_date": "2026-08-06",
-    "months_since": 1.3,
-    "drift_since_catalyst": 0.025,
+  "VRME": {
+    "ticker": "VRME",
+    "catalyst_date": "2026-08-12",
+    "months_since": 1.1,
+    "drift_since_catalyst": 0.054,
     "state": "NEUTRAL",
-    "tail_prob_base": 0.29,
-    "tail_prob_confirmed": 0.29,
+    "tail_prob_base": 0.209,
+    "tail_prob_confirmed": 0.209,
     "catalyst_types": [
-      "TENDER_OFFER"
+      "SALE_OF_COMPANY"
     ],
-    "geometry_ratio": 13.59,
-    "sector": "Technology",
-    "rerate_score": 12.0
-  },
-  "CHYM": {
-    "ticker": "CHYM",
-    "catalyst_date": "2026-08-05",
-    "months_since": 1.3,
-    "drift_since_catalyst": 0.035,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.283,
-    "tail_prob_confirmed": 0.283,
-    "catalyst_types": [
-      "SEPARATION"
-    ],
-    "geometry_ratio": 0.13,
-    "sector": "Technology",
+    "geometry_ratio": 8.12,
+    "sector": "Industrials",
     "rerate_score": 10.2
   },
-  "BDN": {
-    "ticker": "BDN",
-    "catalyst_date": "2026-07-23",
-    "months_since": 1.8,
-    "drift_since_catalyst": -0.017,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.283,
-    "tail_prob_confirmed": 0.283,
+  "PLAG": {
+    "ticker": "PLAG",
+    "catalyst_date": "2026-03-31",
+    "months_since": 5.6,
+    "drift_since_catalyst": -0.608,
+    "state": "FADING",
+    "tail_prob_base": 0.209,
+    "tail_prob_confirmed": 0.184,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": null,
+    "sector": "Industrials",
+    "rerate_score": 5.0
+  },
+  "DXLG": {
+    "ticker": "DXLG",
+    "catalyst_date": "2026-08-19",
+    "months_since": 0.9,
+    "drift_since_catalyst": -0.022,
+    "state": "PENDING",
+    "tail_prob_base": 0.206,
+    "tail_prob_confirmed": 0.206,
+    "catalyst_types": [
+      "SALE_OF_COMPANY",
+      "TENDER_OFFER"
+    ],
+    "geometry_ratio": 60.0,
+    "sector": "Consumer Cyclical",
+    "rerate_score": 36.0
+  },
+  "HCAT": {
+    "ticker": "HCAT",
+    "catalyst_date": "2026-06-04",
+    "months_since": 3.4,
+    "drift_since_catalyst": -0.148,
+    "state": "FADING",
+    "tail_prob_base": 0.205,
+    "tail_prob_confirmed": 0.18,
     "catalyst_types": [
       "ASSET_SALE"
     ],
-    "geometry_ratio": 6.5,
-    "sector": "Real Estate",
-    "rerate_score": 9.4
+    "geometry_ratio": 6.08,
+    "sector": "Healthcare",
+    "rerate_score": 15.0
   },
-  "QBTS": {
-    "ticker": "QBTS",
-    "catalyst_date": "2026-01-07",
-    "months_since": 8.3,
-    "drift_since_catalyst": -0.085,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.283,
-    "tail_prob_confirmed": 0.283,
-    "catalyst_types": [
-      "UPLISTING"
-    ],
-    "geometry_ratio": null,
-    "sector": "Technology",
-    "rerate_score": 7.0
-  },
-  "KVYO": {
-    "ticker": "KVYO",
-    "catalyst_date": "2026-03-02",
+  "KROS": {
+    "ticker": "KROS",
+    "catalyst_date": "2026-03-04",
     "months_since": 6.5,
-    "drift_since_catalyst": -0.15,
-    "state": "FADING",
-    "tail_prob_base": 0.283,
-    "tail_prob_confirmed": 0.252,
-    "catalyst_types": [
-      "BUYBACK_AUTH"
-    ],
-    "geometry_ratio": null,
-    "sector": "Technology",
-    "rerate_score": 5.0
-  },
-  "DUOL": {
-    "ticker": "DUOL",
-    "catalyst_date": "2026-02-26",
-    "months_since": 6.7,
-    "drift_since_catalyst": 0.55,
-    "state": "CONFIRMED",
-    "tail_prob_base": 0.283,
-    "tail_prob_confirmed": 0.424,
-    "catalyst_types": [
-      "BUYBACK_AUTH"
-    ],
-    "geometry_ratio": null,
-    "sector": "Technology",
-    "rerate_score": 5.0
-  },
-  "GWRE": {
-    "ticker": "GWRE",
-    "catalyst_date": "2026-01-08",
-    "months_since": 8.3,
-    "drift_since_catalyst": 0.042,
+    "drift_since_catalyst": 0.013,
     "state": "NEUTRAL",
-    "tail_prob_base": 0.283,
-    "tail_prob_confirmed": 0.283,
+    "tail_prob_base": 0.202,
+    "tail_prob_confirmed": 0.202,
     "catalyst_types": [
-      "BUYBACK_AUTH"
+      "TENDER_OFFER"
     ],
-    "geometry_ratio": null,
-    "sector": "Technology",
-    "rerate_score": 5.0
-  },
-  "AMS": {
-    "ticker": "AMS",
-    "catalyst_date": "2026-07-28",
-    "months_since": 1.6,
-    "drift_since_catalyst": 0.01,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.276,
-    "tail_prob_confirmed": 0.276,
-    "catalyst_types": [
-      "SALE_OF_COMPANY"
-    ],
-    "geometry_ratio": 60.0,
+    "geometry_ratio": 11.06,
     "sector": "Healthcare",
-    "rerate_score": 10.5
+    "rerate_score": 12.0
   },
-  "LVLU": {
-    "ticker": "LVLU",
-    "catalyst_date": "2026-07-14",
-    "months_since": 2.1,
-    "drift_since_catalyst": -0.209,
-    "state": "FADING",
-    "tail_prob_base": 0.276,
-    "tail_prob_confirmed": 0.245,
+  "FMC": {
+    "ticker": "FMC",
+    "catalyst_date": "2026-07-01",
+    "months_since": 2.5,
+    "drift_since_catalyst": 0.05,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.201,
+    "tail_prob_confirmed": 0.201,
     "catalyst_types": [
-      "STRATEGIC_REVIEW"
+      "TENDER_OFFER"
     ],
-    "geometry_ratio": 3.0,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 7.5
-  },
-  "USAR": {
-    "ticker": "USAR",
-    "catalyst_date": "2026-09-04",
-    "months_since": 0.3,
-    "drift_since_catalyst": 0.0,
-    "state": "PENDING",
-    "tail_prob_base": 0.276,
-    "tail_prob_confirmed": 0.276,
-    "catalyst_types": [
-      "SALE_OF_COMPANY"
-    ],
-    "geometry_ratio": null,
+    "geometry_ratio": 6.12,
     "sector": "Basic Materials",
-    "rerate_score": 7.0
-  },
-  "CRMT": {
-    "ticker": "CRMT",
-    "catalyst_date": "2026-09-04",
-    "months_since": 0.3,
-    "drift_since_catalyst": 0.0,
-    "state": "PENDING",
-    "tail_prob_base": 0.276,
-    "tail_prob_confirmed": 0.276,
-    "catalyst_types": [
-      "STRATEGIC_REVIEW"
-    ],
-    "geometry_ratio": 30.0,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 6.2
-  },
-  "BTAI": {
-    "ticker": "BTAI",
-    "catalyst_date": "2026-03-27",
-    "months_since": 5.7,
-    "drift_since_catalyst": 0.0,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.276,
-    "tail_prob_confirmed": 0.276,
-    "catalyst_types": [
-      "SALE_OF_COMPANY"
-    ],
-    "geometry_ratio": null,
-    "sector": "Healthcare",
-    "rerate_score": 5.0
-  },
-  "BIRD": {
-    "ticker": "BIRD",
-    "catalyst_date": "2026-06-17",
-    "months_since": 3.0,
-    "drift_since_catalyst": 0.142,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.274,
-    "tail_prob_confirmed": 0.274,
-    "catalyst_types": [
-      "ASSET_SALE",
-      "UPLISTING"
-    ],
-    "geometry_ratio": 1.83,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 28.2
+    "rerate_score": 11.1
   },
   "JKHY": {
     "ticker": "JKHY",
@@ -738,8 +340,8 @@
     "months_since": 1.1,
     "drift_since_catalyst": 0.042,
     "state": "NEUTRAL",
-    "tail_prob_base": 0.274,
-    "tail_prob_confirmed": 0.274,
+    "tail_prob_base": 0.2,
+    "tail_prob_confirmed": 0.2,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -747,202 +349,156 @@
     "sector": "Technology",
     "rerate_score": 7.0
   },
+  "PTN": {
+    "ticker": "PTN",
+    "catalyst_date": "2026-05-18",
+    "months_since": 4.0,
+    "drift_since_catalyst": 0.153,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.199,
+    "tail_prob_confirmed": 0.199,
+    "catalyst_types": [
+      "UPLISTING"
+    ],
+    "geometry_ratio": 1.28,
+    "sector": "Healthcare",
+    "rerate_score": 2.3
+  },
+  "SPRB": {
+    "ticker": "SPRB",
+    "catalyst_date": "2026-04-22",
+    "months_since": 4.8,
+    "drift_since_catalyst": 0.085,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.199,
+    "tail_prob_confirmed": 0.199,
+    "catalyst_types": [
+      "UPLISTING"
+    ],
+    "geometry_ratio": null,
+    "sector": "Healthcare",
+    "rerate_score": 2.0
+  },
+  "INO": {
+    "ticker": "INO",
+    "catalyst_date": "2026-07-31",
+    "months_since": 1.5,
+    "drift_since_catalyst": -0.016,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.199,
+    "tail_prob_confirmed": 0.199,
+    "catalyst_types": [
+      "UPLISTING"
+    ],
+    "geometry_ratio": null,
+    "sector": "Healthcare",
+    "rerate_score": 2.0
+  },
+  "MLYS": {
+    "ticker": "MLYS",
+    "catalyst_date": "2026-06-03",
+    "months_since": 3.4,
+    "drift_since_catalyst": 0.127,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.197,
+    "tail_prob_confirmed": 0.197,
+    "catalyst_types": [
+      "UPLISTING"
+    ],
+    "geometry_ratio": null,
+    "sector": "Healthcare",
+    "rerate_score": 2.0
+  },
+  "FWDI": {
+    "ticker": "FWDI",
+    "catalyst_date": "2026-03-09",
+    "months_since": 6.3,
+    "drift_since_catalyst": 0.489,
+    "state": "CONFIRMED",
+    "tail_prob_base": 0.192,
+    "tail_prob_confirmed": 0.307,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": 12.91,
+    "sector": "Consumer Cyclical",
+    "rerate_score": 9.7
+  },
   "LAB": {
     "ticker": "LAB",
     "catalyst_date": "2026-08-05",
     "months_since": 1.3,
-    "drift_since_catalyst": 0.002,
+    "drift_since_catalyst": 0.0,
     "state": "NEUTRAL",
-    "tail_prob_base": 0.268,
-    "tail_prob_confirmed": 0.268,
+    "tail_prob_base": 0.191,
+    "tail_prob_confirmed": 0.191,
     "catalyst_types": [
       "ASSET_SALE"
     ],
     "geometry_ratio": 42.33,
     "sector": "Healthcare",
-    "rerate_score": 16.2
+    "rerate_score": 20.3
   },
   "PRGO": {
     "ticker": "PRGO",
     "catalyst_date": "2026-02-26",
     "months_since": 6.7,
-    "drift_since_catalyst": 0.32,
+    "drift_since_catalyst": 0.322,
     "state": "CONFIRMED",
-    "tail_prob_base": 0.268,
-    "tail_prob_confirmed": 0.406,
+    "tail_prob_base": 0.191,
+    "tail_prob_confirmed": 0.306,
     "catalyst_types": [
       "ASSET_SALE"
     ],
     "geometry_ratio": 25.56,
     "sector": "Healthcare",
-    "rerate_score": 10.5
+    "rerate_score": 15.0
   },
   "CERT": {
     "ticker": "CERT",
     "catalyst_date": "2026-04-22",
     "months_since": 4.8,
-    "drift_since_catalyst": 0.333,
+    "drift_since_catalyst": 0.339,
     "state": "CONFIRMED",
-    "tail_prob_base": 0.268,
-    "tail_prob_confirmed": 0.406,
+    "tail_prob_base": 0.191,
+    "tail_prob_confirmed": 0.306,
     "catalyst_types": [
       "ASSET_SALE"
     ],
     "geometry_ratio": 10.68,
     "sector": "Healthcare",
-    "rerate_score": 9.0
-  },
-  "BFAM": {
-    "ticker": "BFAM",
-    "catalyst_date": "2026-05-07",
-    "months_since": 4.3,
-    "drift_since_catalyst": -0.046,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.266,
-    "tail_prob_confirmed": 0.266,
-    "catalyst_types": [
-      "ASSET_SALE",
-      "GOING_PRIVATE"
-    ],
-    "geometry_ratio": null,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 18.0
-  },
-  "WHR": {
-    "ticker": "WHR",
-    "catalyst_date": "2026-02-27",
-    "months_since": 6.6,
-    "drift_since_catalyst": -0.361,
-    "state": "FADING",
-    "tail_prob_base": 0.266,
-    "tail_prob_confirmed": 0.236,
-    "catalyst_types": [
-      "UPLISTING"
-    ],
-    "geometry_ratio": 5.97,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 8.8
-  },
-  "CCOI": {
-    "ticker": "CCOI",
-    "catalyst_date": "2026-06-29",
-    "months_since": 2.6,
-    "drift_since_catalyst": -0.313,
-    "state": "FADING",
-    "tail_prob_base": 0.266,
-    "tail_prob_confirmed": 0.236,
-    "catalyst_types": [
-      "ASSET_SALE"
-    ],
-    "geometry_ratio": 0.28,
-    "sector": "Communication Services",
-    "rerate_score": 7.3
-  },
-  "LCID": {
-    "ticker": "LCID",
-    "catalyst_date": "2026-04-14",
-    "months_since": 5.1,
-    "drift_since_catalyst": -0.372,
-    "state": "FADING",
-    "tail_prob_base": 0.266,
-    "tail_prob_confirmed": 0.236,
-    "catalyst_types": [
-      "UPLISTING"
-    ],
-    "geometry_ratio": null,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 7.0
+    "rerate_score": 12.9
   },
   "FIS": {
     "ticker": "FIS",
     "catalyst_date": "2026-02-24",
     "months_since": 6.7,
-    "drift_since_catalyst": -0.152,
+    "drift_since_catalyst": -0.147,
     "state": "FADING",
-    "tail_prob_base": 0.263,
-    "tail_prob_confirmed": 0.233,
+    "tail_prob_base": 0.187,
+    "tail_prob_confirmed": 0.164,
     "catalyst_types": [
       "ASSET_SALE",
       "SPINOFF"
     ],
     "geometry_ratio": 2.76,
     "sector": "Technology",
-    "rerate_score": 26.8
-  },
-  "ARRY": {
-    "ticker": "ARRY",
-    "catalyst_date": "2026-02-18",
-    "months_since": 6.9,
-    "drift_since_catalyst": -0.392,
-    "state": "FADING",
-    "tail_prob_base": 0.262,
-    "tail_prob_confirmed": 0.232,
-    "catalyst_types": [
-      "EXCHANGE_OFFER"
-    ],
-    "geometry_ratio": 2.13,
-    "sector": "Technology",
-    "rerate_score": 8.1
-  },
-  "GCT": {
-    "ticker": "GCT",
-    "catalyst_date": "2026-08-06",
-    "months_since": 1.3,
-    "drift_since_catalyst": 0.017,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.262,
-    "tail_prob_confirmed": 0.262,
-    "catalyst_types": [
-      "BUYBACK_AUTH"
-    ],
-    "geometry_ratio": 2.42,
-    "sector": "Technology",
-    "rerate_score": 6.5
-  },
-  "NFG": {
-    "ticker": "NFG",
-    "catalyst_date": "2026-08-11",
-    "months_since": 1.1,
-    "drift_since_catalyst": 0.003,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.258,
-    "tail_prob_confirmed": 0.258,
-    "catalyst_types": [
-      "SALE_OF_COMPANY"
-    ],
-    "geometry_ratio": null,
-    "sector": "Energy",
-    "rerate_score": 7.0
-  },
-  "FRMI": {
-    "ticker": "FRMI",
-    "catalyst_date": "2026-05-15",
-    "months_since": 4.1,
-    "drift_since_catalyst": -0.438,
-    "state": "FADING",
-    "tail_prob_base": 0.258,
-    "tail_prob_confirmed": 0.228,
-    "catalyst_types": [
-      "ASSET_SALE"
-    ],
-    "geometry_ratio": null,
-    "sector": "Real Estate",
-    "rerate_score": 5.0
+    "rerate_score": 29.3
   },
   "CNDT": {
     "ticker": "CNDT",
     "catalyst_date": "2026-08-10",
     "months_since": 1.2,
-    "drift_since_catalyst": 0.01,
+    "drift_since_catalyst": 0.016,
     "state": "NEUTRAL",
-    "tail_prob_base": 0.256,
-    "tail_prob_confirmed": 0.256,
+    "tail_prob_base": 0.186,
+    "tail_prob_confirmed": 0.186,
     "catalyst_types": [
       "ASSET_SALE"
     ],
     "geometry_ratio": 60.0,
     "sector": "Technology",
-    "rerate_score": 18.0
+    "rerate_score": 22.5
   },
   "THRY": {
     "ticker": "THRY",
@@ -950,75 +506,1555 @@
     "months_since": 0.0,
     "drift_since_catalyst": 0.0,
     "state": "PENDING",
-    "tail_prob_base": 0.256,
-    "tail_prob_confirmed": 0.256,
+    "tail_prob_base": 0.186,
+    "tail_prob_confirmed": 0.186,
     "catalyst_types": [
       "ASSET_SALE"
     ],
     "geometry_ratio": 10.95,
     "sector": "Technology",
+    "rerate_score": 15.0
+  },
+  "EXFY": {
+    "ticker": "EXFY",
+    "catalyst_date": "2026-08-06",
+    "months_since": 1.3,
+    "drift_since_catalyst": 0.042,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.184,
+    "tail_prob_confirmed": 0.184,
+    "catalyst_types": [
+      "TENDER_OFFER"
+    ],
+    "geometry_ratio": 13.59,
+    "sector": "Technology",
+    "rerate_score": 12.0
+  },
+  "DCGO": {
+    "ticker": "DCGO",
+    "catalyst_date": "2026-08-17",
+    "months_since": 0.9,
+    "drift_since_catalyst": 0.072,
+    "state": "PENDING",
+    "tail_prob_base": 0.184,
+    "tail_prob_confirmed": 0.184,
+    "catalyst_types": [
+      "GOING_PRIVATE"
+    ],
+    "geometry_ratio": 60.0,
+    "sector": "Healthcare",
+    "rerate_score": 3.0
+  },
+  "CCOI": {
+    "ticker": "CCOI",
+    "catalyst_date": "2026-06-29",
+    "months_since": 2.6,
+    "drift_since_catalyst": -0.315,
+    "state": "FADING",
+    "tail_prob_base": 0.181,
+    "tail_prob_confirmed": 0.158,
+    "catalyst_types": [
+      "ASSET_SALE"
+    ],
+    "geometry_ratio": 0.28,
+    "sector": "Communication Services",
+    "rerate_score": 10.4
+  },
+  "COSM": {
+    "ticker": "COSM",
+    "catalyst_date": "2026-08-20",
+    "months_since": 0.8,
+    "drift_since_catalyst": 0.007,
+    "state": "PENDING",
+    "tail_prob_base": 0.18,
+    "tail_prob_confirmed": 0.18,
+    "catalyst_types": [
+      "BUYBACK_AUTH"
+    ],
+    "geometry_ratio": 45.95,
+    "sector": "Healthcare",
+    "rerate_score": 6.0
+  },
+  "CNTN": {
+    "ticker": "CNTN",
+    "catalyst_date": "2026-06-16",
+    "months_since": 3.0,
+    "drift_since_catalyst": 0.096,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.18,
+    "tail_prob_confirmed": 0.18,
+    "catalyst_types": [
+      "BUYBACK_AUTH"
+    ],
+    "geometry_ratio": 30.0,
+    "sector": "Healthcare",
+    "rerate_score": 5.0
+  },
+  "QBTS": {
+    "ticker": "QBTS",
+    "catalyst_date": "2026-01-07",
+    "months_since": 8.3,
+    "drift_since_catalyst": -0.084,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.179,
+    "tail_prob_confirmed": 0.179,
+    "catalyst_types": [
+      "UPLISTING"
+    ],
+    "geometry_ratio": null,
+    "sector": "Technology",
+    "rerate_score": 2.0
+  },
+  "HYFM": {
+    "ticker": "HYFM",
+    "catalyst_date": "2026-05-15",
+    "months_since": 4.1,
+    "drift_since_catalyst": 0.119,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.178,
+    "tail_prob_confirmed": 0.178,
+    "catalyst_types": [
+      "STRATEGIC_REVIEW"
+    ],
+    "geometry_ratio": 3.0,
+    "sector": "Industrials",
+    "rerate_score": 15.0
+  },
+  "OPTT": {
+    "ticker": "OPTT",
+    "catalyst_date": "2026-08-17",
+    "months_since": 0.9,
+    "drift_since_catalyst": -0.194,
+    "state": "PENDING",
+    "tail_prob_base": 0.178,
+    "tail_prob_confirmed": 0.178,
+    "catalyst_types": [
+      "STRATEGIC_REVIEW"
+    ],
+    "geometry_ratio": null,
+    "sector": "Industrials",
+    "rerate_score": 5.0
+  },
+  "ANGX": {
+    "ticker": "ANGX",
+    "catalyst_date": "2026-04-13",
+    "months_since": 5.1,
+    "drift_since_catalyst": 1.014,
+    "state": "CONFIRMED",
+    "tail_prob_base": 0.176,
+    "tail_prob_confirmed": 0.285,
+    "catalyst_types": [
+      "UPLISTING"
+    ],
+    "geometry_ratio": null,
+    "sector": "Communication Services",
+    "rerate_score": 2.0
+  },
+  "LVLU": {
+    "ticker": "LVLU",
+    "catalyst_date": "2026-07-14",
+    "months_since": 2.1,
+    "drift_since_catalyst": -0.209,
+    "state": "FADING",
+    "tail_prob_base": 0.175,
+    "tail_prob_confirmed": 0.153,
+    "catalyst_types": [
+      "STRATEGIC_REVIEW"
+    ],
+    "geometry_ratio": 3.0,
+    "sector": "Consumer Cyclical",
+    "rerate_score": 7.5
+  },
+  "CRMT": {
+    "ticker": "CRMT",
+    "catalyst_date": "2026-09-04",
+    "months_since": 0.3,
+    "drift_since_catalyst": 0.0,
+    "state": "PENDING",
+    "tail_prob_base": 0.175,
+    "tail_prob_confirmed": 0.175,
+    "catalyst_types": [
+      "STRATEGIC_REVIEW"
+    ],
+    "geometry_ratio": 30.0,
+    "sector": "Consumer Cyclical",
+    "rerate_score": 6.2
+  },
+  "CLVT": {
+    "ticker": "CLVT",
+    "catalyst_date": "2026-07-06",
+    "months_since": 2.3,
+    "drift_since_catalyst": -0.071,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.173,
+    "tail_prob_confirmed": 0.173,
+    "catalyst_types": [
+      "ASSET_SALE"
+    ],
+    "geometry_ratio": 60.0,
+    "sector": "Technology",
+    "rerate_score": 15.0
+  },
+  "BLND": {
+    "ticker": "BLND",
+    "catalyst_date": "2026-03-02",
+    "months_since": 6.5,
+    "drift_since_catalyst": -0.021,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.173,
+    "tail_prob_confirmed": 0.173,
+    "catalyst_types": [
+      "ASSET_SALE"
+    ],
+    "geometry_ratio": null,
+    "sector": "Technology",
+    "rerate_score": 10.0
+  },
+  "RYAM": {
+    "ticker": "RYAM",
+    "catalyst_date": "2026-08-05",
+    "months_since": 1.3,
+    "drift_since_catalyst": -0.001,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.172,
+    "tail_prob_confirmed": 0.172,
+    "catalyst_types": [
+      "STRATEGIC_REVIEW"
+    ],
+    "geometry_ratio": 2.13,
+    "sector": "Basic Materials",
+    "rerate_score": 12.6
+  },
+  "ASRT": {
+    "ticker": "ASRT",
+    "catalyst_date": "2026-06-16",
+    "months_since": 3.0,
+    "drift_since_catalyst": 0.0,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.171,
+    "tail_prob_confirmed": 0.171,
+    "catalyst_types": [
+      "SALE_OF_COMPANY",
+      "TENDER_OFFER"
+    ],
+    "geometry_ratio": 0.69,
+    "sector": "Healthcare",
+    "rerate_score": 26.1
+  },
+  "OLN": {
+    "ticker": "OLN",
+    "catalyst_date": "2026-06-16",
+    "months_since": 3.0,
+    "drift_since_catalyst": -0.073,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.17,
+    "tail_prob_confirmed": 0.17,
+    "catalyst_types": [
+      "GOING_PRIVATE",
+      "UPLISTING"
+    ],
+    "geometry_ratio": 3.13,
+    "sector": "Basic Materials",
+    "rerate_score": 10.7
+  },
+  "APGE": {
+    "ticker": "APGE",
+    "catalyst_date": "2026-08-10",
+    "months_since": 1.2,
+    "drift_since_catalyst": 0.0,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.17,
+    "tail_prob_confirmed": 0.17,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": null,
+    "sector": "Healthcare",
+    "rerate_score": 7.0
+  },
+  "NFG": {
+    "ticker": "NFG",
+    "catalyst_date": "2026-08-11",
+    "months_since": 1.1,
+    "drift_since_catalyst": -0.001,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.17,
+    "tail_prob_confirmed": 0.17,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": null,
+    "sector": "Energy",
+    "rerate_score": 7.0
+  },
+  "COR": {
+    "ticker": "COR",
+    "catalyst_date": "2026-08-05",
+    "months_since": 1.3,
+    "drift_since_catalyst": 0.007,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.169,
+    "tail_prob_confirmed": 0.169,
+    "catalyst_types": [
+      "STRATEGIC_REVIEW"
+    ],
+    "geometry_ratio": 3.1,
+    "sector": "Healthcare",
+    "rerate_score": 7.5
+  },
+  "KPLT": {
+    "ticker": "KPLT",
+    "catalyst_date": "2026-09-11",
+    "months_since": 0.1,
+    "drift_since_catalyst": 0.0,
+    "state": "PENDING",
+    "tail_prob_base": 0.167,
+    "tail_prob_confirmed": 0.167,
+    "catalyst_types": [
+      "GOING_PRIVATE"
+    ],
+    "geometry_ratio": 11.79,
+    "sector": "Technology",
+    "rerate_score": 3.0
+  },
+  "IT": {
+    "ticker": "IT",
+    "catalyst_date": "2026-02-03",
+    "months_since": 7.4,
+    "drift_since_catalyst": 0.221,
+    "state": "CONFIRMED",
+    "tail_prob_base": 0.166,
+    "tail_prob_confirmed": 0.271,
+    "catalyst_types": [
+      "ASSET_SALE"
+    ],
+    "geometry_ratio": 1.0,
+    "sector": "Technology",
+    "rerate_score": 11.7
+  },
+  "BDX": {
+    "ticker": "BDX",
+    "catalyst_date": "2026-08-06",
+    "months_since": 1.3,
+    "drift_since_catalyst": 0.017,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.166,
+    "tail_prob_confirmed": 0.166,
+    "catalyst_types": [
+      "SPINOFF"
+    ],
+    "geometry_ratio": 1.42,
+    "sector": "Healthcare",
     "rerate_score": 10.5
+  },
+  "FWRD": {
+    "ticker": "FWRD",
+    "catalyst_date": "2026-08-05",
+    "months_since": 1.3,
+    "drift_since_catalyst": -0.004,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.165,
+    "tail_prob_confirmed": 0.165,
+    "catalyst_types": [
+      "STRATEGIC_REVIEW"
+    ],
+    "geometry_ratio": 3.31,
+    "sector": "Industrials",
+    "rerate_score": 15.0
+  },
+  "VREOF": {
+    "ticker": "VREOF",
+    "catalyst_date": "2026-04-06",
+    "months_since": 5.4,
+    "drift_since_catalyst": -0.073,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.163,
+    "tail_prob_confirmed": 0.163,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": 0.9,
+    "sector": "Healthcare",
+    "rerate_score": 7.9
+  },
+  "RDNT": {
+    "ticker": "RDNT",
+    "catalyst_date": "2026-06-10",
+    "months_since": 3.2,
+    "drift_since_catalyst": 0.185,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.162,
+    "tail_prob_confirmed": 0.162,
+    "catalyst_types": [
+      "TENDER_OFFER"
+    ],
+    "geometry_ratio": 1.09,
+    "sector": "Healthcare",
+    "rerate_score": 9.3
+  },
+  "KVYO": {
+    "ticker": "KVYO",
+    "catalyst_date": "2026-03-02",
+    "months_since": 6.5,
+    "drift_since_catalyst": -0.142,
+    "state": "FADING",
+    "tail_prob_base": 0.162,
+    "tail_prob_confirmed": 0.141,
+    "catalyst_types": [
+      "BUYBACK_AUTH"
+    ],
+    "geometry_ratio": null,
+    "sector": "Technology",
+    "rerate_score": 4.0
+  },
+  "DUOL": {
+    "ticker": "DUOL",
+    "catalyst_date": "2026-02-26",
+    "months_since": 6.7,
+    "drift_since_catalyst": 0.556,
+    "state": "CONFIRMED",
+    "tail_prob_base": 0.162,
+    "tail_prob_confirmed": 0.265,
+    "catalyst_types": [
+      "BUYBACK_AUTH"
+    ],
+    "geometry_ratio": null,
+    "sector": "Technology",
+    "rerate_score": 4.0
+  },
+  "GWRE": {
+    "ticker": "GWRE",
+    "catalyst_date": "2026-01-08",
+    "months_since": 8.3,
+    "drift_since_catalyst": 0.05,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.162,
+    "tail_prob_confirmed": 0.162,
+    "catalyst_types": [
+      "BUYBACK_AUTH"
+    ],
+    "geometry_ratio": null,
+    "sector": "Technology",
+    "rerate_score": 4.0
+  },
+  "ARX": {
+    "ticker": "ARX",
+    "catalyst_date": "2026-08-13",
+    "months_since": 1.1,
+    "drift_since_catalyst": 0.002,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.161,
+    "tail_prob_confirmed": 0.161,
+    "catalyst_types": [
+      "BUYBACK_AUTH",
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": null,
+    "sector": "Financial Services",
+    "rerate_score": 15.0
   },
   "SMCI": {
     "ticker": "SMCI",
     "catalyst_date": "2026-06-12",
     "months_since": 3.1,
-    "drift_since_catalyst": 0.33,
+    "drift_since_catalyst": 0.336,
     "state": "CONFIRMED",
-    "tail_prob_base": 0.251,
-    "tail_prob_confirmed": 0.385,
+    "tail_prob_base": 0.161,
+    "tail_prob_confirmed": 0.264,
     "catalyst_types": [
       "UPLISTING"
     ],
     "geometry_ratio": 1.63,
     "sector": "Technology",
-    "rerate_score": 8.5
+    "rerate_score": 2.4
   },
-  "GDDY": {
-    "ticker": "GDDY",
-    "catalyst_date": "2026-08-04",
-    "months_since": 1.4,
-    "drift_since_catalyst": 0.057,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.251,
-    "tail_prob_confirmed": 0.251,
+  "HAIN": {
+    "ticker": "HAIN",
+    "catalyst_date": "2026-09-14",
+    "months_since": 0.0,
+    "drift_since_catalyst": 0.0,
+    "state": "PENDING",
+    "tail_prob_base": 0.159,
+    "tail_prob_confirmed": 0.159,
     "catalyst_types": [
-      "EXCHANGE_OFFER"
+      "ASSET_SALE",
+      "STRATEGIC_REVIEW"
     ],
-    "geometry_ratio": 0.49,
+    "geometry_ratio": 60.0,
+    "sector": "Consumer Defensive",
+    "rerate_score": 25.5
+  },
+  "KALV": {
+    "ticker": "KALV",
+    "catalyst_date": "2026-06-11",
+    "months_since": 3.2,
+    "drift_since_catalyst": 0.0,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.159,
+    "tail_prob_confirmed": 0.159,
+    "catalyst_types": [
+      "SALE_OF_COMPANY",
+      "TENDER_OFFER"
+    ],
+    "geometry_ratio": null,
+    "sector": "Healthcare",
+    "rerate_score": 19.0
+  },
+  "AVNS": {
+    "ticker": "AVNS",
+    "catalyst_date": "2026-07-30",
+    "months_since": 1.5,
+    "drift_since_catalyst": 0.0,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.159,
+    "tail_prob_confirmed": 0.159,
+    "catalyst_types": [
+      "EXCHANGE_OFFER",
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": 0.93,
+    "sector": "Healthcare",
+    "rerate_score": 13.2
+  },
+  "BLFS": {
+    "ticker": "BLFS",
+    "catalyst_date": "2026-07-22",
+    "months_since": 1.8,
+    "drift_since_catalyst": -0.045,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.159,
+    "tail_prob_confirmed": 0.159,
+    "catalyst_types": [
+      "SALE_OF_COMPANY",
+      "UPLISTING"
+    ],
+    "geometry_ratio": null,
+    "sector": "Healthcare",
+    "rerate_score": 13.0
+  },
+  "CCRN": {
+    "ticker": "CCRN",
+    "catalyst_date": "2026-05-07",
+    "months_since": 4.3,
+    "drift_since_catalyst": 0.0,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.159,
+    "tail_prob_confirmed": 0.159,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": 2.42,
+    "sector": "Healthcare",
+    "rerate_score": 8.8
+  },
+  "PSNL": {
+    "ticker": "PSNL",
+    "catalyst_date": "2026-07-20",
+    "months_since": 1.9,
+    "drift_since_catalyst": -0.025,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.159,
+    "tail_prob_confirmed": 0.159,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": null,
+    "sector": "Healthcare",
+    "rerate_score": 7.0
+  },
+  "CRNX": {
+    "ticker": "CRNX",
+    "catalyst_date": "2026-01-07",
+    "months_since": 8.3,
+    "drift_since_catalyst": 0.0,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.159,
+    "tail_prob_confirmed": 0.159,
+    "catalyst_types": [
+      "UPLISTING"
+    ],
+    "geometry_ratio": null,
+    "sector": "Healthcare",
+    "rerate_score": 2.0
+  },
+  "BATL": {
+    "ticker": "BATL",
+    "catalyst_date": "2025-12-22",
+    "months_since": 8.9,
+    "drift_since_catalyst": -0.652,
+    "state": "FADING",
+    "tail_prob_base": 0.158,
+    "tail_prob_confirmed": 0.138,
+    "catalyst_types": [
+      "ASSET_SALE"
+    ],
+    "geometry_ratio": 3.0,
+    "sector": "Energy",
+    "rerate_score": 15.0
+  },
+  "UPWK": {
+    "ticker": "UPWK",
+    "catalyst_date": "2026-02-18",
+    "months_since": 6.9,
+    "drift_since_catalyst": -0.205,
+    "state": "FADING",
+    "tail_prob_base": 0.158,
+    "tail_prob_confirmed": 0.138,
+    "catalyst_types": [
+      "BUYBACK_AUTH"
+    ],
+    "geometry_ratio": null,
+    "sector": "Communication Services",
+    "rerate_score": 4.0
+  },
+  "NFLX": {
+    "ticker": "NFLX",
+    "catalyst_date": "2026-01-20",
+    "months_since": 7.9,
+    "drift_since_catalyst": -0.16,
+    "state": "FADING",
+    "tail_prob_base": 0.157,
+    "tail_prob_confirmed": 0.137,
+    "catalyst_types": [
+      "SEPARATION",
+      "SPINOFF"
+    ],
+    "geometry_ratio": null,
+    "sector": "Communication Services",
+    "rerate_score": 18.0
+  },
+  "BWMN": {
+    "ticker": "BWMN",
+    "catalyst_date": "2026-08-10",
+    "months_since": 1.2,
+    "drift_since_catalyst": 0.002,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.157,
+    "tail_prob_confirmed": 0.157,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": 0.74,
+    "sector": "Industrials",
+    "rerate_score": 7.7
+  },
+  "CHYM": {
+    "ticker": "CHYM",
+    "catalyst_date": "2026-08-05",
+    "months_since": 1.3,
+    "drift_since_catalyst": 0.04,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.156,
+    "tail_prob_confirmed": 0.156,
+    "catalyst_types": [
+      "SEPARATION"
+    ],
+    "geometry_ratio": 0.13,
     "sector": "Technology",
-    "rerate_score": 6.5
+    "rerate_score": 5.1
+  },
+  "ALOT": {
+    "ticker": "ALOT",
+    "catalyst_date": "2026-06-17",
+    "months_since": 3.0,
+    "drift_since_catalyst": 0.0,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.155,
+    "tail_prob_confirmed": 0.155,
+    "catalyst_types": [
+      "SALE_OF_COMPANY",
+      "STRATEGIC_REVIEW"
+    ],
+    "geometry_ratio": 1.02,
+    "sector": "Technology",
+    "rerate_score": 18.2
+  },
+  "LE": {
+    "ticker": "LE",
+    "catalyst_date": "2026-03-26",
+    "months_since": 5.7,
+    "drift_since_catalyst": -0.062,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.154,
+    "tail_prob_confirmed": 0.154,
+    "catalyst_types": [
+      "SALE_OF_COMPANY",
+      "STRATEGIC_REVIEW",
+      "TENDER_OFFER"
+    ],
+    "geometry_ratio": 5.09,
+    "sector": "Consumer Cyclical",
+    "rerate_score": 28.5
+  },
+  "MNRO": {
+    "ticker": "MNRO",
+    "catalyst_date": "2026-05-27",
+    "months_since": 3.7,
+    "drift_since_catalyst": -0.246,
+    "state": "FADING",
+    "tail_prob_base": 0.154,
+    "tail_prob_confirmed": 0.134,
+    "catalyst_types": [
+      "SALE_OF_COMPANY",
+      "STRATEGIC_REVIEW"
+    ],
+    "geometry_ratio": 1.81,
+    "sector": "Consumer Cyclical",
+    "rerate_score": 15.5
+  },
+  "NATL": {
+    "ticker": "NATL",
+    "catalyst_date": "2026-02-26",
+    "months_since": 6.7,
+    "drift_since_catalyst": 0.064,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.154,
+    "tail_prob_confirmed": 0.154,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": 3.2,
+    "sector": "Technology",
+    "rerate_score": 10.5
+  },
+  "PAYO": {
+    "ticker": "PAYO",
+    "catalyst_date": "2026-08-06",
+    "months_since": 1.3,
+    "drift_since_catalyst": 0.001,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.154,
+    "tail_prob_confirmed": 0.154,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": 0.36,
+    "sector": "Technology",
+    "rerate_score": 7.4
+  },
+  "RAMP": {
+    "ticker": "RAMP",
+    "catalyst_date": "2026-08-05",
+    "months_since": 1.3,
+    "drift_since_catalyst": 0.002,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.154,
+    "tail_prob_confirmed": 0.154,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": 0.3,
+    "sector": "Technology",
+    "rerate_score": 7.3
+  },
+  "CWAN": {
+    "ticker": "CWAN",
+    "catalyst_date": "2025-12-22",
+    "months_since": 8.9,
+    "drift_since_catalyst": 0.0,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.154,
+    "tail_prob_confirmed": 0.154,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": 0.12,
+    "sector": "Technology",
+    "rerate_score": 7.1
+  },
+  "LUCK": {
+    "ticker": "LUCK",
+    "catalyst_date": "2025-10-24",
+    "months_since": 10.8,
+    "drift_since_catalyst": -0.275,
+    "state": "FADING",
+    "tail_prob_base": 0.154,
+    "tail_prob_confirmed": 0.134,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": null,
+    "sector": "Consumer Cyclical",
+    "rerate_score": 7.0
+  },
+  "SYNA": {
+    "ticker": "SYNA",
+    "catalyst_date": "2026-06-25",
+    "months_since": 2.7,
+    "drift_since_catalyst": -0.1,
+    "state": "FADING",
+    "tail_prob_base": 0.154,
+    "tail_prob_confirmed": 0.134,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": null,
+    "sector": "Technology",
+    "rerate_score": 7.0
+  },
+  "NGVT": {
+    "ticker": "NGVT",
+    "catalyst_date": "2026-05-07",
+    "months_since": 4.3,
+    "drift_since_catalyst": -0.093,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.154,
+    "tail_prob_confirmed": 0.154,
+    "catalyst_types": [
+      "STRATEGIC_REVIEW"
+    ],
+    "geometry_ratio": null,
+    "sector": "Basic Materials",
+    "rerate_score": 3.0
   },
   "CYH": {
     "ticker": "CYH",
     "catalyst_date": "2026-05-06",
     "months_since": 4.4,
-    "drift_since_catalyst": -0.118,
+    "drift_since_catalyst": -0.115,
     "state": "FADING",
-    "tail_prob_base": 0.249,
-    "tail_prob_confirmed": 0.22,
+    "tail_prob_base": 0.153,
+    "tail_prob_confirmed": 0.133,
     "catalyst_types": [
       "ASSET_SALE",
       "TENDER_OFFER"
     ],
     "geometry_ratio": 3.0,
     "sector": "Healthcare",
-    "rerate_score": 28.5
+    "rerate_score": 33.0
+  },
+  "BIRD": {
+    "ticker": "BIRD",
+    "catalyst_date": "2026-06-17",
+    "months_since": 3.0,
+    "drift_since_catalyst": 0.14,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.153,
+    "tail_prob_confirmed": 0.153,
+    "catalyst_types": [
+      "ASSET_SALE",
+      "UPLISTING"
+    ],
+    "geometry_ratio": 1.83,
+    "sector": "Consumer Cyclical",
+    "rerate_score": 25.8
+  },
+  "AHCO": {
+    "ticker": "AHCO",
+    "catalyst_date": "2026-08-04",
+    "months_since": 1.4,
+    "drift_since_catalyst": -0.021,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.153,
+    "tail_prob_confirmed": 0.153,
+    "catalyst_types": [
+      "ASSET_SALE"
+    ],
+    "geometry_ratio": 7.1,
+    "sector": "Healthcare",
+    "rerate_score": 15.0
+  },
+  "PLCE": {
+    "ticker": "PLCE",
+    "catalyst_date": "2026-06-12",
+    "months_since": 3.1,
+    "drift_since_catalyst": 0.004,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.153,
+    "tail_prob_confirmed": 0.153,
+    "catalyst_types": [
+      "ASSET_SALE"
+    ],
+    "geometry_ratio": 3.0,
+    "sector": "Consumer Cyclical",
+    "rerate_score": 7.5
+  },
+  "CNMD": {
+    "ticker": "CNMD",
+    "catalyst_date": "2026-04-30",
+    "months_since": 4.6,
+    "drift_since_catalyst": 0.304,
+    "state": "CONFIRMED",
+    "tail_prob_base": 0.153,
+    "tail_prob_confirmed": 0.252,
+    "catalyst_types": [
+      "ASSET_SALE"
+    ],
+    "geometry_ratio": 3.11,
+    "sector": "Healthcare",
+    "rerate_score": 6.2
+  },
+  "RBLX": {
+    "ticker": "RBLX",
+    "catalyst_date": "2026-05-19",
+    "months_since": 3.9,
+    "drift_since_catalyst": -0.066,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.152,
+    "tail_prob_confirmed": 0.152,
+    "catalyst_types": [
+      "BUYBACK_AUTH"
+    ],
+    "geometry_ratio": null,
+    "sector": "Communication Services",
+    "rerate_score": 4.0
+  },
+  "BFAM": {
+    "ticker": "BFAM",
+    "catalyst_date": "2026-05-07",
+    "months_since": 4.3,
+    "drift_since_catalyst": -0.042,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.151,
+    "tail_prob_confirmed": 0.151,
+    "catalyst_types": [
+      "ASSET_SALE",
+      "GOING_PRIVATE"
+    ],
+    "geometry_ratio": null,
+    "sector": "Consumer Cyclical",
+    "rerate_score": 11.0
+  },
+  "TLYS": {
+    "ticker": "TLYS",
+    "catalyst_date": "2026-04-09",
+    "months_since": 5.3,
+    "drift_since_catalyst": 0.074,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.151,
+    "tail_prob_confirmed": 0.151,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": 1.9,
+    "sector": "Consumer Cyclical",
+    "rerate_score": 6.1
+  },
+  "PAR": {
+    "ticker": "PAR",
+    "catalyst_date": "2026-02-26",
+    "months_since": 6.7,
+    "drift_since_catalyst": 0.392,
+    "state": "CONFIRMED",
+    "tail_prob_base": 0.151,
+    "tail_prob_confirmed": 0.249,
+    "catalyst_types": [
+      "BUYBACK_AUTH"
+    ],
+    "geometry_ratio": 15.5,
+    "sector": "Technology",
+    "rerate_score": 6.0
+  },
+  "PD": {
+    "ticker": "PD",
+    "catalyst_date": "2026-05-28",
+    "months_since": 3.6,
+    "drift_since_catalyst": 0.526,
+    "state": "CONFIRMED",
+    "tail_prob_base": 0.151,
+    "tail_prob_confirmed": 0.249,
+    "catalyst_types": [
+      "BUYBACK_AUTH"
+    ],
+    "geometry_ratio": 1.41,
+    "sector": "Technology",
+    "rerate_score": 4.6
+  },
+  "ALKT": {
+    "ticker": "ALKT",
+    "catalyst_date": "2026-04-29",
+    "months_since": 4.6,
+    "drift_since_catalyst": 0.107,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.151,
+    "tail_prob_confirmed": 0.151,
+    "catalyst_types": [
+      "BUYBACK_AUTH"
+    ],
+    "geometry_ratio": null,
+    "sector": "Technology",
+    "rerate_score": 4.0
+  },
+  "UEIC": {
+    "ticker": "UEIC",
+    "catalyst_date": "2026-08-06",
+    "months_since": 1.3,
+    "drift_since_catalyst": 0.01,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.15,
+    "tail_prob_confirmed": 0.15,
+    "catalyst_types": [
+      "ASSET_SALE",
+      "CAPITAL_RETURN"
+    ],
+    "geometry_ratio": 60.0,
+    "sector": "Technology",
+    "rerate_score": 16.5
+  },
+  "CCO": {
+    "ticker": "CCO",
+    "catalyst_date": "2026-02-26",
+    "months_since": 6.7,
+    "drift_since_catalyst": 0.006,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.15,
+    "tail_prob_confirmed": 0.15,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": 0.62,
+    "sector": "Communication Services",
+    "rerate_score": 7.7
+  },
+  "CAR": {
+    "ticker": "CAR",
+    "catalyst_date": "2026-03-27",
+    "months_since": 5.7,
+    "drift_since_catalyst": -0.332,
+    "state": "FADING",
+    "tail_prob_base": 0.149,
+    "tail_prob_confirmed": 0.13,
+    "catalyst_types": [
+      "UPLISTING"
+    ],
+    "geometry_ratio": 2.36,
+    "sector": "Industrials",
+    "rerate_score": 2.8
+  },
+  "EOSE": {
+    "ticker": "EOSE",
+    "catalyst_date": "2026-08-06",
+    "months_since": 1.3,
+    "drift_since_catalyst": -0.015,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.149,
+    "tail_prob_confirmed": 0.149,
+    "catalyst_types": [
+      "UPLISTING"
+    ],
+    "geometry_ratio": null,
+    "sector": "Industrials",
+    "rerate_score": 2.0
+  },
+  "VNT": {
+    "ticker": "VNT",
+    "catalyst_date": "2026-05-07",
+    "months_since": 4.3,
+    "drift_since_catalyst": 0.128,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.148,
+    "tail_prob_confirmed": 0.148,
+    "catalyst_types": [
+      "ASSET_SALE"
+    ],
+    "geometry_ratio": 0.93,
+    "sector": "Technology",
+    "rerate_score": 11.3
+  },
+  "WHR": {
+    "ticker": "WHR",
+    "catalyst_date": "2026-02-27",
+    "months_since": 6.6,
+    "drift_since_catalyst": -0.36,
+    "state": "FADING",
+    "tail_prob_base": 0.147,
+    "tail_prob_confirmed": 0.128,
+    "catalyst_types": [
+      "UPLISTING"
+    ],
+    "geometry_ratio": 5.97,
+    "sector": "Consumer Cyclical",
+    "rerate_score": 2.5
+  },
+  "LCID": {
+    "ticker": "LCID",
+    "catalyst_date": "2026-04-14",
+    "months_since": 5.1,
+    "drift_since_catalyst": -0.369,
+    "state": "FADING",
+    "tail_prob_base": 0.147,
+    "tail_prob_confirmed": 0.128,
+    "catalyst_types": [
+      "UPLISTING"
+    ],
+    "geometry_ratio": null,
+    "sector": "Consumer Cyclical",
+    "rerate_score": 2.0
+  },
+  "WEX": {
+    "ticker": "WEX",
+    "catalyst_date": "2026-07-22",
+    "months_since": 1.8,
+    "drift_since_catalyst": 0.045,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.146,
+    "tail_prob_confirmed": 0.146,
+    "catalyst_types": [
+      "BUYBACK_AUTH",
+      "TENDER_OFFER"
+    ],
+    "geometry_ratio": 0.69,
+    "sector": "Technology",
+    "rerate_score": 17.6
+  },
+  "IMUX": {
+    "ticker": "IMUX",
+    "catalyst_date": "2026-05-13",
+    "months_since": 4.1,
+    "drift_since_catalyst": -0.269,
+    "state": "FADING",
+    "tail_prob_base": 0.145,
+    "tail_prob_confirmed": 0.126,
+    "catalyst_types": [
+      "STRATEGIC_REVIEW"
+    ],
+    "geometry_ratio": 1.11,
+    "sector": "Healthcare",
+    "rerate_score": 11.1
+  },
+  "ORKA": {
+    "ticker": "ORKA",
+    "catalyst_date": "2026-04-30",
+    "months_since": 4.6,
+    "drift_since_catalyst": 0.635,
+    "state": "CONFIRMED",
+    "tail_prob_base": 0.145,
+    "tail_prob_confirmed": 0.24,
+    "catalyst_types": [
+      "UPLISTING"
+    ],
+    "geometry_ratio": null,
+    "sector": "Healthcare",
+    "rerate_score": 2.0
+  },
+  "WBD": {
+    "ticker": "WBD",
+    "catalyst_date": "2026-06-04",
+    "months_since": 3.4,
+    "drift_since_catalyst": 0.071,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.144,
+    "tail_prob_confirmed": 0.144,
+    "catalyst_types": [
+      "EXCHANGE_OFFER",
+      "SALE_OF_COMPANY",
+      "SEPARATION",
+      "SPINOFF"
+    ],
+    "geometry_ratio": null,
+    "sector": "Communication Services",
+    "rerate_score": 33.0
+  },
+  "GSAT": {
+    "ticker": "GSAT",
+    "catalyst_date": "2026-04-14",
+    "months_since": 5.1,
+    "drift_since_catalyst": -0.025,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.144,
+    "tail_prob_confirmed": 0.144,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": null,
+    "sector": "Communication Services",
+    "rerate_score": 7.0
+  },
+  "EA": {
+    "ticker": "EA",
+    "catalyst_date": "2026-05-05",
+    "months_since": 4.4,
+    "drift_since_catalyst": 0.0,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.144,
+    "tail_prob_confirmed": 0.144,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": null,
+    "sector": "Communication Services",
+    "rerate_score": 7.0
+  },
+  "INGN": {
+    "ticker": "INGN",
+    "catalyst_date": "2026-02-24",
+    "months_since": 6.7,
+    "drift_since_catalyst": -0.142,
+    "state": "FADING",
+    "tail_prob_base": 0.144,
+    "tail_prob_confirmed": 0.125,
+    "catalyst_types": [
+      "BUYBACK_AUTH"
+    ],
+    "geometry_ratio": 6.27,
+    "sector": "Healthcare",
+    "rerate_score": 6.0
+  },
+  "SIGA": {
+    "ticker": "SIGA",
+    "catalyst_date": "2026-08-06",
+    "months_since": 1.3,
+    "drift_since_catalyst": 0.016,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.144,
+    "tail_prob_confirmed": 0.144,
+    "catalyst_types": [
+      "CAPITAL_RETURN"
+    ],
+    "geometry_ratio": 0.5,
+    "sector": "Healthcare",
+    "rerate_score": 2.1
+  },
+  "ADPT": {
+    "ticker": "ADPT",
+    "catalyst_date": "2026-07-29",
+    "months_since": 1.6,
+    "drift_since_catalyst": -0.008,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.143,
+    "tail_prob_confirmed": 0.143,
+    "catalyst_types": [
+      "SEPARATION",
+      "SPINOFF",
+      "STRATEGIC_REVIEW"
+    ],
+    "geometry_ratio": null,
+    "sector": "Healthcare",
+    "rerate_score": 23.0
+  },
+  "ACM": {
+    "ticker": "ACM",
+    "catalyst_date": "2026-02-09",
+    "months_since": 7.2,
+    "drift_since_catalyst": -0.233,
+    "state": "FADING",
+    "tail_prob_base": 0.141,
+    "tail_prob_confirmed": 0.123,
+    "catalyst_types": [
+      "STRATEGIC_REVIEW"
+    ],
+    "geometry_ratio": 2.65,
+    "sector": "Industrials",
+    "rerate_score": 6.9
+  },
+  "LSTA": {
+    "ticker": "LSTA",
+    "catalyst_date": "2026-08-06",
+    "months_since": 1.3,
+    "drift_since_catalyst": -0.055,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.14,
+    "tail_prob_confirmed": 0.14,
+    "catalyst_types": [
+      "SALE_OF_COMPANY",
+      "STRATEGIC_REVIEW",
+      "TENDER_OFFER"
+    ],
+    "geometry_ratio": null,
+    "sector": "Healthcare",
+    "rerate_score": 27.0
+  },
+  "ACHV": {
+    "ticker": "ACHV",
+    "catalyst_date": "2026-04-30",
+    "months_since": 4.6,
+    "drift_since_catalyst": 0.358,
+    "state": "CONFIRMED",
+    "tail_prob_base": 0.14,
+    "tail_prob_confirmed": 0.233,
+    "catalyst_types": [
+      "ASSET_SALE"
+    ],
+    "geometry_ratio": null,
+    "sector": "Healthcare",
+    "rerate_score": 5.0
+  },
+  "LKQ": {
+    "ticker": "LKQ",
+    "catalyst_date": "2026-04-30",
+    "months_since": 4.6,
+    "drift_since_catalyst": -0.117,
+    "state": "FADING",
+    "tail_prob_base": 0.139,
+    "tail_prob_confirmed": 0.121,
+    "catalyst_types": [
+      "STRATEGIC_REVIEW"
+    ],
+    "geometry_ratio": 1.72,
+    "sector": "Consumer Cyclical",
+    "rerate_score": 11.5
+  },
+  "ANF": {
+    "ticker": "ANF",
+    "catalyst_date": "2026-03-26",
+    "months_since": 5.7,
+    "drift_since_catalyst": 0.687,
+    "state": "CONFIRMED",
+    "tail_prob_base": 0.139,
+    "tail_prob_confirmed": 0.232,
+    "catalyst_types": [
+      "STRATEGIC_REVIEW"
+    ],
+    "geometry_ratio": 0.17,
+    "sector": "Consumer Cyclical",
+    "rerate_score": 3.1
+  },
+  "RH": {
+    "ticker": "RH",
+    "catalyst_date": "2026-06-11",
+    "months_since": 3.2,
+    "drift_since_catalyst": -0.158,
+    "state": "FADING",
+    "tail_prob_base": 0.139,
+    "tail_prob_confirmed": 0.121,
+    "catalyst_types": [
+      "STRATEGIC_REVIEW"
+    ],
+    "geometry_ratio": null,
+    "sector": "Consumer Cyclical",
+    "rerate_score": 3.0
+  },
+  "NUS": {
+    "ticker": "NUS",
+    "catalyst_date": "2026-05-08",
+    "months_since": 4.3,
+    "drift_since_catalyst": -0.083,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.138,
+    "tail_prob_confirmed": 0.138,
+    "catalyst_types": [
+      "ASSET_SALE"
+    ],
+    "geometry_ratio": 60.0,
+    "sector": "Consumer Defensive",
+    "rerate_score": 7.5
+  },
+  "AIRE": {
+    "ticker": "AIRE",
+    "catalyst_date": "2026-08-25",
+    "months_since": 0.7,
+    "drift_since_catalyst": 0.026,
+    "state": "PENDING",
+    "tail_prob_base": 0.138,
+    "tail_prob_confirmed": 0.138,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": null,
+    "sector": "Real Estate",
+    "rerate_score": 7.0
+  },
+  "NXPI": {
+    "ticker": "NXPI",
+    "catalyst_date": "2026-06-11",
+    "months_since": 3.2,
+    "drift_since_catalyst": -0.007,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.138,
+    "tail_prob_confirmed": 0.138,
+    "catalyst_types": [
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": null,
+    "sector": "Technology",
+    "rerate_score": 7.0
+  },
+  "TWAV": {
+    "ticker": "TWAV",
+    "catalyst_date": "2026-03-20",
+    "months_since": 5.9,
+    "drift_since_catalyst": -0.249,
+    "state": "FADING",
+    "tail_prob_base": 0.137,
+    "tail_prob_confirmed": 0.119,
+    "catalyst_types": [
+      "STRATEGIC_REVIEW"
+    ],
+    "geometry_ratio": 2.53,
+    "sector": "Financial Services",
+    "rerate_score": 3.4
+  },
+  "CTVA": {
+    "ticker": "CTVA",
+    "catalyst_date": "2026-08-31",
+    "months_since": 0.5,
+    "drift_since_catalyst": -0.017,
+    "state": "PENDING",
+    "tail_prob_base": 0.136,
+    "tail_prob_confirmed": 0.136,
+    "catalyst_types": [
+      "SEPARATION",
+      "SPINOFF"
+    ],
+    "geometry_ratio": null,
+    "sector": "Basic Materials",
+    "rerate_score": 23.0
+  },
+  "DD": {
+    "ticker": "DD",
+    "catalyst_date": "2026-08-04",
+    "months_since": 1.4,
+    "drift_since_catalyst": -0.026,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.136,
+    "tail_prob_confirmed": 0.136,
+    "catalyst_types": [
+      "SPINOFF"
+    ],
+    "geometry_ratio": 1.14,
+    "sector": "Basic Materials",
+    "rerate_score": 10.0
+  },
+  "ANAB": {
+    "ticker": "ANAB",
+    "catalyst_date": "2026-03-27",
+    "months_since": 5.7,
+    "drift_since_catalyst": -0.159,
+    "state": "FADING",
+    "tail_prob_base": 0.135,
+    "tail_prob_confirmed": 0.117,
+    "catalyst_types": [
+      "SEPARATION",
+      "UPLISTING"
+    ],
+    "geometry_ratio": null,
+    "sector": "Healthcare",
+    "rerate_score": 11.0
+  },
+  "VSAT": {
+    "ticker": "VSAT",
+    "catalyst_date": "2026-02-05",
+    "months_since": 7.4,
+    "drift_since_catalyst": 0.594,
+    "state": "CONFIRMED",
+    "tail_prob_base": 0.135,
+    "tail_prob_confirmed": 0.226,
+    "catalyst_types": [
+      "ASSET_SALE"
+    ],
+    "geometry_ratio": 0.65,
+    "sector": "Technology",
+    "rerate_score": 10.8
+  },
+  "ANRO": {
+    "ticker": "ANRO",
+    "catalyst_date": "2026-07-14",
+    "months_since": 2.1,
+    "drift_since_catalyst": -0.103,
+    "state": "FADING",
+    "tail_prob_base": 0.135,
+    "tail_prob_confirmed": 0.117,
+    "catalyst_types": [
+      "UPLISTING"
+    ],
+    "geometry_ratio": null,
+    "sector": "Healthcare",
+    "rerate_score": 2.0
   },
   "AZTA": {
     "ticker": "AZTA",
     "catalyst_date": "2026-02-04",
     "months_since": 7.4,
-    "drift_since_catalyst": 0.48,
+    "drift_since_catalyst": 0.487,
     "state": "CONFIRMED",
-    "tail_prob_base": 0.249,
-    "tail_prob_confirmed": 0.382,
+    "tail_prob_base": 0.134,
+    "tail_prob_confirmed": 0.224,
     "catalyst_types": [
       "BUYBACK_AUTH"
     ],
     "geometry_ratio": 8.11,
     "sector": "Healthcare",
-    "rerate_score": 6.9
+    "rerate_score": 5.5
+  },
+  "ASH": {
+    "ticker": "ASH",
+    "catalyst_date": "2026-04-29",
+    "months_since": 4.6,
+    "drift_since_catalyst": 0.209,
+    "state": "CONFIRMED",
+    "tail_prob_base": 0.134,
+    "tail_prob_confirmed": 0.224,
+    "catalyst_types": [
+      "ASSET_SALE"
+    ],
+    "geometry_ratio": 0.52,
+    "sector": "Basic Materials",
+    "rerate_score": 5.3
+  },
+  "SXT": {
+    "ticker": "SXT",
+    "catalyst_date": "2026-05-05",
+    "months_since": 4.4,
+    "drift_since_catalyst": 0.036,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.134,
+    "tail_prob_confirmed": 0.134,
+    "catalyst_types": [
+      "ASSET_SALE"
+    ],
+    "geometry_ratio": null,
+    "sector": "Basic Materials",
+    "rerate_score": 5.0
+  },
+  "LDOS": {
+    "ticker": "LDOS",
+    "catalyst_date": "2026-04-15",
+    "months_since": 5.1,
+    "drift_since_catalyst": 0.042,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.133,
+    "tail_prob_confirmed": 0.133,
+    "catalyst_types": [
+      "ASSET_SALE"
+    ],
+    "geometry_ratio": 2.27,
+    "sector": "Technology",
+    "rerate_score": 13.1
+  },
+  "GRND": {
+    "ticker": "GRND",
+    "catalyst_date": "2026-02-26",
+    "months_since": 6.7,
+    "drift_since_catalyst": 0.284,
+    "state": "CONFIRMED",
+    "tail_prob_base": 0.132,
+    "tail_prob_confirmed": 0.221,
+    "catalyst_types": [
+      "GOING_PRIVATE"
+    ],
+    "geometry_ratio": null,
+    "sector": "Technology",
+    "rerate_score": 2.0
+  },
+  "QMCO": {
+    "ticker": "QMCO",
+    "catalyst_date": "2026-08-11",
+    "months_since": 1.1,
+    "drift_since_catalyst": 0.015,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.131,
+    "tail_prob_confirmed": 0.131,
+    "catalyst_types": [
+      "STRATEGIC_REVIEW"
+    ],
+    "geometry_ratio": 1.34,
+    "sector": "Technology",
+    "rerate_score": 3.7
+  },
+  "LASR": {
+    "ticker": "LASR",
+    "catalyst_date": "2026-02-04",
+    "months_since": 7.4,
+    "drift_since_catalyst": -0.316,
+    "state": "FADING",
+    "tail_prob_base": 0.131,
+    "tail_prob_confirmed": 0.114,
+    "catalyst_types": [
+      "UPLISTING"
+    ],
+    "geometry_ratio": null,
+    "sector": "Technology",
+    "rerate_score": 2.0
   },
   "AVTX": {
     "ticker": "AVTX",
@@ -1026,8 +2062,8 @@
     "months_since": 4.1,
     "drift_since_catalyst": -0.117,
     "state": "FADING",
-    "tail_prob_base": 0.248,
-    "tail_prob_confirmed": 0.219,
+    "tail_prob_base": 0.13,
+    "tail_prob_confirmed": 0.113,
     "catalyst_types": [
       "SALE_OF_COMPANY",
       "STRATEGIC_REVIEW"
@@ -1042,8 +2078,8 @@
     "months_since": 1.2,
     "drift_since_catalyst": 0.001,
     "state": "NEUTRAL",
-    "tail_prob_base": 0.248,
-    "tail_prob_confirmed": 0.248,
+    "tail_prob_base": 0.13,
+    "tail_prob_confirmed": 0.13,
     "catalyst_types": [
       "SALE_OF_COMPANY",
       "STRATEGIC_REVIEW"
@@ -1052,1205 +2088,144 @@
     "sector": "Healthcare",
     "rerate_score": 14.0
   },
-  "TRIP": {
-    "ticker": "TRIP",
-    "catalyst_date": "2026-02-12",
-    "months_since": 7.1,
-    "drift_since_catalyst": -0.139,
-    "state": "FADING",
-    "tail_prob_base": 0.248,
-    "tail_prob_confirmed": 0.219,
+  "FOXF": {
+    "ticker": "FOXF",
+    "catalyst_date": "2026-08-06",
+    "months_since": 1.3,
+    "drift_since_catalyst": 0.002,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.13,
+    "tail_prob_confirmed": 0.13,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
-    "geometry_ratio": null,
+    "geometry_ratio": 1.12,
     "sector": "Consumer Cyclical",
-    "rerate_score": 5.0
-  },
-  "KOS": {
-    "ticker": "KOS",
-    "catalyst_date": "2026-08-03",
-    "months_since": 1.4,
-    "drift_since_catalyst": -0.013,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.247,
-    "tail_prob_confirmed": 0.247,
-    "catalyst_types": [
-      "ASSET_SALE",
-      "TENDER_OFFER",
-      "UPLISTING"
-    ],
-    "geometry_ratio": 0.81,
-    "sector": "Energy",
-    "rerate_score": 28.9
-  },
-  "KSS": {
-    "ticker": "KSS",
-    "catalyst_date": "2026-06-15",
-    "months_since": 3.0,
-    "drift_since_catalyst": -0.101,
-    "state": "FADING",
-    "tail_prob_base": 0.247,
-    "tail_prob_confirmed": 0.218,
-    "catalyst_types": [
-      "GOING_PRIVATE"
-    ],
-    "geometry_ratio": 60.0,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 13.5
-  },
-  "BATL": {
-    "ticker": "BATL",
-    "catalyst_date": "2025-12-22",
-    "months_since": 8.9,
-    "drift_since_catalyst": -0.651,
-    "state": "FADING",
-    "tail_prob_base": 0.241,
-    "tail_prob_confirmed": 0.213,
-    "catalyst_types": [
-      "ASSET_SALE"
-    ],
-    "geometry_ratio": 3.0,
-    "sector": "Energy",
-    "rerate_score": 10.5
-  },
-  "PLCE": {
-    "ticker": "PLCE",
-    "catalyst_date": "2026-06-12",
-    "months_since": 3.1,
-    "drift_since_catalyst": 0.006,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.241,
-    "tail_prob_confirmed": 0.241,
-    "catalyst_types": [
-      "ASSET_SALE"
-    ],
-    "geometry_ratio": 3.0,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 7.5
-  },
-  "ARE": {
-    "ticker": "ARE",
-    "catalyst_date": "2026-02-12",
-    "months_since": 7.1,
-    "drift_since_catalyst": 0.123,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.239,
-    "tail_prob_confirmed": 0.239,
-    "catalyst_types": [
-      "TENDER_OFFER"
-    ],
-    "geometry_ratio": 5.89,
-    "sector": "Real Estate",
-    "rerate_score": 8.8
-  },
-  "UEIC": {
-    "ticker": "UEIC",
-    "catalyst_date": "2026-08-06",
-    "months_since": 1.3,
-    "drift_since_catalyst": 0.01,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.237,
-    "tail_prob_confirmed": 0.237,
-    "catalyst_types": [
-      "ASSET_SALE",
-      "CAPITAL_RETURN"
-    ],
-    "geometry_ratio": 60.0,
-    "sector": "Technology",
-    "rerate_score": 22.5
-  },
-  "SCOR": {
-    "ticker": "SCOR",
-    "catalyst_date": "2026-06-03",
-    "months_since": 3.4,
-    "drift_since_catalyst": -0.282,
-    "state": "FADING",
-    "tail_prob_base": 0.237,
-    "tail_prob_confirmed": 0.209,
-    "catalyst_types": [
-      "SALE_OF_COMPANY"
-    ],
-    "geometry_ratio": 5.35,
-    "sector": "Technology",
-    "rerate_score": 10.5
+    "rerate_score": 5.5
   },
   "III": {
     "ticker": "III",
     "catalyst_date": "2026-08-05",
     "months_since": 1.3,
-    "drift_since_catalyst": 0.033,
+    "drift_since_catalyst": 0.038,
     "state": "NEUTRAL",
-    "tail_prob_base": 0.237,
-    "tail_prob_confirmed": 0.237,
+    "tail_prob_base": 0.13,
+    "tail_prob_confirmed": 0.13,
     "catalyst_types": [
       "BUYBACK_AUTH"
     ],
     "geometry_ratio": 2.78,
     "sector": "Technology",
-    "rerate_score": 6.7
+    "rerate_score": 5.4
   },
-  "FULC": {
-    "ticker": "FULC",
-    "catalyst_date": "2026-07-30",
-    "months_since": 1.5,
-    "drift_since_catalyst": -0.023,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.234,
-    "tail_prob_confirmed": 0.234,
-    "catalyst_types": [
-      "STRATEGIC_REVIEW"
-    ],
-    "geometry_ratio": 8.29,
-    "sector": "Healthcare",
-    "rerate_score": 12.5
-  },
-  "NDRA": {
-    "ticker": "NDRA",
-    "catalyst_date": "2026-03-25",
-    "months_since": 5.8,
-    "drift_since_catalyst": 0.156,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.234,
-    "tail_prob_confirmed": 0.234,
-    "catalyst_types": [
-      "STRATEGIC_REVIEW"
-    ],
-    "geometry_ratio": null,
-    "sector": "Healthcare",
-    "rerate_score": 5.0
-  },
-  "NEUP": {
-    "ticker": "NEUP",
-    "catalyst_date": "2026-05-15",
-    "months_since": 4.1,
-    "drift_since_catalyst": -0.135,
-    "state": "FADING",
-    "tail_prob_base": 0.234,
-    "tail_prob_confirmed": 0.206,
-    "catalyst_types": [
-      "STRATEGIC_REVIEW"
-    ],
-    "geometry_ratio": 3.86,
-    "sector": "Healthcare",
-    "rerate_score": 3.7
-  },
-  "NERV": {
-    "ticker": "NERV",
-    "catalyst_date": "2026-05-05",
-    "months_since": 4.4,
-    "drift_since_catalyst": -0.263,
-    "state": "FADING",
-    "tail_prob_base": 0.234,
-    "tail_prob_confirmed": 0.206,
-    "catalyst_types": [
-      "STRATEGIC_REVIEW"
-    ],
-    "geometry_ratio": null,
-    "sector": "Healthcare",
-    "rerate_score": 3.0
-  },
-  "DCGO": {
-    "ticker": "DCGO",
-    "catalyst_date": "2026-08-17",
-    "months_since": 0.9,
-    "drift_since_catalyst": 0.065,
-    "state": "PENDING",
-    "tail_prob_base": 0.232,
-    "tail_prob_confirmed": 0.232,
-    "catalyst_types": [
-      "GOING_PRIVATE"
-    ],
-    "geometry_ratio": 60.0,
-    "sector": "Healthcare",
-    "rerate_score": 13.5
-  },
-  "KROS": {
-    "ticker": "KROS",
-    "catalyst_date": "2026-03-04",
-    "months_since": 6.5,
-    "drift_since_catalyst": 0.007,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.232,
-    "tail_prob_confirmed": 0.232,
-    "catalyst_types": [
-      "TENDER_OFFER"
-    ],
-    "geometry_ratio": 11.06,
-    "sector": "Healthcare",
-    "rerate_score": 12.0
-  },
-  "ACH": {
-    "ticker": "ACH",
-    "catalyst_date": "2026-06-15",
-    "months_since": 3.0,
-    "drift_since_catalyst": -0.652,
-    "state": "FADING",
-    "tail_prob_base": 0.232,
-    "tail_prob_confirmed": 0.205,
-    "catalyst_types": [
-      "EXCHANGE_OFFER"
-    ],
-    "geometry_ratio": 60.0,
-    "sector": "Healthcare",
-    "rerate_score": 9.0
-  },
-  "PTN": {
-    "ticker": "PTN",
-    "catalyst_date": "2026-05-18",
-    "months_since": 4.0,
-    "drift_since_catalyst": 0.155,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.232,
-    "tail_prob_confirmed": 0.232,
-    "catalyst_types": [
-      "UPLISTING"
-    ],
-    "geometry_ratio": 1.28,
-    "sector": "Healthcare",
-    "rerate_score": 8.1
-  },
-  "GOSS": {
-    "ticker": "GOSS",
-    "catalyst_date": "2026-06-05",
-    "months_since": 3.4,
-    "drift_since_catalyst": -0.211,
-    "state": "FADING",
-    "tail_prob_base": 0.232,
-    "tail_prob_confirmed": 0.205,
-    "catalyst_types": [
-      "EXCHANGE_OFFER"
-    ],
-    "geometry_ratio": 1.6,
-    "sector": "Healthcare",
-    "rerate_score": 7.6
-  },
-  "COSM": {
-    "ticker": "COSM",
-    "catalyst_date": "2026-08-20",
-    "months_since": 0.8,
-    "drift_since_catalyst": 0.034,
-    "state": "PENDING",
-    "tail_prob_base": 0.232,
-    "tail_prob_confirmed": 0.232,
-    "catalyst_types": [
-      "BUYBACK_AUTH"
-    ],
-    "geometry_ratio": 45.95,
-    "sector": "Healthcare",
-    "rerate_score": 7.5
-  },
-  "SPRB": {
-    "ticker": "SPRB",
-    "catalyst_date": "2026-04-22",
-    "months_since": 4.8,
-    "drift_since_catalyst": 0.083,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.232,
-    "tail_prob_confirmed": 0.232,
-    "catalyst_types": [
-      "UPLISTING"
-    ],
-    "geometry_ratio": null,
-    "sector": "Healthcare",
-    "rerate_score": 7.0
-  },
-  "INO": {
-    "ticker": "INO",
-    "catalyst_date": "2026-07-31",
-    "months_since": 1.5,
-    "drift_since_catalyst": -0.021,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.232,
-    "tail_prob_confirmed": 0.232,
-    "catalyst_types": [
-      "UPLISTING"
-    ],
-    "geometry_ratio": null,
-    "sector": "Healthcare",
-    "rerate_score": 7.0
-  },
-  "CNTN": {
-    "ticker": "CNTN",
-    "catalyst_date": "2026-06-16",
-    "months_since": 3.0,
-    "drift_since_catalyst": 0.098,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.232,
-    "tail_prob_confirmed": 0.232,
-    "catalyst_types": [
-      "BUYBACK_AUTH"
-    ],
-    "geometry_ratio": 30.0,
-    "sector": "Healthcare",
-    "rerate_score": 6.2
-  },
-  "WEX": {
-    "ticker": "WEX",
-    "catalyst_date": "2026-07-22",
-    "months_since": 1.8,
-    "drift_since_catalyst": 0.044,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.231,
-    "tail_prob_confirmed": 0.231,
-    "catalyst_types": [
-      "BUYBACK_AUTH",
-      "TENDER_OFFER"
-    ],
-    "geometry_ratio": 0.69,
-    "sector": "Technology",
-    "rerate_score": 18.7
-  },
-  "FWRD": {
-    "ticker": "FWRD",
-    "catalyst_date": "2026-08-05",
-    "months_since": 1.3,
-    "drift_since_catalyst": -0.011,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.231,
-    "tail_prob_confirmed": 0.231,
-    "catalyst_types": [
-      "STRATEGIC_REVIEW"
-    ],
-    "geometry_ratio": 3.31,
-    "sector": "Industrials",
-    "rerate_score": 15.0
-  },
-  "GRND": {
-    "ticker": "GRND",
-    "catalyst_date": "2026-02-26",
-    "months_since": 6.7,
-    "drift_since_catalyst": 0.28,
+  "TASK": {
+    "ticker": "TASK",
+    "catalyst_date": "2026-03-17",
+    "months_since": 6.0,
+    "drift_since_catalyst": 0.285,
     "state": "CONFIRMED",
-    "tail_prob_base": 0.231,
-    "tail_prob_confirmed": 0.359,
-    "catalyst_types": [
-      "GOING_PRIVATE"
-    ],
-    "geometry_ratio": null,
-    "sector": "Technology",
-    "rerate_score": 9.0
-  },
-  "MLYS": {
-    "ticker": "MLYS",
-    "catalyst_date": "2026-06-03",
-    "months_since": 3.4,
-    "drift_since_catalyst": 0.124,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.226,
-    "tail_prob_confirmed": 0.226,
-    "catalyst_types": [
-      "UPLISTING"
-    ],
-    "geometry_ratio": null,
-    "sector": "Healthcare",
-    "rerate_score": 7.0
-  },
-  "CCI": {
-    "ticker": "CCI",
-    "catalyst_date": "2026-04-22",
-    "months_since": 4.8,
-    "drift_since_catalyst": -0.181,
-    "state": "FADING",
-    "tail_prob_base": 0.222,
-    "tail_prob_confirmed": 0.196,
-    "catalyst_types": [
-      "SPINOFF"
-    ],
-    "geometry_ratio": null,
-    "sector": "Real Estate",
-    "rerate_score": 10.0
-  },
-  "BWMN": {
-    "ticker": "BWMN",
-    "catalyst_date": "2026-08-10",
-    "months_since": 1.2,
-    "drift_since_catalyst": 0.002,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.222,
-    "tail_prob_confirmed": 0.222,
-    "catalyst_types": [
-      "SALE_OF_COMPANY"
-    ],
-    "geometry_ratio": 0.74,
-    "sector": "Industrials",
-    "rerate_score": 7.7
-  },
-  "IT": {
-    "ticker": "IT",
-    "catalyst_date": "2026-02-03",
-    "months_since": 7.4,
-    "drift_since_catalyst": 0.218,
-    "state": "CONFIRMED",
-    "tail_prob_base": 0.22,
-    "tail_prob_confirmed": 0.345,
-    "catalyst_types": [
-      "ASSET_SALE"
-    ],
-    "geometry_ratio": 1.0,
-    "sector": "Technology",
-    "rerate_score": 8.2
-  },
-  "LKQ": {
-    "ticker": "LKQ",
-    "catalyst_date": "2026-04-30",
-    "months_since": 4.6,
-    "drift_since_catalyst": -0.113,
-    "state": "FADING",
-    "tail_prob_base": 0.218,
-    "tail_prob_confirmed": 0.192,
-    "catalyst_types": [
-      "STRATEGIC_REVIEW"
-    ],
-    "geometry_ratio": 1.72,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 11.5
-  },
-  "AHCO": {
-    "ticker": "AHCO",
-    "catalyst_date": "2026-08-04",
-    "months_since": 1.4,
-    "drift_since_catalyst": -0.023,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.218,
+    "tail_prob_base": 0.13,
     "tail_prob_confirmed": 0.218,
     "catalyst_types": [
-      "ASSET_SALE"
+      "CAPITAL_RETURN"
     ],
-    "geometry_ratio": 7.1,
-    "sector": "Healthcare",
-    "rerate_score": 10.5
-  },
-  "CNMD": {
-    "ticker": "CNMD",
-    "catalyst_date": "2026-04-30",
-    "months_since": 4.6,
-    "drift_since_catalyst": 0.301,
-    "state": "CONFIRMED",
-    "tail_prob_base": 0.218,
-    "tail_prob_confirmed": 0.342,
-    "catalyst_types": [
-      "ASSET_SALE"
-    ],
-    "geometry_ratio": 3.11,
-    "sector": "Healthcare",
-    "rerate_score": 6.2
-  },
-  "ANF": {
-    "ticker": "ANF",
-    "catalyst_date": "2026-03-26",
-    "months_since": 5.7,
-    "drift_since_catalyst": 0.681,
-    "state": "CONFIRMED",
-    "tail_prob_base": 0.218,
-    "tail_prob_confirmed": 0.342,
-    "catalyst_types": [
-      "STRATEGIC_REVIEW"
-    ],
-    "geometry_ratio": 0.17,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 3.1
-  },
-  "RH": {
-    "ticker": "RH",
-    "catalyst_date": "2026-06-11",
-    "months_since": 3.2,
-    "drift_since_catalyst": -0.161,
-    "state": "FADING",
-    "tail_prob_base": 0.218,
-    "tail_prob_confirmed": 0.192,
-    "catalyst_types": [
-      "STRATEGIC_REVIEW"
-    ],
-    "geometry_ratio": null,
-    "sector": "Consumer Cyclical",
+    "geometry_ratio": 4.32,
+    "sector": "Technology",
     "rerate_score": 3.0
   },
-  "CNX": {
-    "ticker": "CNX",
-    "catalyst_date": "2026-02-24",
-    "months_since": 6.7,
-    "drift_since_catalyst": -0.069,
+  "UUU": {
+    "ticker": "UUU",
+    "catalyst_date": "2026-08-14",
+    "months_since": 1.0,
+    "drift_since_catalyst": -0.052,
     "state": "NEUTRAL",
-    "tail_prob_base": 0.216,
-    "tail_prob_confirmed": 0.216,
-    "catalyst_types": [
-      "TENDER_OFFER"
-    ],
-    "geometry_ratio": 1.39,
-    "sector": "Energy",
-    "rerate_score": 8.9
-  },
-  "FND": {
-    "ticker": "FND",
-    "catalyst_date": "2026-06-25",
-    "months_since": 2.7,
-    "drift_since_catalyst": -0.165,
-    "state": "FADING",
-    "tail_prob_base": 0.216,
-    "tail_prob_confirmed": 0.19,
-    "catalyst_types": [
-      "EXCHANGE_OFFER"
-    ],
-    "geometry_ratio": null,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 6.0
-  },
-  "BVS": {
-    "ticker": "BVS",
-    "catalyst_date": "2026-08-05",
-    "months_since": 1.3,
-    "drift_since_catalyst": 0.013,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.21,
-    "tail_prob_confirmed": 0.21,
+    "tail_prob_base": 0.13,
+    "tail_prob_confirmed": 0.13,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
-    "geometry_ratio": 3.27,
-    "sector": "Healthcare",
-    "rerate_score": 14.6
-  },
-  "NHI": {
-    "ticker": "NHI",
-    "catalyst_date": "2026-08-10",
-    "months_since": 1.2,
-    "drift_since_catalyst": 0.004,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.209,
-    "tail_prob_confirmed": 0.209,
-    "catalyst_types": [
-      "ASSET_SALE"
-    ],
-    "geometry_ratio": null,
-    "sector": "Real Estate",
-    "rerate_score": 7.0
-  },
-  "PLTK": {
-    "ticker": "PLTK",
-    "catalyst_date": "2026-05-07",
-    "months_since": 4.3,
-    "drift_since_catalyst": -0.359,
-    "state": "FADING",
-    "tail_prob_base": 0.208,
-    "tail_prob_confirmed": 0.183,
-    "catalyst_types": [
-      "ASSET_SALE",
-      "STRATEGIC_REVIEW"
-    ],
-    "geometry_ratio": 1.54,
-    "sector": "Communication Services",
-    "rerate_score": 17.6
-  },
-  "ZURA": {
-    "ticker": "ZURA",
-    "catalyst_date": "2026-02-26",
-    "months_since": 6.7,
-    "drift_since_catalyst": -0.116,
-    "state": "FADING",
-    "tail_prob_base": 0.208,
-    "tail_prob_confirmed": 0.183,
-    "catalyst_types": [
-      "UPLISTING"
-    ],
-    "geometry_ratio": 0.6,
-    "sector": "Healthcare",
-    "rerate_score": 7.5
-  },
-  "MGTX": {
-    "ticker": "MGTX",
-    "catalyst_date": "2026-04-16",
-    "months_since": 5.0,
-    "drift_since_catalyst": 0.227,
-    "state": "CONFIRMED",
-    "tail_prob_base": 0.208,
-    "tail_prob_confirmed": 0.329,
-    "catalyst_types": [
-      "UPLISTING"
-    ],
-    "geometry_ratio": null,
-    "sector": "Healthcare",
-    "rerate_score": 7.0
-  },
-  "PRTA": {
-    "ticker": "PRTA",
-    "catalyst_date": "2026-02-27",
-    "months_since": 6.6,
-    "drift_since_catalyst": -0.084,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.208,
-    "tail_prob_confirmed": 0.208,
-    "catalyst_types": [
-      "BUYBACK_AUTH"
-    ],
-    "geometry_ratio": 3.33,
-    "sector": "Healthcare",
-    "rerate_score": 5.8
-  },
-  "HHS": {
-    "ticker": "HHS",
-    "catalyst_date": "2026-08-19",
-    "months_since": 0.9,
-    "drift_since_catalyst": 0.024,
-    "state": "PENDING",
-    "tail_prob_base": 0.207,
-    "tail_prob_confirmed": 0.207,
-    "catalyst_types": [
-      "SALE_OF_COMPANY"
-    ],
-    "geometry_ratio": 6.89,
-    "sector": "Industrials",
-    "rerate_score": 10.5
-  },
-  "VRME": {
-    "ticker": "VRME",
-    "catalyst_date": "2026-08-12",
-    "months_since": 1.1,
-    "drift_since_catalyst": 0.034,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.207,
-    "tail_prob_confirmed": 0.207,
-    "catalyst_types": [
-      "SALE_OF_COMPANY"
-    ],
-    "geometry_ratio": 8.12,
-    "sector": "Industrials",
-    "rerate_score": 10.2
-  },
-  "ADV": {
-    "ticker": "ADV",
-    "catalyst_date": "2026-02-09",
-    "months_since": 7.2,
-    "drift_since_catalyst": 0.636,
-    "state": "CONFIRMED",
-    "tail_prob_base": 0.207,
-    "tail_prob_confirmed": 0.328,
-    "catalyst_types": [
-      "EXCHANGE_OFFER"
-    ],
-    "geometry_ratio": 6.31,
-    "sector": "Communication Services",
-    "rerate_score": 9.0
-  },
-  "PLAG": {
-    "ticker": "PLAG",
-    "catalyst_date": "2026-03-31",
-    "months_since": 5.6,
-    "drift_since_catalyst": -0.602,
-    "state": "FADING",
-    "tail_prob_base": 0.207,
-    "tail_prob_confirmed": 0.182,
-    "catalyst_types": [
-      "SALE_OF_COMPANY"
-    ],
     "geometry_ratio": null,
     "sector": "Industrials",
-    "rerate_score": 5.0
+    "rerate_score": 3.0
   },
-  "HCAT": {
-    "ticker": "HCAT",
-    "catalyst_date": "2026-06-04",
-    "months_since": 3.4,
-    "drift_since_catalyst": -0.165,
-    "state": "FADING",
-    "tail_prob_base": 0.203,
-    "tail_prob_confirmed": 0.178,
-    "catalyst_types": [
-      "ASSET_SALE"
-    ],
-    "geometry_ratio": 6.08,
-    "sector": "Healthcare",
-    "rerate_score": 10.5
-  },
-  "CTSH": {
-    "ticker": "CTSH",
-    "catalyst_date": "2026-05-18",
-    "months_since": 4.0,
-    "drift_since_catalyst": 0.656,
-    "state": "CONFIRMED",
-    "tail_prob_base": 0.203,
-    "tail_prob_confirmed": 0.322,
-    "catalyst_types": [
-      "BUYBACK_AUTH"
-    ],
-    "geometry_ratio": 3.46,
-    "sector": "Technology",
-    "rerate_score": 6.8
-  },
-  "SHOP": {
-    "ticker": "SHOP",
-    "catalyst_date": "2026-02-11",
-    "months_since": 7.2,
-    "drift_since_catalyst": 0.13,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.203,
-    "tail_prob_confirmed": 0.203,
-    "catalyst_types": [
-      "BUYBACK_AUTH"
-    ],
-    "geometry_ratio": null,
-    "sector": "Technology",
-    "rerate_score": 5.0
-  },
-  "GPC": {
-    "ticker": "GPC",
+  "GBCS": {
+    "ticker": "GBCS",
     "catalyst_date": "2026-09-09",
     "months_since": 0.2,
     "drift_since_catalyst": 0.0,
     "state": "PENDING",
-    "tail_prob_base": 0.201,
-    "tail_prob_confirmed": 0.201,
-    "catalyst_types": [
-      "SEPARATION",
-      "SPINOFF"
-    ],
-    "geometry_ratio": 0.43,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 30.8
-  },
-  "APTV": {
-    "ticker": "APTV",
-    "catalyst_date": "2026-08-04",
-    "months_since": 1.4,
-    "drift_since_catalyst": -0.011,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.201,
-    "tail_prob_confirmed": 0.201,
-    "catalyst_types": [
-      "SPINOFF",
-      "TENDER_OFFER"
-    ],
-    "geometry_ratio": 0.51,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 23.2
-  },
-  "UTZ": {
-    "ticker": "UTZ",
-    "catalyst_date": "2026-07-21",
-    "months_since": 1.8,
-    "drift_since_catalyst": 0.004,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.201,
-    "tail_prob_confirmed": 0.201,
-    "catalyst_types": [
-      "BUYBACK_AUTH",
-      "GOING_PRIVATE"
-    ],
-    "geometry_ratio": 23.93,
-    "sector": "Consumer Defensive",
-    "rerate_score": 21.6
-  },
-  "VNT": {
-    "ticker": "VNT",
-    "catalyst_date": "2026-05-07",
-    "months_since": 4.3,
-    "drift_since_catalyst": 0.128,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.201,
-    "tail_prob_confirmed": 0.201,
-    "catalyst_types": [
-      "ASSET_SALE"
-    ],
-    "geometry_ratio": 0.93,
-    "sector": "Technology",
-    "rerate_score": 7.9
-  },
-  "BWIN": {
-    "ticker": "BWIN",
-    "catalyst_date": "2026-01-02",
-    "months_since": 8.5,
-    "drift_since_catalyst": 0.375,
-    "state": "CONFIRMED",
-    "tail_prob_base": 0.201,
-    "tail_prob_confirmed": 0.319,
-    "catalyst_types": [
-      "EXCHANGE_OFFER"
-    ],
-    "geometry_ratio": 2.31,
-    "sector": "Financial Services",
-    "rerate_score": 7.7
-  },
-  "BYND": {
-    "ticker": "BYND",
-    "catalyst_date": "2026-04-09",
-    "months_since": 5.3,
-    "drift_since_catalyst": -0.583,
-    "state": "FADING",
-    "tail_prob_base": 0.201,
-    "tail_prob_confirmed": 0.176,
-    "catalyst_types": [
-      "EXCHANGE_OFFER"
-    ],
-    "geometry_ratio": null,
-    "sector": "Consumer Defensive",
-    "rerate_score": 6.0
-  },
-  "RBLX": {
-    "ticker": "RBLX",
-    "catalyst_date": "2026-05-19",
-    "months_since": 3.9,
-    "drift_since_catalyst": -0.07,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.197,
-    "tail_prob_confirmed": 0.197,
-    "catalyst_types": [
-      "BUYBACK_AUTH"
-    ],
-    "geometry_ratio": null,
-    "sector": "Communication Services",
-    "rerate_score": 5.0
-  },
-  "TIPT": {
-    "ticker": "TIPT",
-    "catalyst_date": "2026-07-29",
-    "months_since": 1.6,
-    "drift_since_catalyst": -0.038,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.194,
-    "tail_prob_confirmed": 0.194,
-    "catalyst_types": [
-      "ASSET_SALE",
-      "SALE_OF_COMPANY"
-    ],
-    "geometry_ratio": null,
-    "sector": "Financial Services",
-    "rerate_score": 18.0
-  },
-  "OTLK": {
-    "ticker": "OTLK",
-    "catalyst_date": "2026-08-27",
-    "months_since": 0.6,
-    "drift_since_catalyst": -0.001,
-    "state": "PENDING",
-    "tail_prob_base": 0.194,
-    "tail_prob_confirmed": 0.194,
-    "catalyst_types": [
-      "SEPARATION"
-    ],
-    "geometry_ratio": null,
-    "sector": "Healthcare",
-    "rerate_score": 10.0
-  },
-  "ONEW": {
-    "ticker": "ONEW",
-    "catalyst_date": "2026-05-04",
-    "months_since": 4.4,
-    "drift_since_catalyst": -0.055,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.194,
-    "tail_prob_confirmed": 0.194,
-    "catalyst_types": [
-      "ASSET_SALE"
-    ],
-    "geometry_ratio": 10.54,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 7.5
-  },
-  "CCB": {
-    "ticker": "CCB",
-    "catalyst_date": "2026-04-29",
-    "months_since": 4.6,
-    "drift_since_catalyst": -0.317,
-    "state": "FADING",
-    "tail_prob_base": 0.194,
-    "tail_prob_confirmed": 0.17,
-    "catalyst_types": [
-      "SALE_OF_COMPANY"
-    ],
-    "geometry_ratio": null,
-    "sector": "Financial Services",
-    "rerate_score": 7.0
-  },
-  "HLLY": {
-    "ticker": "HLLY",
-    "catalyst_date": "2026-08-05",
-    "months_since": 1.3,
-    "drift_since_catalyst": 0.011,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.194,
-    "tail_prob_confirmed": 0.194,
-    "catalyst_types": [
-      "ASSET_SALE"
-    ],
-    "geometry_ratio": 6.28,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 6.2
-  },
-  "ONDS": {
-    "ticker": "ONDS",
-    "catalyst_date": "2026-01-12",
-    "months_since": 8.2,
-    "drift_since_catalyst": -0.274,
-    "state": "FADING",
-    "tail_prob_base": 0.192,
-    "tail_prob_confirmed": 0.168,
-    "catalyst_types": [
-      "UPLISTING"
-    ],
-    "geometry_ratio": null,
-    "sector": "Technology",
-    "rerate_score": 7.0
-  },
-  "BKNG": {
-    "ticker": "BKNG",
-    "catalyst_date": "2026-04-28",
-    "months_since": 4.6,
-    "drift_since_catalyst": 0.052,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.191,
-    "tail_prob_confirmed": 0.191,
-    "catalyst_types": [
-      "STRATEGIC_REVIEW"
-    ],
-    "geometry_ratio": null,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 3.0
-  },
-  "DAN": {
-    "ticker": "DAN",
-    "catalyst_date": "2026-06-11",
-    "months_since": 3.2,
-    "drift_since_catalyst": 0.119,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.19,
-    "tail_prob_confirmed": 0.19,
-    "catalyst_types": [
-      "SPINOFF"
-    ],
-    "geometry_ratio": 0.92,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 11.1
-  },
-  "EQT": {
-    "ticker": "EQT",
-    "catalyst_date": "2026-03-24",
-    "months_since": 5.8,
-    "drift_since_catalyst": -0.107,
-    "state": "FADING",
-    "tail_prob_base": 0.19,
-    "tail_prob_confirmed": 0.167,
-    "catalyst_types": [
-      "TENDER_OFFER"
-    ],
-    "geometry_ratio": 0.57,
-    "sector": "Energy",
-    "rerate_score": 8.5
-  },
-  "CVNA": {
-    "ticker": "CVNA",
-    "catalyst_date": "2026-08-14",
-    "months_since": 1.0,
-    "drift_since_catalyst": 0.024,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.19,
-    "tail_prob_confirmed": 0.19,
-    "catalyst_types": [
-      "EXCHANGE_OFFER"
-    ],
-    "geometry_ratio": null,
-    "sector": "Consumer Cyclical",
-    "rerate_score": 6.0
-  },
-  "LSTA": {
-    "ticker": "LSTA",
-    "catalyst_date": "2026-08-06",
-    "months_since": 1.3,
-    "drift_since_catalyst": -0.055,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.187,
-    "tail_prob_confirmed": 0.187,
+    "tail_prob_base": 0.129,
+    "tail_prob_confirmed": 0.129,
     "catalyst_types": [
       "SALE_OF_COMPANY",
-      "STRATEGIC_REVIEW",
-      "TENDER_OFFER"
-    ],
-    "geometry_ratio": null,
-    "sector": "Healthcare",
-    "rerate_score": 27.0
-  },
-  "OLN": {
-    "ticker": "OLN",
-    "catalyst_date": "2026-06-16",
-    "months_since": 3.0,
-    "drift_since_catalyst": -0.071,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.187,
-    "tail_prob_confirmed": 0.187,
-    "catalyst_types": [
-      "GOING_PRIVATE",
-      "UPLISTING"
-    ],
-    "geometry_ratio": 3.13,
-    "sector": "Basic Materials",
-    "rerate_score": 26.8
-  },
-  "INGN": {
-    "ticker": "INGN",
-    "catalyst_date": "2026-02-24",
-    "months_since": 6.7,
-    "drift_since_catalyst": -0.144,
-    "state": "FADING",
-    "tail_prob_base": 0.187,
-    "tail_prob_confirmed": 0.164,
-    "catalyst_types": [
-      "BUYBACK_AUTH"
-    ],
-    "geometry_ratio": 6.27,
-    "sector": "Healthcare",
-    "rerate_score": 7.5
-  },
-  "LPTH": {
-    "ticker": "LPTH",
-    "catalyst_date": "2026-09-10",
-    "months_since": 0.1,
-    "drift_since_catalyst": 0.0,
-    "state": "PENDING",
-    "tail_prob_base": 0.186,
-    "tail_prob_confirmed": 0.186,
-    "catalyst_types": [
-      "ASSET_SALE"
-    ],
-    "geometry_ratio": null,
-    "sector": "Technology",
-    "rerate_score": 7.0
-  },
-  "GTE": {
-    "ticker": "GTE",
-    "catalyst_date": "2026-08-05",
-    "months_since": 1.3,
-    "drift_since_catalyst": -0.009,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.185,
-    "tail_prob_confirmed": 0.185,
-    "catalyst_types": [
-      "ASSET_SALE",
-      "TENDER_OFFER"
-    ],
-    "geometry_ratio": 3.79,
-    "sector": "Energy",
-    "rerate_score": 28.5
-  },
-  "CMCO": {
-    "ticker": "CMCO",
-    "catalyst_date": "2026-02-04",
-    "months_since": 7.4,
-    "drift_since_catalyst": 0.139,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.185,
-    "tail_prob_confirmed": 0.185,
-    "catalyst_types": [
-      "ASSET_SALE",
-      "EXCHANGE_OFFER"
-    ],
-    "geometry_ratio": 7.11,
-    "sector": "Industrials",
-    "rerate_score": 21.2
-  },
-  "ROCK": {
-    "ticker": "ROCK",
-    "catalyst_date": "2026-04-17",
-    "months_since": 5.0,
-    "drift_since_catalyst": 0.186,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.185,
-    "tail_prob_confirmed": 0.185,
-    "catalyst_types": [
-      "ASSET_SALE",
-      "EXCHANGE_OFFER"
-    ],
-    "geometry_ratio": 1.79,
-    "sector": "Industrials",
-    "rerate_score": 20.2
-  },
-  "BV": {
-    "ticker": "BV",
-    "catalyst_date": "2026-06-18",
-    "months_since": 2.9,
-    "drift_since_catalyst": -0.136,
-    "state": "FADING",
-    "tail_prob_base": 0.185,
-    "tail_prob_confirmed": 0.162,
-    "catalyst_types": [
-      "EXCHANGE_OFFER"
-    ],
-    "geometry_ratio": 40.75,
-    "sector": "Industrials",
-    "rerate_score": 8.8
-  },
-  "IIIN": {
-    "ticker": "IIIN",
-    "catalyst_date": "2026-01-15",
-    "months_since": 8.1,
-    "drift_since_catalyst": -0.189,
-    "state": "FADING",
-    "tail_prob_base": 0.185,
-    "tail_prob_confirmed": 0.162,
-    "catalyst_types": [
-      "CAPITAL_RETURN"
-    ],
-    "geometry_ratio": 1.76,
-    "sector": "Industrials",
-    "rerate_score": 7.2
-  },
-  "FISV": {
-    "ticker": "FISV",
-    "catalyst_date": "2026-08-06",
-    "months_since": 1.3,
-    "drift_since_catalyst": 0.02,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.184,
-    "tail_prob_confirmed": 0.184,
-    "catalyst_types": [
       "TENDER_OFFER"
     ],
     "geometry_ratio": null,
     "sector": null,
-    "rerate_score": 8.0
+    "rerate_score": 19.0
   },
-  "VTOL": {
-    "ticker": "VTOL",
-    "catalyst_date": "2026-08-05",
-    "months_since": 1.3,
-    "drift_since_catalyst": -0.006,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.183,
-    "tail_prob_confirmed": 0.183,
+  "YHC": {
+    "ticker": "YHC",
+    "catalyst_date": "2026-05-15",
+    "months_since": 4.1,
+    "drift_since_catalyst": -0.823,
+    "state": "FADING",
+    "tail_prob_base": 0.129,
+    "tail_prob_confirmed": 0.112,
     "catalyst_types": [
       "ASSET_SALE",
       "SALE_OF_COMPANY"
     ],
-    "geometry_ratio": 1.37,
-    "sector": "Energy",
-    "rerate_score": 18.1
+    "geometry_ratio": null,
+    "sector": null,
+    "rerate_score": 16.0
   },
-  "RDNT": {
-    "ticker": "RDNT",
-    "catalyst_date": "2026-06-10",
-    "months_since": 3.2,
-    "drift_since_catalyst": 0.194,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.182,
-    "tail_prob_confirmed": 0.182,
+  "EMAT": {
+    "ticker": "EMAT",
+    "catalyst_date": "2026-05-22",
+    "months_since": 3.8,
+    "drift_since_catalyst": -0.486,
+    "state": "FADING",
+    "tail_prob_base": 0.129,
+    "tail_prob_confirmed": 0.112,
     "catalyst_types": [
-      "TENDER_OFFER"
-    ],
-    "geometry_ratio": 1.09,
-    "sector": "Healthcare",
-    "rerate_score": 9.3
-  },
-  "CRNX": {
-    "ticker": "CRNX",
-    "catalyst_date": "2026-01-07",
-    "months_since": 8.3,
-    "drift_since_catalyst": 0.0,
-    "state": "NEUTRAL",
-    "tail_prob_base": 0.182,
-    "tail_prob_confirmed": 0.182,
-    "catalyst_types": [
-      "UPLISTING"
+      "SALE_OF_COMPANY",
+      "STRATEGIC_REVIEW"
     ],
     "geometry_ratio": null,
-    "sector": "Healthcare",
-    "rerate_score": 7.0
+    "sector": null,
+    "rerate_score": 14.0
+  },
+  "CYCN": {
+    "ticker": "CYCN",
+    "catalyst_date": "2026-09-11",
+    "months_since": 0.1,
+    "drift_since_catalyst": 0.0,
+    "state": "PENDING",
+    "tail_prob_base": 0.129,
+    "tail_prob_confirmed": 0.129,
+    "catalyst_types": [
+      "SALE_OF_COMPANY",
+      "STRATEGIC_REVIEW"
+    ],
+    "geometry_ratio": null,
+    "sector": null,
+    "rerate_score": 14.0
+  },
+  "LRHC": {
+    "ticker": "LRHC",
+    "catalyst_date": "2026-07-10",
+    "months_since": 2.2,
+    "drift_since_catalyst": -0.083,
+    "state": "NEUTRAL",
+    "tail_prob_base": 0.129,
+    "tail_prob_confirmed": 0.129,
+    "catalyst_types": [
+      "GOING_PRIVATE",
+      "SALE_OF_COMPANY"
+    ],
+    "geometry_ratio": null,
+    "sector": null,
+    "rerate_score": 13.0
   }
 }

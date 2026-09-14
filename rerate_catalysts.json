@@ -62,14 +62,14 @@
         }
       ]
     },
-    "catalyst_score": 29,
+    "catalyst_score": 23,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 2805578240,
     "sector": "Healthcare",
-    "rerate_score": 29.0
+    "rerate_score": 23.0
   },
   "GPC": {
     "ticker": "GPC",
@@ -102,14 +102,14 @@
         }
       ]
     },
-    "catalyst_score": 29,
+    "catalyst_score": 25,
     "geometry_ratio": 0.43,
     "upside_pct": 0.365,
     "downside_pct": 0.85,
     "floor_source": "book(0.5x)",
     "mcap": 15122573312,
     "sector": "Consumer Cyclical",
-    "rerate_score": 30.8
+    "rerate_score": 26.5
   },
   "CTVA": {
     "ticker": "CTVA",
@@ -142,14 +142,14 @@
         }
       ]
     },
-    "catalyst_score": 29,
+    "catalyst_score": 23,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 52562558976,
     "sector": "Basic Materials",
-    "rerate_score": 29.0
+    "rerate_score": 23.0
   },
   "SNDK": {
     "ticker": "SNDK",
@@ -169,14 +169,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 9,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 323539107840,
     "sector": "Technology",
-    "rerate_score": 10.0
+    "rerate_score": 9.0
   },
   "LTRN": {
     "ticker": "LTRN",
@@ -205,14 +205,14 @@
         }
       ]
     },
-    "catalyst_score": 24,
+    "catalyst_score": 18,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 24.0
+    "rerate_score": 18.0
   },
   "WBD": {
     "ticker": "WBD",
@@ -263,14 +263,14 @@
         }
       ]
     },
-    "catalyst_score": 42,
+    "catalyst_score": 33,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 65686986752,
     "sector": "Communication Services",
-    "rerate_score": 42.0
+    "rerate_score": 33.0
   },
   "BLCO": {
     "ticker": "BLCO",
@@ -290,14 +290,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 9,
     "geometry_ratio": 8.12,
     "upside_pct": 2.696,
     "downside_pct": 0.332,
     "floor_source": "NCAV",
     "mcap": 5301695488,
     "sector": "Healthcare",
-    "rerate_score": 14.5
+    "rerate_score": 13.0
   },
   "BHC": {
     "ticker": "BHC",
@@ -339,14 +339,14 @@
         }
       ]
     },
-    "catalyst_score": 35,
+    "catalyst_score": 26,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 35.0
+    "rerate_score": 26.0
   },
   "WAT": {
     "ticker": "WAT",
@@ -366,14 +366,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 9,
     "geometry_ratio": 0.41,
     "upside_pct": 0.318,
     "downside_pct": 0.781,
     "floor_source": "book(0.5x)",
     "mcap": 34899181568,
     "sector": "Healthcare",
-    "rerate_score": 10.5
+    "rerate_score": 9.5
   },
   "BDX": {
     "ticker": "BDX",
@@ -393,14 +393,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 9,
     "geometry_ratio": 1.42,
     "upside_pct": 0.99,
     "downside_pct": 0.696,
     "floor_source": "book(0.5x)",
     "mcap": 39672307712,
     "sector": "Healthcare",
-    "rerate_score": 11.7
+    "rerate_score": 10.5
   },
   "ADIG": {
     "ticker": "ADIG",
@@ -429,14 +429,14 @@
         }
       ]
     },
-    "catalyst_score": 24,
+    "catalyst_score": 18,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 24.0
+    "rerate_score": 18.0
   },
   "MFP": {
     "ticker": "MFP",
@@ -456,14 +456,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 9,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 10.0
+    "rerate_score": 9.0
   },
   "HONA": {
     "ticker": "HONA",
@@ -492,14 +492,14 @@
         }
       ]
     },
-    "catalyst_score": 24,
+    "catalyst_score": 18,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 24.0
+    "rerate_score": 18.0
   },
   "VISM": {
     "ticker": "VISM",
@@ -519,14 +519,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 9,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 10.0
+    "rerate_score": 9.0
   },
   "FDX": {
     "ticker": "FDX",
@@ -555,14 +555,14 @@
         }
       ]
     },
-    "catalyst_score": 24,
+    "catalyst_score": 18,
     "geometry_ratio": 0.91,
     "upside_pct": 0.736,
     "downside_pct": 0.809,
     "floor_source": "book(0.5x)",
     "mcap": 77833527296,
     "sector": "Industrials",
-    "rerate_score": 26.9
+    "rerate_score": 20.2
   },
   "FDXF": {
     "ticker": "FDXF",
@@ -591,14 +591,14 @@
         }
       ]
     },
-    "catalyst_score": 24,
+    "catalyst_score": 18,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 24.0
+    "rerate_score": 18.0
   },
   "SPGI": {
     "ticker": "SPGI",
@@ -636,14 +636,14 @@
         }
       ]
     },
-    "catalyst_score": 31,
+    "catalyst_score": 28,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 121632325632,
     "sector": "Financial Services",
-    "rerate_score": 31.0
+    "rerate_score": 28.0
   },
   "APTV": {
     "ticker": "APTV",
@@ -672,14 +672,14 @@
         }
       ]
     },
-    "catalyst_score": 22,
+    "catalyst_score": 21,
     "geometry_ratio": 0.51,
     "upside_pct": 0.335,
     "downside_pct": 0.659,
     "floor_source": "book(0.5x)",
     "mcap": 13475995648,
     "sector": "Consumer Cyclical",
-    "rerate_score": 23.2
+    "rerate_score": 22.2
   },
   "ETN": {
     "ticker": "ETN",
@@ -716,14 +716,14 @@
         }
       ]
     },
-    "catalyst_score": 34,
+    "catalyst_score": 30,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 163773284352,
     "sector": "Industrials",
-    "rerate_score": 34.0
+    "rerate_score": 30.0
   },
   "OCTV": {
     "ticker": "OCTV",
@@ -743,14 +743,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 9,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 10.0
+    "rerate_score": 9.0
   },
   "KDP": {
     "ticker": "KDP",
@@ -792,14 +792,14 @@
         }
       ]
     },
-    "catalyst_score": 37,
+    "catalyst_score": 33,
     "geometry_ratio": 0.4,
     "upside_pct": 0.277,
     "downside_pct": 0.698,
     "floor_source": "book(0.5x)",
     "mcap": 41850810368,
     "sector": "Consumer Defensive",
-    "rerate_score": 38.7
+    "rerate_score": 34.5
   },
   "DAN": {
     "ticker": "DAN",
@@ -819,14 +819,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 9,
     "geometry_ratio": 0.92,
     "upside_pct": 0.636,
     "downside_pct": 0.692,
     "floor_source": "book(0.5x)",
     "mcap": 3139030016,
     "sector": "Consumer Cyclical",
-    "rerate_score": 11.1
+    "rerate_score": 10.0
   },
   "MOD": {
     "ticker": "MOD",
@@ -846,14 +846,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 9,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 15705829376,
     "sector": "Consumer Cyclical",
-    "rerate_score": 10.0
+    "rerate_score": 9.0
   },
   "THRM": {
     "ticker": "THRM",
@@ -873,14 +873,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 9,
     "geometry_ratio": 0.36,
     "upside_pct": 0.245,
     "downside_pct": 0.675,
     "floor_source": "book(0.5x)",
     "mcap": 1101875712,
     "sector": "Consumer Cyclical",
-    "rerate_score": 10.4
+    "rerate_score": 9.4
   },
   "REZI": {
     "ticker": "REZI",
@@ -900,14 +900,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 9,
     "geometry_ratio": 1.75,
     "upside_pct": 1.308,
     "downside_pct": 0.748,
     "floor_source": "book(0.5x)",
     "mcap": 4832011776,
     "sector": "Industrials",
-    "rerate_score": 12.2
+    "rerate_score": 11.0
   },
   "NFLX": {
     "ticker": "NFLX",
@@ -936,14 +936,14 @@
         }
       ]
     },
-    "catalyst_score": 24,
+    "catalyst_score": 18,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 325831589888,
     "sector": "Communication Services",
-    "rerate_score": 24.0
+    "rerate_score": 18.0
   },
   "HON": {
     "ticker": "HON",
@@ -976,14 +976,14 @@
         }
       ]
     },
-    "catalyst_score": 29,
+    "catalyst_score": 25,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 145112891392,
     "sector": "Industrials",
-    "rerate_score": 29.0
+    "rerate_score": 25.0
   },
   "AMRZ": {
     "ticker": "AMRZ",
@@ -1003,14 +1003,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 9,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 30638252032,
     "sector": "Basic Materials",
-    "rerate_score": 10.0
+    "rerate_score": 9.0
   },
   "IAC": {
     "ticker": "IAC",
@@ -1039,14 +1039,14 @@
         }
       ]
     },
-    "catalyst_score": 19,
+    "catalyst_score": 18,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 19.0
+    "rerate_score": 18.0
   },
   "VGNT": {
     "ticker": "VGNT",
@@ -1066,14 +1066,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 9,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 10.0
+    "rerate_score": 9.0
   },
   "HCTI": {
     "ticker": "HCTI",
@@ -1111,14 +1111,14 @@
         }
       ]
     },
-    "catalyst_score": 31,
+    "catalyst_score": 20,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 31.0
+    "rerate_score": 20.0
   },
   "SITC": {
     "ticker": "SITC",
@@ -1151,14 +1151,14 @@
         }
       ]
     },
-    "catalyst_score": 26,
+    "catalyst_score": 28,
     "geometry_ratio": 2.78,
     "upside_pct": 0.914,
     "downside_pct": 0.329,
     "floor_source": "book(0.5x)",
     "mcap": 250305136,
     "sector": "Real Estate",
-    "rerate_score": 30.0
+    "rerate_score": 32.3
   },
   "PPLI": {
     "ticker": "PPLI",
@@ -1196,14 +1196,14 @@
         }
       ]
     },
-    "catalyst_score": 25,
+    "catalyst_score": 20,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 25.0
+    "rerate_score": 20.0
   },
   "APLD": {
     "ticker": "APLD",
@@ -1223,14 +1223,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 9,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 13314002944,
     "sector": "Technology",
-    "rerate_score": 10.0
+    "rerate_score": 9.0
   },
   "FIS": {
     "ticker": "FIS",
@@ -1259,14 +1259,14 @@
         }
       ]
     },
-    "catalyst_score": 21,
+    "catalyst_score": 23,
     "geometry_ratio": 2.76,
     "upside_pct": 1.645,
     "downside_pct": 0.596,
     "floor_source": "book(0.5x)",
     "mcap": 19749951488,
     "sector": "Technology",
-    "rerate_score": 26.8
+    "rerate_score": 29.3
   },
   "MIDD": {
     "ticker": "MIDD",
@@ -1286,14 +1286,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 9,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 7788648960,
     "sector": "Industrials",
-    "rerate_score": 10.0
+    "rerate_score": 9.0
   },
   "MDU": {
     "ticker": "MDU",
@@ -1313,14 +1313,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 9,
     "geometry_ratio": 0.34,
     "upside_pct": 0.227,
     "downside_pct": 0.674,
     "floor_source": "book(0.5x)",
     "mcap": 4449738240,
     "sector": "Utilities",
-    "rerate_score": 10.4
+    "rerate_score": 9.3
   },
   "FTV": {
     "ticker": "FTV",
@@ -1340,14 +1340,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 9,
     "geometry_ratio": 0.46,
     "upside_pct": 0.388,
     "downside_pct": 0.837,
     "floor_source": "book(0.5x)",
     "mcap": 18605668352,
     "sector": "Technology",
-    "rerate_score": 10.6
+    "rerate_score": 9.6
   },
   "CXT": {
     "ticker": "CXT",
@@ -1367,14 +1367,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 9,
     "geometry_ratio": 0.44,
     "upside_pct": 0.338,
     "downside_pct": 0.771,
     "floor_source": "book(0.5x)",
     "mcap": 2700463360,
     "sector": "Industrials",
-    "rerate_score": 10.6
+    "rerate_score": 9.5
   },
   "DD": {
     "ticker": "DD",
@@ -1394,14 +1394,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 9,
     "geometry_ratio": 1.14,
     "upside_pct": 0.635,
     "downside_pct": 0.559,
     "floor_source": "NCAV",
     "mcap": 19325327360,
     "sector": "Basic Materials",
-    "rerate_score": 11.1
+    "rerate_score": 10.0
   },
   "PSKY": {
     "ticker": "PSKY",
@@ -1439,14 +1439,14 @@
         }
       ]
     },
-    "catalyst_score": 28,
+    "catalyst_score": 22,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 28.0
+    "rerate_score": 22.0
   },
   "CCI": {
     "ticker": "CCI",
@@ -1466,14 +1466,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 9,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 35810885632,
     "sector": "Real Estate",
-    "rerate_score": 10.0
+    "rerate_score": 9.0
   },
   "TXT": {
     "ticker": "TXT",
@@ -1497,14 +1497,14 @@
         }
       ]
     },
-    "catalyst_score": 15,
+    "catalyst_score": 12,
     "geometry_ratio": 1.01,
     "upside_pct": 0.752,
     "downside_pct": 0.743,
     "floor_source": "book(0.5x)",
     "mcap": 15557847040,
     "sector": "Industrials",
-    "rerate_score": 16.9
+    "rerate_score": 13.5
   },
   "SOLV": {
     "ticker": "SOLV",
@@ -1537,14 +1537,14 @@
         }
       ]
     },
-    "catalyst_score": 24,
+    "catalyst_score": 19,
     "geometry_ratio": 0.97,
     "upside_pct": 0.785,
     "downside_pct": 0.81,
     "floor_source": "book(0.5x)",
     "mcap": 13062568960,
     "sector": "Healthcare",
-    "rerate_score": 27.1
+    "rerate_score": 21.5
   },
   "MCK": {
     "ticker": "MCK",
@@ -1568,14 +1568,14 @@
         }
       ]
     },
-    "catalyst_score": 15,
+    "catalyst_score": 12,
     "geometry_ratio": 1.5,
     "upside_pct": 1.5,
     "downside_pct": 1.0,
     "floor_source": "none",
     "mcap": 87882063872,
     "sector": "Healthcare",
-    "rerate_score": 18.8
+    "rerate_score": 15.0
   },
   "CHYM": {
     "ticker": "CHYM",
@@ -1595,14 +1595,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 5,
     "geometry_ratio": 0.13,
     "upside_pct": 0.102,
     "downside_pct": 0.816,
     "floor_source": "book(0.5x)",
     "mcap": 6705936896,
     "sector": "Technology",
-    "rerate_score": 10.2
+    "rerate_score": 5.1
   },
   "OTLK": {
     "ticker": "OTLK",
@@ -1622,14 +1622,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 5,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 234767648,
     "sector": "Healthcare",
-    "rerate_score": 10.0
+    "rerate_score": 5.0
   },
   "KBR": {
     "ticker": "KBR",
@@ -1649,14 +1649,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 5,
     "geometry_ratio": 1.69,
     "upside_pct": 1.369,
     "downside_pct": 0.81,
     "floor_source": "book(0.5x)",
     "mcap": 4161246464,
     "sector": "Industrials",
-    "rerate_score": 12.3
+    "rerate_score": 6.1
   },
   "DINO": {
     "ticker": "DINO",
@@ -1676,14 +1676,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 5,
     "geometry_ratio": 3.06,
     "upside_pct": 1.797,
     "downside_pct": 0.588,
     "floor_source": "book(0.5x)",
     "mcap": 11627765760,
     "sector": "Energy",
-    "rerate_score": 13.0
+    "rerate_score": 6.5
   },
   "JNJ": {
     "ticker": "JNJ",
@@ -1707,14 +1707,14 @@
         }
       ]
     },
-    "catalyst_score": 15,
+    "catalyst_score": 12,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 579826352128,
     "sector": "Healthcare",
-    "rerate_score": 15.0
+    "rerate_score": 12.0
   },
   "LPLA": {
     "ticker": "LPLA",
@@ -1734,14 +1734,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 5,
     "geometry_ratio": 1.74,
     "upside_pct": 1.529,
     "downside_pct": 0.879,
     "floor_source": "book(0.5x)",
     "mcap": 23510964224,
     "sector": "Financial Services",
-    "rerate_score": 12.5
+    "rerate_score": 6.3
   },
   "TRAX": {
     "ticker": "TRAX",
@@ -1761,14 +1761,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 5,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 10.0
+    "rerate_score": 5.0
   },
   "NFE": {
     "ticker": "NFE",
@@ -1837,14 +1837,14 @@
         }
       ]
     },
-    "catalyst_score": 21,
+    "catalyst_score": 11,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 1673592832,
     "sector": "Healthcare",
-    "rerate_score": 21.0
+    "rerate_score": 11.0
   },
   "HRL": {
     "ticker": "HRL",
@@ -1868,14 +1868,14 @@
         }
       ]
     },
-    "catalyst_score": 12,
+    "catalyst_score": 15,
     "geometry_ratio": 0.38,
     "upside_pct": 0.265,
     "downside_pct": 0.701,
     "floor_source": "book(0.5x)",
     "mcap": 13295608832,
     "sector": "Consumer Defensive",
-    "rerate_score": 12.5
+    "rerate_score": 15.7
   },
   "CYH": {
     "ticker": "CYH",
@@ -1904,14 +1904,14 @@
         }
       ]
     },
-    "catalyst_score": 19,
+    "catalyst_score": 22,
     "geometry_ratio": 3.0,
     "upside_pct": 3.0,
     "downside_pct": 1.0,
     "floor_source": "none",
     "mcap": 425568448,
     "sector": "Healthcare",
-    "rerate_score": 28.5
+    "rerate_score": 33.0
   },
   "CCOI": {
     "ticker": "CCOI",
@@ -1931,14 +1931,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 0.28,
     "upside_pct": 0.256,
     "downside_pct": 0.917,
     "floor_source": "none",
     "mcap": 710602048,
     "sector": "Communication Services",
-    "rerate_score": 7.3
+    "rerate_score": 10.4
   },
   "THRY": {
     "ticker": "THRY",
@@ -1958,14 +1958,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 10.95,
     "upside_pct": 3.0,
     "downside_pct": 0.274,
     "floor_source": "book(0.5x)",
     "mcap": 155224240,
     "sector": "Technology",
-    "rerate_score": 10.5
+    "rerate_score": 15.0
   },
   "ZD": {
     "ticker": "ZD",
@@ -1985,14 +1985,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 0.8,
     "upside_pct": 0.402,
     "downside_pct": 0.504,
     "floor_source": "book(0.5x)",
     "mcap": 1695533440,
     "sector": "Communication Services",
-    "rerate_score": 7.5
+    "rerate_score": 10.7
   },
   "CPAY": {
     "ticker": "CPAY",
@@ -2012,14 +2012,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "ELUT": {
     "ticker": "ELUT",
@@ -2039,14 +2039,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "HAIN": {
     "ticker": "HAIN",
@@ -2075,14 +2075,14 @@
         }
       ]
     },
-    "catalyst_score": 14,
+    "catalyst_score": 17,
     "geometry_ratio": 60.0,
     "upside_pct": 3.0,
     "downside_pct": 0.0,
     "floor_source": "book(0.5x)",
     "mcap": 54684584,
     "sector": "Consumer Defensive",
-    "rerate_score": 21.0
+    "rerate_score": 25.5
   },
   "PLUG": {
     "ticker": "PLUG",
@@ -2102,14 +2102,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "KTB": {
     "ticker": "KTB",
@@ -2129,14 +2129,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 4320640512,
     "sector": "Consumer Cyclical",
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "BOC": {
     "ticker": "BOC",
@@ -2156,14 +2156,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 60.0,
     "upside_pct": 3.0,
     "downside_pct": 0.0,
     "floor_source": "NCAV",
     "mcap": 399513920,
     "sector": "Industrials",
-    "rerate_score": 10.5
+    "rerate_score": 15.0
   },
   "TKR": {
     "ticker": "TKR",
@@ -2183,14 +2183,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 9893238784,
     "sector": "Industrials",
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "SMTC": {
     "ticker": "SMTC",
@@ -2214,14 +2214,14 @@
         }
       ]
     },
-    "catalyst_score": 12,
+    "catalyst_score": 15,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 14739308544,
     "sector": "Technology",
-    "rerate_score": 12.0
+    "rerate_score": 15.0
   },
   "OVV": {
     "ticker": "OVV",
@@ -2241,14 +2241,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 0.32,
     "upside_pct": 0.194,
     "downside_pct": 0.61,
     "floor_source": "book(0.5x)",
     "mcap": 14728184832,
     "sector": "Energy",
-    "rerate_score": 7.2
+    "rerate_score": 10.3
   },
   "OMI": {
     "ticker": "OMI",
@@ -2268,14 +2268,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "CERT": {
     "ticker": "CERT",
@@ -2295,14 +2295,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 10.68,
     "upside_pct": 1.736,
     "downside_pct": 0.162,
     "floor_source": "NCAV",
     "mcap": 861827904,
     "sector": "Healthcare",
-    "rerate_score": 9.0
+    "rerate_score": 12.9
   },
   "EG": {
     "ticker": "EG",
@@ -2322,14 +2322,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 4.53,
     "upside_pct": 1.936,
     "downside_pct": 0.428,
     "floor_source": "book(0.5x)",
     "mcap": 13281416192,
     "sector": "Financial Services",
-    "rerate_score": 9.3
+    "rerate_score": 13.2
   },
   "BRN": {
     "ticker": "BRN",
@@ -2349,14 +2349,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "NNDM": {
     "ticker": "NNDM",
@@ -2376,14 +2376,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "SWK": {
     "ticker": "SWK",
@@ -2403,14 +2403,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 1.71,
     "upside_pct": 1.14,
     "downside_pct": 0.667,
     "floor_source": "book(0.5x)",
     "mcap": 13485770752,
     "sector": "Industrials",
-    "rerate_score": 8.3
+    "rerate_score": 11.9
   },
   "AHCO": {
     "ticker": "AHCO",
@@ -2430,14 +2430,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 7.1,
     "upside_pct": 3.0,
     "downside_pct": 0.423,
     "floor_source": "book(0.5x)",
     "mcap": 1334691200,
     "sector": "Healthcare",
-    "rerate_score": 10.5
+    "rerate_score": 15.0
   },
   "SHAZ": {
     "ticker": "SHAZ",
@@ -2457,14 +2457,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "LPTH": {
     "ticker": "LPTH",
@@ -2484,14 +2484,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 951259520,
     "sector": "Technology",
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "ACA": {
     "ticker": "ACA",
@@ -2511,14 +2511,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 0.33,
     "upside_pct": 0.264,
     "downside_pct": 0.802,
     "floor_source": "book(0.5x)",
     "mcap": 6669250048,
     "sector": "Industrials",
-    "rerate_score": 7.3
+    "rerate_score": 10.4
   },
   "FIP": {
     "ticker": "FIP",
@@ -2538,14 +2538,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "CNDT": {
     "ticker": "CNDT",
@@ -2569,14 +2569,14 @@
         }
       ]
     },
-    "catalyst_score": 12,
+    "catalyst_score": 15,
     "geometry_ratio": 60.0,
     "upside_pct": 3.0,
     "downside_pct": 0.0,
     "floor_source": "net-cash",
     "mcap": 217135536,
     "sector": "Technology",
-    "rerate_score": 18.0
+    "rerate_score": 22.5
   },
   "BIRD": {
     "ticker": "BIRD",
@@ -2609,14 +2609,14 @@
         }
       ]
     },
-    "catalyst_score": 23,
+    "catalyst_score": 21,
     "geometry_ratio": 1.83,
     "upside_pct": 1.367,
     "downside_pct": 0.746,
     "floor_source": "book(0.5x)",
     "mcap": 32230148,
     "sector": "Consumer Cyclical",
-    "rerate_score": 28.2
+    "rerate_score": 25.8
   },
   "DNLI": {
     "ticker": "DNLI",
@@ -2636,14 +2636,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "GFF": {
     "ticker": "GFF",
@@ -2672,14 +2672,14 @@
         }
       ]
     },
-    "catalyst_score": 14,
+    "catalyst_score": 17,
     "geometry_ratio": 0.15,
     "upside_pct": 0.151,
     "downside_pct": 0.989,
     "floor_source": "book(0.5x)",
     "mcap": 4179826176,
     "sector": "Industrials",
-    "rerate_score": 14.4
+    "rerate_score": 17.4
   },
   "SUI": {
     "ticker": "SUI",
@@ -2699,14 +2699,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 15146391552,
     "sector": "Real Estate",
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "OSS": {
     "ticker": "OSS",
@@ -2726,14 +2726,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "VISN": {
     "ticker": "VISN",
@@ -2753,14 +2753,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 24.78,
     "upside_pct": 3.0,
     "downside_pct": 0.121,
     "floor_source": "net-cash",
     "mcap": 2855711488,
     "sector": "Technology",
-    "rerate_score": 10.5
+    "rerate_score": 15.0
   },
   "WULF": {
     "ticker": "WULF",
@@ -2780,14 +2780,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 14360536064,
     "sector": "Financial Services",
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "SRI": {
     "ticker": "SRI",
@@ -2807,14 +2807,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 2.7,
     "upside_pct": 1.559,
     "downside_pct": 0.578,
     "floor_source": "book(0.5x)",
     "mcap": 214587856,
     "sector": "Consumer Cyclical",
-    "rerate_score": 8.8
+    "rerate_score": 12.6
   },
   "CBSTF": {
     "ticker": "CBSTF",
@@ -2834,14 +2834,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "ES": {
     "ticker": "ES",
@@ -2861,14 +2861,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 0.58,
     "upside_pct": 0.394,
     "downside_pct": 0.684,
     "floor_source": "book(0.5x)",
     "mcap": 26171408384,
     "sector": "Utilities",
-    "rerate_score": 7.5
+    "rerate_score": 10.7
   },
   "DNOW": {
     "ticker": "DNOW",
@@ -2888,14 +2888,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 3.0,
     "upside_pct": 1.702,
     "downside_pct": 0.567,
     "floor_source": "book(0.5x)",
     "mcap": 2464370688,
     "sector": "Industrials",
-    "rerate_score": 9.0
+    "rerate_score": 12.8
   },
   "GIS": {
     "ticker": "GIS",
@@ -2915,14 +2915,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 17835624448,
     "sector": "Consumer Defensive",
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "ARI": {
     "ticker": "ARI",
@@ -2951,14 +2951,14 @@
         }
       ]
     },
-    "catalyst_score": 16,
+    "catalyst_score": 19,
     "geometry_ratio": 1.95,
     "upside_pct": 0.762,
     "downside_pct": 0.392,
     "floor_source": "book(0.5x)",
     "mcap": 1426015616,
     "sector": "Real Estate",
-    "rerate_score": 18.0
+    "rerate_score": 21.4
   },
   "ANY": {
     "ticker": "ANY",
@@ -2978,14 +2978,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "JAZZ": {
     "ticker": "JAZZ",
@@ -3005,14 +3005,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "CMTL": {
     "ticker": "CMTL",
@@ -3041,14 +3041,14 @@
         }
       ]
     },
-    "catalyst_score": 14,
+    "catalyst_score": 17,
     "geometry_ratio": 11.53,
     "upside_pct": 3.0,
     "downside_pct": 0.26,
     "floor_source": "book(0.5x)",
     "mcap": 71907440,
     "sector": "Technology",
-    "rerate_score": 21.0
+    "rerate_score": 25.5
   },
   "INVE": {
     "ticker": "INVE",
@@ -3068,14 +3068,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "CMCO": {
     "ticker": "CMCO",
@@ -3104,14 +3104,14 @@
         }
       ]
     },
-    "catalyst_score": 17,
+    "catalyst_score": 15,
     "geometry_ratio": 7.11,
     "upside_pct": 1.5,
     "downside_pct": 0.211,
     "floor_source": "NCAV",
     "mcap": 423482016,
     "sector": "Industrials",
-    "rerate_score": 21.2
+    "rerate_score": 18.8
   },
   "UCB": {
     "ticker": "UCB",
@@ -3131,14 +3131,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 0.44,
     "upside_pct": 0.235,
     "downside_pct": 0.535,
     "floor_source": "book(0.5x)",
     "mcap": 3934096384,
     "sector": "Financial Services",
-    "rerate_score": 7.3
+    "rerate_score": 10.4
   },
   "UGI": {
     "ticker": "UGI",
@@ -3171,14 +3171,14 @@
         }
       ]
     },
-    "catalyst_score": 24,
+    "catalyst_score": 27,
     "geometry_ratio": 2.09,
     "upside_pct": 1.22,
     "downside_pct": 0.583,
     "floor_source": "NCAV",
     "mcap": 7248651776,
     "sector": "Utilities",
-    "rerate_score": 28.9
+    "rerate_score": 32.5
   },
   "CLVT": {
     "ticker": "CLVT",
@@ -3198,14 +3198,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 60.0,
     "upside_pct": 3.0,
     "downside_pct": 0.0,
     "floor_source": "book(0.5x)",
     "mcap": 1304001664,
     "sector": "Technology",
-    "rerate_score": 10.5
+    "rerate_score": 15.0
   },
   "INTG": {
     "ticker": "INTG",
@@ -3225,14 +3225,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 70158712,
     "sector": "Consumer Cyclical",
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "BGS": {
     "ticker": "BGS",
@@ -3252,14 +3252,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 7.77,
     "upside_pct": 2.808,
     "downside_pct": 0.361,
     "floor_source": "book(0.5x)",
     "mcap": 315739648,
     "sector": "Consumer Defensive",
-    "rerate_score": 10.3
+    "rerate_score": 14.7
   },
   "XTNT": {
     "ticker": "XTNT",
@@ -3279,14 +3279,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "ELME": {
     "ticker": "ELME",
@@ -3306,14 +3306,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "AUMN": {
     "ticker": "AUMN",
@@ -3333,14 +3333,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "KRC": {
     "ticker": "KRC",
@@ -3360,14 +3360,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 1.17,
     "upside_pct": 0.48,
     "downside_pct": 0.41,
     "floor_source": "book(0.5x)",
     "mcap": 4505112576,
     "sector": "Real Estate",
-    "rerate_score": 7.6
+    "rerate_score": 10.8
   },
   "AZZ": {
     "ticker": "AZZ",
@@ -3387,14 +3387,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 4718011904,
     "sector": "Industrials",
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "TIPT": {
     "ticker": "TIPT",
@@ -3423,14 +3423,14 @@
         }
       ]
     },
-    "catalyst_score": 18,
+    "catalyst_score": 21,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 657100608,
     "sector": "Financial Services",
-    "rerate_score": 18.0
+    "rerate_score": 21.0
   },
   "NHI": {
     "ticker": "NHI",
@@ -3450,14 +3450,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 3432721920,
     "sector": "Real Estate",
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "LAB": {
     "ticker": "LAB",
@@ -3481,14 +3481,14 @@
         }
       ]
     },
-    "catalyst_score": 12,
+    "catalyst_score": 15,
     "geometry_ratio": 42.33,
     "upside_pct": 2.117,
     "downside_pct": 0.0,
     "floor_source": "NCAV",
     "mcap": 324796768,
     "sector": "Healthcare",
-    "rerate_score": 16.2
+    "rerate_score": 20.3
   },
   "KOS": {
     "ticker": "KOS",
@@ -3526,14 +3526,14 @@
         }
       ]
     },
-    "catalyst_score": 26,
+    "catalyst_score": 24,
     "geometry_ratio": 0.81,
     "upside_pct": 0.664,
     "downside_pct": 0.823,
     "floor_source": "book(0.5x)",
     "mcap": 1453313664,
     "sector": "Energy",
-    "rerate_score": 28.9
+    "rerate_score": 26.7
   },
   "LPG": {
     "ticker": "LPG",
@@ -3553,14 +3553,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 0.24,
     "upside_pct": 0.143,
     "downside_pct": 0.593,
     "floor_source": "NCAV",
     "mcap": 1692482816,
     "sector": "Energy",
-    "rerate_score": 7.2
+    "rerate_score": 10.2
   },
   "BDN": {
     "ticker": "BDN",
@@ -3580,14 +3580,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 6.5,
     "upside_pct": 2.055,
     "downside_pct": 0.316,
     "floor_source": "book(0.5x)",
     "mcap": 536769568,
     "sector": "Real Estate",
-    "rerate_score": 9.4
+    "rerate_score": 13.4
   },
   "CVV": {
     "ticker": "CVV",
@@ -3607,14 +3607,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "FLR": {
     "ticker": "FLR",
@@ -3634,14 +3634,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 2.81,
     "upside_pct": 1.903,
     "downside_pct": 0.677,
     "floor_source": "book(0.5x)",
     "mcap": 6542137344,
     "sector": "Industrials",
-    "rerate_score": 9.2
+    "rerate_score": 13.2
   },
   "ESOA": {
     "ticker": "ESOA",
@@ -3661,14 +3661,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "BLND": {
     "ticker": "BLND",
@@ -3688,14 +3688,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 399492480,
     "sector": "Technology",
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "SEG": {
     "ticker": "SEG",
@@ -3715,14 +3715,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "WTRG": {
     "ticker": "WTRG",
@@ -3742,14 +3742,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 0.41,
     "upside_pct": 0.271,
     "downside_pct": 0.669,
     "floor_source": "book(0.5x)",
     "mcap": 10409330688,
     "sector": "Utilities",
-    "rerate_score": 7.3
+    "rerate_score": 10.5
   },
   "FUN": {
     "ticker": "FUN",
@@ -3773,14 +3773,14 @@
         }
       ]
     },
-    "catalyst_score": 12,
+    "catalyst_score": 15,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 2548966400,
     "sector": "Consumer Cyclical",
-    "rerate_score": 12.0
+    "rerate_score": 15.0
   },
   "SMG": {
     "ticker": "SMG",
@@ -3800,14 +3800,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 0.56,
     "upside_pct": 0.557,
     "downside_pct": 1.0,
     "floor_source": "none",
     "mcap": 3763789568,
     "sector": "Basic Materials",
-    "rerate_score": 7.6
+    "rerate_score": 10.9
   },
   "TOON": {
     "ticker": "TOON",
@@ -3831,14 +3831,14 @@
         }
       ]
     },
-    "catalyst_score": 12,
+    "catalyst_score": 15,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 12.0
+    "rerate_score": 15.0
   },
   "TEX": {
     "ticker": "TEX",
@@ -3858,14 +3858,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 1.11,
     "upside_pct": 0.756,
     "downside_pct": 0.682,
     "floor_source": "book(0.5x)",
     "mcap": 7631951360,
     "sector": "Industrials",
-    "rerate_score": 7.9
+    "rerate_score": 11.3
   },
   "BOF": {
     "ticker": "BOF",
@@ -3885,14 +3885,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "MATW": {
     "ticker": "MATW",
@@ -3912,14 +3912,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 2.03,
     "upside_pct": 1.399,
     "downside_pct": 0.689,
     "floor_source": "book(0.5x)",
     "mcap": 822496256,
     "sector": "Industrials",
-    "rerate_score": 8.6
+    "rerate_score": 12.3
   },
   "MIAX": {
     "ticker": "MIAX",
@@ -3939,14 +3939,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 0.24,
     "upside_pct": 0.211,
     "downside_pct": 0.861,
     "floor_source": "book(0.5x)",
     "mcap": 3871260160,
     "sector": "Financial Services",
-    "rerate_score": 7.2
+    "rerate_score": 10.4
   },
   "VASO": {
     "ticker": "VASO",
@@ -3966,14 +3966,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "ROCK": {
     "ticker": "ROCK",
@@ -4002,14 +4002,14 @@
         }
       ]
     },
-    "catalyst_score": 17,
+    "catalyst_score": 15,
     "geometry_ratio": 1.79,
     "upside_pct": 1.139,
     "downside_pct": 0.637,
     "floor_source": "book(0.5x)",
     "mcap": 1213172608,
     "sector": "Industrials",
-    "rerate_score": 20.2
+    "rerate_score": 17.8
   },
   "JACK": {
     "ticker": "JACK",
@@ -4029,14 +4029,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "CPRI": {
     "ticker": "CPRI",
@@ -4056,14 +4056,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 0.12,
     "upside_pct": 0.122,
     "downside_pct": 0.983,
     "floor_source": "book(0.5x)",
     "mcap": 2332656896,
     "sector": "Consumer Cyclical",
-    "rerate_score": 7.1
+    "rerate_score": 10.2
   },
   "MSS": {
     "ticker": "MSS",
@@ -4083,14 +4083,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "CDNA": {
     "ticker": "CDNA",
@@ -4110,14 +4110,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 0.2,
     "upside_pct": 0.172,
     "downside_pct": 0.873,
     "floor_source": "book(0.5x)",
     "mcap": 1352445184,
     "sector": "Healthcare",
-    "rerate_score": 7.2
+    "rerate_score": 10.3
   },
   "CRL": {
     "ticker": "CRL",
@@ -4137,14 +4137,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 0.88,
     "upside_pct": 0.735,
     "downside_pct": 0.835,
     "floor_source": "book(0.5x)",
     "mcap": 8911029248,
     "sector": "Healthcare",
-    "rerate_score": 7.9
+    "rerate_score": 11.2
   },
   "RVTY": {
     "ticker": "RVTY",
@@ -4164,14 +4164,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 1.38,
     "upside_pct": 0.935,
     "downside_pct": 0.678,
     "floor_source": "book(0.5x)",
     "mcap": 11159334912,
     "sector": "Healthcare",
-    "rerate_score": 8.1
+    "rerate_score": 11.6
   },
   "OTEX": {
     "ticker": "OTEX",
@@ -4191,14 +4191,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "BATL": {
     "ticker": "BATL",
@@ -4218,14 +4218,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 3.0,
     "upside_pct": 3.0,
     "downside_pct": 1.0,
     "floor_source": "none",
     "mcap": 26422618,
     "sector": "Energy",
-    "rerate_score": 10.5
+    "rerate_score": 15.0
   },
   "PENG": {
     "ticker": "PENG",
@@ -4245,14 +4245,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 0.23,
     "upside_pct": 0.219,
     "downside_pct": 0.943,
     "floor_source": "book(0.5x)",
     "mcap": 3529414656,
     "sector": "Technology",
-    "rerate_score": 7.3
+    "rerate_score": 10.4
   },
   "EGY": {
     "ticker": "EGY",
@@ -4281,14 +4281,14 @@
         }
       ]
     },
-    "catalyst_score": 14,
+    "catalyst_score": 17,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 597127808,
     "sector": "Energy",
-    "rerate_score": 14.0
+    "rerate_score": 17.0
   },
   "HCAT": {
     "ticker": "HCAT",
@@ -4308,14 +4308,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 6.08,
     "upside_pct": 3.0,
     "downside_pct": 0.494,
     "floor_source": "book(0.5x)",
     "mcap": 136703936,
     "sector": "Healthcare",
-    "rerate_score": 10.5
+    "rerate_score": 15.0
   },
   "XWEL": {
     "ticker": "XWEL",
@@ -4335,14 +4335,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 3.0,
     "upside_pct": 3.0,
     "downside_pct": 1.0,
     "floor_source": "none",
     "mcap": 10048677,
     "sector": "Healthcare",
-    "rerate_score": 10.5
+    "rerate_score": 15.0
   },
   "CEG": {
     "ticker": "CEG",
@@ -4362,14 +4362,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 97867374592,
     "sector": "Utilities",
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "PCRX": {
     "ticker": "PCRX",
@@ -4389,14 +4389,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 2.75,
     "upside_pct": 1.726,
     "downside_pct": 0.628,
     "floor_source": "book(0.5x)",
     "mcap": 878639168,
     "sector": "Healthcare",
-    "rerate_score": 9.0
+    "rerate_score": 12.9
   },
   "HUM": {
     "ticker": "HUM",
@@ -4416,14 +4416,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 3.82,
     "upside_pct": 3.0,
     "downside_pct": 0.785,
     "floor_source": "book(0.5x)",
     "mcap": 43300179968,
     "sector": "Healthcare",
-    "rerate_score": 10.5
+    "rerate_score": 15.0
   },
   "CNC": {
     "ticker": "CNC",
@@ -4443,14 +4443,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 4.66,
     "upside_pct": 3.0,
     "downside_pct": 0.644,
     "floor_source": "book(0.5x)",
     "mcap": 30131492864,
     "sector": "Healthcare",
-    "rerate_score": 10.5
+    "rerate_score": 15.0
   },
   "IT": {
     "ticker": "IT",
@@ -4470,14 +4470,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 1.0,
     "upside_pct": 0.992,
     "downside_pct": 0.997,
     "floor_source": "book(0.5x)",
     "mcap": 10371517440,
     "sector": "Technology",
-    "rerate_score": 8.2
+    "rerate_score": 11.7
   },
   "VNT": {
     "ticker": "VNT",
@@ -4497,14 +4497,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 0.93,
     "upside_pct": 0.791,
     "downside_pct": 0.854,
     "floor_source": "book(0.5x)",
     "mcap": 4211328000,
     "sector": "Technology",
-    "rerate_score": 7.9
+    "rerate_score": 11.3
   },
   "ADMA": {
     "ticker": "ADMA",
@@ -4524,14 +4524,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "WY": {
     "ticker": "WY",
@@ -4551,14 +4551,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 1.35,
     "upside_pct": 0.984,
     "downside_pct": 0.731,
     "floor_source": "book(0.5x)",
     "mcap": 17535756288,
     "sector": "Real Estate",
-    "rerate_score": 8.1
+    "rerate_score": 11.6
   },
   "WELL": {
     "ticker": "WELL",
@@ -4578,14 +4578,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 145877204992,
     "sector": "Real Estate",
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "VSAT": {
     "ticker": "VSAT",
@@ -4605,14 +4605,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 0.65,
     "upside_pct": 0.481,
     "downside_pct": 0.738,
     "floor_source": "book(0.5x)",
     "mcap": 8758166528,
     "sector": "Technology",
-    "rerate_score": 7.6
+    "rerate_score": 10.8
   },
   "CODQL": {
     "ticker": "CODQL",
@@ -4632,14 +4632,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "GTE": {
     "ticker": "GTE",
@@ -4668,14 +4668,14 @@
         }
       ]
     },
-    "catalyst_score": 19,
+    "catalyst_score": 22,
     "geometry_ratio": 3.79,
     "upside_pct": 3.0,
     "downside_pct": 0.791,
     "floor_source": "book(0.5x)",
     "mcap": 260602368,
     "sector": "Energy",
-    "rerate_score": 28.5
+    "rerate_score": 33.0
   },
   "IFF": {
     "ticker": "IFF",
@@ -4699,14 +4699,14 @@
         }
       ]
     },
-    "catalyst_score": 12,
+    "catalyst_score": 15,
     "geometry_ratio": 1.14,
     "upside_pct": 0.642,
     "downside_pct": 0.561,
     "floor_source": "NCAV",
     "mcap": 19586883584,
     "sector": "Basic Materials",
-    "rerate_score": 13.3
+    "rerate_score": 16.6
   },
   "DEC": {
     "ticker": "DEC",
@@ -4753,14 +4753,14 @@
         }
       ]
     },
-    "catalyst_score": 34,
+    "catalyst_score": 29,
     "geometry_ratio": 2.28,
     "upside_pct": 1.39,
     "downside_pct": 0.61,
     "floor_source": "book(0.5x)",
     "mcap": 940205120,
     "sector": "Energy",
-    "rerate_score": 41.9
+    "rerate_score": 35.7
   },
   "PRGO": {
     "ticker": "PRGO",
@@ -4780,14 +4780,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 25.56,
     "upside_pct": 3.0,
     "downside_pct": 0.117,
     "floor_source": "book(0.5x)",
     "mcap": 1418269696,
     "sector": "Healthcare",
-    "rerate_score": 10.5
+    "rerate_score": 15.0
   },
   "BKR": {
     "ticker": "BKR",
@@ -4807,14 +4807,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 57946730496,
     "sector": "Energy",
-    "rerate_score": 7.0
+    "rerate_score": 10.0
   },
   "LDOS": {
     "ticker": "LDOS",
@@ -4834,14 +4834,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 10,
     "geometry_ratio": 2.27,
     "upside_pct": 1.844,
     "downside_pct": 0.814,
     "floor_source": "book(0.5x)",
     "mcap": 13474139136,
     "sector": "Technology",
-    "rerate_score": 9.2
+    "rerate_score": 13.1
   },
   "FWDI": {
     "ticker": "FWDI",
@@ -5274,14 +5274,14 @@
         }
       ]
     },
-    "catalyst_score": 23,
+    "catalyst_score": 18,
     "geometry_ratio": 60.0,
     "upside_pct": 3.0,
     "downside_pct": 0.0,
     "floor_source": "book(0.5x)",
     "mcap": 10514086,
     "sector": "Technology",
-    "rerate_score": 34.5
+    "rerate_score": 27.0
   },
   "NIMU": {
     "ticker": "NIMU",
@@ -5913,14 +5913,14 @@
         }
       ]
     },
-    "catalyst_score": 17,
+    "catalyst_score": 12,
     "geometry_ratio": 0.93,
     "upside_pct": 0.593,
     "downside_pct": 0.638,
     "floor_source": "book(0.5x)",
     "mcap": 1168384512,
     "sector": "Healthcare",
-    "rerate_score": 18.7
+    "rerate_score": 13.2
   },
   "ALOT": {
     "ticker": "ALOT",
@@ -6138,14 +6138,14 @@
         }
       ]
     },
-    "catalyst_score": 18,
+    "catalyst_score": 13,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 1272247168,
     "sector": "Healthcare",
-    "rerate_score": 18.0
+    "rerate_score": 13.0
   },
   "CCRN": {
     "ticker": "CCRN",
@@ -6255,14 +6255,14 @@
         }
       ]
     },
-    "catalyst_score": 16,
+    "catalyst_score": 15,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 3081003008,
     "sector": "Financial Services",
-    "rerate_score": 16.0
+    "rerate_score": 15.0
   },
   "CCO": {
     "ticker": "CCO",
@@ -6696,14 +6696,14 @@
         }
       ]
     },
-    "catalyst_score": 16,
+    "catalyst_score": 15,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 41891672064,
     "sector": "Consumer Cyclical",
-    "rerate_score": 16.0
+    "rerate_score": 15.0
   },
   "ASRT": {
     "ticker": "ASRT",
@@ -7132,14 +7132,14 @@
         }
       ]
     },
-    "catalyst_score": 20,
+    "catalyst_score": 13,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 20.0
+    "rerate_score": 13.0
   },
   "AMS": {
     "ticker": "AMS",
@@ -7441,14 +7441,14 @@
         }
       ]
     },
-    "catalyst_score": 18,
+    "catalyst_score": 11,
     "geometry_ratio": 0.4,
     "upside_pct": 0.329,
     "downside_pct": 0.815,
     "floor_source": "book(0.5x)",
     "mcap": 14192227,
     "sector": "Consumer Defensive",
-    "rerate_score": 19.0
+    "rerate_score": 11.6
   },
   "PKOH": {
     "ticker": "PKOH",
@@ -8530,14 +8530,14 @@
         }
       ]
     },
-    "catalyst_score": 16,
+    "catalyst_score": 11,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 16.0
+    "rerate_score": 11.0
   },
   "ALMS": {
     "ticker": "ALMS",
@@ -8674,14 +8674,14 @@
         }
       ]
     },
-    "catalyst_score": 19,
+    "catalyst_score": 12,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 19.0
+    "rerate_score": 12.0
   },
   "CMLS": {
     "ticker": "CMLS",
@@ -8710,14 +8710,14 @@
         }
       ]
     },
-    "catalyst_score": 19,
+    "catalyst_score": 12,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 19.0
+    "rerate_score": 12.0
   },
   "NDLS": {
     "ticker": "NDLS",
@@ -8795,14 +8795,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 3,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 10.0
+    "rerate_score": 3.0
   },
   "RMR": {
     "ticker": "RMR",
@@ -8822,14 +8822,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 3,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 10.0
+    "rerate_score": 3.0
   },
   "NINE": {
     "ticker": "NINE",
@@ -8849,14 +8849,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 3,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 10.0
+    "rerate_score": 3.0
   },
   "CP": {
     "ticker": "CP",
@@ -8876,14 +8876,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 3,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 10.0
+    "rerate_score": 3.0
   },
   "MODVQ": {
     "ticker": "MODVQ",
@@ -8903,14 +8903,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 3,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 10.0
+    "rerate_score": 3.0
   },
   "WOLF": {
     "ticker": "WOLF",
@@ -8930,14 +8930,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 3,
     "geometry_ratio": 0.87,
     "upside_pct": 0.699,
     "downside_pct": 0.8,
     "floor_source": "book(0.5x)",
     "mcap": 2983718144,
     "sector": "Technology",
-    "rerate_score": 11.2
+    "rerate_score": 3.3
   },
   "GOCO": {
     "ticker": "GOCO",
@@ -8957,14 +8957,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 3,
     "geometry_ratio": 1.91,
     "upside_pct": 1.5,
     "downside_pct": 0.785,
     "floor_source": "book(0.5x)",
     "mcap": 8937260,
     "sector": "Financial Services",
-    "rerate_score": 12.5
+    "rerate_score": 3.8
   },
   "TSEOF": {
     "ticker": "TSEOF",
@@ -8984,14 +8984,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 3,
     "geometry_ratio": 1.5,
     "upside_pct": 1.5,
     "downside_pct": 1.0,
     "floor_source": "none",
     "mcap": 475278,
     "sector": "Basic Materials",
-    "rerate_score": 12.5
+    "rerate_score": 3.8
   },
   "OPI": {
     "ticker": "OPI",
@@ -9011,14 +9011,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 3,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 10.0
+    "rerate_score": 3.0
   },
   "CGEH": {
     "ticker": "CGEH",
@@ -9038,14 +9038,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 3,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 345220800,
     "sector": "Industrials",
-    "rerate_score": 10.0
+    "rerate_score": 3.0
   },
   "CPPTL": {
     "ticker": "CPPTL",
@@ -9065,14 +9065,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 3,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 10.0
+    "rerate_score": 3.0
   },
   "FLYYQ": {
     "ticker": "FLYYQ",
@@ -9092,14 +9092,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 3,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 10.0
+    "rerate_score": 3.0
   },
   "NOTV": {
     "ticker": "NOTV",
@@ -9119,14 +9119,14 @@
         }
       ]
     },
-    "catalyst_score": 10,
+    "catalyst_score": 3,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 10.0
+    "rerate_score": 3.0
   },
   "EWCZ": {
     "ticker": "EWCZ",
@@ -9146,14 +9146,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "DSGR": {
     "ticker": "DSGR",
@@ -9173,14 +9173,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": 1.62,
     "upside_pct": 1.224,
     "downside_pct": 0.755,
     "floor_source": "book(0.5x)",
     "mcap": 1321643648,
     "sector": "Industrials",
-    "rerate_score": 10.8
+    "rerate_score": 2.4
   },
   "MCW": {
     "ticker": "MCW",
@@ -9209,14 +9209,14 @@
         }
       ]
     },
-    "catalyst_score": 19,
+    "catalyst_score": 7,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 19.0
+    "rerate_score": 7.0
   },
   "HOLX": {
     "ticker": "HOLX",
@@ -9236,14 +9236,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "KPLT": {
     "ticker": "KPLT",
@@ -9263,14 +9263,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": 11.79,
     "upside_pct": 3.0,
     "downside_pct": 0.254,
     "floor_source": "net-cash",
     "mcap": 29972214,
     "sector": "Technology",
-    "rerate_score": 13.5
+    "rerate_score": 3.0
   },
   "ANEB": {
     "ticker": "ANEB",
@@ -9299,14 +9299,14 @@
         }
       ]
     },
-    "catalyst_score": 21,
+    "catalyst_score": 14,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 21.0
+    "rerate_score": 14.0
   },
   "DCGO": {
     "ticker": "DCGO",
@@ -9326,14 +9326,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": 60.0,
     "upside_pct": 3.0,
     "downside_pct": 0.0,
     "floor_source": "book(0.5x)",
     "mcap": 57251968,
     "sector": "Healthcare",
-    "rerate_score": 13.5
+    "rerate_score": 3.0
   },
   "APTOF": {
     "ticker": "APTOF",
@@ -9353,14 +9353,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "AMCX": {
     "ticker": "AMCX",
@@ -9380,14 +9380,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": 60.0,
     "upside_pct": 3.0,
     "downside_pct": 0.0,
     "floor_source": "book(0.5x)",
     "mcap": 411163360,
     "sector": "Communication Services",
-    "rerate_score": 13.5
+    "rerate_score": 3.0
   },
   "GDC": {
     "ticker": "GDC",
@@ -9416,14 +9416,14 @@
         }
       ]
     },
-    "catalyst_score": 18,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 18.0
+    "rerate_score": 10.0
   },
   "GRNQ": {
     "ticker": "GRNQ",
@@ -9443,14 +9443,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "FONR": {
     "ticker": "FONR",
@@ -9470,14 +9470,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "SSP": {
     "ticker": "SSP",
@@ -9497,14 +9497,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "UTZ": {
     "ticker": "UTZ",
@@ -9533,14 +9533,14 @@
         }
       ]
     },
-    "catalyst_score": 18,
+    "catalyst_score": 10,
     "geometry_ratio": 23.93,
     "upside_pct": 1.197,
     "downside_pct": 0.0,
     "floor_source": "NCAV",
     "mcap": 624186304,
     "sector": "Consumer Defensive",
-    "rerate_score": 21.6
+    "rerate_score": 12.0
   },
   "GRND": {
     "ticker": "GRND",
@@ -9560,14 +9560,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 2372642048,
     "sector": "Technology",
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "PK": {
     "ticker": "PK",
@@ -9587,14 +9587,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": 4.02,
     "upside_pct": 1.923,
     "downside_pct": 0.479,
     "floor_source": "book(0.5x)",
     "mcap": 2964046336,
     "sector": "Real Estate",
-    "rerate_score": 11.9
+    "rerate_score": 2.6
   },
   "ONAR": {
     "ticker": "ONAR",
@@ -9623,14 +9623,14 @@
         }
       ]
     },
-    "catalyst_score": 18,
+    "catalyst_score": 11,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 18.0
+    "rerate_score": 11.0
   },
   "KSS": {
     "ticker": "KSS",
@@ -9650,14 +9650,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": 60.0,
     "upside_pct": 3.0,
     "downside_pct": 0.0,
     "floor_source": "book(0.5x)",
     "mcap": 1956149888,
     "sector": "Consumer Cyclical",
-    "rerate_score": 13.5
+    "rerate_score": 3.0
   },
   "VTAK": {
     "ticker": "VTAK",
@@ -9677,14 +9677,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "RENX": {
     "ticker": "RENX",
@@ -9704,14 +9704,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "BFAM": {
     "ticker": "BFAM",
@@ -9740,14 +9740,14 @@
         }
       ]
     },
-    "catalyst_score": 18,
+    "catalyst_score": 11,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 3383661312,
     "sector": "Consumer Cyclical",
-    "rerate_score": 18.0
+    "rerate_score": 11.0
   },
   "OLN": {
     "ticker": "OLN",
@@ -9776,14 +9776,14 @@
         }
       ]
     },
-    "catalyst_score": 20,
+    "catalyst_score": 8,
     "geometry_ratio": 3.13,
     "upside_pct": 2.049,
     "downside_pct": 0.654,
     "floor_source": "book(0.5x)",
     "mcap": 2508662016,
     "sector": "Basic Materials",
-    "rerate_score": 26.8
+    "rerate_score": 10.7
   },
   "GCGR": {
     "ticker": "GCGR",
@@ -9803,14 +9803,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "CXII": {
     "ticker": "CXII",
@@ -9830,14 +9830,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "XIII": {
     "ticker": "XIII",
@@ -9857,14 +9857,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "IEAG": {
     "ticker": "IEAG",
@@ -9884,14 +9884,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "CCXI": {
     "ticker": "CCXI",
@@ -9911,14 +9911,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "SER": {
     "ticker": "SER",
@@ -9938,14 +9938,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "RACC": {
     "ticker": "RACC",
@@ -9974,14 +9974,14 @@
         }
       ]
     },
-    "catalyst_score": 20,
+    "catalyst_score": 8,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 20.0
+    "rerate_score": 8.0
   },
   "ACAA": {
     "ticker": "ACAA",
@@ -10001,14 +10001,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "CATL": {
     "ticker": "CATL",
@@ -10028,14 +10028,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "HLXC": {
     "ticker": "HLXC",
@@ -10055,14 +10055,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "AMAN": {
     "ticker": "AMAN",
@@ -10082,14 +10082,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "FVAV": {
     "ticker": "FVAV",
@@ -10109,14 +10109,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "PNAQ": {
     "ticker": "PNAQ",
@@ -10136,14 +10136,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "RACD": {
     "ticker": "RACD",
@@ -10163,14 +10163,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "MSGE": {
     "ticker": "MSGE",
@@ -10190,14 +10190,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 3473623296,
     "sector": "Communication Services",
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "MSGS": {
     "ticker": "MSGS",
@@ -10217,14 +10217,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 9153014784,
     "sector": "Communication Services",
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "CRWD": {
     "ticker": "CRWD",
@@ -10244,14 +10244,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 174341259264,
     "sector": "Technology",
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "SMTK": {
     "ticker": "SMTK",
@@ -10280,14 +10280,14 @@
         }
       ]
     },
-    "catalyst_score": 20,
+    "catalyst_score": 8,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 20.0
+    "rerate_score": 8.0
   },
   "FTK": {
     "ticker": "FTK",
@@ -10307,14 +10307,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 877123136,
     "sector": "Energy",
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "ONCO": {
     "ticker": "ONCO",
@@ -10334,14 +10334,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "SRXH": {
     "ticker": "SRXH",
@@ -10370,14 +10370,14 @@
         }
       ]
     },
-    "catalyst_score": 18,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 18.0
+    "rerate_score": 10.0
   },
   "TRUG": {
     "ticker": "TRUG",
@@ -10397,14 +10397,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "LTGR": {
     "ticker": "LTGR",
@@ -10424,14 +10424,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "IDAC": {
     "ticker": "IDAC",
@@ -10451,14 +10451,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "APUR": {
     "ticker": "APUR",
@@ -10478,14 +10478,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "CCCT": {
     "ticker": "CCCT",
@@ -10505,14 +10505,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "AACI": {
     "ticker": "AACI",
@@ -10532,14 +10532,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "JAB": {
     "ticker": "JAB",
@@ -10559,14 +10559,14 @@
         }
       ]
     },
-    "catalyst_score": 9,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 9.0
+    "rerate_score": 2.0
   },
   "ZDGE": {
     "ticker": "ZDGE",
@@ -10586,14 +10586,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "IMMR": {
     "ticker": "IMMR",
@@ -10613,14 +10613,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": 4.53,
     "upside_pct": 1.5,
     "downside_pct": 0.331,
     "floor_source": "book(0.5x)",
     "mcap": 221111008,
     "sector": "Technology",
-    "rerate_score": 7.5
+    "rerate_score": 2.5
   },
   "VC": {
     "ticker": "VC",
@@ -10649,14 +10649,14 @@
         }
       ]
     },
-    "catalyst_score": 15,
+    "catalyst_score": 10,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 3038046464,
     "sector": "Consumer Cyclical",
-    "rerate_score": 15.0
+    "rerate_score": 10.0
   },
   "BCSF": {
     "ticker": "BCSF",
@@ -10676,14 +10676,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "SND": {
     "ticker": "SND",
@@ -10703,14 +10703,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": 4.19,
     "upside_pct": 1.588,
     "downside_pct": 0.379,
     "floor_source": "NCAV",
     "mcap": 205901408,
     "sector": "Energy",
-    "rerate_score": 7.6
+    "rerate_score": 2.5
   },
   "HG": {
     "ticker": "HG",
@@ -10730,14 +10730,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": 2.01,
     "upside_pct": 1.129,
     "downside_pct": 0.563,
     "floor_source": "book(0.5x)",
     "mcap": 3114653184,
     "sector": "Financial Services",
-    "rerate_score": 7.1
+    "rerate_score": 2.4
   },
   "CFFN": {
     "ticker": "CFFN",
@@ -10757,14 +10757,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": 0.36,
     "upside_pct": 0.175,
     "downside_pct": 0.492,
     "floor_source": "book(0.5x)",
     "mcap": 1005093184,
     "sector": "Financial Services",
-    "rerate_score": 6.2
+    "rerate_score": 2.1
   },
   "CHRS": {
     "ticker": "CHRS",
@@ -10784,14 +10784,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 215949856,
     "sector": "Healthcare",
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "JBSS": {
     "ticker": "JBSS",
@@ -10811,14 +10811,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 912254464,
     "sector": "Consumer Defensive",
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "RRR": {
     "ticker": "RRR",
@@ -10838,14 +10838,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "L": {
     "ticker": "L",
@@ -10865,14 +10865,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": 1.67,
     "upside_pct": 0.961,
     "downside_pct": 0.576,
     "floor_source": "book(0.5x)",
     "mcap": 22074886144,
     "sector": "Financial Services",
-    "rerate_score": 7.0
+    "rerate_score": 2.3
   },
   "KRG": {
     "ticker": "KRG",
@@ -10892,14 +10892,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 5802939392,
     "sector": "Real Estate",
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "WETH": {
     "ticker": "WETH",
@@ -10919,14 +10919,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "TASK": {
     "ticker": "TASK",
@@ -10946,14 +10946,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": 4.32,
     "upside_pct": 3.0,
     "downside_pct": 0.694,
     "floor_source": "book(0.5x)",
     "mcap": 449648992,
     "sector": "Technology",
-    "rerate_score": 9.0
+    "rerate_score": 3.0
   },
   "AREC": {
     "ticker": "AREC",
@@ -10973,14 +10973,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "AII": {
     "ticker": "AII",
@@ -11000,14 +11000,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": 2.39,
     "upside_pct": 1.173,
     "downside_pct": 0.49,
     "floor_source": "book(0.5x)",
     "mcap": 329321600,
     "sector": "Financial Services",
-    "rerate_score": 7.2
+    "rerate_score": 2.4
   },
   "ACNB": {
     "ticker": "ACNB",
@@ -11027,14 +11027,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "ARHS": {
     "ticker": "ARHS",
@@ -11054,14 +11054,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": 0.27,
     "upside_pct": 0.218,
     "downside_pct": 0.803,
     "floor_source": "book(0.5x)",
     "mcap": 948318400,
     "sector": "Consumer Cyclical",
-    "rerate_score": 6.2
+    "rerate_score": 2.1
   },
   "COHN": {
     "ticker": "COHN",
@@ -11081,14 +11081,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": 60.0,
     "upside_pct": 3.0,
     "downside_pct": 0.0,
     "floor_source": "book(0.5x)",
     "mcap": 29876794,
     "sector": "Financial Services",
-    "rerate_score": 9.0
+    "rerate_score": 3.0
   },
   "ETD": {
     "ticker": "ETD",
@@ -11108,14 +11108,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": 1.41,
     "upside_pct": 0.789,
     "downside_pct": 0.56,
     "floor_source": "book(0.5x)",
     "mcap": 538699008,
     "sector": "Consumer Cyclical",
-    "rerate_score": 6.8
+    "rerate_score": 2.3
   },
   "ESP": {
     "ticker": "ESP",
@@ -11135,14 +11135,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "TBTC": {
     "ticker": "TBTC",
@@ -11162,14 +11162,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "MPB": {
     "ticker": "MPB",
@@ -11189,14 +11189,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "CPIX": {
     "ticker": "CPIX",
@@ -11216,14 +11216,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "BRBS": {
     "ticker": "BRBS",
@@ -11243,14 +11243,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 301204224,
     "sector": "Financial Services",
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "FIZZ": {
     "ticker": "FIZZ",
@@ -11270,14 +11270,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "PRPH": {
     "ticker": "PRPH",
@@ -11297,14 +11297,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "VYNE": {
     "ticker": "VYNE",
@@ -11324,14 +11324,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "IIIN": {
     "ticker": "IIIN",
@@ -11351,14 +11351,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": 1.76,
     "upside_pct": 1.195,
     "downside_pct": 0.677,
     "floor_source": "book(0.5x)",
     "mcap": 565313216,
     "sector": "Industrials",
-    "rerate_score": 7.2
+    "rerate_score": 2.4
   },
   "PIPR": {
     "ticker": "PIPR",
@@ -11378,14 +11378,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "DIT": {
     "ticker": "DIT",
@@ -11405,14 +11405,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "UBCP": {
     "ticker": "UBCP",
@@ -11432,14 +11432,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "UEIC": {
     "ticker": "UEIC",
@@ -11468,14 +11468,14 @@
         }
       ]
     },
-    "catalyst_score": 15,
+    "catalyst_score": 11,
     "geometry_ratio": 60.0,
     "upside_pct": 3.0,
     "downside_pct": 0.0,
     "floor_source": "NCAV",
     "mcap": 50205448,
     "sector": "Technology",
-    "rerate_score": 22.5
+    "rerate_score": 16.5
   },
   "RLI": {
     "ticker": "RLI",
@@ -11495,14 +11495,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": 0.36,
     "upside_pct": 0.296,
     "downside_pct": 0.818,
     "floor_source": "book(0.5x)",
     "mcap": 4881006080,
     "sector": "Financial Services",
-    "rerate_score": 6.3
+    "rerate_score": 2.1
   },
   "MKTW": {
     "ticker": "MKTW",
@@ -11522,14 +11522,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": 3.0,
     "upside_pct": 3.0,
     "downside_pct": 1.0,
     "floor_source": "none",
     "mcap": 45096752,
     "sector": "Financial Services",
-    "rerate_score": 9.0
+    "rerate_score": 3.0
   },
   "PPSI": {
     "ticker": "PPSI",
@@ -11549,14 +11549,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": 0.93,
     "upside_pct": 0.684,
     "downside_pct": 0.737,
     "floor_source": "book(0.5x)",
     "mcap": 50931864,
     "sector": "Industrials",
-    "rerate_score": 6.7
+    "rerate_score": 2.2
   },
   "FLOC": {
     "ticker": "FLOC",
@@ -11576,14 +11576,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 2421957888,
     "sector": "Energy",
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "NTIP": {
     "ticker": "NTIP",
@@ -11612,14 +11612,14 @@
         }
       ]
     },
-    "catalyst_score": 15,
+    "catalyst_score": 11,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 15.0
+    "rerate_score": 11.0
   },
   "PRK": {
     "ticker": "PRK",
@@ -11639,14 +11639,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 3196131072,
     "sector": "Financial Services",
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "CBL": {
     "ticker": "CBL",
@@ -11666,14 +11666,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": 1.17,
     "upside_pct": 1.011,
     "downside_pct": 0.864,
     "floor_source": "book(0.5x)",
     "mcap": 1466781568,
     "sector": "Real Estate",
-    "rerate_score": 7.0
+    "rerate_score": 2.3
   },
   "SIGA": {
     "ticker": "SIGA",
@@ -11693,14 +11693,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": 0.5,
     "upside_pct": 0.317,
     "downside_pct": 0.633,
     "floor_source": "book(0.5x)",
     "mcap": 309848096,
     "sector": "Healthcare",
-    "rerate_score": 6.3
+    "rerate_score": 2.1
   },
   "PROV": {
     "ticker": "PROV",
@@ -11720,14 +11720,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 6.0
+    "rerate_score": 2.0
   },
   "GOAI": {
     "ticker": "GOAI",
@@ -11747,14 +11747,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "GLND": {
     "ticker": "GLND",
@@ -11774,14 +11774,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "QNBC": {
     "ticker": "QNBC",
@@ -11801,14 +11801,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 216168096,
     "sector": "Financial Services",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "PTN": {
     "ticker": "PTN",
@@ -11828,14 +11828,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": 1.28,
     "upside_pct": 0.951,
     "downside_pct": 0.746,
     "floor_source": "book(0.5x)",
     "mcap": 20853104,
     "sector": "Healthcare",
-    "rerate_score": 8.1
+    "rerate_score": 2.3
   },
   "TRT": {
     "ticker": "TRT",
@@ -11855,14 +11855,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "ADBT": {
     "ticker": "ADBT",
@@ -11882,14 +11882,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "SCTH": {
     "ticker": "SCTH",
@@ -11927,14 +11927,14 @@
         }
       ]
     },
-    "catalyst_score": 19,
+    "catalyst_score": 14,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 19.0
+    "rerate_score": 14.0
   },
   "FCCN": {
     "ticker": "FCCN",
@@ -11963,14 +11963,14 @@
         }
       ]
     },
-    "catalyst_score": 16,
+    "catalyst_score": 11,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 16.0
+    "rerate_score": 11.0
   },
   "COCP": {
     "ticker": "COCP",
@@ -11990,14 +11990,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "BAFN": {
     "ticker": "BAFN",
@@ -12017,14 +12017,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "MPX": {
     "ticker": "MPX",
@@ -12044,14 +12044,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "RGEN": {
     "ticker": "RGEN",
@@ -12071,14 +12071,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 7446949888,
     "sector": "Healthcare",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "JFB": {
     "ticker": "JFB",
@@ -12098,14 +12098,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "MCFT": {
     "ticker": "MCFT",
@@ -12125,14 +12125,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 564136704,
     "sector": "Consumer Cyclical",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "NTLA": {
     "ticker": "NTLA",
@@ -12152,14 +12152,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 2189447936,
     "sector": "Healthcare",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "CAR": {
     "ticker": "CAR",
@@ -12179,14 +12179,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": 2.36,
     "upside_pct": 2.363,
     "downside_pct": 1.0,
     "floor_source": "none",
     "mcap": 6656286720,
     "sector": "Industrials",
-    "rerate_score": 9.8
+    "rerate_score": 2.8
   },
   "VIAV": {
     "ticker": "VIAV",
@@ -12206,14 +12206,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 11636161536,
     "sector": "Technology",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "CSWC": {
     "ticker": "CSWC",
@@ -12233,14 +12233,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "LASR": {
     "ticker": "LASR",
@@ -12260,14 +12260,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 3651335936,
     "sector": "Technology",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "SPRB": {
     "ticker": "SPRB",
@@ -12287,14 +12287,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 144109280,
     "sector": "Healthcare",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "AXGN": {
     "ticker": "AXGN",
@@ -12314,14 +12314,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 2384493568,
     "sector": "Healthcare",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "ZURA": {
     "ticker": "ZURA",
@@ -12341,14 +12341,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": 0.6,
     "upside_pct": 0.417,
     "downside_pct": 0.695,
     "floor_source": "book(0.5x)",
     "mcap": 355802656,
     "sector": "Healthcare",
-    "rerate_score": 7.5
+    "rerate_score": 2.1
   },
   "CRNX": {
     "ticker": "CRNX",
@@ -12368,14 +12368,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 3782140160,
     "sector": "Healthcare",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "EOSE": {
     "ticker": "EOSE",
@@ -12395,14 +12395,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 2597282304,
     "sector": "Industrials",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "ASPI": {
     "ticker": "ASPI",
@@ -12431,14 +12431,14 @@
         }
       ]
     },
-    "catalyst_score": 16,
+    "catalyst_score": 11,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 16.0
+    "rerate_score": 11.0
   },
   "NTHI": {
     "ticker": "NTHI",
@@ -12458,14 +12458,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "EXOZ": {
     "ticker": "EXOZ",
@@ -12485,14 +12485,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "INDV": {
     "ticker": "INDV",
@@ -12512,14 +12512,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 4527235584,
     "sector": "Healthcare",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "VBIX": {
     "ticker": "VBIX",
@@ -12539,14 +12539,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "AEP": {
     "ticker": "AEP",
@@ -12566,14 +12566,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 69476769792,
     "sector": "Utilities",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "LCID": {
     "ticker": "LCID",
@@ -12593,14 +12593,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 2091776512,
     "sector": "Consumer Cyclical",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "KTOS": {
     "ticker": "KTOS",
@@ -12620,14 +12620,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "CUE": {
     "ticker": "CUE",
@@ -12647,14 +12647,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "ZNTL": {
     "ticker": "ZNTL",
@@ -12674,14 +12674,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": 1.45,
     "upside_pct": 0.815,
     "downside_pct": 0.563,
     "floor_source": "book(0.5x)",
     "mcap": 254847136,
     "sector": "Healthcare",
-    "rerate_score": 8.0
+    "rerate_score": 2.3
   },
   "SHIM": {
     "ticker": "SHIM",
@@ -12701,14 +12701,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "WLFC": {
     "ticker": "WLFC",
@@ -12728,14 +12728,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": 0.5,
     "upside_pct": 0.389,
     "downside_pct": 0.783,
     "floor_source": "book(0.5x)",
     "mcap": 1644548480,
     "sector": "Industrials",
-    "rerate_score": 7.5
+    "rerate_score": 2.1
   },
   "SNOA": {
     "ticker": "SNOA",
@@ -12755,14 +12755,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "LYTS": {
     "ticker": "LYTS",
@@ -12782,14 +12782,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": 0.97,
     "upside_pct": 0.79,
     "downside_pct": 0.814,
     "floor_source": "book(0.5x)",
     "mcap": 976549952,
     "sector": "Technology",
-    "rerate_score": 7.9
+    "rerate_score": 2.3
   },
   "AAOI": {
     "ticker": "AAOI",
@@ -12809,14 +12809,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 12987292672,
     "sector": "Technology",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "MLYS": {
     "ticker": "MLYS",
@@ -12836,14 +12836,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 2094645504,
     "sector": "Healthcare",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "CHEV": {
     "ticker": "CHEV",
@@ -12863,14 +12863,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "FEIM": {
     "ticker": "FEIM",
@@ -12890,14 +12890,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 740900224,
     "sector": "Technology",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "KOD": {
     "ticker": "KOD",
@@ -12917,14 +12917,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "ORKA": {
     "ticker": "ORKA",
@@ -12944,14 +12944,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 4036688896,
     "sector": "Healthcare",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "ONDS": {
     "ticker": "ONDS",
@@ -12971,14 +12971,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 4815109120,
     "sector": "Technology",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "MGTX": {
     "ticker": "MGTX",
@@ -12998,14 +12998,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 846451072,
     "sector": "Healthcare",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "NAUT": {
     "ticker": "NAUT",
@@ -13025,14 +13025,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "SMCI": {
     "ticker": "SMCI",
@@ -13052,14 +13052,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": 1.63,
     "upside_pct": 1.293,
     "downside_pct": 0.795,
     "floor_source": "book(0.5x)",
     "mcap": 19833126912,
     "sector": "Technology",
-    "rerate_score": 8.5
+    "rerate_score": 2.4
   },
   "INO": {
     "ticker": "INO",
@@ -13079,14 +13079,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 91734664,
     "sector": "Healthcare",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "BMNR": {
     "ticker": "BMNR",
@@ -13106,14 +13106,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": 0.84,
     "upside_pct": 0.322,
     "downside_pct": 0.382,
     "floor_source": "book(0.5x)",
     "mcap": 9192969216,
     "sector": "Financial Services",
-    "rerate_score": 7.4
+    "rerate_score": 2.1
   },
   "TPTA": {
     "ticker": "TPTA",
@@ -13133,14 +13133,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "TFSA": {
     "ticker": "TFSA",
@@ -13160,14 +13160,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "BLD": {
     "ticker": "BLD",
@@ -13187,14 +13187,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 12003937280,
     "sector": "Industrials",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "GVA": {
     "ticker": "GVA",
@@ -13214,14 +13214,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": 0.41,
     "upside_pct": 0.376,
     "downside_pct": 0.92,
     "floor_source": "book(0.5x)",
     "mcap": 6416328192,
     "sector": "Industrials",
-    "rerate_score": 7.4
+    "rerate_score": 2.1
   },
   "RYI": {
     "ticker": "RYI",
@@ -13241,14 +13241,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "MGY": {
     "ticker": "MGY",
@@ -13268,14 +13268,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 5030349312,
     "sector": "Energy",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "JAN": {
     "ticker": "JAN",
@@ -13295,14 +13295,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "TXNM": {
     "ticker": "TXNM",
@@ -13322,14 +13322,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 6316956160,
     "sector": "Utilities",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "ED": {
     "ticker": "ED",
@@ -13349,14 +13349,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": 0.41,
     "upside_pct": 0.277,
     "downside_pct": 0.673,
     "floor_source": "book(0.5x)",
     "mcap": 39196819456,
     "sector": "Utilities",
-    "rerate_score": 7.3
+    "rerate_score": 2.1
   },
   "ANGX": {
     "ticker": "ANGX",
@@ -13376,14 +13376,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 596519616,
     "sector": "Communication Services",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "ADT": {
     "ticker": "ADT",
@@ -13403,14 +13403,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": 1.78,
     "upside_pct": 1.137,
     "downside_pct": 0.638,
     "floor_source": "book(0.5x)",
     "mcap": 5004427776,
     "sector": "Industrials",
-    "rerate_score": 8.3
+    "rerate_score": 2.4
   },
   "HGTY": {
     "ticker": "HGTY",
@@ -13430,14 +13430,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": 0.32,
     "upside_pct": 0.286,
     "downside_pct": 0.901,
     "floor_source": "book(0.5x)",
     "mcap": 3732262400,
     "sector": "Financial Services",
-    "rerate_score": 7.3
+    "rerate_score": 2.1
   },
   "ORCL": {
     "ticker": "ORCL",
@@ -13457,14 +13457,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "WHR": {
     "ticker": "WHR",
@@ -13484,14 +13484,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": 5.97,
     "upside_pct": 1.5,
     "downside_pct": 0.251,
     "floor_source": "book(0.5x)",
     "mcap": 2519026432,
     "sector": "Consumer Cyclical",
-    "rerate_score": 8.8
+    "rerate_score": 2.5
   },
   "CLS": {
     "ticker": "CLS",
@@ -13511,14 +13511,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 42833227776,
     "sector": "Technology",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "DOCN": {
     "ticker": "DOCN",
@@ -13538,14 +13538,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 18083182592,
     "sector": "Technology",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "EPRT": {
     "ticker": "EPRT",
@@ -13565,14 +13565,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 6365798400,
     "sector": "Real Estate",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "AADX": {
     "ticker": "AADX",
@@ -13592,14 +13592,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "ANRO": {
     "ticker": "ANRO",
@@ -13619,14 +13619,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 690648768,
     "sector": "Healthcare",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "GRDN": {
     "ticker": "GRDN",
@@ -13646,14 +13646,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": 1.13,
     "upside_pct": 1.081,
     "downside_pct": 0.959,
     "floor_source": "book(0.5x)",
     "mcap": 2685427968,
     "sector": "Healthcare",
-    "rerate_score": 8.3
+    "rerate_score": 2.4
   },
   "POR": {
     "ticker": "POR",
@@ -13673,14 +13673,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": 1.23,
     "upside_pct": 0.58,
     "downside_pct": 0.473,
     "floor_source": "NCAV",
     "mcap": 5807331840,
     "sector": "Utilities",
-    "rerate_score": 7.7
+    "rerate_score": 2.2
   },
   "SARO": {
     "ticker": "SARO",
@@ -13700,14 +13700,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": 0.34,
     "upside_pct": 0.291,
     "downside_pct": 0.854,
     "floor_source": "book(0.5x)",
     "mcap": 9226096640,
     "sector": "Industrials",
-    "rerate_score": 7.3
+    "rerate_score": 2.1
   },
   "GMRS": {
     "ticker": "GMRS",
@@ -13727,14 +13727,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "AVEX": {
     "ticker": "AVEX",
@@ -13754,14 +13754,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "FPS": {
     "ticker": "FPS",
@@ -13790,14 +13790,14 @@
         }
       ]
     },
-    "catalyst_score": 17,
+    "catalyst_score": 7,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 17.0
+    "rerate_score": 7.0
   },
   "KRP": {
     "ticker": "KRP",
@@ -13817,14 +13817,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 1650029056,
     "sector": "Energy",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "SKT": {
     "ticker": "SKT",
@@ -13844,14 +13844,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 4495092224,
     "sector": "Real Estate",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "QBTS": {
     "ticker": "QBTS",
@@ -13871,14 +13871,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 8612850688,
     "sector": "Technology",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "VST": {
     "ticker": "VST",
@@ -13907,14 +13907,14 @@
         }
       ]
     },
-    "catalyst_score": 17,
+    "catalyst_score": 7,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 55213629440,
     "sector": "Utilities",
-    "rerate_score": 17.0
+    "rerate_score": 7.0
   },
   "O": {
     "ticker": "O",
@@ -13934,14 +13934,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 56173350912,
     "sector": "Real Estate",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "LSF": {
     "ticker": "LSF",
@@ -13961,14 +13961,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "ADTX": {
     "ticker": "ADTX",
@@ -13988,14 +13988,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "SOC": {
     "ticker": "SOC",
@@ -14015,14 +14015,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "TRNO": {
     "ticker": "TRNO",
@@ -14042,14 +14042,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "OCLT": {
     "ticker": "OCLT",
@@ -14069,14 +14069,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "HUN": {
     "ticker": "HUN",
@@ -14105,14 +14105,14 @@
         }
       ]
     },
-    "catalyst_score": 18,
+    "catalyst_score": 13,
     "geometry_ratio": 7.6,
     "upside_pct": 2.729,
     "downside_pct": 0.359,
     "floor_source": "book(0.5x)",
     "mcap": 2116900224,
     "sector": "Basic Materials",
-    "rerate_score": 26.2
+    "rerate_score": 18.9
   },
   "BUDA": {
     "ticker": "BUDA",
@@ -14132,14 +14132,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "ETH": {
     "ticker": "ETH",
@@ -14159,14 +14159,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "BTC": {
     "ticker": "BTC",
@@ -14186,14 +14186,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "GSOL": {
     "ticker": "GSOL",
@@ -14213,14 +14213,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "PL": {
     "ticker": "PL",
@@ -14240,14 +14240,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 10061243392,
     "sector": "Industrials",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "UUUU": {
     "ticker": "UUUU",
@@ -14267,14 +14267,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 4137797632,
     "sector": "Energy",
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "CBAN": {
     "ticker": "CBAN",
@@ -14294,14 +14294,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 7.0
+    "rerate_score": 2.0
   },
   "AA": {
     "ticker": "AA",
@@ -14321,14 +14321,14 @@
         }
       ]
     },
-    "catalyst_score": 7,
+    "catalyst_score": 2,
     "geometry_ratio": 0.47,
     "upside_pct": 0.364,
     "downside_pct": 0.782,
     "floor_source": "book(0.5x)",
     "mcap": 15667141632,
     "sector": "Basic Materials",
-    "rerate_score": 7.4
+    "rerate_score": 2.1
   },
   "HTCR": {
     "ticker": "HTCR",
@@ -14357,14 +14357,14 @@
         }
       ]
     },
-    "catalyst_score": 12,
+    "catalyst_score": 11,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 12.0
+    "rerate_score": 11.0
   },
   "UAMY": {
     "ticker": "UAMY",
@@ -14384,14 +14384,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "SHOP": {
     "ticker": "SHOP",
@@ -14411,14 +14411,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 143287025664,
     "sector": "Technology",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "LIFE": {
     "ticker": "LIFE",
@@ -14438,14 +14438,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "IBEX": {
     "ticker": "IBEX",
@@ -14465,14 +14465,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 2.8,
     "upside_pct": 2.254,
     "downside_pct": 0.806,
     "floor_source": "book(0.5x)",
     "mcap": 412250880,
     "sector": "Technology",
-    "rerate_score": 6.9
+    "rerate_score": 5.5
   },
   "RVSB": {
     "ticker": "RVSB",
@@ -14492,14 +14492,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 0.52,
     "upside_pct": 0.202,
     "downside_pct": 0.389,
     "floor_source": "book(0.5x)",
     "mcap": 117652688,
     "sector": "Financial Services",
-    "rerate_score": 5.2
+    "rerate_score": 4.1
   },
   "FSBW": {
     "ticker": "FSBW",
@@ -14519,14 +14519,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "CNTN": {
     "ticker": "CNTN",
@@ -14546,14 +14546,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 30.0,
     "upside_pct": 1.5,
     "downside_pct": 0.0,
     "floor_source": "NCAV",
     "mcap": 233846336,
     "sector": "Healthcare",
-    "rerate_score": 6.2
+    "rerate_score": 5.0
   },
   "IPW": {
     "ticker": "IPW",
@@ -14573,14 +14573,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "UPWK": {
     "ticker": "UPWK",
@@ -14600,14 +14600,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 994321024,
     "sector": "Communication Services",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "ASIC": {
     "ticker": "ASIC",
@@ -14627,14 +14627,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "RBLX": {
     "ticker": "RBLX",
@@ -14654,14 +14654,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 36894384128,
     "sector": "Communication Services",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "SILO": {
     "ticker": "SILO",
@@ -14681,14 +14681,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "TCNNF": {
     "ticker": "TCNNF",
@@ -14708,14 +14708,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "PLBC": {
     "ticker": "PLBC",
@@ -14735,14 +14735,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "IPST": {
     "ticker": "IPST",
@@ -14762,14 +14762,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "KINS": {
     "ticker": "KINS",
@@ -14789,14 +14789,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "INGN": {
     "ticker": "INGN",
@@ -14816,14 +14816,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 6.27,
     "upside_pct": 3.0,
     "downside_pct": 0.479,
     "floor_source": "book(0.5x)",
     "mcap": 173547648,
     "sector": "Healthcare",
-    "rerate_score": 7.5
+    "rerate_score": 6.0
   },
   "JBTM": {
     "ticker": "JBTM",
@@ -14843,14 +14843,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 0.85,
     "upside_pct": 0.574,
     "downside_pct": 0.675,
     "floor_source": "book(0.5x)",
     "mcap": 6903150592,
     "sector": "Industrials",
-    "rerate_score": 5.5
+    "rerate_score": 4.4
   },
   "WEX": {
     "ticker": "WEX",
@@ -14879,14 +14879,14 @@
         }
       ]
     },
-    "catalyst_score": 17,
+    "catalyst_score": 16,
     "geometry_ratio": 0.69,
     "upside_pct": 0.587,
     "downside_pct": 0.856,
     "floor_source": "book(0.5x)",
     "mcap": 4421228544,
     "sector": "Technology",
-    "rerate_score": 18.7
+    "rerate_score": 17.6
   },
   "GCMG": {
     "ticker": "GCMG",
@@ -14906,14 +14906,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 1.73,
     "upside_pct": 1.696,
     "downside_pct": 0.981,
     "floor_source": "book(0.5x)",
     "mcap": 683537408,
     "sector": "Financial Services",
-    "rerate_score": 6.4
+    "rerate_score": 5.1
   },
   "FROG": {
     "ticker": "FROG",
@@ -14933,14 +14933,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 10019023872,
     "sector": "Technology",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "FPH": {
     "ticker": "FPH",
@@ -14960,14 +14960,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 45.79,
     "upside_pct": 2.289,
     "downside_pct": 0.0,
     "floor_source": "book(0.5x)",
     "mcap": 760452672,
     "sector": "Real Estate",
-    "rerate_score": 6.9
+    "rerate_score": 5.5
   },
   "KVYO": {
     "ticker": "KVYO",
@@ -14987,14 +14987,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 4156996608,
     "sector": "Technology",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "BMNM": {
     "ticker": "BMNM",
@@ -15014,14 +15014,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "GLXZ": {
     "ticker": "GLXZ",
@@ -15041,14 +15041,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "OTH": {
     "ticker": "OTH",
@@ -15068,14 +15068,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "UNFI": {
     "ticker": "UNFI",
@@ -15095,14 +15095,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 4.02,
     "upside_pct": 3.0,
     "downside_pct": 0.745,
     "floor_source": "book(0.5x)",
     "mcap": 3129444608,
     "sector": "Consumer Defensive",
-    "rerate_score": 7.5
+    "rerate_score": 6.0
   },
   "MHH": {
     "ticker": "MHH",
@@ -15122,14 +15122,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "SN": {
     "ticker": "SN",
@@ -15149,14 +15149,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 19931729920,
     "sector": "Consumer Cyclical",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "PRTA": {
     "ticker": "PRTA",
@@ -15176,14 +15176,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 3.33,
     "upside_pct": 0.984,
     "downside_pct": 0.295,
     "floor_source": "net-cash",
     "mcap": 467514400,
     "sector": "Healthcare",
-    "rerate_score": 5.8
+    "rerate_score": 4.7
   },
   "DUOL": {
     "ticker": "DUOL",
@@ -15203,14 +15203,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 5850231296,
     "sector": "Technology",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "PAR": {
     "ticker": "PAR",
@@ -15230,14 +15230,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 15.5,
     "upside_pct": 2.992,
     "downside_pct": 0.193,
     "floor_source": "NCAV",
     "mcap": 630654400,
     "sector": "Technology",
-    "rerate_score": 7.5
+    "rerate_score": 6.0
   },
   "COSM": {
     "ticker": "COSM",
@@ -15257,14 +15257,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 45.95,
     "upside_pct": 3.0,
     "downside_pct": 0.065,
     "floor_source": "book(0.5x)",
     "mcap": 13216490,
     "sector": "Healthcare",
-    "rerate_score": 7.5
+    "rerate_score": 6.0
   },
   "PTRN": {
     "ticker": "PTRN",
@@ -15284,14 +15284,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "WRBY": {
     "ticker": "WRBY",
@@ -15311,14 +15311,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 3185687296,
     "sector": "Healthcare",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "ONIT": {
     "ticker": "ONIT",
@@ -15338,14 +15338,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 60.0,
     "upside_pct": 3.0,
     "downside_pct": 0.0,
     "floor_source": "book(0.5x)",
     "mcap": 309206464,
     "sector": "Financial Services",
-    "rerate_score": 7.5
+    "rerate_score": 6.0
   },
   "DT": {
     "ticker": "DT",
@@ -15374,14 +15374,14 @@
         }
       ]
     },
-    "catalyst_score": 12,
+    "catalyst_score": 11,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 12072925184,
     "sector": "Technology",
-    "rerate_score": 12.0
+    "rerate_score": 11.0
   },
   "PD": {
     "ticker": "PD",
@@ -15401,14 +15401,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 1.41,
     "upside_pct": 0.957,
     "downside_pct": 0.681,
     "floor_source": "book(0.5x)",
     "mcap": 653999360,
     "sector": "Technology",
-    "rerate_score": 5.8
+    "rerate_score": 4.6
   },
   "WSR": {
     "ticker": "WSR",
@@ -15428,14 +15428,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 985931328,
     "sector": "Real Estate",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "RDDT": {
     "ticker": "RDDT",
@@ -15455,14 +15455,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 33681383424,
     "sector": "Communication Services",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "ORBS": {
     "ticker": "ORBS",
@@ -15482,14 +15482,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 1.27,
     "upside_pct": 0.728,
     "downside_pct": 0.575,
     "floor_source": "book(0.5x)",
     "mcap": 399651872,
     "sector": "Consumer Cyclical",
-    "rerate_score": 5.6
+    "rerate_score": 4.5
   },
   "ALKT": {
     "ticker": "ALKT",
@@ -15509,14 +15509,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 1571041536,
     "sector": "Technology",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "BTGO": {
     "ticker": "BTGO",
@@ -15536,14 +15536,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "TRST": {
     "ticker": "TRST",
@@ -15563,14 +15563,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 912884224,
     "sector": "Financial Services",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "ZYME": {
     "ticker": "ZYME",
@@ -15590,14 +15590,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "ASNS": {
     "ticker": "ASNS",
@@ -15617,14 +15617,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "HSTM": {
     "ticker": "HSTM",
@@ -15644,14 +15644,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 0.66,
     "upside_pct": 0.504,
     "downside_pct": 0.766,
     "floor_source": "book(0.5x)",
     "mcap": 749077376,
     "sector": "Healthcare",
-    "rerate_score": 5.4
+    "rerate_score": 4.3
   },
   "THG": {
     "ticker": "THG",
@@ -15671,14 +15671,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 2.98,
     "upside_pct": 2.221,
     "downside_pct": 0.745,
     "floor_source": "book(0.5x)",
     "mcap": 6924934656,
     "sector": "Financial Services",
-    "rerate_score": 6.9
+    "rerate_score": 5.5
   },
   "FNB": {
     "ticker": "FNB",
@@ -15698,14 +15698,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 0.41,
     "upside_pct": 0.197,
     "downside_pct": 0.476,
     "floor_source": "book(0.5x)",
     "mcap": 6489222144,
     "sector": "Financial Services",
-    "rerate_score": 5.2
+    "rerate_score": 4.1
   },
   "DIN": {
     "ticker": "DIN",
@@ -15725,14 +15725,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 0.72,
     "upside_pct": 0.716,
     "downside_pct": 1.0,
     "floor_source": "none",
     "mcap": 433325568,
     "sector": "Consumer Cyclical",
-    "rerate_score": 5.6
+    "rerate_score": 4.5
   },
   "VICR": {
     "ticker": "VICR",
@@ -15752,14 +15752,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 12558134272,
     "sector": "Technology",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "PLXS": {
     "ticker": "PLXS",
@@ -15779,14 +15779,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 0.79,
     "upside_pct": 0.714,
     "downside_pct": 0.905,
     "floor_source": "book(0.5x)",
     "mcap": 8026123264,
     "sector": "Technology",
-    "rerate_score": 5.6
+    "rerate_score": 4.5
   },
   "GWRE": {
     "ticker": "GWRE",
@@ -15806,14 +15806,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 8980031488,
     "sector": "Technology",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "IIIV": {
     "ticker": "IIIV",
@@ -15833,14 +15833,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 2.46,
     "upside_pct": 1.503,
     "downside_pct": 0.61,
     "floor_source": "book(0.5x)",
     "mcap": 553602624,
     "sector": "Technology",
-    "rerate_score": 6.3
+    "rerate_score": 5.0
   },
   "CZWI": {
     "ticker": "CZWI",
@@ -15860,14 +15860,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "FIVE": {
     "ticker": "FIVE",
@@ -15887,14 +15887,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 10829594624,
     "sector": "Consumer Cyclical",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "HNVR": {
     "ticker": "HNVR",
@@ -15914,14 +15914,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "GCT": {
     "ticker": "GCT",
@@ -15941,14 +15941,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 2.42,
     "upside_pct": 1.751,
     "downside_pct": 0.723,
     "floor_source": "book(0.5x)",
     "mcap": 1191397248,
     "sector": "Technology",
-    "rerate_score": 6.5
+    "rerate_score": 5.2
   },
   "PRAA": {
     "ticker": "PRAA",
@@ -15968,14 +15968,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "MIR": {
     "ticker": "MIR",
@@ -15995,14 +15995,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "ETSY": {
     "ticker": "ETSY",
@@ -16022,14 +16022,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 7017575936,
     "sector": "Consumer Cyclical",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "LYB": {
     "ticker": "LYB",
@@ -16049,14 +16049,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 1.19,
     "upside_pct": 0.881,
     "downside_pct": 0.741,
     "floor_source": "book(0.5x)",
     "mcap": 19389681664,
     "sector": "Basic Materials",
-    "rerate_score": 5.7
+    "rerate_score": 4.6
   },
   "MCB": {
     "ticker": "MCB",
@@ -16076,14 +16076,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 1154079616,
     "sector": "Financial Services",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "KLAC": {
     "ticker": "KLAC",
@@ -16103,14 +16103,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 339056787456,
     "sector": "Technology",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "HOOD": {
     "ticker": "HOOD",
@@ -16130,14 +16130,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 77767622656,
     "sector": "Financial Services",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "III": {
     "ticker": "III",
@@ -16157,14 +16157,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 2.78,
     "upside_pct": 2.095,
     "downside_pct": 0.754,
     "floor_source": "book(0.5x)",
     "mcap": 191835488,
     "sector": "Technology",
-    "rerate_score": 6.7
+    "rerate_score": 5.4
   },
   "ACT": {
     "ticker": "ACT",
@@ -16184,14 +16184,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 0.35,
     "upside_pct": 0.194,
     "downside_pct": 0.551,
     "floor_source": "book(0.5x)",
     "mcap": 5917676032,
     "sector": "Financial Services",
-    "rerate_score": 5.2
+    "rerate_score": 4.1
   },
   "NUE": {
     "ticker": "NUE",
@@ -16211,14 +16211,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 55530074112,
     "sector": "Basic Materials",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "RCKY": {
     "ticker": "RCKY",
@@ -16238,14 +16238,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "WDFC": {
     "ticker": "WDFC",
@@ -16265,14 +16265,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 3057201920,
     "sector": "Basic Materials",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "MITK": {
     "ticker": "MITK",
@@ -16292,14 +16292,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 0.37,
     "upside_pct": 0.316,
     "downside_pct": 0.845,
     "floor_source": "book(0.5x)",
     "mcap": 779215936,
     "sector": "Technology",
-    "rerate_score": 5.3
+    "rerate_score": 4.2
   },
   "AZTA": {
     "ticker": "AZTA",
@@ -16319,14 +16319,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 8.11,
     "upside_pct": 2.242,
     "downside_pct": 0.276,
     "floor_source": "book(0.5x)",
     "mcap": 1074423296,
     "sector": "Healthcare",
-    "rerate_score": 6.9
+    "rerate_score": 5.5
   },
   "RYZ": {
     "ticker": "RYZ",
@@ -16346,14 +16346,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 5.41,
     "upside_pct": 3.0,
     "downside_pct": 0.554,
     "floor_source": "book(0.5x)",
     "mcap": 1437317632,
     "sector": "Industrials",
-    "rerate_score": 7.5
+    "rerate_score": 6.0
   },
   "LZB": {
     "ticker": "LZB",
@@ -16373,14 +16373,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 0.16,
     "upside_pct": 0.107,
     "downside_pct": 0.679,
     "floor_source": "book(0.5x)",
     "mcap": 1582329984,
     "sector": "Consumer Cyclical",
-    "rerate_score": 5.1
+    "rerate_score": 4.1
   },
   "MGNI": {
     "ticker": "MGNI",
@@ -16400,14 +16400,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 2562116352,
     "sector": "Communication Services",
-    "rerate_score": 5.0
+    "rerate_score": 4.0
   },
   "FCFS": {
     "ticker": "FCFS",
@@ -16427,14 +16427,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 0.34,
     "upside_pct": 0.298,
     "downside_pct": 0.885,
     "floor_source": "book(0.5x)",
     "mcap": 9953120256,
     "sector": "Financial Services",
-    "rerate_score": 5.2
+    "rerate_score": 4.2
   },
   "DAR": {
     "ticker": "DAR",
@@ -16454,14 +16454,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 0.29,
     "upside_pct": 0.209,
     "downside_pct": 0.714,
     "floor_source": "book(0.5x)",
     "mcap": 8531220480,
     "sector": "Consumer Defensive",
-    "rerate_score": 5.2
+    "rerate_score": 4.1
   },
   "CTSH": {
     "ticker": "CTSH",
@@ -16481,14 +16481,14 @@
         }
       ]
     },
-    "catalyst_score": 5,
+    "catalyst_score": 4,
     "geometry_ratio": 3.46,
     "upside_pct": 2.2,
     "downside_pct": 0.636,
     "floor_source": "book(0.5x)",
     "mcap": 20670099456,
     "sector": "Technology",
-    "rerate_score": 6.8
+    "rerate_score": 5.5
   },
   "CNX": {
     "ticker": "CNX",
@@ -17381,14 +17381,14 @@
         }
       ]
     },
-    "catalyst_score": 18,
+    "catalyst_score": 13,
     "geometry_ratio": 2.55,
     "upside_pct": 2.366,
     "downside_pct": 0.927,
     "floor_source": "book(0.5x)",
     "mcap": 28495831040,
     "sector": "Utilities",
-    "rerate_score": 25.1
+    "rerate_score": 18.1
   },
   "FISV": {
     "ticker": "FISV",
@@ -17876,14 +17876,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": 1.6,
     "upside_pct": 1.596,
     "downside_pct": 1.0,
     "floor_source": "none",
     "mcap": 82126248,
     "sector": "Healthcare",
-    "rerate_score": 7.6
+    "rerate_score": 1.3
   },
   "ADV": {
     "ticker": "ADV",
@@ -17903,14 +17903,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": 6.31,
     "upside_pct": 3.0,
     "downside_pct": 0.475,
     "floor_source": "book(0.5x)",
     "mcap": 462808704,
     "sector": "Communication Services",
-    "rerate_score": 9.0
+    "rerate_score": 1.5
   },
   "DVN": {
     "ticker": "DVN",
@@ -17930,14 +17930,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 48581337088,
     "sector": "Energy",
-    "rerate_score": 6.0
+    "rerate_score": 1.0
   },
   "NXST": {
     "ticker": "NXST",
@@ -17957,14 +17957,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": 0.3,
     "upside_pct": 0.232,
     "downside_pct": 0.784,
     "floor_source": "book(0.5x)",
     "mcap": 5013276672,
     "sector": "Communication Services",
-    "rerate_score": 6.2
+    "rerate_score": 1.0
   },
   "ARRY": {
     "ticker": "ARRY",
@@ -17984,14 +17984,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": 2.13,
     "upside_pct": 2.126,
     "downside_pct": 1.0,
     "floor_source": "none",
     "mcap": 1230611072,
     "sector": "Technology",
-    "rerate_score": 8.1
+    "rerate_score": 1.4
   },
   "FND": {
     "ticker": "FND",
@@ -18011,14 +18011,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 5732232704,
     "sector": "Consumer Cyclical",
-    "rerate_score": 6.0
+    "rerate_score": 1.0
   },
   "HLF": {
     "ticker": "HLF",
@@ -18038,14 +18038,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": 2.56,
     "upside_pct": 2.562,
     "downside_pct": 1.0,
     "floor_source": "none",
     "mcap": 1233666048,
     "sector": "Consumer Defensive",
-    "rerate_score": 8.6
+    "rerate_score": 1.4
   },
   "WMG": {
     "ticker": "WMG",
@@ -18065,14 +18065,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 14693909504,
     "sector": "Communication Services",
-    "rerate_score": 6.0
+    "rerate_score": 1.0
   },
   "ACH": {
     "ticker": "ACH",
@@ -18092,14 +18092,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": 60.0,
     "upside_pct": 3.0,
     "downside_pct": 0.0,
     "floor_source": "net-cash",
     "mcap": 247365360,
     "sector": "Healthcare",
-    "rerate_score": 9.0
+    "rerate_score": 1.5
   },
   "CNM": {
     "ticker": "CNM",
@@ -18119,14 +18119,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": 0.62,
     "upside_pct": 0.549,
     "downside_pct": 0.888,
     "floor_source": "book(0.5x)",
     "mcap": 9402175488,
     "sector": "Industrials",
-    "rerate_score": 6.5
+    "rerate_score": 1.1
   },
   "MMS": {
     "ticker": "MMS",
@@ -18146,14 +18146,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": 2.31,
     "upside_pct": 1.646,
     "downside_pct": 0.713,
     "floor_source": "book(0.5x)",
     "mcap": 2928600064,
     "sector": "Industrials",
-    "rerate_score": 7.6
+    "rerate_score": 1.3
   },
   "TLN": {
     "ticker": "TLN",
@@ -18173,14 +18173,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 20852482048,
     "sector": "Utilities",
-    "rerate_score": 6.0
+    "rerate_score": 1.0
   },
   "BV": {
     "ticker": "BV",
@@ -18200,14 +18200,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": 40.75,
     "upside_pct": 2.763,
     "downside_pct": 0.068,
     "floor_source": "NCAV",
     "mcap": 1216259968,
     "sector": "Industrials",
-    "rerate_score": 8.8
+    "rerate_score": 1.5
   },
   "BWIN": {
     "ticker": "BWIN",
@@ -18227,14 +18227,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": 2.31,
     "upside_pct": 1.742,
     "downside_pct": 0.754,
     "floor_source": "book(0.5x)",
     "mcap": 1973196544,
     "sector": "Financial Services",
-    "rerate_score": 7.7
+    "rerate_score": 1.3
   },
   "ALSN": {
     "ticker": "ALSN",
@@ -18254,14 +18254,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 9877676032,
     "sector": "Consumer Cyclical",
-    "rerate_score": 6.0
+    "rerate_score": 1.0
   },
   "AGL": {
     "ticker": "AGL",
@@ -18281,14 +18281,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": 3.21,
     "upside_pct": 3.0,
     "downside_pct": 0.934,
     "floor_source": "book(0.5x)",
     "mcap": 1898614912,
     "sector": "Healthcare",
-    "rerate_score": 9.0
+    "rerate_score": 1.5
   },
   "BYND": {
     "ticker": "BYND",
@@ -18308,14 +18308,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 366356928,
     "sector": "Consumer Defensive",
-    "rerate_score": 6.0
+    "rerate_score": 1.0
   },
   "GDDY": {
     "ticker": "GDDY",
@@ -18335,14 +18335,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": 0.49,
     "upside_pct": 0.485,
     "downside_pct": 0.989,
     "floor_source": "book(0.5x)",
     "mcap": 10800671744,
     "sector": "Technology",
-    "rerate_score": 6.5
+    "rerate_score": 1.1
   },
   "Q": {
     "ticker": "Q",
@@ -18362,14 +18362,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 35374137344,
     "sector": "Technology",
-    "rerate_score": 6.0
+    "rerate_score": 1.0
   },
   "CVNA": {
     "ticker": "CVNA",
@@ -18389,14 +18389,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": 73005383680,
     "sector": "Consumer Cyclical",
-    "rerate_score": 6.0
+    "rerate_score": 1.0
   },
   "MKSI": {
     "ticker": "MKSI",
@@ -18416,14 +18416,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": null,
     "upside_pct": null,
     "downside_pct": null,
     "floor_source": null,
     "mcap": null,
     "sector": null,
-    "rerate_score": 6.0
+    "rerate_score": 1.0
   },
   "VVX": {
     "ticker": "VVX",
@@ -18443,14 +18443,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": 1.68,
     "upside_pct": 1.336,
     "downside_pct": 0.794,
     "floor_source": "book(0.5x)",
     "mcap": 2678611968,
     "sector": "Industrials",
-    "rerate_score": 7.3
+    "rerate_score": 1.2
   },
   "KNF": {
     "ticker": "KNF",
@@ -18470,14 +18470,14 @@
         }
       ]
     },
-    "catalyst_score": 6,
+    "catalyst_score": 1,
     "geometry_ratio": 0.12,
     "upside_pct": 0.105,
     "downside_pct": 0.841,
     "floor_source": "book(0.5x)",
     "mcap": 4894452224,
     "sector": "Basic Materials",
-    "rerate_score": 6.1
+    "rerate_score": 1.0
   },
   "FSK": {
     "ticker": "FSK",
