@@ -44,11 +44,26 @@ CATALYSTS = [
     ("SPINOFF", "completed the separation", "8-K"),
     ("SPINOFF", "completed the spin-off", "8-K"),
     ("SPINOFF", "plan to separate", "8-K"),
+    ("SEPARATION", "planned separation", "8-K"),
     ("ASSET_SALE", "completed the sale of", "8-K"),
     ("ASSET_SALE", "definitive agreement to sell", "8-K"),
     ("SALE_OF_COMPANY", "agreement and plan of merger", "8-K"),
     ("STRATEGIC_REVIEW", "review of strategic alternatives", "8-K"),
     ("STRATEGIC_REVIEW", "exploring strategic alternatives", "8-K"),
+    # --- broader event types (now that the engine tracks them) ---
+    ("GOING_PRIVATE", "going private transaction", "8-K"),
+    ("GOING_PRIVATE", "to be taken private", "8-K"),
+    ("CH11_EMERGENCE", "emergence from chapter 11", "8-K"),
+    ("CH11_EMERGENCE", "emerged from chapter 11", "8-K"),
+    ("CAPITAL_RETURN", "special cash dividend", "8-K"),
+    ("CAPITAL_RETURN", "declared a special dividend", "8-K"),
+    ("UPLISTING", "approved for listing on the nasdaq", "8-K"),
+    ("UPLISTING", "approved for listing on the new york stock exchange", "8-K"),
+    ("BUYBACK_AUTH", "authorized a share repurchase", "8-K"),
+    ("BUYBACK_AUTH", "approved a new share repurchase", "8-K"),
+    ("TENDER_OFFER", "commenced a tender offer", "8-K"),
+    ("TENDER_OFFER", "cash tender offer", "8-K"),
+    ("EXCHANGE_OFFER", "debt exchange offer", "8-K"),
 ]
 
 def _num(x):
