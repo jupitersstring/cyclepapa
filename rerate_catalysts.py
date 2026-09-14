@@ -80,7 +80,8 @@ W_NARRATIVE = {"SPINOFF": 7, "SEPARATION": 7, "SALE_OF_COMPANY": 5,
 W_EVENT = {"SPINOFF": 10, "SEPARATION": 10, "SALE_OF_COMPANY": 7,
            "ASSET_SALE": 7, "STRATEGIC_REVIEW": 5,
            "CH11_EMERGENCE": 10, "GOING_PRIVATE": 9, "CAPITAL_RETURN": 6,
-           "UPLISTING": 7, "BUYBACK_AUTH": 5}
+           "UPLISTING": 7, "BUYBACK_AUTH": 5,
+           "TENDER_OFFER": 8, "EXCHANGE_OFFER": 6}
 TRIANGULATION_BONUS = 5       # a bucket named by 2+ independent sources
 MULTI_TYPE_BONUS = 4         # 2+ distinct catalyst types
 

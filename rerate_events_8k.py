@@ -67,6 +67,12 @@ PHRASES = [
     ("authorized a share repurchase", "BUYBACK_AUTH"),
     ("approved a new share repurchase", "BUYBACK_AUTH"),
     ("increased its share repurchase", "BUYBACK_AUTH"),
+    ("commenced a tender offer", "TENDER_OFFER"),
+    ("tender offer to purchase", "TENDER_OFFER"),
+    ("cash tender offer", "TENDER_OFFER"),
+    ("modified dutch auction", "TENDER_OFFER"),
+    ("commenced an exchange offer", "EXCHANGE_OFFER"),
+    ("debt exchange offer", "EXCHANGE_OFFER"),
 ]
 
 _DT = re.compile(r"\(([A-Z0-9][A-Z0-9.\-]{0,6})\)\s*\(CIK")
