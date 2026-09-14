@@ -7,5 +7,5 @@ NEAR-EMPTY COLUMNS (<2% coverage — legs almost never fire):
   SPARSE   pension_funded_status                 1.36%
   SPARSE   seg_mix_uplift                        1.44%
   SPARSE   seg_oplev                             1.52%
-  SPARSE   assets_held_for_sale                  1.70%
+  SPARSE   assets_held_for_sale                  1.71%
   SPARSE   cheap_per_roiic_lindy                 1.76%

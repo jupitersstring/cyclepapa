@@ -5783,6 +5783,20 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                 index=df.index)
     df['truly_xr_tells_str'] = _acc.str.rstrip(', ')
 
+    # DATA-QUALITY FLAG (honest "flag, don't null/use"). A row that violates a
+    # hard accounting identity has an internally inconsistent balance sheet, so
+    # its level-based value signals are untrusted — flag it so value screens
+    # (below-book, net-nets) can DEMOTE it rather than surface a corrupt-level
+    # name as cheap. We flag, never null: the ratio may still be Yahoo-correct.
+    _dq_as = _ncol('assets'); _dq_eq = _ncol('equity'); _dq_teq = _ncol('tangible_equity')
+    _dq_cash = _ncol('cash'); _dq_rev = _ncol('revenue_ttm'); _dq_eb = _ncol('ebitda_ttm')
+    df['data_quality_flag'] = (
+        ((_dq_eq > _dq_as * 1.02) & _dq_eq.notna() & _dq_as.notna())      # equity > assets
+        | ((_dq_teq > _dq_eq * 1.02) & (_dq_eq > 0))                      # tangible equity > equity
+        | ((_dq_cash > _dq_as * 1.02) & _dq_cash.notna() & _dq_as.notna())  # cash > assets
+        | ((_dq_eb > _dq_rev * 2.0) & (_dq_rev > 0))                      # EBITDA > 2x revenue
+    ).fillna(False).astype(int)
+
     # (user) archetype_count feeds convergence_score / archetype_asymmetry
     # (the density-ranked books), so a name that fires SEVERAL variants of ONE
     # thesis was over-credited. Collapse ONLY genuine same-thesis THRESHOLD
@@ -5808,7 +5822,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','governance_score','governance_tier','insider_distinct_buyers','insider_net_buy_value','insider_officer_buy_flag','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','segment_rot_flag','xr_family_count','xr_confidence','xr_score','forensic_hidden_pct','forensic_xr_score','truly_xr_score','truly_xr_flag','truly_xr_tell_count','truly_xr_mech_count','truly_xr_tells_str','spin_date','reorg_date']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','governance_score','governance_tier','insider_distinct_buyers','insider_net_buy_value','insider_officer_buy_flag','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','segment_rot_flag','data_quality_flag','xr_family_count','xr_confidence','xr_score','forensic_hidden_pct','forensic_xr_score','truly_xr_score','truly_xr_flag','truly_xr_tell_count','truly_xr_mech_count','truly_xr_tells_str','spin_date','reorg_date']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m','segment_count','fastest_segment_yoy','is_price_ghost'] if c in df.columns]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)

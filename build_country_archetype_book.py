@@ -246,6 +246,8 @@ def _netnet_frame(df_full):
     is_nn = ((ncav_pct >= 1.0) | (cash_pct >= 1.0)) & (mc >= 10e6)
     if 'is_price_ghost' in d.columns:
         is_nn = is_nn & ~(pd.to_numeric(d['is_price_ghost'], errors='coerce') == 1)
+    if 'data_quality_flag' in d.columns:   # never surface a corrupt-level name as a net-net
+        is_nn = is_nn & ~(pd.to_numeric(d['data_quality_flag'], errors='coerce') == 1)
     d = d[is_nn.fillna(False)].copy()
     d['netnet_score'] = pd.concat([d['netnet_ncav_pct'], d['netnet_cash_pct']],
                                   axis=1).max(axis=1)
@@ -371,7 +373,8 @@ def main():
     df_full = df.copy()   # pre-value-filter universe (for net-net tabs)
     if args.max_pb is not None:
         _pb = pd.to_numeric(df.get('pb'), errors='coerce')
-        df = df[(_pb > 0.05) & (_pb < args.max_pb)].copy()
+        _dq = pd.to_numeric(df.get('data_quality_flag'), errors='coerce').fillna(0)
+        df = df[(_pb > 0.05) & (_pb < args.max_pb) & (_dq == 0)].copy()
         print(f'  P/B filter (0.05 < P/B < {args.max_pb}): {len(df):,} names kept',
               file=sys.stderr)
     if args.max_ret_12m is not None:

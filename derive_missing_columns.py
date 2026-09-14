@@ -239,8 +239,12 @@ def main():
         # fill), and stamp the balance_sheet_date to the EDGAR vintage so the row
         # is internally consistent and confidently EDGAR==master. Flow items
         # (revenue/cash/debt) keep the Yahoo-arbitrated path in apply_ticker_yf.
+        # NB: do NOT adopt tangible_equity here — EDGAR's computed tangible
+        # equity can be struck at a different vintage than the adopted equity
+        # (freshest-per-concept), producing tangible_equity > equity. p_tb's
+        # tangible equity is recomputed consistently downstream from equity.
         _bd_ed = edgar['assets_end'].reindex(master.index) if 'assets_end' in edgar.columns else None
-        for col in ['assets', 'equity', 'tangible_equity']:
+        for col in ['assets', 'equity']:
             if col in edgar.columns and col in master.columns:
                 ed = edgar[col].reindex(master.index)
                 take = ed.notna()
