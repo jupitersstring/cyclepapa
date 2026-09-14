@@ -227,6 +227,103 @@ def _write_governance_sheet(ws, gdf, n_top):
         ws.auto_filter.ref = f"A{hdr}:{ws.cell(row=1, column=n_cols).column_letter}{ws.max_row}"
 
 
+def _netnet_frame(df_full):
+    """The net-net population (cash+investments basis, thorough): a name trades
+    below its liquidation/cash value when EITHER net current asset value (NCAV =
+    current assets - total liabilities) exceeds market cap (classic Graham) OR
+    net cash+investments (cash + investments - total debt) exceeds market cap.
+    Returns the frame with a `netnet_ncav_pct`, `netnet_cash_pct` and a blended
+    `netnet_score` (the deeper of the two, higher = cheaper vs liquidation)."""
+    d = df_full.copy()
+    ncav_pct = pd.to_numeric(d.get('ncav_pct_mcap'), errors='coerce')
+    cash_pct = pd.to_numeric(d.get('net_cash_pct_mcap'), errors='coerce')
+    mc = pd.to_numeric(d.get('market_cap_usd'), errors='coerce').fillna(
+        pd.to_numeric(d.get('market_cap'), errors='coerce'))
+    d['netnet_ncav_pct'] = ncav_pct
+    d['netnet_cash_pct'] = cash_pct
+    # net-net if below NCAV or below net cash+investments; require a tradeable
+    # size and drop the ghost/price-corrupt rows.
+    is_nn = ((ncav_pct >= 1.0) | (cash_pct >= 1.0)) & (mc >= 10e6)
+    if 'is_price_ghost' in d.columns:
+        is_nn = is_nn & ~(pd.to_numeric(d['is_price_ghost'], errors='coerce') == 1)
+    d = d[is_nn.fillna(False)].copy()
+    d['netnet_score'] = pd.concat([d['netnet_ncav_pct'], d['netnet_cash_pct']],
+                                  axis=1).max(axis=1)
+    return d
+
+
+def _write_netnet_sheet(ws, nn, n_top, sort_col='netnet_score'):
+    """Flat ranked net-net sheet with the cash+investments breakdown."""
+    headers = ['#', 'Ticker', 'Name', 'Ctry', 'Sector', 'Mcap (USD)', 'Verdict',
+               'NCAV/mcap', 'NetCash+Inv/mcap', 'Cash', 'Investments', 'P/B',
+               'P/E', 'FCF yld', 'Gov', 'Arch#']
+    n_cols = len(headers)
+    widths = {1: 4, 2: 12, 3: 30, 4: 6, 5: 16, 6: 13, 7: 11, 8: 11, 9: 16,
+              10: 13, 11: 13, 12: 7, 13: 7, 14: 8, 15: 7, 16: 6}
+    for col, w in widths.items():
+        ws.column_dimensions[ws.cell(row=1, column=col).column_letter].width = w
+    f_bold = _font(bold=True, color=INK)
+    f_bold_muted = _font(bold=True, color=MUTED)
+    f_text = _font(color=INK)
+    f_text_muted = _font(color=MUTED)
+
+    nn = nn.sort_values(sort_col, ascending=False, na_position='last').head(n_top)
+    t = ws.cell(row=2, column=1,
+                value=f"Net-Nets — below liquidation / cash value   "
+                      f"({len(nn):,} names; NCAV>mcap OR net cash+investments>mcap)")
+    t.font = f_bold
+    t.alignment = _TXT_ALIGN_LEFT
+    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=n_cols)
+    ws.row_dimensions[2].height = 22
+    sub = ws.cell(row=3, column=1,
+                  value="Graham net-current-asset value and net cash+investments, both as a multiple "
+                        "of market cap (>1.0 = trading below it). EDGAR/Yahoo-reconciled levels.")
+    sub.font = _font(italic=True, color=MUTED)
+    ws.merge_cells(start_row=3, start_column=1, end_row=3, end_column=n_cols)
+
+    hdr = 5
+    for i, h in enumerate(headers, start=1):
+        c = ws.cell(row=hdr, column=i, value=h)
+        c.font = f_bold_muted
+        c.alignment = _TXT_ALIGN_LEFT if i in (2, 3, 4, 5) else _NUM_ALIGN_CENTER
+    for c in range(1, n_cols + 1):
+        ws.cell(row=hdr, column=c).border = Border(bottom=Side(style='thin', color=INK))
+
+    row = hdr + 1
+    _t = lambda v: '' if pd.isna(v) else str(v)
+    for rank, (_, r) in enumerate(nn.iterrows(), start=1):
+        _write_int(ws, row, 1, rank, font=f_text_muted)
+        ws.cell(row=row, column=2, value=r['symbol']).font = f_bold
+        ws.cell(row=row, column=2).alignment = _TXT_ALIGN_LEFT
+        ws.cell(row=row, column=3, value=_t(r.get('name'))[:44]).font = f_text
+        ws.cell(row=row, column=3).alignment = _TXT_ALIGN_LEFT
+        ws.cell(row=row, column=4, value=_t(r.get('src'))).font = f_text_muted
+        ws.cell(row=row, column=4).alignment = _TXT_ALIGN_LEFT
+        ws.cell(row=row, column=5, value=_t(r.get('sector'))[:16]).font = f_text_muted
+        ws.cell(row=row, column=5).alignment = _TXT_ALIGN_LEFT
+        _write_money(ws, row, 6, r.get('market_cap'), font=f_text)
+        _verdict_badge(ws, row, 7, r.get('verdict', 'UNRESEARCHED'))
+        _write_score(ws, row, 8, r.get('netnet_ncav_pct'), font=f_bold)
+        _write_score(ws, row, 9, r.get('netnet_cash_pct'), font=f_text)
+        _write_money(ws, row, 10, r.get('cash'), font=f_text)
+        _write_money(ws, row, 11, r.get('investments_associates'), font=f_text)
+        _write_score(ws, row, 12, r.get('pb'), font=f_text)
+        _write_score(ws, row, 13, r.get('p_e'), font=f_text)
+        _write_pct(ws, row, 14, r.get('fcf_yield'), font=f_text)
+        _write_score(ws, row, 15, r.get('governance_score'), font=f_text)
+        _write_int(ws, row, 16,
+                   int(r['archetype_count']) if pd.notna(r.get('archetype_count')) else 0,
+                   font=f_text_muted)
+        for c in range(1, n_cols + 1):
+            ws.cell(row=row, column=c).border = Border(bottom=Side(style='thin', color=RULE))
+        ws.row_dimensions[row].height = 15
+        row += 1
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = f'A{hdr + 1}'
+    if ws.max_row > hdr:
+        ws.auto_filter.ref = f"A{hdr}:{ws.cell(row=1, column=n_cols).column_letter}{ws.max_row}"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--n', type=int, default=30,
@@ -263,11 +360,15 @@ def main():
                          'universe carrying a positive governance signal — '
                          'owner-operator alignment, insider open-market buying, '
                          'no dilution, capital discipline, or low SBC.')
+    ap.add_argument('--netnet-tab', action='store_true',
+                    help='add Net-Nets and Net-Net Governance sheets (scanned '
+                         'across the FULL universe, cash+investments basis).')
     args = ap.parse_args()
 
     df, arch_cols = load_data(min_mcap=args.min_mcap, otc_mode='all')
     df = apply_otc_mode(df, args.otc_mode)
     df = apply_high_filter(df, args.high_filter)
+    df_full = df.copy()   # pre-value-filter universe (for net-net tabs)
     if args.max_pb is not None:
         _pb = pd.to_numeric(df.get('pb'), errors='coerce')
         df = df[(_pb > 0.05) & (_pb < args.max_pb)].copy()
@@ -381,6 +482,28 @@ def main():
             n_agg_sheets += 1
             _hi = int((pd.to_numeric(gov_df['governance_score'], errors='coerce') >= 0.60).sum())
             print(f'  Governance: {len(gov_df):,} names (score>=0.15), {_hi} High-conviction',
+                  file=sys.stderr)
+
+    # Net-Nets + Net-Net Governance (opt-in): scanned across the FULL universe
+    # (not the P/B-filtered subset), cash+investments basis. The second sheet is
+    # the intersection with governance conviction — cheap-to-liquidation AND
+    # insider-aligned, the highest-conviction deep value.
+    if args.netnet_tab:
+        nn = _netnet_frame(df_full)
+        if not nn.empty:
+            ws = wb.create_sheet(_sheet_safe('Net-Nets'))
+            tab_colors.set_tab(ws, tab_colors.AGGREGATE)
+            _write_netnet_sheet(ws, nn, max(args.global_n * 4, 400))
+            n_agg_sheets += 1
+            _gsc = pd.to_numeric(nn.get('governance_score'), errors='coerce')
+            nn_gov = nn[_gsc >= 0.15]
+            if not nn_gov.empty:
+                ws = wb.create_sheet(_sheet_safe('Net-Net Governance'))
+                tab_colors.set_tab(ws, tab_colors.AGGREGATE)
+                _write_netnet_sheet(ws, nn_gov, max(args.global_n * 4, 300),
+                                    sort_col='governance_score')
+                n_agg_sheets += 1
+            print(f'  Net-Nets: {len(nn):,} names ({len(nn_gov):,} with governance signal)',
                   file=sys.stderr)
 
     for ctry in countries:
