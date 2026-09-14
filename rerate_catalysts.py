@@ -132,11 +132,25 @@ def main() -> int:
         r.setdefault("_bw", {})
         r["_bw"][bucket] = max(r["_bw"].get(bucket, 0), weight)
 
-    # 1) PSU-incentivised corporate actions (hardest).
+    # 1) PSU-incentivised corporate actions -- ONLY when the category is a
+    #    genuine FORWARD-directed vesting condition, not change-of-control
+    #    boilerplate. cond_cats keeps every category the comp section merely
+    #    MENTIONS ("awards vest upon a merger or spin-off"), which is near-
+    #    universal CIC language; a real incentive requires n_fwd_cond > 0 AND
+    #    the category's keyword to appear in the forward-condition snippets.
+    #    (Audit: without this gate, 122/122 spin and 79/80 merger cond_cats
+    #    were boilerplate -- e.g. SENS flagged spin+merger with n_fwd_cond=0.)
+    import re as _re
+    _CAT_KW = {"spin_separation": r"spin|separat",
+               "asset_sale_named": r"sale|divest|sell|dispos",
+               "merger_acquisition_close": r"merger|acquisi|combinat|take.?private|sale of the company"}
     for tk, p in proxy.items():
+        if not p.get("n_fwd_cond"):
+            continue
+        snip = " ".join(p.get("fwd_snippets") or []).lower()
         for cat in (p.get("cond_cats") or []):
             b = PROXY_MAP.get(cat)
-            if b:
+            if b and _re.search(_CAT_KW.get(cat, cat), snip):
                 add(tk, b, "incentive", W_INCENTIVE[b], cat)
 
     # 2) active tenders (live bids).
