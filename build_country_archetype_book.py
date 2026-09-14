@@ -174,11 +174,21 @@ def main():
                          'ev_ebitda OR ev_ebit below this (OR-combined with '
                          '--max-pe). e.g. --max-pe 8 --max-ev 8 for a '
                          'P/E<8-or-EV<8 universe.')
+    ap.add_argument('--max-pb', type=float, default=None,
+                    help='keep names with P/B below this (e.g. 1.05 for a '
+                         'below-book book with a small margin of error). A '
+                         'low floor (pb>0.05) drops corrupt near-zero ADR/FX '
+                         'artifacts. Off by default.')
     args = ap.parse_args()
 
     df, arch_cols = load_data(min_mcap=args.min_mcap, otc_mode='all')
     df = apply_otc_mode(df, args.otc_mode)
     df = apply_high_filter(df, args.high_filter)
+    if args.max_pb is not None:
+        _pb = pd.to_numeric(df.get('pb'), errors='coerce')
+        df = df[(_pb > 0.05) & (_pb < args.max_pb)].copy()
+        print(f'  P/B filter (0.05 < P/B < {args.max_pb}): {len(df):,} names kept',
+              file=sys.stderr)
     if args.max_ret_12m is not None:
         _ret12 = (pd.to_numeric(df.get('momentum_12m'), errors='coerce')
                   .fillna(pd.to_numeric(df.get('price_yoy'), errors='coerce')))
