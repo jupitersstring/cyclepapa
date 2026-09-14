@@ -166,6 +166,14 @@ def main():
                          '(momentum_12m, fallback price_yoy) is BELOW this '
                          '(e.g. 0.0 for a beaten-down / 12m-ret<0 book). '
                          'Off by default.')
+    ap.add_argument('--max-pe', type=float, default=None,
+                    help='cheap-multiple filter: keep names with a POSITIVE '
+                         'p_e below this (OR-combined with --max-ev).')
+    ap.add_argument('--max-ev', type=float, default=None,
+                    help='cheap-multiple filter: keep names with a POSITIVE '
+                         'ev_ebitda OR ev_ebit below this (OR-combined with '
+                         '--max-pe). e.g. --max-pe 8 --max-ev 8 for a '
+                         'P/E<8-or-EV<8 universe.')
     args = ap.parse_args()
 
     df, arch_cols = load_data(min_mcap=args.min_mcap, otc_mode='all')
@@ -177,6 +185,19 @@ def main():
         df = df[_ret12 < args.max_ret_12m].copy()
         print(f'  12m-return filter (<{args.max_ret_12m:+.2f}): {len(df):,} names kept',
               file=sys.stderr)
+    if args.max_pe is not None or args.max_ev is not None:
+        _pe = pd.to_numeric(df.get('p_e'), errors='coerce')
+        _eve = pd.to_numeric(df.get('ev_ebitda'), errors='coerce')
+        _evb = pd.to_numeric(df.get('ev_ebit'), errors='coerce')
+        _cheap = pd.Series(False, index=df.index)
+        if args.max_pe is not None:
+            _cheap = _cheap | ((_pe > 0) & (_pe < args.max_pe))
+        if args.max_ev is not None:
+            _cheap = _cheap | ((_eve > 0) & (_eve < args.max_ev)) \
+                            | ((_evb > 0) & (_evb < args.max_ev))
+        df = df[_cheap.fillna(False)].copy()
+        print(f'  cheap-multiple filter (P/E<{args.max_pe} OR EV<{args.max_ev}): '
+              f'{len(df):,} names kept', file=sys.stderr)
     df['src'] = df['src'].fillna('').astype(str).str.upper()
     print(f'  {len(df):,} eligible rows, {len(arch_cols)} archetypes',
           file=sys.stderr)
