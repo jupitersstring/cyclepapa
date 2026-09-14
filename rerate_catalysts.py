@@ -74,6 +74,10 @@ W_INCENTIVE = {"SPINOFF": 11, "ASSET_SALE": 9, "SALE_OF_COMPANY": 7,
 W_TENDER = 7                  # active bid, but deal largely priced already
 W_NARRATIVE = {"SPINOFF": 7, "SEPARATION": 7, "SALE_OF_COMPANY": 5,
                "ASSET_SALE": 5, "STRATEGIC_REVIEW": 3}
+# 8-K primary-filing announcement: harder than MD&A narrative (an actual
+# announced action, dated), softer than a PSU forward-vesting condition.
+W_EVENT = {"SPINOFF": 10, "SEPARATION": 10, "SALE_OF_COMPANY": 7,
+           "ASSET_SALE": 7, "STRATEGIC_REVIEW": 5}
 TRIANGULATION_BONUS = 5       # a bucket named by 2+ independent sources
 MULTI_TYPE_BONUS = 4         # 2+ distinct catalyst types
 
@@ -152,6 +156,16 @@ def main() -> int:
             b = PROXY_MAP.get(cat)
             if b and _re.search(_CAT_KW.get(cat, cat), snip):
                 add(tk, b, "incentive", W_INCENTIVE[b], cat)
+
+    # 1b) live 8-K corporate-action announcements (rerate_events_8k.py).
+    events8k = _load("rerate_events_8k.json")
+    for tk, buckets in events8k.items():
+        if not isinstance(buckets, dict):
+            continue
+        for b, info in buckets.items():
+            if b in W_EVENT:
+                add(tk, b, "event", W_EVENT[b],
+                    (info or {}).get("phrase", "8-K"))
 
     # 2) active tenders (live bids).
     for tk, t in tender.items():

@@ -72,12 +72,17 @@ def load_proxy_dates():
     return dates
 
 
-def catalyst_date(tk, rer_rec, mda, proxy_dates):
-    """Most-recent catalyst mention date across the name's sources."""
+def catalyst_date(tk, rer_rec, mda, proxy_dates, events8k):
+    """Most-recent catalyst mention date across the name's sources. Prefers
+    the 8-K announcement date (the cleanest anchor) when present."""
     cands = []
     srcs = rer_rec.get("sources_by_bucket", {})
     uses_incentive = any("incentive" in v for v in srcs.values())
     uses_narrative = any("narrative" in v for v in srcs.values())
+    ev = events8k.get(tk) or {}
+    for info in ev.values():
+        if isinstance(info, dict) and info.get("date"):
+            cands.append(info["date"])
     if uses_incentive and tk in proxy_dates:
         cands.append(proxy_dates[tk])
     if uses_narrative and tk in mda:
@@ -98,6 +103,7 @@ def main() -> int:
     mda = _load("mda_scan.json")
     odds = _load("tail_odds.json")
     proxy_dates = load_proxy_dates()
+    events8k = _load("rerate_events_8k.json")
 
     # rank candidates: prefer tail-odds, fall back to rerate_score.
     def rank_key(tk):
@@ -109,7 +115,7 @@ def main() -> int:
     out = {}
     priced = 0
     for tk in cands:
-        cd = catalyst_date(tk, rer[tk], mda, proxy_dates)
+        cd = catalyst_date(tk, rer[tk], mda, proxy_dates, events8k)
         if not cd:
             continue
         try:

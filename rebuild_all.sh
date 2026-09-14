@@ -75,6 +75,7 @@ if [ "$DO_SCANS" = "1" ]; then
   run python3 mda_scan.py                    --days 180 || true
   run python3 payoff_geometry.py             || true
   run python3 mechanism_gates.py             || true
+  run python3 rerate_events_8k.py            --days 270 || true
   run python3 rerate_catalysts.py            || true
   run python3 rerate_backtest.py             --start 2024-01-01 --end 2025-06-30 || true
   run python3 tail_discriminators.py         || true
