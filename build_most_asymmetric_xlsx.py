@@ -1583,23 +1583,69 @@ def build_tail_odds(wb: Workbook, yf: dict):
         "calibrated probability.",
         n_cols=6,
     )
+    conf = {}
+    cp = ROOT / "confirmation_rule.json"
+    if cp.exists():
+        try:
+            conf = json.loads(cp.read_text())
+        except Exception:
+            conf = {}
+
+    r = 4
+    # --- CONFIRMED shortlist: the rule, applied. Highest actionable odds. ---
+    confirmed = sorted((v for v in conf.values()
+                        if isinstance(v, dict) and v.get("state") == "CONFIRMED"),
+                       key=lambda r: -r.get("tail_prob_confirmed", 0))
+    if confirmed:
+        ws.cell(row=r, column=1,
+                value="CONFIRMED — market voted up >20% since the catalyst "
+                      "(the 4x-lift rule, applied)").font = BODY_BOLD
+        r += 1
+        write_header_row(ws, r, ["Ticker", "Name", "Conf. tail p",
+                                 "Drift since", "Months", "Catalysts"])
+        r += 1
+        for i, v in enumerate(confirmed[:22], 1):
+            tk = v.get("ticker", "")
+            nm = (yf.get(tk, {}) or {}).get("name", tk)
+            write_body_row(ws, r,
+                           [tk, nm[:20], f"{v.get('tail_prob_confirmed',0)*100:.0f}%",
+                            f"{v.get('drift_since_catalyst',0)*100:+.0f}%",
+                            f"{v.get('months_since','')}m",
+                            ", ".join(v.get("catalyst_types") or [])[:34]],
+                           band=(i % 2 == 0), bold_first=True)
+            ws.row_dimensions[r].height = 22
+            r += 1
+        from collections import Counter
+        st = Counter(v.get("state") for v in conf.values() if isinstance(v, dict))
+        ws.cell(row=r, column=1,
+                value=f"({st.get('CONFIRMED',0)} confirmed / {st.get('PENDING',0)} "
+                      f"pending / {st.get('NEUTRAL',0)} neutral / "
+                      f"{st.get('FADING',0)} fading, of {sum(st.values())} priced)"
+                ).font = SMALL_ITALIC if 'SMALL_ITALIC' in globals() else BODY_FONT
+        r += 2
+
+    # --- full candidate ranking (pre-confirmation odds) ---
+    ws.cell(row=r, column=1,
+            value="ALL CANDIDATES — pre-confirmation tail odds").font = BODY_BOLD
+    r += 1
     rows = sorted((v for v in odds.values() if isinstance(v, dict)),
                   key=lambda r: -r.get("est_tail_prob", 0))
-    write_header_row(ws, 4, ["Ticker", "Name", "Tail p", "xMult", "Ratio",
-                             "Tail drivers (lift)"])
-    r = 5
-    for i, v in enumerate(rows[:40], 1):
+    write_header_row(ws, r, ["Ticker", "Name", "Tail p", "State", "Ratio",
+                             "Tail drivers"])
+    r += 1
+    for i, v in enumerate(rows[:35], 1):
         tk = v.get("ticker", "")
         nm = (yf.get(tk, {}) or {}).get("name", tk)
         drivers = ", ".join(
             f"{k}={v['feature_bins'][k]}" for k in v.get("feature_lifts", {})
             if v["feature_lifts"][k] > 1.05)
         rat = v.get("geometry_ratio")
+        state = (conf.get(tk) or {}).get("state", "—")
         write_body_row(ws, r,
                        [tk, nm[:20], f"{v.get('est_tail_prob',0)*100:.0f}%",
-                        f"{v.get('tail_multiple',1):.1f}x",
+                        state,
                         (round(rat, 1) if rat else "—"),
-                        drivers[:40]],
+                        drivers[:38]],
                        band=(i % 2 == 0), bold_first=True)
         ws.row_dimensions[r].height = 22
         r += 1
