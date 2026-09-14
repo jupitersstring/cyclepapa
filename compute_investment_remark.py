@@ -37,6 +37,13 @@ INV_CONCEPTS = [
     "MarketableSecuritiesNoncurrent",
 ]
 NONOP_CONCEPTS = ["NonoperatingIncomeExpense", "OtherNonoperatingIncomeExpense"]
+# forensic best-practice additions (full gamut):
+EM_CARRY_CONCEPTS = ["EquityMethodInvestments"]                       # carrying value of associates/JVs
+EM_FV_CONCEPTS = ["EquityMethodInvestmentsFairValueDisclosure"]       # DISCLOSED fair value of the stake (the #1 tell)
+EM_INCOME_CONCEPTS = ["IncomeLossFromEquityMethodInvestments"]        # look-through earnings from associates
+UNREAL_GAIN_CONCEPTS = ["UnrealizedGainLossOnInvestments",           # the remark gain (unrealized)
+                        "GainLossOnInvestments",
+                        "EquitySecuritiesFvNiUnrealizedGainLoss"]
 
 
 def _series(gaap, concepts, unit="USD"):
@@ -98,24 +105,40 @@ def main():
         if now_d is None:
             continue
         now_v = carry[now_e]
-        # prior base: the observation closest to ~1 year before `now` (270-540d)
+        # prior base: the immediately-PRECEDING period (a remark is a discrete
+        # recent event — LanzaTech's SGLT step-up was QoQ, Q1->Q2 2026, and its
+        # investment line is only a few quarters old). Take the latest
+        # observation >= 45 days before `now` (prior quarter, or prior year for
+        # annual-only filers), and also record the ~1yr-ago value when present.
         prior = None
+        prior_1y = None
         for e in ends[:-1]:
             pd_ = _parse(e)
             if pd_ is None:
                 continue
             gap = (now_d - pd_).days
+            if gap >= 45:
+                prior = (e, carry[e], gap)          # keep the LATEST such (closest prior period)
             if 270 <= gap <= 540:
-                prior = (e, carry[e], gap)
+                prior_1y = (e, carry[e], gap)
         if prior is None:
             continue
         prior_e, prior_v, _ = prior
         jump = now_v - prior_v
-        # non-operating income (latest annual/period value) — confirms a gain
+        # non-operating income (latest period value) — confirms a gain
         nonop, _ = _series(gaap, NONOP_CONCEPTS)
-        nonop_v = nonop.get(now_e)
-        if nonop_v is None and nonop:
-            nonop_v = nonop[sorted(nonop)[-1]]
+        nonop_v = nonop.get(now_e) or (nonop[sorted(nonop)[-1]] if nonop else None)
+        # forensic full gamut: equity-method carrying value, DISCLOSED fair
+        # value (idea #1), look-through earnings, and the unrealized remark gain.
+        def _latest(concepts):
+            s, _c = _series(gaap, concepts)
+            if not s:
+                return None
+            return s[sorted(s, key=lambda e: e)[-1]]
+        em_carry = _latest(EM_CARRY_CONCEPTS)
+        em_fv = _latest(EM_FV_CONCEPTS)
+        em_income = _latest(EM_INCOME_CONCEPTS)
+        unreal_gain = _latest(UNREAL_GAIN_CONCEPTS)
         rows.append({
             "symbol": sym,
             "inv_carry_now": now_v, "inv_carry_prior": prior_v,
@@ -123,6 +146,11 @@ def main():
             "inv_remark_jump": jump,
             "inv_remark_pct": (jump / prior_v) if prior_v not in (0, None) else None,
             "nonop_gain_ttm": nonop_v,
+            # equity-method / JV forensics
+            "em_carry": em_carry, "em_fair_value": em_fv,
+            "em_fv_gap": (em_fv - em_carry) if (em_fv is not None and em_carry is not None) else None,
+            "em_income": em_income,
+            "unrealized_inv_gain": unreal_gain,
         })
 
     out = pd.DataFrame(rows).drop_duplicates("symbol")
