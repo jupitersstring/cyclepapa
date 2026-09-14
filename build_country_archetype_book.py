@@ -16,6 +16,7 @@ Output: country_archetype_book.xlsx
 """
 from __future__ import annotations
 import argparse
+import os
 import sys
 
 import pandas as pd
@@ -326,6 +327,64 @@ def _write_netnet_sheet(ws, nn, n_top, sort_col='netnet_score'):
         ws.auto_filter.ref = f"A{hdr}:{ws.cell(row=1, column=n_cols).column_letter}{ws.max_row}"
 
 
+def _write_unlock_sheet(ws, uf, n_top):
+    """Cheap + live value-unlock catalyst, conviction-ranked (value_unlock_score),
+    with the forensic-confirmation flag and the phrases that fired."""
+    headers = ['#', 'Ticker', 'Name', 'Ctry', 'Sector', 'Mcap (USD)', 'Verdict',
+               'Unlock', 'Confirmed', 'P/B', 'FCF yld', 'Gov', 'Unlock phrases']
+    n_cols = len(headers)
+    widths = {1: 4, 2: 11, 3: 28, 4: 6, 5: 15, 6: 13, 7: 11, 8: 8, 9: 9, 10: 7,
+              11: 8, 12: 7, 13: 60}
+    for col, w in widths.items():
+        ws.column_dimensions[ws.cell(row=1, column=col).column_letter].width = w
+    f_bold = _font(bold=True, color=INK); f_bm = _font(bold=True, color=MUTED)
+    f_text = _font(color=INK); f_tm = _font(color=MUTED)
+    uf = uf.sort_values('value_unlock_score', ascending=False, na_position='last').head(n_top)
+    t = ws.cell(row=2, column=1, value=f"Value-Unlock — cheap + live catalyst, conviction-ranked  ({len(uf):,} names)")
+    t.font = f_bold; t.alignment = _TXT_ALIGN_LEFT
+    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=n_cols)
+    ws.row_dimensions[2].height = 22
+    sub = ws.cell(row=3, column=1, value="value_unlock_score = catalyst (distinctive/fresh language or structured event) x forensic confirmation (+60%) x execution footprint (+25%) x alignment (+15%). 'Confirmed' = the forensics prove real hidden value to unlock.")
+    sub.font = _font(italic=True, color=MUTED)
+    ws.merge_cells(start_row=3, start_column=1, end_row=3, end_column=n_cols)
+    hdr = 5
+    for i, h in enumerate(headers, start=1):
+        c = ws.cell(row=hdr, column=i, value=h); c.font = f_bm
+        c.alignment = _TXT_ALIGN_LEFT if i in (2, 3, 4, 5, 13) else _NUM_ALIGN_CENTER
+    for c in range(1, n_cols + 1):
+        ws.cell(row=hdr, column=c).border = Border(bottom=Side(style='thin', color=INK))
+    row = hdr + 1
+    _t = lambda v: '' if pd.isna(v) else str(v)
+    for rank, (_, r) in enumerate(uf.iterrows(), start=1):
+        _write_int(ws, row, 1, rank, font=f_tm)
+        ws.cell(row=row, column=2, value=r['symbol']).font = f_bold
+        ws.cell(row=row, column=2).alignment = _TXT_ALIGN_LEFT
+        ws.cell(row=row, column=3, value=_t(r.get('name'))[:40]).font = f_text
+        ws.cell(row=row, column=3).alignment = _TXT_ALIGN_LEFT
+        ws.cell(row=row, column=4, value=_t(r.get('src'))).font = f_tm
+        ws.cell(row=row, column=4).alignment = _TXT_ALIGN_LEFT
+        ws.cell(row=row, column=5, value=_t(r.get('sector'))[:15]).font = f_tm
+        ws.cell(row=row, column=5).alignment = _TXT_ALIGN_LEFT
+        _write_money(ws, row, 6, r.get('market_cap'), font=f_text)
+        _verdict_badge(ws, row, 7, r.get('verdict', 'UNRESEARCHED'))
+        _write_score(ws, row, 8, r.get('value_unlock_score'), font=f_bold)
+        ws.cell(row=row, column=9, value=('YES' if r.get('value_unlock_confirmed') == 1 else '')).font = f_text
+        ws.cell(row=row, column=9).alignment = _NUM_ALIGN_CENTER
+        _write_score(ws, row, 10, r.get('pb'), font=f_text)
+        _write_pct(ws, row, 11, r.get('fcf_yield'), font=f_text)
+        _write_score(ws, row, 12, r.get('governance_score'), font=f_text)
+        ws.cell(row=row, column=13, value=_t(r.get('unlock_phrases'))[:90]).font = f_tm
+        ws.cell(row=row, column=13).alignment = _TXT_ALIGN_LEFT
+        for c in range(1, n_cols + 1):
+            ws.cell(row=row, column=c).border = Border(bottom=Side(style='thin', color=RULE))
+        ws.row_dimensions[row].height = 15
+        row += 1
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = f'A{hdr + 1}'
+    if ws.max_row > hdr:
+        ws.auto_filter.ref = f"A{hdr}:{ws.cell(row=1, column=n_cols).column_letter}{ws.max_row}"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--n', type=int, default=30,
@@ -365,12 +424,20 @@ def main():
     ap.add_argument('--netnet-tab', action='store_true',
                     help='add Net-Nets and Net-Net Governance sheets (scanned '
                          'across the FULL universe, cash+investments basis).')
+    ap.add_argument('--unlock-tab', action='store_true',
+                    help='add a Value-Unlock sheet: cheap names with a live '
+                         'value-unlock catalyst, ranked by value_unlock_score '
+                         '(language x forensics x footprint x alignment).')
     args = ap.parse_args()
 
     df, arch_cols = load_data(min_mcap=args.min_mcap, otc_mode='all')
     df = apply_otc_mode(df, args.otc_mode)
     df = apply_high_filter(df, args.high_filter)
-    df_full = df.copy()   # pre-value-filter universe (for net-net tabs)
+    df_full = df.copy()   # pre-value-filter universe (for net-net / unlock tabs)
+    if args.unlock_tab and os.path.exists('value_unlock_signals.csv'):
+        _vu = pd.read_csv('value_unlock_signals.csv').drop_duplicates('symbol')
+        if 'unlock_phrases' in _vu.columns:
+            df_full = df_full.merge(_vu[['symbol', 'unlock_phrases']], on='symbol', how='left')
     if args.max_pb is not None:
         _pb = pd.to_numeric(df.get('pb'), errors='coerce')
         _dq = pd.to_numeric(df.get('data_quality_flag'), errors='coerce').fillna(0)
@@ -507,6 +574,19 @@ def main():
                                     sort_col='governance_score')
                 n_agg_sheets += 1
             print(f'  Net-Nets: {len(nn):,} names ({len(nn_gov):,} with governance signal)',
+                  file=sys.stderr)
+
+    # Value-Unlock (opt-in): cheap names with a live value-unlock catalyst,
+    # conviction-ranked, from the FULL universe (arch_xr_value_unlock members).
+    if args.unlock_tab and 'arch_xr_value_unlock' in df_full.columns:
+        uf = df_full[pd.to_numeric(df_full['arch_xr_value_unlock'], errors='coerce') == 1].copy()
+        if not uf.empty:
+            ws = wb.create_sheet(_sheet_safe('Value-Unlock'))
+            tab_colors.set_tab(ws, tab_colors.AGGREGATE)
+            _write_unlock_sheet(ws, uf, max(args.global_n * 4, 400))
+            n_agg_sheets += 1
+            _conf = int((pd.to_numeric(uf.get('value_unlock_confirmed'), errors='coerce') == 1).sum())
+            print(f'  Value-Unlock: {len(uf):,} names ({_conf} forensically confirmed)',
                   file=sys.stderr)
 
     for ctry in countries:
