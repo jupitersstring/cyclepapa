@@ -1483,6 +1483,75 @@ def build_mechanism_gates(wb: Workbook, yf: dict):
     ws.freeze_panes = "A5"
 
 
+def build_rerate_catalysts(wb: Workbook, yf: dict):
+    """Corporate-action re-rate catalysts — spin-offs / separations / asset
+    sales / sale-of-company / strategic reviews, triangulated across
+    PSU-incentive, active-tender and MD&A-narrative sources and crossed with
+    the payoff-geometry re-rate room. Source: rerate_catalysts.json."""
+    ws = wb.create_sheet("Re-Rate Catalysts")
+    set_col_widths(ws, [9, 22, 8, 6, 7, 7, 44])
+    write_title_band(
+        ws,
+        "Re-Rate Catalysts — spin-offs, separations, sales, strategic reviews",
+        "The mechanical re-rates: a spin-off collapses the conglomerate "
+        "discount, an asset sale monetises non-core and de-levers, a sale of "
+        "the company delivers a premium. Catalysts triangulated across "
+        "PSU-incentive (management paid to do it), active tender, and MD&A "
+        "narrative, then scaled by the payoff-geometry upside room.",
+        n_cols=7,
+    )
+    d = {}
+    p = ROOT / "rerate_catalysts.json"
+    if p.exists():
+        try:
+            d = json.loads(p.read_text())
+        except Exception:
+            d = {}
+    rows = sorted((v for v in d.values() if isinstance(v, dict)),
+                  key=lambda r: -r.get("rerate_score", 0))
+    headers = ["Ticker", "Name", "Score", "Types", "Ratio", "Up%",
+               "Catalysts (source)"]
+    write_header_row(ws, 4, headers)
+    r = 5
+    for i, v in enumerate(rows[:50], 1):
+        tk = v.get("ticker", "")
+        nm = (yf.get(tk, {}) or {}).get("name", tk)
+        sbb = v.get("sources_by_bucket", {})
+        cats = "; ".join(
+            f"{b.replace('_', ' ').title()} [{'/'.join(sbb.get(b, []))}]"
+            for b in v.get("catalyst_types", []))
+        rat = v.get("geometry_ratio")
+        up = v.get("upside_pct")
+        write_body_row(ws, r,
+                       [tk, nm[:22], v.get("rerate_score", 0), v.get("n_types", 0),
+                        (round(rat, 1) if rat else "—"),
+                        (f"{round(up*100)}%" if up else "—"),
+                        cats[:44]],
+                       band=(i % 2 == 0), bold_first=True)
+        ws.row_dimensions[r].height = 22
+        r += 1
+    r += 1
+    from collections import Counter
+    bc = Counter(b for v in rows for b in v.get("catalyst_types", []))
+    multi = sum(1 for v in rows if v.get("n_types", 0) >= 2)
+    dist = ", ".join(f"{b.replace('_',' ').lower()} {n}" for b, n in bc.most_common())
+    write_footnote(ws, r,
+        f"{len(rows)} names carry a corporate-action re-rate catalyst "
+        f"({multi} carry two or more types). Distribution: {dist}. Sources by "
+        "hardness: INCENTIVE = the PSU plan pays management to achieve the "
+        "spin/sale/M&A (skin in the game, hardest); TENDER = a live bid "
+        "(role TARGET); NARRATIVE = management states the intent in the 10-K/"
+        "10-Q MD&A. A catalyst named by two independent sources is "
+        "triangulated (+bonus); two distinct catalyst types is the in-play "
+        "configuration. Score = catalyst strength x (1 + geometry upside "
+        "room), so a spin/sale with real re-rate headroom outranks one in an "
+        "already-fair-valued name (rows with '—' ratio have no value-geometry "
+        "floor — typically large-caps where the re-rate is a discount-collapse "
+        "story, not an asset-floor play). Source: rerate_catalysts.py.", 7)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A5"
+
+
 def build_winners_study(wb: Workbook, yf: dict):
     """Winners forensics -- feature lifts of realized 1-year re-raters, with
     the honest data caveat. Source: winners_forensics.json."""
@@ -2642,6 +2711,7 @@ TAB_INDEX = [
     ("MD&A Intent", "Management's stated agenda from 10-K/10-Q narrative — value-unlock/transformative/capital/governance/strategic."),
     ("Payoff Geometry", "Capped asset-backed downside vs sector re-rate upside — the asymmetry ratio per name."),
     ("Mechanism Gates", "Exceptional-return archetypes as hard causal conjunctions; 2+ machines = highest conviction."),
+    ("Re-Rate Catalysts", "Spin-offs / separations / asset sales / sale-of-company / strategic reviews x geometry room."),
     ("Winners Study", "What realized 1-year re-raters had in common — feature/sector lifts, with the pre-move-data caveat."),
     ("Asymmetry Assembly", "PSIX-recipe conjunction: cheap + inflection + leverage + insider co-occurring."),
     ("Distressed Stub Progress", "Finality-gated capital-structure value-unlock events, waterfall-scored."),
@@ -2810,6 +2880,7 @@ def main() -> int:
     build_mda_language(wb, yf)
     build_payoff_geometry(wb, yf)
     build_mechanism_gates(wb, yf)
+    build_rerate_catalysts(wb, yf)
     build_winners_study(wb, yf)
     build_asymmetry_assembly(wb, yf)
     build_distressed_stub(wb, yf)
