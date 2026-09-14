@@ -338,11 +338,21 @@ def _facts_unit_iter(facts: dict, concept: str, unit: str = "USD"):
 
 
 def latest_point_value(facts: dict, aliases: list[str], unit: str = "USD"):
-    """FIRST alias with observations wins; newest snapshot WITHIN that
-    concept. Pooling across aliases mixed different measures (restricted-
-    inclusive cash beating clean cash, total-debt beating noncurrent) —
-    the alias order is the documented priority and is now honored."""
-    for c in aliases:
+    """FRESHEST observation across aliases, with alias PRIORITY as a tiebreak
+    among same-vintage data.
+
+    The old rule was first-alias-wins (newest within the first alias that had
+    any data). That honored measure priority (clean cash over restricted-
+    inclusive, etc.) but let a STALE priority alias beat a CURRENT secondary one:
+    e.g. CULP's `StockholdersEquity` last filed 2021 (128M) while
+    `StockholdersEquityIncludingNCI` is current 2026 (48M) — the stale 2021 value
+    won, producing an impossible equity>assets against current assets. Fix: find
+    the freshest end-date across all aliases; among aliases whose newest
+    observation is within ~400 days of it (the same current reporting vintage),
+    keep the documented alias PRIORITY; a stale priority alias (years behind) is
+    excluded, so a current secondary alias wins."""
+    cands = []  # (priority_idx, best_obs, concept)
+    for i, c in enumerate(aliases):
         best = None
         for obs in _facts_unit_iter(facts, c, unit=unit):
             end = obs.get("end")
@@ -351,9 +361,30 @@ def latest_point_value(facts: dict, aliases: list[str], unit: str = "USD"):
             if best is None or end > best.get("end", ""):
                 best = obs
         if best is not None:
-            best["_concept"] = c
-            return best
-    return None
+            cands.append((i, best, c))
+    if not cands:
+        return None
+
+    def _pend(o):
+        try:
+            return datetime.strptime(o.get("end", ""), "%Y-%m-%d")
+        except Exception:
+            return None
+    dated = [(i, o, c, _pend(o)) for (i, o, c) in cands]
+    valid = [t for t in dated if t[3] is not None]
+    if not valid:
+        i, o, c = cands[0]
+        o["_concept"] = c
+        return o
+    newest = max(t[3] for t in valid)
+    # same current vintage: within ~400 days of the freshest (covers quarterly
+    # AND annual filers; excludes an alias that is years stale)
+    current = [t for t in valid if (newest - t[3]).days <= 400]
+    pick = min(current, key=lambda t: t[0]) if current \
+        else max(valid, key=lambda t: t[3])   # fallback: the freshest overall
+    _, o, c, _ = pick
+    o["_concept"] = c
+    return o
 
 
 def latest_annual_value(facts: dict, aliases: list[str], unit: str = "USD"):
