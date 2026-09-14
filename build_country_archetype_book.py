@@ -242,9 +242,23 @@ def _netnet_frame(df_full):
         pd.to_numeric(d.get('market_cap'), errors='coerce'))
     d['netnet_ncav_pct'] = ncav_pct
     d['netnet_cash_pct'] = cash_pct
-    # net-net if below NCAV or below net cash+investments; require a tradeable
-    # size and drop the ghost/price-corrupt rows.
-    is_nn = ((ncav_pct >= 1.0) | (cash_pct >= 1.0)) & (mc >= 10e6)
+    # EXCLUDE financials / REITs / insurers / lenders: their "cash" is customer
+    # deposits / float, not shareholder cash, so the net-cash net-net is
+    # meaningless there (a bank at 19x "net cash" is deposits). Net-net is a
+    # Graham OPERATING-company concept.
+    _sec = d.get('sector', '').astype(str).str.lower()
+    _ind = (d.get('industry', '').astype(str).str.lower()
+            if 'industry' in d.columns else _sec)
+    _fin = (_sec.str.contains('financ') | _sec.str.contains('real estate')
+            | _sec.str.contains('insur') | _sec.str.contains('bank')
+            | _ind.str.contains('bank|insur|capital market|asset manage|'
+                                'closed-end|business development|reinsurance', regex=True)).fillna(False)
+    # BURN guard: not a melting shell (deeply negative returns AND burning cash
+    # erode the discount before it closes — SOS at roce -23%).
+    _roce = pd.to_numeric(d.get('roce'), errors='coerce')
+    _fcfy = pd.to_numeric(d.get('fcf_yield'), errors='coerce')
+    _melting = ((_roce < -0.20) & ~(_fcfy > 0)).fillna(False)
+    is_nn = ((ncav_pct >= 1.0) | (cash_pct >= 1.0)) & (mc >= 10e6) & ~_fin & ~_melting
     if 'is_price_ghost' in d.columns:
         is_nn = is_nn & ~(pd.to_numeric(d['is_price_ghost'], errors='coerce') == 1)
     if 'data_quality_flag' in d.columns:   # never surface a corrupt-level name as a net-net
