@@ -404,6 +404,18 @@ def score_post_ch11_layer(layers: dict, universe: set) -> dict:
     return _load_jscore(ROOT / "post_ch11_emergence.json", universe)
 
 
+def score_mda_language_layer(layers: dict, universe: set) -> dict:
+    """MD&A revealed-intent language (see mda_scan.py). EFTS exact-phrase
+    scan of 10-K/10-Q MD&A for five families of management intent -- value-
+    unlock, transformative, capital-policy, governance-action, strategic-
+    action -- rarity-weighted, convergence-bonused, negation-verified. Scores
+    stated INTENT from the narrative, leading the event layers. Names without
+    a scored row score 0.
+
+    Source: mda_scan.json (built by mda_scan.py)."""
+    return _load_jscore(ROOT / "mda_scan.json", universe)
+
+
 def score_form4_timing_layer(layers: dict, universe: set) -> dict:
     """Form 4 filing-TIME signal (see form4_timing.py). Empirically tested:
     open-market insider buys ACCEPTED off-hours (evenings / Friday evening /
@@ -804,6 +816,7 @@ def main() -> int:
         "selective_buyback": score_selective_buyback_layer(layers, universe),
         "net_buyback": score_net_buyback_layer(layers, universe),
         "form4_timing": score_form4_timing_layer(layers, universe),
+        "mda_language": score_mda_language_layer(layers, universe),
         "internalization": score_internalization_layer(layers, universe),
         "bumpitrage": score_bumpitrage_layer(layers, universe),
         "spinoff_volume": score_spinoff_volume_layer(layers, universe),
@@ -922,6 +935,7 @@ def main() -> int:
             "selective_buyback_pts": layer_scores["selective_buyback"].get(tk, 0),
             "net_buyback_pts": layer_scores["net_buyback"].get(tk, 0),
             "form4_timing_pts": layer_scores["form4_timing"].get(tk, 0),
+            "mda_language_pts": layer_scores["mda_language"].get(tk, 0),
             "internalization_pts": layer_scores["internalization"].get(tk, 0),
             "bumpitrage_pts": layer_scores["bumpitrage"].get(tk, 0),
             "spinoff_volume_pts": layer_scores["spinoff_volume"].get(tk, 0),

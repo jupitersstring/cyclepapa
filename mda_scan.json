@@ -1,0 +1,9288 @@
+{
+  "PASG": {
+    "ticker": "PASG",
+    "score": 11.5,
+    "categories": {
+      "value_unlock": 5.5,
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "review of strategic alternatives",
+      "maximize shareholder value",
+      "wind down"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001104659-26-058987",
+        "cik": "0001787297",
+        "date": "2026-05-12"
+      },
+      "maximize shareholder value": {
+        "accession": "0001104659-26-058987",
+        "cik": "0001787297",
+        "date": "2026-05-12"
+      },
+      "wind down": {
+        "accession": "0001104659-26-093021",
+        "cik": "0001787297",
+        "date": "2026-08-10"
+      }
+    },
+    "n_categories": 2,
+    "verified": true
+  },
+  "SYBX": {
+    "ticker": "SYBX",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "review of strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001193125-26-344789",
+        "cik": "0001527599",
+        "date": "2026-08-11"
+      }
+    },
+    "n_categories": 1
+  },
+  "FWRD": {
+    "ticker": "FWRD",
+    "score": 8.5,
+    "categories": {
+      "value_unlock": 5.5
+    },
+    "phrases": [
+      "review of strategic alternatives",
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001628280-26-033501",
+        "cik": "0000912728",
+        "date": "2026-05-11"
+      },
+      "maximize shareholder value": {
+        "accession": "0001628280-26-053329",
+        "cik": "0000912728",
+        "date": "2026-08-05"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "NDLS": {
+    "ticker": "NDLS",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "review of strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001275158-26-000049",
+        "cik": "0001275158",
+        "date": "2026-07-24"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "FULC": {
+    "ticker": "FULC",
+    "score": 11.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "review of strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001193125-26-326098",
+        "cik": "0001680581",
+        "date": "2026-07-30"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true,
+    "verified": true
+  },
+  "CLAR": {
+    "ticker": "CLAR",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "review of strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001104659-26-057191",
+        "cik": "0000913277",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "INRE": {
+    "ticker": "INRE",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "review of strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001528985-26-000004",
+        "cik": "0001528985",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "SOLV": {
+    "ticker": "SOLV",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "review of strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001964738-26-000047",
+        "cik": "0001964738",
+        "date": "2026-08-05"
+      }
+    },
+    "n_categories": 1
+  },
+  "FSP": {
+    "ticker": "FSP",
+    "score": 5.5,
+    "categories": {
+      "value_unlock": 5.5
+    },
+    "phrases": [
+      "review of strategic alternatives",
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001104659-26-050395",
+        "cik": "0001031316",
+        "date": "2026-04-28"
+      },
+      "maximize shareholder value": {
+        "accession": "0001104659-26-050395",
+        "cik": "0001031316",
+        "date": "2026-04-28"
+      }
+    },
+    "n_categories": 1
+  },
+  "GFF": {
+    "ticker": "GFF",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "review of strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001628280-26-032347",
+        "cik": "0000050725",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "JOB": {
+    "ticker": "JOB",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "review of strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001477932-26-003070",
+        "cik": "0000040570",
+        "date": "2026-05-14"
+      }
+    },
+    "n_categories": 1
+  },
+  "NEUP": {
+    "ticker": "NEUP",
+    "score": 11.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "review of strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001193125-26-225442",
+        "cik": "0001191070",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true,
+    "verified": true
+  },
+  "PRSO": {
+    "ticker": "PRSO",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "review of strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001213900-26-056603",
+        "cik": "0000890394",
+        "date": "2026-05-14"
+      }
+    },
+    "n_categories": 1
+  },
+  "LSTA": {
+    "ticker": "LSTA",
+    "score": 8.5,
+    "categories": {
+      "value_unlock": 5.5
+    },
+    "phrases": [
+      "review of strategic alternatives",
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0000320017-26-000038",
+        "cik": "0000320017",
+        "date": "2026-08-06"
+      },
+      "maximize shareholder value": {
+        "accession": "0000320017-26-000038",
+        "cik": "0000320017",
+        "date": "2026-08-06"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "NGVT": {
+    "ticker": "NGVT",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "review of strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001653477-26-000035",
+        "cik": "0001653477",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "XPOF": {
+    "ticker": "XPOF",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "review of strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001802156-26-000065",
+        "cik": "0001802156",
+        "date": "2026-05-08"
+      }
+    },
+    "n_categories": 1
+  },
+  "LITS": {
+    "ticker": "LITS",
+    "score": 13.0,
+    "categories": {
+      "value_unlock": 5.0,
+      "governance_action": 4.0
+    },
+    "phrases": [
+      "review of strategic alternatives",
+      "cooperation agreement"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001193125-26-220687",
+        "cik": "0001262104",
+        "date": "2026-05-13"
+      },
+      "cooperation agreement": {
+        "accession": "0001193125-26-220687",
+        "cik": "0001262104",
+        "date": "2026-05-13"
+      }
+    },
+    "n_categories": 2,
+    "verified": true
+  },
+  "PKOH": {
+    "ticker": "PKOH",
+    "score": 4.6,
+    "categories": {
+      "value_unlock": 5.0,
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "review of strategic alternatives",
+      "portfolio optimization"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0000076282-26-000013",
+        "cik": "0000076282",
+        "date": "2026-05-07"
+      },
+      "portfolio optimization": {
+        "accession": "0000076282-26-000013",
+        "cik": "0000076282",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 2,
+    "verified": true,
+    "negation_flag": "review of strategic alternatives"
+  },
+  "BVS": {
+    "ticker": "BVS",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "review of strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001665988-26-000042",
+        "cik": "0001665988",
+        "date": "2026-08-05"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "LEVI": {
+    "ticker": "LEVI",
+    "score": 17.0,
+    "categories": {
+      "value_unlock": 5.0,
+      "capital_policy": 2.0,
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "review of strategic alternatives",
+      "capital allocation priorities",
+      "wind down"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0000094845-26-000020",
+        "cik": "0000094845",
+        "date": "2026-04-07"
+      },
+      "capital allocation priorities": {
+        "accession": "0000094845-26-000020",
+        "cik": "0000094845",
+        "date": "2026-04-07"
+      },
+      "wind down": {
+        "accession": "0000094845-26-000020",
+        "cik": "0000094845",
+        "date": "2026-04-07"
+      }
+    },
+    "n_categories": 3,
+    "verified": true
+  },
+  "SGRP": {
+    "ticker": "SGRP",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "review of strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001437749-26-016247",
+        "cik": "0001004989",
+        "date": "2026-05-12"
+      }
+    },
+    "n_categories": 1
+  },
+  "CLRO": {
+    "ticker": "CLRO",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "review of strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001753926-26-000600",
+        "cik": "0000840715",
+        "date": "2026-03-31"
+      }
+    },
+    "n_categories": 1
+  },
+  "PULM": {
+    "ticker": "PULM",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "review of strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001493152-26-023368",
+        "cik": "0001574235",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1
+  },
+  "XCUR": {
+    "ticker": "XCUR",
+    "score": 6.5,
+    "categories": {
+      "value_unlock": 6.5
+    },
+    "phrases": [
+      "review of strategic alternatives",
+      "exploring strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001193125-26-352011",
+        "cik": "0001698530",
+        "date": "2026-08-14"
+      },
+      "exploring strategic alternatives": {
+        "accession": "0001698530-26-000028",
+        "cik": "0001698530",
+        "date": "2026-03-25"
+      }
+    },
+    "n_categories": 1
+  },
+  "FNKO": {
+    "ticker": "FNKO",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "review of strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001704711-26-000045",
+        "cik": "0001704711",
+        "date": "2026-08-06"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "CYCN": {
+    "ticker": "CYCN",
+    "score": 5.5,
+    "categories": {
+      "value_unlock": 5.5
+    },
+    "phrases": [
+      "review of strategic alternatives",
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001193125-26-194204",
+        "cik": "0001755237",
+        "date": "2026-04-30"
+      },
+      "maximize shareholder value": {
+        "accession": "0001193125-26-332842",
+        "cik": "0001755237",
+        "date": "2026-08-04"
+      }
+    },
+    "n_categories": 1
+  },
+  "ANF": {
+    "ticker": "ANF",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "review of strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001018840-26-000012",
+        "cik": "0001018840",
+        "date": "2026-03-26"
+      }
+    },
+    "n_categories": 1
+  },
+  "RYAM": {
+    "ticker": "RYAM",
+    "score": 5.6,
+    "categories": {
+      "value_unlock": 5.0,
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "review of strategic alternatives",
+      "deleveraging"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001597672-26-000029",
+        "cik": "0001597672",
+        "date": "2026-08-05"
+      },
+      "deleveraging": {
+        "accession": "0001597672-26-000015",
+        "cik": "0001597672",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 2,
+    "small_cap": true,
+    "verified": true,
+    "negation_flag": "review of strategic alternatives"
+  },
+  "GORO": {
+    "ticker": "GORO",
+    "score": 13.5,
+    "categories": {
+      "value_unlock": 7.5
+    },
+    "phrases": [
+      "review of strategic alternatives",
+      "unlock the value",
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001104659-26-051864",
+        "cik": "0001160791",
+        "date": "2026-04-30"
+      },
+      "unlock the value": {
+        "accession": "0001104659-26-031121",
+        "cik": "0001160791",
+        "date": "2026-03-18"
+      },
+      "maximize shareholder value": {
+        "accession": "0001104659-26-051864",
+        "cik": "0001160791",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true,
+    "verified": true
+  },
+  "LKQ": {
+    "ticker": "LKQ",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "review of strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001065696-26-000033",
+        "cik": "0001065696",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1,
+    "cheap_pb": true
+  },
+  "STRS": {
+    "ticker": "STRS",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "review of strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0000885508-26-000024",
+        "cik": "0000885508",
+        "date": "2026-05-12"
+      }
+    },
+    "n_categories": 1
+  },
+  "ATKR": {
+    "ticker": "ATKR",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "review of strategic alternatives"
+    ],
+    "hits": {
+      "review of strategic alternatives": {
+        "accession": "0001628280-26-030764",
+        "cik": "0001666138",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "LE": {
+    "ticker": "LE",
+    "score": 11.5,
+    "categories": {
+      "value_unlock": 5.5
+    },
+    "phrases": [
+      "exploring strategic alternatives",
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001193125-26-126210",
+        "cik": "0000799288",
+        "date": "2026-03-26"
+      },
+      "maximize shareholder value": {
+        "accession": "0001193125-26-126210",
+        "cik": "0000799288",
+        "date": "2026-03-26"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true,
+    "verified": true
+  },
+  "AVTX": {
+    "ticker": "AVTX",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "exploring strategic alternatives"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001534120-26-000033",
+        "cik": "0001534120",
+        "date": "2026-05-13"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "AGPU": {
+    "ticker": "AGPU",
+    "score": 11.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "exploring strategic alternatives"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001171843-26-003484",
+        "cik": "0001446159",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true,
+    "verified": true
+  },
+  "IWSH": {
+    "ticker": "IWSH",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "exploring strategic alternatives"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001214659-26-004908",
+        "cik": "0001279715",
+        "date": "2026-04-22"
+      }
+    },
+    "n_categories": 1
+  },
+  "LBRA": {
+    "ticker": "LBRA",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "exploring strategic alternatives"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001213900-26-057499",
+        "cik": "0001599407",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1
+  },
+  "ELVN": {
+    "ticker": "ELVN",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "exploring strategic alternatives"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001193125-26-211982",
+        "cik": "0001672619",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "HYFM": {
+    "ticker": "HYFM",
+    "score": 5.6,
+    "categories": {
+      "value_unlock": 5.0,
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "exploring strategic alternatives",
+      "restructuring plan"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001437749-26-017373",
+        "cik": "0001695295",
+        "date": "2026-05-15"
+      },
+      "restructuring plan": {
+        "accession": "0001437749-26-017373",
+        "cik": "0001695295",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 2,
+    "small_cap": true,
+    "verified": true,
+    "negation_flag": "exploring strategic alternatives"
+  },
+  "AQB": {
+    "ticker": "AQB",
+    "score": 6.0,
+    "categories": {
+      "value_unlock": 6.0
+    },
+    "phrases": [
+      "exploring strategic alternatives",
+      "realize the value",
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001603978-26-000066",
+        "cik": "0001603978",
+        "date": "2026-05-07"
+      },
+      "realize the value": {
+        "accession": "0001603978-26-000084",
+        "cik": "0001603978",
+        "date": "2026-08-06"
+      },
+      "maximize shareholder value": {
+        "accession": "0001603978-26-000084",
+        "cik": "0001603978",
+        "date": "2026-08-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "IMUX": {
+    "ticker": "IMUX",
+    "score": 4.4,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "exploring strategic alternatives"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001280776-26-000010",
+        "cik": "0001280776",
+        "date": "2026-05-13"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true,
+    "verified": true,
+    "negation_flag": "exploring strategic alternatives"
+  },
+  "UUU": {
+    "ticker": "UUU",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "exploring strategic alternatives"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001104659-26-097233",
+        "cik": "0000102109",
+        "date": "2026-08-14"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "CPHI": {
+    "ticker": "CPHI",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "exploring strategic alternatives"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001213900-26-057705",
+        "cik": "0001106644",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1
+  },
+  "MRAI": {
+    "ticker": "MRAI",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "exploring strategic alternatives"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001213900-26-057777",
+        "cik": "0001844392",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1
+  },
+  "BKNG": {
+    "ticker": "BKNG",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "exploring strategic alternatives"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001075531-26-000025",
+        "cik": "0001075531",
+        "date": "2026-04-28"
+      }
+    },
+    "n_categories": 1
+  },
+  "HTCR": {
+    "ticker": "HTCR",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "exploring strategic alternatives"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001493152-26-023382",
+        "cik": "0001892322",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1
+  },
+  "NERV": {
+    "ticker": "NERV",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "exploring strategic alternatives"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001193125-26-205182",
+        "cik": "0001598646",
+        "date": "2026-05-05"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "TPST": {
+    "ticker": "TPST",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "exploring strategic alternatives"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001193125-26-224289",
+        "cik": "0001544227",
+        "date": "2026-05-14"
+      }
+    },
+    "n_categories": 1
+  },
+  "ITGR": {
+    "ticker": "ITGR",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "exploring strategic alternatives"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001114483-26-000015",
+        "cik": "0001114483",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1
+  },
+  "GRDX": {
+    "ticker": "GRDX",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "exploring strategic alternatives"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001104659-26-066519",
+        "cik": "0001604191",
+        "date": "2026-05-27"
+      }
+    },
+    "n_categories": 1
+  },
+  "CMTL": {
+    "ticker": "CMTL",
+    "score": 11.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "exploring strategic alternatives"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0000023197-26-000069",
+        "cik": "0000023197",
+        "date": "2026-06-15"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true,
+    "verified": true
+  },
+  "HAIN": {
+    "ticker": "HAIN",
+    "score": 11.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "exploring strategic alternatives"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001193125-26-216701",
+        "cik": "0000910406",
+        "date": "2026-05-11"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true,
+    "verified": true
+  },
+  "EQS": {
+    "ticker": "EQS",
+    "score": 7.2,
+    "categories": {
+      "value_unlock": 5.0,
+      "transformative": 9.0
+    },
+    "phrases": [
+      "exploring strategic alternatives",
+      "transformative transaction"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001712543-26-000024",
+        "cik": "0000878932",
+        "date": "2026-04-17"
+      },
+      "transformative transaction": {
+        "accession": "0001712543-26-000039",
+        "cik": "0000878932",
+        "date": "2026-05-20"
+      }
+    },
+    "n_categories": 2,
+    "verified": true,
+    "negation_flag": "exploring strategic alternatives"
+  },
+  "RPMT": {
+    "ticker": "RPMT",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "exploring strategic alternatives"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001214659-26-004112",
+        "cik": "0001437283",
+        "date": "2026-03-31"
+      }
+    },
+    "n_categories": 1
+  },
+  "TWAV": {
+    "ticker": "TWAV",
+    "score": 4.4,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "exploring strategic alternatives"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001437749-26-009237",
+        "cik": "0000746210",
+        "date": "2026-03-20"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true,
+    "verified": true,
+    "negation_flag": "exploring strategic alternatives"
+  },
+  "CNTM": {
+    "ticker": "CNTM",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 5.0
+    },
+    "phrases": [
+      "exploring strategic alternatives"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001104659-26-099803",
+        "cik": "0001895249",
+        "date": "2026-08-24"
+      }
+    },
+    "n_categories": 1
+  },
+  "ATER": {
+    "ticker": "ATER",
+    "score": 5.5,
+    "categories": {
+      "value_unlock": 5.5
+    },
+    "phrases": [
+      "exploring strategic alternatives",
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "exploring strategic alternatives": {
+        "accession": "0001437749-26-009285",
+        "cik": "0001757715",
+        "date": "2026-03-23"
+      },
+      "maximize shareholder value": {
+        "accession": "0001437749-26-009285",
+        "cik": "0001757715",
+        "date": "2026-03-23"
+      }
+    },
+    "n_categories": 1
+  },
+  "OKMN": {
+    "ticker": "OKMN",
+    "score": 9.0,
+    "categories": {
+      "value_unlock": 9.0
+    },
+    "phrases": [
+      "unlock shareholder value"
+    ],
+    "hits": {
+      "unlock shareholder value": {
+        "accession": "0001553350-26-000085",
+        "cik": "0001848334",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1
+  },
+  "SCTH": {
+    "ticker": "SCTH",
+    "score": 6.2,
+    "categories": {
+      "value_unlock": 9.0,
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "unlock shareholder value",
+      "portfolio optimization"
+    ],
+    "hits": {
+      "unlock shareholder value": {
+        "accession": "0001017386-26-000097",
+        "cik": "0001703157",
+        "date": "2026-08-05"
+      },
+      "portfolio optimization": {
+        "accession": "0001017386-26-000097",
+        "cik": "0001703157",
+        "date": "2026-08-05"
+      }
+    },
+    "n_categories": 2,
+    "verified": true,
+    "negation_flag": "unlock shareholder value"
+  },
+  "TBPH": {
+    "ticker": "TBPH",
+    "score": 13.0,
+    "categories": {
+      "value_unlock": 10.0
+    },
+    "phrases": [
+      "unlock shareholder value",
+      "realize the value",
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "unlock shareholder value": {
+        "accession": "0001104659-26-033077",
+        "cik": "0001583107",
+        "date": "2026-03-23"
+      },
+      "realize the value": {
+        "accession": "0001104659-26-056760",
+        "cik": "0001583107",
+        "date": "2026-05-07"
+      },
+      "maximize shareholder value": {
+        "accession": "0001104659-26-056760",
+        "cik": "0001583107",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "verified": true
+  },
+  "M": {
+    "ticker": "M",
+    "score": 12.5,
+    "categories": {
+      "value_unlock": 9.5
+    },
+    "phrases": [
+      "unlock shareholder value",
+      "monetization of"
+    ],
+    "hits": {
+      "unlock shareholder value": {
+        "accession": "0001628280-26-021721",
+        "cik": "0000794367",
+        "date": "2026-03-27"
+      },
+      "monetization of": {
+        "accession": "0001628280-26-061320",
+        "cik": "0000794367",
+        "date": "2026-09-10"
+      }
+    },
+    "n_categories": 1,
+    "cheap_pb": true,
+    "verified": true
+  },
+  "ELAB": {
+    "ticker": "ELAB",
+    "score": 9.0,
+    "categories": {
+      "value_unlock": 9.0
+    },
+    "phrases": [
+      "unlock shareholder value"
+    ],
+    "hits": {
+      "unlock shareholder value": {
+        "accession": "0001213900-26-035937",
+        "cik": "0001840563",
+        "date": "2026-03-30"
+      }
+    },
+    "n_categories": 1
+  },
+  "KFY": {
+    "ticker": "KFY",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 8.0
+    },
+    "phrases": [
+      "unlock the value"
+    ],
+    "hits": {
+      "unlock the value": {
+        "accession": "0000056679-26-000021",
+        "cik": "0000056679",
+        "date": "2026-06-26"
+      }
+    },
+    "n_categories": 1
+  },
+  "BCRD": {
+    "ticker": "BCRD",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 8.0
+    },
+    "phrases": [
+      "unlock the value"
+    ],
+    "hits": {
+      "unlock the value": {
+        "accession": "0001683168-26-005495",
+        "cik": "0001496690",
+        "date": "2026-07-14"
+      }
+    },
+    "n_categories": 1
+  },
+  "QMCO": {
+    "ticker": "QMCO",
+    "score": 4.4,
+    "categories": {
+      "value_unlock": 8.0
+    },
+    "phrases": [
+      "unlock the value"
+    ],
+    "hits": {
+      "unlock the value": {
+        "accession": "0001628280-26-055417",
+        "cik": "0000709283",
+        "date": "2026-08-11"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "verified": true,
+    "negation_flag": "unlock the value"
+  },
+  "RH": {
+    "ticker": "RH",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 8.0
+    },
+    "phrases": [
+      "unlock the value"
+    ],
+    "hits": {
+      "unlock the value": {
+        "accession": "0001104659-26-073006",
+        "cik": "0001528849",
+        "date": "2026-06-11"
+      }
+    },
+    "n_categories": 1
+  },
+  "EGY": {
+    "ticker": "EGY",
+    "score": 11.0,
+    "categories": {
+      "value_unlock": 8.0
+    },
+    "phrases": [
+      "unlock the value"
+    ],
+    "hits": {
+      "unlock the value": {
+        "accession": "0000894627-26-000051",
+        "cik": "0000894627",
+        "date": "2026-08-10"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "verified": true
+  },
+  "MPT": {
+    "ticker": "MPT",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 8.0
+    },
+    "phrases": [
+      "unlock the value"
+    ],
+    "hits": {
+      "unlock the value": {
+        "accession": "0001193125-26-214700",
+        "cik": "0001287865",
+        "date": "2026-05-08"
+      }
+    },
+    "n_categories": 1
+  },
+  "VTRS": {
+    "ticker": "VTRS",
+    "score": 4.4,
+    "categories": {
+      "value_unlock": 8.0
+    },
+    "phrases": [
+      "unlock the value"
+    ],
+    "hits": {
+      "unlock the value": {
+        "accession": "0001792044-26-000029",
+        "cik": "0001792044",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1,
+    "cheap_pb": true,
+    "verified": true,
+    "negation_flag": "unlock the value"
+  },
+  "SNOW": {
+    "ticker": "SNOW",
+    "score": 8.5,
+    "categories": {
+      "value_unlock": 8.5
+    },
+    "phrases": [
+      "unlock the value",
+      "realize the value"
+    ],
+    "hits": {
+      "unlock the value": {
+        "accession": "0001640147-26-000008",
+        "cik": "0001640147",
+        "date": "2026-03-20"
+      },
+      "realize the value": {
+        "accession": "0001640147-26-000008",
+        "cik": "0001640147",
+        "date": "2026-03-20"
+      }
+    },
+    "n_categories": 1
+  },
+  "WDC": {
+    "ticker": "WDC",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 8.0
+    },
+    "phrases": [
+      "unlock the value"
+    ],
+    "hits": {
+      "unlock the value": {
+        "accession": "0001628280-26-057139",
+        "cik": "0000106040",
+        "date": "2026-08-14"
+      }
+    },
+    "n_categories": 1
+  },
+  "DT": {
+    "ticker": "DT",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 8.0
+    },
+    "phrases": [
+      "unlock the value"
+    ],
+    "hits": {
+      "unlock the value": {
+        "accession": "0001773383-26-000019",
+        "cik": "0001773383",
+        "date": "2026-05-20"
+      }
+    },
+    "n_categories": 1
+  },
+  "RANI": {
+    "ticker": "RANI",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 8.0
+    },
+    "phrases": [
+      "unlock the value"
+    ],
+    "hits": {
+      "unlock the value": {
+        "accession": "0001193125-26-126417",
+        "cik": "0001856725",
+        "date": "2026-03-26"
+      }
+    },
+    "n_categories": 1
+  },
+  "KALA": {
+    "ticker": "KALA",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 8.0
+    },
+    "phrases": [
+      "unlock the value"
+    ],
+    "hits": {
+      "unlock the value": {
+        "accession": "0001104659-26-043782",
+        "cik": "0001479419",
+        "date": "2026-04-15"
+      }
+    },
+    "n_categories": 1
+  },
+  "DK": {
+    "ticker": "DK",
+    "score": 9.0,
+    "categories": {
+      "value_unlock": 9.0
+    },
+    "phrases": [
+      "sum-of-the-parts"
+    ],
+    "hits": {
+      "sum-of-the-parts": {
+        "accession": "0001628280-26-028274",
+        "cik": "0001694426",
+        "date": "2026-04-29"
+      }
+    },
+    "n_categories": 1
+  },
+  "TAAG": {
+    "ticker": "TAAG",
+    "score": 9.0,
+    "categories": {
+      "value_unlock": 9.0
+    },
+    "phrases": [
+      "sum-of-the-parts"
+    ],
+    "hits": {
+      "sum-of-the-parts": {
+        "accession": "0001477932-26-002310",
+        "cik": "0001386044",
+        "date": "2026-04-16"
+      }
+    },
+    "n_categories": 1
+  },
+  "EMAT": {
+    "ticker": "EMAT",
+    "score": 9.0,
+    "categories": {
+      "value_unlock": 9.0
+    },
+    "phrases": [
+      "sum-of-the-parts"
+    ],
+    "hits": {
+      "sum-of-the-parts": {
+        "accession": "0001213900-26-060654",
+        "cik": "0001866226",
+        "date": "2026-05-22"
+      }
+    },
+    "n_categories": 1
+  },
+  "FRPH": {
+    "ticker": "FRPH",
+    "score": 6.0,
+    "categories": {
+      "value_unlock": 9.0
+    },
+    "phrases": [
+      "sum-of-the-parts"
+    ],
+    "hits": {
+      "sum-of-the-parts": {
+        "accession": "0000844059-26-000037",
+        "cik": "0000844059",
+        "date": "2026-04-15"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true,
+    "verified": true,
+    "negation_flag": "sum-of-the-parts"
+  },
+  "VAC": {
+    "ticker": "VAC",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 8.0
+    },
+    "phrases": [
+      "monetize non-core"
+    ],
+    "hits": {
+      "monetize non-core": {
+        "accession": "0001524358-26-000022",
+        "cik": "0001524358",
+        "date": "2026-05-05"
+      }
+    },
+    "n_categories": 1
+  },
+  "CVI": {
+    "ticker": "CVI",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 8.0
+    },
+    "phrases": [
+      "monetize non-core"
+    ],
+    "hits": {
+      "monetize non-core": {
+        "accession": "0001376139-26-000028",
+        "cik": "0001376139",
+        "date": "2026-04-29"
+      }
+    },
+    "n_categories": 1
+  },
+  "QPRC": {
+    "ticker": "QPRC",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001213900-26-057845",
+        "cik": "0000824416",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1
+  },
+  "PLCE": {
+    "ticker": "PLCE",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001628280-26-042890",
+        "cik": "0001041859",
+        "date": "2026-06-12"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "NSTM": {
+    "ticker": "NSTM",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001493152-26-023227",
+        "cik": "0000912544",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1
+  },
+  "APHP": {
+    "ticker": "APHP",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001493152-26-022818",
+        "cik": "0001771995",
+        "date": "2026-05-14"
+      }
+    },
+    "n_categories": 1
+  },
+  "UEIC": {
+    "ticker": "UEIC",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0000101984-26-000110",
+        "cik": "0000101984",
+        "date": "2026-08-06"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "SITC": {
+    "ticker": "SITC",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001193125-26-330598",
+        "cik": "0000894315",
+        "date": "2026-08-03"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "FCCN": {
+    "ticker": "FCCN",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001213900-26-065803",
+        "cik": "0001131903",
+        "date": "2026-06-05"
+      }
+    },
+    "n_categories": 1
+  },
+  "LAB": {
+    "ticker": "LAB",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001193125-26-335103",
+        "cik": "0001162194",
+        "date": "2026-08-05"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "STRZ": {
+    "ticker": "STRZ",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001628280-26-054565",
+        "cik": "0000929351",
+        "date": "2026-08-07"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "ZSTK": {
+    "ticker": "ZSTK",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001062993-26-003961",
+        "cik": "0001790169",
+        "date": "2026-07-31"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "BIRD": {
+    "ticker": "BIRD",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001628280-26-035302",
+        "cik": "0001653909",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "NMRK": {
+    "ticker": "NMRK",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001213900-26-050004",
+        "cik": "0001690680",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1
+  },
+  "HE": {
+    "ticker": "HE",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0000354707-26-000037",
+        "cik": "0000354707",
+        "date": "2026-05-08"
+      }
+    },
+    "n_categories": 1,
+    "cheap_pb": true
+  },
+  "RITE": {
+    "ticker": "RITE",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001539497-26-002124",
+        "cik": "0001096296",
+        "date": "2026-08-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "LHX": {
+    "ticker": "LHX",
+    "score": 8.5,
+    "categories": {
+      "value_unlock": 2.0,
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "monetization of",
+      "portfolio optimization"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0000202058-26-000035",
+        "cik": "0000202058",
+        "date": "2026-04-30"
+      },
+      "portfolio optimization": {
+        "accession": "0000202058-26-000035",
+        "cik": "0000202058",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 2
+  },
+  "YHC": {
+    "ticker": "YHC",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001213900-26-057681",
+        "cik": "0001843165",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1
+  },
+  "CHUC": {
+    "ticker": "CHUC",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001437749-26-010761",
+        "cik": "0001134765",
+        "date": "2026-04-01"
+      }
+    },
+    "n_categories": 1
+  },
+  "PLTK": {
+    "ticker": "PLTK",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001828016-26-000034",
+        "cik": "0001828016",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "NTIP": {
+    "ticker": "NTIP",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001072613-26-000387",
+        "cik": "0001065078",
+        "date": "2026-05-08"
+      }
+    },
+    "n_categories": 1
+  },
+  "CNET": {
+    "ticker": "CNET",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001171843-26-003454",
+        "cik": "0001376321",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1
+  },
+  "MNTK": {
+    "ticker": "MNTK",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001193125-26-335335",
+        "cik": "0001826600",
+        "date": "2026-08-05"
+      }
+    },
+    "n_categories": 1
+  },
+  "IBO": {
+    "ticker": "IBO",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001493152-26-022512",
+        "cik": "0001834105",
+        "date": "2026-05-12"
+      }
+    },
+    "n_categories": 1
+  },
+  "FRMI": {
+    "ticker": "FRMI",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0002071778-26-000032",
+        "cik": "0002071778",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1
+  },
+  "VTVT": {
+    "ticker": "VTVT",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001641489-26-000020",
+        "cik": "0001641489",
+        "date": "2026-05-13"
+      }
+    },
+    "n_categories": 1
+  },
+  "BBGI": {
+    "ticker": "BBGI",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001193125-26-352119",
+        "cik": "0001099160",
+        "date": "2026-08-14"
+      }
+    },
+    "n_categories": 1
+  },
+  "TOON": {
+    "ticker": "TOON",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001683168-26-006405",
+        "cik": "0001355848",
+        "date": "2026-08-14"
+      }
+    },
+    "n_categories": 1
+  },
+  "ASLE": {
+    "ticker": "ASLE",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0001104659-26-057983",
+        "cik": "0001754170",
+        "date": "2026-05-08"
+      }
+    },
+    "n_categories": 1
+  },
+  "NC": {
+    "ticker": "NC",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "monetization of"
+    ],
+    "hits": {
+      "monetization of": {
+        "accession": "0000789933-26-000144",
+        "cik": "0000789933",
+        "date": "2026-08-05"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "ITXP": {
+    "ticker": "ITXP",
+    "score": 2.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001477932-26-001878",
+        "cik": "0002025878",
+        "date": "2026-03-31"
+      }
+    },
+    "n_categories": 1
+  },
+  "ACUT": {
+    "ticker": "ACUT",
+    "score": 2.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001493152-26-023742",
+        "cik": "0001850767",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1
+  },
+  "ACLS": {
+    "ticker": "ACLS",
+    "score": 2.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001104659-26-057725",
+        "cik": "0001113232",
+        "date": "2026-05-08"
+      }
+    },
+    "n_categories": 1
+  },
+  "APUS": {
+    "ticker": "APUS",
+    "score": 2.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001213900-26-061013",
+        "cik": "0001894525",
+        "date": "2026-05-26"
+      }
+    },
+    "n_categories": 1
+  },
+  "VRT": {
+    "ticker": "VRT",
+    "score": 2.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001628280-26-026556",
+        "cik": "0001674101",
+        "date": "2026-04-22"
+      }
+    },
+    "n_categories": 1
+  },
+  "SPT": {
+    "ticker": "SPT",
+    "score": 2.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001517375-26-000038",
+        "cik": "0001517375",
+        "date": "2026-05-08"
+      }
+    },
+    "n_categories": 1
+  },
+  "DRS": {
+    "ticker": "DRS",
+    "score": 2.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001833756-26-000025",
+        "cik": "0001833756",
+        "date": "2026-05-05"
+      }
+    },
+    "n_categories": 1
+  },
+  "SPRO": {
+    "ticker": "SPRO",
+    "score": 2.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001193125-26-221591",
+        "cik": "0001701108",
+        "date": "2026-05-13"
+      }
+    },
+    "n_categories": 1
+  },
+  "APPN": {
+    "ticker": "APPN",
+    "score": 2.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001441683-26-000032",
+        "cik": "0001441683",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "PBHC": {
+    "ticker": "PBHC",
+    "score": 2.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001193125-26-226649",
+        "cik": "0001609065",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1
+  },
+  "RMCF": {
+    "ticker": "RMCF",
+    "score": 5.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001193125-26-248296",
+        "cik": "0001616262",
+        "date": "2026-05-29"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "ORMP": {
+    "ticker": "ORMP",
+    "score": 8.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001213900-26-034835",
+        "cik": "0001176309",
+        "date": "2026-03-26"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "WKC": {
+    "ticker": "WKC",
+    "score": 5.8,
+    "categories": {
+      "value_unlock": 2.5,
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "realize the value",
+      "restructuring plan"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0000789460-26-000028",
+        "cik": "0000789460",
+        "date": "2026-04-24"
+      },
+      "restructuring plan": {
+        "accession": "0000789460-26-000028",
+        "cik": "0000789460",
+        "date": "2026-04-24"
+      }
+    },
+    "n_categories": 2,
+    "small_cap": true,
+    "cheap_pb": true,
+    "verified": true,
+    "negation_flag": "realize the value"
+  },
+  "STKL": {
+    "ticker": "STKL",
+    "score": 2.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001062993-26-002169",
+        "cik": "0000351834",
+        "date": "2026-04-27"
+      }
+    },
+    "n_categories": 1
+  },
+  "SHOP": {
+    "ticker": "SHOP",
+    "score": 2.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001594805-26-000011",
+        "cik": "0001594805",
+        "date": "2026-04-29"
+      }
+    },
+    "n_categories": 1
+  },
+  "PM": {
+    "ticker": "PM",
+    "score": 2.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001628280-26-027019",
+        "cik": "0001413329",
+        "date": "2026-04-24"
+      }
+    },
+    "n_categories": 1
+  },
+  "PL": {
+    "ticker": "PL",
+    "score": 2.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001193125-26-258304",
+        "cik": "0001836833",
+        "date": "2026-06-05"
+      }
+    },
+    "n_categories": 1
+  },
+  "NRDE": {
+    "ticker": "NRDE",
+    "score": 10.0,
+    "categories": {
+      "value_unlock": 2.5,
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "realize the value",
+      "sale of the company"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001493152-26-013005",
+        "cik": "0001759546",
+        "date": "2026-03-26"
+      },
+      "sale of the company": {
+        "accession": "0001493152-26-038484",
+        "cik": "0001759546",
+        "date": "2026-08-14"
+      }
+    },
+    "n_categories": 2
+  },
+  "NRXP": {
+    "ticker": "NRXP",
+    "score": 2.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001437749-26-028027",
+        "cik": "0001719406",
+        "date": "2026-08-14"
+      }
+    },
+    "n_categories": 1
+  },
+  "INTI": {
+    "ticker": "INTI",
+    "score": 2.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001493152-26-012751",
+        "cik": "0001042418",
+        "date": "2026-03-26"
+      }
+    },
+    "n_categories": 1
+  },
+  "KEYS": {
+    "ticker": "KEYS",
+    "score": 2.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001601046-26-000036",
+        "cik": "0001601046",
+        "date": "2026-09-02"
+      }
+    },
+    "n_categories": 1
+  },
+  "WNC": {
+    "ticker": "WNC",
+    "score": 8.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0000879526-26-000089",
+        "cik": "0000879526",
+        "date": "2026-07-29"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "FRST": {
+    "ticker": "FRST",
+    "score": 8.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001104659-26-057998",
+        "cik": "0001325670",
+        "date": "2026-05-08"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "PEG": {
+    "ticker": "PEG",
+    "score": 2.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001193125-26-206545",
+        "cik": "0000788784",
+        "date": "2026-05-05"
+      }
+    },
+    "n_categories": 1
+  },
+  "LNTH": {
+    "ticker": "LNTH",
+    "score": 2.5,
+    "categories": {
+      "value_unlock": 2.5
+    },
+    "phrases": [
+      "realize the value"
+    ],
+    "hits": {
+      "realize the value": {
+        "accession": "0001193125-26-336795",
+        "cik": "0001521036",
+        "date": "2026-08-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "HHS": {
+    "ticker": "HHS",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "maximize shareholder value": {
+        "accession": "0001628280-26-035323",
+        "cik": "0000045919",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "XBIO": {
+    "ticker": "XBIO",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "maximize shareholder value": {
+        "accession": "0001683168-26-003727",
+        "cik": "0001534525",
+        "date": "2026-05-12"
+      }
+    },
+    "n_categories": 1
+  },
+  "ANVI": {
+    "ticker": "ANVI",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "maximize shareholder value": {
+        "accession": "0001079973-26-000957",
+        "cik": "0001570132",
+        "date": "2026-07-20"
+      }
+    },
+    "n_categories": 1
+  },
+  "BGSF": {
+    "ticker": "BGSF",
+    "score": 15.5,
+    "categories": {
+      "value_unlock": 2.0,
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "maximize shareholder value",
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "maximize shareholder value": {
+        "accession": "0001474903-26-000040",
+        "cik": "0001474903",
+        "date": "2026-05-06"
+      },
+      "return capital to shareholders": {
+        "accession": "0001474903-26-000056",
+        "cik": "0001474903",
+        "date": "2026-05-14"
+      }
+    },
+    "n_categories": 2,
+    "small_cap": true,
+    "cheap_pb": true,
+    "verified": true
+  },
+  "CWBHF": {
+    "ticker": "CWBHF",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "maximize shareholder value": {
+        "accession": "0001750155-26-000029",
+        "cik": "0001750155",
+        "date": "2026-03-31"
+      }
+    },
+    "n_categories": 1
+  },
+  "BCAB": {
+    "ticker": "BCAB",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "maximize shareholder value": {
+        "accession": "0001193125-26-226631",
+        "cik": "0001826892",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1
+  },
+  "BITF": {
+    "ticker": "BITF",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "maximize shareholder value": {
+        "accession": "0001213900-26-037514",
+        "cik": "0001812477",
+        "date": "2026-03-31"
+      }
+    },
+    "n_categories": 1
+  },
+  "LYRA": {
+    "ticker": "LYRA",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "maximize shareholder value": {
+        "accession": "0001327273-26-000003",
+        "cik": "0001327273",
+        "date": "2026-03-31"
+      }
+    },
+    "n_categories": 1
+  },
+  "APLE": {
+    "ticker": "APLE",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "maximize shareholder value": {
+        "accession": "0001193125-26-204023",
+        "cik": "0001418121",
+        "date": "2026-05-04"
+      }
+    },
+    "n_categories": 1,
+    "cheap_pb": true
+  },
+  "CBUS": {
+    "ticker": "CBUS",
+    "score": 10.0,
+    "categories": {
+      "value_unlock": 2.0,
+      "strategic_action": 4.0
+    },
+    "phrases": [
+      "maximize shareholder value",
+      "cost reduction program"
+    ],
+    "hits": {
+      "maximize shareholder value": {
+        "accession": "0001628280-26-035159",
+        "cik": "0001705843",
+        "date": "2026-05-14"
+      },
+      "cost reduction program": {
+        "accession": "0001628280-26-056773",
+        "cik": "0001705843",
+        "date": "2026-08-13"
+      }
+    },
+    "n_categories": 2
+  },
+  "GGRP": {
+    "ticker": "GGRP",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "maximize shareholder value": {
+        "accession": "0001493152-26-023049",
+        "cik": "0001854445",
+        "date": "2026-05-14"
+      }
+    },
+    "n_categories": 1
+  },
+  "DAIO": {
+    "ticker": "DAIO",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "maximize shareholder value": {
+        "accession": "0001654954-26-004184",
+        "cik": "0000351998",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "WSTRF": {
+    "ticker": "WSTRF",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "maximize shareholder value": {
+        "accession": "0001213900-26-056791",
+        "cik": "0001621906",
+        "date": "2026-05-14"
+      }
+    },
+    "n_categories": 1
+  },
+  "BYSI": {
+    "ticker": "BYSI",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "maximize shareholder value": {
+        "accession": "0001171843-26-003372",
+        "cik": "0001677940",
+        "date": "2026-05-13"
+      }
+    },
+    "n_categories": 1
+  },
+  "ALOT": {
+    "ticker": "ALOT",
+    "score": 5.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "maximize shareholder value": {
+        "accession": "0001193125-26-261335",
+        "cik": "0000008146",
+        "date": "2026-06-08"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "SSM": {
+    "ticker": "SSM",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "maximize shareholder value": {
+        "accession": "0001171843-26-003535",
+        "cik": "0001840416",
+        "date": "2026-05-19"
+      }
+    },
+    "n_categories": 1
+  },
+  "SMHI": {
+    "ticker": "SMHI",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "maximize shareholder value": {
+        "accession": "0001690334-26-000020",
+        "cik": "0001690334",
+        "date": "2026-07-29"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "MX": {
+    "ticker": "MX",
+    "score": 8.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "maximize shareholder value": {
+        "accession": "0001193125-26-214750",
+        "cik": "0001325702",
+        "date": "2026-05-08"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "SKAS": {
+    "ticker": "SKAS",
+    "score": 2.0,
+    "categories": {
+      "value_unlock": 2.0
+    },
+    "phrases": [
+      "maximize shareholder value"
+    ],
+    "hits": {
+      "maximize shareholder value": {
+        "accession": "0001437749-26-010711",
+        "cik": "0001128281",
+        "date": "2026-03-31"
+      }
+    },
+    "n_categories": 1
+  },
+  "ROAD": {
+    "ticker": "ROAD",
+    "score": 9.0,
+    "categories": {
+      "transformative": 9.0
+    },
+    "phrases": [
+      "transformative acquisition"
+    ],
+    "hits": {
+      "transformative acquisition": {
+        "accession": "0001628280-26-054661",
+        "cik": "0001718227",
+        "date": "2026-08-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "KAVL": {
+    "ticker": "KAVL",
+    "score": 9.0,
+    "categories": {
+      "transformative": 9.0
+    },
+    "phrases": [
+      "transformative acquisition"
+    ],
+    "hits": {
+      "transformative acquisition": {
+        "accession": "0001731122-26-000862",
+        "cik": "0001762239",
+        "date": "2026-06-16"
+      }
+    },
+    "n_categories": 1
+  },
+  "USAR": {
+    "ticker": "USAR",
+    "score": 10.0,
+    "categories": {
+      "transformative": 10.0
+    },
+    "phrases": [
+      "transformative acquisition",
+      "inflection point"
+    ],
+    "hits": {
+      "transformative acquisition": {
+        "accession": "0001970622-26-000038",
+        "cik": "0001970622",
+        "date": "2026-05-14"
+      },
+      "inflection point": {
+        "accession": "0001970622-26-000021",
+        "cik": "0001970622",
+        "date": "2026-03-30"
+      }
+    },
+    "n_categories": 1
+  },
+  "SCYX": {
+    "ticker": "SCYX",
+    "score": 12.0,
+    "categories": {
+      "transformative": 9.0
+    },
+    "phrases": [
+      "transformative acquisition"
+    ],
+    "hits": {
+      "transformative acquisition": {
+        "accession": "0001178253-26-000011",
+        "cik": "0001178253",
+        "date": "2026-05-11"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "verified": true
+  },
+  "UNFI": {
+    "ticker": "UNFI",
+    "score": 15.0,
+    "categories": {
+      "transformative": 9.0,
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "transformative acquisition",
+      "deleveraging"
+    ],
+    "hits": {
+      "transformative acquisition": {
+        "accession": "0001020859-26-000025",
+        "cik": "0001020859",
+        "date": "2026-09-14"
+      },
+      "deleveraging": {
+        "accession": "0001020859-26-000015",
+        "cik": "0001020859",
+        "date": "2026-06-09"
+      }
+    },
+    "n_categories": 2,
+    "verified": true
+  },
+  "UCTT": {
+    "ticker": "UCTT",
+    "score": 9.0,
+    "categories": {
+      "transformative": 9.0
+    },
+    "phrases": [
+      "transformative acquisition"
+    ],
+    "hits": {
+      "transformative acquisition": {
+        "accession": "0001628280-26-028365",
+        "cik": "0001275014",
+        "date": "2026-04-29"
+      }
+    },
+    "n_categories": 1
+  },
+  "AVAH": {
+    "ticker": "AVAH",
+    "score": 22.0,
+    "categories": {
+      "transformative": 9.0,
+      "capital_policy": 6.0
+    },
+    "phrases": [
+      "transformative acquisition",
+      "reduce our net leverage"
+    ],
+    "hits": {
+      "transformative acquisition": {
+        "accession": "0001193125-26-347842",
+        "cik": "0001832332",
+        "date": "2026-08-13"
+      },
+      "reduce our net leverage": {
+        "accession": "0001193125-26-222736",
+        "cik": "0001832332",
+        "date": "2026-05-14"
+      }
+    },
+    "n_categories": 2,
+    "small_cap": true,
+    "verified": true
+  },
+  "NXST": {
+    "ticker": "NXST",
+    "score": 9.0,
+    "categories": {
+      "transformative": 9.0
+    },
+    "phrases": [
+      "transformative acquisition"
+    ],
+    "hits": {
+      "transformative acquisition": {
+        "accession": "0001193125-26-212539",
+        "cik": "0001142417",
+        "date": "2026-05-08"
+      }
+    },
+    "n_categories": 1
+  },
+  "SANM": {
+    "ticker": "SANM",
+    "score": 9.0,
+    "categories": {
+      "transformative": 9.0
+    },
+    "phrases": [
+      "transformative acquisition"
+    ],
+    "hits": {
+      "transformative acquisition": {
+        "accession": "0000897723-26-000037",
+        "cik": "0000897723",
+        "date": "2026-07-27"
+      }
+    },
+    "n_categories": 1
+  },
+  "INIO": {
+    "ticker": "INIO",
+    "score": 9.0,
+    "categories": {
+      "transformative": 9.0
+    },
+    "phrases": [
+      "transformative acquisition"
+    ],
+    "hits": {
+      "transformative acquisition": {
+        "accession": "0001193125-26-319072",
+        "cik": "0002109150",
+        "date": "2026-07-28"
+      }
+    },
+    "n_categories": 1
+  },
+  "CPIX": {
+    "ticker": "CPIX",
+    "score": 9.0,
+    "categories": {
+      "transformative": 9.0
+    },
+    "phrases": [
+      "transformational transaction"
+    ],
+    "hits": {
+      "transformational transaction": {
+        "accession": "0001087294-26-000049",
+        "cik": "0001087294",
+        "date": "2026-05-08"
+      }
+    },
+    "n_categories": 1
+  },
+  "CYAB": {
+    "ticker": "CYAB",
+    "score": 9.0,
+    "categories": {
+      "transformative": 9.0
+    },
+    "phrases": [
+      "transformational transaction"
+    ],
+    "hits": {
+      "transformational transaction": {
+        "accession": "0001213900-26-057819",
+        "cik": "0002032341",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1
+  },
+  "COUR": {
+    "ticker": "COUR",
+    "score": 15.0,
+    "categories": {
+      "transformative": 9.0
+    },
+    "phrases": [
+      "transformational transaction"
+    ],
+    "hits": {
+      "transformational transaction": {
+        "accession": "0001651562-26-000029",
+        "cik": "0001651562",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true,
+    "verified": true
+  },
+  "PANW": {
+    "ticker": "PANW",
+    "score": 9.0,
+    "categories": {
+      "transformative": 9.0
+    },
+    "phrases": [
+      "transformative transaction"
+    ],
+    "hits": {
+      "transformative transaction": {
+        "accession": "0001327567-26-000023",
+        "cik": "0001327567",
+        "date": "2026-09-10"
+      }
+    },
+    "n_categories": 1
+  },
+  "USAU": {
+    "ticker": "USAU",
+    "score": 9.0,
+    "categories": {
+      "transformative": 9.0
+    },
+    "phrases": [
+      "transformative transaction"
+    ],
+    "hits": {
+      "transformative transaction": {
+        "accession": "0001493152-26-042381",
+        "cik": "0000027093",
+        "date": "2026-09-11"
+      }
+    },
+    "n_categories": 1
+  },
+  "ALXO": {
+    "ticker": "ALXO",
+    "score": 6.0,
+    "categories": {
+      "transformative": 9.0
+    },
+    "phrases": [
+      "transformative transaction"
+    ],
+    "hits": {
+      "transformative transaction": {
+        "accession": "0001193125-26-337920",
+        "cik": "0001810182",
+        "date": "2026-08-06"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true,
+    "verified": true,
+    "negation_flag": "transformative transaction"
+  },
+  "SENS": {
+    "ticker": "SENS",
+    "score": 12.0,
+    "categories": {
+      "transformative": 9.0
+    },
+    "phrases": [
+      "transformative transaction"
+    ],
+    "hits": {
+      "transformative transaction": {
+        "accession": "0001104659-26-092056",
+        "cik": "0001616543",
+        "date": "2026-08-06"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "verified": true
+  },
+  "CXT": {
+    "ticker": "CXT",
+    "score": 9.0,
+    "categories": {
+      "transformative": 9.0
+    },
+    "phrases": [
+      "transformative transaction"
+    ],
+    "hits": {
+      "transformative transaction": {
+        "accession": "0000025445-26-000034",
+        "cik": "0000025445",
+        "date": "2026-08-05"
+      }
+    },
+    "n_categories": 1
+  },
+  "MRLN": {
+    "ticker": "MRLN",
+    "score": 3.0,
+    "categories": {
+      "transformative": 3.0
+    },
+    "phrases": [
+      "inflection point"
+    ],
+    "hits": {
+      "inflection point": {
+        "accession": "0001213900-26-057138",
+        "cik": "0002028707",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1
+  },
+  "DBMM": {
+    "ticker": "DBMM",
+    "score": 3.0,
+    "categories": {
+      "transformative": 3.0
+    },
+    "phrases": [
+      "inflection point"
+    ],
+    "hits": {
+      "inflection point": {
+        "accession": "0001185185-26-002983",
+        "cik": "0001127475",
+        "date": "2026-07-15"
+      }
+    },
+    "n_categories": 1
+  },
+  "SBEV": {
+    "ticker": "SBEV",
+    "score": 3.0,
+    "categories": {
+      "transformative": 3.0
+    },
+    "phrases": [
+      "inflection point"
+    ],
+    "hits": {
+      "inflection point": {
+        "accession": "0001731122-26-001102",
+        "cik": "0001553788",
+        "date": "2026-08-19"
+      }
+    },
+    "n_categories": 1
+  },
+  "COHN": {
+    "ticker": "COHN",
+    "score": 9.0,
+    "categories": {
+      "transformative": 3.0
+    },
+    "phrases": [
+      "inflection point"
+    ],
+    "hits": {
+      "inflection point": {
+        "accession": "0001437749-26-025339",
+        "cik": "0001270436",
+        "date": "2026-08-03"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "SWIM": {
+    "ticker": "SWIM",
+    "score": 8.0,
+    "categories": {
+      "transformative": 5.0
+    },
+    "phrases": [
+      "step change"
+    ],
+    "hits": {
+      "step change": {
+        "accession": "0001628280-26-052925",
+        "cik": "0001833197",
+        "date": "2026-08-05"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "OCUL": {
+    "ticker": "OCUL",
+    "score": 5.0,
+    "categories": {
+      "transformative": 5.0
+    },
+    "phrases": [
+      "step change"
+    ],
+    "hits": {
+      "step change": {
+        "accession": "0001104659-26-055256",
+        "cik": "0001393434",
+        "date": "2026-05-05"
+      }
+    },
+    "n_categories": 1
+  },
+  "AIB": {
+    "ticker": "AIB",
+    "score": 5.0,
+    "categories": {
+      "transformative": 5.0
+    },
+    "phrases": [
+      "step change"
+    ],
+    "hits": {
+      "step change": {
+        "accession": "0001213900-26-089151",
+        "cik": "0002070542",
+        "date": "2026-08-13"
+      }
+    },
+    "n_categories": 1
+  },
+  "SPRU": {
+    "ticker": "SPRU",
+    "score": 5.0,
+    "categories": {
+      "transformative": 5.0
+    },
+    "phrases": [
+      "step change"
+    ],
+    "hits": {
+      "step change": {
+        "accession": "0001628280-26-022506",
+        "cik": "0001772720",
+        "date": "2026-03-31"
+      }
+    },
+    "n_categories": 1
+  },
+  "GUTS": {
+    "ticker": "GUTS",
+    "score": 5.0,
+    "categories": {
+      "transformative": 5.0
+    },
+    "phrases": [
+      "step change"
+    ],
+    "hits": {
+      "step change": {
+        "accession": "0001193125-26-121793",
+        "cik": "0001572616",
+        "date": "2026-03-24"
+      }
+    },
+    "n_categories": 1
+  },
+  "ROC": {
+    "ticker": "ROC",
+    "score": 5.0,
+    "categories": {
+      "transformative": 5.0
+    },
+    "phrases": [
+      "step change"
+    ],
+    "hits": {
+      "step change": {
+        "accession": "0001213900-26-037484",
+        "cik": "0002077709",
+        "date": "2026-03-31"
+      }
+    },
+    "n_categories": 1
+  },
+  "SLQT": {
+    "ticker": "SLQT",
+    "score": 4.4,
+    "categories": {
+      "transformative": 5.0
+    },
+    "phrases": [
+      "step change"
+    ],
+    "hits": {
+      "step change": {
+        "accession": "0001794783-26-000057",
+        "cik": "0001794783",
+        "date": "2026-08-25"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true,
+    "verified": true,
+    "negation_flag": "step change"
+  },
+  "BRZE": {
+    "ticker": "BRZE",
+    "score": 5.0,
+    "categories": {
+      "transformative": 5.0
+    },
+    "phrases": [
+      "step change"
+    ],
+    "hits": {
+      "step change": {
+        "accession": "0001676238-26-000013",
+        "cik": "0001676238",
+        "date": "2026-03-25"
+      }
+    },
+    "n_categories": 1
+  },
+  "HYPR": {
+    "ticker": "HYPR",
+    "score": 5.0,
+    "categories": {
+      "transformative": 5.0
+    },
+    "phrases": [
+      "step change"
+    ],
+    "hits": {
+      "step change": {
+        "accession": "0001193125-26-114044",
+        "cik": "0001833769",
+        "date": "2026-03-18"
+      }
+    },
+    "n_categories": 1
+  },
+  "LSAK": {
+    "ticker": "LSAK",
+    "score": 9.0,
+    "categories": {
+      "transformative": 6.0
+    },
+    "phrases": [
+      "step change",
+      "pivotal year"
+    ],
+    "hits": {
+      "step change": {
+        "accession": "0001562762-26-000104",
+        "cik": "0001041514",
+        "date": "2026-09-09"
+      },
+      "pivotal year": {
+        "accession": "0001562762-26-000104",
+        "cik": "0001041514",
+        "date": "2026-09-09"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "SLDB": {
+    "ticker": "SLDB",
+    "score": 8.0,
+    "categories": {
+      "transformative": 5.0
+    },
+    "phrases": [
+      "step change"
+    ],
+    "hits": {
+      "step change": {
+        "accession": "0001193125-26-115928",
+        "cik": "0001707502",
+        "date": "2026-03-19"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "URG": {
+    "ticker": "URG",
+    "score": 8.0,
+    "categories": {
+      "transformative": 5.0
+    },
+    "phrases": [
+      "pivotal year"
+    ],
+    "hits": {
+      "pivotal year": {
+        "accession": "0001104659-26-057462",
+        "cik": "0001375205",
+        "date": "2026-05-08"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "ASMB": {
+    "ticker": "ASMB",
+    "score": 8.0,
+    "categories": {
+      "transformative": 5.0
+    },
+    "phrases": [
+      "pivotal year"
+    ],
+    "hits": {
+      "pivotal year": {
+        "accession": "0001193125-26-211987",
+        "cik": "0001426800",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "RMTG": {
+    "ticker": "RMTG",
+    "score": 5.0,
+    "categories": {
+      "transformative": 5.0
+    },
+    "phrases": [
+      "pivotal year"
+    ],
+    "hits": {
+      "pivotal year": {
+        "accession": "0001213900-26-056841",
+        "cik": "0001760026",
+        "date": "2026-05-14"
+      }
+    },
+    "n_categories": 1
+  },
+  "CGC": {
+    "ticker": "CGC",
+    "score": 4.4,
+    "categories": {
+      "transformative": 5.0
+    },
+    "phrases": [
+      "pivotal year"
+    ],
+    "hits": {
+      "pivotal year": {
+        "accession": "0001193125-26-270260",
+        "cik": "0001737927",
+        "date": "2026-06-15"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true,
+    "verified": true,
+    "negation_flag": "pivotal year"
+  },
+  "MTUS": {
+    "ticker": "MTUS",
+    "score": 9.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0001193125-26-205648",
+        "cik": "0001598428",
+        "date": "2026-05-05"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "BYRN": {
+    "ticker": "BYRN",
+    "score": 6.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0001437749-26-011820",
+        "cik": "0001354866",
+        "date": "2026-04-09"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "ACT": {
+    "ticker": "ACT",
+    "score": 6.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0001823529-26-000109",
+        "cik": "0001823529",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1,
+    "cheap_pb": true
+  },
+  "EAT": {
+    "ticker": "EAT",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0000703351-26-000015",
+        "cik": "0000703351",
+        "date": "2026-04-29"
+      }
+    },
+    "n_categories": 1
+  },
+  "SCI": {
+    "ticker": "SCI",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0000089089-26-000034",
+        "cik": "0000089089",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1
+  },
+  "ARCB": {
+    "ticker": "ARCB",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0001104659-26-053753",
+        "cik": "0000894405",
+        "date": "2026-05-01"
+      }
+    },
+    "n_categories": 1
+  },
+  "MBGL": {
+    "ticker": "MBGL",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0002090312-26-000014",
+        "cik": "0002090312",
+        "date": "2026-08-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "TRS": {
+    "ticker": "TRS",
+    "score": 6.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0000842633-26-000029",
+        "cik": "0000842633",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "TGT": {
+    "ticker": "TGT",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0000027419-26-000022",
+        "cik": "0000027419",
+        "date": "2026-05-29"
+      }
+    },
+    "n_categories": 1
+  },
+  "CLF": {
+    "ticker": "CLF",
+    "score": 6.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0000764065-26-000070",
+        "cik": "0000764065",
+        "date": "2026-04-21"
+      }
+    },
+    "n_categories": 1,
+    "cheap_pb": true
+  },
+  "WTI": {
+    "ticker": "WTI",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0001104659-26-057242",
+        "cik": "0001288403",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "WFRD": {
+    "ticker": "WFRD",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0001603923-26-000047",
+        "cik": "0001603923",
+        "date": "2026-04-22"
+      }
+    },
+    "n_categories": 1
+  },
+  "TIPT": {
+    "ticker": "TIPT",
+    "score": 9.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0001393726-26-000048",
+        "cik": "0001393726",
+        "date": "2026-07-29"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "LW": {
+    "ticker": "LW",
+    "score": 9.5,
+    "categories": {
+      "capital_policy": 3.5,
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "return capital to shareholders",
+      "restructuring plan"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0001679273-26-000013",
+        "cik": "0001679273",
+        "date": "2026-04-01"
+      },
+      "restructuring plan": {
+        "accession": "0001679273-26-000013",
+        "cik": "0001679273",
+        "date": "2026-04-01"
+      }
+    },
+    "n_categories": 2
+  },
+  "MBWM": {
+    "ticker": "MBWM",
+    "score": 9.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0001437749-26-014320",
+        "cik": "0001042729",
+        "date": "2026-05-01"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "EHC": {
+    "ticker": "EHC",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0000785161-26-000130",
+        "cik": "0000785161",
+        "date": "2026-05-01"
+      }
+    },
+    "n_categories": 1
+  },
+  "DLX": {
+    "ticker": "DLX",
+    "score": 13.0,
+    "categories": {
+      "capital_policy": 3.5,
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "return capital to shareholders",
+      "portfolio optimization"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0000027996-26-000096",
+        "cik": "0000027996",
+        "date": "2026-05-07"
+      },
+      "portfolio optimization": {
+        "accession": "0000027996-26-000096",
+        "cik": "0000027996",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 2,
+    "small_cap": true,
+    "verified": true
+  },
+  "CBKM": {
+    "ticker": "CBKM",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0001437749-26-015787",
+        "cik": "0001006830",
+        "date": "2026-05-08"
+      }
+    },
+    "n_categories": 1
+  },
+  "SSD": {
+    "ticker": "SSD",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0001628280-26-032199",
+        "cik": "0000920371",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "TFX": {
+    "ticker": "TFX",
+    "score": 9.5,
+    "categories": {
+      "capital_policy": 3.5,
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "return capital to shareholders",
+      "restructuring plan"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0000096943-26-000050",
+        "cik": "0000096943",
+        "date": "2026-05-07"
+      },
+      "restructuring plan": {
+        "accession": "0000096943-26-000050",
+        "cik": "0000096943",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 2
+  },
+  "CRC": {
+    "ticker": "CRC",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0001609253-26-000106",
+        "cik": "0001609253",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "HONA": {
+    "ticker": "HONA",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0002089271-26-000021",
+        "cik": "0002089271",
+        "date": "2026-08-05"
+      }
+    },
+    "n_categories": 1
+  },
+  "SIG": {
+    "ticker": "SIG",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0000832988-26-000159",
+        "cik": "0000832988",
+        "date": "2026-06-02"
+      }
+    },
+    "n_categories": 1
+  },
+  "WU": {
+    "ticker": "WU",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0001193125-26-177151",
+        "cik": "0001365135",
+        "date": "2026-04-24"
+      }
+    },
+    "n_categories": 1
+  },
+  "IBP": {
+    "ticker": "IBP",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0001580905-26-000028",
+        "cik": "0001580905",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "LHAI": {
+    "ticker": "LHAI",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0001213900-26-055786",
+        "cik": "0002017758",
+        "date": "2026-05-13"
+      }
+    },
+    "n_categories": 1
+  },
+  "GPOR": {
+    "ticker": "GPOR",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0001628280-26-031073",
+        "cik": "0000874499",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "BOTJ": {
+    "ticker": "BOTJ",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0001275101-26-000019",
+        "cik": "0001275101",
+        "date": "2026-05-12"
+      }
+    },
+    "n_categories": 1
+  },
+  "CHRD": {
+    "ticker": "CHRD",
+    "score": 6.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0001486159-26-000023",
+        "cik": "0001486159",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1,
+    "cheap_pb": true
+  },
+  "AMRZ": {
+    "ticker": "AMRZ",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0002035989-26-000057",
+        "cik": "0002035989",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "TBBK": {
+    "ticker": "TBBK",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0001295401-26-000004",
+        "cik": "0001295401",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "ECL": {
+    "ticker": "ECL",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return capital to shareholders"
+    ],
+    "hits": {
+      "return capital to shareholders": {
+        "accession": "0001104659-26-056737",
+        "cik": "0000031462",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "JCI": {
+    "ticker": "JCI",
+    "score": 3.0,
+    "categories": {
+      "capital_policy": 3.0
+    },
+    "phrases": [
+      "return of capital to"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0000833444-26-000087",
+        "cik": "0000833444",
+        "date": "2026-07-29"
+      }
+    },
+    "n_categories": 1
+  },
+  "ABUS": {
+    "ticker": "ABUS",
+    "score": 6.0,
+    "categories": {
+      "capital_policy": 3.0
+    },
+    "phrases": [
+      "return of capital to"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0001447028-26-000021",
+        "cik": "0001447028",
+        "date": "2026-05-13"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "KOP": {
+    "ticker": "KOP",
+    "score": 6.0,
+    "categories": {
+      "capital_policy": 3.0
+    },
+    "phrases": [
+      "return of capital to"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0001315257-26-000038",
+        "cik": "0001315257",
+        "date": "2026-05-08"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "FCFS": {
+    "ticker": "FCFS",
+    "score": 3.0,
+    "categories": {
+      "capital_policy": 3.0
+    },
+    "phrases": [
+      "return of capital to"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0000840489-26-000049",
+        "cik": "0000840489",
+        "date": "2026-04-24"
+      }
+    },
+    "n_categories": 1
+  },
+  "LKFN": {
+    "ticker": "LKFN",
+    "score": 3.0,
+    "categories": {
+      "capital_policy": 3.0
+    },
+    "phrases": [
+      "return of capital to"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0000721994-26-000053",
+        "cik": "0000721994",
+        "date": "2026-04-29"
+      }
+    },
+    "n_categories": 1
+  },
+  "YOU": {
+    "ticker": "YOU",
+    "score": 3.0,
+    "categories": {
+      "capital_policy": 3.0
+    },
+    "phrases": [
+      "return of capital to"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0001856314-26-000042",
+        "cik": "0001856314",
+        "date": "2026-08-05"
+      }
+    },
+    "n_categories": 1
+  },
+  "ODFL": {
+    "ticker": "ODFL",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return of capital to",
+      "deleveraging"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0000878927-26-000011",
+        "cik": "0000878927",
+        "date": "2026-05-06"
+      },
+      "deleveraging": {
+        "accession": "0000878927-26-000011",
+        "cik": "0000878927",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "BJRI": {
+    "ticker": "BJRI",
+    "score": 14.0,
+    "categories": {
+      "capital_policy": 3.0,
+      "governance_action": 4.0
+    },
+    "phrases": [
+      "return of capital to",
+      "cooperation agreement"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0001193125-26-206922",
+        "cik": "0001013488",
+        "date": "2026-05-06"
+      },
+      "cooperation agreement": {
+        "accession": "0001193125-26-206922",
+        "cik": "0001013488",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 2,
+    "small_cap": true,
+    "verified": true
+  },
+  "SCVL": {
+    "ticker": "SCVL",
+    "score": 9.0,
+    "categories": {
+      "capital_policy": 3.0
+    },
+    "phrases": [
+      "return of capital to"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0001193125-26-258362",
+        "cik": "0000895447",
+        "date": "2026-06-05"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "TPL": {
+    "ticker": "TPL",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return of capital to",
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0001811074-26-000035",
+        "cik": "0001811074",
+        "date": "2026-05-06"
+      },
+      "capital allocation priorities": {
+        "accession": "0001811074-26-000035",
+        "cik": "0001811074",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "DELL": {
+    "ticker": "DELL",
+    "score": 3.0,
+    "categories": {
+      "capital_policy": 3.0
+    },
+    "phrases": [
+      "return of capital to"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0001571996-26-000030",
+        "cik": "0001571996",
+        "date": "2026-06-09"
+      }
+    },
+    "n_categories": 1
+  },
+  "TREX": {
+    "ticker": "TREX",
+    "score": 3.5,
+    "categories": {
+      "capital_policy": 3.5
+    },
+    "phrases": [
+      "return of capital to",
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0001193125-26-211927",
+        "cik": "0001069878",
+        "date": "2026-05-07"
+      },
+      "capital allocation priorities": {
+        "accession": "0001193125-26-211927",
+        "cik": "0001069878",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "ACA": {
+    "ticker": "ACA",
+    "score": 3.0,
+    "categories": {
+      "capital_policy": 3.0
+    },
+    "phrases": [
+      "return of capital to"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0001739445-26-000067",
+        "cik": "0001739445",
+        "date": "2026-05-01"
+      }
+    },
+    "n_categories": 1
+  },
+  "PRXA": {
+    "ticker": "PRXA",
+    "score": 3.0,
+    "categories": {
+      "capital_policy": 3.0
+    },
+    "phrases": [
+      "return of capital to"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0001104659-26-094721",
+        "cik": "0001692345",
+        "date": "2026-08-12"
+      }
+    },
+    "n_categories": 1
+  },
+  "PRA": {
+    "ticker": "PRA",
+    "score": 9.0,
+    "categories": {
+      "capital_policy": 3.0
+    },
+    "phrases": [
+      "return of capital to"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0001127703-26-000019",
+        "cik": "0001127703",
+        "date": "2026-05-05"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "CRI": {
+    "ticker": "CRI",
+    "score": 6.0,
+    "categories": {
+      "capital_policy": 3.0
+    },
+    "phrases": [
+      "return of capital to"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0001060822-26-000071",
+        "cik": "0001060822",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "ORI": {
+    "ticker": "ORI",
+    "score": 3.0,
+    "categories": {
+      "capital_policy": 3.0
+    },
+    "phrases": [
+      "return of capital to"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0000074260-26-000072",
+        "cik": "0000074260",
+        "date": "2026-05-01"
+      }
+    },
+    "n_categories": 1
+  },
+  "NKLR": {
+    "ticker": "NKLR",
+    "score": 3.0,
+    "categories": {
+      "capital_policy": 3.0
+    },
+    "phrases": [
+      "return of capital to"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0001213900-26-068933",
+        "cik": "0002067627",
+        "date": "2026-06-16"
+      }
+    },
+    "n_categories": 1
+  },
+  "NYT": {
+    "ticker": "NYT",
+    "score": 3.0,
+    "categories": {
+      "capital_policy": 3.0
+    },
+    "phrases": [
+      "return of capital to"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0000071691-26-000025",
+        "cik": "0000071691",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "MSI": {
+    "ticker": "MSI",
+    "score": 3.0,
+    "categories": {
+      "capital_policy": 3.0
+    },
+    "phrases": [
+      "return of capital to"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0000068505-26-000021",
+        "cik": "0000068505",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "PTEN": {
+    "ticker": "PTEN",
+    "score": 3.0,
+    "categories": {
+      "capital_policy": 3.0
+    },
+    "phrases": [
+      "return of capital to"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0000889900-26-000033",
+        "cik": "0000889900",
+        "date": "2026-04-28"
+      }
+    },
+    "n_categories": 1
+  },
+  "PRKS": {
+    "ticker": "PRKS",
+    "score": 3.0,
+    "categories": {
+      "capital_policy": 3.0
+    },
+    "phrases": [
+      "return of capital to"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0001193125-26-340383",
+        "cik": "0001564902",
+        "date": "2026-08-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "PKST": {
+    "ticker": "PKST",
+    "score": 3.0,
+    "categories": {
+      "capital_policy": 3.0
+    },
+    "phrases": [
+      "return of capital to"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0001628280-26-024469",
+        "cik": "0001600626",
+        "date": "2026-04-09"
+      }
+    },
+    "n_categories": 1
+  },
+  "APA": {
+    "ticker": "APA",
+    "score": 3.0,
+    "categories": {
+      "capital_policy": 3.0
+    },
+    "phrases": [
+      "return of capital to"
+    ],
+    "hits": {
+      "return of capital to": {
+        "accession": "0001841666-26-000034",
+        "cik": "0001841666",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "IRDM": {
+    "ticker": "IRDM",
+    "score": 8.0,
+    "categories": {
+      "capital_policy": 8.0
+    },
+    "phrases": [
+      "initiated a quarterly dividend"
+    ],
+    "hits": {
+      "initiated a quarterly dividend": {
+        "accession": "0001418819-26-000026",
+        "cik": "0001418819",
+        "date": "2026-04-23"
+      }
+    },
+    "n_categories": 1
+  },
+  "WTTR": {
+    "ticker": "WTTR",
+    "score": 8.0,
+    "categories": {
+      "capital_policy": 8.0
+    },
+    "phrases": [
+      "initiated a quarterly dividend"
+    ],
+    "hits": {
+      "initiated a quarterly dividend": {
+        "accession": "0001104659-26-056298",
+        "cik": "0001693256",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "ILPT": {
+    "ticker": "ILPT",
+    "score": 5.0,
+    "categories": {
+      "capital_policy": 5.0
+    },
+    "phrases": [
+      "reduce our leverage"
+    ],
+    "hits": {
+      "reduce our leverage": {
+        "accession": "0001717307-26-000027",
+        "cik": "0001717307",
+        "date": "2026-04-29"
+      }
+    },
+    "n_categories": 1
+  },
+  "COTY": {
+    "ticker": "COTY",
+    "score": 11.5,
+    "categories": {
+      "capital_policy": 5.5
+    },
+    "phrases": [
+      "reduce our leverage",
+      "deleveraging"
+    ],
+    "hits": {
+      "reduce our leverage": {
+        "accession": "0001024305-26-000029",
+        "cik": "0001024305",
+        "date": "2026-05-05"
+      },
+      "deleveraging": {
+        "accession": "0001024305-26-000048",
+        "cik": "0001024305",
+        "date": "2026-08-20"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true,
+    "verified": true
+  },
+  "CE": {
+    "ticker": "CE",
+    "score": 5.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001306830-26-000096",
+        "cik": "0001306830",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1,
+    "cheap_pb": true
+  },
+  "LESL": {
+    "ticker": "LESL",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001193125-26-347169",
+        "cik": "0001821806",
+        "date": "2026-08-12"
+      }
+    },
+    "n_categories": 1
+  },
+  "SNBR": {
+    "ticker": "SNBR",
+    "score": 5.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0000827187-26-000041",
+        "cik": "0000827187",
+        "date": "2026-05-12"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "SHOE": {
+    "ticker": "SHOE",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001193125-26-387855",
+        "cik": "0000895447",
+        "date": "2026-09-10"
+      }
+    },
+    "n_categories": 1
+  },
+  "HLI": {
+    "ticker": "HLI",
+    "score": 9.5,
+    "categories": {
+      "capital_policy": 2.0,
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "deleveraging",
+      "sale of the company"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001302215-26-000067",
+        "cik": "0001302215",
+        "date": "2026-07-31"
+      },
+      "sale of the company": {
+        "accession": "0001302215-26-000053",
+        "cik": "0001302215",
+        "date": "2026-05-22"
+      }
+    },
+    "n_categories": 2
+  },
+  "CMTG": {
+    "ticker": "CMTG",
+    "score": 8.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001193125-26-208946",
+        "cik": "0001666291",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "NXRT": {
+    "ticker": "NXRT",
+    "score": 5.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001193125-26-333942",
+        "cik": "0001620393",
+        "date": "2026-08-05"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "PLAY": {
+    "ticker": "PLAY",
+    "score": 5.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001525769-26-000026",
+        "cik": "0001525769",
+        "date": "2026-06-15"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "PVH": {
+    "ticker": "PVH",
+    "score": 5.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0000078239-26-000056",
+        "cik": "0000078239",
+        "date": "2026-09-02"
+      }
+    },
+    "n_categories": 1,
+    "cheap_pb": true
+  },
+  "ETD": {
+    "ticker": "ETD",
+    "score": 8.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001437749-26-013892",
+        "cik": "0000896156",
+        "date": "2026-04-29"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "OLLI": {
+    "ticker": "OLLI",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001104659-26-104755",
+        "cik": "0001639300",
+        "date": "2026-09-02"
+      }
+    },
+    "n_categories": 1
+  },
+  "MBUU": {
+    "ticker": "MBUU",
+    "score": 8.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001590976-26-000017",
+        "cik": "0001590976",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "DXLG": {
+    "ticker": "DXLG",
+    "score": 8.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001193125-26-386417",
+        "cik": "0000813298",
+        "date": "2026-09-09"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "QETH": {
+    "ticker": "QETH",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001193125-26-209708",
+        "cik": "0001995569",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "RMR": {
+    "ticker": "RMR",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001644378-26-000020",
+        "cik": "0001644378",
+        "date": "2026-08-05"
+      }
+    },
+    "n_categories": 1
+  },
+  "ALIT": {
+    "ticker": "ALIT",
+    "score": 8.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001628280-26-030596",
+        "cik": "0001809104",
+        "date": "2026-05-05"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "FIS": {
+    "ticker": "FIS",
+    "score": 5.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001136893-26-000040",
+        "cik": "0001136893",
+        "date": "2026-05-08"
+      }
+    },
+    "n_categories": 1,
+    "cheap_pb": true
+  },
+  "KLXE": {
+    "ticker": "KLXE",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001738827-26-000032",
+        "cik": "0001738827",
+        "date": "2026-08-11"
+      }
+    },
+    "n_categories": 1
+  },
+  "QSOL": {
+    "ticker": "QSOL",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001193125-26-209705",
+        "cik": "0002074409",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "AMCX": {
+    "ticker": "AMCX",
+    "score": 8.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001514991-26-000089",
+        "cik": "0001514991",
+        "date": "2026-07-30"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "CATO": {
+    "ticker": "CATO",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001562762-26-000100",
+        "cik": "0000018255",
+        "date": "2026-08-27"
+      }
+    },
+    "n_categories": 1
+  },
+  "LUMN": {
+    "ticker": "LUMN",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0000018926-26-000046",
+        "cik": "0000018926",
+        "date": "2026-05-05"
+      }
+    },
+    "n_categories": 1
+  },
+  "LOW": {
+    "ticker": "LOW",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0000060667-26-000072",
+        "cik": "0000060667",
+        "date": "2026-05-28"
+      }
+    },
+    "n_categories": 1
+  },
+  "HBNC": {
+    "ticker": "HBNC",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0000706129-26-000063",
+        "cik": "0000706129",
+        "date": "2026-08-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "HUT": {
+    "ticker": "HUT",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001104659-26-055891",
+        "cik": "0001964789",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "ELAN": {
+    "ticker": "ELAN",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001739104-26-000030",
+        "cik": "0001739104",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "VVV": {
+    "ticker": "VVV",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001674910-26-000066",
+        "cik": "0001674910",
+        "date": "2026-08-05"
+      }
+    },
+    "n_categories": 1
+  },
+  "VVX": {
+    "ticker": "VVX",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001601548-26-000025",
+        "cik": "0001601548",
+        "date": "2026-05-04"
+      }
+    },
+    "n_categories": 1
+  },
+  "MAN": {
+    "ticker": "MAN",
+    "score": 8.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001193125-26-215064",
+        "cik": "0000871763",
+        "date": "2026-05-08"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "SJM": {
+    "ticker": "SJM",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0000091419-26-000080",
+        "cik": "0000091419",
+        "date": "2026-08-26"
+      }
+    },
+    "n_categories": 1
+  },
+  "ADV": {
+    "ticker": "ADV",
+    "score": 8.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0001193125-26-209261",
+        "cik": "0001776661",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "NWL": {
+    "ticker": "NWL",
+    "score": 5.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0000814453-26-000017",
+        "cik": "0000814453",
+        "date": "2026-05-01"
+      }
+    },
+    "n_categories": 1,
+    "cheap_pb": true
+  },
+  "HWM": {
+    "ticker": "HWM",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "deleveraging"
+    ],
+    "hits": {
+      "deleveraging": {
+        "accession": "0000004281-26-000019",
+        "cik": "0000004281",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "AYI": {
+    "ticker": "AYI",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0001144215-26-000021",
+        "cik": "0001144215",
+        "date": "2026-04-02"
+      }
+    },
+    "n_categories": 1
+  },
+  "WSC": {
+    "ticker": "WSC",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0001647088-26-000031",
+        "cik": "0001647088",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "ITW": {
+    "ticker": "ITW",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0000049826-26-000028",
+        "cik": "0000049826",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "CD": {
+    "ticker": "CD",
+    "score": 8.0,
+    "categories": {
+      "capital_policy": 2.0,
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities",
+      "wind down"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0001493152-26-023076",
+        "cik": "0001527762",
+        "date": "2026-05-14"
+      },
+      "wind down": {
+        "accession": "0001493152-26-023076",
+        "cik": "0001527762",
+        "date": "2026-05-14"
+      }
+    },
+    "n_categories": 2
+  },
+  "SYNA": {
+    "ticker": "SYNA",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0000817720-26-000036",
+        "cik": "0000817720",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "NWPX": {
+    "ticker": "NWPX",
+    "score": 5.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0001437749-26-014185",
+        "cik": "0001001385",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "CVEO": {
+    "ticker": "CVEO",
+    "score": 5.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0001590584-26-000052",
+        "cik": "0001590584",
+        "date": "2026-05-01"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "FTDR": {
+    "ticker": "FTDR",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0001193125-26-197175",
+        "cik": "0001727263",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1
+  },
+  "HOG": {
+    "ticker": "HOG",
+    "score": 5.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0000793952-26-000032",
+        "cik": "0000793952",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1,
+    "cheap_pb": true
+  },
+  "LNG": {
+    "ticker": "LNG",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0000003570-26-000014",
+        "cik": "0000003570",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "MARA": {
+    "ticker": "MARA",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0001507605-26-000016",
+        "cik": "0001507605",
+        "date": "2026-05-11"
+      }
+    },
+    "n_categories": 1
+  },
+  "RS": {
+    "ticker": "RS",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0001104659-26-087528",
+        "cik": "0000861884",
+        "date": "2026-07-28"
+      }
+    },
+    "n_categories": 1
+  },
+  "GAME": {
+    "ticker": "GAME",
+    "score": 5.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0001493152-26-023145",
+        "cik": "0001714562",
+        "date": "2026-05-14"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "BWMN": {
+    "ticker": "BWMN",
+    "score": 5.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0001628280-26-031344",
+        "cik": "0001847590",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "COHR": {
+    "ticker": "COHR",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0000820318-26-000013",
+        "cik": "0000820318",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "LWLG": {
+    "ticker": "LWLG",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0001079973-26-000348",
+        "cik": "0001325964",
+        "date": "2026-03-20"
+      }
+    },
+    "n_categories": 1
+  },
+  "PACS": {
+    "ticker": "PACS",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0002001184-26-000023",
+        "cik": "0002001184",
+        "date": "2026-05-11"
+      }
+    },
+    "n_categories": 1
+  },
+  "GEL": {
+    "ticker": "GEL",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0001022321-26-000023",
+        "cik": "0001022321",
+        "date": "2026-08-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "LECO": {
+    "ticker": "LECO",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0000059527-26-000012",
+        "cik": "0000059527",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1
+  },
+  "XOM": {
+    "ticker": "XOM",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0000034088-26-000067",
+        "cik": "0000034088",
+        "date": "2026-05-04"
+      }
+    },
+    "n_categories": 1
+  },
+  "AQMS": {
+    "ticker": "AQMS",
+    "score": 8.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0001437749-26-017038",
+        "cik": "0001621832",
+        "date": "2026-05-14"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "DLTR": {
+    "ticker": "DLTR",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0000935703-26-000065",
+        "cik": "0000935703",
+        "date": "2026-05-28"
+      }
+    },
+    "n_categories": 1
+  },
+  "ULTA": {
+    "ticker": "ULTA",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0001104659-26-102442",
+        "cik": "0001403568",
+        "date": "2026-08-27"
+      }
+    },
+    "n_categories": 1
+  },
+  "SFM": {
+    "ticker": "SFM",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0001575515-26-000022",
+        "cik": "0001575515",
+        "date": "2026-04-29"
+      }
+    },
+    "n_categories": 1
+  },
+  "VMI": {
+    "ticker": "VMI",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0000102729-26-000020",
+        "cik": "0000102729",
+        "date": "2026-04-28"
+      }
+    },
+    "n_categories": 1
+  },
+  "BCPC": {
+    "ticker": "BCPC",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0000009326-26-000018",
+        "cik": "0000009326",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1
+  },
+  "PK": {
+    "ticker": "PK",
+    "score": 5.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0001617406-26-000035",
+        "cik": "0001617406",
+        "date": "2026-05-01"
+      }
+    },
+    "n_categories": 1,
+    "cheap_pb": true
+  },
+  "CQP": {
+    "ticker": "CQP",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0001383650-26-000014",
+        "cik": "0001383650",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "RICK": {
+    "ticker": "RICK",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0001628280-26-032084",
+        "cik": "0000935419",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "USPH": {
+    "ticker": "USPH",
+    "score": 2.0,
+    "categories": {
+      "capital_policy": 2.0
+    },
+    "phrases": [
+      "capital allocation priorities"
+    ],
+    "hits": {
+      "capital allocation priorities": {
+        "accession": "0001140361-26-031825",
+        "cik": "0000885978",
+        "date": "2026-08-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "STAA": {
+    "ticker": "STAA",
+    "score": 7.0,
+    "categories": {
+      "governance_action": 4.0
+    },
+    "phrases": [
+      "cooperation agreement"
+    ],
+    "hits": {
+      "cooperation agreement": {
+        "accession": "0000718937-26-000023",
+        "cik": "0000718937",
+        "date": "2026-05-13"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "TRSO": {
+    "ticker": "TRSO",
+    "score": 4.0,
+    "categories": {
+      "governance_action": 4.0
+    },
+    "phrases": [
+      "cooperation agreement"
+    ],
+    "hits": {
+      "cooperation agreement": {
+        "accession": "0001640334-26-001332",
+        "cik": "0001758699",
+        "date": "2026-08-13"
+      }
+    },
+    "n_categories": 1
+  },
+  "AGCO": {
+    "ticker": "AGCO",
+    "score": 4.0,
+    "categories": {
+      "governance_action": 4.0
+    },
+    "phrases": [
+      "cooperation agreement"
+    ],
+    "hits": {
+      "cooperation agreement": {
+        "accession": "0000880266-26-000068",
+        "cik": "0000880266",
+        "date": "2026-07-30"
+      }
+    },
+    "n_categories": 1
+  },
+  "IMVT": {
+    "ticker": "IMVT",
+    "score": 4.0,
+    "categories": {
+      "governance_action": 4.0
+    },
+    "phrases": [
+      "cooperation agreement"
+    ],
+    "hits": {
+      "cooperation agreement": {
+        "accession": "0001764013-26-000101",
+        "cik": "0001764013",
+        "date": "2026-08-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "CIMG": {
+    "ticker": "CIMG",
+    "score": 4.0,
+    "categories": {
+      "governance_action": 4.0
+    },
+    "phrases": [
+      "cooperation agreement"
+    ],
+    "hits": {
+      "cooperation agreement": {
+        "accession": "0001493152-26-037866",
+        "cik": "0001527613",
+        "date": "2026-08-13"
+      }
+    },
+    "n_categories": 1
+  },
+  "TBI": {
+    "ticker": "TBI",
+    "score": 10.0,
+    "categories": {
+      "governance_action": 4.0
+    },
+    "phrases": [
+      "cooperation agreement"
+    ],
+    "hits": {
+      "cooperation agreement": {
+        "accession": "0000768899-26-000019",
+        "cik": "0000768899",
+        "date": "2026-05-05"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "OPTU": {
+    "ticker": "OPTU",
+    "score": 5.8,
+    "categories": {
+      "governance_action": 4.0,
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "cooperation agreement",
+      "sale of the company"
+    ],
+    "hits": {
+      "cooperation agreement": {
+        "accession": "0001702780-26-000048",
+        "cik": "0001702780",
+        "date": "2026-08-06"
+      },
+      "sale of the company": {
+        "accession": "0001702780-26-000048",
+        "cik": "0001702780",
+        "date": "2026-08-06"
+      }
+    },
+    "n_categories": 2,
+    "small_cap": true,
+    "verified": true,
+    "negation_flag": "cooperation agreement"
+  },
+  "DE": {
+    "ticker": "DE",
+    "score": 4.0,
+    "categories": {
+      "governance_action": 4.0
+    },
+    "phrases": [
+      "cooperation agreement"
+    ],
+    "hits": {
+      "cooperation agreement": {
+        "accession": "0001104659-26-102213",
+        "cik": "0000315189",
+        "date": "2026-08-27"
+      }
+    },
+    "n_categories": 1
+  },
+  "NVVE": {
+    "ticker": "NVVE",
+    "score": 4.0,
+    "categories": {
+      "governance_action": 4.0
+    },
+    "phrases": [
+      "cooperation agreement"
+    ],
+    "hits": {
+      "cooperation agreement": {
+        "accession": "0001836875-26-000073",
+        "cik": "0001836875",
+        "date": "2026-08-14"
+      }
+    },
+    "n_categories": 1
+  },
+  "ONL": {
+    "ticker": "ONL",
+    "score": 10.0,
+    "categories": {
+      "governance_action": 4.0
+    },
+    "phrases": [
+      "cooperation agreement"
+    ],
+    "hits": {
+      "cooperation agreement": {
+        "accession": "0001873923-26-000082",
+        "cik": "0001873923",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "CLPR": {
+    "ticker": "CLPR",
+    "score": 7.0,
+    "categories": {
+      "governance_action": 4.0
+    },
+    "phrases": [
+      "cooperation agreement"
+    ],
+    "hits": {
+      "cooperation agreement": {
+        "accession": "0001437749-26-017036",
+        "cik": "0001649096",
+        "date": "2026-05-14"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "SLSN": {
+    "ticker": "SLSN",
+    "score": 4.0,
+    "categories": {
+      "governance_action": 4.0
+    },
+    "phrases": [
+      "cooperation agreement"
+    ],
+    "hits": {
+      "cooperation agreement": {
+        "accession": "0001999371-26-008861",
+        "cik": "0000883107",
+        "date": "2026-04-23"
+      }
+    },
+    "n_categories": 1
+  },
+  "CENN": {
+    "ticker": "CENN",
+    "score": 4.0,
+    "categories": {
+      "governance_action": 4.0
+    },
+    "phrases": [
+      "cooperation agreement"
+    ],
+    "hits": {
+      "cooperation agreement": {
+        "accession": "0001140361-26-014773",
+        "cik": "0001707919",
+        "date": "2026-04-15"
+      }
+    },
+    "n_categories": 1
+  },
+  "ATRC": {
+    "ticker": "ATRC",
+    "score": 7.0,
+    "categories": {
+      "governance_action": 4.0
+    },
+    "phrases": [
+      "cooperation agreement"
+    ],
+    "hits": {
+      "cooperation agreement": {
+        "accession": "0001323885-26-000023",
+        "cik": "0001323885",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "SNAL": {
+    "ticker": "SNAL",
+    "score": 4.0,
+    "categories": {
+      "governance_action": 4.0
+    },
+    "phrases": [
+      "cooperation agreement"
+    ],
+    "hits": {
+      "cooperation agreement": {
+        "accession": "0001493152-26-014247",
+        "cik": "0001886894",
+        "date": "2026-03-31"
+      }
+    },
+    "n_categories": 1
+  },
+  "CAH": {
+    "ticker": "CAH",
+    "score": 4.0,
+    "categories": {
+      "governance_action": 4.0
+    },
+    "phrases": [
+      "cooperation agreement"
+    ],
+    "hits": {
+      "cooperation agreement": {
+        "accession": "0000721371-26-000038",
+        "cik": "0000721371",
+        "date": "2026-08-11"
+      }
+    },
+    "n_categories": 1
+  },
+  "BHLL": {
+    "ticker": "BHLL",
+    "score": 4.0,
+    "categories": {
+      "governance_action": 4.0
+    },
+    "phrases": [
+      "cooperation agreement"
+    ],
+    "hits": {
+      "cooperation agreement": {
+        "accession": "0001493152-26-021711",
+        "cik": "0001407583",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "SEII": {
+    "ticker": "SEII",
+    "score": 4.0,
+    "categories": {
+      "governance_action": 4.0
+    },
+    "phrases": [
+      "cooperation agreement"
+    ],
+    "hits": {
+      "cooperation agreement": {
+        "accession": "0001477932-26-005074",
+        "cik": "0000819926",
+        "date": "2026-08-14"
+      }
+    },
+    "n_categories": 1
+  },
+  "LULU": {
+    "ticker": "LULU",
+    "score": 4.0,
+    "categories": {
+      "governance_action": 4.0
+    },
+    "phrases": [
+      "cooperation agreement"
+    ],
+    "hits": {
+      "cooperation agreement": {
+        "accession": "0001397187-26-000078",
+        "cik": "0001397187",
+        "date": "2026-06-04"
+      }
+    },
+    "n_categories": 1
+  },
+  "FIEE": {
+    "ticker": "FIEE",
+    "score": 4.0,
+    "categories": {
+      "governance_action": 4.0
+    },
+    "phrases": [
+      "cooperation agreement"
+    ],
+    "hits": {
+      "cooperation agreement": {
+        "accession": "0001829126-26-008898",
+        "cik": "0001467761",
+        "date": "2026-08-14"
+      }
+    },
+    "n_categories": 1
+  },
+  "VRE": {
+    "ticker": "VRE",
+    "score": 6.0,
+    "categories": {
+      "governance_action": 6.0
+    },
+    "phrases": [
+      "separated the roles"
+    ],
+    "hits": {
+      "separated the roles": {
+        "accession": "0001628280-26-020558",
+        "cik": "0000924901",
+        "date": "2026-03-23"
+      }
+    },
+    "n_categories": 1
+  },
+  "FLYYQ": {
+    "ticker": "FLYYQ",
+    "score": 6.0,
+    "categories": {
+      "governance_action": 6.0
+    },
+    "phrases": [
+      "separated the roles"
+    ],
+    "hits": {
+      "separated the roles": {
+        "accession": "0001193125-26-197767",
+        "cik": "0001498710",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1
+  },
+  "GLSI": {
+    "ticker": "GLSI",
+    "score": 6.0,
+    "categories": {
+      "governance_action": 6.0
+    },
+    "phrases": [
+      "separated the roles"
+    ],
+    "hits": {
+      "separated the roles": {
+        "accession": "0001493152-26-026651",
+        "cik": "0001799788",
+        "date": "2026-06-01"
+      }
+    },
+    "n_categories": 1
+  },
+  "CNNE": {
+    "ticker": "CNNE",
+    "score": 8.0,
+    "categories": {
+      "governance_action": 8.0
+    },
+    "phrases": [
+      "declassify our board"
+    ],
+    "hits": {
+      "declassify our board": {
+        "accession": "0001704720-26-000094",
+        "cik": "0001704720",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1
+  },
+  "ETN": {
+    "ticker": "ETN",
+    "score": 11.0,
+    "categories": {
+      "strategic_action": 11.0
+    },
+    "phrases": [
+      "pursue a spin-off",
+      "planned separation"
+    ],
+    "hits": {
+      "pursue a spin-off": {
+        "accession": "0001551182-26-000013",
+        "cik": "0001551182",
+        "date": "2026-05-05"
+      },
+      "planned separation": {
+        "accession": "0001551182-26-000030",
+        "cik": "0001551182",
+        "date": "2026-07-31"
+      }
+    },
+    "n_categories": 1,
+    "verified": true
+  },
+  "MCK": {
+    "ticker": "MCK",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 8.0
+    },
+    "phrases": [
+      "planned separation"
+    ],
+    "hits": {
+      "planned separation": {
+        "accession": "0000927653-26-000234",
+        "cik": "0000927653",
+        "date": "2026-08-05"
+      }
+    },
+    "n_categories": 1
+  },
+  "GPC": {
+    "ticker": "GPC",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 8.0
+    },
+    "phrases": [
+      "planned separation"
+    ],
+    "hits": {
+      "planned separation": {
+        "accession": "0000040987-26-000017",
+        "cik": "0000040987",
+        "date": "2026-04-21"
+      }
+    },
+    "n_categories": 1
+  },
+  "JNJ": {
+    "ticker": "JNJ",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 8.0
+    },
+    "phrases": [
+      "planned separation"
+    ],
+    "hits": {
+      "planned separation": {
+        "accession": "0000200406-26-000087",
+        "cik": "0000200406",
+        "date": "2026-04-22"
+      }
+    },
+    "n_categories": 1
+  },
+  "HON": {
+    "ticker": "HON",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 8.0
+    },
+    "phrases": [
+      "planned separation"
+    ],
+    "hits": {
+      "planned separation": {
+        "accession": "0000773840-26-000057",
+        "cik": "0000773840",
+        "date": "2026-04-23"
+      }
+    },
+    "n_categories": 1
+  },
+  "KDP": {
+    "ticker": "KDP",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 8.0
+    },
+    "phrases": [
+      "planned separation"
+    ],
+    "hits": {
+      "planned separation": {
+        "accession": "0001418135-26-000026",
+        "cik": "0001418135",
+        "date": "2026-04-23"
+      }
+    },
+    "n_categories": 1
+  },
+  "TXT": {
+    "ticker": "TXT",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 8.0
+    },
+    "phrases": [
+      "planned separation"
+    ],
+    "hits": {
+      "planned separation": {
+        "accession": "0000217346-26-000012",
+        "cik": "0000217346",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1
+  },
+  "HUN": {
+    "ticker": "HUN",
+    "score": 11.0,
+    "categories": {
+      "strategic_action": 8.0
+    },
+    "phrases": [
+      "planned separation"
+    ],
+    "hits": {
+      "planned separation": {
+        "accession": "0001437749-26-014346",
+        "cik": "0001307954",
+        "date": "2026-05-01"
+      }
+    },
+    "n_categories": 1,
+    "cheap_pb": true,
+    "verified": true
+  },
+  "BHC": {
+    "ticker": "BHC",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 8.0
+    },
+    "phrases": [
+      "planned separation"
+    ],
+    "hits": {
+      "planned separation": {
+        "accession": "0000885590-26-000053",
+        "cik": "0000885590",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1
+  },
+  "WBD": {
+    "ticker": "WBD",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 8.0
+    },
+    "phrases": [
+      "planned separation"
+    ],
+    "hits": {
+      "planned separation": {
+        "accession": "0001437107-26-000057",
+        "cik": "0001437107",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "NFE": {
+    "ticker": "NFE",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 8.0
+    },
+    "phrases": [
+      "planned separation"
+    ],
+    "hits": {
+      "planned separation": {
+        "accession": "0001749723-26-000062",
+        "cik": "0001749723",
+        "date": "2026-05-14"
+      }
+    },
+    "n_categories": 1
+  },
+  "CR": {
+    "ticker": "CR",
+    "score": 9.0,
+    "categories": {
+      "strategic_action": 9.0
+    },
+    "phrases": [
+      "separation into two"
+    ],
+    "hits": {
+      "separation into two": {
+        "accession": "0001944013-26-000161",
+        "cik": "0001944013",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1
+  },
+  "CTVA": {
+    "ticker": "CTVA",
+    "score": 9.0,
+    "categories": {
+      "strategic_action": 9.0
+    },
+    "phrases": [
+      "separation into two"
+    ],
+    "hits": {
+      "separation into two": {
+        "accession": "0001755672-26-000010",
+        "cik": "0001755672",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "ASPI": {
+    "ticker": "ASPI",
+    "score": 3.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001193125-26-232658",
+        "cik": "0001921865",
+        "date": "2026-05-20"
+      }
+    },
+    "n_categories": 1
+  },
+  "AEI": {
+    "ticker": "AEI",
+    "score": 3.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001493152-26-014302",
+        "cik": "0001750106",
+        "date": "2026-03-31"
+      }
+    },
+    "n_categories": 1
+  },
+  "HWH": {
+    "ticker": "HWH",
+    "score": 3.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001493152-26-012738",
+        "cik": "0001897245",
+        "date": "2026-03-26"
+      }
+    },
+    "n_categories": 1
+  },
+  "OBAI": {
+    "ticker": "OBAI",
+    "score": 3.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001493152-26-014133",
+        "cik": "0001756064",
+        "date": "2026-03-31"
+      }
+    },
+    "n_categories": 1
+  },
+  "GURE": {
+    "ticker": "GURE",
+    "score": 3.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001193805-26-001001",
+        "cik": "0000885462",
+        "date": "2026-07-27"
+      }
+    },
+    "n_categories": 1
+  },
+  "IDR": {
+    "ticker": "IDR",
+    "score": 3.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001654954-26-002560",
+        "cik": "0001030192",
+        "date": "2026-03-23"
+      }
+    },
+    "n_categories": 1
+  },
+  "MNPR": {
+    "ticker": "MNPR",
+    "score": 3.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001437749-26-010025",
+        "cik": "0001645469",
+        "date": "2026-03-27"
+      }
+    },
+    "n_categories": 1
+  },
+  "PLAG": {
+    "ticker": "PLAG",
+    "score": 6.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001213900-26-037637",
+        "cik": "0001117057",
+        "date": "2026-03-31"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "TLYS": {
+    "ticker": "TLYS",
+    "score": 6.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001628280-26-024440",
+        "cik": "0001524025",
+        "date": "2026-04-09"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "XHLD": {
+    "ticker": "XHLD",
+    "score": 3.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001493152-26-011249",
+        "cik": "0002030954",
+        "date": "2026-03-18"
+      }
+    },
+    "n_categories": 1
+  },
+  "PARK": {
+    "ticker": "PARK",
+    "score": 3.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001104659-26-034593",
+        "cik": "0002069604",
+        "date": "2026-03-25"
+      }
+    },
+    "n_categories": 1
+  },
+  "IVF": {
+    "ticker": "IVF",
+    "score": 3.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001493152-26-026775",
+        "cik": "0001417926",
+        "date": "2026-06-02"
+      }
+    },
+    "n_categories": 1
+  },
+  "CUEN": {
+    "ticker": "CUEN",
+    "score": 4.0,
+    "categories": {
+      "strategic_action": 4.0
+    },
+    "phrases": [
+      "sale of the company",
+      "wind down"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001213900-26-046789",
+        "cik": "0001424657",
+        "date": "2026-04-23"
+      },
+      "wind down": {
+        "accession": "0001213900-26-046789",
+        "cik": "0001424657",
+        "date": "2026-04-23"
+      }
+    },
+    "n_categories": 1
+  },
+  "MNRO": {
+    "ticker": "MNRO",
+    "score": 9.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0000876427-26-000007",
+        "cik": "0000876427",
+        "date": "2026-05-27"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "SBDS": {
+    "ticker": "SBDS",
+    "score": 3.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001870600-26-000013",
+        "cik": "0001870600",
+        "date": "2026-03-23"
+      }
+    },
+    "n_categories": 1
+  },
+  "DRIO": {
+    "ticker": "DRIO",
+    "score": 3.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001104659-26-031621",
+        "cik": "0001533998",
+        "date": "2026-03-19"
+      }
+    },
+    "n_categories": 1
+  },
+  "HYEX": {
+    "ticker": "HYEX",
+    "score": 3.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001096906-26-000515",
+        "cik": "0001630176",
+        "date": "2026-04-09"
+      }
+    },
+    "n_categories": 1
+  },
+  "MOVE": {
+    "ticker": "MOVE",
+    "score": 3.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001213900-26-036609",
+        "cik": "0001734750",
+        "date": "2026-03-31"
+      }
+    },
+    "n_categories": 1
+  },
+  "BTAI": {
+    "ticker": "BTAI",
+    "score": 6.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001104659-26-036214",
+        "cik": "0001720893",
+        "date": "2026-03-27"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "DTCX": {
+    "ticker": "DTCX",
+    "score": 3.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001493152-26-016375",
+        "cik": "0001853825",
+        "date": "2026-04-13"
+      }
+    },
+    "n_categories": 1
+  },
+  "CEPF": {
+    "ticker": "CEPF",
+    "score": 3.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001213900-26-034785",
+        "cik": "0002034267",
+        "date": "2026-03-26"
+      }
+    },
+    "n_categories": 1
+  },
+  "CEPV": {
+    "ticker": "CEPV",
+    "score": 3.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001213900-26-037420",
+        "cik": "0002034266",
+        "date": "2026-03-31"
+      }
+    },
+    "n_categories": 1
+  },
+  "CEPS": {
+    "ticker": "CEPS",
+    "score": 3.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001213900-26-037550",
+        "cik": "0002089536",
+        "date": "2026-03-31"
+      }
+    },
+    "n_categories": 1
+  },
+  "JSDA": {
+    "ticker": "JSDA",
+    "score": 3.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001493152-26-019824",
+        "cik": "0001083522",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1
+  },
+  "NXTT": {
+    "ticker": "NXTT",
+    "score": 3.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001213900-26-037199",
+        "cik": "0001784970",
+        "date": "2026-03-31"
+      }
+    },
+    "n_categories": 1
+  },
+  "SWBI": {
+    "ticker": "SWBI",
+    "score": 6.5,
+    "categories": {
+      "strategic_action": 3.5
+    },
+    "phrases": [
+      "sale of the company"
+    ],
+    "hits": {
+      "sale of the company": {
+        "accession": "0001193125-26-274254",
+        "cik": "0001092796",
+        "date": "2026-06-17"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "HLLY": {
+    "ticker": "HLLY",
+    "score": 13.0,
+    "categories": {
+      "strategic_action": 7.0
+    },
+    "phrases": [
+      "exit non-core"
+    ],
+    "hits": {
+      "exit non-core": {
+        "accession": "0001822928-26-000068",
+        "cik": "0001822928",
+        "date": "2026-08-05"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true,
+    "verified": true
+  },
+  "ONAR": {
+    "ticker": "ONAR",
+    "score": 7.0,
+    "categories": {
+      "strategic_action": 7.0
+    },
+    "phrases": [
+      "exit non-core"
+    ],
+    "hits": {
+      "exit non-core": {
+        "accession": "0001477932-26-003805",
+        "cik": "0001682265",
+        "date": "2026-06-11"
+      }
+    },
+    "n_categories": 1
+  },
+  "SUNB": {
+    "ticker": "SUNB",
+    "score": 7.0,
+    "categories": {
+      "strategic_action": 7.0
+    },
+    "phrases": [
+      "exit non-core"
+    ],
+    "hits": {
+      "exit non-core": {
+        "accession": "0001628280-26-044888",
+        "cik": "0002083785",
+        "date": "2026-06-23"
+      }
+    },
+    "n_categories": 1
+  },
+  "WBQNL": {
+    "ticker": "WBQNL",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001140361-26-021291",
+        "cik": "0001785494",
+        "date": "2026-05-14"
+      }
+    },
+    "n_categories": 1
+  },
+  "RMNI": {
+    "ticker": "RMNI",
+    "score": 5.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001635282-26-000042",
+        "cik": "0001635282",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "OPRT": {
+    "ticker": "OPRT",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001538716-26-000067",
+        "cik": "0001538716",
+        "date": "2026-08-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "RM": {
+    "ticker": "RM",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001519401-26-000009",
+        "cik": "0001519401",
+        "date": "2026-05-01"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "INM": {
+    "ticker": "INM",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001213900-26-052920",
+        "cik": "0001728328",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "ARW": {
+    "ticker": "ARW",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001104659-26-056650",
+        "cik": "0000007536",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "ALCO": {
+    "ticker": "ALCO",
+    "score": 5.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0000003545-26-000026",
+        "cik": "0000003545",
+        "date": "2026-05-11"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "KTCC": {
+    "ticker": "KTCC",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0000719733-26-000018",
+        "cik": "0000719733",
+        "date": "2026-05-08"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "VEEV": {
+    "ticker": "VEEV",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001393052-26-000014",
+        "cik": "0001393052",
+        "date": "2026-03-20"
+      }
+    },
+    "n_categories": 1
+  },
+  "CARG": {
+    "ticker": "CARG",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001193125-26-211983",
+        "cik": "0001494259",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "QDEL": {
+    "ticker": "QDEL",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001906324-26-000033",
+        "cik": "0001906324",
+        "date": "2026-08-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "HGBL": {
+    "ticker": "HGBL",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001193125-26-349109",
+        "cik": "0000849145",
+        "date": "2026-08-13"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "CNFN": {
+    "ticker": "CNFN",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001096906-26-000842",
+        "cik": "0001352952",
+        "date": "2026-05-20"
+      }
+    },
+    "n_categories": 1
+  },
+  "VIPZ": {
+    "ticker": "VIPZ",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001493152-26-023219",
+        "cik": "0001832161",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1
+  },
+  "PTGX": {
+    "ticker": "PTGX",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001104659-26-091123",
+        "cik": "0001377121",
+        "date": "2026-08-05"
+      }
+    },
+    "n_categories": 1
+  },
+  "AIXC": {
+    "ticker": "AIXC",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001493152-26-036658",
+        "cik": "0001460702",
+        "date": "2026-08-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "NRDY": {
+    "ticker": "NRDY",
+    "score": 5.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001819404-26-000080",
+        "cik": "0001819404",
+        "date": "2026-08-06"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "JANX": {
+    "ticker": "JANX",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001193125-26-212146",
+        "cik": "0001817713",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "ENVA": {
+    "ticker": "ENVA",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001193125-26-174021",
+        "cik": "0001529864",
+        "date": "2026-04-23"
+      }
+    },
+    "n_categories": 1
+  },
+  "NXTC": {
+    "ticker": "NXTC",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001104659-26-092050",
+        "cik": "0001661059",
+        "date": "2026-08-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "OCLN": {
+    "ticker": "OCLN",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001096906-26-000879",
+        "cik": "0001419793",
+        "date": "2026-05-29"
+      }
+    },
+    "n_categories": 1
+  },
+  "ERII": {
+    "ticker": "ERII",
+    "score": 5.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001421517-26-000041",
+        "cik": "0001421517",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "CBOE": {
+    "ticker": "CBOE",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001628280-26-029112",
+        "cik": "0001374310",
+        "date": "2026-05-01"
+      }
+    },
+    "n_categories": 1
+  },
+  "BOLD": {
+    "ticker": "BOLD",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001193125-26-339093",
+        "cik": "0001782303",
+        "date": "2026-08-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "MCFT": {
+    "ticker": "MCFT",
+    "score": 5.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001193125-26-387432",
+        "cik": "0001638290",
+        "date": "2026-09-10"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "AYTU": {
+    "ticker": "AYTU",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001437749-26-016721",
+        "cik": "0001385818",
+        "date": "2026-05-13"
+      }
+    },
+    "n_categories": 1
+  },
+  "SHPH": {
+    "ticker": "SHPH",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001493152-26-023859",
+        "cik": "0001757499",
+        "date": "2026-05-15"
+      }
+    },
+    "n_categories": 1
+  },
+  "PENG": {
+    "ticker": "PENG",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001616533-26-000043",
+        "cik": "0001616533",
+        "date": "2026-07-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "AEO": {
+    "ticker": "AEO",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001193125-26-387856",
+        "cik": "0000919012",
+        "date": "2026-09-10"
+      }
+    },
+    "n_categories": 1
+  },
+  "DUOT": {
+    "ticker": "DUOT",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001079973-26-001151",
+        "cik": "0001396536",
+        "date": "2026-08-19"
+      }
+    },
+    "n_categories": 1
+  },
+  "AMTB": {
+    "ticker": "AMTB",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001734342-26-000037",
+        "cik": "0001734342",
+        "date": "2026-05-01"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "KVHI": {
+    "ticker": "KVHI",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001007587-26-000016",
+        "cik": "0001007587",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "CBRE": {
+    "ticker": "CBRE",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001138118-26-000015",
+        "cik": "0001138118",
+        "date": "2026-04-23"
+      }
+    },
+    "n_categories": 1
+  },
+  "WWD": {
+    "ticker": "WWD",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001193125-26-195984",
+        "cik": "0000108312",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1
+  },
+  "DCGO": {
+    "ticker": "DCGO",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "wind down"
+    ],
+    "hits": {
+      "wind down": {
+        "accession": "0001628280-26-057394",
+        "cik": "0001822359",
+        "date": "2026-08-17"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "TSEOF": {
+    "ticker": "TSEOF",
+    "score": 5.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001104659-26-052646",
+        "cik": "0001519061",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "TSEOQ": {
+    "ticker": "TSEOQ",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001104659-26-091910",
+        "cik": "0001519061",
+        "date": "2026-08-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "AAP": {
+    "ticker": "AAP",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001193125-26-234388",
+        "cik": "0001158449",
+        "date": "2026-05-21"
+      }
+    },
+    "n_categories": 1
+  },
+  "CCI": {
+    "ticker": "CCI",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001051470-26-000059",
+        "cik": "0001051470",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "INTC": {
+    "ticker": "INTC",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0000050863-26-000157",
+        "cik": "0000050863",
+        "date": "2026-07-24"
+      }
+    },
+    "n_categories": 1
+  },
+  "WMG": {
+    "ticker": "WMG",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001319161-26-000022",
+        "cik": "0001319161",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "STE": {
+    "ticker": "STE",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001628280-26-054830",
+        "cik": "0001757898",
+        "date": "2026-08-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "ULS": {
+    "ticker": "ULS",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001901440-26-000023",
+        "cik": "0001901440",
+        "date": "2026-08-04"
+      }
+    },
+    "n_categories": 1
+  },
+  "HRL": {
+    "ticker": "HRL",
+    "score": 2.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "restructuring plan",
+      "portfolio optimization"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0000048465-26-000055",
+        "cik": "0000048465",
+        "date": "2026-08-27"
+      },
+      "portfolio optimization": {
+        "accession": "0000048465-26-000055",
+        "cik": "0000048465",
+        "date": "2026-08-27"
+      }
+    },
+    "n_categories": 1
+  },
+  "RBBN": {
+    "ticker": "RBBN",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001708055-26-000028",
+        "cik": "0001708055",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "GRPN": {
+    "ticker": "GRPN",
+    "score": 5.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001628280-26-054304",
+        "cik": "0001490281",
+        "date": "2026-08-06"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "MLKN": {
+    "ticker": "MLKN",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0000066382-26-000050",
+        "cik": "0000066382",
+        "date": "2026-03-30"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "PTON": {
+    "ticker": "PTON",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001639825-26-000022",
+        "cik": "0001639825",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "NVTS": {
+    "ticker": "NVTS",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001628280-26-049808",
+        "cik": "0001821769",
+        "date": "2026-07-27"
+      }
+    },
+    "n_categories": 1
+  },
+  "GO": {
+    "ticker": "GO",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001771515-26-000055",
+        "cik": "0001771515",
+        "date": "2026-05-13"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "ICHR": {
+    "ticker": "ICHR",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001652535-26-000069",
+        "cik": "0001652535",
+        "date": "2026-08-04"
+      }
+    },
+    "n_categories": 1
+  },
+  "GPI": {
+    "ticker": "GPI",
+    "score": 5.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001031203-26-000107",
+        "cik": "0001031203",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1,
+    "cheap_pb": true
+  },
+  "HCAT": {
+    "ticker": "HCAT",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001636422-26-000066",
+        "cik": "0001636422",
+        "date": "2026-05-11"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "GPRO": {
+    "ticker": "GPRO",
+    "score": 5.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001500435-26-000036",
+        "cik": "0001500435",
+        "date": "2026-08-10"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "ETSY": {
+    "ticker": "ETSY",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001370637-26-000080",
+        "cik": "0001370637",
+        "date": "2026-08-05"
+      }
+    },
+    "n_categories": 1
+  },
+  "CHGG": {
+    "ticker": "CHGG",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001364954-26-000048",
+        "cik": "0001364954",
+        "date": "2026-05-11"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "GRWG": {
+    "ticker": "GRWG",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001604868-26-000012",
+        "cik": "0001604868",
+        "date": "2026-05-12"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "ATYR": {
+    "ticker": "ATYR",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001339970-26-000053",
+        "cik": "0001339970",
+        "date": "2026-08-07"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "JBL": {
+    "ticker": "JBL",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001628280-26-046138",
+        "cik": "0000898293",
+        "date": "2026-06-30"
+      }
+    },
+    "n_categories": 1
+  },
+  "ZBH": {
+    "ticker": "ZBH",
+    "score": 5.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001193125-26-201710",
+        "cik": "0001136869",
+        "date": "2026-05-01"
+      }
+    },
+    "n_categories": 1,
+    "cheap_pb": true
+  },
+  "DDD": {
+    "ticker": "DDD",
+    "score": 5.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001628280-26-051898",
+        "cik": "0000910638",
+        "date": "2026-08-03"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "INTA": {
+    "ticker": "INTA",
+    "score": 5.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001565687-26-000037",
+        "cik": "0001565687",
+        "date": "2026-05-05"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "DH": {
+    "ticker": "DH",
+    "score": 8.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001193125-26-342488",
+        "cik": "0001861795",
+        "date": "2026-08-10"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "WST": {
+    "ticker": "WST",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0000105770-26-000099",
+        "cik": "0000105770",
+        "date": "2026-07-23"
+      }
+    },
+    "n_categories": 1
+  },
+  "JBTM": {
+    "ticker": "JBTM",
+    "score": 2.0,
+    "categories": {
+      "strategic_action": 2.0
+    },
+    "phrases": [
+      "restructuring plan"
+    ],
+    "hits": {
+      "restructuring plan": {
+        "accession": "0001628280-26-030756",
+        "cik": "0001433660",
+        "date": "2026-05-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "LIN": {
+    "ticker": "LIN",
+    "score": 4.0,
+    "categories": {
+      "strategic_action": 4.0
+    },
+    "phrases": [
+      "cost reduction program"
+    ],
+    "hits": {
+      "cost reduction program": {
+        "accession": "0001628280-26-029165",
+        "cik": "0001707925",
+        "date": "2026-05-01"
+      }
+    },
+    "n_categories": 1
+  },
+  "SWK": {
+    "ticker": "SWK",
+    "score": 4.0,
+    "categories": {
+      "strategic_action": 4.0
+    },
+    "phrases": [
+      "cost reduction program"
+    ],
+    "hits": {
+      "cost reduction program": {
+        "accession": "0000093556-26-000015",
+        "cik": "0000093556",
+        "date": "2026-04-29"
+      }
+    },
+    "n_categories": 1
+  },
+  "BGC": {
+    "ticker": "BGC",
+    "score": 4.0,
+    "categories": {
+      "strategic_action": 4.0
+    },
+    "phrases": [
+      "cost reduction program"
+    ],
+    "hits": {
+      "cost reduction program": {
+        "accession": "0001628280-26-033499",
+        "cik": "0001094831",
+        "date": "2026-05-11"
+      }
+    },
+    "n_categories": 1
+  },
+  "TTWO": {
+    "ticker": "TTWO",
+    "score": 4.0,
+    "categories": {
+      "strategic_action": 4.0
+    },
+    "phrases": [
+      "cost reduction program"
+    ],
+    "hits": {
+      "cost reduction program": {
+        "accession": "0001628280-26-037434",
+        "cik": "0000946581",
+        "date": "2026-05-22"
+      }
+    },
+    "n_categories": 1
+  },
+  "ALV": {
+    "ticker": "ALV",
+    "score": 4.0,
+    "categories": {
+      "strategic_action": 4.0
+    },
+    "phrases": [
+      "cost reduction program"
+    ],
+    "hits": {
+      "cost reduction program": {
+        "accession": "0001193125-26-160472",
+        "cik": "0001034670",
+        "date": "2026-04-17"
+      }
+    },
+    "n_categories": 1
+  },
+  "CTSO": {
+    "ticker": "CTSO",
+    "score": 7.0,
+    "categories": {
+      "strategic_action": 4.0
+    },
+    "phrases": [
+      "cost reduction program"
+    ],
+    "hits": {
+      "cost reduction program": {
+        "accession": "0001104659-26-060270",
+        "cik": "0001175151",
+        "date": "2026-05-13"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "NNDM": {
+    "ticker": "NNDM",
+    "score": 4.0,
+    "categories": {
+      "strategic_action": 4.0
+    },
+    "phrases": [
+      "cost reduction program"
+    ],
+    "hits": {
+      "cost reduction program": {
+        "accession": "0001193125-26-338523",
+        "cik": "0001643303",
+        "date": "2026-08-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "GCO": {
+    "ticker": "GCO",
+    "score": 10.0,
+    "categories": {
+      "strategic_action": 4.0
+    },
+    "phrases": [
+      "cost reduction program"
+    ],
+    "hits": {
+      "cost reduction program": {
+        "accession": "0001193125-26-251478",
+        "cik": "0000018498",
+        "date": "2026-06-01"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "CCO": {
+    "ticker": "CCO",
+    "score": 7.0,
+    "categories": {
+      "strategic_action": 4.0
+    },
+    "phrases": [
+      "cost reduction program"
+    ],
+    "hits": {
+      "cost reduction program": {
+        "accession": "0001213900-26-035116",
+        "cik": "0001334978",
+        "date": "2026-03-27"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "HOFT": {
+    "ticker": "HOFT",
+    "score": 10.0,
+    "categories": {
+      "strategic_action": 4.0
+    },
+    "phrases": [
+      "cost reduction program"
+    ],
+    "hits": {
+      "cost reduction program": {
+        "accession": "0001185185-26-001420",
+        "cik": "0001077688",
+        "date": "2026-04-17"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "AIRS": {
+    "ticker": "AIRS",
+    "score": 7.0,
+    "categories": {
+      "strategic_action": 4.0
+    },
+    "phrases": [
+      "cost reduction program"
+    ],
+    "hits": {
+      "cost reduction program": {
+        "accession": "0001870940-26-000021",
+        "cik": "0001870940",
+        "date": "2026-04-06"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "KUST": {
+    "ticker": "KUST",
+    "score": 10.0,
+    "categories": {
+      "strategic_action": 4.0
+    },
+    "phrases": [
+      "cost reduction program"
+    ],
+    "hits": {
+      "cost reduction program": {
+        "accession": "0001493152-26-016236",
+        "cik": "0001342958",
+        "date": "2026-04-13"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "SXT": {
+    "ticker": "SXT",
+    "score": 2.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0001140361-26-019060",
+        "cik": "0000310142",
+        "date": "2026-05-05"
+      }
+    },
+    "n_categories": 1
+  },
+  "PPG": {
+    "ticker": "PPG",
+    "score": 2.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0000079879-26-000252",
+        "cik": "0000079879",
+        "date": "2026-07-29"
+      }
+    },
+    "n_categories": 1
+  },
+  "MWA": {
+    "ticker": "MWA",
+    "score": 2.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0001350593-26-000036",
+        "cik": "0001350593",
+        "date": "2026-08-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "WAB": {
+    "ticker": "WAB",
+    "score": 2.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0001628280-26-049139",
+        "cik": "0000943452",
+        "date": "2026-07-22"
+      }
+    },
+    "n_categories": 1
+  },
+  "REED": {
+    "ticker": "REED",
+    "score": 2.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0001493152-26-022714",
+        "cik": "0001140215",
+        "date": "2026-05-13"
+      }
+    },
+    "n_categories": 1
+  },
+  "ASH": {
+    "ticker": "ASH",
+    "score": 2.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0001193125-26-191380",
+        "cik": "0001674862",
+        "date": "2026-04-29"
+      }
+    },
+    "n_categories": 1
+  },
+  "ANDE": {
+    "ticker": "ANDE",
+    "score": 2.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0000821026-26-000122",
+        "cik": "0000821026",
+        "date": "2026-08-04"
+      }
+    },
+    "n_categories": 1
+  },
+  "VTOL": {
+    "ticker": "VTOL",
+    "score": 8.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0001525221-26-000100",
+        "cik": "0001525221",
+        "date": "2026-08-05"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "DG": {
+    "ticker": "DG",
+    "score": 2.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0001104659-26-032325",
+        "cik": "0000029534",
+        "date": "2026-03-20"
+      }
+    },
+    "n_categories": 1
+  },
+  "SMTC": {
+    "ticker": "SMTC",
+    "score": 2.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0000088941-26-000034",
+        "cik": "0000088941",
+        "date": "2026-08-26"
+      }
+    },
+    "n_categories": 1
+  },
+  "FUN": {
+    "ticker": "FUN",
+    "score": 2.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0001999001-26-000096",
+        "cik": "0001999001",
+        "date": "2026-08-06"
+      }
+    },
+    "n_categories": 1
+  },
+  "CMT": {
+    "ticker": "CMT",
+    "score": 8.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0001026655-26-000053",
+        "cik": "0001026655",
+        "date": "2026-08-04"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "STKS": {
+    "ticker": "STKS",
+    "score": 2.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0001104659-26-092751",
+        "cik": "0001399520",
+        "date": "2026-08-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "IFF": {
+    "ticker": "IFF",
+    "score": 5.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0000051253-26-000017",
+        "cik": "0000051253",
+        "date": "2026-05-05"
+      }
+    },
+    "n_categories": 1,
+    "cheap_pb": true
+  },
+  "FLEX": {
+    "ticker": "FLEX",
+    "score": 2.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0000866374-26-000030",
+        "cik": "0000866374",
+        "date": "2026-07-31"
+      }
+    },
+    "n_categories": 1
+  },
+  "OBK": {
+    "ticker": "OBK",
+    "score": 8.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0001516912-26-000046",
+        "cik": "0001516912",
+        "date": "2026-08-05"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "AMSS": {
+    "ticker": "AMSS",
+    "score": 2.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0001575872-26-000579",
+        "cik": "0001851491",
+        "date": "2026-08-14"
+      }
+    },
+    "n_categories": 1
+  },
+  "CNMD": {
+    "ticker": "CNMD",
+    "score": 8.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0000816956-26-000053",
+        "cik": "0000816956",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "QRVO": {
+    "ticker": "QRVO",
+    "score": 2.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0001628280-26-050166",
+        "cik": "0001604778",
+        "date": "2026-07-28"
+      }
+    },
+    "n_categories": 1
+  },
+  "IAC": {
+    "ticker": "IAC",
+    "score": 2.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0001628280-26-029798",
+        "cik": "0001800227",
+        "date": "2026-05-04"
+      }
+    },
+    "n_categories": 1
+  },
+  "ONEW": {
+    "ticker": "ONEW",
+    "score": 8.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0001772921-26-000037",
+        "cik": "0001772921",
+        "date": "2026-05-04"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "BRC": {
+    "ticker": "BRC",
+    "score": 2.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0000746598-26-000020",
+        "cik": "0000746598",
+        "date": "2026-05-18"
+      }
+    },
+    "n_categories": 1
+  },
+  "NUS": {
+    "ticker": "NUS",
+    "score": 8.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0001140361-26-019630",
+        "cik": "0001021561",
+        "date": "2026-05-08"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  },
+  "UGI": {
+    "ticker": "UGI",
+    "score": 5.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0000884614-26-000052",
+        "cik": "0000884614",
+        "date": "2026-08-06"
+      }
+    },
+    "n_categories": 1,
+    "cheap_pb": true
+  },
+  "BFAM": {
+    "ticker": "BFAM",
+    "score": 2.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0001437578-26-000014",
+        "cik": "0001437578",
+        "date": "2026-05-07"
+      }
+    },
+    "n_categories": 1
+  },
+  "PPLI": {
+    "ticker": "PPLI",
+    "score": 2.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0001628280-26-051881",
+        "cik": "0001800227",
+        "date": "2026-08-03"
+      }
+    },
+    "n_categories": 1
+  },
+  "ACHV": {
+    "ticker": "ACHV",
+    "score": 5.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0001193125-26-197402",
+        "cik": "0000949858",
+        "date": "2026-04-30"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true
+  },
+  "CNDT": {
+    "ticker": "CNDT",
+    "score": 8.5,
+    "categories": {
+      "strategic_action": 2.5
+    },
+    "phrases": [
+      "portfolio optimization"
+    ],
+    "hits": {
+      "portfolio optimization": {
+        "accession": "0001677703-26-000092",
+        "cik": "0001677703",
+        "date": "2026-08-10"
+      }
+    },
+    "n_categories": 1,
+    "small_cap": true,
+    "cheap_pb": true
+  }
+}

@@ -1296,6 +1296,76 @@ def build_insider_timing(wb: Workbook, yf: dict):
     ws.freeze_panes = "A5"
 
 
+def build_mda_language(wb: Workbook, yf: dict):
+    """MD&A revealed-intent language: management's own narrative describing
+    value-unlock / transformative / capital-policy / governance / strategic
+    intent, scanned from 10-K/10-Q MD&A. Leads the event layers.
+
+    Source: mda_scan.json (built by mda_scan.py)."""
+    ws = wb.create_sheet("MD&A Intent")
+    set_col_widths(ws, [9, 24, 8, 6, 30, 8, 8, 40])
+    write_title_band(
+        ws,
+        "MD&A Intent — management's stated agenda, from the narrative",
+        "EDGAR exact-phrase scan of 10-K / 10-Q MD&A for five families of "
+        "revealed intent — value-unlock, transformative, capital-policy, "
+        "governance-action, strategic-action. Rarity-weighted; convergence "
+        "across families is the signal; negated / safe-harbour uses stripped.",
+        n_cols=8,
+    )
+    d = {}
+    p = ROOT / "mda_scan.json"
+    if p.exists():
+        try:
+            d = json.loads(p.read_text())
+        except Exception:
+            d = {}
+    rows = [v for v in d.values()
+            if isinstance(v, dict) and (v.get("score") or 0) > 0]
+    rows.sort(key=lambda r: (-r.get("n_categories", 0), -r.get("score", 0)))
+
+    headers = ["Ticker", "Name", "Score", "Fam.", "Families", "Cheap",
+               "Small", "Key phrases"]
+    write_header_row(ws, 4, headers)
+    r = 5
+    for i, v in enumerate(rows[:45], 1):
+        tk = v.get("ticker", "")
+        nm = (yf.get(tk, {}) or {}).get("name", tk)
+        cats = ", ".join(sorted(v.get("categories", {}),
+                                key=lambda c: -v["categories"][c]))
+        phr = "; ".join(dict.fromkeys(v.get("phrases", [])))   # dedup, order
+        write_body_row(ws, r,
+                       [tk, nm[:24], v.get("score", 0),
+                        v.get("n_categories", 0),
+                        cats.replace("_", " ")[:30],
+                        "✓" if v.get("cheap_pb") else "—",
+                        "✓" if v.get("small_cap") else "—",
+                        phr[:60] + (" [neg]" if v.get("negation_flag") else "")],
+                       band=(i % 2 == 0), bold_first=True)
+        ws.row_dimensions[r].height = 22
+        r += 1
+    r += 1
+    n_multi = sum(1 for v in rows if v.get("n_categories", 0) >= 2)
+    write_footnote(ws, r,
+        f"{len(rows)} names show MD&A intent language (top 45 by family "
+        f"convergence then score); {n_multi} span two or more families. Each "
+        "phrase is one EDGAR full-text exact-phrase query restricted to "
+        "10-K/10-Q, so the population is every filer using that language in "
+        "the last ~180 days. Phrases are RARITY-weighted — distinctive "
+        "intent ('sum-of-the-parts', 'transformational transaction', "
+        "'pursue a spin-off', 'monetize non-core') scores high; generic "
+        "language ('deleveraging', 'restructuring plan') is damped when it "
+        "saturates the result cap, and rewarded mainly on CONVERGENCE "
+        "(several families on one name = a coordinated agenda). Top "
+        "candidates are text-verified so NEGATED / safe-harbour uses ('no "
+        "assurance we will unlock value') are stripped or discounted "
+        "([neg]). This layer scores stated INTENT from the narrative, so it "
+        "leads the event layers (tender/spinoff/buyback/activist) rather "
+        "than duplicating them. Source: mda_scan.py.", 8)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A5"
+
+
 def build_uk_events(wb: Workbook, yf: dict):
     """UK RNS capital events (own-shares buybacks, premium placings,
     scheme/CVA/restructuring distressed progress, takeover offers).
@@ -2276,10 +2346,12 @@ def build_methodology(wb: Workbook):
          "assembly (PSIX recipe), distressed-stub progress, premium "
          "injections, selective buybacks, hidden-asset realisation, "
          "net buyback (diluted-share reduction net of SBC), the Lynch "
-         "reawakening momentum leg, and the Form 4 filing-TIME signal "
+         "reawakening momentum leg, the Form 4 filing-TIME signal "
          "(off-hours / Friday-evening open-market buys = quiet "
          "accumulators followed; market-hours buys = price support, "
-         "faded)."),
+         "faded), and the MD&A intent-language scan (value-unlock / "
+         "transformative / capital-policy / governance / strategic-action "
+         "phrasing mined from 10-K/10-Q narrative, negation-verified)."),
         ("Additive discipline",
          "Every layer ADDS to the composite; none modifies another's "
          "score. New legs append fields; existing weights never change. "
@@ -2366,6 +2438,7 @@ TAB_INDEX = [
     ("Incentive Improvers", "Latest proxy tightened the incentive architecture (rarity-weighted)."),
     ("Insider Conviction", "Discretionary open-market buying clusters (code P only, role-weighted)."),
     ("Insider Filing-Time", "Off-hours quiet accumulators (follow) vs market-hours price support (fade) — tested."),
+    ("MD&A Intent", "Management's stated agenda from 10-K/10-Q narrative — value-unlock/transformative/capital/governance/strategic."),
     ("Asymmetry Assembly", "PSIX-recipe conjunction: cheap + inflection + leverage + insider co-occurring."),
     ("Distressed Stub Progress", "Finality-gated capital-structure value-unlock events, waterfall-scored."),
     ("Hidden Asset Realisation", "Spectrum/rights/RE inside levered stubs with mandatory-prepay debt sweeps (SSP-type)."),
@@ -2530,6 +2603,7 @@ def main() -> int:
     build_incentive_improvers(wb, yf, proxy)
     build_insider_conviction(wb, yf)
     build_insider_timing(wb, yf)
+    build_mda_language(wb, yf)
     build_asymmetry_assembly(wb, yf)
     build_distressed_stub(wb, yf)
     build_hidden_asset(wb, yf)
