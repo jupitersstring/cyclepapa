@@ -75,6 +75,7 @@ if [ "$DO_SCANS" = "1" ]; then
   run python3 mda_scan.py                    --days 180 || true
   run python3 payoff_geometry.py             || true
   run python3 mechanism_gates.py             || true
+  run python3 winners_forensics.py           || true
   run python3 selective_buyback_scan.py     --days 180 || true
   run python3 external_manager_internalization.py || true
   run python3 coval_stafford_proxy.py       || true

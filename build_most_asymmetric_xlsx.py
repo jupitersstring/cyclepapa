@@ -1483,6 +1483,87 @@ def build_mechanism_gates(wb: Workbook, yf: dict):
     ws.freeze_panes = "A5"
 
 
+def build_winners_study(wb: Workbook, yf: dict):
+    """Winners forensics -- feature lifts of realized 1-year re-raters, with
+    the honest data caveat. Source: winners_forensics.json."""
+    ws = wb.create_sheet("Winners Study")
+    set_col_widths(ws, [26, 12, 12, 10, 40])
+    d = {}
+    p = ROOT / "winners_forensics.json"
+    if p.exists():
+        try:
+            d = json.loads(p.read_text())
+        except Exception:
+            d = {}
+    summ = d.get("summary", {})
+    write_title_band(
+        ws,
+        "Winners Study — what realized 1-year re-raters had in common",
+        summ.get("definition", "") + f"  |  {summ.get('n_winners','?')} winners "
+        f"of {summ.get('n_universe_priced','?')} priced "
+        f"({summ.get('n_big_winners','?')} big, >= 4x range).",
+        n_cols=5,
+    )
+    r = 4
+    ws.cell(row=r, column=1, value="FEATURE LIFT (winner-rate / base-rate)").font = BODY_BOLD
+    r += 1
+    write_header_row(ws, r, ["Feature", "Winner %", "Base %", "Lift", "Read"])
+    r += 1
+    reads = {
+        "mda_intent": "management intent language — modestly over-represented",
+        "hidden_asset": "asset-realization setup",
+        "small_cap": "size", "micro_cap": "size",
+        "deep_value_pb": "CAVEAT: measured post-move; lower bound",
+        "hard_floor": "CAVEAT: post-move valuation; lower bound",
+        "high_geom_ratio": "CAVEAT: post-move; winners look expensive now",
+        "insider_buying": "point-in-time; trustworthy",
+        "net_buyback": "point-in-time-ish",
+        "forced_seller": "point-in-time; trustworthy",
+        "offhours_insider": "point-in-time; trustworthy",
+    }
+    for f, v in (summ.get("feature_lifts") or {}).items():
+        lift = v.get("lift")
+        write_body_row(ws, r,
+                       [f, f"{v['winner_rate']*100:.0f}%", f"{v['base_rate']*100:.0f}%",
+                        (f"{lift:.2f}" if lift is not None else "n/a"),
+                        reads.get(f, "")],
+                       band=(r % 2 == 0), bold_first=True)
+        r += 1
+    r += 1
+    ws.cell(row=r, column=1, value="SECTOR CONCENTRATION (winner share / lift)").font = BODY_BOLD
+    r += 1
+    write_header_row(ws, r, ["Sector", "Winner %", "Lift", "", ""])
+    r += 1
+    for s, v in sorted((summ.get("sector_lifts") or {}).items(),
+                       key=lambda kv: -(kv[1].get("lift") or 0))[:8]:
+        write_body_row(ws, r,
+                       [s, f"{v['winner_share']*100:.0f}%",
+                        (f"{v['lift']:.2f}" if v.get("lift") else "n/a"), "", ""],
+                       band=(r % 2 == 0), bold_first=True)
+        r += 1
+    r += 1
+    write_footnote(ws, r,
+        "READ THIS. The honest reverse-engineering (pre-move filings of names "
+        "that 3x'd) needs point-in-time fundamentals + multi-year price "
+        "history, which are not available in this environment. This is the "
+        "bounded version: winners are realized 1-year re-raters (52wk range + "
+        "still near the high), and features are their CURRENT state. The key "
+        "consequence: a name that already ran looks expensive now, so the "
+        "value features (deep-value, hard-floor, high-ratio) show lift < 1 "
+        "purely as a post-move / survivorship artifact — NOT evidence that "
+        "value fails. The trustworthy readings are (a) SECTOR, which doesn't "
+        "change when a stock moves — winners concentrate in Technology (~2.2x "
+        "lift) and Healthcare (~1.5x); and (b) the event-signal layers, which "
+        "are closer to point-in-time. Conclusion: payoff geometry captures the "
+        "limited-downside VALUE archetype of exceptional return; the biggest "
+        "1-year movers were GROWTH/re-rate names an asset-floor lens misses, "
+        "so geometry is one lens, not the whole answer — the mechanism gates "
+        "and catalyst layers carry the rest. Weights are therefore NOT "
+        "auto-tuned on this survivorship sample. Source: winners_forensics.py.",
+        5)
+    ws.sheet_view.showGridLines = False
+
+
 def build_uk_events(wb: Workbook, yf: dict):
     """UK RNS capital events (own-shares buybacks, premium placings,
     scheme/CVA/restructuring distressed progress, takeover offers).
@@ -2561,6 +2642,7 @@ TAB_INDEX = [
     ("MD&A Intent", "Management's stated agenda from 10-K/10-Q narrative — value-unlock/transformative/capital/governance/strategic."),
     ("Payoff Geometry", "Capped asset-backed downside vs sector re-rate upside — the asymmetry ratio per name."),
     ("Mechanism Gates", "Exceptional-return archetypes as hard causal conjunctions; 2+ machines = highest conviction."),
+    ("Winners Study", "What realized 1-year re-raters had in common — feature/sector lifts, with the pre-move-data caveat."),
     ("Asymmetry Assembly", "PSIX-recipe conjunction: cheap + inflection + leverage + insider co-occurring."),
     ("Distressed Stub Progress", "Finality-gated capital-structure value-unlock events, waterfall-scored."),
     ("Hidden Asset Realisation", "Spectrum/rights/RE inside levered stubs with mandatory-prepay debt sweeps (SSP-type)."),
@@ -2728,6 +2810,7 @@ def main() -> int:
     build_mda_language(wb, yf)
     build_payoff_geometry(wb, yf)
     build_mechanism_gates(wb, yf)
+    build_winners_study(wb, yf)
     build_asymmetry_assembly(wb, yf)
     build_distressed_stub(wb, yf)
     build_hidden_asset(wb, yf)
