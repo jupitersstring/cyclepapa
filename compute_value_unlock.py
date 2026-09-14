@@ -42,7 +42,28 @@ PHRASES = [
     "return of capital to shareholders",
     "separation into two",
     "pursue a separation",
+    # committed-STAGE language (a process actually underway = higher conviction)
+    "entered into a definitive agreement",
+    "definitive agreement to sell",
+    "formed a special committee",
+    "special committee of the board",
+    "as its financial advisor",
+    "retained as financial advisor",
+    "commenced a process",
+    "initiated a review of",
+    # activist language
+    "nominate directors",
+    "director nominees",
+    "withhold your vote",
 ]
+# committed-stage / activist phrases (credibility markers)
+STAGE_PHRASES = {
+    "entered into a definitive agreement", "definitive agreement to sell",
+    "formed a special committee", "special committee of the board",
+    "as its financial advisor", "retained as financial advisor",
+    "commenced a process",
+}
+ACTIVIST_FORMS = {"SC 13D", "DEFC14A", "PREC14A", "DFAN14A", "DEFN14A"}
 # strategic-catalyst forms
 FORMS = "8-K,DEF 14A,SC 13D,10-K,10-Q,6-K"
 START = "2025-01-01"     # ~last 9-12 months (freshness window; today 2026-09-14)
@@ -116,6 +137,8 @@ def main():
             "symbol": sym,
             "unlock_hits": rec["hits"],
             "unlock_distinct_phrases": len(rec["phrases"]),
+            "unlock_stage_phrases": len(rec["phrases"] & STAGE_PHRASES),  # committed process underway
+            "unlock_activist": int(bool(rec["forms"] & ACTIVIST_FORMS)),  # 13D / proxy fight
             "unlock_latest_date": latest,
             "unlock_days_ago": days_ago,
             "unlock_forms": ";".join(sorted(rec["forms"])),

@@ -161,6 +161,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     if os.path.exists('value_unlock_signals.csv'):
         _vu = pd.read_csv('value_unlock_signals.csv').drop_duplicates('symbol')
         _vu_keep = ['symbol', 'unlock_hits', 'unlock_distinct_phrases',
+                    'unlock_stage_phrases', 'unlock_activist',
                     'unlock_days_ago', 'unlock_phrases']
         df = df.merge(_vu[[c for c in _vu_keep if c in _vu.columns]],
                       on='symbol', how='left', suffixes=('', '_vu'))
@@ -3904,12 +3905,19 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # ALIGNMENT — management personally benefits from the unlock
     _vu_align = ((s('governance_score', 0) >= 0.15)
                  | (_ncol('insider_ownership_pct') >= 0.10)).fillna(False)
+    # CREDIBILITY / STAGE (#2): a committed process (named advisor / definitive
+    # agreement / special committee) or an ACTIVIST forcing it (SC 13D / proxy
+    # contest) is far higher-conviction than a vague board musing.
+    _vu_stage = (_ncol('unlock_stage_phrases') >= 1).fillna(False)      # process underway
+    _vu_activist = (_ncol('unlock_activist') == 1).fillna(False)        # 13D / proxy fight
     _vu_member = (df['arch_xr_value_unlock'] == 1)
     df['value_unlock_score'] = (
         _vu_cat * (0.4 + 0.6 * _vu_fresh)
         * (1.0 + 0.60 * _vu_forensic.astype(float)
            + 0.25 * _vu_footprint.astype(float)
-           + 0.15 * _vu_align.astype(float))
+           + 0.15 * _vu_align.astype(float)
+           + 0.35 * _vu_stage.astype(float)                            # committed stage
+           + 0.30 * _vu_activist.astype(float))                        # activist-forced
         * _vu_member.astype(float)
     ).clip(0, 3).round(3)
     # the high-conviction subset: cheap + live catalyst AND the forensics confirm
