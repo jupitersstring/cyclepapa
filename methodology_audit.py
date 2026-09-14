@@ -542,7 +542,9 @@ def _regression(t, g):
                 "arch_xr_deferred_revenue_lead",
                 # Wave-2 forensic tells (operating-gated)
                 "arch_xr_cash_tax_advantage", "arch_xr_owned_realestate_value",
-                "arch_xr_discops_mask", "arch_xr_peer_margin_gap"):
+                "arch_xr_discops_mask", "arch_xr_peer_margin_gap",
+                "arch_xr_investment_remark", "arch_xr_stake_fv_gap",
+                "arch_xr_lookthrough_earner"):
         if _ac in t.columns:
             leak = int(((n(t, _ac) == 1) & _finre).sum())
             check(f"regression(R1): {_ac} excludes Financials/REITs/Utilities",

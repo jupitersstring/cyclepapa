@@ -146,6 +146,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         df = df.merge(segment_signals, on='symbol', how='left', suffixes=('','_seg'))
     if insider_signals is not None:
         df = df.merge(insider_signals, on='symbol', how='left', suffixes=('','_ins'))
+    # Investment / JV-stake forensics (cache-derived): carrying-value step-up
+    # (remark event), disclosed fair-value gap, look-through associate earnings.
+    if os.path.exists('investment_remark.csv'):
+        _invr = pd.read_csv('investment_remark.csv').drop_duplicates('symbol')
+        _invr_keep = ['symbol', 'inv_carry_now', 'inv_carry_prior', 'inv_remark_jump',
+                      'inv_remark_pct', 'nonop_gain_ttm', 'em_carry', 'em_fair_value',
+                      'em_fv_gap', 'em_income', 'unrealized_inv_gain']
+        df = df.merge(_invr[[c for c in _invr_keep if c in _invr.columns]],
+                      on='symbol', how='left', suffixes=('', '_invr'))
     if os.path.exists('lynch_reward_signals.csv'):
         lynch_signals = pd.read_csv('lynch_reward_signals.csv').drop_duplicates('symbol')
         df = df.merge(lynch_signals, on='symbol', how='left', suffixes=('','_lr'))
@@ -3772,6 +3781,62 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & _not_melting
     ).fillna(False).astype(int)
 
+    # XR43 — Investment/JV remark ('XR-InvestmentRemark'). The LanzaTech pattern:
+    # a minority JV / equity stake REMEASURED to fair value (on the investee's
+    # public listing, a step-up to control, or a revaluation) — the investment's
+    # CARRYING VALUE steps up and a large NON-CASH gain crystallises hidden value
+    # on the balance sheet (LanzaTech Q2-2026: 8.3% Shougang LanzaTech stake
+    # $15m->$223m = +$208m unrealised gain on SGLT's listing). The market often
+    # hasn't repriced the now-higher NAV, or discounts the "one-off gain". Gate on
+    # the BALANCE-SHEET value vs price, NOT P/E (which the non-cash gain flatters).
+    _ir_pct = _ncol('inv_remark_pct'); _ir_jump = _ncol('inv_remark_jump')
+    _ir_now = _ncol('inv_carry_now')
+    _ir_gain = ((_ncol('unrealized_inv_gain') > 0) | (_ncol('nonop_gain_ttm') > 0))
+    _mc_usd_ir = _ncol('market_cap_usd')
+    df['arch_xr_investment_remark'] = (
+        is_operating & (mcap > 0) & _fx_coherent
+        & (_ir_pct >= 0.5) & (_ir_jump > 0)                           # a real carrying-value step-up (>=50%)
+        & (_ir_jump / _mc_usd_ir.where(_mc_usd_ir > 0) >= 0.10)       # material vs market cap (>=10%)
+        & _ir_gain                                                    # confirmed by an unrealised / non-op REMARK gain
+        & (_ir_now / _mc_usd_ir.where(_mc_usd_ir > 0) >= 0.15)        # the stake is now a big share of mcap
+        & (df.get('data_quality_flag', 0) == 0)
+        & _not_melting
+    ).fillna(False).astype(int)
+
+    # XR44 — Stake fair-value gap ('XR-StakeFVGap'). The sharpest LATENT tell
+    # (idea #1): the company itself DISCLOSES (EquityMethodInvestmentsFairValue-
+    # Disclosure) that the fair value of its equity-method JV/associate stake
+    # exceeds its CARRYING VALUE — a hidden asset the balance sheet doesn't show
+    # and a P/B screen can't see, on a cheaply-priced consolidated whole.
+    _fv = _ncol('em_fair_value'); _emc = _ncol('em_carry'); _fvgap = _ncol('em_fv_gap')
+    _stake_cheap = (((ev_ebitda_v > 0) & (ev_ebitda_v <= 12.0))
+                    | ((pb > 0) & (pb < 2.0)) | (fcf_yield >= 0.03)
+                    | ((_ncol('ev_sales') > 0) & (_ncol('ev_sales') <= 3.0)))
+    df['arch_xr_stake_fv_gap'] = (
+        is_operating & (mcap > 0) & _fx_coherent
+        & (_emc > 0) & (_fv > _emc * 1.3)                             # disclosed FV >= 1.3x carrying value
+        & (_fvgap / _mc_usd_ir.where(_mc_usd_ir > 0) >= 0.10)         # hidden value >= 10% of mcap
+        & _stake_cheap
+        & (df.get('data_quality_flag', 0) == 0)
+        & _not_melting
+    ).fillna(False).astype(int)
+
+    # XR45 — Look-through earner ('XR-LookThroughEarner'). A hidden associate
+    # earnings ENGINE: the share of associates' profit (IncomeLossFromEquity-
+    # MethodInvestments) is a material part of the parent's pre-tax income (or
+    # material vs mcap), yet the market prices the parent cheaply — the associate
+    # compounds inside the consolidated numbers, unpriced.
+    _emi = _ncol('em_income')
+    df['arch_xr_lookthrough_earner'] = (
+        is_operating & (mcap > 0) & _fx_coherent
+        & (_emi > 0)
+        & ((_emi / _ncol('pretax_income_ttm').where(_ncol('pretax_income_ttm') > 0) >= 0.25)
+           | (_emi / _mc_usd_ir.where(_mc_usd_ir > 0) >= 0.05))       # material contribution
+        & _stake_cheap
+        & (df.get('data_quality_flag', 0) == 0)
+        & _not_melting
+    ).fillna(False).astype(int)
+
     # F6 — Forensic payout confirmation (the user's BOOST leg). Any forensic /
     # hidden-value member that is ALSO returning capital — buying back shares
     # or paying a dividend — earns an EXTRA archetype count, which is this
@@ -4244,7 +4309,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                      'arch_xr_deferred_revenue_lead',
                      'arch_xr_cash_tax_advantage',
                      'arch_xr_owned_realestate_value',
-                     'arch_xr_discops_mask'],
+                     'arch_xr_discops_mask',
+                     'arch_xr_investment_remark',
+                     'arch_xr_stake_fv_gap',
+                     'arch_xr_lookthrough_earner'],
         'engine': ['arch_xr_compounding_deployer', 'arch_xr_reusable_assembler',
                    'arch_xr_pre_scale_margin', 'arch_xr_leverage_detonation',
                    'arch_xr_baron_compounder', 'arch_xr_audited_streak_unrerated',
@@ -4892,6 +4960,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_owned_realestate_value',
         'arch_xr_discops_mask',
         'arch_xr_peer_margin_gap',
+        'arch_xr_investment_remark',
+        'arch_xr_stake_fv_gap',
+        'arch_xr_lookthrough_earner',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -5057,6 +5128,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_owned_realestate_value': 'XR-OwnedRealEstateValue',
         'arch_xr_discops_mask': 'XR-DiscOpsMask',
         'arch_xr_peer_margin_gap': 'XR-PeerMarginGap',
+        'arch_xr_investment_remark': 'XR-InvestmentRemark',
+        'arch_xr_stake_fv_gap': 'XR-StakeFVGap',
+        'arch_xr_lookthrough_earner': 'XR-LookThroughEarner',
         'arch_templeton_pessimism': 'Templeton-MaxPessimism',
         'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
         'arch_levered_inflection': 'LeveredInflectionStub',
