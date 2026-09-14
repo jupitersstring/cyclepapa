@@ -74,14 +74,25 @@ W_INCENTIVE = {"SPINOFF": 11, "ASSET_SALE": 9, "SALE_OF_COMPANY": 7,
 W_TENDER = 7                  # active bid, but deal largely priced already
 W_NARRATIVE = {"SPINOFF": 7, "SEPARATION": 7, "SALE_OF_COMPANY": 5,
                "ASSET_SALE": 5, "STRATEGIC_REVIEW": 3}
-# 8-K primary-filing announcement: harder than MD&A narrative (an actual
-# announced action, dated), softer than a PSU forward-vesting condition.
-# Covers the full corporate-action set, not just spins/sales.
-W_EVENT = {"SPINOFF": 10, "SEPARATION": 10, "SALE_OF_COMPANY": 7,
-           "ASSET_SALE": 7, "STRATEGIC_REVIEW": 5,
-           "CH11_EMERGENCE": 10, "GOING_PRIVATE": 9, "CAPITAL_RETURN": 6,
-           "UPLISTING": 7, "BUYBACK_AUTH": 5,
-           "TENDER_OFFER": 8, "EXCHANGE_OFFER": 6}
+# 8-K primary-filing announcement source. Weights CALIBRATED to the 12-type
+# historical event study (rerate_backtest.py, 314 events, forward return +
+# tail lift vs a 10% base). What the data showed, and how it maps to weight:
+#   ASSET_SALE      +10% med, 58% hit, 1.13x tail  -> best combo, highest
+#   SPINOFF           0% med, 1.56x tail           -> tail optionality intact
+#   TENDER_OFFER     +5% med, 61% hit, 1.09x       -> reliable, modest
+#   SALE_OF_COMPANY  -6% med but 2.53x tail (n=8)  -> deal-priced; tail only
+#   STRATEGIC_REVIEW -16% med, 1.62x tail          -> lottery / optionality
+#   SEPARATION        0% med, 0.72x tail           -> weak
+#   BUYBACK_AUTH     +1% med, 0.79x tail           -> weak
+#   CH11_EMERGENCE   -30% med, 0 tail (n=5)        -> overhang; slashed
+#   CAPITAL_RETURN   -11% med, 0.53x tail          -> no-reinvestment tell
+#   EXCHANGE_OFFER   -21% med, 0 tail              -> distressed; near-zero
+#   UPLISTING        -23% med, 1.04x tail          -> pump-and-fade TRAP
+#   GOING_PRIVATE    -37% med, 17% hit             -> dead money at deal price
+W_EVENT = {"ASSET_SALE": 10, "SPINOFF": 9, "TENDER_OFFER": 8,
+           "SALE_OF_COMPANY": 7, "STRATEGIC_REVIEW": 5, "SEPARATION": 5,
+           "BUYBACK_AUTH": 4, "CH11_EMERGENCE": 3, "CAPITAL_RETURN": 2,
+           "GOING_PRIVATE": 2, "UPLISTING": 2, "EXCHANGE_OFFER": 1}
 TRIANGULATION_BONUS = 5       # a bucket named by 2+ independent sources
 MULTI_TYPE_BONUS = 4         # 2+ distinct catalyst types
 

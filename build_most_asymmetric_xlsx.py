@@ -1657,11 +1657,12 @@ def build_tail_odds(wb: Workbook, yf: dict):
     write_header_row(ws, r, ["Feature = bin", "Tail rate", "Lift", "N", ""])
     r += 1
     feats = disc.get("features", {})
-    order = [("size", "small"), ("drawdown_12m", "deep(<-50%)"),
-             ("sector", "Real Estate"), ("sector", "Technology"),
-             ("catalyst", "SALE_OF_COMPANY"), ("range_pos", "low"),
-             ("catalyst", "SPINOFF"), ("pre_12m", "down(<-20%)"),
-             ("post_1m", "up(>+20%)")]
+    order = [("catalyst", "SALE_OF_COMPANY"), ("sector", "Basic Materials"),
+             ("drawdown_12m", "deep(<-50%)"), ("sector", "Healthcare"),
+             ("catalyst", "STRATEGIC_REVIEW"), ("catalyst", "SPINOFF"),
+             ("sector", "Technology"), ("range_pos", "low"),
+             ("size", "micro"), ("catalyst", "ASSET_SALE"),
+             ("pre_12m", "down(<-20%)"), ("post_1m", "up(>+20%)")]
     for f, b in order:
         v = (feats.get(f, {}) or {}).get(b)
         if not v:
@@ -1674,21 +1675,25 @@ def build_tail_odds(wb: Workbook, yf: dict):
         r += 1
     r += 1
     write_footnote(ws, r,
-        "HOW TO RAISE THE ODDS, from the event study. The right tail is not "
-        "random: it concentrates in (1) DEEPLY BEATEN-DOWN names — >50% below "
-        "their 12-month high tailed 32% of the time vs 4% for names near their "
-        "highs (2.1x); (2) SMALL-CAPS ($300M-2B), 38% tail rate (2.5x) — the "
-        "high-variance sweet spot; (3) the right SECTORS — Real Estate, "
-        "Technology, Consumer-Cyclical, Energy — while Financials, Utilities "
-        "and Staples produced ZERO tails; (4) SALE-OF-COMPANY and SPIN-OFF "
-        "catalysts over asset sales. Stacking these lifts the tail probability "
-        "to ~40% (≈2.7x base). THE SINGLE STRONGEST EDGE is not a screen but a "
-        "RULE: wait ~1 month and enter only names the market voted UP >20% on "
-        "the catalyst — those tailed 60% of the time (4.0x). Buying the "
-        "catalyst blind is a coin-flip that loses to SPY on the median; buying "
-        "beaten-down small-caps in the right sectors AFTER the market "
-        "confirms is how you tilt into the tail. Modest sample (113 events); "
-        "directional. Sources: rerate_backtest.py / tail_discriminators.py / "
+        "HOW TO RAISE THE ODDS, from the 12-type event study (314 events, 10% "
+        "base tail rate). The right tail concentrates in (1) DEEPLY "
+        "BEATEN-DOWN names — >50% below their 12-month high tailed 19% vs 7% "
+        "for names near their highs (1.9x); (2) the right SECTORS — Basic "
+        "Materials (2.3x), Healthcare (1.9x), Communication Services (1.7x), "
+        "Technology (1.5x) — while Utilities and Real Estate produced ZERO "
+        "tails and Financials few; (3) micro/mid-caps over large; (4) the "
+        "right CATALYSTS — SALE-OF-COMPANY (2.5x, contested-deal tail), "
+        "STRATEGIC-REVIEW (1.6x lottery) and SPIN-OFF (1.6x); ASSET-SALE has "
+        "the best MEDIAN (+10%, 58% hit). The backtest also exposed TRAPS to "
+        "fade: going-private (-37% median), uplisting (-23%, pump-and-fade), "
+        "capital-return/special-dividend (-11%), exchange-offer (-21%) — all "
+        "down-weighted in the catalyst engine. THE SINGLE STRONGEST EDGE is "
+        "not a screen but a RULE: wait ~1 month and enter only names the "
+        "market voted UP >20% on the catalyst (the Confirmed shortlist above). "
+        "Buying a catalyst blind loses to SPY on the median (overall -4%); "
+        "buying beaten-down names in the right sectors AFTER the market "
+        "confirms is how you tilt into the tail. Directional (n per type "
+        "8-51). Sources: rerate_backtest.py / tail_discriminators.py / "
         "tail_odds.py.", 6)
     ws.sheet_view.showGridLines = False
     ws.freeze_panes = "A5"
@@ -1721,10 +1726,18 @@ def build_rerate_backtest(wb: Workbook, yf: dict):
                              "12m vs SPY", "Read"])
     r += 1
     reads = {
-        "SPINOFF": "most tail winners; reliable in large-caps",
-        "ASSET_SALE": "~market on median; tail-driven",
-        "SALE_OF_COMPANY": "deal already priced at 8-K; little forward juice",
-        "STRATEGIC_REVIEW": "worst median — most reviews fizzle; pure optionality",
+        "ASSET_SALE": "best median (+10%, 58% hit); monetize + de-lever",
+        "TENDER_OFFER": "reliable-ish (+5%, 61% hit); modest",
+        "SPINOFF": "0% median but strong tail (1.6x); optionality",
+        "SALE_OF_COMPANY": "deal priced at 8-K; tail from contested deals only",
+        "SEPARATION": "weak — 0% median, below-base tail",
+        "BUYBACK_AUTH": "weak (+1%); float shrink, low signal",
+        "STRATEGIC_REVIEW": "lottery — worst-but-one median, high tail variance",
+        "CAPITAL_RETURN": "TRAP -11% — special dividend = no reinvestment",
+        "EXCHANGE_OFFER": "TRAP -21% — distressed debt exchange",
+        "UPLISTING": "TRAP -23% — pump-and-fade microcaps",
+        "CH11_EMERGENCE": "-30% (n=5) — post-reorg overhang",
+        "GOING_PRIVATE": "TRAP -37% — dead money at deal price, break risk",
     }
     order = sorted(bt.items(),
                    key=lambda kv: -((kv[1].get("ret_12m") or {}).get("median") or -9))
