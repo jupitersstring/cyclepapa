@@ -228,6 +228,13 @@ def _write_governance_sheet(ws, gdf, n_top):
         ws.auto_filter.ref = f"A{hdr}:{ws.cell(row=1, column=n_cols).column_letter}{ws.max_row}"
 
 
+def _not_warrant(d):
+    """Mask out warrant / unit / right tickers (…W / …U / …R / .WT) — their tiny
+    mcap vs the whole-company balance sheet manufactures absurd net-net ratios."""
+    s = d['symbol'].astype(str).str.upper()
+    return ~(s.str.match(r'^[A-Z]{3,4}[WUR]$') | s.str.contains(r'\.WT$|\.U$|-WT$|-UN$|-RT$', regex=True))
+
+
 def _netnet_frame(df_full):
     """The net-net population (cash+investments basis, thorough): a name trades
     below its liquidation/cash value when EITHER net current asset value (NCAV =
@@ -258,7 +265,7 @@ def _netnet_frame(df_full):
     _roce = pd.to_numeric(d.get('roce'), errors='coerce')
     _fcfy = pd.to_numeric(d.get('fcf_yield'), errors='coerce')
     _melting = ((_roce < -0.20) & ~(_fcfy > 0)).fillna(False)
-    is_nn = ((ncav_pct >= 1.0) | (cash_pct >= 1.0)) & (mc >= 10e6) & ~_fin & ~_melting
+    is_nn = ((ncav_pct >= 1.0) | (cash_pct >= 1.0)) & (mc >= 10e6) & ~_fin & ~_melting & _not_warrant(d)
     if 'is_price_ghost' in d.columns:
         is_nn = is_nn & ~(pd.to_numeric(d['is_price_ghost'], errors='coerce') == 1)
     if 'data_quality_flag' in d.columns:   # never surface a corrupt-level name as a net-net
@@ -331,6 +338,60 @@ def _write_netnet_sheet(ws, nn, n_top, sort_col='netnet_score'):
         _write_int(ws, row, 16,
                    int(r['archetype_count']) if pd.notna(r.get('archetype_count')) else 0,
                    font=f_text_muted)
+        for c in range(1, n_cols + 1):
+            ws.cell(row=row, column=c).border = Border(bottom=Side(style='thin', color=RULE))
+        ws.row_dimensions[row].height = 15
+        row += 1
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = f'A{hdr + 1}'
+    if ws.max_row > hdr:
+        ws.auto_filter.ref = f"A{hdr}:{ws.cell(row=1, column=n_cols).column_letter}{ws.max_row}"
+
+
+def _write_flat_sheet(ws, df, title, subtitle, colspecs, sort_col, ascending=False, n_top=400):
+    """Generic flat ranked sheet. colspecs: list of (header, key, kind, width)
+    where kind in {int,money,pct,score,text,flag}."""
+    df = df.sort_values(sort_col, ascending=ascending, na_position='last').head(n_top)
+    n_cols = len(colspecs)
+    for i, (_, _, _, w) in enumerate(colspecs, start=1):
+        ws.column_dimensions[ws.cell(row=1, column=i).column_letter].width = w
+    f_bold = _font(bold=True, color=INK); f_bm = _font(bold=True, color=MUTED)
+    f_text = _font(color=INK)
+    t = ws.cell(row=2, column=1, value=f"{title}   ({len(df):,} names)")
+    t.font = f_bold; t.alignment = _TXT_ALIGN_LEFT
+    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=n_cols)
+    ws.row_dimensions[2].height = 22
+    sc = ws.cell(row=3, column=1, value=subtitle); sc.font = _font(italic=True, color=MUTED)
+    ws.merge_cells(start_row=3, start_column=1, end_row=3, end_column=n_cols)
+    hdr = 5
+    for i, (h, _, kind, _) in enumerate(colspecs, start=1):
+        c = ws.cell(row=hdr, column=i, value=h); c.font = f_bm
+        c.alignment = _TXT_ALIGN_LEFT if kind == 'text' else _NUM_ALIGN_CENTER
+    for c in range(1, n_cols + 1):
+        ws.cell(row=hdr, column=c).border = Border(bottom=Side(style='thin', color=INK))
+    row = hdr + 1
+    _t = lambda v: '' if pd.isna(v) else str(v)
+    for rank, (_, r) in enumerate(df.iterrows(), start=1):
+        for i, (_, key, kind, _) in enumerate(colspecs, start=1):
+            if key == '#':
+                _write_int(ws, row, i, rank, font=_font(color=MUTED)); continue
+            v = r.get(key)
+            if kind == 'text':
+                cell = ws.cell(row=row, column=i, value=_t(v)[:44]); cell.font = f_text
+                cell.alignment = _TXT_ALIGN_LEFT
+            elif kind == 'money':
+                _write_money(ws, row, i, v, font=f_text)
+            elif kind == 'pct':
+                _write_pct(ws, row, i, v, font=f_text)
+            elif kind == 'score':
+                _write_score(ws, row, i, v, font=(f_bold if i == 2 else f_text))
+            elif kind == 'int':
+                _write_int(ws, row, i, int(v) if pd.notna(v) else 0, font=f_text)
+            elif kind == 'flag':
+                ws.cell(row=row, column=i, value=('Y' if v == 1 else '')).font = f_text
+                ws.cell(row=row, column=i).alignment = _NUM_ALIGN_CENTER
+            elif kind == 'verdict':
+                _verdict_badge(ws, row, i, r.get('verdict', 'UNRESEARCHED'))
         for c in range(1, n_cols + 1):
             ws.cell(row=row, column=c).border = Border(bottom=Side(style='thin', color=RULE))
         ws.row_dimensions[row].height = 15
@@ -442,6 +503,12 @@ def main():
                     help='add a Value-Unlock sheet: cheap names with a live '
                          'value-unlock catalyst, ranked by value_unlock_score '
                          '(language x forensics x footprint x alignment).')
+    ap.add_argument('--nnwc-tab', action='store_true',
+                    help='add a Quality Net-Nets sheet (Graham NNWC: cash 100%% '
+                         '/ receivables 85%% / inventory 50%% - all liabilities).')
+    ap.add_argument('--adjpb-tab', action='store_true',
+                    help='add a Forensic Adjusted P/B sheet (tangible book + '
+                         'hidden assets - hidden liabilities).')
     args = ap.parse_args()
 
     df, arch_cols = load_data(min_mcap=args.min_mcap, otc_mode='all')
@@ -602,6 +669,53 @@ def main():
             _conf = int((pd.to_numeric(uf.get('value_unlock_confirmed'), errors='coerce') == 1).sum())
             print(f'  Value-Unlock: {len(uf):,} names ({_conf} forensically confirmed)',
                   file=sys.stderr)
+
+    # Quality Net-Nets (#1): Graham NNWC (haircut current assets) > market cap.
+    if args.nnwc_tab and 'nnwc_pct_mcap' in df_full.columns:
+        _np = pd.to_numeric(df_full['nnwc_pct_mcap'], errors='coerce')
+        _dq = pd.to_numeric(df_full.get('data_quality_flag'), errors='coerce').fillna(0)
+        qn = df_full[(_np >= 1.0) & (_dq == 0) & _not_warrant(df_full)].copy()
+        if 'is_price_ghost' in qn.columns:
+            qn = qn[~(pd.to_numeric(qn['is_price_ghost'], errors='coerce') == 1)]
+        if not qn.empty:
+            ws = wb.create_sheet(_sheet_safe('Quality Net-Nets'))
+            tab_colors.set_tab(ws, tab_colors.AGGREGATE)
+            _write_flat_sheet(ws, qn,
+                'Quality Net-Nets — Graham NNWC (cash 100% / receivables 85% / inventory 50% - all liabilities)',
+                'NNWC/mcap > 1 = trading below quality-adjusted liquidation value. asset-mix = cash share (higher = safer). Holdco/China flags note distributable-cash / VIE risk.',
+                [('#', '#', 'int', 4), ('Ticker', 'symbol', 'text', 11), ('Name', 'name', 'text', 26),
+                 ('Ctry', 'src', 'text', 6), ('Sector', 'sector', 'text', 15), ('Mcap (USD)', 'market_cap', 'money', 13),
+                 ('Verdict', 'verdict', 'verdict', 11), ('NNWC/mcap', 'nnwc_pct_mcap', 'score', 10),
+                 ('NCAV/mcap', 'ncav_pct_mcap', 'score', 10), ('Cash mix', 'nnwc_asset_mix', 'score', 9),
+                 ('NNWC $', 'nnwc', 'money', 13), ('P/B', 'pb', 'score', 7), ('FCF yld', 'fcf_yield', 'pct', 8),
+                 ('Holdco', 'holdco_flag', 'flag', 7), ('China/VIE', 'china_vie_flag', 'flag', 9),
+                 ('Gov', 'governance_score', 'score', 7)],
+                sort_col='nnwc_pct_mcap', ascending=False, n_top=max(args.global_n * 5, 500))
+            n_agg_sheets += 1
+            print(f'  Quality Net-Nets: {len(qn):,} names', file=sys.stderr)
+
+    # Forensic Adjusted P/B (#6): tangible book + hidden assets - hidden liabs.
+    if args.adjpb_tab and 'adjusted_pb' in df_full.columns:
+        _apb = pd.to_numeric(df_full['adjusted_pb'], errors='coerce')
+        _dq = pd.to_numeric(df_full.get('data_quality_flag'), errors='coerce').fillna(0)
+        ap = df_full[(_apb > 0.05) & (_apb < 1.0) & (_dq == 0) & _not_warrant(df_full)].copy()
+        if 'is_price_ghost' in ap.columns:
+            ap = ap[~(pd.to_numeric(ap['is_price_ghost'], errors='coerce') == 1)]
+        if not ap.empty:
+            ws = wb.create_sheet(_sheet_safe('Adjusted P-B'))
+            tab_colors.set_tab(ws, tab_colors.AGGREGATE)
+            _write_flat_sheet(ws, ap,
+                'Forensic Adjusted P/B — tangible book + hidden assets (LIFO / pension surplus / stake FV gap) - hidden liabilities',
+                'adjusted_pb = mcap / adjusted_book, below 1 = below the forensic true book. Compare vs the naive P/B.',
+                [('#', '#', 'int', 4), ('Ticker', 'symbol', 'text', 11), ('Name', 'name', 'text', 28),
+                 ('Ctry', 'src', 'text', 6), ('Sector', 'sector', 'text', 15), ('Mcap (USD)', 'market_cap', 'money', 13),
+                 ('Verdict', 'verdict', 'verdict', 11), ('Adj P/B', 'adjusted_pb', 'score', 8),
+                 ('Naive P/B', 'pb', 'score', 9), ('P/TB', 'p_tb', 'score', 7),
+                 ('Adj book $', 'adjusted_book', 'money', 13), ('FCF yld', 'fcf_yield', 'pct', 8),
+                 ('Gov', 'governance_score', 'score', 7), ('Arch#', 'archetype_count', 'int', 6)],
+                sort_col='adjusted_pb', ascending=True, n_top=max(args.global_n * 5, 500))
+            n_agg_sheets += 1
+            print(f'  Adjusted P/B: {len(ap):,} names below adjusted book', file=sys.stderr)
 
     for ctry in countries:
         cdf = df[df['src'] == ctry]

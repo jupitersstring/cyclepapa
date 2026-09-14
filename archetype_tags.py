@@ -155,6 +155,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                       'em_fv_gap', 'em_income', 'unrealized_inv_gain']
         df = df.merge(_invr[[c for c in _invr_keep if c in _invr.columns]],
                       on='symbol', how='left', suffixes=('', '_invr'))
+    # Graham quality-adjusted NNWC (cash 100% / receivables 85% / inventory 50%
+    # - all liabilities) — a cash net-net vs an inventory net-net.
+    if os.path.exists('nnwc.csv'):
+        _nnwc = pd.read_csv('nnwc.csv').drop_duplicates('symbol')
+        _nnwc_keep = ['symbol', 'nnwc', 'nnwc_asset_mix']
+        df = df.merge(_nnwc[[c for c in _nnwc_keep if c in _nnwc.columns]],
+                      on='symbol', how='left', suffixes=('', '_nn'))
     # Value-unlock language (EDGAR full-text search): recent filings discussing
     # realising/crystallising/unlocking latent value (strategic reviews, sale
     # processes, separations, capital return).
@@ -5961,6 +5968,34 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         | ((_dq_eb > _dq_rev * 2.0) & (_dq_rev > 0))                      # EBITDA > 2x revenue
     ).fillna(False).astype(int)
 
+    # HOLDCO flag (#3): material non-controlling interest means the consolidated
+    # cash/assets include SUBSIDIARY value not freely distributable to the parent
+    # — a holdco whose net-cash is really subsidiary cash (Ayala/Aboitiz).
+    _mi = _ncol('minority_interest'); _eqh = _ncol('equity')
+    df['holdco_flag'] = (((_mi / _eqh.where(_eqh > 0)) >= 0.10)).fillna(False).astype(int)
+    # CHINA/VIE risk flag (#4): Chinese / HK operating companies (often held via
+    # offshore VIE shells) — cash reliability / repatriation risk. Flag, don't
+    # exclude. (country is empty in the master; src is the reliable key.)
+    _srcu = df['src'].astype(str).str.upper() if 'src' in df.columns else pd.Series('', index=df.index)
+    _nm = df['name'].astype(str).str.lower() if 'name' in df.columns else pd.Series('', index=df.index)
+    df['china_vie_flag'] = (_srcu.isin(['CN', 'HK'])
+                            | _nm.str.contains('china|chinese', regex=True)).fillna(False).astype(int)
+
+    # FORENSIC ADJUSTED BOOK (#6): start from TANGIBLE equity (strip goodwill /
+    # intangibles), then ADD verified hidden assets (LIFO reserve, pension
+    # surplus, disclosed JV-stake fair-value gap) and net the pension DEFICIT —
+    # the true P/B a naive screen misses. adjusted_pb = mcap / adjusted_book.
+    _teq_ab = _ncol('tangible_equity')
+    _adj_hidden = (_ncol('lifo_reserve').clip(lower=0).fillna(0)
+                   + _ncol('pension_funded_status').fillna(0)               # signed: surplus adds, deficit subtracts
+                   + _ncol('em_fv_gap').clip(lower=0).fillna(0))
+    df['adjusted_book'] = (_teq_ab + _adj_hidden).round(0)
+    _adjb = df['adjusted_book']
+    df['adjusted_pb'] = (mcap / _adjb.where(_adjb > 0)).round(3)
+    # quality-adjusted net-net: NNWC (haircut) as a multiple of market cap
+    _mc_usd_nn = _ncol('market_cap_usd').fillna(mcap)
+    df['nnwc_pct_mcap'] = (_ncol('nnwc') / _mc_usd_nn.where(_mc_usd_nn > 0)).round(3)
+
     # (user) archetype_count feeds convergence_score / archetype_asymmetry
     # (the density-ranked books), so a name that fires SEVERAL variants of ONE
     # thesis was over-credited. Collapse ONLY genuine same-thesis THRESHOLD
@@ -5986,7 +6021,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','governance_score','governance_tier','insider_distinct_buyers','insider_net_buy_value','insider_officer_buy_flag','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','segment_rot_flag','data_quality_flag','xr_family_count','xr_confidence','xr_score','forensic_hidden_pct','forensic_xr_score','value_unlock_score','value_unlock_confirmed','truly_xr_score','truly_xr_flag','truly_xr_tell_count','truly_xr_mech_count','truly_xr_tells_str','spin_date','reorg_date']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','governance_score','governance_tier','insider_distinct_buyers','insider_net_buy_value','insider_officer_buy_flag','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','segment_rot_flag','data_quality_flag','holdco_flag','china_vie_flag','adjusted_book','adjusted_pb','nnwc','nnwc_pct_mcap','nnwc_asset_mix','xr_family_count','xr_confidence','xr_score','forensic_hidden_pct','forensic_xr_score','value_unlock_score','value_unlock_confirmed','truly_xr_score','truly_xr_flag','truly_xr_tell_count','truly_xr_mech_count','truly_xr_tells_str','spin_date','reorg_date']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m','segment_count','fastest_segment_yoy','is_price_ghost'] if c in df.columns]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)

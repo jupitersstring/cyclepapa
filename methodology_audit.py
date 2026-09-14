@@ -717,6 +717,8 @@ def _figure_coverage(t, g):
         # total assets (audited EDGAR balance-sheet level) — used as the
         # denominator in the owned-real-estate property-share test
         "assets",
+        # minority interest (audited EDGAR level) — the holdco-flag numerator
+        "minority_interest",
     }
     EXEMPT = {
         # growth/deltas & inflection FLAGS: bounded by construction upstream
