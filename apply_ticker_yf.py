@@ -434,6 +434,37 @@ def main():
         m.loc[_poor, "cash"] = _ca_y[_poor]
         recon["cash (directional: master stale-low vs Yahoo)"] = int(_poor.sum())
 
+    # ABSOLUTE cash ceiling (root data fix). The directional reconcile above only
+    # pulls a stale-LOW master cash UP to Yahoo; the "broad basis" defense lets
+    # master cash EXCEED Yahoo's narrow totalCash with NO upper bound — so a
+    # corrupted cash survives and poisons EV, net_debt_ebitda, net_cash_pct_mcap
+    # and every net-cash archetype (YAR.OL: cash 1.05T NOK vs ~7bn real — a
+    # units/currency artifact — drove net-cash to 861% of mcap, EV to -896bn, and
+    # a false net_cash_returner). Physical bounds: cash cannot exceed total assets
+    # (a hard identity); and, where assets is absent, cash cannot exceed a large
+    # multiple of Yahoo's OWN totalCash (a genuine cash+investments basis is a few
+    # x narrow cash, and even a home-ccy/USD mismatch is <~15x — 25x is
+    # unambiguous corruption). On a mixed-currency line (Yahoo often serves
+    # mcap/EV in the home ccy but cash/debt in USD) no clean replacement exists,
+    # so we NULL cash and its cash-derived fields: the row becomes cash-UNKNOWN
+    # (net-cash archetypes correctly stop firing; the EV consistency pass below
+    # refills EV from Yahoo's internally-consistent mcap/EV pair where present).
+    _ca_imp = pd.to_numeric(m.get("cash"), errors="coerce")
+    _as_imp = pd.to_numeric(m.get("assets"), errors="coerce")
+    _cay_imp = (pd.to_numeric(y["yf_cash"], errors="coerce").reindex(m.index)
+                if "yf_cash" in y.columns else pd.Series(np.nan, index=m.index))
+    _cash_impossible = (
+        (_ca_imp.notna() & _as_imp.notna() & (_as_imp > 0) & (_ca_imp > _as_imp * 1.02))
+        | (_ca_imp.notna() & _cay_imp.notna() & (_cay_imp > 0) & (_ca_imp > _cay_imp * 25))
+    ).fillna(False)
+    if int(_cash_impossible.sum()):
+        m.loc[_cash_impossible, "cash"] = np.nan
+        for _dep in ("net_cash_pct_mcap", "enterprise_value", "enterprise_value_usd",
+                     "net_debt_ebitda", "net_cash", "net_cash_usd"):
+            if _dep in m.columns:
+                m.loc[_cash_impossible, _dep] = np.nan
+        recon["cash NULLED (impossible: > assets or > 25x Yahoo totalCash)"] = int(_cash_impossible.sum())
+
     # shares_outstanding: mcap and price are BOTH Yahoo-fresh, and shares is
     # definitionally mcap/price — a stale share count (splits, new issues) is
     # the only way the three can disagree. Snap it to mcap/price when >10% off.
