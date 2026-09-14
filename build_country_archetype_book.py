@@ -161,11 +161,22 @@ def main():
                     help='USD market-cap floor (e.g. 2e9 for a mid-cap-\n                         and-above book). 0 = full universe.')
     add_otc_mode_arg(ap)
     add_high_filter_arg(ap)
+    ap.add_argument('--max-ret-12m', type=float, default=None,
+                    help='keep only names whose trailing 12-month return '
+                         '(momentum_12m, fallback price_yoy) is BELOW this '
+                         '(e.g. 0.0 for a beaten-down / 12m-ret<0 book). '
+                         'Off by default.')
     args = ap.parse_args()
 
     df, arch_cols = load_data(min_mcap=args.min_mcap, otc_mode='all')
     df = apply_otc_mode(df, args.otc_mode)
     df = apply_high_filter(df, args.high_filter)
+    if args.max_ret_12m is not None:
+        _ret12 = (pd.to_numeric(df.get('momentum_12m'), errors='coerce')
+                  .fillna(pd.to_numeric(df.get('price_yoy'), errors='coerce')))
+        df = df[_ret12 < args.max_ret_12m].copy()
+        print(f'  12m-return filter (<{args.max_ret_12m:+.2f}): {len(df):,} names kept',
+              file=sys.stderr)
     df['src'] = df['src'].fillna('').astype(str).str.upper()
     print(f'  {len(df):,} eligible rows, {len(arch_cols)} archetypes',
           file=sys.stderr)
