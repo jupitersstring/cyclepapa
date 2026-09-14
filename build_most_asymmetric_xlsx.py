@@ -1552,6 +1552,102 @@ def build_rerate_catalysts(wb: Workbook, yf: dict):
     ws.freeze_panes = "A5"
 
 
+def build_tail_odds(wb: Workbook, yf: dict):
+    """Tail odds — current candidates ranked by empirically-estimated
+    probability of a right-tail (>=+50%/12m) outcome, using the lifts
+    measured in the historical event study. Sources: tail_odds.json,
+    tail_discriminators.json."""
+    ws = wb.create_sheet("Tail Odds")
+    set_col_widths(ws, [9, 20, 8, 8, 7, 40])
+    odds = {}
+    disc = {}
+    for fn, tgt in (("tail_odds.json", "odds"), ("tail_discriminators.json", "disc")):
+        p = ROOT / fn
+        if p.exists():
+            try:
+                v = json.loads(p.read_text())
+                if tgt == "odds":
+                    odds = v
+                else:
+                    disc = v
+            except Exception:
+                pass
+    base = disc.get("base_tail_rate", 0.15)
+    write_title_band(
+        ws,
+        "Tail Odds — tilting the shortlist toward the right tail",
+        f"Base rate of a >=+50%/12m outcome among corporate-action events is "
+        f"{base*100:.0f}%. Names are re-scored by the historically-measured "
+        "lifts of the features they carry (catalyst, sector, size, drawdown, "
+        "range position), combined in shrunk log-odds. Directional, not a "
+        "calibrated probability.",
+        n_cols=6,
+    )
+    rows = sorted((v for v in odds.values() if isinstance(v, dict)),
+                  key=lambda r: -r.get("est_tail_prob", 0))
+    write_header_row(ws, 4, ["Ticker", "Name", "Tail p", "xMult", "Ratio",
+                             "Tail drivers (lift)"])
+    r = 5
+    for i, v in enumerate(rows[:40], 1):
+        tk = v.get("ticker", "")
+        nm = (yf.get(tk, {}) or {}).get("name", tk)
+        drivers = ", ".join(
+            f"{k}={v['feature_bins'][k]}" for k in v.get("feature_lifts", {})
+            if v["feature_lifts"][k] > 1.05)
+        rat = v.get("geometry_ratio")
+        write_body_row(ws, r,
+                       [tk, nm[:20], f"{v.get('est_tail_prob',0)*100:.0f}%",
+                        f"{v.get('tail_multiple',1):.1f}x",
+                        (round(rat, 1) if rat else "—"),
+                        drivers[:40]],
+                       band=(i % 2 == 0), bold_first=True)
+        ws.row_dimensions[r].height = 22
+        r += 1
+    r += 1
+    # discriminator lift table (the "how")
+    ws.cell(row=r, column=1, value="WHAT RAISES TAIL ODDS (historical lift vs "
+            f"{base*100:.0f}% base)").font = BODY_BOLD
+    r += 1
+    write_header_row(ws, r, ["Feature = bin", "Tail rate", "Lift", "N", ""])
+    r += 1
+    feats = disc.get("features", {})
+    order = [("size", "small"), ("drawdown_12m", "deep(<-50%)"),
+             ("sector", "Real Estate"), ("sector", "Technology"),
+             ("catalyst", "SALE_OF_COMPANY"), ("range_pos", "low"),
+             ("catalyst", "SPINOFF"), ("pre_12m", "down(<-20%)"),
+             ("post_1m", "up(>+20%)")]
+    for f, b in order:
+        v = (feats.get(f, {}) or {}).get(b)
+        if not v:
+            continue
+        tag = "" if f in disc.get("screenable", []) else "  (needs a wait)"
+        write_body_row(ws, r,
+                       [f"{f} = {b}{tag}", f"{v['tail_rate']*100:.0f}%",
+                        f"{v['lift']:.2f}x", v["n"], ""],
+                       band=(r % 2 == 0), bold_first=True)
+        r += 1
+    r += 1
+    write_footnote(ws, r,
+        "HOW TO RAISE THE ODDS, from the event study. The right tail is not "
+        "random: it concentrates in (1) DEEPLY BEATEN-DOWN names — >50% below "
+        "their 12-month high tailed 32% of the time vs 4% for names near their "
+        "highs (2.1x); (2) SMALL-CAPS ($300M-2B), 38% tail rate (2.5x) — the "
+        "high-variance sweet spot; (3) the right SECTORS — Real Estate, "
+        "Technology, Consumer-Cyclical, Energy — while Financials, Utilities "
+        "and Staples produced ZERO tails; (4) SALE-OF-COMPANY and SPIN-OFF "
+        "catalysts over asset sales. Stacking these lifts the tail probability "
+        "to ~40% (≈2.7x base). THE SINGLE STRONGEST EDGE is not a screen but a "
+        "RULE: wait ~1 month and enter only names the market voted UP >20% on "
+        "the catalyst — those tailed 60% of the time (4.0x). Buying the "
+        "catalyst blind is a coin-flip that loses to SPY on the median; buying "
+        "beaten-down small-caps in the right sectors AFTER the market "
+        "confirms is how you tilt into the tail. Modest sample (113 events); "
+        "directional. Sources: rerate_backtest.py / tail_discriminators.py / "
+        "tail_odds.py.", 6)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A5"
+
+
 def build_rerate_backtest(wb: Workbook, yf: dict):
     """Historical re-rate event study — what corporate-action catalysts
     actually returned. Source: rerate_backtest.json."""
@@ -2797,6 +2893,7 @@ TAB_INDEX = [
     ("Mechanism Gates", "Exceptional-return archetypes as hard causal conjunctions; 2+ machines = highest conviction."),
     ("Re-Rate Catalysts", "Spin-offs / separations / asset sales / sale-of-company / strategic reviews x geometry room."),
     ("Re-Rate Backtest", "What those catalysts actually returned historically — the evidence behind the weights."),
+    ("Tail Odds", "Candidates ranked by measured probability of a right-tail outcome; the features that raise the odds."),
     ("Winners Study", "What realized 1-year re-raters had in common — feature/sector lifts, with the pre-move-data caveat."),
     ("Asymmetry Assembly", "PSIX-recipe conjunction: cheap + inflection + leverage + insider co-occurring."),
     ("Distressed Stub Progress", "Finality-gated capital-structure value-unlock events, waterfall-scored."),
@@ -2967,6 +3064,7 @@ def main() -> int:
     build_mechanism_gates(wb, yf)
     build_rerate_catalysts(wb, yf)
     build_rerate_backtest(wb, yf)
+    build_tail_odds(wb, yf)
     build_winners_study(wb, yf)
     build_asymmetry_assembly(wb, yf)
     build_distressed_stub(wb, yf)

@@ -1,0 +1,184 @@
+{
+  "n_events": 113,
+  "n_tail": 17,
+  "tail_threshold": 0.5,
+  "base_tail_rate": 0.15,
+  "screenable": [
+    "catalyst",
+    "sector",
+    "size",
+    "drawdown_12m",
+    "range_pos"
+  ],
+  "features": {
+    "catalyst": {
+      "SPINOFF": {
+        "n": 40,
+        "tail_rate": 0.175,
+        "lift": 1.16
+      },
+      "STRATEGIC_REVIEW": {
+        "n": 26,
+        "tail_rate": 0.154,
+        "lift": 1.02
+      },
+      "ASSET_SALE": {
+        "n": 39,
+        "tail_rate": 0.103,
+        "lift": 0.68
+      },
+      "SALE_OF_COMPANY": {
+        "n": 8,
+        "tail_rate": 0.25,
+        "lift": 1.66
+      }
+    },
+    "sector": {
+      "Technology": {
+        "n": 10,
+        "tail_rate": 0.3,
+        "lift": 1.99
+      },
+      "Healthcare": {
+        "n": 13,
+        "tail_rate": 0.154,
+        "lift": 1.02
+      },
+      "Real Estate": {
+        "n": 3,
+        "tail_rate": 0.333,
+        "lift": 2.22
+      },
+      "Unknown": {
+        "n": 40,
+        "tail_rate": 0.125,
+        "lift": 0.83
+      },
+      "Industrials": {
+        "n": 15,
+        "tail_rate": 0.067,
+        "lift": 0.44
+      },
+      "Consumer Cyclical": {
+        "n": 8,
+        "tail_rate": 0.25,
+        "lift": 1.66
+      },
+      "Energy": {
+        "n": 4,
+        "tail_rate": 0.25,
+        "lift": 1.66
+      },
+      "Basic Materials": {
+        "n": 6,
+        "tail_rate": 0.167,
+        "lift": 1.11
+      },
+      "Financial Services": {
+        "n": 4,
+        "tail_rate": 0.0,
+        "lift": 0.0
+      },
+      "Utilities": {
+        "n": 4,
+        "tail_rate": 0.0,
+        "lift": 0.0
+      },
+      "Consumer Defensive": {
+        "n": 4,
+        "tail_rate": 0.0,
+        "lift": 0.0
+      }
+    },
+    "size": {
+      "large": {
+        "n": 28,
+        "tail_rate": 0.107,
+        "lift": 0.71
+      },
+      "small": {
+        "n": 8,
+        "tail_rate": 0.375,
+        "lift": 2.49
+      },
+      "mid": {
+        "n": 26,
+        "tail_rate": 0.154,
+        "lift": 1.02
+      },
+      "micro": {
+        "n": 12,
+        "tail_rate": 0.167,
+        "lift": 1.11
+      }
+    },
+    "post_1m": {
+      "down(<-20%)": {
+        "n": 12,
+        "tail_rate": 0.167,
+        "lift": 1.11
+      },
+      "flat": {
+        "n": 96,
+        "tail_rate": 0.125,
+        "lift": 0.83
+      },
+      "up(>+20%)": {
+        "n": 5,
+        "tail_rate": 0.6,
+        "lift": 3.99
+      }
+    },
+    "drawdown_12m": {
+      "deep(<-50%)": {
+        "n": 22,
+        "tail_rate": 0.318,
+        "lift": 2.11
+      },
+      "mod(-50..-20%)": {
+        "n": 29,
+        "tail_rate": 0.172,
+        "lift": 1.15
+      },
+      "shallow(>-20%)": {
+        "n": 51,
+        "tail_rate": 0.039,
+        "lift": 0.26
+      }
+    },
+    "range_pos": {
+      "low": {
+        "n": 43,
+        "tail_rate": 0.209,
+        "lift": 1.39
+      },
+      "mid": {
+        "n": 16,
+        "tail_rate": 0.125,
+        "lift": 0.83
+      },
+      "high": {
+        "n": 43,
+        "tail_rate": 0.07,
+        "lift": 0.46
+      }
+    },
+    "pre_12m": {
+      "down(<-20%)": {
+        "n": 40,
+        "tail_rate": 0.225,
+        "lift": 1.5
+      },
+      "flat": {
+        "n": 31,
+        "tail_rate": 0.065,
+        "lift": 0.43
+      },
+      "up(>+20%)": {
+        "n": 31,
+        "tail_rate": 0.097,
+        "lift": 0.64
+      }
+    }
+  }
+}

@@ -51,6 +51,13 @@ CATALYSTS = [
     ("STRATEGIC_REVIEW", "exploring strategic alternatives", "8-K"),
 ]
 
+def _num(x):
+    try:
+        return float(x)
+    except (TypeError, ValueError):
+        return None
+
+
 _DT = None
 def _init_re():
     global _DT
@@ -115,6 +122,41 @@ def _fwd_return(series, t0_ts, months):
     return None
 
 
+def _trailing_return(series, t0_ts, months):
+    """Return over the `months` BEFORE t0 (pre-event momentum). None if the
+    window predates the series."""
+    base_ts = t0_ts - months * 30 * 86400
+    prior = [(t, c) for t, c in series if t <= base_ts]
+    at0 = _close_near(series, t0_ts)
+    if prior and at0 and prior[-1][1] > 0:
+        return at0 / prior[-1][1] - 1.0
+    return None
+
+
+def _drawdown_from_high(series, t0_ts, months=12):
+    """t0 price vs its trailing `months` max (0 = at high, -0.6 = 60% below)."""
+    lo_ts = t0_ts - months * 30 * 86400
+    window = [c for t, c in series if lo_ts <= t <= t0_ts and c]
+    at0 = _close_near(series, t0_ts)
+    if window and at0:
+        hi = max(window)
+        if hi > 0:
+            return at0 / hi - 1.0
+    return None
+
+
+def _range_pos(series, t0_ts, months=12):
+    """Where t0 sits in the trailing range (0 = at low, 1 = at high)."""
+    lo_ts = t0_ts - months * 30 * 86400
+    window = [c for t, c in series if lo_ts <= t <= t0_ts and c]
+    at0 = _close_near(series, t0_ts)
+    if window and at0:
+        lo, hi = min(window), max(window)
+        if hi > lo:
+            return (at0 - lo) / (hi - lo)
+    return None
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--start", default="2024-01-01")
@@ -123,6 +165,8 @@ def main() -> int:
     ap.add_argument("--sleep", type=float, default=0.2)
     args = ap.parse_args()
     _init_re()
+    yf_q = json.loads((ROOT / "yfinance_quick.json").read_text()) \
+        if (ROOT / "yfinance_quick.json").exists() else {}
 
     # 1) discover events.
     events = {}   # (ticker,date,type) dedup
@@ -167,11 +211,22 @@ def main() -> int:
         s3, s6, s12 = (_fwd_return(spy, t0, 3),
                        _fwd_return(spy, t0, 6),
                        _fwd_return(spy, t0, 12))
+        y = (yf_q.get(tk) or {})
         recs.append({
             "ticker": tk, "catalyst": ctype, "date": dt,
             "ret_3m": r3, "ret_6m": r6, "ret_12m": r12,
             "excess_12m": (r12 - s12) if (r12 is not None and s12 is not None) else None,
             "excess_6m": (r6 - s6) if (r6 is not None and s6 is not None) else None,
+            # --- pre-event features (observable at t0; no look-ahead) ---
+            "pre_6m": _trailing_return(series, t0, 6),
+            "pre_12m": _trailing_return(series, t0, 12),
+            "drawdown_12m": _drawdown_from_high(series, t0, 12),
+            "range_pos": _range_pos(series, t0, 12),
+            # --- post-event drift (usable by a strategy that waits) ---
+            "post_1m": _fwd_return(series, t0, 1),
+            "post_3m": r3,
+            "sector": y.get("sector") or "Unknown",
+            "mcap": _num(y.get("mcap")),
         })
 
     # 4) aggregate by catalyst type.
