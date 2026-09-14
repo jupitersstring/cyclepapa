@@ -179,6 +179,11 @@ def main():
                          'below-book book with a small margin of error). A '
                          'low floor (pb>0.05) drops corrupt near-zero ADR/FX '
                          'artifacts. Off by default.')
+    ap.add_argument('--governance-tab', action='store_true',
+                    help='add a Governance sheet: names in the (filtered) '
+                         'universe carrying a positive governance signal — '
+                         'owner-operator alignment, insider open-market buying, '
+                         'no dilution, capital discipline, or low SBC.')
     args = ap.parse_args()
 
     df, arch_cols = load_data(min_mcap=args.min_mcap, otc_mode='all')
@@ -278,6 +283,37 @@ def main():
         n_agg_sheets += 1
         print(f'  {title}: {len(sub_df):,} names, top {args.global_n}/archetype',
               file=sys.stderr)
+
+    # Governance sheet (opt-in): the subset of the filtered universe that carries
+    # a POSITIVE GOVERNANCE signal — revealed-preference alignment and
+    # shareholder-friendly capital allocation. Fires on any of: owner-operator
+    # (skin in the game), insider open-market BUYING (Form 4 cluster/officer/
+    # 10%-owner), no dilution, capital discipline, low SBC, or a strong insider
+    # stake that is NOT being diluted. Shown in the same archetype-grouped
+    # layout as GLOBAL so the governance-positive cheap names surface by pattern.
+    if args.governance_tab:
+        def _gn(c):
+            return pd.to_numeric(df.get(c), errors='coerce')
+        def _af(c):
+            return (pd.to_numeric(df.get(c), errors='coerce').fillna(0) == 1) \
+                if c in df.columns else pd.Series(False, index=df.index)
+        _gov_pos = (
+            _af('arch_owner_operator') | _af('arch_insider_conviction')
+            | _af('arch_capital_discipline') | _af('arch_no_dilution')
+            | _af('arch_low_sbc_quality')
+            | _af('insider_buy_flag') | _af('insider_cluster_buy_flag')
+            | _af('insider_10pct_buy_flag')
+            | ((_gn('insider_ownership_pct') >= 0.20) & (_gn('shares_yoy') <= 0.01))
+        ).fillna(False)
+        gov_df = df[_gov_pos].copy()
+        if not gov_df.empty:
+            ws = wb.create_sheet(_sheet_safe('Governance'))
+            tab_colors.set_tab(ws, tab_colors.AGGREGATE)
+            _write_country_sheet(ws, gov_df, 'Governance (positive signals)',
+                                 arch_cols, args.global_n, show_country=True)
+            n_agg_sheets += 1
+            print(f'  Governance: {len(gov_df):,} governance-positive names',
+                  file=sys.stderr)
 
     for ctry in countries:
         cdf = df[df['src'] == ctry]
