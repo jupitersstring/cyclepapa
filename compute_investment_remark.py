@@ -69,13 +69,16 @@ def _parse(d):
 
 
 def main():
-    ticker_by_cik = {}
+    # ALL tickers per CIK (a CIK often maps to common stock + warrants/units;
+    # a last-wins dict emitted under the warrant, e.g. LNZAW, hiding LNZA).
+    from collections import defaultdict
+    tickers_by_cik = defaultdict(list)
     if os.path.exists("edgar_universe_facts.csv"):
         ef = pd.read_csv("edgar_universe_facts.csv", low_memory=False)
         if "cik" in ef.columns:
             for _, r in ef.iterrows():
                 try:
-                    ticker_by_cik[int(r["cik"])] = r["symbol"]
+                    tickers_by_cik[int(r["cik"])].append(r["symbol"])
                 except Exception:
                     pass
 
@@ -88,8 +91,8 @@ def main():
             cik = int(os.path.basename(f).replace("CIK", "").replace(".json.gz", ""))
         except Exception:
             continue
-        sym = ticker_by_cik.get(cik)
-        if not sym:
+        syms = tickers_by_cik.get(cik)
+        if not syms:
             continue
         try:
             d = json.loads(gzip.open(f, "rt").read())
@@ -139,8 +142,7 @@ def main():
         em_fv = _latest(EM_FV_CONCEPTS)
         em_income = _latest(EM_INCOME_CONCEPTS)
         unreal_gain = _latest(UNREAL_GAIN_CONCEPTS)
-        rows.append({
-            "symbol": sym,
+        _rowbase = {
             "inv_carry_now": now_v, "inv_carry_prior": prior_v,
             "inv_carry_now_end": now_e, "inv_carry_concept": concept,
             "inv_remark_jump": jump,
@@ -151,7 +153,9 @@ def main():
             "em_fv_gap": (em_fv - em_carry) if (em_fv is not None and em_carry is not None) else None,
             "em_income": em_income,
             "unrealized_inv_gain": unreal_gain,
-        })
+        }
+        for sym in syms:
+            rows.append({"symbol": sym, **_rowbase})
 
     out = pd.DataFrame(rows).drop_duplicates("symbol")
     out.to_csv("investment_remark.csv", index=False)
