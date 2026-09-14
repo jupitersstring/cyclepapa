@@ -49,6 +49,24 @@ PHRASES = [
     ("review of strategic alternatives", "STRATEGIC_REVIEW"),
     ("exploring strategic alternatives", "STRATEGIC_REVIEW"),
     ("initiated a review of strategic", "STRATEGIC_REVIEW"),
+    # --- broader corporate-action events (beyond spins/sales) ---
+    ("emerged from chapter 11", "CH11_EMERGENCE"),
+    ("emergence from chapter 11", "CH11_EMERGENCE"),
+    ("plan of reorganization became effective", "CH11_EMERGENCE"),
+    ("consummated the plan of reorganization", "CH11_EMERGENCE"),
+    ("to be taken private", "GOING_PRIVATE"),
+    ("go-private transaction", "GOING_PRIVATE"),
+    ("going private transaction", "GOING_PRIVATE"),
+    ("initiated a quarterly dividend", "CAPITAL_RETURN"),
+    ("declared a special dividend", "CAPITAL_RETURN"),
+    ("special cash dividend", "CAPITAL_RETURN"),
+    ("reinstated its dividend", "CAPITAL_RETURN"),
+    ("approved for listing on the nasdaq", "UPLISTING"),
+    ("approved for listing on the new york stock exchange", "UPLISTING"),
+    ("approved for listing on nyse", "UPLISTING"),
+    ("authorized a share repurchase", "BUYBACK_AUTH"),
+    ("approved a new share repurchase", "BUYBACK_AUTH"),
+    ("increased its share repurchase", "BUYBACK_AUTH"),
 ]
 
 _DT = re.compile(r"\(([A-Z0-9][A-Z0-9.\-]{0,6})\)\s*\(CIK")
