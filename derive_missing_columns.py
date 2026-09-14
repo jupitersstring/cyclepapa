@@ -115,6 +115,8 @@ def load_edgar_facts(path: str) -> pd.DataFrame:
         'symbol', 'opinc_ttm', 'pretax_income_ttm', 'netinc_ttm',
         'revenue_ttm', 'cash', 'total_debt', 'shares_outstanding',
         'fcf_ttm', 'assets', 'eps_diluted_ttm',
+        # audited book levels + vintage (EDGAR-authoritative, adopted below)
+        'equity', 'tangible_equity', 'assets_end', 'equity_end',
         # forensic balance-sheet nuances (hidden-asset / tax-shield lenses)
         'lifo_reserve', 'pension_funded_status',
         'deferred_tax_assets_net', 'deferred_tax_valuation_allowance',
@@ -226,6 +228,26 @@ def main():
                     master.loc[fill_mask, col] = edgar_col.loc[fill_mask]
                 else:
                     master[col] = edgar_col
+        # ADOPT audited EDGAR BOOK LEVELS (root-cause fix for stale vintages).
+        # Total assets / equity / tangible equity are point-in-time balance-sheet
+        # levels for which EDGAR is the AUTHORITATIVE source and Yahoo offers no
+        # arbitration (no total-assets field), so a fill-only backfill left the
+        # master frozen at whatever OLDER vintage it was first built with — e.g.
+        # LNZA assets 105M (2025-12-31) while the current extract has 322M
+        # (2026-06-30), which then read as a false "equity > assets". Adopt the
+        # current audited EDGAR value wherever EDGAR has one (overwrite, not
+        # fill), and stamp the balance_sheet_date to the EDGAR vintage so the row
+        # is internally consistent and confidently EDGAR==master. Flow items
+        # (revenue/cash/debt) keep the Yahoo-arbitrated path in apply_ticker_yf.
+        _bd_ed = edgar['assets_end'].reindex(master.index) if 'assets_end' in edgar.columns else None
+        for col in ['assets', 'equity', 'tangible_equity']:
+            if col in edgar.columns and col in master.columns:
+                ed = edgar[col].reindex(master.index)
+                take = ed.notna()
+                master.loc[take, col] = ed.loc[take]
+                if col == 'assets' and _bd_ed is not None and 'balance_sheet_date' in master.columns:
+                    _bok = take & _bd_ed.notna()
+                    master.loc[_bok, 'balance_sheet_date'] = _bd_ed.loc[_bok]
         master = master.reset_index()
     else:
         print('  (no edgar data found -- derivations that need edgar income '
