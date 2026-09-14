@@ -1366,6 +1366,123 @@ def build_mda_language(wb: Workbook, yf: dict):
     ws.freeze_panes = "A5"
 
 
+def build_payoff_geometry(wb: Workbook, yf: dict):
+    """Payoff geometry — the asymmetry SHAPE per name: asset-backed downside
+    floor vs sector-median re-rate upside, and the ratio. Source:
+    payoff_geometry.json (payoff_geometry.py)."""
+    ws = wb.create_sheet("Payoff Geometry")
+    set_col_widths(ws, [9, 24, 8, 8, 9, 9, 12, 9, 18])
+    write_title_band(
+        ws,
+        "Payoff Geometry — capped downside vs re-rate upside",
+        "The shape of exceptional returns, measured from hard balance-sheet "
+        "data: downside = distance to an asset floor (net-cash / NCAV / "
+        "haircut book, eroded by cash burn); upside = re-rate to sector-median "
+        "multiple; ratio = upside ÷ downside. Financials/REITs use book only.",
+        n_cols=9,
+    )
+    d = {}
+    p = ROOT / "payoff_geometry.json"
+    if p.exists():
+        try:
+            d = json.loads(p.read_text())
+        except Exception:
+            d = {}
+    rows = sorted((v for v in d.values() if isinstance(v, dict)),
+                  key=lambda r: -r.get("score", 0))
+    headers = ["Ticker", "Name", "Score", "Ratio", "Upside%", "Down%",
+               "Floor", "Runway y", "Sector"]
+    write_header_row(ws, 4, headers)
+    r = 5
+    for i, v in enumerate(rows[:50], 1):
+        tk = v.get("ticker", "")
+        nm = (yf.get(tk, {}) or {}).get("name", tk)
+        rw = v.get("runway_yrs")
+        write_body_row(ws, r,
+                       [tk, nm[:24], v.get("score", 0), v.get("ratio", 0),
+                        round(v.get("upside_pct", 0) * 100),
+                        round(v.get("downside_pct", 0) * 100),
+                        v.get("floor_source", ""),
+                        (rw if rw is not None else "∞" if not v.get("burning") else "—"),
+                        (v.get("sector") or "")[:18]],
+                       band=(i % 2 == 0), bold_first=True)
+        ws.row_dimensions[r].height = 22
+        r += 1
+    r += 1
+    hard = sum(1 for v in rows if v.get("floor_source") in ("net-cash", "NCAV"))
+    write_footnote(ws, r,
+        f"{len(rows)} names have measurable asymmetry (top 50 by score). "
+        f"{hard} rest on a HARD floor (net-cash or NCAV, not goodwill). "
+        "Downside is the % fall to the asset floor; a cash floor is eroded by "
+        "up to 1.5 years of operating burn, so a cash-burning shell shows real "
+        "downside rather than a false 0%. Upside re-rates the name to its "
+        "sector-median P/B and P/S (halved when there is no revenue, since the "
+        "multiple is then an artifact). Ratio = upside ÷ downside (downside "
+        "floored at 5%). The score is continuous — log(ratio) plus floor-"
+        "quality (cash > NCAV > book), a non-burner bonus, and a deep-value "
+        "(<0.6× sector P/B) bonus — and feeds the consensus as "
+        "payoff_geometry_pts. Geometry is the SHAPE only; the Mechanism Gates "
+        "tab adds the 'why now'. Source: payoff_geometry.py.", 9)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A5"
+
+
+def build_mechanism_gates(wb: Workbook, yf: dict):
+    """Mechanism-gated archetypes — hard causal conjunctions, not points.
+    Source: mechanism_gates.json (mechanism_gates.py)."""
+    ws = wb.create_sheet("Mechanism Gates")
+    set_col_widths(ws, [9, 22, 7, 6, 7, 46])
+    write_title_band(
+        ws,
+        "Mechanism Gates — exceptional-return machines (full conjunction)",
+        "A name qualifies for an archetype only when its ENTIRE mechanism is "
+        "present: coiled-spring delever, sub-cash buyback, forced-seller "
+        "exhaustion, hidden-asset realisation, stated-unlock triangulated. "
+        "Two or more machines on one name is the rarest configuration.",
+        n_cols=6,
+    )
+    d = {}
+    p = ROOT / "mechanism_gates.json"
+    if p.exists():
+        try:
+            d = json.loads(p.read_text())
+        except Exception:
+            d = {}
+    rows = sorted((v for v in d.values() if isinstance(v, dict)),
+                  key=lambda r: (-r.get("n_mechanisms", 0), -r.get("score", 0)))
+    headers = ["Ticker", "Name", "Score", "Mech", "Ratio", "Archetypes"]
+    write_header_row(ws, 4, headers)
+    r = 5
+    for i, v in enumerate(rows[:45], 1):
+        tk = v.get("ticker", "")
+        nm = (yf.get(tk, {}) or {}).get("name", tk)
+        arch = ", ".join(a.replace("_", " ") for a in v.get("archetypes", []))
+        write_body_row(ws, r,
+                       [tk, nm[:22], v.get("score", 0),
+                        v.get("n_mechanisms", 0),
+                        round(v.get("geometry_ratio", 0), 1), arch[:46]],
+                       band=(i % 2 == 0), bold_first=True)
+        ws.row_dimensions[r].height = 22
+        r += 1
+    r += 1
+    multi = sum(1 for v in rows if v.get("n_mechanisms", 0) >= 2)
+    write_footnote(ws, r,
+        f"{len(rows)} names pass at least one mechanism gate; {multi} light up "
+        "two or more (the highest-conviction convergence). Unlike the additive "
+        "consensus, these are HARD gates — every condition of a machine must "
+        "hold: coiled-spring delever (D/E ≥ 1 + rising operating income + "
+        "cheap equity), sub-cash buyback (net-cash floor ≥ 50% of price + "
+        "active repurchase + not burning), forced-seller exhaustion (N-PORT "
+        "forced selling into a floor, business not burning), hidden-asset "
+        "realisation (small levered stub + credit-agreement asset sweep), and "
+        "stated-unlock triangulated (MD&A value-unlock language + cheap "
+        "geometry + insider buying). Combines the payoff-geometry shape with "
+        "the catalyst layers so shape and 'why now' are both required. "
+        "Source: mechanism_gates.py.", 6)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A5"
+
+
 def build_uk_events(wb: Workbook, yf: dict):
     """UK RNS capital events (own-shares buybacks, premium placings,
     scheme/CVA/restructuring distressed progress, takeover offers).
@@ -2349,9 +2466,12 @@ def build_methodology(wb: Workbook):
          "reawakening momentum leg, the Form 4 filing-TIME signal "
          "(off-hours / Friday-evening open-market buys = quiet "
          "accumulators followed; market-hours buys = price support, "
-         "faded), and the MD&A intent-language scan (value-unlock / "
+         "faded), the MD&A intent-language scan (value-unlock / "
          "transformative / capital-policy / governance / strategic-action "
-         "phrasing mined from 10-K/10-Q narrative, negation-verified)."),
+         "phrasing mined from 10-K/10-Q narrative, negation-verified), and "
+         "the payoff-geometry engine (asset-backed downside floor vs sector "
+         "re-rate upside -> asymmetry ratio; see the Payoff Geometry and "
+         "Mechanism Gates tabs)."),
         ("Additive discipline",
          "Every layer ADDS to the composite; none modifies another's "
          "score. New legs append fields; existing weights never change. "
@@ -2439,6 +2559,8 @@ TAB_INDEX = [
     ("Insider Conviction", "Discretionary open-market buying clusters (code P only, role-weighted)."),
     ("Insider Filing-Time", "Off-hours quiet accumulators (follow) vs market-hours price support (fade) — tested."),
     ("MD&A Intent", "Management's stated agenda from 10-K/10-Q narrative — value-unlock/transformative/capital/governance/strategic."),
+    ("Payoff Geometry", "Capped asset-backed downside vs sector re-rate upside — the asymmetry ratio per name."),
+    ("Mechanism Gates", "Exceptional-return archetypes as hard causal conjunctions; 2+ machines = highest conviction."),
     ("Asymmetry Assembly", "PSIX-recipe conjunction: cheap + inflection + leverage + insider co-occurring."),
     ("Distressed Stub Progress", "Finality-gated capital-structure value-unlock events, waterfall-scored."),
     ("Hidden Asset Realisation", "Spectrum/rights/RE inside levered stubs with mandatory-prepay debt sweeps (SSP-type)."),
@@ -2604,6 +2726,8 @@ def main() -> int:
     build_insider_conviction(wb, yf)
     build_insider_timing(wb, yf)
     build_mda_language(wb, yf)
+    build_payoff_geometry(wb, yf)
+    build_mechanism_gates(wb, yf)
     build_asymmetry_assembly(wb, yf)
     build_distressed_stub(wb, yf)
     build_hidden_asset(wb, yf)

@@ -404,6 +404,17 @@ def score_post_ch11_layer(layers: dict, universe: set) -> dict:
     return _load_jscore(ROOT / "post_ch11_emergence.json", universe)
 
 
+def score_payoff_geometry_layer(layers: dict, universe: set) -> dict:
+    """Payoff-geometry engine (see payoff_geometry.py). Measures the
+    asymmetry SHAPE per name -- asset-backed downside floor (net-cash / NCAV
+    / haircut book, burn-eroded), sector-median re-rate upside, and the
+    ratio -- scored continuously with floor-quality and deep-value bonuses.
+    Names with no measurable asymmetry score 0.
+
+    Source: payoff_geometry.json (built by payoff_geometry.py)."""
+    return _load_jscore(ROOT / "payoff_geometry.json", universe)
+
+
 def score_mda_language_layer(layers: dict, universe: set) -> dict:
     """MD&A revealed-intent language (see mda_scan.py). EFTS exact-phrase
     scan of 10-K/10-Q MD&A for five families of management intent -- value-
@@ -817,6 +828,7 @@ def main() -> int:
         "net_buyback": score_net_buyback_layer(layers, universe),
         "form4_timing": score_form4_timing_layer(layers, universe),
         "mda_language": score_mda_language_layer(layers, universe),
+        "payoff_geometry": score_payoff_geometry_layer(layers, universe),
         "internalization": score_internalization_layer(layers, universe),
         "bumpitrage": score_bumpitrage_layer(layers, universe),
         "spinoff_volume": score_spinoff_volume_layer(layers, universe),
@@ -936,6 +948,7 @@ def main() -> int:
             "net_buyback_pts": layer_scores["net_buyback"].get(tk, 0),
             "form4_timing_pts": layer_scores["form4_timing"].get(tk, 0),
             "mda_language_pts": layer_scores["mda_language"].get(tk, 0),
+            "payoff_geometry_pts": layer_scores["payoff_geometry"].get(tk, 0),
             "internalization_pts": layer_scores["internalization"].get(tk, 0),
             "bumpitrage_pts": layer_scores["bumpitrage"].get(tk, 0),
             "spinoff_volume_pts": layer_scores["spinoff_volume"].get(tk, 0),
