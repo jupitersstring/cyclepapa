@@ -388,10 +388,12 @@ def latest_point_value(facts: dict, aliases: list[str], unit: str = "USD"):
 
 
 def latest_annual_value(facts: dict, aliases: list[str], unit: str = "USD"):
-    """Most recent TRUE-annual observation: first alias with one wins, and
-    the row must span >= 330 days — a Q4 3-month row tagged fp=FY (or a
-    short transition period) must never masquerade as a fiscal year."""
-    for c in aliases:
+    """Most recent TRUE-annual observation (>= 330-day span). FRESHEST across
+    aliases with alias priority as a same-vintage tiebreak — same fix as
+    latest_point_value, so a stale priority alias never beats a current
+    secondary one."""
+    cands = []  # (priority_idx, best_obs, concept, end_datetime)
+    for i, c in enumerate(aliases):
         best = None
         for obs in _facts_unit_iter(facts, c, unit=unit):
             if obs.get("fp") != "FY":
@@ -410,9 +412,26 @@ def latest_annual_value(facts: dict, aliases: list[str], unit: str = "USD"):
             if best is None or end > best.get("end", ""):
                 best = obs
         if best is not None:
-            best["_concept"] = c
-            return best
-    return None
+            try:
+                _ed = datetime.strptime(best.get("end", ""), "%Y-%m-%d")
+            except Exception:
+                _ed = None
+            cands.append((i, best, c, _ed))
+    if not cands:
+        return None
+    valid = [t for t in cands if t[3] is not None]
+    if not valid:
+        i, o, c, _ = cands[0]
+        o["_concept"] = c
+        return o
+    newest = max(t[3] for t in valid)
+    # same current vintage within ~400 days (annual cadence-aware)
+    current = [t for t in valid if (newest - t[3]).days <= 400]
+    pick = min(current, key=lambda t: t[0]) if current \
+        else max(valid, key=lambda t: t[3])
+    _, o, c, _ = pick
+    o["_concept"] = c
+    return o
 
 
 def ttm_value(facts: dict, aliases: list[str], unit: str = "USD",
