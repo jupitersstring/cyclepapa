@@ -139,6 +139,7 @@ ARCHETYPE_LABELS = {
     'arch_xr_investment_remark': 'Investment/JV Remark (stake remeasured to fair value, value crystallised)',
     'arch_xr_stake_fv_gap': 'Stake FV Gap (disclosed fair value of JV stake > carrying value)',
     'arch_xr_lookthrough_earner': 'Look-Through Earner (associate profit a big share of pretax)',
+    'arch_xr_value_unlock': 'Value-Unlock Catalyst (cheap + strategic review/sale/separation signalled)',
     'arch_xr_peer_margin_gap': 'Peer Margin Gap + Self-Help Turn (under-earning vs sector, turning up)',
     'arch_post_reorg': 'Post-Reorg (fresh-start, EBIT-yield>20%)',
     'arch_special_situation': 'Special Situation (merger/tender/going-private)',

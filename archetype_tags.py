@@ -155,6 +155,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                       'em_fv_gap', 'em_income', 'unrealized_inv_gain']
         df = df.merge(_invr[[c for c in _invr_keep if c in _invr.columns]],
                       on='symbol', how='left', suffixes=('', '_invr'))
+    # Value-unlock language (EDGAR full-text search): recent filings discussing
+    # realising/crystallising/unlocking latent value (strategic reviews, sale
+    # processes, separations, capital return).
+    if os.path.exists('value_unlock_signals.csv'):
+        _vu = pd.read_csv('value_unlock_signals.csv').drop_duplicates('symbol')
+        _vu_keep = ['symbol', 'unlock_hits', 'unlock_distinct_phrases',
+                    'unlock_days_ago', 'unlock_phrases']
+        df = df.merge(_vu[[c for c in _vu_keep if c in _vu.columns]],
+                      on='symbol', how='left', suffixes=('', '_vu'))
     if os.path.exists('lynch_reward_signals.csv'):
         lynch_signals = pd.read_csv('lynch_reward_signals.csv').drop_duplicates('symbol')
         df = df.merge(lynch_signals, on='symbol', how='left', suffixes=('','_lr'))
@@ -3837,6 +3846,38 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & _not_melting
     ).fillna(False).astype(int)
 
+    # XR46 — Value-unlock catalyst ('XR-ValueUnlock'). A CHEAP security whose
+    # management/board is actively SIGNALLING intent to realise / crystallise /
+    # unlock latent value for shareholders — a strategic review, sale process,
+    # sum-of-the-parts separation, activist-driven capital return — OR a
+    # structured unlock event already in motion (spin / tender / merger /
+    # going-private). The cheapness is the margin of safety; the catalyst is the
+    # timing. We prioritise DISTINCTIVE, FRESH language (a boilerplate "enhance
+    # shareholder value" alone does not qualify) and require the discount.
+    _vu_hits = _ncol('unlock_hits'); _vu_np = _ncol('unlock_distinct_phrases')
+    _vu_days = _ncol('unlock_days_ago')
+    _vu_phr = df['unlock_phrases'].astype(str) if 'unlock_phrases' in df.columns else pd.Series('', index=df.index)
+    _vu_distinctive = _vu_phr.str.contains(
+        'strategic alternatives|sale process|sum-of-the-parts|financial advisor|'
+        'separation|crystall|pursue a separation|return of capital', case=False, regex=True)
+    _vu_language = ((_vu_days <= 400)                                   # a FRESH filing (live catalyst)
+                    & (_vu_distinctive | (_vu_np >= 2)))                # distinctive OR multiple phrases (not lone boilerplate)
+    _vu_event = ((s('spin_flag', 0) == 1) | (s('tender_flag', 0) == 1)
+                 | (s('merger_flag', 0) == 1) | (s('going_private_flag', 0) == 1))
+    _vu_cheap = (
+        ((pb > 0.05) & (pb < 1.0))                                      # below book
+        | (_ncol('ncav_pct_mcap') >= 1.0)                              # net-net
+        | (net_cash_pct >= 0.30)                                       # net cash
+        | ((ev_ebitda_v > 0) & (ev_ebitda_v <= 6.0))                  # deep cheap on EV
+        | (s('forensic_hidden_pct', 0) >= 0.20)                       # hidden forensic value
+    )
+    df['arch_xr_value_unlock'] = (
+        is_operating & (mcap > 0) & _fx_coherent
+        & _vu_cheap & (_vu_language.fillna(False) | _vu_event)
+        & (df.get('data_quality_flag', 0) == 0)
+        & _not_melting
+    ).fillna(False).astype(int)
+
     # F6 — Forensic payout confirmation (the user's BOOST leg). Any forensic /
     # hidden-value member that is ALSO returning capital — buying back shares
     # or paying a dividend — earns an EXTRA archetype count, which is this
@@ -4312,7 +4353,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                      'arch_xr_discops_mask',
                      'arch_xr_investment_remark',
                      'arch_xr_stake_fv_gap',
-                     'arch_xr_lookthrough_earner'],
+                     'arch_xr_lookthrough_earner',
+                     'arch_xr_value_unlock'],
         'engine': ['arch_xr_compounding_deployer', 'arch_xr_reusable_assembler',
                    'arch_xr_pre_scale_margin', 'arch_xr_leverage_detonation',
                    'arch_xr_baron_compounder', 'arch_xr_audited_streak_unrerated',
@@ -4963,6 +5005,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_investment_remark',
         'arch_xr_stake_fv_gap',
         'arch_xr_lookthrough_earner',
+        'arch_xr_value_unlock',
         'arch_oak_order_conversion',
         'arch_weschler_levered_equity',
         'arch_cheap_sales_scaler',
@@ -5131,6 +5174,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_investment_remark': 'XR-InvestmentRemark',
         'arch_xr_stake_fv_gap': 'XR-StakeFVGap',
         'arch_xr_lookthrough_earner': 'XR-LookThroughEarner',
+        'arch_xr_value_unlock': 'XR-ValueUnlock',
         'arch_templeton_pessimism': 'Templeton-MaxPessimism',
         'arch_asymmetric_assembly': 'AsymmetricAssembly-PSIX',
         'arch_levered_inflection': 'LeveredInflectionStub',
