@@ -1727,6 +1727,34 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         0.8 * s('insider_10pct_buy_flag'), 1.0 * s('insider_cluster_buy_flag'),
     ], axis=1).max(axis=1).clip(0, 1)
     df['alignment_score'] = _align.round(3)
+
+    # GOVERNANCE CONVICTION SCORE — weight the CLEAREST and TIMELIEST governance
+    # signals highest. Revealed-preference insider BUYING (from the ~12-month
+    # Form-4 window) is both the clearest (real money, hard to fake) and the
+    # timeliest (recent action, vs a standing state), so it dominates the weight;
+    # a CLUSTER of independent buyers is the strongest single tell, then senior
+    # (officer/10%-owner) conviction, then the SIZE of the net buy vs market cap.
+    # Timely capital-return ACTION (TTM buybacks / shrinking count) corroborates;
+    # static skin-in-the-game (ownership) and SBC hygiene rank below (aligned but
+    # not timely). Ranks the governance tab so the highest-conviction names lead.
+    _mc_usd_g = _num('market_cap_usd')
+    _g_cluster = (_num('insider_distinct_buyers').clip(0, 6) / 6.0).fillna(0)        # multiple independent buyers — clearest, hardest to fake
+    _g_senior = (0.6 * s('insider_officer_buy_flag')
+                 + 0.4 * s('insider_10pct_buy_flag')).clip(0, 1)                     # CEO/officer + major-holder conviction
+    _g_mag = ((_num('insider_net_buy_value') / _mc_usd_g.where(_mc_usd_g > 0))
+              .clip(0, 0.05).fillna(0) / 0.05)                                       # net $ bought vs mcap, capped at 5% = max conviction
+    _g_return = (((_num('net_buyback_ttm') > 0) | (_num('buyback_yield') > 0)
+                  | (_num('shares_yoy') < -0.01)).fillna(False).astype(float))       # TIMELY capital-return action
+    _g_align = (_num('insider_ownership_pct').clip(0, 0.40) / 0.40).fillna(0)        # static owner-operator skin-in-the-game
+    _g_hygiene = s('arch_low_sbc_quality', 0).clip(0, 1)                             # not enriching insiders via stock comp
+    df['governance_score'] = (
+        0.34 * _g_cluster + 0.20 * _g_senior + 0.18 * _g_mag
+        + 0.12 * _g_return + 0.10 * _g_align + 0.06 * _g_hygiene
+    ).clip(0, 1).round(3)
+    # legible conviction tier for the book (High = clustered/senior/sized buying)
+    df['governance_tier'] = pd.cut(
+        df['governance_score'], bins=[-0.01, 0.001, 0.35, 0.60, 1.01],
+        labels=['', 'Low', 'Medium', 'High']).astype(str).replace('nan', '')
     # #6 — reward breadth: a name corroborated across MORE independent
     # dimensions (inflection / cheap / quality / insider) is more trustworthy
     # than a one-legged fire. Max sets the base; a small per-extra-dimension
@@ -5780,7 +5808,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','segment_rot_flag','xr_family_count','xr_confidence','xr_score','forensic_hidden_pct','forensic_xr_score','truly_xr_score','truly_xr_flag','truly_xr_tell_count','truly_xr_mech_count','truly_xr_tells_str','spin_date','reorg_date']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','governance_score','governance_tier','insider_distinct_buyers','insider_net_buy_value','insider_officer_buy_flag','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','segment_rot_flag','xr_family_count','xr_confidence','xr_score','forensic_hidden_pct','forensic_xr_score','truly_xr_score','truly_xr_flag','truly_xr_tell_count','truly_xr_mech_count','truly_xr_tells_str','spin_date','reorg_date']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m','segment_count','fastest_segment_yoy','is_price_ghost'] if c in df.columns]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)

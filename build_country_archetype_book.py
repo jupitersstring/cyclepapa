@@ -148,6 +148,85 @@ def _write_country_sheet(ws, cdf, country, arch_cols, n_top,
     ws.sheet_view.showGridLines = False
 
 
+def _write_governance_sheet(ws, gdf, n_top):
+    """Flat CONVICTION-RANKED governance sheet: names ordered by governance_score
+    (clearest + timeliest first — cluster insider buying, senior/10%-owner
+    conviction, buy size), with the revealed-preference breakdown visible."""
+    headers = ['#', 'Ticker', 'Name', 'Ctry', 'Sector', 'Mcap (USD)', 'Verdict',
+               'Gov', 'Tier', 'Buyers', 'NetBuy $', 'Own %', 'P/B', 'P/E',
+               'EV/EBITDA', 'FCF yld', 'Arch#']
+    n_cols = len(headers)
+    widths = {1: 4, 2: 12, 3: 32, 4: 6, 5: 18, 6: 13, 7: 11, 8: 7, 9: 8, 10: 7,
+              11: 13, 12: 7, 13: 7, 14: 7, 15: 10, 16: 8, 17: 6}
+    for col, w in widths.items():
+        ws.column_dimensions[ws.cell(row=1, column=col).column_letter].width = w
+    f_bold = _font(bold=True, color=INK)
+    f_bold_muted = _font(bold=True, color=MUTED)
+    f_text = _font(color=INK)
+    f_text_muted = _font(color=MUTED)
+
+    gdf = gdf.sort_values('governance_score', ascending=False,
+                          na_position='last').head(n_top)
+    t = ws.cell(row=2, column=1,
+                value=f"Governance — conviction-ranked   "
+                      f"({len(gdf):,} names; clearest + timeliest first)")
+    t.font = f_bold
+    t.alignment = _TXT_ALIGN_LEFT
+    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=n_cols)
+    ws.row_dimensions[2].height = 22
+    sub = ws.cell(row=3, column=1,
+                  value="Weighted: insider cluster buying + senior/10%-owner conviction + buy size "
+                        "(72%) > timely capital return (12%) > static ownership (10%) > low SBC (6%).")
+    sub.font = _font(italic=True, color=MUTED)
+    ws.merge_cells(start_row=3, start_column=1, end_row=3, end_column=n_cols)
+
+    hdr = 5
+    for i, h in enumerate(headers, start=1):
+        c = ws.cell(row=hdr, column=i, value=h)
+        c.font = f_bold_muted
+        c.alignment = _TXT_ALIGN_LEFT if i in (2, 3, 4, 5, 9) else _NUM_ALIGN_CENTER
+    for c in range(1, n_cols + 1):
+        ws.cell(row=hdr, column=c).border = Border(bottom=Side(style='thin', color=INK))
+
+    row = hdr + 1
+    _t = lambda v: '' if pd.isna(v) else str(v)
+    for rank, (_, r) in enumerate(gdf.iterrows(), start=1):
+        _write_int(ws, row, 1, rank, font=f_text_muted)
+        ws.cell(row=row, column=2, value=r['symbol']).font = f_bold
+        ws.cell(row=row, column=2).alignment = _TXT_ALIGN_LEFT
+        ws.cell(row=row, column=3, value=_t(r.get('name'))[:46]).font = f_text
+        ws.cell(row=row, column=3).alignment = _TXT_ALIGN_LEFT
+        ws.cell(row=row, column=4, value=_t(r.get('src'))).font = f_text_muted
+        ws.cell(row=row, column=4).alignment = _TXT_ALIGN_LEFT
+        ws.cell(row=row, column=5, value=_t(r.get('sector'))[:18]).font = f_text_muted
+        ws.cell(row=row, column=5).alignment = _TXT_ALIGN_LEFT
+        _write_money(ws, row, 6, r.get('market_cap'), font=f_text)
+        _verdict_badge(ws, row, 7, r.get('verdict', 'UNRESEARCHED'))
+        _write_score(ws, row, 8, r.get('governance_score'), font=f_bold)
+        ws.cell(row=row, column=9, value=_t(r.get('governance_tier'))).font = f_text
+        ws.cell(row=row, column=9).alignment = _TXT_ALIGN_LEFT
+        _write_int(ws, row, 10,
+                   int(r['insider_distinct_buyers']) if pd.notna(r.get('insider_distinct_buyers')) else 0,
+                   font=f_text)
+        _write_money(ws, row, 11, r.get('insider_net_buy_value'), font=f_text)
+        _write_pct(ws, row, 12, r.get('insider_ownership_pct'), font=f_text)
+        _write_score(ws, row, 13, r.get('pb'), font=f_text)
+        _write_score(ws, row, 14, r.get('p_e'), font=f_text)
+        _write_score(ws, row, 15, r.get('ev_ebitda'), font=f_text)
+        _write_pct(ws, row, 16, r.get('fcf_yield'), font=f_text)
+        _write_int(ws, row, 17,
+                   int(r['archetype_count']) if pd.notna(r.get('archetype_count')) else 0,
+                   font=f_text_muted)
+        for c in range(1, n_cols + 1):
+            ws.cell(row=row, column=c).border = Border(bottom=Side(style='thin', color=RULE))
+        ws.row_dimensions[row].height = 15
+        row += 1
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = f'A{hdr + 1}'
+    if ws.max_row > hdr:
+        ws.auto_filter.ref = f"A{hdr}:{ws.cell(row=1, column=n_cols).column_letter}{ws.max_row}"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--n', type=int, default=30,
@@ -292,27 +371,16 @@ def main():
     # stake that is NOT being diluted. Shown in the same archetype-grouped
     # layout as GLOBAL so the governance-positive cheap names surface by pattern.
     if args.governance_tab:
-        def _gn(c):
-            return pd.to_numeric(df.get(c), errors='coerce')
-        def _af(c):
-            return (pd.to_numeric(df.get(c), errors='coerce').fillna(0) == 1) \
-                if c in df.columns else pd.Series(False, index=df.index)
-        _gov_pos = (
-            _af('arch_owner_operator') | _af('arch_insider_conviction')
-            | _af('arch_capital_discipline') | _af('arch_no_dilution')
-            | _af('arch_low_sbc_quality')
-            | _af('insider_buy_flag') | _af('insider_cluster_buy_flag')
-            | _af('insider_10pct_buy_flag')
-            | ((_gn('insider_ownership_pct') >= 0.20) & (_gn('shares_yoy') <= 0.01))
-        ).fillna(False)
-        gov_df = df[_gov_pos].copy()
+        _gsc = pd.to_numeric(df.get('governance_score'), errors='coerce')
+        # drop trivial single-hygiene names; the sheet then RANKS by conviction
+        gov_df = df[_gsc >= 0.15].copy()
         if not gov_df.empty:
             ws = wb.create_sheet(_sheet_safe('Governance'))
             tab_colors.set_tab(ws, tab_colors.AGGREGATE)
-            _write_country_sheet(ws, gov_df, 'Governance (positive signals)',
-                                 arch_cols, args.global_n, show_country=True)
+            _write_governance_sheet(ws, gov_df, max(args.global_n * 4, 400))
             n_agg_sheets += 1
-            print(f'  Governance: {len(gov_df):,} governance-positive names',
+            _hi = int((pd.to_numeric(gov_df['governance_score'], errors='coerce') >= 0.60).sum())
+            print(f'  Governance: {len(gov_df):,} names (score>=0.15), {_hi} High-conviction',
                   file=sys.stderr)
 
     for ctry in countries:
