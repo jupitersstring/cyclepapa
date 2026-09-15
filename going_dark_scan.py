@@ -69,25 +69,29 @@ def main() -> int:
             if r.filing_date > rec["date"]:
                 rec["date"] = r.filing_date
 
-    # enrich + score: micro/small + cheap = the squeeze-out / orphan setup.
+    # enrich + score. Form 15 (deregistration) is the real going-dark tell;
+    # Form 25 ALONE is often a routine security-specific delisting (a note, a
+    # warrant, a post-merger delisting of the acquired shell) -- noisy for
+    # large caps -- so it scores low unless the company is micro/controlled.
     for tk, rec in out.items():
         y = yf.get(tk) or {}
         mcap = _num(y.get("mcap")); pb = _num(y.get("p_b"))
         insider = _num(y.get("insider_pct"))
-        s = 6.0                                     # base: a going-dark event
-        if "15" in rec["forms"] and "25" in rec["forms"]:
-            s += 4                                   # both = full deregistration
+        has15 = "15" in rec["forms"]
+        s = 8.0 if has15 else 3.0                    # Form 15 >> Form 25 alone
         if mcap and mcap < 3e8:
-            s += 4; rec["micro_cap"] = True
+            s += 5; rec["micro_cap"] = True          # the going-dark sweet spot
         elif mcap and mcap < 1e9:
             s += 2
-        if pb is not None and 0 < pb < 1.0:
-            s += 4; rec["below_book"] = True         # cheap orphan / squeeze-out
+        elif mcap and mcap > 1e10:
+            s -= 4                                    # big-cap delisting = routine
         if insider is not None and insider >= 0.30:
             s += 4; rec["controlled"] = True         # controlling-holder squeeze-out
+        if pb is not None and 0 < pb < 1.0:
+            s += 2; rec["below_book"] = True
         rec["mcap"] = mcap; rec["p_b"] = pb
         rec["insider_pct"] = insider
-        rec["score"] = round(s, 1)
+        rec["score"] = round(max(0.0, s), 1)
 
     io_util.write_json(OUT, out)
     ranked = sorted(out.values(), key=lambda r: -r["score"])

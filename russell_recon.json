@@ -1,0 +1,5843 @@
+{
+  "TONX": {
+    "ticker": "TONX",
+    "name": "TON Strategy Company",
+    "mcap": 212555120.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.52287585,
+    "sector": "Technology",
+    "score": 9.0
+  },
+  "HDSN": {
+    "ticker": "HDSN",
+    "name": "Hudson Technologies, Inc.",
+    "mcap": 221702512.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.93241334,
+    "sector": "Basic Materials",
+    "score": 9.0
+  },
+  "SRAD": {
+    "ticker": "SRAD",
+    "name": "Sportradar Group AG",
+    "mcap": 3983509248.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.6539679,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "FCN": {
+    "ticker": "FCN",
+    "name": "FTI Consulting, Inc.",
+    "mcap": 4388369920.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.590668,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "PSN": {
+    "ticker": "PSN",
+    "name": "Parsons Corporation",
+    "mcap": 5585348608.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.1077917,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "EPAM": {
+    "ticker": "EPAM",
+    "name": "EPAM Systems, Inc.",
+    "mcap": 4004014848.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.1784242,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "NXG": {
+    "ticker": "NXG",
+    "name": "733085",
+    "mcap": 339211264.0,
+    "band": "R2000 inclusion band",
+    "p_b": null,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "INFU": {
+    "ticker": "INFU",
+    "name": "InfuSystems Holdings, Inc.",
+    "mcap": 190111648.0,
+    "band": "R2000 inclusion band",
+    "p_b": 3.2360015,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "OLED": {
+    "ticker": "OLED",
+    "name": "Universal Display Corporation",
+    "mcap": 4158024448.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.4401886,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "IBP": {
+    "ticker": "IBP",
+    "name": "Installed Building Products, In",
+    "mcap": 5879810048.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 8.754162,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "AVBC": {
+    "ticker": "AVBC",
+    "name": "Avidia Bancorp, Inc.",
+    "mcap": 348754592.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.9095312,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "MRP": {
+    "ticker": "MRP",
+    "name": "Millrose Properties, Inc.",
+    "mcap": 4572959744.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 0.78101075,
+    "sector": "Real Estate",
+    "score": 10.0
+  },
+  "VSNT": {
+    "ticker": "VSNT",
+    "name": "Versant Media Group, Inc.",
+    "mcap": 5406639104.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 0.53523654,
+    "sector": "Communication Services",
+    "score": 10.0
+  },
+  "ADT": {
+    "ticker": "ADT",
+    "name": "ADT Inc.",
+    "mcap": 5004427776.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.3803229,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "HFFG": {
+    "ticker": "HFFG",
+    "name": "HF Foods Group Inc.",
+    "mcap": 101068536.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.49360147,
+    "sector": "Consumer Defensive",
+    "score": 8.0
+  },
+  "CURI": {
+    "ticker": "CURI",
+    "name": "CuriosityStream Inc.",
+    "mcap": 149997632.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 4.113821,
+    "sector": "Communication Services",
+    "score": 6.0
+  },
+  "GENC": {
+    "ticker": "GENC",
+    "name": "Gencor Industries, Inc.",
+    "mcap": 220012112.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.99450076,
+    "sector": "Industrials",
+    "score": 9.0
+  },
+  "LCNB": {
+    "ticker": "LCNB",
+    "name": "LCNB Corporation",
+    "mcap": 243179328.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.88166934,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "KWY": {
+    "ticker": "KWY",
+    "name": "Kingsway Corporation",
+    "mcap": 294272640.0,
+    "band": "R2000 inclusion band",
+    "p_b": 22.396515,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "STRT": {
+    "ticker": "STRT",
+    "name": "STRATTEC SECURITY CORPORATION",
+    "mcap": 333551744.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.3664532,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "BCO": {
+    "ticker": "BCO",
+    "name": "Brinks Company (The)",
+    "mcap": 4022150912.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 15.359332,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "BRBS": {
+    "ticker": "BRBS",
+    "name": "Blue Ridge Bankshares, Inc.",
+    "mcap": 301204224.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.0689214,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "PCTY": {
+    "ticker": "PCTY",
+    "name": "Paylocity Holding Corporation",
+    "mcap": 5411162112.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.7388163,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "SRRK": {
+    "ticker": "SRRK",
+    "name": "Scholar Rock Holding Corporatio",
+    "mcap": 5461775872.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 20.141405,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "OPEN": {
+    "ticker": "OPEN",
+    "name": "Opendoor Technologies Inc",
+    "mcap": 4312372736.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.515151,
+    "sector": "Real Estate",
+    "score": 8.0
+  },
+  "PRLD": {
+    "ticker": "PRLD",
+    "name": "Prelude Therapeutics Incorporat",
+    "mcap": 313802496.0,
+    "band": "R2000 inclusion band",
+    "p_b": 4.1256547,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "CRNX": {
+    "ticker": "CRNX",
+    "name": "Crinetics Pharmaceuticals, Inc.",
+    "mcap": 3782140160.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.9498355,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "LODE": {
+    "ticker": "LODE",
+    "name": "Comstock Inc.",
+    "mcap": 362105440.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.2595925,
+    "sector": "Basic Materials",
+    "score": 7.0
+  },
+  "MX": {
+    "ticker": "MX",
+    "name": "Magnachip Semiconductor Corpora",
+    "mcap": 216075888.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.9265926,
+    "sector": "Technology",
+    "score": 9.0
+  },
+  "INSE": {
+    "ticker": "INSE",
+    "name": "Inspired Entertainment, Inc.",
+    "mcap": 213402848.0,
+    "band": "R2000 inclusion band",
+    "p_b": -13.422818,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "FOSL": {
+    "ticker": "FOSL",
+    "name": "Fossil Group, Inc.",
+    "mcap": 253545856.0,
+    "band": "R2000 inclusion band",
+    "p_b": 3.0105264,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "GBLI": {
+    "ticker": "GBLI",
+    "name": "Global Indemnity Group, LLC",
+    "mcap": 379837312.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.542537,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "JMSB": {
+    "ticker": "JMSB",
+    "name": "John Marshall Bancorp, Inc.",
+    "mcap": 307787584.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.1423035,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "NXST": {
+    "ticker": "NXST",
+    "name": "Nexstar Media Group, Inc.",
+    "mcap": 5013276672.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.312308,
+    "sector": "Communication Services",
+    "score": 8.0
+  },
+  "QTTB": {
+    "ticker": "QTTB",
+    "name": "Q32 Bio Inc.",
+    "mcap": 201611792.0,
+    "band": "R2000 inclusion band",
+    "p_b": 3.7555277,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "REFI": {
+    "ticker": "REFI",
+    "name": "Chicago Atlantic Real Estate Fi",
+    "mcap": 240914096.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.7892177,
+    "sector": "Real Estate",
+    "score": 9.0
+  },
+  "CACC": {
+    "ticker": "CACC",
+    "name": "Credit Acceptance Corporation",
+    "mcap": 5955127808.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.919209,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "CFBK": {
+    "ticker": "CFBK",
+    "name": "CF Bankshares Inc.",
+    "mcap": 195593232.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.0353605,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "CRBU": {
+    "ticker": "CRBU",
+    "name": "Caribou Biosciences, Inc.",
+    "mcap": 182492256.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.7490494,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "CRSP": {
+    "ticker": "CRSP",
+    "name": "CRISPR Therapeutics AG",
+    "mcap": 5069962752.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.7345161,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "SMG": {
+    "ticker": "SMG",
+    "name": "Scotts Miracle-Gro Company (The",
+    "mcap": 3763789568.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": -7.4950767,
+    "sector": "Basic Materials",
+    "score": 8.0
+  },
+  "LW": {
+    "ticker": "LW",
+    "name": "Lamb Weston Holdings, Inc.",
+    "mcap": 6221560320.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.427398,
+    "sector": "Consumer Defensive",
+    "score": 8.0
+  },
+  "ALEC": {
+    "ticker": "ALEC",
+    "name": "Alector, Inc.",
+    "mcap": 180971056.0,
+    "band": "R2000 inclusion band",
+    "p_b": 17.340425,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "VABK": {
+    "ticker": "VABK",
+    "name": "Virginia National Bankshares Co",
+    "mcap": 235337072.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.2709756,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "IEP": {
+    "ticker": "IEP",
+    "name": "Icahn Enterprises L.P. - Deposi",
+    "mcap": 4966453760.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.4174027,
+    "sector": "Energy",
+    "score": 8.0
+  },
+  "BB": {
+    "ticker": "BB",
+    "name": "BlackBerry Limited",
+    "mcap": 4911194624.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 6.5984254,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "LCUT": {
+    "ticker": "LCUT",
+    "name": "Lifetime Brands, Inc.",
+    "mcap": 192896256.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.97673875,
+    "sector": "Consumer Cyclical",
+    "score": 9.0
+  },
+  "MASS": {
+    "ticker": "MASS",
+    "name": "908 Devices Inc.",
+    "mcap": 334650560.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.467931,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "RXST": {
+    "ticker": "RXST",
+    "name": "RxSight, Inc.",
+    "mcap": 195805952.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.7075542,
+    "sector": "Healthcare",
+    "score": 9.0
+  },
+  "BCPC": {
+    "ticker": "BCPC",
+    "name": "Balchem Corporation",
+    "mcap": 5330982400.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.1481037,
+    "sector": "Basic Materials",
+    "score": 8.0
+  },
+  "BLND": {
+    "ticker": "BLND",
+    "name": "Blend Labs, Inc.",
+    "mcap": 399492480.0,
+    "band": "R2000 inclusion band",
+    "p_b": -7.300885,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "CVGI": {
+    "ticker": "CVGI",
+    "name": "Commercial Vehicle Group, Inc.",
+    "mcap": 164288304.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.1813523,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "MMSI": {
+    "ticker": "MMSI",
+    "name": "Merit Medical Systems, Inc.",
+    "mcap": 4009999616.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.4650702,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "NMRA": {
+    "ticker": "NMRA",
+    "name": "Neumora Therapeutics, Inc.",
+    "mcap": 305718976.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.7684562,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "VVV": {
+    "ticker": "VVV",
+    "name": "Valvoline Inc.",
+    "mcap": 4855298560.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 13.748646,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "INGN": {
+    "ticker": "INGN",
+    "name": "Inogen, Inc",
+    "mcap": 173547648.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.95900655,
+    "sector": "Healthcare",
+    "score": 9.0
+  },
+  "PAYC": {
+    "ticker": "PAYC",
+    "name": "Paycom Software, Inc.",
+    "mcap": 5821392896.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 7.003422,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "ANGI": {
+    "ticker": "ANGI",
+    "name": "Angi Inc.",
+    "mcap": 203049040.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.22182944,
+    "sector": "Communication Services",
+    "score": 9.0
+  },
+  "SPAI": {
+    "ticker": "SPAI",
+    "name": "Safe Pro Group Inc.",
+    "mcap": 99588880.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 6.448598,
+    "sector": "Industrials",
+    "score": 6.0
+  },
+  "AMWL": {
+    "ticker": "AMWL",
+    "name": "American Well Corporation",
+    "mcap": 140852512.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.61776346,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "AMRX": {
+    "ticker": "AMRX",
+    "name": "Amneal Pharmaceuticals, Inc.",
+    "mcap": 5171359232.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": -114.15492,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "RNAC": {
+    "ticker": "RNAC",
+    "name": "Cartesian Therapeutics, Inc.",
+    "mcap": 201263376.0,
+    "band": "R2000 inclusion band",
+    "p_b": -1.3201002,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "SMR": {
+    "ticker": "SMR",
+    "name": "NuScale Power Corporation",
+    "mcap": 4063281920.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.19891,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "FULC": {
+    "ticker": "FULC",
+    "name": "Fulcrum Therapeutics, Inc.",
+    "mcap": 234549280.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.7034372,
+    "sector": "Healthcare",
+    "score": 9.0
+  },
+  "OPRX": {
+    "ticker": "OPRX",
+    "name": "OptimizeRx Corporation",
+    "mcap": 95138936.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.74133646,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "TNL": {
+    "ticker": "TNL",
+    "name": "Travel   Leisure Co.",
+    "mcap": 4788585472.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": -4.930899,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "INDV": {
+    "ticker": "INDV",
+    "name": "Indivior Pharmaceuticals, Inc.",
+    "mcap": 4527235584.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": -32.457626,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "CELC": {
+    "ticker": "CELC",
+    "name": "Celcuity Inc.",
+    "mcap": 4515270656.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 83.640465,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "RENT": {
+    "ticker": "RENT",
+    "name": "Rent the Runway, Inc.",
+    "mcap": 116544904.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": -3.209991,
+    "sector": "Consumer Cyclical",
+    "score": 6.0
+  },
+  "APPF": {
+    "ticker": "APPF",
+    "name": "AppFolio, Inc.",
+    "mcap": 5356817408.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 11.391834,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "SND": {
+    "ticker": "SND",
+    "name": "Smart Sand, Inc.",
+    "mcap": 205901408.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.80558354,
+    "sector": "Energy",
+    "score": 9.0
+  },
+  "ABOS": {
+    "ticker": "ABOS",
+    "name": "Acumen Pharmaceuticals, Inc.",
+    "mcap": 158178416.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.8084229,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "CAMP": {
+    "ticker": "CAMP",
+    "name": "CAMP4 THERAPEUTICS CORPORATION",
+    "mcap": 208222464.0,
+    "band": "R2000 inclusion band",
+    "p_b": 6.7394958,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "CDXS": {
+    "ticker": "CDXS",
+    "name": "Codexis, Inc.",
+    "mcap": 224514528.0,
+    "band": "R2000 inclusion band",
+    "p_b": 5.1890755,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "OPLN": {
+    "ticker": "OPLN",
+    "name": "OPENLANE, Inc.",
+    "mcap": 4033368064.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.2178175,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "PACS": {
+    "ticker": "PACS",
+    "name": "PACS Group, Inc.",
+    "mcap": 5571188224.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 5.822994,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "PED": {
+    "ticker": "PED",
+    "name": "Pedevco Corp.",
+    "mcap": 175578512.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.9637147,
+    "sector": "Energy",
+    "score": 9.0
+  },
+  "RELY": {
+    "ticker": "RELY",
+    "name": "Remitly Global, Inc.",
+    "mcap": 3865901312.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.255911,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "SI": {
+    "ticker": "SI",
+    "name": "Shoulder Innovations, Inc.",
+    "mcap": 317709600.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.3844357,
+    "sector": null,
+    "score": 7.0
+  },
+  "XENE": {
+    "ticker": "XENE",
+    "name": "Xenon Pharmaceuticals Inc.",
+    "mcap": 5114574336.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 7.2768536,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "CHGG": {
+    "ticker": "CHGG",
+    "name": "Chegg, Inc.",
+    "mcap": 117556776.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.9695291,
+    "sector": "Consumer Defensive",
+    "score": 8.0
+  },
+  "BDTX": {
+    "ticker": "BDTX",
+    "name": "Black Diamond Therapeutics, Inc",
+    "mcap": 108873376.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.043956,
+    "sector": "Healthcare",
+    "score": 6.0
+  },
+  "CENX": {
+    "ticker": "CENX",
+    "name": "Century Aluminum Company",
+    "mcap": 5117947904.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.4470243,
+    "sector": "Basic Materials",
+    "score": 8.0
+  },
+  "RMNI": {
+    "ticker": "RMNI",
+    "name": "Rimini Street, Inc.",
+    "mcap": 385049600.0,
+    "band": "R2000 inclusion band",
+    "p_b": -16.979591,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "ABEO": {
+    "ticker": "ABEO",
+    "name": "Abeona Therapeutics Inc.",
+    "mcap": 328861984.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.2636328,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "CMRC": {
+    "ticker": "CMRC",
+    "name": "Commerce.com, Inc. - Series 1",
+    "mcap": 226083536.0,
+    "band": "R2000 inclusion band",
+    "p_b": 4.8239436,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "ORGO": {
+    "ticker": "ORGO",
+    "name": "Organogenesis Holdings Inc.",
+    "mcap": 319112864.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.3045765,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "STUB": {
+    "ticker": "STUB",
+    "name": "StubHub Holdings, Inc.",
+    "mcap": 4385107968.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.791587,
+    "sector": "Communication Services",
+    "score": 8.0
+  },
+  "BRCB": {
+    "ticker": "BRCB",
+    "name": "Black Rock Coffee Bar, Inc.",
+    "mcap": 135046304.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 2.3856707,
+    "sector": "Consumer Cyclical",
+    "score": 6.0
+  },
+  "FUBO": {
+    "ticker": "FUBO",
+    "name": "fuboTV Inc.",
+    "mcap": 271396192.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.33423963,
+    "sector": "Communication Services",
+    "score": 9.0
+  },
+  "LBRT": {
+    "ticker": "LBRT",
+    "name": "Liberty Energy Inc.",
+    "mcap": 4435543040.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.260667,
+    "sector": "Energy",
+    "score": 8.0
+  },
+  "ORKA": {
+    "ticker": "ORKA",
+    "name": "Oruka Therapeutics, Inc.",
+    "mcap": 4036688896.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 6.9407864,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "BETA": {
+    "ticker": "BETA",
+    "name": "Beta Technologies, Inc.",
+    "mcap": 3940570880.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.19366,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "FENC": {
+    "ticker": "FENC",
+    "name": "Fennec Pharmaceuticals Inc.",
+    "mcap": 304643776.0,
+    "band": "R2000 inclusion band",
+    "p_b": 8.038498,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "LOVE": {
+    "ticker": "LOVE",
+    "name": "The Lovesac Company",
+    "mcap": 211817920.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.9671167,
+    "sector": "Consumer Cyclical",
+    "score": 9.0
+  },
+  "ACMR": {
+    "ticker": "ACMR",
+    "name": "ACM Research, Inc.",
+    "mcap": 5620674560.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.405066,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "ANTX": {
+    "ticker": "ANTX",
+    "name": "AN2 Therapeutics, Inc.",
+    "mcap": 140823184.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.7209507,
+    "sector": "Healthcare",
+    "score": 6.0
+  },
+  "AVIR": {
+    "ticker": "AVIR",
+    "name": "Atea Pharmaceuticals, Inc.",
+    "mcap": 348918144.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.4931507,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "BRLT": {
+    "ticker": "BRLT",
+    "name": "Brilliant Earth Group, Inc.",
+    "mcap": 124477480.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.7422097,
+    "sector": "Consumer Cyclical",
+    "score": 6.0
+  },
+  "LAZ": {
+    "ticker": "LAZ",
+    "name": "Lazard, Inc.",
+    "mcap": 4360789504.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.948062,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "LENZ": {
+    "ticker": "LENZ",
+    "name": "LENZ Therapeutics, Inc.",
+    "mcap": 212896336.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.8637578,
+    "sector": "Healthcare",
+    "score": 9.0
+  },
+  "MARA": {
+    "ticker": "MARA",
+    "name": "MARA Holdings, Inc.",
+    "mcap": 5421666304.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.4266212,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "OUT": {
+    "ticker": "OUT",
+    "name": "OUTFRONT Media Inc.",
+    "mcap": 5489659904.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 8.294759,
+    "sector": "Real Estate",
+    "score": 8.0
+  },
+  "QLYS": {
+    "ticker": "QLYS",
+    "name": "Qualys, Inc.",
+    "mcap": 3919653120.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 6.9096103,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "QS": {
+    "ticker": "QS",
+    "name": "QuantumScape Corporation",
+    "mcap": 4945766400.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.456763,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "ZNTL": {
+    "ticker": "ZNTL",
+    "name": "Zentalis Pharmaceuticals, Inc.",
+    "mcap": 254847136.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.1441355,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "ZUMZ": {
+    "ticker": "ZUMZ",
+    "name": "Zumiez Inc.",
+    "mcap": 322259328.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.89954317,
+    "sector": "Consumer Cyclical",
+    "score": 9.0
+  },
+  "ARTNA": {
+    "ticker": "ARTNA",
+    "name": "Artesian Resources Corporation",
+    "mcap": 341325920.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.3493878,
+    "sector": "Utilities",
+    "score": 7.0
+  },
+  "CCLD": {
+    "ticker": "CCLD",
+    "name": "CareCloud, Inc.",
+    "mcap": 97308848.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.6678805,
+    "sector": "Healthcare",
+    "score": 6.0
+  },
+  "CVSA": {
+    "ticker": "CVSA",
+    "name": "Covista Inc.",
+    "mcap": 4052057856.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.969771,
+    "sector": "Consumer Defensive",
+    "score": 8.0
+  },
+  "DNTH": {
+    "ticker": "DNTH",
+    "name": "Dianthus Therapeutics, Inc.",
+    "mcap": 4177593344.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.4722157,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "DORM": {
+    "ticker": "DORM",
+    "name": "Dorman Products, Inc.",
+    "mcap": 3755071232.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.5729437,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "EAF": {
+    "ticker": "EAF",
+    "name": "GrafTech International Ltd.",
+    "mcap": 200829184.0,
+    "band": "R2000 inclusion band",
+    "p_b": -0.65970737,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "EGAN": {
+    "ticker": "EGAN",
+    "name": "eGain Corporation",
+    "mcap": 199287584.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.238668,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "FELE": {
+    "ticker": "FELE",
+    "name": "Franklin Electric Co., Inc.",
+    "mcap": 4603788288.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.434523,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "FVCB": {
+    "ticker": "FVCB",
+    "name": "FVCBankcorp, Inc.",
+    "mcap": 298386816.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.1460565,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "GETY": {
+    "ticker": "GETY",
+    "name": "Getty Images Holdings, Inc.",
+    "mcap": 253512224.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.47052875,
+    "sector": "Communication Services",
+    "score": 9.0
+  },
+  "GPRO": {
+    "ticker": "GPRO",
+    "name": "GoPro, Inc.",
+    "mcap": 136650416.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": -71.80909,
+    "sector": "Technology",
+    "score": 6.0
+  },
+  "IRD": {
+    "ticker": "IRD",
+    "name": "Opus Genetics, Inc.",
+    "mcap": 321181088.0,
+    "band": "R2000 inclusion band",
+    "p_b": -6.05919,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "ISPR": {
+    "ticker": "ISPR",
+    "name": "Ispire Technology Inc.",
+    "mcap": 98152968.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": -6.06383,
+    "sector": "Consumer Defensive",
+    "score": 6.0
+  },
+  "LIF": {
+    "ticker": "LIF",
+    "name": "Life360, Inc.",
+    "mcap": 3972173312.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 6.611446,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "NEOV": {
+    "ticker": "NEOV",
+    "name": "NeoVolta Inc.",
+    "mcap": 106518464.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 3.7379577,
+    "sector": "Industrials",
+    "score": 6.0
+  },
+  "KULR": {
+    "ticker": "KULR",
+    "name": "KULR Technology Group, Inc.",
+    "mcap": 183178368.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.9364302,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "ZIP": {
+    "ticker": "ZIP",
+    "name": "ZipRecruiter, Inc.",
+    "mcap": 287774592.0,
+    "band": "R2000 inclusion band",
+    "p_b": -3.4371958,
+    "sector": "Communication Services",
+    "score": 7.0
+  },
+  "CHPT": {
+    "ticker": "CHPT",
+    "name": "ChargePoint Holdings, Inc.",
+    "mcap": 215209328.0,
+    "band": "R2000 inclusion band",
+    "p_b": -23.675215,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "GPUS": {
+    "ticker": "GPUS",
+    "name": "Hyperscale Data, Inc.",
+    "mcap": 90726240.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.50029063,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "NKSH": {
+    "ticker": "NKSH",
+    "name": "National Bankshares, Inc.",
+    "mcap": 230218032.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.227546,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "BLNK": {
+    "ticker": "BLNK",
+    "name": "Blink Charging Co.",
+    "mcap": 93393464.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.7241379,
+    "sector": "Industrials",
+    "score": 6.0
+  },
+  "CGON": {
+    "ticker": "CGON",
+    "name": "CG Oncology, Inc.",
+    "mcap": 5387407360.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.9238214,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "LION": {
+    "ticker": "LION",
+    "name": "Lionsgate Studios Corp",
+    "mcap": 3978773760.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": -3.332522,
+    "sector": null,
+    "score": 8.0
+  },
+  "CFFI": {
+    "ticker": "CFFI",
+    "name": "C&F Financial Corporation",
+    "mcap": 254653824.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.9574207,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "ARMP": {
+    "ticker": "ARMP",
+    "name": "Armata Pharmaceuticals, Inc.",
+    "mcap": 277533696.0,
+    "band": "R2000 inclusion band",
+    "p_b": -0.8890979,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "KRRO": {
+    "ticker": "KRRO",
+    "name": "Korro Bio, Inc.",
+    "mcap": 152735024.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.2766727,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "AZZ": {
+    "ticker": "AZZ",
+    "name": "AZZ Inc.",
+    "mcap": 4718011904.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.5126374,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "BDC": {
+    "ticker": "BDC",
+    "name": "Belden Inc",
+    "mcap": 4800242688.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.7405925,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "FBIO": {
+    "ticker": "FBIO",
+    "name": "Fortress Biotech, Inc.",
+    "mcap": 92016832.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.7421383,
+    "sector": "Healthcare",
+    "score": 6.0
+  },
+  "III": {
+    "ticker": "III",
+    "name": "Information Services Group, Inc",
+    "mcap": 191835488.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.0334687,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "LBRDA": {
+    "ticker": "LBRDA",
+    "name": "Liberty Broadband Corporation",
+    "mcap": 4616507904.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 0.78074056,
+    "sector": "Communication Services",
+    "score": 10.0
+  },
+  "THRY": {
+    "ticker": "THRY",
+    "name": "Thryv Holdings, Inc.",
+    "mcap": 155224240.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.6885697,
+    "sector": "Technology",
+    "score": 9.0
+  },
+  "FTLF": {
+    "ticker": "FTLF",
+    "name": "FitLife Brands, Inc.",
+    "mcap": 100860112.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 2.2226822,
+    "sector": "Consumer Defensive",
+    "score": 6.0
+  },
+  "ARTV": {
+    "ticker": "ARTV",
+    "name": "Artiva Biotherapeutics, Inc.",
+    "mcap": 360524448.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.0877886,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "CLSK": {
+    "ticker": "CLSK",
+    "name": "CleanSpark, Inc.",
+    "mcap": 4423932416.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.4860787,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "KLRS": {
+    "ticker": "KLRS",
+    "name": "Kalaris Therapeutics, Inc.",
+    "mcap": 98975872.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.3950368,
+    "sector": "Healthcare",
+    "score": 6.0
+  },
+  "ACIW": {
+    "ticker": "ACIW",
+    "name": "ACI Worldwide, Inc.",
+    "mcap": 4482258432.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.978249,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "HHH": {
+    "ticker": "HHH",
+    "name": "Howard Hughes Holdings Inc.",
+    "mcap": 3986500096.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.0451285,
+    "sector": "Real Estate",
+    "score": 8.0
+  },
+  "ISBA": {
+    "ticker": "ISBA",
+    "name": "Isabella Bank Corporation",
+    "mcap": 305981024.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.3314945,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "CRBP": {
+    "ticker": "CRBP",
+    "name": "Corbus Pharmaceuticals Holdings",
+    "mcap": 142664032.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.081157,
+    "sector": "Healthcare",
+    "score": 6.0
+  },
+  "GPGI": {
+    "ticker": "GPGI",
+    "name": "GPGI, Inc.",
+    "mcap": 4179802112.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.3412706,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "COGT": {
+    "ticker": "COGT",
+    "name": "Cogent Biosciences, Inc.",
+    "mcap": 5901780992.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 10.868471,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "CRGY": {
+    "ticker": "CRGY",
+    "name": "Crescent Energy Company",
+    "mcap": 3867246336.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 0.82586926,
+    "sector": "Energy",
+    "score": 10.0
+  },
+  "FRMI": {
+    "ticker": "FRMI",
+    "name": "Fermi Inc.",
+    "mcap": 4392886272.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.0481787,
+    "sector": "Real Estate",
+    "score": 8.0
+  },
+  "NVTS": {
+    "ticker": "NVTS",
+    "name": "Navitas Semiconductor Corporati",
+    "mcap": 5850193920.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 13.263391,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "PLBY": {
+    "ticker": "PLBY",
+    "name": "Playboy, Inc.",
+    "mcap": 170375008.0,
+    "band": "R2000 inclusion band",
+    "p_b": 5.0000005,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "RDCM": {
+    "ticker": "RDCM",
+    "name": "Radcom Ltd.",
+    "mcap": 212410000.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.7843082,
+    "sector": "Communication Services",
+    "score": 7.0
+  },
+  "SILC": {
+    "ticker": "SILC",
+    "name": "Silicom Ltd",
+    "mcap": 255463984.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.2017312,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "TFPM": {
+    "ticker": "TFPM",
+    "name": "Triple Flag Precious Metals Cor",
+    "mcap": 5547314688.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.5809863,
+    "sector": "Basic Materials",
+    "score": 8.0
+  },
+  "UWMC": {
+    "ticker": "UWMC",
+    "name": "UWM Holdings Corporation",
+    "mcap": 3926170880.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.2705252,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "WHWK": {
+    "ticker": "WHWK",
+    "name": "Whitehawk Therapeutics, Inc.",
+    "mcap": 198798912.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.3905222,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "CSW": {
+    "ticker": "CSW",
+    "name": "CSW Industrials, Inc.",
+    "mcap": 4568476160.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.357178,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "HRI": {
+    "ticker": "HRI",
+    "name": "Herc Holdings Inc.",
+    "mcap": 5179930112.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.7297363,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "OVLY": {
+    "ticker": "OVLY",
+    "name": "Oak Valley Bancorp (CA)",
+    "mcap": 292620064.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.3795564,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "ALIT": {
+    "ticker": "ALIT",
+    "name": "Alight, Inc.",
+    "mcap": 311547872.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.29189742,
+    "sector": "Technology",
+    "score": 9.0
+  },
+  "NAVN": {
+    "ticker": "NAVN",
+    "name": "Navan, Inc.",
+    "mcap": 5270772224.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.304868,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "DTIL": {
+    "ticker": "DTIL",
+    "name": "Precision BioSciences, Inc.",
+    "mcap": 166424496.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.1871822,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "TMCI": {
+    "ticker": "TMCI",
+    "name": "Treace Medical Concepts, Inc.",
+    "mcap": 271817760.0,
+    "band": "R2000 inclusion band",
+    "p_b": 3.518052,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "CHDN": {
+    "ticker": "CHDN",
+    "name": "Churchill Downs, Incorporated",
+    "mcap": 6179328512.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 5.638156,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "ALHC": {
+    "ticker": "ALHC",
+    "name": "Alignment Healthcare, Inc.",
+    "mcap": 4250447360.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 20.53946,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "ATMU": {
+    "ticker": "ATMU",
+    "name": "Atmus Filtration Technologies I",
+    "mcap": 4229815296.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 10.483806,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "BCIC": {
+    "ticker": "BCIC",
+    "name": "BCP Investment Corporation",
+    "mcap": 94192632.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.4879769,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "COCO": {
+    "ticker": "COCO",
+    "name": "The Vita Coco Company, Inc.",
+    "mcap": 4497049600.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 12.767959,
+    "sector": "Consumer Defensive",
+    "score": 8.0
+  },
+  "CZR": {
+    "ticker": "CZR",
+    "name": "Caesars Entertainment, Inc.",
+    "mcap": 5951925760.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.7449983,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "DIOD": {
+    "ticker": "DIOD",
+    "name": "Diodes Incorporated",
+    "mcap": 5488558080.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.9045906,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "EBC": {
+    "ticker": "EBC",
+    "name": "Eastern Bankshares, Inc.",
+    "mcap": 4428587520.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.0676894,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "EPSN": {
+    "ticker": "EPSN",
+    "name": "Epsilon Energy Ltd.",
+    "mcap": 160317664.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.2911085,
+    "sector": "Energy",
+    "score": 7.0
+  },
+  "KLTR": {
+    "ticker": "KLTR",
+    "name": "Kaltura, Inc.",
+    "mcap": 213532112.0,
+    "band": "R2000 inclusion band",
+    "p_b": 45.80645,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "LMNR": {
+    "ticker": "LMNR",
+    "name": "Limoneira Co",
+    "mcap": 236985344.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.5724254,
+    "sector": "Consumer Defensive",
+    "score": 7.0
+  },
+  "LPA": {
+    "ticker": "LPA",
+    "name": "Logistic Properties of the Amer",
+    "mcap": 90110776.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.35745642,
+    "sector": "Real Estate",
+    "score": 8.0
+  },
+  "LWAY": {
+    "ticker": "LWAY",
+    "name": "Lifeway Foods, Inc.",
+    "mcap": 388618432.0,
+    "band": "R2000 inclusion band",
+    "p_b": 4.3028765,
+    "sector": "Consumer Defensive",
+    "score": 7.0
+  },
+  "NERV": {
+    "ticker": "NERV",
+    "name": "Minerva Neurosciences, Inc",
+    "mcap": 217569264.0,
+    "band": "R2000 inclusion band",
+    "p_b": -0.8060062,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "ONDS": {
+    "ticker": "ONDS",
+    "name": "Ondas Inc",
+    "mcap": 4815109120.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.0655026,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "UCTT": {
+    "ticker": "UCTT",
+    "name": "Ultra Clean Holdings, Inc.",
+    "mcap": 4074897152.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 6.4854455,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "ZETA": {
+    "ticker": "ZETA",
+    "name": "Zeta Global Holdings Corp.",
+    "mcap": 4710968832.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 5.7516737,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "GBTG": {
+    "ticker": "GBTG",
+    "name": "Global Business Travel Group, I",
+    "mcap": 4880827392.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.039948,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "MIAX": {
+    "ticker": "MIAX",
+    "name": "Miami International Holdings, I",
+    "mcap": 3871260160.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.6065428,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "EVI": {
+    "ticker": "EVI",
+    "name": "EVI Industries, Inc.",
+    "mcap": 224437344.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.5369701,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "ARCT": {
+    "ticker": "ARCT",
+    "name": "Arcturus Therapeutics Holdings ",
+    "mcap": 195834928.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.023318,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "BC": {
+    "ticker": "BC",
+    "name": "Brunswick Corporation",
+    "mcap": 5429914112.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.3926034,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "CLW": {
+    "ticker": "CLW",
+    "name": "Clearwater Paper Corporation",
+    "mcap": 270743008.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.33269268,
+    "sector": "Basic Materials",
+    "score": 9.0
+  },
+  "ENTA": {
+    "ticker": "ENTA",
+    "name": "Enanta Pharmaceuticals, Inc.",
+    "mcap": 368132288.0,
+    "band": "R2000 inclusion band",
+    "p_b": 3.1555333,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "FLL": {
+    "ticker": "FLL",
+    "name": "Full House Resorts, Inc.",
+    "mcap": 104443736.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": -19.45946,
+    "sector": "Consumer Cyclical",
+    "score": 6.0
+  },
+  "HNST": {
+    "ticker": "HNST",
+    "name": "The Honest Company, Inc.",
+    "mcap": 380872000.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.3082056,
+    "sector": "Consumer Defensive",
+    "score": 7.0
+  },
+  "MTRX": {
+    "ticker": "MTRX",
+    "name": "Matrix Service Company",
+    "mcap": 393311200.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.8202543,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "REZI": {
+    "ticker": "REZI",
+    "name": "Resideo Technologies, Inc.",
+    "mcap": 4832011776.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.9802656,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "VANI": {
+    "ticker": "VANI",
+    "name": "Vivani Medical, Inc.",
+    "mcap": 97445664.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 5.0222225,
+    "sector": "Healthcare",
+    "score": 6.0
+  },
+  "POWI": {
+    "ticker": "POWI",
+    "name": "Power Integrations, Inc.",
+    "mcap": 4853767680.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 7.2093024,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "USAR": {
+    "ticker": "USAR",
+    "name": "USA Rare Earth, Inc.",
+    "mcap": 4973922304.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 6.1106105,
+    "sector": "Basic Materials",
+    "score": 8.0
+  },
+  "DIBS": {
+    "ticker": "DIBS",
+    "name": "1stdibs.com, Inc.",
+    "mcap": 143454064.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.7138033,
+    "sector": "Communication Services",
+    "score": 6.0
+  },
+  "FNKO": {
+    "ticker": "FNKO",
+    "name": "Funko, Inc.",
+    "mcap": 306000928.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.8085809,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "FOA": {
+    "ticker": "FOA",
+    "name": "Finance of America Companies In",
+    "mcap": 178369024.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.49339595,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "LTBR": {
+    "ticker": "LTBR",
+    "name": "Lightbridge Corporation",
+    "mcap": 322861312.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.4768629,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "AIR": {
+    "ticker": "AIR",
+    "name": "AAR Corp.",
+    "mcap": 5363404800.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.219631,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "FND": {
+    "ticker": "FND",
+    "name": "Floor & Decor Holdings, Inc.",
+    "mcap": 5732232704.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.3332453,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "IRT": {
+    "ticker": "IRT",
+    "name": "Independence Realty Trust, Inc.",
+    "mcap": 3823002880.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.0968591,
+    "sector": "Real Estate",
+    "score": 8.0
+  },
+  "LAUR": {
+    "ticker": "LAUR",
+    "name": "Laureate Education, Inc.",
+    "mcap": 5099408896.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.863169,
+    "sector": "Consumer Defensive",
+    "score": 8.0
+  },
+  "TSSI": {
+    "ticker": "TSSI",
+    "name": "TSS, Inc.",
+    "mcap": 332676384.0,
+    "band": "R2000 inclusion band",
+    "p_b": 4.2261057,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "FTDR": {
+    "ticker": "FTDR",
+    "name": "frontdoor, inc.",
+    "mcap": 5026010624.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 21.94419,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "GEF": {
+    "ticker": "GEF",
+    "name": "Greif Inc.",
+    "mcap": 3915200768.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.0813143,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "IPGP": {
+    "ticker": "IPGP",
+    "name": "IPG Photonics Corporation",
+    "mcap": 4417106944.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.087663,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "LXEO": {
+    "ticker": "LXEO",
+    "name": "Lexeo Therapeutics, Inc.",
+    "mcap": 324294336.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.3216001,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "CNTA": {
+    "ticker": "CNTA",
+    "name": "Centessa Pharmaceuticals plc",
+    "mcap": 6192347136.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 12.7047615,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "HUMA": {
+    "ticker": "HUMA",
+    "name": "Humacyte, Inc.",
+    "mcap": 249253488.0,
+    "band": "R2000 inclusion band",
+    "p_b": 17.776922,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "BLTE": {
+    "ticker": "BLTE",
+    "name": "Belite Bio, Inc",
+    "mcap": 5476425216.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 6.754004,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "BYRN": {
+    "ticker": "BYRN",
+    "name": "Byrna Technologies, Inc.",
+    "mcap": 133845376.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 2.012965,
+    "sector": "Industrials",
+    "score": 6.0
+  },
+  "BZAI": {
+    "ticker": "BZAI",
+    "name": "Blaize Holdings, Inc.",
+    "mcap": 214160688.0,
+    "band": "R2000 inclusion band",
+    "p_b": 7.270531,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "BZFD": {
+    "ticker": "BZFD",
+    "name": "BuzzFeed, Inc.",
+    "mcap": 108252472.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.4270834,
+    "sector": "Communication Services",
+    "score": 6.0
+  },
+  "CNK": {
+    "ticker": "CNK",
+    "name": "Cinemark Holdings Inc Cinemark ",
+    "mcap": 3942754560.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 10.239612,
+    "sector": "Communication Services",
+    "score": 8.0
+  },
+  "CNR": {
+    "ticker": "CNR",
+    "name": "Core Natural Resources, Inc.",
+    "mcap": 4212563712.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.1556544,
+    "sector": "Energy",
+    "score": 8.0
+  },
+  "CVLT": {
+    "ticker": "CVLT",
+    "name": "Commvault Systems, Inc.",
+    "mcap": 5363819008.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 714.45056,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "CXDO": {
+    "ticker": "CXDO",
+    "name": "Crexendo, Inc.",
+    "mcap": 228852528.0,
+    "band": "R2000 inclusion band",
+    "p_b": 3.1447663,
+    "sector": "Communication Services",
+    "score": 7.0
+  },
+  "DLB": {
+    "ticker": "DLB",
+    "name": "Dolby Laboratories",
+    "mcap": 4950319616.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.8907397,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "EPR": {
+    "ticker": "EPR",
+    "name": "EPR Properties",
+    "mcap": 4541494784.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.9608232,
+    "sector": "Real Estate",
+    "score": 8.0
+  },
+  "ESTC": {
+    "ticker": "ESTC",
+    "name": "Elastic N.V.",
+    "mcap": 6130028032.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.83916,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "EXOD": {
+    "ticker": "EXOD",
+    "name": "Exodus Movement, Inc.",
+    "mcap": 184878768.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.8399236,
+    "sector": "Technology",
+    "score": 9.0
+  },
+  "EXTR": {
+    "ticker": "EXTR",
+    "name": "Extreme Networks, Inc.",
+    "mcap": 4103816192.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 52.651005,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "FULT": {
+    "ticker": "FULT",
+    "name": "Fulton Financial Corporation",
+    "mcap": 4376958976.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.2364343,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "GEO": {
+    "ticker": "GEO",
+    "name": "Geo Group Inc (The) REIT",
+    "mcap": 3912343552.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.4694273,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "HCC": {
+    "ticker": "HCC",
+    "name": "Warrior Met Coal, Inc.",
+    "mcap": 4782801920.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.169425,
+    "sector": "Basic Materials",
+    "score": 8.0
+  },
+  "HNGE": {
+    "ticker": "HNGE",
+    "name": "Hinge Health, Inc.",
+    "mcap": 4802210816.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 42.948097,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "JILL": {
+    "ticker": "JILL",
+    "name": "J. Jill, Inc.",
+    "mcap": 221579968.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.7827499,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "LFMD": {
+    "ticker": "LFMD",
+    "name": "LifeMD, Inc.",
+    "mcap": 229721936.0,
+    "band": "R2000 inclusion band",
+    "p_b": 15.031645,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "LGND": {
+    "ticker": "LGND",
+    "name": "Ligand Pharmaceuticals Incorpor",
+    "mcap": 5508886528.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 5.5203443,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "LYFT": {
+    "ticker": "LYFT",
+    "name": "Lyft, Inc.",
+    "mcap": 5421866496.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.8053098,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "MATX": {
+    "ticker": "MATX",
+    "name": "Matson, Inc.",
+    "mcap": 5787549696.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.1198955,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "MRDN": {
+    "ticker": "MRDN",
+    "name": "Meridian Holdings Inc.",
+    "mcap": 163848800.0,
+    "band": "R2000 inclusion band",
+    "p_b": 3.3549223,
+    "sector": "Communication Services",
+    "score": 7.0
+  },
+  "NCMI": {
+    "ticker": "NCMI",
+    "name": "National CineMedia, Inc.",
+    "mcap": 318852992.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.84556085,
+    "sector": "Communication Services",
+    "score": 9.0
+  },
+  "NUS": {
+    "ticker": "NUS",
+    "name": "Nu Skin Enterprises, Inc.",
+    "mcap": 243723728.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.30724034,
+    "sector": "Consumer Defensive",
+    "score": 9.0
+  },
+  "PEGA": {
+    "ticker": "PEGA",
+    "name": "Pegasystems Inc.",
+    "mcap": 5028521984.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 7.193402,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "KROS": {
+    "ticker": "KROS",
+    "name": "Keros Therapeutics, Inc.",
+    "mcap": 196532944.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.68601036,
+    "sector": "Healthcare",
+    "score": 9.0
+  },
+  "EXFY": {
+    "ticker": "EXFY",
+    "name": "Expensify, Inc.",
+    "mcap": 121029840.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.8733472,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "ASRT": {
+    "ticker": "ASRT",
+    "name": "Assertio Holdings, Inc.",
+    "mcap": 151861232.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.0025566,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "S": {
+    "ticker": "S",
+    "name": "SentinelOne, Inc.",
+    "mcap": 5148912128.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.5299647,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "TFSL": {
+    "ticker": "TFSL",
+    "name": "TFS Financial Corporation",
+    "mcap": 4604695552.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.3817813,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "OSUR": {
+    "ticker": "OSUR",
+    "name": "OraSure Technologies, Inc.",
+    "mcap": 292606336.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.87773645,
+    "sector": "Healthcare",
+    "score": 9.0
+  },
+  "TWST": {
+    "ticker": "TWST",
+    "name": "Twist Bioscience Corporation",
+    "mcap": 5452475904.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 11.958481,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "YEXT": {
+    "ticker": "YEXT",
+    "name": "Yext, Inc.",
+    "mcap": 380942816.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.929838,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "LE": {
+    "ticker": "LE",
+    "name": "Lands' End, Inc.",
+    "mcap": 382416384.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.76525587,
+    "sector": "Consumer Cyclical",
+    "score": 9.0
+  },
+  "MKTX": {
+    "ticker": "MKTX",
+    "name": "MarketAxess Holdings, Inc.",
+    "mcap": 4276462336.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.5927982,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "TEAD": {
+    "ticker": "TEAD",
+    "name": "Teads Holding Co.",
+    "mcap": 121239288.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.2575452,
+    "sector": "Communication Services",
+    "score": 6.0
+  },
+  "TTAN": {
+    "ticker": "TTAN",
+    "name": "ServiceTitan, Inc.",
+    "mcap": 6127386624.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.9837503,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "EXLS": {
+    "ticker": "EXLS",
+    "name": "ExlService Holdings, Inc.",
+    "mcap": 3961661440.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 5.0943027,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "PATH": {
+    "ticker": "PATH",
+    "name": "UiPath, Inc.",
+    "mcap": 5321095168.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.809081,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "PFSI": {
+    "ticker": "PFSI",
+    "name": "PennyMac Financial Services, In",
+    "mcap": 4277571072.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 0.988825,
+    "sector": "Financial Services",
+    "score": 10.0
+  },
+  "THO": {
+    "ticker": "THO",
+    "name": "Thor Industries, Inc.",
+    "mcap": 3767912448.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 0.8805567,
+    "sector": "Consumer Cyclical",
+    "score": 10.0
+  },
+  "TREX": {
+    "ticker": "TREX",
+    "name": "Trex Company, Inc.",
+    "mcap": 4896747008.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.917571,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "CHH": {
+    "ticker": "CHH",
+    "name": "Choice Hotels International, In",
+    "mcap": 5231981568.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 37.85385,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "CZNC": {
+    "ticker": "CZNC",
+    "name": "Citizens & Northern Corp",
+    "mcap": 389327392.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.1597993,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "OII": {
+    "ticker": "OII",
+    "name": "Oceaneering International, Inc.",
+    "mcap": 3928965376.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.5502477,
+    "sector": "Energy",
+    "score": 8.0
+  },
+  "TDS": {
+    "ticker": "TDS",
+    "name": "Telephone and Data Systems, Inc",
+    "mcap": 4507321344.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.1706437,
+    "sector": "Communication Services",
+    "score": 8.0
+  },
+  "VECO": {
+    "ticker": "VECO",
+    "name": "Veeco Instruments Inc.",
+    "mcap": 4861317120.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 5.5010705,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "WING": {
+    "ticker": "WING",
+    "name": "Wingstop Inc.",
+    "mcap": 4405682176.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": -5.5128465,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "QMCO": {
+    "ticker": "QMCO",
+    "name": "Quantum Corporation",
+    "mcap": 228353264.0,
+    "band": "R2000 inclusion band",
+    "p_b": -1.1968697,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "VERI": {
+    "ticker": "VERI",
+    "name": "Veritone, Inc.",
+    "mcap": 132924784.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 2.7134724,
+    "sector": "Technology",
+    "score": 6.0
+  },
+  "COLD": {
+    "ticker": "COLD",
+    "name": "Americold Realty Trust, Inc.",
+    "mcap": 4033480448.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.4235127,
+    "sector": "Real Estate",
+    "score": 8.0
+  },
+  "MWA": {
+    "ticker": "MWA",
+    "name": "MUELLER WATER PRODUCTS",
+    "mcap": 4088589056.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.817385,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "PALI": {
+    "ticker": "PALI",
+    "name": "Palisade Bio, Inc.",
+    "mcap": 324967968.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.457293,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "MAT": {
+    "ticker": "MAT",
+    "name": "Mattel, Inc.",
+    "mcap": 4079588608.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.9368188,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "AMTM": {
+    "ticker": "AMTM",
+    "name": "Amentum Holdings, Inc.",
+    "mcap": 5291891200.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.1471243,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "GFF": {
+    "ticker": "GFF",
+    "name": "Griffon Corporation",
+    "mcap": 4179826176.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 44.497066,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "LFCR": {
+    "ticker": "LFCR",
+    "name": "Lifecore Biomedical, Inc.",
+    "mcap": 207802112.0,
+    "band": "R2000 inclusion band",
+    "p_b": -14.6174135,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "PTLO": {
+    "ticker": "PTLO",
+    "name": "Portillo's Inc.",
+    "mcap": 308342912.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.65267354,
+    "sector": "Consumer Cyclical",
+    "score": 9.0
+  },
+  "TVTX": {
+    "ticker": "TVTX",
+    "name": "Travere Therapeutics, Inc.",
+    "mcap": 5128558592.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 51.63858,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "WW": {
+    "ticker": "WW",
+    "name": "WW International, Inc.",
+    "mcap": 191976192.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.6031477,
+    "sector": "Healthcare",
+    "score": 9.0
+  },
+  "AIRJ": {
+    "ticker": "AIRJ",
+    "name": "AirJoule Technologies Corporati",
+    "mcap": 351142880.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.3766676,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "ALK": {
+    "ticker": "ALK",
+    "name": "Alaska Air Group, Inc.",
+    "mcap": 5488991232.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.4702721,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "BKH": {
+    "ticker": "BKH",
+    "name": "Black Hills Corporation",
+    "mcap": 5538320896.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.4036001,
+    "sector": "Utilities",
+    "score": 8.0
+  },
+  "BKTI": {
+    "ticker": "BKTI",
+    "name": "BK Technologies Corporation",
+    "mcap": 312865184.0,
+    "band": "R2000 inclusion band",
+    "p_b": 6.5573254,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "IPWR": {
+    "ticker": "IPWR",
+    "name": "Ideal Power Inc.",
+    "mcap": 96688648.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 3.7844613,
+    "sector": "Technology",
+    "score": 6.0
+  },
+  "KPTI": {
+    "ticker": "KPTI",
+    "name": "Karyopharm Therapeutics Inc.",
+    "mcap": 204419760.0,
+    "band": "R2000 inclusion band",
+    "p_b": -0.76550967,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "LBTYA": {
+    "ticker": "LBTYA",
+    "name": "Liberty Global Ltd.",
+    "mcap": 3786691328.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 0.39839217,
+    "sector": "Communication Services",
+    "score": 10.0
+  },
+  "MDU": {
+    "ticker": "MDU",
+    "name": "MDU Resources Group, Inc.",
+    "mcap": 4449738240.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.5324265,
+    "sector": "Utilities",
+    "score": 8.0
+  },
+  "MGPI": {
+    "ticker": "MGPI",
+    "name": "MGP Ingredients, Inc.",
+    "mcap": 351343136.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.6043674,
+    "sector": "Consumer Defensive",
+    "score": 9.0
+  },
+  "PII": {
+    "ticker": "PII",
+    "name": "Polaris Inc.",
+    "mcap": 4059396864.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 5.4109797,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "SENS": {
+    "ticker": "SENS",
+    "name": "Senseonics Holdings, Inc.",
+    "mcap": 351847968.0,
+    "band": "R2000 inclusion band",
+    "p_b": 4.557133,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "SPOK": {
+    "ticker": "SPOK",
+    "name": "Spok Holdings, Inc.",
+    "mcap": 219522480.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.5563455,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "ARQ": {
+    "ticker": "ARQ",
+    "name": "Arq, Inc.",
+    "mcap": 121910560.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.72560036,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "CHE": {
+    "ticker": "CHE",
+    "name": "Chemed Corp",
+    "mcap": 5791093248.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 6.800991,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "ELF": {
+    "ticker": "ELF",
+    "name": "e.l.f. Beauty, Inc.",
+    "mcap": 3816081664.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 14.420484,
+    "sector": "Consumer Defensive",
+    "score": 8.0
+  },
+  "INBK": {
+    "ticker": "INBK",
+    "name": "First Internet Bancorp",
+    "mcap": 224715552.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.62255496,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "KNSA": {
+    "ticker": "KNSA",
+    "name": "Kiniksa Pharmaceuticals Interna",
+    "mcap": 3992313600.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 6.3134203,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "LBTYB": {
+    "ticker": "LBTYB",
+    "name": "Liberty Global Ltd.",
+    "mcap": 4462885888.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 0.46953365,
+    "sector": "Communication Services",
+    "score": 10.0
+  },
+  "MIST": {
+    "ticker": "MIST",
+    "name": "Milestone Pharmaceuticals Inc.",
+    "mcap": 161847376.0,
+    "band": "R2000 inclusion band",
+    "p_b": 3.8123167,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "NPWR": {
+    "ticker": "NPWR",
+    "name": "NET Power Inc.",
+    "mcap": 161742352.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.78473413,
+    "sector": "Industrials",
+    "score": 9.0
+  },
+  "OSG": {
+    "ticker": "OSG",
+    "name": "Octave Specialty Group, Inc.",
+    "mcap": 259278304.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.3638431,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "OWLT": {
+    "ticker": "OWLT",
+    "name": "Owlet, Inc.",
+    "mcap": 145005840.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 6.6844916,
+    "sector": "Healthcare",
+    "score": 6.0
+  },
+  "PAGP": {
+    "ticker": "PAGP",
+    "name": "Plains GP Holdings, L.P.",
+    "mcap": 5417260032.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.611931,
+    "sector": "Energy",
+    "score": 8.0
+  },
+  "POST": {
+    "ticker": "POST",
+    "name": "Post Holdings, Inc.",
+    "mcap": 4006969856.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.2544163,
+    "sector": "Consumer Defensive",
+    "score": 8.0
+  },
+  "RCMT": {
+    "ticker": "RCMT",
+    "name": "RCM Technologies, Inc.",
+    "mcap": 186971248.0,
+    "band": "R2000 inclusion band",
+    "p_b": 4.1846447,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "RIG": {
+    "ticker": "RIG",
+    "name": "Transocean Ltd (Switzerland)",
+    "mcap": 5876897280.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 0.71756756,
+    "sector": "Energy",
+    "score": 10.0
+  },
+  "UP": {
+    "ticker": "UP",
+    "name": "Wheels Up Experience Inc.",
+    "mcap": 284280608.0,
+    "band": "R2000 inclusion band",
+    "p_b": -0.6099269,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "VAL": {
+    "ticker": "VAL",
+    "name": "Valaris Limited",
+    "mcap": 5440419328.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.7151713,
+    "sector": "Energy",
+    "score": 8.0
+  },
+  "ZURA": {
+    "ticker": "ZURA",
+    "name": "Zura Bio Limited",
+    "mcap": 355802656.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.64042,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "ACT": {
+    "ticker": "ACT",
+    "name": "Enact Holdings, Inc.",
+    "mcap": 5917676032.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.1129489,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "AIRS": {
+    "ticker": "AIRS",
+    "name": "AirSculpt Technologies, Inc.",
+    "mcap": 348495648.0,
+    "band": "R2000 inclusion band",
+    "p_b": 3.4764252,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "BGC": {
+    "ticker": "BGC",
+    "name": "BGC Group, Inc.",
+    "mcap": 5772632576.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 5.245973,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "BLCO": {
+    "ticker": "BLCO",
+    "name": "Bausch + Lomb Corporation",
+    "mcap": 5301695488.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 0.83077264,
+    "sector": "Healthcare",
+    "score": 10.0
+  },
+  "BMI": {
+    "ticker": "BMI",
+    "name": "Badger Meter, Inc.",
+    "mcap": 3954644736.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 5.727934,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "BNAI": {
+    "ticker": "BNAI",
+    "name": "Brand Engagement Network Inc.",
+    "mcap": 139249216.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 19.046347,
+    "sector": "Technology",
+    "score": 6.0
+  },
+  "BNED": {
+    "ticker": "BNED",
+    "name": "Barnes & Noble Education, Inc",
+    "mcap": 377600288.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.302188,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "BYND": {
+    "ticker": "BYND",
+    "name": "Beyond Meat, Inc.",
+    "mcap": 366356928.0,
+    "band": "R2000 inclusion band",
+    "p_b": -15.454348,
+    "sector": "Consumer Defensive",
+    "score": 7.0
+  },
+  "CARL": {
+    "ticker": "CARL",
+    "name": "Carlsmed, Inc.",
+    "mcap": 310451936.0,
+    "band": "R2000 inclusion band",
+    "p_b": 3.3647614,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "CDP": {
+    "ticker": "CDP",
+    "name": "COPT Defense Properties",
+    "mcap": 3871254272.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.4975786,
+    "sector": "Real Estate",
+    "score": 8.0
+  },
+  "CE": {
+    "ticker": "CE",
+    "name": "Celanese Corporation",
+    "mcap": 5610335232.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.3808367,
+    "sector": "Basic Materials",
+    "score": 8.0
+  },
+  "CHEF": {
+    "ticker": "CHEF",
+    "name": "The Chefs' Warehouse, Inc.",
+    "mcap": 3890185728.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 6.3863974,
+    "sector": "Consumer Defensive",
+    "score": 8.0
+  },
+  "CHRS": {
+    "ticker": "CHRS",
+    "name": "Coherus Oncology, Inc.",
+    "mcap": 215949856.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.745098,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "CLPR": {
+    "ticker": "CLPR",
+    "name": "Clipper Realty Inc.",
+    "mcap": 129548624.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": -1.3561583,
+    "sector": "Real Estate",
+    "score": 6.0
+  },
+  "CMT": {
+    "ticker": "CMT",
+    "name": "Core Molding Technologies Inc",
+    "mcap": 203806512.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.2375207,
+    "sector": "Basic Materials",
+    "score": 7.0
+  },
+  "CNX": {
+    "ticker": "CNX",
+    "name": "CNX Resources Corporation",
+    "mcap": 4622072832.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.0023009,
+    "sector": "Energy",
+    "score": 8.0
+  },
+  "CPSS": {
+    "ticker": "CPSS",
+    "name": "Consumer Portfolio Services, In",
+    "mcap": 206787312.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.6577403,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "CSTM": {
+    "ticker": "CSTM",
+    "name": "Constellium SE",
+    "mcap": 4846955520.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.331427,
+    "sector": "Basic Materials",
+    "score": 8.0
+  },
+  "CVCO": {
+    "ticker": "CVCO",
+    "name": "Cavco Industries, Inc.",
+    "mcap": 4636156928.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.219524,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "EBMT": {
+    "ticker": "EBMT",
+    "name": "Eagle Bancorp Montana, Inc.",
+    "mcap": 182488016.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.9293741,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "FCCO": {
+    "ticker": "FCCO",
+    "name": "First Community Corporation",
+    "mcap": 302802272.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.3712972,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "FLNC": {
+    "ticker": "FLNC",
+    "name": "Fluence Energy, Inc.",
+    "mcap": 4570905088.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 8.946609,
+    "sector": "Utilities",
+    "score": 8.0
+  },
+  "FLYX": {
+    "ticker": "FLYX",
+    "name": "flyExclusive, Inc.",
+    "mcap": 205513424.0,
+    "band": "R2000 inclusion band",
+    "p_b": -0.4361117,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "FNLC": {
+    "ticker": "FNLC",
+    "name": "First Bancorp, Inc (ME)",
+    "mcap": 342557504.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.1939946,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "GNTX": {
+    "ticker": "GNTX",
+    "name": "Gentex Corporation",
+    "mcap": 5526100480.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.2085106,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "GTE": {
+    "ticker": "GTE",
+    "name": "Gran Tierra Energy Inc.",
+    "mcap": 260602368.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.3920803,
+    "sector": "Energy",
+    "score": 7.0
+  },
+  "GTLB": {
+    "ticker": "GTLB",
+    "name": "GitLab Inc.",
+    "mcap": 4485983744.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.5526223,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "HBB": {
+    "ticker": "HBB",
+    "name": "Hamilton Beach Brands Holding C",
+    "mcap": 276739264.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.4958266,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "HCAT": {
+    "ticker": "HCAT",
+    "name": "Health Catalyst, Inc",
+    "mcap": 136703936.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.98772025,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "HGV": {
+    "ticker": "HGV",
+    "name": "Hilton Grand Vacations Inc.",
+    "mcap": 4140120064.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.5529952,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "HURC": {
+    "ticker": "HURC",
+    "name": "Hurco Companies, Inc.",
+    "mcap": 142479088.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.74138975,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "HVT": {
+    "ticker": "HVT",
+    "name": "Haverty Furniture Companies, In",
+    "mcap": 391760896.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.2776903,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "IMDX": {
+    "ticker": "IMDX",
+    "name": "Insight Molecular Diagnostics I",
+    "mcap": 175658512.0,
+    "band": "R2000 inclusion band",
+    "p_b": -16.435045,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "INO": {
+    "ticker": "INO",
+    "name": "Inovio Pharmaceuticals, Inc.",
+    "mcap": 91734664.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 15.067568,
+    "sector": "Healthcare",
+    "score": 6.0
+  },
+  "JELD": {
+    "ticker": "JELD",
+    "name": "JELD-WEN Holding, Inc.",
+    "mcap": 153349344.0,
+    "band": "R2000 inclusion band",
+    "p_b": 12.624113,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "KRC": {
+    "ticker": "KRC",
+    "name": "Kilroy Realty Corporation",
+    "mcap": 4505112576.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 0.847394,
+    "sector": "Real Estate",
+    "score": 10.0
+  },
+  "LAB": {
+    "ticker": "LAB",
+    "name": "Standard BioTools Inc.",
+    "mcap": 324796768.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.5769819,
+    "sector": "Healthcare",
+    "score": 9.0
+  },
+  "LAKE": {
+    "ticker": "LAKE",
+    "name": "Lakeland Industries, Inc.",
+    "mcap": 99481176.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.76161695,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "LEU": {
+    "ticker": "LEU",
+    "name": "Centrus Energy Corp.",
+    "mcap": 3765176064.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.856751,
+    "sector": "Energy",
+    "score": 8.0
+  },
+  "MGNX": {
+    "ticker": "MGNX",
+    "name": "MacroGenics, Inc.",
+    "mcap": 262515712.0,
+    "band": "R2000 inclusion band",
+    "p_b": 12.36527,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "MYFW": {
+    "ticker": "MYFW",
+    "name": "First Western Financial, Inc.",
+    "mcap": 297219968.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.087266,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "NLCP": {
+    "ticker": "NLCP",
+    "name": "NewLake Capital Partners, Inc.",
+    "mcap": 324568256.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.82816505,
+    "sector": "Real Estate",
+    "score": 9.0
+  },
+  "NOVT": {
+    "ticker": "NOVT",
+    "name": "Novanta Inc.",
+    "mcap": 5530746368.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.2183895,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "NRDY": {
+    "ticker": "NRDY",
+    "name": "Nerdy Inc.",
+    "mcap": 163210128.0,
+    "band": "R2000 inclusion band",
+    "p_b": 5.5558443,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "ONEW": {
+    "ticker": "ONEW",
+    "name": "OneWater Marine Inc.",
+    "mcap": 188276736.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.69882196,
+    "sector": "Consumer Cyclical",
+    "score": 9.0
+  },
+  "ONIT": {
+    "ticker": "ONIT",
+    "name": "Onity Group Inc.",
+    "mcap": 309206464.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.4901751,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "ORMP": {
+    "ticker": "ORMP",
+    "name": "Oramed Pharmaceuticals Inc.",
+    "mcap": 158793200.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.6664377,
+    "sector": "Healthcare",
+    "score": 9.0
+  },
+  "PEPG": {
+    "ticker": "PEPG",
+    "name": "PepGen Inc.",
+    "mcap": 123812896.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.9241094,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "PLNT": {
+    "ticker": "PLNT",
+    "name": "Planet Fitness, Inc.",
+    "mcap": 4010271232.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": -8.283558,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "POR": {
+    "ticker": "POR",
+    "name": "Portland General Electric Co",
+    "mcap": 5807331840.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.4095507,
+    "sector": "Utilities",
+    "score": 8.0
+  },
+  "PRIM": {
+    "ticker": "PRIM",
+    "name": "Primoris Services Corporation",
+    "mcap": 5496025088.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.26248,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "RDNW": {
+    "ticker": "RDNW",
+    "name": "RideNow Group, Inc.",
+    "mcap": 290561440.0,
+    "band": "R2000 inclusion band",
+    "p_b": -17.928572,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "RELL": {
+    "ticker": "RELL",
+    "name": "Richardson Electronics, Ltd.",
+    "mcap": 270758752.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.6906017,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "RM": {
+    "ticker": "RM",
+    "name": "Regional Management Corp.",
+    "mcap": 342543008.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.92424655,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "RPAY": {
+    "ticker": "RPAY",
+    "name": "Repay Holdings Corporation",
+    "mcap": 298614368.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.49123317,
+    "sector": "Technology",
+    "score": 9.0
+  },
+  "SCOR": {
+    "ticker": "SCOR",
+    "name": "comScore, Inc.",
+    "mcap": 119994880.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.1375018,
+    "sector": "Technology",
+    "score": 6.0
+  },
+  "SIGA": {
+    "ticker": "SIGA",
+    "name": "SIGA Technologies Inc.",
+    "mcap": 309848096.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.0435195,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "SMC": {
+    "ticker": "SMC",
+    "name": "Summit Midstream Corporation",
+    "mcap": 398127712.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.811077,
+    "sector": "Energy",
+    "score": 9.0
+  },
+  "SMRT": {
+    "ticker": "SMRT",
+    "name": "SmartRent, Inc.",
+    "mcap": 217907008.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.9440267,
+    "sector": "Technology",
+    "score": 9.0
+  },
+  "SPCE": {
+    "ticker": "SPCE",
+    "name": "Virgin Galactic Holdings, Inc.",
+    "mcap": 395825472.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.2954876,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "SXT": {
+    "ticker": "SXT",
+    "name": "Sensient Technologies Corporati",
+    "mcap": 4830725632.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.9417834,
+    "sector": "Basic Materials",
+    "score": 8.0
+  },
+  "SYNA": {
+    "ticker": "SYNA",
+    "name": "Synaptics Incorporated",
+    "mcap": 5443663360.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.0167065,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "TBI": {
+    "ticker": "TBI",
+    "name": "TrueBlue, Inc.",
+    "mcap": 203707408.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.7947805,
+    "sector": "Industrials",
+    "score": 9.0
+  },
+  "TLSI": {
+    "ticker": "TLSI",
+    "name": "TriSalus Life Sciences, Inc.",
+    "mcap": 250579456.0,
+    "band": "R2000 inclusion band",
+    "p_b": 19.52153,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "TTGT": {
+    "ticker": "TTGT",
+    "name": "TechTarget, Inc.",
+    "mcap": 260277984.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.4962095,
+    "sector": "Technology",
+    "score": 9.0
+  },
+  "TWFG": {
+    "ticker": "TWFG",
+    "name": "TWFG, Inc.",
+    "mcap": 281647424.0,
+    "band": "R2000 inclusion band",
+    "p_b": 4.4405737,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "TXG": {
+    "ticker": "TXG",
+    "name": "10x Genomics, Inc.",
+    "mcap": 4412362752.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 5.573284,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "TYGO": {
+    "ticker": "TYGO",
+    "name": "Tigo Energy, Inc.",
+    "mcap": 216725312.0,
+    "band": "R2000 inclusion band",
+    "p_b": 7.2831635,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "UNB": {
+    "ticker": "UNB",
+    "name": "Union Bankshares, Inc.",
+    "mcap": 109353032.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.3520453,
+    "sector": "Financial Services",
+    "score": 6.0
+  },
+  "VGZ": {
+    "ticker": "VGZ",
+    "name": "Vista Gold Corp",
+    "mcap": 358359648.0,
+    "band": "R2000 inclusion band",
+    "p_b": 6.70765,
+    "sector": "Basic Materials",
+    "score": 7.0
+  },
+  "VNT": {
+    "ticker": "VNT",
+    "name": "Vontier Corporation",
+    "mcap": 4211328000.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.4182856,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "VRA": {
+    "ticker": "VRA",
+    "name": "Vera Bradley, Inc.",
+    "mcap": 110909184.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.82855326,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "VSEC": {
+    "ticker": "VSEC",
+    "name": "VSE Corporation",
+    "mcap": 6150688768.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.5649586,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "WEX": {
+    "ticker": "WEX",
+    "name": "WEX Inc.",
+    "mcap": 4421228544.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.4724717,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "WHD": {
+    "ticker": "WHD",
+    "name": "Cactus, Inc. Class A Common Sto",
+    "mcap": 3796493824.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.0721266,
+    "sector": "Energy",
+    "score": 8.0
+  },
+  "WSFS": {
+    "ticker": "WSFS",
+    "name": "WSFS Financial Corporation",
+    "mcap": 3858545664.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.4459571,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "ACHR": {
+    "ticker": "ACHR",
+    "name": "Archer Aviation Inc.",
+    "mcap": 4249157632.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.0298834,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "ACLS": {
+    "ticker": "ACLS",
+    "name": "Axcelis Technologies, Inc.",
+    "mcap": 5763527680.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 5.5170484,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "AII": {
+    "ticker": "AII",
+    "name": "American Integrity Insurance Gr",
+    "mcap": 329321600.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.98114747,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "ALOT": {
+    "ticker": "ALOT",
+    "name": "AstroNova, Inc.",
+    "mcap": 222026784.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.8464682,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "AMPY": {
+    "ticker": "AMPY",
+    "name": "Amplify Energy Corp.",
+    "mcap": 170517120.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.40545848,
+    "sector": "Energy",
+    "score": 9.0
+  },
+  "AMRN": {
+    "ticker": "AMRN",
+    "name": "Amarin Corporation plc",
+    "mcap": 336134816.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.7483311,
+    "sector": "Healthcare",
+    "score": 9.0
+  },
+  "ANNA": {
+    "ticker": "ANNA",
+    "name": "AleAnna, Inc.",
+    "mcap": 123843504.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 3.4690368,
+    "sector": "Energy",
+    "score": 6.0
+  },
+  "AOUT": {
+    "ticker": "AOUT",
+    "name": "American Outdoor Brands, Inc.",
+    "mcap": 127595048.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.7618833,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "AUB": {
+    "ticker": "AUB",
+    "name": "Atlantic Union Bankshares Corpo",
+    "mcap": 5604409856.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.1011444,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "BCYC": {
+    "ticker": "BCYC",
+    "name": "Bicycle Therapeutics plc",
+    "mcap": 279244896.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.5030181,
+    "sector": "Healthcare",
+    "score": 9.0
+  },
+  "BNL": {
+    "ticker": "BNL",
+    "name": "Broadstone Net Lease, Inc.",
+    "mcap": 4117287424.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.36445,
+    "sector": "Real Estate",
+    "score": 8.0
+  },
+  "BOOM": {
+    "ticker": "BOOM",
+    "name": "DMC Global Inc.",
+    "mcap": 141030080.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.59980845,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "CDZI": {
+    "ticker": "CDZI",
+    "name": "Cadiz, Inc.",
+    "mcap": 342231200.0,
+    "band": "R2000 inclusion band",
+    "p_b": 21.881721,
+    "sector": "Utilities",
+    "score": 7.0
+  },
+  "CGEH": {
+    "ticker": "CGEH",
+    "name": "Capstone Energy+, Inc.",
+    "mcap": 345220800.0,
+    "band": "R2000 inclusion band",
+    "p_b": -4.146789,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "CRK": {
+    "ticker": "CRK",
+    "name": "Comstock Resources, Inc.",
+    "mcap": 3847415552.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.3952498,
+    "sector": "Energy",
+    "score": 8.0
+  },
+  "CURV": {
+    "ticker": "CURV",
+    "name": "Torrid Holdings Inc.",
+    "mcap": 192074336.0,
+    "band": "R2000 inclusion band",
+    "p_b": -0.9061032,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "CWST": {
+    "ticker": "CWST",
+    "name": "Casella Waste Systems, Inc.",
+    "mcap": 5532792832.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.527885,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "DHX": {
+    "ticker": "DHX",
+    "name": "DHI Group, Inc.",
+    "mcap": 164154336.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.3843352,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "DOMO": {
+    "ticker": "DOMO",
+    "name": "Domo, Inc.",
+    "mcap": 109264368.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": -0.55213326,
+    "sector": "Technology",
+    "score": 6.0
+  },
+  "DOUG": {
+    "ticker": "DOUG",
+    "name": "Douglas Elliman Inc.",
+    "mcap": 156358464.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.9019403,
+    "sector": "Real Estate",
+    "score": 9.0
+  },
+  "DUOL": {
+    "ticker": "DUOL",
+    "name": "Duolingo, Inc.",
+    "mcap": 5850231296.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.226044,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "EGHT": {
+    "ticker": "EGHT",
+    "name": "8x8 Inc",
+    "mcap": 259789200.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.7709335,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "EP": {
+    "ticker": "EP",
+    "name": "Empire Petroleum Corporation",
+    "mcap": 118580768.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 32.04301,
+    "sector": "Energy",
+    "score": 6.0
+  },
+  "FFIN": {
+    "ticker": "FFIN",
+    "name": "First Financial Bankshares, Inc",
+    "mcap": 4696781824.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.40041,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "FINW": {
+    "ticker": "FINW",
+    "name": "FinWise Bancorp",
+    "mcap": 199971104.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.01715,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "FLXS": {
+    "ticker": "FLXS",
+    "name": "Flexsteel Industries, Inc.",
+    "mcap": 264306608.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.8730323,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "FNWB": {
+    "ticker": "FNWB",
+    "name": "First Northwest Bancorp",
+    "mcap": 90631392.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.5666666,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "FOUR": {
+    "ticker": "FOUR",
+    "name": "Shift4 Payments, Inc.",
+    "mcap": 3905720320.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.823112,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "FUNC": {
+    "ticker": "FUNC",
+    "name": "First",
+    "mcap": 274501216.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.3373116,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "G": {
+    "ticker": "G",
+    "name": "Genpact Limited",
+    "mcap": 4788558848.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.9345341,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "GORO": {
+    "ticker": "GORO",
+    "name": "Gold Resource Corporation",
+    "mcap": 215313408.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.5664395,
+    "sector": "Basic Materials",
+    "score": 9.0
+  },
+  "GRWG": {
+    "ticker": "GRWG",
+    "name": "GrowGeneration Corp.",
+    "mcap": 95544536.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.0291263,
+    "sector": "Consumer Cyclical",
+    "score": 6.0
+  },
+  "GXO": {
+    "ticker": "GXO",
+    "name": "GXO Logistics, Inc.",
+    "mcap": 5595963392.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.8850521,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "HLNE": {
+    "ticker": "HLNE",
+    "name": "Hamilton Lane Incorporated",
+    "mcap": 4565990400.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.9255192,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "INSW": {
+    "ticker": "INSW",
+    "name": "International Seaways, Inc.",
+    "mcap": 4182651648.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.9061477,
+    "sector": "Energy",
+    "score": 8.0
+  },
+  "JRVR": {
+    "ticker": "JRVR",
+    "name": "James River Group Holdings, Inc",
+    "mcap": 182635584.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.35230112,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "KBR": {
+    "ticker": "KBR",
+    "name": "KBR, Inc.",
+    "mcap": 4161246464.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.6270711,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "KRMD": {
+    "ticker": "KRMD",
+    "name": "KORU Medical Systems, Inc.",
+    "mcap": 179138704.0,
+    "band": "R2000 inclusion band",
+    "p_b": 10.626703,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "KTB": {
+    "ticker": "KTB",
+    "name": "Kontoor Brands, Inc.",
+    "mcap": 4320640512.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 6.967644,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "KVYO": {
+    "ticker": "KVYO",
+    "name": "Klaviyo, Inc. Series A",
+    "mcap": 4156996608.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.642801,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "LEE": {
+    "ticker": "LEE",
+    "name": "Lee Enterprises, Incorporated",
+    "mcap": 215852672.0,
+    "band": "R2000 inclusion band",
+    "p_b": -39.471542,
+    "sector": "Communication Services",
+    "score": 7.0
+  },
+  "LIVN": {
+    "ticker": "LIVN",
+    "name": "LivaNova PLC",
+    "mcap": 4312282624.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.557832,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "LSAK": {
+    "ticker": "LSAK",
+    "name": "Lesaka Technologies, Inc.",
+    "mcap": 387956416.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.9554884,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "LYEL": {
+    "ticker": "LYEL",
+    "name": "Lyell Immunopharma, Inc.",
+    "mcap": 297276288.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.0860114,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "MED": {
+    "ticker": "MED",
+    "name": "MEDIFAST INC",
+    "mcap": 122755032.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.5726141,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "MFIN": {
+    "ticker": "MFIN",
+    "name": "Medallion Financial Corp.",
+    "mcap": 220263680.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.54049456,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "MNTS": {
+    "ticker": "MNTS",
+    "name": "Momentus Inc.",
+    "mcap": 194950704.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.2248497,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "MPAA": {
+    "ticker": "MPAA",
+    "name": "Motorcar Parts of America, Inc.",
+    "mcap": 290685184.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.0927718,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "MTDR": {
+    "ticker": "MTDR",
+    "name": "Matador Resources Company",
+    "mcap": 6154272768.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.1021906,
+    "sector": "Energy",
+    "score": 8.0
+  },
+  "MUR": {
+    "ticker": "MUR",
+    "name": "Murphy Oil Corporation",
+    "mcap": 4915457024.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 0.96401465,
+    "sector": "Energy",
+    "score": 10.0
+  },
+  "NATR": {
+    "ticker": "NATR",
+    "name": "Nature's Sunshine Products, Inc",
+    "mcap": 353807648.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.1172261,
+    "sector": "Consumer Defensive",
+    "score": 7.0
+  },
+  "NODK": {
+    "ticker": "NODK",
+    "name": "NI Holdings, Inc.",
+    "mcap": 325859648.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.304847,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "NVST": {
+    "ticker": "NVST",
+    "name": "Envista Holdings Corporation",
+    "mcap": 4216280320.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.3706094,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "NWE": {
+    "ticker": "NWE",
+    "name": "NorthWestern Energy Group, Inc.",
+    "mcap": 4362148352.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.4994925,
+    "sector": "Utilities",
+    "score": 8.0
+  },
+  "ONL": {
+    "ticker": "ONL",
+    "name": "Orion Properties Inc.",
+    "mcap": 163102288.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.26802388,
+    "sector": "Real Estate",
+    "score": 9.0
+  },
+  "PEBK": {
+    "ticker": "PEBK",
+    "name": "Peoples Bancorp of North Caroli",
+    "mcap": 225373136.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.4253333,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "PMTS": {
+    "ticker": "PMTS",
+    "name": "CPI Card Group Inc.",
+    "mcap": 209544608.0,
+    "band": "R2000 inclusion band",
+    "p_b": -14.954956,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "REI": {
+    "ticker": "REI",
+    "name": "Ring Energy, Inc.",
+    "mcap": 289393152.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.3838384,
+    "sector": "Energy",
+    "score": 9.0
+  },
+  "RFIL": {
+    "ticker": "RFIL",
+    "name": "RF Industries, Ltd.",
+    "mcap": 193261024.0,
+    "band": "R2000 inclusion band",
+    "p_b": 5.4183145,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "RGP": {
+    "ticker": "RGP",
+    "name": "Resources Connection, Inc.",
+    "mcap": 149675952.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.79620165,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "RLI": {
+    "ticker": "RLI",
+    "name": "RLI Corp.",
+    "mcap": 4881006080.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.7431023,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "HCKT": {
+    "ticker": "HCKT",
+    "name": "The Hackett Group, Inc.",
+    "mcap": 261964432.0,
+    "band": "R2000 inclusion band",
+    "p_b": 3.967951,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "LPX": {
+    "ticker": "LPX",
+    "name": "Louisiana-Pacific Corporation",
+    "mcap": 5418719744.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.138302,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "WTM": {
+    "ticker": "WTM",
+    "name": "White Mountains Insurance Group",
+    "mcap": 4986428416.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 0.916093,
+    "sector": "Financial Services",
+    "score": 10.0
+  },
+  "MTG": {
+    "ticker": "MTG",
+    "name": "MGIC Investment Corporation",
+    "mcap": 5511436288.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.1029754,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "SAIC": {
+    "ticker": "SAIC",
+    "name": "Science Applications Internatio",
+    "mcap": 4328723456.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.094008,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "WSC": {
+    "ticker": "WSC",
+    "name": "WillScot Holdings Corporation",
+    "mcap": 5219886592.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 6.102412,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "BFH": {
+    "ticker": "BFH",
+    "name": "Bread Financial Holdings, Inc.",
+    "mcap": 4138087680.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.2720475,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "VSCO": {
+    "ticker": "VSCO",
+    "name": "Victorias Secret & Co.",
+    "mcap": 4312813568.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 5.074766,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "ACH": {
+    "ticker": "ACH",
+    "name": "Accendra Health, Inc.",
+    "mcap": 247365360.0,
+    "band": "R2000 inclusion band",
+    "p_b": -0.5322129,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "TPC": {
+    "ticker": "TPC",
+    "name": "Tutor Perini Corporation",
+    "mcap": 4117205248.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.3785305,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "EVF": {
+    "ticker": "EVF",
+    "name": "Eaton Vance Senior Income Trust",
+    "mcap": 90124632.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.8301256,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "JOF": {
+    "ticker": "JOF",
+    "name": "Japan Smaller Capitalization Fu",
+    "mcap": 333773248.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.8529433,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "EFR": {
+    "ticker": "EFR",
+    "name": "Eaton Vance Senior Floating-Rat",
+    "mcap": 308817056.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.8442292,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "CAF": {
+    "ticker": "CAF",
+    "name": "Morgan Stanley China A Share Fu",
+    "mcap": 335515680.0,
+    "band": "R2000 inclusion band",
+    "p_b": null,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "TORO": {
+    "ticker": "TORO",
+    "name": "Toro Corp.",
+    "mcap": 175215792.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.6729493,
+    "sector": "Energy",
+    "score": 9.0
+  },
+  "RCKT": {
+    "ticker": "RCKT",
+    "name": "Rocket Pharmaceuticals, Inc.",
+    "mcap": 353241120.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.4832646,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "ABCB": {
+    "ticker": "ABCB",
+    "name": "Ameris Bancorp",
+    "mcap": 5894150144.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.4396305,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "FBIN": {
+    "ticker": "FBIN",
+    "name": "Fortune Brands Innovations, Inc",
+    "mcap": 5058040832.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.1460748,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "FORR": {
+    "ticker": "FORR",
+    "name": "Forrester Research, Inc.",
+    "mcap": 130060400.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.2113541,
+    "sector": "Industrials",
+    "score": 6.0
+  },
+  "DBI": {
+    "ticker": "DBI",
+    "name": "Designer Brands Inc.",
+    "mcap": 320911168.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.1140491,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "SITE": {
+    "ticker": "SITE",
+    "name": "SiteOne Landscape Supply, Inc.",
+    "mcap": 4881437184.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.0106027,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "SNDR": {
+    "ticker": "SNDR",
+    "name": "Schneider National, Inc.",
+    "mcap": 6248435200.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.0687656,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "MVBF": {
+    "ticker": "MVBF",
+    "name": "MVB Financial Corp.",
+    "mcap": 355042752.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.0597982,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "INGR": {
+    "ticker": "INGR",
+    "name": "Ingredion Incorporated",
+    "mcap": 6175373824.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.4076267,
+    "sector": "Consumer Defensive",
+    "score": 8.0
+  },
+  "TBCH": {
+    "ticker": "TBCH",
+    "name": "Turtle Beach Corporation",
+    "mcap": 273298976.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.4136724,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "AP": {
+    "ticker": "AP",
+    "name": "Ampco-Pittsburgh Corporation",
+    "mcap": 219524992.0,
+    "band": "R2000 inclusion band",
+    "p_b": 6.976744,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "MTRN": {
+    "ticker": "MTRN",
+    "name": "Materion Corporation",
+    "mcap": 5719992320.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 5.9771767,
+    "sector": "Basic Materials",
+    "score": 8.0
+  },
+  "SKLZ": {
+    "ticker": "SKLZ",
+    "name": "Skillz Inc.",
+    "mcap": 137970800.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.3498244,
+    "sector": "Communication Services",
+    "score": 6.0
+  },
+  "HOMB": {
+    "ticker": "HOMB",
+    "name": "Home BancShares, Inc.",
+    "mcap": 5569081344.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.2484761,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "AOMR": {
+    "ticker": "AOMR",
+    "name": "Angel Oak Mortgage REIT, Inc.",
+    "mcap": 210528768.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.81951314,
+    "sector": "Real Estate",
+    "score": 9.0
+  },
+  "SBRA": {
+    "ticker": "SBRA",
+    "name": "Sabra Health Care REIT, Inc.",
+    "mcap": 4569684992.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.6402644,
+    "sector": "Real Estate",
+    "score": 8.0
+  },
+  "CAKE": {
+    "ticker": "CAKE",
+    "name": "The Cheesecake Factory Incorpor",
+    "mcap": 3835213312.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 8.367479,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "SFBS": {
+    "ticker": "SFBS",
+    "name": "ServisFirst Bancshares, Inc.",
+    "mcap": 4398170624.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.3002372,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "SRI": {
+    "ticker": "SRI",
+    "name": "Stoneridge, Inc.",
+    "mcap": 214587856.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.1843541,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "UUUU": {
+    "ticker": "UUUU",
+    "name": "Energy Fuels Inc",
+    "mcap": 4137797632.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 5.596485,
+    "sector": "Energy",
+    "score": 8.0
+  },
+  "DLTH": {
+    "ticker": "DLTH",
+    "name": "Duluth Holdings Inc.",
+    "mcap": 161128784.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.0119331,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "VCYT": {
+    "ticker": "VCYT",
+    "name": "Veracyte, Inc.",
+    "mcap": 4279279872.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.249909,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "QUIK": {
+    "ticker": "QUIK",
+    "name": "QuickLogic Corporation",
+    "mcap": 388155584.0,
+    "band": "R2000 inclusion band",
+    "p_b": 16.008772,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "BGS": {
+    "ticker": "BGS",
+    "name": "B&G Foods, Inc.",
+    "mcap": 315739648.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.78269625,
+    "sector": "Consumer Defensive",
+    "score": 9.0
+  },
+  "CNO": {
+    "ticker": "CNO",
+    "name": "CNO Financial Group, Inc.",
+    "mcap": 4744904704.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.9082481,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "CVEO": {
+    "ticker": "CVEO",
+    "name": "Civeo Corporation (Canada)",
+    "mcap": 367585312.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.286745,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "FRST": {
+    "ticker": "FRST",
+    "name": "Primis Financial Corp.",
+    "mcap": 382728512.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.8959118,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "ATOM": {
+    "ticker": "ATOM",
+    "name": "Atomera Incorporated",
+    "mcap": 348444000.0,
+    "band": "R2000 inclusion band",
+    "p_b": 8.595988,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "HRB": {
+    "ticker": "HRB",
+    "name": "H&R Block, Inc.",
+    "mcap": 4358016000.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": -179.0625,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "MHO": {
+    "ticker": "MHO",
+    "name": "M/I Homes, Inc.",
+    "mcap": 3841707776.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.1951197,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "TTEC": {
+    "ticker": "TTEC",
+    "name": "TTEC Holdings, Inc.",
+    "mcap": 104128936.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.0929521,
+    "sector": "Technology",
+    "score": 6.0
+  },
+  "CATY": {
+    "ticker": "CATY",
+    "name": "Cathay General Bancorp",
+    "mcap": 3961126400.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.3250364,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "ASB": {
+    "ticker": "ASB",
+    "name": "Associated Banc-Corp",
+    "mcap": 5516376576.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 0.9899648,
+    "sector": "Financial Services",
+    "score": 10.0
+  },
+  "CRC": {
+    "ticker": "CRC",
+    "name": "California Resources Corporatio",
+    "mcap": 4910358016.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.6827947,
+    "sector": "Energy",
+    "score": 8.0
+  },
+  "ANF": {
+    "ticker": "ANF",
+    "name": "Abercrombie & Fitch Company",
+    "mcap": 3876222464.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.892477,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "NJR": {
+    "ticker": "NJR",
+    "name": "NewJersey Resources Corporation",
+    "mcap": 5561787904.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.0987089,
+    "sector": "Utilities",
+    "score": 8.0
+  },
+  "RC": {
+    "ticker": "RC",
+    "name": "Ready Capital Corporation",
+    "mcap": 289693376.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.23546824,
+    "sector": "Real Estate",
+    "score": 9.0
+  },
+  "KRG": {
+    "ticker": "KRG",
+    "name": "Kite Realty Group Trust",
+    "mcap": 5802939392.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.9833713,
+    "sector": "Real Estate",
+    "score": 8.0
+  },
+  "FBP": {
+    "ticker": "FBP",
+    "name": "First BanCorp. New",
+    "mcap": 3898045696.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.9679812,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "SKY": {
+    "ticker": "SKY",
+    "name": "Champion Homes, Inc.",
+    "mcap": 4574888960.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.9056551,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "UBSI": {
+    "ticker": "UBSI",
+    "name": "United Bankshares, Inc.",
+    "mcap": 6121013248.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.1279265,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "RNST": {
+    "ticker": "RNST",
+    "name": "Renasant Corporation",
+    "mcap": 3846824448.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.0013691,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "BBWI": {
+    "ticker": "BBWI",
+    "name": "Bath & Body Works, Inc.",
+    "mcap": 4144110592.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": -3.64733,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "ESNT": {
+    "ticker": "ESNT",
+    "name": "Essent Group Ltd.",
+    "mcap": 5386334720.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 0.95498735,
+    "sector": "Financial Services",
+    "score": 10.0
+  },
+  "NXDT": {
+    "ticker": "NXDT",
+    "name": "NexPoint Diversified Real Estat",
+    "mcap": 234308720.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.3243824,
+    "sector": "Real Estate",
+    "score": 9.0
+  },
+  "ALH": {
+    "ticker": "ALH",
+    "name": "Alliance Laundry Holdings Inc.",
+    "mcap": 5340586496.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 12.391705,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "ANIK": {
+    "ticker": "ANIK",
+    "name": "Anika Therapeutics Inc.",
+    "mcap": 191867104.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.4384041,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "APLE": {
+    "ticker": "APLE",
+    "name": "Apple Hospitality REIT, Inc.",
+    "mcap": 3916360704.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.2526426,
+    "sector": "Real Estate",
+    "score": 8.0
+  },
+  "BOC": {
+    "ticker": "BOC",
+    "name": "Boston Omaha Corporation",
+    "mcap": 399513920.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.79132795,
+    "sector": "Industrials",
+    "score": 9.0
+  },
+  "BPRN": {
+    "ticker": "BPRN",
+    "name": "Princeton Bancorp, Inc.",
+    "mcap": 261207600.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.9526293,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "CHCI": {
+    "ticker": "CHCI",
+    "name": "Comstock Holding Companies, Inc",
+    "mcap": 153888416.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.1635656,
+    "sector": "Real Estate",
+    "score": 7.0
+  },
+  "EE": {
+    "ticker": "EE",
+    "name": "Excelerate Energy, Inc.",
+    "mcap": 3934974720.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.6047549,
+    "sector": "Energy",
+    "score": 8.0
+  },
+  "ELDN": {
+    "ticker": "ELDN",
+    "name": "Eledon Pharmaceuticals, Inc.",
+    "mcap": 302576288.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.9652042,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "EMBC": {
+    "ticker": "EMBC",
+    "name": "Embecta Corp.",
+    "mcap": 184509072.0,
+    "band": "R2000 inclusion band",
+    "p_b": -0.29470292,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "FATE": {
+    "ticker": "FATE",
+    "name": "Fate Therapeutics, Inc.",
+    "mcap": 243608688.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.3518758,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "FF": {
+    "ticker": "FF",
+    "name": "FutureFuel Corp.",
+    "mcap": 185981264.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.2021548,
+    "sector": "Basic Materials",
+    "score": 7.0
+  },
+  "FMAO": {
+    "ticker": "FMAO",
+    "name": "Farmers & Merchants Bancorp, In",
+    "mcap": 397074560.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.0436041,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "FWDI": {
+    "ticker": "FWDI",
+    "name": "Forward Industries, Inc.",
+    "mcap": 325251776.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.61029613,
+    "sector": "Consumer Cyclical",
+    "score": 9.0
+  },
+  "GEVO": {
+    "ticker": "GEVO",
+    "name": "Gevo, Inc.",
+    "mcap": 374853440.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.81567794,
+    "sector": "Basic Materials",
+    "score": 9.0
+  },
+  "IMMR": {
+    "ticker": "IMMR",
+    "name": "Immersion Corporation",
+    "mcap": 221111008.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.74753803,
+    "sector": "Technology",
+    "score": 9.0
+  },
+  "IMRX": {
+    "ticker": "IMRX",
+    "name": "Immuneering Corporation",
+    "mcap": 285315520.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.3815789,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "INHD": {
+    "ticker": "INHD",
+    "name": "Inno Holdings Inc.",
+    "mcap": 178522368.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.3548451,
+    "sector": "Basic Materials",
+    "score": 9.0
+  },
+  "JOE": {
+    "ticker": "JOE",
+    "name": "St. Joe Company (The)",
+    "mcap": 3785598720.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.950079,
+    "sector": "Real Estate",
+    "score": 8.0
+  },
+  "KELYA": {
+    "ticker": "KELYA",
+    "name": "Kelly Services, Inc.",
+    "mcap": 393842016.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.4055839,
+    "sector": "Industrials",
+    "score": 9.0
+  },
+  "LB": {
+    "ticker": "LB",
+    "name": "LandBridge Company LLC",
+    "mcap": 4925237760.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 5.1680946,
+    "sector": "Energy",
+    "score": 8.0
+  },
+  "MC": {
+    "ticker": "MC",
+    "name": "Moelis & Company",
+    "mcap": 4996601344.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 10.258055,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "MTH": {
+    "ticker": "MTH",
+    "name": "Meritage Homes Corporation",
+    "mcap": 5058814464.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 0.99167174,
+    "sector": "Consumer Cyclical",
+    "score": 10.0
+  },
+  "NECB": {
+    "ticker": "NECB",
+    "name": "NorthEast Community Bancorp, In",
+    "mcap": 356087744.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.89533544,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "ORBS": {
+    "ticker": "ORBS",
+    "name": "Eightco Holdings Inc.",
+    "mcap": 399651872.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.1771429,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "OTLK": {
+    "ticker": "OTLK",
+    "name": "Outlook Therapeutics, Inc.",
+    "mcap": 234767648.0,
+    "band": "R2000 inclusion band",
+    "p_b": -5.703971,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "PAL": {
+    "ticker": "PAL",
+    "name": "Proficient Auto Logistics, Inc.",
+    "mcap": 208830960.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.6830775,
+    "sector": "Industrials",
+    "score": 9.0
+  },
+  "PCYO": {
+    "ticker": "PCYO",
+    "name": "Pure Cycle Corporation",
+    "mcap": 266830256.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.794456,
+    "sector": "Utilities",
+    "score": 7.0
+  },
+  "PECO": {
+    "ticker": "PECO",
+    "name": "Phillips Edison & Company, Inc.",
+    "mcap": 5644230144.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.2493088,
+    "sector": "Real Estate",
+    "score": 8.0
+  },
+  "PPIH": {
+    "ticker": "PPIH",
+    "name": "Perma-Pipe International Holdin",
+    "mcap": 236051952.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.5583444,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "PSMT": {
+    "ticker": "PSMT",
+    "name": "PriceSmart, Inc.",
+    "mcap": 5623668224.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.1147485,
+    "sector": "Consumer Defensive",
+    "score": 8.0
+  },
+  "RAIL": {
+    "ticker": "RAIL",
+    "name": "Freightcar America, Inc.",
+    "mcap": 178358768.0,
+    "band": "R2000 inclusion band",
+    "p_b": -2.7235534,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "RVSB": {
+    "ticker": "RVSB",
+    "name": "Riverview Bancorp Inc",
+    "mcap": 117652688.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.8189777,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "SDHC": {
+    "ticker": "SDHC",
+    "name": "Smith Douglas Homes Corp.",
+    "mcap": 114774784.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.450422,
+    "sector": "Real Estate",
+    "score": 6.0
+  },
+  "SITC": {
+    "ticker": "SITC",
+    "name": "SITE Centers Corp.",
+    "mcap": 250305136.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.74507964,
+    "sector": "Real Estate",
+    "score": 9.0
+  },
+  "SMTI": {
+    "ticker": "SMTI",
+    "name": "Sanara MedTech Inc.",
+    "mcap": 201790608.0,
+    "band": "R2000 inclusion band",
+    "p_b": 28.709257,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "SPRB": {
+    "ticker": "SPRB",
+    "name": "Spruce Biosciences, Inc.",
+    "mcap": 144109280.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 2.0737455,
+    "sector": "Healthcare",
+    "score": 6.0
+  },
+  "TBRG": {
+    "ticker": "TBRG",
+    "name": "TruBridge, Inc.",
+    "mcap": 391327456.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.148209,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "TLYS": {
+    "ticker": "TLYS",
+    "name": "Tilly's, Inc.",
+    "mcap": 135063696.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.7365737,
+    "sector": "Consumer Cyclical",
+    "score": 6.0
+  },
+  "TWIN": {
+    "ticker": "TWIN",
+    "name": "Twin Disc, Incorporated",
+    "mcap": 315283008.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.7084799,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "TZOO": {
+    "ticker": "TZOO",
+    "name": "Travelzoo",
+    "mcap": 112665608.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": -14.364351,
+    "sector": "Communication Services",
+    "score": 6.0
+  },
+  "USGO": {
+    "ticker": "USGO",
+    "name": "U.S. GoldMining Inc.",
+    "mcap": 112844848.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 14.772726,
+    "sector": "Basic Materials",
+    "score": 6.0
+  },
+  "VYGR": {
+    "ticker": "VYGR",
+    "name": "Voyager Therapeutics, Inc.",
+    "mcap": 224767200.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.2916666,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "WYY": {
+    "ticker": "WYY",
+    "name": "WidePoint Corporation",
+    "mcap": 134070176.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 11.169687,
+    "sector": "Technology",
+    "score": 6.0
+  },
+  "XFOR": {
+    "ticker": "XFOR",
+    "name": "X4 Pharmaceuticals, Inc.",
+    "mcap": 398029088.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.3628218,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "CMTG": {
+    "ticker": "CMTG",
+    "name": "Claros Mortgage Trust, Inc.",
+    "mcap": 382797248.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.25641024,
+    "sector": "Real Estate",
+    "score": 9.0
+  },
+  "CZFS": {
+    "ticker": "CZFS",
+    "name": "Citizens Financial Services, In",
+    "mcap": 326543456.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.95042306,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "EML": {
+    "ticker": "EML",
+    "name": "Eastern Company (The)",
+    "mcap": 142812048.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.1468422,
+    "sector": "Industrials",
+    "score": 6.0
+  },
+  "FHTX": {
+    "ticker": "FHTX",
+    "name": "Foghorn Therapeutics Inc.",
+    "mcap": 243662768.0,
+    "band": "R2000 inclusion band",
+    "p_b": -3.1898541,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "FNRN": {
+    "ticker": "FNRN",
+    "name": "First Northern Community Bancor",
+    "mcap": 301888896.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.4122342,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "FUSB": {
+    "ticker": "FUSB",
+    "name": "First US Bancshares, Inc.",
+    "mcap": 91859904.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.88372344,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "GWRS": {
+    "ticker": "GWRS",
+    "name": "Global Water Resources, Inc.",
+    "mcap": 203934176.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.4214482,
+    "sector": "Utilities",
+    "score": 7.0
+  },
+  "HLLY": {
+    "ticker": "HLLY",
+    "name": "Holley Inc.",
+    "mcap": 298517216.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.6465068,
+    "sector": "Consumer Cyclical",
+    "score": 9.0
+  },
+  "IMUX": {
+    "ticker": "IMUX",
+    "name": "Immunic, Inc.",
+    "mcap": 193425056.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.2789336,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "KEQU": {
+    "ticker": "KEQU",
+    "name": "Kewaunee Scientific Corporation",
+    "mcap": 107575392.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.5218978,
+    "sector": "Consumer Cyclical",
+    "score": 6.0
+  },
+  "LTRX": {
+    "ticker": "LTRX",
+    "name": "Lantronix, Inc.",
+    "mcap": 296201056.0,
+    "band": "R2000 inclusion band",
+    "p_b": 3.550802,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "LVWR": {
+    "ticker": "LVWR",
+    "name": "LiveWire Group, Inc.",
+    "mcap": 231380864.0,
+    "band": "R2000 inclusion band",
+    "p_b": 8.188406,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "NREF": {
+    "ticker": "NREF",
+    "name": "NexPoint Real Estate Finance, I",
+    "mcap": 342517632.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.71500695,
+    "sector": "Real Estate",
+    "score": 9.0
+  },
+  "OABI": {
+    "ticker": "OABI",
+    "name": "OmniAb, Inc.",
+    "mcap": 339235808.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.2899668,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "PAMT": {
+    "ticker": "PAMT",
+    "name": "PAMT CORP",
+    "mcap": 283780864.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.3486613,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "PLX": {
+    "ticker": "PLX",
+    "name": "Protalix BioTherapeutics, Inc. ",
+    "mcap": 178869040.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.6618705,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "QNBC": {
+    "ticker": "QNBC",
+    "name": "QNB Corp.",
+    "mcap": 216168096.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.2537802,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "QUAD": {
+    "ticker": "QUAD",
+    "name": "Quad Graphics, Inc",
+    "mcap": 392883552.0,
+    "band": "R2000 inclusion band",
+    "p_b": 3.1064003,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "RBKB": {
+    "ticker": "RBKB",
+    "name": "Rhinebeck Bancorp, Inc.",
+    "mcap": 195258880.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.3797162,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "RDN": {
+    "ticker": "RDN",
+    "name": "Radian Group Inc.",
+    "mcap": 4614239744.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 0.97294265,
+    "sector": "Financial Services",
+    "score": 10.0
+  },
+  "SIGI": {
+    "ticker": "SIGI",
+    "name": "Selective Insurance Group, Inc.",
+    "mcap": 5526555136.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.6314375,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "SKT": {
+    "ticker": "SKT",
+    "name": "Tanger Inc.",
+    "mcap": 4495092224.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 6.7037864,
+    "sector": "Real Estate",
+    "score": 8.0
+  },
+  "SLM": {
+    "ticker": "SLM",
+    "name": "SLM Corporation",
+    "mcap": 4343296512.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.085673,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "SLN": {
+    "ticker": "SLN",
+    "name": "Silence Therapeutics Plc - Amer",
+    "mcap": 327335840.0,
+    "band": "R2000 inclusion band",
+    "p_b": 6.625239,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "SON": {
+    "ticker": "SON",
+    "name": "Sonoco Products Company",
+    "mcap": 5010664960.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.3832256,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "SPHR": {
+    "ticker": "SPHR",
+    "name": "Sphere Entertainment Co.",
+    "mcap": 5631187456.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.5009935,
+    "sector": "Communication Services",
+    "score": 8.0
+  },
+  "SPWR": {
+    "ticker": "SPWR",
+    "name": "SunPower Inc.",
+    "mcap": 113710176.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": -1.5260274,
+    "sector": "Technology",
+    "score": 6.0
+  },
+  "STEX": {
+    "ticker": "STEX",
+    "name": "Streamex Corp.",
+    "mcap": 195338576.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.56275356,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "TFX": {
+    "ticker": "TFX",
+    "name": "Teleflex Incorporated",
+    "mcap": 5622317056.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.8225392,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "UFPI": {
+    "ticker": "UFPI",
+    "name": "UFP Industries, Inc.",
+    "mcap": 4890058752.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.5999852,
+    "sector": "Basic Materials",
+    "score": 8.0
+  },
+  "UIS": {
+    "ticker": "UIS",
+    "name": "Unisys Corporation New",
+    "mcap": 258084288.0,
+    "band": "R2000 inclusion band",
+    "p_b": -0.8943911,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "ULBI": {
+    "ticker": "ULBI",
+    "name": "Ultralife Corporation",
+    "mcap": 107602080.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.8301208,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "ULH": {
+    "ticker": "ULH",
+    "name": "Universal Logistics Holdings, I",
+    "mcap": 391589952.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.72361374,
+    "sector": "Industrials",
+    "score": 9.0
+  },
+  "VNDA": {
+    "ticker": "VNDA",
+    "name": "Vanda Pharmaceuticals Inc.",
+    "mcap": 348786272.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.0476879,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "VRNS": {
+    "ticker": "VRNS",
+    "name": "Varonis Systems, Inc.",
+    "mcap": 3920405248.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 8.450633,
+    "sector": "Technology",
+    "score": 8.0
+  },
+  "VUZI": {
+    "ticker": "VUZI",
+    "name": "Vuzix Corporation",
+    "mcap": 275253824.0,
+    "band": "R2000 inclusion band",
+    "p_b": 10.888158,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "WNEB": {
+    "ticker": "WNEB",
+    "name": "Western New England Bancorp, In",
+    "mcap": 275312800.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.1076922,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "ACOG": {
+    "ticker": "ACOG",
+    "name": "Alpha Cognition Inc.",
+    "mcap": 150459056.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.618416,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "ADCT": {
+    "ticker": "ADCT",
+    "name": "ADC Therapeutics SA",
+    "mcap": 138638368.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": -0.64042306,
+    "sector": "Healthcare",
+    "score": 6.0
+  },
+  "AKBA": {
+    "ticker": "AKBA",
+    "name": "Akebia Therapeutics, Inc.",
+    "mcap": 287036320.0,
+    "band": "R2000 inclusion band",
+    "p_b": 10.490197,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "ALCO": {
+    "ticker": "ALCO",
+    "name": "Alico, Inc.",
+    "mcap": 299174624.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.936167,
+    "sector": "Consumer Defensive",
+    "score": 7.0
+  },
+  "ALTG": {
+    "ticker": "ALTG",
+    "name": "Alta Equipment Group Inc.",
+    "mcap": 249547600.0,
+    "band": "R2000 inclusion band",
+    "p_b": -8.816092,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "ALXO": {
+    "ticker": "ALXO",
+    "name": "ALX Oncology Holdings Inc.",
+    "mcap": 205881248.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.36,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "AVNW": {
+    "ticker": "AVNW",
+    "name": "Aviat Networks, Inc.",
+    "mcap": 259306848.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.95260733,
+    "sector": "Technology",
+    "score": 9.0
+  },
+  "BDSX": {
+    "ticker": "BDSX",
+    "name": "Biodesix, Inc.",
+    "mcap": 174081136.0,
+    "band": "R2000 inclusion band",
+    "p_b": 18.595133,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "BOOT": {
+    "ticker": "BOOT",
+    "name": "Boot Barn Holdings, Inc.",
+    "mcap": 5287136768.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.0143785,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "BRCC": {
+    "ticker": "BRCC",
+    "name": "BRC Inc.",
+    "mcap": 153275248.0,
+    "band": "R2000 inclusion band",
+    "p_b": 3.2587063,
+    "sector": "Consumer Defensive",
+    "score": 7.0
+  },
+  "BYFC": {
+    "ticker": "BYFC",
+    "name": "Broadway Financial Corporation",
+    "mcap": 91856264.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.7827324,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "CABO": {
+    "ticker": "CABO",
+    "name": "Cable One, Inc.",
+    "mcap": 232530256.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.15722391,
+    "sector": "Communication Services",
+    "score": 9.0
+  },
+  "CIA": {
+    "ticker": "CIA",
+    "name": "Citizens, Inc.",
+    "mcap": 295738336.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.2336566,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "CNDT": {
+    "ticker": "CNDT",
+    "name": "Conduent Incorporated",
+    "mcap": 217135536.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.338737,
+    "sector": "Technology",
+    "score": 9.0
+  },
+  "CNTN": {
+    "ticker": "CNTN",
+    "name": "Canton Strategic Holdings, Inc.",
+    "mcap": 233846336.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.40400386,
+    "sector": "Healthcare",
+    "score": 9.0
+  },
+  "CROX": {
+    "ticker": "CROX",
+    "name": "Crocs, Inc.",
+    "mcap": 6213690880.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 4.4193525,
+    "sector": "Consumer Cyclical",
+    "score": 8.0
+  },
+  "DMAC": {
+    "ticker": "DMAC",
+    "name": "DiaMedica Therapeutics Inc.",
+    "mcap": 315217568.0,
+    "band": "R2000 inclusion band",
+    "p_b": 6.6704674,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "DVLT": {
+    "ticker": "DVLT",
+    "name": "Datavault AI Inc.",
+    "mcap": 347785952.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.1418539,
+    "sector": "Technology",
+    "score": 7.0
+  },
+  "ELMD": {
+    "ticker": "ELMD",
+    "name": "Electromed, Inc.",
+    "mcap": 320272864.0,
+    "band": "R2000 inclusion band",
+    "p_b": 6.5139775,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "ENVA": {
+    "ticker": "ENVA",
+    "name": "Enova International, Inc.",
+    "mcap": 5040435712.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.600825,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "EU": {
+    "ticker": "EU",
+    "name": "enCore Energy Corp.",
+    "mcap": 320484448.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.2576219,
+    "sector": "Energy",
+    "score": 7.0
+  },
+  "FC": {
+    "ticker": "FC",
+    "name": "Franklin Covey Company",
+    "mcap": 269298688.0,
+    "band": "R2000 inclusion band",
+    "p_b": 7.02647,
+    "sector": "Consumer Defensive",
+    "score": 7.0
+  },
+  "FDBC": {
+    "ticker": "FDBC",
+    "name": "Fidelity D & D Bancorp, Inc.",
+    "mcap": 288343264.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.1785781,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "FLG": {
+    "ticker": "FLG",
+    "name": "Flagstar Bank, N.A.",
+    "mcap": 6106341376.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 0.8015977,
+    "sector": "Financial Services",
+    "score": 10.0
+  },
+  "FNWD": {
+    "ticker": "FNWD",
+    "name": "Finward Bancorp",
+    "mcap": 148041696.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.8588078,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "FRAF": {
+    "ticker": "FRAF",
+    "name": "Franklin Financial Services Cor",
+    "mcap": 276096832.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.5446296,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "GCO": {
+    "ticker": "GCO",
+    "name": "Genesco Inc.",
+    "mcap": 396185696.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.718024,
+    "sector": "Consumer Cyclical",
+    "score": 9.0
+  },
+  "GHC": {
+    "ticker": "GHC",
+    "name": "Graham Holdings Company",
+    "mcap": 4930146816.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.0417081,
+    "sector": "Consumer Defensive",
+    "score": 8.0
+  },
+  "HASI": {
+    "ticker": "HASI",
+    "name": "HA Sustainable Infrastructure C",
+    "mcap": 4991909888.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.0335279,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "HOFT": {
+    "ticker": "HOFT",
+    "name": "Hooker Furnishings Corporation",
+    "mcap": 169718080.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.9918393,
+    "sector": "Consumer Cyclical",
+    "score": 9.0
+  },
+  "HWC": {
+    "ticker": "HWC",
+    "name": "Hancock Whitney Corporation",
+    "mcap": 5700535296.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.2897303,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "INDB": {
+    "ticker": "INDB",
+    "name": "Independent Bank Corp.",
+    "mcap": 3910646784.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.1114464,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "INR": {
+    "ticker": "INR",
+    "name": "Infinity Natural Resources, Inc",
+    "mcap": 239833072.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.3291073,
+    "sector": "Energy",
+    "score": 7.0
+  },
+  "JYNT": {
+    "ticker": "JYNT",
+    "name": "The Joint Corp.",
+    "mcap": 133145400.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 8.272808,
+    "sector": "Healthcare",
+    "score": 6.0
+  },
+  "KG": {
+    "ticker": "KG",
+    "name": "Kestrel Group, Ltd.",
+    "mcap": 93810120.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.77250177,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "KNF": {
+    "ticker": "KNF",
+    "name": "Knife Riv Holding Co.",
+    "mcap": 4894452224.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.1388533,
+    "sector": "Basic Materials",
+    "score": 8.0
+  },
+  "LOPE": {
+    "ticker": "LOPE",
+    "name": "Grand Canyon Education, Inc.",
+    "mcap": 3754159104.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 5.3713956,
+    "sector": "Consumer Defensive",
+    "score": 8.0
+  },
+  "LPRO": {
+    "ticker": "LPRO",
+    "name": "Open Lending Corporation",
+    "mcap": 367982912.0,
+    "band": "R2000 inclusion band",
+    "p_b": 4.8822603,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "LRMR": {
+    "ticker": "LRMR",
+    "name": "Larimar Therapeutics, Inc.",
+    "mcap": 378133888.0,
+    "band": "R2000 inclusion band",
+    "p_b": 2.4042273,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "MBI": {
+    "ticker": "MBI",
+    "name": "MBIA Inc.",
+    "mcap": 309678944.0,
+    "band": "R2000 inclusion band",
+    "p_b": -0.13564464,
+    "sector": "Financial Services",
+    "score": 7.0
+  },
+  "MGY": {
+    "ticker": "MGY",
+    "name": "Magnolia Oil & Gas Corporation",
+    "mcap": 5030349312.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.4046254,
+    "sector": "Energy",
+    "score": 8.0
+  },
+  "MXCT": {
+    "ticker": "MXCT",
+    "name": "MaxCyte, Inc.",
+    "mcap": 129617224.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 0.77217615,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "NAGE": {
+    "ticker": "NAGE",
+    "name": "Niagen Bioscience, Inc.",
+    "mcap": 278755136.0,
+    "band": "R2000 inclusion band",
+    "p_b": 3.3849127,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "NC": {
+    "ticker": "NC",
+    "name": "NACCO Industries, Inc.",
+    "mcap": 376050208.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.8603022,
+    "sector": "Energy",
+    "score": 9.0
+  },
+  "OGS": {
+    "ticker": "OGS",
+    "name": "ONE Gas, Inc.",
+    "mcap": 4817652224.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.3664199,
+    "sector": "Utilities",
+    "score": 8.0
+  },
+  "PBF": {
+    "ticker": "PBF",
+    "name": "PBF Energy Inc.",
+    "mcap": 4411722240.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 0.79906577,
+    "sector": "Energy",
+    "score": 10.0
+  },
+  "POWW": {
+    "ticker": "POWW",
+    "name": "Outdoor Holding Company",
+    "mcap": 250997872.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.057835,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "RDNT": {
+    "ticker": "RDNT",
+    "name": "RadNet, Inc.",
+    "mcap": 4225804288.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 3.8164904,
+    "sector": "Healthcare",
+    "score": 8.0
+  },
+  "RNGR": {
+    "ticker": "RNGR",
+    "name": "Ranger Energy Services, Inc.",
+    "mcap": 363077600.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.2094349,
+    "sector": "Energy",
+    "score": 7.0
+  },
+  "RRGB": {
+    "ticker": "RRGB",
+    "name": "Red Robin Gourmet Burgers, Inc.",
+    "mcap": 115807824.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": -1.0713675,
+    "sector": "Consumer Cyclical",
+    "score": 6.0
+  },
+  "RXO": {
+    "ticker": "RXO",
+    "name": "RXO, Inc.",
+    "mcap": 4187326720.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.773954,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "SGC": {
+    "ticker": "SGC",
+    "name": "Superior Group of Companies, In",
+    "mcap": 214342816.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.1119221,
+    "sector": "Consumer Cyclical",
+    "score": 7.0
+  },
+  "SLG": {
+    "ticker": "SLG",
+    "name": "SL Green Realty Corp",
+    "mcap": 3893261568.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.0849786,
+    "sector": "Real Estate",
+    "score": 8.0
+  },
+  "SLNCF": {
+    "ticker": "SLNCF",
+    "name": "Silence Therapeutics, Plc.",
+    "mcap": 313165504.0,
+    "band": "R2000 inclusion band",
+    "p_b": 6.3384323,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "SLQT": {
+    "ticker": "SLQT",
+    "name": "SelectQuote, Inc.",
+    "mcap": 174302144.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.45297894,
+    "sector": "Financial Services",
+    "score": 9.0
+  },
+  "SMHI": {
+    "ticker": "SMHI",
+    "name": "SEACOR Marine Holdings Inc.",
+    "mcap": 180776000.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.7303739,
+    "sector": "Industrials",
+    "score": 9.0
+  },
+  "SR": {
+    "ticker": "SR",
+    "name": "Spire Inc.",
+    "mcap": 4554949120.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.3323305,
+    "sector": "Utilities",
+    "score": 8.0
+  },
+  "SSTI": {
+    "ticker": "SSTI",
+    "name": "SoundThinking, Inc.",
+    "mcap": 101558872.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 1.3932824,
+    "sector": "Technology",
+    "score": 6.0
+  },
+  "STEP": {
+    "ticker": "STEP",
+    "name": "StepStone Group Inc.",
+    "mcap": 5696832000.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": -8.821234,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "SXI": {
+    "ticker": "SXI",
+    "name": "Standex International Corporati",
+    "mcap": 3818260224.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 5.0357103,
+    "sector": "Industrials",
+    "score": 8.0
+  },
+  "TCBI": {
+    "ticker": "TCBI",
+    "name": "Texas Capital Bancshares, Inc.",
+    "mcap": 4326479872.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.3160377,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "TENX": {
+    "ticker": "TENX",
+    "name": "Tenax Therapeutics, Inc.",
+    "mcap": 318301920.0,
+    "band": "R2000 inclusion band",
+    "p_b": 5.244755,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "TG": {
+    "ticker": "TG",
+    "name": "Tredegar Corporation",
+    "mcap": 271508608.0,
+    "band": "R2000 inclusion band",
+    "p_b": 1.2236553,
+    "sector": "Industrials",
+    "score": 7.0
+  },
+  "UCB": {
+    "ticker": "UCB",
+    "name": "United Community Banks, Inc.",
+    "mcap": 3934096384.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 1.0757794,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "USNA": {
+    "ticker": "USNA",
+    "name": "USANA Health Sciences, Inc.",
+    "mcap": 348581664.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.6410865,
+    "sector": "Consumer Defensive",
+    "score": 9.0
+  },
+  "VCTR": {
+    "ticker": "VCTR",
+    "name": "Victory Capital Holdings, Inc. ",
+    "mcap": 5440831488.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 2.3062446,
+    "sector": "Financial Services",
+    "score": 8.0
+  },
+  "VFF": {
+    "ticker": "VFF",
+    "name": "Village Farms International, In",
+    "mcap": 232659248.0,
+    "band": "R2000 inclusion band",
+    "p_b": 0.7368827,
+    "sector": "Consumer Defensive",
+    "score": 9.0
+  },
+  "VSTM": {
+    "ticker": "VSTM",
+    "name": "Verastem, Inc.",
+    "mcap": 362039392.0,
+    "band": "R2000 inclusion band",
+    "p_b": 5.597826,
+    "sector": "Healthcare",
+    "score": 7.0
+  },
+  "WATT": {
+    "ticker": "WATT",
+    "name": "Energous Corporation",
+    "mcap": 138792768.0,
+    "band": "below R2000 floor (deletion risk)",
+    "p_b": 4.4419017,
+    "sector": "Technology",
+    "score": 6.0
+  },
+  "XMTR": {
+    "ticker": "XMTR",
+    "name": "Xometry, Inc.",
+    "mcap": 5153333248.0,
+    "band": "R1000/R2000 boundary",
+    "p_b": 17.367344,
+    "sector": "Industrials",
+    "score": 8.0
+  }
+}
