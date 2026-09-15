@@ -249,3 +249,100 @@ returns — because insiders act on the turn before it is reportable.** An engin
 that systematically watched *second derivatives*, *discount removals*, and
 *revealed-preference confidence* would catch the re-rate one stage earlier than
 one watching levels and single prints.
+
+---
+
+## 6. Evidence — is any of this actually documented?
+
+Fair test: separate what published research VALIDATES from what is my
+extrapolation. The core thesis (cheap + improving fundamentals + revealed
+preference) is among the most-replicated ideas in the literature; several §4
+nuances are plausible extensions of evidenced mechanisms; a few are unvalidated.
+
+### Strongly evidenced (the spine of the engine)
+
+- **Piotroski F-score (2000) — this IS proposal P1, published.** Among cheap
+  (high book/market) stocks, those with *improving fundamentals* (a 9-point
+  score: rising ROA, positive & rising CFO, CFO > NI [low accruals], falling
+  leverage, rising current ratio, no dilution, rising margin, rising asset
+  turnover) beat the rest of the value universe by **~7.5%/yr**, and the
+  long-short spread ~23%. This is almost exactly "cheap × turn" and it directly
+  supports N1 (improving fundamentals), N2 (CFO>NI accruals) and the disbelief
+  gate (it only works *within* cheap stocks). **High confidence.**
+- **Value + Momentum (Asness–Moskowitz–Pedersen 2013, "…Everywhere").** Value
+  and momentum are negatively correlated; combining them dominates either alone,
+  across every asset class and country. Direct evidence for TURN (momentum /
+  improvement) × DISBELIEF (cheap). **High.**
+- **Accrual anomaly (Sloan 1996).** Low-accrual firms beat high-accrual by
+  ~10%/yr; the market over-weights the accrual component of earnings. Validates
+  N2 (earnings-quality inflection). Replicated for 25+ years. **High.**
+- **Gross profitability (Novy-Marx 2013).** Gross profit/assets predicts
+  returns, and combined with value is especially strong — supports the quality
+  sleeve and the margin/ROIC lens. **High.**
+- **Insider purchases (Lakonishok–Lee 2001; Jeng–Metrick–Zeckhauser 2003).**
+  Insider BUYS predict ~6–11%/yr abnormal returns, strongest in small caps and
+  CLUSTER buys — validates the `governance_score` design (cluster > single,
+  size-weighted). **High.**
+- **13D / activism (Brav–Jiang–Partnoy–Thomas 2008).** 13D filings earn ~7%
+  abnormal around announcement with no reversal; target operations improve.
+  Validates the value-unlock activist leg. **High.**
+- **Spinoffs (Cusatis–Miles–Woolridge 1993; McConnell–Ovtchinnikov).** Spun
+  units AND parents outperform ~10–20% over three years. Validates the
+  spin/SOTP sleeve. **High.**
+- **Buyback announcements (Ikenberry–Lakonishok–Vermaelen 1995).** Announcers
+  earn ~12% over four years, concentrated in VALUE stocks — validates the
+  cannibal sleeve and P2 (buyback initiation, strongest when cheap). **High.**
+- **Graham net-nets (Oppenheimer 1986; Xiao–Arnold 2014).** NCAV < mcap baskets
+  returned ~29%/yr (1970–83) and outperformed in later out-of-sample tests —
+  validates the net-net engine; NNWC haircuts are the risk refinement. **High.**
+- **Index inclusion (Shleifer 1986; Harris–Gurel).** Additions get a persistent
+  demand bump — validates the mandate/crossover mechanism. **High.**
+- **Post-earnings drift / estimate revisions (Bernard–Thomas 1989; Chan–
+  Jegadeesh–Lakonishok 1996).** Positive surprises and rising estimates predict
+  continued drift — validates the "recognition" stage and using the streak of
+  improving prints. **High.**
+- **Low investment / capex (Titman–Wei–Xie 2004; Cooper–Gulen–Schill 2008).**
+  Low-capex firms outperform high-capex — supports P4 (a capex-starved cyclical
+  is the leading edge). **Medium–high.**
+
+### Plausible extensions of evidenced mechanisms (my framing, indirectly supported)
+
+- **N1 second-derivative-of-decline** — not a named anomaly, but it is the
+  logical sharpening of Piotroski/PEAD (improving fundamentals) applied to the
+  *rate* of improvement; the fundamental-momentum literature supports the
+  direction. **Medium — worth an in-house test.**
+- **N5 signal sequencing** — the components (insider→drift→revisions→price) are
+  each evidenced; the *ordering* as an alpha is intuitive but not formally
+  studied here. **Medium.**
+- **N4 refinancing / distress resolution** — Campbell–Hilscher–Szilagyi (2008)
+  show distress is priced; the *resolution* premium is documented for
+  emergences and Piotroski-on-distressed, less so for pure refinancing.
+  **Medium.**
+- **N6 operating-KPI lead, N7 disclosure-confidence** — consistent with PEAD and
+  voluntary-disclosure research (managers disclose good news early), but our
+  specific KPI-mining is untested. **Medium.**
+
+### Weak / unvalidated (flag honestly)
+
+- **N8 overhang exhaustion timing, N10 repeat-unlocker pedigree, N11
+  incremental-margin ratchet, N12 optionality activation** — each is a
+  reasonable prior, none has direct published support I can point to; they are
+  hypotheses to test, not established facts. **Low — treat as candidates.**
+
+### The honest bottom line + how to get OUR OWN evidence
+
+The engine's spine — **cheap value with improving fundamentals, corroborated by
+revealed preference (insiders, buybacks, activists, spins)** — is not a
+supposition: it is Piotroski, Sloan, value+momentum, Ikenberry, Brav, Lakonishok
+stacked together, some of the most replicated results in the field. My novel
+second-derivative / sequencing / removal framings are *extensions* of those
+mechanisms and should be labelled as hypotheses until tested.
+
+To get evidence specific to THIS engine we need a proper **backtest**, which
+needs a panel of historical snapshots + forward returns. We currently hold a
+cross-section plus multi-year EDGAR fundamentals but only TRAILING price
+momentum — enough to compute the signals historically, not (yet) to measure the
+forward re-rating. The clean validation: assemble point-in-time archetype/score
+snapshots (or reconstruct them from the EDGAR vintages we cache) and test
+forward 6–24-month returns, first on the well-evidenced P1/Piotroski core to
+confirm the pipeline reproduces the known result, then on the novel N-signals.
