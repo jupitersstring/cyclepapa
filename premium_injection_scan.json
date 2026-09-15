@@ -1,0 +1,17 @@
+{
+  "SNDX": {
+    "ticker": "SNDX",
+    "score": 15.0,
+    "premium_pct": 35.0,
+    "subscription_price": null,
+    "governance": false,
+    "lockup_months": null,
+    "side_consideration": true,
+    "date": "2026-06-04",
+    "accession": "0001193125-26-256458",
+    "reasons": [
+      "35% premium (large)",
+      "side consideration (premium may be illusory)"
+    ]
+  }
+}

@@ -1,0 +1,3 @@
+ticker,name,price,trust_premium_est,has_extension_filing,filing_date,score,reason
+XTIA,"XTI Aerospace, Inc.",1.85,-8.25,False,,45,trading near/below assumed trust NAV ($10.10) 
+RXT,"Rackspace Technology, Inc.",4.66,-5.44,False,,45,trading near/below assumed trust NAV ($10.10) 

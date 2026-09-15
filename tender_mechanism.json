@@ -1,0 +1,317 @@
+{
+  "EXFY": {
+    "mechanism": "DUTCH_AUCTION",
+    "multiplier": 0.73,
+    "score_delta": -6.8
+  },
+  "ABX": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -3.8
+  },
+  "ABXL": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -3.8
+  },
+  "ASRT": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -3.3
+  },
+  "BCX": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -3.8
+  },
+  "BGY": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -3.8
+  },
+  "BIIB": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -0.8
+  },
+  "BOE": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -3.8
+  },
+  "BSTZ": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -3.8
+  },
+  "BTX": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -3.8
+  },
+  "CAF": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "CMU": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "CXH": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "DTST": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "DXLG": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "EFR": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "EIX": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "ENZN": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -3.8
+  },
+  "EVF": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "FSK": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "GETY": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -3.8
+  },
+  "GLXY": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "GMAB": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -3.3
+  },
+  "GNK": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "GPUS": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "HCKT": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "HERZ": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "HTT": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "INFY": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "IZEA": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "JOF": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "KALV": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "KROS": {
+    "mechanism": "FIXED_PRICE",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "LE": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -3.3
+  },
+  "LEN": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -3.8
+  },
+  "LSTA": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -3.3
+  },
+  "MLCI": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "MLCIL": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "MRNA": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -3.8
+  },
+  "NBIX": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -0.8
+  },
+  "NESR": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -3.8
+  },
+  "NEXN": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -3.8
+  },
+  "NHP": {
+    "mechanism": "FIXED_PRICE",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "NHPAP": {
+    "mechanism": "FIXED_PRICE",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "NHPBP": {
+    "mechanism": "FIXED_PRICE",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "OPTU": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "RBNE": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "RCKT": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -3.8
+  },
+  "RGNX": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -3.8
+  },
+  "RGR": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "SAN": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "SCHL": {
+    "mechanism": "DUTCH_AUCTION",
+    "multiplier": 0.73,
+    "score_delta": -6.8
+  },
+  "SVRN": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "SWZ": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "TLSI": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -3.8
+  },
+  "TORO": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "V": {
+    "mechanism": "EXCHANGE_OFFER",
+    "multiplier": 0.85,
+    "score_delta": -3.8
+  },
+  "VCX": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "VIASP": {
+    "mechanism": "FIXED_PRICE",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "WBD": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "WIX": {
+    "mechanism": "DUTCH_AUCTION",
+    "multiplier": 0.73,
+    "score_delta": -6.8
+  },
+  "WTM": {
+    "mechanism": "UNKNOWN",
+    "multiplier": 1.0,
+    "score_delta": 0.0
+  },
+  "YEXT": {
+    "mechanism": "DUTCH_AUCTION",
+    "multiplier": 0.73,
+    "score_delta": -6.8
+  }
+}

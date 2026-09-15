@@ -1,0 +1,4144 @@
+{
+  "ADPT": {
+    "SPINOFF": {
+      "date": "2026-07-29",
+      "phrase": "plan to separate"
+    },
+    "SEPARATION": {
+      "date": "2026-06-15",
+      "phrase": "planned separation"
+    },
+    "STRATEGIC_REVIEW": {
+      "date": "2026-06-15",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "GPC": {
+    "SPINOFF": {
+      "date": "2026-02-17",
+      "phrase": "plan to separate"
+    },
+    "SEPARATION": {
+      "date": "2026-09-09",
+      "phrase": "planned separation"
+    }
+  },
+  "CTVA": {
+    "SPINOFF": {
+      "date": "2026-08-31",
+      "phrase": "plan to separate"
+    },
+    "SEPARATION": {
+      "date": "2026-08-31",
+      "phrase": "separate into two"
+    }
+  },
+  "SNDK": {
+    "SPINOFF": {
+      "date": "2026-08-05",
+      "phrase": "plan to separate"
+    }
+  },
+  "LTRN": {
+    "SPINOFF": {
+      "date": "2026-05-15",
+      "phrase": "plan to separate"
+    },
+    "SEPARATION": {
+      "date": "2026-05-15",
+      "phrase": "planned separation"
+    }
+  },
+  "WBD": {
+    "SPINOFF": {
+      "date": "2026-02-27",
+      "phrase": "completed the separation"
+    },
+    "SEPARATION": {
+      "date": "2026-02-26",
+      "phrase": "planned separation"
+    },
+    "EXCHANGE_OFFER": {
+      "date": "2026-06-04",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "BLCO": {
+    "SPINOFF": {
+      "date": "2026-07-29",
+      "phrase": "plan to separate"
+    }
+  },
+  "BHC": {
+    "SPINOFF": {
+      "date": "2026-07-29",
+      "phrase": "plan to separate"
+    },
+    "SEPARATION": {
+      "date": "2026-07-29",
+      "phrase": "planned separation"
+    },
+    "EXCHANGE_OFFER": {
+      "date": "2026-02-18",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "WAT": {
+    "SPINOFF": {
+      "date": "2026-02-09",
+      "phrase": "plan to separate"
+    }
+  },
+  "BDX": {
+    "SPINOFF": {
+      "date": "2026-08-06",
+      "phrase": "completed the spin-off"
+    }
+  },
+  "ADIG": {
+    "SPINOFF": {
+      "date": "2026-08-04",
+      "phrase": "plan to separate"
+    },
+    "SEPARATION": {
+      "date": "2026-08-04",
+      "phrase": "separate into two"
+    }
+  },
+  "MFP": {
+    "SPINOFF": {
+      "date": "2026-06-22",
+      "phrase": "plan to separate"
+    }
+  },
+  "HONA": {
+    "SPINOFF": {
+      "date": "2026-06-15",
+      "phrase": "plan to separate"
+    },
+    "SEPARATION": {
+      "date": "2026-06-15",
+      "phrase": "planned separation"
+    }
+  },
+  "VISM": {
+    "SPINOFF": {
+      "date": "2026-04-28",
+      "phrase": "intends to separate"
+    }
+  },
+  "FDX": {
+    "SPINOFF": {
+      "date": "2026-06-23",
+      "phrase": "completed the spin-off"
+    },
+    "SEPARATION": {
+      "date": "2026-05-13",
+      "phrase": "planned separation"
+    }
+  },
+  "FDXF": {
+    "SPINOFF": {
+      "date": "2026-06-01",
+      "phrase": "completed the spin-off"
+    },
+    "SEPARATION": {
+      "date": "2026-05-18",
+      "phrase": "planned separation"
+    }
+  },
+  "SPGI": {
+    "SPINOFF": {
+      "date": "2026-07-28",
+      "phrase": "completed the spin-off"
+    },
+    "SEPARATION": {
+      "date": "2026-05-21",
+      "phrase": "planned separation"
+    },
+    "ASSET_SALE": {
+      "date": "2026-04-28",
+      "phrase": "agreement to divest"
+    }
+  },
+  "APTV": {
+    "SPINOFF": {
+      "date": "2026-08-04",
+      "phrase": "completed the spin-off"
+    },
+    "TENDER_OFFER": {
+      "date": "2026-03-20",
+      "phrase": "tender offer to purchase"
+    }
+  },
+  "ETN": {
+    "SPINOFF": {
+      "date": "2026-07-31",
+      "phrase": "intends to separate"
+    },
+    "SEPARATION": {
+      "date": "2026-07-31",
+      "phrase": "planned separation"
+    }
+  },
+  "OCTV": {
+    "SPINOFF": {
+      "date": "2026-05-26",
+      "phrase": "intends to separate"
+    }
+  },
+  "KDP": {
+    "SPINOFF": {
+      "date": "2026-03-10",
+      "phrase": "intends to separate"
+    },
+    "SEPARATION": {
+      "date": "2026-06-23",
+      "phrase": "planned separation"
+    },
+    "TENDER_OFFER": {
+      "date": "2026-06-11",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "DAN": {
+    "SPINOFF": {
+      "date": "2026-06-11",
+      "phrase": "intends to separate"
+    }
+  },
+  "MOD": {
+    "SPINOFF": {
+      "date": "2026-01-29",
+      "phrase": "intends to separate"
+    }
+  },
+  "THRM": {
+    "SPINOFF": {
+      "date": "2026-01-29",
+      "phrase": "intends to separate"
+    }
+  },
+  "REZI": {
+    "SPINOFF": {
+      "date": "2026-08-12",
+      "phrase": "completed the separation"
+    }
+  },
+  "NFLX": {
+    "SPINOFF": {
+      "date": "2026-01-20",
+      "phrase": "intends to separate"
+    },
+    "SEPARATION": {
+      "date": "2026-01-20",
+      "phrase": "planned separation"
+    }
+  },
+  "HON": {
+    "SPINOFF": {
+      "date": "2026-07-23",
+      "phrase": "completed the separation"
+    },
+    "SEPARATION": {
+      "date": "2026-04-23",
+      "phrase": "planned separation"
+    }
+  },
+  "AMRZ": {
+    "SPINOFF": {
+      "date": "2026-02-20",
+      "phrase": "completed the spin-off"
+    }
+  },
+  "IAC": {
+    "SPINOFF": {
+      "date": "2026-06-02",
+      "phrase": "completed the spin-off"
+    }
+  },
+  "VGNT": {
+    "SPINOFF": {
+      "date": "2026-04-01",
+      "phrase": "completed the spin-off"
+    }
+  },
+  "HCTI": {
+    "SPINOFF": {
+      "date": "2026-09-08",
+      "phrase": "completed the spin-off"
+    },
+    "SEPARATION": {
+      "date": "2026-09-08",
+      "phrase": "planned separation"
+    },
+    "UPLISTING": {
+      "date": "2026-09-08",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "SITC": {
+    "SPINOFF": {
+      "date": "2026-02-26",
+      "phrase": "completed the spin-off"
+    },
+    "ASSET_SALE": {
+      "date": "2026-07-01",
+      "phrase": "completed the sale of"
+    }
+  },
+  "PPLI": {
+    "SPINOFF": {
+      "date": "2026-09-11",
+      "phrase": "completed the spin-off"
+    },
+    "CAPITAL_RETURN": {
+      "date": "2026-09-11",
+      "phrase": "declared a special dividend"
+    }
+  },
+  "APLD": {
+    "SPINOFF": {
+      "date": "2026-07-27",
+      "phrase": "completed the separation"
+    }
+  },
+  "FIS": {
+    "SPINOFF": {
+      "date": "2026-02-24",
+      "phrase": "completed the separation"
+    },
+    "ASSET_SALE": {
+      "date": "2026-01-12",
+      "phrase": "completed the sale of"
+    }
+  },
+  "MIDD": {
+    "SPINOFF": {
+      "date": "2026-08-11",
+      "phrase": "completed the separation"
+    }
+  },
+  "MDU": {
+    "SPINOFF": {
+      "date": "2026-02-05",
+      "phrase": "completed the separation"
+    }
+  },
+  "FTV": {
+    "SPINOFF": {
+      "date": "2026-07-29",
+      "phrase": "completed the separation"
+    }
+  },
+  "CXT": {
+    "SPINOFF": {
+      "date": "2026-02-11",
+      "phrase": "completed the separation"
+    }
+  },
+  "DD": {
+    "SPINOFF": {
+      "date": "2026-08-04",
+      "phrase": "completed the separation"
+    }
+  },
+  "PSKY": {
+    "SPINOFF": {
+      "date": "2026-03-02",
+      "phrase": "completed the separation"
+    },
+    "TENDER_OFFER": {
+      "date": "2026-02-20",
+      "phrase": "tender offer to purchase"
+    },
+    "EXCHANGE_OFFER": {
+      "date": "2026-02-10",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "CCI": {
+    "SPINOFF": {
+      "date": "2026-04-22",
+      "phrase": "completed the separation"
+    }
+  },
+  "TXT": {
+    "SEPARATION": {
+      "date": "2026-04-30",
+      "phrase": "planned separation"
+    }
+  },
+  "SOLV": {
+    "SEPARATION": {
+      "date": "2026-08-05",
+      "phrase": "planned separation"
+    },
+    "STRATEGIC_REVIEW": {
+      "date": "2026-08-05",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "MCK": {
+    "SEPARATION": {
+      "date": "2026-08-05",
+      "phrase": "planned separation"
+    }
+  },
+  "CHYM": {
+    "SEPARATION": {
+      "date": "2026-08-05",
+      "phrase": "planned separation"
+    }
+  },
+  "OTLK": {
+    "SEPARATION": {
+      "date": "2026-08-27",
+      "phrase": "planned separation"
+    }
+  },
+  "KBR": {
+    "SEPARATION": {
+      "date": "2026-07-30",
+      "phrase": "planned separation"
+    }
+  },
+  "DINO": {
+    "SEPARATION": {
+      "date": "2026-07-28",
+      "phrase": "planned separation"
+    }
+  },
+  "JNJ": {
+    "SEPARATION": {
+      "date": "2026-07-15",
+      "phrase": "planned separation"
+    }
+  },
+  "LPLA": {
+    "SEPARATION": {
+      "date": "2026-01-29",
+      "phrase": "planned separation"
+    }
+  },
+  "TRAX": {
+    "SEPARATION": {
+      "date": "2026-04-03",
+      "phrase": "planned separation"
+    }
+  },
+  "NFE": {
+    "SEPARATION": {
+      "date": "2026-03-17",
+      "phrase": "separate into two"
+    },
+    "ASSET_SALE": {
+      "date": "2026-04-07",
+      "phrase": "completed the sale of"
+    }
+  },
+  "ANAB": {
+    "SEPARATION": {
+      "date": "2026-01-09",
+      "phrase": "separate into two"
+    },
+    "UPLISTING": {
+      "date": "2026-03-27",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "HRL": {
+    "ASSET_SALE": {
+      "date": "2026-02-26",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "CYH": {
+    "ASSET_SALE": {
+      "date": "2026-03-05",
+      "phrase": "definitive agreement to sell"
+    },
+    "TENDER_OFFER": {
+      "date": "2026-05-06",
+      "phrase": "tender offer to purchase"
+    }
+  },
+  "CCOI": {
+    "ASSET_SALE": {
+      "date": "2026-06-29",
+      "phrase": "completed the sale of"
+    }
+  },
+  "THRY": {
+    "ASSET_SALE": {
+      "date": "2026-09-14",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "ZD": {
+    "ASSET_SALE": {
+      "date": "2026-03-03",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "CPAY": {
+    "ASSET_SALE": {
+      "date": "2026-02-04",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "ELUT": {
+    "ASSET_SALE": {
+      "date": "2026-07-20",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "HAIN": {
+    "ASSET_SALE": {
+      "date": "2026-09-14",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "PLUG": {
+    "ASSET_SALE": {
+      "date": "2026-07-13",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "KTB": {
+    "ASSET_SALE": {
+      "date": "2026-05-21",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "BOC": {
+    "ASSET_SALE": {
+      "date": "2026-05-18",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "TKR": {
+    "ASSET_SALE": {
+      "date": "2026-08-04",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "SMTC": {
+    "ASSET_SALE": {
+      "date": "2026-08-13",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "OVV": {
+    "ASSET_SALE": {
+      "date": "2026-02-17",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "OMI": {
+    "ASSET_SALE": {
+      "date": "2025-12-31",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "CERT": {
+    "ASSET_SALE": {
+      "date": "2026-04-22",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "EG": {
+    "ASSET_SALE": {
+      "date": "2026-03-23",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "BRN": {
+    "ASSET_SALE": {
+      "date": "2026-08-12",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "NNDM": {
+    "ASSET_SALE": {
+      "date": "2026-05-27",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "SWK": {
+    "ASSET_SALE": {
+      "date": "2026-09-04",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "AHCO": {
+    "ASSET_SALE": {
+      "date": "2026-08-04",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "SHAZ": {
+    "ASSET_SALE": {
+      "date": "2026-01-22",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "LPTH": {
+    "ASSET_SALE": {
+      "date": "2026-09-10",
+      "phrase": "agreement to divest"
+    }
+  },
+  "ACA": {
+    "ASSET_SALE": {
+      "date": "2026-02-25",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "FIP": {
+    "ASSET_SALE": {
+      "date": "2026-04-30",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "CNDT": {
+    "ASSET_SALE": {
+      "date": "2026-06-30",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "BIRD": {
+    "ASSET_SALE": {
+      "date": "2026-06-17",
+      "phrase": "definitive agreement to sell"
+    },
+    "UPLISTING": {
+      "date": "2026-04-29",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "DNLI": {
+    "ASSET_SALE": {
+      "date": "2026-06-18",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "GFF": {
+    "ASSET_SALE": {
+      "date": "2026-06-11",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "SUI": {
+    "ASSET_SALE": {
+      "date": "2026-05-21",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "OSS": {
+    "ASSET_SALE": {
+      "date": "2026-05-08",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "VISN": {
+    "ASSET_SALE": {
+      "date": "2026-04-30",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "WULF": {
+    "ASSET_SALE": {
+      "date": "2026-07-06",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "SRI": {
+    "ASSET_SALE": {
+      "date": "2026-02-02",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "CBSTF": {
+    "ASSET_SALE": {
+      "date": "2026-03-24",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "ES": {
+    "ASSET_SALE": {
+      "date": "2026-07-01",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "DNOW": {
+    "ASSET_SALE": {
+      "date": "2026-01-16",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "GIS": {
+    "ASSET_SALE": {
+      "date": "2026-07-01",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "ARI": {
+    "ASSET_SALE": {
+      "date": "2026-01-28",
+      "phrase": "definitive agreement to sell"
+    },
+    "STRATEGIC_REVIEW": {
+      "date": "2026-06-16",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "ANY": {
+    "ASSET_SALE": {
+      "date": "2026-09-11",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "JAZZ": {
+    "ASSET_SALE": {
+      "date": "2026-01-12",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "CMTL": {
+    "ASSET_SALE": {
+      "date": "2026-06-15",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "INVE": {
+    "ASSET_SALE": {
+      "date": "2026-08-12",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "CMCO": {
+    "ASSET_SALE": {
+      "date": "2026-01-14",
+      "phrase": "definitive agreement to sell"
+    },
+    "EXCHANGE_OFFER": {
+      "date": "2026-02-04",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "UCB": {
+    "ASSET_SALE": {
+      "date": "2026-09-01",
+      "phrase": "completed the sale of"
+    }
+  },
+  "UGI": {
+    "ASSET_SALE": {
+      "date": "2026-05-12",
+      "phrase": "agreement to divest"
+    },
+    "TENDER_OFFER": {
+      "date": "2026-05-26",
+      "phrase": "cash tender offer"
+    }
+  },
+  "CLVT": {
+    "ASSET_SALE": {
+      "date": "2026-07-06",
+      "phrase": "definitive agreement to sell"
+    }
+  },
+  "INTG": {
+    "ASSET_SALE": {
+      "date": "2026-02-17",
+      "phrase": "completed the sale of"
+    }
+  },
+  "BGS": {
+    "ASSET_SALE": {
+      "date": "2026-06-01",
+      "phrase": "completed the sale of"
+    }
+  },
+  "XTNT": {
+    "ASSET_SALE": {
+      "date": "2026-01-16",
+      "phrase": "completed the sale of"
+    }
+  },
+  "ELME": {
+    "ASSET_SALE": {
+      "date": "2026-08-14",
+      "phrase": "completed the sale of"
+    }
+  },
+  "AUMN": {
+    "ASSET_SALE": {
+      "date": "2026-05-20",
+      "phrase": "completed the sale of"
+    }
+  },
+  "KRC": {
+    "ASSET_SALE": {
+      "date": "2026-02-09",
+      "phrase": "completed the sale of"
+    }
+  },
+  "AZZ": {
+    "ASSET_SALE": {
+      "date": "2026-01-07",
+      "phrase": "completed the sale of"
+    }
+  },
+  "TIPT": {
+    "ASSET_SALE": {
+      "date": "2026-07-29",
+      "phrase": "completed the sale of"
+    },
+    "SALE_OF_COMPANY": {
+      "date": "2026-04-30",
+      "phrase": "agreement and plan of merger"
+    }
+  },
+  "NHI": {
+    "ASSET_SALE": {
+      "date": "2026-08-10",
+      "phrase": "completed the sale of"
+    }
+  },
+  "LAB": {
+    "ASSET_SALE": {
+      "date": "2026-08-05",
+      "phrase": "agreement to divest"
+    }
+  },
+  "KOS": {
+    "ASSET_SALE": {
+      "date": "2026-08-03",
+      "phrase": "completed the sale of"
+    },
+    "UPLISTING": {
+      "date": "2026-03-12",
+      "phrase": "approved for listing on the new york stock exchange"
+    },
+    "TENDER_OFFER": {
+      "date": "2026-01-29",
+      "phrase": "cash tender offer"
+    }
+  },
+  "LPG": {
+    "ASSET_SALE": {
+      "date": "2026-08-05",
+      "phrase": "completed the sale of"
+    }
+  },
+  "BDN": {
+    "ASSET_SALE": {
+      "date": "2026-07-23",
+      "phrase": "completed the sale of"
+    }
+  },
+  "CVV": {
+    "ASSET_SALE": {
+      "date": "2026-04-07",
+      "phrase": "completed the sale of"
+    }
+  },
+  "FLR": {
+    "ASSET_SALE": {
+      "date": "2026-04-23",
+      "phrase": "completed the sale of"
+    }
+  },
+  "ESOA": {
+    "ASSET_SALE": {
+      "date": "2026-02-24",
+      "phrase": "completed the sale of"
+    }
+  },
+  "BLND": {
+    "ASSET_SALE": {
+      "date": "2026-03-02",
+      "phrase": "completed the sale of"
+    }
+  },
+  "SEG": {
+    "ASSET_SALE": {
+      "date": "2026-02-09",
+      "phrase": "completed the sale of"
+    }
+  },
+  "WTRG": {
+    "ASSET_SALE": {
+      "date": "2026-05-07",
+      "phrase": "completed the sale of"
+    }
+  },
+  "FUN": {
+    "ASSET_SALE": {
+      "date": "2026-04-06",
+      "phrase": "completed the sale of"
+    }
+  },
+  "SMG": {
+    "ASSET_SALE": {
+      "date": "2026-04-09",
+      "phrase": "completed the sale of"
+    }
+  },
+  "TOON": {
+    "ASSET_SALE": {
+      "date": "2026-08-14",
+      "phrase": "completed the sale of"
+    }
+  },
+  "TEX": {
+    "ASSET_SALE": {
+      "date": "2026-07-31",
+      "phrase": "completed the sale of"
+    }
+  },
+  "BOF": {
+    "ASSET_SALE": {
+      "date": "2026-08-31",
+      "phrase": "completed the sale of"
+    }
+  },
+  "MATW": {
+    "ASSET_SALE": {
+      "date": "2026-01-07",
+      "phrase": "completed the sale of"
+    }
+  },
+  "MIAX": {
+    "ASSET_SALE": {
+      "date": "2026-01-21",
+      "phrase": "completed the sale of"
+    }
+  },
+  "VASO": {
+    "ASSET_SALE": {
+      "date": "2026-08-06",
+      "phrase": "completed the sale of"
+    }
+  },
+  "ROCK": {
+    "ASSET_SALE": {
+      "date": "2026-04-17",
+      "phrase": "completed the sale of"
+    },
+    "EXCHANGE_OFFER": {
+      "date": "2026-02-02",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "JACK": {
+    "ASSET_SALE": {
+      "date": "2025-12-23",
+      "phrase": "completed the sale of"
+    }
+  },
+  "CPRI": {
+    "ASSET_SALE": {
+      "date": "2026-02-03",
+      "phrase": "completed the sale of"
+    }
+  },
+  "MSS": {
+    "ASSET_SALE": {
+      "date": "2026-07-06",
+      "phrase": "agreement to divest"
+    }
+  },
+  "CDNA": {
+    "ASSET_SALE": {
+      "date": "2026-04-28",
+      "phrase": "agreement to divest"
+    }
+  },
+  "CRL": {
+    "ASSET_SALE": {
+      "date": "2026-02-25",
+      "phrase": "agreement to divest"
+    }
+  },
+  "RVTY": {
+    "ASSET_SALE": {
+      "date": "2026-08-04",
+      "phrase": "agreement to divest"
+    }
+  },
+  "OTEX": {
+    "ASSET_SALE": {
+      "date": "2026-02-02",
+      "phrase": "agreement to divest"
+    }
+  },
+  "BATL": {
+    "ASSET_SALE": {
+      "date": "2025-12-22",
+      "phrase": "agreement to divest"
+    }
+  },
+  "PENG": {
+    "ASSET_SALE": {
+      "date": "2026-01-06",
+      "phrase": "agreement to divest"
+    }
+  },
+  "EGY": {
+    "ASSET_SALE": {
+      "date": "2026-02-10",
+      "phrase": "agreement to divest"
+    }
+  },
+  "HCAT": {
+    "ASSET_SALE": {
+      "date": "2026-06-04",
+      "phrase": "agreement to divest"
+    }
+  },
+  "XWEL": {
+    "ASSET_SALE": {
+      "date": "2026-07-09",
+      "phrase": "agreement to divest"
+    }
+  },
+  "CEG": {
+    "ASSET_SALE": {
+      "date": "2026-08-06",
+      "phrase": "agreement to divest"
+    }
+  },
+  "PCRX": {
+    "ASSET_SALE": {
+      "date": "2026-06-30",
+      "phrase": "agreement to divest"
+    }
+  },
+  "HUM": {
+    "ASSET_SALE": {
+      "date": "2026-07-29",
+      "phrase": "agreement to divest"
+    }
+  },
+  "CNC": {
+    "ASSET_SALE": {
+      "date": "2026-02-06",
+      "phrase": "agreement to divest"
+    }
+  },
+  "IT": {
+    "ASSET_SALE": {
+      "date": "2026-02-03",
+      "phrase": "agreement to divest"
+    }
+  },
+  "VNT": {
+    "ASSET_SALE": {
+      "date": "2026-05-07",
+      "phrase": "agreement to divest"
+    }
+  },
+  "ADMA": {
+    "ASSET_SALE": {
+      "date": "2026-02-25",
+      "phrase": "agreement to divest"
+    }
+  },
+  "WY": {
+    "ASSET_SALE": {
+      "date": "2026-01-29",
+      "phrase": "agreement to divest"
+    }
+  },
+  "WELL": {
+    "ASSET_SALE": {
+      "date": "2026-07-27",
+      "phrase": "agreement to divest"
+    }
+  },
+  "VSAT": {
+    "ASSET_SALE": {
+      "date": "2026-02-05",
+      "phrase": "agreement to divest"
+    }
+  },
+  "CODQL": {
+    "ASSET_SALE": {
+      "date": "2026-07-29",
+      "phrase": "agreement to divest"
+    }
+  },
+  "GTE": {
+    "ASSET_SALE": {
+      "date": "2026-08-05",
+      "phrase": "agreement to divest"
+    },
+    "TENDER_OFFER": {
+      "date": "2026-02-18",
+      "phrase": "cash tender offer"
+    }
+  },
+  "IFF": {
+    "ASSET_SALE": {
+      "date": "2026-08-04",
+      "phrase": "agreement to divest"
+    }
+  },
+  "DEC": {
+    "ASSET_SALE": {
+      "date": "2026-02-06",
+      "phrase": "agreement to divest"
+    },
+    "CH11_EMERGENCE": {
+      "date": "2026-02-06",
+      "phrase": "emergence from chapter 11"
+    },
+    "BUYBACK_AUTH": {
+      "date": "2026-02-26",
+      "phrase": "approved a new share repurchase"
+    },
+    "TENDER_OFFER": {
+      "date": "2026-02-06",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "PRGO": {
+    "ASSET_SALE": {
+      "date": "2026-02-26",
+      "phrase": "agreement to divest"
+    }
+  },
+  "BKR": {
+    "ASSET_SALE": {
+      "date": "2026-03-02",
+      "phrase": "agreement to divest"
+    }
+  },
+  "LDOS": {
+    "ASSET_SALE": {
+      "date": "2026-04-15",
+      "phrase": "agreement to divest"
+    }
+  },
+  "FWDI": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-03-09",
+      "phrase": "agreement and plan of merger"
+    }
+  },
+  "VRME": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-08-12",
+      "phrase": "agreement and plan of merger"
+    }
+  },
+  "EMAT": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-03-31",
+      "phrase": "agreement and plan of merger"
+    }
+  },
+  "JHG": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-06-18",
+      "phrase": "agreement and plan of merger"
+    }
+  },
+  "USAR": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-09-04",
+      "phrase": "agreement and plan of merger"
+    }
+  },
+  "BCAB": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-03-02",
+      "phrase": "agreement and plan of merger"
+    }
+  },
+  "LSTA": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-07-17",
+      "phrase": "agreement and plan of merger"
+    },
+    "TENDER_OFFER": {
+      "date": "2026-02-27",
+      "phrase": "tender offer to purchase"
+    }
+  },
+  "DMRC": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-03-12",
+      "phrase": "agreement and plan of merger"
+    }
+  },
+  "DXLG": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-08-19",
+      "phrase": "agreement and plan of merger"
+    },
+    "TENDER_OFFER": {
+      "date": "2026-05-22",
+      "phrase": "cash tender offer"
+    }
+  },
+  "VREOF": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-04-06",
+      "phrase": "agreement and plan of merger"
+    }
+  },
+  "AIRE": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-08-25",
+      "phrase": "agreement and plan of merger"
+    }
+  },
+  "AIRI": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-08-03",
+      "phrase": "agreement and plan of merger"
+    }
+  },
+  "BLBX": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-02-03",
+      "phrase": "agreement and plan of merger"
+    }
+  },
+  "SUNE": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-09-08",
+      "phrase": "agreement and plan of merger"
+    },
+    "STRATEGIC_REVIEW": {
+      "date": "2026-04-09",
+      "phrase": "review of strategic alternatives"
+    },
+    "UPLISTING": {
+      "date": "2026-06-08",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "NIMU": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-06-30",
+      "phrase": "agreement and plan of merger"
+    }
+  },
+  "JTAI": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-01-15",
+      "phrase": "agreement and plan of merger"
+    }
+  },
+  "AIPG": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-03-05",
+      "phrase": "agreement and plan of merger"
+    }
+  },
+  "CYCN": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-09-11",
+      "phrase": "agreement and plan of merger"
+    }
+  },
+  "AVTX": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-04-28",
+      "phrase": "agreement and plan of merger"
+    }
+  },
+  "KW": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-03-16",
+      "phrase": "agreement and plan of merger"
+    }
+  },
+  "VRT": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-09-02",
+      "phrase": "agreement and plan of merger"
+    }
+  },
+  "BRNS": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-02-23",
+      "phrase": "agreement and plan of merger"
+    }
+  },
+  "VTOL": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-06-26",
+      "phrase": "agreement and plan of merger"
+    }
+  },
+  "SYNA": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-06-25",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "OS": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-02-26",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "ONTF": {
+    "SALE_OF_COMPANY": {
+      "date": "2025-12-30",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "BWMN": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-08-10",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "OLPX": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-05-11",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "GLDD": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-02-12",
+      "phrase": "definitive agreement to be acquired"
+    },
+    "TENDER_OFFER": {
+      "date": "2026-04-01",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "SCM": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-02-05",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "SEE": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-04-09",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "HHS": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-08-19",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "FOLD": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-02-20",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "NATL": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-02-26",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "LXFR": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-07-27",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "AVNS": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-05-05",
+      "phrase": "definitive agreement to be acquired"
+    },
+    "EXCHANGE_OFFER": {
+      "date": "2026-07-30",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "ALOT": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-06-17",
+      "phrase": "definitive agreement to be acquired"
+    },
+    "STRATEGIC_REVIEW": {
+      "date": "2026-06-17",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "TBPH": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-08-10",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "EHAB": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-03-05",
+      "phrase": "to be acquired by"
+    }
+  },
+  "SLP": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-06-16",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "ATKR": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-08-03",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "GSAT": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-04-14",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "BLFS": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-07-22",
+      "phrase": "definitive agreement to be acquired"
+    },
+    "UPLISTING": {
+      "date": "2026-07-22",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "CCRN": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-05-07",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "HZO": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-08-10",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "CZR": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-07-28",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "ARX": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-08-13",
+      "phrase": "definitive agreement to be acquired"
+    },
+    "BUYBACK_AUTH": {
+      "date": "2026-03-18",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "CCO": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-02-26",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "CWAN": {
+    "SALE_OF_COMPANY": {
+      "date": "2025-12-22",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "GBTG": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-06-08",
+      "phrase": "to be acquired by"
+    }
+  },
+  "RAMP": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-08-05",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "APGE": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-08-10",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "PSNL": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-07-20",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "TPH": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-02-25",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "EA": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-05-05",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "BAM": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-03-25",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "CMC": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-02-19",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "SCOR": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-06-03",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "MUX": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-03-12",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "RDN": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-04-17",
+      "phrase": "definitive agreement to be acquired"
+    }
+  },
+  "TALO": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-07-01",
+      "phrase": "to be acquired by"
+    }
+  },
+  "FTHM": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-06-17",
+      "phrase": "to be acquired by"
+    }
+  },
+  "YUM": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-06-16",
+      "phrase": "to be acquired by"
+    },
+    "BUYBACK_AUTH": {
+      "date": "2026-06-16",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "ASRT": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-05-13",
+      "phrase": "to be acquired by"
+    },
+    "TENDER_OFFER": {
+      "date": "2026-06-16",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "ARLP": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-06-08",
+      "phrase": "to be acquired by"
+    }
+  },
+  "VRE": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-02-23",
+      "phrase": "to be acquired by"
+    }
+  },
+  "JKHY": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-08-11",
+      "phrase": "to be acquired by"
+    }
+  },
+  "EQR": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-07-31",
+      "phrase": "to be acquired by"
+    }
+  },
+  "CPSS": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-07-14",
+      "phrase": "to be acquired by"
+    }
+  },
+  "CCB": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-04-29",
+      "phrase": "to be acquired by"
+    }
+  },
+  "EDGM": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-01-14",
+      "phrase": "to be acquired by"
+    }
+  },
+  "HWBK": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-04-29",
+      "phrase": "to be acquired by"
+    }
+  },
+  "CBDW": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-05-04",
+      "phrase": "to be acquired by"
+    }
+  },
+  "NFG": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-08-11",
+      "phrase": "to be acquired by"
+    }
+  },
+  "NXPI": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-06-11",
+      "phrase": "to be acquired by"
+    }
+  },
+  "GBCS": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-06-24",
+      "phrase": "to be acquired by"
+    },
+    "TENDER_OFFER": {
+      "date": "2026-09-09",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "PAYO": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-08-06",
+      "phrase": "to be acquired by"
+    }
+  },
+  "LRHC": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-06-04",
+      "phrase": "to be acquired by"
+    },
+    "GOING_PRIVATE": {
+      "date": "2026-07-10",
+      "phrase": "going private transaction"
+    }
+  },
+  "AMS": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-07-28",
+      "phrase": "to be acquired by"
+    }
+  },
+  "YHC": {
+    "SALE_OF_COMPANY": {
+      "date": "2026-03-06",
+      "phrase": "to be acquired by"
+    }
+  },
+  "MNRO": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-05-27",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "CKX": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-06-08",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "XPOF": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-09-08",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "STRS": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-02-05",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "LKQ": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-04-30",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "ICMB": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-04-20",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "OPTT": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-08-17",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "RMCF": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-08-12",
+      "phrase": "review of strategic alternatives"
+    },
+    "GOING_PRIVATE": {
+      "date": "2026-08-12",
+      "phrase": "going private transaction"
+    }
+  },
+  "PKOH": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-08-05",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "DBGI": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-08-06",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "CRMT": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-09-04",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "CLAR": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-08-06",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "CSV": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-02-26",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "ZSPC": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-05-14",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "PASG": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-04-28",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "FSP": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-03-09",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "IOBT": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-01-30",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "GSIT": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-03-18",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "FULC": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-06-04",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "LVLU": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-07-14",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "BVS": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-08-05",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "SGRP": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-03-31",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "FOXF": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-08-06",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "PPIH": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-03-19",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "FWRD": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-07-21",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "GPRO": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-07-08",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "SMHI": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-07-29",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "PLTK": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-04-06",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "NDRA": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-03-25",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "BNBX": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-07-13",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "RYAM": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-06-22",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "ACM": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-02-09",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "EEX": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-05-11",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "DOMO": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-07-22",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "LYRA": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-01-12",
+      "phrase": "review of strategic alternatives"
+    }
+  },
+  "XCUR": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-06-01",
+      "phrase": "exploring strategic alternatives"
+    }
+  },
+  "ATER": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-03-23",
+      "phrase": "exploring strategic alternatives"
+    }
+  },
+  "CNNE": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-02-23",
+      "phrase": "exploring strategic alternatives"
+    }
+  },
+  "HYFM": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-05-15",
+      "phrase": "exploring strategic alternatives"
+    }
+  },
+  "AGPU": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-03-31",
+      "phrase": "exploring strategic alternatives"
+    }
+  },
+  "TPST": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-08-13",
+      "phrase": "exploring strategic alternatives"
+    }
+  },
+  "IMUX": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-05-13",
+      "phrase": "exploring strategic alternatives"
+    }
+  },
+  "TTEC": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-08-10",
+      "phrase": "exploring strategic alternatives"
+    }
+  },
+  "LESL": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-08-12",
+      "phrase": "exploring strategic alternatives"
+    }
+  },
+  "ERAS": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-01-12",
+      "phrase": "exploring strategic alternatives"
+    },
+    "UPLISTING": {
+      "date": "2026-07-14",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "ALMS": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-06-29",
+      "phrase": "exploring strategic alternatives"
+    }
+  },
+  "COR": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-08-05",
+      "phrase": "exploring strategic alternatives"
+    }
+  },
+  "TRIP": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-02-12",
+      "phrase": "exploring strategic alternatives"
+    }
+  },
+  "TIVC": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-02-23",
+      "phrase": "exploring strategic alternatives"
+    }
+  },
+  "ZYXIQ": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-03-20",
+      "phrase": "exploring strategic alternatives"
+    },
+    "CH11_EMERGENCE": {
+      "date": "2026-03-26",
+      "phrase": "emerged from chapter 11"
+    }
+  },
+  "CMLS": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-03-05",
+      "phrase": "exploring strategic alternatives"
+    },
+    "CH11_EMERGENCE": {
+      "date": "2026-03-05",
+      "phrase": "emerged from chapter 11"
+    }
+  },
+  "NDLS": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-07-24",
+      "phrase": "initiated a review of strategic"
+    }
+  },
+  "SUNC": {
+    "STRATEGIC_REVIEW": {
+      "date": "2026-07-16",
+      "phrase": "initiated a review of strategic"
+    }
+  },
+  "GOCOQ": {
+    "CH11_EMERGENCE": {
+      "date": "2026-07-21",
+      "phrase": "emerged from chapter 11"
+    }
+  },
+  "RMR": {
+    "CH11_EMERGENCE": {
+      "date": "2026-08-05",
+      "phrase": "emerged from chapter 11"
+    }
+  },
+  "NINE": {
+    "CH11_EMERGENCE": {
+      "date": "2026-05-15",
+      "phrase": "emergence from chapter 11"
+    }
+  },
+  "CP": {
+    "CH11_EMERGENCE": {
+      "date": "2026-03-25",
+      "phrase": "emerged from chapter 11"
+    }
+  },
+  "MODVQ": {
+    "CH11_EMERGENCE": {
+      "date": "2025-12-29",
+      "phrase": "emergence from chapter 11"
+    }
+  },
+  "WOLF": {
+    "CH11_EMERGENCE": {
+      "date": "2026-08-19",
+      "phrase": "emergence from chapter 11"
+    }
+  },
+  "GOCO": {
+    "CH11_EMERGENCE": {
+      "date": "2026-06-08",
+      "phrase": "emergence from chapter 11"
+    }
+  },
+  "TSEOF": {
+    "CH11_EMERGENCE": {
+      "date": "2026-05-26",
+      "phrase": "emergence from chapter 11"
+    }
+  },
+  "OPI": {
+    "CH11_EMERGENCE": {
+      "date": "2026-08-05",
+      "phrase": "emergence from chapter 11"
+    }
+  },
+  "CGEH": {
+    "CH11_EMERGENCE": {
+      "date": "2026-03-30",
+      "phrase": "emergence from chapter 11"
+    }
+  },
+  "CPPTL": {
+    "CH11_EMERGENCE": {
+      "date": "2026-08-26",
+      "phrase": "emergence from chapter 11"
+    }
+  },
+  "FLYYQ": {
+    "CH11_EMERGENCE": {
+      "date": "2026-03-16",
+      "phrase": "emergence from chapter 11"
+    }
+  },
+  "NOTV": {
+    "CH11_EMERGENCE": {
+      "date": "2026-06-03",
+      "phrase": "emergence from chapter 11"
+    }
+  },
+  "EWCZ": {
+    "GOING_PRIVATE": {
+      "date": "2026-03-04",
+      "phrase": "to be taken private"
+    }
+  },
+  "DSGR": {
+    "GOING_PRIVATE": {
+      "date": "2026-07-16",
+      "phrase": "to be taken private"
+    }
+  },
+  "MCW": {
+    "GOING_PRIVATE": {
+      "date": "2026-02-18",
+      "phrase": "to be taken private"
+    },
+    "EXCHANGE_OFFER": {
+      "date": "2026-05-19",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "HOLX": {
+    "GOING_PRIVATE": {
+      "date": "2026-04-06",
+      "phrase": "go-private transaction"
+    }
+  },
+  "KPLT": {
+    "GOING_PRIVATE": {
+      "date": "2026-09-11",
+      "phrase": "go-private transaction"
+    }
+  },
+  "ANEB": {
+    "GOING_PRIVATE": {
+      "date": "2025-12-22",
+      "phrase": "go-private transaction"
+    },
+    "TENDER_OFFER": {
+      "date": "2026-01-29",
+      "phrase": "tender offer to purchase"
+    }
+  },
+  "DCGO": {
+    "GOING_PRIVATE": {
+      "date": "2026-08-17",
+      "phrase": "go-private transaction"
+    }
+  },
+  "APTOF": {
+    "GOING_PRIVATE": {
+      "date": "2026-03-31",
+      "phrase": "go-private transaction"
+    }
+  },
+  "AMCX": {
+    "GOING_PRIVATE": {
+      "date": "2026-06-17",
+      "phrase": "going private transaction"
+    }
+  },
+  "GDC": {
+    "GOING_PRIVATE": {
+      "date": "2026-05-06",
+      "phrase": "going private transaction"
+    },
+    "BUYBACK_AUTH": {
+      "date": "2026-02-18",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "GRNQ": {
+    "GOING_PRIVATE": {
+      "date": "2026-06-26",
+      "phrase": "going private transaction"
+    }
+  },
+  "FONR": {
+    "GOING_PRIVATE": {
+      "date": "2026-05-21",
+      "phrase": "going private transaction"
+    }
+  },
+  "SSP": {
+    "GOING_PRIVATE": {
+      "date": "2026-02-26",
+      "phrase": "going private transaction"
+    }
+  },
+  "UTZ": {
+    "GOING_PRIVATE": {
+      "date": "2026-07-21",
+      "phrase": "going private transaction"
+    },
+    "BUYBACK_AUTH": {
+      "date": "2026-02-12",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "GRND": {
+    "GOING_PRIVATE": {
+      "date": "2026-02-26",
+      "phrase": "going private transaction"
+    }
+  },
+  "PK": {
+    "GOING_PRIVATE": {
+      "date": "2026-02-19",
+      "phrase": "going private transaction"
+    }
+  },
+  "ONAR": {
+    "GOING_PRIVATE": {
+      "date": "2026-07-22",
+      "phrase": "going private transaction"
+    }
+  },
+  "KSS": {
+    "GOING_PRIVATE": {
+      "date": "2026-06-15",
+      "phrase": "going private transaction"
+    }
+  },
+  "VTAK": {
+    "GOING_PRIVATE": {
+      "date": "2026-02-06",
+      "phrase": "going private transaction"
+    }
+  },
+  "RENX": {
+    "GOING_PRIVATE": {
+      "date": "2026-06-15",
+      "phrase": "going private transaction"
+    }
+  },
+  "BFAM": {
+    "GOING_PRIVATE": {
+      "date": "2026-02-12",
+      "phrase": "going private transaction"
+    }
+  },
+  "OLN": {
+    "GOING_PRIVATE": {
+      "date": "2026-04-30",
+      "phrase": "going private transaction"
+    },
+    "UPLISTING": {
+      "date": "2026-06-16",
+      "phrase": "approved for listing on nyse"
+    }
+  },
+  "GCGR": {
+    "GOING_PRIVATE": {
+      "date": "2026-05-04",
+      "phrase": "going private transaction"
+    }
+  },
+  "CXII": {
+    "GOING_PRIVATE": {
+      "date": "2026-04-29",
+      "phrase": "going private transaction"
+    }
+  },
+  "XIII": {
+    "GOING_PRIVATE": {
+      "date": "2026-08-03",
+      "phrase": "going private transaction"
+    }
+  },
+  "IEAG": {
+    "GOING_PRIVATE": {
+      "date": "2026-01-20",
+      "phrase": "going private transaction"
+    }
+  },
+  "CCXI": {
+    "GOING_PRIVATE": {
+      "date": "2025-12-19",
+      "phrase": "going private transaction"
+    }
+  },
+  "SER": {
+    "GOING_PRIVATE": {
+      "date": "2026-04-21",
+      "phrase": "going private transaction"
+    }
+  },
+  "RACC": {
+    "GOING_PRIVATE": {
+      "date": "2026-05-21",
+      "phrase": "going private transaction"
+    },
+    "UPLISTING": {
+      "date": "2026-07-27",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "ACAA": {
+    "GOING_PRIVATE": {
+      "date": "2026-02-20",
+      "phrase": "going private transaction"
+    }
+  },
+  "CATL": {
+    "GOING_PRIVATE": {
+      "date": "2026-07-29",
+      "phrase": "going private transaction"
+    }
+  },
+  "HLXC": {
+    "GOING_PRIVATE": {
+      "date": "2026-01-27",
+      "phrase": "going private transaction"
+    }
+  },
+  "AMAN": {
+    "GOING_PRIVATE": {
+      "date": "2026-05-21",
+      "phrase": "going private transaction"
+    }
+  },
+  "FVAV": {
+    "GOING_PRIVATE": {
+      "date": "2026-03-02",
+      "phrase": "going private transaction"
+    }
+  },
+  "PNAQ": {
+    "GOING_PRIVATE": {
+      "date": "2026-08-10",
+      "phrase": "going private transaction"
+    }
+  },
+  "RACD": {
+    "GOING_PRIVATE": {
+      "date": "2026-07-14",
+      "phrase": "going private transaction"
+    }
+  },
+  "MSGE": {
+    "GOING_PRIVATE": {
+      "date": "2026-03-27",
+      "phrase": "going private transaction"
+    }
+  },
+  "MSGS": {
+    "GOING_PRIVATE": {
+      "date": "2026-05-04",
+      "phrase": "going private transaction"
+    }
+  },
+  "CRWD": {
+    "GOING_PRIVATE": {
+      "date": "2026-04-21",
+      "phrase": "going private transaction"
+    }
+  },
+  "SMTK": {
+    "GOING_PRIVATE": {
+      "date": "2026-03-31",
+      "phrase": "going private transaction"
+    },
+    "UPLISTING": {
+      "date": "2026-08-03",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "FTK": {
+    "GOING_PRIVATE": {
+      "date": "2026-02-25",
+      "phrase": "going private transaction"
+    }
+  },
+  "ONCO": {
+    "GOING_PRIVATE": {
+      "date": "2026-07-29",
+      "phrase": "going private transaction"
+    }
+  },
+  "SRXH": {
+    "GOING_PRIVATE": {
+      "date": "2026-08-28",
+      "phrase": "going private transaction"
+    },
+    "BUYBACK_AUTH": {
+      "date": "2026-07-10",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "TRUG": {
+    "GOING_PRIVATE": {
+      "date": "2026-08-18",
+      "phrase": "going private transaction"
+    }
+  },
+  "LTGR": {
+    "GOING_PRIVATE": {
+      "date": "2026-06-05",
+      "phrase": "going private transaction"
+    }
+  },
+  "IDAC": {
+    "GOING_PRIVATE": {
+      "date": "2026-05-18",
+      "phrase": "going private transaction"
+    }
+  },
+  "APUR": {
+    "GOING_PRIVATE": {
+      "date": "2026-05-22",
+      "phrase": "going private transaction"
+    }
+  },
+  "CCCT": {
+    "GOING_PRIVATE": {
+      "date": "2026-07-10",
+      "phrase": "going private transaction"
+    }
+  },
+  "AACI": {
+    "GOING_PRIVATE": {
+      "date": "2026-02-23",
+      "phrase": "going private transaction"
+    }
+  },
+  "JAB": {
+    "GOING_PRIVATE": {
+      "date": "2026-06-12",
+      "phrase": "going private transaction"
+    }
+  },
+  "ZDGE": {
+    "CAPITAL_RETURN": {
+      "date": "2026-03-25",
+      "phrase": "initiated a quarterly dividend"
+    }
+  },
+  "IMMR": {
+    "CAPITAL_RETURN": {
+      "date": "2026-07-27",
+      "phrase": "initiated a quarterly dividend"
+    }
+  },
+  "VC": {
+    "CAPITAL_RETURN": {
+      "date": "2026-02-19",
+      "phrase": "initiated a quarterly dividend"
+    },
+    "BUYBACK_AUTH": {
+      "date": "2026-06-25",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "BCSF": {
+    "CAPITAL_RETURN": {
+      "date": "2026-02-27",
+      "phrase": "declared a special dividend"
+    }
+  },
+  "SND": {
+    "CAPITAL_RETURN": {
+      "date": "2026-08-11",
+      "phrase": "declared a special dividend"
+    }
+  },
+  "HG": {
+    "CAPITAL_RETURN": {
+      "date": "2026-08-06",
+      "phrase": "declared a special dividend"
+    }
+  },
+  "CFFN": {
+    "CAPITAL_RETURN": {
+      "date": "2026-01-29",
+      "phrase": "declared a special dividend"
+    }
+  },
+  "CHRS": {
+    "CAPITAL_RETURN": {
+      "date": "2026-08-17",
+      "phrase": "declared a special dividend"
+    }
+  },
+  "JBSS": {
+    "CAPITAL_RETURN": {
+      "date": "2026-08-19",
+      "phrase": "declared a special dividend"
+    }
+  },
+  "RRR": {
+    "CAPITAL_RETURN": {
+      "date": "2026-02-10",
+      "phrase": "declared a special dividend"
+    }
+  },
+  "L": {
+    "CAPITAL_RETURN": {
+      "date": "2026-02-09",
+      "phrase": "declared a special dividend"
+    }
+  },
+  "KRG": {
+    "CAPITAL_RETURN": {
+      "date": "2026-02-17",
+      "phrase": "declared a special dividend"
+    }
+  },
+  "WETH": {
+    "CAPITAL_RETURN": {
+      "date": "2026-07-28",
+      "phrase": "special cash dividend"
+    }
+  },
+  "TASK": {
+    "CAPITAL_RETURN": {
+      "date": "2026-03-17",
+      "phrase": "special cash dividend"
+    }
+  },
+  "AREC": {
+    "CAPITAL_RETURN": {
+      "date": "2026-07-24",
+      "phrase": "special cash dividend"
+    }
+  },
+  "AII": {
+    "CAPITAL_RETURN": {
+      "date": "2026-05-12",
+      "phrase": "special cash dividend"
+    }
+  },
+  "ACNB": {
+    "CAPITAL_RETURN": {
+      "date": "2026-04-29",
+      "phrase": "special cash dividend"
+    }
+  },
+  "ARHS": {
+    "CAPITAL_RETURN": {
+      "date": "2026-05-07",
+      "phrase": "special cash dividend"
+    }
+  },
+  "COHN": {
+    "CAPITAL_RETURN": {
+      "date": "2025-12-22",
+      "phrase": "special cash dividend"
+    }
+  },
+  "ETD": {
+    "CAPITAL_RETURN": {
+      "date": "2026-07-29",
+      "phrase": "special cash dividend"
+    }
+  },
+  "ESP": {
+    "CAPITAL_RETURN": {
+      "date": "2026-09-08",
+      "phrase": "special cash dividend"
+    }
+  },
+  "TBTC": {
+    "CAPITAL_RETURN": {
+      "date": "2026-01-26",
+      "phrase": "special cash dividend"
+    }
+  },
+  "MPB": {
+    "CAPITAL_RETURN": {
+      "date": "2026-01-22",
+      "phrase": "special cash dividend"
+    }
+  },
+  "CPIX": {
+    "CAPITAL_RETURN": {
+      "date": "2026-08-04",
+      "phrase": "special cash dividend"
+    }
+  },
+  "BRBS": {
+    "CAPITAL_RETURN": {
+      "date": "2026-07-28",
+      "phrase": "special cash dividend"
+    }
+  },
+  "FIZZ": {
+    "CAPITAL_RETURN": {
+      "date": "2026-09-11",
+      "phrase": "special cash dividend"
+    }
+  },
+  "PRPH": {
+    "CAPITAL_RETURN": {
+      "date": "2025-12-19",
+      "phrase": "special cash dividend"
+    }
+  },
+  "VYNE": {
+    "CAPITAL_RETURN": {
+      "date": "2026-07-28",
+      "phrase": "special cash dividend"
+    }
+  },
+  "IIIN": {
+    "CAPITAL_RETURN": {
+      "date": "2026-01-15",
+      "phrase": "special cash dividend"
+    }
+  },
+  "PIPR": {
+    "CAPITAL_RETURN": {
+      "date": "2026-02-06",
+      "phrase": "special cash dividend"
+    }
+  },
+  "DIT": {
+    "CAPITAL_RETURN": {
+      "date": "2025-12-18",
+      "phrase": "special cash dividend"
+    }
+  },
+  "UBCP": {
+    "CAPITAL_RETURN": {
+      "date": "2026-08-20",
+      "phrase": "special cash dividend"
+    }
+  },
+  "UEIC": {
+    "CAPITAL_RETURN": {
+      "date": "2026-08-06",
+      "phrase": "special cash dividend"
+    }
+  },
+  "RLI": {
+    "CAPITAL_RETURN": {
+      "date": "2026-05-14",
+      "phrase": "special cash dividend"
+    }
+  },
+  "MKTW": {
+    "CAPITAL_RETURN": {
+      "date": "2026-03-03",
+      "phrase": "special cash dividend"
+    }
+  },
+  "PPSI": {
+    "CAPITAL_RETURN": {
+      "date": "2026-04-08",
+      "phrase": "special cash dividend"
+    }
+  },
+  "FLOC": {
+    "CAPITAL_RETURN": {
+      "date": "2026-08-11",
+      "phrase": "special cash dividend"
+    }
+  },
+  "NTIP": {
+    "CAPITAL_RETURN": {
+      "date": "2026-08-10",
+      "phrase": "special cash dividend"
+    }
+  },
+  "PRK": {
+    "CAPITAL_RETURN": {
+      "date": "2026-01-26",
+      "phrase": "special cash dividend"
+    }
+  },
+  "CBL": {
+    "CAPITAL_RETURN": {
+      "date": "2026-04-02",
+      "phrase": "special cash dividend"
+    }
+  },
+  "SIGA": {
+    "CAPITAL_RETURN": {
+      "date": "2026-08-06",
+      "phrase": "special cash dividend"
+    }
+  },
+  "PROV": {
+    "CAPITAL_RETURN": {
+      "date": "2026-04-28",
+      "phrase": "special cash dividend"
+    }
+  },
+  "GOAI": {
+    "UPLISTING": {
+      "date": "2026-01-27",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "GLND": {
+    "UPLISTING": {
+      "date": "2026-04-30",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "QNBC": {
+    "UPLISTING": {
+      "date": "2026-08-20",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "PTN": {
+    "UPLISTING": {
+      "date": "2026-05-18",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "TRT": {
+    "UPLISTING": {
+      "date": "2026-08-19",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "ADBT": {
+    "UPLISTING": {
+      "date": "2026-08-25",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "SCTH": {
+    "UPLISTING": {
+      "date": "2026-04-16",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "FCCN": {
+    "UPLISTING": {
+      "date": "2026-08-25",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "COCP": {
+    "UPLISTING": {
+      "date": "2026-08-03",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "BAFN": {
+    "UPLISTING": {
+      "date": "2026-04-30",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "MPX": {
+    "UPLISTING": {
+      "date": "2026-02-05",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "RGEN": {
+    "UPLISTING": {
+      "date": "2026-07-22",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "JFB": {
+    "UPLISTING": {
+      "date": "2026-02-18",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "MCFT": {
+    "UPLISTING": {
+      "date": "2026-02-05",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "NTLA": {
+    "UPLISTING": {
+      "date": "2026-04-30",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "CAR": {
+    "UPLISTING": {
+      "date": "2026-03-27",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "VIAV": {
+    "UPLISTING": {
+      "date": "2026-05-21",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "CSWC": {
+    "UPLISTING": {
+      "date": "2026-08-07",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "LASR": {
+    "UPLISTING": {
+      "date": "2026-02-04",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "SPRB": {
+    "UPLISTING": {
+      "date": "2026-04-22",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "AXGN": {
+    "UPLISTING": {
+      "date": "2026-09-10",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "ZURA": {
+    "UPLISTING": {
+      "date": "2026-02-26",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "CRNX": {
+    "UPLISTING": {
+      "date": "2026-01-07",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "EOSE": {
+    "UPLISTING": {
+      "date": "2026-08-06",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "ASPI": {
+    "UPLISTING": {
+      "date": "2026-06-25",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "NTHI": {
+    "UPLISTING": {
+      "date": "2026-04-10",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "EXOZ": {
+    "UPLISTING": {
+      "date": "2026-07-01",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "INDV": {
+    "UPLISTING": {
+      "date": "2026-01-26",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "VBIX": {
+    "UPLISTING": {
+      "date": "2026-04-30",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "AEP": {
+    "UPLISTING": {
+      "date": "2026-05-14",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "LCID": {
+    "UPLISTING": {
+      "date": "2026-04-14",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "KTOS": {
+    "UPLISTING": {
+      "date": "2026-03-02",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "CUE": {
+    "UPLISTING": {
+      "date": "2026-05-01",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "ZNTL": {
+    "UPLISTING": {
+      "date": "2026-08-14",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "SHIM": {
+    "UPLISTING": {
+      "date": "2026-05-26",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "WLFC": {
+    "UPLISTING": {
+      "date": "2026-05-18",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "SNOA": {
+    "UPLISTING": {
+      "date": "2026-04-30",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "LYTS": {
+    "UPLISTING": {
+      "date": "2026-03-02",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "AAOI": {
+    "UPLISTING": {
+      "date": "2026-05-14",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "MLYS": {
+    "UPLISTING": {
+      "date": "2026-06-03",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "CHEV": {
+    "UPLISTING": {
+      "date": "2026-03-04",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "FEIM": {
+    "UPLISTING": {
+      "date": "2026-07-30",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "KOD": {
+    "UPLISTING": {
+      "date": "2025-12-18",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "ORKA": {
+    "UPLISTING": {
+      "date": "2026-04-30",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "ONDS": {
+    "UPLISTING": {
+      "date": "2026-01-12",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "MGTX": {
+    "UPLISTING": {
+      "date": "2026-04-16",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "NAUT": {
+    "UPLISTING": {
+      "date": "2026-09-11",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "SMCI": {
+    "UPLISTING": {
+      "date": "2026-06-12",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "INO": {
+    "UPLISTING": {
+      "date": "2026-07-31",
+      "phrase": "approved for listing on the nasdaq"
+    }
+  },
+  "BMNR": {
+    "UPLISTING": {
+      "date": "2026-06-12",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "TPTA": {
+    "UPLISTING": {
+      "date": "2026-06-29",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "TFSA": {
+    "UPLISTING": {
+      "date": "2026-03-12",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "BLD": {
+    "UPLISTING": {
+      "date": "2026-04-20",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "GVA": {
+    "UPLISTING": {
+      "date": "2026-02-18",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "RYI": {
+    "UPLISTING": {
+      "date": "2026-02-13",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "MGY": {
+    "UPLISTING": {
+      "date": "2026-07-23",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "JAN": {
+    "UPLISTING": {
+      "date": "2026-08-12",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "TXNM": {
+    "UPLISTING": {
+      "date": "2026-09-02",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "ED": {
+    "UPLISTING": {
+      "date": "2026-02-25",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "ANGX": {
+    "UPLISTING": {
+      "date": "2026-04-13",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "ADT": {
+    "UPLISTING": {
+      "date": "2026-05-08",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "HGTY": {
+    "UPLISTING": {
+      "date": "2026-09-11",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "ORCL": {
+    "UPLISTING": {
+      "date": "2026-02-05",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "WHR": {
+    "UPLISTING": {
+      "date": "2026-02-27",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "CLS": {
+    "UPLISTING": {
+      "date": "2026-08-07",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "DOCN": {
+    "UPLISTING": {
+      "date": "2026-03-26",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "EPRT": {
+    "UPLISTING": {
+      "date": "2026-07-24",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "AADX": {
+    "UPLISTING": {
+      "date": "2026-06-04",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "ANRO": {
+    "UPLISTING": {
+      "date": "2026-07-14",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "GRDN": {
+    "UPLISTING": {
+      "date": "2026-03-23",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "POR": {
+    "UPLISTING": {
+      "date": "2026-02-19",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "SARO": {
+    "UPLISTING": {
+      "date": "2026-01-29",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "GMRS": {
+    "UPLISTING": {
+      "date": "2026-05-18",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "AVEX": {
+    "UPLISTING": {
+      "date": "2026-08-12",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "FPS": {
+    "UPLISTING": {
+      "date": "2026-02-10",
+      "phrase": "approved for listing on the new york stock exchange"
+    },
+    "EXCHANGE_OFFER": {
+      "date": "2026-06-26",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "KRP": {
+    "UPLISTING": {
+      "date": "2026-07-17",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "SKT": {
+    "UPLISTING": {
+      "date": "2026-02-27",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "QBTS": {
+    "UPLISTING": {
+      "date": "2026-01-07",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "VST": {
+    "UPLISTING": {
+      "date": "2026-01-05",
+      "phrase": "approved for listing on the new york stock exchange"
+    },
+    "EXCHANGE_OFFER": {
+      "date": "2026-06-30",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "O": {
+    "UPLISTING": {
+      "date": "2026-05-08",
+      "phrase": "approved for listing on the new york stock exchange"
+    }
+  },
+  "LSF": {
+    "UPLISTING": {
+      "date": "2025-12-22",
+      "phrase": "approved for listing on nyse"
+    }
+  },
+  "ADTX": {
+    "UPLISTING": {
+      "date": "2026-06-10",
+      "phrase": "approved for listing on nyse"
+    }
+  },
+  "SOC": {
+    "UPLISTING": {
+      "date": "2026-02-03",
+      "phrase": "approved for listing on nyse"
+    }
+  },
+  "TRNO": {
+    "UPLISTING": {
+      "date": "2026-02-17",
+      "phrase": "approved for listing on nyse"
+    }
+  },
+  "OCLT": {
+    "UPLISTING": {
+      "date": "2026-08-12",
+      "phrase": "approved for listing on nyse"
+    }
+  },
+  "HUN": {
+    "UPLISTING": {
+      "date": "2026-06-16",
+      "phrase": "approved for listing on nyse"
+    }
+  },
+  "BUDA": {
+    "UPLISTING": {
+      "date": "2026-01-09",
+      "phrase": "approved for listing on nyse"
+    }
+  },
+  "ETH": {
+    "UPLISTING": {
+      "date": "2026-02-06",
+      "phrase": "approved for listing on nyse"
+    }
+  },
+  "BTC": {
+    "UPLISTING": {
+      "date": "2026-02-06",
+      "phrase": "approved for listing on nyse"
+    }
+  },
+  "GSOL": {
+    "UPLISTING": {
+      "date": "2026-05-13",
+      "phrase": "approved for listing on nyse"
+    }
+  },
+  "PL": {
+    "UPLISTING": {
+      "date": "2026-06-05",
+      "phrase": "approved for listing on nyse"
+    }
+  },
+  "UUUU": {
+    "UPLISTING": {
+      "date": "2026-07-28",
+      "phrase": "approved for listing on nyse"
+    }
+  },
+  "CBAN": {
+    "UPLISTING": {
+      "date": "2026-06-24",
+      "phrase": "approved for listing on nyse"
+    }
+  },
+  "AA": {
+    "UPLISTING": {
+      "date": "2026-07-02",
+      "phrase": "approved for listing on nyse"
+    }
+  },
+  "HTCR": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-24",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "UAMY": {
+    "BUYBACK_AUTH": {
+      "date": "2026-08-19",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "SHOP": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-11",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "LIFE": {
+    "BUYBACK_AUTH": {
+      "date": "2026-08-03",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "IBEX": {
+    "BUYBACK_AUTH": {
+      "date": "2026-05-13",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "RVSB": {
+    "BUYBACK_AUTH": {
+      "date": "2026-08-27",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "FSBW": {
+    "BUYBACK_AUTH": {
+      "date": "2026-08-24",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "CNTN": {
+    "BUYBACK_AUTH": {
+      "date": "2026-06-16",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "IPW": {
+    "BUYBACK_AUTH": {
+      "date": "2026-05-26",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "UPWK": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-18",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "ASIC": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-19",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "RBLX": {
+    "BUYBACK_AUTH": {
+      "date": "2026-05-19",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "SILO": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-23",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "TCNNF": {
+    "BUYBACK_AUTH": {
+      "date": "2026-06-09",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "PLBC": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-02",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "IPST": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-19",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "KINS": {
+    "BUYBACK_AUTH": {
+      "date": "2026-05-20",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "INGN": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-24",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "JBTM": {
+    "BUYBACK_AUTH": {
+      "date": "2026-05-15",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "WEX": {
+    "BUYBACK_AUTH": {
+      "date": "2026-05-14",
+      "phrase": "authorized a share repurchase"
+    },
+    "TENDER_OFFER": {
+      "date": "2026-07-22",
+      "phrase": "modified dutch auction"
+    }
+  },
+  "GCMG": {
+    "BUYBACK_AUTH": {
+      "date": "2026-08-10",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "FROG": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-26",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "FPH": {
+    "BUYBACK_AUTH": {
+      "date": "2026-04-23",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "KVYO": {
+    "BUYBACK_AUTH": {
+      "date": "2026-03-02",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "BMNM": {
+    "BUYBACK_AUTH": {
+      "date": "2026-03-12",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "GLXZ": {
+    "BUYBACK_AUTH": {
+      "date": "2026-07-22",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "OTH": {
+    "BUYBACK_AUTH": {
+      "date": "2026-01-08",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "UNFI": {
+    "BUYBACK_AUTH": {
+      "date": "2026-09-08",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "MHH": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-19",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "SN": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-11",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "PRTA": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-27",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "DUOL": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-26",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "PAR": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-26",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "COSM": {
+    "BUYBACK_AUTH": {
+      "date": "2026-08-20",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "PTRN": {
+    "BUYBACK_AUTH": {
+      "date": "2026-03-05",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "WRBY": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-26",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "ONIT": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-12",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "DT": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-09",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "PD": {
+    "BUYBACK_AUTH": {
+      "date": "2026-05-28",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "WSR": {
+    "BUYBACK_AUTH": {
+      "date": "2025-12-19",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "RDDT": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-05",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "ORBS": {
+    "BUYBACK_AUTH": {
+      "date": "2025-12-29",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "ALKT": {
+    "BUYBACK_AUTH": {
+      "date": "2026-04-29",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "BTGO": {
+    "BUYBACK_AUTH": {
+      "date": "2026-06-17",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "TRST": {
+    "BUYBACK_AUTH": {
+      "date": "2026-01-29",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "ZYME": {
+    "BUYBACK_AUTH": {
+      "date": "2026-05-14",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "ASNS": {
+    "BUYBACK_AUTH": {
+      "date": "2026-03-18",
+      "phrase": "authorized a share repurchase"
+    }
+  },
+  "HSTM": {
+    "BUYBACK_AUTH": {
+      "date": "2026-03-13",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "THG": {
+    "BUYBACK_AUTH": {
+      "date": "2026-05-13",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "FNB": {
+    "BUYBACK_AUTH": {
+      "date": "2026-04-14",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "DIN": {
+    "BUYBACK_AUTH": {
+      "date": "2026-08-05",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "VICR": {
+    "BUYBACK_AUTH": {
+      "date": "2026-08-27",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "PLXS": {
+    "BUYBACK_AUTH": {
+      "date": "2026-08-24",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "GWRE": {
+    "BUYBACK_AUTH": {
+      "date": "2026-01-08",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "IIIV": {
+    "BUYBACK_AUTH": {
+      "date": "2026-05-12",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "CZWI": {
+    "BUYBACK_AUTH": {
+      "date": "2026-09-02",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "FIVE": {
+    "BUYBACK_AUTH": {
+      "date": "2026-09-02",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "HNVR": {
+    "BUYBACK_AUTH": {
+      "date": "2026-08-26",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "GCT": {
+    "BUYBACK_AUTH": {
+      "date": "2026-08-06",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "PRAA": {
+    "BUYBACK_AUTH": {
+      "date": "2026-08-06",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "MIR": {
+    "BUYBACK_AUTH": {
+      "date": "2026-08-31",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "ETSY": {
+    "BUYBACK_AUTH": {
+      "date": "2025-12-19",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "LYB": {
+    "BUYBACK_AUTH": {
+      "date": "2026-05-22",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "MCB": {
+    "BUYBACK_AUTH": {
+      "date": "2026-06-22",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "KLAC": {
+    "BUYBACK_AUTH": {
+      "date": "2026-03-12",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "HOOD": {
+    "BUYBACK_AUTH": {
+      "date": "2026-03-24",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "III": {
+    "BUYBACK_AUTH": {
+      "date": "2026-08-05",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "ACT": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-03",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "NUE": {
+    "BUYBACK_AUTH": {
+      "date": "2026-04-27",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "RCKY": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-24",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "WDFC": {
+    "BUYBACK_AUTH": {
+      "date": "2026-07-09",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "MITK": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-05",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "AZTA": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-04",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "RYZ": {
+    "BUYBACK_AUTH": {
+      "date": "2026-05-06",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "LZB": {
+    "BUYBACK_AUTH": {
+      "date": "2026-06-16",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "MGNI": {
+    "BUYBACK_AUTH": {
+      "date": "2026-02-25",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "FCFS": {
+    "BUYBACK_AUTH": {
+      "date": "2026-07-23",
+      "phrase": "approved a new share repurchase"
+    }
+  },
+  "DAR": {
+    "BUYBACK_AUTH": {
+      "date": "2026-08-05",
+      "phrase": "increased its share repurchase"
+    }
+  },
+  "CTSH": {
+    "BUYBACK_AUTH": {
+      "date": "2026-05-18",
+      "phrase": "increased its share repurchase"
+    }
+  },
+  "CNX": {
+    "TENDER_OFFER": {
+      "date": "2026-02-24",
+      "phrase": "tender offer to purchase"
+    }
+  },
+  "DKL": {
+    "TENDER_OFFER": {
+      "date": "2026-05-14",
+      "phrase": "tender offer to purchase"
+    }
+  },
+  "GILD": {
+    "TENDER_OFFER": {
+      "date": "2026-04-28",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "ULYX": {
+    "TENDER_OFFER": {
+      "date": "2026-04-28",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "TERN": {
+    "TENDER_OFFER": {
+      "date": "2026-05-05",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "FBRX": {
+    "TENDER_OFFER": {
+      "date": "2026-08-27",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "FORA": {
+    "TENDER_OFFER": {
+      "date": "2026-05-15",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "ACLX": {
+    "TENDER_OFFER": {
+      "date": "2026-04-28",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "LPRO": {
+    "TENDER_OFFER": {
+      "date": "2026-07-30",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "SLNO": {
+    "TENDER_OFFER": {
+      "date": "2026-05-18",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "NBIX": {
+    "TENDER_OFFER": {
+      "date": "2026-05-18",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "CDTX": {
+    "TENDER_OFFER": {
+      "date": "2026-01-07",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "APLS": {
+    "TENDER_OFFER": {
+      "date": "2026-05-14",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "MRSN": {
+    "TENDER_OFFER": {
+      "date": "2026-01-06",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "NUVL": {
+    "TENDER_OFFER": {
+      "date": "2026-07-15",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "EQT": {
+    "TENDER_OFFER": {
+      "date": "2026-03-24",
+      "phrase": "tender offer to purchase"
+    }
+  },
+  "KALV": {
+    "TENDER_OFFER": {
+      "date": "2026-06-11",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "APLT": {
+    "TENDER_OFFER": {
+      "date": "2026-02-03",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "DAWN": {
+    "TENDER_OFFER": {
+      "date": "2026-03-09",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "GBIO": {
+    "TENDER_OFFER": {
+      "date": "2026-02-09",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "BIIB": {
+    "TENDER_OFFER": {
+      "date": "2026-05-14",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "DVAX": {
+    "TENDER_OFFER": {
+      "date": "2026-02-10",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "LE": {
+    "TENDER_OFFER": {
+      "date": "2026-03-19",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "FMC": {
+    "TENDER_OFFER": {
+      "date": "2026-07-01",
+      "phrase": "commenced a tender offer"
+    }
+  },
+  "SM": {
+    "TENDER_OFFER": {
+      "date": "2026-04-02",
+      "phrase": "tender offer to purchase"
+    }
+  },
+  "MLCI": {
+    "TENDER_OFFER": {
+      "date": "2025-12-29",
+      "phrase": "tender offer to purchase"
+    }
+  },
+  "KMT": {
+    "TENDER_OFFER": {
+      "date": "2026-05-27",
+      "phrase": "tender offer to purchase"
+    }
+  },
+  "EXFY": {
+    "TENDER_OFFER": {
+      "date": "2026-08-06",
+      "phrase": "modified dutch auction"
+    }
+  },
+  "MTDR": {
+    "TENDER_OFFER": {
+      "date": "2026-03-05",
+      "phrase": "tender offer to purchase"
+    }
+  },
+  "ABUS": {
+    "TENDER_OFFER": {
+      "date": "2026-08-21",
+      "phrase": "tender offer to purchase"
+    }
+  },
+  "KHC": {
+    "TENDER_OFFER": {
+      "date": "2026-05-21",
+      "phrase": "tender offer to purchase"
+    }
+  },
+  "NRG": {
+    "TENDER_OFFER": {
+      "date": "2026-04-14",
+      "phrase": "tender offer to purchase"
+    },
+    "EXCHANGE_OFFER": {
+      "date": "2026-01-30",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "FISV": {
+    "TENDER_OFFER": {
+      "date": "2026-08-06",
+      "phrase": "cash tender offer"
+    }
+  },
+  "LUMN": {
+    "TENDER_OFFER": {
+      "date": "2026-05-07",
+      "phrase": "tender offer to purchase"
+    }
+  },
+  "ALGT": {
+    "TENDER_OFFER": {
+      "date": "2026-06-29",
+      "phrase": "tender offer to purchase"
+    }
+  },
+  "OII": {
+    "TENDER_OFFER": {
+      "date": "2026-07-07",
+      "phrase": "cash tender offer"
+    }
+  },
+  "CHTH": {
+    "TENDER_OFFER": {
+      "date": "2026-01-14",
+      "phrase": "tender offer to purchase"
+    }
+  },
+  "OPTU": {
+    "TENDER_OFFER": {
+      "date": "2026-06-01",
+      "phrase": "tender offer to purchase"
+    }
+  },
+  "KZR": {
+    "TENDER_OFFER": {
+      "date": "2026-05-11",
+      "phrase": "tender offer to purchase"
+    }
+  },
+  "SIRI": {
+    "TENDER_OFFER": {
+      "date": "2026-03-10",
+      "phrase": "cash tender offer"
+    }
+  },
+  "TDG": {
+    "TENDER_OFFER": {
+      "date": "2026-09-14",
+      "phrase": "cash tender offer"
+    }
+  },
+  "ST": {
+    "TENDER_OFFER": {
+      "date": "2026-07-29",
+      "phrase": "cash tender offer"
+    }
+  },
+  "ARE": {
+    "TENDER_OFFER": {
+      "date": "2026-02-12",
+      "phrase": "cash tender offer"
+    }
+  },
+  "CVAT": {
+    "TENDER_OFFER": {
+      "date": "2026-08-19",
+      "phrase": "cash tender offer"
+    }
+  },
+  "KROS": {
+    "TENDER_OFFER": {
+      "date": "2026-03-04",
+      "phrase": "cash tender offer"
+    }
+  },
+  "SCHL": {
+    "TENDER_OFFER": {
+      "date": "2026-07-23",
+      "phrase": "modified dutch auction"
+    }
+  },
+  "BCIC": {
+    "TENDER_OFFER": {
+      "date": "2026-05-08",
+      "phrase": "modified dutch auction"
+    }
+  },
+  "MAIR": {
+    "TENDER_OFFER": {
+      "date": "2026-06-05",
+      "phrase": "modified dutch auction"
+    }
+  },
+  "RDNT": {
+    "TENDER_OFFER": {
+      "date": "2026-06-10",
+      "phrase": "modified dutch auction"
+    }
+  },
+  "GOSS": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-06-05",
+      "phrase": "commenced an exchange offer"
+    }
+  },
+  "ADV": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-02-09",
+      "phrase": "commenced an exchange offer"
+    }
+  },
+  "DVN": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-06-25",
+      "phrase": "commenced an exchange offer"
+    }
+  },
+  "NXST": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-03-30",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "ARRY": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-02-18",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "FND": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-06-25",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "HLF": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-05-01",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "WMG": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-03-11",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "ACH": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-06-15",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "CNM": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-07-02",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "MMS": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-05-28",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "TLN": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-06-15",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "BV": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-06-18",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "BWIN": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-01-02",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "ALSN": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-01-02",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "AGL": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-02-12",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "BYND": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-04-09",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "GDDY": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-08-04",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "Q": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-07-01",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "CVNA": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-08-14",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "MKSI": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-02-05",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "VVX": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-06-01",
+      "phrase": "debt exchange offer"
+    }
+  },
+  "KNF": {
+    "EXCHANGE_OFFER": {
+      "date": "2026-05-18",
+      "phrase": "debt exchange offer"
+    }
+  }
+}
