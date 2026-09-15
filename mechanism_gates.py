@@ -31,6 +31,16 @@ condition holds -- and combines them with the measured payoff geometry
      small-cap shrinks float or reveals undervaluation; net-cash-funded
      self-tenders are accretive. Best HIT RATE in the backtest (61%).
 
+Two ANTICIPATORY (latent) archetypes catch the setup BEFORE the catalyst is
+announced -- likely to realise value but haven't yet:
+
+  8. ASSET-SALE LATENT -- cheap, levered, under de-lever pressure (credit-
+     agreement asset sweep) or already signalling divestiture intent in the
+     MD&A, but with NO sale announced.
+  9. TENDER-TARGET LATENT -- asset-backed cheapness (near net cash / NCAV) in
+     a small controllable cap with a plausible buyer (high insider ownership
+     or a self-tender-capable cash pile) and NO bid yet.
+
 Each archetype fires only on full conjunction. The score sums archetype
 weights and adds a geometry contribution; a name lighting up TWO or more
 machines is the rarest, highest-conviction configuration.
@@ -58,6 +68,10 @@ ARCH_WEIGHT = {
     # median of all 12 event types; tender-offer the best hit rate).
     "asset_sale_monetization": 12.0,
     "tender_offer_squeeze": 10.0,
+    # ANTICIPATORY (latent) -- the setup is present but the catalyst has NOT
+    # been announced; speculative, so weighted below the confirmed machines.
+    "asset_sale_latent": 8.0,
+    "tender_target_latent": 8.0,
 }
 MULTI_MECHANISM_BONUS = 10.0   # two or more machines on one name
 
@@ -178,6 +192,39 @@ def main() -> int:
                 "sources": (rer.get(tk) or {}).get("sources_by_bucket", {}).get("TENDER_OFFER"),
                 "ratio": ratio, "mcap": mcap,
                 "net_cash_floor": g.get("net_cash_frac", 0) >= 0.30}
+
+        # 8. ASSET-SALE LATENT -- the divestiture setup BEFORE it is announced:
+        #    a cheap, levered name under de-lever pressure (credit-agreement
+        #    asset sweep) or already signalling intent in the MD&A, but with NO
+        #    announced sale yet. Anticipatory -- get in ahead of the catalyst.
+        cr = credit.get(tk) or {}
+        cr_score = _num(cr.get("score")) if isinstance(cr, dict) else None
+        pressure = (cr_score or 0) > 0 or bool(md_cats & {"value_unlock", "strategic_action"})
+        no_sale_yet = not (cats & {"ASSET_SALE", "SALE_OF_COMPANY"})
+        if pressure and cheap and de is not None and de >= 0.7 \
+                and no_sale_yet and 0 < mcap < 5e9:
+            archetypes.append("asset_sale_latent")
+            details["asset_sale_latent"] = {
+                "pressure": "credit-sweep" if (cr_score or 0) > 0 else "mda-intent",
+                "d_e": round(de, 2), "ratio": ratio}
+
+        # 9. TENDER-TARGET LATENT -- the take-private / self-tender candidate
+        #    BEFORE any bid: asset-backed cheapness (trades near net cash /
+        #    NCAV) in a small, controllable cap with a plausible buyer (high
+        #    insider ownership that could take it private, or a cash pile that
+        #    could fund a self-tender), and NO deal announced. Anticipatory.
+        insider_pct = _num(y.get("insider_pct"))
+        asset_backed = g.get("floor_source") in ("net-cash", "NCAV")
+        buyer = (insider_pct is not None and insider_pct >= 0.20) \
+            or (g.get("net_cash_frac", 0) >= 0.30)
+        no_deal = not (cats & {"TENDER_OFFER", "SALE_OF_COMPANY", "GOING_PRIVATE"})
+        if asset_backed and cheap and 0 < mcap < 1e9 and buyer and no_deal \
+                and not g.get("burning"):
+            archetypes.append("tender_target_latent")
+            details["tender_target_latent"] = {
+                "floor_source": g.get("floor_source"),
+                "insider_pct": round(insider_pct, 3) if insider_pct is not None else None,
+                "net_cash_frac": g.get("net_cash_frac"), "mcap": mcap}
 
         if not archetypes:
             continue

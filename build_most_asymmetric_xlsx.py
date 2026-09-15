@@ -1479,8 +1479,15 @@ def build_mechanism_gates(wb: Workbook, yf: dict):
         "geometry + insider buying), asset-sale monetization (asset-sale "
         "catalyst + cheap + levered/small — the backtest's best-median "
         "catalyst, +10%/58% hit), and tender-offer squeeze (tender/Dutch-"
-        "auction catalyst + cheap small-cap — best hit rate, 61%). Combines "
-        "the payoff-geometry shape with the catalyst layers so shape and 'why "
+        "auction catalyst + cheap small-cap — best hit rate, 61%). TWO "
+        "ANTICIPATORY archetypes catch the setup BEFORE the catalyst: "
+        "asset-sale latent (cheap + levered + de-lever pressure or MD&A "
+        "divestiture intent, NO sale announced) and tender-target latent "
+        "(near net cash / NCAV, small controllable cap, plausible buyer — high "
+        "insider ownership or self-tender-capable cash — and NO bid yet); "
+        "these are speculative (weighted below the confirmed machines) but "
+        "flag names likely to realise value that haven't yet. Combines the "
+        "payoff-geometry shape with the catalyst layers so shape and 'why "
         "now' are both required. Source: mechanism_gates.py.", 6)
     ws.sheet_view.showGridLines = False
     ws.freeze_panes = "A5"
