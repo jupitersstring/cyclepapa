@@ -1634,6 +1634,37 @@ def build_tail_odds(wb: Workbook, yf: dict):
                 ).font = SMALL_ITALIC if 'SMALL_ITALIC' in globals() else BODY_FONT
         r += 2
 
+    # --- MONSTER SETUPS: the greatest-trades washout fingerprint ---
+    monsters = sorted((v for v in conf.values()
+                       if isinstance(v, dict) and (v.get("monster_setup") or 0) >= 6),
+                      key=lambda r: -r.get("monster_setup", 0))
+    if monsters:
+        ws.cell(row=r, column=1,
+                value="MONSTER SETUPS — the greatest-trades washout "
+                      "fingerprint (deep 24m drawdown + wild vol + bottom of "
+                      "range + decelerating + monster-rich catalyst)").font = BODY_BOLD
+        r += 1
+        write_header_row(ws, r, ["Ticker", "Name", "Monster", "State",
+                                 "Tail p", "Fingerprint"])
+        r += 1
+        for i, v in enumerate(monsters[:18], 1):
+            tk = v.get("ticker", "")
+            nm = (yf.get(tk, {}) or {}).get("name", tk)
+            write_body_row(ws, r,
+                           [tk, nm[:20], f"{v.get('monster_setup',0):.0f}/10",
+                            v.get("state", ""),
+                            f"{v.get('tail_prob_confirmed',0)*100:.0f}%",
+                            "; ".join(v.get("monster_flags") or [])[:44]],
+                           band=(i % 2 == 0), bold_first=True)
+            ws.row_dimensions[r].height = 22
+            r += 1
+        ws.cell(row=r, column=1,
+                value="Note: monster-rich catalysts (strategic-review, spin, "
+                      "Ch11, uplisting) are LOTTERY TICKETS — negative median, "
+                      "convex tail — so size these small. See GREATEST_TRADES.md."
+                ).font = BODY_FONT
+        r += 2
+
     # --- full candidate ranking (pre-confirmation odds) ---
     ws.cell(row=r, column=1,
             value="ALL CANDIDATES — pre-confirmation tail odds").font = BODY_BOLD

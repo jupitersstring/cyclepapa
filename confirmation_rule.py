@@ -33,7 +33,15 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import io_util
-from rerate_backtest import chart_monthly, _close_near
+from rerate_backtest import (chart_monthly, _close_near, _drawdown_from_high,
+                             _pre_vol, _range_pos, _trailing_return)
+
+# Monster-rich catalysts from the greatest-trades study (>=+100%/12m rate) --
+# note these are DIFFERENT from the median-best catalysts; several are
+# lottery tickets with negative medians. For monster hunting they add
+# convexity.
+MONSTER_CATALYSTS = {"STRATEGIC_REVIEW", "SPINOFF", "CH11_EMERGENCE",
+                     "UPLISTING", "ASSET_SALE"}
 
 ROOT = Path("/home/user/cyclepapa")
 OUT = ROOT / "confirmation_rule.json"
@@ -153,6 +161,29 @@ def main() -> int:
         log_odds = math.log(base_odds) + SHRINK * math.log(lift)
         conf_p = 1.0 / (1.0 + math.exp(-log_odds))
 
+        # MONSTER-SETUP fingerprint (greatest-trades study): the biggest
+        # re-raters were violent, prolonged WASHOUTS at the catalyst date --
+        # deep 24m drawdown, bottom of range, wild pre-event vol, decline just
+        # decelerating -- carrying a monster-rich (lottery) catalyst. Measured
+        # AT the catalyst date (t0), matching the study.
+        dd24 = _drawdown_from_high(series, t0_ts, 24)
+        pv = _pre_vol(series, t0_ts, 12)
+        rp = _range_pos(series, t0_ts, 12)
+        decel = (_trailing_return(series, t0_ts, 3) or 0) \
+            - (_trailing_return(series, t0_ts, 12) or 0)
+        ms = 0.0; ms_flags = []
+        if dd24 is not None and dd24 <= -0.40:
+            ms += 3; ms_flags.append(f"deep 24m washout ({dd24*100:.0f}%)")
+        if pv is not None and pv >= 0.13:
+            ms += 2; ms_flags.append(f"wild vol ({pv:.2f})")
+        if rp is not None and rp <= 0.33:
+            ms += 2; ms_flags.append("bottom of range")
+        if decel >= 0.0:
+            ms += 1; ms_flags.append("decelerating")
+        cats = set((rer.get(tk) or {}).get("catalyst_types") or [])
+        if cats & MONSTER_CATALYSTS:
+            ms += 2; ms_flags.append("monster-rich catalyst")
+
         out[tk] = {
             "ticker": tk,
             "catalyst_date": cd,
@@ -161,6 +192,10 @@ def main() -> int:
             "state": state,
             "tail_prob_base": round(base_p, 3),
             "tail_prob_confirmed": round(conf_p, 3),
+            "monster_setup": round(ms, 1),
+            "monster_flags": ms_flags,
+            "drawdown_24m": round(dd24, 3) if dd24 is not None else None,
+            "pre_vol": round(pv, 3) if pv is not None else None,
             "catalyst_types": rer[tk].get("catalyst_types"),
             "geometry_ratio": rer[tk].get("geometry_ratio"),
             "sector": rer[tk].get("sector"),
@@ -178,6 +213,13 @@ def main() -> int:
         print(f"{r['ticker']:<7}{r['state']:<11}{r['months_since']:>5.0f}m"
               f"{r['drift_since_catalyst']*100:>7.0f}%{r['tail_prob_confirmed']*100:>6.0f}%"
               f"  {', '.join(r['catalyst_types'] or [])}")
+    # the monster-setup shortlist: the washout fingerprint, regardless of state.
+    mons = sorted((v for v in out.values() if v["monster_setup"] >= 6),
+                  key=lambda r: -r["monster_setup"])
+    print(f"\nMONSTER SETUPS (washout fingerprint, score>=6): {len(mons)}")
+    for r in mons[:20]:
+        print(f"  {r['ticker']:<7}{r['monster_setup']:>5.1f}  {r['state']:<10}"
+              f"  {'; '.join(r['monster_flags'])}")
     return 0
 
 
