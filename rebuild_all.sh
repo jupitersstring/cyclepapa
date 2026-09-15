@@ -87,6 +87,9 @@ if [ "$DO_SCANS" = "1" ]; then
   run python3 coval_stafford_proxy.py       || true
   # -- Non-US
   run python3 foreign_markets.py            || true
+  run python3 going_dark_scan.py             --days 270 || true
+  run python3 nol_shell_scan.py              --days 540 || true
+  run python3 russell_recon.py               || true
   run python3 uk_rns_scan.py                --pages 15 || true
   run python3 price_history_pull.py          --limit 400 || true
   run python3 biotech_pdufa_calendar.py     --days 365 --limit 300 || true
