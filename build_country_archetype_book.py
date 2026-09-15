@@ -738,21 +738,26 @@ def main():
         _roce = pd.to_numeric(df_full.get('roce'), errors='coerce')
         _fcfy = pd.to_numeric(df_full.get('fcf_yield'), errors='coerce')
         _melt = ((_roce < -0.20) & ~(_fcfy > 0)).fillna(False)
-        # 0.15 floor: a forensic-adjusted book multiple below ~0.15 is a stale/
-        # FX-mismatched book, not a bargain. Exclude financials/REITs (adjusted
-        # book is an OPERATING concept), micro-shells (<$20M), melters, and
-        # non-common lines. Also drop rows whose NAIVE book is itself sub-0.15.
-        # require a real OPERATING sector: an adjusted-book forensic on an ETF /
-        # ETN / structured note (sector blank, huge nominal mcap, nonsense book —
-        # VYLD, AMJB, PALL) is meaningless.
+        # Financials and REITs are KEPT, not excluded — they are calculated
+        # differently upstream (adjusted_book = tangible common equity for a
+        # bank/insurer; book + real-estate depreciation add-back = NAV for a
+        # REIT), so their adjusted P/B is meaningful. The guards below are pure
+        # DATA QUALITY, not type exclusions: a 0.15 floor (a book multiple below
+        # ~0.15 is a stale / FX-mismatched book, not a bargain), a $20M size
+        # floor (no micro-shells), a real operating sector (drops ETF/ETN notes
+        # like VYLD/AMJB/PALL whose 'book' is nonsense), a melt guard, and the
+        # non-common (preferred/warrant) mask. Naive book must also clear 0.15.
         _sec_raw = df_full.get('sector')
         _has_sector = (_sec_raw.notna()
                        & _sec_raw.astype(str).str.strip().str.lower().ne('nan')
                        & _sec_raw.astype(str).str.strip().ne(''))
-        ap = df_full[(_apb >= 0.15) & (_apb < 1.0)
-                     & ((_npb.isna()) | (_npb >= 0.15))
+        # Require a real NAIVE P/B present (>= 0.15): the tab exists to compare
+        # adjusted vs naive book, and a missing naive book is the tell of a
+        # non-common line (Fannie preferred FNMFN, ACGLN, OPENZ/OPENL notes)
+        # whose adjusted_book is computed off a class that has no common book.
+        ap = df_full[(_apb >= 0.15) & (_apb < 1.0) & (_npb >= 0.15)
                      & (_dq == 0) & (_mc >= 20e6) & _has_sector
-                     & ~_fin_mask(df_full) & ~_melt & _not_warrant(df_full)].copy()
+                     & ~_melt & _not_warrant(df_full)].copy()
         if 'is_price_ghost' in ap.columns:
             ap = ap[~(pd.to_numeric(ap['is_price_ghost'], errors='coerce') == 1)]
         if not ap.empty:

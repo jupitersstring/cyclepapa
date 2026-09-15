@@ -6075,7 +6075,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _adj_hidden = (_ncol('lifo_reserve').clip(lower=0).fillna(0)
                    + _ncol('pension_funded_status').fillna(0)               # signed: surplus adds, deficit subtracts
                    + _ncol('em_fv_gap').clip(lower=0).fillna(0))
-    df['adjusted_book'] = (_teq_ab + _adj_hidden).round(0)
+    # TYPE-APPROPRIATE book (per Cundill: value each on its OWN realizable book,
+    # don't discard whole sectors). For a FINANCIAL the base already IS the right
+    # number — tangible common equity, the standard bank/insurer valuation base
+    # (goodwill stripped; LIFO/pension/stake legs are null for them). For a
+    # REIT / property company GAAP carries real estate at cost LESS accumulated
+    # depreciation, but land + buildings do not economically depreciate on that
+    # schedule, so book UNDERSTATES NAV. Add back the accumulated depreciation
+    # (the non-economic charge) — the analyst-standard NAV proxy — so a property
+    # company is measured against its true asset value, not a depreciated stub.
+    _is_re_ab = sector.astype(str).str.contains('Real Estate', case=False, na=False)
+    _re_navback = _ncol('accumulated_depreciation').clip(lower=0).fillna(0).where(_is_re_ab, 0.0)
+    df['adjusted_book'] = (_teq_ab + _adj_hidden + _re_navback).round(0)
     _adjb = df['adjusted_book']
     df['adjusted_pb'] = (mcap / _adjb.where(_adjb > 0)).round(3)
     # quality-adjusted net-net: NNWC (haircut) as a multiple of market cap
