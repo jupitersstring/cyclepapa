@@ -2,11 +2,19 @@
   "USAR": {
     "ticker": "USAR",
     "catalyst_date": "2026-09-04",
-    "months_since": 0.3,
+    "months_since": 0.4,
     "drift_since_catalyst": 0.0,
     "state": "PENDING",
     "tail_prob_base": 0.285,
     "tail_prob_confirmed": 0.285,
+    "monster_setup": 7.0,
+    "monster_flags": [
+      "deep 24m washout (-44%)",
+      "wild vol (0.39)",
+      "bottom of range"
+    ],
+    "drawdown_24m": -0.439,
+    "pre_vol": 0.388,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -18,10 +26,18 @@
     "ticker": "AMS",
     "catalyst_date": "2026-07-28",
     "months_since": 1.6,
-    "drift_since_catalyst": 0.01,
+    "drift_since_catalyst": 0.007,
     "state": "NEUTRAL",
     "tail_prob_base": 0.27,
     "tail_prob_confirmed": 0.27,
+    "monster_setup": 6.0,
+    "monster_flags": [
+      "deep 24m washout (-55%)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.553,
+    "pre_vol": 0.109,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -37,6 +53,13 @@
     "state": "NEUTRAL",
     "tail_prob_base": 0.27,
     "tail_prob_confirmed": 0.27,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "deep 24m washout (-100%)",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.997,
+    "pre_vol": null,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -52,6 +75,14 @@
     "state": "PENDING",
     "tail_prob_base": 0.248,
     "tail_prob_confirmed": 0.248,
+    "monster_setup": 7.0,
+    "monster_flags": [
+      "deep 24m washout (-100%)",
+      "wild vol (0.35)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.996,
+    "pre_vol": 0.347,
     "catalyst_types": [
       "SALE_OF_COMPANY",
       "STRATEGIC_REVIEW",
@@ -65,10 +96,19 @@
     "ticker": "JTAI",
     "catalyst_date": "2026-01-15",
     "months_since": 8.1,
-    "drift_since_catalyst": -0.397,
+    "drift_since_catalyst": -0.411,
     "state": "FADING",
     "tail_prob_base": 0.248,
     "tail_prob_confirmed": 0.219,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-100%)",
+      "wild vol (0.26)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -1.0,
+    "pre_vol": 0.262,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -80,10 +120,19 @@
     "ticker": "OPTU",
     "catalyst_date": "2026-08-06",
     "months_since": 1.3,
-    "drift_since_catalyst": 0.015,
+    "drift_since_catalyst": -0.031,
     "state": "NEUTRAL",
     "tail_prob_base": 0.241,
     "tail_prob_confirmed": 0.241,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-64%)",
+      "wild vol (0.45)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.643,
+    "pre_vol": 0.447,
     "catalyst_types": [
       "SALE_OF_COMPANY",
       "TENDER_OFFER"
@@ -95,11 +144,20 @@
   "FULC": {
     "ticker": "FULC",
     "catalyst_date": "2026-07-30",
-    "months_since": 1.5,
-    "drift_since_catalyst": -0.023,
+    "months_since": 1.6,
+    "drift_since_catalyst": -0.026,
     "state": "NEUTRAL",
     "tail_prob_base": 0.233,
     "tail_prob_confirmed": 0.233,
+    "monster_setup": 9.0,
+    "monster_flags": [
+      "deep 24m washout (-66%)",
+      "wild vol (0.17)",
+      "bottom of range",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.656,
+    "pre_vol": 0.174,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -111,10 +169,18 @@
     "ticker": "NDRA",
     "catalyst_date": "2026-03-25",
     "months_since": 5.8,
-    "drift_since_catalyst": 0.156,
-    "state": "NEUTRAL",
+    "drift_since_catalyst": 0.205,
+    "state": "CONFIRMED",
     "tail_prob_base": 0.233,
-    "tail_prob_confirmed": 0.233,
+    "tail_prob_confirmed": 0.362,
+    "monster_setup": 7.0,
+    "monster_flags": [
+      "deep 24m washout (-99%)",
+      "wild vol (0.26)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.99,
+    "pre_vol": 0.256,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -126,10 +192,20 @@
     "ticker": "NEUP",
     "catalyst_date": "2026-05-15",
     "months_since": 4.1,
-    "drift_since_catalyst": -0.135,
+    "drift_since_catalyst": -0.13,
     "state": "FADING",
     "tail_prob_base": 0.233,
     "tail_prob_confirmed": 0.206,
+    "monster_setup": 10.0,
+    "monster_flags": [
+      "deep 24m washout (-63%)",
+      "wild vol (0.25)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.629,
+    "pre_vol": 0.246,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -141,10 +217,17 @@
     "ticker": "NERV",
     "catalyst_date": "2026-05-05",
     "months_since": 4.4,
-    "drift_since_catalyst": -0.258,
+    "drift_since_catalyst": -0.277,
     "state": "FADING",
     "tail_prob_base": 0.233,
     "tail_prob_confirmed": 0.206,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "wild vol (0.35)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.159,
+    "pre_vol": 0.346,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -155,11 +238,20 @@
   "CMTL": {
     "ticker": "CMTL",
     "catalyst_date": "2026-06-15",
-    "months_since": 3.0,
-    "drift_since_catalyst": -0.11,
+    "months_since": 3.1,
+    "drift_since_catalyst": -0.107,
     "state": "FADING",
     "tail_prob_base": 0.212,
     "tail_prob_confirmed": 0.186,
+    "monster_setup": 9.0,
+    "monster_flags": [
+      "deep 24m washout (-70%)",
+      "wild vol (0.37)",
+      "bottom of range",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.701,
+    "pre_vol": 0.368,
     "catalyst_types": [
       "ASSET_SALE",
       "STRATEGIC_REVIEW"
@@ -172,10 +264,19 @@
     "ticker": "AGPU",
     "catalyst_date": "2026-05-15",
     "months_since": 4.1,
-    "drift_since_catalyst": 0.436,
+    "drift_since_catalyst": 0.42,
     "state": "CONFIRMED",
     "tail_prob_base": 0.212,
     "tail_prob_confirmed": 0.334,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-67%)",
+      "wild vol (0.84)",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.668,
+    "pre_vol": 0.835,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -187,10 +288,19 @@
     "ticker": "GPRO",
     "catalyst_date": "2026-07-08",
     "months_since": 2.3,
-    "drift_since_catalyst": 0.599,
+    "drift_since_catalyst": 0.541,
     "state": "CONFIRMED",
     "tail_prob_base": 0.212,
     "tail_prob_confirmed": 0.334,
+    "monster_setup": 9.0,
+    "monster_flags": [
+      "deep 24m washout (-59%)",
+      "wild vol (0.40)",
+      "bottom of range",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.587,
+    "pre_vol": 0.403,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -202,10 +312,20 @@
     "ticker": "DOMO",
     "catalyst_date": "2026-07-22",
     "months_since": 1.8,
-    "drift_since_catalyst": 0.044,
+    "drift_since_catalyst": 0.037,
     "state": "NEUTRAL",
     "tail_prob_base": 0.212,
     "tail_prob_confirmed": 0.212,
+    "monster_setup": 10.0,
+    "monster_flags": [
+      "deep 24m washout (-77%)",
+      "wild vol (0.20)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.77,
+    "pre_vol": 0.199,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -217,10 +337,20 @@
     "ticker": "TTEC",
     "catalyst_date": "2026-08-10",
     "months_since": 1.2,
-    "drift_since_catalyst": 0.0,
+    "drift_since_catalyst": -0.016,
     "state": "NEUTRAL",
     "tail_prob_base": 0.212,
     "tail_prob_confirmed": 0.212,
+    "monster_setup": 10.0,
+    "monster_flags": [
+      "deep 24m washout (-78%)",
+      "wild vol (0.20)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.784,
+    "pre_vol": 0.2,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -232,10 +362,18 @@
     "ticker": "HHS",
     "catalyst_date": "2026-08-19",
     "months_since": 0.9,
-    "drift_since_catalyst": 0.029,
+    "drift_since_catalyst": 0.024,
     "state": "PENDING",
     "tail_prob_base": 0.209,
     "tail_prob_confirmed": 0.209,
+    "monster_setup": 6.0,
+    "monster_flags": [
+      "deep 24m washout (-44%)",
+      "wild vol (0.32)",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.435,
+    "pre_vol": 0.321,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -247,10 +385,19 @@
     "ticker": "VRME",
     "catalyst_date": "2026-08-12",
     "months_since": 1.1,
-    "drift_since_catalyst": 0.054,
+    "drift_since_catalyst": 0.035,
     "state": "NEUTRAL",
     "tail_prob_base": 0.209,
     "tail_prob_confirmed": 0.209,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-57%)",
+      "wild vol (0.31)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.574,
+    "pre_vol": 0.311,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -262,10 +409,16 @@
     "ticker": "PLAG",
     "catalyst_date": "2026-03-31",
     "months_since": 5.6,
-    "drift_since_catalyst": -0.608,
+    "drift_since_catalyst": -0.617,
     "state": "FADING",
     "tail_prob_base": 0.209,
     "tail_prob_confirmed": 0.184,
+    "monster_setup": 2.0,
+    "monster_flags": [
+      "wild vol (0.41)"
+    ],
+    "drawdown_24m": -0.354,
+    "pre_vol": 0.411,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -277,10 +430,19 @@
     "ticker": "DXLG",
     "catalyst_date": "2026-08-19",
     "months_since": 0.9,
-    "drift_since_catalyst": -0.022,
+    "drift_since_catalyst": 0.008,
     "state": "PENDING",
     "tail_prob_base": 0.206,
     "tail_prob_confirmed": 0.206,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-78%)",
+      "wild vol (0.16)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.782,
+    "pre_vol": 0.161,
     "catalyst_types": [
       "SALE_OF_COMPANY",
       "TENDER_OFFER"
@@ -293,10 +455,19 @@
     "ticker": "HCAT",
     "catalyst_date": "2026-06-04",
     "months_since": 3.4,
-    "drift_since_catalyst": -0.148,
+    "drift_since_catalyst": -0.129,
     "state": "FADING",
     "tail_prob_base": 0.205,
     "tail_prob_confirmed": 0.18,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-76%)",
+      "wild vol (0.19)",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.763,
+    "pre_vol": 0.191,
     "catalyst_types": [
       "ASSET_SALE"
     ],
@@ -308,10 +479,17 @@
     "ticker": "KROS",
     "catalyst_date": "2026-03-04",
     "months_since": 6.5,
-    "drift_since_catalyst": 0.013,
+    "drift_since_catalyst": 0.008,
     "state": "NEUTRAL",
     "tail_prob_base": 0.202,
     "tail_prob_confirmed": 0.202,
+    "monster_setup": 5.0,
+    "monster_flags": [
+      "deep 24m washout (-81%)",
+      "bottom of range"
+    ],
+    "drawdown_24m": -0.809,
+    "pre_vol": 0.124,
     "catalyst_types": [
       "TENDER_OFFER"
     ],
@@ -323,10 +501,19 @@
     "ticker": "FMC",
     "catalyst_date": "2026-07-01",
     "months_since": 2.5,
-    "drift_since_catalyst": 0.05,
+    "drift_since_catalyst": 0.025,
     "state": "NEUTRAL",
     "tail_prob_base": 0.201,
     "tail_prob_confirmed": 0.201,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-84%)",
+      "wild vol (0.19)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.838,
+    "pre_vol": 0.185,
     "catalyst_types": [
       "TENDER_OFFER"
     ],
@@ -337,11 +524,17 @@
   "JKHY": {
     "ticker": "JKHY",
     "catalyst_date": "2026-08-11",
-    "months_since": 1.1,
-    "drift_since_catalyst": 0.042,
+    "months_since": 1.2,
+    "drift_since_catalyst": 0.021,
     "state": "NEUTRAL",
     "tail_prob_base": 0.2,
     "tail_prob_confirmed": 0.2,
+    "monster_setup": 1.0,
+    "monster_flags": [
+      "decelerating"
+    ],
+    "drawdown_24m": -0.118,
+    "pre_vol": 0.083,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -353,10 +546,19 @@
     "ticker": "PTN",
     "catalyst_date": "2026-05-18",
     "months_since": 4.0,
-    "drift_since_catalyst": 0.153,
-    "state": "NEUTRAL",
+    "drift_since_catalyst": 0.238,
+    "state": "CONFIRMED",
     "tail_prob_base": 0.199,
-    "tail_prob_confirmed": 0.199,
+    "tail_prob_confirmed": 0.317,
+    "monster_setup": 9.0,
+    "monster_flags": [
+      "deep 24m washout (-89%)",
+      "wild vol (0.61)",
+      "bottom of range",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.889,
+    "pre_vol": 0.613,
     "catalyst_types": [
       "UPLISTING"
     ],
@@ -367,11 +569,21 @@
   "SPRB": {
     "ticker": "SPRB",
     "catalyst_date": "2026-04-22",
-    "months_since": 4.8,
-    "drift_since_catalyst": 0.085,
+    "months_since": 4.9,
+    "drift_since_catalyst": 0.109,
     "state": "NEUTRAL",
     "tail_prob_base": 0.199,
     "tail_prob_confirmed": 0.199,
+    "monster_setup": 10.0,
+    "monster_flags": [
+      "deep 24m washout (-98%)",
+      "wild vol (3.29)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.983,
+    "pre_vol": 3.288,
     "catalyst_types": [
       "UPLISTING"
     ],
@@ -383,10 +595,19 @@
     "ticker": "INO",
     "catalyst_date": "2026-07-31",
     "months_since": 1.5,
-    "drift_since_catalyst": -0.016,
+    "drift_since_catalyst": -0.071,
     "state": "NEUTRAL",
     "tail_prob_base": 0.199,
     "tail_prob_confirmed": 0.199,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-78%)",
+      "wild vol (0.17)",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.78,
+    "pre_vol": 0.169,
     "catalyst_types": [
       "UPLISTING"
     ],
@@ -397,11 +618,19 @@
   "MLYS": {
     "ticker": "MLYS",
     "catalyst_date": "2026-06-03",
-    "months_since": 3.4,
-    "drift_since_catalyst": 0.127,
+    "months_since": 3.5,
+    "drift_since_catalyst": 0.134,
     "state": "NEUTRAL",
     "tail_prob_base": 0.197,
     "tail_prob_confirmed": 0.197,
+    "monster_setup": 7.0,
+    "monster_flags": [
+      "deep 24m washout (-41%)",
+      "wild vol (0.44)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.408,
+    "pre_vol": 0.435,
     "catalyst_types": [
       "UPLISTING"
     ],
@@ -413,10 +642,18 @@
     "ticker": "FWDI",
     "catalyst_date": "2026-03-09",
     "months_since": 6.3,
-    "drift_since_catalyst": 0.489,
+    "drift_since_catalyst": 0.508,
     "state": "CONFIRMED",
     "tail_prob_base": 0.192,
     "tail_prob_confirmed": 0.307,
+    "monster_setup": 7.0,
+    "monster_flags": [
+      "deep 24m washout (-82%)",
+      "wild vol (0.45)",
+      "bottom of range"
+    ],
+    "drawdown_24m": -0.82,
+    "pre_vol": 0.447,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -427,11 +664,21 @@
   "LAB": {
     "ticker": "LAB",
     "catalyst_date": "2026-08-05",
-    "months_since": 1.3,
-    "drift_since_catalyst": 0.0,
+    "months_since": 1.4,
+    "drift_since_catalyst": 0.009,
     "state": "NEUTRAL",
     "tail_prob_base": 0.191,
     "tail_prob_confirmed": 0.191,
+    "monster_setup": 10.0,
+    "monster_flags": [
+      "deep 24m washout (-65%)",
+      "wild vol (0.18)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.648,
+    "pre_vol": 0.178,
     "catalyst_types": [
       "ASSET_SALE"
     ],
@@ -443,10 +690,19 @@
     "ticker": "PRGO",
     "catalyst_date": "2026-02-26",
     "months_since": 6.7,
-    "drift_since_catalyst": 0.322,
+    "drift_since_catalyst": 0.271,
     "state": "CONFIRMED",
     "tail_prob_base": 0.191,
     "tail_prob_confirmed": 0.306,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-67%)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.671,
+    "pre_vol": 0.112,
     "catalyst_types": [
       "ASSET_SALE"
     ],
@@ -457,11 +713,20 @@
   "CERT": {
     "ticker": "CERT",
     "catalyst_date": "2026-04-22",
-    "months_since": 4.8,
-    "drift_since_catalyst": 0.339,
+    "months_since": 4.9,
+    "drift_since_catalyst": 0.375,
     "state": "CONFIRMED",
     "tail_prob_base": 0.191,
     "tail_prob_confirmed": 0.306,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-63%)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.627,
+    "pre_vol": 0.12,
     "catalyst_types": [
       "ASSET_SALE"
     ],
@@ -472,11 +737,20 @@
   "FIS": {
     "ticker": "FIS",
     "catalyst_date": "2026-02-24",
-    "months_since": 6.7,
-    "drift_since_catalyst": -0.147,
+    "months_since": 6.8,
+    "drift_since_catalyst": -0.186,
     "state": "FADING",
     "tail_prob_base": 0.187,
     "tail_prob_confirmed": 0.164,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-48%)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.477,
+    "pre_vol": 0.068,
     "catalyst_types": [
       "ASSET_SALE",
       "SPINOFF"
@@ -489,10 +763,20 @@
     "ticker": "CNDT",
     "catalyst_date": "2026-08-10",
     "months_since": 1.2,
-    "drift_since_catalyst": 0.016,
+    "drift_since_catalyst": 0.006,
     "state": "NEUTRAL",
     "tail_prob_base": 0.186,
     "tail_prob_confirmed": 0.186,
+    "monster_setup": 10.0,
+    "monster_flags": [
+      "deep 24m washout (-61%)",
+      "wild vol (0.16)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.611,
+    "pre_vol": 0.163,
     "catalyst_types": [
       "ASSET_SALE"
     ],
@@ -508,6 +792,16 @@
     "state": "PENDING",
     "tail_prob_base": 0.186,
     "tail_prob_confirmed": 0.186,
+    "monster_setup": 10.0,
+    "monster_flags": [
+      "deep 24m washout (-89%)",
+      "wild vol (0.26)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.886,
+    "pre_vol": 0.258,
     "catalyst_types": [
       "ASSET_SALE"
     ],
@@ -519,10 +813,18 @@
     "ticker": "EXFY",
     "catalyst_date": "2026-08-06",
     "months_since": 1.3,
-    "drift_since_catalyst": 0.042,
+    "drift_since_catalyst": 0.056,
     "state": "NEUTRAL",
     "tail_prob_base": 0.184,
     "tail_prob_confirmed": 0.184,
+    "monster_setup": 6.0,
+    "monster_flags": [
+      "deep 24m washout (-44%)",
+      "wild vol (0.23)",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.443,
+    "pre_vol": 0.232,
     "catalyst_types": [
       "TENDER_OFFER"
     ],
@@ -533,11 +835,20 @@
   "DCGO": {
     "ticker": "DCGO",
     "catalyst_date": "2026-08-17",
-    "months_since": 0.9,
-    "drift_since_catalyst": 0.072,
+    "months_since": 1.0,
+    "drift_since_catalyst": 0.066,
     "state": "PENDING",
     "tail_prob_base": 0.184,
     "tail_prob_confirmed": 0.184,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-93%)",
+      "wild vol (0.17)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.928,
+    "pre_vol": 0.168,
     "catalyst_types": [
       "GOING_PRIVATE"
     ],
@@ -549,10 +860,20 @@
     "ticker": "CCOI",
     "catalyst_date": "2026-06-29",
     "months_since": 2.6,
-    "drift_since_catalyst": -0.315,
+    "drift_since_catalyst": -0.31,
     "state": "FADING",
     "tail_prob_base": 0.181,
     "tail_prob_confirmed": 0.158,
+    "monster_setup": 10.0,
+    "monster_flags": [
+      "deep 24m washout (-84%)",
+      "wild vol (0.22)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.836,
+    "pre_vol": 0.217,
     "catalyst_types": [
       "ASSET_SALE"
     ],
@@ -563,11 +884,20 @@
   "COSM": {
     "ticker": "COSM",
     "catalyst_date": "2026-08-20",
-    "months_since": 0.8,
-    "drift_since_catalyst": 0.007,
+    "months_since": 0.9,
+    "drift_since_catalyst": 0.06,
     "state": "PENDING",
     "tail_prob_base": 0.18,
     "tail_prob_confirmed": 0.18,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-77%)",
+      "wild vol (0.17)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.771,
+    "pre_vol": 0.175,
     "catalyst_types": [
       "BUYBACK_AUTH"
     ],
@@ -579,10 +909,18 @@
     "ticker": "CNTN",
     "catalyst_date": "2026-06-16",
     "months_since": 3.0,
-    "drift_since_catalyst": 0.096,
+    "drift_since_catalyst": 0.088,
     "state": "NEUTRAL",
     "tail_prob_base": 0.18,
     "tail_prob_confirmed": 0.18,
+    "monster_setup": 7.0,
+    "monster_flags": [
+      "deep 24m washout (-68%)",
+      "wild vol (1.13)",
+      "bottom of range"
+    ],
+    "drawdown_24m": -0.676,
+    "pre_vol": 1.128,
     "catalyst_types": [
       "BUYBACK_AUTH"
     ],
@@ -593,11 +931,19 @@
   "QBTS": {
     "ticker": "QBTS",
     "catalyst_date": "2026-01-07",
-    "months_since": 8.3,
-    "drift_since_catalyst": -0.084,
-    "state": "NEUTRAL",
+    "months_since": 8.4,
+    "drift_since_catalyst": -0.104,
+    "state": "FADING",
     "tail_prob_base": 0.179,
-    "tail_prob_confirmed": 0.179,
+    "tail_prob_confirmed": 0.157,
+    "monster_setup": 7.0,
+    "monster_flags": [
+      "deep 24m washout (-49%)",
+      "wild vol (0.47)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.493,
+    "pre_vol": 0.466,
     "catalyst_types": [
       "UPLISTING"
     ],
@@ -609,10 +955,20 @@
     "ticker": "HYFM",
     "catalyst_date": "2026-05-15",
     "months_since": 4.1,
-    "drift_since_catalyst": 0.119,
+    "drift_since_catalyst": 0.118,
     "state": "NEUTRAL",
     "tail_prob_base": 0.178,
     "tail_prob_confirmed": 0.178,
+    "monster_setup": 10.0,
+    "monster_flags": [
+      "deep 24m washout (-90%)",
+      "wild vol (0.15)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.896,
+    "pre_vol": 0.146,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -623,11 +979,21 @@
   "OPTT": {
     "ticker": "OPTT",
     "catalyst_date": "2026-08-17",
-    "months_since": 0.9,
-    "drift_since_catalyst": -0.194,
+    "months_since": 1.0,
+    "drift_since_catalyst": 0.0,
     "state": "PENDING",
     "tail_prob_base": 0.178,
     "tail_prob_confirmed": 0.178,
+    "monster_setup": 10.0,
+    "monster_flags": [
+      "deep 24m washout (-91%)",
+      "wild vol (0.27)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.911,
+    "pre_vol": 0.266,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -638,11 +1004,19 @@
   "ANGX": {
     "ticker": "ANGX",
     "catalyst_date": "2026-04-13",
-    "months_since": 5.1,
-    "drift_since_catalyst": 1.014,
+    "months_since": 5.2,
+    "drift_since_catalyst": 0.978,
     "state": "CONFIRMED",
     "tail_prob_base": 0.176,
     "tail_prob_confirmed": 0.285,
+    "monster_setup": 7.0,
+    "monster_flags": [
+      "deep 24m washout (-57%)",
+      "bottom of range",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.567,
+    "pre_vol": 0.086,
     "catalyst_types": [
       "UPLISTING"
     ],
@@ -654,10 +1028,18 @@
     "ticker": "LVLU",
     "catalyst_date": "2026-07-14",
     "months_since": 2.1,
-    "drift_since_catalyst": -0.209,
+    "drift_since_catalyst": -0.256,
     "state": "FADING",
     "tail_prob_base": 0.175,
     "tail_prob_confirmed": 0.153,
+    "monster_setup": 7.0,
+    "monster_flags": [
+      "deep 24m washout (-45%)",
+      "wild vol (0.79)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.447,
+    "pre_vol": 0.788,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -668,11 +1050,21 @@
   "CRMT": {
     "ticker": "CRMT",
     "catalyst_date": "2026-09-04",
-    "months_since": 0.3,
+    "months_since": 0.4,
     "drift_since_catalyst": 0.0,
     "state": "PENDING",
     "tail_prob_base": 0.175,
     "tail_prob_confirmed": 0.175,
+    "monster_setup": 10.0,
+    "monster_flags": [
+      "deep 24m washout (-97%)",
+      "wild vol (0.26)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.969,
+    "pre_vol": 0.256,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -683,11 +1075,20 @@
   "CLVT": {
     "ticker": "CLVT",
     "catalyst_date": "2026-07-06",
-    "months_since": 2.3,
-    "drift_since_catalyst": -0.071,
+    "months_since": 2.4,
+    "drift_since_catalyst": -0.068,
     "state": "NEUTRAL",
     "tail_prob_base": 0.173,
     "tail_prob_confirmed": 0.173,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-71%)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.711,
+    "pre_vol": 0.112,
     "catalyst_types": [
       "ASSET_SALE"
     ],
@@ -698,11 +1099,20 @@
   "BLND": {
     "ticker": "BLND",
     "catalyst_date": "2026-03-02",
-    "months_since": 6.5,
-    "drift_since_catalyst": -0.021,
+    "months_since": 6.6,
+    "drift_since_catalyst": -0.007,
     "state": "NEUTRAL",
     "tail_prob_base": 0.173,
     "tail_prob_confirmed": 0.173,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-71%)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.714,
+    "pre_vol": 0.114,
     "catalyst_types": [
       "ASSET_SALE"
     ],
@@ -713,11 +1123,18 @@
   "RYAM": {
     "ticker": "RYAM",
     "catalyst_date": "2026-08-05",
-    "months_since": 1.3,
-    "drift_since_catalyst": -0.001,
+    "months_since": 1.4,
+    "drift_since_catalyst": -0.021,
     "state": "NEUTRAL",
     "tail_prob_base": 0.172,
     "tail_prob_confirmed": 0.172,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "wild vol (0.15)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.232,
+    "pre_vol": 0.15,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -733,6 +1150,12 @@
     "state": "NEUTRAL",
     "tail_prob_base": 0.171,
     "tail_prob_confirmed": 0.171,
+    "monster_setup": 1.0,
+    "monster_flags": [
+      "decelerating"
+    ],
+    "drawdown_24m": 0.0,
+    "pre_vol": null,
     "catalyst_types": [
       "SALE_OF_COMPANY",
       "TENDER_OFFER"
@@ -745,10 +1168,19 @@
     "ticker": "OLN",
     "catalyst_date": "2026-06-16",
     "months_since": 3.0,
-    "drift_since_catalyst": -0.073,
+    "drift_since_catalyst": -0.088,
     "state": "NEUTRAL",
     "tail_prob_base": 0.17,
     "tail_prob_confirmed": 0.17,
+    "monster_setup": 9.0,
+    "monster_flags": [
+      "deep 24m washout (-61%)",
+      "wild vol (0.15)",
+      "bottom of range",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.614,
+    "pre_vol": 0.146,
     "catalyst_types": [
       "GOING_PRIVATE",
       "UPLISTING"
@@ -765,6 +1197,12 @@
     "state": "NEUTRAL",
     "tail_prob_base": 0.17,
     "tail_prob_confirmed": 0.17,
+    "monster_setup": 1.0,
+    "monster_flags": [
+      "decelerating"
+    ],
+    "drawdown_24m": -0.0,
+    "pre_vol": null,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -775,11 +1213,18 @@
   "NFG": {
     "ticker": "NFG",
     "catalyst_date": "2026-08-11",
-    "months_since": 1.1,
-    "drift_since_catalyst": -0.001,
+    "months_since": 1.2,
+    "drift_since_catalyst": -0.003,
     "state": "NEUTRAL",
     "tail_prob_base": 0.17,
     "tail_prob_confirmed": 0.17,
+    "monster_setup": 3.0,
+    "monster_flags": [
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.138,
+    "pre_vol": 0.072,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -790,11 +1235,18 @@
   "COR": {
     "ticker": "COR",
     "catalyst_date": "2026-08-05",
-    "months_since": 1.3,
-    "drift_since_catalyst": 0.007,
+    "months_since": 1.4,
+    "drift_since_catalyst": 0.014,
     "state": "NEUTRAL",
     "tail_prob_base": 0.169,
     "tail_prob_confirmed": 0.169,
+    "monster_setup": 3.0,
+    "monster_flags": [
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.136,
+    "pre_vol": 0.086,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -810,6 +1262,13 @@
     "state": "PENDING",
     "tail_prob_base": 0.167,
     "tail_prob_confirmed": 0.167,
+    "monster_setup": 3.0,
+    "monster_flags": [
+      "wild vol (0.28)",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.383,
+    "pre_vol": 0.276,
     "catalyst_types": [
       "GOING_PRIVATE"
     ],
@@ -820,11 +1279,20 @@
   "IT": {
     "ticker": "IT",
     "catalyst_date": "2026-02-03",
-    "months_since": 7.4,
-    "drift_since_catalyst": 0.221,
+    "months_since": 7.5,
+    "drift_since_catalyst": 0.245,
     "state": "CONFIRMED",
     "tail_prob_base": 0.166,
     "tail_prob_confirmed": 0.271,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-71%)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.708,
+    "pre_vol": 0.113,
     "catalyst_types": [
       "ASSET_SALE"
     ],
@@ -836,10 +1304,17 @@
     "ticker": "BDX",
     "catalyst_date": "2026-08-06",
     "months_since": 1.3,
-    "drift_since_catalyst": 0.017,
+    "drift_since_catalyst": 0.028,
     "state": "NEUTRAL",
     "tail_prob_base": 0.166,
     "tail_prob_confirmed": 0.166,
+    "monster_setup": 3.0,
+    "monster_flags": [
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.086,
+    "pre_vol": 0.073,
     "catalyst_types": [
       "SPINOFF"
     ],
@@ -850,11 +1325,20 @@
   "FWRD": {
     "ticker": "FWRD",
     "catalyst_date": "2026-08-05",
-    "months_since": 1.3,
-    "drift_since_catalyst": -0.004,
+    "months_since": 1.4,
+    "drift_since_catalyst": 0.004,
     "state": "NEUTRAL",
     "tail_prob_base": 0.165,
     "tail_prob_confirmed": 0.165,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-55%)",
+      "wild vol (0.25)",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.547,
+    "pre_vol": 0.253,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -866,10 +1350,17 @@
     "ticker": "VREOF",
     "catalyst_date": "2026-04-06",
     "months_since": 5.4,
-    "drift_since_catalyst": -0.073,
+    "drift_since_catalyst": -0.004,
     "state": "NEUTRAL",
     "tail_prob_base": 0.163,
     "tail_prob_confirmed": 0.163,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "wild vol (0.19)",
+      "bottom of range"
+    ],
+    "drawdown_24m": -0.333,
+    "pre_vol": 0.193,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -881,10 +1372,17 @@
     "ticker": "RDNT",
     "catalyst_date": "2026-06-10",
     "months_since": 3.2,
-    "drift_since_catalyst": 0.185,
+    "drift_since_catalyst": 0.184,
     "state": "NEUTRAL",
     "tail_prob_base": 0.162,
     "tail_prob_confirmed": 0.162,
+    "monster_setup": 3.0,
+    "monster_flags": [
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.23,
+    "pre_vol": 0.127,
     "catalyst_types": [
       "TENDER_OFFER"
     ],
@@ -895,11 +1393,19 @@
   "KVYO": {
     "ticker": "KVYO",
     "catalyst_date": "2026-03-02",
-    "months_since": 6.5,
-    "drift_since_catalyst": -0.142,
+    "months_since": 6.6,
+    "drift_since_catalyst": -0.134,
     "state": "FADING",
     "tail_prob_base": 0.162,
     "tail_prob_confirmed": 0.141,
+    "monster_setup": 7.0,
+    "monster_flags": [
+      "deep 24m washout (-56%)",
+      "wild vol (0.14)",
+      "bottom of range"
+    ],
+    "drawdown_24m": -0.563,
+    "pre_vol": 0.143,
     "catalyst_types": [
       "BUYBACK_AUTH"
     ],
@@ -911,10 +1417,19 @@
     "ticker": "DUOL",
     "catalyst_date": "2026-02-26",
     "months_since": 6.7,
-    "drift_since_catalyst": 0.556,
+    "drift_since_catalyst": 0.533,
     "state": "CONFIRMED",
     "tail_prob_base": 0.162,
     "tail_prob_confirmed": 0.265,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-81%)",
+      "wild vol (0.18)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.81,
+    "pre_vol": 0.178,
     "catalyst_types": [
       "BUYBACK_AUTH"
     ],
@@ -926,10 +1441,16 @@
     "ticker": "GWRE",
     "catalyst_date": "2026-01-08",
     "months_since": 8.3,
-    "drift_since_catalyst": 0.05,
+    "drift_since_catalyst": 0.053,
     "state": "NEUTRAL",
     "tail_prob_base": 0.162,
     "tail_prob_confirmed": 0.162,
+    "monster_setup": 2.0,
+    "monster_flags": [
+      "bottom of range"
+    ],
+    "drawdown_24m": -0.383,
+    "pre_vol": 0.107,
     "catalyst_types": [
       "BUYBACK_AUTH"
     ],
@@ -941,10 +1462,17 @@
     "ticker": "ARX",
     "catalyst_date": "2026-08-13",
     "months_since": 1.1,
-    "drift_since_catalyst": 0.002,
+    "drift_since_catalyst": -0.001,
     "state": "NEUTRAL",
     "tail_prob_base": 0.161,
     "tail_prob_confirmed": 0.161,
+    "monster_setup": 3.0,
+    "monster_flags": [
+      "wild vol (0.26)",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.01,
+    "pre_vol": 0.255,
     "catalyst_types": [
       "BUYBACK_AUTH",
       "SALE_OF_COMPANY"
@@ -956,11 +1484,21 @@
   "SMCI": {
     "ticker": "SMCI",
     "catalyst_date": "2026-06-12",
-    "months_since": 3.1,
-    "drift_since_catalyst": 0.336,
+    "months_since": 3.2,
+    "drift_since_catalyst": 0.294,
     "state": "CONFIRMED",
     "tail_prob_base": 0.161,
     "tail_prob_confirmed": 0.264,
+    "monster_setup": 10.0,
+    "monster_flags": [
+      "deep 24m washout (-60%)",
+      "wild vol (0.30)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.595,
+    "pre_vol": 0.301,
     "catalyst_types": [
       "UPLISTING"
     ],
@@ -976,6 +1514,16 @@
     "state": "PENDING",
     "tail_prob_base": 0.159,
     "tail_prob_confirmed": 0.159,
+    "monster_setup": 10.0,
+    "monster_flags": [
+      "deep 24m washout (-93%)",
+      "wild vol (0.23)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.931,
+    "pre_vol": 0.227,
     "catalyst_types": [
       "ASSET_SALE",
       "STRATEGIC_REVIEW"
@@ -992,6 +1540,12 @@
     "state": "NEUTRAL",
     "tail_prob_base": 0.159,
     "tail_prob_confirmed": 0.159,
+    "monster_setup": 1.0,
+    "monster_flags": [
+      "decelerating"
+    ],
+    "drawdown_24m": 0.0,
+    "pre_vol": null,
     "catalyst_types": [
       "SALE_OF_COMPANY",
       "TENDER_OFFER"
@@ -1003,11 +1557,17 @@
   "AVNS": {
     "ticker": "AVNS",
     "catalyst_date": "2026-07-30",
-    "months_since": 1.5,
+    "months_since": 1.6,
     "drift_since_catalyst": 0.0,
     "state": "NEUTRAL",
     "tail_prob_base": 0.159,
     "tail_prob_confirmed": 0.159,
+    "monster_setup": 1.0,
+    "monster_flags": [
+      "decelerating"
+    ],
+    "drawdown_24m": 0.0,
+    "pre_vol": null,
     "catalyst_types": [
       "EXCHANGE_OFFER",
       "SALE_OF_COMPANY"
@@ -1020,10 +1580,17 @@
     "ticker": "BLFS",
     "catalyst_date": "2026-07-22",
     "months_since": 1.8,
-    "drift_since_catalyst": -0.045,
+    "drift_since_catalyst": -0.044,
     "state": "NEUTRAL",
     "tail_prob_base": 0.159,
     "tail_prob_confirmed": 0.159,
+    "monster_setup": 3.0,
+    "monster_flags": [
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": 0.185,
+    "pre_vol": 0.117,
     "catalyst_types": [
       "SALE_OF_COMPANY",
       "UPLISTING"
@@ -1035,11 +1602,17 @@
   "CCRN": {
     "ticker": "CCRN",
     "catalyst_date": "2026-05-07",
-    "months_since": 4.3,
+    "months_since": 4.4,
     "drift_since_catalyst": 0.0,
     "state": "NEUTRAL",
     "tail_prob_base": 0.159,
     "tail_prob_confirmed": 0.159,
+    "monster_setup": 1.0,
+    "monster_flags": [
+      "decelerating"
+    ],
+    "drawdown_24m": null,
+    "pre_vol": null,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -1051,10 +1624,16 @@
     "ticker": "PSNL",
     "catalyst_date": "2026-07-20",
     "months_since": 1.9,
-    "drift_since_catalyst": -0.025,
+    "drift_since_catalyst": -0.029,
     "state": "NEUTRAL",
     "tail_prob_base": 0.159,
     "tail_prob_confirmed": 0.159,
+    "monster_setup": 2.0,
+    "monster_flags": [
+      "wild vol (0.37)"
+    ],
+    "drawdown_24m": 0.252,
+    "pre_vol": 0.37,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -1065,11 +1644,18 @@
   "CRNX": {
     "ticker": "CRNX",
     "catalyst_date": "2026-01-07",
-    "months_since": 8.3,
+    "months_since": 8.4,
     "drift_since_catalyst": 0.0,
     "state": "NEUTRAL",
     "tail_prob_base": 0.159,
     "tail_prob_confirmed": 0.159,
+    "monster_setup": 3.0,
+    "monster_flags": [
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": null,
+    "pre_vol": null,
     "catalyst_types": [
       "UPLISTING"
     ],
@@ -1081,10 +1667,18 @@
     "ticker": "BATL",
     "catalyst_date": "2025-12-22",
     "months_since": 8.9,
-    "drift_since_catalyst": -0.652,
+    "drift_since_catalyst": -0.659,
     "state": "FADING",
     "tail_prob_base": 0.158,
     "tail_prob_confirmed": 0.138,
+    "monster_setup": 6.0,
+    "monster_flags": [
+      "deep 24m washout (-43%)",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.431,
+    "pre_vol": 0.068,
     "catalyst_types": [
       "ASSET_SALE"
     ],
@@ -1095,11 +1689,19 @@
   "UPWK": {
     "ticker": "UPWK",
     "catalyst_date": "2026-02-18",
-    "months_since": 6.9,
-    "drift_since_catalyst": -0.205,
+    "months_since": 7.0,
+    "drift_since_catalyst": -0.206,
     "state": "FADING",
     "tail_prob_base": 0.158,
     "tail_prob_confirmed": 0.138,
+    "monster_setup": 7.0,
+    "monster_flags": [
+      "deep 24m washout (-45%)",
+      "wild vol (0.18)",
+      "bottom of range"
+    ],
+    "drawdown_24m": -0.453,
+    "pre_vol": 0.183,
     "catalyst_types": [
       "BUYBACK_AUTH"
     ],
@@ -1111,10 +1713,17 @@
     "ticker": "NFLX",
     "catalyst_date": "2026-01-20",
     "months_since": 7.9,
-    "drift_since_catalyst": -0.16,
+    "drift_since_catalyst": -0.165,
     "state": "FADING",
     "tail_prob_base": 0.157,
     "tail_prob_confirmed": 0.137,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "bottom of range",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.281,
+    "pre_vol": 0.103,
     "catalyst_types": [
       "SEPARATION",
       "SPINOFF"
@@ -1127,10 +1736,17 @@
     "ticker": "BWMN",
     "catalyst_date": "2026-08-10",
     "months_since": 1.2,
-    "drift_since_catalyst": 0.002,
+    "drift_since_catalyst": 0.0,
     "state": "NEUTRAL",
     "tail_prob_base": 0.157,
     "tail_prob_confirmed": 0.157,
+    "monster_setup": 3.0,
+    "monster_flags": [
+      "wild vol (0.20)",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.02,
+    "pre_vol": 0.197,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -1141,11 +1757,18 @@
   "CHYM": {
     "ticker": "CHYM",
     "catalyst_date": "2026-08-05",
-    "months_since": 1.3,
-    "drift_since_catalyst": 0.04,
+    "months_since": 1.4,
+    "drift_since_catalyst": 0.029,
     "state": "NEUTRAL",
     "tail_prob_base": 0.156,
     "tail_prob_confirmed": 0.156,
+    "monster_setup": 3.0,
+    "monster_flags": [
+      "wild vol (0.19)",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.041,
+    "pre_vol": 0.186,
     "catalyst_types": [
       "SEPARATION"
     ],
@@ -1161,6 +1784,13 @@
     "state": "NEUTRAL",
     "tail_prob_base": 0.155,
     "tail_prob_confirmed": 0.155,
+    "monster_setup": 3.0,
+    "monster_flags": [
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": null,
+    "pre_vol": null,
     "catalyst_types": [
       "SALE_OF_COMPANY",
       "STRATEGIC_REVIEW"
@@ -1172,11 +1802,19 @@
   "LE": {
     "ticker": "LE",
     "catalyst_date": "2026-03-26",
-    "months_since": 5.7,
-    "drift_since_catalyst": -0.062,
+    "months_since": 5.8,
+    "drift_since_catalyst": -0.07,
     "state": "NEUTRAL",
     "tail_prob_base": 0.154,
     "tail_prob_confirmed": 0.154,
+    "monster_setup": 6.0,
+    "monster_flags": [
+      "wild vol (0.16)",
+      "bottom of range",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.364,
+    "pre_vol": 0.163,
     "catalyst_types": [
       "SALE_OF_COMPANY",
       "STRATEGIC_REVIEW",
@@ -1190,10 +1828,18 @@
     "ticker": "MNRO",
     "catalyst_date": "2026-05-27",
     "months_since": 3.7,
-    "drift_since_catalyst": -0.246,
+    "drift_since_catalyst": -0.248,
     "state": "FADING",
     "tail_prob_base": 0.154,
     "tail_prob_confirmed": 0.134,
+    "monster_setup": 7.0,
+    "monster_flags": [
+      "deep 24m washout (-44%)",
+      "wild vol (0.15)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.445,
+    "pre_vol": 0.153,
     "catalyst_types": [
       "SALE_OF_COMPANY",
       "STRATEGIC_REVIEW"
@@ -1206,10 +1852,14 @@
     "ticker": "NATL",
     "catalyst_date": "2026-02-26",
     "months_since": 6.7,
-    "drift_since_catalyst": 0.064,
+    "drift_since_catalyst": 0.062,
     "state": "NEUTRAL",
     "tail_prob_base": 0.154,
     "tail_prob_confirmed": 0.154,
+    "monster_setup": 0.0,
+    "monster_flags": [],
+    "drawdown_24m": -0.016,
+    "pre_vol": 0.106,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -1221,10 +1871,17 @@
     "ticker": "PAYO",
     "catalyst_date": "2026-08-06",
     "months_since": 1.3,
-    "drift_since_catalyst": 0.001,
+    "drift_since_catalyst": 0.003,
     "state": "NEUTRAL",
     "tail_prob_base": 0.154,
     "tail_prob_confirmed": 0.154,
+    "monster_setup": 3.0,
+    "monster_flags": [
+      "wild vol (0.16)",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.347,
+    "pre_vol": 0.157,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -1235,11 +1892,15 @@
   "RAMP": {
     "ticker": "RAMP",
     "catalyst_date": "2026-08-05",
-    "months_since": 1.3,
-    "drift_since_catalyst": 0.002,
+    "months_since": 1.4,
+    "drift_since_catalyst": 0.001,
     "state": "NEUTRAL",
     "tail_prob_base": 0.154,
     "tail_prob_confirmed": 0.154,
+    "monster_setup": 0.0,
+    "monster_flags": [],
+    "drawdown_24m": -0.007,
+    "pre_vol": 0.106,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -1255,6 +1916,12 @@
     "state": "NEUTRAL",
     "tail_prob_base": 0.154,
     "tail_prob_confirmed": 0.154,
+    "monster_setup": 1.0,
+    "monster_flags": [
+      "decelerating"
+    ],
+    "drawdown_24m": null,
+    "pre_vol": null,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -1265,11 +1932,19 @@
   "LUCK": {
     "ticker": "LUCK",
     "catalyst_date": "2025-10-24",
-    "months_since": 10.8,
-    "drift_since_catalyst": -0.275,
+    "months_since": 10.9,
+    "drift_since_catalyst": -0.289,
     "state": "FADING",
     "tail_prob_base": 0.154,
     "tail_prob_confirmed": 0.134,
+    "monster_setup": 6.0,
+    "monster_flags": [
+      "deep 24m washout (-46%)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.46,
+    "pre_vol": 0.094,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -1281,10 +1956,16 @@
     "ticker": "SYNA",
     "catalyst_date": "2026-06-25",
     "months_since": 2.7,
-    "drift_since_catalyst": -0.1,
+    "drift_since_catalyst": -0.114,
     "state": "FADING",
     "tail_prob_base": 0.154,
     "tail_prob_confirmed": 0.134,
+    "monster_setup": 2.0,
+    "monster_flags": [
+      "wild vol (0.17)"
+    ],
+    "drawdown_24m": -0.218,
+    "pre_vol": 0.173,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -1295,11 +1976,18 @@
   "NGVT": {
     "ticker": "NGVT",
     "catalyst_date": "2026-05-07",
-    "months_since": 4.3,
-    "drift_since_catalyst": -0.093,
+    "months_since": 4.4,
+    "drift_since_catalyst": -0.086,
     "state": "NEUTRAL",
     "tail_prob_base": 0.154,
     "tail_prob_confirmed": 0.154,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "wild vol (0.13)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.02,
+    "pre_vol": 0.132,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -1311,10 +1999,18 @@
     "ticker": "CYH",
     "catalyst_date": "2026-05-06",
     "months_since": 4.4,
-    "drift_since_catalyst": -0.115,
+    "drift_since_catalyst": -0.117,
     "state": "FADING",
     "tail_prob_base": 0.153,
     "tail_prob_confirmed": 0.133,
+    "monster_setup": 6.0,
+    "monster_flags": [
+      "deep 24m washout (-45%)",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.45,
+    "pre_vol": 0.128,
     "catalyst_types": [
       "ASSET_SALE",
       "TENDER_OFFER"
@@ -1327,10 +2023,20 @@
     "ticker": "BIRD",
     "catalyst_date": "2026-06-17",
     "months_since": 3.0,
-    "drift_since_catalyst": 0.14,
+    "drift_since_catalyst": 0.131,
     "state": "NEUTRAL",
     "tail_prob_base": 0.153,
     "tail_prob_confirmed": 0.153,
+    "monster_setup": 10.0,
+    "monster_flags": [
+      "deep 24m washout (-84%)",
+      "wild vol (0.46)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.843,
+    "pre_vol": 0.455,
     "catalyst_types": [
       "ASSET_SALE",
       "UPLISTING"
@@ -1343,10 +2049,19 @@
     "ticker": "AHCO",
     "catalyst_date": "2026-08-04",
     "months_since": 1.4,
-    "drift_since_catalyst": -0.021,
+    "drift_since_catalyst": -0.03,
     "state": "NEUTRAL",
     "tail_prob_base": 0.153,
     "tail_prob_confirmed": 0.153,
+    "monster_setup": 9.0,
+    "monster_flags": [
+      "deep 24m washout (-54%)",
+      "wild vol (0.19)",
+      "bottom of range",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.538,
+    "pre_vol": 0.19,
     "catalyst_types": [
       "ASSET_SALE"
     ],
@@ -1357,11 +2072,21 @@
   "PLCE": {
     "ticker": "PLCE",
     "catalyst_date": "2026-06-12",
-    "months_since": 3.1,
-    "drift_since_catalyst": 0.004,
+    "months_since": 3.2,
+    "drift_since_catalyst": 0.012,
     "state": "NEUTRAL",
     "tail_prob_base": 0.153,
     "tail_prob_confirmed": 0.153,
+    "monster_setup": 10.0,
+    "monster_flags": [
+      "deep 24m washout (-85%)",
+      "wild vol (0.22)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.847,
+    "pre_vol": 0.22,
     "catalyst_types": [
       "ASSET_SALE"
     ],
@@ -1373,10 +2098,19 @@
     "ticker": "CNMD",
     "catalyst_date": "2026-04-30",
     "months_since": 4.6,
-    "drift_since_catalyst": 0.304,
+    "drift_since_catalyst": 0.299,
     "state": "CONFIRMED",
     "tail_prob_base": 0.153,
     "tail_prob_confirmed": 0.252,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-52%)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.518,
+    "pre_vol": 0.11,
     "catalyst_types": [
       "ASSET_SALE"
     ],
@@ -1387,11 +2121,20 @@
   "RBLX": {
     "ticker": "RBLX",
     "catalyst_date": "2026-05-19",
-    "months_since": 3.9,
-    "drift_since_catalyst": -0.066,
+    "months_since": 4.0,
+    "drift_since_catalyst": -0.057,
     "state": "NEUTRAL",
     "tail_prob_base": 0.152,
     "tail_prob_confirmed": 0.152,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-61%)",
+      "wild vol (0.15)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.607,
+    "pre_vol": 0.151,
     "catalyst_types": [
       "BUYBACK_AUTH"
     ],
@@ -1402,11 +2145,20 @@
   "BFAM": {
     "ticker": "BFAM",
     "catalyst_date": "2026-05-07",
-    "months_since": 4.3,
-    "drift_since_catalyst": -0.042,
+    "months_since": 4.4,
+    "drift_since_catalyst": -0.057,
     "state": "NEUTRAL",
     "tail_prob_base": 0.151,
     "tail_prob_confirmed": 0.151,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-50%)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.496,
+    "pre_vol": 0.092,
     "catalyst_types": [
       "ASSET_SALE",
       "GOING_PRIVATE"
@@ -1419,10 +2171,17 @@
     "ticker": "TLYS",
     "catalyst_date": "2026-04-09",
     "months_since": 5.3,
-    "drift_since_catalyst": 0.074,
+    "drift_since_catalyst": 0.103,
     "state": "NEUTRAL",
     "tail_prob_base": 0.151,
     "tail_prob_confirmed": 0.151,
+    "monster_setup": 3.0,
+    "monster_flags": [
+      "wild vol (0.55)",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.26,
+    "pre_vol": 0.553,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -1434,10 +2193,19 @@
     "ticker": "PAR",
     "catalyst_date": "2026-02-26",
     "months_since": 6.7,
-    "drift_since_catalyst": 0.392,
+    "drift_since_catalyst": 0.357,
     "state": "CONFIRMED",
     "tail_prob_base": 0.151,
     "tail_prob_confirmed": 0.249,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-84%)",
+      "wild vol (0.15)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.836,
+    "pre_vol": 0.152,
     "catalyst_types": [
       "BUYBACK_AUTH"
     ],
@@ -1448,11 +2216,20 @@
   "PD": {
     "ticker": "PD",
     "catalyst_date": "2026-05-28",
-    "months_since": 3.6,
-    "drift_since_catalyst": 0.526,
+    "months_since": 3.7,
+    "drift_since_catalyst": 0.538,
     "state": "CONFIRMED",
     "tail_prob_base": 0.151,
     "tail_prob_confirmed": 0.249,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-55%)",
+      "wild vol (0.22)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.546,
+    "pre_vol": 0.22,
     "catalyst_types": [
       "BUYBACK_AUTH"
     ],
@@ -1464,10 +2241,18 @@
     "ticker": "ALKT",
     "catalyst_date": "2026-04-29",
     "months_since": 4.6,
-    "drift_since_catalyst": 0.107,
+    "drift_since_catalyst": 0.094,
     "state": "NEUTRAL",
     "tail_prob_base": 0.151,
     "tail_prob_confirmed": 0.151,
+    "monster_setup": 6.0,
+    "monster_flags": [
+      "deep 24m washout (-54%)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.54,
+    "pre_vol": 0.127,
     "catalyst_types": [
       "BUYBACK_AUTH"
     ],
@@ -1479,10 +2264,18 @@
     "ticker": "UEIC",
     "catalyst_date": "2026-08-06",
     "months_since": 1.3,
-    "drift_since_catalyst": 0.01,
+    "drift_since_catalyst": 0.0,
     "state": "NEUTRAL",
     "tail_prob_base": 0.15,
     "tail_prob_confirmed": 0.15,
+    "monster_setup": 6.0,
+    "monster_flags": [
+      "deep 24m washout (-59%)",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.586,
+    "pre_vol": 0.096,
     "catalyst_types": [
       "ASSET_SALE",
       "CAPITAL_RETURN"
@@ -1495,10 +2288,14 @@
     "ticker": "CCO",
     "catalyst_date": "2026-02-26",
     "months_since": 6.7,
-    "drift_since_catalyst": 0.006,
+    "drift_since_catalyst": 0.004,
     "state": "NEUTRAL",
     "tail_prob_base": 0.15,
     "tail_prob_confirmed": 0.15,
+    "monster_setup": 0.0,
+    "monster_flags": [],
+    "drawdown_24m": -0.013,
+    "pre_vol": 0.101,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -1510,10 +2307,17 @@
     "ticker": "CAR",
     "catalyst_date": "2026-03-27",
     "months_since": 5.7,
-    "drift_since_catalyst": -0.332,
+    "drift_since_catalyst": -0.343,
     "state": "FADING",
     "tail_prob_base": 0.149,
     "tail_prob_confirmed": 0.13,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "wild vol (0.22)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": 0.061,
+    "pre_vol": 0.217,
     "catalyst_types": [
       "UPLISTING"
     ],
@@ -1525,10 +2329,19 @@
     "ticker": "EOSE",
     "catalyst_date": "2026-08-06",
     "months_since": 1.3,
-    "drift_since_catalyst": -0.015,
+    "drift_since_catalyst": -0.033,
     "state": "NEUTRAL",
     "tail_prob_base": 0.149,
     "tail_prob_confirmed": 0.149,
+    "monster_setup": 9.0,
+    "monster_flags": [
+      "deep 24m washout (-75%)",
+      "wild vol (0.32)",
+      "bottom of range",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.754,
+    "pre_vol": 0.321,
     "catalyst_types": [
       "UPLISTING"
     ],
@@ -1539,11 +2352,18 @@
   "VNT": {
     "ticker": "VNT",
     "catalyst_date": "2026-05-07",
-    "months_since": 4.3,
-    "drift_since_catalyst": 0.128,
+    "months_since": 4.4,
+    "drift_since_catalyst": 0.116,
     "state": "NEUTRAL",
     "tail_prob_base": 0.148,
     "tail_prob_confirmed": 0.148,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "bottom of range",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.324,
+    "pre_vol": 0.092,
     "catalyst_types": [
       "ASSET_SALE"
     ],
@@ -1554,11 +2374,21 @@
   "WHR": {
     "ticker": "WHR",
     "catalyst_date": "2026-02-27",
-    "months_since": 6.6,
-    "drift_since_catalyst": -0.36,
+    "months_since": 6.7,
+    "drift_since_catalyst": -0.369,
     "state": "FADING",
     "tail_prob_base": 0.147,
     "tail_prob_confirmed": 0.128,
+    "monster_setup": 10.0,
+    "monster_flags": [
+      "deep 24m washout (-53%)",
+      "wild vol (0.15)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.529,
+    "pre_vol": 0.146,
     "catalyst_types": [
       "UPLISTING"
     ],
@@ -1570,10 +2400,20 @@
     "ticker": "LCID",
     "catalyst_date": "2026-04-14",
     "months_since": 5.1,
-    "drift_since_catalyst": -0.369,
+    "drift_since_catalyst": -0.365,
     "state": "FADING",
     "tail_prob_base": 0.147,
     "tail_prob_confirmed": 0.128,
+    "monster_setup": 10.0,
+    "monster_flags": [
+      "deep 24m washout (-84%)",
+      "wild vol (0.17)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.837,
+    "pre_vol": 0.167,
     "catalyst_types": [
       "UPLISTING"
     ],
@@ -1585,10 +2425,16 @@
     "ticker": "WEX",
     "catalyst_date": "2026-07-22",
     "months_since": 1.8,
-    "drift_since_catalyst": 0.045,
+    "drift_since_catalyst": 0.053,
     "state": "NEUTRAL",
     "tail_prob_base": 0.146,
     "tail_prob_confirmed": 0.146,
+    "monster_setup": 1.0,
+    "monster_flags": [
+      "decelerating"
+    ],
+    "drawdown_24m": -0.091,
+    "pre_vol": 0.105,
     "catalyst_types": [
       "BUYBACK_AUTH",
       "TENDER_OFFER"
@@ -1600,11 +2446,18 @@
   "IMUX": {
     "ticker": "IMUX",
     "catalyst_date": "2026-05-13",
-    "months_since": 4.1,
+    "months_since": 4.2,
     "drift_since_catalyst": -0.269,
     "state": "FADING",
     "tail_prob_base": 0.145,
     "tail_prob_confirmed": 0.126,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "wild vol (0.28)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.068,
+    "pre_vol": 0.281,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -1616,10 +2469,17 @@
     "ticker": "ORKA",
     "catalyst_date": "2026-04-30",
     "months_since": 4.6,
-    "drift_since_catalyst": 0.635,
+    "drift_since_catalyst": 0.639,
     "state": "CONFIRMED",
     "tail_prob_base": 0.145,
     "tail_prob_confirmed": 0.24,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "wild vol (0.17)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.144,
+    "pre_vol": 0.167,
     "catalyst_types": [
       "UPLISTING"
     ],
@@ -1631,10 +2491,17 @@
     "ticker": "WBD",
     "catalyst_date": "2026-06-04",
     "months_since": 3.4,
-    "drift_since_catalyst": 0.071,
+    "drift_since_catalyst": 0.068,
     "state": "NEUTRAL",
     "tail_prob_base": 0.144,
     "tail_prob_confirmed": 0.144,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "wild vol (0.21)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.087,
+    "pre_vol": 0.207,
     "catalyst_types": [
       "EXCHANGE_OFFER",
       "SALE_OF_COMPANY",
@@ -1649,10 +2516,16 @@
     "ticker": "GSAT",
     "catalyst_date": "2026-04-14",
     "months_since": 5.1,
-    "drift_since_catalyst": -0.025,
+    "drift_since_catalyst": -0.026,
     "state": "NEUTRAL",
     "tail_prob_base": 0.144,
     "tail_prob_confirmed": 0.144,
+    "monster_setup": 2.0,
+    "monster_flags": [
+      "wild vol (0.15)"
+    ],
+    "drawdown_24m": 0.023,
+    "pre_vol": 0.152,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -1668,6 +2541,12 @@
     "state": "NEUTRAL",
     "tail_prob_base": 0.144,
     "tail_prob_confirmed": 0.144,
+    "monster_setup": 1.0,
+    "monster_flags": [
+      "decelerating"
+    ],
+    "drawdown_24m": null,
+    "pre_vol": null,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -1678,11 +2557,19 @@
   "INGN": {
     "ticker": "INGN",
     "catalyst_date": "2026-02-24",
-    "months_since": 6.7,
-    "drift_since_catalyst": -0.142,
+    "months_since": 6.8,
+    "drift_since_catalyst": -0.154,
     "state": "FADING",
     "tail_prob_base": 0.144,
     "tail_prob_confirmed": 0.125,
+    "monster_setup": 6.0,
+    "monster_flags": [
+      "deep 24m washout (-50%)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.496,
+    "pre_vol": 0.112,
     "catalyst_types": [
       "BUYBACK_AUTH"
     ],
@@ -1694,10 +2581,18 @@
     "ticker": "SIGA",
     "catalyst_date": "2026-08-06",
     "months_since": 1.3,
-    "drift_since_catalyst": 0.016,
+    "drift_since_catalyst": 0.04,
     "state": "NEUTRAL",
     "tail_prob_base": 0.144,
     "tail_prob_confirmed": 0.144,
+    "monster_setup": 6.0,
+    "monster_flags": [
+      "deep 24m washout (-67%)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.669,
+    "pre_vol": 0.105,
     "catalyst_types": [
       "CAPITAL_RETURN"
     ],
@@ -1709,10 +2604,17 @@
     "ticker": "ADPT",
     "catalyst_date": "2026-07-29",
     "months_since": 1.6,
-    "drift_since_catalyst": -0.008,
+    "drift_since_catalyst": -0.006,
     "state": "NEUTRAL",
     "tail_prob_base": 0.143,
     "tail_prob_confirmed": 0.143,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "wild vol (0.17)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": 0.104,
+    "pre_vol": 0.167,
     "catalyst_types": [
       "SEPARATION",
       "SPINOFF",
@@ -1725,11 +2627,18 @@
   "ACM": {
     "ticker": "ACM",
     "catalyst_date": "2026-02-09",
-    "months_since": 7.2,
-    "drift_since_catalyst": -0.233,
+    "months_since": 7.3,
+    "drift_since_catalyst": -0.238,
     "state": "FADING",
     "tail_prob_base": 0.141,
     "tail_prob_confirmed": 0.123,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "bottom of range",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.369,
+    "pre_vol": 0.091,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -1741,10 +2650,19 @@
     "ticker": "LSTA",
     "catalyst_date": "2026-08-06",
     "months_since": 1.3,
-    "drift_since_catalyst": -0.055,
+    "drift_since_catalyst": -0.043,
     "state": "NEUTRAL",
     "tail_prob_base": 0.14,
     "tail_prob_confirmed": 0.14,
+    "monster_setup": 9.0,
+    "monster_flags": [
+      "deep 24m washout (-67%)",
+      "wild vol (0.54)",
+      "bottom of range",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.675,
+    "pre_vol": 0.54,
     "catalyst_types": [
       "SALE_OF_COMPANY",
       "STRATEGIC_REVIEW",
@@ -1758,10 +2676,17 @@
     "ticker": "ACHV",
     "catalyst_date": "2026-04-30",
     "months_since": 4.6,
-    "drift_since_catalyst": 0.358,
+    "drift_since_catalyst": 0.38,
     "state": "CONFIRMED",
     "tail_prob_base": 0.14,
     "tail_prob_confirmed": 0.233,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "wild vol (0.27)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": 0.023,
+    "pre_vol": 0.272,
     "catalyst_types": [
       "ASSET_SALE"
     ],
@@ -1773,10 +2698,18 @@
     "ticker": "LKQ",
     "catalyst_date": "2026-04-30",
     "months_since": 4.6,
-    "drift_since_catalyst": -0.117,
+    "drift_since_catalyst": -0.124,
     "state": "FADING",
     "tail_prob_base": 0.139,
     "tail_prob_confirmed": 0.121,
+    "monster_setup": 5.0,
+    "monster_flags": [
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.362,
+    "pre_vol": 0.095,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -1787,11 +2720,20 @@
   "ANF": {
     "ticker": "ANF",
     "catalyst_date": "2026-03-26",
-    "months_since": 5.7,
-    "drift_since_catalyst": 0.687,
+    "months_since": 5.8,
+    "drift_since_catalyst": 0.648,
     "state": "CONFIRMED",
     "tail_prob_base": 0.139,
     "tail_prob_confirmed": 0.232,
+    "monster_setup": 9.0,
+    "monster_flags": [
+      "deep 24m washout (-52%)",
+      "wild vol (0.17)",
+      "bottom of range",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.52,
+    "pre_vol": 0.17,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -1803,10 +2745,18 @@
     "ticker": "RH",
     "catalyst_date": "2026-06-11",
     "months_since": 3.2,
-    "drift_since_catalyst": -0.158,
+    "drift_since_catalyst": -0.189,
     "state": "FADING",
     "tail_prob_base": 0.139,
     "tail_prob_confirmed": 0.121,
+    "monster_setup": 6.0,
+    "monster_flags": [
+      "deep 24m washout (-61%)",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.605,
+    "pre_vol": 0.121,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -1818,10 +2768,20 @@
     "ticker": "NUS",
     "catalyst_date": "2026-05-08",
     "months_since": 4.3,
-    "drift_since_catalyst": -0.083,
+    "drift_since_catalyst": -0.078,
     "state": "NEUTRAL",
     "tail_prob_base": 0.138,
     "tail_prob_confirmed": 0.138,
+    "monster_setup": 10.0,
+    "monster_flags": [
+      "deep 24m washout (-57%)",
+      "wild vol (0.18)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.567,
+    "pre_vol": 0.176,
     "catalyst_types": [
       "ASSET_SALE"
     ],
@@ -1833,10 +2793,19 @@
     "ticker": "AIRE",
     "catalyst_date": "2026-08-25",
     "months_since": 0.7,
-    "drift_since_catalyst": 0.026,
+    "drift_since_catalyst": 0.013,
     "state": "PENDING",
     "tail_prob_base": 0.138,
     "tail_prob_confirmed": 0.138,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-98%)",
+      "wild vol (0.15)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.979,
+    "pre_vol": 0.146,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -1848,10 +2817,18 @@
     "ticker": "NXPI",
     "catalyst_date": "2026-06-11",
     "months_since": 3.2,
-    "drift_since_catalyst": -0.007,
+    "drift_since_catalyst": -0.022,
     "state": "NEUTRAL",
     "tail_prob_base": 0.138,
     "tail_prob_confirmed": 0.138,
+    "monster_setup": 5.0,
+    "monster_flags": [
+      "wild vol (0.17)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.287,
+    "pre_vol": 0.167,
     "catalyst_types": [
       "SALE_OF_COMPANY"
     ],
@@ -1862,11 +2839,21 @@
   "TWAV": {
     "ticker": "TWAV",
     "catalyst_date": "2026-03-20",
-    "months_since": 5.9,
-    "drift_since_catalyst": -0.249,
+    "months_since": 6.0,
+    "drift_since_catalyst": -0.237,
     "state": "FADING",
     "tail_prob_base": 0.137,
     "tail_prob_confirmed": 0.119,
+    "monster_setup": 10.0,
+    "monster_flags": [
+      "deep 24m washout (-81%)",
+      "wild vol (0.34)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.808,
+    "pre_vol": 0.341,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -1878,10 +2865,16 @@
     "ticker": "CTVA",
     "catalyst_date": "2026-08-31",
     "months_since": 0.5,
-    "drift_since_catalyst": -0.017,
+    "drift_since_catalyst": -0.016,
     "state": "PENDING",
     "tail_prob_base": 0.136,
     "tail_prob_confirmed": 0.136,
+    "monster_setup": 2.0,
+    "monster_flags": [
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.009,
+    "pre_vol": 0.061,
     "catalyst_types": [
       "SEPARATION",
       "SPINOFF"
@@ -1894,10 +2887,16 @@
     "ticker": "DD",
     "catalyst_date": "2026-08-04",
     "months_since": 1.4,
-    "drift_since_catalyst": -0.026,
+    "drift_since_catalyst": -0.021,
     "state": "NEUTRAL",
     "tail_prob_base": 0.136,
     "tail_prob_confirmed": 0.136,
+    "monster_setup": 2.0,
+    "monster_flags": [
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.154,
+    "pre_vol": 0.075,
     "catalyst_types": [
       "SPINOFF"
     ],
@@ -1909,10 +2908,17 @@
     "ticker": "ANAB",
     "catalyst_date": "2026-03-27",
     "months_since": 5.7,
-    "drift_since_catalyst": -0.159,
+    "drift_since_catalyst": -0.177,
     "state": "FADING",
     "tail_prob_base": 0.135,
     "tail_prob_confirmed": 0.117,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "wild vol (0.17)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": 0.778,
+    "pre_vol": 0.165,
     "catalyst_types": [
       "SEPARATION",
       "UPLISTING"
@@ -1925,10 +2931,17 @@
     "ticker": "VSAT",
     "catalyst_date": "2026-02-05",
     "months_since": 7.4,
-    "drift_since_catalyst": 0.594,
+    "drift_since_catalyst": 0.564,
     "state": "CONFIRMED",
     "tail_prob_base": 0.135,
     "tail_prob_confirmed": 0.226,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "wild vol (0.34)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": 0.0,
+    "pre_vol": 0.343,
     "catalyst_types": [
       "ASSET_SALE"
     ],
@@ -1940,10 +2953,17 @@
     "ticker": "ANRO",
     "catalyst_date": "2026-07-14",
     "months_since": 2.1,
-    "drift_since_catalyst": -0.103,
+    "drift_since_catalyst": -0.105,
     "state": "FADING",
     "tail_prob_base": 0.135,
     "tail_prob_confirmed": 0.117,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "wild vol (0.72)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": 0.307,
+    "pre_vol": 0.72,
     "catalyst_types": [
       "UPLISTING"
     ],
@@ -1955,10 +2975,19 @@
     "ticker": "AZTA",
     "catalyst_date": "2026-02-04",
     "months_since": 7.4,
-    "drift_since_catalyst": 0.487,
+    "drift_since_catalyst": 0.516,
     "state": "CONFIRMED",
     "tail_prob_base": 0.134,
     "tail_prob_confirmed": 0.224,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-66%)",
+      "wild vol (0.15)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.661,
+    "pre_vol": 0.151,
     "catalyst_types": [
       "BUYBACK_AUTH"
     ],
@@ -1970,10 +2999,17 @@
     "ticker": "ASH",
     "catalyst_date": "2026-04-29",
     "months_since": 4.6,
-    "drift_since_catalyst": 0.209,
+    "drift_since_catalyst": 0.203,
     "state": "CONFIRMED",
     "tail_prob_base": 0.134,
     "tail_prob_confirmed": 0.224,
+    "monster_setup": 5.0,
+    "monster_flags": [
+      "deep 24m washout (-40%)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.401,
+    "pre_vol": 0.08,
     "catalyst_types": [
       "ASSET_SALE"
     ],
@@ -1985,10 +3021,16 @@
     "ticker": "SXT",
     "catalyst_date": "2026-05-05",
     "months_since": 4.4,
-    "drift_since_catalyst": 0.036,
+    "drift_since_catalyst": 0.026,
     "state": "NEUTRAL",
     "tail_prob_base": 0.134,
     "tail_prob_confirmed": 0.134,
+    "monster_setup": 2.0,
+    "monster_flags": [
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": 0.083,
+    "pre_vol": 0.126,
     "catalyst_types": [
       "ASSET_SALE"
     ],
@@ -2000,10 +3042,17 @@
     "ticker": "LDOS",
     "catalyst_date": "2026-04-15",
     "months_since": 5.1,
-    "drift_since_catalyst": 0.042,
+    "drift_since_catalyst": 0.039,
     "state": "NEUTRAL",
     "tail_prob_base": 0.133,
     "tail_prob_confirmed": 0.133,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "bottom of range",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.331,
+    "pre_vol": 0.066,
     "catalyst_types": [
       "ASSET_SALE"
     ],
@@ -2015,10 +3064,18 @@
     "ticker": "GRND",
     "catalyst_date": "2026-02-26",
     "months_since": 6.7,
-    "drift_since_catalyst": 0.284,
+    "drift_since_catalyst": 0.301,
     "state": "CONFIRMED",
     "tail_prob_base": 0.132,
     "tail_prob_confirmed": 0.221,
+    "monster_setup": 6.0,
+    "monster_flags": [
+      "deep 24m washout (-50%)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.505,
+    "pre_vol": 0.095,
     "catalyst_types": [
       "GOING_PRIVATE"
     ],
@@ -2029,11 +3086,19 @@
   "QMCO": {
     "ticker": "QMCO",
     "catalyst_date": "2026-08-11",
-    "months_since": 1.1,
-    "drift_since_catalyst": 0.015,
+    "months_since": 1.2,
+    "drift_since_catalyst": -0.032,
     "state": "NEUTRAL",
     "tail_prob_base": 0.131,
     "tail_prob_confirmed": 0.131,
+    "monster_setup": 7.0,
+    "monster_flags": [
+      "deep 24m washout (-56%)",
+      "wild vol (0.42)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.563,
+    "pre_vol": 0.419,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -2045,10 +3110,17 @@
     "ticker": "LASR",
     "catalyst_date": "2026-02-04",
     "months_since": 7.4,
-    "drift_since_catalyst": -0.316,
+    "drift_since_catalyst": -0.326,
     "state": "FADING",
     "tail_prob_base": 0.131,
     "tail_prob_confirmed": 0.114,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "wild vol (0.26)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": 0.015,
+    "pre_vol": 0.261,
     "catalyst_types": [
       "UPLISTING"
     ],
@@ -2059,11 +3131,18 @@
   "AVTX": {
     "ticker": "AVTX",
     "catalyst_date": "2026-05-13",
-    "months_since": 4.1,
-    "drift_since_catalyst": -0.117,
+    "months_since": 4.2,
+    "drift_since_catalyst": -0.124,
     "state": "FADING",
     "tail_prob_base": 0.13,
     "tail_prob_confirmed": 0.113,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "wild vol (0.23)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.027,
+    "pre_vol": 0.235,
     "catalyst_types": [
       "SALE_OF_COMPANY",
       "STRATEGIC_REVIEW"
@@ -2080,6 +3159,12 @@
     "state": "NEUTRAL",
     "tail_prob_base": 0.13,
     "tail_prob_confirmed": 0.13,
+    "monster_setup": 2.0,
+    "monster_flags": [
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.162,
+    "pre_vol": 0.124,
     "catalyst_types": [
       "SALE_OF_COMPANY",
       "STRATEGIC_REVIEW"
@@ -2092,10 +3177,19 @@
     "ticker": "FOXF",
     "catalyst_date": "2026-08-06",
     "months_since": 1.3,
-    "drift_since_catalyst": 0.002,
+    "drift_since_catalyst": -0.012,
     "state": "NEUTRAL",
     "tail_prob_base": 0.13,
     "tail_prob_confirmed": 0.13,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-52%)",
+      "wild vol (0.13)",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.522,
+    "pre_vol": 0.131,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -2106,11 +3200,17 @@
   "III": {
     "ticker": "III",
     "catalyst_date": "2026-08-05",
-    "months_since": 1.3,
-    "drift_since_catalyst": 0.038,
+    "months_since": 1.4,
+    "drift_since_catalyst": 0.037,
     "state": "NEUTRAL",
     "tail_prob_base": 0.13,
     "tail_prob_confirmed": 0.13,
+    "monster_setup": 1.0,
+    "monster_flags": [
+      "decelerating"
+    ],
+    "drawdown_24m": -0.102,
+    "pre_vol": 0.115,
     "catalyst_types": [
       "BUYBACK_AUTH"
     ],
@@ -2121,11 +3221,20 @@
   "TASK": {
     "ticker": "TASK",
     "catalyst_date": "2026-03-17",
-    "months_since": 6.0,
-    "drift_since_catalyst": 0.285,
+    "months_since": 6.1,
+    "drift_since_catalyst": 0.272,
     "state": "CONFIRMED",
     "tail_prob_base": 0.13,
     "tail_prob_confirmed": 0.218,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-64%)",
+      "wild vol (0.15)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -0.637,
+    "pre_vol": 0.146,
     "catalyst_types": [
       "CAPITAL_RETURN"
     ],
@@ -2136,11 +3245,18 @@
   "UUU": {
     "ticker": "UUU",
     "catalyst_date": "2026-08-14",
-    "months_since": 1.0,
-    "drift_since_catalyst": -0.052,
+    "months_since": 1.1,
+    "drift_since_catalyst": -0.032,
     "state": "NEUTRAL",
     "tail_prob_base": 0.13,
     "tail_prob_confirmed": 0.13,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "wild vol (0.20)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.219,
+    "pre_vol": 0.198,
     "catalyst_types": [
       "STRATEGIC_REVIEW"
     ],
@@ -2156,6 +3272,12 @@
     "state": "PENDING",
     "tail_prob_base": 0.129,
     "tail_prob_confirmed": 0.129,
+    "monster_setup": 2.0,
+    "monster_flags": [
+      "wild vol (0.28)"
+    ],
+    "drawdown_24m": 0.0,
+    "pre_vol": 0.275,
     "catalyst_types": [
       "SALE_OF_COMPANY",
       "TENDER_OFFER"
@@ -2168,10 +3290,20 @@
     "ticker": "YHC",
     "catalyst_date": "2026-05-15",
     "months_since": 4.1,
-    "drift_since_catalyst": -0.823,
+    "drift_since_catalyst": -0.825,
     "state": "FADING",
     "tail_prob_base": 0.129,
     "tail_prob_confirmed": 0.112,
+    "monster_setup": 10.0,
+    "monster_flags": [
+      "deep 24m washout (-100%)",
+      "wild vol (0.14)",
+      "bottom of range",
+      "decelerating",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.999,
+    "pre_vol": 0.137,
     "catalyst_types": [
       "ASSET_SALE",
       "SALE_OF_COMPANY"
@@ -2183,11 +3315,19 @@
   "EMAT": {
     "ticker": "EMAT",
     "catalyst_date": "2026-05-22",
-    "months_since": 3.8,
-    "drift_since_catalyst": -0.486,
+    "months_since": 3.9,
+    "drift_since_catalyst": -0.496,
     "state": "FADING",
     "tail_prob_base": 0.129,
     "tail_prob_confirmed": 0.112,
+    "monster_setup": 6.0,
+    "monster_flags": [
+      "wild vol (0.23)",
+      "bottom of range",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.309,
+    "pre_vol": 0.227,
     "catalyst_types": [
       "SALE_OF_COMPANY",
       "STRATEGIC_REVIEW"
@@ -2204,6 +3344,13 @@
     "state": "PENDING",
     "tail_prob_base": 0.129,
     "tail_prob_confirmed": 0.129,
+    "monster_setup": 4.0,
+    "monster_flags": [
+      "wild vol (0.33)",
+      "monster-rich catalyst"
+    ],
+    "drawdown_24m": -0.143,
+    "pre_vol": 0.33,
     "catalyst_types": [
       "SALE_OF_COMPANY",
       "STRATEGIC_REVIEW"
@@ -2216,10 +3363,19 @@
     "ticker": "LRHC",
     "catalyst_date": "2026-07-10",
     "months_since": 2.2,
-    "drift_since_catalyst": -0.083,
+    "drift_since_catalyst": -0.094,
     "state": "NEUTRAL",
     "tail_prob_base": 0.129,
     "tail_prob_confirmed": 0.129,
+    "monster_setup": 8.0,
+    "monster_flags": [
+      "deep 24m washout (-100%)",
+      "wild vol (0.28)",
+      "bottom of range",
+      "decelerating"
+    ],
+    "drawdown_24m": -1.0,
+    "pre_vol": 0.28,
     "catalyst_types": [
       "GOING_PRIVATE",
       "SALE_OF_COMPANY"
