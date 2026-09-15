@@ -115,3 +115,137 @@ sweet spot — the maximum gap between what is becoming true and what is priced.
 *Companion to XR_RERATING_FORENSIC_RESEARCH.md (the forensic GAAP-vs-economic
 gap taxonomy). That doc answers "where is the hidden value"; this one answers
 "when is it about to be repriced".*
+
+---
+
+## 4. Deeper nuances — the patterns we still miss (forensic research pass)
+
+Pushing past the state/turn/disbelief frame, here are the subtler signatures
+that produced great re-ratings and that the engine does NOT yet capture. Each is
+forensically grounded and mostly buildable from data we have or can pull.
+
+### N1. The second-derivative-of-decline discriminator (value-trap crux)
+The hardest and most valuable distinction: a cheap-AND-*bottoming* name vs a
+cheap-AND-*dying* one. `_not_melting` is a level test; the real tell is the
+**rate of change of the rate of change**. A melting ice cube declines with the
+decline ACCELERATING and the whole complex deteriorating together (revenue ↓,
+margin ↓, share ↓). A bottoming turnaround shows the **decline DECELERATING**
+(second derivative positive) even before it turns positive — revenue still down
+but *less* down each quarter, margins stabilising, share holding. We measure
+first derivatives (deltas, inflection) but not the **deceleration of decline**.
+*Build:* a `decline_decelerating` flag = YoY decline this period milder than
+last, across rev/margin/FCF — the earliest bottoming tell, and the single best
+value-trap filter. Existing quarterly series.
+
+### N2. Earnings-quality inflection (Sloan, in reverse)
+Reported earnings lag reality when accruals are high; the pre-rerating tell is
+**accruals FALLING / cash-conversion RISING before the P&L shows it** — the
+business is converting to cash, a quality upgrade the market hasn't paid for.
+We have CFO and NI but never compute the accrual ratio or its trend. *Build:*
+`accrual_ratio = (NI − CFO)/assets` and its improvement; low/falling accruals +
+rising CFO/NI = the earnings-quality coiled spring. (N-ext-1 from the forensic
+doc, still unbuilt.)
+
+### N3. Distress-flag / going-concern REMOVAL
+A binary re-rate: the survival question gets answered. A **going-concern
+qualification lifted**, a **material-weakness remediated**, a **delinquent
+filer becoming timely**, a **refinancing that clears the maturity wall** — each
+removes a discrete discount-for-uncertainty. We flag distress (`distress_flag`,
+1,365 names) but never its **REMOVAL** — the transition from distressed to
+clean is the signal, not the state. *Build:* track `distress_flag` /
+going-concern language / late-filing status YoY; a name that WAS flagged and
+now is not is the pre-rerating. On-demand EFTS ("no longer substantial doubt",
+"regained compliance") + filing-timeliness from submissions.
+
+### N4. Refinancing / maturity-wall clearing on levered equity
+Distinct from deleveraging: a levered equity trades at a going-concern discount
+until the **near-term maturity wall is refinanced** — the gun leaves the head
+and the equity (a call option on enterprise value) re-rates as survival
+probability jumps, before any operational change. *Build:* short-term debt /
+total debt (a maturity-concentration proxy) + a refinancing event (8-K item
+2.03 / "entered into credit agreement" / new notes) — the discount-lift trigger.
+
+### N5. Signal SEQUENCING — position in the re-rating chain
+The engine bundles signals statically; the alpha is in their ORDER. The canonical
+chain is **insider buy → decline decelerates → margin stabilises → first
+positive print → estimate revisions up → 52w-high break → re-rate.** A name
+EARLY in the chain (insider buy + decelerating) is pre-rerating; one LATE (52w
+high, estimates already up) is mid-rerate. *Build:* a `rerating_stage` (1–6)
+from which links are lit, and rank by *early stage with the most latent gap* —
+buying the sequence before recognition, not after.
+
+### N6. Operating-KPI lead (pre-financials)
+Unit economics turn 1–2 quarters before the P&L: **same-store sales / comps,
+subscriber or user adds, bookings/backlog, occupancy, load factor, capacity
+utilisation, announced price increases.** These live in MD&A / press releases,
+not XBRL. We mine backlog (narrowly) and segments; we don't mine the KPI turn.
+*Build:* extend the EFTS/MD&A miner (scoped to cheap+turning candidates) for
+"same-store sales increased", "raised prices", "record bookings", "utilisation
+improved" — the operating lead the financials haven't caught.
+
+### N7. Disclosure-CONFIDENCE signals (management revealing its hand)
+Management changes what it discloses when it gets confident: **initiating
+guidance after none, first-time breakout of a segment/KPI (ARR, RPO), a first
+buyback authorisation, reinstating a dividend, hosting a first investor day.**
+Each is a revealed-preference confidence signal that precedes the numbers.
+*Build:* first-appearance deltas — segment count rising (segment harvest),
+first RPO/deferred disclosure, first buyback (cache series), guidance initiation
+(EFTS). The *newness* is the signal.
+
+### N8. Overhang EXHAUSTION (forced-selling finishing)
+A re-rate often waits for a mechanical seller to finish: **tax-loss selling
+(December lows on the year's biggest losers), index deletion, post-spin dumping,
+lockup expiry, a fund liquidation.** The pre-tell is the overhang *ending* — the
+stock stops making new lows on higher volume. We have `forced_seller`/spin but
+not the **exhaustion timing**. *Build:* a "selling-climax" tape signal (new low
+on a volume spike then stabilising) + calendar awareness (Dec tax-loss names,
+index-rebalance dates).
+
+### N9. Contingent-liability / overhang RESOLUTION
+A discrete discount lifts when a **litigation settles, a regulatory probe
+closes, a pension is bought out / de-risked, a large customer contract renews,
+or customer concentration diversifies.** The market prices the tail risk; its
+resolution re-rates. *Build:* EFTS for "settled", "resolution of", "dismissed",
+"pension buy-in/buy-out", scoped to names carrying the overhang (litigation
+reserves, single-customer concentration flag we already have).
+
+### N10. Repeat-unlocker base rate (pedigree)
+Some management teams create value on a schedule: **serial spinners (the Liberty
+/ Malone complex), disciplined serial acquirers (Constellation, Danaher,
+Roper), proven activists' targets.** A base-rate prior: the same catalyst in
+proven hands is worth more. *Build:* a `pedigree_flag` from a curated list +
+detection of prior value-creating spins/buybacks in the filing history — a
+Bayesian prior on the catalyst succeeding.
+
+### N11. The mix-shift margin ratchet (already partly built — deepen)
+Beyond segment mix (`margin_mixshift`): a company whose **incremental margin >>
+average margin** for several quarters is structurally re-rating its whole-company
+margin as the high-margin mix compounds — a *ratchet*, not a one-off. We have
+`incremental_ebitda_margin`; we don't track its persistence. *Build:* a
+multi-quarter incremental-margin streak.
+
+### N12. Balance-sheet OPTIONALITY the market ignores
+Assets that are *free options*: **NOLs about to be usable (profits returning),
+a DTA valuation allowance about to reverse, land/permits/spectrum/IP carried at
+zero, an equity stake pre-IPO, an overfunded pension reverting to the P&L.** We
+catch several as static hidden value; the nuance is the **TRIGGER that turns the
+option live** (profits returning → NOL/DTA usable; an investee filing to IPO →
+stake remark, which we now catch). *Build:* pair each optionality with its
+activation trigger (e.g. DTA allowance + a return to profitability = imminent
+reversal, a mechanical earnings boost).
+
+---
+
+## 5. The meta-nuance
+
+Two themes unify N1–N12. **First: the engine measures LEVELS and first
+derivatives; the great pre-rerating tells live in SECOND derivatives (decline
+decelerating, accruals improving, incremental-margin ratchet) and in
+TRANSITIONS/REMOVALS (distress lifted, overhang exhausted, option activated) —
+the change in the change, and the discrete disappearance of a discount.**
+**Second: the sharpest signals are REVEALED PREFERENCE under asymmetric
+information — management disclosing more, buying more, refinancing, initiating
+returns — because insiders act on the turn before it is reportable.** An engine
+that systematically watched *second derivatives*, *discount removals*, and
+*revealed-preference confidence* would catch the re-rate one stage earlier than
+one watching levels and single prints.
