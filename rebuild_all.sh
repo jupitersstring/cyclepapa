@@ -79,6 +79,9 @@ if [ "$DO_SCANS" = "1" ]; then
   run python3 rerate_catalysts.py            || true
   run python3 rerate_backtest.py             --start 2024-01-01 --end 2025-06-30 || true
   run python3 tail_discriminators.py         || true
+  run python3 archetype_backtest.py          || true
+  run python3 deep_research.py               || true
+  run python3 greatest_trades.py             || true
   run python3 tail_odds.py                   || true
   run python3 confirmation_rule.py           --top 150 || true
   run python3 winners_forensics.py           || true
