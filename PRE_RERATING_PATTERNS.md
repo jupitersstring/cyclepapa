@@ -346,3 +346,29 @@ forward re-rating. The clean validation: assemble point-in-time archetype/score
 snapshots (or reconstruct them from the EDGAR vintages we cache) and test
 forward 6–24-month returns, first on the well-evidenced P1/Piotroski core to
 confirm the pipeline reproduces the known result, then on the novel N-signals.
+
+---
+## §7 — Backtest verdict (this stopped being reasoning) — see BACKTEST_PRERERATING.md
+
+The P1 spine and the core proposals were tested against REAL forward returns by
+reconstructing fundamentals point-in-time from the EDGAR `filed` dates (zero
+lookahead) as of 2025-06-25 and scoring them on the realized 2025->2026 return
+across 5,877 US filers:
+
+- **P1 (Piotroski F-score) replicated on our own universe** — IC +0.141
+  (p=1.7e-27), high-minus-low spread +11.1 pp (p=6e-13). Earned, not assumed.
+- **Cheapness (low P/B)** IC +0.122; **N1 revenue 2nd-derivative** IC +0.051
+  (p=6e-4) — N1 upgraded from "plausible" to data-supported (Medium).
+- **The TURN x DISBELIEF interaction is the prize** — F>=6 & cheap returned
+  +25.1% mean / 69% positive vs the universe's +11.8% / 53%, beating either leg
+  alone by ~5 pp. This is now the live **`pre_rerating_score`** (0-10) and
+  **`pre_rerating_flag`** columns in archetype_tags.py / asymmetry_global.csv.
+
+Two nuances the data forced into the construction (both were NOT in §0-§6):
+1. The **accrual anomaly inverts in the extreme "cleanest" tail** (a giant
+   CFO-over-NI gap is an impairment, i.e. distress) — so the live accrual leg is
+   credited only when net income is positive.
+2. The **cheapest P/B decile is a value trap** — so the deepest-multiple tail
+   with weak quality and no catalyst is demoted out of top-pick territory. This
+   is the empirical justification for layering quality + governance + value-unlock
+   catalysts onto the raw P/B book.

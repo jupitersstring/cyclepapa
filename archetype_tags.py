@@ -3931,6 +3931,58 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # there is real value to unlock
     df['value_unlock_confirmed'] = (_vu_member & _vu_forensic).astype(int)
 
+    # ------------------------------------------------------------------
+    # pre_rerating_score — the ONE construction the backtest actually
+    # validated on real forward returns (see BACKTEST_PRERERATING.md).
+    # It is TURN x DISBELIEF: a live Piotroski-style quality score
+    # (the P1 spine, IC +0.141 on our 2025->2026 cohort) INTERACTED with
+    # cheapness (low P/B, IC +0.122). The interaction bucket returned
+    # +25.1% mean / 69% positive vs the universe's +11.8% / 53%, beating
+    # either leg alone by ~5pp. Two guards come straight from that test:
+    #   (1) the accrual leg is credited only when earnings are POSITIVE
+    #       — an extreme CFO>>NI gap on a loss is an impairment/distress
+    #       flag, and its "cleanest" decile realized -10% (anomaly inverts);
+    #   (2) the deepest-P/B tail is a VALUE TRAP (cheapest decile lagged the
+    #       merely-cheap), so a bottom-decile book multiple with weak quality
+    #       and no catalyst is capped out of top-pick territory.
+    _pr_roa = (_ncol('roa') > 0)
+    _pr_cfo = (_ncol('cfo_ttm') > 0)
+    _pr_droa = (_ncol('roce_delta_yoy') > 0)                       # d(returns) up
+    _pr_ni = _ncol('net_income_ttm')
+    _pr_accrual = (_ncol('cfo_ttm') > _pr_ni) & (_pr_ni > 0)       # cash>earnings, GUARD: NI>0
+    _pr_nodilute = (_ncol('shares_yoy') <= 0.02)                   # no dilution
+    _pr_gm = (_ncol('gross_margin_delta_yoy') > 0)                 # margin up
+    _pr_turn = (_ncol('rev_yoy') > 0)                              # growth/turnover proxy
+    _pr_quality = (_pr_roa.fillna(False).astype(int)
+                   + _pr_cfo.fillna(False).astype(int)
+                   + _pr_droa.fillna(False).astype(int)
+                   + _pr_accrual.fillna(False).astype(int)
+                   + _pr_nodilute.fillna(False).astype(int)
+                   + _pr_gm.fillna(False).astype(int)
+                   + _pr_turn.fillna(False).astype(int))           # 0..7
+    _pr_pb = _ncol('pb')
+    _pr_pb_pos = _pr_pb.where(_pr_pb > 0)
+    _pr_p40 = _pr_pb_pos.quantile(0.40)
+    _pr_p10 = _pr_pb_pos.quantile(0.10)
+    _pr_cheap = (_pr_pb > 0) & (_pr_pb <= _pr_p40)
+    _pr_trap = (_pr_pb > 0) & (_pr_pb <= _pr_p10)                  # deepest-decile trap tail
+    _pr_sweet = _pr_cheap & ~_pr_trap                             # cheap but not the trap tail
+    _pr_catalyst = ((df['value_unlock_confirmed'] == 1)
+                    | (_ncol('governance_score') >= 0.35)).fillna(False)
+    _pr_raw = (_pr_quality
+               + 2 * _pr_cheap.fillna(False).astype(int)
+               + 1 * _pr_sweet.fillna(False).astype(int)).astype(float)   # 0..10
+    # value-trap demotion: deepest P/B + weak quality + no catalyst can't top the book
+    _pr_demote = _pr_trap.fillna(False) & (_pr_quality < 4) & ~_pr_catalyst
+    _pr_raw = _pr_raw.where(~_pr_demote, _pr_raw.clip(upper=3))
+    df['pre_rerating_quality'] = _pr_quality
+    df['pre_rerating_score'] = _pr_raw.round(2)
+    # the validated high-conviction set (the +25%/69% bucket): strong AND cheap,
+    # excluding the value-trap tail unless a live catalyst redeems it
+    df['pre_rerating_flag'] = (
+        (_pr_quality >= 5) & _pr_cheap & (~_pr_trap | _pr_catalyst)
+    ).fillna(False).astype(int)
+
     # F6 — Forensic payout confirmation (the user's BOOST leg). Any forensic /
     # hidden-value member that is ALSO returning capital — buying back shares
     # or paying a dividend — earns an EXTRA archetype count, which is this
@@ -6021,7 +6073,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','governance_score','governance_tier','insider_distinct_buyers','insider_net_buy_value','insider_officer_buy_flag','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','segment_rot_flag','data_quality_flag','holdco_flag','china_vie_flag','adjusted_book','adjusted_pb','nnwc','nnwc_pct_mcap','nnwc_asset_mix','xr_family_count','xr_confidence','xr_score','forensic_hidden_pct','forensic_xr_score','value_unlock_score','value_unlock_confirmed','truly_xr_score','truly_xr_flag','truly_xr_tell_count','truly_xr_mech_count','truly_xr_tells_str','spin_date','reorg_date']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','governance_score','governance_tier','insider_distinct_buyers','insider_net_buy_value','insider_officer_buy_flag','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','segment_rot_flag','data_quality_flag','holdco_flag','china_vie_flag','adjusted_book','adjusted_pb','nnwc','nnwc_pct_mcap','nnwc_asset_mix','xr_family_count','xr_confidence','xr_score','forensic_hidden_pct','forensic_xr_score','value_unlock_score','value_unlock_confirmed','pre_rerating_quality','pre_rerating_score','pre_rerating_flag','truly_xr_score','truly_xr_flag','truly_xr_tell_count','truly_xr_mech_count','truly_xr_tells_str','spin_date','reorg_date']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m','segment_count','fastest_segment_yoy','is_price_ghost'] if c in df.columns]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)

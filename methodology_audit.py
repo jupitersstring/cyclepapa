@@ -694,6 +694,9 @@ def _figure_coverage(t, g):
         "earnings_yield", "robust_cash_yield", "cash_return_ev", "ufcf_yield",
         "net_debt_ebitda", "cash", "total_debt", "net_cash_pct_mcap",
         "capex_ttm", "op_margin", "gross_margin", "roe",
+        # roa: audited returns ratio (net_income_ttm / assets — both CHECKED),
+        # consumed only as a sign in the pre_rerating quality spine
+        "roa",
         # units-map suite
         "dividend_yield", "roce", "sbc_pct_revenue", "momentum_12m",
         "analyst_target_upside_pct",

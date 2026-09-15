@@ -138,6 +138,10 @@ def main():
                       'tenbagger_score', 'evsales_derate_score',
                       'lynch_reward_score', 'lynch_leg_max',
                       'evsales_derate_gap', 'tenbagger_implied_return',
+                      # backtest-validated TURN x DISBELIEF construction
+                      # (BACKTEST_PRERERATING.md): quality x cheapness, guarded
+                      'pre_rerating_score', 'pre_rerating_quality',
+                      'pre_rerating_flag',
                       # Not yet emitted by archetype_tags.py — harmless here
                       # (the extra_arch list below filters on arch_df.columns)
                       'seg_inflect_score', 'capital_return_score',
