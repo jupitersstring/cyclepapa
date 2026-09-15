@@ -352,14 +352,14 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
         ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=span_cols)
         ws.row_dimensions[row].height = 16
 
-    # Table column layout (post-div-yield addition, 22 cols):
-    #   1 #             2 Ticker        3 Name          4 Sector
-    #   5 Bucket        6 Mcap (USD)    7 Verdict       8 ETA/Infl (active sort key)
-    #   9 Asym         10 EV/EBITDA    11 P/E         12 P/B
-    #  13 FCF yld %    14 Div %        15 ROIC %      16 ND/EBITDA
-    #  17 EBITDA margin %  18 Mom 12m %  19 Yartseva   20 Cluster
-    #  21 Confirm      22 P/S
-    N_COLS = 22
+    # Table column layout (post-industry addition, 23 cols):
+    #   1 #             2 Ticker        3 Name          4 Sector       5 Industry
+    #   6 Bucket        7 Mcap (USD)    8 Verdict       9 ETA/Infl (active sort key)
+    #  10 Asym         11 EV/EBITDA    12 P/E         13 P/B
+    #  14 FCF yld %    15 Div %        16 ROIC %      17 ND/EBITDA
+    #  18 EBITDA margin %  19 Mom 12m %  20 Yartseva   21 Cluster
+    #  22 Confirm      23 P/S
+    N_COLS = 23
 
     def _write_table_row(ws, row, r, cols=N_COLS):
         """Write one country-rank row with valuation headline columns."""
@@ -367,33 +367,34 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
         _put_text(ws, row, 2, r['symbol'], font=f_bold)
         _put_text(ws, row, 3, str(r.get('name') or '')[:50], font=f_text)
         _put_text(ws, row, 4, str(r.get('sector') or ''), font=f_text_muted)
-        _put_text(ws, row, 5, str(r.get('market_cap_bucket') or ''), font=f_text_muted,
+        _put_text(ws, row, 5, str(r.get('industry') or ''), font=f_text_muted)
+        _put_text(ws, row, 6, str(r.get('market_cap_bucket') or ''), font=f_text_muted,
                   align=A_CENTER)
-        _put_money(ws, row, 6, r.get('market_cap'), font=f_text)
-        _verdict_marker(ws, row, 7, r['verdict'])
-        # Col 8 shows the ACTIVE sort key (ETA in asymmetry mode, the
+        _put_money(ws, row, 7, r.get('market_cap'), font=f_text)
+        _verdict_marker(ws, row, 8, r['verdict'])
+        # Col 9 shows the ACTIVE sort key (ETA in asymmetry mode, the
         # confirmed inflection score in --sort-by inflection mode) so the
         # displayed column is monotonic with the ranking.
-        _put_score(ws, row, 8, r.get(sort_col), font=f_bold)
-        _put_score(ws, row, 9, r.get('asymmetry_score'), font=f_text)
+        _put_score(ws, row, 9, r.get(sort_col), font=f_bold)
+        _put_score(ws, row, 10, r.get('asymmetry_score'), font=f_text)
 
-        # Headline valuation block (cols 10-17)
-        _put_score(ws, row, 10, r.get('ev_ebitda'), font=f_text)
-        _put_score(ws, row, 11, r.get('p_e'), font=f_text)
-        _put_score(ws, row, 12, r.get('pb'), font=f_text)
-        _put_pct(ws, row, 13, r.get('fcf_yield'), font=f_text)
-        _put_pct(ws, row, 14, r.get('dividend_yield'), font=f_text)
-        _put_pct(ws, row, 15, r.get('roce'), font=f_text)
-        _put_score(ws, row, 16, r.get('net_debt_ebitda'), font=f_text)
-        _put_pct(ws, row, 17, r.get('ebitda_margin'), font=f_text)
-        _put_pct(ws, row, 18, r.get('momentum_12m'), font=f_text)
+        # Headline valuation block (cols 11-19)
+        _put_score(ws, row, 11, r.get('ev_ebitda'), font=f_text)
+        _put_score(ws, row, 12, r.get('p_e'), font=f_text)
+        _put_score(ws, row, 13, r.get('pb'), font=f_text)
+        _put_pct(ws, row, 14, r.get('fcf_yield'), font=f_text)
+        _put_pct(ws, row, 15, r.get('dividend_yield'), font=f_text)
+        _put_pct(ws, row, 16, r.get('roce'), font=f_text)
+        _put_score(ws, row, 17, r.get('net_debt_ebitda'), font=f_text)
+        _put_pct(ws, row, 18, r.get('ebitda_margin'), font=f_text)
+        _put_pct(ws, row, 19, r.get('momentum_12m'), font=f_text)
 
-        _put_score(ws, row, 19, r.get('yartseva_score'), font=f_text_muted)
+        _put_score(ws, row, 20, r.get('yartseva_score'), font=f_text_muted)
         _cn = r.get('cluster_n')
-        _put_int(ws, row, 20, int(_cn) if pd.notna(_cn) else 0, font=f_text_muted)
-        _put_score(ws, row, 21, r.get('confirm_overall'), font=f_text_muted)
+        _put_int(ws, row, 21, int(_cn) if pd.notna(_cn) else 0, font=f_text_muted)
+        _put_score(ws, row, 22, r.get('confirm_overall'), font=f_text_muted)
         # P/S is a mandated display column — same weight as P/B, not muted
-        _put_score(ws, row, 22, r.get('p_s'), font=f_text)
+        _put_score(ws, row, 23, r.get('p_s'), font=f_text)
 
         # Faint hairline under each row
         for cidx in range(1, cols + 1):
@@ -403,7 +404,7 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
     def _write_table_header(ws, row):
         # Col 8 header names the ACTIVE sort key (see _write_table_row)
         sort_key_hdr = 'Infl' if sort_col == 'entry_today_inflection' else 'ETA'
-        headers = ['#', 'Ticker', 'Name', 'Sector', 'Bucket',
+        headers = ['#', 'Ticker', 'Name', 'Sector', 'Industry', 'Bucket',
                    'Mcap (USD)', 'Verdict', sort_key_hdr, 'Asym',
                    'EV/EBITDA', 'P/E', 'P/B',
                    'FCF yld %', 'Div %', 'ROIC %', 'ND/EBITDA', 'EBITDA m %',
@@ -411,8 +412,8 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
         for i, h in enumerate(headers, start=1):
             c = ws.cell(row=row, column=i, value=h)
             c.font = f_bold_muted
-            c.alignment = (A_LEFT if i in (2, 3, 4) else
-                           A_CENTER if i in (5, 7) else
+            c.alignment = (A_LEFT if i in (2, 3, 4, 5) else
+                           A_CENTER if i in (6, 8) else
                            A_RIGHT)
         # Thin black rule between header and first data row
         for i in range(1, len(headers) + 1):
@@ -421,10 +422,10 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
 
     def _common_col_widths(ws):
         widths = {
-            1: 4, 2: 11, 3: 32, 4: 16, 5: 11, 6: 17,
-            7: 12, 8: 8, 9: 8,
-            10: 10, 11: 8, 12: 8, 13: 10, 14: 7, 15: 9, 16: 10, 17: 10, 18: 11,
-            19: 9, 20: 8, 21: 9, 22: 7,
+            1: 4, 2: 11, 3: 32, 4: 16, 5: 18, 6: 11, 7: 17,
+            8: 12, 9: 8, 10: 8,
+            11: 10, 12: 8, 13: 8, 14: 10, 15: 7, 16: 9, 17: 10, 18: 10, 19: 11,
+            20: 9, 21: 8, 22: 9, 23: 7,
         }
         for col, w in widths.items():
             ws.column_dimensions[get_column_letter(col)].width = w
