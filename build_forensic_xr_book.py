@@ -74,7 +74,7 @@ def load_data():
     return df[df['forensic_xr_score'] > 0].copy()
 
 
-HEADERS = ['#', 'Ticker', 'Name', 'Country', 'Sector', 'Mcap (USD)', 'Verdict',
+HEADERS = ['#', 'Ticker', 'Name', 'Country', 'Sector', 'Industry', 'Mcap (USD)', 'Verdict',
            'ForXR score', 'Hidden %mcap',
            'Pension %', 'DTA allow %', 'LIFO %', 'Eq-stake %', 'RPO %rev',
            'EV/EBITDA', 'P/B', 'FCF yld %']
@@ -127,7 +127,7 @@ def main():
     for i, h in enumerate(HEADERS, start=1):
         c = ws.cell(row=hdr, column=i, value=h)
         c.font = _font(bold=True, color=MUTED)
-        c.alignment = _TXT_ALIGN_LEFT if i in (2, 3, 4, 5) else _NUM_ALIGN_CENTER
+        c.alignment = _TXT_ALIGN_LEFT if i in (2, 3, 4, 5, 6) else _NUM_ALIGN_CENTER
     for c in range(1, NCOLS + 1):
         ws.cell(row=hdr + 1, column=c).border = Border(top=Side(style='thin', color=INK))
 
@@ -142,24 +142,26 @@ def main():
         ws.cell(row=r, column=4, value=str(row.get('src') or '')).font = _font(color=MUTED)
         ws.cell(row=r, column=5, value=str(row.get('sector') or '')[:14]).font = _font(color=MUTED)
         ws.cell(row=r, column=5).alignment = _TXT_ALIGN_LEFT
-        _write_money(ws, r, 6, row.get('market_cap'), font=f_text)
+        ws.cell(row=r, column=6, value=str(row.get('industry') or '')[:22]).font = _font(color=MUTED)
+        ws.cell(row=r, column=6).alignment = _TXT_ALIGN_LEFT
+        _write_money(ws, r, 7, row.get('market_cap'), font=f_text)
         _v = row.get('verdict')
-        _verdict_badge(ws, r, 7, _v if (pd.notna(_v) and _v) else 'UNRESEARCHED')
-        _write_score(ws, r, 8, row.get('forensic_xr_score'), font=f_text)
-        _write_pct(ws, r, 9, row.get('forensic_hidden_pct'), font=f_text)
-        _write_pct(ws, r, 10, pension.get(i), font=f_text)
-        _write_pct(ws, r, 11, dta.get(i), font=f_text)
-        _write_pct(ws, r, 12, lifo.get(i), font=f_text)
-        _write_pct(ws, r, 13, eqst.get(i), font=f_text)
-        _write_pct(ws, r, 14, rpo.get(i), font=f_text)
-        _write_score(ws, r, 15, row.get('ev_ebitda'), font=f_text)
-        _write_score(ws, r, 16, row.get('pb'), font=f_text)
-        _write_pct(ws, r, 17, row.get('fcf_yield'), font=f_text)
+        _verdict_badge(ws, r, 8, _v if (pd.notna(_v) and _v) else 'UNRESEARCHED')
+        _write_score(ws, r, 9, row.get('forensic_xr_score'), font=f_text)
+        _write_pct(ws, r, 10, row.get('forensic_hidden_pct'), font=f_text)
+        _write_pct(ws, r, 11, pension.get(i), font=f_text)
+        _write_pct(ws, r, 12, dta.get(i), font=f_text)
+        _write_pct(ws, r, 13, lifo.get(i), font=f_text)
+        _write_pct(ws, r, 14, eqst.get(i), font=f_text)
+        _write_pct(ws, r, 15, rpo.get(i), font=f_text)
+        _write_score(ws, r, 16, row.get('ev_ebitda'), font=f_text)
+        _write_score(ws, r, 17, row.get('pb'), font=f_text)
+        _write_pct(ws, r, 18, row.get('fcf_yield'), font=f_text)
         for c in range(1, NCOLS + 1):
             ws.cell(row=r, column=c).border = Border(bottom=Side(style='thin', color=RULE))
 
-    widths = {1: 4, 2: 9, 3: 30, 4: 6, 5: 14, 6: 13, 7: 12, 8: 11, 9: 11,
-              10: 10, 11: 11, 12: 8, 13: 11, 14: 10, 15: 10, 16: 7, 17: 10}
+    widths = {1: 4, 2: 9, 3: 30, 4: 6, 5: 14, 6: 16, 7: 13, 8: 12, 9: 11,
+              10: 11, 11: 10, 12: 11, 13: 8, 14: 11, 15: 10, 16: 10, 17: 7, 18: 10}
     for col, w in widths.items():
         ws.column_dimensions[get_column_letter(col)].width = w
     ws.sheet_view.showGridLines = False

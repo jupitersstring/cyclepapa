@@ -410,7 +410,7 @@ def main():
     master_entry_ups  = df.sort_values('entry_today_upside', ascending=False).head(args.top_master).copy()
 
     master_cols = [
-        'symbol','name','src','sector','market_cap_bucket','market_cap',
+        'symbol','name','src','sector','industry','market_cap_bucket','market_cap',
         'verdict',
         'entry_today_asymmetry','entry_today_upside','intrinsic_discount',
         'adj_asymmetry','asymmetry_score','confirm_overall','adj_upside','upside_score',
@@ -435,7 +435,7 @@ def main():
         # qualitative verdict is GREEN AND quant signals stack across multiple
         # archetype clusters OR single archetype is exceptionally strong.
         gem_cols_show = [
-            'symbol','name','src','sector','market_cap_bucket','market_cap',
+            'symbol','name','src','sector','industry','market_cap_bucket','market_cap',
             'verdict',
             'archetype_count','archetype_tags_str',
             'entry_today_asymmetry','country_entry_asymmetry','intrinsic_discount',
@@ -518,7 +518,7 @@ def main():
         ]
 
         archetype_cols_show = [
-            'symbol','name','src','sector','market_cap_bucket','market_cap',
+            'symbol','name','src','sector','industry','market_cap_bucket','market_cap',
             'verdict',
             'archetype_tags_str',
             'arch_narrative_lag',          # the A modifier
@@ -653,6 +653,7 @@ def main():
                     'symbol': r['symbol'],
                     'name': r['name'],
                     'sector': r.get('sector', ''),
+                    'industry': r.get('industry', ''),
                     'market_cap_bucket': r.get('market_cap_bucket', ''),
                     'market_cap': r.get('market_cap', 0),
                     'verdict': r.get('verdict', 'UNRESEARCHED'),
@@ -672,7 +673,7 @@ def main():
 
         # Per-country sheets, sorted by adj_asymmetry within country
         per_country_cols = [
-            'symbol','name','sector','market_cap_bucket','market_cap',
+            'symbol','name','sector','industry','market_cap_bucket','market_cap',
             'verdict',
             'country_entry_asymmetry','country_entry_upside','intrinsic_discount',
             'entry_today_asymmetry','entry_today_upside',

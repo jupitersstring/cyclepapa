@@ -192,27 +192,21 @@ def build_nms_methodology(ws):
 
 # --- Index sheet (top-100 by entry_today_asymmetry) ----------------------
 def build_nms_index(ws, top_df: pd.DataFrame):
-    _set_col_widths(ws, {1: 4, 2: 5, 3: 14, 4: 38, 5: 8, 6: 18, 7: 12, 8: 14,
-                         9: 10, 10: 14, 11: 8, 12: 8, 13: 7, 14: 8, 15: 4})
-    _crimson_banner(ws, 1, "  Global Top 100 — entry-today asymmetry", span_cols=14)
+    _set_col_widths(ws, {1: 4, 2: 5, 3: 14, 4: 38, 5: 8, 6: 18, 7: 18, 8: 12,
+                         9: 14, 10: 10, 11: 14, 12: 8, 13: 8, 14: 7, 15: 8, 16: 4})
+    _crimson_banner(ws, 1, "  Global Top 100 — entry-today asymmetry", span_cols=15)
 
-    hdrs = ["#", "Ticker", "Company", "Cntry", "Sector", "Bucket", "Mcap (USD)",
+    hdrs = ["#", "Ticker", "Company", "Cntry", "Sector", "Industry", "Bucket", "Mcap (USD)",
             "Verdict", "ETA", "Confirm", "P/B", "Div %", "P/S"]
     for i, h in enumerate(hdrs, start=2):
         c = ws.cell(row=3, column=i, value=h)
         c.font = _font(size=10, bold=True, color=CRIMSON_DARK, name=SANS)
-        if i in (4,):
+        if i in (3, 4, 6, 7):        # ticker/company/sector/industry
             c.alignment = _align(h="left")
-        elif i in (3, 6):
-            c.alignment = _align(h="left")
-        elif i in (5,):
+        elif i in (5, 8, 10):        # cntry/bucket/verdict
             c.alignment = _align(h="center")
-        elif i in (8,):
-            c.alignment = _align(h="center")
-        elif i >= 9:
-            c.alignment = _align(h="right")
         else:
-            c.alignment = _align(h="center")
+            c.alignment = _align(h="right")
         c.border = _border(color=CRIMSON_DARK, bottom="medium")
     ws.row_dimensions[3].height = 22
 
@@ -242,19 +236,21 @@ def build_nms_index(ws, top_df: pd.DataFrame):
         ws.cell(row=row, column=5).alignment = _align(h="center")
         ws.cell(row=row, column=6, value=(r.get('sector') or '')).font = sans_muted
         ws.cell(row=row, column=6).alignment = _TXT_ALIGN_LEFT
-        ws.cell(row=row, column=7, value=(r.get('market_cap_bucket') or '')).font = sans_muted
-        ws.cell(row=row, column=7).alignment = _align(h="center")
+        ws.cell(row=row, column=7, value=(r.get('industry') or '')).font = sans_muted
+        ws.cell(row=row, column=7).alignment = _TXT_ALIGN_LEFT
+        ws.cell(row=row, column=8, value=(r.get('market_cap_bucket') or '')).font = sans_muted
+        ws.cell(row=row, column=8).alignment = _align(h="center")
 
-        _write_money(ws, row, 8, r.get('market_cap'), font=mono)
-        _verdict_badge(ws, row, 9, r.get('verdict', 'UNRESEARCHED'))
-        _write_score(ws, row, 10, r.get('entry_today_asymmetry'), font=mono)
-        _write_score(ws, row, 11, r.get('confirm_overall'), font=mono)
+        _write_money(ws, row, 9, r.get('market_cap'), font=mono)
+        _verdict_badge(ws, row, 10, r.get('verdict', 'UNRESEARCHED'))
+        _write_score(ws, row, 11, r.get('entry_today_asymmetry'), font=mono)
+        _write_score(ws, row, 12, r.get('confirm_overall'), font=mono)
         # Mandated valuation display columns
-        _write_ratio(ws, row, 12, r.get('pb'), font=mono)
-        _write_pct(ws, row, 13, r.get('dividend_yield'), font=mono)
-        _write_ratio(ws, row, 14, r.get('p_s'), font=mono)
+        _write_ratio(ws, row, 13, r.get('pb'), font=mono)
+        _write_pct(ws, row, 14, r.get('dividend_yield'), font=mono)
+        _write_ratio(ws, row, 15, r.get('p_s'), font=mono)
 
-        for c in range(2, 15):
+        for c in range(2, 16):
             ws.cell(row=row, column=c).border = _border(color=RULE, bottom="thin")
         ws.row_dimensions[row].height = 17
 
@@ -267,18 +263,18 @@ def build_nms_index(ws, top_df: pd.DataFrame):
 
 # --- Per-region top-25 sheet ----------------------------------------------
 def build_region_sheet(ws, region_label: str, sub_df: pd.DataFrame):
-    _set_col_widths(ws, {1: 4, 2: 5, 3: 14, 4: 38, 5: 8, 6: 18, 7: 12, 8: 14,
-                         9: 10, 10: 10, 11: 8, 12: 7, 13: 8})
-    _crimson_banner(ws, 1, f"  {region_label} — Top 25 NMS", span_cols=13)
+    _set_col_widths(ws, {1: 4, 2: 5, 3: 14, 4: 38, 5: 8, 6: 18, 7: 18, 8: 12,
+                         9: 14, 10: 10, 11: 10, 12: 8, 13: 7, 14: 8})
+    _crimson_banner(ws, 1, f"  {region_label} — Top 25 NMS", span_cols=14)
 
-    hdrs = ["#", "Ticker", "Company", "Cntry", "Sector", "Bucket", "Mcap (USD)",
+    hdrs = ["#", "Ticker", "Company", "Cntry", "Sector", "Industry", "Bucket", "Mcap (USD)",
             "Verdict", "ETA", "Confirm", "P/B", "Div %", "P/S"]
     for i, h in enumerate(hdrs, start=2):
         c = ws.cell(row=3, column=i, value=h)
         c.font = _font(size=10, bold=True, color=CRIMSON_DARK, name=SANS)
-        if i in (3, 4, 6):
+        if i in (3, 4, 6, 7):
             c.alignment = _align(h="left")
-        elif i in (5, 7, 8):
+        elif i in (5, 8, 9):
             c.alignment = _align(h="center")
         else:
             c.alignment = _align(h="right")
@@ -306,19 +302,21 @@ def build_region_sheet(ws, region_label: str, sub_df: pd.DataFrame):
         ws.cell(row=row, column=5).alignment = _align(h="center")
         ws.cell(row=row, column=6, value=(r.get('sector') or '')).font = sans_muted
         ws.cell(row=row, column=6).alignment = _TXT_ALIGN_LEFT
-        ws.cell(row=row, column=7, value=(r.get('market_cap_bucket') or '')).font = sans_muted
-        ws.cell(row=row, column=7).alignment = _align(h="center")
+        ws.cell(row=row, column=7, value=(r.get('industry') or '')).font = sans_muted
+        ws.cell(row=row, column=7).alignment = _TXT_ALIGN_LEFT
+        ws.cell(row=row, column=8, value=(r.get('market_cap_bucket') or '')).font = sans_muted
+        ws.cell(row=row, column=8).alignment = _align(h="center")
 
-        _write_money(ws, row, 8, r.get('market_cap'), font=mono)
-        _verdict_badge(ws, row, 9, r.get('verdict', 'UNRESEARCHED'))
-        _write_score(ws, row, 10, r.get('entry_today_asymmetry'), font=mono)
-        _write_score(ws, row, 11, r.get('confirm_overall'), font=mono)
+        _write_money(ws, row, 9, r.get('market_cap'), font=mono)
+        _verdict_badge(ws, row, 10, r.get('verdict', 'UNRESEARCHED'))
+        _write_score(ws, row, 11, r.get('entry_today_asymmetry'), font=mono)
+        _write_score(ws, row, 12, r.get('confirm_overall'), font=mono)
         # Mandated valuation display columns
-        _write_ratio(ws, row, 12, r.get('pb'), font=mono)
-        _write_pct(ws, row, 13, r.get('dividend_yield'), font=mono)
-        _write_ratio(ws, row, 14, r.get('p_s'), font=mono)
+        _write_ratio(ws, row, 13, r.get('pb'), font=mono)
+        _write_pct(ws, row, 14, r.get('dividend_yield'), font=mono)
+        _write_ratio(ws, row, 15, r.get('p_s'), font=mono)
 
-        for c in range(2, 15):
+        for c in range(2, 16):
             ws.cell(row=row, column=c).border = _border(color=RULE, bottom="thin")
         ws.row_dimensions[row].height = 17
 

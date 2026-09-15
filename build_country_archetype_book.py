@@ -40,14 +40,14 @@ import tab_colors
 
 SORT_COL = 'entry_confirmed'
 
-HEADERS = ['#', 'Ticker', 'Name', 'Sector', 'Bucket', 'Mcap (USD)',
+HEADERS = ['#', 'Ticker', 'Name', 'Sector', 'Industry', 'Bucket', 'Mcap (USD)',
            'Verdict', 'ETA', 'Asym', 'EV/EBITDA', 'P/E', 'PEGY', 'EV-GY',
            'FCF yld %', 'Div %', 'ROCE %', 'ND/EBITDA', 'Mom 12m %', 'Arch #',
            'P/S', 'P/B']
 N_COLS = len(HEADERS)
-WIDTHS = {1: 4, 2: 12, 3: 34, 4: 16, 5: 11, 6: 15, 7: 12, 8: 7, 9: 7,
-          10: 9, 11: 8, 12: 7, 13: 7, 14: 9, 15: 7, 16: 8, 17: 10, 18: 10,
-          19: 7, 20: 7, 21: 7}
+WIDTHS = {1: 4, 2: 12, 3: 34, 4: 16, 5: 18, 6: 11, 7: 15, 8: 12, 9: 7,
+          10: 7, 11: 9, 12: 8, 13: 7, 14: 7, 15: 9, 16: 7, 17: 8, 18: 10,
+          19: 10, 20: 7, 21: 7, 22: 7}
 
 
 def _write_country_sheet(ws, cdf, country, arch_cols, n_top,
@@ -104,8 +104,8 @@ def _write_country_sheet(ws, cdf, country, arch_cols, n_top,
         for i, h in enumerate(headers, start=1):
             c = ws.cell(row=row, column=i, value=h)
             c.font = f_bold_muted
-            c.alignment = (_TXT_ALIGN_LEFT if i in (2, 3, 4) else
-                           _NUM_ALIGN_CENTER if i in (5 + o, 7 + o) else
+            c.alignment = (_TXT_ALIGN_LEFT if i in (2, 3, 4, 5 + o) else
+                           _NUM_ALIGN_CENTER if i in (6 + o, 8 + o) else
                            _NUM_ALIGN_RIGHT)
         row += 1
         for rank, (_, r) in enumerate(sub.iterrows(), start=1):
@@ -120,26 +120,28 @@ def _write_country_sheet(ws, cdf, country, arch_cols, n_top,
                 ws.cell(row=row, column=4).alignment = _TXT_ALIGN_LEFT
             ws.cell(row=row, column=4 + o, value=_t(r.get('sector'))[:20]).font = f_text_muted
             ws.cell(row=row, column=4 + o).alignment = _TXT_ALIGN_LEFT
-            ws.cell(row=row, column=5 + o, value=_t(r.get('market_cap_bucket'))).font = f_text_muted
-            ws.cell(row=row, column=5 + o).alignment = _NUM_ALIGN_CENTER
-            _write_money(ws, row, 6 + o, r.get('market_cap'), font=f_text)
-            _verdict_badge(ws, row, 7 + o, r.get('verdict', 'UNRESEARCHED'))
-            _write_score(ws, row, 8 + o, r.get('entry_today_asymmetry'), font=f_bold)
-            _write_score(ws, row, 9 + o, r.get('asymmetry_score'), font=f_text)
-            _write_score(ws, row, 10 + o, r.get('ev_ebitda'), font=f_text)
-            _write_score(ws, row, 11 + o, r.get('p_e'), font=f_text)
-            _write_score(ws, row, 12 + o, r.get('pegy'), font=f_text)
-            _write_score(ws, row, 13 + o, r.get('ev_ebitda_gy'), font=f_text)
-            _write_pct(ws, row, 14 + o, r.get('fcf_yield'), font=f_text)
-            _write_pct(ws, row, 15 + o, r.get('dividend_yield'), font=f_text)
-            _write_pct(ws, row, 16 + o, r.get('roce'), font=f_text)
-            _write_score(ws, row, 17 + o, r.get('net_debt_ebitda'), font=f_text)
-            _write_pct(ws, row, 18 + o, r.get('momentum_12m'), font=f_text)
-            _write_int(ws, row, 19 + o,
+            ws.cell(row=row, column=5 + o, value=_t(r.get('industry'))[:24]).font = f_text_muted
+            ws.cell(row=row, column=5 + o).alignment = _TXT_ALIGN_LEFT
+            ws.cell(row=row, column=6 + o, value=_t(r.get('market_cap_bucket'))).font = f_text_muted
+            ws.cell(row=row, column=6 + o).alignment = _NUM_ALIGN_CENTER
+            _write_money(ws, row, 7 + o, r.get('market_cap'), font=f_text)
+            _verdict_badge(ws, row, 8 + o, r.get('verdict', 'UNRESEARCHED'))
+            _write_score(ws, row, 9 + o, r.get('entry_today_asymmetry'), font=f_bold)
+            _write_score(ws, row, 10 + o, r.get('asymmetry_score'), font=f_text)
+            _write_score(ws, row, 11 + o, r.get('ev_ebitda'), font=f_text)
+            _write_score(ws, row, 12 + o, r.get('p_e'), font=f_text)
+            _write_score(ws, row, 13 + o, r.get('pegy'), font=f_text)
+            _write_score(ws, row, 14 + o, r.get('ev_ebitda_gy'), font=f_text)
+            _write_pct(ws, row, 15 + o, r.get('fcf_yield'), font=f_text)
+            _write_pct(ws, row, 16 + o, r.get('dividend_yield'), font=f_text)
+            _write_pct(ws, row, 17 + o, r.get('roce'), font=f_text)
+            _write_score(ws, row, 18 + o, r.get('net_debt_ebitda'), font=f_text)
+            _write_pct(ws, row, 19 + o, r.get('momentum_12m'), font=f_text)
+            _write_int(ws, row, 20 + o,
                        int(r['archetype_count']) if pd.notna(r.get('archetype_count')) else 0,
                        font=f_text_muted)
-            _write_score(ws, row, 20 + o, r.get('p_s'), font=f_text)
-            _write_score(ws, row, 21 + o, r.get('pb'), font=f_text)
+            _write_score(ws, row, 21 + o, r.get('p_s'), font=f_text)
+            _write_score(ws, row, 22 + o, r.get('pb'), font=f_text)
             for c in range(1, n_cols + 1):
                 ws.cell(row=row, column=c).border = Border(
                     bottom=Side(style='thin', color=RULE))
@@ -153,12 +155,12 @@ def _write_governance_sheet(ws, gdf, n_top):
     """Flat CONVICTION-RANKED governance sheet: names ordered by governance_score
     (clearest + timeliest first — cluster insider buying, senior/10%-owner
     conviction, buy size), with the revealed-preference breakdown visible."""
-    headers = ['#', 'Ticker', 'Name', 'Ctry', 'Sector', 'Mcap (USD)', 'Verdict',
+    headers = ['#', 'Ticker', 'Name', 'Ctry', 'Sector', 'Industry', 'Mcap (USD)', 'Verdict',
                'Gov', 'Tier', 'Buyers', 'NetBuy $', 'Own %', 'P/B', 'P/E',
                'EV/EBITDA', 'FCF yld', 'Arch#']
     n_cols = len(headers)
-    widths = {1: 4, 2: 12, 3: 32, 4: 6, 5: 18, 6: 13, 7: 11, 8: 7, 9: 8, 10: 7,
-              11: 13, 12: 7, 13: 7, 14: 7, 15: 10, 16: 8, 17: 6}
+    widths = {1: 4, 2: 12, 3: 32, 4: 6, 5: 18, 6: 18, 7: 13, 8: 11, 9: 7, 10: 8,
+              11: 7, 12: 13, 13: 7, 14: 7, 15: 7, 16: 10, 17: 8, 18: 6}
     for col, w in widths.items():
         ws.column_dimensions[ws.cell(row=1, column=col).column_letter].width = w
     f_bold = _font(bold=True, color=INK)
@@ -185,7 +187,7 @@ def _write_governance_sheet(ws, gdf, n_top):
     for i, h in enumerate(headers, start=1):
         c = ws.cell(row=hdr, column=i, value=h)
         c.font = f_bold_muted
-        c.alignment = _TXT_ALIGN_LEFT if i in (2, 3, 4, 5, 9) else _NUM_ALIGN_CENTER
+        c.alignment = _TXT_ALIGN_LEFT if i in (2, 3, 4, 5, 6, 10) else _NUM_ALIGN_CENTER
     for c in range(1, n_cols + 1):
         ws.cell(row=hdr, column=c).border = Border(bottom=Side(style='thin', color=INK))
 
@@ -201,21 +203,23 @@ def _write_governance_sheet(ws, gdf, n_top):
         ws.cell(row=row, column=4).alignment = _TXT_ALIGN_LEFT
         ws.cell(row=row, column=5, value=_t(r.get('sector'))[:18]).font = f_text_muted
         ws.cell(row=row, column=5).alignment = _TXT_ALIGN_LEFT
-        _write_money(ws, row, 6, r.get('market_cap'), font=f_text)
-        _verdict_badge(ws, row, 7, r.get('verdict', 'UNRESEARCHED'))
-        _write_score(ws, row, 8, r.get('governance_score'), font=f_bold)
-        ws.cell(row=row, column=9, value=_t(r.get('governance_tier'))).font = f_text
-        ws.cell(row=row, column=9).alignment = _TXT_ALIGN_LEFT
-        _write_int(ws, row, 10,
+        ws.cell(row=row, column=6, value=_t(r.get('industry'))[:24]).font = f_text_muted
+        ws.cell(row=row, column=6).alignment = _TXT_ALIGN_LEFT
+        _write_money(ws, row, 7, r.get('market_cap'), font=f_text)
+        _verdict_badge(ws, row, 8, r.get('verdict', 'UNRESEARCHED'))
+        _write_score(ws, row, 9, r.get('governance_score'), font=f_bold)
+        ws.cell(row=row, column=10, value=_t(r.get('governance_tier'))).font = f_text
+        ws.cell(row=row, column=10).alignment = _TXT_ALIGN_LEFT
+        _write_int(ws, row, 11,
                    int(r['insider_distinct_buyers']) if pd.notna(r.get('insider_distinct_buyers')) else 0,
                    font=f_text)
-        _write_money(ws, row, 11, r.get('insider_net_buy_value'), font=f_text)
-        _write_pct(ws, row, 12, r.get('insider_ownership_pct'), font=f_text)
-        _write_score(ws, row, 13, r.get('pb'), font=f_text)
-        _write_score(ws, row, 14, r.get('p_e'), font=f_text)
-        _write_score(ws, row, 15, r.get('ev_ebitda'), font=f_text)
-        _write_pct(ws, row, 16, r.get('fcf_yield'), font=f_text)
-        _write_int(ws, row, 17,
+        _write_money(ws, row, 12, r.get('insider_net_buy_value'), font=f_text)
+        _write_pct(ws, row, 13, r.get('insider_ownership_pct'), font=f_text)
+        _write_score(ws, row, 14, r.get('pb'), font=f_text)
+        _write_score(ws, row, 15, r.get('p_e'), font=f_text)
+        _write_score(ws, row, 16, r.get('ev_ebitda'), font=f_text)
+        _write_pct(ws, row, 17, r.get('fcf_yield'), font=f_text)
+        _write_int(ws, row, 18,
                    int(r['archetype_count']) if pd.notna(r.get('archetype_count')) else 0,
                    font=f_text_muted)
         for c in range(1, n_cols + 1):
@@ -278,12 +282,12 @@ def _netnet_frame(df_full):
 
 def _write_netnet_sheet(ws, nn, n_top, sort_col='netnet_score'):
     """Flat ranked net-net sheet with the cash+investments breakdown."""
-    headers = ['#', 'Ticker', 'Name', 'Ctry', 'Sector', 'Mcap (USD)', 'Verdict',
+    headers = ['#', 'Ticker', 'Name', 'Ctry', 'Sector', 'Industry', 'Mcap (USD)', 'Verdict',
                'NCAV/mcap', 'NetCash+Inv/mcap', 'Cash', 'Investments', 'P/B',
                'P/E', 'FCF yld', 'Gov', 'Arch#']
     n_cols = len(headers)
-    widths = {1: 4, 2: 12, 3: 30, 4: 6, 5: 16, 6: 13, 7: 11, 8: 11, 9: 16,
-              10: 13, 11: 13, 12: 7, 13: 7, 14: 8, 15: 7, 16: 6}
+    widths = {1: 4, 2: 12, 3: 30, 4: 6, 5: 16, 6: 18, 7: 13, 8: 11, 9: 11, 10: 16,
+              11: 13, 12: 13, 13: 7, 14: 7, 15: 8, 16: 7, 17: 6}
     for col, w in widths.items():
         ws.column_dimensions[ws.cell(row=1, column=col).column_letter].width = w
     f_bold = _font(bold=True, color=INK)
@@ -309,7 +313,7 @@ def _write_netnet_sheet(ws, nn, n_top, sort_col='netnet_score'):
     for i, h in enumerate(headers, start=1):
         c = ws.cell(row=hdr, column=i, value=h)
         c.font = f_bold_muted
-        c.alignment = _TXT_ALIGN_LEFT if i in (2, 3, 4, 5) else _NUM_ALIGN_CENTER
+        c.alignment = _TXT_ALIGN_LEFT if i in (2, 3, 4, 5, 6) else _NUM_ALIGN_CENTER
     for c in range(1, n_cols + 1):
         ws.cell(row=hdr, column=c).border = Border(bottom=Side(style='thin', color=INK))
 
@@ -325,17 +329,19 @@ def _write_netnet_sheet(ws, nn, n_top, sort_col='netnet_score'):
         ws.cell(row=row, column=4).alignment = _TXT_ALIGN_LEFT
         ws.cell(row=row, column=5, value=_t(r.get('sector'))[:16]).font = f_text_muted
         ws.cell(row=row, column=5).alignment = _TXT_ALIGN_LEFT
-        _write_money(ws, row, 6, r.get('market_cap'), font=f_text)
-        _verdict_badge(ws, row, 7, r.get('verdict', 'UNRESEARCHED'))
-        _write_score(ws, row, 8, r.get('netnet_ncav_pct'), font=f_bold)
-        _write_score(ws, row, 9, r.get('netnet_cash_pct'), font=f_text)
-        _write_money(ws, row, 10, r.get('cash'), font=f_text)
-        _write_money(ws, row, 11, r.get('investments_associates'), font=f_text)
-        _write_score(ws, row, 12, r.get('pb'), font=f_text)
-        _write_score(ws, row, 13, r.get('p_e'), font=f_text)
-        _write_pct(ws, row, 14, r.get('fcf_yield'), font=f_text)
-        _write_score(ws, row, 15, r.get('governance_score'), font=f_text)
-        _write_int(ws, row, 16,
+        ws.cell(row=row, column=6, value=_t(r.get('industry'))[:24]).font = f_text_muted
+        ws.cell(row=row, column=6).alignment = _TXT_ALIGN_LEFT
+        _write_money(ws, row, 7, r.get('market_cap'), font=f_text)
+        _verdict_badge(ws, row, 8, r.get('verdict', 'UNRESEARCHED'))
+        _write_score(ws, row, 9, r.get('netnet_ncav_pct'), font=f_bold)
+        _write_score(ws, row, 10, r.get('netnet_cash_pct'), font=f_text)
+        _write_money(ws, row, 11, r.get('cash'), font=f_text)
+        _write_money(ws, row, 12, r.get('investments_associates'), font=f_text)
+        _write_score(ws, row, 13, r.get('pb'), font=f_text)
+        _write_score(ws, row, 14, r.get('p_e'), font=f_text)
+        _write_pct(ws, row, 15, r.get('fcf_yield'), font=f_text)
+        _write_score(ws, row, 16, r.get('governance_score'), font=f_text)
+        _write_int(ws, row, 17,
                    int(r['archetype_count']) if pd.notna(r.get('archetype_count')) else 0,
                    font=f_text_muted)
         for c in range(1, n_cols + 1):
@@ -405,11 +411,11 @@ def _write_flat_sheet(ws, df, title, subtitle, colspecs, sort_col, ascending=Fal
 def _write_unlock_sheet(ws, uf, n_top):
     """Cheap + live value-unlock catalyst, conviction-ranked (value_unlock_score),
     with the forensic-confirmation flag and the phrases that fired."""
-    headers = ['#', 'Ticker', 'Name', 'Ctry', 'Sector', 'Mcap (USD)', 'Verdict',
+    headers = ['#', 'Ticker', 'Name', 'Ctry', 'Sector', 'Industry', 'Mcap (USD)', 'Verdict',
                'Unlock', 'Confirmed', 'P/B', 'FCF yld', 'Gov', 'Unlock phrases']
     n_cols = len(headers)
-    widths = {1: 4, 2: 11, 3: 28, 4: 6, 5: 15, 6: 13, 7: 11, 8: 8, 9: 9, 10: 7,
-              11: 8, 12: 7, 13: 60}
+    widths = {1: 4, 2: 11, 3: 28, 4: 6, 5: 15, 6: 18, 7: 13, 8: 11, 9: 8, 10: 9, 11: 7,
+              12: 8, 13: 7, 14: 60}
     for col, w in widths.items():
         ws.column_dimensions[ws.cell(row=1, column=col).column_letter].width = w
     f_bold = _font(bold=True, color=INK); f_bm = _font(bold=True, color=MUTED)
@@ -425,7 +431,7 @@ def _write_unlock_sheet(ws, uf, n_top):
     hdr = 5
     for i, h in enumerate(headers, start=1):
         c = ws.cell(row=hdr, column=i, value=h); c.font = f_bm
-        c.alignment = _TXT_ALIGN_LEFT if i in (2, 3, 4, 5, 13) else _NUM_ALIGN_CENTER
+        c.alignment = _TXT_ALIGN_LEFT if i in (2, 3, 4, 5, 6, 14) else _NUM_ALIGN_CENTER
     for c in range(1, n_cols + 1):
         ws.cell(row=hdr, column=c).border = Border(bottom=Side(style='thin', color=INK))
     row = hdr + 1
@@ -440,16 +446,18 @@ def _write_unlock_sheet(ws, uf, n_top):
         ws.cell(row=row, column=4).alignment = _TXT_ALIGN_LEFT
         ws.cell(row=row, column=5, value=_t(r.get('sector'))[:15]).font = f_tm
         ws.cell(row=row, column=5).alignment = _TXT_ALIGN_LEFT
-        _write_money(ws, row, 6, r.get('market_cap'), font=f_text)
-        _verdict_badge(ws, row, 7, r.get('verdict', 'UNRESEARCHED'))
-        _write_score(ws, row, 8, r.get('value_unlock_score'), font=f_bold)
-        ws.cell(row=row, column=9, value=('YES' if r.get('value_unlock_confirmed') == 1 else '')).font = f_text
-        ws.cell(row=row, column=9).alignment = _NUM_ALIGN_CENTER
-        _write_score(ws, row, 10, r.get('pb'), font=f_text)
-        _write_pct(ws, row, 11, r.get('fcf_yield'), font=f_text)
-        _write_score(ws, row, 12, r.get('governance_score'), font=f_text)
-        ws.cell(row=row, column=13, value=_t(r.get('unlock_phrases'))[:90]).font = f_tm
-        ws.cell(row=row, column=13).alignment = _TXT_ALIGN_LEFT
+        ws.cell(row=row, column=6, value=_t(r.get('industry'))[:24]).font = f_tm
+        ws.cell(row=row, column=6).alignment = _TXT_ALIGN_LEFT
+        _write_money(ws, row, 7, r.get('market_cap'), font=f_text)
+        _verdict_badge(ws, row, 8, r.get('verdict', 'UNRESEARCHED'))
+        _write_score(ws, row, 9, r.get('value_unlock_score'), font=f_bold)
+        ws.cell(row=row, column=10, value=('YES' if r.get('value_unlock_confirmed') == 1 else '')).font = f_text
+        ws.cell(row=row, column=10).alignment = _NUM_ALIGN_CENTER
+        _write_score(ws, row, 11, r.get('pb'), font=f_text)
+        _write_pct(ws, row, 12, r.get('fcf_yield'), font=f_text)
+        _write_score(ws, row, 13, r.get('governance_score'), font=f_text)
+        ws.cell(row=row, column=14, value=_t(r.get('unlock_phrases'))[:90]).font = f_tm
+        ws.cell(row=row, column=14).alignment = _TXT_ALIGN_LEFT
         for c in range(1, n_cols + 1):
             ws.cell(row=row, column=c).border = Border(bottom=Side(style='thin', color=RULE))
         ws.row_dimensions[row].height = 15
@@ -684,7 +692,7 @@ def main():
                 'Quality Net-Nets — Graham NNWC (cash 100% / receivables 85% / inventory 50% - all liabilities)',
                 'NNWC/mcap > 1 = trading below quality-adjusted liquidation value. asset-mix = cash share (higher = safer). Holdco/China flags note distributable-cash / VIE risk.',
                 [('#', '#', 'int', 4), ('Ticker', 'symbol', 'text', 11), ('Name', 'name', 'text', 26),
-                 ('Ctry', 'src', 'text', 6), ('Sector', 'sector', 'text', 15), ('Mcap (USD)', 'market_cap', 'money', 13),
+                 ('Ctry', 'src', 'text', 6), ('Sector', 'sector', 'text', 15), ('Industry', 'industry', 'text', 18), ('Mcap (USD)', 'market_cap', 'money', 13),
                  ('Verdict', 'verdict', 'verdict', 11), ('NNWC/mcap', 'nnwc_pct_mcap', 'score', 10),
                  ('NCAV/mcap', 'ncav_pct_mcap', 'score', 10), ('Cash mix', 'nnwc_asset_mix', 'score', 9),
                  ('NNWC $', 'nnwc', 'money', 13), ('P/B', 'pb', 'score', 7), ('FCF yld', 'fcf_yield', 'pct', 8),
@@ -708,7 +716,7 @@ def main():
                 'Forensic Adjusted P/B — tangible book + hidden assets (LIFO / pension surplus / stake FV gap) - hidden liabilities',
                 'adjusted_pb = mcap / adjusted_book, below 1 = below the forensic true book. Compare vs the naive P/B.',
                 [('#', '#', 'int', 4), ('Ticker', 'symbol', 'text', 11), ('Name', 'name', 'text', 28),
-                 ('Ctry', 'src', 'text', 6), ('Sector', 'sector', 'text', 15), ('Mcap (USD)', 'market_cap', 'money', 13),
+                 ('Ctry', 'src', 'text', 6), ('Sector', 'sector', 'text', 15), ('Industry', 'industry', 'text', 18), ('Mcap (USD)', 'market_cap', 'money', 13),
                  ('Verdict', 'verdict', 'verdict', 11), ('Adj P/B', 'adjusted_pb', 'score', 8),
                  ('Naive P/B', 'pb', 'score', 9), ('P/TB', 'p_tb', 'score', 7),
                  ('Adj book $', 'adjusted_book', 'money', 13), ('FCF yld', 'fcf_yield', 'pct', 8),

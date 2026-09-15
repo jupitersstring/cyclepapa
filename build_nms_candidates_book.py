@@ -306,21 +306,21 @@ def build_tier_sheet(ws, tier_name: str, df: pd.DataFrame):
     """Render a tier as a sortable table with Harvard number formatting."""
     # Cols: # | Tier | Ticker | Company | Cntry | Sector | Bucket | Mcap | Verdict |
     #       Arch# | Cluster | Archetype tags | Asym | ETA
-    _set_col_widths(ws, {1: 4, 2: 5, 3: 8, 4: 12, 5: 36, 6: 6, 7: 16, 8: 10,
-                         9: 14, 10: 10, 11: 7, 12: 9, 13: 50, 14: 10, 15: 10, 16: 4})
-    _crimson_banner(ws, 1, f"  {tier_name} — {len(df):,} names", span_cols=15)
+    _set_col_widths(ws, {1: 4, 2: 5, 3: 8, 4: 12, 5: 36, 6: 6, 7: 16, 8: 16,
+                         9: 10, 10: 14, 11: 10, 12: 7, 13: 9, 14: 50, 15: 10, 16: 10, 17: 4})
+    _crimson_banner(ws, 1, f"  {tier_name} — {len(df):,} names", span_cols=16)
 
-    headers = ['#', 'Tier', 'Ticker', 'Company', 'Cntry', 'Sector', 'Bucket',
+    headers = ['#', 'Tier', 'Ticker', 'Company', 'Cntry', 'Sector', 'Industry', 'Bucket',
                'Mcap (loc)', 'Verdict', 'Arch#', 'Cluster', 'Archetypes', 'Asym', 'ETA']
     for i, h in enumerate(headers, start=2):
         c = ws.cell(row=3, column=i, value=h)
         c.font = _font(size=10, bold=True, color=CRIMSON_DARK, name=SANS)
-        if i in (4, 5, 7, 13):
+        if i in (4, 5, 7, 8, 14):
             c.alignment = _align(h="left")
-        elif i in (3, 6, 9):
+        elif i in (3, 6, 11):
             c.alignment = _align(h="center")
         else:
-            c.alignment = _align(h="right") if i >= 8 else _align(h="center")
+            c.alignment = _align(h="right") if i >= 9 else _align(h="center")
         c.border = _border(color=CRIMSON_DARK, bottom="medium")
     ws.row_dimensions[3].height = 22
 
@@ -349,23 +349,25 @@ def build_tier_sheet(ws, tier_name: str, df: pd.DataFrame):
         ws.cell(row=row, column=6).alignment = _NUM_ALIGN_CENTER
         ws.cell(row=row, column=7, value=str(r.get('sector') or '')).font = sans_muted
         ws.cell(row=row, column=7).alignment = _TXT_ALIGN_LEFT
-        ws.cell(row=row, column=8, value=str(r.get('market_cap_bucket') or '')).font = sans_muted
-        ws.cell(row=row, column=8).alignment = _NUM_ALIGN_CENTER
+        ws.cell(row=row, column=8, value=str(r.get('industry') or '')).font = sans_muted
+        ws.cell(row=row, column=8).alignment = _TXT_ALIGN_LEFT
+        ws.cell(row=row, column=9, value=str(r.get('market_cap_bucket') or '')).font = sans_muted
+        ws.cell(row=row, column=9).alignment = _NUM_ALIGN_CENTER
 
-        _write_money(ws, row, 9, r.get('market_cap'), font=mono)
-        _verdict_badge(ws, row, 10, r.get('verdict', 'UNRESEARCHED'))
-        _write_int(ws, row, 11, int(r['archetype_count']) if pd.notna(r.get('archetype_count')) else 0, font=mono)
-        _write_int(ws, row, 12, int(r['cluster_n']) if pd.notna(r.get('cluster_n')) else 0, font=mono)
+        _write_money(ws, row, 10, r.get('market_cap'), font=mono)
+        _verdict_badge(ws, row, 11, r.get('verdict', 'UNRESEARCHED'))
+        _write_int(ws, row, 12, int(r['archetype_count']) if pd.notna(r.get('archetype_count')) else 0, font=mono)
+        _write_int(ws, row, 13, int(r['cluster_n']) if pd.notna(r.get('cluster_n')) else 0, font=mono)
 
         # Archetypes string (truncate to 70 chars)
         tags = str(r.get('archetype_tags_str') or '')[:70]
-        ws.cell(row=row, column=13, value=tags).font = _font(size=8, name=SANS, color=MUTED)
-        ws.cell(row=row, column=13).alignment = _TXT_ALIGN_LEFT
+        ws.cell(row=row, column=14, value=tags).font = _font(size=8, name=SANS, color=MUTED)
+        ws.cell(row=row, column=14).alignment = _TXT_ALIGN_LEFT
 
-        _write_score(ws, row, 14, r.get('asymmetry_score'), font=mono)
-        _write_score(ws, row, 15, r.get('eta'), font=mono)
+        _write_score(ws, row, 15, r.get('asymmetry_score'), font=mono)
+        _write_score(ws, row, 16, r.get('eta'), font=mono)
 
-        for c in range(2, 16):
+        for c in range(2, 17):
             ws.cell(row=row, column=c).border = _border(color=RULE, bottom="thin")
         ws.row_dimensions[row].height = 16
 

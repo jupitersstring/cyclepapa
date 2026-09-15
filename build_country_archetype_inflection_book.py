@@ -42,14 +42,14 @@ import tab_colors
 
 SORT_COL = 'entry_inflection_confirmed'
 
-HEADERS = ['#', 'Ticker', 'Name', 'Sector', 'Bucket', 'Mcap (USD)',
+HEADERS = ['#', 'Ticker', 'Name', 'Sector', 'Industry', 'Bucket', 'Mcap (USD)',
            'Verdict', 'Infl', 'Asym', 'EV/EBITDA', 'P/E', 'PEGY', 'EV-GY',
            'FCF yld %', 'Div %', 'ROCE %', 'ND/EBITDA', 'Mom 12m %', 'Arch #',
            'P/S', 'P/B']
 N_COLS = len(HEADERS)
-WIDTHS = {1: 4, 2: 12, 3: 34, 4: 16, 5: 11, 6: 15, 7: 12, 8: 7, 9: 7,
-          10: 9, 11: 8, 12: 7, 13: 7, 14: 9, 15: 7, 16: 8, 17: 10, 18: 10,
-          19: 7, 20: 7, 21: 7}
+WIDTHS = {1: 4, 2: 12, 3: 34, 4: 16, 5: 18, 6: 11, 7: 15, 8: 12, 9: 7,
+          10: 7, 11: 9, 12: 8, 13: 7, 14: 7, 15: 9, 16: 7, 17: 8, 18: 10,
+          19: 10, 20: 7, 21: 7, 22: 7}
 
 
 def _add_inflection_key(df):
@@ -129,8 +129,8 @@ def _write_country_sheet(ws, cdf, country, arch_cols, n_top,
         for i, h in enumerate(headers, start=1):
             c = ws.cell(row=row, column=i, value=h)
             c.font = f_bold_muted
-            c.alignment = (_TXT_ALIGN_LEFT if i in (2, 3, 4) else
-                           _NUM_ALIGN_CENTER if i in (5 + o, 7 + o) else
+            c.alignment = (_TXT_ALIGN_LEFT if i in (2, 3, 4, 5 + o) else
+                           _NUM_ALIGN_CENTER if i in (6 + o, 8 + o) else
                            _NUM_ALIGN_RIGHT)
         row += 1
         for rank, (_, r) in enumerate(sub.iterrows(), start=1):
@@ -145,26 +145,28 @@ def _write_country_sheet(ws, cdf, country, arch_cols, n_top,
                 ws.cell(row=row, column=4).alignment = _TXT_ALIGN_LEFT
             ws.cell(row=row, column=4 + o, value=_t(r.get('sector'))[:20]).font = f_text_muted
             ws.cell(row=row, column=4 + o).alignment = _TXT_ALIGN_LEFT
-            ws.cell(row=row, column=5 + o, value=_t(r.get('market_cap_bucket'))).font = f_text_muted
-            ws.cell(row=row, column=5 + o).alignment = _NUM_ALIGN_CENTER
-            _write_money(ws, row, 6 + o, r.get('market_cap'), font=f_text)
-            _verdict_badge(ws, row, 7 + o, r.get('verdict', 'UNRESEARCHED'))
-            _write_score(ws, row, 8 + o, r.get('inflection_asymmetry_score'), font=f_bold)
-            _write_score(ws, row, 9 + o, r.get('asymmetry_score'), font=f_text)
-            _write_score(ws, row, 10 + o, r.get('ev_ebitda'), font=f_text)
-            _write_score(ws, row, 11 + o, r.get('p_e'), font=f_text)
-            _write_score(ws, row, 12 + o, r.get('pegy'), font=f_text)
-            _write_score(ws, row, 13 + o, r.get('ev_ebitda_gy'), font=f_text)
-            _write_pct(ws, row, 14 + o, r.get('fcf_yield'), font=f_text)
-            _write_pct(ws, row, 15 + o, r.get('dividend_yield'), font=f_text)
-            _write_pct(ws, row, 16 + o, r.get('roce'), font=f_text)
-            _write_score(ws, row, 17 + o, r.get('net_debt_ebitda'), font=f_text)
-            _write_pct(ws, row, 18 + o, r.get('momentum_12m'), font=f_text)
-            _write_int(ws, row, 19 + o,
+            ws.cell(row=row, column=5 + o, value=_t(r.get('industry'))[:24]).font = f_text_muted
+            ws.cell(row=row, column=5 + o).alignment = _TXT_ALIGN_LEFT
+            ws.cell(row=row, column=6 + o, value=_t(r.get('market_cap_bucket'))).font = f_text_muted
+            ws.cell(row=row, column=6 + o).alignment = _NUM_ALIGN_CENTER
+            _write_money(ws, row, 7 + o, r.get('market_cap'), font=f_text)
+            _verdict_badge(ws, row, 8 + o, r.get('verdict', 'UNRESEARCHED'))
+            _write_score(ws, row, 9 + o, r.get('inflection_asymmetry_score'), font=f_bold)
+            _write_score(ws, row, 10 + o, r.get('asymmetry_score'), font=f_text)
+            _write_score(ws, row, 11 + o, r.get('ev_ebitda'), font=f_text)
+            _write_score(ws, row, 12 + o, r.get('p_e'), font=f_text)
+            _write_score(ws, row, 13 + o, r.get('pegy'), font=f_text)
+            _write_score(ws, row, 14 + o, r.get('ev_ebitda_gy'), font=f_text)
+            _write_pct(ws, row, 15 + o, r.get('fcf_yield'), font=f_text)
+            _write_pct(ws, row, 16 + o, r.get('dividend_yield'), font=f_text)
+            _write_pct(ws, row, 17 + o, r.get('roce'), font=f_text)
+            _write_score(ws, row, 18 + o, r.get('net_debt_ebitda'), font=f_text)
+            _write_pct(ws, row, 19 + o, r.get('momentum_12m'), font=f_text)
+            _write_int(ws, row, 20 + o,
                        int(r['archetype_count']) if pd.notna(r.get('archetype_count')) else 0,
                        font=f_text_muted)
-            _write_score(ws, row, 20 + o, r.get('p_s'), font=f_text)
-            _write_score(ws, row, 21 + o, r.get('pb'), font=f_text)
+            _write_score(ws, row, 21 + o, r.get('p_s'), font=f_text)
+            _write_score(ws, row, 22 + o, r.get('pb'), font=f_text)
             for c in range(1, n_cols + 1):
                 ws.cell(row=row, column=c).border = Border(
                     bottom=Side(style='thin', color=RULE))

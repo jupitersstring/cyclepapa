@@ -76,7 +76,7 @@ def load_data():
     return df[df['truly_xr_flag'] == 1].copy()
 
 
-HEADERS = ['#', 'Ticker', 'Name', 'Country', 'Sector', 'Mcap (USD)', 'Verdict',
+HEADERS = ['#', 'Ticker', 'Name', 'Country', 'Sector', 'Industry', 'Mcap (USD)', 'Verdict',
            'TrulyXR', 'Tells', 'Mech', 'ForXR', 'EV/EBITDA', 'P/B', 'FCF yld %',
            'Source gaps (mechanical *)']
 NCOLS = len(HEADERS)
@@ -118,7 +118,7 @@ def main():
     for i, h in enumerate(HEADERS, start=1):
         c = ws.cell(row=hdr, column=i, value=h)
         c.font = _font(bold=True, color=MUTED)
-        c.alignment = _TXT_ALIGN_LEFT if i in (2, 3, 4, 5, NCOLS) else _NUM_ALIGN_CENTER
+        c.alignment = _TXT_ALIGN_LEFT if i in (2, 3, 4, 5, 6, NCOLS) else _NUM_ALIGN_CENTER
     for c in range(1, NCOLS + 1):
         ws.cell(row=hdr + 1, column=c).border = Border(top=Side(style='thin', color=INK))
 
@@ -132,24 +132,26 @@ def main():
         ws.cell(row=r, column=4, value=str(row.get('src') or '')).font = _font(color=MUTED)
         ws.cell(row=r, column=5, value=str(row.get('sector') or '')[:14]).font = _font(color=MUTED)
         ws.cell(row=r, column=5).alignment = _TXT_ALIGN_LEFT
-        _write_money(ws, r, 6, row.get('market_cap'), font=f_text)
+        ws.cell(row=r, column=6, value=str(row.get('industry') or '')[:22]).font = _font(color=MUTED)
+        ws.cell(row=r, column=6).alignment = _TXT_ALIGN_LEFT
+        _write_money(ws, r, 7, row.get('market_cap'), font=f_text)
         _v = row.get('verdict')
-        _verdict_badge(ws, r, 7, _v if (pd.notna(_v) and _v) else 'UNRESEARCHED')
-        _write_score(ws, r, 8, row.get('truly_xr_score'), font=f_text)
-        _write_int(ws, r, 9, row.get('truly_xr_tell_count'), font=f_text)
-        _write_int(ws, r, 10, row.get('truly_xr_mech_count'), font=f_text)
-        _write_score(ws, r, 11, row.get('forensic_xr_score'), font=f_text)
-        _write_score(ws, r, 12, row.get('ev_ebitda'), font=f_text)
-        _write_score(ws, r, 13, row.get('pb'), font=f_text)
-        _write_pct(ws, r, 14, row.get('fcf_yield'), font=f_text)
+        _verdict_badge(ws, r, 8, _v if (pd.notna(_v) and _v) else 'UNRESEARCHED')
+        _write_score(ws, r, 9, row.get('truly_xr_score'), font=f_text)
+        _write_int(ws, r, 10, row.get('truly_xr_tell_count'), font=f_text)
+        _write_int(ws, r, 11, row.get('truly_xr_mech_count'), font=f_text)
+        _write_score(ws, r, 12, row.get('forensic_xr_score'), font=f_text)
+        _write_score(ws, r, 13, row.get('ev_ebitda'), font=f_text)
+        _write_score(ws, r, 14, row.get('pb'), font=f_text)
+        _write_pct(ws, r, 15, row.get('fcf_yield'), font=f_text)
         _gaps = ws.cell(row=r, column=NCOLS, value=str(row.get('truly_xr_tells_str') or ''))
         _gaps.font = _font(color=INK)
         _gaps.alignment = _TXT_ALIGN_LEFT
         for c in range(1, NCOLS + 1):
             ws.cell(row=r, column=c).border = Border(bottom=Side(style='thin', color=RULE))
 
-    widths = {1: 4, 2: 9, 3: 30, 4: 6, 5: 14, 6: 13, 7: 12, 8: 9, 9: 6, 10: 6,
-              11: 9, 12: 10, 13: 7, 14: 10, 15: 46}
+    widths = {1: 4, 2: 9, 3: 30, 4: 6, 5: 14, 6: 16, 7: 13, 8: 12, 9: 9, 10: 6,
+              11: 6, 12: 9, 13: 10, 14: 7, 15: 10, 16: 46}
     for col, w in widths.items():
         ws.column_dimensions[get_column_letter(col)].width = w
     ws.sheet_view.showGridLines = False

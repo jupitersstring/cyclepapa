@@ -318,7 +318,7 @@ def _write_archetype_table(ws, df_subset, archetype_label, total_universe, sort_
     t = ws.cell(row=2, column=1, value=archetype_label)
     t.font = f_bold
     t.alignment = _TXT_ALIGN_LEFT
-    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=21)
+    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=22)
     ws.row_dimensions[2].height = 22
     for c in range(1, 22):
         ws.cell(row=3, column=c).border = Border(bottom=Side(style='thin', color=INK))
@@ -354,9 +354,9 @@ def _write_archetype_table(ws, df_subset, archetype_label, total_universe, sort_
     ws.row_dimensions[8].height = 4
 
     # Top-N table heading
-    _section_rule(ws, 10, f"Top names matching {archetype_label}", span_cols=20)
+    _section_rule(ws, 10, f"Top names matching {archetype_label}", span_cols=21)
 
-    headers = ['#', 'Ticker', 'Name', 'Country', 'Sector', 'Bucket',
+    headers = ['#', 'Ticker', 'Name', 'Country', 'Sector', 'Industry', 'Bucket',
                'Mcap (USD)', 'Verdict', 'ETA', 'Asym',
                'EV/EBITDA', 'P/E', 'P/B', 'P/S',
                'FCF yld %', 'Div %', 'ROIC %', 'ND/EBITDA', 'EBITDA m %',
@@ -364,10 +364,10 @@ def _write_archetype_table(ws, df_subset, archetype_label, total_universe, sort_
     for i, h in enumerate(headers, start=1):
         c = ws.cell(row=11, column=i, value=h)
         c.font = f_bold_muted
-        c.alignment = (_TXT_ALIGN_LEFT if i in (2, 3, 4, 5) else
-                       _NUM_ALIGN_CENTER if i in (6, 8) else
+        c.alignment = (_TXT_ALIGN_LEFT if i in (2, 3, 4, 5, 6) else
+                       _NUM_ALIGN_CENTER if i in (7, 9) else
                        _NUM_ALIGN_RIGHT)
-    for c in range(1, 22):
+    for c in range(1, 23):
         ws.cell(row=12, column=c).border = Border(top=Side(style='thin', color=INK))
 
     # Top-N data rows
@@ -381,32 +381,34 @@ def _write_archetype_table(ws, df_subset, archetype_label, total_universe, sort_
         ws.cell(row=r_idx, column=4).alignment = _NUM_ALIGN_CENTER
         ws.cell(row=r_idx, column=5, value=('' if pd.isna(r.get('sector')) else str(r.get('sector')))).font = f_text_muted
         ws.cell(row=r_idx, column=5).alignment = _TXT_ALIGN_LEFT
-        ws.cell(row=r_idx, column=6, value=('' if pd.isna(r.get('market_cap_bucket')) else str(r.get('market_cap_bucket')))).font = f_text_muted
-        ws.cell(row=r_idx, column=6).alignment = _NUM_ALIGN_CENTER
-        _write_money(ws, r_idx, 7, r.get('market_cap'), font=f_text)
-        _verdict_badge(ws, r_idx, 8, r['verdict'])
-        _write_score(ws, r_idx, 9, r.get('entry_today_asymmetry'), font=f_bold)
-        _write_score(ws, r_idx, 10, r.get('asymmetry_score'), font=f_text)
-        _write_score(ws, r_idx, 11, r.get('ev_ebitda'), font=f_text)
-        _write_score(ws, r_idx, 12, r.get('p_e'), font=f_text)
-        _write_score(ws, r_idx, 13, r.get('pb'), font=f_text)
-        _write_score(ws, r_idx, 14, r.get('p_s'), font=f_text)
-        _write_pct(ws, r_idx, 15, r.get('fcf_yield'), font=f_text)
-        _write_pct(ws, r_idx, 16, r.get('dividend_yield'), font=f_text)
-        _write_pct(ws, r_idx, 17, r.get('roce'), font=f_text)
-        _write_score(ws, r_idx, 18, r.get('net_debt_ebitda'), font=f_text)
-        _write_pct(ws, r_idx, 19, r.get('ebitda_margin'), font=f_text)
-        _write_pct(ws, r_idx, 20, r.get('momentum_12m'), font=f_text)
-        _write_int(ws, r_idx, 21, int(r['archetype_count']) if pd.notna(r.get('archetype_count')) else 0, font=f_text_muted)
-        for c in range(1, 22):
+        ws.cell(row=r_idx, column=6, value=('' if pd.isna(r.get('industry')) else str(r.get('industry')))).font = f_text_muted
+        ws.cell(row=r_idx, column=6).alignment = _TXT_ALIGN_LEFT
+        ws.cell(row=r_idx, column=7, value=('' if pd.isna(r.get('market_cap_bucket')) else str(r.get('market_cap_bucket')))).font = f_text_muted
+        ws.cell(row=r_idx, column=7).alignment = _NUM_ALIGN_CENTER
+        _write_money(ws, r_idx, 8, r.get('market_cap'), font=f_text)
+        _verdict_badge(ws, r_idx, 9, r['verdict'])
+        _write_score(ws, r_idx, 10, r.get('entry_today_asymmetry'), font=f_bold)
+        _write_score(ws, r_idx, 11, r.get('asymmetry_score'), font=f_text)
+        _write_score(ws, r_idx, 12, r.get('ev_ebitda'), font=f_text)
+        _write_score(ws, r_idx, 13, r.get('p_e'), font=f_text)
+        _write_score(ws, r_idx, 14, r.get('pb'), font=f_text)
+        _write_score(ws, r_idx, 15, r.get('p_s'), font=f_text)
+        _write_pct(ws, r_idx, 16, r.get('fcf_yield'), font=f_text)
+        _write_pct(ws, r_idx, 17, r.get('dividend_yield'), font=f_text)
+        _write_pct(ws, r_idx, 18, r.get('roce'), font=f_text)
+        _write_score(ws, r_idx, 19, r.get('net_debt_ebitda'), font=f_text)
+        _write_pct(ws, r_idx, 20, r.get('ebitda_margin'), font=f_text)
+        _write_pct(ws, r_idx, 21, r.get('momentum_12m'), font=f_text)
+        _write_int(ws, r_idx, 22, int(r['archetype_count']) if pd.notna(r.get('archetype_count')) else 0, font=f_text_muted)
+        for c in range(1, 23):
             ws.cell(row=r_idx, column=c).border = Border(
                 bottom=Side(style='thin', color=RULE))
         ws.row_dimensions[r_idx].height = 16
 
     # Column widths
-    widths = {1: 4, 2: 11, 3: 32, 4: 6, 5: 16, 6: 11, 7: 17, 8: 12,
-              9: 8, 10: 8, 11: 10, 12: 8, 13: 8, 14: 10, 15: 9,
-              16: 7, 17: 10, 18: 10, 19: 11, 20: 7, 21: 7}
+    widths = {1: 4, 2: 11, 3: 32, 4: 6, 5: 16, 6: 18, 7: 11, 8: 17, 9: 12,
+              10: 8, 11: 8, 12: 10, 13: 8, 14: 8, 15: 10, 16: 9,
+              17: 7, 18: 10, 19: 10, 20: 11, 21: 7, 22: 7}
     from openpyxl.utils import get_column_letter
     for col, w in widths.items():
         ws.column_dimensions[get_column_letter(col)].width = w

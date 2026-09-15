@@ -526,17 +526,17 @@ def build_methodology(ws: Worksheet):
 
 # --- Index sheet --------------------------------------------------------------
 def build_index(ws: Worksheet, top_df: pd.DataFrame):
-    _set_col_widths(ws, {1: 4, 2: 5, 3: 14, 4: 38, 5: 8, 6: 18, 7: 10, 8: 14,
-                         9: 8, 10: 7, 11: 8, 12: 4})
-    _crimson_banner(ws, 1, "  Index of Names", span_cols=12)
+    _set_col_widths(ws, {1: 4, 2: 5, 3: 14, 4: 38, 5: 8, 6: 18, 7: 18, 8: 10,
+                         9: 14, 10: 8, 11: 7, 12: 8, 13: 4})
+    _crimson_banner(ws, 1, "  Index of Names", span_cols=13)
 
-    hdrs = ["#", "Ticker", "Company", "Cntry", "Sector", "Verdict", "Score",
+    hdrs = ["#", "Ticker", "Company", "Cntry", "Sector", "Industry", "Verdict", "Score",
             "P/B", "Div %", "P/S"]
     for i, h in enumerate(hdrs, start=2):
         c = ws.cell(row=3, column=i, value=h)
         c.font = _font(size=10, bold=True, color=CRIMSON_DARK, name=SANS)
-        c.alignment = _align(h="left" if i in (3, 4, 6) else
-                             "right" if i in (9, 10, 11) else "center")
+        c.alignment = _align(h="left" if i in (3, 4, 6, 7) else
+                             "right" if i in (10, 11, 12) else "center")
         c.border = _border(color=CRIMSON_DARK, bottom="medium")
     ws.row_dimensions[3].height = 22
 
@@ -560,18 +560,20 @@ def build_index(ws: Worksheet, top_df: pd.DataFrame):
         ws.cell(row=row, column=5).alignment = _align(h="center")
         ws.cell(row=row, column=6, value=(r.get('sector') or '')).font = _font(size=10, name=SANS, color=MUTED)
         ws.cell(row=row, column=6).alignment = _align()
+        ws.cell(row=row, column=7, value=(r.get('industry') or '')).font = _font(size=10, name=SANS, color=MUTED)
+        ws.cell(row=row, column=7).alignment = _align()
 
-        _verdict_badge(ws, row, 7, r.get('verdict', 'UNRESEARCHED'))
+        _verdict_badge(ws, row, 8, r.get('verdict', 'UNRESEARCHED'))
 
-        _write_score(ws, row, 8, r.get('entry_today_asymmetry'),
+        _write_score(ws, row, 9, r.get('entry_today_asymmetry'),
                      font=_font(size=10, name=MONO))
         # Mandated valuation display columns
-        _write_ratio(ws, row, 9, r.get('pb'), font=_font(size=10, name=MONO))
-        _write_pct(ws, row, 10, r.get('dividend_yield'), font=_font(size=10, name=MONO))
-        _write_ratio(ws, row, 11, r.get('p_s'), font=_font(size=10, name=MONO))
+        _write_ratio(ws, row, 10, r.get('pb'), font=_font(size=10, name=MONO))
+        _write_pct(ws, row, 11, r.get('dividend_yield'), font=_font(size=10, name=MONO))
+        _write_ratio(ws, row, 12, r.get('p_s'), font=_font(size=10, name=MONO))
 
         # Row rule (very light)
-        for c in range(2, 12):
+        for c in range(2, 13):
             ws.cell(row=row, column=c).border = _border(color=RULE, bottom="thin")
         ws.row_dimensions[row].height = 18
 
