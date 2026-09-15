@@ -26,9 +26,9 @@ These are surfaced by >=3 of 8 independent screens AND win at least one PSU/gove
 | 14 | **CNMD** | 3 | 1 | grand_unified,psu_gov_asymmetry,unified_composite |
 | 15 | **DXLG** | 3 | 1 | bastian_forcing,grand_unified,psu_gov_asymmetry |
 | 16 | **WHR** | 3 | 1 | grand_unified,psu_gov_asymmetry,psu_valcreate |
-| 17 | **CLW** | 3 | 1 | bastian_forcing,grand_unified,psu_asymmetric_full |
-| 18 | **TBI** | 3 | 1 | grand_unified,psu_gov_asymmetry,psu_valcreate |
-| 19 | **CDE** | 3 | 1 | CEO 10b5-1 termination score 80 (#1 in universe) |
+| 17 | **TBI** | 3 | 1 | grand_unified,psu_gov_asymmetry,psu_valcreate |
+| 18 | **CDE** | 3 | 1 | CEO 10b5-1 termination score 80 (#1 in universe) |
+| 19 | **CLW** | 3 | 1 | bastian_forcing,grand_unified,psu_asymmetric_full |
 
 
 ## 2. Per-pattern leaders -- top names by catalyst type
@@ -101,8 +101,8 @@ Use this to deploy systematically by mandate.
 | 5 | TDY | 61.5 | B | +10 PSU.spin_separation; gov 15 | 10b5-1 term_sell +35 |
 | 6 | VERI | 60.6 | B | +10 PSU.spin_separation; +12 PSU.merger_acquisition_close; +12 PSU.revenue_dollar_target | DD 85% | Form144 +0 |
 | 7 | LGL | 59.9 | B | +10 PSU.spin_separation; +15 PSU.chapter11_emergence | P/B 0.99; microcap | buyback NO_AUTH +20.4% |
-| 8 | LBTYA | 56.7 | B | +10 PSU.spin_separation | P/B 0.40 | buyback NO_AUTH -0.2% |
-| 9 | LBTYB | 56.7 | B | +10 PSU.spin_separation | P/B 0.47 | buyback NO_AUTH -0.2% |
+| 8 | LBTYB | 56.7 | B | +10 PSU.spin_separation | P/B 0.47 | buyback NO_AUTH -0.2% |
+| 9 | LBTYA | 56.7 | B | +10 PSU.spin_separation | P/B 0.40 | buyback NO_AUTH -0.2% |
 | 10 | GRPN | 56.6 | A | +10 PSU.spin_separation; +12 PSU.ebitda_dollar_target; +12 PSU.revenue_dollar_target | buyback SHRINKING_NO_AUTH -6.0% | |
 
 ### Named asset-sale trigger
@@ -130,7 +130,7 @@ Use this to deploy systematically by mandate.
 | 6 | SNDX | 50.3 | B | +10 PSU.spin_separation; +12 PSU.merger_acquisition_close; +10 PSU.fda_phase_milestone | Form144 +0 |
 | 7 | OCUL | 46.7 | A | +10 PSU.fda_phase_milestone | buyback NO_AUTH +3.3% | 10b5-1 term_sell +10 | Form144 +0 |
 | 8 | HUT | 43.4 | A | PSU core 50; +10 PSU.fda_phase_milestone; gov 20 | buyback NO_AUTH +6.7% | Form144 +0 |
-| 9 | DRS | 41.3 | B | +10 PSU.fda_phase_milestone; gov 18 | buyback NO_AUTH +0.3% |
+| 9 | EBS | 41.3 | B | +10 PSU.fda_phase_milestone | P/B 0.79 | Form144 +0 |
 | 10 | CPRI | 41.3 | A | +10 PSU.spin_separation; +10 PSU.fda_phase_milestone | buyback SHRINKING_NO_AUTH -3.4% | Form144 +0 |
 
 ### Chapter 11 emergence trigger
@@ -219,9 +219,9 @@ Use this to deploy systematically by mandate.
 | 5 | IHS | 22.9 | C | 13E-3 going-private |
 | 6 | ELPC | 22.9 | C | 13E-3 going-private |
 | 7 | KORE | 19.8 | B | 13E-3 going-private |
-| 8 | CSCIF | 19.8 | B | 13E-3 going-private | Form144 +0 |
+| 8 | RAASY | 19.8 | B | 13E-3 going-private | Form144 +0 |
 | 9 | LSBWF | 19.8 | B | 13E-3 going-private | Form144 +0 |
-| 10 | RAASY | 19.8 | B | 13E-3 going-private | Form144 +0 |
+| 10 | CSCIF | 19.8 | B | 13E-3 going-private | Form144 +0 |
 
 ### CEO/Chair 10b5-1 sell-plan termination (score >= 30)
 | Rank | Ticker | Norm | Tier | Reasons |
@@ -433,21 +433,21 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 | 3 | METCI | 48.0 | 3 | 10b5-1 term_sell +17 |
 | 4 | EFSCP | 45.1 | 3 | 10b5-1 term_sell +22 |
 | 5 | JHX | 41.5 | 3 | +12 PSU.merger_acquisition_close |
-| 6 | LILKV | 40.9 | 3 | PSU%LTI=85 |
+| 6 | LILPV | 40.9 | 3 | PSU%LTI=85 |
 | 7 | LILAV | 40.9 | 3 | PSU%LTI=85 |
-| 8 | LILPV | 40.9 | 3 | PSU%LTI=85 |
+| 8 | LILKV | 40.9 | 3 | PSU%LTI=85 |
 | 9 | WTTR | 39.0 | 3 | 10b5-1 term_sell +42 |
-| 10 | RGTI | 38.2 | 3 | 10b5-1 term_sell +41 |
-| 11 | AGQ | 38.2 | 3 | 10b5-1 term_sell +80 | Form144 +0 |
-| 12 | VIASP | 38.2 | 3 | tender SELF_TENDER |
-| 13 | TCRX | 38.2 | 3 | 10b5-1 term_sell +51 |
-| 14 | BNO | 38.2 | 3 | 10b5-1 term_sell +30 | Form144 +0 |
-| 15 | BOIL | 38.2 | 3 | 10b5-1 term_sell +80 | Form144 +0 |
+| 10 | AGQ | 38.2 | 3 | 10b5-1 term_sell +80 | Form144 +0 |
+| 11 | VIASP | 38.2 | 3 | tender SELF_TENDER |
+| 12 | RGTI | 38.2 | 3 | 10b5-1 term_sell +41 |
+| 13 | BNO | 38.2 | 3 | 10b5-1 term_sell +30 | Form144 +0 |
+| 14 | BOIL | 38.2 | 3 | 10b5-1 term_sell +80 | Form144 +0 |
+| 15 | CPER | 38.2 | 3 | 10b5-1 term_sell +43 | Form144 +0 |
 | 16 | ORLY | 38.2 | 3 | 10b5-1 term_sell +43 |
-| 17 | CPER | 38.2 | 3 | 10b5-1 term_sell +43 | Form144 +0 |
+| 17 | TCRX | 38.2 | 3 | 10b5-1 term_sell +51 |
 | 18 | CUBB | 37.3 | 3 | gov 15 |
 | 19 | TPGXL | 37.1 | 3 | +10 PSU.spin_separation |
-| 20 | TDUP | 36.7 | 3 | 10b5-1 term_sell +24 |
+| 20 | PTEN | 36.7 | 3 | 10b5-1 term_sell +36 |
 
 
 ## 5. Caution list -- convergent names with red flags
@@ -464,8 +464,8 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 | LW | front-loaded grant, retirement carveout |
 | FIS | repricing language |
 | LE | retirement carveout |
-| OSUR | discretionary hurdle, repricing language, single-trigger CIC |
 | SD | front-loaded grant |
+| OSUR | discretionary hurdle, repricing language, single-trigger CIC |
 | NSP | retirement carveout, single-trigger CIC |
 | GWW | retirement carveout |
 | ADT | retirement carveout |
@@ -474,8 +474,8 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 | FISV | repricing language, retirement carveout |
 | TROX | retirement carveout |
 | CNMD | repricing language |
-| BEEP | retirement carveout |
 | DXLG | retirement carveout |
+| BEEP | retirement carveout |
 | KMPR | repricing language, retirement carveout |
 | MA | repricing language, retirement carveout |
 | DXC | discretionary hurdle, repricing language, retirement carveout |
@@ -495,7 +495,7 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 ## 6. Use-case deployment sheet
 
 - **Highest-conviction concentrated (top-3 convergent)**: GO, HFFG, CMCO
-- **Microcap forcing-function basket (Bastian)**: LGL, MLCI, BEEP, HTT, GNPX, NUS
+- **Microcap forcing-function basket (Bastian)**: LGL, BEEP, MLCI, HTT, GNPX, NUS
 - **Mungerian forward-dollar PSU concentration**: THRY, MAT, TRU, EHTH, GROV
 - **Verified buyback compounders (EXECUTING)**: PAYC, AMH, CRM, MORN, RNR
 - **Live SELF_TENDER**: EXFY, ABX, ABXL

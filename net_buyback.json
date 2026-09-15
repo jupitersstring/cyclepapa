@@ -508,8 +508,8 @@
       "buying cheap (P/B 1.24)"
     ]
   },
-  "MTB-PJ": {
-    "ticker": "MTB-PJ",
+  "MTB-PH": {
+    "ticker": "MTB-PH",
     "net_buyback_yield": 0.0905,
     "shares_now": 150109000,
     "shares_year_ago": 165047000,
@@ -962,8 +962,8 @@
       "net shares -5% YoY (modest)"
     ]
   },
-  "BML-PJ": {
-    "ticker": "BML-PJ",
+  "BAC-PS": {
+    "ticker": "BAC-PS",
     "net_buyback_yield": 0.0455,
     "shares_now": 7417500000,
     "shares_year_ago": 7770800000,
@@ -1262,8 +1262,8 @@
       "net shares -4% YoY (modest)"
     ]
   },
-  "TFC-PR": {
-    "ticker": "TFC-PR",
+  "TFC-PI": {
+    "ticker": "TFC-PI",
     "net_buyback_yield": 0.0436,
     "shares_now": 1266572000,
     "shares_year_ago": 1324339000,
@@ -4076,16 +4076,15 @@
       "net shares -2% YoY (modest)"
     ]
   },
-  "HLX": {
-    "ticker": "HLX",
+  "HOS": {
+    "ticker": "HOS",
     "net_buyback_yield": 0.0329,
     "shares_now": 147163000,
     "shares_year_ago": 152174000,
-    "cheap": true,
-    "score": 12,
+    "cheap": false,
+    "score": 6,
     "reasons": [
-      "net shares -3% YoY (modest)",
-      "buying cheap (P/B 0.82)"
+      "net shares -3% YoY (modest)"
     ]
   },
   "POCI": {
@@ -4589,8 +4588,8 @@
       "net DILUTION +149% YoY"
     ]
   },
-  "LGNYZ": {
-    "ticker": "LGNYZ",
+  "LGNZZ": {
+    "ticker": "LGNZZ",
     "net_buyback_yield": -0.0361,
     "shares_now": 19883000,
     "shares_year_ago": 19191000,
@@ -5527,8 +5526,8 @@
       "net shares -5% YoY"
     ]
   },
-  "RWTS": {
-    "ticker": "RWTS",
+  "RWTN": {
+    "ticker": "RWTN",
     "net_buyback_yield": 0.0602,
     "shares_now": 124769331,
     "shares_year_ago": 132766199,
@@ -5890,8 +5889,8 @@
       "net DILUTION +97% YoY"
     ]
   },
-  "PCG-PB": {
-    "ticker": "PCG-PB",
+  "PCG-PX": {
+    "ticker": "PCG-PX",
     "net_buyback_yield": -0.0368,
     "shares_now": 2281000000,
     "shares_year_ago": 2200000000,
@@ -6588,8 +6587,8 @@
       "net shares -4% YoY (modest)"
     ]
   },
-  "STRK": {
-    "ticker": "STRK",
+  "STRD": {
+    "ticker": "STRD",
     "net_buyback_yield": -0.3019,
     "shares_now": 333913000,
     "shares_year_ago": 256473000,
@@ -11355,8 +11354,8 @@
       "net DILUTION +22% YoY"
     ]
   },
-  "CUEN": {
-    "ticker": "CUEN",
+  "CUENW": {
+    "ticker": "CUENW",
     "net_buyback_yield": -0.8956,
     "shares_now": 5534501,
     "shares_year_ago": 2919668,
@@ -14165,8 +14164,8 @@
       "net DILUTION +185% YoY"
     ]
   },
-  "SBEV": {
-    "ticker": "SBEV",
+  "EDVA": {
+    "ticker": "EDVA",
     "net_buyback_yield": -1.4598,
     "shares_now": 4568365,
     "shares_year_ago": 1857211,
@@ -15558,8 +15557,8 @@
       "net dilution +3% YoY"
     ]
   },
-  "CIRCW": {
-    "ticker": "CIRCW",
+  "CIRC": {
+    "ticker": "CIRC",
     "net_buyback_yield": -0.3711,
     "shares_now": 74007596,
     "shares_year_ago": 53975575,
@@ -16870,17 +16869,6 @@
       "net DILUTION +43% YoY"
     ]
   },
-  "CRNX": {
-    "ticker": "CRNX",
-    "net_buyback_yield": -0.1181,
-    "shares_now": 104099000,
-    "shares_year_ago": 93102000,
-    "cheap": false,
-    "score": -6,
-    "reasons": [
-      "net DILUTION +12% YoY"
-    ]
-  },
   "AMLX": {
     "ticker": "AMLX",
     "net_buyback_yield": -0.2902,
@@ -16958,8 +16946,8 @@
       "net DILUTION +124% YoY"
     ]
   },
-  "FIXX": {
-    "ticker": "FIXX",
+  "QTTB": {
+    "ticker": "QTTB",
     "net_buyback_yield": -0.1556,
     "shares_now": 14095371,
     "shares_year_ago": 12197615,
@@ -17245,8 +17233,8 @@
       "net shares -12% YoY (heavy)"
     ]
   },
-  "WORXD": {
-    "ticker": "WORXD",
+  "WORX": {
+    "ticker": "WORX",
     "net_buyback_yield": -7.2659,
     "shares_now": 1061004,
     "shares_year_ago": 128359,
@@ -17743,17 +17731,6 @@
     "score": -6,
     "reasons": [
       "net DILUTION +111% YoY"
-    ]
-  },
-  "NCSM": {
-    "ticker": "NCSM",
-    "net_buyback_yield": 0.0212,
-    "shares_now": 2629000,
-    "shares_year_ago": 2686000,
-    "cheap": false,
-    "score": 6,
-    "reasons": [
-      "net shares -2% YoY (modest)"
     ]
   },
   "KNTK": {
@@ -18396,8 +18373,8 @@
       "buying cheap (P/B 0.49)"
     ]
   },
-  "BTAI": {
-    "ticker": "BTAI",
+  "BTAIQ": {
+    "ticker": "BTAIQ",
     "net_buyback_yield": -3.8761,
     "shares_now": 23571000,
     "shares_year_ago": 4834000,
@@ -18994,8 +18971,8 @@
       "net shares -4% YoY (modest)"
     ]
   },
-  "NFE": {
-    "ticker": "NFE",
+  "NFEGP": {
+    "ticker": "NFEGP",
     "net_buyback_yield": -0.0442,
     "shares_now": 285702846,
     "shares_year_ago": 273609766,
@@ -19093,8 +19070,8 @@
       "net DILUTION +22% YoY"
     ]
   },
-  "BKSYW": {
-    "ticker": "BKSYW",
+  "BKSY": {
+    "ticker": "BKSY",
     "net_buyback_yield": -0.1733,
     "shares_now": 36153000,
     "shares_year_ago": 30814000,
@@ -20869,8 +20846,8 @@
       "net DILUTION +24% YoY"
     ]
   },
-  "CAPA": {
-    "ticker": "CAPA",
+  "QSI": {
+    "ticker": "QSI",
     "net_buyback_yield": -0.1874,
     "shares_now": 216472000,
     "shares_year_ago": 182303000,
@@ -21001,8 +20978,8 @@
       "net dilution +4% YoY"
     ]
   },
-  "HUMAW": {
-    "ticker": "HUMAW",
+  "HUMA": {
+    "ticker": "HUMA",
     "net_buyback_yield": -0.5016,
     "shares_now": 197846786,
     "shares_year_ago": 131759302,
@@ -21477,8 +21454,8 @@
       "net DILUTION +62% YoY"
     ]
   },
-  "OPADW": {
-    "ticker": "OPADW",
+  "OPAD": {
+    "ticker": "OPAD",
     "net_buyback_yield": -0.6759,
     "shares_now": 46194000,
     "shares_year_ago": 27564000,
@@ -21511,8 +21488,8 @@
       "buying cheap (P/B 1.01)"
     ]
   },
-  "ONFOP": {
-    "ticker": "ONFOP",
+  "ONFOW": {
+    "ticker": "ONFOW",
     "net_buyback_yield": -0.1435,
     "shares_now": 5863214,
     "shares_year_ago": 5127395,
@@ -24034,8 +24011,8 @@
       "net shares -5% YoY (modest)"
     ]
   },
-  "TETWF": {
-    "ticker": "TETWF",
+  "TETUF": {
+    "ticker": "TETUF",
     "net_buyback_yield": 0.3313,
     "shares_now": 3418412,
     "shares_year_ago": 5111805,
@@ -24686,8 +24663,8 @@
       "net DILUTION +33% YoY"
     ]
   },
-  "HLEOD": {
-    "ticker": "HLEOD",
+  "HLEO": {
+    "ticker": "HLEO",
     "net_buyback_yield": -1.1093,
     "shares_now": 23758674,
     "shares_year_ago": 11263633,
@@ -24917,8 +24894,8 @@
       "net DILUTION +136% YoY"
     ]
   },
-  "RMXID": {
-    "ticker": "RMXID",
+  "RMXI": {
+    "ticker": "RMXI",
     "net_buyback_yield": -0.9314,
     "shares_now": 24334726,
     "shares_year_ago": 12599475,
@@ -25003,17 +24980,6 @@
     "score": -3,
     "reasons": [
       "net dilution +7% YoY"
-    ]
-  },
-  "APGE": {
-    "ticker": "APGE",
-    "net_buyback_yield": -0.1971,
-    "shares_now": 69668439,
-    "shares_year_ago": 58195272,
-    "cheap": false,
-    "score": -6,
-    "reasons": [
-      "net DILUTION +20% YoY"
     ]
   },
   "NXNT": {
@@ -26235,17 +26201,6 @@
     "score": -6,
     "reasons": [
       "net DILUTION +17% YoY"
-    ]
-  },
-  "ATAI": {
-    "ticker": "ATAI",
-    "net_buyback_yield": -1.0277,
-    "shares_now": 357421528,
-    "shares_year_ago": 176271176,
-    "cheap": false,
-    "score": -6,
-    "reasons": [
-      "net DILUTION +103% YoY"
     ]
   },
   "PNFP-PB": {

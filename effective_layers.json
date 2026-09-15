@@ -1,12 +1,13 @@
 {
-  "n_raw_layers": 39,
-  "n_effective_layers_at_06": 34,
+  "n_raw_layers": 44,
+  "n_effective_layers_at_06": 37,
   "clusters": [
     [
       "psu_pts"
     ],
     [
-      "valuation_pts"
+      "valuation_pts",
+      "payoff_geometry_pts"
     ],
     [
       "buyback_pts"
@@ -22,7 +23,8 @@
     [
       "f4_buys_pts",
       "opportunistic_pts",
-      "discretionary_conviction_pts"
+      "discretionary_conviction_pts",
+      "form4_timing_pts"
     ],
     [
       "f144_pts"
@@ -64,6 +66,9 @@
       "equity_committee_pts"
     ],
     [
+      "lynch_reawakening_pts"
+    ],
+    [
       "premium_injection_pts"
     ],
     [
@@ -71,6 +76,12 @@
     ],
     [
       "selective_buyback_pts"
+    ],
+    [
+      "net_buyback_pts"
+    ],
+    [
+      "mda_language_pts"
     ],
     [
       "internalization_pts"
