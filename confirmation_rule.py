@@ -183,6 +183,20 @@ def main() -> int:
         cats = set((rer.get(tk) or {}).get("catalyst_types") or [])
         if cats & MONSTER_CATALYSTS:
             ms += 2; ms_flags.append("monster-rich catalyst")
+        # RESEARCH (deep_research.py): the washout fingerprint is BIMODAL --
+        # the +100% monsters and the -50% blow-ups look identical pre-event;
+        # only CONFIRMATION separates them (confirm >=+20% -> 15% monster /
+        # +57% mean; fade -> 1% / -38%). So a high fingerprint is only a BUY
+        # once confirmed, and a FADING high-fingerprint name is the AVOID.
+        if ms >= 6:
+            if state == "CONFIRMED":
+                monster_verdict = "CONFIRMED_MONSTER"     # washout + market voted up
+            elif state == "FADING":
+                monster_verdict = "AVOID_FADING_WASHOUT"  # the loser twin
+            else:
+                monster_verdict = "UNRESOLVED_COINFLIP"   # wait for the vote
+        else:
+            monster_verdict = None
 
         out[tk] = {
             "ticker": tk,
@@ -193,6 +207,7 @@ def main() -> int:
             "tail_prob_base": round(base_p, 3),
             "tail_prob_confirmed": round(conf_p, 3),
             "monster_setup": round(ms, 1),
+            "monster_verdict": monster_verdict,
             "monster_flags": ms_flags,
             "drawdown_24m": round(dd24, 3) if dd24 is not None else None,
             "pre_vol": round(pv, 3) if pv is not None else None,
@@ -213,13 +228,19 @@ def main() -> int:
         print(f"{r['ticker']:<7}{r['state']:<11}{r['months_since']:>5.0f}m"
               f"{r['drift_since_catalyst']*100:>7.0f}%{r['tail_prob_confirmed']*100:>6.0f}%"
               f"  {', '.join(r['catalyst_types'] or [])}")
-    # the monster-setup shortlist: the washout fingerprint, regardless of state.
-    mons = sorted((v for v in out.values() if v["monster_setup"] >= 6),
+    # monster verdicts: only CONFIRMED washouts are buys; FADING are AVOID.
+    from collections import Counter
+    mv = Counter(v.get("monster_verdict") for v in out.values() if v.get("monster_verdict"))
+    print(f"\nMONSTER VERDICTS (washout fp>=6): {dict(mv)}")
+    buys = sorted((v for v in out.values() if v.get("monster_verdict") == "CONFIRMED_MONSTER"),
                   key=lambda r: -r["monster_setup"])
-    print(f"\nMONSTER SETUPS (washout fingerprint, score>=6): {len(mons)}")
-    for r in mons[:20]:
-        print(f"  {r['ticker']:<7}{r['monster_setup']:>5.1f}  {r['state']:<10}"
-              f"  {'; '.join(r['monster_flags'])}")
+    print(f"\nCONFIRMED MONSTER SETUPS (washout + market voted up) -- the buys:")
+    for r in buys[:15]:
+        print(f"  {r['ticker']:<7} fp{r['monster_setup']:>4.0f} drift "
+              f"{r['drift_since_catalyst']*100:>+4.0f}%  {'; '.join(r['monster_flags'][:3])}")
+    avoid = [v for v in out.values() if v.get("monster_verdict") == "AVOID_FADING_WASHOUT"]
+    print(f"\nAVOID (fading washouts -- the loser twin): "
+          f"{', '.join(sorted(r['ticker'] for r in avoid))[:80]}")
     return 0
 
 

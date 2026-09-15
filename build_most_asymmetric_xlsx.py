@@ -1634,34 +1634,48 @@ def build_tail_odds(wb: Workbook, yf: dict):
                 ).font = SMALL_ITALIC if 'SMALL_ITALIC' in globals() else BODY_FONT
         r += 2
 
-    # --- MONSTER SETUPS: the greatest-trades washout fingerprint ---
-    monsters = sorted((v for v in conf.values()
-                       if isinstance(v, dict) and (v.get("monster_setup") or 0) >= 6),
-                      key=lambda r: -r.get("monster_setup", 0))
-    if monsters:
+    # --- MONSTER SETUPS: washout fingerprint, GATED ON CONFIRMATION ---
+    # deep_research.py: the washout fingerprint is bimodal (the +100% monsters
+    # and the -50% blow-ups look identical pre-event); only confirmation
+    # separates them. So only CONFIRMED washouts are buys; FADING ones are the
+    # explicit AVOID list.
+    cm = sorted((v for v in conf.values()
+                 if isinstance(v, dict) and v.get("monster_verdict") == "CONFIRMED_MONSTER"),
+                key=lambda r: -r.get("monster_setup", 0))
+    avoid = sorted((v for v in conf.values()
+                    if isinstance(v, dict) and v.get("monster_verdict") == "AVOID_FADING_WASHOUT"),
+                   key=lambda r: -r.get("monster_setup", 0))
+    if cm or avoid:
         ws.cell(row=r, column=1,
-                value="MONSTER SETUPS — the greatest-trades washout "
-                      "fingerprint (deep 24m drawdown + wild vol + bottom of "
-                      "range + decelerating + monster-rich catalyst)").font = BODY_BOLD
+                value="CONFIRMED MONSTER SETUPS — deep washout fingerprint AND "
+                      "the market has voted up (the only version that pays)").font = BODY_BOLD
         r += 1
-        write_header_row(ws, r, ["Ticker", "Name", "Monster", "State",
-                                 "Tail p", "Fingerprint"])
+        write_header_row(ws, r, ["Ticker", "Name", "Monster", "Drift", "Tail p",
+                                 "Fingerprint"])
         r += 1
-        for i, v in enumerate(monsters[:18], 1):
+        for i, v in enumerate(cm[:16], 1):
             tk = v.get("ticker", "")
             nm = (yf.get(tk, {}) or {}).get("name", tk)
             write_body_row(ws, r,
                            [tk, nm[:20], f"{v.get('monster_setup',0):.0f}/10",
-                            v.get("state", ""),
+                            f"{v.get('drift_since_catalyst',0)*100:+.0f}%",
                             f"{v.get('tail_prob_confirmed',0)*100:.0f}%",
-                            "; ".join(v.get("monster_flags") or [])[:44]],
+                            "; ".join(v.get("monster_flags") or [])[:42]],
                            band=(i % 2 == 0), bold_first=True)
             ws.row_dimensions[r].height = 22
             r += 1
+        if avoid:
+            ws.cell(row=r, column=1,
+                    value="AVOID — fading deep-washouts (same fingerprint, "
+                          "market voting DOWN; the loser twin): "
+                          + ", ".join(v["ticker"] for v in avoid[:20])).font = BODY_FONT
+            r += 1
         ws.cell(row=r, column=1,
-                value="Note: monster-rich catalysts (strategic-review, spin, "
-                      "Ch11, uplisting) are LOTTERY TICKETS — negative median, "
-                      "convex tail — so size these small. See GREATEST_TRADES.md."
+                value="Research (DEEP_RESEARCH.md): the deep-washout fingerprint "
+                      "alone is BIMODAL — fp>=8 has a 33% chance of losing >50% "
+                      "and negative Kelly. Only CONFIRMATION separates the +100% "
+                      "monster from the blow-up. Size confirmed names small "
+                      "(~1/4-Kelly); never buy the un-confirmed washout."
                 ).font = BODY_FONT
         r += 2
 
