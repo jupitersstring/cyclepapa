@@ -1,0 +1,125 @@
+{
+  "STEX": {
+    "ticker": "STEX",
+    "name": "Streamex Corp.",
+    "raise_types": [
+      "convertible_debenture"
+    ],
+    "instrument": "convertible_debenture",
+    "asset_floor": true,
+    "drawdown_from_high": -0.935,
+    "washout": true,
+    "small_cap": true,
+    "mcap": 195338576.0,
+    "date": "2025-12-19",
+    "cik": "0001530766",
+    "accession": "0001493152-25-028606",
+    "geometry_ratio": 12.21,
+    "score": 26.0,
+    "verified": true,
+    "senior_secured": true
+  },
+  "FRMI": {
+    "ticker": "FRMI",
+    "name": "Fermi Inc.",
+    "raise_types": [
+      "senior_convertible"
+    ],
+    "instrument": "senior_convertible",
+    "asset_floor": true,
+    "drawdown_from_high": -0.814,
+    "washout": true,
+    "small_cap": false,
+    "mcap": 4392886272.0,
+    "date": "2026-07-15",
+    "cik": "0002071778",
+    "accession": "0001213900-26-078366",
+    "geometry_ratio": null,
+    "score": 25.0,
+    "verified": true,
+    "coupon_pct": 5.0,
+    "senior_secured": true
+  },
+  "DFH": {
+    "ticker": "DFH",
+    "name": "Dream Finders Homes, Inc.",
+    "raise_types": [
+      "convertible_preferred"
+    ],
+    "instrument": "convertible_preferred",
+    "asset_floor": true,
+    "drawdown_from_high": -0.505,
+    "washout": true,
+    "small_cap": true,
+    "mcap": 1427952768.0,
+    "date": "2026-09-15",
+    "cik": "0001825088",
+    "accession": "0001628280-26-061981",
+    "geometry_ratio": 2.45,
+    "score": 25.0,
+    "verified": true,
+    "senior_secured": true
+  },
+  "INR": {
+    "ticker": "INR",
+    "name": "Infinity Natural Resources, Inc",
+    "raise_types": [
+      "convertible_preferred"
+    ],
+    "instrument": "convertible_preferred",
+    "asset_floor": true,
+    "drawdown_from_high": -0.347,
+    "washout": false,
+    "small_cap": true,
+    "mcap": 239833072.0,
+    "date": "2026-02-23",
+    "cik": "0002029118",
+    "accession": "0001193125-26-064039",
+    "geometry_ratio": 1.94,
+    "score": 22.0,
+    "verified": true,
+    "coupon_pct": 51.0,
+    "senior_secured": true
+  },
+  "WHR": {
+    "ticker": "WHR",
+    "name": "Whirlpool Corporation",
+    "raise_types": [
+      "convertible_preferred"
+    ],
+    "instrument": "convertible_preferred",
+    "asset_floor": true,
+    "drawdown_from_high": -0.653,
+    "washout": true,
+    "small_cap": false,
+    "mcap": 2519026432.0,
+    "date": "2026-02-27",
+    "cik": "0000106640",
+    "accession": "0001193125-26-082849",
+    "geometry_ratio": 5.97,
+    "score": 22.0,
+    "verified": true,
+    "senior_secured": true
+  },
+  "TAOX": {
+    "ticker": "TAOX",
+    "name": "Tao Synergies Inc.",
+    "raise_types": [
+      "convertible_pipe"
+    ],
+    "instrument": "convertible_pipe",
+    "asset_floor": true,
+    "drawdown_from_high": -0.694,
+    "washout": true,
+    "small_cap": true,
+    "mcap": 27421988.0,
+    "date": "2025-10-14",
+    "cik": "0001571934",
+    "accession": "0001104659-25-098909",
+    "geometry_ratio": 5.56,
+    "score": 27.0,
+    "verified": true,
+    "coupon_pct": 7.0,
+    "senior_secured": true
+  }
+}

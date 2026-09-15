@@ -1427,6 +1427,72 @@ def build_payoff_geometry(wb: Workbook, yf: dict):
     ws.freeze_panes = "A5"
 
 
+def build_structured_distressed(wb: Workbook, yf: dict):
+    """Structured distressed value-injection (the Cundill / Sibir play):
+    asset-backed, washed-out names raising capital via a senior/convertible
+    instrument — where the edge is owning the INSTRUMENT, not the common.
+    Source: structured_distressed_injection.json."""
+    ws = wb.create_sheet("Structured Distressed")
+    set_col_widths(ws, [9, 24, 8, 22, 8, 8, 8, 20])
+    write_title_band(
+        ws,
+        "Structured Distressed Injection — the Cundill / Sibir play",
+        "Hard-asset-backed companies whose equity collapsed in a washout and "
+        "that are raising capital via a SENIOR / CONVERTIBLE instrument "
+        "(convertible debenture, senior/secured convertible note, convertible "
+        "preferred). The margin of safety is structural — seniority + coupon + "
+        "asset value floor the downside, the convert keeps the upside — so the "
+        "move is to own the INSTRUMENT, not the common.",
+        n_cols=8,
+    )
+    d = {}
+    p = ROOT / "structured_distressed_injection.json"
+    if p.exists():
+        try:
+            d = json.loads(p.read_text())
+        except Exception:
+            d = {}
+    rows = sorted((v for v in d.values() if isinstance(v, dict)),
+                  key=lambda r: -r.get("score", 0))
+    headers = ["Ticker", "Name", "Score", "Instrument", "Drawdown",
+               "Coupon", "Senior", "Signals"]
+    write_header_row(ws, 4, headers)
+    r = 5
+    for i, v in enumerate(rows[:40], 1):
+        tk = v.get("ticker", "")
+        dd = v.get("drawdown_from_high")
+        sig = []
+        if v.get("asset_floor"): sig.append("asset floor")
+        if v.get("washout"): sig.append("washout")
+        if v.get("small_cap"): sig.append("small-cap")
+        write_body_row(ws, r,
+                       [tk, (v.get("name") or tk)[:24], v.get("score", 0),
+                        (v.get("instrument") or "").replace("_", " "),
+                        (f"{dd*100:.0f}%" if dd is not None else "—"),
+                        (f"{v.get('coupon_pct')}%" if v.get("coupon_pct") else "—"),
+                        ("✓" if v.get("senior_secured") else "—"),
+                        ", ".join(sig)[:20]],
+                       band=(i % 2 == 0), bold_first=True)
+        ws.row_dimensions[r].height = 22
+        r += 1
+    if not rows:
+        ws.cell(row=5, column=1, value="No qualifying structured distressed "
+                "injections in the current window.").font = BODY_FONT
+    r = max(r, 6) + 1
+    write_footnote(ws, r,
+        f"{len(rows)} names pass the hard conjunction: a structured raise "
+        "(convertible/senior/preferred) IN an asset-backed, washed-out or "
+        "small-cap name. Most convertible raises are routine dilutive growth "
+        "financings and are filtered OUT — this isolates the distressed "
+        "asset-play version where the instrument carries a built-in margin of "
+        "safety (the engine's equity layers actually PENALISE convertibles as "
+        "dilution, which is correct for the common and backwards for this "
+        "play). Coupon/seniority parsed from the filing for the top names. "
+        "Source: structured_distressed_injection.py.", 8)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A5"
+
+
 def build_mechanism_gates(wb: Workbook, yf: dict):
     """Mechanism-gated archetypes — hard causal conjunctions, not points.
     Source: mechanism_gates.json (mechanism_gates.py)."""
@@ -1486,9 +1552,12 @@ def build_mechanism_gates(wb: Workbook, yf: dict):
         "(near net cash / NCAV, small controllable cap, plausible buyer — high "
         "insider ownership or self-tender-capable cash — and NO bid yet); "
         "these are speculative (weighted below the confirmed machines) but "
-        "flag names likely to realise value that haven't yet. Combines the "
-        "payoff-geometry shape with the catalyst layers so shape and 'why "
-        "now' are both required. Source: mechanism_gates.py.", 6)
+        "flag names likely to realise value that haven't yet. Plus structured "
+        "distressed injection (the Cundill/Sibir play — an asset-backed washout "
+        "raising via a senior/convertible instrument; see the Structured "
+        "Distressed tab). Combines the payoff-geometry shape with the catalyst "
+        "layers so shape and 'why now' are both required. Source: "
+        "mechanism_gates.py.", 6)
     ws.sheet_view.showGridLines = False
     ws.freeze_panes = "A5"
 
@@ -3005,6 +3074,7 @@ TAB_INDEX = [
     ("MD&A Intent", "Management's stated agenda from 10-K/10-Q narrative — value-unlock/transformative/capital/governance/strategic."),
     ("Payoff Geometry", "Capped asset-backed downside vs sector re-rate upside — the asymmetry ratio per name."),
     ("Mechanism Gates", "Exceptional-return archetypes as hard causal conjunctions; 2+ machines = highest conviction."),
+    ("Structured Distressed", "Cundill/Sibir: asset-backed washouts raising via senior/convertible instruments (own the instrument)."),
     ("Re-Rate Catalysts", "Spin-offs / separations / asset sales / sale-of-company / strategic reviews x geometry room."),
     ("Re-Rate Backtest", "What those catalysts actually returned historically — the evidence behind the weights."),
     ("Tail Odds", "Candidates ranked by measured probability of a right-tail outcome; the features that raise the odds."),
@@ -3176,6 +3246,7 @@ def main() -> int:
     build_mda_language(wb, yf)
     build_payoff_geometry(wb, yf)
     build_mechanism_gates(wb, yf)
+    build_structured_distressed(wb, yf)
     build_rerate_catalysts(wb, yf)
     build_rerate_backtest(wb, yf)
     build_tail_odds(wb, yf)

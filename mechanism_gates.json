@@ -1449,6 +1449,28 @@
     },
     "score": 12.6
   },
+  "WHR": {
+    "ticker": "WHR",
+    "archetypes": [
+      "structured_distressed_injection"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 5.97,
+    "geometry_score": 21.6,
+    "downside_pct": 0.251,
+    "upside_pct": 1.5,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "structured_distressed_injection": {
+        "instrument": "convertible_preferred",
+        "coupon_pct": null,
+        "senior_secured": true,
+        "drawdown": -0.653
+      }
+    },
+    "score": 18.4
+  },
   "CDW": {
     "ticker": "CDW",
     "archetypes": [
@@ -1815,6 +1837,28 @@
     },
     "score": 14.6
   },
+  "STEX": {
+    "ticker": "STEX",
+    "archetypes": [
+      "structured_distressed_injection"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 12.21,
+    "geometry_score": 17.1,
+    "downside_pct": 0.112,
+    "upside_pct": 1.361,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "structured_distressed_injection": {
+        "instrument": "convertible_debenture",
+        "coupon_pct": null,
+        "senior_secured": true,
+        "drawdown": -0.935
+      }
+    },
+    "score": 17.3
+  },
   "UIS": {
     "ticker": "UIS",
     "archetypes": [
@@ -2104,9 +2148,10 @@
   "DFH": {
     "ticker": "DFH",
     "archetypes": [
-      "hidden_asset_realization"
+      "hidden_asset_realization",
+      "structured_distressed_injection"
     ],
-    "n_mechanisms": 1,
+    "n_mechanisms": 2,
     "geometry_ratio": 2.45,
     "geometry_score": 16.7,
     "downside_pct": 0.507,
@@ -2118,9 +2163,37 @@
         "credit_score": 14.0,
         "d_e": 1.33,
         "mcap": 1427952768.0
+      },
+      "structured_distressed_injection": {
+        "instrument": "convertible_preferred",
+        "coupon_pct": null,
+        "senior_secured": true,
+        "drawdown": -0.505
       }
     },
-    "score": 17.2
+    "score": 40.2
+  },
+  "INR": {
+    "ticker": "INR",
+    "archetypes": [
+      "structured_distressed_injection"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.94,
+    "geometry_score": 11.5,
+    "downside_pct": 0.624,
+    "upside_pct": 1.207,
+    "floor_source": "book(0.5x)",
+    "sector": "Energy",
+    "details": {
+      "structured_distressed_injection": {
+        "instrument": "convertible_preferred",
+        "coupon_pct": 51.0,
+        "senior_secured": true,
+        "drawdown": -0.347
+      }
+    },
+    "score": 15.9
   },
   "KTCC": {
     "ticker": "KTCC",
@@ -2317,6 +2390,28 @@
       }
     },
     "score": 15.0
+  },
+  "TAOX": {
+    "ticker": "TAOX",
+    "archetypes": [
+      "structured_distressed_injection"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 5.56,
+    "geometry_score": 15.2,
+    "downside_pct": 0.47,
+    "upside_pct": 2.609,
+    "floor_source": "NCAV",
+    "sector": "Technology",
+    "details": {
+      "structured_distressed_injection": {
+        "instrument": "convertible_pipe",
+        "coupon_pct": 7.0,
+        "senior_secured": true,
+        "drawdown": -0.694
+      }
+    },
+    "score": 16.8
   },
   "USNA": {
     "ticker": "USNA",

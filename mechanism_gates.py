@@ -72,6 +72,9 @@ ARCH_WEIGHT = {
     # been announced; speculative, so weighted below the confirmed machines.
     "asset_sale_latent": 8.0,
     "tender_target_latent": 8.0,
+    # Cundill structured distressed value-injection (hard conjunction already
+    # applied by structured_distressed_injection.py).
+    "structured_distressed_injection": 13.0,
 }
 MULTI_MECHANISM_BONUS = 10.0   # two or more machines on one name
 
@@ -104,6 +107,7 @@ def main() -> int:
     nport = _load("nport_forced_selling.json")
     credit = _load("credit_agreement_mine.json")
     rer = _load("rerate_catalysts.json")
+    sdi = _load("structured_distressed_injection.json")
 
     out = {}
     for tk, g in geo.items():
@@ -225,6 +229,18 @@ def main() -> int:
                 "floor_source": g.get("floor_source"),
                 "insider_pct": round(insider_pct, 3) if insider_pct is not None else None,
                 "net_cash_frac": g.get("net_cash_frac"), "mcap": mcap}
+
+        # 10. STRUCTURED DISTRESSED INJECTION (Cundill / Sibir) -- the scanner
+        #     already applies the hard conjunction (structured raise + asset
+        #     floor + washout/distress); a scored row IS the archetype.
+        sd = sdi.get(tk) or {}
+        if (_num(sd.get("score")) or 0) > 0:
+            archetypes.append("structured_distressed_injection")
+            details["structured_distressed_injection"] = {
+                "instrument": sd.get("instrument"),
+                "coupon_pct": sd.get("coupon_pct"),
+                "senior_secured": sd.get("senior_secured"),
+                "drawdown": sd.get("drawdown_from_high")}
 
         if not archetypes:
             continue

@@ -74,6 +74,7 @@ if [ "$DO_SCANS" = "1" ]; then
   run python3 credit_agreement_mine.py      --days 365 || true
   run python3 mda_scan.py                    --days 180 || true
   run python3 payoff_geometry.py             || true
+  run python3 structured_distressed_injection.py --days 365 || true
   run python3 mechanism_gates.py             || true
   run python3 rerate_events_8k.py            --days 270 || true
   run python3 rerate_catalysts.py            || true
