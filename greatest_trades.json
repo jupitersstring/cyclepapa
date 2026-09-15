@@ -1,0 +1,957 @@
+{
+  "monster_threshold": 1.0,
+  "n_events": 417,
+  "n_monsters": 19,
+  "base_monster_rate": 0.046,
+  "overall_lifts": {
+    "catalyst": {
+      "STRATEGIC_REVIEW": {
+        "n": 38,
+        "monster_rate": 0.079,
+        "lift": 1.73
+      },
+      "TENDER_OFFER": {
+        "n": 38,
+        "monster_rate": 0.026,
+        "lift": 0.58
+      },
+      "SPINOFF": {
+        "n": 56,
+        "monster_rate": 0.089,
+        "lift": 1.96
+      },
+      "CAPITAL_RETURN": {
+        "n": 53,
+        "monster_rate": 0.019,
+        "lift": 0.41
+      },
+      "UPLISTING": {
+        "n": 46,
+        "monster_rate": 0.065,
+        "lift": 1.43
+      },
+      "BUYBACK_AUTH": {
+        "n": 71,
+        "monster_rate": 0.028,
+        "lift": 0.62
+      },
+      "ASSET_SALE": {
+        "n": 49,
+        "monster_rate": 0.061,
+        "lift": 1.34
+      },
+      "CH11_EMERGENCE": {
+        "n": 11,
+        "monster_rate": 0.091,
+        "lift": 2.0
+      },
+      "SALE_OF_COMPANY": {
+        "n": 12,
+        "monster_rate": 0.0,
+        "lift": 0.0
+      },
+      "SEPARATION": {
+        "n": 9,
+        "monster_rate": 0.0,
+        "lift": 0.0
+      },
+      "GOING_PRIVATE": {
+        "n": 15,
+        "monster_rate": 0.0,
+        "lift": 0.0
+      },
+      "EXCHANGE_OFFER": {
+        "n": 19,
+        "monster_rate": 0.0,
+        "lift": 0.0
+      }
+    },
+    "sector": {
+      "Healthcare": {
+        "n": 37,
+        "monster_rate": 0.108,
+        "lift": 2.37
+      },
+      "Consumer Cyclical": {
+        "n": 38,
+        "monster_rate": 0.079,
+        "lift": 1.73
+      },
+      "Technology": {
+        "n": 31,
+        "monster_rate": 0.065,
+        "lift": 1.42
+      },
+      "Unknown": {
+        "n": 149,
+        "monster_rate": 0.04,
+        "lift": 0.88
+      },
+      "Basic Materials": {
+        "n": 15,
+        "monster_rate": 0.067,
+        "lift": 1.46
+      },
+      "Industrials": {
+        "n": 44,
+        "monster_rate": 0.045,
+        "lift": 1.0
+      },
+      "Utilities": {
+        "n": 10,
+        "monster_rate": 0.1,
+        "lift": 2.19
+      },
+      "Communication Services": {
+        "n": 18,
+        "monster_rate": 0.0,
+        "lift": 0.0
+      },
+      "Financial Services": {
+        "n": 28,
+        "monster_rate": 0.0,
+        "lift": 0.0
+      },
+      "Energy": {
+        "n": 15,
+        "monster_rate": 0.0,
+        "lift": 0.0
+      },
+      "Real Estate": {
+        "n": 17,
+        "monster_rate": 0.0,
+        "lift": 0.0
+      },
+      "Consumer Defensive": {
+        "n": 15,
+        "monster_rate": 0.0,
+        "lift": 0.0
+      }
+    },
+    "size": {
+      "mid": {
+        "n": 100,
+        "monster_rate": 0.05,
+        "lift": 1.1
+      },
+      "small": {
+        "n": 56,
+        "monster_rate": 0.054,
+        "lift": 1.18
+      },
+      "large": {
+        "n": 78,
+        "monster_rate": 0.064,
+        "lift": 1.41
+      },
+      "micro": {
+        "n": 35,
+        "monster_rate": 0.029,
+        "lift": 0.63
+      }
+    },
+    "drawdown_12m": {
+      "deep": {
+        "n": 75,
+        "monster_rate": 0.08,
+        "lift": 1.76
+      },
+      "shallow": {
+        "n": 183,
+        "monster_rate": 0.027,
+        "lift": 0.6
+      },
+      "mod": {
+        "n": 125,
+        "monster_rate": 0.04,
+        "lift": 0.88
+      }
+    },
+    "drawdown_24m": {
+      "deep": {
+        "n": 88,
+        "monster_rate": 0.08,
+        "lift": 1.75
+      },
+      "shallow": {
+        "n": 209,
+        "monster_rate": 0.024,
+        "lift": 0.53
+      },
+      "mod": {
+        "n": 86,
+        "monster_rate": 0.047,
+        "lift": 1.02
+      }
+    },
+    "range_pos": {
+      "low": {
+        "n": 174,
+        "monster_rate": 0.063,
+        "lift": 1.39
+      },
+      "high": {
+        "n": 116,
+        "monster_rate": 0.043,
+        "lift": 0.95
+      },
+      "mid": {
+        "n": 88,
+        "monster_rate": 0.0,
+        "lift": 0.0
+      }
+    },
+    "pre_12m": {
+      "down": {
+        "n": 122,
+        "monster_rate": 0.066,
+        "lift": 1.44
+      },
+      "up": {
+        "n": 80,
+        "monster_rate": 0.05,
+        "lift": 1.1
+      },
+      "flat": {
+        "n": 117,
+        "monster_rate": 0.026,
+        "lift": 0.56
+      }
+    },
+    "pre_vol": {
+      "wild": {
+        "n": 103,
+        "monster_rate": 0.107,
+        "lift": 2.34
+      },
+      "normal": {
+        "n": 181,
+        "monster_rate": 0.028,
+        "lift": 0.61
+      },
+      "calm": {
+        "n": 91,
+        "monster_rate": 0.0,
+        "lift": 0.0
+      }
+    },
+    "basing": {
+      "not-basing": {
+        "n": 304,
+        "monster_rate": 0.053,
+        "lift": 1.16
+      },
+      "basing": {
+        "n": 71,
+        "monster_rate": 0.0,
+        "lift": 0.0
+      }
+    },
+    "decel": {
+      "decelerating": {
+        "n": 173,
+        "monster_rate": 0.058,
+        "lift": 1.27
+      },
+      "steady": {
+        "n": 96,
+        "monster_rate": 0.042,
+        "lift": 0.91
+      },
+      "accelerating-down": {
+        "n": 148,
+        "monster_rate": 0.034,
+        "lift": 0.74
+      }
+    },
+    "post_1m": {
+      "up>20%": {
+        "n": 34,
+        "monster_rate": 0.147,
+        "lift": 3.23
+      },
+      "flat": {
+        "n": 245,
+        "monster_rate": 0.041,
+        "lift": 0.9
+      },
+      "down": {
+        "n": 138,
+        "monster_rate": 0.029,
+        "lift": 0.64
+      }
+    }
+  },
+  "monster_vs_rest": {
+    "drawdown_12m": {
+      "monster": -0.319,
+      "rest": -0.206
+    },
+    "drawdown_24m": {
+      "monster": -0.523,
+      "rest": -0.259
+    },
+    "range_pos": {
+      "monster": 0.124,
+      "rest": 0.39
+    },
+    "pre_12m": {
+      "monster": -0.2,
+      "rest": -0.083
+    },
+    "pre_vol": {
+      "monster": 0.181,
+      "rest": 0.105
+    },
+    "post_1m": {
+      "monster": 0.003,
+      "rest": -0.011
+    },
+    "decel": {
+      "monster": 0.069,
+      "rest": 0.0
+    },
+    "basing": {
+      "monster_rate": 0.0,
+      "rest_rate": 0.178
+    }
+  },
+  "by_archetype": {
+    "ASSET_SALE": {
+      "n": 49,
+      "n_monster": 3,
+      "monster_rate": 0.061,
+      "median_12m": 0.104,
+      "top_trades": [
+        {
+          "ticker": "VSTM",
+          "date": "2023-02-02",
+          "ret_12m": 1.47,
+          "drawdown_12m": -0.7042253702427661,
+          "basing": false,
+          "post_1m": -0.07142859846015659,
+          "sector": "Healthcare"
+        },
+        {
+          "ticker": "NRG",
+          "date": "2023-03-10",
+          "ret_12m": 1.13,
+          "drawdown_12m": -0.2578193421055902,
+          "basing": false,
+          "post_1m": -0.011120786472951005,
+          "sector": "Utilities"
+        },
+        {
+          "ticker": "TPR",
+          "date": "2025-02-19",
+          "ret_12m": 1.0,
+          "drawdown_12m": -0.17571991136254628,
+          "basing": false,
+          "post_1m": 0.0034085762148410303,
+          "sector": "Consumer Cyclical"
+        },
+        {
+          "ticker": "NTRP",
+          "date": "2023-11-13",
+          "ret_12m": 0.99,
+          "drawdown_12m": -0.7459747729894421,
+          "basing": false,
+          "post_1m": 0.11813159468417056,
+          "sector": "Unknown"
+        },
+        {
+          "ticker": "OPRT",
+          "date": "2024-09-26",
+          "ret_12m": 0.92,
+          "drawdown_12m": -0.2890025804694699,
+          "basing": false,
+          "post_1m": 0.431654697853761,
+          "sector": "Unknown"
+        }
+      ]
+    },
+    "BUYBACK_AUTH": {
+      "n": 71,
+      "n_monster": 2,
+      "monster_rate": 0.028,
+      "median_12m": -0.032,
+      "top_trades": [
+        {
+          "ticker": "MYRG",
+          "date": "2025-02-26",
+          "ret_12m": 1.5,
+          "drawdown_12m": -0.3197594205239662,
+          "basing": false,
+          "post_1m": 0.08161644403414936,
+          "sector": "Industrials"
+        },
+        {
+          "ticker": "AKA",
+          "date": "2023-06-06",
+          "ret_12m": 1.49,
+          "drawdown_12m": -0.7548076878990646,
+          "basing": false,
+          "post_1m": -0.013725508528918406,
+          "sector": "Unknown"
+        },
+        {
+          "ticker": "NWPX",
+          "date": "2023-11-02",
+          "ret_12m": 0.85,
+          "drawdown_12m": -0.21402596808099128,
+          "basing": false,
+          "post_1m": 0.0036351820726878703,
+          "sector": "Basic Materials"
+        },
+        {
+          "ticker": "EML",
+          "date": "2023-08-21",
+          "ret_12m": 0.79,
+          "drawdown_12m": -0.2108695818030316,
+          "basing": true,
+          "post_1m": -0.10413219996538403,
+          "sector": "Industrials"
+        },
+        {
+          "ticker": "WDAY",
+          "date": "2022-11-29",
+          "ret_12m": 0.65,
+          "drawdown_12m": -0.3386427197976415,
+          "basing": true,
+          "post_1m": 0.08426457114942654,
+          "sector": "Technology"
+        }
+      ]
+    },
+    "CAPITAL_RETURN": {
+      "n": 53,
+      "n_monster": 1,
+      "monster_rate": 0.019,
+      "median_12m": -0.061,
+      "top_trades": [
+        {
+          "ticker": "ESOA",
+          "date": "2023-01-19",
+          "ret_12m": 2.38,
+          "drawdown_12m": -0.26349210698287884,
+          "basing": false,
+          "post_1m": -0.012931022522848834,
+          "sector": "Unknown"
+        },
+        {
+          "ticker": "LENZ",
+          "date": "2024-03-22",
+          "ret_12m": 0.8,
+          "drawdown_12m": -0.3312262877497095,
+          "basing": false,
+          "post_1m": -0.036546939375458054,
+          "sector": "Healthcare"
+        },
+        {
+          "ticker": "KRT",
+          "date": "2022-11-09",
+          "ret_12m": 0.73,
+          "drawdown_12m": -0.2889658319381343,
+          "basing": false,
+          "post_1m": 0.04592900853641391,
+          "sector": "Unknown"
+        },
+        {
+          "ticker": "COKE",
+          "date": "2022-12-07",
+          "ret_12m": 0.7,
+          "drawdown_12m": -0.11556715395153039,
+          "basing": false,
+          "post_1m": 0.09880026502201678,
+          "sector": "Unknown"
+        },
+        {
+          "ticker": "UVE",
+          "date": "2022-11-14",
+          "ret_12m": 0.51,
+          "drawdown_12m": -0.3857308414627063,
+          "basing": false,
+          "post_1m": 0.20302167965548845,
+          "sector": "Financial Services"
+        }
+      ]
+    },
+    "CH11_EMERGENCE": {
+      "n": 11,
+      "n_monster": 1,
+      "monster_rate": 0.091,
+      "median_12m": 0.0,
+      "top_trades": [
+        {
+          "ticker": "DBD",
+          "date": "2023-08-09",
+          "ret_12m": 1.36,
+          "drawdown_12m": null,
+          "basing": null,
+          "post_1m": 0.002111879992124921,
+          "sector": "Unknown"
+        },
+        {
+          "ticker": "NCMI",
+          "date": "2023-06-27",
+          "ret_12m": 0.78,
+          "drawdown_12m": -0.7258064354867761,
+          "basing": false,
+          "post_1m": 0.3323529655133144,
+          "sector": "Communication Services"
+        },
+        {
+          "ticker": "OI",
+          "date": "2022-07-18",
+          "ret_12m": 0.53,
+          "drawdown_12m": -0.20911856380017113,
+          "basing": false,
+          "post_1m": -0.004611869220686127,
+          "sector": "Consumer Cyclical"
+        },
+        {
+          "ticker": "UGI",
+          "date": "2024-10-15",
+          "ret_12m": 0.3,
+          "drawdown_12m": 0.18818472119688967,
+          "basing": true,
+          "post_1m": -0.07046431471389736,
+          "sector": "Utilities"
+        },
+        {
+          "ticker": "CP",
+          "date": "2025-03-25",
+          "ret_12m": 0.2,
+          "drawdown_12m": -0.15279400929316256,
+          "basing": false,
+          "post_1m": 0.12667310819022393,
+          "sector": "Unknown"
+        }
+      ]
+    },
+    "EXCHANGE_OFFER": {
+      "n": 19,
+      "n_monster": 0,
+      "monster_rate": 0.0,
+      "median_12m": 0.0,
+      "top_trades": [
+        {
+          "ticker": "USFD",
+          "date": "2023-06-02",
+          "ret_12m": 0.24,
+          "drawdown_12m": -0.0288636467673562,
+          "basing": true,
+          "post_1m": -0.05382633423122596,
+          "sector": "Consumer Defensive"
+        },
+        {
+          "ticker": "WMG",
+          "date": "2023-05-10",
+          "ret_12m": 0.17,
+          "drawdown_12m": -0.2842249765021979,
+          "basing": false,
+          "post_1m": 0.20927554820006677,
+          "sector": "Communication Services"
+        },
+        {
+          "ticker": "BHC",
+          "date": "2022-11-03",
+          "ret_12m": 0.14,
+          "drawdown_12m": -0.7725461763498169,
+          "basing": false,
+          "post_1m": 0.2261145783465064,
+          "sector": "Unknown"
+        },
+        {
+          "ticker": "TROX",
+          "date": "2023-08-16",
+          "ret_12m": 0.09,
+          "drawdown_12m": -0.2163265376483381,
+          "basing": false,
+          "post_1m": -0.2046131016264192,
+          "sector": "Basic Materials"
+        },
+        {
+          "ticker": "WH",
+          "date": "2023-05-25",
+          "ret_12m": 0.08,
+          "drawdown_12m": -0.11533998445379257,
+          "basing": false,
+          "post_1m": 0.13635698579165734,
+          "sector": "Consumer Cyclical"
+        }
+      ]
+    },
+    "GOING_PRIVATE": {
+      "n": 15,
+      "n_monster": 0,
+      "monster_rate": 0.0,
+      "median_12m": -0.229,
+      "top_trades": [
+        {
+          "ticker": "SPHR",
+          "date": "2023-04-24",
+          "ret_12m": 0.53,
+          "drawdown_12m": -0.2376670046013164,
+          "basing": false,
+          "post_1m": 0.14746537187503872,
+          "sector": "Communication Services"
+        },
+        {
+          "ticker": "TSQ",
+          "date": "2022-10-14",
+          "ret_12m": 0.34,
+          "drawdown_12m": -0.4426106623507836,
+          "basing": true,
+          "post_1m": -0.02422608781928759,
+          "sector": "Unknown"
+        },
+        {
+          "ticker": "CHCI",
+          "date": "2025-06-17",
+          "ret_12m": 0.14,
+          "drawdown_12m": 0.07906167066171399,
+          "basing": false,
+          "post_1m": 0.2777777607143619,
+          "sector": "Real Estate"
+        },
+        {
+          "ticker": "MSGS",
+          "date": "2023-04-25",
+          "ret_12m": 0.05,
+          "drawdown_12m": -0.11895264889533974,
+          "basing": true,
+          "post_1m": 0.0645344440937472,
+          "sector": "Communication Services"
+        },
+        {
+          "ticker": "NXST",
+          "date": "2022-08-04",
+          "ret_12m": -0.02,
+          "drawdown_12m": -0.1279009005014058,
+          "basing": false,
+          "post_1m": 0.026670643005439088,
+          "sector": "Communication Services"
+        }
+      ]
+    },
+    "SALE_OF_COMPANY": {
+      "n": 12,
+      "n_monster": 0,
+      "monster_rate": 0.0,
+      "median_12m": -0.378,
+      "top_trades": [
+        {
+          "ticker": "CREX",
+          "date": "2025-02-18",
+          "ret_12m": 0.76,
+          "drawdown_12m": -0.5945945798583784,
+          "basing": false,
+          "post_1m": -0.06666666259113552,
+          "sector": "Unknown"
+        },
+        {
+          "ticker": "AMPY",
+          "date": "2025-04-15",
+          "ret_12m": 0.61,
+          "drawdown_12m": -0.6178429030505641,
+          "basing": false,
+          "post_1m": 0.1149826394715514,
+          "sector": "Energy"
+        },
+        {
+          "ticker": "SNWV",
+          "date": "2024-06-03",
+          "ret_12m": 0.56,
+          "drawdown_12m": null,
+          "basing": null,
+          "post_1m": 0.0,
+          "sector": "Unknown"
+        },
+        {
+          "ticker": "VIASP",
+          "date": "2024-06-13",
+          "ret_12m": 0.0,
+          "drawdown_12m": null,
+          "basing": null,
+          "post_1m": 0.0,
+          "sector": "Unknown"
+        },
+        {
+          "ticker": "GGAAF",
+          "date": "2023-08-18",
+          "ret_12m": -0.06,
+          "drawdown_12m": 0.0775861714597843,
+          "basing": true,
+          "post_1m": -0.040800018310546915,
+          "sector": "Unknown"
+        }
+      ]
+    },
+    "SEPARATION": {
+      "n": 9,
+      "n_monster": 0,
+      "monster_rate": 0.0,
+      "median_12m": -0.04,
+      "top_trades": [
+        {
+          "ticker": "KNF",
+          "date": "2023-05-18",
+          "ret_12m": 0.61,
+          "drawdown_12m": null,
+          "basing": null,
+          "post_1m": 0.0,
+          "sector": "Basic Materials"
+        },
+        {
+          "ticker": "WOR",
+          "date": "2022-09-29",
+          "ret_12m": 0.3,
+          "drawdown_12m": -0.16590674677131712,
+          "basing": false,
+          "post_1m": 0.19301927830862264,
+          "sector": "Industrials"
+        },
+        {
+          "ticker": "NATL",
+          "date": "2023-09-05",
+          "ret_12m": 0.28,
+          "drawdown_12m": null,
+          "basing": null,
+          "post_1m": 0.0,
+          "sector": "Technology"
+        },
+        {
+          "ticker": "MDU",
+          "date": "2023-04-10",
+          "ret_12m": 0.26,
+          "drawdown_12m": -0.08383049494097605,
+          "basing": false,
+          "post_1m": 0.045564754331485435,
+          "sector": "Utilities"
+        },
+        {
+          "ticker": "ALKS",
+          "date": "2023-02-16",
+          "ret_12m": -0.04,
+          "drawdown_12m": -0.05561138446224623,
+          "basing": false,
+          "post_1m": 0.012770439736884631,
+          "sector": "Healthcare"
+        }
+      ]
+    },
+    "SPINOFF": {
+      "n": 56,
+      "n_monster": 5,
+      "monster_rate": 0.089,
+      "median_12m": 0.042,
+      "top_trades": [
+        {
+          "ticker": "MPTI",
+          "date": "2022-10-11",
+          "ret_12m": 2.51,
+          "drawdown_12m": null,
+          "basing": null,
+          "post_1m": -0.11077237151274066,
+          "sector": "Technology"
+        },
+        {
+          "ticker": "LION",
+          "date": "2025-05-07",
+          "ret_12m": 1.64,
+          "drawdown_12m": -0.31807516072545505,
+          "basing": false,
+          "post_1m": 0.018932897521128034,
+          "sector": "Unknown"
+        },
+        {
+          "ticker": "XPO",
+          "date": "2023-04-11",
+          "ret_12m": 1.28,
+          "drawdown_12m": 0.062245359461390315,
+          "basing": false,
+          "post_1m": 0.25719155372545455,
+          "sector": "Industrials"
+        },
+        {
+          "ticker": "GRAL",
+          "date": "2024-06-24",
+          "ret_12m": 1.22,
+          "drawdown_12m": null,
+          "basing": null,
+          "post_1m": -0.08257480158086705,
+          "sector": "Healthcare"
+        },
+        {
+          "ticker": "BHC",
+          "date": "2022-06-21",
+          "ret_12m": 1.1,
+          "drawdown_12m": -0.8354700890985856,
+          "basing": false,
+          "post_1m": 0.2922077788037001,
+          "sector": "Unknown"
+        }
+      ]
+    },
+    "STRATEGIC_REVIEW": {
+      "n": 38,
+      "n_monster": 3,
+      "monster_rate": 0.079,
+      "median_12m": -0.116,
+      "top_trades": [
+        {
+          "ticker": "SYRE",
+          "date": "2023-04-12",
+          "ret_12m": 9.75,
+          "drawdown_12m": -0.9177215189873418,
+          "basing": false,
+          "post_1m": 2.4692306518554688,
+          "sector": "Healthcare"
+        },
+        {
+          "ticker": "IRWD",
+          "date": "2025-04-14",
+          "ret_12m": 4.95,
+          "drawdown_12m": -0.9121522649276562,
+          "basing": false,
+          "post_1m": 0.19999999999999996,
+          "sector": "Healthcare"
+        },
+        {
+          "ticker": "CMTL",
+          "date": "2025-01-13",
+          "ret_12m": 1.95,
+          "drawdown_12m": -0.7485207115200185,
+          "basing": false,
+          "post_1m": -0.05882354178643112,
+          "sector": "Technology"
+        },
+        {
+          "ticker": "DNTH",
+          "date": "2023-02-02",
+          "ret_12m": 0.96,
+          "drawdown_12m": -0.7275862084557695,
+          "basing": false,
+          "post_1m": -0.01265829088137238,
+          "sector": "Healthcare"
+        },
+        {
+          "ticker": "HRI",
+          "date": "2023-10-23",
+          "ret_12m": 0.88,
+          "drawdown_12m": -0.203837253213757,
+          "basing": false,
+          "post_1m": 0.20402713068388634,
+          "sector": "Industrials"
+        }
+      ]
+    },
+    "TENDER_OFFER": {
+      "n": 38,
+      "n_monster": 1,
+      "monster_rate": 0.026,
+      "median_12m": 0.092,
+      "top_trades": [
+        {
+          "ticker": "CVNA",
+          "date": "2023-08-02",
+          "ret_12m": 2.59,
+          "drawdown_12m": -0.16623632940499056,
+          "basing": false,
+          "post_1m": 0.0,
+          "sector": "Consumer Cyclical"
+        },
+        {
+          "ticker": "OBTC",
+          "date": "2024-01-11",
+          "ret_12m": 0.8,
+          "drawdown_12m": 0.10852717934917999,
+          "basing": false,
+          "post_1m": 0.4895104162908379,
+          "sector": "Unknown"
+        },
+        {
+          "ticker": "BFH",
+          "date": "2025-06-05",
+          "ret_12m": 0.77,
+          "drawdown_12m": -0.032054358681523065,
+          "basing": false,
+          "post_1m": 0.07977166827417048,
+          "sector": "Financial Services"
+        },
+        {
+          "ticker": "GILD",
+          "date": "2024-03-22",
+          "ret_12m": 0.63,
+          "drawdown_12m": -0.2069091634309873,
+          "basing": false,
+          "post_1m": -0.014263809029225083,
+          "sector": "Healthcare"
+        },
+        {
+          "ticker": "ORCL",
+          "date": "2022-06-08",
+          "ret_12m": 0.51,
+          "drawdown_12m": -0.18865963772066718,
+          "basing": false,
+          "post_1m": -0.04740486877715222,
+          "sector": "Unknown"
+        }
+      ]
+    },
+    "UPLISTING": {
+      "n": 46,
+      "n_monster": 3,
+      "monster_rate": 0.065,
+      "median_12m": -0.234,
+      "top_trades": [
+        {
+          "ticker": "MP",
+          "date": "2024-12-10",
+          "ret_12m": 1.68,
+          "drawdown_12m": 0.04224012351870443,
+          "basing": false,
+          "post_1m": 0.0933516042748237,
+          "sector": "Basic Materials"
+        },
+        {
+          "ticker": "ALMU",
+          "date": "2025-03-28",
+          "ret_12m": 1.22,
+          "drawdown_12m": 0.37254900249719314,
+          "basing": false,
+          "post_1m": 0.3580952598935081,
+          "sector": "Unknown"
+        },
+        {
+          "ticker": "BURL",
+          "date": "2023-09-08",
+          "ret_12m": 1.05,
+          "drawdown_12m": -0.47339338722076596,
+          "basing": false,
+          "post_1m": 0.40122282118786834,
+          "sector": "Consumer Cyclical"
+        },
+        {
+          "ticker": "XYL",
+          "date": "2023-08-03",
+          "ret_12m": 0.51,
+          "drawdown_12m": -0.1926385917578991,
+          "basing": true,
+          "post_1m": 0.027573351311538374,
+          "sector": "Industrials"
+        },
+        {
+          "ticker": "QXO",
+          "date": "2025-03-17",
+          "ret_12m": 0.5,
+          "drawdown_12m": -0.9103012369345593,
+          "basing": false,
+          "post_1m": 0.274362804014068,
+          "sector": "Industrials"
+        }
+      ]
+    }
+  }
+}

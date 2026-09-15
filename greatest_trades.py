@@ -161,6 +161,48 @@ def _write_md(r):
              f"over 12 months; {r['n_monsters']} qualified "
              f"({r['base_monster_rate']*100:.0f}% base rate).\n")
 
+    # ---- headline synthesis (computed) ----
+    c0 = r["monster_vs_rest"]
+    arch = r["by_archetype"]
+    # load the median-return view from the backtest for the divergence point.
+    bt = {}
+    try:
+        bt = json.loads((ROOT / "rerate_backtest.json").read_text()).get("by_type", {})
+    except Exception:
+        pass
+    def med12(cat):
+        return ((bt.get(cat, {}) or {}).get("ret_12m") or {}).get("median")
+    monster_rich = sorted(arch.items(), key=lambda kv: -kv[1]["monster_rate"])[:4]
+    median_best = sorted(
+        [(k, med12(k)) for k in arch if med12(k) is not None],
+        key=lambda kv: -(kv[1] or -9))[:3]
+    L.append("## Headline\n")
+    L.append("**The pre-rerating fingerprint of a monster is a violent, "
+             "prolonged WASHOUT — not a calm base.** Before they ran, the "
+             f"greatest trades sat **{c0['drawdown_24m']['monster']*100:.0f}%** below "
+             f"their 24-month high (vs {c0['drawdown_24m']['rest']*100:.0f}% for the "
+             f"rest), in the **bottom ~{c0['range_pos']['monster']*100:.0f}%** of "
+             f"their 12-month range, with pre-event monthly volatility of "
+             f"**{c0['pre_vol']['monster']:.2f}** (vs {c0['pre_vol']['rest']:.2f}) — "
+             "and were LESS likely to be in a tight consolidation than the "
+             f"losers ({c0['basing']['monster_rate']*100:.0f}% vs "
+             f"{c0['basing']['rest_rate']*100:.0f}% basing). The one thing that was "
+             "turning: the decline had begun to DECELERATE (decel "
+             f"{c0['decel']['monster']:+.2f} vs {c0['decel']['rest']:+.2f}). Then the "
+             "market confirmed — a >20% first-month pop is the single strongest "
+             "tell (3.2× lift).\n")
+    L.append("**The critical divergence: MEDIAN-best ≠ TAIL-best.** The catalysts "
+             "that produce the monsters are NOT the ones with the best average "
+             "outcome. Monster-rich: "
+             + ", ".join(f"{k} ({v['monster_rate']*100:.0f}%)" for k, v in monster_rich)
+             + " — several of these (strategic-review, uplisting, Ch11) have "
+             "NEGATIVE median returns, i.e. they are LOTTERY TICKETS. Median-best: "
+             + ", ".join(f"{k} ({(m or 0)*100:+.0f}%)" for k, m in median_best)
+             + ". The engine currently weights catalysts by the median, which "
+             "SUPPRESSES the monster-rich lottery catalysts. For tail hunting they "
+             "should be weighted UP and sized DOWN (convex, small-position bets), "
+             "on a separate track from the median/expected-value plays.\n")
+
     L.append("## What the monsters looked like BEFORE they moved\n")
     c = r["monster_vs_rest"]
     def row(k, label, pct=True):
