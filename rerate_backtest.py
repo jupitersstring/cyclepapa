@@ -160,6 +160,34 @@ def _drawdown_from_high(series, t0_ts, months=12):
     return None
 
 
+def _pre_vol(series, t0_ts, months=12):
+    """Stdev of monthly returns in the year before t0 (pre-event volatility)."""
+    lo_ts = t0_ts - months * 30 * 86400
+    w = [c for t, c in series if lo_ts <= t <= t0_ts and c]
+    if len(w) < 4:
+        return None
+    rets = [w[i] / w[i - 1] - 1 for i in range(1, len(w)) if w[i - 1]]
+    if len(rets) < 3:
+        return None
+    return statistics.pstdev(rets)
+
+
+def _basing(series, t0_ts, months=5):
+    """Is t0 the end of a tight CONSOLIDATION (accumulation base) rather than
+    still falling? True if the last `months` closes sit in a <20% band AND the
+    latest is not making a new low (stopped going down)."""
+    lo_ts = t0_ts - months * 30 * 86400
+    w = [c for t, c in series if lo_ts <= t <= t0_ts and c]
+    if len(w) < 4:
+        return None
+    lo, hi = min(w), max(w)
+    if lo <= 0:
+        return None
+    tight = (hi / lo - 1.0) <= 0.20
+    not_new_low = w[-1] > lo * 1.02
+    return bool(tight and not_new_low)
+
+
 def _range_pos(series, t0_ts, months=12):
     """Where t0 sits in the trailing range (0 = at low, 1 = at high)."""
     lo_ts = t0_ts - months * 30 * 86400
@@ -236,7 +264,12 @@ def main() -> int:
             "pre_6m": _trailing_return(series, t0, 6),
             "pre_12m": _trailing_return(series, t0, 12),
             "drawdown_12m": _drawdown_from_high(series, t0, 12),
+            "drawdown_24m": _drawdown_from_high(series, t0, 24),
             "range_pos": _range_pos(series, t0, 12),
+            "pre_vol": _pre_vol(series, t0, 12),
+            "basing": _basing(series, t0, 5),
+            "decel": ((_trailing_return(series, t0, 3) or 0)
+                      - (_trailing_return(series, t0, 12) or 0)),
             # --- post-event drift (usable by a strategy that waits) ---
             "post_1m": _fwd_return(series, t0, 1),
             "post_3m": r3,
