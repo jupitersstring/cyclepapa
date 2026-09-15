@@ -233,10 +233,32 @@ def _write_governance_sheet(ws, gdf, n_top):
 
 
 def _not_warrant(d):
-    """Mask out warrant / unit / right tickers (…W / …U / …R / .WT) — their tiny
-    mcap vs the whole-company balance sheet manufactures absurd net-net ratios."""
+    """Mask out non-common lines — warrants / units / rights (…W / …U / …R / .WT)
+    AND preferred shares (GS-PD, RNR-PG, TEN-PE, BAC.PR.B, WFC-PR…). A preferred
+    ticker's tiny mcap divided by the WHOLE company's book manufactures an absurd
+    0.05 P/B; its book / yields belong to the common. Mirrors the non-common
+    regex the methodology audit uses to bar these from archetype flags."""
     s = d['symbol'].astype(str).str.upper()
-    return ~(s.str.match(r'^[A-Z]{3,4}[WUR]$') | s.str.contains(r'\.WT$|\.U$|-WT$|-UN$|-RT$', regex=True))
+    return ~(
+        s.str.match(r'^[A-Z]{3,4}[WUR]$')
+        | s.str.contains(r'\.WT$|\.U$|-WT$|-UN$|-RT$', regex=True)
+        | s.str.match(r'^[A-Z]{1,5}-P[A-Z]?$')                  # GS-PD, RNR-PG, TEN-PE
+        | s.str.contains(r'\.PR\.[A-Z]$', regex=True)            # BAC.PR.B
+        | s.str.contains(r'-PR[-.]?[A-Z]?$', regex=True)         # WFC-PR / -PR.L
+        | s.str.contains(r'-P[A-Z]?\.[A-Z]{1,3}$', regex=True)   # -PA.xx
+    )
+
+
+def _fin_mask(d):
+    """Financials / REITs / insurers / lenders — book-value semantics differ and
+    the forensic operating adjustments (LIFO, pension, stake FV) do not apply."""
+    _sec = d.get('sector', '').astype(str).str.lower()
+    _ind = (d.get('industry', '').astype(str).str.lower()
+            if 'industry' in d.columns else _sec)
+    return (_sec.str.contains('financ') | _sec.str.contains('real estate')
+            | _sec.str.contains('insur') | _sec.str.contains('bank')
+            | _ind.str.contains('bank|insur|capital market|asset manage|closed-end|'
+                                 'business development|reinsurance|reit', regex=True)).fillna(False)
 
 
 def _netnet_frame(df_full):
@@ -530,8 +552,12 @@ def main():
     if args.max_pb is not None:
         _pb = pd.to_numeric(df.get('pb'), errors='coerce')
         _dq = pd.to_numeric(df.get('data_quality_flag'), errors='coerce').fillna(0)
-        df = df[(_pb > 0.05) & (_pb < args.max_pb) & (_dq == 0)].copy()
-        print(f'  P/B filter (0.05 < P/B < {args.max_pb}): {len(df):,} names kept',
+        # 0.10 floor: a P/B below ~0.10 (mcap < 10% of book) is almost always a
+        # data error — an overstated/stale book or a currency mismatch — not a
+        # real 10x-asset bargain. And drop non-common (preferred/warrant) lines
+        # whose tiny class mcap manufactures a fake sub-book ratio.
+        df = df[(_pb > 0.10) & (_pb < args.max_pb) & (_dq == 0) & _not_warrant(df)].copy()
+        print(f'  P/B filter (0.10 < P/B < {args.max_pb}, common only): {len(df):,} names kept',
               file=sys.stderr)
     if args.max_ret_12m is not None:
         _ret12 = (pd.to_numeric(df.get('momentum_12m'), errors='coerce')
@@ -705,8 +731,28 @@ def main():
     # Forensic Adjusted P/B (#6): tangible book + hidden assets - hidden liabs.
     if args.adjpb_tab and 'adjusted_pb' in df_full.columns:
         _apb = pd.to_numeric(df_full['adjusted_pb'], errors='coerce')
+        _npb = pd.to_numeric(df_full.get('pb'), errors='coerce')
         _dq = pd.to_numeric(df_full.get('data_quality_flag'), errors='coerce').fillna(0)
-        ap = df_full[(_apb > 0.05) & (_apb < 1.0) & (_dq == 0) & _not_warrant(df_full)].copy()
+        _mc = pd.to_numeric(df_full.get('market_cap_usd'), errors='coerce').fillna(
+            pd.to_numeric(df_full.get('market_cap'), errors='coerce'))
+        _roce = pd.to_numeric(df_full.get('roce'), errors='coerce')
+        _fcfy = pd.to_numeric(df_full.get('fcf_yield'), errors='coerce')
+        _melt = ((_roce < -0.20) & ~(_fcfy > 0)).fillna(False)
+        # 0.15 floor: a forensic-adjusted book multiple below ~0.15 is a stale/
+        # FX-mismatched book, not a bargain. Exclude financials/REITs (adjusted
+        # book is an OPERATING concept), micro-shells (<$20M), melters, and
+        # non-common lines. Also drop rows whose NAIVE book is itself sub-0.15.
+        # require a real OPERATING sector: an adjusted-book forensic on an ETF /
+        # ETN / structured note (sector blank, huge nominal mcap, nonsense book —
+        # VYLD, AMJB, PALL) is meaningless.
+        _sec_raw = df_full.get('sector')
+        _has_sector = (_sec_raw.notna()
+                       & _sec_raw.astype(str).str.strip().str.lower().ne('nan')
+                       & _sec_raw.astype(str).str.strip().ne(''))
+        ap = df_full[(_apb >= 0.15) & (_apb < 1.0)
+                     & ((_npb.isna()) | (_npb >= 0.15))
+                     & (_dq == 0) & (_mc >= 20e6) & _has_sector
+                     & ~_fin_mask(df_full) & ~_melt & _not_warrant(df_full)].copy()
         if 'is_price_ghost' in ap.columns:
             ap = ap[~(pd.to_numeric(ap['is_price_ghost'], errors='coerce') == 1)]
         if not ap.empty:
