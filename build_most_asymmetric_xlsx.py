@@ -1474,11 +1474,14 @@ def build_mechanism_gates(wb: Workbook, yf: dict):
         "cheap equity), sub-cash buyback (net-cash floor ≥ 50% of price + "
         "active repurchase + not burning), forced-seller exhaustion (N-PORT "
         "forced selling into a floor, business not burning), hidden-asset "
-        "realisation (small levered stub + credit-agreement asset sweep), and "
+        "realisation (small levered stub + credit-agreement asset sweep), "
         "stated-unlock triangulated (MD&A value-unlock language + cheap "
-        "geometry + insider buying). Combines the payoff-geometry shape with "
-        "the catalyst layers so shape and 'why now' are both required. "
-        "Source: mechanism_gates.py.", 6)
+        "geometry + insider buying), asset-sale monetization (asset-sale "
+        "catalyst + cheap + levered/small — the backtest's best-median "
+        "catalyst, +10%/58% hit), and tender-offer squeeze (tender/Dutch-"
+        "auction catalyst + cheap small-cap — best hit rate, 61%). Combines "
+        "the payoff-geometry shape with the catalyst layers so shape and 'why "
+        "now' are both required. Source: mechanism_gates.py.", 6)
     ws.sheet_view.showGridLines = False
     ws.freeze_panes = "A5"
 

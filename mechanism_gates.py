@@ -23,6 +23,13 @@ condition holds -- and combines them with the measured payoff geometry
   5. STATED-UNLOCK TRIANGULATED -- management SAYS it in the MD&A (value-
      unlock / strategic-action language) AND the geometry is cheap AND an
      insider is buying open-market. Words + shape + skin, aligned.
+  6. ASSET-SALE MONETIZATION -- a cheap name sells a non-core asset and the
+     proceeds transfer value to a thin/levered equity (de-lever torque) or
+     are large vs a small cap. The best-MEDIAN catalyst in the backtest
+     (+10% / 58% hit).
+  7. TENDER-OFFER SQUEEZE -- a tender / Dutch auction / bid in a cheap
+     small-cap shrinks float or reveals undervaluation; net-cash-funded
+     self-tenders are accretive. Best HIT RATE in the backtest (61%).
 
 Each archetype fires only on full conjunction. The score sums archetype
 weights and adds a geometry contribution; a name lighting up TWO or more
@@ -47,6 +54,10 @@ ARCH_WEIGHT = {
     "forced_seller_exhaustion": 10.0,
     "hidden_asset_realization": 13.0,
     "stated_unlock_triangulated": 12.0,
+    # backtest-validated corporate-action machines (asset-sale had the best
+    # median of all 12 event types; tender-offer the best hit rate).
+    "asset_sale_monetization": 12.0,
+    "tender_offer_squeeze": 10.0,
 }
 MULTI_MECHANISM_BONUS = 10.0   # two or more machines on one name
 
@@ -78,6 +89,7 @@ def main() -> int:
     mda = _load("mda_scan.json")
     nport = _load("nport_forced_selling.json")
     credit = _load("credit_agreement_mine.json")
+    rer = _load("rerate_catalysts.json")
 
     out = {}
     for tk, g in geo.items():
@@ -141,6 +153,31 @@ def main() -> int:
                 "mda_families": sorted(md_cats),
                 "mda_score": md.get("score"),
                 "insider_buys": len((f4.get(tk) or {}).get("filings", []))}
+
+        # 6. ASSET-SALE MONETIZATION -- the backtest's best-median catalyst
+        #    (+10% / 58% hit). The machine: a cheap name sells a non-core
+        #    asset and the proceeds transfer value to a thin/levered equity
+        #    (de-lever torque) or are large relative to a small cap.
+        cats = set((rer.get(tk) or {}).get("catalyst_types") or [])
+        mcap = _num(y.get("mcap")) or 0
+        if "ASSET_SALE" in cats and cheap \
+                and ((de is not None and de >= 0.5) or (0 < mcap < 2e9)):
+            archetypes.append("asset_sale_monetization")
+            details["asset_sale"] = {
+                "sources": (rer.get(tk) or {}).get("sources_by_bucket", {}).get("ASSET_SALE"),
+                "d_e": round(de, 2) if de is not None else None,
+                "ratio": ratio, "small_cap": 0 < mcap < 2e9}
+
+        # 7. TENDER-OFFER SQUEEZE -- +5% / 61% hit. A tender (self-tender /
+        #    Dutch auction / bid) shrinks the float or reveals undervaluation;
+        #    the torque is largest in a cheap small/micro-cap, and a net-cash-
+        #    funded self-tender is accretive.
+        if "TENDER_OFFER" in cats and cheap and 0 < mcap < 2e9:
+            archetypes.append("tender_offer_squeeze")
+            details["tender_offer"] = {
+                "sources": (rer.get(tk) or {}).get("sources_by_bucket", {}).get("TENDER_OFFER"),
+                "ratio": ratio, "mcap": mcap,
+                "net_cash_floor": g.get("net_cash_frac", 0) >= 0.30}
 
         if not archetypes:
             continue
