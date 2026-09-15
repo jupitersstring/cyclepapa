@@ -364,7 +364,8 @@ def _integrity(t, g):
         _finre = (_tsec.str.contains("financ") | _tsec.str.contains("real estate")
                   | _tsec.str.contains("utilit"))
         for _ac in ("arch_negative_ev_value", "arch_tangible_value",
-                    "arch_oak_asset_floor", "arch_strong_coverage"):
+                    "arch_oak_asset_floor", "arch_strong_coverage",
+                    "arch_crisis_asset_backed_recovery"):
             if _ac in t.columns:
                 leak = ((n(t, _ac) == 1) & _finre).sum()
                 check(f"integrity: {_ac} excludes Financials/REITs/Utilities",
@@ -581,7 +582,8 @@ def _regression(t, g):
                 # leg is now the cash-aware _not_melting — same ice-cube invariant.
                 "arch_discounted_vehicle", "arch_net_cash_returner",
                 "arch_negative_ev_value", "arch_oak_deep_value",
-                "arch_oak_asset_floor", "arch_diversified_segments",
+                "arch_oak_asset_floor", "arch_crisis_asset_backed_recovery",
+                "arch_diversified_segments",
                 "arch_no_dilution", "arch_lindy_fcf", "arch_owner_operator",
                 "arch_wolf_seal", "arch_levered_inflection",
                 "arch_hidden_assets", "arch_overdepreciated_assets",

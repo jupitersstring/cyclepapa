@@ -2301,6 +2301,38 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _not_melting
     ).fillna(False).astype(int)
 
+    # ---------- Cundill RECOVERY-fund punt: crisis-crushed, asset-in-the-ground ----
+    # The Mackenzie Cundill RECOVERY fund play (Sibir Energy, Russia 1999), a
+    # DIFFERENT animal from the Value-fund six-point checklist above. A hard-
+    # asset-rich OPERATING company — oil reserves, ore, plant, ships — smashed by
+    # a MACRO / country / commodity crisis while the assets themselves stay
+    # intact (Sibir 47p -> 10p, -79%, on Russia's 1998 default, not on any
+    # reserve write-down). The margin of safety is the ASSET FLOOR, so unlike
+    # oak_deep_value this deliberately does NOT require positive FCF/CFO — it is
+    # the pre-turn, distressed cousin. Cundill protected the DOWNSIDE with a
+    # SENIOR CONVERTIBLE (12% coupon, preferential to common); a public-equity
+    # screen cannot buy that instrument, so it substitutes two protections: the
+    # discount must be measured against TANGIBLE assets (real, saleable plant/
+    # reserves, not goodwill), and the operation must not be an active ice cube
+    # (_not_melting) — i.e. we take the punt as the returns begin to inflect, not
+    # at the absolute default-day bottom where only the senior paper was safe.
+    _car_ptb = _ncol('p_tb')
+    _car_ppe_ratio = (_ncol('ppe_gross') / _ncol('assets'))
+    # value is in the GROUND / the plant — reserves, ore, refineries, rigs, ships
+    _car_asset_heavy = (sector.isin({'Energy', 'Materials', 'Industrials', 'Utilities'})
+                        | (_car_ppe_ratio >= 0.40))
+    # a genuine crisis WASHOUT, not an ordinary down year (Sibir was -79%)
+    _car_crash = beaten_down_any(0.55) | (_num('price_pct_of_5y_range') <= 0.15)
+    # trading below the tangible (hard-asset) book — the reserves/plant are worth
+    # more than the whole equity; below-0.8 tangible book also proves positive
+    # net assets survive all senior claims (a lethal-leverage name goes negative)
+    _car_below_assets = (((pb > 0) & (pb < 0.8)) | ((_car_ptb > 0) & (_car_ptb < 0.8)))
+    df['arch_crisis_asset_backed_recovery'] = (
+        is_operating & (mcap >= 20e6)                       # real, tradeable, not a shell
+        & _car_asset_heavy & _car_crash & _car_below_assets
+        & _not_melting                                      # not an active capital-destroyer
+    ).fillna(False).astype(int)
+
     # NEW (user request): Hidden-asset overcapitalized balance sheet — a
     # BALANCE-SHEET-NUANCE lens born from the valuation QC work. The EV
     # composition gap (EV + broad_cash - mcap - debt, as % of mcap) measures
@@ -5043,6 +5075,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_oak_deep_value',
         'arch_oak_nav_discount',
         'arch_oak_asset_floor',
+        'arch_crisis_asset_backed_recovery',
         'arch_hidden_assets',
         'arch_overdepreciated_assets',
         'arch_understated_earnings',
@@ -5204,6 +5237,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_oak_deep_value': 'OakDeepValue',
         'arch_oak_nav_discount': 'OakNAVDiscount',
         'arch_oak_asset_floor': 'OakAssetFloor',
+        'arch_crisis_asset_backed_recovery': 'Cundill-CrisisRecovery',
         'arch_hidden_assets': 'HiddenAssets-Overcap',
         'arch_overdepreciated_assets': 'Forensic-OverDepreciated',
         'arch_understated_earnings': 'Forensic-UnderstatedE',
