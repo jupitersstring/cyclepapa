@@ -6148,8 +6148,16 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # depreciation IS economic (obsolescence, maintenance), so add back only
     # HALF, and never more than the tangible book itself — an estimate that
     # can narrow a discount, not manufacture one.
+    # (audit-2) DATA-DRIVEN guard, robust to coarse GICS labels (this master
+    # labels every REIT "Equity", so a "Mortgage" exclusion can never fire):
+    # the add-back is only meaningful where PROPERTY is a material share of the
+    # balance sheet. Below 20% (mortgage REITs, net-lease vehicles whose
+    # properties sit in lease receivables — LOAN, BMNM, VICI, GLPI) it is
+    # immaterial or mis-targeted, so it is not applied.
+    _re_prop_share = (_ncol('ppe_gross') / _ncol('assets').where(_ncol('assets') > 0))
     _re_navback = (0.50 * _ncol('accumulated_depreciation').clip(lower=0).fillna(0)
-                   ).clip(upper=_teq_ab.clip(lower=0).fillna(0)).where(_is_re_ab, 0.0)
+                   ).clip(upper=_teq_ab.clip(lower=0).fillna(0)) \
+                   .where(_is_re_ab & (_re_prop_share >= 0.20), 0.0)
     df['adjusted_book'] = (_teq_ab + _adj_hidden + _re_navback).round(0)
     _adjb = df['adjusted_book']
     df['adjusted_pb'] = (mcap / _adjb.where(_adjb > 0)).round(3)
