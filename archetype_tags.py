@@ -5950,9 +5950,23 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((_dq_eq > _dq_as * 1.02) & _dq_eq.notna() & _dq_as.notna())      # equity > assets
         | ((_dq_teq > _dq_eq * 1.02) & (_dq_eq > 0))                      # tangible equity > equity
         | ((_dq_cash > _dq_as * 1.02) & _dq_cash.notna() & _dq_as.notna())  # cash > assets
-        | ((_dq_eb > _dq_rev * 2.0) & (_dq_rev > 0))                      # EBITDA > 2x revenue
+        # (audit-2) EBITDA > 2x revenue is a broken-ledger tell for an OPERATING
+        # company only: a financial / REIT / utility books investment gains and
+        # spread income outside "revenue", so the leg over-fired on 63 of 219
+        # (29% financials) and falsely demoted 80 names above \$1B. The three
+        # balance-sheet identity legs above are never legitimately violated and
+        # stay universal.
+        | ((_dq_eb > _dq_rev * 2.0) & (_dq_rev > 0) & is_operating)       # EBITDA > 2x revenue (operating only)
     ).fillna(False).astype(int)
     _dq_ok = (1 - df['data_quality_flag']).astype(float)
+    # (audit-2 P0) the VALUE-UNLOCK family was not DQ-gated — DDI, NNDM, PXLW,
+    # ACON leaked into the Value-Unlock tab. Gate it at the SOURCE so every
+    # consumer (tab, archetype_count, truly-XR tells) inherits it.
+    if 'value_unlock_score' in df.columns:
+        df['value_unlock_score'] = (df['value_unlock_score'] * _dq_ok).round(3)
+    for _vc in ('value_unlock_confirmed', 'arch_xr_value_unlock'):
+        if _vc in df.columns:
+            df[_vc] = (df[_vc].fillna(0).astype(int) * (1 - df['data_quality_flag'])).astype(int)
 
     _fx_mc = mcap.where(mcap > 0)
     _cap2 = lambda x: x.clip(lower=0, upper=2.0)      # floor at 0 (assets only), cap so no artifact dominates
@@ -6123,7 +6137,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # schedule, so book UNDERSTATES NAV. Add back the accumulated depreciation
     # (the non-economic charge) — the analyst-standard NAV proxy — so a property
     # company is measured against its true asset value, not a depreciated stub.
-    _is_re_ab = sector.astype(str).str.contains('Real Estate', case=False, na=False)
+    # (audit-2) EQUITY REITs only: a MORTGAGE REIT's assets are MBS/loans, not
+    # depreciating property, so the add-back is meaningless there (NLY/Annaly
+    # was the one remaining sub-1 flip, and a false one).
+    _is_re_ab = (sector.astype(str).str.contains('Real Estate', case=False, na=False)
+                 & ~_ind_all.str.contains('mortgage', na=False))
     # (audit #9) full accumulated depreciation is NOT a defensible NAV substitute
     # (no NOI / cap rate / maintenance capex behind it): 8 names flipped from
     # P/B >= 1 to adjusted < 1 on this leg alone ($85B aggregate). Some

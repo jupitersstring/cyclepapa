@@ -240,7 +240,11 @@ def _not_warrant(d):
     regex the methodology audit uses to bar these from archetype flags."""
     s = d['symbol'].astype(str).str.upper()
     return ~(
-        s.str.match(r'^[A-Z]{3,4}[WUR]$')
+        # (audit-2) 5-char SPAC derivatives only (4-letter base + W/U/R, e.g.
+        # IPOAW / IPOAU / IPOAR). The old {3,4} span also matched 4-char COMMON
+        # stocks — Charter (CHTR), Netgear (NTGR), Comscore (SCOR), Clarus
+        # (CLAR), Pixelworks (PXLW) — and falsely demoted them from every tab.
+        s.str.match(r'^[A-Z]{4}[WUR]$')
         | s.str.contains(r'\.WT$|\.U$|-WT$|-UN$|-RT$', regex=True)
         | s.str.match(r'^[A-Z]{1,5}-P[A-Z]?$')                  # GS-PD, RNR-PG, TEN-PE
         | s.str.contains(r'\.PR\.[A-Z]$', regex=True)            # BAC.PR.B
@@ -708,7 +712,12 @@ def main():
     if args.nnwc_tab and 'nnwc_pct_mcap' in df_full.columns:
         _np = pd.to_numeric(df_full['nnwc_pct_mcap'], errors='coerce')
         _dq = pd.to_numeric(df_full.get('data_quality_flag'), errors='coerce').fillna(0)
-        qn = df_full[(_np >= 1.0) & (_dq == 0) & _not_warrant(df_full)].copy()
+        # (audit-2) a \$20M size floor, matching the Adjusted P/B tab: with no
+        # floor, zombie shells with \$2K-\$38K caps (YYAI, LIPO, MGAM) showed
+        # 430-976x "NNWC/mcap" — a division artefact, not a net-net.
+        _qmc = pd.to_numeric(df_full.get('market_cap_usd'), errors='coerce').fillna(
+            pd.to_numeric(df_full.get('market_cap'), errors='coerce'))
+        qn = df_full[(_np >= 1.0) & (_dq == 0) & (_qmc >= 20e6) & _not_warrant(df_full)].copy()
         if 'is_price_ghost' in qn.columns:
             qn = qn[~(pd.to_numeric(qn['is_price_ghost'], errors='coerce') == 1)]
         if not qn.empty:
