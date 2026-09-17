@@ -5958,7 +5958,21 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # stay universal.
         | ((_dq_eb > _dq_rev * 2.0) & (_dq_rev > 0) & is_operating)       # EBITDA > 2x revenue (operating only)
     ).fillna(False).astype(int)
-    _dq_ok = (1 - df['data_quality_flag']).astype(float)
+    # (audit-2) ELIGIBILITY for the forensic / truly-XR / value-unlock family =
+    # clean ledger AND a COMMON-equity line. Warrants, units, rights and
+    # preferreds (NIOBW, VAL-WT, GENVR) carry a tiny CLASS market cap, so
+    # dividing whole-company hidden value by it manufactures a top-250 score
+    # — the very inflation the ledger audit was about. These are SCORES, not
+    # arch_ flags, so the audit's "no flags on non-common lines" check never
+    # covered them; gate them here at the source so every consumer inherits it.
+    _sym_u = df['symbol'].astype(str).str.upper()
+    _noncommon = (_sym_u.str.match(r'^[A-Z]{4}[WUR]$')                          # 5-char SPAC W/U/R
+                  | _sym_u.str.contains(r'\.WT$|\.U$|-WT$|-UN$|-RT$', regex=True)
+                  | _sym_u.str.match(r'^[A-Z]{1,5}-P[A-Z]?$')                     # preferred
+                  | _sym_u.str.contains(r'\.PR\.[A-Z]$|-PR[-.]?[A-Z]?$|-P[A-Z]?\.[A-Z]{1,3}$', regex=True)
+                  ).fillna(False)
+    _dq_bad = (df['data_quality_flag'] == 1) | _noncommon
+    _dq_ok = (~_dq_bad).astype(float)
     # (audit-2 P0) the VALUE-UNLOCK family was not DQ-gated — DDI, NNDM, PXLW,
     # ACON leaked into the Value-Unlock tab. Gate it at the SOURCE so every
     # consumer (tab, archetype_count, truly-XR tells) inherits it.
@@ -5966,7 +5980,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         df['value_unlock_score'] = (df['value_unlock_score'] * _dq_ok).round(3)
     for _vc in ('value_unlock_confirmed', 'arch_xr_value_unlock'):
         if _vc in df.columns:
-            df[_vc] = (df[_vc].fillna(0).astype(int) * (1 - df['data_quality_flag'])).astype(int)
+            df[_vc] = (df[_vc].fillna(0).astype(int) * (~_dq_bad).astype(int)).astype(int)
 
     _fx_mc = mcap.where(mcap > 0)
     _cap2 = lambda x: x.clip(lower=0, upper=2.0)      # floor at 0 (assets only), cap so no artifact dominates
@@ -6084,7 +6098,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                             * (_truly_cheap & _truly_eligible).astype(float)
                             * _dq_ok).round(3)
     df['truly_xr_flag'] = ((_tell_count >= 3) & _truly_cheap & _truly_eligible
-                           & (df['data_quality_flag'] == 0)).astype(int)
+                           & ~_dq_bad).astype(int)
     # human-readable breakdown: which gap-groups fire (mechanical marked *).
     # Vectorised elementwise string build (per-row .iloc over 14 groups x 46k
     # rows was needlessly slow).
