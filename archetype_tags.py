@@ -5797,6 +5797,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _is_noncommon = (
         _sym_nc.str.match(r'^[A-Z]{1,5}-P[A-Z]?$')
         | _sym_nc.str.match(r'^[A-Z]{1,5}[-.](?:WT|WS|U|UN|R|RT)$')
+        # (audit-2) BARE 5-char SPAC derivatives — a 4-letter base + W (warrant)
+        # / U (unit) / R (rights), Nasdaq's 5th-letter convention with NO
+        # separator: SBCWW, COLAU, HAVAU, MBAVU, EVLVW, ANNAW, TDDWW. 29 of them
+        # carried archetype flags (SBCWW fired a sub-book archetype on a
+        # warrant's class market cap) because only the separator forms were
+        # caught. Exactly 5 characters, so 4-char common stocks ending in
+        # W/U/R (Charter CHTR, Netgear NTGR, Comscore SCOR) are NOT matched.
+        | _sym_nc.str.match(r'^[A-Z]{4}[WUR]$')
         # (R7) suffixed foreign/Canadian preferred lines the anchored US
         # pattern misses — kept narrow so exchange suffixes (.PA Paris, .PR
         # never terminal here) are NOT caught: TICK.PR.G, TICK-PR-A, TICK PFD.
@@ -6058,13 +6066,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # — the very inflation the ledger audit was about. These are SCORES, not
     # arch_ flags, so the audit's "no flags on non-common lines" check never
     # covered them; gate them here at the source so every consumer inherits it.
-    _sym_u = df['symbol'].astype(str).str.upper()
-    _noncommon = (_sym_u.str.match(r'^[A-Z]{4}[WUR]$')                          # 5-char SPAC W/U/R
-                  | _sym_u.str.contains(r'\.WT$|\.U$|-WT$|-UN$|-RT$', regex=True)
-                  | _sym_u.str.match(r'^[A-Z]{1,5}-P[A-Z]?$')                     # preferred
-                  | _sym_u.str.contains(r'\.PR\.[A-Z]$|-PR[-.]?[A-Z]?$|-P[A-Z]?\.[A-Z]{1,3}$', regex=True)
-                  ).fillna(False)
-    _dq_bad = (df['data_quality_flag'] == 1) | _noncommon
+    # single source of truth: the same _is_noncommon the archetype scrub uses
+    _dq_bad = (df['data_quality_flag'] == 1) | _is_noncommon.fillna(False)
     _dq_ok = (~_dq_bad).astype(float)
     # (audit-2 P0) the VALUE-UNLOCK family was not DQ-gated — DDI, NNDM, PXLW,
     # ACON leaked into the Value-Unlock tab. Gate it at the SOURCE so every

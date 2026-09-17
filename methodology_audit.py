@@ -412,6 +412,10 @@ def _integrity(t, g):
         _s = t["symbol"].astype(str)
         _ncmask = (_s.str.match(r"^[A-Z]{1,5}-P[A-Z]?$")
                    | _s.str.match(r"^[A-Z]{1,5}[-.](?:WT|WS|U|UN|R|RT)$")
+                   # (audit-2) bare 5-char SPAC derivatives (4-letter base + W/U/R,
+                   # no separator): SBCWW, COLAU, EVLVW slipped past the
+                   # separator-only forms and carried archetype flags
+                   | _s.str.match(r"^[A-Z]{4}[WUR]$")
                    | _s.str.contains(r"\.PR\.[A-Z]$", regex=True)
                    | _s.str.contains(r"-PR[-.]?[A-Z]?$", regex=True)
                    | _s.str.contains(r"-P[A-Z]?\.[A-Z]{1,3}$", regex=True))
