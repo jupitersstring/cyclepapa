@@ -376,9 +376,11 @@ def _facts_unit_iter(facts: dict, concept: str, unit: str = "USD"):
     info = _safe_get(facts, "ifrs-full", concept, "units", unit)
     if info:
         return _valid_current_obs(info)
-    # dei carries the cover-page share count (the most reliable one)
+    # dei carries the cover-page share count (the most reliable one). It goes
+    # through the SAME current/valid guard: this was the path that leaked the
+    # audit's future-dated share contexts (ASLE 2034, AXR 2033, THM 2033).
     info = _safe_get(facts, "dei", concept, "units", unit)
-    return info or []
+    return _valid_current_obs(info) if info else []
 
 
 def latest_point_value(facts: dict, aliases: list[str], unit: str = "USD"):
