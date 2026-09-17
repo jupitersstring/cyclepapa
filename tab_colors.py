@@ -68,6 +68,7 @@ ARCH_FAMILY = {
     # deep value / asset floor
     'arch_oak_asset_floor': 'deep_value', 'arch_oak_deep_value': 'deep_value',
     'arch_crisis_asset_backed_recovery': 'deep_value',
+    'arch_cluseau_realizable_book': 'deep_value', 'arch_cluseau_buyback_accel': 'deep_value',
     'arch_oak_nav_discount': 'deep_value', 'arch_oak_deleveraging': 'deep_value',
     'arch_oak_resource_leverage': 'deep_value', 'arch_oak_order_conversion': 'deep_value',
     'arch_negative_ev_value': 'deep_value', 'arch_tangible_value': 'deep_value',

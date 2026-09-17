@@ -2333,6 +2333,95 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & _not_melting                                      # not an active capital-destroyer
     ).fillna(False).astype(int)
 
+    # ---------- Cluseau — "Identifying, Structuring and Sizing" ----------
+    # (cluseau.com) The framework's central forensic claim: cheapness is a
+    # SCREEN, not a thesis. A sub-book multiple is worth something only when
+    #   (a) the BOOK IS REALIZABLE — cash and securities, not plant that cannot
+    #       be sold "absent a massive discount", and not a book that is
+    #       repeatedly impaired; and
+    #   (b) MANAGEMENT ACTUALLY RETURNS IT — a company "squatting on cash" or
+    #       "touting a significant discount to book while doing nothing to
+    #       address the discount" is a value TRAP (Gravity: ~1x tangible book,
+    #       almost the whole cap in cash, zero payout, 1.5%/yr for five years).
+    # Capital allocation "distinguishes value investments from value traps".
+    # Two positive archetypes carry the affirmative pattern; three flags carry
+    # the article's disqualifiers (surfaced, never used to null a value).
+    # DATA LIMITS (documented, not faked): the article's insider-alignment
+    # ratio (insider $ / executive compensation, >5x healthy) needs proxy-
+    # statement pay that XBRL does not carry — ownership and Form-4 buying, its
+    # other alignment tells, already live in governance_score. There is no
+    # marketable-securities line (realizability uses CASH alone, conservative),
+    # no cash trend (deployment is read from a cash-LIGHT balance sheet beside a
+    # real buyback pace), and no impairment history.
+    _cl_ptb = _ncol('p_tb'); _cl_teq = _ncol('tangible_equity')
+    _cl_cash = _ncol('cash'); _cl_by = _ncol('buyback_yield').fillna(0)
+    _cl_dy = _ncol('dividend_yield').fillna(0); _cl_sy = _ncol('shares_yoy')
+    _cl_s3 = _ncol('shares_3y_cagr'); _cl_cpm = _ncol('cash_pct_mcap')
+    _cl_ni = _ncol('net_income_ttm'); _cl_cfo = _ncol('cfo_ttm')
+    _cl_capex = _ncol('capex_ttm').abs()
+    _cl_profitable = ((_cl_ni > 0) | (_ncol('ni_avg') > 0) | (fcf_yield > 0)).fillna(False)
+    # capital actually being RETURNED: a buyback, a dividend, or a shrinking count
+    _cl_returning = ((_cl_by >= 0.01) | (_cl_dy >= 0.01) | (_cl_sy < -0.01)).fillna(False)
+    # REALIZABLE share of the tangible book (cash over tangible equity)
+    _cl_realizable = (_cl_cash / _cl_teq.where(_cl_teq > 0))
+
+    # (1) REALIZABLE-BOOK DISCOUNT — deep sub-tangible-book (article: <0.5-0.6x)
+    #     where the book is CASH, not un-sellable plant, AND it is being returned.
+    #     Distinct from arch_tangible_value (P/TB<0.7 alone tests neither
+    #     realizability nor return) and from a net-net (cash > market cap).
+    df['arch_cluseau_realizable_book'] = (
+        is_operating & (mcap >= 20e6)
+        & (_cl_ptb > 0) & (_cl_ptb < 0.6)
+        & (_cl_realizable >= 0.50)                  # >= half the tangible book is cash
+        & _cl_returning & _cl_profitable & _not_melting
+    ).fillna(False).astype(int)
+
+    # (2) BUYBACKS ACCELERATING INTO A DISCOUNT WITH CASH DEPLOYED — the Georgia
+    #     Capital pattern (3% -> 5% -> 7% of shares repurchased a year, cash run
+    #     from 20% to 3% of the balance sheet, buying hardest into weakness).
+    #     Distinct from arch_cannibal_at_discount (which only asks for a shrink
+    #     below book) by requiring ACCELERATION — this year's shrink faster than
+    #     the 3-year trend — a >= 3% pace, and a cash-LIGHT balance sheet.
+    _cl_accel = ((_cl_sy < 0) & ((_cl_sy - _cl_s3) <= -0.01)).fillna(False)
+    df['arch_cluseau_buyback_accel'] = (
+        is_operating & (mcap >= 20e6)
+        & (_cl_ptb > 0) & (_cl_ptb < 1.0)
+        & (_cl_by >= 0.03) & _cl_accel
+        & ~(_cl_sy < -0.30)                         # a -30% collapse is a restructuring, not a buyback
+        & (_cl_cpm <= 0.15)                         # cash deployed, not squatted
+        & _cl_profitable & _not_melting
+    ).fillna(False).astype(int)
+
+    # DISQUALIFIER FLAGS
+    # cash squatter — sub-book, cash-rich, EARNING, and returning NOTHING: the
+    # article's canonical value trap (GRVY). "Distrust companies touting a
+    # discount to book while doing nothing to address it."
+    df['cash_squatter_flag'] = (
+        (_cl_ptb > 0) & (_cl_ptb < 1.0) & (_cl_cpm >= 0.30) & _cl_profitable
+        & (_cl_by <= 0.005) & (_cl_dy <= 0.005) & ~(_cl_sy < -0.005)
+    ).fillna(False).astype(int)
+    # capex treadmill — "if a company's earnings are plowed into capex just to
+    # remain competitive, assign a discount": capex >= 80% of operating cash.
+    df['capex_treadmill_flag'] = (
+        (_cl_cfo > 0) & (_cl_capex >= 0.80 * _cl_cfo)
+    ).fillna(False).astype(int)
+    # earnings variability — "wildly variable earnings will consistently trade
+    # at a discount to the market" (ZIM): earnings fell in at least half the
+    # years AND the current print sits far from the multi-year average.
+    _cl_niavg = _ncol('ni_avg')
+    df['earnings_variability_flag'] = (
+        (_ncol('eps_yoy_positive_share') <= 0.5)
+        & (((_cl_ni - _cl_niavg).abs() > 0.5 * _cl_niavg.abs()) | (_cl_niavg <= 0))
+    ).fillna(False).astype(int)
+    # SIZING tier — the article sizes emerging-market / geopolitical-tail-risk
+    # names as a 0.5-1% STARTER and scales in on weakness ("there is a price for
+    # everything"; "easier to explain losing money on Apple than getting zeroed
+    # on a Georgian conglomerate"). A screen cannot size, but it can label.
+    _cl_em = df['src'].astype(str).str.upper().isin(
+        {'CN', 'HK', 'IN', 'BR', 'TR', 'ZA', 'ID', 'MY', 'TH', 'AR', 'CL', 'MX',
+         'GR', 'RO', 'SA', 'TW', 'KR', 'PL', 'HU', 'CZ'})
+    df['cluseau_sizing_tier'] = np.where(_cl_em, 'starter 0.5-1% (tail risk)', 'standard')
+
     # NEW (user request): Hidden-asset overcapitalized balance sheet — a
     # BALANCE-SHEET-NUANCE lens born from the valuation QC work. The EV
     # composition gap (EV + broad_cash - mcap - debt, as % of mcap) measures
@@ -5076,6 +5165,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_oak_nav_discount',
         'arch_oak_asset_floor',
         'arch_crisis_asset_backed_recovery',
+        'arch_cluseau_realizable_book',
+        'arch_cluseau_buyback_accel',
         'arch_hidden_assets',
         'arch_overdepreciated_assets',
         'arch_understated_earnings',
@@ -5238,6 +5329,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_oak_nav_discount': 'OakNAVDiscount',
         'arch_oak_asset_floor': 'OakAssetFloor',
         'arch_crisis_asset_backed_recovery': 'Cundill-CrisisRecovery',
+        'arch_cluseau_realizable_book': 'Cluseau-RealizableBook',
+        'arch_cluseau_buyback_accel': 'Cluseau-BuybackAccel',
         'arch_hidden_assets': 'HiddenAssets-Overcap',
         'arch_overdepreciated_assets': 'Forensic-OverDepreciated',
         'arch_understated_earnings': 'Forensic-UnderstatedE',
@@ -6204,7 +6297,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
-    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','governance_score','governance_tier','insider_distinct_buyers','insider_net_buy_value','insider_officer_buy_flag','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','segment_rot_flag','data_quality_flag','holdco_flag','china_vie_flag','adjusted_book','adjusted_pb','nnwc','nnwc_pct_mcap','nnwc_asset_mix','xr_family_count','xr_confidence','xr_score','forensic_hidden_pct','forensic_xr_score','value_unlock_score','value_unlock_confirmed','pre_rerating_quality','pre_rerating_score','pre_rerating_flag','truly_xr_score','truly_xr_flag','truly_xr_tell_count','truly_xr_mech_count','truly_xr_tells_str','spin_date','reorg_date']
+    out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','governance_score','governance_tier','insider_distinct_buyers','insider_net_buy_value','insider_officer_buy_flag','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','segment_rot_flag','data_quality_flag','holdco_flag','china_vie_flag','cash_squatter_flag','capex_treadmill_flag','earnings_variability_flag','cluseau_sizing_tier','adjusted_book','adjusted_pb','nnwc','nnwc_pct_mcap','nnwc_asset_mix','xr_family_count','xr_confidence','xr_score','forensic_hidden_pct','forensic_xr_score','value_unlock_score','value_unlock_confirmed','pre_rerating_quality','pre_rerating_score','pre_rerating_flag','truly_xr_score','truly_xr_flag','truly_xr_tell_count','truly_xr_mech_count','truly_xr_tells_str','spin_date','reorg_date']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m','segment_count','fastest_segment_yoy','is_price_ghost'] if c in df.columns]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)

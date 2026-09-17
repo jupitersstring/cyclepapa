@@ -365,7 +365,8 @@ def _integrity(t, g):
                   | _tsec.str.contains("utilit"))
         for _ac in ("arch_negative_ev_value", "arch_tangible_value",
                     "arch_oak_asset_floor", "arch_strong_coverage",
-                    "arch_crisis_asset_backed_recovery"):
+                    "arch_crisis_asset_backed_recovery",
+                    "arch_cluseau_realizable_book", "arch_cluseau_buyback_accel"):
             if _ac in t.columns:
                 leak = ((n(t, _ac) == 1) & _finre).sum()
                 check(f"integrity: {_ac} excludes Financials/REITs/Utilities",
@@ -583,6 +584,7 @@ def _regression(t, g):
                 "arch_discounted_vehicle", "arch_net_cash_returner",
                 "arch_negative_ev_value", "arch_oak_deep_value",
                 "arch_oak_asset_floor", "arch_crisis_asset_backed_recovery",
+                "arch_cluseau_realizable_book", "arch_cluseau_buyback_accel",
                 "arch_diversified_segments",
                 "arch_no_dilution", "arch_lindy_fcf", "arch_owner_operator",
                 "arch_wolf_seal", "arch_levered_inflection",

@@ -74,6 +74,8 @@ ARCHETYPE_LABELS = {
     'arch_kullamagie_breakout': 'Kullamagi Breakout',
     'arch_cundill_deep_value': 'Cundill Deep Value',
     'arch_crisis_asset_backed_recovery': 'Cundill Recovery — Crisis Asset-Backed (Sibir-type)',
+    'arch_cluseau_realizable_book': 'Cluseau Realizable-Book Discount (cash book, being returned)',
+    'arch_cluseau_buyback_accel': 'Cluseau Buybacks Accelerating into Discount (cash deployed)',
     'arch_biotech_deep_value': 'Biotech Deep Value (below cash)',
     'arch_low_sbc_quality': 'Low-SBC Quality',
     'arch_tax_efficient': 'Tax Efficient',
