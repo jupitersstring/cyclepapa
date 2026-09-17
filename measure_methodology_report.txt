@@ -1,4 +1,4 @@
-METHODOLOGY AUDIT — 203 checks, 0 FAIL, 0 WARN
+METHODOLOGY AUDIT — 207 checks, 0 FAIL, 0 WARN
   PASS  units: dividend_yield is a fraction  — median |dividend_yield| = 0.028 (fraction-scale cap 1.5)
   PASS  units: fcf_yield is a fraction  — median |fcf_yield| = 0.068 (fraction-scale cap 3.0)
   PASS  units: analyst_target_upside_pct is a fraction  — median |analyst_target_upside_pct| = 0.260 (fraction-scale cap 5.0)
@@ -30,7 +30,7 @@ METHODOLOGY AUDIT — 203 checks, 0 FAIL, 0 WARN
   PASS  gating: analyst_rerating_score is 0 outside arch_analyst_rerating_confirmed  — 0 non-firers with positive score
   PASS  gating: asleep_score is 0 outside arch_asleep_at_wheel  — 0 non-firers with positive score
   PASS  gating: seg_inflect_score is 0 outside arch_fastest_segment  — 0 non-firers with positive score
-  PASS  density: archetype_count_pct <= 1  — max 0.275
+  PASS  density: archetype_count_pct <= 1  — max 0.272
   PASS  units: insider_ownership_pct is a fraction (<= 1.05)  — 0 percent-scale stragglers
   PASS  integrity: lynch signal rows all match the header schema  — 0 ragged rows
   PASS  integrity: country benchmarks are live (<=62d old)  — stale/empty: []
@@ -42,6 +42,8 @@ METHODOLOGY AUDIT — 203 checks, 0 FAIL, 0 WARN
   PASS  integrity: arch_oak_asset_floor excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities in arch_oak_asset_floor
   PASS  integrity: arch_strong_coverage excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities in arch_strong_coverage
   PASS  integrity: arch_crisis_asset_backed_recovery excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities in arch_crisis_asset_backed_recovery
+  PASS  integrity: arch_cluseau_realizable_book excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities in arch_cluseau_realizable_book
+  PASS  integrity: arch_cluseau_buyback_accel excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities in arch_cluseau_buyback_accel
   PASS  integrity: no positive EV/EBITDA on negative EBITDA  — 0 loss-makers with a cheap-looking ev_ebitda
   PASS  integrity: no clinical biotech in fundamental archetypes  — 0 clinical biotech in fundamental archetypes
   PASS  integrity: no archetype flags on sub-$2M micro-shells  — 0 sub-$2M shells firing archetypes
@@ -124,6 +126,8 @@ METHODOLOGY AUDIT — 203 checks, 0 FAIL, 0 WARN
   PASS  regression(tail): arch_oak_deep_value carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
   PASS  regression(tail): arch_oak_asset_floor carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
   PASS  regression(tail): arch_crisis_asset_backed_recovery carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_cluseau_realizable_book carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
+  PASS  regression(tail): arch_cluseau_buyback_accel carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
   PASS  regression(tail): arch_diversified_segments carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
   PASS  regression(tail): arch_no_dilution carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
   PASS  regression(tail): arch_lindy_fcf carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
