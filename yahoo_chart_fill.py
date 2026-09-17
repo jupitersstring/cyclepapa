@@ -69,20 +69,27 @@ def fetch_chart(symbol: str, timeout: int = 4) -> dict | None:
     r0 = res[0]
     meta = r0.get("meta") or {}
     ind = r0.get("indicators") or {}
-    quotes = (ind.get("adjclose") or [{}])[0].get("adjclose") or \
-             (ind.get("quote") or [{}])[0].get("close")
-    if not quotes:
+    # (audit #8) RAW close and ADJUSTED close have separate roles. The old
+    # code preferred adjclose and stored it as `price`, then derived market
+    # cap from it — but adjclose is back-adjusted for dividends/splits and is
+    # NOT what the share trades at. PRICE (-> market cap) must be the RAW
+    # close; MOMENTUM and the 52w drawdown are RETURN measures, so they use
+    # the ADJUSTED series (total-return-consistent).
+    quotes_adj = (ind.get("adjclose") or [{}])[0].get("adjclose") or []
+    quotes_raw = (ind.get("quote") or [{}])[0].get("close") or []
+    adj = [c for c in quotes_adj if c is not None]   # drop pre-listing Nones
+    raw = [c for c in quotes_raw if c is not None]
+    if not adj and not raw:
         return None
-    # Drop None values (early in the series before listing date)
-    closes = [c for c in quotes if c is not None]
-    if not closes:
-        return None
-    last = float(closes[-1])
-    first = float(closes[0])
-    high_52w = max(closes)
+    series = adj if adj else raw                     # return series (adjusted)
+    last = float(series[-1])
+    first = float(series[0])
+    high_52w = max(series)
+    last_raw = float(raw[-1]) if raw else last       # price basis (raw close)
     return {
         "symbol": symbol,
-        "price": last,
+        "price": last_raw,
+        "adj_close": last,
         "momentum_12m": (last - first) / first if first else None,
         "pct_off_52w_high": (last - high_52w) / high_52w if high_52w else None,
         "price_52w_high": high_52w,
@@ -101,6 +108,10 @@ def main():
                     help="CSV to source the symbol universe from")
     ap.add_argument("--out", default="yahoo_chart_fill.csv")
     ap.add_argument("--workers", type=int, default=8)
+    ap.add_argument("--max-age-days", type=float, default=30.0,
+                    help="(audit #8) refetch a cached symbol once its fetched_at is "
+                         "older than this many days (TTL); previously cached rows "
+                         "were skipped forever")
     ap.add_argument("--refresh", action="store_true",
                     help="ignore existing output and refetch all symbols")
     ap.add_argument("--limit", type=int, default=0,
@@ -129,16 +140,33 @@ def main():
         existing = {r["symbol"]: r.to_dict() for _, r in ex.iterrows()}
         print(f"  {len(existing):,} symbols already fetched (resuming)", file=sys.stderr)
 
-    todo = [s for s in symbols if s not in existing]
+    # (audit #8) TTL REFRESH. The old resume logic skipped every already-
+    # fetched symbol FOREVER (99.4% of the 40,757-row cache was >30 days old,
+    # 88% >60 days), so "resumed" runs refreshed nothing. A cached row is now
+    # STALE once its fetched_at is older than --max-age-days and is refetched;
+    # fresh rows are kept. --refresh still forces a full refetch.
+    _now = time.time()
+    _max_age = float(args.max_age_days) * 86400.0
+    def _stale(row):
+        fa = row.get("fetched_at")
+        try:
+            return (fa is None) or pd.isna(fa) or (_now - float(fa)) > _max_age
+        except Exception:
+            return True
+    stale = {s for s, r in existing.items() if _stale(r)}
+    todo = [s for s in symbols if s not in existing or s in stale]
     if args.limit:
         todo = todo[:args.limit]
-    print(f"  todo: {len(todo):,} symbols", file=sys.stderr)
+    print(f"  todo: {len(todo):,} symbols ({len(stale):,} stale > {args.max_age_days}d)",
+          file=sys.stderr)
 
     if not todo and not args.refresh:
         print("nothing to fetch", file=sys.stderr)
         return
 
-    results = list(existing.values()) if not args.refresh else []
+    # keep the FRESH cached rows; stale ones are replaced by the refetch
+    results = ([r for s, r in existing.items() if s not in stale]
+               if not args.refresh else [])
     failed = 0
     start = time.time()
 

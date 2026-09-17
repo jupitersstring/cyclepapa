@@ -64,15 +64,33 @@ PYEOF
 done
 
 # ---- Phase 2: apply + re-render (once) ----
+# (audit #10) STAGED BUILD WITH FAIL-FAST. The old driver ignored every exit
+# code, downgraded a methodology-audit FAILURE to a log line, kept rendering
+# after a build failed, then `git add -A` + pushed whatever was on disk —
+# i.e. it could PUBLISH PARTIAL OR BROKEN OUTPUT. Now every step's exit code
+# is tracked; a failed audit or a failed build marks the run FAILED, and the
+# commit/push at the end runs ONLY when every step succeeded.
+set -o pipefail
+FAILED=0
+run_step() {   # run_step <label> <cmd...>  — logs, tracks failure, never aborts mid-run
+    local label="$1"; shift
+    echo "$(ts) driver: $label" >> "$DRIVER_LOG"
+    if ! "$@" >> "$DRIVER_LOG" 2>&1; then
+        echo "$(ts) driver: STEP FAILED — $label" >> "$DRIVER_LOG"
+        FAILED=1
+    fi
+}
 echo "$(ts) driver: applying Yahoo fundamentals + re-rendering" >> "$DRIVER_LOG"
-"$PYTHON" apply_ticker_yf.py >> "$DRIVER_LOG" 2>&1
-"$PYTHON" fill_asymmetry_gaps.py >> "$DRIVER_LOG" 2>&1
-"$PYTHON" derive_missing_columns.py >> "$DRIVER_LOG" 2>&1
-"$PYTHON" rebuild_scores.py >> "$DRIVER_LOG" 2>&1   # FX+dedup+rescore (audit fix)
-"$PYTHON" methodology_audit.py >> "$DRIVER_LOG" 2>&1 || echo "METHODOLOGY AUDIT FAILED — books may reflect broken measures" >> "$DRIVER_LOG"
-"$PYTHON" enrich_asymmetry_global.py >> "$DRIVER_LOG" 2>&1
-"$PYTHON" sec_insider_buys.py 2>/dev/null || true; "$PYTHON" archetype_tags.py >> "$DRIVER_LOG" 2>&1
-"$PYTHON" enrich_asymmetry_global.py >> "$DRIVER_LOG" 2>&1
+run_step "apply_ticker_yf"        "$PYTHON" apply_ticker_yf.py
+run_step "fill_asymmetry_gaps"    "$PYTHON" fill_asymmetry_gaps.py
+run_step "derive_missing_columns" "$PYTHON" derive_missing_columns.py
+run_step "rebuild_scores"         "$PYTHON" rebuild_scores.py   # FX+dedup+rescore
+run_step "enrich (pre-tags)"      "$PYTHON" enrich_asymmetry_global.py
+"$PYTHON" sec_insider_buys.py >> "$DRIVER_LOG" 2>&1 || true      # best-effort feed
+run_step "archetype_tags"         "$PYTHON" archetype_tags.py
+run_step "enrich (post-tags)"     "$PYTHON" enrich_asymmetry_global.py
+# The methodology audit is a HARD GATE on the master the books will read.
+run_step "methodology_audit (HARD GATE)" "$PYTHON" methodology_audit.py
 
 echo "$(ts) driver: rebuilding workbooks" >> "$DRIVER_LOG"
 for cmd in \
@@ -93,15 +111,23 @@ for cmd in \
     "build_country_archetype_inflection_book.py --min-mcap 2e9 --min-names 10 --out country_archetype_inflection_midcap_plus.xlsx" \
     "top_n_by_country.py --n 30 --otc-mode otc --out-csv top_n_otc.csv --out-xlsx top_n_otc.xlsx" \
     "top_n_by_country.py --n 30 --high-filter any --out-csv top_n_52w_high.csv --out-xlsx top_n_52w_high.xlsx" ; do
-    echo "$(ts) driver:   $cmd" >> "$DRIVER_LOG"
-    $PYTHON $cmd >> "$DRIVER_LOG" 2>&1
+    run_step "build: $cmd" $PYTHON $cmd
 done
 
+if [ "$FAILED" -ne 0 ]; then
+  # (audit #10) never publish a partial/broken render: no sentinel, no commit,
+  # no push. Leave a FAILED marker so the next session sees it.
+  date > "${SENTINEL}.FAILED"
+  echo "$(ts) driver: RUN FAILED — one or more steps failed; NOT committing or pushing" >> "$DRIVER_LOG"
+  exit 1
+fi
+rm -f "${SENTINEL}.FAILED"
 date > "$SENTINEL"
-echo "$(ts) driver: DONE — sentinel written" >> "$DRIVER_LOG"
+echo "$(ts) driver: DONE — all steps succeeded; sentinel written" >> "$DRIVER_LOG"
 
 # Persist the rendered outputs — this driver previously never committed,
 # so a container reclaim silently discarded every re-rendered artifact.
+# Reached ONLY when the audit passed and every build succeeded.
 git add -A 2>/dev/null
 if ! git diff --cached --quiet 2>/dev/null; then
   git commit -q -m "Ticker-yf refresh: regenerate workbooks

@@ -107,6 +107,8 @@ def main() -> int:
     fill_cols = ["symbol", "price", "momentum_12m", "pct_off_52w_high"]
     if "currency" in fill.columns:
         fill_cols.append("currency")
+    if "fetched_at" in fill.columns:   # (audit #8) freshness drives overwrite
+        fill_cols.append("fetched_at")
     suff = "__y"
     merged = df.merge(
         fill[fill_cols],
@@ -118,8 +120,19 @@ def main() -> int:
              else merged.get("currency", pd.Series("", index=merged.index)))
     _pence = _qcur.astype(str).str.upper().isin(["GBP_PENCE", "GBX"]) |         _qcur.astype(str).eq("GBp")
 
-    # --- price / momentum_12m / pct_off_52w_high : fill-don't-overwrite -----
-    filled = {}
+    # --- price / momentum_12m / pct_off_52w_high --------------------------
+    # (audit #8) The old rule was fill-don't-overwrite, so a stale master
+    # value was never refreshed even when the chart cache held a fresher one.
+    # Now: a FRESH Yahoo row (fetched within FRESH_MAX_AGE_DAYS) OVERWRITES
+    # the tape fields — the chart is the tape authority; a stale Yahoo row
+    # only fills a gap. The source timestamp is attached as price_fetched_at
+    # so every downstream reader can see how old the tape is.
+    FRESH_MAX_AGE_DAYS = 30.0
+    _fa = (pd.to_numeric(merged["fetched_at"], errors="coerce")
+           if "fetched_at" in merged.columns else pd.Series(float("nan"), index=merged.index))
+    import time as _time
+    _fresh = ((_time.time() - _fa) <= FRESH_MAX_AGE_DAYS * 86400.0).fillna(False)
+    filled, refreshed = {}, {}
     for col in ("price", "momentum_12m", "pct_off_52w_high"):
         ycol = col + suff
         if ycol not in merged.columns:
@@ -130,9 +143,16 @@ def main() -> int:
         yahoo_col = pd.to_numeric(merged[ycol], errors="coerce")
         was_null = master_col.isna()
         will_fill = was_null & yahoo_col.notna()
-        merged.loc[will_fill, col] = yahoo_col[will_fill]
+        will_refresh = (~was_null) & yahoo_col.notna() & _fresh
+        merged.loc[will_fill | will_refresh, col] = yahoo_col[will_fill | will_refresh]
         merged.drop(columns=[ycol], inplace=True)
         filled[col] = int(will_fill.sum())
+        refreshed[col] = int(will_refresh.sum())
+    if "fetched_at" in merged.columns:
+        merged["price_fetched_at"] = _fa
+        merged.drop(columns=["fetched_at"], inplace=True)
+    print(f"  refreshed from fresh chart rows (<= {FRESH_MAX_AGE_DAYS:.0f}d): {refreshed}",
+          file=sys.stderr)
 
     # --- market_cap derivation ----------------------------------------------
     price_num = pd.to_numeric(merged["price"], errors="coerce")

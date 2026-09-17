@@ -236,6 +236,184 @@ def main():
     # being asset-cheap. 0.90 keeps the deep-value UPSIDE (up to 1.5x) while
     # cutting the size penalty; pairs with the earnings/solvency downside
     # legs so large caps aren't penalised for size.
+    # (audit P0-1, belt-and-braces) RECOMPUTE market_cap_bucket from the current
+    # USD cap on EVERY enrich pass. asymmetry_rank.py now recomputes it too, but
+    # enrich is the last writer on every driver path, so a stale label can never
+    # survive to the books even on a refresh that skips the rank step.
+    if 'market_cap' in df.columns:
+        _bc = pd.to_numeric(df.get('market_cap_usd'), errors='coerce') \
+            if 'market_cap_usd' in df.columns else pd.Series(np.nan, index=df.index)
+        _bc = _bc.fillna(pd.to_numeric(df['market_cap'], errors='coerce'))
+        _edges = [(50e6, 'Nano Cap'), (300e6, 'Micro Cap'), (2e9, 'Small Cap'),
+                  (10e9, 'Mid Cap'), (200e9, 'Large Cap'), (float('inf'), 'Mega Cap')]
+        def _to_bucket(v):
+            if pd.isna(v) or v <= 0:
+                return None
+            for lim, lab in _edges:
+                if v < lim:
+                    return lab
+        _newb = _bc.apply(_to_bucket)
+        _chg = int((df.get('market_cap_bucket').astype(str) != _newb.astype(str)).sum()) \
+            if 'market_cap_bucket' in df.columns else len(df)
+        df['market_cap_bucket'] = _newb
+        print(f'  bucket recompute from USD cap: {_chg:,} labels changed', file=sys.stderr)
+
+    # (audit #7) The FINAL INTEGRITY GATE now runs HERE — BEFORE the score
+    # multipliers and every dependent score — so entry_today_asymmetry,
+    # archetype_asymmetry_score and convergence_score derive from the
+    # CORRECTED inputs (repaired P/B, market caps, 52w tape, scale). It used
+    # to run last: a workbook could show a corrected input beside a score
+    # computed from the pre-correction value.
+
+    # ---- FINAL INTEGRITY GATE (last writer before the master lands) ----
+    import numpy as _np
+    # 1. Pence-minted .L market caps: mcap == price*shares with an ABSURD
+    #    mcap/revenue (>100x) — Celtic at £21B, Investec at £644B. Plenty of
+    #    .L rows legitimately satisfy mcap==p*s (internationals quoting in
+    #    EUR/USD/GBP: Compass, IHG, Glanbia) so the revenue test is the
+    #    discriminator, not the ratio alone. Null rather than re-import the
+    #    minted value from the source files on every enrich.
+    _p = pd.to_numeric(df.get('price'), errors='coerce')
+    _sh = pd.to_numeric(df.get('shares_outstanding'), errors='coerce')
+    _mc = pd.to_numeric(df.get('market_cap'), errors='coerce')
+    _rv = pd.to_numeric(df.get('revenue_ttm'), errors='coerce')
+    _ratio = _mc / (_p * _sh)
+    _minted = (df['symbol'].astype(str).str.endswith('.L')
+               & _ratio.between(0.5, 2.0)
+               & ((_mc / _rv > 100) | (_rv.isna() & (_p >= 200))))
+    if _minted.any():
+        print(f'  final gate: nulled {int(_minted.sum())} pence-minted .L '
+              f'mcaps: {df.loc[_minted, "symbol"].tolist()[:6]}', file=sys.stderr)
+        df.loc[_minted, ['market_cap', 'market_cap_usd']] = _np.nan
+
+    # 2. 52w freshness: quote-time pct_off_52w_high goes stale while the
+    #    lynch drive owns Yahoo (UTZ at its 52w high displayed as -48%).
+    #    Where the per-name lynch tape is live, its pct_52w_high overrides.
+    try:
+        _ls = pd.read_csv('lynch_reward_signals.csv',
+                          usecols=['symbol', 'pct_52w_high', 'stale_tape',
+                                   'last_bar_age_days']).drop_duplicates('symbol')
+        _ls = df[['symbol']].merge(_ls, on='symbol', how='left')
+        _lp = pd.to_numeric(_ls['pct_52w_high'], errors='coerce').values
+        _stale = pd.to_numeric(_ls['stale_tape'], errors='coerce').fillna(0).values
+        _age = pd.to_numeric(_ls['last_bar_age_days'], errors='coerce').values
+        _fresh = (~_np.isnan(_lp)) & (_stale != 1) & (_np.isnan(_age) | (_age <= 21))
+        _cur = pd.to_numeric(df['pct_off_52w_high'], errors='coerce').values
+        df['pct_off_52w_high'] = _np.where(_fresh, _lp - 1.0, _cur)
+        print(f'  final gate: refreshed pct_off_52w_high from live lynch tape '
+              f'on {int(_fresh.sum())} rows', file=sys.stderr)
+    except Exception as _e:
+        print(f'  final gate: 52w refresh skipped ({_e})', file=sys.stderr)
+
+    # ----- exchange-suffix -> src correction -----
+    # src comes from WHICH SCAN FILE a name appeared in, so a line scanned in
+    # the wrong batch lands on the wrong COUNTRY TAB (042420.KQ, a KOSDAQ line,
+    # was tagged src=JP and topped Japanese tabs). Where the suffix reliably
+    # marks the HOME/PRIMARY market, override src from it. DELIBERATELY EXCLUDED:
+    # Frankfurt (.F) and the German regional exchanges (.HM/.MU/.BE/.SG/.DU) and
+    # Xetra (.DE) — those venues host thousands of foreign UNSPONSORED
+    # SECONDARY listings, so mapping them to DE would scatter foreign ghosts
+    # onto the German tab (where within-country dedup can't collapse them). This
+    # map is only home-primary venues with low foreign-secondary contamination.
+    _SUFFIX_SRC = {
+        '.KQ': 'KR', '.KS': 'KR', '.T': 'JP', '.BK': 'TH', '.SI': 'SG',
+        '.HK': 'HK', '.SS': 'CN', '.SZ': 'CN', '.JK': 'ID', '.NS': 'IN',
+        '.BO': 'IN', '.AX': 'AU', '.NZ': 'NZ', '.MI': 'IT', '.TO': 'CA',
+        '.V': 'CA', '.SA': 'BR', '.MC': 'ES', '.ST': 'SE', '.OL': 'NO',
+        '.CO': 'DK', '.HE': 'FI', '.WA': 'PL', '.TA': 'IL', '.KL': 'MY',
+        '.L': 'UK', '.PA': 'FR', '.AS': 'NL', '.SW': 'CH', '.BR': 'BE',
+        '.AT': 'GR', '.VI': 'AT', '.IS': 'TR', '.BD': 'HU', '.PR': 'CZ',
+        '.IC': 'IS', '.LS': 'PT', '.MX': 'MX',
+        # NOTE: .F (Frankfurt) and .DE (Xetra) intentionally OMITTED — they host
+        # thousands of foreign unsponsored secondaries; mapping them to DE would
+        # flood the German tab with foreign ghosts.
+    }
+    if 'src' in df.columns:
+        _sym_s = df['symbol'].astype(str)
+        _sfx = _sym_s.str.extract(r'(\.[A-Z]{1,2})$', expand=False)
+        _should = _sfx.map(_SUFFIX_SRC)
+        _fixmask = _should.notna() & (df['src'].astype(str) != _should)
+        if _fixmask.any():
+            df.loc[_fixmask, 'src'] = _should[_fixmask]
+            print(f'  final gate: corrected src by exchange suffix on '
+                  f'{int(_fixmask.sum())} lines (e.g. .KQ scanned in a JP batch)',
+                  file=sys.stderr)
+
+    # Final data-integrity sanitizers (apply_ticker_yf re-fetches raw Yahoo
+    # values that bypass the derive-layer guards — these caught 291 impossible
+    # FCF yields, 35 zero/neg market caps, 13 absurd div yields on 2026-09-08).
+    _fy = pd.to_numeric(df.get('fcf_yield'), errors='coerce')
+    df['fcf_yield'] = _fy.where(_fy <= 1.0)                      # >100% = ADR fx mismatch
+    _dy = pd.to_numeric(df.get('dividend_yield'), errors='coerce')
+    df['dividend_yield'] = _dy.where(_dy <= 0.40)                # >40% = stale/preferred
+    # P/B corruption (ADR/units mismatch put Berkshire at pb=0.001, Asian
+    # banks at <0.005) — recompute from mcap_usd/equity where that's sane,
+    # else null; a <0.05x-book going concern is a data artifact, not value.
+    _pb = pd.to_numeric(df.get('pb'), errors='coerce')
+    _eq = pd.to_numeric(df.get('equity'), errors='coerce')
+    # (audit F2) LOCAL mcap over LOCAL equity — the USD numerator over a
+    # statement-currency denominator was the same mixing class this
+    # repair exists to fix
+    _mc0 = pd.to_numeric(df.get('market_cap'), errors='coerce')
+    _impl = (_mc0 / _eq.where(_eq > 0))
+    _impl = _impl.where((_impl >= 0.1) & (_impl <= 20))
+    _pb_corrupt = (_pb > 0) & (_pb < 0.05)
+    if _pb_corrupt.any():
+        df['pb'] = _pb.where(~_pb_corrupt, _impl)
+        print(f'  final gate: repaired {int(_pb_corrupt.sum())} corrupt pb '
+              f'(<0.05x book, ADR/units)', file=sys.stderr)
+    if 'p_tb' in df.columns:
+        _ptb = pd.to_numeric(df['p_tb'], errors='coerce')
+        df['p_tb'] = _ptb.where(~((_ptb > 0) & (_ptb < 0.05)))
+    # Sibling ratio artifacts (same ADR/units/pass-through class as pb):
+    # P/E<0.5 is impossible for sustainable earnings; a sub-0.02 sales
+    # multiple isn't genuine cheapness (units error or commodity pass-through).
+    _pe = pd.to_numeric(df.get('p_e'), errors='coerce')
+    df['p_e'] = _pe.where(~((_pe > 0) & (_pe < 0.5)))
+    _ps = pd.to_numeric(df.get('p_s'), errors='coerce')
+    df['p_s'] = _ps.where(~((_ps > 0) & (_ps < 0.02)))
+    _evs = pd.to_numeric(df.get('ev_sales'), errors='coerce')
+    df['ev_sales'] = _evs.where(~((_evs > 0) & (_evs < 0.02)))
+    # Impossible margins: gross margin CANNOT exceed revenue (>1.0); an
+    # ebitda/net margin >1.2 is non-operating income (one-off gains, holdco
+    # investment income) masquerading as an operating margin.
+    _gm = pd.to_numeric(df.get('gross_margin'), errors='coerce')
+    df['gross_margin'] = _gm.where(~(_gm > 1.0))
+    # ROCE/ROIC > 150% is a one-off-earnings / tiny-capital-base artifact
+    # (KROS a licensing windfall showed ROCE 207%) — not a sustainable return.
+    for _rc in ('roce', 'roic', 'roic_after_sbc', 'roe'):
+        if _rc in df.columns:
+            _rv = pd.to_numeric(df[_rc], errors='coerce')
+            df[_rc] = _rv.where(~(_rv > 1.5))
+    for _mc_ in ('ebitda_margin', 'net_margin', 'pretax_margin'):
+        if _mc_ in df.columns:
+            _mv = pd.to_numeric(df[_mc_], errors='coerce')
+            df[_mc_] = _mv.where(~(_mv > 1.2))
+
+    _mc = pd.to_numeric(df.get('market_cap_usd'), errors='coerce')
+    _pr = pd.to_numeric(df.get('price'), errors='coerce')
+    _bad_scale = (_mc <= 0) | (_pr <= 0)
+    for _c in ('market_cap_usd', 'market_cap', 'price'):
+        if _c in df.columns:
+            df.loc[_bad_scale.fillna(False), _c] = _np.nan
+    if _bad_scale.sum():
+        print(f'  final gate: nulled scale on {int(_bad_scale.sum())} '
+              f'zero/neg mcap-or-price rows', file=sys.stderr)
+
+    # 52w flag consistency: after refreshing pct_off_52w_high above, a stale
+    # high_52w_abs flag can disagree with the fresh percentage — turn the flag
+    # off where it now contradicts (>10% below high).
+    if 'high_52w_abs' in df.columns and 'pct_off_52w_high' in df.columns:
+        _hi = pd.to_numeric(df['high_52w_abs'], errors='coerce')
+        _offc = pd.to_numeric(df['pct_off_52w_high'], errors='coerce')
+        _clash = (_hi == 1) & (_offc < -0.10)
+        for _fc in ('high_52w_abs', 'high_52w_both'):
+            if _fc in df.columns:
+                df.loc[_clash.fillna(False), _fc] = 0
+
+    if 'name' in df.columns:
+        df['name'] = df['name'].astype(str).str.replace('\xa0', ' ', regex=False)
+
     intrinsic_boost = (1.0 + (df['intrinsic_discount'] - 0.25)).clip(0.90, 1.5)
 
     # ----- qual_mult + post_rally_factor -----
@@ -388,155 +566,6 @@ def main():
     front_existing = [c for c in df.columns if c not in new_cols]
     ordered = front_existing + [c for c in new_cols if c in df.columns]
     df = df[ordered]
-
-    # ---- FINAL INTEGRITY GATE (last writer before the master lands) ----
-    import numpy as _np
-    # 1. Pence-minted .L market caps: mcap == price*shares with an ABSURD
-    #    mcap/revenue (>100x) — Celtic at £21B, Investec at £644B. Plenty of
-    #    .L rows legitimately satisfy mcap==p*s (internationals quoting in
-    #    EUR/USD/GBP: Compass, IHG, Glanbia) so the revenue test is the
-    #    discriminator, not the ratio alone. Null rather than re-import the
-    #    minted value from the source files on every enrich.
-    _p = pd.to_numeric(df.get('price'), errors='coerce')
-    _sh = pd.to_numeric(df.get('shares_outstanding'), errors='coerce')
-    _mc = pd.to_numeric(df.get('market_cap'), errors='coerce')
-    _rv = pd.to_numeric(df.get('revenue_ttm'), errors='coerce')
-    _ratio = _mc / (_p * _sh)
-    _minted = (df['symbol'].astype(str).str.endswith('.L')
-               & _ratio.between(0.5, 2.0)
-               & ((_mc / _rv > 100) | (_rv.isna() & (_p >= 200))))
-    if _minted.any():
-        print(f'  final gate: nulled {int(_minted.sum())} pence-minted .L '
-              f'mcaps: {df.loc[_minted, "symbol"].tolist()[:6]}', file=sys.stderr)
-        df.loc[_minted, ['market_cap', 'market_cap_usd']] = _np.nan
-
-    # 2. 52w freshness: quote-time pct_off_52w_high goes stale while the
-    #    lynch drive owns Yahoo (UTZ at its 52w high displayed as -48%).
-    #    Where the per-name lynch tape is live, its pct_52w_high overrides.
-    try:
-        _ls = pd.read_csv('lynch_reward_signals.csv',
-                          usecols=['symbol', 'pct_52w_high', 'stale_tape',
-                                   'last_bar_age_days']).drop_duplicates('symbol')
-        _ls = df[['symbol']].merge(_ls, on='symbol', how='left')
-        _lp = pd.to_numeric(_ls['pct_52w_high'], errors='coerce').values
-        _stale = pd.to_numeric(_ls['stale_tape'], errors='coerce').fillna(0).values
-        _age = pd.to_numeric(_ls['last_bar_age_days'], errors='coerce').values
-        _fresh = (~_np.isnan(_lp)) & (_stale != 1) & (_np.isnan(_age) | (_age <= 21))
-        _cur = pd.to_numeric(df['pct_off_52w_high'], errors='coerce').values
-        df['pct_off_52w_high'] = _np.where(_fresh, _lp - 1.0, _cur)
-        print(f'  final gate: refreshed pct_off_52w_high from live lynch tape '
-              f'on {int(_fresh.sum())} rows', file=sys.stderr)
-    except Exception as _e:
-        print(f'  final gate: 52w refresh skipped ({_e})', file=sys.stderr)
-
-    # ----- exchange-suffix -> src correction -----
-    # src comes from WHICH SCAN FILE a name appeared in, so a line scanned in
-    # the wrong batch lands on the wrong COUNTRY TAB (042420.KQ, a KOSDAQ line,
-    # was tagged src=JP and topped Japanese tabs). Where the suffix reliably
-    # marks the HOME/PRIMARY market, override src from it. DELIBERATELY EXCLUDED:
-    # Frankfurt (.F) and the German regional exchanges (.HM/.MU/.BE/.SG/.DU) and
-    # Xetra (.DE) — those venues host thousands of foreign UNSPONSORED
-    # SECONDARY listings, so mapping them to DE would scatter foreign ghosts
-    # onto the German tab (where within-country dedup can't collapse them). This
-    # map is only home-primary venues with low foreign-secondary contamination.
-    _SUFFIX_SRC = {
-        '.KQ': 'KR', '.KS': 'KR', '.T': 'JP', '.BK': 'TH', '.SI': 'SG',
-        '.HK': 'HK', '.SS': 'CN', '.SZ': 'CN', '.JK': 'ID', '.NS': 'IN',
-        '.BO': 'IN', '.AX': 'AU', '.NZ': 'NZ', '.MI': 'IT', '.TO': 'CA',
-        '.V': 'CA', '.SA': 'BR', '.MC': 'ES', '.ST': 'SE', '.OL': 'NO',
-        '.CO': 'DK', '.HE': 'FI', '.WA': 'PL', '.TA': 'IL', '.KL': 'MY',
-        '.L': 'UK', '.PA': 'FR', '.AS': 'NL', '.SW': 'CH', '.BR': 'BE',
-        '.AT': 'GR', '.VI': 'AT', '.IS': 'TR', '.BD': 'HU', '.PR': 'CZ',
-        '.IC': 'IS', '.LS': 'PT', '.MX': 'MX',
-        # NOTE: .F (Frankfurt) and .DE (Xetra) intentionally OMITTED — they host
-        # thousands of foreign unsponsored secondaries; mapping them to DE would
-        # flood the German tab with foreign ghosts.
-    }
-    if 'src' in df.columns:
-        _sym_s = df['symbol'].astype(str)
-        _sfx = _sym_s.str.extract(r'(\.[A-Z]{1,2})$', expand=False)
-        _should = _sfx.map(_SUFFIX_SRC)
-        _fixmask = _should.notna() & (df['src'].astype(str) != _should)
-        if _fixmask.any():
-            df.loc[_fixmask, 'src'] = _should[_fixmask]
-            print(f'  final gate: corrected src by exchange suffix on '
-                  f'{int(_fixmask.sum())} lines (e.g. .KQ scanned in a JP batch)',
-                  file=sys.stderr)
-
-    # Final data-integrity sanitizers (apply_ticker_yf re-fetches raw Yahoo
-    # values that bypass the derive-layer guards — these caught 291 impossible
-    # FCF yields, 35 zero/neg market caps, 13 absurd div yields on 2026-09-08).
-    _fy = pd.to_numeric(df.get('fcf_yield'), errors='coerce')
-    df['fcf_yield'] = _fy.where(_fy <= 1.0)                      # >100% = ADR fx mismatch
-    _dy = pd.to_numeric(df.get('dividend_yield'), errors='coerce')
-    df['dividend_yield'] = _dy.where(_dy <= 0.40)                # >40% = stale/preferred
-    # P/B corruption (ADR/units mismatch put Berkshire at pb=0.001, Asian
-    # banks at <0.005) — recompute from mcap_usd/equity where that's sane,
-    # else null; a <0.05x-book going concern is a data artifact, not value.
-    _pb = pd.to_numeric(df.get('pb'), errors='coerce')
-    _eq = pd.to_numeric(df.get('equity'), errors='coerce')
-    # (audit F2) LOCAL mcap over LOCAL equity — the USD numerator over a
-    # statement-currency denominator was the same mixing class this
-    # repair exists to fix
-    _mc0 = pd.to_numeric(df.get('market_cap'), errors='coerce')
-    _impl = (_mc0 / _eq.where(_eq > 0))
-    _impl = _impl.where((_impl >= 0.1) & (_impl <= 20))
-    _pb_corrupt = (_pb > 0) & (_pb < 0.05)
-    if _pb_corrupt.any():
-        df['pb'] = _pb.where(~_pb_corrupt, _impl)
-        print(f'  final gate: repaired {int(_pb_corrupt.sum())} corrupt pb '
-              f'(<0.05x book, ADR/units)', file=sys.stderr)
-    if 'p_tb' in df.columns:
-        _ptb = pd.to_numeric(df['p_tb'], errors='coerce')
-        df['p_tb'] = _ptb.where(~((_ptb > 0) & (_ptb < 0.05)))
-    # Sibling ratio artifacts (same ADR/units/pass-through class as pb):
-    # P/E<0.5 is impossible for sustainable earnings; a sub-0.02 sales
-    # multiple isn't genuine cheapness (units error or commodity pass-through).
-    _pe = pd.to_numeric(df.get('p_e'), errors='coerce')
-    df['p_e'] = _pe.where(~((_pe > 0) & (_pe < 0.5)))
-    _ps = pd.to_numeric(df.get('p_s'), errors='coerce')
-    df['p_s'] = _ps.where(~((_ps > 0) & (_ps < 0.02)))
-    _evs = pd.to_numeric(df.get('ev_sales'), errors='coerce')
-    df['ev_sales'] = _evs.where(~((_evs > 0) & (_evs < 0.02)))
-    # Impossible margins: gross margin CANNOT exceed revenue (>1.0); an
-    # ebitda/net margin >1.2 is non-operating income (one-off gains, holdco
-    # investment income) masquerading as an operating margin.
-    _gm = pd.to_numeric(df.get('gross_margin'), errors='coerce')
-    df['gross_margin'] = _gm.where(~(_gm > 1.0))
-    # ROCE/ROIC > 150% is a one-off-earnings / tiny-capital-base artifact
-    # (KROS a licensing windfall showed ROCE 207%) — not a sustainable return.
-    for _rc in ('roce', 'roic', 'roic_after_sbc', 'roe'):
-        if _rc in df.columns:
-            _rv = pd.to_numeric(df[_rc], errors='coerce')
-            df[_rc] = _rv.where(~(_rv > 1.5))
-    for _mc_ in ('ebitda_margin', 'net_margin', 'pretax_margin'):
-        if _mc_ in df.columns:
-            _mv = pd.to_numeric(df[_mc_], errors='coerce')
-            df[_mc_] = _mv.where(~(_mv > 1.2))
-
-    _mc = pd.to_numeric(df.get('market_cap_usd'), errors='coerce')
-    _pr = pd.to_numeric(df.get('price'), errors='coerce')
-    _bad_scale = (_mc <= 0) | (_pr <= 0)
-    for _c in ('market_cap_usd', 'market_cap', 'price'):
-        if _c in df.columns:
-            df.loc[_bad_scale.fillna(False), _c] = _np.nan
-    if _bad_scale.sum():
-        print(f'  final gate: nulled scale on {int(_bad_scale.sum())} '
-              f'zero/neg mcap-or-price rows', file=sys.stderr)
-
-    # 52w flag consistency: after refreshing pct_off_52w_high above, a stale
-    # high_52w_abs flag can disagree with the fresh percentage — turn the flag
-    # off where it now contradicts (>10% below high).
-    if 'high_52w_abs' in df.columns and 'pct_off_52w_high' in df.columns:
-        _hi = pd.to_numeric(df['high_52w_abs'], errors='coerce')
-        _offc = pd.to_numeric(df['pct_off_52w_high'], errors='coerce')
-        _clash = (_hi == 1) & (_offc < -0.10)
-        for _fc in ('high_52w_abs', 'high_52w_both'):
-            if _fc in df.columns:
-                df.loc[_clash.fillna(False), _fc] = 0
-
-    if 'name' in df.columns:
-        df['name'] = df['name'].astype(str).str.replace('\xa0', ' ', regex=False)
 
     from master_versions import versioned_replace
     df.to_csv(args.asym + '.tmp', index=False)

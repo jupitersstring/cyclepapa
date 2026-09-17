@@ -5937,20 +5937,56 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # names — those carrying the most hidden value per dollar of price where the
     # VISIBLE business is ALSO cheap (the hidden value is then pure upside) and
     # not melting. All levels are USD (EDGAR) over USD-normalized mcap.
+    # (audit P0-2) DATA-QUALITY FLAG — computed HERE, BEFORE the forensic and
+    # truly-XR scores, so both can be gated on it. It previously ran after them
+    # and was never applied: 84 names failing the balance-sheet identity gate
+    # kept positive forensic scores (SPRO ranked #8 on 3.93). A row whose
+    # equity exceeds assets, whose tangible equity exceeds equity, whose cash
+    # exceeds assets, or whose EBITDA is 2x revenue has a broken ledger — no
+    # "hidden value" read on it is trustworthy. Flag, then zero the scores.
+    _dq_as = _ncol('assets'); _dq_eq = _ncol('equity'); _dq_teq = _ncol('tangible_equity')
+    _dq_cash = _ncol('cash'); _dq_rev = _ncol('revenue_ttm'); _dq_eb = _ncol('ebitda_ttm')
+    df['data_quality_flag'] = (
+        ((_dq_eq > _dq_as * 1.02) & _dq_eq.notna() & _dq_as.notna())      # equity > assets
+        | ((_dq_teq > _dq_eq * 1.02) & (_dq_eq > 0))                      # tangible equity > equity
+        | ((_dq_cash > _dq_as * 1.02) & _dq_cash.notna() & _dq_as.notna())  # cash > assets
+        | ((_dq_eb > _dq_rev * 2.0) & (_dq_rev > 0))                      # EBITDA > 2x revenue
+    ).fillna(False).astype(int)
+    _dq_ok = (1 - df['data_quality_flag']).astype(float)
+
     _fx_mc = mcap.where(mcap > 0)
     _cap2 = lambda x: x.clip(lower=0, upper=2.0)      # floor at 0 (assets only), cap so no artifact dominates
-    _fx_lifo    = _cap2(_ncol('lifo_reserve') / _fx_mc).fillna(0)
-    _fx_pension = _cap2(_ncol('pension_funded_status') / _fx_mc).fillna(0)   # only overfunding counts (clipped >=0)
-    # a DTA valuation allowance only monetizes if the company EARNS (a perpetual
-    # loss-maker's allowance never reverses) — count it only when profitable.
+    # (audit P0-3) RECONCILED LEDGER: count only REALIZABLE value that is NOT
+    # already in book, each leg ONCE, each haircut to what an owner actually
+    # receives. The old sum double-counted the equity-method stake, added a
+    # pension surplus that is already recognised in book, booked a DTA
+    # valuation allowance at face value, and treated RPO — future revenue that
+    # still needs future performance and cost — as a balance-sheet asset. In
+    # the top 250, 54 names drew >=50% of their score from DTA + RPO alone.
+    #  - LIFO reserve: its reversal is TAXABLE -> tax-effect at (1 - eff. rate)
+    _fx_tax     = _ncol('effective_tax_rate').clip(0, 0.5).fillna(0.25)
+    _fx_lifo    = _cap2(_ncol('lifo_reserve').clip(lower=0) * (1.0 - _fx_tax) / _fx_mc).fillna(0)
+    #  - DTA valuation allowance: it exists precisely because realisation is
+    #    judged NOT more-likely-than-not (ASC 740) -> 50% probability haircut,
+    #    and only when the company is actually earning (a perpetual loss-maker's
+    #    allowance never reverses).
     _fx_profitable = ((s('op_margin', np.nan) > 0) | (_num('roce') > 0)).fillna(False)
-    _fx_dta     = _cap2(_ncol('deferred_tax_valuation_allowance') / _fx_mc).where(_fx_profitable, 0).fillna(0)
-    _fx_equity  = _cap2(_ncol('equity_method_investments') / _fx_mc).fillna(0)         # off-BS stakes at cost
-    _fx_hidden  = _cap2(_hidden_pct.where(_fx_coherent)).fillna(0)                     # off-EV assets (fx-guarded)
-    # RPO valued CONSERVATIVELY as the gross profit embedded in the backlog
-    _fx_backlog = _cap2((_ncol('rpo') * s('gross_margin', np.nan)) / _fx_mc).fillna(0)
-    _forensic_hidden = (_fx_lifo + _fx_pension + _fx_dta + _fx_equity
-                        + _fx_hidden + _fx_backlog)
+    _fx_dta     = _cap2(0.50 * _ncol('deferred_tax_valuation_allowance') / _fx_mc).where(_fx_profitable, 0).fillna(0)
+    #  - equity-method stakes: the CARRYING value is on the balance sheet and is
+    #    already inside _hidden_pct (investments_associates) — adding the raw
+    #    stake here DOUBLE-COUNTED it (26 of the top 250 carried the identical
+    #    amount twice). The genuinely hidden part is the disclosed FAIR-VALUE
+    #    gap over carrying, so count em_fv_gap and nothing else.
+    _fx_emgap   = _cap2(_ncol('em_fv_gap').clip(lower=0) / _fx_mc).fillna(0)
+    _fx_hidden  = _cap2(_hidden_pct.where(_fx_coherent)).fillna(0)   # associates-at-carrying + net cash (fx-guarded)
+    #  - pension funded status is ALREADY RECOGNISED on the balance sheet
+    #    (ASC 715) -> adding it wholesale double-counts book. DROPPED.
+    #  - RPO is transaction price allocated to UNSATISFIED obligations: future
+    #    revenue requiring future performance and cost. It is an operating
+    #    forecast, NOT a realizable asset. DROPPED from the asset ledger (it
+    #    remains a SIGNAL for the contracted-backlog / deferred-revenue
+    #    archetypes, which is where a forecast belongs).
+    _forensic_hidden = (_fx_lifo + _fx_dta + _fx_emgap + _fx_hidden)
     # meaningless for financials/REITs (float / deposits distort every line)
     _forensic_hidden = _forensic_hidden.where(is_operating, 0.0)
     df['forensic_hidden_pct'] = _forensic_hidden.round(4)
@@ -5961,8 +5997,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # monetize the hidden value). x1.5 when the visible business is ALSO cheap.
     _fx_eligible = ((_ncol('market_cap_usd') >= 50e6) & _not_melting.fillna(False))
     _fx_cheap = np.where(_excellent_value.fillna(False).values, 1.5, 1.0)
+    # (audit P0-2) gated on the data-quality flag: a broken ledger earns no rank
     df['forensic_xr_score'] = (df['forensic_hidden_pct'] * _fx_cheap
-                               * _fx_eligible.astype(float)).round(4)
+                               * _fx_eligible.astype(float) * _dq_ok).round(4)
 
     # ===== TRULY-XR: forensic CONFLUENCE (the grossest, least-arbitraged
     # mispricings). Part II thesis: the biggest re-ratings are not one gap but
@@ -6025,11 +6062,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # score = independent tells x mechanical-catalyst upweight x cheapness, only
     # where tradeable/non-melting. Ranks the confluence; the flag is the >=3 bar.
     _truly_cheap_mult = np.where(_excellent_value.fillna(False).values, 1.5, 1.0)
+    # (audit P0-2) both gated on the data-quality flag (DDI survived into
+    # Truly-XR despite failing the balance-sheet identity gate)
     df['truly_xr_score'] = (_tell_count
                             * (1.0 + 0.20 * _mech_count)
                             * _truly_cheap_mult
-                            * (_truly_cheap & _truly_eligible).astype(float)).round(3)
-    df['truly_xr_flag'] = ((_tell_count >= 3) & _truly_cheap & _truly_eligible).astype(int)
+                            * (_truly_cheap & _truly_eligible).astype(float)
+                            * _dq_ok).round(3)
+    df['truly_xr_flag'] = ((_tell_count >= 3) & _truly_cheap & _truly_eligible
+                           & (df['data_quality_flag'] == 0)).astype(int)
     # human-readable breakdown: which gap-groups fire (mechanical marked *).
     # Vectorised elementwise string build (per-row .iloc over 14 groups x 46k
     # rows was needlessly slow).
@@ -6045,14 +6086,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # its level-based value signals are untrusted — flag it so value screens
     # (below-book, net-nets) can DEMOTE it rather than surface a corrupt-level
     # name as cheap. We flag, never null: the ratio may still be Yahoo-correct.
-    _dq_as = _ncol('assets'); _dq_eq = _ncol('equity'); _dq_teq = _ncol('tangible_equity')
-    _dq_cash = _ncol('cash'); _dq_rev = _ncol('revenue_ttm'); _dq_eb = _ncol('ebitda_ttm')
-    df['data_quality_flag'] = (
-        ((_dq_eq > _dq_as * 1.02) & _dq_eq.notna() & _dq_as.notna())      # equity > assets
-        | ((_dq_teq > _dq_eq * 1.02) & (_dq_eq > 0))                      # tangible equity > equity
-        | ((_dq_cash > _dq_as * 1.02) & _dq_cash.notna() & _dq_as.notna())  # cash > assets
-        | ((_dq_eb > _dq_rev * 2.0) & (_dq_rev > 0))                      # EBITDA > 2x revenue
-    ).fillna(False).astype(int)
+    # data_quality_flag is now computed EARLIER (before the forensic / truly-XR
+    # scores, so they can be gated on it — audit P0-2); nothing to recompute here.
 
     # HOLDCO flag (#3): material non-controlling interest means the consolidated
     # cash/assets include SUBSIDIARY value not freely distributable to the parent
@@ -6072,8 +6107,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # surplus, disclosed JV-stake fair-value gap) and net the pension DEFICIT —
     # the true P/B a naive screen misses. adjusted_pb = mcap / adjusted_book.
     _teq_ab = _ncol('tangible_equity')
-    _adj_hidden = (_ncol('lifo_reserve').clip(lower=0).fillna(0)
-                   + _ncol('pension_funded_status').fillna(0)               # signed: surplus adds, deficit subtracts
+    # (audit P0-3) pension funded status is ALREADY recognised in book (ASC
+    # 715) — adding it again double-counted; DROPPED. LIFO reversal is taxable
+    # — tax-effected. em_fv_gap is the fair-value gap OVER carrying, genuinely
+    # off-book, so it stays.
+    _ab_tax = _ncol('effective_tax_rate').clip(0, 0.5).fillna(0.25)
+    _adj_hidden = (_ncol('lifo_reserve').clip(lower=0).fillna(0) * (1.0 - _ab_tax)
                    + _ncol('em_fv_gap').clip(lower=0).fillna(0))
     # TYPE-APPROPRIATE book (per Cundill: value each on its OWN realizable book,
     # don't discard whole sectors). For a FINANCIAL the base already IS the right
@@ -6085,7 +6124,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # (the non-economic charge) — the analyst-standard NAV proxy — so a property
     # company is measured against its true asset value, not a depreciated stub.
     _is_re_ab = sector.astype(str).str.contains('Real Estate', case=False, na=False)
-    _re_navback = _ncol('accumulated_depreciation').clip(lower=0).fillna(0).where(_is_re_ab, 0.0)
+    # (audit #9) full accumulated depreciation is NOT a defensible NAV substitute
+    # (no NOI / cap rate / maintenance capex behind it): 8 names flipped from
+    # P/B >= 1 to adjusted < 1 on this leg alone ($85B aggregate). Some
+    # depreciation IS economic (obsolescence, maintenance), so add back only
+    # HALF, and never more than the tangible book itself — an estimate that
+    # can narrow a discount, not manufacture one.
+    _re_navback = (0.50 * _ncol('accumulated_depreciation').clip(lower=0).fillna(0)
+                   ).clip(upper=_teq_ab.clip(lower=0).fillna(0)).where(_is_re_ab, 0.0)
     df['adjusted_book'] = (_teq_ab + _adj_hidden + _re_navback).round(0)
     _adjb = df['adjusted_book']
     df['adjusted_pb'] = (mcap / _adjb.where(_adjb > 0)).round(3)

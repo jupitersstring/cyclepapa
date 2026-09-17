@@ -36,11 +36,13 @@ def load_data():
     # forensic_xr_score / forensic_hidden_pct live in the tags output
     if os.path.exists('archetype_tags.csv'):
         t = pd.read_csv('archetype_tags.csv', low_memory=False)
-        keep = ['symbol'] + [c for c in ('forensic_xr_score', 'forensic_hidden_pct')
-                             if c in t.columns]
-        df = df.drop(columns=[c for c in ('forensic_xr_score', 'forensic_hidden_pct')
-                              if c in df.columns], errors='ignore')
+        # (audit P0-2) carry the data-quality flag so DQ-failed rows are barred
+        _fcols = ('forensic_xr_score', 'forensic_hidden_pct', 'data_quality_flag')
+        keep = ['symbol'] + [c for c in _fcols if c in t.columns]
+        df = df.drop(columns=[c for c in _fcols if c in df.columns], errors='ignore')
         df = df.merge(t[keep].drop_duplicates('symbol'), on='symbol', how='left')
+        if 'data_quality_flag' in df.columns:
+            df = df[pd.to_numeric(df['data_quality_flag'], errors='coerce').fillna(0) != 1]
 
     # fresh verdicts (rolling diligence log wins over the enrich snapshot)
     frames = []

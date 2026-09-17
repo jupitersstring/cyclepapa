@@ -131,7 +131,15 @@ def load_candidates(min_mcap: float = 10_000_000, buckets=None) -> pd.DataFrame:
     # Universe gate: size buckets + mcap floor + RED excluded. Default is the
     # NMS small-cap universe; the mid-cap+ variant passes MIDPLUS_BUCKETS.
     _bkts = buckets if buckets is not None else NMS_BUCKETS
+    # (audit P0-1) ENFORCE the universe's numeric bound, never trust the label
+    # alone: the NMS book is "mcap < ~$2B" and the midcap+ book is ">= $2B",
+    # so gate on the USD cap directly. A stale bucket label can no longer
+    # admit a $24.6B name as "Nano Cap" or exclude a $1.5B name as "Mid Cap".
+    _is_midplus = buckets is not None and set(buckets) == MIDPLUS_BUCKETS
+    _cap_ok = ((df['market_cap'] >= 2e9) if _is_midplus
+               else (df['market_cap'] < 2e9))
     df = df[df['market_cap_bucket'].isin(_bkts)
+            & _cap_ok.fillna(False)
             & (df['market_cap'].fillna(0) >= min_mcap)
             & (df['verdict'] != 'RED')].copy()
 
@@ -142,15 +150,26 @@ def load_candidates(min_mcap: float = 10_000_000, buckets=None) -> pd.DataFrame:
     _bbs = pd.to_numeric(df.get('buyback_score'), errors='coerce').fillna(0.0)
     df['eta'] = _eta * (1.0 + 0.20 * _cfo + 0.10 * _bbs)
 
-    # Tier logic — same STRICT/STRONG/CANDIDATE semantics as the legacy
-    # producer, with the multi-arch gates rescaled to the 69-archetype
-    # taxonomy (2 -> 5, 1 -> 3; see module docstring).
-    ac = pd.to_numeric(df['archetype_count'], errors='coerce').fillna(0)
+    # Tier logic — STRICT/STRONG/CANDIDATE. (audit #6) The multi-archetype leg
+    # is a SHARE of the archetypes a row is ELIGIBLE for (archetype_count_pct
+    # = count / archetypes_eligible), NOT a raw count. The taxonomy is live
+    # (160 flags today, not the 69 the old fixed gate assumed) and rows differ
+    # in eligibility (EDGAR-covered names can fire every flag; non-EDGAR names
+    # only a subset), so a raw count of 5 over-represents fully-eligible rows
+    # 2.27x in STRICT. Thresholds keep the legacy intent (5-of-~160, 3-of-~160)
+    # but compare like with like across denominators.
+    _acp = pd.to_numeric(df.get('archetype_count_pct'), errors='coerce')
+    if _acp.isna().all():        # fallback if the pct column is absent
+        _ac_raw = pd.to_numeric(df['archetype_count'], errors='coerce').fillna(0)
+        _elig = pd.to_numeric(df.get('archetypes_eligible'), errors='coerce').fillna(160)
+        _acp = _ac_raw / _elig.where(_elig > 0)
+    _acp = _acp.fillna(0)
+    _STRICT_PCT, _MULTI_PCT = 5.0 / 160.0, 3.0 / 160.0
     cn = pd.to_numeric(df['cluster_n'], errors='coerce').fillna(0)
     asym = pd.to_numeric(df['asymmetry_score'], errors='coerce').fillna(0)
-    strict = (ac >= 5) & (cn >= 3) & (asym >= 0.40)
-    strong = (ac >= 3) & (cn >= 3) & (asym >= 0.35)
-    cand = (ac >= 3) | ((cn >= 4) & (asym >= 0.35))
+    strict = (_acp >= _STRICT_PCT) & (cn >= 3) & (asym >= 0.40)
+    strong = (_acp >= _MULTI_PCT) & (cn >= 3) & (asym >= 0.35)
+    cand = (_acp >= _MULTI_PCT) | ((cn >= 4) & (asym >= 0.35))
     df['tier'] = np.select([strict, strong, cand],
                            ['STRICT', 'STRONG', 'CANDIDATE'], default='')
     df = df[df['tier'] != ''].copy()
@@ -164,9 +183,12 @@ def load_candidates(min_mcap: float = 10_000_000, buckets=None) -> pd.DataFrame:
     for c in CSV_COLS:
         if c not in out.columns:
             out[c] = np.nan
-    out[CSV_COLS].to_csv('nms_multibagger_candidates.csv', index=False)
-    print(f'wrote nms_multibagger_candidates.csv: {len(out):,} rows',
-          file=sys.stderr)
+    # (audit P0-1) the midcap+ run must NOT overwrite the NMS CSV — the two
+    # universes are disjoint ($2B boundary), so each writes its own file.
+    _csv = ('nms_multibagger_candidates_midcap_plus.csv' if _is_midplus
+            else 'nms_multibagger_candidates.csv')
+    out[CSV_COLS].to_csv(_csv, index=False)
+    print(f'wrote {_csv}: {len(out):,} rows', file=sys.stderr)
     return df
 
 

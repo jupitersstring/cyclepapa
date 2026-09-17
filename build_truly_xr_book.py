@@ -31,7 +31,8 @@ from openpyxl.utils import get_column_letter
 
 
 TRULY_COLS = ['symbol', 'truly_xr_score', 'truly_xr_flag', 'truly_xr_tell_count',
-              'truly_xr_mech_count', 'truly_xr_tells_str', 'forensic_xr_score']
+              'truly_xr_mech_count', 'truly_xr_tells_str', 'forensic_xr_score',
+              'data_quality_flag']   # (audit P0-2) carried so DQ-failed rows are barred
 
 
 def load_data():
@@ -42,6 +43,8 @@ def load_data():
         df = df.drop(columns=[c for c in keep if c != 'symbol' and c in df.columns],
                      errors='ignore')
         df = df.merge(t[keep].drop_duplicates('symbol'), on='symbol', how='left')
+        if 'data_quality_flag' in df.columns:   # (audit P0-2) bar DQ-failed rows
+            df = df[pd.to_numeric(df['data_quality_flag'], errors='coerce').fillna(0) != 1]
 
     # fresh verdicts (rolling diligence log wins over the enrich snapshot)
     frames = []

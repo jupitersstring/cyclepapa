@@ -110,7 +110,9 @@ elif [ -f "$PROJECT_DIR/.deep_rendered" ] && [ -f "$PROJECT_DIR/.rest_rendered" 
     fi
     if [ -f "$PROJECT_DIR/yahoo_chart_fill.py" ] \
        && ! pgrep -f "yahoo_chart_fill.py" > /dev/null 2>&1; then
-        setsid nohup python3 "$PROJECT_DIR/yahoo_chart_fill.py" --workers 8 \
+        # (audit #8) --max-age-days makes the resume a TTL refresh: cached
+        # symbols older than 30d are refetched instead of skipped forever.
+        setsid nohup python3 "$PROJECT_DIR/yahoo_chart_fill.py" --workers 8 --max-age-days 30 \
             > "$PROJECT_DIR/yahoo_chart_fill.log" 2>&1 < /dev/null &
         disown $!
         echo "session-start-hook: resumed yahoo_chart_fill (PID $!)" >&2

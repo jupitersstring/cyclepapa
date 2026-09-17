@@ -86,7 +86,16 @@ def trim_facts(facts: dict) -> dict:
             for u, obs_list in units.items():
                 if not isinstance(obs_list, list):
                     continue
-                kept = [{k: o.get(k) for k in ("start", "end", "fp", "val")}
+                # (audit P0-5) RETAIN PROVENANCE. The old trim kept only
+                # start/end/fp/val, discarding `filed` (SEC filing date),
+                # `form` (10-K/10-Q/8-K...), `accn` (accession) and `frame`
+                # (the standard dimensional context). Without `filed` a
+                # selector cannot prefer the latest valid FILING or a
+                # restatement, cannot build a point-in-time snapshot, and
+                # cannot tell a genuine current fact from a forward schedule
+                # or dimensional disclosure whose context ends in the future.
+                kept = [{k: o.get(k) for k in ("start", "end", "fp", "val",
+                                                "filed", "form", "accn", "frame")}
                         for o in obs_list
                         if isinstance(o, dict) and o.get("end")
                         and int(str(o["end"])[:4]) >= cut_year]
@@ -317,6 +326,41 @@ def _safe_get(d, *path, default=None):
     return cur
 
 
+def _valid_current_obs(obs_list):
+    """(audit P0-5) Keep only observations that are CURRENT, VALID facts.
+
+    - Reject contexts ending in the FUTURE. A forward schedule or dimensional
+      disclosure (FUL DTA ending 2105, ASLE shares 2034, QPRC equity 2029,
+      RAIL RPO 2027) is not the current company-level fact, yet max-end
+      selection was treating it as one and it reached ranked workbooks.
+    - Reject anything FILED in the future.
+    - Among observations sharing the same (start, end) period — a RESTATEMENT
+      or re-report — keep the one with the LATEST `filed`, so the latest valid
+      filing wins. Degrades gracefully to keep-all when `filed` is absent (an
+      obs cache trimmed before provenance was retained).
+    """
+    today = datetime.now().strftime("%Y-%m-%d")
+    out, best_by_period = [], {}
+    for o in obs_list:
+        if not isinstance(o, dict):
+            continue
+        end = o.get("end")
+        if end and str(end) > today:
+            continue                       # future context: not a current fact
+        filed = o.get("filed")
+        if filed and str(filed) > today:
+            continue                       # filed in the future: invalid
+        if filed:
+            key = (o.get("start"), end)
+            prev = best_by_period.get(key)
+            if prev is None or str(filed) > str(prev.get("filed") or ""):
+                best_by_period[key] = o
+        else:
+            out.append(o)                  # no provenance: keep as-is
+    out.extend(best_by_period.values())
+    return out
+
+
 def _facts_unit_iter(facts: dict, concept: str, unit: str = "USD"):
     """Yield observations for a concept in the requested unit.
 
@@ -328,10 +372,10 @@ def _facts_unit_iter(facts: dict, concept: str, unit: str = "USD"):
     """
     info = _safe_get(facts, "us-gaap", concept, "units", unit)
     if info:
-        return info
+        return _valid_current_obs(info)
     info = _safe_get(facts, "ifrs-full", concept, "units", unit)
     if info:
-        return info
+        return _valid_current_obs(info)
     # dei carries the cover-page share count (the most reliable one)
     info = _safe_get(facts, "dei", concept, "units", unit)
     return info or []

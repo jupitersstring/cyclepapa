@@ -431,10 +431,17 @@ def main():
             return "Large Cap"
         return "Mega Cap"
 
-    if "market_cap_bucket" not in df.columns:
-        df["market_cap_bucket"] = None
-    backfill = df["market_cap"].apply(_mcap_to_bucket)
-    df["market_cap_bucket"] = df["market_cap_bucket"].fillna(backfill)
+    # (audit P0-1) RECOMPUTE the bucket from the CURRENT USD market cap on every
+    # run — never keep a stale populated bucket. The old fillna() only filled
+    # MISSING buckets, so a name whose cap had moved (or was bucketed in local
+    # currency) kept its old label: 31% of populated buckets disagreed with the
+    # numeric USD cap (MRV.TO $24.6B labelled Nano Cap). The thresholds are USD,
+    # so bucket on market_cap_usd, falling back to market_cap only when the USD
+    # figure is absent.
+    _bucket_cap = pd.to_numeric(df.get("market_cap_usd"), errors="coerce") \
+        if "market_cap_usd" in df.columns else pd.Series(np.nan, index=df.index)
+    _bucket_cap = _bucket_cap.fillna(pd.to_numeric(df["market_cap"], errors="coerce"))
+    df["market_cap_bucket"] = _bucket_cap.apply(_mcap_to_bucket)
 
     if args.buckets and "market_cap_bucket" in df.columns:
         keep_buckets = {b.strip() for b in args.buckets.split(",") if b.strip()}
