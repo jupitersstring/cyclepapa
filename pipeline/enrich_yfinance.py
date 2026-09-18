@@ -139,14 +139,35 @@ def fetch_one(tkr, session):
     _ev, _ebitda = fin(info.get("enterpriseValue")), fin(info.get("ebitda"))
     _ev_ebitda = fin(info.get("enterpriseToEbitda")) if (
         _ev and _ev > 0 and _ebitda and _ebitda > 0) else None
+    _mcap = fin(info.get("marketCap"))
+    _pb = fin(info.get("priceToBook"))
+    _ev_rev = fin(info.get("enterpriseToRevenue"))
+    _debt, _cash = fin(info.get("totalDebt")), fin(info.get("totalCash"))
+    # ADR currency mismatch: Yahoo returns marketCap/price in the TRADING
+    # currency (USD) but enterpriseValue/EBITDA/debt/cash/book in the company's
+    # REPORTING currency (e.g. TSM in TWD, 32x). Mixing them yields nonsense —
+    # TSM showed EV $15.4T (7x its $2.2T cap), P/B 88, EV/EBITDA 4.9. The tell is
+    # the accounting identity EV = mktcap + debt - cash, which holds within ONE
+    # currency but shatters when mktcap is the odd one out. (A merely LEVERAGED
+    # company — Hertz, Clear Channel — keeps the identity, so it is untouched.)
+    ev_suspect = False
+    if (_ev and _mcap and _mcap > 0 and _debt is not None and _cash is not None
+            and _ev > _mcap * 2.5):
+        implied = _mcap + _debt - _cash
+        if abs(_ev - implied) > 0.5 * abs(_ev):
+            ev_suspect = True
+    if ev_suspect:
+        _ev = None; _ev_ebitda = None; _ev_rev = None
+        if _pb is not None and _pb > 20:     # book was in the foreign currency too
+            _pb = None
     return {
         "mcap_m":   m(info.get("marketCap")),
-        "ev_m":     m(info.get("enterpriseValue")),
+        "ev_m":     (m(info.get("enterpriseValue")) if not ev_suspect else None),
         "ev_ebitda": _ev_ebitda,
-        "pb":       fin(info.get("priceToBook")),
+        "pb":       _pb,
         "pe":       fin(info.get("trailingPE")),
         "fwd_pe":   fin(info.get("forwardPE")),
-        "ev_rev":   fin(info.get("enterpriseToRevenue")),
+        "ev_rev":   _ev_rev,
         "peg":      fin(info.get("trailingPegRatio") or info.get("pegRatio")),
         "price":    fin(info.get("currentPrice") or info.get("regularMarketPrice")),
         "currency": info.get("currency"),
