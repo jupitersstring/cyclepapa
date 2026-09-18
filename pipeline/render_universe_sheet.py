@@ -185,7 +185,7 @@ def sheet_readme(wb, conn):
     n_hold = conn.execute("SELECT COUNT(*) FROM fund_13f_holdings").fetchone()[0]
     n_13f_funds = conn.execute("SELECT COUNT(DISTINCT fund) FROM fund_13f_holdings").fetchone()[0]
     write_title(ws,
-        "Cyclepapa — Universe Analysis",
+        "Smart-Money Universe Analysis",
         f"A data-driven ranking of the smart-money universe ({n_tk:,} tickers, {n_fd} funds, primary EDGAR sources).",
         1)
     ws.column_dimensions["A"].width = 92
@@ -1835,14 +1835,20 @@ def sheet_adversarial_review(wb, conn):
     ws.freeze_panes = "A4"
 
 def _one_liner(s, limit=200):
-    """Condense a stored business summary to a short one-liner for display."""
+    """Condense a stored business summary to a readable one-liner: the full
+    FIRST SENTENCE (never cut mid-word), only falling back to a hard cap if the
+    first sentence is unusually long."""
     if not s:
         return ""
     s = str(s).strip().replace("\n", " ")
     dot = s.find(". ")
-    if 0 < dot <= limit:
-        return s[:dot + 1]
-    return s if len(s) <= limit else s[:limit].rstrip() + "…"
+    if dot > 0 and dot + 1 <= 320:
+        return s[:dot + 1]                      # whole first sentence
+    if len(s) <= max(limit, 320):
+        return s
+    cut = s[:max(limit, 320)]
+    sp = cut.rfind(" ")                          # never end mid-word
+    return (cut[:sp] if sp > 0 else cut).rstrip() + "…"
 
 _DESC_CACHE = None
 def desc_for(conn, ticker):
@@ -1895,19 +1901,22 @@ def sheet_ticker_reference(wb, conn):
     out = []
     for r in rows:
         if r[0] in ETFs: continue
-        out.append([r[0], (r[1] or "")[:46], (r[2] or "")[:22],
-                    (r[3] or "")[:48], r[4] or "", _one_liner(r[5])])
+        # Business Summary is the LAST column, so full text overflows and reads
+        # in full — show the whole summary (not a truncated one-liner).
+        summ = (str(r[5]).strip().replace("\n", " ") if r[5] else "")
+        out.append([r[0], (r[1] or "")[:58], (r[2] or "")[:58],
+                    (r[3] or "")[:48], r[4] or "", summ])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=5).number_format = NUMFMT_MCAP
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 9
-    ws.column_dimensions["B"].width = 34
-    ws.column_dimensions["C"].width = 20
-    ws.column_dimensions["D"].width = 28
+    ws.column_dimensions["B"].width = 40
+    ws.column_dimensions["C"].width = 34
+    ws.column_dimensions["D"].width = 30
     ws.column_dimensions["E"].width = 12
-    ws.column_dimensions["F"].width = 100
+    ws.column_dimensions["F"].width = 120
 
 TAB_COLORS = {
     # Navigation / meta — lightest

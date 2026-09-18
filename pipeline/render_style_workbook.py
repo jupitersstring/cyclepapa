@@ -43,7 +43,7 @@ def sheet_readme(wb, conn):
     n_f = conn.execute("SELECT COUNT(*) FROM fund_style").fetchone()[0]
     n_s = conn.execute("SELECT COUNT(DISTINCT macro_style) FROM fund_style").fetchone()[0]
     write_title(ws,
-        "Cyclepapa — Style Analysis",
+        "Funds by Investing Style",
         f"Top picks within each fund style and size bucket. {n_f} funds in {n_s} macro styles.",
         1)
     ws.column_dimensions["A"].width = 92
@@ -619,13 +619,18 @@ def sheet_fund_roster(wb, conn):
     autosize(ws)
 
 def _one_liner(s, limit=200):
+    """Full first sentence (never cut mid-word); hard cap only as a fallback."""
     if not s:
         return ""
     s = str(s).strip().replace("\n", " ")
     dot = s.find(". ")
-    if 0 < dot <= limit:
+    if dot > 0 and dot + 1 <= 320:
         return s[:dot + 1]
-    return s if len(s) <= limit else s[:limit].rstrip() + "…"
+    if len(s) <= max(limit, 320):
+        return s
+    cut = s[:max(limit, 320)]
+    sp = cut.rfind(" ")
+    return (cut[:sp] if sp > 0 else cut).rstrip() + "…"
 
 _DESC_CACHE = None
 def desc_for(conn, ticker):

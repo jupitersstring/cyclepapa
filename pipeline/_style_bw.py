@@ -123,19 +123,18 @@ TITLE_HEIGHT = 26
 MEDIUM_BLK = Side(border_style="medium", color=BLACK)
 
 def write_title(ws, title, subtitle, ncols):
-    """Broadsheet masthead — an engraved nameplate: the title UPPERCASE bold with
-    a fleur-de-lis, over an italic-muted subline, closed by a MEDIUM black rule
-    (the 19th-century financial-broadsheet look of the Times-Lattice style guide)."""
+    """Plain heading: the title in normal body size (bold), over an italic-muted
+    subline, closed by a black rule. No oversized nameplate, no ornament."""
     ws.sheet_view.showGridLines = False
-    ws.row_dimensions[1].height = TITLE_HEIGHT
+    ws.row_dimensions[1].height = 16
     ws.merge_cells(f"A1:{get_column_letter(ncols)}1")
-    t = ws.cell(row=1, column=1, value="⚜  " + str(title).upper())   # ⚜ fleur + nameplate
-    t.font = TITLE_FONT
+    t = ws.cell(row=1, column=1, value=str(title))
+    t.font = Font(name=TNR, bold=True, size=SIZE_BODY + 1, color=BLACK)
     t.alignment = Alignment(horizontal="left", vertical="center")
-    # heavy rule directly under the nameplate
+    # rule directly under the title
     for col in range(1, ncols + 1):
-        ws.cell(row=1, column=col).border = Border(bottom=MEDIUM_BLK, top=NO_SIDE, left=NO_SIDE, right=NO_SIDE)
-    ws.row_dimensions[2].height = 16
+        ws.cell(row=1, column=col).border = Border(bottom=THIN_BLK, top=NO_SIDE, left=NO_SIDE, right=NO_SIDE)
+    ws.row_dimensions[2].height = 15
     ws.merge_cells(f"A2:{get_column_letter(ncols)}2")
     s = ws.cell(row=2, column=1, value=subtitle)
     s.font = SUBTITLE_FONT
