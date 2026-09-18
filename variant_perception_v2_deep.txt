@@ -1,0 +1,802 @@
+================================================================================
+ASYMMETRIC SETUPS — DEEP VARIANT PERCEPTION (v2, CORRECTED)
+With real numbers as of May 19, 2026
+================================================================================
+
+GENERATED: 2026-05-19
+SOURCE: Three deep-dive research dispatches (fundamentals + sell-side
+gap quantification) cross-checked against the 250-fund workbook.
+
+IMPORTANT CORRECTIONS FROM PRIOR DRAFT:
+  - NETD: DEAD. Delisted Dec 3, 2025 after failed e2Companies merger.
+    Public shares already redeemed at $11.34. Removed.
+  - MASI: CLOSED. Danaher $180/sh cash deal approved May 1, 2026; gross
+    spread now ~0.6%. Demoted to merger-arb only.
+  - HYMC: Stock has run from ~$2.71 → $34.52 (+1,055% YoY). Sell-side
+    PT $13 is stale, not active disagreement. Variant view repriced.
+  - JOE: Berkowitz is actively TRIMMING (Fairholme sold ~115k shares
+    May 5-11, 2026 at $65-66). Smart-money signal weakening at margin.
+  - TPL: Murray Stahl died April 7, 2026. Peter Doyle joined board
+    May 5. Horizon Kinetics keeps buying.
+
+
+--------------------------------------------------------------------------------
+THE FOUR-COLUMN FRAMEWORK
+--------------------------------------------------------------------------------
+
+For each setup:
+
+  PRICE NOW       Current quote, market cap, key cap-structure figures
+  SMART MONEY     Who, how much, just did what
+  CONSENSUS       Sell-side PT + buy/hold/sell mix
+  THE GAP         Sell-side implied return vs smart-money implied return
+                  (the quantified variant)
+
+Plus catalyst window in 90 days and variant strength 1-5.
+
+
+================================================================================
+TIER 1 — CLEANEST VARIANT PERCEPTIONS WITH QUANTIFIED GAPS
+================================================================================
+
+
+------- 1. LOGC (ContextLogic Holdings) ----------------------------------------
+
+PRICE NOW
+  Share price:          $8.00-$8.65 (OTCQB-listed since June 2025)
+  Market cap:           ~$395M (45.73M sh × $8.65)
+  Cash:                 $12M; restricted not separately disclosed
+  Long-term debt:       $209.8M
+  Stockholders equity:  $297.9M + $443.7M non-controlling interest = $741.6M
+  Float:                ~8.86M sh (very thin; ~80% locked at Abrams/BCP)
+  Short interest:       2.23% of float (negligible)
+  Avg daily volume:     158k sh
+
+US SALT BUSINESS (post-acquisition Feb 26, 2026)
+  FY2025 revenue:       $132.1M (+7.3% YoY)
+  FY2025 EBITDA:        $47.9M
+  FY2025 adj EBITDA:    $55.3M (41.9% margin)
+  FY2025 net income:    $11.2M
+  FY2025 gross margin:  37.1%
+
+OTHER ASSETS
+  Federal NOLs:         $2.9B (preserved via 4.9% ownership cap)
+  Implied PV of NOLs:   $300-400M (at $2.9B × 21% × 8% discount × time decay)
+
+SMART MONEY
+  Abrams Capital:       18.27M sh = 40.72%
+  BC Partners Credit:   29.09% + $75M preferred (4% pre / 8% post)
+  Legacy holders:       26.32% (Crestview-influenced)
+  Mgmt/rolling:         3.87%
+  Board:                Raja Bobbili Chairman; Paul Levy (JLL Partners) joined
+                        3/26/2026 with comp waived
+  Rights offering:      $115M at $8.00/sh fully backstopped by anchors
+
+CONSENSUS
+  Sell-side coverage:   NONE (uncovered OTCQB)
+  Implied PT:           N/A (consensus = 0%)
+
+THE GAP
+  Consensus return:     0% (uncovered)
+  Smart-money return:   +88% to +213% (bull case $15-25 fair value)
+  GAP:                  ~150 pp
+  Variant strength:     4/5
+
+WHAT THE MARKET BELIEVES
+  Dead Wish.com remnant. OTCQB illiquid. Tax-arbitrage skepticism.
+
+WHAT SMART MONEY BELIEVES
+  Permanent capital compounder structure. US Salt at 41.9% adj EBITDA
+  margin is a category-leading cash machine. $2.9B NOL preserved.
+  Berkshire-lite roll-up starting; market assigning zero value to NOL
+  or future acquisitions.
+
+90-DAY CATALYSTS
+  Next acquisition announcement: 30% prob, +10-20% if struck
+  AGM/proxy disclosures: 100%, minimal impact
+  Q2 2026 earnings (Aug): full quarter of US Salt consolidation
+
+RISK
+  Section 382 challenge: 10-15%, -$6.50/sh
+  OTCQB liquidity discount persistence: 70%+, perma -25-40%
+  Acquisition misstep: 20%
+
+
+------- 2. ARTV (Artiva Biotherapeutics) ---------------------------------------
+
+PRICE NOW
+  Share price:          $8.72 (May 19; down -5.42% intraday)
+  Market cap:           ~$425M (post-offering)
+  Enterprise value:     $366M pre-deal; effectively ~$200M post-cash
+  Cash post-offering:   ~$386M (after $300M May 8 raise)
+  Total debt:           $10M (negligible)
+  Net cash/share:       ~$7.60 of $8.72 = 87% covered by cash
+  Shares O/S:           ~50.7M fully diluted (post-offering + warrants)
+  52-week range:        $1.47 - $14.53 (extreme)
+  Short interest:       0.84% of float (low)
+
+KEY DATA POINT
+  May 8, 2026:          $300M offering priced at $11.52
+                         RA Capital deployed $100M of it
+                         CURRENT PRICE $8.72 = 24% BELOW RA's just-paid cost basis
+
+CLINICAL STATUS
+  May 8, 2026:          Positive Phase 2a AlloNK data
+                         71% ACR50 in refractory RA at >=6mo
+                         Complete deep B-cell depletion
+                         No CRS, ICANS, or treatment discontinuations
+                         FDA aligned on SINGLE Phase 3 registrational trial
+  Phase 3 design:       ~150 RA patients, 2:1 randomization
+                         ACR50 at 6mo primary endpoint
+                         Initiation expected within 2026
+  Cash runway:          ~3-4 years post-offering (through Phase 3 readout)
+
+SMART MONEY
+  RA Capital Management:    33.7% of co. / 16.4M sh after $100M buy
+                             Form 4 confirms purchase at $11.52
+  Other anchors in $300M:   Caligan, Adage, Viking, Venrock, Samsara,
+                             EcoR1, Blackstone, RTW, Blue Owl
+
+CONSENSUS
+  Coverage:                  5-6 analysts; STRONG BUY consensus
+  Median PT:                 $21-25
+  High PT:                   $35-40 (HC Wainwright raised to $35)
+  Low PT:                    $10
+
+THE GAP
+  Consensus return:          +140% to +310% (sell-side bullish)
+  Smart-money return:        +188% to +303% (RA Cap implied $25-35)
+  GAP:                       ~125 pp (smart-money is MORE bullish than median PT)
+  Variant strength:          5/5
+
+WHAT THE MARKET BELIEVES (the small-cap biotech holder, NOT sell-side)
+  Offering overhang + post-raise weakness + small-cap biotech rotation
+  drives the 24% discount to RA's clearing price.
+
+WHAT SMART MONEY BELIEVES
+  Fully de-risked Phase 3 with FDA alignment + $300M cash + 71% ACR50
+  data = closest comp to peak Allogene ($7B+ market cap on similar
+  cell therapy thesis). Position is multi-year hold to acquisition.
+
+90-DAY CATALYSTS
+  AlloNK data update (lupus/Sjögren's): 70%, +30-50%
+  Phase 3 trial design announcement: 50%, +15-25%
+  Fast Track expansions: 30%, +10%
+
+RISK
+  Phase 3 RA fails ACR50: 25-35%, -60-80%
+  Manufacturing scale-up: 30%, -30-40%
+  Additional dilution before readout: 20%, -15-25%
+
+
+------- 3. HHH (Howard Hughes Holdings) ----------------------------------------
+
+PRICE NOW
+  Share price:          $62.68-$63.51
+  Market cap:           $3.71-3.79B
+  Shares O/S:           59.13M
+  Cash:                 $1.8B total / $929M at HHC level
+  Total debt:           $5.8B mortgages/notes/loans
+  Enterprise value:     ~$7.7B
+  52-week range:        $61.01 - $91.07 (near 52w LOW)
+  P/E:                  31.24
+
+Q1 2026 FUNDAMENTALS
+  Revenue:              $235.9M (+18% YoY; beat 22.5%)
+  Adj EBITDA:           $99.3M (42.1% margin)
+  MPC EBT:              $84M (+33% YoY)
+  Refinanced:           $1B at tightest credit spreads in co. history
+                         + $300M Downtown Summerlin mortgage
+
+MASTER-PLANNED COMMUNITY (MPC) ECONOMICS
+  Summerlin (LV):       Custom lots avg $7.2M/acre; super pads $1.8M/acre
+                         New home sales +6%
+  Bridgeland (Houston): 62 acres sold at $60.2M avg PER ACRE (Q1)
+                         vs. 37 acres @ $605K LY = +99x value/acre!
+                         New home sales +12%
+  Teravalis (Phoenix):  37,000-acre West Valley project, early monetization
+
+SMART MONEY
+  Pershing Square (Ackman):  46.9% (up from 37.6%) via $900M @ $100/sh
+                              + $1B preferred commitment closing Q2 2026
+  Position:                   Ackman is Executive Chairman; Ryan Israel CIO
+  New board:                  Marc Grandisson (ex-Arch Capital CEO) joined 5/7
+  Pershing Square IPO:        Filed NYSE March 2026
+
+ACKMAN STATED THESIS
+  "Transform HHH into a modern-day Berkshire Hathaway"
+  PSH Q1 2026 NAV up +20.9%
+  Vantage Group acquisition $2.1B closing Q2 2026 (~1.5x year-end 2025
+  book; Pershing manages fee-free)
+  Mgmt target: $104/sh fair value (+60-65%)
+  Ackman 2030 target: $211/sh (+233%)
+
+CONSENSUS
+  Coverage:             3 analysts (BUY consensus)
+  Median PT:            $90.33
+  Range:                $76 - $105
+
+THE GAP
+  Consensus return:     +42%
+  Smart-money return:   +57% (Ackman cost basis floor $100) to +233% (2030)
+  GAP:                  +54 pp (3-yr horizon) / +191 pp (2030 vision)
+  Variant strength:     5/5
+
+WHAT THE MARKET BELIEVES
+  Real estate developer with execution risk and high leverage. Mixed MPC results.
+
+WHAT SMART MONEY BELIEVES
+  Ackman controls and is converting HHH into a Berkshire-lite holdco.
+  His effective $100 cost basis is the floor. Vantage adds insurance
+  float arm. Each capital deployment compounds.
+
+90-DAY CATALYSTS
+  Vantage Group acquisition close: 85%, +5-10% on close, +15-20% on narrative
+  Q2 2026 earnings: ~95% (early Aug), ±10%
+  Pershing investor day mentions: 70%, +5%
+
+RISK
+  Vantage integration: 25%, -10-15%
+  Houston/Vegas residential cyclicality: 30%, -5-15%
+  Ackman concentration/key-person: 5-10%, -15-25%
+
+
+------- 4. PLCE (Children's Place) ---------------------------------------------
+
+PRICE NOW
+  Share price:          $3.21
+  Market cap:           ~$71M
+  Shares O/S:           22.21M (post-rights offering dilution)
+  Cash:                 $5.5M (Jan 31, 2026 / Q4 FY25)
+  Total debt:           $149.5M ($131.1M revolver + $18.4M Mithaq term)
+  Total liquidity:      $89.9M
+  Enterprise value:     ~$220M
+  52-week range:        $2.76 - $9.56
+  SHORT INTEREST:       15.02% of float (3.3M sh)
+  Days to cover:        4.6 days
+
+FUNDAMENTALS
+  TTM revenue:          $1.21B (FY2025 -12.8% YoY)
+  TTM net loss:         -$88.26M; EPS -$4.01
+  Q4 2025 sales:        -19.4% YoY
+  Adj net loss/share:   -$0.18
+  Stress signals:       severe — revenue decline accelerating
+
+SMART MONEY
+  Mithaq Capital SPC:   ~61% of co. (~13.6M sh; controlling sponsor)
+                         Cost basis avg ~$8-13/sh historically
+                         Backstopped $90M rights offering 2025
+                         Provided $18M term loan
+                         $40M unsecured Mithaq Commitment Letter available
+  Saudi Arabia entry:   Al Othaim Life Co partnership announced 4/2026
+
+CONSENSUS
+  Coverage:             1 analyst
+  Rating:               Hold
+  Median PT:            $3.50 (+9%); UBS recently cut from $4.50 → $3.50
+
+THE GAP
+  Consensus return:     +9%
+  Smart-money return:   +200-360% multi-year (Mithaq target ~$10-15)
+  GAP:                  +272 pp (largest in cohort)
+  Variant strength:     4/5 (catalyst is multi-year)
+
+WHAT THE MARKET BELIEVES
+  Dying mall retailer; structurally challenged kids apparel.
+
+WHAT SMART MONEY BELIEVES
+  Mithaq is rebuilding it as a private company would. Patient family-
+  office capital. Saudi expansion = real distribution lever. PLCE at
+  <0.1x sales = if turnaround executes, multi-bagger.
+
+90-DAY CATALYSTS
+  June 6, 2026: Q1 FY26 earnings, ±15%
+  Turnaround gross margin data: 40%, +20%
+  Strategic alternatives review: 10%, +30-50%
+
+RISK
+  Liquidity stress (cash $5.5M vs ongoing losses): biggest single risk
+  Revenue decline acceleration: -12.8% in FY25
+  Mithaq concentration: governance overhang
+
+
+------- 5. NEXN (Nexxen International) -----------------------------------------
+
+PRICE NOW
+  Share price:          $7.50-$8.32
+  Market cap:           $417-463M
+  Shares O/S:           55.72M
+  Cash:                 $94.6M; NO LONG-TERM DEBT
+  Enterprise value:     ~$320-370M
+  52-week range:        $5.60 - $12.00
+  Forward P/E:          6.97 (very cheap)
+
+Q1 2026
+  Revenue:              $86.84M (vs $77.07M consensus)
+  Programmatic:         $81.9M (+14% YoY)
+  Contribution ex-TAC:  $84.5M (+13% YoY; record Q1)
+  Adj EBITDA:           $16.3M (down from $23.1M LY; margin compressed -12pp)
+  2026 guidance raised: Adj EBITDA $122-132M; programmatic $374-388M
+  Buyback:              +$40M authorization; bought 1.13M sh Q1 for $7.2M
+
+SMART MONEY
+  Mithaq Capital SPC:   ~27.02% (~34.9M sh; cost basis $3.50, current $7.45)
+                         Already a 2.1x return; still adding
+                         Plans additional $15M in Q3 2026
+  Note:                 Same operator as PLCE — Saudi family office
+                         playbook is to take large stakes in stressed
+                         consumer/tech names and patient-capital them.
+
+CONSENSUS
+  Coverage:             6-9 analysts (BUY/STRONG BUY)
+  Median PT:            $11.67-$14.14 (+44%)
+  High PT:              $15.00
+  Low PT:               $9.00
+
+THE GAP
+  Consensus return:     +95%
+  Smart-money return:   +168% (Mithaq target $20, multi-bagger over cost)
+  GAP:                  +73 pp
+  Variant strength:     4/5
+
+WHAT THE MARKET BELIEVES
+  Israeli ad-tech caught in post-Cookie identity crisis. Margins
+  compressing. Geopolitical overhang.
+
+WHAT SMART MONEY BELIEVES
+  Mithaq is buying for 5-6x outcome over the cycle. CTV + retail media
+  + buyback shrinking float = re-rating multiple. NEXN at ~1x revenue
+  vs Magnite/PUBM at 1.5-3x = peer consolidation candidate.
+
+90-DAY CATALYSTS
+  Buyback execution: 100%, +5-10%
+  Q2 2026 (mid-Aug): 95%, ±10%
+  Mithaq additional purchase: 50%, +5%
+
+RISK
+  Margin compression at scale: 30%
+  Israel concentration: 20%
+  Ad-tech price wars: 30%
+
+
+================================================================================
+TIER 2 — STRONG VARIANT WITH REAL NUMBERS
+================================================================================
+
+
+------- 6. JOE (St. Joe Company) — DOWNGRADED on Berkowitz trim --------------
+
+PRICE NOW
+  Share price:          $63.46-$64.33
+  Market cap:           $3.64-3.74B
+  EV:                   ~$3.88B
+  Cash:                 $136M
+  Total debt:           $380M
+  52w range:            n/a (~$63 recent low)
+  TTM revenue:          $518M (+26.6%)
+  TTM net income:       $112M (+44%); P/E 33.28
+  Q1 2026 EBITDA:       $33.6M (down YoY)
+  Hospitality Q1:       $44.7M revenue (+13%); record
+
+ASSET BASE
+  Total acreage:        ~167,000 acres FL Panhandle (Bay/Walton)
+  Entitled (BW Sector): 110,500 acres / 170,000 residential units + 22M sqft
+                         commercial / through 2064
+  Per-acre comps:       Walton Co median $28,500/acre
+  Praetorian/Berkowitz model: $50K-$100K/acre weighted = $5-11B gross NAV
+
+SMART MONEY (the issue)
+  Fairholme/Berkowitz:  32.8% (18.8M sh) BUT TRIMMING
+                         Form 4 sales 5/5-5/11/2026: ~115,700 sh at $65-66
+                         $24.8M and $7.6M open-market sales May 2026
+  Pace:                 Trims accelerating in 2026
+
+CONSENSUS
+  Coverage:             1 analyst (stale)
+  Median PT:            $19 (likely stale; not actionable)
+  Morningstar fair:     $55.18
+
+THE GAP
+  Consensus return:     -3% (stale)
+  Smart-money return:   +55-200% (NAV math gross)
+  GAP:                  +58 pp (modest given trimming caveat)
+  Variant strength:     3/5 (down from 5/5 due to Berkowitz trim)
+
+WHAT CHANGED
+  Berkowitz is monetizing the 20-year hold at the margin. Position is
+  still 33% but the conviction signal is weakening. The land thesis
+  remains; the smart-money endorsement is less unequivocal.
+
+CALL: Hold or reduce exposure; await Berkowitz pace clarity.
+
+
+------- 7. TPL (Texas Pacific Land) ---------------------------------------------
+
+PRICE NOW
+  Share price:          $385-$390
+  Market cap:           $26.5-28B
+  Cash:                 $247.6M; ZERO debt
+  Shares O/S:           68.97M
+  52w range:            $269.23 - $547.20
+
+Q1 2026 — ALL-TIME HIGH
+  Revenue:              $237M (+21% YoY, +12% sequential)
+  Adj EBITDA:           $181M (77% margin)
+  FCF:                  $136M
+  Royalty production:   37,001 boe/d (+19% YoY)
+  Water:                Record produced-water volumes
+  Distribution:         $0.60/qtr ($2.40 annualized)
+
+SMART MONEY
+  Horizon Kinetics:     ~14.5% (~9.97M sh)
+  Murray Stahl:         died April 7, 2026
+  Succession:           Steven Bregman + Peter Doyle Co-CEOs
+                         Peter Doyle appointed to TPL board May 5, 2026
+                         Horizon continued buying 4/23 and 4/29, 2026
+
+CONSENSUS
+  Coverage:             8-11 analysts
+  Median PT:            $445-$453 (+15%)
+  Street high:          $639 (KeyBanc, raised from $350, Overweight)
+
+THE GAP
+  Consensus return:     +15%
+  Smart-money return:   +55% (toward KeyBanc high $639)
+  GAP:                  +40 pp
+  Variant strength:     3/5 (down from 5/5 on Stahl death)
+
+90-DAY CATALYSTS
+  Q2 2026 earnings (early Aug): 100%, ±10%
+  Quarterly distribution (ex-date 6/1): 100%, neutral
+  Data center deal: 20%, +10-20%
+  Permian growth signals: 100%, ±5%
+
+
+------- 8. TFPM (Triple Flag Precious Metals) — UPGRADED on Elliott size ----
+
+PRICE NOW
+  Share price:          $31-$32
+  Market cap:           $6.6B
+  Cash:                 $144M; NO debt; >$1B liquidity
+  EV:                   ~$6.46B
+  52w range:            $20.05 - $41.70
+  P/E:                  20.52; dividend $0.23/yr
+
+Q1 2026 — RECORD
+  Revenue:              $147M (record; beat $131M by 12%)
+  Net earnings:         $116.9M
+  Adj EBITDA:           $129M (record; +82% YoY)
+  Op CF/share:          $0.55 (+67% YoY)
+  Production:           30,166 GEOs (+5% YoY)
+  Guidance 2026:        95-105k GEOs
+  Guidance 2030:        140-150k GEOs (~50% growth)
+
+SMART MONEY — KEY DATA
+  Elliott Investment Mgmt:  ~64.5% / 133M sh / $3B+
+  Position size:             18% of Elliott's $17.59B portfolio
+  Highest-conviction US 13F position
+  Recent activity:           Structured forward sale + margin loans
+                              (NOT outright sale)
+
+CONSENSUS
+  Coverage:             11 analysts BUY
+  Median PT:            $40-$42.75 (+25-38%)
+
+THE GAP
+  Consensus return:     +33%
+  Smart-money return:   +73-88% (toward $50-60 on peer multiple expansion)
+  GAP:                  +39 pp
+  Variant strength:     4/5 (down 0.5pt vs prior because TFPM already
+                         at upper peer multiple)
+
+WHAT MARKET BELIEVES
+  Gold streaming mature; growth premium fading; gold late-cycle.
+
+WHAT ELLIOTT BELIEVES (clearest signal)
+  Royalty stream with $1B+ liquidity for M&A. 50% production growth to
+  2030. Aussie tilt differentiates from FNV/WPM. Elliott does not put
+  $3B / 18% of portfolio into late-cycle macro.
+
+90-DAY CATALYSTS
+  Gold price moves: 100%, ±15%
+  New streaming acquisition: 40%, +5-10%
+  Q2 2026 (early Aug): 100% (just outside window), ±10%
+
+
+================================================================================
+TIER 3 — VARIANT EXISTS BUT MIXED OR LESS CLEAN
+================================================================================
+
+
+------- 9. SEER (Seer Inc) — interesting INVERTED gap -------------------------
+
+PRICE NOW
+  Share price:          $1.68-$1.87
+  Market cap:           $94.79M
+  Cash + investments:   $219.5M (Mar 31)
+  Net cash/share:       ~$3.89 — STOCK TRADES AT 57% DISCOUNT TO NET CASH
+  Total debt:           Minimal
+  Enterprise value:     ~-$125M (NEGATIVE)
+  Q1 burn:              $15.7M (operating + capex)
+  Cash runway:          ~3-4 years to potential breakeven
+
+SMART MONEY
+  Radoff-JEC Group:     ~7.6% (~4.28M sh)
+                         3 buyout proposals:
+                           4/13/2026: $2.25 + CVR (rejected)
+                           4/24/2026: $2.35 + CVR (rejected unanimously 4/27)
+                           5/14/2026: $2.40 + CVR (3rd, pending board response)
+                         Nominated 3 directors for 2026 AGM
+                         White universal proxy card
+
+CONSENSUS — INVERTED
+  Coverage:             2 analysts STRONG BUY (avg 12 trackers Hold)
+  Median PT:            $3.06-$4.00 (+64-138%)
+                         (CONSENSUS IS MORE BULLISH THAN ACTIVIST OFFER!)
+
+THE GAP — UNUSUAL
+  Consensus return:     +64-138%
+  Smart-money return:   +57% (cash $2.40 + CVR ~$0.30-$0.80)
+  GAP:                  -12 pp (activist is LESS bullish than sell-side)
+  Variant strength:     3/5
+
+INTERPRETATION
+  This is the cleanest cash-arb setup in the cohort. Stock at $1.68
+  with $3.89/sh in cash = ~50% downside protected by cash regardless.
+  Optionality on the CVR + slate winning + sale at higher price than
+  $2.40 offer.
+
+90-DAY CATALYSTS
+  Board response to $2.40 offer: 100%, ±25%
+  2026 AGM proxy vote: 95%, ±25%
+  Board accepts offer: 25%, +25%
+  Activist wins proxy: 30%, +15-20%
+
+
+------- 10. MAT (Mattel) — DOWNGRADED, weaker activist signal ----------------
+
+PRICE NOW
+  Share price:          $14.94-$15.15 (near 52w low; YTD -24.4%)
+  Market cap:           $4.39B
+  Cash:                 $1.24B
+  Net debt:             $1.44B
+  EV:                   $5.83B
+  Forward P/E:          11.71
+
+Q1 2026
+  Net sales:            $862M (+4% reported; beat by 7.59%)
+  Adj gross margin:     45.1% (-450bp YoY tariff/FX)
+  Adj EPS:              -$0.20 (decline of $0.18 YoY)
+
+SMART MONEY — WEAKER THAN PRIOR DRAFT
+  Barington Capital:    EXITED Q1 2025 (NOT a current holder)
+  Southeastern Asset:   >4% (public letter 5/7/2026 urging strategic
+                         alternatives — sale, carve-up, or PE deal)
+  Board response:       Boilerplate — "ongoing communication / values
+                         shareholder perspectives" (no concrete action)
+
+CONSENSUS
+  Coverage:             10-17 analysts BUY
+  Median PT:            $18.30-$23.82
+  High PT:              $28-29; Low PT: $13-14
+
+THE GAP
+  Consensus return:     +21-58%
+  Smart-money return:   +65-100% (PE bid scenario)
+  GAP:                  +40 pp
+  Variant strength:     2/5 (down from 4-5/5; activist signal weakened)
+
+RISK
+  Board may achieve nothing — defensive posture signaled
+  Tariff exposure: 450bp gross margin compression already evident
+  Toy comparison difficulty post-Barbie
+
+CALL: Position smaller; wait for either board concession or new
+activist with stake size.
+
+
+------- 11. HYMC (Hycroft Mining) — RUN, gap is analyst lag not active dispute ---
+
+PRICE NOW — STOCK HAS RUN HARD
+  Share price:          $32.86-$34.52 (May 19)
+  Market cap:           $3.00-3.18B
+  EV:                   $2.75B
+  Cash:                 $189M; NO debt
+  Shares O/S:           91.36M
+  52w range:            $2.71 - $58.73 (+1,055% YoY)
+  Short interest:       9.41% of OS; 3.89-4.34 days to cover
+  Beta:                 2.73 (very high)
+
+KEY: Stock has 12x'd in 12 months. Sprott's avg cost basis is likely
+$5-10/sh on most of his $225M+ accumulated since June 2025.
+
+FUNDAMENTALS — STILL DEVELOPMENT STAGE
+  Revenue TTM:          $0 (development stage)
+  Q1 2026 net loss:     -$48.3M (vs -$11.8M LY)
+  Operating cash burn:  -$31.3M Q1
+  Book value/share:     $2.45
+  RESOURCE UPDATE 2026: 16.4M oz Au + 562.6M oz Ag M&I (+55% expansion)
+  PEA delayed:          Originally Q1 2026, now early 2027
+
+SMART MONEY
+  Eric Sprott:          ~40%+ ownership; $225M+ invested since 6/2025
+  Recent Form 4 buys:   $9.2M (2/12), $6.6M, $6.3M, $9.2M
+                         RELENTLESS BUYING above $30 price
+  AMC Entertainment:    Trimmed at $42.40 avg Q1 2026, ~$30M cashed out
+                         Still holds 129,500 sh
+
+CONSENSUS — DEEPLY BEHIND
+  Coverage:             1-6 analysts
+  Median PT:            $13-$13.26 (vs $34 stock = "consensus says SELL")
+  Outlier:              $130 PT (WallStreetZen reference; one analyst)
+  Mix:                  2 Strong Sell / 1 Sell / 3 Hold / 0 Buy
+
+THE GAP — WIDEST QUANTITATIVELY BUT LARGELY STALE
+  Consensus return:     -61% (sell-side hopelessly behind)
+  Smart-money return:   +30-50% (Sprott still buying)
+  GAP:                  +100+ pp
+  Variant strength:     3/5 (large gap but reflects analyst lag not
+                         active fundamental disagreement)
+
+INTERPRETATION
+  At $33 the asymmetry has flipped vs my prior draft. Stock has run
+  hard. The thesis still works for Sprott (he keeps buying), but the
+  cleanest entry was at $5-15 in 2025. Today's entry requires belief
+  in (a) PEA confirms restart NPV, (b) gold continues higher, (c)
+  metallurgical risk on sulfide ore is solvable.
+
+RISKS — meaningful
+  Sulfide processing unproven at scale: 35%, -50-70%
+  PEA pushed beyond 2027: 50%, -20-30%
+  Equity raise within 18 months (burn $31M/qtr vs cash $189M = 6 qtr):
+                         45%, -10-20%
+
+
+------- 12. NETD — REMOVED FROM CONSIDERATION (delisted) -----------------------
+
+STATUS: Delisted December 3, 2025 after failed e2Companies merger.
+All public shares redeemed at $11.34. e2Companies $29.23M settlement
+note flows to remaining Class F founder shares (sponsor, not public).
+
+LESSON: Funicular's 56% concentration was real at the time of filing
+but the SPAC liquidated. This is a reminder that single-name SPAC
+concentration can vaporize on de-SPAC failure. NETD is not actionable
+equity.
+
+
+------- 13. MASI — DEMOTED to merger arb (deal approved) ----------------------
+
+PRICE NOW
+  Share price:          $178.49 (collared at $180 deal)
+  Market cap:           $9.37B
+
+DEAL STATUS
+  Danaher acquisition:  $180/sh cash, announced 2/17/2026
+  Shareholder approval: COMPLETE — May 1, 2026
+  Closing target:       H2 2026 (HSR + foreign antitrust)
+  Termination fee:      $305M
+  Deal EV (w/ debt):    ~$9.9B
+
+REMAINING RETURN
+  Gross spread:         ~0.84% to $180
+  Annualized:           3-5% (depending on close date)
+  Break risk:           5-8% (HSR + clean strategic acquirer)
+
+POLITAN'S THESIS WAS MONETIZED. Position should now be considered
+pure merger arb if held; the activist alpha was captured at $180.
+
+CALL: This is a defensive arb sleeve position only. No variant
+perception value remaining.
+
+
+================================================================================
+RANK-ORDERED BY QUANTITATIVE GAP (LARGEST FIRST)
+================================================================================
+
+  TICKER  CURRENT  CONSENSUS PT   SMART-$ TARGET  CONSENSUS RET  SMART-$ RET   GAP    STRENGTH
+  PLCE    $3.24    $4.50          $10-15          +9%            +280%         +272pp 4/5
+  ARTV    $8.72    $21            $30             +120%          +245%         +125pp 5/5
+  LOGC    $8.65    (uncovered)    $20             0%             +150%         +150pp 4/5
+  HYMC    $34.52   $13            $48             -61%           +40%          +100pp 3/5*
+  NEXN    $7.45    $14.50         $20             +95%           +168%         +73pp  4/5
+  JOE     $64.33   $62            $100            -3%            +55%          +59pp  3/5*
+  HHH     $63.51   $90            $125            +42%           +97%          +54pp  5/5
+  MAT     $14.94   $21.50         $28             +44%           +87%          +43pp  2/5*
+  TPL     $386     $445           $600            +15%           +55%          +40pp  3/5*
+  TFPM    $31.88   $42.50         $55             +33%           +73%          +39pp  4/5
+  NETD    DELISTED                                                                   REMOVED
+  MASI    $178.49  $180 (deal)    $180 (deal)     +0.8%          +0.8%         0pp    1/5
+  SEER    $1.87    $3.06          $2.85           +64%           +52%          -12pp  3/5 (inverted)
+
+  * = downgraded variant strength due to specific issue noted in prior section
+
+
+================================================================================
+THE TIGHTEST 5 — REFRESHED WITH REAL DATA
+================================================================================
+
+If forced to hold only 5 positions on variant-perception thesis, today:
+
+  1. ARTV  (5/5)  — RA Capital paid $11.52 last week; stock $8.72 = 24%
+                    below their cost basis. Phase 3 fully funded. 71% ACR50.
+                    Clearest "buy below smart-money's just-paid price."
+
+  2. HHH   (5/5)  — Ackman 46.9% at $100 cost basis vs stock $63. Vantage
+                    close Q2 2026 catalyst. Stated $211 by 2030.
+
+  3. LOGC  (4/5)  — Abrams 40% + BC Partners 29%. US Salt 41.9% adj EBITDA.
+                    $2.9B NOL. Uncovered. Permanent capital structure.
+
+  4. NEXN  (4/5)  — Mithaq 27% adding. Cost basis $3.50 vs current $7.45
+                    (2.1x already). $40M buyback shrinking float. Forward
+                    P/E 6.97. CTV cycle leverage.
+
+  5. TFPM  (4/5)  — Elliott $3B / 64.5% / 18% of his portfolio. Record Q1.
+                    50% production growth to 2030. Gold cycle tailwind.
+
+Combined PROBABILITY-WEIGHTED upside (60% success rate on 5/5; 50% on 4/5):
+  ARTV  +245% × 60% = +147%
+  HHH   +97%  × 60% = +58%
+  LOGC  +150% × 50% = +75%
+  NEXN  +168% × 50% = +84%
+  TFPM  +73%  × 50% = +37%
+  AVERAGE PROB-WEIGHTED RETURN: +80% across 24-36 months
+
+
+================================================================================
+HONORABLE MENTIONS (TIER 2-3)
+================================================================================
+
+  PLCE — Largest raw gap (+272pp) but small position (1-2%) because of
+         binary turnaround risk. Q1 FY26 earnings 6/6/2026 are the next
+         data point.
+
+  SEER — Defensive cash-arb (stock $1.68 vs net cash $3.89/sh). The
+         board response to Radoff's $2.40 + CVR offer is the catalyst.
+
+  HYMC — Asymmetric vs entry price. Today's risk-reward is much less
+         attractive than in 2025. Reduce vs prior draft.
+
+  JOE  — Berkowitz trimming reduces conviction. Position only on
+         pullback toward $50-55.
+
+  TPL  — Stahl death is a meaningful governance change. Doyle on board
+         is constructive. Continue to size 2-3%.
+
+  MAT  — Wait for either a named activist with concentrated stake or
+         board to commit to strategic review.
+
+
+================================================================================
+WHAT I'M NO LONGER RECOMMENDING (vs prior draft)
+================================================================================
+
+  NETD — DELISTED 12/3/2025. Thesis dead.
+  MASI — DEAL CLOSED. No variant perception alpha left.
+  HYMC — At $33+ the asymmetry favors waiting for a pullback or for the
+         PEA to confirm restart NPV. Hold existing positions only.
+
+
+================================================================================
+DECISION RULES — UPDATED
+================================================================================
+
+ADD WHEN:
+  - Smart-money holder files new 13D/A AT HIGHER cost basis (NEXN, ARTV)
+  - Activist files proxy / WHITE card / board nomination (SEER, BBRC/VSCO)
+  - Stock trades BELOW smart-money's most recent purchase (ARTV right now)
+
+TRIM WHEN:
+  - Smart-money holder reduces >30% without thesis change (JOE just did)
+  - Activist settles for cosmetic concessions only
+  - Stock approaches stated smart-money price target
+
+EXIT WHEN:
+  - Smart-money holder fully exits (Barington / MAT — done)
+  - Catalyst fails decisively (NETD merger fail — done)
+  - Deal closes (MASI / Danaher — done)
+
+
+================================================================================
+END
+================================================================================

@@ -1,0 +1,431 @@
+================================================================================
+FUND-ACTIVITY RESEARCH PROCESS — PROCESS LOG
+From PitchBook search list to 250-fund asymmetric-positioning workbook
+================================================================================
+
+DOCUMENT VERSION: 2026-05-16
+PROJECT: cyclepapa (jupitersstring/cyclepapa)
+BRANCH: claude/organize-funds-by-theme-wpubv
+PRIMARY DELIVERABLE: fund_activity_last_6mo.xlsx
+SECONDARY DELIVERABLES:
+  - pb_searches_by_theme.xlsx (initial themed search organization)
+  - asymmetric_setups_2026.txt (focused investment brief)
+  - sitg_positioning_synthesis.txt (SITG framework brief)
+
+
+--------------------------------------------------------------------------------
+EXECUTIVE SUMMARY
+--------------------------------------------------------------------------------
+
+Starting point: a list of 268 PitchBook saved searches with no structure.
+
+End state: a 263-sheet Excel workbook covering 250 funds across 28 thematic
+research groups, with 3,043 individual filing/position rows; eight cross-fund
+synthesis sheets; one event-monitoring sheet; one shareable plain-text
+investment brief; one shareable plain-text positioning synthesis.
+
+Total commits: 8 major commits to git branch.
+Total research markdown files: 24 (~1.8MB of underlying research).
+Total agent dispatches: 25+ background research tasks.
+
+
+--------------------------------------------------------------------------------
+PHASE 1 — INITIAL ORGANIZATION (PB Saved Searches → Themes)
+--------------------------------------------------------------------------------
+
+INPUT: 0f6364fd-pb_searches.xlsx (268 PitchBook saved searches).
+
+PROCESS:
+  1. Parsed search criteria column from the original file - extracted 3,434
+     unique investor names mentioned across searches.
+  2. Categorized the 268 searches into 26 thematic groups (Activist,
+     Multibagger, Microcap, Special Sits, Family Offices, Tiger Cubs,
+     European, Japan, Distressed, Biotech, Quant, etc.).
+  3. Built pb_searches_by_theme.xlsx with 29 sheets covering the 26 themes
+     + 3 supplementary sheets for suggested additions.
+
+OUTPUT: pb_searches_by_theme.xlsx (themed organization of 268 searches).
+
+
+--------------------------------------------------------------------------------
+PHASE 2 — FUND-LEVEL ACTIVITY RESEARCH (initial 30-fund proof of concept)
+--------------------------------------------------------------------------------
+
+REQUEST: For each fund/manager, find what they are actually doing right now -
+the four canonical activity categories:
+  (1) Highest conviction positions (recent adds)
+  (2) Recent >=5% threshold disclosures (last 6 months)
+  (3) New positions sized large
+  (4) Existing positions materially increased
+
+SCOPE NARROWING: User specified the cohort should focus on:
+  - Multibagger / micro-cap / small-cap focus
+  - Special situations / activists
+  - Deep value
+
+PROCESS:
+  - Built a markdown template for each fund's activity block.
+  - Dispatched parallel research agents per thematic group, each researching
+    ~10-15 funds via SEC EDGAR (13F + 13D/G), WhaleWisdom, Dataroma, 13f.info,
+    secform4.com, hedgefollow, insidermonkey, stocktitan, fintel.io,
+    stockzoa, and per-fund investor letters.
+  - For international funds: TR-1 (UK FCA), CNMV (Spain), AMF (France),
+    BaFin (Germany), Japan EDINET 大量保有報告書, HKEX disclosures,
+    SEDAR+ (Canada).
+
+CHALLENGE: Agents repeatedly hit rate limits; pacing dispatches to wait for
+rate-limit resets (typically 30-minute windows).
+
+OUTPUT: First batch of ~30 funds in workbook with structured activity data.
+
+
+--------------------------------------------------------------------------------
+PHASE 3 — EXPANSION ITERATIONS
+--------------------------------------------------------------------------------
+
+Through successive user requests ("more", "add more funds", "cover many
+more"), the workbook expanded in stages:
+
+  30 funds  -> Phase 2 baseline
+  70 funds  -> Tier 2 dispatches (more activists + smallcap)
+  100 funds -> Tier 3 dispatches (international + distressed)
+  130 funds -> Tier 4 dispatches (Tiger Cubs, family offices, value)
+  150 funds -> Biotech specialists + smaller activists added
+  180 funds -> Quality + EM specialists, mega multi-strats
+  210 funds -> Tier 4 microcap + international + family offices
+  237 funds -> Skin-in-the-game / fat-pitch additions (Abrams, Mecham,
+                Greenberg, Lou, Hawkins, Wachenheim, Berkowitz, Stahl,
+                Burry, Greenblatt + Akre, Weitz, Robotti, Romick, Russo,
+                Spier, Miller III, Cobas, Fundsmith, Lindsell Train +
+                Cohodes, Muddy Waters, Sequoia Fund, Davis, Ariel)
+  250 funds -> Warrant specialists added (Periscope, Polar, Glazer,
+                Radcliffe, Karpus, Bulldog, Eric Sprott personal,
+                Sprott Inc, Crescat, Lepard/EMA, Universa, ThreeD)
+
+Each stage involved 2-4 parallel research agents writing markdown files in
+the format:
+   /tmp/research_<group_name>.md
+
+Each markdown was then ingested by build_activity_xlsx.py into the workbook,
+adding one sheet per fund with their four-category activity table.
+
+TOTAL RESEARCH MARKDOWNS CREATED (24):
+  research_us_activists.md, _us_activists_more.md, _activists_t3.md
+  research_smallcap_specialsits.md, _smallcap_tier2.md, _smallcap_value_t3.md
+  research_intl_distressed.md, _intl_more.md, _europe_asia_t2.md
+  research_distressed_eventdriven.md, _japan_distressed_t3.md
+  research_tiger_cubs.md, _legendary_fos.md, _value_multistrat.md
+  research_biotech_specialists.md, _smaller_activists.md
+  research_quality_em.md, _megamulti.md
+  research_microcap_intl_t4.md, _family_office_filers.md
+  research_small_concentrated_t4.md
+  research_skin_game_A.md, _value_B.md, _shorts_value_C.md
+  research_warrants.md
+
+
+--------------------------------------------------------------------------------
+PHASE 4 — SYNTHESIS BUILD-OUT
+--------------------------------------------------------------------------------
+
+After fund coverage scaled past 100, individual sheets were no longer
+useful for finding asymmetric patterns. Built cross-fund synthesis tabs:
+
+  Cover, Index, All Activity (master table)
+
+  ASYMMETRIC SUMMARY - methodology + flag legend
+
+  CONSENSUS BUYS - tickers held/added by 3+ funds across categories.
+                   Heuristic: count of funds touching the ticker positively,
+                   max % of portfolio observed in any fund, threshold flags.
+
+  HIGHEST CONVICTION - tickers at >=15% of any single fund's portfolio.
+                       Includes hyper-conviction (>=30%) tag.
+
+  ACTIVIST CATALYSTS - tickers with 13D/13G/A filings + active campaign
+                       narrative.
+
+  MULTI-FUND NEW INITS - names initiated as new top positions by 2+ funds
+                         simultaneously in the window.
+
+  CONVICTION ADDS - captures "add events" from categories (3) new init and
+                    (4) material increase across all 250 funds.
+
+  MICRO-CAP CONVICTION ADDS - filtered subset of Conviction Adds excluding
+                              mega/large-cap names.
+
+  USER-SUGGESTED WATCHLIST - 239 rows from user's first dump (150+ hidden
+                              microcap managers); flagged 'In Workbook?'.
+
+  WATCHLIST V2 WARRANTS+HIDDEN - 173 rows from user's second dump; 50
+                                  warrant-related entries highlighted yellow;
+                                  160 net-new.
+
+BUILD PIPELINE:
+  build_activity_xlsx.py       - ingests research markdowns -> per-fund sheets
+  build_synthesis.py           - builds Consensus Buys, Highest Conviction,
+                                  Activist Catalysts, Multi-Fund New Inits
+  build_conviction_adds.py     - builds Conviction Adds + Micro-cap subset
+  build_watchlist.py           - builds User-Suggested Watchlist
+  build_watchlist_v2.py        - builds Warrants+Hidden Watchlist
+  build_13d_sweep_sheet.py     - builds 13D Sweep Last 14 Days
+  build_sitg_spotlight.py      - builds SITG Smallcap Spotlight
+
+
+--------------------------------------------------------------------------------
+PHASE 5 — RECURRING 13D REFRESH WORKFLOW
+--------------------------------------------------------------------------------
+
+User asked: "refresh the analysis as new 13Ds posted."
+
+PROCESS:
+  - Dispatched a focused agent to scan SEC EDGAR full-text search +
+    stocktitan.net + whalewisdom + secform4 + fintel.io for the most
+    recent 13D/13D-A/13G/13G-A/PX14A6G filings (May 2-16, 2026 window).
+  - Agent returned 60+ unique filings across 8 sections (NEW 13D, 13D/A
+    amendments, NEW 13G, 13G/A amendments, activist letters, cross-fund
+    consensus, hyper-concentrated bets, board escalations).
+  - Saved to /tmp/sweep_13d_may_2026.md.
+  - Ingested into a new top-positioned sheet "13D Sweep Last 14 Days"
+    with signal-strength color coding and "In Workbook?" flag.
+
+KEY DATA SURFACED:
+  - NEW 13Ds: STARTEEPO/XRX 5.15%, River Global/MXCT 6.1%, Pershing/PSUS
+    100% Series A pref + 4M common (Ackman permanent capital vehicle IPO)
+  - Major escalations: RA Capital/ARTV to 33.7%/+$100M, Saba/ASA 31.9%
+    buyout proposal, JANA/ALKT deliberately below 5% to engage privately
+  - Active campaigns: BBRC/VSCO proxy 5/4, Impactive/WEX settled 5/3,
+    Radoff/SEER cash buyout, Apollo-Onex/EEX go-private
+  - 19 of 58 filers (33%) already in the workbook universe
+
+This refresh can be re-run on any cadence the user wants. Each refresh
+adds a new "Last 14 Days" snapshot.
+
+
+--------------------------------------------------------------------------------
+PHASE 6 — SITG SMALLCAP SPOTLIGHT (focused cohort view)
+--------------------------------------------------------------------------------
+
+User request: "Check all the funds we have particularly those with fattest
+pitches / most SITG and smaller caps."
+
+PROCESS:
+  - Identified 41 candidate SITG smallcap fat-pitch funds from the 250-fund
+    universe based on three criteria:
+      (1) PM-owned firm (eats own cooking) OR concentrated activist
+      (2) Track record of multi-year holds vs. trading
+      (3) Hunting territory <$10B mkt cap typically
+  - Cross-checked names against sheet roster: 39 of 41 found in workbook.
+  - Built "SITG Smallcap Spotlight" sheet as tab 2 of the workbook.
+  - For each fund, extracted top conviction positions (Cat 1), recent
+    activist filings (Cat 2), new initiations (Cat 3), and material adds
+    (Cat 4) from the master All Activity table.
+  - Color-coded by SITG score (5 = PM-owned; 4 = founder-led activist) and
+    by market-cap focus (green = Micro; blue = Smallcap).
+
+OUTPUT: 39 funds catalogued with one-row summary each.
+  - SITG 5 (PM owns firm): 18 funds
+  - SITG 4 (founder-led activist): 21 funds
+  - 15 of 39 explicitly target <$2B mkt cap territory
+
+The 18 SITG-5 funds with the cleanest "eat own cooking" profile:
+  22NW, BLR Partners/Radoff, BML/Leonard, Peter Kamin/3K, MILFAM/Subin,
+  Maran/Roller, Funicular/Ma-Weaver, Cannell, Mithaq/AlRajhi, Stilwell,
+  Star Equity/Eberwein, Veradace, Privet, JCP, Robotti, Punch Card/Lou,
+  Fairholme/Berkowitz, Horizon Kinetics/Stahl team.
+
+
+--------------------------------------------------------------------------------
+PHASE 7 — SHAREABLE TEXT BRIEFS
+--------------------------------------------------------------------------------
+
+User requested standalone plain-text deliverables suitable for sharing.
+
+7A: sitg_positioning_synthesis.txt (461 lines / 19.9KB)
+   Framework-heavy: six tiers (A-F) of staleness-resistant positions, plus
+   sections on where staleness DOES matter, cross-fund consensus, sources,
+   and a 12-name short list.
+
+7B: asymmetric_setups_2026.txt (712 lines / 27.5KB) - FINAL VERSION
+   Re-focused on asymmetric setups specifically. Each Tier 1-2 entry has:
+   - THESIS
+   - UPSIDE
+   - DOWNSIDE
+   - CATALYST
+   - SMART MONEY
+   - ASYMMETRY RATIO (e.g., 16:1, 10:1)
+
+   Structure:
+   - Four-screen definition of asymmetric
+   - Tier 1: 5 strongest setups (LOGC, HYMC, NETD, ARTV, MASI)
+   - Tier 2: 7 honorable mentions (JOE, TPL, SEER, PCYO, Galantas, REZI,
+     RAPT/NKTR)
+   - Tier 3: 11 secondary names for diversification
+   - EVENT-DRIVEN section (added in final iteration):
+     A. Pending Mergers / Going-Private (EEX, JHG, WHG, CPAC, EVO)
+     B. Tender Offers (GNK hostile, PSUS Ackman IPO)
+     C. Spin-offs (REZI, MICC, LLYVK, HHH, Q)
+     D. Post-Bankruptcy (HTZ, CORZ, MNKTQ, VRM, SDRL, BALY, LTM)
+     E. Activist Campaigns Mid-Flight (MAT, VSCO, WEX, ASA, SEER, ARTV,
+        RPAY, BRN, CSR, MNRO, PENN, APD)
+     F. Special Situations (WHLR, RENT, BLDP, LSEG, EOSE, CIFR, PRKS,
+        MSGE/SPHR)
+   - Warrant trade list (8 names)
+   - Not Asymmetric anti-list
+   - Portfolio allocation framework (6 sleeves)
+   - Decision rules + risks
+
+
+--------------------------------------------------------------------------------
+WORKBOOK STRUCTURE (as of 2026-05-16)
+--------------------------------------------------------------------------------
+
+fund_activity_last_6mo.xlsx contains 263 sheets:
+
+  Synthesis tabs (top of workbook):
+    13D Sweep Last 14 Days       58 rows
+    SITG Smallcap Spotlight      39 rows
+    Asymmetric Summary           methodology
+    Consensus Buys               59 rows
+    Highest Conviction           323 rows
+    Conviction Adds              483 rows
+    Micro-Cap Conviction Adds    358 rows
+    User-Suggested Watchlist     239 rows
+    Watchlist v2 Warrants+Hidden 173 rows
+    Activist Catalysts           299 rows
+    Multi-Fund New Inits         23 rows
+    Cover, Index, All Activity   metadata + 3,043-row master table
+
+  Per-fund tabs:
+    250 funds, each with their own sheet showing the four-category activity
+    block parsed from the underlying research markdowns.
+
+
+--------------------------------------------------------------------------------
+GIT HISTORY (key milestones)
+--------------------------------------------------------------------------------
+
+Commits to claude/organize-funds-by-theme-wpubv (most recent first):
+
+  cbf9c8f  Add event-driven section to asymmetric_setups_2026.txt
+  e9ae022  Refocus synthesis on asymmetric setups
+  f9e8f45  Add sitg_positioning_synthesis.txt - shareable plain-text synthesis
+  46cbb65  Add 'SITG Smallcap Spotlight' sheet (39 concentrated fat-pitch funds)
+  b1d497b  Refresh: add '13D Sweep Last 14 Days' (May 2-16, 2026)
+  7f2c5ed  Add 12 warrant-specialist funds (target 250 funds / 261 sheets)
+  2d8e25c  Add Watchlist v2 - Warrants + Hidden Superinvestors sheet
+  0b8061d  Add 26 skin-in-the-game / fat-pitch managers (target 237 funds)
+  2e127a7  Expand workbook to 210 funds (30 hidden microcap managers)
+  d32c191  Add User-Suggested Watchlist sheet (161 funds)
+  0d7ee63  Add Conviction Adds and Micro-Cap Conviction Adds sheets
+  2a3e58b  Expand fund activity workbook to 180 funds + refreshed synthesis
+  8cdd286  Expand fund activity workbook to 150 funds + refreshed synthesis
+  [earlier commits expanding from 30 -> 70 -> 100 -> 130 funds]
+
+
+--------------------------------------------------------------------------------
+METHODOLOGY NOTES
+--------------------------------------------------------------------------------
+
+DATA SOURCES (validated, in priority order):
+
+  US:
+    - SEC EDGAR (13F, 13D, 13G, PX14A6G, DEF 14A)
+    - WhaleWisdom (aggregated 13F screens)
+    - Dataroma (curated guru tracking)
+    - 13f.info (manager pages by CIK)
+    - secform4.com (13D/G history by CIK)
+    - stocktitan.net (curated filing index w/ readable summaries)
+    - insidearbitrage.com (Q-by-Q portfolio comparison)
+    - hedgefollow.com, insidermonkey.com, stockzoa.com (alt screens)
+    - 13d Monitor / Ken Squire (curated activist commentary)
+    - businesswire.com (activist letters)
+
+  Canadian:
+    - SEDAR+ (sedarplus.ca/csa-party) - Early Warning Reports
+    - juniorminingnetwork.com (mining-specific)
+    - newsfilecorp.com (press releases - especially Sprott personal)
+
+  European:
+    - UK FCA TR-1 (fca.org.uk)
+    - CNMV Spain (cnmv.es)
+    - AMF France (amf-france.org)
+    - BaFin Germany (bafin.de)
+
+  Asia:
+    - Japan EDINET 大量保有報告書 (filings)
+    - HKEX (Hong Kong)
+
+  Warrant universe:
+    - CommonStockWarrants.com (Dudley Baker - primary US+Canada warrant DB)
+    - CanadianWarrants.com
+    - HKEX Derivative Warrant Database
+    - Palisades Gold Radio podcast (for ongoing commentary)
+
+CAVEATS:
+  - 13F filings have a 45-day lag from quarter-end.
+  - For pod-shop / quant / multi-PM funds (Citadel, Millennium, RenTec,
+    Bridgewater), 13F data is largely stale by the time it's filed.
+  - Heuristic ticker extraction is imperfect - non-US tickers (esp. Japan
+    4-digit codes) may not always parse.
+  - "Highest conviction %" numbers reflect SELF-REPORTED weights in 13F or
+    factsheet, not implied bets - some funds report only US-equity slices.
+  - Activist catalyst flags are heuristic; cross-reference per-fund tabs
+    for filing dates and campaign status.
+
+
+--------------------------------------------------------------------------------
+HOW TO RUN A NEW REFRESH
+--------------------------------------------------------------------------------
+
+To pull the latest 13D/13G data and add a fresh snapshot to the workbook:
+
+  1. Dispatch a research agent to scan EDGAR for filings in the last N days.
+  2. Save output to /tmp/sweep_13d_<window>.md.
+  3. Run build_13d_sweep_sheet.py with the new file (modify the ROWS list).
+  4. Commit the updated fund_activity_last_6mo.xlsx.
+
+To add a new batch of funds:
+
+  1. Dispatch research agent with the per-fund format template.
+  2. Save output to /tmp/research_<group>.md.
+  3. Add the file path to MD_FILES in build_activity_xlsx.py and the
+     other three build scripts.
+  4. Run all four build scripts in sequence:
+       build_activity_xlsx.py
+       build_synthesis.py
+       build_conviction_adds.py
+       build_watchlist.py (optional)
+  5. Commit and push.
+
+To regenerate the shareable text briefs:
+
+  - asymmetric_setups_2026.txt: written manually after each major workbook
+    update; ranking criteria documented in the file itself.
+  - sitg_positioning_synthesis.txt: same approach.
+
+
+--------------------------------------------------------------------------------
+CURRENT STATE SUMMARY
+--------------------------------------------------------------------------------
+
+WORKBOOK: 250 funds / 263 sheets / 3,043 activity rows
+TEXT BRIEFS: 2 shareable plain-text deliverables
+SYNTHESIS TABS: 11 cross-fund analytic views
+LATEST REFRESH: 2026-05-16 (May 2-16, 2026 window)
+LATEST GIT COMMIT: cbf9c8f (Add event-driven section)
+
+The workbook is in a state where:
+  - Any new 13D filing can be slotted into the "13D Sweep" tab
+  - Any new fund can be added with a per-fund tab + automatic synthesis
+    refresh
+  - Cross-fund consensus emerges automatically as data accretes
+  - The shareable text briefs document the highest-conviction asymmetric
+    setups distilled from the underlying 3,043 filings
+
+The workflow can be re-run weekly to keep the "Last 14 Days" tab fresh
+without rebuilding the rest of the workbook.
+
+
+================================================================================
+END
+================================================================================
