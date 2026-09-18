@@ -42,12 +42,16 @@ checkpoint () {
 }
 
 echo "=== VOLUME rescan (weekly+monthly spike columns) ==="
+# Gentle, long-lived retry: probe every 10 min (less likely to aggravate a
+# session-wide Yahoo throttle than hammering every few minutes) and stay alive
+# ~5h so an open window is caught whenever it appears. The hourly safety-net
+# Routine relaunches this if the process is ever reaped.
 DONE=0
-for i in $(seq 1 8); do
+for i in $(seq 1 30); do
   python volume_scan.py && { echo "scan complete"; DONE=1; break; }
-  echo "vol attempt $i rc=$?; checkpoint + cool 240"
+  echo "vol attempt $i rc=$?; checkpoint + cool 600"
   checkpoint
-  sleep 240
+  sleep 600
 done
 checkpoint
 [ "$DONE" = 1 ] || { echo "still incomplete; will resume next invocation"; exit 0; }
