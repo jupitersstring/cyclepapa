@@ -113,11 +113,11 @@ def sheet_board_signal(wb, conn):
         ORDER BY best_conf ASC, u.score DESC, nd DESC LIMIT 140""").fetchall()
     out = []
     for r in rows:
-        out.append([r[0], r[8] or "C", (r[1] or "")[:26],
+        out.append([r[0], r[8] or "C", (r[1] or "")[:44],
                     round(r[2], 1) if r[2] is not None else "",
                     round(r[3], 1) if r[3] is not None else "", r[4],
                     r[9] or "", (r[5] or "")[:44],
-                    (r[6] or "").replace(" / ", "/")[:24], (r[7] or "")[:16]])
+                    (r[6] or "").replace(" / ", "/")[:40], (r[7] or "")[:16]])
     write_table_rows(ws, out, 5, ticker_col=1)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=4).number_format = '0.0'
@@ -156,7 +156,7 @@ def sheet_investor_seats(wb, conn):
     out = []
     for r in rows:
         firm = r[1] if r[1] != "(principal)" else ("tracked principal" if r[7] else "")
-        out.append([r[0], (firm or "")[:24], (r[2] or "")[:24], r[3] or "",
+        out.append([r[0], (firm or "")[:40], (r[2] or "")[:40], r[3] or "",
                     round(r[4], 1) if r[4] is not None else "",
                     round(r[5], 1) if r[5] is not None else "", (r[6] or "")[:22]])
     write_table_rows(ws, out, 5, ticker_col=4)
@@ -186,8 +186,8 @@ def sheet_convergence(wb, conn):
         ORDER BY nd DESC, nt DESC LIMIT 80""").fetchall()
     out = []
     for r in rows:
-        out.append([(r[0] or "")[:30], r[1] or "—", r[2], r[3],
-                    (r[4] or "").replace(" / ", "/")[:30], (r[5] or "")[:40],
+        out.append([(r[0] or "")[:48], r[1] or "—", r[2], r[3],
+                    (r[4] or "").replace(" / ", "/")[:48], (r[5] or "")[:40],
                     round(r[6], 1) if r[6] is not None else ""])
     write_table_rows(ws, out, 5, ticker_col=2)
     return ws

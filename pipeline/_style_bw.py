@@ -189,7 +189,9 @@ def write_table_rows(ws, rows, start_row, ticker_col=1, hairline=True, blank="�
                 c.border = ROW_BORDER
 
 def autosize(ws):
-    """Column widths chosen for visual rhythm — content + 2."""
+    """Column widths chosen for visual rhythm — content + 2. Text columns
+    (names, sectors, descriptions) get enough width to show their full value;
+    only genuinely long comma-lists are allowed to run to the wide cap."""
     max_col = ws.max_column or 1
     max_row = ws.max_row or 1
     for col_idx in range(1, max_col + 1):
@@ -201,8 +203,8 @@ def autosize(ws):
             except Exception:
                 continue
             if v is not None:
-                max_len = max(max_len, min(len(str(v)), 50))
-        ws.column_dimensions[letter].width = max(8, min(max_len + 2.5, 42))
+                max_len = max(max_len, min(len(str(v)), 80))
+        ws.column_dimensions[letter].width = max(8, min(max_len + 2.5, 62))
 
 def set_default_font(wb):
     """Apply Times New Roman as the workbook default styles where possible."""

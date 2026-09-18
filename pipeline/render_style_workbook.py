@@ -195,7 +195,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
                     round(r[11] or 0, 1),
                     round(r[12] or 0, 1) if r[12] else "",
                     round(r[13] or 0, 1) if r[13] else "",
-                    (r[14] or "")[:38], *desc_for(conn, r[0])])
+                    (r[14] or "")[:58], *desc_for(conn, r[0])])
         if len(out) >= 30: break
     write_table_rows(ws, out, row)
     # colour is data: activist stake / cluster $ / insider buys = lapis (all are
@@ -235,7 +235,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
             round(r[6], 1) if r[6] is not None else "",
             round(r[7], 2) if r[7] is not None else "",
             round(r[8], 1) if r[8] else "",
-            (r[9] or "")[:38]] for r in rows if r[0] not in ETFs]
+            (r[9] or "")[:58]] for r in rows if r[0] not in ETFs]
     write_table_rows(ws, out, row)
     for ridx in range(row, row + len(out)):
         ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
@@ -267,7 +267,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
             round(r[6], 1) if r[6] is not None else "",
             round(r[7], 2) if r[7] is not None else "",
             round(r[8], 1) if r[8] else "",
-            (r[9] or "")[:38]] for r in rows if r[0] not in ETFs]
+            (r[9] or "")[:58]] for r in rows if r[0] not in ETFs]
     write_table_rows(ws, out, row)
     for ridx in range(row, row + len(out)):
         ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
@@ -296,7 +296,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
             r[4] or "", r[5] or "",
             round(r[6], 1) if r[6] is not None else "",
             round(r[7], 2) if r[7] is not None else "",
-            (r[8] or "")[:32]]
+            (r[8] or "")[:58]]
            for r in rows if r[0] not in ETFs]
     write_table_rows(ws, out, row)
     for ridx in range(row, row + len(out)):
@@ -339,7 +339,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
                         round(r[6] or 0, 1),
                         round(r[7], 1) if r[7] is not None else "",
                         round(r[8], 2) if r[8] is not None else "",
-                        (r[9] or "")[:32]])
+                        (r[9] or "")[:58]])
     write_table_rows(ws, out, row, ticker_col=2)
     for ridx in range(row, row + len(out)):
         ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
@@ -396,7 +396,7 @@ def sheet_overview(wb, conn):
                         round(r[11] or 0, 1) if r[11] else "",
                         round(r[12] or 0, 1) if r[12] else "",
                         round(r[13] or 0, 1) if r[13] else "",
-                        (r[14] or "")[:30]])
+                        (r[14] or "")[:48]])
             if len(out) >= 10: break
         write_table_rows(ws, out, row)
         for ridx in range(row, row + len(out)):
@@ -494,7 +494,7 @@ def sheet_subgroup_focus(wb, conn):
                             round(r[9] or 0, 1) if r[9] else "",
                             round(r[10], 1) if r[10] is not None else "",
                             round(r[11], 2) if r[11] is not None else "",
-                            (r[12] or "")[:32]])
+                            (r[12] or "")[:58]])
                 if len(out) >= 8: break
             write_table_rows(ws, out, row)
             for ridx in range(row, row + len(out)):
@@ -528,13 +528,13 @@ def sheet_subgroup_focus(wb, conn):
                     WHERE h.fund = ? AND h.ticker IS NOT NULL
                     ORDER BY h.value_k DESC LIMIT 1""", (fund,)).fetchone()
                 if top:
-                    spec_out.append([fund[:45], sg[:38], top[0],
+                    spec_out.append([fund[:45], sg[:58], top[0],
                                      round(top[1] or 0, 2),
                                      top[2] or 0,
                                      top[3] or "",
                                      top[4] or ""])
                 else:
-                    spec_out.append([fund[:45], sg[:38], "—", 0, 0, "", ""])
+                    spec_out.append([fund[:45], sg[:58], "—", 0, 0, "", ""])
             write_table_rows(ws, spec_out, row)
             for ridx in range(row, row + len(spec_out)):
                 ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
@@ -640,7 +640,7 @@ def desc_for(conn, ticker):
             FROM unified_signal us
             LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
             LEFT JOIN ticker_yf  yf ON yf.ticker = us.ticker"""):
-            _DESC_CACHE[r[0]] = ((r[1] or "")[:26], _one_liner(r[2], 90))
+            _DESC_CACHE[r[0]] = ((r[1] or "")[:44], _one_liner(r[2], 90))
     return _DESC_CACHE.get(ticker, ("", ""))
 
 def sheet_ticker_reference(wb, conn):
@@ -668,7 +668,7 @@ def sheet_ticker_reference(wb, conn):
     for r in rows:
         if r[0] in ETFs: continue
         out.append([r[0], (r[1] or "")[:46], (r[2] or "")[:22],
-                    (r[3] or "")[:30], r[4] or "", _one_liner(r[5])])
+                    (r[3] or "")[:48], r[4] or "", _one_liner(r[5])])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=5).number_format = NUMFMT_MCAP

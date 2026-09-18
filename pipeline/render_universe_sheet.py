@@ -121,10 +121,10 @@ def signal_row_to_cells(r):
         round(r[30], 0) if r[30] is not None else "",   # 3mo % momentum (price_stats)
         round(r[31], 0) if r[31] is not None else "",   # off 3mo high (drawdown)
         round(r[21] or 0, 2) if r[21] else "",   # anchor px
-        (r[23] or "")[:38],                      # Name
-        (r[24] or "")[:32],                      # Sector
+        (r[23] or "")[:60],                      # Name
+        (r[24] or "")[:60],                      # Sector
         round(r[25] or 0, 2) if r[25] else "",   # Px
-        (r[26] or "")[:26],            # Industry
+        (r[26] or "")[:48],            # Industry
         _one_liner(r[27], 90),         # Business (one-line summary)
     ]
 
@@ -375,7 +375,7 @@ def sheet_convergence(wb, conn):
         out.append([r["ticker"], n, round(r["score"] or 0, 1), r["mcap_m"] or "",
                     round(r["off_high"], 0) if r["off_high"] is not None else ""]
                    + ["●" if flags[f] else "" for f in flag_names]
-                   + [(r["name"] or "")[:32]])
+                   + [(r["name"] or "")[:58]])
     write_table_rows(ws, out, 5, ticker_col=1)
     from openpyxl.formatting.rule import DataBarRule
     if out:
@@ -559,7 +559,7 @@ def sheet_qoq_change(wb, conn):
         out.append([tk, nf, n_new, n_add, n_trim, n_exit,
                     "new" if pure_new else round(max(-99, min(999, d_pct)), 0),
                     "common" if tk not in formmix else "+" + formmix[tk],
-                    round(score or 0, 1), mcap or "", (name or "")[:38]])
+                    round(score or 0, 1), mcap or "", (name or "")[:58]])
     write_table_rows(ws, out, 5, ticker_col=1)
     # colour is data: Net Funds & Δ Shares — lapis building, crimson trimming
     color_directional(ws, 5, 4 + len(out), [2, 7], higher_is_better=True)
@@ -694,7 +694,7 @@ def sheet_whos_buying(wb, conn):
                 continue
             seen.add(c)
             # display the raw fund but trimmed of the trailing manager parenthetical
-            out.append(re.sub(r"\s*\(.*$", "", f).strip()[:26])
+            out.append(re.sub(r"\s*\(.*$", "", f).strip()[:44])
         return out
     out = []
     for tk, name, score, s3, s4 in rows:
@@ -704,7 +704,7 @@ def sheet_whos_buying(wb, conn):
         from _canon import canon as _cn2
         new_keys = {_cn2(f) for f in new_f}
         add_f = [f for f in funds_for(tk, 4) if _cn2(f) not in new_keys]
-        out.append([tk, (name or "")[:24], round(score or 0, 1),
+        out.append([tk, (name or "")[:40], round(score or 0, 1),
                     "common" if tk not in nc_form else "+" + nc_form[tk],
                     len(new_f), ", ".join(new_f)[:70],
                     len(add_f), ", ".join(add_f)[:70]])
@@ -772,13 +772,13 @@ def sheet_activist(wb, conn):
         if is_biotech(r[10]): continue
         # 13D anywhere = activist; else the top filer's form (13G = passive)
         typ = "13D activist" if r[13] else ("13G passive" if r[12] and "13G" in (r[12] or "") else "—")
-        filer = re.sub(r"\s*\(.*$", "", (r[11] or "")).strip()[:26]
+        filer = re.sub(r"\s*\(.*$", "", (r[11] or "")).strip()[:44]
         out.append([r[0], typ, filer, round(r[3] or 0, 1),
                     r[1] or "", r[2] or "",
                     r[4] or 0, r[5] or 0, round(r[6] or 0, 1),
                     round(r[7], 1) if r[7] is not None else "",
                     round(r[8], 2) if r[8] is not None else "",
-                    (r[9] or "")[:38], (r[10] or "")[:32]])
+                    (r[9] or "")[:58], (r[10] or "")[:58]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
@@ -812,7 +812,7 @@ def sheet_broker_radar(wb, conn):
         out.append([r[0], (r[1] or "")[:20], round(r[2] or 0, 1), r[3] or 0,
                     round(r[4] or 0, 0), round(r[5] or 0, 0), r[6] or 0,
                     round(r[7], 1) if r[7] is not None else "",
-                    r[8] or "", (r[9] or "")[:36], (r[10] or "")[:36], (r[11] or "")[:34]])
+                    r[8] or "", (r[9] or "")[:52], (r[10] or "")[:52], (r[11] or "")[:58]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=4).number_format = '0.00"%"'
@@ -843,9 +843,9 @@ def sheet_broker_radar(wb, conn):
                     r[2], r[3], r[4], r[5],
                     r[6], r[7], r[8] or "",
                     round(r[9], 0) if r[9] is not None else "",
-                    (r[15] or "")[:26], (r[10] or "")[:22], (r[11] or "")[:28],
-                    (r[16] or "")[:18], (r[12] or "")[:24], (r[13] or "")[:24],
-                    (r[14] or "")[:32]])
+                    (r[15] or "")[:44], (r[10] or "")[:22], (r[11] or "")[:28],
+                    (r[16] or "")[:18], (r[12] or "")[:40], (r[13] or "")[:40],
+                    (r[14] or "")[:58]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=4).number_format = '0.0'
@@ -880,10 +880,10 @@ def sheet_latent_ownership(wb, conn):
     nm = {r[0]: r[1] for r in conn.execute("SELECT ticker, name FROM unified_signal")}
     out = []
     for r in rows[:160]:
-        out.append([r[0] or "", (r[1] or "")[:26], r[2], (r[3] or "")[:9],
+        out.append([r[0] or "", (r[1] or "")[:44], r[2], (r[3] or "")[:9],
                     r[7], r[5] if r[5] else "", (r[6] or "")[:16],
                     (r[4] or "")[:52], round(r[8],0) if r[8] is not None else "",
-                    r[9] or "", (nm.get(r[0]) or "")[:30]])
+                    r[9] or "", (nm.get(r[0]) or "")[:48]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=6).number_format = '0.00"%"'
@@ -910,7 +910,7 @@ def sheet_nport(wb, conn):
     for ser, filed in series:
         for r in conn.execute("""SELECT ticker, issuer, ROUND(val_usd/1e6,1), pct
             FROM nport_holdings WHERE series=? AND filed=? ORDER BY val_usd DESC LIMIT 15""", (ser, filed)):
-            out.append([ser[:34], filed, r[0] or "", (r[1] or "")[:36], r[2], r[3]])
+            out.append([ser[:58], filed, r[0] or "", (r[1] or "")[:52], r[2], r[3]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=5).number_format = NUMFMT_M_TO_B
@@ -961,7 +961,7 @@ def sheet_insider_f4(wb, conn):
                     r[8] or 0,
                     round(r[9], 1) if r[9] is not None else "",
                     round(r[10], 2) if r[10] is not None else "",
-                    (r[11] or "")[:38]])
+                    (r[11] or "")[:58]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         for col in (2, 3, 4, 5):
@@ -1023,7 +1023,7 @@ def sheet_insider_recent(wb, conn):
                     r[7] or 0, r[8] or 0, r[9] or 0,
                     round(r[10] or 0, 1),
                     round(r[11], 1) if r[11] is not None else "",
-                    (r[13] or "")[:38]])
+                    (r[13] or "")[:58]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=2).number_format = NUMFMT_M_TO_B
@@ -1061,7 +1061,7 @@ def sheet_clusters(wb, conn):
           AND ic.n_insiders >= 2
         ORDER BY ic.total_usd_m DESC"""))
     out = [[r[0], r[1], r[11], r[2], r[3], round(r[4] or 0, 2), round(r[5] or 0, 2),
-            r[6][:30] if r[6] else "", r[7] or "", r[8] or "unknown",
+            r[6][:48] if r[6] else "", r[7] or "", r[8] or "unknown",
             round(r[9], 1) if r[9] is not None else "",
             round(r[10], 2) if r[10] is not None else ""] for r in rows]
     write_table_rows(ws, out, 5)
@@ -1098,7 +1098,7 @@ def sheet_unknown(wb, conn):
                     r[3] or 0, r[4] or 0, r[5] or 0, r[6] or 0,
                     round(r[7] or 0, 1), round(r[8] or 0, 1),
                     round(r[9] or 0, 1) if r[9] else "",
-                    (r[10] or "")[:38], (r[11] or "")[:30], (r[12] or "")[:12]])
+                    (r[10] or "")[:58], (r[11] or "")[:48], (r[12] or "")[:12]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=8).number_format = NUMFMT_PCT
@@ -1294,7 +1294,7 @@ def sheet_asymmetry(wb, conn):
                     round(r[7], 1) if r[7] is not None else "",
                     round(r[8] or 0, 1), round(r[9] or 0, 1),
                     eb_label, round(r[11] or 0, 1) if r[11] else "",
-                    " ".join(cat), (r[15] or "")[:34], d[0], d[1]])
+                    " ".join(cat), (r[15] or "")[:58], d[0], d[1]])
         if len(out) >= 100: break
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5+len(out)):
@@ -1340,7 +1340,7 @@ def sheet_revealed_pref(wb, conn):
                     r[5] or 0, r[6] or "", r[7] or "",
                     round(r[8], 1) if r[8] is not None else "",
                     round(r[9], 2) if r[9] is not None else "",
-                    round(r[10] or 0, 1), eb_label, (r[12] or "")[:38], d[0], d[1]])
+                    round(r[10] or 0, 1), eb_label, (r[12] or "")[:58], d[0], d[1]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=7).number_format = NUMFMT_MCAP
@@ -1394,7 +1394,7 @@ def sheet_valuation(wb, conn):
                     round(r[4] or 0, 1), r[5] or "", r[6] or "", r[7] or 0,
                     round(r[8] or 0, 1), eb_label,
                     round(r[10] or 0, 1) if r[10] else "",
-                    (r[11] or "")[:38], (r[12] or "")[:30], d[0], d[1]])
+                    (r[11] or "")[:58], (r[12] or "")[:48], d[0], d[1]])
     write_table_rows(ws, out, 5)
     # colour is data: Rev Gr % and Margin % — lapis growing/profitable, crimson
     # shrinking/loss-making (the value-trap tell).
@@ -1444,7 +1444,7 @@ def sheet_catalysts(wb, conn):
                     r[9] or 0, round(r[10] or 0, 1),
                     round(r[11], 1) if r[11] is not None else "",
                     round(r[12], 2) if r[12] is not None else "",
-                    (r[13] or "")[:38], (r[14] or "")[:32]])
+                    (r[13] or "")[:58], (r[14] or "")[:58]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=3).number_format = NUMFMT_MCAP
@@ -1520,7 +1520,7 @@ def sheet_global_picks(wb, conn):
                     round(r[11] or 0, 1) if r[11] else "",
                     round(r[12], 1) if r[12] is not None else "",
                     round(r[13], 2) if r[13] is not None else "",
-                    (r[14] or "")[:38], *desc_for(conn, r[0])])
+                    (r[14] or "")[:58], *desc_for(conn, r[0])])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=4).number_format = NUMFMT_MCAP    # Mcap $ (USD)
@@ -1579,7 +1579,7 @@ def sheet_in_the_money(wb, conn):
                     _ANCHOR_LABEL.get(r[13], (r[13] or ""))[:18],
                     round(r[14], 1) if r[14] is not None else "",
                     round(r[15], 2) if r[15] is not None else "",
-                    (r[16] or "")[:38], *desc_for(conn, r[0])])
+                    (r[16] or "")[:58], *desc_for(conn, r[0])])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=3).number_format = NUMFMT_MCAP
@@ -1628,7 +1628,7 @@ def sheet_bill_miller(wb, conn):
         out = []
         for r in rows:
             cluster_mark = "yes" if (r[8] and r[8] > 0) else ""
-            out.append([r[0] or "-", (r[1] or "")[:30],
+            out.append([r[0] or "-", (r[1] or "")[:48],
                         round((r[2] or 0)/1000, 1) if r[2] else "",
                         round(r[3] or 0, 2),
                         r[4] or "", r[5] or "",
@@ -1636,7 +1636,7 @@ def sheet_bill_miller(wb, conn):
                         cluster_mark,
                         round(r[9], 1) if r[9] is not None else "",
                         round(r[10], 2) if r[10] is not None else "",
-                        (r[11] or "")[:30]])
+                        (r[11] or "")[:48]])
         write_table_rows(ws, out, row)
         for ridx in range(row, row + len(out)):
             ws.cell(row=ridx, column=3).number_format = NUMFMT_NUM
@@ -1667,7 +1667,7 @@ def sheet_bill_miller(wb, conn):
         ORDER BY combined DESC"""))
     out = []
     for r in overlap:
-        out.append([r[0], (r[1] or "")[:30],
+        out.append([r[0], (r[1] or "")[:48],
                     round(r[2] or 0, 2),
                     round(r[3] or 0, 2),
                     round(r[4] or 0, 2),
@@ -1675,7 +1675,7 @@ def sheet_bill_miller(wb, conn):
                     r[7] or 0, round(r[8] or 0, 1),
                     round(r[9], 1) if r[9] is not None else "",
                     round(r[10], 2) if r[10] is not None else "",
-                    (r[11] or "")[:30]])
+                    (r[11] or "")[:48]])
     write_table_rows(ws, out, row)
     for ridx in range(row, row + len(out)):
         ws.cell(row=ridx, column=3).number_format = NUMFMT_PCT
@@ -1752,7 +1752,7 @@ def sheet_best_ideas(wb, conn):
                        round(vse, 1) if vse else "",
                        round(f4_30, 2) if (f4_30 or 0) > 0 else "",
                        round(actpct or 0, 1),
-                       " ".join(cat), (name or "")[:34], " · ".join(why),
+                       " ".join(cat), (name or "")[:58], " · ".join(why),
                        *desc_for(conn, tk)])
     scored.sort(key=lambda x: -x[1])
     out = scored[:90]
@@ -1867,7 +1867,7 @@ def desc_for(conn, ticker):
                 summ = summ[len(nm):]
             summ = re.sub(r"^[,\s]*(together with its subsidiaries|and its subsidiaries"
                           r"|through its subsidiaries)?[,\s]*", "", summ, flags=re.I)
-            _DESC_CACHE[r[0]] = ((r[1] or "")[:26], _one_liner(summ, 90))
+            _DESC_CACHE[r[0]] = ((r[1] or "")[:44], _one_liner(summ, 90))
     return _DESC_CACHE.get(ticker, ("", ""))
 
 def sheet_ticker_reference(wb, conn):
@@ -1896,7 +1896,7 @@ def sheet_ticker_reference(wb, conn):
     for r in rows:
         if r[0] in ETFs: continue
         out.append([r[0], (r[1] or "")[:46], (r[2] or "")[:22],
-                    (r[3] or "")[:30], r[4] or "", _one_liner(r[5])])
+                    (r[3] or "")[:48], r[4] or "", _one_liner(r[5])])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=5).number_format = NUMFMT_MCAP
