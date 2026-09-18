@@ -15,6 +15,7 @@ DB = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "
 STYLE_RULES = [
     (r"biotech",                              "Biotech Specialists"),
     (r"warrant",                              "Warrant Specialists"),
+    (r"disruptive|innovation|bleeding|frontier tech", "Disruptive Growth / Innovation"),
     (r"cta|trend",                            "CTA / Trend Followers"),
     (r"quant|multi[\s-]?strat",               "Mega Multi-Strats / Quants"),
     (r"tiger\s*cub|l/?s\s+legends",           "Tiger Cubs / L/S Legends"),

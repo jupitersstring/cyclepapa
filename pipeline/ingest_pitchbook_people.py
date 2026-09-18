@@ -28,6 +28,44 @@ _ORG_RE = re.compile(
 def _name_key(s):
     return re.sub(r"[^a-z]", "", (s or "").lower())
 
+# Curated named entities drawn from the user's PitchBook saved-searches
+# ("Investor & People Screens", "Special Sits People", "PIPEs", deep-value and
+# small-cap watchlists). A director whose bio names one of these gets graded up
+# (tier B) — it ties the board seat to a tracked activist / special-sits / deep-
+# value manager or its principal, exactly the tea-leaf we want.
+EXTRA_SEARCH_TERMS = {
+    # activist / special-sits principals
+    "Jeffrey Smith", "Glenn Welling", "Christopher Kiper", "Ted White",
+    "Scott Ferguson", "James Mitarotonda", "Jonathan Duskin", "Quentin Koffey",
+    "Paul Singer", "Christer Gardell", "Jeff Ubben", "Keith Meister",
+    # notable concentrated / deep-value principals
+    "Colin Moran", "Brian Bares", "Fred Liu", "Patrick Degorce", "Alex Captain",
+    "David Iben", "William von Mueffling", "Neil Ostrer", "Patrick Hargreaves",
+    "Suneil Setiya", "John Hempton", "Sean Fieler", "Norbert Lou",
+    # special-sits / distressed firms
+    "Attestor", "Attestor Capital", "Alchemy Special Opportunities",
+    "Alchemy Partners", "Endless LLP", "Aurelius", "Cheyne Capital", "Bybrook",
+    "Anchorage Capital Group", "Farallon Capital", "Oaktree Capital",
+    "Cyrus Capital", "Contrarian Capital", "Greywolf Capital", "Caspian Capital",
+    "Karst Peak", "Sandton Capital", "SC Lowy", "Varde Partners", "York Capital",
+    "Algebris", "Amber Capital", "Cevian Capital", "3D Investment Partners",
+    "Blackwells Capital", "Coppersmith Capital", "Okumus Fund Management",
+    # deep-value / small-cap / quality boutiques
+    "Bronte Capital", "Hotchkis & Wiley", "Equinox Partners", "Khrom Capital",
+    "Intrinsic Edge Capital", "Bridgeway Capital", "Sands Capital",
+    "Somerset Capital Management", "Independent Franchise Partners",
+    "Marcellus Investment Managers", "Nalanda Capital", "Amiral Gestion",
+    "Comgest", "Magallanes Value Investors", "Seilern Investment Management",
+    "Arisaig Partners", "Abdiel Capital", "Hayden Capital", "Spruce House",
+    "Bares Capital Management", "AltaRock Partners", "Findlay Park",
+    # PIPE placement agents / financiers (a director tied to these signals a
+    # capital-structure / financing angle)
+    "Jefferies", "TD Cowen", "Piper Sandler", "Cantor Fitzgerald", "B. Riley",
+    "Roth Capital", "Lincoln Park Capital", "Alpha Blue Ocean", "The Lind Partners",
+    "GEM Global Yield", "Negma Group", "Armistice Capital", "Anson Funds",
+    "Arena Investors", "Atlas Capital Markets",
+}
+
 def parse_all_search_terms(paths):
     """EVERY quoted term in the Search Criteria — people AND seed entities
     (offices/holdings). Used to grade linkage confidence: a biography that
@@ -249,7 +287,7 @@ def run():
     paths = [p for p in sorted(glob.glob(os.path.join(PB, "*.xlsx")))
              if not os.path.basename(p).startswith(("0a7e48ee", "repaired"))]
     principals = parse_principals(paths)
-    search_terms = parse_all_search_terms(paths)
+    search_terms = parse_all_search_terms(paths) | EXTRA_SEARCH_TERMS
     pkeys = {_name_key(p) for p in principals}
     conn.execute("DROP TABLE IF EXISTS pb_principal")
     conn.execute("CREATE TABLE pb_principal (name TEXT PRIMARY KEY)")
