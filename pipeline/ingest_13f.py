@@ -21,6 +21,20 @@ NS = {'i': 'http://www.sec.gov/edgar/document/thirteenf/informationtable'}
 # CIK map for our known funds. Keyed by canonical fund name.
 # Add to this as we resolve more CIKs.
 FUND_CIK = {
+    # --- Concentrated conviction gems (curated from saved-searches sweep, 2026-09) ---
+    "AKO Capital (Nicolai Tangen)": "1376879",
+    "Acorn Capital": "2054410",
+    "Atmos Capital (Brazil)": "1832439",
+    "Bain Capital Life Sciences": "1703031",
+    "Greenwoods Asset Management (China)": "1848138",
+    "Helios Capital (Samir Arora, India)": "1727612",
+    "Hyperion Asset Management": "1619844",
+    "MFN Partners Management": "1732811",
+    "Oldfield Partners": "1492815",
+    "Orion Resource Partners (mining)": "2032200",
+    "Owl Creek Asset Management": "1313756",
+    "Redwood Capital Management": "1316622",
+    "Samsara BioCapital": "1744967",
     # --- Conviction multibagger + bleeding-edge growth (saved-searches, 2026-09) ---
     "Rokos Capital Management (Chris Rokos)": "1666335",
     "Old West Investment Management": "1549358",
