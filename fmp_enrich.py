@@ -45,14 +45,40 @@ _TODAY = dt.date.today()
 _RATIOS_MAP = {
     "ebitdaMarginTTM": "fmp_ebitda_margin",
     "grossProfitMarginTTM": "fmp_gross_margin",
+    "operatingProfitMarginTTM": "fmp_op_margin",
+    "netProfitMarginTTM": "fmp_net_margin",
     "priceToBookRatioTTM": "fmp_pb",
+    "priceToEarningsRatioTTM": "fmp_pe",
+    "priceToSalesRatioTTM": "fmp_ps",
     "dividendYieldTTM": "fmp_dividend_yield",
+    "dividendPayoutRatioTTM": "fmp_dividend_payout",
+    "priceToFairValueTTM": "fmp_price_to_fair_value",
+    "effectiveTaxRateTTM": "fmp_effective_tax_rate",
+    "interestCoverageRatioTTM": "fmp_interest_coverage",
+    "debtServiceCoverageRatioTTM": "fmp_debt_service_coverage",
+    "returnOnEquityTTM": "fmp_roe",
+    "inventoryTurnoverTTM": "fmp_inventory_turnover",
+    "receivablesTurnoverTTM": "fmp_receivables_turnover",
 }
 _KEYM_MAP = {
     "returnOnInvestedCapitalTTM": "fmp_roic",
+    "returnOnCapitalEmployedTTM": "fmp_roce",
+    "returnOnTangibleAssetsTTM": "fmp_rota",
     "freeCashFlowYieldTTM": "fmp_fcf_yield",
+    "earningsYieldTTM": "fmp_earnings_yield",
     "netDebtToEBITDATTM": "fmp_net_debt_ebitda",
     "evToEBITDATTM": "fmp_ev_ebitda",
+    "evToSalesTTM": "fmp_ev_sales",
+    # --- nuanced (second-order) signals ---
+    "incomeQualityTTM": "fmp_income_quality",                       # CFO / NI: accrual quality
+    "capexToDepreciationTTM": "fmp_capex_to_depreciation",          # harvest vs growth-capex regime
+    "researchAndDevelopementToRevenueTTM": "fmp_rd_to_revenue",     # expensed-growth vs SG&A waste
+    "stockBasedCompensationToRevenueTTM": "fmp_sbc_to_revenue",     # FCF-add-back pollution
+    "cashConversionCycleTTM": "fmp_cash_conversion_cycle",          # customer float / WC glut
+    "taxBurdenTTM": "fmp_tax_burden",                               # DuPont: NI/pretax
+    "interestBurdenTTM": "fmp_interest_burden",                     # DuPont: pretax/EBIT (leverage drag)
+    "grahamNetNetTTM": "fmp_graham_net_net",                        # independent NCAV cross-check
+    "netCurrentAssetValueTTM": "fmp_ncav",
 }
 
 

@@ -279,6 +279,32 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # (ratio >= 1) is a strong revealed-preference conviction signal.
     df['fmp_insider_aligned_flag'] = (_num_or_nan('fmp_insider_alignment_ratio') >= 1.0).fillna(False).astype(int)
 
+    # ---- Nuanced (second-order) SURFACED flags — informational, never gates ----
+    # These confirm or qualify a thesis alongside an archetype; none removes a
+    # name from any archetype (the codebase surfaces disqualifiers, it does not
+    # veto with them). All degrade silently to 0 where the FMP field is absent.
+    _iq = _num_or_nan('fmp_income_quality')            # CFO / net income
+    _cxd = _num_or_nan('fmp_capex_to_depreciation')
+    _ccc = _num_or_nan('fmp_cash_conversion_cycle')
+    _rd = _num_or_nan('fmp_rd_to_revenue')
+    _ib = _num_or_nan('fmp_interest_burden')           # pretax / EBIT (low => heavy interest drag)
+    # earnings backed by cash (positive quality corroborator for understated-
+    # earnings / asleep-at-wheel); and its low-quality counterpart, SURFACED.
+    df['fmp_earnings_cash_backed_flag'] = ((_iq >= 1.0)).fillna(False).astype(int)
+    df['fmp_low_earnings_quality_flag'] = ((_iq < 0.7) & _iq.notna()).fillna(False).astype(int)
+    # capex regime: genuine harvester (capex well below D&A) vs growth-capex
+    # depressing FCF (capex well above D&A) — both are hidden-value tells when
+    # paired with the relevant archetype; surfaced, not gated.
+    df['fmp_asset_harvester_flag'] = ((_cxd < 0.70) & _cxd.notna()).fillna(False).astype(int)
+    df['fmp_growth_capex_masked_flag'] = ((_cxd > 1.50)).fillna(False).astype(int)
+    # negative cash-conversion cycle: customers fund the business (float).
+    df['fmp_customer_float_flag'] = ((_ccc < 0) & _ccc.notna()).fillna(False).astype(int)
+    # real expensed-growth investment (distinguishes F3 hidden value from SG&A
+    # waste): a material R&D load rather than an unexplained margin gap.
+    df['fmp_rd_intensive_flag'] = ((_rd >= 0.10)).fillna(False).astype(int)
+    # returns leaning on leverage rather than operations (low interest burden).
+    df['fmp_levered_returns_flag'] = ((_ib < 0.70) & _ib.notna()).fillna(False).astype(int)
+
     # ---------- helper accessors ----------
     _absent_cols: set = set()
     _sparse_cols: dict = {}
@@ -2423,18 +2449,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #     where the book is CASH, not un-sellable plant, AND it is being returned.
     #     Distinct from arch_tangible_value (P/TB<0.7 alone tests neither
     #     realizability nor return) and from a net-net (cash > market cap).
-    # Distress gate (FMP Altman Z): exclude a name only where we KNOW it is in
-    # the distress zone (Z < 1.81). A deep discount to a cash book means little
-    # if the balance sheet is near-insolvent — the cash may be claimed by
-    # creditors before it is ever realised. Where Altman is unknown the name is
-    # not excluded, so coverage on non-US / non-covered names is preserved.
-    _cl_not_distress = (s('fmp_distress_flag', 0) == 0)
+    # Altman-Z distress is surfaced as a DISQUALIFIER FLAG alongside the
+    # archetype (see fmp_distress_flag), consistent with the other Cluseau
+    # disqualifiers (cash_squatter / capex_treadmill / earnings_variability) —
+    # it informs, it does not silently remove the name from the archetype.
     df['arch_cluseau_realizable_book'] = (
         is_operating & (mcap >= 20e6)
         & (_cl_ptb > 0) & (_cl_ptb < 0.6)
         & (_cl_realizable >= 0.50)                  # >= half the tangible book is cash
         & _cl_returning & _cl_profitable & _not_melting
-        & _cl_not_distress
     ).fillna(False).astype(int)
 
     # (2) BUYBACKS ACCELERATING INTO A DISCOUNT WITH CASH DEPLOYED — the Georgia
@@ -2451,7 +2474,6 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & ~(_cl_sy < -0.30)                         # a -30% collapse is a restructuring, not a buyback
         & (_cl_cpm <= 0.15)                         # cash deployed, not squatted
         & _cl_profitable & _not_melting
-        & _cl_not_distress                          # not buying back into insolvency
     ).fillna(False).astype(int)
 
     # DISQUALIFIER FLAGS
@@ -6377,7 +6399,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                             'fmp_insider_aligned_flag','fmp_insider_net_usd_12m',
                             'fmp_insider_buyers_12m','fmp_exec_comp_total',
                             'fmp_earnings_beat_rate','fmp_avg_earnings_surprise',
-                            'fmp_earnings_surprise_cv'] if c in df.columns]
+                            'fmp_earnings_surprise_cv',
+                            # nuanced second-order signals + surfaced flags
+                            'fmp_income_quality','fmp_earnings_cash_backed_flag',
+                            'fmp_low_earnings_quality_flag','fmp_capex_to_depreciation',
+                            'fmp_asset_harvester_flag','fmp_growth_capex_masked_flag',
+                            'fmp_cash_conversion_cycle','fmp_customer_float_flag',
+                            'fmp_rd_to_revenue','fmp_rd_intensive_flag',
+                            'fmp_sbc_to_revenue','fmp_interest_burden','fmp_levered_returns_flag',
+                            'fmp_price_to_fair_value','fmp_graham_net_net','fmp_ncav'] if c in df.columns]
              + [c for c in df.columns if c.startswith('fmp_filled_')]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)
