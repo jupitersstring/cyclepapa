@@ -205,6 +205,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         df = df.merge(_fmp, on='symbol', how='left', suffixes=('', '_fmpdup'))
         df = df[[c for c in df.columns if not c.endswith('_fmpdup')]]
 
+    # FMP DYNAMIC (multi-period) overlay (fmp_dynamics.py): clean quarterly
+    # trajectories — streak length, acceleration, first-positive inflection,
+    # incremental operating margin, the multiple-vs-fundamental "unrerated"
+    # divergence, and FORWARD estimate crossings / underestimate gap. Serves
+    # the evolution / step-change archetypes far better than the noisy Yahoo
+    # sequential proxies. Secondary, source-tagged, non-overwriting.
+    if os.path.exists('fmp_dynamics.csv'):
+        _fdyn = pd.read_csv('fmp_dynamics.csv', low_memory=False).drop_duplicates('symbol')
+        df = df.merge(_fdyn, on='symbol', how='left', suffixes=('', '_fdyndup'))
+        df = df[[c for c in df.columns if not c.endswith('_fdyndup')]]
+
     # Coalesce suffix-shadowed copies back into the base columns. Every merge
     # above keeps the asym copy unsuffixed and shelves the incoming one
     # (_ey/_er/_pew) — but for these columns the EDGAR/pew copy often has
@@ -304,6 +315,31 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['fmp_rd_intensive_flag'] = ((_rd >= 0.10)).fillna(False).astype(int)
     # returns leaning on leverage rather than operations (low interest burden).
     df['fmp_levered_returns_flag'] = ((_ib < 0.70) & _ib.notna()).fillna(False).astype(int)
+
+    # ---- Dynamic (multi-period) SURFACED confirmers — informational, non-veto ----
+    # From fmp_dynamics.py: clean quarterly trajectories that corroborate the
+    # evolution / step-change archetypes far better than the noisy sequential
+    # proxies. None gates; each rides alongside as a confirming tag.
+    _dyn_gap = _num_or_nan('fmp_dyn_unrerated_gap')
+    _dyn_accel = _num_or_nan('fmp_dyn_rev_accel')
+    _dyn_im = _num_or_nan('fmp_dyn_incremental_ebit_margin')
+    _dyn_streak = _num_or_nan('fmp_dyn_rev_streak_q')
+    _dyn_fwd_cross = _num_or_nan('fmp_dyn_fwd_ebit_crossing')
+    _dyn_ug = _num_or_nan('fmp_dyn_fwd_underestimate_gap')
+    _beat = _num_or_nan('fmp_earnings_beat_rate')
+    # fundamentals compounded but the multiple did not follow (coiled spring).
+    df['fmp_dyn_unrerated_flag'] = ((_dyn_gap > 0.15)).fillna(False).astype(int)
+    # revenue growth accelerating (real 2nd-derivative, not the annual fallback).
+    df['fmp_dyn_accelerating_flag'] = ((_dyn_accel > 0.05)).fillna(False).astype(int)
+    # operating leverage kicking in (incremental EBIT margin high).
+    df['fmp_dyn_op_leverage_flag'] = ((_dyn_im >= 0.30)).fillna(False).astype(int)
+    # durable audited growth streak (>= 6 consecutive positive-YoY quarters).
+    df['fmp_dyn_growth_streak_flag'] = ((_dyn_streak >= 6)).fillna(False).astype(int)
+    # forward consensus EBIT crossing from loss to profit (before-it-crosses).
+    df['fmp_dyn_fwd_inflection_flag'] = ((_dyn_fwd_cross >= 1)).fillna(False).astype(int)
+    # "asleep at the wheel", forward edition: chronic beats AND forward
+    # consensus lowballs the delivered trajectory (guidance off the mark).
+    df['fmp_dyn_forward_asleep_flag'] = ((_dyn_ug > 0.10) & (_beat >= 0.6)).fillna(False).astype(int)
 
     # ---------- helper accessors ----------
     _absent_cols: set = set()
@@ -6408,6 +6444,16 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                             'fmp_rd_to_revenue','fmp_rd_intensive_flag',
                             'fmp_sbc_to_revenue','fmp_interest_burden','fmp_levered_returns_flag',
                             'fmp_price_to_fair_value','fmp_graham_net_net','fmp_ncav'] if c in df.columns]
+             # dynamic (multi-period) trajectory columns + confirming flags
+             + [c for c in ['fmp_dyn_rev_streak_q','fmp_dyn_ni_streak_q','fmp_dyn_rev_accel',
+                            'fmp_dyn_rev_yoy','fmp_dyn_incremental_ebit_margin',
+                            'fmp_dyn_ebitda_turned_positive','fmp_dyn_gross_margin_trend',
+                            'fmp_dyn_rev_cagr_3y','fmp_dyn_ev_sales_change_3y','fmp_dyn_unrerated_gap',
+                            'fmp_dyn_fwd_ebit_crossing','fmp_dyn_fwd_rev_growth_1y',
+                            'fmp_dyn_fwd_underestimate_gap','fmp_dyn_unrerated_flag',
+                            'fmp_dyn_accelerating_flag','fmp_dyn_op_leverage_flag',
+                            'fmp_dyn_growth_streak_flag','fmp_dyn_fwd_inflection_flag',
+                            'fmp_dyn_forward_asleep_flag'] if c in df.columns]
              + [c for c in df.columns if c.startswith('fmp_filled_')]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)
