@@ -507,6 +507,37 @@ def quality_value(df: pd.DataFrame, top: int | None = 40, **elig) -> pd.DataFram
                    "fmp_net_debt_to_ebitda", "fmp_income_quality", "fmp_current_ratio"])
 
 
+def base_inflection(df: pd.DataFrame, top: int | None = 40, **elig) -> pd.DataFrame:
+    """MU-style "coiled spring": a long consolidation base meeting a real fundamental
+    inflection. ``mu_like = base_score x inflection`` — a stock still inside an
+    extended sideways range (pressing the top, volatility contracting, above its
+    40-week MA — like Micron before it broke out) AND whose recent quarters are
+    turning up. Needs the base_signal overlay (base_* columns); returns EMPTY when
+    it is absent. A stock that has already broken out scores near zero on the base
+    leg (large extension above the MA), so it correctly drops out.
+    """
+    e = eligible(df, **elig)
+    if "base_score" not in e.columns:
+        return _finish(e.iloc[0:0], pd.Series(dtype=float), top)
+    num = lambda c: (pd.to_numeric(e[c], errors="coerce") if c in e.columns
+                     else pd.Series(np.nan, index=e.index))
+    base = num("base_score")
+    # Fundamental inflection: existing region-ranked inflection + recent-quarter
+    # acceleration + (where FMP covers it) clean beat-rate confirmation.
+    infl = (0.40 * _rank(e, "inflection_score").fillna(0.5)
+            + 0.25 * _rank(e, "revenue_q_yoy").fillna(0.5)
+            + 0.20 * _rank(e, "ebitda_accel_abs").fillna(0.5)
+            + 0.15 * num("fmp_eps_beat_rate").fillna(0.5))       # already 0..1
+    gate = (base >= 0.35) & (num("revenue_growth").fillna(-1.0) > -0.10)
+    e = e[gate].copy()
+    if e.empty:
+        return _finish(e, pd.Series(dtype=float), top)
+    score = base[gate] * infl[gate]                              # mu_like = base x inflection
+    return _finish(e, score, top, extra=["base_score", "base_pos", "base_len_months",
+                   "base_vol_contraction", "base_extension", "inflection_score",
+                   "revenue_q_yoy", "fmp_eps_beat_rate"])
+
+
 SCREENS = {
     "yoy-unpriced": yoy_unpriced,
     "accel-unpriced": accel_unpriced,
@@ -518,5 +549,6 @@ SCREENS = {
     "new-reality": new_reality,
     "consensus-lagging": consensus_lagging,
     "quality-value": quality_value,
+    "base-inflection": base_inflection,
     "conviction": conviction,
 }

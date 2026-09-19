@@ -196,6 +196,10 @@ def _surprise_metrics(hist: pd.DataFrame) -> dict:
     +/-50% so a beat off a ~$0 estimate can't explode the average (the same
     near-zero-denominator artifact the Yahoo surprise clamp guards)."""
     h = hist.dropna(subset=["epsActual", "epsEstimated"]).sort_values("date")
+    # The bulk files overlap (each period file carries ~4 quarters), so dedupe by
+    # report date (keep the latest-filed) and use the last 8 DISTINCT quarters —
+    # otherwise a symbol's streak/beat_rate is computed over duplicated rows.
+    h = h.drop_duplicates(subset="date", keep="last").tail(8)
     if h.empty:
         return {}
     beats = (h["epsActual"] > h["epsEstimated"]).tolist()
@@ -216,15 +220,18 @@ def _surprise_metrics(hist: pd.DataFrame) -> dict:
 
 
 def build_earnings_overlay(universe_symbols: set[str] | None = None,
-                           quarters: int = 8) -> pd.DataFrame:
-    """Per-symbol clean EPS-surprise metrics (last ``quarters``) + forward consensus
-    growth (next-FY vs this-FY revenue/EPS avg estimates). All additive fmp_* fields.
+                           period_files: int = 5) -> pd.DataFrame:
+    """Per-symbol clean EPS-surprise metrics (last 8 distinct quarters) + forward
+    consensus growth (next-FY vs this-FY revenue/EPS avg estimates). All additive
+    fmp_* fields. Each bulk file already carries ~4 quarters, so a few recent
+    period-files, deduped by report date, cover the 8-quarter window — far fewer
+    calls against FMP's hard bulk throttle.
     """
     want = set(map(str, universe_symbols)) if universe_symbols is not None else None
 
-    # --- surprise history: one bulk CSV per fiscal quarter ------------------- #
+    # --- surprise history: a few overlapping bulk files, deduped later ------- #
     frames = []
-    for y, p in _recent_quarters(quarters):
+    for y, p in _recent_quarters(period_files):
         try:
             df = _fetch_csv(f"earnings-surprises-bulk?year={y}&period={p}")
         except RuntimeError:

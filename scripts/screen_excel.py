@@ -37,6 +37,7 @@ SHEETS = [
     ("surprises", "Surprises"),
     ("consensus-lagging", "Consensus Lagging"),
     ("quality-value", "Quality-Value (FCF)"),
+    ("base-inflection", "Base + Inflection (MU-style)"),
     ("inflecting-positive", "Inflecting+"),
     ("accel-unpriced", "Accel Unpriced"),
     ("prebreakout-na", None),  # placeholder, ignored

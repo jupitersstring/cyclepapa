@@ -9,8 +9,8 @@ from pathlib import Path
 
 import pandas as pd
 
-from . import (aggregate, cluster, config, fmp, fundamentals, prebreakout, quality,
-               screens, universe, util, valuation)
+from . import (aggregate, base_signal, cluster, config, fmp, fundamentals,
+               prebreakout, quality, screens, universe, util, valuation)
 
 
 def step_universe(
@@ -82,6 +82,9 @@ def step_analyze(
     # FMP balance-sheet / FCF / quality overlay (no-op if data/fmp_metrics.parquet
     # absent), so scored.parquet + every screen can see the fmp_* columns.
     scored = fmp.attach(scored)
+    # MU-style consolidation-base metrics from cached monthly prices (no-op if the
+    # base_signal overlay is absent) -> base_* columns for the base-inflection screen.
+    scored = base_signal.attach(scored)
 
     out_dir.mkdir(parents=True, exist_ok=True)
     util.atomic_to_parquet(scored, out_dir / "scored.parquet")
