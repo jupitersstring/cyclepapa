@@ -95,6 +95,17 @@ def feats(d):
     eps_ttm = sum(e for e in eps[:4] if np.isfinite(e)) if len(eps) >= 4 else np.nan
     r["eps_ttm"] = eps_ttm if (isinstance(eps_ttm, float) and np.isfinite(eps_ttm)) else np.nan
 
+    # TTM growth over ~1-2y (current ttm vs prior ttm) — the GROWTH-THROUGH-THE-
+    # BASE leg that, against a flat price, means the multiple DE-RATED.
+    def ttm_g(series):
+        if len(series) < 8:
+            return np.nan
+        cur = sum(x for x in series[0:4] if np.isfinite(x))
+        pri = sum(x for x in series[4:8] if np.isfinite(x))
+        return (cur / pri - 1) if pri and pri > 0 else np.nan
+    r["rev_ttm_g"] = ttm_g(rev)
+    r["ni_ttm_g"] = ttm_g(ni)
+
     # ── buybacks / share-count reduction (limited-supply pillar) ──
     # diluted share count best captures net buyback after stock-comp dilution.
     shs = [_num(q.get("weightedAverageShsOut")) for q in inc]

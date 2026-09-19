@@ -93,6 +93,20 @@ def main():
             + 0.10 * pc("growth_stability") + 0.10 * (pc("i_pos_streak")))
     df["inflection"] = infl.round(3)
 
+    # MULTIPLE DE-RATING THROUGH THE BASE: revenue/earnings grew while price sat
+    # in the consolidation -> the multiple compressed (stored energy for a
+    # re-rating on breakout). base_drift is price change across the base window.
+    rev_g = df["rev_ttm_g"]
+    ni_g = df.get("ni_ttm_g", pd.Series(np.nan, index=df.index))
+    # P/S compression: 1 - (1+priceChg)/(1+revGrowth); +ve = multiple fell while growing
+    df["ps_compression"] = np.where(rev_g > 0.05,
+                                    1 - (1 + df["base_drift"]) / (1 + rev_g), np.nan)
+    df["pe_compression"] = np.where(ni_g > 0.05,
+                                    1 - (1 + df["base_drift"]) / (1 + ni_g), np.nan)
+    # derating score: reward compression only when growth is genuine (rev_g>0)
+    comp = df[["ps_compression", "pe_compression"]].max(axis=1)
+    df["derate_score"] = (comp.clip(0, 0.5) / 0.5).fillna(0).round(3)
+
     # base score: long + near the top + contracting + healthy (above 40w, mild drift)
     length = (df["base_len"] / 104).clip(0, 1)
     near = ((df["near_high"] - 0.85) / 0.17).clip(0, 1)              # 0.85->0, ~1.02->1
@@ -100,9 +114,15 @@ def main():
     healthy = df["above_40w"].astype(float) * (df["base_drift"].between(-0.15, 1.5)).astype(float)
     df["base_score"] = (0.45 * length + 0.30 * near + 0.15 * contract + 0.10 * healthy).round(3)
 
-    # require a genuine long base + real fundamentals
-    ok = (df["base_len"] >= min_base) & df["f_rev_accel"].notna()
-    df["mu_like"] = np.where(ok, (100 * df["base_score"] * (0.4 + df["inflection"])), np.nan)
+    # fundamental side = EITHER acceleration/inflection OR multiple-derating-with-
+    # growth through the base (two valid MU-like paths, per the user).
+    df["fund_side"] = (0.55 * df["inflection"] + 0.45 * df["derate_score"]).round(3)
+
+    # require a genuine long base + real fundamentals + at least one fundamental
+    # path present (inflecting OR derating-while-growing)
+    ok = (df["base_len"] >= min_base) & df["rev_ttm_g"].notna() & \
+         ((df["inflection"] > 0.35) | (df["derate_score"] > 0.2))
+    df["mu_like"] = np.where(ok, (100 * df["base_score"] * (0.4 + df["fund_side"])), np.nan)
     df = df.sort_values("mu_like", ascending=False)
 
     # names + liquidity
@@ -119,8 +139,8 @@ def main():
         pass
 
     cols = ["ticker", "name", "mu_like", "base_len", "base_range", "near_high",
-            "contraction", "inflection", "F", "I", "f_rev_accel", "f_eps_accel",
-            "i_pos_streak", "adv_usd_M"]
+            "contraction", "fund_side", "inflection", "derate_score", "ps_compression",
+            "rev_ttm_g", "base_drift", "F", "I", "f_rev_accel", "i_pos_streak", "adv_usd_M"]
     cols = [c for c in cols if c in df.columns]
     os.makedirs(os.path.dirname(DELIVER), exist_ok=True)
     df[cols].round(3).to_csv(DELIVER, index=False)
