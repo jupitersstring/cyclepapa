@@ -198,15 +198,21 @@ def enrich_symbol(sym: str) -> dict:
     # fraction of net income (both in the reporting currency), so it is immune
     # to the ADR/listing-currency market-cap mismatch that corrupts every
     # yield. This is the reliable global capital-allocation signal.
+    # These are ratios to net income, so the archetype layer can recover a
+    # currency-correct YIELD as payout x earnings_yield (earnings_yield coming
+    # from our own FX-handled master), sidestepping FMP's listing-currency cap.
     _ni_y = dict(_by_year(isr, "netIncome"))
-    _payouts = []
+    _tot_payouts, _buyb_payouts, _div_payouts = [], [], []
     for y in sorted(set(_ni_y) & (set(_buyb_y) | set(_div_y)), reverse=True)[:3]:
         ni = _ni_y.get(y, np.nan)
         if math.isfinite(ni) and ni > 0:
-            ret = abs(_buyb_y.get(y, 0.0) or 0.0) + abs(_div_y.get(y, 0.0) or 0.0)
-            _payouts.append(ret / ni)
-    if _payouts:
-        rec["fmp_st_capital_return_payout"] = float(np.median(_payouts))
+            b = abs(_buyb_y.get(y, 0.0) or 0.0) / ni
+            d = abs(_div_y.get(y, 0.0) or 0.0) / ni
+            _buyb_payouts.append(b); _div_payouts.append(d); _tot_payouts.append(b + d)
+    if _tot_payouts:
+        rec["fmp_st_capital_return_payout"] = float(np.median(_tot_payouts))
+        rec["fmp_st_buyback_payout"] = float(np.median(_buyb_payouts))
+        rec["fmp_st_dividend_payout_cf"] = float(np.median(_div_payouts))
 
     # market cap for the (single-figure) owner-earnings yield below: the latest
     # coherent year's cap, else NaN so the yield is withheld on a mismatch.

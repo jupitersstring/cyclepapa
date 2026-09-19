@@ -310,14 +310,41 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                    ('shares_growth_5y', 'fmp_st_shares_growth_5y'),
                    ('years_of_history', 'fmp_st_years_of_history')):
         _fmp_fill(_b, _f)
-    # NOTE: capital_return_yield / buyback_yield / oe_avg are deliberately NOT
-    # filled from FMP. FMP's marketCap (and every yield or per-share figure it
-    # derives) is denominated in the LISTING currency for ADRs / cross-listings,
-    # while the statements are in the reporting currency — so any market-cap-
-    # relative yield is unreliable for exactly the non-US cohort this reach
-    # targets (NOAH's FMP dividendYield reads 56% vs a sane 0.98 payout ratio).
-    # The currency-INVARIANT payout ratios (fmp_st_*_payout, below) carry the
-    # capital-return signal instead; the mcap-relative gate stays EDGAR/US.
+
+    # Capital-return YIELD, made currency-correct by decomposition. FMP's
+    # marketCap (and every yield it derives) is in the LISTING currency for
+    # ADRs / cross-listings while the statements are in the reporting currency,
+    # so FMP's own yield is unusable for the non-US cohort (NOAH: 56% vs a sane
+    # 0.98 payout). But yield = payout_ratio x earnings_yield, and BOTH factors
+    # are trustworthy: the payout ratio is currency-invariant (both figures
+    # local, from FMP) and earnings_yield is our own FX-handled master column.
+    # Their product is the cash returned as a fraction of what you pay — exactly
+    # what arch_capital_returner (>=5% of mcap/yr) needs — with no FMP mcap used.
+    # Both inputs must be economically VALID at the source, because both can be
+    # currency-corrupt for foreign/ADR listings: our master's earnings_yield is
+    # sometimes wrong for ADRs (UVRBF read 531%, i.e. a P/E of 0.19 — a USD
+    # market cap over local net income), and FMP's payout ratio blows up when
+    # FMP net income is near zero (KGGNF payout 182x). Bounding earnings_yield
+    # to <= 50% (P/E >= 2) and payout to <= 300% (3y median) drops those
+    # artifacts rather than clamping a real value; a legitimate cheap
+    # high-returner still passes and the product is its true cash-return yield.
+    # A decomposed yield above ~30% is, by the framework's own definition
+    # (see the capital_returner audit), a stale-price / return-of-capital
+    # artifact rather than a sustainable policy — and here it comes from an
+    # inflated earnings_yield on a cheap or stale-priced name. So we fill only
+    # within that trusted policy band and leave the artifact tail unfilled
+    # (NaN), rather than assert an unreliable yield. This is a validity filter
+    # grounded in the domain definition, not a cosmetic clamp of a real number.
+    _mkt_ey = pd.to_numeric(df.get('earnings_yield'), errors='coerce') if 'earnings_yield' in df.columns else pd.Series(np.nan, index=df.index)
+    _ey_ok = (_mkt_ey > 0) & (_mkt_ey <= 0.50)
+    for _yldcol, _paycol in (('capital_return_yield', 'fmp_st_capital_return_payout'),
+                             ('buyback_yield', 'fmp_st_buyback_payout')):
+        if _paycol in df.columns:
+            _pay = pd.to_numeric(df[_paycol], errors='coerce')
+            _decomp = (_pay * _mkt_ey).where((_pay >= 0) & (_pay <= 3.0) & _ey_ok)
+            _decomp = _decomp.where(_decomp <= 0.30)   # domain validity ceiling
+            df['fmp_st_' + _yldcol + '_decomp'] = _decomp
+            _fmp_fill(_yldcol, 'fmp_st_' + _yldcol + '_decomp')
     # Altman-Z distress (< 1.81 = distress zone) and Piotroski quality (>= 7),
     # surfaced as flags. Distress is used ONLY as a negative gate on the two
     # cash-rich Cluseau value archetypes (a deep discount to a book that a
