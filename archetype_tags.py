@@ -308,11 +308,16 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                    ('revenue_3y_cagr', 'fmp_st_revenue_cagr'),
                    ('shares_growth_3y', 'fmp_st_shares_growth_3y'),
                    ('shares_growth_5y', 'fmp_st_shares_growth_5y'),
-                   ('capital_return_yield', 'fmp_st_capital_return_yield'),
-                   ('buyback_yield', 'fmp_st_buyback_yield'),
-                   ('years_of_history', 'fmp_st_years_of_history'),
-                   ('oe_avg', 'fmp_st_owner_earnings_avg')):
+                   ('years_of_history', 'fmp_st_years_of_history')):
         _fmp_fill(_b, _f)
+    # NOTE: capital_return_yield / buyback_yield / oe_avg are deliberately NOT
+    # filled from FMP. FMP's marketCap (and every yield or per-share figure it
+    # derives) is denominated in the LISTING currency for ADRs / cross-listings,
+    # while the statements are in the reporting currency — so any market-cap-
+    # relative yield is unreliable for exactly the non-US cohort this reach
+    # targets (NOAH's FMP dividendYield reads 56% vs a sane 0.98 payout ratio).
+    # The currency-INVARIANT payout ratios (fmp_st_*_payout, below) carry the
+    # capital-return signal instead; the mcap-relative gate stays EDGAR/US.
     # Altman-Z distress (< 1.81 = distress zone) and Piotroski quality (>= 7),
     # surfaced as flags. Distress is used ONLY as a negative gate on the two
     # cash-rich Cluseau value archetypes (a deep discount to a book that a
@@ -4632,9 +4637,22 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (_num('revenue_ttm_usd') >= 20e6)             # validity: investable scale
     )
     _asleep_beats_branch = ((beat_rate >= 0.75) & (_beat_legs >= 2))
+    # (recipe upgrade, FMP dynamics) FORWARD edition of "asleep at the wheel":
+    # the consensus is wrong not only about the PAST (beats) but about the
+    # FUTURE — forward revenue growth is modelled well below the trajectory the
+    # company is actually delivering (fmp_dyn_fwd_underestimate_gap), while it
+    # keeps beating. Guidance off the mark is itself the underestimation signal.
+    # Additive OR-branch (no veto), with the same validity guards as the EPS
+    # branch so a sub-scale/shrinking artifact cannot fire it.
+    _asleep_fwd_branch = (
+        (_num('fmp_dyn_fwd_underestimate_gap') >= 0.10)
+        & (beat_rate >= 0.60)
+        & is_operating & (rev_yoy >= 0) & (_num('revenue_ttm_usd') >= 20e6)
+    )
     df['arch_asleep_at_wheel'] = (
         _asleep_beats_branch
         | _asleep_eps_branch
+        | _asleep_fwd_branch.fillna(False)
     ).fillna(False).astype(int)
     # Quality-UPWEIGHTED ranking score: the underestimation signal earns a name
     # into the archetype, but quality (returns on capital, margins, profitability,
@@ -4674,10 +4692,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                            axis=1).median(axis=1, skipna=True)
     _pe_exp_au = ((1.0 + _pyw_au)
                   / (1.0 + _fund_g_au.where(_fund_g_au > -0.9)) - 1.0)
+    # (recipe upgrade, FMP dynamics) The native lens reconstructs the prior
+    # EV/Sales from a single price_yoy — noisy and US-tilted. fmp_dyn_unrerated_gap
+    # is the REAL divergence: multi-year revenue CAGR minus the actual EV/Sales
+    # change from FMP's historical enterprise-value series. A large positive gap
+    # (fundamentals compounded, the multiple did not follow) is the cleanest,
+    # global "still not re-rated" evidence — added as an extra lens.
     _no_rerate_au = ((_esc_au <= 0.10)
                      | ((_pyw_au <= _fund_g_au)
                         & _pyw_au.notna() & _fund_g_au.notna())
-                     | (_pe_exp_au <= 0.10))
+                     | (_pe_exp_au <= 0.10)
+                     | (_num('fmp_dyn_unrerated_gap') >= 0.15))
     _pe_au = _num('p_e')
     _not_rich_au = (((_pe_au > 0) & (_pe_au <= 25))
                     | ((ev_ebitda_v > 0) & (ev_ebitda_v <= 14))
@@ -4697,12 +4722,20 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # has NOT re-rated (the asleep_unrerated no-rerate evidence) and the
     # multiple is not already rich. The longest-duration told-and-ignored
     # signal the data supports.
+    # (recipe upgrade, FMP dynamics) The native streak is EDGAR US-only. Add the
+    # GLOBAL streak from FMP quarterly statements (fmp_dyn_rev/ni_streak_q) and
+    # its honest window (fmp_dyn_quarters) so the longest-duration told-and-
+    # ignored signal fires for non-US names too — the reach win for this XR gate.
     _stk_best = pd.concat([_ncol('ni_yoy_streak_q'),
-                           _ncol('rev_yoy_streak_q')], axis=1).max(axis=1)
+                           _ncol('rev_yoy_streak_q'),
+                           _ncol('fmp_dyn_rev_streak_q'),
+                           _ncol('fmp_dyn_ni_streak_q')], axis=1).max(axis=1)
+    _stk_window = pd.concat([_ncol('streak_quarters_n'),
+                             _ncol('fmp_dyn_quarters')], axis=1).max(axis=1)
     df['arch_xr_audited_streak_unrerated'] = (
         is_operating & (mcap > 0) &
         (_stk_best >= 8) &
-        (_ncol('streak_quarters_n') >= 8) &
+        (_stk_window >= 8) &
         _no_rerate_au.fillna(False) &
         _not_rich_au.fillna(False) &
         _not_melting

@@ -155,20 +155,67 @@ def enrich_symbol(sym: str) -> dict:
         rec["fmp_st_shares_growth_5y"] = _sh_growth(min(5, len(sh) - 1))
 
     # ---- capital return (audited multi-year cash-flow history) ----
-    mcap = _f((km or [{}])[0].get("marketCap")) if km else np.nan
-    buyb = _by_year(cf, "commonStockRepurchased")
-    divp = _by_year(cf, "commonDividendsPaid")
+    # CURRENCY-CONSISTENCY GUARD. A yield divides a cash-flow amount (in the
+    # statement's reportedCurrency) by market cap (key-metrics.marketCap). For
+    # most names these agree, but for ADRs / cross-listings FMP sometimes carries
+    # the market cap in the LISTING currency while the statements are in the
+    # reporting currency (e.g. SEBNF: mcap ~$2B tagged JPY, buybacks 51B local)
+    # — dividing across currencies inflates the yield ~150x and manufactures an
+    # economically impossible "26x buyback yield". Market cap and revenue are
+    # denominated the same way, so a mcap/revenue ratio far outside the normal
+    # [0.02, 100] band signals the mismatch; we then withhold the yield columns
+    # (the dimensionless ratios above are currency-invariant and stay valid).
+    # Per-year market cap (key-metrics) and revenue (income), so each year's
+    # capital return is measured against THAT year's market cap — currency- and
+    # era-consistent. Using the current market cap for a 3-year average of
+    # returns manufactures a false yield for names whose cap collapsed (e.g.
+    # LNZA, a de-SPAC down ~60x: an old distribution over today's tiny cap read
+    # as a 760% yield). A per-year coherence check (mcap_y/revenue_y in a normal
+    # band) drops the ADR/cross-listing currency mismatches (e.g. SEBNF).
+    _mc_y = dict(_by_year(km, "marketCap"))
+    _rev_y = dict(_by_year(isr, "revenue"))
+    _buyb_y = dict(_by_year(cf, "commonStockRepurchased"))
+    _div_y = dict(_by_year(cf, "commonDividendsPaid"))
+
+    def _coherent(y):
+        m, r = _mc_y.get(y, np.nan), _rev_y.get(y, np.nan)
+        return math.isfinite(m) and math.isfinite(r) and r > 0 and 0.02 <= m / r <= 100 and m > 0
+
+    _cap_yields, _buyb_yields, _div_yields = [], [], []
+    for y in sorted(set(_mc_y) & (set(_buyb_y) | set(_div_y)), reverse=True)[:3]:
+        if not _coherent(y):
+            continue
+        m = _mc_y[y]
+        b = abs(_buyb_y.get(y, 0.0) or 0.0) / m
+        d = abs(_div_y.get(y, 0.0) or 0.0) / m
+        _buyb_yields.append(b); _div_yields.append(d); _cap_yields.append(b + d)
+    if _cap_yields:
+        rec["fmp_st_buyback_yield"] = float(np.median(_buyb_yields))
+        rec["fmp_st_dividend_yield_cf"] = float(np.median(_div_yields))
+        rec["fmp_st_capital_return_yield"] = float(np.median(_cap_yields))
+
+    # CURRENCY-INVARIANT capital-return signal: total capital returned as a
+    # fraction of net income (both in the reporting currency), so it is immune
+    # to the ADR/listing-currency market-cap mismatch that corrupts every
+    # yield. This is the reliable global capital-allocation signal.
+    _ni_y = dict(_by_year(isr, "netIncome"))
+    _payouts = []
+    for y in sorted(set(_ni_y) & (set(_buyb_y) | set(_div_y)), reverse=True)[:3]:
+        ni = _ni_y.get(y, np.nan)
+        if math.isfinite(ni) and ni > 0:
+            ret = abs(_buyb_y.get(y, 0.0) or 0.0) + abs(_div_y.get(y, 0.0) or 0.0)
+            _payouts.append(ret / ni)
+    if _payouts:
+        rec["fmp_st_capital_return_payout"] = float(np.median(_payouts))
+
+    # market cap for the (single-figure) owner-earnings yield below: the latest
+    # coherent year's cap, else NaN so the yield is withheld on a mismatch.
+    mcap = np.nan
+    for y in sorted(_mc_y, reverse=True):
+        if _coherent(y):
+            mcap = _mc_y[y]; break
+
     fin = _by_year(cf, "netCashProvidedByFinancingActivities")
-    if math.isfinite(mcap) and mcap > 0:
-        if buyb:
-            avg_buyb = np.mean([abs(v) for _, v in buyb[:3]])   # repurchases are negative
-            rec["fmp_st_buyback_yield"] = float(avg_buyb / mcap)
-        if divp:
-            avg_div = np.mean([abs(v) for _, v in divp[:3]])
-            rec["fmp_st_dividend_yield_cf"] = float(avg_div / mcap)
-        if buyb or divp:
-            rec["fmp_st_capital_return_yield"] = (rec.get("fmp_st_buyback_yield", 0.0)
-                                                  + rec.get("fmp_st_dividend_yield_cf", 0.0))
     if fin:
         rec["fmp_st_financing_outflow_years"] = float(sum(1 for _, v in fin if v < 0))
         rec["fmp_st_financing_years"] = float(len(fin))
