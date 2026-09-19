@@ -111,6 +111,15 @@ def name_lookup(tickers, cache_path="/home/user/cyclepapa/data/ticker_info_cache
             todo.append(t)
     print(f"  {len(out)} from cache, {len(todo)} to fetch")
 
+    # Offline guard: when CYCLEPAPA_NO_FETCH is set, never hit the network for
+    # missing tickers (which stalls badly under a Yahoo throttle) — give them
+    # blank fields instead so an offline rebuild always completes.
+    if os.environ.get("CYCLEPAPA_NO_FETCH") and todo:
+        print(f"  NO_FETCH set — {len(todo)} missing tickers left blank")
+        for t in todo:
+            out[t] = {'name': '', 'sector': '', 'mcap_M': 0}
+        todo = []
+
     for i, t in enumerate(todo):
         try:
             info = yf.Ticker(t).info or {}

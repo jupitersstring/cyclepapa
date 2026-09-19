@@ -66,7 +66,15 @@ def name_lookup(tickers, fx=None):
 
 
 def _name_lookup_live(tickers, fx=None):
-    """Pull name + sector for each ticker via yfinance."""
+    """Pull name + sector for each ticker via yfinance.
+
+    Offline guard: when CYCLEPAPA_NO_FETCH is set, skip the network entirely
+    (it stalls badly under a Yahoo throttle) and return blank fields, so an
+    offline basket rebuild always completes."""
+    import os
+    if os.environ.get("CYCLEPAPA_NO_FETCH"):
+        return {t: {'name': '', 'sector': '', 'industry': '', 'mcap_usd_M': 0}
+                for t in tickers}
     FX = {'JPY': 0.0065, 'INR': 0.0117, 'KRW': 0.00073, 'TWD': 0.031, 'HKD': 0.128,
           'CNY': 0.139, 'GBp': 0.0127, 'GBP': 1.27, 'EUR': 1.08, 'CHF': 1.12,
           'SEK': 0.095, 'NOK': 0.092, 'DKK': 0.145, 'AUD': 0.65, 'NZD': 0.60,
