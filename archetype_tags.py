@@ -338,7 +338,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _mkt_ey = pd.to_numeric(df.get('earnings_yield'), errors='coerce') if 'earnings_yield' in df.columns else pd.Series(np.nan, index=df.index)
     _ey_ok = (_mkt_ey > 0) & (_mkt_ey <= 0.50)
     for _yldcol, _paycol in (('capital_return_yield', 'fmp_st_capital_return_payout'),
-                             ('buyback_yield', 'fmp_st_buyback_payout')):
+                             ('buyback_yield', 'fmp_st_buyback_payout'),
+                             ('dividend_yield', 'fmp_st_dividend_payout_cf')):
         if _paycol in df.columns:
             _pay = pd.to_numeric(df[_paycol], errors='coerce')
             _decomp = (_pay * _mkt_ey).where((_pay >= 0) & (_pay <= 3.0) & _ey_ok)
@@ -2740,6 +2741,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _ni_loc = _ncol('net_income_ttm')
     _cfo_loc = _ncol('cfo_ttm')
     _cfo_ni = (_cfo_loc / _ni_loc).where(_ni_loc > 0)
+    # Global reach: FMP income quality is CFO/NI, standardized and currency-
+    # invariant, so it fills the ratio where our master's CFO is absent (the
+    # non-US cohort) — the CFO-above-earnings thesis then fires worldwide.
+    _cfo_ni = _cfo_ni.fillna(_ncol('fmp_income_quality'))
     _pe_ue = _ncol('p_e')
     df['arch_understated_earnings'] = (
         is_operating & (mcap > 0) &
@@ -2865,12 +2870,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # negative net working capital WITH real profitability and CFO above NI
     # (the float shows up as cash before it shows up as earnings).
     _nwc_f8 = _ncol('net_working_capital')
+    # A negative cash-conversion cycle (FMP, global) is the DIRECT measure of
+    # customers/suppliers funding the business — an alternative to the negative-
+    # working-capital sign for names where our NWC is absent. CFO/NI corroborated
+    # by FMP income quality where our CFO is missing.
+    _ccc_f8 = _ncol('fmp_cash_conversion_cycle')
+    _cfo_ni_f8 = (_ncol('cfo_ttm') / _ncol('net_income_ttm').where(_ncol('net_income_ttm') > 0)).fillna(_ncol('fmp_income_quality'))
     df['arch_customer_float'] = (
         is_operating & (_mc_f7 > 0) &
-        (_nwc_f8 < 0) &                              # customers/suppliers fund operations
+        ((_nwc_f8 < 0) | (_ccc_f8 < 0)) &           # negative WC OR negative cash-conversion cycle
         (s('op_margin', np.nan) > 0.03) &
         (rev_yoy_c >= 0.0) &                         # float grows WITH the business, not a liquidation
-        ((_ncol('cfo_ttm') / _ncol('net_income_ttm').where(_ncol('net_income_ttm') > 0)) >= 1.1) &
+        (_cfo_ni_f8 >= 1.1) &
         _not_melting
     ).fillna(False).astype(int)
 
