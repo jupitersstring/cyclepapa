@@ -65,6 +65,18 @@ def feats(d):
     r["f_eps_g_prev"] = yoy(ni, 1)
     r["f_eps_accel"] = (r["f_eps_g"] - r["f_eps_g_prev"]) if np.isfinite(r["f_eps_g"]) and np.isfinite(r["f_eps_g_prev"]) else np.nan
 
+    # extra acceleration legs (gross profit, operating income/EBIT, EBITDA) —
+    # all present in the income statement, no extra fetch.
+    def accel(series):
+        g0, g1 = yoy(series, 0), yoy(series, 1)
+        return (g0 - g1) if np.isfinite(g0) and np.isfinite(g1) else np.nan
+    gp = [_num(q.get("grossProfit")) for q in inc]
+    ebit = [_num(q.get("operatingIncome")) for q in inc]
+    ebitda = [_num(q.get("ebitda")) for q in inc]
+    r["f_gp_accel"] = accel(gp)
+    r["f_ebit_accel"] = accel(ebit)
+    r["f_ebitda_accel"] = accel(ebitda)
+
     # growth STABILITY (Frog-in-the-Pan: continuous, steady improvement is
     # underreacted to). Over the last 4 YoY revenue-growth readings: reward
     # consistently-positive, low-variance (smooth) growth. 1 = steady climb.
@@ -112,6 +124,25 @@ def feats(d):
         ra, re_ = _num(last.get("revenueActual")), _num(last.get("revenueEstimated"))
         r["i_eps_surprise"] = (ea - ee) / abs(ee) if np.isfinite(ea) and np.isfinite(ee) and ee != 0 else np.nan
         r["i_rev_surprise"] = (ra - re_) / abs(re_) if np.isfinite(ra) and np.isfinite(re_) and re_ != 0 else np.nan
+
+        # SUE — standardised unexpected earnings: latest EPS surprise divided by
+        # the volatility of past surprises (Jegadeesh/Livnat). Robust to scale.
+        surp = []
+        for e in reported[:8]:
+            a, es = _num(e.get("epsActual")), _num(e.get("epsEstimated"))
+            if np.isfinite(a) and np.isfinite(es):
+                surp.append(a - es)
+        if len(surp) >= 4:
+            sd = np.std(surp[1:]) if len(surp) > 1 else np.nan   # vol of prior surprises
+            r["i_sue"] = surp[0] / sd if sd and np.isfinite(sd) and sd > 0 else np.nan
+        else:
+            r["i_sue"] = np.nan
+        # revenue confirmation (Jegadeesh/Livnat): EPS & revenue beats agreeing
+        es_, rs_ = r["i_eps_surprise"], r["i_rev_surprise"]
+        if np.isfinite(es_) and np.isfinite(rs_):
+            r["i_rev_confirm"] = 1.0 if (es_ > 0 and rs_ > 0) else (-1.0 if (es_ < 0 and rs_ < 0) else 0.0)
+        else:
+            r["i_rev_confirm"] = np.nan
         # positive-surprise streak
         streak = 0
         for e in reported:
@@ -128,7 +159,8 @@ def feats(d):
             r["days_since_last"] = np.nan
         r["last_surprise_pos"] = bool(np.isfinite(r["i_eps_surprise"]) and r["i_eps_surprise"] > 0)
     else:
-        for k in ("i_eps_surprise", "i_rev_surprise", "i_pos_streak", "days_since_last"):
+        for k in ("i_eps_surprise", "i_rev_surprise", "i_pos_streak", "days_since_last",
+                  "i_sue", "i_rev_confirm"):
             r[k] = np.nan
         r["last_earnings_date"] = None
         r["last_surprise_pos"] = False
@@ -241,11 +273,16 @@ def main():
         s = p[col].rank(pct=True)
         return (1 - s) if invert else s
 
-    # F: acceleration-weighted (2nd derivative emphasised) + level
-    p["F"] = (0.35 * pc("f_rev_accel") + 0.25 * pc("f_eps_accel")
-              + 0.20 * pc("f_margin_delta") + 0.10 * pc("f_rev_g") + 0.10 * pc("f_eps_g"))
-    # I: positive surprise magnitude + streak
-    p["I"] = 0.6 * pc("i_eps_surprise") + 0.2 * pc("i_rev_surprise") + 0.2 * pc("i_pos_streak")
+    # F: acceleration-weighted (2nd derivative emphasised) across EPS/rev/GP/
+    # EBIT/EBITDA + margin inflection + growth level (Reinganum/He-Narayanamoorthy)
+    p["F"] = (0.24 * pc("f_eps_accel") + 0.20 * pc("f_rev_accel")
+              + 0.12 * pc("f_gp_accel") + 0.12 * pc("f_ebit_accel")
+              + 0.08 * pc("f_ebitda_accel") + 0.16 * pc("f_margin_delta")
+              + 0.04 * pc("f_rev_g") + 0.04 * pc("f_eps_g"))
+    # I: SUE + surprise magnitude + streak, boosted when revenue confirms EPS
+    p["I"] = (0.35 * pc("i_sue") + 0.25 * pc("i_eps_surprise")
+              + 0.15 * pc("i_rev_surprise") + 0.15 * pc("i_pos_streak")
+              + 0.10 * ((p["i_rev_confirm"].fillna(0) + 1) / 2))
     # R gap: neglect (LOW coverage) but not zero, plus dispersion
     neglect = 1 - pc("r_n_analysts")          # fewer analysts -> higher gap
     p["R_gap"] = 0.6 * neglect + 0.4 * pc("r_dispersion").fillna(0.5)
