@@ -76,6 +76,22 @@ def _sanitize(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+# Same-security exchange-suffix aliases (our Yahoo suffix -> FMP suffix). Frankfurt
+# floor (.F) and Xetra (.DE) are the same Deutsche Börse listing; FMP normalises
+# Taiwan OTC (.TWO) to .TW. High confidence (identical ticker base, same market),
+# so relabelling is safe. Other unmatched suffixes (Korea .KQ, Thailand .BK, Turkey
+# .IS, ...) are genuine FMP coverage gaps, not aliases, so they are NOT mapped.
+_SUFFIX_ALIAS = {".F": ".DE", ".TWO": ".TW"}
+
+
+def _fmp_candidates(our_sym: str):
+    """FMP symbols to try for one of our symbols: direct first, then a suffix alias."""
+    yield our_sym
+    for us, fs in _SUFFIX_ALIAS.items():
+        if our_sym.endswith(us):
+            yield our_sym[: -len(us)] + fs
+
+
 def _key() -> str:
     k = os.environ.get(KEY_ENV)
     if not k:
@@ -98,8 +114,10 @@ def fetch_bulk_key_metrics() -> pd.DataFrame:
 
 
 def build_overlay(universe_symbols: set[str] | None = None) -> pd.DataFrame:
-    """Fetch bulk metrics, select+rename the overlay fields, and (optionally) filter
-    to the symbols we actually track. Returns a compact per-symbol frame."""
+    """Fetch bulk metrics, select+rename the overlay fields, and (optionally) map
+    to the symbols we actually track. Returns a compact per-symbol frame keyed on
+    OUR symbols (aliased FMP rows are relabelled, so :func:`attach` joins cleanly).
+    """
     km = fetch_bulk_key_metrics()
     km = km[["symbol"] + [c for c in _FIELD_MAP if c in km.columns]].copy()
     km = km.rename(columns=_FIELD_MAP)
@@ -108,9 +126,23 @@ def build_overlay(universe_symbols: set[str] | None = None) -> pd.DataFrame:
             km[c] = pd.to_numeric(km[c], errors="coerce")
     km = km.dropna(subset=["symbol"]).drop_duplicates("symbol")
     km = _sanitize(km)
-    if universe_symbols is not None:
-        km = km[km["symbol"].astype(str).isin(universe_symbols)]
-    return km.reset_index(drop=True)
+    if universe_symbols is None:
+        return km.reset_index(drop=True)
+    # Match each of our symbols to its FMP row — direct first, then a same-security
+    # exchange-suffix alias (Frankfurt .F -> Xetra .DE, Taiwan OTC .TWO -> .TW) —
+    # and relabel the matched row to OUR symbol.
+    km["symbol"] = km["symbol"].astype(str)
+    by_sym = {s: i for i, s in enumerate(km["symbol"])}
+    rows = []
+    for us in universe_symbols:
+        for cand in _fmp_candidates(str(us)):
+            j = by_sym.get(cand)
+            if j is not None:
+                r = km.iloc[j].copy()
+                r["symbol"] = us
+                rows.append(r)
+                break
+    return pd.DataFrame(rows).reset_index(drop=True) if rows else km.iloc[0:0].copy()
 
 
 def save_overlay(df: pd.DataFrame, path: Path = FMP_METRICS_PATH) -> None:

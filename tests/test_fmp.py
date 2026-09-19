@@ -20,6 +20,15 @@ def _overlay(tmp_path):
     return p
 
 
+def test_fmp_candidates_suffix_alias():
+    # direct symbol first, then same-security exchange aliases
+    assert list(fmp._fmp_candidates("AAPL")) == ["AAPL"]
+    assert list(fmp._fmp_candidates("DPW.F")) == ["DPW.F", "DPW.DE"]
+    assert list(fmp._fmp_candidates("6753.TWO")) == ["6753.TWO", "6753.TW"]
+    # a suffix with no alias yields only itself
+    assert list(fmp._fmp_candidates("005930.KQ")) == ["005930.KQ"]
+
+
 def test_attach_is_noop_when_absent(tmp_path):
     df = pd.DataFrame({"symbol": ["A", "B"], "x": [1, 2]})
     out = fmp.attach(df, path=tmp_path / "does_not_exist.parquet")
