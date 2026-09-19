@@ -157,6 +157,7 @@ UNVERIFIED,1,consensus-lagging,1944.T,Kinden Corporation,JP,Industrials,0.75
 UNVERIFIED,1,consensus-lagging,CATE.ST,Catena AB (publ),EU,Real Estate,0.748
 UNVERIFIED,1,consensus-lagging,RIPLEY.SN,Ripley Corp S.A.,LATAM,Consumer Discretionary,0.748
 UNVERIFIED,1,consensus-lagging,3038.T,"Kobe Bussan Co., Ltd.",JP,Consumer Staples,0.747
+UNVERIFIED,1,base-inflection,D,"Dominion Energy, Inc.",US,Utilities,0.727
 UNVERIFIED,1,consensus-lagging,VG,Vonage Holdings Corp.,US,Communication Services,0.722
 UNVERIFIED,1,consensus-lagging,6952.T,"Casio Computer Co.,Ltd.",JP,Information Technology,0.718
 UNVERIFIED,1,consensus-lagging,6383.T,"Daifuku Co., Ltd.",JP,Industrials,0.716
@@ -165,15 +166,38 @@ UNVERIFIED,1,consensus-lagging,3046.T,JINS HOLDINGS Inc.,JP,Health Care,0.711
 UNVERIFIED,1,consensus-lagging,AALI.JK,PT Astra Agro Lestari Tbk,SEA,Consumer Staples,0.709
 UNVERIFIED,1,consensus-lagging,000729.SZ,"Beijing Yanjing Brewery Co.,Ltd.",CN,Consumer Staples,0.707
 UNVERIFIED,1,consensus-lagging,LTM.SN,LATAM Airlines Group S.A.,LATAM,Industrials,0.706
+UNVERIFIED,1,base-inflection,HTGC,"Hercules Capital, Inc.",US,Financials,0.697
 UNVERIFIED,1,consensus-lagging,BLBD,Blue Bird Corporation,US,Consumer Discretionary,0.69
 UNVERIFIED,1,consensus-lagging,ENKAI.IS,Enka Insaat ve Sanayi A.S.,MEA,Industrials,0.687
 UNVERIFIED,1,consensus-lagging,4186.T,"Tokyo Ohka Kogyo Co., Ltd.",JP,Information Technology,0.682
 UNVERIFIED,1,consensus-lagging,JHSF3.SA,JHSF Participacoes S.A.,LATAM,Real Estate,0.682
 UNVERIFIED,1,consensus-lagging,5706.T,"Mitsui Mining & Smelting Co., Ltd.",JP,Industrials,0.679
+UNVERIFIED,1,base-inflection,BJTM.JK,PT Bank Pembangunan Daerah Jawa Timur Tbk,SEA,Financials,0.679
+UNVERIFIED,1,base-inflection,BBSI.JK,PT Bank Bisnis Internasional Tbk,SEA,Financials,0.676
+UNVERIFIED,1,base-inflection,TEMN.SW,Temenos AG,EU,Information Technology,0.653
+UNVERIFIED,1,base-inflection,KMI,Kinder Morgan Inc Class P,US,Energy,0.651
+UNVERIFIED,1,base-inflection,MAPA.JK,PT Map Aktif Adiperkasa Tbk,SEA,Consumer Discretionary,0.647
+UNVERIFIED,1,base-inflection,AL,Air Lease Corporation,US,Industrials,0.646
+UNVERIFIED,1,base-inflection,600867.SS,"Tonghua Dongbao Pharmaceutical Co., Ltd.",CN,Health Care,0.646
 UNVERIFIED,1,conviction,OGI.TO,OrganiGram Holdings Inc.,CA,Health Care,0.634
+UNVERIFIED,1,base-inflection,NJR,New Jersey Resources Corporation,US,Utilities,0.632
+UNVERIFIED,1,base-inflection,PNFP,"Pinnacle Financial Partners, Inc.",US,Financials,0.632
+UNVERIFIED,1,base-inflection,0212.HK,Nanyang Holdings Limited,HK,Real Estate,0.631
 UNVERIFIED,1,conviction,0684.HK,Allan International Holdings Limited,HK,Information Technology,0.631
+UNVERIFIED,1,base-inflection,2127.T,Nihon M&A Center Inc.,JP,Financials,0.629
+UNVERIFIED,1,base-inflection,072710.KS,"NongShim Holdings Co.,Ltd.",KR,Consumer Staples,0.625
+UNVERIFIED,1,base-inflection,QLT.L,Quilter plc,UK,Financials,0.623
+UNVERIFIED,1,base-inflection,PANS.JK,PT  Panin Sekuritas Tbk,SEA,Financials,0.622
+UNVERIFIED,1,base-inflection,R4.MC,"Renta 4 Banco, S.A.",EU,Financials,0.619
+UNVERIFIED,1,base-inflection,HIFS,Hingham Institution for Savings,US,Financials,0.618
+UNVERIFIED,1,base-inflection,HSP.L,Hargreaves Services Plc,UK,Industrials,0.616
+UNVERIFIED,1,base-inflection,4506.TWO,Golden Friends Corporation,TW,Industrials,0.615
+UNVERIFIED,1,base-inflection,SAG.L,Science Group plc,UK,Industrials,0.612
 UNVERIFIED,1,conviction,5213.TWO,"YeaShin International Development Co., Ltd.",TW,Real Estate,0.611
+UNVERIFIED,1,base-inflection,9264.T,"Puequ CO.,LTD.",JP,Industrials,0.609
+UNVERIFIED,1,base-inflection,TXAR.BA,Ternium Argentina S.A.,LATAM,Materials,0.605
 UNVERIFIED,1,conviction,AF.PA,AIR FRANCE - KLM,EU,Industrials,0.605
+UNVERIFIED,1,base-inflection,HMS.ST,HMS Networks AB (publ),EU,Financials,0.604
 UNVERIFIED,1,conviction,5290.T,Vertex Corporation,JP,Materials,0.586
 UNVERIFIED,1,conviction,601456.SS,"Guolian Securities Co., Ltd.",CN,Financials,0.573
 REJECT,6,"yoy-unpriced,accel-unpriced,asymmetry,inflecting-positive,divergence,conviction",PKG1T.TL,AS Pro Kapital Grupp,EU,Real Estate,0.893
@@ -213,4 +237,5 @@ REJECT,1,accel-unpriced,027740.KS,"Maniker.Co.,Ltd",KR,Consumer Staples,0.818
 REJECT,1,forensic,002612.SZ,"Lancy Co., Ltd.",CN,Consumer Discretionary,0.793
 SPECULATIVE,1,asymmetry,KIO.JO,Kumba Iron Ore Limited,MEA,Materials,0.779
 KEEP,1,new-reality,GDDY,GoDaddy Inc.,US,Information Technology,0.765
+KEEP,1,base-inflection,INDF.JK,PT Indofood Sukses Makmur Tbk,SEA,Consumer Staples,0.636
 REJECT,1,conviction,XRX,Xerox Holdings Corporation,US,Information Technology,0.586
