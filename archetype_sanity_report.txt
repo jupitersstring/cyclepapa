@@ -4,7 +4,9 @@ ABSENT COLUMNS (requested by gates, not in frame — gate legs read all-NaN):
 NEAR-EMPTY COLUMNS (<2% coverage — legs almost never fire):
   SPARSE   em_fv_gap                             0.33%
   SPARSE   em_fair_value                         0.38%
+  SPARSE   fmp_earnings_surprise_cv              0.45%
   SPARSE   lifo_reserve                          0.55%
+  SPARSE   fmp_earnings_n                        0.66%
   SPARSE   seg_best_ebit_usd                     1.24%
   SPARSE   seg_total_ebit_usd                    1.24%
   SPARSE   pension_funded_status                 1.36%

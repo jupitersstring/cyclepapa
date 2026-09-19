@@ -5,23 +5,23 @@ A. STALE VINTAGE (master balance-sheet older than current EDGAR)
    US filers checked: 7,313
    master vintage OLDER than current EDGAR: 0
      assets       diverge >20% vs current EDGAR: 0
-     equity       diverge >20% vs current EDGAR: 99
-     revenue_ttm  diverge >20% vs current EDGAR: 544
+     equity       diverge >20% vs current EDGAR: 97
+     revenue_ttm  diverge >20% vs current EDGAR: 404
      cash         diverge >20% vs current EDGAR: 2,578
-     total_debt   diverge >20% vs current EDGAR: 2,316
+     total_debt   diverge >20% vs current EDGAR: 2,167
 
 B. IDENTITY BREAKS (a level is internally impossible)
-   equity > assets                   :   25  (US: 18, non-US: 7)
-   tangible_equity > equity (eq>0)   :   30  (US: 29, non-US: 1)
-   cash > assets                     :  134  (US: 108, non-US: 26)
+   equity > assets                   :   23  (US: 16, non-US: 7)
+   tangible_equity > equity (eq>0)   :   32  (US: 30, non-US: 2)
+   cash > assets                     :  133  (US: 108, non-US: 25)
    ebitda > 2x revenue               :  219  (US: 96, non-US: 123)
 
 C. CROSS-SOURCE DISAGREEMENT (EDGAR vs Yahoo, US filers)
-   revenue_ttm  vs yf_revenue      :  880 disagree >25%  (20% of 4467)
-   ebitda_ttm   vs yf_ebitda       :  897 disagree >25%  (29% of 3067)
-   cash         vs yf_cash         : 1747 disagree >25%  (29% of 5968)
-   total_debt   vs yf_total_debt   : 2907 disagree >25%  (64% of 4519)
+   revenue_ttm  vs yf_revenue      :  722 disagree >25%  (16% of 4442)
+   ebitda_ttm   vs yf_ebitda       :  901 disagree >25%  (28% of 3167)
+   cash         vs yf_cash         : 1721 disagree >25%  (29% of 5937)
+   total_debt   vs yf_total_debt   : 2740 disagree >25%  (63% of 4367)
 
 D. RATIO <> LEVELS (ratio disagrees with its own components)
    pb vs mcap/equity         : 0
-   EV vs mcap+debt-cash      : 3,683
+   EV vs mcap+debt-cash      : 3,696

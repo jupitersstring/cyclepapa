@@ -193,7 +193,7 @@ METHODOLOGY AUDIT — 207 checks, 0 FAIL, 0 WARN
   PASS  regression: arch_cash_adjusted_pe NI>0 and best-leg adj-P/E <= 8.5 (local)  — 0 violating firers
   PASS  regression: arch_owner_earnings_power owner-earnings >= ~1.35x NI (audited-pref D&A)  — 0 violating firers
   PASS  regression: forensic_payout_confirmed is a subset of the forensic family  — 0 orphan firers
-  PASS  valuation: US names EDGAR-grounded (master EBITDA within 1.4x of audited for >=95%)  — 99.8% agreement on 2465 EDGAR-covered names
+  PASS  valuation: US names EDGAR-grounded (master EBITDA within 1.4x of audited for >=95%)  — 99.8% agreement on 2464 EDGAR-covered names
   PASS  flow-through: cash_adjusted_pe firers satisfy the gate on the CURRENT master  — 0 firers stale vs master (chain not re-run?)
   PASS  flow-through: melt_demotion matches recomputation from the CURRENT master  — 0 rows stale vs master (enrich not re-run?)
   PASS  pairing: no levered name holds an unadjusted CFO/EV cash_return_ev  — 0 rows

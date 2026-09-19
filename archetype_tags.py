@@ -189,6 +189,22 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # into n_analysts_x/_y (which silently zeroed the analyst-awakening gate).
     df = df.merge(pew, on='symbol', how='left', suffixes=('', '_pew'))
 
+    # FMP (Financial Modeling Prep) overlay — a SECONDARY, source-tagged
+    # source (fmp_enrich.py). Carries three things XBRL/our primary path do
+    # not: (a) quality/distress scores (Piotroski, Altman Z) and TTM
+    # returns/margins with near-universal coverage, (b) revealed-preference
+    # insider open-market buys and executive compensation -> the
+    # insider-alignment ratio the Cluseau lens wanted but XBRL cannot supply,
+    # (c) analyst estimate vs actual -> earnings beat/surprise/variability.
+    # Every column is fmp_-prefixed and merged the same optional way as every
+    # enrichment above. NOTHING here overwrites an EDGAR-primary value; the
+    # narrow, audited fills and gates below decide where an fmp_ column may
+    # fill a NaN or add a signal. Forensic / NNWC inputs are never fed by FMP.
+    if os.path.exists('fmp_enrichment.csv'):
+        _fmp = pd.read_csv('fmp_enrichment.csv', low_memory=False).drop_duplicates('symbol')
+        df = df.merge(_fmp, on='symbol', how='left', suffixes=('', '_fmpdup'))
+        df = df[[c for c in df.columns if not c.endswith('_fmpdup')]]
+
     # Coalesce suffix-shadowed copies back into the base columns. Every merge
     # above keeps the asym copy unsuffixed and shelves the incoming one
     # (_ey/_er/_pew) — but for these columns the EDGAR/pew copy often has
@@ -224,6 +240,44 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     for c in ('sector','industry','market_cap'):
         if c + '_y' in df.columns:
             df[c] = df[c].fillna(df[c + '_y'])
+
+    # ---- FMP secondary fills (NaN-only) + derived governance/quality flags ----
+    # Fills touch ONLY estimate-family and archetype-facing return/margin
+    # columns, never a forensic/NNWC input, and only where our primary value
+    # is missing, so coverage rises without any FMP figure displacing an
+    # EDGAR-primary one. fmp_filled_<col> marks which rows a fill touched, so
+    # provenance stays inspectable in the audit.
+    def _fmp_fill(base, fmp_col):
+        if fmp_col not in df.columns:
+            return
+        prim = pd.to_numeric(df[base], errors='coerce') if base in df.columns else pd.Series(np.nan, index=df.index)
+        sec = pd.to_numeric(df[fmp_col], errors='coerce')
+        df['fmp_filled_' + base] = (prim.isna() & sec.notna()).astype(int)
+        df[base] = prim.fillna(sec)
+    # Coalesce ONLY the estimate family into base columns: it is the genuine
+    # coverage gap (native earnings_beat_rate / avg_earnings_surprise are
+    # 57-67% missing) and feeds a single, quality-gated score. The fundamental
+    # / ratio fills (fmp_ebitda_margin, fmp_gross_margin, fmp_fcf_yield,
+    # fmp_pb, fmp_ev_ebitda, fmp_dividend_yield) are deliberately NOT coalesced
+    # into gate-feeding base columns: doing so silently shifted archetype
+    # membership (e.g. +129 arch_negative_ev_value, +25 arch_owner_operator,
+    # some of them melting "ice cubes" whose melt guard was blind on the
+    # newly-filled column). They remain available as fmp_ columns so a later,
+    # per-archetype step can adopt them WITH that archetype's own guards.
+    for _b, _f in (('earnings_beat_rate', 'fmp_earnings_beat_rate'),
+                   ('avg_earnings_surprise', 'fmp_avg_earnings_surprise')):
+        _fmp_fill(_b, _f)
+    # Altman-Z distress (< 1.81 = distress zone) and Piotroski quality (>= 7),
+    # surfaced as flags. Distress is used ONLY as a negative gate on the two
+    # cash-rich Cluseau value archetypes (a deep discount to a book that a
+    # near-insolvent balance sheet may not realise is a trap, not a bargain).
+    def _num_or_nan(col):
+        return pd.to_numeric(df[col], errors='coerce') if col in df.columns else pd.Series(np.nan, index=df.index)
+    df['fmp_distress_flag'] = (_num_or_nan('fmp_altman_z') < 1.81).fillna(False).astype(int)
+    df['fmp_piotroski_strong_flag'] = (_num_or_nan('fmp_piotroski') >= 7).fillna(False).astype(int)
+    # Insider alignment: trailing open-market buy $ >= this year's exec comp
+    # (ratio >= 1) is a strong revealed-preference conviction signal.
+    df['fmp_insider_aligned_flag'] = (_num_or_nan('fmp_insider_alignment_ratio') >= 1.0).fillna(False).astype(int)
 
     # ---------- helper accessors ----------
     _absent_cols: set = set()
@@ -2369,11 +2423,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #     where the book is CASH, not un-sellable plant, AND it is being returned.
     #     Distinct from arch_tangible_value (P/TB<0.7 alone tests neither
     #     realizability nor return) and from a net-net (cash > market cap).
+    # Distress gate (FMP Altman Z): exclude a name only where we KNOW it is in
+    # the distress zone (Z < 1.81). A deep discount to a cash book means little
+    # if the balance sheet is near-insolvent — the cash may be claimed by
+    # creditors before it is ever realised. Where Altman is unknown the name is
+    # not excluded, so coverage on non-US / non-covered names is preserved.
+    _cl_not_distress = (s('fmp_distress_flag', 0) == 0)
     df['arch_cluseau_realizable_book'] = (
         is_operating & (mcap >= 20e6)
         & (_cl_ptb > 0) & (_cl_ptb < 0.6)
         & (_cl_realizable >= 0.50)                  # >= half the tangible book is cash
         & _cl_returning & _cl_profitable & _not_melting
+        & _cl_not_distress
     ).fillna(False).astype(int)
 
     # (2) BUYBACKS ACCELERATING INTO A DISCOUNT WITH CASH DEPLOYED — the Georgia
@@ -2390,6 +2451,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & ~(_cl_sy < -0.30)                         # a -30% collapse is a restructuring, not a buyback
         & (_cl_cpm <= 0.15)                         # cash deployed, not squatted
         & _cl_profitable & _not_melting
+        & _cl_not_distress                          # not buying back into insolvency
     ).fillna(False).astype(int)
 
     # DISQUALIFIER FLAGS
@@ -2409,9 +2471,16 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # at a discount to the market" (ZIM): earnings fell in at least half the
     # years AND the current print sits far from the multi-year average.
     _cl_niavg = _ncol('ni_avg')
+    # Native leg (EDGAR): earnings fell in >= half the years AND the current
+    # print sits far from the multi-year average. FMP leg: a high dispersion
+    # of quarterly earnings SURPRISES (winsorized, so [0,1]) over >= 6 quarters
+    # is an independent tell of unpredictable earnings — the analyst consensus
+    # itself cannot pin them down. Either leg fires the flag.
+    _fmp_scv = _ncol('fmp_earnings_surprise_cv'); _fmp_en = _ncol('fmp_earnings_n')
     df['earnings_variability_flag'] = (
-        (_ncol('eps_yoy_positive_share') <= 0.5)
-        & (((_cl_ni - _cl_niavg).abs() > 0.5 * _cl_niavg.abs()) | (_cl_niavg <= 0))
+        ((_ncol('eps_yoy_positive_share') <= 0.5)
+         & (((_cl_ni - _cl_niavg).abs() > 0.5 * _cl_niavg.abs()) | (_cl_niavg <= 0)))
+        | ((_fmp_scv >= 0.40) & (_fmp_en >= 6))
     ).fillna(False).astype(int)
     # SIZING tier — the article sizes emerging-market / geopolitical-tail-risk
     # names as a 0.5-1% STARTER and scales in on weakness ("there is a price for
@@ -6301,7 +6370,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     )
 
     out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','governance_score','governance_tier','insider_distinct_buyers','insider_net_buy_value','insider_officer_buy_flag','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','segment_rot_flag','data_quality_flag','holdco_flag','china_vie_flag','cash_squatter_flag','capex_treadmill_flag','earnings_variability_flag','cluseau_sizing_tier','adjusted_book','adjusted_pb','nnwc','nnwc_pct_mcap','nnwc_asset_mix','xr_family_count','xr_confidence','xr_score','forensic_hidden_pct','forensic_xr_score','value_unlock_score','value_unlock_confirmed','pre_rerating_quality','pre_rerating_score','pre_rerating_flag','truly_xr_score','truly_xr_flag','truly_xr_tell_count','truly_xr_mech_count','truly_xr_tells_str','spin_date','reorg_date']
-             + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m','segment_count','fastest_segment_yoy','is_price_ghost'] if c in df.columns]]
+             + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m','segment_count','fastest_segment_yoy','is_price_ghost'] if c in df.columns]
+             # FMP secondary-source signals + fill provenance (all optional).
+             + [c for c in ['fmp_piotroski','fmp_altman_z','fmp_distress_flag',
+                            'fmp_piotroski_strong_flag','fmp_insider_alignment_ratio',
+                            'fmp_insider_aligned_flag','fmp_insider_net_usd_12m',
+                            'fmp_insider_buyers_12m','fmp_exec_comp_total',
+                            'fmp_earnings_beat_rate','fmp_avg_earnings_surprise',
+                            'fmp_earnings_surprise_cv'] if c in df.columns]
+             + [c for c in df.columns if c.startswith('fmp_filled_')]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)
     versioned_replace(out_path + '.tmp', out_path)   # atomic + pre-image snapshot
