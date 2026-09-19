@@ -109,6 +109,30 @@ def build(floor=FLOOR):
         b("E_vol_spike"), b("E_ret_acceleration"), b("E_close_strength"),
         (f("E_vol_ratio") / 3.0).clip(0, 1), b("E_behavior_shift")], axis=1).mean(axis=1))
 
+    # REAL CatalystVerified from FMP (the literature's single best filter): a
+    # breakout that coincides with a genuine positive earnings surprise in the
+    # last ~10 weeks is information-driven (Dyl et al. / Doyle-Lundholm-Soliman)
+    # -> continuation; a same-size move with no info -> reversal. Where FMP data
+    # exists we use it; otherwise we keep the unverified proxy.
+    catalyst = catalyst_proxy.copy()
+    m["catalyst_verified"] = np.nan
+    try:
+        fmp = pd.read_csv("/tmp/fmp_panel.csv", low_memory=False)
+        fmp = fmp[["ticker", "last_surprise_pos", "days_since_last", "days_to_next", "i_eps_surprise"]]
+        j = m[["ticker"]].merge(fmp, on="ticker", how="left")
+        recent_pos = (j["last_surprise_pos"].fillna(False).astype(bool)
+                      & (j["days_since_last"].fillna(9999) <= 70))
+        big_surprise = j["i_eps_surprise"].fillna(0).clip(0, 1)   # scale positive surprise
+        imminent = (j["days_to_next"].fillna(9999) <= 21)         # catalyst imminent
+        ver = np.where(recent_pos, (0.7 + 0.3 * big_surprise).values,
+              np.where(imminent, 0.55, np.nan))
+        ver = pd.Series(ver, index=m.index)
+        m["catalyst_verified"] = ver
+        # use verified where available, else proxy
+        catalyst = ver.where(ver.notna(), catalyst_proxy).clip(0, 1)
+    except Exception:
+        pass
+
     # ── gates & penalties ──
     regime_gate = ((aligned > 0) | (rs >= 0.5) | (near_high > 0)).astype(float)
     liquidity_gate = (adv >= floor).astype(float)
@@ -118,7 +142,7 @@ def build(floor=FLOOR):
 
     # ── compose ──
     core = breakout * participation                        # both essential
-    amp = (0.7 + 0.6 * strength_prox) * (0.7 + 0.6 * supply_tight) * (0.7 + 0.6 * catalyst_proxy)
+    amp = (0.7 + 0.6 * strength_prox) * (0.7 + 0.6 * supply_tight) * (0.7 + 0.6 * catalyst)
     ign = 100.0 * core * amp * regime_gate * liquidity_gate * extension_penalty
 
     out = pd.DataFrame({
@@ -129,7 +153,9 @@ def build(floor=FLOOR):
         "participation": participation.round(3),
         "strength_prox": strength_prox.round(3),
         "supply_tight": supply_tight.round(2),
+        "catalyst": catalyst.round(3),
         "catalyst_proxy": catalyst_proxy.round(3),
+        "catalyst_verified": m["catalyst_verified"].round(3),
         "ext_pen": extension_penalty,
         "v_bucket": bucket,
         "E": f("E").round(0),
@@ -162,15 +188,22 @@ def main():
     out.to_csv(DELIVER, index=False)
 
     live = out[out.ignition > 0]
+    nver = int(out["catalyst_verified"].notna().sum()) if "catalyst_verified" in out else 0
     print(f"Ignition candidates (>0): {len(live)} of {len(out)} (floor ${floor:,.0f} ADV)")
-    print(f"  ...of which volume-scanned: {int(live.vol_scanned.sum())} "
-          f"(the rest use the E/ADV participation fallback until the vspike scan finishes)")
+    print(f"  volume-scanned: {int(live.vol_scanned.sum())} (rest use E/ADV fallback) | "
+          f"catalyst-verified via FMP: {nver}")
     cols = ["ticker", "name", "region", "ignition", "breakout_accept", "participation",
-            "strength_prox", "supply_tight", "catalyst_proxy", "v_bucket", "E", "master", "adv_usd_M"]
+            "strength_prox", "supply_tight", "catalyst", "catalyst_verified",
+            "v_bucket", "E", "master", "adv_usd_M"]
     cols = [c for c in cols if c in out.columns]
-    with pd.option_context("display.width", 240, "display.max_columns", 30):
-        print(f"\n=== TOP {top} IGNITION (catalyst_proxy is UNVERIFIED — no events feed yet) ===")
+    with pd.option_context("display.width", 260, "display.max_columns", 30):
+        print(f"\n=== TOP {top} IGNITION (catalyst = FMP-verified where present, else proxy) ===")
         print(live[cols].head(top).to_string(index=False))
+        # the high-quality subset: ignition WITH a real verified catalyst
+        if "catalyst_verified" in out.columns:
+            ver = live[live["catalyst_verified"].notna()].sort_values("ignition", ascending=False)
+            print(f"\n=== TOP {top} CATALYST-VERIFIED IGNITIONS (real earnings surprise/imminent — the literature's best filter) ===")
+            print(ver[cols].head(top).to_string(index=False))
 
 
 if __name__ == "__main__":

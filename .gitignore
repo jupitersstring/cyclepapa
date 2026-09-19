@@ -16,3 +16,5 @@ __pycache__/
 !data/
 !data/**
 data/master_full_universe.csv
+.fmp_key
+.env
