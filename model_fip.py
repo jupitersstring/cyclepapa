@@ -71,9 +71,16 @@ def build():
     biding = ((dist.between(-8, 0)).astype(float)      # just below pivot
               + (df["v_bucket"] == "Coiled").astype(float)) .clip(0, 1)
 
+    # conviction: buybacks + insider open-market buying while price bides is a
+    # strong tell that management/insiders think the price is wrong.
+    BB = df["BB"].clip(0, 1).fillna(0) if "BB" in df else pd.Series(0.0, index=df.index)
+    INS = df["INS"].clip(0, 1).fillna(0) if "INS" in df else pd.Series(0.0, index=df.index)
+
     stored = fundamental_energy * low_response
-    raw = stored * (0.7 + 0.6 * val_lag) * (1 + 0.3 * biding)
+    raw = stored * (0.7 + 0.6 * val_lag) * (1 + 0.3 * biding) * (1 + 0.25 * BB + 0.35 * INS)
     df["fip"] = (100 * pctl(raw)).round(1)
+    df["BB"] = BB.round(3)
+    df["INS"] = INS.round(3)
     df["fund_energy"] = fundamental_energy.round(3)
     df["low_price_resp"] = low_response.round(3)
     df["val_lag"] = val_lag.round(3)
@@ -85,9 +92,9 @@ def build():
     df.loc[~ok, "fip"] = np.nan
 
     keep = ["ticker", "fip", "fund_energy", "low_price_resp", "val_lag", "biding",
-            "F", "I", "growth_stability", "i_pos_streak", "f_rev_g", "f_eps_g",
-            "i_eps_surprise", "rel_score", "pe_ttm", "vcp_pivot_distance_pct",
-            "v_bucket", "master", "adv_usd"]
+            "BB", "INS", "F", "I", "growth_stability", "i_pos_streak", "f_rev_g", "f_eps_g",
+            "i_eps_surprise", "buyback_yoy_dil", "ins_n_buyers", "ins_offmkt_buys",
+            "rel_score", "pe_ttm", "vcp_pivot_distance_pct", "v_bucket", "master", "adv_usd"]
     keep = [c for c in keep if c in df.columns]
     out = df[keep].copy()
     out["adv_usd_M"] = (out["adv_usd"] / 1e6).round(2)

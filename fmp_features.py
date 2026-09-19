@@ -82,6 +82,19 @@ def feats(d):
     # trailing EPS (ttm) for the valuation-lag check in Model FIP
     eps_ttm = sum(e for e in eps[:4] if np.isfinite(e)) if len(eps) >= 4 else np.nan
     r["eps_ttm"] = eps_ttm if (isinstance(eps_ttm, float) and np.isfinite(eps_ttm)) else np.nan
+
+    # ── buybacks / share-count reduction (limited-supply pillar) ──
+    # diluted share count best captures net buyback after stock-comp dilution.
+    shs = [_num(q.get("weightedAverageShsOut")) for q in inc]
+    shd = [_num(q.get("weightedAverageShsOutDil")) for q in inc]
+    r["buyback_yoy"] = -_growth(shs[0], shs[4]) if len(shs) > 4 else np.nan          # +ve = shrinking
+    r["buyback_yoy_dil"] = -_growth(shd[0], shd[4]) if len(shd) > 4 else np.nan
+    # consistency: share count lower than the year-ago quarter in each of last 4q
+    if len(shd) >= 8:
+        downs = [shd[i] < shd[i + 4] for i in range(4) if np.isfinite(shd[i]) and np.isfinite(shd[i + 4])]
+        r["buyback_consistent"] = float(np.mean(downs)) if downs else np.nan
+    else:
+        r["buyback_consistent"] = np.nan
     # operating-margin inflection: current vs year-ago quarter
     if len(rev) > 4 and rev[0] and rev[4] and np.isfinite(opi[0]) and np.isfinite(opi[4]):
         r["f_margin"] = opi[0] / rev[0]
@@ -151,6 +164,61 @@ def feats(d):
     return r
 
 
+INSIDER_CACHE = "/tmp/fmp_insider"
+SENIOR = ("ceo", "chief executive", "cfo", "chief financial", "president",
+          "chairman", "chair", "chief operating", "coo", "director")
+
+
+def insider_feats(ticker, window_days=180):
+    """Open-market insider-BUY conviction over the last `window_days`."""
+    path = os.path.join(INSIDER_CACHE, ticker.replace("/", "__") + ".json")
+    out = {"ticker": ticker, "ins_n_buys": 0, "ins_n_buyers": 0, "ins_buy_usd": 0.0,
+           "ins_net_usd": 0.0, "ins_senior_buy": 0, "ins_offmkt_buys": 0,
+           "ins_days_since_buy": np.nan}
+    if not os.path.exists(path):
+        for k in out:
+            if k != "ticker":
+                out[k] = np.nan
+        return out
+    try:
+        txns = json.load(open(path)) or []
+    except Exception:
+        return out
+    buy_usd = sell_usd = 0.0
+    buyers = set(); n_buys = 0; senior = 0; offmkt = 0; last_buy = None
+    for t in txns:
+        dt = t.get("transactionDate")
+        try:
+            d = datetime.fromisoformat(dt).replace(tzinfo=timezone.utc)
+        except Exception:
+            continue
+        if (NOW - d).days > window_days or (NOW - d).days < 0:
+            continue
+        px = _num(t.get("price")); sh = _num(t.get("securitiesTransacted"))
+        if not np.isfinite(px) or not np.isfinite(sh) or px <= 0 or sh <= 0:
+            continue                                        # skip awards/option exercises (price 0)
+        val = px * sh
+        ad = (t.get("acquisitionOrDisposition") or "")
+        tt = (t.get("transactionType") or "")
+        is_buy = ad == "A" and tt.upper().startswith("P")   # genuine open-market purchase
+        is_sell = ad == "D" and tt.upper().startswith("S")
+        if is_buy:
+            buy_usd += val; n_buys += 1
+            buyers.add(t.get("reportingName"))
+            if any(s in (t.get("typeOfOwner") or "").lower() for s in SENIOR):
+                senior += 1
+            if d.weekday() >= 5:                            # dated on a weekend = off-market/off-hours proxy
+                offmkt += 1
+            if last_buy is None or d > last_buy:
+                last_buy = d
+        elif is_sell:
+            sell_usd += val
+    out.update(ins_n_buys=n_buys, ins_n_buyers=len(buyers), ins_buy_usd=buy_usd,
+               ins_net_usd=buy_usd - sell_usd, ins_senior_buy=senior, ins_offmkt_buys=offmkt,
+               ins_days_since_buy=((NOW - last_buy).days if last_buy else np.nan))
+    return out
+
+
 def main():
     files = glob.glob(os.path.join(CACHE, "*.json"))
     rows = []
@@ -163,6 +231,10 @@ def main():
     p = pd.DataFrame(rows)
     if p.empty:
         print("no cache yet"); return
+
+    # merge insider conviction (open-market buys)
+    ins = pd.DataFrame([insider_feats(t) for t in p["ticker"]])
+    p = p.merge(ins, on="ticker", how="left")
 
     # cross-sectional composites (percentile within the fetched panel)
     def pc(col, invert=False):
@@ -180,6 +252,19 @@ def main():
     # S supply: larger float -> more supply -> higher S (penalises in Model A)
     p["S_supply"] = pc("s_float_shares")
 
+    # BB — buyback / share-count reduction (limited-supply, per-share leverage,
+    # management conviction). Diluted YoY reduction + consistency.
+    p["BB"] = (0.6 * pc("buyback_yoy_dil") + 0.2 * pc("buyback_yoy")
+               + 0.2 * p["buyback_consistent"].fillna(0)).clip(0, 1)
+
+    # INS — insider open-market BUY conviction: cluster of buyers + $ size +
+    # senior participation + recency + off-market-dated buys.
+    recency = 1 - (p["ins_days_since_buy"].fillna(999) / 180).clip(0, 1)   # newer = higher
+    p["INS"] = (0.30 * pc("ins_n_buyers") + 0.25 * pc("ins_buy_usd")
+                + 0.20 * pc("ins_senior_buy") + 0.15 * recency
+                + 0.10 * pc("ins_offmkt_buys")).clip(0, 1)
+    p.loc[p["ins_n_buys"].fillna(0) == 0, "INS"] = 0.0     # no buys -> no conviction
+
     p.to_csv(TMP, index=False)
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     p.round(4).to_csv(OUT, index=False)
@@ -188,6 +273,9 @@ def main():
           f" | with surprise: {int(p['i_eps_surprise'].notna().sum())}"
           f" | with coverage: {int((p['r_n_analysts']>0).sum())}"
           f" | with float: {int(p['s_float_shares'].notna().sum())}")
+    print(f"  buyback (dil YoY reduction >0): {int((p['buyback_yoy_dil']>0).sum())}"
+          f" | insider open-mkt buys: {int((p['ins_n_buys'].fillna(0)>0).sum())}"
+          f" | with off-market-dated buys: {int((p['ins_offmkt_buys'].fillna(0)>0).sum())}")
 
 
 if __name__ == "__main__":

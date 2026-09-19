@@ -55,19 +55,29 @@ def build():
     Rg = df["R_gap"].clip(0, 1).fillna(0.5)
     S = df["S_supply"].clip(0, 1).fillna(df["S_supply"].median())
 
+    # buyback (supply reduction) + insider open-market buying (internal
+    # accumulation / conviction) — both from FMP; modest conviction multiplier.
+    BB = df["BB"].clip(0, 1).fillna(0) if "BB" in df else pd.Series(0.0, index=df.index)
+    INS = df["INS"].clip(0, 1).fillna(0) if "INS" in df else pd.Series(0.0, index=df.index)
+    conviction = 1 + 0.30 * BB + 0.30 * INS
+
     # multiplicative MB core (F emphasised ^1.5); +0.5 offsets keep any single
-    # modest leg from zeroing the product, while zeros still hurt.
-    raw = (F ** 1.5) * (0.5 + I) * (0.5 + T) * (0.5 + Rg) / (0.5 + S)
+    # modest leg from zeroing the product, while zeros still hurt. Buybacks also
+    # tighten effective supply (divide S).
+    raw = (F ** 1.5) * (0.5 + I) * (0.5 + T) * (0.5 + Rg) / (0.5 + S * (1 - 0.4 * BB)) * conviction
     df["monster"] = (100 * pctl(raw)).round(1)     # rank -> 0-100 (setup quality, not probability)
     df["T"] = T.round(3)
+    df["BB"] = BB.round(3)
+    df["INS"] = INS.round(3)
 
     # require real fundamentals (F from income acceleration) to score
     df.loc[df["f_rev_accel"].isna() & df["f_eps_accel"].isna(), "monster"] = np.nan
 
-    keep = ["ticker", "monster", "F", "I", "T", "R_gap", "S_supply",
+    keep = ["ticker", "monster", "F", "I", "T", "R_gap", "S_supply", "BB", "INS",
             "f_rev_g", "f_rev_accel", "f_eps_accel", "f_margin_delta",
             "i_eps_surprise", "i_pos_streak", "r_n_analysts", "r_dispersion",
-            "s_free_float_pct", "last_surprise_pos", "days_since_last", "days_to_next",
+            "s_free_float_pct", "buyback_yoy_dil", "ins_n_buyers", "ins_senior_buy",
+            "ins_offmkt_buys", "last_surprise_pos", "days_since_last", "days_to_next",
             "adv_usd", "master", "V", "v_bucket"]
     keep = [c for c in keep if c in df.columns]
     out = df[keep].copy()
