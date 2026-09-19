@@ -216,6 +216,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         df = df.merge(_fdyn, on='symbol', how='left', suffixes=('', '_fdyndup'))
         df = df[[c for c in df.columns if not c.endswith('_fdyndup')]]
 
+    # FMP STATEMENT-HISTORY overlay (fmp_statements.py): global equivalents of
+    # the EDGAR-only multi-year metrics. Merged here; the fills below promote
+    # the ~29k non-US names off the single-year fallback by NaN-filling the
+    # EDGAR-only quality columns where EDGAR does not cover them.
+    if os.path.exists('fmp_statements.csv'):
+        _fst = pd.read_csv('fmp_statements.csv', low_memory=False).drop_duplicates('symbol')
+        df = df.merge(_fst, on='symbol', how='left', suffixes=('', '_fstdup'))
+        df = df[[c for c in df.columns if not c.endswith('_fstdup')]]
+
     # Coalesce suffix-shadowed copies back into the base columns. Every merge
     # above keeps the asym copy unsuffixed and shelves the incoming one
     # (_ey/_er/_pew) — but for these columns the EDGAR/pew copy often has
@@ -277,6 +286,32 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # per-archetype step can adopt them WITH that archetype's own guards.
     for _b, _f in (('earnings_beat_rate', 'fmp_earnings_beat_rate'),
                    ('avg_earnings_surprise', 'fmp_avg_earnings_surprise')):
+        _fmp_fill(_b, _f)
+
+    # STATEMENT-HISTORY fills: the EDGAR-only multi-year quality columns, filled
+    # from the global FMP statement engine ONLY where the EDGAR value is absent
+    # (i.e. the ~29k non-US names). This is the reach win — the quality /
+    # compounder archetypes consume the same column names and now fire globally
+    # with no gate change. Forensic/NNWC inputs are deliberately NOT in this
+    # list. Each fill records fmp_filled_<col> provenance. Validated against the
+    # methodology audit (quality gates require positive lindy returns, so fills
+    # add durable names rather than melting ones).
+    for _b, _f in (('roic_lindy', 'fmp_st_roic_lindy'),
+                   ('roiic_lindy', 'fmp_st_roiic_lindy'),
+                   ('n_yrs_positive_roic', 'fmp_st_n_yrs_positive_roic'),
+                   ('n_yrs_positive_fcf', 'fmp_st_n_yrs_positive_fcf'),
+                   ('n_yrs_positive_opinc', 'fmp_st_n_yrs_positive_opinc'),
+                   ('op_margin_lindy', 'fmp_st_op_margin_lindy'),
+                   ('ebitda_margin_lindy', 'fmp_st_ebitda_margin_lindy'),
+                   ('equity_cagr_5y', 'fmp_st_equity_cagr'),
+                   ('revenue_5y_cagr', 'fmp_st_revenue_cagr'),
+                   ('revenue_3y_cagr', 'fmp_st_revenue_cagr'),
+                   ('shares_growth_3y', 'fmp_st_shares_growth_3y'),
+                   ('shares_growth_5y', 'fmp_st_shares_growth_5y'),
+                   ('capital_return_yield', 'fmp_st_capital_return_yield'),
+                   ('buyback_yield', 'fmp_st_buyback_yield'),
+                   ('years_of_history', 'fmp_st_years_of_history'),
+                   ('oe_avg', 'fmp_st_owner_earnings_avg')):
         _fmp_fill(_b, _f)
     # Altman-Z distress (< 1.81 = distress zone) and Piotroski quality (>= 7),
     # surfaced as flags. Distress is used ONLY as a negative gate on the two
@@ -6454,6 +6489,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                             'fmp_dyn_accelerating_flag','fmp_dyn_op_leverage_flag',
                             'fmp_dyn_growth_streak_flag','fmp_dyn_fwd_inflection_flag',
                             'fmp_dyn_forward_asleep_flag'] if c in df.columns]
+             # global statement-history reach columns
+             + [c for c in ['fmp_st_roic_lindy','fmp_st_roiic_lindy','fmp_st_roce_lindy',
+                            'fmp_st_op_margin_lindy','fmp_st_ebitda_margin_lindy',
+                            'fmp_st_revenue_cagr','fmp_st_equity_cagr','fmp_st_shares_growth_3y',
+                            'fmp_st_capital_return_yield','fmp_st_buyback_yield',
+                            'fmp_st_owner_earnings_yield','fmp_st_years_of_history'] if c in df.columns]
              + [c for c in df.columns if c.startswith('fmp_filled_')]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)
