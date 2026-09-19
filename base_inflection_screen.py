@@ -125,10 +125,18 @@ def main():
     df["mu_like"] = np.where(ok, (100 * df["base_score"] * (0.4 + df["fund_side"])), np.nan)
     df = df.sort_values("mu_like", ascending=False)
 
-    # names + liquidity
+    # names + sector + liquidity. Sector from FMP profile-bulk (full coverage),
+    # falling back to caches, so the ex-financials filter actually works.
     try:
         info = json.load(open(INFO))
         df["name"] = df.ticker.map(lambda t: info.get(t, {}).get("name", ""))
+    except Exception:
+        pass
+    df["sector"] = ""
+    try:
+        prof = pd.read_csv("/tmp/fmp_bulk/profile.csv")[["symbol", "sector"]].dropna()
+        smap = dict(zip(prof.symbol, prof.sector))
+        df["sector"] = df.ticker.map(lambda t: smap.get(t, ""))
     except Exception:
         pass
     try:
@@ -138,7 +146,7 @@ def main():
     except Exception:
         pass
 
-    cols = ["ticker", "name", "mu_like", "base_len", "base_range", "near_high",
+    cols = ["ticker", "name", "sector", "mu_like", "base_len", "base_range", "near_high",
             "contraction", "fund_side", "inflection", "derate_score", "ps_compression",
             "rev_ttm_g", "base_drift", "F", "I", "f_rev_accel", "i_pos_streak", "adv_usd_M"]
     cols = [c for c in cols if c in df.columns]
@@ -148,9 +156,21 @@ def main():
     live = df[df.mu_like.notna()]
     print(f"MU-like candidates: {len(live)} (of {len(df)} with base+fundamentals; "
           f"{len(base)} bases scanned)")
+    show = [c for c in cols if c not in ("base_range", "F", "I")]
     with pd.option_context("display.width", 240, "display.max_columns", 30):
-        print(f"\n=== TOP {top} MU-LIKE (long base + fundamental inflection) ===")
-        print(live[cols].head(top).to_string(index=False))
+        print(f"\n=== TOP {top} MU-LIKE (overall) ===")
+        print(live[show].head(top).to_string(index=False))
+        # growth cut: drop banks/insurers/REITs (long base-formers, not the MU
+        # growth-breakout profile the user is after)
+        fin = live["sector"].fillna("").str.contains("Financ|Real Estate|Insurance", case=False)
+        exfin = live[~fin]
+        print(f"\n=== TOP {top} MU-LIKE ex-FINANCIALS/REIT (growth-inflection profile) ===")
+        print(exfin[show].head(top).to_string(index=False))
+        # pure de-rating cut: multiple compressed while revenue grew through the base
+        der = live[(live.derate_score >= 0.3) & (live.rev_ttm_g >= 0.10)].sort_values("derate_score", ascending=False)
+        print(f"\n=== TOP {top} MULTIPLE-DE-RATING (rev grew, price flat -> multiple compressed) ===")
+        print(der[["ticker", "name", "sector", "mu_like", "base_len", "derate_score",
+                   "ps_compression", "rev_ttm_g", "base_drift", "adv_usd_M"]].head(top).to_string(index=False))
 
 
 if __name__ == "__main__":
