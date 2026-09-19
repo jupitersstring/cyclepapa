@@ -42,8 +42,11 @@ def main():
         n = int(sys.argv[sys.argv.index("--n") + 1])
     os.makedirs(CACHE, exist_ok=True)
     key = _key()
-    m = pd.read_csv(MASTER, low_memory=False)
-    uni = m[m.adv_usd.notna()].sort_values("adv_usd", ascending=False).ticker.astype(str).head(n).tolist()
+    if "--universe" in sys.argv:
+        uni = json.load(open(sys.argv[sys.argv.index("--universe") + 1]))
+    else:
+        m = pd.read_csv(MASTER, low_memory=False)
+        uni = m[m.adv_usd.notna()].sort_values("adv_usd", ascending=False).ticker.astype(str).head(n).tolist()
     done = {f[:-5] for f in os.listdir(CACHE)}
     todo = [t for t in uni if t.replace("/", "__") not in done]
     print(f"insider: universe {len(uni)}, to fetch {len(todo)}", file=sys.stderr)

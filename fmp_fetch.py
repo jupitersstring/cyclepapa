@@ -78,7 +78,10 @@ def main():
         n = 10_000_000
     os.makedirs(CACHE, exist_ok=True)
     key = _key()
-    uni = liquid_universe(n)
+    if "--universe" in sys.argv:
+        uni = json.load(open(sys.argv[sys.argv.index("--universe") + 1]))
+    else:
+        uni = liquid_universe(n)
     have = {os.path.splitext(f)[0].replace("__", "/") for f in os.listdir(CACHE)}
     todo = [t for t in uni if t.replace("/", "__") not in {f[:-5] for f in os.listdir(CACHE)}]
     print(f"Universe {len(uni)}; cached {len(uni)-len(todo)}; to fetch {len(todo)}", file=sys.stderr)
