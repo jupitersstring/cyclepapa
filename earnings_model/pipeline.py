@@ -9,7 +9,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from . import (aggregate, cluster, config, fundamentals, prebreakout, quality,
+from . import (aggregate, cluster, config, fmp, fundamentals, prebreakout, quality,
                screens, universe, util, valuation)
 
 
@@ -79,6 +79,9 @@ def step_analyze(
     scored = valuation.add_all_scores(funda, group_cols=group_cols)
     scored = prebreakout.add_prebreakout_score(scored, group_cols=group_cols)
     scored["is_operating"] = valuation.is_operating(scored)
+    # FMP balance-sheet / FCF / quality overlay (no-op if data/fmp_metrics.parquet
+    # absent), so scored.parquet + every screen can see the fmp_* columns.
+    scored = fmp.attach(scored)
 
     out_dir.mkdir(parents=True, exist_ok=True)
     util.atomic_to_parquet(scored, out_dir / "scored.parquet")

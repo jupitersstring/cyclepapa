@@ -23,3 +23,21 @@ already populated.
 
 If you fetch new data and DON'T save+commit it to `data/`, it is NOT protected.
 `snapshot.py status` shows the current vintage; `restore` rehydrates after a reset.
+
+## FMP balance-sheet / quality overlay
+
+`data/fmp_metrics.parquet` (git-tracked, durable) adds the balance-sheet / cash-flow
+/ quality view the Yahoo+EDGAR income-statement pipeline lacks: net-debt/EBITDA,
+FCF yield, ROIC/ROE, current ratio, income quality (OCF/net-income). It is produced
+by one FMP **ultimate** bulk call and joined onto `scored` (fmp_* columns) by
+`earnings_model.fmp.attach` inside `step_analyze` — a no-op if the parquet is
+absent, so the pipeline never hard-depends on FMP. Powers the `quality-value` screen
+and the `fmp_net_cash` / `fmp_over_levered` / `fmp_low_income_quality` flags.
+
+Refresh (needs the key, which must NEVER be committed):
+
+    export FMP_API_KEY=...            # FMP ultimate key, env var only
+    python scripts/fetch_fmp.py       # bulk -> data/fmp_metrics.parquet -> commit
+
+The parquet lives in `data/` (read directly, not via cache/), so it survives a
+container reset with the git checkout — no snapshot save/restore step needed.

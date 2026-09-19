@@ -36,21 +36,45 @@ UNVERIFIED,1,surprises,NKE,"Nike, Inc.",US,Consumer Discretionary,0.955
 UNVERIFIED,1,surprises,RELL,"Richardson Electronics, Ltd.",US,Information Technology,0.954
 UNVERIFIED,1,surprises,MRCY,"Mercury Systems, Inc.",US,Industrials,0.953
 UNVERIFIED,1,surprises,DINO,HF Sinclair Corporation Common Stock,US,Energy,0.95
+UNVERIFIED,1,quality-value,AII,American Integrity Insurance Group Inc. Common Stock,US,Financials,0.926
+UNVERIFIED,1,quality-value,ANHYT.IS,Anadolu Hayat Emeklilik Anonim Sirketi,MEA,Financials,0.923
+UNVERIFIED,1,quality-value,CAMB.BR,Campine NV,EU,Industrials,0.921
+UNVERIFIED,1,quality-value,INOD,Innodata Inc.,US,Information Technology,0.92
+UNVERIFIED,1,quality-value,EVER,"EverQuote, Inc.",US,Communication Services,0.918
+UNVERIFIED,1,quality-value,WAF.AX,West African Resources Ltd,ANZ,Materials,0.916
+UNVERIFIED,1,quality-value,000957.SZ,"Zhongtong Bus Co.,Ltd.",CN,Consumer Discretionary,0.913
+UNVERIFIED,1,quality-value,OPHC,"OptimumBank Holdings, Inc.",US,Financials,0.912
+UNVERIFIED,1,quality-value,ZZ-B.ST,Zinzino Holding AB,EU,Consumer Staples,0.909
 UNVERIFIED,1,new-reality,CSGP,"CoStar Group, Inc.",US,Real Estate,0.908
+UNVERIFIED,1,quality-value,7558.TWO,Bryton Inc.,TW,Information Technology,0.907
 UNVERIFIED,1,forensic,3856.T,Abalance Corporation,JP,Information Technology,0.903
 UNVERIFIED,1,inflecting-positive,8165.T,"Senshukai Co., Ltd.",JP,Consumer Discretionary,0.898
 UNVERIFIED,1,divergence,EKT.DE,EnergieKontor AG,EU,Utilities,0.896
 UNVERIFIED,1,new-reality,CCOI,"Cogent Communications Holdings, Inc.",US,Communication Services,0.896
+UNVERIFIED,1,quality-value,MCY,Mercury General Corporation,US,Financials,0.894
 UNVERIFIED,1,divergence,2342.HK,Comba Telecom Systems Holdings Limited,HK,Information Technology,0.89
+UNVERIFIED,1,quality-value,NUTX,Nutex Health Inc. Common Stock,US,Information Technology,0.888
+UNVERIFIED,1,quality-value,4441.T,Tobila Systems Inc.,JP,Information Technology,0.885
 UNVERIFIED,1,new-reality,DECK,Deckers Outdoor Corporation,US,Consumer Discretionary,0.882
+UNVERIFIED,1,quality-value,EVR,Evercore Inc.,US,Financials,0.881
+UNVERIFIED,1,quality-value,7505.T,"Fuso Dentsu Co., Ltd.",JP,Information Technology,0.881
+UNVERIFIED,1,quality-value,RRL.AX,REGIS RESOURCES LTD.,ANZ,Materials,0.88
+UNVERIFIED,1,quality-value,MOUR.BR,Moury Construct SA,EU,Industrials,0.88
 UNVERIFIED,1,new-reality,PXED,Phoenix Education Partners Inc. Common Stock,US,Consumer Staples,0.879
 UNVERIFIED,1,inflecting-positive,0698.HK,Tongda Group Holdings Limited,HK,Information Technology,0.875
 UNVERIFIED,1,forensic,NWL.MI,Newlat Food S.p.A.,EU,Consumer Staples,0.873
 UNVERIFIED,1,forensic,ANIM3.SA,Anima Holding S.A.,LATAM,Consumer Staples,0.873
 UNVERIFIED,1,inflecting-positive,ARB.NZ,ArborGen Holdings Limited,ANZ,Materials,0.87
+UNVERIFIED,1,quality-value,EXAE.AT,Hellenic Exchanges - Athens Stock Exchange SA,MEA,Financials,0.869
 UNVERIFIED,1,yoy-unpriced,300850.SZ,"Luoyang Xinqianglian Slewing Bearing Co., Ltd.",CN,Industrials,0.868
+UNVERIFIED,1,quality-value,IMG.TO,Iamgold Corporation,CA,Materials,0.868
+UNVERIFIED,1,quality-value,CASS.JK,PT Cardig Aero Services Tbk,SEA,Industrials,0.868
+UNVERIFIED,1,quality-value,WILD.TO,WildBrain Ltd.,CA,Communication Services,0.868
 UNVERIFIED,1,new-reality,WING,Wingstop Inc.,US,Consumer Discretionary,0.866
 UNVERIFIED,1,divergence,MSIN.JK,PT. MNC Studios International Tbk.,SEA,Communication Services,0.865
+UNVERIFIED,1,quality-value,002602.SZ,"Zhejiang Century Huatong Group Co.,Ltd",CN,Consumer Discretionary,0.865
+UNVERIFIED,1,quality-value,603909.SS,"Holsin Engineering Consulting Group Co.,Ltd.",CN,Industrials,0.864
+UNVERIFIED,1,quality-value,2745.TWO,"Life Travel & Tourist Service Co., Ltd.",TW,Consumer Discretionary,0.863
 UNVERIFIED,1,yoy-unpriced,2700.T,"Kitoku Shinryo Co., Ltd.",JP,Consumer Staples,0.862
 UNVERIFIED,1,inflecting-positive,000932.SZ,"Hunan Valin Steel Co., Ltd.",CN,Materials,0.86
 UNVERIFIED,1,forensic,USAK.IS,Usak Seramik Sanayi A.S.,MEA,Industrials,0.86
@@ -176,6 +200,7 @@ REJECT,1,inflecting-positive,CO.PA,"Casino, Guichard-Perrachon Societe Anonyme",
 SPECULATIVE,1,yoy-unpriced,1541.TW,"CHANG TYPE Industrial Co., Ltd.",TW,Industrials,0.881
 KEEP,1,yoy-unpriced,KROS,"Keros Therapeutics, Inc.",US,Health Care,0.874
 REJECT,1,inflecting-positive,TTEC,"TTEC Holdings, Inc.",US,Information Technology,0.869
+SPECULATIVE,1,quality-value,NRDS,NerdWallet Inc. Class A Common Stock,US,Communication Services,0.867
 REJECT,1,inflecting-positive,DH,Definitive Healthcare Corp. Class A Common Stock,US,Information Technology,0.865
 SPECULATIVE,1,yoy-unpriced,BEEF3.SA,Minerva S.A.,LATAM,Consumer Staples,0.864
 SPECULATIVE,1,new-reality,SPSC,"SPS Commerce, Inc.",US,Information Technology,0.854

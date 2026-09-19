@@ -36,6 +36,7 @@ SHEETS = [
     ("yoy-unpriced", "YoY Unpriced"),
     ("surprises", "Surprises"),
     ("consensus-lagging", "Consensus Lagging"),
+    ("quality-value", "Quality-Value (FCF)"),
     ("inflecting-positive", "Inflecting+"),
     ("accel-unpriced", "Accel Unpriced"),
     ("prebreakout-na", None),  # placeholder, ignored

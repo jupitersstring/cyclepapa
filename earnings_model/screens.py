@@ -471,6 +471,42 @@ def consensus_lagging(df: pd.DataFrame, top: int | None = 40,
         "forwardEps", "surprise_cum8", "surprise_beat_rate"])
 
 
+def quality_value(df: pd.DataFrame, top: int | None = 40, **elig) -> pd.DataFrame:
+    """Balance-sheet-strong, cash-generative compounders that are cheap on FREE
+    CASH FLOW — the lens the income-statement screens structurally lack, powered by
+    the FMP overlay (fmp_* columns). Returns EMPTY when the overlay is absent, so
+    the pipeline degrades gracefully without FMP.
+
+    Ranks on: high FCF yield (cheap on cash, immune to the EPS/mark-to-market
+    artifacts that distort P/E-based cheapness), high ROIC (capital efficiency),
+    low net-debt/EBITDA (balance-sheet safety), and positive revenue growth. Hard
+    gates require positive FCF yield, leverage under 4x, income quality > 0.5
+    (operating cash flow actually backs the earnings — the GOOGL-style accrual
+    check), and a growing top line.
+    """
+    e = eligible(df, **{"require_multiple": False, **elig})
+    need = ["fmp_fcf_yield", "fmp_roic", "fmp_net_debt_to_ebitda"]
+    if not all(c in e.columns for c in need):
+        return _finish(e.iloc[0:0], pd.Series(dtype=float), top)   # overlay not attached
+    num = lambda c: pd.to_numeric(e.get(c), errors="coerce")
+    revg = num("revenue_growth")
+    gate = ((num("fmp_fcf_yield") > 0)
+            & (num("fmp_net_debt_to_ebitda") < 4.0)
+            & (num("fmp_income_quality").fillna(1.0) > 0.5)
+            & (revg > 0) & (revg <= 1.5))     # growing, but not a one-off spike
+    # (a >150% YoY jump — milestone-payment biotechs, M&A step-ups — also inflates
+    #  the TTM FCF/ROIC, so it would fake "quality"; the durable band keeps compounders)
+    e = e[gate].copy()
+    if e.empty:
+        return _finish(e, pd.Series(dtype=float), top)
+    score = (0.32 * _rank(e, "fmp_fcf_yield", asc=True)          # higher FCF yield = better
+             + 0.28 * _rank(e, "fmp_roic", asc=True)             # higher ROIC = better
+             + 0.22 * _rank(e, "fmp_net_debt_to_ebitda", asc=False)  # lower leverage = better
+             + 0.18 * _rank(e, "revenue_growth", asc=True))      # faster growth = better
+    return _finish(e, score, top, extra=["fmp_fcf_yield", "fmp_roic",
+                   "fmp_net_debt_to_ebitda", "fmp_income_quality", "fmp_current_ratio"])
+
+
 SCREENS = {
     "yoy-unpriced": yoy_unpriced,
     "accel-unpriced": accel_unpriced,
@@ -481,5 +517,6 @@ SCREENS = {
     "surprises": surprises,
     "new-reality": new_reality,
     "consensus-lagging": consensus_lagging,
+    "quality-value": quality_value,
     "conviction": conviction,
 }
