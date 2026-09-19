@@ -1,0 +1,51 @@
+ticker,name,sector,region,mcap_usd_M,adv_usd_M,asset_ma,rel_ma,combined,n_tfs
+2299.HK,Billion Industrial Holdings Limited,Consumer Cycli,fd-asia-small,1326,0.0,0.98,0.52,1.94,6
+6669.TW,Wiwynn Corporation,Technology,fd-asia-ex-jp,29785,319.0,0.62,0.62,1.8,5
+AFP.AX,AFT Pharmaceuticals Limited,Healthcare,fd-au,222,0.0,0.85,0.72,1.77,6
+FINM.PA,Financière Marjos SA,Industrials,fd-eu-nano,38,0.0,0.7,0.78,1.71,6
+ALLUX.PA,Installux S.A.,Basic Material,fd-eu-micro,148,0.0,0.67,0.5,1.7,6
+MONSO.CO,Monsenso A/S,Healthcare,fd-eu-nano,3,0.0,0.68,0.46,1.7,5
+AAM.SW,Anglo American plc,Basic Material,fd-eu-large,51843,0.0,0.75,0.6,1.68,4
+NEDAP.AS,Nedap N.V.,Technology,fd-eu-small,699,1.0,0.43,0.72,1.66,6
+0GFE.L,Embracer Group AB (publ),,fd-eu-large,0,4.6,0.7,0.47,1.63,4
+0GT8.L,Ependion AB,,fd-eu-micro,0,0.0,0.62,0.6,1.61,5
+GRINDWELL.NS,Grindwell Norton Limited,Industrials,fd-asia-small,2504,2.2,0.5,0.58,1.61,5
+0QMR.L,BELIMO Holding AG,,fd-eu-micro,0,3.7,0.53,0.63,1.6,6
+CY4.MI,Cy4gate S.p.A.,Technology,fd-eu-micro,219,0.6,0.58,0.66,1.6,5
+0RUU.L,Starbreeze AB (publ),,fd-eu-micro,0,0.0,0.75,0.68,1.59,4
+7979.T,Shofu Inc.,Healthcare,fd-jp-small,462,1.7,0.62,0.58,1.59,5
+WRLD,World Acceptance Corporation,Financial Serv,us-small,787,27.4,0.62,0.47,1.59,6
+0OJJ.L,ACTIA Group S.A.,,fd-eu-micro,0,0.0,0.6,0.6,1.58,3
+ZEEL.NS,Zee Entertainment Enterprises Limite,Communication ,fd-asia-ex-jp,1209,35.3,0.5,0.7,1.57,4
+ALX.AX,Atlas Arteria Limited,Industrials,fd-au,4777,11.0,0.74,0.68,1.57,5
+6584.T,"Sanoh Industrial Co., Ltd.",Consumer Cycli,fd-jp-small,236,5.5,0.8,0.48,1.56,6
+3891.T,Nippon Kodoshi Corporation,Technology,fd-jp-micro,638,10.1,0.62,0.48,1.55,6
+7245.T,"Daido Metal Co., Ltd.",Consumer Cycli,fd-jp-micro,379,4.9,0.82,0.42,1.55,5
+AZJ.AX,Aurizon Holdings Limited,Industrials,fd-au,4765,18.6,0.62,0.62,1.53,5
+0N9P.L,GROUPE SFPI SA,,fd-eu-small,0,0.0,0.75,0.6,1.52,4
+0LEA.L,Tencent Holdings Limited,,fd-asia-ex-jp,0,0.5,0.65,0.4,1.52,4
+MMS.AX,McMillan Shakespeare Limited,Industrials,fd-au,871,3.5,0.55,0.52,1.5,6
+DEMA.VI,Demant A/S,Healthcare,fd-eu-large,7749,0.0,0.46,0.56,1.5,5
+6153.TW,"Career Technology (Mfg.) Co., Ltd.",Technology,fd-asia-small,445,4.8,0.5,0.5,1.48,6
+2180.T,SUNNY SIDE UP GROUP Inc.,Communication ,fd-jp-micro,127,0.7,0.66,0.4,1.48,5
+ZEEL.BO,Zee Entertainment Enterprises Limite,Communication ,fd-asia-ex-jp,1211,1.9,0.5,0.62,1.47,4
+PUB.PA,Publicis Groupe S.A.,Communication ,fd-eu-large,23856,71.3,0.4,0.74,1.46,5
+SIQ.AX,Smartgroup Corporation Ltd,Industrials,fd-au,1080,4.6,0.35,0.63,1.45,6
+0O2R.L,Caisse Régionale de Crédit Agricole ,,fd-eu-mid,0,0.0,0.75,0.38,1.45,6
+7069.T,"CyberBuzz, Inc.",Communication ,fd-jp-micro,33,0.0,0.74,0.44,1.45,5
+9903.T,"Kanseki Co., Ltd.",Consumer Cycli,fd-jp-micro,57,0.0,0.45,0.55,1.44,6
+SIS.BO,SIS Limited,Industrials,fd-asia-small,696,0.0,0.42,0.62,1.43,5
+RAMP,"LiveRamp Holdings, Inc.",Technology,us-mid,2256,51.6,0.57,0.4,1.41,7
+EIFF.PA,Société de la Tour Eiffel,Real Estate,fd-eu-small,1171,0.1,0.5,0.45,1.4,6
+TIETO.HE,Tieto Oyj,Technology,fd-eu-mid,2570,6.5,0.52,0.48,1.4,6
+DDR.AX,Dicker Data Limited,Technology,fd-au,1333,3.3,0.66,0.62,1.4,5
+AFT.NZ,AFT Pharmaceuticals Limited,Healthcare,fd-au,249,0.0,0.48,0.47,1.39,6
+DEMANT.CO,Demant A/S,Healthcare,fd-eu-large,7829,17.0,0.46,0.48,1.39,5
+0KWZ.L,Rio Tinto Group,,fd-eu-large,0,1.7,0.73,0.73,1.39,3
+ALNT.MC,"Alantra Partners, S.A.",Financial Serv,fd-eu-small,415,0.6,0.63,0.32,1.39,6
+XFAB.PA,X-FAB Silicon Foundries SE,Technology,fd-eu-small,1292,6.6,0.65,0.65,1.38,4
+6962.T,Daishinku Corp.,Technology,fd-jp-micro,234,5.1,0.48,0.52,1.38,6
+NBIX,"Neurocrine Biosciences, Inc.",Healthcare,fd-us-large,16615,192.8,0.52,0.47,1.37,6
+LEGN,Legend Biotech Corporation,Healthcare,us-mid,6220,79.3,0.48,0.45,1.37,6
+0KDD.L,"Vocento, S.A.",,fd-eu-micro,0,0.0,0.68,0.45,1.37,4
+YESBANK.NS,Yes Bank Limited,Financial Serv,fd-asia-ex-jp,8582,33.3,0.95,0.07,1.37,4

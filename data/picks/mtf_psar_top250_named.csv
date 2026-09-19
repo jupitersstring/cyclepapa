@@ -1,0 +1,251 @@
+rk,ticker,region,name,country,sector,mcap,adv$/d,ccy,score,asset_ma,rel_ma
+1,OXINF,fd-eu-small,Oxford Instruments plc,United Kingd,Technology,2418M,0.0M,USD,2.0,0.76,0.64
+2,SCA1.F,fd-eu-large,Svenska Cellulosa Aktiebolaget SCA ,Sweden,Basic Materials,6462M,0.0M,EUR,2.0,1.0,0.53
+3,68H.F,fd-eu-micro,Cy4gate S.p.A.,Italy,Technology,203M,0.0M,EUR,2.0,0.88,0.68
+4,SSHPF,fd-eu-small,Vow ASA,Norway,Industrials,77M,0.0M,USD,1.99,0.78,0.58
+5,AMVMF,fd-eu-small,AMG Critical Materials N.V.,Netherlands,Basic Materials,1752M,0.0M,USD,1.99,0.7,0.7
+6,IDRSF,fd-eu-mid,Idorsia Ltd,Switzerland,Healthcare,1466M,0.0M,USD,1.98,0.72,0.65
+7,SPHDF,fd-eu-micro,Santhera Pharmaceuticals Holding AG,Switzerland,Healthcare,338M,0.0M,USD,1.97,0.82,0.53
+8,SMO1.F,fd-jp-large,"Sumitomo Electric Industries, Ltd.",Japan,Consumer Cyclic,54984M,0.0M,EUR,1.92,0.86,0.74
+9,6FO.F,fd-eu-nano,Goodtech ASA,Norway,Industrials,35M,0.0M,EUR,1.84,0.78,0.76
+10,NH4.F,fd-jp-small,Nichicon Corporation,Japan,Technology,1598M,0.0M,EUR,1.81,0.63,0.7
+11,2GV.F,fd-eu-micro,Tesmec S.p.A.,Italy,Industrials,151M,0.0M,EUR,1.8,0.7,0.95
+12,AAM.SW,fd-eu-large,Anglo American plc,United Kingd,Basic Materials,46288M,0.0M,CHF,1.8,0.68,0.57
+13,OUTA.MU,fd-eu-mid,Outokumpu Oyj,,,,0.0M,EUR,1.78,0.8,0.76
+14,8P7.F,fd-eu-nano,Games Operators S.A.,Poland,Communication S,18M,,EUR,1.76,1.0,0.45
+15,AFP.AX,fd-au,AFT Pharmaceuticals Limited,New Zealand,Healthcare,341M,0.0M,AUD,1.76,0.9,0.52
+16,BI5.F,fd-jp-mid,"Brother Industries, Ltd.",Japan,Industrials,5016M,0.0M,EUR,1.74,0.75,0.68
+17,LNSX.F,fd-eu-small,Allane SE,Germany,Industrials,247M,0.0M,EUR,1.74,0.6,0.8
+18,KYRA.F,fd-jp-large,Kyocera Corporation,Japan,Industrials,27139M,0.0M,EUR,1.74,0.72,0.75
+19,STMN.MX,fd-eu-large,STMicroelectronics N.V.,Netherlands,Technology,1070339M,0.0M,MXN,1.7,1.0,0.63
+20,GNE.NZ,fd-au,Genesis Energy Limited,New Zealand,Utilities,3455M,2.2M,NZD,1.69,0.97,0.23
+21,2299.HK,fd-asia-small,Billion Industrial Holdings Limited,Hong Kong,Consumer Cyclic,10617M,0.1M,HKD,1.69,0.85,0.32
+22,SLFPY,fd-eu-mid,Aberdeen Group Plc,United Kingd,Financial Servi,5725M,0.0M,USD,1.65,0.83,0.62
+23,DCCPF,fd-eu-mid,DCC plc,Ireland,Energy,6738M,0.0M,USD,1.64,0.67,0.6
+24,SZG.HA,fd-eu-small,Salzgitter AG,,,,0.0M,EUR,1.62,0.82,0.83
+25,CLTFF,fd-eu-micro,Celtic plc,United Kingd,Communication S,323M,0.0M,USD,1.62,0.5,0.6
+26,SGL.MU,fd-eu-small,SGL Carbon SE,,,,0.0M,EUR,1.61,0.37,0.8
+27,0GTI.L,fd-eu-small,Caisse Régionale de Crédit Agricole,France,,,0.0M,EUR,1.61,0.68,0.6
+28,SZGA.F,fd-eu-small,Salzgitter AG,Germany,Basic Materials,3462M,0.0M,EUR,1.61,0.83,0.67
+29,OUTA.DU,fd-eu-mid,Outokumpu Oyj,,,,,EUR,1.6,0.72,0.57
+30,NDA.HA,fd-eu-mid,Aurubis AG,,,,0.0M,EUR,1.6,0.75,0.57
+31,ECK.F,fd-eu-micro,LUDWIG BECK am Rathauseck - Textilh,Germany,Consumer Cyclic,103M,0.0M,EUR,1.6,0.67,0.43
+32,SZGPY,fd-eu-small,Salzgitter AG,Germany,Basic Materials,3864M,0.0M,USD,1.59,0.8,0.57
+33,INGVF,fd-eu-large,ING Groep N.V.,Netherlands,Financial Servi,92914M,0.5M,USD,1.58,0.6,0.72
+34,CYBQF,fd-jp-small,CYBERDYNE Inc.,Japan,Healthcare,394M,0.0M,USD,1.58,0.67,0.65
+35,TBABF,fd-eu-mid,Trelleborg AB (publ),Sweden,Industrials,8094M,0.0M,USD,1.57,0.83,0.23
+36,NDA.HM,fd-eu-mid,Aurubis AG,,,,0.1M,EUR,1.57,0.67,0.55
+37,C70.F,fd-eu-mid,Compagnie d'Entreprises CFE SA,Belgium,Industrials,331M,0.0M,EUR,1.56,0.88,0.78
+38,YATRF,fd-jp-mid,"Yamato Holdings Co., Ltd.",Japan,Industrials,4227M,,USD,1.56,0.83,0.23
+39,STMEF,fd-eu-large,STMicroelectronics N.V.,Netherlands,Technology,62713M,10.4M,USD,1.54,0.43,0.72
+40,VLPNF,fd-eu-mid,Voestalpine AG,Austria,Basic Materials,8221M,0.0M,USD,1.53,0.8,0.54
+41,S9L.F,fd-eu-mid,Salvatore Ferragamo S.p.A.,Italy,Consumer Cyclic,1530M,0.0M,EUR,1.53,0.42,0.72
+42,QC8.MU,fd-eu-small,AFC Energy PLC,,,,0.0M,EUR,1.52,0.47,0.6
+43,S5M.F,fd-jp-micro,"OSAKA Titanium technologies Co.,Ltd",Japan,Basic Materials,537M,0.0M,EUR,1.51,0.56,0.5
+44,KTWIF,fd-jp-mid,Kurita Water Industries Ltd.,Japan,Industrials,5964M,0.0M,USD,1.46,0.65,0.7
+45,AIAGY,fd-eu-mid,Aurubis AG,Germany,Industrials,10587M,0.0M,USD,1.45,0.67,0.67
+46,SZG.HM,fd-eu-small,Salzgitter AG,,,,0.0M,EUR,1.45,0.65,0.83
+47,1S3.F,fd-eu-mid,SeSa S.p.A.,Italy,Technology,1508M,0.0M,EUR,1.44,0.5,0.48
+48,SWGAF,fd-eu-large,The Swatch Group AG,Switzerland,Consumer Cyclic,13719M,0.0M,USD,1.44,0.67,0.62
+49,0GT8.L,fd-eu-micro,Ependion AB,Sweden,,,0.0M,SEK,1.44,0.6,0.46
+50,DAIPF,fd-jp-small,DAIHEN Corporation,Japan,Industrials,1217M,,USD,1.44,1.0,0.3
+51,SE9.F,fd-eu-small,Smart Eye AB (publ),Sweden,Technology,312M,0.0M,EUR,1.43,0.56,0.56
+52,TPLKF,fd-eu-small,PVA TePla AG,Germany,Industrials,916M,0.0M,USD,1.43,0.8,0.52
+53,TES.MI,fd-eu-micro,Tesmec S.p.A.,Italy,Industrials,150M,2.2M,EUR,1.43,0.42,0.75
+54,RLAY,us-mid,"Relay Therapeutics, Inc.",United State,Healthcare,2947M,49.9M,USD,1.43,0.53,0.46
+55,ICTSF,fd-eu-micro,ICTS International N.V.,Netherlands,Industrials,201M,0.0M,USD,1.43,0.84,0.68
+56,HPHTF,fd-jp-mid,Hamamatsu Photonics K.K.,Japan,Technology,5266M,0.0M,USD,1.43,0.86,0.38
+57,6481.T,fd-jp-mid,"THK Co., Ltd.",Japan,Industrials,852770M,8160.2M,JPY,1.42,0.52,0.63
+58,AMDLY,fd-jp-mid,"Amada Co., Ltd.",Japan,Industrials,5796M,0.0M,USD,1.42,0.67,0.53
+59,APTV34.SA,fd-eu-large,Aptiv PLC,Switzerland,Consumer Cyclic,75028M,0.0M,BRL,1.41,0.7,0.36
+60,GL9.F,fd-eu-mid,Glanbia plc,Ireland,Consumer Defens,5148M,0.0M,EUR,1.41,0.52,0.6
+61,NE3.F,fd-eu-small,Nedap N.V.,Netherlands,Technology,658M,0.0M,EUR,1.4,0.88,0.55
+62,NDA.F,fd-eu-mid,Aurubis AG,Germany,Industrials,9072M,0.1M,EUR,1.39,0.6,0.58
+63,ICIL.NS,fd-asia-small,Indo Count Industries Limited,India,Consumer Cyclic,65081M,184.4M,INR,1.39,0.38,0.58
+64,UHOIF,fd-jp-small,Ushio Inc.,Japan,Industrials,1937M,0.0M,USD,1.38,0.67,0.53
+65,STLTECH.NS,fd-asia-small,Sterlite Technologies Limited,India,Technology,302298M,4247.6M,INR,1.38,0.54,0.5
+66,EOS.AX,fd-au,Electro Optic Systems Holdings Limi,Australia,Industrials,2322M,36.0M,AUD,1.38,0.63,0.33
+67,NHYKF,fd-eu-large,Norsk Hydro ASA,Norway,Basic Materials,24134M,0.1M,USD,1.37,0.3,0.72
+68,APAJF,fd-au,APA Group,Australia,Utilities,9968M,0.0M,USD,1.37,0.58,0.33
+69,HYB.F,fd-jp-large,HOYA Corporation,Japan,Healthcare,47100M,0.0M,EUR,1.37,0.63,0.3
+70,SMSNN.MX,fd-asia-ex-jp,"Samsung Electronics Co., Ltd.",South Korea,Technology,27080507M,2.7M,MXN,1.37,0.62,0.68
+71,MSON-A.ST,fd-eu-small,Midsona AB (publ),Sweden,Consumer Defens,2211M,0.0M,SEK,1.37,0.6,0.56
+72,E5E.F,fd-eu-small,Eltel AB (publ),Sweden,Communication S,165M,0.0M,EUR,1.35,0.62,0.72
+73,MEA.F,fd-jp-large,MINEBEA MITSUMI Inc.,Japan,Technology,10763M,0.0M,EUR,1.35,0.5,0.46
+74,3NR.F,fd-au,NRW Holdings Limited,Australia,Industrials,1957M,,EUR,1.35,0.64,0.46
+75,GLAPF,fd-eu-mid,Glanbia plc,Ireland,Consumer Defens,5987M,0.0M,USD,1.35,0.88,0.5
+76,BON.F,fd-eu-small,Boiron SA,France,Healthcare,486M,0.0M,EUR,1.34,0.54,0.56
+77,M82.F,fd-au,Atlas Arteria Limited,Australia,Industrials,4266M,0.0M,EUR,1.34,0.72,0.42
+78,NDA.DU,fd-eu-mid,Aurubis AG,,,,0.0M,EUR,1.34,0.63,0.6
+79,AEGOF,fd-eu-mid,Aegon Ltd.,Netherlands,Financial Servi,10663M,0.0M,USD,1.34,0.67,0.53
+80,MOHCY,fd-eu-small,Motor Oil (Hellas) Corinth Refineri,Greece,Energy,4862M,0.0M,USD,1.34,0.6,0.64
+81,AUOTY,fd-asia-ex-jp,AUO Corporation,Taiwan,Technology,6264M,0.7M,USD,1.34,0.4,0.62
+82,JNNDF,fd-jp-small,Japan Display Inc.,Japan,Technology,1423M,0.0M,USD,1.33,0.55,0.52
+83,OX3.F,fd-eu-small,Oxford Instruments plc,United Kingd,Technology,2076M,0.0M,EUR,1.33,0.63,0.67
+84,SGL.HA,fd-eu-small,SGL Carbon SE,,,,0.0M,EUR,1.33,0.3,0.66
+85,3OK.F,fd-eu-mid,Constellium SE,France,Basic Materials,4112M,0.0M,EUR,1.32,0.44,0.46
+86,MIZUF,fd-jp-small,Mizuno Corporation,Japan,Consumer Cyclic,1729M,0.0M,USD,1.32,1.0,0.23
+87,MIN.AX,fd-au,Mineral Resources Limited,Australia,Basic Materials,13354M,77.4M,AUD,1.31,0.6,0.55
+88,TIAJF,fd-eu-large,,Italy,Communication S,20455M,0.0M,USD,1.31,0.5,0.62
+89,CY4.MI,fd-eu-micro,Cy4gate S.p.A.,Italy,Technology,201M,0.5M,EUR,1.31,0.48,0.52
+90,ZHJ.F,fd-asia-ex-jp,"Zhejiang Expressway Co., Ltd.",China,Industrials,4438M,0.0M,EUR,1.3,0.48,0.42
+91,DUERF,fd-eu-mid,Dürr Aktiengesellschaft,Germany,Industrials,1882M,0.0M,USD,1.3,0.62,0.3
+92,TOYO,fd-jp-micro,"TOYO Co., Ltd.",Japan,Technology,595M,4.1M,USD,1.3,0.63,0.63
+93,UHRN.MX,fd-eu-large,The Swatch Group AG,Switzerland,Consumer Cyclic,229218M,0.0M,MXN,1.3,0.38,0.55
+94,6994.T,fd-jp-micro,Shizuki Electric Company Inc.,Japan,Industrials,32503M,627.8M,JPY,1.3,0.38,0.58
+95,OUKPF,fd-eu-mid,Metso Oyj,Finland,Industrials,14915M,0.0M,USD,1.29,0.33,0.65
+96,FLEXN.MX,fd-asia-ex-jp,Flex Ltd.,United State,Technology,987389M,4.3M,MXN,1.29,0.67,0.47
+97,69L.F,fd-jp-micro,"Daido Metal Co., Ltd.",Japan,Consumer Cyclic,278M,0.0M,EUR,1.28,0.12,0.78
+98,KIRLOSENG.NS,fd-asia-small,Kirloskar Oil Engines Limited,India,Industrials,278155M,871.4M,INR,1.28,0.24,0.64
+99,SKSUF,fd-jp-mid,"Sekisui Chemical Co., Ltd.",Japan,Industrials,5930M,0.0M,USD,1.27,1.0,0.2
+100,RGB.F,fd-eu-nano,Regenbogen AG,Germany,Consumer Cyclic,14M,0.0M,EUR,1.27,0.37,0.6
+101,CBE.F,fd-eu-small,Mersen S.A.,France,Industrials,1039M,0.0M,EUR,1.27,1.0,0.47
+102,FG1.MU,fd-eu-large,Antofagasta PLC,,,,0.0M,EUR,1.26,0.48,0.66
+103,PYT.VI,fd-eu-small,Polytec Holding AG,Austria,Consumer Cyclical,108M,0.1M,EUR,1.25,0.32,0.62
+104,NHC.AX,fd-au,New Hope Corporation Limited,Australia,Energy,5130M,26.5M,AUD,1.24,0.47,0.65
+105,EQ,fd-us-micro,"Equillium, Inc.",United States,Healthcare,186M,1.9M,USD,1.24,0.54,0.39
+106,NGI.F,fd-jp-mid,NGK Corporation,Japan,Industrials,10017M,0.0M,EUR,1.24,0.47,0.72
+107,TYOYY,fd-jp-mid,"Taiyo Yuden Co., Ltd.",Japan,Technology,11567M,0.2M,USD,1.24,0.59,0.61
+108,54Z.F,fd-eu-nano,SA Energisme,France,Technology,11M,,EUR,1.24,0.66,0.26
+109,1U3.F,fd-jp-small,Bic Camera Inc.,Japan,Consumer Cyclical,1576M,0.0M,EUR,1.24,0.54,0.52
+110,MNZ.F,fd-eu-micro,Gattaca plc,United Kingdo,Industrials,54M,0.0M,EUR,1.23,0.8,0.5
+111,PCFBF,fd-asia-small,Pacific Basin Shipping Limited,Hong Kong,Industrials,2065M,0.0M,USD,1.23,1.0,0.16
+112,0OJJ.L,fd-eu-micro,ACTIA Group S.A.,France,,,0.0M,EUR,1.23,0.53,0.3
+113,TABCF,fd-au,Tabcorp Holdings Limited,Australia,Consumer Cyclical,1961M,0.0M,USD,1.23,0.42,0.68
+114,IRES.F,fd-eu-small,Irish Residential Properties REIT Plc,Ireland,Real Estate,536M,0.0M,EUR,1.23,0.97,0.3
+115,KYSEF,fd-jp-mid,"Kyushu Electric Power Company, Incorpora",Japan,Utilities,5104M,0.0M,USD,1.22,0.67,0.4
+116,D0D.F,fd-au,Dicker Data Limited,Australia,Technology,1206M,0.0M,EUR,1.22,0.57,0.33
+117,IVSXF,fd-eu-large,Investor AB (publ),Sweden,Financial Services,123805M,0.0M,USD,1.22,0.48,0.36
+118,TOTDF,fd-jp-mid,TOTO LTD.,Japan,Industrials,8773M,0.0M,USD,1.22,0.34,0.58
+119,AN1.F,fd-jp-mid,Anritsu Corporation,Japan,Technology,3200M,0.0M,EUR,1.22,0.58,0.56
+120,SOM.MI,fd-eu-micro,Somec S.p.A.,Italy,Industrials,130M,0.1M,EUR,1.21,0.66,0.3
+121,M6Q.MU,fd-eu-mid,Metso Outotec Corp,,,,0.0M,EUR,1.21,0.6,0.48
+122,TYC1.F,fd-jp-mid,"Taiyo Yuden Co., Ltd.",Japan,Technology,10317M,0.0M,EUR,1.21,0.25,0.72
+123,TTEB.F,fd-eu-mid,Tieto Oyj,Finland,Technology,2427M,0.0M,EUR,1.21,0.75,0.42
+124,SGLFF,fd-eu-small,SGL Carbon SE,Germany,Basic Materials,668M,0.0M,USD,1.2,0.4,0.68
+125,0KWZ.L,fd-eu-large,Rio Tinto Group,United Kingdo,,,1.7M,USD,1.2,0.44,0.44
+126,NUF.F,fd-au,Nufarm Limited,Australia,Basic Materials,676M,,EUR,1.2,0.38,0.62
+127,UMIN.MX,fd-eu-large,Umicore SA,Belgium,Industrials,117009M,0.0M,MXN,1.2,0.67,0.4
+128,IMMFF,fd-au,Omni Bridgeway Limited,Australia,Financial Services,337M,0.0M,USD,1.19,0.67,0.4
+129,SZG.F,fd-eu-small,Salzgitter AG,Germany,Basic Materials,3343M,0.0M,EUR,1.19,0.65,0.53
+130,NXCLF,fd-jp-small,"LIFULL Co.,Ltd.",Japan,Communication Serv,198M,0.0M,USD,1.19,0.78,0.54
+131,SSLLF,fd-eu-mid,Siltronic AG,Germany,Technology,3229M,0.0M,USD,1.19,0.58,0.66
+132,SHNWF,fd-eu-large,Schroders plc,United Kingdo,Financial Services,11384M,0.0M,USD,1.19,0.33,0.58
+133,LIV.F,fd-eu-mid,"Autoliv, Inc.",Sweden,Consumer Cyclical,8310M,0.0M,EUR,1.19,0.75,0.68
+134,SOH1.MU,fd-eu-mid,Soitec SA,,,,0.0M,EUR,1.19,0.8,0.34
+135,GPRK,us-small,GeoPark Limited,Colombia,Energy,684M,10.9M,USD,1.18,0.44,0.49
+136,6976.T,fd-jp-mid,"Taiyo Yuden Co., Ltd.",Japan,Technology,1982052M,95489.4M,JPY,1.18,0.8,0.68
+137,AZ2.HM,fd-eu-mid,Andritz AG,,,,0.0M,EUR,1.18,0.42,0.58
+138,ANFGF,fd-eu-large,Antofagasta plc,United Kingdo,Basic Materials,53414M,0.3M,USD,1.18,0.65,0.37
+139,VSA2.F,fd-eu-mid,Valeo SE,France,Consumer Cyclical,3766M,0.0M,EUR,1.18,0.52,0.7
+140,ELTX,fd-us-micro,"Elicio Therapeutics, Inc.",United States,Healthcare,253M,1.7M,USD,1.18,0.52,0.47
+141,MRAAF,fd-jp-large,"Murata Manufacturing Co., Ltd.",Japan,Technology,106727M,0.5M,USD,1.18,0.54,0.6
+142,6SZA.MU,fd-eu-small,Sanlorenzo S.p.A.,Italy,Consumer Cyclical,1363M,,EUR,1.18,0.93,0.28
+143,2NX.F,fd-au,NEXTDC Limited,Australia,Technology,6792M,,EUR,1.18,0.75,0.53
+144,SFRGY,fd-eu-mid,Salvatore Ferragamo S.p.A.,Italy,Consumer Cyclical,1730M,0.0M,USD,1.18,0.42,0.62
+145,600188.SS,fd-asia-ex-jp,Yankuang Energy Group Company Limited,China,Energy,251423M,1809.7M,CNY,1.18,0.53,0.31
+146,TKY.F,fd-jp-large,Tokyo Electron Limited,Japan,Technology,141557M,0.0M,EUR,1.17,0.37,0.65
+147,BESVF,fd-eu-mid,BE Semiconductor Industries N.V.,Netherlands,Technology,24240M,0.1M,USD,1.17,0.7,0.42
+148,RNECY,fd-jp-large,Renesas Electronics Corporation,Japan,Technology,46410M,10.1M,USD,1.16,0.29,0.7
+149,SEIGY,fd-eu-small,Semperit Aktiengesellschaft Holding,Austria,Industrials,390M,0.0M,USD,1.16,0.67,0.43
+150,COEP,fd-us-micro,Coeptis Therapeutics Holdings Inc,United States,Healthcare,102M,0.8M,USD,1.16,0.2,0.61
+151,UVA.SG,fd-eu-small,Société de la Tour Eiffel,France,Real Estate,1066M,0.0M,EUR,1.16,0.33,0.45
+152,ILP.MI,fd-eu-micro,ILPRA S.p.A.,Italy,Industrials,85M,0.0M,EUR,1.16,0.48,0.48
+153,IT1.F,fd-eu-large,Intertek Group PLC            R,United Kingdo,Industrials,,0.0M,EUR,1.16,0.44,0.42
+154,CRERF,fd-eu-large,Carrefour SA,France,Consumer Defensive,13806M,0.1M,USD,1.16,0.38,0.42
+155,NR21.PA,fd-eu-nano,NR21 Société Anonyme,France,Consumer Cyclical,4M,,EUR,1.15,0.33,0.45
+156,ASMVF,fd-asia-ex-jp,ASMPT Limited,Singapore,Technology,9310M,0.0M,USD,1.15,0.5,0.45
+157,PZS.F,fd-eu-micro,Scherzer & Co. AG,Germany,Financial Services,73M,0.0M,EUR,1.15,0.76,0.14
+158,NNCHY,fd-jp-mid,Nissan Chemical Corporation,Japan,Basic Materials,6553M,0.0M,USD,1.15,0.6,0.44
+159,TKA.HA,fd-eu-mid,thyssenkrupp AG,,,,0.0M,EUR,1.15,0.7,0.47
+160,IDVA.F,fd-eu-large,AB Industrivärden (publ),Sweden,Financial Services,20351M,0.0M,EUR,1.15,0.4,0.44
+161,RXLSF,fd-eu-mid,Rexel S.A.,France,Technology,12521M,0.0M,USD,1.14,0.7,0.14
+162,SMO.F,fd-jp-large,"Sumitomo Electric Industries, Ltd.",Japan,Consumer Cyclical,51857M,0.0M,EUR,1.14,0.17,0.77
+163,FINM.PA,fd-eu-nano,Financière Marjos SA,France,Industrials,32M,0.0M,EUR,1.14,0.77,0.68
+164,BOUYF,fd-eu-large,Bouygues SA,France,Industrials,18761M,0.0M,USD,1.14,0.6,0.54
+165,SHECF,fd-jp-large,"Shin-Etsu Chemical Co., Ltd.",Japan,Basic Materials,80622M,0.4M,USD,1.14,0.4,0.55
+166,SSAAF,fd-eu-mid,SSAB AB (publ),Sweden,Basic Materials,8222M,0.0M,USD,1.14,0.8,0.24
+167,TXG,us-mid,"10x Genomics, Inc.",United States,Healthcare,3941M,80.4M,USD,1.14,0.45,0.37
+168,3480.T,fd-jp-micro,"J.S.B.Co.,Ltd.",Japan,Real Estate,143061M,545.8M,JPY,1.14,0.5,0.38
+169,21T.F,fd-eu-mid,Bodycote plc,United Kingdo,Industrials,1449M,0.0M,EUR,1.13,0.7,0.25
+170,BOK.F,fd-eu-small,Boozt AB (publ),Denmark,Consumer Cyclical,704M,0.0M,EUR,1.13,0.36,0.52
+171,2LC.F,fd-eu-small,Luceco plc,United Kingdo,Industrials,462M,0.0M,EUR,1.12,0.52,0.52
+172,SZG.MU,fd-eu-small,Salzgitter AG,,,,0.0M,EUR,1.12,0.63,0.67
+173,TKA.MU,fd-eu-mid,thyssenkrupp AG,,,,0.0M,EUR,1.12,0.5,0.6
+174,DMRC,fd-us-micro,Digimarc Corporation,United States,Technology,303M,3.4M,USD,1.12,0.47,0.4
+175,7245.T,fd-jp-micro,"Daido Metal Co., Ltd.",Japan,Consumer Cyclical,56003M,674.9M,JPY,1.12,0.48,0.36
+176,IMOS,fd-asia-small,ChipMOS TECHNOLOGIES INC.,Taiwan,Technology,2005M,4.9M,USD,1.12,0.5,0.4
+177,CHUEF,fd-jp-mid,"Chubu Electric Power Company, Incorporat",Japan,Utilities,13182M,0.0M,USD,1.12,0.67,0.53
+178,PUMA.F,fd-eu-large,PUMA SE,Germany,Consumer Cyclical,3857M,0.0M,EUR,1.12,0.64,0.62
+179,CDNS,fd-us-large,"Cadence Design Systems, Inc.",United States,Technology,103759M,895.0M,USD,1.11,0.57,0.35
+180,0QQJ.L,fd-eu-micro,EvoNext Holdings SA,Switzerland,,,0.0M,CHF,1.11,0.7,0.62
+181,WC2.F,fd-au,Whitehaven Coal Limited,Australia,Energy,4298M,0.0M,EUR,1.11,0.5,0.4
+182,VC,us-mid,Visteon Corporation,United States,Consumer Cyclical,3135M,67.2M,USD,1.11,0.41,0.43
+183,6290.TWO,fd-asia-small,Longwell Company,Taiwan,Industrials,59402M,3233.0M,TWD,1.1,0.58,0.46
+184,PCRFF,fd-jp-large,Panasonic Holdings Corporation,Japan,Technology,54632M,0.5M,USD,1.1,0.53,0.53
+185,ASCN.SW,fd-eu-small,Ascom Holding AG,Switzerland,Healthcare,215M,0.8M,CHF,1.1,0.4,0.52
+186,0MG5.IL,fd-eu-small,ElringKlinger AG,Germany,Consumer Cyclical,428M,0.0M,EUR,1.1,0.34,0.4
+187,BHP1.HM,fd-au,BHP Group Ltd,,,,0.0M,EUR,1.1,0.46,0.58
+188,1DP.F,fd-eu-small,Elkem ASA,Norway,Basic Materials,1088M,0.0M,EUR,1.1,0.42,0.6
+189,4BB.F,fd-asia-ex-jp,Budweiser Brewing Company APAC Limited,Hong Kong,Consumer Defensive,9790M,0.0M,EUR,1.1,0.53,0.23
+190,P4N.F,fd-eu-small,Polytec Holding AG,Austria,Consumer Cyclical,105M,0.0M,EUR,1.09,0.3,0.48
+191,ZGN,us-mid,Ermenegildo Zegna N.V.,Italy,Consumer Cyclical,3930M,11.6M,USD,1.09,0.63,0.52
+192,1409.TW,fd-asia-small,Shinkong Synthetic Fibers Corporation,Taiwan,Consumer Cyclical,41838M,308.5M,TWD,1.09,0.68,0.53
+193,5WS.F,fd-eu-mid,Watches of Switzerland Group PLC,United Kingdo,Consumer Cyclical,1887M,0.0M,EUR,1.09,0.5,0.6
+194,TKA1.F,fd-eu-mid,thyssenkrupp AG,Germany,Industrials,7190M,0.0M,EUR,1.09,0.22,0.6
+195,2727.TW,fd-asia-small,Wowprime Corp.,Taiwan,Consumer Cyclical,20383M,105.5M,TWD,1.09,0.58,0.16
+196,EZM.F,fd-eu-mid,OPmobility SE,France,Consumer Cyclical,2265M,0.0M,EUR,1.09,0.75,0.32
+197,WEW.F,fd-eu-small,Westwing Group SE,Germany,Consumer Cyclical,274M,0.0M,EUR,1.09,0.58,0.38
+198,BH5.F,fd-au,BlueScope Steel Limited,Australia,Basic Materials,8762M,0.0M,EUR,1.09,0.46,0.58
+199,JBHT,fd-us-large,"J.B. Hunt Transport Services, Inc.",United States,Industrials,26871M,275.5M,USD,1.09,0.6,0.34
+200,VAS.F,fd-eu-mid,Voestalpine AG,Austria,Basic Materials,8195M,0.0M,EUR,1.08,0.67,0.55
+201,EVE.SW,fd-eu-micro,EvoNext Holdings SA,Switzerland,Financial Services,13M,0.0M,CHF,1.08,0.48,0.4
+202,032500.KQ,fd-asia-small,Kmw Inc.,South Korea,Technology,1360937M,27633.1M,KRW,1.08,0.52,0.24
+203,0CY.F,fd-eu-micro,Masi Agricola S.p.A.,Italy,Consumer Defensive,148M,0.0M,EUR,1.08,0.95,0.3
+204,IDZ.F,fd-au,IGO Limited,Australia,Basic Materials,4147M,0.0M,EUR,1.07,0.7,0.5
+205,SEYMF,fd-eu-mid,"Solaria Energía y Medio Ambiente, S.A.",Spain,Utilities,3714M,0.0M,USD,1.07,0.4,0.46
+206,ABS2.F,fd-eu-small,PORR AG,Austria,Industrials,1579M,0.0M,EUR,1.07,0.34,0.5
+207,DAR.F,fd-eu-nano,Dar SICAV,Germany,Industrials,37M,0.0M,EUR,1.07,0.78,0.36
+208,CRWD,fd-us-large,"CrowdStrike Holdings, Inc.",United States,Technology,170818M,2343.6M,USD,1.07,0.35,0.48
+209,TKYMY,fd-jp-small,Tokuyama Corporation,Japan,Basic Materials,2014M,0.0M,USD,1.07,0.5,0.57
+210,NXPRF,fd-eu-mid,Nexans S.A.,France,Industrials,8526M,0.0M,USD,1.07,0.67,0.4
+211,JPDYY,fd-jp-small,Japan Display Inc.,Japan,Technology,1424M,0.0M,USD,1.06,0.5,0.5
+212,NEC1.F,fd-jp-large,NEC Corporation,Japan,Technology,29360M,0.0M,EUR,1.06,0.37,0.37
+213,0OV1.F,fd-eu-small,OVS S.p.A.,Italy,Consumer Cyclical,1445M,0.0M,EUR,1.06,0.6,0.3
+214,KIRLOSENG.BO,fd-asia-small,Kirloskar Oil Engines Limited,India,Industrials,277872M,99.1M,INR,1.06,0.2,0.53
+215,ZIL2.VI,fd-eu-small,ElringKlinger AG,Germany,Consumer Cyclical,370M,0.0M,EUR,1.06,0.42,0.32
+216,1IP.F,fd-au,IPH Limited,Australia,Industrials,627M,0.0M,EUR,1.06,0.6,0.3
+217,SU2.F,fd-jp-small,"Sumitomo Osaka Cement Co., Ltd.",Japan,Basic Materials,913M,0.0M,EUR,1.06,0.38,0.4
+218,0IIO.L,fd-eu-small,Gr. Sarantis S.A.,Greece,,,0.4M,EUR,1.06,0.67,0.37
+219,1IC.F,fd-eu-micro,Impact Coatings AB (publ),Sweden,Industrials,43M,0.0M,EUR,1.05,0.38,0.52
+220,1GT.F,fd-eu-small,Gek Terna S.A.,Greece,Industrials,4450M,0.0M,EUR,1.05,0.35,0.52
+221,0KDD.L,fd-eu-micro,"Vocento, S.A.",Spain,,,0.0M,EUR,1.05,0.57,0.53
+222,IDV1.F,fd-eu-large,AB Industrivärden (publ),Sweden,Financial Services,20250M,0.0M,EUR,1.05,0.5,0.5
+223,RMT.F,fd-asia-small,Regina Miracle International (Holdings) ,Hong Kong,Consumer Cyclical,245M,,EUR,1.05,0.48,0.22
+224,DPWA.F,fd-eu-large,Deutsche Post AG,Germany,Industrials,57753M,0.0M,EUR,1.05,0.48,0.38
+225,SLFPF,fd-eu-mid,Aberdeen Group Plc,United Kingdo,Financial Services,5528M,0.0M,USD,1.05,0.6,0.34
+226,V6C.F,fd-eu-micro,Viscom SE,Germany,Technology,52M,0.0M,EUR,1.05,0.84,0.74
+227,VSTS,us-small,Vestis Corporation,United States,Industrials,1698M,20.0M,USD,1.05,0.6,0.47
+228,6SZA.F,fd-eu-small,Sanlorenzo S.p.A.,Italy,Consumer Cyclical,1351M,0.0M,EUR,1.05,0.42,0.5
+229,BVZN.SW,fd-eu-mid,BVZ Holding AG,Switzerland,Industrials,322M,0.1M,CHF,1.04,0.28,0.48
+230,BNPH.F,fd-eu-large,BNP Paribas SA,France,Financial Services,102529M,0.0M,EUR,1.04,0.76,0.06
+231,0NW1.IL,fd-eu-mid,OPmobility SE,France,Consumer Cyclical,2594M,0.1M,EUR,1.04,0.62,0.3
+232,TOR1.F,fd-jp-large,"Toray Industries, Inc.",Japan,Consumer Cyclical,8741M,0.0M,EUR,1.04,0.4,0.42
+233,ALNT,us-small,Allient Inc.,United States,Technology,1442M,18.8M,USD,1.04,0.37,0.37
+234,6914.T,fd-jp-small,"OPTEX GROUP Company, Limited",Japan,Technology,164279M,861.2M,JPY,1.04,0.28,0.48
+235,8942.TWO,fd-asia-small,"Xxentria Technology Materials Co., Ltd.",Taiwan,Basic Materials,8232M,23.8M,TWD,1.04,0.46,0.3
+236,ENGGF,fd-eu-mid,"Enagás, S.A.",Spain,Utilities,5330M,0.0M,USD,1.04,0.8,0.16
+237,2409.TW,fd-asia-ex-jp,AUO Corporation,Taiwan,Technology,204526M,8592.4M,TWD,1.04,0.46,0.44
+238,ASGLY,fd-jp-large,AGC Inc.,Japan,Industrials,10089M,0.1M,USD,1.03,0.57,0.53
+239,1326.TW,fd-asia-ex-jp,Formosa Chemicals & Fibre Corporation,Taiwan,Basic Materials,308828M,2118.6M,TWD,1.03,0.48,0.35
+240,SUMCF,fd-jp-mid,Sumco Corporation,Japan,Technology,8893M,0.2M,USD,1.03,0.48,0.32
+241,YOKEF,fd-jp-mid,Yokogawa Electric Corporation,Japan,Industrials,8435M,0.0M,USD,1.03,0.53,0.4
+242,M6QB.F,fd-eu-mid,Metso Oyj,Finland,Industrials,13498M,0.0M,EUR,1.03,0.48,0.42
+243,AMCX,us-small,AMC Global Media Inc.,United States,Communication Serv,430M,4.5M,USD,1.03,0.45,0.4
+244,AGLN.MX,fd-eu-large,Anglo American plc,United Kingdo,Basic Materials,898560M,0.0M,MXN,1.03,0.78,0.42
+245,ELLRY,fd-eu-small,ElringKlinger AG,Germany,Consumer Cyclical,431M,0.0M,USD,1.03,0.6,0.56
+246,6674.T,fd-jp-mid,GS Yuasa Corporation,Japan,Consumer Cyclical,730326M,8655.3M,JPY,1.03,0.52,0.46
+247,NXDCF,fd-au,NEXTDC Limited,Australia,Technology,8086M,0.0M,USD,1.02,0.25,0.65
+248,SKWA.F,fd-eu-mid,SSAB AB (publ),Sweden,Basic Materials,8870M,0.0M,EUR,1.02,0.22,0.56
+249,ACX.DE,fd-eu-small,bet-at-home.com AG,Germany,Consumer Cyclical,24M,0.0M,EUR,1.02,0.5,0.38
+250,KALV,us-small,"KalVista Pharmaceuticals, Inc.",United States,Healthcare,1435M,92.1M,USD,1.02,0.44,0.27
