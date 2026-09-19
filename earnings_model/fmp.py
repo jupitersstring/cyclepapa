@@ -19,6 +19,8 @@ from __future__ import annotations
 
 import io
 import os
+import time
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -102,15 +104,9 @@ def _key() -> str:
 
 
 def fetch_bulk_key_metrics() -> pd.DataFrame:
-    """Download the whole-market key-metrics-ttm bulk CSV via the proxy-safe urllib
-    transport and return it as a DataFrame (raw FMP columns)."""
-    url = f"{BASE}/key-metrics-ttm-bulk?apikey={_key()}"
-    req = urllib.request.Request(url, headers={"User-Agent": "cyclepapa/1.0"})
-    with urllib.request.urlopen(req, timeout=180) as r:
-        raw = r.read().decode("utf-8", "replace")
-    if raw.lstrip().startswith("{"):                # an error object, not CSV
-        raise RuntimeError(f"FMP bulk returned non-CSV: {raw[:200]}")
-    return pd.read_csv(io.StringIO(raw))
+    """Download the whole-market key-metrics-ttm bulk CSV (proxy-safe urllib, with
+    429 backoff via :func:`_fetch_csv`)."""
+    return _fetch_csv("key-metrics-ttm-bulk?")
 
 
 def build_overlay(universe_symbols: set[str] | None = None) -> pd.DataFrame:
@@ -147,6 +143,141 @@ def build_overlay(universe_symbols: set[str] | None = None) -> pd.DataFrame:
 
 def save_overlay(df: pd.DataFrame, path: Path = FMP_METRICS_PATH) -> None:
     util.atomic_to_parquet(df, path)
+
+
+# --------------------------------------------------------------------------- #
+# Earnings-surprise history + forward analyst estimates (additive fmp_* columns)
+# --------------------------------------------------------------------------- #
+def _fetch_csv(endpoint: str, retries: int = 4) -> pd.DataFrame:
+    url = f"{BASE}/{endpoint}&apikey={_key()}"
+    req = urllib.request.Request(url, headers={"User-Agent": "cyclepapa/1.0"})
+    last = None
+    for attempt in range(retries):
+        try:
+            with urllib.request.urlopen(req, timeout=180) as r:
+                raw = r.read().decode("utf-8", "replace")
+            if raw.lstrip().startswith("{") or raw.lstrip().startswith("Query"):
+                raise RuntimeError(f"FMP bulk error for {endpoint}: {raw[:160]}")
+            return pd.read_csv(io.StringIO(raw))
+        except urllib.error.HTTPError as e:
+            last = e
+            if e.code == 429 and attempt < retries - 1:      # throttled: back off hard
+                time.sleep(10 * (2 ** attempt))
+                continue
+            break
+        except Exception as e:                                # noqa: BLE001
+            last = e
+            break
+    raise RuntimeError(f"FMP fetch failed for {endpoint}: {last}")
+
+
+def _recent_quarters(n: int = 8):
+    """The last ``n`` fiscal (year, 'Q#') pairs, newest first — most recent COMPLETE
+    quarter is one back from the current calendar quarter (this one isn't reported)."""
+    from datetime import date
+    y, q = date.today().year, (date.today().month - 1) // 3 + 1
+    out = []
+    q -= 1
+    if q == 0:
+        y, q = y - 1, 4
+    for _ in range(n):
+        out.append((y, f"Q{q}"))
+        q -= 1
+        if q == 0:
+            y, q = y - 1, 4
+    return out
+
+
+def _surprise_metrics(hist: pd.DataFrame) -> dict:
+    """Clean EPS-surprise metrics for one symbol from its (date, actual, est) rows.
+
+    beat_rate + streak are SCALE-FREE (sign only), so a serial tiny-EPS beater
+    doesn't distort them; the magnitude (avg4) uses per-quarter surprise CLAMPED to
+    +/-50% so a beat off a ~$0 estimate can't explode the average (the same
+    near-zero-denominator artifact the Yahoo surprise clamp guards)."""
+    h = hist.dropna(subset=["epsActual", "epsEstimated"]).sort_values("date")
+    if h.empty:
+        return {}
+    beats = (h["epsActual"] > h["epsEstimated"]).tolist()
+    est = h["epsEstimated"].abs().where(h["epsEstimated"].abs() > 1e-6)
+    surp = ((h["epsActual"] - h["epsEstimated"]) / est).clip(-0.5, 0.5)
+    streak = 0
+    for b in reversed(beats):
+        if b:
+            streak += 1
+        else:
+            break
+    return {
+        "fmp_eps_beat_rate": float(sum(beats)) / len(beats),
+        "fmp_eps_surprise_avg4": float(surp.tail(4).mean()) if surp.tail(4).notna().any() else float("nan"),
+        "fmp_eps_streak": streak,
+        "fmp_eps_quarters": len(beats),
+    }
+
+
+def build_earnings_overlay(universe_symbols: set[str] | None = None,
+                           quarters: int = 8) -> pd.DataFrame:
+    """Per-symbol clean EPS-surprise metrics (last ``quarters``) + forward consensus
+    growth (next-FY vs this-FY revenue/EPS avg estimates). All additive fmp_* fields.
+    """
+    want = set(map(str, universe_symbols)) if universe_symbols is not None else None
+
+    # --- surprise history: one bulk CSV per fiscal quarter ------------------- #
+    frames = []
+    for y, p in _recent_quarters(quarters):
+        try:
+            df = _fetch_csv(f"earnings-surprises-bulk?year={y}&period={p}")
+        except RuntimeError:
+            continue
+        df = df[["symbol", "date", "epsActual", "epsEstimated"]].copy()
+        if want is not None:
+            df = df[df["symbol"].astype(str).isin(want)]
+        frames.append(df)
+        time.sleep(22.0)                             # pace bulk calls (severe FMP bulk limit)
+    hist = pd.concat(frames, ignore_index=True) if frames else pd.DataFrame(
+        columns=["symbol", "date", "epsActual", "epsEstimated"])
+    for c in ("epsActual", "epsEstimated"):
+        hist[c] = pd.to_numeric(hist[c], errors="coerce")
+    surp = (hist.groupby("symbol", group_keys=False)
+                .apply(lambda g: pd.Series(_surprise_metrics(g)))
+                .reset_index()) if len(hist) else pd.DataFrame(columns=["symbol"])
+
+    # --- forward consensus growth: this-FY vs next-FY avg estimates ---------- #
+    from datetime import date
+    y0 = date.today().year
+    est = {}
+    for yr in (y0, y0 + 1):
+        try:
+            e = _fetch_csv(f"analyst-estimates-bulk?year={yr}&period=annual")
+        except RuntimeError:
+            continue
+        e = e[["symbol", "revenueAvg", "epsAvg", "numAnalystsEps"]].copy()
+        if want is not None:
+            e = e[e["symbol"].astype(str).isin(want)]
+        est[yr] = e.set_index("symbol")
+        time.sleep(22.0)
+    fwd = pd.DataFrame(columns=["symbol"])
+    if y0 in est and (y0 + 1) in est:
+        a, b = est[y0], est[y0 + 1]
+        common = a.index.intersection(b.index)
+        rev0, rev1 = pd.to_numeric(a.loc[common, "revenueAvg"], errors="coerce"), pd.to_numeric(b.loc[common, "revenueAvg"], errors="coerce")
+        eps0, eps1 = pd.to_numeric(a.loc[common, "epsAvg"], errors="coerce"), pd.to_numeric(b.loc[common, "epsAvg"], errors="coerce")
+        fwd = pd.DataFrame({
+            "symbol": common,
+            "fmp_fwd_rev_growth": (rev1 / rev0.where(rev0 > 0) - 1.0).values,
+            "fmp_fwd_eps_growth": (eps1 / eps0.where(eps0 > 0) - 1.0).values,
+            "fmp_analysts_eps": pd.to_numeric(a.loc[common, "numAnalystsEps"], errors="coerce").values,
+        })
+
+    out = surp.merge(fwd, on="symbol", how="outer") if len(surp) or len(fwd) else pd.DataFrame(columns=["symbol"])
+    # forward-growth ratios can still blow up off a tiny base — bound them
+    for c in ("fmp_fwd_rev_growth", "fmp_fwd_eps_growth"):
+        if c in out.columns:
+            v = pd.to_numeric(out[c], errors="coerce")
+            out[c] = v.where((v >= -1.0) & (v <= 3.0))
+    return out.reset_index(drop=True)
+
+
 
 
 def load_overlay(path: Path = FMP_METRICS_PATH) -> pd.DataFrame | None:

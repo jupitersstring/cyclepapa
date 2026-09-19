@@ -29,6 +29,30 @@ def test_fmp_candidates_suffix_alias():
     assert list(fmp._fmp_candidates("005930.KQ")) == ["005930.KQ"]
 
 
+def test_surprise_metrics_scale_free_and_clamped():
+    # beat, beat, miss, beat, beat -> beat_rate 0.8, streak 2
+    h = pd.DataFrame({
+        "date": ["2025-03-31", "2025-06-30", "2025-09-30", "2025-12-31", "2026-03-31"],
+        "epsActual": [1.10, 1.20, 0.90, 1.30, 1.05],
+        "epsEstimated": [1.00, 1.00, 1.00, 1.00, 1.00],
+    })
+    m = fmp._surprise_metrics(h)
+    assert abs(m["fmp_eps_beat_rate"] - 0.8) < 1e-9
+    assert m["fmp_eps_streak"] == 2
+    assert m["fmp_eps_quarters"] == 5
+    # a beat off a ~$0 estimate is CLAMPED (the artifact this overlay fixes)
+    tiny = pd.DataFrame({"date": ["2026-03-31"], "epsActual": [0.05], "epsEstimated": [0.001]})
+    assert abs(fmp._surprise_metrics(tiny)["fmp_eps_surprise_avg4"] - 0.5) < 1e-9
+
+
+def test_recent_quarters_shape():
+    qs = fmp._recent_quarters(8)
+    assert len(qs) == 8
+    assert all(p in ("Q1", "Q2", "Q3", "Q4") for _, p in qs)
+    # strictly descending in time (newest first, no repeats)
+    assert len(set(qs)) == 8
+
+
 def test_attach_is_noop_when_absent(tmp_path):
     df = pd.DataFrame({"symbol": ["A", "B"], "x": [1, 2]})
     out = fmp.attach(df, path=tmp_path / "does_not_exist.parquet")
