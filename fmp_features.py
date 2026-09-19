@@ -64,6 +64,24 @@ def feats(d):
     r["f_eps_g"] = yoy(ni, 0)                      # use net income (eps can be diluted/adjusted noisily)
     r["f_eps_g_prev"] = yoy(ni, 1)
     r["f_eps_accel"] = (r["f_eps_g"] - r["f_eps_g_prev"]) if np.isfinite(r["f_eps_g"]) and np.isfinite(r["f_eps_g_prev"]) else np.nan
+
+    # growth STABILITY (Frog-in-the-Pan: continuous, steady improvement is
+    # underreacted to). Over the last 4 YoY revenue-growth readings: reward
+    # consistently-positive, low-variance (smooth) growth. 1 = steady climb.
+    yoy_rev = [yoy(rev, i) for i in range(4)]
+    yoy_rev = [g for g in yoy_rev if np.isfinite(g)]
+    if len(yoy_rev) >= 3:
+        arr = np.array(yoy_rev)
+        pos_frac = float((arr > 0).mean())
+        cv = float(np.std(arr) / (abs(np.mean(arr)) + 1e-6))   # coefficient of variation
+        r["growth_stability"] = pos_frac / (1.0 + cv)
+        r["rev_ttm_ttm_g"] = float(np.mean(arr))               # avg YoY over the window
+    else:
+        r["growth_stability"] = np.nan
+        r["rev_ttm_ttm_g"] = np.nan
+    # trailing EPS (ttm) for the valuation-lag check in Model FIP
+    eps_ttm = sum(e for e in eps[:4] if np.isfinite(e)) if len(eps) >= 4 else np.nan
+    r["eps_ttm"] = eps_ttm if (isinstance(eps_ttm, float) and np.isfinite(eps_ttm)) else np.nan
     # operating-margin inflection: current vs year-ago quarter
     if len(rev) > 4 and rev[0] and rev[4] and np.isfinite(opi[0]) and np.isfinite(opi[4]):
         r["f_margin"] = opi[0] / rev[0]
