@@ -82,8 +82,10 @@ def build(floor=FLOOR):
     adv_slp = b("adv_slope_score")
     evol = b("E_vol_spike")
     triggered = (m.get("v_bucket") == "Triggered").astype(float) if "v_bucket" in m else 0.0
-    participation = clip01(0.40 * wspike + 0.15 * mtier + 0.20 * adv_acc
-                           + 0.10 * adv_slp + 0.10 * evol + 0.05 * triggered)
+    ord_climax = b("v_ord_climax")   # Tim Ord participation-shock (the Ord signal with edge)
+    participation = clip01(0.34 * wspike + 0.13 * mtier + 0.18 * adv_acc
+                           + 0.09 * adv_slp + 0.09 * evol + 0.05 * triggered
+                           + 0.12 * ord_climax)
     # If volume leg wasn't scanned (vspike NaN), fall back to E_vol_spike/adv so
     # unscanned names aren't unfairly zeroed on participation.
     novol = m["vspike_w_tier"].isna() if "vspike_w_tier" in m else pd.Series(True, index=m.index)
@@ -160,6 +162,7 @@ def build(floor=FLOOR):
         "v_bucket": bucket,
         "E": f("E").round(0),
         "vspike_w_tier": f("vspike_w_tier"),
+        "v_ord_climax": f("v_ord_climax"),
         "master": f("master").round(1),
         "adv_usd_M": (adv / 1e6).round(2),
         "vol_scanned": (~novol).astype(int),

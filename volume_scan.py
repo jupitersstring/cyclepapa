@@ -20,7 +20,7 @@ import pandas as pd
 
 sys.path.insert(0, "/home/user/cyclepapa")
 from mtf_psar_rank import load_universe, is_native, fetch_interval_bulk
-from volume_leg import volume_breakout, volume_spike
+from volume_leg import volume_breakout, volume_spike, ord_volume_climax
 
 warnings.filterwarnings("ignore")
 
@@ -96,6 +96,11 @@ def main():
                 # Both timeframes spiking (>=2x) on accumulation = strongest signal
                 r["vspike_wm"] = bool(sw.get("tier", 0) >= 2 and sm.get("tier", 0) >= 2
                                       and sw.get("up") and sm.get("up"))
+                # Ord-Volume climax (participation shock; the Ord signal with edge)
+                oc = ord_volume_climax(w)
+                r["v_ord_climax"] = oc.get("v_ord_climax", 0)
+                r["v_ord_climax_mag"] = oc.get("v_ord_climax_mag", np.nan)
+                r["v_ord_ds_ratio"] = oc.get("v_ord_ds_ratio", np.nan)
                 r["ticker"] = t
                 rows.append(r)
             except Exception:

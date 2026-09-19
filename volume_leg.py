@@ -129,6 +129,60 @@ def volume_spike(bars: pd.DataFrame, freq: str = "W", lookback: int = 20,
             "v_now": v_now, "v_med": base}
 
 
+def ord_volume_climax(bars: pd.DataFrame, pct: float = 0.08, atr_mult: float = 1.2) -> dict:
+    """Tim Ord ('The Secret Science of Price and Volume') Ord-Volume climax.
+
+    Decompose price into swings (causal zigzag) and track each wave's AVERAGE
+    volume (Ord Volume). A CLIMAX is a wave whose Ord Volume dwarfs the stock's
+    prior waves — a genuine participation shock. This was the one Ord construct
+    with a forward-return edge in testing (+4.9% vs baseline on the weekly
+    panel); the swing-relative demand/supply ratio and volume-confirmed breakout
+    showed no/negative edge and are deliberately omitted.
+
+    Returns v_ord_climax (0/1 on the latest completed wave), v_ord_climax_mag
+    (latest wave Ord Volume / median of prior waves), and v_ord_ds_ratio (latest
+    up-wave Ord Volume / latest down-wave Ord Volume, reported for reference)."""
+    empty = {"v_ord_climax": 0, "v_ord_climax_mag": np.nan, "v_ord_ds_ratio": np.nan}
+    if bars is None or not {"High", "Low", "Close", "Volume"}.issubset(bars.columns):
+        return empty
+    b = bars.dropna(subset=["Close", "Volume"])
+    if len(b) < 40:
+        return empty
+    c, h, l, v = b["Close"], b["High"], b["Low"], b["Volume"]
+    tr = pd.concat([h - l, (h - c.shift()).abs(), (l - c.shift()).abs()], axis=1).max(axis=1)
+    atr = tr.rolling(10).mean().bfill()
+    # causal zigzag
+    swings = []
+    last_i, trend, ext_i, ext_px = 0, 0, 0, float(c.iloc[0])
+    cv = c.to_numpy()
+    for i in range(1, len(cv)):
+        px = cv[i]
+        thr = max(pct, atr_mult * (atr.iloc[i] / px if px else pct))
+        if trend >= 0:
+            if px > ext_px:
+                ext_px, ext_i = px, i
+            elif ext_px and (ext_px - px) / ext_px >= thr:
+                swings.append((last_i, ext_i, 1)); last_i, trend, ext_px, ext_i = ext_i, -1, px, i
+        if trend <= 0:
+            if px < ext_px:
+                ext_px, ext_i = px, i
+            elif ext_px and (px - ext_px) / ext_px >= thr:
+                swings.append((last_i, ext_i, -1)); last_i, trend, ext_px, ext_i = ext_i, 1, px, i
+    if len(swings) < 4:
+        return empty
+    ordv = [(float(v.iloc[s:e + 1].mean()), d) for (s, e, d) in swings]
+    vols = [o for o, _ in ordv]
+    last_v = vols[-1]
+    prior_med = float(np.median(vols[:-1]))
+    mag = last_v / prior_med if prior_med > 0 else np.nan
+    ups = [o for o, d in ordv if d > 0]
+    dns = [o for o, d in ordv if d < 0]
+    ds = (ups[-1] / dns[-1]) if ups and dns and dns[-1] else np.nan
+    return {"v_ord_climax": int(np.isfinite(mag) and mag >= 2.0),
+            "v_ord_climax_mag": float(mag) if np.isfinite(mag) else np.nan,
+            "v_ord_ds_ratio": float(ds) if np.isfinite(ds) else np.nan}
+
+
 def volume_breakout(bars: pd.DataFrame, completed_weeks_only: bool = True) -> dict:
     """Evaluate the Dormeier volume leg on weekly OHLCV bars.
 
