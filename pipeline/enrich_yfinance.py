@@ -239,8 +239,8 @@ def run(max_n=4000, rps=3.0):
         conn.execute("""INSERT INTO ticker_yf
             (ticker, mcap_m, enterprise_value_m, ev_ebitda, pb_ratio, pe_ttm, fwd_pe,
              ev_revenue, peg, price, currency, shares_out_m, ebitda_m, total_debt_m,
-             total_cash_m, profit_margin, rev_growth, sector, industry, asof)
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+             total_cash_m, profit_margin, rev_growth, sector, industry, asof, src)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'yahoo')
             ON CONFLICT(ticker) DO UPDATE SET
                 mcap_m=excluded.mcap_m, enterprise_value_m=excluded.enterprise_value_m,
                 ev_ebitda=excluded.ev_ebitda, pb_ratio=excluded.pb_ratio,
@@ -250,7 +250,8 @@ def run(max_n=4000, rps=3.0):
                 shares_out_m=excluded.shares_out_m, ebitda_m=excluded.ebitda_m,
                 total_debt_m=excluded.total_debt_m, total_cash_m=excluded.total_cash_m,
                 profit_margin=excluded.profit_margin, rev_growth=excluded.rev_growth,
-                sector=excluded.sector, industry=excluded.industry, asof=excluded.asof""",
+                sector=excluded.sector, industry=excluded.industry, asof=excluded.asof,
+                src='yahoo'""",
             (tkr, res["mcap_m"], res["ev_m"], res["ev_ebitda"], res["pb"],
              res["pe"], res["fwd_pe"], res["ev_rev"], res["peg"],
              res["price"], res["currency"], res["shares_m"], res["ebitda_m"],

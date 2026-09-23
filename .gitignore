@@ -17,3 +17,5 @@ __pycache__/
 figi.log
 recover.log
 prior.log
+data/.fmp_key
+.env

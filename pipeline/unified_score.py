@@ -36,7 +36,7 @@ _FX_USD = {
     "HKD": 0.128, "AUD": 0.66, "CHF": 1.12, "SGD": 0.74, "INR": 0.012, "KRW": 0.00073,
     "TWD": 0.031, "ZAR": 0.055, "ZAc": 0.00055, "NOK": 0.093, "DKK": 0.145, "SEK": 0.095,
     "PLN": 0.25, "IDR": 0.0000615, "TRY": 0.030, "HUF": 0.0028, "MYR": 0.21, "CNY": 0.138,
-    "BRL": 0.18, "MXN": 0.055, "THB": 0.028, "PHP": 0.017, "NZD": 0.60, "ILS": 0.27,
+    "BRL": 0.18, "MXN": 0.055, "THB": 0.028, "PHP": 0.017, "NZD": 0.60, "ILS": 0.27, "ILA": 0.0027, "GBX": 0.0128,
     "VND": 0.0000393, "AED": 0.272, "SAR": 0.267, "QAR": 0.275, "EGP": 0.020, "NGN": 0.00065,
 }
 
@@ -302,7 +302,7 @@ def run():
                 # the minor rate divided every London mcap by 100 (Rolls-Royce
                 # showed $1.5B). Map minor units to their major rate for MCAP.
                 ccy = r["currency"] or "USD"
-                fx = _FX_USD.get({"GBp": "GBP", "ZAc": "ZAR"}.get(ccy, ccy))
+                fx = _FX_USD.get({"GBp": "GBP", "GBX": "GBP", "ZAc": "ZAR", "ILA": "ILS"}.get(ccy, ccy))
                 yf_mcap[r["ticker"]] = (r["mcap_m"] * fx) if fx is not None else None
             if r["long_name"]:
                 yf_name[r["ticker"]] = r["long_name"]

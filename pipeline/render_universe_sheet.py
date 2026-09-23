@@ -647,11 +647,24 @@ def sheet_dossier(wb, conn, top_n=45):
         if r["mom_3mo"] is not None: val.append(f"3mo {r['mom_3mo']:+.0f}%")
         if r["off_high"] is not None: val.append(f"{r['off_high']:+.0f}% off high")
         ws.cell(row=row, column=1, value="Valuation"); ws.cell(row=row, column=2, value=" · ".join(val)[:120]); row += 1
+        # earnings track record (FMP): beat rate over the last 8 reported quarters
+        try:
+            eb = conn.execute("""SELECT n_q, beats, last_date, last_surprise_pct, streak
+                                 FROM earnings_beat WHERE ticker=?""", (tk,)).fetchone()
+        except sqlite3.OperationalError:
+            eb = None
+        if eb and eb[0]:
+            etxt = f"beat {eb[1]} of last {eb[0]} quarters"
+            if eb[3] is not None:
+                etxt += f" · last ({eb[2]}) {eb[3]:+.0f}% vs consensus"
+            if eb[4] and eb[4] >= 2:
+                etxt += f" · {eb[4]}-quarter beat streak"
+            ws.cell(row=row, column=1, value="Earnings"); ws.cell(row=row, column=2, value=etxt); row += 1
         # thin rule between blocks
         row += 1
     for rr in range(4, row):
         c = ws.cell(row=rr, column=1)
-        if c.value in ("Drivers", "Held by", "Insiders", "Catalysts", "Valuation"):
+        if c.value in ("Drivers", "Held by", "Insiders", "Catalysts", "Valuation", "Earnings"):
             c.font = _F(name="Times New Roman", size=9, italic=True, color="7F7F7F")
     ws.column_dimensions["A"].width = 16
     ws.column_dimensions["B"].width = 96
