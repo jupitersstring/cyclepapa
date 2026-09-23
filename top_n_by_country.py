@@ -68,6 +68,8 @@ def load_quant() -> pd.DataFrame:
         extra = pd.concat(frames, ignore_index=True).drop_duplicates('symbol', keep='first')
         mc = ['symbol'] + [c for c in extra.columns if c != 'symbol' and c not in df.columns]
         df = df.merge(extra[mc], on='symbol', how='left')
+    from fmp_book_cols import attach_fmp
+    df = attach_fmp(df)
     return df
 
 
@@ -359,7 +361,8 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
     #  14 FCF yld %    15 Div %        16 ROIC %      17 ND/EBITDA
     #  18 EBITDA margin %  19 Mom 12m %  20 Yartseva   21 Cluster
     #  22 Confirm      23 P/S
-    N_COLS = 23
+    from fmp_book_cols import FMP_HEADERS, FMP_WIDTHS, write_fmp_block
+    N_COLS = 23 + len(FMP_HEADERS)   # + shared FMP column block
 
     def _write_table_row(ws, row, r, cols=N_COLS):
         """Write one country-rank row with valuation headline columns."""
@@ -395,6 +398,7 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
         _put_score(ws, row, 22, r.get('confirm_overall'), font=f_text_muted)
         # P/S is a mandated display column — same weight as P/B, not muted
         _put_score(ws, row, 23, r.get('p_s'), font=f_text)
+        write_fmp_block(ws, row, 24, r, font=f_text)
 
         # Faint hairline under each row
         for cidx in range(1, cols + 1):
@@ -408,7 +412,7 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
                    'Mcap (USD)', 'Verdict', sort_key_hdr, 'Asym',
                    'EV/EBITDA', 'P/E', 'P/B',
                    'FCF yld %', 'Div %', 'ROIC %', 'ND/EBITDA', 'EBITDA m %',
-                   'Mom 12m %', 'Yartseva', 'Cluster', 'Confirm', 'P/S']
+                   'Mom 12m %', 'Yartseva', 'Cluster', 'Confirm', 'P/S'] + FMP_HEADERS
         for i, h in enumerate(headers, start=1):
             c = ws.cell(row=row, column=i, value=h)
             c.font = f_bold_muted
@@ -427,6 +431,8 @@ def _write_xlsx(out: pd.DataFrame, path: str, n: int, full_df=None, sort_col='en
             11: 10, 12: 8, 13: 8, 14: 10, 15: 7, 16: 9, 17: 10, 18: 10, 19: 11,
             20: 9, 21: 8, 22: 9, 23: 7,
         }
+        for _k, _w in enumerate(FMP_WIDTHS, start=24):
+            widths[_k] = _w
         for col, w in widths.items():
             ws.column_dimensions[get_column_letter(col)].width = w
 

@@ -197,6 +197,15 @@ def _capret(t, g):
            + pd.to_numeric(m.get("buyback_yield"), errors="coerce").fillna(0))
     cry = pd.to_numeric(m.get("capital_return_yield"), errors="coerce").fillna(0)
     best = pd.concat([tot, cry], axis=1).max(axis=1)
+    # Validate against the yield the recipe ACTUALLY gated on. archetype_tags
+    # fills capital-return / dividend / buyback yields for non-US names (the
+    # currency-safe payout x earnings-yield decomposition) and exports that
+    # post-fill value as capret_yield_eff; the master's columns above are
+    # pre-fill, so for filled names they show the original sub-band figure and
+    # the check was measuring a different number than the gate used.
+    if "capret_yield_eff" in m.columns:
+        _eff = pd.to_numeric(m["capret_yield_eff"], errors="coerce")
+        best = _eff.fillna(best)
     if len(best):
         inside = ((best >= 0.049) & (best <= 0.301)).mean()
         warn("capital_returner: firers inside the 5-30% policy band "

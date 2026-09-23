@@ -418,6 +418,7 @@ def main():
         'pb','dividend_yield','p_s','net_cash_pct_mcap','ncav_pct_mcap','cash_pct_ev',
         'not_priced_in_score','insider_ownership_pct',
         'cash_gt_ev_flag','graham_net_net_flag',
+        'fmp_signals','fmp_piotroski','roic_lindy_eff','inst_accum_score','fmp_inst_own_chg_q0','fmp_geo_em_share','cluseau_sizing_tier',
         'why','full_thesis','thesis',
     ]
     master_cols = [c for c in master_cols if c in df.columns]
@@ -528,6 +529,7 @@ def main():
             'pb','dividend_yield','p_s','net_cash_pct_mcap','ncav_pct_mcap','cash_pct_ev',
             'not_priced_in_score','insider_ownership_pct',
             'cash_gt_ev_flag','graham_net_net_flag',
+            'fmp_signals','fmp_piotroski','roic_lindy_eff','inst_accum_score','fmp_inst_own_chg_q0','fmp_geo_em_share','cluseau_sizing_tier',
             'why','full_thesis','thesis',
         ]
         archetype_cols_show = [c for c in archetype_cols_show if c in df.columns]
@@ -612,6 +614,7 @@ def main():
             ('Arch_EVSalesDerating',      'arch_evsales_derating',      'evsales_derate_score'),
             ('Arch_AnalystAwakening',     'arch_analyst_awakening',     'analyst_awakening_score'),
             ('Arch_FastestSegment',       'arch_fastest_segment',       'seg_inflect_confirmed'),
+            ('Arch_InstAccumulation',     'arch_institutional_accumulation', 'inst_accum_score'),
         ]
         for sheet_name, flag, sort_key in per_archetype_specs:
             if flag not in df.columns:
@@ -681,7 +684,7 @@ def main():
             'cluster_n','yartseva_score','berezin_score',
             'pb','dividend_yield','p_s','net_cash_pct_mcap','ncav_pct_mcap','cash_pct_ev',
             'not_priced_in_score','insider_ownership_pct',
-            'cash_gt_ev_flag','graham_net_net_flag','why','full_thesis','thesis',
+            'cash_gt_ev_flag','graham_net_net_flag','fmp_signals','fmp_piotroski','roic_lindy_eff','inst_accum_score','fmp_inst_own_chg_q0','fmp_geo_em_share','cluseau_sizing_tier','why','full_thesis','thesis',
         ]
         per_country_cols = [c for c in per_country_cols if c in df.columns]
 

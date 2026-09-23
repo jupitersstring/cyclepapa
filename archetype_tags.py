@@ -200,10 +200,19 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # enrichment above. NOTHING here overwrites an EDGAR-primary value; the
     # narrow, audited fills and gates below decide where an fmp_ column may
     # fill a NaN or add a signal. Forensic / NNWC inputs are never fed by FMP.
-    if os.path.exists('fmp_enrichment.csv'):
-        _fmp = pd.read_csv('fmp_enrichment.csv', low_memory=False).drop_duplicates('symbol')
-        df = df.merge(_fmp, on='symbol', how='left', suffixes=('', '_fmpdup'))
-        df = df[[c for c in df.columns if not c.endswith('_fmpdup')]]
+    def _merge_fmp_overlay(frame, path):
+        """Merge an FMP overlay so the FRESH file always wins. enrich_asymmetry_
+        global propagates selected fmp_ columns back into the master (so the
+        country books can show them); without dropping those copies first, the
+        stale master copy would keep the unsuffixed name and the fresh value
+        would be discarded — the same freeze bug the enrich step guards against."""
+        if not os.path.exists(path):
+            return frame
+        ov = pd.read_csv(path, low_memory=False).drop_duplicates('symbol')
+        frame = frame.drop(columns=[c for c in ov.columns if c != 'symbol' and c in frame.columns])
+        return frame.merge(ov, on='symbol', how='left')
+
+    df = _merge_fmp_overlay(df, 'fmp_enrichment.csv')
 
     # FMP DYNAMIC (multi-period) overlay (fmp_dynamics.py): clean quarterly
     # trajectories — streak length, acceleration, first-positive inflection,
@@ -211,19 +220,23 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # divergence, and FORWARD estimate crossings / underestimate gap. Serves
     # the evolution / step-change archetypes far better than the noisy Yahoo
     # sequential proxies. Secondary, source-tagged, non-overwriting.
-    if os.path.exists('fmp_dynamics.csv'):
-        _fdyn = pd.read_csv('fmp_dynamics.csv', low_memory=False).drop_duplicates('symbol')
-        df = df.merge(_fdyn, on='symbol', how='left', suffixes=('', '_fdyndup'))
-        df = df[[c for c in df.columns if not c.endswith('_fdyndup')]]
+    df = _merge_fmp_overlay(df, 'fmp_dynamics.csv')
 
     # FMP STATEMENT-HISTORY overlay (fmp_statements.py): global equivalents of
     # the EDGAR-only multi-year metrics. Merged here; the fills below promote
     # the ~29k non-US names off the single-year fallback by NaN-filling the
     # EDGAR-only quality columns where EDGAR does not cover them.
-    if os.path.exists('fmp_statements.csv'):
-        _fst = pd.read_csv('fmp_statements.csv', low_memory=False).drop_duplicates('symbol')
-        df = df.merge(_fst, on='symbol', how='left', suffixes=('', '_fstdup'))
-        df = df[[c for c in df.columns if not c.endswith('_fstdup')]]
+    df = _merge_fmp_overlay(df, 'fmp_statements.csv')
+
+    # FMP SEGMENT overlay (fmp_segments.py): product + geographic revenue
+    # segmentation for every filer FMP covers (US and non-US). Revenue-based
+    # only — segment operating margin stays EDGAR-only. Fills the EDGAR segment
+    # columns where the dimensional harvest has nothing (~90% of the universe).
+    df = _merge_fmp_overlay(df, 'fmp_segments.csv')
+
+    # FMP INSTITUTIONAL overlay (fmp_institutional.py): 13F ownership
+    # trajectory over the last three complete quarters (US-listed names).
+    df = _merge_fmp_overlay(df, 'fmp_institutional.csv')
 
     # Coalesce suffix-shadowed copies back into the base columns. Every merge
     # above keeps the asym copy unsuffixed and shelves the incoming one
@@ -310,6 +323,33 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                    ('shares_growth_5y', 'fmp_st_shares_growth_5y'),
                    ('years_of_history', 'fmp_st_years_of_history')):
         _fmp_fill(_b, _f)
+
+    # SEGMENT fills: FMP product/geographic revenue segmentation fills the
+    # EDGAR dimensional-harvest columns only where EDGAR has nothing (~90% of
+    # the universe, incl. every non-US filer), so the segment archetypes
+    # (diversified / concentrated / geographic-global / fastest-segment) reach
+    # every filer FMP covers. Revenue-based legs only: segment op-margin, op
+    # leverage and the margin-inflection flag stay EDGAR-only (FMP has no
+    # segment EBIT), so those confirm legs simply stay absent for FMP names.
+    for _b, _f in (('segment_count', 'fmp_seg_count'),
+                   ('segment_revenue_hhi', 'fmp_seg_hhi'),
+                   ('largest_segment_share', 'fmp_seg_largest_share'),
+                   ('geographic_region_count', 'fmp_geo_count'),
+                   ('largest_region_share', 'fmp_geo_largest_share'),
+                   ('fastest_segment_yoy', 'fmp_seg_fastest_yoy'),
+                   ('fastest_seg_yoy_fy', 'fmp_seg_fastest_yoy'),
+                   ('fastest_segment_share', 'fmp_seg_fastest_share'),
+                   ('fastest_segment_share_delta', 'fmp_seg_fastest_share_delta'),
+                   ('segment_growth_dispersion', 'fmp_seg_growth_dispersion')):
+        _fmp_fill(_b, _f)
+    # text companions (names) for the books, NaN-only as well
+    for _b, _f in (('largest_segment_name', 'fmp_seg_largest_name'),
+                   ('fastest_segment_name', 'fmp_seg_fastest_name'),
+                   ('largest_region_name', 'fmp_geo_largest_name')):
+        if _f in df.columns:
+            if _b not in df.columns:
+                df[_b] = np.nan
+            df[_b] = df[_b].where(df[_b].notna(), df[_f])
 
     # Capital-return YIELD, made currency-correct by decomposition. FMP's
     # marketCap (and every yield it derives) is in the LISTING currency for
@@ -2615,6 +2655,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _cl_em = df['src'].astype(str).str.upper().isin(
         {'CN', 'HK', 'IN', 'BR', 'TR', 'ZA', 'ID', 'MY', 'TH', 'AR', 'CL', 'MX',
          'GR', 'RO', 'SA', 'TW', 'KR', 'PL', 'HU', 'CZ'})
+    # (FMP geography) listing domicile understates tail risk: a US- or
+    # Europe-listed company earning most of its revenue in emerging markets
+    # (e.g. a US ADR with 90% China revenue) carries the same geopolitical /
+    # FX exposure the article sizes as a starter. Tier on WHERE THE REVENUE
+    # COMES FROM (FMP geographic segmentation) as well as where it is listed.
+    _cl_em = _cl_em | (_ncol('fmp_geo_em_share') >= 0.50).fillna(False)
     df['cluseau_sizing_tier'] = np.where(_cl_em, 'starter 0.5-1% (tail risk)', 'standard')
 
     # NEW (user request): Hidden-asset overcapitalized balance sheet — a
@@ -5332,6 +5378,93 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                      .clip(0, 1))
                                     * df['arch_analyst_rerating_confirmed']).round(3)
 
+    # ---------- Institutional accumulation into a flat / falling tape ----------
+    # (user spec) Institutions are ADDING — 13F ownership share and net share
+    # count both rising — while the price consolidates or declines. That
+    # divergence is the thesis: informed capital building a position the tape
+    # has not yet rewarded (accumulation before mark-up). The score ADDS points
+    # when the accumulation is ACCELERATING: the ownership share rising faster
+    # than the prior quarter, net purchases accelerating, or buyer breadth
+    # widening. Data: fmp_institutional.py — the last three complete 13F
+    # quarters for US-listed names (13F covers US listings incl. ADRs).
+    _io_chg0 = _num('fmp_inst_own_chg_q0')       # ownership %-pt change, latest Q
+    _io_chg1 = _num('fmp_inst_own_chg_q1')
+    _ish0 = _num('fmp_inst_shares_chg_pct_q0')   # net 13F shares bought, % of prior
+    _ish1 = _num('fmp_inst_shares_chg_pct_q1')
+    _ibr0 = _num('fmp_inst_buy_ratio_q0')        # (new + increased) / all position changes
+    _ibr1 = _num('fmp_inst_buy_ratio_q1')
+    _iaccq = _num('fmp_inst_accum_quarters')     # quarters (of 3) with net buying
+    # CROSS-SECTIONAL DEMEANING. Raw 13F changes carry a large quarter-wide
+    # effect: in 2026Q2 the MEDIAN name showed +1.9pp ownership and +2.7% net
+    # 13F shares (filer-population growth, reporting seasonality, coverage
+    # changes), so "institutions adding" was true of almost everything and the
+    # archetype degenerated to "any flat stock". Subtracting each quarter's
+    # cross-sectional median isolates accumulation ABOVE what is typical that
+    # quarter — the informed-buying signal — and makes quarter-to-quarter
+    # acceleration comparable (each quarter against its own baseline).
+    def _xs(x):
+        _m = x.median(skipna=True)
+        return x - _m if pd.notna(_m) else x
+    _io_x0, _io_x1 = _xs(_io_chg0), _xs(_io_chg1)
+    _ish_x0, _ish_x1 = _xs(_ish0), _xs(_ish1)
+    # accumulating NOW: adding in absolute terms AND more than the typical name
+    # this quarter, on both the ownership-share and net-share lenses
+    _inst_adding = ((_io_chg0 > 0) & (_ish0 > 0) & (_io_x0 > 0) & (_ish_x0 > 0))
+    # not a one-quarter blip: net buying in >= 2 of the last 3 quarters
+    _inst_persistent = (_iaccq >= 2)
+    # corporate-action tail (merger/spin share issuance, stale share-count
+    # denominator): a >15pp ownership swing or >50% net 13F shares in a single
+    # quarter is ~1.5% of names and not accumulation — excluded as invalid data
+    _inst_sane = (_io_chg0.abs() <= 15) & (_ish0 <= 0.50)
+    # price consolidating (roughly flat over 6m and 12m) or declining
+    _ip12 = _num('roc_12m').fillna(_num('momentum_12m')).fillna(_num('price_yoy'))
+    _ip6 = _num('roc_6m')
+    _inst_flat_or_down = (_ip12 <= 0.10) & (_ip6.isna() | (_ip6 <= 0.10))
+    # validity only (no quality veto): enough holders for 13F deltas to mean
+    # something, an investable listing, not a collapse / ghost / fund shell
+    _inst_fund = _ind_all.str.contains(
+        r'closed-end|business development|investment trust|\bfund\b|shell compan',
+        regex=True)
+    _inst_valid = ((_num('fmp_inst_holders') >= 15) & (mcap >= 50e6)
+                   & (_ip12 >= -0.70)
+                   & ~(s('is_price_ghost', 0) == 1) & ~_inst_fund)
+    df['arch_institutional_accumulation'] = (
+        _inst_adding & _inst_persistent & _inst_sane & _inst_flat_or_down & _inst_valid
+    ).fillna(False).astype(int)
+    # Points: magnitude of the accumulation, plus ADDED points for acceleration
+    # (share rising faster than last quarter; purchases accelerating; broader
+    # buyer base), full persistence, and a genuinely falling price (the purest
+    # divergence). Ranking only — the archetype pool is unchanged.
+    _pt_mag = (_io_x0 / 5.0).clip(0, 1).fillna(0)             # +5pp above typical = full
+    _pt_net = (_ish_x0 / 0.10).clip(0, 1).fillna(0)           # +10% net shares above typical = full
+    # Acceleration is scored against a SELECTION effect: picking names with a
+    # strong latest quarter makes "this quarter > last" nearly automatic. So
+    # full points only when last quarter was ALSO above-typical and this one is
+    # higher (an established accumulation speeding up); half points for a
+    # fresh start (below-typical last quarter, above now).
+    _pt_own_acc = np.where((_io_x1 > 0) & (_io_x0 > _io_x1), 1.0,
+                           np.where((_io_x1 <= 0) & (_io_x0 > 0), 0.5, 0.0))
+    _pt_buy_acc = np.where((_ish_x1 > 0) & (_ish_x0 > _ish_x1), 1.0,
+                           np.where((_ish_x1 <= 0) & (_ish_x0 > 0), 0.5, 0.0))
+    _pt_own_acc = pd.Series(_pt_own_acc, index=df.index)
+    _pt_buy_acc = pd.Series(_pt_buy_acc, index=df.index)
+    _pt_breadth = ((_ibr0 > 0.5) & (_ibr0 > _ibr1)).astype(float)
+    _pt_persist = (_iaccq >= 3).astype(float)
+    _pt_down = (_ip12 < 0).astype(float)
+    df['inst_accum_score'] = (((0.20 * _pt_mag + 0.15 * _pt_net
+                                + 0.20 * _pt_own_acc + 0.20 * _pt_buy_acc
+                                + 0.10 * _pt_breadth + 0.10 * _pt_persist
+                                + 0.05 * _pt_down).clip(0, 1))
+                              * df['arch_institutional_accumulation']).round(3)
+    # ACCELERATING = an ESTABLISHED above-typical accumulation (last quarter
+    # too) where both the ownership share AND the buying rose faster this
+    # quarter — each measured against its own quarter's baseline
+    df['inst_accum_accelerating'] = (
+        (df['arch_institutional_accumulation'] == 1)
+        & (_pt_own_acc >= 1.0) & (_pt_buy_acc >= 1.0)).astype(int)
+    df['inst_own_excess_q0'] = _io_x0.round(3)
+    df['inst_buy_excess_q0'] = _ish_x0.round(4)
+
     arch_cols = [
         'arch_narrative_lag',
         'arch_fixed_cost_demand_shock',
@@ -5400,6 +5533,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_crisis_asset_backed_recovery',
         'arch_cluseau_realizable_book',
         'arch_cluseau_buyback_accel',
+        'arch_institutional_accumulation',
         'arch_hidden_assets',
         'arch_overdepreciated_assets',
         'arch_understated_earnings',
@@ -5564,6 +5698,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_crisis_asset_backed_recovery': 'Cundill-CrisisRecovery',
         'arch_cluseau_realizable_book': 'Cluseau-RealizableBook',
         'arch_cluseau_buyback_accel': 'Cluseau-BuybackAccel',
+        'arch_institutional_accumulation': 'Inst-Accumulation',
         'arch_hidden_assets': 'HiddenAssets-Overcap',
         'arch_overdepreciated_assets': 'Forensic-OverDepreciated',
         'arch_understated_earnings': 'Forensic-UnderstatedE',
@@ -6081,6 +6216,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                      'seg_inflect_score', 'oneil_score', 'weinstein_score',
                      'kullamagie_score', 'cundill_score',
                      'analyst_rerating_score', 'asleep_score',
+                     'inst_accum_score', 'inst_accum_accelerating',
                      'biotech_deep_value_score', 'biotech_cash_runway_yrs'] if c in df.columns]
     _scrub_cols = arch_cols + _GATED_SCORES
     if _is_noncommon.any():
@@ -6533,6 +6669,45 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         axis=1,
     )
 
+    # EFFECTIVE values after the global fills, under distinct names so a book or
+    # audit can read what the recipes actually used (the master's own columns
+    # are pre-fill and US-only for these):
+    #   roic_lindy_eff    EDGAR lindy ROIC, else the FMP statement-history one
+    #   capret_yield_eff  the capital-return yield arch_capital_returner gated
+    #                     on — max(capital_return_yield, dividend + buyback),
+    #                     all post-fill (currency-safe decomposition)
+    if 'roic_lindy' in df.columns:
+        df['roic_lindy_eff'] = pd.to_numeric(df['roic_lindy'], errors='coerce')
+    _cry_e = pd.to_numeric(df.get('capital_return_yield'), errors='coerce') if 'capital_return_yield' in df.columns else pd.Series(np.nan, index=df.index)
+    _dy_e = pd.to_numeric(df.get('dividend_yield'), errors='coerce') if 'dividend_yield' in df.columns else pd.Series(np.nan, index=df.index)
+    _by_e = pd.to_numeric(df.get('buyback_yield'), errors='coerce') if 'buyback_yield' in df.columns else pd.Series(np.nan, index=df.index)
+    _tot_e = (_dy_e.fillna(0) + _by_e.fillna(0)).where(_dy_e.notna() | _by_e.notna())
+    df['capret_yield_eff'] = pd.concat([_cry_e, _tot_e], axis=1).max(axis=1)
+
+    # Compact per-name digest of every active FMP-derived signal, so any book
+    # can show the FMP layer in one readable column (country books included).
+    _sig_defs = [
+        ('fmp_piotroski_strong_flag', 'Piotroski>=7'), ('fmp_distress_flag', 'AltmanDistress'),
+        ('fmp_insider_aligned_flag', 'InsiderAligned'),
+        ('fmp_earnings_cash_backed_flag', 'CashBackedEPS'),
+        ('fmp_low_earnings_quality_flag', 'LowEarnQuality'),
+        ('fmp_customer_float_flag', 'CustomerFloat'), ('fmp_rd_intensive_flag', 'R&D>=10%'),
+        ('fmp_levered_returns_flag', 'LeveredROE'),
+        ('fmp_dyn_growth_streak_flag', 'Streak6q+'), ('fmp_dyn_accelerating_flag', 'RevAccel'),
+        ('fmp_dyn_op_leverage_flag', 'OpLeverage'), ('fmp_dyn_unrerated_flag', 'Unrerated'),
+        ('fmp_dyn_fwd_inflection_flag', 'FwdEBITCross'), ('fmp_dyn_forward_asleep_flag', 'FwdAsleep'),
+        ('arch_institutional_accumulation', 'InstAccum'), ('inst_accum_accelerating', 'InstAccel'),
+    ]
+    _sig = pd.Series('', index=df.index)
+    for _col, _tag in _sig_defs:
+        if _col in df.columns:
+            _on = pd.to_numeric(df[_col], errors='coerce').fillna(0) == 1
+            _sig = _sig.where(~_on, _sig + ' · ' + _tag)
+    if 'fmp_geo_em_share' in df.columns:
+        _on = pd.to_numeric(df['fmp_geo_em_share'], errors='coerce') >= 0.50
+        _sig = _sig.where(~_on.fillna(False), _sig + ' · EMrev>=50%')
+    df['fmp_signals'] = _sig.str.lstrip(' ·')
+
     out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','governance_score','governance_tier','insider_distinct_buyers','insider_net_buy_value','insider_officer_buy_flag','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','segment_rot_flag','data_quality_flag','holdco_flag','china_vie_flag','cash_squatter_flag','capex_treadmill_flag','earnings_variability_flag','cluseau_sizing_tier','adjusted_book','adjusted_pb','nnwc','nnwc_pct_mcap','nnwc_asset_mix','xr_family_count','xr_confidence','xr_score','forensic_hidden_pct','forensic_xr_score','value_unlock_score','value_unlock_confirmed','pre_rerating_quality','pre_rerating_score','pre_rerating_flag','truly_xr_score','truly_xr_flag','truly_xr_tell_count','truly_xr_mech_count','truly_xr_tells_str','spin_date','reorg_date']
              + [c for c in ['asym_m','asym_q','sr_m_release','roc_3_5y','roc_accel_3_5y','roc_12m','stale_tape','gaap_masked','pct_52w_high','rel_pct_52w_high','base_depth_12m','segment_count','fastest_segment_yoy','is_price_ghost'] if c in df.columns]
              # FMP secondary-source signals + fill provenance (all optional).
@@ -6566,6 +6741,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                             'fmp_st_revenue_cagr','fmp_st_equity_cagr','fmp_st_shares_growth_3y',
                             'fmp_st_capital_return_yield','fmp_st_buyback_yield',
                             'fmp_st_owner_earnings_yield','fmp_st_years_of_history'] if c in df.columns]
+             # institutional accumulation + FMP segmentation + digest
+             + [c for c in ['inst_accum_score','inst_accum_accelerating','inst_own_excess_q0','inst_buy_excess_q0','fmp_signals',
+                            'roic_lindy_eff','capret_yield_eff',
+                            'fmp_inst_quarter','fmp_inst_holders','fmp_inst_own_pct',
+                            'fmp_inst_own_chg_q0','fmp_inst_own_chg_q1','fmp_inst_own_chg_q2',
+                            'fmp_inst_shares_chg_pct_q0','fmp_inst_shares_chg_pct_q1',
+                            'fmp_inst_buy_ratio_q0','fmp_inst_buy_ratio_q1','fmp_inst_accum_quarters',
+                            'fmp_seg_count','fmp_seg_hhi','fmp_seg_largest_name','fmp_seg_largest_share',
+                            'fmp_seg_fastest_name','fmp_seg_fastest_yoy','fmp_seg_fastest_share_delta',
+                            'fmp_geo_count','fmp_geo_largest_name','fmp_geo_largest_share',
+                            'fmp_geo_em_share','fmp_geo_china_share'] if c in df.columns]
              + [c for c in df.columns if c.startswith('fmp_filled_')]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)

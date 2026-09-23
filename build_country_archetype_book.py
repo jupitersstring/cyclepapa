@@ -48,6 +48,14 @@ N_COLS = len(HEADERS)
 WIDTHS = {1: 4, 2: 12, 3: 34, 4: 16, 5: 18, 6: 11, 7: 15, 8: 12, 9: 7,
           10: 7, 11: 9, 12: 8, 13: 7, 14: 7, 15: 9, 16: 7, 17: 8, 18: 10,
           19: 10, 20: 7, 21: 7, 22: 7}
+# FMP column block (shared across the country books)
+from fmp_book_cols import FMP_HEADERS, FMP_WIDTHS, write_fmp_block, attach_fmp
+_BASE_N_COLS = len(HEADERS)
+HEADERS = HEADERS + FMP_HEADERS
+for _k, _w in enumerate(FMP_WIDTHS, start=_BASE_N_COLS + 1):
+    WIDTHS[_k] = _w
+N_COLS = len(HEADERS)
+
 
 
 def _write_country_sheet(ws, cdf, country, arch_cols, n_top,
@@ -142,6 +150,7 @@ def _write_country_sheet(ws, cdf, country, arch_cols, n_top,
                        font=f_text_muted)
             _write_score(ws, row, 21 + o, r.get('p_s'), font=f_text)
             _write_score(ws, row, 22 + o, r.get('pb'), font=f_text)
+            write_fmp_block(ws, row, 23 + o, r, font=f_text)
             for c in range(1, n_cols + 1):
                 ws.cell(row=row, column=c).border = Border(
                     bottom=Side(style='thin', color=RULE))
@@ -546,6 +555,7 @@ def main():
     args = ap.parse_args()
 
     df, arch_cols = load_data(min_mcap=args.min_mcap, otc_mode='all')
+    df = attach_fmp(df)
     df = apply_otc_mode(df, args.otc_mode)
     df = apply_high_filter(df, args.high_filter)
     df_full = df.copy()   # pre-value-filter universe (for net-net / unlock tabs)

@@ -1,6 +1,6 @@
 """Per-name segment-detail workbook — what the binary archetypes hide.
 
-Shows for every name with EDGAR segment coverage:
+Shows for every name with EDGAR or FMP segment coverage:
   - Top 3 segments by % of revenue (with names + share)
   - Largest segment $ revenue + share
   - Fastest-growing segment + YoY %
@@ -42,11 +42,65 @@ from openpyxl.utils import get_column_letter
 def load_data():
     """Merge asymmetry_global + segment_signals + valuation columns."""
     import glob
+    import numpy as np
     df = pd.read_csv('asymmetry_global.csv').drop_duplicates('symbol')
-    sig = pd.read_csv('edgar_segment_signals.csv')
-    df = df[df['symbol'].isin(sig['symbol'])].copy()
+    sig = (pd.read_csv('edgar_segment_signals.csv') if os.path.exists('edgar_segment_signals.csv')
+           else pd.DataFrame(columns=['symbol']))
+    # UNIVERSE = EDGAR dimensional harvest UNION FMP revenue segmentation.
+    # Until now the book was hard-restricted to the EDGAR harvest (~10% of US
+    # filers); FMP adds product + geographic segment revenue for every filer it
+    # covers, US and non-US.
+    fmp = (pd.read_csv('fmp_segments.csv', low_memory=False).drop_duplicates('symbol')
+           if os.path.exists('fmp_segments.csv') else pd.DataFrame(columns=['symbol']))
+    _fmp_has = pd.Series(False, index=fmp.index)
+    for _c in ('fmp_seg_count', 'fmp_geo_count'):
+        if _c in fmp.columns:
+            _fmp_has |= pd.to_numeric(fmp[_c], errors='coerce').fillna(0) >= 1
+    fmp = fmp[_fmp_has]
+    keep = set(sig['symbol'].astype(str)) | set(fmp['symbol'].astype(str))
+    df = df[df['symbol'].astype(str).isin(keep)].copy()
     df = df.drop(columns=[c for c in df.columns if c.endswith('_arch')])
     df = df.merge(sig, on='symbol', how='left')
+    df = df.merge(fmp, on='symbol', how='left')
+    _in_edgar = df['symbol'].isin(sig['symbol'])
+    _in_fmp = df['symbol'].isin(fmp['symbol'])
+    df['seg_source'] = np.select([_in_edgar & _in_fmp, _in_edgar, _in_fmp],
+                                 ['EDGAR+FMP', 'EDGAR', 'FMP'], default='')
+    # FMP fills the displayed segment fields only where EDGAR has nothing.
+    # EDGAR keeps precedence (it also carries segment operating margin, which
+    # FMP does not), so the forensic margin columns remain EDGAR-sourced.
+    for _b, _f in (('segment_count', 'fmp_seg_count'), ('segment_revenue_hhi', 'fmp_seg_hhi'),
+                   ('largest_segment_name', 'fmp_seg_largest_name'),
+                   ('largest_segment_share', 'fmp_seg_largest_share'),
+                   ('fastest_segment_name', 'fmp_seg_fastest_name'),
+                   ('fastest_segment_yoy', 'fmp_seg_fastest_yoy'),
+                   ('fastest_segment_share', 'fmp_seg_fastest_share'),
+                   ('fastest_segment_share_delta', 'fmp_seg_fastest_share_delta'),
+                   ('segment_growth_dispersion', 'fmp_seg_growth_dispersion'),
+                   ('geographic_region_count', 'fmp_geo_count'),
+                   ('largest_region_name', 'fmp_geo_largest_name'),
+                   ('largest_region_share', 'fmp_geo_largest_share')):
+        if _f in df.columns:
+            if _b not in df.columns:
+                df[_b] = np.nan
+            df[_b] = df[_b].where(df[_b].notna(), df[_f])
+    # top-3 segment / region strings from the FMP long-format detail (latest FY)
+    if os.path.exists('fmp_segments_detail.csv'):
+        det = pd.read_csv('fmp_segments_detail.csv', low_memory=False)
+        det = det[det['symbol'].isin(df['symbol'])]
+        if not det.empty:
+            det['_fy_max'] = det.groupby(['symbol', 'axis'])['fiscal_year'].transform('max')
+            det = det[det['fiscal_year'] == det['_fy_max']].sort_values('share', ascending=False)
+
+            def _top3(g):
+                return '; '.join(f"{n} ({s*100:.0f}%)" for n, s in
+                                 zip(g['segment'].head(3), g['share'].head(3)))
+            for _axis, _col in (('product', 'top_segments'), ('geographic', 'top_regions')):
+                _t = det[det['axis'] == _axis].groupby('symbol').apply(_top3)
+                if _col not in df.columns:
+                    df[_col] = np.nan
+                df[_col] = df[_col].where(df[_col].notna() & (df[_col].astype(str) != ''),
+                                          df['symbol'].map(_t))
 
     # segment-archetype membership flags (from the tags output) so the book can
     # carry a tab per segment SETUP, not just the raw segment-structure cuts
@@ -142,7 +196,7 @@ def _write_segment_table(ws, df_subset, label, n_total, sort_col='entry_confirme
     f_text_muted = _font(color=MUTED)
     f_italic_muted = _font(italic=True, color=MUTED)
 
-    NCOLS = 27
+    NCOLS = 31   # 28 original + Src, EM rev %, China rev %
     # Title
     t = ws.cell(row=2, column=1, value=label)
     t.font = f_bold
@@ -195,9 +249,11 @@ def _write_segment_table(ws, df_subset, label, n_total, sort_col='entry_confirme
                # FORENSIC segment signals — a hidden PROFITABLE engine (segment
                # growing revenue AND expanding margin / operating leverage),
                # not just revenue growth.
-               'Fast seg OpMgn ΔYoY %', 'Seg OpLev', 'MgnInflect']
+               'Fast seg OpMgn ΔYoY %', 'Seg OpLev', 'MgnInflect',
+               # source + true revenue geography (FMP)
+               'Src', 'EM rev %', 'China rev %']
     text_cols = {2, 3, 4, 5, 6, 21, 22, 24, 25}  # ticker/name/country/sector/industry/segment text
-    center_cols = {8, 19, 28}  # verdict + segs count + margin-inflect flag
+    center_cols = {8, 19, 28, 29}  # verdict + segs count + margin-inflect flag + source
     for i, h in enumerate(headers, start=1):
         c = ws.cell(row=11, column=i, value=h)
         c.font = f_bold_muted
@@ -267,6 +323,10 @@ def _write_segment_table(ws, df_subset, label, n_total, sort_col='entry_confirme
         ws.cell(row=r_idx, column=28,
                 value='✓' if (pd.notna(_mif) and _mif == 1) else '').font = f_text
         ws.cell(row=r_idx, column=28).alignment = _NUM_ALIGN_CENTER
+        ws.cell(row=r_idx, column=29, value=str(r.get('seg_source') or '')).font = f_text_muted
+        ws.cell(row=r_idx, column=29).alignment = _NUM_ALIGN_CENTER
+        _write_pct(ws, r_idx, 30, r.get('fmp_geo_em_share'), font=f_text)
+        _write_pct(ws, r_idx, 31, r.get('fmp_geo_china_share'), font=f_text)
         for c in range(1, NCOLS + 1):
             ws.cell(row=r_idx, column=c).border = Border(
                 bottom=Side(style='thin', color=RULE))
@@ -276,7 +336,7 @@ def _write_segment_table(ws, df_subset, label, n_total, sort_col='entry_confirme
     widths = {1: 4, 2: 10, 3: 22, 4: 6, 5: 14, 6: 16, 7: 14, 8: 12,
               9: 9, 10: 8, 11: 7, 12: 7, 13: 9, 14: 7, 15: 8, 16: 10, 17: 9, 18: 10,
               19: 5, 20: 7, 21: 28, 22: 52, 23: 5, 24: 32, 25: 22,
-              26: 18, 27: 9, 28: 10}
+              26: 18, 27: 9, 28: 10, 29: 10, 30: 9, 31: 10}
     for col, w in widths.items():
         ws.column_dimensions[get_column_letter(col)].width = w
 
@@ -334,8 +394,9 @@ def main():
     cover.merge_cells(start_row=5, start_column=2, end_row=5, end_column=7)
 
     src_note = cover.cell(row=7, column=2,
-                          value="Source: SEC EDGAR dimensional XBRL (us-gaap StatementBusinessSegmentsAxis, "
-                                "srt StatementGeographicalAxis). Coverage: US filers with multi-segment 10-K disclosures.")
+                          value="Sources: SEC EDGAR dimensional XBRL (US multi-segment 10-K filers; also carries segment "
+                                "operating margin) UNION Financial Modeling Prep revenue segmentation (product + geographic, "
+                                "US and non-US). 'Src' column shows which. FMP is revenue-only: margin columns stay EDGAR.")
     src_note.font = f_italic_muted
     cover.merge_cells(start_row=7, start_column=2, end_row=7, end_column=7)
 
@@ -379,6 +440,8 @@ def main():
         ("Segment Justifies Whole", "top 60", "XR SOTP: best segment @ ~12x EBIT >= full EV (rest free); revenue-reconciled"),
         ("Margin Mix-Shift", "top 60", "XR: rich segment (>=5pp over blend) gaining share -> coming consolidated margin lift"),
         ("Hidden Engine (all)", f"top {max(args.n,150):,}", "arch_fastest_segment — broad hidden growth-engine tag"),
+        ("EM Revenue Exposure", f"top {max(args.n,150):,}", ">=50% of revenue from emerging markets (FMP geography), incl. DM listings"),
+        ("FMP Segment Detail", "every name", "per-ticker product + geographic segment revenue, share and YoY (latest FY)"),
     ]
     for i, (tab, n, desc) in enumerate(rows_meta, start=16):
         cover.cell(row=i, column=2, value=tab).font = f_bold
@@ -477,6 +540,50 @@ def main():
         ws = wb.create_sheet(_sheet_safe(label))
         tab_colors.set_tab(ws, tab_colors.FAMILY_COLORS['segment'])
         _write_segment_table(ws, sub_df, f"{label} — {desc}", n_total, tab_sort)
+
+    # === EM Revenue Exposure: true economic geography, not listing domicile ===
+    if 'fmp_geo_em_share' in df.columns:
+        em = df[pd.to_numeric(df['fmp_geo_em_share'], errors='coerce') >= 0.50]
+        em = em.sort_values('fmp_geo_em_share', ascending=False).head(max(args.n, 150)).reset_index(drop=True)
+        if not em.empty:
+            ws = wb.create_sheet('EM Revenue Exposure')
+            tab_colors.set_tab(ws, tab_colors.FAMILY_COLORS['segment'])
+            _write_segment_table(ws, em, 'EM Revenue Exposure — >=50% of revenue earned in emerging markets '
+                                 '(FMP geographic segmentation); includes developed-market listings whose '
+                                 'economics are EM (the Cluseau sizing tier keys on this too)', n_total, 'fmp_geo_em_share')
+
+    # === FMP Segment Detail: per-ticker rows for EVERY name in the book ===
+    if os.path.exists('fmp_segments_detail.csv'):
+        det = pd.read_csv('fmp_segments_detail.csv', low_memory=False)
+        det = det[det['symbol'].isin(df['symbol'])]
+        if not det.empty:
+            det['_fy_max'] = det.groupby(['symbol', 'axis'])['fiscal_year'].transform('max')
+            det = det[det['fiscal_year'] == det['_fy_max']]
+            rank = {sym: i for i, sym in enumerate(df.sort_values(sort_col, ascending=False)['symbol'])}
+            det = det.assign(_r=det['symbol'].map(rank),
+                             _ax=det['axis'].map({'product': 0, 'geographic': 1}))
+            det = det.sort_values(['_r', '_ax', 'share'], ascending=[True, True, False])
+            nm = df.drop_duplicates('symbol').set_index('symbol')
+            ws = wb.create_sheet('FMP Segment Detail')
+            tab_colors.set_tab(ws, tab_colors.FAMILY_COLORS['segment'])
+            hdr = ['Ticker', 'Name', 'Country', 'Axis', 'FY', 'Segment', 'Revenue', 'Ccy', 'Share %', 'YoY %']
+            ws.append(hdr)
+            for c in range(1, len(hdr) + 1):
+                ws.cell(row=1, column=c).font = _font(bold=True, color=MUTED)
+            for r in det.itertuples(index=False):
+                ws.append([r.symbol,
+                           str(nm['name'].get(r.symbol, '') if 'name' in nm.columns else '')[:40],
+                           str(nm['src'].get(r.symbol, '') if 'src' in nm.columns else ''),
+                           r.axis, int(r.fiscal_year), r.segment,
+                           round(float(r.revenue)) if pd.notna(r.revenue) else None,
+                           r.currency if isinstance(r.currency, str) else '',
+                           round(float(r.share) * 100, 1) if pd.notna(r.share) else None,
+                           round(float(r.yoy) * 100, 1) if pd.notna(r.yoy) else None])
+            for col, w in zip('ABCDEFGHIJ', (10, 30, 7, 11, 6, 44, 16, 6, 9, 9)):
+                ws.column_dimensions[col].width = w
+            ws.freeze_panes = 'A2'
+            ws.auto_filter.ref = f"A1:J{ws.max_row}"
+            ws.sheet_view.showGridLines = False
 
     wb.save(args.out)
     from harvard_style import sanitize_nan_text

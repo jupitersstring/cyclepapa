@@ -76,6 +76,7 @@ ARCHETYPE_LABELS = {
     'arch_crisis_asset_backed_recovery': 'Cundill Recovery — Crisis Asset-Backed (Sibir-type)',
     'arch_cluseau_realizable_book': 'Cluseau Realizable-Book Discount (cash book, being returned)',
     'arch_cluseau_buyback_accel': 'Cluseau Buybacks Accelerating into Discount (cash deployed)',
+    'arch_institutional_accumulation': 'Institutional Accumulation into a Flat / Falling Tape (13F)',
     'arch_biotech_deep_value': 'Biotech Deep Value (below cash)',
     'arch_low_sbc_quality': 'Low-SBC Quality',
     'arch_tax_efficient': 'Tax Efficient',
@@ -165,6 +166,7 @@ ARCH_SORT_OVERRIDES = {
     'arch_lynch_reward':      'lynch_rank',
     'arch_analyst_awakening': 'analyst_awakening_score',
     'arch_analyst_rerating_confirmed': 'analyst_rerating_score',
+    'arch_institutional_accumulation': 'inst_accum_score',   # accumulation + acceleration points
     'arch_asleep_at_wheel': 'asleep_score',   # quality-upweighted rank (no quality gate)
     'arch_tenbagger_path':    'tenbagger_score',
     'arch_tenbagger_credible': 'tenbagger_score',
