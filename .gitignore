@@ -20,3 +20,5 @@ xbrl_frames/
 # per-issuer submissions blocks). The distilled result -- form4_timing.json
 # -- is committed; this raw cache is refetched by form4_timing.py.
 form4_acceptance.json
+# Raw FMP bulk CSV cache (rebuildable, large); distilled fmp_quotes.json is committed.
+fmp_cache/
