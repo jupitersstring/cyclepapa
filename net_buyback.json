@@ -85,7 +85,7 @@
     "score": 17,
     "reasons": [
       "net shares -10% YoY",
-      "buying cheap (P/B 0.98)"
+      "buying cheap (P/B 0.99)"
     ]
   },
   "UNMA": {
@@ -93,10 +93,11 @@
     "net_buyback_yield": 0.081,
     "shares_now": 164399500,
     "shares_year_ago": 178882400,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -8% YoY"
+      "net shares -8% YoY",
+      "buying cheap (P/B 1.40)"
     ]
   },
   "EPAC": {
@@ -192,10 +193,11 @@
     "net_buyback_yield": 0.0357,
     "shares_now": 26958000,
     "shares_year_ago": 27955000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -4% YoY (modest)"
+      "net shares -4% YoY (modest)",
+      "buying cheap (P/B 1.40)"
     ]
   },
   "DOMH": {
@@ -251,7 +253,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 1.36)"
+      "buying cheap (P/B 1.27)"
     ]
   },
   "CP": {
@@ -424,7 +426,7 @@
     "net_buyback_yield": -0.2097,
     "shares_now": 97500000,
     "shares_year_ago": 80600000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +21% YoY"
@@ -479,7 +481,7 @@
     "net_buyback_yield": -0.2362,
     "shares_now": 45226328,
     "shares_year_ago": 36584920,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +24% YoY"
@@ -505,7 +507,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 1.24)"
+      "buying cheap (P/B 1.25)"
     ]
   },
   "MTB-PH": {
@@ -528,7 +530,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 1.23)"
+      "buying cheap (P/B 1.07)"
     ]
   },
   "FHN-PF": {
@@ -558,7 +560,7 @@
     "net_buyback_yield": -85.2112,
     "shares_now": 94924520,
     "shares_year_ago": 1101069,
-    "cheap": true,
+    "cheap": false,
     "score": -6,
     "reasons": [
       "net DILUTION +8521% YoY"
@@ -624,7 +626,7 @@
     "net_buyback_yield": -0.4917,
     "shares_now": 71600000,
     "shares_year_ago": 48000000,
-    "cheap": true,
+    "cheap": false,
     "score": -6,
     "reasons": [
       "net DILUTION +49% YoY"
@@ -635,7 +637,7 @@
     "net_buyback_yield": -0.2826,
     "shares_now": 1900647000,
     "shares_year_ago": 1481879000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +28% YoY"
@@ -727,7 +729,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 0.64)"
+      "buying cheap (P/B 0.59)"
     ]
   },
   "KEX": {
@@ -746,10 +748,11 @@
     "net_buyback_yield": 0.0277,
     "shares_now": 2387911,
     "shares_year_ago": 2456003,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -3% YoY (modest)"
+      "net shares -3% YoY (modest)",
+      "buying cheap (P/B 1.46)"
     ]
   },
   "LEE": {
@@ -794,7 +797,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 1.18)"
+      "buying cheap (P/B 1.13)"
     ]
   },
   "LGL": {
@@ -857,7 +860,7 @@
     "net_buyback_yield": -8.6454,
     "shares_now": 84101320,
     "shares_year_ago": 8719351,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +865% YoY"
@@ -1006,8 +1009,8 @@
       "net dilution +8% YoY"
     ]
   },
-  "WFC-PZ": {
-    "ticker": "WFC-PZ",
+  "WFC-PA": {
+    "ticker": "WFC-PA",
     "net_buyback_yield": 0.0614,
     "shares_now": 3117700000,
     "shares_year_ago": 3321600000,
@@ -1048,7 +1051,7 @@
     "score": 12,
     "reasons": [
       "net shares -2% YoY (modest)",
-      "buying cheap (P/B 1.45)"
+      "buying cheap (P/B 1.12)"
     ]
   },
   "OXM": {
@@ -1060,7 +1063,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 1.04)"
+      "buying cheap (P/B 0.69)"
     ]
   },
   "PATK": {
@@ -1083,7 +1086,7 @@
     "score": 17,
     "reasons": [
       "net shares -9% YoY",
-      "buying cheap (P/B 0.74)"
+      "buying cheap (P/B 0.73)"
     ]
   },
   "PBI-PB": {
@@ -1124,7 +1127,7 @@
     "net_buyback_yield": -0.035,
     "shares_now": 2969814,
     "shares_year_ago": 2869339,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +4% YoY"
@@ -1245,7 +1248,7 @@
     "net_buyback_yield": -0.1504,
     "shares_now": 145340000,
     "shares_year_ago": 126337000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +15% YoY"
@@ -1339,6 +1342,17 @@
       "net shares -4% YoY (modest)"
     ]
   },
+  "BYOP": {
+    "ticker": "BYOP",
+    "net_buyback_yield": -0.0565,
+    "shares_now": 57259632,
+    "shares_year_ago": 54198799,
+    "cheap": false,
+    "score": -3,
+    "reasons": [
+      "net dilution +6% YoY"
+    ]
+  },
   "SGC": {
     "ticker": "SGC",
     "net_buyback_yield": 0.0437,
@@ -1348,7 +1362,7 @@
     "score": 12,
     "reasons": [
       "net shares -4% YoY (modest)",
-      "buying cheap (P/B 1.11)"
+      "buying cheap (P/B 0.94)"
     ]
   },
   "ACNT": {
@@ -1411,7 +1425,7 @@
     "net_buyback_yield": -0.4365,
     "shares_now": 96100000,
     "shares_year_ago": 66900000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +44% YoY"
@@ -1455,7 +1469,7 @@
     "net_buyback_yield": -0.1665,
     "shares_now": 76399233,
     "shares_year_ago": 65496058,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +17% YoY"
@@ -1492,7 +1506,7 @@
     "score": 12,
     "reasons": [
       "net shares -4% YoY (modest)",
-      "buying cheap (P/B 0.36)"
+      "buying cheap (P/B 0.46)"
     ]
   },
   "UVSP": {
@@ -1500,10 +1514,11 @@
     "net_buyback_yield": 0.0329,
     "shares_now": 28309000,
     "shares_year_ago": 29271000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -3% YoY (modest)"
+      "net shares -3% YoY (modest)",
+      "buying cheap (P/B 1.21)"
     ]
   },
   "VMI": {
@@ -1537,7 +1552,7 @@
     "score": 17,
     "reasons": [
       "net shares -8% YoY",
-      "buying cheap (P/B 1.39)"
+      "buying cheap (P/B 1.30)"
     ]
   },
   "EME": {
@@ -1582,7 +1597,7 @@
     "score": 22,
     "reasons": [
       "net shares -11% YoY (heavy)",
-      "buying cheap (P/B 1.02)"
+      "buying cheap (P/B 1.08)"
     ]
   },
   "AIT": {
@@ -1612,7 +1627,7 @@
     "net_buyback_yield": -0.2504,
     "shares_now": 96309352,
     "shares_year_ago": 77020592,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +25% YoY"
@@ -1656,10 +1671,11 @@
     "net_buyback_yield": 0.0487,
     "shares_now": 17929000,
     "shares_year_ago": 18846000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -5% YoY (modest)"
+      "net shares -5% YoY (modest)",
+      "buying cheap (P/B 1.37)"
     ]
   },
   "PSN": {
@@ -1733,7 +1749,7 @@
     "net_buyback_yield": -0.2819,
     "shares_now": 87831295,
     "shares_year_ago": 68517647,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +28% YoY"
@@ -1858,7 +1874,7 @@
     "score": 17,
     "reasons": [
       "net shares -7% YoY",
-      "buying cheap (P/B 1.14)"
+      "buying cheap (P/B 1.44)"
     ]
   },
   "CVBF": {
@@ -1870,7 +1886,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 1.22)"
+      "buying cheap (P/B 0.95)"
     ]
   },
   "GNTX": {
@@ -1904,7 +1920,7 @@
     "score": 12,
     "reasons": [
       "net shares -2% YoY (modest)",
-      "buying cheap (P/B 1.24)"
+      "buying cheap (P/B 1.22)"
     ]
   },
   "OSBC": {
@@ -1923,10 +1939,11 @@
     "net_buyback_yield": 0.077,
     "shares_now": 6416000,
     "shares_year_ago": 6951000,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -8% YoY"
+      "net shares -8% YoY",
+      "buying cheap (P/B 0.90)"
     ]
   },
   "TRST": {
@@ -1938,7 +1955,7 @@
     "score": 17,
     "reasons": [
       "net shares -6% YoY",
-      "buying cheap (P/B 1.37)"
+      "buying cheap (P/B 1.49)"
     ]
   },
   "FMBH": {
@@ -2016,7 +2033,7 @@
     "score": 12,
     "reasons": [
       "net shares -2% YoY (modest)",
-      "buying cheap (P/B 1.17)"
+      "buying cheap (P/B 1.04)"
     ]
   },
   "HBNC": {
@@ -2024,7 +2041,7 @@
     "net_buyback_yield": -0.1658,
     "shares_now": 51243002,
     "shares_year_ago": 43954164,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +17% YoY"
@@ -2046,7 +2063,7 @@
     "net_buyback_yield": -0.2088,
     "shares_now": 388054000,
     "shares_year_ago": 321016000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +21% YoY"
@@ -2123,10 +2140,11 @@
     "net_buyback_yield": 0.0284,
     "shares_now": 195000000,
     "shares_year_ago": 200700000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -3% YoY (modest)"
+      "net shares -3% YoY (modest)",
+      "buying cheap (P/B 1.29)"
     ]
   },
   "CBAN": {
@@ -2134,7 +2152,7 @@
     "net_buyback_yield": -0.2121,
     "shares_now": 21222237,
     "shares_year_ago": 17509059,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +21% YoY"
@@ -2145,7 +2163,7 @@
     "net_buyback_yield": -0.0475,
     "shares_now": 61007804,
     "shares_year_ago": 58242232,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +5% YoY"
@@ -2156,7 +2174,7 @@
     "net_buyback_yield": -0.3082,
     "shares_now": 50382000,
     "shares_year_ago": 38511000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +31% YoY"
@@ -2178,7 +2196,7 @@
     "net_buyback_yield": -0.0818,
     "shares_now": 37517833,
     "shares_year_ago": 34680719,
-    "cheap": true,
+    "cheap": false,
     "score": -3,
     "reasons": [
       "net dilution +8% YoY"
@@ -2233,10 +2251,11 @@
     "net_buyback_yield": 0.046,
     "shares_now": 2864000,
     "shares_year_ago": 3002000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -5% YoY (modest)"
+      "net shares -5% YoY (modest)",
+      "buying cheap (P/B 0.36)"
     ]
   },
   "HXL": {
@@ -2259,7 +2278,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 0.88)"
+      "buying cheap (P/B 0.90)"
     ]
   },
   "UNF": {
@@ -2293,7 +2312,7 @@
     "score": 12,
     "reasons": [
       "net shares -4% YoY (modest)",
-      "buying cheap (P/B 1.19)"
+      "buying cheap (P/B 1.28)"
     ]
   },
   "HL-PB": {
@@ -2433,7 +2452,7 @@
     "net_buyback_yield": -0.4318,
     "shares_now": 103604000,
     "shares_year_ago": 72357000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +43% YoY"
@@ -2543,7 +2562,7 @@
     "net_buyback_yield": -0.4069,
     "shares_now": 29439453,
     "shares_year_ago": 20925388,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +41% YoY"
@@ -2730,10 +2749,11 @@
     "net_buyback_yield": 0.0337,
     "shares_now": 12585586,
     "shares_year_ago": 13024441,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -3% YoY (modest)"
+      "net shares -3% YoY (modest)",
+      "buying cheap (P/B 0.81)"
     ]
   },
   "UTL": {
@@ -2774,10 +2794,11 @@
     "net_buyback_yield": 0.0202,
     "shares_now": 24913000,
     "shares_year_ago": 25426000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -2% YoY (modest)"
+      "net shares -2% YoY (modest)",
+      "buying cheap (P/B 1.46)"
     ]
   },
   "BPOPM": {
@@ -2800,7 +2821,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 1.06)"
+      "buying cheap (P/B 1.09)"
     ]
   },
   "CLF": {
@@ -2845,7 +2866,7 @@
     "score": 17,
     "reasons": [
       "net shares -7% YoY",
-      "buying cheap (P/B 1.47)"
+      "buying cheap (P/B 1.22)"
     ]
   },
   "WELL": {
@@ -2875,10 +2896,11 @@
     "net_buyback_yield": 0.0398,
     "shares_now": 6243000,
     "shares_year_ago": 6502000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -4% YoY (modest)"
+      "net shares -4% YoY (modest)",
+      "buying cheap (P/B 1.25)"
     ]
   },
   "MIDD": {
@@ -2952,7 +2974,7 @@
     "net_buyback_yield": -0.0501,
     "shares_now": 33300096,
     "shares_year_ago": 31711671,
-    "cheap": true,
+    "cheap": false,
     "score": -3,
     "reasons": [
       "net dilution +5% YoY"
@@ -2967,7 +2989,7 @@
     "score": 12,
     "reasons": [
       "net shares -4% YoY (modest)",
-      "buying cheap (P/B 0.92)"
+      "buying cheap (P/B 0.91)"
     ]
   },
   "INDB": {
@@ -2986,7 +3008,7 @@
     "net_buyback_yield": -0.038,
     "shares_now": 76639000,
     "shares_year_ago": 73836000,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +4% YoY"
@@ -2997,7 +3019,7 @@
     "net_buyback_yield": -0.8321,
     "shares_now": 3405061,
     "shares_year_ago": 1858536,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +83% YoY"
@@ -3078,7 +3100,7 @@
     "score": 17,
     "reasons": [
       "net shares -8% YoY",
-      "buying cheap (P/B 1.33)"
+      "buying cheap (P/B 1.48)"
     ]
   },
   "MGM": {
@@ -3130,10 +3152,11 @@
     "net_buyback_yield": 0.0563,
     "shares_now": 10642909,
     "shares_year_ago": 11277939,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -6% YoY"
+      "net shares -6% YoY",
+      "buying cheap (P/B 1.25)"
     ]
   },
   "WERN": {
@@ -3156,7 +3179,7 @@
     "score": 12,
     "reasons": [
       "net shares -2% YoY (modest)",
-      "buying cheap (P/B 1.35)"
+      "buying cheap (P/B 1.43)"
     ]
   },
   "HOG": {
@@ -3168,7 +3191,7 @@
     "score": 22,
     "reasons": [
       "net shares -11% YoY (heavy)",
-      "buying cheap (P/B 0.88)"
+      "buying cheap (P/B 0.89)"
     ]
   },
   "TOL": {
@@ -3191,7 +3214,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 1.31)"
+      "buying cheap (P/B 1.19)"
     ]
   },
   "KBH": {
@@ -3203,7 +3226,7 @@
     "score": 22,
     "reasons": [
       "net shares -13% YoY (heavy)",
-      "buying cheap (P/B 0.88)"
+      "buying cheap (P/B 0.76)"
     ]
   },
   "NEXM": {
@@ -3281,7 +3304,7 @@
     "score": 12,
     "reasons": [
       "net shares -4% YoY (modest)",
-      "buying cheap (P/B 1.35)"
+      "buying cheap (P/B 1.20)"
     ]
   },
   "FISV": {
@@ -3293,7 +3316,7 @@
     "score": 17,
     "reasons": [
       "net shares -5% YoY",
-      "buying cheap (P/B 0.97)"
+      "buying cheap (P/B 0.92)"
     ]
   },
   "OMEX": {
@@ -3312,10 +3335,11 @@
     "net_buyback_yield": 0.1216,
     "shares_now": 11924899,
     "shares_year_ago": 13575231,
-    "cheap": false,
-    "score": 16,
+    "cheap": true,
+    "score": 22,
     "reasons": [
-      "net shares -12% YoY (heavy)"
+      "net shares -12% YoY (heavy)",
+      "buying cheap (P/B 0.01)"
     ]
   },
   "MHO": {
@@ -3327,7 +3351,7 @@
     "score": 12,
     "reasons": [
       "net shares -5% YoY (modest)",
-      "buying cheap (P/B 1.20)"
+      "buying cheap (P/B 1.10)"
     ]
   },
   "MITI": {
@@ -3341,8 +3365,8 @@
       "net DILUTION +44% YoY"
     ]
   },
-  "SPQS": {
-    "ticker": "SPQS",
+  "SPQSD": {
+    "ticker": "SPQSD",
     "net_buyback_yield": -0.0476,
     "shares_now": 3849163151,
     "shares_year_ago": 3674163151,
@@ -3412,10 +3436,11 @@
     "net_buyback_yield": 0.0366,
     "shares_now": 58745000,
     "shares_year_ago": 60974000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -4% YoY (modest)"
+      "net shares -4% YoY (modest)",
+      "buying cheap (P/B 1.37)"
     ]
   },
   "RJET": {
@@ -3423,7 +3448,7 @@
     "net_buyback_yield": -0.1574,
     "shares_now": 46054446,
     "shares_year_ago": 39792835,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +16% YoY"
@@ -3559,7 +3584,7 @@
     "score": 12,
     "reasons": [
       "net shares -2% YoY (modest)",
-      "buying cheap (P/B 0.80)"
+      "buying cheap (P/B 0.64)"
     ]
   },
   "EOG": {
@@ -3659,7 +3684,7 @@
     "score": 17,
     "reasons": [
       "net shares -10% YoY",
-      "buying cheap (P/B 1.45)"
+      "buying cheap (P/B 1.47)"
     ]
   },
   "INUV": {
@@ -3667,7 +3692,7 @@
     "net_buyback_yield": -0.044,
     "shares_now": 14900134,
     "shares_year_ago": 14271927,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +4% YoY"
@@ -3726,7 +3751,7 @@
     "score": 17,
     "reasons": [
       "net shares -7% YoY",
-      "buying cheap (P/B 0.99)"
+      "buying cheap (P/B 0.84)"
     ]
   },
   "JCI": {
@@ -3778,7 +3803,7 @@
     "net_buyback_yield": -0.8047,
     "shares_now": 122571872,
     "shares_year_ago": 67919882,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +80% YoY"
@@ -3804,7 +3829,7 @@
     "score": 12,
     "reasons": [
       "net shares -5% YoY (modest)",
-      "buying cheap (P/B 1.38)"
+      "buying cheap (P/B 1.21)"
     ]
   },
   "TRS": {
@@ -3812,10 +3837,11 @@
     "net_buyback_yield": 0.0865,
     "shares_now": 37426123,
     "shares_year_ago": 40969299,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -9% YoY"
+      "net shares -9% YoY",
+      "buying cheap (P/B 0.98)"
     ]
   },
   "BRBS": {
@@ -3871,7 +3897,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 0.64)"
+      "buying cheap (P/B 0.89)"
     ]
   },
   "LFVN": {
@@ -3927,7 +3953,7 @@
     "score": 17,
     "reasons": [
       "net shares -6% YoY",
-      "buying cheap (P/B 1.27)"
+      "buying cheap (P/B 1.33)"
     ]
   },
   "MLSS": {
@@ -3983,7 +4009,7 @@
     "score": 12,
     "reasons": [
       "net shares -4% YoY (modest)",
-      "buying cheap (P/B 1.06)"
+      "buying cheap (P/B 1.05)"
     ]
   },
   "HCA": {
@@ -4002,10 +4028,11 @@
     "net_buyback_yield": 0.0914,
     "shares_now": 58742800,
     "shares_year_ago": 64652800,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -9% YoY"
+      "net shares -9% YoY",
+      "buying cheap (P/B 0.69)"
     ]
   },
   "CATY": {
@@ -4036,7 +4063,7 @@
     "net_buyback_yield": -7.1552,
     "shares_now": 126818888,
     "shares_year_ago": 15550706,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +716% YoY"
@@ -4062,7 +4089,7 @@
     "score": 22,
     "reasons": [
       "net shares -12% YoY (heavy)",
-      "buying cheap (P/B 1.07)"
+      "buying cheap (P/B 0.95)"
     ]
   },
   "AZO": {
@@ -4081,10 +4108,11 @@
     "net_buyback_yield": 0.0329,
     "shares_now": 147163000,
     "shares_year_ago": 152174000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -3% YoY (modest)"
+      "net shares -3% YoY (modest)",
+      "buying cheap (P/B 0.24)"
     ]
   },
   "POCI": {
@@ -4206,7 +4234,7 @@
     "score": 12,
     "reasons": [
       "net shares -4% YoY (modest)",
-      "buying cheap (P/B 0.36)"
+      "buying cheap (P/B 0.27)"
     ]
   },
   "IDXX": {
@@ -4240,7 +4268,7 @@
     "score": 17,
     "reasons": [
       "net shares -6% YoY",
-      "buying cheap (P/B 1.33)"
+      "buying cheap (P/B 1.29)"
     ]
   },
   "NTIC": {
@@ -4248,10 +4276,11 @@
     "net_buyback_yield": 0.0271,
     "shares_now": 9489332,
     "shares_year_ago": 9753437,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -3% YoY (modest)"
+      "net shares -3% YoY (modest)",
+      "buying cheap (P/B 1.03)"
     ]
   },
   "PRGS": {
@@ -4285,7 +4314,7 @@
     "score": 22,
     "reasons": [
       "net shares -11% YoY (heavy)",
-      "buying cheap (P/B 1.10)"
+      "buying cheap (P/B 1.23)"
     ]
   },
   "STGW": {
@@ -4348,11 +4377,10 @@
     "net_buyback_yield": 0.0545,
     "shares_now": 40739000,
     "shares_year_ago": 43087000,
-    "cheap": true,
-    "score": 17,
+    "cheap": false,
+    "score": 11,
     "reasons": [
-      "net shares -5% YoY",
-      "buying cheap (P/B 1.25)"
+      "net shares -5% YoY"
     ]
   },
   "MPB": {
@@ -4360,7 +4388,7 @@
     "net_buyback_yield": -0.2523,
     "shares_now": 24314139,
     "shares_year_ago": 19416265,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +25% YoY"
@@ -4404,7 +4432,7 @@
     "net_buyback_yield": -0.1837,
     "shares_now": 5412021,
     "shares_year_ago": 4572297,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +18% YoY"
@@ -4474,7 +4502,7 @@
     "score": 12,
     "reasons": [
       "net shares -4% YoY (modest)",
-      "buying cheap (P/B 1.01)"
+      "buying cheap (P/B 0.90)"
     ]
   },
   "SNPS": {
@@ -4515,7 +4543,7 @@
     "net_buyback_yield": -1.1604,
     "shares_now": 67158044,
     "shares_year_ago": 31085606,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +116% YoY"
@@ -4526,7 +4554,7 @@
     "net_buyback_yield": -0.0708,
     "shares_now": 28871000,
     "shares_year_ago": 26961000,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +7% YoY"
@@ -4541,7 +4569,7 @@
     "score": 12,
     "reasons": [
       "net shares -5% YoY (modest)",
-      "buying cheap (P/B 0.86)"
+      "buying cheap (P/B 0.79)"
     ]
   },
   "OFIX": {
@@ -4549,7 +4577,7 @@
     "net_buyback_yield": -0.0322,
     "shares_now": 40450000,
     "shares_year_ago": 39188000,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +3% YoY"
@@ -4560,7 +4588,7 @@
     "net_buyback_yield": -0.3331,
     "shares_now": 1582931,
     "shares_year_ago": 1187413,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +33% YoY"
@@ -4588,8 +4616,8 @@
       "net DILUTION +149% YoY"
     ]
   },
-  "LGNZZ": {
-    "ticker": "LGNZZ",
+  "LGNYZ": {
+    "ticker": "LGNYZ",
     "net_buyback_yield": -0.0361,
     "shares_now": 19883000,
     "shares_year_ago": 19191000,
@@ -4652,7 +4680,7 @@
     "score": 12,
     "reasons": [
       "net shares -5% YoY (modest)",
-      "buying cheap (P/B 1.43)"
+      "buying cheap (P/B 1.39)"
     ]
   },
   "LTC": {
@@ -4708,7 +4736,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 0.66)"
+      "buying cheap (P/B 0.64)"
     ]
   },
   "LPTH": {
@@ -4727,7 +4755,7 @@
     "net_buyback_yield": -1.0214,
     "shares_now": 11613000,
     "shares_year_ago": 5745000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +102% YoY"
@@ -4742,7 +4770,7 @@
     "score": 17,
     "reasons": [
       "net shares -6% YoY",
-      "buying cheap (P/B 0.44)"
+      "buying cheap (P/B 0.76)"
     ]
   },
   "ENVB": {
@@ -4777,7 +4805,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 1.41)"
+      "buying cheap (P/B 1.35)"
     ]
   },
   "MTCH": {
@@ -4818,7 +4846,7 @@
     "net_buyback_yield": -13.7614,
     "shares_now": 41072725,
     "shares_year_ago": 2782449,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +1376% YoY"
@@ -4877,7 +4905,7 @@
     "score": 12,
     "reasons": [
       "net shares -4% YoY (modest)",
-      "buying cheap (P/B 0.64)"
+      "buying cheap (P/B 0.50)"
     ]
   },
   "GPUS-PD": {
@@ -4940,11 +4968,10 @@
     "net_buyback_yield": 0.0536,
     "shares_now": 13531000,
     "shares_year_ago": 14297000,
-    "cheap": true,
-    "score": 17,
+    "cheap": false,
+    "score": 11,
     "reasons": [
-      "net shares -5% YoY",
-      "buying cheap (P/B 1.44)"
+      "net shares -5% YoY"
     ]
   },
   "ALL-PB": {
@@ -5095,7 +5122,7 @@
     "net_buyback_yield": -0.0893,
     "shares_now": 443801416,
     "shares_year_ago": 407423329,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +9% YoY"
@@ -5106,7 +5133,7 @@
     "net_buyback_yield": -81.0,
     "shares_now": 492000,
     "shares_year_ago": 6000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +8100% YoY"
@@ -5121,7 +5148,7 @@
     "score": 17,
     "reasons": [
       "net shares -5% YoY",
-      "buying cheap (P/B 0.80)"
+      "buying cheap (P/B 0.74)"
     ]
   },
   "TLF": {
@@ -5129,10 +5156,11 @@
     "net_buyback_yield": 0.0573,
     "shares_now": 8102831,
     "shares_year_ago": 8595320,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -6% YoY"
+      "net shares -6% YoY",
+      "buying cheap (P/B 0.45)"
     ]
   },
   "FLG-PU": {
@@ -5173,7 +5201,7 @@
     "net_buyback_yield": -6.4246,
     "shares_now": 3911941,
     "shares_year_ago": 526891,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +642% YoY"
@@ -5184,10 +5212,11 @@
     "net_buyback_yield": 0.1173,
     "shares_now": 10143000,
     "shares_year_ago": 11491000,
-    "cheap": false,
-    "score": 16,
+    "cheap": true,
+    "score": 22,
     "reasons": [
-      "net shares -12% YoY (heavy)"
+      "net shares -12% YoY (heavy)",
+      "buying cheap (P/B 0.63)"
     ]
   },
   "VIAV": {
@@ -5210,7 +5239,7 @@
     "score": 12,
     "reasons": [
       "net shares -2% YoY (modest)",
-      "buying cheap (P/B 1.38)"
+      "buying cheap (P/B 1.34)"
     ]
   },
   "SUI": {
@@ -5299,7 +5328,7 @@
     "score": 17,
     "reasons": [
       "net shares -8% YoY",
-      "buying cheap (P/B 0.63)"
+      "buying cheap (P/B 0.77)"
     ]
   },
   "XPL": {
@@ -5333,7 +5362,7 @@
     "score": 17,
     "reasons": [
       "net shares -9% YoY",
-      "buying cheap (P/B 1.18)"
+      "buying cheap (P/B 1.38)"
     ]
   },
   "AEO": {
@@ -5352,10 +5381,11 @@
     "net_buyback_yield": 0.0696,
     "shares_now": 244438000,
     "shares_year_ago": 262733000,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -7% YoY"
+      "net shares -7% YoY",
+      "buying cheap (P/B 0.90)"
     ]
   },
   "PENN": {
@@ -5367,7 +5397,7 @@
     "score": 22,
     "reasons": [
       "net shares -20% YoY (heavy)",
-      "buying cheap (P/B 1.48)"
+      "buying cheap (P/B 1.13)"
     ]
   },
   "GBX": {
@@ -5379,7 +5409,7 @@
     "score": 12,
     "reasons": [
       "net shares -4% YoY (modest)",
-      "buying cheap (P/B 0.98)"
+      "buying cheap (P/B 0.84)"
     ]
   },
   "RIME": {
@@ -5387,7 +5417,7 @@
     "net_buyback_yield": -4.0169,
     "shares_now": 9897743,
     "shares_year_ago": 1972869,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +402% YoY"
@@ -5446,7 +5476,7 @@
     "score": 17,
     "reasons": [
       "net shares -7% YoY",
-      "buying cheap (P/B 0.93)"
+      "buying cheap (P/B 0.89)"
     ]
   },
   "BCDA": {
@@ -5531,10 +5561,11 @@
     "net_buyback_yield": 0.0602,
     "shares_now": 124769331,
     "shares_year_ago": 132766199,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -6% YoY"
+      "net shares -6% YoY",
+      "buying cheap (P/B 0.50)"
     ]
   },
   "AASP": {
@@ -5608,10 +5639,11 @@
     "net_buyback_yield": 0.1264,
     "shares_now": 7741522,
     "shares_year_ago": 8861854,
-    "cheap": false,
-    "score": 16,
+    "cheap": true,
+    "score": 22,
     "reasons": [
-      "net shares -13% YoY (heavy)"
+      "net shares -13% YoY (heavy)",
+      "buying cheap (P/B 0.89)"
     ]
   },
   "DLTR": {
@@ -5630,10 +5662,11 @@
     "net_buyback_yield": 0.0682,
     "shares_now": 75574228,
     "shares_year_ago": 81105536,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -7% YoY"
+      "net shares -7% YoY",
+      "buying cheap (P/B 0.75)"
     ]
   },
   "TNET": {
@@ -5674,7 +5707,7 @@
     "net_buyback_yield": -0.13,
     "shares_now": 758876415,
     "shares_year_ago": 671577429,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +13% YoY"
@@ -5696,7 +5729,7 @@
     "net_buyback_yield": -5.1872,
     "shares_now": 4351449,
     "shares_year_ago": 703298,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +519% YoY"
@@ -5707,10 +5740,11 @@
     "net_buyback_yield": 0.0581,
     "shares_now": 359700000,
     "shares_year_ago": 381900000,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -6% YoY"
+      "net shares -6% YoY",
+      "buying cheap (P/B 1.36)"
     ]
   },
   "LFMDP": {
@@ -5729,7 +5763,7 @@
     "net_buyback_yield": -0.4106,
     "shares_now": 25695000,
     "shares_year_ago": 18216000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +41% YoY"
@@ -5850,10 +5884,11 @@
     "net_buyback_yield": 0.0487,
     "shares_now": 32885000,
     "shares_year_ago": 34569000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -5% YoY (modest)"
+      "net shares -5% YoY (modest)",
+      "buying cheap (P/B 1.08)"
     ]
   },
   "OTEX": {
@@ -5861,10 +5896,11 @@
     "net_buyback_yield": 0.0602,
     "shares_now": 247962000,
     "shares_year_ago": 263834000,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -6% YoY"
+      "net shares -6% YoY",
+      "buying cheap (P/B 1.43)"
     ]
   },
   "MGRB": {
@@ -5889,8 +5925,8 @@
       "net DILUTION +97% YoY"
     ]
   },
-  "PCG-PX": {
-    "ticker": "PCG-PX",
+  "PCG-PB": {
+    "ticker": "PCG-PB",
     "net_buyback_yield": -0.0368,
     "shares_now": 2281000000,
     "shares_year_ago": 2200000000,
@@ -5938,7 +5974,7 @@
     "net_buyback_yield": -0.3137,
     "shares_now": 4781003,
     "shares_year_ago": 3639337,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +31% YoY"
@@ -5949,10 +5985,11 @@
     "net_buyback_yield": 0.0425,
     "shares_now": 6447000,
     "shares_year_ago": 6733000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -4% YoY (modest)"
+      "net shares -4% YoY (modest)",
+      "buying cheap (P/B 0.93)"
     ]
   },
   "RUSHB": {
@@ -5982,7 +6019,7 @@
     "net_buyback_yield": -0.1692,
     "shares_now": 10775000,
     "shares_year_ago": 9216000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +17% YoY"
@@ -6015,10 +6052,11 @@
     "net_buyback_yield": 0.0787,
     "shares_now": 22171000,
     "shares_year_ago": 24065000,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -8% YoY"
+      "net shares -8% YoY",
+      "buying cheap (P/B 1.02)"
     ]
   },
   "VRSN": {
@@ -6070,7 +6108,7 @@
     "net_buyback_yield": -0.036,
     "shares_now": 7252000,
     "shares_year_ago": 7000000,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +4% YoY"
@@ -6129,7 +6167,7 @@
     "score": 12,
     "reasons": [
       "net shares -5% YoY (modest)",
-      "buying cheap (P/B 1.08)"
+      "buying cheap (P/B 1.18)"
     ]
   },
   "AWCA": {
@@ -6185,7 +6223,7 @@
     "score": 22,
     "reasons": [
       "net shares -11% YoY (heavy)",
-      "buying cheap (P/B 1.05)"
+      "buying cheap (P/B 1.08)"
     ]
   },
   "OLOX": {
@@ -6193,7 +6231,7 @@
     "net_buyback_yield": -71.931,
     "shares_now": 698387,
     "shares_year_ago": 9576,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +7193% YoY"
@@ -6226,11 +6264,10 @@
     "net_buyback_yield": 0.0561,
     "shares_now": 42956000,
     "shares_year_ago": 45509000,
-    "cheap": true,
-    "score": 17,
+    "cheap": false,
+    "score": 11,
     "reasons": [
-      "net shares -6% YoY",
-      "buying cheap (P/B 1.44)"
+      "net shares -6% YoY"
     ]
   },
   "SVBL": {
@@ -6253,7 +6290,7 @@
     "score": 17,
     "reasons": [
       "net shares -9% YoY",
-      "buying cheap (P/B 1.30)"
+      "buying cheap (P/B 1.00)"
     ]
   },
   "BSY": {
@@ -6415,7 +6452,7 @@
     "net_buyback_yield": -0.1557,
     "shares_now": 39418302,
     "shares_year_ago": 34107640,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +16% YoY"
@@ -6437,7 +6474,7 @@
     "net_buyback_yield": -0.4237,
     "shares_now": 25694000,
     "shares_year_ago": 18047000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +42% YoY"
@@ -6481,10 +6518,11 @@
     "net_buyback_yield": 0.0214,
     "shares_now": 3071656,
     "shares_year_ago": 3138711,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -2% YoY (modest)"
+      "net shares -2% YoY (modest)",
+      "buying cheap (P/B 0.26)"
     ]
   },
   "HFWA": {
@@ -6507,7 +6545,7 @@
     "score": 12,
     "reasons": [
       "net shares -2% YoY (modest)",
-      "buying cheap (P/B 1.41)"
+      "buying cheap (P/B 1.36)"
     ]
   },
   "CHH": {
@@ -6537,7 +6575,7 @@
     "net_buyback_yield": -0.0373,
     "shares_now": 364400000,
     "shares_year_ago": 351300000,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +4% YoY"
@@ -6592,7 +6630,7 @@
     "net_buyback_yield": -0.3019,
     "shares_now": 333913000,
     "shares_year_ago": 256473000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +30% YoY"
@@ -6680,10 +6718,11 @@
     "net_buyback_yield": 0.0556,
     "shares_now": 22027425,
     "shares_year_ago": 23324347,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -6% YoY"
+      "net shares -6% YoY",
+      "buying cheap (P/B 1.21)"
     ]
   },
   "HCKT": {
@@ -6724,11 +6763,10 @@
     "net_buyback_yield": 0.0364,
     "shares_now": 477000000,
     "shares_year_ago": 495000000,
-    "cheap": true,
-    "score": 12,
+    "cheap": false,
+    "score": 6,
     "reasons": [
-      "net shares -4% YoY (modest)",
-      "buying cheap (P/B 1.37)"
+      "net shares -4% YoY (modest)"
     ]
   },
   "NXPL": {
@@ -6736,7 +6774,7 @@
     "net_buyback_yield": -0.0374,
     "shares_now": 2693000,
     "shares_year_ago": 2596000,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +4% YoY"
@@ -6747,10 +6785,11 @@
     "net_buyback_yield": 0.0453,
     "shares_now": 77261813,
     "shares_year_ago": 80924355,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -5% YoY (modest)"
+      "net shares -5% YoY (modest)",
+      "buying cheap (P/B 1.34)"
     ]
   },
   "CYTK": {
@@ -6795,7 +6834,7 @@
     "score": 22,
     "reasons": [
       "net shares -12% YoY (heavy)",
-      "buying cheap (P/B 0.91)"
+      "buying cheap (P/B 0.99)"
     ]
   },
   "LEU": {
@@ -6836,7 +6875,7 @@
     "net_buyback_yield": -7.4192,
     "shares_now": 5159460,
     "shares_year_ago": 612824,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +742% YoY"
@@ -6869,7 +6908,7 @@
     "net_buyback_yield": -0.0479,
     "shares_now": 99825000,
     "shares_year_ago": 95266000,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +5% YoY"
@@ -7045,10 +7084,11 @@
     "net_buyback_yield": 0.0432,
     "shares_now": 44601129,
     "shares_year_ago": 46616704,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -4% YoY (modest)"
+      "net shares -4% YoY (modest)",
+      "buying cheap (P/B 1.17)"
     ]
   },
   "INVA": {
@@ -7122,7 +7162,7 @@
     "net_buyback_yield": -1.4872,
     "shares_now": 5903599,
     "shares_year_ago": 2373583,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +149% YoY"
@@ -7159,7 +7199,7 @@
     "score": 22,
     "reasons": [
       "net shares -12% YoY (heavy)",
-      "buying cheap (P/B 1.01)"
+      "buying cheap (P/B 0.93)"
     ]
   },
   "MOBQW": {
@@ -7255,10 +7295,11 @@
     "net_buyback_yield": 0.0419,
     "shares_now": 618000000,
     "shares_year_ago": 645000000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -4% YoY (modest)"
+      "net shares -4% YoY (modest)",
+      "buying cheap (P/B 1.08)"
     ]
   },
   "CHTRP": {
@@ -7266,10 +7307,11 @@
     "net_buyback_yield": 0.1226,
     "shares_now": 126849271,
     "shares_year_ago": 144574684,
-    "cheap": false,
-    "score": 16,
+    "cheap": true,
+    "score": 22,
     "reasons": [
-      "net shares -12% YoY (heavy)"
+      "net shares -12% YoY (heavy)",
+      "buying cheap (P/B 0.16)"
     ]
   },
   "DXCM": {
@@ -7314,7 +7356,7 @@
     "score": 17,
     "reasons": [
       "net shares -6% YoY",
-      "buying cheap (P/B 0.87)"
+      "buying cheap (P/B 0.97)"
     ]
   },
   "ABIT": {
@@ -7370,7 +7412,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 0.74)"
+      "buying cheap (P/B 0.86)"
     ]
   },
   "ALGN": {
@@ -7400,7 +7442,7 @@
     "net_buyback_yield": -7.6741,
     "shares_now": 115275211,
     "shares_year_ago": 13289644,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +767% YoY"
@@ -7450,17 +7492,6 @@
       "net shares -13% YoY (heavy)"
     ]
   },
-  "LPSN": {
-    "ticker": "LPSN",
-    "net_buyback_yield": -0.8982,
-    "shares_now": 12060769,
-    "shares_year_ago": 6353663,
-    "cheap": false,
-    "score": -6,
-    "reasons": [
-      "net DILUTION +90% YoY"
-    ]
-  },
   "QSEP": {
     "ticker": "QSEP",
     "net_buyback_yield": -0.249,
@@ -7488,7 +7519,7 @@
     "net_buyback_yield": -0.0863,
     "shares_now": 13352749,
     "shares_year_ago": 12292150,
-    "cheap": true,
+    "cheap": false,
     "score": -3,
     "reasons": [
       "net dilution +9% YoY"
@@ -7521,7 +7552,7 @@
     "net_buyback_yield": -6.8488,
     "shares_now": 25602002,
     "shares_year_ago": 3261911,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +685% YoY"
@@ -7558,7 +7589,7 @@
     "score": 17,
     "reasons": [
       "net shares -6% YoY",
-      "buying cheap (P/B 0.99)"
+      "buying cheap (P/B 0.93)"
     ]
   },
   "CRIS": {
@@ -7566,7 +7597,7 @@
     "net_buyback_yield": -1.2797,
     "shares_now": 19363478,
     "shares_year_ago": 8493886,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +128% YoY"
@@ -7724,7 +7755,7 @@
     "score": 17,
     "reasons": [
       "net shares -7% YoY",
-      "buying cheap (P/B 0.88)"
+      "buying cheap (P/B 0.86)"
     ]
   },
   "PLAG": {
@@ -7780,7 +7811,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 0.84)"
+      "buying cheap (P/B 0.83)"
     ]
   },
   "NTGR": {
@@ -7792,7 +7823,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 1.34)"
+      "buying cheap (P/B 1.31)"
     ]
   },
   "GPN": {
@@ -7866,7 +7897,7 @@
     "net_buyback_yield": -0.0486,
     "shares_now": 41897669,
     "shares_year_ago": 39954658,
-    "cheap": true,
+    "cheap": false,
     "score": -3,
     "reasons": [
       "net dilution +5% YoY"
@@ -7903,7 +7934,7 @@
     "score": 17,
     "reasons": [
       "net shares -6% YoY",
-      "buying cheap (P/B 1.40)"
+      "buying cheap (P/B 1.39)"
     ]
   },
   "BGMSP": {
@@ -8047,7 +8078,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 1.24)"
+      "buying cheap (P/B 1.12)"
     ]
   },
   "STX": {
@@ -8066,7 +8097,7 @@
     "net_buyback_yield": -0.5876,
     "shares_now": 7657229,
     "shares_year_ago": 4823125,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +59% YoY"
@@ -8132,7 +8163,7 @@
     "net_buyback_yield": -0.2703,
     "shares_now": 28364875,
     "shares_year_ago": 22329852,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +27% YoY"
@@ -8158,7 +8189,7 @@
     "score": 12,
     "reasons": [
       "net shares -4% YoY (modest)",
-      "buying cheap (P/B 0.93)"
+      "buying cheap (P/B 0.88)"
     ]
   },
   "PODD": {
@@ -8188,7 +8219,7 @@
     "net_buyback_yield": -0.2591,
     "shares_now": 40012656,
     "shares_year_ago": 31778032,
-    "cheap": true,
+    "cheap": false,
     "score": -6,
     "reasons": [
       "net DILUTION +26% YoY"
@@ -8225,7 +8256,7 @@
     "score": 12,
     "reasons": [
       "net shares -2% YoY (modest)",
-      "buying cheap (P/B 1.11)"
+      "buying cheap (P/B 1.09)"
     ]
   },
   "AAOI": {
@@ -8299,7 +8330,7 @@
     "net_buyback_yield": -2.0073,
     "shares_now": 80585148,
     "shares_year_ago": 26796704,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +201% YoY"
@@ -8343,10 +8374,11 @@
     "net_buyback_yield": 0.0441,
     "shares_now": 3617000000,
     "shares_year_ago": 3784000000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -4% YoY (modest)"
+      "net shares -4% YoY (modest)",
+      "buying cheap (P/B 0.90)"
     ]
   },
   "BWMG": {
@@ -8442,7 +8474,7 @@
     "net_buyback_yield": -6.0832,
     "shares_now": 4300980,
     "shares_year_ago": 607208,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +608% YoY"
@@ -8508,7 +8540,7 @@
     "net_buyback_yield": -0.0308,
     "shares_now": 50957191,
     "shares_year_ago": 49435500,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +3% YoY"
@@ -8552,10 +8584,11 @@
     "net_buyback_yield": 0.0297,
     "shares_now": 38511000,
     "shares_year_ago": 39688000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -3% YoY (modest)"
+      "net shares -3% YoY (modest)",
+      "buying cheap (P/B 0.74)"
     ]
   },
   "CELZ": {
@@ -8563,7 +8596,7 @@
     "net_buyback_yield": -0.8688,
     "shares_now": 3701668,
     "shares_year_ago": 1980735,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +87% YoY"
@@ -8629,7 +8662,7 @@
     "net_buyback_yield": -0.2543,
     "shares_now": 3744000,
     "shares_year_ago": 2985000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +25% YoY"
@@ -8816,7 +8849,7 @@
     "net_buyback_yield": -0.2614,
     "shares_now": 88278112,
     "shares_year_ago": 69984752,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +26% YoY"
@@ -8849,7 +8882,7 @@
     "net_buyback_yield": -4.3596,
     "shares_now": 35711000,
     "shares_year_ago": 6663000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +436% YoY"
@@ -8875,7 +8908,7 @@
     "score": 17,
     "reasons": [
       "net shares -8% YoY",
-      "buying cheap (P/B 1.03)"
+      "buying cheap (P/B 1.04)"
     ]
   },
   "VANI": {
@@ -8953,7 +8986,7 @@
     "score": 22,
     "reasons": [
       "net shares -10% YoY (heavy)",
-      "buying cheap (P/B 0.62)"
+      "buying cheap (P/B 0.55)"
     ]
   },
   "XGN": {
@@ -8972,10 +9005,11 @@
     "net_buyback_yield": 0.069,
     "shares_now": 393700000,
     "shares_year_ago": 422900000,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -7% YoY"
+      "net shares -7% YoY",
+      "buying cheap (P/B 0.42)"
     ]
   },
   "MKTX": {
@@ -8994,7 +9028,7 @@
     "net_buyback_yield": -1.7605,
     "shares_now": 4240129,
     "shares_year_ago": 1535995,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +176% YoY"
@@ -9027,7 +9061,7 @@
     "net_buyback_yield": -1.9737,
     "shares_now": 30136324,
     "shares_year_ago": 10134443,
-    "cheap": true,
+    "cheap": false,
     "score": -6,
     "reasons": [
       "net DILUTION +197% YoY"
@@ -9038,7 +9072,7 @@
     "net_buyback_yield": -0.1222,
     "shares_now": 196821000,
     "shares_year_ago": 175383000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +12% YoY"
@@ -9060,7 +9094,7 @@
     "net_buyback_yield": -0.1045,
     "shares_now": 12327974,
     "shares_year_ago": 11162026,
-    "cheap": true,
+    "cheap": false,
     "score": -6,
     "reasons": [
       "net DILUTION +10% YoY"
@@ -9082,7 +9116,7 @@
     "net_buyback_yield": -0.0582,
     "shares_now": 17415000,
     "shares_year_ago": 16457000,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +6% YoY"
@@ -9093,10 +9127,11 @@
     "net_buyback_yield": 0.0372,
     "shares_now": 1102053246,
     "shares_year_ago": 1144655297,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -4% YoY (modest)"
+      "net shares -4% YoY (modest)",
+      "buying cheap (P/B 0.41)"
     ]
   },
   "CLPT": {
@@ -9159,7 +9194,7 @@
     "net_buyback_yield": -0.0621,
     "shares_now": 718000000,
     "shares_year_ago": 676000000,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +6% YoY"
@@ -9313,7 +9348,7 @@
     "net_buyback_yield": -0.169,
     "shares_now": 12440809,
     "shares_year_ago": 10642078,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +17% YoY"
@@ -9328,7 +9363,7 @@
     "score": 17,
     "reasons": [
       "net shares -7% YoY",
-      "buying cheap (P/B 1.17)"
+      "buying cheap (P/B 1.42)"
     ]
   },
   "EXLS": {
@@ -9373,7 +9408,7 @@
     "score": 12,
     "reasons": [
       "net shares -5% YoY (modest)",
-      "buying cheap (P/B 0.73)"
+      "buying cheap (P/B 1.01)"
     ]
   },
   "BVFL": {
@@ -9381,10 +9416,11 @@
     "net_buyback_yield": 0.1834,
     "shares_now": 8157000,
     "shares_year_ago": 9989000,
-    "cheap": false,
-    "score": 16,
+    "cheap": true,
+    "score": 22,
     "reasons": [
-      "net shares -18% YoY (heavy)"
+      "net shares -18% YoY (heavy)",
+      "buying cheap (P/B 0.95)"
     ]
   },
   "VYST": {
@@ -9480,7 +9516,7 @@
     "net_buyback_yield": -4.46,
     "shares_now": 12890622,
     "shares_year_ago": 2360939,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +446% YoY"
@@ -9528,7 +9564,7 @@
     "score": 22,
     "reasons": [
       "net shares -11% YoY (heavy)",
-      "buying cheap (P/B 0.90)"
+      "buying cheap (P/B 0.77)"
     ]
   },
   "MDEX": {
@@ -9749,7 +9785,7 @@
     "score": 17,
     "reasons": [
       "net shares -6% YoY",
-      "buying cheap (P/B 1.31)"
+      "buying cheap (P/B 1.36)"
     ]
   },
   "FXE": {
@@ -9900,7 +9936,7 @@
     "net_buyback_yield": -0.2422,
     "shares_now": 378309298,
     "shares_year_ago": 304554114,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +24% YoY"
@@ -10010,7 +10046,7 @@
     "net_buyback_yield": -2.6426,
     "shares_now": 9381344,
     "shares_year_ago": 2575462,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +264% YoY"
@@ -10032,7 +10068,7 @@
     "net_buyback_yield": -114.332,
     "shares_now": 595344,
     "shares_year_ago": 5162,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +11433% YoY"
@@ -10043,7 +10079,7 @@
     "net_buyback_yield": -0.3958,
     "shares_now": 24443846,
     "shares_year_ago": 17511908,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +40% YoY"
@@ -10087,11 +10123,10 @@
     "net_buyback_yield": 0.0538,
     "shares_now": 54183000,
     "shares_year_ago": 57262000,
-    "cheap": true,
-    "score": 17,
+    "cheap": false,
+    "score": 11,
     "reasons": [
-      "net shares -5% YoY",
-      "buying cheap (P/B 1.18)"
+      "net shares -5% YoY"
     ]
   },
   "FXB": {
@@ -10154,7 +10189,7 @@
     "net_buyback_yield": -0.3437,
     "shares_now": 62740566,
     "shares_year_ago": 46693016,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +34% YoY"
@@ -10253,7 +10288,7 @@
     "net_buyback_yield": -0.4135,
     "shares_now": 57538833,
     "shares_year_ago": 40707937,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +41% YoY"
@@ -10341,10 +10376,11 @@
     "net_buyback_yield": 0.0367,
     "shares_now": 9634000,
     "shares_year_ago": 10001000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -4% YoY (modest)"
+      "net shares -4% YoY (modest)",
+      "buying cheap (P/B 1.11)"
     ]
   },
   "HAFG": {
@@ -10532,7 +10568,7 @@
     "score": 12,
     "reasons": [
       "net shares -2% YoY (modest)",
-      "buying cheap (P/B 0.85)"
+      "buying cheap (P/B 0.61)"
     ]
   },
   "CV": {
@@ -10588,7 +10624,7 @@
     "score": 22,
     "reasons": [
       "net shares -21% YoY (heavy)",
-      "buying cheap (P/B 1.00)"
+      "buying cheap (P/B 1.01)"
     ]
   },
   "RPID": {
@@ -10618,7 +10654,7 @@
     "net_buyback_yield": -3.3106,
     "shares_now": 40630815,
     "shares_year_ago": 9425751,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +331% YoY"
@@ -10662,7 +10698,7 @@
     "net_buyback_yield": -0.2812,
     "shares_now": 10511583,
     "shares_year_ago": 8204453,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +28% YoY"
@@ -10695,7 +10731,7 @@
     "net_buyback_yield": -152.0092,
     "shares_now": 165709000,
     "shares_year_ago": 1083000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +15201% YoY"
@@ -10783,11 +10819,10 @@
     "net_buyback_yield": 0.0683,
     "shares_now": 42395000,
     "shares_year_ago": 45505000,
-    "cheap": true,
-    "score": 17,
+    "cheap": false,
+    "score": 11,
     "reasons": [
-      "net shares -7% YoY",
-      "buying cheap (P/B 1.38)"
+      "net shares -7% YoY"
     ]
   },
   "OSS": {
@@ -10806,7 +10841,7 @@
     "net_buyback_yield": -1.0736,
     "shares_now": 23618144,
     "shares_year_ago": 11390016,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +107% YoY"
@@ -10821,7 +10856,7 @@
     "score": 22,
     "reasons": [
       "net shares -12% YoY (heavy)",
-      "buying cheap (P/B 1.34)"
+      "buying cheap (P/B 1.45)"
     ]
   },
   "IVDAW": {
@@ -11009,7 +11044,7 @@
     "score": 12,
     "reasons": [
       "net shares -2% YoY (modest)",
-      "buying cheap (P/B 0.98)"
+      "buying cheap (P/B 0.89)"
     ]
   },
   "MSCI": {
@@ -11028,7 +11063,7 @@
     "net_buyback_yield": -0.3481,
     "shares_now": 92985000,
     "shares_year_ago": 68975000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +35% YoY"
@@ -11105,7 +11140,7 @@
     "net_buyback_yield": -3.0754,
     "shares_now": 10979000,
     "shares_year_ago": 2694000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +308% YoY"
@@ -11182,7 +11217,7 @@
     "net_buyback_yield": -325.918,
     "shares_now": 1637859,
     "shares_year_ago": 5010,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +32592% YoY"
@@ -11219,7 +11254,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 1.33)"
+      "buying cheap (P/B 1.38)"
     ]
   },
   "BBLGW": {
@@ -11315,7 +11350,7 @@
     "net_buyback_yield": -0.7338,
     "shares_now": 69236945,
     "shares_year_ago": 39932539,
-    "cheap": true,
+    "cheap": false,
     "score": -6,
     "reasons": [
       "net DILUTION +73% YoY"
@@ -11326,7 +11361,7 @@
     "net_buyback_yield": -0.4998,
     "shares_now": 5429416,
     "shares_year_ago": 3620158,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +50% YoY"
@@ -11392,7 +11427,7 @@
     "net_buyback_yield": -0.0734,
     "shares_now": 10014000,
     "shares_year_ago": 9329000,
-    "cheap": true,
+    "cheap": false,
     "score": -3,
     "reasons": [
       "net dilution +7% YoY"
@@ -11403,7 +11438,7 @@
     "net_buyback_yield": -11.6959,
     "shares_now": 80896554,
     "shares_year_ago": 6371849,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +1170% YoY"
@@ -11425,7 +11460,7 @@
     "net_buyback_yield": -1.2515,
     "shares_now": 16900232,
     "shares_year_ago": 7506321,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +125% YoY"
@@ -11480,7 +11515,7 @@
     "net_buyback_yield": -0.4523,
     "shares_now": 38412716,
     "shares_year_ago": 26450218,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +45% YoY"
@@ -11502,7 +11537,7 @@
     "net_buyback_yield": -1.3126,
     "shares_now": 13707104,
     "shares_year_ago": 5927231,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +131% YoY"
@@ -11535,7 +11570,7 @@
     "net_buyback_yield": -0.6763,
     "shares_now": 83801839,
     "shares_year_ago": 49993509,
-    "cheap": true,
+    "cheap": false,
     "score": -6,
     "reasons": [
       "net DILUTION +68% YoY"
@@ -11568,7 +11603,7 @@
     "net_buyback_yield": -0.0518,
     "shares_now": 14137000,
     "shares_year_ago": 13441000,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +5% YoY"
@@ -11627,7 +11662,7 @@
     "score": 12,
     "reasons": [
       "net shares -4% YoY (modest)",
-      "buying cheap (P/B 1.08)"
+      "buying cheap (P/B 1.23)"
     ]
   },
   "BTCS": {
@@ -11635,7 +11670,7 @@
     "net_buyback_yield": -1.4154,
     "shares_now": 48228269,
     "shares_year_ago": 19967045,
-    "cheap": true,
+    "cheap": false,
     "score": -6,
     "reasons": [
       "net DILUTION +142% YoY"
@@ -11646,10 +11681,11 @@
     "net_buyback_yield": 0.0249,
     "shares_now": 7827000,
     "shares_year_ago": 8027000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -2% YoY (modest)"
+      "net shares -2% YoY (modest)",
+      "buying cheap (P/B 1.15)"
     ]
   },
   "IVR-PC": {
@@ -11811,7 +11847,7 @@
     "net_buyback_yield": -0.4023,
     "shares_now": 10773884,
     "shares_year_ago": 7682884,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +40% YoY"
@@ -11855,7 +11891,7 @@
     "net_buyback_yield": -43.4276,
     "shares_now": 21184617,
     "shares_year_ago": 476835,
-    "cheap": true,
+    "cheap": false,
     "score": -6,
     "reasons": [
       "net DILUTION +4343% YoY"
@@ -11877,7 +11913,7 @@
     "net_buyback_yield": -0.0447,
     "shares_now": 29889000,
     "shares_year_ago": 28609000,
-    "cheap": true,
+    "cheap": false,
     "score": -3,
     "reasons": [
       "net dilution +4% YoY"
@@ -11903,7 +11939,7 @@
     "score": 17,
     "reasons": [
       "net shares -9% YoY",
-      "buying cheap (P/B 0.95)"
+      "buying cheap (P/B 1.05)"
     ]
   },
   "RDGL": {
@@ -11922,7 +11958,7 @@
     "net_buyback_yield": -12.5534,
     "shares_now": 2919188,
     "shares_year_ago": 215384,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +1255% YoY"
@@ -11955,7 +11991,7 @@
     "net_buyback_yield": -0.5178,
     "shares_now": 22398000,
     "shares_year_ago": 14757000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +52% YoY"
@@ -11966,10 +12002,11 @@
     "net_buyback_yield": 0.0229,
     "shares_now": 140058787,
     "shares_year_ago": 143335114,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -2% YoY (modest)"
+      "net shares -2% YoY (modest)",
+      "buying cheap (P/B 1.30)"
     ]
   },
   "RNAC": {
@@ -11988,7 +12025,7 @@
     "net_buyback_yield": -0.2351,
     "shares_now": 96279745,
     "shares_year_ago": 77954579,
-    "cheap": true,
+    "cheap": false,
     "score": -6,
     "reasons": [
       "net DILUTION +24% YoY"
@@ -12076,7 +12113,7 @@
     "net_buyback_yield": -0.6974,
     "shares_now": 26162054,
     "shares_year_ago": 15412809,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +70% YoY"
@@ -12137,8 +12174,8 @@
       "net DILUTION +1289% YoY"
     ]
   },
-  "RILYT": {
-    "ticker": "RILYT",
+  "RILYZ": {
+    "ticker": "RILYZ",
     "net_buyback_yield": -0.0547,
     "shares_now": 32167246,
     "shares_year_ago": 30497512,
@@ -12153,7 +12190,7 @@
     "net_buyback_yield": -0.0939,
     "shares_now": 366947000,
     "shares_year_ago": 335456000,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +9% YoY"
@@ -12164,10 +12201,11 @@
     "net_buyback_yield": 0.0227,
     "shares_now": 21301246,
     "shares_year_ago": 21795570,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -2% YoY (modest)"
+      "net shares -2% YoY (modest)",
+      "buying cheap (P/B 1.20)"
     ]
   },
   "DBX": {
@@ -12201,7 +12239,7 @@
     "score": 17,
     "reasons": [
       "net shares -8% YoY",
-      "buying cheap (P/B 1.14)"
+      "buying cheap (P/B 1.25)"
     ]
   },
   "RENT": {
@@ -12253,7 +12291,7 @@
     "net_buyback_yield": -0.5246,
     "shares_now": 2082887,
     "shares_year_ago": 1366203,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +52% YoY"
@@ -12264,7 +12302,7 @@
     "net_buyback_yield": -10.5912,
     "shares_now": 299067382,
     "shares_year_ago": 25801254,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +1059% YoY"
@@ -12314,8 +12352,8 @@
       "net DILUTION +358% YoY"
     ]
   },
-  "PEB-PH": {
-    "ticker": "PEB-PH",
+  "PEB-PG": {
+    "ticker": "PEB-PG",
     "net_buyback_yield": 0.0493,
     "shares_now": 113331501,
     "shares_year_ago": 119204243,
@@ -12356,7 +12394,7 @@
     "score": 12,
     "reasons": [
       "net shares -2% YoY (modest)",
-      "buying cheap (P/B 1.23)"
+      "buying cheap (P/B 1.15)"
     ]
   },
   "NBHC": {
@@ -12390,7 +12428,7 @@
     "score": 12,
     "reasons": [
       "net shares -5% YoY (modest)",
-      "buying cheap (P/B 1.22)"
+      "buying cheap (P/B 1.04)"
     ]
   },
   "CLDT-PA": {
@@ -12453,7 +12491,7 @@
     "net_buyback_yield": -92.5538,
     "shares_now": 11873568,
     "shares_year_ago": 126917,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +9255% YoY"
@@ -12519,7 +12557,7 @@
     "net_buyback_yield": -1.6105,
     "shares_now": 18373,
     "shares_year_ago": 7038,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +161% YoY"
@@ -12545,7 +12583,7 @@
     "score": 12,
     "reasons": [
       "net shares -5% YoY (modest)",
-      "buying cheap (P/B 0.86)"
+      "buying cheap (P/B 0.92)"
     ]
   },
   "BRFH": {
@@ -12564,7 +12602,7 @@
     "net_buyback_yield": -0.1763,
     "shares_now": 47316637,
     "shares_year_ago": 40223393,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +18% YoY"
@@ -12586,7 +12624,7 @@
     "net_buyback_yield": -0.0869,
     "shares_now": 35313835,
     "shares_year_ago": 32490572,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +9% YoY"
@@ -12619,7 +12657,7 @@
     "net_buyback_yield": -0.1191,
     "shares_now": 918935,
     "shares_year_ago": 821160,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +12% YoY"
@@ -12678,7 +12716,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 0.98)"
+      "buying cheap (P/B 1.06)"
     ]
   },
   "SBRA": {
@@ -12741,7 +12779,7 @@
     "net_buyback_yield": -0.1291,
     "shares_now": 40856330,
     "shares_year_ago": 36184658,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +13% YoY"
@@ -12822,7 +12860,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 0.82)"
+      "buying cheap (P/B 0.84)"
     ]
   },
   "TSQ": {
@@ -12918,7 +12956,7 @@
     "net_buyback_yield": -0.4344,
     "shares_now": 17241665,
     "shares_year_ago": 12020108,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +43% YoY"
@@ -12940,7 +12978,7 @@
     "net_buyback_yield": -0.2134,
     "shares_now": 46979000,
     "shares_year_ago": 38718000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +21% YoY"
@@ -12984,7 +13022,7 @@
     "net_buyback_yield": -1.1213,
     "shares_now": 17727747,
     "shares_year_ago": 8357143,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +112% YoY"
@@ -13006,7 +13044,7 @@
     "net_buyback_yield": -1.6076,
     "shares_now": 22376427,
     "shares_year_ago": 8581207,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +161% YoY"
@@ -13182,7 +13220,7 @@
     "net_buyback_yield": -0.1138,
     "shares_now": 37954364,
     "shares_year_ago": 34077720,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +11% YoY"
@@ -13215,7 +13253,7 @@
     "net_buyback_yield": -2.0571,
     "shares_now": 13709211,
     "shares_year_ago": 4484456,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +206% YoY"
@@ -13237,7 +13275,7 @@
     "net_buyback_yield": -0.1372,
     "shares_now": 32957834,
     "shares_year_ago": 28982432,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +14% YoY"
@@ -13263,7 +13301,7 @@
     "score": 22,
     "reasons": [
       "net shares -23% YoY (heavy)",
-      "buying cheap (P/B 0.43)"
+      "buying cheap (P/B 0.57)"
     ]
   },
   "WAST": {
@@ -13319,7 +13357,7 @@
     "score": 22,
     "reasons": [
       "net shares -13% YoY (heavy)",
-      "buying cheap (P/B 0.62)"
+      "buying cheap (P/B 0.58)"
     ]
   },
   "SPT": {
@@ -13349,7 +13387,7 @@
     "net_buyback_yield": -4.1843,
     "shares_now": 897099,
     "shares_year_ago": 173040,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +418% YoY"
@@ -13386,7 +13424,7 @@
     "score": 12,
     "reasons": [
       "net shares -4% YoY (modest)",
-      "buying cheap (P/B 0.92)"
+      "buying cheap (P/B 0.73)"
     ]
   },
   "SKWD": {
@@ -13453,7 +13491,7 @@
     "score": 17,
     "reasons": [
       "net shares -7% YoY",
-      "buying cheap (P/B 1.46)"
+      "buying cheap (P/B 1.10)"
     ]
   },
   "MQ": {
@@ -13472,7 +13510,7 @@
     "net_buyback_yield": -0.0389,
     "shares_now": 397450000,
     "shares_year_ago": 382557000,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +4% YoY"
@@ -13538,10 +13576,11 @@
     "net_buyback_yield": 0.1812,
     "shares_now": 115425000,
     "shares_year_ago": 140970000,
-    "cheap": false,
-    "score": 16,
+    "cheap": true,
+    "score": 22,
     "reasons": [
-      "net shares -18% YoY (heavy)"
+      "net shares -18% YoY (heavy)",
+      "buying cheap (P/B 1.43)"
     ]
   },
   "NXL": {
@@ -13670,10 +13709,11 @@
     "net_buyback_yield": 0.0352,
     "shares_now": 7531291,
     "shares_year_ago": 7805728,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -4% YoY (modest)"
+      "net shares -4% YoY (modest)",
+      "buying cheap (P/B 1.03)"
     ]
   },
   "STEX": {
@@ -13696,7 +13736,7 @@
     "score": 22,
     "reasons": [
       "net shares -14% YoY (heavy)",
-      "buying cheap (P/B 1.25)"
+      "buying cheap (P/B 1.11)"
     ]
   },
   "BJ": {
@@ -13748,7 +13788,7 @@
     "net_buyback_yield": -1.7791,
     "shares_now": 6582297,
     "shares_year_ago": 2368516,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +178% YoY"
@@ -13770,7 +13810,7 @@
     "net_buyback_yield": -0.1563,
     "shares_now": 16328947,
     "shares_year_ago": 14121569,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +16% YoY"
@@ -13814,7 +13854,7 @@
     "net_buyback_yield": -0.4856,
     "shares_now": 2291056,
     "shares_year_ago": 1542139,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +49% YoY"
@@ -13836,7 +13876,7 @@
     "net_buyback_yield": -14.7461,
     "shares_now": 29363230,
     "shares_year_ago": 1864794,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +1475% YoY"
@@ -13847,7 +13887,7 @@
     "net_buyback_yield": -0.1975,
     "shares_now": 50258849,
     "shares_year_ago": 41968076,
-    "cheap": true,
+    "cheap": false,
     "score": -6,
     "reasons": [
       "net DILUTION +20% YoY"
@@ -13869,7 +13909,7 @@
     "net_buyback_yield": -0.0322,
     "shares_now": 46116898,
     "shares_year_ago": 44680084,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +3% YoY"
@@ -13917,7 +13957,7 @@
     "score": 12,
     "reasons": [
       "net shares -2% YoY (modest)",
-      "buying cheap (P/B 1.36)"
+      "buying cheap (P/B 1.24)"
     ]
   },
   "IBTA": {
@@ -13936,7 +13976,7 @@
     "net_buyback_yield": -0.0311,
     "shares_now": 48498763,
     "shares_year_ago": 47037799,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +3% YoY"
@@ -13962,7 +14002,7 @@
     "score": 12,
     "reasons": [
       "net shares -2% YoY (modest)",
-      "buying cheap (P/B 1.42)"
+      "buying cheap (P/B 1.38)"
     ]
   },
   "STCB": {
@@ -14003,7 +14043,7 @@
     "net_buyback_yield": -1.1755,
     "shares_now": 118757013401,
     "shares_year_ago": 54588283841,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +118% YoY"
@@ -14036,7 +14076,7 @@
     "net_buyback_yield": -0.2366,
     "shares_now": 70907909,
     "shares_year_ago": 57339759,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +24% YoY"
@@ -14073,7 +14113,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 1.08)"
+      "buying cheap (P/B 1.18)"
     ]
   },
   "BIOF": {
@@ -14114,7 +14154,7 @@
     "net_buyback_yield": -0.4076,
     "shares_now": 2078226,
     "shares_year_ago": 1476410,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +41% YoY"
@@ -14136,7 +14176,7 @@
     "net_buyback_yield": -0.0487,
     "shares_now": 28947254,
     "shares_year_ago": 27602612,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +5% YoY"
@@ -14147,10 +14187,11 @@
     "net_buyback_yield": 0.0462,
     "shares_now": 22168930,
     "shares_year_ago": 23243088,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -5% YoY (modest)"
+      "net shares -5% YoY (modest)",
+      "buying cheap (P/B 0.61)"
     ]
   },
   "RLMD": {
@@ -14180,7 +14221,7 @@
     "net_buyback_yield": -6.5899,
     "shares_now": 448084,
     "shares_year_ago": 59037,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +659% YoY"
@@ -14208,8 +14249,8 @@
       "net shares -6% YoY"
     ]
   },
-  "RITM-PD": {
-    "ticker": "RITM-PD",
+  "RITM-PE": {
+    "ticker": "RITM-PE",
     "net_buyback_yield": -0.0666,
     "shares_now": 565927074,
     "shares_year_ago": 530599555,
@@ -14268,7 +14309,7 @@
     "net_buyback_yield": -4.8779,
     "shares_now": 341377,
     "shares_year_ago": 58078,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +488% YoY"
@@ -14532,10 +14573,11 @@
     "net_buyback_yield": 0.0465,
     "shares_now": 17430000,
     "shares_year_ago": 18280000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -5% YoY (modest)"
+      "net shares -5% YoY (modest)",
+      "buying cheap (P/B 0.99)"
     ]
   },
   "PREM": {
@@ -14576,7 +14618,7 @@
     "net_buyback_yield": -4.5275,
     "shares_now": 7699102,
     "shares_year_ago": 1392881,
-    "cheap": true,
+    "cheap": false,
     "score": -6,
     "reasons": [
       "net DILUTION +453% YoY"
@@ -14620,10 +14662,11 @@
     "net_buyback_yield": 0.0403,
     "shares_now": 112569067,
     "shares_year_ago": 117297222,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -4% YoY (modest)"
+      "net shares -4% YoY (modest)",
+      "buying cheap (P/B 0.80)"
     ]
   },
   "REAL": {
@@ -14734,7 +14777,7 @@
     "score": 22,
     "reasons": [
       "net shares -11% YoY (heavy)",
-      "buying cheap (P/B 0.77)"
+      "buying cheap (P/B 0.73)"
     ]
   },
   "ABAT": {
@@ -14768,7 +14811,7 @@
     "score": 17,
     "reasons": [
       "net shares -6% YoY",
-      "buying cheap (P/B 0.71)"
+      "buying cheap (P/B 0.69)"
     ]
   },
   "SFIX": {
@@ -14831,11 +14874,10 @@
     "net_buyback_yield": 0.0266,
     "shares_now": 44587704,
     "shares_year_ago": 45804924,
-    "cheap": true,
-    "score": 12,
+    "cheap": false,
+    "score": 6,
     "reasons": [
-      "net shares -3% YoY (modest)",
-      "buying cheap (P/B 1.33)"
+      "net shares -3% YoY (modest)"
     ]
   },
   "OUT": {
@@ -14942,7 +14984,7 @@
     "net_buyback_yield": -0.2593,
     "shares_now": 6406191,
     "shares_year_ago": 5086985,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +26% YoY"
@@ -15074,7 +15116,7 @@
     "net_buyback_yield": -27.8085,
     "shares_now": 515788,
     "shares_year_ago": 17904,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +2781% YoY"
@@ -15118,7 +15160,7 @@
     "net_buyback_yield": -0.9314,
     "shares_now": 829631,
     "shares_year_ago": 429551,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +93% YoY"
@@ -15140,7 +15182,7 @@
     "net_buyback_yield": -0.3364,
     "shares_now": 994059,
     "shares_year_ago": 743849,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +34% YoY"
@@ -15210,7 +15252,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 1.03)"
+      "buying cheap (P/B 0.87)"
     ]
   },
   "GOLD": {
@@ -15218,7 +15260,7 @@
     "net_buyback_yield": -0.2012,
     "shares_now": 28404400,
     "shares_year_ago": 23646100,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +20% YoY"
@@ -15233,7 +15275,7 @@
     "score": 17,
     "reasons": [
       "net shares -5% YoY",
-      "buying cheap (P/B 0.93)"
+      "buying cheap (P/B 1.02)"
     ]
   },
   "PCTY": {
@@ -15252,7 +15294,7 @@
     "net_buyback_yield": -25.1102,
     "shares_now": 6632000,
     "shares_year_ago": 254000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +2511% YoY"
@@ -15289,7 +15331,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 1.14)"
+      "buying cheap (P/B 1.19)"
     ]
   },
   "JSM": {
@@ -15297,10 +15339,11 @@
     "net_buyback_yield": 0.0588,
     "shares_now": 96000000,
     "shares_year_ago": 102000000,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -6% YoY"
+      "net shares -6% YoY",
+      "buying cheap (P/B 0.68)"
     ]
   },
   "AVIR": {
@@ -15308,11 +15351,10 @@
     "net_buyback_yield": 0.07,
     "shares_now": 79198204,
     "shares_year_ago": 85159254,
-    "cheap": true,
-    "score": 17,
+    "cheap": false,
+    "score": 11,
     "reasons": [
-      "net shares -7% YoY",
-      "buying cheap (P/B 1.49)"
+      "net shares -7% YoY"
     ]
   },
   "CRBP": {
@@ -15342,7 +15384,7 @@
     "net_buyback_yield": -0.1511,
     "shares_now": 8720257,
     "shares_year_ago": 7575813,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +15% YoY"
@@ -15419,7 +15461,7 @@
     "net_buyback_yield": -1.564,
     "shares_now": 13857319,
     "shares_year_ago": 5404552,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +156% YoY"
@@ -15529,10 +15571,11 @@
     "net_buyback_yield": 0.0278,
     "shares_now": 5318874,
     "shares_year_ago": 5471006,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -3% YoY (modest)"
+      "net shares -3% YoY (modest)",
+      "buying cheap (P/B 1.17)"
     ]
   },
   "AERA": {
@@ -15540,7 +15583,7 @@
     "net_buyback_yield": -1.9469,
     "shares_now": 3919344,
     "shares_year_ago": 1329996,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +195% YoY"
@@ -15562,7 +15605,7 @@
     "net_buyback_yield": -0.3711,
     "shares_now": 74007596,
     "shares_year_ago": 53975575,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +37% YoY"
@@ -15606,10 +15649,11 @@
     "net_buyback_yield": 0.0274,
     "shares_now": 88700000,
     "shares_year_ago": 91200000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -3% YoY (modest)"
+      "net shares -3% YoY (modest)",
+      "buying cheap (P/B 1.37)"
     ]
   },
   "INSP": {
@@ -15639,7 +15683,7 @@
     "net_buyback_yield": -0.0996,
     "shares_now": 9582533,
     "shares_year_ago": 8714701,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +10% YoY"
@@ -15661,7 +15705,7 @@
     "net_buyback_yield": -7642.8048,
     "shares_now": 76736156,
     "shares_year_ago": 10039,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +764280% YoY"
@@ -15749,7 +15793,7 @@
     "net_buyback_yield": -73.7041,
     "shares_now": 531968,
     "shares_year_ago": 7121,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +7370% YoY"
@@ -15760,10 +15804,11 @@
     "net_buyback_yield": 0.0832,
     "shares_now": 92715696,
     "shares_year_ago": 101125212,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -8% YoY"
+      "net shares -8% YoY",
+      "buying cheap (P/B 1.48)"
     ]
   },
   "PENG": {
@@ -15848,7 +15893,7 @@
     "net_buyback_yield": -0.0343,
     "shares_now": 95861716,
     "shares_year_ago": 92679493,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +3% YoY"
@@ -15863,7 +15908,7 @@
     "score": 22,
     "reasons": [
       "net shares -23% YoY (heavy)",
-      "buying cheap (P/B 0.35)"
+      "buying cheap (P/B 0.25)"
     ]
   },
   "LONA": {
@@ -15871,7 +15916,7 @@
     "net_buyback_yield": -3.8734,
     "shares_now": 19027087,
     "shares_year_ago": 3904244,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +387% YoY"
@@ -15904,7 +15949,7 @@
     "net_buyback_yield": -2.9101,
     "shares_now": 739000,
     "shares_year_ago": 189000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +291% YoY"
@@ -15926,7 +15971,7 @@
     "net_buyback_yield": -0.071,
     "shares_now": 46453599,
     "shares_year_ago": 43372207,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +7% YoY"
@@ -15992,10 +16037,11 @@
     "net_buyback_yield": 0.095,
     "shares_now": 1580788,
     "shares_year_ago": 1746739,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -10% YoY"
+      "net shares -10% YoY",
+      "buying cheap (P/B 0.71)"
     ]
   },
   "BOXL": {
@@ -16139,7 +16185,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 1.27)"
+      "buying cheap (P/B 1.07)"
     ]
   },
   "PZG": {
@@ -16158,7 +16204,7 @@
     "net_buyback_yield": -4.5176,
     "shares_now": 8963998,
     "shares_year_ago": 1624629,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +452% YoY"
@@ -16334,10 +16380,11 @@
     "net_buyback_yield": 0.1604,
     "shares_now": 93647444,
     "shares_year_ago": 111543154,
-    "cheap": false,
-    "score": 16,
+    "cheap": true,
+    "score": 22,
     "reasons": [
-      "net shares -16% YoY (heavy)"
+      "net shares -16% YoY (heavy)",
+      "buying cheap (P/B 0.91)"
     ]
   },
   "ZSPC": {
@@ -16367,7 +16414,7 @@
     "net_buyback_yield": -4.2079,
     "shares_now": 4859567,
     "shares_year_ago": 933109,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +421% YoY"
@@ -16378,10 +16425,11 @@
     "net_buyback_yield": 0.0244,
     "shares_now": 16136132,
     "shares_year_ago": 16540345,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -2% YoY (modest)"
+      "net shares -2% YoY (modest)",
+      "buying cheap (P/B 1.05)"
     ]
   },
   "TTAN": {
@@ -16444,7 +16492,7 @@
     "net_buyback_yield": -3.1796,
     "shares_now": 21455856,
     "shares_year_ago": 5133412,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +318% YoY"
@@ -16455,10 +16503,11 @@
     "net_buyback_yield": 0.1234,
     "shares_now": 1680445,
     "shares_year_ago": 1916943,
-    "cheap": false,
-    "score": 16,
+    "cheap": true,
+    "score": 22,
     "reasons": [
-      "net shares -12% YoY (heavy)"
+      "net shares -12% YoY (heavy)",
+      "buying cheap (P/B 0.49)"
     ]
   },
   "GDC": {
@@ -16466,7 +16515,7 @@
     "net_buyback_yield": -4.6266,
     "shares_now": 64786647,
     "shares_year_ago": 11514370,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +463% YoY"
@@ -16510,10 +16559,11 @@
     "net_buyback_yield": 0.0414,
     "shares_now": 207504,
     "shares_year_ago": 216462,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -4% YoY (modest)"
+      "net shares -4% YoY (modest)",
+      "buying cheap (P/B 0.69)"
     ]
   },
   "ONT": {
@@ -16642,7 +16692,7 @@
     "net_buyback_yield": -0.0948,
     "shares_now": 109558530,
     "shares_year_ago": 100072018,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +9% YoY"
@@ -16653,7 +16703,7 @@
     "net_buyback_yield": -0.221,
     "shares_now": 68064586,
     "shares_year_ago": 55744047,
-    "cheap": true,
+    "cheap": false,
     "score": -6,
     "reasons": [
       "net DILUTION +22% YoY"
@@ -16703,8 +16753,8 @@
       "net dilution +5% YoY"
     ]
   },
-  "GIPRW": {
-    "ticker": "GIPRW",
+  "GIPR": {
+    "ticker": "GIPR",
     "net_buyback_yield": -0.2519,
     "shares_now": 6814332,
     "shares_year_ago": 5443188,
@@ -16807,7 +16857,7 @@
     "net_buyback_yield": -0.0894,
     "shares_now": 8736862,
     "shares_year_ago": 8020013,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +9% YoY"
@@ -16844,7 +16894,7 @@
     "score": 22,
     "reasons": [
       "net shares -12% YoY (heavy)",
-      "buying cheap (P/B 1.28)"
+      "buying cheap (P/B 0.91)"
     ]
   },
   "ACOG": {
@@ -16885,7 +16935,7 @@
     "net_buyback_yield": -0.1066,
     "shares_now": 827962000,
     "shares_year_ago": 748197000,
-    "cheap": true,
+    "cheap": false,
     "score": -6,
     "reasons": [
       "net DILUTION +11% YoY"
@@ -16929,7 +16979,7 @@
     "net_buyback_yield": -0.1256,
     "shares_now": 654000,
     "shares_year_ago": 581000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +13% YoY"
@@ -16951,7 +17001,7 @@
     "net_buyback_yield": -0.1556,
     "shares_now": 14095371,
     "shares_year_ago": 12197615,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +16% YoY"
@@ -16984,7 +17034,7 @@
     "net_buyback_yield": -1.0915,
     "shares_now": 9190354,
     "shares_year_ago": 4394119,
-    "cheap": true,
+    "cheap": false,
     "score": -6,
     "reasons": [
       "net DILUTION +109% YoY"
@@ -17131,7 +17181,7 @@
     "score": 17,
     "reasons": [
       "net shares -6% YoY",
-      "buying cheap (P/B 0.95)"
+      "buying cheap (P/B 0.81)"
     ]
   },
   "YETI": {
@@ -17150,7 +17200,7 @@
     "net_buyback_yield": -260.8312,
     "shares_now": 1060678,
     "shares_year_ago": 4051,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +26083% YoY"
@@ -17282,7 +17332,7 @@
     "net_buyback_yield": -0.2114,
     "shares_now": 13984828,
     "shares_year_ago": 11544415,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +21% YoY"
@@ -17330,7 +17380,7 @@
     "score": 12,
     "reasons": [
       "net shares -4% YoY (modest)",
-      "buying cheap (P/B 0.34)"
+      "buying cheap (P/B 0.37)"
     ]
   },
   "PRLD": {
@@ -17426,7 +17476,7 @@
     "net_buyback_yield": -0.1122,
     "shares_now": 116912000,
     "shares_year_ago": 105118000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +11% YoY"
@@ -17448,7 +17498,7 @@
     "net_buyback_yield": -3.0491,
     "shares_now": 5263717,
     "shares_year_ago": 1299971,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +305% YoY"
@@ -17492,11 +17542,10 @@
     "net_buyback_yield": 0.1797,
     "shares_now": 42000000,
     "shares_year_ago": 51200000,
-    "cheap": true,
-    "score": 22,
+    "cheap": false,
+    "score": 16,
     "reasons": [
-      "net shares -18% YoY (heavy)",
-      "buying cheap (P/B 0.93)"
+      "net shares -18% YoY (heavy)"
     ]
   },
   "NDRA": {
@@ -17504,7 +17553,7 @@
     "net_buyback_yield": -1.1514,
     "shares_now": 1199586,
     "shares_year_ago": 557582,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +115% YoY"
@@ -17537,7 +17586,7 @@
     "net_buyback_yield": -4.7956,
     "shares_now": 12686142,
     "shares_year_ago": 2188938,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +480% YoY"
@@ -17559,7 +17608,7 @@
     "net_buyback_yield": -1.3409,
     "shares_now": 1372084,
     "shares_year_ago": 586142,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +134% YoY"
@@ -17574,7 +17623,7 @@
     "score": 17,
     "reasons": [
       "net shares -8% YoY",
-      "buying cheap (P/B 1.24)"
+      "buying cheap (P/B 1.30)"
     ]
   },
   "JILL": {
@@ -17619,7 +17668,7 @@
     "score": 22,
     "reasons": [
       "net shares -28% YoY (heavy)",
-      "buying cheap (P/B 0.73)"
+      "buying cheap (P/B 0.59)"
     ]
   },
   "FRMM": {
@@ -17627,7 +17676,7 @@
     "net_buyback_yield": -59.1819,
     "shares_now": 21300374,
     "shares_year_ago": 353933,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +5918% YoY"
@@ -17642,7 +17691,7 @@
     "score": 17,
     "reasons": [
       "net shares -8% YoY",
-      "buying cheap (P/B 0.73)"
+      "buying cheap (P/B 0.92)"
     ]
   },
   "BAR": {
@@ -17727,7 +17776,7 @@
     "net_buyback_yield": -1.1094,
     "shares_now": 2253474,
     "shares_year_ago": 1068299,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +111% YoY"
@@ -17837,7 +17886,7 @@
     "net_buyback_yield": -0.1846,
     "shares_now": 40640879,
     "shares_year_ago": 34308435,
-    "cheap": true,
+    "cheap": false,
     "score": -6,
     "reasons": [
       "net DILUTION +18% YoY"
@@ -17892,7 +17941,7 @@
     "net_buyback_yield": -6.8466,
     "shares_now": 15517992,
     "shares_year_ago": 1977670,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +685% YoY"
@@ -17914,10 +17963,11 @@
     "net_buyback_yield": 0.0931,
     "shares_now": 92343383,
     "shares_year_ago": 101821229,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -9% YoY"
+      "net shares -9% YoY",
+      "buying cheap (P/B 0.61)"
     ]
   },
   "WRAP": {
@@ -17947,7 +17997,7 @@
     "net_buyback_yield": -0.236,
     "shares_now": 11598717,
     "shares_year_ago": 9384266,
-    "cheap": true,
+    "cheap": false,
     "score": -6,
     "reasons": [
       "net DILUTION +24% YoY"
@@ -17969,7 +18019,7 @@
     "net_buyback_yield": -6.1094,
     "shares_now": 984668,
     "shares_year_ago": 138503,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +611% YoY"
@@ -17991,10 +18041,11 @@
     "net_buyback_yield": 0.2632,
     "shares_now": 45900000,
     "shares_year_ago": 62300000,
-    "cheap": false,
-    "score": 16,
+    "cheap": true,
+    "score": 22,
     "reasons": [
-      "net shares -26% YoY (heavy)"
+      "net shares -26% YoY (heavy)",
+      "buying cheap (P/B 0.72)"
     ]
   },
   "ANGI": {
@@ -18006,7 +18057,7 @@
     "score": 22,
     "reasons": [
       "net shares -20% YoY (heavy)",
-      "buying cheap (P/B 0.22)"
+      "buying cheap (P/B 0.31)"
     ]
   },
   "CBUS": {
@@ -18069,7 +18120,7 @@
     "net_buyback_yield": -1.8482,
     "shares_now": 1465214,
     "shares_year_ago": 514444,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +185% YoY"
@@ -18102,10 +18153,11 @@
     "net_buyback_yield": 0.1409,
     "shares_now": 6229522,
     "shares_year_ago": 7251454,
-    "cheap": false,
-    "score": 16,
+    "cheap": true,
+    "score": 22,
     "reasons": [
-      "net shares -14% YoY (heavy)"
+      "net shares -14% YoY (heavy)",
+      "buying cheap (P/B 0.73)"
     ]
   },
   "SER": {
@@ -18124,7 +18176,7 @@
     "net_buyback_yield": -0.4932,
     "shares_now": 23759259,
     "shares_year_ago": 15911403,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +49% YoY"
@@ -18135,7 +18187,7 @@
     "net_buyback_yield": -0.1849,
     "shares_now": 42480488,
     "shares_year_ago": 35850037,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +18% YoY"
@@ -18234,7 +18286,7 @@
     "net_buyback_yield": -4.2002,
     "shares_now": 1000626,
     "shares_year_ago": 192421,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +420% YoY"
@@ -18256,7 +18308,7 @@
     "net_buyback_yield": -1.0298,
     "shares_now": 51229576,
     "shares_year_ago": 25238501,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +103% YoY"
@@ -18370,7 +18422,7 @@
     "score": 17,
     "reasons": [
       "net shares -7% YoY",
-      "buying cheap (P/B 0.49)"
+      "buying cheap (P/B 0.66)"
     ]
   },
   "BTAIQ": {
@@ -18389,7 +18441,7 @@
     "net_buyback_yield": -0.6579,
     "shares_now": 24786282000,
     "shares_year_ago": 14950734000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +66% YoY"
@@ -18437,7 +18489,7 @@
     "score": 17,
     "reasons": [
       "net shares -7% YoY",
-      "buying cheap (P/B 1.22)"
+      "buying cheap (P/B 1.36)"
     ]
   },
   "INBS": {
@@ -18621,10 +18673,11 @@
     "net_buyback_yield": 0.0204,
     "shares_now": 10909077,
     "shares_year_ago": 11136058,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -2% YoY (modest)"
+      "net shares -2% YoY (modest)",
+      "buying cheap (P/B 0.96)"
     ]
   },
   "TLRY": {
@@ -18632,7 +18685,7 @@
     "net_buyback_yield": -0.2405,
     "shares_now": 112675734,
     "shares_year_ago": 90834279,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +24% YoY"
@@ -18658,7 +18711,7 @@
     "score": 12,
     "reasons": [
       "net shares -4% YoY (modest)",
-      "buying cheap (P/B 1.03)"
+      "buying cheap (P/B 1.25)"
     ]
   },
   "PATH": {
@@ -18677,7 +18730,7 @@
     "net_buyback_yield": -0.6835,
     "shares_now": 1628515,
     "shares_year_ago": 967331,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +68% YoY"
@@ -18688,7 +18741,7 @@
     "net_buyback_yield": -0.6002,
     "shares_now": 21753958,
     "shares_year_ago": 13594530,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +60% YoY"
@@ -18710,7 +18763,7 @@
     "net_buyback_yield": -1.7132,
     "shares_now": 2718433,
     "shares_year_ago": 1001932,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +171% YoY"
@@ -18743,7 +18796,7 @@
     "net_buyback_yield": -0.1158,
     "shares_now": 240290782,
     "shares_year_ago": 215358619,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +12% YoY"
@@ -18754,7 +18807,7 @@
     "net_buyback_yield": -0.3454,
     "shares_now": 2417314,
     "shares_year_ago": 1796766,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +35% YoY"
@@ -18769,7 +18822,7 @@
     "score": 17,
     "reasons": [
       "net shares -5% YoY",
-      "buying cheap (P/B 0.74)"
+      "buying cheap (P/B 0.69)"
     ]
   },
   "SKYAW": {
@@ -18810,7 +18863,7 @@
     "net_buyback_yield": -6.5591,
     "shares_now": 19467114,
     "shares_year_ago": 2575325,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +656% YoY"
@@ -18821,7 +18874,7 @@
     "net_buyback_yield": -0.0473,
     "shares_now": 155000000,
     "shares_year_ago": 148000000,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +5% YoY"
@@ -18836,7 +18889,7 @@
     "score": 12,
     "reasons": [
       "net shares -4% YoY (modest)",
-      "buying cheap (P/B 0.89)"
+      "buying cheap (P/B 1.23)"
     ]
   },
   "GNLN": {
@@ -18844,7 +18897,7 @@
     "net_buyback_yield": -1.6847,
     "shares_now": 4086882,
     "shares_year_ago": 1522272,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +168% YoY"
@@ -18921,10 +18974,11 @@
     "net_buyback_yield": 0.0574,
     "shares_now": 67144353,
     "shares_year_ago": 71234684,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -6% YoY"
+      "net shares -6% YoY",
+      "buying cheap (P/B 0.82)"
     ]
   },
   "OTF": {
@@ -18932,7 +18986,7 @@
     "net_buyback_yield": -0.9727,
     "shares_now": 464266454,
     "shares_year_ago": 235351119,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +97% YoY"
@@ -18987,7 +19041,7 @@
     "net_buyback_yield": -2.6346,
     "shares_now": 38895830,
     "shares_year_ago": 10701411,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +263% YoY"
@@ -19031,7 +19085,7 @@
     "net_buyback_yield": -0.0618,
     "shares_now": 12153000,
     "shares_year_ago": 11446000,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +6% YoY"
@@ -19053,7 +19107,7 @@
     "net_buyback_yield": -0.3967,
     "shares_now": 32693323,
     "shares_year_ago": 23407905,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +40% YoY"
@@ -19097,10 +19151,11 @@
     "net_buyback_yield": 0.0974,
     "shares_now": 47240034,
     "shares_year_ago": 52338258,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -10% YoY"
+      "net shares -10% YoY",
+      "buying cheap (P/B 0.62)"
     ]
   },
   "TRLV": {
@@ -19136,8 +19191,8 @@
       "net shares -6% YoY"
     ]
   },
-  "CYCN": {
-    "ticker": "CYCN",
+  "KRSA": {
+    "ticker": "KRSA",
     "net_buyback_yield": -0.6451,
     "shares_now": 4205000,
     "shares_year_ago": 2556000,
@@ -19174,7 +19229,7 @@
     "net_buyback_yield": -0.0739,
     "shares_now": 510004,
     "shares_year_ago": 474918,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +7% YoY"
@@ -19196,11 +19251,10 @@
     "net_buyback_yield": 0.0415,
     "shares_now": 166400000,
     "shares_year_ago": 173600000,
-    "cheap": true,
-    "score": 12,
+    "cheap": false,
+    "score": 6,
     "reasons": [
-      "net shares -4% YoY (modest)",
-      "buying cheap (P/B 1.37)"
+      "net shares -4% YoY (modest)"
     ]
   },
   "SHPH": {
@@ -19208,7 +19262,7 @@
     "net_buyback_yield": -11.5177,
     "shares_now": 5031569,
     "shares_year_ago": 401957,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +1152% YoY"
@@ -19219,7 +19273,7 @@
     "net_buyback_yield": -0.4639,
     "shares_now": 223986000,
     "shares_year_ago": 153006000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +46% YoY"
@@ -19274,7 +19328,7 @@
     "net_buyback_yield": -0.9629,
     "shares_now": 6032193,
     "shares_year_ago": 3073074,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +96% YoY"
@@ -19388,7 +19442,7 @@
     "score": 17,
     "reasons": [
       "net shares -7% YoY",
-      "buying cheap (P/B 0.27)"
+      "buying cheap (P/B 0.26)"
     ]
   },
   "UNCY": {
@@ -19429,10 +19483,11 @@
     "net_buyback_yield": 0.0222,
     "shares_now": 9860105,
     "shares_year_ago": 10084297,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -2% YoY (modest)"
+      "net shares -2% YoY (modest)",
+      "buying cheap (P/B 0.98)"
     ]
   },
   "ARCT": {
@@ -19440,7 +19495,7 @@
     "net_buyback_yield": -0.0485,
     "shares_now": 28421000,
     "shares_year_ago": 27107000,
-    "cheap": true,
+    "cheap": false,
     "score": -3,
     "reasons": [
       "net dilution +5% YoY"
@@ -19484,10 +19539,11 @@
     "net_buyback_yield": 0.0238,
     "shares_now": 24342965,
     "shares_year_ago": 24937030,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -2% YoY (modest)"
+      "net shares -2% YoY (modest)",
+      "buying cheap (P/B 1.28)"
     ]
   },
   "MPLT": {
@@ -19495,7 +19551,7 @@
     "net_buyback_yield": -58.4497,
     "shares_now": 45276763,
     "shares_year_ago": 761598,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +5845% YoY"
@@ -19517,7 +19573,7 @@
     "net_buyback_yield": -0.2557,
     "shares_now": 47074491,
     "shares_year_ago": 37488778,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +26% YoY"
@@ -19539,7 +19595,7 @@
     "net_buyback_yield": -1.9456,
     "shares_now": 1080450771,
     "shares_year_ago": 366800177,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +195% YoY"
@@ -19627,7 +19683,7 @@
     "net_buyback_yield": -2.1806,
     "shares_now": 45179343,
     "shares_year_ago": 14204831,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +218% YoY"
@@ -19726,7 +19782,7 @@
     "net_buyback_yield": -19.8797,
     "shares_now": 4399749,
     "shares_year_ago": 210719,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +1988% YoY"
@@ -19748,7 +19804,7 @@
     "net_buyback_yield": -0.0642,
     "shares_now": 18560056,
     "shares_year_ago": 17440826,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +6% YoY"
@@ -19770,7 +19826,7 @@
     "net_buyback_yield": -1.4501,
     "shares_now": 14685448,
     "shares_year_ago": 5993866,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +145% YoY"
@@ -19781,7 +19837,7 @@
     "net_buyback_yield": -13.7007,
     "shares_now": 628528,
     "shares_year_ago": 42755,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +1370% YoY"
@@ -19814,10 +19870,11 @@
     "net_buyback_yield": 0.0298,
     "shares_now": 85775149,
     "shares_year_ago": 88413652,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -3% YoY (modest)"
+      "net shares -3% YoY (modest)",
+      "buying cheap (P/B 0.74)"
     ]
   },
   "CARR": {
@@ -19880,7 +19937,7 @@
     "net_buyback_yield": -17.2942,
     "shares_now": 8927931,
     "shares_year_ago": 488020,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +1729% YoY"
@@ -19891,7 +19948,7 @@
     "net_buyback_yield": -26.5874,
     "shares_now": 1049454,
     "shares_year_ago": 38041,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +2659% YoY"
@@ -19924,7 +19981,7 @@
     "net_buyback_yield": -0.3371,
     "shares_now": 83643311,
     "shares_year_ago": 62555531,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +34% YoY"
@@ -20012,7 +20069,7 @@
     "net_buyback_yield": -19.628,
     "shares_now": 496228,
     "shares_year_ago": 24056,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +1963% YoY"
@@ -20034,7 +20091,7 @@
     "net_buyback_yield": -0.0576,
     "shares_now": 47352000,
     "shares_year_ago": 44773000,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +6% YoY"
@@ -20056,7 +20113,7 @@
     "net_buyback_yield": -5.0085,
     "shares_now": 612715,
     "shares_year_ago": 101975,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +501% YoY"
@@ -20067,7 +20124,7 @@
     "net_buyback_yield": -0.0382,
     "shares_now": 6781976,
     "shares_year_ago": 6532658,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +4% YoY"
@@ -20078,7 +20135,7 @@
     "net_buyback_yield": -19.2398,
     "shares_now": 9958,
     "shares_year_ago": 492,
-    "cheap": true,
+    "cheap": false,
     "score": -6,
     "reasons": [
       "net DILUTION +1924% YoY"
@@ -20126,7 +20183,7 @@
     "score": 22,
     "reasons": [
       "net shares -11% YoY (heavy)",
-      "buying cheap (P/B 0.56)"
+      "buying cheap (P/B 1.39)"
     ]
   },
   "CARL": {
@@ -20145,10 +20202,11 @@
     "net_buyback_yield": 0.0434,
     "shares_now": 31187746,
     "shares_year_ago": 32602053,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -4% YoY (modest)"
+      "net shares -4% YoY (modest)",
+      "buying cheap (P/B 0.00)"
     ]
   },
   "OSTX": {
@@ -20167,10 +20225,11 @@
     "net_buyback_yield": 0.0211,
     "shares_now": 231827061,
     "shares_year_ago": 236822468,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -2% YoY (modest)"
+      "net shares -2% YoY (modest)",
+      "buying cheap (P/B 0.95)"
     ]
   },
   "CHYM": {
@@ -20228,8 +20287,8 @@
       "net DILUTION +21% YoY"
     ]
   },
-  "TMCWW": {
-    "ticker": "TMCWW",
+  "TMC": {
+    "ticker": "TMC",
     "net_buyback_yield": -0.2329,
     "shares_now": 425770033,
     "shares_year_ago": 345346393,
@@ -20266,7 +20325,7 @@
     "net_buyback_yield": -0.1944,
     "shares_now": 10402967,
     "shares_year_ago": 8709693,
-    "cheap": true,
+    "cheap": false,
     "score": -6,
     "reasons": [
       "net DILUTION +19% YoY"
@@ -20288,10 +20347,11 @@
     "net_buyback_yield": 0.0666,
     "shares_now": 76742000,
     "shares_year_ago": 82214000,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -7% YoY"
+      "net shares -7% YoY",
+      "buying cheap (P/B 0.53)"
     ]
   },
   "DMRA": {
@@ -20310,7 +20370,7 @@
     "net_buyback_yield": -1.6881,
     "shares_now": 5247311,
     "shares_year_ago": 1952022,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +169% YoY"
@@ -20327,8 +20387,8 @@
       "net dilution +6% YoY"
     ]
   },
-  "OPENZ": {
-    "ticker": "OPENZ",
+  "OPENW": {
+    "ticker": "OPENW",
     "net_buyback_yield": -0.3259,
     "shares_now": 959332000,
     "shares_year_ago": 723542000,
@@ -20413,7 +20473,7 @@
     "score": 12,
     "reasons": [
       "net shares -4% YoY (modest)",
-      "buying cheap (P/B 0.55)"
+      "buying cheap (P/B 0.69)"
     ]
   },
   "PLBY": {
@@ -20465,7 +20525,7 @@
     "net_buyback_yield": -0.4221,
     "shares_now": 2846974742,
     "shares_year_ago": 2001936379,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +42% YoY"
@@ -20542,7 +20602,7 @@
     "net_buyback_yield": -0.0582,
     "shares_now": 3879246,
     "shares_year_ago": 3666000,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +6% YoY"
@@ -20619,11 +20679,10 @@
     "net_buyback_yield": 0.1007,
     "shares_now": 341424000,
     "shares_year_ago": 379656000,
-    "cheap": true,
-    "score": 22,
+    "cheap": false,
+    "score": 16,
     "reasons": [
-      "net shares -10% YoY (heavy)",
-      "buying cheap (P/B 1.44)"
+      "net shares -10% YoY (heavy)"
     ]
   },
   "EDBLW": {
@@ -20719,7 +20778,7 @@
     "net_buyback_yield": -0.0812,
     "shares_now": 328285861,
     "shares_year_ago": 303631731,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +8% YoY"
@@ -20763,7 +20822,7 @@
     "net_buyback_yield": -5.5097,
     "shares_now": 17008046,
     "shares_year_ago": 2612721,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +551% YoY"
@@ -20851,7 +20910,7 @@
     "net_buyback_yield": -0.1874,
     "shares_now": 216472000,
     "shares_year_ago": 182303000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +19% YoY"
@@ -20928,10 +20987,11 @@
     "net_buyback_yield": 0.0326,
     "shares_now": 65945000,
     "shares_year_ago": 68170000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -3% YoY (modest)"
+      "net shares -3% YoY (modest)",
+      "buying cheap (P/B 1.37)"
     ]
   },
   "SMTK": {
@@ -20939,7 +20999,7 @@
     "net_buyback_yield": -1.171,
     "shares_now": 14436282,
     "shares_year_ago": 6649603,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +117% YoY"
@@ -20950,7 +21010,7 @@
     "net_buyback_yield": -0.0505,
     "shares_now": 131399898,
     "shares_year_ago": 125079470,
-    "cheap": true,
+    "cheap": false,
     "score": -3,
     "reasons": [
       "net dilution +5% YoY"
@@ -20994,7 +21054,7 @@
     "net_buyback_yield": -2.6382,
     "shares_now": 86195269,
     "shares_year_ago": 23691769,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +264% YoY"
@@ -21016,7 +21076,7 @@
     "net_buyback_yield": -22.2702,
     "shares_now": 33544748,
     "shares_year_ago": 1441535,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +2227% YoY"
@@ -21093,7 +21153,7 @@
     "net_buyback_yield": -0.4329,
     "shares_now": 11572000,
     "shares_year_ago": 8076000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +43% YoY"
@@ -21170,11 +21230,10 @@
     "net_buyback_yield": 0.0286,
     "shares_now": 164108000,
     "shares_year_ago": 168941000,
-    "cheap": true,
-    "score": 12,
+    "cheap": false,
+    "score": 6,
     "reasons": [
-      "net shares -3% YoY (modest)",
-      "buying cheap (P/B 1.49)"
+      "net shares -3% YoY (modest)"
     ]
   },
   "CIFR": {
@@ -21285,7 +21344,7 @@
     "score": 12,
     "reasons": [
       "net shares -3% YoY (modest)",
-      "buying cheap (P/B 0.43)"
+      "buying cheap (P/B 0.30)"
     ]
   },
   "FHTX": {
@@ -21315,7 +21374,7 @@
     "net_buyback_yield": -1.5033,
     "shares_now": 319712720,
     "shares_year_ago": 127718255,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +150% YoY"
@@ -21363,7 +21422,7 @@
     "score": 17,
     "reasons": [
       "net shares -7% YoY",
-      "buying cheap (P/B 1.11)"
+      "buying cheap (P/B 1.23)"
     ]
   },
   "AMAL": {
@@ -21393,10 +21452,11 @@
     "net_buyback_yield": 0.0393,
     "shares_now": 111324000,
     "shares_year_ago": 115883000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -4% YoY (modest)"
+      "net shares -4% YoY (modest)",
+      "buying cheap (P/B 0.95)"
     ]
   },
   "OWL": {
@@ -21415,14 +21475,14 @@
     "net_buyback_yield": -65.1232,
     "shares_now": 1241001,
     "shares_year_ago": 18768,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +6512% YoY"
     ]
   },
-  "ACHR-WT": {
-    "ticker": "ACHR-WT",
+  "ACHR": {
+    "ticker": "ACHR",
     "net_buyback_yield": -0.419,
     "shares_now": 766850002,
     "shares_year_ago": 540427085,
@@ -21459,7 +21519,7 @@
     "net_buyback_yield": -0.6759,
     "shares_now": 46194000,
     "shares_year_ago": 27564000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +68% YoY"
@@ -21485,11 +21545,11 @@
     "score": 17,
     "reasons": [
       "net shares -9% YoY",
-      "buying cheap (P/B 1.01)"
+      "buying cheap (P/B 0.68)"
     ]
   },
-  "ONFOW": {
-    "ticker": "ONFOW",
+  "ONFOP": {
+    "ticker": "ONFOP",
     "net_buyback_yield": -0.1435,
     "shares_now": 5863214,
     "shares_year_ago": 5127395,
@@ -21515,7 +21575,7 @@
     "net_buyback_yield": -150.6719,
     "shares_now": 97525,
     "shares_year_ago": 643,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +15067% YoY"
@@ -21585,7 +21645,7 @@
     "score": 12,
     "reasons": [
       "net shares -2% YoY (modest)",
-      "buying cheap (P/B 0.84)"
+      "buying cheap (P/B 1.38)"
     ]
   },
   "MANE": {
@@ -21670,7 +21730,7 @@
     "net_buyback_yield": -3.858,
     "shares_now": 904312,
     "shares_year_ago": 186149,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +386% YoY"
@@ -21725,7 +21785,7 @@
     "net_buyback_yield": -228.2151,
     "shares_now": 454620613,
     "shares_year_ago": 1983380,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +22822% YoY"
@@ -21740,7 +21800,7 @@
     "score": 12,
     "reasons": [
       "net shares -4% YoY (modest)",
-      "buying cheap (P/B 1.36)"
+      "buying cheap (P/B 1.22)"
     ]
   },
   "RNAZ": {
@@ -21748,7 +21808,7 @@
     "net_buyback_yield": -4.3231,
     "shares_now": 916968,
     "shares_year_ago": 172262,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +432% YoY"
@@ -21759,7 +21819,7 @@
     "net_buyback_yield": -96.6307,
     "shares_now": 33022103,
     "shares_year_ago": 338235,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +9663% YoY"
@@ -21781,7 +21841,7 @@
     "net_buyback_yield": -0.3866,
     "shares_now": 1453875,
     "shares_year_ago": 1048508,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +39% YoY"
@@ -21946,10 +22006,11 @@
     "net_buyback_yield": 0.1445,
     "shares_now": 51186206,
     "shares_year_ago": 59834256,
-    "cheap": false,
-    "score": 16,
+    "cheap": true,
+    "score": 22,
     "reasons": [
-      "net shares -14% YoY (heavy)"
+      "net shares -14% YoY (heavy)",
+      "buying cheap (P/B 0.58)"
     ]
   },
   "COYA": {
@@ -21957,7 +22018,7 @@
     "net_buyback_yield": -0.3543,
     "shares_now": 22644304,
     "shares_year_ago": 16720511,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +35% YoY"
@@ -21968,10 +22029,11 @@
     "net_buyback_yield": 0.0288,
     "shares_now": 2744385,
     "shares_year_ago": 2825720,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -3% YoY (modest)"
+      "net shares -3% YoY (modest)",
+      "buying cheap (P/B 0.95)"
     ]
   },
   "IMA": {
@@ -21990,7 +22052,7 @@
     "net_buyback_yield": -1.1145,
     "shares_now": 69091100,
     "shares_year_ago": 32674720,
-    "cheap": true,
+    "cheap": false,
     "score": -6,
     "reasons": [
       "net DILUTION +111% YoY"
@@ -22133,10 +22195,11 @@
     "net_buyback_yield": 0.2466,
     "shares_now": 110878369,
     "shares_year_ago": 147164068,
-    "cheap": false,
-    "score": 16,
+    "cheap": true,
+    "score": 22,
     "reasons": [
-      "net shares -25% YoY (heavy)"
+      "net shares -25% YoY (heavy)",
+      "buying cheap (P/B 0.50)"
     ]
   },
   "SPWRW": {
@@ -22155,7 +22218,7 @@
     "net_buyback_yield": -1411.2489,
     "shares_now": 930672,
     "shares_year_ago": 659,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +141125% YoY"
@@ -22236,7 +22299,7 @@
     "score": 22,
     "reasons": [
       "net shares -16% YoY (heavy)",
-      "buying cheap (P/B 1.34)"
+      "buying cheap (P/B 1.00)"
     ]
   },
   "LUCK": {
@@ -22387,7 +22450,7 @@
     "net_buyback_yield": -33.3819,
     "shares_now": 21366209,
     "shares_year_ago": 621437,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +3338% YoY"
@@ -22607,10 +22670,11 @@
     "net_buyback_yield": 0.0772,
     "shares_now": 2736745,
     "shares_year_ago": 2965742,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -8% YoY"
+      "net shares -8% YoY",
+      "buying cheap (P/B 0.82)"
     ]
   },
   "DJTWW": {
@@ -22640,10 +22704,11 @@
     "net_buyback_yield": 0.0223,
     "shares_now": 3643000,
     "shares_year_ago": 3726000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -2% YoY (modest)"
+      "net shares -2% YoY (modest)",
+      "buying cheap (P/B 0.76)"
     ]
   },
   "IPSC": {
@@ -22761,7 +22826,7 @@
     "net_buyback_yield": -6.4863,
     "shares_now": 3858921,
     "shares_year_ago": 515465,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +649% YoY"
@@ -22772,7 +22837,7 @@
     "net_buyback_yield": -2.2326,
     "shares_now": 30425641,
     "shares_year_ago": 9412260,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +223% YoY"
@@ -22827,7 +22892,7 @@
     "net_buyback_yield": -0.9915,
     "shares_now": 69636328,
     "shares_year_ago": 34966831,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +99% YoY"
@@ -22915,7 +22980,7 @@
     "net_buyback_yield": -3.0279,
     "shares_now": 161925,
     "shares_year_ago": 40201,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +303% YoY"
@@ -22992,7 +23057,7 @@
     "net_buyback_yield": -7.7315,
     "shares_now": 527000,
     "shares_year_ago": 60356,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +773% YoY"
@@ -23014,7 +23079,7 @@
     "net_buyback_yield": -0.0497,
     "shares_now": 2714306,
     "shares_year_ago": 2585908,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +5% YoY"
@@ -23135,7 +23200,7 @@
     "net_buyback_yield": -11.1647,
     "shares_now": 33700550,
     "shares_year_ago": 2770352,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +1116% YoY"
@@ -23172,7 +23237,7 @@
     "score": 17,
     "reasons": [
       "net shares -7% YoY",
-      "buying cheap (P/B 0.55)"
+      "buying cheap (P/B 0.72)"
     ]
   },
   "CINGW": {
@@ -23389,7 +23454,7 @@
     "net_buyback_yield": -0.1866,
     "shares_now": 69460700,
     "shares_year_ago": 58536950,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +19% YoY"
@@ -23466,7 +23531,7 @@
     "net_buyback_yield": -17.8694,
     "shares_now": 12348460,
     "shares_year_ago": 654418,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +1787% YoY"
@@ -23488,7 +23553,7 @@
     "net_buyback_yield": -8.5653,
     "shares_now": 11008586,
     "shares_year_ago": 1150882,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +857% YoY"
@@ -23510,7 +23575,7 @@
     "net_buyback_yield": -2.4392,
     "shares_now": 11799424,
     "shares_year_ago": 3430902,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +244% YoY"
@@ -23620,7 +23685,7 @@
     "net_buyback_yield": -2.6527,
     "shares_now": 66583190,
     "shares_year_ago": 18228267,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +265% YoY"
@@ -23642,7 +23707,7 @@
     "net_buyback_yield": -48.2606,
     "shares_now": 35796181,
     "shares_year_ago": 726669,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +4826% YoY"
@@ -23686,7 +23751,7 @@
     "net_buyback_yield": -0.1361,
     "shares_now": 182000000,
     "shares_year_ago": 160200000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +14% YoY"
@@ -23818,10 +23883,11 @@
     "net_buyback_yield": 0.1514,
     "shares_now": 473500000,
     "shares_year_ago": 558000000,
-    "cheap": false,
-    "score": 16,
+    "cheap": true,
+    "score": 22,
     "reasons": [
-      "net shares -15% YoY (heavy)"
+      "net shares -15% YoY (heavy)",
+      "buying cheap (P/B 0.05)"
     ]
   },
   "MNTN": {
@@ -23851,7 +23917,7 @@
     "net_buyback_yield": -0.0636,
     "shares_now": 5332000,
     "shares_year_ago": 5013000,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +6% YoY"
@@ -23862,7 +23928,7 @@
     "net_buyback_yield": -0.1532,
     "shares_now": 1271631,
     "shares_year_ago": 1102702,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +15% YoY"
@@ -23906,7 +23972,7 @@
     "net_buyback_yield": -0.9628,
     "shares_now": 15513389,
     "shares_year_ago": 7903850,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +96% YoY"
@@ -23928,7 +23994,7 @@
     "net_buyback_yield": -2.3638,
     "shares_now": 10459784,
     "shares_year_ago": 3109522,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +236% YoY"
@@ -23939,7 +24005,7 @@
     "net_buyback_yield": -0.2354,
     "shares_now": 8649012,
     "shares_year_ago": 7001231,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +24% YoY"
@@ -23972,7 +24038,7 @@
     "net_buyback_yield": -2.2771,
     "shares_now": 149275141,
     "shares_year_ago": 45551279,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +228% YoY"
@@ -23983,7 +24049,7 @@
     "net_buyback_yield": -2.9697,
     "shares_now": 28062953,
     "shares_year_ago": 7069202,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +297% YoY"
@@ -24005,14 +24071,15 @@
     "net_buyback_yield": 0.0494,
     "shares_now": 116689474,
     "shares_year_ago": 122758859,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -5% YoY (modest)"
+      "net shares -5% YoY (modest)",
+      "buying cheap (P/B 0.44)"
     ]
   },
-  "TETUF": {
-    "ticker": "TETUF",
+  "TETWF": {
+    "ticker": "TETWF",
     "net_buyback_yield": 0.3313,
     "shares_now": 3418412,
     "shares_year_ago": 5111805,
@@ -24082,7 +24149,7 @@
     "net_buyback_yield": -27.9868,
     "shares_now": 1675725,
     "shares_year_ago": 57810,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +2799% YoY"
@@ -24152,7 +24219,7 @@
     "score": 12,
     "reasons": [
       "net shares -2% YoY (modest)",
-      "buying cheap (P/B 0.95)"
+      "buying cheap (P/B 1.04)"
     ]
   },
   "DINO": {
@@ -24160,11 +24227,10 @@
     "net_buyback_yield": 0.0416,
     "shares_now": 180653000,
     "shares_year_ago": 188488000,
-    "cheap": true,
-    "score": 12,
+    "cheap": false,
+    "score": 6,
     "reasons": [
-      "net shares -4% YoY (modest)",
-      "buying cheap (P/B 1.21)"
+      "net shares -4% YoY (modest)"
     ]
   },
   "TRWD": {
@@ -24216,7 +24282,7 @@
     "net_buyback_yield": -0.7414,
     "shares_now": 121000699,
     "shares_year_ago": 69484200,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +74% YoY"
@@ -24249,7 +24315,7 @@
     "net_buyback_yield": -0.3931,
     "shares_now": 51649161,
     "shares_year_ago": 37074514,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +39% YoY"
@@ -24260,7 +24326,7 @@
     "net_buyback_yield": -0.9158,
     "shares_now": 31395000,
     "shares_year_ago": 16387000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +92% YoY"
@@ -24326,7 +24392,7 @@
     "net_buyback_yield": -0.1032,
     "shares_now": 139000000,
     "shares_year_ago": 126000000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +10% YoY"
@@ -24403,7 +24469,7 @@
     "net_buyback_yield": -0.3056,
     "shares_now": 2407665,
     "shares_year_ago": 1844072,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +31% YoY"
@@ -24414,7 +24480,7 @@
     "net_buyback_yield": -2.5884,
     "shares_now": 16481607,
     "shares_year_ago": 4593062,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +259% YoY"
@@ -24425,7 +24491,7 @@
     "net_buyback_yield": -34.8407,
     "shares_now": 16174900,
     "shares_year_ago": 451300,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +3484% YoY"
@@ -24480,7 +24546,7 @@
     "net_buyback_yield": -0.2549,
     "shares_now": 1284923,
     "shares_year_ago": 1023955,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +25% YoY"
@@ -24495,7 +24561,7 @@
     "score": 12,
     "reasons": [
       "net shares -2% YoY (modest)",
-      "buying cheap (P/B 0.88)"
+      "buying cheap (P/B 0.56)"
     ]
   },
   "SVCO": {
@@ -24624,10 +24690,11 @@
     "net_buyback_yield": 0.0912,
     "shares_now": 7556692,
     "shares_year_ago": 8315030,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -9% YoY"
+      "net shares -9% YoY",
+      "buying cheap (P/B 0.76)"
     ]
   },
   "CTNT": {
@@ -24635,7 +24702,7 @@
     "net_buyback_yield": -7.4511,
     "shares_now": 136029,
     "shares_year_ago": 16096,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +745% YoY"
@@ -24646,10 +24713,11 @@
     "net_buyback_yield": 0.0893,
     "shares_now": 12131000,
     "shares_year_ago": 13320000,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -9% YoY"
+      "net shares -9% YoY",
+      "buying cheap (P/B 0.38)"
     ]
   },
   "ZBIO": {
@@ -24679,7 +24747,7 @@
     "net_buyback_yield": -24.8071,
     "shares_now": 216012859,
     "shares_year_ago": 8370273,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +2481% YoY"
@@ -24712,7 +24780,7 @@
     "net_buyback_yield": -1.0576,
     "shares_now": 3772930,
     "shares_year_ago": 1833656,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +106% YoY"
@@ -24723,7 +24791,7 @@
     "net_buyback_yield": -18.0333,
     "shares_now": 1913934,
     "shares_year_ago": 100557,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +1803% YoY"
@@ -24745,7 +24813,7 @@
     "net_buyback_yield": -0.1645,
     "shares_now": 19700000,
     "shares_year_ago": 16916667,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +16% YoY"
@@ -24767,7 +24835,7 @@
     "net_buyback_yield": -0.3234,
     "shares_now": 21010132,
     "shares_year_ago": 15875485,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +32% YoY"
@@ -24800,7 +24868,7 @@
     "net_buyback_yield": -0.9587,
     "shares_now": 220627022,
     "shares_year_ago": 112637822,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +96% YoY"
@@ -24877,10 +24945,11 @@
     "net_buyback_yield": 0.0675,
     "shares_now": 38700000,
     "shares_year_ago": 41500000,
-    "cheap": false,
-    "score": 11,
+    "cheap": true,
+    "score": 17,
     "reasons": [
-      "net shares -7% YoY"
+      "net shares -7% YoY",
+      "buying cheap (P/B 1.50)"
     ]
   },
   "USAR": {
@@ -24888,7 +24957,7 @@
     "net_buyback_yield": -1.365,
     "shares_now": 196479000,
     "shares_year_ago": 83079000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +136% YoY"
@@ -24954,7 +25023,7 @@
     "net_buyback_yield": -0.0894,
     "shares_now": 45443079,
     "shares_year_ago": 41714608,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +9% YoY"
@@ -24965,7 +25034,7 @@
     "net_buyback_yield": -0.3828,
     "shares_now": 4429508,
     "shares_year_ago": 3203331,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +38% YoY"
@@ -24998,7 +25067,7 @@
     "net_buyback_yield": -0.0688,
     "shares_now": 41421002,
     "shares_year_ago": 38755746,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +7% YoY"
@@ -25020,7 +25089,7 @@
     "net_buyback_yield": -0.5002,
     "shares_now": 168316000,
     "shares_year_ago": 112199000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +50% YoY"
@@ -25053,7 +25122,7 @@
     "net_buyback_yield": -0.1286,
     "shares_now": 13697987,
     "shares_year_ago": 12137038,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +13% YoY"
@@ -25097,7 +25166,7 @@
     "net_buyback_yield": -0.0407,
     "shares_now": 124626000,
     "shares_year_ago": 119747000,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +4% YoY"
@@ -25108,7 +25177,7 @@
     "net_buyback_yield": -0.2863,
     "shares_now": 22279016,
     "shares_year_ago": 17319742,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +29% YoY"
@@ -25251,7 +25320,7 @@
     "net_buyback_yield": -0.031,
     "shares_now": 133618587,
     "shares_year_ago": 129598942,
-    "cheap": false,
+    "cheap": true,
     "score": -3,
     "reasons": [
       "net dilution +3% YoY"
@@ -25427,7 +25496,7 @@
     "net_buyback_yield": -0.1875,
     "shares_now": 13325211,
     "shares_year_ago": 11221016,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +19% YoY"
@@ -25438,10 +25507,11 @@
     "net_buyback_yield": 0.0438,
     "shares_now": 4914000,
     "shares_year_ago": 5139000,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -4% YoY (modest)"
+      "net shares -4% YoY (modest)",
+      "buying cheap (P/B 0.73)"
     ]
   },
   "FBLA": {
@@ -25449,10 +25519,11 @@
     "net_buyback_yield": 0.1107,
     "shares_now": 16286635,
     "shares_year_ago": 18313980,
-    "cheap": false,
-    "score": 16,
+    "cheap": true,
+    "score": 22,
     "reasons": [
-      "net shares -11% YoY (heavy)"
+      "net shares -11% YoY (heavy)",
+      "buying cheap (P/B 0.84)"
     ]
   },
   "LHAI": {
@@ -25587,17 +25658,6 @@
       "net dilution +5% YoY"
     ]
   },
-  "JFB": {
-    "ticker": "JFB",
-    "net_buyback_yield": 0.2318,
-    "shares_now": 13250889,
-    "shares_year_ago": 17250000,
-    "cheap": false,
-    "score": 16,
-    "reasons": [
-      "net shares -23% YoY (heavy)"
-    ]
-  },
   "ITXP": {
     "ticker": "ITXP",
     "net_buyback_yield": -0.1859,
@@ -25614,7 +25674,7 @@
     "net_buyback_yield": -0.181,
     "shares_now": 28344545,
     "shares_year_ago": 24000000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +18% YoY"
@@ -25790,7 +25850,7 @@
     "net_buyback_yield": -0.689,
     "shares_now": 44921984,
     "shares_year_ago": 26596059,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +69% YoY"
@@ -25834,7 +25894,7 @@
     "net_buyback_yield": -0.649,
     "shares_now": 1118000000,
     "shares_year_ago": 678000000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +65% YoY"
@@ -25878,7 +25938,7 @@
     "net_buyback_yield": -20.9354,
     "shares_now": 33670148,
     "shares_year_ago": 1534965,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +2094% YoY"
@@ -25889,7 +25949,7 @@
     "net_buyback_yield": -0.9183,
     "shares_now": 77406000,
     "shares_year_ago": 40352000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +92% YoY"
@@ -25944,7 +26004,7 @@
     "net_buyback_yield": -22.6955,
     "shares_now": 116582000,
     "shares_year_ago": 4920000,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +2270% YoY"
@@ -25966,10 +26026,11 @@
     "net_buyback_yield": 0.038,
     "shares_now": 7365208,
     "shares_year_ago": 7655927,
-    "cheap": false,
-    "score": 6,
+    "cheap": true,
+    "score": 12,
     "reasons": [
-      "net shares -4% YoY (modest)"
+      "net shares -4% YoY (modest)",
+      "buying cheap (P/B 0.94)"
     ]
   },
   "NTSK": {
@@ -26102,6 +26163,17 @@
     "score": -6,
     "reasons": [
       "net DILUTION +883% YoY"
+    ]
+  },
+  "SUNI": {
+    "ticker": "SUNI",
+    "net_buyback_yield": -0.6298,
+    "shares_now": 8475000,
+    "shares_year_ago": 5200000,
+    "cheap": false,
+    "score": -6,
+    "reasons": [
+      "net DILUTION +63% YoY"
     ]
   },
   "BLLN": {
@@ -26274,7 +26346,7 @@
     "net_buyback_yield": -21606.0,
     "shares_now": 21607,
     "shares_year_ago": 1,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +2160600% YoY"
@@ -26285,7 +26357,7 @@
     "net_buyback_yield": -0.3021,
     "shares_now": 72458652,
     "shares_year_ago": 55649457,
-    "cheap": false,
+    "cheap": true,
     "score": -6,
     "reasons": [
       "net DILUTION +30% YoY"

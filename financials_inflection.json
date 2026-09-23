@@ -143,5 +143,14 @@
     "opinc_to_ppe": 0.202,
     "debt_latest": 22515505000,
     "debt_delta_qoq": -181455000
+  },
+  "NMM": {
+    "period_end": "2026-06-30",
+    "as_of": null,
+    "revenue_yoy": 0.2522,
+    "gp_yoy": 0.2301,
+    "gross_margin_delta_pp": -1.6,
+    "debt_latest": 981363000,
+    "debt_delta_qoq": 6779000
   }
 }

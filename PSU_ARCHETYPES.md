@@ -13,7 +13,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   HFFG
-  mcap=$101M  px=$1.89  P/B=0.49  DD%=51%
+  mcap=$82M  px=$1.53  P/B=0.40  DD%=56%
     PSU core=47.6  gov=15.0  PSU%LTI=50  per_share=['tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_op_income', 'market_cap']
     composite=52.0  buyback=NO_AUTH(-0.87%)
     WHY: vest at 100%, the Company must have achieved a revenue of $1.232 billion; vest at 100%, the Company must achieve a revenue of $1.281 billion; vest at 100%, the Company must achieve a revenue of $1.319
@@ -25,7 +25,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   CSGP
-  mcap=$12,300M  px=$30.12  P/B=1.55  DD%=69%
+  mcap=$11,457M  px=$28.27  P/B=1.44  DD%=67%
     PSU core=40.5  gov=14.0  PSU%LTI=60  per_share=['eps', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_revenue', 'market_cap']
     composite=56.0  buyback=EXECUTING(-3.61%)
     WHY: ebitda_dollar_target in plan
@@ -37,7 +37,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   MAT
-  mcap=$4,080M  px=$14.04  P/B=1.94  DD%=38%
+  mcap=$3,811M  px=$13.12  P/B=1.89  DD%=42%
     PSU core=49.0  gov=12.0  PSU%LTI=75  per_share=['cfroi', 'eps', 'roce', 'roe', 'roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_op_income', 'absolute_sales', 'market_cap']
     composite=?  buyback=SHRINKING_NO_AUTH(-6.51%)
     WHY: fcf_dollar_target in plan
@@ -49,7 +49,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   WHR
-  mcap=$2,519M  px=$38.86  P/B=0.67  DD%=65%
+  mcap=$2,174M  px=$33.54  P/B=0.55  DD%=65%
     PSU core=33.8  gov=16.0  PSU%LTI=70  per_share=['eps', 'roic', 'tsr'] agg=['absolute_net_income', 'absolute_revenue', 'absolute_sales', 'market_cap']
     composite=?  buyback=?
     WHY: operating_margin_target in plan
@@ -61,7 +61,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   DDOG
-  mcap=$79,379M  px=$223.00  P/B=19.90  DD%=20%
+  mcap=$90,225M  px=$253.47  P/B=20.43  DD%=13%
     PSU core=16.2  gov=8.0  PSU%LTI=50  per_share=['tsr'] agg=['absolute_net_income', 'absolute_op_income', 'market_cap']
     composite=25.0  buyback=?
     WHY: subscriber_arr_target in plan
@@ -73,7 +73,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   LMT
-  mcap=$117,806M  px=$510.95  P/B=15.69  DD%=26%
+  mcap=$121,667M  px=$527.17  P/B=13.76  DD%=24%
     PSU core=29.2  gov=15.0  PSU%LTI=70  per_share=['eps', 'roic', 'tsr'] agg=['absolute_net_income', 'market_cap']
     composite=?  buyback=NO_AUTH(-0.36%)
     WHY: backlog_target in plan
@@ -85,7 +85,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   FUBO
-  mcap=$271M  px=$9.22  P/B=0.33  DD%=84%
+  mcap=$1,062M  px=$9.71  P/B=0.39  DD%=82%
     PSU core=38.7  gov=11.0  PSU%LTI=None  per_share=['tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'market_cap']
     composite=9.0  buyback=ANOMALY_REVIEW(-72.63%)
     WHY: PSU triggers on deal close
@@ -97,7 +97,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   GPRO
-  mcap=$137M  px=$0.79  P/B=-71.81  DD%=74%
+  mcap=$224M  px=$1.31  P/B=-6.81  DD%=53%
     PSU core=30.0  gov=8.0  PSU%LTI=25  per_share=['roe', 'roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_op_income', 'market_cap']
     composite=43.0  buyback=NO_AUTH(+11.56%)
     WHY: PSU triggers on spin / Form 10
@@ -109,7 +109,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   CLW
-  mcap=$271M  px=$16.79  P/B=0.33  DD%=46%
+  mcap=$350M  px=$21.68  P/B=0.44  DD%=8%
     PSU core=39.8  gov=18.0  PSU%LTI=60  per_share=['roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_sales']
     composite=0.0  buyback=NO_AUTH(+0.54%)
     WHY: binary regulatory catalyst
@@ -121,7 +121,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   BAX
-  mcap=$10,273M  px=$19.89  P/B=1.70  DD%=37%
+  mcap=$12,297M  px=$23.79  P/B=1.97  DD%=21%
     PSU core=56.2  gov=18.0  PSU%LTI=57  per_share=['eps', 'roic', 'tsr'] agg=['absolute_net_income', 'absolute_op_income', 'absolute_sales', 'market_cap']
     composite=?  buyback=NO_AUTH(+0.55%)
     WHY: segment / division divestiture
@@ -129,13 +129,13 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ### A11. PSU vests on DEBT-PAYDOWN target
 
-**Winner: RCL**
+**Winner: VREOF**
 
 ```
-  RCL
-  mcap=$83,814M  px=$312.51  P/B=8.54  DD%=15%
-    PSU core=17.0  gov=4.0  PSU%LTI=None  per_share=['eps', 'roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_op_income', 'absolute_revenue', 'market_cap']
-    composite=?  buyback=?
+  VREOF
+  mcap=$454M  px=$11.86  P/B=1.21  DD%=47%
+    PSU core=1.0  gov=4.0  PSU%LTI=None  per_share=['tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'market_cap']
+    composite=10.0  buyback=?
     WHY: leverage target coded in plan
 ```
 
@@ -145,7 +145,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   CMCO
-  mcap=$423M  px=$14.69  P/B=0.63  DD%=40%
+  mcap=$474M  px=$16.43  P/B=0.34  DD%=33%
     PSU core=40.0  gov=12.0  PSU%LTI=50  per_share=['cfroi', 'eps', 'roe', 'roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_op_income', 'absolute_sales', 'market_cap']
     composite=?  buyback=NO_AUTH(+0.35%)
     WHY: restructuring_milestone in plan
@@ -157,7 +157,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   HTZ
-  mcap=$1,595M  px=$5.05  P/B=-2.02  DD%=40%
+  mcap=$560M  px=$1.77  P/B=-0.88  DD%=78%
     PSU core=24.8  gov=12.0  PSU%LTI=50  per_share=['eps', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'market_cap']
     composite=?  buyback=NO_AUTH(+1.60%)
     WHY: post-emergence plan triggers
@@ -169,7 +169,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   INBP
-  mcap=$6M  px=$0.19  P/B=0.31  DD%=55%
+  mcap=$6M  px=$0.18  P/B=0.30  DD%=57%
     PSU core=9.6  gov=0.0  PSU%LTI=None  per_share=['eps', 'tsr'] agg=['absolute_net_income']
     composite=?  buyback=?
     WHY: top tranche 7600.00 ladder
@@ -181,7 +181,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   GO
-  mcap=$916M  px=$9.26  P/B=1.13  DD%=52%
+  mcap=$1,120M  px=$11.33  P/B=1.36  DD%=33%
     PSU core=69.3  gov=12.0  PSU%LTI=84  per_share=['eps', 'roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_sales', 'market_cap']
     composite=43.2  buyback=NO_AUTH(+0.84%)
     WHY: 7 tranches
@@ -196,7 +196,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   GO
-  mcap=$916M  px=$9.26  P/B=1.13  DD%=52%
+  mcap=$1,120M  px=$11.33  P/B=1.36  DD%=33%
     PSU core=69.3  gov=12.0  PSU%LTI=84  per_share=['eps', 'roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_sales', 'market_cap']
     composite=43.2  buyback=NO_AUTH(+0.84%)
     WHY: PSU = 84% of LTI
@@ -208,7 +208,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   LE
-  mcap=$382M  px=$12.44  P/B=0.77  DD%=38%
+  mcap=$318M  px=$10.35  P/B=0.62  DD%=48%
     PSU core=42.8  gov=15.0  PSU%LTI=75  per_share=['roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_op_income', 'market_cap']
     composite=31.0  buyback=?
     WHY: PSU = 75% of LTI
@@ -220,7 +220,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   TROX
-  mcap=$1,180M  px=$7.40  P/B=0.92  DD%=30%
+  mcap=$695M  px=$4.36  P/B=0.59  DD%=59%
     PSU core=63.9  gov=15.0  PSU%LTI=86  per_share=['eps', 'other_per_share', 'roe', 'roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_op_income', 'absolute_revenue', 'market_cap']
     composite=?  buyback=?
     WHY: 5 per-share metrics: ['eps', 'tsr', 'roic', 'roe', 'other_per_share']
@@ -232,7 +232,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   FISV
-  mcap=$25,522M  px=$47.86  P/B=0.97  DD%=73%
+  mcap=$24,506M  px=$45.95  P/B=0.92  DD%=81%
     PSU core=38.2  gov=12.0  PSU%LTI=60  per_share=['eps', 'fcf_per_share', 'tsr'] agg=['absolute_net_income', 'absolute_op_income']
     composite=54.0  buyback=NO_AUTH(-0.85%)
     WHY: FCF/share in metric stack
@@ -244,7 +244,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   GO
-  mcap=$916M  px=$9.26  P/B=1.13  DD%=52%
+  mcap=$1,120M  px=$11.33  P/B=1.36  DD%=33%
     PSU core=69.3  gov=12.0  PSU%LTI=84  per_share=['eps', 'roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_sales', 'market_cap']
     composite=43.2  buyback=NO_AUTH(+0.84%)
     WHY: ROIC in metric stack
@@ -256,7 +256,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   TROX
-  mcap=$1,180M  px=$7.40  P/B=0.92  DD%=30%
+  mcap=$695M  px=$4.36  P/B=0.59  DD%=59%
     PSU core=63.9  gov=15.0  PSU%LTI=86  per_share=['eps', 'other_per_share', 'roe', 'roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_op_income', 'absolute_revenue', 'market_cap']
     composite=?  buyback=?
     WHY: custom per-share metric in stack
@@ -271,7 +271,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   CSGP
-  mcap=$12,300M  px=$30.12  P/B=1.55  DD%=69%
+  mcap=$11,457M  px=$28.27  P/B=1.44  DD%=67%
     PSU core=40.5  gov=14.0  PSU%LTI=60  per_share=['eps', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_revenue', 'market_cap']
     composite=56.0  buyback=EXECUTING(-3.61%)
     WHY: 10x ownership multiple required
@@ -283,7 +283,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   LW
-  mcap=$6,222M  px=$45.06  P/B=3.43  DD%=33%
+  mcap=$6,225M  px=$45.28  P/B=3.43  DD%=32%
     PSU core=51.0  gov=23.0  PSU%LTI=None  per_share=['roe', 'roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_sales', 'market_cap']
     composite=33.4  buyback=NO_AUTH(-0.92%)
     WHY: anti-hedge and anti-pledge codified
@@ -295,7 +295,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   HFFG
-  mcap=$101M  px=$1.89  P/B=0.49  DD%=51%
+  mcap=$82M  px=$1.53  P/B=0.40  DD%=56%
     PSU core=47.6  gov=15.0  PSU%LTI=50  per_share=['tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_op_income', 'market_cap']
     composite=52.0  buyback=NO_AUTH(-0.87%)
     WHY: expanded clawback policy
@@ -307,7 +307,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   LW
-  mcap=$6,222M  px=$45.06  P/B=3.43  DD%=33%
+  mcap=$6,225M  px=$45.28  P/B=3.43  DD%=32%
     PSU core=51.0  gov=23.0  PSU%LTI=None  per_share=['roe', 'roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_sales', 'market_cap']
     composite=33.4  buyback=NO_AUTH(-0.92%)
     WHY: must hold shares post-vest
@@ -319,7 +319,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   LW
-  mcap=$6,222M  px=$45.06  P/B=3.43  DD%=33%
+  mcap=$6,225M  px=$45.28  P/B=3.43  DD%=32%
     PSU core=51.0  gov=23.0  PSU%LTI=None  per_share=['roe', 'roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_sales', 'market_cap']
     composite=33.4  buyback=NO_AUTH(-0.92%)
     WHY: 5y vesting
@@ -331,7 +331,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   LW
-  mcap=$6,222M  px=$45.06  P/B=3.43  DD%=33%
+  mcap=$6,225M  px=$45.28  P/B=3.43  DD%=32%
     PSU core=51.0  gov=23.0  PSU%LTI=None  per_share=['roe', 'roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_sales', 'market_cap']
     composite=33.4  buyback=NO_AUTH(-0.92%)
     WHY: redesigned plan after pushback
@@ -346,7 +346,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   LW
-  mcap=$6,222M  px=$45.06  P/B=3.43  DD%=33%
+  mcap=$6,225M  px=$45.28  P/B=3.43  DD%=32%
     PSU core=51.0  gov=23.0  PSU%LTI=None  per_share=['roe', 'roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_sales', 'market_cap']
     composite=33.4  buyback=NO_AUTH(-0.92%)
     WHY: plan evolved on shareholder feedback
@@ -358,7 +358,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   HUT
-  mcap=$14,011M  px=$124.44  P/B=10.15  DD%=12%
+  mcap=$11,894M  px=$105.64  P/B=8.87  DD%=25%
     PSU core=50.4  gov=20.0  PSU%LTI=50  per_share=['tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_op_income', 'market_cap']
     composite=?  buyback=NO_AUTH(+6.70%)
     WHY: longer vest schedule than prior plan
@@ -370,7 +370,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   CNMD
-  mcap=$981M  px=$32.58  P/B=0.97  DD%=42%
+  mcap=$1,369M  px=$45.70  P/B=1.31  DD%=15%
     PSU core=28.5  gov=12.0  PSU%LTI=87  per_share=['eps', 'tsr'] agg=['absolute_net_income', 'absolute_op_income', 'absolute_sales', 'market_cap']
     composite=43.0  buyback=SHRINKING_NO_AUTH(-2.73%)
     WHY: ownership rules added in latest filing
@@ -382,7 +382,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   SIRI
-  mcap=$9,435M  px=$28.03  P/B=0.80  DD%=7%
+  mcap=$8,782M  px=$26.06  P/B=0.74  DD%=20%
     PSU core=44.2  gov=18.0  PSU%LTI=None  per_share=['eps', 'fcf_per_share', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_revenue', 'market_cap']
     composite=20.0  buyback=?
     WHY: transformation language in CD&A
@@ -397,7 +397,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   HFFG
-  mcap=$101M  px=$1.89  P/B=0.49  DD%=51%
+  mcap=$82M  px=$1.53  P/B=0.40  DD%=56%
     PSU core=47.6  gov=15.0  PSU%LTI=50  per_share=['tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_op_income', 'market_cap']
     composite=52.0  buyback=NO_AUTH(-0.87%)
     WHY: front-loaded grant in disclosure
@@ -409,7 +409,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   GO
-  mcap=$916M  px=$9.26  P/B=1.13  DD%=52%
+  mcap=$1,120M  px=$11.33  P/B=1.36  DD%=33%
     PSU core=69.3  gov=12.0  PSU%LTI=84  per_share=['eps', 'roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_sales', 'market_cap']
     composite=43.2  buyback=NO_AUTH(+0.84%)
     WHY: plan allows repricing
@@ -417,13 +417,13 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ### E3. DISCRETIONARY language / gameable hurdle (red flag)
 
-**Winner: TBI**
+**Winner: BHF**
 
 ```
-  TBI
-  mcap=$204M  px=$6.70  P/B=0.79  DD%=14%
-    PSU core=43.0  gov=17.0  PSU%LTI=80  per_share=['eps', 'roe', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'market_cap']
-    composite=?  buyback=?
+  BHF
+  mcap=$3,005M  px=$52.30  P/B=0.46  DD%=22%
+    PSU core=19.5  gov=12.0  PSU%LTI=70  per_share=['tsr'] agg=['absolute_net_income']
+    composite=43.0  buyback=NO_AUTH(+0.51%)
     WHY: committee discretion language
 ```
 
@@ -433,7 +433,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   INBS
-  mcap=$6M  px=$2.35  P/B=0.52  DD%=91%
+  mcap=$1M  px=$1.82  P/B=0.95  DD%=93%
     PSU core=0.0  gov=0.0  PSU%LTI=None  per_share=[] agg=['absolute_net_income', 'market_cap']
     composite=49.0  buyback=ANOMALY_REVIEW(+163.50%)
     WHY: no per-share metrics in plan
@@ -445,7 +445,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   AMT
-  mcap=$82,020M  px=$176.05  P/B=23.29  DD%=25%
+  mcap=$80,546M  px=$172.86  P/B=21.44  DD%=12%
     PSU core=42.0  gov=3.0  PSU%LTI=70  per_share=['eps', 'roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_op_income', 'absolute_revenue', 'market_cap']
     composite=33.0  buyback=TOKEN(-1.43%)
     WHY: single-trigger acceleration on CIC
@@ -453,13 +453,13 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ### E6. Retirement carveout (vest on retire, weak)
 
-**Winner: FISV**
+**Winner: GRND**
 
 ```
-  FISV
-  mcap=$25,522M  px=$47.86  P/B=0.97  DD%=73%
-    PSU core=38.2  gov=12.0  PSU%LTI=60  per_share=['eps', 'fcf_per_share', 'tsr'] agg=['absolute_net_income', 'absolute_op_income']
-    composite=54.0  buyback=NO_AUTH(-0.85%)
+  GRND
+  mcap=$2,753M  px=$15.49  P/B=-233.93  DD%=16%
+    PSU core=42.3  gov=11.0  PSU%LTI=None  per_share=['eps', 'roe', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_op_income', 'market_cap']
+    composite=53.0  buyback=EXECUTING(-7.42%)
     WHY: retirement carveout in plan
 ```
 
@@ -472,7 +472,7 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ```
   CSGP
-  mcap=$12,300M  px=$30.12  P/B=1.55  DD%=69%
+  mcap=$11,457M  px=$28.27  P/B=1.44  DD%=67%
     PSU core=40.5  gov=14.0  PSU%LTI=60  per_share=['eps', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_revenue', 'market_cap']
     composite=56.0  buyback=EXECUTING(-3.61%)
     WHY: SOP 53.0% support
