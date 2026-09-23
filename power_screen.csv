@@ -1,0 +1,169 @@
+ticker,name,date,era,power,n_lenses,signals
+GPP,Government Properties Trust,2004-01-26,old,11.87,3,PLUTO-conj-SUN 2027-01..2028-09 (20x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.21 | JUP-RETURN 2027-10
+RTU,Cohen & Steers REIT Util Fund,2004-01-27,old,9.8,3,PLUTO-conj-SUN 2027-03..2028-09 (20x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.81 | JUP-RETURN 2027-10
+DCS,Dreman/Claymore Div Incme Fund,2004-01-27,old,9.8,3,PLUTO-conj-SUN 2027-03..2028-09 (20x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.81 | JUP-RETURN 2027-10
+ETG,Etn Vance Tax Adv. Gl. DivFun,2004-01-27,old,9.8,3,PLUTO-conj-SUN 2027-03..2028-09 (20x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.81 | JUP-RETURN 2027-10
+JTA,Nuveen Tax Advantage Total,2004-01-27,old,9.8,3,PLUTO-conj-SUN 2027-03..2028-09 (20x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.81 | JUP-RETURN 2027-10
+PBF,Pioneer Tax Adv Balanced Trust,2004-01-27,old,9.8,3,PLUTO-conj-SUN 2027-03..2028-09 (20x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.81 | JUP-RETURN 2027-10
+ZSAN,Zosano Pharma Corp,2015-01-27,2010-16,9.16,3,PLUTO-conj-SUN 2027-03..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 1.14 | JUP-RETURN 2026-09
+GDL,Gabelli Global Deal Fund,2007-01-26,old,10.73,2,PLUTO-conj-SUN 2027-02..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.07
+OCLS,Oculus Innovative Sciences Inc,2007-01-26,old,10.73,2,PLUTO-conj-SUN 2027-02..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.07
+ANCB,Anchor Bancorp,2011-01-26,2010-16,10.66,2,PLUTO-conj-SUN 2027-02..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.10
+ACP,Avenue Income Credit,2011-01-26,2010-16,10.66,2,PLUTO-conj-SUN 2027-02..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.10
+BGX,Blackstone / GSO Long-Short,2011-01-26,2010-16,10.66,2,PLUTO-conj-SUN 2027-02..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.10
+NLSN,Nielsen Holdings NV,2011-01-26,2010-16,10.66,2,PLUTO-conj-SUN 2027-02..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.10
+DBL,Doubleline Opp Cr Fnd,2012-01-26,2010-16,10.54,2,PLUTO-conj-SUN 2027-02..2028-09 (20x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.15
+VSTM,Verastem Inc,2012-01-26,2010-16,10.54,2,PLUTO-conj-SUN 2027-02..2028-09 (20x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.15
+EXTN,Extensity Inc,2000-01-26,old,10.28,2,PLUTO-conj-SUN 2027-01..2028-09 (20x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.24
+JHF,John Hancock Financial Svcs,2000-01-26,old,10.28,2,PLUTO-conj-SUN 2027-01..2028-09 (20x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.24
+TRSI,T/R Systems Inc,2000-01-26,old,10.28,2,PLUTO-conj-SUN 2027-01..2028-09 (20x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.24
+ALTU,Altus Pharmaceuticals Inc,2006-01-26,old,10.1,2,PLUTO-conj-SUN 2027-02..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.31
+AMCF,Andatee China Marine Fuel Svcs,2010-01-26,2010-16,10.01,2,PLUTO-conj-SUN 2027-02..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.35
+FTT,Federated Enhanced Treasury,2010-01-26,2010-16,10.01,2,PLUTO-conj-SUN 2027-02..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.35
+BFAM,Bright Horizons Family Sol,2013-01-25,2010-16,9.9,2,PLUTO-conj-SUN 2027-01..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.39
+LIPO,LipoScience Inc,2013-01-25,2010-16,9.9,2,PLUTO-conj-SUN 2027-01..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.39
+ARMO,Armo Biosciences Inc,2018-01-26,2017+,9.86,2,PLUTO-conj-SUN 2027-02..2028-09 (20x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.40
+AGS,Playags Inc,2018-01-26,2017+,9.86,2,PLUTO-conj-SUN 2027-02..2028-09 (20x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.40
+SLDB,Solid Biosciences LLC,2018-01-26,2017+,9.86,2,PLUTO-conj-SUN 2027-02..2028-09 (20x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.40
+GFIG,GFI Group Inc,2005-01-25,old,9.73,2,PLUTO-conj-SUN 2027-01..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.45
+NFC,Nuveen CT Div Adv Muni Fund,2001-01-25,old,9.64,2,PLUTO-conj-SUN 2027-01..2028-09 (20x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.49
+NRB,Nuveen North Carolina,2001-01-25,old,9.64,2,PLUTO-conj-SUN 2027-01..2028-09 (20x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.49
+PEET,Peet's Coffee & Tea,2001-01-25,old,9.64,2,PLUTO-conj-SUN 2027-01..2028-09 (20x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.49
+ALGN,Align Technology,2001-01-26,old,9.54,2,PLUTO-conj-SUN 2027-02..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.53
+LCM,Advent/Claymore Enh G&I Fnd,2005-01-26,old,9.45,2,PLUTO-conj-SUN 2027-02..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.56
+DVM,COHEN & STEERS DIVIDEND MAJORS,2005-01-26,old,9.45,2,PLUTO-conj-SUN 2027-02..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.56
+DVF,Diversified Income Strategies,2005-01-26,old,9.45,2,PLUTO-conj-SUN 2027-02..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.56
+EOS,Eaton Vance Enhanced Eq Inc II,2005-01-26,old,9.45,2,PLUTO-conj-SUN 2027-02..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.56
+OXPS,OptionsXpress  Holdings Inc,2005-01-26,old,9.45,2,PLUTO-conj-SUN 2027-02..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.56
+EYEN,Eyenovia Inc,2018-01-25,2017+,9.32,2,PLUTO-conj-SUN 2027-01..2028-09 (19x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.61
+GTES,Gates Industrial Corp Plc,2018-01-25,2017+,9.32,2,PLUTO-conj-SUN 2027-01..2028-09 (19x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.61
+MNLO,Menlo Therapeutics Inc,2018-01-25,2017+,9.32,2,PLUTO-conj-SUN 2027-01..2028-09 (19x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.61
+ANAB,AnaptysBio Inc,2017-01-26,2017+,9.22,2,PLUTO-conj-SUN 2027-02..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.65
+OBSV,Obseva SA,2017-01-26,2017+,9.22,2,PLUTO-conj-SUN 2027-02..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.65
+CHC,China Hydroelectric Corp,2010-01-25,2010-16,9.17,2,PLUTO-conj-SUN 2027-01..2028-01 (19x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.67
+EZGO,EZGO Technologies Ltd,2021-01-26,2017+,9.15,2,PLUTO-conj-SUN 2027-02..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.68
+CLMT,Calumet Specialty Products,2006-01-25,old,9.09,2,PLUTO-conj-SUN 2027-01..2028-01 (18x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.70
+TRFC,Traffic.com Inc,2006-01-25,old,9.09,2,PLUTO-conj-SUN 2027-01..2028-01 (18x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.70
+PRPX,Portec Rail Products Inc,2004-01-23,old,8.5,2,PLUTO-conj-SUN 2026-09..2026-12 (6x15d samples) | JUP-RETURN 2027-10
+EYET,Eyetech Pharmaceuticals Inc,2004-01-29,old,8.5,2,PLUTO-conj-SUN 2028-03..2028-06 (8x15d samples) | JUP-RETURN 2027-10
+ASND,Ascendis Pharma A/S,2015-01-28,2010-16,8.5,2,PLUTO-conj-SUN 2028-02..2028-07 (12x15d samples) | JUP-RETURN 2026-09
+ENTL,Entellus Medical Inc,2015-01-29,2010-16,8.5,2,PLUTO-conj-SUN 2028-03..2028-06 (6x15d samples) | JUP-RETURN 2026-09
+FLKS,Flex Pharma Inc,2015-01-29,2010-16,8.5,2,PLUTO-conj-SUN 2028-03..2028-06 (6x15d samples) | JUP-RETURN 2026-09
+LENS,Presbia PLC,2015-01-29,2010-16,8.5,2,PLUTO-conj-SUN 2028-03..2028-06 (6x15d samples) | JUP-RETURN 2026-09
+SVNX,724 Solutions Inc,2000-01-27,old,8.36,2,PLUTO-conj-SUN 2027-03..2028-09 (20x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.77
+ASPM,Aspect Medical Systems Inc,2000-01-27,old,8.36,2,PLUTO-conj-SUN 2027-03..2028-09 (20x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.77
+NTG,NATCO Group Inc,2000-01-27,old,8.36,2,PLUTO-conj-SUN 2027-03..2028-09 (20x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.77
+PKG,Packaging Corp of America,2000-01-27,old,8.36,2,PLUTO-conj-SUN 2027-03..2028-09 (20x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.77
+DMD,Demand Media Inc,2011-01-25,2010-16,8.09,2,PLUTO-conj-SUN 2027-01..2028-01 (16x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.92
+AOD,Alpine Total Dynamic,2007-01-25,old,8.04,2,PLUTO-conj-SUN 2027-01..2028-01 (16x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 0.94
+BKU,BankUnited Inc,2011-01-27,2010-16,7.72,2,PLUTO-conj-SUN 2027-03..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 1.12
+INXN,InterXion Holding NV,2011-01-27,2010-16,7.72,2,PLUTO-conj-SUN 2027-03..2028-09 (21x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 1.12
+WEBK,Wellesley Bancorp Inc,2012-01-25,2010-16,7.63,2,PLUTO-conj-SUN 2026-12..2028-01 (16x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 1.16
+IPCM,IPC The Hospitalist Co Inc,2008-01-25,old,7.58,2,PLUTO-conj-SUN 2026-12..2028-01 (16x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 1.19
+HGAT,HealthGate Data Corp,2000-01-25,old,7.45,2,PLUTO-conj-SUN 2026-12..2027-12 (15x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 1.26
+CTC,IFM Investments Ltd,2010-01-27,2010-16,7.25,2,PLUTO-conj-SUN 2027-03..2028-09 (19x15d samples) | SOLAR-ECL-conj-SUN 2028-01-26 1.36
+BUCY,Bucyrus International Inc,2004-07-22,old,5.67,2,SOLAR-ECL-conj-SUN 2028-07-22 0.22 | JUP-RETURN 2027-10
+KBAY,Kanbay International Inc,2004-07-22,old,5.67,2,SOLAR-ECL-conj-SUN 2028-07-22 0.22 | JUP-RETURN 2027-10
+LMRA,Lumera Corp,2004-07-22,old,5.67,2,SOLAR-ECL-conj-SUN 2028-07-22 0.22 | JUP-RETURN 2027-10
+NURO,Neurometrix Inc,2004-07-22,old,5.67,2,SOLAR-ECL-conj-SUN 2028-07-22 0.22 | JUP-RETURN 2027-10
+TPIC,TPI Composites Inc,2016-07-22,2010-16,5.36,2,SOLAR-ECL-conj-SUN 2028-07-22 0.32 | JUP-RETURN 2027-10
+BUFF,Blue Buffalo Pet Products Inc,2015-07-22,2010-16,5.1,2,SOLAR-ECL-conj-SUN 2028-07-22 0.40 | JUP-RETURN 2026-11
+IASG,Integrated Alarm Services,2003-07-23,old,4.92,2,SOLAR-ECL-conj-SUN 2028-07-22 0.45 | JUP-RETURN 2026-10
+IPAS,Ipass Inc,2003-07-23,old,4.92,2,SOLAR-ECL-conj-SUN 2028-07-22 0.45 | JUP-RETURN 2026-10
+LOB,Live Oak Bancshares Inc,2015-07-23,2010-16,4.58,2,SOLAR-ECL-conj-SUN 2028-07-22 0.56 | JUP-RETURN 2026-11
+NEOS,Neos Therapeutics Inc,2015-07-23,2010-16,4.58,2,SOLAR-ECL-conj-SUN 2028-07-22 0.56 | JUP-RETURN 2026-11
+PI,Impinj Inc,2016-07-21,2010-16,4.32,2,SOLAR-ECL-conj-SUN 2028-07-22 0.64 | JUP-RETURN 2027-10
+PTHN,Patheon N.V.,2016-07-21,2010-16,4.32,2,SOLAR-ECL-conj-SUN 2028-07-22 0.64 | JUP-RETURN 2027-10
+ALSM,AlphaSmart Inc,2004-02-06,old,4.13,2,SOLAR-ECL-conj-SUN 2027-02-06 0.49 | JUP-RETURN 2027-10
+BLBK,Blackbaud Inc,2004-07-21,old,4.01,2,SOLAR-ECL-conj-SUN 2028-07-22 0.73 | JUP-RETURN 2027-10
+DEX,Dex Media Inc,2004-07-21,old,4.01,2,SOLAR-ECL-conj-SUN 2028-07-22 0.73 | JUP-RETURN 2027-10
+IDIX,Idenix Pharmaceuticals Inc,2004-07-21,old,4.01,2,SOLAR-ECL-conj-SUN 2028-07-22 0.73 | JUP-RETURN 2027-10
+NEOF,Neoforma.com Inc,2000-01-24,old,7.0,1,PLUTO-conj-SUN 2026-09..2027-11 (11x15d samples)
+RGCI,Regent Communications Inc,2000-01-24,old,7.0,1,PLUTO-conj-SUN 2026-09..2027-11 (11x15d samples)
+CAMZ,Caminus Corp,2000-01-28,old,7.0,1,PLUTO-conj-SUN 2027-04..2028-08 (17x15d samples)
+LNTY,L90 Inc,2000-01-28,old,7.0,1,PLUTO-conj-SUN 2027-04..2028-08 (17x15d samples)
+STTS,ST Assembly Test Services Pte,2000-01-28,old,7.0,1,PLUTO-conj-SUN 2027-04..2028-08 (17x15d samples)
+IWAV,interWAVE Communications,2000-01-28,old,7.0,1,PLUTO-conj-SUN 2027-04..2028-08 (17x15d samples)
+NFM,Nuveen MD Div Adv Muni  Fund,2001-01-23,old,7.0,1,PLUTO-conj-SUN 2026-09..2027-01 (8x15d samples)
+NGB,Nuveen Virginia Dividend,2001-01-24,old,7.0,1,PLUTO-conj-SUN 2026-12..2027-12 (14x15d samples)
+AKP,Alliance California Municipal,2002-01-28,old,7.0,1,PLUTO-conj-SUN 2028-03..2028-07 (11x15d samples)
+AFB,Alliance National Municipal,2002-01-28,old,7.0,1,PLUTO-conj-SUN 2028-03..2028-07 (11x15d samples)
+SYNA,Synaptics Inc,2002-01-28,old,7.0,1,PLUTO-conj-SUN 2028-03..2028-07 (11x15d samples)
+FFC,F&C Claymore Preferred Fund,2003-01-28,old,7.0,1,PLUTO-conj-SUN 2028-02..2028-08 (13x15d samples)
+DLLR,Dollar Financial Corp,2005-01-27,old,7.0,1,PLUTO-conj-SUN 2027-04..2028-08 (19x15d samples)
+NATL,National Interstate Corp,2005-01-27,old,7.0,1,PLUTO-conj-SUN 2027-04..2028-08 (19x15d samples)
+WTI,W and T Offshore Inc,2005-01-27,old,7.0,1,PLUTO-conj-SUN 2027-04..2028-08 (19x15d samples)
+MMPI,Meruelo Maddux Properties Inc,2007-01-24,old,7.0,1,PLUTO-conj-SUN 2026-11..2027-11 (11x15d samples)
+RMG,RiskMetrics Group Inc,2008-01-24,old,7.0,1,PLUTO-conj-SUN 2026-09..2027-11 (13x15d samples)
+ATA,ATA Inc,2008-01-28,old,7.0,1,PLUTO-conj-SUN 2027-04..2028-08 (16x15d samples)
+BHL,Blackrock Def Opp Cred Tr,2008-01-28,old,7.0,1,PLUTO-conj-SUN 2027-04..2028-08 (16x15d samples)
+HOO,Cascal NV,2008-01-29,old,7.0,1,PLUTO-conj-SUN 2028-03..2028-06 (8x15d samples)
+HIBE,Hibernia Homestead Bancorp Inc,2009-01-28,old,7.0,1,PLUTO-conj-SUN 2028-03..2028-07 (9x15d samples)
+TBET,Tibet Pharmaceuticals Inc,2011-01-24,2010-16,7.0,1,PLUTO-conj-SUN 2026-11..2027-12 (12x15d samples)
+AGRO,Adecoagro SA,2011-01-28,2010-16,7.0,1,PLUTO-conj-SUN 2028-02..2028-07 (12x15d samples)
+BCDS,BCD Semiconductor Mnfg Ltd,2011-01-28,2010-16,7.0,1,PLUTO-conj-SUN 2028-02..2028-07 (12x15d samples)
+GWRE,Guidewire Software Inc,2012-01-24,2010-16,7.0,1,PLUTO-conj-SUN 2026-09..2027-11 (14x15d samples)
+LAND,Gladstone Land Corp,2013-01-28,2010-16,7.0,1,PLUTO-conj-SUN 2028-03..2028-07 (9x15d samples)
+PCI,PIMCO Dynamic Credit Income,2013-01-28,2010-16,7.0,1,PLUTO-conj-SUN 2028-03..2028-07 (9x15d samples)
+STML,Stemline Therapeutics Inc,2013-01-28,2010-16,7.0,1,PLUTO-conj-SUN 2028-03..2028-07 (9x15d samples)
+SC,Santander Consumer USA Hold,2014-01-23,2010-16,7.0,1,PLUTO-conj-SUN 2026-09..2026-12 (7x15d samples)
+CRCM,Care.com,2014-01-24,2010-16,7.0,1,PLUTO-conj-SUN 2026-12..2027-12 (13x15d samples)
+RICE,Rice Energy,2014-01-24,2010-16,7.0,1,PLUTO-conj-SUN 2026-12..2027-12 (13x15d samples)
+JELD,JELD-WEN Holding Inc,2017-01-27,2017+,7.0,1,PLUTO-conj-SUN 2027-04..2028-08 (20x15d samples)
+JAG,Jagged Peak Energy Inc,2017-01-27,2017+,7.0,1,PLUTO-conj-SUN 2027-04..2028-08 (20x15d samples)
+JNCE,Jounce Therapeutics Inc,2017-01-27,2017+,7.0,1,PLUTO-conj-SUN 2027-04..2028-08 (20x15d samples)
+JPT,Nuveen Pref & Income 2022,2017-01-27,2017+,7.0,1,PLUTO-conj-SUN 2027-04..2028-08 (20x15d samples)
+REVG,REV Group Inc,2017-01-27,2017+,7.0,1,PLUTO-conj-SUN 2027-04..2028-08 (20x15d samples)
+PAGS,Pagseguro Digital Ltd.,2018-01-24,2017+,7.0,1,PLUTO-conj-SUN 2026-12..2027-12 (13x15d samples)
+ANVS,Annovis Bio Inc,2020-01-29,2017+,7.0,1,PLUTO-conj-SUN 2028-03..2028-06 (8x15d samples)
+BMEZ,BlackRock Health Sci Tr II,2020-01-29,2017+,7.0,1,PLUTO-conj-SUN 2028-03..2028-06 (8x15d samples)
+HUDI,Huadi International Group Co,2021-01-22,2017+,7.0,1,PLUTO-conj-SUN 2026-09..2026-12 (6x15d samples)
+MNTK,Montauk Renewables Inc,2021-01-22,2017+,7.0,1,PLUTO-conj-SUN 2026-09..2026-12 (6x15d samples)
+PAX,Patria Investments Ltd,2021-01-22,2017+,7.0,1,PLUTO-conj-SUN 2026-09..2026-12 (6x15d samples)
+RLX,RLX Technology Inc,2021-01-22,2017+,7.0,1,PLUTO-conj-SUN 2026-09..2026-12 (6x15d samples)
+PDO,Pimco Dynamic Income Opp,2021-01-27,2017+,7.0,1,PLUTO-conj-SUN 2027-04..2028-08 (20x15d samples)
+SHLS,Shoals Technologies Group Inc,2021-01-27,2017+,7.0,1,PLUTO-conj-SUN 2027-04..2028-08 (20x15d samples)
+TIRX,Tian Ruixiang Holdings Ltd,2021-01-27,2017+,7.0,1,PLUTO-conj-SUN 2027-04..2028-08 (20x15d samples)
+AGFY,Agrify Corp,2021-01-28,2017+,7.0,1,PLUTO-conj-SUN 2028-03..2028-07 (9x15d samples)
+OCDX,Ortho Clinical Diagnostics,2021-01-28,2017+,7.0,1,PLUTO-conj-SUN 2028-03..2028-07 (9x15d samples)
+XM,Qualtrics International Inc,2021-01-28,2017+,7.0,1,PLUTO-conj-SUN 2028-03..2028-07 (9x15d samples)
+VINP,Vinci Partners Investments Ltd,2021-01-28,2017+,7.0,1,PLUTO-conj-SUN 2028-03..2028-07 (9x15d samples)
+ZIM,Zim Integrated Shipping Svcs,2021-01-28,2017+,7.0,1,PLUTO-conj-SUN 2028-03..2028-07 (9x15d samples)
+OBAF,OBA Financial Services Inc,2010-01-22,2010-16,6.5,1,PLUTO-conj-SUN 2026-09..2026-11 (5x15d samples)
+CELM,China Electric Motor Inc,2010-01-29,2010-16,6.0,1,PLUTO-conj-SUN 2028-04..2028-05 (4x15d samples)
+AVAV,AeroVironment Inc,2007-01-22,old,5.0,1,PLUTO-conj-SUN 2026-10..2026-10 (2x15d samples)
+MFB,Maidenform Brands Inc,2005-07-22,old,4.87,1,SOLAR-ECL-conj-SUN 2028-07-22 0.01
+CXO,Concho Resources Inc,2007-08-02,old,4.82,1,SOLAR-ECL-conj-SUN 2027-08-02 0.03
+SCMP,Sucampo Pharmaceuticals Inc,2007-08-02,old,4.82,1,SOLAR-ECL-conj-SUN 2027-08-02 0.03
+VRTU,Virtusa Corp,2007-08-02,old,4.82,1,SOLAR-ECL-conj-SUN 2027-08-02 0.03
+PSXP,Phillips 66 Partners LP,2013-07-22,2010-16,4.7,1,SOLAR-ECL-conj-SUN 2028-07-22 0.06
+ABSI,AbSci Corp,2021-07-22,2017+,4.51,1,SOLAR-ECL-conj-SUN 2028-07-22 0.12
+BASE,Couchbase Inc,2021-07-22,2017+,4.51,1,SOLAR-ECL-conj-SUN 2028-07-22 0.12
+RYAN,"Ryan Specialty Group Holdings,",2021-07-22,2017+,4.51,1,SOLAR-ECL-conj-SUN 2028-07-22 0.12
+ZENV,Zenvia Inc,2021-07-22,2017+,4.51,1,SOLAR-ECL-conj-SUN 2028-07-22 0.12
+ZVIA,Zevia PBC,2021-07-22,2017+,4.51,1,SOLAR-ECL-conj-SUN 2028-07-22 0.12
+MTBC,Medical Transcription Billing,2014-07-22,2010-16,4.35,1,SOLAR-ECL-conj-SUN 2028-07-22 0.17
+TSRX,Trius Therapeutics Inc,2010-08-02,2010-16,4.12,1,SOLAR-ECL-conj-SUN 2027-08-02 0.24
+PPX,Pacific Energy Partners LP,2002-07-22,old,4.02,1,SOLAR-ECL-conj-SUN 2028-07-22 0.27
+CWK,Cushman & Wakefield Plc,2018-08-02,2017+,3.94,1,SOLAR-ECL-conj-SUN 2027-08-02 0.29
+SONO,Sonos Inc,2018-08-02,2017+,3.94,1,SOLAR-ECL-conj-SUN 2027-08-02 0.29
+FLRE,Floware Wireless Systems Ltd,2000-08-01,old,3.83,1,SOLAR-ECL-conj-SUN 2027-08-02 0.33
+GNSC,Genaissance Pharmaceuticals,2000-08-01,old,3.83,1,SOLAR-ECL-conj-SUN 2027-08-02 0.33
+SPWX,Speechworks International Inc,2000-08-01,old,3.83,1,SOLAR-ECL-conj-SUN 2027-08-02 0.33
+TRPH,Tripath Technology Inc,2000-08-01,old,3.83,1,SOLAR-ECL-conj-SUN 2027-08-02 0.33
+JAMF,Jamf Holding Corp,2020-07-22,2017+,3.75,1,SOLAR-ECL-conj-SUN 2028-07-22 0.35
+EBIO,Eleven Biotherapeutics,2014-02-06,2010-16,3.68,1,SOLAR-ECL-conj-SUN 2027-02-06 0.09
+LADR,Ladder Capital,2014-02-06,2010-16,3.68,1,SOLAR-ECL-conj-SUN 2027-02-06 0.09
+RVNC,Revance Therapeutics,2014-02-06,2010-16,3.68,1,SOLAR-ECL-conj-SUN 2027-02-06 0.09
+BG,Bunge Ltd,2001-08-02,old,3.59,1,SOLAR-ECL-conj-SUN 2027-08-02 0.40
+BUN,BabyUniverse Inc,2005-08-02,old,3.5,1,SOLAR-ECL-conj-SUN 2027-08-02 0.43
+UNCA,Unica Corp,2005-08-02,old,3.5,1,SOLAR-ECL-conj-SUN 2027-08-02 0.43
+ATHL,Athlon Energy Inc,2013-08-01,2010-16,3.4,1,SOLAR-ECL-conj-SUN 2027-08-02 0.46
+CTRL,Control4 Corp,2013-08-01,2010-16,3.4,1,SOLAR-ECL-conj-SUN 2027-08-02 0.46
+MBII,Marrone Bio Innovations Inc,2013-08-01,2010-16,3.4,1,SOLAR-ECL-conj-SUN 2027-08-02 0.46
+SSRX,3SBio Inc,2007-02-06,old,3.36,1,SOLAR-ECL-conj-SUN 2027-02-06 0.21
+JASO,JA Solar Holdings Co Ltd,2007-02-06,old,3.36,1,SOLAR-ECL-conj-SUN 2027-02-06 0.21
+SNTA,Synta Pharmaceuticals Corp,2007-02-06,old,3.36,1,SOLAR-ECL-conj-SUN 2027-02-06 0.21
+CMTA,Clementia Pharmaceuticals Inc,2017-08-02,2017+,3.18,1,SOLAR-ECL-conj-SUN 2027-08-02 0.53
+VNTR,Venator Materials PLC,2017-08-02,2017+,3.18,1,SOLAR-ECL-conj-SUN 2027-08-02 0.53
+XONE,ExOne Co,2013-02-06,2010-16,3.03,1,SOLAR-ECL-conj-SUN 2027-02-06 0.34
