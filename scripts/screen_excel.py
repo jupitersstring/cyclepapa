@@ -255,13 +255,49 @@ _DIVERGE_COLS = {"ret_12m", "ret_24m", "revenue_growth", "ebitda_growth", "earni
                  "revenue_q_yoy", "revenue_accel", "gross_margin_delta", "ebitda_margin_slope",
                  "consensus_gap_pct", "fmp_fcf_yield", "fmp_fwd_eps_growth", "fmp_fwd_rev_growth"}
 
+# Number-format classes so figures read as what they ARE (18%, 12.3x, $4,930M),
+# not raw decimals. A decimal-fraction that means a percent -> "0%".
+_PCT = {"ret_1m", "ret_3m", "ret_6m", "ret_12m", "ret_24m", "ret_36m", "revenue_growth",
+        "ebitda_growth", "earnings_growth", "revenue_q_yoy", "revenue_accel", "gross_margin_delta",
+        "ebitda_margin_slope", "gross_margin", "ebitda_margin", "margin_delta3", "consensus_gap_pct",
+        "fmp_fcf_yield", "fmp_earnings_yield", "fmp_roic", "fmp_roe", "fmp_roa", "fmp_fwd_eps_growth",
+        "fmp_fwd_rev_growth", "fmp_capex_to_revenue", "surprise_beat_rate", "rev_up_frac",
+        "fmp_eps_beat_rate", "base_pos", "pos", "max_drawdown", "range_position",
+        "rev_cagr_n", "revenue_cagr", "ebitda_cagr", "earnings_cagr"}
+_SCORE = {"score", "base_score", "inflection_score", "inflection_flag_score", "valuation_richness",
+          "cheapness", "dormancy", "behaviour_change", "growth_rank", "reaction", "gap_score",
+          "price_quiet", "prebreakout_score", "basing_tightness"}
+_MULT = {"forwardPE", "trailingPE", "enterpriseToEbitda", "priceToSalesTrailing12Months",
+         "priceToBook", "pegRatio", "fmp_net_debt_to_ebitda", "fmp_current_ratio", "fmp_ev_to_fcf",
+         "fmp_ev_to_ebitda", "fmp_income_quality", "base_vol_contraction", "operating_leverage",
+         "operating_leverage_full", "ev_sales", "ev_ebitda_g", "ev_sales_g", "trend_slope",
+         "realized_vol", "trailingEps", "forwardEps"}
+_INT = {"base_len_months", "surprise_n", "surprise_streak", "fmp_eps_quarters", "fmp_eps_streak",
+        "analyst_coverage", "n", "n_screens", "setups", "universe", "revenue_n_periods"}
+_BIG = {"marketCap", "enterpriseValue"}
+_FCACHE = {}
+
+
+def _nf(wb, code):
+    k = (id(wb), code)
+    if k not in _FCACHE:
+        _FCACHE[k] = wb.add_format({"num_format": code})
+    return _FCACHE[k]
+
+
+def _colfmt(wb, c):
+    if c in _PCT:   return _nf(wb, "0%")
+    if c in _SCORE: return _nf(wb, "0.00")
+    if c in _MULT:  return _nf(wb, "0.0")
+    if c in _INT:   return _nf(wb, "0")
+    if c in _BIG:   return _nf(wb, '#,##0,,"M"')
+    return None
+
 
 def _fmt_sheet(writer, sheet, df, hdr, pct_fmt, f2_fmt):
     ws = writer.sheets[sheet]
-    wrap = writer.book.add_format({"text_wrap": True, "valign": "top"})
-    pct_cols = {"behaviour_change", "reaction", "surprise_beat_rate", "rev_up_frac",
-                "valuation_richness", "inflection_score", "dormancy", "cheapness", "consensus_gap_pct",
-                "gross_margin_delta", "ebitda_margin_slope", "score", "base_score"}
+    wb = writer.book
+    wrap = wb.add_format({"text_wrap": True, "valign": "top"})
     cols = list(df.columns)
     for i, c in enumerate(cols):
         ws.write(0, i, c, hdr)
@@ -271,13 +307,18 @@ def _fmt_sheet(writer, sheet, df, hdr, pct_fmt, f2_fmt):
             ws.set_column(i, i, 26)
         elif c == "symbol":
             ws.set_column(i, i, 10)
-        elif c in pct_cols:
-            ws.set_column(i, i, 11, pct_fmt)
-        elif df[c].dtype.kind in "fc":
-            ws.set_column(i, i, 11, f2_fmt)
         else:
-            ws.set_column(i, i, 11)
-    ws.freeze_panes(1, 0)
+            f = _colfmt(wb, c)
+            if f is not None:
+                ws.set_column(i, i, 11, f)
+            elif df[c].dtype.kind in "fc":
+                ws.set_column(i, i, 11, f2_fmt)
+            else:
+                ws.set_column(i, i, 11)
+    # freeze the header row + the leftmost identifier column, so the ticker/label
+    # stays visible when you scroll right through a wide screen.
+    frz = 1 if cols and cols[0] in ("symbol", "verdict", "industry", "Measure", "Sheet") else 0
+    ws.freeze_panes(1, frz)
     ws.autofilter(0, 0, max(len(df), 1), len(cols) - 1)
     n = len(df)
     for i, c in enumerate(cols):
@@ -305,10 +346,14 @@ def main():
 
     writer = pd.ExcelWriter(args.out, engine="xlsxwriter")
     wb = writer.book
-    hdr = wb.add_format({"bold": True, "bg_color": "#1F4E78", "font_color": "white",
+    hdr = wb.add_format({"bold": True, "bg_color": "#14584a", "font_color": "white",
                          "border": 1, "text_wrap": True, "valign": "top"})
     pct_fmt = wb.add_format({"num_format": "0.00"})
     f2_fmt = wb.add_format({"num_format": "0.00"})
+
+    # Contents tab (created FIRST so it is the leftmost sheet the workbook opens on);
+    # filled at the end once the full sheet list + counts are known.
+    contents = wb.add_worksheet("Contents")
 
     written = []
     wv = web_validated_sheet(df)
@@ -401,9 +446,11 @@ def main():
     if mc is not None and not mc.empty:
         mc.to_excel(writer, sheet_name="MU Clusters", index=False, startrow=1, header=False)
         ws = writer.sheets["MU Clusters"]
+        pctf = _nf(wb, '0"%"')
         for i, c in enumerate(mc.columns):
             ws.write(0, i, c, hdr)
-            ws.set_column(i, i, 30 if c == "industry" else 12)
+            ws.set_column(i, i, 30 if c == "industry" else 12,
+                          pctf if c == "pct_coiled" else None)
         ws.freeze_panes(1, 0)
         ws.autofilter(0, 0, len(mc), len(mc.columns) - 1)
         for col in ("setups", "pct_coiled"):
@@ -546,6 +593,7 @@ def main():
         for r, (a, b) in enumerate(prows):
             prov.write(r, 0, a, hdr if r == 0 else bold0)
             prov.write(r, 1, b, hdr if r == 0 else wrap0)
+        written.append("Provenance")
     except Exception as e:
         print(f"  skip Provenance: {e}")
 
@@ -576,6 +624,52 @@ def main():
     for r, (a, b) in enumerate(rows):
         leg.write(r, 0, a, hdr if r == 0 else bold)
         leg.write(r, 1, b, hdr if r == 0 else wrap)
+    written.append("Legend")
+
+    # --- fill the Contents tab: one navigable row per sheet ------------------ #
+    PURPOSE = {
+        "Web-Validated": "Hand-researched KEEP / SPECULATIVE / REJECT verdicts with reasons.",
+        "Base + Inflection (MU-style)": "Long consolidation base + fundamental inflection (mu = base × inflection).",
+        "MU Clusters": "Where the base+inflection setups concentrate by industry.",
+        "Quality-Value (FCF)": "Balance-sheet-strong, cash-generative names cheap on free cash flow.",
+        "Asymmetric Opps": "The synthesis: inflecting + cheap + dormant + catalyst.",
+        "Conviction": "Names passing ≥2 independent quality screens.",
+        "New Reality": "Serial EPS beats gated on rising revenue + EBITDA.",
+        "Forensic": "Rising revenue, positive & expanding EBITDA margin, no one-off lump.",
+        "Divergence": "Biggest fundamental change vs least price reaction.",
+        "Surprises": "Greatest EPS surprises: recent + cumulative + consistency.",
+        "Consensus Lagging": "Forward EPS below trailing reality while fundamentals grow.",
+        "Top5 by Region": "Top names per region on the composite.",
+        "Coverage Gap": "High-scoring names still lacking a web verdict.",
+        "Growth-Adj Value": "PEG-style cheapest-per-unit-growth names.",
+        "Clusters": "Every operating name with its behavioural k-means cluster.",
+        "Measures Dictionary": "One-line definition of every measure.",
+        "Legend": "What each sheet and key field means.",
+        "Provenance": "Data vintage, quality guards, ranking basis.",
+    }
+    title_fmt = wb.add_format({"bold": True, "font_size": 15, "font_color": "#14584a"})
+    sub_fmt = wb.add_format({"font_color": "#59636f"})
+    link_fmt = wb.add_format({"font_color": "#14584a", "underline": 1})
+    cnt_fmt = wb.add_format({"font_color": "#59636f", "align": "right", "num_format": "0"})
+    contents.set_column(0, 0, 30); contents.set_column(1, 1, 8); contents.set_column(2, 2, 70)
+    contents.hide_gridlines(2)
+    contents.write(0, 0, "Coiled Spring — screen workbook", title_fmt)
+    contents.write(1, 0, f"{date.today().isoformat()} · click a sheet to jump · every sheet sorts & filters in place",
+                   sub_fmt)
+    contents.write(3, 0, "SHEET", hdr); contents.write(3, 1, "ROWS", hdr); contents.write(3, 2, "WHAT IT IS", hdr)
+    r = 4
+    for entry in written:
+        nm = entry.rsplit("(", 1)[0].strip()
+        cnt = entry[len(nm):].strip("() ")
+        tab = nm[:31]
+        contents.write_url(r, 0, f"internal:'{tab}'!A1", link_fmt, tab)
+        try:
+            contents.write_number(r, 1, int(cnt.split()[0]), cnt_fmt)
+        except (ValueError, IndexError):
+            contents.write(r, 1, cnt, cnt_fmt)
+        contents.write(r, 2, PURPOSE.get(nm, ""), sub_fmt)
+        r += 1
+    contents.freeze_panes(4, 0)
 
     writer.close()
     print(f"WROTE {args.out}: {', '.join(written)}")
