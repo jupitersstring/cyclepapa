@@ -234,30 +234,62 @@ def web_validated_sheet(df: pd.DataFrame):
     return m[[c for c in cols if c in m.columns]].round(3)
 
 
+def mu_clusters_sheet():
+    """Where the MU-style base+inflection setups concentrate — industries coiling
+    together (from data/base_inflection_clusters.csv)."""
+    p = config.DATA_DIR / "base_inflection_clusters.csv"
+    if not p.exists():
+        return None
+    c = pd.read_csv(p).rename(columns={"n_setups": "setups", "n_universe": "universe",
+                                        "pct_coiled": "pct_coiled"})
+    keep = [x for x in ["industry", "setups", "universe", "pct_coiled"] if x in c.columns]
+    return c[keep].sort_values("setups", ascending=False).head(40).reset_index(drop=True)
+
+
+# 0..1 scores -> a teal in-cell data bar (the dashboard "meter"), so strength reads
+# at a glance beside the number. Signed rates -> a red→white→green diverging scale.
+_BAR_COLS = {"score", "base_score", "base_pos", "inflection_score", "valuation_richness",
+             "cheapness", "dormancy", "surprise_beat_rate", "rev_up_frac", "behaviour_change",
+             "reaction", "fmp_eps_beat_rate", "growth_rank"}
+_DIVERGE_COLS = {"ret_12m", "ret_24m", "revenue_growth", "ebitda_growth", "earnings_growth",
+                 "revenue_q_yoy", "revenue_accel", "gross_margin_delta", "ebitda_margin_slope",
+                 "consensus_gap_pct", "fmp_fcf_yield", "fmp_fwd_eps_growth", "fmp_fwd_rev_growth"}
+
+
 def _fmt_sheet(writer, sheet, df, hdr, pct_fmt, f2_fmt):
     ws = writer.sheets[sheet]
-    pct_cols = {"score", "behaviour_change", "reaction", "surprise_beat_rate", "rev_up_frac",
+    wrap = writer.book.add_format({"text_wrap": True, "valign": "top"})
+    pct_cols = {"behaviour_change", "reaction", "surprise_beat_rate", "rev_up_frac",
                 "valuation_richness", "inflection_score", "dormancy", "cheapness", "consensus_gap_pct",
-                "gross_margin_delta", "ebitda_margin_slope"}
-    for i, c in enumerate(df.columns):
+                "gross_margin_delta", "ebitda_margin_slope", "score", "base_score"}
+    cols = list(df.columns)
+    for i, c in enumerate(cols):
         ws.write(0, i, c, hdr)
         if c == "reason":
-            ws.set_column(i, i, 95)
+            ws.set_column(i, i, 52, wrap)        # wrap, don't sprawl to 95 chars
         elif c in ("name", "industry"):
-            ws.set_column(i, i, 28)
+            ws.set_column(i, i, 26)
+        elif c == "symbol":
+            ws.set_column(i, i, 10)
         elif c in pct_cols:
-            ws.set_column(i, i, 12, pct_fmt)
+            ws.set_column(i, i, 11, pct_fmt)
         elif df[c].dtype.kind in "fc":
-            ws.set_column(i, i, 12, f2_fmt)
+            ws.set_column(i, i, 11, f2_fmt)
         else:
-            ws.set_column(i, i, 12)
+            ws.set_column(i, i, 11)
     ws.freeze_panes(1, 0)
-    ws.autofilter(0, 0, max(len(df), 1), len(df.columns) - 1)
-    if "score" in df.columns:
-        si = list(df.columns).index("score")
-        ws.conditional_format(1, si, len(df), si,
-                              {"type": "3_color_scale", "min_color": "#F8696B",
-                               "mid_color": "#FFEB84", "max_color": "#63BE7B"})
+    ws.autofilter(0, 0, max(len(df), 1), len(cols) - 1)
+    n = len(df)
+    for i, c in enumerate(cols):
+        if n < 1:
+            break
+        if c in _BAR_COLS:
+            ws.conditional_format(1, i, n, i, {"type": "data_bar", "bar_color": "#7FC9B6"})
+        elif c in _DIVERGE_COLS:
+            ws.conditional_format(1, i, n, i, {"type": "3_color_scale",
+                                               "min_type": "num", "min_value": -0.5, "min_color": "#F4A9A6",
+                                               "mid_type": "num", "mid_value": 0, "mid_color": "#FFFFFF",
+                                               "max_type": "num", "max_value": 0.5, "max_color": "#9AD4AE"})
 
 
 def main():
@@ -363,6 +395,23 @@ def main():
         res.to_excel(writer, sheet_name=title[:31], index=False, startrow=1, header=False)
         _fmt_sheet(writer, title[:31], res, hdr, pct_fmt, f2_fmt)
         written.append(f"{title}({len(res)})")
+
+    # MU-style clusters: where the base+inflection setups concentrate by industry.
+    mc = mu_clusters_sheet()
+    if mc is not None and not mc.empty:
+        mc.to_excel(writer, sheet_name="MU Clusters", index=False, startrow=1, header=False)
+        ws = writer.sheets["MU Clusters"]
+        for i, c in enumerate(mc.columns):
+            ws.write(0, i, c, hdr)
+            ws.set_column(i, i, 30 if c == "industry" else 12)
+        ws.freeze_panes(1, 0)
+        ws.autofilter(0, 0, len(mc), len(mc.columns) - 1)
+        for col in ("setups", "pct_coiled"):
+            if col in mc.columns:
+                ci = list(mc.columns).index(col)
+                ws.conditional_format(1, ci, len(mc), ci,
+                                      {"type": "data_bar", "bar_color": "#7FC9B6"})
+        written.append(f"MU Clusters({len(mc)})")
 
     # Behavioural clusters across the ENTIRE universe (every name with data, not
     # just operating companies) — a profile sheet (the k centroids) + per-name
