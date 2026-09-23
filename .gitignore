@@ -19,3 +19,4 @@ recover.log
 prior.log
 data/.fmp_key
 .env
+data/fmp_cache/

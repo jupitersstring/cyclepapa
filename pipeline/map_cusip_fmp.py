@@ -17,7 +17,7 @@ import json, os, re, sqlite3, subprocess, sys, time
 from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from enrich_fmp import api_key, API, DB
+from enrich_fmp import api_key, API, DB, load_profiles, is_true
 from build_cusip_map import _valid_cusip, _valid_ticker
 
 # CUSIP -> ticker, verified by hand (FMP match + profile check)
@@ -60,8 +60,16 @@ def run():
         WHERE u.cusip IS NOT NULL AND length(u.cusip) = 9 AND cm.ticker IS NULL
         GROUP BY u.cusip""").fetchall()
     todo = [t for t in todo if _valid_cusip(t[0])]
+    prof = load_profiles()
     etfs = {r.get("symbol") for r in (get("etf-list") or [])}
-    print(f"resolving {len(todo):,} unmapped CUSIPs via FMP ({len(etfs):,} ETF symbols loaded)", flush=True)
+    print(f"resolving {len(todo):,} unmapped CUSIPs via FMP ({len(prof):,} profiles, "
+          f"{len(etfs):,} ETF symbols loaded)", flush=True)
+
+    def fund_like(sym, issuer):
+        p = prof.get(sym)
+        if p is not None:                   # FMP's own flags are authoritative
+            return is_true(p.get("isEtf")) or is_true(p.get("isFund"))
+        return sym in etfs or bool(ETF_NAME.search(issuer or ""))
 
     def resolve(t):
         cusip, issuer, v = t
@@ -75,6 +83,13 @@ def run():
         it = toks(issuer)
         ok = [x for x in d if it & toks(x.get("companyName"))]
         if not ok:
+            # Second tier — renamed companies (13F filers keep the old name,
+            # e.g. "FACEBOOK" for META): accept only when FMP's OWN profile for
+            # the symbol carries this exact CUSIP. A bad FMP match (Ferguson ->
+            # Ferroglobe) fails this because the symbol's real CUSIP differs.
+            conf = [x for x in d if (prof.get(x.get("symbol") or "") or {}).get("cusip") == cusip]
+            if len(conf) == 1:
+                return cusip, issuer, v, conf[0].get("symbol"), "ok-renamed"
             return cusip, issuer, v, d[0].get("symbol"), "name-mismatch"
         us = [x for x in ok if "." not in (x.get("symbol") or "")]
         best = max(us or ok, key=lambda x: x.get("marketCap") or 0)
@@ -87,9 +102,9 @@ def run():
     n_common = n_etf = 0
     val_common = 0.0
     for cusip, issuer, v, sym, status in res:
-        if status not in ("ok", "curated") or not sym or not _valid_ticker(sym):
+        if status not in ("ok", "ok-renamed", "curated") or not sym or not _valid_ticker(sym):
             continue
-        is_etf = sym in etfs or bool(ETF_NAME.search(issuer or ""))
+        is_etf = fund_like(sym, issuer)
         st = "etf" if is_etf else "common"
         src = "curated" if status == "curated" else "fmp"
         conn.execute("""INSERT INTO cusip_map VALUES (?,?,?,?,?)
@@ -101,6 +116,18 @@ def run():
         else:
             n_common += 1
             val_common += v or 0
+    # reconcile: earlier FMP rows tagged 'common' that FMP's profile flags as an
+    # ETF / fund (closed-end funds like BDJ, MQY; fund lines like MSLC) -> 'etf',
+    # and pull their tickers back off the holdings so they leave stock signals.
+    fixed_etf = 0
+    for cusip, sym in conn.execute("""SELECT cusip, ticker FROM cusip_map
+            WHERE source = 'fmp' AND sec_type = 'common' AND ticker IS NOT NULL""").fetchall():
+        p = prof.get(sym)
+        if p is not None and (is_true(p.get("isEtf")) or is_true(p.get("isFund"))):
+            conn.execute("UPDATE cusip_map SET sec_type='etf' WHERE cusip=?", (cusip,))
+            for tbl in ("fund_13f_holdings", "fund_13f_prior", "broker_13f"):
+                conn.execute(f"UPDATE {tbl} SET ticker=NULL WHERE cusip=? AND ticker=?", (cusip, sym))
+            fixed_etf += 1
     # back-apply COMMON mappings (ETFs stay NULL in holdings by convention)
     applied = 0
     for tbl in ("fund_13f_holdings", "fund_13f_prior", "broker_13f"):
@@ -112,10 +139,10 @@ def run():
     from collections import Counter
     print("outcomes:", dict(Counter(r[4] for r in res)))
     print(f"mapped: {n_common:,} common (${val_common/1e3:,.1f}B held) + {n_etf:,} ETF/fund; "
-          f"back-applied to {applied:,} holding rows")
-    for r in sorted([r for r in res if r[4] in ("ok", "curated") and not ETF_NAME.search(r[1] or "")],
-                    key=lambda r: -(r[2] or 0))[:12]:
-        print(f"  {r[3]:8s} ${r[2]:>7,.0f}M  {(r[1] or '')[:44]}")
+          f"reclassified {fixed_etf} fund lines to etf; back-applied to {applied:,} holding rows")
+    for r in sorted([r for r in res if r[4] in ("ok", "ok-renamed", "curated")
+                     and not fund_like(r[3], r[1])], key=lambda r: -(r[2] or 0))[:12]:
+        print(f"  {r[3]:8s} ${r[2]:>7,.0f}M  {(r[1] or '')[:40]}  [{r[4]}]")
     conn.close()
 
 if __name__ == "__main__":

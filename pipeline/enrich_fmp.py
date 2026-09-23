@@ -55,6 +55,30 @@ def num(x):
     except (TypeError, ValueError):
         return None
 
+CACHE = os.path.join(BASE, "data", "fmp_cache")
+
+def load_profiles(max_age_h=20):
+    """All FMP company profiles (~90k), cached on disk for the day so the
+    enrich and the CUSIP mapper share one download."""
+    os.makedirs(CACHE, exist_ok=True)
+    path = os.path.join(CACHE, "profile_bulk.csv")
+    if not (os.path.exists(path) and time.time() - os.path.getmtime(path) < max_age_h * 3600):
+        rows = []
+        for part in range(0, 12):
+            chunk = fetch_csv("profile-bulk", part=part)
+            if not chunk:
+                break
+            rows.extend(chunk)
+        if not rows:
+            raise RuntimeError("FMP profile-bulk returned nothing")
+        with open(path, "w", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+            w.writeheader(); w.writerows(rows)
+    return {r["symbol"]: r for r in csv.DictReader(open(path))}
+
+def is_true(x):
+    return str(x).strip().lower() == "true"
+
 def pos(x):
     """Ratio only meaningful when positive (neg EBITDA / neg earnings -> None)."""
     v = num(x)
@@ -70,13 +94,7 @@ def run():
         cols.append("src")
 
     t0 = time.time()
-    prof = {}
-    for part in range(0, 12):
-        rows = fetch_csv("profile-bulk", part=part)
-        if not rows:
-            break
-        for r in rows:
-            prof[r["symbol"]] = r
+    prof = load_profiles()
     km = {r["symbol"]: r for r in fetch_csv("key-metrics-ttm-bulk")}
     rt = {r["symbol"]: r for r in fetch_csv("ratios-ttm-bulk")}
     print(f"FMP bulk: {len(prof):,} profiles, {len(km):,} key-metrics, "
@@ -88,6 +106,7 @@ def run():
         UNION SELECT ticker FROM cusip_map WHERE ticker IS NOT NULL""")}
     existing = {r["ticker"]: dict(r) for r in conn.execute("SELECT * FROM ticker_yf")}
     asof = time.strftime("%Y-%m-%d")
+    conn.execute("CREATE TABLE IF NOT EXISTS yf_dead (ticker TEXT PRIMARY KEY, asof TEXT)")
     n_upd = n_new = n_inactive = n_miss = 0
     for tk in sorted(universe):
         p = prof.get(tk)
@@ -95,7 +114,11 @@ def run():
             n_miss += 1
             continue
         if str(p.get("isActivelyTrading", "")).lower() == "false":
-            n_inactive += 1                  # stale quote — leave any Yahoo row alone
+            # FMP says the listing is gone (acquired / taken private — CyberArk,
+            # Dayforce, Avidity). Flag it so scoring treats it as delisted rather
+            # than an unpriced "unknown mcap" pick.
+            conn.execute("INSERT OR REPLACE INTO yf_dead VALUES (?,?)", (tk, asof))
+            n_inactive += 1
             continue
         price, mcap, ccy = num(p.get("price")), num(p.get("marketCap")), p.get("currency") or "USD"
         if not price or not mcap:
