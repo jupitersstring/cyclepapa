@@ -14,6 +14,7 @@
 # archetype_tags.csv (fmp_book_cols.attach_fmp / the archetype loaders).
 set -uo pipefail
 cd "$(dirname "$0")"
+export PYTHONWARNINGS=ignore   # pandas fragmentation warnings are noise here
 
 step() { echo; echo "=== $* ==="; }
 
