@@ -101,14 +101,20 @@ def pos(x):
     v = num(x)
     return v if (v is not None and v > 0) else None
 
+def _fx_major(ccy):
+    """USD per MAJOR unit (aggregates are in major units even for GBp quotes)."""
+    from unified_score import _FX_USD
+    return _FX_USD.get({"GBp": "GBP", "GBX": "GBP", "ZAc": "ZAR", "ILA": "ILS"}.get(ccy, ccy))
+
 def run():
     conn = sqlite3.connect(DB, timeout=120)
     conn.execute("PRAGMA busy_timeout=120000")
     conn.row_factory = sqlite3.Row
     cols = [r[1] for r in conn.execute("PRAGMA table_info(ticker_yf)")]
-    if "src" not in cols:
-        conn.execute("ALTER TABLE ticker_yf ADD COLUMN src TEXT")
-        cols.append("src")
+    for col, ty in (("src", "TEXT"), ("is_fund", "INTEGER")):
+        if col not in cols:
+            conn.execute(f"ALTER TABLE ticker_yf ADD COLUMN {col} {ty}")
+            cols.append(col)
 
     t0 = time.time()
     prof = load_profiles()
@@ -143,6 +149,16 @@ def run():
             continue
         row = existing.get(tk) or {c: None for c in cols}
         is_new = tk not in existing
+        # Aggregates FMP doesn't overwrite (debt, cash; EV/EBITDA when FMP has
+        # no key-metrics row) stay, but must be re-expressed in FMP's currency:
+        # a row enrich_fx already converted to USD would otherwise be multiplied
+        # by the EUR/GBP rate a second time.
+        old_ccy = row.get("currency")
+        if not is_new and old_ccy and old_ccy != ccy:
+            f_old, f_new = _fx_major(old_ccy), _fx_major(ccy)
+            for c in ("enterprise_value_m", "ebitda_m", "total_debt_m", "total_cash_m"):
+                if row.get(c) is not None:
+                    row[c] = row[c] * f_old / f_new if (f_old and f_new) else None
         row["ticker"] = tk
         row["price"] = price
         row["currency"] = ccy
@@ -155,11 +171,18 @@ def run():
             # FMP's EV is in the REPORTING currency (TSM: TWD). EV/mktcap is
             # currency-free, so rescale onto the listing-currency market cap.
             ev_rep, mc_rep = num(k.get("enterpriseValueTTM")), num(k.get("marketCap"))
-            row["enterprise_value_m"] = (mcap * ev_rep / mc_rep / 1e6
-                                         if (ev_rep is not None and mc_rep and mc_rep > 0) else None)
+            ev = (mcap * ev_rep / mc_rep / 1e6
+                  if (ev_rep is not None and mc_rep and mc_rep > 0) else None)
+            row["enterprise_value_m"] = ev
+            # EBITDA in the same (listing) currency, sign kept: unified_score
+            # only trusts EV/EBITDA when EV > 0 AND EBITDA > 0, so leaving this
+            # blank would silently discard every FMP multiple.
+            m = num(k.get("evToEBITDATTM"))
+            row["ebitda_m"] = ev / m if (ev and m) else None
         if r:
             row["pb_ratio"] = pos(r.get("priceToBookRatioTTM"))
             row["pe_ttm"] = pos(r.get("priceToEarningsRatioTTM"))
+            row["peg"] = pos(r.get("priceToEarningsGrowthRatioTTM"))
             pm = num(r.get("netProfitMarginTTM"))
             if pm is not None:
                 row["profit_margin"] = pm
@@ -169,6 +192,9 @@ def run():
                         ("business_summary", "description"), ("long_name", "companyName")):
             if col in row and not row.get(col) and p.get(fk):
                 row[col] = p[fk]
+        # FMP's ETF / fund flags: closed-end funds and trusts (ASA, PSLV, MUC,
+        # Cornerstone...) otherwise pass the name heuristics and score as stocks
+        row["is_fund"] = int(is_true(p.get("isEtf")) or is_true(p.get("isFund")))
         row["asof"] = asof
         row["src"] = "fmp"
         conn.execute(f"INSERT OR REPLACE INTO ticker_yf ({','.join(cols)}) "

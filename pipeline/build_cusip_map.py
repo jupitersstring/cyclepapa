@@ -37,12 +37,51 @@ def _valid_ticker(t):
         return True                      # NULL = known-unmappable, allowed
     return not (len(t) >= 6 and any(t.endswith(x) for x in _CCY))
 
+def normalize_cusip_case(conn):
+    """CUSIPs are case-insensitive, but some filers (Ancora, Gardner Russo,
+    RiverPark...) write them lowercase. Stored as-is, one security splits into
+    two rows (RiverPark's TSLA as 561 + 90 shares) and lowercase lines miss the
+    upper-case cusip_map entry (471 Ancora holdings had no ticker). Ingest now
+    upper-cases; this repairs rows stored before that. Case-twins inside one
+    filing are merged (value, shares, weight summed), as ingest aggregates."""
+    n = 0
+    for t, key in (("fund_13f_holdings", ("fund", "accession")),
+                   ("fund_13f_prior", ("fund", "accession")),
+                   ("broker_13f", ("broker", "accession"))):
+        cols = {r[1] for r in conn.execute(f"PRAGMA table_info({t})")}
+        if not cols:
+            continue
+        for row in conn.execute(f"""SELECT rowid, {key[0]}, {key[1]}, cusip, value_k, shares
+                                    FROM {t} WHERE cusip <> UPPER(cusip)""").fetchall():
+            rid, k0, k1, cu, v, sh = row
+            twin = conn.execute(f"SELECT rowid FROM {t} WHERE {key[0]}=? AND {key[1]}=? AND cusip=?",
+                                (k0, k1, cu.upper())).fetchone()
+            if twin:
+                extra = (", pct_book = COALESCE(pct_book, 0) + COALESCE((SELECT pct_book FROM "
+                         f"{t} WHERE rowid={rid}), 0)") if "pct_book" in cols else ""
+                conn.execute(f"UPDATE {t} SET value_k = COALESCE(value_k, 0) + ?, "
+                             f"shares = COALESCE(shares, 0) + ?{extra} WHERE rowid = ?",
+                             (v or 0, sh or 0, twin[0]))
+                conn.execute(f"DELETE FROM {t} WHERE rowid = ?", (rid,))
+            else:
+                conn.execute(f"UPDATE {t} SET cusip = ? WHERE rowid = ?", (cu.upper(), rid))
+            n += 1
+    for t in ("holding_sec_form", "cusip_map"):
+        # keep the upper-case twin (cusip_map: it carries the vetted mapping)
+        conn.execute(f"""DELETE FROM {t} WHERE cusip <> UPPER(cusip) AND EXISTS
+            (SELECT 1 FROM {t} b WHERE b.cusip = UPPER({t}.cusip)
+             {'AND b.accession = ' + t + '.accession' if t == 'holding_sec_form' else ''})""")
+        n += conn.execute(f"UPDATE {t} SET cusip = UPPER(cusip) WHERE cusip <> UPPER(cusip)").rowcount
+    conn.commit()
+    return n
+
 def upsert(conn, cusip, ticker, sec_type, source, asof):
+    cusip = (cusip or "").upper()
     if not _valid_cusip(cusip) or not _valid_ticker(ticker):
         return
-    # Never let a lower-authority source overwrite an OpenFIGI/curated mapping.
+    # Never let a lower-authority source overwrite an OpenFIGI/FMP/curated mapping.
     prior = conn.execute("SELECT source FROM cusip_map WHERE cusip=?", (cusip,)).fetchone()
-    RANK = {"curated": 3, "openfigi": 2, "name": 1, "sec": 1}
+    RANK = {"curated": 3, "openfigi": 2, "fmp": 2, "fmp-name": 1.5, "name": 1, "sec": 1}
     if prior and RANK.get(prior[0], 0) > RANK.get(source, 0):
         return
     conn.execute("""INSERT INTO cusip_map VALUES (?,?,?,?,?)
@@ -53,6 +92,9 @@ def upsert(conn, cusip, ticker, sec_type, source, asof):
 def run(figi_files=None):
     conn = sqlite3.connect(DB); conn.execute("PRAGMA busy_timeout=30000")
     init(conn)
+    n_case = normalize_cusip_case(conn)
+    if n_case:
+        print(f"normalized {n_case} lowercase CUSIP rows to upper case")
     asof = time.strftime("%Y-%m-%d")
     n_figi = n_hold = 0
 
@@ -82,9 +124,14 @@ def run(figi_files=None):
           f"+{n_figi} from OpenFIGI, +{n_hold} from holdings consensus")
 
     # 3. Back-apply to any holdings still NULL where cusip_map now knows the answer.
-    applied = conn.execute("""UPDATE fund_13f_holdings
-        SET ticker=(SELECT ticker FROM cusip_map WHERE cusip=fund_13f_holdings.cusip)
-        WHERE ticker IS NULL AND cusip IN (SELECT cusip FROM cusip_map WHERE ticker IS NOT NULL)""").rowcount
+    #    Common stock only: FMP-resolved ETF/fund rows carry the fund's ticker in
+    #    cusip_map, but funds stay off the holdings so they never score as picks.
+    applied = 0
+    for t in ("fund_13f_holdings", "fund_13f_prior", "broker_13f"):
+        applied += conn.execute(f"""UPDATE {t}
+            SET ticker=(SELECT ticker FROM cusip_map WHERE cusip={t}.cusip)
+            WHERE ticker IS NULL AND cusip IN (SELECT cusip FROM cusip_map
+                WHERE ticker IS NOT NULL AND sec_type = 'common')""").rowcount
     conn.commit()
     print(f"back-applied cusip_map to {applied} previously-unmapped holdings")
     conn.close()

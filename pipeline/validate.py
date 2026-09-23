@@ -146,6 +146,26 @@ def run():
             AND length({col}) >= 6 AND substr({col}, -3) IN ('{ccy}')""")
         if n: fails.append(f"{tbl}: {n} composite venue tickers (ccy-suffix junk, e.g. TRI4EUR)")
 
+    # I8e. CUSIP case: identifiers are case-insensitive, but a lowercase copy
+    #      splits one security into two rows and misses cusip_map (471 Ancora
+    #      holdings sat unmapped). Ingest upper-cases; nothing may slip through.
+    for tbl in ("fund_13f_holdings", "fund_13f_prior", "broker_13f", "cusip_map", "holding_sec_form"):
+        n = one(f"SELECT COUNT(*) FROM {tbl} WHERE cusip <> UPPER(cusip)")
+        if n: fails.append(f"{tbl}: {n} lowercase CUSIPs (run build_cusip_map.normalize_cusip_case)")
+    # I8f. Value units: no single 13F line can exceed $1T. A full-dollar filing
+    #      booked as $k does (MUFG's one-line Morgan Stanley book read $78.8T).
+    for tbl in ("fund_13f_holdings", "fund_13f_prior", "broker_13f"):
+        n = one(f"SELECT COUNT(*) FROM {tbl} WHERE value_k > 1e9")
+        if n: fails.append(f"{tbl}: {n} lines above $1T — full-dollar filing not normalized")
+    # I8g. Share class: a line the filer titled COMMON must not carry a
+    #      preferred-line ticker (Morgan Stanley common once rode on MS-PQ and
+    #      dropped out of every common-stock signal).
+    n = one("""SELECT COUNT(*) FROM fund_13f_holdings h JOIN holding_sec_form f
+        ON f.accession = h.accession AND f.cusip = h.cusip
+        WHERE f.sec_form = 'common' AND h.value_k > 10000
+          AND (h.ticker GLOB '*-P' OR h.ticker GLOB '*-P[A-Z]' OR h.ticker GLOB '*-P[A-Z][A-Z]')""")
+    if n: fails.append(f"fund_13f_holdings: {n} COMMON lines (>$10M) carry a preferred ticker")
+
     # I8. feed freshness: warn when the tradeable-signal feeds fall behind.
     for tbl, col, days in [('form4_transactions','trans_date',21), ('holder_13d','filed',30),
                            ('catalysts_8k','filed',30), ('ticker_yf','asof',21)]:

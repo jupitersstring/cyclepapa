@@ -382,6 +382,13 @@ def run():
         _dead = {r[0] for r in conn.execute("SELECT ticker FROM yf_dead")}
     except Exception:
         _dead = set()
+    # FMP's own ETF / fund flag (enrich_fmp) is authoritative where the name
+    # heuristics miss: closed-end funds and trusts (ASA Gold, PSLV, Cornerstone,
+    # Central Securities, muni funds) had been scoring as common stock picks.
+    try:
+        _fund = {r[0] for r in conn.execute("SELECT ticker FROM ticker_yf WHERE is_fund = 1")}
+    except Exception:
+        _fund = set()
     print(f"scoring {len(universe)} tickers")
     n = 0
     for tkr in universe:
@@ -419,6 +426,8 @@ def run():
         # quoteSummary and would misclassify as delisted when they are simply
         # fund-type quotes — their real class already excludes them from picks.
         sec_type = classify_sec_type(tkr, _names.get(tkr), _names)
+        if sec_type == "common" and tkr in _fund:
+            sec_type = "etf"
         if sec_type == "common" and tkr in _dead:
             sec_type = "delisted"
         # Revealed preference — what funds are ACTIVELY doing (not just holding):

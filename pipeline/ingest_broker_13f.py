@@ -123,7 +123,11 @@ def ingest_accession(conn, broker, cik, acc, filed, qrank, cusip_map, name_map, 
             ratios.append((r["value_k"] * 1000.0 / r["shares"]) / p)
         out.append((broker, cik, acc, filed, qrank, r["issuer"], r["cusip"], tkr,
                     r["value_k"], r["shares"], r["type"]))
-    unit_fix = len(ratios) >= 2 and statistics.median(ratios) > 100
+    # full-dollar filing (value/shares ~1000x the price). A one-line book counts
+    # too: MUFG's 13F is just its strategic Morgan Stanley stake, filed in
+    # dollars — booked as-is it put $78.8 TRILLION on MS.
+    unit_fix = ((len(ratios) >= 2 and statistics.median(ratios) > 100)
+                or (len(ratios) == 1 and ratios[0] > 100))
     for row in out:
         row = list(row)
         if unit_fix:
@@ -132,10 +136,31 @@ def ingest_accession(conn, broker, cik, acc, filed, qrank, cusip_map, name_map, 
     conn.commit()
     return len(out)
 
+def repair_units(conn):
+    """Apply the full-dollar rule to books already stored (idempotent: once
+    divided, a book's implied prices sit at ~1x and never re-trigger)."""
+    px_map = {t: p for t, p in conn.execute("SELECT ticker, price FROM ticker_yf WHERE price > 0")}
+    ratios = {}
+    for broker, acc, tkr, v, sh, typ in conn.execute("""SELECT broker, accession, ticker,
+            value_k, shares, sh_type FROM broker_13f WHERE value_k > 0 AND shares > 0"""):
+        p = 1.0 if typ == "PRN" else px_map.get(tkr)
+        if p:
+            ratios.setdefault((broker, acc), []).append(v * 1000.0 / sh / p)
+    fixed = []
+    for (broker, acc), rs in ratios.items():
+        if (len(rs) >= 2 and statistics.median(rs) > 100) or (len(rs) == 1 and rs[0] > 100):
+            conn.execute("UPDATE broker_13f SET value_k = value_k / 1000.0 WHERE broker=? AND accession=?",
+                         (broker, acc))
+            fixed.append(f"{broker} {acc}")
+    conn.commit()
+    return fixed
+
 def run():
     conn = sqlite3.connect(DB, timeout=60)
     conn.execute("PRAGMA busy_timeout=60000")
     init(conn)
+    for f in repair_units(conn):
+        print(f"  [unit] {f}: full-dollar book normalized to $k")
     name_map = m.cusip_ticker_map(conn)
     cusip_map = {c: (tk, st) for c, tk, st in
                  conn.execute("SELECT cusip, ticker, sec_type FROM cusip_map")}

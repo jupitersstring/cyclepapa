@@ -324,7 +324,9 @@ def parse_infotable(xml_bytes):
         except ValueError: sh = 0
         out.append({
             "issuer": t("nameOfIssuer")[:80],
-            "cusip":  t("cusip"),
+            # upper-case: some filers (Ancora, RiverPark) write lowercase
+            # CUSIPs, splitting one security into two rows and missing cusip_map
+            "cusip":  t("cusip").upper(),
             "value_k": v,
             "shares":  sh,
             "type":    t("shrsOrPrnAmt/sshPrnamtType"),
@@ -384,13 +386,20 @@ def cusip_ticker_map(conn):
     except json.JSONDecodeError:
         return {}
     # Format: {"fields":["cik","name","ticker","exchange"], "data":[[...],...]}
+    # A company appears once per listed line (MS, MS-PA ... MS-PQ): the plain
+    # primary ticker must win. Last-row-wins had mapped Morgan Stanley, Goldman,
+    # Boeing and Oracle COMMON stock onto preferred lines, which then scored as
+    # preferreds and fell out of every common-stock signal.
+    def better(new, old):
+        return old is None or ("-" in old and "-" not in new)
     by_name = {}
     for row in d.get("data", []):
         if len(row) >= 3:
             cik, name, tkr, exch = row[0], row[1].upper(), row[2], row[3] if len(row)>3 else ""
-            by_name[name] = tkr
+            if better(tkr, by_name.get(name)):
+                by_name[name] = tkr
             nn = _norm_name(name)          # normalized key for fuzzy match
-            if nn and nn not in by_name:
+            if nn and better(tkr, by_name.get(nn)):
                 by_name[nn] = tkr
     return by_name
 

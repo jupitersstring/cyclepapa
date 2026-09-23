@@ -18,19 +18,13 @@ def run(years=None):
     years = years or [int(time.strftime("%Y")) - 2, int(time.strftime("%Y")) - 1, int(time.strftime("%Y"))]
     conn = sqlite3.connect(DB, timeout=120)
     conn.execute("PRAGMA busy_timeout=120000")
-    conn.executescript("""
-    DROP TABLE IF EXISTS earnings_surprise;
-    CREATE TABLE earnings_surprise (ticker TEXT, date TEXT, eps_actual REAL, eps_est REAL,
-                                    surprise_pct REAL, PRIMARY KEY (ticker, date));
-    DROP TABLE IF EXISTS earnings_beat;
-    CREATE TABLE earnings_beat (ticker TEXT PRIMARY KEY, n_q INTEGER, beats INTEGER,
-        beat_rate REAL, last_date TEXT, last_surprise_pct REAL, streak INTEGER);
-    """)
     universe = {r[0] for r in conn.execute("""
         SELECT ticker FROM unified_signal
         UNION SELECT ticker FROM fund_13f_holdings WHERE ticker IS NOT NULL""")}
     today = time.strftime("%Y-%m-%d")
-    n = 0
+    # fetch everything BEFORE touching the tables: a failed download must leave
+    # the last good scorecard in place, never an empty one
+    rows = {}
     for y in years:
         for r in cached_bulk(f"earnings_{y}", lambda y=y: fetch_csv("earnings-surprises-bulk", year=y)):
             tk = r.get("symbol")
@@ -39,12 +33,21 @@ def run(years=None):
             if tk not in universe or a is None or e is None or not d or d > today:
                 continue
             sp = (a - e) / abs(e) * 100 if abs(e) >= 0.01 else None
-            conn.execute("INSERT OR REPLACE INTO earnings_surprise VALUES (?,?,?,?,?)",
-                         (tk, d, a, e, round(sp, 1) if sp is not None else None))
-            n += 1
+            rows[(tk, d)] = (tk, d, a, e, round(sp, 1) if sp is not None else None)
+    if not rows:
+        raise SystemExit("no earnings rows fetched — keeping the existing tables")
+    n = len(rows)
+    conn.executescript("""
+    DROP TABLE IF EXISTS earnings_surprise;
+    CREATE TABLE earnings_surprise (ticker TEXT, date TEXT, eps_actual REAL, eps_est REAL,
+                                    surprise_pct REAL, PRIMARY KEY (ticker, date));
+    DROP TABLE IF EXISTS earnings_beat;
+    CREATE TABLE earnings_beat (ticker TEXT PRIMARY KEY, n_q INTEGER, beats INTEGER,
+        beat_rate REAL, last_date TEXT, last_surprise_pct REAL, streak INTEGER);
+    """)
+    conn.executemany("INSERT INTO earnings_surprise VALUES (?,?,?,?,?)", rows.values())
     by = {}
-    for tk, d, a, e, sp in conn.execute(
-            "SELECT ticker, date, eps_actual, eps_est, surprise_pct FROM earnings_surprise ORDER BY ticker, date DESC"):
+    for tk, d, a, e, sp in sorted(rows.values(), key=lambda r: (r[0], r[1]), reverse=True):
         by.setdefault(tk, []).append((d, a, e, sp))
     for tk, qs in by.items():
         qs = qs[:8]

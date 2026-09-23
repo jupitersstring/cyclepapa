@@ -61,7 +61,7 @@ def parse_nport(cik, acc):
         if nm and v:
             rows.append({"issuer": nm.group(1).strip()[:60],
                          "ticker": (tk.group(1).strip().upper() if tk else None),
-                         "cusip": (cu.group(1).strip() if cu else None),
+                         "cusip": (cu.group(1).strip().upper() if cu else None),
                          "val_usd": float(v.group(1)),
                          "pct": float(pctv.group(1)) if pctv else None})
     rows.sort(key=lambda r: -r["val_usd"])
