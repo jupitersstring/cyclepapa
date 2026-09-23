@@ -83,6 +83,13 @@ def main():
 
     panel = pd.read_csv(PANEL)
     df = base.merge(panel, on="ticker", how="inner")
+    # merge VWAP features (anchored YTD line, 21/50/200 crosses d/w/m, VWAP
+    # horizontality+narrowness consolidation, recent volume spike)
+    try:
+        vw = pd.read_csv("/tmp/vwap_features.csv")
+        df = df.merge(vw, on="ticker", how="left")
+    except Exception:
+        pass
 
     def pc(col):
         return df[col].rank(pct=True) if col in df else pd.Series(0.5, index=df.index)
@@ -123,7 +130,17 @@ def main():
     ok = (df["base_len"] >= min_base) & df["rev_ttm_g"].notna() & \
          ((df["inflection"] > 0.35) | (df["derate_score"] > 0.2))
     df["mu_like"] = np.where(ok, (100 * df["base_score"] * (0.4 + df["fund_side"])), np.nan)
-    df = df.sort_values("mu_like", ascending=False)
+
+    # blend the VWAP setup in: a recent 21>50>200 VWAP cross out of a long flat/
+    # narrow base, holding above the YTD anchor, with a volume spike, is the
+    # dip-buy/ignition confirmation on top of the fundamental base.
+    xcross = df.get("vwap_cross_score", pd.Series(0.0, index=df.index)).fillna(0)
+    xconsol = df.get("vwap_consol_score", pd.Series(0.0, index=df.index)).fillna(0)
+    above = df.get("above_avwap_ytd", pd.Series(0, index=df.index)).fillna(0)
+    vspk = df.get("vol_spike_recent", pd.Series(0, index=df.index)).fillna(0)
+    df["mu_like_vwap"] = (df["mu_like"] * (0.6 + 0.4 * xcross) * (0.7 + 0.2 * xconsol)
+                          * (1 + 0.08 * above + 0.08 * vspk)).round(2)
+    df = df.sort_values("mu_like_vwap", ascending=False)
 
     # names + sector + liquidity. Sector from FMP profile-bulk (full coverage),
     # falling back to caches, so the ex-financials filter actually works.
@@ -146,9 +163,11 @@ def main():
     except Exception:
         pass
 
-    cols = ["ticker", "name", "sector", "mu_like", "base_len", "base_range", "near_high",
-            "contraction", "fund_side", "inflection", "derate_score", "ps_compression",
-            "rev_ttm_g", "base_drift", "F", "I", "f_rev_accel", "i_pos_streak", "adv_usd_M"]
+    cols = ["ticker", "name", "sector", "mu_like_vwap", "mu_like", "base_len", "near_high",
+            "fund_side", "inflection", "derate_score", "rev_ttm_g", "base_drift",
+            "vwap_cross_score", "vwap_consol_score", "w_cross_up", "w_cross_recency",
+            "m_cross_up", "d_cross_up", "near_avwap_ytd", "above_avwap_ytd", "dist_avwap_ytd",
+            "vol_spike_recent", "i_pos_streak", "adv_usd_M"]
     cols = [c for c in cols if c in df.columns]
     os.makedirs(os.path.dirname(DELIVER), exist_ok=True)
     df[cols].round(3).to_csv(DELIVER, index=False)
@@ -171,6 +190,21 @@ def main():
         print(f"\n=== TOP {top} MULTIPLE-DE-RATING (rev grew, price flat -> multiple compressed) ===")
         print(der[["ticker", "name", "sector", "mu_like", "base_len", "derate_score",
                    "ps_compression", "rev_ttm_g", "base_drift", "adv_usd_M"]].head(top).to_string(index=False))
+        # VWAP-CROSS EVENT: recent weekly 21>50>200 VWAP cross out of a long
+        # flat/narrow base (the ignition on top of the fundamental base)
+        if "w_cross_up" in live.columns:
+            xv = live[(live.w_cross_up > 0)].sort_values("mu_like_vwap", ascending=False)
+            vcols = ["ticker", "name", "sector", "mu_like_vwap", "base_len", "w_cross_recency",
+                     "m_cross_up", "vwap_consol_score", "near_avwap_ytd", "above_avwap_ytd",
+                     "dist_avwap_ytd", "vol_spike_recent", "fund_side", "adv_usd_M"]
+            vcols = [c for c in vcols if c in xv.columns]
+            print(f"\n=== TOP {top} VWAP-CROSS out of long base (recent weekly 21>50>200 + inflection) ===")
+            print(xv[vcols].head(top).to_string(index=False))
+        # NEAR THE YTD ANCHORED VWAP: dip-buy line into year-end
+        if "near_avwap_ytd" in live.columns:
+            nv = live[(live.near_avwap_ytd > 0) & (live.above_avwap_ytd > 0)].sort_values("mu_like_vwap", ascending=False)
+            print(f"\n=== TOP {top} SITTING ON YTD ANCHORED VWAP (dip-buy line, holding above) ===")
+            print(nv[[c for c in vcols if c in nv.columns]].head(top).to_string(index=False))
 
 
 if __name__ == "__main__":
