@@ -299,6 +299,14 @@ SECTOR_RULERSHIP = {
     "GOLD": [
         ("Sun",     "classical",    "planet-metal set"),
     ],
+    # -- Shipping --
+    "DRY_BULK": [
+        ("Neptune", "modern",       "shipping/marine (Meridian marine; compendium shipping->Neptune)"),
+        ("Moon",    "classical",    "sailors/voyages (Ptolemy, al-Biruni, Lilly)"),
+        ("Saturn",  "classical",    "Ptolemy IV.4 seamen when Saturn testifies; coal/ore cargo (things underground)"),
+        ("Jupiter", "modern",       "9th-house foreign trade / long voyages"),
+        ("Mars",    "modern",       "iron-ore cargo -> steel demand (cargo extrapolation)"),
+    ],
     "INDEX": [],  # broad-market — no sector ruler
     "UNK": [],
 }

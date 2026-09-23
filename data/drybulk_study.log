@@ -1,0 +1,256 @@
+==============================================================================================================
+1. HISTORICAL TURNS — DRY_BULK key-in-lock percentile at the turn month (chance = 50%)
+==============================================================================================================
+  BOTTOM  n= 81  dry-bulk key  51.1% (t vs 50 = +0.31)  | random-key placebo  48.1%  | specificity  +3.0pp (t=+1.30)
+  PEAK    n= 79  dry-bulk key  54.0% (t vs 50 = +1.29)  | random-key placebo  51.2%  | specificity  +2.8pp (t=+1.07)
+
+  Turn log (ticker, type, week, key percentile):
+    2006-06-05  DSX   bottom  11.2%
+    2007-10-29  DSX   peak    45.9%
+    2008-05-12  DSX   peak    54.1%
+    2008-11-17  DSX   bottom  72.4%
+    2008-11-17  NMM   bottom  33.7%
+    2009-02-02  GLBS  bottom  84.7%
+    2009-02-23  SBLK  bottom  23.5%
+    2009-03-16  SB    bottom  64.3%
+    2009-05-18  SBLK  peak    64.3%
+    2009-08-24  SHIP  peak    84.7%
+    2009-11-09  GLBS  bottom  92.9%
+    2009-11-16  GLBS  bottom  92.9%
+    2009-11-23  GLBS  bottom  92.9%
+    2009-11-30  GLBS  bottom  92.9%
+    2009-12-07  GLBS  bottom  94.9%
+    2009-12-14  GLBS  bottom  94.9%
+    2009-12-21  GLBS  bottom  94.9%
+    2009-12-28  GLBS  bottom  94.9%
+    2010-01-04  GLBS  bottom  33.7%
+    2010-02-22  GLBS  peak    25.5%
+    2010-03-01  GLBS  peak    41.8%
+    2010-03-08  GLBS  peak    41.8%
+    2010-03-15  GLBS  peak    41.8%
+    2010-03-22  GLBS  peak    41.8%
+    2010-03-29  GLBS  peak    41.8%
+    2010-04-05  GLBS  peak     2.0%
+    2010-04-12  GLBS  peak     2.0%
+    2010-04-19  GLBS  peak     2.0%
+    2010-04-26  GLBS  peak     2.0%
+    2010-05-03  GLBS  peak     2.0%
+    2010-11-01  SBLK  peak    90.8%
+    2010-11-29  GLBS  peak    31.6%
+    2011-04-04  SB    peak    37.8%
+    2012-02-13  SB    peak    37.8%
+    2012-09-24  DSX   bottom  13.3%
+    2012-12-03  SB    bottom  31.6%
+    2012-12-24  SHIP  bottom  35.7%
+    2012-12-24  GLBS  bottom   9.2%
+    2013-07-01  SBLK  bottom  96.9%
+    2013-09-16  SHIP  peak    60.2%
+    2013-11-18  SHIP  bottom  99.0%
+    2014-03-03  SBLK  peak    70.4%
+    2014-03-03  DSX   peak    48.0%
+    2014-03-03  SB    peak    90.8%
+    2014-03-17  GLBS  peak    68.4%
+    2014-07-21  CMRE  peak    60.2%
+    2014-09-01  NMM   peak    76.5%
+    2015-06-08  SHIP  bottom  21.4%
+    2015-06-22  SHIP  bottom  21.4%
+    2015-07-13  DSX   peak    70.4%
+    2015-07-13  SHIP  peak    19.4%
+    2016-01-11  SB    bottom  14.3%
+    2016-01-11  SHIP  bottom  78.6%
+    2016-01-25  GLBS  bottom  66.3%
+    2016-02-08  SBLK  bottom  56.1%
+    2016-02-08  GNK   bottom  52.0%
+    2016-02-08  NMM   bottom  60.2%
+    2016-02-29  PANL  bottom  78.6%
+    2016-04-25  GLBS  peak    58.2%
+    2016-06-20  DSX   bottom  13.3%
+    2016-08-01  SHIP  peak    62.2%
+    2016-08-15  GNK   bottom  64.3%
+    2016-10-31  NMM   bottom  33.7%
+    2017-01-16  GLBS  peak    62.2%
+    2017-03-06  NMM   peak    15.3%
+    2017-04-03  DSX   peak    35.7%
+    2017-05-29  SHIP  bottom  15.3%
+    2017-10-16  SHIP  peak    70.4%
+    2017-11-06  PANL  peak    39.8%
+    2017-12-04  GLBS  peak    96.9%
+    2018-01-01  NMM   peak    88.8%
+    2018-01-08  NMM   peak    88.8%
+    2018-02-19  SB    peak    62.2%
+    2018-06-04  GNK   peak    33.7%
+    2018-06-18  DSX   peak    86.7%
+    2018-07-02  CMRE  peak    64.3%
+    2018-09-17  PANL  peak    74.5%
+    2018-09-24  SBLK  peak    92.9%
+    2018-10-01  SBLK  peak    76.5%
+    2018-10-29  GLBS  peak    86.7%
+    2018-12-17  CMRE  bottom  70.4%
+    2019-03-04  SBLK  bottom  27.6%
+    2019-03-04  SB    bottom  43.9%
+    2019-03-25  BDRY  bottom  45.9%
+    2019-05-27  NMM   bottom  90.8%
+    2019-06-03  PANL  peak    84.7%
+    2019-06-10  GNK   bottom  17.3%
+    2019-06-24  EDRY  bottom  66.3%
+    2019-07-15  SB    peak    76.5%
+    2019-10-07  BDRY  peak    54.1%
+    2019-10-21  DSX   peak    86.7%
+    2019-10-21  EDRY  peak    96.9%
+    2019-10-28  NMM   peak    64.3%
+    2019-11-04  GNK   peak     7.1%
+    2019-12-23  SBLK  peak    76.5%
+    2020-01-13  CMRE  peak    33.7%
+    2020-03-16  DSX   bottom  37.8%
+    2020-03-16  PANL  bottom  68.4%
+    2020-03-16  NMM   bottom  15.3%
+    2020-03-16  CMRE  bottom  37.8%
+    2020-05-11  SBLK  bottom  32.7%
+    2020-05-11  GNK   bottom  82.7%
+    2020-05-11  SB    bottom   4.1%
+    2020-05-11  BDRY  bottom  25.5%
+    2020-06-01  EDRY  bottom   7.1%
+    2020-09-07  SHIP  bottom  23.5%
+    2020-10-26  DSX   bottom  58.2%
+    2020-10-26  NMM   bottom  12.2%
+    2020-10-26  CMBT  bottom  20.4%
+    2020-11-02  CTRM  bottom  70.4%
+    2021-02-08  SHIP  peak    58.2%
+    2021-02-08  CTRM  peak    94.9%
+    2021-08-09  CMBT  bottom  16.3%
+    2021-09-06  CMRE  peak    45.9%
+    2021-09-13  SHIP  peak    64.3%
+    2021-09-13  EDRY  peak    68.4%
+    2021-09-27  SB    peak    68.4%
+    2021-10-04  BDRY  peak    78.6%
+    2021-12-13  PANL  bottom  14.3%
+    2021-12-13  EDRY  bottom  11.2%
+    2022-01-17  CTRM  bottom  39.8%
+    2022-03-28  CMRE  peak    74.5%
+    2022-04-18  EDRY  peak    43.9%
+    2022-05-23  DSX   peak    60.2%
+    2022-05-30  GNK   peak    64.3%
+    2022-07-04  NMM   bottom  39.8%
+    2022-09-26  SB    bottom  11.2%
+    2023-05-22  CMRE  bottom  39.8%
+    2023-05-29  NMM   bottom  86.7%
+    2023-06-12  SHIP  bottom  90.8%
+    2023-07-10  GLBS  bottom  76.5%
+    2023-07-17  BDRY  bottom  78.6%
+    2023-08-07  GLBS  bottom  99.0%
+    2023-12-18  GLBS  peak    33.7%
+    2024-01-01  CTRM  peak    58.2%
+    2024-01-22  PANL  peak    92.9%
+    2024-03-04  BDRY  peak    11.2%
+    2024-03-11  USEA  peak    39.8%
+    2024-05-13  CMBT  peak    12.2%
+    2024-05-27  SBLK  peak     7.1%
+    2024-05-27  SHIP  peak    39.8%
+    2024-05-27  HSHP  peak     9.2%
+    2024-06-17  CMRE  peak    94.9%
+    2024-06-24  EDRY  peak    14.3%
+    2024-08-05  CTRM  peak    58.2%
+    2024-09-23  NMM   peak    39.8%
+    2025-01-20  BDRY  bottom  80.6%
+    2025-03-31  SBLK  bottom   7.1%
+    2025-03-31  GNK   bottom  16.3%
+    2025-03-31  DSX   bottom  41.8%
+    2025-03-31  SB    bottom  78.6%
+    2025-03-31  SHIP  bottom  52.0%
+    2025-03-31  NMM   bottom  92.9%
+    2025-03-31  CMBT  bottom  12.2%
+    2025-04-14  HSHP  bottom  54.1%
+    2025-04-28  USEA  bottom  78.6%
+    2025-05-05  PANL  bottom  15.3%
+    2025-05-05  CMRE  bottom  96.9%
+    2025-05-26  EDRY  bottom  37.8%
+    2025-08-04  GLBS  bottom  74.5%
+
+==============================================================================================================
+2. FORWARD (from Sep 2026) — DRY_BULK lock, key window, Silas eclipse flags
+==============================================================================================================
+  PANL  last    8.21  12mo   +54%  fromHi   -19%  lock 2.4  key  13.1  peak-window 2027-03
+        lock: Neptune=1.0(domicile); Moon=1.0(domicile); Jupiter=0.7(exalt)
+        window hits: ECL>Neptune, ECL>Saturn, Jupiter>Saturn, Neptune>Mars, Saturn>Jupiter, Uranus>Neptune
+        eclipse EXIT flags: - | Jupiter reactivation: - | Saturn reactivation: -
+        (Pangaea Logistics)
+  GNK   last   26.22  12mo   +43%  fromHi   -88%  lock 6.6  key   9.5  peak-window 2027-06
+        lock: Neptune=3.9(domicile,fusion0.06); Moon=2.9(fusion0.06); Jupiter=0.7(exalt)
+        window hits: ECL>Mars, Jupiter>Saturn, Saturn>Jupiter, Saturn>Mars, Uranus>Moon, Uranus>Neptune
+        eclipse EXIT flags: - | Jupiter reactivation: - | Saturn reactivation: -
+        (Genco — post-restructuring NYSE relisting (orig. IPO 2005-07-22))
+  HSHP  last   18.26  12mo  +109%  fromHi    -5%  lock 1.4  key   9.7  peak-window 2027-03
+        lock: Neptune=1.0(domicile); Saturn=0.6(angular)
+        window hits: ECL>Saturn, Neptune>Mars, Pluto>Moon, Saturn>Jupiter, Uranus>Saturn
+        eclipse EXIT flags: 2027-01, 2027-02 | Jupiter reactivation: - | Saturn reactivation: 2026-10, 2026-11, 2026-12, 2027-01
+        (Himalaya Shipping — pure Newcastlemax)
+  CTRM  last    2.12  12mo    +1%  fromHi  -100%  lock 7.6  key   5.8  peak-window 2027-08
+        lock: Neptune=1.0(domicile); Moon=0.7(exalt); Saturn=1.6(domicile,angular); Jupiter=1.0(domicile); Mars=2.2(domicile,fusion1.07,angular); FULLSTACK x1.3
+        window hits: Pluto>Moon, Saturn>Mars
+        eclipse EXIT flags: - | Jupiter reactivation: 2026-10, 2027-02, 2027-03 | Saturn reactivation: -
+        (Castor Maritime)
+  BDRY  last   16.00  12mo   +99%  fromHi   -59%  lock 2.4  key   8.6  peak-window 2026-10
+        lock: Neptune=1.0(domicile); Saturn=1.0(domicile); Mars=0.7(exalt)
+        window hits: Jupiter>Jupiter, Neptune>Mars, Saturn>Saturn, Uranus>Moon
+        eclipse EXIT flags: - | Jupiter reactivation: 2026-10, 2027-02, 2027-03 | Saturn reactivation: -
+        (Breakwave Dry Bulk ETF — freight-futures proxy for the BDI)
+  ICON  last    1.00  12mo   -90%  fromHi  -100%  lock 1.2  key   9.0  peak-window 2027-08
+        lock: Neptune=1.0(domicile); Mars=0.2(fusion1.98)
+        window hits: ECL>Mars, Jupiter>Jupiter, Neptune>Moon, Uranus>Jupiter
+        eclipse EXIT flags: - | Jupiter reactivation: - | Saturn reactivation: 2026-10, 2026-11, 2026-12, 2027-01
+        (Icon Energy)
+  CMBT  last   19.19  12mo   +93%  fromHi    -7%  lock 1.0  key   8.5  peak-window 2027-03
+        lock: Neptune=1.0(domicile)
+        window hits: ECL>Jupiter, ECL>Saturn, Jupiter>Jupiter, Uranus>Saturn
+        eclipse EXIT flags: - | Jupiter reactivation: - | Saturn reactivation: -
+        (CMB.TECH — now owns Golden Ocean (NYSE chart = Euronav listing))
+  USEA  last    3.05  12mo   +78%  fromHi   -59%  lock 1.7  key   7.8  peak-window 2026-12
+        lock: Neptune=1.0(domicile); Saturn=1.0(domicile)
+        window hits: Jupiter>Saturn, Pluto>Mars, Saturn>Jupiter, Saturn>Moon
+        eclipse EXIT flags: - | Jupiter reactivation: - | Saturn reactivation: 2026-10, 2026-11, 2026-12, 2027-01
+        (United Maritime)
+  CISS  last    1.09  12mo  -100%  fromHi  -100%  lock 1.8  key   7.3  peak-window 2027-07
+        lock: Neptune=1.0(domicile); Moon=0.7(exalt); Saturn=0.5(station)
+        window hits: ECL>Moon, Pluto>Jupiter, Uranus>Saturn
+        eclipse EXIT flags: 2027-01, 2027-02 | Jupiter reactivation: 2026-10, 2027-02, 2027-03 | Saturn reactivation: -
+        (C3is — dry bulk + tanker)
+  SBLK  last   30.51  12mo   +58%  fromHi   -97%  lock 1.3  key   6.9  peak-window 2027-02
+        lock: Jupiter=1.3(domicile,fusion1.56)
+        window hits: ECL>Neptune, Jupiter>Neptune, Neptune>Moon, Saturn>Mars
+        eclipse EXIT flags: - | Jupiter reactivation: - | Saturn reactivation: -
+        (Star Bulk — largest US-listed bulker (absorbed Eagle Bulk 2024))
+  GLBS  last    3.70  12mo  +233%  fromHi  -100%  lock 0.5  key   7.3  peak-window 2027-01
+        lock: Neptune=0.0(fusion2.73); Moon=0.7(exalt)
+        window hits: ECL>Saturn, Jupiter>Neptune, Neptune>Mars, Uranus>Saturn
+        eclipse EXIT flags: 2027-01, 2027-02 | Jupiter reactivation: - | Saturn reactivation: -
+        (Globus Maritime)
+  CMRE  last   14.70  12mo   +18%  fromHi   -39%  lock 1.9  key   6.5  peak-window 2026-10
+        lock: Saturn=1.3(exalt,angular); Jupiter=1.0(domicile)
+        window hits: Jupiter>Neptune, Saturn>Saturn, Uranus>Mars
+        eclipse EXIT flags: - | Jupiter reactivation: - | Saturn reactivation: 2026-10, 2026-11, 2026-12, 2027-01
+        (Costamare — containers + dry bulk platform)
+  NMM   last   88.21  12mo   +85%  fromHi   -72%  lock 2.1  key   6.0  peak-window 2027-02
+        lock: Jupiter=1.6(domicile,angular); Mars=0.5(station)
+        window hits: ECL>Neptune, Jupiter>Neptune, Neptune>Moon, Saturn>Mars
+        eclipse EXIT flags: - | Jupiter reactivation: 2026-10, 2027-02, 2027-03 | Saturn reactivation: -
+        (Navios Partners — mixed dry bulk/container/tanker)
+  SB    last    8.36  12mo   +82%  fromHi   -56%  lock 0.6  key   6.7  peak-window 2027-07
+        lock: Mars=0.6(angular)
+        window hits: ECL>Mars, ECL>Neptune, Jupiter>Neptune, Jupiter>Saturn
+        eclipse EXIT flags: - | Jupiter reactivation: - | Saturn reactivation: 2026-10, 2026-11, 2026-12, 2027-01
+        (Safe Bulkers)
+  DSX   last    2.94  12mo   +66%  fromHi   -92%  lock 0.3  key   6.4  peak-window 2027-03
+        lock: Saturn=0.5(station)
+        window hits: ECL>Neptune, Jupiter>Neptune, Saturn>Jupiter, Saturn>Saturn
+        eclipse EXIT flags: - | Jupiter reactivation: 2026-10, 2027-02, 2027-03 | Saturn reactivation: -
+        (Diana Shipping)
+  EDRY  last   53.59  12mo  +337%  fromHi   -22%  lock 1.7  key   5.5  peak-window 2027-07
+        lock: Neptune=1.0(domicile); Saturn=1.0(domicile)
+        window hits: Neptune>Saturn, Pluto>Mars
+        eclipse EXIT flags: 2027-01, 2027-02 | Jupiter reactivation: - | Saturn reactivation: -
+        (EuroDry)
+  SHIP  last   17.73  12mo  +105%  fromHi  -100%  lock 0.8  key   3.7  peak-window 2026-10
+        lock: Neptune=0.1(fusion2.31); Jupiter=0.2(fusion1.91); Mars=0.5(station)
+        window hits: Jupiter>Moon, Jupiter>Neptune, Saturn>Jupiter, Uranus>Saturn
+        eclipse EXIT flags: - | Jupiter reactivation: - | Saturn reactivation: -
+        (Seanergy — Capesize)
