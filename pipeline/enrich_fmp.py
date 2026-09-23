@@ -45,7 +45,9 @@ def fetch_csv(path, **params):
             return list(csv.DictReader(io.StringIO(body)))
         if body.strip() in ("", "[]"):
             return []
-        time.sleep(5 * (attempt + 1))      # bulk endpoints are rate-limited
+        if "Limit Reach" in body:           # plan cap — retrying won't help
+            raise RuntimeError(f"FMP {path}: limit reached")
+        time.sleep(5 * (attempt + 1))      # transient error
     raise RuntimeError(f"FMP {path} failed: {body[:200]}")
 
 def num(x):
@@ -57,24 +59,39 @@ def num(x):
 
 CACHE = os.path.join(BASE, "data", "fmp_cache")
 
-def load_profiles(max_age_h=20):
-    """All FMP company profiles (~90k), cached on disk for the day so the
-    enrich and the CUSIP mapper share one download."""
+def cached_bulk(name, fetch, max_age_h=20):
+    """Bulk files are big and FMP rate-limits them ("Limit Reach"), so each is
+    downloaded at most once a day into data/fmp_cache/. If the limit trips,
+    fall back to the last good copy (any age) rather than fail the run."""
     os.makedirs(CACHE, exist_ok=True)
-    path = os.path.join(CACHE, "profile_bulk.csv")
-    if not (os.path.exists(path) and time.time() - os.path.getmtime(path) < max_age_h * 3600):
+    path = os.path.join(CACHE, f"{name}.csv")
+    fresh = os.path.exists(path) and time.time() - os.path.getmtime(path) < max_age_h * 3600
+    if not fresh:
+        try:
+            rows = fetch()
+            if not rows:
+                raise RuntimeError(f"FMP {name} returned nothing")
+            with open(path, "w", newline="") as f:
+                w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+                w.writeheader(); w.writerows(rows)
+        except RuntimeError as e:
+            if not os.path.exists(path):
+                raise
+            age_h = (time.time() - os.path.getmtime(path)) / 3600
+            print(f"  ! {name}: {str(e)[:80]} — using cached copy ({age_h:.0f}h old)", flush=True)
+    return list(csv.DictReader(open(path)))
+
+def load_profiles():
+    """All FMP company profiles (~90k) — shared by the enrich and the mapper."""
+    def fetch():
         rows = []
         for part in range(0, 12):
             chunk = fetch_csv("profile-bulk", part=part)
             if not chunk:
                 break
             rows.extend(chunk)
-        if not rows:
-            raise RuntimeError("FMP profile-bulk returned nothing")
-        with open(path, "w", newline="") as f:
-            w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
-            w.writeheader(); w.writerows(rows)
-    return {r["symbol"]: r for r in csv.DictReader(open(path))}
+        return rows
+    return {r["symbol"]: r for r in cached_bulk("profile_bulk", fetch)}
 
 def is_true(x):
     return str(x).strip().lower() == "true"
@@ -95,8 +112,8 @@ def run():
 
     t0 = time.time()
     prof = load_profiles()
-    km = {r["symbol"]: r for r in fetch_csv("key-metrics-ttm-bulk")}
-    rt = {r["symbol"]: r for r in fetch_csv("ratios-ttm-bulk")}
+    km = {r["symbol"]: r for r in cached_bulk("key_metrics_ttm", lambda: fetch_csv("key-metrics-ttm-bulk"))}
+    rt = {r["symbol"]: r for r in cached_bulk("ratios_ttm", lambda: fetch_csv("ratios-ttm-bulk"))}
     print(f"FMP bulk: {len(prof):,} profiles, {len(km):,} key-metrics, "
           f"{len(rt):,} ratios in {time.time() - t0:.0f}s", flush=True)
 

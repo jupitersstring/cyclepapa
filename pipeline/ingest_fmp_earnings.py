@@ -12,7 +12,7 @@ Tables:
 import os, sqlite3, sys, time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from enrich_fmp import fetch_csv, num, DB
+from enrich_fmp import fetch_csv, cached_bulk, num, DB
 
 def run(years=None):
     years = years or [int(time.strftime("%Y")) - 2, int(time.strftime("%Y")) - 1, int(time.strftime("%Y"))]
@@ -32,7 +32,7 @@ def run(years=None):
     today = time.strftime("%Y-%m-%d")
     n = 0
     for y in years:
-        for r in fetch_csv("earnings-surprises-bulk", year=y):
+        for r in cached_bulk(f"earnings_{y}", lambda y=y: fetch_csv("earnings-surprises-bulk", year=y)):
             tk = r.get("symbol")
             a, e = num(r.get("epsActual")), num(r.get("epsEstimated"))
             d = r.get("date") or ""
