@@ -1,0 +1,33 @@
+ticker,name,ipo,low_y,low_m,mult,age,pre_bubble,tag,jn_orb,bubble_activation_mo,saturn_pop_mo,p1,p2,p3,p4,p5,prog_phase,mut_count,p2_detail,p3_detail,p4_detail
+NVDA,Nvidia,1999-01-22,2022,10,13,23,1.67,NEUTRAL,6.27,,,0.00,0.00,0.73,0.45,0.00,prog_balsamic,0,,trNep→natASC 2022-10 (2.0°) | trNep→natMC 2022-10 (2.1°),
+PLTR,Palantir,2020-09-30,2022,12,13,2,6.24,NEUTRAL,1.14,,17,2.43,0.00,1.08,0.91,0.00,prog_full,0,,trNep→natMoon 2022-12 (1.2°),2022-04-30/partia→Uranus:0.6°
+APP,AppLovin,2021-04-15,2022,12,40,1,3.64,ECLIPSE_PRESEED,99.00,,18,0.00,0.00,0.00,1.18,0.68,prog_crescent,1,,,2021-05-26/total_→Moon:1.6° | 2022-04-30/partia→Uranus:0.7°
+SMCI,Super Micro,2007-03-29,2022,10,17,15,7.91,SATURN_POP_NEAR,1.50,4,,2.25,2.58,1.33,0.19,0.30,prog_last_q,0,trJup→natSun 2023-02 (0.4°),trNep→natASC 2022-10 (0.8°),
+CVNA,Carvana,2017-04-28,2022,12,75,5,6.65,NEUTRAL,99.00,6,15,0.00,0.91,0.53,1.00,0.00,prog_first_q,2,trJup→natSun 2023-06 (2.1°),trNep→natMC 2024-04 (1.8°),2021-05-26/total_→Mars:0.5°
+MSTR,MicroStrategy,1998-06-11,2022,12,4,24,7.46,PRE_BUBBLE_PRIME,5.80,,,0.10,0.00,0.23,3.97,0.00,prog_first_q,0,,trNep→natSun 2022-12 (2.2°),2021-05-26/total_→Pluto:0.8° | 2021-06-10/annula→Sun:0.7° | 2022-11-08/total_→MC:0.3°
+COIN,Coinbase,2021-04-14,2023,1,10,2,2.78,NEUTRAL,99.00,3,17,0.00,0.76,0.00,0.57,0.80,prog_new,0,trJup→natSun 2023-04 (2.2°),,2022-04-30/partia→Uranus:0.7°
+HIMS,Hims & Hers,2021-01-21,2023,5,12,2,3.75,NEUTRAL,99.00,,12,0.00,0.00,0.39,1.00,0.00,prog_first_q,0,,trNep→natMC 2023-05 (2.0°),2022-04-30/partia→Moon:0.8°
+IONQ,IonQ,2021-10-01,2023,5,16,2,1.36,NEUTRAL,99.00,,13,0.00,0.00,0.00,0.75,0.00,prog_last_q,0,,,
+RKLB,Rocket Lab,2021-08-25,2023,2,7,2,0.88,SATURN_POP_NEAR,99.00,,,0.00,0.00,0.00,0.84,1.27,prog_disseminating,1,,,
+VST,Vistra,2016-10-10,2023,1,9,7,3.73,SATURN_POP_NEAR,99.00,,5,0.00,0.00,0.00,2.43,0.35,prog_full,0,,,2021-11-19/partia→ASC:0.3° | 2021-12-04/total_→Saturn:0.0°
+CEG,Constellation Energy,2022-02-02,2022,9,4,0,2.97,NEUTRAL,13.90,,21,0.00,0.00,0.00,0.66,0.00,prog_new,2,,,2022-04-30/partia→Uranus:0.4°
+RDDT,Reddit (post-IPO bottom),2024-03-21,2024,8,7,0,3.49,ECLIPSE_PRESEED,99.00,,8,0.00,0.00,0.38,2.87,0.00,prog_gibbous,0,,trNep→natSun 2024-08 (2.0°),2022-11-08/total_→Jupiter:0.8° | 2023-05-05/penumb→Jupiter:0.3° | 2024-04-08/total_→Mercury:0.1°
+HOOD,Robinhood,2021-07-29,2022,6,10,1,3.33,ECLIPSE_PRESEED,99.00,,8,0.00,0.00,0.18,1.55,0.00,prog_disseminating,1,,trNep→natASC 2024-04 (2.3°) | trNep→natMC 2024-04 (2.4°),2020-06-21/annula→MC:0.5°
+SOFI,SoFi,2021-06-01,2022,12,5,1,0.48,SATURN_POP_NEAR,99.00,,3,0.00,0.00,0.00,0.17,1.54,prog_last_q,2,,,
+AXON,Axon Enterprise,2001-06-07,2022,5,5,21,6.70,PRE_BUBBLE,99.00,,,0.00,0.00,0.00,3.65,0.00,prog_crescent,1,,,2020-06-21/annula→Mercury:0.8° | 2021-05-26/total_→Saturn:0.6° | 2022-04-30/partia→MC:1.5°
+DUOL,Duolingo,2021-07-28,2022,11,5,1,1.43,SATURN_POP_NEAR,99.00,,3,0.00,0.00,0.25,0.39,0.40,prog_disseminating,1,,trNep→natASC 2023-06 (2.3°) | trNep→natMC 2023-06 (2.3°),
+CELH,Celsius Holdings,2006-07-18,2020,3,100,14,5.34,PRE_BUBBLE,9.83,12,23,0.00,1.84,0.78,0.62,0.00,prog_crescent,0,trJup→natNep 2021-03 (0.8°),trNep→natASC 2020-04 (2.1°) | trNep→natMC 2020-03 (1.9°),
+VKTX,Viking Therapeutics,2015-09-29,2023,10,10,8,1.79,SATURN_POP_NEAR,2.89,,4,1.55,0.00,0.00,0.04,1.68,prog_last_q,2,,,
+ALAB,Astera Labs,2024-03-20,2024,8,4,0,4.02,PRE_BUBBLE,99.00,,8,0.00,0.00,1.18,2.26,0.00,prog_first_q,0,,trNep→natSun 2024-08 (1.0°),2022-11-08/total_→Jupiter:1.0° | 2023-05-05/penumb→Jupiter:0.1° | 2024-04-08/total_→Mercury:1.3°
+ARM,Arm Holdings,2023-09-14,2024,4,4,1,4.58,ECLIPSE_PRESEED,99.00,,12,0.00,0.00,0.00,1.86,0.00,prog_balsamic,2,,,2022-11-08/total_→Jupiter:0.6°
+SOUN,SoundHound AI,2022-04-28,2023,5,15,1,5.19,ECLIPSE_PRESEED,3.00,,22,1.50,0.00,0.07,1.11,0.00,prog_balsamic,0,,trNep→natMC 2023-06 (2.4°),
+RGTI,Rigetti Computing,2022-03-02,2022,12,30,0,0.79,NEUTRAL,8.21,,15,0.00,0.00,0.00,0.59,0.00,prog_balsamic,0,,,
+QBTS,D-Wave Quantum,2022-08-08,2022,12,20,0,1.84,NEUTRAL,13.52,,,0.00,0.00,0.11,0.04,0.00,prog_first_q,1,,trNep→natMoon 2023-03 (2.4°),
+NBIS,Nebius Group,2024-10-21,2024,12,3,0,1.67,SATURN_POP_NEAR,6.63,,4,0.00,0.00,0.45,1.64,0.98,prog_disseminating,1,,trNep→natMoon 2024-12 (1.9°),2025-03-14/total_→MC:0.5°
+SMR,NuScale Power,2022-05-03,2023,8,15,1,6.32,ECLIPSE_PRESEED,3.89,,19,1.05,0.00,0.00,1.03,0.00,prog_new,1,,,
+OKLO,Oklo,2024-05-10,2024,9,4,0,2.55,NEUTRAL,2.82,,8,1.59,0.00,0.00,0.30,0.00,prog_new,0,,,
+NNE,Nano Nuclear,2024-05-01,2024,5,6,0,2.35,NEUTRAL,4.68,,11,0.66,0.00,0.15,1.40,0.00,prog_last_q,0,,trNep→natMC 2025-05 (2.3°),2022-05-16/total_→Jupiter:1.0°
+TLN,Talen Energy,2023-05-22,2023,10,3,0,2.64,NEUTRAL,99.00,,18,0.00,0.00,0.00,0.68,0.00,prog_new,2,,,2023-04-20/hybrid→Jupiter:1.5°
+CRWV,CoreWeave,2025-03-28,2025,4,3,0,1.92,SATURN_POP_NEAR,14.47,,1,0.00,0.00,0.00,3.23,1.52,prog_balsamic,0,,,2024-09-18/partia→Moon:0.4° | 2025-03-14/total_→Saturn:0.1° | 2025-03-29/partia→Sun:0.8°
+CRDO,Credo Technology,2022-01-27,2023,1,15,1,5.27,ECLIPSE_PRESEED,99.00,,17,0.00,0.00,0.77,1.44,0.62,prog_last_q,2,,trNep→natASC 2024-04 (2.2°) | trNep→natMC 2024-04 (1.9°),2021-05-26/total_→Moon:1.4° | 2022-04-30/partia→Uranus:0.4°
+MRX,Marex Group,2024-04-25,2024,8,2.5,0,2.31,NEUTRAL,5.89,,8,0.05,0.00,0.34,1.80,0.00,prog_full,0,,trNep→natMC 2024-08 (2.1°),2023-10-28/partia→Sun:0.8° | 2024-09-18/partia→Mars:0.3°

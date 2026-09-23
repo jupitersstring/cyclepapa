@@ -1,0 +1,150 @@
+Loading event-study keys...
+  503 SP500 names
+  50/503 10s
+  100/503 21s
+  150/503 32s
+  200/503 42s
+  250/503 51s
+  300/503 63s
+  350/503 74s
+  400/503 85s
+  450/503 95s
+  500/503 107s
+  Done. 108s
+
+========================================================================================================================================================================================================
+BIG 12-MONTH ASTRO SHIFT + PRICE QUIET (12mo Δ within ±25% OR within 25% of 12mo low)
+========================================================================================================================================================================================================
+  # Tkr    GICS                     Now→ 12mo    Δ12  PkMo       pr3mo  pr6mo pr12mo fr-low  Name
+  1 VRTX   Health Care             +66 →+249  + 183  2027-04      -5%    +3%    -9%   +19%  Vertex Pharmaceuti
+  2 AIZ    Financials              +52 →+231  + 180  2027-04      -4%    +8%   +25%   +25%  Assurant
+  3 EOG    Energy                  +98 →+270  + 173  2027-02     +23%   +23%   +21%   +30%  EOG Resources
+  4 ROL    Industrials             +99 →+271  + 172  2026-08     -14%    -4%    -0%    +4%  Rollins, Inc.
+  5 GIS    Consumer Staples       +107 →+273  + 166  2026-08     -20%   -27%   -39%    +2%  General Mills
+  6 PAYX   Industrials             +30 →+194  + 164  2026-07     -13%   -25%   -33%    +9%  Paychex
+  7 SW     Materials               +96 →+259  + 163  2026-10      -2%    -4%    +1%   +26%  Smurfit Westrock
+  8 AMP    Financials              +74 →+230  + 156  2027-02      -8%    -4%    +2%    +7%  Ameriprise Financi
+  9 POOL   Consumer Discretionar   +37 →+183  + 146  2026-09     -13%   -22%   -21%   +17%  Pool Corporation
+ 10 TDG    Industrials             +89 →+232  + 144  2026-08     -17%   -11%    -8%    +6%  TransDigm Group
+ 11 IT     Information Technolog   +81 →+221  + 140  2027-02     -32%   -37%   -59%   +11%  Gartner
+ 12 KHC    Consumer Staples        +89 →+227  + 138  2026-07      -2%   -13%   -27%    +4%  Kraft Heinz
+ 13 ORLY   Consumer Discretionar   +84 →+221  + 138  2026-08      -5%    -5%    +3%    +7%  O’Reilly Automotiv
+ 14 TRMB   Information Technolog   +79 →+212  + 133  2027-04      -2%   -15%   +23%   +23%  Trimble Inc.
+ 15 LOW    Consumer Discretionar  +110 →+242  + 132  2027-01      -9%    +3%   +18%   +19%  Lowe's
+ 16 PNR    Industrials             +84 →+214  + 130  2026-08     -16%   -19%   +14%   +14%  Pentair
+ 17 TMO    Health Care            +117 →+247  + 130  2026-09     -18%    -8%   +24%   +34%  Thermo Fisher Scie
+ 18 COF    Financials              +63 →+192  + 129  2027-01     -12%    -8%   +23%   +23%  Capital One
+ 19 YUM    Consumer Discretionar   +68 →+197  + 129  2027-02      +4%   +10%   +14%   +16%  Yum! Brands
+ 20 BLK    Financials             +151 →+278  + 127  2026-08      -8%    -7%   +22%   +22%  BlackRock
+ 21 BR     Industrials             +82 →+209  + 126  2026-11     -22%   -30%   -29%    +7%  Broadridge Financi
+ 22 OKE    Energy                 +100 →+226  + 126  2026-08     +12%   +21%    +4%   +32%  Oneok
+ 23 NOW    Information Technolog  +109 →+234  + 126  2026-12     -20%   -47%   -34%   +21%  ServiceNow
+ 24 CARR   Industrials             +44 →+169  + 125  2026-08      +7%    +8%    +6%   +23%  Carrier Global
+ 25 OTIS   Industrials             +44 →+169  + 125  2026-08     -12%   -15%   -19%    +4%  Otis Worldwide
+ 26 AWK    Utilities               +59 →+183  + 124  2027-03      +1%    -7%   -10%    +7%  American Water Wor
+ 27 SWKS   Information Technolog   +87 →+211  + 123  2026-09      +2%   -21%    +6%   +14%  Skyworks Solutions
+ 28 CPT    Real Estate             +60 →+182  + 123  2027-04      -5%    -2%    -8%    +6%  Camden Property Tr
+ 29 AJG    Financials              +79 →+201  + 122  2026-08     -10%   -21%   -30%   +10%  Arthur J. Gallaghe
+ 30 BBY    Consumer Discretionar  +131 →+253  + 122  2026-10      +0%   -19%    +7%   +10%  Best Buy
+
+========================================================================================================================================================================================================
+BIG 18-MONTH SHIFT + PRICE QUIET
+========================================================================================================================================================================================================
+  # Tkr    GICS                     Now→ 18mo    Δ18  PkMo      pr12mo fr-low  Name
+  1 AIZ    Financials              +52 →+244  + 192  2027-05     +25%   +25%  Assurant
+  2 VRTX   Health Care             +66 →+249  + 183  2027-04      -9%   +19%  Vertex Pharmaceuti
+  3 TROW   Financials              +62 →+236  + 174  2027-05     +19%   +19%  T. Rowe Price
+  4 EOG    Energy                  +98 →+270  + 173  2027-02     +21%   +30%  EOG Resources
+  5 ROL    Industrials             +99 →+271  + 172  2026-08      -0%    +4%  Rollins, Inc.
+  6 BR     Industrials             +82 →+255  + 172  2027-07     -29%    +7%  Broadridge Financi
+  7 TRMB   Information Technolog   +79 →+248  + 169  2027-09     +23%   +23%  Trimble Inc.
+  8 GIS    Consumer Staples       +107 →+273  + 166  2026-08     -39%    +2%  General Mills
+  9 IFF    Materials               +85 →+249  + 164  2027-06      -0%   +22%  International Flav
+ 10 PAYX   Industrials             +30 →+194  + 164  2026-07     -33%    +9%  Paychex
+ 11 SW     Materials               +96 →+259  + 163  2026-10      +1%   +26%  Smurfit Westrock
+ 12 AMCR   Materials               +60 →+222  + 162  2027-10     -12%    +8%  Amcor
+ 13 CAG    Consumer Staples        +60 →+222  + 162  2027-10     -42%    +4%  Conagra Brands
+ 14 CPT    Real Estate             +60 →+221  + 161  2027-09      -8%    +6%  Camden Property Tr
+ 15 CCI    Real Estate            +126 →+284  + 158  2027-08     -17%   +10%  Crown Castle
+ 16 AMP    Financials              +74 →+230  + 156  2027-02      +2%    +7%  Ameriprise Financi
+ 17 TRV    Financials              +34 →+187  + 153  2027-06     +21%   +21%  Travelers Companie
+ 18 APO    Financials             +117 →+264  + 147  2027-07      +6%   +27%  Apollo Global Mana
+ 19 POOL   Consumer Discretionar   +37 →+183  + 146  2026-09     -21%   +17%  Pool Corporation
+ 20 EW     Health Care             +52 →+197  + 146  2027-05     +15%   +15%  Edwards Lifescienc
+ 21 TDG    Industrials             +89 →+232  + 144  2026-08      -8%    +6%  TransDigm Group
+ 22 KO     Consumer Staples        +93 →+235  + 142  2027-10      +3%   +14%  Coca-Cola Company 
+ 23 IQV    Health Care             +71 →+212  + 141  2027-06     +24%   +28%  IQVIA
+ 24 IT     Information Technolog   +81 →+221  + 140  2027-02     -59%   +11%  Gartner
+ 25 KHC    Consumer Staples        +89 →+227  + 138  2026-07     -27%    +4%  Kraft Heinz
+ 26 ORLY   Consumer Discretionar   +84 →+221  + 138  2026-08      +3%    +7%  O’Reilly Automotiv
+ 27 IBM    Information Technolog   +89 →+226  + 138  2027-10      +8%   +14%  IBM
+ 28 SOLV   Health Care             +66 →+203  + 137  2027-05      +8%   +10%  Solventum
+ 29 PCG    Utilities               +94 →+230  + 136  2027-05      +1%   +31%  PG&E Corporation
+ 30 WMB    Energy                 +116 →+250  + 134  2027-05     +25%   +25%  Williams Companies
+
+========================================================================================================================================================================================================
+BIG 36-MONTH SHIFT + PRICE QUIET (multi-year compression-release plays)
+========================================================================================================================================================================================================
+  # Tkr    GICS                     Now→ 36mo    Δ36  PkMo      pr12mo fr-low  Name
+  1 PCG    Utilities               +94 →+322  + 228  2028-04      +1%   +31%  PG&E Corporation
+  2 VRTX   Health Care             +66 →+269  + 204  2029-04      -9%   +19%  Vertex Pharmaceuti
+  3 APO    Financials             +117 →+319  + 203  2028-04      +6%   +27%  Apollo Global Mana
+  4 AIZ    Financials              +52 →+254  + 203  2028-03     +25%   +25%  Assurant
+  5 CPT    Real Estate             +60 →+260  + 201  2028-03      -8%    +6%  Camden Property Tr
+  6 TRMB   Information Technolog   +79 →+275  + 196  2028-04     +23%   +23%  Trimble Inc.
+  7 CARR   Industrials             +44 →+238  + 194  2028-07      +6%   +23%  Carrier Global
+  8 OTIS   Industrials             +44 →+238  + 194  2028-07     -19%    +4%  Otis Worldwide
+  9 EW     Health Care             +52 →+238  + 187  2029-01     +15%   +15%  Edwards Lifescienc
+ 10 AWK    Utilities               +59 →+245  + 186  2029-04     -10%    +7%  American Water Wor
+ 11 DOC    Real Estate             +95 →+279  + 185  2028-03     -11%    +4%  Healthpeak Propert
+ 12 AMCR   Materials               +60 →+236  + 177  2027-11     -12%    +8%  Amcor
+ 13 CAG    Consumer Staples        +60 →+236  + 177  2027-11     -42%    +4%  Conagra Brands
+ 14 TROW   Financials              +62 →+236  + 174  2027-05     +19%   +19%  T. Rowe Price
+ 15 EOG    Energy                  +98 →+270  + 173  2027-02     +21%   +30%  EOG Resources
+ 16 NCLH   Consumer Discretionar   +42 →+215  + 173  2028-11     +20%   +21%  Norwegian Cruise L
+ 17 ROL    Industrials             +99 →+271  + 172  2026-08      -0%    +4%  Rollins, Inc.
+ 18 BR     Industrials             +82 →+255  + 172  2027-07     -29%    +7%  Broadridge Financi
+ 19 SOLV   Health Care             +66 →+239  + 172  2029-02      +8%   +10%  Solventum
+ 20 IFF    Materials               +85 →+257  + 172  2028-04      -0%   +22%  International Flav
+ 21 AJG    Financials              +79 →+250  + 171  2029-03     -30%   +10%  Arthur J. Gallaghe
+ 22 WMB    Energy                 +116 →+287  + 171  2028-02     +25%   +25%  Williams Companies
+ 23 TRV    Financials              +34 →+204  + 170  2029-02     +21%   +21%  Travelers Companie
+ 24 GDDY   Information Technolog   +68 →+236  + 168  2029-01     -46%   +12%  GoDaddy
+ 25 GIS    Consumer Staples       +107 →+273  + 166  2026-08     -39%    +2%  General Mills
+ 26 PAYX   Industrials             +30 →+194  + 164  2026-07     -33%    +9%  Paychex
+ 27 SW     Materials               +96 →+259  + 163  2026-10      +1%   +26%  Smurfit Westrock
+ 28 PM     Consumer Staples        +59 →+222  + 163  2029-02      -6%    +6%  Philip Morris Inte
+ 29 AIG    Financials              +86 →+247  + 161  2027-11      -2%    +8%  American Internati
+ 30 IQV    Health Care             +71 →+231  + 160  2028-04     +24%   +28%  IQVIA
+
+========================================================================================================================================================================================================
+TRIPLE-CONFLUENCE PICKS — big 12mo AND big 36mo AND price quiet (30 names)
+========================================================================================================================================================================================================
+Tkr    GICS                     Now    Δ12 PkMo       Δ18   Δ36 PkMo      pr12mo fr-low  Name
+VRTX   Health Care             +66  + 183 2027-04  + 183 + 204 2029-04      -9%   +19%  Vertex Pharmaceuti
+AIZ    Financials              +52  + 180 2027-04  + 192 + 203 2028-03     +25%   +25%  Assurant
+PCG    Utilities               +94  + 120 2027-04  + 136 + 228 2028-04      +1%   +31%  PG&E Corporation
+EOG    Energy                  +98  + 173 2027-02  + 173 + 173 2027-02     +21%   +30%  EOG Resources
+ROL    Industrials             +99  + 172 2026-08  + 172 + 172 2026-08      -0%    +4%  Rollins, Inc.
+GIS    Consumer Staples       +107  + 166 2026-08  + 166 + 166 2026-08     -39%    +2%  General Mills
+TRMB   Information Technolog   +79  + 133 2027-04  + 169 + 196 2028-04     +23%   +23%  Trimble Inc.
+PAYX   Industrials             +30  + 164 2026-07  + 164 + 164 2026-07     -33%    +9%  Paychex
+SW     Materials               +96  + 163 2026-10  + 163 + 163 2026-10      +1%   +26%  Smurfit Westrock
+CPT    Real Estate             +60  + 123 2027-04  + 161 + 201 2028-03      -8%    +6%  Camden Property Tr
+CARR   Industrials             +44  + 125 2026-08  + 131 + 194 2028-07      +6%   +23%  Carrier Global
+OTIS   Industrials             +44  + 125 2026-08  + 131 + 194 2028-07     -19%    +4%  Otis Worldwide
+APO    Financials             +117  + 109 2027-04  + 147 + 203 2028-04      +6%   +27%  Apollo Global Mana
+AMP    Financials              +74  + 156 2027-02  + 156 + 156 2027-02      +2%    +7%  Ameriprise Financi
+AWK    Utilities               +59  + 124 2027-03  + 131 + 186 2029-04     -10%    +7%  American Water Wor
+BR     Industrials             +82  + 126 2026-11  + 172 + 172 2027-07     -29%    +7%  Broadridge Financi
+SOLV   Health Care             +66  + 122 2026-09  + 137 + 172 2029-02      +8%   +10%  Solventum
+AJG    Financials              +79  + 122 2026-08  + 122 + 171 2029-03     -30%   +10%  Arthur J. Gallaghe
+TROW   Financials              +62  + 118 2026-12  + 174 + 174 2027-05     +19%   +19%  T. Rowe Price
+DOC    Real Estate             +95  +  97 2026-08  +  97 + 185 2028-03     -11%    +4%  Healthpeak Propert
+TRV    Financials              +34  + 107 2026-11  + 153 + 170 2029-02     +21%   +21%  Travelers Companie
+XEL    Utilities              +130  + 115 2026-05  + 115 + 155 2028-12     +15%   +20%  Xcel Energy
+WMB    Energy                 +116  +  98 2027-04  + 134 + 171 2028-02     +25%   +25%  Williams Companies
+IFF    Materials               +85  +  97 2027-03  + 164 + 172 2028-04      -0%   +22%  International Flav
+AIG    Financials              +86  + 106 2027-01  + 125 + 161 2027-11      -2%    +8%  American Internati
+
+Exported -> data/sp500_quiet_long_horizon.csv

@@ -1,0 +1,92 @@
+Corpus sectorised (152 cases):
+  TECH        52
+  RETAIL      28
+  ENERGY      13
+  EV          11
+  CRYPTO      11
+  BIOPHARM     9
+  MEME         7
+  CANNABIS     6
+  FINANCE      6
+  MEDIA        4
+  METALS       3
+  UNK          2
+
+===============================================================================================
+ MEAN MIN-ORB (to nearest natal Sun/Moon/ASC/MC) by sector at BOTTOM
+===============================================================================================
+  Sector       n |    Jup    Sat    Ura    Nep    Plu   tightest -> 2nd
+  RETAIL      28 |   6.86   8.27   7.36   9.62   6.90   Jupiter(6.9) -> Pluto(6.9)
+  MEME         7 |  13.35   6.13   9.99   8.07   4.89   Pluto(4.9) -> Saturn(6.1)
+  CANNABIS     6 |   7.73  10.93   5.80   8.89   5.76   Pluto(5.8) -> Uranus(5.8)
+  TECH        52 |   8.82   7.56   8.36   8.69   7.93   Saturn(7.6) -> Pluto(7.9)
+  EV          11 |   9.26   8.03   6.52   8.50   9.35   Uranus(6.5) -> Saturn(8.0)
+  BIOPHARM     9 |   5.76   6.08   7.96  10.93   4.62   Pluto(4.6) -> Jupiter(5.8)
+  CRYPTO      11 |   8.42   9.67   9.40  10.53  11.09   Jupiter(8.4) -> Uranus(9.4)
+  ENERGY      13 |   6.93   7.45   8.77   8.33   7.42   Jupiter(6.9) -> Pluto(7.4)
+  FINANCE      6 |   8.43  10.72   9.57   6.87   5.00   Pluto(5.0) -> Neptune(6.9)
+
+===============================================================================================
+ MEAN MIN-ORB by sector at PEAK
+===============================================================================================
+  Sector       n |    Jup    Sat    Ura    Nep    Plu   tightest -> 2nd
+  RETAIL      28 |   8.16   8.96   8.46   9.46   9.10   Jupiter(8.2) -> Uranus(8.5)
+  MEME         7 |  12.42   5.65   9.27   7.75   4.57   Pluto(4.6) -> Saturn(5.7)
+  CANNABIS     6 |  11.58   7.51   6.85   9.54   6.03   Pluto(6.0) -> Uranus(6.9)
+  TECH        52 |   7.68   6.87   6.18   8.72   8.12   Uranus(6.2) -> Saturn(6.9)
+  EV          11 |   7.72   7.07   6.33   9.11   9.18   Uranus(6.3) -> Saturn(7.1)
+  BIOPHARM     9 |   7.61   8.37   8.12  10.82   5.05   Pluto(5.0) -> Jupiter(7.6)
+  CRYPTO      11 |   5.89   8.74   8.36  11.16  10.64   Jupiter(5.9) -> Uranus(8.4)
+  ENERGY      13 |   8.26   9.20   6.64   7.91   7.84   Uranus(6.6) -> Pluto(7.8)
+  FINANCE      6 |   7.87   5.94   9.45   7.41   3.89   Pluto(3.9) -> Saturn(5.9)
+
+===============================================================================================
+ HYPOTHESIS TEST: does the traditional ruler of each sector have the
+ tightest orb at parabolic BOTTOM? (Rank 1 = tightest)
+===============================================================================================
+  Sector     Ruler      BotRank  PeakRank    Bot μ  Peak μ   Verdict
+  TECH       Uranus           3         1     8.36    6.18   ✗
+  CRYPTO     Uranus           2         2     9.40    8.36   ~ ruler top-2 at bottom
+  EV         Uranus           1         1     6.52    6.33   ✓ ruler tightest at bottom
+  BIOPHARM   Pluto            1         1     4.62    5.05   ✓ ruler tightest at bottom
+  ENERGY     Neptune          4         3     8.33    7.91   ✗
+  CANNABIS   Neptune          4         4     8.89    9.54   ✗
+  FINANCE    Jupiter          3         4     8.43    7.87   ✗
+
+===============================================================================================
+ % of sector cases with each outer ≤5° to any natal at BOTTOM (ruler-test)
+===============================================================================================
+  Sector       n | Jup≤5° Sat≤5° Ura≤5° Nep≤5° Plu≤5°   Ruler-hit rate
+  RETAIL      28 |    54%    39%    50%    32%    54%   N/A
+  MEME         7 |    14%    71%    29%    29%    71%   N/A
+  CANNABIS     6 |    50%     0%    50%     0%    67%   0% vs corpus 34%
+  TECH        52 |    33%    42%    29%    40%    38%   29% vs corpus 33%
+  EV          11 |    27%    36%    55%    45%    27%   55% vs corpus 33%
+  BIOPHARM     9 |    44%    56%    44%    22%    67%   67% vs corpus 43%
+  CRYPTO      11 |    18%    18%    27%    36%    18%   27% vs corpus 33%
+  ENERGY      13 |    46%    38%     8%    31%    38%   31% vs corpus 34%
+  FINANCE      6 |    50%    17%    17%    17%    67%   50% vs corpus 38%
+
+===============================================================================================
+ SECTOR ASYMMETRY: is the ruler's ≤5° rate ABOVE all other planets?
+===============================================================================================
+  Sector     Ruler       R% Others μ   Lift  Verdict
+  CANNABIS   Neptune      0     41.7  -41.7  ✗ other planet leads
+  TECH       Uranus      29     38.5   -9.6  ✗ other planet leads
+  EV         Uranus      55     34.1  +20.5  ✓ ruler leads
+  BIOPHARM   Pluto       67     41.7  +25.0  ✓ ruler leads
+  CRYPTO     Uranus      27     22.7   +4.5  ~ ruler tied
+  ENERGY     Neptune     31     32.7   -1.9  ✗ other planet leads
+  FINANCE    Jupiter     50     29.2  +20.8  ✓ ruler leads
+
+===============================================================================================
+ SECTOR at PEAK — does ruler get TIGHTER (lift up) or LOOSER (lift down)?
+===============================================================================================
+  Sector     Ruler      BotR%   PkR%  Δ      bot μ    pk μ
+  CANNABIS   Neptune       0%     0%     +0     8.89    9.54
+  TECH       Uranus       29%    52%    +23     8.36    6.18
+  EV         Uranus       55%    55%     +0     6.52    6.33
+  BIOPHARM   Pluto        67%    56%    -11     4.62    5.05
+  CRYPTO     Uranus       27%    36%     +9     9.40    8.36
+  ENERGY     Neptune      31%    46%    +15     8.33    7.91
+  FINANCE    Jupiter      50%    50%     +0     8.43    7.87

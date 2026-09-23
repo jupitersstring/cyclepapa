@@ -1,0 +1,99 @@
+Candidate pool: 636 unique tickers
+  50/636  62s  alive=20
+  100/636  129s  alive=38
+  150/636  186s  alive=47
+  200/636  237s  alive=65
+  250/636  298s  alive=78
+  300/636  353s  alive=99
+  350/636  416s  alive=113
+  400/636  479s  alive=129
+  450/636  532s  alive=145
+  500/636  589s  alive=157
+  550/636  643s  alive=168
+  600/636  700s  alive=182
+Alive survivors: 189 of 636
+Exported 189 -> /home/user/cyclepapa/data/deep_asymmetric_jul2026.csv
+
+=============================================================================================================================================================================================================
+DEEP ASYMMETRIC HUNT — top 50 (alive, scored 189)   [Rcy = possible recycled ticker: verify identity before acting]
+=============================================================================================================================================================================================================
+  # Tkr    Src     IPO           Now→   Pk     Δ PkMo        pr3   pr12   fLow    fHi        $  Spt  Sxt  NpS  AVI   GC  NpSn  PlSn #t Rcy   ASYM  Name
+  1 PRGS   Ritter  1991-07-30   +20→+240 +220 2026-10    +34%   -47%   +34%   -52%    33.58    ★         ★           32.5°  2.1°  2        525  Progress Software
+  2 RXST   Ritter  2021-07-30   +21→+232 +211 2027-03    -24%   -63%    +5%   -93%     4.82              ★           33.2°  2.8°  3        520  RxSight Inc
+  3 MTEK   Ritter  1987-07-30   +26→+232 +206 2026-10    -27%   -69%    +0%   -83%     0.98              ★           32.5°  2.0°  2        481  Monitek Technologies
+  4 CSPI   Ritter  1982-01-29   +91→+311 +220 2026-12     -2%   -39%    +1%   -72%     7.94              ★         ★ 35.0°  4.5°  2        435  CSP INC
+  5 VERX   Ritter  2020-07-29  +102→+292 +190 2027-02     -5%   -68%    +9%   -81%    11.48              ★           32.5°  2.1°  3        432  Vertex Inc
+  6 MAXI   Ritter  1983-08-18   +50→+237 +186 2027-07    -14%   -72%    +0%   -77%     8.30              ★         ★ 39.3° 20.2°  2        424  MAXICARE HEALTH
+  7 INAB   Ritter  2021-07-30   +21→+232 +211 2027-03     +1%   -33%   +17%   -99%     1.41              ★           33.2°  2.8°  3        423  IN8BIO Inc
+  8 MSS    Ritter  2023-10-05  +107→+281 +175 2027-02    -50%   -92%    +6%  -100%     0.69              ★         ★  7.7° 22.8°  3        423  Maison Solutions Inc.
+  9 RCON   Ritter  2009-07-29   +64→+270 +207 2026-10    -49%   -84%    +3%   -99%     0.40                        ★ 32.2°  1.7°  2        422  Recon Technology Ltd
+ 10 EDTA   Ritter  1984-07-30   +43→+262 +220 2026-10     +0%    +0%    +0%    +0%     0.00              ★         ★ 33.2°  2.7°  3        388  EDUDATA CORP.
+ 11 MRT    Ritter  2006-02-08   +90→+251 +162 2027-04    -35%   -57%    +0%   -91%     1.31                   ★    ★ 44.7° 14.8°  1        384  Morton's Restaurant Grou
+ 12 ACRU   Ritter  1999-07-30   +49→+246 +196 2027-02     +0%   -99%    +0%  -100%     0.01                          32.6°  2.1°  3        379  Accrue Software Inc
+ 13 ITRI   Ritter  1993-11-04   +25→+209 +184 2027-03     -4%   -34%   +11%   -37%    86.53    ★                     37.8°  7.3°  2        376  Itron
+ 14 NCEL   Ritter  1986-07-30   +41→+232 +191 2026-10    +56%   -87%   +95%   -99%     3.66              ★           32.7°  2.3°  2        374  Nationwide Cellular Serv
+ 15 CNBB   Ritter  1999-01-29   +91→+341 +249 2027-02    +11%   +25%   +26%    +0%    50.20         ★              ★ 34.8°  4.4°  3        369  CNB Inc, Lake City, Flor
+ 16 JELD   Ritter  2017-01-27   +64→+245 +181 2026-12    +28%   -62%   +57%   -93%     1.50                        ★ 33.4°  3.0°  3        368  JELD-WEN Holding Inc
+ 17 DOLE   Ritter  2021-07-30   +21→+232 +211 2027-03     -4%    -2%    +8%   -20%    13.72              ★           33.2°  2.8°  3        367  Dole Plc
+ 18 MGAM   Ritter  2022-07-29   +56→+199 +143 2026-10    -96%   -98%    +0%  -100%     0.00              ★         ★ 32.1°  1.6°  2        356  Mobile Global Esports, I
+ 19 MATX   Ritter  1992-01-28   +28→+253 +226 2026-12    +17%   +73%  +118%    -5%   192.23    ★                     33.5°  3.1°  3        350  Matrix Pharmaceutical
+ 20 IMRX   Ritter  2021-07-30   +21→+232 +211 2027-03     -6%   +48%   +64%   -63%     4.99              ★           33.2°  2.8°  3        339  Immuneering Corp
+ 21 RANI   Ritter  2021-07-30   +21→+232 +211 2027-03     -6%   +48%   +85%   -90%     0.76              ★           33.2°  2.8°  3        339  Rani Therapeutics Holdin
+ 22 TNYA   Ritter  2021-07-30   +21→+232 +211 2027-03     +9%   +21%   +34%   -90%     0.74              ★           33.2°  2.8°  3        339  Tenaya Therapeutics Inc
+ 23 GERN   Ritter  1996-07-30   +28→+259 +231 2026-08    -23%    -9%   +20%   -75%     1.28         ★                33.3°  2.8°  2        338  Geron
+ 24 LGCB   Ritter  1997-11-19   +21→+177 +156 2026-12    -74%   -83%   +28%   -99%     0.39         ★                37.1° 22.4°  3   ?    337  Long Island Commercial B
+ 25 QNTM   Ritter  1982-12-10   +44→+206 +162 2026-11    -18%   -82%   +72%   -97%     3.62              ★         ★ 16.2° 43.3°  0        335  QUANTUM CORP
+ 26 PMT    Ritter  2009-07-29   +64→+270 +207 2026-10     -4%   -12%   +14%   -29%    11.28                        ★ 32.2°  1.7°  2        331  Pennymac Mtg Invest Tr
+ 27 OFAL   Ritter  2025-05-21   +52→+196 +144 2026-11    -70%   -89%    +8%   -96%     0.19              ★         ★ 33.6° 25.9°  2        327  OFA Group
+ 28 CTAS   SP500   1983-08-18   +50→+237 +186 2027-07     -1%   -24%    +4%   -25%   170.08              ★         ★ 39.3° 20.2°  2        325  Cintas
+ 29 WAY    Ritter  2024-06-07  +130→+309 +179 2027-02    -14%   -50%   +19%   -55%    20.53              ★         ★ 17.1° 42.5°  1        321  Waystar Holding Corp.
+ 30 CJMB   Ritter  2025-02-05   +94→+262 +168 2027-07    -35%   -84%   +15%   -87%     0.80                        ★ 42.6° 12.2°  2        319  Callan JMB INC.
+ 31 KSCP   Ritter  2022-01-27  +104→+263 +159 2026-10    -46%   -57%   +11%   -98%     2.11                          33.2°  2.8°  3        317  Knightscope, Inc.
+ 32 CNEY   Ritter  2021-02-05   +64→+273 +209 2027-07    +22%   -83%   +32%  -100%     0.48                          42.6° 12.1°  2        313  CN Energy Group Inc
+ 33 POWR   Ritter  1987-01-27   +30→+229 +199 2026-11     +6%   +18%   +21%    -1%    27.96                        ★ 32.7°  2.2°  3        312  Environmental Power
+ 34 CIG    Ritter  1987-07-30   +26→+232 +206 2026-10    -14%    +7%   +16%   -23%     2.10              ★           32.5°  2.0°  2        305  Continental Graphics
+ 35 DMAAU  Ritter  2025-01-28   +57→+278 +221 2026-12     +1%    +3%    +3%    -9%    10.61                        ★ 34.5°  4.1°  3        305  Drugs Made In America Ac
+ 36 SFD    Ritter  2025-01-28   +57→+278 +221 2026-12    -15%    +3%   +15%   -18%    24.26                        ★ 34.5°  4.1°  3        305  Smithfield Foods Inc
+ 37 ROCK   Ritter  1993-11-04   +25→+209 +184 2027-03    +14%   -24%   +33%   -48%    45.10    ★                     37.8°  7.3°  2        302  Gibraltar Steel Corp
+ 38 TDACU  Ritter  2024-12-23    +8→+173 +165 2026-08     +8%    +9%    +9%   -35%    11.31                        ★  2.2° 32.6°  3        301  Translational Developmen
+ 39 INTM   Ritter  1994-01-27   +15→+234 +220 2026-10     +2%    n/a    +5%    -1%    52.37                          33.0°  2.6°  2   ?    299  Interim Services
+ 40 BOLT   Ritter  2021-02-05   +64→+273 +209 2027-07    -15%   -33%    +0%   -90%     3.85                          42.6° 12.1°  2        299  Bolt Biotherapeutics Inc
+ 41 AMBQ   Ritter  2025-07-30   +52→+254 +202 2027-03   +228%    n/a  +288%    -2%    88.30              ★           33.3°  2.8°  3        298  Ambiq Micro, Inc.
+ 42 YMAT   Ritter  2025-07-30   +52→+254 +202 2027-03    +75%    n/a  +122%   -91%     0.53              ★           33.3°  2.8°  3        298  J-Star Holding Co., Ltd.
+ 43 BISA   Ritter  1994-04-29   +48→+189 +141 2026-09     +0%   -97%   +50%   -99%     0.00         ★                34.6°  4.2°  2        293  Baltic International/USA
+ 44 TPZ    Ritter  2009-07-29   +64→+270 +207 2026-10     -0%    +7%    +9%    -5%    21.87                        ★ 32.2°  1.7°  2        292  Tortoise Power & Energy
+ 45 HCAI   Ritter  2025-02-05   +94→+262 +168 2027-07    +95%   -66%  +102%   -97%     8.30                        ★ 42.6° 12.2°  2        290  Huachen AI Parking Manag
+ 46 GEG    Ritter  1989-08-17   +63→+248 +186 2027-06    +15%    +5%   +20%   -29%     2.18    ★         ★           39.8° 19.8°  2        290  Grace Energy
+ 47 IGNE   Ritter  1986-07-23   +27→+207 +180 2027-07     +0%    +0%    +0%   -90%     0.00              ★           26.0°  4.4°  3        288  IGENE Biotechnology
+ 48 CHNR   Ritter  1976-01-28   +93→+274 +181 2026-12     -8%    -4%   +18%   -89%     3.80              ★           33.4°  2.9°  2        287  CHEMINEER
+ 49 ULBI   Ritter  1992-12-23   +34→+181 +147 2026-08     -4%   -30%   +25%   -52%     6.32    ★                      2.4° 32.8°  2        286  Ultralife Batteries, Inc
+ 50 NATL   Ritter  2005-01-27   +30→+233 +203 2026-12     -1%   +52%   +64%   -10%    43.41                          33.4°  2.9°  3   ?    283  National Interstate Corp
+
+================================================================================================================================================================
+DEEP-WASHOUT SUBSET (pr12 <= -30%, non-recycled): 36 names
+================================================================================================================================================================
+  1 PRGS   1991-07-30   +20→+240 (Δ+220) pk 2026-10  pr12 -47%  fLow +34%  $33.58  ASYM 525  Progress Software
+  2 RXST   2021-07-30   +21→+232 (Δ+211) pk 2027-03  pr12 -63%  fLow +5%  $4.82  ASYM 520  RxSight Inc
+  3 MTEK   1987-07-30   +26→+232 (Δ+206) pk 2026-10  pr12 -69%  fLow +0%  $0.98  ASYM 481  Monitek Technologies
+  4 CSPI   1982-01-29   +91→+311 (Δ+220) pk 2026-12  pr12 -39%  fLow +1%  $7.94  ASYM 435  CSP INC
+  5 VERX   2020-07-29  +102→+292 (Δ+190) pk 2027-02  pr12 -68%  fLow +9%  $11.48  ASYM 432  Vertex Inc
+  6 MAXI   1983-08-18   +50→+237 (Δ+186) pk 2027-07  pr12 -72%  fLow +0%  $8.30  ASYM 424  MAXICARE HEALTH
+  7 INAB   2021-07-30   +21→+232 (Δ+211) pk 2027-03  pr12 -33%  fLow +17%  $1.41  ASYM 423  IN8BIO Inc
+  8 MSS    2023-10-05  +107→+281 (Δ+175) pk 2027-02  pr12 -92%  fLow +6%  $0.69  ASYM 423  Maison Solutions Inc.
+  9 RCON   2009-07-29   +64→+270 (Δ+207) pk 2026-10  pr12 -84%  fLow +3%  $0.40  ASYM 422  Recon Technology Ltd
+ 10 MRT    2006-02-08   +90→+251 (Δ+162) pk 2027-04  pr12 -57%  fLow +0%  $1.31  ASYM 384  Morton's Restaurant Group In
+ 11 ACRU   1999-07-30   +49→+246 (Δ+196) pk 2027-02  pr12 -99%  fLow +0%  $0.01  ASYM 379  Accrue Software Inc
+ 12 ITRI   1993-11-04   +25→+209 (Δ+184) pk 2027-03  pr12 -34%  fLow +11%  $86.53  ASYM 376  Itron
+ 13 NCEL   1986-07-30   +41→+232 (Δ+191) pk 2026-10  pr12 -87%  fLow +95%  $3.66  ASYM 374  Nationwide Cellular Service
+ 14 JELD   2017-01-27   +64→+245 (Δ+181) pk 2026-12  pr12 -62%  fLow +57%  $1.50  ASYM 368  JELD-WEN Holding Inc
+ 15 MGAM   2022-07-29   +56→+199 (Δ+143) pk 2026-10  pr12 -98%  fLow +0%  $0.00  ASYM 356  Mobile Global Esports, Inc
+ 16 QNTM   1982-12-10   +44→+206 (Δ+162) pk 2026-11  pr12 -82%  fLow +72%  $3.62  ASYM 335  QUANTUM CORP
+ 17 OFAL   2025-05-21   +52→+196 (Δ+144) pk 2026-11  pr12 -89%  fLow +8%  $0.19  ASYM 327  OFA Group
+ 18 WAY    2024-06-07  +130→+309 (Δ+179) pk 2027-02  pr12 -50%  fLow +19%  $20.53  ASYM 321  Waystar Holding Corp.
+ 19 CJMB   2025-02-05   +94→+262 (Δ+168) pk 2027-07  pr12 -84%  fLow +15%  $0.80  ASYM 319  Callan JMB INC.
+ 20 KSCP   2022-01-27  +104→+263 (Δ+159) pk 2026-10  pr12 -57%  fLow +11%  $2.11  ASYM 317  Knightscope, Inc.
+ 21 CNEY   2021-02-05   +64→+273 (Δ+209) pk 2027-07  pr12 -83%  fLow +32%  $0.48  ASYM 313  CN Energy Group Inc
+ 22 BOLT   2021-02-05   +64→+273 (Δ+209) pk 2027-07  pr12 -33%  fLow +0%  $3.85  ASYM 299  Bolt Biotherapeutics Inc
+ 23 BISA   1994-04-29   +48→+189 (Δ+141) pk 2026-09  pr12 -97%  fLow +50%  $0.00  ASYM 293  Baltic International/USA
+ 24 HCAI   2025-02-05   +94→+262 (Δ+168) pk 2027-07  pr12 -66%  fLow +102%  $8.30  ASYM 290  Huachen AI Parking Managemen
+ 25 IGTAU  2021-12-09   +71→+242 (Δ+171) pk 2027-07  pr12 -82%  fLow +7%  $2.31  ASYM 283  Inception Growth Acquisition

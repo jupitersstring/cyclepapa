@@ -1,0 +1,159 @@
+Loaded 152 cases
+
+====================================================================================================
+ (1) PEAK-ruler per sector — which planet tightens at the TOP
+====================================================================================================
+  Sector       n |    Jup    Sat    Ura    Nep    Plu   tightest(peak)  vs bottom ruler
+  BIOPHARM     9 |   7.61   8.37   8.12  10.82   5.05   Pluto(5.05)
+  CANNABIS     6 |  11.58   7.51   6.85   9.54   6.03   Pluto(6.03)
+  CRYPTO      11 |   5.89   8.74   8.36  11.16  10.64   Jupiter(5.89)
+  ENERGY      13 |   8.26   9.20   6.64   7.91   7.84   Uranus(6.64)  FLIP bot=Jupiter(6.9) -> peak=Uranus(6.6)
+  EV          11 |   7.72   7.07   6.33   9.11   9.18   Uranus(6.33)
+  FINANCE      6 |   7.87   5.94   9.45   7.41   3.89   Pluto(3.89)
+  MEME         7 |  12.42   5.65   9.27   7.75   4.57   Pluto(4.57)
+  RETAIL      28 |   8.16   8.96   8.46   9.46   9.10   Jupiter(8.16)
+  TECH        52 |   7.68   6.87   6.18   8.72   8.12   Uranus(6.18)  FLIP bot=Saturn(7.6) -> peak=Uranus(6.2)
+
+====================================================================================================
+ (1b) PEAK: %-cases with each outer ≤5° at PEAK per sector
+====================================================================================================
+  Sector       n |    Jup    Sat    Ura    Nep    Plu   Winner
+  BIOPHARM     9 |    33%    33%    44%    22%    56%   Pluto (56%)
+  CANNABIS     6 |    33%    17%    33%     0%    17%   Jupiter (33%)
+  CRYPTO      11 |    55%    27%    36%    27%    18%   Jupiter (55%)
+  ENERGY      13 |    38%    23%    31%    46%    31%   Neptune (46%)
+  EV          11 |    45%    36%    55%    27%    18%   Uranus (55%)
+  FINANCE      6 |    50%    50%    17%    50%    67%   Pluto (67%)
+  MEME         7 |    29%    71%    29%    29%    71%   Saturn (71%)
+  RETAIL      28 |    39%    36%    32%    39%    36%   Jupiter (39%)
+  TECH        52 |    38%    42%    52%    37%    46%   Uranus (52%)
+
+====================================================================================================
+ (2) SUB-INDUSTRY splits — TECH / ENERGY / RETAIL
+====================================================================================================
+  Sub-industry sizes:
+    INTERNET        21
+    SAAS            12
+    SPEC            10
+    SEMIS            9
+    AI_QUANTUM       7
+    NUCLEAR          7
+    CLEAN            6
+    RESTAURANT       5
+    LEISURE          4
+    APPAREL          4
+    HARDWARE         3
+    BROAD            3
+    CONSUMER_BRAND   2
+
+  Mean-orb at BOTTOM per sub-industry (n≥4):
+  Sub-industry     n |    Jup    Sat    Ura    Nep    Plu   bot-ruler -> peak-ruler
+  AI_QUANTUM       7 |   7.63   7.75   8.92   5.53  11.10   Neptune(5.5) -> Neptune(6.3)
+  APPAREL          4 |   4.33   9.09   9.30   8.59   4.40   Jupiter(4.3) -> Pluto(6.3) FLIP
+  CLEAN            6 |   7.41   8.60   9.58   8.33   8.65   Jupiter(7.4) -> Jupiter(7.2)
+  INTERNET        21 |   9.24   7.01   7.65  10.96   7.17   Saturn(7.0) -> Uranus(6.2) FLIP
+  LEISURE          4 |  11.00   6.55   4.56   9.90  11.65   Uranus(4.6) -> Saturn(9.3) FLIP
+  NUCLEAR          7 |   6.52   6.47   8.08   8.33   6.36   Pluto(6.4) -> Uranus(5.7) FLIP
+  RESTAURANT       5 |   6.34   7.12   4.81   9.14   3.46   Pluto(3.5) -> Neptune(3.3) FLIP
+  SAAS            12 |  11.92   7.91   6.27   8.09   7.27   Uranus(6.3) -> Uranus(4.0)
+  SEMIS            9 |   4.68   6.64  11.68   7.17   8.41   Jupiter(4.7) -> Saturn(5.2) FLIP
+  SPEC            10 |   7.57  10.53   8.24   9.94   8.01   Jupiter(7.6) -> Pluto(8.1) FLIP
+
+  % cases with outer ≤5° at BOTTOM per sub-industry (n≥4):
+  Sub-industry     n |   Jup   Sat   Ura   Nep   Plu   Winner
+  AI_QUANTUM       7 |   29%   57%   43%   57%   29%   Saturn(57%)
+  APPAREL          4 |   75%   25%   25%   50%   75%   Jupiter(75%)
+  CLEAN            6 |   50%   33%   17%   50%   33%   Jupiter(50%)
+  INTERNET        21 |   19%   43%   33%   33%   38%   Saturn(43%)
+  LEISURE          4 |   25%   50%   75%    0%    0%   Uranus(75%)
+  NUCLEAR          7 |   43%   43%    0%   14%   43%   Jupiter(43%)
+  RESTAURANT       5 |   60%   20%   80%   20%   80%   Uranus(80%)
+  SAAS            12 |   33%   25%   42%   42%   50%   Pluto(50%)
+  SEMIS            9 |   67%   56%    0%   44%   33%   Jupiter(67%)
+  SPEC            10 |   50%   30%   40%   40%   50%   Jupiter(50%)
+
+====================================================================================================
+ (3) PER-SECTOR compound rule fire-rate at BOTTOM
+====================================================================================================
+  Rule                         |  RETAIL    MEME CANNABI    TECH      EV BIOPHAR  CRYPTO  ENERGY FINANCE    Base
+  Sat_close_Ura_mod            |     7%      0%      0%      6%      9%     22%▲     0%      8%     17%       7%
+  Jup_far_Ura_mod              |    14%      0%▼    33%▲    17%      9%     11%      9%      8%      0%▼     13%
+  Sat_close_Plu_mod            |    11%     14%      0%      4%      9%     33%▲     0%      8%     17%       8%
+  Sat_mod_Nep_close            |     7%      0%      0%     13%      0%      0%      0%      8%      0%       7%
+  Jup_far_Plu_close            |    18%     14%      0%     13%      9%      0%      0%      0%     17%      10%
+  Ura_mod_Plu_mod              |    11%     29%▲    33%▲    17%     18%     11%      0%▼    15%     17%      15%
+  Nep_close_Plu_mod            |     0%      0%      0%      8%      9%     11%      0%     15%      0%       6%
+  Jup_mod_Nep_close            |     7%      0%      0%      8%      9%      0%     18%▲     8%      0%       7%
+  Pluto_8_12_sweet             |    14%      0%▼     0%▼    12%      9%      0%▼    36%▲     8%     33%▲     12%
+  Uranus_3_5_sweet             |    14%     14%     17%     10%      9%     22%▲    18%      0%▼     0%▼     11%
+
+====================================================================================================
+ (4) SECTOR-RULER → which natal point (Sun/Moon/ASC/MC)?
+====================================================================================================
+
+  BIOPHARM   (n=9) ruler=Pluto — which natal point attracts most?
+    Point attributed as tightest:
+      Sun  :  3/9 ( 33%)   ≤5° hit-rate:  11%
+      Moon :  1/9 ( 11%)   ≤5° hit-rate:  11%
+      ASC  :  3/9 ( 33%)   ≤5° hit-rate:  33%
+      MC   :  2/9 ( 22%)   ≤5° hit-rate:  22%
+
+  CANNABIS   (n=6) ruler=Pluto — which natal point attracts most?
+    Point attributed as tightest:
+      Sun  :  2/6 ( 33%)   ≤5° hit-rate:  17%
+      Moon :  2/6 ( 33%)   ≤5° hit-rate:  50%
+      ASC  :  0/6 (  0%)   ≤5° hit-rate:   0%
+      MC   :  2/6 ( 33%)   ≤5° hit-rate:  17%
+
+  CRYPTO     (n=11) ruler=Jupiter — which natal point attracts most?
+    Point attributed as tightest:
+      Sun  :  4/11 ( 36%)   ≤5° hit-rate:   0%
+      Moon :  2/11 ( 18%)   ≤5° hit-rate:   0%
+      ASC  :  1/11 (  9%)   ≤5° hit-rate:   9%
+      MC   :  4/11 ( 36%)   ≤5° hit-rate:  18%
+
+  ENERGY     (n=13) ruler=Jupiter — which natal point attracts most?
+    Point attributed as tightest:
+      Sun  :  4/13 ( 31%)   ≤5° hit-rate:  15%
+      Moon :  3/13 ( 23%)   ≤5° hit-rate:  15%
+      ASC  :  2/13 ( 15%)   ≤5° hit-rate:   0%
+      MC   :  4/13 ( 31%)   ≤5° hit-rate:  15%
+
+  EV         (n=11) ruler=Uranus — which natal point attracts most?
+    Point attributed as tightest:
+      Sun  :  6/11 ( 55%)   ≤5° hit-rate:  45%
+      Moon :  3/11 ( 27%)   ≤5° hit-rate:   9%
+      ASC  :  1/11 (  9%)   ≤5° hit-rate:   0%
+      MC   :  1/11 (  9%)   ≤5° hit-rate:   9%
+
+  FINANCE    (n=6) ruler=Pluto — which natal point attracts most?
+    Point attributed as tightest:
+      Sun  :  3/6 ( 50%)   ≤5° hit-rate:  50%
+      Moon :  1/6 ( 17%)   ≤5° hit-rate:  33%
+      ASC  :  1/6 ( 17%)   ≤5° hit-rate:  17%
+      MC   :  1/6 ( 17%)   ≤5° hit-rate:   0%
+
+  MEME       (n=7) ruler=Pluto — which natal point attracts most?
+    Point attributed as tightest:
+      Sun  :  3/7 ( 43%)   ≤5° hit-rate:  29%
+      Moon :  0/7 (  0%)   ≤5° hit-rate:  14%
+      ASC  :  2/7 ( 29%)   ≤5° hit-rate:  29%
+      MC   :  2/7 ( 29%)   ≤5° hit-rate:  14%
+
+  RETAIL     (n=28) ruler=Jupiter — which natal point attracts most?
+    Point attributed as tightest:
+      Sun  : 11/28 ( 39%)   ≤5° hit-rate:  14%
+      Moon :  7/28 ( 25%)   ≤5° hit-rate:  21%
+      ASC  :  3/28 ( 11%)   ≤5° hit-rate:   7%
+      MC   :  7/28 ( 25%)   ≤5° hit-rate:  14%
+
+  TECH       (n=52) ruler=Saturn — which natal point attracts most?
+    Point attributed as tightest:
+      Sun  : 16/52 ( 31%)   ≤5° hit-rate:  13%
+      Moon : 14/52 ( 27%)   ≤5° hit-rate:  10%
+      ASC  : 14/52 ( 27%)   ≤5° hit-rate:  13%
+      MC   :  8/52 ( 15%)   ≤5° hit-rate:   6%
+
+====================================================================================================
+ (5) SECTOR × SPEED × MAGNITUDE
+====================================================================================================

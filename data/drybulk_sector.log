@@ -1,0 +1,84 @@
+============================================================================================================
+1. DRY BULK SECTOR INDEX (median weekly log-return of 12 bulkers), 2008-02-04 -> 2026-09-23
+============================================================================================================
+   2009-11-16  peak   index     56.7
+   2012-12-24  bottom index      8.4
+   2013-12-23  peak   index     17.4
+   2016-01-11  bottom index      1.7
+   2017-04-03  peak   index      3.6
+   2018-02-26  peak   index      3.0
+   2020-10-26  bottom index      0.6
+   2021-09-13  peak   index      1.6
+   2022-09-26  bottom index      0.8
+   2024-05-27  peak   index      1.3
+   2025-03-31  bottom index      0.7
+   NOW 2026-09-23: 12mo +53% | position in 2-yr range 89% | vs last cycle peak -15%
+
+============================================================================================================
+2. TEST A — do the Baltic index charts time the sector's cycle turns? (key-in-lock percentile, chance 50%)
+============================================================================================================
+   BDI (1999-11-01): mean  34.3%  permutation p=0.950  (random charts: mean 49.8%, 95th pct 64.8%)
+      lock: Mars=0.7(exalt)
+      per turn: P2009-11:52, B2012-12:10, P2013-12:44, B2016-01:21, P2017-04:21, P2018-02:60, B2020-10:9, P2021-09:54, B2022-09:11, P2024-05:68, B2025-03:26
+   BFI (1985-01-04): mean  59.6%  permutation p=0.159  (random charts: mean 49.8%, 95th pct 64.8%)
+      lock: Jupiter=0.6(angular)
+      per turn: P2009-11:99, B2012-12:46, P2013-12:12, B2016-01:89, P2017-04:58, P2018-02:68, B2020-10:72, P2021-09:72, B2022-09:17, P2024-05:36, B2025-03:85
+
+============================================================================================================
+3. TEST B — Jupiter in a WATER sign (Cancer/Scorpio/Pisces) -> dry bulk outperforms? (monthly)
+============================================================================================================
+   months: water 57, other 166 | mean monthly return water +0.76% vs other -2.91%
+   difference +3.68%/month  circular-shift permutation p=0.105 (one-sided, 199 shifts)
+   by Jupiter sign (descriptive only):
+     Ari: n= 18  mean  -3.75%/mo  cum     -49%
+     Tau: n= 24  mean  -1.53%/mo  cum     -31%
+     Gem: n= 25  mean  -3.30%/mo  cum     -56%
+     Can: n= 26  mean  +1.44%/mo  cum     +45%
+     Leo: n= 15  mean  -3.35%/mo  cum     -39%
+     Vir: n= 13  mean  -8.13%/mo  cum     -65%
+     Lib: n= 13  mean  +1.82%/mo  cum     +27%
+     Sco: n= 13  mean  -0.24%/mo  cum      -3%
+     Sag: n= 13  mean  -3.72%/mo  cum     -38%
+     Cap: n= 23  mean  -6.26%/mo  cum     -76%
+     Aqu: n= 22  mean  +1.26%/mo  cum     +32%
+     Pis: n= 18  mean  +0.52%/mo  cum     +10%
+   Jupiter ingresses ahead:
+     2026-09: Jupiter in Leo
+     2027-08: Jupiter in Vir
+     2028-09: Jupiter in Lib
+     2029-10: Jupiter in Sco  <- WATER
+     2030-11: Jupiter in Sag
+
+============================================================================================================
+4. FORWARD — sector charts from Sep 2026
+============================================================================================================
+   BDI (1999-11-01): key window 2026-10 (score 4.3) hits Jupiter>Moon, Pluto>Neptune, Saturn>Mars
+      eclipse exit flags ['2027-06', '2027-07', '2027-08'] | Jupiter react ['2026-10', '2027-02', '2027-03', '2027-05'] | Saturn react -
+   BFI (1985-01-04): key window 2026-12 (score 6.1) hits Jupiter>Saturn, Neptune>Neptune
+      eclipse exit flags ['2027-06', '2027-07'] | Jupiter react ['2027-09'] | Saturn react -
+
+============================================================================================================
+5. NAMES — lock/key window, cult tags, beta to sector (104 wks), dilution flag
+============================================================================================================
+   Tkr      last   12mo   13wk  fromHi  beta  lock   key window   cult  tags | eclipse exits | flags
+   PANL     8.21   +54%   +20%    -19%  0.98   2.4  13.1 2027-03   0.0  - | - | 
+   GNK     26.22   +43%   +11%    -88%  1.01   6.6   9.5 2027-06   0.0  - | - | 
+   ICON     1.00   -90%    +9%   -100%  1.14   1.2   9.0 2027-08   6.0  NePl-sxt,GC,tNep-light,young | - | CHRONIC DILUTER
+   HSHP    18.26  +109%   +37%     -5%  1.31   1.4   9.7 2027-03   2.5  GC,young | 2027-01,2027-02 | 
+   BDRY    16.00   +99%   +42%    -59%  0.79   2.4   8.6 2026-10   3.5  tNep-light,Silas-JupReact | - | 
+   CISS     1.09  -100%   -98%   -100%  0.43   1.8   7.3 2027-07   5.5  NePl-sxt,GC,young,Silas-JupReact | 2027-01,2027-02 | CHRONIC DILUTER
+   CTRM     2.12    +1%    +0%   -100%  0.54   7.6   5.8 2027-08   1.5  Silas-JupReact | - | CHRONIC DILUTER
+   USEA     3.05   +78%   +14%    -59%  0.82   1.7   7.8 2026-12   4.0  NePl-sxt,GC,young | - | 
+   IMPP     5.34    +7%   +10%    -90%  0.46   4.1   7.4 2026-12   1.0  young | - | 
+   NMM     88.21   +85%   +28%    -72%  1.00   2.1   6.0 2027-02   5.0  GC,tNep-light,Silas-JupReact | - | 
+   SBLK    30.51   +58%   +25%    -97%  1.07   1.3   6.9 2027-02   3.5  GC,tNep-light | - | CHRONIC DILUTER
+   DSX      2.94   +66%   +43%    -92%  1.12   0.3   6.4 2027-03   5.0  GC,tNep-light,Silas-JupReact | - | 
+   CMBT    19.19   +93%   +36%     -7%  0.90   1.0   8.5 2027-03   0.0  - | - | 
+   CMRE    14.70   +18%    +2%    -39%  0.69   1.9   6.5 2026-10   1.5  GC | - | 
+   GLBS     3.70  +233%   +29%   -100%  0.96   0.5   7.3 2027-01   0.0  - | 2027-01,2027-02 | CHRONIC DILUTER
+   PXS      6.54  +128%   +48%    -69%  0.73   1.9   6.3 2027-07   0.0  - | - | 
+   SB       8.36   +82%   +31%    -56%  0.97   0.6   6.7 2027-07   0.0  - | - | 
+   EDRY    53.59  +337%  +143%    -22%  1.09   1.7   5.5 2027-07   1.0  Stell | 2027-01,2027-02 | 
+   SHIP    17.73  +105%   +25%   -100%  1.34   0.8   3.7 2026-10   0.0  - | - | CHRONIC DILUTER
+
+   exported -> data/drybulk_names.csv

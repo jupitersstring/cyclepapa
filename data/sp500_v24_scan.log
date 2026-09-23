@@ -1,0 +1,191 @@
+Building eclipse DB...
+SP500 to scan: 486
+  100/486  6s
+  200/486  12s
+  300/486  17s
+  400/486  23s
+Scan done: 28s, 486 SP500 scored
+Exported 486 -> /home/user/cyclepapa/data/sp500_macro_v24.csv
+
+==========================================================================================================================================================================
+TOP 40 SP500 BY V24 ASYMMETRY (macro-regime-aware)
+==========================================================================================================================================================================
+ Rk Tkr    ModSec         GICS                   Age   Now  Peak     Δ  Bub PkMo     Run  mPk Sf  Asym  Name
+  1 NXPI   SEMIS          Information Technolog   16  15.3  46.2 +30.9 4.94 2026-07    3 2.01 Y  25.27  NXP Semiconductors
+  2 TER    SEMIS          Information Technolog    6   8.6  35.2 +26.6 3.78 2026-07    3 2.01 Y  21.27  Teradyne
+  3 NFLX   STREAMING      Communication Service   24   8.1  43.4 +35.2 4.04 2027-06   14 1.66 Y  20.91  Netflix
+  4 ECL    METALS         Materials               69   7.8  32.6 +24.8 3.70 2027-03   11 1.29 N  20.18  Ecolab
+  5 PLTR   AI_QUANTUM     Information Technolog    6   9.5  36.1 +26.6 5.21 2028-04   24 1.76 N  19.74  Palantir Technologies
+  6 EBAY   RETAIL         Consumer Discretionar   31   6.9  23.5 +16.6 4.85 2027-02   10 0.92 N  19.33  eBay Inc.
+  7 LITE   TECH           Information Technolog   29   6.8  39.2 +32.5 3.70 2027-06   14 1.62 N  19.02  Lumentum
+  8 DTE    UTILS          Utilities               31   6.5  27.6 +21.2 3.70 2027-03   11 1.10 N  18.77  DTE Energy
+  9 CHRW   INDUSTRIAL     Industrials             29   7.8  31.6 +23.9 3.27 2026-08    4 1.21 Y  17.31  C.H. Robinson
+ 10 HON    INDUSTRIAL     Industrials             27   9.3  30.7 +21.3 3.80 2026-11    7 1.29 Y  16.99  Honeywell
+ 11 CB     FINANCE        Financials              42   7.4  26.2 +18.8 3.70 2027-02   10 1.02 N  16.08  Chubb Limited
+ 12 CPRT   INDUSTRIAL     Industrials             44   8.9  31.1 +22.2 3.32 2026-08    4 1.21 N  15.72  Copart
+ 13 IVZ    FINANCE        Financials              18   8.8  27.6 +18.8 3.86 2027-04   12 1.02 Y  15.70  Invesco
+ 14 BAC    FINANCE        Financials              28  13.7  31.3 +17.6 4.78 2026-07    3 1.29 N  15.43  Bank of America
+ 15 MPWR   SEMIS          Information Technolog   22   6.6  32.6 +26.0 2.50 2026-07    3 2.01 Y  15.17  Monolithic Power Systems
+ 16 PSKY   MEDIA          Communication Service   32  12.6  37.4 +24.7 3.30 2026-11    7 1.67 N  14.99  Paramount Skydance Corpora
+ 17 NKE    RETAIL         Consumer Discretionar   46   6.3  23.4 +17.1 3.48 2026-09    5 0.92 Y  14.64  Nike, Inc.
+ 18 TROW   FINANCE        Financials              40   6.9  29.4 +22.5 2.70 2026-08    4 1.10 N  14.15  T. Rowe Price
+ 19 NI     UTILS          Utilities              100   8.5  31.5 +23.1 4.03 2026-05    1 1.28 N  14.04  NiSource
+ 20 SWK    INDUSTRIAL     Industrials             44   8.7  26.9 +18.2 3.53 2026-07    3 1.42 N  14.02  Stanley Black & Decker
+ 21 MCHP   SEMIS          Information Technolog   33   7.8  42.1 +34.3 2.70 2027-07   15 1.72 N  13.83  Microchip Technology
+ 22 SOLV   HEALTH         Health Care              2   9.2  23.7 +14.5 4.34 2026-08    4 1.10 N  13.82  Solventum
+ 23 CMI    INDUSTRIAL     Industrials             62  15.4  37.5 +22.1 3.53 2026-10    6 1.17 Y  13.36  Cummins
+ 24 FOXA   MEDIA          Communication Service    7   6.9  27.2 +20.4 2.70 2026-07    3 1.83 Y  12.95  Fox Corporation (Class A)
+ 25 IBKR   FINANCE        Financials              19  17.7  33.5 +15.8 4.91 2026-11    7 1.17 Y  12.92  Interactive Brokers
+ 26 VRSK   INDUSTRIAL     Industrials             17  14.2  36.8 +22.6 4.61 2026-06    2 1.36 N  12.89  Verisk Analytics
+ 27 WDC    SEMIS          Information Technolog   17  18.4  48.3 +29.9 3.93 2026-05    1 1.85 N  12.65  Western Digital
+ 28 WY     REIT           Real Estate             63   9.1  29.5 +20.4 4.17 2026-06    2 1.37 N  12.65  Weyerhaeuser
+ 29 LNT    UTILS          Utilities               28   6.1  26.1 +19.9 3.70 2026-06    2 1.33 N  12.64  Alliant Energy
+ 30 AEE    UTILS          Utilities               28   6.1  26.1 +19.9 3.70 2026-06    2 1.33 N  12.64  Ameren
+ 31 ITW    INDUSTRIAL     Industrials             61  14.2  33.1 +18.9 5.30 2026-06    2 1.36 N  12.59  Illinois Tool Works
+ 32 MLM    INDUSTRIAL     Materials               32  10.2  25.7 +15.5 3.85 2027-03   11 1.12 N  12.45  Martin Marietta Materials
+ 33 DECK   LUXURY         Consumer Discretionar   33  12.3  36.5 +24.2 2.70 2026-10    6 1.25 Y  12.13  Deckers Brands
+ 34 SNA    INDUSTRIAL     Industrials             48  10.2  33.1 +22.9 2.63 2026-11    7 1.29 Y  12.12  Snap-on
+ 35 TPR    LUXURY         Consumer Discretionar   22  10.7  33.5 +22.8 2.68 2026-10    6 1.25 Y  12.07  Tapestry, Inc.
+ 36 SYY    RETAIL         Consumer Staples        56   6.6  25.9 +19.3 3.70 2028-04   24 1.08 Y  11.98  Sysco
+ 37 PNW    UTILS          Utilities               30   6.6  25.8 +19.2 3.70 2026-06    2 1.33 N  11.90  Pinnacle West Capital
+ 38 CDW    TECH           Information Technolog   13   9.3  24.7 +15.4 5.08 2028-02   22 1.44 N  11.86  CDW Corporation
+ 39 NUE    METALS         Materials               55   9.5  31.5 +22.0 3.70 2026-06    2 1.56 N  11.85  Nucor
+ 40 ADSK   TECH           Information Technolog   41  18.0  31.0 +13.0 5.36 2026-07    3 1.78 N  11.77  Autodesk
+
+==========================================================================================================================================================================
+BOTTOM 20 SP500 — poorly-positioned or already past peak (sell/avoid)
+==========================================================================================================================================================================
+  1 ICE    FINANCE        Financials              38  21.2  21.2  +0.0 1.28 2026-04    0 N  Sat@0mo     0.00  Intercontinental Exchange
+  2 RSG    INDUSTRIAL     Industrials             28  24.6  24.6  +0.0 1.47 2026-04    0 N  Sat@0mo     0.00  Republic Services
+  3 WAB    INDUSTRIAL     Industrials             31  22.9  22.9  +0.0 1.50 2026-04    0 Y  Sat@13mo    0.00  Wabtec
+  4 HRL    FOOD_BEV       Consumer Staples        17  28.0  28.0  +0.0 2.20 2026-04    0 Y              0.00  Hormel Foods
+  5 WTW    FINANCE        Financials              25  18.3  18.3  +0.0 1.84 2026-04    0 Y              0.00  Willis Towers Watson
+  6 COST   STAPLES        Consumer Staples        41  25.4  25.4  +0.0 2.20 2026-04    0 Y              0.00  Costco
+  7 LIN    ENERGY         Materials               30  32.8  32.8  +0.0 2.50 2026-04    0 Y  Sat@14mo    0.00  Linde plc
+  8 BEN    FINANCE        Financials              28  22.8  22.8  +0.0 2.12 2026-04    0 Y              0.00  Franklin Resources
+  9 VLO    FOSSIL         Energy                  24  24.1  24.1  +0.0 2.20 2026-04    0 Y              0.00  Valero Energy
+ 10 IEX    INDUSTRIAL     Industrials             37  23.3  23.3  +0.0 2.20 2026-04    0 N  Sat@1mo     0.00  IDEX Corporation
+ 11 MAA    REIT           Real Estate             32  26.7  26.7  +0.0 2.37 2026-04    0 Y  Sat@12mo    0.00  Mid-America Apartment Comm
+ 12 SYF    FINANCE        Financials              12  23.0  23.0  +0.0 2.34 2026-04    0 Y              0.01  Synchrony Financial
+ 13 MS     FINANCE        Financials              40  19.3  19.3  +0.0 2.20 2026-04    0 N  Sat@0mo     0.01  Morgan Stanley
+ 14 HOOD   FINANCE        Financials               5  20.2  20.2  +0.0 2.31 2026-04    0 Y              0.01  Robinhood Markets
+ 15 PHM    HOMEBUILDER    Consumer Discretionar   42  19.9  19.9  +0.0 2.33 2026-04    0 Y              0.01  PulteGroup
+ 16 IP     METALS         Materials               69  26.4  26.4  +0.0 2.70 2026-04    0 Y              0.01  International Paper
+ 17 PNC    FINANCE        Financials              38  20.0  20.0  +0.0 2.42 2026-04    0 N  Sat@0mo     0.01  PNC Financial Services
+ 18 AXP    FINANCE        Financials              49  24.4  24.4  +0.0 2.66 2026-04    0 Y              0.01  American Express
+ 19 ISRG   HEALTH         Health Care             26  23.7  23.7  +0.0 2.70 2026-04    0 Y              0.01  Intuitive Surgical
+ 20 CPB    FOOD_BEV       Consumer Staples        69  23.2  23.2  +0.0 2.70 2026-04    0 Y              0.01  Campbell's Company (The)
+
+==========================================================================================================================================================================
+TOP 5 PER GICS SECTOR
+==========================================================================================================================================================================
+
+  Communication Services
+    NFLX   STREAMING      8.1→ 43.4 Δ+35.2 Bub4.04 Pk2027-06(14mo) mPk1.66 SfY Asym20.91  Netflix
+    PSKY   MEDIA         12.6→ 37.4 Δ+24.7 Bub3.30 Pk2026-11(7mo) mPk1.67 SfN Asym14.99  Paramount Skydance Corporation
+    FOXA   MEDIA          6.9→ 27.2 Δ+20.4 Bub2.70 Pk2026-07(3mo) mPk1.83 SfY Asym12.95  Fox Corporation (Class A)
+    TTD    MEDIA         17.8→ 36.8 Δ+19.0 Bub3.76 Pk2027-01(9mo) mPk1.45 SfY Asym11.65  Trade Desk (The)
+    NWSA   MEDIA          7.3→ 19.2 Δ+11.9 Bub5.39 Pk2027-08(16mo) mPk1.15 SfN Asym10.94  News Corp (Class A)
+
+  Consumer Discretionary
+    EBAY   RETAIL         6.9→ 23.5 Δ+16.6 Bub4.85 Pk2027-02(10mo) mPk0.92 SfN Asym19.33  eBay Inc.
+    NKE    RETAIL         6.3→ 23.4 Δ+17.1 Bub3.48 Pk2026-09(5mo) mPk0.92 SfY Asym14.64  Nike, Inc.
+    DECK   LUXURY        12.3→ 36.5 Δ+24.2 Bub2.70 Pk2026-10(6mo) mPk1.25 SfY Asym12.13  Deckers Brands
+    TPR    LUXURY        10.7→ 33.5 Δ+22.8 Bub2.68 Pk2026-10(6mo) mPk1.25 SfY Asym12.07  Tapestry, Inc.
+    YUM    RETAIL         5.3→ 23.9 Δ+18.6 Bub3.48 Pk2026-06(2mo) mPk1.11 SfN Asym11.74  Yum! Brands
+
+  Consumer Staples
+    SYY    RETAIL         6.6→ 25.9 Δ+19.3 Bub3.70 Pk2028-04(24mo) mPk1.08 SfY Asym11.98  Sysco
+    PM     RETAIL         9.9→ 25.3 Δ+15.4 Bub3.53 Pk2026-10(6mo) mPk0.95 SfN Asym11.49  Philip Morris International
+    KDP    FOOD_BEV       9.9→ 19.6 Δ +9.7 Bub4.46 Pk2026-11(7mo) mPk1.17 SfY Asym 9.64  Keurig Dr Pepper
+    WMT    STAPLES        8.8→ 26.0 Δ+17.1 Bub3.31 Pk2028-03(23mo) mPk1.00 SfN Asym 8.69  Walmart
+    MKC    FOOD_BEV       7.5→ 29.6 Δ+22.2 Bub2.20 Pk2027-07(15mo) mPk1.10 SfY Asym 7.73  McCormick & Company
+
+  Energy
+    DVN    FOSSIL         9.6→ 23.7 Δ+14.1 Bub3.86 Pk2026-07(3mo) mPk1.03 SfY Asym11.74  Devon Energy
+    XOM    FOSSIL         5.9→ 21.9 Δ+16.0 Bub2.80 Pk2026-11(7mo) mPk0.94 SfY Asym11.40  ExxonMobil
+    PSX    FOSSIL        15.9→ 27.8 Δ+11.9 Bub4.25 Pk2026-07(3mo) mPk1.03 SfY Asym 9.08  Phillips 66
+    OKE    ENERGY        21.4→ 35.4 Δ+13.9 Bub4.04 Pk2026-07(3mo) mPk1.29 SfY Asym 8.75  Oneok
+    APA    FOSSIL        14.6→ 21.9 Δ +7.3 Bub3.49 Pk2026-06(2mo) mPk0.99 SfY Asym 3.48  APA Corporation
+
+  Financials
+    CB     FINANCE        7.4→ 26.2 Δ+18.8 Bub3.70 Pk2027-02(10mo) mPk1.02 SfN Asym16.08  Chubb Limited
+    IVZ    FINANCE        8.8→ 27.6 Δ+18.8 Bub3.86 Pk2027-04(12mo) mPk1.02 SfY Asym15.70  Invesco
+    BAC    FINANCE       13.7→ 31.3 Δ+17.6 Bub4.78 Pk2026-07(3mo) mPk1.29 SfN Asym15.43  Bank of America
+    TROW   FINANCE        6.9→ 29.4 Δ+22.5 Bub2.70 Pk2026-08(4mo) mPk1.10 SfN Asym14.15  T. Rowe Price
+    IBKR   FINANCE       17.7→ 33.5 Δ+15.8 Bub4.91 Pk2026-11(7mo) mPk1.17 SfY Asym12.92  Interactive Brokers
+
+  Health Care
+    SOLV   HEALTH         9.2→ 23.7 Δ+14.5 Bub4.34 Pk2026-08(4mo) mPk1.10 SfN Asym13.82  Solventum
+    MCK    HEALTH         8.1→ 27.3 Δ+19.2 Bub3.70 Pk2027-10(18mo) mPk1.09 SfN Asym11.11  McKesson Corporation
+    BMY    BIOTECH       10.3→ 30.0 Δ+19.7 Bub3.70 Pk2026-06(2mo) mPk1.42 SfN Asym10.35  Bristol Myers Squibb
+    PFE    BIOTECH       17.7→ 29.1 Δ+11.4 Bub5.04 Pk2026-10(6mo) mPk1.22 SfY Asym 9.89  Pfizer
+    WST    HEALTH        10.7→ 30.6 Δ+19.9 Bub3.43 Pk2028-02(22mo) mPk1.20 SfY Asym 9.55  West Pharmaceutical Services
+
+  Industrials
+    CHRW   INDUSTRIAL     7.8→ 31.6 Δ+23.9 Bub3.27 Pk2026-08(4mo) mPk1.21 SfY Asym17.31  C.H. Robinson
+    HON    INDUSTRIAL     9.3→ 30.7 Δ+21.3 Bub3.80 Pk2026-11(7mo) mPk1.29 SfY Asym16.99  Honeywell
+    CPRT   INDUSTRIAL     8.9→ 31.1 Δ+22.2 Bub3.32 Pk2026-08(4mo) mPk1.21 SfN Asym15.72  Copart
+    SWK    INDUSTRIAL     8.7→ 26.9 Δ+18.2 Bub3.53 Pk2026-07(3mo) mPk1.42 SfN Asym14.02  Stanley Black & Decker
+    CMI    INDUSTRIAL    15.4→ 37.5 Δ+22.1 Bub3.53 Pk2026-10(6mo) mPk1.17 SfY Asym13.36  Cummins
+
+  Information Technology
+    NXPI   SEMIS         15.3→ 46.2 Δ+30.9 Bub4.94 Pk2026-07(3mo) mPk2.01 SfY Asym25.27  NXP Semiconductors
+    TER    SEMIS          8.6→ 35.2 Δ+26.6 Bub3.78 Pk2026-07(3mo) mPk2.01 SfY Asym21.27  Teradyne
+    PLTR   AI_QUANTUM     9.5→ 36.1 Δ+26.6 Bub5.21 Pk2028-04(24mo) mPk1.76 SfN Asym19.74  Palantir Technologies
+    LITE   TECH           6.8→ 39.2 Δ+32.5 Bub3.70 Pk2027-06(14mo) mPk1.62 SfN Asym19.02  Lumentum
+    MPWR   SEMIS          6.6→ 32.6 Δ+26.0 Bub2.50 Pk2026-07(3mo) mPk2.01 SfY Asym15.17  Monolithic Power Systems
+
+  Materials
+    ECL    METALS         7.8→ 32.6 Δ+24.8 Bub3.70 Pk2027-03(11mo) mPk1.29 SfN Asym20.18  Ecolab
+    MLM    INDUSTRIAL    10.2→ 25.7 Δ+15.5 Bub3.85 Pk2027-03(11mo) mPk1.12 SfN Asym12.45  Martin Marietta Materials
+    NUE    METALS         9.5→ 31.5 Δ+22.0 Bub3.70 Pk2026-06(2mo) mPk1.56 SfN Asym11.85  Nucor
+    APD    ENERGY         9.2→ 24.9 Δ+15.7 Bub3.11 Pk2026-10(6mo) mPk1.06 SfY Asym10.61  Air Products
+    STLD   METALS        29.6→ 44.3 Δ+14.7 Bub5.06 Pk2026-07(3mo) mPk1.63 SfY Asym 9.96  Steel Dynamics
+
+  Real Estate
+    WY     REIT           9.1→ 29.5 Δ+20.4 Bub4.17 Pk2026-06(2mo) mPk1.37 SfN Asym12.65  Weyerhaeuser
+    HST    RETAIL         5.3→ 21.9 Δ+16.6 Bub3.70 Pk2026-06(2mo) mPk1.11 SfN Asym11.24  Host Hotels & Resorts
+    FRT    REIT           7.8→ 35.3 Δ+27.5 Bub2.32 Pk2026-06(2mo) mPk1.37 SfN Asym 9.72  Federal Realty Investment Trus
+    EQR    REIT          10.7→ 29.4 Δ+18.8 Bub2.70 Pk2026-06(2mo) mPk1.37 SfY Asym 7.16  Equity Residential
+    AVB    REIT           6.0→ 24.7 Δ+18.6 Bub2.20 Pk2027-06(14mo) mPk1.17 SfN Asym 7.11  AvalonBay Communities
+
+  Utilities
+    DTE    UTILS          6.5→ 27.6 Δ+21.2 Bub3.70 Pk2027-03(11mo) mPk1.10 SfN Asym18.77  DTE Energy
+    NI     UTILS          8.5→ 31.5 Δ+23.1 Bub4.03 Pk2026-05(1mo) mPk1.28 SfN Asym14.04  NiSource
+    LNT    UTILS          6.1→ 26.1 Δ+19.9 Bub3.70 Pk2026-06(2mo) mPk1.33 SfN Asym12.64  Alliant Energy
+    AEE    UTILS          6.1→ 26.1 Δ+19.9 Bub3.70 Pk2026-06(2mo) mPk1.33 SfN Asym12.64  Ameren
+    PNW    UTILS          6.6→ 25.8 Δ+19.2 Bub3.70 Pk2026-06(2mo) mPk1.33 SfN Asym11.90  Pinnacle West Capital
+
+==========================================================================================================================================================================
+BEST REGIME-ALIGNED PICKS (macro_peak ≥ 1.5 AND asymmetry ≥ 5 AND Saturn-safe)
+==========================================================================================================================================================================
+  1 NXPI   SEMIS          Information Technolog   15.3→ 46.2 Δ+30.9 Bub4.94 Pk2026-07(3mo) mPk2.01  Asym25.27  NXP Semiconductors
+  2 TER    SEMIS          Information Technolog    8.6→ 35.2 Δ+26.6 Bub3.78 Pk2026-07(3mo) mPk2.01  Asym21.27  Teradyne
+  3 NFLX   STREAMING      Communication Service    8.1→ 43.4 Δ+35.2 Bub4.04 Pk2027-06(14mo) mPk1.66  Asym20.91  Netflix
+  4 MPWR   SEMIS          Information Technolog    6.6→ 32.6 Δ+26.0 Bub2.50 Pk2026-07(3mo) mPk2.01  Asym15.17  Monolithic Power Systems
+  5 FOXA   MEDIA          Communication Service    6.9→ 27.2 Δ+20.4 Bub2.70 Pk2026-07(3mo) mPk1.83  Asym12.95  Fox Corporation (Class A)
+  6 AVGO   SEMIS          Information Technolog   26.8→ 52.0 Δ+25.3 Bub4.99 Pk2026-05(1mo) mPk1.85  Asym11.71  Broadcom
+  7 TEL    TECH           Information Technolog   16.8→ 33.5 Δ+16.7 Bub3.70 Pk2026-08(4mo) mPk1.52  Asym10.46  TE Connectivity
+  8 AMAT   SEMIS          Information Technolog   20.4→ 46.1 Δ+25.7 Bub2.70 Pk2026-07(3mo) mPk2.01  Asym10.38  Applied Materials
+  9 GOOG   AI_QUANTUM     Communication Service    9.4→ 31.6 Δ+22.1 Bub2.20 Pk2026-07(3mo) mPk1.89  Asym10.13  Alphabet Inc. (Class C)
+ 10 STLD   METALS         Materials               29.6→ 44.3 Δ+14.7 Bub5.06 Pk2026-07(3mo) mPk1.63  Asym 9.96  Steel Dynamics
+ 11 ROP    TECH           Information Technolog   23.3→ 39.3 Δ+15.9 Bub5.91 Pk2026-06(2mo) mPk1.71  Asym 9.75  Roper Technologies
+ 12 HII    DEFENSE        Industrials             11.3→ 33.6 Δ+22.3 Bub2.20 Pk2026-11(7mo) mPk1.69  Asym 9.53  Huntington Ingalls Industries
+ 13 VRSN   TECH           Information Technolog   22.7→ 45.9 Δ+23.3 Bub3.69 Pk2026-05(1mo) mPk1.64  Asym 8.66  Verisign
+ 14 T      MEDIA          Communication Service   20.3→ 37.0 Δ+16.7 Bub4.70 Pk2027-07(15mo) mPk1.56  Asym 8.57  AT&T
+ 15 GEN    TECH           Information Technolog    7.4→ 23.2 Δ+15.8 Bub2.28 Pk2026-11(7mo) mPk1.62  Asym 8.47  Gen Digital
+ 16 DDOG   TECH           Information Technolog    8.7→ 30.8 Δ+22.1 Bub2.38 Pk2026-05(1mo) mPk1.64  Asym 7.91  Datadog
+ 17 LYV    MEDIA          Communication Service   20.9→ 32.1 Δ+11.1 Bub4.09 Pk2026-12(8mo) mPk1.56  Asym 7.32  Live Nation Entertainment
+ 18 TTWO   MEDIA          Communication Service   18.0→ 35.3 Δ+17.3 Bub2.50 Pk2026-07(3mo) mPk1.83  Asym 7.11  Take-Two Interactive
+ 19 ADBE   TECH           Information Technolog    7.5→ 27.5 Δ+20.0 Bub2.20 Pk2026-05(1mo) mPk1.64  Asym 7.05  Adobe Inc.
+ 20 LRCX   SEMIS          Information Technolog   17.9→ 38.0 Δ+20.1 Bub2.98 Pk2026-06(2mo) mPk1.93  Asym 6.78  Lam Research
+ 21 GLW    TECH           Information Technolog   11.1→ 25.9 Δ+14.8 Bub2.20 Pk2026-07(3mo) mPk1.78  Asym 6.64  Corning Inc.
+ 22 APP    AI_QUANTUM     Information Technolog    7.8→ 21.3 Δ+13.5 Bub2.84 Pk2026-05(1mo) mPk1.74  Asym 6.29  AppLovin
+ 23 TDY    TECH           Information Technolog   16.2→ 30.1 Δ+14.0 Bub3.63 Pk2028-01(21mo) mPk1.59  Asym 6.23  Teledyne Technologies
+ 24 TYL    TECH           Information Technolog   16.2→ 30.1 Δ+14.0 Bub3.63 Pk2028-01(21mo) mPk1.59  Asym 6.23  Tyler Technologies
+ 25 META   TECH           Communication Service   23.2→ 37.1 Δ+13.9 Bub4.19 Pk2026-06(2mo) mPk1.71  Asym 6.13  Meta Platforms
+ 26 INTU   TECH           Information Technolog   18.0→ 33.8 Δ+15.8 Bub3.33 Pk2026-05(1mo) mPk1.64  Asym 6.11  Intuit
+ 27 MU     SEMIS          Information Technolog   14.5→ 32.4 Δ+17.9 Bub2.69 Pk2028-04(24mo) mPk1.68  Asym 6.01  Micron Technology
+ 28 CHTR   MEDIA          Communication Service   15.8→ 28.1 Δ+12.3 Bub2.71 Pk2026-07(3mo) mPk1.83  Asym 6.01  Charter Communications
+ 29 FTNT   CYBERSEC       Information Technolog   16.9→ 27.4 Δ+10.5 Bub2.73 Pk2026-07(3mo) mPk1.61  Asym 5.08  Fortinet

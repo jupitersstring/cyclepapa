@@ -1,0 +1,69 @@
+Loaded 152 cases from parabolic corpus
+
+==========================================================================================
+ (A) PLANETARY STATIONS near bottom/mid/peak (within 7 days)
+==========================================================================================
+  Planet      BOT%   MID%  PEAK%   baseline ≈ 14/365 per planet = ~4%
+  Jupiter    12.5%   9.9%  11.2%
+  Saturn      5.9%   7.2%  10.5%
+  Uranus     11.8%  13.8%   7.2%
+  Neptune     4.6%   9.2%   6.6%
+  Pluto       3.3%   5.9%   7.2%
+  Mercury    23.7%  27.6%  30.3%
+  Venus       2.6%   6.6%   0.0%
+  Mars        9.9%   5.9%   2.0%
+
+==========================================================================================
+ (B) OUT-OF-BOUNDS DECLINATION (|δ|>23.5°) at each phase
+==========================================================================================
+  Planet      BOT%   MID%  PEAK%
+  Jupiter     0.0%   0.0%   0.0%
+  Saturn      0.0%   0.0%   0.0%
+  Uranus      2.6%   0.7%   0.0%
+  Neptune     0.0%   0.0%   0.0%
+  Pluto       0.0%   0.0%   0.0%
+  Mercury     9.9%  14.5%  11.2%
+  Venus      16.4%  11.2%  16.4%
+  Mars       15.1%  11.2%  11.8%
+
+  NATAL OOB (does chart-born-with-OOB predict bigger rallies?)
+    With OOB natal: n=49  mean_mult=74.3  med=10.0
+    No  OOB natal: n=103  mean_mult=91.5  med=13.0
+
+==========================================================================================
+ (C) HELIOCENTRIC ASPECTS — Mars-Jupiter conj/opp (Bradley core)
+==========================================================================================
+  Pair                  BOT≤10°  MID≤10° PEAK≤10°  (hard aspect closest)
+  Mars-Jupiter            24.3%    27.0%    14.5%
+  Venus-Mars              26.3%    31.6%    25.7%
+  Jupiter-Saturn          25.0%    40.1%    48.7%
+  Mars-Saturn             25.7%    26.3%    17.1%
+
+==========================================================================================
+ (D) HELLENISTIC PROFECTIONS — Lord of the Year (LoY) active at phase?
+==========================================================================================
+  Does the profected LoY's natal position receive close outer-planet
+  transit (≤5°) at the bottom/peak?
+  Phase     n  mean_orb    %≤3°    %≤5°
+  bot     152      5.68   42.1%  57.2%
+  mid     152      5.88   36.2%  50.7%
+  peak    152      6.15   32.9%  50.0%
+
+==========================================================================================
+ (E) NODAL INGRESSES — days to nearest True-Node sign change
+==========================================================================================
+  Phase     n    mean    med    %≤30d    %≤60d
+  bot      90    92.7     96    16.7%   36.7%
+  mid      99    77.7     72    22.2%   46.5%
+  peak     89    72.3     65    30.3%   47.2%
+
+==========================================================================================
+ (F) GALACTIC CENTER (27° Sagittarius = 267°) — outer close to natal?
+==========================================================================================
+  Transit outer to GC (≤3° = strong signal):
+    bot    mean_orb=6.16°  ≤3°=27%  ≤5°=39%
+    mid    mean_orb=5.50°  ≤3°=38%  ≤5°=43%
+    peak   mean_orb=6.22°  ≤3°=30%  ≤5°=38%
+
+  NATAL: outer ≤3° from GC: n=37  mean_mult=164.0  med=15.0
+         outer >3° from GC: n=115  mean_mult=60.8  med=10.0

@@ -1,0 +1,55 @@
+Building backward Neptune positions...
+Universe: 398
+Exported 36 -> /home/user/cyclepapa/data/avis_like_candidates.csv
+
+===========================================================================================================================================================
+AVIS-LIKE — Neptune recently ignited natal Sun/Moon (exact 0-6 months ago, now 0.5-3.5° separated)
+===========================================================================================================================================================
+Tkr    ModSec        Name                           IPO         Tgt  Exact    moAgo ExOrb NowOrb NatSN SunRt  mPk  tags
+TDY    TECH          Teledyne Technologies          2020-06-22  Sun  2026-03       1  0.04   1.11 10.66  96.7 1.37   
+TYL    TECH          Tyler Technologies             2020-06-22  Sun  2026-03       1  0.04   1.11 10.66  96.7 1.37   
+COIN   CRYPTO        Coinbase                       2007-02-13  Moon 2026-03       1  0.04   1.20  4.81  30.4 1.25  ★AVIS 
+CRM    TECH          Salesforce                     2004-06-22  Sun  2026-03       1  0.09   1.24 43.57  96.6 1.37   
+CFG    FINANCE       Citizens Financial Group       2014-09-24  Sun  2026-03       1  0.11   1.27 25.97 173.4 1.31   
+LYV    MEDIA         Live Nation Entertainment      2019-12-23  Sun  2026-03       1  0.13   1.29 15.33  83.5 1.25   
+DELL   TECH          Dell Technologies              1988-06-22  Sun  2026-03       1  0.21   1.36  7.65  96.5 1.37   
+EBAY   RETAIL        eBay Inc                       1998-09-24  Sun  2026-03       1  0.24   1.39 28.12 173.6 1.07   
+ROP    TECH          Roper Technologies             2009-12-23  Sun  2026-03       1  0.32   0.84 37.55  83.0 1.37   
+BLDR   HOMEBUILDER   Builders FirstSource           2005-06-22  Sun  2026-03       1  0.32   1.48 43.95  96.4 1.38   
+META   TECH          Meta Platforms                 2013-12-23  Sun  2026-03       1  0.34   0.81 28.90  83.0 1.37   
+CPAY   FINANCE       Corpay                         2018-06-20  Moon 2026-03       1  0.45   1.60 12.73  94.3 1.31   
+BLK    FINANCE       BlackRock                      1999-10-01  Moon 2026-02       2  0.00   2.16 23.66 138.8 1.31   
+MS     FINANCE       Morgan Stanley                 1986-03-21  Sun  2026-02       2  0.10   2.06  5.05  33.9 1.31   
+ALAB   SEMIS         Astera Labs Inc                2024-03-20  Sun  2026-02       2  0.11   2.26  2.99  33.7 1.43  ★AVIS 
+AME    INDUSTRIAL    Ametek                         2013-09-23  Sun  2026-02       2  0.15   2.01 27.48 146.1 1.31   
+DGX    HEALTH        Quest Diagnostics              2002-12-12  Moon 2026-02       2  0.18   1.98 41.43  66.4 1.19   
+COO    HEALTH        Cooper Companies (The)         2016-09-23  Sun  2026-02       2  0.41   1.75 20.92 145.8 1.19   
+CRH    INDUSTRIAL    CRH plc                        2025-12-22  Sun  2026-02       2  0.42   1.74  1.58  55.8 1.31  ★AVIS 
+ERIE   FINANCE       Erie Indemnity                 2024-09-23  Sun  2026-02       2  0.47   1.69  2.61 145.8 1.31  ★AVIS 
+FICO   FINANCE       Fair Isaac                     2023-03-20  Sun  2026-01       3  0.03   3.02  4.42  64.4 1.31  ★AVIS 
+LH     HEALTH        Labcorp                        2004-11-01  Moon 2026-01       3  0.07   2.93  3.12  75.8 1.19  ★AVIS 
+BX     FINANCE       Blackstone Inc.                2007-06-21  Sun  2026-01       3  0.11   2.88 38.02 154.5 1.31   
+V      FINANCE       Visa Inc.                      2008-03-19  Sun  2025-12       4  0.01   3.37 36.30  95.6 1.31   
+ICE    FINANCE       Intercontinental Exchange      1988-04-28  Moon 2025-12       4  0.05   3.30 28.40 134.8 1.31   
+MKC    FOOD_BEV      McCormick & Company            2003-03-20  Sun  2025-11       5  0.02   3.17 42.78 126.2 1.38   
+KEYS   TECH          Keysight Technologies          1996-06-20  Sun  2025-11       5  0.02   3.21 27.56 143.8 1.37   
+ANSS   UNK           ANSYS                          1996-06-20  Sun  2025-11       5  0.02   3.21 27.56 143.8 1.19   
+AMD    SEMIS         Advanced Micro Devices         2017-03-20  Moon 2025-11       5  0.05   3.24 17.77 126.8 1.43   
+RJF    FINANCE       Raymond James Financial        2017-03-20  Moon 2025-11       5  0.05   3.24 17.77 126.8 1.31   
+COR    HEALTH        Cencora                        2010-09-22  Sun  2025-11       5  0.06   3.25 33.03  53.9 1.19   
+AMD    SEMIS         Advanced Micro Devices         2017-03-20  Sun  2025-10       6  0.00   2.57 17.77 157.8 1.43   
+RJF    FINANCE       Raymond James Financial        2017-03-20  Sun  2025-10       6  0.00   2.57 17.77 157.8 1.31   
+KDP    FOOD_BEV      Keurig Dr Pepper               2022-06-21  Sun  2025-10       6  0.04   2.53  4.78 112.2 1.38  ★AVIS 
+ELF    RETAIL        e l f Beauty Inc               2016-09-22  Sun  2025-10       6  0.16   2.73 19.91  22.4 1.07   
+FCX    METALS        Freeport-McMoRan               1988-05-05  Moon 2025-10       6  0.18   2.39 35.26 157.1 1.58   
+
+===========================================================================================================================================================
+★ AVIS-DNA SUBSET — natal Sun-Neptune ≤5° PLUS recent Neptune ignition to Sun/Moon
+===========================================================================================================================================================
+COIN   CRYPTO        Coinbase                       2007-02-13  Moon 2026-03    1mo ago  NatSN  4.81°  CurOrb  1.20°  mPk 1.25
+ALAB   SEMIS         Astera Labs Inc                2024-03-20  Sun  2026-02    2mo ago  NatSN  2.99°  CurOrb  2.26°  mPk 1.43
+CRH    INDUSTRIAL    CRH plc                        2025-12-22  Sun  2026-02    2mo ago  NatSN  1.58°  CurOrb  1.74°  mPk 1.31
+ERIE   FINANCE       Erie Indemnity                 2024-09-23  Sun  2026-02    2mo ago  NatSN  2.61°  CurOrb  1.69°  mPk 1.31
+FICO   FINANCE       Fair Isaac                     2023-03-20  Sun  2026-01    3mo ago  NatSN  4.42°  CurOrb  3.02°  mPk 1.31
+LH     HEALTH        Labcorp                        2004-11-01  Moon 2026-01    3mo ago  NatSN  3.12°  CurOrb  2.93°  mPk 1.19
+KDP    FOOD_BEV      Keurig Dr Pepper               2022-06-21  Sun  2025-10    6mo ago  NatSN  4.78°  CurOrb  2.53°  mPk 1.38

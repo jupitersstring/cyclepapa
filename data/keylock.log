@@ -1,0 +1,33 @@
+VALIDATION (152 corpus): sector_loading vs log10(multiple), n=150
+  Pearson r = +0.172
+  median multiple: bottom-tertile loading 12.0x | top-tertile 12.0x
+
+KEY-IN-LOCK FORWARD LIST — 94 labeled alive names, next 13mo
+  # Tkr    Sector      Load   Key   Tot Peak       pr12    fHi  Lock detail | window hits
+  1 HOOD   FINANCE      1.0  10.7  11.3 2027-07   -10.9  -37.2  Saturn=1.0(domicile)                           | ECL>Pluto,ECL>Saturn,Jupiter>Jupiter,Saturn>Pluto
+  2 BBBY   MEME         2.0   9.7  10.9 2026-09   -53.3  -88.2  Pluto=1.0(domicile); Saturn=1.0(domicile)      | ECL>Pluto,ECL>Saturn,Jupiter>Pluto,Jupiter>Saturn
+  3 AFRM   FINANCE      1.7   9.2  10.2 2027-07    +4.7  -16.1  Jupiter=0.0(fusion2.59); Saturn=1.0(domicile,fusion2.61); Pluto=0.7(fusion0.98) | ECL>Pluto,Neptune>Venus,Pluto>Jupiter,Pluto>Saturn
+  4 RXRX   BIOTECH      1.6   8.3   9.2 2027-07   -31.2  -77.4  Neptune=1.6(domicile,angular); Mercury=0.0(fusion2.75) | ECL>Mercury,ECL>Pluto,Saturn>Mercury,Saturn>Pluto
+  5 EOG    FOSSIL       2.4   7.6   9.0 2026-12   +27.4   -0.3  Neptune=0.2(fusion1.91); Pluto=1.0(domicile); Saturn=1.2(domicile,fusion1.91) | Saturn>Mars,Saturn>Neptune,Saturn>Saturn
+  6 CEG    NUCLEAR      0.0   8.8   8.9 2027-07   -13.6  -32.1  Pluto=0.0(fusion2.46)                          | ECL>Pluto,ECL>Uranus,Saturn>Pluto
+  7 CCJ    URANIUM      0.0   8.8   8.8 2027-01   +32.7  -26.9                                                 | ECL>Pluto,Neptune>Saturn,Uranus>Pluto
+  8 DHI    HOMEBUILDER   0.7   7.8   8.2 2027-03    -9.7  -22.9  Saturn=1.0(domicile)                           | ECL>Saturn,Jupiter>Saturn,Pluto>Moon
+  9 STLD   METALS       0.0   7.7   7.7 2027-01   +80.2  -18.3                                                 | ECL>Pluto,Neptune>Saturn,Uranus>Pluto
+ 10 SOFI   FINANCE      2.0   6.4   7.6 2027-02   -19.0  -42.8  Jupiter=1.5(domicile,fusion1.31); Saturn=1.0(domicile) | ECL>Jupiter,Uranus>Jupiter
+ 11 SE     TECH         0.3   7.5   7.6 2027-07   -33.6  -39.4  Mercury=0.4(fusion1.42)                        | ECL>Uranus,Pluto>Mercury,Saturn>Uranus
+ 12 AMAT   SEMIS        1.0   6.6   7.2 2027-02  +205.9  -31.4  Jupiter=1.0(domicile)                          | ECL>Mercury,Uranus>Mercury
+ 13 UPST   FINANCE      4.3   4.2   6.8 2027-02   -50.3  -65.5  Jupiter=1.6(fusion0.57,angular); Saturn=2.6(domicile,fusion0.57,angular); Pluto=0.6(fusion2.93,angular) | ECL>Venus,Uranus>Venus
+ 14 PENN   GAMBLING     0.0   6.6   6.6 2027-07    +0.2  -28.5                                                 | Neptune>Venus,Pluto>Jupiter
+ 15 SNOW   TECH         0.6   5.6   5.9 2027-01   +68.7   -3.7  Uranus=0.6(angular)                            | ECL>Mercury,Jupiter>Saturn,Saturn>Uranus,Uranus>Mercury
+ 16 AMC    MEME         0.6   5.5   5.9 2027-02   -11.9  -63.2  Saturn=0.6(angular)                            | ECL>Saturn,Jupiter>Saturn,Saturn>Pluto
+ 17 DOCU   TECH         1.0   5.3   5.9 2026-12   -12.4  -41.9  Saturn=1.0(domicile)                           | Saturn>Mercury,Saturn>Saturn
+ 18 CSCO   TECH         2.1   4.5   5.7 2027-06   +65.6  -15.0  Saturn=2.1(domicile,fusion1.31,angular)        | Neptune>Uranus,Pluto>Mercury,Saturn>Saturn
+ 19 META   TECH         0.0   5.7   5.7 2027-01   -27.3  -30.9                                                 | ECL>Saturn,Jupiter>Saturn,Saturn>Uranus
+ 20 AEM    PRECIOUS_METALS   0.0   5.7   5.7 2027-01   +59.5  -17.6                                                 | ECL>Moon,Pluto>Sun,Uranus>Moon
+ 21 HIMS   BIOPHARM     1.6   4.7   5.6 2027-06   -26.3  -54.8  Neptune=1.6(domicile,angular)                  | ECL>Pluto,Jupiter>Mercury,Saturn>Pluto
+ 22 AVB    REIT         0.3   5.2   5.4 2027-02    -2.2  -22.6  Saturn=0.1(fusion2.41); Moon=0.2(fusion1.78)   | ECL>Moon,Uranus>Moon
+ 23 CRSP   BIOTECH      3.8   3.1   5.4 2027-07   +10.4  -32.9  Pluto=2.8(fusion0.09); Neptune=1.0(domicile)   | Uranus>Neptune
+ 24 FSLR   ENERGY       0.2   5.2   5.4 2027-03    +5.4  -30.1  Jupiter=0.2(fusion1.80)                        | ECL>Neptune,Jupiter>Neptune
+ 25 GDX    PRECIOUS_METALS   0.0   5.2   5.2 2027-07   +72.0  -16.0  Sun=0.0(fusion2.71)                            | ECL>Sun,Jupiter>Sun,Neptune>Moon
+
+Exported -> data/keylock_forward.csv

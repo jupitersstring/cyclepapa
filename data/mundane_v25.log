@@ -1,0 +1,122 @@
+Building eclipse DB...
+
+===========================================================================================================================================================
+MUNDANE v25 — Country & Exchange forward outlook (Apr 2026 -> Apr 2028)
+===========================================================================================================================================================
+ Rk Kind     ID          Date        ETF     Now  Peak     Δ   GC PkMo     BubPk  mPk Sf -Exit  Label
+  1 country  VIETNAM     1945-09-02  VNM     5.8  33.6 +27.8 1.00 2028-01   2.20 1.15 N   0.00  Vietnam Independence
+  2 exchange TADAWUL     2007-03-19  KSA    11.9  38.9 +27.0 1.40 2027-07   2.70 1.10 Y   0.00  Tadawul Saudi
+  3 country  AUSTRALIA   1901-01-01  EWA     9.6  33.9 +24.2 1.40 2026-06   3.99 1.24 N   0.00  Australian Federation
+  4 country  ITALY       1946-06-02  EWI     5.6  28.4 +22.8 1.00 2027-12   2.20 1.03 N   0.15  Italy Republic
+  5 exchange HKEX        1986-04-02  EWH     5.2  27.7 +22.5 1.00 2026-08   2.70 1.10 N   0.27  HKEX unified
+  6 exchange SZSE        1990-12-01  ASHS    7.3  29.3 +22.0 1.00 2026-06   2.20 1.24 N   0.00  Shenzhen Stock Exchange
+  7 country  UAE         1971-12-02  UAE     8.4  28.4 +19.9 1.00 2026-10   2.20 1.06 Y   0.00  UAE Federation
+  8 country  SPAIN       1978-12-06  EWP     8.3  28.1 +19.8 1.00 2026-07   2.79 1.29 Y   0.48  Spain Constitution
+  9 exchange ASX         1987-04-01  EWA    12.8  32.5 +19.7 1.40 2026-07   2.70 1.29 N   0.48  ASX (modern unified)
+ 10 country  PHILIPPINES 1946-07-04  EPHE    6.7  26.2 +19.4 1.00 2026-06   1.20 1.24 N   0.00  Philippines Independence
+ 11 exchange BIST        1986-01-03  TUR     5.2  23.2 +18.0 1.00 2026-07   2.20 1.29 N   0.48  Borsa Istanbul
+ 12 country  USA         1776-07-04  SPY     7.7  25.3 +17.6 1.00 2026-07   2.34 1.29 N   0.48  USA Independence (Sibly)
+ 13 country  USA_GB      1776-07-04  SPY     7.7  25.3 +17.6 1.00 2026-07   2.34 1.29 N   0.48  USA Gemini-rising (Brennan)
+ 14 country  UK          1801-01-01  EWU    13.3  30.4 +17.1 1.00 2026-12   5.79 1.10 N   1.05  UK Act of Union
+ 15 country  ARGENTINA   1816-07-09  ARGT   15.1  30.9 +15.8 1.40 2026-07   2.63 1.29 N   0.48  Argentina Independence
+ 16 exchange B3          1890-08-23  EWZ    13.7  29.5 +15.8 1.00 2026-07   2.70 1.29 Y   0.48  BOVESPA founded
+ 17 country  S_AFRICA    1994-04-27  EZA     8.0  22.5 +14.5 1.00 2027-06   2.20 1.17 N   0.00  S Africa Post-Apartheid
+ 18 country  TAIWAN      1912-01-01  EWT    19.4  33.8 +14.4 1.40 2027-02   3.70 1.02 N   0.00  ROC Founding
+ 19 country  INDONESIA   1945-08-17  EIDO   10.0  24.3 +14.3 1.40 2026-07   1.20 1.29 N   0.48  Indonesia Independence
+ 20 country  NETHERLANDS 1815-03-16  EWN    16.4  29.8 +13.4 1.00 2026-07   2.70 1.29 Y   0.48  Netherlands UK
+ 21 country  MALAYSIA    1957-08-31  EWM    11.0  24.0 +13.0 1.00 2026-07   2.35 1.29 Y   0.48  Malaysia Independence
+ 22 country  EURO        1999-01-01  FXE    13.4  26.1 +12.8 1.00 2026-06   3.70 1.24 N   0.00  Euro currency
+ 23 exchange SIX         1995-08-22  EWL     7.7  20.3 +12.6 1.00 2026-12   2.70 1.10 Y   1.05  SIX Swiss Exchange
+ 24 exchange BSE         1875-07-09  INDA    9.3  21.8 +12.5 1.00 2026-07   2.20 1.29 N   0.48  Bombay Stock Exchange
+ 25 exchange NYSE        1792-05-17  NYC     6.9  18.7 +11.8 1.00 2027-03   2.20 1.02 Y   0.00  NYSE Buttonwood Agreement
+ 26 country  FRANCE      1958-10-04  EWQ    11.7  22.4 +10.7 1.00 2026-05   2.23 1.19 N   0.00  France Fifth Republic
+ 27 country  CHINA       1949-10-01  FXI    14.9  25.6 +10.6 1.00 2026-10   2.76 1.06 N   0.00  PRC Founding
+ 28 exchange NSE         1994-11-03  INDA    9.5  19.6 +10.1 1.00 2026-07   2.29 1.29 Y   0.48  National Stock Exchange India
+ 29 country  SWITZERLAND 1848-09-12  EWL    13.6  23.7 +10.0 1.00 2027-06   2.20 1.17 Y   0.00  Swiss Federal Constitution
+ 30 exchange LSE         1801-03-03  EWU    12.5  22.1  +9.6 1.00 2027-12   2.20 1.03 Y   0.15  LSE Modern formation
+ 31 exchange NASDAQ      1971-02-08  QQQ     9.7  19.1  +9.4 1.40 2026-06   1.50 1.24 Y   0.00  NASDAQ founded
+ 32 country  EU          1993-11-01  VGK    16.2  25.2  +9.0 1.00 2026-10   3.63 1.06 Y   0.00  EU Maastricht in force
+ 33 country  THAILAND    1932-06-24  THD    12.8  21.1  +8.4 1.00 2028-01   2.94 1.15 Y   0.00  Thailand Constitution
+ 34 country  CANADA      1867-07-01  EWC    14.2  22.5  +8.3 1.00 2026-05   2.20 1.19 N   0.00  Canadian Confederation
+ 35 country  INDIA       1947-08-15  INDA   12.6  20.5  +7.9 1.40 2028-04   1.00 1.08 N   0.27  India Independence
+ 36 country  RUSSIA      1991-12-25  RSX    23.3  30.6  +7.2 1.00 2026-07   4.26 1.29 N   0.48  Russian Federation
+ 37 country  TURKEY      1923-10-29  TUR    18.3  25.3  +7.0 1.00 2027-06   2.20 1.17 Y   0.00  Turkey Republic
+ 38 country  POLAND      1989-04-04  EPOL    6.4  12.9  +6.5 1.00 2026-05   1.20 1.19 N   0.00  Poland Round-Table
+ 39 exchange DBAG        1992-12-15  EWG    15.5  21.0  +5.5 1.00 2027-05   3.70 1.06 N   0.00  Deutsche Boerse
+ 40 country  ISRAEL      1948-05-14  EIS     9.4  14.7  +5.4 1.40 2028-01   1.00 1.15 N   0.00  Israel Founding
+ 41 exchange TWSE        1962-02-09  EWT    12.5  15.7  +3.2 1.00 2026-07   1.97 1.29 Y   0.48  Taiwan Stock Exchange
+ 42 exchange JSE         1887-11-08  EZA    16.2  18.9  +2.6 1.00 2026-07   3.03 1.29 Y   0.48  Johannesburg Stock Exchange
+ 43 exchange BMV         1894-10-31  EWW    18.1  20.7  +2.6 1.00 2027-07   3.48 1.10 Y   0.00  Bolsa Mexicana
+ 44 country  MEXICO      1810-09-16  EWW    12.9  15.2  +2.3 1.00 2026-06   0.65 1.24 Y   0.00  Mexico Independence
+ 45 country  JAPAN       1947-05-03  EWJ    17.8  20.1  +2.3 1.00 2026-08   2.76 1.10 N   0.27  Japan Constitution
+ 46 country  SINGAPORE   1965-08-09  EWS    30.4  32.1  +1.7 1.40 2026-06   4.78 1.24 Y   0.00  Singapore Independence
+ 47 country  HONG_KONG   1997-07-01  EWH     5.1   6.6  +1.5 1.00 2028-04   1.00 1.08 N   0.27  HK Handover to PRC
+ 48 exchange KRX         1956-03-03  EWY    22.9  23.7  +0.8 1.00 2028-04   2.20 1.08 N   0.27  Korea Exchange
+ 49 exchange TSX         1861-11-06  EWC    20.6  21.1  +0.5 1.40 2026-11   2.50 1.17 Y   0.00  Toronto Stock Exchange
+ 50 country  S_KOREA     1948-08-15  EWY    17.8  18.2  +0.4 1.40 2028-01   1.00 1.15 N   0.00  South Korea Founding
+ 51 exchange MOEX        2011-12-19  RSX    12.2  12.3  +0.2 1.00 2026-05   2.19 1.19 Y   0.00  Moscow Exchange
+ 52 country  GERMANY     1990-10-03  EWG    18.7  18.7  +0.0 1.00 2026-04   2.33 1.19 N   0.00  Germany Reunification
+ 53 country  BRAZIL      1822-09-07  EWZ    25.4  25.4  +0.0 1.00 2026-04   2.20 1.19 Y   0.00  Brazil Independence
+ 54 country  SAUDI       1932-09-23  KSA    26.0  26.0  +0.0 1.00 2026-04   3.65 1.19 Y   0.00  Saudi Arabia unification
+ 55 exchange TSE         1878-05-15  EWJ    18.8  18.8  +0.0 1.00 2026-04   2.20 1.19 Y   0.00  Tokyo Stock Exchange
+ 56 exchange SSE         1990-11-26  FXI    30.5  30.5  +0.0 1.00 2026-04   2.51 1.19 N   0.00  Shanghai Stock Exchange
+ 57 exchange EURONEXT    2000-09-22  FEZ    22.8  22.8  +0.0 1.00 2026-04   3.48 1.19 Y   0.00  Euronext founded
+
+===========================================================================================================================================================
+SATURN-RISK CALENDAR — when Saturn comes tight to natal Sun/MC (recession / contraction signal)
+===========================================================================================================================================================
+  Sorted by tightness of Saturn-Sun or Saturn-MC orb in next 24 months
+ID          Date        ETF   Sat-Sun min    when       Sat-MC min     when        Label
+SINGAPORE   1965-08-09  EWS   16.48°        2028-04     0.00°        2026-10     Singapore Independence
+EURO        1999-01-01  FXE    0.02°        2026-05    31.17°        2026-04     Euro currency
+POLAND      1989-04-04  EPOL   0.02°        2027-03    32.82°        2026-04     Poland Round-Table
+NYSE        1792-05-17  NYC   26.97°        2028-04     0.03°        2027-12     NYSE Buttonwood Agreement
+B3          1890-08-23  EWZ   30.07°        2028-04     0.05°        2028-02     BOVESPA founded
+TWSE        1962-02-09  EWT   20.07°        2028-04     0.05°        2027-02     Taiwan Stock Exchange
+AUSTRALIA   1901-01-01  EWA    0.08°        2026-10    31.41°        2026-04     Australian Federation
+UK          1801-01-01  EWU    0.09°        2026-05    31.20°        2026-04     UK Act of Union
+NASDAQ      1971-02-08  QQQ   18.88°        2028-04     0.10°        2026-05     NASDAQ founded
+CHINA       1949-10-01  FXI    0.12°        2026-12    31.16°        2028-04     PRC Founding
+SIX         1995-08-22  EWL   28.73°        2028-04     0.13°        2027-05     SIX Swiss Exchange
+FRANCE      1958-10-04  EWQ    0.15°        2026-05    32.94°        2026-04     France Fifth Republic
+CANADA      1867-07-01  EWC    0.17°        2027-01    32.70°        2026-04     Canadian Confederation
+BIST        1986-01-03  TUR    0.17°        2026-09    29.17°        2026-04     Borsa Istanbul
+HKEX        1986-04-02  EWH    0.20°        2026-09    31.84°        2028-04     HKEX unified
+
+===========================================================================================================================================================
+JUPITER-MC TIGHT WINDOWS — expansion of national/exchange reputation (bullish phase)
+===========================================================================================================================================================
+ID          Date        ETF   Jup-MC min     when        Label
+ISRAEL      1948-05-14  EIS    0.05°        2026-04     Israel Founding
+NYSE        1792-05-17  NYC    0.07°        2026-05     NYSE Buttonwood Agreement
+FRANCE      1958-10-04  EWQ    0.12°        2027-08     France Fifth Republic
+POLAND      1989-04-04  EPOL   0.24°        2027-08     Poland Round-Table
+CANADA      1867-07-01  EWC    0.36°        2027-08     Canadian Confederation
+EURONEXT    2000-09-22  FEZ    0.39°        2027-06     Euronext founded
+THAILAND    1932-06-24  THD    0.41°        2027-07     Thailand Constitution
+TADAWUL     2007-03-19  KSA    0.45°        2027-03     Tadawul Saudi
+INDONESIA   1945-08-17  EIDO   0.60°        2026-04     Indonesia Independence
+GERMANY     1990-10-03  EWG    0.66°        2027-08     Germany Reunification
+VIETNAM     1945-09-02  VNM    0.73°        2026-07     Vietnam Independence
+MEXICO      1810-09-16  EWW    0.76°        2026-09     Mexico Independence
+KRX         1956-03-03  EWY    0.76°        2026-07     Korea Exchange
+SPAIN       1978-12-06  EWP    0.78°        2026-08     Spain Constitution
+HONG_KONG   1997-07-01  EWH    0.83°        2027-08     HK Handover to PRC
+
+===========================================================================================================================================================
+EQUITY-MARKET IMPLICATIONS — top 15 country/exchange ETF candidates by forward improvement
+===========================================================================================================================================================
+  Filter: Saturn-safe AND improvement >= 5.0
+ETF    ID           Score Now   Peak      Δ  Why
+KSA    TADAWUL          11.9   38.9 +27.0  Jup-MC 0.5° in 2027-03, GC
+UAE    UAE               8.4   28.4 +19.9  composite uplift
+EWP    SPAIN             8.3   28.1 +19.8  Jup-MC 0.8° in 2026-08
+EWZ    B3               13.7   29.5 +15.8  Jup-MC 2.3° in 2026-05
+EWN    NETHERLANDS      16.4   29.8 +13.4  Jup-MC 2.3° in 2026-09
+EWM    MALAYSIA         11.0   24.0 +13.0  Jup-MC 2.5° in 2026-07
+EWL    SIX               7.7   20.3 +12.6  Jup-MC 1.0° in 2026-05
+NYC    NYSE              6.9   18.7 +11.8  Jup-MC 0.1° in 2026-05
+INDA   NSE               9.5   19.6 +10.1  composite uplift
+EWL    SWITZERLAND      13.6   23.7 +10.0  Jup-MC 2.6° in 2026-08
+EWU    LSE              12.5   22.1  +9.6  Jup-MC 1.2° in 2026-07
+QQQ    NASDAQ            9.7   19.1  +9.4  GC

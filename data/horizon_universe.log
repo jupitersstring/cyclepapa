@@ -1,0 +1,95 @@
+Universe: 13626
+  2000/13626  4s
+  4000/13626  8s
+  6000/13626  11s
+  8000/13626  15s
+  10000/13626  19s
+  12000/13626  23s
+Scored 13626 in 25s
+Aliveness-checking 415 candidates...
+  50/415  20s alive=17
+  100/415  37s alive=36
+  150/415  57s alive=55
+  200/415  78s alive=73
+  250/415  104s alive=85
+  300/415  125s alive=104
+  350/415  155s alive=153
+  400/415  177s alive=203
+Alive: 218
+
+================================================================================================================================================================
+3-MONTH (peak Aug-Oct 2026) — top 20 alive, ranked by Δwindow x washout   [exit at/before Node ingress + trine #1 fade]
+================================================================================================================================================================
+  # Tkr    Src     IPO           Now  Δwin PkMo       pr12    fHi         $ Trd   ASYM  Name
+  1 RCON   Ritter  2009-07-29   +63 +207 2026-10    -84%   -99%      0.40   N    310  Recon Technology Ltd
+  2 MTEK   Ritter  1987-07-30   +27 +206 2026-10    -69%   -83%      0.98   N    309  Monitek Technologies
+  3 PRGS   Ritter  1991-07-30   +20 +220 2026-10    -47%   -52%     33.58   N    286  Progress Software
+  4 NCEL   Ritter  1986-07-30   +41 +191 2026-10    -87%   -99%      3.66   N    286  Nationwide Cellular Servic
+  5 RXST   Ritter  2021-07-30   +21 +188 2026-10    -63%   -93%      4.82   N    282  RxSight Inc
+  6 VERX   Ritter  2020-07-29  +102 +171 2026-10    -68%   -81%     11.48   N    256  Vertex Inc
+  7 ACRU   Ritter  1999-07-30   +49 +166 2026-10    -99%  -100%      0.01   N    249  Accrue Software Inc
+  8 INAB   Ritter  2021-07-30   +21 +188 2026-10    -33%   -99%      1.41   N    244  IN8BIO Inc
+  9 CSPI   Ritter  1982-01-29   +91 +184 2026-10    -39%   -72%      7.94   N    239  CSP INC
+ 10 NTGR   Ritter  2003-07-30   +48 +208 2026-10    -20%   -35%     23.35   N    239  NETGEAR Inc
+ 11 KSCP   Ritter  2022-01-27  +104 +159 2026-10    -57%   -98%      2.11   N    238  Knightscope, Inc.
+ 12 PMT    Ritter  2009-07-29   +63 +207 2026-10    -12%   -29%     11.28   N    238  Pennymac Mtg Invest Tr
+ 13 ANVS   Ritter  2020-01-29   +74 +201 2026-10    -14%   -92%      1.86   N    231  Annovis Bio Inc
+ 14 GERN   Ritter  1996-07-30   +28 +231 2026-08     -9%   -75%      1.28   N    231  Geron
+ 15 JELD   Ritter  2017-01-27   +64 +146 2026-10    -62%   -93%      1.50   N    220  JELD-WEN Holding Inc
+ 16 LAND   Ritter  2013-01-28   +55 +187 2026-10    -16%   -58%      8.53   N    215  Gladstone Land Corp
+ 17 QNTM   Ritter  1982-12-10   +44 +142 2026-09    -82%   -97%      3.62   N    213  QUANTUM CORP
+ 18 DMAAU  Ritter  2025-01-28   +57 +213 2026-10     +3%    -9%     10.61   N    213  Drugs Made In America Acq
+ 19 SFD    Ritter  2025-01-28   +57 +213 2026-10     +3%   -18%     24.26   N    213  Smithfield Foods Inc
+ 20 CNBB   Ritter  1999-01-29   +91 +207 2026-10    +25%    +0%     50.20   N    207  CNB Inc, Lake City, Florid
+
+================================================================================================================================================================
+6-MONTH (peak Nov 2026-Jan 2027) — top 20 alive, ranked by Δwindow x washout   [U-P trine #2 Nov 29]
+================================================================================================================================================================
+  # Tkr    Src     IPO           Now  Δwin PkMo       pr12    fHi         $ Trd   ASYM  Name
+  1 RXST   Ritter  2021-07-30   +21 +195 2027-01    -63%   -93%      4.82   N    293  RxSight Inc
+  2 CSPI   Ritter  1982-01-29   +91 +220 2026-12    -39%   -72%      7.94   N    286  CSP INC
+  3 JELD   Ritter  2017-01-27   +64 +181 2026-12    -62%   -93%      1.50   N    272  JELD-WEN Holding Inc
+  4 MTEK   Ritter  1987-07-30   +27 +175 2026-12    -69%   -83%      0.98   N    263  Monitek Technologies
+  5 RCON   Ritter  2009-07-29   +63 +172 2026-11    -84%   -99%      0.40   N    259  Recon Technology Ltd
+  6 INAB   Ritter  2021-07-30   +21 +195 2027-01    -33%   -99%      1.41   N    254  IN8BIO Inc
+  7 ANVS   Ritter  2020-01-29   +74 +216 2026-12    -14%   -92%      1.86   N    248  Annovis Bio Inc
+  8 LAND   Ritter  2013-01-28   +55 +211 2026-11    -16%   -58%      8.53   N    243  Gladstone Land Corp
+  9 QNTM   Ritter  1982-12-10   +44 +162 2026-11    -82%   -97%      3.62   N    242  QUANTUM CORP
+ 10 VERX   Ritter  2020-07-29  +102 +157 2027-01    -68%   -81%     11.48   N    236  Vertex Inc
+ 11 KSCP   Ritter  2022-01-27  +104 +157 2026-11    -57%   -98%      2.11   N    235  Knightscope, Inc.
+ 12 NCEL   Ritter  1986-07-30   +41 +156 2026-12    -87%   -99%      3.66   N    234  Nationwide Cellular Servic
+ 13 MATX   Ritter  1992-01-28   +28 +226 2026-12    +73%    -5%    192.23   N    226  Matrix Pharmaceutical
+ 14 TXO    Ritter  2023-01-27   +39 +194 2026-11    -17%   -49%     12.50   N    223  TXO Energy Partners LP
+ 15 ACRU   Ritter  1999-07-30   +49 +148 2026-12    -99%  -100%      0.01   N    222  Accrue Software Inc
+ 16 DMAAU  Ritter  2025-01-28   +57 +221 2026-12     +3%    -9%     10.61   N    221  Drugs Made In America Acq
+ 17 SFD    Ritter  2025-01-28   +57 +221 2026-12     +3%   -18%     24.26   N    221  Smithfield Foods Inc
+ 18 PRGS   Ritter  1991-07-30   +20 +169 2026-12    -47%   -52%     33.58   N    220  Progress Software
+ 19 BLV    Ritter  1987-01-28   +73 +218 2026-12     -1%   -12%     68.93   N    218  Belvedere
+ 20 BMEZ   Ritter  2020-01-29   +74 +216 2026-12     +8%   -10%     15.35   N    216  BlackRock Health Sci Tr II
+
+================================================================================================================================================================
+12-MONTH (peak Feb-Jul 2027) — top 20 alive, ranked by Δwindow x washout   [trine #3 Jun 15 2027]
+================================================================================================================================================================
+  # Tkr    Src     IPO           Now  Δwin PkMo       pr12    fHi         $ Trd   ASYM  Name
+  1 RXST   Ritter  2021-07-30   +21 +211 2027-03    -63%   -93%      4.82   N    317  RxSight Inc
+  2 CNEY   Ritter  2021-02-05   +64 +209 2027-07    -83%  -100%      0.48   N    313  CN Energy Group Inc
+  3 ACRU   Ritter  1999-07-30   +49 +196 2027-02    -99%  -100%      0.01   N    295  Accrue Software Inc
+  4 VERX   Ritter  2020-07-29  +102 +190 2027-02    -68%   -81%     11.48   N    285  Vertex Inc
+  5 MAXI   Ritter  1983-08-18   +50 +186 2027-07    -72%   -77%      8.29   N    279  MAXICARE HEALTH
+  6 INAB   Ritter  2021-07-30   +21 +211 2027-03    -33%   -99%      1.41   N    275  IN8BIO Inc
+  7 BOLT   Ritter  2021-02-05   +64 +209 2027-07    -33%   -90%      3.85   N    271  Bolt Biotherapeutics Inc
+  8 VOR    Ritter  2021-02-05   +64 +209 2027-07    -43%   -87%     18.41   N    271  Vor Biopharma Inc
+  9 MTEK   Ritter  1987-07-30   +27 +175 2027-02    -69%   -83%      0.98   N    263  Monitek Technologies
+ 10 MSS    Ritter  2023-10-05  +107 +175 2027-02    -92%  -100%      0.69   N    262  Maison Solutions Inc.
+ 11 RCON   Ritter  2009-07-29   +63 +168 2027-02    -84%   -99%      0.40   N    251  Recon Technology Ltd
+ 12 CNBB   Ritter  1999-01-29   +91 +249 2027-02    +25%    +0%     50.20   N    249  CNB Inc, Lake City, Florid
+ 13 NCEL   Ritter  1986-07-30   +41 +165 2027-02    -87%   -99%      3.66   N    247  Nationwide Cellular Servic
+ 14 SDGR   Ritter  2020-02-06   +65 +210 2027-07    -19%   -71%     16.25   N    241  Schrodinger Inc
+ 15 ITRI   Ritter  1993-11-04   +25 +184 2027-03    -34%   -37%     86.53   N    239  Itron
+ 16 WAY    Ritter  2024-06-07  +130 +179 2027-02    -50%   -55%     20.53   N    233  Waystar Holding Corp.
+ 17 PRGS   Ritter  1991-07-30   +20 +173 2027-02    -47%   -52%     33.58   N    224  Progress Software
+ 18 CSPI   Ritter  1982-01-29   +91 +169 2027-02    -39%   -72%      7.94   N    220  CSP INC
+ 19 CTAS   SP500   1983-08-18   +50 +186 2027-07    -24%   -25%    170.08   Y    214  Cintas
+ 20 ROCK   Ritter  1993-11-04   +25 +184 2027-03    -24%   -48%     45.10   N    211  Gibraltar Steel Corp
+
+Exported -> data/horizon_universe_jul2026.csv (all) + data/horizon_alive_jul2026.csv (alive)

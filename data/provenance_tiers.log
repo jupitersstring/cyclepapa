@@ -1,0 +1,38 @@
+Cases with mapped sector: 150
+All-planet baseline hit-rate at bottoms: 38.9% per planet
+
+========================================================================================================================
+PROVENANCE-TIER TEST — sector-ruler hit-rate at BOTTOM (<=5° any hard aspect to Sun/Moon/ASC/MC)
+  Hit = at least one tier-ruler active. Expected-by-chance rises with # rulers; shown for context.
+========================================================================================================================
+Sector       n |              CLASSICAL |                 MODERN |                 EITHER
+BIOPHARM     9 |    56% (exp  39%, k=1) |    67% (exp  63%, k=2) |    89% (exp  77%, k=3)
+CANNABIS     6 |                      — |   100% (exp  77%, k=3) |   100% (exp  77%, k=3)
+CRYPTO      11 |                      — |    18% (exp  39%, k=1) |    18% (exp  39%, k=1)
+ENERGY      13 |    38% (exp  39%, k=1) |    69% (exp  63%, k=2) |    92% (exp  77%, k=3)
+EV          11 |    27% (exp  39%, k=1) |    55% (exp  39%, k=1) |    73% (exp  63%, k=2)
+FINANCE      6 |    50% (exp  63%, k=2) |    67% (exp  63%, k=2) |    83% (exp  86%, k=4)
+MEME         7 |                      — |   100% (exp  63%, k=2) |   100% (exp  63%, k=2)
+RETAIL      28 |    79% (exp  77%, k=3) |    54% (exp  39%, k=1) |    89% (exp  86%, k=4)
+TECH        52 |    54% (exp  39%, k=1) |    58% (exp  63%, k=2) |    87% (exp  77%, k=3)
+
+AGGREGATE lift over chance-expected (mean across sectors):
+  classical  +1.4pp  (n=6 sectors)
+  modern     +8.9pp  (n=9 sectors)
+  either     +9.6pp  (n=9 sectors)
+
+========================================================================================================================
+SAME TEST AT PEAK
+========================================================================================================================
+All-planet baseline at peaks: 39.4%
+  classical  +0.1pp  (n=6 sectors)
+  modern     +9.1pp  (n=9 sectors)
+  either     +4.2pp  (n=9 sectors)
+
+========================================================================================================================
+CONTESTED-SIGN DUAL-RULER CHECK — natal Sun in Scorpio/Aquarius/Pisces
+  Which domicile ruler (traditional vs modern) transits <=5° of natal points at BOTTOM?
+========================================================================================================================
+  Scorpio    n=11  Mars(trad):   0%  Pluto(mod):  45%  either:  45%  (baseline/planet ~39%)
+  Aquarius   n=14  Saturn(trad):  29%  Uranus(mod):  14%  either:  43%  (baseline/planet ~39%)
+  Pisces     n= 9  Jupiter(trad):  56%  Neptune(mod):  56%  either:  78%  (baseline/planet ~39%)

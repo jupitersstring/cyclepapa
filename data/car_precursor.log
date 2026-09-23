@@ -1,0 +1,142 @@
+Loading CAR natal chart 2006-09-05...
+
+CAR (Avis Budget Group) natal positions:
+  Sun        162.89°
+  Moon       312.31°
+  ASC        210.06°
+  MC         125.68°
+  Mars       178.34°
+  Jupiter    224.09°
+  Saturn     138.51°
+  Uranus     342.74°
+  Neptune    317.75°
+  Pluto      264.08°
+
+====================================================================================================
+ CAR TRANSITS AT VARIOUS POINTS BEFORE & DURING THE Nov-2021 BLOW-OFF
+====================================================================================================
+
+  COVID LOW (T-20mo from peak)  (2020-03)
+    tSaturn→nASC  0.59° 
+    tUranus→nMC   1.36° 
+    tUranus→nASC  4.26° 
+    tNeptune→nPluto 5.42° 
+    tPluto→nASC  5.48° 
+    tNeptune→nSun  5.77° 
+    tNeptune→nUranus 5.92° 
+    tSaturn→nMC   6.20° 
+    retros: Jupiter:d  Saturn:d  Uranus:d  Neptune:d  Pluto:d
+
+  T-12mo (mid-rally)  (2020-11)
+    tUranus→nMC   2.40° rx
+    tSaturn→nASC  2.93° 
+    tUranus→nMoon 4.23° rx
+    tNeptune→nSun  5.32° rx
+    tNeptune→nUranus 5.47° rx
+    tNeptune→nPluto 5.86° rx
+    tUranus→nJupiter 6.01° rx
+    tJupiter→nASC  6.76° 
+    retros: Jupiter:d  Saturn:d  Uranus:rx  Neptune:rx  Pluto:d
+
+  T-8mo  (MARCH 2021 — the reference date user cited)  (2021-03)
+    tJupiter→nSaturn 1.31° 
+    tJupiter→nNeptune 2.08° 
+    tSaturn→nMoon 2.37° 
+    tUranus→nMC   2.52° 
+    tNeptune→nPluto 3.27° 
+    tPluto→nASC  3.70° 
+    tUranus→nMoon 4.11° 
+    tSaturn→nJupiter 4.15° 
+    retros: Jupiter:d  Saturn:d  Uranus:d  Neptune:d  Pluto:d
+
+  T-5mo  (2021-06)
+    tSaturn→nMoon 0.78° rx
+    tUranus→nMoon 0.83° 
+    tNeptune→nPluto 0.91° 
+    tUranus→nJupiter 0.95° 
+    tSaturn→nJupiter 1.00° rx
+    tPluto→nASC  3.77° rx
+    tUranus→nNeptune 4.61° 
+    tSaturn→nNeptune 4.66° rx
+    retros: Jupiter:d  Saturn:rx  Uranus:d  Neptune:d  Pluto:rx
+
+  T-3mo  (2021-08)
+    tUranus→nJupiter 0.69° 
+    tNeptune→nPluto 1.51° rx
+    tUranus→nMoon 2.47° 
+    tUranus→nNeptune 2.97° 
+    tSaturn→nMoon 3.10° rx
+    tSaturn→nMC   3.53° rx
+    tUranus→nSaturn 3.73° 
+    tSaturn→nJupiter 4.88° rx
+    retros: Jupiter:rx  Saturn:rx  Uranus:d  Neptune:rx  Pluto:rx
+
+  PEAK Nov 2021  (2021-11)
+    tUranus→nMoon 0.04° rx
+    tUranus→nJupiter 1.74° rx
+    tSaturn→nMC   2.24° 
+    tNeptune→nPluto 3.60° rx
+    tSaturn→nMoon 4.40° 
+    tJupiter→nSaturn 5.13° 
+    tPluto→nASC  5.37° 
+    tUranus→nNeptune 5.40° rx
+    retros: Jupiter:d  Saturn:d  Uranus:rx  Neptune:rx  Pluto:d
+
+====================================================================================================
+ CAR MARCH-2021 TEMPLATE (the pre-blow-off signature to find today)
+====================================================================================================
+  tJupiter →nSaturn  1.31°
+  tJupiter →nNeptune  2.08°
+  tSaturn  →nMoon   2.37°
+  tUranus  →nMC     2.52°
+  tNeptune →nPluto  3.27°
+  tPluto   →nASC    3.70°
+  tUranus  →nMoon   4.11°
+  tSaturn  →nJupiter  4.15°
+  tSaturn  →nMC     4.26°
+  tJupiter →nJupiter  5.74°
+  tUranus  →nJupiter  5.89°
+
+====================================================================================================
+ Scanning universe for April-2026 charts matching CAR March-2021 template...
+====================================================================================================
+Exported 8211 universe matches -> /home/user/cyclepapa/data/car_analog_universe.csv
+
+====================================================================================================================================================================================
+ TOP 30 TRADEABLE STOCKS MATCHING CAR MARCH-2021 PRE-BLOW-OFF TEMPLATE
+====================================================================================================================================================================================
+ Tradeable matches: 292 of 8211
+  Rk Tkr    ModSec         IPO         Age Score Macro  TOP SHARED ASPECTS (tCAR-orb ~ tNOW-orb)
+   1 APO    FINANCE        2011-03-29   15 10.60  1.31  Jupiter-Jupiter:5.7~2.5 | Jupiter-Saturn:1.3~2.7 | Saturn-Jupiter:4.2~7.2 | Uranus-MC:2.5~1.5   Apollo Global Management
+   2 XEL    UTILS          1993-08-04   33 10.30  1.28  Jupiter-Jupiter:5.7~6.7 | Jupiter-Neptune:2.1~2.1 | Saturn-MC:4.3~1.2 | Saturn-Jupiter:4.2~3.0   Xcel Energy
+   3 KMI    ENERGY         2011-02-10   15 10.00  1.19  Jupiter-Saturn:1.3~0.0 | Saturn-MC:4.3~5.4 | Saturn-Jupiter:4.2~3.6 | Neptune-Pluto:3.3~3.9   Kinder Morgan
+   4 EQR    REIT           1993-08-11   33  9.60  1.32  Jupiter-Jupiter:5.7~5.6 | Jupiter-Neptune:2.1~2.0 | Saturn-MC:4.3~5.1 | Saturn-Jupiter:4.2~4.1   Equity Residential
+   5 EOG    FOSSIL         1989-10-04   37  9.60  0.95  Jupiter-Jupiter:5.7~7.1 | Jupiter-Neptune:2.1~7.4 | Saturn-Jupiter:4.2~2.6 | Saturn-Neptune:7.8~2.3   EOG Resources
+   6 CSCO   TECH           1990-02-16   36  9.50  1.37  Jupiter-Saturn:1.3~3.9 | Jupiter-Neptune:2.1~3.4 | Saturn-Jupiter:4.2~6.4 | Saturn-Neptune:7.8~6.3   Cisco
+   7 MCO    FINANCE        1993-08-05   33  9.30  1.31  Jupiter-Jupiter:5.7~6.5 | Jupiter-Neptune:2.1~2.1 | Saturn-MC:4.3~0.3 | Saturn-Jupiter:4.2~3.1   Moody's Corporation
+   8 AMT    REIT           1998-02-26   28  9.00  1.32  Jupiter-Saturn:1.3~0.8 | Uranus-Moon:4.1~6.6 | Uranus-Jupiter:5.9~5.9 | Neptune-Mars:7.5~7.5   American Tower
+   9 NVR    HOMEBUILDER    2019-09-26    7  8.80  1.38  Jupiter-Saturn:1.3~3.1 | Uranus-Moon:4.1~3.0 | Uranus-MC:2.5~3.1 | Neptune-Sun:7.9~0.5   NVR, Inc.
+  10 PTON   RETAIL         2019-09-26    7  8.80  1.07  Jupiter-Saturn:1.3~3.1 | Uranus-Moon:4.1~3.0 | Uranus-MC:2.5~3.1 | Neptune-Sun:7.9~0.5   Peloton Interactive Inc
+  11 LDOS   INDUSTRIAL     2013-09-27   13  8.60  1.31  Jupiter-Moon:7.5~7.6 | Jupiter-Jupiter:5.7~0.9 | Saturn-Moon:2.4~2.1 | Uranus-MC:2.5~1.6   Leidos
+  12 FIX    INDUSTRIAL     1997-06-27   29  8.60  1.31  Jupiter-Saturn:1.3~2.3 | Saturn-Moon:2.4~0.4 | Uranus-MC:2.5~1.9 | Uranus-Jupiter:5.9~8.0   Comfort Systems USA
+  13 MPC    FOSSIL         2011-07-01   15  8.45  0.95  Jupiter-Moon:7.5~4.7 | Jupiter-Saturn:1.3~6.3 | Saturn-Moon:2.4~5.0 | Uranus-MC:2.5~5.3   Marathon Petroleum
+  14 MOS    METALS         2011-09-26   15  8.30  1.58  Jupiter-Saturn:1.3~1.1 | Uranus-MC:2.5~3.1 | Neptune-Sun:7.9~0.4 | Neptune-Pluto:3.3~2.2   Mosaic Company (The)
+  15 INVH   REIT           2017-02-01    9  8.30  1.32  Jupiter-Moon:7.5~7.5 | Jupiter-Jupiter:5.7~6.1 | Saturn-Moon:2.4~2.2 | Saturn-MC:4.3~2.3   Invitation Homes
+  16 CRM    TECH           2004-06-22   22  8.30  1.37  Jupiter-Saturn:1.3~2.3 | Uranus-Moon:4.1~5.4 | Uranus-MC:2.5~2.6 | Neptune-Sun:7.9~1.2   Salesforce
+  17 WELL   REIT           1993-08-12   33  8.30  1.32  Jupiter-Jupiter:5.7~5.4 | Jupiter-Neptune:2.1~1.9 | Saturn-MC:4.3~6.1 | Saturn-Jupiter:4.2~4.3   Welltower
+  18 BWA    UNK            1993-08-12   33  8.30  1.19  Jupiter-Jupiter:5.7~5.4 | Jupiter-Neptune:2.1~1.9 | Saturn-MC:4.3~6.1 | Saturn-Jupiter:4.2~4.3   Borg-Warner Automotive
+  19 CRH    INDUSTRIAL     2025-12-22    1  7.90  1.31  Jupiter-Jupiter:5.7~5.5 | Saturn-Neptune:7.8~7.9 | Uranus-MC:2.5~2.3 | Neptune-Sun:7.9~1.7   CRH plc
+  20 GNRC   INDUSTRIAL     2010-02-10   16  7.60  1.31  Jupiter-Moon:7.5~3.2 | Saturn-Moon:2.4~6.5 | Saturn-MC:4.3~5.6 | Uranus-Jupiter:5.9~6.0   Generac
+  21 EW     HEALTH         2011-04-01   15  7.40  1.19  Jupiter-Jupiter:5.7~1.8 | Jupiter-Saturn:1.3~2.9 | Saturn-Jupiter:4.2~7.9 | Uranus-MC:2.5~1.6   Edwards Lifesciences
+  22 SNOW   TECH           2014-01-31   12  7.30  1.37  Jupiter-Jupiter:5.7~4.7 | Saturn-MC:4.3~3.5 | Saturn-Jupiter:4.2~4.9 | Uranus-Moon:4.1~7.8   Intrawest Resorts Holdings
+  23 VRSN   TECH           1998-01-29   28  7.30  1.37  Jupiter-Saturn:1.3~1.8 | Saturn-MC:4.3~5.4 | Uranus-Moon:4.1~1.7 | Uranus-Jupiter:5.9~0.8   Verisign
+  24 ZTS    BIOTECH        2013-01-31   13  7.30  1.37  Saturn-Moon:2.4~2.9 | Saturn-MC:4.3~3.2 | Uranus-Jupiter:5.9~6.9 | Neptune-Pluto:3.3~7.6   Zoetis
+  25 UDR    REIT           1990-05-01   36  7.30  1.32  Jupiter-Neptune:2.1~2.5 | Saturn-MC:4.3~4.3 | Saturn-Jupiter:4.2~0.3 | Saturn-Neptune:7.8~7.2   UDR, Inc.
+  26 MSI    TECH           1991-09-20   35  7.30  1.37  Jupiter-Neptune:2.1~3.0 | Saturn-Neptune:7.8~6.7 | Uranus-Jupiter:5.9~2.3 | Neptune-Sun:7.9~5.6   Motorola Solutions
+  27 BSX    HEALTH         1992-05-18   34  7.30  1.19  Jupiter-Neptune:2.1~1.7 | Uranus-Jupiter:5.9~5.7 | Neptune-Mars:7.5~7.0 | Pluto-ASC:3.7~0.5   Boston Scientific
+  28 KSS    RETAIL         1992-05-18   34  7.30  1.07  Jupiter-Neptune:2.1~1.7 | Uranus-Jupiter:5.9~5.7 | Neptune-Mars:7.5~7.0 | Pluto-ASC:3.7~0.5   Kohl's
+  29 ALLY   UNK            2014-04-10   12  7.00  1.19  Jupiter-Jupiter:5.7~4.7 | Saturn-Jupiter:4.2~5.0 | Uranus-Moon:4.1~3.3   Ally Financial Inc
+  30 MDLZ   FOOD_BEV       2012-10-02   14  7.00  1.38  Uranus-MC:2.5~3.8 | Neptune-Sun:7.9~7.1 | Neptune-Pluto:3.3~4.3   Mondelez International
+
+====================================================================================================================================================================================
+ TOP 20 ALL-UNIVERSE SIMILARITY (including untradeable — for broader context)
