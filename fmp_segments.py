@@ -73,11 +73,30 @@ def _clean_rows(payload):
     return dict(sorted(out.items(), reverse=True))
 
 
+MAX_STALENESS_YEARS = 2     # latest segment FY must be within 2 years of today
+MIN_PRIOR_BASE_OF_CURRENT = 0.05   # prior-year segment >= 5% of TODAY's total
+
+
 def _axis_summary(years: dict, prefix: str) -> dict:
+    """Summarise one axis (product or geographic). Three validity rules, each
+    tied to an artifact the audit caught (not a cosmetic cap):
+      * STALENESS: FMP sometimes carries segmentation that stopped updating
+        years ago (NSYS's latest was FY2013). Older than MAX_STALENESS_YEARS
+        -> the axis is not treated as current at all.
+      * SINGLE SEGMENT: with one segment the "fastest segment" is just the
+        company (FDMT: milestone revenue $37k -> $85M). Growth/mix metrics
+        need >= 2 segments.
+      * TINY BASE: a segment's prior-year revenue must be >= 5% of the
+        company's CURRENT total, so a line that was immaterial last year
+        cannot report 100x growth off a rounding-error base.
+    """
+    import datetime as _dt
     rec = {}
     if not years:
         return rec
     fys = list(years)
+    if fys[0] < _dt.date.today().year - MAX_STALENESS_YEARS:
+        return rec
     cur = years[fys[0]]
     tot = sum(cur.values())
     if tot <= 0:
@@ -90,13 +109,16 @@ def _axis_summary(years: dict, prefix: str) -> dict:
     rec[f"{prefix}_largest_name"] = big
     rec[f"{prefix}_largest_share"] = shares[big]
     rec[f"{prefix}_years"] = float(len(fys))
-    if len(fys) >= 2:
+    if len(fys) >= 2 and len(cur) >= 2:
         prev = years[fys[1]]
         ptot = sum(prev.values())
-        # growth only for segments present both years with a material prior
-        # base (>=5% of the prior total) — tiny bases produce meaningless %.
         yoys = {k: cur[k] / prev[k] - 1.0 for k in cur
-                if k in prev and prev[k] > 0 and ptot > 0 and prev[k] / ptot >= 0.05}
+                if k in prev and prev[k] > 0 and ptot > 0
+                and prev[k] / tot >= MIN_PRIOR_BASE_OF_CURRENT
+                # same eligibility band as edgar_segment_signals: growth
+                # outside [-100%, +500%] is an acquisition / reclassification
+                # / launch-from-nothing, not an organic engine
+                and -1.0 <= cur[k] / prev[k] - 1.0 <= 5.0}
         if yoys:
             fast = max(yoys, key=yoys.get)
             rec[f"{prefix}_fastest_name"] = fast
@@ -105,14 +127,16 @@ def _axis_summary(years: dict, prefix: str) -> dict:
             rec[f"{prefix}_fastest_share_delta"] = shares.get(fast, np.nan) - prev[fast] / ptot
             if len(yoys) >= 2:
                 rec[f"{prefix}_growth_dispersion"] = float(np.std(list(yoys.values())))
-        # whole-company growth implied by the segment sum (cross-check only)
         if ptot > 0:
             rec[f"{prefix}_total_yoy"] = tot / ptot - 1.0
     return rec
 
 
 def _detail_rows(sym: str, axis: str, years: dict, ccy: str | None) -> list[dict]:
+    import datetime as _dt
     rows = []
+    if not years or next(iter(years)) < _dt.date.today().year - MAX_STALENESS_YEARS:
+        return rows
     fys = list(years)[:DETAIL_YEARS]
     for i, fy in enumerate(fys):
         segs = years[fy]
@@ -139,7 +163,7 @@ def enrich_symbol(sym: str):
     rec = {"symbol": sym}
     rec.update(_axis_summary(py, "fmp_seg"))
     rec.update(_axis_summary(gy, "fmp_geo"))
-    if gy:
+    if gy and "fmp_geo_count" in rec:
         cur = gy[next(iter(gy))]
         tot = sum(cur.values())
         if tot > 0:
