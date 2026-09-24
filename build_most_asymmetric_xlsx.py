@@ -552,14 +552,13 @@ def build_turnaround_signal(wb: Workbook, yf: dict):
     executive appointments scored on distress + grant + curated
     turnaround-talent overlap."""
     ws = wb.create_sheet("Turnaround Signal")
-    set_col_widths(ws, [9, 13, 32, 10, 14, 8, 8, 8, 16, 50])
     write_title_band(
         ws,
         "Bollenbach Signal -- Turnaround Talent Into Distress",
         "Senior executives voluntarily joining struggling companies "
         "with equity-heavy compensation. The grant tells you they "
         "see a re-rate path the market hasn't yet priced.",
-        n_cols=10,
+        n_cols=13,
     )
 
     path = ROOT / "turnaround_signal.csv"
@@ -568,48 +567,44 @@ def build_turnaround_signal(wb: Workbook, yf: dict):
                 value="(no file -- run `python3 turnaround_executive_leg.py`)").font = SUBTITLE_FONT
         return
 
-    headers = ["#", "Ticker", "Company", "Score",
-                "Appt. date", "Distress", "Grant", "Talent",
-                "Role", "Talent hits / reasons"]
+    headers = ["#", "Ticker", "Company", "Score", "Event", "Who", "Role", "Date",
+               "Salary $k", "Grant $M", "Distress", "Talent", "What the 8-K says (background / terms)"]
+    set_col_widths(ws, [5, 9, 24, 7, 13, 20, 22, 11, 9, 9, 8, 7, 90])
     write_header_row(ws, 4, headers)
 
+    def f0(x):
+        try:
+            return float(x)
+        except (TypeError, ValueError):
+            return None
     rows = list(csv.DictReader(path.open()))
+    rows.sort(key=lambda x: -(f0(x.get("score")) or 0))
     r = 5
-    for i, row in enumerate(rows[:40], 1):
-        tk = row["ticker"]
-        company = (row.get("company") or "")[:32]
-        try:
-            score = float(row["score"])
-        except Exception:
-            score = 0.0
-        try:
-            dp = float(row["distress_pts"]); gp = float(row["grant_pts"])
-            tp = float(row["talent_pts"])
-        except Exception:
-            dp = gp = tp = 0.0
-        role = (row.get("role") or "")[:16]
-        reasons = (row.get("talent_hits") or row.get("reasons") or "")[:80]
-        band = (i % 2 == 0)
+    for i, row in enumerate(rows[:60], 1):
+        ev = row.get("event_type") or ""
+        who = (row.get("person") or "") + (" (interim)" if row.get("interim") else "")
+        sal, gr = f0(row.get("base_salary_usd")), f0(row.get("grant_value_usd"))
+        said = row.get("background") or row.get("excerpt") or row.get("departure") or row.get("reasons") or ""
+        if row.get("talent_hits"):
+            said = f"[talent: {row['talent_hits']}] " + said
         write_body_row(ws, r,
-                       [i, tk, company,
-                        f"{score:.0f}",
-                        row.get("filing_date") or "",
-                        f"{dp:.0f}", f"{gp:.0f}", f"{tp:.0f}",
-                        role, reasons],
-                       band=band, align_first_left=False)
+                       [i, row["ticker"], (row.get("company") or "")[:24], round(f0(row.get("score")) or 0),
+                        ev, who[:20], (row.get("role") or "")[:22], row.get("filing_date") or "",
+                        round(sal / 1e3) if sal else "–", round(gr / 1e6, 1) if gr else "–",
+                        round(f0(row.get("distress_pts")) or 0), round(f0(row.get("talent_pts")) or 0),
+                        said[:260]],
+                       band=(i % 2 == 0), align_first_left=False)
         ws.cell(row=r, column=2).font = BODY_BOLD
-        if tp >= 20:
-            ws.cell(row=r, column=8).fill = CLEAN_TAG_FILL
-            ws.cell(row=r, column=8).font = BODY_BOLD
-        if score >= 50:
-            ws.cell(row=r, column=4).fill = CLEAN_TAG_FILL
-            ws.cell(row=r, column=4).font = BODY_BOLD
-        elif score >= 30:
-            ws.cell(row=r, column=4).fill = FLAG_TAG_FILL
-            ws.cell(row=r, column=4).font = BODY_BOLD
-        ws.row_dimensions[r].height = 22
+        ws.row_dimensions[r].height = 30
         r += 1
-
+    hires = sum(1 for x in rows if x.get("event_type") in ("NEW HIRE", "PROMOTION"))
+    r += 1
+    write_footnote(ws, r,
+        f"{len(rows)} recent 8-K Item 5.02 filings; {hires} are genuine appointments (NEW HIRE / "
+        "PROMOTION: person and role parsed from the filing). The rest are pay amendments, "
+        "inducement-plan approvals, departures or equity awards -- listed for completeness but "
+        "scored at 30% because they are not the turnaround-talent pattern. Filing text is fetched "
+        "from EDGAR (edgar_doc.py).", 13)
     r += 1
     write_footnote(ws, r,
         "Greenblatt's Bollenbach test: 'It didn't make sense that the "
@@ -620,7 +615,7 @@ def build_turnaround_signal(wb: Workbook, yf: dict):
         "equity grant + known turnaround talent (curated dictionary "
         "match with role-proximity) = strong asymmetric signal. "
         "Source: turnaround_signal.csv (built from 8-K Item 5.02 "
-        "appointments).", 10)
+        "appointments).", 13)
     ws.sheet_view.showGridLines = False
     ws.freeze_panes = "A5"
 
@@ -3480,10 +3475,25 @@ def main() -> int:
     NONAME = ("Contents", "Cover", "Layer Correlation", "Coverage & Tiers", "Methodology",
               "Re-Rate Backtest", "Winners Study", "Reserve Baskets")
     fin = name_financials.load()
+    psu = bl._load_json("psu_detail.json")
+    events = bl._load_json("event_detail.json")
+    wb._psu, wb._events = psu, events
+    bl.kit(wb)                                    # read the house style before adding sheets
+    if psu:
+        bl.psu_sheet(wb, psu, fin=fin)
+    if events:
+        bl.event_sheet(wb, events, fin=fin)
     name_financials.add_financials(wb, fin, index=3, skip=NONAME)
     # financials NEXT TO the name, and one strength scale on every thesis/signal tab
     bl.key_numbers(wb, fin, skip=NONAME + ("Name Financials",))
-    bl.strength(wb, bl.populations(), skip=NONAME + ("Name Financials",))
+    bl.strength(wb, bl.populations(), skip=NONAME + ("Name Financials", "PSU Plans", "Event Detail"))
+    # what exactly is happening (8-K) and what the PSU plan is, next to the name
+    bl.detail_column(wb, "What's happening (8-K)", {t: bl.event_line(e) for t, e in events.items()},
+                     ["Governance Discount", "Mechanism Gates", "Re-Rate Catalysts", "Tail Odds", "Recent 30d",
+                      "Distressed Stub Progress", "Payoff Geometry", "Most Asymmetric", "Hidden Asset Realisation"])
+    bl.detail_column(wb, "PSU plan (grade)", {t: bl.psu_line(p) for t, p in psu.items()},
+                     ["Most Asymmetric", "Caution List", "Incentive Improvers", "Single-Measure Best",
+                      "Without Valuation", "Governance Discount", "Call Intent"], width=48)
     # tear sheets: the shortlist first, then the most-cited names
     short = [str(c.value).strip() for c in wb["Most Asymmetric"]["A"][4:] if c.value]
     cited = [str(c.value).strip() for c in wb["Name Financials"]["A"][4:] if c.value]
@@ -3491,7 +3501,8 @@ def main() -> int:
     print(f"  tear sheets: {n_ts} names")
     bl.regroup(wb, [
         ("Decide", ["Contents", "Cover", "Most Asymmetric", "Tear Sheets", "Name Financials"]),
-        ("Theses", ["Governance Discount", "Mechanism Gates", "Payoff Geometry", "Re-Rate Catalysts",
+        ("Theses", ["PSU Plans", "Governance Discount", "Mechanism Gates", "Payoff Geometry", "Re-Rate Catalysts",
+                    "Event Detail",
                     "Structured Distressed", "Distressed Stub Progress", "Hidden Asset Realisation",
                     "Asymmetry Assembly", "Turnaround Signal", "Call Intent", "Foreign Markets",
                     "UK Capital Events", "By Archetype", "Reserve Baskets", "Caution List"]),
@@ -3501,7 +3512,9 @@ def main() -> int:
         ("Plumbing", ["Layer Correlation", "Coverage & Tiers", "Methodology"]),
     ], descriptions={**dict(TAB_INDEX),
                      "Tear Sheets": "One block per name: financial panel + every tab it appears on, with strength percentiles.",
-                     "Name Financials": "FMP financial panel for every name in the book + the tabs each appears on."})
+                     "Name Financials": "FMP financial panel for every name in the book + the tabs each appears on.",
+                     "PSU Plans": "What each PSU plan is (metrics, weights, period, payout, TSR, hurdles, past payouts) and its grade.",
+                     "Event Detail": "Every 8-K event: what is sold/spun/tendered, to whom, for how much, status, verbatim excerpt."})
     wb.save(OUT)
     print(f"\nwrote {OUT}  ({len(wb.sheetnames)} tabs)")
     return 0

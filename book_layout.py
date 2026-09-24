@@ -34,7 +34,8 @@ TICKER_HDR = ("Ticker", "TKR", "Symbol")
 SKIP_COLS = {"FMP financial read", "Key numbers (FMP)", "Strength %ile", "Name", "Company", "Ticker", "#", "Rank"}
 
 
-NEW_SHEETS = ("Name Financials", "Tear Sheets", "Review & data quality", "Call intent", "Contents")
+NEW_SHEETS = ("Name Financials", "Tear Sheets", "Review & data quality", "Call intent", "Contents",
+              "PSU Plans", "Event Detail")
 
 
 def clone(src, dst):
@@ -456,6 +457,22 @@ def tear_sheets(wb, fin, names, sym_map=None, title="Tear Sheets", index=None, m
             k.body(ts.cell(row=r, column=3, value=(f"{pair[1][0]}: {pair[1][1]}" if len(pair) > 1 else None)),
                    band=band)
             r += 1
+        psu = getattr(wb, "_psu", {}).get(sym) or getattr(wb, "_psu", {}).get(t)
+        if psu:
+            k.body(ts.cell(row=r, column=1, value="PSU plan"), bold=True)
+            k.body(ts.cell(row=r, column=2, value=f"grade {psu.get('grade')}"))
+            k.body(ts.cell(row=r, column=3, value=(psu.get("summary") or "") + "  —  " + "; ".join(psu.get("why") or [])),
+                   wrap=True)
+            ts.row_dimensions[r].height = 45
+            r += 1
+        for e in (getattr(wb, "_events", {}).get(sym) or getattr(wb, "_events", {}).get(t) or [])[:4]:
+            if not e.get("what"):
+                continue
+            k.body(ts.cell(row=r, column=1, value=f"Event {e.get('date')}"), band=True, bold=True)
+            k.body(ts.cell(row=r, column=2, value=e.get("status") or ""), band=True)
+            k.body(ts.cell(row=r, column=3, value=f"{e['what']} — “{(e.get('excerpt') or '')[:300]}”"), band=True, wrap=True)
+            ts.row_dimensions[r].height = 45
+            r += 1
         for j, h in enumerate(("Appears on", "Strength %ile", "What that tab says"), 1):
             k.header(ts.cell(row=r, column=j, value=h))
         r += 1
@@ -470,3 +487,153 @@ def tear_sheets(wb, fin, names, sym_map=None, title="Tear Sheets", index=None, m
         r += 1
     ts.freeze_panes = "A4"
     return done
+
+
+# ---------------------------------------------------------------- event + PSU detail
+def _load_json(name):
+    p = ROOT / name
+    try:
+        return json.loads(p.read_text()) if p.exists() else {}
+    except Exception:
+        return {}
+
+
+def event_line(evs, n=2):
+    """Most recent located events as '[date] what' (newest first)."""
+    out = []
+    for e in evs or []:
+        if e.get("what"):
+            out.append(f"[{e.get('date')}] {e['what']}")
+        if len(out) >= n:
+            break
+    return " | ".join(out)
+
+
+def psu_line(p):
+    if not p:
+        return None
+    mets = p.get("metrics") or {}
+    m = ", ".join(f"{k} {v:.0f}%" if v else k for k, v in sorted(mets.items(), key=lambda kv: -(kv[1] or 0)))
+    bits = [f"{p.get('grade')}"]
+    if p.get("period_years"):
+        bits.append(f"{p['period_years']}-yr")
+    if m:
+        bits.append(m)
+    if p.get("history"):
+        bits.append("paid " + ", ".join(f"{v:.0f}%" for _, v in p["history"][:2]))
+    return " · ".join(bits)
+
+
+def detail_column(wb, header, values_by_ticker, tabs, after=("Strength %ile", "Key numbers (FMP)"), width=60):
+    """Insert a column right after the name block on the given tabs."""
+    n = 0
+    for t in tabs:
+        if t not in wb.sheetnames:
+            continue
+        ws = wb[t]
+        hr, cols = header_of(ws)
+        if not hr or header in cols:
+            continue
+        base = next((cols[a] for a in after if a in cols), None) or _name_col(cols)
+        idx = base + 1
+        tcol = cols.get("Ticker") or cols.get("TKR") or cols.get("Symbol")
+        insert_col(ws, idx, header, hr, width=width)
+        tcol = tcol + 1 if tcol >= idx else tcol
+        for r in range(hr + 1, ws.max_row + 1):
+            tk = _ticker(ws.cell(row=r, column=tcol).value)
+            v = values_by_ticker.get(tk) if tk else None
+            if v:
+                ws.cell(row=r, column=idx, value=v)
+        n += 1
+    return n
+
+
+def _table_sheet(wb, title, subtitle, headers, widths, rows, index=None, wrap_cols=()):
+    k = kit(wb)
+    ws = wb.create_sheet(title, index) if index is not None else wb.create_sheet(title)
+    ws.sheet_view.showGridLines = False
+    k.title(ws.cell(row=1, column=1, value=title))
+    k.subtitle(ws.cell(row=2, column=1, value=subtitle))
+    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=min(len(headers), 10))
+    ws.row_dimensions[2].height = 44
+    for j, (h, w) in enumerate(zip(headers, widths), 1):
+        k.header(ws.cell(row=4, column=j, value=h))
+        ws.column_dimensions[get_column_letter(j)].width = w
+    if k.header_height:
+        ws.row_dimensions[4].height = k.header_height
+    for i, vals in enumerate(rows, 1):
+        r = 4 + i
+        for j, v in enumerate(vals, 1):
+            k.body(ws.cell(row=r, column=j, value=v), band=(i % 2 == 0), bold=(j == 1),
+                   wrap=(headers[j - 1] in wrap_cols))
+        if wrap_cols:
+            ws.row_dimensions[r].height = 45
+    ws.freeze_panes = "C5"
+    return ws
+
+
+def psu_sheet(wb, psu, names=None, fin=None, index=None):
+    order = [t for t in (names or []) if t in psu] + sorted(
+        (t for t in psu if t not in set(names or [])), key=lambda t: (psu[t].get("grade"), -psu[t].get("grade_pts", 0)))
+    order.sort(key=lambda t: ("ABCD".index(psu[t].get("grade", "D")), -psu[t].get("grade_pts", 0)))
+    rows = []
+    for t in order:
+        p = psu[t]
+        mets = p.get("metrics") or {}
+        hist = "; ".join(f"{k}: {v:.0f}%" for k, v in p.get("history") or [])
+        hur = p.get("hurdle_max_vs_price")
+        rows.append([
+            t, ((fin or {}).get(t) or {}).get("name", "")[:24], p.get("grade"),
+            p.get("psu_pct_lti"),
+            (f"{p['period_years']}-yr" if p.get("period_years") else "") + (f" ({p['cycle']})" if p.get("cycle") else "")
+            + (" · annual goals" if p.get("annual_goals_3y_vest") else ""),
+            ", ".join(f"{k} {v:.0f}%" if v else k for k, v in sorted(mets.items(), key=lambda kv: -(kv[1] or 0)))
+            + ("" if p.get("weights_verified") or not mets else " (weights not stated)"),
+            (f"{p.get('payout_min', 0):.0f}–{p['payout_max']:.0f}%" if p.get("payout_max") else ""),
+            (f"{p['rtsr_target_pct']}th" if p.get("rtsr_target_pct") else ""),
+            "; ".join(x for x in [f"±{p['tsr_modifier']:.0f}% TSR modifier" if p.get("tsr_modifier") else "",
+                                  "capped at target if TSR < 0" if p.get("negative_tsr_cap") else ""] if x),
+            (f"up to {hur:.1f}× price" if hur else ""),
+            hist, "; ".join(p.get("red_flags") or []), "; ".join(p.get("why") or []),
+            p.get("design_excerpt") or p.get("goals_excerpt") or "", p.get("url"),
+        ])
+    return _table_sheet(
+        wb, "PSU Plans",
+        "What each company's performance-share plan actually is (latest proxy CD&A): metrics and weights, "
+        "performance period, payout range, relative-TSR target, modifiers, price hurdles, and what past cycles "
+        "actually PAID (the best test of how hard the goals are). Grade A–D with the reasons. 'weights not stated' = "
+        "metrics named but no weighting found in the text. Source: psu_detail.py (edgar_doc).",
+        ["Ticker", "Name", "Grade", "PSU % LTI", "Period", "Metrics (weight)", "Payout range", "rTSR target",
+         "Modifier / caps", "Price hurdles", "What past cycles paid", "Red flags", "Why this grade",
+         "Design (verbatim)", "Proxy"],
+        [9, 22, 7, 8, 14, 44, 11, 9, 26, 14, 30, 26, 60, 70, 40], rows, index=index,
+        wrap_cols=("Why this grade", "Design (verbatim)", "Metrics (weight)"))
+
+
+def event_sheet(wb, events, fin=None, index=None):
+    rows = []
+    for t, evs in events.items():
+        for e in evs:
+            if not e.get("excerpt"):
+                continue
+            amt = e.get("amount_usd")
+            rows.append([
+                t, ((fin or {}).get(t) or {}).get("name", "")[:24], e.get("date"),
+                (e.get("family") or "").replace("_", " ").title(), e.get("status") or "", e.get("what"),
+                (f"${amt / 1e6:,.0f}M" if amt and amt >= 1e6 else ""),
+                (f"{e['pct_mcap'] * 100:.0f}%" if e.get("pct_mcap") and e["pct_mcap"] < 20 else ""),
+                e.get("counterparty") or e.get("person") or "", e.get("asset") or "", e.get("timing") or "",
+                e.get("advisor") or "", e.get("excerpt"), e.get("url"),
+            ])
+    rows.sort(key=lambda r: (r[2] or ""), reverse=True)
+    return _table_sheet(
+        wb, "Event Detail",
+        "What exactly is happening in every dated corporate-action and governance event behind the thesis tabs: "
+        "the 8-K on the event date and its press release are read, and the specifics extracted -- what is being "
+        "sold / spun / tendered, to or by whom, for how much (and as % of market cap), when it closes, advisers, "
+        "board seats. Status: ANNOUNCED / PENDING / COMPLETED. The verbatim excerpt is the filing's own words. "
+        "Source: event_detail.py (edgar_doc).",
+        ["Ticker", "Name", "Date", "Event", "Status", "What is happening", "Amount", "% mcap",
+         "Counterparty / person", "Asset / business", "Timing", "Adviser", "Filing excerpt (verbatim)", "Filing"],
+        [9, 22, 11, 16, 11, 60, 10, 7, 26, 30, 18, 20, 90, 40], rows, index=index,
+        wrap_cols=("What is happening", "Filing excerpt (verbatim)"))

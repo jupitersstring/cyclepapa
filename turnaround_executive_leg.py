@@ -124,6 +124,61 @@ APPOINTMENT_RX = re.compile(
 )
 
 
+_ROLE = (r"(?:Interim |Acting |Co-)?(?:President and )?(?:Chief Executive Officer|CEO|President|"
+         r"Chief Financial Officer|CFO|Chief Operating Officer|COO|Chief Restructuring Officer|"
+         r"Chief Transformation Officer|Executive Chair(?:man|woman|person)?|Chair(?:man|woman|person)? of the Board|"
+         r"Chief Commercial Officer|Chief Strategy Officer|General Counsel)")
+_PERSON = r"((?:Mr\.|Ms\.|Mrs\.|Dr\.)?\s?[A-Z][a-zA-Z'’\-]+(?:\s[A-Z]\.)?(?:\s[A-Z][a-zA-Z'’\-]+){1,2})"
+APPT_PATTERNS = [
+    re.compile(r"(?:appointed|named|elected|hired|promoted)\s+" + _PERSON + r",?\s+(?:age\s\d+,\s+)?(?:as|to serve as|to the (?:role|position) of)\s+(?:the\s+Company['’]s\s+|its\s+|our\s+|the\s+)?(?:new\s+)?(" + _ROLE + r")"),
+    re.compile(_PERSON + r",\s+(?:age\s+)?\d{2},?\s+(?:has been|was|will be)\s+(?:appointed|named|elected)\s+(?:as\s+)?(?:the\s+Company['’]s\s+|its\s+|our\s+)?(?:new\s+)?(" + _ROLE + r")"),
+    re.compile(_PERSON + r"\s+(?:has been|was|will be)\s+(?:appointed|named|elected)\s+(?:as\s+)?(?:the\s+Company['’]s\s+|its\s+|our\s+)?(?:new\s+)?(" + _ROLE + r")"),
+    re.compile(r"(?:appointment|election|hiring)\s+of\s+" + _PERSON + r"\s+as\s+(?:the\s+Company['’]s\s+|its\s+|our\s+)?(?:new\s+)?(" + _ROLE + r")"),
+]
+BACKGROUND_RX = re.compile(r"[^.]*(?:previously served|most recently served|prior to joining|served as|has served|was the|was previously)[^.]*\.", re.I)
+DEPART_RX = re.compile(r"[^.]*(?:resign|retire|depart|step(?:ped)? down|terminat|separation from)[^.]*\.", re.I)
+
+
+def parse_appointment(text: str) -> dict:
+    """Who, what role, background, departures and the Item 5.02 excerpt."""
+    t = " ".join((text or "").split())
+    i = t.lower().find("item 5.02")
+    sec = t[i:i + 6000] if i >= 0 else t[:6000]
+    out = {"person": None, "role": None, "interim": False, "background": "", "departure": "",
+           "excerpt": ""}
+    for rx in APPT_PATTERNS:
+        m = rx.search(sec)
+        if m:
+            out["person"] = re.sub(r"^(?:Mr\.|Ms\.|Mrs\.|Dr\.)\s?", "", m.group(1)).strip()
+            out["role"] = m.group(2).strip()
+            out["interim"] = bool(re.search(r"interim|acting", m.group(0), re.I))
+            break
+    if out["person"]:
+        last = out["person"].split()[-1]
+        bg = [b.strip() for b in BACKGROUND_RX.findall(sec) if last in b or "Mr." in b or "Ms." in b]
+        out["background"] = " ".join(bg[:2])[:600]
+    dep = DEPART_RX.findall(sec)
+    out["departure"] = dep[0].strip()[:300] if dep else ""
+    body = re.sub(r"^.*?Item 5\.02[^.]*?\.\s*", "", sec, flags=re.I)
+    out["excerpt"] = body[:900]
+    # what KIND of 5.02 event this is -- only a real hire is the Bollenbach pattern
+    low = sec.lower()
+    if out["person"] and out["role"]:
+        promo = re.search(r"(?:currently|previously) (?:serves|served) as [^.]{0,80}of the company", low)
+        out["event_type"] = "PROMOTION" if promo else "NEW HIRE"
+    elif re.search(r"amend\w*[^.]{0,60}employment agreement|employment agreement[^.]{0,60}amend", low):
+        out["event_type"] = "PAY AMENDMENT"
+    elif "inducement plan" in low or "inducement equity" in low:
+        out["event_type"] = "INDUCEMENT PLAN"
+    elif out["departure"]:
+        out["event_type"] = "DEPARTURE"
+    elif re.search(r"grant|award", low):
+        out["event_type"] = "EQUITY AWARD"
+    else:
+        out["event_type"] = "OTHER 5.02"
+    return out
+
+
 def parse_8k_text(text: str) -> dict:
     """Extract appointment-specific signals from 8-K body."""
     out: dict = {
@@ -136,11 +191,16 @@ def parse_8k_text(text: str) -> dict:
     }
     if not text:
         return out
+    text = " ".join(text.split())          # filings break lines mid-phrase
     text_lc = text.lower()
 
-    m = APPOINTMENT_RX.search(text)
-    if m:
-        out["role"] = m.group(1).strip()
+    ap = parse_appointment(text)
+    out.update({k: ap[k] for k in ("person", "interim", "background", "departure", "excerpt", "event_type")})
+    out["role"] = ap["role"]
+    if not out["role"]:
+        m = APPOINTMENT_RX.search(text)
+        if m:
+            out["role"] = m.group(1).strip()
 
     m = GRANT_VALUE_RX.search(text)
     if m:
@@ -337,11 +397,15 @@ def main() -> int:
         if not args.skip_html:
             try:
                 html = read_html(rf.accession) or ""
+                if not html:
+                    # the local cache only holds old filings: fetch the 8-K and
+                    # its press release from EDGAR (edgar_doc caches them)
+                    import edgar_doc
+                    html = edgar_doc.text(rf.cik, rf.accession, want=("primary", "ex99"))
                 parsed = parse_8k_text(html)
                 n_parsed += 1
             except Exception:
                 pass
-            time.sleep(args.sleep)
 
         d_s, d_r = distress_signal(tk, yf, proxy, special_sits)
         g_s, g_r = grant_signal(parsed)
@@ -350,6 +414,10 @@ def main() -> int:
         # Multiplicative-ish combination: a high-talent hire into a
         # high-distress company scores significantly above either alone
         base = d_s + g_s + t_s
+        # not a hire (pay amendment, inducement plan, departure...): not the
+        # turnaround-talent pattern -- keep it listed but rank it well below hires
+        if parsed.get("event_type") not in ("NEW HIRE", "PROMOTION", None):
+            base *= 0.3
         bonus = 0.0
         if d_s >= 15 and t_s >= 10:
             bonus = 20  # distressed company + known talent
@@ -361,6 +429,12 @@ def main() -> int:
             "company": rf.company,
             "accession": rf.accession,
             "role": parsed.get("role") or "",
+            "event_type": parsed.get("event_type") or "",
+            "person": parsed.get("person") or "",
+            "interim": "yes" if parsed.get("interim") else "",
+            "background": parsed.get("background") or "",
+            "departure": parsed.get("departure") or "",
+            "excerpt": parsed.get("excerpt") or "",
             "score": round(base, 1),
             "distress_pts": round(d_s, 1),
             "grant_pts": round(g_s, 1),
