@@ -138,11 +138,13 @@ _ROLE = (r"(?:Interim |Acting |Co-)?(?:President and )?(?:Chief Executive Office
          r"Chief Financial Officer|CFO|Chief Operating Officer|COO|Chief Restructuring Officer|"
          r"Chief Transformation Officer|Executive Chair(?:man|woman|person)?|Chair(?:man|woman|person)? of the Board|"
          r"Chief Commercial Officer|Chief Strategy Officer|General Counsel)")
-_PERSON = r"((?:Mr\.|Ms\.|Mrs\.|Dr\.)?\s?[A-Z][a-zA-Z'’\-]+(?:\s[A-Z]\.)?(?:\s[A-Z][a-zA-Z'’\-]+){1,2})"
+_PERSON = r"((?:Mr\.|Ms\.|Mrs\.|Dr\.)?\s?[A-Z][a-zA-Z'’\-]+(?:\s[A-Z]\.)?(?:\s(?:(?:van|der|de|den|la|le|von|di|da|du|del|dos|bin|al)\s)*[A-Z][a-zA-Z'’\-]+){1,2})"
 APPT_PATTERNS = [
     re.compile(r"(?:appointed|named|elected|hired|promoted)\s+" + _PERSON + r",?\s+(?:age\s\d+,\s+)?(?:as|to serve as|to the (?:role|position) of)\s+(?:the\s+Company['’]s\s+|its\s+|our\s+|the\s+)?(?:new\s+)?(" + _ROLE + r")"),
+    re.compile(r"appointed\s+" + _PERSON + r",\s+(?:Ph\.D\.|M\.D\.|Jr\.|CPA|J\.D\.)?,?\s*(?:age\s+)?\d{2},?\s+as\s+(?:the\s+Company['’]s\s+|its\s+|our\s+)?(?:new\s+)?(" + _ROLE + r")"),
     re.compile(_PERSON + r",\s+(?:age\s+)?\d{2},?\s+(?:has been|was|will be)\s+(?:appointed|named|elected)\s+(?:as\s+)?(?:the\s+Company['’]s\s+|its\s+|our\s+)?(?:new\s+)?(" + _ROLE + r")"),
     re.compile(_PERSON + r"\s+(?:has been|was|will be)\s+(?:appointed|named|elected)\s+(?:as\s+)?(?:the\s+Company['’]s\s+|its\s+|our\s+)?(?:new\s+)?(" + _ROLE + r")"),
+    re.compile(r"(?:Incoming|incoming|New|new)\s+(?:CEO|Chief Executive Officer)\s+" + _PERSON + r"\s+(?:said|stated|commented)[^.]{0,120}?appointed\s+(?:as\s+)?(" + _ROLE + r")"),
     re.compile(r"(?:appointment|election|hiring)\s+of\s+" + _PERSON + r"\s+as\s+(?:the\s+Company['’]s\s+|its\s+|our\s+)?(?:new\s+)?(" + _ROLE + r")"),
 ]
 BACKGROUND_RX = re.compile(r"[^.]*(?:previously served|most recently served|prior to joining|served as|has served|was the|was previously)[^.]*\.", re.I)

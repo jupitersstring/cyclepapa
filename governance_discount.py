@@ -152,7 +152,18 @@ def main() -> int:
     # collect dated signals per ticker: fam -> (date, source, detail)
     sig: dict[str, dict] = {}
 
+    # events the filing-level check found NOT to be real (rights-plan boilerplate
+    # read as a pill removal, SPAC placements read as going-private, ...)
+    phantom = set()
+    for tk_, evs in _load("event_detail.json").items():
+        for e in evs:
+            if e.get("verdict") == "NOT AN EVENT":
+                f_ = "CAPITAL_RETURN_POLICY" if e.get("family") == "CAPITAL_RETURN" else e.get("family")
+                phantom.add((tk_, f_))
+
     def add(tk, fam, d, src, detail):
+        if src == "8-K" and (tk, fam) in phantom:
+            return
         cur = sig.setdefault(tk, {}).get(fam)
         if not cur or str(d or "") > str(cur[0] or ""):
             sig[tk][fam] = (d, src, detail)

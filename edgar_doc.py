@@ -118,9 +118,13 @@ def docs(cik, acc, want=("primary", "ex99"), max_chars=400_000):
     out = []
     for name, kind in picks:
         cf = CACHE / acc / (re.sub(r"[^\w.-]", "_", name) + ".txt.gz")
+        t = None
         if cf.exists():
-            t = gzip.open(cf, "rt", encoding="utf-8").read()
-        else:
+            try:
+                t = gzip.open(cf, "rt", encoding="utf-8").read()
+            except (EOFError, OSError):
+                t = None                              # truncated cache entry: re-fetch
+        if t is None:
             try:
                 raw = _get(f"{base}/{name}").text
                 t = html_to_text(raw) if "<" in raw[:2000] else raw
@@ -128,8 +132,10 @@ def docs(cik, acc, want=("primary", "ex99"), max_chars=400_000):
                 t = ""
             t = t[:max_chars]
             cf.parent.mkdir(parents=True, exist_ok=True)
-            with gzip.open(cf, "wt", encoding="utf-8") as fh:
+            tmp = cf.with_suffix(f".tmp{threading.get_ident()}")
+            with gzip.open(tmp, "wt", encoding="utf-8") as fh:     # atomic: write then rename
                 fh.write(t)
+            tmp.replace(cf)
         if t:
             out.append((name, kind, t))
     return out

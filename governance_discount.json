@@ -91,8 +91,8 @@
     "mcap": 134874853.0,
     "deep": false,
     "net_cash_frac": 0.326,
-    "n_families": 5,
-    "n_hard": 2,
+    "n_families": 4,
+    "n_hard": 1,
     "tier": "ACTION LIKELY",
     "families": {
       "ACTIVIST_SETTLEMENT": {
@@ -119,12 +119,6 @@
         "source": "DEF 14A",
         "detail": "say-on-pay 56%"
       },
-      "TURNAROUND_EXEC": {
-        "pts": 4.8,
-        "date": "2026-01-05",
-        "source": "8-K/proxy",
-        "detail": "turnaround executive hired"
-      },
       "CIC_PREP": {
         "pts": 1.8,
         "date": null,
@@ -132,7 +126,7 @@
         "detail": "change-in-control terms"
       }
     },
-    "score": 36.6
+    "score": 31.8
   },
   "QTRX": {
     "ticker": "QTRX",
@@ -196,7 +190,7 @@
     "mcap": 34412083.0,
     "deep": false,
     "net_cash_frac": 0.0,
-    "n_families": 4,
+    "n_families": 3,
     "n_hard": 1,
     "tier": "ACTION LIKELY",
     "families": {
@@ -205,12 +199,6 @@
         "date": "2026-08-14",
         "source": "8-K",
         "detail": "standstill agreement"
-      },
-      "PILL_REMOVED": {
-        "pts": 5.0,
-        "date": "2026-07-06",
-        "source": "8-K",
-        "detail": "redeem the rights"
       },
       "ASSET_SALE": {
         "pts": 5.0,
@@ -225,7 +213,7 @@
         "detail": "value-unlock language"
       }
     },
-    "score": 33.0
+    "score": 28.0
   },
   "CMTL": {
     "ticker": "CMTL",
@@ -772,8 +760,8 @@
     "mcap": 58455097.0,
     "deep": true,
     "net_cash_frac": 2.112,
-    "n_families": 2,
-    "n_hard": 1,
+    "n_families": 3,
+    "n_hard": 2,
     "tier": "ACTION LIKELY",
     "families": {
       "CEO_CHANGE": {
@@ -793,9 +781,15 @@
         "date": "2025-04-30",
         "source": "DEF 14A",
         "detail": "PSU on tsr"
+      },
+      "TURNAROUND_EXEC": {
+        "pts": 6.0,
+        "date": "2026-06-24",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
       }
     },
-    "score": 24.0
+    "score": 33.0
   },
   "CNDT": {
     "ticker": "CNDT",
@@ -940,9 +934,9 @@
     "mcap": 340738310.0,
     "deep": true,
     "net_cash_frac": 0.0,
-    "n_families": 2,
-    "n_hard": 0,
-    "tier": "BUILDING",
+    "n_families": 3,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
     "families": {
       "DECLASSIFY": {
         "pts": 6.0,
@@ -961,147 +955,15 @@
         "date": "2026-04-27",
         "source": "DEF 14A",
         "detail": "PSU on tsr"
-      }
-    },
-    "score": 23.0
-  },
-  "WW": {
-    "ticker": "WW",
-    "name": "WW International, Inc.",
-    "sector": "Consumer Cyclical",
-    "p_b": 0.553,
-    "mcap": 154080892.0,
-    "deep": false,
-    "net_cash_frac": 0.0,
-    "n_families": 2,
-    "n_hard": 1,
-    "tier": "ACTION LIKELY",
-    "families": {
-      "BOARD_REFRESH": {
-        "pts": 5.0,
-        "date": "2026-04-03",
-        "source": "8-K",
-        "detail": "board refreshment"
-      },
-      "PAY_ON_VALUE": {
-        "pts": 2.0,
-        "date": "2026-04-30",
-        "source": "DEF 14A",
-        "detail": "PSU on tsr"
       },
       "TURNAROUND_EXEC": {
-        "pts": 4.8,
-        "date": "2025-12-23",
+        "pts": 6.0,
+        "date": "2026-08-04",
         "source": "8-K/proxy",
         "detail": "turnaround executive hired"
       }
     },
-    "score": 17.8
-  },
-  "NNDM": {
-    "ticker": "NNDM",
-    "name": "Nano Dimension Ltd.",
-    "sector": "Technology",
-    "p_b": 0.691,
-    "mcap": 332474596.0,
-    "deep": false,
-    "net_cash_frac": 1.009,
-    "n_families": 3,
-    "n_hard": 0,
-    "tier": "BUILDING",
-    "families": {
-      "PILL_REMOVED": {
-        "pts": 4.0,
-        "date": "2026-02-03",
-        "source": "8-K",
-        "detail": "terminate the rights agreement"
-      },
-      "ASSET_SALE": {
-        "pts": 5.0,
-        "date": "2026-05-27",
-        "source": "8-K",
-        "detail": "definitive agreement to sell"
-      },
-      "CALL_INTENT": {
-        "pts": 4.0,
-        "date": "2026-05-07",
-        "source": "earnings call",
-        "detail": "\u201cAs a result, we initiated the previously described strategic alternatives review process i\u201d"
-      }
-    },
-    "score": 25.0
-  },
-  "NEUP": {
-    "ticker": "NEUP",
-    "name": "Neuphoria Therapeutics Inc.",
-    "sector": "Healthcare",
-    "p_b": 0.68,
-    "mcap": 19996839.0,
-    "deep": false,
-    "net_cash_frac": 0.972,
-    "n_families": 2,
-    "n_hard": 0,
-    "tier": "BUILDING",
-    "families": {
-      "PILL_REMOVED": {
-        "pts": 4.0,
-        "date": "2025-10-27",
-        "source": "8-K",
-        "detail": "redeem the rights"
-      },
-      "MDA_UNLOCK": {
-        "pts": 4.0,
-        "date": "2026-05-15",
-        "source": "MD&A",
-        "detail": "value-unlock language"
-      },
-      "PAY_ON_VALUE": {
-        "pts": 1.6,
-        "date": "2025-10-30",
-        "source": "DEF 14A",
-        "detail": "PSU on tsr"
-      }
-    },
-    "score": 18.6
-  },
-  "ORMP": {
-    "ticker": "ORMP",
-    "name": "Oramed Pharmaceuticals Inc.",
-    "sector": "Healthcare",
-    "p_b": 0.599,
-    "mcap": 190306277.0,
-    "deep": false,
-    "net_cash_frac": 0.069,
-    "n_families": 3,
-    "n_hard": 0,
-    "tier": "BUILDING",
-    "families": {
-      "PILL_REMOVED": {
-        "pts": 4.0,
-        "date": "2025-11-17",
-        "source": "8-K",
-        "detail": "redeem the rights"
-      },
-      "MDA_UNLOCK": {
-        "pts": 4.0,
-        "date": "2026-03-26",
-        "source": "MD&A",
-        "detail": "value-unlock language"
-      },
-      "PAY_ON_VALUE": {
-        "pts": 1.0,
-        "date": "2025-07-16",
-        "source": "DEF 14A",
-        "detail": "PSU on eps, roe, tsr"
-      },
-      "CIC_PREP": {
-        "pts": 1.8,
-        "date": null,
-        "source": "DEF 14A",
-        "detail": "change-in-control terms"
-      }
-    },
-    "score": 19.8
+    "score": 32.0
   },
   "STRZ": {
     "ticker": "STRZ",
@@ -1268,6 +1130,33 @@
     },
     "score": 23.0
   },
+  "NNDM": {
+    "ticker": "NNDM",
+    "name": "Nano Dimension Ltd.",
+    "sector": "Technology",
+    "p_b": 0.691,
+    "mcap": 332474596.0,
+    "deep": false,
+    "net_cash_frac": 1.009,
+    "n_families": 2,
+    "n_hard": 0,
+    "tier": "BUILDING",
+    "families": {
+      "ASSET_SALE": {
+        "pts": 5.0,
+        "date": "2026-05-27",
+        "source": "8-K",
+        "detail": "definitive agreement to sell"
+      },
+      "CALL_INTENT": {
+        "pts": 4.0,
+        "date": "2026-05-07",
+        "source": "earnings call",
+        "detail": "\u201cAs a result, we initiated the previously described strategic alternatives review process i\u201d"
+      }
+    },
+    "score": 18.0
+  },
   "AHCO": {
     "ticker": "AHCO",
     "name": "AdaptHealth Corp.",
@@ -1405,6 +1294,45 @@
       }
     },
     "score": 28.0
+  },
+  "CLVT": {
+    "ticker": "CLVT",
+    "name": "Clarivate Plc",
+    "sector": "Technology",
+    "p_b": 0.268,
+    "mcap": 1215361600.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 3,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "ASSET_SALE": {
+        "pts": 5.0,
+        "date": "2026-07-06",
+        "source": "8-K",
+        "detail": "definitive agreement to sell"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-01",
+        "source": "DEF 14A",
+        "detail": "PSU on eps, tsr"
+      },
+      "TURNAROUND_EXEC": {
+        "pts": 6.0,
+        "date": "2026-07-06",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      },
+      "CIC_PREP": {
+        "pts": 1.8,
+        "date": null,
+        "source": "DEF 14A",
+        "detail": "change-in-control terms"
+      }
+    },
+    "score": 29.8
   },
   "BGS": {
     "ticker": "BGS",
@@ -1648,8 +1576,8 @@
     "mcap": 66498540.0,
     "deep": true,
     "net_cash_frac": 0.0,
-    "n_families": 3,
-    "n_hard": 2,
+    "n_families": 2,
+    "n_hard": 1,
     "tier": "ACTION LIKELY",
     "families": {
       "CAPITAL_RETURN_POLICY": {
@@ -1669,15 +1597,9 @@
         "date": "2026-04-08",
         "source": "DEF 14A",
         "detail": "PSU on eps, tsr"
-      },
-      "TURNAROUND_EXEC": {
-        "pts": 4.8,
-        "date": "2025-12-30",
-        "source": "8-K/proxy",
-        "detail": "turnaround executive hired"
       }
     },
-    "score": 30.8
+    "score": 23.0
   },
   "ONIT": {
     "ticker": "ONIT",
@@ -1874,6 +1796,33 @@
     },
     "score": 19.0
   },
+  "MBGL": {
+    "ticker": "MBGL",
+    "name": "Mobility Global Inc",
+    "sector": "Technology",
+    "p_b": 0.57,
+    "mcap": 5610449720.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 2,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "MDA_CAPITAL": {
+        "pts": 3.0,
+        "date": "2026-08-07",
+        "source": "MD&A",
+        "detail": "capital-policy language"
+      },
+      "TURNAROUND_EXEC": {
+        "pts": 6.0,
+        "date": "2026-07-02",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      }
+    },
+    "score": 15.0
+  },
   "VSNT": {
     "ticker": "VSNT",
     "name": "Versant Media Group, Inc.",
@@ -1882,9 +1831,9 @@
     "mcap": 4700564125.0,
     "deep": false,
     "net_cash_frac": 0.0,
-    "n_families": 2,
-    "n_hard": 2,
-    "tier": "ACTION LIKELY",
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
     "families": {
       "PAY_ON_VALUE": {
         "pts": 2.0,
@@ -1897,15 +1846,9 @@
         "date": "2026-08-06",
         "source": "earnings call",
         "detail": "\u201cDemonstrating our commitment to returning capital to shareholders, we repurchased $100 mil\u201d"
-      },
-      "TURNAROUND_EXEC": {
-        "pts": 4.8,
-        "date": "2026-01-05",
-        "source": "8-K/proxy",
-        "detail": "turnaround executive hired"
       }
     },
-    "score": 19.8
+    "score": 13.0
   },
   "GIII": {
     "ticker": "GIII",
@@ -1948,9 +1891,9 @@
     "mcap": 3135767597.0,
     "deep": false,
     "net_cash_frac": 0.0,
-    "n_families": 2,
-    "n_hard": 2,
-    "tier": "ACTION LIKELY",
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
     "families": {
       "PAY_ON_VALUE": {
         "pts": 2.0,
@@ -1969,15 +1912,48 @@
         "date": "2026-08-06",
         "source": "earnings call",
         "detail": "\u201cWe continue to believe that our stock price is trading at a significant discount to net as\u201d"
-      },
-      "TURNAROUND_EXEC": {
-        "pts": 4.8,
-        "date": "2026-02-02",
-        "source": "8-K/proxy",
-        "detail": "turnaround executive hired"
       }
     },
-    "score": 22.8
+    "score": 16.0
+  },
+  "ANGI": {
+    "ticker": "ANGI",
+    "name": "Angi Inc.",
+    "sector": "Communication Services",
+    "p_b": 0.315,
+    "mcap": 216489830.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 3,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-28",
+        "source": "DEF 14A",
+        "detail": "PSU on eps, roe, tsr"
+      },
+      "CALL_INTENT": {
+        "pts": 4.0,
+        "date": "2026-05-06",
+        "source": "earnings call",
+        "detail": "\u201cWe have repurchased about 20% of our shares outstanding at the time of the spinoff, that t\u201d"
+      },
+      "TURNAROUND_EXEC": {
+        "pts": 6.0,
+        "date": "2026-09-23",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      },
+      "CIC_PREP": {
+        "pts": 1.8,
+        "date": null,
+        "source": "DEF 14A",
+        "detail": "change-in-control terms"
+      }
+    },
+    "score": 28.8
   },
   "AGO": {
     "ticker": "AGO",
@@ -2006,6 +1982,39 @@
     },
     "score": 12.6
   },
+  "PTLO": {
+    "ticker": "PTLO",
+    "name": "Portillo's Inc.",
+    "sector": "Consumer Cyclical",
+    "p_b": 0.548,
+    "mcap": 263104782.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 2,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-17",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "TURNAROUND_EXEC": {
+        "pts": 6.0,
+        "date": "2026-08-04",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      },
+      "CIC_PREP": {
+        "pts": 1.8,
+        "date": null,
+        "source": "DEF 14A",
+        "detail": "change-in-control terms"
+      }
+    },
+    "score": 18.8
+  },
   "ARQ": {
     "ticker": "ARQ",
     "name": "Arq, Inc.",
@@ -2026,7 +2035,7 @@
       },
       "TURNAROUND_EXEC": {
         "pts": 6.0,
-        "date": "2026-05-27",
+        "date": "2026-08-28",
         "source": "8-K/proxy",
         "detail": "turnaround executive hired"
       }
@@ -2065,6 +2074,33 @@
       }
     },
     "score": 24.0
+  },
+  "DH": {
+    "ticker": "DH",
+    "name": "Definitive Healthcare Corp.",
+    "sector": "Healthcare",
+    "p_b": 0.653,
+    "mcap": 94433643.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-23",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "TURNAROUND_EXEC": {
+        "pts": 6.0,
+        "date": "2026-09-02",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      }
+    },
+    "score": 12.0
   },
   "HPP": {
     "ticker": "HPP",
@@ -2204,6 +2240,66 @@
     },
     "score": 16.0
   },
+  "CUBB": {
+    "ticker": "CUBB",
+    "name": "Customers Bancorp, Inc 5.375% S",
+    "sector": "Financial Services",
+    "p_b": 0.328,
+    "mcap": 724363746.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-14",
+        "source": "DEF 14A",
+        "detail": "PSU on eps, other_per_share, roe, tsr"
+      },
+      "TURNAROUND_EXEC": {
+        "pts": 6.0,
+        "date": "2026-04-16",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      }
+    },
+    "score": 18.0
+  },
+  "DLHC": {
+    "ticker": "DLHC",
+    "name": "DLH Holdings Corp.",
+    "sector": "Industrials",
+    "p_b": 0.61,
+    "mcap": 56860387.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 2,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "PROXY_RESPONSIVE": {
+        "pts": 3.2,
+        "date": "2026-01-28",
+        "source": "DEF 14A",
+        "detail": "responsive_to_shareholders"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 1.6,
+        "date": "2026-01-28",
+        "source": "DEF 14A",
+        "detail": "PSU on eps, roe, roic, tsr"
+      },
+      "TURNAROUND_EXEC": {
+        "pts": 6.0,
+        "date": "2026-08-25",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      }
+    },
+    "score": 16.8
+  },
   "FG": {
     "ticker": "FG",
     "name": "F&G Annuities & Life, Inc.",
@@ -2275,6 +2371,60 @@
       }
     },
     "score": 20.8
+  },
+  "PROP": {
+    "ticker": "PROP",
+    "name": "Prairie Operating Co.",
+    "sector": "Energy",
+    "p_b": 0.179,
+    "mcap": 40001778.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-23",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "TURNAROUND_EXEC": {
+        "pts": 6.0,
+        "date": "2026-06-25",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      }
+    },
+    "score": 18.0
+  },
+  "NEO": {
+    "ticker": "NEO",
+    "name": "NeoGenomics, Inc.",
+    "sector": "Healthcare",
+    "p_b": 0.611,
+    "mcap": 479982600.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-06",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "TURNAROUND_EXEC": {
+        "pts": 6.0,
+        "date": "2026-06-22",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      }
+    },
+    "score": 12.0
   },
   "CAN": {
     "ticker": "CAN",
@@ -2728,5 +2878,47 @@
       }
     },
     "score": 16.0
+  },
+  "HOS": {
+    "ticker": "HOS",
+    "name": "Hornbeck Offshore Services, Inc.",
+    "sector": "Energy",
+    "p_b": 0.238,
+    "mcap": 1244710071.0,
+    "deep": true,
+    "net_cash_frac": 0.166,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "TURNAROUND_EXEC": {
+        "pts": 6.0,
+        "date": "2026-08-11",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      }
+    },
+    "score": 16.0
+  },
+  "ADIG": {
+    "ticker": "ADIG",
+    "name": "ADI Global Distribution Inc.",
+    "sector": "Industrials",
+    "p_b": 0.594,
+    "mcap": 1457615201.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "TURNAROUND_EXEC": {
+        "pts": 6.0,
+        "date": "2026-08-04",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      }
+    },
+    "score": 10.0
   }
 }
