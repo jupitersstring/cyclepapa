@@ -540,6 +540,10 @@ def detail_column(wb, header, values_by_ticker, tabs, after=("Strength %ile", "K
         base = next((cols[a] for a in after if a in cols), None) or _name_col(cols)
         idx = base + 1
         tcol = cols.get("Ticker") or cols.get("TKR") or cols.get("Symbol")
+        body = [r for r in range(hr + 1, ws.max_row + 1) if _ticker(ws.cell(row=r, column=tcol).value)]
+        hits = sum(1 for r in body if values_by_ticker.get(_ticker(ws.cell(row=r, column=tcol).value)))
+        if not body or hits / len(body) < 0.15:
+            continue                                   # would be a dead column on this sheet
         insert_col(ws, idx, header, hr, width=width)
         tcol = tcol + 1 if tcol >= idx else tcol
         for r in range(hr + 1, ws.max_row + 1):
@@ -629,9 +633,13 @@ def event_sheet(wb, events, fin=None, index=None):
                 (e.get("family") or "").replace("_", " ").title(), e.get("status") or "",
                 ("✓ real" if e.get("verdict") == "REAL" else "⚠ phantom" if e.get("verdict") else ""), e.get("what"),
                 (f"${amt / 1e6:,.0f}M" if amt and amt >= 1e6 else ""),
-                (f"{e['pct_mcap'] * 100:.0f}%" if e.get("pct_mcap") and e["pct_mcap"] < 20 else ""),
-                e.get("counterparty") or e.get("person") or "", e.get("asset") or "", e.get("timing") or "",
-                e.get("advisor") or "",
+                (f"{e['pct_mcap'] * 100:.0f}%" if e.get("pct_mcap") and e["pct_mcap"] <= 5 else ""),
+                " · ".join(x for x in [
+                    f"counterparty: {e['counterparty']}" if e.get("counterparty") else "",
+                    f"person: {e['person']}" if e.get("person") else "",
+                    f"asset: {e['asset']}" if e.get("asset") else "",
+                    f"timing: {e['timing']}" if e.get("timing") else "",
+                    f"adviser: {e['advisor']}" if e.get("advisor") else ""] if x),
                 (f"{e['xret_since'] * 100:+.0f}%" if isinstance(e.get("xret_since"), (int, float)) else ""),
                 e.get("excerpt"), e.get("url"),
             ])
@@ -646,9 +654,9 @@ def event_sheet(wb, events, fin=None, index=None):
         "EXTRACTION_QA.md. The verbatim excerpt is the filing's own words. "
         "Source: event_detail.py (edgar_doc).",
         ["Ticker", "Name", "Date", "Event", "Status", "Verdict", "What is happening", "Amount", "% mcap",
-         "Counterparty / person", "Asset / business", "Timing", "Adviser", "Since event (vs SPY)",
+         "Specifics (parsed)", "Since event (vs SPY)",
          "Filing excerpt (verbatim)", "Filing"],
-        [9, 22, 11, 16, 11, 10, 60, 10, 7, 26, 30, 18, 20, 10, 90, 12], rows, index=index,
+        [9, 22, 11, 16, 11, 10, 60, 10, 7, 50, 10, 90, 12], rows, index=index,
         wrap_cols=("What is happening", "Filing excerpt (verbatim)"))
 
 
@@ -790,7 +798,7 @@ def whats_new(wb, events=None, calls=None, turnaround_csv=None, gov=None, index=
         for e in lst:
             if e.get("what") and age(e.get("date")) <= 30 and e.get("verdict") != "NOT AN EVENT":
                 evr.append([t, name(t), e.get("date"), e.get("status") or "", e["what"],
-                            pct(e.get("xret_since")), (f"{e['pct_mcap'] * 100:.0f}%" if e.get("pct_mcap") and e["pct_mcap"] < 20 else ""),
+                            pct(e.get("xret_since")), (f"{e['pct_mcap'] * 100:.0f}%" if e.get("pct_mcap") and e["pct_mcap"] <= 5 else ""),
                             e.get("url")])
     evr.sort(key=lambda x: x[2] or "", reverse=True)
     section("Corporate events, last 30 days", ["Ticker", "Name", "Date", "Status", "What is happening",
@@ -837,3 +845,190 @@ def whats_new(wb, events=None, calls=None, turnaround_csv=None, gov=None, index=
 def csv_rows(path):
     import csv as _csv
     return list(_csv.DictReader(open(path)))
+
+
+# ---------------------------------------------------------------- QA fixes
+from collections import Counter
+
+
+def _norm_issuer(n):
+    import re as _re
+    n = _re.sub(r"[^a-z0-9 ]", " ", str(n or "").lower())
+    n = _re.sub(r"\b(inc|corp|corporation|co|ltd|limited|plc|holdings?|group|the|sa|ag|nv|lp|llc|class [a-c])\b", " ", n)
+    return " ".join(n.split())[:24]
+
+
+def _bad_security(t, name):
+    import re as _re
+    if len(t) == 5 and t.endswith("Q"):
+        return "bankrupt (Q) line"
+    if _re.search(r"\bnotes?\b|debenture|\bsr\.? nts?\b|%\s*(?:series|notes?|senior|fixed\b|jr|sub)", str(name or ""), _re.I):
+        return "note / baby bond"
+    return None
+
+
+def delete_rows(ws, rows_to_delete, hr):
+    """Delete body rows, keeping merged footnotes, row heights and row
+    banding (odd/even body rows re-styled from the first two body rows)."""
+    if not rows_to_delete:
+        return
+    dels = sorted(set(rows_to_delete))
+    merges = [(m.min_row, m.min_col, m.max_row, m.max_col) for m in ws.merged_cells.ranges if m.min_row > hr]
+    for m in [m for m in ws.merged_cells.ranges if m.min_row > hr]:
+        ws.unmerge_cells(str(m))
+    heights = {r: ws.row_dimensions[r].height for r in range(hr + 1, ws.max_row + 1)}
+    # snapshot banding templates (first two body rows) before deleting
+    from copy import copy
+    tmpl = {}
+    for k_, r in ((0, hr + 1), (1, hr + 2)):
+        tmpl[k_] = [(copy(ws.cell(row=r, column=c).font), copy(ws.cell(row=r, column=c).fill),
+                     copy(ws.cell(row=r, column=c).border)) for c in range(1, ws.max_column + 1)]
+    first_nonbody = None
+    for r in range(hr + 1, ws.max_row + 2):
+        v = ws.cell(row=r, column=1).value
+        if v is None and ws.cell(row=r, column=2).value is None:
+            first_nonbody = r
+            break
+    for r in reversed(dels):
+        ws.delete_rows(r)
+    shift = lambda r: r - sum(1 for d in dels if d < r)
+    for r0, c0, r1, c1 in merges:
+        ws.merge_cells(start_row=shift(r0), start_column=c0, end_row=shift(r1), end_column=c1)
+    for r, h in heights.items():
+        if r in dels:
+            continue
+        ws.row_dimensions[shift(r)].height = h
+    # re-band the remaining body rows
+    last_body = shift(first_nonbody) - 1 if first_nonbody else ws.max_row
+    for i, r in enumerate(range(hr + 1, last_body + 1)):
+        t = tmpl[i % 2]
+        for c in range(1, min(ws.max_column, len(t)) + 1):
+            cell = ws.cell(row=r, column=c)
+            f0, fill0, b0 = t[c - 1]
+            cell.fill = copy(fill0)
+            cell.border = copy(b0)
+            # keep a cell's own bold / colour emphasis (grades, tags); restore the band font otherwise
+            if not cell.font or cell.font.name != f0.name:
+                cell.font = copy(f0)
+
+
+def qa_fixes(wb, fin, harmonise_pb=True, skip=()):
+    """Book-level fixes found by book_qa.py:
+       * secondary share lines (preferreds / notes of an issuer already listed)
+         and bankrupt Q-lines / baby bonds removed from list sheets
+       * negative P/E shown as 'loss'
+       * P/B columns show the validated FMP P/B (one number per name everywhere)
+       * floats rounded (no 7-14 decimal values)"""
+    import re as _re
+    stats = Counter()
+    for ws in wb.worksheets:
+        if ws.title in skip:
+            continue
+        hr, cols = header_of(ws)
+        if not hr:
+            continue
+        tcol = cols.get("Ticker") or cols.get("TKR") or cols.get("Symbol")
+        ncol = cols.get("Name") or cols.get("Company")
+        groups, dels = {}, []
+        for r in range(hr + 1, ws.max_row + 1):
+            t = _ticker(ws.cell(row=r, column=tcol).value)
+            if not t or len(t) > 18 or " " in t:
+                continue
+            if t in ("NONE", "N/A", "NA") or (_re.fullmatch(r"[A-Z]{4}X", t) and not fin.get(t)):
+                dels.append(r); stats["junk / mutual-fund ticker"] += 1    # Form 4 filers that are funds
+                continue
+            f = fin.get(t) or {}
+            nm = f.get("name") or (ws.cell(row=r, column=ncol).value if ncol else None)
+            if _bad_security(t, nm) and ws.title not in ("Distressed Stub Progress",):
+                dels.append(r); stats["bad security"] += 1
+                continue
+            key = _norm_issuer(nm)
+            if key:
+                groups.setdefault(key, []).append((r, t))
+        # one line per issuer: keep the primary (not an OTC F/Y line; shortest ticker), drop
+        # secondary lines that extend it (AGNC -> AGNCL) or are its OTC / class twin
+        for key, lst in groups.items():
+            if len({t for _, t in lst}) < 2:
+                continue
+            otc_line = lambda t: len(t) == 5 and t[-1] in "FY"
+            keep_r, keep_t = min(lst, key=lambda rt: (otc_line(rt[1]), len(rt[1]), rt[0]))
+            for r, t in lst:
+                if t == keep_t:
+                    continue
+                if t.startswith(keep_t) or keep_t.startswith(t[:3]) or otc_line(t) or t[:4] == keep_t[:4]:
+                    dels.append(r); stats["duplicate issuer line"] += 1
+        # P/E sign / P/B harmonisation / rounding -- every body row
+        for r in range(hr + 1, ws.max_row + 1):
+            t = _ticker(ws.cell(row=r, column=tcol).value)
+            if not t or r in dels:
+                continue
+            f = fin.get(t) or {}
+            for h, c in cols.items():
+                    cell = ws.cell(row=r, column=c)
+                    v = cell.value
+                    if h in ("P/E",) and isinstance(v, (int, float)) and v < 0:
+                        cell.value = "loss"; stats["negative P/E -> loss"] += 1
+                    elif h == "P/B" and isinstance(v, (int, float)) and v > 100:
+                        cell.value = "n/m"; stats["P/B > 100x -> n/m"] += 1       # near-zero equity
+                    elif h == "P/B" and isinstance(v, (int, float)) and v < 0:
+                        cell.value = "neg. equity"; stats["negative P/B -> neg. equity"] += 1
+                    elif h == "P/B" and harmonise_pb and f.get("p_b") and isinstance(v, (int, float, str)):
+                        try:
+                            cur = float(str(v).replace("×", ""))
+                        except ValueError:
+                            cur = None
+                        if cur is None or abs(cur / f["p_b"] - 1) > 0.02:
+                            stats["P/B harmonised"] += 1
+                        cell.value = round(f["p_b"], 2)
+                    elif isinstance(v, float) and not float(v).is_integer():
+                        rv = round(v, 3 if abs(v) < 1 else 2)
+                        if rv != v:
+                            cell.value = rv; stats["rounded"] += 1
+        rows_t = {}
+        for r in range(hr + 1, ws.max_row + 1):
+            t = _ticker(ws.cell(row=r, column=tcol).value)
+            if t:
+                rows_t[r] = t
+        delete_rows(ws, [r for r in dels if r in rows_t], hr)
+        stats["dead columns removed"] += drop_dead_columns(ws)
+    return stats
+
+
+PROTECT = {"Ticker", "Name", "Company", "Key numbers (FMP)", "Strength %ile", "FMP financial read", "Filing",
+           "Proxy", "#", "Rank", "Grade", "Tier", "Score", "What's happening (8-K)", "PSU plan (grade)",
+           "Since (vs SPY)", "Since event (vs SPY)"}
+
+
+def drop_dead_columns(ws, threshold=0.95, min_rows=8):
+    """Delete columns empty / zero / dash in >= threshold of body rows (keeping
+    merged ranges and widths aligned)."""
+    hr, cols = header_of(ws)
+    if not hr:
+        return 0
+    tcol = cols.get("Ticker") or cols.get("TKR") or cols.get("Symbol")
+    body = [r for r in range(hr + 1, ws.max_row + 1) if _ticker(ws.cell(row=r, column=tcol).value)]
+    if len(body) < min_rows:
+        return 0
+    dead = []
+    for h, c in cols.items():
+        if h in PROTECT:
+            continue
+        empty = sum(1 for r in body if ws.cell(row=r, column=c).value in (None, "", "–", "—", "-", 0, "0"))
+        if empty / len(body) >= threshold:
+            dead.append(c)
+    for c in sorted(dead, reverse=True):
+        widths = {i: ws.column_dimensions[get_column_letter(i)].width for i in range(1, ws.max_column + 1)}
+        merges = [(m.min_row, m.min_col, m.max_row, m.max_col) for m in ws.merged_cells.ranges]
+        for m in list(ws.merged_cells.ranges):
+            ws.unmerge_cells(str(m))
+        ws.delete_cols(c)
+        for r0, c0, r1, c1 in merges:
+            if c0 > c:
+                c0, c1 = c0 - 1, c1 - 1
+            elif c1 >= c:
+                c1 = max(c0, c1 - 1)
+            ws.merge_cells(start_row=r0, start_column=c0, end_row=r1, end_column=c1)
+        for i in sorted(widths):
+            if i > c and widths[i]:
+                ws.column_dimensions[get_column_letter(i - 1)].width = widths[i]
+    return len(dead)

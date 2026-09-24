@@ -99,7 +99,9 @@ def _range_pos(rng, price):
 
 def universe():
     syms = set(json.loads((ROOT / "yfinance_quick.json").read_text()))
-    for fn in ("otc_intent.json", "call_intent.json", "fmp_quotes.json"):
+    for fn in ("otc_intent.json", "call_intent.json", "fmp_quotes.json", "governance_discount.json",
+               "mechanism_gates.json", "rerate_catalysts.json", "event_detail.json", "psu_detail.json",
+               "tail_odds.json", "payoff_geometry.json", "distressed_stub_progress.json", "foreign_markets.json"):
         p = ROOT / fn
         if p.exists():
             syms |= set(json.loads(p.read_text()))

@@ -339,6 +339,9 @@ def main() -> int:
     import book_layout as bl
     bl.key_numbers(wb, fin, sym_map, skip=("Cover", "Methodology", "Review & data quality",
                                            "Name Financials"))
+    fin_disp = {k: fin.get(v) for k, v in sym_map.items() if fin.get(v)}
+    print("  QA fixes:", dict(bl.qa_fixes(wb, fin_disp, harmonise_pb=False,
+                                          skip=("Cover", "Methodology", "Review & data quality"))))
     top = [x["ticker"] for x in rows[:40]] + [x["ticker"] for x in rows if x["source"] == "REAL"]
     bl.tear_sheets(wb, fin, list(dict.fromkeys(top)), sym_map, index=1, max_names=60)
     wb.save(a.xlsx)

@@ -580,6 +580,18 @@ def build_turnaround_signal(wb: Workbook, yf: dict):
             return None
     rows = list(csv.DictReader(path.open()))
     rows.sort(key=lambda x: -(f0(x.get("score")) or 0))
+    by_cik = {}
+    for src in (ROOT / "fmp_quotes.json", ROOT / "yfinance_quick.json"):
+        try:
+            for t_, v in json.loads(src.read_text()).items():
+                if v.get("cik"):
+                    by_cik.setdefault(str(int(float(v["cik"]))), t_)
+        except Exception:
+            pass
+    for x in rows:                                   # CIK0001234567 -> its ticker
+        m = re.match(r"CIK0*(\d+)$", x.get("ticker") or "")
+        if m and m.group(1) in by_cik:
+            x["ticker"] = by_cik[m.group(1)]
     r = 5
     for i, row in enumerate(rows[:60], 1):
         ev = row.get("event_type") or ""
@@ -2657,16 +2669,25 @@ def build_most_asymmetric(wb: Workbook, proxy: dict, yf: dict, bbv: dict,
     # Derived from disk -- full_universe_consensus.csv. No hardcoded list.
     convergent_rows = get_convergent_from_disk()
     convergent_data = []
+    def _j(n):
+        try:
+            return json.loads((ROOT / n).read_text())
+        except Exception:
+            return {}
+    geo, rcat = _j("payoff_geometry.json"), _j("rerate_catalysts.json")
     for cr in convergent_rows:
         tk = cr["ticker"]
         ann = TICKER_ANNOTATIONS.get(tk, {})
-        name = ann.get("name", tk)
+        name = ann.get("name") or (yf.get(tk) or {}).get("name") or tk
         ns = int(cr["n_screens"])
         na = int(cr.get("n_archetypes_won") or ns)
         nflags = red_flag_count(tk, proxy)
         why = ann.get("why",
                        f"{ns} layers firing | cons {cr.get('consensus_score', '?')}")
-        floor = ann.get("floor", "see proxy_scan + buyback_verify")
+        g = geo.get(tk) or {}
+        floor = ann.get("floor") or (
+            f"{g.get('floor_source')} floor · downside {g['downside_pct'] * 100:.0f}%"
+            if g.get("floor_source") and g.get("downside_pct") is not None else "no asset floor measured")
         sizing = sizing_for_screens(ns, na, nflags)
         convergent_data.append((tk, name, why, floor, sizing))
 
@@ -2679,6 +2700,8 @@ def build_most_asymmetric(wb: Workbook, proxy: dict, yf: dict, bbv: dict,
         pb = y.get("p_b") if y else None
         psu_core = p.get("psu_core") if p else None
         cc = ", ".join(p.get("cond_cats") or []) if p else ""
+        if not cc:                                    # proxy has no conditional catalyst: use the 8-K scanner's
+            cc = ", ".join(x.replace("_", " ").lower() for x in ((rcat.get(tk) or {}).get("catalyst_types") or [])[:3])
 
         band = (i % 2 == 0)
         write_body_row(ws, r,
@@ -3496,6 +3519,8 @@ def main() -> int:
     bl.detail_column(wb, "PSU plan (grade)", {t: bl.psu_line(p) for t, p in psu.items()},
                      ["Most Asymmetric", "Caution List", "Incentive Improvers", "Single-Measure Best",
                       "Without Valuation", "Governance Discount", "Call Intent"], width=48)
+    qa = bl.qa_fixes(wb, fin, skip=NONAME + ("Tear Sheets",))
+    print("  QA fixes:", dict(qa))
     # tear sheets: the shortlist first, then the most-cited names
     short = [str(c.value).strip() for c in wb["Most Asymmetric"]["A"][4:] if c.value]
     cited = [str(c.value).strip() for c in wb["Name Financials"]["A"][4:] if c.value]

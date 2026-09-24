@@ -349,7 +349,21 @@ def main() -> int:
             b *= 0.85
             r["flag"] = r.get("flag") or "micro-cap < $50M (liquidity)"
         r["composite"] = round(min(b, 1.0), 4)
-    rows.sort(key=lambda r: -f(r["composite"], 0))
+    rows.sort(key=lambda r: (r["source"] != "REAL", -f(r["composite"], 0)))
+    # one row per issuer: the engine lists some twice (Sunac as REAL and HK:1918,
+    # Vanke A + H shares, AllianceBernstein by CIK and ticker) -- keep REAL, else the best
+    seen_issuer, kept, dup = set(), [], 0
+    for r in rows:
+        key = _fold(prof[r["fmp_symbol"]].get("companyName") if r.get("fmp_symbol") in prof else r["name"])
+        key = re.sub(r"\b(inc|corp|corporation|co|ltd|limited|plc|holdings?|group|sa|ag|the)\b|[^a-z0-9]", "", key)[:18]
+        if key and key in seen_issuer and r["ticker"].strip() not in ("—", "-", ""):
+            dup += 1
+            continue
+        if key:
+            seen_issuer.add(key)
+        kept.append(r)
+    rows = sorted(kept, key=lambda r: -f(r["composite"], 0))
+    print(f"  issuer dedupe: {dup} duplicate listings removed")
     for i, r in enumerate(rows, 1):
         r["rank"] = i
     out_fields = fields + [k for k in ("fmp_symbol", "price", "currency", "mcap", "p_b",

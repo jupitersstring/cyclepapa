@@ -269,10 +269,10 @@ def main() -> int:
           "A Tax Benefits Preservation (NOL) rights plan means material net-"
           "operating-loss carryforwards the company is protecting — a hidden "
           "tax asset for a future acquirer (the WMIH / Clark Street archetype).",
-          ["Ticker", "Name", "Score", "Now OTC", "Mcap $M", "Cash-rich",
+          ["Ticker", "Name", "Score", "$vol/day k", "Mcap $M", "Cash-rich",
            "Below book", "Filed"],
           [[k, (r.get("company") or "")[:28], r.get("score"),
-            "✓" if (q.get(k) or {}).get("otc") else "—",
+            _num(dollar_vol(q.get(k) or {}) / 1e3, 1) if q.get(k) else "—",
             _num((r.get("mcap") or 0) / 1e6, 1), "✓" if r.get("cash_rich") else "—",
             "✓" if r.get("below_book") else "—", r.get("date")] for k, r in nl[:60]],
           f"{len(nl)} names with an NOL rights plan in the last ~18 months. "
@@ -388,6 +388,7 @@ def main() -> int:
     fin = name_financials.load()
     name_financials.add_financials(wb, fin, index=1, skip=("Contents", "Methodology"))
     bl.key_numbers(wb, fin, skip=("Contents", "Methodology", "Name Financials"))
+    print("  QA fixes:", dict(bl.qa_fixes(wb, fin, skip=("Contents", "Methodology"))))
     cited = [str(c.value).strip() for c in wb["Name Financials"]["A"][4:] if c.value]
     intent_first = [r["ticker"] for r in sorted(oi.values(), key=lambda r: -r.get("score", 0))
                     if r.get("tier")][:20]
