@@ -336,6 +336,22 @@ def run():
     except sqlite3.OperationalError:
         warns.append("nport_holdings missing — the global books (non-US holdings) are not loaded (ingest_nport.py)")
 
+    # I11. valuation coverage: a blank multiple must mean "no source has it",
+    #      not a loss or a fund silently rendered as "—" (the books once showed
+    #      ~45% blanks, 90% of them explainable). Priced common stocks only.
+    from _style_bw import valuation_lookup
+    vals = valuation_lookup(conn)
+    commons = [r[0] for r in conn.execute("""SELECT ticker FROM unified_signal
+        WHERE sec_type = 'common' AND mcap_m > 0""")]
+    if commons:
+        blank = [t for t in commons if (vals.get(t) or {}).get("P/E") in (None, "")]
+        if len(blank) > 0.10 * len(commons):
+            fails.append(f"valuation: {len(blank)} of {len(commons)} priced common stocks have no P/E and no "
+                         f"reason label (enrich_fmp.py not run / FMP ratios missing)")
+        elif blank:
+            warns.append(f"valuation: {len(blank)} of {len(commons)} priced common stocks have no P/E from any "
+                         f"source, e.g. {', '.join(blank[:6])}")
+
     # I8. feed freshness: warn when the tradeable-signal feeds fall behind.
     for tbl, col, days in [('form4_transactions','trans_date',21), ('holder_13d','filed',30),
                            ('catalysts_8k','filed',30), ('ticker_yf','asof',21),

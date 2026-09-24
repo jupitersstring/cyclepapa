@@ -255,35 +255,84 @@ VALUATION_COLS = ("EV/EBITDA", "P/E", "P/B", "P/TB")
 _VAL_FMT = {"EV/EBITDA": '0.0"x"', "P/E": '0.0"x"', "P/B": '0.00"x"', "P/TB": '0.00"x"'}
 _VAL_DP = {"EV/EBITDA": 1, "P/E": 1, "P/B": 2, "P/TB": 2}
 
+_SEC_LABEL = {"etf": "fund", "warrant": "warrant", "unit": "unit", "right": "right",
+              "preferred": "pref", "note": "note", "delisted": "delisted"}
+
 def valuation_lookup(conn):
-    """ticker -> {EV/EBITDA, P/E, P/B, P/TB} exactly as the books define them:
-    EV/EBITDA only with positive EV and EBITDA, P/E only on positive earnings,
-    P/TB only on positive tangible book ('neg TBV' when it is negative —
-    goodwill-heavy balance sheets are information too). unified_signal wins
-    for the multiples it carries, so a new column never contradicts an
-    existing one on the same sheet."""
+    """ticker -> {EV/EBITDA, P/E, P/B, P/TB}: the multiple where it is
+    meaningful, otherwise the REASON it isn't, so a cell never reads as missing
+    data when the data is saying something:
+      loss · neg EBITDA · net cash · neg equity · neg TBV   (the company's numbers)
+      fund · warrant · unit · right · pref · note · delisted (not an operating stock)
+    "—" is left only where no source has the figure. EV/EBITDA needs positive EV
+    and EBITDA, P/E positive earnings, P/B positive book (<=30 unless FMP's),
+    P/TB positive tangible book. unified_signal wins for the multiples it
+    carries, so a new column never contradicts an existing one."""
     import sqlite3
     out = {}
     try:
-        for tk, ev, pe, pb, ptb, neg in conn.execute("""SELECT ticker,
-                CASE WHEN enterprise_value_m > 0 AND ebitda_m > 0 THEN ev_ebitda END,
-                CASE WHEN pe_ttm > 0 THEN pe_ttm END,
-                CASE WHEN pb_ratio > 0 AND (pb_ratio <= 30 OR src = 'fmp') THEN pb_ratio END,
-                CASE WHEN ptb_ratio > 0 THEN ptb_ratio END, neg_tbv
-                FROM ticker_yf"""):
-            out[tk] = {"EV/EBITDA": ev, "P/E": pe, "P/B": pb,
-                       "P/TB": ptb if ptb else ("neg TBV" if neg else None)}
+        cols = {r[1] for r in conn.execute("PRAGMA table_info(ticker_yf)")}
+        raw = ", pe_raw, pb_raw, ev_ebitda_raw" if {"pe_raw", "pb_raw", "ev_ebitda_raw"} <= cols \
+            else ", NULL, NULL, NULL"
+        for (tk, evx, ev, ebitda, pe, pb, src, ptb, neg, fund, industry,
+             pe_r, pb_r, evx_r) in conn.execute(f"""SELECT ticker, ev_ebitda, enterprise_value_m,
+                ebitda_m, pe_ttm, pb_ratio, src, ptb_ratio, neg_tbv, is_fund, industry{raw} FROM ticker_yf"""):
+            if fund:
+                out[tk] = dict.fromkeys(VALUATION_COLS, "fund")
+                continue
+            if industry == "Shell Companies":       # a pre-merger SPAC: cash in trust, no operations
+                out[tk] = dict.fromkeys(VALUATION_COLS, "SPAC")
+                continue
+            d = dict.fromkeys(VALUATION_COLS)
+            if evx and ev and ev > 0 and ebitda and ebitda > 0:
+                d["EV/EBITDA"] = evx
+            elif (ebitda is not None and ebitda <= 0) or (evx_r is not None and evx_r < 0 and (ev or 0) > 0):
+                d["EV/EBITDA"] = "neg EBITDA"
+            elif ev is not None and ev <= 0:
+                d["EV/EBITDA"] = "net cash"
+            if pe and pe > 0:
+                d["P/E"] = pe
+            elif pe_r is not None and pe_r <= 0:
+                d["P/E"] = "loss"
+            if pb and pb > 0 and (pb <= 30 or src == "fmp"):
+                d["P/B"] = pb
+            elif pb_r is not None and pb_r <= 0:
+                d["P/B"] = "neg equity"
+            if ptb and ptb > 0:
+                d["P/TB"] = ptb
+            elif neg:
+                d["P/TB"] = "neg TBV"
+            elif pb_r is not None and pb_r <= 0:
+                d["P/TB"] = "neg equity"
+            out[tk] = d
     except sqlite3.OperationalError:
         pass
     for tk, ev, pb, pe in conn.execute("SELECT ticker, ev_ebitda, pb_ratio, pe_ttm FROM unified_signal"):
-        d = out.setdefault(tk, {"EV/EBITDA": None, "P/E": None, "P/B": None, "P/TB": None})
+        d = out.setdefault(tk, dict.fromkeys(VALUATION_COLS))
         if ev is not None:
             d["EV/EBITDA"] = ev
         if pb is not None:
             d["P/B"] = pb
         if pe is not None and pe > 0:
             d["P/E"] = pe
+    # not an operating stock: no multiple applies, whatever a data feed holds
+    for tk, st in conn.execute("SELECT ticker, sec_type FROM unified_signal"):
+        if st in _SEC_LABEL:
+            out[tk] = dict.fromkeys(VALUATION_COLS, _SEC_LABEL[st])
+    try:
+        for (tk,) in conn.execute("SELECT ticker FROM yf_dead"):
+            out[tk] = dict.fromkeys(VALUATION_COLS, "delisted")
+    except sqlite3.OperationalError:
+        pass
     return out
+
+def valuation_for(vals, ticker, name):
+    """One cell's value: bond lines ("MSTR 0.625 03-15-30", "ON (note)") are
+    notes; anything no source knows stays None (rendered "—")."""
+    t = str(ticker or "")
+    if " " in t.strip():
+        return "note"
+    return (vals.get(t) or {}).get(name)
 
 def _fit_widths(ws, first_col):
     """autosize() for columns >= first_col only (keeps hand-set widths left of it)."""
@@ -345,8 +394,6 @@ def add_valuation_columns(wb, vals, skip=("README", "Legend")):
                     width = col
                     hdr.setdefault(str(v), col)
             missing = [m for m in VALUATION_COLS if m not in hdr]
-            if not missing:
-                continue
             present = [hdr[m] for m in VALUATION_COLS if m in hdr]
             ins = max(present) if present else next(
                 (hdr[a] for a in ("BUCKET", "MCAP", "MCAP $ (USD)") if a in hdr), width)
@@ -367,6 +414,24 @@ def add_valuation_columns(wb, vals, skip=("README", "Legend")):
                                                    for c in range(1, min(max_col, 6) + 1)) >= 2:
                         body.append(rr)
                 rr += 1
+            # valuation columns the table already has: a blank / "—" cell gets
+            # the figure or the reason it has none, like the inserted columns
+            for m in VALUATION_COLS:
+                if m not in hdr:
+                    continue
+                for rr in body:
+                    c = ws.cell(rr, hdr[m])
+                    if c.value not in (None, "", "—"):
+                        continue
+                    v = valuation_for(vals, ws.cell(rr, tcol).value, m)
+                    if v in (None, ""):
+                        continue
+                    num = isinstance(v, (int, float))
+                    c.value = round(v, _VAL_DP[m]) if num else v
+                    c.number_format = _VAL_FMT[m] if num else "General"
+                    c.alignment = Alignment(horizontal="right", vertical="center")
+            if not missing:
+                continue
             k = len(missing)
             for rr in [h] + body:
                 for col in range(width, ins, -1):          # rightmost first
@@ -379,7 +444,7 @@ def add_valuation_columns(wb, vals, skip=("README", "Legend")):
                         c.alignment = Alignment(horizontal="right", vertical="bottom")
                         c.number_format = "General"
                         continue
-                    v = (vals.get(ws.cell(rr, tcol).value) or {}).get(name)
+                    v = valuation_for(vals, ws.cell(rr, tcol).value, name)
                     num = isinstance(v, (int, float))
                     c.value = round(v, _VAL_DP[name]) if num else (v if v else "—")
                     c.font, c.border = BODY_FONT, ROW_BORDER
@@ -508,8 +573,21 @@ LEGEND = [
         ("micro", "$50M – $300M."),
         ("small", "$300M – $2B."),
         ("mid", "$2B – $10B."),
-        ("large", "Over $10B."),
+        ("large", "$10B – $200B."),
+        ("mega", "Over $200B."),
         ("unknown", "Market cap unresolved (foreign / SPAC / warrant / defunct)."),
+    ]),
+    ("Valuation cells", [
+        ("number", "The multiple: EV/EBITDA, P/E (trailing), P/B, P/TB (price / tangible book)."),
+        ("loss", "Trailing earnings are negative: no P/E."),
+        ("neg EBITDA", "Trailing EBITDA is negative: no EV/EBITDA."),
+        ("net cash", "Enterprise value is below zero (cash exceeds market cap plus debt): no EV/EBITDA."),
+        ("neg equity", "Book equity is negative (buybacks, accumulated losses): no P/B or P/TB."),
+        ("neg TBV", "Book is positive but tangible book is negative (goodwill-heavy): no P/TB."),
+        ("fund / warrant / unit / right / pref / note", "Not an operating stock: company multiples do not apply."),
+        ("SPAC", "A pre-merger blank-check shell (cash in trust, no operations): multiples do not apply."),
+        ("delisted", "No longer trades."),
+        ("—", "No source carries the figure."),
     ]),
     ("Sources & symbols", [
         ("13F-HR", "SEC quarterly institutional holdings filing (the standard smart-money source). NOTE: 13F holdings are quarter-END positions filed up to 45 days later — the smart-money columns can be up to ~3–4 months old (see each sheet's as-of date). Form 4 / 13D / 8-K / valuation columns are near-current."),

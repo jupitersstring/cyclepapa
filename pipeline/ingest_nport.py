@@ -199,7 +199,7 @@ def run():
             if t and st == "common"}
     roster = [r[0] for r in conn.execute("SELECT fund FROM fund_13f_state ORDER BY last_filed DESC")]
     idx = isin_index()
-    failed = 0
+    failed, no_public = 0, set()
     for sid, prefix, label in SERIES:
         manager = next((f for f in roster if prefix and f.startswith(prefix)), None) or prefix or label
         sf = series_filings(sid)
@@ -210,6 +210,7 @@ def run():
         cik, ents = sf
         if not (cik and ents):
             print(f"  [-] {label}: no public N-PORT-P for series {sid}")
+            no_public.add(sid)
             conn.execute("DELETE FROM nport_holdings WHERE series_id=?", (sid,))
             conn.execute("DELETE FROM nport_prior WHERE series_id=?", (sid,))
             continue
@@ -266,8 +267,16 @@ def run():
     for r in conn.execute("""SELECT issuer, isin, country, ROUND(SUM(val_usd)/1e6, 1) v FROM nport_holdings
             WHERE country != 'US' AND ticker IS NULL GROUP BY isin ORDER BY v DESC LIMIT 8"""):
         print(f"    {r[0][:36]:36s} {r[1] or '-':13s} {r[2] or '-':3s} ${r[3]}M")
+    # a series whose refresh failed keeps its previous book (reported above);
+    # only a series with NO book on file fails the run
+    have = {r[0] for r in conn.execute("SELECT DISTINCT series_id FROM nport_holdings")}
+    missing = [label for sid, _, label in SERIES if sid not in have and sid not in no_public]
+    if missing:
+        print(f"  ! no book at all for: {', '.join(missing)}")
+    elif failed:
+        print(f"  ({failed} refreshes failed — previous books kept; re-run to refresh them)")
     conn.close()
-    return failed
+    return len(missing)
 
 if __name__ == "__main__":
     sys.exit(2 if run() else 0)

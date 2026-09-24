@@ -58,7 +58,7 @@ def sheet_readme(wb, conn):
         ("Per-style sheets ×15  — one per macro_style:",),
         ("                        top picks within style, S3 new initiations,",),
         ("                        S4 material adds, concentration leaders,",),
-        ("                        by-size cross-cut (nano → large).",),
+        ("                        by-size cross-cut (nano → mega).",),
         ("",),
         ("Macro styles",),
     ]
@@ -315,7 +315,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
     write_table_header(ws, row, hdr4)
     row += 1
     out = []
-    for bucket in ["nano","micro","small","mid","large"]:
+    for bucket in ["nano","micro","small","mid","large","mega"]:
         rows = list(conn.execute(f"""
             SELECT h.ticker, COUNT(DISTINCT h.fund) AS holders,
                    MAX(h.pct_book) AS max_pb,

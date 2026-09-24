@@ -310,7 +310,8 @@ def sheet_readme(wb, conn):
         else:
             c.font = MONO_FONT
 
-def write_signal_sheet(wb, conn, name, where_extra="", limit=200, subtitle="", exclude_biotech=False):
+def write_signal_sheet(wb, conn, name, where_extra="", limit=200, subtitle="", exclude_biotech=False,
+                       include_mega=False):
     ws = wb.create_sheet(name)
     ws.sheet_view.showGridLines = False
     write_table_header(ws, 4, SIG_HDR)
@@ -319,7 +320,7 @@ def write_signal_sheet(wb, conn, name, where_extra="", limit=200, subtitle="", e
     # (the old Non-Biotech sheet passed limit=400 and never filtered biotech).
     fetch = (limit * 4) if limit else None
     rows = get_signal_rows(conn, where_extra=where_extra, limit=fetch)
-    rows = [r for r in rows if r[0] not in ETFs and r[0] not in MEGA]
+    rows = [r for r in rows if r[0] not in ETFs and (include_mega or r[0] not in MEGA)]
     if exclude_biotech:
         rows = [r for r in rows if not is_biotech(r[24])]   # r[24] = sic_description
     matched = len(rows)
@@ -807,16 +808,16 @@ def sheet_best_in_bucket(wb, conn, per_bucket=20):
     ws = wb.create_sheet("Best in Bucket")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Best in Bucket — top ideas within each size class",
-                "Score is cross-sectionally biased toward large caps; this ranks the best names within nano/micro/small/mid/large separately.",
+                "Score is cross-sectionally biased toward large caps; this ranks the best names within nano/micro/small/mid/large/mega separately.",
                 len(SIG_HDR))
     row = 4
     for bucket, label in [("nano", "Nano (<$50M)"), ("micro", "Micro ($50–300M)"),
                           ("small", "Small ($300M–2B)"), ("mid", "Mid ($2–10B)"),
-                          ("large", "Large (>$10B)")]:
+                          ("large", "Large ($10–200B)"), ("mega", "Mega (>$200B)")]:
         write_section_heading(ws, row, label, len(SIG_HDR)); row += 1
         write_table_header(ws, row, SIG_HDR); row += 1
         rows = get_signal_rows(conn, where_extra=f"AND us.mcap_bucket='{bucket}'", limit=per_bucket)
-        rows = [r for r in rows if r[0] not in ETFs and r[0] not in MEGA]
+        rows = [r for r in rows if r[0] not in ETFs and (bucket == "mega" or r[0] not in MEGA)]
         out = [signal_row_to_cells(r) for r in rows]
         write_table_rows(ws, out, row)
         for ridx in range(row, row + len(out)):
@@ -2225,6 +2226,8 @@ TAB_COLORS = {
     "Micro ($50M–$300M)":      "595959",
     "Small ($300M–$2B)":       "595959",
     "Mid ($2B–$10B)":          "595959",
+    "Large ($10B–$200B)":      "595959",
+    "Mega (>$200B)":           "595959",
     # Signal sheets — mid
     "Material + New":          "808080",
     "Who's Buying":            "808080",
@@ -2273,10 +2276,15 @@ def main():
     for bucket, title in [("nano","Nano (<$50M)"),
                           ("micro","Micro ($50M–$300M)"),
                           ("small","Small ($300M–$2B)"),
-                          ("mid","Mid ($2B–$10B)")]:
+                          ("mid","Mid ($2B–$10B)"),
+                          ("large","Large ($10B–$200B)"),
+                          ("mega","Mega (>$200B)")]:
         write_signal_sheet(wb, conn, title,
             where_extra=f"AND us.mcap_bucket = '{bucket}'", limit=60,
-            subtitle=f"Top {bucket} cap by unified_score. Ex-ETF, ex-mega.")
+            include_mega=(bucket == "mega"),
+            subtitle=(f"Top {bucket} cap by unified_score. Ex-ETF"
+                      + ("; the ten mega-caps the other sheets exclude are all here." if bucket == "mega"
+                         else ", ex-mega.")))
     sheet_best_in_bucket(wb, conn)
     write_signal_sheet(wb, conn, "Material + New",
         where_extra="AND (us.s3_new + us.s4_add) >= 2 AND us.mcap_bucket != 'unknown'",
@@ -2314,7 +2322,7 @@ def main():
     AF_SHEETS = {
         "Best Ideas",
         "Top 100", "Nano (<$50M)", "Micro ($50M–$300M)", "Small ($300M–$2B)",
-        "Mid ($2B–$10B)", "Material + New", "Activist 10+", "Insider Buys ≤30d",
+        "Mid ($2B–$10B)", "Large ($10B–$200B)", "Mega (>$200B)", "Material + New", "Activist 10+", "Insider Buys ≤30d",
         "Insider F4 Buys", "Insider Clusters", "Non-Biotech Top 100", "In The Money",
         "Asymmetry", "Revealed Preference", "Valuation", "Catalysts 8-K",
         "Global Holdings", "Global Books",

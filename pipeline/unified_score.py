@@ -88,9 +88,10 @@ def classify_sec_type(tkr, name, names):
         return "preferred"
     if tkr.endswith(("-RI", "-R")) or re.search(r"\bCVR\b|contingent value|\bright(s)?\b(?!s? of)", nm, re.I):
         return "right"
-    if tkr.endswith("-UN"):
-        return "unit"                       # SPAC units (TRAD-UN, GLED-UN)
-    if tkr.endswith(("-WT", "+")) or re.search(r"\bwarrant", nm, re.I):
+    if tkr.endswith(("-UN", "-U", ".U", ".UN")):
+        return "unit"                       # SPAC units (TRAD-UN, GLED-UN, NWAX.U)
+    # "-WS" is NYSE's warrant suffix (ACHR-WS, GME-WS scored as common stock)
+    if tkr.endswith(("-WT", "+", "-WS", ".WS", ".WT")) or re.search(r"\bwarrant", nm, re.I):
         return "warrant"
     # CLOSED-END FUNDS: names ending in "Fund"/"Fund Inc" (Nuveen/PIMCO/Eaton Vance
     # income & municipal funds) are fund vehicles, not operating stocks. Anchored
@@ -577,7 +578,8 @@ def run():
         elif mcap < 300:   bucket = "micro"
         elif mcap < 2000:  bucket = "small"
         elif mcap < 10000: bucket = "mid"
-        else:              bucket = "large"
+        elif mcap < 200000: bucket = "large"
+        else:              bucket = "mega"
 
         components = (f"sm={smart_money:.1f} s3*={s3_new_init:.1f} s4*={s4_material_add:.1f} "
                       f"s1*={s1_top_pick:.1f} act={activist_pct:.1f} pb_max={max_pb_term:.1f} "

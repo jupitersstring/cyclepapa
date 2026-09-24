@@ -17,7 +17,7 @@ currency. unified_score's FX table converts both.
 
 Key: env FMP_API_KEY, else data/.fmp_key (gitignored). Never committed.
 """
-import csv, io, math, os, sqlite3, subprocess, time
+import csv, io, json, math, os, re, sqlite3, subprocess, time, urllib.parse
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DB = os.path.join(BASE, "data", "cyclepapa.db")
@@ -87,6 +87,32 @@ def cached_bulk(name, fetch, max_age_h=20):
             age_h = (time.time() - os.path.getmtime(path)) / 3600
             print(f"  ! {name}: {str(e)[:80]} — using cached copy ({age_h:.0f}h old)", flush=True)
     return list(csv.DictReader(open(path)))
+
+def fetch_symbol(path, symbol, max_age_h=20):
+    """One symbol's FMP JSON (ratios-ttm / key-metrics-ttm) for listings the
+    bulk files skip, cached a day in data/fmp_cache/per_symbol/. None = failed."""
+    d = os.path.join(CACHE, "per_symbol")
+    os.makedirs(d, exist_ok=True)
+    fn = os.path.join(d, f"{path}_{re.sub(r'[^A-Za-z0-9._-]', '_', symbol)}.json")
+    if os.path.exists(fn) and time.time() - os.path.getmtime(fn) < max_age_h * 3600:
+        return json.load(open(fn))
+    url = f"{API}/{path}?symbol={urllib.parse.quote(symbol)}&apikey={api_key()}"
+    for attempt in range(4):
+        body = subprocess.run(["curl", "-sS", "--max-time", "60", url],
+                              capture_output=True, text=True).stdout
+        if "Limit Reach" in body:
+            time.sleep(20 * (attempt + 1))
+            continue
+        try:
+            data = json.loads(body)
+        except ValueError:
+            time.sleep(3)
+            continue
+        if isinstance(data, list):
+            json.dump(data, open(fn, "w"))
+            return data
+        time.sleep(3)
+    return None
 
 def load_profiles():
     """All FMP company profiles (~90k) — shared by the enrich and the mapper."""
@@ -174,7 +200,11 @@ def run():
     conn.execute("PRAGMA busy_timeout=120000")
     conn.row_factory = sqlite3.Row
     cols = [r[1] for r in conn.execute("PRAGMA table_info(ticker_yf)")]
-    for col, ty in (("src", "TEXT"), ("is_fund", "INTEGER"), ("ptb_ratio", "REAL"), ("neg_tbv", "INTEGER")):
+    # *_raw: FMP's multiples WITH their sign. The display columns keep only
+    # meaningful (positive) values; the sign says why one is blank — a loss,
+    # negative EBITDA, negative equity — which the books now print instead of "—"
+    for col, ty in (("src", "TEXT"), ("is_fund", "INTEGER"), ("ptb_ratio", "REAL"), ("neg_tbv", "INTEGER"),
+                    ("pe_raw", "REAL"), ("pb_raw", "REAL"), ("ev_ebitda_raw", "REAL")):
         if col not in cols:
             conn.execute(f"ALTER TABLE ticker_yf ADD COLUMN {col} {ty}")
             cols.append(col)
@@ -198,6 +228,23 @@ def run():
     if conn.execute("SELECT 1 FROM sqlite_master WHERE name='nport_holdings'").fetchone():
         universe |= {r[0] for r in conn.execute(
             "SELECT DISTINCT ticker FROM nport_holdings WHERE ticker IS NOT NULL")}
+    # names the bulk ratio / key-metric files skip (fresh listings, OTC, some
+    # foreign lines): the per-symbol endpoints often have them (BEBE, SLQT, Z59.SI)
+    from concurrent.futures import ThreadPoolExecutor
+    gaps = sorted(tk for tk in universe if tk in prof and is_true(prof[tk].get("isActivelyTrading"))
+                  and not (is_true(prof[tk].get("isEtf")) or is_true(prof[tk].get("isFund")))
+                  and (tk not in km or tk not in rt))
+    with ThreadPoolExecutor(6) as ex:
+        got_k = dict(zip(gaps, ex.map(lambda t: fetch_symbol("key-metrics-ttm", t) if t not in km else None, gaps)))
+        got_r = dict(zip(gaps, ex.map(lambda t: fetch_symbol("ratios-ttm", t) if t not in rt else None, gaps)))
+    n_fill = 0
+    for tk in gaps:
+        if got_k.get(tk):
+            km[tk] = got_k[tk][0]; n_fill += 1
+        if got_r.get(tk):
+            rt[tk] = got_r[tk][0]; n_fill += 1
+    print(f"per-symbol fallback: {len(gaps)} listings missing from the bulk ratio/metric files, "
+          f"{n_fill} rows recovered", flush=True)
     existing = {r["ticker"]: dict(r) for r in conn.execute("SELECT * FROM ticker_yf")}
     asof = time.strftime("%Y-%m-%d")
     conn.execute("CREATE TABLE IF NOT EXISTS yf_dead (ticker TEXT PRIMARY KEY, asof TEXT)")
@@ -250,6 +297,7 @@ def run():
         k, r = km.get(tk), rt.get(tk)
         if k:
             row["ev_ebitda"] = pos(k.get("evToEBITDATTM"))
+            row["ev_ebitda_raw"] = num(k.get("evToEBITDATTM"))
             row["ev_revenue"] = pos(k.get("evToSalesTTM"))
             # FMP's EV is in the REPORTING currency (TSM: TWD). EV/mktcap is
             # currency-free, so rescale onto the listing-currency market cap.
@@ -265,6 +313,8 @@ def run():
         if r:
             row["pb_ratio"] = pos(r.get("priceToBookRatioTTM"))
             row["pe_ttm"] = pos(r.get("priceToEarningsRatioTTM"))
+            row["pb_raw"] = num(r.get("priceToBookRatioTTM"))
+            row["pe_raw"] = num(r.get("priceToEarningsRatioTTM"))
             row["peg"] = pos(r.get("priceToEarningsGrowthRatioTTM"))
             # P/TB = P/B x (book / tangible book per share). Book and tangible
             # book are both in the reporting currency, so their ratio is
