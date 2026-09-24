@@ -307,3 +307,9 @@ CREATE TABLE broker_swap_radar (
       disclosed_swap TEXT,      -- a 13D on this name whose text names a swap
       f144_sale TEXT,           -- Form 144 proposed-sale pressure (contra)
       PRIMARY KEY (ticker, broker));
+CREATE TABLE congress_trades (
+      chamber TEXT, member_id TEXT, member TEXT, district TEXT, owner TEXT,
+      ticker TEXT, asset_type TEXT, asset_desc TEXT, type TEXT,
+      amount_lo REAL, amount_hi REAL, amount_text TEXT,
+      trans_date TEXT, disclosure_date TEXT, link TEXT);
+CREATE INDEX idx_congress_ticker ON congress_trades(ticker);

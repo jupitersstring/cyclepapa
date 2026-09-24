@@ -211,7 +211,8 @@ def run():
 
     # I8. feed freshness: warn when the tradeable-signal feeds fall behind.
     for tbl, col, days in [('form4_transactions','trans_date',21), ('holder_13d','filed',30),
-                           ('catalysts_8k','filed',30), ('ticker_yf','asof',21)]:
+                           ('catalysts_8k','filed',30), ('ticker_yf','asof',21),
+                           ('congress_trades','disclosure_date',21)]:
         mx = one(f"SELECT MAX({col}) FROM {tbl}")
         if mx and (conn.execute("SELECT julianday('now')-julianday(?)", (mx,)).fetchone()[0] or 0) > days:
             warns.append(f"{tbl} stale: latest {str(mx)[:10]} (> {days}d)")

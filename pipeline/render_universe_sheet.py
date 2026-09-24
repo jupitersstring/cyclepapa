@@ -632,6 +632,22 @@ def sheet_dossier(wb, conn, top_n=45):
         if r["insider_n"] and r["insider_n"] >= 2: parts.append(f"{r['insider_n']}-insider cluster")
         if act: parts.append(f"{re.sub(r'( |).*$','',act[0])} {act[1]:.0f}% ({'13D' if '13D' in (act[2] or '') else '13G'})" if act[1] else "")
         ws.cell(row=row, column=1, value="Insiders"); ws.cell(row=row, column=2, value=" · ".join(p for p in parts if p)); row += 1
+        # members of Congress trading this name (STOCK Act, last 180 days)
+        try:
+            cg = conn.execute("""SELECT
+                    COUNT(DISTINCT CASE WHEN type = 'Purchase' THEN member_id END),
+                    COUNT(DISTINCT CASE WHEN type LIKE 'Sale%' THEN member_id END),
+                    GROUP_CONCAT(CASE WHEN type = 'Purchase' THEN member || ' (' || owner || ', '
+                                 || amount_text || ', ' || trans_date || ')' END, ' | ')
+                FROM congress_trades WHERE ticker = ? AND trans_date >= date('now', '-180 days')
+                  AND asset_type IN ('Stock', 'Stock Option')""", (tk,)).fetchone()
+        except sqlite3.OperationalError:
+            cg = None
+        if cg and (cg[0] or cg[1]):
+            ctxt = f"{cg[0]} member(s) bought, {cg[1]} sold in 180 days"
+            if cg[2]:
+                ctxt += " · " + " | ".join(cg[2].split(" | ")[:6])
+            ws.cell(row=row, column=1, value="Congress"); ws.cell(row=row, column=2, value=ctxt); row += 1
         # recent catalysts
         cats = conn.execute("""SELECT filed, has_ma, has_control, has_director, has_pipe FROM catalysts_8k
                 WHERE ticker=? ORDER BY filed DESC LIMIT 3""", (tk,)).fetchall()
@@ -677,7 +693,7 @@ def sheet_dossier(wb, conn, top_n=45):
         row += 1
     for rr in range(4, row):
         c = ws.cell(row=rr, column=1)
-        if c.value in ("Drivers", "Held by", "Insiders", "Catalysts", "Valuation", "Earnings"):
+        if c.value in ("Drivers", "Held by", "Insiders", "Congress", "Catalysts", "Valuation", "Earnings"):
             c.font = _F(name="Times New Roman", size=9, italic=True, color="7F7F7F")
     ws.column_dimensions["A"].width = 16
     ws.column_dimensions["B"].width = 96
@@ -1100,6 +1116,90 @@ def sheet_clusters(wb, conn):
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
+
+def sheet_congress(wb, conn):
+    """Congressional trading (STOCK Act reports via FMP) read like insider
+    buying: several members independently buying one name is the signal; own
+    account / option purchases show more conviction than a spouse's managed
+    account; a filing past the 45-day deadline is flagged."""
+    try:
+        conn.execute("SELECT 1 FROM congress_trades LIMIT 1")
+    except sqlite3.OperationalError:
+        return
+    ws = wb.create_sheet("Congress Trades")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Congress Trades — members of Congress buying and selling",
+                "STOCK Act disclosures, last 180 days by trade date (stocks and options; funds, bonds excluded). "
+                "# Buying = distinct members. Est $ = sum of range midpoints (disclosures give ranges only). "
+                "Own acct = Self/Joint (not a spouse's or child's account). Late = filed after the 45-day deadline. "
+                "Selective = buyers who traded <40 names in the window; * marks prolific traders (managed-account style, "
+                "e.g. 200+ names) whose buys say little about any one stock. Sorted by selective buyers.", 18)
+    PROLIFIC = 40
+    breadth = {m: n for m, n in conn.execute("""SELECT member_id, COUNT(DISTINCT ticker) FROM congress_trades
+        WHERE trans_date >= date('now', '-180 days') GROUP BY member_id""")}
+    prolific = {m for m, n in breadth.items() if n >= PROLIFIC}
+    hdr = ["Ticker", "Selective Buyers", "# Buying", "# Selling", "Est Buy $M", "Est Sell $M", "Own-Acct Buys",
+           "Option Buys", "Latest Buy", "Days Ago", "Late Filings", "Buyers", "Score", "13F",
+           "Insider Clu", "Mcap", "Bucket", "Name"]
+    write_table_header(ws, 4, hdr)
+    rows = conn.execute("""
+        WITH w AS (SELECT * FROM congress_trades
+                   WHERE trans_date >= date('now', '-180 days') AND ticker IS NOT NULL
+                     AND asset_type IN ('Stock', 'Stock Option')),
+             mid AS (SELECT *, (COALESCE(amount_lo, 0) + COALESCE(amount_hi, amount_lo, 0)) / 2.0 AS mid_usd,
+                            CAST(julianday(disclosure_date) - julianday(trans_date) AS INT) AS lag
+                     FROM w)
+        SELECT m.ticker,
+               COUNT(DISTINCT CASE WHEN m.type = 'Purchase' THEN m.member_id END) AS n_buy,
+               COUNT(DISTINCT CASE WHEN m.type LIKE 'Sale%' THEN m.member_id END) AS n_sell,
+               SUM(CASE WHEN m.type = 'Purchase' THEN m.mid_usd ELSE 0 END) / 1e6 AS buy_m,
+               SUM(CASE WHEN m.type LIKE 'Sale%' THEN m.mid_usd ELSE 0 END) / 1e6 AS sell_m,
+               SUM(CASE WHEN m.type = 'Purchase' AND m.owner IN ('Self', 'Joint') THEN 1 ELSE 0 END) AS own_buys,
+               SUM(CASE WHEN m.type = 'Purchase' AND m.asset_type = 'Stock Option' THEN 1 ELSE 0 END) AS opt_buys,
+               MAX(CASE WHEN m.type = 'Purchase' THEN m.trans_date END) AS last_buy,
+               SUM(CASE WHEN m.lag > 45 THEN 1 ELSE 0 END) AS late,
+               GROUP_CONCAT(DISTINCT CASE WHEN m.type = 'Purchase' THEN m.member_id || '|' || m.member END) AS buyers,
+               us.score, us.smart_money_n, us.insider_n, us.mcap_m, us.mcap_bucket, us.name, us.sec_type
+        FROM mid m LEFT JOIN unified_signal us ON us.ticker = m.ticker
+        GROUP BY m.ticker
+        HAVING n_buy >= 1 AND COALESCE(us.sec_type, 'common') = 'common'""").fetchall()
+    out = []
+    for r in rows:
+        if r[0] in ETFs:
+            continue
+        days = conn.execute("SELECT CAST(julianday('now') - julianday(?) AS INT)", (r[7],)).fetchone()[0] if r[7] else None
+        buyers = {}
+        for item in (r[9] or "").split(","):
+            mid, _, nm = item.partition("|")
+            if nm:
+                buyers[mid] = nm + ("*" if mid in prolific else "")
+        selective = sum(1 for mid in buyers if mid not in prolific)
+        out.append([r[0], selective, r[1], r[2], round(r[3] or 0, 2), round(r[4] or 0, 2) if r[4] else "",
+                    r[5] or 0, r[6] or 0, r[7] or "", days if days is not None else "", r[8] or 0,
+                    ", ".join(sorted(buyers.values())), round(r[10], 1) if r[10] is not None else "",
+                    round(r[11] or 0, 1), r[12] or 0, r[13] or "", r[14] or "unknown", r[15] or ""])
+    out.sort(key=lambda x: (-x[1], -x[2], -(x[4] or 0)))
+    write_table_rows(ws, out, 5)
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=5).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=6).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=16).number_format = NUMFMT_MCAP
+    # the individual disclosures behind it: latest stock/option purchases
+    r0 = 5 + len(out) + 2
+    write_section_heading(ws, r0, "Latest purchase disclosures (newest first)", 12)
+    hdr2 = ["Ticker", "Member", "Chamber", "District", "Owner", "Asset", "Amount",
+            "Traded", "Disclosed", "Lag Days", "Company", "Filing"]
+    write_table_header(ws, r0 + 1, hdr2)
+    det = conn.execute("""SELECT ticker, member, chamber, district, owner, asset_type, amount_text,
+            trans_date, disclosure_date,
+            CAST(julianday(disclosure_date) - julianday(trans_date) AS INT), asset_desc, link
+        FROM congress_trades
+        WHERE type = 'Purchase' AND asset_type IN ('Stock', 'Stock Option') AND ticker IS NOT NULL
+        ORDER BY disclosure_date DESC, trans_date DESC LIMIT 200""").fetchall()
+    write_table_rows(ws, [list(d) for d in det], r0 + 2)
+    ws.freeze_panes = "B5"
+    autosize(ws)
+    ws.column_dimensions["A"].width = 9
 
 def sheet_unknown(wb, conn):
     ws = wb.create_sheet("Unknown Mcap")
@@ -1970,6 +2070,7 @@ TAB_COLORS = {
     "Insider Buys ≤30d":       "808080",
     "Insider F4 Buys":         "808080",
     "Insider Clusters":        "808080",
+    "Congress Trades":         "808080",
     "Catalysts 8-K":           "808080",
     # Setup sheets — mid-light
     "In The Money":            "A6A6A6",
@@ -2024,6 +2125,7 @@ def main():
     sheet_insider_recent(wb, conn)
     sheet_insider_f4(wb, conn)
     sheet_clusters(wb, conn)
+    sheet_congress(wb, conn)
     write_signal_sheet(wb, conn, "Non-Biotech Top 100",
         where_extra="AND us.mcap_bucket != 'unknown'", limit=140,
         subtitle="Top ex-biotech, ex-ETF, ex-mega.", exclude_biotech=True)
