@@ -352,6 +352,27 @@ def run():
             warns.append(f"valuation: {len(blank)} of {len(commons)} priced common stocks have no P/E from any "
                          f"source, e.g. {', '.join(blank[:6])}")
 
+    # I12. one vote per filing: a 13F book (accession) stored under two roster
+    #      names counts once (unified_score._ONE_BOOK); name them so the roster
+    #      duplicates stay visible.
+    dup = conn.execute("""SELECT accession, GROUP_CONCAT(DISTINCT fund) FROM fund_13f_holdings
+        GROUP BY accession HAVING COUNT(DISTINCT fund) > 1""").fetchall()
+    if dup:
+        warns.append(f"13F: {len(dup)} books are stored under two roster names and counted once "
+                     f"(one vote per filing): " + "; ".join(sorted(d[1].split(",")[0] for d in dup)))
+
+    # I13. vs-entry is computed on today's price: entry_intact.py runs in the
+    #      rebuild; a stale table showed a third "current" price for BABA.
+    try:
+        n_pair, n_off = conn.execute("""SELECT COUNT(*), SUM(CASE WHEN ABS(e.current_px / y.price - 1) > 0.10
+                THEN 1 ELSE 0 END) FROM ticker_entry_intact e JOIN ticker_yf y ON y.ticker = e.ticker
+            WHERE e.current_px > 0 AND y.price > 0""").fetchone()
+        if n_pair and (n_off or 0) > 0.10 * n_pair:
+            warns.append(f"entry anchors: {n_off} of {n_pair} vs-entry prices are 10%+ off today's price "
+                         f"(run entry_intact.py)")
+    except sqlite3.OperationalError:
+        pass
+
     # I8. feed freshness: warn when the tradeable-signal feeds fall behind.
     for tbl, col, days in [('form4_transactions','trans_date',21), ('holder_13d','filed',30),
                            ('catalysts_8k','filed',30), ('ticker_yf','asof',21),

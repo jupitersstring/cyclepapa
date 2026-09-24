@@ -18,7 +18,7 @@ from _style_bw import (
     first_sentence,
     add_valuation_columns, valuation_lookup,
     write_title, write_section_heading, write_table_header, write_table_rows,
-    autosize, write_legend_sheet, add_contents_index, set_print_layout,
+    autosize, write_legend_sheet, add_contents_index, add_grouped_contents, plain_status, set_print_layout,
     NUMFMT_USD, NUMFMT_PCT, NUMFMT_NUM, NUMFMT_INT, NUMFMT_USD2,
     NUMFMT_MCAP, NUMFMT_M_TO_B,
     TNR, SIZE_BODY, BODY_FONT, BODY_ITALIC, SECTION_FONT, TICKER_FONT, MONO_FONT,
@@ -80,7 +80,7 @@ def get_signal_rows(conn, where_extra="", limit=None, params=()):
         us.form4_buy_usd_m, us.form4_buy_30d_m, us.form4_sell_usd_m, us.form4_sell_30d_m,
         us.ev_ebitda, us.pb_ratio,
         us.entry_bucket, us.vs_entry_pct, us.anchor_px,
-        us.expected_return_pct, tm.name, tm.sic_description, tm.price,
+        us.expected_return_pct, tm.name, tm.sic_description, COALESCE(NULLIF(yf.price, 0), tm.price),
         COALESCE(yf.industry, tm.industry, tm.sic_description), yf.business_summary,
         tm.adv_3m_usd_m, us.components, ps.mom_3mo, ps.off_high
         FROM unified_signal us
@@ -182,6 +182,66 @@ def add_signal_heatmap(ws, first_row, last_row):
                        end_type="max", end_color=CRIMSON_WASH))
 
 # ---- sheets -----------------------------------------------------------------
+# The README's reading guide: every sheet under the question it answers.
+SHEET_GUIDE = [
+    ("Start here", [
+        ("Action Dashboard", "the strongest setups right now, several independent signals at once, one line each"),
+        ("Best Ideas", "multi-signal shortlist under $10B (cheap, below entry, insiders, activist, catalyst), with reasons"),
+        ("Convergence", "every name firing 3+ independent signal types; the dots show which"),
+        ("Ticker Dossier", "one block per top name: holders, insiders, activists, 8-Ks, valuation — vet an idea here"),
+    ]),
+    ("What the funds did last quarter", [
+        ("Revealed Preference", "buying now on dated evidence: 13F net buying, insider buys, new 13D/Gs, N-PORT, capital structure"),
+        ("Who's Buying", "for each name, the funds that opened or added to it, with the size of each move"),
+        ("QoQ Change", "breadth: how many funds added vs trimmed each name (share counts, every size of move)"),
+        ("Material + New", "the score table for names two or more funds opened or added (focus-weighted)"),
+    ]),
+    ("Ranked by the score", [
+        ("Top 100", "the highest scores (ETFs and the ten largest US mega-caps left out)"),
+        ("Non-Biotech Top 100", "the same without biotech"),
+        ("Nano (<$50M)", "top 60 nano-caps"), ("Micro ($50M–$300M)", "top 60 micro-caps"),
+        ("Small ($300M–$2B)", "top 60 small-caps"), ("Mid ($2B–$10B)", "top 60 mid-caps"),
+        ("Large ($10B–$200B)", "top 60 large-caps"), ("Mega (>$200B)", "every mega-cap, the ten giants included"),
+        ("Best in Bucket", "the top 20 of each size class on one sheet"),
+    ]),
+    ("Value and setup", [
+        ("Valuation", "cheap AND sound: free-cash-flow yield, ROIC, leverage, growth; value traps flagged"),
+        ("In The Money", "trading below the funds' estimated entry price"),
+        ("Asymmetry", "margin of safety times upside"),
+        ("Catalysts 8-K", "M&A, change of control, director changes, dilution, bankruptcy in the last 180 days"),
+    ]),
+    ("Insiders and politicians", [
+        ("Insider Buys ≤30d", "open-market insider buying in the last 30 days, C-suite first, with the buyers named"),
+        ("Insider F4 Buys", "180 days of insider buying, recency-weighted, individuals and entities split"),
+        ("Insider Clusters", "several insiders buying the same stock within a window"),
+        ("Congress Trades", "members of Congress buying and selling (STOCK Act)"),
+    ]),
+    ("Activists and hidden stakes", [
+        ("Activist 10+", "13D/G stakes of 10% or more"),
+        ("Latent Ownership", "warrants, converts, ownership blockers and swaps inside 13D text"),
+        ("Broker Swap Radar", "swap-desk share jumps that can show a stake before any 13D"),
+    ]),
+    ("Outside the US (N-PORT registered funds)", [
+        ("Global Picks", "non-US listings ranked on the managers' holdings and last quarter's buying"),
+        ("N-PORT Funds", "which registered funds are loaded, as of when, how international"),
+        ("N-PORT Holdings", "each fund's complete book, local listings included"),
+        ("N-PORT Changes", "what the managers' funds bought and sold since their previous report"),
+        ("N-PORT Global Consensus", "non-US stocks by how many managers hold them"),
+    ]),
+    ("Special and archive", [
+        ("Bill Miller", "Miller Value Partners and Patient Capital side by side"),
+        ("Adversarial Review", "a June 2026 red-team of the then-top picks — archived; scores and data have moved since"),
+    ]),
+    ("Reference", [
+        ("Legend", "every column and code defined"),
+        ("All Positions", "every disclosed position: 13F, research notes and 13D/G"),
+        ("Fund Coverage", "which funds have which data, and why some have none"),
+        ("All Funds", "every roster fund: its data status, CIK and book"),
+        ("Ticker Reference", "every symbol: name, industry, what it does"),
+        ("Unknown Mcap", "names whose market cap could not be resolved"),
+    ]),
+]
+
 def sheet_readme(wb, conn):
     ws = wb.create_sheet("README", 0)
     ws.sheet_view.showGridLines = False
@@ -242,62 +302,89 @@ def sheet_readme(wb, conn):
         out.append((line.rstrip(),))
         return out
 
+    # fund coverage in one line that reconciles with the Fund Coverage sheet
+    from fund_moves import latest_due_quarter, book_info
+    from _canon import canon as _cn
+    _q = latest_due_quarter()
+    _bi = book_info(conn)
+    _live = {f for f, d in _bi.items() if d["n"]}
+    _cur = {f for f in _live if _bi[f]["period"] == _q}
+    _mgr_live = {_cn(f) for f in _live}
+    # a dormant book whose manager files on under another name is not a gap
+    dormant_named = [f"{d} (live under another name)" if _cn(d) in _mgr_live else d for d in dormant]
     rows = [
         ("",),
+        ("START HERE",),
+        ("1. Action Dashboard — the strongest setups right now, several independent signals at once, one line each.",),
+        ("2. Revealed Preference — what the funds and insiders are buying now, on dated evidence (last 13F quarter,",),
+        ("   insider buys and new 13D/Gs in 90 days, N-PORT reports), with who bought and who sold.",),
+        ("3. Valuation — which of the names they hold are cheap AND sound (cash flow, returns, leverage, growth).",),
+        ("4. Ticker Dossier — every signal on one name in one block: vet an idea there before acting.",),
+        ("The Contents at the bottom groups every sheet by the question it answers.",),
+        ("",),
         ("DATA AS-OF (read before trusting any number)",),
-        (f"13F holdings   position as-of ~{f13_asof}  (latest filing {f13_filed}; SEC allows +45d, so 'smart money'",),
-        ("    reflects quarter-END positions and can be up to ~3-4 months old — a fund may have since exited).",),
+        (f"13F holdings   quarter ended {f13_asof}  (latest filing {f13_filed}; SEC allows +45d, so fund holdings",),
+        ("    reflect quarter-END positions and can be up to ~3-4 months old — a fund may have since exited).",),
         (f"Form 4 insider {f4_date}     ·   13D/G activist {d13_date}     ·   8-K catalysts {c8_date}   (near-current)",),
-        (f"Valuations     {yf_date}     (FMP, Yahoo fallback; price/mcap current to within days)",),
-        ("    → The 13F-derived columns (smart_money, section counts, %book) are the LAGGED layer; the Form 4 /",),
+        (f"Prices & valuations {yf_date}  (FMP company profiles, ratios and end-of-day prices)",),
+        ("    → The 13F-derived columns (13F, S1 / S3 / S4, %book) are the LAGGED layer; the Form 4 /",),
         ("      13D / 8-K / valuation columns are current. Don't read a 13F consensus as a live position.",),
         ("",),
         ("Universe",),
-        (f"{n_tk:,} tickers — the union of fund_13f_holdings, fund_positions, and holder_13d.subject_ticker.",),
-        (f"{n_fd} funds in fund_meta; ETFs/preferreds/warrants are classified (sec_type) and excluded from pick tables.",),
+        (f"{n_tk:,} tickers — every security in a tracked fund's 13F, research notes or 13D/G, plus the local",),
+        ("listings in the N-PORT books. ETFs, preferreds, warrants, units and notes are typed and kept out of pick tables.",),
+        (f"{n_fd} funds on the roster: {len(_live)} with a live 13F book ({len(_cur)} of them for the {_q} quarter),",),
+        (f"{len(dormant)} dormant (archived), {len(empty)} with an empty latest report; the rest file no 13F (non-US",),
+        ("managers, under the $100M threshold, individuals) and count through research notes, 13D/Gs and N-PORT.",),
+        ("Name variants of one manager ('Pershing Square Capital Managem', '... Management') count once. See Fund Coverage.",),
         ("",),
-        ("Score formula",),
-        ("score = log(smart_money) × 2          smart_money = CONVICTION-WEIGHTED 13F holders",),
+        ("Score formula (the 'Score' column; pipeline/unified_score.py)",),
+        ("score = 2 × ln(1 + 13F)                13F = CONVICTION-WEIGHTED count of 13F holders",),
         ("    The '13F' column is NOT a raw holder count. Each fund's vote is weighted",),
         ("    min(1, 75 / n_positions): a focused book (<=75 names) counts fully, while",),
         ("    pod-shops / quants are heavily downweighted — Citadel (6,687 names) ×0.011,",),
         ("    Millennium ×0.019, AQR ×0.020 — so statistical-arb breadth can't fake consensus.",),
-        ("      + 3.0 × n_funds_section3        new major positions",),
-        ("      + 1.5 × n_funds_section4        existing material adds",),
-        ("      + 2.0 × n_funds_section1        top picks",),
-        ("      + 0.5 × activist_max_pct        13D/G concentration",),
-        ("      + 0.6 × max_pct_book            single-fund concentration",),
-        ("      + 1.5 × n_funds_5pct_book       concentration cluster",),
-        ("      + cluster_step(n_insiders)      live insider buy cluster",),
-        ("      + log(form4_buys + 1) × 2       cumulative open-market buying",),
-        ("      − log(form4_sells + 1) × 1.5    insider sells (counter-signal)",),
-        ("      + micro_bonus                   +5 if <$300M, +3 if <$2B",),
-        ("      + 0.5 × expected_return_pct     base-rate weighted excess",),
+        ("      + 3.0 × S3 (cap 8)              new positions: the latest 13F quarter where a fund has a current",),
+        ("      + 1.5 × S4 (cap 10)             book (focus-weighted), research notes otherwise; S4 = adds of 25%+",),
+        ("      + 2.0 × S1 (cap 12)             top picks (research notes), only while the fund still holds the stock",),
+        ("      + 0.5 × activist stake % (cap 30)        largest 13D/G stake, filed in the last 24 months",),
+        ("      + 0.6 × largest % of a book (cap 25)     halved for a lone 50%+ sponsor stake",),
+        ("      + 1.5 × funds with 5%+ of book (cap 12)  concentration cluster",),
+        ("      + 5 / 10 / 15 for a live insider buy cluster of 1 / 3 / 5+ insiders, + 3 × ln(1 + cluster $M)",),
+        ("      + 2 × ln(1 + insider buys $M, recency-weighted) + 2 × ln(1 + buys in the last 30 days $M)",),
+        ("      − 1.5 × ln(1 + insider sells $M) − 1.5 × ln(1 + sells in the last 30 days $M)",),
+        ("      + small-cap bonus (+5 under $300M, +3 under $2B)",),
+        ("      + entry setup: +2.5 to +5 at 15-30% below the funds' estimated entry, tapering to 0 at 50% below",),
+        ("        and -3 beyond (a busted thesis); +1.5 within 15% of it; -3 when 40%+ above it",),
+        ("      + 8-K catalysts (M&A +5, change of control +4, director change +1, PIPE -3, bankruptcy -10)",),
         ("",),
         ("Data sources",),
         (f"fund_13f_holdings     {n_hold:,} rows from SEC 13F-HR XML across {n_13f_funds} funds",),
         *(_wrapped(f"Dormant, archived     {len(dormant)} funds with no 13F-HR in 200+ days, kept out of every count: ",
-                   dormant) if dormant else []),
+                   dormant_named) if dormant else []),
         *(_wrapped(f"Empty latest report   {len(empty)} funds filed a $0 holdings table (held no 13F securities): ",
                    empty) if empty else []),
-        (f"fund_positions        {n_fp:,} rows from XLSX research-team classifications",),
+        (f"fund_positions        {n_fp:,} research-team notes (compiled May–June 2026); superseded by the latest",),
+        ("                      13F wherever a fund has a current book",),
         *([(f"nport_holdings        {n_np:,} equity positions from N-PORT: the full books of {n_np_f} registered funds",),
            (f"                      of {n_np_m} managers, {np_fgn:.0f}% of it outside the US and invisible in 13F",),
            ("                      sheets: N-PORT Funds -> Holdings -> Changes -> Global Consensus",)] if n_np else []),
-        ("holder_13d            current SC 13D/G filings via efts.sec.gov full-text search",),
-        ("form4_transactions    P-code open-market buys + S-code sells, ≤180d",),
+        ("holder_13d            SC 13D/G filings via efts.sec.gov full-text search",),
+        ("form4_transactions    open-market buys (P) and sells (S): the SEC Form 4 scan plus FMP's insider feed",),
+        ("insider_fmp           every Form 4 code for ~100 days (awards, exercises, conversions): capital-structure tells",),
         ("insider_clusters      live ≤180d clusters",),
         ("catalysts_8k          8-K filings with parsed Item codes",),
-        ("ticker_meta           Yahoo chart price + SEC XBRL shares-out (76% mcap coverage)",),
+        ("ticker_yf             FMP profiles, ratios, key metrics, growth and cash flow (market caps in USD)",),
         ("",),
         ("Filters",),
-        ("ex-ETF — SPY, QQQ, IWM, sector ETFs removed for noise reduction.",),
-        ("ex-Mega — top-10 mega-caps removed where noted.",),
+        ("ex-ETF — ETFs and funds removed from pick tables.",),
+        ("ex-Mega — the ten largest US mega-caps (AAPL, MSFT, NVDA, AMZN, GOOGL, GOOG, META, TSLA, BRK-A, BRK-B)",),
+        ("   are left out of the ranked lists where noted, so they don't crowd everything else; the Mega sheet has them.",),
         ("ex-Biotech — SIC matching pharmaceutic / biological / therapeutic excluded where noted.",),
         ("",),
         ("Methodology note",),
-        ("This is a pure SQL aggregation. No curated ticker lists, no editorial picks, no memory.",),
-        ("The score formula is shared between universe and style workbooks. Re-rank by editing pipeline/unified_score.py.",),
+        ("Every number is aggregated from filings and market data. No curated ticker lists, no editorial picks, no memory.",),
+        ("The score is shared by the universe and style workbooks. Re-rank by editing pipeline/unified_score.py.",),
     ]
     for i, r in enumerate(rows, 4):
         c = ws.cell(row=i, column=1, value=r[0])
@@ -305,7 +392,8 @@ def sheet_readme(wb, conn):
         if not r[0].strip(): continue
         if r[0][:6] not in ("score ", "      "):
             # section heading test: short capitalized phrases
-            if r[0] in ("Universe","Score formula","Data sources","Filters","Methodology note"):
+            if r[0] in ("Universe", "Data sources", "Filters", "Methodology note", "START HERE",
+                        "DATA AS-OF (read before trusting any number)") or r[0].startswith("Score formula"):
                 c.font = SECTION_FONT
             else:
                 c.font = BODY_FONT
@@ -320,8 +408,8 @@ def write_signal_sheet(wb, conn, name, where_extra="", limit=200, subtitle="", e
     # Fetch a generous superset, then apply the ETF/mega/biotech exclusions in
     # Python and truncate to `limit` — so the exclusions actually reduce the list
     # (the old Non-Biotech sheet passed limit=400 and never filtered biotech).
-    fetch = (limit * 4) if limit else None
-    rows = get_signal_rows(conn, where_extra=where_extra, limit=fetch)
+    # every matching row is fetched, so "[showing top N of M]" states the real M
+    rows = get_signal_rows(conn, where_extra=where_extra)
     rows = [r for r in rows if r[0] not in ETFs and (include_mega or r[0] not in MEGA)]
     if exclude_biotech:
         rows = [r for r in rows if not is_biotech(r[24])]   # r[24] = sic_description
@@ -508,8 +596,8 @@ def sheet_qoq_change(wb, conn):
     ws = wb.create_sheet("QoQ Change")
     ws.sheet_view.showGridLines = False
     write_title(ws, "QoQ Position Change — building vs quietly trimming",
-                "Current 13F vs each fund's PRIOR filing, matched on CUSIP + share count (mapping/value-unit safe). Net Funds = (new+added) − (trimmed+exited). All-new names are often IPOs/spins; mixed-churn rows (both adds and trims) are the cleanest accumulation/distribution reads.", 10)
-    hdr = ["Ticker","Net Funds","New","Added","Trimmed","Exited","Δ Shares %","Form","Score","Mcap","Name"]
+                "Current 13F vs each fund's PRIOR filing, matched on CUSIP + share count (mapping/value-unit safe). Net Funds = (new+added) − (trimmed+exited), counting every fund equally and every size of move (for weighted buying see Revealed Preference). All-new names are often IPOs, spin-offs or SPACs (Note says which); mixed-churn rows (both adds and trims) are the cleanest accumulation/distribution reads.", 12)
+    hdr = ["Ticker","Net Funds","New","Added","Trimmed","Exited","Δ Shares %","Form","Score","Mcap","Name","Note"]
     write_table_header(ws, 4, hdr)
     # Per-ticker NON-COMMON equity forms held (preferred / warrant / unit /
     # right / note): so an accumulation that is really warrants or converts —
@@ -543,7 +631,9 @@ def sheet_qoq_change(wb, conn):
                (SELECT fund, SUM(value_k) v FROM fund_13f_holdings GROUP BY fund) c
                JOIN (SELECT fund, SUM(value_k) v FROM fund_13f_prior GROUP BY fund) p
                ON p.fund=c.fund
-             WHERE c.v > 0 AND p.v BETWEEN c.v*0.4 AND c.v*2.5),
+             WHERE c.v > 0 AND p.v BETWEEN c.v*0.4 AND c.v*2.5
+                 -- one vote per filing (a manager under two roster names)
+                 AND c.fund IN (SELECT MIN(fund) FROM fund_13f_holdings GROUP BY accession)),
              -- match at the TICKER level (via cusip_map), not raw CUSIP: an
              -- ADR->ordinary CUSIP change between quarters (AZN 046353108 ->
              -- G0593M107) otherwise fabricates "19 funds new + 19 exited".
@@ -600,18 +690,34 @@ def sheet_qoq_change(wb, conn):
     churn = [t for t in scored if (t[3] + t[4] + t[5]) > 0]
     allnew = [t for t in scored if (t[3] + t[4] + t[5]) == 0]
     top = churn[:70] + churn[-30:] + allnew[:20]
+    ws.cell(row=2, column=1).value += (f" [showing the 70 strongest builders and 30 strongest distributors of "
+                                       f"{len(churn)} names with churn, and the top 20 of {len(allnew)} all-new names]")
+    # an all-new holder list on a fresh listing is allocation, not accumulation
+    import datetime as _dt
+    from fund_moves import latest_due_quarter, _prev_quarter_end
+    since = _prev_quarter_end(latest_due_quarter())
+    near = (_dt.date.fromisoformat(since) - _dt.timedelta(days=45)).isoformat()
+    lst = {t: (d, ind, nm) for t, d, ind, nm in conn.execute(
+        "SELECT ticker, ipo_date, industry, long_name FROM ticker_yf")}
+    def note(tk, pure_new):
+        d, ind, nm = lst.get(tk, (None, None, None))
+        if ind == "Shell Companies" or "acquisition corp" in (nm or "").lower():
+            return "SPAC: holders subscribed to a blank-check listing"
+        if d and (d > since or (pure_new and d > near)):
+            return f"listed {d} (IPO or spin-off): holders were allocated or handed shares"
+        return ""
     out = []
     for nf, tk, n_new, n_add, n_trim, n_exit, d_pct, score, mcap, name in top:
         pure_new = (n_add + n_trim + n_exit) == 0
         out.append([tk, nf, n_new, n_add, n_trim, n_exit,
                     "new" if pure_new else round(max(-99, min(999, d_pct)), 0),
                     "common" if tk not in formmix else "+" + formmix[tk],
-                    round(score or 0, 1), mcap or "", (name or "")])
+                    round(score or 0, 1), mcap or "", (name or ""), note(tk, pure_new)])
     write_table_rows(ws, out, 5, ticker_col=1)
     # colour is data: Net Funds & Δ Shares — lapis building, crimson trimming
     color_directional(ws, 5, 4 + len(out), [2, 7], higher_is_better=True)
     if out:
-        ws.auto_filter.ref = f"A4:K{4+len(out)}"
+        ws.auto_filter.ref = f"A4:L{4+len(out)}"
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=7).number_format = '0"%"'      # Δ Shares % (was $M — wrong unit)
         ws.cell(row=ridx, column=9).number_format = '0.0'       # Score
@@ -756,11 +862,20 @@ def sheet_whos_buying(wb, conn):
     """The NAMES behind the s3/s4 counts — which specific funds are initiating new
     positions and materially adding. Counts tell you 'how many'; this tells you
     'who', which is the part that actually matters (a Baupost new position reads
-    very differently from an anonymous count of 3)."""
+    very differently from an anonymous count of 3). Same evidence as the score
+    (fund_moves.section_evidence): the latest 13F quarter where a fund has a
+    current book, research notes only for funds without one."""
+    from fund_moves import section_evidence, latest_due_quarter, short_fund
+    ev, st = section_evidence(conn)
+    q = latest_due_quarter()
     ws = wb.create_sheet("Who's Buying")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Who's Buying — the funds behind the New / Add counts",
-                "Per name: which funds are INITIATING (S3 new major position) and ADDING (S4 material add), from fund_positions. De-duplicated by canonical manager.", 7)
+                f"Per name: which funds INITIATED a position (S3) and which ADDED 25%+ to one (S4). For the "
+                f"{st['fresh']} funds with a current 13F book this is their {q} filing vs the quarter before "
+                f"('new 4.1%' = opened, now 4.1% of the book; moves under 0.5% of a book, spin-offs received and "
+                f"lines new at an IPO left out). Funds without a current 13F show their research notes, marked. "
+                f"Ranked by focus-weighted count (S3 x2 + S4). De-duplicated by manager.", 8)
     hdr = ["Ticker", "Company", "Score", "Form", "# New", "New Initiators (funds)", "# Add", "Material Adders (funds)"]
     write_table_header(ws, 4, hdr)
     nc_form = {}
@@ -773,43 +888,36 @@ def sheet_whos_buying(wb, conn):
             nc_form[tk] = forms
     except sqlite3.OperationalError:
         pass
-    # canonical-manager de-dupe so a fund's name variants don't list twice
-    from _canon import canon
     rows = conn.execute("""
         SELECT us.ticker, us.name, us.score, us.s3_new, us.s4_add
         FROM unified_signal us
         WHERE us.sec_type='common' AND (us.s3_new > 0 OR us.s4_add > 0)
-        ORDER BY (us.s3_new*2 + us.s4_add) DESC, us.score DESC LIMIT 200""").fetchall()
-    def funds_for(tk, sec):
-        seen, out = set(), []
-        for (f,) in conn.execute("""SELECT DISTINCT fund FROM fund_positions
-                WHERE ticker=? AND section=? AND ticker IS NOT NULL""", (tk, sec)):
-            c = canon(f)
-            if c in seen:
-                continue
-            seen.add(c)
-            # display the raw fund but trimmed of the trailing manager parenthetical
-            out.append(re.sub(r"\s*\(.*$", "", f).strip())
-        return out
+        ORDER BY (us.s3_new*2 + us.s4_add) DESC, us.score DESC""").fetchall()
+    rows = [r for r in rows if r[0] not in ETFs]
+    total, limit = len(rows), 200
+    ws.cell(row=2, column=1).value += f" [showing top {min(limit, total)} of {total}]"
+
+    def names(d, skip=()):
+        items = sorted(((m, e) for m, e in (d or {}).items() if m not in skip), key=lambda x: -x[1]["w"])
+        return [f"{short_fund(e['fund'])} ({e['label']})" for m, e in items]
     out = []
-    for tk, name, score, s3, s4 in rows:
-        new_f = funds_for(tk, 3)
+    for tk, name, score, s3, s4 in rows[:limit]:
+        d = ev.get(tk, {})
+        new_d = d.get(3, {})
         # the same manager can't be simultaneously INITIATING and ADDING — when
-        # research notes place it in both sections, the initiation wins.
-        from _canon import canon as _cn2
-        new_keys = {_cn2(f) for f in new_f}
-        add_f = [f for f in funds_for(tk, 4) if _cn2(f) not in new_keys]
+        # the evidence places it in both sections, the initiation wins.
+        new_f = names(new_d)
+        add_f = names(d.get(4, {}), skip=set(new_d))
         out.append([tk, (name or ""), round(score or 0, 1),
                     "common" if tk not in nc_form else "+" + nc_form[tk],
-                    len(new_f), ", ".join(new_f),
-                    len(add_f), ", ".join(add_f)])
+                    len(new_f), "; ".join(new_f), len(add_f), "; ".join(add_f)])
     write_table_rows(ws, out, 5, ticker_col=1)
     ws.freeze_panes = "B5"
     if out:
         ws.auto_filter.ref = f"A4:H{4 + len(out)}"
     autosize(ws)
     ws.column_dimensions["F"].width = 60
-    ws.column_dimensions["G"].width = 60
+    ws.column_dimensions["H"].width = 60
 
 def sheet_best_in_bucket(wb, conn, per_bucket=20):
     """Top names WITHIN each size bucket. The flat Top-100 is ~44% large-cap
@@ -886,40 +994,6 @@ def sheet_activist(wb, conn):
     ws.column_dimensions["A"].width = 8
 
 def sheet_broker_radar(wb, conn):
-    """Single-desk share-count jumps = candidate swap-hedge footprints for
-    stakes nobody has disclosed yet (activist TRS exposure sits on the
-    counterparty's 13F, not the activist's)."""
-    ws = wb.create_sheet("Broker Swap Radar")
-    ws.sheet_view.showGridLines = False
-    write_title(ws, "Broker Swap Radar — single-desk hedge footprints",
-                "QoQ share-count change per swap-desk broker 13F (UBS, GS, MS, JPM...). One desk absorbing a block ≥0.35% of shares out is the classic total-return-swap hedge print — activist economic exposure with no 13D yet. Idio % = this desk's share of all desks' movement (high = NOT index flow). Context: 13D/G filers ≤12mo + our activist-style funds holding. Caveat: ETF baskets, index adds and plain custody flows also move these books — treat as leads, not proof.", 12)
-    hdr = ["Ticker","Broker","Δ Sh (M)","Δ % Out","Δ $M","Desk $M","Idio %","Score","Mcap","13D/G ≤12mo","Activist holders","Name"]
-    write_table_header(ws, 4, hdr)
-    try:
-        rows = list(conn.execute("""SELECT ticker, broker, delta_sh_m, pct_out, delta_m,
-                cur_m, idio_pct, score, mcap_m, recent_13d, activist_holders, name
-            FROM broker_swap_radar
-            ORDER BY pct_out * (idio_pct/100.0) DESC LIMIT 120"""))
-    except Exception:
-        rows = []
-    out = []
-    for r in rows:
-        out.append([r[0], (r[1] or ""), round(r[2] or 0, 1), r[3] or 0,
-                    round(r[4] or 0, 0), round(r[5] or 0, 0), r[6] or 0,
-                    round(r[7], 1) if r[7] is not None else "",
-                    r[8] or "", (r[9] or ""), (r[10] or ""), (r[11] or "")])
-    write_table_rows(ws, out, 5)
-    for ridx in range(5, 5 + len(out)):
-        ws.cell(row=ridx, column=4).number_format = '0.00"%"'
-        ws.cell(row=ridx, column=5).number_format = NUMFMT_M_TO_B
-        ws.cell(row=ridx, column=6).number_format = NUMFMT_M_TO_B
-        ws.cell(row=ridx, column=7).number_format = '0"%"'
-        ws.cell(row=ridx, column=9).number_format = NUMFMT_MCAP
-    ws.freeze_panes = "B5"
-    autosize(ws)
-    ws.column_dimensions["A"].width = 8
-
-def sheet_broker_radar(wb, conn):
     """Swap-desk share-count jumps — the pre-13D shadow-accumulation radar."""
     ws = wb.create_sheet("Broker Swap Radar")
     ws.sheet_view.showGridLines = False
@@ -985,13 +1059,53 @@ def sheet_latent_ownership(wb, conn):
         ws.cell(row=ridx, column=10).number_format = NUMFMT_MCAP
     ws.freeze_panes = "B5"; autosize(ws); ws.column_dimensions["A"].width = 8
 
+# An insider purchase by a company, fund or holding vehicle (Volkswagen into
+# Rivian, General Atlantic into Alkami, Cascade into Republic Services) is a
+# strategic or sponsor decision, not an executive's personal conviction: the
+# insider sheets name the buyers and keep the two apart.
+_ENTITY_RE = re.compile(r"\b(INC|LLC|L\.?L\.?C|L\.?P|LTD|LIMITED|AG|S\.?A|N\.?V|CORP|CORPORATION|CO|HOLDINGS?|"
+                        r"FUNDS?|PARTNERS|CAPITAL|GROUP|GENPAR|MANAGEMENT|INVESTMENTS?|PLC|B\.?V|GMBH|SE|ADVISORS|"
+                        r"ADVISERS|VENTURES|FOUNDATION|ASSOCIATES|BANK|COMPANY|OPPORTUNITIES|MASTER)\b\.?", re.I)
+
+def is_entity(owner):
+    return bool(_ENTITY_RE.search(owner or ""))
+
+def insider_buyers(conn, days):
+    """{ticker: [(usd, owner, role, is_entity)]} — open-market buys over `days`,
+    largest first, with the same sanity screens as the insider sheets."""
+    out = {}
+    for tk, owner, role, usd in conn.execute(f"""
+            SELECT f.ticker, COALESCE(NULLIF(f.owner, ''), f.accession), MAX(f.role), SUM(f.shares * f.price)
+            FROM form4_transactions f
+            WHERE f.code = 'P' AND f.acquired = 1 AND f.price IS NOT NULL
+              AND f.trans_date >= date('now', '-{int(days)} days')
+              AND NOT EXISTS (SELECT 1 FROM ticker_yf y WHERE y.ticker = f.ticker
+                  AND ((y.mcap_m > 0 AND f.shares * f.price / 1e6 > y.mcap_m)
+                    OR (y.price > 0 AND (f.price > y.price * 5 OR f.price < y.price * 0.10))))
+            GROUP BY f.ticker, 2"""):
+        out.setdefault(tk, []).append((usd or 0.0, owner, role or "", is_entity(owner)))
+    for v in out.values():
+        v.sort(key=lambda x: -x[0])
+    return out
+
+def fmt_buyers(lst, k=3):
+    """'COHEN RYAN (CEO) $40.1M; ...; +2 more' — all of them up to k."""
+    parts = [f"{o} ({r + ', ' if r else ''}{'entity' if e else 'person'}) ${u / 1e6:,.2f}M"
+             for u, o, r, e in lst[:k]]
+    return "; ".join(parts) + (f"; +{len(lst) - k} more" if len(lst) > k else "")
+
 def sheet_insider_f4(wb, conn):
     """Insider buying ranked by RECENCY-weighted total. ≤30d buys shown separately."""
     ws = wb.create_sheet("Insider F4 Buys")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Form 4 Insider Buying — recency weighted",
-                "Open-market P-code buys. ≤30d weight 1.0; 31–60 d 0.6; 61–120 d 0.3; 121–180 d 0.1. Sorted by recency-weighted dollars.", 13)
-    hdr = ["Ticker","Weighted $M","≤30d $M","31-60 $M","61-180 $M","# Buyers","Avg Px","Mcap","Bucket","13F","EV/EBITDA","P/B","Name"]
+                "Open-market P-code buys over 180 days. ≤30d weight 1.0; 31–60 d 0.6; 61–180 d 0.3. Sorted by "
+                "recency-weighted dollars. Persons $M vs Entities $M splits executives' and directors' own money "
+                "from buys by companies, funds and holding vehicles (a strategic or sponsor decision, e.g. "
+                "Volkswagen into Rivian); Top Buyers names them.", 16)
+    hdr = ["Ticker","Weighted $M","≤30d $M","31-60 $M","61-180 $M","# Buyers","Persons $M","Entities $M",
+           "Top Buyers","Avg Px","Mcap","Bucket","13F","EV/EBITDA","P/B","Name"]
+    buyers = insider_buyers(conn, 180)
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT f.ticker,
@@ -1020,11 +1134,15 @@ def sheet_insider_f4(wb, conn):
     for r in rows:
         d30, d60, d180 = r[1] or 0, r[2] or 0, r[3] or 0
         weighted = d30 * 1.0 + d60 * 0.6 + d180 * 0.3
+        bl = buyers.get(r[0], [])
+        person = sum(u for u, o, rl, e in bl if not e) / 1e6
+        entity = sum(u for u, o, rl, e in bl if e) / 1e6
         out.append([r[0], round(weighted, 1),
                     round(d30, 1) if d30 else "",
                     round(d60, 1) if d60 else "",
                     round(d180, 1) if d180 else "",
-                    r[4], round(r[5] or 0, 2),
+                    r[4], round(person, 2) if person else "", round(entity, 2) if entity else "",
+                    fmt_buyers(bl), round(r[5] or 0, 2),
                     r[6] or "", r[7] or "unknown",
                     r[8] or 0,
                     round(r[9], 1) if r[9] is not None else "",
@@ -1032,24 +1150,27 @@ def sheet_insider_f4(wb, conn):
                     (r[11] or "")])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
-        for col in (2, 3, 4, 5):
+        for col in (2, 3, 4, 5, 7, 8):
             ws.cell(row=ridx, column=col).number_format = NUMFMT_M_TO_B
-        ws.cell(row=ridx, column=7).number_format = NUMFMT_USD2
-        ws.cell(row=ridx, column=8).number_format = NUMFMT_MCAP
-        ws.cell(row=ridx, column=11).number_format = '0.0"x"'
-        ws.cell(row=ridx, column=12).number_format = '0.00"x"'
+        ws.cell(row=ridx, column=10).number_format = NUMFMT_USD2
+        ws.cell(row=ridx, column=11).number_format = NUMFMT_MCAP
+        ws.cell(row=ridx, column=14).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=15).number_format = '0.00"x"'
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
+    ws.column_dimensions["I"].width = 70
 
 def sheet_insider_recent(wb, conn):
     """Pure recent (≤30d) insider buying — most actionable."""
     ws = wb.create_sheet("Insider Buys ≤30d")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Recent Insider Buying — last 30 days only",
-                "Buys reported in the last 30 days. C-Suite = a CEO/CFO/COO/President/Chair bought (personal-cash conviction beats a passive 10%-owner). Net nets out any sells.", 16)
-    hdr = ["Ticker","Buy $M","Sell $M","Net $M","# Buyers","C-Suite","Days Ago","Avg Px","Mcap","Bucket","13F","S3","S4","Act %","EV/EBITDA","Name"]
+                "Buys reported in the last 30 days. C-Suite = a CEO/CFO/COO/President/Chair bought (personal-cash conviction beats a passive 10%-owner). Net nets out any sells. Top Buyers names them: 'person' = an individual's own money, 'entity' = a company, fund or holding vehicle.", 17)
+    hdr = ["Ticker","Buy $M","Sell $M","Net $M","# Buyers","C-Suite","Top Buyers","Days Ago","Avg Px","Mcap","Bucket",
+           "13F","S3","S4","Act %","EV/EBITDA","Name"]
     write_table_header(ws, 4, hdr)
+    buyers = insider_buyers(conn, 30)
     rows = list(conn.execute("""
         SELECT f.ticker, SUM(f.shares*f.price)/1e6 AS dollars_m,
                COUNT(DISTINCT CASE WHEN COALESCE(f.owner,'')='' THEN f.accession ELSE f.owner END), MAX(f.trans_date),
@@ -1085,7 +1206,7 @@ def sheet_insider_recent(wb, conn):
         buy, sell = r[1] or 0, r[16] or 0
         out.append([r[0], round(buy, 2), round(sell, 2) if sell else "",
                     round(buy - sell, 2), r[2],
-                    "CEO/CFO" if r[14] else "", r[15],
+                    "CEO/CFO" if r[14] else "", fmt_buyers(buyers.get(r[0], [])), r[15],
                     round(r[4] or 0, 2),
                     r[5] or "", r[6] or "unknown",
                     r[7] or 0, r[8] or 0, r[9] or 0,
@@ -1097,24 +1218,25 @@ def sheet_insider_recent(wb, conn):
         ws.cell(row=ridx, column=2).number_format = NUMFMT_M_TO_B
         ws.cell(row=ridx, column=3).number_format = NUMFMT_M_TO_B
         ws.cell(row=ridx, column=4).number_format = NUMFMT_M_TO_B
-        ws.cell(row=ridx, column=8).number_format = NUMFMT_USD2    # Avg Px
-        ws.cell(row=ridx, column=9).number_format = NUMFMT_MCAP    # Mcap
-        ws.cell(row=ridx, column=14).number_format = NUMFMT_PCT    # Act %
-        ws.cell(row=ridx, column=15).number_format = '0.0"x"'      # EV/EBITDA
+        ws.cell(row=ridx, column=9).number_format = NUMFMT_USD2    # Avg Px
+        ws.cell(row=ridx, column=10).number_format = NUMFMT_MCAP   # Mcap
+        ws.cell(row=ridx, column=15).number_format = NUMFMT_PCT    # Act %
+        ws.cell(row=ridx, column=16).number_format = '0.0"x"'      # EV/EBITDA
     # colour is data: Net $ (buy − sell) — lapis net buying, crimson net selling
     color_directional(ws, 5, 4 + len(out), 4, higher_is_better=True)
     ws.freeze_panes = "B5"
     if out:
-        ws.auto_filter.ref = f"A4:P{4 + len(out)}"
+        ws.auto_filter.ref = f"A4:Q{4 + len(out)}"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
+    ws.column_dimensions["G"].width = 70
 
 def sheet_clusters(wb, conn):
     ws = wb.create_sheet("Insider Clusters")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Live Insider Clusters",
-                "Insider buy clusters (≤180-day window) — multiple insiders, same ticker. Days-Ago from the window end: a 3-day-old cluster is far stronger than a 29-day-old one.", 12)
-    hdr = ["Ticker","Trigger","Days Ago","Window End","# Insiders","Cluster $M","Avg Px","Top Buyer","Mcap","Bucket","EV/EBITDA","P/B"]
+                "Insider buy clusters (≤180-day window) — multiple insiders, same ticker. Days-Ago from the window end: a 3-day-old cluster is far stronger than a 29-day-old one. Buyer Type: 'entity' = the largest buyer is a company, fund or holding vehicle (a strategic or sponsor buy), 'person' = an individual.", 13)
+    hdr = ["Ticker","Trigger","Days Ago","Window End","# Insiders","Cluster $M","Avg Px","Top Buyer","Buyer Type","Mcap","Bucket","EV/EBITDA","P/B"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT ic.ticker, ic.trigger, ic.window_end, ic.n_insiders, ic.total_usd_m,
@@ -1129,16 +1251,17 @@ def sheet_clusters(wb, conn):
           AND ic.n_insiders >= 2
         ORDER BY ic.total_usd_m DESC"""))
     out = [[r[0], r[1], r[11], r[2], r[3], round(r[4] or 0, 2), round(r[5] or 0, 2),
-            r[6] if r[6] else "", r[7] or "", r[8] or "unknown",
+            r[6] if r[6] else "", ("entity" if is_entity(r[6]) else "person") if r[6] else "",
+            r[7] or "", r[8] or "unknown",
             round(r[9], 1) if r[9] is not None else "",
             round(r[10], 2) if r[10] is not None else ""] for r in rows]
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=6).number_format = NUMFMT_M_TO_B
         ws.cell(row=ridx, column=7).number_format = NUMFMT_USD2
-        ws.cell(row=ridx, column=9).number_format = NUMFMT_MCAP
-        ws.cell(row=ridx, column=11).number_format = '0.0"x"'
-        ws.cell(row=ridx, column=12).number_format = '0.00"x"'
+        ws.cell(row=ridx, column=10).number_format = NUMFMT_MCAP
+        ws.cell(row=ridx, column=12).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=13).number_format = '0.00"x"'
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
@@ -1231,7 +1354,7 @@ def sheet_unknown(wb, conn):
     ws = wb.create_sheet("Unknown Mcap")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Unknown Market Cap",
-                "Tickers where Yahoo + SEC XBRL share-out resolution failed. Foreign listings, SPACs, warrants, defunct.", 13)
+                "Tickers with no market cap from FMP's profiles or SEC share counts: foreign lines FMP doesn't price, SPACs, warrants, defunct names.", 13)
     hdr = ["Ticker","Score","Bucket","13F","S1","S3","S4","Act %","pB Max","F4 $M","Name","Sector","Exch"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
@@ -1260,53 +1383,68 @@ def sheet_unknown(wb, conn):
     ws.column_dimensions["A"].width = 8
 
 def sheet_fund_coverage(wb, conn):
+    """Every roster fund in exactly one category, the 13F ones split the way
+    the README counts them (current / older / dormant / empty), so the numbers
+    reconcile across the book."""
+    from fund_moves import latest_due_quarter, book_info
     ws = wb.create_sheet("Fund Coverage")
     ws.sheet_view.showGridLines = False
-    n_fund = conn.execute("SELECT COUNT(*) FROM fund_meta").fetchone()[0]
-    n_data = conn.execute("""SELECT COUNT(DISTINCT fm.fund) FROM fund_meta fm
-        WHERE fm.fund IN (SELECT fund FROM fund_13f_state WHERE n_holdings > 0)
-           OR fm.fund IN (SELECT fund FROM fund_positions)
-           OR fm.fund IN (SELECT holder FROM holder_13d)""").fetchone()[0]
+    q = latest_due_quarter()
+    bi = book_info(conn)
+    dormant = {r[0] for r in conn.execute("SELECT DISTINCT fund FROM fund_13f_dormant")}
+    empty = {r[0] for r in conn.execute("""SELECT fund FROM fund_13f_state
+        WHERE n_holdings = 0 AND last_accession IS NOT NULL""")}
+    has_fp = {r[0] for r in conn.execute("SELECT DISTINCT fund FROM fund_positions")}
+    has_13d = {r[0] for r in conn.execute("SELECT DISTINCT holder FROM holder_13d")}
+    status = dict(conn.execute("SELECT fund, status FROM fund_resolution_state"))
+    cats = {}
+    for (fund,) in conn.execute("SELECT fund FROM fund_meta"):
+        d = bi.get(fund) or {}
+        st = status.get(fund) or ""
+        if d.get("n") and d.get("period") == q:
+            c = (1, f"13F book for the {q} quarter (current)")
+        elif d.get("n"):
+            c = (2, "13F book for an earlier quarter (late filer)")
+        elif fund in dormant:
+            c = (3, "13F book dormant: no filing in 200+ days (archived, not counted)")
+        elif fund in empty:
+            c = (4, "Latest 13F filed with no holdings")
+        elif fund in has_fp and fund in has_13d:
+            c = (5, "Research notes + 13D/G (no 13F)")
+        elif fund in has_fp:
+            c = (6, "Research notes only (no 13F)")
+        elif fund in has_13d:
+            c = (7, "13D/G only (foreign activists)")
+        elif "non_filer" in st:
+            c = (8, "Foreign non-filer, no public holdings")
+        elif st == "below_13f_threshold":
+            c = (9, "Below the $100M 13F threshold")
+        elif st == "non_equity_strategy":
+            c = (10, "CTA / options (no equity to track)")
+        elif st == "historical_13f_only":
+            c = (11, "Historical 13F only")
+        elif st == "individual":
+            c = (12, "Individual (not a fund)")
+        elif st == "meta_rollup":
+            c = (13, "Group heading (not a fund)")
+        elif st == "private_office":
+            c = (14, "Private office (no disclosure)")
+        else:
+            c = (15, "Other / unresolved")
+        cats[c] = cats.get(c, 0) + 1
+    n_fund = sum(cats.values())
+    n_data = sum(v for (k, _), v in cats.items() if k in (1, 2, 5, 6, 7))
     write_title(ws, "Fund Coverage",
-                f"{n_data} of {n_fund} funds ({n_data*100//n_fund}%) have at least one primary-source data row. "
-                f"Remaining are documented categorical gaps (below-threshold, CTA, private office, ...).", 3)
-    hdr = ["Category","Funds","Pct"]
+                f"{n_data} of {n_fund} roster funds ({n_data * 100 // n_fund}%) contribute data now: a live 13F book, "
+                f"research notes or 13D/Gs. The rest are documented gaps. Each fund sits in exactly one row.", 3)
+    hdr = ["Category", "Funds", "Pct"]
     write_table_header(ws, 4, hdr)
-    # COUNT(DISTINCT fm.fund): the LEFT JOINs to fund_positions/holder_13d fan out
-    # (a fund with 50 positions x 5 filings = 250 rows), so a plain COUNT(*)
-    # inflated every category ~200x. We also collapse the joins to EXISTS-style
-    # per-fund flags first so each fund lands in exactly one category.
-    cats = list(conn.execute("""
-        WITH f AS (
-          SELECT fm.fund,
-                 (SELECT n_holdings FROM fund_13f_state s WHERE s.fund=fm.fund) AS nh,
-                 EXISTS(SELECT 1 FROM fund_positions p WHERE p.fund=fm.fund) AS has_fp,
-                 EXISTS(SELECT 1 FROM holder_13d h WHERE h.holder=fm.fund) AS has_13d,
-                 (SELECT status FROM fund_resolution_state r WHERE r.fund=fm.fund) AS status
-          FROM fund_meta fm)
-        SELECT
-          CASE
-            WHEN nh > 0 THEN '1. 13F-HR holdings ingested'
-            WHEN has_fp AND has_13d THEN '2. fund_positions + 13D/G'
-            WHEN has_fp THEN '3. fund_positions only'
-            WHEN has_13d THEN '4. 13D/G only (foreign activists)'
-            WHEN status LIKE '%non_filer%' THEN '5. Foreign non-filer (explicit)'
-            WHEN status = 'below_13f_threshold' THEN '6. Below AUM threshold'
-            WHEN status = 'non_equity_strategy' THEN '7. CTA / options (no equity to track)'
-            WHEN status = 'historical_13f_only' THEN '8. Historical only (pre-2013 format)'
-            WHEN status = 'individual' THEN '9. Individual (not a fund)'
-            WHEN status = 'meta_rollup' THEN '10. Meta tab (not a real fund)'
-            WHEN status = 'private_office' THEN '11. Private office (no disclosure)'
-            ELSE '12. Other / unresolved'
-          END as cat, COUNT(DISTINCT fund)
-        FROM f GROUP BY cat ORDER BY 1"""))
-    total = sum(r[1] for r in cats)
-    out = [[r[0], r[1], round(r[1]*100/total, 1)] for r in cats]
+    out = [[f"{k}. {label}", v, round(v * 100 / n_fund, 1)] for (k, label), v in sorted(cats.items())]
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=3).number_format = NUMFMT_PCT
     autosize(ws)
-    ws.column_dimensions["A"].width = 40
+    ws.column_dimensions["A"].width = 62
 
 def sheet_all_holdings_consolidated(wb, conn):
     """Union view across 13F, fund_positions, and holder_13d — EVERY disclosed
@@ -1396,9 +1534,13 @@ def sheet_all_holdings_consolidated(wb, conn):
 def sheet_all_funds(wb, conn):
     ws = wb.create_sheet("All Funds")
     ws.sheet_view.showGridLines = False
+    from fund_moves import book_info
+    bi = book_info(conn)
+    dormant = {r[0] for r in conn.execute("SELECT DISTINCT fund FROM fund_13f_dormant")}
     write_title(ws, "Per-Fund Inventory",
-                "Every fund in fund_meta with data-availability status. Sorted by 13F holdings count.", 7)
-    hdr = ["Fund","Status","CIK","13F #","13F $M","13D #","Pos Count"]
+                "Every roster fund with its data status in plain English (resolver code in brackets), the quarter its "
+                "latest 13F covers, and its counts. Sorted by 13F holdings.", 8)
+    hdr = ["Fund","Status","CIK","Book","13F #","13F $M","13D #","Pos Count"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
         SELECT fm.fund, fr.status, fr.best_cik,
@@ -1412,11 +1554,12 @@ def sheet_all_funds(wb, conn):
         ORDER BY st.n_holdings DESC NULLS LAST"""))
     out = []
     for r in rows:
-        out.append([r[0], r[1] or "", r[2] or "",
+        book = "dormant" if r[0] in dormant else ((bi.get(r[0]) or {}).get("period") or "")
+        out.append([r[0], plain_status(r[1]), r[2] or "", book,
                     r[3], round(r[4] or 0), r[5], r[6]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
-        ws.cell(row=ridx, column=5).number_format = NUMFMT_M_TO_B   # 13F total $M
+        ws.cell(row=ridx, column=6).number_format = NUMFMT_M_TO_B   # 13F total $M
     ws.freeze_panes = "B5"
     autosize(ws)
 
@@ -1512,7 +1655,9 @@ def sheet_revealed_pref(wb, conn):
                 f"insiders exercising or converting and holding (+1 each, 90 days), funds converting warrants / "
                 f"notes / preferred into common (+1 each), issuer tender offers (+3), last fiscal year's net "
                 f"buybacks (+1 to +3) or net issuance (-1 / -2), 13D/G stakes raised (+2). Nothing older counts. "
-                f"Listed = IPO in the last 12 months (allocations, not open-market conviction). "
+                f"A 13F line new in a stock first listed during the quarter counts half (an IPO allocation, or a "
+                f"pre-IPO stake becoming reportable) and a spin-off received counts zero; both stay visible, "
+                f"labelled 'at listing' / 'spin-off received'. Listed = IPO in the last 12 months. "
                 f"[showing top {min(limit, total)} of {total} net buyers]", len(hdr))
     write_table_header(ws, 4, hdr)
     import datetime as _dt
@@ -2083,8 +2228,9 @@ def sheet_global_picks(wb, conn):
                 "it in their latest report - 1 x managers selling + 0.5 x largest % of a fund (cap 10) + 0.5 x 13F "
                 "holders of the company's US line or itself (conviction-weighted, cap 10) + 0.5 x the latest "
                 "quarter's 13F net buying (cap +/-10). US Line = the ADR or direct US listing whose 13F holders "
-                "count here. S1/S3/S4 = the research spreadsheet's sections (May-June snapshot): context only, "
-                "not in the rank. Mcap converted to USD at approximate FX.", len(hdr))
+                "count here. S1 / S3 / S4 as in the score (the latest 13F quarter where a fund has a current book, "
+                "research notes otherwise): context only, not in the rank. Mcap converted to USD at approximate FX.",
+                len(hdr))
     write_table_header(ws, 4, hdr)
     limit, total = 200, len(out)
     out = out[:limit]
@@ -2116,7 +2262,10 @@ def sheet_in_the_money(wb, conn):
     ws = wb.create_sheet("In The Money")
     ws.sheet_view.showGridLines = False
     write_title(ws, "In The Money — buy below smart-money entry",
-                "Current price below the smart-money cost anchor (cost_basis / raw_text / Form-4 P-buy avg / 80th-pctl). Asymmetric setup.", 19)
+                "Trading below our estimate of what the funds paid (the Anchor). Anchor Src says how it was set: a cost "
+                "or deal price stated in a filing or note (e.g. a PIPE at $4.44), else insiders' average open-market "
+                "purchase price in the last 180 days, else the 80th percentile of the stock's closes over the year "
+                "(p80_close — funds rarely build at the extremes). vs Entry % = today's price against it.", 19)
     hdr = ["Ticker","Score","Mcap","Bucket","Now $","Anchor $","vs Entry %",
            "13F","S1","S3","S4","Act %","pB Max","Anchor Src","EV/EBITDA","P/B","Name","Industry","Business"]
     write_table_header(ws, 4, hdr)
@@ -2356,8 +2505,11 @@ def sheet_adversarial_review(wb, conn):
     data = json.load(open(path))
     ws = wb.create_sheet("Adversarial Review")
     ws.sheet_view.showGridLines = False
-    write_title(ws, "Adversarial Review — red-team of the top picks",
-                f"A {data.get('agent_count','multi')}-agent stress test of the highest-ranked names across three lenses (data quality · thesis soundness · recency/news), separating confirmed setups from data-inflated artifacts. Scores as of {data.get('asof')}.", 4)
+    write_title(ws, f"Adversarial Review — ARCHIVE of {data.get('asof')}: a red-team of the then-top picks",
+                f"Kept for its reasoning, not as a current list: scores, holdings and prices have moved since "
+                f"{data.get('asof')} (today's scores are on every other sheet). A {data.get('agent_count','multi')}-agent "
+                f"stress test of the then-highest-ranked names across three lenses (data quality · thesis soundness · "
+                f"recency/news), separating confirmed setups from data-inflated artifacts.", 4)
     row = 4
     write_section_heading(ws, row, "Synthesis — confirmed vs data-inflated", 4)
     row += 1
@@ -2445,7 +2597,7 @@ def sheet_ticker_reference(wb, conn):
     ws = wb.create_sheet("Ticker Reference")
     ws.sheet_view.showGridLines = False
     write_title(ws, "Ticker Reference — name, industry, business",
-                "Every symbol in the universe with its company name, sector, industry, market cap, and a one-line description of what it does. Sourced from Yahoo Finance + SEC. Sorted A–Z.", 6)
+                "Every symbol in the universe with its company name, sector, industry, market cap, and a one-line description of what it does. Sourced from FMP company profiles and SEC filings. Sorted A–Z.", 6)
     hdr = ["Ticker", "Name", "Sector", "Industry", "Mcap", "Business Summary"]
     write_table_header(ws, 4, hdr)
     rows = list(conn.execute("""
@@ -2549,7 +2701,9 @@ def main():
     sheet_adversarial_review(wb, conn)
     write_signal_sheet(wb, conn, "Top 100",
         where_extra="AND us.mcap_bucket != 'unknown'", limit=140,
-        subtitle="Top 100 by unified_score across the full 5,862-ticker universe (ex-ETF, ex-mega-cap, mcap known).")
+        subtitle="The 140 highest scores across the universe (the tab's name dates from a shorter list). ETFs and "
+                 "the ten largest US mega-caps (AAPL, MSFT, NVDA, AMZN, GOOGL/GOOG, META, TSLA, BRK) left out: "
+                 "they are on the Mega sheet.")
     for bucket, title in [("nano","Nano (<$50M)"),
                           ("micro","Micro ($50M–$300M)"),
                           ("small","Small ($300M–$2B)"),
@@ -2557,16 +2711,18 @@ def main():
                           ("large","Large ($10B–$200B)"),
                           ("mega","Mega (>$200B)")]:
         write_signal_sheet(wb, conn, title,
-            where_extra=f"AND us.mcap_bucket = '{bucket}'", limit=60,
+            where_extra=f"AND us.mcap_bucket = '{bucket}'", limit=(200 if bucket == "mega" else 60),
             include_mega=(bucket == "mega"),
-            subtitle=(f"Top {bucket} cap by unified_score. Ex-ETF"
-                      + ("; the ten mega-caps the other sheets exclude are all here." if bucket == "mega"
-                         else ", ex-mega.")))
+            subtitle=(f"Top {bucket}-caps by score. ETFs left out"
+                      + ("; the ten largest US mega-caps the other ranked sheets leave out are all here."
+                         if bucket == "mega" else ".")))
     sheet_best_in_bucket(wb, conn)
     write_signal_sheet(wb, conn, "Material + New",
         where_extra="AND (us.s3_new + us.s4_add) >= 2 AND us.mcap_bucket != 'unknown'",
         limit=80,
-        subtitle="≥2 funds adding to existing (S4) OR initiating major new (S3) — smart money is BUILDING.")
+        subtitle="Funds building: S3 + S4 of 2 or more — funds that opened (S3) or added 25%+ to (S4) a position in "
+                 "the latest 13F quarter, weighted by focus (research notes for funds without a current 13F). "
+                 "Who they are: the Who's Buying sheet.")
     sheet_whos_buying(wb, conn)
     sheet_activist(wb, conn)
     sheet_broker_radar(wb, conn)
@@ -2581,7 +2737,8 @@ def main():
     sheet_congress(wb, conn)
     write_signal_sheet(wb, conn, "Non-Biotech Top 100",
         where_extra="AND us.mcap_bucket != 'unknown'", limit=140,
-        subtitle="Top ex-biotech, ex-ETF, ex-mega.", exclude_biotech=True)
+        subtitle="The 140 highest scores without biotech, ETFs or the ten largest US mega-caps.",
+        exclude_biotech=True)
     sheet_in_the_money(wb, conn)
     sheet_asymmetry(wb, conn)
     sheet_revealed_pref(wb, conn)
@@ -2618,7 +2775,7 @@ def main():
         if sname in wb.sheetnames:
             wb[sname].sheet_properties.tabColor = color
 
-    add_contents_index(wb["README"], wb.sheetnames)
+    add_grouped_contents(wb["README"], SHEET_GUIDE, wb.sheetnames)
     set_print_layout(wb)
 
     # every ticker table carries EV/EBITDA, P/E, P/B and P/TB side by side

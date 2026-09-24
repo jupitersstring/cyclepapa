@@ -13,9 +13,9 @@ Inputs (joined per ticker):
 Output table: unified_signal (ticker, components, score, mcap_bucket)
 Score formula:
   smart_money       =  log(1 + n_funds_13F)
-  S3_new_init       =  3 * n_funds_section3
-  S4_material_add   =  1.5 * n_funds_section4
-  S1_top_pick       =  2 * n_funds_section1
+  S3_new_init       =  3 * n_funds_section3   (latest 13F quarter's new positions where
+  S4_material_add   =  1.5 * n_funds_section4  a fund has a current book; researcher notes
+  S1_top_pick       =  2 * n_funds_section1    otherwise; S1 only while still held)
   activist_13G_pct  =  0.5 * max_pct_class (capped at 30)
   insider_cluster   =  +5 if live cluster, +10 if 3+ insiders, +15 if 5+
   form4_buying      =  log(1 + cumulative_open_market_$M)
@@ -117,6 +117,8 @@ def classify_sec_type(tkr, name, names):
                 return "unit"
             if tkr.endswith(("P", "O")):
                 return "preferred"
+            if tkr.endswith("Z"):
+                return "right"              # LGNDZ: Ligand's rights next to LGND
     if re.search(r"\bnotes? due\b|% notes\b", nm, re.I):
         return "note"
     return "common"
@@ -141,6 +143,11 @@ from ingest_13f import DORMANT_DAYS       # same window that archives dormant bo
 STALE_FUND_CUTOFF = (_dt.date.today() - _dt.timedelta(days=DORMANT_DAYS)).isoformat()
 _FRESH = (f"AND fund NOT IN (SELECT fund FROM fund_13f_state "
           f"WHERE last_filed IS NOT NULL AND last_filed < '{STALE_FUND_CUTOFF}')")
+# One vote per filing. Ten managers sit on the roster under two names (Tiger
+# Global, Coatue, Lone Pine, AKO, Durable...) and the same 13F book, same
+# accession, is stored under both: every holding counted twice in the holder
+# count and the 5%-of-book cluster. The filing, not the name, is the vote.
+_ONE_BOOK = "AND fund IN (SELECT MIN(fund) FROM fund_13f_holdings GROUP BY accession) "
 
 def run():
     conn = sqlite3.connect(DB)
@@ -152,7 +159,7 @@ def run():
       name TEXT, exchange TEXT, sector TEXT, mcap_m REAL, price REAL,
       mcap_bucket TEXT,
       smart_money_n REAL,
-      s1_top INTEGER, s2_thresh INTEGER, s3_new INTEGER, s4_add INTEGER,
+      s1_top INTEGER, s2_thresh INTEGER, s3_new REAL, s4_add REAL,
       activist_filings INTEGER, activist_max_pct REAL,
       insider_cluster_dollars_m REAL, insider_n INTEGER,
       form4_buy_usd_m REAL, form4_sell_usd_m REAL,
@@ -187,12 +194,12 @@ def run():
     SM_CAP = 75.0
     fund_hn = {r[0]: r[1] for r in conn.execute(
         "SELECT fund, COUNT(DISTINCT cusip) FROM fund_13f_holdings "
-        "WHERE ticker IS NOT NULL " + _EQUITY + "GROUP BY fund")}
+        "WHERE ticker IS NOT NULL " + _EQUITY + _ONE_BOOK + "GROUP BY fund")}
     fund_w = {f: min(1.0, SM_CAP / hn) for f, hn in fund_hn.items() if hn > 0}
     sm = {}
     for tk, fund in conn.execute(
             "SELECT DISTINCT ticker, fund FROM fund_13f_holdings "
-            "WHERE ticker IS NOT NULL " + _EQUITY + _FRESH):
+            "WHERE ticker IS NOT NULL " + _EQUITY + _FRESH + " " + _ONE_BOOK):
         sm[tk] = sm.get(tk, 0.0) + fund_w.get(fund, 1.0)
     sm = {tk: round(v, 1) for tk, v in sm.items()}
     # Section counts dedupe by CANONICAL manager, not raw fund string — the same
@@ -200,13 +207,32 @@ def run():
     # "... (Cliff", "... Sosin"), which inflated counts (NVDA S1 was 52 strings
     # but only 37 real managers). 552 strings -> 445 canonical managers.
     from _canon import canon
+    # S1 / S3 / S4 were read only from the researcher spreadsheet (compiled
+    # May-June 2026, describing mostly Q4 2025 - Q1 2026 filings). Where a fund
+    # has a current, comparable 13F book the filing supersedes those notes:
+    #   S3 new initiations / S4 material adds = its moves in the latest
+    #     quarter (fund_moves; spin-offs and new-at-listing lines excluded —
+    #     not open-market decisions);
+    #   S1 top picks count only while it still holds the stock (any share
+    #     class) — 564 of its top-pick notes were stocks it had since sold.
+    # Funds with no current book (non-US managers, non-filers) keep their notes:
+    # they are all we have.
+    from fund_moves import section_evidence
+    _ev, _st = section_evidence(conn)
+    # weighted by the fund's focus like the holder count: a 20-name book's new
+    # position counts 1, a 750-name book's 0.1 (unweighted, MSFT's adds jumped
+    # 8 -> 20 on diversified books topping up); research notes count 1
     _sec_mgrs = {}
-    for r in conn.execute("""SELECT DISTINCT ticker, section, fund
-        FROM fund_positions WHERE ticker IS NOT NULL"""):
-        _sec_mgrs.setdefault((r["ticker"], r["section"]), set()).add(canon(r["fund"]))
+    for tk, secs in _ev.items():
+        for sec, mgrs in secs.items():
+            _sec_mgrs[(tk, sec)] = {m: e["w"] for m, e in mgrs.items()}
+    print(f"S1/S3/S4: {_st['fresh']} funds with a current 13F book — their researcher notes superseded "
+          f"(S3 {_st['dropped'][3]}, S4 {_st['dropped'][4]} replaced by {_st['n_fresh'][3]} new / "
+          f"{_st['n_fresh'][4]} added positions from the latest quarter; {_st['dropped'][1]} S1 top picks "
+          f"no longer held dropped; {_st['dropped']['dormant']} notes of dormant managers dropped)")
     s_by = {}
     for (tk, sec), mgrs in _sec_mgrs.items():
-        s_by.setdefault(tk, {})[sec] = len(mgrs)
+        s_by.setdefault(tk, {})[sec] = round(sum(mgrs.values()), 1)
     act = {}
     for r in conn.execute("""SELECT subject_ticker, COUNT(*) n, MAX(pct_class) m
         FROM holder_13d WHERE subject_ticker IS NOT NULL
@@ -372,7 +398,7 @@ def run():
         FROM fund_13f_holdings
         WHERE ticker IS NOT NULL AND pct_book IS NOT NULL
           AND pct_book <= 100
-        """ + _EQUITY + _FRESH + """
+        """ + _EQUITY + _FRESH + " " + _ONE_BOOK + """
         GROUP BY ticker"""):
         pct_book_max[r["ticker"]] = r["m"] or 0
         pct_book_n5[r["ticker"]] = r["n5"] or 0
@@ -420,6 +446,36 @@ def run():
             "SELECT ticker, sec_type FROM cusip_map WHERE sec_type IN ('warrant', 'right') AND ticker IS NOT NULL")}
     except sqlite3.OperationalError:
         _titled = {}
+    # The filings' title of class, per ticker, by majority of its holding lines:
+    # listings the ticker rules can't see are units or preferreds — Southern's
+    # 2028 equity units (SOMN, "UNIT 12/15/2028"), PPL's (PPLC), Strategy's
+    # perpetual preferred (STRK, "SERIES A PERP PF"), SPAC units whose base
+    # ticker doesn't trade (GTERU, "UNIT 99/99/9999") had all scored as common.
+    # Narrow on purpose: MLP units ("COM UNIT", "UNIT LTD PARTN": WES, PAA)
+    # and preferred ADRs (Itau, Bradesco) ARE those companies' equity lines.
+    from collections import Counter as _Counter
+
+    def _title_kind(title):
+        tt = (title or "").upper()
+        if re.search(r"\bADR|\bADS\b|DEPOSITARY RECEIPT|AMERICAN DEP|\bSPON", tt):
+            return None
+        if re.search(r"\bUNITS?\s+\d{1,2}/\d{1,2}/\d{2,4}", tt):
+            return "unit"                    # dated: SPAC units, mandatory-convertible equity units
+        if re.search(r"\bPFD|PREFERRED|\bPREF\b|\bPERP\b|\bPF\b|% CUM", tt):
+            return "preferred"
+        return None
+    _forms = {}
+    try:
+        for tk, title in conn.execute("""SELECT h.ticker, f.title_class FROM fund_13f_holdings h
+                JOIN holding_sec_form f ON f.accession = h.accession AND f.cusip = h.cusip
+                WHERE h.ticker IS NOT NULL"""):
+            _forms.setdefault(tk, _Counter())[_title_kind(title)] += 1
+    except sqlite3.OperationalError:
+        pass
+    for tk, cnt in _forms.items():
+        form, n = cnt.most_common(1)[0]
+        if form and n > sum(cnt.values()) / 2 and tk not in _titled:
+            _titled[tk] = form
     try:
         _dead = {r[0] for r in conn.execute("SELECT ticker FROM yf_dead")}
     except Exception:
@@ -469,7 +525,7 @@ def run():
         # fund-type quotes — their real class already excludes them from picks.
         sec_type = classify_sec_type(tkr, _names.get(tkr), _names)
         if sec_type == "common" and tkr in _titled:
-            sec_type = _titled[tkr]          # the filings' own title says warrant / right
+            sec_type = _titled[tkr]          # the filings' own title says warrant / right / unit / preferred
         if sec_type == "common" and tkr in _fund:
             sec_type = "etf"
         if sec_type == "common" and tkr in _dead:

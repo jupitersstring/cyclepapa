@@ -7,7 +7,8 @@ good) and crimson (#7a0019, bad) — as thin directional marks and 7%-opacity de
 washes. Tall scaleY masthead over a fleur divider; golden-ratio spacing; SVG spark
 bands (price OHLC-ish line + decile wash). Output: broadsheet.html (self-contained).
 """
-import os, sqlite3, html
+import os, sqlite3, html, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DB = os.path.join(BASE, "data", "cyclepapa.db")
@@ -104,6 +105,9 @@ def build():
     series = {}
     for tk, c in q(conn, "SELECT ticker, close FROM prices WHERE close>0 ORDER BY date"):
         series.setdefault(tk, []).append(c)
+    # the daily-close history stopped updating when Yahoo refused requests:
+    # say where the sparkline ends rather than pass it off as current
+    spark_end = (q(conn, "SELECT MAX(date) FROM prices")[0][0] or "")[:10]
 
     # snapshot numbers
     n_names = q(conn, "SELECT COUNT(*) FROM unified_signal WHERE sec_type='common'")[0][0]
@@ -146,7 +150,7 @@ def build():
                ps.mom_3mo, ps.off_high
         FROM unified_signal us LEFT JOIN price_stats ps ON ps.ticker=us.ticker
         WHERE us.sec_type='common' AND us.mcap_bucket!='unknown'
-          AND us.ticker NOT IN ('AMZN','MSFT','NVDA','META','GOOGL','GOOG','AAPL','TSLA')
+          AND us.ticker NOT IN ('AMZN','MSFT','NVDA','META','GOOGL','GOOG','AAPL','TSLA','BRK-A','BRK-B')
         ORDER BY us.score DESC LIMIT 22""")
     rows = []
     for s in setups:
@@ -165,45 +169,83 @@ def build():
             f'<td class="tnum">{arrow(s["off_high"],0)}</td>'
             f'<td class="l mut">{esc(", ".join(sig))}</td>'
             f'<td>{spark(series.get(s["ticker"], []))}</td></tr>')
-    parts.append(_panel("Top Setups — highest conviction ex-mega",
-        ["Tk","Name","Sc","EV/EB","vsEnt","3mo","OffHi","Signals","Trend"], rows,
+    parts.append(_panel("Top Setups — the highest scores (the ten largest US mega-caps left out)",
+        ["Tk","Name","Sc","EV/EB","vsEnt","3mo","OffHi","Signals",f"1-yr trend to {spark_end}"], rows,
         rightclasses="l l tnum tnum tnum tnum tnum l l".split()))
 
     # PANEL 2 (left) — QoQ builders, PANEL 3 (right) — distributors (if prior data)
     if _has_table(conn, "fund_13f_prior") and q(conn, "SELECT COUNT(*) FROM fund_13f_prior")[0][0] > 0:
-        builders, trimmers = _qoq(conn)
+        builders, trimmers, listed = _qoq(conn)
         left = _panel("Accumulating — net funds building (QoQ)",
             ["Tk","Net","New","Add","Trim"],
             [_qrow(b, True) for b in builders], rightclasses="l tnum tnum tnum tnum".split())
+        if listed:
+            left += ('<p class="mut">Left out — new listings and SPACs, where holders were allocated or handed '
+                     'shares rather than buying: ' + ", ".join(f"{esc(t)} ({n} funds{', ' + esc(k) if k else ''})"
+                                                               for t, n, k in listed[:12]) + '.</p>')
         right = _panel("Distributing — net funds trimming (QoQ)",
             ["Tk","Net","Trim","Exit","Add"],
             [_qrow(t, False) for t in trimmers], rightclasses="l tnum tnum tnum tnum".split())
         parts.append(f'<div class="cols">{left}{right}</div>')
 
-    # PANEL 4 — cheap value with quality check
-    val = q(conn, """SELECT us.ticker, us.name, us.ev_ebitda, us.pb_ratio, yf.rev_growth, yf.profit_margin, us.score
-        FROM unified_signal us LEFT JOIN ticker_yf yf ON yf.ticker=us.ticker
+    # PANEL 4 — buying now: the Revealed Preference ranking (dated evidence)
+    if _has_table(conn, "revealed_pref"):
+        rp = q(conn, """SELECT rp.ticker, us.name, rp.rp_score, rp.f13_buyers, rp.f13_sellers, rp.ins_n,
+                   rp.stake_n, rp.evidence_date, ps.mom_3mo
+            FROM revealed_pref rp JOIN unified_signal us ON us.ticker = rp.ticker
+            LEFT JOIN price_stats ps ON ps.ticker = rp.ticker
+            LEFT JOIN ticker_yf y ON y.ticker = rp.ticker
+            WHERE us.sec_type = 'common' AND rp.rp_score > 0 AND COALESCE(y.is_fund, 0) = 0
+            ORDER BY rp.rp_score DESC LIMIT 14""")
+        ipo_cut = (__import__("datetime").date.today() - __import__("datetime").timedelta(days=365)).isoformat()
+        ipo = {t: d for t, d in q(conn, "SELECT ticker, ipo_date FROM ticker_yf WHERE ipo_date IS NOT NULL")}
+        rrows = [f'<tr><td class="l tk">{esc(r["ticker"])}</td>'
+                 f'<td class="l mut">{esc((r["name"] or "")[:30])}'
+                 f'{" · IPO " + esc(ipo[r["ticker"]]) if (ipo.get(r["ticker"]) or "") >= ipo_cut else ""}</td>'
+                 f'<td class="tnum">{(r["rp_score"] or 0):.0f}</td>'
+                 f'<td class="tnum">{r["f13_buyers"] or 0}/{r["f13_sellers"] or 0}</td>'
+                 f'<td class="tnum">{r["ins_n"] or 0}</td>'
+                 f'<td class="tnum">{r["stake_n"] or 0}</td>'
+                 f'<td class="tnum">{esc(r["evidence_date"] or "")}</td>'
+                 f'<td class="tnum">{arrow(r["mom_3mo"],0)}</td></tr>' for r in rp]
+        parts.append(_panel("Buying now — last quarter's 13F net buying, insider buys and new 13D/Gs (Revealed Preference)",
+            ["Tk","Name","RP","13F buy/sell","Insiders","13D/G","Latest","3mo"], rrows,
+            rightclasses="l l tnum tnum tnum tnum tnum tnum".split()))
+
+    # PANEL 5 — cheap AND sound (the Valuation sheet's checks), not just cheap:
+    # insurers, and loss-makers on a one-off EBITDA, read "cheap" on EV/EBITDA
+    val = q(conn, """SELECT us.ticker, us.name, us.ev_ebitda, yf.fcf_yield, yf.roic,
+               COALESCE(yf.rev_growth_fy, yf.rev_growth) rg, yf.net_debt_ebitda, us.score
+        FROM unified_signal us JOIN ticker_yf yf ON yf.ticker=us.ticker
         WHERE us.sec_type='common' AND us.ev_ebitda BETWEEN 2 AND 12 AND us.smart_money_n>=3
-        ORDER BY us.ev_ebitda ASC LIMIT 16""")
+          AND COALESCE(yf.sector, '') != 'Financial Services' AND COALESCE(yf.industry, '') != 'Shell Companies'
+          AND yf.fcf_yield > 0 AND yf.fcf_yield <= 0.40 AND yf.roic >= 0.08
+          AND COALESCE(yf.net_debt_ebitda, 0) < 3 AND COALESCE(yf.rev_growth_fy, yf.rev_growth, 0) > -0.05
+        ORDER BY yf.fcf_yield DESC LIMIT 20""")
+    from fund_moves import share_classes
+    other_class = share_classes(conn)          # PBR-A beside PBR: one company, one row
     vrows = []
     for v in val:
-        rg = v["rev_growth"]
+        if v["ticker"] in other_class:
+            continue
+        rg = v["rg"]
         vrows.append(
             f'<tr><td class="l tk">{esc(v["ticker"])}</td>'
             f'<td class="l mut">{esc((v["name"] or "")[:30])}</td>'
             f'<td class="tnum">{v["ev_ebitda"]:.1f}x</td>'
-            f'<td class="tnum">{("%.2f"%v["pb_ratio"]) if v["pb_ratio"] is not None else "·"}</td>'
+            f'<td class="tnum">{v["fcf_yield"] * 100:.0f}%</td>'
+            f'<td class="tnum">{v["roic"] * 100:.0f}%</td>'
             f'<td class="tnum">{arrow(rg*100,0) if rg is not None else "·"}</td>'
-            f'<td class="tnum">{("%.0f%%"%(v["profit_margin"]*100)) if v["profit_margin"] is not None else "·"}</td>'
             f'<td class="tnum">{(v["score"] or 0):.0f}</td></tr>')
-    parts.append(_panel("Cheap on EV/EBITDA — growth as the quality check",
-        ["Tk","Name","EV/EB","P/B","RevGr","Margin","Sc"], vrows,
+    parts.append(_panel("Cheap and sound — EV/EBITDA 2-12x, cash-generative, ROIC 8%+, low debt, not shrinking",
+        ["Tk","Name","EV/EB","FCF yld","ROIC","RevGr","Sc"], vrows,
         rightclasses="l l tnum tnum tnum tnum tnum".split()))
 
     parts.append('<div class="divider"><span class="rule"></span></div>')
     parts.append('<p class="mut">Colour is data: <span class="up">▲ lapis</span> improving / accumulating · '
-                 '<span class="dn">▼ crimson</span> deteriorating / distributing. One 13.5px Times size; '
-                 'structure is hairlines only. A test of the Times-Lattice style guide on cyclepapa data.</p>')
+                 '<span class="dn">▼ crimson</span> deteriorating / distributing. Built from 13F, 13D/G, Form 4, '
+                 '8-K and N-PORT filings and FMP market data; the detail behind every line is in '
+                 'universe_analysis.xlsx (Action Dashboard, Revealed Preference, QoQ Change, Valuation).</p>')
     parts.append("</div>")
     open(OUT, "w").write("<!doctype html><meta charset='utf-8'>" + "".join(parts))
     print(f"wrote {OUT}")
@@ -233,7 +275,9 @@ def _qoq(conn):
                  (SELECT fund, SUM(value_k) v FROM fund_13f_holdings GROUP BY fund) c
                  JOIN (SELECT fund, SUM(value_k) v FROM fund_13f_prior GROUP BY fund) p
                  ON p.fund = c.fund
-               WHERE c.v > 0 AND p.v BETWEEN c.v*0.4 AND c.v*2.5),
+               WHERE c.v > 0 AND p.v BETWEEN c.v*0.4 AND c.v*2.5
+                 -- one vote per filing (a manager under two roster names)
+                 AND c.fund IN (SELECT MIN(fund) FROM fund_13f_holdings GROUP BY accession)),
              cur AS (SELECT h.fund, COALESCE(cm.ticker, h.cusip) tk, SUM(h.shares) sh
                      FROM fund_13f_holdings h LEFT JOIN cusip_map cm ON cm.cusip = h.cusip
                      WHERE h.cusip IS NOT NULL AND h.sh_type IN ('SH','')
@@ -264,14 +308,35 @@ def _qoq(conn):
         FROM chg JOIN unified_signal u ON u.ticker=chg.tk AND u.sec_type='common'
         WHERE chg.tk NOT IN ('AMZN','MSFT','NVDA','META','GOOGL','GOOG','AAPL','TSLA','SPY','QQQ')
         GROUP BY chg.tk""")
-    scored = []
+    # a stock first listed after the prior quarter end (IPO, spin-off) or a SPAC
+    # shows every holder as "new": an allocation, not accumulation
+    import datetime as _dt
+    from fund_moves import latest_due_quarter, _prev_quarter_end
+    since = _prev_quarter_end(latest_due_quarter())
+    # a spin-off's when-issued date can fall just before the quarter end
+    # (Versigent, 2026-03-27): an all-new holder list within 45 days is a listing
+    near = (_dt.date.fromisoformat(since) - _dt.timedelta(days=45)).isoformat()
+    info = {t: (d, ind, nm) for t, d, ind, nm in q(conn, "SELECT ticker, ipo_date, industry, long_name FROM ticker_yf")}
+    def listing(tk, all_new):
+        d, ind, nm = info.get(tk, (None, None, None))
+        if ind == "Shell Companies" or "acquisition corp" in (nm or "").lower():
+            return "SPAC"
+        if d and (d > since or (all_new and d > near)):
+            return f"listed {d}"
+        return None
+    scored, listed = [], []
     for r in rows:
         net = (r["n_new"] + r["n_add"]) - (r["n_trim"] + r["n_exit"])
+        k = listing(r["ticker"], r["n_add"] == 0 and r["n_trim"] == 0 and r["n_exit"] == 0)
+        if k and net > 0:
+            listed.append((r["ticker"], r["n_new"], k))
+            continue
         scored.append((net, r))
     scored.sort(key=lambda x: -x[0])
+    listed.sort(key=lambda x: -x[1])
     builders = [r for net, r in scored if net > 0][:14]
     trimmers = [r for net, r in scored if net < 0][-14:][::-1]
-    return builders, trimmers
+    return builders, trimmers, listed
 
 def _qrow(r, building):
     net = (r["n_new"] + r["n_add"]) - (r["n_trim"] + r["n_exit"])

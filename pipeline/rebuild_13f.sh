@@ -22,11 +22,13 @@ step splits python3 pipeline/ingest_splits.py                 # split factors fo
 step build_cusip_map python3 pipeline/build_cusip_map.py
 step map_cusip_fmp python3 pipeline/map_cusip_fmp.py          # FMP-proven CUSIPs, new listings
 step back_apply python3 pipeline/build_cusip_map.py           # push the new mappings onto every line
+step map_pb_tickers python3 pipeline/map_pb_tickers.py     # board companies -> listings (people monitor)
 step enrich_fmp python3 pipeline/enrich_fmp.py
 step price_stats python3 pipeline/build_price_stats.py
 step earnings python3 pipeline/ingest_fmp_earnings.py
 step insider_fmp python3 pipeline/ingest_insider_fmp.py      # every Form 4 code; buys/sells the SEC scan missed
 step cluster python3 pipeline/cluster_detector.py
+step entry_intact python3 pipeline/entry_intact.py           # vs-entry on today's price (read by the score)
 step unified_score python3 pipeline/unified_score.py
 step revealed_pref python3 pipeline/revealed_preference.py     # dated buying evidence, no stale sections
 step conviction python3 pipeline/conviction.py

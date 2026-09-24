@@ -26,6 +26,9 @@ STYLE_RULES = [
     # \bEM\b: a bare "em" substring had filed "Nanocap ... 13F-EXEMPT" as Foreign/EM
     (r"japan|european|asia|global|\bEM\b",   "Foreign / EM Value"),
     (r"activist|special\s+sits|sponsor",      "Activists / Special Situations"),
+    # growth books that the "concentrated" rule below filed under Value
+    # (Dragoneer, D1, Altimeter, Trybe, Jericho, Durable: "Concentrated Growth - ...")
+    (r"^(?!.*value).*(growth|crossover)",     "Concentrated Growth / Tech"),
     (r"value|quality|compounder|skin|fat[\s-]?pitch|VIC|concentrated", "Value / Concentrated Quality"),
     (r"\bPE\b|\bLBO\b|private\s+equity|SPAC|gold|mining", "PE / SPAC / Gold / Mining"),
     (r"macro|trend",                          "Macro / Trend"),
@@ -43,6 +46,10 @@ FUND_STYLE_OVERRIDE = {
     "Eagle Capital Management (Boykin Curry)": "Value / Concentrated Quality",
     "Markel Group (Tom Gayner)": "Value / Concentrated Quality",
     "Vinik Asset Management LP": "Value / Concentrated Quality",
+    # growth investors inside the researcher's "Concentrated Long-Term Quality" group
+    "Atreides Management (Gavin Baker)": "Concentrated Growth / Tech",
+    "Baillie Gifford & Co": "Concentrated Growth / Tech",
+    "SRS Investment Mgmt (Karthik Sarma)": "Concentrated Growth / Tech",
     "Iconiq Capital LLC": "Family Offices / Individual Filers",
     "Hillspire LLC": "Family Offices / Individual Filers",
     "RIT Capital Partners plc (RCP.L": "Family Offices / Individual Filers",

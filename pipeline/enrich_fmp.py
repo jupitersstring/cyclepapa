@@ -253,6 +253,10 @@ def run():
     if conn.execute("SELECT 1 FROM sqlite_master WHERE name='nport_holdings'").fetchone():
         universe |= {r[0] for r in conn.execute(
             "SELECT DISTINCT ticker FROM nport_holdings WHERE ticker IS NOT NULL")}
+    # companies where the people monitor's connected directors sit (map_pb_tickers)
+    if conn.execute("SELECT 1 FROM sqlite_master WHERE name='pb_affiliation'").fetchone():
+        universe |= {r[0] for r in conn.execute(
+            "SELECT DISTINCT ticker FROM pb_affiliation WHERE ticker IS NOT NULL")}
     # names the bulk ratio / key-metric files skip (fresh listings, OTC, some
     # foreign lines): the per-symbol endpoints often have them (BEBE, SLQT, Z59.SI)
     from concurrent.futures import ThreadPoolExecutor

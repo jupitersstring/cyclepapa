@@ -198,13 +198,6 @@ CREATE TABLE form144_signal (
       total_m REAL, last_filed TEXT, pct_mcap REAL);
 CREATE INDEX idx_13f_ticker ON fund_13f_holdings(ticker);
 CREATE INDEX idx_13f_fund ON fund_13f_holdings(fund);
-CREATE TABLE ticker_entry_intact (
-      ticker TEXT PRIMARY KEY,
-      current_px REAL, anchor_px REAL, anchor_source TEXT,
-      vs_entry_pct REAL, bucket TEXT,
-      conviction_score REAL, n_funds INTEGER,
-      n_hyper INTEGER, has_insider_cobuy INTEGER, sum_dollar_m REAL,
-      anchors_seen TEXT);
 CREATE TABLE pb_people (
       person_id TEXT, first_name TEXT, last_name TEXT, full_name TEXT,
       primary_company TEXT, primary_company_type TEXT, primary_position TEXT,
@@ -217,7 +210,7 @@ CREATE INDEX idx_pbp_theme ON pb_people(theme);
 CREATE TABLE pb_affiliation (
       full_name TEXT, company TEXT, company_type TEXT, position TEXT,
       is_former INTEGER, theme TEXT, ticker TEXT, is_principal INTEGER DEFAULT 0,
-      role_class TEXT, confidence TEXT, seat_since TEXT);
+      role_class TEXT, confidence TEXT, seat_since TEXT, ticker_src TEXT);
 CREATE INDEX idx_pba_company ON pb_affiliation(company);
 CREATE INDEX idx_pba_ticker ON pb_affiliation(ticker);
 CREATE TABLE pb_principal (name TEXT PRIMARY KEY);
@@ -279,12 +272,19 @@ CREATE TABLE insider_fmp (symbol TEXT, filing_date TEXT, trans_date TEXT, report
           name TEXT, owner_type TEXT, trans_type TEXT, acq_disp TEXT, shares REAL, price REAL,
           owned_after REAL, security_name TEXT, url TEXT);
 CREATE INDEX idx_insfmp_sym ON insider_fmp(symbol);
+CREATE TABLE ticker_entry_intact (
+      ticker TEXT PRIMARY KEY,
+      current_px REAL, anchor_px REAL, anchor_source TEXT,
+      vs_entry_pct REAL, bucket TEXT,
+      conviction_score REAL, n_funds INTEGER,
+      n_hyper INTEGER, has_insider_cobuy INTEGER, sum_dollar_m REAL,
+      anchors_seen TEXT);
 CREATE TABLE unified_signal (
       ticker TEXT PRIMARY KEY,
       name TEXT, exchange TEXT, sector TEXT, mcap_m REAL, price REAL,
       mcap_bucket TEXT,
       smart_money_n REAL,
-      s1_top INTEGER, s2_thresh INTEGER, s3_new INTEGER, s4_add INTEGER,
+      s1_top INTEGER, s2_thresh INTEGER, s3_new REAL, s4_add REAL,
       activist_filings INTEGER, activist_max_pct REAL,
       insider_cluster_dollars_m REAL, insider_n INTEGER,
       form4_buy_usd_m REAL, form4_sell_usd_m REAL,

@@ -41,74 +41,20 @@ from nport_diff import nport_diff
 
 DB = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "cyclepapa.db")
 INSIDER_DAYS, STAKE_DAYS = 90, 90
-MIN_WEIGHT = 0.5          # % of book: smaller moves are housekeeping, not preference
-
-def latest_due_quarter(today=None):
-    """The newest quarter end whose 13F deadline (+45 days) passed 10+ days ago."""
-    today = today or dt.date.today()
-    qe = [dt.date(y, m, d) for y in (today.year - 1, today.year)
-          for m, d in ((3, 31), (6, 30), (9, 30), (12, 31))]
-    return max(q for q in qe if q + dt.timedelta(days=55) <= today).isoformat()
-
-def _short(fund):
-    import re
-    f = re.sub(r"\(.*?(\)|$)", "", fund or "")
-    return re.split(r"\s{2,}", f)[0].strip() or (fund or "").strip()
+from fund_moves import MIN_WEIGHT, latest_due_quarter, eligible_funds, quarter_moves
+from fund_moves import short_fund as _short
 
 def thirteen_f(conn, quarter):
     """{ticker: {"pts", "buy": [...], "sell": [...]}} from the funds whose
-    current book is `quarter` and whose prior is the preceding quarter."""
-    funds = eligible_funds(conn, quarter)   # name variants of one manager share a book
-    if not funds:
-        return {}, 0
-    split = {(f, t): x for f, t, x in conn.execute("SELECT fund, ticker, factor FROM prior_split_factor")}
-    ph = ",".join("?" * len(funds))
-    equity = ("h.sh_type IN ('SH','') AND substr(h.cusip,7,1) BETWEEN '0' AND '9' "
-              "AND substr(h.cusip,8,1) BETWEEN '0' AND '9'")
-
-    def book(table):
-        out, tot = {}, {}
-        for fund, tk, sh, val in conn.execute(f"""SELECT h.fund, COALESCE(cm.ticker, h.ticker), SUM(h.shares),
-                SUM(h.value_k) FROM {table} h LEFT JOIN cusip_map cm ON cm.cusip = h.cusip
-                WHERE h.fund IN ({ph}) AND {equity} GROUP BY h.fund, 2""", funds):
-            if tk:
-                out[(fund, tk)] = (sh or 0.0, val or 0.0)
-                tot[fund] = tot.get(fund, 0.0) + (val or 0.0)
-        return out, tot
-
-    cur, cur_tot = book("fund_13f_holdings")
-    pri, pri_tot = book("fund_13f_prior")
-    n_pos = {}
-    for (f, _t) in cur:
-        n_pos[f] = n_pos.get(f, 0) + 1
+    current book is `quarter` and whose prior is the preceding quarter
+    (position rules in fund_moves.quarter_moves, shared with the style book)."""
+    moves, funds = quarter_moves(conn, quarter)
     res = {}
-    for f in funds:
-        ct, pt = cur_tot.get(f, 0.0), pri_tot.get(f, 0.0)
-        # a partial prior filing (Berkshire's once covered $67B of $263B)
-        # fabricates adds and exits: both books must be comparable in size
-        if not ct or not (0.4 * ct <= pt <= 2.5 * ct):
-            continue
-        focus = min(1.0, 75.0 / max(n_pos.get(f, 1), 1))
-        tks = {t for (g, t) in cur if g == f} | {t for (g, t) in pri if g == f}
-        for tk in tks:
-            c_sh, c_val = cur.get((f, tk), (0.0, 0.0))
-            p_sh, p_val = pri.get((f, tk), (0.0, 0.0))
-            p_sh *= split.get((f, tk), 1.0)
-            cw, pw = 100.0 * c_val / ct, (100.0 * p_val / pt if pt else 0.0)
-            act, pts = None, 0.0
-            if c_sh > 0 and p_sh <= 0 and cw >= MIN_WEIGHT:
-                act, pts = f"new {cw:.1f}%", min(cw, 10.0)
-            elif c_sh > 0 and p_sh > 0 and c_sh >= 1.25 * p_sh and cw >= MIN_WEIGHT:
-                act, pts = f"+{100 * (c_sh / p_sh - 1):.0f}% to {cw:.1f}%", min(cw * (1 - p_sh / c_sh), 10.0)
-            elif p_sh > 0 and c_sh <= 0 and pw >= MIN_WEIGHT:
-                act, pts = f"exited {pw:.1f}%", -min(pw, 10.0)
-            elif p_sh > 0 and 0 < c_sh <= 0.75 * p_sh and pw >= MIN_WEIGHT:
-                act, pts = f"-{100 * (1 - c_sh / p_sh):.0f}% to {cw:.1f}%", -min(pw * (1 - c_sh / p_sh), 10.0)
-            if not act:
-                continue
-            d = res.setdefault(tk, {"pts": 0.0, "buy": [], "sell": []})
-            d["pts"] += focus * pts
-            (d["buy"] if pts > 0 else d["sell"]).append((abs(focus * pts), f"{_short(f)} ({act})"))
+    for m in moves:
+        d = res.setdefault(m["ticker"], {"pts": 0.0, "buy": [], "sell": []})
+        d["pts"] += m["pts"]
+        (d["buy"] if m["pts"] > 0 else d["sell"]).append(
+            (abs(m["pts"]), f"{_short(m['fund'])} ({m['label']})"))
     return res, len(funds)
 
 def insiders(conn):
@@ -169,24 +115,6 @@ def nport(conn):
     return res
 
 _NOT_COMMON = r"option|warrant|restricted|\\brsu\\b|\\bunit|note|debenture|preferred|\\bright|phantom|performance"
-
-def eligible_funds(conn, quarter):
-    """Funds whose current book is `quarter` and prior the preceding quarter,
-    one per manager (name variants share a book)."""
-    period = {a: p for a, p in conn.execute(
-        "SELECT accession, period FROM sec_13f_filings WHERE period != ''")}
-    canon = {f: c for f, c in conn.execute("SELECT fund, canon FROM fund_canon")}
-    out, seen = [], set()
-    for fund, cur_acc, pri_acc in conn.execute("""SELECT s.fund, s.last_accession, p.accession
-            FROM fund_13f_state s JOIN fund_13f_prior_state p ON p.fund = s.fund
-            WHERE p.accession IS NOT NULL ORDER BY s.fund"""):
-        if period.get(cur_acc) != quarter or not period.get(pri_acc) or period[pri_acc] >= quarter:
-            continue
-        c = canon.get(fund, fund)
-        if c not in seen:
-            seen.add(c)
-            out.append(fund)
-    return out
 
 def capital_structure(conn, quarter):
     """{ticker: {"pts", "notes": [...], "last": date}} — see the module note."""

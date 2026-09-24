@@ -789,7 +789,7 @@ def classify_sec_form(title, sh_type=""):
         return "etf"
     if re.search(r"\bUNIT", tt):
         return "unit"
-    if re.search(r"\bPFD|PREF|PREFERRED|DEP(OSITARY)?\s+SH|DEP\s+REP|% CUM|% SR", tt):
+    if re.search(r"\bPFD|PREF|PREFERRED|DEP(OSITARY)?\s+SH|DEP\s+REP|% CUM|% SR|\bPERP\b|\bPF\b", tt):
         return "preferred"
     if re.search(r"\bADR|ADS|SPON(SORED)?\s+ADR|AMERICAN DEP", tt):
         return "adr"

@@ -282,6 +282,78 @@ def complete_text(s):
             return body[:cut].rstrip(",;") + "."
     return s
 
+_STATUS_PLAIN = [
+    (r"^efts_resolved", "13F filer: CIK found by EDGAR full-text search"),
+    (r"^v\d_verified", "13F filer: CIK verified"),
+    (r"^manual_seed", "13F filer: CIK set by hand"),
+    (r"^needs_verify", "CIK matched by name, not yet verified"),
+    (r"^below_13f_threshold", "No 13F: under the $100M reporting threshold"),
+    (r"^(\w\w)_non_filer_no_disclosure", "No 13F: non-US manager ({cc}), no public holdings"),
+    (r"^(\w\w)_non_filer", "No 13F: non-US manager ({cc}); holdings from research notes"),
+    (r"^non_equity_strategy", "No 13F: not a long-equity strategy"),
+    (r"^individual", "No 13F: an individual (13D/G and Form 4 only)"),
+    (r"^historical_13f_only", "Stopped filing 13Fs (history only)"),
+    (r"^private_office", "No 13F: private family office"),
+    (r"^meta_rollup", "Group heading, not a fund"),
+    (r"^skip_no_aum", "Skipped: no assets reported"),
+    (r"^gap_", "CIK uncertain"),
+    (r"^rejected: CIK (\d+) is (.*)", "Wrong CIK rejected ({1} belongs to {2})"),
+]
+_CC = {"uk": "UK", "es": "Spain", "jp": "Japan", "ca": "Canada", "au": "Australia", "fr": "France", "za": "South Africa",
+       "sg": "Singapore", "hk": "Hong Kong", "de": "Germany", "ch": "Switzerland"}
+
+def plain_status(code):
+    """Resolver status code -> plain English, the code kept in brackets."""
+    code = (code or "").strip()
+    if not code:
+        return "13F filer (added from its filings)"
+    for pat, txt in _STATUS_PLAIN:
+        m = re.match(pat, code)
+        if m:
+            g = m.groups()
+            out = txt.replace("{cc}", _CC.get(g[0], g[0].upper()) if g else "")
+            if len(g) >= 2:
+                out = out.replace("{1}", g[0]).replace("{2}", g[1])
+            return out if code.startswith("rejected") else f"{out} [{code}]"
+    return code
+
+def add_grouped_contents(ws, guide, sheetnames, start_row=None):
+    """A reading guide on the README: sheets grouped by the question they
+    answer, each a clickable link with one line on what it is for. Any sheet
+    the guide doesn't name is listed at the end, so none goes missing."""
+    row = start_row or (ws.max_row or 1) + 2
+    write_section_heading(ws, row, "Contents — sheets grouped by the question they answer (click to open)", 2)
+    row += 1
+    link_font = Font(name=TNR, size=SIZE_BODY, color=BLACK, underline="single")
+    named = set()
+    for group, items in guide:
+        items = [(n, d) for n, d in items if n in sheetnames]
+        if not items:
+            continue
+        c = ws.cell(row=row, column=1, value=group)
+        c.font = SECTION_FONT
+        row += 1
+        for name, desc in items:
+            named.add(name)
+            c = ws.cell(row=row, column=1, value=f"{name} — {desc}")
+            c.hyperlink = f"#'{name}'!A1"
+            c.font = link_font
+            c.alignment = Alignment(horizontal="left", vertical="top", wrap_text=True)
+            ws.row_dimensions[row].height = 16 if len(name) + len(desc) < 110 else 30
+            row += 1
+        row += 1
+    rest = [n for n in sheetnames if n not in named and n != ws.title]
+    if rest:
+        c = ws.cell(row=row, column=1, value="Other sheets")
+        c.font = SECTION_FONT
+        row += 1
+        for name in rest:
+            c = ws.cell(row=row, column=1, value=name)
+            c.hyperlink = f"#'{name}'!A1"
+            c.font = link_font
+            row += 1
+    return row
+
 # ---------- valuation multiples on every ticker table ----------
 VALUATION_COLS = ("EV/EBITDA", "P/E", "P/B", "P/TB")
 _VAL_FMT = {"EV/EBITDA": '0.0"x"', "P/E": '0.0"x"', "P/B": '0.00"x"', "P/TB": '0.00"x"'}
@@ -521,26 +593,48 @@ def set_default_font(wb):
 # ---------- legend / glossary (shared across both workbooks) ----------
 LEGEND = [
     ("Position classification", [
-        ("Section 1 / S1", "Top-conviction holding — the manager's highest-conviction, largest-weight positions."),
-        ("Section 3 / S3", "New major position — a newly initiated significant holding this period (an initiation)."),
-        ("Section 4 / S4", "Material add — a meaningful increase to an existing position."),
+        ("Section 1 / S1", "Top-conviction holding (researcher notes) — counted only while the fund still holds the stock (any share class) in its latest 13F."),
+        ("Section 3 / S3", "New position. A fund with a current 13F book counts when it opened the position in the latest quarter (0.5%+ of its book; spin-offs received and lines new at an IPO excluded); a fund with no current book counts from the researcher notes. Universe book: weighted by focus (a 20-name fund = 1, a 750-name fund = 0.1). Style book: number of funds."),
+        ("Section 4 / S4", "Material add: as S3, for a position whose share count rose 25% or more in the latest quarter."),
         ("Section 5", "Researcher-flagged position (letters, interviews, primary research) without a 13F section."),
         ("ST  (prefix)", "Within-style: counted only across funds in THIS macro-style. e.g. ST S3 = funds in this style initiating a new major position; ST Holders = holders within the style."),
         ("Sub (prefix)", "Within sub-group: counted only across funds in this sub-group tier (e.g. Sub Holders)."),
         ("Uni (prefix)", "Universe-wide: counted across every tracked fund (e.g. Uni 13F)."),
     ]),
     ("Smart money & conviction", [
-        ("13F", "Number of distinct 13F filers (funds) holding the name."),
+        ("13F / 13F WT / Smart$ n", "Conviction-weighted count of 13F holders: each fund counts min(1, 75 ÷ its positions), so a 20-name book counts 1 and a 6,000-name quant 0.01. Not a raw holder count."),
         ("Holders", "Count of funds holding the name (overall, or within style / sub-group when prefixed)."),
         ("pB Max", "Largest single-fund position weight — the maximum % of any one fund's book in the name."),
         ("pB ≥5%", "Number of funds with at least 5% of their book in the name (a concentration cluster)."),
         ("%Book", "A position's weight as a percent of the fund's reported equity book."),
         ("Score", "Unified score: log(13F)×2 + section weights + concentration + activist + insider + catalyst − sells (full formula on README)."),
         ("Global Score", "Score excluding US-only signals (Form 4, clusters) so foreign listings rank on equal footing."),
-        ("Rev Pref", "Revealed preference = 2×S3 + 1×S4 + 0.5×S1 — measures active accumulation, not static holding."),
+        ("Rev Pref", "Score-table column: 2×S3 + 1×S4 + 0.5×S1 — active accumulation, not static holding. The Revealed Preference sheet ranks on its own RP Score (dated evidence only; see that sheet)."),
         ("Asym", "Asymmetry score — margin-of-safety (cheap valuation + below smart-money entry) × upside (conviction + catalyst + small-cap room)."),
         ("Why", "The top-3 terms driving the Score, as compact codes: sm=smart-money holders, s1=top-pick funds, s3=new-position funds, s4=add funds, pb=low price/book, pb5=funds ≥5% book, clu$=insider-cluster $, f4buy=insider buys, f4rec=very-recent buys, f4sell=insider sells, act=activist %, 8k=catalyst, micro=small-cap, entry=below smart-money entry. e.g. 's1 24 · pb5 18 · pb 14'."),
         ("Lift  (Signature picks)", "How much a fund STYLE over-indexes on a name vs the whole universe: (style holder-share) ÷ (universe holder-share). >1 = the style's distinctive bet."),
+    ]),
+    ("Latest quarter & holders (style book)", [
+        ("Vote Wt", "A fund's vote: min(1, 75 ÷ its positions). A focused 20-name book counts 1; a 1,800-name quant book 0.04. Diversified books show the crowd, not conviction."),
+        ("St Wtd / Sub Wtd", "Holders within the style (sub-group) weighted by Vote Wt — the ranking for 'most held'."),
+        ("Held By", "The style's largest holders by % of their own book (all of them up to four, then '+N more')."),
+        ("Last Qtr", "Within the style, funds that bought (new or added) / sold (trimmed or exited) the name in the latest 13F quarter, e.g. '+3 / -1'."),
+        ("Net Pts", "Sum over the style's funds of the % of book bought, minus sold, in the latest quarter (new or added positions, net of trims and exits, capped at 10 per fund, times Vote Wt). Half weight for a line new at an IPO (an allocation, or a pre-IPO stake becoming reportable); zero for a spin-off received."),
+        ("Who Bought / Who Sold", "Each fund's move: 'new 4.1%' (opened, now 4.1% of book), '+38% to 6.0%' (shares up 38%), 'exited 2.2%', '-50% to 1.1%'."),
+        ("Book / Filed", "The quarter a fund's latest 13F covers, and its filing date. 'dormant' = no 13F for 200+ days (archived, not counted)."),
+        ("Top-10 %", "Share of the fund's 13F equity book in its ten largest positions — how concentrated it is."),
+        ("Share classes", "Classes of one company (GOOG + GOOGL, BRK-A + BRK-B) count as one holding in the style book; the Name column lists the merged classes."),
+    ]),
+    ("Convergence / Action Dashboard signals", [
+        ("Smart$≥3", "13F (conviction-weighted holders) of 3 or more."),
+        ("Activist", "A 13D/G stake of 10% or more, filed in the last 24 months."),
+        ("Insider30d", "Any open-market insider purchase in the last 30 days."),
+        ("Cluster", "Two or more insiders buying within a live (≤180-day) window."),
+        ("New/Add", "S3 or S4 above zero: a fund opened or added 25%+ to the position (latest 13F quarter; research notes for funds without a current 13F)."),
+        ("BelowEntry", "Price 15%+ below the funds' estimated entry (see In The Money for how the anchor is set)."),
+        ("Cheap", "EV/EBITDA 2–12x, or price / book up to 1.2x."),
+        ("Catalyst", "An 8-K for M&A (Item 1.01 / 2.01) or change of control (5.01) in the last 180 days."),
+        ("# Sig", "How many of these eight fire."),
     ]),
     ("Activist & insider (SEC)", [
         ("13D", "Number of SC 13D / 13G beneficial-ownership filings (a ≥5% stake)."),
@@ -629,7 +723,7 @@ LEGEND = [
     ]),
     ("Sources & symbols", [
         ("13F-HR", "SEC quarterly institutional holdings filing (the standard smart-money source). NOTE: 13F holdings are quarter-END positions filed up to 45 days later — the smart-money columns can be up to ~3–4 months old (see each sheet's as-of date). Form 4 / 13D / 8-K / valuation columns are near-current."),
-        ("XLSX", "Research-team position classification (sections 1 / 3 / 4 / 5)."),
+        ("XLSX", "Research-team position notes (sections 1 / 3 / 4 / 5), compiled May–June 2026 from mostly Q4 2025 – Q1 2026 filings. Superseded by the latest 13F wherever a fund has a current book; the only source for funds without one."),
         ("SC 13D/G", "SEC beneficial-ownership filing (a ≥5% stake)."),
         ("Value $M", "Position market value in $M (13F holdings); blank for 13D/G rows."),
         ("—", "An em-dash means not applicable / not available for that cell."),
