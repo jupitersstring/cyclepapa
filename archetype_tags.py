@@ -7225,7 +7225,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
              + [c + '_eff' for c in _EFF_COLS if c + '_eff' in df.columns]
              + [c for c in df.columns if c.startswith('fmp_filled_')]]
     from master_versions import versioned_replace
-    out.to_csv(out_path + '.tmp', index=False)
+    # 10 significant digits: exact for every ratio / flag / score and for
+    # levels to the unit up to ~10bn, while keeping the file well under
+    # GitHub's 100 MB hard limit (full-precision repr reached 94 MB).
+    out.to_csv(out_path + '.tmp', index=False, float_format='%.10g')
     versioned_replace(out_path + '.tmp', out_path)   # atomic + pre-image snapshot
 
 
