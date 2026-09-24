@@ -1,0 +1,155 @@
+industry,u_sector,u_group,u_industry,n,purity
+Advertising Agencies,Communication Services,Telecommunication Services,Diversified Telecommunication Services,129,0.915
+Aerospace & Defense,Industrials,Capital Goods,Aerospace & Defense,134,0.822
+Agricultural - Commodities/Milling,Consumer Staples,Food & Staples Retailing,Food & Staples Retailing,10,0.769
+Agricultural - Machinery,Industrials,Capital Goods,Machinery,51,0.911
+Agricultural Farm Products,Consumer Staples,Household & Personal Products,Household Products,152,0.938
+Agricultural Inputs,Materials,Materials,Construction Materials,79,0.878
+"Airlines, Airports & Air Services",Industrials,Transportation,Airlines,43,0.531
+Aluminum,Materials,Materials,Metals & Mining,58,0.935
+Apparel - Footwear & Accessories,Consumer Discretionary,Consumer Durables & Apparel,"Textiles, Apparel & Luxury Goods",77,0.895
+Apparel - Manufacturers,Consumer Discretionary,Consumer Durables & Apparel,"Textiles, Apparel & Luxury Goods",143,0.979
+Apparel - Retail,Consumer Discretionary,Consumer Durables & Apparel,"Textiles, Apparel & Luxury Goods",73,0.924
+Asset Management,Financials,Diversified Financials,Capital Markets,268,0.845
+Asset Management - Cryptocurrency,Financials,Insurance,Insurance,2,0.4
+Asset Management - Global,Financials,Diversified Financials,Capital Markets,3,1.0
+Asset Management - Income,Financials,Diversified Financials,Capital Markets,4,1.0
+Auto - Dealerships,Consumer Discretionary,Automobiles & Components,Automobiles,51,0.864
+Auto - Manufacturers,Consumer Discretionary,Automobiles & Components,Automobiles,66,0.917
+Auto - Parts,Consumer Discretionary,Automobiles & Components,Auto Components,369,0.927
+Auto - Recreational Vehicles,Consumer Discretionary,Automobiles & Components,Automobiles,12,0.632
+Banks,Financials,Banks,Banks,13,0.812
+Banks - Diversified,Financials,Banks,Banks,53,0.981
+Banks - Regional,Financials,Banks,Banks,625,0.977
+Beverages - Alcoholic,Consumer Staples,"Food, Beverage & Tobacco",Beverages,60,1.0
+Beverages - Non-Alcoholic,Consumer Staples,"Food, Beverage & Tobacco",Beverages,54,0.931
+Beverages - Wineries & Distilleries,Consumer Staples,"Food, Beverage & Tobacco",Beverages,46,0.958
+Biotechnology,Health Care,"Pharmaceuticals, Biotechnology & Life Sciences",Biotechnology,703,0.954
+Broadcasting,Communication Services,Media & Entertainment,Media,40,0.727
+Business Equipment & Supplies,Industrials,Commercial & Professional Services,Commercial Services & Supplies,45,0.9
+Chemicals,Materials,Materials,Chemicals,194,0.924
+Chemicals - Specialty,Materials,Materials,Chemicals,450,0.911
+Coal,Materials,Materials,Metals & Mining,85,0.924
+Communication Equipment,Information Technology,Technology Hardware & Equipment,Communications Equipment,191,0.793
+Computer Hardware,Information Technology,Technology Hardware & Equipment,"Technology Hardware, Storage & Peripherals",153,0.801
+Conglomerates,Industrials,Capital Goods,Industrial Conglomerates,133,0.63
+Construction,Industrials,Capital Goods,Building Products,2,1.0
+Construction Materials,Materials,Materials,Construction Materials,126,0.479
+Consulting Services,Industrials,Commercial & Professional Services,Professional Services,33,0.868
+Consumer Electronics,Information Technology,Technology Hardware & Equipment,"Electronic Equipment, Instruments & Components",62,0.899
+Copper,Materials,Materials,Metals & Mining,33,0.943
+Department Stores,Consumer Discretionary,Consumer Durables & Apparel,Household Durables,105,0.991
+Discount Stores,Consumer Staples,Household & Personal Products,Household Products,17,0.895
+Diversified Utilities,Utilities,Utilities,Multi-Utilities,38,0.884
+Drug Manufacturers - General,Health Care,"Pharmaceuticals, Biotechnology & Life Sciences",Pharmaceuticals,42,0.913
+Drug Manufacturers - Specialty & Generic,Health Care,"Pharmaceuticals, Biotechnology & Life Sciences",Pharmaceuticals,288,0.92
+Education & Training Services,Consumer Staples,Household & Personal Products,Household Products,63,0.887
+Electrical Equipment & Parts,Industrials,Capital Goods,Electrical Equipment,291,0.744
+Electronic Gaming & Multimedia,Communication Services,Media & Entertainment,Interactive Media & Services,73,0.89
+Engineering & Construction,Industrials,Capital Goods,Construction & Engineering,456,0.844
+Entertainment,Communication Services,Media & Entertainment,Entertainment,86,0.652
+Environmental Services,Industrials,Transportation,Transportation Infrastructure,2,0.4
+Financial - Capital Markets,Financials,Diversified Financials,Capital Markets,135,0.912
+Financial - Conglomerates,Financials,Diversified Financials,Capital Markets,27,0.529
+Financial - Credit Services,Financials,Diversified Financials,Consumer Finance,124,0.79
+Financial - Data & Stock Exchanges,Financials,Diversified Financials,Capital Markets,26,0.897
+Financial - Diversified,Financials,Diversified Financials,Capital Markets,2,0.667
+Financial - Mortgages,Financials,Banks,Thrifts & Mortgage Finance,20,0.87
+Food Confectioners,Consumer Staples,Food & Staples Retailing,Food & Staples Retailing,47,0.959
+Food Distribution,Consumer Staples,Food & Staples Retailing,Food & Staples Retailing,53,0.883
+"Furnishings, Fixtures & Appliances",Consumer Discretionary,Consumer Durables & Apparel,Household Durables,143,0.678
+"Gambling, Resorts & Casinos",Consumer Discretionary,Consumer Services,"Hotels, Restaurants & Leisure",65,0.89
+General Transportation,Industrials,Transportation,Road & Rail,11,0.478
+Gold,Materials,Materials,Metals & Mining,164,0.965
+Grocery Stores,Consumer Staples,Food & Staples Retailing,Food & Staples Retailing,67,0.848
+"Hardware, Equipment & Parts",Information Technology,Technology Hardware & Equipment,"Electronic Equipment, Instruments & Components",492,0.879
+Home Improvement,Consumer Discretionary,Consumer Durables & Apparel,Household Durables,29,0.853
+Household & Personal Products,Consumer Staples,Household & Personal Products,Household Products,130,0.929
+Independent Power Producers,Utilities,Utilities,Independent Power and Renewable Electricity Producers,30,0.769
+Industrial - Distribution,Industrials,Capital Goods,Trading Companies & Distributors,69,0.473
+Industrial - Infrastructure Operations,Industrials,Transportation,Transportation Infrastructure,19,0.704
+Industrial - Machinery,Industrials,Capital Goods,Machinery,630,0.807
+Industrial - Pollution & Treatment Controls,Industrials,Capital Goods,Construction & Engineering,41,0.82
+Industrial - Specialties,Materials,Materials,Chemicals,8,0.286
+Industrial Materials,Materials,Materials,Metals & Mining,270,0.971
+Information Technology Services,Information Technology,Software & Services,IT Services,235,0.721
+Insurance - Brokers,Financials,Insurance,Insurance,21,0.875
+Insurance - Diversified,Financials,Insurance,Insurance,71,0.973
+Insurance - Life,Financials,Insurance,Insurance,56,0.875
+Insurance - Property & Casualty,Financials,Insurance,Insurance,90,0.978
+Insurance - Reinsurance,Financials,Insurance,Insurance,11,1.0
+Insurance - Specialty,Financials,Insurance,Insurance,17,0.944
+Integrated Freight & Logistics,Industrials,Transportation,Air Freight & Logistics,99,0.853
+Internet Content & Information,Communication Services,Telecommunication Services,Diversified Telecommunication Services,87,0.763
+Investment - Banking & Investment Services,Financials,Diversified Financials,Capital Markets,49,0.891
+Leisure,Consumer Discretionary,Consumer Services,"Hotels, Restaurants & Leisure",120,0.916
+Luxury Goods,Consumer Discretionary,Consumer Durables & Apparel,"Textiles, Apparel & Luxury Goods",61,0.968
+Manufacturing - Metal Fabrication,Industrials,Capital Goods,Building Products,110,0.803
+Manufacturing - Miscellaneous,Consumer Discretionary,Automobiles & Components,Auto Components,11,0.379
+Manufacturing - Textiles,Consumer Discretionary,Consumer Durables & Apparel,"Textiles, Apparel & Luxury Goods",128,0.883
+Manufacturing - Tools & Accessories,Industrials,Capital Goods,Building Products,70,0.959
+Marine Shipping,Industrials,Transportation,Marine,116,0.859
+Media & Entertainment,Communication Services,Media & Entertainment,Entertainment,7,0.538
+Medical - Care Facilities,Health Care,Health Care Equipment & Services,Health Care Equipment & Supplies,127,0.847
+Medical - Devices,Health Care,Health Care Equipment & Services,Health Care Technology,161,0.739
+Medical - Diagnostics & Research,Health Care,"Pharmaceuticals, Biotechnology & Life Sciences",Biotechnology,80,0.93
+Medical - Distribution,Health Care,Health Care Equipment & Services,Health Care Providers & Services,33,0.6
+Medical - Equipment & Services,Health Care,Health Care Equipment & Services,Health Care Technology,1,1.0
+Medical - Healthcare Information Services,Health Care,Health Care Equipment & Services,Health Care Providers & Services,42,0.636
+Medical - Healthcare Plans,Health Care,Health Care Equipment & Services,Health Care Providers & Services,13,0.867
+Medical - Instruments & Supplies,Health Care,Health Care Equipment & Services,Health Care Equipment & Supplies,107,0.884
+Medical - Pharmaceuticals,Health Care,"Pharmaceuticals, Biotechnology & Life Sciences",Pharmaceuticals,62,0.639
+Medical - Specialties,Health Care,Health Care Equipment & Services,Health Care Technology,16,0.364
+Oil & Gas Drilling,Energy,Energy,"Oil, Gas & Consumable Fuels",10,1.0
+Oil & Gas Energy,Utilities,Utilities,Gas Utilities,1,1.0
+Oil & Gas Equipment & Services,Energy,Energy,Energy Equipment & Services,86,0.945
+Oil & Gas Exploration & Production,Energy,Energy,"Oil, Gas & Consumable Fuels",188,0.94
+Oil & Gas Integrated,Energy,Energy,"Oil, Gas & Consumable Fuels",21,0.84
+Oil & Gas Midstream,Energy,Energy,"Oil, Gas & Consumable Fuels",46,0.868
+Oil & Gas Refining & Marketing,Energy,Energy,"Oil, Gas & Consumable Fuels",69,0.885
+Other Precious Metals,Materials,Materials,Metals & Mining,142,0.904
+Packaged Foods,Consumer Staples,Food & Staples Retailing,Food & Staples Retailing,361,0.928
+Packaging & Containers,Consumer Discretionary,Retailing,Distributors,152,0.884
+"Paper, Lumber & Forest Products",Materials,Materials,Paper & Forest Products,134,0.924
+Personal Products & Services,Consumer Discretionary,Consumer Services,"Hotels, Restaurants & Leisure",34,0.739
+Publishing,Communication Services,Telecommunication Services,Diversified Telecommunication Services,63,0.9
+REIT - Diversified,Real Estate,Real Estate,Equity Real Estate Investment Trusts (REITs),103,0.954
+REIT - Healthcare Facilities,Real Estate,Real Estate,Equity Real Estate Investment Trusts (REITs),24,1.0
+REIT - Hotel & Motel,Real Estate,Real Estate,Equity Real Estate Investment Trusts (REITs),41,1.0
+REIT - Industrial,Real Estate,Real Estate,Equity Real Estate Investment Trusts (REITs),52,0.981
+REIT - Mortgage,Real Estate,Real Estate,Equity Real Estate Investment Trusts (REITs),68,0.907
+REIT - Office,Real Estate,Real Estate,Equity Real Estate Investment Trusts (REITs),53,0.981
+REIT - Residential,Real Estate,Real Estate,Equity Real Estate Investment Trusts (REITs),38,0.974
+REIT - Retail,Real Estate,Real Estate,Equity Real Estate Investment Trusts (REITs),71,0.973
+REIT - Specialty,Real Estate,Real Estate,Equity Real Estate Investment Trusts (REITs),28,0.933
+Railroads,Industrials,Transportation,Road & Rail,63,0.926
+Real Estate - Development,Real Estate,Real Estate,Real Estate Management & Development,401,0.899
+Real Estate - Diversified,Real Estate,Real Estate,Real Estate Management & Development,53,0.981
+Real Estate - Services,Real Estate,Real Estate,Real Estate Management & Development,183,0.934
+Regulated Electric,Utilities,Utilities,Electric Utilities,110,0.724
+Regulated Gas,Utilities,Utilities,Gas Utilities,56,0.862
+Regulated Water,Utilities,Utilities,Water Utilities,42,0.955
+Renewable Utilities,Utilities,Utilities,Independent Power and Renewable Electricity Producers,81,0.862
+Rental & Leasing Services,Industrials,Commercial & Professional Services,Commercial Services & Supplies,42,0.875
+Residential Construction,Industrials,Capital Goods,Construction & Engineering,55,0.833
+Restaurants,Consumer Discretionary,Consumer Services,"Hotels, Restaurants & Leisure",185,0.939
+Security & Protection Services,Industrials,Commercial & Professional Services,Professional Services,61,0.953
+Semiconductors,Information Technology,Semiconductors & Semiconductor Equipment,Semiconductors & Semiconductor Equipment,340,0.867
+Shell Companies,Financials,Diversified Financials,Diversified Financial Services,83,0.892
+Silver,Materials,Materials,Metals & Mining,5,1.0
+Software - Application,Information Technology,Software & Services,Software,443,0.783
+Software - Infrastructure,Information Technology,Software & Services,Software,150,0.789
+Software - Services,Industrials,Commercial & Professional Services,Professional Services,2,0.286
+Solar,Information Technology,Technology Hardware & Equipment,"Technology Hardware, Storage & Peripherals",34,0.791
+Specialty Business Services,Industrials,Commercial & Professional Services,Professional Services,152,0.72
+Specialty Retail,Consumer Discretionary,Retailing,Specialty Retail,132,0.5
+Staffing & Employment Services,Industrials,Commercial & Professional Services,Professional Services,88,0.926
+Steel,Materials,Materials,Metals & Mining,214,0.947
+Technology Distributors,Information Technology,Technology Hardware & Equipment,"Electronic Equipment, Instruments & Components",71,0.772
+Telecommunications Services,Communication Services,Telecommunication Services,Diversified Telecommunication Services,153,0.895
+Tobacco,Consumer Staples,"Food, Beverage & Tobacco",Tobacco,11,0.688
+Travel Lodging,Consumer Discretionary,Consumer Services,"Hotels, Restaurants & Leisure",89,0.967
+Travel Services,Consumer Discretionary,Consumer Services,"Hotels, Restaurants & Leisure",61,0.897
+Trucking,Industrials,Transportation,Transportation Infrastructure,32,0.914
+Uranium,Materials,Materials,Metals & Mining,18,0.947
+Waste Management,Industrials,Transportation,Transportation Infrastructure,64,0.877
