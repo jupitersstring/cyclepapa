@@ -91,6 +91,19 @@ def _country_from_src(src: str | float) -> str:
     return src.strip().upper()
 
 
+# FMP-fillable gate inputs exported post-fill as <col>_eff (see compute()).
+_EFF_COLS = ('retained_earnings', 'net_working_capital', 'tangible_equity', 'p_tb',
+             'ni_avg', 'capex_avg', 'oe_avg', 'financing_cf_ttm', 'effective_tax_rate',
+             'income_continuing_ops_ttm', 'income_discontinued_ops_ttm', 'deferred_revenue',
+             'equity', 'assets', 'pretax_income_ttm', 'sbc_pct_revenue',
+             'interest_coverage', 'goodwill_intangibles_pct_assets',
+             'rev_yoy_streak_q', 'ni_yoy_streak_q', 'rev_yoy_pos_share_12q',
+             'revenue_3y_cagr', 'revenue_5y_cagr', 'revenue_acceleration_lindy',
+             'asset_3y_cagr', 'asset_5y_cagr', 'cash_roic_lindy', 'roic_acceleration',
+             'cheap_per_roiic_lindy', 'n_yrs_positive_fcf', 'n_yrs_positive_roic',
+             'n_yrs_positive_opinc', 'equity_cagr_5y')
+
+
 def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     asym = pd.read_csv(ASYM_PATH).drop_duplicates('symbol')
     yart = _load_yartseva_union()
@@ -325,13 +338,36 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                    ('n_yrs_positive_opinc', 'fmp_st_n_yrs_positive_opinc'),
                    ('op_margin_lindy', 'fmp_st_op_margin_lindy'),
                    ('ebitda_margin_lindy', 'fmp_st_ebitda_margin_lindy'),
+                   # book-value-PER-SHARE CAGR (EDGAR's is total equity): the
+                   # per-share form is the better thesis measure — a rights
+                   # issue lifts total equity but not BVPS
                    ('equity_cagr_5y', 'fmp_st_equity_cagr'),
-                   ('revenue_5y_cagr', 'fmp_st_revenue_cagr'),
-                   ('revenue_3y_cagr', 'fmp_st_revenue_cagr'),
+                   # 3y and 5y over EXACT spans (EDGAR definitions). Filling
+                   # both from one endpoint CAGR made 3y == 5y for every FMP
+                   # row, which zeroed revenue acceleration and double-counted
+                   # one fact in the lynch / tenbagger lens medians.
+                   ('revenue_5y_cagr', 'fmp_st_revenue_5y_cagr'),
+                   ('revenue_3y_cagr', 'fmp_st_revenue_3y_cagr'),
+                   ('revenue_acceleration_lindy', 'fmp_st_revenue_accel_lindy'),
+                   ('asset_3y_cagr', 'fmp_st_asset_3y_cagr'),
+                   ('asset_5y_cagr', 'fmp_st_asset_5y_cagr'),
+                   ('cash_roic_lindy', 'fmp_st_cash_roic_lindy'),
+                   ('cash_roiic_lindy', 'fmp_st_cash_roiic_lindy'),
+                   ('roiic_acceleration', 'fmp_st_roiic_acceleration'),
+                   ('roic_inflection_flag', 'fmp_st_roic_inflection_flag'),
+                   ('cash_roic_inflection_flag', 'fmp_st_cash_roic_inflection_flag'),
+                   ('roic_acceleration', 'fmp_st_roic_acceleration'),
                    ('shares_growth_3y', 'fmp_st_shares_growth_3y'),
                    ('shares_growth_5y', 'fmp_st_shares_growth_5y'),
                    ('years_of_history', 'fmp_st_years_of_history')):
         _fmp_fill(_b, _f)
+    # cheap_per_roiic_lindy is DERIVED from roiic_lindy (edgar_roic_roiic.
+    # cheap_per_roiic: ev_ebitda / (roiic x 100), roiic > 0); recompute it where
+    # roiic_lindy was just filled, else arch_cheap_per_roiic stays EDGAR-only.
+    _roiic_f = _num_or_nan('roiic_lindy')
+    df['fmp_st_cheap_per_roiic'] = (_num_or_nan('ev_ebitda') / (_roiic_f * 100)).where(
+        (_roiic_f > 0) & (_num_or_nan('ev_ebitda') > 0))
+    _fmp_fill('cheap_per_roiic_lindy', 'fmp_st_cheap_per_roiic')
 
     # SEGMENT fills: FMP product/geographic revenue segmentation fills the
     # EDGAR dimensional-harvest columns only where EDGAR has nothing (~90% of
@@ -381,14 +417,34 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     def _conv(col):
         return (_num_or_nan(col) * _fx).where(_q_ok)
 
-    # LEVEL fills (converted to master currency; NaN-only, provenance-marked)
+    # LEVEL fills (converted to master currency; NaN-only, provenance-marked).
+    # ONLY the EDGAR-only columns. Master-core columns (net_income_ttm,
+    # cfo_ttm, capex_ttm, da_ttm, total_debt) are deliberately NOT filled —
+    # the policy above: coalescing core columns silently shifts membership
+    # and desynchronises them from the master ratios (p_e, fcf_yield) that
+    # stay NaN. Their fq_* values remain available as confirming legs.
+    # Tax columns are not filled either: the annual cash tax next to a TTM
+    # book tax is a window mismatch; XR43 reads the like-for-like annual
+    # fq_ rates directly.
     _lvl = {'retained_earnings': 'fq_retained_earnings', 'deferred_revenue': 'fq_defrev',
-            'income_taxes_paid_ttm': 'fq_taxes_paid', 'tax_expense_ttm': 'fq_tax_exp',
             'pretax_income_ttm': 'fq_pretax', 'income_continuing_ops_ttm': 'fq_ni_cont',
-            'income_discontinued_ops_ttm': 'fq_ni_disc', 'ppe_net': 'fq_ppe_net',
+            'income_discontinued_ops_ttm': 'fq_ni_disc',
+            # NOT ppe_net: FMP's propertyPlantEquipmentNet includes operating-
+            # lease right-of-use assets (no separate ROU line to subtract) —
+            # on the US overlap it exceeds EDGAR's net PP&E by >25% for 47% of
+            # names (78% agree once ROU is added back). A lease-inflated PP&E
+            # would bias the D&A/PP&E cliff and asset-heavy tests.
             'assets': 'fq_total_assets', 'equity': 'fq_equity',
-            'net_income_ttm': 'fq_ni', 'cfo_ttm': 'fq_cfo', 'capex_ttm': 'fq_capex',
-            'da_ttm': 'fq_da', 'total_debt': 'fq_total_debt'}
+            'financing_cf_ttm': 'fq_financing_cf'}
+    # Retained earnings sanity: RE cannot exceed equity by more than the
+    # treasury stock bought back out of it (plus 5% for AOCI); above that FMP
+    # has mapped IFRS "reserves" (share premium etc.) into retainedEarnings,
+    # which would fake a retained-earnings discount. Such rows are not filled.
+    if 'fq_retained_earnings' in df.columns:
+        _re_q = _num_or_nan('fq_retained_earnings')
+        _re_cap = 1.05 * _num_or_nan('fq_equity') + _num_or_nan('fq_treasury').abs().fillna(0)
+        df['fq_retained_earnings_valid'] = _re_q.where((_re_q > 0) & (_re_q <= _re_cap) | (_re_q <= 0))
+        _lvl['retained_earnings'] = 'fq_retained_earnings_valid'
     for _b, _f in _lvl.items():
         if _f in df.columns:
             df['fq_conv_' + _b] = _conv(_f)
@@ -398,15 +454,45 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     if 'fq_equity' in df.columns and 'fq_gw_intang' in df.columns:
         df['fq_conv_tangible_equity'] = ((_num_or_nan('fq_equity') - _num_or_nan('fq_gw_intang').fillna(0)) * _fx).where(_q_ok)
         _fmp_fill('tangible_equity', 'fq_conv_tangible_equity')
-    # capex sign: master capex_ttm is stored positive (spend); FMP capex is negative
-    if 'fmp_filled_capex_ttm' in df.columns:
-        _fc = df['fmp_filled_capex_ttm'] == 1
-        df.loc[_fc, 'capex_ttm'] = pd.to_numeric(df.loc[_fc, 'capex_ttm'], errors='coerce').abs()
-    # DIMENSIONLESS fills (currency cancels; no bridge needed)
-    df['fq_sbc_pct_revenue'] = (_num_or_nan('fq_sbc') / _frev).where(_q_ok & (_frev > 0))
+        # price / tangible book, built exactly as EDGAR builds it (listing-ccy
+        # market cap over converted tangible equity); positive book only
+        _teq_c = df['fq_conv_tangible_equity']
+        df['fq_p_tb'] = (_num_or_nan('market_cap') / _teq_c).where(_teq_c > 0)
+        _fmp_fill('p_tb', 'fq_p_tb')
+    # STREAKS (EDGAR edgar_streaks columns are in QUARTERS): the engine's
+    # date-matched streaks are in months, so quarter-equivalents = months / 3
+    # (a half-yearly filer's 2-period streak is 4 quarter-equivalents, not 2).
+    df['fq_rev_yoy_streak_qeq'] = (_num_or_nan('fq_rev_yoy_streak_m') / 3.0).where(_q_ok)
+    df['fq_ni_yoy_streak_qeq'] = (_num_or_nan('fq_ni_yoy_streak_m') / 3.0).where(_q_ok)
+    # positive-YoY hit rate: only when the comparisons span >= 24 months
+    _span_m = _num_or_nan('fq_rev_yoy_n_cmp') * 12.0 / _num_or_nan('fmp_q_periods_per_year')
+    df['fq_rev_pos_share_24m'] = _num_or_nan('fq_rev_yoy_pos_share').where(_q_ok & (_span_m >= 24))
+    for _b, _f in (('rev_yoy_streak_q', 'fq_rev_yoy_streak_qeq'),
+                   ('ni_yoy_streak_q', 'fq_ni_yoy_streak_qeq'),
+                   ('rev_yoy_pos_share_12q', 'fq_rev_pos_share_24m')):
+        _fmp_fill(_b, _f)
+    # MULTI-YEAR averages (EDGAR _avg_over definitions, from fmp_statements):
+    # reporting-currency levels, converted with the same validated bridge.
+    for _b, _f in (('ni_avg', 'fmp_st_ni_avg'), ('capex_avg', 'fmp_st_capex_avg'),
+                   ('oe_avg', 'fmp_st_oe_avg')):
+        if _f in df.columns:
+            df['fq_conv_' + _b] = _num_or_nan(_f) * _fx
+            _fmp_fill(_b, 'fq_conv_' + _b)
+    # DIMENSIONLESS fills (currency cancels; no bridge needed). fq_sbc is NaN
+    # where the filer does not disclose SBC (engine rule), so a non-discloser
+    # is never certified "low SBC".
+    # (SBC <= 0 is not a disclosure: FMP carries some IFRS filers' SBC with the
+    # add-back sign flipped, e.g. CNY/HKD rows at -0.4% of sales)
+    df['fq_sbc_pct_revenue'] = (_num_or_nan('fq_sbc') / _frev).where(
+        _q_ok & (_frev > 0) & (_num_or_nan('fq_sbc') > 0))
+    # effective tax rate: same-fiscal-year book tax / pretax, inside EDGAR's
+    # validity band (-10%, 60%) — outside it the rate is a loss-year artifact
+    _etr = _num_or_nan('fq_book_tax_rate_fy')
+    df['fq_etr_valid'] = _etr.where((_etr > -0.10) & (_etr < 0.60))
     for _b, _f in (('goodwill_intangibles_pct_assets', 'fq_gw_pct_assets'),
                    ('sbc_pct_revenue', 'fq_sbc_pct_revenue'),
-                   ('interest_coverage', 'fq_interest_cover')):
+                   ('interest_coverage', 'fq_interest_cover'),
+                   ('effective_tax_rate', 'fq_etr_valid')):
         if _f in df.columns:
             _fmp_fill(_b, _f)
 
@@ -508,12 +594,139 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # operating leverage kicking in (incremental EBIT margin high).
     df['fmp_dyn_op_leverage_flag'] = ((_dyn_im >= 0.30)).fillna(False).astype(int)
     # durable audited growth streak (>= 6 consecutive positive-YoY quarters).
-    df['fmp_dyn_growth_streak_flag'] = ((_dyn_streak >= 6)).fillna(False).astype(int)
+    # (positional 4-period lag: quarterly filers only — see XR9)
+    df['fmp_dyn_growth_streak_flag'] = ((_dyn_streak >= 6)
+                                        & ~(_num_or_nan('fmp_q_periods_per_year') == 2)).fillna(False).astype(int)
     # forward consensus EBIT crossing from loss to profit (before-it-crosses).
     df['fmp_dyn_fwd_inflection_flag'] = ((_dyn_fwd_cross >= 1)).fillna(False).astype(int)
     # "asleep at the wheel", forward edition: chronic beats AND forward
     # consensus lowballs the delivered trajectory (guidance off the mark).
     df['fmp_dyn_forward_asleep_flag'] = ((_dyn_ug > 0.10) & (_beat >= 0.6)).fillna(False).astype(int)
+
+    # ---- QUARTERLY FORENSIC flags (fmp_quarterly.py) — SURFACED, never gates ----
+    # Global 3-statement forensics that were EDGAR-only (or absent) before.
+    # Each is a tell to read alongside an archetype, not a disqualifier.
+    # Accrual / Beneish models are built for operating companies: a bank's
+    # "receivables" are its loans and its CFO swings with deposits, so
+    # financials are left unscored (0) rather than mis-scored.
+    _sect = df['sector'].fillna('').astype(str) if 'sector' in df.columns else pd.Series('', index=df.index)
+    _fq_op = _q_ok & ~_sect.str.contains('Financial', case=False)
+    _fq = lambda c: _num_or_nan(c).where(_fq_op)
+    _qdso, _qdso_p = _fq('fq_dso'), _fq('fq_dso_p')
+    _qdio, _qdio_p = _fq('fq_dio'), _fq('fq_dio_p')
+    _qccc, _qccc_p = _fq('fq_ccc'), _fq('fq_ccc_p')
+    _qrevg = _fq('fq_rev_growth')
+    _qacq = _fq('fq_acq_pct_assets')
+    _qcfo, _qni_cf = _fq('fq_cfo'), _fq('fq_ni_cf')
+    _q_rev = _fq('fq_revenue')
+    # WC-release share of CFO: a CFO > NI that comes from liquidating working
+    # capital is a one-off, not conservative accounting (chg_wc > 0 = release)
+    _q_wc_share = (_fq('fq_chg_wc') / _qcfo.where(_qcfo > 0))
+    # RED tells
+    #   Beneish M > -1.78: the published manipulation threshold (Beneish 1999).
+    #   Two known false-positive mechanisms are separated, not scored:
+    #   * ACQUISITIONS (> 10% of assets) mechanically inflate SGI and AQI —
+    #     surfaced as fq_beneish_ma_distorted instead;
+    #   * pure GROWTH: SGI alone can push M over the line for a clean fast
+    #     grower, so one of the manipulation-specific drivers must also be
+    #     elevated (receivables index DSRI > 1.2 or accruals TATA > 0.05).
+    _qm = _fq('fq_beneish_m')
+    _q_ma = (_qacq > 0.10)
+    _q_driver = (_fq('fq_beneish_dsri') > 1.2) | (_fq('fq_beneish_tata') > 0.05)
+    df['fq_beneish_risk_flag'] = ((_qm > -1.78) & ~_q_ma.fillna(False) & _q_driver).fillna(False).astype(int)
+    df['fq_beneish_ma_distorted'] = ((_qm > -1.78) & _q_ma).fillna(False).astype(int)
+    #   Sloan accruals >= 10% of assets on POSITIVE, material earnings with weak
+    #   cash conversion: earnings running well ahead of cash (top-decile
+    #   accruals underperform — Sloan 1996).
+    df['fq_high_accruals_flag'] = (
+        (_fq('fq_sloan_accruals') >= 0.10) & (_qni_cf > 0) & (_qni_cf >= 0.02 * _q_rev)
+        & (_fq('fq_cfo_to_ni') < 0.7)).fillna(False).astype(int)
+    #   receivables outgrowing sales by 30pp AND DSO up >= 15 days on a
+    #   receivables-material business (DSO >= 45): revenue pulled forward /
+    #   channel stuffing. Both legs (the ratio's tail is wide), no acquisition
+    #   year (bought receivables), no base-effect year (sales more than
+    #   doubled). Calibrated to a tail (~6% of operating names), not a norm.
+    df['fq_receivables_divergence_flag'] = (
+        (_fq('fq_rec_vs_rev') >= 0.30) & ((_qdso - _qdso_p) >= 15) & (_qdso >= 45)
+        & ~_q_ma.fillna(False) & ~(_qrevg > 1.0).fillna(False)).fillna(False).astype(int)
+    #   inventory outgrowing COGS by 30pp AND DIO up >= 20 days: unsold build.
+    df['fq_inventory_build_flag'] = (
+        (_fq('fq_inv_vs_cogs') >= 0.30) & ((_qdio - _qdio_p) >= 20)
+        & ~_q_ma.fillna(False)).fillna(False).astype(int)
+    #   SBC >= 30% of operating cash flow (observed SBC only — the engine
+    #   blanks non-disclosers): the "cash" earnings are paid in stock.
+    df['fq_sbc_heavy_flag'] = (_fq('fq_sbc_to_cfo') >= 0.30).fillna(False).astype(int)
+    # GREEN tells
+    #   cash leading book, on FREE cash flow: CFO above NI is the norm for any
+    #   D&A-heavy business, so the tell is FCF (CFO - capex) >= 1.2x NI now AND
+    #   >= 1.1x a year ago (persistent, same cash-flow basis), with cash
+    #   growing >= 10pp faster than NI, NOT a working-capital liquidation
+    #   (<= 30% of CFO) or an SBC add-back (< 25% of CFO). The understated-
+    #   earnings / conservative-accounting signature, proven not inferred.
+    _qfcf = _qcfo - _fq('fq_capex').abs()
+    _qfcf_p = _fq('fq_cfo_p') - _fq('fq_capex_p').abs()
+    _qni_cf_p = _fq('fq_ni_cf_p')
+    df['fq_cash_leads_earnings_flag'] = (
+        ((_qfcf / _qni_cf.where(_qni_cf > 0)) >= 1.2)
+        & ((_qfcf_p / _qni_cf_p.where(_qni_cf_p > 0)) >= 1.1)
+        & (_fq('fq_cfo_growth_minus_ni_growth') >= 0.10)
+        & ~(_q_wc_share > 0.30).fillna(False)
+        & ~(_fq('fq_sbc_to_cfo') >= 0.25).fillna(False)).fillna(False).astype(int)
+    #   working-capital release: cash-conversion cycle shortened >= 15 days YoY
+    #   off a positive base, with sales holding (a shrinking business also
+    #   releases working capital — that is liquidation, not efficiency).
+    #   Material: >= 30 days AND >= 20% of a >= 30-day cycle.
+    df['fq_wc_release_flag'] = (
+        (_qccc_p >= 30) & ((_qccc_p - _qccc) >= 30) & (((_qccc_p - _qccc) / _qccc_p) >= 0.20)
+        & (_qrevg >= -0.05)).fillna(False).astype(int)
+    #   deleveraging PROOF: net debt fell in consecutive balance-sheet periods
+    #   spanning >= 9 months and by >= 5% of assets, NOT equity-funded (share
+    #   count up <= 2%) and funded by operations (CFO > 0) rather than a
+    #   disposal (discontinued share <= 20%). A path, not a snapshot.
+    df['fq_deleveraging_flag'] = (
+        (_fq('fq_netdebt_decline_months') >= 9)
+        & (_fq('fq_netdebt_change_pct_assets') <= -0.05)
+        & ~(_fq('fq_shares_yoy') > 0.02).fillna(False)
+        & (_qcfo > 0)
+        & ~(_fq('fq_disc_ops_share') > 0.20).fillna(False)).fillna(False).astype(int)
+    #   gross-margin-led inflection (pricing power / mix, visible before EBIT).
+    #   A full year of year-on-year gross-margin gains (>= 12 months), the
+    #   latest by >= 1pp, on growing sales.
+    df['fq_gm_inflection_flag'] = (
+        (_fq('fq_gm_yoy_streak_m') >= 12) & (_qrevg >= 0.05)
+        & (_num_or_nan('gross_margin_delta_yoy') >= 0.01)).fillna(False).astype(int)
+    #   deferred revenue outgrowing revenue by >= 5pp on a material float
+    #   (>= 10% of sales): bookings running ahead of recognised sales.
+    df['fq_defrev_build_flag'] = (
+        (_fq('fq_defrev_to_rev') >= 0.10)
+        & (_fq('fq_defrev_growth_minus_rev') >= 0.05)).fillna(False).astype(int)
+    #   cash-tax shield: annual cash tax <= 60% of the same year's book tax in
+    #   a normal book-tax year (deferred-tax float / NOL / accelerated
+    #   depreciation), persistent over >= 2 fiscal years.
+    _qbr = _fq('fq_book_tax_rate_fy')
+    df['fq_cash_tax_shield_flag'] = (
+        _qbr.between(0.10, 0.45) & (_fq('fq_cash_tax_rate') > 0)
+        & (_fq('fq_cash_tax_rate') <= 0.6 * _qbr)
+        & (_fq('fq_cash_tax_wedge_med') >= 0.40)).fillna(False).astype(int)
+    # CLEAN-ACCOUNTING confirmation (the positive counterpart): Beneish well
+    # inside the safe zone, low accruals, no receivable / inventory divergence,
+    # with at least three of the four measures present. A forensic hidden-value
+    # thesis that is ALSO clean is evidence; one that trips the red tells is a
+    # warning. Surfaced / used as a confirming multiplier, never a gate.
+    _cl_legs = pd.concat([
+        (_qm < -2.22).where(_qm.notna()),
+        (_fq('fq_sloan_accruals') <= 0.05).where(_fq('fq_sloan_accruals').notna()),
+        (_fq('fq_rec_vs_rev') < 0.15).where(_fq('fq_rec_vs_rev').notna()),
+        (_fq('fq_inv_vs_cogs') < 0.15).where(_fq('fq_inv_vs_cogs').notna())], axis=1).astype(float)
+    df['fq_forensic_clean_confirm'] = (
+        (_cl_legs.notna().sum(axis=1) >= 3) & (_cl_legs.fillna(1).min(axis=1) == 1)).astype(int)
+    # composite for books / sorting: red tells minus green tells (informational)
+    df['fq_forensic_red_count'] = (df['fq_beneish_risk_flag'] + df['fq_high_accruals_flag']
+                                   + df['fq_receivables_divergence_flag']
+                                   + df['fq_inventory_build_flag'] + df['fq_sbc_heavy_flag'])
+    df['fq_forensic_green_count'] = (df['fq_cash_leads_earnings_flag'] + df['fq_wc_release_flag']
+                                     + df['fq_deleveraging_flag'] + df['fq_gm_inflection_flag']
+                                     + df['fq_defrev_build_flag'] + df['fq_cash_tax_shield_flag'])
 
     # ---------- helper accessors ----------
     _absent_cols: set = set()
@@ -2524,7 +2737,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # available "cash to capital providers" signal, and the rising-EBITDA
         # leg above already confirms the ratio is mechanically falling.)
         ((_ncol('financing_cf_ttm') < 0) | (_ncol('net_buyback_ttm') > 0)
-         | (_ncol('shares_yoy') < 0)) &
+         | (_ncol('shares_yoy') < 0)
+         # the literal falling-net-debt PATH from quarterly balance sheets
+         # (>= 9 months of consecutive declines, >= 5% of assets, operations-
+         # funded) — the prior-period debt evidence the note above lacked
+         | (df['fq_deleveraging_flag'] == 1)) &
         _soft_ok_above('interest_coverage', 2.0)
     ).fillna(False).astype(int)
 
@@ -2858,11 +3075,21 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # non-US cohort) — the CFO-above-earnings thesis then fires worldwide.
     _cfo_ni = _cfo_ni.fillna(_ncol('fmp_income_quality'))
     _pe_ue = _ncol('p_e')
+    # PERSISTENCE, proven from quarterly statements: the year-ago TTM also had
+    # CFO >= 1.2x NI (same cash-flow basis), so "persistently above" is
+    # observed rather than inferred from one window.
+    _cfo_ni_ya = (_ncol('fq_cfo_p') / _ncol('fq_ni_cf_p').where(_ncol('fq_ni_cf_p') > 0))
+    # ...and the current surplus must not be a WORKING-CAPITAL LIQUIDATION
+    # (changeInWorkingCapital > 50% of CFO = a one-off inventory/receivable
+    # release, the opposite of conservative accounting). Only where observed.
+    _wc_liq_ue = (_ncol('fq_chg_wc') / _ncol('fq_cfo').where(_ncol('fq_cfo') > 0)) > 0.5
     df['arch_understated_earnings'] = (
         is_operating & (mcap > 0) &
         (_ni_loc > 0) &
         (_cfo_ni >= 1.5) & (_cfo_ni <= 4.0) &      # cash well above book earnings; sane band (beyond 4x = distortion, not conservatism)
-        ((_ncol('cash_conversion') >= 1.1) | (fcf_yield >= 0.10)) &  # durability corroboration, not one working-capital swing
+        ((_ncol('cash_conversion') >= 1.1) | (fcf_yield >= 0.10)
+         | (_cfo_ni_ya >= 1.2)) &                  # durability corroboration, not one working-capital swing
+        ~_wc_liq_ue.fillna(False) &
         (_pe_ue > 0) & (_pe_ue <= 15) &            # the market is pricing the UNDERSTATED E
         ~(_ncol('shares_yoy') > 0.05) &
         _not_melting
@@ -2990,7 +3217,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _cfo_ni_f8 = (_ncol('cfo_ttm') / _ncol('net_income_ttm').where(_ncol('net_income_ttm') > 0)).fillna(_ncol('fmp_income_quality'))
     df['arch_customer_float'] = (
         is_operating & (_mc_f7 > 0) &
-        ((_nwc_f8 < 0) | (_ccc_f8 < 0)) &           # negative WC OR negative cash-conversion cycle
+        ((_nwc_f8 < 0) | (_ccc_f8 < 0)              # negative WC OR negative cash-conversion cycle
+         # OPERATING working capital (receivables + inventory - payables -
+         # deferred revenue) negative: sees the float in a cash-rich company,
+         # whose total NWC is positive only because of its cash pile
+         | (_ncol('fq_op_nwc_to_rev') < 0) | (_ncol('fq_ccc') < 0)) &
         (s('op_margin', np.nan) > 0.03) &
         (rev_yoy_c >= 0.0) &                         # float grows WITH the business, not a liquidation
         (_cfo_ni_f8 >= 1.1) &
@@ -3003,6 +3234,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # (EDGAR annual series).
     _cx_f9 = _ncol('capex_ttm')
     _cxa_f9 = _ncol('capex_avg')
+    # Where the 5-yr average came from FMP, compare it with FMP's OWN current
+    # capex (same source, same reporting currency, zero-fills already blanked
+    # by the engines) — never a master TTM against an FMP average.
+    _f9_fmp = (_ncol('fmp_filled_capex_avg') == 1)
+    _cx_f9 = _cx_f9.where(~_f9_fmp, _ncol('fq_capex').abs())
+    _cxa_f9 = _cxa_f9.where(~_f9_fmp, _ncol('fmp_st_capex_avg'))
     df['arch_capex_famine_harvest'] = (
         is_operating & (_mc_f7 > 0) &
         (_cxa_f9 > 0) & (_cx_f9 >= 0) &
@@ -3077,9 +3314,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # cash is positive — self-funding proven by the statement's own plumbing,
     # not by ratios. Cheap on earnings or book.
     _fincf_f13 = _ncol('financing_cf_ttm')
+    # "HAS BEEN a net outflow ... never raising": persistence is measurable
+    # from FMP annual cash-flow history (financing outflow in >= 80% of the
+    # available fiscal years, >= 4 years observed). A single TTM outflow is
+    # one dividend cheque — most mature cheap companies pass that — not a
+    # self-funding record. NaN-permissive where no annual history exists.
+    _fin_share = (_ncol('fmp_st_financing_outflow_years')
+                  / _ncol('fmp_st_financing_years').where(_ncol('fmp_st_financing_years') >= 4))
     df['arch_self_funded_returner'] = (
         is_operating & (mcap > 0) &
         (_fincf_f13 < 0) &                            # net capital OUT to providers
+        ~(_fin_share < 0.8) &                         # ...persistently, where the history is observable
         (_ncol('fcf_ttm') > 0) &
         (((_ncol('p_e') > 0) & (_ncol('p_e') <= 15.0)) | ((pb > 0) & (pb < 1.5))) &
         _not_melting
@@ -3460,7 +3705,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         is_operating & (mcap > 0) & _fx_coherent &
         (_fy_x15 < 0.02) &                                  # FCF optics broken...
         (_num('earnings_yield') >= 0.08) &                  # ...but earnings power real
-        (_num('cash_conversion') < 0.7) &                   # WC eating the cash
+        ((_num('cash_conversion') < 0.7)                    # WC eating the cash (outcome proxy)...
+         # ...or the GLUT itself, observed in the quarterly balance sheets:
+         # inventory days up >= 15 or receivable days up >= 10 YoY, or
+         # inventory outgrowing COGS by >= 15pp (the mechanism, not a proxy)
+         | ((_ncol('fq_dio') - _ncol('fq_dio_p')) >= 15)
+         | ((_ncol('fq_dso') - _ncol('fq_dso_p')) >= 10)
+         | (_ncol('fq_inv_vs_cogs') >= 0.15)) &
         (ebitda_ttm_v > 0) &
         (rev_yoy_c >= -0.05) &                              # demand intact
         (_num('gross_margin_delta_yoy') >= -0.03) &         # margins intact
@@ -4120,7 +4371,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_xr_deferred_revenue_lead'] = (
         is_operating & (mcap > 0) & _fx_coherent
         & (_defrev_ratio_x42 >= 0.15)                       # a real forward book already collected
-        & (rev_yoy_c >= 0.05)                               # ...and BUILDING (subscriptions/prepayments growing)
+        & ((rev_yoy_c >= 0.05)                              # ...and BUILDING (subscriptions/prepayments growing)
+           # or the BOOK itself building faster than recognised revenue
+           # (deferred balance up >= 5pp more than sales, sales not falling):
+           # the forward book leading a flat trailing tape IS the mispricing
+           | ((_ncol('fq_defrev_growth_minus_rev') >= 0.05) & (rev_yoy_c >= 0)))
         & _cheap_x42                                        # yet priced on the cheap TRAILING tape (the mispricing)
         & _not_melting
     ).fillna(False).astype(int)
@@ -4140,12 +4395,30 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _tax_wedge_x43 = (_tax_book_x43 - _tax_cash_x43)
     _ni_x43 = _ncol('net_income_ttm')
     _book_rate_x43 = (_tax_book_x43 / _ncol('pretax_income_ttm').where(_ncol('pretax_income_ttm') > 0))
-    df['arch_xr_cash_tax_advantage'] = (
-        is_operating & (mcap > 0) & _fx_coherent
-        & (_ncol('pretax_income_ttm') > 0) & (_tax_book_x43 > 0)   # a real book tax charge on real pre-tax profit
+    _x43_edgar = (
+        (_ncol('pretax_income_ttm') > 0) & (_tax_book_x43 > 0)   # a real book tax charge on real pre-tax profit
         & _book_rate_x43.between(0.10, 0.45)                       # (refine) a NORMAL book tax year, not a distorted one-off (refund/settlement/true-up)
         & (_tax_cash_x43 > 0) & (_tax_cash_x43 <= _tax_book_x43 * 0.6)  # they DO pay cash tax, but << book (>=40% wedge; excludes refund/NOL years)
         & (_ni_x43 > 0) & (_tax_wedge_x43 / _ni_x43 >= 0.10)      # owner earnings >= 10% above GAAP NI from the wedge
+    )
+    # FMP path (global, only where EDGAR has no tax data): the SAME thesis on
+    # like-for-like ANNUAL rates (cash tax paid / pretax vs book tax / pretax,
+    # same fiscal year), plus PERSISTENCE: the median wedge over >= 2 fiscal
+    # years must also be >= 40%, which answers the single-period timing-noise
+    # caveat above rather than relying on a wide threshold. Uplift to NI is the
+    # rate form of the EDGAR test: (book - cash) / (1 - book) >= 10%.
+    _cr43, _br43 = _ncol('fq_cash_tax_rate'), _ncol('fq_book_tax_rate_fy')
+    _x43_fmp = (
+        _tax_book_x43.isna() & _tax_cash_x43.isna()
+        & _br43.between(0.10, 0.45)
+        & (_cr43 > 0) & (_cr43 <= 0.6 * _br43)
+        & (_ncol('fq_cash_tax_wedge_med') >= 0.40)
+        & (((_br43 - _cr43) / (1 - _br43)) >= 0.10)
+        & (_ni_x43 > 0)
+    )
+    df['arch_xr_cash_tax_advantage'] = (
+        is_operating & (mcap > 0) & _fx_coherent
+        & (_x43_edgar | _x43_fmp)
         & (((_ncol('p_e') > 0) & (_ncol('p_e') <= 20)) | (_ncol('earnings_yield') >= 0.05) | (fcf_yield >= 0.03))
         & _not_melting
     ).fillna(False).astype(int)
@@ -4188,13 +4461,23 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _cont_x45 = _ncol('income_continuing_ops_ttm')
     _disc_x45 = _ncol('income_discontinued_ops_ttm')
     _ahfs_x45 = _ncol('assets_held_for_sale')
-    _cont_yield_x45 = (_cont_x45 / mcap.where(mcap > 0))
+    # yield in the LISTING currency: income_continuing_ops_ttm is master-
+    # currency (EDGAR USD, or FMP converted to the listing currency), so it
+    # is divided by the listing-currency market cap — dividing an FMP-filled
+    # JPY figure by the USD cap read ~150x too cheap. (Identical for US rows.)
+    _mc_x45 = _ncol('market_cap')
+    _cont_yield_x45 = (_cont_x45 / _mc_x45.where(_mc_x45 > 0))
+    # FMP's continuing-ops income is pre-minority while NI is parent-only, so
+    # on FMP-filled rows the "NI <= 0 but core profitable" leg can fire on a
+    # non-controlling-interest gap alone: those rows need the explicit
+    # discontinued-ops loss leg.
+    _x45_fmp = (_ncol('fmp_filled_income_continuing_ops_ttm') == 1)
     _mask_present_x45 = (
         # (refine) require an actual consolidated LOSS with a profitable core — a
         # clean mask. (The bare NI<continuing test was noisy: continuing-ops is
         # pre-minority-interest while NI is attributable-to-parent, so the gap
         # could be just NCI, not a discontinued drag.)
-        ((_ni_x43 <= 0) & (_cont_x45 > 0))                   # consolidated LOSS but continuing ops profitable
+        ((_ni_x43 <= 0) & (_cont_x45 > 0) & ~_x45_fmp)       # consolidated LOSS but continuing ops profitable
         | ((_disc_x45 < 0) & ((-_disc_x45) >= _cont_x45 * 0.20))  # discops loss material vs the core
         | ((_ahfs_x45 / mcap) >= 0.15)                       # a large block being divested
     )
@@ -4203,6 +4486,45 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & (_cont_x45 > 0)                                    # the CORE (continuing ops) is profitable
         & _mask_present_x45                                  # ...but a discontinued/held-for-sale drag masks it
         & (_cont_yield_x45 >= 0.06)                          # on continuing-ops earnings alone, the stock is cheap
+        & _not_melting
+    ).fillna(False).astype(int)
+
+    # XR47 — Verified deleveraging ('XR-VerifiedDeleveraging'). The equity
+    # stub of a levered but cash-generative business re-rates mechanically as
+    # debt is repaid: every unit of debt retired accrues to equity holders and
+    # the leverage multiple falls into the range where the market will pay
+    # for the earnings. The crowd waits for the ratio to print; the quarterly
+    # balance sheets show the PATH already under way. Requires the deleveraging
+    # proof (net debt down across >= 9 months of consecutive balance sheets, by
+    # >= 5% of assets, operations-funded, not equity- or disposal-funded) on a
+    # still-meaningful leverage (1.5x-4x EBITDA — enough stub leverage for the
+    # paydown to matter, not so much that solvency is the thesis) at a cheap
+    # EV/EBITDA.
+    df['arch_xr_verified_deleveraging'] = (
+        is_operating & (mcap > 0)
+        & (df['fq_deleveraging_flag'] == 1)
+        & (nde >= 1.5) & (nde <= 4.0)
+        & (ev_ebitda_v > 0) & (ev_ebitda_v <= 8.0)
+        & (ebitda_ttm_v > 0)
+        & _not_melting
+    ).fillna(False).astype(int)
+
+    # XR48 — Cash leads book ('XR-CashLeadsBook'). The accruals anomaly
+    # INVERTED and proven: operating cash flow runs ahead of net income AND is
+    # growing faster than it, with negative accruals, NOT from a working-
+    # capital liquidation or an SBC add-back (fq_cash_leads_earnings_flag).
+    # Accounting earnings are lagging the cash economics (conservative
+    # provisioning, front-loaded expensing, deferred-revenue float), so a
+    # market pricing the GAAP line prices the business on an understated E.
+    # Cheap on that understated E (P/E <= 15) or on the cash itself (FCF
+    # yield >= 6%). Distinct from F2 (a level test on CFO/NI >= 1.5): this is
+    # the TRAJECTORY — cash pulling away from book.
+    df['arch_xr_cash_leads_book'] = (
+        is_operating & (mcap > 0) & _fx_coherent
+        & (_ncol('revenue_ttm_usd') >= 10e6)
+        & (df['fq_cash_leads_earnings_flag'] == 1)
+        & (((_ncol('p_e') > 0) & (_ncol('p_e') <= 15)) | (fcf_yield >= 0.06))
+        & ~(_ncol('shares_yoy') > 0.05)
         & _not_melting
     ).fillna(False).astype(int)
 
@@ -4876,12 +5198,20 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # GLOBAL streak from FMP quarterly statements (fmp_dyn_rev/ni_streak_q) and
     # its honest window (fmp_dyn_quarters) so the longest-duration told-and-
     # ignored signal fires for non-US names too — the reach win for this XR gate.
+    # fmp_dyn streaks use a POSITIONAL 4-period lag: for a half-yearly filer
+    # that is a 2-year comparison counted in half-years, so they are used only
+    # for quarterly filers. rev/ni_yoy_streak_q already carry the DATE-matched
+    # fmp_quarterly streaks (quarter-equivalents) where EDGAR is absent, with
+    # the matching date-matched comparison window below.
+    _dyn_q_ok = ~(_ncol('fmp_q_periods_per_year') == 2)
     _stk_best = pd.concat([_ncol('ni_yoy_streak_q'),
                            _ncol('rev_yoy_streak_q'),
-                           _ncol('fmp_dyn_rev_streak_q'),
-                           _ncol('fmp_dyn_ni_streak_q')], axis=1).max(axis=1)
+                           _ncol('fmp_dyn_rev_streak_q').where(_dyn_q_ok),
+                           _ncol('fmp_dyn_ni_streak_q').where(_dyn_q_ok)], axis=1).max(axis=1)
+    _fq_win_qeq = _ncol('fq_rev_yoy_n_cmp') * 4.0 / _ncol('fmp_q_periods_per_year')
     _stk_window = pd.concat([_ncol('streak_quarters_n'),
-                             _ncol('fmp_dyn_quarters')], axis=1).max(axis=1)
+                             _ncol('fmp_dyn_quarters').where(_dyn_q_ok),
+                             _fq_win_qeq], axis=1).max(axis=1)
     df['arch_xr_audited_streak_unrerated'] = (
         is_operating & (mcap > 0) &
         (_stk_best >= 8) &
@@ -4925,14 +5255,16 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                      'arch_xr_investment_remark',
                      'arch_xr_stake_fv_gap',
                      'arch_xr_lookthrough_earner',
-                     'arch_xr_value_unlock'],
+                     'arch_xr_value_unlock',
+                     'arch_xr_cash_leads_book'],
         'engine': ['arch_xr_compounding_deployer', 'arch_xr_reusable_assembler',
                    'arch_xr_pre_scale_margin', 'arch_xr_leverage_detonation',
                    'arch_xr_baron_compounder', 'arch_xr_audited_streak_unrerated',
                    'arch_xr_harvest_distribution', 'arch_xr_paydown_yield',
                    'arch_xr_cyclical_trough', 'arch_xr_hidden_segment_compounder',
                    'arch_xr_margin_mixshift', 'arch_xr_gross_margin_lead',
-                   'arch_xr_gaap_profit_crossover', 'arch_xr_peer_margin_gap'],
+                   'arch_xr_gaap_profit_crossover', 'arch_xr_peer_margin_gap',
+                   'arch_xr_verified_deleveraging'],
     }
     _fam_fired = pd.DataFrame(index=df.index)
     for _fam, _cols in _XR_FAMILIES.items():
@@ -5663,6 +5995,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_cash_tax_advantage',
         'arch_xr_owned_realestate_value',
         'arch_xr_discops_mask',
+        'arch_xr_verified_deleveraging',
+        'arch_xr_cash_leads_book',
         'arch_xr_peer_margin_gap',
         'arch_xr_investment_remark',
         'arch_xr_stake_fv_gap',
@@ -5836,6 +6170,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_cash_tax_advantage': 'XR-CashTaxAdvantage',
         'arch_xr_owned_realestate_value': 'XR-OwnedRealEstateValue',
         'arch_xr_discops_mask': 'XR-DiscOpsMask',
+        'arch_xr_verified_deleveraging': 'XR-VerifiedDeleveraging',
+        'arch_xr_cash_leads_book': 'XR-CashLeadsBook',
         'arch_xr_peer_margin_gap': 'XR-PeerMarginGap',
         'arch_xr_investment_remark': 'XR-InvestmentRemark',
         'arch_xr_stake_fv_gap': 'XR-StakeFVGap',
@@ -6557,8 +6893,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _fx_eligible = ((_ncol('market_cap_usd') >= 50e6) & _not_melting.fillna(False))
     _fx_cheap = np.where(_excellent_value.fillna(False).values, 1.5, 1.0)
     # (audit P0-2) gated on the data-quality flag: a broken ledger earns no rank
+    # CLEAN-ACCOUNTING confirmation (quarterly forensics: Beneish safe zone,
+    # low accruals, no receivable/inventory divergence) lifts a hidden-value
+    # rank by 15% — the value is less likely an accounting artifact. A boost
+    # only: the red tells are surfaced as flags, never subtracted.
+    _clean_mult = 1.0 + 0.15 * pd.to_numeric(df.get('fq_forensic_clean_confirm'), errors='coerce').fillna(0) \
+        if 'fq_forensic_clean_confirm' in df.columns else 1.0
     df['forensic_xr_score'] = (df['forensic_hidden_pct'] * _fx_cheap
-                               * _fx_eligible.astype(float) * _dq_ok).round(4)
+                               * _fx_eligible.astype(float) * _dq_ok * _clean_mult).round(4)
 
     # ===== TRULY-XR: forensic CONFLUENCE (the grossest, least-arbitraged
     # mispricings). Part II thesis: the biggest re-ratings are not one gap but
@@ -6590,8 +6932,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                'arch_xr_pre_scale_margin', 'arch_xr_reusable_assembler',
                                'arch_xr_leverage_detonation'], False),                                    # G9 (execution)
         'crossover_mandate': (['arch_xr_gaap_profit_crossover'], True),                                   # G10 MECHANICAL (inclusion)
+        'cash_earnings_gap': (['arch_xr_cash_leads_book'], False),                                       # accruals gap (E catches up to cash)
         'cannibal_return':   (['arch_xr_cannibal_below_cash', 'arch_xr_cannibal_below_tbook',
                                'arch_self_funded_returner', 'arch_xr_paydown_yield',
+                               'arch_xr_verified_deleveraging',
                                'arch_xr_harvest_distribution'], False),                                   # buyback/return compounding
         'reorg_special':     (['arch_post_reorg', 'arch_special_situation', 'arch_spinoff_value',
                                'arch_spinoff_quality', 'arch_spinoff_asset'], True),                      # event-driven MECHANICAL
@@ -6625,6 +6969,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # Truly-XR despite failing the balance-sheet identity gate)
     df['truly_xr_score'] = (_tell_count
                             * (1.0 + 0.20 * _mech_count)
+                            * _clean_mult
                             * _truly_cheap_mult
                             * (_truly_cheap & _truly_eligible).astype(float)
                             * _dq_ok).round(3)
@@ -6705,7 +7050,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                    .where(_is_re_ab & (_re_prop_share >= 0.20), 0.0)
     df['adjusted_book'] = (_teq_ab + _adj_hidden + _re_navback).round(0)
     _adjb = df['adjusted_book']
-    df['adjusted_pb'] = (mcap / _adjb.where(_adjb > 0)).round(3)
+    # adjusted_book is master-currency (EDGAR USD, or FMP converted to the
+    # listing currency), so it is priced with the LISTING-currency cap; the
+    # USD cap over a JPY-denominated book read ~150x off. (Identical for US.)
+    _mc_ab = _ncol('market_cap').where(_ncol('market_cap') > 0)
+    df['adjusted_pb'] = (_mc_ab / _adjb.where(_adjb > 0)).round(3)
     # quality-adjusted net-net: NNWC (haircut) as a multiple of market cap
     _mc_usd_nn = _ncol('market_cap_usd').fillna(mcap)
     df['nnwc_pct_mcap'] = (_ncol('nnwc') / _mc_usd_nn.where(_mc_usd_nn > 0)).round(3)
@@ -6750,6 +7099,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _tot_e = (_dy_e.fillna(0) + _by_e.fillna(0)).where(_dy_e.notna() | _by_e.notna())
     df['capret_yield_eff'] = pd.concat([_cry_e, _tot_e], axis=1).max(axis=1)
 
+    # POST-FILL ("effective") copies of every FMP-fillable gate input, so the
+    # methodology audit re-verifies FMP-filled firers on the values the gates
+    # actually saw (the master columns it reads are pre-fill, which made those
+    # checks pass vacuously on filled rows). _eff suffix: no collision with the
+    # master's own column names when books merge the tags frame.
+    for _c in _EFF_COLS:
+        if _c in df.columns:
+            df[_c + '_eff'] = pd.to_numeric(df[_c], errors='coerce')
+
     # Multi-year fundamental data present from EITHER source (EDGAR or the FMP
     # statement / quarterly engines). enrich uses this to decide which names are
     # eligible for the full archetype taxonomy: once FMP fills the EDGAR-only
@@ -6777,6 +7135,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ('fmp_dyn_op_leverage_flag', 'OpLeverage'), ('fmp_dyn_unrerated_flag', 'Unrerated'),
         ('fmp_dyn_fwd_inflection_flag', 'FwdEBITCross'), ('fmp_dyn_forward_asleep_flag', 'FwdAsleep'),
         ('arch_institutional_accumulation', 'InstAccum'), ('inst_accum_accelerating', 'InstAccel'),
+        # quarterly 3-statement forensics (red tells first, then green)
+        ('fq_beneish_risk_flag', 'BeneishRisk'), ('fq_beneish_ma_distorted', 'BeneishM&A'),
+        ('fq_high_accruals_flag', 'HighAccruals'),
+        ('fq_receivables_divergence_flag', 'RecvDiverge'), ('fq_inventory_build_flag', 'InvBuild'),
+        ('fq_sbc_heavy_flag', 'SBC>=30%CFO'),
+        ('fq_cash_leads_earnings_flag', 'CashLeadsBook'), ('fq_wc_release_flag', 'WCRelease'),
+        ('fq_deleveraging_flag', 'Deleveraging'), ('fq_gm_inflection_flag', 'GMInflect'),
+        ('fq_defrev_build_flag', 'DefRevBuild'), ('fq_cash_tax_shield_flag', 'CashTaxShield'),
+        ('fq_forensic_clean_confirm', 'ForensicClean'),
     ]
     _sig = pd.Series('', index=df.index)
     for _col, _tag in _sig_defs:
@@ -6832,6 +7199,30 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                             'fmp_seg_fastest_name','fmp_seg_fastest_yoy','fmp_seg_fastest_share_delta',
                             'fmp_geo_count','fmp_geo_largest_name','fmp_geo_largest_share',
                             'fmp_geo_em_share','fmp_geo_china_share'] if c in df.columns]
+             # quarterly 3-statement forensic layer (fmp_quarterly) + flags
+             + [c for c in ['fmp_q_status','fmp_q_ccy','fmp_q_latest','fmp_q_periods_per_year',
+                            'fq_cf_basis','fq_fx_to_master',
+                            # reporting-currency levels (x fq_fx_to_master = master ccy)
+                            'fq_revenue','fq_ni','fq_ni_cf','fq_cfo','fq_cfo_p','fq_ni_cf_p',
+                            'fq_capex','fq_da','fq_sbc','fq_chg_wc','fq_financing_cf',
+                            'fq_retained_earnings','fq_equity','fq_total_assets','fq_ppe_net',
+                            'fq_total_debt','fq_cash_sti','fq_defrev',
+                            'fq_beneish_m','fq_beneish_dsri','fq_beneish_tata','fq_sloan_accruals',
+                            'fq_cfo_to_ni','fq_cfo_growth_minus_ni_growth','fq_sbc_to_cfo',
+                            'fq_dso','fq_dso_p','fq_dio','fq_dio_p','fq_dpo','fq_ccc','fq_ccc_p',
+                            'fq_rec_vs_rev','fq_inv_vs_cogs','fq_op_nwc_to_rev','fq_defrev_to_rev',
+                            'fq_defrev_growth_minus_rev','fq_capex_to_da','fq_da_to_ppe',
+                            'fq_cash_tax_rate','fq_book_tax_rate_fy','fq_cash_tax_wedge_med',
+                            'fq_disc_ops_share','fq_acq_pct_assets','fq_rev_growth','fq_shares_yoy',
+                            'fq_rev_yoy_streak_m','fq_ni_yoy_streak_m','fq_rev_yoy_pos_share',
+                            'fq_gm_yoy_streak_m','fq_netdebt_decline_months','fq_netdebt_change_pct_assets',
+                            'fq_beneish_risk_flag','fq_beneish_ma_distorted','fq_high_accruals_flag',
+                            'fq_receivables_divergence_flag','fq_inventory_build_flag','fq_sbc_heavy_flag',
+                            'fq_cash_leads_earnings_flag','fq_wc_release_flag','fq_deleveraging_flag',
+                            'fq_gm_inflection_flag','fq_defrev_build_flag','fq_cash_tax_shield_flag',
+                            'fq_forensic_clean_confirm','fq_forensic_red_count','fq_forensic_green_count',
+                            ] if c in df.columns]
+             + [c + '_eff' for c in _EFF_COLS if c + '_eff' in df.columns]
              + [c for c in df.columns if c.startswith('fmp_filled_')]]
     from master_versions import versioned_replace
     out.to_csv(out_path + '.tmp', index=False)

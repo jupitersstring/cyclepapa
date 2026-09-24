@@ -39,6 +39,7 @@ Resumable: symbols already in fmp_quarterly.csv are skipped.
 from __future__ import annotations
 
 import argparse
+import time
 import datetime as dt
 import math
 import os
@@ -66,7 +67,8 @@ CF_FLOWS = {"operatingCashFlow": "cfo", "capitalExpenditure": "capex",
             "freeCashFlow": "fcf", "depreciationAndAmortization": "da",
             "stockBasedCompensation": "sbc", "incomeTaxesPaid": "taxes_paid",
             "commonStockRepurchased": "buyback", "commonDividendsPaid": "dividends",
-            "acquisitionsNet": "acquisitions", "changeInWorkingCapital": "chg_wc"}
+            "acquisitionsNet": "acquisitions", "changeInWorkingCapital": "chg_wc",
+            "netCashProvidedByFinancingActivities": "financing_cf"}
 # stock fields (point-in-time balance)
 BS_STOCKS = {"netReceivables": "receivables", "inventory": "inventory",
              "accountPayables": "payables", "totalCurrentAssets": "cur_assets",
@@ -77,7 +79,8 @@ BS_STOCKS = {"netReceivables": "receivables", "inventory": "inventory",
              "longTermDebt": "lt_debt", "totalDebt": "total_debt",
              "cashAndShortTermInvestments": "cash_sti",
              "totalStockholdersEquity": "equity", "retainedEarnings": "retained_earnings",
-             "totalLiabilities": "total_liab", "minorityInterest": "minority"}
+             "totalLiabilities": "total_liab", "minorityInterest": "minority",
+             "treasuryStock": "treasury"}
 
 
 def _f(x):
@@ -111,6 +114,35 @@ def _clean(rows, ccy=None):
     ccy = ccy or out[0][1].get("reportedCurrency")
     out = [(d, r) for d, r in out if r.get("reportedCurrency") in (ccy, None)]
     return out, ccy
+
+
+# A period whose defining lines are ALL exactly zero is an unreported
+# placeholder, not a real zero: FMP zero-fills quarters a filer never
+# published (Japanese filers publish cash flow semi-annually or annually, so
+# every quarterly CF row reads 0 while the annual CFO is Y100M-Y4.5B). Such a
+# row is blanked (dates kept, values dropped) so any TTM that touches it is
+# NaN rather than a false 0 — which would otherwise read as "earnings with no
+# cash behind them" and fire accrual / Beneish alarms on clean names.
+_PLACEHOLDER_KEYS = {
+    "is": ("revenue", "netIncome", "grossProfit", "operatingIncome"),
+    "bs": ("totalAssets", "totalLiabilities", "totalStockholdersEquity"),
+    # NOT netIncome: FMP copies it into placeholder CF rows from the income
+    # statement and balances it with an equal-and-opposite otherNonCashItems
+    # plug, so CFO still reads 0 (6580.T Q1: NI 4.0M, otherNonCash -4.0M).
+    "cf": ("operatingCashFlow", "capitalExpenditure", "depreciationAndAmortization",
+           "netCashProvidedByInvestingActivities", "netChangeInCash"),
+}
+
+
+def _blank_placeholders(periods, kind):
+    keys = _PLACEHOLDER_KEYS[kind]
+    out = []
+    for d, r in periods:
+        vals = [_f(r.get(k)) for k in keys]
+        if all((not math.isfinite(v)) or v == 0 for v in vals):
+            r = {k: r.get(k) for k in ("date", "period", "reportedCurrency", "filingDate")}
+        out.append((d, r))
+    return out
 
 
 def _cadence(periods):
@@ -184,8 +216,11 @@ def enrich_symbol(sym: str):
     ip, ccy = _clean(isr)
     if not ip:
         return rec, []
+    ip = _blank_placeholders(ip, "is")
     bp, _ = _clean(bs, ccy)
+    bp = _blank_placeholders(bp, "bs")
     cp, _ = _clean(cf, ccy)
+    cp = _blank_placeholders(cp, "cf")
     cad = _cadence(ip)
     rec["fmp_q_ccy"] = ccy
     rec["fmp_q_latest"] = ip[0][0].isoformat()
@@ -215,25 +250,90 @@ def enrich_symbol(sym: str):
     # year (same cached call the statements engine uses).
     L["taxes_paid"] = np.nan
     L["pretax_fy"] = np.nan
+    L["tax_exp_fy"] = np.nan
+    # SBC / D&A reading exactly 0 in EVERY quarter of the window is "not
+    # disclosed" (most non-US filers fold SBC into opex, and some never break
+    # out D&A quarterly), not a true zero — a true 0 would certify the name as
+    # SBC-clean or asset-light. Buybacks / dividends / acquisitions can
+    # legitimately be zero, so they are left as reported.
+    for key in ("sbc", "da", "sbc_p", "da_p"):
+        if L.get(key) == 0:
+            L[key] = np.nan
+    # SBC is an expense: a NEGATIVE TTM is FMP's sign-flipped add-back for
+    # some IFRS filers (CNY / HKD / EUR rows), not a disclosure
+    for key in ("sbc", "sbc_p"):
+        if math.isfinite(L.get(key, np.nan)) and L[key] < 0:
+            L[key] = np.nan
+    # CF basis: quarterly TTM by default. When the quarterly cash-flow TTM is
+    # unavailable (placeholder quarters, semi-annual cash-flow filers), fall
+    # back to the latest ANNUAL cash-flow statement, paired with that same
+    # fiscal year's annual net income so accrual ratios compare like periods.
+    rec["fq_cf_basis"] = "quarterly" if math.isfinite(L["cfo"]) else None
+    L["ni_cf"], L["ni_cf_p"] = L["ni"], L["ni_p"]
     try:
         cfa = fc.get_json("cash-flow-statement", {"symbol": sym, "period": "annual", "limit": 8},
                           ttl=fc.TTL_FUNDAMENTAL) or []
         isa = fc.get_json("income-statement", {"symbol": sym, "period": "annual", "limit": 8},
                           ttl=fc.TTL_FUNDAMENTAL) or []
-        cfa = [r for r in cfa if r.get("reportedCurrency") == ccy]
-        isa = {str(r.get("date"))[:10]: r for r in isa if r.get("reportedCurrency") == ccy}
+        cfa = [(d, r) for d, r in _blank_placeholders(_clean(cfa, ccy)[0], "cf")]
+        isa = {d: r for d, r in _clean(isa, ccy)[0]}
         if cfa:
-            latest = max(cfa, key=lambda r: str(r.get("date")))
+            ld, latest = cfa[0]
+            fy_age = (TODAY - ld).days
+            # Quarterly incomeTaxesPaid is unusable in FMP: zero-filled for many
+            # filers (KO, NESN every period), sporadic for others, and corrupted
+            # in fourth quarters that FMP derives as annual minus nine-month YTD
+            # (AAPL read -$37B). The ANNUAL figure is reliable (AAPL $43.4B), so
+            # cash taxes and the matching annual pretax come from the latest FY.
             tp = _f(latest.get("incomeTaxesPaid"))
-            pt = _f((isa.get(str(latest.get("date"))[:10]) or {}).get("incomeBeforeTax"))
-            fy_age = (TODAY - (_d(latest.get("date")) or TODAY)).days
+            pt = _f((isa.get(ld) or {}).get("incomeBeforeTax"))
+            te = _f((isa.get(ld) or {}).get("incomeTaxExpense"))
             if math.isfinite(tp) and tp > 0 and math.isfinite(pt) and fy_age <= 550:
                 L["taxes_paid"], L["pretax_fy"] = tp, pt
+                # book tax on the SAME fiscal year, so the cash-vs-book wedge
+                # compares like periods (a TTM book tax against an annual cash
+                # tax up to 18 months older is a window mismatch)
+                L["tax_exp_fy"] = te
+            # multi-year cash-tax wedge (median of up to 3 fiscal years):
+            # single-year cash tax carries payment-timing noise
+            wedges = []
+            for d, r in cfa[:3]:
+                if (ld - d).days > 3 * 365 + 60:
+                    break
+                ir = isa.get(d) or {}
+                tp_y, pt_y, te_y = _f(r.get("incomeTaxesPaid")), _f(ir.get("incomeBeforeTax")), _f(ir.get("incomeTaxExpense"))
+                if all(math.isfinite(v) for v in (tp_y, pt_y, te_y)) and tp_y > 0 and pt_y > 0 and te_y > 0:
+                    wedges.append((te_y - tp_y) / te_y)
+            if len(wedges) >= 2 and fy_age <= 550:
+                rec["fq_cash_tax_wedge_med"] = float(np.median(wedges))
+                rec["fq_cash_tax_wedge_years"] = float(len(wedges))
+            a_cfo = _f(latest.get("operatingCashFlow"))
+            a_ni = _f((isa.get(ld) or {}).get("netIncome"))
+            if (rec["fq_cf_basis"] is None and fy_age <= 550
+                    and math.isfinite(a_cfo) and math.isfinite(a_ni)):
+                rec["fq_cf_basis"] = "annual"
+                prior = [(d, r) for d, r in cfa[1:] if abs((ld - d).days - 365) <= 45]
+                for src, key in CF_FLOWS.items():
+                    if key == "taxes_paid":
+                        continue
+                    L[key] = _f(latest.get(src))
+                    L[key + "_p"] = _f(prior[0][1].get(src)) if prior else np.nan
+                for key in ("sbc", "da", "sbc_p", "da_p"):
+                    if L.get(key) == 0:
+                        L[key] = np.nan
+                L["ni_cf"] = a_ni
+                L["ni_cf_p"] = _f((isa.get(prior[0][0]) or {}).get("netIncome")) if prior else np.nan
     except fc.FMPError:
         pass
     for src, key in BS_STOCKS.items():
         L[key] = _snap(bp, src)
         L[key + "_p"] = _snap(bp, src, year_ago=True)
+    # Retained earnings of EXACTLY 0 is FMP's zero-fill for filers whose
+    # reserves it does not map (CNY / INR / HKD reporters: 14% of rows), not a
+    # company with no accumulated earnings.
+    for k in ("retained_earnings", "retained_earnings_p"):
+        if L.get(k) == 0:
+            L[k] = np.nan
     for k in ("defrev", ):
         for sfx in ("", "_p"):
             a, b = L.get(f"defrev_cur{sfx}", np.nan), L.get(f"defrev_nc{sfx}", np.nan)
@@ -247,7 +347,9 @@ def enrich_symbol(sym: str):
               "dividends", "receivables", "inventory", "payables", "cur_assets", "cur_liab",
               "total_assets", "ppe_net", "gw_intang", "defrev", "total_debt", "cash_sti",
               "equity", "retained_earnings", "total_liab", "minority", "revenue_p", "ni_p",
-              "cfo_p", "equity_p", "defrev_p"):
+              "cfo_p", "equity_p", "defrev_p", "financing_cf", "chg_wc", "acquisitions",
+              "cogs", "sga", "lt_debt", "treasury", "capex_p", "da_p", "ni_cf", "ni_cf_p",
+              "tax_exp_fy", "pretax_fy"):
         rec[f"fq_{k}"] = L.get(k, np.nan)
 
     rev, rev_p = L["revenue"], L["revenue_p"]
@@ -269,21 +371,35 @@ def enrich_symbol(sym: str):
     rev_g = _div(rev, rev_p) - 1
     rec["fq_rev_growth"] = rev_g
     # receivables / inventory growing faster than sales = channel stuffing /
-    # unsold build (only meaningful off a material base)
-    if math.isfinite(L["receivables_p"]) and L["receivables_p"] > 0.02 * (rev_p or np.inf):
+    # unsold build. Only meaningful off a MATERIAL base (>= 5% of prior-year
+    # sales / COGS): at 2% the tail reached 31x off rounding-error balances.
+    if math.isfinite(L["receivables_p"]) and L["receivables_p"] > 0.05 * (rev_p or np.inf):
         rec["fq_rec_vs_rev"] = _div(L["receivables"], L["receivables_p"]) - 1 - rev_g
-    if math.isfinite(L["inventory_p"]) and L["inventory_p"] > 0.02 * (rev_p or np.inf):
+    if math.isfinite(L["inventory_p"]) and math.isfinite(cogs_p) and L["inventory_p"] > 0.05 * cogs_p:
         rec["fq_inv_vs_cogs"] = _div(L["inventory"], L["inventory_p"]) - _div(cogs, cogs_p)
-    rec["fq_nwc"] = L["cur_assets"] - L["cur_liab"] if math.isfinite(L["cur_assets"]) and math.isfinite(L["cur_liab"]) else np.nan
+    # NWC needs a CLASSIFIED balance sheet: an unclassified one (banks,
+    # insurers, some IFRS filers) reports current assets as 0/absent and
+    # would read as a large negative NWC — a false "customer float".
+    ca, cl = L["cur_assets"], L["cur_liab"]
+    rec["fq_nwc"] = ca - cl if (math.isfinite(ca) and math.isfinite(cl) and ca > 0 and cl > 0) else np.nan
+    # OPERATING working capital (excludes cash, which hides float in a
+    # cash-rich company) as a share of sales: receivables + inventory -
+    # payables - deferred revenue.
+    if math.isfinite(rev) and rev > 0 and math.isfinite(L["receivables"]) and math.isfinite(L["payables"]):
+        onwc = (L["receivables"] + (L["inventory"] if math.isfinite(L["inventory"]) else 0)
+                - L["payables"] - (L["defrev"] if math.isfinite(L["defrev"]) else 0))
+        rec["fq_op_nwc_to_rev"] = onwc / rev
 
     # ---- accrual quality ----
     avg_ta = np.nanmean([L["total_assets"], L["total_assets_p"]]) if (
         math.isfinite(L["total_assets"]) or math.isfinite(L["total_assets_p"])) else np.nan
-    rec["fq_sloan_accruals"] = _div(L["ni"] - L["cfo"], avg_ta)
-    rec["fq_cfo_to_ni"] = _div(L["cfo"], L["ni"]) if (math.isfinite(L["ni"]) and L["ni"] > 0) else np.nan
+    # net income on the SAME basis as the cash flow (TTM, or annual fallback)
+    ni_cf, ni_cf_p = L["ni_cf"], L["ni_cf_p"]
+    rec["fq_sloan_accruals"] = _div(ni_cf - L["cfo"], avg_ta)
+    rec["fq_cfo_to_ni"] = _div(L["cfo"], ni_cf) if (math.isfinite(ni_cf) and ni_cf > 0) else np.nan
     rec["fq_cfo_growth_minus_ni_growth"] = (
-        (_div(L["cfo"], L["cfo_p"]) - _div(L["ni"], L["ni_p"]))
-        if all(math.isfinite(v) and v > 0 for v in (L["cfo"], L["cfo_p"], L["ni"], L["ni_p"])) else np.nan)
+        (_div(L["cfo"], L["cfo_p"]) - _div(ni_cf, ni_cf_p))
+        if all(math.isfinite(v) and v > 0 for v in (L["cfo"], L["cfo_p"], ni_cf, ni_cf_p)) else np.nan)
     rec["fq_sbc_to_cfo"] = _div(L["sbc"], L["cfo"]) if (math.isfinite(L["cfo"]) and L["cfo"] > 0) else np.nan
 
     # ---- capex / depreciation / asset life ----
@@ -296,9 +412,17 @@ def enrich_symbol(sym: str):
         rec["fq_book_tax_rate"] = _div(L["tax_exp"], L["pretax"])
     if math.isfinite(L["pretax_fy"]) and L["pretax_fy"] > 0:
         rec["fq_cash_tax_rate"] = _div(L["taxes_paid"], L["pretax_fy"])   # annual basis
-    rec["fq_disc_ops_share"] = _div(L["ni_disc"], abs(L["ni"]) if math.isfinite(L["ni"]) else np.nan)
+        rec["fq_book_tax_rate_fy"] = _div(L["tax_exp_fy"], L["pretax_fy"])  # same FY
+    # discontinued share of CONTINUING earnings, and only off a material
+    # continuing base (>= 1% of sales): |NI| near zero made NI-scaled shares explode
+    nc = L["ni_cont"]
+    if math.isfinite(nc) and math.isfinite(rev) and rev > 0 and abs(nc) >= 0.01 * rev:
+        rec["fq_disc_ops_share"] = _div(L["ni_disc"], abs(nc))
     rec["fq_defrev_to_rev"] = _div(L["defrev"], rev)
-    if math.isfinite(L["defrev_p"]) and L["defrev_p"] > 0.02 * (rev_p or np.inf):
+    # M&A intensity: acquisitions mechanically inflate Beneish SGI / AQI
+    if math.isfinite(L["acquisitions"]) and math.isfinite(L["total_assets"]) and L["total_assets"] > 0:
+        rec["fq_acq_pct_assets"] = abs(L["acquisitions"]) / L["total_assets"]
+    if math.isfinite(L["defrev_p"]) and L["defrev_p"] > 0.05 * (rev_p or np.inf):
         rec["fq_defrev_growth_minus_rev"] = _div(L["defrev"], L["defrev_p"]) - 1 - rev_g
     rec["fq_interest_cover"] = _div(L["opinc"], L["int_exp"]) if (math.isfinite(L["int_exp"]) and L["int_exp"] > 0) else np.nan
     rec["fq_equity_growth"] = _div(L["equity"], L["equity_p"]) - 1 if (
@@ -321,7 +445,9 @@ def enrich_symbol(sym: str):
         return (cl + (ltd if math.isfinite(ltd) else 0)) / ta if math.isfinite(cl) and math.isfinite(ta) and ta > 0 else np.nan
     lvgi = _div(_lev(L["cur_liab"], L["lt_debt"], L["total_assets"]),
                 _lev(L["cur_liab_p"], L["lt_debt_p"], L["total_assets_p"]))
-    tata = _div((L["ni_cont"] if math.isfinite(L["ni_cont"]) else L["ni"]) - L["cfo"], L["total_assets"])
+    _ni_t = (L["ni_cont"] if (rec["fq_cf_basis"] == "quarterly" and math.isfinite(L["ni_cont"]))
+             else ni_cf)
+    tata = _div(_ni_t - L["cfo"], L["total_assets"])
     core = [dsri, gmi, aqi, sgi, tata]
     if all(math.isfinite(v) for v in core):
         dsri, gmi, aqi, sgi = (_wins(v) for v in (dsri, gmi, aqi, sgi))
@@ -347,12 +473,49 @@ def enrich_symbol(sym: str):
             break
         streak += 1
     rec["fq_gm_yoy_streak"] = float(streak)
+    # All trajectory counts are also emitted in MONTHS: a period is 3 months
+    # for a quarterly filer and 6 for a half-yearly one, so "3 periods" meant
+    # 9 months for one and 18 for the other.
+    mpp = 12.0 / n
+    rec["fq_gm_yoy_streak_m"] = streak * mpp
+
+    # Date-matched YoY streaks / hit-rate for revenue and net income (the
+    # year-ago comparator is found by DATE, 365 +/- 45 days, never by a
+    # positional lag that becomes a 2-year comparison for half-yearly filers).
+    def _yoy_series(field):
+        vals = [(d, _f(r.get(field))) for d, r in ip]
+        out = []
+        for d, v in vals:
+            ya = [vv for dd, vv in vals if abs((d - dt.timedelta(days=365) - dd).days) <= 45]
+            out.append((v, ya[0] if ya else np.nan))
+        return out
+    for field, key, need_pos_base in (("revenue", "rev", False), ("netIncome", "ni", True)):
+        pairs = _yoy_series(field)
+        run, hits, ncmp = 0, 0, 0
+        counting = True
+        for v, p in pairs:
+            ok = math.isfinite(v) and math.isfinite(p) and (p > 0 if need_pos_base else p != 0)
+            if not ok:
+                counting = False
+                continue
+            ncmp += 1
+            up = v > p
+            hits += up
+            if counting and up and v > 0:
+                run += 1
+            else:
+                counting = False
+        rec[f"fq_{key}_yoy_streak_m"] = run * mpp
+        if ncmp:
+            rec[f"fq_{key}_yoy_pos_share"] = hits / ncmp
+            rec[f"fq_{key}_yoy_n_cmp"] = float(ncmp)
     # net-debt path over the balance snapshots (newest first)
     nd = []
     for d, r in bp[:5]:
         td, c = _f(r.get("totalDebt")), _f(r.get("cashAndShortTermInvestments"))
-        if math.isfinite(td) and math.isfinite(c):
-            nd.append(td - c)
+        if not (math.isfinite(td) and math.isfinite(c)):
+            break   # keep the path contiguous (no skipping a blanked period)
+        nd.append(td - c)
     if len(nd) >= 3:
         dec = 0
         for a, b in zip(nd, nd[1:]):
@@ -361,6 +524,7 @@ def enrich_symbol(sym: str):
             else:
                 break
         rec["fq_netdebt_decline_periods"] = float(dec)
+        rec["fq_netdebt_decline_months"] = dec * mpp
         # scaled by total assets: a near-zero starting net debt made a
         # percent-of-net-debt change explode (CRM read 834%)
         rec["fq_netdebt_change_pct_assets"] = _div(nd[0] - nd[-1], L["total_assets"])
@@ -444,12 +608,18 @@ def main():
     from concurrent.futures import ThreadPoolExecutor
 
     def _one(sym):
-        try:
-            return enrich_symbol(sym)
-        except fc.FMPError as exc:
-            if "Limit Reach" in str(exc) or "429" in str(exc):
-                raise
-            return {"symbol": sym, "fmp_q_status": "error"}, []
+        # A rate limit is a pause, not a failure: wait it out and retry the
+        # SAME symbol (the client already backed off 5x). Stopping the run
+        # (or recording the symbol as done) would leave a hole in the universe.
+        for attempt in range(12):
+            try:
+                return enrich_symbol(sym)
+            except fc.FMPError as exc:
+                if "Limit Reach" in str(exc) or "429" in str(exc):
+                    time.sleep(30 * (attempt + 1))
+                    continue
+                return {"symbol": sym, "fmp_q_status": "error"}, []
+        raise fc.FMPError(f"{sym}: still rate limited after 12 waits")
 
     recs, panel = [], []
     step = args.checkpoint_every

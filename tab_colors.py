@@ -142,7 +142,8 @@ ARCH_FAMILY = {
     'arch_xr_investment_remark': 'event', 'arch_xr_stake_fv_gap': 'deep_value', 'arch_xr_lookthrough_earner': 'deep_value',
     # Wave-2 forensic tells: cash-tax cushion, owned real estate, discops mask, peer margin gap
     'arch_xr_cash_tax_advantage': 'deep_value', 'arch_xr_owned_realestate_value': 'deep_value',
-    'arch_xr_discops_mask': 'deep_value', 'arch_xr_peer_margin_gap': 'inflection',
+    'arch_xr_discops_mask': 'deep_value', 'arch_xr_verified_deleveraging': 'inflection',
+    'arch_xr_cash_leads_book': 'deep_value', 'arch_xr_peer_margin_gap': 'inflection',
 }
 
 

@@ -33,6 +33,7 @@ Resumable: checkpoints to CSV every N symbols; already-done symbols skipped.
 from __future__ import annotations
 
 import argparse
+import time
 import math
 import os
 
@@ -87,6 +88,8 @@ def enrich_symbol(sym: str) -> dict:
     isr = fc.get_json("income-statement", {"symbol": sym, "period": "annual", "limit": 8}, ttl=fc.TTL_FUNDAMENTAL)
     cf = fc.get_json("cash-flow-statement", {"symbol": sym, "period": "annual", "limit": 8}, ttl=fc.TTL_FUNDAMENTAL)
     oe = fc.get_json("owner-earnings", {"symbol": sym, "limit": 6}, ttl=fc.TTL_FUNDAMENTAL)
+    bsa = fc.get_json("balance-sheet-statement", {"symbol": sym, "period": "annual", "limit": 8},
+                      ttl=fc.TTL_FUNDAMENTAL)
     rec: dict = {"symbol": sym}
 
     # ---- multi-year returns (lindy = median of the per-year series) ----
@@ -105,20 +108,48 @@ def enrich_symbol(sym: str) -> dict:
     op = dict(_by_year(isr, "operatingIncome"))
     tax = dict(_by_year(ra, "effectiveTaxRate"))
     yrs = sorted(set(ic) & set(op), reverse=True)
-    if len(yrs) >= 4:
-        def _nopat(y):
-            t = tax.get(y, np.nan)
-            t = t if (math.isfinite(t) and 0 <= t < 0.6) else 0.25
-            return op[y] * (1 - t)
-        y0, yN = yrs[0], yrs[min(3, len(yrs) - 1)]
-        d_ic = ic[y0] - ic[yN]
-        # ROIIC only means something when capital was actually DEPLOYED: a
-        # capital-returner shrinks invested capital (buybacks), so ΔIC<=0 gives
-        # a spurious huge/negative ratio (AAPL endpoint ROIIC was -6.8). Require
-        # meaningful positive deployment; capital-returners get NaN (correct —
-        # their thesis is return, not reinvestment).
-        if math.isfinite(d_ic) and d_ic > 0.05 * abs(ic[yN] or 1):
-            rec["fmp_st_roiic_lindy"] = (_nopat(y0) - _nopat(yN)) / d_ic
+    fcf_y = dict(_by_year(cf, "freeCashFlow"))
+
+    def _nopat(y):
+        t = tax.get(y, np.nan)
+        t = t if (math.isfinite(t) and 0 <= t < 0.6) else 0.25
+        return op[y] * (1 - t)
+
+    def _roiic(y_hi, span, num):
+        """ΔX / ΔIC between fiscal years y_hi-span and y_hi (EDGAR roiic_window):
+        consecutive-year span, capital actually DEPLOYED (ΔIC > 0 and >= 5% of
+        the latest IC — a capital-returner shrinking IC over falling NOPAT is a
+        ratio of two negatives, not great incremental returns), and outside
+        [-2, 2] the ratio is a denominator artifact (EDGAR drops it too)."""
+        y_lo = y_hi - span
+        if y_hi not in ic or y_lo not in ic:
+            return np.nan
+        a, b = num(y_hi), num(y_lo)
+        d_ic = ic[y_hi] - ic[y_lo]
+        if not all(math.isfinite(v) for v in (a, b, d_ic)) or d_ic <= 0:
+            return np.nan
+        if ic[y_hi] > 0 and d_ic / ic[y_hi] < 0.05:
+            return np.nan
+        v = (a - b) / d_ic
+        return v if -2.0 <= v <= 2.0 else np.nan
+
+    _np = lambda y: _nopat(y) if y in op else np.nan
+    _fc = lambda y: fcf_y.get(y, np.nan)
+    if yrs:
+        y0 = yrs[0]
+        # LINDY = median of ROLLING 3-year windows (EDGAR roiic_lindy). A
+        # single endpoint ratio is one noisy draw: FMP-filled firers of
+        # cheap_per_roiic reached EV/EBITDA 138x on an implied 92% ROIIC.
+        roll = [v for v in (_roiic(y, 3, _np) for y in yrs) if math.isfinite(v)]
+        croll = [v for v in (_roiic(y, 3, _fc) for y in yrs) if math.isfinite(v)]
+        if len(roll) >= 2:
+            rec["fmp_st_roiic_lindy"] = float(np.median(roll))
+            rec["fmp_st_roiic_windows"] = float(len(roll))
+        if len(croll) >= 2:
+            rec["fmp_st_cash_roiic_lindy"] = float(np.median(croll))
+        r1, r3 = _roiic(y0, 1, _np), _roiic(y0, 3, _np)
+        if math.isfinite(r1) and math.isfinite(r3):
+            rec["fmp_st_roiic_acceleration"] = r1 - r3
 
     # ---- margins held over the window (lindy) ----
     opm = _by_year(ra, "operatingProfitMargin")
@@ -129,17 +160,84 @@ def enrich_symbol(sym: str) -> dict:
         rec["fmp_st_ebitda_margin_lindy"] = _median([v for _, v in ebm])
 
     # ---- durability counts from cash-flow / income ----
+    # Counted over the LATEST 5 fiscal years, exactly as EDGAR does
+    # (edgar_roic_roiic.lindy_aggregates: df.tail(5)); counting over FMP's up-to-
+    # 8 years made ">= 4" mean 4-of-8 for FMP rows vs 4-of-5 for EDGAR rows.
     fcf = _by_year(cf, "freeCashFlow")
     opinc = _by_year(isr, "operatingIncome")
     if fcf:
-        rec["fmp_st_n_yrs_positive_fcf"] = float(sum(1 for _, v in fcf if v > 0))
+        rec["fmp_st_n_yrs_positive_fcf"] = float(sum(1 for _, v in fcf[:5] if v > 0))
     if opinc:
-        rec["fmp_st_n_yrs_positive_opinc"] = float(sum(1 for _, v in opinc if v > 0))
+        rec["fmp_st_n_yrs_positive_opinc"] = float(sum(1 for _, v in opinc[:5] if v > 0))
+    if roic:
+        rec["fmp_st_n_yrs_positive_roic"] = float(sum(1 for _, v in roic[:5] if v > 0))
+
+    # ---- cash ROIC (FCF / invested capital), EDGAR definition ----
+    fcf_d = dict(fcf)
+    croic = [(y, fcf_d[y] / ic[y]) for y in sorted(set(fcf_d) & set(ic), reverse=True)
+             if math.isfinite(ic[y]) and ic[y] > 0]
+    if croic:
+        rec["fmp_st_cash_roic_lindy"] = _median([v for _, v in croic])
+    roic_d = dict(roic)
+    # inflection: prior fiscal year <= 0, latest > 0 (consecutive years only)
+    def _inflect(series):
+        if len(series) >= 2 and series[0][0] - series[1][0] == 1:
+            return float(series[1][1] <= 0 < series[0][1])
+        return np.nan
+    rec["fmp_st_roic_inflection_flag"] = _inflect(roic)
+    rec["fmp_st_cash_roic_inflection_flag"] = _inflect(croic)
+    # acceleration: ROIC delta-of-delta over three consecutive years
+    ys = sorted(roic_d, reverse=True)
+    if len(ys) >= 3 and ys[0] - ys[2] == 2:
+        rec["fmp_st_roic_acceleration"] = (roic_d[ys[0]] - roic_d[ys[1]]) - (roic_d[ys[1]] - roic_d[ys[2]])
 
     # ---- growth / dilution ----
     rec_rev = _by_year(isr, "revenue")
     if len(rec_rev) >= 2:
         rec["fmp_st_revenue_cagr"] = _cagr(rec_rev)
+
+    def _span_cagr(series, span):
+        """CAGR over EXACTLY `span` fiscal years back from the latest (EDGAR's
+        revenue_3y_cagr / _5y_cagr); NaN when that year is missing."""
+        d = dict(series)
+        if not d:
+            return np.nan
+        y0 = max(d)
+        v0, vN = d.get(y0, np.nan), d.get(y0 - span, np.nan)
+        if not (math.isfinite(v0) and math.isfinite(vN)) or v0 <= 0 or vN <= 0:
+            return np.nan
+        return (v0 / vN) ** (1.0 / span) - 1.0
+    rec["fmp_st_revenue_3y_cagr"] = _span_cagr(rec_rev, 3)
+    rec["fmp_st_revenue_5y_cagr"] = _span_cagr(rec_rev, 5)
+    if math.isfinite(rec["fmp_st_revenue_3y_cagr"]) and math.isfinite(rec["fmp_st_revenue_5y_cagr"]):
+        rec["fmp_st_revenue_accel_lindy"] = rec["fmp_st_revenue_3y_cagr"] - rec["fmp_st_revenue_5y_cagr"]
+    assets = _by_year(bsa, "totalAssets")
+    rec["fmp_st_asset_3y_cagr"] = _span_cagr(assets, 3)
+    rec["fmp_st_asset_5y_cagr"] = _span_cagr(assets, 5)
+
+    # ---- 5-fiscal-year averages (EDGAR _avg_over: latest 5 aligned years, >= 3) ----
+    def _avg_over(series_list, n=5, min_years=3):
+        ds = [dict(s) for s in series_list]
+        common = set(ds[0])
+        for d in ds[1:]:
+            common &= set(d)
+        yrs = sorted(common, reverse=True)[:n]
+        if len(yrs) < min_years:
+            return np.nan, len(yrs)
+        return float(np.mean([sum(d[y] for d in ds) for y in yrs])), len(yrs)
+    ni_s = _by_year(isr, "netIncome")
+    da_s = _by_year(cf, "depreciationAndAmortization")
+    # capex positive (spend). A year whose capex AND D&A are both exactly 0 is an
+    # FMP zero-fill, not a capital-free year: drop it from both series.
+    _cx_raw = dict(_by_year(cf, "capitalExpenditure"))
+    _da_raw = dict(da_s)
+    _blank = {y for y in _cx_raw if _cx_raw[y] == 0 and _da_raw.get(y, 0) == 0}
+    cx_s = [(y, abs(v)) for y, v in _cx_raw.items() if y not in _blank]
+    da_s = [(y, v) for y, v in da_s if y not in _blank]
+    rec["fmp_st_ni_avg"], rec["fmp_st_ni_avg_years"] = _avg_over([ni_s])
+    rec["fmp_st_capex_avg"], rec["fmp_st_capex_avg_years"] = _avg_over([cx_s])
+    oe_parts = [ni_s, da_s, [(y, -v) for y, v in cx_s]]
+    rec["fmp_st_oe_avg"], rec["fmp_st_oe_avg_years"] = _avg_over(oe_parts)
     eq = _by_year(ra, "bookValuePerShare")
     if len(eq) >= 2:
         rec["fmp_st_equity_cagr"] = _cagr(eq)
@@ -228,7 +326,8 @@ def enrich_symbol(sym: str) -> dict:
 
     # ---- SBC / tax / retained earnings ----
     sbc = _by_year(km, "stockBasedCompensationToRevenue")
-    if sbc:
+    # exactly 0 = not disclosed (every JP filer reads 0.0), not SBC-free
+    if sbc and sbc[0][1] != 0:
         rec["fmp_st_sbc_pct_revenue"] = sbc[0][1]
     etr = _by_year(ra, "effectiveTaxRate")
     if etr:
@@ -270,7 +369,8 @@ def main() -> None:
     ap.add_argument("--scope", choices=["nonus_edgar_gap", "firers", "all"], default="nonus_edgar_gap")
     ap.add_argument("--max", type=int, default=0)
     ap.add_argument("--checkpoint-every", type=int, default=150)
-    ap.add_argument("--gc-max-mb", type=int, default=300)
+    ap.add_argument("--gc-max-mb", type=int, default=3000)
+    ap.add_argument("--workers", type=int, default=4)
     args = ap.parse_args()
 
     t = pd.read_csv(args.relevant, low_memory=False)
@@ -300,22 +400,32 @@ def main() -> None:
             done = set()
     todo = [s for s in syms if s not in done]
     print(f"  {len(done)} done, {len(todo)} to fetch", flush=True)
-    rows = []
-    for i, sym in enumerate(todo, 1):
-        try:
-            rows.append(enrich_symbol(sym))
-        except fc.FMPError as exc:
-            if "Limit Reach" in str(exc) or "429" in str(exc):
-                print(f"  rate limited at {i}; checkpointing", flush=True)
-                break
-            rows.append({"symbol": sym})
-        if i % args.checkpoint_every == 0:
-            _flush(rows); rows = []
+    def _one(sym):
+        # rate limit = wait and retry the same symbol; never record it as an
+        # empty (would-be "done") row
+        for attempt in range(12):
+            try:
+                return enrich_symbol(sym)
+            except fc.FMPError as exc:
+                if "Limit Reach" in str(exc) or "429" in str(exc):
+                    time.sleep(30 * (attempt + 1))
+                    continue
+                return {"symbol": sym}
+        raise fc.FMPError(f"{sym}: still rate limited after 12 waits")
+
+    # Parallel over symbols (I/O-bound; the client's cache and backoff are
+    # thread-safe), flushed in checkpoint-sized chunks so a kill loses little.
+    from concurrent.futures import ThreadPoolExecutor
+    step = args.checkpoint_every
+    with ThreadPoolExecutor(max_workers=max(1, args.workers)) as ex:
+        for i in range(0, len(todo), step):
+            rows = list(ex.map(_one, todo[i:i + step]))
+            _flush(rows)
             st = fc.cache_stats()
-            print(f"  statements {i}/{len(todo)} | hit_rate={st['hit_rate']} | cache {st['disk_mb']}MB", flush=True)
+            print(f"  statements {min(i + step, len(todo))}/{len(todo)} | hit_rate={st['hit_rate']} "
+                  f"| cache {st['disk_mb']}MB", flush=True)
             if gc_bytes:
                 fc.cache_gc(gc_bytes)
-    _flush(rows)
     fin = pd.read_csv(OUT) if os.path.exists(OUT) else pd.DataFrame()
     print(f"\nwrote {OUT}: {len(fin)} rows, {len(fin.columns)} cols", flush=True)
 

@@ -559,7 +559,9 @@ def _regression(t, g):
                 "arch_xr_cash_tax_advantage", "arch_xr_owned_realestate_value",
                 "arch_xr_discops_mask", "arch_xr_peer_margin_gap",
                 "arch_xr_investment_remark", "arch_xr_stake_fv_gap",
-                "arch_xr_lookthrough_earner", "arch_xr_value_unlock"):
+                "arch_xr_lookthrough_earner", "arch_xr_value_unlock",
+                # quarterly-forensic XR (operating-gated)
+                "arch_xr_verified_deleveraging", "arch_xr_cash_leads_book"):
         if _ac in t.columns:
             leak = int(((n(t, _ac) == 1) & _finre).sum())
             check(f"regression(R1): {_ac} excludes Financials/REITs/Utilities",
@@ -1153,6 +1155,113 @@ def _valuation_consistency(t, g):
     n_top_viol = int(viol.reindex(top_idx).fillna(False).sum())
     check("valuation: top-100 by ETA carry ZERO cross-field violations",
           n_top_viol == 0, f"{n_top_viol} of top 100 rows inconsistent")
+
+
+@measure("FMP 3-statement forensics",
+         "Quarterly/annual FMP statements fill EDGAR-only inputs for non-US "
+         "names and add forensic tells. A fill is only trusted through a "
+         "validated TRUE-FX bridge, zero-filled placeholders are never read as "
+         "zeros, forensic models are not applied to financials, and every "
+         "FMP-filled firer is re-verified on the POST-fill (_eff) value the "
+         "gate actually saw — pre-fill master columns would pass vacuously.")
+def _fmp_forensics(t, g):
+    if "fmp_q_status" not in t.columns:
+        warn("fmp forensics: quarterly layer present", False, "no fmp_q_status column")
+        return
+    # 1. every converted LEVEL fill went through a validated FX bridge
+    lvl = [c for c in ("retained_earnings", "deferred_revenue", "pretax_income_ttm",
+                       "income_continuing_ops_ttm", "income_discontinued_ops_ttm",
+                       "assets", "equity", "financing_cf_ttm",
+                       "net_working_capital", "tangible_equity", "ni_avg",
+                       "capex_avg", "oe_avg") if f"fmp_filled_{c}" in t.columns]
+    filled = pd.Series(False, index=t.index)
+    for c in lvl:
+        filled |= n(t, f"fmp_filled_{c}") == 1
+    no_fx = int((filled & n(t, "fq_fx_to_master").isna()).sum())
+    check("fmp forensics: every converted level fill has a validated FX bridge",
+          no_fx == 0, f"{no_fx} filled rows without fq_fx_to_master ({int(filled.sum())} filled)")
+    # 2. master-core columns are never coalesced (policy: membership drift)
+    core = [c for c in ("net_income_ttm", "cfo_ttm", "capex_ttm", "da_ttm", "total_debt")
+            if f"fmp_filled_{c}" in t.columns and (n(t, f"fmp_filled_{c}") == 1).any()]
+    check("fmp forensics: master-core columns (NI/CFO/capex/D&A/debt) never FMP-filled",
+          not core, f"filled: {core}")
+    # 3. forensic models never scored on financials
+    sec = g.set_index("symbol")["sector"].reindex(t["symbol"]).fillna("").astype(str).values
+    fin = pd.Series(sec, index=t.index).str.contains("Financial", case=False)
+    for f in ("fq_beneish_risk_flag", "fq_high_accruals_flag",
+              "fq_receivables_divergence_flag", "fq_inventory_build_flag"):
+        if f in t.columns:
+            leak = int(((n(t, f) == 1) & fin).sum())
+            check(f"fmp forensics: {f} never fires on financials", leak == 0, f"{leak} financial rows")
+    # 4. accrual/Beneish tells never rest on a zero-filled cash flow
+    if "fq_cf_basis" in t.columns:
+        zero_cf = int(((n(t, "fq_high_accruals_flag") == 1) | (n(t, "fq_beneish_risk_flag") == 1))
+                      .where(t["fq_cf_basis"].isna(), False).sum())
+        check("fmp forensics: accrual/Beneish tells only with an observed cash-flow basis",
+              zero_cf == 0, f"{zero_cf} tells without a CF basis")
+        z = int(((n(t, "fq_cfo") == 0) & (t["fmp_q_status"].astype(str) == "ok")).sum())
+        warn("fmp forensics: exact-zero TTM CFO is rare (placeholder blanking works)",
+             z <= 0.01 * max(1, int((t["fmp_q_status"].astype(str) == "ok").sum())), f"{z} rows")
+    # 5. SBC: an FMP fill is a real disclosure, never a zero-fill
+    if "fmp_filled_sbc_pct_revenue" in t.columns and "sbc_pct_revenue_eff" in t.columns:
+        f0 = int(((n(t, "fmp_filled_sbc_pct_revenue") == 1) & (n(t, "sbc_pct_revenue_eff") <= 0)).sum())
+        check("fmp forensics: FMP-filled sbc_pct_revenue is a disclosed (> 0) value",
+              f0 == 0, f"{f0} zero/negative fills")
+    # 6. XR45 filled firers are cheap on continuing ops in ONE currency
+    if "income_continuing_ops_ttm_eff" in t.columns and "arch_xr_discops_mask" in t.columns:
+        mc = g.set_index("symbol")["market_cap"].reindex(t["symbol"]).values
+        yld = n(t, "income_continuing_ops_ttm_eff") / pd.Series(mc, index=t.index)
+        sel = (n(t, "arch_xr_discops_mask") == 1) & (n(t, "fmp_filled_income_continuing_ops_ttm") == 1)
+        bad = int((sel & ~(yld >= 0.059)).sum())
+        check("fmp forensics: XR45 FMP-filled firers cheap on listing-ccy continuing ops (>= 6%)",
+              bad == 0, f"{bad} of {int(sel.sum())}")
+    # 7. new quarterly-forensic archetypes carry their defining legs
+    if "arch_xr_verified_deleveraging" in t.columns:
+        sel = n(t, "arch_xr_verified_deleveraging") == 1
+        bad = int((sel & ~((n(t, "fq_deleveraging_flag") == 1)
+                           & (n(t, "fq_netdebt_decline_months") >= 9)
+                           & (n(t, "fq_netdebt_change_pct_assets") <= -0.05))).sum())
+        check("fmp forensics: verified_deleveraging firers show the net-debt path",
+              bad == 0, f"{bad} of {int(sel.sum())}")
+    if "arch_xr_cash_leads_book" in t.columns:
+        sel = n(t, "arch_xr_cash_leads_book") == 1
+        _nicf = n(t, "fq_ni_cf")
+        _fcf = n(t, "fq_cfo") - n(t, "fq_capex").abs()
+        bad = int((sel & ~((n(t, "fq_cash_leads_earnings_flag") == 1)
+                           & ((_fcf / _nicf.where(_nicf > 0)) >= 1.2))).sum())
+        check("fmp forensics: cash_leads_book firers have FCF >= 1.2x NI (the tell)",
+              bad == 0, f"{bad} of {int(sel.sum())}")
+    # 8. FMP-filled firers re-verified on post-fill values
+    if "arch_retained_earnings_discount" in t.columns and "retained_earnings_eff" in t.columns:
+        mc = pd.Series(g.set_index("symbol")["market_cap"].reindex(t["symbol"]).values, index=t.index)
+        sel = (n(t, "arch_retained_earnings_discount") == 1) & (n(t, "fmp_filled_retained_earnings") == 1)
+        bad = int((sel & ~(n(t, "retained_earnings_eff") >= 0.99 * mc)).sum())
+        check("fmp forensics: F7 FMP-filled firers have RE >= market cap (post-fill)",
+              bad == 0, f"{bad} of {int(sel.sum())}")
+    if "arch_customer_float" in t.columns:
+        sel = n(t, "arch_customer_float") == 1
+        bad = int((sel & ~((n(t, "net_working_capital_eff") < 0) | (n(t, "fmp_cash_conversion_cycle") < 0)
+                           | (n(t, "fq_op_nwc_to_rev") < 0) | (n(t, "fq_ccc") < 0))).sum())
+        check("fmp forensics: customer_float firers show a float leg (post-fill)",
+              bad == 0, f"{bad} of {int(sel.sum())}")
+    # 9. calibration on the US overlap: where EDGAR AND FMP both carry a
+    #    level, FMP (bridged) should match EDGAR — measures mapping drift
+    #    before any non-US fill is trusted
+    gi = g.set_index("symbol")
+    for base, fq in (("retained_earnings", "fq_retained_earnings"), ("equity", "fq_equity"),
+                     ("assets", "fq_total_assets")):
+        # (ppe_net is NOT filled: FMP's net PP&E includes operating-lease ROU
+        #  assets — 48% agreement on the overlap — so it is not calibrated here)
+        if base in gi.columns and fq in t.columns:
+            e = pd.to_numeric(gi[base], errors="coerce").reindex(t["symbol"]).values
+            e = pd.Series(e, index=t.index)
+            f = n(t, fq) * n(t, "fq_fx_to_master")
+            both = e.notna() & f.notna() & (e.abs() > 0) & (t["fmp_q_status"].astype(str) == "ok")
+            if both.sum() >= 50:
+                r = (f[both] / e[both])
+                within = float(((r >= 1 / 1.25) & (r <= 1.25)).mean())
+                warn(f"fmp calibration: FMP {base} within 25% of EDGAR on the overlap",
+                     within >= 0.85, f"{within:.1%} of {int(both.sum())}")
 
 
 def main():

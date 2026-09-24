@@ -140,6 +140,8 @@ ARCHETYPE_LABELS = {
     'arch_xr_cash_tax_advantage': 'Cash-Tax Advantage (cash tax << book tax; owner earnings understated)',
     'arch_xr_owned_realestate_value': 'Owned Real Estate at Historical Cost (hidden property below book)',
     'arch_xr_discops_mask': 'Discontinued-Ops Mask (profitable core hidden by a divested drag)',
+    'arch_xr_verified_deleveraging': 'Verified Deleveraging (net-debt path falling, operations-funded, cheap EV/EBITDA)',
+    'arch_xr_cash_leads_book': 'Cash Leads Book (CFO pulling away from NI, negative accruals, cheap)',
     'arch_xr_investment_remark': 'Investment/JV Remark (stake remeasured to fair value, value crystallised)',
     'arch_xr_stake_fv_gap': 'Stake FV Gap (disclosed fair value of JV stake > carrying value)',
     'arch_xr_lookthrough_earner': 'Look-Through Earner (associate profit a big share of pretax)',

@@ -38,7 +38,7 @@ import pandas as pd
 
 
 EDGAR_REQUIRED_ARCHETYPES = {
-    # The 25 archetypes that can only fire when EDGAR multi-year + cap-
+    # Archetypes that can only fire when EDGAR (or, now, FMP) multi-year + cap-
     # allocation + segment data is present. Non-EDGAR rows can't
     # structurally match these.
     "arch_durable_reinvestment", "arch_cash_reinvest", "arch_roic_inflect",
@@ -52,6 +52,34 @@ EDGAR_REQUIRED_ARCHETYPES = {
     # NEW: segment-level archetypes (edgartools dimensional XBRL harvest)
     "arch_diversified_segments", "arch_concentrated_segments",
     "arch_geographic_global", "arch_fastest_segment",
+    # forensic / XR archetypes whose inputs were EDGAR-only until the FMP
+    # statement + quarterly engines filled them (retained earnings, NWC,
+    # 5-yr averages, streaks, deferred revenue, tax rates, PP&E, discops)
+    "arch_retained_earnings_discount", "arch_capex_famine_harvest",
+    "arch_self_funded_returner", "arch_book_compounder_discount",
+    "arch_xr_paydown_yield", "arch_xr_compounding_deployer",
+    "arch_xr_float_compounding", "arch_xr_depreciation_cliff",
+    "arch_xr_amortization_mask", "arch_xr_nol_shield",
+    "arch_xr_deferred_revenue_lead", "arch_xr_cash_tax_advantage",
+    "arch_xr_discops_mask", "arch_xr_audited_streak_unrerated",
+    "arch_xr_quality_crisis", "arch_xr_forensic_multiple_gap",
+    "arch_xr_harvest_distribution",
+    # quarterly-forensic archetypes (need the 3-statement engine)
+    "arch_xr_verified_deleveraging", "arch_xr_cash_leads_book",
+}
+
+# Archetypes FMP can NEVER supply (no LIFO reserve, pension funded status,
+# DTA valuation allowance, NOL, RPO, equity-method fair value, segment EBIT,
+# held-for-sale, accumulated depreciation, or Form 4 / full-text language in
+# FMP's statements). Only EDGAR-covered rows are eligible for these.
+EDGAR_PERMANENT_ARCHETYPES = {
+    "arch_lifo_hidden_reserve", "arch_pension_overfunded", "arch_dta_reversal",
+    "arch_nol_shell", "arch_xr_monetization_trifecta", "arch_xr_contracted_backlog",
+    "arch_xr_stake_fv_gap", "arch_xr_lookthrough_earner", "arch_xr_investment_remark",
+    "arch_xr_owned_realestate_value", "arch_xr_look_through_value",
+    "arch_xr_segment_justifies_whole", "arch_xr_margin_mixshift",
+    "arch_xr_hidden_segment_compounder", "arch_insider_conviction",
+    "arch_xr_value_unlock",
 }
 
 
@@ -118,7 +146,9 @@ def main():
 
     arch_cols = [c for c in arch_df.columns if c.startswith('arch_')]
     edgar_arch_cols = [c for c in arch_cols if c in EDGAR_REQUIRED_ARCHETYPES]
-    non_edgar_arch_cols = [c for c in arch_cols if c not in EDGAR_REQUIRED_ARCHETYPES]
+    perm_arch_cols = [c for c in arch_cols if c in EDGAR_PERMANENT_ARCHETYPES]
+    non_edgar_arch_cols = [c for c in arch_cols
+                           if c not in EDGAR_REQUIRED_ARCHETYPES and c not in EDGAR_PERMANENT_ARCHETYPES]
     print(f'  {len(arch_cols)} archetype columns ({len(edgar_arch_cols)} EDGAR-only, '
           f'{len(non_edgar_arch_cols)} universal)', file=sys.stderr)
 
@@ -493,23 +523,30 @@ def main():
     # ----- archetype_count_pct (region-fair denominator) -----
     # A row is EDGAR-eligible if it has at least one EDGAR-only archetype
     # matching (= EDGAR XBRL was present for this name).
-    if edgar_arch_cols:
-        has_edgar_data = (df[edgar_arch_cols].fillna(0).sum(axis=1) > 0)
-        # Or any row carrying multi-year fields:
-        # multi_year_data = EDGAR OR FMP history (archetype_tags); FMP now fills
-        # the EDGAR-only inputs, so those names are full-taxonomy eligible too
-        for marker in ('roic_lindy', 'm5_engine_score', 'tangible_equity_pct'):
+    # Three tiers, each counted against exactly the archetypes it can reach:
+    #   EDGAR rows           -> the FULL live taxonomy
+    #   FMP multi-year rows  -> all but EDGAR_PERMANENT (FMP fills the rest)
+    #   neither              -> only the archetypes needing no multi-year data
+    # Denominators come from the live file, never a CLI constant (the old
+    # --total-archetypes default froze at 34 while the taxonomy grew).
+    if edgar_arch_cols or perm_arch_cols:
+        # EDGAR markers: the master's own (pre-FMP-fill) EDGAR columns, or any
+        # firing of an archetype only EDGAR can supply.
+        is_edgar = pd.Series(False, index=df.index)
+        for marker in ('roic_lindy', 'm5_engine_score'):
             if marker in df.columns:
-                has_edgar_data = has_edgar_data | df[marker].notna()
+                is_edgar = is_edgar | df[marker].notna()
+        if perm_arch_cols:
+            is_edgar = is_edgar | (df[perm_arch_cols].fillna(0).sum(axis=1) > 0)
+        # FMP multi-year history (archetype_tags.multi_year_data), or any firing
+        # of an FMP-fillable archetype (it is then demonstrably reachable)
+        is_fmp = (df[edgar_arch_cols].fillna(0).sum(axis=1) > 0) if edgar_arch_cols \
+            else pd.Series(False, index=df.index)
         if 'multi_year_data' in df.columns:
-            has_edgar_data = has_edgar_data | (pd.to_numeric(df['multi_year_data'], errors='coerce') == 1)
-        # EDGAR-covered rows are eligible for the FULL live taxonomy —
-        # derive the denominator from the file, never a CLI constant (the
-        # old --total-archetypes default froze at 34 while the taxonomy
-        # grew to 69, silently re-inflating the US-coverage bias this
-        # column exists to remove).
-        archetypes_eligible = np.where(has_edgar_data, len(arch_cols),
-                                       len(non_edgar_arch_cols))
+            is_fmp = is_fmp | (pd.to_numeric(df['multi_year_data'], errors='coerce') == 1)
+        archetypes_eligible = np.where(
+            is_edgar, len(arch_cols),
+            np.where(is_fmp, len(arch_cols) - len(perm_arch_cols), len(non_edgar_arch_cols)))
     else:
         archetypes_eligible = len(arch_cols)
     df['archetypes_eligible'] = archetypes_eligible
@@ -586,8 +623,9 @@ def main():
     print(f'  mean={eta.mean():.3f}, median={eta.median():.3f}, '
           f'p90={eta.quantile(0.90):.3f}, max={eta.max():.3f}')
     print(f'\narchetype_count_pct distribution (by EDGAR eligibility):')
-    edg = df[df['archetypes_eligible'] == args.total_archetypes]
-    non = df[df['archetypes_eligible'] != args.total_archetypes]
+    _full = int(df['archetypes_eligible'].max())
+    edg = df[df['archetypes_eligible'] == _full]
+    non = df[df['archetypes_eligible'] != _full]
     if len(edg):
         print(f'  EDGAR-eligible ({len(edg):,}): mean count {edg.archetype_count.mean():.2f}, '
               f'mean pct {edg.archetype_count_pct.mean():.3f}')
