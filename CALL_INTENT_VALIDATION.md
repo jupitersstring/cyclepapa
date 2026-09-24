@@ -1,6 +1,6 @@
 # Earnings-call intent -- out-of-time validation
 
-Generated 2026-09-24 by `call_intent_model.py`. Calls analysed: 15317 (1935 names). Labelled: 8160; train < 2025-06-01: 4079, test >= 2025-06-01: 4081. Test base rate (ACTED): 31.2%.
+Generated 2026-09-24 by `call_intent_model.py`. Calls analysed: 17777 (2381 names). Labelled: 9541; train < 2025-06-01: 4588, test >= 2025-06-01: 4953. Test base rate (ACTED): 30.9%.
 
 ACTED = share count down >= 2% or dividends up >= 25%/initiated over the next two fiscal quarters, or a dated action 8-K within 183 days of the call.
 
@@ -9,61 +9,61 @@ ACTED = share count down >= 2% or dividends up >= 25%/initiated over the next tw
 | model | AUC |
 |---|---|
 | interpretable rule score (no fitting) | 0.642 |
-| logistic, language features only | 0.655 |
-| baseline: past behaviour only (share-count + dividend trend) | 0.596 |
-| baseline + language v1 (families, novelty, Q&A) | 0.650 |
-| baseline + language v2 (+ CEO/CFO, scripted vs Q&A, firming, action size, discount) | 0.655 |
-| v2, DEEP-DISCOUNT calls only (P/B <= 0.8 at the call; n=1047, base 0.293) | 0.644 |
-| rule score, companies NOT already shrinking share count | 0.599 |
+| logistic, language features only | 0.657 |
+| baseline: past behaviour only (share-count + dividend trend) | 0.594 |
+| baseline + language v1 (families, novelty, Q&A) | 0.652 |
+| baseline + language v2 (+ CEO/CFO, scripted vs Q&A, firming, action size, discount) | 0.658 |
+| v2, DEEP-DISCOUNT calls only (P/B <= 0.8 at the call; n=1079, base 0.291) | 0.643 |
+| rule score, companies NOT already shrinking share count | 0.601 |
 
-Top decile hit-rate (test): rule 53.7% vs base 31.2% (lift 1.72x); baseline+language 58.8% (lift 1.88x).
+Top decile hit-rate (test): rule 52.7% vs base 30.9% (lift 1.71x); baseline+language 61.0% (lift 1.98x).
 
 ## Lift by linguistic family (calls with family score >= 0.8, all labelled)
 
 | family | calls | lift vs base |
 |---|---|---|
-| DIVIDEND_RETURN | 955 | 1.59x |
-| BUYBACK | 2779 | 1.57x |
-| GOVERNANCE | 164 | 1.51x |
-| TENDER | 40 | 1.48x |
-| VALUE_GAP | 674 | 1.40x |
-| novelty | 1908 | 1.23x |
-| MONETIZE | 1819 | 1.15x |
-| STRATEGIC_REVIEW | 279 | 1.07x |
-| ANTICIPATION | 2355 | 1.06x |
-| COST | 2139 | 1.03x |
-| DELEVER | 1031 | 1.00x |
+| DIVIDEND_RETURN | 1108 | 1.60x |
+| GOVERNANCE | 199 | 1.59x |
+| BUYBACK | 3181 | 1.58x |
+| VALUE_GAP | 760 | 1.37x |
+| TENDER | 53 | 1.33x |
+| novelty | 2354 | 1.21x |
+| MONETIZE | 2159 | 1.16x |
+| ANTICIPATION | 2861 | 1.05x |
+| COST | 2508 | 1.03x |
+| STRATEGIC_REVIEW | 326 | 1.01x |
+| DELEVER | 1180 | 1.00x |
 
 ## Out of time: model probability quintile -> what happened next (test set)
 
 | quintile | calls | ACTED rate | mean 6m excess | median 6m excess |
 |---|---|---|---|---|
-| Q1 | 850 | 17% | -1.3% | -6.2% |
-| Q2 | 850 | 19% | -7.4% | -8.0% |
-| Q3 | 851 | 22% | +14.4% | -7.9% |
-| Q4 | 850 | 34% | -4.6% | -3.9% |
-| Q5 (highest) | 851 | 47% | -3.9% | -4.6% |
+| Q1 | 1029 | 17% | +7.2% | -6.0% |
+| Q2 | 1029 | 16% | -4.4% | -8.6% |
+| Q3 | 1029 | 21% | +13.7% | -7.5% |
+| Q4 | 1029 | 34% | -3.3% | -3.3% |
+| Q5 (highest) | 1030 | 48% | -2.7% | -4.2% |
 
 ## The thesis test: deep-discount calls (P/B <= 0.8 at the call), test set
 
 | model quintile | calls | ACTED rate | mean 6m excess | median 6m excess |
 |---|---|---|---|---|
-| Q1 | 212 | 14% | +2.1% | -7.3% |
-| Q2 | 213 | 20% | +0.6% | -4.5% |
-| Q3 | 212 | 21% | +4.9% | -2.1% |
-| Q4 | 213 | 32% | +1.8% | -1.3% |
-| Q5 (highest) | 213 | 46% | -0.4% | -4.7% |
+| Q1 | 219 | 16% | +2.6% | -7.1% |
+| Q2 | 219 | 16% | +3.2% | -5.2% |
+| Q3 | 219 | 23% | +8.0% | -0.3% |
+| Q4 | 219 | 33% | +1.7% | -1.1% |
+| Q5 (highest) | 220 | 44% | +0.2% | -4.6% |
 
 ## Pre-specified return hypotheses, deep-discount calls (all periods, no fitting)
 
 | hypothesis | n (6m) | mean 6m | median 6m | n (12m) | mean 12m | median 12m |
 |---|---|---|---|---|---|---|
-| all deep-discount calls | 2140 | +0.0% | -5.9% | 1449 | -1.0% | -11.5% |
-| H1 NEW shareholder-action family | 214 | +1.8% | -5.0% | 131 | +2.9% | -6.9% |
-| H2 commitment firming across calls | 551 | -1.1% | -6.7% | 364 | -4.7% | -11.0% |
-| H3 value-gap + committed action | 232 | -0.6% | -6.5% | 143 | +5.5% | -13.6% |
-| H4 CEO and CFO both commit | 261 | +3.5% | -3.1% | 169 | +0.3% | -7.8% |
-| contrast: no shareholder-action language | 485 | +1.4% | -6.2% | 345 | +4.1% | -12.2% |
+| all deep-discount calls | 2202 | +1.3% | -5.8% | 1493 | +7.6% | -11.5% |
+| H1 NEW shareholder-action family | 220 | +2.5% | -5.0% | 133 | +3.3% | -6.9% |
+| H2 commitment firming across calls | 560 | -1.0% | -6.7% | 367 | -4.7% | -11.0% |
+| H3 value-gap + committed action | 237 | -0.0% | -6.5% | 147 | +8.3% | -9.9% |
+| H4 CEO and CFO both commit | 268 | +4.7% | -2.1% | 175 | +5.6% | -4.7% |
+| contrast: no shareholder-action language | 501 | +3.7% | -6.4% | 358 | +34.7% | -12.3% |
 
 Reading: none of the intent patterns beats deep-discount calls with NO shareholder language by more than noise. Management language predicts WHETHER a company acts (AUC above); it does not, by itself, predict the re-rating -- the market prices stated intent quickly. Use it to confirm a set-up, not as a return signal.
 
@@ -71,52 +71,52 @@ Reading: none of the intent patterns beats deep-discount calls with NO sharehold
 
 | size | calls | ACTED rate | mean 6m excess | median 6m excess |
 |---|---|---|---|---|
-| <2% of mcap | 494 | 0.282 | -4.9% | -5.9% |
-| 2-5% | 380 | 0.446 | -4.7% | -6.7% |
-| 5-10% | 403 | 0.492 | -5.0% | -5.4% |
-| >=10% | 695 | 0.538 | -7.5% | -9.0% |
+| <2% of mcap | 593 | 0.292 | -4.3% | -6.0% |
+| 2-5% | 441 | 0.433 | -3.5% | -6.3% |
+| 5-10% | 449 | 0.493 | -3.9% | -5.4% |
+| >=10% | 778 | 0.547 | -5.6% | -8.1% |
 
-Companies that ACTED returned -0.066 vs 0.016 for those that did not (mean 6-month excess vs SPY): in this sample the action itself did not re-rate value names on its own. The language is a strong predictor of ACTION and a weak stand-alone predictor of returns -- use it to corroborate a discount/governance set-up (does management intend to act?), not as a return signal by itself.
+Companies that ACTED returned -0.048 vs 0.037 for those that did not (mean 6-month excess vs SPY): in this sample the action itself did not re-rate value names on its own. The language is a strong predictor of ACTION and a weak stand-alone predictor of returns -- use it to corroborate a discount/governance set-up (does management intend to act?), not as a return signal by itself.
 
 ## Forward 6-month excess return vs SPY by rule-score quintile (all calls)
 
 | quintile | calls | mean | median | share > +25% |
 |---|---|---|---|---|
-| Q1 | 1666 | +15.1% | -10.3% | 11.2% |
-| Q2 | 1666 | -5.7% | -9.1% | 11.8% |
-| Q3 | 1666 | -4.6% | -7.0% | 10.7% |
-| Q4 | 1666 | -4.9% | -6.9% | 10.3% |
-| Q5 (highest) | 1666 | -5.0% | -7.5% | 10.7% |
+| Q1 | 1945 | +17.8% | -10.3% | 12.9% |
+| Q2 | 1946 | -2.8% | -8.7% | 14.1% |
+| Q3 | 1946 | -3.6% | -7.0% | 12.0% |
+| Q4 | 1946 | -3.8% | -6.6% | 11.4% |
+| Q5 (highest) | 1946 | -3.1% | -6.8% | 12.2% |
 
 ## Fitted weights (standardised, baseline + language, all labelled data)
 
 | feature | weight |
 |---|---|
-| BUYBACK | +0.375 |
-| DIVIDEND_RETURN | +0.167 |
-| prep_act | +0.119 |
-| deep | -0.112 |
-| size_pct | +0.105 |
-| past_div_up | -0.096 |
-| ceo_act | -0.095 |
-| press_ratio | +0.085 |
-| VALUE_GAP | +0.079 |
-| escalation | -0.074 |
-| MONETIZE | +0.066 |
-| both_act | +0.050 |
-| ANTICIPATION | +0.048 |
-| cfo_act | +0.044 |
-| STRATEGIC_REVIEW | +0.044 |
-| past_sh_chg | +0.040 |
-| firming | -0.040 |
-| GOVERNANCE | +0.027 |
-| DELEVER | -0.026 |
-| neg_total | -0.019 |
-| COST | -0.017 |
-| novelty | -0.017 |
-| deep_x_act | +0.014 |
-| qa_act | +0.011 |
-| a_evade | +0.010 |
-| deep_x_gap | -0.006 |
-| TENDER | +0.003 |
-| a_commit | +0.002 |
+| BUYBACK | +0.390 |
+| DIVIDEND_RETURN | +0.166 |
+| prep_act | +0.114 |
+| deep | -0.104 |
+| size_pct | +0.102 |
+| press_ratio | +0.101 |
+| ceo_act | -0.091 |
+| MONETIZE | +0.087 |
+| past_div_up | -0.083 |
+| novelty | -0.074 |
+| VALUE_GAP | +0.059 |
+| GOVERNANCE | +0.054 |
+| cfo_act | +0.051 |
+| escalation | -0.048 |
+| STRATEGIC_REVIEW | +0.036 |
+| ANTICIPATION | +0.034 |
+| firming | -0.031 |
+| both_act | +0.028 |
+| past_sh_chg | +0.026 |
+| DELEVER | -0.020 |
+| a_evade | +0.013 |
+| a_commit | +0.012 |
+| deep_x_gap | +0.006 |
+| COST | -0.006 |
+| deep_x_act | +0.005 |
+| neg_total | -0.004 |
+| qa_act | -0.003 |
+| TENDER | -0.003 |

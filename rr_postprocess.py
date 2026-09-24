@@ -238,6 +238,26 @@ def main() -> int:
         wc.row_dimensions[rr].height = 30
     wc.freeze_panes = "A5"
 
+    # Executive Summary: show the SORT KEY (the composite) and the review flag --
+    # without them the order looks arbitrary (a 2.9x REAL row above 15x FMP rows)
+    try:
+        es = wb["Executive Summary"]
+        hdr_r = next(r for r in range(1, 8) if es.cell(row=r, column=3).value == "Ticker")
+        by_t = {x["ticker"]: x for x in rows}
+        c0 = es.max_column + 1
+        for j, h in enumerate(("Composite (sort key)", "Review flag"), 0):
+            c = es.cell(row=hdr_r, column=c0 + j, value=h)
+            c.font, c.fill = HEAD, FILL
+        es.column_dimensions[es.cell(row=hdr_r, column=c0).column_letter].width = 11
+        es.column_dimensions[es.cell(row=hdr_r, column=c0 + 1).column_letter].width = 40
+        for r in range(hdr_r + 1, es.max_row + 1):
+            x = by_t.get(es.cell(row=r, column=3).value)
+            if x:
+                es.cell(row=r, column=c0, value=float(x["composite"]))
+                es.cell(row=r, column=c0 + 1, value=x.get("flag") or "")
+    except StopIteration:
+        pass
+
     # FMP financials for every name in the book (tickers shown as 'EPA:LOCAL' or 'LOCAL')
     import name_financials
     sym_map = {}

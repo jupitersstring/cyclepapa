@@ -20,14 +20,13 @@ These are surfaced by >=3 of 8 independent screens AND win at least one PSU/gove
 | 8 | **LE** | 4 | 1 | 12-tranche price ladder + 86% PSU + ROIC stack (carveout caution) |
 | 9 | **CSGP** | 3 | 3 | 10x CEO ownership + EBITDA $ hurdle + SOP 45% + buyback EXECUTING -3.6% |
 | 10 | **FISV** | 3 | 2 | grand_unified,psu_gov_asymmetry,unified_composite |
-| 11 | **CLW** | 3 | 2 | bastian_forcing,grand_unified,psu_asymmetric_full |
-| 12 | **DXLG** | 3 | 1 | bastian_forcing,grand_unified,psu_gov_asymmetry |
-| 13 | **WW** | 3 | 1 | bastian_forcing,grand_unified,psu_asymmetric_full |
-| 14 | **BHF** | 3 | 1 | grand_unified,psu_gov_asymmetry,unified_composite |
-| 15 | **CNMD** | 3 | 1 | grand_unified,psu_gov_asymmetry,unified_composite |
-| 16 | **WHR** | 3 | 1 | grand_unified,psu_gov_asymmetry,psu_valcreate |
-| 17 | **CDE** | 3 | 1 | CEO 10b5-1 termination score 80 (#1 in universe) |
-| 18 | **ADT** | 3 | 1 | 90% PSU%LTI (heaviest) + verified shrink -7.3% |
+| 11 | **DXLG** | 3 | 1 | bastian_forcing,grand_unified,psu_gov_asymmetry |
+| 12 | **WW** | 3 | 1 | bastian_forcing,grand_unified,psu_asymmetric_full |
+| 13 | **BHF** | 3 | 1 | grand_unified,psu_gov_asymmetry,unified_composite |
+| 14 | **CNMD** | 3 | 1 | grand_unified,psu_gov_asymmetry,unified_composite |
+| 15 | **WHR** | 3 | 1 | grand_unified,psu_gov_asymmetry,psu_valcreate |
+| 16 | **CDE** | 3 | 1 | CEO 10b5-1 termination score 80 (#1 in universe) |
+| 17 | **ADT** | 3 | 1 | 90% PSU%LTI (heaviest) + verified shrink -7.3% |
 
 
 ## 2. Per-pattern leaders -- top names by catalyst type
@@ -39,9 +38,9 @@ Use this to deploy systematically by mandate.
 |---:|---|--:|---|---|
 | 1 | THRY | 109.7 | B | +12 PSU.ebitda_dollar_target; +12 PSU.revenue_dollar_target; +12 PSU.fcf_dollar_target | P/B 0.40; DD 85%; microcap | 10 |
 | 2 | HFFG | 85.9 | A | +12 PSU.revenue_dollar_target; gov 15 | P/B 0.40; microcap | buyback NO_AUTH -0.9% | F4 cluster 4 / $0.0M | Form144 +0 |
-| 3 | CVSA | 78.9 | B | +10 PSU.fda_phase_milestone; +12 PSU.revenue_dollar_target; PSU%LTI=86 | buyback SHRINKING_NO_AUTH -6.3% | 10b5-1 term_s |
-| 4 | LEN | 77.5 | B | +12 PSU.revenue_dollar_target; gov 15 | P/B 0.95 | tender SELF_TENDER |
-| 5 | HAE | 69.8 | B | +12 PSU.revenue_dollar_target | buyback SHRINKING_NO_AUTH -5.7% | 10b5-1 term_sell +18 |
+| 3 | LEN | 77.5 | B | +12 PSU.revenue_dollar_target; gov 15 | P/B 0.95 | tender SELF_TENDER |
+| 4 | HAE | 69.8 | B | +12 PSU.revenue_dollar_target | buyback SHRINKING_NO_AUTH -5.7% | 10b5-1 term_sell +18 |
+| 5 | CVSA | 67.1 | B | +12 PSU.revenue_dollar_target; PSU%LTI=86 | buyback SHRINKING_NO_AUTH -6.3% | 10b5-1 term_sell +53 |
 | 6 | PGNY | 66.1 | B | +12 PSU.ebitda_dollar_target; +12 PSU.revenue_dollar_target | 10b5-1 term_sell +20 |
 | 7 | VERI | 60.6 | B | +10 PSU.spin_separation; +12 PSU.merger_acquisition_close; +12 PSU.revenue_dollar_target | DD 86% | Form144 +0 |
 | 8 | IDCC | 60.4 | A | +12 PSU.ebitda_dollar_target; +12 PSU.revenue_dollar_target | buyback NO_AUTH +0.4% | 10b5-1 term_sell +18 | Form144 +0 |
@@ -93,16 +92,16 @@ Use this to deploy systematically by mandate.
 ### Spin / separation trigger
 | Rank | Ticker | Norm | Tier | Reasons |
 |---:|---|--:|---|---|
-| 1 | CLW | 66.6 | A | +10 PSU.spin_separation; +10 PSU.fda_phase_milestone; gov 18 | P/B 0.44 | buyback NO_AUTH +0.5% | 10b5-1 adopt_sell -12  |
-| 2 | GNPX | 65.7 | A | +10 PSU.spin_separation; +12 PSU.merger_acquisition_close | P/B 0.14; DD 100%; microcap | buyback ANOMALY_REVIEW +987.9% |
-| 3 | LCID | 63.9 | A | +10 PSU.spin_separation | P/B 0.71; DD 84% | buyback NO_AUTH +27.0% | 10b5-1 term_sell +31 | Form144 +0 |
-| 4 | TDY | 61.5 | B | +10 PSU.spin_separation; gov 15 | 10b5-1 term_sell +35 |
-| 5 | LBTYB | 61.4 | B | +10 PSU.spin_separation | P/B 0.38 | buyback NO_AUTH -0.2% |
-| 6 | ADAMO | 61.1 | B | +10 PSU.spin_separation | P/B 0.49 | Form144 +0 |
-| 7 | VERI | 60.6 | B | +10 PSU.spin_separation; +12 PSU.merger_acquisition_close; +12 PSU.revenue_dollar_target | DD 86% | Form144 +0 |
-| 8 | GPRO | 60.3 | B | +10 PSU.spin_separation | buyback NO_AUTH +11.6% | 10b5-1 term_sell +38 |
-| 9 | LGL | 59.9 | B | +10 PSU.spin_separation; +15 PSU.chapter11_emergence | P/B 0.91; microcap | buyback NO_AUTH +20.4% |
-| 10 | BEEP | 57.9 | A | +10 PSU.spin_separation; +12 PSU.merger_acquisition_close | P/B 0.90 | buyback SHRINKING_NO_AUTH -3.5% | Form144 +0 |
+| 1 | GNPX | 65.7 | A | +10 PSU.spin_separation; +12 PSU.merger_acquisition_close | P/B 0.14; DD 100%; microcap | buyback ANOMALY_REVIEW +987.9% |
+| 2 | LCID | 63.9 | A | +10 PSU.spin_separation | P/B 0.71; DD 84% | buyback NO_AUTH +27.0% | 10b5-1 term_sell +31 | Form144 +0 |
+| 3 | TDY | 61.5 | B | +10 PSU.spin_separation; gov 15 | 10b5-1 term_sell +35 |
+| 4 | LBTYB | 61.4 | B | +10 PSU.spin_separation | P/B 0.38 | buyback NO_AUTH -0.2% |
+| 5 | ADAMO | 61.1 | B | +10 PSU.spin_separation | P/B 0.49 | Form144 +0 |
+| 6 | VERI | 60.6 | B | +10 PSU.spin_separation; +12 PSU.merger_acquisition_close; +12 PSU.revenue_dollar_target | DD 86% | Form144 +0 |
+| 7 | GPRO | 60.3 | B | +10 PSU.spin_separation | buyback NO_AUTH +11.6% | 10b5-1 term_sell +38 |
+| 8 | LGL | 59.9 | B | +10 PSU.spin_separation; +15 PSU.chapter11_emergence | P/B 0.91; microcap | buyback NO_AUTH +20.4% |
+| 9 | BEEP | 57.9 | A | +10 PSU.spin_separation; +12 PSU.merger_acquisition_close | P/B 0.90 | buyback SHRINKING_NO_AUTH -3.5% | Form144 +0 |
+| 10 | LBTYA | 56.7 | B | +10 PSU.spin_separation | P/B 0.35 | buyback NO_AUTH -0.2% |
 
 ### Named asset-sale trigger
 | Rank | Ticker | Norm | Tier | Reasons |
@@ -121,16 +120,16 @@ Use this to deploy systematically by mandate.
 ### FDA / clinical milestone trigger
 | Rank | Ticker | Norm | Tier | Reasons |
 |---:|---|--:|---|---|
-| 1 | CVSA | 78.9 | B | +10 PSU.fda_phase_milestone; +12 PSU.revenue_dollar_target; PSU%LTI=86 | buyback SHRINKING_NO_AUTH -6.3% | 10b5-1 term_s |
-| 2 | CLW | 66.6 | A | +10 PSU.spin_separation; +10 PSU.fda_phase_milestone; gov 18 | P/B 0.44 | buyback NO_AUTH +0.5% | 10b5-1 adopt_sell -12  |
-| 3 | POOL | 64.3 | A | +10 PSU.fda_phase_milestone | buyback SHRINKING_NO_AUTH -4.5% | F4 cluster 5 / $7.7M | Form144 +0 |
-| 4 | ANAB | 53.6 | A | +10 PSU.spin_separation; +10 PSU.fda_phase_milestone | buyback SHRINKING_NO_AUTH -29.9% | 10b5-1 term_sell +10 | Form144 |
-| 5 | KPTI | 50.9 | A | +10 PSU.fda_phase_milestone | DD 84%; microcap | buyback ANOMALY_REVIEW +32.9% | Form144 +0 |
-| 6 | SNDX | 50.3 | B | +10 PSU.spin_separation; +12 PSU.merger_acquisition_close; +10 PSU.fda_phase_milestone | Form144 +0 |
-| 7 | OCUL | 46.7 | A | +10 PSU.fda_phase_milestone | buyback NO_AUTH +3.3% | 10b5-1 term_sell +10 | Form144 +0 |
-| 8 | EYPT | 44.5 | A | +10 PSU.fda_phase_milestone | buyback NO_AUTH +3.8% | 10b5-1 term_sell +77 | Form144 +0 |
-| 9 | VREOF | 44.3 | B | +10 PSU.fda_phase_milestone; +10 PSU.debt_leverage_target | 10b5-1 term_sell +10 | Form144 +0 |
-| 10 | HUT | 43.4 | A | PSU core 50; +10 PSU.fda_phase_milestone; gov 20 | buyback NO_AUTH +6.7% | Form144 +0 |
+| 1 | ANAB | 53.6 | A | +10 PSU.spin_separation; +10 PSU.fda_phase_milestone | buyback SHRINKING_NO_AUTH -29.9% | 10b5-1 term_sell +10 | Form144 |
+| 2 | KPTI | 50.9 | A | +10 PSU.fda_phase_milestone | DD 84%; microcap | buyback ANOMALY_REVIEW +32.9% | Form144 +0 |
+| 3 | SNDX | 50.3 | B | +10 PSU.spin_separation; +12 PSU.merger_acquisition_close; +10 PSU.fda_phase_milestone | Form144 +0 |
+| 4 | OCUL | 46.7 | A | +10 PSU.fda_phase_milestone | buyback NO_AUTH +3.3% | 10b5-1 term_sell +10 | Form144 +0 |
+| 5 | EYPT | 44.5 | A | +10 PSU.fda_phase_milestone | buyback NO_AUTH +3.8% | 10b5-1 term_sell +77 | Form144 +0 |
+| 6 | VREOF | 44.3 | B | +10 PSU.fda_phase_milestone; +10 PSU.debt_leverage_target | 10b5-1 term_sell +10 | Form144 +0 |
+| 7 | EBS | 41.3 | B | +10 PSU.fda_phase_milestone | P/B 1.00 | Form144 +0 |
+| 8 | IRON | 40.5 | B | +10 PSU.fda_phase_milestone | 10b5-1 term_sell +80 | Form144 +0 |
+| 9 | CRNX | 38.6 | A | +10 PSU.fda_phase_milestone | buyback NO_AUTH +12.0% | 10b5-1 term_sell +59 | Form144 +0 |
+| 10 | GOSS | 36.5 | A | +10 PSU.fda_phase_milestone | DD 97%; microcap | buyback ANOMALY_REVIEW +113.6% | Form144 +0 |
 
 ### Chapter 11 emergence trigger
 | Rank | Ticker | Norm | Tier | Reasons |
@@ -169,16 +168,16 @@ Use this to deploy systematically by mandate.
 ### Verified ORGANIC shrinkage (SHRINKING_NO_AUTH)
 | Rank | Ticker | Norm | Tier | Reasons |
 |---:|---|--:|---|---|
-| 1 | CVSA | 78.9 | B | +10 PSU.fda_phase_milestone; +12 PSU.revenue_dollar_target; PSU%LTI=86 | buyback SHRINKING_NO_AUTH -6.3% | 10b5-1 term_s |
-| 2 | OSG | 70.4 | B | +12 PSU.ebitda_dollar_target | P/B 0.28 | buyback SHRINKING_NO_AUTH -3.0% |
-| 3 | HAE | 69.8 | B | +12 PSU.revenue_dollar_target | buyback SHRINKING_NO_AUTH -5.7% | 10b5-1 term_sell +18 |
-| 4 | MAT | 69.3 | B | +12 PSU.ebitda_dollar_target; +12 PSU.fcf_dollar_target | buyback SHRINKING_NO_AUTH -6.5% |
+| 1 | OSG | 70.4 | B | +12 PSU.ebitda_dollar_target | P/B 0.28 | buyback SHRINKING_NO_AUTH -3.0% |
+| 2 | HAE | 69.8 | B | +12 PSU.revenue_dollar_target | buyback SHRINKING_NO_AUTH -5.7% | 10b5-1 term_sell +18 |
+| 3 | MAT | 69.3 | B | +12 PSU.ebitda_dollar_target; +12 PSU.fcf_dollar_target | buyback SHRINKING_NO_AUTH -6.5% |
+| 4 | CVSA | 67.1 | B | +12 PSU.revenue_dollar_target; PSU%LTI=86 | buyback SHRINKING_NO_AUTH -6.3% | 10b5-1 term_sell +53 |
 | 5 | NWL | 65.4 | B | PSU%LTI=89 | P/B 1.00 | buyback SHRINKING_NO_AUTH -27.2% | 10b5-1 term_sell +30 |
 | 6 | CNMD | 65.2 | A | PSU%LTI=87 | buyback SHRINKING_NO_AUTH -2.7% | 10b5-1 term_sell +28 | Form144 +0 |
 | 7 | COLB | 64.7 | A | gov 15 | buyback SHRINKING_NO_AUTH -3.2% | 10b5-1 term_sell +33 | Form144 +0 |
-| 8 | POOL | 64.3 | A | +10 PSU.fda_phase_milestone | buyback SHRINKING_NO_AUTH -4.5% | F4 cluster 5 / $7.7M | Form144 +0 |
-| 9 | NUS | 62.1 | B | PSU core 52; +12 PSU.asset_sale_named | P/B 0.42 | buyback SHRINKING_NO_AUTH -1.9% | 10b5-1 adopt_sell -32 |
-| 10 | HTT | 59.2 | B | P/B 0.22 | buyback SHRINKING_NO_AUTH -18.0% | tender SELF_TENDER |
+| 8 | NUS | 62.1 | B | PSU core 52; +12 PSU.asset_sale_named | P/B 0.42 | buyback SHRINKING_NO_AUTH -1.9% | 10b5-1 adopt_sell -32 |
+| 9 | HTT | 59.2 | B | P/B 0.22 | buyback SHRINKING_NO_AUTH -18.0% | tender SELF_TENDER |
+| 10 | DXC | 59.2 | A | PSU%LTI=85 | P/B 0.57 | buyback SHRINKING_NO_AUTH -9.4% | F4 cluster 1 / $0.2M | Form144 +0 |
 
 ### Live ISSUER SELF-TENDER
 | Rank | Ticker | Norm | Tier | Reasons |
@@ -186,8 +185,8 @@ Use this to deploy systematically by mandate.
 | 1 | GETY | 94.4 | A | P/B 0.21; DD 93%; microcap | buyback NO_AUTH +1.0% | tender SELF_TENDER | 10b5-1 term_sell +74 |
 | 2 | GPUS | 84.2 | A | P/B 0.14; DD 95%; microcap | buyback ANOMALY_REVIEW +138.0% | tender SELF_TENDER | 10b5-1 term_sell +20 |
 | 3 | LEN | 77.5 | B | +12 PSU.revenue_dollar_target; gov 15 | P/B 0.95 | tender SELF_TENDER |
-| 4 | SVRN | 66.1 | B | P/B 0.40; microcap | tender SELF_TENDER |
-| 5 | MRNA | 66.1 | B | tender SELF_TENDER | 10b5-1 term_sell +13 |
+| 4 | MRNA | 66.1 | B | tender SELF_TENDER | 10b5-1 term_sell +13 |
+| 5 | SVRN | 66.1 | B | P/B 0.40; microcap | tender SELF_TENDER |
 | 6 | WTM | 61.8 | B | gov 16 | P/B 0.95 | tender SELF_TENDER |
 | 7 | HTT | 59.2 | B | P/B 0.22 | buyback SHRINKING_NO_AUTH -18.0% | tender SELF_TENDER |
 | 8 | MLCI | 55.1 | A | P/B 0.59; microcap | buyback SHRINKING_NO_AUTH -11.1% | tender SELF_TENDER |
@@ -217,23 +216,23 @@ Use this to deploy systematically by mandate.
 | 4 | FONR | 31.9 | B | 13E-3 going-private | F4 cluster 1 / $5.1M | Form144 +0 |
 | 5 | RAASY | 23.7 | B | 13E-3 going-private | Form144 +0 |
 | 6 | KW | 23.4 | A | 13E-3 going-private | Form144 +0 |
-| 7 | ELPC | 19.8 | B | 13E-3 going-private |
-| 8 | IHS | 19.8 | B | 13E-3 going-private |
-| 9 | LSBWF | 19.8 | B | 13E-3 going-private | Form144 +0 |
-| 10 | KORE | 19.8 | B | 13E-3 going-private |
+| 7 | KORE | 19.8 | B | 13E-3 going-private |
+| 8 | ELPC | 19.8 | B | 13E-3 going-private |
+| 9 | IHS | 19.8 | B | 13E-3 going-private |
+| 10 | LSBWF | 19.8 | B | 13E-3 going-private | Form144 +0 |
 
 ### CEO/Chair 10b5-1 sell-plan termination (score >= 30)
 | Rank | Ticker | Norm | Tier | Reasons |
 |---:|---|--:|---|---|
 | 1 | RYN | 107.0 | B | +12 PSU.merger_acquisition_close; +12 PSU.asset_sale_named; +12 PSU.ebitda_dollar_target | P/B 0.60 | 10b5-1 term_sell + |
 | 2 | GETY | 94.4 | A | P/B 0.21; DD 93%; microcap | buyback NO_AUTH +1.0% | tender SELF_TENDER | 10b5-1 term_sell +74 |
-| 3 | CVSA | 78.9 | B | +10 PSU.fda_phase_milestone; +12 PSU.revenue_dollar_target; PSU%LTI=86 | buyback SHRINKING_NO_AUTH -6.3% | 10b5-1 term_s |
-| 4 | TCRX | 76.7 | B | P/B 0.31; DD 86%; microcap | 10b5-1 term_sell +51 |
-| 5 | MYSZ | 76.2 | B | P/B 0.42; DD 84%; microcap | buyback ANOMALY_REVIEW +37.7% | 10b5-1 term_sell +30 |
-| 6 | BHFAP | 74.3 | B | P/B 0.36 | 10b5-1 term_sell +30 | Form144 +0 |
-| 7 | XELLL | 68.8 | B | P/B 0.63 | 10b5-1 term_sell +56 |
-| 8 | INBS | 68.6 | B | P/B 0.13; DD 93%; microcap | buyback ANOMALY_REVIEW +163.5% | 10b5-1 term_sell +72 |
-| 9 | BHF | 67.8 | A | P/B 0.46 | buyback NO_AUTH +0.5% | 10b5-1 term_sell +30 | Form144 +0 |
+| 3 | TCRX | 76.7 | B | P/B 0.31; DD 86%; microcap | 10b5-1 term_sell +51 |
+| 4 | MYSZ | 76.2 | B | P/B 0.42; DD 84%; microcap | buyback ANOMALY_REVIEW +37.7% | 10b5-1 term_sell +30 |
+| 5 | BHFAP | 74.3 | B | P/B 0.36 | 10b5-1 term_sell +30 | Form144 +0 |
+| 6 | XELLL | 68.8 | B | P/B 0.63 | 10b5-1 term_sell +56 |
+| 7 | INBS | 68.6 | B | P/B 0.13; DD 93%; microcap | buyback ANOMALY_REVIEW +163.5% | 10b5-1 term_sell +72 |
+| 8 | BHF | 67.8 | A | P/B 0.46 | buyback NO_AUTH +0.5% | 10b5-1 term_sell +30 | Form144 +0 |
+| 9 | CVSA | 67.1 | B | +12 PSU.revenue_dollar_target; PSU%LTI=86 | buyback SHRINKING_NO_AUTH -6.3% | 10b5-1 term_sell +53 |
 | 10 | NWL | 65.4 | B | PSU%LTI=89 | P/B 1.00 | buyback SHRINKING_NO_AUTH -27.2% | 10b5-1 term_sell +30 |
 
 ### Insider 4+ buyer cluster (Form 4 P-buys)
@@ -242,10 +241,10 @@ Use this to deploy systematically by mandate.
 | 1 | HFFG | 85.9 | A | +12 PSU.revenue_dollar_target; gov 15 | P/B 0.40; microcap | buyback NO_AUTH -0.9% | F4 cluster 4 / $0.0M | Form144 +0 |
 | 2 | GO | 77.8 | A | PSU core 69; PSU%LTI=84 | buyback NO_AUTH +0.8% | F4 cluster 6 / $7.9M | Form144 +0 |
 | 3 | PSN | 64.7 | B | +12 PSU.ebitda_dollar_target; +10 PSU.operating_margin_target | F4 cluster 4 / $2.1M | Form144 +0 |
-| 4 | POOL | 64.3 | A | +10 PSU.fda_phase_milestone | buyback SHRINKING_NO_AUTH -4.5% | F4 cluster 5 / $7.7M | Form144 +0 |
-| 5 | LW | 60.4 | A | PSU core 51; gov 23 | buyback NO_AUTH -0.9% | F4 cluster 4 / $17.0M | Form144 +0 |
-| 6 | NSP | 58.3 | A | +12 PSU.ebitda_dollar_target | buyback NO_AUTH +1.3% | F4 cluster 4 / $7.8M | Form144 +0 |
-| 7 | VSNT | 55.8 | B | +10 PSU.spin_separation | P/B 0.58 | F4 cluster 4 / $6.2M | Form144 +0 |
+| 4 | LW | 60.4 | A | PSU core 51; gov 23 | buyback NO_AUTH -0.9% | F4 cluster 4 / $17.0M | Form144 +0 |
+| 5 | NSP | 58.3 | A | +12 PSU.ebitda_dollar_target | buyback NO_AUTH +1.3% | F4 cluster 4 / $7.8M | Form144 +0 |
+| 6 | VSNT | 55.8 | B | +10 PSU.spin_separation | P/B 0.58 | F4 cluster 4 / $6.2M | Form144 +0 |
+| 7 | POOL | 53.5 | A | buyback SHRINKING_NO_AUTH -4.5% | F4 cluster 5 / $7.7M | Form144 +0 |
 | 8 | GPK | 50.4 | B | P/B 0.90 | F4 cluster 4 / $1.1M | Form144 +0 |
 | 9 | OPCH | 48.6 | A | gov 17 | buyback SHRINKING_NO_AUTH -3.2% | 10b5-1 adopt_sell -1 | F4 cluster 4 / $1.9M | Form144 +0 |
 | 10 | EVTC | 43.0 | A | PSU%LTI=90 | buyback SHRINKING_NO_AUTH -3.7% | F4 cluster 4 / $1.8M | Form144 +0 |
@@ -255,11 +254,11 @@ Use this to deploy systematically by mandate.
 |---:|---|--:|---|---|
 | 1 | GO | 77.8 | A | PSU core 69; PSU%LTI=84 | buyback NO_AUTH +0.8% | F4 cluster 6 / $7.9M | Form144 +0 |
 | 2 | PSN | 64.7 | B | +12 PSU.ebitda_dollar_target; +10 PSU.operating_margin_target | F4 cluster 4 / $2.1M | Form144 +0 |
-| 3 | POOL | 64.3 | A | +10 PSU.fda_phase_milestone | buyback SHRINKING_NO_AUTH -4.5% | F4 cluster 5 / $7.7M | Form144 +0 |
-| 4 | LW | 60.4 | A | PSU core 51; gov 23 | buyback NO_AUTH -0.9% | F4 cluster 4 / $17.0M | Form144 +0 |
-| 5 | NSP | 58.3 | A | +12 PSU.ebitda_dollar_target | buyback NO_AUTH +1.3% | F4 cluster 4 / $7.8M | Form144 +0 |
-| 6 | VSNT | 55.8 | B | +10 PSU.spin_separation | P/B 0.58 | F4 cluster 4 / $6.2M | Form144 +0 |
-| 7 | OLED | 54.5 | A | +12 PSU.revenue_dollar_target | buyback SHRINKING_NO_AUTH -1.6% | F4 cluster 3 / $1.5M | Form144 +0 |
+| 3 | LW | 60.4 | A | PSU core 51; gov 23 | buyback NO_AUTH -0.9% | F4 cluster 4 / $17.0M | Form144 +0 |
+| 4 | NSP | 58.3 | A | +12 PSU.ebitda_dollar_target | buyback NO_AUTH +1.3% | F4 cluster 4 / $7.8M | Form144 +0 |
+| 5 | VSNT | 55.8 | B | +10 PSU.spin_separation | P/B 0.58 | F4 cluster 4 / $6.2M | Form144 +0 |
+| 6 | OLED | 54.5 | A | +12 PSU.revenue_dollar_target | buyback SHRINKING_NO_AUTH -1.6% | F4 cluster 3 / $1.5M | Form144 +0 |
+| 7 | POOL | 53.5 | A | buyback SHRINKING_NO_AUTH -4.5% | F4 cluster 5 / $7.7M | Form144 +0 |
 | 8 | GPK | 50.4 | B | P/B 0.90 | F4 cluster 4 / $1.1M | Form144 +0 |
 | 9 | OPCH | 48.6 | A | gov 17 | buyback SHRINKING_NO_AUTH -3.2% | 10b5-1 adopt_sell -1 | F4 cluster 4 / $1.9M | Form144 +0 |
 | 10 | UA | 45.9 | B | +12 PSU.revenue_dollar_target | F4 cluster 1 / $5.9M | Form144 +0 |
@@ -288,14 +287,14 @@ Best single-layer score in each dimension. Use when deploying a single-signal ma
 |---:|---|--:|--:|---|---|
 | 1 | MAT | 53.6 | 69.3 | B | +12 PSU.ebitda_dollar_target; +12 PSU.fcf_dollar_target | buyback SHRINKING_NO_AUTH -6.5% |
 | 2 | THRY | 49.7 | 109.7 | B | +12 PSU.ebitda_dollar_target; +12 PSU.revenue_dollar_target; +12 PSU.fcf_dollar_target | P/B 0.40; D |
-| 3 | CLW | 48.9 | 66.6 | A | +10 PSU.spin_separation; +10 PSU.fda_phase_milestone; gov 18 | P/B 0.44 | buyback NO_AUTH +0.5% | 10 |
-| 4 | DCO | 46.3 | 54.8 | B | PSU core 61; +12 PSU.revenue_dollar_target | buyback NO_AUTH +1.1% |
-| 5 | RYN | 43.9 | 107.0 | B | +12 PSU.merger_acquisition_close; +12 PSU.asset_sale_named; +12 PSU.ebitda_dollar_target | P/B 0.60  |
-| 6 | AMGN | 43.7 | 47.2 | A | +12 PSU.revenue_dollar_target; PSU%LTI=80 | buyback NO_AUTH +0.2% | Form144 +0 |
-| 7 | BAX | 43.5 | 47.0 | A | PSU core 56; +12 PSU.asset_sale_named; gov 18 | buyback NO_AUTH +0.6% | Form144 +0 |
-| 8 | GRPN | 43.4 | 52.3 | A | +10 PSU.spin_separation; +12 PSU.ebitda_dollar_target; +12 PSU.revenue_dollar_target | buyback SHRIN |
-| 9 | VERI | 43.2 | 60.6 | B | +10 PSU.spin_separation; +12 PSU.merger_acquisition_close; +12 PSU.revenue_dollar_target | DD 86% |  |
-| 10 | LMT | 43.2 | 51.1 | B | +12 PSU.fcf_dollar_target; +8 PSU.backlog_target; gov 15 | buyback NO_AUTH -0.4% |
+| 3 | DCO | 46.3 | 54.8 | B | PSU core 61; +12 PSU.revenue_dollar_target | buyback NO_AUTH +1.1% |
+| 4 | RYN | 43.9 | 107.0 | B | +12 PSU.merger_acquisition_close; +12 PSU.asset_sale_named; +12 PSU.ebitda_dollar_target | P/B 0.60  |
+| 5 | AMGN | 43.7 | 47.2 | A | +12 PSU.revenue_dollar_target; PSU%LTI=80 | buyback NO_AUTH +0.2% | Form144 +0 |
+| 6 | BAX | 43.5 | 47.0 | A | PSU core 56; +12 PSU.asset_sale_named; gov 18 | buyback NO_AUTH +0.6% | Form144 +0 |
+| 7 | GRPN | 43.4 | 52.3 | A | +10 PSU.spin_separation; +12 PSU.ebitda_dollar_target; +12 PSU.revenue_dollar_target | buyback SHRIN |
+| 8 | VERI | 43.2 | 60.6 | B | +10 PSU.spin_separation; +12 PSU.merger_acquisition_close; +12 PSU.revenue_dollar_target | DD 86% |  |
+| 9 | LMT | 43.2 | 51.1 | B | +12 PSU.fcf_dollar_target; +8 PSU.backlog_target; gov 15 | buyback NO_AUTH -0.4% |
+| 10 | ICE | 43.1 | 33.2 | B | +12 PSU.revenue_dollar_target; +12 PSU.restructuring_milestone; gov 17 | buyback NO_AUTH -0.8% | 10b |
 
 ### Valuation floor (P/B, drawdown, microcap)
 | Rank | Ticker | Layer pts | Norm | Tier | Reasons |
@@ -333,8 +332,8 @@ Best single-layer score in each dimension. Use when deploying a single-signal ma
 | 3 | LEN | 25.0 | 77.5 | B | +12 PSU.revenue_dollar_target; gov 15 | P/B 0.95 | tender SELF_TENDER |
 | 4 | DXLG | 25.0 | 71.3 | A | gov 15 | P/B 0.32; microcap | tender TARGET | Form144 +0 |
 | 5 | LE | 25.0 | 70.9 | A | gov 15 | P/B 0.65 | tender TARGET | Form144 +0 |
-| 6 | SVRN | 25.0 | 66.1 | B | P/B 0.40; microcap | tender SELF_TENDER |
-| 7 | MRNA | 25.0 | 66.1 | B | tender SELF_TENDER | 10b5-1 term_sell +13 |
+| 6 | MRNA | 25.0 | 66.1 | B | tender SELF_TENDER | 10b5-1 term_sell +13 |
+| 7 | SVRN | 25.0 | 66.1 | B | P/B 0.40; microcap | tender SELF_TENDER |
 | 8 | WTM | 25.0 | 61.8 | B | gov 16 | P/B 0.95 | tender SELF_TENDER |
 | 9 | HTT | 25.0 | 59.2 | B | P/B 0.22 | buyback SHRINKING_NO_AUTH -18.0% | tender SELF_TENDER |
 | 10 | MLCI | 25.0 | 55.1 | A | P/B 0.59; microcap | buyback SHRINKING_NO_AUTH -11.1% | tender SELF_TENDER |
@@ -345,24 +344,24 @@ Best single-layer score in each dimension. Use when deploying a single-signal ma
 | 1 | RYN | 25 | 107.0 | B | +12 PSU.merger_acquisition_close; +12 PSU.asset_sale_named; +12 PSU.ebitda_dollar_target | P/B 0.60  |
 | 2 | GETY | 25 | 94.4 | A | P/B 0.21; DD 93%; microcap | buyback NO_AUTH +1.0% | tender SELF_TENDER | 10b5-1 term_sell +74 |
 | 3 | FISV | 25.0 | 83.2 | B | P/B 0.91; DD 81% | buyback NO_AUTH -0.8% | 10b5-1 term_sell +25 |
-| 4 | CVSA | 25 | 78.9 | B | +10 PSU.fda_phase_milestone; +12 PSU.revenue_dollar_target; PSU%LTI=86 | buyback SHRINKING_NO_AUTH - |
-| 5 | TCRX | 25 | 76.7 | B | P/B 0.31; DD 86%; microcap | 10b5-1 term_sell +51 |
-| 6 | MYSZ | 25 | 76.2 | B | P/B 0.42; DD 84%; microcap | buyback ANOMALY_REVIEW +37.7% | 10b5-1 term_sell +30 |
-| 7 | BHFAP | 25 | 74.3 | B | P/B 0.36 | 10b5-1 term_sell +30 | Form144 +0 |
-| 8 | XELLL | 25 | 68.8 | B | P/B 0.63 | 10b5-1 term_sell +56 |
-| 9 | INBS | 25 | 68.6 | B | P/B 0.13; DD 93%; microcap | buyback ANOMALY_REVIEW +163.5% | 10b5-1 term_sell +72 |
-| 10 | BHF | 25 | 67.8 | A | P/B 0.46 | buyback NO_AUTH +0.5% | 10b5-1 term_sell +30 | Form144 +0 |
+| 4 | TCRX | 25 | 76.7 | B | P/B 0.31; DD 86%; microcap | 10b5-1 term_sell +51 |
+| 5 | MYSZ | 25 | 76.2 | B | P/B 0.42; DD 84%; microcap | buyback ANOMALY_REVIEW +37.7% | 10b5-1 term_sell +30 |
+| 6 | BHFAP | 25 | 74.3 | B | P/B 0.36 | 10b5-1 term_sell +30 | Form144 +0 |
+| 7 | XELLL | 25 | 68.8 | B | P/B 0.63 | 10b5-1 term_sell +56 |
+| 8 | INBS | 25 | 68.6 | B | P/B 0.13; DD 93%; microcap | buyback ANOMALY_REVIEW +163.5% | 10b5-1 term_sell +72 |
+| 9 | BHF | 25 | 67.8 | A | P/B 0.46 | buyback NO_AUTH +0.5% | 10b5-1 term_sell +30 | Form144 +0 |
+| 10 | CVSA | 25 | 67.1 | B | +12 PSU.revenue_dollar_target; PSU%LTI=86 | buyback SHRINKING_NO_AUTH -6.3% | 10b5-1 term_sell +53 |
 
 ### Insider Form-4 P-buys
 | Rank | Ticker | Layer pts | Norm | Tier | Reasons |
 |---:|---|--:|--:|---|---|
 | 1 | GO | 28 | 77.8 | A | PSU core 69; PSU%LTI=84 | buyback NO_AUTH +0.8% | F4 cluster 6 / $7.9M | Form144 +0 |
-| 2 | POOL | 28 | 64.3 | A | +10 PSU.fda_phase_milestone | buyback SHRINKING_NO_AUTH -4.5% | F4 cluster 5 / $7.7M | Form144 +0 |
+| 2 | POOL | 28 | 53.5 | A | buyback SHRINKING_NO_AUTH -4.5% | F4 cluster 5 / $7.7M | Form144 +0 |
 | 3 | BETR | 28 | 40.8 | A | DD 87% | buyback NO_AUTH +22.9% | F4 cluster 6 / $9.2M | Form144 +0 |
 | 4 | KKR | 28 | 38.9 | A | buyback EXECUTING -3.0% | F4 cluster 5 / $45.7M | Form144 +0 |
 | 5 | ODTX | 28 | 37.0 | B | F4 cluster 7 / $75.3M | Form144 +0 |
-| 6 | MOBI | 28 | 33.1 | B | buyback NO_AUTH +0.5% | F4 cluster 6 / $19.0M | Form144 +0 |
-| 7 | SRAD | 28 | 33.1 | B | buyback NO_AUTH -1.5% | F4 cluster 7 / $11.3M | Form144 +0 |
+| 6 | SRAD | 28 | 33.1 | B | buyback NO_AUTH -1.5% | F4 cluster 7 / $11.3M | Form144 +0 |
+| 7 | MOBI | 28 | 33.1 | B | buyback NO_AUTH +0.5% | F4 cluster 6 / $19.0M | Form144 +0 |
 | 8 | LW | 24 | 60.4 | A | PSU core 51; gov 23 | buyback NO_AUTH -0.9% | F4 cluster 4 / $17.0M | Form144 +0 |
 | 9 | NSP | 24 | 58.3 | A | +12 PSU.ebitda_dollar_target | buyback NO_AUTH +1.3% | F4 cluster 4 / $7.8M | Form144 +0 |
 | 10 | VSNT | 24 | 55.8 | B | +10 PSU.spin_separation | P/B 0.58 | F4 cluster 4 / $6.2M | Form144 +0 |
@@ -386,19 +385,19 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 | 5 | DXLG | 71.3 | 6 | gov 15 | P/B 0.32; microcap | tender TARGET | Form144 +0 |
 | 6 | LE | 70.9 | 6 | gov 15 | P/B 0.65 | tender TARGET | Form144 +0 |
 | 7 | BHF | 67.8 | 6 | P/B 0.46 | buyback NO_AUTH +0.5% | 10b5-1 term_sell +30 | Form144 +0 |
-| 8 | CLW | 66.6 | 6 | +10 PSU.spin_separation; +10 PSU.fda_phase_milestone; gov 18 | P/B 0.44 | buyback NO_AUTH +0.5% | 10b5-1 adopt_sell -12  |
-| 9 | GNPX | 65.7 | 6 | +10 PSU.spin_separation; +12 PSU.merger_acquisition_close | P/B 0.14; DD 100%; microcap | buyback ANOMALY_REVIEW +987.9% |
-| 10 | FIS | 65.5 | 6 | +12 PSU.ebitda_dollar_target | buyback TOKEN -1.1% | 10b5-1 term_sell +16 | Form144 +0 |
-| 11 | CNMD | 65.2 | 6 | PSU%LTI=87 | buyback SHRINKING_NO_AUTH -2.7% | 10b5-1 term_sell +28 | Form144 +0 |
-| 12 | COLB | 64.7 | 6 | gov 15 | buyback SHRINKING_NO_AUTH -3.2% | 10b5-1 term_sell +33 | Form144 +0 |
-| 13 | POOL | 64.3 | 6 | +10 PSU.fda_phase_milestone | buyback SHRINKING_NO_AUTH -4.5% | F4 cluster 5 / $7.7M | Form144 +0 |
-| 14 | LCID | 63.9 | 6 | +10 PSU.spin_separation | P/B 0.71; DD 84% | buyback NO_AUTH +27.0% | 10b5-1 term_sell +31 | Form144 +0 |
-| 15 | EG | 62.9 | 6 | P/B 0.96 | buyback EXECUTING -5.7% | 10b5-1 term_sell +30 | Form144 +0 |
-| 16 | CSGP | 60.7 | 6 | +12 PSU.ebitda_dollar_target | buyback EXECUTING -3.6% | Form144 +0 |
-| 17 | LW | 60.4 | 6 | PSU core 51; gov 23 | buyback NO_AUTH -0.9% | F4 cluster 4 / $17.0M | Form144 +0 |
-| 18 | IDCC | 60.4 | 6 | +12 PSU.ebitda_dollar_target; +12 PSU.revenue_dollar_target | buyback NO_AUTH +0.4% | 10b5-1 term_sell +18 | Form144 +0 |
-| 19 | DXC | 59.2 | 6 | PSU%LTI=85 | P/B 0.57 | buyback SHRINKING_NO_AUTH -9.4% | F4 cluster 1 / $0.2M | Form144 +0 |
-| 20 | NSP | 58.3 | 6 | +12 PSU.ebitda_dollar_target | buyback NO_AUTH +1.3% | F4 cluster 4 / $7.8M | Form144 +0 |
+| 8 | GNPX | 65.7 | 6 | +10 PSU.spin_separation; +12 PSU.merger_acquisition_close | P/B 0.14; DD 100%; microcap | buyback ANOMALY_REVIEW +987.9% |
+| 9 | FIS | 65.5 | 6 | +12 PSU.ebitda_dollar_target | buyback TOKEN -1.1% | 10b5-1 term_sell +16 | Form144 +0 |
+| 10 | CNMD | 65.2 | 6 | PSU%LTI=87 | buyback SHRINKING_NO_AUTH -2.7% | 10b5-1 term_sell +28 | Form144 +0 |
+| 11 | COLB | 64.7 | 6 | gov 15 | buyback SHRINKING_NO_AUTH -3.2% | 10b5-1 term_sell +33 | Form144 +0 |
+| 12 | LCID | 63.9 | 6 | +10 PSU.spin_separation | P/B 0.71; DD 84% | buyback NO_AUTH +27.0% | 10b5-1 term_sell +31 | Form144 +0 |
+| 13 | EG | 62.9 | 6 | P/B 0.96 | buyback EXECUTING -5.7% | 10b5-1 term_sell +30 | Form144 +0 |
+| 14 | CSGP | 60.7 | 6 | +12 PSU.ebitda_dollar_target | buyback EXECUTING -3.6% | Form144 +0 |
+| 15 | LW | 60.4 | 6 | PSU core 51; gov 23 | buyback NO_AUTH -0.9% | F4 cluster 4 / $17.0M | Form144 +0 |
+| 16 | IDCC | 60.4 | 6 | +12 PSU.ebitda_dollar_target; +12 PSU.revenue_dollar_target | buyback NO_AUTH +0.4% | 10b5-1 term_sell +18 | Form144 +0 |
+| 17 | DXC | 59.2 | 6 | PSU%LTI=85 | P/B 0.57 | buyback SHRINKING_NO_AUTH -9.4% | F4 cluster 1 / $0.2M | Form144 +0 |
+| 18 | NSP | 58.3 | 6 | +12 PSU.ebitda_dollar_target | buyback NO_AUTH +1.3% | F4 cluster 4 / $7.8M | Form144 +0 |
+| 19 | BEEP | 57.9 | 6 | +10 PSU.spin_separation; +12 PSU.merger_acquisition_close | P/B 0.90 | buyback SHRINKING_NO_AUTH -3.5% | Form144 +0 |
+| 20 | BCO | 57.8 | 6 | buyback SHRINKING_NO_AUTH -1.7% | 10b5-1 term_sell +36 | Form144 +0 |
 
 ### Top 20 in Tier B
 | Rank | Ticker | Norm | Layers | Reasons |
@@ -406,47 +405,47 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 | 1 | THRY | 109.7 | 5 | +12 PSU.ebitda_dollar_target; +12 PSU.revenue_dollar_target; +12 PSU.fcf_dollar_target | P/B 0.40; DD 85%; microcap | 10 |
 | 2 | RYN | 107.0 | 4 | +12 PSU.merger_acquisition_close; +12 PSU.asset_sale_named; +12 PSU.ebitda_dollar_target | P/B 0.60 | 10b5-1 term_sell + |
 | 3 | FISV | 83.2 | 5 | P/B 0.91; DD 81% | buyback NO_AUTH -0.8% | 10b5-1 term_sell +25 |
-| 4 | CVSA | 78.9 | 5 | +10 PSU.fda_phase_milestone; +12 PSU.revenue_dollar_target; PSU%LTI=86 | buyback SHRINKING_NO_AUTH -6.3% | 10b5-1 term_s |
-| 5 | SIRI | 77.7 | 4 | gov 18 | P/B 0.74 | 10b5-1 term_sell +20 |
-| 6 | LEN | 77.5 | 5 | +12 PSU.revenue_dollar_target; gov 15 | P/B 0.95 | tender SELF_TENDER |
-| 7 | TCRX | 76.7 | 4 | P/B 0.31; DD 86%; microcap | 10b5-1 term_sell +51 |
-| 8 | MYSZ | 76.2 | 5 | P/B 0.42; DD 84%; microcap | buyback ANOMALY_REVIEW +37.7% | 10b5-1 term_sell +30 |
-| 9 | BHFAP | 74.3 | 5 | P/B 0.36 | 10b5-1 term_sell +30 | Form144 +0 |
-| 10 | OSG | 70.4 | 5 | +12 PSU.ebitda_dollar_target | P/B 0.28 | buyback SHRINKING_NO_AUTH -3.0% |
-| 11 | TCBK | 70.1 | 4 | PSU%LTI=80 | 10b5-1 term_sell +20 |
-| 12 | HAE | 69.8 | 5 | +12 PSU.revenue_dollar_target | buyback SHRINKING_NO_AUTH -5.7% | 10b5-1 term_sell +18 |
-| 13 | TROX | 69.5 | 4 | PSU core 64; PSU%LTI=86; gov 15 | P/B 0.60 |
-| 14 | MAT | 69.3 | 5 | +12 PSU.ebitda_dollar_target; +12 PSU.fcf_dollar_target | buyback SHRINKING_NO_AUTH -6.5% |
-| 15 | XELLL | 68.8 | 4 | P/B 0.63 | 10b5-1 term_sell +56 |
-| 16 | INBS | 68.6 | 5 | P/B 0.13; DD 93%; microcap | buyback ANOMALY_REVIEW +163.5% | 10b5-1 term_sell +72 |
-| 17 | WHR | 68.1 | 4 | +10 PSU.operating_margin_target; gov 16 | P/B 0.55 |
-| 18 | SVRN | 66.1 | 4 | P/B 0.40; microcap | tender SELF_TENDER |
+| 4 | SIRI | 77.7 | 4 | gov 18 | P/B 0.74 | 10b5-1 term_sell +20 |
+| 5 | LEN | 77.5 | 5 | +12 PSU.revenue_dollar_target; gov 15 | P/B 0.95 | tender SELF_TENDER |
+| 6 | TCRX | 76.7 | 4 | P/B 0.31; DD 86%; microcap | 10b5-1 term_sell +51 |
+| 7 | MYSZ | 76.2 | 5 | P/B 0.42; DD 84%; microcap | buyback ANOMALY_REVIEW +37.7% | 10b5-1 term_sell +30 |
+| 8 | BHFAP | 74.3 | 5 | P/B 0.36 | 10b5-1 term_sell +30 | Form144 +0 |
+| 9 | OSG | 70.4 | 5 | +12 PSU.ebitda_dollar_target | P/B 0.28 | buyback SHRINKING_NO_AUTH -3.0% |
+| 10 | TCBK | 70.1 | 4 | PSU%LTI=80 | 10b5-1 term_sell +20 |
+| 11 | HAE | 69.8 | 5 | +12 PSU.revenue_dollar_target | buyback SHRINKING_NO_AUTH -5.7% | 10b5-1 term_sell +18 |
+| 12 | TROX | 69.5 | 4 | PSU core 64; PSU%LTI=86; gov 15 | P/B 0.60 |
+| 13 | MAT | 69.3 | 5 | +12 PSU.ebitda_dollar_target; +12 PSU.fcf_dollar_target | buyback SHRINKING_NO_AUTH -6.5% |
+| 14 | XELLL | 68.8 | 4 | P/B 0.63 | 10b5-1 term_sell +56 |
+| 15 | INBS | 68.6 | 5 | P/B 0.13; DD 93%; microcap | buyback ANOMALY_REVIEW +163.5% | 10b5-1 term_sell +72 |
+| 16 | WHR | 68.1 | 4 | +10 PSU.operating_margin_target; gov 16 | P/B 0.55 |
+| 17 | CVSA | 67.1 | 5 | +12 PSU.revenue_dollar_target; PSU%LTI=86 | buyback SHRINKING_NO_AUTH -6.3% | 10b5-1 term_sell +53 |
+| 18 | PGNY | 66.1 | 4 | +12 PSU.ebitda_dollar_target; +12 PSU.revenue_dollar_target | 10b5-1 term_sell +20 |
 | 19 | MRNA | 66.1 | 5 | tender SELF_TENDER | 10b5-1 term_sell +13 |
-| 20 | PGNY | 66.1 | 4 | +12 PSU.ebitda_dollar_target; +12 PSU.revenue_dollar_target | 10b5-1 term_sell +20 |
+| 20 | SVRN | 66.1 | 4 | P/B 0.40; microcap | tender SELF_TENDER |
 
 ### Top 20 in Tier C
 | Rank | Ticker | Norm | Layers | Reasons |
 |---:|---|--:|--:|---|
-| 1 | RDHL | 50.4 | 3 | P/B 0.40; DD 81%; microcap |
-| 2 | GAUZ | 50.4 | 3 | P/B 0.34; DD 95%; microcap |
-| 3 | WBUY | 50.4 | 3 | P/B 0.24; DD 83%; microcap |
-| 4 | SAGT | 50.4 | 3 | P/B 0.49; DD 82%; microcap |
-| 5 | FMFC | 50.4 | 3 | P/B 0.45; DD 99%; microcap |
-| 6 | FRSX | 50.4 | 3 | P/B 0.26; DD 85%; microcap |
-| 7 | XCH | 50.4 | 3 | P/B 0.49; DD 94%; microcap |
-| 8 | LXEH | 50.4 | 3 | P/B 0.14; DD 95%; microcap |
-| 9 | SRXH | 50.4 | 3 | P/B 0.12; DD 96%; microcap |
-| 10 | NVX | 50.4 | 3 | P/B 0.40; DD 93%; microcap |
-| 11 | WYHG | 50.4 | 3 | P/B 0.29; DD 84%; microcap |
-| 12 | SCAG | 50.4 | 3 | P/B 0.34; DD 93%; microcap |
-| 13 | TAOP | 50.4 | 3 | P/B 0.32; DD 81%; microcap |
-| 14 | HCAI | 50.4 | 3 | P/B 0.11; DD 98%; microcap |
-| 15 | MRNO | 50.4 | 3 | P/B 0.15; DD 91%; microcap |
+| 1 | JYD | 50.4 | 3 | P/B 0.21; DD 88%; microcap |
+| 2 | DUO | 50.4 | 3 | P/B 0.29; DD 86%; microcap |
+| 3 | TAOP | 50.4 | 3 | P/B 0.32; DD 81%; microcap |
+| 4 | NCNA | 50.4 | 3 | P/B 0.21; DD 82%; microcap |
+| 5 | MTEN | 50.4 | 3 | P/B 0.32; DD 100%; microcap |
+| 6 | MGN | 50.4 | 3 | P/B 0.17; DD 100%; microcap |
+| 7 | MRNO | 50.4 | 3 | P/B 0.15; DD 91%; microcap |
+| 8 | DOGZ | 50.4 | 3 | P/B 0.14; DD 94%; microcap |
+| 9 | WBUY | 50.4 | 3 | P/B 0.24; DD 83%; microcap |
+| 10 | SRXH | 50.4 | 3 | P/B 0.12; DD 96%; microcap |
+| 11 | FRSX | 50.4 | 3 | P/B 0.26; DD 85%; microcap |
+| 12 | FCHL | 50.4 | 3 | P/B 0.44; DD 100%; microcap |
+| 13 | LXEH | 50.4 | 3 | P/B 0.14; DD 95%; microcap |
+| 14 | DXF | 50.4 | 3 | P/B 0.11; DD 93%; microcap |
+| 15 | PAVS | 50.4 | 3 | P/B 0.11; DD 100%; microcap |
 | 16 | HKPD | 50.4 | 3 | P/B 0.26; DD 93%; microcap |
-| 17 | JYD | 50.4 | 3 | P/B 0.21; DD 88%; microcap |
-| 18 | STFS | 50.4 | 3 | P/B 0.20; DD 83%; microcap |
-| 19 | NTCL | 50.4 | 3 | P/B 0.19; DD 99%; microcap |
-| 20 | FLX | 50.4 | 3 | P/B 0.18; DD 81%; microcap |
+| 17 | XCH | 50.4 | 3 | P/B 0.49; DD 94%; microcap |
+| 18 | NVX | 50.4 | 3 | P/B 0.40; DD 93%; microcap |
+| 19 | GAUZ | 50.4 | 3 | P/B 0.34; DD 95%; microcap |
+| 20 | VSA | 50.4 | 3 | P/B 0.17; DD 100%; microcap |
 
 
 ## 5. Caution list -- convergent names with red flags
@@ -480,11 +479,11 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 | BEEP | retirement carveout |
 | CNMD | repricing language |
 | PSN | repricing language, retirement carveout |
-| MA | repricing language, retirement carveout |
 | LGL | repricing language |
+| MA | repricing language, retirement carveout |
 | WHR | repricing language, retirement carveout |
-| POOL | retirement carveout |
 | TXRH | discretionary hurdle, retirement carveout |
+| POOL | retirement carveout |
 | BDC | discretionary hurdle, repricing language, retirement carveout |
 | DT | retirement carveout |
 | ADT | retirement carveout |
@@ -495,7 +494,7 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 ## 6. Use-case deployment sheet
 
 - **Highest-conviction concentrated (top-3 convergent)**: HFFG, GO, MAT
-- **Microcap forcing-function basket (Bastian)**: LGL, HTT, GNPX, BEEP, MLCI, NUS
+- **Microcap forcing-function basket (Bastian)**: LGL, HTT, GNPX, NUS, MLCI, BEEP
 - **Mungerian forward-dollar PSU concentration**: THRY, MAT, TRU, EHTH, GROV
 - **Verified buyback compounders (EXECUTING)**: PAYC, AMH, CRM, MORN, RNR
 - **Live SELF_TENDER**: EXFY, ABX, ABXL

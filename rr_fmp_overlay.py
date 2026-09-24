@@ -167,6 +167,16 @@ def valuation_lens(net_cash_frac, ev_ebitda, pb):
     return round(min(1.0, max(sig) * 0.7 + 0.3 * (len(sig) >= 2)), 2), "; ".join(notes[:3]) + " (FMP)"
 
 
+def usd_mcap(r):
+    """Market cap in USD (quotes are in local currency: HKD, JPY, GBP...)."""
+    m = f(r.get("mcap"), 0) or 0
+    ccy = {"GBp": "GBP", "GBX": "GBP", "ZAc": "ZAR", "ILA": "ILS"}.get(r.get("currency"), r.get("currency"))
+    if not m or not ccy or ccy == "USD":
+        return m
+    rate = fmp_book.fx(ccy, "USD")
+    return m * rate if rate else m
+
+
 def pct(vals):
     n = len(vals)
     order = sorted(range(n), key=lambda i: vals[i])
@@ -329,7 +339,7 @@ def main() -> int:
             r["flag"] = "NO LISTED TICKER (debt issuer / unlisted?) -- not tradeable as equity"
         if (r.get("flag") or "").startswith(("NOT TRADING", "NO LISTED")):
             b *= 0.5
-        elif r["source"] != "REAL" and 0 < f(r.get("mcap"), 0) < 5e7:
+        elif r["source"] != "REAL" and 0 < usd_mcap(r) < 5e7:
             b *= 0.85
             r["flag"] = r.get("flag") or "micro-cap < $50M (liquidity)"
         r["composite"] = round(min(b, 1.0), 4)

@@ -2730,7 +2730,7 @@ def build_by_archetype(wb: Workbook, arch_psu: dict, arch_asym: dict,
     write_title_band(ws,
                      "Archetype Winners",
                      "57 PSU/governance/thesis buckets · single best "
-                     "representative per archetype across 6,164-name "
+                     "representative per archetype across the US-listed "
                      "universe",
                      n_cols=7)
 
@@ -2786,7 +2786,7 @@ def build_by_archetype(wb: Workbook, arch_psu: dict, arch_asym: dict,
         "Archetype = a single scored dimension (PSU forward-conditional "
         "trigger, governance evolution, plan-pattern flag, or thesis "
         "convergence). Winner = single ticker scoring highest on that "
-        "dimension across the 6,164-name universe. Multi-archetype "
+        "dimension across the US-listed universe. Multi-archetype "
         "winners (CSGP, HFFG, LE, KMPR) are the structurally rarest. "
         "Source: PSU_ARCHETYPES.md + ASYMMETRIC_BY_ARCHETYPE.md.", 7)
     ws.sheet_view.showGridLines = False
@@ -2803,7 +2803,7 @@ def build_reserve_baskets(wb: Workbook, yf: dict):
     write_title_band(ws,
                      "Reserve Baskets",
                      "Sub-archetype groups for diversified single-"
-                     "mandate deployment alongside the convergent twelve",
+                     "mandate deployment alongside the convergent set",
                      n_cols=4)
 
     baskets = [
@@ -3162,7 +3162,7 @@ def build_methodology(wb: Workbook):
 
     method = [
         ("Universe construction",
-         "6,164 US-listed common tickers from cancel_10b5_1.json — "
+         "US-listed common tickers (FMP-enriched quote store, ~6,400) — "
          "authoritative NYSE/Nasdaq/AMEX/CBOE set. Foreign names "
          "(JP/KR/UK) live in a separate tab and universe."),
         ("Layer ingestion",
@@ -3267,6 +3267,7 @@ def build_methodology(wb: Workbook):
 TAB_INDEX = [
     ("Cover", "Executive summary and the convergent shortlist."),
     ("Most Asymmetric", "Per-name detail for the highest layer-count names."),
+    ("Name Financials", "FMP financial panel for every name in the book + the tabs each name appears on."),
     ("By Archetype", "Single best representative of each of 57 archetypes."),
     ("Reserve Baskets", "Sub-archetype baskets and full portfolio math."),
     ("Caution List", "Convergent names carrying governance red flags."),

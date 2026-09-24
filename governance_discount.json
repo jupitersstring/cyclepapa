@@ -51,7 +51,7 @@
     "p_b": 0.509,
     "mcap": 25819611.0,
     "deep": false,
-    "net_cash_frac": 0.787,
+    "net_cash_frac": 0.652,
     "n_families": 4,
     "n_hard": 1,
     "tier": "ACTION LIKELY",
@@ -90,7 +90,7 @@
     "p_b": 0.687,
     "mcap": 134874853.0,
     "deep": false,
-    "net_cash_frac": 0.53,
+    "net_cash_frac": 0.326,
     "n_families": 5,
     "n_hard": 2,
     "tier": "ACTION LIKELY",
@@ -141,7 +141,7 @@
     "p_b": 0.616,
     "mcap": 146028541.0,
     "deep": false,
-    "net_cash_frac": 0.248,
+    "net_cash_frac": 0.019,
     "n_families": 2,
     "n_hard": 1,
     "tier": "BUILDING",
@@ -195,7 +195,7 @@
     "p_b": 0.657,
     "mcap": 34412083.0,
     "deep": false,
-    "net_cash_frac": 0.146,
+    "net_cash_frac": 0.0,
     "n_families": 4,
     "n_hard": 1,
     "tier": "ACTION LIKELY",
@@ -306,7 +306,7 @@
     "p_b": 0.23,
     "mcap": 49648450.0,
     "deep": true,
-    "net_cash_frac": 0.892,
+    "net_cash_frac": 0.0,
     "n_families": 4,
     "n_hard": 1,
     "tier": "ACTION LIKELY",
@@ -342,7 +342,7 @@
         "detail": "change-in-control terms"
       }
     },
-    "score": 38.8
+    "score": 35.8
   },
   "CNTN": {
     "ticker": "CNTN",
@@ -395,6 +395,12 @@
         "source": "8-K",
         "detail": "modified dutch auction"
       },
+      "CALL_INTENT": {
+        "pts": 4.0,
+        "date": "2026-08-07",
+        "source": "earnings call",
+        "detail": "\u201cAnd then your second point, you know, your second point, we should be buying back stock.\u201d"
+      },
       "CALL_VALUE_GAP": {
         "pts": 3.0,
         "date": "2026-08-07",
@@ -402,7 +408,7 @@
         "detail": "\u201cWe just think our stock doesn't reflect what we think is fair market value.\u201d"
       }
     },
-    "score": 30.0
+    "score": 34.0
   },
   "BXMT": {
     "ticker": "BXMT",
@@ -573,7 +579,7 @@
     "p_b": 0.446,
     "mcap": 162014642.0,
     "deep": true,
-    "net_cash_frac": 0.288,
+    "net_cash_frac": 0.0,
     "n_families": 2,
     "n_hard": 1,
     "tier": "ACTION LIKELY",
@@ -639,7 +645,7 @@
     "p_b": 0.522,
     "mcap": 118257732.0,
     "deep": false,
-    "net_cash_frac": 0.665,
+    "net_cash_frac": 0.436,
     "n_families": 2,
     "n_hard": 1,
     "tier": "BUILDING",
@@ -711,7 +717,7 @@
     "p_b": 0.639,
     "mcap": 20196000.0,
     "deep": false,
-    "net_cash_frac": 0.17,
+    "net_cash_frac": 0.0,
     "n_families": 2,
     "n_hard": 1,
     "tier": "ACTION LIKELY",
@@ -744,7 +750,7 @@
     "p_b": 0.667,
     "mcap": 11202525.0,
     "deep": false,
-    "net_cash_frac": 0.644,
+    "net_cash_frac": 0.068,
     "n_families": 1,
     "n_hard": 1,
     "tier": "BUILDING",
@@ -756,7 +762,7 @@
         "detail": "interim Chief Executive Officer"
       }
     },
-    "score": 13.0
+    "score": 10.0
   },
   "INVE": {
     "ticker": "INVE",
@@ -765,7 +771,7 @@
     "p_b": 0.439,
     "mcap": 58455097.0,
     "deep": true,
-    "net_cash_frac": 2.13,
+    "net_cash_frac": 2.112,
     "n_families": 2,
     "n_hard": 1,
     "tier": "ACTION LIKELY",
@@ -798,7 +804,7 @@
     "p_b": 0.377,
     "mcap": 252032323.0,
     "deep": true,
-    "net_cash_frac": 0.905,
+    "net_cash_frac": 0.0,
     "n_families": 3,
     "n_hard": 0,
     "tier": "BUILDING",
@@ -828,7 +834,7 @@
         "detail": "\u201cIt's not reflecting in the stock price yet.\u201d"
       }
     },
-    "score": 32.8
+    "score": 29.8
   },
   "DCGO": {
     "ticker": "DCGO",
@@ -837,7 +843,7 @@
     "p_b": 0.301,
     "mcap": 35777541.0,
     "deep": true,
-    "net_cash_frac": 0.992,
+    "net_cash_frac": 0.273,
     "n_families": 2,
     "n_hard": 0,
     "tier": "BUILDING",
@@ -861,7 +867,7 @@
         "detail": "PSU on other_per_share, tsr"
       }
     },
-    "score": 27.0
+    "score": 24.0
   },
   "KSS": {
     "ticker": "KSS",
@@ -999,7 +1005,7 @@
     "p_b": 0.691,
     "mcap": 332474596.0,
     "deep": false,
-    "net_cash_frac": 1.069,
+    "net_cash_frac": 1.009,
     "n_families": 3,
     "n_hard": 0,
     "tier": "BUILDING",
@@ -1137,7 +1143,7 @@
     "p_b": 0.662,
     "mcap": 13303287.0,
     "deep": false,
-    "net_cash_frac": null,
+    "net_cash_frac": 0.0,
     "n_families": 2,
     "n_hard": 1,
     "tier": "ACTION LIKELY",
@@ -1335,7 +1341,7 @@
     "p_b": 0.584,
     "mcap": 1463946905.0,
     "deep": false,
-    "net_cash_frac": 1.715,
+    "net_cash_frac": 1.688,
     "n_families": 3,
     "n_hard": 0,
     "tier": "BUILDING",
@@ -1452,7 +1458,7 @@
     "p_b": 0.53,
     "mcap": 286276836.0,
     "deep": false,
-    "net_cash_frac": 0.928,
+    "net_cash_frac": 0.83,
     "n_families": 2,
     "n_hard": 0,
     "tier": "BUILDING",
@@ -1485,7 +1491,7 @@
     "p_b": 0.318,
     "mcap": 33191492.0,
     "deep": true,
-    "net_cash_frac": 0.334,
+    "net_cash_frac": 0.0,
     "n_families": 2,
     "n_hard": 1,
     "tier": "ACTION LIKELY",
@@ -1509,7 +1515,7 @@
         "detail": "PSU on tsr"
       }
     },
-    "score": 26.0
+    "score": 23.0
   },
   "ICMB": {
     "ticker": "ICMB",
@@ -1539,7 +1545,7 @@
     "p_b": 0.679,
     "mcap": 134572110.0,
     "deep": false,
-    "net_cash_frac": 0.222,
+    "net_cash_frac": 0.094,
     "n_families": 3,
     "n_hard": 1,
     "tier": "ACTION LIKELY",
@@ -1620,7 +1626,7 @@
     "p_b": 0.562,
     "mcap": 64891831.0,
     "deep": false,
-    "net_cash_frac": 0.01,
+    "net_cash_frac": 0.0,
     "n_families": 1,
     "n_hard": 1,
     "tier": "BUILDING",
@@ -1641,7 +1647,7 @@
     "p_b": 0.465,
     "mcap": 66498540.0,
     "deep": true,
-    "net_cash_frac": 0.449,
+    "net_cash_frac": 0.0,
     "n_families": 3,
     "n_hard": 2,
     "tier": "ACTION LIKELY",
@@ -1671,7 +1677,7 @@
         "detail": "turnaround executive hired"
       }
     },
-    "score": 33.8
+    "score": 30.8
   },
   "ONIT": {
     "ticker": "ONIT",
@@ -1731,7 +1737,7 @@
     "p_b": 0.646,
     "mcap": 318167973.0,
     "deep": false,
-    "net_cash_frac": 0.073,
+    "net_cash_frac": 0.0,
     "n_families": 4,
     "n_hard": 1,
     "tier": "ACTION LIKELY",
@@ -1908,7 +1914,7 @@
     "p_b": 0.654,
     "mcap": 1170834810.0,
     "deep": false,
-    "net_cash_frac": 0.333,
+    "net_cash_frac": 0.093,
     "n_families": 2,
     "n_hard": 1,
     "tier": "ACTION LIKELY",
@@ -1932,7 +1938,7 @@
         "detail": "change-in-control terms"
       }
     },
-    "score": 18.8
+    "score": 15.8
   },
   "RYN": {
     "ticker": "RYN",
@@ -1943,7 +1949,7 @@
     "deep": false,
     "net_cash_frac": 0.0,
     "n_families": 2,
-    "n_hard": 1,
+    "n_hard": 2,
     "tier": "ACTION LIKELY",
     "families": {
       "PAY_ON_VALUE": {
@@ -1952,8 +1958,8 @@
         "source": "DEF 14A",
         "detail": "PSU on eps, tsr"
       },
-      "CALL_INTENT": {
-        "pts": 4.0,
+      "CALL_COMMIT": {
+        "pts": 7.0,
         "date": "2026-08-06",
         "source": "earnings call",
         "detail": "\u201cDuring the second quarter, we repurchased approximately 3.5 million shares at an average p\u201d"
@@ -1971,7 +1977,7 @@
         "detail": "turnaround executive hired"
       }
     },
-    "score": 19.8
+    "score": 22.8
   },
   "AGO": {
     "ticker": "AGO",
@@ -2100,7 +2106,7 @@
     "p_b": 0.692,
     "mcap": 1776203263.0,
     "deep": false,
-    "net_cash_frac": 0.044,
+    "net_cash_frac": 0.0,
     "n_families": 2,
     "n_hard": 1,
     "tier": "ACTION LIKELY",
@@ -2139,7 +2145,7 @@
     "p_b": 0.175,
     "mcap": 15715279955.0,
     "deep": true,
-    "net_cash_frac": 0.602,
+    "net_cash_frac": 0.0,
     "n_families": 2,
     "n_hard": 0,
     "tier": "BUILDING",
@@ -2163,7 +2169,7 @@
         "detail": "\u201cThis quarter, we returned $2.1 billion to shareholders, including $900 million in share re\u201d"
       }
     },
-    "score": 25.0
+    "score": 22.0
   },
   "CHGG": {
     "ticker": "CHGG",
@@ -2172,7 +2178,7 @@
     "p_b": 0.687,
     "mcap": 81461251.0,
     "deep": false,
-    "net_cash_frac": 0.412,
+    "net_cash_frac": 0.0,
     "n_families": 1,
     "n_hard": 1,
     "tier": "BUILDING",
@@ -2196,7 +2202,7 @@
         "detail": "\u201cSo the value of the company, we think, is undervalued simply because of the amount of cash\u201d"
       }
     },
-    "score": 19.0
+    "score": 16.0
   },
   "FG": {
     "ticker": "FG",
@@ -2231,38 +2237,44 @@
     },
     "score": 16.0
   },
-  "MFIN": {
-    "ticker": "MFIN",
-    "name": "Medallion Financial Corp.",
-    "sector": "Financial Services",
-    "p_b": 0.661,
-    "mcap": 268454011.0,
+  "NCMI": {
+    "ticker": "NCMI",
+    "name": "National CineMedia, Inc.",
+    "sector": "Communication Services",
+    "p_b": 0.606,
+    "mcap": 202565424.0,
     "deep": false,
-    "net_cash_frac": 0.0,
-    "n_families": 1,
-    "n_hard": 1,
+    "net_cash_frac": 0.132,
+    "n_families": 3,
+    "n_hard": 0,
     "tier": "BUILDING",
     "families": {
-      "PAY_ON_VALUE": {
-        "pts": 1.0,
-        "date": "2025-04-30",
+      "PROXY_RESPONSIVE": {
+        "pts": 4.0,
+        "date": "2026-03-27",
         "source": "DEF 14A",
-        "detail": "PSU on eps, roe, tsr"
+        "detail": "responsive_to_shareholders"
       },
-      "CALL_COMMIT": {
-        "pts": 7.0,
-        "date": "2026-07-30",
-        "source": "earnings call",
-        "detail": "\u201cWe also bought back nearly 780,000 shares of stock during the quarter, which we were able \u201d"
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-03-27",
+        "source": "DEF 14A",
+        "detail": "PSU on fcf_per_share, tsr"
       },
-      "CALL_VALUE_GAP": {
-        "pts": 3.0,
-        "date": "2026-07-30",
+      "CALL_INTENT": {
+        "pts": 4.0,
+        "date": "2026-08-11",
         "source": "earnings call",
-        "detail": "\u201cWe also bought back nearly 780,000 shares of stock during the quarter, which we were able \u201d"
+        "detail": "\u201cDuring the quarter, we repurchased approximately 63,000 shares for a total of approximatel\u201d"
+      },
+      "CIC_PREP": {
+        "pts": 1.8,
+        "date": null,
+        "source": "DEF 14A",
+        "detail": "change-in-control terms"
       }
     },
-    "score": 15.0
+    "score": 20.8
   },
   "CAN": {
     "ticker": "CAN",
@@ -2414,6 +2426,27 @@
     },
     "score": 14.0
   },
+  "KREF": {
+    "ticker": "KREF",
+    "name": "KKR Real Estate Finance Trust Inc.",
+    "sector": "Real Estate",
+    "p_b": 0.437,
+    "mcap": 407021640.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-07-22",
+        "source": "earnings call",
+        "detail": "\u201cThis process will be led by a strategic review committee composed solely of the Board's in\u201d"
+      }
+    },
+    "score": 14.0
+  },
   "MFIC": {
     "ticker": "MFIC",
     "name": "MidCap Financial Investment Corporation",
@@ -2516,33 +2549,6 @@
     },
     "score": 11.0
   },
-  "RWAY": {
-    "ticker": "RWAY",
-    "name": "Runway Growth Finance Corp.",
-    "sector": "Financial Services",
-    "p_b": 0.571,
-    "mcap": 286848008.0,
-    "deep": false,
-    "net_cash_frac": 0.0,
-    "n_families": 1,
-    "n_hard": 1,
-    "tier": "BUILDING",
-    "families": {
-      "CALL_COMMIT": {
-        "pts": 7.0,
-        "date": "2026-08-07",
-        "source": "earnings call",
-        "detail": "\u201cOnce our trading blackout period ends on August 11, we will be able to execute a new Rule \u201d"
-      },
-      "CALL_VALUE_GAP": {
-        "pts": 3.0,
-        "date": "2026-08-07",
-        "source": "earnings call",
-        "detail": "\u201cIn Runway's case, we believe our share price materially undervalues the fundamentals of ou\u201d"
-      }
-    },
-    "score": 14.0
-  },
   "SEER": {
     "ticker": "SEER",
     "name": "Seer, Inc.",
@@ -2550,7 +2556,7 @@
     "p_b": 0.443,
     "mcap": 100066423.0,
     "deep": true,
-    "net_cash_frac": 0.473,
+    "net_cash_frac": 0.249,
     "n_families": 1,
     "n_hard": 1,
     "tier": "BUILDING",
@@ -2562,7 +2568,7 @@
         "detail": "\u201cAs of June 30, 2026, we have repurchased approximately 13.4 million Class A common shares \u201d"
       }
     },
-    "score": 17.0
+    "score": 14.0
   },
   "SNDL": {
     "ticker": "SNDL",

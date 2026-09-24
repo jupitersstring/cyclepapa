@@ -105,13 +105,13 @@ psu_core + gov_score + composite kicker + P/B bonus.
 
 ### A9. PSU vests on FDA / clinical milestone
 
-**Winner: CLW**
+**Winner: OCUL**
 
 ```
-  CLW
-  mcap=$350M  px=$21.68  P/B=0.44  DD%=8%
-    PSU core=39.8  gov=18.0  PSU%LTI=60  per_share=['roic', 'tsr'] agg=['absolute_ebitda', 'absolute_net_income', 'absolute_sales']
-    composite=0.0  buyback=NO_AUTH(+0.54%)
+  OCUL
+  mcap=$2,207M  px=$10.08  P/B=4.24  DD%=39%
+    PSU core=43.0  gov=12.0  PSU%LTI=None  per_share=['tsr'] agg=['market_cap']
+    composite=27.0  buyback=NO_AUTH(+3.33%)
     WHY: binary regulatory catalyst
 ```
 

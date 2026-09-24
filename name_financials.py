@@ -247,10 +247,10 @@ def read_line(r):
 COLS = [("Ticker", 9), ("Name", 22), ("Sector", 14), ("Mcap $M", 9), ("P/B", 6), ("P/E", 6),
         ("EV/EBITDA", 8), ("FCF yld", 7), ("Net cash/mcap", 9), ("ND/EBITDA", 8),
         ("Rev g", 7), ("Op m", 7), ("ROE", 7), ("Shares YoY", 8), ("Int cover", 7),
-        ("52w pos", 7), ("ADV $k", 8), ("Read", 70), ("Data flags", 26)]
+        ("52w pos", 7), ("ADV $k", 8), ("Read", 70), ("Data flags", 26), ("Appears on", 60)]
 
 
-def financials_sheet(wb, title, symbols, fin, subtitle="", index=None):
+def financials_sheet(wb, title, symbols, fin, subtitle="", index=None, tabs=None):
     """Add a financials sheet for `symbols` [(display_ticker, fmp_symbol)]."""
     from openpyxl.styles import Alignment, Font, PatternFill
     ws = wb.create_sheet(title, index) if index is not None else wb.create_sheet(title)
@@ -285,7 +285,8 @@ def financials_sheet(wb, title, symbols, fin, subtitle="", index=None):
                 num(f.get("ev_ebitda"), 1), pc(f.get("fcf_yield")), pc(f.get("net_cash_pct")),
                 num(f.get("nd_ebitda"), 1), pc(f.get("rev_growth")), pc(f.get("op_m")), pc(f.get("roe")),
                 pc(f.get("shares_yoy")), num(f.get("int_cover"), 1), pc(f.get("range_pos")),
-                num((f.get("adv_usd") or 0) / 1e3, 0), f.get("read"), "; ".join(f.get("flags") or [])]
+                num((f.get("adv_usd") or 0) / 1e3, 0), f.get("read"), "; ".join(f.get("flags") or []),
+                ", ".join((tabs or {}).get(s, []))]
         for j, v in enumerate(vals, 1):
             ws.cell(row=r, column=j, value=v)
     ws.freeze_panes = "B5"
@@ -326,6 +327,11 @@ def annotate_workbook(wb, fin, sym_map=None, skip=()):
             f = fin.get(sym)
             if f:
                 seen.append((key, sym))
+                tabs = getattr(wb, "_fin_tabs", {})
+                tabs.setdefault(sym, [])
+                if ws.title not in tabs[sym]:
+                    tabs[sym].append(ws.title)
+                wb._fin_tabs = tabs
                 c = ws.cell(row=r, column=col, value=f.get("read") + (
                     "  [" + "; ".join(f["flags"]) + "]" if f.get("flags") else ""))
                 c.alignment = Alignment(wrap_text=False)
@@ -340,7 +346,13 @@ def add_financials(wb, fin, sym_map=None, skip=(), title="Name Financials", inde
     every name that appears anywhere in the workbook."""
     n = annotate_workbook(wb, fin, sym_map, skip)
     rows = list(dict.fromkeys(getattr(wb, "_fin_seen", [])))
-    k = financials_sheet(wb, title, rows, fin, index=index)
+    tabs = getattr(wb, "_fin_tabs", {})
+    # most-cited names first: the ones that appear on the most tabs
+    rows.sort(key=lambda kv: -len(tabs.get(kv[1], [])))
+    k = financials_sheet(wb, title, rows, fin, index=index, tabs=tabs,
+                         subtitle="One row per name in this book, most-cited first. 'Appears on' lists every tab "
+                                  "the name is on. FMP TTM ratios + bulk statements; P/B validated (market cap ÷ "
+                                  "latest equity, FX-converted); net cash inside one statement currency.")
     print(f"  financials: read column on {n} sheets; {title} sheet with {k} names")
     return k
 
