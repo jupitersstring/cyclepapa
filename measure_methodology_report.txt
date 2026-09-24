@@ -1,4 +1,4 @@
-METHODOLOGY AUDIT — 207 checks, 0 FAIL, 0 WARN
+METHODOLOGY AUDIT — 226 checks, 0 FAIL, 0 WARN
   PASS  units: dividend_yield is a fraction  — median |dividend_yield| = 0.028 (fraction-scale cap 1.5)
   PASS  units: fcf_yield is a fraction  — median |fcf_yield| = 0.068 (fraction-scale cap 3.0)
   PASS  units: analyst_target_upside_pct is a fraction  — median |analyst_target_upside_pct| = 0.260 (fraction-scale cap 5.0)
@@ -10,7 +10,7 @@ METHODOLOGY AUDIT — 207 checks, 0 FAIL, 0 WARN
   PASS  arch_levered_inflection: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 25% depth
   PASS  arch_asymmetric_assembly: no contradicted 'beaten down' names  — 0.0% of firers with the 52w measure sit shallower than half the claimed 35% depth
   PASS  evsales_derating: median firer gap is compressive  — median gap 0.381
-  PASS  evsales_derating: expanding-multiple firers are the minority  — 9.9% of firers have a negative 1y gap (allowed only when the 3y base compresses)
+  PASS  evsales_derating: expanding-multiple firers are the minority  — 9.8% of firers have a negative 1y gap (allowed only when the 3y base compresses)
   PASS  tenbagger: implied 10x closes for every firer  — 0 firers below 10x
   PASS  tenbagger: Credible is a subset of Path
   PASS  lynch_reward: no firer already paid (roc_12m <= 0.35)  — 0 firers with roc_12m > 35%
@@ -30,7 +30,7 @@ METHODOLOGY AUDIT — 207 checks, 0 FAIL, 0 WARN
   PASS  gating: analyst_rerating_score is 0 outside arch_analyst_rerating_confirmed  — 0 non-firers with positive score
   PASS  gating: asleep_score is 0 outside arch_asleep_at_wheel  — 0 non-firers with positive score
   PASS  gating: seg_inflect_score is 0 outside arch_fastest_segment  — 0 non-firers with positive score
-  PASS  density: archetype_count_pct <= 1  — max 0.282
+  PASS  density: archetype_count_pct <= 1  — max 0.356
   PASS  units: insider_ownership_pct is a fraction (<= 1.05)  — 0 percent-scale stragglers
   PASS  integrity: lynch signal rows all match the header schema  — 0 ragged rows
   PASS  integrity: country benchmarks are live (<=62d old)  — stale/empty: []
@@ -107,6 +107,8 @@ METHODOLOGY AUDIT — 207 checks, 0 FAIL, 0 WARN
   PASS  regression(R1): arch_xr_stake_fv_gap excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
   PASS  regression(R1): arch_xr_lookthrough_earner excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
   PASS  regression(R1): arch_xr_value_unlock excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_xr_verified_deleveraging excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
+  PASS  regression(R1): arch_xr_cash_leads_book excludes Financials/REITs/Utilities  — 0 financials/REITs/utilities firers
   PASS  regression(tail): arch_micro_activist_inflect carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
   PASS  regression(tail): arch_fixed_cost_demand_shock carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
   PASS  regression(tail): arch_regime_cyclical carries no genuine ice cube (neg returns, no cash, not improving)  — 0 ice-cube firers
@@ -206,3 +208,20 @@ METHODOLOGY AUDIT — 207 checks, 0 FAIL, 0 WARN
   PASS  valuation: market_cap_usd implies implausible fx <= 0.5% of covered rows  — 0/37776 rows (0.00%)
   PASS  valuation: market_cap_usd fx != revenue-twin fx (>10%) <= 2.0% of covered rows  — 0/33913 rows (0.00%)
   PASS  valuation: top-100 by ETA carry ZERO cross-field violations  — 0 of top 100 rows inconsistent
+  PASS  fmp forensics: every converted level fill has a validated FX bridge  — 0 filled rows without fq_fx_to_master (30085 filled)
+  PASS  fmp forensics: master-core columns (NI/CFO/capex/D&A/debt) never FMP-filled  — filled: []
+  PASS  fmp forensics: fq_beneish_risk_flag never fires on financials  — 0 financial rows
+  PASS  fmp forensics: fq_high_accruals_flag never fires on financials  — 0 financial rows
+  PASS  fmp forensics: fq_receivables_divergence_flag never fires on financials  — 0 financial rows
+  PASS  fmp forensics: fq_inventory_build_flag never fires on financials  — 0 financial rows
+  PASS  fmp forensics: accrual/Beneish tells only with an observed cash-flow basis  — 0 tells without a CF basis
+  PASS  fmp forensics: exact-zero TTM CFO is rare (placeholder blanking works)  — 234 rows
+  PASS  fmp forensics: FMP-filled sbc_pct_revenue is a disclosed (> 0) value  — 0 zero/negative fills
+  PASS  fmp forensics: XR45 FMP-filled firers cheap on listing-ccy continuing ops (>= 6%)  — 0 of 35
+  PASS  fmp forensics: verified_deleveraging firers show the net-debt path  — 0 of 67
+  PASS  fmp forensics: cash_leads_book firers have FCF >= 1.2x NI (the tell)  — 0 of 546
+  PASS  fmp forensics: F7 FMP-filled firers have RE >= market cap (post-fill)  — 0 of 1267
+  PASS  fmp forensics: customer_float firers show a float leg (post-fill)  — 0 of 1692
+  PASS  fmp calibration: FMP retained_earnings within 25% of EDGAR on the overlap  — 95.2% of 4807
+  PASS  fmp calibration: FMP equity within 25% of EDGAR on the overlap  — 87.4% of 4982
+  PASS  fmp calibration: FMP assets within 25% of EDGAR on the overlap  — 95.2% of 5305

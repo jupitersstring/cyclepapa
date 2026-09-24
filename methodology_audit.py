@@ -992,11 +992,19 @@ def _valuation_consistency(t, g):
     # adj-P/E is TWO-LEGGED (user: latest OR Graham 5yr-average earnings) —
     # test the BINDING leg, the minimum of the two, so an average-leg firer
     # (latest E quirk-depressed, avg cheap) is not a false violation.
+    # ni_avg is FMP-filled for non-EDGAR names (5-FY average, converted to the
+    # listing currency) and exported post-fill as ni_avg_eff: verify on the
+    # value the gate actually used — the master's pre-fill ni_avg is NaN for
+    # those names, which made every average-leg firer read as a violation.
+    _nia_eff = (pd.to_numeric(t.set_index("symbol")["ni_avg_eff"], errors="coerce")
+                if "ni_avg_eff" in t.columns else pd.Series(dtype=float))
+    _nia_eff = _nia_eff[~_nia_eff.index.duplicated()]
+
     def _adj_pe_best(gg):
         _mcv = _num_g(gg, "market_cap")
         _ncv = _num_g(gg, "cash") - _num_g(gg, "total_debt")
         _niv = _num_g(gg, "net_income_ttm")
-        _nav = _num_g(gg, "ni_avg")
+        _nav = _nia_eff.reindex(gg.index).fillna(_num_g(gg, "ni_avg"))
         _l1 = ((_mcv - _ncv) / _niv).where(_niv > 0)
         _l2 = ((_mcv - _ncv) / _nav).where(_nav > 0)
         return pd.concat([_l1, _l2], axis=1).min(axis=1)
@@ -1060,7 +1068,7 @@ def _valuation_consistency(t, g):
         # must satisfy the core arithmetic legs from the CURRENT master
         _t_idx = t.set_index("symbol")
         _fir = _t_idx.index[_t_idx["arch_cash_adjusted_pe"] == 1]
-        _nia_f = _gs("ni_avg")
+        _nia_f = _nia_eff.reindex(_gi.index).fillna(_gs("ni_avg"))   # post-fill (see above)
         _adj_avg = (_mc_f - _nc_f) / _nia_f.where(_nia_f > 0)
         # the adj-P/E leg is latest OR Graham-average (user OR-addition)
         _adj_best = pd.concat([_adj, _adj_avg], axis=1).min(axis=1)

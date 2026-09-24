@@ -76,3 +76,7 @@ Every master column consumed by an archetype gate must be either covered by an i
 ## Valuation internal consistency (yf process)
 
 Every stored ratio must equal what the row's own components say. The apply_ticker_yf reconcile (levels bend to authoritative Yahoo ratios; ratios recomputed from components) is the process; these checks are the gate that keeps DEEPINDS-class staleness out.
+
+## FMP 3-statement forensics
+
+Quarterly/annual FMP statements fill EDGAR-only inputs for non-US names and add forensic tells. A fill is only trusted through a validated TRUE-FX bridge, zero-filled placeholders are never read as zeros, forensic models are not applied to financials, and every FMP-filled firer is re-verified on the POST-fill (_eff) value the gate actually saw — pre-fill master columns would pass vacuously.
