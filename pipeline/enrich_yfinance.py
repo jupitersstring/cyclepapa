@@ -188,9 +188,13 @@ def run(max_n=4000, rps=3.0):
         ticker TEXT PRIMARY KEY, asof TEXT)""")
     # FRESH = enriched within the last 10 days. Older rows re-enrich so prices
     # and mcaps track the market instead of freezing at their first fetch.
+    # FMP rows (enrich_fmp, the primary feed) are never overwritten here: Yahoo
+    # mixes currencies on ADRs (TSM EV/EBITDA 4.9, P/B 88). Yahoo fills gaps only.
+    src_col = any(r[1] == "src" for r in conn.execute("PRAGMA table_info(ticker_yf)"))
     fresh = {r[0] for r in conn.execute(
-        "SELECT ticker FROM ticker_yf WHERE (mcap_m IS NOT NULL OR ev_ebitda IS NOT NULL) "
-        "AND asof >= date('now','-10 days')")}
+        "SELECT ticker FROM ticker_yf WHERE ((mcap_m IS NOT NULL OR ev_ebitda IS NOT NULL) "
+        "AND asof >= date('now','-10 days'))"
+        + (" OR (src = 'fmp' AND asof >= date('now','-30 days'))" if src_col else ""))}
     # Known-dead (delisted/acquired): quote 404s with valid crumb auth. Skip —
     # but retest each ticker every ~30 days in case of relisting.
     dead = {r[0] for r in conn.execute(
@@ -223,7 +227,11 @@ def run(max_n=4000, rps=3.0):
             # returns None (bulk-run verification found live ETFs marked dead),
             # so only mark dead after a fresh-session CONFIRMING second miss.
             # Foreign tickers (suffix mismatches) are never marked — ambiguous.
-            if _CRUMB[0] and "." not in tkr and tkr.isalpha():
+            # FMP priced it as actively trading within 30 days: a Yahoo miss is
+            # throttling, not a delisting (1,052 live names were once flagged)
+            fmp_live = conn.execute("""SELECT 1 FROM ticker_yf WHERE ticker=? AND src='fmp'
+                AND asof >= date('now','-30 days')""", (tkr,)).fetchone()
+            if _CRUMB[0] and "." not in tkr and tkr.isalpha() and not fmp_live:
                 time.sleep(1.0)
                 confirm = make_session()
                 if _CRUMB[0] and fetch_one(tkr, confirm) is None:

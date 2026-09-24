@@ -137,7 +137,7 @@ def run():
     existing = {r["ticker"]: dict(r) for r in conn.execute("SELECT * FROM ticker_yf")}
     asof = time.strftime("%Y-%m-%d")
     conn.execute("CREATE TABLE IF NOT EXISTS yf_dead (ticker TEXT PRIMARY KEY, asof TEXT)")
-    n_upd = n_new = n_inactive = n_miss = 0
+    n_upd = n_new = n_inactive = n_miss = n_revived = 0
     for tk in sorted(universe):
         p = prof.get(tk)
         if not p:
@@ -154,6 +154,11 @@ def run():
         if not price or not mcap:
             n_miss += 1
             continue
+        # FMP says it trades and prices it: a Yahoo "dead" flag is wrong. Yahoo
+        # marks a ticker dead after two quote misses, and throttled runs miss
+        # live names — 1,052 of 1,936 flags were live (PG&E, CRH, TKO, Air
+        # Products, Cognizant, Block), each classed 'delisted' out of every pick.
+        n_revived += conn.execute("DELETE FROM yf_dead WHERE ticker=?", (tk,)).rowcount
         row = existing.get(tk) or {c: None for c in cols}
         is_new = tk not in existing
         # Aggregates FMP doesn't overwrite (debt, cash; EV/EBITDA when FMP has
@@ -208,9 +213,16 @@ def run():
                      f"VALUES ({','.join('?' * len(cols))})", [row.get(c) for c in cols])
         n_new += is_new
         n_upd += not is_new
+    # sweep the rest of the dead list too (tickers that left the universe but
+    # keep a stale flag): FMP active + priced = alive
+    for (tk,) in conn.execute("SELECT ticker FROM yf_dead").fetchall():
+        p = prof.get(tk)
+        if p and is_true(p.get("isActivelyTrading")) and num(p.get("price")):
+            n_revived += conn.execute("DELETE FROM yf_dead WHERE ticker=?", (tk,)).rowcount
     conn.commit()
     print(f"ticker_yf: {n_upd:,} refreshed + {n_new:,} NEW from FMP | "
-          f"{n_inactive} inactive skipped | {n_miss} not in FMP (Yahoo fallback)")
+          f"{n_inactive} inactive -> yf_dead | {n_revived} wrongly-dead revived | "
+          f"{n_miss} not in FMP (Yahoo fallback)")
     for tk in ("TSM", "ASML", "SAP", "BUD", "AAPL", "RR.L"):
         x = conn.execute("""SELECT price, currency, ROUND(mcap_m) m, ROUND(enterprise_value_m) ev,
                             ROUND(ev_ebitda,1), ROUND(pb_ratio,1), ROUND(pe_ttm,1), src

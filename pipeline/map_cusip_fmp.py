@@ -39,6 +39,7 @@ CURATED = {
                            # CUSIP 06849F108); "GOLD" now belongs to Gold.com (ex A-Mark)
     "30231G102": "XOM",    # Exxon Mobil Corp's pre-reorganization CUSIP; FMP's XOM profile
                            # now carries ExxonMobil Holdings Corp's 30233Q108. OpenFIGI had "EXMOC"
+    "741503403": "BKNG",   # Priceline.com -> Booking Holdings (2018 rename); pre-rename CUSIP
     # verified NEGATIVES (None = keep unmapped): name search finds a different
     # company whose price happens to sit within 1.5x
     "N81409125": None,     # Sono Group NV (Sono Motors) — not Sono-Tek (SOTK)

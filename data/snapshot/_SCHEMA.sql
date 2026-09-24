@@ -186,7 +186,7 @@ CREATE TABLE price_stats (
         last_close REAL, n_pts INTEGER, asof TEXT);
 CREATE TABLE ticker_meta ("ticker" TEXT PRIMARY KEY, "name" TEXT, "exchange" TEXT, "market" TEXT, "sector" TEXT, "industry" TEXT, "mcap_m" REAL, "price" REAL, "price_currency" TEXT, "adv_3m_usd_m" REAL, "shares_out_m" REAL, "pe_ttm" TEXT, "fwd_pe" TEXT, "beta" TEXT, "asof" TEXT, "sic" INTEGER, "sic_description" TEXT);
 CREATE TABLE "ticker_valuation" ("ticker" TEXT, "cik" INTEGER, "ebitda_ttm" REAL, "book_value" REAL, "net_debt" REAL, "ev_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "ebitda_is_ebit_fallback" INTEGER, "asof" TEXT);
-CREATE TABLE ticker_yf ("ticker" TEXT PRIMARY KEY, "mcap_m" REAL, "enterprise_value_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "pe_ttm" REAL, "fwd_pe" REAL, "ev_revenue" REAL, "peg" REAL, "price" REAL, "currency" TEXT, "shares_out_m" REAL, "ebitda_m" REAL, "total_debt_m" REAL, "total_cash_m" REAL, "profit_margin" REAL, "rev_growth" REAL, "sector" TEXT, "industry" TEXT, "asof" TEXT, "business_summary" TEXT, "long_name" TEXT);
+CREATE TABLE ticker_yf ("ticker" TEXT PRIMARY KEY, "mcap_m" REAL, "enterprise_value_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "pe_ttm" REAL, "fwd_pe" REAL, "ev_revenue" REAL, "peg" REAL, "price" REAL, "currency" TEXT, "shares_out_m" REAL, "ebitda_m" REAL, "total_debt_m" REAL, "total_cash_m" REAL, "profit_margin" REAL, "rev_growth" REAL, "sector" TEXT, "industry" TEXT, "asof" TEXT, "business_summary" TEXT, "long_name" TEXT, src TEXT, is_fund INTEGER);
 CREATE TABLE "ticker_yf__old" ("ticker" TEXT, "mcap_m" REAL, "enterprise_value_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "pe_ttm" REAL, "fwd_pe" REAL, "ev_revenue" REAL, "peg" REAL, "price" REAL, "currency" TEXT, "shares_out_m" REAL, "ebitda_m" REAL, "total_debt_m" REAL, "total_cash_m" REAL, "profit_margin" REAL, "rev_growth" REAL, "sector" TEXT, "industry" TEXT, "asof" TEXT, "business_summary" TEXT, "long_name" TEXT);
 CREATE TABLE yf_dead (ticker TEXT PRIMARY KEY, asof TEXT);
 CREATE INDEX idx_yf_evebitda ON ticker_yf(ev_ebitda);
@@ -226,6 +226,41 @@ CREATE INDEX idx_pba_company ON pb_affiliation(company);
 CREATE INDEX idx_pba_ticker ON pb_affiliation(ticker);
 CREATE TABLE pb_principal (name TEXT PRIMARY KEY);
 CREATE TABLE pb_principal_fund (principal TEXT, fund TEXT);
+CREATE INDEX idx_cusipmap_tk ON cusip_map(ticker);
+CREATE TABLE earnings_surprise (ticker TEXT, date TEXT, eps_actual REAL, eps_est REAL,
+        surprise_pct REAL, rev_actual REAL, rev_est REAL, rev_surprise_pct REAL,
+        PRIMARY KEY (ticker, date));
+CREATE TABLE earnings_beat (ticker TEXT PRIMARY KEY, n_q INTEGER, beats INTEGER,
+        beat_rate REAL, last_date TEXT, last_surprise_pct REAL, streak INTEGER,
+        rev_n INTEGER, rev_beats INTEGER, last_rev_surprise_pct REAL);
+CREATE TABLE unified_signal (
+      ticker TEXT PRIMARY KEY,
+      name TEXT, exchange TEXT, sector TEXT, mcap_m REAL, price REAL,
+      mcap_bucket TEXT,
+      smart_money_n REAL,
+      s1_top INTEGER, s2_thresh INTEGER, s3_new INTEGER, s4_add INTEGER,
+      activist_filings INTEGER, activist_max_pct REAL,
+      insider_cluster_dollars_m REAL, insider_n INTEGER,
+      form4_buy_usd_m REAL, form4_sell_usd_m REAL,
+      form4_buy_30d_m REAL, form4_sell_30d_m REAL,
+      max_pct_book REAL, n_funds_5pct_book INTEGER,
+      global_score REAL,        -- score using only signals that work cross-listing
+      is_us INTEGER,            -- 1 if US-registered (no dot suffix), 0 otherwise
+      cat8k_ma INTEGER, cat8k_dir INTEGER, cat8k_ctrl INTEGER,
+      cat8k_pipe INTEGER, cat8k_bnk INTEGER, cat8k_n INTEGER,
+      ev_ebitda REAL, pb_ratio REAL, pe_ttm REAL,
+      revealed_pref REAL,       -- active accumulation: 2*s3 + s4 + 0.5*s1
+      asymmetry_score REAL,     -- downside protection × upside potential
+      expected_return_pct REAL,
+      entry_bucket TEXT, vs_entry_pct REAL, anchor_px REAL, anchor_source TEXT,
+      sec_type TEXT,            -- 'common'|'etf'|'preferred'|'warrant'|'unit'|'right'|'delisted'
+      score REAL,
+      components TEXT
+    );
+CREATE INDEX idx_us_score ON unified_signal(score DESC);
+CREATE INDEX idx_us_bucket ON unified_signal(mcap_bucket);
+CREATE INDEX idx_us_pb ON unified_signal(max_pct_book DESC);
+CREATE INDEX idx_us_entry ON unified_signal(entry_bucket);
 CREATE TABLE fund_conviction (
       fund TEXT, ticker TEXT, signals TEXT, raw_score REAL, style_weight REAL,
       score REAL, macro_style TEXT,
@@ -272,31 +307,3 @@ CREATE TABLE broker_swap_radar (
       disclosed_swap TEXT,      -- a 13D on this name whose text names a swap
       f144_sale TEXT,           -- Form 144 proposed-sale pressure (contra)
       PRIMARY KEY (ticker, broker));
-CREATE TABLE unified_signal (
-      ticker TEXT PRIMARY KEY,
-      name TEXT, exchange TEXT, sector TEXT, mcap_m REAL, price REAL,
-      mcap_bucket TEXT,
-      smart_money_n REAL,
-      s1_top INTEGER, s2_thresh INTEGER, s3_new INTEGER, s4_add INTEGER,
-      activist_filings INTEGER, activist_max_pct REAL,
-      insider_cluster_dollars_m REAL, insider_n INTEGER,
-      form4_buy_usd_m REAL, form4_sell_usd_m REAL,
-      form4_buy_30d_m REAL, form4_sell_30d_m REAL,
-      max_pct_book REAL, n_funds_5pct_book INTEGER,
-      global_score REAL,        -- score using only signals that work cross-listing
-      is_us INTEGER,            -- 1 if US-registered (no dot suffix), 0 otherwise
-      cat8k_ma INTEGER, cat8k_dir INTEGER, cat8k_ctrl INTEGER,
-      cat8k_pipe INTEGER, cat8k_bnk INTEGER, cat8k_n INTEGER,
-      ev_ebitda REAL, pb_ratio REAL, pe_ttm REAL,
-      revealed_pref REAL,       -- active accumulation: 2*s3 + s4 + 0.5*s1
-      asymmetry_score REAL,     -- downside protection × upside potential
-      expected_return_pct REAL,
-      entry_bucket TEXT, vs_entry_pct REAL, anchor_px REAL, anchor_source TEXT,
-      sec_type TEXT,            -- 'common'|'etf'|'preferred'|'warrant'|'unit'|'right'|'delisted'
-      score REAL,
-      components TEXT
-    );
-CREATE INDEX idx_us_score ON unified_signal(score DESC);
-CREATE INDEX idx_us_bucket ON unified_signal(mcap_bucket);
-CREATE INDEX idx_us_pb ON unified_signal(max_pct_book DESC);
-CREATE INDEX idx_us_entry ON unified_signal(entry_bucket);

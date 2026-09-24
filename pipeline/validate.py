@@ -168,6 +168,16 @@ def run():
           AND (h.ticker GLOB '*-P' OR h.ticker GLOB '*-P[A-Z]' OR h.ticker GLOB '*-P[A-Z][A-Z]')""")
     if n: fails.append(f"fund_13f_holdings: {n} COMMON lines (>$10M) carry a preferred ticker")
 
+    # I8h. Liveness: a ticker FMP priced as trading ON OR AFTER the day it was
+    #      flagged dead is not dead. Yahoo throttling once flagged 1,052 live
+    #      names (PG&E, CRH, TKO...), classing each 'delisted' out of every pick.
+    try:
+        n = one("""SELECT COUNT(*) FROM yf_dead d JOIN ticker_yf y ON y.ticker = d.ticker
+            WHERE y.src = 'fmp' AND y.price > 0 AND y.asof >= d.asof""")
+        if n: fails.append(f"yf_dead: {n} tickers FMP prices as trading are flagged dead")
+    except sqlite3.OperationalError:
+        pass
+
     # I8. feed freshness: warn when the tradeable-signal feeds fall behind.
     for tbl, col, days in [('form4_transactions','trans_date',21), ('holder_13d','filed',30),
                            ('catalysts_8k','filed',30), ('ticker_yf','asof',21)]:

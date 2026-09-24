@@ -1184,24 +1184,32 @@ def sheet_all_holdings_consolidated(wb, conn):
     """
     ws = wb.create_sheet("All Positions")
     ws.sheet_view.showGridLines = False
-    hdr = ["Fund","Ticker","Source","Value $M","%Book","Section","Activist %","Mcap","Bucket","EV/EBITDA","P/B"]
+    hdr = ["Fund","Ticker","Source","Value $M","%Book","Section","Activist %","Mcap","Bucket","EV/EBITDA","P/B","Issuer (as filed)"]
     write_table_header(ws, 4, hdr)
+    # EVERY 13F line, mapped or not: ETF / fund lines carry no ticker on the
+    # holdings (they stay out of stock signals by design) but are real
+    # positions — shown with the CUSIP map's ticker and a fund label; lines no
+    # source can map still appear under the filer's own issuer name.
     rows = list(conn.execute("""
-        SELECT h.fund, h.ticker, '13F-HR' AS source,
+        SELECT h.fund, COALESCE(h.ticker, cm.ticker) AS ticker,
+               CASE WHEN h.ticker IS NULL AND cm.sec_type = 'etf' THEN '13F-HR (fund/ETF)'
+                    WHEN COALESCE(h.ticker, cm.ticker) IS NULL THEN '13F-HR (unmapped)'
+                    ELSE '13F-HR' END AS source,
                h.value_k/1000.0 AS value_m,
                h.pct_book, NULL AS section,
                NULL AS act_pct,
-               us.mcap_m, us.mcap_bucket, us.ev_ebitda, us.pb_ratio
+               us.mcap_m, us.mcap_bucket, us.ev_ebitda, us.pb_ratio, h.issuer
         FROM fund_13f_holdings h
+        LEFT JOIN cusip_map cm ON cm.cusip = h.cusip
         LEFT JOIN unified_signal us ON us.ticker = h.ticker
-        WHERE h.ticker IS NOT NULL
+        WHERE h.value_k > 0 OR h.shares > 0
         UNION ALL
         SELECT fp.fund, fp.ticker, 'XLSX' AS source,
                fp.dollar_m AS value_m,
                fp.pct_value AS pct_book,
                fp.section,
                us.activist_max_pct,
-               us.mcap_m, us.mcap_bucket, us.ev_ebitda, us.pb_ratio
+               us.mcap_m, us.mcap_bucket, us.ev_ebitda, us.pb_ratio, NULL
         FROM fund_positions fp
         LEFT JOIN unified_signal us ON us.ticker = fp.ticker
         WHERE fp.ticker IS NOT NULL
@@ -1212,7 +1220,7 @@ def sheet_all_holdings_consolidated(wb, conn):
                h.pct_class AS pct_book,
                NULL AS section,
                us.activist_max_pct,
-               us.mcap_m, us.mcap_bucket, us.ev_ebitda, us.pb_ratio
+               us.mcap_m, us.mcap_bucket, us.ev_ebitda, us.pb_ratio, h.subject_name
         FROM holder_13d h
         LEFT JOIN unified_signal us ON us.ticker = h.subject_ticker
         WHERE h.subject_ticker IS NOT NULL AND h.pct_class >= 5
@@ -1229,7 +1237,8 @@ def sheet_all_holdings_consolidated(wb, conn):
         rows = rows[:CAP]
     write_title(ws, "All Fund Positions — consolidated view",
                 f"Every disclosed position: 13F-HR + fund_positions (all sections) + 13D/G (≥5%). "
-                f"{len(rows):,} rows across {n_funds} funds — complete, no per-fund cap.", 11)
+                f"{len(rows):,} rows across {n_funds} funds — complete, no per-fund cap. "
+                f"ETF/fund and unmapped 13F lines included and labelled in Source.", 12)
     out = []
     for r in rows:
         out.append([(r[0] or "")[:45], r[1] or "", r[2],
@@ -1239,7 +1248,8 @@ def sheet_all_holdings_consolidated(wb, conn):
                     round(r[6] or 0, 1) if r[6] else "",
                     r[7] or "", r[8] or "",
                     round(r[9], 1) if r[9] is not None else "",
-                    round(r[10], 2) if r[10] is not None else ""])
+                    round(r[10], 2) if r[10] is not None else "",
+                    r[11] or ""])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=4).number_format = NUMFMT_M_TO_B
