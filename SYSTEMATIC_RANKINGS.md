@@ -178,7 +178,7 @@ Use this to deploy systematically by mandate.
 | 7 | COLB | 64.7 | A | gov 15 | buyback SHRINKING_NO_AUTH -3.2% | 10b5-1 term_sell +33 | Form144 +0 |
 | 8 | POOL | 64.3 | A | +10 PSU.fda_phase_milestone | buyback SHRINKING_NO_AUTH -4.5% | F4 cluster 5 / $7.7M | Form144 +0 |
 | 9 | NUS | 62.1 | B | PSU core 52; +12 PSU.asset_sale_named | P/B 0.42 | buyback SHRINKING_NO_AUTH -1.9% | 10b5-1 adopt_sell -32 |
-| 10 | HTT | 59.2 | B | P/B 0.22 | buyback SHRINKING_NO_AUTH -18.0% | tender SELF_TENDER |
+| 10 | DXC | 59.2 | A | PSU%LTI=85 | P/B 0.57 | buyback SHRINKING_NO_AUTH -9.4% | F4 cluster 1 / $0.2M | Form144 +0 |
 
 ### Live ISSUER SELF-TENDER
 | Rank | Ticker | Norm | Tier | Reasons |
@@ -186,8 +186,8 @@ Use this to deploy systematically by mandate.
 | 1 | GETY | 94.4 | A | P/B 0.21; DD 93%; microcap | buyback NO_AUTH +1.0% | tender SELF_TENDER | 10b5-1 term_sell +74 |
 | 2 | GPUS | 84.2 | A | P/B 0.14; DD 95%; microcap | buyback ANOMALY_REVIEW +138.0% | tender SELF_TENDER | 10b5-1 term_sell +20 |
 | 3 | LEN | 77.5 | B | +12 PSU.revenue_dollar_target; gov 15 | P/B 0.95 | tender SELF_TENDER |
-| 4 | MRNA | 66.1 | B | tender SELF_TENDER | 10b5-1 term_sell +13 |
-| 5 | SVRN | 66.1 | B | P/B 0.40; microcap | tender SELF_TENDER |
+| 4 | SVRN | 66.1 | B | P/B 0.40; microcap | tender SELF_TENDER |
+| 5 | MRNA | 66.1 | B | tender SELF_TENDER | 10b5-1 term_sell +13 |
 | 6 | WTM | 61.8 | B | gov 16 | P/B 0.95 | tender SELF_TENDER |
 | 7 | HTT | 59.2 | B | P/B 0.22 | buyback SHRINKING_NO_AUTH -18.0% | tender SELF_TENDER |
 | 8 | MLCI | 55.1 | A | P/B 0.59; microcap | buyback SHRINKING_NO_AUTH -11.1% | tender SELF_TENDER |
@@ -219,8 +219,8 @@ Use this to deploy systematically by mandate.
 | 6 | KW | 23.4 | A | 13E-3 going-private | Form144 +0 |
 | 7 | KORE | 19.8 | B | 13E-3 going-private |
 | 8 | IHS | 19.8 | B | 13E-3 going-private |
-| 9 | ELPC | 19.8 | B | 13E-3 going-private |
-| 10 | LSBWF | 19.8 | B | 13E-3 going-private | Form144 +0 |
+| 9 | LSBWF | 19.8 | B | 13E-3 going-private | Form144 +0 |
+| 10 | ELPC | 19.8 | B | 13E-3 going-private |
 
 ### CEO/Chair 10b5-1 sell-plan termination (score >= 30)
 | Rank | Ticker | Norm | Tier | Reasons |
@@ -333,8 +333,8 @@ Best single-layer score in each dimension. Use when deploying a single-signal ma
 | 3 | LEN | 25.0 | 77.5 | B | +12 PSU.revenue_dollar_target; gov 15 | P/B 0.95 | tender SELF_TENDER |
 | 4 | DXLG | 25.0 | 71.3 | A | gov 15 | P/B 0.32; microcap | tender TARGET | Form144 +0 |
 | 5 | LE | 25.0 | 70.9 | A | gov 15 | P/B 0.65 | tender TARGET | Form144 +0 |
-| 6 | MRNA | 25.0 | 66.1 | B | tender SELF_TENDER | 10b5-1 term_sell +13 |
-| 7 | SVRN | 25.0 | 66.1 | B | P/B 0.40; microcap | tender SELF_TENDER |
+| 6 | SVRN | 25.0 | 66.1 | B | P/B 0.40; microcap | tender SELF_TENDER |
+| 7 | MRNA | 25.0 | 66.1 | B | tender SELF_TENDER | 10b5-1 term_sell +13 |
 | 8 | WTM | 25.0 | 61.8 | B | gov 16 | P/B 0.95 | tender SELF_TENDER |
 | 9 | HTT | 25.0 | 59.2 | B | P/B 0.22 | buyback SHRINKING_NO_AUTH -18.0% | tender SELF_TENDER |
 | 10 | MLCI | 25.0 | 55.1 | A | P/B 0.59; microcap | buyback SHRINKING_NO_AUTH -11.1% | tender SELF_TENDER |
@@ -395,8 +395,8 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 | 14 | LCID | 63.9 | 6 | +10 PSU.spin_separation | P/B 0.71; DD 84% | buyback NO_AUTH +27.0% | 10b5-1 term_sell +31 | Form144 +0 |
 | 15 | EG | 62.9 | 6 | P/B 0.96 | buyback EXECUTING -5.7% | 10b5-1 term_sell +30 | Form144 +0 |
 | 16 | CSGP | 60.7 | 6 | +12 PSU.ebitda_dollar_target | buyback EXECUTING -3.6% | Form144 +0 |
-| 17 | LW | 60.4 | 6 | PSU core 51; gov 23 | buyback NO_AUTH -0.9% | F4 cluster 4 / $17.0M | Form144 +0 |
-| 18 | IDCC | 60.4 | 6 | +12 PSU.ebitda_dollar_target; +12 PSU.revenue_dollar_target | buyback NO_AUTH +0.4% | 10b5-1 term_sell +18 | Form144 +0 |
+| 17 | IDCC | 60.4 | 6 | +12 PSU.ebitda_dollar_target; +12 PSU.revenue_dollar_target | buyback NO_AUTH +0.4% | 10b5-1 term_sell +18 | Form144 +0 |
+| 18 | LW | 60.4 | 6 | PSU core 51; gov 23 | buyback NO_AUTH -0.9% | F4 cluster 4 / $17.0M | Form144 +0 |
 | 19 | DXC | 59.2 | 6 | PSU%LTI=85 | P/B 0.57 | buyback SHRINKING_NO_AUTH -9.4% | F4 cluster 1 / $0.2M | Form144 +0 |
 | 20 | NSP | 58.3 | 6 | +12 PSU.ebitda_dollar_target | buyback NO_AUTH +1.3% | F4 cluster 4 / $7.8M | Form144 +0 |
 
@@ -420,33 +420,33 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 | 15 | XELLL | 68.8 | 4 | P/B 0.63 | 10b5-1 term_sell +56 |
 | 16 | INBS | 68.6 | 5 | P/B 0.13; DD 93%; microcap | buyback ANOMALY_REVIEW +163.5% | 10b5-1 term_sell +72 |
 | 17 | WHR | 68.1 | 4 | +10 PSU.operating_margin_target; gov 16 | P/B 0.55 |
-| 18 | MRNA | 66.1 | 5 | tender SELF_TENDER | 10b5-1 term_sell +13 |
-| 19 | SVRN | 66.1 | 4 | P/B 0.40; microcap | tender SELF_TENDER |
+| 18 | SVRN | 66.1 | 4 | P/B 0.40; microcap | tender SELF_TENDER |
+| 19 | MRNA | 66.1 | 5 | tender SELF_TENDER | 10b5-1 term_sell +13 |
 | 20 | PGNY | 66.1 | 4 | +12 PSU.ebitda_dollar_target; +12 PSU.revenue_dollar_target | 10b5-1 term_sell +20 |
 
 ### Top 20 in Tier C
 | Rank | Ticker | Norm | Layers | Reasons |
 |---:|---|--:|--:|---|
-| 1 | RVSN | 50.4 | 3 | P/B 0.44; DD 100%; microcap |
+| 1 | HCAI | 50.4 | 3 | P/B 0.11; DD 98%; microcap |
 | 2 | FMFC | 50.4 | 3 | P/B 0.45; DD 99%; microcap |
-| 3 | MTEN | 50.4 | 3 | P/B 0.32; DD 100%; microcap |
-| 4 | MRNO | 50.4 | 3 | P/B 0.15; DD 91%; microcap |
-| 5 | NTCL | 50.4 | 3 | P/B 0.19; DD 99%; microcap |
-| 6 | LXEH | 50.4 | 3 | P/B 0.14; DD 95%; microcap |
-| 7 | HCAI | 50.4 | 3 | P/B 0.11; DD 98%; microcap |
-| 8 | OMH | 50.4 | 3 | P/B 0.45; DD 98%; microcap |
-| 9 | WCT | 50.4 | 3 | P/B 0.39; DD 93%; microcap |
-| 10 | JYD | 50.4 | 3 | P/B 0.21; DD 88%; microcap |
-| 11 | RDHL | 50.4 | 3 | P/B 0.40; DD 81%; microcap |
-| 12 | XCH | 50.4 | 3 | P/B 0.49; DD 94%; microcap |
-| 13 | GAUZ | 50.4 | 3 | P/B 0.34; DD 95%; microcap |
-| 14 | WYHG | 50.4 | 3 | P/B 0.29; DD 84%; microcap |
-| 15 | PAVS | 50.4 | 3 | P/B 0.11; DD 100%; microcap |
-| 16 | NCNA | 50.4 | 3 | P/B 0.21; DD 82%; microcap |
-| 17 | DXF | 50.4 | 3 | P/B 0.11; DD 93%; microcap |
-| 18 | SVRE | 50.4 | 3 | P/B 0.11; DD 89%; microcap |
-| 19 | SRXH | 50.4 | 3 | P/B 0.12; DD 96%; microcap |
-| 20 | EHGO | 50.4 | 3 | P/B 0.16; DD 92%; microcap |
+| 3 | XCH | 50.4 | 3 | P/B 0.49; DD 94%; microcap |
+| 4 | NVX | 50.4 | 3 | P/B 0.40; DD 93%; microcap |
+| 5 | RVSN | 50.4 | 3 | P/B 0.44; DD 100%; microcap |
+| 6 | RITR | 50.4 | 3 | P/B 0.48; DD 99%; microcap |
+| 7 | NCNA | 50.4 | 3 | P/B 0.21; DD 82%; microcap |
+| 8 | TAOP | 50.4 | 3 | P/B 0.32; DD 81%; microcap |
+| 9 | DXF | 50.4 | 3 | P/B 0.11; DD 93%; microcap |
+| 10 | NTCL | 50.4 | 3 | P/B 0.19; DD 99%; microcap |
+| 11 | SCAG | 50.4 | 3 | P/B 0.34; DD 93%; microcap |
+| 12 | IZM | 50.4 | 3 | P/B 0.19; DD 91%; microcap |
+| 13 | OMH | 50.4 | 3 | P/B 0.45; DD 98%; microcap |
+| 14 | WCT | 50.4 | 3 | P/B 0.39; DD 93%; microcap |
+| 15 | DOGZ | 50.4 | 3 | P/B 0.14; DD 94%; microcap |
+| 16 | EHGO | 50.4 | 3 | P/B 0.16; DD 92%; microcap |
+| 17 | VSA | 50.4 | 3 | P/B 0.17; DD 100%; microcap |
+| 18 | MGN | 50.4 | 3 | P/B 0.17; DD 100%; microcap |
+| 19 | PAVS | 50.4 | 3 | P/B 0.11; DD 100%; microcap |
+| 20 | HKPD | 50.4 | 3 | P/B 0.26; DD 93%; microcap |
 
 
 ## 5. Caution list -- convergent names with red flags
@@ -462,8 +462,8 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 | MAT | discretionary hurdle, repricing language, retirement carveout |
 | LW | front-loaded grant, retirement carveout |
 | TROX | retirement carveout |
-| CMCO | discretionary hurdle, repricing language, retirement carveout |
 | FIS | repricing language |
+| CMCO | discretionary hurdle, repricing language, retirement carveout |
 | LE | retirement carveout |
 | SD | front-loaded grant |
 | OSUR | discretionary hurdle, repricing language, single-trigger CIC |

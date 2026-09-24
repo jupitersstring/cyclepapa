@@ -3411,10 +3411,10 @@
       },
       "governance_discount": {
         "p_b": 0.584,
-        "tier": "BUILDING",
+        "tier": "ACTION LIKELY",
         "families": [
           "ASSET_SALE",
-          "CALL_INTENT",
+          "CALL_COMMIT",
           "PAY_ON_VALUE",
           "SOP_DISSENT"
         ]
@@ -5199,6 +5199,30 @@
       }
     },
     "score": 16.3
+  },
+  "CION": {
+    "ticker": "CION",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 10.19,
+    "geometry_score": 24.9,
+    "downside_pct": 0.064,
+    "upside_pct": 0.655,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.535,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP"
+        ]
+      }
+    },
+    "score": 18.2
   },
   "MODD": {
     "ticker": "MODD",

@@ -319,9 +319,11 @@ def main() -> int:
         pct = bisect_right(ranked, p) / len(ranked)
         strong = any(v >= 0.9 for k, v in rec["families"].items() if k in
                      ("BUYBACK", "DIVIDEND_RETURN", "TENDER", "STRATEGIC_REVIEW", "MONETIZE"))
+        fresh = (date.today().toordinal() - d2o(rec["date"])) <= 200   # a stale call is not a current signal
         rec.update({"act_prob": round(p, 3), "act_pct": round(pct, 3),
                     "past_sh_chg": latest[t]["past_sh_chg"],
-                    "tier": ("ACT SIGNALLED" if pct >= 0.9 and (strong or rec["new_families"])
+                    "tier": ("" if not fresh else
+                             "ACT SIGNALLED" if pct >= 0.9 and (strong or rec["new_families"])
                              else "BUILDING" if pct >= 0.75 else "")})
         rec["score"] = round(p, 3) if rec["tier"] else 0.0
     INTENT_OUT.write_text(json.dumps(intent, indent=1))

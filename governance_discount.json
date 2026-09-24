@@ -909,7 +909,7 @@
         "pts": 7.0,
         "date": "2026-08-26",
         "source": "earnings call",
-        "detail": "\u201cIn the second quarter, we retired an additional $63 million of our long-term debt at a dis\u201d"
+        "detail": "\u201cUnder our existing $3 billion Board authorization, we are resuming our share repurchase pr\u201d"
       },
       "TURNAROUND_EXEC": {
         "pts": 6.0,
@@ -1331,8 +1331,8 @@
     "deep": false,
     "net_cash_frac": 1.715,
     "n_families": 3,
-    "n_hard": 0,
-    "tier": "BUILDING",
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
     "families": {
       "ASSET_SALE": {
         "pts": 5.0,
@@ -1352,14 +1352,14 @@
         "source": "DEF 14A",
         "detail": "say-on-pay 58%"
       },
-      "CALL_INTENT": {
-        "pts": 4.0,
+      "CALL_COMMIT": {
+        "pts": 7.0,
         "date": "2026-08-06",
         "source": "earnings call",
         "detail": "\u201cIn addition to business investments, we will evaluate stock buyback opportunities, includi\u201d"
       }
     },
-    "score": 25.8
+    "score": 28.8
   },
   "ARI": {
     "ticker": "ARI",
@@ -2458,6 +2458,33 @@
       }
     },
     "score": 14.0
+  },
+  "CION": {
+    "ticker": "CION",
+    "name": "CION Investment Corporation",
+    "sector": "Financial Services",
+    "p_b": 0.535,
+    "mcap": 356983654.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-08-06",
+        "source": "earnings call",
+        "detail": "\u201cTo that end, our Board has authorized a $15 million increase to our existing share repurch\u201d"
+      },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-08-06",
+        "source": "earnings call",
+        "detail": "\u201cWe continue to believe our stock is significantly undervalued relative to our NAV and we a\u201d"
+      }
+    },
+    "score": 17.0
   },
   "FSK": {
     "ticker": "FSK",

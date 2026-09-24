@@ -1673,8 +1673,8 @@ def build_political_trades(wb: Workbook, yf: dict):
         f"{m.get('n_trades', 0)} equity trades since {m.get('since')}; {m.get('n_resolved', 0)} "
         "with a full 6-month window. Sorted by distinct buying members, then size. Measured edge after disclosure: buys "
         f"{(be or 0):+.2%}, sells {(se or 0):+.2%} (shrunk means, excess vs SPY). Score = sum "
-        "over the last %s days of each trade's slice-implied excess return (pp), recency-"
-        "weighted; negative = the slices these trades fall in have lagged the market. See POLITICAL_TRADES_VALIDATION.md. Source: political_trades.py (FMP)." % m.get("window_days"), 8)
+        "over the last " + str(m.get("window_days")) + " days of each trade's slice-implied excess return (pp), recency-"
+        "weighted; negative = the slices these trades fall in have lagged the market. See POLITICAL_TRADES_VALIDATION.md. Source: political_trades.py (FMP).", 8)
     ws.sheet_view.showGridLines = False
     ws.freeze_panes = "A5"
 
