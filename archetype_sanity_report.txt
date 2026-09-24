@@ -14,4 +14,3 @@ NEAR-EMPTY COLUMNS (<2% coverage — legs almost never fire):
   SPARSE   seg_oplev                             1.52%
   SPARSE   assets_held_for_sale                  1.71%
   SPARSE   cheap_per_roiic_lindy                 1.76%
-  SPARSE   fmp_geo_em_share                      1.85%
