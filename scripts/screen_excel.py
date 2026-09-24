@@ -234,16 +234,28 @@ def web_validated_sheet(df: pd.DataFrame):
     return m[[c for c in cols if c in m.columns]].round(3)
 
 
-def mu_clusters_sheet():
+def mu_clusters_sheet(df):
     """Where the MU-style base+inflection setups concentrate — industries coiling
-    together (from data/base_inflection_clusters.csv)."""
-    p = config.DATA_DIR / "base_inflection_clusters.csv"
-    if not p.exists():
+    together. Computed from the live scored table (a stored CSV went stale when
+    the universe grew), and also written to data/base_inflection_clusters.csv."""
+    try:
+        mu = screens.base_inflection(df, top=None)
+    except Exception:
         return None
-    c = pd.read_csv(p).rename(columns={"n_setups": "setups", "n_universe": "universe",
-                                        "pct_coiled": "pct_coiled"})
-    keep = [x for x in ["industry", "setups", "universe", "pct_coiled"] if x in c.columns]
-    return c[keep].sort_values("setups", ascending=False).head(40).reset_index(drop=True)
+    if mu.empty:
+        return None
+    univ = screens.eligible(df).groupby("industry").size()
+    c = pd.DataFrame({"setups": mu.groupby("industry").size(), "universe": univ}).dropna()
+    c = c[c["universe"] >= 15]
+    c["pct_coiled"] = (100 * c["setups"] / c["universe"]).round(1)
+    c = c.sort_values("setups", ascending=False).reset_index().rename(columns={"index": "industry"})
+    c[["setups", "universe"]] = c[["setups", "universe"]].astype(int)
+    try:
+        c.rename(columns={"setups": "n_setups", "universe": "n_universe"}).to_csv(
+            config.DATA_DIR / "base_inflection_clusters.csv", index=False)
+    except OSError:
+        pass
+    return c[["industry", "setups", "universe", "pct_coiled"]].head(40)
 
 
 # 0..1 scores -> a teal in-cell data bar (the dashboard "meter"), so strength reads
@@ -442,7 +454,7 @@ def main():
         written.append(f"{title}({len(res)})")
 
     # MU-style clusters: where the base+inflection setups concentrate by industry.
-    mc = mu_clusters_sheet()
+    mc = mu_clusters_sheet(df)
     if mc is not None and not mc.empty:
         mc.to_excel(writer, sheet_name="MU Clusters", index=False, startrow=1, header=False)
         ws = writer.sheets["MU Clusters"]
