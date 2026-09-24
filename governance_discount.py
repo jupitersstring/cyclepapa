@@ -17,7 +17,8 @@ Gate:
      market cap >= $10M, positive book.
   2. RECENT GOVERNANCE CHANGE -- at least one HARD family (activist
      settlement / 13D, value committee or strategic review, capital-return
-     policy / tender, CEO change, turnaround executive) OR two+ families
+     policy / tender, CEO change, turnaround executive, or management
+     committing to a shareholder action on the latest earnings call) OR two+ families
      scoring >= 8 combined. Each signal is recency-weighted: <=6 months x1.0,
      6-12 months x0.8, 12-18 months x0.5, older ignored.
 Score = discount depth + recency-weighted family points + convergence
@@ -65,6 +66,12 @@ FAMILY = {
     "MDA_GOVERNANCE":      (3, False),   # MD&A governance-action language
     "MDA_CAPITAL":         (3, False),   # MD&A capital-policy language
     "MDA_UNLOCK":          (4, False),   # MD&A value-unlock language
+    # earnings-call language (call_intent*.py; out-of-time AUC ~0.67 for
+    # predicting buybacks / dividend step-ups / action 8-Ks, top decile ~1.9x)
+    "CALL_COMMIT":         (7, True),    # top-decile act probability + committed/new
+                                         # shareholder action stated on the call
+    "CALL_INTENT":         (4, False),   # top-quartile act probability
+    "CALL_VALUE_GAP":      (3, False),   # management says the stock is undervalued
 }
 # Near-universal families (PAY_ON_VALUE is in 63% of proxies) are CONTEXT:
 # they add a little score but are not evidence of a governance CHANGE, so they
@@ -131,6 +138,7 @@ def main() -> int:
     act = _load("activist_letter_feed.json")
     ev8k = _load("rerate_events_8k.json")
     mda = _load("mda_scan.json")
+    calls = _load("call_intent.json")
     voss = _load("voss_cic_triangulation.json")
     geo = _load("payoff_geometry.json")
     proxy = latest_proxy()
@@ -183,6 +191,24 @@ def main() -> int:
         sop = _num(p.get("say_on_pay_pct"))
         if sop is not None and sop < 80:
             add(tk, "SOP_DISSENT", d, "DEF 14A", f"say-on-pay {sop:.0f}%")
+    for tk, c in calls.items():
+        if not isinstance(c, dict):
+            continue
+        ev = c.get("evidence") or {}
+        def quote(fams):
+            for f in fams:
+                if ev.get(f):
+                    return f"“{ev[f][0]['q'][:90]}”"
+            return None
+        acts = [f for f in (c.get("new_families") or []) + sorted(c.get("families") or {},
+                key=lambda k: -(c["families"][k])) if f in
+                ("TENDER", "BUYBACK", "DIVIDEND_RETURN", "STRATEGIC_REVIEW", "MONETIZE")]
+        if c.get("tier") == "ACT SIGNALLED":
+            add(tk, "CALL_COMMIT", c.get("date"), "earnings call", quote(acts))
+        elif c.get("tier") == "BUILDING":
+            add(tk, "CALL_INTENT", c.get("date"), "earnings call", quote(acts))
+        if (c.get("families") or {}).get("VALUE_GAP", 0) >= 0.8:
+            add(tk, "CALL_VALUE_GAP", c.get("date"), "earnings call", quote(["VALUE_GAP"]))
     for tk, d in turn.items():
         add(tk, "TURNAROUND_EXEC", d, "8-K/proxy", "turnaround executive hired")
     for tk, v in voss.items():
@@ -190,7 +216,10 @@ def main() -> int:
             add(tk, "CIC_PREP", None, "DEF 14A", "change-in-control terms")
 
     out = {}
+    from universe_filter import is_excluded
     for tk, fams in sig.items():
+        if is_excluded(tk, (yq.get(tk) or {}).get("name"))[0]:
+            continue                                   # notes, preferreds, units, funds
         y = yq.get(tk) or {}
         pb, mcap = _num(y.get("p_b")), _num(y.get("mcap"))
         if pb is None or not (0.10 <= pb <= 0.70) or not mcap or mcap < 1e7:
@@ -214,7 +243,10 @@ def main() -> int:
             detail[fam] = {"pts": round(p, 1), "date": d, "source": src, "detail": det}
         if not detail:
             continue
-        n_real = sum(1 for f in detail if f not in CONTEXT)
+        # one earnings call is ONE source: its commitment + value-gap remarks
+        # count once toward convergence / corroboration
+        real = {("CALL" if f.startswith("CALL_") else f) for f in detail if f not in CONTEXT}
+        n_real = len(real)
         real_pts = sum(v["pts"] for f, v in detail.items() if f not in CONTEXT)
         if not (hard >= 1 or (n_real >= 2 and real_pts >= 8)):
             continue

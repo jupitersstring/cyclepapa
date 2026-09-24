@@ -64,4 +64,16 @@ def is_excluded(ticker: str, company: str | None = None) -> tuple[bool, str]:
         return True, "SPAC / blank-check name"
     if t.startswith("0001") or t.startswith("0000"):
         return True, "raw CIK (no public ticker)"
+    # exchange-listed debt / preferreds ("7.875% Notes due 2028", "JR SUB NT",
+    # "4.50% P"): their price is a bond's, so P/B / mcap screens are meaningless
+    if c and _DEBT_NAME.search(c):
+        return True, "listed note / preferred (by name)"
     return False, ""
+
+
+import re as _re
+_DEBT_NAME = _re.compile(
+    r"\bnotes?\b(?!.*\bholdings?\b)|\bdebentures?\b|\bjr\.? sub|\bsub(?:ordinated)? n(?:o)?tes?"
+    r"|\bsenior n(?:o)?tes?|\bnt\s*\d|\d(?:\.\d+)?\s?%\s*(?:p\b|pfd|pref|series|cum|fixed|notes?|sr|jr|sub|\d)"
+    r"|\d(?:\.\d+)?\s?%\s*$|\bpfd\b|\bpreferred (?:stock|shares|securities)|\bdepositary shares? (?:each|representing)"
+    r"|\bbaby bond|\b\d{1,2}-[a-z]{3}-20\d\d\b|\s-\s\d+(?:\.\d+)?\s*$", _re.I)

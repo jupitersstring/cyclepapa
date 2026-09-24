@@ -82,6 +82,12 @@ if [ "$DO_SCANS" = "1" ]; then
   run python3 rerate_events_8k.py            --days 270 || true
   run python3 rerate_catalysts.py            || true
   run python3 governance_events_8k.py        --days 450 || true
+  # earnings-call intent: transcripts -> linguistic features -> validated model
+  run python3 transcript_fetch.py            --n 10 || true
+  run python3 call_intent.py                 || true
+  run python3 call_intent_model.py           || true
+  # congressional trades (event-studied; workbook monitor, not a consensus layer)
+  run python3 political_trades.py            || true
   run python3 governance_discount.py         || true
   run python3 mechanism_gates.py             || true
   run python3 rerate_backtest.py             --start 2022-06-01 --end 2025-06-30 --cap 60 || true

@@ -46,7 +46,7 @@
     "mcap": 25819611.0,
     "deep": false,
     "net_cash_frac": 0.787,
-    "n_families": 3,
+    "n_families": 4,
     "n_hard": 1,
     "tier": "ACTION LIKELY",
     "families": {
@@ -67,9 +67,15 @@
         "date": "2026-05-14",
         "source": "MD&A",
         "detail": "value-unlock language"
+      },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-08-13",
+        "source": "earnings call",
+        "detail": "\u201cWe also continue to believe that our stock is undervalued and especially so based upon rec\u201d"
       }
     },
-    "score": 35.0
+    "score": 38.0
   },
   "MED": {
     "ticker": "MED",
@@ -367,7 +373,7 @@
     "mcap": 88004025.0,
     "deep": true,
     "net_cash_frac": 0.0,
-    "n_families": 2,
+    "n_families": 3,
     "n_hard": 2,
     "tier": "ACTION LIKELY",
     "families": {
@@ -382,9 +388,21 @@
         "date": "2026-05-08",
         "source": "8-K",
         "detail": "modified dutch auction"
+      },
+      "CALL_INTENT": {
+        "pts": 4.0,
+        "date": "2026-08-07",
+        "source": "earnings call",
+        "detail": "\u201cAnd then your second point, you know, your second point, we should be buying back stock.\u201d"
+      },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-08-07",
+        "source": "earnings call",
+        "detail": "\u201cWe just think our stock doesn't reflect what we think is fair market value.\u201d"
       }
     },
-    "score": 24.0
+    "score": 34.0
   },
   "BXMT": {
     "ticker": "BXMT",
@@ -781,7 +799,7 @@
     "mcap": 252032323.0,
     "deep": true,
     "net_cash_frac": 0.905,
-    "n_families": 2,
+    "n_families": 3,
     "n_hard": 0,
     "tier": "BUILDING",
     "families": {
@@ -802,9 +820,15 @@
         "date": "2026-04-03",
         "source": "DEF 14A",
         "detail": "PSU on tsr"
+      },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-08-10",
+        "source": "earnings call",
+        "detail": "\u201cIt's not reflecting in the stock price yet.\u201d"
       }
     },
-    "score": 26.8
+    "score": 32.8
   },
   "DCGO": {
     "ticker": "DCGO",
@@ -847,8 +871,8 @@
     "mcap": 2025891000.0,
     "deep": true,
     "net_cash_frac": 0.0,
-    "n_families": 6,
-    "n_hard": 1,
+    "n_families": 7,
+    "n_hard": 2,
     "tier": "ACTION LIKELY",
     "families": {
       "CHAIR_CEO_SPLIT": {
@@ -881,6 +905,12 @@
         "source": "DEF 14A",
         "detail": "say-on-pay 55%"
       },
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-08-26",
+        "source": "earnings call",
+        "detail": "\u201cIn the second quarter, we retired an additional $63 million of our long-term debt at a dis\u201d"
+      },
       "TURNAROUND_EXEC": {
         "pts": 6.0,
         "date": "2026-06-15",
@@ -894,7 +924,7 @@
         "detail": "change-in-control terms"
       }
     },
-    "score": 40.8
+    "score": 47.8
   },
   "ALIT": {
     "ticker": "ALIT",
@@ -1174,18 +1204,24 @@
     "mcap": 2713283953.0,
     "deep": false,
     "net_cash_frac": 0.0,
-    "n_families": 1,
+    "n_families": 2,
     "n_hard": 1,
-    "tier": "BUILDING",
+    "tier": "ACTION LIKELY",
     "families": {
       "CAPITAL_RETURN_POLICY": {
         "pts": 8.0,
         "date": "2026-09-11",
         "source": "8-K",
         "detail": "declared a special dividend"
+      },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-08-04",
+        "source": "earnings call",
+        "detail": "\u201cThis once again highlights the valuation disconnect we outlined on Page 4, with People Inc\u201d"
       }
     },
-    "score": 15.0
+    "score": 20.0
   },
   "THRY": {
     "ticker": "THRY",
@@ -1294,7 +1330,7 @@
     "mcap": 1463946905.0,
     "deep": false,
     "net_cash_frac": 1.715,
-    "n_families": 2,
+    "n_families": 3,
     "n_hard": 0,
     "tier": "BUILDING",
     "families": {
@@ -1315,9 +1351,15 @@
         "date": "2026-03-23",
         "source": "DEF 14A",
         "detail": "say-on-pay 58%"
+      },
+      "CALL_INTENT": {
+        "pts": 4.0,
+        "date": "2026-08-06",
+        "source": "earnings call",
+        "detail": "\u201cIn addition to business investments, we will evaluate stock buyback opportunities, includi\u201d"
       }
     },
-    "score": 18.8
+    "score": 25.8
   },
   "ARI": {
     "ticker": "ARI",
@@ -1327,8 +1369,8 @@
     "mcap": 829550835.0,
     "deep": false,
     "net_cash_frac": 0.0,
-    "n_families": 2,
-    "n_hard": 1,
+    "n_families": 3,
+    "n_hard": 2,
     "tier": "ACTION LIKELY",
     "families": {
       "ASSET_SALE": {
@@ -1342,9 +1384,15 @@
         "date": "2026-06-16",
         "source": "8-K",
         "detail": "review of strategic alternatives"
+      },
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-04-29",
+        "source": "earnings call",
+        "detail": "\u201cFollowing the quarter end, we repurchased an additional 3.9 million shares at a weighted a\u201d"
       }
     },
-    "score": 18.0
+    "score": 28.0
   },
   "BGS": {
     "ticker": "BGS",
@@ -1354,7 +1402,7 @@
     "mcap": 244718508.0,
     "deep": false,
     "net_cash_frac": 0.0,
-    "n_families": 3,
+    "n_families": 4,
     "n_hard": 1,
     "tier": "ACTION LIKELY",
     "families": {
@@ -1370,6 +1418,12 @@
         "source": "DEF 14A",
         "detail": "PSU on roic, tsr"
       },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-08-11",
+        "source": "earnings call",
+        "detail": "\u201cI think under the last 1 or 2 years of prior ownership, particularly leading up to the ban\u201d"
+      },
       "TURNAROUND_EXEC": {
         "pts": 6.0,
         "date": "2026-05-05",
@@ -1383,7 +1437,7 @@
         "detail": "change-in-control terms"
       }
     },
-    "score": 23.8
+    "score": 26.8
   },
   "LAB": {
     "ticker": "LAB",
@@ -1480,7 +1534,7 @@
     "mcap": 134572110.0,
     "deep": false,
     "net_cash_frac": 0.222,
-    "n_families": 2,
+    "n_families": 3,
     "n_hard": 1,
     "tier": "ACTION LIKELY",
     "families": {
@@ -1495,9 +1549,15 @@
         "date": "2026-05-07",
         "source": "MD&A",
         "detail": "value-unlock language"
+      },
+      "CALL_INTENT": {
+        "pts": 4.0,
+        "date": "2026-08-06",
+        "source": "earnings call",
+        "detail": "\u201cI would also like to highlight that we executed share repurchases during the second quarte\u201d"
       }
     },
-    "score": 18.0
+    "score": 25.0
   },
   "BCSF": {
     "ticker": "BCSF",
@@ -1615,7 +1675,7 @@
     "mcap": 265781053.0,
     "deep": true,
     "net_cash_frac": 0.0,
-    "n_families": 4,
+    "n_families": 5,
     "n_hard": 0,
     "tier": "BUILDING",
     "families": {
@@ -1643,6 +1703,12 @@
         "source": "DEF 14A",
         "detail": "say-on-pay 76%"
       },
+      "CALL_INTENT": {
+        "pts": 4.0,
+        "date": "2026-08-06",
+        "source": "earnings call",
+        "detail": "\u201cWe're excited to report we've completed the reverse asset sale to Finance of America, as w\u201d"
+      },
       "CIC_PREP": {
         "pts": 1.8,
         "date": null,
@@ -1650,7 +1716,7 @@
         "detail": "change-in-control terms"
       }
     },
-    "score": 27.8
+    "score": 31.8
   },
   "LE": {
     "ticker": "LE",
@@ -1660,7 +1726,7 @@
     "mcap": 318167973.0,
     "deep": false,
     "net_cash_frac": 0.073,
-    "n_families": 3,
+    "n_families": 4,
     "n_hard": 1,
     "tier": "ACTION LIKELY",
     "families": {
@@ -1682,6 +1748,12 @@
         "source": "DEF 14A",
         "detail": "PSU on roic, tsr"
       },
+      "CALL_INTENT": {
+        "pts": 4.0,
+        "date": "2026-09-03",
+        "source": "earnings call",
+        "detail": "\u201cAs a reminder, in conjunction with the April 1 closing of the WHP Global transaction, our \u201d"
+      },
       "CIC_PREP": {
         "pts": 1.8,
         "date": null,
@@ -1689,7 +1761,7 @@
         "detail": "change-in-control terms"
       }
     },
-    "score": 22.4
+    "score": 26.4
   },
   "MLCI": {
     "ticker": "MLCI",
@@ -1699,18 +1771,24 @@
     "mcap": 35580282.0,
     "deep": false,
     "net_cash_frac": 0.0,
-    "n_families": 1,
+    "n_families": 2,
     "n_hard": 1,
-    "tier": "BUILDING",
+    "tier": "ACTION LIKELY",
     "families": {
       "TENDER_OFFER": {
         "pts": 5.6,
         "date": "2025-12-29",
         "source": "8-K",
         "detail": "tender offer to purchase"
+      },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-08-12",
+        "source": "earnings call",
+        "detail": "\u201cSo I you know, again, I think our stock does not reflect fair market value.\u201d"
       }
     },
-    "score": 9.6
+    "score": 14.6
   },
   "ARE": {
     "ticker": "ARE",
@@ -1792,15 +1870,21 @@
     "mcap": 4700564125.0,
     "deep": false,
     "net_cash_frac": 0.0,
-    "n_families": 1,
-    "n_hard": 1,
-    "tier": "BUILDING",
+    "n_families": 2,
+    "n_hard": 2,
+    "tier": "ACTION LIKELY",
     "families": {
       "PAY_ON_VALUE": {
         "pts": 2.0,
         "date": "2026-04-23",
         "source": "DEF 14A",
         "detail": "PSU on tsr"
+      },
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-08-06",
+        "source": "earnings call",
+        "detail": "\u201cDemonstrating our commitment to returning capital to shareholders, we repurchased $100 mil\u201d"
       },
       "TURNAROUND_EXEC": {
         "pts": 4.8,
@@ -1809,7 +1893,7 @@
         "detail": "turnaround executive hired"
       }
     },
-    "score": 10.8
+    "score": 19.8
   },
   "GIII": {
     "ticker": "GIII",
@@ -1852,15 +1936,27 @@
     "mcap": 3135767597.0,
     "deep": false,
     "net_cash_frac": 0.0,
-    "n_families": 1,
-    "n_hard": 1,
-    "tier": "BUILDING",
+    "n_families": 2,
+    "n_hard": 2,
+    "tier": "ACTION LIKELY",
     "families": {
       "PAY_ON_VALUE": {
         "pts": 2.0,
         "date": "2026-04-01",
         "source": "DEF 14A",
         "detail": "PSU on eps, tsr"
+      },
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-08-06",
+        "source": "earnings call",
+        "detail": "\u201cDuring the second quarter, we repurchased approximately 3.5 million shares at an average p\u201d"
+      },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-08-06",
+        "source": "earnings call",
+        "detail": "\u201cWe continue to believe that our stock price is trading at a significant discount to net as\u201d"
       },
       "TURNAROUND_EXEC": {
         "pts": 4.8,
@@ -1869,7 +1965,34 @@
         "detail": "turnaround executive hired"
       }
     },
-    "score": 10.8
+    "score": 22.8
+  },
+  "AGO": {
+    "ticker": "AGO",
+    "name": "Assured Guaranty Ltd.",
+    "sector": "Financial Services",
+    "p_b": 0.563,
+    "mcap": 3130772750.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "PAY_ON_VALUE": {
+        "pts": 1.6,
+        "date": "2026-03-18",
+        "source": "DEF 14A",
+        "detail": "PSU on other_per_share, roe, tsr"
+      },
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-08-07",
+        "source": "earnings call",
+        "detail": "\u201cIn the second quarter of 2026, we repurchased 554,000 shares for $45 million at an average\u201d"
+      }
+    },
+    "score": 12.6
   },
   "ARQ": {
     "ticker": "ARQ",
@@ -1963,6 +2086,762 @@
       }
     },
     "score": 22.0
+  },
+  "BHF": {
+    "ticker": "BHF",
+    "name": "Brighthouse Financial, Inc.",
+    "sector": "Financial Services",
+    "p_b": 0.459,
+    "mcap": 3004701784.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 2,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-14",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "CALL_COMMIT": {
+        "pts": 3.5,
+        "date": "2025-08-08",
+        "source": "earnings call",
+        "detail": "\u201cSince we began our common stock repurchase program in August of 2018, we have repurchased \u201d"
+      },
+      "CIC_PREP": {
+        "pts": 1.8,
+        "date": null,
+        "source": "DEF 14A",
+        "detail": "change-in-control terms"
+      }
+    },
+    "score": 16.3
+  },
+  "BHFAL": {
+    "ticker": "BHFAL",
+    "name": "Brighthouse Financial, Inc.",
+    "sector": "Financial Services",
+    "p_b": 0.544,
+    "mcap": 3562002775.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-14",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "CALL_COMMIT": {
+        "pts": 3.5,
+        "date": "2025-08-08",
+        "source": "earnings call",
+        "detail": "\u201cSince we began our common stock repurchase program in August of 2018, we have repurchased \u201d"
+      }
+    },
+    "score": 12.5
+  },
+  "BHFAM": {
+    "ticker": "BHFAM",
+    "name": "Brighthouse Financial, Inc.",
+    "sector": "Financial Services",
+    "p_b": 0.553,
+    "mcap": 3621249891.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-14",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "CALL_COMMIT": {
+        "pts": 3.5,
+        "date": "2025-08-08",
+        "source": "earnings call",
+        "detail": "\u201cSince we began our common stock repurchase program in August of 2018, we have repurchased \u201d"
+      }
+    },
+    "score": 9.5
+  },
+  "BHFAN": {
+    "ticker": "BHFAN",
+    "name": "Brighthouse Financial, Inc.",
+    "sector": "Financial Services",
+    "p_b": 0.561,
+    "mcap": 3673741246.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-14",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "CALL_COMMIT": {
+        "pts": 3.5,
+        "date": "2025-08-08",
+        "source": "earnings call",
+        "detail": "\u201cSince we began our common stock repurchase program in August of 2018, we have repurchased \u201d"
+      }
+    },
+    "score": 9.5
+  },
+  "BHFAO": {
+    "ticker": "BHFAO",
+    "name": "Brighthouse Financial, Inc.",
+    "sector": "Financial Services",
+    "p_b": 0.553,
+    "mcap": 3624328272.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-14",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "CALL_COMMIT": {
+        "pts": 3.5,
+        "date": "2025-08-08",
+        "source": "earnings call",
+        "detail": "\u201cSince we began our common stock repurchase program in August of 2018, we have repurchased \u201d"
+      }
+    },
+    "score": 9.5
+  },
+  "BHFAP": {
+    "ticker": "BHFAP",
+    "name": "Brighthouse Financial, Inc.",
+    "sector": "Financial Services",
+    "p_b": 0.357,
+    "mcap": 2341219140.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-14",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "CALL_COMMIT": {
+        "pts": 3.5,
+        "date": "2025-08-08",
+        "source": "earnings call",
+        "detail": "\u201cSince we began our common stock repurchase program in August of 2018, we have repurchased \u201d"
+      }
+    },
+    "score": 15.5
+  },
+  "CCS": {
+    "ticker": "CCS",
+    "name": "Century Communities, Inc.",
+    "sector": "Consumer Cyclical",
+    "p_b": 0.692,
+    "mcap": 1776203263.0,
+    "deep": false,
+    "net_cash_frac": 0.044,
+    "n_families": 2,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "PROXY_RESPONSIVE": {
+        "pts": 4.0,
+        "date": "2026-03-25",
+        "source": "DEF 14A",
+        "detail": "responsive_to_shareholders"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-03-25",
+        "source": "DEF 14A",
+        "detail": "PSU on other_per_share, tsr"
+      },
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-07-22",
+        "source": "earnings call",
+        "detail": "\u201cThrough the first 6 months of the year, we have repurchased 970,000 shares of our common s\u201d"
+      },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-07-22",
+        "source": "earnings call",
+        "detail": "\u201cDuring the quarter, we maintained our quarterly cash dividend of $0.32 per share and repur\u201d"
+      }
+    },
+    "score": 22.0
+  },
+  "CCZ": {
+    "ticker": "CCZ",
+    "name": "Comcast Holdings Corp.",
+    "sector": "Communication Services",
+    "p_b": 0.175,
+    "mcap": 15715279955.0,
+    "deep": true,
+    "net_cash_frac": 0.602,
+    "n_families": 2,
+    "n_hard": 0,
+    "tier": "BUILDING",
+    "families": {
+      "PROXY_RESPONSIVE": {
+        "pts": 4.0,
+        "date": "2026-04-24",
+        "source": "DEF 14A",
+        "detail": "responsive_to_shareholders"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-24",
+        "source": "DEF 14A",
+        "detail": "PSU on eps, roic, tsr"
+      },
+      "CALL_INTENT": {
+        "pts": 4.0,
+        "date": "2026-07-23",
+        "source": "earnings call",
+        "detail": "\u201cThis quarter, we returned $2.1 billion to shareholders, including $900 million in share re\u201d"
+      }
+    },
+    "score": 25.0
+  },
+  "FG": {
+    "ticker": "FG",
+    "name": "F&G Annuities & Life, Inc.",
+    "sector": "Financial Services",
+    "p_b": 0.626,
+    "mcap": 2887510357.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-30",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-08-06",
+        "source": "earnings call",
+        "detail": "\u201cFor the first 6 months, our capital self-funded the following: $75 million of common and p\u201d"
+      },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-08-06",
+        "source": "earnings call",
+        "detail": "\u201cTaken together, we believe a sum of the parts framework reveals meaningful value that is n\u201d"
+      }
+    },
+    "score": 16.0
+  },
+  "MFIN": {
+    "ticker": "MFIN",
+    "name": "Medallion Financial Corp.",
+    "sector": "Financial Services",
+    "p_b": 0.661,
+    "mcap": 268454011.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "PAY_ON_VALUE": {
+        "pts": 1.0,
+        "date": "2025-04-30",
+        "source": "DEF 14A",
+        "detail": "PSU on eps, roe, tsr"
+      },
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-07-30",
+        "source": "earnings call",
+        "detail": "\u201cWe also bought back nearly 780,000 shares of stock during the quarter, which we were able \u201d"
+      },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-07-30",
+        "source": "earnings call",
+        "detail": "\u201cWe also bought back nearly 780,000 shares of stock during the quarter, which we were able \u201d"
+      }
+    },
+    "score": 15.0
+  },
+  "STRR": {
+    "ticker": "STRR",
+    "name": "Star Equity Holdings, Inc.",
+    "sector": "Industrials",
+    "p_b": 0.629,
+    "mcap": 37587201.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 2,
+    "n_hard": 0,
+    "tier": "BUILDING",
+    "families": {
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-30",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "CALL_INTENT": {
+        "pts": 4.0,
+        "date": "2026-08-14",
+        "source": "earnings call",
+        "detail": "\u201cWe repurchased about $0.2 million in Q2 and we have $1.6 million remaining on our authoriz\u201d"
+      },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-08-14",
+        "source": "earnings call",
+        "detail": "\u201cWe continue to believe our stock is undervalued, and we view share repurchases as a very a\u201d"
+      },
+      "CIC_PREP": {
+        "pts": 1.8,
+        "date": null,
+        "source": "DEF 14A",
+        "detail": "change-in-control terms"
+      }
+    },
+    "score": 16.8
+  },
+  "CAN": {
+    "ticker": "CAN",
+    "name": "Canaan Inc.",
+    "sector": "Technology",
+    "p_b": 0.621,
+    "mcap": 181885085.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-09-08",
+        "source": "earnings call",
+        "detail": "\u201cJames will provide more details on the execution of digital assets monetization and the bu\u201d"
+      },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-09-08",
+        "source": "earnings call",
+        "detail": "\u201cWe believe that the current share price meaningfully undervalues the company while retaini\u201d"
+      }
+    },
+    "score": 14.0
+  },
+  "FSK": {
+    "ticker": "FSK",
+    "name": "FS KKR Capital Corp.",
+    "sector": "Financial Services",
+    "p_b": 0.593,
+    "mcap": 3124141060.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-08-06",
+        "source": "earnings call",
+        "detail": "\u201cDuring the second quarter, we repurchased approximately 377,800 shares of FSK's common sto\u201d"
+      }
+    },
+    "score": 11.0
+  },
+  "GNW": {
+    "ticker": "GNW",
+    "name": "Genworth Financial, Inc.",
+    "sector": "Financial Services",
+    "p_b": 0.422,
+    "mcap": 3686464089.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-08-06",
+        "source": "earnings call",
+        "detail": "\u201cDuring the quarter, we repurchased $62 million of shares at an average price of $8.74 per \u201d"
+      },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-08-06",
+        "source": "earnings call",
+        "detail": "\u201cWe will continue to invest in long term growth through CareScout, return cash to sharehold\u201d"
+      }
+    },
+    "score": 17.0
+  },
+  "HRZN": {
+    "ticker": "HRZN",
+    "name": "Horizon Technology Finance Corporation",
+    "sector": "Financial Services",
+    "p_b": 0.554,
+    "mcap": 231127567.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-08-05",
+        "source": "earnings call",
+        "detail": "\u201cIn addition, on August 3, 2026, our Board increased the amount of common stock that may be\u201d"
+      }
+    },
+    "score": 11.0
+  },
+  "HTFC": {
+    "ticker": "HTFC",
+    "name": "Horizon Technology Finance Corp",
+    "sector": "Financial Services",
+    "p_b": 0.55,
+    "mcap": 229632623.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-08-05",
+        "source": "earnings call",
+        "detail": "\u201cIn addition, on August 3, 2026, our Board increased the amount of common stock that may be\u201d"
+      }
+    },
+    "score": 11.0
+  },
+  "JOYY": {
+    "ticker": "JOYY",
+    "name": "JOYY, Inc. Sponsored ADR Class A",
+    "sector": "Communication Services",
+    "p_b": 0.643,
+    "mcap": 4150067975.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-08-25",
+        "source": "earnings call",
+        "detail": "\u201cWe have repurchased a cumulative total of $216 million, maintaining an accelerated buyback\u201d"
+      },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-08-25",
+        "source": "earnings call",
+        "detail": "\u201cGiven our strong operating momentum and the long-term prospects, we believe our current sh\u201d"
+      }
+    },
+    "score": 14.0
+  },
+  "KREF": {
+    "ticker": "KREF",
+    "name": "KKR Real Estate Finance Trust Inc.",
+    "sector": "Real Estate",
+    "p_b": 0.437,
+    "mcap": 407021640.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-07-22",
+        "source": "earnings call",
+        "detail": "\u201cThis process will be led by a strategic review committee composed solely of the Board's in\u201d"
+      }
+    },
+    "score": 14.0
+  },
+  "MFIC": {
+    "ticker": "MFIC",
+    "name": "MidCap Financial Investment Corporation",
+    "sector": "Financial Services",
+    "p_b": 0.671,
+    "mcap": 739351997.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-08-06",
+        "source": "earnings call",
+        "detail": "\u201cAs discussed on last quarter's call in April, we repurchased $31.9 million of stock throug\u201d"
+      },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-08-06",
+        "source": "earnings call",
+        "detail": "\u201cThe $0.45 decrease in NAV was driven by a net loss of $0.61 on the portfolio, which was pa\u201d"
+      }
+    },
+    "score": 14.0
+  },
+  "NMM": {
+    "ticker": "NMM",
+    "name": "Navios Maritime Partners L.P.",
+    "sector": "Industrials",
+    "p_b": 0.694,
+    "mcap": 2493407613.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-08-20",
+        "source": "earnings call",
+        "detail": "\u201cSince the current program began in the second quarter of 2024, the company has repurchased\u201d"
+      },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-08-20",
+        "source": "earnings call",
+        "detail": "\u201cWe view this program as an important tool for creating value for our common unitholders, p\u201d"
+      }
+    },
+    "score": 14.0
+  },
+  "OTF": {
+    "ticker": "OTF",
+    "name": "Blue Owl Technology Finance Corp.",
+    "sector": "Financial Services",
+    "p_b": 0.636,
+    "mcap": 4792973233.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-08-06",
+        "source": "earnings call",
+        "detail": "\u201cWe repurchased over $55 million of stock over the quarter, bringing total repurchases over\u201d"
+      },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-08-06",
+        "source": "earnings call",
+        "detail": "\u201cDespite this progress, we recognize that OTF's market valuation has not reflected the unde\u201d"
+      }
+    },
+    "score": 14.0
+  },
+  "RWAY": {
+    "ticker": "RWAY",
+    "name": "Runway Growth Finance Corp.",
+    "sector": "Financial Services",
+    "p_b": 0.571,
+    "mcap": 286848008.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-08-07",
+        "source": "earnings call",
+        "detail": "\u201cOnce our trading blackout period ends on August 11, we will be able to execute a new Rule \u201d"
+      },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-08-07",
+        "source": "earnings call",
+        "detail": "\u201cIn Runway's case, we believe our share price materially undervalues the fundamentals of ou\u201d"
+      }
+    },
+    "score": 14.0
+  },
+  "SEER": {
+    "ticker": "SEER",
+    "name": "Seer, Inc.",
+    "sector": "Healthcare",
+    "p_b": 0.443,
+    "mcap": 100066423.0,
+    "deep": true,
+    "net_cash_frac": 0.473,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-08-11",
+        "source": "earnings call",
+        "detail": "\u201cAs of June 30, 2026, we have repurchased approximately 13.4 million Class A common shares \u201d"
+      }
+    },
+    "score": 17.0
+  },
+  "SNDL": {
+    "ticker": "SNDL",
+    "name": "SNDL Inc.",
+    "sector": "Consumer Defensive",
+    "p_b": 0.47,
+    "mcap": 363118500.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-07-28",
+        "source": "earnings call",
+        "detail": "\u201cDuring the quarter, we accelerated our share repurchase activity, deployed profit enhancem\u201d"
+      },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-07-28",
+        "source": "earnings call",
+        "detail": "\u201cOkay, so we still have the view that our equity is trading well below its intrinsic value.\u201d"
+      }
+    },
+    "score": 17.0
+  },
+  "TCPC": {
+    "ticker": "TCPC",
+    "name": "BlackRock TCP Capital Corp.",
+    "sector": "Financial Services",
+    "p_b": 0.61,
+    "mcap": 336869742.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-08-06",
+        "source": "earnings call",
+        "detail": "\u201cTo help evaluate the best way to use that flexibility to create further long term sharehol\u201d"
+      }
+    },
+    "score": 11.0
+  },
+  "VIOT": {
+    "ticker": "VIOT",
+    "name": "Viomi Technology Co., Ltd",
+    "sector": "Consumer Cyclical",
+    "p_b": 0.403,
+    "mcap": 88058043.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-03-25",
+        "source": "earnings call",
+        "detail": "\u201cIn terms of shareholder returns, we declared a special dividend of USD 0.088 per ADS in Ju\u201d"
+      }
+    },
+    "score": 14.0
+  },
+  "WHF": {
+    "ticker": "WHF",
+    "name": "WhiteHorse Finance, Inc.",
+    "sector": "Financial Services",
+    "p_b": 0.607,
+    "mcap": 153556975.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-08-11",
+        "source": "earnings call",
+        "detail": "\u201cIn regards to our share repurchase program, the company repurchased approximately 345,000 \u201d"
+      },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-08-11",
+        "source": "earnings call",
+        "detail": "\u201cThat decision reflects the balance we took -- we look to strike between buying back shares\u201d"
+      }
+    },
+    "score": 14.0
+  },
+  "ZH": {
+    "ticker": "ZH",
+    "name": "Zhihu Inc.",
+    "sector": "Communication Services",
+    "p_b": 0.482,
+    "mcap": 280197967.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-08-26",
+        "source": "earnings call",
+        "detail": "\u201cAs of June 30, 2026, we had RMB 4.4 billion in cash and cash equivalents, time deposits, r\u201d"
+      }
+    },
+    "score": 14.0
   },
   "ZSQR": {
     "ticker": "ZSQR",

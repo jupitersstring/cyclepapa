@@ -35,14 +35,40 @@
     "details": {
       "governance_discount": {
         "p_b": 0.579,
-        "tier": "BUILDING",
+        "tier": "ACTION LIKELY",
         "families": [
+          "CALL_COMMIT",
           "PAY_ON_VALUE",
           "TURNAROUND_EXEC"
         ]
       }
     },
     "score": 20.0
+  },
+  "BHF": {
+    "ticker": "BHF",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 28.22,
+    "geometry_score": 31.6,
+    "downside_pct": 0.0,
+    "upside_pct": 1.411,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.459,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CIC_PREP",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 19.9
   },
   "GENC": {
     "ticker": "GENC",
@@ -154,6 +180,32 @@
       }
     },
     "score": 15.8
+  },
+  "STRR": {
+    "ticker": "STRR",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 8.94,
+    "geometry_score": 24.1,
+    "downside_pct": 0.168,
+    "upside_pct": 1.5,
+    "floor_source": "book(0.5x)",
+    "sector": "Industrials",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.629,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_INTENT",
+          "CALL_VALUE_GAP",
+          "CIC_PREP",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 18.0
   },
   "ZSQR": {
     "ticker": "ZSQR",
@@ -397,6 +449,30 @@
     },
     "score": 20.0
   },
+  "AGO": {
+    "ticker": "AGO",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 12.49,
+    "geometry_score": 26.2,
+    "downside_pct": 0.098,
+    "upside_pct": 1.226,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.563,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 18.6
+  },
   "ALHC": {
     "ticker": "ALHC",
     "archetypes": [
@@ -456,6 +532,8 @@
         "p_b": 0.49,
         "tier": "ACTION LIKELY",
         "families": [
+          "CALL_INTENT",
+          "CALL_VALUE_GAP",
           "CAPITAL_RETURN_POLICY",
           "TENDER_OFFER"
         ]
@@ -659,6 +737,7 @@
         "tier": "ACTION LIKELY",
         "families": [
           "BOARD_REFRESH",
+          "CALL_COMMIT",
           "CHAIR_CEO_SPLIT",
           "CIC_PREP",
           "PAY_ON_VALUE",
@@ -737,6 +816,7 @@
         "tier": "ACTION LIKELY",
         "families": [
           "ASSET_SALE",
+          "CALL_COMMIT",
           "STRATEGIC_REVIEW"
         ]
       }
@@ -856,8 +936,10 @@
     "details": {
       "governance_discount": {
         "p_b": 0.602,
-        "tier": "BUILDING",
+        "tier": "ACTION LIKELY",
         "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP",
           "PAY_ON_VALUE",
           "TURNAROUND_EXEC"
         ]
@@ -891,6 +973,7 @@
         "p_b": 0.646,
         "tier": "ACTION LIKELY",
         "families": [
+          "CALL_INTENT",
           "CIC_PREP",
           "MDA_UNLOCK",
           "PAY_ON_VALUE",
@@ -1148,6 +1231,32 @@
       }
     },
     "score": 38.4
+  },
+  "CCS": {
+    "ticker": "CCS",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.64,
+    "geometry_score": 18.7,
+    "downside_pct": 0.278,
+    "upside_pct": 1.009,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.692,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP",
+          "PAY_ON_VALUE",
+          "PROXY_RESPONSIVE"
+        ]
+      }
+    },
+    "score": 16.7
   },
   "CMCO": {
     "ticker": "CMCO",
@@ -1445,6 +1554,7 @@
         "tier": "BUILDING",
         "families": [
           "BUYBACK_AUTH",
+          "CALL_INTENT",
           "CIC_PREP",
           "PAY_ON_VALUE",
           "PROXY_RESPONSIVE",
@@ -1818,6 +1928,31 @@
     },
     "score": 13.8
   },
+  "FG": {
+    "ticker": "FG",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 6.81,
+    "geometry_score": 22.4,
+    "downside_pct": 0.18,
+    "upside_pct": 1.229,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.626,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 17.6
+  },
   "FNWB": {
     "ticker": "FNWB",
     "archetypes": [
@@ -1942,6 +2077,31 @@
       }
     },
     "score": 19.4
+  },
+  "MFIN": {
+    "ticker": "MFIN",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.09,
+    "geometry_score": 17.9,
+    "downside_pct": 0.238,
+    "upside_pct": 0.733,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.661,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 16.5
   },
   "ONL": {
     "ticker": "ONL",
@@ -2154,13 +2314,37 @@
       },
       "governance_discount": {
         "p_b": 0.586,
-        "tier": "BUILDING",
+        "tier": "ACTION LIKELY",
         "families": [
+          "CALL_VALUE_GAP",
           "TENDER_OFFER"
         ]
       }
     },
     "score": 36.8
+  },
+  "FSK": {
+    "ticker": "FSK",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.31,
+    "geometry_score": 18.2,
+    "downside_pct": 0.161,
+    "upside_pct": 0.535,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.593,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT"
+        ]
+      }
+    },
+    "score": 16.6
   },
   "BGS": {
     "ticker": "BGS",
@@ -2189,6 +2373,7 @@
         "tier": "ACTION LIKELY",
         "families": [
           "ASSET_SALE",
+          "CALL_VALUE_GAP",
           "CIC_PREP",
           "PAY_ON_VALUE",
           "TURNAROUND_EXEC"
@@ -2740,6 +2925,7 @@
         "tier": "BUILDING",
         "families": [
           "ASSET_SALE",
+          "CALL_VALUE_GAP",
           "CHAIR_CEO_SPLIT",
           "PAY_ON_VALUE"
         ]
@@ -3228,6 +3414,7 @@
         "tier": "BUILDING",
         "families": [
           "ASSET_SALE",
+          "CALL_INTENT",
           "PAY_ON_VALUE",
           "SOP_DISSENT"
         ]
@@ -3258,6 +3445,54 @@
       }
     },
     "score": 13.4
+  },
+  "GNW": {
+    "ticker": "GNW",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 54.09,
+    "geometry_score": 35.5,
+    "downside_pct": 0.0,
+    "upside_pct": 2.705,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.422,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP"
+        ]
+      }
+    },
+    "score": 20.0
+  },
+  "RWAY": {
+    "ticker": "RWAY",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 4.84,
+    "geometry_score": 20.4,
+    "downside_pct": 0.121,
+    "upside_pct": 0.585,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.571,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP"
+        ]
+      }
+    },
+    "score": 17.1
   },
   "ASPI": {
     "ticker": "ASPI",
@@ -3546,6 +3781,7 @@
         "p_b": 0.679,
         "tier": "ACTION LIKELY",
         "families": [
+          "CALL_INTENT",
           "MDA_UNLOCK",
           "STRATEGIC_REVIEW"
         ]
@@ -3594,6 +3830,7 @@
         "tier": "ACTION LIKELY",
         "families": [
           "ACTIVIST_SETTLEMENT",
+          "CALL_VALUE_GAP",
           "DECLASSIFY",
           "MDA_UNLOCK"
         ]
@@ -3711,6 +3948,77 @@
       }
     },
     "score": 16.0
+  },
+  "HTFC": {
+    "ticker": "HTFC",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 0.67,
+    "geometry_score": 11.6,
+    "downside_pct": 0.306,
+    "upside_pct": 0.206,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.55,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT"
+        ]
+      }
+    },
+    "score": 14.9
+  },
+  "JOYY": {
+    "ticker": "JOYY",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.92,
+    "geometry_score": 19.1,
+    "downside_pct": 0.199,
+    "upside_pct": 0.778,
+    "floor_source": "book(0.5x)",
+    "sector": "Communication Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.643,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP"
+        ]
+      }
+    },
+    "score": 16.8
+  },
+  "BHFAN": {
+    "ticker": "BHFAN",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 28.22,
+    "geometry_score": 31.6,
+    "downside_pct": 0.0,
+    "upside_pct": 1.411,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.561,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 19.9
   },
   "ELAB": {
     "ticker": "ELAB",
@@ -4058,6 +4366,29 @@
     },
     "score": 18.0
   },
+  "VIOT": {
+    "ticker": "VIOT",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 23.14,
+    "geometry_score": 30.3,
+    "downside_pct": 0.0,
+    "upside_pct": 1.157,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.403,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT"
+        ]
+      }
+    },
+    "score": 19.6
+  },
   "STKS": {
     "ticker": "STKS",
     "archetypes": [
@@ -4078,6 +4409,30 @@
         "d_e": null,
         "ratio": 60.0,
         "small_cap": true
+      }
+    },
+    "score": 20.0
+  },
+  "BHFAP": {
+    "ticker": "BHFAP",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 56.44,
+    "geometry_score": 35.5,
+    "downside_pct": 0.0,
+    "upside_pct": 2.822,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.357,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "PAY_ON_VALUE"
+        ]
       }
     },
     "score": 20.0
@@ -4150,6 +4505,30 @@
     },
     "score": 20.0
   },
+  "NMM": {
+    "ticker": "NMM",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.77,
+    "geometry_score": 18.9,
+    "downside_pct": 0.294,
+    "upside_pct": 1.112,
+    "floor_source": "book(0.5x)",
+    "sector": "Industrials",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.694,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP"
+        ]
+      }
+    },
+    "score": 16.7
+  },
   "ESOA": {
     "ticker": "ESOA",
     "archetypes": [
@@ -4218,6 +4597,29 @@
     },
     "score": 16.0
   },
+  "SEER": {
+    "ticker": "SEER",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 60.0,
+    "geometry_score": 29.5,
+    "downside_pct": 0.0,
+    "upside_pct": 3.0,
+    "floor_source": "NCAV",
+    "sector": "Healthcare",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.443,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT"
+        ]
+      }
+    },
+    "score": 19.4
+  },
   "VATE": {
     "ticker": "VATE",
     "archetypes": [
@@ -4285,6 +4687,30 @@
     },
     "score": 16.0
   },
+  "SNDL": {
+    "ticker": "SNDL",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 15.13,
+    "geometry_score": 27.5,
+    "downside_pct": 0.0,
+    "upside_pct": 0.756,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Defensive",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.47,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP"
+        ]
+      }
+    },
+    "score": 18.9
+  },
   "GTEC": {
     "ticker": "GTEC",
     "archetypes": [
@@ -4328,6 +4754,30 @@
       }
     },
     "score": 16.0
+  },
+  "CAN": {
+    "ticker": "CAN",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.14,
+    "geometry_score": 17.9,
+    "downside_pct": 0.478,
+    "upside_pct": 1.5,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.621,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP"
+        ]
+      }
+    },
+    "score": 16.5
   },
   "XTNT": {
     "ticker": "XTNT",
@@ -4398,6 +4848,30 @@
       }
     },
     "score": 16.0
+  },
+  "OTF": {
+    "ticker": "OTF",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 2.24,
+    "geometry_score": 16.2,
+    "downside_pct": 0.211,
+    "upside_pct": 0.473,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.636,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP"
+        ]
+      }
+    },
+    "score": 16.1
   },
   "NNDM": {
     "ticker": "NNDM",
@@ -4569,6 +5043,29 @@
     },
     "score": 16.0
   },
+  "HRZN": {
+    "ticker": "HRZN",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 0.67,
+    "geometry_score": 11.6,
+    "downside_pct": 0.306,
+    "upside_pct": 0.206,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.554,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT"
+        ]
+      }
+    },
+    "score": 14.9
+  },
   "PPLI": {
     "ticker": "PPLI",
     "archetypes": [
@@ -4584,8 +5081,9 @@
     "details": {
       "governance_discount": {
         "p_b": 0.534,
-        "tier": "BUILDING",
+        "tier": "ACTION LIKELY",
         "families": [
+          "CALL_VALUE_GAP",
           "CAPITAL_RETURN_POLICY"
         ]
       }
@@ -4679,6 +5177,29 @@
     },
     "score": 17.5
   },
+  "TCPC": {
+    "ticker": "TCPC",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 2.74,
+    "geometry_score": 17.2,
+    "downside_pct": 0.185,
+    "upside_pct": 0.506,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.61,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT"
+        ]
+      }
+    },
+    "score": 16.3
+  },
   "MODD": {
     "ticker": "MODD",
     "archetypes": [
@@ -4700,6 +5221,54 @@
       }
     },
     "score": 15.7
+  },
+  "BHFAM": {
+    "ticker": "BHFAM",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 28.22,
+    "geometry_score": 31.6,
+    "downside_pct": 0.0,
+    "upside_pct": 1.411,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.553,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 19.9
+  },
+  "BHFAO": {
+    "ticker": "BHFAO",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 28.22,
+    "geometry_score": 31.6,
+    "downside_pct": 0.0,
+    "upside_pct": 1.411,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.553,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 19.9
   },
   "MIND": {
     "ticker": "MIND",
@@ -4812,6 +5381,54 @@
       }
     },
     "score": 20.0
+  },
+  "WHF": {
+    "ticker": "WHF",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 2.88,
+    "geometry_score": 17.5,
+    "downside_pct": 0.178,
+    "upside_pct": 0.514,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.607,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP"
+        ]
+      }
+    },
+    "score": 16.4
+  },
+  "MFIC": {
+    "ticker": "MFIC",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.64,
+    "geometry_score": 14.8,
+    "downside_pct": 0.255,
+    "upside_pct": 0.419,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.671,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP"
+        ]
+      }
+    },
+    "score": 15.7
   },
   "RGS": {
     "ticker": "RGS",
@@ -4929,12 +5546,60 @@
     },
     "score": 16.6
   },
+  "ZH": {
+    "ticker": "ZH",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 13.7,
+    "geometry_score": 26.8,
+    "downside_pct": 0.0,
+    "upside_pct": 0.685,
+    "floor_source": "book(0.5x)",
+    "sector": "Communication Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.482,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT"
+        ]
+      }
+    },
+    "score": 18.7
+  },
+  "BHFAL": {
+    "ticker": "BHFAL",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 28.22,
+    "geometry_score": 31.6,
+    "downside_pct": 0.0,
+    "upside_pct": 1.411,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.544,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 19.9
+  },
   "CCZ": {
     "ticker": "CCZ",
     "archetypes": [
-      "sub_cash_buyback"
+      "sub_cash_buyback",
+      "governance_discount_catalyst"
     ],
-    "n_mechanisms": 1,
+    "n_mechanisms": 2,
     "geometry_ratio": 1.68,
     "geometry_score": 19.9,
     "downside_pct": 0.398,
@@ -4946,9 +5611,18 @@
         "net_cash_frac": 0.602,
         "net_buyback_score": 12,
         "verified_buyback": true
+      },
+      "governance_discount": {
+        "p_b": 0.175,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_INTENT",
+          "PAY_ON_VALUE",
+          "PROXY_RESPONSIVE"
+        ]
       }
     },
-    "score": 19.0
+    "score": 41.0
   },
   "HODO": {
     "ticker": "HODO",
@@ -5104,6 +5778,29 @@
       }
     },
     "score": 36.9
+  },
+  "KREF": {
+    "ticker": "KREF",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 15.46,
+    "geometry_score": 27.6,
+    "downside_pct": 0.0,
+    "upside_pct": 0.773,
+    "floor_source": "book(0.5x)",
+    "sector": "Real Estate",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.437,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT"
+        ]
+      }
+    },
+    "score": 18.9
   },
   "CATO": {
     "ticker": "CATO",

@@ -283,6 +283,22 @@ def main() -> int:
             xs = sorted(r["xret"] for r in seg)
             quint.append((q + 1, len(seg), sum(xs) / len(xs), xs[len(xs) // 2],
                           sum(1 for x in xs if x > 0.25) / len(xs)))
+    # out-of-time: forward excess return by quintile of the TRAIN-fitted model's probability
+    te_r = [r for r in rows if r["date"] >= args.split and r["xret"] is not None]
+    for r in te_r:
+        r["_p"] = predict(m_full, [float(r.get(c) or 0) for c in BASE + LANG])
+    te_r.sort(key=lambda r: r["_p"])
+    quint_p = []
+    for q in range(5):
+        seg = te_r[q * len(te_r) // 5:(q + 1) * len(te_r) // 5]
+        if seg:
+            xs = sorted(r["xret"] for r in seg)
+            quint_p.append((q + 1, len(seg), sum(xs) / len(xs), xs[len(xs) // 2],
+                            sum(1 for r in seg if r["acted"]) / len(seg)))
+    acted_x = [r["xret"] for r in rows if r["acted"] and r["xret"] is not None]
+    not_x = [r["xret"] for r in rows if r["acted"] is False and r["xret"] is not None]
+    res["xret_acted"] = sum(acted_x) / len(acted_x) if acted_x else None
+    res["xret_not_acted"] = sum(not_x) / len(not_x) if not_x else None
     # final model on all labelled data
     m_all = fit_lr(X(lab, BASE + LANG), [int(r["acted"]) for r in lab])
     MODEL.write_text(json.dumps({"features": BASE + LANG, **m_all, "validation": {
@@ -307,6 +323,7 @@ def main() -> int:
                     "past_sh_chg": latest[t]["past_sh_chg"],
                     "tier": ("ACT SIGNALLED" if pct >= 0.9 and (strong or rec["new_families"])
                              else "BUILDING" if pct >= 0.75 else "")})
+        rec["score"] = round(p, 3) if rec["tier"] else 0.0
     INTENT_OUT.write_text(json.dumps(intent, indent=1))
 
     # report
@@ -333,7 +350,16 @@ def main() -> int:
          "| family | calls | lift vs base |", "|---|---|---|"]
     for k, (n, lf) in sorted(fam_lift.items(), key=lambda t: -t[1][1]):
         L.append(f"| {k} | {n} | {lf:.2f}x |")
-    L += ["", "## Forward 6-month excess return vs SPY by rule-score quintile", "",
+    L += ["", "## Out of time: model probability quintile -> what happened next (test set)", "",
+          "| quintile | calls | ACTED rate | mean 6m excess | median 6m excess |", "|---|---|---|---|---|"]
+    for q, n, mean, med, act in quint_p:
+        L.append(f"| Q{q}{' (highest)' if q == 5 else ''} | {n} | {act:.0%} | {mean:+.1%} | {med:+.1%} |")
+    L += ["", f"Companies that ACTED returned {fmt(res['xret_acted'])} vs {fmt(res['xret_not_acted'])} for those "
+          "that did not (mean 6-month excess vs SPY): in this sample the action itself did not "
+          "re-rate value names on its own. The language is a strong predictor of ACTION and a weak "
+          "stand-alone predictor of returns -- use it to corroborate a discount/governance set-up "
+          "(does management intend to act?), not as a return signal by itself."]
+    L += ["", "## Forward 6-month excess return vs SPY by rule-score quintile (all calls)", "",
           "| quintile | calls | mean | median | share > +25% |", "|---|---|---|---|---|"]
     for q, n, mean, med, big in quint:
         L.append(f"| Q{q}{' (highest)' if q == 5 else ''} | {n} | {mean:+.1%} | {med:+.1%} | {big:.1%} |")

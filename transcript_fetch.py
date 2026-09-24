@@ -33,7 +33,9 @@ def universe() -> list[str]:
     names = {t for t, v in yq.items()
              if (v.get("mcap") or 0) >= 3e7 and v.get("p_b") and v["p_b"] <= 1.5}
     names |= set(load("governance_discount.json")) | set(load("mechanism_gates.json"))
-    return sorted(t for t in names if t and "." not in t and "/" not in t)
+    from universe_filter import is_excluded
+    return sorted(t for t in names if t and "." not in t and "/" not in t
+                  and not is_excluded(t, (yq.get(t) or {}).get("name"))[0])
 
 
 def dates(sym):

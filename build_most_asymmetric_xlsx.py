@@ -1641,17 +1641,19 @@ def build_political_trades(wb: Workbook, yf: dict):
     set_col_widths(ws, [9, 22, 8, 6, 6, 8, 11, 60])
     write_title_band(
         ws,
-        "Political Trades — congressional buying, weighted by what it earned",
-        "Every Senate and House periodic transaction report, scored from the "
-        "DISCLOSURE date (when the trade becomes public). Each trade is weighted "
-        "by the measured 6-month excess return of its slice — size band, market "
-        "cap, stock vs options, clustered buying, member track record (out of sample).",
+        "Political Trades — congressional buying (monitor; no measured edge)",
+        "Every Senate and House periodic transaction report, tested from the "
+        "DISCLOSURE date (when the trade becomes public). Measured since 2022, "
+        "congressional buying has NOT beaten SPY over the following six months "
+        "in any robust slice (size, cap, owner, options, clustering, member "
+        "track record) — so this is shown for awareness and is NOT a consensus layer.",
         n_cols=8,
     )
     d = _jload("political_trades.json")
     sc = d.get("scores") or {}
-    rows = sorted(((t, v) for t, v in sc.items() if v.get("buys")), key=lambda kv: -kv[1]["score"])
-    headers = ["Ticker", "Name", "Score", "Buys", "Sells", "Members", "Last disclosed", "Recent trades"]
+    rows = sorted(((t, v) for t, v in sc.items() if v.get("buys")),
+                  key=lambda kv: (-kv[1]["n_buy_members"], -kv[1]["buy_min_usd"]))
+    headers = ["Ticker", "Name", "Edge est.", "Buys", "Sells", "Members", "Last disclosed", "Recent trades"]
     write_header_row(ws, 4, headers)
     r = 5
     for i, (t, v) in enumerate(rows[:60], 1):
@@ -1669,10 +1671,10 @@ def build_political_trades(wb: Workbook, yf: dict):
     be, se = m.get("buy_edge_6m"), m.get("sell_edge_6m")
     write_footnote(ws, r,
         f"{m.get('n_trades', 0)} equity trades since {m.get('since')}; {m.get('n_resolved', 0)} "
-        "with a full 6-month window. Measured edge after disclosure: buys "
+        "with a full 6-month window. Sorted by distinct buying members, then size. Measured edge after disclosure: buys "
         f"{(be or 0):+.2%}, sells {(se or 0):+.2%} (shrunk means, excess vs SPY). Score = sum "
         "over the last %s days of each trade's slice-implied excess return (pp), recency-"
-        "weighted. See POLITICAL_TRADES_VALIDATION.md. Source: political_trades.py (FMP)." % m.get("window_days"), 8)
+        "weighted; negative = the slices these trades fall in have lagged the market. See POLITICAL_TRADES_VALIDATION.md. Source: political_trades.py (FMP)." % m.get("window_days"), 8)
     ws.sheet_view.showGridLines = False
     ws.freeze_panes = "A5"
 

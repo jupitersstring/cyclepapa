@@ -102,6 +102,11 @@ def closes(sym):
     return d
 
 
+def px_at(px, d):
+    i = bisect_right([r[0] for r in px], d) if px else 0
+    return px[i - 1][1] if px and i > 0 else None
+
+
 def fwd(px, spy, d):
     if not px or not spy:
         return None
@@ -177,7 +182,14 @@ def main() -> int:
         px = dict(zip(syms, ex.map(closes, syms)))
     spy = closes("SPY")
     for t in trades:
-        t["x"] = fwd(px.get(t["sym"]), spy, t["ddate"])
+        p = px.get(t["sym"])
+        t["x"] = fwd(p, spy, t["ddate"])                 # tradeable: from disclosure
+        t["x_txn"] = fwd(p, spy, t["tdate"]) if t["tdate"] else None   # member's own timing
+        # market cap AT DISCLOSURE (today's cap x price ratio) -- today's cap
+        # would sort losers into "small" after the fact (survivorship bias)
+        now, then = (p[-1][1] if p else None), px_at(p, t["ddate"])
+        mc = fmp.num(prof[t["sym"]].get("marketCap"))
+        t["cap"] = cap_bucket(mc * then / now if (mc and now and then) else None)
 
     # cluster flag: >= 2 distinct members buying the same name within 90 days (as of disclosure)
     by_sym = defaultdict(list)
@@ -209,9 +221,15 @@ def main() -> int:
             g[fn(t)].append(t["x"])
         return name, {k: stats(v) for k, v in sorted(g.items(), key=lambda kv: str(kv[0]))}
 
-    slices = [slice_("direction", lambda t: t["side"], res),
+    txn = [t for t in trades if t["x_txn"] is not None]
+    g_txn = defaultdict(list)
+    for t in txn:
+        g_txn[t["side"]].append(t["x_txn"])
+    slices = [("direction, from TRANSACTION date (member's own timing, not tradeable)",
+               {k: stats(v) for k, v in sorted(g_txn.items())}),
+              slice_("direction", lambda t: t["side"], res),
               slice_("buy size band", lambda t: t["size"], buys),
-              slice_("buy market cap", lambda t: t["cap"], buys),
+              slice_("buy market cap (at disclosure)", lambda t: t["cap"], buys),
               slice_("buy owner", lambda t: t["owner"].split()[0], buys),
               slice_("buy asset", lambda t: "option" if t["option"] else "stock", buys),
               slice_("buy clustered", lambda t: "cluster>=2 members" if t.get("cluster") else "single member", buys),
@@ -234,7 +252,7 @@ def main() -> int:
     def trade_edge(t):
         """Expected 6-month excess return implied by this trade's slices."""
         if t["side"] == "buy":
-            e = buy_edge + w("buy size band", t["size"]) + w("buy market cap", t["cap"]) \
+            e = buy_edge + w("buy size band", t["size"]) + w("buy market cap (at disclosure)", t["cap"]) \
                 + w("buy asset", "option" if t["option"] else "stock") \
                 + w("buy clustered", "cluster>=2 members" if t.get("cluster") else "single member") \
                 + w("buy member track record (OOS)", "no record" if t["skill"] is None
@@ -294,7 +312,7 @@ def main() -> int:
         L.append(f"| {s} | {v['score']:+.1f} | {v['buys']} | {v['sells']} | {', '.join(v['buy_members'][:3])} | {v['last_disclosure']} |")
     REPORT.write_text("\n".join(L) + "\n")
     print(f"wrote {OUT.name} ({len(scores)} names) and {REPORT.name}")
-    for name, tab in slices[:8]:
+    for name, tab in slices[:9]:
         print(name, {k: (s["n"], f"{s['mean']:+.1%}", f"{s['hit']:.0%}") for k, s in tab.items() if s})
     return 0
 

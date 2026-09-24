@@ -427,6 +427,19 @@ def score_mda_language_layer(layers: dict, universe: set) -> dict:
     return _load_jscore(ROOT / "mda_scan.json", universe)
 
 
+def score_call_intent_layer(layers: dict, universe: set) -> dict:
+    """Earnings-call INTENT (see call_intent.py / call_intent_model.py).
+    Clause-level linguistic scoring of management's stated capital actions
+    (commitment strength, agency, negation, specificity, new-vs-routine
+    aspect, novelty vs prior calls, Q&A pressure/evasion), calibrated on
+    what companies then DID. Out of time it ranks subsequent buybacks /
+    dividend step-ups / action 8-Ks at AUC ~0.67 (past behaviour alone
+    ~0.60). Only ACT SIGNALLED / BUILDING names score (= act probability).
+
+    Source: call_intent.json (built by call_intent_model.py)."""
+    return _load_jscore(ROOT / "call_intent.json", universe)
+
+
 def score_form4_timing_layer(layers: dict, universe: set) -> dict:
     """Form 4 filing-TIME signal (see form4_timing.py). Empirically tested:
     open-market insider buys ACCEPTED off-hours (evenings / Friday evening /
@@ -828,6 +841,7 @@ def main() -> int:
         "net_buyback": score_net_buyback_layer(layers, universe),
         "form4_timing": score_form4_timing_layer(layers, universe),
         "mda_language": score_mda_language_layer(layers, universe),
+        "call_intent": score_call_intent_layer(layers, universe),
         "payoff_geometry": score_payoff_geometry_layer(layers, universe),
         "internalization": score_internalization_layer(layers, universe),
         "bumpitrage": score_bumpitrage_layer(layers, universe),
@@ -948,6 +962,7 @@ def main() -> int:
             "net_buyback_pts": layer_scores["net_buyback"].get(tk, 0),
             "form4_timing_pts": layer_scores["form4_timing"].get(tk, 0),
             "mda_language_pts": layer_scores["mda_language"].get(tk, 0),
+            "call_intent_pts": layer_scores["call_intent"].get(tk, 0),
             "payoff_geometry_pts": layer_scores["payoff_geometry"].get(tk, 0),
             "internalization_pts": layer_scores["internalization"].get(tk, 0),
             "bumpitrage_pts": layer_scores["bumpitrage"].get(tk, 0),

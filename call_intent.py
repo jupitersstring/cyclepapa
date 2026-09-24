@@ -115,7 +115,8 @@ MARKET_REF = rx(r"\b(?:stock|share) price", r"\bour (?:stock|shares|equity)\b", 
                 r"\bmarket (?:value|cap\w*|price)", r"\b(?:stock|shares) (?:is|are|has|have) (?:been )?trad",
                 r"\bpublic market", r"\bthe market\b")
 # "repurchased $30m of notes" is deleveraging, not a share buyback
-DEBT_OBJ = rx(r"\b(?:repurchas\w*|buy(?:ing)?\s?-?backs?|bought back)\s+(?:\S+\s+){0,6}(?:debt|notes|bonds|debentures|convertibles?|loans?|term loan)\b")
+DEBT_OBJ = rx(r"\b(?:repurchas\w*|buy(?:ing)?\s?-?backs?|bought back|retir\w*)\s+(?:\S+\s+){0,6}(?:debt|notes|bonds|debentures|convertibles?|loans?|term loan)\b",
+             r"\b(?:debt|note|bond|convertible|debenture)s?\s+(?:re)?purchas\w*", r"\b(?:debt|note|bond)s?\s+buy\s?-?backs?")
 ACTION = ("BUYBACK", "DIVIDEND_RETURN", "TENDER", "STRATEGIC_REVIEW", "MONETIZE",
           "DELEVER", "GOVERNANCE", "COST")
 STANCE = ("VALUE_GAP", "ANTICIPATION")
@@ -331,6 +332,11 @@ def main() -> int:
             continue
         if rec.get("content") and rec.get("date"):
             calls.setdefault(f.parent.name, []).append(rec)
+    # listed notes / preferreds share the issuer's call -- keep the common only
+    from universe_filter import is_excluded
+    yq = json.loads((ROOT / "yfinance_quick.json").read_text())
+    calls = {s: v for s, v in calls.items()
+             if not is_excluded(s, (yq.get(s) or {}).get("name"))[0]}
     FEAT.parent.mkdir(exist_ok=True)
     latest = {}
     n = 0
