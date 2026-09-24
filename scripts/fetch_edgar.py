@@ -36,14 +36,20 @@ def main() -> None:
     ap.add_argument("--commit-every", type=int, default=500)
     ap.add_argument("--refresh", action="store_true", help="re-pull even if already merged")
     ap.add_argument("--no-git", action="store_true")
+    ap.add_argument("--symbols-file", type=Path, default=None,
+                    help="only these symbols (one per line) — e.g. names just added "
+                         "to the universe; a full run re-queries every past no-gain filer")
     args = ap.parse_args()
 
     uni = pd.read_parquet(config.UNIVERSE_PATH)
+    syms = uni["symbol"].astype(str)
+    if args.symbols_file:
+        only = {s.strip() for s in args.symbols_file.read_text().splitlines() if s.strip()}
+        syms = syms[syms.isin(only)]
     cmap = edgar.ticker_cik_map()
     # Every universe ticker that is a US SEC filer (has a CIK). yfinance suffixed
     # foreign symbols (7203.T, 0700.HK) simply aren't in the domestic CIK map.
-    filers = [(s, cmap[str(s).upper()]) for s in uni["symbol"].astype(str)
-              if str(s).upper() in cmap]
+    filers = [(s, cmap[str(s).upper()]) for s in syms if str(s).upper() in cmap]
     print(f"fetch_edgar: {len(filers)} US filers in universe have a CIK", flush=True)
 
     todo = []
