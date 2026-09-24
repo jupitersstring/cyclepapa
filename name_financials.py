@@ -252,20 +252,23 @@ COLS = [("Ticker", 9), ("Name", 22), ("Sector", 14), ("Mcap $M", 9), ("P/B", 6),
 
 def financials_sheet(wb, title, symbols, fin, subtitle="", index=None, tabs=None):
     """Add a financials sheet for `symbols` [(display_ticker, fmp_symbol)]."""
-    from openpyxl.styles import Alignment, Font, PatternFill
+    import book_layout as bl
+    k = bl.kit(wb)
     ws = wb.create_sheet(title, index) if index is not None else wb.create_sheet(title)
-    ws["A1"] = title
-    ws["A1"].font = Font(bold=True, size=14, color="1F3864")
-    ws["A2"] = subtitle or ("FMP TTM ratios + bulk statements. P/B validated (market cap ÷ latest "
-                            "equity, FX-converted); net cash measured inside one statement currency; "
-                            "revenue growth = TTM vs prior TTM; shares YoY from diluted weighted shares.")
-    ws["A2"].alignment = Alignment(wrap_text=True)
+    ws.sheet_view.showGridLines = False
+    k.title(ws.cell(row=1, column=1, value=title))
+    k.subtitle(ws.cell(row=2, column=1, value=subtitle or (
+        "FMP TTM ratios + bulk statements. P/B validated (market cap ÷ latest equity, FX-converted); "
+        "net cash measured inside one statement currency; revenue growth = TTM vs prior TTM; shares "
+        "YoY from diluted weighted shares.")))
     ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=12)
     ws.row_dimensions[2].height = 30
     for j, (h, w) in enumerate(COLS, 1):
         c = ws.cell(row=4, column=j, value=h)
-        c.font, c.fill = Font(bold=True, color="FFFFFF"), PatternFill("solid", fgColor="1F3864")
+        k.header(c)
         ws.column_dimensions[c.column_letter].width = w
+    if k.header_height:
+        ws.row_dimensions[4].height = k.header_height
 
     def num(x, d=1):
         return None if x is None else round(x, d)
@@ -287,8 +290,9 @@ def financials_sheet(wb, title, symbols, fin, subtitle="", index=None, tabs=None
                 pc(f.get("shares_yoy")), num(f.get("int_cover"), 1), pc(f.get("range_pos")),
                 num((f.get("adv_usd") or 0) / 1e3, 0), f.get("read"), "; ".join(f.get("flags") or []),
                 ", ".join((tabs or {}).get(s, []))]
+        band = (r - 4) % 2 == 0
         for j, v in enumerate(vals, 1):
-            ws.cell(row=r, column=j, value=v)
+            k.body(ws.cell(row=r, column=j, value=v), band=band, bold=(j == 1))
     ws.freeze_panes = "B5"
     return r - 4
 
@@ -313,8 +317,10 @@ def annotate_workbook(wb, fin, sym_map=None, skip=()):
         if not hdr_row:
             continue
         col = ws.max_column + 1
+        import book_layout as bl
+        for rr_ in range(hdr_row, ws.max_row + 1):          # inherit the table's styling
+            bl.clone(ws.cell(row=rr_, column=col - 1), ws.cell(row=rr_, column=col))
         h = ws.cell(row=hdr_row, column=col, value="FMP financial read")
-        h.font, h.fill = Font(bold=True, color="FFFFFF"), PatternFill("solid", fgColor="1F3864")
         ws.column_dimensions[h.column_letter].width = 62
         hit = 0
         seen = getattr(wb, "_fin_seen", [])
@@ -332,9 +338,8 @@ def annotate_workbook(wb, fin, sym_map=None, skip=()):
                 if ws.title not in tabs[sym]:
                     tabs[sym].append(ws.title)
                 wb._fin_tabs = tabs
-                c = ws.cell(row=r, column=col, value=f.get("read") + (
+                ws.cell(row=r, column=col, value=f.get("read") + (
                     "  [" + "; ".join(f["flags"]) + "]" if f.get("flags") else ""))
-                c.alignment = Alignment(wrap_text=False)
                 hit += 1
         wb._fin_seen = seen
         n += hit > 0

@@ -34,6 +34,77 @@ TICKER_HDR = ("Ticker", "TKR", "Symbol")
 SKIP_COLS = {"FMP financial read", "Key numbers (FMP)", "Strength %ile", "Name", "Company", "Ticker", "#", "Rank"}
 
 
+NEW_SHEETS = ("Name Financials", "Tear Sheets", "Review & data quality", "Call intent", "Contents")
+
+
+def clone(src, dst):
+    """Copy the full cell style (font, fill, border, alignment, number format)."""
+    from copy import copy
+    from openpyxl.cell.cell import MergedCell
+    if isinstance(dst, MergedCell) or src is None or not src.has_style:
+        return
+    dst.font = copy(src.font)
+    dst.fill = copy(src.fill)
+    dst.border = copy(src.border)
+    dst.alignment = copy(src.alignment)
+    dst.number_format = src.number_format
+
+
+class Kit:
+    """The workbook's OWN house style, read from one of its existing ticker
+    sheets, so anything we add looks like the rest of the book."""
+
+    def __init__(self, wb):
+        ref = None
+        for ws in wb.worksheets:
+            if ws.title in NEW_SHEETS:
+                continue
+            hr, cols = header_of(ws)
+            if hr and ws.max_row > hr + 3 and len(cols) >= 4:
+                ref = (ws, hr, cols)
+                break
+        ws, hr, cols = ref
+        tcol = cols.get("Ticker") or cols.get("TKR") or cols.get("Symbol")
+        ncol = cols.get("Name") or cols.get("Company") or (tcol + 1)
+        self.title_c, self.sub_c = ws["A1"], ws["A2"]
+        if not ws["A2"].has_style or ws["A2"].value is None:
+            self.sub_c = ws["A1"]
+        self.head_c = ws.cell(row=hr, column=ncol)
+        r1, r2 = ws.cell(row=hr + 1, column=ncol), ws.cell(row=hr + 2, column=ncol)
+        banded = lambda c: bool(c.fill is not None and c.fill.fill_type)
+        plain_r, band_r = (hr + 1, hr + 2) if not banded(r1) else (hr + 2, hr + 1)
+        self.body_c, self.band_c = ws.cell(row=plain_r, column=ncol), ws.cell(row=band_r, column=ncol)
+        self.bold_c, self.bold_band_c = ws.cell(row=plain_r, column=tcol), ws.cell(row=band_r, column=tcol)
+        self.header_height = ws.row_dimensions[hr].height
+
+    def title(self, c):
+        clone(self.title_c, c)
+
+    def subtitle(self, c, wrap=True):
+        clone(self.sub_c, c)
+        if wrap:
+            from copy import copy
+            a = copy(c.alignment); a.wrap_text = True; a.vertical = "top"
+            c.alignment = a
+
+    def header(self, c):
+        clone(self.head_c, c)
+
+    def body(self, c, band=False, bold=False, wrap=False):
+        clone((self.bold_band_c if band else self.bold_c) if bold else (self.band_c if band else self.body_c), c)
+        if wrap:
+            from copy import copy
+            a = copy(c.alignment); a.wrap_text = True; a.vertical = "top"
+            c.alignment = a
+
+
+def kit(wb):
+    k = getattr(wb, "_style_kit", None)
+    if k is None:
+        k = wb._style_kit = Kit(wb)
+    return k
+
+
 def header_of(ws, max_row=12):
     """(header_row, {header: col}) for the first row with a Ticker cell."""
     for row in ws.iter_rows(min_row=1, max_row=min(ws.max_row, max_row)):
@@ -62,9 +133,12 @@ def insert_col(ws, idx, header, hdr_row, width=24):
         if widths[i]:
             ws.column_dimensions[get_column_letter(j)].width = widths[i]
     ws.column_dimensions[get_column_letter(idx)].width = width
-    h = ws.cell(row=hdr_row, column=idx, value=header)
-    h.font, h.fill = HEAD, FILL
-    h.alignment = Alignment(wrap_text=True, vertical="center")
+    # the new column inherits its neighbour's style on every row (header rule,
+    # body font, row banding, borders), so it reads as part of the table
+    nb = idx - 1 if idx > 1 else idx + 1
+    for r in range(hdr_row, ws.max_row + 1):
+        clone(ws.cell(row=r, column=nb), ws.cell(row=r, column=idx))
+    ws.cell(row=hdr_row, column=idx, value=header)
 
 
 def _name_col(cols):
@@ -206,7 +280,8 @@ def strength(wb, pops, skip=()):
         note = ws.cell(row=hr - 1, column=idx) if hr > 1 else None
         if note is not None and not isinstance(note, MergedCell) and note.value is None:
             note.value = f"%ile vs {basis}"
-            note.font = Font(italic=True, size=8, color="666666")
+            base = ws.cell(row=hr + 1, column=idx).font
+            note.font = Font(name=base.name, italic=True, size=max(7, (base.size or 10) - 2), color="666666")
         n += 1
     return n
 
@@ -239,6 +314,18 @@ def regroup(wb, groups, contents="Contents", descriptions=None):
             if hr:
                 break
         if hr:
+            from copy import copy
+            hdr_src = ws.cell(row=hr, column=2)
+            body_srcs = [ws.cell(row=hr + 1, column=2), ws.cell(row=hr + 2, column=2)]
+            bold_srcs = [ws.cell(row=hr + 1, column=1), ws.cell(row=hr + 2, column=1)]
+            # snapshot the styles before the cells are cleared
+            snap = {}
+            for key, c in (("h", hdr_src), ("b0", body_srcs[0]), ("b1", body_srcs[1]),
+                           ("k0", bold_srcs[0]), ("k1", bold_srcs[1])):
+                snap[key] = (copy(c.font), copy(c.fill), copy(c.border), copy(c.alignment), c.number_format)
+
+            def apply(c, key):
+                c.font, c.fill, c.border, c.alignment, c.number_format = [copy(x) for x in snap[key][:4]] + [snap[key][4]]
             old = {}
             for r in range(hr + 1, ws.max_row + 1):
                 vals = [ws.cell(row=r, column=j).value for j in range(1, 5)]
@@ -252,19 +339,21 @@ def regroup(wb, groups, contents="Contents", descriptions=None):
                 for j in range(1, 5):
                     ws.cell(row=r, column=j).value = None
             for j, h in enumerate(["Group", "Tab", "What it contains"], 1):
-                c = ws.cell(row=hr, column=j, value=h)
-                c.font, c.fill = HEAD, FILL
+                apply(ws.cell(row=hr, column=j, value=h), "h")
             ws.column_dimensions["A"].width = 11
             ws.column_dimensions["B"].width = 26
             ws.column_dimensions["C"].width = 90
             r = hr
+            i = 0
             for g, t in order:
                 if t == contents:
                     continue
                 r += 1
-                ws.cell(row=r, column=1, value=g).font = Font(bold=True, color=GROUP_COLORS.get(g, "000000"))
-                ws.cell(row=r, column=2, value=t)
-                ws.cell(row=r, column=3, value=(descriptions or {}).get(t) or old.get(t, ""))
+                i += 1
+                b = "1" if i % 2 == 0 else "0"
+                apply(ws.cell(row=r, column=1, value=g), "k" + b)
+                apply(ws.cell(row=r, column=2, value=t), "b" + b)
+                apply(ws.cell(row=r, column=3, value=(descriptions or {}).get(t) or old.get(t, "")), "b" + b)
     return order
 
 
@@ -308,17 +397,17 @@ def tear_sheets(wb, fin, names, sym_map=None, title="Tear Sheets", index=None, m
             t = _ticker(ws.cell(row=r, column=tcol).value)
             if t and len(t) < 20:
                 where.setdefault(t, []).append((ws, r, cols))
+    k = kit(wb)
     ts = wb.create_sheet(title, index) if index is not None else wb.create_sheet(title)
     ts.sheet_view.showGridLines = False
     ts.column_dimensions["A"].width = 24
-    ts.column_dimensions["B"].width = 12
+    ts.column_dimensions["B"].width = 14
     ts.column_dimensions["C"].width = 110
-    ts["A1"] = title
-    ts["A1"].font = Font(bold=True, size=14, color=NAVY)
-    ts["A2"] = ("One block per name: identity, the FMP financial panel, and every tab the name "
-                "appears on -- with its strength percentile (100 = strongest in that layer's full "
-                "population) and the facts that tab records. Names in priority order.")
-    ts["A2"].alignment = Alignment(wrap_text=True)
+    k.title(ts.cell(row=1, column=1, value=title))
+    k.subtitle(ts.cell(row=2, column=1, value=(
+        "One block per name: identity, the FMP financial panel, and every tab the name appears "
+        "on -- with its strength percentile (100 = strongest in that layer's full population) and "
+        "the facts that tab records. Names in priority order.")))
     ts.merge_cells("A2:C2")
     ts.row_dimensions[2].height = 30
     r = 4
@@ -334,43 +423,48 @@ def tear_sheets(wb, fin, names, sym_map=None, title="Tear Sheets", index=None, m
             ws0, r0, c0 = where[t][0]
             nc = c0.get("Name") or c0.get("Company")
             nm = ws0.cell(row=r0, column=nc).value if nc else ""
-        head = f"{t}  —  {nm or ''}"
         meta = " · ".join(x for x in [f.get("sector"), f.get("country"),
                                       f"mcap ${(f.get('mcap') or 0) / 1e6:,.0f}M" if f.get("mcap") else None,
                                       f"price {f.get('price')}" if f.get("price") else None] if x)
-        c = ts.cell(row=r, column=1, value=head)
-        c.font, c.fill = Font(bold=True, color="FFFFFF", size=12), FILL
-        ts.merge_cells(start_row=r, start_column=1, end_row=r, end_column=3)
+        # name line styled as a table header (the book's header rule), meta as subtitle
+        for j in (1, 2, 3):
+            k.header(ts.cell(row=r, column=j))
+        ts.cell(row=r, column=1, value=f"{t}  —  {nm or ''}")
+        if k.header_height:
+            ts.row_dimensions[r].height = k.header_height
         r += 1
-        ts.cell(row=r, column=1, value=meta).font = Font(italic=True, color="444444")
-        ts.merge_cells(start_row=r, start_column=1, end_row=r, end_column=3)
-        r += 1
+        if meta:
+            k.subtitle(ts.cell(row=r, column=1, value=meta), wrap=False)
+            r += 1
+        i = 0
         if f.get("read"):
-            ts.cell(row=r, column=1, value="Financial read").font = Font(bold=True)
-            ts.cell(row=r, column=2, value=f.get("read") + (
-                "  [" + "; ".join(f["flags"]) + "]" if f.get("flags") else ""))
+            i += 1
+            k.body(ts.cell(row=r, column=1, value="Financial read"), band=False, bold=True)
+            k.body(ts.cell(row=r, column=2, value=f.get("read") + (
+                "  [" + "; ".join(f["flags"]) + "]" if f.get("flags") else "")), band=False)
+            k.body(ts.cell(row=r, column=3), band=False)
             ts.merge_cells(start_row=r, start_column=2, end_row=r, end_column=3)
             r += 1
-        # metric grid: two metrics per row
-        cells = [(lab, fmt.format(f[k])) for lab, k, fmt in METRICS
-                 if f.get(k) is not None and not (k == "int_cover" and f[k] == 0)]
-        for i in range(0, len(cells), 2):
-            pair = cells[i:i + 2]
-            ts.cell(row=r, column=1, value=pair[0][0]).font = Font(color="555555")
-            ts.cell(row=r, column=2, value=pair[0][1])
-            if len(pair) > 1:
-                ts.cell(row=r, column=3, value=f"{pair[1][0]}: {pair[1][1]}")
+        cells = [(lab, fmt.format(f[kk])) for lab, kk, fmt in METRICS
+                 if f.get(kk) is not None and not (kk == "int_cover" and f[kk] == 0)]
+        for p0 in range(0, len(cells), 2):
+            i += 1
+            band = i % 2 == 0
+            pair = cells[p0:p0 + 2]
+            k.body(ts.cell(row=r, column=1, value=pair[0][0]), band=band, bold=True)
+            k.body(ts.cell(row=r, column=2, value=pair[0][1]), band=band)
+            k.body(ts.cell(row=r, column=3, value=(f"{pair[1][0]}: {pair[1][1]}" if len(pair) > 1 else None)),
+                   band=band)
             r += 1
-        ts.cell(row=r, column=1, value="Appears on").font = Font(bold=True)
-        ts.cell(row=r, column=2, value="Strength %ile").font = Font(bold=True)
-        ts.cell(row=r, column=3, value="What that tab says").font = Font(bold=True)
+        for j, h in enumerate(("Appears on", "Strength %ile", "What that tab says"), 1):
+            k.header(ts.cell(row=r, column=j, value=h))
         r += 1
-        for ws, row, cols in where[t]:
-            ts.cell(row=r, column=1, value=ws.title)
+        for i2, (ws, row, cols) in enumerate(where[t], 1):
+            band = i2 % 2 == 0
+            k.body(ts.cell(row=r, column=1, value=ws.title), band=band, bold=True)
             st = cols.get("Strength %ile")
-            ts.cell(row=r, column=2, value=ws.cell(row=row, column=st).value if st else None)
-            c = ts.cell(row=r, column=3, value=_row_facts(ws, row, cols))
-            c.alignment = Alignment(wrap_text=True, vertical="top")
+            k.body(ts.cell(row=r, column=2, value=ws.cell(row=row, column=st).value if st else None), band=band)
+            k.body(ts.cell(row=r, column=3, value=_row_facts(ws, row, cols)), band=band, wrap=True)
             ts.row_dimensions[r].height = 30
             r += 1
         r += 1

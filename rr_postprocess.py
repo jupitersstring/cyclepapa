@@ -91,9 +91,29 @@ LIMITS = [
 
 
 def hdr(ws, row, cols):
+    import book_layout as bl
+    k = bl.kit(ws.parent)
     for j, h in enumerate(cols, 1):
-        c = ws.cell(row=row, column=j, value=h)
-        c.font, c.fill = HEAD, FILL
+        k.header(ws.cell(row=row, column=j, value=h))
+
+
+def body(ws, r, c, v, band=False, bold=False, wrap=True):
+    import book_layout as bl
+    cell = ws.cell(row=r, column=c, value=v)
+    bl.kit(ws.parent).body(cell, band=band, bold=bold, wrap=wrap)
+    return cell
+
+
+def title(ws, cell_ref, text):
+    import book_layout as bl
+    ws[cell_ref] = text
+    bl.kit(ws.parent).title(ws[cell_ref])
+
+
+def subtitle(ws, cell_ref, text):
+    import book_layout as bl
+    ws[cell_ref] = text
+    bl.kit(ws.parent).subtitle(ws[cell_ref])
 
 
 def yaml_date(wt, t):
@@ -127,12 +147,13 @@ def main() -> int:
     ws = wb.create_sheet("Review & data quality", 1)
     for col, w in zip("ABCDEFGHI", (10, 26, 11, 10, 10, 11, 10, 70, 1)):
         ws.column_dimensions[col].width = w
-    ws["A1"] = "Hand review & data quality"
-    ws["A1"].font = TITLE
-    ws["A2"] = (f"Reviewed {date.today()}. Hand-built waterfalls checked against today's prices; "
-                "FMP overlay data-quality log; known limitations.")
+    ws.sheet_view.showGridLines = False
+    title(ws, "A1", "Hand review & data quality")
+    subtitle(ws, "A2", f"Reviewed {date.today()}. Hand-built waterfalls checked against today's prices; "
+                       "FMP overlay data-quality log; known limitations.")
+    ws.merge_cells("A2:H2")
     r = 4
-    ws.cell(row=r, column=1, value="1. Hand-built waterfalls: are they still current?").font = SUB
+    subtitle(ws, f"A{r}", "1. Hand-built waterfalls: are they still current?")
     r += 1
     hdr(ws, r, ["Ticker", "Name", "YAML edited", "Px since", "EV× stated", "EV× today*",
                 "Bear loss", "Reviewer note"])
@@ -149,19 +170,22 @@ def main() -> int:
         r += 1
         vals = [t, x["name"][:26], d, f"{ch:+.0%}" if ch is not None else "n/a", f"{ev:.2f}",
                 f"{ev_today:.2f}" if ev_today else "n/a", f"{float(x['bear_loss'] or 0):.0%}", note]
+        band = (len(real) and (r % 2 == 0))
         for j, v in enumerate(vals, 1):
-            c = ws.cell(row=r, column=j, value=v)
-            c.alignment = WRAP
+            c = body(ws, r, j, v, band=band, bold=(j == 1))
             if j == 8 and note.startswith(("RESOLVED", "BROKEN", "WRONG")):
-                c.font = RED
+                from copy import copy
+                fnt = copy(c.font); fnt.color = "C00000"; fnt.b = True
+                c.font = fnt
         ws.row_dimensions[r].height = 30 if len(note) > 70 else 16
     r += 1
-    ws.cell(row=r, column=1, value="* EV× if the YAML's absolute targets still hold, re-based "
-            "to today's price (stated EV ÷ (1 + move)). A rise shrinks remaining upside; a fall "
-            "raises it only if the thesis is intact.").font = Font(italic=True, size=9)
+    subtitle(ws, f"A{r}", "* EV× if the YAML's absolute targets still hold, re-based "
+             "to today's price (stated EV ÷ (1 + move)). A rise shrinks remaining upside; a fall "
+             "raises it only if the thesis is intact.")
+    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=8)
 
     r += 2
-    ws.cell(row=r, column=1, value="2. FMP overlay: data-quality log").font = SUB
+    subtitle(ws, f"A{r}", "2. FMP overlay: data-quality log")
     src = Counter(x["source"] for x in rows)
     pbs = Counter(x.get("pb_src") for x in rows if x.get("fmp_symbol"))
     flags = Counter((x.get("flag") or "").split(" (")[0].split(":")[0] for x in rows if x.get("flag"))
@@ -179,16 +203,14 @@ def main() -> int:
     ]
     for t in lines:
         r += 1
-        c = ws.cell(row=r, column=1, value="•  " + t)
-        c.alignment = WRAP
+        body(ws, r, 1, "•  " + t)
         ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=8)
         ws.row_dimensions[r].height = 32
     r += 2
-    ws.cell(row=r, column=1, value="3. Known limitations (and the fix)").font = SUB
+    subtitle(ws, f"A{r}", "3. Known limitations (and the fix)")
     for t in LIMITS:
         r += 1
-        c = ws.cell(row=r, column=1, value="•  " + t)
-        c.alignment = WRAP
+        body(ws, r, 1, "•  " + t)
         ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=8)
         ws.row_dimensions[r].height = 44
 
@@ -197,13 +219,12 @@ def main() -> int:
     wc = wb.create_sheet("Call intent", 2)
     for col, w in zip("ABCDEFGHIJ", (8, 12, 24, 13, 8, 10, 8, 26, 70, 1)):
         wc.column_dimensions[col].width = w
-    wc["A1"] = "Call intent — what management said on its latest earnings call"
-    wc["A1"].font = TITLE
-    wc["A2"] = ("Clause-level linguistic scoring of each company's calls (call_intent.py): "
+    wc.sheet_view.showGridLines = False
+    title(wc, "A1", "Call intent — what management said on its latest earnings call")
+    subtitle(wc, "A2", ("Clause-level linguistic scoring of each company's calls (call_intent.py): "
                 "commitment strength, negation, new-vs-routine programmes, action size, CEO/CFO "
                 "agreement and novelty vs prior calls; act probability calibrated on what "
-                "companies then did (CALL_INTENT_VALIDATION.md). Predicts ACTION, not the re-rating.")
-    wc["A2"].alignment = WRAP
+                "companies then did (CALL_INTENT_VALIDATION.md). Predicts ACTION, not the re-rating."))
     wc.merge_cells("A2:I2")
     wc.row_dimensions[2].height = 44
     hdr(wc, 4, ["Rank", "Ticker", "Name", "Tier", "Act prob", "Last call", "Size",
@@ -233,8 +254,7 @@ def main() -> int:
                 c.get("act_prob"), c.get("date", "")[:10],
                 f"{c['size_pct']:.0%}" if c.get("size_pct") else "", lab[:40], ev]
         for j, v in enumerate(vals, 1):
-            cell = wc.cell(row=rr, column=j, value=v)
-            cell.alignment = WRAP
+            body(wc, rr, j, v, band=(rr % 2 == 0), bold=(j == 2))
         wc.row_dimensions[rr].height = 30
     wc.freeze_panes = "A5"
 
@@ -245,9 +265,11 @@ def main() -> int:
         hdr_r = next(r for r in range(1, 8) if es.cell(row=r, column=3).value == "Ticker")
         by_t = {x["ticker"]: x for x in rows}
         c0 = es.max_column + 1
+        import book_layout as bl
         for j, h in enumerate(("Composite (sort key)", "Review flag"), 0):
-            c = es.cell(row=hdr_r, column=c0 + j, value=h)
-            c.font, c.fill = HEAD, FILL
+            for rr_ in range(hdr_r, es.max_row + 1):
+                bl.clone(es.cell(row=rr_, column=c0 - 1), es.cell(row=rr_, column=c0 + j))
+            es.cell(row=hdr_r, column=c0 + j, value=h)
         es.column_dimensions[es.cell(row=hdr_r, column=c0).column_letter].width = 11
         es.column_dimensions[es.cell(row=hdr_r, column=c0 + 1).column_letter].width = 40
         for r in range(hdr_r + 1, es.max_row + 1):
@@ -298,9 +320,7 @@ def main() -> int:
         if t in wb.sheetnames:
             sh = wb[t]
             if sh.cell(row=2, column=1).value in (None, ""):
-                c = sh.cell(row=2, column=1, value=txt)
-                c.alignment = WRAP
-                c.font = Font(italic=True, size=9, color="444444")
+                subtitle(sh, "A2", txt)
                 if t != "Methodology":
                     sh.merge_cells(start_row=2, start_column=1, end_row=2, end_column=min(12, sh.max_column))
                     sh.row_dimensions[2].height = 42
