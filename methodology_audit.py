@@ -1252,6 +1252,13 @@ def _fmp_forensics(t, g):
                            | (n(t, "fq_op_nwc_to_rev") < 0) | (n(t, "fq_ccc") < 0))).sum())
         check("fmp forensics: customer_float firers show a float leg (post-fill)",
               bad == 0, f"{bad} of {int(sel.sum())}")
+    # 8b. share-based segment fills only from axes that reconcile to the company
+    if "fmp_filled_segment_revenue_hhi" in t.columns and "fmp_seg_coverage" in t.columns:
+        cov = n(t, "fmp_seg_coverage")
+        bad = int(((n(t, "fmp_filled_segment_revenue_hhi") == 1)
+                   & cov.notna() & ~cov.between(0.8, 1.2)).sum())
+        check("fmp segments: HHI/share fills only where segments reconcile to 80-120% of revenue",
+              bad == 0, f"{bad} unreconciled fills")
     # 9. calibration on the US overlap: where EDGAR AND FMP both carry a
     #    level, FMP (bridged) should match EDGAR — measures mapping drift
     #    before any non-US fill is trusted
