@@ -1,21 +1,21 @@
 # Archetype backtest — what history says, and what it can't
 
-Point-in-time event study over 417 events (2022-06-01..2025-06-30). monster = +100%/12m; big loss = -50%/12m. Confirmation = >=+20% first-month drift (deep_research showed it is the edge).
+Point-in-time event study over 525 events (2022-06-01..2025-06-30). monster = +100%/12m; big loss = -50%/12m. Confirmation = >=+20% first-month drift (deep_research showed it is the edge).
 
 ## Backtestable (catalyst-anchored) archetypes
 
 | archetype | n | all: median | win% | loss>50% | confirmed: mean | confirmed: monster% |
 |---|---|---|---|---|---|---|
-| asset_sale_monetization | 21 | +0% | 48% | 5% | +22% | 0% |
-| tender_offer_squeeze | 7 | -26% | 14% | 14% | +0% | 0% |
-| sub_cash_buyback | 17 | -15% | 29% | 12% | -15% | 0% |
-| stated_unlock_triangulated | 38 | -12% | 40% | 32% | +324% | 33% |
+| asset_sale_monetization | 33 | -4% | 46% | 12% | +11% | 0% |
+| tender_offer_squeeze | 8 | -28% | 12% | 25% | +0% | 0% |
+| sub_cash_buyback | 22 | -15% | 36% | 14% | +35% | 25% |
+| stated_unlock_triangulated | 56 | -5% | 46% | 27% | +13560% | 38% |
 
 **Read with care — the samples are small.** Slicing 417 events by archetype and then by confirmation shrinks each cell to n≈1–40; the confirmed sub-cells are n=0–4, so their means (e.g. stated-unlock confirmed +324%) are driven by one or two names (SYRE +975%) and are DIRECTIONAL, not estimates. What is robust across the whole study still holds here: the RAW archetype medians are weak/negative (asset-sale +0%, tender −26%, sub-cash −15%, stated-unlock −12%), and the money is in the confirmed tail — but the per-archetype confirmed numbers need a wider window to trust. Top realized trades per archetype:
-- **asset_sale_monetization**: VSTM +147%, NTRP +99%, UPXI +84%, DRS +71%
+- **asset_sale_monetization**: VSTM +147%, NTRP +100%, OPRT +92%, UPXI +84%
 - **tender_offer_squeeze**: BDSX +25%, CYH +-13%, TBPH +-15%, RYAM +-26%
-- **sub_cash_buyback**: MYRG +150%, AKA +149%, WDAY +65%, TECH +37%
-- **stated_unlock_triangulated**: SYRE +975%, IRWD +495%, CMTL +195%, DNTH +96%
+- **sub_cash_buyback**: MYRG +150%, AKA +149%, PEV +130%, PFIE +79%
+- **stated_unlock_triangulated**: INRE +107259%, SYRE +975%, IRWD +496%, SVT +340%
 
 ## NOT point-in-time backtestable (and why)
 

@@ -106,7 +106,23 @@ def efts(phrase, start, end, forms, cap=60):
 
 
 def chart_monthly(ticker, rng="5y"):
-    """Monthly (timestamp, close) list from the Yahoo chart API."""
+    """Monthly (month-start timestamp, month-end close) list.
+
+    FMP first: dividend- and split-adjusted daily bars resampled to months
+    (total-return-like, no Yahoo rate limits). Falls back to the Yahoo
+    chart API only if FMP has nothing for the symbol."""
+    try:
+        import datetime as _dt
+        import fmp_client
+        yrs = int(str(rng).rstrip("y") or 5)
+        start = (_dt.date.today() - _dt.timedelta(days=366 * yrs)).isoformat()
+        bars = fmp_client.resample(fmp_client.daily_adjusted(ticker, start), "M")
+        if bars:
+            return [(int(datetime.strptime(d, "%Y-%m-%d")
+                         .replace(tzinfo=timezone.utc).timestamp()), c)
+                    for d, _h, _l, c in bars]
+    except Exception:
+        pass
     u = (f"https://query1.finance.yahoo.com/v8/finance/chart/{ticker}"
          f"?range={rng}&interval=1mo")
     req = urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"})

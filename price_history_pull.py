@@ -64,7 +64,26 @@ def build_shortlist(limit: int) -> list[str]:
 
 
 def pull(tk):
-    """OHLC arrays: monthly 10y, quarterly 10y, weekly 2y (yfinance)."""
+    """OHLC arrays: monthly 10y, quarterly 10y, weekly 2y.
+
+    FMP first (adjusted daily bars resampled -- no rate-limit wall, which is
+    what left price_history.json empty); yfinance only as a fallback."""
+    try:
+        import datetime as _dt
+        import fmp_client
+        start = (_dt.date.today() - _dt.timedelta(days=3660)).isoformat()
+        daily = fmp_client.daily_adjusted(tk, start)
+        if daily:
+            wk_start = (_dt.date.today() - _dt.timedelta(days=731)).isoformat()
+            def arr(bars):
+                return ([round(b[1], 4) for b in bars], [round(b[2], 4) for b in bars],
+                        [round(b[3], 4) for b in bars])
+            mh, ml, mc = arr(fmp_client.resample(daily, "M"))
+            qh, ql, qc = arr(fmp_client.resample(daily, "Q"))
+            wh, wl, wc = arr(fmp_client.resample([d for d in daily if d[0] >= wk_start], "W"))
+            return mh, ml, mc, qh, ql, qc, wh, wl, wc
+    except Exception:
+        pass
     import yfinance as yf
     t = yf.Ticker(tk)
     def ohlc(df):

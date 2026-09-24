@@ -10,8 +10,11 @@
 # This script:
 #   1. checks that branch out into a temporary worktree (never touches it),
 #   2. drops in this engine's current snapshot files,
-#   3. builds the book (python3 -m src.build_workbook),
-#   4. saves it here as cyclepapa_risk_reward_workbook.xlsx.
+#   3. regenerates its universe ranking and overlays FMP market data on every
+#      formula-only PROXY row it can price (rr_fmp_overlay.py -> source "FMP":
+#      balance-sheet floor, re-rate-to-book upside, FMP valuation lens),
+#   4. builds the book (python3 -m src.build_workbook),
+#   5. saves it here as cyclepapa_risk_reward_workbook.xlsx.
 # Nothing is committed or pushed to the risk-reward branch.
 # ---------------------------------------------------------------------------
 set -uo pipefail
@@ -37,6 +40,16 @@ full_universe_consensus.csv ($NAMES names) + discretionary_insider_conviction.js
 Written by refresh_risk_reward.sh.
 EOF
 
+( cd "$WT" && python3 src/universe_screen.py >/dev/null && python3 -m src.universe_risk_reward >/dev/null ) \
+  || { echo "risk-reward universe regeneration failed"; exit 1; }
+if python3 rr_fmp_overlay.py --wt "$WT"; then
+  # the book's coverage-gap list and header know REAL/PROXY only: teach them FMP
+  sed -i -e 's/if r\["source"\] == "PROXY"\]\[:20\]/if r["source"] != "REAL"][:20]/' \
+         -e "s/\"PROXY).  REAL uses/f\"PROXY · {sum(1 for r in universe_rr if r['source']=='FMP')} FMP market-data).  REAL uses/" \
+         "$WT/src/build_workbook.py"
+else
+  echo "  (FMP overlay skipped -- building on the engine's PROXY formula)"
+fi
 ( cd "$WT" && python3 -m src.build_workbook ) || { echo "risk-reward build failed"; exit 1; }
 cp "$WT/output/cyclepapa_risk_reward_workbook.xlsx" "$OUT"
 echo "saved $OUT"

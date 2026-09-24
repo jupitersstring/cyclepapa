@@ -75,6 +75,8 @@ ARCH_WEIGHT = {
     # Cundill structured distressed value-injection (hard conjunction already
     # applied by structured_distressed_injection.py).
     "structured_distressed_injection": 13.0,
+    # below book + recent governance change implying action on the discount
+    "governance_discount_catalyst": 12.0,
 }
 MULTI_MECHANISM_BONUS = 10.0   # two or more machines on one name
 
@@ -108,6 +110,7 @@ def main() -> int:
     credit = _load("credit_agreement_mine.json")
     rer = _load("rerate_catalysts.json")
     sdi = _load("structured_distressed_injection.json")
+    gdisc = _load("governance_discount.json")
 
     out = {}
     for tk, g in geo.items():
@@ -241,6 +244,16 @@ def main() -> int:
                 "coupon_pct": sd.get("coupon_pct"),
                 "senior_secured": sd.get("senior_secured"),
                 "drawdown": sd.get("drawdown_from_high")}
+
+        # 11. GOVERNANCE-CATALYSED DEEP DISCOUNT -- well below book and a
+        #     recent governance change implies the board will act on the gap
+        #     (governance_discount.py applies the conjunction).
+        gdr = gdisc.get(tk) or {}
+        if (_num(gdr.get("score")) or 0) > 0:
+            archetypes.append("governance_discount_catalyst")
+            details["governance_discount"] = {
+                "p_b": gdr.get("p_b"), "tier": gdr.get("tier"),
+                "families": sorted((gdr.get("families") or {}).keys())}
 
         if not archetypes:
             continue

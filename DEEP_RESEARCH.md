@@ -1,6 +1,6 @@
 # Deeper research — validating & sharpening the monster fingerprint
 
-Pure-compute on 417 corporate-action events (rerate_backtest.json). monster = +100%/12m; big loss = -50%/12m.
+Pure-compute on 525 corporate-action events (rerate_backtest.json). monster = +100%/12m; big loss = -50%/12m.
 
 ## Headline (this CORRECTS the earlier monster_setup)
 
@@ -10,42 +10,42 @@ The deep-washout fingerprint is **bimodal, not bullish**: the biggest WINNERS an
 
 | fp bucket | n | monster% | win% | median | loss>50% | mean |
 |---|---|---|---|---|---|---|
-| 0-3 | 238 | 2% | 50% | +0% | 9% | +4% |
-| 4-5 | 47 | 11% | 53% | +5% | 6% | +19% |
-| 6-7 | 44 | 7% | 39% | -15% | 18% | -5% |
-| 8-10 | 88 | 8% | 34% | -26% | 33% | -0% |
+| 0-3 | 280 | 2% | 56% | +6% | 7% | +9% |
+| 4-5 | 63 | 11% | 57% | +13% | 6% | +26% |
+| 6-7 | 63 | 10% | 41% | -12% | 25% | +54% |
+| 8-10 | 119 | 10% | 37% | -21% | 31% | +904% |
 
 ## B. Confirmation sweep — first-month drift → 12m outcome
 
 | entry rule | n | coverage | monster% | mean 12m |
 |---|---|---|---|---|
-| confirm >= +0% | 172 | 0.412 | 6% | +23% |
-| confirm >= +10% | 74 | 0.177 | 8% | +40% |
-| confirm >= +20% | 34 | 0.082 | 15% | +57% |
-| confirm >= +30% | 16 | 0.038 | 19% | +86% |
-| confirm faded (<= -10%) | 88 | — | 1% | -38% |
+| confirm >= +0% | 237 | 0.451 | 8% | +491% |
+| confirm >= +10% | 106 | 0.202 | 11% | +1083% |
+| confirm >= +20% | 51 | 0.097 | 20% | +2152% |
+| confirm >= +30% | 29 | 0.055 | 24% | +3762% |
+| confirm faded (<= -10%) | 103 | — | 3% | -27% |
 
 ## C. Payoff & sizing — top fingerprint bucket (fp≥8)
 
-n=88, win 34%, avg win +105%, avg loss -55%, loss>50% 33%, mean/expectancy -0%. Payoff ratio b=1.91, full-Kelly -0.005 → **~1/4-Kelly 0** per name. The fat left tail (loss>50%) is why these are small-size lottery tickets.
+n=119, win 37%, avg win +2536%, avg loss -53%, loss>50% 31%, mean/expectancy +904%. Payoff ratio b=47.59, full-Kelly 0.357 → **~1/4-Kelly 0.089** per name. The fat left tail (loss>50%) is why these are small-size lottery tickets.
 
 ## D. The loser anti-pattern (≤ −50%/12m)
 
-61 big losers. Pre-event medians (loser vs rest):
+76 big losers. Pre-event medians (loser vs rest):
 
 | feature | loser | rest |
 |---|---|---|
-| drawdown_24m | -0.737 | -0.234 |
-| pre_vol | 0.232 | 0.103 |
-| range_pos | 0.014 | 0.419 |
-| pre_12m | -0.552 | -0.074 |
-| decel | 0 | 0.0 |
-| post_1m | -0.173 | 0.0 |
+| drawdown_24m | -0.656 | -0.226 |
+| pre_vol | 0.271 | 0.106 |
+| range_pos | 0.062 | 0.45 |
+| pre_12m | -0.568 | -0.042 |
+| decel | 0.013 | 0.004 |
+| post_1m | -0.141 | 0.0 |
 
-Loser catalyst mix: {'UPLISTING': 0.25, 'STRATEGIC_REVIEW': 0.2, 'SPINOFF': 0.11, 'BUYBACK_AUTH': 0.08}
+Loser catalyst mix: {'UPLISTING': 0.26, 'STRATEGIC_REVIEW': 0.2, 'CAPITAL_RETURN': 0.09, 'SPINOFF': 0.08}
 
 ## E. Out-of-sample check (train pre-2024 / test 2024+)
 
-- **train** (n=231): fp≥6 monster rate 10% vs fp<6 2% (holds)
-- **test** (n=186): fp≥6 monster rate 5% vs fp<6 4% (holds)
+- **train** (n=284): fp≥6 monster rate 10% vs fp<6 2% (holds)
+- **test** (n=241): fp≥6 monster rate 10% vs fp<6 6% (holds)
 

@@ -1,33 +1,33 @@
 {
   "window": "2022-06-01..2025-06-30",
-  "n_events": 417,
+  "n_events": 525,
   "archetypes": {
     "asset_sale_monetization": {
       "backtestable": true,
-      "n": 21,
+      "n": 33,
       "all": {
-        "n": 21,
-        "monster_rate": 0.048,
-        "win_rate": 0.476,
-        "median": 0.0,
-        "mean": 0.09,
-        "loss_rate_50": 0.048
+        "n": 33,
+        "monster_rate": 0.03,
+        "win_rate": 0.455,
+        "median": -0.043,
+        "mean": 0.018,
+        "loss_rate_50": 0.121
       },
       "confirmed_>=20pct": {
-        "n": 4,
+        "n": 7,
         "monster_rate": 0.0,
-        "win_rate": 0.5,
-        "median": 0.152,
-        "mean": 0.216,
-        "loss_rate_50": 0.0
+        "win_rate": 0.429,
+        "median": -0.043,
+        "mean": 0.111,
+        "loss_rate_50": 0.143
       },
       "faded_<=-10pct": {
-        "n": 2,
+        "n": 5,
         "monster_rate": 0.0,
-        "win_rate": 0.0,
-        "median": -0.513,
-        "mean": -0.513,
-        "loss_rate_50": 0.5
+        "win_rate": 0.2,
+        "median": -0.193,
+        "mean": -0.258,
+        "loss_rate_50": 0.2
       },
       "top_trades": [
         {
@@ -37,42 +37,42 @@
         },
         {
           "ticker": "NTRP",
-          "ret_12m": 0.99,
+          "ret_12m": 1.0,
           "date": "2023-11-13"
+        },
+        {
+          "ticker": "OPRT",
+          "ret_12m": 0.92,
+          "date": "2024-09-26"
         },
         {
           "ticker": "UPXI",
           "ret_12m": 0.84,
           "date": "2024-08-05"
-        },
-        {
-          "ticker": "DRS",
-          "ret_12m": 0.71,
-          "date": "2022-08-01"
         }
       ]
     },
     "tender_offer_squeeze": {
       "backtestable": true,
-      "n": 7,
+      "n": 8,
       "all": {
-        "n": 7,
+        "n": 8,
         "monster_rate": 0.0,
-        "win_rate": 0.143,
-        "median": -0.259,
-        "mean": -0.228,
-        "loss_rate_50": 0.143
+        "win_rate": 0.125,
+        "median": -0.282,
+        "mean": -0.268,
+        "loss_rate_50": 0.25
       },
       "confirmed_>=20pct": {
         "n": 0
       },
       "faded_<=-10pct": {
-        "n": 2,
+        "n": 3,
         "monster_rate": 0.0,
         "win_rate": 0.0,
-        "median": -0.373,
-        "mean": -0.373,
-        "loss_rate_50": 0.5
+        "median": -0.574,
+        "mean": -0.44,
+        "loss_rate_50": 0.667
       },
       "top_trades": [
         {
@@ -99,30 +99,30 @@
     },
     "sub_cash_buyback": {
       "backtestable": true,
-      "n": 17,
+      "n": 22,
       "all": {
-        "n": 17,
-        "monster_rate": 0.118,
-        "win_rate": 0.294,
-        "median": -0.15,
-        "mean": 0.041,
-        "loss_rate_50": 0.118
+        "n": 22,
+        "monster_rate": 0.136,
+        "win_rate": 0.364,
+        "median": -0.147,
+        "mean": 0.067,
+        "loss_rate_50": 0.136
       },
       "confirmed_>=20pct": {
-        "n": 1,
-        "monster_rate": 0.0,
-        "win_rate": 0.0,
-        "median": -0.15,
-        "mean": -0.15,
+        "n": 4,
+        "monster_rate": 0.25,
+        "win_rate": 0.5,
+        "median": 0.13,
+        "mean": 0.353,
         "loss_rate_50": 0.0
       },
       "faded_<=-10pct": {
-        "n": 5,
+        "n": 6,
         "monster_rate": 0.0,
-        "win_rate": 0.2,
-        "median": -0.259,
-        "mean": -0.202,
-        "loss_rate_50": 0.2
+        "win_rate": 0.167,
+        "median": -0.374,
+        "mean": -0.365,
+        "loss_rate_50": 0.333
       },
       "top_trades": [
         {
@@ -136,45 +136,50 @@
           "date": "2023-06-06"
         },
         {
-          "ticker": "WDAY",
-          "ret_12m": 0.65,
-          "date": "2022-11-29"
+          "ticker": "PEV",
+          "ret_12m": 1.3,
+          "date": "2025-03-25"
         },
         {
-          "ticker": "TECH",
-          "ret_12m": 0.37,
-          "date": "2025-05-07"
+          "ticker": "PFIE",
+          "ret_12m": 0.79,
+          "date": "2024-05-24"
         }
       ]
     },
     "stated_unlock_triangulated": {
       "backtestable": true,
-      "n": 38,
+      "n": 56,
       "all": {
-        "n": 38,
-        "monster_rate": 0.079,
-        "win_rate": 0.395,
-        "median": -0.116,
-        "mean": 0.239,
-        "loss_rate_50": 0.316
+        "n": 56,
+        "monster_rate": 0.107,
+        "win_rate": 0.464,
+        "median": -0.049,
+        "mean": 19.405,
+        "loss_rate_50": 0.268
       },
       "confirmed_>=20pct": {
-        "n": 3,
-        "monster_rate": 0.333,
-        "win_rate": 0.667,
-        "median": 0.876,
-        "mean": 3.235,
-        "loss_rate_50": 0.333
+        "n": 8,
+        "monster_rate": 0.375,
+        "win_rate": 0.625,
+        "median": 0.608,
+        "mean": 135.599,
+        "loss_rate_50": 0.25
       },
       "faded_<=-10pct": {
-        "n": 13,
-        "monster_rate": 0.0,
-        "win_rate": 0.077,
-        "median": -0.617,
-        "mean": -0.522,
-        "loss_rate_50": 0.538
+        "n": 16,
+        "monster_rate": 0.062,
+        "win_rate": 0.188,
+        "median": -0.547,
+        "mean": -0.34,
+        "loss_rate_50": 0.5
       },
       "top_trades": [
+        {
+          "ticker": "INRE",
+          "ret_12m": 1072.6,
+          "date": "2024-11-06"
+        },
         {
           "ticker": "SYRE",
           "ret_12m": 9.75,
@@ -182,18 +187,13 @@
         },
         {
           "ticker": "IRWD",
-          "ret_12m": 4.95,
+          "ret_12m": 4.96,
           "date": "2025-04-14"
         },
         {
-          "ticker": "CMTL",
-          "ret_12m": 1.95,
-          "date": "2025-01-13"
-        },
-        {
-          "ticker": "DNTH",
-          "ret_12m": 0.96,
-          "date": "2023-02-02"
+          "ticker": "SVT",
+          "ret_12m": 3.4,
+          "date": "2025-03-17"
         }
       ]
     },

@@ -1,17 +1,4 @@
 {
-  "JFB": {
-    "ticker": "JFB",
-    "company": "JFB Construction Holdings ",
-    "forms": [
-      "15",
-      "25"
-    ],
-    "date": "2026-09-14",
-    "score": 8.0,
-    "mcap": null,
-    "p_b": null,
-    "insider_pct": null
-  },
   "LMMY": {
     "ticker": "LMMY",
     "company": "Exousia Bio, Inc. ",
@@ -55,8 +42,8 @@
       "15"
     ],
     "date": "2026-08-21",
-    "score": 8.0,
-    "mcap": null,
+    "score": 10.0,
+    "mcap": 769748414.0,
     "p_b": null,
     "insider_pct": null
   },
@@ -79,9 +66,10 @@
       "15"
     ],
     "date": "2026-08-11",
-    "score": 8.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 13.0,
+    "micro_cap": true,
+    "mcap": 275896.0,
+    "p_b": -0.08813042930905216,
     "insider_pct": null
   },
   "APOS": {
@@ -92,9 +80,9 @@
       "25"
     ],
     "date": "2026-08-11",
-    "score": 8.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 4.0,
+    "mcap": 74609592053.0,
+    "p_b": 3.5146301056840903,
     "insider_pct": null
   },
   "PNXP": {
@@ -116,9 +104,9 @@
       "15"
     ],
     "date": "2026-08-10",
-    "score": 8.0,
-    "mcap": 1185197568.0,
-    "p_b": 2.2302678,
+    "score": 10.0,
+    "mcap": 785768310.0,
+    "p_b": 1.7858783640139355,
     "insider_pct": 0.15882
   },
   "GLP": {
@@ -131,8 +119,8 @@
     "date": "2026-08-10",
     "score": 12.0,
     "controlled": true,
-    "mcap": 1638101376.0,
-    "p_b": 2.5777826,
+    "mcap": 1676489084.0,
+    "p_b": 2.2313790590810214,
     "insider_pct": 0.30053
   },
   "MSBB": {
@@ -206,8 +194,8 @@
     ],
     "date": "2026-07-30",
     "score": 8.0,
-    "mcap": null,
-    "p_b": null,
+    "mcap": 6718300000.0,
+    "p_b": 1.8983283297197533,
     "insider_pct": null
   },
   "RBOT": {
@@ -265,9 +253,11 @@
       "15"
     ],
     "date": "2026-07-06",
-    "score": 8.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 15.0,
+    "micro_cap": true,
+    "below_book": true,
+    "mcap": 1938797.0,
+    "p_b": 0.40105842699680494,
     "insider_pct": null
   },
   "WYTC": {
@@ -290,9 +280,9 @@
       "25"
     ],
     "date": "2026-06-25",
-    "score": 8.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 4.0,
+    "mcap": 21174477754.0,
+    "p_b": 47.92874455881007,
     "insider_pct": null
   },
   "BASA": {
@@ -307,6 +297,18 @@
     "p_b": null,
     "insider_pct": null
   },
+  "WCHD": {
+    "ticker": "WCHD",
+    "company": "WeCapital Holdings, Inc. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-06-24",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
   "CYRX": {
     "ticker": "CYRX",
     "company": "Cryoport, Inc. ",
@@ -315,8 +317,8 @@
     ],
     "date": "2026-06-22",
     "score": 10.0,
-    "mcap": 756538688.0,
-    "p_b": 1.6716784,
+    "mcap": 870447946.0,
+    "p_b": 1.777374608140632,
     "insider_pct": 0.039330002
   },
   "CTHH": {
@@ -327,8 +329,9 @@
       "25"
     ],
     "date": "2026-06-12",
-    "score": 8.0,
-    "mcap": null,
+    "score": 13.0,
+    "micro_cap": true,
+    "mcap": 256844648.0,
     "p_b": null,
     "insider_pct": null
   },
@@ -387,9 +390,10 @@
       "15"
     ],
     "date": "2026-05-13",
-    "score": 10.0,
-    "mcap": 414599264.0,
-    "p_b": 4.6850276,
+    "score": 13.0,
+    "micro_cap": true,
+    "mcap": 263640476.0,
+    "p_b": 2.5254346282272673,
     "insider_pct": 0.05784
   },
   "SNTI": {
@@ -402,8 +406,8 @@
     "score": 17.0,
     "micro_cap": true,
     "controlled": true,
-    "mcap": 28207804.0,
-    "p_b": 5.0038676,
+    "mcap": 11040815.0,
+    "p_b": -3.205134930902675,
     "insider_pct": 0.47907
   },
   "LDSN": {
@@ -425,9 +429,11 @@
       "15"
     ],
     "date": "2026-04-16",
-    "score": 8.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 15.0,
+    "micro_cap": true,
+    "below_book": true,
+    "mcap": 191030667.0,
+    "p_b": 0.8225327310313146,
     "insider_pct": null
   },
   "AHRO": {
@@ -449,9 +455,10 @@
       "15"
     ],
     "date": "2026-04-13",
-    "score": 8.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 10.0,
+    "below_book": true,
+    "mcap": 5229526212.0,
+    "p_b": 0.9763535463082306,
     "insider_pct": null
   },
   "ZIVO": {
@@ -547,8 +554,8 @@
     ],
     "date": "2026-02-18",
     "score": 4.0,
-    "mcap": 20808126464.0,
-    "p_b": 1.0683798,
+    "mcap": 20356146720.0,
+    "p_b": 1.0704738423493045,
     "insider_pct": 0.0030399999
   },
   "CYAN": {
@@ -582,9 +589,10 @@
       "15"
     ],
     "date": "2026-01-30",
-    "score": 8.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 13.0,
+    "micro_cap": true,
+    "mcap": 14729331.0,
+    "p_b": 2.679795941096399,
     "insider_pct": null
   },
   "IRTC": {
@@ -595,8 +603,8 @@
     ],
     "date": "2026-01-30",
     "score": 8.0,
-    "mcap": 3439051008.0,
-    "p_b": 21.326675,
+    "mcap": 3769646822.0,
+    "p_b": 20.242904133711146,
     "insider_pct": 0.01158
   },
   "INDV": {
@@ -607,8 +615,8 @@
     ],
     "date": "2026-01-26",
     "score": 8.0,
-    "mcap": 4527235584.0,
-    "p_b": -32.457626,
+    "mcap": 4527903300.0,
+    "p_b": -21.72567115384615,
     "insider_pct": 0.04298
   },
   "MIBE": {
@@ -630,12 +638,11 @@
       "15"
     ],
     "date": "2026-01-22",
-    "score": 19.0,
+    "score": 17.0,
     "micro_cap": true,
     "controlled": true,
-    "below_book": true,
-    "mcap": 45198004.0,
-    "p_b": 0.99294865,
+    "mcap": 40355968.0,
+    "p_b": 1.0004367380812773,
     "insider_pct": 0.36908
   },
   "ELPC": {
@@ -646,32 +653,21 @@
     ],
     "date": "2026-01-21",
     "score": 8.0,
-    "mcap": null,
-    "p_b": null,
+    "mcap": 2287528159.0,
+    "p_b": 1.9486214332008238,
     "insider_pct": null
   },
-  "PR": {
-    "ticker": "PR",
-    "company": "Permian Resources Corp ",
-    "forms": [
-      "15"
-    ],
-    "date": "2026-01-20",
-    "score": 4.0,
-    "mcap": 15878111232.0,
-    "p_b": 1.361957,
-    "insider_pct": 0.04614
-  },
-  "BRNS": {
-    "ticker": "BRNS",
-    "company": "Barinthus Biotherapeutics plc. ",
+  "TRT": {
+    "ticker": "TRT",
+    "company": "TRIO-TECH INTERNATIONAL ",
     "forms": [
       "25"
     ],
-    "date": "2026-09-09",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "date": "2026-09-15",
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 119492504.0,
+    "p_b": 2.9810050983248364,
     "insider_pct": null
   },
   "KHC": {
@@ -683,8 +679,8 @@
     "date": "2026-09-08",
     "score": 1.0,
     "below_book": true,
-    "mcap": 27059445760.0,
-    "p_b": 0.64558107,
+    "mcap": 28073285580.0,
+    "p_b": 0.7824648669666167,
     "insider_pct": 0.27781
   },
   "CSAN": {
@@ -695,8 +691,8 @@
     ],
     "date": "2026-09-08",
     "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "mcap": 2694279217.0,
+    "p_b": 3.0423990664321745,
     "insider_pct": null
   },
   "OPAD": {
@@ -706,10 +702,11 @@
       "25"
     ],
     "date": "2026-08-28",
-    "score": 8.0,
+    "score": 10.0,
     "micro_cap": true,
-    "mcap": 23990150.0,
-    "p_b": 5.232198,
+    "below_book": true,
+    "mcap": 16528005.0,
+    "p_b": 0.43885830697474937,
     "insider_pct": 0.14491999
   },
   "BGICF": {
@@ -744,8 +741,8 @@
     ],
     "date": "2026-08-10",
     "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "mcap": 1200976616.0,
+    "p_b": 10.592561499632643,
     "insider_pct": null
   },
   "AXIAY": {
@@ -768,8 +765,8 @@
     ],
     "date": "2026-07-24",
     "score": 3.0,
-    "mcap": 8612850688.0,
-    "p_b": 9.785354,
+    "mcap": 6307846066.0,
+    "p_b": 5.820742546065496,
     "insider_pct": 0.02273
   },
   "TRNZ": {
@@ -779,8 +776,9 @@
       "25"
     ],
     "date": "2026-07-24",
-    "score": 3.0,
-    "mcap": null,
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 142313760.0,
     "p_b": null,
     "insider_pct": null
   },
@@ -792,8 +790,8 @@
     ],
     "date": "2026-07-22",
     "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "mcap": 7894781291.0,
+    "p_b": 2.0509563859292395,
     "insider_pct": null
   },
   "AZUXY": {
@@ -816,8 +814,8 @@
     ],
     "date": "2026-06-18",
     "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "mcap": 1784769255.0,
+    "p_b": 1.1183896991409696,
     "insider_pct": null
   },
   "PTN": {
@@ -827,10 +825,11 @@
       "25"
     ],
     "date": "2026-05-28",
-    "score": 8.0,
+    "score": 10.0,
     "micro_cap": true,
-    "mcap": 20853104.0,
-    "p_b": 1.9654537,
+    "below_book": true,
+    "mcap": 17952885.0,
+    "p_b": 0.9274447364291771,
     "insider_pct": 0.01082
   },
   "PRTCY": {
@@ -852,9 +851,10 @@
       "25"
     ],
     "date": "2026-05-07",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 185909642.0,
+    "p_b": 54.428011343683394,
     "insider_pct": null
   },
   "MAPS": {
@@ -876,9 +876,9 @@
       "25"
     ],
     "date": "2026-04-16",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 0.0,
+    "mcap": 11013828959.0,
+    "p_b": 1.3131621824554462,
     "insider_pct": null
   },
   "DCBG": {
@@ -888,9 +888,10 @@
       "25"
     ],
     "date": "2026-04-06",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 5.0,
+    "below_book": true,
+    "mcap": 1167127800.0,
+    "p_b": 0.7888116350458642,
     "insider_pct": null
   },
   "UAMY": {
@@ -900,9 +901,9 @@
       "25"
     ],
     "date": "2026-03-16",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 5.0,
+    "mcap": 683150536.0,
+    "p_b": 3.7214318739543457,
     "insider_pct": null
   },
   "CULP": {
@@ -912,9 +913,11 @@
       "25"
     ],
     "date": "2026-03-05",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 10.0,
+    "micro_cap": true,
+    "below_book": true,
+    "mcap": 45332767.0,
+    "p_b": 0.8300428036383092,
     "insider_pct": null
   },
   "ARIS": {
@@ -925,8 +928,8 @@
     ],
     "date": "2026-02-20",
     "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "mcap": 3840072000.0,
+    "p_b": 2.2052613186478087,
     "insider_pct": null
   },
   "AZN": {
@@ -936,9 +939,9 @@
       "25"
     ],
     "date": "2026-01-30",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 0.0,
+    "mcap": 255831919847.0,
+    "p_b": 5.049136424689164,
     "insider_pct": null
   },
   "TELFY": {
@@ -960,9 +963,9 @@
       "25"
     ],
     "date": "2026-01-02",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 5.0,
+    "mcap": 805173459.0,
+    "p_b": 2.8223967447923846,
     "insider_pct": null
   },
   "ABXL": {
@@ -973,53 +976,153 @@
     ],
     "date": "2025-12-29",
     "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "mcap": 2472170841.0,
+    "p_b": 5.524755932207653,
     "insider_pct": null
   },
-  "GLBZ": {
-    "ticker": "GLBZ",
-    "company": "GLEN BURNIE BANCORP ",
+  "TBPH": {
+    "ticker": "TBPH",
+    "company": "Theravance Biopharma, Inc. ",
     "forms": [
       "25"
     ],
-    "date": "2025-12-22",
+    "date": "2026-09-23",
+    "score": 5.0,
+    "mcap": 883412589.0,
+    "p_b": 3.0380813068466197,
+    "insider_pct": 0.046729997
+  },
+  "HVIIR": {
+    "ticker": "HVIIR",
+    "company": "ONE Nuclear Energy Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-23",
+    "score": 10.0,
+    "micro_cap": true,
+    "below_book": true,
+    "mcap": 232720911.0,
+    "p_b": 0.42033086485791943,
+    "insider_pct": null
+  },
+  "KO": {
+    "ticker": "KO",
+    "company": "COCA COLA CO ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-22",
+    "score": 0.0,
+    "mcap": 379914624441.0,
+    "p_b": 10.453324481327801,
+    "insider_pct": 0.09896
+  },
+  "CRI": {
+    "ticker": "CRI",
+    "company": "CARTERS INC ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-22",
+    "score": 3.0,
+    "mcap": 1106608503.0,
+    "p_b": 1.0391713272651346,
+    "insider_pct": 0.04833
+  },
+  "MRSH": {
+    "ticker": "MRSH",
+    "company": "MARSH & MCLENNAN COMPANIES, INC. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-21",
+    "score": 0.0,
+    "mcap": 81512456687.0,
+    "p_b": 5.432698412698413,
+    "insider_pct": 0.0011
+  },
+  "SASOF": {
+    "ticker": "SASOF",
+    "company": "SASOL LTD ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-18",
     "score": 3.0,
     "mcap": null,
     "p_b": null,
     "insider_pct": null
   },
-  "OMCC": {
-    "ticker": "OMCC",
-    "company": "OLD MARKET CAPITAL Corp ",
+  "SAY": {
+    "ticker": "SAY",
+    "company": "SARATOGA INVESTMENT CORP. ",
     "forms": [
       "25"
     ],
-    "date": "2025-12-22",
+    "date": "2026-09-18",
+    "score": 7.0,
+    "below_book": true,
+    "mcap": 314398339.0,
+    "p_b": 0.7506693545285779,
+    "insider_pct": null
+  },
+  "OKE": {
+    "ticker": "OKE",
+    "company": "ONEOK INC /NEW/ ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-18",
+    "score": 0.0,
+    "mcap": 57595435800.0,
+    "p_b": 2.489685377337926,
+    "insider_pct": 0.00164
+  },
+  "CIMG": {
+    "ticker": "CIMG",
+    "company": "CIMG Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-17",
     "score": 3.0,
     "mcap": null,
     "p_b": null,
     "insider_pct": null
   },
-  "QS": {
-    "ticker": "QS",
-    "company": "QuantumScape Corp ",
+  "WMT": {
+    "ticker": "WMT",
+    "company": "Walmart Inc. ",
     "forms": [
       "25"
     ],
-    "date": "2025-12-22",
+    "date": "2026-09-16",
     "score": 3.0,
-    "mcap": 4945766400.0,
-    "p_b": 4.456763,
-    "insider_pct": 0.13555999
+    "controlled": true,
+    "mcap": 874581850688.0,
+    "p_b": 8.933769117856633,
+    "insider_pct": 0.4495
   },
-  "GRTUF": {
-    "ticker": "GRTUF",
-    "company": "GRANITE REAL ESTATE INVESTMENT TRUST ",
+  "ACHR": {
+    "ticker": "ACHR",
+    "company": "Archer Aviation Inc. ",
     "forms": [
       "25"
     ],
-    "date": "2025-12-22",
+    "date": "2026-09-16",
+    "score": 3.0,
+    "mcap": 4318314630.0,
+    "p_b": 2.35670797442266,
+    "insider_pct": 0.14934
+  },
+  "LLOBF": {
+    "ticker": "LLOBF",
+    "company": "Lloyds Banking Group plc ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-15",
     "score": 3.0,
     "mcap": null,
     "p_b": null,
@@ -1032,22 +1135,23 @@
       "25"
     ],
     "date": "2026-09-14",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 1.0,
+    "below_book": true,
+    "mcap": 15715279955.0,
+    "p_b": 0.90331697671828,
     "insider_pct": null
   },
-  "TEVJF": {
-    "ticker": "TEVJF",
+  "TEVA": {
+    "ticker": "TEVA",
     "company": "TEVA PHARMACEUTICAL INDUSTRIES LTD ",
     "forms": [
       "25"
     ],
     "date": "2026-09-14",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
-    "insider_pct": null
+    "score": 0.0,
+    "mcap": 46084804800.0,
+    "p_b": 5.96717537985296,
+    "insider_pct": 4.0000003e-05
   },
   "BCLYF": {
     "ticker": "BCLYF",
@@ -1097,6 +1201,19 @@
     "p_b": null,
     "insider_pct": null
   },
+  "TMC": {
+    "ticker": "TMC",
+    "company": "TMC the metals Co Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-09",
+    "score": 7.0,
+    "controlled": true,
+    "mcap": 1810994323.0,
+    "p_b": -64.6619654874804,
+    "insider_pct": 0.45136002
+  },
   "BTAFF": {
     "ticker": "BTAFF",
     "company": "British American Tobacco p.l.c. ",
@@ -1109,18 +1226,18 @@
     "p_b": null,
     "insider_pct": null
   },
-  "LPSN": {
-    "ticker": "LPSN",
-    "company": "LIVEPERSON INC ",
+  "GIPR": {
+    "ticker": "GIPR",
+    "company": "GENERATION INCOME PROPERTIES, INC. ",
     "forms": [
       "25"
     ],
     "date": "2026-09-04",
     "score": 8.0,
     "micro_cap": true,
-    "mcap": 24473814.0,
-    "p_b": -0.4723854,
-    "insider_pct": 0.020610001
+    "mcap": 320656.0,
+    "p_b": -0.3249221858131305,
+    "insider_pct": null
   },
   "NHPBP": {
     "ticker": "NHPBP",
@@ -1129,9 +1246,9 @@
       "25"
     ],
     "date": "2026-09-03",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 5.0,
+    "mcap": 718332320.0,
+    "p_b": 1.483646923891307,
     "insider_pct": null
   },
   "VODPF": {
@@ -1153,9 +1270,10 @@
       "25"
     ],
     "date": "2026-09-02",
-    "score": 5.0,
-    "mcap": 353241120.0,
-    "p_b": 1.4832646,
+    "score": 7.0,
+    "below_book": true,
+    "mcap": 345521147.0,
+    "p_b": 0.9346883615757938,
     "insider_pct": 0.029660001
   },
   "ARQQ": {
@@ -1165,9 +1283,9 @@
       "25"
     ],
     "date": "2026-09-02",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 5.0,
+    "mcap": 393642288.0,
+    "p_b": 13.178595014208033,
     "insider_pct": null
   },
   "BXBL": {
@@ -1178,7 +1296,7 @@
     ],
     "date": "2026-09-01",
     "score": 3.0,
-    "mcap": null,
+    "mcap": 1446013119.0,
     "p_b": null,
     "insider_pct": null
   },
@@ -1189,9 +1307,9 @@
       "25"
     ],
     "date": "2026-08-26",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 5.0,
+    "mcap": 934649344.0,
+    "p_b": 4.0661518824575005,
     "insider_pct": null
   },
   "GDEV": {
@@ -1201,9 +1319,10 @@
       "25"
     ],
     "date": "2026-08-25",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 199473874.0,
+    "p_b": -3.8273651138496065,
     "insider_pct": null
   },
   "HUMA": {
@@ -1215,8 +1334,8 @@
     "date": "2026-08-25",
     "score": 8.0,
     "micro_cap": true,
-    "mcap": 249253488.0,
-    "p_b": 17.776922,
+    "mcap": 94936800.0,
+    "p_b": 4.216045214011068,
     "insider_pct": 0.07506
   },
   "TWOD": {
@@ -1227,7 +1346,7 @@
     ],
     "date": "2026-08-25",
     "score": 3.0,
-    "mcap": null,
+    "mcap": 2763473459.0,
     "p_b": null,
     "insider_pct": null
   },
@@ -1239,8 +1358,8 @@
     ],
     "date": "2026-08-25",
     "score": 5.0,
-    "mcap": 818664128.0,
-    "p_b": 1.5062872,
+    "mcap": 757155870.0,
+    "p_b": 1.3940049553333815,
     "insider_pct": 0.18872999
   },
   "RNW": {
@@ -1251,8 +1370,8 @@
     ],
     "date": "2026-08-21",
     "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "mcap": 2489337414.0,
+    "p_b": 1.8199667077342432,
     "insider_pct": null
   },
   "XOS": {
@@ -1262,9 +1381,10 @@
       "25"
     ],
     "date": "2026-08-19",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 26917650.0,
+    "p_b": 1.423972306076913,
     "insider_pct": null
   },
   "IFED": {
@@ -1286,9 +1406,10 @@
       "25"
     ],
     "date": "2026-08-17",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 770159.0,
+    "p_b": 1.3146820903054144,
     "insider_pct": null
   },
   "VRMK": {
@@ -1310,9 +1431,10 @@
       "25"
     ],
     "date": "2026-08-14",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 9561431.0,
+    "p_b": 2.061212443042516,
     "insider_pct": null
   },
   "HBCYF": {
@@ -1337,8 +1459,8 @@
     "score": 10.0,
     "micro_cap": true,
     "below_book": true,
-    "mcap": 67156488.0,
-    "p_b": 0.88360757,
+    "mcap": 55346186.0,
+    "p_b": 0.7964602107181544,
     "insider_pct": 0.02451
   },
   "MNTS": {
@@ -1348,10 +1470,11 @@
       "25"
     ],
     "date": "2026-08-11",
-    "score": 8.0,
+    "score": 10.0,
     "micro_cap": true,
-    "mcap": 194950704.0,
-    "p_b": 2.2248497,
+    "below_book": true,
+    "mcap": 24467143.0,
+    "p_b": 0.4411072459303343,
     "insider_pct": 0.00541
   },
   "VLNWF": {
@@ -1387,8 +1510,8 @@
     "date": "2026-08-10",
     "score": 7.0,
     "controlled": true,
-    "mcap": 8715075584.0,
-    "p_b": 4.4388776,
+    "mcap": 6221541039.0,
+    "p_b": 3.4558641909880614,
     "insider_pct": 0.32586
   },
   "SRZN": {
@@ -1398,21 +1521,10 @@
       "25"
     ],
     "date": "2026-08-07",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
-    "insider_pct": null
-  },
-  "LLOBF": {
-    "ticker": "LLOBF",
-    "company": "Lloyds Banking Group plc ",
-    "forms": [
-      "25"
-    ],
-    "date": "2026-08-07",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 127552804.0,
+    "p_b": -0.8845990670660601,
     "insider_pct": null
   },
   "SLAIY": {
@@ -1435,8 +1547,8 @@
     ],
     "date": "2026-08-03",
     "score": 0.0,
-    "mcap": 350174740480.0,
-    "p_b": 6.515316,
+    "mcap": 350257964778.0,
+    "p_b": 6.577561865920347,
     "insider_pct": 0.00066
   },
   "PM": {
@@ -1447,8 +1559,8 @@
     ],
     "date": "2026-08-03",
     "score": 0.0,
-    "mcap": 278046900224.0,
-    "p_b": -29.963049,
+    "mcap": 298286781800.0,
+    "p_b": -34.48656707004544,
     "insider_pct": 0.00164
   },
   "RSVR": {
@@ -1458,9 +1570,9 @@
       "25"
     ],
     "date": "2026-07-27",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 5.0,
+    "mcap": 626552136.0,
+    "p_b": 1.6692357221501408,
     "insider_pct": null
   },
   "MVST": {
@@ -1470,10 +1582,12 @@
       "25"
     ],
     "date": "2026-07-22",
-    "score": 9.0,
+    "score": 14.0,
+    "micro_cap": true,
     "controlled": true,
-    "mcap": 429772992.0,
-    "p_b": 1.0428456,
+    "below_book": true,
+    "mcap": 244170765.0,
+    "p_b": 0.44597344271894007,
     "insider_pct": 0.52791
   },
   "CELU": {
@@ -1483,9 +1597,10 @@
       "25"
     ],
     "date": "2026-07-22",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 33285005.0,
+    "p_b": -0.7599811407703221,
     "insider_pct": null
   },
   "WGS": {
@@ -1496,8 +1611,8 @@
     ],
     "date": "2026-07-21",
     "score": 3.0,
-    "mcap": 1778906624.0,
-    "p_b": 5.686088,
+    "mcap": 2640782375.0,
+    "p_b": 10.341694270312546,
     "insider_pct": 0.12179
   },
   "FRNM": {
@@ -1507,8 +1622,9 @@
       "25"
     ],
     "date": "2026-07-20",
-    "score": 3.0,
-    "mcap": null,
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 127334548.0,
     "p_b": null,
     "insider_pct": null
   },
@@ -1521,8 +1637,8 @@
     "date": "2026-07-20",
     "score": 8.0,
     "micro_cap": true,
-    "mcap": 88344936.0,
-    "p_b": -6.6068177,
+    "mcap": 2887059.0,
+    "p_b": -0.10712345016489558,
     "insider_pct": 0.020469999
   },
   "RVTY": {
@@ -1533,8 +1649,8 @@
     ],
     "date": "2026-07-20",
     "score": 0.0,
-    "mcap": 11159334912.0,
-    "p_b": 1.55459,
+    "mcap": 15743346655.0,
+    "p_b": 2.1932567779969947,
     "insider_pct": 0.00364
   },
   "OPFI": {
@@ -1544,10 +1660,10 @@
       "25"
     ],
     "date": "2026-07-20",
-    "score": 7.0,
+    "score": 9.0,
     "controlled": true,
-    "mcap": 1214185472.0,
-    "p_b": 2.9454927,
+    "mcap": 537123527.0,
+    "p_b": 1.0242928588188434,
     "insider_pct": 0.60526
   },
   "EVLV": {
@@ -1557,9 +1673,9 @@
       "25"
     ],
     "date": "2026-07-16",
-    "score": 3.0,
-    "mcap": 1016273472.0,
-    "p_b": 8.407739,
+    "score": 5.0,
+    "mcap": 867879553.0,
+    "p_b": 7.265772027966143,
     "insider_pct": 0.04216
   },
   "HLLY": {
@@ -1569,11 +1685,10 @@
       "25"
     ],
     "date": "2026-07-16",
-    "score": 10.0,
-    "micro_cap": true,
+    "score": 7.0,
     "below_book": true,
-    "mcap": 298517216.0,
-    "p_b": 0.6465068,
+    "mcap": 301526469.0,
+    "p_b": 0.6646251788708092,
     "insider_pct": 0.05429
   },
   "QTEX": {
@@ -1583,8 +1698,9 @@
       "25"
     ],
     "date": "2026-07-15",
-    "score": 3.0,
-    "mcap": null,
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 34841650.0,
     "p_b": null,
     "insider_pct": null
   },
@@ -1643,9 +1759,10 @@
       "25"
     ],
     "date": "2026-07-13",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 198370.0,
+    "p_b": -0.07797241439519063,
     "insider_pct": null
   },
   "ALCUF": {
@@ -1667,9 +1784,11 @@
       "25"
     ],
     "date": "2026-07-10",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 10.0,
+    "micro_cap": true,
+    "below_book": true,
+    "mcap": 6148981.0,
+    "p_b": 4.377739689207348e-07,
     "insider_pct": null
   },
   "TE": {
@@ -1680,8 +1799,8 @@
     ],
     "date": "2026-07-10",
     "score": 3.0,
-    "mcap": 2611187712.0,
-    "p_b": 11.025944,
+    "mcap": 1170559154.0,
+    "p_b": 2.5736219185248155,
     "insider_pct": 0.16778
   },
   "SBDS": {
@@ -1703,9 +1822,9 @@
       "25"
     ],
     "date": "2026-07-07",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 0.0,
+    "mcap": 12249412799.0,
+    "p_b": 3.0169855656336613,
     "insider_pct": null
   },
   "LANWF": {
@@ -1728,8 +1847,8 @@
     ],
     "date": "2026-07-01",
     "score": 5.0,
-    "mcap": 608887168.0,
-    "p_b": -2.2479722,
+    "mcap": 439403086.0,
+    "p_b": -9.437677261613691,
     "insider_pct": 0.05647
   },
   "NIXX": {
@@ -1739,9 +1858,10 @@
       "25"
     ],
     "date": "2026-07-01",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 10338243.0,
+    "p_b": 1.2372979349782294,
     "insider_pct": null
   },
   "TPTS": {
@@ -1751,9 +1871,9 @@
       "25"
     ],
     "date": "2026-06-30",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 5.0,
+    "mcap": 367506246.0,
+    "p_b": 4.758052644626719,
     "insider_pct": null
   },
   "TBLA": {
@@ -1763,9 +1883,9 @@
       "25"
     ],
     "date": "2026-06-29",
-    "score": 3.0,
-    "mcap": 1284624384.0,
-    "p_b": 1.3440092,
+    "score": 5.0,
+    "mcap": 936873871.0,
+    "p_b": 1.0035485696547841,
     "insider_pct": 0.21583
   },
   "HNNA": {
@@ -1775,9 +1895,11 @@
       "25"
     ],
     "date": "2026-06-29",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 10.0,
+    "micro_cap": true,
+    "below_book": true,
+    "mcap": 82184856.0,
+    "p_b": 0.8094521766124886,
     "insider_pct": null
   },
   "TIRXF": {
@@ -1799,8 +1921,8 @@
       "25"
     ],
     "date": "2026-06-26",
-    "score": 3.0,
-    "mcap": null,
+    "score": 0.0,
+    "mcap": 124345527762.0,
     "p_b": null,
     "insider_pct": null
   },
@@ -1812,8 +1934,8 @@
     ],
     "date": "2026-06-25",
     "score": 3.0,
-    "mcap": 5610335232.0,
-    "p_b": 1.3808367,
+    "mcap": 5408041008.0,
+    "p_b": 1.2919352051835855,
     "insider_pct": 0.0035899999
   },
   "CASIF": {
@@ -1826,8 +1948,8 @@
     "score": 12.0,
     "micro_cap": true,
     "controlled": true,
-    "mcap": 2055587.0,
-    "p_b": -0.055126794,
+    "mcap": 2672263.0,
+    "p_b": -0.04586323293172691,
     "insider_pct": 0.45305002
   },
   "PMNT": {
@@ -1837,9 +1959,10 @@
       "25"
     ],
     "date": "2026-06-18",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 6378364.0,
+    "p_b": -3.0487088664994983,
     "insider_pct": null
   },
   "MYPS": {
@@ -1849,9 +1972,11 @@
       "25"
     ],
     "date": "2026-06-17",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 10.0,
+    "micro_cap": true,
+    "below_book": true,
+    "mcap": 59289361.0,
+    "p_b": 0.27336493384562055,
     "insider_pct": null
   },
   "RBSPF": {
@@ -1874,8 +1999,8 @@
     ],
     "date": "2026-06-15",
     "score": 0.0,
-    "mcap": 622326579200.0,
-    "p_b": 17.55391,
+    "mcap": 677812819481.0,
+    "p_b": 19.65287909517312,
     "insider_pct": 0.00084
   },
   "RZC": {
@@ -1885,9 +2010,9 @@
       "25"
     ],
     "date": "2026-06-15",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "score": 0.0,
+    "mcap": 15511818940.0,
+    "p_b": 1.1963308251789104,
     "insider_pct": null
   },
   "BREZR": {
@@ -1909,58 +2034,11 @@
       "25"
     ],
     "date": "2026-06-10",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
-    "insider_pct": null
-  },
-  "APURR": {
-    "ticker": "APURR",
-    "company": "Aperture AC ",
-    "forms": [
-      "25"
-    ],
-    "date": "2026-06-09",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
-    "insider_pct": null
-  },
-  "KPLT": {
-    "ticker": "KPLT",
-    "company": "Katapult Holdings, Inc. ",
-    "forms": [
-      "25"
-    ],
-    "date": "2026-06-08",
-    "score": 8.0,
+    "score": 10.0,
     "micro_cap": true,
-    "mcap": 29972214.0,
-    "p_b": -0.938806,
-    "insider_pct": 0.27848
-  },
-  "IOBTQ": {
-    "ticker": "IOBTQ",
-    "company": "IO Biotech, Inc. ",
-    "forms": [
-      "25"
-    ],
-    "date": "2026-06-08",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
-    "insider_pct": null
-  },
-  "STAI": {
-    "ticker": "STAI",
-    "company": "ScanTech AI Systems Inc. ",
-    "forms": [
-      "25"
-    ],
-    "date": "2026-06-08",
-    "score": 3.0,
-    "mcap": null,
-    "p_b": null,
+    "below_book": true,
+    "mcap": 151354119.0,
+    "p_b": 0.9141106464448032,
     "insider_pct": null
   }
 }

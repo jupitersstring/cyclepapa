@@ -78,10 +78,13 @@ if [ "$DO_SCANS" = "1" ]; then
   run python3 mda_scan.py                    --days 180 || true
   run python3 payoff_geometry.py             || true
   run python3 structured_distressed_injection.py --days 365 || true
-  run python3 mechanism_gates.py             || true
+  # event feeds first -- the catalyst, governance and mechanism layers read them
   run python3 rerate_events_8k.py            --days 270 || true
   run python3 rerate_catalysts.py            || true
-  run python3 rerate_backtest.py             --start 2024-01-01 --end 2025-06-30 || true
+  run python3 governance_events_8k.py        --days 450 || true
+  run python3 governance_discount.py         || true
+  run python3 mechanism_gates.py             || true
+  run python3 rerate_backtest.py             --start 2022-06-01 --end 2025-06-30 --cap 60 || true
   run python3 tail_discriminators.py         || true
   run python3 archetype_backtest.py          || true
   run python3 deep_research.py               || true
@@ -98,7 +101,7 @@ if [ "$DO_SCANS" = "1" ]; then
   run python3 nol_shell_scan.py              --days 540 || true
   run python3 russell_recon.py               || true
   run python3 uk_rns_scan.py                --pages 15 || true
-  run python3 price_history_pull.py          --limit 400 || true
+  run python3 price_history_pull.py          --limit 400 --sleep 0.1 || true
   run python3 biotech_pdufa_calendar.py     --days 365 --limit 300 || true
 fi
 

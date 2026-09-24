@@ -1493,6 +1493,70 @@ def build_structured_distressed(wb: Workbook, yf: dict):
     ws.freeze_panes = "A5"
 
 
+def build_governance_discount(wb: Workbook, yf: dict):
+    """Governance-catalysed deep discount: well below book, and a RECENT
+    governance change implies the board will act on the gap (re-rate or
+    return capital). Source: governance_discount.json."""
+    ws = wb.create_sheet("Governance Discount")
+    set_col_widths(ws, [9, 22, 13, 7, 6, 9, 8, 50])
+    write_title_band(
+        ws,
+        "Governance Discount — well below book, and the board just changed",
+        "A stock far below book is usually a value trap, unless governance "
+        "has shifted so closing the gap becomes the board's job: an activist "
+        "settlement, a new CEO, a strategic-review or capital-allocation "
+        "committee, a chair/CEO split, declassification, a pill dropped, a "
+        "capital-return policy or tender. Signals are dated and recency-weighted.",
+        n_cols=8,
+    )
+    d = {}
+    p = ROOT / "governance_discount.json"
+    if p.exists():
+        try:
+            d = json.loads(p.read_text())
+        except Exception:
+            d = {}
+    rows = sorted((v for v in d.values() if isinstance(v, dict)),
+                  key=lambda r: (r.get("tier") != "ACTION LIKELY", -r.get("score", 0)))
+    headers = ["Ticker", "Name", "Tier", "Score", "P/B", "Mcap $M",
+               "Net cash", "Governance signals (most recent date)"]
+    write_header_row(ws, 4, headers)
+    r = 5
+    for i, v in enumerate(rows[:60], 1):
+        fams = v.get("families") or {}
+        order = sorted(fams.items(), key=lambda kv: -(kv[1].get("pts") or 0))
+        sig = "; ".join(
+            f"{k.replace('_', ' ').lower()}"
+            + (f" ({str(x.get('date'))[:7]})" if x.get("date") else "")
+            for k, x in order if k != "PAY_ON_VALUE")
+        nc = v.get("net_cash_frac")
+        write_body_row(ws, r,
+                       [v.get("ticker"), (v.get("name") or "")[:22], v.get("tier"),
+                        v.get("score"), round(v.get("p_b") or 0, 2),
+                        round((v.get("mcap") or 0) / 1e6, 1),
+                        (f"{nc*100:.0f}%" if nc else "—"), sig[:50]],
+                       band=(i % 2 == 0), bold_first=True)
+        ws.row_dimensions[r].height = 22
+        r += 1
+    if not rows:
+        ws.cell(row=5, column=1, value="No names pass the gate.").font = BODY_FONT
+    r = max(r, 6) + 1
+    act = sum(1 for v in rows if v.get("tier") == "ACTION LIKELY")
+    write_footnote(ws, r,
+        f"{len(rows)} names trade at ≤0.70× book (FMP TTM) with a qualifying "
+        f"governance catalyst; {act} are ACTION LIKELY (a hard event — activist "
+        "settlement/13D, value committee or strategic review, capital-return "
+        "policy or tender, CEO change, turnaround executive — within ~9 months, "
+        "plus independent corroboration). Signals are weighted by age (≤6 months "
+        "full weight, 6–12 months 0.8, 12–18 months 0.5). Pay tied to TSR/ROE "
+        "appears in 63% of proxies, so it is treated as context, not as a "
+        "change. Sources: governance_events_8k.py (dated 8-K governance "
+        "changes), activist 13D/letters, re-rate events, MD&A language, proxy "
+        "redesigns and say-on-pay dissent. Source: governance_discount.py.", 8)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A5"
+
+
 def build_mechanism_gates(wb: Workbook, yf: dict):
     """Mechanism-gated archetypes — hard causal conjunctions, not points.
     Source: mechanism_gates.json (mechanism_gates.py)."""
@@ -3075,6 +3139,7 @@ TAB_INDEX = [
     ("Payoff Geometry", "Capped asset-backed downside vs sector re-rate upside — the asymmetry ratio per name."),
     ("Mechanism Gates", "Exceptional-return archetypes as hard causal conjunctions; 2+ machines = highest conviction."),
     ("Structured Distressed", "Cundill/Sibir: asset-backed washouts raising via senior/convertible instruments (own the instrument)."),
+    ("Governance Discount", "Well below book + a recent governance change implying action to re-rate or return capital."),
     ("Re-Rate Catalysts", "Spin-offs / separations / asset sales / sale-of-company / strategic reviews x geometry room."),
     ("Re-Rate Backtest", "What those catalysts actually returned historically — the evidence behind the weights."),
     ("Tail Odds", "Candidates ranked by measured probability of a right-tail outcome; the features that raise the odds."),
@@ -3247,6 +3312,7 @@ def main() -> int:
     build_payoff_geometry(wb, yf)
     build_mechanism_gates(wb, yf)
     build_structured_distressed(wb, yf)
+    build_governance_discount(wb, yf)
     build_rerate_catalysts(wb, yf)
     build_rerate_backtest(wb, yf)
     build_tail_odds(wb, yf)

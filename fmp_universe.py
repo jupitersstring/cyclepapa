@@ -31,6 +31,7 @@ import re
 from pathlib import Path
 
 import io_util
+import fmp_book
 import fmp_client as fmp
 from universe_filter import is_excluded
 
@@ -72,6 +73,7 @@ def main() -> int:
             prof[r["symbol"]] = r
     ratios = {r["symbol"]: r for r in fmp.get_bulk_csv("ratios-ttm-bulk")}
     km = {r["symbol"]: r for r in fmp.get_bulk_csv("key-metrics-ttm-bulk")}
+    sheets = fmp_book.load()                         # validated book value (see fmp_book)
     print(f"FMP: {len(prof)} profiles, {len(ratios)} ratio rows, {len(km)} key-metric rows")
 
     # 2) distil the FMP store: active US-exchange + OTC common (no ETFs/funds).
@@ -97,7 +99,11 @@ def main() -> int:
             "volume": fmp.num(p.get("volume")), "avg_volume": fmp.num(p.get("averageVolume")),
             "cik": p.get("cik") or None, "cusip": p.get("cusip") or None,
             "ipo_date": p.get("ipoDate") or None,
-            "p_b": fmp.num(ra.get("priceToBookRatioTTM")),
+            # P/B = mcap / latest equity (the TTM ratio feed breaks on reverse
+            # splits and x1000 filings); ratio feed only for cross-currency
+            **dict(zip(("p_b", "pb_src"), fmp_book.pb(
+                s, p.get("marketCap"), p.get("currency"),
+                ra.get("priceToBookRatioTTM"), sheets))),
             "p_s": fmp.num(ra.get("priceToSalesRatioTTM")),
             "p_e_trailing": fmp.num(ra.get("priceToEarningsRatioTTM")),
             "div_yield": fmp.num(ra.get("dividendYieldTTM")),
@@ -148,6 +154,9 @@ def main() -> int:
         for f in FILL:
             if v.get(f) is not None:
                 rec[f] = v[f]                         # FMP is fresher / uniform
+        if v.get("pb_src") in ("neg_equity", "implausible", "no_mcap"):
+            rec["p_b"] = None                         # no/unreliable book: never "below book"
+        rec["pb_src"] = v.get("pb_src")
         for f in ("beta", "cik", "cusip", "exchange", "graham_net_net", "ncav",
                   "earnings_yield", "fcf_yield", "avg_volume"):
             if v.get(f) is not None:

@@ -1,0 +1,2009 @@
+{
+  "ONL": {
+    "ticker": "ONL",
+    "name": "Orion Properties Inc.",
+    "sector": "Real Estate",
+    "p_b": 0.228,
+    "mcap": 144348370.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 3,
+    "n_hard": 2,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "ACTIVIST_SETTLEMENT": {
+        "pts": 8.0,
+        "date": "2026-01-26",
+        "source": "8-K",
+        "detail": "cooperation agreement"
+      },
+      "VALUE_COMMITTEE": {
+        "pts": 7.2,
+        "date": "2026-01-26",
+        "source": "8-K",
+        "detail": "strategic review process"
+      },
+      "MDA_GOVERNANCE": {
+        "pts": 3.0,
+        "date": "2026-05-07",
+        "source": "MD&A",
+        "detail": "governance-action language"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 1.6,
+        "date": "2026-03-20",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      }
+    },
+    "score": 34.8
+  },
+  "JOB": {
+    "ticker": "JOB",
+    "name": "GEE Group Inc.",
+    "sector": "Industrials",
+    "p_b": 0.509,
+    "mcap": 25819611.0,
+    "deep": false,
+    "net_cash_frac": 0.787,
+    "n_families": 3,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "ACTIVIST_SETTLEMENT": {
+        "pts": 10.0,
+        "date": "2026-08-21",
+        "source": "8-K",
+        "detail": "cooperation agreement"
+      },
+      "DECLASSIFY": {
+        "pts": 6.0,
+        "date": "2026-08-21",
+        "source": "8-K",
+        "detail": "declassify the Board"
+      },
+      "MDA_UNLOCK": {
+        "pts": 4.0,
+        "date": "2026-05-14",
+        "source": "MD&A",
+        "detail": "value-unlock language"
+      }
+    },
+    "score": 35.0
+  },
+  "MED": {
+    "ticker": "MED",
+    "name": "MEDIFAST INC",
+    "sector": "Consumer Cyclical",
+    "p_b": 0.687,
+    "mcap": 134874853.0,
+    "deep": false,
+    "net_cash_frac": 0.53,
+    "n_families": 5,
+    "n_hard": 2,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "ACTIVIST_SETTLEMENT": {
+        "pts": 8.0,
+        "date": "2026-03-20",
+        "source": "8-K",
+        "detail": "cooperation agreement"
+      },
+      "PROXY_RESPONSIVE": {
+        "pts": 4.0,
+        "date": "2026-04-06",
+        "source": "DEF 14A",
+        "detail": "new_metric_added"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-06",
+        "source": "DEF 14A",
+        "detail": "PSU on eps, roic, tsr"
+      },
+      "SOP_DISSENT": {
+        "pts": 4.0,
+        "date": "2026-04-06",
+        "source": "DEF 14A",
+        "detail": "say-on-pay 56%"
+      },
+      "TURNAROUND_EXEC": {
+        "pts": 4.8,
+        "date": "2026-01-05",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      },
+      "CIC_PREP": {
+        "pts": 1.8,
+        "date": null,
+        "source": "DEF 14A",
+        "detail": "change-in-control terms"
+      }
+    },
+    "score": 36.6
+  },
+  "QTRX": {
+    "ticker": "QTRX",
+    "name": "Quanterix Corporation",
+    "sector": "Healthcare",
+    "p_b": 0.616,
+    "mcap": 146028541.0,
+    "deep": false,
+    "net_cash_frac": 0.248,
+    "n_families": 2,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "ACTIVIST_SETTLEMENT": {
+        "pts": 5.0,
+        "date": "2025-08-04",
+        "source": "8-K",
+        "detail": "cooperation agreement"
+      },
+      "DECLASSIFY": {
+        "pts": 4.8,
+        "date": "2025-10-02",
+        "source": "8-K",
+        "detail": "declassify the Board"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-24",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      }
+    },
+    "score": 17.8
+  },
+  "GETY": {
+    "ticker": "GETY",
+    "name": "Getty Images Holdings, Inc.",
+    "sector": "Communication Services",
+    "p_b": 0.206,
+    "mcap": 92925106.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "ACTIVIST_SETTLEMENT": {
+        "pts": 10.0,
+        "date": "2026-08-28",
+        "source": "8-K",
+        "detail": "standstill agreement"
+      }
+    },
+    "score": 20.0
+  },
+  "TOON": {
+    "ticker": "TOON",
+    "name": "Kartoon Studios Inc.",
+    "sector": "Communication Services",
+    "p_b": 0.657,
+    "mcap": 34412083.0,
+    "deep": false,
+    "net_cash_frac": 0.146,
+    "n_families": 4,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "ACTIVIST_SETTLEMENT": {
+        "pts": 10.0,
+        "date": "2026-08-14",
+        "source": "8-K",
+        "detail": "standstill agreement"
+      },
+      "PILL_REMOVED": {
+        "pts": 5.0,
+        "date": "2026-07-06",
+        "source": "8-K",
+        "detail": "redeem the rights"
+      },
+      "ASSET_SALE": {
+        "pts": 5.0,
+        "date": "2026-08-14",
+        "source": "8-K",
+        "detail": "completed the sale of"
+      },
+      "MDA_UNLOCK": {
+        "pts": 4.0,
+        "date": "2026-08-14",
+        "source": "MD&A",
+        "detail": "value-unlock language"
+      }
+    },
+    "score": 33.0
+  },
+  "CMTL": {
+    "ticker": "CMTL",
+    "name": "Comtech Telecommunications Corp",
+    "sector": "Technology",
+    "p_b": 0.164,
+    "mcap": 43294268.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 4,
+    "n_hard": 2,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "VALUE_COMMITTEE": {
+        "pts": 7.2,
+        "date": "2025-12-11",
+        "source": "8-K",
+        "detail": "strategic review committee"
+      },
+      "ASSET_SALE": {
+        "pts": 5.0,
+        "date": "2026-06-15",
+        "source": "8-K",
+        "detail": "definitive agreement to sell"
+      },
+      "MDA_UNLOCK": {
+        "pts": 4.0,
+        "date": "2026-06-15",
+        "source": "MD&A",
+        "detail": "value-unlock language"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 1.6,
+        "date": "2026-01-30",
+        "source": "DEF 14A",
+        "detail": "PSU on eps, roe, tsr"
+      },
+      "TURNAROUND_EXEC": {
+        "pts": 6.0,
+        "date": "2026-06-15",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      }
+    },
+    "score": 38.8
+  },
+  "HPK": {
+    "ticker": "HPK",
+    "name": "HighPeak Energy, Inc.",
+    "sector": "Energy",
+    "p_b": 0.646,
+    "mcap": 1002018940.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "VALUE_COMMITTEE": {
+        "pts": 4.5,
+        "date": "2025-09-15",
+        "source": "8-K",
+        "detail": "strategic alternatives committee"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-30",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      }
+    },
+    "score": 10.5
+  },
+  "HAIN": {
+    "ticker": "HAIN",
+    "name": "The Hain Celestial Group, Inc.",
+    "sector": "Consumer Defensive",
+    "p_b": 0.23,
+    "mcap": 49648450.0,
+    "deep": true,
+    "net_cash_frac": 0.892,
+    "n_families": 4,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "VALUE_COMMITTEE": {
+        "pts": 9.0,
+        "date": "2026-04-17",
+        "source": "8-K",
+        "detail": "strategic review process"
+      },
+      "ASSET_SALE": {
+        "pts": 5.0,
+        "date": "2026-09-14",
+        "source": "8-K",
+        "detail": "definitive agreement to sell"
+      },
+      "MDA_UNLOCK": {
+        "pts": 4.0,
+        "date": "2026-05-11",
+        "source": "MD&A",
+        "detail": "value-unlock language"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 1.0,
+        "date": "2025-09-18",
+        "source": "DEF 14A",
+        "detail": "PSU on cfroi, eps, roe, roic, tsr"
+      },
+      "CIC_PREP": {
+        "pts": 1.8,
+        "date": null,
+        "source": "DEF 14A",
+        "detail": "change-in-control terms"
+      }
+    },
+    "score": 38.8
+  },
+  "CNTN": {
+    "ticker": "CNTN",
+    "name": "Canton Strategic Holdings, Inc.",
+    "sector": "Healthcare",
+    "p_b": 0.398,
+    "mcap": 180852450.0,
+    "deep": true,
+    "net_cash_frac": 0.23,
+    "n_families": 2,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "CAPITAL_RETURN_POLICY": {
+        "pts": 8.0,
+        "date": "2026-06-16",
+        "source": "8-K",
+        "detail": "return capital to shareholders"
+      },
+      "BUYBACK_AUTH": {
+        "pts": 5.0,
+        "date": "2026-06-16",
+        "source": "8-K",
+        "detail": "authorized a share repurchase"
+      }
+    },
+    "score": 25.0
+  },
+  "BCIC": {
+    "ticker": "BCIC",
+    "name": "BCP Investment Corporation",
+    "sector": "Financial Services",
+    "p_b": 0.49,
+    "mcap": 88004025.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 2,
+    "n_hard": 2,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "CAPITAL_RETURN_POLICY": {
+        "pts": 8.0,
+        "date": "2026-05-08",
+        "source": "8-K",
+        "detail": "modified dutch auction"
+      },
+      "TENDER_OFFER": {
+        "pts": 7.0,
+        "date": "2026-05-08",
+        "source": "8-K",
+        "detail": "modified dutch auction"
+      }
+    },
+    "score": 24.0
+  },
+  "BXMT": {
+    "ticker": "BXMT",
+    "name": "Blackstone Mortgage Trust, Inc.",
+    "sector": "Real Estate",
+    "p_b": 0.658,
+    "mcap": 2146407840.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CEO_CHANGE": {
+        "pts": 3.0,
+        "date": "2025-09-19",
+        "source": "8-K",
+        "detail": "appointed Chief Executive Officer"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-29",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      }
+    },
+    "score": 9.0
+  },
+  "ZONE": {
+    "ticker": "ZONE",
+    "name": "Zone Frontier Inc.",
+    "sector": "Industrials",
+    "p_b": 0.482,
+    "mcap": 32181134.0,
+    "deep": true,
+    "net_cash_frac": 0.126,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CEO_CHANGE": {
+        "pts": 6.0,
+        "date": "2026-06-08",
+        "source": "8-K",
+        "detail": "appointed Chief Executive Officer"
+      }
+    },
+    "score": 13.0
+  },
+  "USNA": {
+    "ticker": "USNA",
+    "name": "USANA Health Sciences, Inc.",
+    "sector": "Consumer Defensive",
+    "p_b": 0.497,
+    "mcap": 261436236.0,
+    "deep": true,
+    "net_cash_frac": 0.623,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CEO_CHANGE": {
+        "pts": 4.8,
+        "date": "2026-01-08",
+        "source": "8-K",
+        "detail": "appointed Chief Executive Officer"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-07",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      }
+    },
+    "score": 16.8
+  },
+  "RGS": {
+    "ticker": "RGS",
+    "name": "Regis Corporation",
+    "sector": "Consumer Cyclical",
+    "p_b": 0.369,
+    "mcap": 69990828.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CEO_CHANGE": {
+        "pts": 4.8,
+        "date": "2026-03-18",
+        "source": "8-K",
+        "detail": "named Chief Executive Officer"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 1.0,
+        "date": "2025-09-17",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      }
+    },
+    "score": 15.8
+  },
+  "ONEW": {
+    "ticker": "ONEW",
+    "name": "OneWater Marine Inc.",
+    "sector": "Consumer Cyclical",
+    "p_b": 0.576,
+    "mcap": 164845600.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 2,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CEO_CHANGE": {
+        "pts": 3.0,
+        "date": "2025-08-19",
+        "source": "8-K",
+        "detail": "named Chief Executive Officer"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 1.6,
+        "date": "2026-01-09",
+        "source": "DEF 14A",
+        "detail": "PSU on roic, tsr"
+      },
+      "CIC_PREP": {
+        "pts": 1.8,
+        "date": null,
+        "source": "DEF 14A",
+        "detail": "change-in-control terms"
+      }
+    },
+    "score": 12.4
+  },
+  "ARAY": {
+    "ticker": "ARAY",
+    "name": "Accuray Incorporated",
+    "sector": "Healthcare",
+    "p_b": 0.655,
+    "mcap": 27326031.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CEO_CHANGE": {
+        "pts": 4.8,
+        "date": "2025-10-20",
+        "source": "8-K",
+        "detail": "named Chief Executive Officer"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 1.6,
+        "date": "2025-10-01",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      }
+    },
+    "score": 10.4
+  },
+  "SSTK": {
+    "ticker": "SSTK",
+    "name": "Shutterstock, Inc.",
+    "sector": "Communication Services",
+    "p_b": 0.446,
+    "mcap": 162014642.0,
+    "deep": true,
+    "net_cash_frac": 0.288,
+    "n_families": 2,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "CEO_CHANGE": {
+        "pts": 6.0,
+        "date": "2026-07-13",
+        "source": "8-K",
+        "detail": "interim Chief Executive Officer"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 1.6,
+        "date": "2025-11-20",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "CIC_PREP": {
+        "pts": 1.8,
+        "date": null,
+        "source": "DEF 14A",
+        "detail": "change-in-control terms"
+      }
+    },
+    "score": 18.4
+  },
+  "FNWB": {
+    "ticker": "FNWB",
+    "name": "First Northwest Bancorp",
+    "sector": "Financial Services",
+    "p_b": 0.611,
+    "mcap": 96702874.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 2,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CEO_CHANGE": {
+        "pts": 3.0,
+        "date": "2025-07-09",
+        "source": "8-K",
+        "detail": "interim Chief Executive Officer"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-09",
+        "source": "DEF 14A",
+        "detail": "PSU on eps, tsr"
+      },
+      "CIC_PREP": {
+        "pts": 1.8,
+        "date": null,
+        "source": "DEF 14A",
+        "detail": "change-in-control terms"
+      }
+    },
+    "score": 12.8
+  },
+  "MX": {
+    "ticker": "MX",
+    "name": "Magnachip Semiconductor Corpora",
+    "sector": "Technology",
+    "p_b": 0.522,
+    "mcap": 118257732.0,
+    "deep": false,
+    "net_cash_frac": 0.665,
+    "n_families": 2,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CEO_CHANGE": {
+        "pts": 3.0,
+        "date": "2025-08-11",
+        "source": "8-K",
+        "detail": "interim Chief Executive Officer"
+      },
+      "MDA_UNLOCK": {
+        "pts": 4.0,
+        "date": "2026-05-08",
+        "source": "MD&A",
+        "detail": "value-unlock language"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-30",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      }
+    },
+    "score": 21.0
+  },
+  "CABO": {
+    "ticker": "CABO",
+    "name": "Cable One, Inc.",
+    "sector": "Communication Services",
+    "p_b": 0.291,
+    "mcap": 94906781.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 3,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "CEO_CHANGE": {
+        "pts": 4.8,
+        "date": "2025-12-31",
+        "source": "8-K",
+        "detail": "interim Chief Executive Officer"
+      },
+      "CHAIR_CEO_SPLIT": {
+        "pts": 4.8,
+        "date": "2025-12-31",
+        "source": "8-K",
+        "detail": "independent Chair of the Board"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-07",
+        "source": "DEF 14A",
+        "detail": "PSU on eps, other_per_share, tsr"
+      },
+      "CIC_PREP": {
+        "pts": 1.8,
+        "date": null,
+        "source": "DEF 14A",
+        "detail": "change-in-control terms"
+      }
+    },
+    "score": 28.4
+  },
+  "BNGO": {
+    "ticker": "BNGO",
+    "name": "Bionano Genomics, Inc.",
+    "sector": "Healthcare",
+    "p_b": 0.639,
+    "mcap": 20196000.0,
+    "deep": false,
+    "net_cash_frac": 0.17,
+    "n_families": 2,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "CEO_CHANGE": {
+        "pts": 6.0,
+        "date": "2026-05-06",
+        "source": "8-K",
+        "detail": "interim Chief Executive Officer"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-02",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "SOP_DISSENT": {
+        "pts": 4.0,
+        "date": "2026-04-02",
+        "source": "DEF 14A",
+        "detail": "say-on-pay 53%"
+      }
+    },
+    "score": 18.0
+  },
+  "VBIO": {
+    "ticker": "VBIO",
+    "name": "Valion Bio, Inc.",
+    "sector": "Healthcare",
+    "p_b": 0.667,
+    "mcap": 11202525.0,
+    "deep": false,
+    "net_cash_frac": 0.644,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CEO_CHANGE": {
+        "pts": 6.0,
+        "date": "2026-09-23",
+        "source": "8-K",
+        "detail": "interim Chief Executive Officer"
+      }
+    },
+    "score": 13.0
+  },
+  "INVE": {
+    "ticker": "INVE",
+    "name": "Identiv, Inc.",
+    "sector": "Technology",
+    "p_b": 0.439,
+    "mcap": 58455097.0,
+    "deep": true,
+    "net_cash_frac": 2.13,
+    "n_families": 2,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "CEO_CHANGE": {
+        "pts": 6.0,
+        "date": "2026-09-18",
+        "source": "8-K",
+        "detail": "interim Chief Executive Officer"
+      },
+      "ASSET_SALE": {
+        "pts": 5.0,
+        "date": "2026-08-12",
+        "source": "8-K",
+        "detail": "definitive agreement to sell"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 1.0,
+        "date": "2025-04-30",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      }
+    },
+    "score": 24.0
+  },
+  "CNDT": {
+    "ticker": "CNDT",
+    "name": "Conduent Incorporated",
+    "sector": "Technology",
+    "p_b": 0.377,
+    "mcap": 252032323.0,
+    "deep": true,
+    "net_cash_frac": 0.905,
+    "n_families": 2,
+    "n_hard": 0,
+    "tier": "BUILDING",
+    "families": {
+      "CHAIR_CEO_SPLIT": {
+        "pts": 4.8,
+        "date": "2026-01-23",
+        "source": "8-K",
+        "detail": "independent Chair of the Board"
+      },
+      "ASSET_SALE": {
+        "pts": 5.0,
+        "date": "2026-06-30",
+        "source": "8-K",
+        "detail": "definitive agreement to sell"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-03",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      }
+    },
+    "score": 26.8
+  },
+  "DCGO": {
+    "ticker": "DCGO",
+    "name": "DocGo Inc.",
+    "sector": "Healthcare",
+    "p_b": 0.301,
+    "mcap": 35777541.0,
+    "deep": true,
+    "net_cash_frac": 0.992,
+    "n_families": 2,
+    "n_hard": 0,
+    "tier": "BUILDING",
+    "families": {
+      "CHAIR_CEO_SPLIT": {
+        "pts": 6.0,
+        "date": "2026-04-22",
+        "source": "8-K",
+        "detail": "independent Chair of the Board"
+      },
+      "PROXY_RESPONSIVE": {
+        "pts": 4.0,
+        "date": "2026-04-22",
+        "source": "DEF 14A",
+        "detail": "new_metric_added"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-22",
+        "source": "DEF 14A",
+        "detail": "PSU on other_per_share, tsr"
+      }
+    },
+    "score": 27.0
+  },
+  "KSS": {
+    "ticker": "KSS",
+    "name": "Kohl's Corporation",
+    "sector": "Consumer Cyclical",
+    "p_b": 0.486,
+    "mcap": 2025891000.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 6,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "CHAIR_CEO_SPLIT": {
+        "pts": 6.0,
+        "date": "2026-07-29",
+        "source": "8-K",
+        "detail": "independent Chair of the Board"
+      },
+      "BOARD_REFRESH": {
+        "pts": 5.0,
+        "date": "2026-07-29",
+        "source": "8-K",
+        "detail": "board refreshment"
+      },
+      "PROXY_RESPONSIVE": {
+        "pts": 4.0,
+        "date": "2026-04-10",
+        "source": "DEF 14A",
+        "detail": "responsive_to_shareholders"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-10",
+        "source": "DEF 14A",
+        "detail": "PSU on eps, tsr"
+      },
+      "SOP_DISSENT": {
+        "pts": 4.0,
+        "date": "2026-04-10",
+        "source": "DEF 14A",
+        "detail": "say-on-pay 55%"
+      },
+      "TURNAROUND_EXEC": {
+        "pts": 6.0,
+        "date": "2026-06-15",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      },
+      "CIC_PREP": {
+        "pts": 1.8,
+        "date": null,
+        "source": "DEF 14A",
+        "detail": "change-in-control terms"
+      }
+    },
+    "score": 40.8
+  },
+  "ALIT": {
+    "ticker": "ALIT",
+    "name": "Alight, Inc.",
+    "sector": "Technology",
+    "p_b": 0.333,
+    "mcap": 340738310.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 2,
+    "n_hard": 0,
+    "tier": "BUILDING",
+    "families": {
+      "DECLASSIFY": {
+        "pts": 6.0,
+        "date": "2026-07-01",
+        "source": "8-K",
+        "detail": "declassify the Board"
+      },
+      "MDA_CAPITAL": {
+        "pts": 3.0,
+        "date": "2026-05-05",
+        "source": "MD&A",
+        "detail": "capital-policy language"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-27",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      }
+    },
+    "score": 23.0
+  },
+  "WW": {
+    "ticker": "WW",
+    "name": "WW International, Inc.",
+    "sector": "Consumer Cyclical",
+    "p_b": 0.553,
+    "mcap": 154080892.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 2,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "BOARD_REFRESH": {
+        "pts": 5.0,
+        "date": "2026-04-03",
+        "source": "8-K",
+        "detail": "board refreshment"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-30",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "TURNAROUND_EXEC": {
+        "pts": 4.8,
+        "date": "2025-12-23",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      }
+    },
+    "score": 17.8
+  },
+  "NNDM": {
+    "ticker": "NNDM",
+    "name": "Nano Dimension Ltd.",
+    "sector": "Technology",
+    "p_b": 0.691,
+    "mcap": 332474596.0,
+    "deep": false,
+    "net_cash_frac": 1.069,
+    "n_families": 2,
+    "n_hard": 0,
+    "tier": "BUILDING",
+    "families": {
+      "PILL_REMOVED": {
+        "pts": 4.0,
+        "date": "2026-02-03",
+        "source": "8-K",
+        "detail": "terminate the rights agreement"
+      },
+      "ASSET_SALE": {
+        "pts": 5.0,
+        "date": "2026-05-27",
+        "source": "8-K",
+        "detail": "definitive agreement to sell"
+      }
+    },
+    "score": 18.0
+  },
+  "NEUP": {
+    "ticker": "NEUP",
+    "name": "Neuphoria Therapeutics Inc.",
+    "sector": "Healthcare",
+    "p_b": 0.68,
+    "mcap": 19996839.0,
+    "deep": false,
+    "net_cash_frac": 0.972,
+    "n_families": 2,
+    "n_hard": 0,
+    "tier": "BUILDING",
+    "families": {
+      "PILL_REMOVED": {
+        "pts": 4.0,
+        "date": "2025-10-27",
+        "source": "8-K",
+        "detail": "redeem the rights"
+      },
+      "MDA_UNLOCK": {
+        "pts": 4.0,
+        "date": "2026-05-15",
+        "source": "MD&A",
+        "detail": "value-unlock language"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 1.6,
+        "date": "2025-10-30",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      }
+    },
+    "score": 18.6
+  },
+  "ORMP": {
+    "ticker": "ORMP",
+    "name": "Oramed Pharmaceuticals Inc.",
+    "sector": "Healthcare",
+    "p_b": 0.599,
+    "mcap": 190306277.0,
+    "deep": false,
+    "net_cash_frac": 0.069,
+    "n_families": 3,
+    "n_hard": 0,
+    "tier": "BUILDING",
+    "families": {
+      "PILL_REMOVED": {
+        "pts": 4.0,
+        "date": "2025-11-17",
+        "source": "8-K",
+        "detail": "redeem the rights"
+      },
+      "MDA_UNLOCK": {
+        "pts": 4.0,
+        "date": "2026-03-26",
+        "source": "MD&A",
+        "detail": "value-unlock language"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 1.0,
+        "date": "2025-07-16",
+        "source": "DEF 14A",
+        "detail": "PSU on eps, roe, tsr"
+      },
+      "CIC_PREP": {
+        "pts": 1.8,
+        "date": null,
+        "source": "DEF 14A",
+        "detail": "change-in-control terms"
+      }
+    },
+    "score": 19.8
+  },
+  "STRZ": {
+    "ticker": "STRZ",
+    "name": "Starz Entertainment Corp.",
+    "sector": "Communication Services",
+    "p_b": 0.602,
+    "mcap": 388903814.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 2,
+    "n_hard": 0,
+    "tier": "BUILDING",
+    "families": {
+      "PILL_REMOVED": {
+        "pts": 4.0,
+        "date": "2026-03-11",
+        "source": "8-K",
+        "detail": "redeem the rights"
+      },
+      "MDA_UNLOCK": {
+        "pts": 4.0,
+        "date": "2026-08-07",
+        "source": "MD&A",
+        "detail": "value-unlock language"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-02",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      }
+    },
+    "score": 16.0
+  },
+  "OPTT": {
+    "ticker": "OPTT",
+    "name": "Ocean Power Technologies, Inc.",
+    "sector": "Industrials",
+    "p_b": 0.662,
+    "mcap": 13303287.0,
+    "deep": false,
+    "net_cash_frac": null,
+    "n_families": 2,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "PILL_REMOVED": {
+        "pts": 5.0,
+        "date": "2026-06-29",
+        "source": "8-K",
+        "detail": "redeem the rights"
+      },
+      "STRATEGIC_REVIEW": {
+        "pts": 8.0,
+        "date": "2026-08-17",
+        "source": "8-K",
+        "detail": "review of strategic alternatives"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 1.6,
+        "date": "2025-12-04",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      }
+    },
+    "score": 20.6
+  },
+  "SITC": {
+    "ticker": "SITC",
+    "name": "SITE Centers Corp.",
+    "sector": "Real Estate",
+    "p_b": 0.557,
+    "mcap": 157162248.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 3,
+    "n_hard": 0,
+    "tier": "BUILDING",
+    "families": {
+      "ASSET_SALE": {
+        "pts": 5.0,
+        "date": "2026-07-01",
+        "source": "8-K",
+        "detail": "completed the sale of"
+      },
+      "MDA_UNLOCK": {
+        "pts": 4.0,
+        "date": "2026-08-03",
+        "source": "MD&A",
+        "detail": "value-unlock language"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-03-31",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "SOP_DISSENT": {
+        "pts": 4.0,
+        "date": "2026-03-31",
+        "source": "DEF 14A",
+        "detail": "say-on-pay 77%"
+      }
+    },
+    "score": 24.0
+  },
+  "PPLI": {
+    "ticker": "PPLI",
+    "name": "People Incorporated",
+    "sector": "Communication Services",
+    "p_b": 0.534,
+    "mcap": 2713283953.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CAPITAL_RETURN_POLICY": {
+        "pts": 8.0,
+        "date": "2026-09-11",
+        "source": "8-K",
+        "detail": "declared a special dividend"
+      }
+    },
+    "score": 15.0
+  },
+  "THRY": {
+    "ticker": "THRY",
+    "name": "Thryv Holdings, Inc.",
+    "sector": "Technology",
+    "p_b": 0.398,
+    "mcap": 84264620.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 2,
+    "n_hard": 0,
+    "tier": "BUILDING",
+    "families": {
+      "ASSET_SALE": {
+        "pts": 5.0,
+        "date": "2026-09-14",
+        "source": "8-K",
+        "detail": "definitive agreement to sell"
+      },
+      "PROXY_RESPONSIVE": {
+        "pts": 4.0,
+        "date": "2026-04-30",
+        "source": "DEF 14A",
+        "detail": "anti_hedge_pledge_added, clawback_strengthened, ownership_re"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-30",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      }
+    },
+    "score": 23.0
+  },
+  "AHCO": {
+    "ticker": "AHCO",
+    "name": "AdaptHealth Corp.",
+    "sector": "Healthcare",
+    "p_b": 0.569,
+    "mcap": 784351310.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 2,
+    "n_hard": 0,
+    "tier": "BUILDING",
+    "families": {
+      "ASSET_SALE": {
+        "pts": 5.0,
+        "date": "2026-08-04",
+        "source": "8-K",
+        "detail": "definitive agreement to sell"
+      },
+      "PROXY_RESPONSIVE": {
+        "pts": 4.0,
+        "date": "2026-04-28",
+        "source": "DEF 14A",
+        "detail": "new_metric_added"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-28",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      }
+    },
+    "score": 17.0
+  },
+  "BIRD": {
+    "ticker": "BIRD",
+    "name": "Allbirds, Inc.",
+    "sector": "Consumer Cyclical",
+    "p_b": 0.657,
+    "mcap": 14808591.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 2,
+    "n_hard": 0,
+    "tier": "BUILDING",
+    "families": {
+      "ASSET_SALE": {
+        "pts": 5.0,
+        "date": "2026-06-17",
+        "source": "8-K",
+        "detail": "definitive agreement to sell"
+      },
+      "MDA_UNLOCK": {
+        "pts": 4.0,
+        "date": "2026-05-15",
+        "source": "MD&A",
+        "detail": "value-unlock language"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-08-11",
+        "source": "DEF 14A",
+        "detail": "PSU on eps, other_per_share"
+      }
+    },
+    "score": 17.0
+  },
+  "VISN": {
+    "ticker": "VISN",
+    "name": "Vistance Networks, Inc.",
+    "sector": "Technology",
+    "p_b": 0.584,
+    "mcap": 1463946905.0,
+    "deep": false,
+    "net_cash_frac": 1.715,
+    "n_families": 2,
+    "n_hard": 0,
+    "tier": "BUILDING",
+    "families": {
+      "ASSET_SALE": {
+        "pts": 5.0,
+        "date": "2026-04-30",
+        "source": "8-K",
+        "detail": "definitive agreement to sell"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 1.6,
+        "date": "2026-03-23",
+        "source": "DEF 14A",
+        "detail": "PSU on other_per_share, tsr"
+      },
+      "SOP_DISSENT": {
+        "pts": 3.2,
+        "date": "2026-03-23",
+        "source": "DEF 14A",
+        "detail": "say-on-pay 58%"
+      }
+    },
+    "score": 18.8
+  },
+  "ARI": {
+    "ticker": "ARI",
+    "name": "Apollo Commercial Real Estate F",
+    "sector": "Real Estate",
+    "p_b": 0.661,
+    "mcap": 829550835.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 2,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "ASSET_SALE": {
+        "pts": 4.0,
+        "date": "2026-01-28",
+        "source": "8-K",
+        "detail": "definitive agreement to sell"
+      },
+      "STRATEGIC_REVIEW": {
+        "pts": 8.0,
+        "date": "2026-06-16",
+        "source": "8-K",
+        "detail": "review of strategic alternatives"
+      }
+    },
+    "score": 18.0
+  },
+  "BGS": {
+    "ticker": "BGS",
+    "name": "B&G Foods, Inc.",
+    "sector": "Consumer Defensive",
+    "p_b": 0.619,
+    "mcap": 244718508.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 3,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "ASSET_SALE": {
+        "pts": 5.0,
+        "date": "2026-06-01",
+        "source": "8-K",
+        "detail": "completed the sale of"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-03",
+        "source": "DEF 14A",
+        "detail": "PSU on roic, tsr"
+      },
+      "TURNAROUND_EXEC": {
+        "pts": 6.0,
+        "date": "2026-05-05",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      },
+      "CIC_PREP": {
+        "pts": 1.8,
+        "date": null,
+        "source": "DEF 14A",
+        "detail": "change-in-control terms"
+      }
+    },
+    "score": 23.8
+  },
+  "LAB": {
+    "ticker": "LAB",
+    "name": "Standard BioTools Inc.",
+    "sector": "Healthcare",
+    "p_b": 0.53,
+    "mcap": 286276836.0,
+    "deep": false,
+    "net_cash_frac": 0.928,
+    "n_families": 2,
+    "n_hard": 0,
+    "tier": "BUILDING",
+    "families": {
+      "ASSET_SALE": {
+        "pts": 5.0,
+        "date": "2026-08-05",
+        "source": "8-K",
+        "detail": "agreement to divest"
+      },
+      "MDA_UNLOCK": {
+        "pts": 4.0,
+        "date": "2026-08-05",
+        "source": "MD&A",
+        "detail": "value-unlock language"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-27",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      }
+    },
+    "score": 23.0
+  },
+  "DXLG": {
+    "ticker": "DXLG",
+    "name": "Destination XL Group, Inc.",
+    "sector": "Consumer Cyclical",
+    "p_b": 0.318,
+    "mcap": 33191492.0,
+    "deep": true,
+    "net_cash_frac": 0.334,
+    "n_families": 2,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "TENDER_OFFER": {
+        "pts": 7.0,
+        "date": "2026-05-22",
+        "source": "8-K",
+        "detail": "cash tender offer"
+      },
+      "MDA_CAPITAL": {
+        "pts": 3.0,
+        "date": "2026-09-09",
+        "source": "MD&A",
+        "detail": "capital-policy language"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 1.0,
+        "date": "2025-06-30",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      }
+    },
+    "score": 26.0
+  },
+  "ICMB": {
+    "ticker": "ICMB",
+    "name": "Investcorp Credit Management BDC, Inc.",
+    "sector": "Financial Services",
+    "p_b": 0.239,
+    "mcap": 12575013.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "STRATEGIC_REVIEW": {
+        "pts": 8.0,
+        "date": "2026-04-20",
+        "source": "8-K",
+        "detail": "review of strategic alternatives"
+      }
+    },
+    "score": 18.0
+  },
+  "CLAR": {
+    "ticker": "CLAR",
+    "name": "Clarus Corporation",
+    "sector": "Consumer Cyclical",
+    "p_b": 0.679,
+    "mcap": 134572110.0,
+    "deep": false,
+    "net_cash_frac": 0.222,
+    "n_families": 2,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "STRATEGIC_REVIEW": {
+        "pts": 8.0,
+        "date": "2026-08-06",
+        "source": "8-K",
+        "detail": "review of strategic alternatives"
+      },
+      "MDA_UNLOCK": {
+        "pts": 4.0,
+        "date": "2026-05-07",
+        "source": "MD&A",
+        "detail": "value-unlock language"
+      }
+    },
+    "score": 18.0
+  },
+  "BCSF": {
+    "ticker": "BCSF",
+    "name": "Bain Capital Specialty Finance, Inc.",
+    "sector": "Financial Services",
+    "p_b": 0.666,
+    "mcap": 719262006.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CAPITAL_RETURN_POLICY": {
+        "pts": 6.4,
+        "date": "2026-02-27",
+        "source": "8-K",
+        "detail": "declared a special dividend"
+      }
+    },
+    "score": 10.4
+  },
+  "COHN": {
+    "ticker": "COHN",
+    "name": "Cohen & Company Inc.",
+    "sector": "Financial Services",
+    "p_b": 0.51,
+    "mcap": 32289700.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CAPITAL_RETURN_POLICY": {
+        "pts": 6.4,
+        "date": "2025-12-22",
+        "source": "8-K",
+        "detail": "special cash dividend"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-16",
+        "source": "DEF 14A",
+        "detail": "PSU on eps, roe, roic, tsr"
+      }
+    },
+    "score": 15.4
+  },
+  "DIT": {
+    "ticker": "DIT",
+    "name": "AMCON Distributing Company",
+    "sector": "Consumer Defensive",
+    "p_b": 0.562,
+    "mcap": 64891831.0,
+    "deep": false,
+    "net_cash_frac": 0.01,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CAPITAL_RETURN_POLICY": {
+        "pts": 6.4,
+        "date": "2025-12-18",
+        "source": "8-K",
+        "detail": "special cash dividend"
+      }
+    },
+    "score": 10.4
+  },
+  "UEIC": {
+    "ticker": "UEIC",
+    "name": "Universal Electronics Inc.",
+    "sector": "Technology",
+    "p_b": 0.465,
+    "mcap": 66498540.0,
+    "deep": true,
+    "net_cash_frac": 0.449,
+    "n_families": 3,
+    "n_hard": 2,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "CAPITAL_RETURN_POLICY": {
+        "pts": 8.0,
+        "date": "2026-08-06",
+        "source": "8-K",
+        "detail": "special cash dividend"
+      },
+      "MDA_UNLOCK": {
+        "pts": 4.0,
+        "date": "2026-08-06",
+        "source": "MD&A",
+        "detail": "value-unlock language"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-08",
+        "source": "DEF 14A",
+        "detail": "PSU on eps, tsr"
+      },
+      "TURNAROUND_EXEC": {
+        "pts": 4.8,
+        "date": "2025-12-30",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      }
+    },
+    "score": 33.8
+  },
+  "ONIT": {
+    "ticker": "ONIT",
+    "name": "Onity Group Inc.",
+    "sector": "Financial Services",
+    "p_b": 0.403,
+    "mcap": 265781053.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 4,
+    "n_hard": 0,
+    "tier": "BUILDING",
+    "families": {
+      "BUYBACK_AUTH": {
+        "pts": 4.0,
+        "date": "2026-02-12",
+        "source": "8-K",
+        "detail": "authorized a share repurchase"
+      },
+      "PROXY_RESPONSIVE": {
+        "pts": 4.0,
+        "date": "2026-04-14",
+        "source": "DEF 14A",
+        "detail": "clawback_strengthened, new_metric_added"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-14",
+        "source": "DEF 14A",
+        "detail": "PSU on eps, other_per_share, roe, tsr"
+      },
+      "SOP_DISSENT": {
+        "pts": 4.0,
+        "date": "2026-04-14",
+        "source": "DEF 14A",
+        "detail": "say-on-pay 76%"
+      },
+      "CIC_PREP": {
+        "pts": 1.8,
+        "date": null,
+        "source": "DEF 14A",
+        "detail": "change-in-control terms"
+      }
+    },
+    "score": 27.8
+  },
+  "LE": {
+    "ticker": "LE",
+    "name": "Lands' End, Inc.",
+    "sector": "Consumer Cyclical",
+    "p_b": 0.646,
+    "mcap": 318167973.0,
+    "deep": false,
+    "net_cash_frac": 0.073,
+    "n_families": 3,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "TENDER_OFFER": {
+        "pts": 5.6,
+        "date": "2026-03-19",
+        "source": "8-K",
+        "detail": "commenced a tender offer"
+      },
+      "MDA_UNLOCK": {
+        "pts": 4.0,
+        "date": "2026-03-26",
+        "source": "MD&A",
+        "detail": "value-unlock language"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-03-27",
+        "source": "DEF 14A",
+        "detail": "PSU on roic, tsr"
+      },
+      "CIC_PREP": {
+        "pts": 1.8,
+        "date": null,
+        "source": "DEF 14A",
+        "detail": "change-in-control terms"
+      }
+    },
+    "score": 22.4
+  },
+  "MLCI": {
+    "ticker": "MLCI",
+    "name": "Mount Logan Capital Inc.",
+    "sector": "Financial Services",
+    "p_b": 0.586,
+    "mcap": 35580282.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "TENDER_OFFER": {
+        "pts": 5.6,
+        "date": "2025-12-29",
+        "source": "8-K",
+        "detail": "tender offer to purchase"
+      }
+    },
+    "score": 9.6
+  },
+  "ARE": {
+    "ticker": "ARE",
+    "name": "Alexandria Real Estate Equities",
+    "sector": "Real Estate",
+    "p_b": 0.599,
+    "mcap": 9318163430.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 3,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "TENDER_OFFER": {
+        "pts": 5.6,
+        "date": "2026-02-12",
+        "source": "8-K",
+        "detail": "cash tender offer"
+      },
+      "PROXY_RESPONSIVE": {
+        "pts": 4.0,
+        "date": "2026-04-01",
+        "source": "DEF 14A",
+        "detail": "responsive_to_shareholders"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-01",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "SOP_DISSENT": {
+        "pts": 4.0,
+        "date": "2026-04-01",
+        "source": "DEF 14A",
+        "detail": "say-on-pay 73%"
+      }
+    },
+    "score": 24.6
+  },
+  "MPT": {
+    "ticker": "MPT",
+    "name": "Medical Properties Trust, Inc.",
+    "sector": "Real Estate",
+    "p_b": 0.474,
+    "mcap": 2132226500.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 2,
+    "n_hard": 0,
+    "tier": "BUILDING",
+    "families": {
+      "MDA_UNLOCK": {
+        "pts": 4.0,
+        "date": "2026-05-08",
+        "source": "MD&A",
+        "detail": "value-unlock language"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-13",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "SOP_DISSENT": {
+        "pts": 4.0,
+        "date": "2026-04-13",
+        "source": "DEF 14A",
+        "detail": "say-on-pay 58%"
+      }
+    },
+    "score": 19.0
+  },
+  "VSNT": {
+    "ticker": "VSNT",
+    "name": "Versant Media Group, Inc.",
+    "sector": "Communication Services",
+    "p_b": 0.579,
+    "mcap": 4700564125.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-23",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "TURNAROUND_EXEC": {
+        "pts": 4.8,
+        "date": "2026-01-05",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      }
+    },
+    "score": 10.8
+  },
+  "GIII": {
+    "ticker": "GIII",
+    "name": "G-III Apparel Group, LTD.",
+    "sector": "Consumer Cyclical",
+    "p_b": 0.654,
+    "mcap": 1170834810.0,
+    "deep": false,
+    "net_cash_frac": 0.333,
+    "n_families": 2,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-05-05",
+        "source": "DEF 14A",
+        "detail": "PSU on cfroi, eps, roe, roic, tsr"
+      },
+      "TURNAROUND_EXEC": {
+        "pts": 6.0,
+        "date": "2026-05-04",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      },
+      "CIC_PREP": {
+        "pts": 1.8,
+        "date": null,
+        "source": "DEF 14A",
+        "detail": "change-in-control terms"
+      }
+    },
+    "score": 18.8
+  },
+  "RYN": {
+    "ticker": "RYN",
+    "name": "Rayonier Inc. REIT",
+    "sector": "Real Estate",
+    "p_b": 0.602,
+    "mcap": 3135767597.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-01",
+        "source": "DEF 14A",
+        "detail": "PSU on eps, tsr"
+      },
+      "TURNAROUND_EXEC": {
+        "pts": 4.8,
+        "date": "2026-02-02",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      }
+    },
+    "score": 10.8
+  },
+  "ARQ": {
+    "ticker": "ARQ",
+    "name": "Arq, Inc.",
+    "sector": "Industrials",
+    "p_b": 0.517,
+    "mcap": 87032988.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-28",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "TURNAROUND_EXEC": {
+        "pts": 6.0,
+        "date": "2026-05-27",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      }
+    },
+    "score": 15.0
+  },
+  "LBTYK": {
+    "ticker": "LBTYK",
+    "name": "Liberty Global Ltd.",
+    "sector": "Communication Services",
+    "p_b": 0.351,
+    "mcap": 3238418907.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 2,
+    "n_hard": 1,
+    "tier": "ACTION LIKELY",
+    "families": {
+      "PROXY_RESPONSIVE": {
+        "pts": 4.0,
+        "date": "2026-04-29",
+        "source": "DEF 14A",
+        "detail": "ownership_requirement_added"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-29",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "TURNAROUND_EXEC": {
+        "pts": 6.0,
+        "date": "2026-04-01",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      }
+    },
+    "score": 24.0
+  },
+  "HPP": {
+    "ticker": "HPP",
+    "name": "Hudson Pacific Properties, Inc.",
+    "sector": "Real Estate",
+    "p_b": 0.226,
+    "mcap": 636801080.0,
+    "deep": true,
+    "net_cash_frac": 0.0,
+    "n_families": 2,
+    "n_hard": 0,
+    "tier": "BUILDING",
+    "families": {
+      "PROXY_RESPONSIVE": {
+        "pts": 4.0,
+        "date": "2026-04-23",
+        "source": "DEF 14A",
+        "detail": "front_load_grant, responsive_to_shareholders"
+      },
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-23",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "SOP_DISSENT": {
+        "pts": 4.0,
+        "date": "2026-04-23",
+        "source": "DEF 14A",
+        "detail": "say-on-pay 35%"
+      }
+    },
+    "score": 22.0
+  },
+  "ZSQR": {
+    "ticker": "ZSQR",
+    "name": "Z Squared Inc.",
+    "sector": "Technology",
+    "p_b": 0.136,
+    "mcap": 18047338.0,
+    "deep": true,
+    "net_cash_frac": 0.28,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "TURNAROUND_EXEC": {
+        "pts": 6.0,
+        "date": "2026-04-30",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      }
+    },
+    "score": 16.0
+  },
+  "SDEV": {
+    "ticker": "SDEV",
+    "name": "Stablecoin Development Corp.",
+    "sector": "Healthcare",
+    "p_b": 0.456,
+    "mcap": 58027335.0,
+    "deep": true,
+    "net_cash_frac": 0.317,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "TURNAROUND_EXEC": {
+        "pts": 6.0,
+        "date": "2026-04-01",
+        "source": "8-K/proxy",
+        "detail": "turnaround executive hired"
+      }
+    },
+    "score": 16.0
+  }
+}
