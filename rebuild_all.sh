@@ -45,6 +45,9 @@ fi
 
 if [ "$DO_SCANS" = "1" ]; then
   echo "### Medium network legs (rate-limited; minutes each) ###"
+  # FMP bulk quotes/ratios first: every downstream price/valuation leg reads
+  # the enriched quote store (needs FMP_API_KEY).
+  run python3 fmp_universe.py                || true
   # Each is independently resumable; failures don't abort the rest.
   # -- Valuation / balance-sheet
   run python3 quarterly_10q_parse.py        --limit 200 || true
@@ -146,6 +149,7 @@ run python3 systematic_rankings.py         || true
 
 echo "### Workbook regeneration ###"
 run python3 build_most_asymmetric_xlsx.py  || true
+run python3 build_otc_book.py              || true
 
 echo
 echo "### Source-health gate ###"
