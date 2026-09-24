@@ -316,6 +316,12 @@ def main() -> int:
                 r["val_score"], r["val_note"] = vs, note
         upgraded += 1
 
+    # an untradeable / bankrupt / tickerless row must not lead any lens
+    # (the engine's "Signal conviction" lens ranks on raw conviction)
+    for r in rows:
+        if r["source"] != "REAL" and ((r.get("flag") or "").startswith(("NOT TRADING", "INACTIVE"))
+                                      or r["ticker"].strip() in ("—", "-", "")):
+            r["conviction"] = 0
     # re-rank exactly as the engine does
     rr_p = [0.0] * len(rows)
     for src in {r["source"] for r in rows}:

@@ -258,6 +258,53 @@ def main() -> int:
     except StopIteration:
         pass
 
+    # FMP / flagged rows carry the upstream screener's placeholder Score / Bucket /
+    # Archetype (0.52 · A · F for every FMP row): blank them so they aren't read
+    src_of = {x["ticker"]: x["source"] for x in rows}
+    for sh in wb.worksheets:
+        hr = next((r for r in range(1, 8) if any(sh.cell(row=r, column=c).value == "Ticker"
+                                                   for c in range(1, 6))), None)
+        if not hr:
+            continue
+        cols = {sh.cell(row=hr, column=c).value: c for c in range(1, sh.max_column + 1)}
+        tcol = cols.get("Ticker")
+        blank = [cols[h] for h in ("Score", "Bucket", "Archetype", "Arch") if h in cols]
+        if not blank:
+            continue
+        for r in range(hr + 1, sh.max_row + 1):
+            if src_of.get(sh.cell(row=r, column=tcol).value) == "FMP":
+                for c in blank:
+                    sh.cell(row=r, column=c).value = "—"
+
+    # sheets the engine leaves without an explanation
+    EXPLAIN = {
+        "All names": "Every ranked name (REAL hand-built waterfalls, FMP balance-sheet rows, PROXY "
+                     "formula rows), in composite order. Bear = downside to the floor; EV× = expected "
+                     "multiple; RR = (EV−1)/bear. Compare within a source: PROXY and FMP numbers are "
+                     "not on the same basis as REAL waterfalls.",
+        "Universe (Tier 1+2)": "The hand-built names (YAMLs) with their jurisdiction, sector, bucket, "
+                               "archetype, build tier and scenario multiples.",
+        "Waterfall matrix": "Each hand-built name's bear / base / bull scenario: probability (P), "
+                            "return multiple (R) and P×R; EV× = ΣP×R. Rationale columns give the "
+                            "YAML's reasoning. Multiples are relative to the price when the YAML was "
+                            "written (see Review & data quality).",
+        "Catalyst timeline": "Dated catalysts from the hand-built YAMLs: window, event, probability "
+                             "it goes our way, re-rate if yes and hit if no. Sorted by window start.",
+        "Portfolio sizing": "Risk-budgeted weights for the hand-built basket: raw Kelly → correlation "
+                            "haircut → cluster cap (3%). EV× on weight and its contribution in bps.",
+        "Methodology": "How the ranking, waterfalls, FMP overlay and sizing are built.",
+    }
+    for t, txt in EXPLAIN.items():
+        if t in wb.sheetnames:
+            sh = wb[t]
+            if sh.cell(row=2, column=1).value in (None, ""):
+                c = sh.cell(row=2, column=1, value=txt)
+                c.alignment = WRAP
+                c.font = Font(italic=True, size=9, color="444444")
+                if t != "Methodology":
+                    sh.merge_cells(start_row=2, start_column=1, end_row=2, end_column=min(12, sh.max_column))
+                    sh.row_dimensions[2].height = 42
+
     # FMP financials for every name in the book (tickers shown as 'EPA:LOCAL' or 'LOCAL')
     import name_financials
     sym_map = {}
@@ -269,6 +316,11 @@ def main() -> int:
     fin = name_financials.build(set(sym_map.values()))
     name_financials.add_financials(wb, fin, sym_map, index=3,
                                    skip=("Cover", "Methodology", "Review & data quality"))
+    import book_layout as bl
+    bl.key_numbers(wb, fin, sym_map, skip=("Cover", "Methodology", "Review & data quality",
+                                           "Name Financials"))
+    top = [x["ticker"] for x in rows[:40]] + [x["ticker"] for x in rows if x["source"] == "REAL"]
+    bl.tear_sheets(wb, fin, list(dict.fromkeys(top)), sym_map, index=1, max_names=60)
     wb.save(a.xlsx)
     print(f"post-process: review sheet ({len(real)} hand-built names checked) + call intent "
           f"({len(have)} of {len(rows)} names have transcripts)")

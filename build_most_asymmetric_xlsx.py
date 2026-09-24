@@ -3476,10 +3476,32 @@ def main() -> int:
     _finalize_sheets(wb)
     # every listed name carries its FMP numbers; full panel in "Name Financials"
     import name_financials
-    name_financials.add_financials(
-        wb, name_financials.load(), index=3,
-        skip=("Contents", "Cover", "Layer Correlation", "Coverage & Tiers", "Methodology",
-              "Re-Rate Backtest", "Winners Study", "Reserve Baskets"))
+    import book_layout as bl
+    NONAME = ("Contents", "Cover", "Layer Correlation", "Coverage & Tiers", "Methodology",
+              "Re-Rate Backtest", "Winners Study", "Reserve Baskets")
+    fin = name_financials.load()
+    name_financials.add_financials(wb, fin, index=3, skip=NONAME)
+    # financials NEXT TO the name, and one strength scale on every thesis/signal tab
+    bl.key_numbers(wb, fin, skip=NONAME + ("Name Financials",))
+    bl.strength(wb, bl.populations(), skip=NONAME + ("Name Financials",))
+    # tear sheets: the shortlist first, then the most-cited names
+    short = [str(c.value).strip() for c in wb["Most Asymmetric"]["A"][4:] if c.value]
+    cited = [str(c.value).strip() for c in wb["Name Financials"]["A"][4:] if c.value]
+    n_ts = bl.tear_sheets(wb, fin, list(dict.fromkeys(short + cited)), max_names=60)
+    print(f"  tear sheets: {n_ts} names")
+    bl.regroup(wb, [
+        ("Decide", ["Contents", "Cover", "Most Asymmetric", "Tear Sheets", "Name Financials"]),
+        ("Theses", ["Governance Discount", "Mechanism Gates", "Payoff Geometry", "Re-Rate Catalysts",
+                    "Structured Distressed", "Distressed Stub Progress", "Hidden Asset Realisation",
+                    "Asymmetry Assembly", "Turnaround Signal", "Call Intent", "Foreign Markets",
+                    "UK Capital Events", "By Archetype", "Reserve Baskets", "Caution List"]),
+        ("Signals", ["Insider Conviction", "Insider Filing-Time", "MD&A Intent", "Incentive Improvers",
+                     "Recent 30d", "Political Trades", "Single-Measure Best", "Without Valuation"]),
+        ("Evidence", ["Re-Rate Backtest", "Tail Odds", "Winners Study"]),
+        ("Plumbing", ["Layer Correlation", "Coverage & Tiers", "Methodology"]),
+    ], descriptions={**dict(TAB_INDEX),
+                     "Tear Sheets": "One block per name: financial panel + every tab it appears on, with strength percentiles.",
+                     "Name Financials": "FMP financial panel for every name in the book + the tabs each appears on."})
     wb.save(OUT)
     print(f"\nwrote {OUT}  ({len(wb.sheetnames)} tabs)")
     return 0

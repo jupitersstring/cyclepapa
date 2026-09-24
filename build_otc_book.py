@@ -384,8 +384,20 @@ def main() -> int:
     ct.sheet_view.showGridLines = False
 
     import name_financials
-    name_financials.add_financials(wb, name_financials.load(), index=1,
-                                   skip=("Contents", "Methodology"))
+    import book_layout as bl
+    fin = name_financials.load()
+    name_financials.add_financials(wb, fin, index=1, skip=("Contents", "Methodology"))
+    bl.key_numbers(wb, fin, skip=("Contents", "Methodology", "Name Financials"))
+    cited = [str(c.value).strip() for c in wb["Name Financials"]["A"][4:] if c.value]
+    intent_first = [r["ticker"] for r in sorted(oi.values(), key=lambda r: -r.get("score", 0))
+                    if r.get("tier")][:20]
+    bl.tear_sheets(wb, fin, list(dict.fromkeys(intent_first + cited)), max_names=50)
+    bl.regroup(wb, [("Decide", ["Contents", "Tear Sheets", "Name Financials"]),
+                    ("Theses", ["US Net-Nets", "US Deep Value", "Cash Shells", "Going Dark",
+                                "NOL Shells", "Foreign OTC"]),
+                    ("Signals", ["OTC Intent"]), ("Plumbing", ["Methodology"])],
+               descriptions={"Tear Sheets": "One block per name: financials + every tab it appears on.",
+                             "Name Financials": "FMP financial panel for every name in the book."})
     wb.save(OUT)
     print(f"wrote {OUT} ({len(wb.sheetnames)} tabs)")
     for t, n in counts.items():
