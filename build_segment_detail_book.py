@@ -67,6 +67,25 @@ def load_data():
     _in_fmp = df['symbol'].isin(fmp['symbol'])
     df['seg_source'] = np.select([_in_edgar & _in_fmp, _in_edgar, _in_fmp],
                                  ['EDGAR+FMP', 'EDGAR', 'FMP'], default='')
+    # Same guards as archetype_tags, applied to the FMP columns BEFORE any
+    # fill or tab reads them:
+    #   * MATERIAL axis (>= 50% of revenue) for growth / rot / mix / momentum —
+    #     for most banks FMP's product "segments" are only the fee lines (CFG
+    #     card fees 7% of revenue, UMBF 3%), which carry no segment thesis;
+    #   * RECONCILED axis (80-120% of revenue) for shares / HHI.
+    for _pre in ('fmp_seg', 'fmp_geo'):
+        _cv = pd.to_numeric(df.get(f'{_pre}_coverage'), errors='coerce') \
+            if f'{_pre}_coverage' in df.columns else pd.Series(np.nan, index=df.index)
+        _mat = _cv.isna() | (_cv >= 0.5)
+        _rec = _cv.isna() | _cv.between(0.8, 1.2)
+        for _c in [c for c in df.columns if c.startswith(_pre + '_')]:
+            if any(k in _c for k in ('_share', '_hhi')) and not _c.endswith(('_em_share', '_china_share',
+                                                                             '_em_share_delta',
+                                                                             '_china_share_delta')):
+                df[_c] = df[_c].where(_rec)
+            elif any(k in _c for k in ('_yoy', '_accel', '_cagr', '_consec', '_core_declining',
+                                       '_gainer', '_dispersion', '_fastest_name')):
+                df[_c] = df[_c].where(_mat)
     # FMP fills the displayed segment fields only where EDGAR has nothing.
     # EDGAR keeps precedence (it also carries segment operating margin, which
     # FMP does not), so the forensic margin columns remain EDGAR-sourced.
@@ -124,7 +143,7 @@ def load_data():
     # segment-archetype membership flags (from the tags output) so the book can
     # carry a tab per segment SETUP, not just the raw segment-structure cuts
     if os.path.exists('archetype_tags.csv'):
-        _seg_arch = ['arch_fastest_segment', 'arch_xr_hidden_segment_compounder',
+        _seg_arch = ['non_common_flag', 'arch_fastest_segment', 'arch_xr_hidden_segment_compounder',
                      'arch_xr_segment_justifies_whole', 'arch_xr_margin_mixshift',
                      'segment_rot_flag',
                      'arch_concentrated_segments', 'arch_diversified_segments',
@@ -200,6 +219,17 @@ def load_data():
     if 'market_cap' in df.columns:
         df = df[df['market_cap'].fillna(0) >= 10_000_000]
     df = df[df['verdict'] != 'RED']
+    # one row per COMPANY: preferred / warrant / unit lines (BAC-PB, ASB-PF...)
+    # duplicated their common stock's segment rows
+    if 'non_common_flag' in df.columns:
+        df = df[pd.to_numeric(df['non_common_flag'], errors='coerce').fillna(0) != 1]
+    # MATERIAL axis: FMP segments covering < 50% of revenue are a sub-ledger
+    # (for most banks only the fee lines), so they do not carry a segment
+    # THESIS. Such names stay in All Segments / Reconciliation / History with
+    # their real numbers, but not in the growth / mix / rot thesis tabs.
+    _cv = pd.to_numeric(df.get('fmp_seg_coverage'), errors='coerce')
+    df['seg_material'] = (df['seg_source'].isin(['EDGAR', 'EDGAR+FMP'])
+                          | _cv.isna() | (_cv >= 0.5)).astype(int)
     return df
 
 
@@ -564,7 +594,7 @@ def main():
          df[df['geographic_region_count'].fillna(0) >= 4],
          '4+ reporting geographies', sort_col, args.n),
         ('Fastest',
-         df[(df['fastest_segment_yoy'].fillna(0) >= 0.25) & (df['segment_count'].fillna(0) >= 2)],
+         df[(df['seg_material'] == 1) & (df['fastest_segment_yoy'].fillna(0) >= 0.25) & (df['segment_count'].fillna(0) >= 2)],
          'Single segment growing > 25% YoY — ranked by segment YoY, upweighted where consolidated measures confirm (hidden engine)',
          'seg_inflect_confirmed', max(args.n, 150)),
         # FORENSIC-XR setups (archetype membership from the tags output)
@@ -595,7 +625,7 @@ def main():
         # latest reported quarter (date-matched YoY), with a growth streak —
         # fresher than any fiscal-year number
         ('Segment Momentum',
-         df[(pd.to_numeric(df.get('fastest_seg_yoy_q'), errors='coerce') >= 0.20)
+         df[(df['seg_material'] == 1) & (pd.to_numeric(df.get('fastest_seg_yoy_q'), errors='coerce') >= 0.20)
             & (pd.to_numeric(df.get('fastest_seg_consec_growth'), errors='coerce') >= 3)
             & ((pd.to_numeric(df.get('fmp_seg_fastest_q_accel'), errors='coerce') > 0)
                | (pd.to_numeric(df.get('fastest_seg_accel_fy'), errors='coerce') > 0))
@@ -606,7 +636,7 @@ def main():
         # MIX SHIFT (3y): a segment has structurally taken >= 10pp of the
         # company over three fiscal years — base-effect-robust, unlike a 1y YoY
         ('Mix Shift 3y',
-         df[(pd.to_numeric(df.get('fmp_seg_share_gainer_3y_delta'), errors='coerce') >= 0.10)
+         df[(df['seg_material'] == 1) & (pd.to_numeric(df.get('fmp_seg_share_gainer_3y_delta'), errors='coerce') >= 0.10)
             & (df['segment_count'].fillna(0) >= 2)],
          'A segment gained >= 10pp of company revenue over three fiscal years (structural mix shift, '
          'not a one-year base effect) — ranked by confirmed ETA; reconciled coverage shown per row',
@@ -614,7 +644,7 @@ def main():
         # WARNING tab: a large core segment is shrinking; consolidated revenue
         # may look flat only because a smaller line is growing
         ('Rotting Core',
-         df[pd.to_numeric(df.get('seg_core_declining'), errors='coerce') == 1],
+         df[(df['seg_material'] == 1) & (pd.to_numeric(df.get('seg_core_declining'), errors='coerce') == 1)],
          'WARNING view — a segment that was >= 25% of revenue shrank >= 10% YoY. Informational: '
          'check whether the growing lines can outrun it before trusting a flat consolidated top line',
          sort_col, max(args.n, 100)),

@@ -389,9 +389,22 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                    f'{_pre}_fastest_share_delta', f'{_pre}_hhi_delta'):
             if _c in df.columns:
                 df[_c + '_rec'] = _num_or_nan(_c).where(_rec_ok)
+    # MATERIAL-AXIS guard for GROWTH fields: an axis covering < 50% of the
+    # company's revenue is a sub-ledger, not the business — for most banks
+    # FMP's "product segments" are only the fee lines (HNVR 0.7%, WBS 5%,
+    # CFG 7% of revenue), so a fast-growing deposit-fee line is not a hidden
+    # engine. Growth / rot / momentum fills need coverage >= 0.5 (unknown
+    # coverage passes).
+    _cov_p = _num_or_nan('fmp_seg_coverage')
+    _mat_p = _cov_p.isna() | (_cov_p >= 0.5)
+    for _c in ('fmp_seg_fastest_yoy', 'fmp_seg_fastest_yoy_q', 'fmp_seg_fastest_accel_fy',
+               'fmp_seg_fastest_consec_growth_q', 'fmp_seg_core_declining',
+               'fmp_seg_growth_dispersion'):
+        if _c in df.columns:
+            df[_c + '_mat'] = _num_or_nan(_c).where(_mat_p)
     # quarterly corroboration of the fastest segment, EDGAR definition:
     # latest-quarter YoY positive and >= half the FY rate
-    _fq_y = _num_or_nan('fmp_seg_fastest_yoy_q'); _ff_y = _num_or_nan('fmp_seg_fastest_yoy')
+    _fq_y = _num_or_nan('fmp_seg_fastest_yoy_q_mat'); _ff_y = _num_or_nan('fmp_seg_fastest_yoy_mat')
     df['fmp_seg_q_confirm'] = ((_fq_y > 0) & (_ff_y.isna() | (_fq_y >= 0.5 * _ff_y))).astype(float) \
         .where(_fq_y.notna())
     for _b, _f in (('segment_count', 'fmp_seg_count'),
@@ -399,17 +412,17 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                    ('largest_segment_share', 'fmp_seg_largest_share_rec'),
                    ('geographic_region_count', 'fmp_geo_count'),
                    ('largest_region_share', 'fmp_geo_largest_share_rec'),
-                   ('fastest_segment_yoy', 'fmp_seg_fastest_yoy'),
-                   ('fastest_seg_yoy_fy', 'fmp_seg_fastest_yoy'),
-                   ('fastest_seg_yoy_q', 'fmp_seg_fastest_yoy_q'),
-                   ('fastest_seg_accel_fy', 'fmp_seg_fastest_accel_fy'),
+                   ('fastest_segment_yoy', 'fmp_seg_fastest_yoy_mat'),
+                   ('fastest_seg_yoy_fy', 'fmp_seg_fastest_yoy_mat'),
+                   ('fastest_seg_yoy_q', 'fmp_seg_fastest_yoy_q_mat'),
+                   ('fastest_seg_accel_fy', 'fmp_seg_fastest_accel_fy_mat'),
                    ('fastest_seg_q_confirm', 'fmp_seg_q_confirm'),
-                   ('fastest_seg_consec_growth', 'fmp_seg_fastest_consec_growth_q'),
+                   ('fastest_seg_consec_growth', 'fmp_seg_fastest_consec_growth_q_mat'),
                    ('fastest_segment_share', 'fmp_seg_fastest_share_rec'),
                    ('fastest_segment_share_delta', 'fmp_seg_fastest_share_delta_rec'),
                    ('segment_hhi_delta', 'fmp_seg_hhi_delta_rec'),
-                   ('seg_core_declining', 'fmp_seg_core_declining'),
-                   ('segment_growth_dispersion', 'fmp_seg_growth_dispersion')):
+                   ('seg_core_declining', 'fmp_seg_core_declining_mat'),
+                   ('segment_growth_dispersion', 'fmp_seg_growth_dispersion_mat')):
         _fmp_fill(_b, _f)
     # ---- QUARTERLY forensic fills (fmp_quarterly.py) ----
     # CURRENCY BRIDGE. fq_* levels are in the filer's REPORTING currency; the
@@ -6588,6 +6601,12 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
 
     _sym_nc = df['symbol'].astype(str)
     _nm_nc = df['name'].astype(str) if 'name' in df.columns else pd.Series('', index=df.index)
+    _nm_key = _nm_nc.str.lower().str.replace(r'[^a-z]', '', regex=True).str[:14]
+    _base_nm = dict(zip(_sym_nc, _nm_key))
+    _sfx_pref_line = pd.Series([
+        bool(len(sy) == 5 and sy.isalpha() and sy.isupper() and sy[4] in 'PONMLIVZ'
+             and sy[:4] in _base_nm and nk and nk != 'nan' and _base_nm[sy[:4]] == nk)
+        for sy, nk in zip(_sym_nc, _nm_key)], index=df.index)
     _is_noncommon = (
         _sym_nc.str.match(r'^[A-Z]{1,5}-P[A-Z]?$')
         | _sym_nc.str.match(r'^[A-Z]{1,5}[-.](?:WT|WS|U|UN|R|RT)$')
@@ -6608,6 +6627,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # ($-anchored US pattern misses these — GWO-PI.TO, SLF-PC.TO leaked).
         | _sym_nc.str.contains(r'-P[A-Z]?\.[A-Z]{1,3}$', regex=True)
         | _sym_nc.str.contains(r'[-. ]PFD\b', case=False, regex=True)
+        # SEPARATOR-LESS Nasdaq 5th-letter lines of a listed common: P/O/N/M/L/I
+        # = preferred series (HBANL/HBANM/HBANP, FITBP/FITBO/FITBI, CCNEP,
+        # TCBIO, FULTP), V = when-issued, Z = notes/misc. Only when the 4-letter
+        # BASE is itself in the universe under the SAME company name, so
+        # genuine share classes (LILAK / LILAB, ATROB, BKUTK) are untouched.
+        | _sfx_pref_line
+        | _nm_nc.str.contains(r'senior notes|notes due|% notes', case=False, regex=True)
         | _nm_nc.str.contains(r'preferred|pfd| pref |depositary|% notes|perpetual|warrant',
                               case=False, regex=True)
         # (surgical audit) BANKRUPTCY STUB: the old 5th-letter-Q convention
@@ -6645,6 +6671,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                      'inst_accum_score', 'inst_accum_accelerating',
                      'biotech_deep_value_score', 'biotech_cash_runway_yrs'] if c in df.columns]
     _scrub_cols = arch_cols + _GATED_SCORES
+    # exported so books can drop preferred / warrant / unit lines too
+    df['non_common_flag'] = _is_noncommon.fillna(False).astype(int).values
     if _is_noncommon.any():
         df.loc[_is_noncommon.values, _scrub_cols] = 0
         print(f'  scrubbed archetype flags + gated scores on '
@@ -7215,7 +7243,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                             'fmp_st_owner_earnings_yield','fmp_st_years_of_history'] if c in df.columns]
              # institutional accumulation + FMP segmentation + digest
              + [c for c in ['inst_accum_score','inst_accum_accelerating','inst_own_excess_q0','inst_buy_excess_q0','fmp_signals',
-                            'roic_lindy_eff','capret_yield_eff','multi_year_data',
+                            'roic_lindy_eff','capret_yield_eff','multi_year_data','non_common_flag',
                             'fmp_inst_quarter','fmp_inst_holders','fmp_inst_own_pct',
                             'fmp_inst_own_chg_q0','fmp_inst_own_chg_q1','fmp_inst_own_chg_q2',
                             'fmp_inst_shares_chg_pct_q0','fmp_inst_shares_chg_pct_q1',
