@@ -1,5 +1,5 @@
 macro_style,ticker,n_funds,dollar_m,sections_seen,in_tier1,has_cluster,entry_bucket
-Activists / Special Situations,SATS,4,1439.6,"3,1,4",0,0,BELOW_ENTRY
+Activists / Special Situations,ECHO,4,1439.6,"3,1,4",0,0,
 Activists / Special Situations,GTLS,4,103.4,"1,4",0,0,NEAR_ENTRY
 Activists / Special Situations,HHH,3,2732.9,"1,2,4,3",1,0,BELOW_ENTRY
 Activists / Special Situations,WBD,3,1554.4,"4,1,3",0,0,NEAR_ENTRY
@@ -73,7 +73,7 @@ Biotech Specialists,VYGR,2,0.0,2,0,0,
 Distressed / Event-Driven,LITE,2,10220.0,"1,3",0,0,NEAR_ENTRY
 Distressed / Event-Driven,AERO,2,994.9,"1,2,3",0,0,NEAR_ENTRY
 Distressed / Event-Driven,WDC,2,937.0,"1,4",0,0,BELOW_ENTRY
-Distressed / Event-Driven,SATS,2,540.5,1,0,0,BELOW_ENTRY
+Distressed / Event-Driven,ECHO,2,540.5,1,0,0,
 Distressed / Event-Driven,PCG,2,347.6,"1,4",0,0,NEAR_ENTRY
 Distressed / Event-Driven,AMBP,2,91.0,"1,4",0,0,NEAR_ENTRY
 Distressed / Event-Driven,MNKTQ,2,0.0,2,0,0,

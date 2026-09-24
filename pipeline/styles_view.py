@@ -106,9 +106,23 @@ def run():
             GROUP BY ticker HAVING nf >= 2
             ORDER BY nf DESC, dm DESC LIMIT 40""", member_funds))
         top_picks = ", ".join(f"{r['ticker']}({r['nf']})" for r in consensus[:10])
+        if not consensus:
+            # funds added through their 13F alone (ARK, Alkeon, Durable...) have
+            # no researcher-XLSX rows: read the style's consensus off the 13Fs
+            top13 = conn.execute(f"""SELECT h.ticker, COUNT(DISTINCT COALESCE(fc.canon, h.fund)) nf
+                FROM fund_13f_holdings h LEFT JOIN fund_canon fc ON fc.fund = h.fund
+                WHERE h.fund IN ({ph}) AND h.ticker IS NOT NULL AND instr(h.ticker, ' ') = 0
+                  AND h.sh_type IN ('SH', '')
+                GROUP BY h.ticker HAVING nf >= 2 ORDER BY nf DESC, SUM(h.value_k) DESC LIMIT 10""",
+                member_funds).fetchall()
+            top_picks = ", ".join(f"{t}({n})" for t, n in top13)
+        # every member fund counts, researcher-XLSX coverage or not (the style
+        # Overview once showed "0 funds" beside six named growth funds)
+        canon = {r[0]: r[1] for r in conn.execute("SELECT fund, canon FROM fund_canon")}
+        n_members = len({canon.get(f) or f for f in member_funds})
 
         conn.execute("""INSERT INTO style_summary VALUES (?,?,?,?,?,?,?,?,?)""",
-                     (style, agg["n"], agg["total"] or 0, agg["c1"] or 0, agg["c2"] or 0,
+                     (style, n_members, agg["total"] or 0, agg["c1"] or 0, agg["c2"] or 0,
                       agg["c3"] or 0, agg["c4"] or 0,
                       "; ".join(top_funds), top_picks))
         for c in consensus:

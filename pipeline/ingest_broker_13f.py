@@ -18,6 +18,8 @@ import os, sqlite3, statistics, sys, time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ingest_13f as m
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from build_cusip_map import debt_ticker
 
 DB = m.DB
 
@@ -121,6 +123,7 @@ def ingest_accession(conn, broker, cik, acc, filed, qrank, cusip_map, name_map, 
         p = 1.0 if r["type"] == "PRN" else px_map.get(tkr)
         if p and r["shares"] and r["value_k"]:
             ratios.append((r["value_k"] * 1000.0 / r["shares"]) / p)
+        tkr = debt_ticker(tkr, r["cusip"])           # bond lines never pool with the stock
         out.append((broker, cik, acc, filed, qrank, r["issuer"], r["cusip"], tkr,
                     r["value_k"], r["shares"], r["type"]))
     # full-dollar filing (value/shares ~1000x the price). A one-line book counts

@@ -108,6 +108,12 @@ def classify_sec_type(tkr, name, names):
 # (stale) holdings must NOT count as CURRENT smart money. Genuinely-active funds
 # (incl. those that migrated CIKs) file quarterly, so anything filed in the last
 # ~18 months is current. Holdings stay in the DB; they're just gated from the score.
+# Equity lines only. A CUSIP whose issue code (chars 7-8) holds letters is DEBT:
+# convertible notes filed as 'SH' (EchoStar, Celcuity, Dexcom: 66 lines, $1.7B)
+# or as 'PRN' must not count as holders of the stock, nor as %-of-book in it
+# (a convert-arb fund's 5% Lumentum note is not a 5% Lumentum equity bet).
+_EQUITY = ("AND sh_type IN ('SH','') AND substr(cusip,7,1) BETWEEN '0' AND '9' "
+           "AND substr(cusip,8,1) BETWEEN '0' AND '9' ")
 STALE_FUND_CUTOFF = "2025-01-01"
 _FRESH = (f"AND fund NOT IN (SELECT fund FROM fund_13f_state "
           f"WHERE last_filed IS NOT NULL AND last_filed < '{STALE_FUND_CUTOFF}')")
@@ -157,12 +163,12 @@ def run():
     SM_CAP = 75.0
     fund_hn = {r[0]: r[1] for r in conn.execute(
         "SELECT fund, COUNT(DISTINCT cusip) FROM fund_13f_holdings "
-        "WHERE sh_type IN ('SH','') AND ticker IS NOT NULL GROUP BY fund")}
+        "WHERE ticker IS NOT NULL " + _EQUITY + "GROUP BY fund")}
     fund_w = {f: min(1.0, SM_CAP / hn) for f, hn in fund_hn.items() if hn > 0}
     sm = {}
     for tk, fund in conn.execute(
             "SELECT DISTINCT ticker, fund FROM fund_13f_holdings "
-            "WHERE ticker IS NOT NULL AND sh_type IN ('SH','') " + _FRESH):
+            "WHERE ticker IS NOT NULL " + _EQUITY + _FRESH):
         sm[tk] = sm.get(tk, 0.0) + fund_w.get(fund, 1.0)
     sm = {tk: round(v, 1) for tk, v in sm.items()}
     # Section counts dedupe by CANONICAL manager, not raw fund string — the same
@@ -343,7 +349,7 @@ def run():
         FROM fund_13f_holdings
         WHERE ticker IS NOT NULL AND pct_book IS NOT NULL
           AND pct_book <= 100
-        """ + _FRESH + """
+        """ + _EQUITY + _FRESH + """
         GROUP BY ticker"""):
         pct_book_max[r["ticker"]] = r["m"] or 0
         pct_book_n5[r["ticker"]] = r["n5"] or 0

@@ -155,10 +155,10 @@ CVI,Activists / Special Situations,9.8,1,1,3580.0
 CTRI,Activists / Special Situations,9.1,2,0,740.0
 MNRO,Activists / Special Situations,21.7,1,1,160.0
 MNRO,Small-cap / Multibagger Specialists,3.6,1,0,0.0
-SATS,Activists / Special Situations,32.2,4,1,1439.6
-SATS,Distressed / Event-Driven,2.4,2,0,540.5
-SATS,Value / Concentrated Quality,1.6,1,0,4.2
-SATS,Other / Unclassified,4.5,1,0,283.6
+ECHO,Activists / Special Situations,32.2,4,1,1439.6
+ECHO,Distressed / Event-Driven,2.4,2,0,540.5
+ECHO,Value / Concentrated Quality,1.6,1,0,4.2
+ECHO,Other / Unclassified,4.5,1,0,283.6
 TLN,Activists / Special Situations,10.5,1,0,375.0
 TLN,Small-cap / Multibagger Specialists,10.8,2,1,1340.5
 GDS,Activists / Special Situations,10.5,1,0,325.0
@@ -288,7 +288,7 @@ TREX,Activists / Special Situations,2.8,1,0,0.0
 HLIT,Activists / Special Situations,7.0,1,0,20.0
 HLIT,Other / Unclassified,3.0,1,0,28.9
 MATW,Activists / Special Situations,37.8,2,2,46.0
-VSCO,Activists / Special Situations,9.8,1,1,23.0
+VSXY,Activists / Special Situations,9.8,1,1,23.0
 BILL,Activists / Special Situations,18.9,1,1,24.7
 BILL,Small-cap / Multibagger Specialists,5.4,1,0,35.7
 BILL,Tiger Cubs / L/S Legends,5.6,1,0,0.0
@@ -357,8 +357,8 @@ PAR,Other / Unclassified,7.5,1,0,32.0
 CLBT,Small-cap / Multibagger Specialists,11.4,3,0,195.5
 CLBT,Value / Concentrated Quality,18.4,1,1,47.5
 CLBT,Other / Unclassified,5.5,2,0,50.4
-KFS,Small-cap / Multibagger Specialists,6.0,1,0,50.0
-KFS,Other / Unclassified,3.5,1,0,50.0
+KWY,Small-cap / Multibagger Specialists,6.0,1,0,50.0
+KWY,Other / Unclassified,3.5,1,0,50.0
 BUR,Small-cap / Multibagger Specialists,10.2,2,0,55.5
 BUR,Other / Unclassified,4.5,1,0,34.0
 PINS,Small-cap / Multibagger Specialists,2.4,1,0,0.0
@@ -871,7 +871,7 @@ CRMT,Distressed / Event-Driven,1.8,1,0,0.0
 SVC,Distressed / Event-Driven,2.4,1,0,0.0
 COMM,Distressed / Event-Driven,8.4,1,1,178.0
 GBTG,Distressed / Event-Driven,3.6,1,0,55.0
-CGEH,Distressed / Event-Driven,3.6,1,0,0.0
+CEPL,Distressed / Event-Driven,3.6,1,0,0.0
 DNA,Distressed / Event-Driven,12.6,1,1,15.0
 LTM,Distressed / Event-Driven,13.8,1,1,3100.0
 EAF,Distressed / Event-Driven,9.6,1,1,20.0
@@ -1331,7 +1331,7 @@ SNPS,Foreign / EM Value,2.0,1,0,516.0
 INTU,Foreign / EM Value,2.0,1,0,452.0
 INTU,Value / Concentrated Quality,4.8,1,0,35.4
 CAE,Foreign / EM Value,3.0,1,0,0.0
-ERJ,Foreign / EM Value,6.0,1,0,0.0
+EMBJ,Foreign / EM Value,6.0,1,0,0.0
 OTEX,Foreign / EM Value,3.0,1,0,0.0
 KMT,Foreign / EM Value,6.5,1,0,0.0
 GRFS,Foreign / EM Value,4.0,1,0,0.0
@@ -1388,7 +1388,7 @@ ARDX,Mega Multi-Strats / Quants,0.6,1,0,0.0
 BYRN,Mega Multi-Strats / Quants,0.6,1,0,0.0
 CGCT,Mega Multi-Strats / Quants,2.0,1,0,0.0
 VTVT,Mega Multi-Strats / Quants,0.6,1,0,0.0
-CYBN,Mega Multi-Strats / Quants,2.0,1,0,0.0
+HELP,Mega Multi-Strats / Quants,2.0,1,0,0.0
 SRPT,Mega Multi-Strats / Quants,0.6,1,0,0.0
 IBTA,Mega Multi-Strats / Quants,0.6,1,0,0.0
 OPEN,Mega Multi-Strats / Quants,0.6,1,0,0.0
@@ -1438,7 +1438,7 @@ NXST,Microcap-Tactical,4.2,1,0,9.4
 AZO,Microcap-Tactical,3.6,1,0,6.4
 BHVN,Microcap-Tactical,3.6,1,0,5.8
 BHVN,Biotech Specialists,1.9,1,0,0.0
-TNP,Microcap-Tactical,3.6,1,0,4.4
+TEN,Microcap-Tactical,3.6,1,0,4.4
 NURO,Microcap-Tactical,8.4,1,1,0.9
 PHIIK,Microcap-Tactical,12.6,1,1,33278033.2
 MC,Microcap-Tactical,3.6,1,0,54.2
@@ -1756,6 +1756,7 @@ AME,Foreign / EM Value,4.5,1,0,0.0
 GFUZ,Foreign / EM Value,2.5,1,0,0.0
 CVO,Foreign / EM Value,2.5,1,0,0.0
 ZDC.V,Foreign / EM Value,1.5,1,0,0.0
+CSW,Foreign / EM Value,1.5,1,0,0.0
 APD,Activists / Special Situations,16.1,2,1,1651.0
 APD,Value / Concentrated Quality,3.2,1,0,68.0
 WEX,Activists / Special Situations,16.1,1,1,522.0
@@ -2029,7 +2030,7 @@ NRC,Value / Concentrated Quality,9.6,1,0,38.0
 MTRX,Value / Concentrated Quality,4.0,1,0,0.0
 MFCO,Foreign / EM Value,7.0,1,1,0.0
 DEWY,Foreign / EM Value,7.0,1,1,0.0
-MODG,Other / Unclassified,3.0,1,0,2.4
+CALY,Other / Unclassified,3.0,1,0,2.4
 VLTO,Other / Unclassified,3.0,1,0,1.8
 POOL,Other / Unclassified,10.0,1,0,1.7
 POOL,Foreign / EM Value,3.5,1,0,0.0
@@ -2078,7 +2079,7 @@ J91U.SI,Foreign / EM Value,2.5,1,0,0.0
 CVE.TO,CTA / Trend Followers,1.5,1,0,0.0
 SU.TO,CTA / Trend Followers,1.5,1,0,0.0
 OIH,CTA / Trend Followers,1.5,1,0,0.0
-FNCH,Value / Concentrated Quality,8.8,1,0,0.0
+FNCHQ,Value / Concentrated Quality,8.8,1,0,0.0
 CVLY,Small-cap / Multibagger Specialists,3.6,1,0,0.0
 ASRV,Small-cap / Multibagger Specialists,3.6,1,0,0.0
 ESXB,Small-cap / Multibagger Specialists,3.0,1,0,0.0

@@ -6,6 +6,8 @@ CUSIP-authority map so the prior quarter maps identically to the current one.
 import json, os, sqlite3, time, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ingest_13f as m
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from build_cusip_map import debt_ticker
 
 DB = m.DB
 
@@ -100,7 +102,7 @@ def run():
             tkr = (cm[0] if cm[1] != "etf" else None) if cm is not None else m.name_to_ticker(r["issuer"], name_map)
             pct = (r["value_k"] / total_v * 100) if total_v else None
             conn.execute("INSERT OR REPLACE INTO fund_13f_prior VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-                         (fund, cik, acc, filed, r["issuer"], r["cusip"], tkr,
+                         (fund, cik, acc, filed, r["issuer"], r["cusip"], debt_ticker(tkr, r["cusip"]),
                           r["value_k"], r["shares"], r["type"], pct))
             conn.execute("INSERT OR REPLACE INTO holding_sec_form VALUES (?,?,?,?)",
                          (acc, r["cusip"], r.get("title"),

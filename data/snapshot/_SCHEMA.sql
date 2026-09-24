@@ -233,6 +233,14 @@ CREATE TABLE earnings_surprise (ticker TEXT, date TEXT, eps_actual REAL, eps_est
 CREATE TABLE earnings_beat (ticker TEXT PRIMARY KEY, n_q INTEGER, beats INTEGER,
         beat_rate REAL, last_date TEXT, last_surprise_pct REAL, streak INTEGER,
         rev_n INTEGER, rev_beats INTEGER, last_rev_surprise_pct REAL);
+CREATE TABLE congress_trades (
+      chamber TEXT, member_id TEXT, member TEXT, district TEXT, owner TEXT,
+      ticker TEXT, asset_type TEXT, asset_desc TEXT, type TEXT,
+      amount_lo REAL, amount_hi REAL, amount_text TEXT,
+      trans_date TEXT, disclosure_date TEXT, link TEXT);
+CREATE INDEX idx_congress_ticker ON congress_trades(ticker);
+CREATE TABLE ticker_alias (old TEXT PRIMARY KEY, new TEXT,
+                    cusip TEXT, asof TEXT);
 CREATE TABLE unified_signal (
       ticker TEXT PRIMARY KEY,
       name TEXT, exchange TEXT, sector TEXT, mcap_m REAL, price REAL,
@@ -277,19 +285,6 @@ CREATE TABLE ticker_style_conviction (
       ticker TEXT, macro_style TEXT, score REAL, n_funds INTEGER,
       n_hyper INTEGER, dollar_m REAL,
       PRIMARY KEY (ticker, macro_style));
-CREATE TABLE fund_style (
-      fund TEXT PRIMARY KEY, sub_group TEXT, macro_style TEXT,
-      total_rows INTEGER, conviction_n INTEGER, threshold_n INTEGER,
-      new_n INTEGER, adds_n INTEGER);
-CREATE TABLE style_summary (
-      macro_style TEXT PRIMARY KEY,
-      n_funds INTEGER, total_rows INTEGER,
-      n_conviction INTEGER, n_threshold INTEGER, n_new INTEGER, n_adds INTEGER,
-      top_funds TEXT, top_consensus TEXT);
-CREATE TABLE style_consensus (
-      macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
-      sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
-      PRIMARY KEY (macro_style, ticker));
 CREATE TABLE broker_swap_radar (
       ticker TEXT, name TEXT, broker TEXT,
       delta_sh_m REAL,          -- share-count change, millions
@@ -307,9 +302,16 @@ CREATE TABLE broker_swap_radar (
       disclosed_swap TEXT,      -- a 13D on this name whose text names a swap
       f144_sale TEXT,           -- Form 144 proposed-sale pressure (contra)
       PRIMARY KEY (ticker, broker));
-CREATE TABLE congress_trades (
-      chamber TEXT, member_id TEXT, member TEXT, district TEXT, owner TEXT,
-      ticker TEXT, asset_type TEXT, asset_desc TEXT, type TEXT,
-      amount_lo REAL, amount_hi REAL, amount_text TEXT,
-      trans_date TEXT, disclosure_date TEXT, link TEXT);
-CREATE INDEX idx_congress_ticker ON congress_trades(ticker);
+CREATE TABLE fund_style (
+      fund TEXT PRIMARY KEY, sub_group TEXT, macro_style TEXT,
+      total_rows INTEGER, conviction_n INTEGER, threshold_n INTEGER,
+      new_n INTEGER, adds_n INTEGER);
+CREATE TABLE style_summary (
+      macro_style TEXT PRIMARY KEY,
+      n_funds INTEGER, total_rows INTEGER,
+      n_conviction INTEGER, n_threshold INTEGER, n_new INTEGER, n_adds INTEGER,
+      top_funds TEXT, top_consensus TEXT);
+CREATE TABLE style_consensus (
+      macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
+      sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
+      PRIMARY KEY (macro_style, ticker));

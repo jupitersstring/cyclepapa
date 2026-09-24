@@ -402,6 +402,8 @@ def run():
             WHERE ticker IS NULL AND cusip IN
               (SELECT cusip FROM cusip_map WHERE ticker IS NOT NULL AND sec_type = 'common')""").rowcount
     conn.commit()
+    from build_cusip_map import tag_debt_lines
+    tag_debt_lines(conn)                  # re-applied tickers must not pool bonds with stock
     print("outcomes:", dict(Counter(r[4] for r in res)))
     print(f"mapped: {n_common:,} common (${val_common/1e3:,.1f}B held) + {n_etf:,} ETF/fund; "
           f"reclassified {fixed_etf} fund lines to etf; back-applied to {applied:,} holding rows")

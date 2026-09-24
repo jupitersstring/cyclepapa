@@ -113,6 +113,62 @@ def _fx_major(ccy):
     from unified_score import _FX_USD
     return _FX_USD.get({"GBp": "GBP", "GBX": "GBP", "ZAc": "ZAR", "ILA": "ILS"}.get(ccy, ccy))
 
+_NAME_STOP = {"INC", "CORP", "CORPORATION", "CO", "LTD", "PLC", "NV", "SA", "AG", "HOLDINGS",
+              "HOLDING", "GROUP", "THE", "COMPANY", "LIMITED", "LLC", "LP"}
+
+def _name_toks(s):
+    import re as _re
+    return {t for t in _re.split(r"[^A-Z0-9&]+", (s or "").upper()) if len(t) >= 3 and t not in _NAME_STOP}
+
+# every table that stores a ticker a signal is keyed on
+ALIAS_TABLES = (("fund_positions", "ticker"), ("holder_13d", "subject_ticker"),
+                ("form4_transactions", "ticker"), ("catalysts_8k", "ticker"),
+                ("fund_13f_holdings", "ticker"), ("fund_13f_prior", "ticker"), ("broker_13f", "ticker"),
+                ("congress_trades", "ticker"), ("corp_actions", "ticker"),
+                ("latent_ownership", "ticker"), ("form144", "ticker"), ("form144_signal", "ticker"),
+                ("discovery_13d_subjects", "ticker"))
+
+def apply_ticker_aliases(conn, prof):
+    """Renamed tickers split a company's signals in two (EchoStar SATS -> ECHO:
+    the 13F holders sat on ECHO, an older 13D / Form 144 / researcher position
+    on SATS, which was classed 'delisted'). FMP files each listing's CUSIP; an
+    INACTIVE symbol whose CUSIP now trades under exactly one ACTIVE symbol is the
+    same security under a new ticker (a CUSIP is never reused). Company names
+    must agree too — a guard against FMP data errors. Old tickers are rewritten
+    in every signal table; ticker_alias records what was merged."""
+    from collections import defaultdict
+    by = defaultdict(list)
+    for s, p in prof.items():
+        if p.get("cusip") and "." not in s:
+            by[p["cusip"].upper()].append(s)
+    alias = {}
+    for cu, syms in by.items():
+        act = [s for s in syms if is_true(prof[s].get("isActivelyTrading"))]
+        if len(act) != 1:
+            continue
+        new = act[0]
+        for old in syms:
+            if old != new and str(prof[old].get("isActivelyTrading", "")).lower() == "false" \
+                    and _name_toks(prof[old].get("companyName")) & _name_toks(prof[new].get("companyName")):
+                alias[old] = (new, cu)
+    conn.execute("""CREATE TABLE IF NOT EXISTS ticker_alias (old TEXT PRIMARY KEY, new TEXT,
+                    cusip TEXT, asof TEXT)""")
+    asof = time.strftime("%Y-%m-%d")
+    moved = 0
+    for t, col in ALIAS_TABLES:
+        try:
+            present = {r[0] for r in conn.execute(f"SELECT DISTINCT {col} FROM {t} WHERE {col} IS NOT NULL")}
+        except sqlite3.OperationalError:
+            continue
+        for old in present & alias.keys():
+            new, cu = alias[old]
+            n = conn.execute(f"UPDATE OR IGNORE {t} SET {col} = ? WHERE {col} = ?", (new, old)).rowcount
+            if n:
+                moved += n
+                conn.execute("INSERT OR REPLACE INTO ticker_alias VALUES (?,?,?,?)", (old, new, cu, asof))
+    conn.commit()
+    return moved
+
 def run():
     conn = sqlite3.connect(DB, timeout=120)
     conn.execute("PRAGMA busy_timeout=120000")
@@ -129,6 +185,9 @@ def run():
     rt = {r["symbol"]: r for r in cached_bulk("ratios_ttm", lambda: fetch_csv("ratios-ttm-bulk"))}
     print(f"FMP bulk: {len(prof):,} profiles, {len(km):,} key-metrics, "
           f"{len(rt):,} ratios in {time.time() - t0:.0f}s", flush=True)
+    n_alias = apply_ticker_aliases(conn, prof)
+    print(f"ticker renames: {n_alias:,} signal rows moved from old to current tickers "
+          f"({conn.execute('SELECT COUNT(*) FROM ticker_alias').fetchone()[0]} renames on file)", flush=True)
 
     universe = {r[0] for r in conn.execute("""
         SELECT ticker FROM unified_signal
@@ -235,6 +294,24 @@ def run():
                      f"VALUES ({','.join('?' * len(cols))})", [row.get(c) for c in cols])
         n_new += is_new
         n_upd += not is_new
+    # the hand-curated watchlist (candidates) prices from the same feed: its
+    # Yahoo source (ingest_prices) is refused with HTTP 429, and Tier-1 prices
+    # had sat at 2026-06-09. Same symbol quirks as ingest_prices (UA -> UAA).
+    try:
+        from ingest_prices import MAP as _YMAP
+    except Exception:
+        _YMAP = {}
+    n_cand = 0
+    for tk, ccy_c in conn.execute("SELECT ticker, currency FROM candidates").fetchall():
+        p = prof.get(_YMAP.get(tk, tk)) or prof.get(tk)
+        if not p or not is_true(p.get("isActivelyTrading")) or not num(p.get("price")):
+            continue
+        usd = (p.get("currency") or "USD") == "USD" and (ccy_c or "USD") == "USD"
+        conn.execute("""UPDATE candidates SET price = ?, price_asof = ?,
+            mcap_m = CASE WHEN ? THEN ? ELSE mcap_m END WHERE ticker = ?""",
+            (num(p["price"]), asof, usd, (num(p.get("marketCap")) or 0) / 1e6 or None, tk))
+        n_cand += 1
+    print(f"candidates watchlist: {n_cand} prices refreshed from FMP")
     # sweep the rest of the dead list too (tickers that left the universe but
     # keep a stale flag): FMP active + priced = alive
     for (tk,) in conn.execute("SELECT ticker FROM yf_dead").fetchall():

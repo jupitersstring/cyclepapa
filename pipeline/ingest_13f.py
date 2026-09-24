@@ -12,6 +12,8 @@ state is persisted on the fly so partial runs are resumable.
 """
 import json, os, re, sqlite3, statistics, subprocess, time, sys
 import xml.etree.ElementTree as ET
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from build_cusip_map import debt_ticker
 
 DB = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "cyclepapa.db")
 UA = "cyclepapa-research admin@example.com"
@@ -585,6 +587,7 @@ def run(only=None):
                 tkr = cm[0] if cm[1] != "etf" else None
             else:
                 tkr = name_to_ticker(r["issuer"], name_map)
+            tkr = debt_ticker(tkr, r["cusip"])       # bond lines never pool with the stock
             pct = (r["value_k"] / total_v * 100) if total_v else None
             conn.execute("""INSERT OR REPLACE INTO fund_13f_holdings
                 VALUES (?,?,?,?,?,?,?,?,?,?,?)""",

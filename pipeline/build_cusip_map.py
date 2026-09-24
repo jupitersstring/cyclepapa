@@ -75,6 +75,28 @@ def normalize_cusip_case(conn):
     conn.commit()
     return n
 
+def is_debt_cusip(cusip):
+    """Issue code (chars 7-8) with a letter = a debt security (notes, converts)."""
+    return bool(cusip) and len(cusip) == 9 and not cusip[6:8].isdigit()
+
+def debt_ticker(tkr, cusip):
+    """A bond line keeps its issuer's ticker but must never pool with the stock:
+    'WDC' on Western Digital's 958102AT2 notes becomes 'WDC (note)' (the space
+    also makes unified_score class it a note). Convert-arb books otherwise
+    counted as equity holders (EchoStar, Celcuity, Dexcom notes filed as 'SH')."""
+    if tkr and is_debt_cusip(cusip) and " " not in tkr:
+        return f"{tkr} (note)"
+    return tkr
+
+def tag_debt_lines(conn):
+    n = 0
+    for t in ("fund_13f_holdings", "fund_13f_prior", "broker_13f"):
+        n += conn.execute(f"""UPDATE {t} SET ticker = ticker || ' (note)'
+            WHERE ticker IS NOT NULL AND instr(ticker, ' ') = 0 AND length(cusip) = 9
+              AND NOT (substr(cusip,7,1) BETWEEN '0' AND '9' AND substr(cusip,8,1) BETWEEN '0' AND '9')""").rowcount
+    conn.commit()
+    return n
+
 def upsert(conn, cusip, ticker, sec_type, source, asof):
     cusip = (cusip or "").upper()
     if not _valid_cusip(cusip) or not _valid_ticker(ticker):
@@ -134,6 +156,7 @@ def run(figi_files=None):
                 WHERE ticker IS NOT NULL AND sec_type = 'common')""").rowcount
     conn.commit()
     print(f"back-applied cusip_map to {applied} previously-unmapped holdings")
+    print(f"tagged {tag_debt_lines(conn)} bond lines '(note)' so they never pool with the stock")
     conn.close()
 
 if __name__ == "__main__":
