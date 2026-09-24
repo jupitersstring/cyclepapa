@@ -319,6 +319,23 @@ def run():
     except sqlite3.OperationalError:
         pass
 
+    # I10. Global books (N-PORT): fresh, and the non-US lines mapped to a
+    #      listing — an unmapped line is visible but carries no price/multiples.
+    try:
+        tot, mapped, newest, n_ser = conn.execute("""SELECT
+                SUM(CASE WHEN country != 'US' THEN val_usd END),
+                SUM(CASE WHEN country != 'US' AND ticker IS NOT NULL THEN val_usd END),
+                MAX(period), COUNT(DISTINCT series_id) FROM nport_holdings""").fetchone()
+        if not n_ser:
+            warns.append("nport_holdings empty — the global books (non-US holdings) are missing (ingest_nport.py)")
+        else:
+            if tot and (mapped or 0) < 0.90 * tot:
+                fails.append(f"nport_holdings: only {100 * (mapped or 0) / tot:.0f}% of non-US value mapped to a listing")
+            if newest and (conn.execute("SELECT julianday('now') - julianday(?)", (newest,)).fetchone()[0] or 0) > 200:
+                warns.append(f"nport_holdings stale: newest portfolio {newest} (> 200d) — run ingest_nport.py")
+    except sqlite3.OperationalError:
+        warns.append("nport_holdings missing — the global books (non-US holdings) are not loaded (ingest_nport.py)")
+
     # I8. feed freshness: warn when the tradeable-signal feeds fall behind.
     for tbl, col, days in [('form4_transactions','trans_date',21), ('holder_13d','filed',30),
                            ('catalysts_8k','filed',30), ('ticker_yf','asof',21),

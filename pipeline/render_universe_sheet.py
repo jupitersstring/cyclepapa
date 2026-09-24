@@ -188,8 +188,8 @@ def sheet_readme(wb, conn):
     n_hold = conn.execute("SELECT COUNT(*) FROM fund_13f_holdings").fetchone()[0]
     n_13f_funds = conn.execute("SELECT COUNT(DISTINCT fund) FROM fund_13f_holdings").fetchone()[0]
     write_title(ws,
-        "Smart-Money Universe Analysis",
-        f"A data-driven ranking of the smart-money universe ({n_tk:,} tickers, {n_fd} funds, primary EDGAR sources).",
+        "Fund Positioning",
+        f"How {n_fd} tracked funds are positioned: {n_tk:,} tickers from primary EDGAR filings.",
         1)
     ws.column_dimensions["A"].width = 92
 
@@ -214,6 +214,12 @@ def sheet_readme(wb, conn):
     c8_date = _maxdate("SELECT MAX(filed) FROM catalysts_8k")
     yf_date = _maxdate("SELECT MAX(asof) FROM ticker_yf")
     n_fp = conn.execute("SELECT COUNT(*) FROM fund_positions").fetchone()[0]
+    try:
+        n_np, n_np_f, n_np_m, np_fgn = conn.execute("""SELECT COUNT(*), COUNT(DISTINCT series_id),
+            COUNT(DISTINCT manager), 100.0 * SUM(CASE WHEN country != 'US' THEN val_usd ELSE 0 END) / SUM(val_usd)
+            FROM nport_holdings""").fetchone()
+    except sqlite3.OperationalError:
+        n_np = 0
     # books kept OUT of every holder count, named in full so nothing drops silently
     try:
         dormant = [r[0] for r in conn.execute("""SELECT DISTINCT d.fund FROM fund_13f_dormant d
@@ -273,6 +279,9 @@ def sheet_readme(wb, conn):
         *(_wrapped(f"Empty latest report   {len(empty)} funds filed a $0 holdings table (held no 13F securities): ",
                    empty) if empty else []),
         (f"fund_positions        {n_fp:,} rows from XLSX research-team classifications",),
+        *([(f"nport_holdings        {n_np:,} equity positions from N-PORT: the full books of {n_np_f} registered funds",),
+           (f"                      of {n_np_m} managers, {np_fgn:.0f}% of it outside the US and invisible in 13F "
+            f"(Global Holdings, Global Books)",)] if n_np else []),
         ("holder_13d            current SC 13D/G filings via efts.sec.gov full-text search",),
         ("form4_transactions    P-code open-market buys + S-code sells, ≤180d",),
         ("insider_clusters      live ≤180d clusters",),
@@ -1623,22 +1632,132 @@ def sheet_catalysts(wb, conn):
     autosize(ws)
     ws.column_dimensions["A"].width = 8
 
-# Approximate FX -> USD (mid-2026). Foreign mcap in ticker_yf is in the LISTING
-# currency; printing it with a "$" made 4676.T (¥586B ≈ $3.9B) read as "$586B".
-# These are approximate and drift; the sheet labels them so and shows the
-# currency. Minor units (GBp pence, ZAc cents) convert via their major /100.
-_FX_USD = {
-    "USD": 1.0, "CAD": 0.73, "EUR": 1.08, "GBP": 1.28, "GBp": 0.0128, "JPY": 0.0064,
-    "HKD": 0.128, "AUD": 0.66, "CHF": 1.12, "SGD": 0.74, "INR": 0.012, "KRW": 0.00073,
-    "TWD": 0.031, "ZAR": 0.055, "ZAc": 0.00055, "NOK": 0.093, "DKK": 0.145, "SEK": 0.095,
-    "PLN": 0.25, "IDR": 0.0000615, "TRY": 0.030, "HUF": 0.0028, "MYR": 0.21, "CNY": 0.138,
-    "BRL": 0.18, "MXN": 0.055, "THB": 0.028, "PHP": 0.017, "NZD": 0.60, "ILS": 0.27,
-}
+def _mgr_short(manager):
+    """'Harris Associates LP   Oakmark ' -> 'Harris Associates LP' (roster names
+    carry PM parentheticals and suffixes after a double space)."""
+    m = re.sub(r"\(.*?(\)|$)", "", manager or "")
+    return re.split(r"\s{2,}", m)[0].strip() or (manager or "").strip()
 
-def _mcap_usd(mcap_m, currency):
-    if not mcap_m:
-        return None
-    return mcap_m * _FX_USD.get(currency or "USD", None) if (currency or "USD") in _FX_USD else None
+def _usd_mcap(mcap_m, ccy):
+    """Listing-currency market cap -> USD (major-unit rate: London caps are in
+    pounds though the price is in pence)."""
+    from unified_score import fx_major
+    fx = fx_major(ccy)
+    return mcap_m * fx if (mcap_m and fx) else None
+
+def sheet_global_holdings(wb, conn):
+    """The non-US half of the tracked managers' books. A 13F lists US-listed
+    securities only; N-PORT lists every holding of the managers' registered
+    international / global funds, local listings included."""
+    try:
+        rows = conn.execute("""SELECT n.ticker, n.isin, n.issuer, n.country, n.manager, n.val_usd, n.pct,
+                   y.long_name, y.mcap_m, y.currency
+            FROM nport_holdings n LEFT JOIN ticker_yf y ON y.ticker = n.ticker
+            WHERE n.country IS NOT NULL AND n.country != 'US'""").fetchall()
+    except sqlite3.OperationalError:
+        return
+    if not rows:
+        return
+    # a manager INITIATED a position when it is absent from every prior book
+    # of that manager's funds (managers with no prior book on file: unknown)
+    prior = {}
+    try:
+        for manager, isin in conn.execute("SELECT DISTINCT manager, isin FROM nport_prior"):
+            prior.setdefault(_mgr_short(manager), set()).add(isin)
+    except sqlite3.OperationalError:
+        pass
+    per = {}
+    for tk, isin, issuer, country, manager, val, pct, name, mcap, ccy in rows:
+        d = per.setdefault(tk or isin or issuer, {"tk": tk, "name": name or issuer, "country": country,
+                                                  "mgr": {}, "new": set(), "val": 0.0,
+                                                  "mcap": _usd_mcap(mcap, ccy)})
+        mg = _mgr_short(manager)
+        d["mgr"][mg] = max(d["mgr"].get(mg, 0.0), pct or 0.0)
+        d["val"] += val or 0.0
+        if mg in prior and isin and isin not in prior[mg]:
+            d["new"].add(mg)
+    n_funds, n_mgr, p0, p1 = conn.execute("""SELECT COUNT(DISTINCT series_id), COUNT(DISTINCT manager),
+        MIN(period), MAX(period) FROM nport_holdings""").fetchone()
+    ws = wb.create_sheet("Global Holdings")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Global Holdings — the non-US half of the managers' books",
+                f"Every non-US equity held by the international and global funds of {n_mgr} tracked managers "
+                f"({n_funds} funds, N-PORT, portfolios as of {p0} to {p1}), local listings included — a 13F "
+                f"shows none of these. New Buyers: managers holding it now but in none of their previous "
+                f"N-PORT books. Registered-fund data: not counted in the 13F score.", 11)
+    hdr = ["Ticker", "Company", "Country", "Managers", "New Buyers", "Held by (largest % of a fund)",
+           "$M Held", "Max % of Fund", "Mcap $M (USD)", "Industry", "Business"]
+    write_table_header(ws, 4, hdr)
+    out = []
+    for d in sorted(per.values(), key=lambda d: (-len(d["mgr"]), -len(d["new"]), -d["val"])):
+        held = "; ".join(f"{m} {p:.1f}%{' (new)' if m in d['new'] else ''}"
+                         for m, p in sorted(d["mgr"].items(), key=lambda x: -x[1]))
+        ind, bus = desc_for(conn, d["tk"]) if d["tk"] else ("", "")
+        out.append([d["tk"] or "(no listing)", d["name"], d["country"], len(d["mgr"]), len(d["new"]), held,
+                    round(d["val"] / 1e6, 1), round(max(d["mgr"].values()), 2),
+                    round(d["mcap"]) if d["mcap"] else "", ind, bus])
+    write_table_rows(ws, out, 5, ticker_col=1)
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=7).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=8).number_format = '0.0"%"'
+        ws.cell(row=ridx, column=9).number_format = NUMFMT_MCAP
+    ws.freeze_panes = "B5"
+    autosize(ws)
+    ws.column_dimensions["F"].width = 60
+    ws.column_dimensions[get_column_letter(11)].width = 80
+
+def sheet_global_books(wb, conn):
+    """How global each tracked manager's registered-fund book is, and its
+    largest positions outside the US."""
+    try:
+        funds = conn.execute("""SELECT manager, series, MAX(period), SUM(val_usd),
+                SUM(CASE WHEN country != 'US' THEN val_usd ELSE 0 END),
+                COUNT(DISTINCT CASE WHEN country != 'US' THEN COALESCE(ticker, isin) END), series_id
+            FROM nport_holdings GROUP BY series_id ORDER BY manager, series""").fetchall()
+    except sqlite3.OperationalError:
+        return
+    if not funds:
+        return
+    ws = wb.create_sheet("Global Books")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Global Books — how much of each manager's book a 13F can't see",
+                "Each fund's long equity book from its latest public N-PORT: the non-US share is invisible in "
+                "the manager's 13F. Largest non-US positions by % of the fund; initiated / exited = "
+                "non-US names new to, or gone from, the fund since its previous public N-PORT.", 10)
+    hdr = ["Manager", "Fund", "Portfolio as of", "Equity $M", "Non-US %", "Non-US Names",
+           "Largest non-US positions", "Previous book", "Initiated abroad", "Exited abroad"]
+    write_table_header(ws, 4, hdr)
+    has_prior = bool(conn.execute("SELECT 1 FROM sqlite_master WHERE name='nport_prior'").fetchone())
+    out = []
+    for manager, series, period, tot, fgn, n_fgn, sid in funds:
+        top = conn.execute("""SELECT COALESCE(y.long_name, n.issuer), n.pct FROM nport_holdings n
+            LEFT JOIN ticker_yf y ON y.ticker = n.ticker
+            WHERE n.series_id = ? AND n.country != 'US' ORDER BY n.val_usd DESC LIMIT 6""", (sid,)).fetchall()
+        pp, new_, gone = "", "", ""
+        if has_prior:
+            pp = conn.execute("SELECT MAX(period) FROM nport_prior WHERE series_id=?", (sid,)).fetchone()[0] or ""
+        if pp:
+            new_ = "; ".join(r[0] for r in conn.execute("""SELECT COALESCE(y.long_name, n.issuer)
+                FROM nport_holdings n LEFT JOIN ticker_yf y ON y.ticker = n.ticker
+                WHERE n.series_id = ? AND n.country != 'US' AND n.isin NOT IN
+                    (SELECT isin FROM nport_prior WHERE series_id = ? AND isin IS NOT NULL)
+                ORDER BY n.val_usd DESC""", (sid, sid)) if r[0])
+            gone = "; ".join(r[0] for r in conn.execute("""SELECT COALESCE(y.long_name, p.issuer)
+                FROM nport_prior p LEFT JOIN ticker_yf y ON y.ticker = p.ticker
+                WHERE p.series_id = ? AND p.country != 'US' AND p.isin NOT IN
+                    (SELECT isin FROM nport_holdings WHERE series_id = ? AND isin IS NOT NULL)
+                ORDER BY p.val_usd DESC""", (sid, sid)) if r[0])
+        out.append([_mgr_short(manager), series, period, round((tot or 0) / 1e6, 1),
+                    round(100.0 * (fgn or 0) / tot, 1) if tot else "", n_fgn,
+                    "; ".join(f"{nm} {p:.1f}%" for nm, p in top if nm), pp, new_, gone])
+    write_table_rows(ws, out, 5)
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=4).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=5).number_format = '0"%"'
+    ws.freeze_panes = "C5"
+    autosize(ws)
+    for col in (7, 9, 10):
+        ws.column_dimensions[get_column_letter(col)].width = 70
 
 def sheet_global_picks(wb, conn):
     """Foreign-exchange tickers — scored on a GLOBAL-FAIR formula.
@@ -2031,6 +2150,18 @@ def desc_for(conn, ticker):
             summ = re.sub(r"^[,\s]*(together with its subsidiaries|and its subsidiaries"
                           r"|through its subsidiaries)?[,\s]*", "", summ, flags=re.I)
             _DESC_CACHE[r[0]] = ((r[1] or ""), _one_liner(summ))
+        # names outside the score table (the global funds' local listings)
+        # still describe themselves from their FMP profile
+        for tk, ind, summ, nm in conn.execute(
+                "SELECT ticker, industry, business_summary, long_name FROM ticker_yf"):
+            if tk in _DESC_CACHE or not (ind or summ):
+                continue
+            summ, nm = summ or "", (nm or "").rstrip(".")
+            if nm and summ.upper().startswith(nm.upper()):
+                summ = summ[len(nm):]
+            summ = re.sub(r"^[,\s]*(together with its subsidiaries|and its subsidiaries"
+                          r"|through its subsidiaries)?[,\s]*", "", summ, flags=re.I)
+            _DESC_CACHE[tk] = ((ind or ""), _one_liner(summ))
     return _DESC_CACHE.get(ticker, ("", ""))
 
 def sheet_ticker_reference(wb, conn):
@@ -2107,6 +2238,8 @@ TAB_COLORS = {
     # Setup sheets — mid-light
     "In The Money":            "A6A6A6",
     "Valuation":               "A6A6A6",
+    "Global Holdings":         "A6A6A6",
+    "Global Books":            "A6A6A6",
     "Global Picks":            "A6A6A6",
     "Bill Miller":             "A6A6A6",
     # Reference / support — lighter
@@ -2166,6 +2299,8 @@ def main():
     sheet_revealed_pref(wb, conn)
     sheet_valuation(wb, conn)
     sheet_catalysts(wb, conn)
+    sheet_global_holdings(wb, conn)       # non-US books from N-PORT (13F-invisible)
+    sheet_global_books(wb, conn)
     sheet_global_picks(wb, conn)
     sheet_bill_miller(wb, conn)
     sheet_unknown(wb, conn)
@@ -2182,6 +2317,7 @@ def main():
         "Mid ($2B–$10B)", "Material + New", "Activist 10+", "Insider Buys ≤30d",
         "Insider F4 Buys", "Insider Clusters", "Non-Biotech Top 100", "In The Money",
         "Asymmetry", "Revealed Preference", "Valuation", "Catalysts 8-K",
+        "Global Holdings", "Global Books",
         "Global Picks", "Unknown Mcap", "All Positions", "All Funds",
         "Fund Coverage", "Ticker Reference",
     }

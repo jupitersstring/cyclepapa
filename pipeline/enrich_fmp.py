@@ -110,8 +110,8 @@ def pos(x):
 
 def _fx_major(ccy):
     """USD per MAJOR unit (aggregates are in major units even for GBp quotes)."""
-    from unified_score import _FX_USD
-    return _FX_USD.get({"GBp": "GBP", "GBX": "GBP", "ZAc": "ZAR", "ILA": "ILS"}.get(ccy, ccy))
+    from unified_score import fx_major
+    return fx_major(ccy)
 
 _NAME_STOP = {"INC", "CORP", "CORPORATION", "CO", "LTD", "PLC", "NV", "SA", "AG", "HOLDINGS",
               "HOLDING", "GROUP", "THE", "COMPANY", "LIMITED", "LLC", "LP"}
@@ -193,6 +193,11 @@ def run():
         SELECT ticker FROM unified_signal
         UNION SELECT ticker FROM fund_13f_holdings WHERE ticker IS NOT NULL
         UNION SELECT ticker FROM cusip_map WHERE ticker IS NOT NULL""")}
+    # the local listings of the global funds' N-PORT books (Tokyo, London,
+    # Seoul...): priced and valued like every other name in the books
+    if conn.execute("SELECT 1 FROM sqlite_master WHERE name='nport_holdings'").fetchone():
+        universe |= {r[0] for r in conn.execute(
+            "SELECT DISTINCT ticker FROM nport_holdings WHERE ticker IS NOT NULL")}
     existing = {r["ticker"]: dict(r) for r in conn.execute("SELECT * FROM ticker_yf")}
     asof = time.strftime("%Y-%m-%d")
     conn.execute("CREATE TABLE IF NOT EXISTS yf_dead (ticker TEXT PRIMARY KEY, asof TEXT)")

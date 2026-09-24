@@ -120,7 +120,7 @@ def build():
     parts = [f"<style>{CSS}</style>", '<div class="page">']
     # masthead
     parts.append(
-        '<div class="masthead"><div><strong>Cyclepapa — Smart-Money Lattice</strong></div>'
+        '<div class="masthead"><div><strong>Fund Positioning</strong></div>'
         f'<div class="date">13F as-of {esc(_qend(asof))} · prices {esc(px_asof)}</div></div>')
     # fleur divider
     parts.append('<div class="divider"><span class="rule"></span>'

@@ -38,7 +38,18 @@ _FX_USD = {
     "PLN": 0.25, "IDR": 0.0000615, "TRY": 0.030, "HUF": 0.0028, "MYR": 0.21, "CNY": 0.138,
     "BRL": 0.18, "MXN": 0.055, "THB": 0.028, "PHP": 0.017, "NZD": 0.60, "ILS": 0.27, "ILA": 0.0027, "GBX": 0.0128,
     "VND": 0.0000393, "AED": 0.272, "SAR": 0.267, "QAR": 0.275, "EGP": 0.020, "NGN": 0.00065,
+    "CLP": 0.00105, "RUB": 0.0125, "KWD": 3.26, "KWF": 0.00326,
 }
+
+_MINOR = {"GBp": "GBP", "GBX": "GBP", "ZAc": "ZAR", "ILA": "ILS", "KWF": "KWD"}
+
+def fx_major(ccy):
+    """USD per MAJOR unit of a listing currency. Aggregates (market cap, EV)
+    are quoted in the major unit even where the PRICE is in a minor one (London
+    in pence, Johannesburg in cents): the minor rate divided every London mcap
+    by 100 (Rolls-Royce read $1.5B, Diageo $463M). None when unknown."""
+    ccy = ccy or "USD"
+    return _FX_USD.get(_MINOR.get(ccy, ccy))
 
 # --- security-type classification -------------------------------------------
 # 13F filings include ETFs, preferreds, warrants, units and CVRs. Those are
@@ -325,8 +336,7 @@ def run():
                 # price currency is a minor unit (GBp pence, ZAc cents) — using
                 # the minor rate divided every London mcap by 100 (Rolls-Royce
                 # showed $1.5B). Map minor units to their major rate for MCAP.
-                ccy = r["currency"] or "USD"
-                fx = _FX_USD.get({"GBp": "GBP", "GBX": "GBP", "ZAc": "ZAR", "ILA": "ILS"}.get(ccy, ccy))
+                fx = fx_major(r["currency"])
                 yf_mcap[r["ticker"]] = (r["mcap_m"] * fx) if fx is not None else None
             if r["long_name"]:
                 yf_name[r["ticker"]] = r["long_name"]

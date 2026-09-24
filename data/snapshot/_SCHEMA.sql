@@ -178,9 +178,6 @@ CREATE TABLE latent_ownership (
       flags TEXT, blocker_pct REAL, swap_counterparties TEXT, n_features INTEGER);
 CREATE TABLE "microcap_conviction_adds" ("ticker" TEXT, "n_funds_adding" INTEGER, "n_new_inits" INTEGER, "sum_dollar_m" REAL, "max_dollar_m" REAL, "max_pct_add" REAL, "funds" TEXT, "narratives" TEXT);
 CREATE TABLE "multi_fund_new_inits" ("ticker" TEXT, "n_funds_initiating" INTEGER, "sum_dollar_m" TEXT, "funds" INTEGER);
-CREATE TABLE nport_holdings (
-      trust TEXT, series TEXT, filed TEXT, issuer TEXT, ticker TEXT,
-      cusip TEXT, val_usd REAL, pct REAL);
 CREATE TABLE price_stats (
         ticker TEXT PRIMARY KEY, mom_3mo REAL, mom_20d REAL, off_high REAL,
         last_close REAL, n_pts INTEGER, asof TEXT);
@@ -260,6 +257,16 @@ CREATE TABLE stock_splits (
       symbol TEXT, date TEXT, numerator REAL, denominator REAL, split_type TEXT,
       PRIMARY KEY (symbol, date));
 CREATE TABLE prior_split_factor (fund TEXT, ticker TEXT, factor REAL, PRIMARY KEY (fund, ticker));
+CREATE TABLE nport_holdings (trust TEXT, series TEXT, filed TEXT, issuer TEXT, ticker TEXT,
+      cusip TEXT, val_usd REAL, pct REAL,
+      series_id TEXT, manager TEXT, isin TEXT, country TEXT, currency TEXT,
+      shares REAL, period TEXT);
+CREATE INDEX idx_nport_tk ON nport_holdings(ticker);
+CREATE INDEX idx_nport_series ON nport_holdings(series);
+CREATE TABLE nport_prior (trust TEXT, series TEXT, filed TEXT, issuer TEXT, ticker TEXT,
+      cusip TEXT, val_usd REAL, pct REAL,
+      series_id TEXT, manager TEXT, isin TEXT, country TEXT, currency TEXT,
+      shares REAL, period TEXT);
 CREATE TABLE earnings_surprise (ticker TEXT, date TEXT, eps_actual REAL, eps_est REAL,
         surprise_pct REAL, rev_actual REAL, rev_est REAL, rev_surprise_pct REAL,
         PRIMARY KEY (ticker, date));
