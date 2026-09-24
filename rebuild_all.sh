@@ -82,6 +82,10 @@ if [ "$DO_SCANS" = "1" ]; then
   run python3 rerate_events_8k.py            --days 270 || true
   run python3 rerate_catalysts.py            || true
   run python3 governance_events_8k.py        --days 450 || true
+  # what exactly is happening in each event (8-K + press release text) and
+  # what each PSU plan actually is (proxy CD&A) -- filing text via edgar_doc
+  run python3 event_detail.py                || true
+  run python3 psu_detail.py                  || true
   # earnings-call intent: transcripts -> linguistic features -> validated model
   run python3 transcript_fetch.py            --n 10 || true
   run python3 call_intent.py                 || true
