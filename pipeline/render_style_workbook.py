@@ -64,6 +64,10 @@ class StyleData:
                 if m not in rep or d["n"] > self.info[rep[m]]["n"]:
                     rep[m] = f
         self.rep = rep
+        # one filing, one holder: a book held under two roster names whose
+        # canonical names differ (TCI) must not count twice in a style
+        acc_of = dict(conn.execute("SELECT fund, last_accession FROM fund_13f_state"))
+        self.book = {m: acc_of.get(f) for m, f in rep.items()}
         self.hold, self.unmapped = {}, {}
         for f, tk, iss, cusip, pct in conn.execute(f"""SELECT h.fund, h.ticker, MAX(h.issuer), MAX(h.cusip),
                 SUM(h.pct_book) FROM fund_13f_holdings h WHERE {EQUITY_SQL}
@@ -124,7 +128,12 @@ class StyleData:
     def agg(self, managers):
         """{ticker: {'h': [(% of book, manager)...], 'n', 'wtd', 'max', 'n5'}}."""
         out = {}
-        for m in managers:
+        seen_books = set()
+        for m in sorted(managers):
+            b = self.book.get(m)
+            if b in seen_books:
+                continue
+            seen_books.add(b)
             w = self.focus(m)
             for t, pct in self.hold.get(m, {}).items():
                 a = out.setdefault(t, {"h": [], "wtd": 0.0})

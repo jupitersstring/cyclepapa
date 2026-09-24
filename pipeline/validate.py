@@ -361,6 +361,22 @@ def run():
         warns.append(f"13F: {len(dup)} books are stored under two roster names and counted once "
                      f"(one vote per filing): " + "; ".join(sorted(d[1].split(",")[0] for d in dup)))
 
+    # I12b. a US / Canadian CUSIP (digit first) mapped to a foreign exchange
+    #       code ("HO1", "430", "K4F": Frankfurt lines of US companies whose US
+    #       listing ended) reads as nothing to a reader: map it to the US ticker
+    #       in map_cusip_fmp.CURATED
+    import re as _re
+    held = conn.execute("""SELECT cm.cusip, cm.ticker, MAX(h.issuer), COUNT(DISTINCT h.fund) FROM cusip_map cm
+        JOIN fund_13f_holdings h ON h.cusip = cm.cusip
+        WHERE substr(cm.cusip, 1, 1) BETWEEN '0' AND '9' AND cm.ticker IS NOT NULL
+        GROUP BY cm.cusip""").fetchall()
+    frgn = [f"{t} ({iss})" for cu, t, iss, n in held
+            if _re.fullmatch(r"[0-9][0-9A-Z]{1,4}|[A-Z]{1,3}[0-9][A-Z0-9]?|[0-9A-Z]{2,4}[0-9]|[A-Z]{3,5}GBX", t or "")
+            and "." not in t and " " not in t]
+    if frgn:
+        warns.append(f"cusip_map: {len(frgn)} US CUSIPs held this quarter map to foreign-style codes: "
+                     + ", ".join(frgn[:8]))
+
     # I13. vs-entry is computed on today's price: entry_intact.py runs in the
     #      rebuild; a stale table showed a third "current" price for BABA.
     try:

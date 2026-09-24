@@ -259,8 +259,6 @@ CREATE TABLE nport_prior (trust TEXT, series TEXT, filed TEXT, issuer TEXT, tick
       cusip TEXT, val_usd REAL, pct REAL,
       series_id TEXT, manager TEXT, isin TEXT, country TEXT, currency TEXT,
       shares REAL, period TEXT);
-CREATE TABLE prior_split_factor (fund TEXT, ticker TEXT, factor REAL, PRIMARY KEY (fund, ticker));
-CREATE TABLE nport_split_factor (series_id TEXT, ticker TEXT, factor REAL, PRIMARY KEY (series_id, ticker));
 CREATE TABLE adr_link (ordinary TEXT PRIMARY KEY, adr TEXT);
 CREATE TABLE earnings_surprise (ticker TEXT, date TEXT, eps_actual REAL, eps_est REAL,
         surprise_pct REAL, rev_actual REAL, rev_est REAL, rev_surprise_pct REAL,
@@ -272,6 +270,8 @@ CREATE TABLE insider_fmp (symbol TEXT, filing_date TEXT, trans_date TEXT, report
           name TEXT, owner_type TEXT, trans_type TEXT, acq_disp TEXT, shares REAL, price REAL,
           owned_after REAL, security_name TEXT, url TEXT);
 CREATE INDEX idx_insfmp_sym ON insider_fmp(symbol);
+CREATE TABLE prior_split_factor (fund TEXT, ticker TEXT, factor REAL, PRIMARY KEY (fund, ticker));
+CREATE TABLE nport_split_factor (series_id TEXT, ticker TEXT, factor REAL, PRIMARY KEY (series_id, ticker));
 CREATE TABLE ticker_entry_intact (
       ticker TEXT PRIMARY KEY,
       current_px REAL, anchor_px REAL, anchor_source TEXT,

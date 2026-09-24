@@ -90,9 +90,13 @@ def eligible_funds(conn, quarter):
         pp = period.get(pri_acc) or _quarter_before(pri_filed)
         if period.get(cur_acc) != quarter or not pp or pp >= quarter:
             continue
+        # one reading per manager AND per filing: a book held under two roster
+        # names ("TCI Fund Management Ltd" / "The Children's Investment Fund")
+        # is one set of moves
         c = _cn(fund)
-        if c not in seen:
+        if c not in seen and cur_acc not in seen:
             seen.add(c)
+            seen.add(cur_acc)
             out.append(fund)
     return out
 
@@ -287,7 +291,12 @@ def section_evidence(conn, quarter=None):
     'fund': fund name, 'label': 'new 4.1%' | 'research note'}}}}."""
     from _canon import canon
     moves, fresh_funds = quarter_moves(conn, quarter)
-    fresh = {canon(f) for f in fresh_funds}
+    # every roster name holding a book that was read is current — the research
+    # notes under "The Children's Investment Fund" belong to the TCI filing read
+    # as "TCI Fund Management Ltd"
+    acc_of = dict(conn.execute("SELECT fund, last_accession FROM fund_13f_state"))
+    read_accs = {acc_of.get(f) for f in fresh_funds} - {None}
+    fresh = {canon(f) for f in fresh_funds} | {canon(f) for f, a in acc_of.items() if a in read_accs}
     cls = share_classes(conn)
     held_now, reportable = {}, set()
     for f, tk in conn.execute("SELECT DISTINCT fund, ticker FROM fund_13f_holdings WHERE ticker IS NOT NULL"):

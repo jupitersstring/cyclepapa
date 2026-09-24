@@ -283,6 +283,8 @@ def complete_text(s):
     return s
 
 _STATUS_PLAIN = [
+    (r"^filer_13f_live", "13F filer: files 13F-HRs (was listed as a non-filer)"),
+    (r"^filer_13f_other_name", "13F filer: its book is held under another roster name"),
     (r"^efts_resolved", "13F filer: CIK found by EDGAR full-text search"),
     (r"^v\d_verified", "13F filer: CIK verified"),
     (r"^manual_seed", "13F filer: CIK set by hand"),

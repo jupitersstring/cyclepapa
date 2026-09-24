@@ -50,6 +50,11 @@ FUND_STYLE_OVERRIDE = {
     "Atreides Management (Gavin Baker)": "Concentrated Growth / Tech",
     "Baillie Gifford & Co": "Concentrated Growth / Tech",
     "SRS Investment Mgmt (Karthik Sarma)": "Concentrated Growth / Tech",
+    # TCI's research-roster entry sat in a small-cap group; its book is GE,
+    # Visa, Moody's: the activist it is (as "TCI Fund Management Ltd" is)
+    "The Children's Investment Fund ": "Activists / Special Situations",
+    # Troy's Trojan fund: quality compounders (Visa, Alphabet, Chubb), not "Other"
+    "Troy Asset Mgmt Trojan Fund": "Value / Concentrated Quality",
     "Iconiq Capital LLC": "Family Offices / Individual Filers",
     "Hillspire LLC": "Family Offices / Individual Filers",
     "RIT Capital Partners plc (RCP.L": "Family Offices / Individual Filers",

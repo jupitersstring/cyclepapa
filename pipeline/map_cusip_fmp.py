@@ -44,6 +44,32 @@ CURATED = {
                            # it on the NE-WTA warrant: 15 funds' $679M of Noble off the stock
     "G0250X149": "AMCR",   # Amcor plc "COM NEW" (post-consolidation line), not OTC AMCCF
     "38059T106": "GFI",    # Gold Fields sponsored ADR (NYSE); FMP files the OTC GFIOF under it too
+    # US companies acquired / taken private in 2025-26: with the US line gone,
+    # OpenFIGI and the name tier returned the one listing still quoted, a
+    # Frankfurt code ("HO1", "430", "K4F") nobody reads as the company. The US
+    # ticker (typed delisted) is what a reader recognises.
+    "436440101": "HOLX",   # Hologic (Blackstone / TPG take-private)      was HO1
+    "880881107": "TERN",   # Terns Pharmaceuticals                        was 430
+    "03152W109": "FOLD",   # Amicus Therapeutics (BioMarin)               was AM6
+    "68278B107": "OS",     # OneStream                                    was K4F
+    "87265H109": "TPH",    # Tri Pointe Homes                             was T86
+    "483497103": "KALV",   # KalVista Pharmaceuticals                     was 4XC1
+    "138103106": "CTLP",   # Cantaloupe                                   was UTE0
+    "88362T103": "THR",    # Thermon Group                                was 8TG
+    "14365C103": "CUK",    # Carnival plc ADS (NYSE)                      was POH3
+    "81686C104": "SEMR",   # Semrush (Adobe)                              was 628
+    "09173B107": "BITF",   # Bitfarms                                     was 1B2
+    "343873105": "FFIC",   # Flushing Financial                           was FL8
+    "902685106": "UDMY",   # Udemy                                        was 7WH
+    "49372L209": "KZR",    # Kezar Life Sciences                          was 2KZ0
+    "307675108": "FARM",   # Farmer Bros                                  was FB1
+    "497498105": "KIRK",   # Kirkland's                                   was KI2
+    "68134L109": "OLO",    # Olo (Thoma Bravo)                            was OLOGBX
+    "880349105": "TEN",    # Tenneco                                      was TEN1
+    "92556H206": "PARA",   # Paramount Global class B (Skydance merger)   was 0VVB
+    "15235A102": "EBR",    # Centrais Eletricas Brasileiras ADR           was L3XC
+    "03940C100": "ACLX",   # Arcellx (OpenFIGI's London GBX quote line)   was ACLXGBX
+    "23954D109": "DAWN",   # Day One Biopharmaceuticals                   was DAWNGBX
     "65535H208": "NMR",    # Nomura sponsored ADR (NYSE); FMP files the OTC NRSCF under it too
     # verified NEGATIVES (None = keep unmapped): name search finds a different
     # company whose price happens to sit within 1.5x

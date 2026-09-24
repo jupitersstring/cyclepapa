@@ -297,6 +297,17 @@ FUND_CIK = {
     "Standard Investments / 40 North (Winter family)": "1539436",
     "Makaira Partners (Tom Bancroft)": "1540866",
     "Artal Group (Invus, Debbane family)": "1053906",
+    # --- roster funds the resolver had marked non-US "non-filers" that do file
+    #     13F-HRs (EDGAR company search, 2026-09; latest filing in brackets) ---
+    "The Children's Investment Fund ": "1647251",   # TCI Fund Management Ltd (2026-08-14)
+    "Troy Asset Mgmt Trojan Fund": "1601407",       # Troy Asset Management Ltd (2026-07-31)
+    "Findlay Park Partners (Kingsley": "1351950",   # (2026-08-12)
+    "Aubrey Capital Management (Andr": "1730754",   # (2026-07-28)
+    "HGC Investment Management (Kall": "1711200",   # (2026-08-14)
+    "Langdon Equity Partners (Greg D": "2111148",   # first 13F-HR 2026-08-13
+    "Mawer Investment Management (Ca": "1538449",   # (2026-08-07)
+    "Periscope Capital Inc (Jamie Wi": "1695320",   # (2026-08-11)
+    "RIT Capital Partners plc (RCP.L": "939334",    # (2026-08-11)
 }
 
 # style label (fund_meta.fund_group) for roster funds with no researcher-XLSX
@@ -1064,6 +1075,28 @@ def run(only=None, refresh=False):
         time.sleep(0.3)  # polite throttle
     conn.commit()
     n_dormant, n_moved = archive_dormant(conn)
+    # a fund whose 13F book is live cannot be a "non-filer": the resolver's
+    # status (uk_non_filer, below_13f_threshold...) is kept current with the
+    # filings, or the roster tells the reader TCI files nothing
+    try:
+        n_sync = conn.execute("""UPDATE fund_resolution_state SET status = 'filer_13f_live',
+                best_cik = (SELECT cik FROM fund_13f_state s WHERE s.fund = fund_resolution_state.fund)
+            WHERE (status LIKE '%non_filer%' OR status IN ('below_13f_threshold', 'historical_13f_only'))
+              AND fund IN (SELECT fund FROM fund_13f_state WHERE n_holdings > 0)""").rowcount
+        # a manager on the roster twice (Lindsell Train): the variant whose
+        # sibling name holds the book
+        from _canon import canon
+        live = {canon(f) for (f,) in conn.execute("SELECT fund FROM fund_13f_state WHERE n_holdings > 0")}
+        for (f,) in conn.execute("""SELECT fund FROM fund_resolution_state
+                WHERE status LIKE '%non_filer%' OR status = 'below_13f_threshold'""").fetchall():
+            if canon(f) in live:
+                conn.execute("UPDATE fund_resolution_state SET status = 'filer_13f_other_name' WHERE fund = ?", (f,))
+                n_sync += 1
+        conn.commit()
+        if n_sync:
+            print(f"  {n_sync} roster statuses corrected: marked non-filer, but a live 13F book exists")
+    except sqlite3.OperationalError:
+        pass
     print(f"\nDone: {n_new} new funds, {n_rolled} rolled to a newer filing, {n_current} already current, "
           f"{n_skipped} skipped (no refresh), {n_failed} fetch failures, {n_holdings_total} holdings written")
     print(f"  {n_dormant} dormant funds (no 13F-HR in {DORMANT_DAYS} days) kept out of the live book"
