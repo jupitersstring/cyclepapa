@@ -157,6 +157,21 @@ CONTINUATIVE = rx(r"\bcontinu\w*", r"\bongoing\b", r"\bas usual\b", r"\bconsiste
 SPLIT = re.compile(r";|\s(?:but|however|while|whereas|although|though)\s|\s-\s", re.I)
 SENT = re.compile(r"(?<=[.!?])\s+(?=[A-Z\"'(])")
 TURN = re.compile(r"^([^:\n]{2,70}?)\s?:\s(.*)$", re.S)
+# size of a capital action: $ amount, share count, or % of shares outstanding
+AMT = re.compile(r"\$\s?(\d[\d,]*(?:\.\d+)?)\s*(billion|million|thousand|bn|mm|mn|b|m|k)?\b", re.I)
+SHR = re.compile(r"\b(\d[\d,]*(?:\.\d+)?)\s*(million|thousand)?\s+(?:of\s+(?:its|our|the\s+company's)\s+)?(?:outstanding\s+)?(?:common\s+|ordinary\s+|class\s+[ab]\s+)?shares\b", re.I)
+PCT_OUT = re.compile(r"(\d+(?:\.\d+)?)\s?(?:%|percent)\s+of\s+(?:(?:our|its|the(?:\s+company's)?)\s+)?(?:total\s+)?(?:outstanding|issued|common|shares)", re.I)
+_MULT = {"billion": 1e9, "bn": 1e9, "b": 1e9, "million": 1e6, "mm": 1e6, "mn": 1e6, "m": 1e6,
+         "thousand": 1e3, "k": 1e3}
+# executive roles, from the operator / IR introduction ("joining me are Jane Doe, our CEO")
+_NAME = r"([A-Z][a-zA-Z'\-]+(?:\s+[A-Z]\.)?(?:\s+[A-Z][a-zA-Z'\-]+){1,2})"
+_TITLE = (r"((?:President\s+and\s+|Executive\s+|Co-)?(?:Chief\s+Executive(?:\s+Officer)?|CEO)|"
+          r"Chief\s+Financial\s+Officer|CFO|(?:Executive\s+)?Chair(?:man|woman|person)?(?:\s+of\s+the\s+Board)?)")
+ROLE_A = re.compile(_NAME + r",?\s+(?:our\s+|the\s+company's\s+)?(?:[\w\s,&]{0,40}?\s)?" + _TITLE)
+ROLE_B = re.compile(_TITLE + r",?\s+" + _NAME)
+BOILER = rx(r"^about\s+[A-Z]", r"forward[- ]looking statements", r"^contacts?\b", r"investor relations\s*:",
+            r"^source\s*:", r"^view (?:source|original)", r"safe harbor", r"^media contact")
+LETTER = rx(r"\bdear\s+(?:fellow\s+)?(?:shareholders|stockholders|owners|partners|investors|members)")
 
 
 # ---------------------------------------------------------------- discourse
@@ -203,8 +218,17 @@ def sentences(text):
 
 
 # ---------------------------------------------------------------- clause scoring
-def score_clause(cl: str):
-    """{family: (score, strength, neg, spec)} for one clause."""
+# press-release headline / lead: the present tense reports a done deal
+# ("XYZ Announces $10 Million Buyback", "Board Declares Special Dividend")
+REALISED_PR = rx(r"\b(?:announces|announced|declares|authorizes|authorises|approves|completes|launches|commences|"
+                 r"initiates|increases|raises|expands|adopts|enters into|retains|engages|forms|reinstates|"
+                 r"extends|renews|doubles|upsizes|board (?:has )?(?:authorized|approved|declared))\b")
+
+
+def score_clause(cl: str, doc: bool = False):
+    """{family: (score, strength, neg, spec)} for one clause. doc=True: a
+    press release / letter in the company's own voice (the company is the
+    actor; present-tense headline verbs report realised actions)."""
     res = {}
     debt = bool(DEBT_OBJ.search(cl))
     for fam, pat in FAMILIES.items():
@@ -227,7 +251,7 @@ def score_clause(cl: str):
             # negation inside a conditional/elliptical lead-in ("if we don't, we'll ...") is not scope
             window = re.sub(r"\b(?:if|unless|whether)\b[^,]*,|\b(?:if|or|whether) not\b|\bnot,", " ", pre[-80:], flags=re.I)
             neg = bool(NEG.search(window)) and not NOT_ONLY.search(pre)
-            if REALISED.search(cl):
+            if REALISED.search(cl) or (doc and REALISED_PR.search(cl)):
                 strength = 1.0
             elif COMMITTED.search(cl):
                 strength = 0.9
@@ -239,7 +263,7 @@ def score_clause(cl: str):
                 strength = 0.45
             if strength < 1.0 and HEDGE.search(cl):
                 strength *= 0.55
-            agency = 1.0 if AGENT.search(cl) else 0.6
+            agency = 1.0 if (doc or AGENT.search(cl)) else 0.6
             if INCEPTIVE.search(cl):
                 strength *= 1.3
             elif CONTINUATIVE.search(cl):
@@ -249,9 +273,81 @@ def score_clause(cl: str):
     return res
 
 
+def exec_roles(turns):
+    """{speaker: 'CEO'|'CFO'} from introductions in the first turns, plus
+    titles embedded in speaker labels ("Jane Doe - CEO")."""
+    intro = " ".join(t for _, _, _, t in turns[:6])
+    last = {}
+    for m in ROLE_A.finditer(intro):
+        last[m.group(1).split()[-1].lower()] = m.group(2)
+    for m in ROLE_B.finditer(intro):
+        last.setdefault(m.group(2).split()[-1].lower(), m.group(1))
+    roles = {}
+    for sp, role, _, _ in turns:
+        if role != "management" or sp in roles:
+            continue
+        title = last.get(sp.split()[-1].lower() if sp.split() else "", "") + " " + sp
+        t = title.lower()
+        if "financial" in t or "cfo" in t:
+            roles[sp] = "CFO"
+        elif "executive" in t or "ceo" in t or "chair" in t or "president" in t:
+            roles[sp] = "CEO"
+    return roles
+
+
+def action_size(cl, fam="BUYBACK"):
+    """(usd, shares, pct_of_outstanding) stated for the capital action -- only
+    figures within ~80 characters of the action term count (a clause can also
+    mention liquidity, revenue or debt)."""
+    hits = [m.start() for m in FAMILIES[fam].finditer(cl)] + \
+           [m.start() for m in re.finditer(r"authori[sz]\w*|program|tender", cl, re.I)]
+    def near(m):
+        return any(abs(m.start() - h) <= 80 for h in hits)
+    usd = 0.0
+    for m in AMT.finditer(cl):
+        if re.search(r"(?:existing|remaining|prior|previous|current)\s*$", cl[max(0, m.start() - 12):m.start()], re.I):
+            continue                            # the old authorisation, not the new action
+        if near(m):
+            v = float(m.group(1).replace(",", "")) * _MULT.get((m.group(2) or "").lower(), 1.0)
+            usd = max(usd, v)
+    shares = 0.0
+    for m in SHR.finditer(cl):
+        if near(m):
+            v = float(m.group(1).replace(",", "")) * _MULT.get((m.group(2) or "").lower(), 1.0)
+            shares = max(shares, v)
+    pct = max([float(m.group(1)) for m in PCT_OUT.finditer(cl) if near(m)] or [0.0])
+    return usd, shares, (pct if pct <= 60 else 0.0)
+
+
 def analyze(content: str):
-    turns = parse_turns(content)
+    return analyze_turns(parse_turns(content))
+
+
+def doc_turns(text: str, title: str = ""):
+    """A press release / shareholder letter as management 'turns' (company
+    voice), boilerplate paragraphs (About us, safe harbour, contacts) and
+    number-dense table rows removed."""
+    paras = [title] if title else []
+    for para in re.split(r"\n\s*\n|\n(?=[A-Z])", text or ""):
+        p = " ".join(para.split())
+        if len(p) < 25 or BOILER.search(p):
+            if re.search(r"^about\s+[A-Z]|forward[- ]looking", p, re.I):
+                break                                  # everything after is boilerplate
+            continue
+        digits = sum(ch.isdigit() for ch in p)
+        if digits > 0.25 * len(p):
+            continue                                   # financial table row
+        paras.append(p)
+    return [("company", "management", "PREPARED", p) for p in paras]
+
+
+def analyze_turns(turns, doc: bool = False):
     fam_clauses = {f: [] for f in FAMILIES}
+    roles = exec_roles(turns)
+    by_role = {"CEO": 0.0, "CFO": 0.0}
+    by_sec = {"PREPARED": 0.0, "QA": 0.0}
+    lvl = {f: 0.0 for f in SHAREHOLDER_ACT}          # best commitment level per family
+    size_usd = size_sh = size_pct = 0.0
     neg_total = 0
     q_total = q_press = a_commit = a_evade = 0
     mgmt_words = 0
@@ -272,11 +368,19 @@ def analyze(content: str):
             for cl in SPLIT.split(s):
                 if len(cl) < 10:
                     continue
-                for fam, (sc, st, ng, spc) in score_clause(cl).items():
+                for fam, (sc, st, ng, spc) in score_clause(cl, doc).items():
                     fam_clauses[fam].append((sc, s[:240], sp, sec))
                     neg_total += ng
                     if fam in SHAREHOLDER_ACT and not ng:
                         best_answer = max(best_answer, st)
+                        lvl[fam] = max(lvl[fam], min(st, 1.3))
+                        by_sec[sec] = max(by_sec[sec], sc)
+                        r = roles.get(sp)
+                        if r:
+                            by_role[r] = max(by_role[r], sc)
+                        if fam in ("BUYBACK", "TENDER") and st >= 0.6:
+                            u, sh, pc = action_size(cl, fam)
+                            size_usd, size_sh, size_pct = max(size_usd, u), max(size_sh, sh), max(size_pct, pc)
         if sec == "QA" and pressed:
             if best_answer >= 0.6:
                 a_commit += 1
@@ -297,7 +401,13 @@ def analyze(content: str):
             evidence[fam + "_NEG"] = [{"q": negs[0][1], "who": negs[0][2], "sec": negs[0][3]}]
     feats.update({"neg_total": neg_total, "q_total": q_total, "q_press": q_press,
                   "press_ratio": round(q_press / q_total, 3) if q_total else 0.0,
-                  "a_commit": a_commit, "a_evade": a_evade, "mgmt_words": mgmt_words})
+                  "a_commit": a_commit, "a_evade": a_evade, "mgmt_words": mgmt_words,
+                  "ceo_act": round(by_role["CEO"], 3), "cfo_act": round(by_role["CFO"], 3),
+                  "both_act": int(by_role["CEO"] >= 0.6 and by_role["CFO"] >= 0.6),
+                  "n_roles": len(set(roles.values())),
+                  "prep_act": round(by_sec["PREPARED"], 3), "qa_act": round(by_sec["QA"], 3),
+                  "bb_usd": size_usd, "bb_shares": size_sh, "bb_pct_out": size_pct,
+                  **{f"lvl_{k}": round(v, 3) for k, v in lvl.items()}})
     return feats, evidence
 
 
@@ -321,6 +431,24 @@ def novelty_of(cur, prior):
         if prior and cur[k] >= 0.8 and before < 0.3:
             new.append(k)
     return round(nov, 3), new
+
+
+def trajectory(cur, prior):
+    """Commitment FIRMING across calls: for each shareholder-action family,
+    the rise of its best commitment level vs the mean of the prior three
+    calls, and how many families rose call-on-call twice running (e.g.
+    'evaluating' -> 'expect to' -> 'will')."""
+    escal, firming = 0.0, 0
+    for k in SHAREHOLDER_ACT:
+        key = f"lvl_{k}"
+        prev = [p.get(key, 0.0) for p in prior[-3:]]
+        if prev:
+            escal += max(0.0, cur.get(key, 0.0) - sum(prev) / len(prev))
+        if len(prior) >= 2:
+            a, b, c = prior[-2].get(key, 0.0), prior[-1].get(key, 0.0), cur.get(key, 0.0)
+            if c > b > a or (a < 0.5 and c >= 0.9 and b >= a):
+                firming += 1
+    return round(escal, 3), firming
 
 
 def main() -> int:
@@ -347,8 +475,10 @@ def main() -> int:
             for rec in lst:
                 feats, ev = analyze(rec["content"])
                 nov, new = novelty_of(feats, hist)
+                escal, firming = trajectory(feats, hist)
                 row = {"ticker": sym, "date": rec["date"][:10], "period": f"{rec.get('year')}{rec.get('period')}",
                        **feats, "novelty": nov, "new_families": new,
+                       "escalation": escal, "firming": firming,
                        "rule_score": rule_score(feats, nov)}
                 fh.write(json.dumps(row) + "\n")
                 hist.append(feats)
@@ -357,7 +487,9 @@ def main() -> int:
     out = {}
     for sym, (row, ev) in latest.items():
         out[sym] = {**{k: row[k] for k in ("ticker", "date", "period", "rule_score", "novelty",
-                                            "new_families", "press_ratio", "a_commit", "a_evade")},
+                                            "new_families", "press_ratio", "a_commit", "a_evade",
+                                            "escalation", "firming", "ceo_act", "cfo_act", "both_act",
+                                            "prep_act", "qa_act", "bb_usd", "bb_shares", "bb_pct_out")},
                     "families": {k: row[k] for k in ACTION + STANCE if row[k] > 0},
                     "negated": {k: row[k + "_neg"] for k in ACTION if row[k + "_neg"]},
                     "evidence": ev}

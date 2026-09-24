@@ -86,6 +86,8 @@ if [ "$DO_SCANS" = "1" ]; then
   run python3 transcript_fetch.py            --n 10 || true
   run python3 call_intent.py                 || true
   run python3 call_intent_model.py           || true
+  # OTC: press releases + 8-K EX-99 letters + calls through the same engine
+  run python3 otc_comms.py                   || true
   # congressional trades (event-studied; workbook monitor, not a consensus layer)
   run python3 political_trades.py            || true
   run python3 governance_discount.py         || true

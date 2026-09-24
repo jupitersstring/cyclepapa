@@ -47,7 +47,13 @@ REPORT = ROOT / "CALL_INTENT_VALIDATION.md"
 EVENT_FAMS = {"BUYBACK_AUTH", "CAPITAL_RETURN", "CAPITAL_RETURN_POLICY", "TENDER_OFFER",
               "STRATEGIC_REVIEW", "VALUE_COMMITTEE", "SALE_OF_COMPANY", "GOING_PRIVATE",
               "ASSET_SALE", "SPINOFF", "SEPARATION"}
-LANG = list(ACTION) + list(STANCE) + ["novelty", "press_ratio", "a_commit", "a_evade", "neg_total"]
+LANG_V1 = list(ACTION) + list(STANCE) + ["novelty", "press_ratio", "a_commit", "a_evade", "neg_total"]
+# v2: who says it (CEO/CFO, both), where (scripted vs Q&A), whether commitment is
+# FIRMING across calls, how BIG the action is vs market cap, and how deep the
+# discount was at the call (P/B then) with its interactions
+LANG = LANG_V1 + ["escalation", "firming", "ceo_act", "cfo_act", "both_act", "prep_act", "qa_act",
+                  "size_pct", "deep", "deep_x_act", "deep_x_gap"]
+SH_ACT = ("BUYBACK", "DIVIDEND_RETURN", "TENDER", "STRATEGIC_REVIEW", "MONETIZE")
 BASE = ["past_sh_chg", "past_div_up"]
 
 
@@ -112,6 +118,43 @@ def behaviour(stmts, call_date):
     d_next = (post[0][2] or 0) + (p2[2] or 0)
     acted |= (d_prior > 0 and d_next >= 1.25 * d_prior) or (d_prior == 0 and d_next > 0)
     return past, acted
+
+
+def load_equity():
+    """{sym: sorted [(date, equity, currency)]} from every cached bulk balance sheet."""
+    eq = {}
+    for fn in glob.glob(str(ROOT / "fmp_cache" / "bsbulk_*")):
+        for r in csv.DictReader(open(fn, encoding="utf-8", errors="ignore")):
+            v = _f(r.get("totalStockholdersEquity"))
+            if v is not None and r.get("date"):
+                eq.setdefault(r["symbol"], {})[r["date"][:10]] = (v, r.get("reportedCurrency"))
+    return {s: sorted((d, v, c) for d, (v, c) in m.items()) for s, m in eq.items()}
+
+
+def px_on(px, d):
+    if not px:
+        return None
+    i = bisect_right([r[0] for r in px], d)
+    return px[i - 1][1] if i > 0 else None
+
+
+def valuation_then(sym, d, eqh, yq, px):
+    """(P/B at the call, mcap at the call). mcap_then = today's mcap x
+    adjusted-price ratio (split-consistent); equity = latest statement
+    before the call (USD reporters only)."""
+    y = yq.get(sym) or {}
+    mc_now, p = y.get("mcap"), px.get(sym)
+    if not mc_now or not p:
+        return None, None
+    a_then, a_now = px_on(p, d), p[-1][1]
+    if not a_then or not a_now:
+        return None, None
+    mc_then = mc_now * a_then / a_now
+    rows = [r for r in eqh.get(sym, []) if r[0] < d]
+    if not rows or rows[-1][2] not in ("USD", None, "") or rows[-1][1] <= 0:
+        return None, mc_then
+    pb = mc_then / rows[-1][1]
+    return (pb if 0.1 <= pb <= 20 else None), mc_then
 
 
 def load_events():
@@ -222,8 +265,23 @@ def main() -> int:
         px = dict(zip(syms, ex.map(closes, syms)))
     spy = closes("SPY")
 
+    eqh = load_equity()
+    yq = json.loads((ROOT / "yfinance_quick.json").read_text())
     rows = []
     for c in calls:
+        pb_then, mc_then = valuation_then(c["ticker"], c["date"], eqh, yq, px)
+        y = yq.get(c["ticker"]) or {}
+        sh_now = (y["mcap"] / y["price"]) if y.get("mcap") and y.get("price") else None
+        size = 0.0
+        if mc_then:
+            size = max(size, (c.get("bb_usd") or 0) / mc_then)
+        if sh_now:
+            size = max(size, (c.get("bb_shares") or 0) / sh_now)
+        size = min(max(size, (c.get("bb_pct_out") or 0) / 100), 0.5)
+        deep = 1.0 if (pb_then is not None and pb_then <= 0.8) else 0.0
+        act = sum(min(c.get(k) or 0, 2.0) for k in SH_ACT)
+        c.update({"pb_then": pb_then, "size_pct": round(size, 4), "deep": deep,
+                  "deep_x_act": deep * act, "deep_x_gap": deep * min(c.get("VALUE_GAP") or 0, 2.0)})
         past, acted = behaviour(stm.get(c["ticker"], []), c["date"])
         if past is None:
             continue
@@ -236,7 +294,8 @@ def main() -> int:
         elif not horizon_ok:
             label = None
         rows.append({**c, **past, "acted": label, "event": bool(evd),
-                     "xret": fwd_excess(px.get(c["ticker"]), spy, c["date"])})
+                     "xret": fwd_excess(px.get(c["ticker"]), spy, c["date"]),
+                     "xret12": fwd_excess(px.get(c["ticker"]), spy, c["date"], 252)})
     lab = [r for r in rows if r["acted"] is not None]
     tr = [r for r in lab if r["date"] < args.split]
     te = [r for r in lab if r["date"] >= args.split]
@@ -250,6 +309,8 @@ def main() -> int:
     m_base = fit_lr(X(tr, BASE), y_tr)
     m_full = fit_lr(X(tr, BASE + LANG), y_tr)
     m_lang = fit_lr(X(tr, LANG), y_tr)
+    m_v1 = fit_lr(X(tr, BASE + LANG_V1), y_tr)
+    p_v1 = [predict(m_v1, x) for x in X(te, BASE + LANG_V1)]
     p_base = [predict(m_base, x) for x in X(te, BASE)]
     p_full = [predict(m_full, x) for x in X(te, BASE + LANG)]
     p_lang = [predict(m_lang, x) for x in X(te, LANG)]
@@ -258,6 +319,7 @@ def main() -> int:
         "auc_rule": auc(rule, y_te), "auc_lang_model": auc(p_lang, y_te),
         "auc_baseline_past_behaviour": auc(p_base, y_te),
         "auc_baseline_plus_language": auc(p_full, y_te),
+        "auc_baseline_plus_language_v1": auc(p_v1, y_te),
         "top_decile_rule": lift_top(rule, y_te), "top_decile_full": lift_top(p_full, y_te),
         "n_train": len(tr), "n_test": len(te),
         "base_rate_test": sum(y_te) / max(1, len(y_te)),
@@ -295,6 +357,48 @@ def main() -> int:
             xs = sorted(r["xret"] for r in seg)
             quint_p.append((q + 1, len(seg), sum(xs) / len(xs), xs[len(xs) // 2],
                             sum(1 for r in seg if r["acted"]) / len(seg)))
+    # the thesis test: in DEEP-DISCOUNT names (P/B <= 0.8 at the call), does
+    # intent predict action -- and the re-rating?
+    te_deep = [r for r in te if r["deep"]]
+    res["n_test_deep"] = len(te_deep)
+    res["auc_deep"] = auc([predict(m_full, [float(r.get(c) or 0) for c in BASE + LANG]) for r in te_deep],
+                          [int(r["acted"]) for r in te_deep]) if te_deep else None
+    res["base_rate_deep"] = (sum(r["acted"] for r in te_deep) / len(te_deep)) if te_deep else None
+    deep_r = [r for r in te_r if r["deep"]]
+    deep_r.sort(key=lambda r: r["_p"])
+    quint_deep = []
+    for q in range(5):
+        seg = deep_r[q * len(deep_r) // 5:(q + 1) * len(deep_r) // 5]
+        if seg:
+            xs = sorted(r["xret"] for r in seg)
+            quint_deep.append((q + 1, len(seg), sum(xs) / len(xs), xs[len(xs) // 2],
+                               sum(1 for r in seg if r["acted"]) / len(seg)))
+    # size of stated action vs forward return (all calls with a stated size)
+    sized = [r for r in rows if r["xret"] is not None and r["size_pct"] > 0]
+    size_tab = []
+    for lo, hi, lab_ in [(0, 0.02, "<2% of mcap"), (0.02, 0.05, "2-5%"), (0.05, 0.10, "5-10%"), (0.10, 1, ">=10%")]:
+        seg = [r for r in sized if lo <= r["size_pct"] < hi]
+        if len(seg) >= 15:
+            xs = sorted(r["xret"] for r in seg)
+            ac = [r for r in seg if r["acted"] is not None]
+            size_tab.append((lab_, len(seg), sum(xs) / len(xs), xs[len(xs) // 2],
+                             (sum(r["acted"] for r in ac) / len(ac)) if ac else None))
+    # pre-specified return hypotheses in deep-discount calls (fixed before
+    # looking; no fitting): does any intent pattern predict the RE-RATING?
+    deep_all = [r for r in rows if r["deep"]]
+    HYP = [("all deep-discount calls", lambda r: True),
+           ("H1 NEW shareholder-action family", lambda r: any(f in SH_ACT for f in r["new_families"])),
+           ("H2 commitment firming across calls", lambda r: (r.get("firming") or 0) >= 1),
+           ("H3 value-gap + committed action", lambda r: r["VALUE_GAP"] >= 0.8 and max(r[k] for k in SH_ACT) >= 0.9),
+           ("H4 CEO and CFO both commit", lambda r: bool(r.get("both_act"))),
+           ("contrast: no shareholder-action language", lambda r: max(r[k] for k in SH_ACT) == 0)]
+    hyp_tab = []
+    for name, sel in HYP:
+        cells = []
+        for h in ("xret", "xret12"):
+            xs = sorted(r[h] for r in deep_all if sel(r) and r[h] is not None)
+            cells.append((len(xs), sum(xs) / len(xs), xs[len(xs) // 2]) if len(xs) >= 15 else (len(xs), None, None))
+        hyp_tab.append((name, cells))
     acted_x = [r["xret"] for r in rows if r["acted"] and r["xret"] is not None]
     not_x = [r["xret"] for r in rows if r["acted"] is False and r["xret"] is not None]
     res["xret_acted"] = sum(acted_x) / len(acted_x) if acted_x else None
@@ -322,6 +426,7 @@ def main() -> int:
         fresh = (date.today().toordinal() - d2o(rec["date"])) <= 200   # a stale call is not a current signal
         rec.update({"act_prob": round(p, 3), "act_pct": round(pct, 3),
                     "past_sh_chg": latest[t]["past_sh_chg"],
+                    "size_pct": latest[t].get("size_pct"), "pb_then": latest[t].get("pb_then"),
                     "tier": ("" if not fresh else
                              "ACT SIGNALLED" if pct >= 0.9 and (strong or rec["new_families"])
                              else "BUILDING" if pct >= 0.75 else "")})
@@ -342,7 +447,9 @@ def main() -> int:
          f"| interpretable rule score (no fitting) | {fmt(res['auc_rule'])} |",
          f"| logistic, language features only | {fmt(res['auc_lang_model'])} |",
          f"| baseline: past behaviour only (share-count + dividend trend) | {fmt(res['auc_baseline_past_behaviour'])} |",
-         f"| baseline + language | {fmt(res['auc_baseline_plus_language'])} |",
+         f"| baseline + language v1 (families, novelty, Q&A) | {fmt(res['auc_baseline_plus_language_v1'])} |",
+         f"| baseline + language v2 (+ CEO/CFO, scripted vs Q&A, firming, action size, discount) | {fmt(res['auc_baseline_plus_language'])} |",
+         f"| v2, DEEP-DISCOUNT calls only (P/B <= 0.8 at the call; n={res['n_test_deep']}, base {fmt(res['base_rate_deep'])}) | {fmt(res['auc_deep'])} |",
          f"| rule score, companies NOT already shrinking share count | {fmt(res['auc_rule_not_already_buying'])} |",
          "", "Top decile hit-rate (test): rule "
          f"{res['top_decile_rule'][0]:.1%} vs base {res['top_decile_rule'][1]:.1%} "
@@ -356,6 +463,24 @@ def main() -> int:
           "| quintile | calls | ACTED rate | mean 6m excess | median 6m excess |", "|---|---|---|---|---|"]
     for q, n, mean, med, act in quint_p:
         L.append(f"| Q{q}{' (highest)' if q == 5 else ''} | {n} | {act:.0%} | {mean:+.1%} | {med:+.1%} |")
+    L += ["", "## The thesis test: deep-discount calls (P/B <= 0.8 at the call), test set", "",
+          "| model quintile | calls | ACTED rate | mean 6m excess | median 6m excess |", "|---|---|---|---|---|"]
+    for q, n, mean, med, act in quint_deep:
+        L.append(f"| Q{q}{' (highest)' if q == 5 else ''} | {n} | {act:.0%} | {mean:+.1%} | {med:+.1%} |")
+    L += ["", "## Pre-specified return hypotheses, deep-discount calls (all periods, no fitting)", "",
+          "| hypothesis | n (6m) | mean 6m | median 6m | n (12m) | mean 12m | median 12m |",
+          "|---|---|---|---|---|---|---|"]
+    for name, ((n6, m6, d6), (n12, m12, d12)) in hyp_tab:
+        f_ = lambda v: "—" if v is None else f"{v:+.1%}"
+        L.append(f"| {name} | {n6} | {f_(m6)} | {f_(d6)} | {n12} | {f_(m12)} | {f_(d12)} |")
+    L += ["", "Reading: none of the intent patterns beats deep-discount calls with NO shareholder "
+          "language by more than noise. Management language predicts WHETHER a company acts "
+          "(AUC above); it does not, by itself, predict the re-rating -- the market prices stated "
+          "intent quickly. Use it to confirm a set-up, not as a return signal."]
+    L += ["", "## Stated action size (buyback / tender as % of market cap at the call), all calls", "",
+          "| size | calls | ACTED rate | mean 6m excess | median 6m excess |", "|---|---|---|---|---|"]
+    for lab_, n, mean, med, act in size_tab:
+        L.append(f"| {lab_} | {n} | {fmt(act)} | {mean:+.1%} | {med:+.1%} |")
     L += ["", f"Companies that ACTED returned {fmt(res['xret_acted'])} vs {fmt(res['xret_not_acted'])} for those "
           "that did not (mean 6-month excess vs SPY): in this sample the action itself did not "
           "re-rate value names on its own. The language is a strong predictor of ACTION and a weak "
@@ -373,6 +498,8 @@ def main() -> int:
     print(json.dumps({k: v for k, v in res.items()}, default=str, indent=1))
     print("family lift:", {k: round(v[1], 2) for k, v in fam_lift.items()})
     print("quintiles:", [(q, n, round(m, 3), round(md, 3)) for q, n, m, md, _ in quint])
+    print("deep quintiles (test):", [(q, n, round(m, 3), round(md, 3), round(a, 2)) for q, n, m, md, a in quint_deep])
+    print("size:", [(l, n, round(m, 3), round(md, 3), a and round(a, 2)) for l, n, m, md, a in size_tab])
     return 0
 
 

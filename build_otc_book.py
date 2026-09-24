@@ -115,6 +115,20 @@ def main() -> int:
     frames = _load("xbrl_frames_store.json")
     gd = _load("going_dark.json")
     nol = _load("nol_shell.json")
+    oi = _load("otc_intent.json")
+
+    def intent(k):
+        """Short intent tag for the screen tabs: tier / strongest family / size."""
+        r = oi.get(k)
+        if not r or not r.get("families"):
+            return "—"
+        fam = max((f for f in r["families"] if f not in ("ANTICIPATION", "COST", "DELEVER")),
+                  key=lambda f: r["families"][f], default=None)
+        if not fam:
+            return "—"
+        t = {"ACT SIGNALLED": "▲ ", "BUILDING": "△ "}.get(r.get("tier"), "")
+        sz = f" {r['size_pct_mcap']:.0%}" if r.get("size_pct_mcap", 0) >= 0.01 else ""
+        return f"{t}{fam.lower().replace('_', ' ')}{sz}"
     otc = {k: v for k, v in q.items() if v.get("otc")}
     # an OTC line whose company also has a US-exchange listing is a secondary
     # security (preferred / other class) -- its fundamentals are the parent's.
@@ -144,17 +158,17 @@ def main() -> int:
                 nn.append((ratio, k, v))
     nn.sort(key=lambda t: -t[0])
     counts["US Net-Nets"] = len(nn)
-    sheet(wb, "US Net-Nets", [9, 26, 7, 9, 9, 8, 8, 9, 8],
+    sheet(wb, "US Net-Nets", [9, 26, 7, 9, 9, 8, 8, 9, 8, 22],
           "US OTC Net-Nets — trading below net current asset value",
           "Graham's classic: NCAV (current assets − ALL liabilities) exceeds the "
           "market cap, so you buy the working capital and get the business free. "
           "US-domiciled only (currency-consistent), NCAV/mcap capped at 15× to "
           "strip data artifacts.",
           ["Ticker", "Name", "Tier", "NCAV/mcap", "Mcap $M", "P/B", "P/E",
-           "52w pos", "$vol/day k"],
+           "52w pos", "$vol/day k", "Mgmt intent"],
           [[k, (v.get("name") or "")[:26], tier(v), f"{r:.2f}×",
             _num(v["mcap"] / 1e6, 1), _num(v.get("p_b")), _num(v.get("p_e_trailing"), 1),
-            _pct(_range_pos(v)), _num(dollar_vol(v) / 1e3, 1)] for r, k, v in nn[:60]],
+            _pct(_range_pos(v)), _num(dollar_vol(v) / 1e3, 1), intent(k)] for r, k, v in nn[:60]],
           f"{len(nn)} US OTC names trade below NCAV. Check each for: cash burn "
           "(the NCAV erodes), going-concern language, related-party or "
           "controlling-holder issues, and whether the NCAV is real (receivables/"
@@ -179,17 +193,17 @@ def main() -> int:
             dv.append((score, k, v))
     dv.sort(key=lambda t: -t[0])
     counts["US Deep Value"] = len(dv)
-    sheet(wb, "US Deep Value", [9, 26, 7, 8, 8, 9, 9, 9, 9],
+    sheet(wb, "US Deep Value", [9, 26, 7, 8, 8, 9, 9, 9, 9, 22],
           "US OTC Deep Value — low P/B or single-digit P/E with real earnings",
           "Cheap on book (P/B < 0.6) or earnings (P/E < 7 with positive earnings "
           "yield), ranked on a composite of discount-to-book + earnings yield + "
           "FCF yield. US-domiciled OTC, liquidity-tiered.",
           ["Ticker", "Name", "Tier", "P/B", "P/E", "Earn yld", "FCF yld",
-           "Mcap $M", "52w pos"],
+           "Mcap $M", "52w pos", "Mgmt intent"],
           [[k, (v.get("name") or "")[:26], tier(v), _num(v.get("p_b")),
             _num(v.get("p_e_trailing"), 1), _pct(v.get("earnings_yield")),
             _pct(v.get("fcf_yield")), _num((v.get("mcap") or 0) / 1e6, 1),
-            _pct(_range_pos(v))] for s, k, v in dv[:60]],
+            _pct(_range_pos(v)), intent(k)] for s, k, v in dv[:60]],
           f"{len(dv)} names pass. Low P/B in OTC often means impaired assets or "
           "a controlled company — pair with the Net-Nets and Cash Shells tabs.")
 
@@ -207,17 +221,17 @@ def main() -> int:
             cs.append((nc / mcap, k, v, nc, op, runway))
     cs.sort(key=lambda t: -t[0])
     counts["Cash Shells"] = len(cs)
-    sheet(wb, "Cash Shells", [9, 26, 7, 10, 10, 10, 10, 10],
+    sheet(wb, "Cash Shells", [9, 26, 7, 10, 10, 10, 10, 10, 22],
           "Cash Shells — net cash ≥ 50% of market cap",
           "US OTC SEC filers whose net cash (XBRL: cash − debt) is at least half "
           "the market cap — the floor under a shell, a reverse-merger vehicle, or "
           "a liquidation/tender candidate. Burn runway shown so eroding cash is "
           "visible.",
           ["Ticker", "Name", "Tier", "NetCash/mcap", "Net cash $M", "Mcap $M",
-           "Op inc q $M", "Runway yrs"],
+           "Op inc q $M", "Runway yrs", "Mgmt intent"],
           [[k, (v.get("name") or "")[:26], tier(v), f"{r:.2f}×", _num(nc / 1e6, 1),
             _num(v["mcap"] / 1e6, 1), _num(op / 1e6, 2) if op is not None else "—",
-            _num(rw, 1) if rw else ("∞" if (op or 0) >= 0 else "—")]
+            _num(rw, 1) if rw else ("∞" if (op or 0) >= 0 else "—"), intent(k)]
            for r, k, v, nc, op, rw in cs[:60]],
           f"{len(cs)} cash-heavy OTC filers. A cash shell with NO burn (∞ "
           "runway) is the cleanest floor; a burner's cash is a melting ice cube. "
@@ -289,6 +303,39 @@ def main() -> int:
           "balance-sheet screens are NOT applied here. Usually better executed "
           "on the home exchange.")
 
+    # --- OTC Intent: management communications (calls, press releases, 8-K letters) ---
+    cheap = {k for _, k, _ in nn} | {k for _, k, _ in dv} | {k for _, k, *_ in cs} | {k for _, k, _ in fr_rows}
+    ir = [r for r in oi.values() if r.get("tier")]
+    ir.sort(key=lambda r: (r["tier"] != "ACT SIGNALLED", r["ticker"] not in cheap, -r["score"]))
+    counts["OTC Intent"] = len(ir)
+
+    def ev_line(r):
+        for f in (r.get("new_families") or []) + sorted(r.get("families") or {}, key=lambda f: -r["families"][f]):
+            e = (r.get("evidence") or {}).get(f)
+            if e and f not in ("ANTICIPATION", "COST", "DELEVER"):
+                return f"[{e['date']} {e['kind'].lower()}] “{e['q'][:170]}”"
+        return ""
+    sheet(wb, "OTC Intent", [9, 24, 13, 6, 7, 7, 8, 9, 64],
+          "OTC Intent — management says it will act (calls, press releases, letters)",
+          "Most OTC companies never hold a call, so this reads where they do talk: "
+          "press releases (full text from the wire), SEC 8-K EX-99 exhibits "
+          "(results, shareholder letters, buyback/tender notices) and calls where "
+          "they exist — clause-level commitment, negation, new-vs-routine, and the "
+          "SIZE of any buyback/tender vs market cap. ● = also on a cheapness screen here.",
+          ["Ticker", "Name", "Tier", "Score", "Size", "P/B", "Mcap $M", "Docs 12m", "Evidence (verbatim, dated)"],
+          [[r["ticker"] + (" ●" if r["ticker"] in cheap else ""), (r.get("name") or "")[:24], r["tier"],
+            round(r["score"], 1), (f"{r['size_pct_mcap']:.0%}" if r.get("size_pct_mcap") else "—"),
+            _num(r.get("p_b")), _num((r.get("mcap") or 0) / 1e6, 1),
+            " ".join(f"{k.lower()}:{n}" for k, n in sorted((r.get("docs_12m") or {}).items())),
+            ev_line(r)] for r in ir[:80]],
+          f"{len(ir)} OTC names with a current intent signal (ACT SIGNALLED = top decile with a "
+          "realised/committed shareholder action, a NEW family vs the prior 12 months, or a "
+          "stated buyback/tender >= 5% of mcap; BUILDING = top quartile; last document <= 200 "
+          "days old). Weights come from the earnings-call validation (tender 2.2x, buyback/"
+          "dividend 1.6x, value-gap 1.4x lift for subsequent action). Language predicts ACTION, "
+          "not the re-rating by itself — pair it with the cheapness tabs. See "
+          "OTC_INTENT_VALIDATION.md. Source: otc_comms.py.")
+
     # --- Methodology ---
     ws = wb.create_sheet("Methodology")
     set_col_widths(ws, [110])
@@ -330,7 +377,8 @@ def main() -> int:
             "Cash Shells": "Net cash ≥ 50% of market cap (with burn runway).",
             "Going Dark": "Form 15 deregistrations / Form 25 delistings.",
             "NOL Shells": "Section 382 NOL-protection rights plans.",
-            "Foreign OTC": "Cheap foreign lines on currency-neutral ratios."}
+            "Foreign OTC": "Cheap foreign lines on currency-neutral ratios.",
+            "OTC Intent": "Management communications signalling buybacks / tenders / capital return."}
     for i, (t, d) in enumerate(desc.items(), 5):
         write_body_row(ct, i, [t, counts.get(t, 0), d], band=(i % 2 == 0), bold_first=True)
     ct.sheet_view.showGridLines = False

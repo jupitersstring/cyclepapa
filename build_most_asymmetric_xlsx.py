@@ -1573,7 +1573,7 @@ def build_call_intent(wb: Workbook, yf: dict):
     linguistically and calibrated on what companies actually did next.
     Sources: call_intent.json, CALL_INTENT_VALIDATION.md (call_intent*.py)."""
     ws = wb.create_sheet("Call Intent")
-    set_col_widths(ws, [9, 20, 13, 7, 7, 6, 8, 22, 58])
+    set_col_widths(ws, [9, 20, 13, 7, 7, 6, 6, 6, 8, 22, 58])
     write_title_band(
         ws,
         "Call Intent — management is telling you it will act",
@@ -1583,13 +1583,13 @@ def build_call_intent(wb: Workbook, yf: dict):
         "analyst pressure and evasive answers — and whether the language is NEW "
         "vs the company's own prior three calls. Ranked by a model fitted to "
         "what companies actually did next (buybacks, dividend step-ups, action 8-Ks).",
-        n_cols=9,
+        n_cols=11,
     )
     d = _jload("call_intent.json")
     rows = [v for v in d.values() if isinstance(v, dict) and v.get("act_prob") is not None]
     rows.sort(key=lambda v: (v.get("tier") != "ACT SIGNALLED", v.get("tier") != "BUILDING",
                              -(v.get("act_prob") or 0)))
-    headers = ["Ticker", "Name", "Tier", "Act prob", "P/B", "Novelty", "Call",
+    headers = ["Ticker", "Name", "Tier", "Act prob", "P/B", "Novelty", "Size", "CEO+CFO", "Call",
                "New / strongest families", "Evidence (management, verbatim)"]
     write_header_row(ws, 4, headers)
     r = 5
@@ -1610,7 +1610,9 @@ def build_call_intent(wb: Workbook, yf: dict):
         write_body_row(ws, r,
                        [v["ticker"], (y.get("name") or "")[:20], v.get("tier") or "",
                         round(v.get("act_prob") or 0, 2), round(pb, 2) if pb else "—",
-                        round(v.get("novelty") or 0, 1), v.get("date", "")[:10],
+                        round(v.get("novelty") or 0, 1),
+                        (f"{v['size_pct']:.0%}" if v.get("size_pct") else "—"),
+                        ("✓" if v.get("both_act") else ""), v.get("date", "")[:10],
                         lab[:40], ev],
                        band=(i % 2 == 0), bold_first=True)
         ws.row_dimensions[r].height = 30
@@ -1628,7 +1630,9 @@ def build_call_intent(wb: Workbook, yf: dict):
         f"language {f3(val.get('auc_baseline_plus_language'))}. ACT SIGNALLED = top decile "
         "of act probability with a committed/realised shareholder action or a family that is "
         "NEW vs the prior three calls; BUILDING = top quartile. Transcripts: FMP. "
-        "Source: call_intent.py + call_intent_model.py.", 9)
+        "Size = stated buyback/tender as % of market cap; CEO+CFO = both committed on the call. "
+        "Language predicts ACTION (it does not by itself predict the re-rating; see the "
+        "validation report's deep-discount tests). Source: call_intent.py + call_intent_model.py.", 11)
     ws.sheet_view.showGridLines = False
     ws.freeze_panes = "A5"
 
