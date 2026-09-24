@@ -1,0 +1,400 @@
+{
+ "GO": {
+  "period_years": 3,
+  "cycle": "2023\u20132025",
+  "metrics": {
+   "revenue": null,
+   "EPS": null,
+   "EBITDA": null,
+   "stock-price hurdle": null
+  },
+  "payout_max": 200.0,
+  "goals_excerpt": "ir Value Of Stock And Option Awards ($) (5) Name | Grant Date | Type Of Award | Threshold Or Minimum ($) | Target ($) | Maximum ($) | Threshold Or Minimum (#) Target (#) Maximum (#) Jason Potter AIP | 69,415 1,156,924 2,313,848 \u2014 \u2014 \u2014 \u2014 \u2014 \u2014 \u2014 2/28/2025 PSU | \u2014 \u2014 \u2014 44,229 176,917 353,834 \u2014 \u2014 \u2014 2,100,005 2/28/2025 RSU | \u2014 \u2014 \u2014 \u2014 \u2014 \u2014 168,492 \u2014 \u2014 2,000,000 2/28/2025 Options | \u2014 \u2014 ",
+  "history": [
+   [
+    "2023 grant",
+    55.0
+   ]
+  ],
+  "design_excerpt": "and \u2022 Long-term equity incentives, which for Fiscal Year 2025 consisted of time-based stock options (in lieu of time-based restricted stock units (\u201cRSUs\u201d) granted in prior years) and performance-based restricted stock units (\u201cPSUs\u201d), with the PSUs subject to our achievement of two independent performance metrics, net sales and Adjusted EPS, over a three-year performance period.",
+  "hurdle_max_vs_price": 1.7658484901995408,
+  "grade": "A",
+  "grade_pts": 11,
+  "why": [
+   "per-share / return / TSR metrics: EPS, stock-price hurdle",
+   "also EBITDA, revenue",
+   "3-year performance period",
+   "payout capped at 200%",
+   "PSUs 84% of LTI",
+   "history pays below target (min 55%): rigorous goals",
+   "price hurdles up to 1.8\u00d7 today's price",
+   "pay-for-performance: 2023 grant paid 55% while TSR was -65% (-151pp vs SPY) \u2014 aligned"
+  ],
+  "summary": "PSUs 84% of LTI \u00b7 3-yr (2023\u20132025) \u00b7 revenue, EPS, EBITDA, stock-price hurdle (weights not stated) \u00b7 payout 0\u2013200% \u00b7 paid 2023 grant: 55%",
+  "filing_date": "2026-04-21",
+  "url": "https://www.sec.gov/Archives/edgar/data/1771515/000177151526000045/",
+  "psu_pct_lti": 84,
+  "hurdles": [
+   10.17,
+   11.87,
+   12.5,
+   20.0,
+   60.0,
+   100.0,
+   125.0
+  ],
+  "red_flags": [
+   "double-trigger only",
+   "3y vesting"
+  ],
+  "pay_for_performance": [
+   {
+    "cycle": "2023 grant",
+    "payout": 55.0,
+    "tsr": -0.648,
+    "vs_spy": -1.511,
+    "verdict": "ALIGNED"
+   }
+  ],
+  "grade_pts_base": 10
+ },
+ "KSS": {
+  "period_years": 3,
+  "cycle": "2025\u20132027",
+  "metrics": {
+   "revenue": 50.0,
+   "operating income / margin": 50.0
+  },
+  "weights_verified": true,
+  "other_metrics": [
+   "relative TSR",
+   "strategic / ESG",
+   "net income",
+   "cash flow"
+  ],
+  "tsr_modifier": 25.0,
+  "goals_excerpt": " Specifically: \u25cf | Net Sales : The Threshold goal was increased to 96% of Target, up from 94% in the 2024-2026 program, and the Maximum performance goal was increased to 105% of Target, up from 103%",
+  "history": [
+   [
+    "2023\u20132025",
+    50.0
+   ]
+  ],
+  "design_excerpt": "Consistent with our prior year program, the Committee maintained the performance measures of Net Sales (50%) and Operating Margin (50%) for the 2025-2027 Perfor Equity Awards \u25cf | 2023-2025 Performance Share Units.",
+  "hurdle_max_vs_price": 0.9778897285194514,
+  "grade": "B",
+  "grade_pts": 5,
+  "why": [
+   "only revenue / EBITDA / strategic metrics",
+   "3-year performance period",
+   "PSUs 89% of LTI",
+   "history pays below target (min 50%): rigorous goals",
+   "pay-for-performance: 2023\u20132025 paid 50% while TSR was +4% (-82pp vs SPY) \u2014 aligned"
+  ],
+  "summary": "PSUs 89% of LTI \u00b7 3-yr (2025\u20132027) \u00b7 revenue 50%, operating income / margin 50% \u00b7 \u00b125% TSR modifier \u00b7 paid 2023\u20132025: 50%",
+  "filing_date": "2026-04-10",
+  "url": "https://www.sec.gov/Archives/edgar/data/885639/000110465926041769/",
+  "psu_pct_lti": 89,
+  "hurdles": [
+   17.47,
+   175.0
+  ],
+  "red_flags": [
+   "double-trigger only",
+   "3y vesting",
+   "responsive to shareholders",
+   "SOP only 55% (severe dissent)"
+  ],
+  "pay_for_performance": [
+   {
+    "cycle": "2023\u20132025",
+    "payout": 50.0,
+    "tsr": 0.045,
+    "vs_spy": -0.818,
+    "verdict": "ALIGNED"
+   }
+  ],
+  "grade_pts_base": 4
+ },
+ "TROX": {
+  "period_years": 3,
+  "cycle": "2023\u20132025",
+  "metrics": {
+   "relative TSR": 50.0,
+   "ROIC": 50.0
+  },
+  "weights_verified": true,
+  "other_metrics": [
+   "EBITDA"
+  ],
+  "payout_min": 50.0,
+  "payout_max": 200.0,
+  "rtsr_percentiles": [
+   35,
+   50,
+   65
+  ],
+  "rtsr_target_pct": 35,
+  "goals_excerpt": " The ROIC performance measure has been set with relevant Threshold, Target and Maximum target levels; however, the actual targets are not being disclosed at the current time due to these being considered by the Company to be commercially sensitive",
+  "design_excerpt": "\u2013 50% of the annual long-term equity awards are performance-based RSUs with 50% linked to three-year TSR performance percentile ranking versus a peer group and the other 50% based on Return on Invested Capital (ROIC) performance in 2027 (the third year of the measurement period).",
+  "hurdle_max_vs_price": 3.729047072330654,
+  "grade": "A",
+  "grade_pts": 8,
+  "why": [
+   "per-share / return / TSR metrics: ROIC, relative TSR",
+   "3-year performance period",
+   "payout capped at 200%",
+   "target at 35th percentile (below median)",
+   "PSUs 86% of LTI",
+   "price hurdles up to $16.24 = 3.7\u00d7 today's $4.355"
+  ],
+  "summary": "PSUs 86% of LTI \u00b7 3-yr (2023\u20132025) \u00b7 relative TSR 50%, ROIC 50% \u00b7 payout 50\u2013200% \u00b7 rTSR target 35th pct",
+  "filing_date": "2026-03-19",
+  "url": "https://www.sec.gov/Archives/edgar/data/1530804/000114036126010422/",
+  "psu_pct_lti": 86,
+  "hurdles": [
+   5.0,
+   10.07,
+   13.71,
+   14.16,
+   16.24,
+   24.03,
+   250.0
+  ],
+  "red_flags": [
+   "double-trigger only",
+   "3y vesting",
+   "responsive to shareholders"
+  ]
+ },
+ "CRM": {
+  "period_years": 3,
+  "metrics": {
+   "relative TSR": null,
+   "revenue": null,
+   "operating income / margin": null,
+   "absolute TSR": null
+  },
+  "payout_min": 0.0,
+  "payout_max": 200.0,
+  "rtsr_percentiles": [
+   60,
+   63,
+   67,
+   71,
+   89
+  ],
+  "rtsr_target_pct": 60,
+  "negative_tsr_cap": true,
+  "goals_excerpt": " Amounts in this table represent the threshold, target and maximum units for PRSUs with a grant date established under FASB ASC Topic 718 in fiscal 2026",
+  "history": [
+   [
+    "2024\u20132026",
+    112.0
+   ]
+  ],
+  "design_excerpt": "\u2022 Relative TSR Rigor : Target payouts for relative TSR PRSUs require 60th-percentile outperformance.",
+  "hurdle_max_vs_price": 1.1774430411614147,
+  "grade": "A",
+  "grade_pts": 8,
+  "why": [
+   "per-share / return / TSR metrics: absolute TSR, relative TSR",
+   "also revenue",
+   "3-year performance period",
+   "payout capped at 200%",
+   "payout capped at target if TSR negative",
+   "target at 60th percentile (above median)",
+   "PSUs 67% of LTI",
+   "history avg 112% of target",
+   "pay-for-performance: 2024\u20132026 paid 112% while TSR was -5% (-72pp vs SPY) \u2014 misaligned"
+  ],
+  "summary": "PSUs 67% of LTI \u00b7 3-yr \u00b7 relative TSR, revenue, operating income / margin, absolute TSR (weights not stated) \u00b7 payout 0\u2013200% \u00b7 rTSR target 60th pct \u00b7 paid 2024\u20132026: 112%",
+  "filing_date": "2026-04-16",
+  "url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852426000085/",
+  "psu_pct_lti": 67,
+  "hurdles": [
+   5.0,
+   176.37,
+   212.29,
+   243.39,
+   254.93,
+   257.58,
+   280.62
+  ],
+  "red_flags": [
+   "double-trigger only",
+   "4y vesting",
+   "SOP 77% (dissent)"
+  ],
+  "pay_for_performance": [
+   {
+    "cycle": "2024\u20132026",
+    "payout": 112.0,
+    "tsr": -0.05,
+    "vs_spy": -0.725,
+    "verdict": "MISALIGNED"
+   }
+  ],
+  "grade_pts_base": 10
+ },
+ "LW": {
+  "period_years": 3,
+  "cycle": "2026\u20132028",
+  "metrics": {
+   "ROIC": null,
+   "EBITDA": null,
+   "relative TSR": null,
+   "absolute TSR": null
+  },
+  "payout_min": 0.0,
+  "payout_max": 200.0,
+  "goals_excerpt": " At the beginning of the three-year performance period, the threshold, target and maximum relative TSR and ROIC performance goals are set by the Compensation Committee for the entire three-year performance period",
+  "history": [
+   [
+    "2024\u20132026",
+    33.5
+   ]
+  ],
+  "design_excerpt": "\u25e6 In response to shareholder feedback and to enhance focus on capital efficiency, the Compensation Committee added three-year average return on invested capital (\"ROIC\"), weighted 20%, to the PSAs granted in fiscal 2026.",
+  "hurdle_max_vs_price": 1.877208480565371,
+  "grade": "A",
+  "grade_pts": 9,
+  "why": [
+   "per-share / return / TSR metrics: ROIC, absolute TSR, relative TSR",
+   "also EBITDA",
+   "3-year performance period",
+   "payout capped at 200%",
+   "history pays below target (min 34%): rigorous goals",
+   "price hurdles up to 1.9\u00d7 today's price",
+   "pay-for-performance: 2024\u20132026 paid 34% while TSR was -55% (-123pp vs SPY) \u2014 aligned"
+  ],
+  "summary": "3-yr (2026\u20132028) \u00b7 ROIC, EBITDA, relative TSR, absolute TSR (weights not stated) \u00b7 payout 0\u2013200% \u00b7 paid 2024\u20132026: 34%",
+  "filing_date": "2026-07-30",
+  "url": "https://www.sec.gov/Archives/edgar/data/1679273/000167927326000036/",
+  "psu_pct_lti": null,
+  "hurdles": [
+   60.0,
+   75.0,
+   85.0
+  ],
+  "red_flags": [
+   "double-trigger only",
+   "post-vest holding requirement",
+   "5y vesting",
+   "anti-hedge/pledge",
+   "responsive to shareholders"
+  ],
+  "pay_for_performance": [
+   {
+    "cycle": "2024\u20132026",
+    "payout": 33.5,
+    "tsr": -0.551,
+    "vs_spy": -1.226,
+    "verdict": "ALIGNED"
+   }
+  ],
+  "grade_pts_base": 8
+ },
+ "FTV": {
+  "period_years": 3,
+  "metrics": {
+   "relative TSR": null,
+   "revenue": null,
+   "absolute TSR": null
+  },
+  "rtsr_percentiles": [
+   25,
+   55,
+   75
+  ],
+  "rtsr_target_pct": 55,
+  "goals_excerpt": "5% (1) The payout percentages for performance between Threshold and Target, or between Target and Maximum, respectively, would be determined by linear interpolation",
+  "history": [
+   [
+    "2023\u20132025",
+    60.0
+   ]
+  ],
+  "design_excerpt": "\u2022 60% of the 2025 PSU award is tied to relative Total Shareholder Return (\u201cTSR\u201d) performance, with a target set at the 55 th percentile against S&P 500 constituents, requiring above-median performance to earn a target payout.",
+  "hurdle_max_vs_price": 0.9820348630380648,
+  "grade": "A",
+  "grade_pts": 9,
+  "why": [
+   "per-share / return / TSR metrics: absolute TSR, relative TSR",
+   "also revenue",
+   "3-year performance period",
+   "target at 55th percentile (above median)",
+   "PSUs 85% of LTI",
+   "history avg 60% of target",
+   "pay-for-performance: 2023\u20132025 paid 60% while TSR was +16% (-71pp vs SPY) \u2014 aligned"
+  ],
+  "summary": "PSUs 85% of LTI \u00b7 3-yr \u00b7 relative TSR, revenue, absolute TSR (weights not stated) \u00b7 rTSR target 55th pct \u00b7 paid 2023\u20132025: 60%",
+  "filing_date": "2026-04-29",
+  "url": "https://www.sec.gov/Archives/edgar/data/1659166/000119312526189078/",
+  "psu_pct_lti": 85,
+  "hurdles": [
+   53.96,
+   55.21
+  ],
+  "red_flags": [
+   "double-trigger only",
+   "4y vesting",
+   "clawback strengthened"
+  ],
+  "pay_for_performance": [
+   {
+    "cycle": "2023\u20132025",
+    "payout": 60.0,
+    "tsr": 0.155,
+    "vs_spy": -0.708,
+    "verdict": "ALIGNED"
+   }
+  ],
+  "grade_pts_base": 8
+ },
+ "POOL": {
+  "period_years": 3,
+  "metrics": {
+   "EPS": null,
+   "ROIC": null
+  },
+  "payout_min": 0.0,
+  "payout_max": 200.0,
+  "goals_excerpt": "ted EPS CAGR | Award Achieved | Award Earned as a Percentage of Target (1) 3% | Threshold | 50% 6% | Target | 100% 9% | Maximum | 200% (1) Achievement between the specified targets is calculated on the basis of straight-line interpolation",
+  "history": [
+   [
+    "2019\u20132022",
+    93.0
+   ]
+  ],
+  "design_excerpt": "\u2022 For the 2025 performance-based awards, the Committee established a three-year diluted earnings per share (EPS) CAGR target of 6%.",
+  "grade": "B",
+  "grade_pts": 6,
+  "why": [
+   "per-share / return / TSR metrics: EPS, ROIC",
+   "3-year performance period",
+   "payout capped at 200%",
+   "history avg 93% of target",
+   "pay-for-performance: 2019\u20132022 paid 93% while TSR was +115% (+52pp vs SPY) \u2014 mixed"
+  ],
+  "summary": "3-yr \u00b7 EPS, ROIC (weights not stated) \u00b7 payout 0\u2013200% \u00b7 paid 2019\u20132022: 93%",
+  "filing_date": "2026-03-26",
+  "url": "https://www.sec.gov/Archives/edgar/data/945841/000094584126000077/",
+  "psu_pct_lti": null,
+  "hurdles": [],
+  "red_flags": [
+   "double-trigger only",
+   "3y vesting"
+  ],
+  "pay_for_performance": [
+   {
+    "cycle": "2019\u20132022",
+    "payout": 93.0,
+    "tsr": 1.151,
+    "vs_spy": 0.517,
+    "verdict": "MIXED"
+   }
+  ],
+  "grade_pts_base": 6
+ }
+}
