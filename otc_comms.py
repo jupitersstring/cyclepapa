@@ -259,7 +259,7 @@ def otc_score(agg, nov, size):
     return s + 4.0 * min(size, 0.25) / 0.25                          # size of the action vs mcap
 
 
-def aggregate(docs, mcap, price):
+def aggregate(docs, mcap, price, domestic=True):
     """Trailing-12m signal vs the prior 12m baseline."""
     cur, base = [], []
     for dt, kind, title, fe, ev, url in docs:
@@ -285,9 +285,9 @@ def aggregate(docs, mcap, price):
     new = [k for k in ci.SHAREHOLDER_ACT + ("VALUE_GAP",) if fam.get(k, 0) >= 0.8 and before[k] < 0.3 and base]
     size = 0.0
     for w, dt, kind, title, fe, ev, url in cur:
-        if mcap:
+        if mcap and domestic:                        # foreign amounts are in local currency
             size = max(size, (fe.get("bb_usd") or 0) / mcap)
-            if price:
+            if price and domestic:
                 size = max(size, (fe.get("bb_shares") or 0) * price / mcap)
         size = max(size, (fe.get("bb_pct_out") or 0) / 100)
     # > 50% of mcap is almost always a mis-read (an offering, a facility) -- unless it's a tender
@@ -379,12 +379,19 @@ def main() -> int:
             continue
         all_docs[s] = docs
         v = q[s]
-        agg = aggregate(docs, v.get("mcap"), v.get("price"))
+        agg = aggregate(docs, v.get("mcap"), v.get("price"), s in us)
         if not agg:
             continue
         out[s] = {"ticker": s, "name": v.get("name"), "domestic": s in us, "p_b": v.get("p_b"),
                   "mcap": v.get("mcap"), **agg}
-    ranked = sorted(out.values(), key=lambda r: -r["score"])
+    # one company, several OTC lines (ordinary + ADR): keep the best-scoring line
+    import build_otc_book as ob
+    seen, ranked = set(), []
+    for r in sorted(out.values(), key=lambda r: -r["score"]):
+        key = ob._norm(r.get("name")) or r["ticker"]
+        if key in seen:
+            continue
+        seen.add(key); ranked.append(r)
     for i, r in enumerate(ranked):
         pct = 1 - i / max(1, len(ranked))
         strong = any(r["families"].get(k, 0) >= 0.9 for k in ci.SHAREHOLDER_ACT)
