@@ -173,7 +173,7 @@ def load_events():
 # ---------------------------------------------------------------- prices
 def closes(sym):
     PX.mkdir(parents=True, exist_ok=True)
-    f = PX / f"{sym}.json"
+    f = PX / (sym.replace("/", "_") + ".json")
     if f.exists() and time.time() - f.stat().st_mtime < 5 * 86400:
         return json.loads(f.read_text())
     try:

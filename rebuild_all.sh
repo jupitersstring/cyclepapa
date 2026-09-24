@@ -118,6 +118,7 @@ run python3 layer_freshness.py             || true
 # Archetype + governance scorers (pure-compute from proxy_scan) --
 # these feed consensus_meta_ranker + systematic_rankings, so they
 # run BEFORE the consensus stage.
+run python3 proxy_cat_hygiene.py           || true   # sector-gate FDA catalysts
 run python3 psu_gov_asymmetry.py           || true
 run python3 psu_archetypes_full.py         || true
 # Reconstructed generators for the three formerly-frozen scorer CSVs
@@ -159,6 +160,7 @@ run python3 layer_correlation.py           || true
 run python3 systematic_rankings.py         || true
 
 echo "### Workbook regeneration ###"
+run python3 name_financials.py             || true   # FMP financial panel for every name
 run python3 build_most_asymmetric_xlsx.py  || true
 run python3 build_otc_book.py              || true
 # companion risk-reward book, rebuilt on this engine's current snapshot

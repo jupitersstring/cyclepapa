@@ -383,6 +383,9 @@ def main() -> int:
         write_body_row(ct, i, [t, counts.get(t, 0), d], band=(i % 2 == 0), bold_first=True)
     ct.sheet_view.showGridLines = False
 
+    import name_financials
+    name_financials.add_financials(wb, name_financials.load(), index=1,
+                                   skip=("Contents", "Methodology"))
     wb.save(OUT)
     print(f"wrote {OUT} ({len(wb.sheetnames)} tabs)")
     for t, n in counts.items():

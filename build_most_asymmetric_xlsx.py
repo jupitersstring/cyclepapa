@@ -2542,29 +2542,38 @@ def build_cover(wb: Workbook):
     set_col_widths(ws, [8, 30, 18, 18, 18, 18])
     write_title_band(ws,
                      "Most Asymmetric Situations",
-                     "Universe analysis · 6,164 US-listed tickers · "
-                     "8 independent rankers + 57 archetypes",
+                     "Universe analysis · US-listed common stocks · "
+                     "additive scoring layers + 57 archetypes",
                      n_cols=6)
     ws.row_dimensions[3].height = 18
     ws.cell(row=4, column=2, value="Executive summary").font = BODY_BOLD
 
+    # every line computed from disk (these used to be hand-typed and went stale)
+    try:
+        crows = list(csv.DictReader(open(ROOT / "full_universe_consensus.csv")))
+    except Exception:
+        crows = []
+    n_univ = len(crows)
+    n_proxy = len(load_proxy())
+    conv = get_convergent_from_disk()
+    top = max(crows, key=lambda r: int(r.get("n_layers_firing") or 0)) if crows else {}
+    eff = {}
+    try:
+        eff = json.loads((ROOT / "effective_layers.json").read_text())
+    except Exception:
+        pass
+    n_layers = len([k for k in (crows[0].keys() if crows else []) if k.endswith("_pts")])
+    n_eff = eff.get("n_effective") or len(eff.get("clusters") or []) or "n/a"
     summary_lines = [
-        ("Universe scope",
-         "6,164 US-listed tickers (NYSE / Nasdaq / AMEX / CBOE)"),
+        ("Universe scope", f"{n_univ:,} US-listed common stocks (NYSE / Nasdaq / AMEX / CBOE)"),
         ("Governance / PSU coverage",
-         "4,410 DEF 14As scanned (72% of universe)"),
-        ("Convergent (≥3 of 8 screens + archetype winner)",
-         "12 names"),
-        ("Uniquely convergent (6 of 8 screens)",
-         "HFFG — the only ticker hitting six independent rankers"),
-        ("Highest archetype count",
-         "CSGP — wins five PSU/governance archetypes"),
-        ("Clean convergent (zero red flags)",
-         "CSGP, RNR"),
-        ("Probability of 6-screen convergence by chance",
-         "≈ 2.4 × 10⁻¹⁰"),
-        ("Robustness check",
-         "12-name list unchanged after 2.8x coverage expansion"),
+         f"{n_proxy:,} DEF 14As parsed ({(n_proxy / n_univ * 100 if n_univ else 0):.0f}% of universe)"),
+        ("Scoring layers", f"{n_layers} raw layers; ~{n_eff} effectively independent "
+         "(correlated layers clustered — see Layer Correlation)"),
+        ("Convergent set", f"{len(conv)} names (≥3 screens + archetype winner)"),
+        ("Most layers firing", f"{top.get('ticker', '—')} — {top.get('n_layers_firing', '—')} layers"),
+        ("Return validation", "Layer convergence is NOT yet return-validated point-in-time; "
+         "see Re-Rate Backtest / Winners Study and MAIN_BOOK_REVIEW.md"),
     ]
 
     r = 5
@@ -2580,7 +2589,7 @@ def build_cover(wb: Workbook):
         r += 1
 
     r += 1
-    ws.cell(row=r, column=2, value="The convergent twelve").font = BODY_BOLD
+    ws.cell(row=r, column=2, value="The convergent set").font = BODY_BOLD
     r += 1
 
     # Derived from disk -- consensus_ranking.csv. No hardcoded list.
@@ -2998,7 +3007,10 @@ def build_coverage(wb: Workbook):
                      "layer-firing distribution across the universe",
                      n_cols=6)
 
-    UNIVERSE = 6164
+    try:
+        UNIVERSE = sum(1 for _ in open(ROOT / "full_universe_consensus.csv")) - 1
+    except Exception:
+        UNIVERSE = 0
 
     def _count_json(fn, predicate=None):
         p = ROOT / fn
@@ -3090,7 +3102,7 @@ def build_coverage(wb: Workbook):
         pct = (n / UNIVERSE * 100) if UNIVERSE else 0
         age = age_of(fkey) if fkey else EM_DASH
         band = (i % 2 == 0)
-        write_body_row(ws, r, [label, n, pct, age, signal, src],
+        write_body_row(ws, r, [label, n, round(pct, 1), age, signal, src],
                        band=band, bold_first=True)
         r += 1
 
@@ -3141,8 +3153,8 @@ def build_methodology(wb: Workbook):
     set_col_widths(ws, [9, 30, 70])
     write_title_band(ws,
                      "Methodology",
-                     "How the convergent twelve were surfaced from "
-                     "the 6,164-name universe",
+                     "How the convergent set is surfaced from "
+                     "the US-listed universe",
                      n_cols=3)
 
     headers = ["#", "Step", "Detail"]
@@ -3461,6 +3473,12 @@ def main() -> int:
     build_methodology(wb)
 
     _finalize_sheets(wb)
+    # every listed name carries its FMP numbers; full panel in "Name Financials"
+    import name_financials
+    name_financials.add_financials(
+        wb, name_financials.load(), index=3,
+        skip=("Contents", "Cover", "Layer Correlation", "Coverage & Tiers", "Methodology",
+              "Re-Rate Backtest", "Winners Study", "Reserve Baskets"))
     wb.save(OUT)
     print(f"\nwrote {OUT}  ({len(wb.sheetnames)} tabs)")
     return 0

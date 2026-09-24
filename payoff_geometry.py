@@ -113,14 +113,17 @@ def main() -> int:
         net_cash = _num(fr.get("net_cash"))
         net_cash_frac = (max(0.0, net_cash) / shares / price) \
             if (net_cash is not None and shares) else 0.0
-        # NCAV: prefer net_net_ncav.json, else compute from frames.
-        ncav_ps = None
+        # NCAV = current assets - TOTAL liabilities. Two sources: net_net_ncav.json
+        # and the SEC frames (CA - (assets - equity)). They disagree when the
+        # scanner picks up the wrong liabilities line (NUS: +$5.31/sh vs negative
+        # from the frames) -- take the more conservative of the two.
+        cands = []
         if tk in ncav and _num(ncav[tk].get("ncav_per_share")) is not None:
-            ncav_ps = _num(ncav[tk]["ncav_per_share"])
-        else:
-            ca, ta, eq = _num(fr.get("cur_assets")), _num(fr.get("assets")), _num(fr.get("equity"))
-            if ca is not None and ta is not None and eq is not None and shares:
-                ncav_ps = (ca - (ta - eq)) / shares
+            cands.append(_num(ncav[tk]["ncav_per_share"]))
+        ca, ta, eq = _num(fr.get("cur_assets")), _num(fr.get("assets")), _num(fr.get("equity"))
+        if ca is not None and ta is not None and eq is not None and shares:
+            cands.append((ca - (ta - eq)) / shares)
+        ncav_ps = min(cands) if cands else None
         ncav_frac = (max(0.0, ncav_ps) / price) if ncav_ps is not None else 0.0
         book_frac = (1.0 / pb) if (pb and pb > 0) else 0.0   # = book/price
 
@@ -143,7 +146,14 @@ def main() -> int:
             runway_yrs = (net_cash / annual_burn)
         hard_floor_eff = max(0.0, hard_floor - W["burn_horizon_yrs"] * annual_burn_frac)
 
-        floor_frac = max(hard_floor_eff, 0.5 * book_frac)
+        # Book is a SOFT floor: at 0.4x P/B, "half of book" is 125% of the price --
+        # the market is saying the book is impaired. It can support at most 60%
+        # of the price; only cash / working capital can take downside below 40%.
+        # Equity stubs (net debt > 2x mcap) get no book floor at all.
+        soft = min(0.5 * book_frac, 0.60)
+        if net_cash is not None and shares and price and (-net_cash) / (shares * price) > 2.0:
+            soft = 0.0
+        floor_frac = max(hard_floor_eff, soft)
         floor_frac = min(floor_frac, 1.5)   # cap (net-net names can exceed 1)
         if hard_floor_eff >= 0.40:
             floor_source = "net-cash" if net_cash_frac >= ncav_frac else "NCAV"

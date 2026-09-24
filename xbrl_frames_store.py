@@ -160,12 +160,46 @@ def main() -> int:
                ("equity", "assets", "revenue", "gross_profit")):
             store[tk] = rec
 
+    fmp_debt_check(store)
     io_util.write_json(OUT, store)
     print(f"wrote {OUT} ({len(store)} tickers with fundamentals)")
     have_eq = sum(1 for r in store.values() if r.get("equity") is not None)
     have_rev = sum(1 for r in store.values() if r.get("revenue") is not None)
     print(f"  equity: {have_eq}   revenue: {have_rev}")
     return 0
+
+
+def fmp_debt_check(store: dict) -> int:
+    """XBRL frames only see debt tagged LongTermDebt / LongTermDebtNoncurrent.
+    Issuers that tag senior notes, term loans, convertibles or debt-incl-
+    leases differently come back with debt = None -> 'net cash' = gross cash
+    (TTEC: $94m cash vs $933m debt showed as 148% of mcap in net cash). Cross-
+    check against FMP's normalised totalDebt (bulk quarterly balance sheet)
+    and keep the LARGER debt; net_cash is recomputed. Returns # corrected."""
+    try:
+        import fmp_book
+        sheets = fmp_book.load()
+    except Exception:
+        return 0
+    fixed = 0
+    for tk, rec in store.items():
+        bs = sheets.get(tk)
+        if not bs or bs.get("reportedCurrency") not in ("USD", None, ""):
+            continue
+        try:
+            d_fmp = float(bs.get("totalDebt") or 0)
+        except (TypeError, ValueError):
+            continue
+        d_x = rec.get("debt") or 0
+        if d_fmp > d_x * 1.05 + 1e6:
+            rec["debt_xbrl"] = rec.get("debt")
+            rec["debt"] = d_fmp
+            rec["debt_src"] = "fmp_totalDebt"
+            if rec.get("cash") is not None:
+                rec["net_cash"] = rec["cash"] - d_fmp
+            fixed += 1
+    print(f"  debt cross-check vs FMP: {fixed} tickers had under-captured XBRL debt (corrected)")
+    return fixed
 
 
 if __name__ == "__main__":
