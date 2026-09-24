@@ -626,7 +626,8 @@ def event_sheet(wb, events, fin=None, index=None):
             amt = e.get("amount_usd")
             rows.append([
                 t, ((fin or {}).get(t) or {}).get("name", "")[:24], e.get("date"),
-                (e.get("family") or "").replace("_", " ").title(), e.get("status") or "", e.get("what"),
+                (e.get("family") or "").replace("_", " ").title(), e.get("status") or "",
+                ("✓ real" if e.get("verdict") == "REAL" else "⚠ phantom" if e.get("verdict") else ""), e.get("what"),
                 (f"${amt / 1e6:,.0f}M" if amt and amt >= 1e6 else ""),
                 (f"{e['pct_mcap'] * 100:.0f}%" if e.get("pct_mcap") and e["pct_mcap"] < 20 else ""),
                 e.get("counterparty") or e.get("person") or "", e.get("asset") or "", e.get("timing") or "",
@@ -640,12 +641,14 @@ def event_sheet(wb, events, fin=None, index=None):
         "What exactly is happening in every dated corporate-action and governance event behind the thesis tabs: "
         "the 8-K on the event date and its press release are read, and the specifics extracted -- what is being "
         "sold / spun / tendered, to or by whom, for how much (and as % of market cap), when it closes, advisers, "
-        "board seats. Status: ANNOUNCED / PENDING / COMPLETED. The verbatim excerpt is the filing's own words. "
+        "board seats. Status: ANNOUNCED / PENDING / COMPLETED. Verdict: '⚠ phantom' = the scanner's phrase "
+        "matched but the filing shows no such event (removed from the thesis scoring). Hand-QA accuracy: "
+        "EXTRACTION_QA.md. The verbatim excerpt is the filing's own words. "
         "Source: event_detail.py (edgar_doc).",
-        ["Ticker", "Name", "Date", "Event", "Status", "What is happening", "Amount", "% mcap",
+        ["Ticker", "Name", "Date", "Event", "Status", "Verdict", "What is happening", "Amount", "% mcap",
          "Counterparty / person", "Asset / business", "Timing", "Adviser", "Since event (vs SPY)",
          "Filing excerpt (verbatim)", "Filing"],
-        [9, 22, 11, 16, 11, 60, 10, 7, 26, 30, 18, 20, 10, 90, 12], rows, index=index,
+        [9, 22, 11, 16, 11, 10, 60, 10, 7, 26, 30, 18, 20, 10, 90, 12], rows, index=index,
         wrap_cols=("What is happening", "Filing excerpt (verbatim)"))
 
 
@@ -785,7 +788,7 @@ def whats_new(wb, events=None, calls=None, turnaround_csv=None, gov=None, index=
     evr = []
     for t, lst in (events or {}).items():
         for e in lst:
-            if e.get("what") and age(e.get("date")) <= 30:
+            if e.get("what") and age(e.get("date")) <= 30 and e.get("verdict") != "NOT AN EVENT":
                 evr.append([t, name(t), e.get("date"), e.get("status") or "", e["what"],
                             pct(e.get("xret_since")), (f"{e['pct_mcap'] * 100:.0f}%" if e.get("pct_mcap") and e["pct_mcap"] < 20 else ""),
                             e.get("url")])
