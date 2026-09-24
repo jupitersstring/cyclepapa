@@ -189,7 +189,26 @@ def fetch_8k(sym, cik, since):
 
 
 # ---------------------------------------------------------------- analysis
-def docs_for(sym):
+_STOP = {"inc", "corp", "corporation", "company", "co", "ltd", "limited", "holdings", "holding",
+         "group", "the", "plc", "sa", "ag", "nv", "bancorp", "bancshares", "financial", "international"}
+
+
+def name_keys(name):
+    toks = [t for t in re.findall(r"[a-z0-9]+", (name or "").lower()) if t not in _STOP and len(t) > 2]
+    return toks[:2]
+
+
+def about_company(r, sym, name):
+    """FMP's press-release feed occasionally returns another issuer's release:
+    keep it only if it names the ticker or the company."""
+    blob = ((r.get("title") or "") + " " + (r.get("text") or "") + " " + (r.get("full") or "")[:3000]).lower()
+    if re.search(r"\b" + re.escape(sym.lower()) + r"\b", blob):
+        return True
+    keys = name_keys(name)
+    return bool(keys) and all(k in blob for k in keys[:1]) and (len(keys) < 2 or keys[1] in blob)
+
+
+def docs_for(sym, name=None):
     """[(date, kind, title, feats, evidence, url)] for every document."""
     out = []
     tdir = ROOT / "fmp_cache" / "transcripts" / sym
@@ -204,6 +223,8 @@ def docs_for(sym):
     d = STORE / sym
     if (d / "pr.json").exists():
         for r in json.loads((d / "pr.json").read_text()):
+            if name and not about_company(r, sym, name):
+                continue
             text = r.get("full") or r.get("text") or ""
             kind = "LETTER" if ci.LETTER.search(text[:3000]) or re.search(r"letter to (?:share|stock)holders", r.get("title") or "", re.I) else "PR"
             fe, ev = ci.analyze_turns(ci.doc_turns(text, r.get("title") or ""), doc=True)
@@ -269,6 +290,9 @@ def aggregate(docs, mcap, price):
             if price:
                 size = max(size, (fe.get("bb_shares") or 0) * price / mcap)
         size = max(size, (fe.get("bb_pct_out") or 0) / 100)
+    # > 50% of mcap is almost always a mis-read (an offering, a facility) -- unless it's a tender
+    if size > 0.5 and not fam.get("TENDER"):
+        size = 0.0
     size = min(size, 1.0)
     agg = {k: fam.get(k, 0.0) for k in ci.ACTION + ci.STANCE}
     agg.update({"a_commit": sum(fe["a_commit"] for _, _, kind, _, fe, _, _ in cur if kind == "CALL"),
@@ -350,7 +374,7 @@ def main() -> int:
                     print(f"  fetched {i}/{len(syms)}", flush=True)
     out, all_docs = {}, {}
     for s in syms:
-        docs = docs_for(s)
+        docs = docs_for(s, q[s].get("name"))
         if not docs:
             continue
         all_docs[s] = docs

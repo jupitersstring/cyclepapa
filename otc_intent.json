@@ -1,0 +1,487 @@
+{
+ "AAWH": {
+  "ticker": "AAWH",
+  "name": "Ascend Wellness Holdings, Inc.",
+  "domestic": true,
+  "p_b": null,
+  "mcap": 113739445.0,
+  "score": 5.68,
+  "families": {
+   "BUYBACK": 1.765,
+   "MONETIZE": 0.6,
+   "COST": 0.336,
+   "VALUE_GAP": 0.48,
+   "ANTICIPATION": 1.395
+  },
+  "novelty": 0.6,
+  "new_families": [],
+  "size_pct_mcap": 0.0739,
+  "docs_12m": {
+   "CALL": 3,
+   "PR": 18,
+   "EX99": 1
+  },
+  "last_doc": "2026-08-31",
+  "evidence": {
+   "BUYBACK": {
+    "date": "2025-11-10",
+    "kind": "CALL",
+    "doc": "Q3 2025 call",
+    "q": "Since the launch of the buyback initiative last year, we have repurchased and retired approximately 5 million shares at an average price of $0.30 per share.",
+    "url": null
+   },
+   "MONETIZE": {
+    "date": "2026-02-09",
+    "kind": "EX99",
+    "doc": "8-K 2.02,9.01",
+    "q": "Management calculates Adjusted EBITDA as the reported net loss, adjusted to exclude: income tax expense, other (income) expense, interest expense, depreciation and amortization, depreciation and amortization included in cost of goods sold, ",
+    "url": "https://www.sec.gov/Archives/edgar/data/1756390/000162828026006199"
+   },
+   "COST": {
+    "date": "2026-05-13",
+    "kind": "CALL",
+    "doc": "Q1 2026 call",
+    "q": "This growth is improving customer experience by streamlining payments and enabling faster checkouts across our network.",
+    "url": null
+   },
+   "VALUE_GAP": {
+    "date": "2025-11-10",
+    "kind": "CALL",
+    "doc": "Q3 2025 call",
+    "q": "We're happy with our overall balance sheet position, and we continue to believe that our current market value does not fully reflect the quality of our assets and strength of our operations.",
+    "url": null
+   },
+   "ANTICIPATION": {
+    "date": "2026-08-12",
+    "kind": "CALL",
+    "doc": "Q2 2026 call",
+    "q": "We'll continue expanding this portfolio with new form factors in the coming months, including a glass tip 1.2 gram, 10-pack and 2-pack offerings along with upgraded premium packaging.",
+    "url": null
+   }
+  },
+  "tier": "ACT SIGNALLED"
+ },
+ "ADIA": {
+  "ticker": "ADIA",
+  "name": "Adia Med Inc.",
+  "domestic": true,
+  "p_b": null,
+  "mcap": 12318869.0,
+  "score": 2.42,
+  "families": {
+   "MONETIZE": 0.735,
+   "COST": 0.846,
+   "ANTICIPATION": 1.17
+  },
+  "novelty": 0.89,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "PR": 58
+  },
+  "last_doc": "2026-09-22",
+  "evidence": {
+   "MONETIZE": {
+    "date": "2025-10-06",
+    "kind": "PR",
+    "doc": "Adia Nutrition Inc. Divests Biolete Coffee Subsidiary to Cement Factory LLC, Retains 18% O",
+    "q": "(OTCQB: ADIA), an emerging leader in regenerative medicine and innovative healthcare solutions, today announced the sale of its Biolete coffee subsidiary to Cement Factory LLC, a dynamic consumer products firm led by key owners Jeff Sciullo",
+    "url": "https://www.newsfilecorp.com/release/269272/Adia-Nutrition-Inc.-Divests-Biolete-Coffee-Subsidiary-to-Cement-Factory-LLC-Retains-18-Ownership-to-Support-Strategic-Focus-on-Regenerative-Medicine-and-Medical-Sales"
+   },
+   "COST": {
+    "date": "2026-06-08",
+    "kind": "PR",
+    "doc": "Adia Nutrition Launches Dynamic New Subsidiary ADIA Life LLC in Florida to Supercharge Dis",
+    "q": "The subsidiary will immediately begin streamlining logistics and scaling reach for Adia Labs' flagship products while enabling future development of new consumer-facing programs in nutrition, fitness, and mindset coaching.",
+    "url": "https://www.newsfilecorp.com/release/300531/Adia-Nutrition-Launches-Dynamic-New-Subsidiary-ADIA-Life-LLC-in-Florida-to-Supercharge-Distribution-and-Unlock-a-Full-Spectrum-of-LifeTransforming-Wellness-Solutions"
+   },
+   "ANTICIPATION": {
+    "date": "2026-07-07",
+    "kind": "PR",
+    "doc": "Adia Nutrition Inc. Enters FINRA Home Stretch for Corporate Name Change to Adia Med Inc.",
+    "q": "Company Believes All Requirements Satisfied; Approval Expected in the Coming Weeks Winter Park, Florida--(Newsfile Corp. - July 7, 2026) - Adia Nutrition Inc.",
+    "url": "https://www.newsfilecorp.com/release/304242/Adia-Nutrition-Inc.-Enters-FINRA-Home-Stretch-for-Corporate-Name-Change-to-Adia-Med-Inc."
+   }
+  },
+  "tier": "BUILDING"
+ },
+ "AASP": {
+  "ticker": "AASP",
+  "name": "Agassi Sports Entertainment Corp.",
+  "domestic": true,
+  "p_b": 24.238715167066733,
+  "mcap": 63666500.0,
+  "score": 1.29,
+  "families": {
+   "MONETIZE": 0.243,
+   "ANTICIPATION": 1.125
+  },
+  "novelty": 0.24,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "PR": 6,
+   "EX99": 5
+  },
+  "last_doc": "2026-08-11",
+  "evidence": {
+   "MONETIZE": {
+    "date": "2026-02-10",
+    "kind": "PR",
+    "doc": "Agassi Sports Entertainment Announces George Mackin as Strategic Consultant",
+    "q": "Mackin brings decades of experience building, operating, and monetizing sports media platforms, live events, and technology-enabled businesses within the global tennis industry.",
+    "url": "https://www.prnewswire.com/news-releases/agassi-sports-entertainment-announces-george-mackin-as-strategic-consultant-302683095.html"
+   },
+   "ANTICIPATION": {
+    "date": "2026-06-10",
+    "kind": "EX99",
+    "doc": "8-K 1.01,3.02,7.01,9.01",
+    "q": "Additional announcements regarding Agassi Intelligence, platform features, and other initiatives involving Darren Cahill are expected in the coming months.",
+    "url": "https://www.sec.gov/Archives/edgar/data/930245/000147237526000160"
+   }
+  },
+  "tier": "BUILDING"
+ },
+ "AERA": {
+  "ticker": "AERA",
+  "name": "AI Era Corp.",
+  "domestic": true,
+  "p_b": 0.1745197412001706,
+  "mcap": 461574.0,
+  "score": 0.97,
+  "families": {
+   "BUYBACK": 0.338,
+   "MONETIZE": 0.636
+  },
+  "novelty": 0.0,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "PR": 12
+  },
+  "last_doc": "2026-08-31",
+  "evidence": {
+   "BUYBACK": {
+    "date": "2026-04-24",
+    "kind": "PR",
+    "doc": "PRISM MediaWire \u2013 Weekly Press Release Round Up \u2013 April 20 to April 24, 2026 \u2013 Top Financi",
+    "q": "Aclarion Announces $2.5 Million Stock Repurchase Plan",
+    "url": "https://prismmediawire.com/prism-mediawire-weekly-press-release-round-up-april-20-to-april-24-2026-top-financial-corporate-news-highlights/"
+   },
+   "MONETIZE": {
+    "date": "2026-08-31",
+    "kind": "PR",
+    "doc": "AI Era Corp. Begins Monetizing Its Content Library by Licensing Online Broadcast Rights \u2014 ",
+    "q": "(OTC: AERA) (\u201cAI Era\u201d or the \u201cCompany\u201d), an intellectual property firm powered by an agentic AI platform for creator-media ecosystems, today described the commercial nature of its content library: the Company holds a rights-cleared catalog ",
+    "url": "https://www.globenewswire.com/news-release/2026/08/31/3353501/0/en/ai-era-corp-begins-monetizing-its-content-library-by-licensing-online-broadcast-rights-retaining-ai-training-rights-as-the-library-grows-from-the-ufilm-ai-production-loop.html"
+   }
+  },
+  "tier": "BUILDING"
+ },
+ "ABPO": {
+  "ticker": "ABPO",
+  "name": "Abpro Holdings, Inc.",
+  "domestic": true,
+  "p_b": null,
+  "mcap": 1125600.0,
+  "score": 0.66,
+  "families": {
+   "MONETIZE": 0.359,
+   "COST": 0.203
+  },
+  "novelty": 0.41,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "PR": 6,
+   "EX99": 6
+  },
+  "last_doc": "2026-01-15",
+  "evidence": {
+   "MONETIZE": {
+    "date": "2025-11-03",
+    "kind": "EX99",
+    "doc": "8-K 7.01,9.01",
+    "q": "DiversImmune\u00ae platform positioned to unlock additional pipeline value",
+    "url": "https://www.sec.gov/Archives/edgar/data/1893219/000121390025104887"
+   },
+   "COST": {
+    "date": "2025-11-03",
+    "kind": "EX99",
+    "doc": "8-K 7.01,9.01",
+    "q": "Over the past few quarters, Abpro has achieved an estimated ~60% reduction in operating costs versus the same period in 2024 through disciplined execution and streamlined operations.",
+    "url": "https://www.sec.gov/Archives/edgar/data/1893219/000121390025104887"
+   }
+  },
+  "tier": ""
+ },
+ "ADTX": {
+  "ticker": "ADTX",
+  "name": "Aditxt, Inc.",
+  "domestic": true,
+  "p_b": null,
+  "mcap": 4151582.0,
+  "score": 0.63,
+  "families": {
+   "MONETIZE": 0.63
+  },
+  "novelty": 0.0,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "PR": 12,
+   "EX99": 5
+  },
+  "last_doc": "2026-06-10",
+  "evidence": {
+   "MONETIZE": {
+    "date": "2026-06-10",
+    "kind": "EX99",
+    "doc": "8-K 1.01,7.01,9.01",
+    "q": "\u201cToday\u2019s announcement represents an important milestone for Aditxt and Ignite,\u201d said Jeff Busch, Interim Chief Executive Officer of Aditxt and Chief Executive Officer of Ignite Proteomics . \u201cAditxt owns 100% of Ignite, a differentiated prec",
+    "url": "https://www.sec.gov/Archives/edgar/data/1726711/000121390026067421"
+   }
+  },
+  "tier": ""
+ },
+ "ADHC": {
+  "ticker": "ADHC",
+  "name": "American Diversified Holdings Corporation",
+  "domestic": true,
+  "p_b": null,
+  "mcap": 1203560.0,
+  "score": 0.43,
+  "families": {
+   "MONETIZE": 0.27
+  },
+  "novelty": 0.27,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "PR": 6
+  },
+  "last_doc": "2026-09-23",
+  "evidence": {
+   "MONETIZE": {
+    "date": "2026-06-08",
+    "kind": "PR",
+    "doc": "American Diversified Holdings Corporation Announces Planned Spin-Off of GlucoGuard Into Se",
+    "q": "American Diversified Holdings Corporation Announces Planned Spin-Off of GlucoGuard Into Separate Public Company and Special Share Dividend for ADHC Shareholders",
+    "url": "https://www.newsfilecorp.com/release/300477/American-Diversified-Holdings-Corporation-Announces-Planned-SpinOff-of-GlucoGuard-Into-Separate-Public-Company-and-Special-Share-Dividend-for-ADHC-Shareholders"
+   }
+  },
+  "tier": ""
+ },
+ "ACGP": {
+  "ticker": "ACGP",
+  "name": "Associated Capital Group, Inc.",
+  "domestic": true,
+  "p_b": 0.7517251953185978,
+  "mcap": 698252727.0,
+  "score": 0.41,
+  "families": {
+   "BUYBACK": 0.162,
+   "DIVIDEND_RETURN": 0.162
+  },
+  "novelty": 0.16,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "PR": 8
+  },
+  "last_doc": "2026-07-07",
+  "evidence": {
+   "BUYBACK": {
+    "date": "2025-11-07",
+    "kind": "PR",
+    "doc": "Associated Capital Announces 100% Dividend Increase and Expansion of Share Repurchase Auth",
+    "q": "Associated Capital Announces 100% Dividend Increase and Expansion of Share Repurchase Authorization",
+    "url": "https://www.globenewswire.com/news-release/2025/11/07/3183918/0/en/Associated-Capital-Announces-100-Dividend-Increase-and-Expansion-of-Share-Repurchase-Authorization.html"
+   },
+   "DIVIDEND_RETURN": {
+    "date": "2025-11-07",
+    "kind": "PR",
+    "doc": "Associated Capital Announces 100% Dividend Increase and Expansion of Share Repurchase Auth",
+    "q": "Associated Capital Announces 100% Dividend Increase and Expansion of Share Repurchase Authorization",
+    "url": "https://www.globenewswire.com/news-release/2025/11/07/3183918/0/en/Associated-Capital-Announces-100-Dividend-Increase-and-Expansion-of-Share-Repurchase-Authorization.html"
+   }
+  },
+  "tier": ""
+ },
+ "AERG": {
+  "ticker": "AERG",
+  "name": "Applied Energetics, Inc.",
+  "domestic": true,
+  "p_b": 85.97383112910511,
+  "mcap": 187889016.0,
+  "score": 0.11,
+  "families": {
+   "COST": 0.27
+  },
+  "novelty": 0.07,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "PR": 20,
+   "EX99": 5
+  },
+  "last_doc": "2026-08-18",
+  "evidence": {
+   "COST": {
+    "date": "2026-02-03",
+    "kind": "EX99",
+    "doc": "8-K 1.01,5.02,9.01",
+    "q": "5.4 Executive may terminate his employment under this Agreement at any time, effective immediately, for \u201cGood Reason.\u201d \u201cGood Reason\u201d shall mean: (a) material breach of this Agreement by the Company which remains uncured for ten days followi",
+    "url": "https://www.sec.gov/Archives/edgar/data/879911/000121390026011444"
+   }
+  },
+  "tier": ""
+ },
+ "AABB": {
+  "ticker": "AABB",
+  "name": "Asia Broadband, Inc.",
+  "domestic": true,
+  "p_b": 0.2791192014931694,
+  "mcap": 47865475.0,
+  "score": 0.0,
+  "families": {},
+  "novelty": 0.0,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "PR": 7
+  },
+  "last_doc": "2026-09-16",
+  "evidence": {},
+  "tier": ""
+ },
+ "AAGC": {
+  "ticker": "AAGC",
+  "name": "All American Gold Corp.",
+  "domestic": true,
+  "p_b": 0.5821135292309617,
+  "mcap": 1070044.0,
+  "score": 0.0,
+  "families": {},
+  "novelty": 0.0,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "PR": 1
+  },
+  "last_doc": "2026-05-07",
+  "evidence": {},
+  "tier": ""
+ },
+ "AAPI": {
+  "ticker": "AAPI",
+  "name": "Apple iSports Group Inc",
+  "domestic": true,
+  "p_b": null,
+  "mcap": 28571982.0,
+  "score": 0.0,
+  "families": {},
+  "novelty": 0.0,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "PR": 3,
+   "EX99": 1
+  },
+  "last_doc": "2026-03-20",
+  "evidence": {},
+  "tier": ""
+ },
+ "AATC": {
+  "ticker": "AATC",
+  "name": "Autoscope Technologies Corporation",
+  "domestic": true,
+  "p_b": 3.2510487283825027,
+  "mcap": 31957809.0,
+  "score": 0.0,
+  "families": {},
+  "novelty": 0.0,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "PR": 7
+  },
+  "last_doc": "2026-05-07",
+  "evidence": {},
+  "tier": ""
+ },
+ "ABCP": {
+  "ticker": "ABCP",
+  "name": "AmBase Corporation",
+  "domestic": true,
+  "p_b": null,
+  "mcap": 22933314.0,
+  "score": 0.0,
+  "families": {},
+  "novelty": 0.0,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "PR": 1
+  },
+  "last_doc": "2026-05-12",
+  "evidence": {},
+  "tier": ""
+ },
+ "ACRG": {
+  "ticker": "ACRG",
+  "name": "American Clean Resources Group, Inc.",
+  "domestic": true,
+  "p_b": null,
+  "mcap": 112810544.0,
+  "score": 0.0,
+  "families": {},
+  "novelty": 0.0,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "PR": 1,
+   "EX99": 1
+  },
+  "last_doc": "2026-07-08",
+  "evidence": {},
+  "tier": ""
+ },
+ "ADMT": {
+  "ticker": "ADMT",
+  "name": "ADM Tronics Unlimited, Inc.",
+  "domestic": true,
+  "p_b": 4.439537789128113,
+  "mcap": 3379425.0,
+  "score": 0.0,
+  "families": {},
+  "novelty": 0.0,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "PR": 3
+  },
+  "last_doc": "2026-07-10",
+  "evidence": {},
+  "tier": ""
+ },
+ "ADTI": {
+  "ticker": "ADTI",
+  "name": "Adapti, Inc.",
+  "domestic": true,
+  "p_b": 1.8595738508446842,
+  "mcap": 25101744.0,
+  "score": 0.0,
+  "families": {},
+  "novelty": 0.0,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "PR": 1,
+   "EX99": 1
+  },
+  "last_doc": "2026-04-06",
+  "evidence": {},
+  "tier": ""
+ }
+}

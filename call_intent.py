@@ -65,7 +65,8 @@ def rx(*pats):
 
 
 FAMILIES = {
-    "BUYBACK": rx(r"\b(?:share|stock)\s+(?:re)?purchase", r"\brepurchas\w*",
+    "BUYBACK": rx(r"\b(?:share|stock)\s+repurchase",
+                  r"\b(?:share|stock)\s+purchase(?!\s+(?:warrants?|agreements?|plan|rights?|options?|price|contract))", r"\brepurchas\w*",
                   r"\bbuy\s?-?backs?\b", r"\bbought back\b", r"\bbuying back\b",
                   r"\bbuy back\b", r"\bretir(?:e|ed|ing)\s+" + W + r"{0,2}shares"),
     "DIVIDEND_RETURN": rx(r"\bspecial dividend", r"\b(?:increas|rais|doubl|grow)\w*\s+" + W + r"{0,3}dividend",
@@ -114,6 +115,9 @@ GAP_WEAK = rx(r"\bdisconnect\b", r"\bmispric\w*", r"\bintrinsic value",
 MARKET_REF = rx(r"\b(?:stock|share) price", r"\bour (?:stock|shares|equity)\b", r"\bvaluation\b",
                 r"\bmarket (?:value|cap\w*|price)", r"\b(?:stock|shares) (?:is|are|has|have) (?:been )?trad",
                 r"\bpublic market", r"\bthe market\b")
+# not buybacks: repo financing, warrant units, M&A purchase agreements, ESPPs
+NOT_BUYBACK = rx(r"\brepurchase agreements?\b", r"\bpurchase warrants?\b", r"\b(?:share|stock|securities|asset)\s+purchase agreement",
+                 r"\bemployee stock purchase", r"\breverse repurchase")
 # "repurchased $30m of notes" is deleveraging, not a share buyback
 DEBT_OBJ = rx(r"\b(?:repurchas\w*|buy(?:ing)?\s?-?backs?|bought back|retir\w*)\s+(?:\S+\s+){0,6}(?:debt|notes|bonds|debentures|convertibles?|loans?|term loan)\b",
              r"\b(?:debt|note|bond|convertible|debenture)s?\s+(?:re)?purchas\w*", r"\b(?:debt|note|bond)s?\s+buy\s?-?backs?")
@@ -237,7 +241,7 @@ def score_clause(cl: str, doc: bool = False):
             m = GAP_WEAK.search(cl)
         if fam == "DELEVER" and not m and debt:
             m = DEBT_OBJ.search(cl)
-        if not m or (fam == "BUYBACK" and debt):
+        if not m or (fam == "BUYBACK" and (debt or NOT_BUYBACK.search(cl))):
             continue
         pre = cl[: m.start()]
         spec = min(1.0, 0.5 * bool(MONEY.search(cl)) + 0.5 * bool(TIME.search(cl)))
@@ -323,13 +327,19 @@ def analyze(content: str):
     return analyze_turns(parse_turns(content))
 
 
+DATELINE = re.compile(
+    r"^(?:[A-Z][A-Za-z .,'-]{2,60}?)(?:\s*/\s*[A-Za-z ]*News[Ww]ire\s*/\s*[A-Z][a-z]+\.? \d{1,2}, \d{4}\s*/\s*"
+    r"|,?\s*[A-Z][a-z]+\.? \d{1,2}, \d{4}\s*/?\s*\(?(?:/?PRNewswire/?|GLOBE NEWSWIRE|BUSINESS WIRE|ACCESSWIRE|ACCESS Newswire)\)?\s*--\s*"
+    r"|--\((?:BUSINESS WIRE|GLOBE NEWSWIRE)\)--\s*)")
+
+
 def doc_turns(text: str, title: str = ""):
     """A press release / shareholder letter as management 'turns' (company
     voice), boilerplate paragraphs (About us, safe harbour, contacts) and
     number-dense table rows removed."""
     paras = [title] if title else []
     for para in re.split(r"\n\s*\n|\n(?=[A-Z])", text or ""):
-        p = " ".join(para.split())
+        p = DATELINE.sub("", " ".join(para.split()))
         if len(p) < 25 or BOILER.search(p):
             if re.search(r"^about\s+[A-Z]|forward[- ]looking", p, re.I):
                 break                                  # everything after is boilerplate
