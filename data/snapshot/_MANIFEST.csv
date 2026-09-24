@@ -34,7 +34,7 @@ fund_13f_prior_state,307,
 fund_13f_state,370,
 fund_canon,681,
 fund_cik_map,918,
-fund_conviction,2615,
+fund_conviction,2618,
 fund_meta,530,
 fund_positions,5611,
 fund_resolution_state,430,
@@ -42,7 +42,7 @@ fund_style,530,
 highest_conviction,369,
 holder_13d,6224,EXPENSIVE
 holding_sec_form,152130,
-insider_clusters,87,EXPENSIVE
+insider_clusters,120,EXPENSIVE
 latent_ownership,1135,
 liquidity,815,
 microcap_conviction_adds,180,
@@ -57,10 +57,10 @@ prices,52051,EXPENSIVE
 signals,34,
 style_consensus,200,
 style_summary,16,
-ticker_conviction,1448,
+ticker_conviction,1449,
 ticker_entry_intact,580,
 ticker_meta,8607,EXPENSIVE
-ticker_style_conviction,2131,
+ticker_style_conviction,2133,
 ticker_valuation,3000,EXPENSIVE
 ticker_yf,12335,
 ticker_yf__old,8592,

@@ -58,7 +58,7 @@ CREATE TABLE form4_transactions (
   accession TEXT NOT NULL, ticker TEXT, owner TEXT, role TEXT,
   trans_date TEXT, code TEXT, shares REAL, price REAL, acquired INTEGER,
   source_url TEXT NOT NULL
-, swap_involved INTEGER DEFAULT 0, planned_10b5 INTEGER DEFAULT 0);
+, swap_involved INTEGER DEFAULT 0, planned_10b5 INTEGER DEFAULT 0, owner_cik TEXT, owned_after REAL);
 CREATE TABLE archetype_members (
   archetype TEXT NOT NULL, ticker TEXT NOT NULL,
   thesis TEXT, valuation TEXT, catalyst TEXT, variant TEXT, smart_money TEXT,

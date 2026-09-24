@@ -6,7 +6,7 @@ Activists / Special Situations,WBD,3,1554.4,"4,1,3",0,0,NEAR_ENTRY
 Activists / Special Situations,ILMN,3,984.7,1,0,0,WELL_ABOVE
 Activists / Special Situations,RKT,3,762.4,"4,1",0,0,BELOW_ENTRY
 Activists / Special Situations,AAP,3,111.1,"1,4",0,0,BELOW_ENTRY
-Activists / Special Situations,MSTR,3,54.8,1,0,0,MODERATELY_ABOVE
+Activists / Special Situations,MSTR,3,54.8,1,0,1,MODERATELY_ABOVE
 Activists / Special Situations,AEM,3,7.1,"1,5",0,0,
 Activists / Special Situations,GE,2,14720.0,1,0,0,NEAR_ENTRY
 Activists / Special Situations,CP,2,3682.1,"3,1",0,0,NEAR_ENTRY
@@ -30,7 +30,7 @@ Activists / Special Situations,CYBR,2,231.9,1,0,0,
 Activists / Special Situations,LLYVA,2,229.0,3,0,0,
 Activists / Special Situations,LQDA,2,191.8,"1,3,4",0,0,NEAR_ENTRY
 Activists / Special Situations,HRI,2,183.2,"1,3",0,0,NEAR_ENTRY
-Activists / Special Situations,REZI,2,175.0,"3,1",0,0,NEAR_ENTRY
+Activists / Special Situations,REZI,2,175.0,"3,1",0,1,NEAR_ENTRY
 Activists / Special Situations,CCO,2,145.8,"1,2,4",0,0,NEAR_ENTRY
 Activists / Special Situations,APG,2,124.0,"3,1",0,0,BELOW_ENTRY
 Activists / Special Situations,FUN,2,118.5,"3,1,2",0,1,BELOW_ENTRY
@@ -112,7 +112,7 @@ Foreign / EM Value,BFSA.DE,2,0.0,5,0,0,
 Foreign / EM Value,BKNG,2,0.0,"3,5",0,0,
 Foreign / EM Value,CSU.TO,2,0.0,5,0,0,NEAR_ENTRY
 Foreign / EM Value,D05.SI,2,0.0,"1,5",0,0,
-Foreign / EM Value,EPAM,2,0.0,"3,5",0,0,
+Foreign / EM Value,EPAM,2,0.0,"3,5",0,1,
 Foreign / EM Value,EXPN.L,2,0.0,"1,5",0,0,
 Foreign / EM Value,FAGR.BR,2,0.0,5,0,0,
 Foreign / EM Value,FFH.TO,2,0.0,5,0,0,

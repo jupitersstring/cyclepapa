@@ -178,6 +178,20 @@ def run():
     except sqlite3.OperationalError:
         pass
 
+    # I8i. Form 4 owners: every insider trade must name its insider. The sharded
+    #      scanner once parsed a non-existent tag and booked ALL trades with a
+    #      blank owner — every company's insiders collapsed into one person and
+    #      the Insider Clusters sheet came out empty with no error anywhere.
+    n_all, n_blank = conn.execute("""SELECT COUNT(*), SUM(COALESCE(owner, '') = '')
+        FROM form4_transactions WHERE trans_date >= date('now', '-180 days')""").fetchone()
+    if n_all and (n_blank or 0) > 0.02 * n_all:
+        fails.append(f"form4_transactions: {n_blank:,} of {n_all:,} recent trades have no owner "
+                     f"(run fix_form4_owners.py)")
+    n_p = one("""SELECT COUNT(DISTINCT ticker) FROM form4_transactions
+        WHERE code = 'P' AND trans_date >= date('now', '-180 days')""")
+    if n_p >= 50 and not one("SELECT COUNT(*) FROM insider_clusters WHERE n_insiders >= 2"):
+        fails.append(f"insider_clusters: no multi-insider cluster despite buys in {n_p} tickers")
+
     # I8. feed freshness: warn when the tradeable-signal feeds fall behind.
     for tbl, col, days in [('form4_transactions','trans_date',21), ('holder_13d','filed',30),
                            ('catalysts_8k','filed',30), ('ticker_yf','asof',21)]:

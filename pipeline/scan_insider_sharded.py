@@ -44,6 +44,35 @@ def recent_form4(cik, lookback_days=180):
             out.append((rec["accessionNumber"][i], rec["primaryDocument"][i], rec["filingDate"][i]))
     return out
 
+def _flag(el):
+    """Form 4 booleans come as '1' or 'true' depending on the filer's software."""
+    return el is not None and (el.text or "").strip().lower() in ("1", "true")
+
+def parse_owner(root):
+    """(owner name, role, owner CIK) of the first reporting owner.
+
+    The element is <reportingOwner><reportingOwnerId><rptOwnerName>. The old
+    code iterated a non-existent <rptOwner> tag, so EVERY row was booked with
+    a blank owner: all insiders looked like one person, no cluster could ever
+    reach two buyers, and the Insider Clusters sheet came out empty."""
+    for o in root.iter("reportingOwner"):
+        n = o.find("reportingOwnerId/rptOwnerName")
+        owner = " ".join((n.text or "").split()) if n is not None else ""
+        k = o.find("reportingOwnerId/rptOwnerCik")
+        owner_cik = (k.text or "").strip().lstrip("0") if k is not None else ""
+        role = ""
+        r = o.find("reportingOwnerRelationship")
+        if r is not None:
+            if _flag(r.find("isDirector")):
+                role = "Director"
+            if _flag(r.find("isOfficer")):
+                t = r.find("officerTitle")
+                role = " ".join(t.text.split()) if (t is not None and t.text) else "Officer"
+            if _flag(r.find("isTenPercentOwner")):
+                role = "10%+ Owner"
+        return owner, role, owner_cik
+    return "", "", ""
+
 def parse_form4(cik, accession, primary_doc, tkr=None):
     acc = accession.replace("-", "")
     raw_doc = primary_doc.split("/")[-1]
@@ -60,20 +89,7 @@ def parse_form4(cik, accession, primary_doc, tkr=None):
     # instead of the issuer's. The XML names the true issuer; trust it.
     iss_el = root.find(".//issuer/issuerTradingSymbol")
     issuer_sym = (iss_el.text or "").strip().upper().replace("/", "-") if (iss_el is not None and iss_el.text) else None
-    owner = ""
-    for o in root.iter("rptOwner"):
-        n = o.find(".//rptOwnerName")
-        if n is not None and n.text:
-            owner = n.text.strip(); break
-    role = ""
-    for r in root.iter("reportingOwnerRelationship"):
-        if r.find("isDirector") is not None and r.find("isDirector").text == "1": role = "Director"
-        is_off = r.find("isOfficer")
-        title = r.find("officerTitle")
-        if is_off is not None and is_off.text == "1":
-            role = title.text.strip() if title is not None and title.text else "Officer"
-        if r.find("isTenPercentOwner") is not None and r.find("isTenPercentOwner").text == "1": role = "10%+ Owner"
-        break
+    owner, role, owner_cik = parse_owner(root)
     # 10b5-1 checkbox (since 2023): filing-level "this trade was under a plan".
     # Splits mechanical scheduled selling from discretionary selling.
     plan_el = root.find(".//aff10b5One")
@@ -104,7 +120,13 @@ def parse_form4(cik, accession, primary_doc, tkr=None):
         # so re-scans stop resurrecting them.
         if price and price > 2e5 and tkr != "BRK-A": continue
         acquired = 1 if (a_d_el is not None and a_d_el.text == "A") else 0
-        out.append({"owner": owner, "role": role, "code": code,
+        # shares the insider holds AFTER this trade: lets a buy be read against
+        # the stake it adds to (doubling a holding vs topping up 1%)
+        own_el = tx.find(".//postTransactionAmounts/sharesOwnedFollowingTransaction/value")
+        try: owned_after = float(own_el.text) if (own_el is not None and own_el.text) else None
+        except ValueError: owned_after = None
+        out.append({"owner": owner, "role": role, "code": code, "owner_cik": owner_cik,
+                    "owned_after": owned_after,
                     "shares": shares, "price": price, "acquired": acquired,
                     "issuer_sym": issuer_sym, "swap_involved": swap_inv,
                     "planned_10b5": planned,
@@ -171,8 +193,17 @@ def scan_one_ticker(tkr):
             rows.append((acc, t.get("issuer_sym") or tkr, t["owner"], t["role"], t["trans_date"],
                          t["code"], t["shares"], t["price"], t["acquired"],
                          t.get("swap_involved", 0), t.get("planned_10b5", 0),
-                         f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc.replace('-','')}/{doc}"))
+                         f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc.replace('-','')}/{doc}",
+                         t.get("owner_cik") or None, t.get("owned_after")))
     return rows
+
+def ensure_columns(conn):
+    cols = {r[1] for r in conn.execute("PRAGMA table_info(form4_transactions)")}
+    for col, ty in (("swap_involved", "INTEGER"), ("planned_10b5", "INTEGER"),
+                    ("owner_cik", "TEXT"), ("owned_after", "REAL")):
+        if col not in cols:
+            conn.execute(f"ALTER TABLE form4_transactions ADD COLUMN {col} {ty}")
+    conn.commit()
 
 def ensure_dedup_index(conn):
     """Remove any duplicate transactions, then enforce uniqueness so re-scans
@@ -186,6 +217,7 @@ def ensure_dedup_index(conn):
 
 def run(max_n=1500, n_workers=8, rps=8, all_us=False):
     conn = sqlite3.connect(DB, timeout=60); conn.execute('PRAGMA busy_timeout=60000')
+    ensure_columns(conn)
     ensure_dedup_index(conn)
     targets = target_tickers(conn, max_n if not all_us else 0, all_us=all_us)
     print(f"sharded scan: {len(targets)} tickers, {n_workers} workers, {rps} req/s"
@@ -199,8 +231,8 @@ def run(max_n=1500, n_workers=8, rps=8, all_us=False):
             try:
                 conn.execute("""INSERT OR IGNORE INTO form4_transactions
                     (accession, ticker, owner, role, trans_date, code, shares, price, acquired,
-                     swap_involved, planned_10b5, source_url)
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?)""", row)
+                     swap_involved, planned_10b5, source_url, owner_cik, owned_after)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", row)
                 n_buys += 1
             except Exception:
                 pass
