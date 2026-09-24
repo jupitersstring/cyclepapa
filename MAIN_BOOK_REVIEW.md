@@ -81,6 +81,38 @@ first because they matter more than any single sheet.
    borrow are absent. The cross book has waterfalls, but for a different set of
    names; the two books barely overlap.
 
+7. **Payoff Geometry treated book value as a hard floor ✔.** The floor was
+   `max(hard floor, 0.5 × book)`. At 0.4× P/B, half of book is 125% of the
+   price, so downside showed as 0% and was labelled "NCAV". Two sources also
+   disagreed on NCAV: Nu Skin was +$5.31 a share per `net_net_ncav.json` but
+   negative per the SEC frames.
+
+   Fixed:
+   - the book floor is capped at 60% of the price;
+   - equity stubs (net debt > 2× market cap) get no book floor;
+   - NCAV takes the more conservative of the two sources.
+
+   Result: Thryv, TTEC and Conduent now show 100% downside; Nu Skin and
+   BrightView 40%.
+
+8. **Reading the top 20 with their financials** (the new "FMP financial read"
+   column on every sheet, plus the Name Financials tab) changes the picture:
+   - **Not cheap:** half the convergent list is expensive quality growth.
+     HubSpot trades at 38.5× EBITDA and 7× book, Blend at 42×, Salesforce at
+     14.5×, Pool at 4.8× book. The layers reward governance and pay-plan
+     structure, not cheapness or payoff.
+   - **Genuinely cheap, but levered:** Versant (2.8× EBITDA, 49% FCF yield),
+     DXC (2.6×, but net debt 144% of mcap), G-III (4.4×, 24% FCF yield) and
+     ADT (4.6×, net debt 150%). ADT's FCF is likely flattered by subscriber
+     spend sitting outside capex.
+   - **Falling knives:** Blend is at 0% of its 52-week range, Pool 2%, Aptiv
+     4%, ADT 5%, Lululemon 6% and HF Foods 7%. The book shows no trend or
+     momentum context.
+   - **Balance-sheet risk goes unmentioned:** HF Foods has net debt of 232% of
+     mcap and 0.4× interest cover, and trades about $0.1M a day, yet it is
+     labelled "Concentrated 5%+". Angi has negative interest cover. GPK's net
+     debt is 192% of mcap.
+
 ## Sheet by sheet
 
 | # | Sheet | Errors | Missing | Questions left unanswered |
@@ -95,7 +127,7 @@ first because they matter more than any single sheet.
 | 8 | Insider Conviction | — | Price paid vs current price; insider's own track record | — |
 | 9 | Insider Filing-Time | $10k buys (GMRS, AXR) score the same 15 as a $13.5M buy (TXO): no size weighting | Sample size behind the "63% win-rate" claim | Is the off-hours effect robust at size? |
 | 10 | MD&A Intent | Sort mixes family count and score (LEVI 17 above AVAH 22) | Date of the MD&A | Covered by Call Intent now: language predicts action, not returns |
-| 11 | Payoff Geometry | ✔ net cash wrong for 3,033 tickers; many rows saturated at the caps (ratio 60, upside 300%, downside 0%) | Burn-adjusted floor date; debt maturity | How many "0% downside" rows survive the debt fix? |
+| 11 | Payoff Geometry | ✔ net cash wrong for 3,033 tickers; ✔ book used as a hard floor (0% downside at P/B < 0.5); ✔ NCAV source disagreement. Still saturates at the caps (ratio 60, upside 300%) for net-cash micro-caps | Debt maturity; burn date | Only genuine net-cash / NCAV micro-caps now show 0% downside: are they investable at their liquidity? |
 | 12 | Mechanism Gates | ✔ "sub-cash buyback" on levered names (CNDT, VISN) came from the net-cash bug | — | Which gates remain after the fix? |
 | 13 | Structured Distressed | — | Conversion price vs spot; dilution %; who the investor is | Are micro-cap convertible PIPEs (FNGR, STEX, TAOX) really "asset-backed", or toxic financing? No validation |
 | 14 | Governance Discount | — | Price reaction since the governance event | ACTION LIKELY names: did action follow? (track forward) |
@@ -123,9 +155,11 @@ first because they matter more than any single sheet.
 1. **Keep scoring the ranking out of sample.** Every rebuild commits a dated
    snapshot, so extend this test monthly. After 6–12 months it becomes
    conclusive. Weight layers by what they earn, not by headcount.
-2. **Payoff per name on "Most Asymmetric".** Add floor, upside and EV (debt-correct
-   payoff geometry), call intent, governance status and ADV capacity. Size from
-   payoff and liquidity, not from layer count.
+2. **Payoff per name on "Most Asymmetric".** Done in part: every sheet now
+   carries the FMP financial read, and "Name Financials" has the full panel. Still
+   to add: floor, upside and EV (debt-correct payoff geometry), call intent,
+   governance status, ADV capacity and trend. Size from payoff and liquidity, not
+   from layer count.
 3. **Rank on effective-independent layers**, not raw counts.
 4. **Replace hand-maintained text with computed tables:** Reserve Baskets,
    portfolio math, the "why" annotations.
