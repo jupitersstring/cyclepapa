@@ -35,7 +35,7 @@ SKIP_COLS = {"FMP financial read", "Key numbers (FMP)", "Strength %ile", "Name",
 
 
 NEW_SHEETS = ("Name Financials", "Tear Sheets", "Review & data quality", "Call intent", "Contents",
-              "PSU Plans", "Event Detail")
+              "PSU Plans", "Event Detail", "What's New")
 
 
 def clone(src, dst):
@@ -431,6 +431,9 @@ def tear_sheets(wb, fin, names, sym_map=None, title="Tear Sheets", index=None, m
         for j in (1, 2, 3):
             k.header(ts.cell(row=r, column=j))
         ts.cell(row=r, column=1, value=f"{t}  —  {nm or ''}")
+        rows_map = getattr(wb, "_ts_rows", {})
+        rows_map[t] = r
+        wb._ts_rows = rows_map
         if k.header_height:
             ts.row_dimensions[r].height = k.header_height
         r += 1
@@ -594,7 +597,11 @@ def psu_sheet(wb, psu, names=None, fin=None, index=None):
             "; ".join(x for x in [f"±{p['tsr_modifier']:.0f}% TSR modifier" if p.get("tsr_modifier") else "",
                                   "capped at target if TSR < 0" if p.get("negative_tsr_cap") else ""] if x),
             (f"up to {hur:.1f}× price" if hur else ""),
-            hist, "; ".join(p.get("red_flags") or []), "; ".join(p.get("why") or []),
+            hist,
+            "; ".join(f"{c['cycle']}: paid {c['payout']:.0f}% vs TSR {c['tsr'] * 100:+.0f}% "
+                      f"({c['vs_spy'] * 100:+.0f}pp vs SPY) — {c['verdict'].lower()}"
+                      for c in p.get("pay_for_performance") or []),
+            "; ".join(p.get("red_flags") or []), "; ".join(p.get("why") or []),
             p.get("design_excerpt") or p.get("goals_excerpt") or "", p.get("url"),
         ])
     return _table_sheet(
@@ -604,10 +611,10 @@ def psu_sheet(wb, psu, names=None, fin=None, index=None):
         "actually PAID (the best test of how hard the goals are). Grade A–D with the reasons. 'weights not stated' = "
         "metrics named but no weighting found in the text. Source: psu_detail.py (edgar_doc).",
         ["Ticker", "Name", "Grade", "PSU % LTI", "Period", "Metrics (weight)", "Payout range", "rTSR target",
-         "Modifier / caps", "Price hurdles", "What past cycles paid", "Red flags", "Why this grade",
-         "Design (verbatim)", "Proxy"],
-        [9, 22, 7, 8, 14, 44, 11, 9, 26, 14, 30, 26, 60, 70, 40], rows, index=index,
-        wrap_cols=("Why this grade", "Design (verbatim)", "Metrics (weight)"))
+         "Modifier / caps", "Price hurdles", "What past cycles paid", "Pay vs performance", "Red flags",
+         "Why this grade", "Design (verbatim)", "Proxy"],
+        [9, 22, 7, 8, 14, 44, 11, 9, 26, 14, 30, 44, 26, 60, 70, 12], rows, index=index,
+        wrap_cols=("Why this grade", "Design (verbatim)", "Metrics (weight)", "Pay vs performance"))
 
 
 def event_sheet(wb, events, fin=None, index=None):
@@ -623,7 +630,9 @@ def event_sheet(wb, events, fin=None, index=None):
                 (f"${amt / 1e6:,.0f}M" if amt and amt >= 1e6 else ""),
                 (f"{e['pct_mcap'] * 100:.0f}%" if e.get("pct_mcap") and e["pct_mcap"] < 20 else ""),
                 e.get("counterparty") or e.get("person") or "", e.get("asset") or "", e.get("timing") or "",
-                e.get("advisor") or "", e.get("excerpt"), e.get("url"),
+                e.get("advisor") or "",
+                (f"{e['xret_since'] * 100:+.0f}%" if isinstance(e.get("xret_since"), (int, float)) else ""),
+                e.get("excerpt"), e.get("url"),
             ])
     rows.sort(key=lambda r: (r[2] or ""), reverse=True)
     return _table_sheet(
@@ -634,6 +643,194 @@ def event_sheet(wb, events, fin=None, index=None):
         "board seats. Status: ANNOUNCED / PENDING / COMPLETED. The verbatim excerpt is the filing's own words. "
         "Source: event_detail.py (edgar_doc).",
         ["Ticker", "Name", "Date", "Event", "Status", "What is happening", "Amount", "% mcap",
-         "Counterparty / person", "Asset / business", "Timing", "Adviser", "Filing excerpt (verbatim)", "Filing"],
-        [9, 22, 11, 16, 11, 60, 10, 7, 26, 30, 18, 20, 90, 40], rows, index=index,
+         "Counterparty / person", "Asset / business", "Timing", "Adviser", "Since event (vs SPY)",
+         "Filing excerpt (verbatim)", "Filing"],
+        [9, 22, 11, 16, 11, 60, 10, 7, 26, 30, 18, 20, 10, 90, 12], rows, index=index,
         wrap_cols=("What is happening", "Filing excerpt (verbatim)"))
+
+
+# ---------------------------------------------------------------- navigation + colour
+GRADE_FILL = {"A": "D9EAD3", "B": "EAF3E3", "C": "FDF2D0", "D": "F8DAD6"}
+STATUS_FONT = {"COMPLETED": "7F7F7F", "PENDING": "B7791F", "ANNOUNCED": "1F5F8B"}
+
+
+def _hdr_cols(ws):
+    hr, cols = header_of(ws)
+    return hr, cols
+
+
+def link_tickers(wb, ts_title="Tear Sheets"):
+    """Every ticker cell (outside the tear sheets) links to its tear-sheet block."""
+    rows = getattr(wb, "_ts_rows", {})
+    if not rows or ts_title not in wb.sheetnames:
+        return 0
+    n = 0
+    for ws in wb.worksheets:
+        if ws.title == ts_title:
+            continue
+        hr, cols = _hdr_cols(ws)
+        if not hr:
+            continue
+        tcol = cols.get("Ticker") or cols.get("TKR") or cols.get("Symbol")
+        for r in range(hr + 1, ws.max_row + 1):
+            c = ws.cell(row=r, column=tcol)
+            t = _ticker(c.value)
+            if t and t in rows:
+                from copy import copy
+                f = copy(c.font)
+                c.hyperlink = f"#'{ts_title}'!A{rows[t]}"
+                c.font = f                           # keep the house font (no blue underline)
+                n += 1
+    return n
+
+
+def link_filings(wb, headers=("Filing", "Proxy")):
+    """Replace raw URLs with a clickable 'open filing'."""
+    n = 0
+    for ws in wb.worksheets:
+        hr, cols = _hdr_cols(ws)
+        if not hr:
+            continue
+        for h in headers:
+            c0 = cols.get(h)
+            if not c0:
+                continue
+            for r in range(hr + 1, ws.max_row + 1):
+                c = ws.cell(row=r, column=c0)
+                if isinstance(c.value, str) and c.value.startswith("http"):
+                    from copy import copy
+                    f = copy(c.font); f.underline = "single"; f.color = "1F5F8B"
+                    c.hyperlink, c.value, c.font = c.value, "open filing", f
+                    n += 1
+    return n
+
+
+def colourise(wb):
+    """Grades A-D tinted; event status coloured; strength %ile as data bars."""
+    from copy import copy
+    from openpyxl.formatting.rule import DataBarRule
+    for ws in wb.worksheets:
+        hr, cols = _hdr_cols(ws)
+        if not hr:
+            continue
+        for h in ("Grade",):
+            c0 = cols.get(h)
+            if c0:
+                for r in range(hr + 1, ws.max_row + 1):
+                    c = ws.cell(row=r, column=c0)
+                    if c.value in GRADE_FILL:
+                        c.fill = PatternFill("solid", fgColor=GRADE_FILL[c.value])
+                        f = copy(c.font); f.b = True; c.font = f
+        c0 = cols.get("Status")
+        if c0:
+            for r in range(hr + 1, ws.max_row + 1):
+                c = ws.cell(row=r, column=c0)
+                if c.value in STATUS_FONT:
+                    f = copy(c.font); f.color = STATUS_FONT[c.value]; f.b = True; c.font = f
+        c0 = cols.get("Strength %ile")
+        if c0:
+            col = get_column_letter(c0)
+            ws.conditional_formatting.add(
+                f"{col}{hr + 1}:{col}{ws.max_row}",
+                DataBarRule(start_type="num", start_value=0, end_type="num", end_value=100,
+                            color="9DB9D3", showValue=True))
+
+
+def whats_new(wb, events=None, calls=None, turnaround_csv=None, gov=None, index=None, fin=None):
+    """Front-of-book digest: what happened recently, across every engine."""
+    from datetime import date
+    k = kit(wb)
+    ws = wb.create_sheet("What's New", index) if index is not None else wb.create_sheet("What's New")
+    ws.sheet_view.showGridLines = False
+    k.title(ws.cell(row=1, column=1, value="What's New"))
+    k.subtitle(ws.cell(row=2, column=1, value=(
+        f"As of {date.today()}: corporate events in the last 30 days, senior appointments in the last 60, "
+        "management commitments on calls in the last 45, and governance actions in the last 60 -- each with "
+        "the stock's move since (excess vs SPY) so you can see what is and isn't priced.")))
+    ws.merge_cells("A2:H2")
+    ws.row_dimensions[2].height = 32
+    for j, w in enumerate([9, 22, 11, 14, 70, 10, 10, 14], 1):
+        ws.column_dimensions[get_column_letter(j)].width = w
+    today = date.today()
+    r = 4
+
+    def section(title, headers, rows):
+        nonlocal r
+        k.subtitle(ws.cell(row=r, column=1, value=f"{title}  ({len(rows)})"), wrap=False)
+        r += 1
+        for j, h in enumerate(headers, 1):
+            k.header(ws.cell(row=r, column=j, value=h))
+        r += 1
+        for i, vals in enumerate(rows, 1):
+            for j, v in enumerate(vals, 1):
+                c = ws.cell(row=r, column=j, value=v)
+                k.body(c, band=(i % 2 == 0), bold=(j == 1), wrap=(j == 5))
+                if isinstance(v, str) and v.startswith("http"):
+                    c.hyperlink, c.value = v, "open filing"
+            ws.row_dimensions[r].height = 30
+            r += 1
+        if not rows:
+            k.body(ws.cell(row=r, column=1, value="— none —")); r += 1
+        r += 1
+
+    def age(d):
+        try:
+            return (today - date.fromisoformat(str(d)[:10])).days
+        except ValueError:
+            return 9999
+
+    def pct(x):
+        return f"{x * 100:+.0f}%" if isinstance(x, (int, float)) else ""
+    name = lambda t: ((fin or {}).get(t) or {}).get("name", "")[:22]
+    evr = []
+    for t, lst in (events or {}).items():
+        for e in lst:
+            if e.get("what") and age(e.get("date")) <= 30:
+                evr.append([t, name(t), e.get("date"), e.get("status") or "", e["what"],
+                            pct(e.get("xret_since")), (f"{e['pct_mcap'] * 100:.0f}%" if e.get("pct_mcap") and e["pct_mcap"] < 20 else ""),
+                            e.get("url")])
+    evr.sort(key=lambda x: x[2] or "", reverse=True)
+    section("Corporate events, last 30 days", ["Ticker", "Name", "Date", "Status", "What is happening",
+                                                "Since (vs SPY)", "% mcap", "Filing"], evr[:60])
+    hires = []
+    if turnaround_csv and Path(turnaround_csv).exists():
+        for x in csv_rows(turnaround_csv):
+            if x.get("event_type") in ("NEW HIRE", "PROMOTION") and age(x.get("filing_date")) <= 60:
+                who = f"{x.get('person')} — {x.get('role')}" + (" (interim)" if x.get("interim") else "")
+                hires.append([x["ticker"], name(x["ticker"]) or (x.get("company") or "")[:22], x.get("filing_date"),
+                              x.get("event_type"), who + ". " + (x.get("background") or "")[:220],
+                              pct(float(x["xret_since"])) if x.get("xret_since") not in (None, "") else "", "", ""])
+    hires.sort(key=lambda x: x[2] or "", reverse=True)
+    section("Senior appointments, last 60 days", ["Ticker", "Name", "Date", "Type", "Who / background",
+                                                   "Since (vs SPY)", "", ""], hires[:40])
+    cr = []
+    for t, c in (calls or {}).items():
+        if c.get("tier") == "ACT SIGNALLED" and age(c.get("date")) <= 45:
+            fams = c.get("families") or {}
+            top = next((f for f in (c.get("new_families") or []) + sorted(fams, key=lambda f: -fams[f])
+                        if (c.get("evidence") or {}).get(f)), None)
+            q = (c["evidence"][top][0]["q"][:220]) if top else ""
+            cr.append([t, name(t), c.get("date"), "NEW " + top.lower() if top in (c.get("new_families") or []) else (top or "").lower(),
+                       f"“{q}”", "", f"{c['size_pct']:.0%}" if c.get("size_pct") else "", ""])
+    cr.sort(key=lambda x: x[2] or "", reverse=True)
+    section("Management commitments on calls, last 45 days", ["Ticker", "Name", "Call", "Action", "What management said",
+                                                               "", "Size", ""], cr[:40])
+    gr = []
+    for t, g in (gov or {}).items():
+        fams = g.get("families") or {}
+        recent = [(f, v) for f, v in fams.items() if v.get("date") and age(v["date"]) <= 60 and f != "PAY_ON_VALUE"]
+        if g.get("tier") == "ACTION LIKELY" and recent:
+            f, v = max(recent, key=lambda kv: kv[1]["date"])
+            gr.append([t, name(t) or (g.get("name") or "")[:22], v["date"], f.replace("_", " ").lower(),
+                       f"P/B {g.get('p_b'):.2f}; {len(fams)} signals: " + ", ".join(x.replace('_', ' ').lower() for x in fams)[:200],
+                       "", "", ""])
+    gr.sort(key=lambda x: x[2] or "", reverse=True)
+    section("Governance actions at deep-discount names, last 60 days", ["Ticker", "Name", "Date", "Latest", "Set-up",
+                                                                        "", "", ""], gr[:40])
+    ws.freeze_panes = "A4"
+    return ws
+
+
+def csv_rows(path):
+    import csv as _csv
+    return list(_csv.DictReader(open(path)))

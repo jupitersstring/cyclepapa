@@ -60,6 +60,16 @@ OUT = ROOT / "turnaround_signal.csv"
 TALENT_HINTS: dict[str, str] = {
     # Unambiguous classic-operator surnames
     "bollenbach":     "Architect of Hilton / Marriott / Host turnaround",
+    "rales":          "Danaher founder (Danaher Business System)",
+    "culp":           "Danaher CEO, then GE turnaround",
+    "danaher business system": "DBS-trained operator",
+    "former danaher": "Danaher-trained operator",
+    "at danaher":     "Danaher-trained operator",
+    "transdigm":      "TransDigm operating model",
+    "roper technologies": "Roper operating model",
+    "illinois tool works": "ITW 80/20 operator",
+    "3g capital":     "3G zero-based-budgeting operator",
+    "constellation software": "Constellation Software operator",
     "iacocca":        "Chrysler reset",
     "gerstner":       "IBM turnaround",
     "mulally":        "Boeing then Ford turnaround",

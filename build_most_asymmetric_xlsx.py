@@ -558,7 +558,7 @@ def build_turnaround_signal(wb: Workbook, yf: dict):
         "Senior executives voluntarily joining struggling companies "
         "with equity-heavy compensation. The grant tells you they "
         "see a re-rate path the market hasn't yet priced.",
-        n_cols=13,
+        n_cols=14,
     )
 
     path = ROOT / "turnaround_signal.csv"
@@ -568,8 +568,9 @@ def build_turnaround_signal(wb: Workbook, yf: dict):
         return
 
     headers = ["#", "Ticker", "Company", "Score", "Event", "Who", "Role", "Date",
-               "Salary $k", "Grant $M", "Distress", "Talent", "What the 8-K says (background / terms)"]
-    set_col_widths(ws, [5, 9, 24, 7, 13, 20, 22, 11, 9, 9, 8, 7, 90])
+               "Salary $k", "Grant $M", "Distress", "Talent", "Since (vs SPY)",
+               "What the 8-K says (background / terms)"]
+    set_col_widths(ws, [5, 9, 24, 7, 13, 20, 22, 11, 9, 9, 8, 7, 10, 90])
     write_header_row(ws, 4, headers)
 
     def f0(x):
@@ -592,6 +593,7 @@ def build_turnaround_signal(wb: Workbook, yf: dict):
                         ev, who[:20], (row.get("role") or "")[:22], row.get("filing_date") or "",
                         round(sal / 1e3) if sal else "–", round(gr / 1e6, 1) if gr else "–",
                         round(f0(row.get("distress_pts")) or 0), round(f0(row.get("talent_pts")) or 0),
+                        (f"{f0(row.get('xret_since')) * 100:+.0f}%" if f0(row.get("xret_since")) is not None else "–"),
                         said[:260]],
                        band=(i % 2 == 0), align_first_left=False)
         ws.cell(row=r, column=2).font = BODY_BOLD
@@ -604,7 +606,7 @@ def build_turnaround_signal(wb: Workbook, yf: dict):
         "PROMOTION: person and role parsed from the filing). The rest are pay amendments, "
         "inducement-plan approvals, departures or equity awards -- listed for completeness but "
         "scored at 30% because they are not the turnaround-talent pattern. Filing text is fetched "
-        "from EDGAR (edgar_doc.py).", 13)
+        "from EDGAR (edgar_doc.py). Since = stock return since the 8-K minus SPY.", 14)
     r += 1
     write_footnote(ws, r,
         "Greenblatt's Bollenbach test: 'It didn't make sense that the "
@@ -3499,8 +3501,15 @@ def main() -> int:
     cited = [str(c.value).strip() for c in wb["Name Financials"]["A"][4:] if c.value]
     n_ts = bl.tear_sheets(wb, fin, list(dict.fromkeys(short + cited)), max_names=60)
     print(f"  tear sheets: {n_ts} names")
+    bl.whats_new(wb, events=events, calls=bl._load_json("call_intent.json"),
+                 turnaround_csv=ROOT / "turnaround_signal.csv", gov=bl._load_json("governance_discount.json"),
+                 fin=fin)
+    n_l = bl.link_tickers(wb)
+    n_f = bl.link_filings(wb)
+    bl.colourise(wb)
+    print(f"  navigation: {n_l} ticker links to tear sheets, {n_f} filing links")
     bl.regroup(wb, [
-        ("Decide", ["Contents", "Cover", "Most Asymmetric", "Tear Sheets", "Name Financials"]),
+        ("Decide", ["Contents", "Cover", "What's New", "Most Asymmetric", "Tear Sheets", "Name Financials"]),
         ("Theses", ["PSU Plans", "Governance Discount", "Mechanism Gates", "Payoff Geometry", "Re-Rate Catalysts",
                     "Event Detail",
                     "Structured Distressed", "Distressed Stub Progress", "Hidden Asset Realisation",
@@ -3513,6 +3522,7 @@ def main() -> int:
     ], descriptions={**dict(TAB_INDEX),
                      "Tear Sheets": "One block per name: financial panel + every tab it appears on, with strength percentiles.",
                      "Name Financials": "FMP financial panel for every name in the book + the tabs each appears on.",
+                     "What's New": "Recent events, appointments, call commitments and governance actions, with the move since.",
                      "PSU Plans": "What each PSU plan is (metrics, weights, period, payout, TSR, hurdles, past payouts) and its grade.",
                      "Event Detail": "Every 8-K event: what is sold/spun/tendered, to whom, for how much, status, verbatim excerpt."})
     wb.save(OUT)
