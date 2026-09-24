@@ -146,7 +146,7 @@ def main():
                       # (the extra_arch list below filters on arch_df.columns)
                       'seg_inflect_score', 'capital_return_score',
                       'lynch_value_score']
-    extra_arch = [c for c in (['archetype_count', 'bab_score', 'is_price_ghost']
+    extra_arch = [c for c in (['archetype_count', 'bab_score', 'is_price_ghost', 'multi_year_data']
                               + confirm_scores)
                   if c in arch_df.columns]
     # Drop EVERY column the arch merge re-supplies (not just count/bab_score):
@@ -496,9 +496,13 @@ def main():
     if edgar_arch_cols:
         has_edgar_data = (df[edgar_arch_cols].fillna(0).sum(axis=1) > 0)
         # Or any row carrying multi-year fields:
+        # multi_year_data = EDGAR OR FMP history (archetype_tags); FMP now fills
+        # the EDGAR-only inputs, so those names are full-taxonomy eligible too
         for marker in ('roic_lindy', 'm5_engine_score', 'tangible_equity_pct'):
             if marker in df.columns:
                 has_edgar_data = has_edgar_data | df[marker].notna()
+        if 'multi_year_data' in df.columns:
+            has_edgar_data = has_edgar_data | (pd.to_numeric(df['multi_year_data'], errors='coerce') == 1)
         # EDGAR-covered rows are eligible for the FULL live taxonomy —
         # derive the denominator from the file, never a CLI constant (the
         # old --total-archetypes default froze at 34 while the taxonomy

@@ -238,6 +238,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # trajectory over the last three complete quarters (US-listed names).
     df = _merge_fmp_overlay(df, 'fmp_institutional.csv')
 
+    # FMP QUARTERLY three-statement overlay (fmp_quarterly.py): point-in-time,
+    # contiguous-TTM, single-currency balance-sheet / cash-flow / income detail
+    # plus forensic tests (Beneish, Sloan accruals, DSO/DIO/DPO trajectories,
+    # receivables and inventory divergence, cash vs book tax). Replaces the
+    # EDGAR-only forensic inputs for every name EDGAR does not cover.
+    df = _merge_fmp_overlay(df, 'fmp_quarterly.csv')
+
     # Coalesce suffix-shadowed copies back into the base columns. Every merge
     # above keeps the asym copy unsuffixed and shelves the incoming one
     # (_ey/_er/_pew) — but for these columns the EDGAR/pew copy often has
@@ -280,6 +287,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # is missing, so coverage rises without any FMP figure displacing an
     # EDGAR-primary one. fmp_filled_<col> marks which rows a fill touched, so
     # provenance stays inspectable in the audit.
+    def _num_or_nan(col):
+        return pd.to_numeric(df[col], errors='coerce') if col in df.columns else pd.Series(np.nan, index=df.index)
     def _fmp_fill(base, fmp_col):
         if fmp_col not in df.columns:
             return
@@ -342,6 +351,65 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                    ('fastest_segment_share_delta', 'fmp_seg_fastest_share_delta'),
                    ('segment_growth_dispersion', 'fmp_seg_growth_dispersion')):
         _fmp_fill(_b, _f)
+    # ---- QUARTERLY forensic fills (fmp_quarterly.py) ----
+    # CURRENCY BRIDGE. fq_* levels are in the filer's REPORTING currency; the
+    # master's market cap is in the LISTING currency (they differ for ADRs /
+    # cross-listings — the mismatch that produced 150x yield errors earlier).
+    # Use a TRUE exchange rate, not a revenue ratio (a revenue ratio mixes
+    # currency with period growth: Climb Global's revenue doubled between the
+    # two TTM windows, so the ratio read 0.5 for a USD-in-USD name).
+    #   fx = USD per reporting-ccy unit (fmp_fx.py spot table)
+    #        / USD per listing-ccy unit (the master's own market_cap_usd /
+    #          market_cap, i.e. exactly the unit the comparison is made in)
+    # VALIDATION: master revenue_ttm / (fq_revenue x fx) should be within
+    # [0.5, 2] (period drift only). Outside that the currency label or units
+    # are wrong (e.g. FMP tagging a Schibsted ADR as JPY) and the bridge is
+    # voided rather than trusted.
+    _frev = _num_or_nan('fq_revenue')
+    _fx = pd.Series(np.nan, index=df.index)
+    if os.path.exists('fmp_fx_usd.csv') and 'fmp_q_ccy' in df.columns:
+        _usd = pd.read_csv('fmp_fx_usd.csv').set_index('currency')['usd_per_unit']
+        _rep = df['fmp_q_ccy'].map(_usd)
+        _mc, _mcu = _num_or_nan('market_cap'), _num_or_nan('market_cap_usd')
+        _lst = (_mcu / _mc).where((_mc > 0) & (_mcu > 0))
+        _fx = (pd.to_numeric(_rep, errors='coerce') / _lst)
+        _chk = _num_or_nan('revenue_ttm') / (_frev * _fx)
+        _fx = _fx.where(_chk.isna() | ((_chk >= 0.5) & (_chk <= 2.0)))
+    df['fq_fx_to_master'] = _fx
+    _q_ok = (df['fmp_q_status'].astype(str) == 'ok') if 'fmp_q_status' in df.columns else pd.Series(False, index=df.index)
+
+    def _conv(col):
+        return (_num_or_nan(col) * _fx).where(_q_ok)
+
+    # LEVEL fills (converted to master currency; NaN-only, provenance-marked)
+    _lvl = {'retained_earnings': 'fq_retained_earnings', 'deferred_revenue': 'fq_defrev',
+            'income_taxes_paid_ttm': 'fq_taxes_paid', 'tax_expense_ttm': 'fq_tax_exp',
+            'pretax_income_ttm': 'fq_pretax', 'income_continuing_ops_ttm': 'fq_ni_cont',
+            'income_discontinued_ops_ttm': 'fq_ni_disc', 'ppe_net': 'fq_ppe_net',
+            'assets': 'fq_total_assets', 'equity': 'fq_equity',
+            'net_income_ttm': 'fq_ni', 'cfo_ttm': 'fq_cfo', 'capex_ttm': 'fq_capex',
+            'da_ttm': 'fq_da', 'total_debt': 'fq_total_debt'}
+    for _b, _f in _lvl.items():
+        if _f in df.columns:
+            df['fq_conv_' + _b] = _conv(_f)
+            _fmp_fill(_b, 'fq_conv_' + _b)
+    if 'fq_nwc' in df.columns:
+        df['fq_conv_nwc'] = _conv('fq_nwc'); _fmp_fill('net_working_capital', 'fq_conv_nwc')
+    if 'fq_equity' in df.columns and 'fq_gw_intang' in df.columns:
+        df['fq_conv_tangible_equity'] = ((_num_or_nan('fq_equity') - _num_or_nan('fq_gw_intang').fillna(0)) * _fx).where(_q_ok)
+        _fmp_fill('tangible_equity', 'fq_conv_tangible_equity')
+    # capex sign: master capex_ttm is stored positive (spend); FMP capex is negative
+    if 'fmp_filled_capex_ttm' in df.columns:
+        _fc = df['fmp_filled_capex_ttm'] == 1
+        df.loc[_fc, 'capex_ttm'] = pd.to_numeric(df.loc[_fc, 'capex_ttm'], errors='coerce').abs()
+    # DIMENSIONLESS fills (currency cancels; no bridge needed)
+    df['fq_sbc_pct_revenue'] = (_num_or_nan('fq_sbc') / _frev).where(_q_ok & (_frev > 0))
+    for _b, _f in (('goodwill_intangibles_pct_assets', 'fq_gw_pct_assets'),
+                   ('sbc_pct_revenue', 'fq_sbc_pct_revenue'),
+                   ('interest_coverage', 'fq_interest_cover')):
+        if _f in df.columns:
+            _fmp_fill(_b, _f)
+
     # text companions (names) for the books, NaN-only as well
     for _b, _f in (('largest_segment_name', 'fmp_seg_largest_name'),
                    ('fastest_segment_name', 'fmp_seg_fastest_name'),
@@ -390,8 +458,6 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # surfaced as flags. Distress is used ONLY as a negative gate on the two
     # cash-rich Cluseau value archetypes (a deep discount to a book that a
     # near-insolvent balance sheet may not realise is a trap, not a bargain).
-    def _num_or_nan(col):
-        return pd.to_numeric(df[col], errors='coerce') if col in df.columns else pd.Series(np.nan, index=df.index)
     df['fmp_distress_flag'] = (_num_or_nan('fmp_altman_z') < 1.81).fillna(False).astype(int)
     df['fmp_piotroski_strong_flag'] = (_num_or_nan('fmp_piotroski') >= 7).fillna(False).astype(int)
     # Insider alignment: trailing open-market buy $ >= this year's exec comp
@@ -6684,6 +6750,20 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _tot_e = (_dy_e.fillna(0) + _by_e.fillna(0)).where(_dy_e.notna() | _by_e.notna())
     df['capret_yield_eff'] = pd.concat([_cry_e, _tot_e], axis=1).max(axis=1)
 
+    # Multi-year fundamental data present from EITHER source (EDGAR or the FMP
+    # statement / quarterly engines). enrich uses this to decide which names are
+    # eligible for the full archetype taxonomy: once FMP fills the EDGAR-only
+    # inputs, a non-US name with FMP history can fire those archetypes, so it
+    # must also be counted against the full denominator (else its archetype
+    # density would be inflated).
+    _mm = pd.Series(False, index=df.index)
+    for _c in ('roic_lindy', 'fmp_st_roic_lindy', 'n_yrs_positive_fcf'):
+        if _c in df.columns:
+            _mm |= pd.to_numeric(df[_c], errors='coerce').notna()
+    if 'fmp_q_status' in df.columns:
+        _mm |= (df['fmp_q_status'].astype(str) == 'ok')
+    df['multi_year_data'] = _mm.astype(int)
+
     # Compact per-name digest of every active FMP-derived signal, so any book
     # can show the FMP layer in one readable column (country books included).
     _sig_defs = [
@@ -6743,7 +6823,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                             'fmp_st_owner_earnings_yield','fmp_st_years_of_history'] if c in df.columns]
              # institutional accumulation + FMP segmentation + digest
              + [c for c in ['inst_accum_score','inst_accum_accelerating','inst_own_excess_q0','inst_buy_excess_q0','fmp_signals',
-                            'roic_lindy_eff','capret_yield_eff',
+                            'roic_lindy_eff','capret_yield_eff','multi_year_data',
                             'fmp_inst_quarter','fmp_inst_holders','fmp_inst_own_pct',
                             'fmp_inst_own_chg_q0','fmp_inst_own_chg_q1','fmp_inst_own_chg_q2',
                             'fmp_inst_shares_chg_pct_q0','fmp_inst_shares_chg_pct_q1',
