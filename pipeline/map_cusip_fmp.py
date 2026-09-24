@@ -39,6 +39,10 @@ CURATED = {
                            # CUSIP 06849F108); "GOLD" now belongs to Gold.com (ex A-Mark)
     "30231G102": "XOM",    # Exxon Mobil Corp's pre-reorganization CUSIP; FMP's XOM profile
                            # now carries ExxonMobil Holdings Corp's 30233Q108. OpenFIGI had "EXMOC"
+    # verified NEGATIVES (None = keep unmapped): name search finds a different
+    # company whose price happens to sit within 1.5x
+    "N81409125": None,     # Sono Group NV (Sono Motors) — not Sono-Tek (SOTK)
+    "G6518L108": None,     # Nielsen N.V. (taken private 2022) — not Stolt-Nielsen (SOIEF)
 }
 TABLES = ("fund_13f_holdings", "fund_13f_prior", "broker_13f")
 STOP = {"INC", "CORP", "CORPORATION", "CO", "LTD", "PLC", "NV", "SA", "AG", "HOLDINGS",
@@ -50,8 +54,28 @@ BAND_NAMED = (0.2, 5.0)     # named match: FMP price (today) vs 13F price (quart
 BAND_RENAMED = (0.5, 2.0)   # no name overlap: the price has to carry the proof
 BAND_SEARCH = (0.67, 1.5)   # name-search tier: no CUSIP evidence at all, so tightest
 QSTOP = STOP | {"SHS", "ORD", "US", "ADR", "ADS", "SPONSORED", "SPON", "UNSPON", "REG",
-                "COMMON", "STOCK", "COR", "SE", "C", "NPV", "PAR", "USD", "EACH", "REPR"}
+                "COMMON", "STOCK", "COR", "SE", "C", "NPV", "PAR", "USD", "EACH", "REPR",
+                "SHARES", "SHARE"}
+# lines that are not the common stock: the name tier must never map them
+NOT_COMMON = re.compile(r"\bDUE\b|%|PERCENT|\bNOTES?\b|\bPFD\b|\bPREF|WARRANT|\bWTS?\b|"
+                        r"\bRIGHTS?\b|\bUNITS?\b|\bCVR\b|\bDEBT?\b|\bBONDS?\b|\bETN\b", re.I)
+# ETF / fund-trust issuers ("PROSHARES TR", "NUSHARES ETF TR"): one trust name
+# covers dozens of funds, so a name search can only guess among them
+FUND_FAMILY = re.compile(r"\b(TR|TRUST|FUND|FUNDS|FDS|ETF|ETFS|PORTFOLIOS?|SERIES)\b|"
+                         r"ISHARES|PROSHARES|SPDR|DIREXION|GRANITESHARES", re.I)
 LISTED = {"NASDAQ", "NYSE", "AMEX", "NYSE AMERICAN", "NYSEARCA", "CBOE", "BATS"}
+# 13F issuer abbreviations -> the words FMP's full names use
+ABBREV = {"BK": "BANK", "BKG": "BANKING", "AMERN": "AMERICAN", "AMER": "AMERICAN",
+          "FINL": "FINANCIAL", "INTL": "INTERNATIONAL", "NATL": "NATIONAL", "PHARMS": "PHARMACEUTICALS",
+          "PHARMA": "PHARMACEUTICALS", "TECHS": "TECHNOLOGIES", "SVCS": "SERVICES", "SYS": "SYSTEMS",
+          "COMMUNICATNS": "COMMUNICATIONS", "COMMS": "COMMUNICATIONS", "HLDGS": "HOLDINGS",
+          "MGMT": "MANAGEMENT", "INDS": "INDUSTRIES", "PPTYS": "PROPERTIES", "RES": "RESOURCES",
+          "ENTMT": "ENTERTAINMENT", "MFG": "MANUFACTURING", "GLBL": "GLOBAL", "CAP": "CAPITAL"}
+# descriptive words a full company name may add without changing who it is
+GENERIC_OK = {"LIMITED", "INCORPORATED", "COMPANY", "PUBL", "TBK", "HOLDINGS", "INTERNATIONAL",
+              "TECHNOLOGY", "TECHNOLOGIES", "PHARMACEUTICALS", "THERAPEUTICS", "ORDINARY",
+              "SHARES", "COMMON", "STOCK", "CORPORACION", "SOCIEDAD", "ANONIMA", "GLOBAL"}
+SERIES = re.compile(r"\b(I{1,3}|IV|VI{0,3}|IX|X|\d)\b")
 
 def equity_cusip(c):
     """Issue number 10-89 = equity. Letters (345370CZ1 Ford notes) = debt;
@@ -60,7 +84,27 @@ def equity_cusip(c):
 
 def name_words(issuer):
     s = unicodedata.normalize("NFKD", issuer or "").encode("ascii", "ignore").decode()
-    return [w for w in re.split(r"[^A-Za-z0-9]+", s) if w and w.upper() not in QSTOP]
+    words = [ABBREV.get(w.upper(), w) for w in re.split(r"[^A-Za-z0-9]+", s) if w]
+    return [w for w in words if w.upper() not in QSTOP]
+
+def series(s):
+    """SPAC / fund series markers: 'Plutonian Acquisition Corp II' -> {'II'}."""
+    return set(SERIES.findall((s or "").upper().replace(".", "")))
+
+def strong_name(issuer, company):
+    """Is `company` (FMP's full name) the issuer the 13F line names?
+      * every distinctive word among the issuer's first three appears in it
+        (one shared generic word is not enough: 'FIRST REP BK' matched First
+        BanCorp, 'PACIFIC ETHANOL' Pacific Booker Minerals);
+      * it adds at most one unexplained word ('Mitsubishi UFJ Financial' is
+        not 'Mitsubishi Corp');
+      * no series marker the filing lacks (EQV Ventures I is not EQV II)."""
+    need = toks(" ".join(name_words(issuer)[:3]))
+    have = toks(company)
+    if not need or not need <= have:
+        return False
+    extra = have - toks(" ".join(name_words(issuer))) - GENERIC_OK
+    return len(extra) <= 1 and not (series(company) - series(issuer))
 
 def name_queries(issuer):
     """'MIND MEDICINE MINDMED INC' -> ['MIND MEDICINE MINDMED', 'MIND MEDICINE', 'MIND'].
@@ -72,7 +116,8 @@ def name_queries(issuer):
 
 def toks(s):
     s = unicodedata.normalize("NFKD", s or "").encode("ascii", "ignore").decode()   # Nestlé -> NESTLE
-    return {t for t in re.split(r"[^A-Z0-9]+", s.upper()) if len(t) >= 3 and t not in STOP}
+    # '&' stays inside a word: "PG&E" / "AT&T" are the whole name
+    return {t for t in re.split(r"[^A-Z0-9&]+", s.upper()) if len(t) >= 3 and t not in STOP}
 
 def get(path, **p):
     q = "&".join(f"{k}={v}" for k, v in p.items())
@@ -105,9 +150,11 @@ def run():
     prof = load_profiles()
     implied = implied_prices(conn)
     names = defaultdict(set)                     # CUSIP -> tokens of every issuer string filed
+    issuers = defaultdict(set)                   # CUSIP -> every issuer string filed
     for t in TABLES:
         for cusip, issuer in conn.execute(f"SELECT DISTINCT cusip, issuer FROM {t}"):
             names[cusip] |= toks(issuer)
+            issuers[cusip].add(issuer or "")
 
     def px_ratio(cusip, sym):
         """FMP price (USD) / 13F-implied price; None when either side is unknown."""
@@ -121,7 +168,25 @@ def run():
     def named(cusip, company):
         return bool(names.get(cusip, set()) & toks(company))
 
+    def name_match_ok(cusip, sym, band):
+        """The name tier's full test, shared by the search and the re-audit."""
+        p = prof.get(sym) or {}
+        company = p.get("companyName") or ""
+        iss = issuers.get(cusip) or set()
+        if (not iss or "." in sym or not is_true(p.get("isActivelyTrading"))
+                or any(NOT_COMMON.search(i) or FUND_FAMILY.search(i) for i in iss)
+                or NOT_COMMON.search(company)
+                or not in_band(px_ratio(cusip, sym), band, False)):
+            return False
+        return any(strong_name(i, company) for i in iss)
+
+    fmp_syms = defaultdict(set)                  # CUSIP -> every FMP symbol filed under it
+    for s, p in prof.items():
+        if p.get("cusip"):
+            fmp_syms[p["cusip"].upper()].add(s)
+
     # 1. curated entries outrank every source, and repair rows already applied
+    #    (a None entry is a verified negative: the CUSIP stays unmapped)
     for cusip, sym in CURATED.items():
         conn.execute("""INSERT INTO cusip_map VALUES (?,?,'common','curated',?)
             ON CONFLICT(cusip) DO UPDATE SET ticker=excluded.ticker, sec_type='common',
@@ -135,9 +200,9 @@ def run():
             WHERE source IN ('fmp', 'fmp-name') AND ticker IS NOT NULL""").fetchall():
         p = prof.get(sym) or {}
         r = px_ratio(cusip, sym)
-        if src == "fmp-name":             # name-search pick: re-prove it every run
-            bad = not (named(cusip, p.get("companyName")) and is_true(p.get("isActivelyTrading"))
-                       and in_band(r, BAND_RENAMED, False))
+        if src == "fmp-name":             # name-search pick: re-prove it every run, and
+            bad = (bool(fmp_syms.get(cusip, set()) - {sym})      # yield to FMP's CUSIP data
+                   or not name_match_ok(cusip, sym, BAND_RENAMED))
         elif named(cusip, p.get("companyName")) or not p:
             bad = not in_band(r, BAND_NAMED, True)
         else:
@@ -189,9 +254,17 @@ def run():
         if cmap.get(cusip, (None, None))[0] == sym and set(tks) <= {want}:
             continue                              # already right everywhere
         olds = [tk for tk in tks if tk and tk != sym]
-        if olds and not named(cusip, prof[sym].get("companyName")) and all(
-                in_band(px_ratio(cusip, tk), BAND_NAMED, True) for tk in olds):
-            continue                              # no name proof and nothing visibly wrong
+        if olds and not named(cusip, prof[sym].get("companyName")):
+            # no name proof: switch only if an old ticker is visibly wrong (FMP
+            # prices it off the 13F) or unknown to FMP altogether (PG&E common
+            # sat on PCG-PX, a line FMP doesn't carry) — the latter only when
+            # the CUSIP match holds under the tight band
+            if all(in_band(px_ratio(cusip, tk), BAND_NAMED, False) for tk in olds):
+                continue
+            if (not any(px_ratio(cusip, tk) is not None and not in_band(px_ratio(cusip, tk), BAND_NAMED, False)
+                        for tk in olds)
+                    and not in_band(px_ratio(cusip, sym), BAND_SEARCH, False)):
+                continue
         conn.execute("""INSERT INTO cusip_map VALUES (?,?,?,'fmp',?)
             ON CONFLICT(cusip) DO UPDATE SET ticker=excluded.ticker, sec_type=excluded.sec_type,
                 source='fmp', asof=excluded.asof WHERE cusip_map.source <> 'curated'""",
@@ -214,6 +287,7 @@ def run():
         SELECT u.cusip, MAX(u.issuer), SUM(u.value_k)/1e3 FROM u
         LEFT JOIN cusip_map cm ON cm.cusip = u.cusip
         WHERE u.cusip IS NOT NULL AND length(u.cusip) = 9 AND cm.ticker IS NULL
+          AND COALESCE(cm.source, '') <> 'curated'
         GROUP BY u.cusip""").fetchall()
     todo = [t for t in todo if _valid_cusip(t[0])]
     etfs = {r.get("symbol") for r in (get("etf-list") or [])}
@@ -256,27 +330,19 @@ def run():
         return cusip, issuer, v, d[0].get("symbol"), "name-mismatch"
 
     def search_by_name(cusip, issuer):
-        """Third tier, for equity lines FMP's CUSIP index lacks (Indivior after
-        its US redomicile, Qiagen's post-consolidation shares, fresh IPOs like
-        INNIO): search by issuer name, then demand a shared name token, a live
-        US line, a price within 1.5x of the 13F's, and a single survivor."""
-        words = name_words(issuer)
-        if not words:
+        """Third tier, only for equity lines FMP's CUSIP index has never heard
+        of (Indivior after its US redomicile, Qiagen's post-consolidation
+        shares, fresh listings like INNIO): search by issuer name, then demand
+        the full name test, a live US line, a price within 1.5x of the 13F's,
+        and a single survivor."""
+        if not name_words(issuer):
             return None
-        brand = toks(words[0])
         for q in name_queries(issuer):
             d = get("search-name", query=urllib.parse.quote(q))
             if not d:
                 continue
-            ok = []
-            for x in d:
-                s = x.get("symbol") or ""
-                p = prof.get(s)
-                if ("." in s or not p or not is_true(p.get("isActivelyTrading"))
-                        or not (brand and brand <= toks(p.get("companyName")))
-                        or not in_band(px_ratio(cusip, s), BAND_SEARCH, False)):
-                    continue
-                ok.append(s)
+            ok = [x.get("symbol") for x in d
+                  if name_match_ok(cusip, x.get("symbol") or "", BAND_SEARCH)]
             listed = [s for s in ok if (prof[s].get("exchange") or "").upper() in LISTED]
             ok = listed or ok
             if len(set(ok)) == 1:
@@ -287,7 +353,9 @@ def run():
 
     def resolve_all(t):
         r = resolve(t)
-        if r[4] in ("no-match", "name-mismatch", "price-mismatch") and equity_cusip(t[0]):
+        # only where FMP has NO record of the CUSIP: never out-guess FMP's own
+        # CUSIP data (a warrant CUSIP FMP files under SPWRW must not become SPWR)
+        if r[4] == "no-match" and equity_cusip(t[0]):
             s = search_by_name(t[0], t[1])
             if s:
                 return t[0], t[1], t[2], s, "ok-name"
@@ -306,7 +374,7 @@ def run():
         conn.execute("""INSERT INTO cusip_map VALUES (?,?,?,?,?)
             ON CONFLICT(cusip) DO UPDATE SET ticker=excluded.ticker, sec_type=excluded.sec_type,
                 source=excluded.source, asof=excluded.asof
-            WHERE cusip_map.ticker IS NULL""",
+            WHERE cusip_map.ticker IS NULL AND cusip_map.source <> 'curated'""",
             (cusip, sym, st, "fmp-name" if status == "ok-name" else "fmp", asof))
         if is_etf:
             n_etf += 1

@@ -649,17 +649,24 @@ def sheet_dossier(wb, conn, top_n=45):
         ws.cell(row=row, column=1, value="Valuation"); ws.cell(row=row, column=2, value=" · ".join(val)[:120]); row += 1
         # earnings track record (FMP): beat rate over the last 8 reported quarters
         try:
-            eb = conn.execute("""SELECT n_q, beats, last_date, last_surprise_pct, streak
+            eb = conn.execute("""SELECT n_q, beats, last_date, last_surprise_pct, streak,
+                                        rev_n, rev_beats, last_rev_surprise_pct
                                  FROM earnings_beat WHERE ticker=?""", (tk,)).fetchone()
         except sqlite3.OperationalError:
             eb = None
-        if eb and eb[0]:
-            etxt = f"beat {eb[1]} of last {eb[0]} quarters"
-            if eb[3] is not None:
-                etxt += f" · last ({eb[2]}) {eb[3]:+.0f}% vs consensus"
+        if eb and (eb[0] or eb[5]):
+            parts = []
+            if eb[0]:
+                parts.append(f"EPS beat {eb[1]} of last {eb[0]} quarters")
+            if eb[5]:
+                parts.append(f"revenue beat {eb[6]} of {eb[5]}")
+            last = ([f"EPS {eb[3]:+.0f}%"] if eb[3] is not None else []) + \
+                   ([f"revenue {eb[7]:+.1f}%"] if eb[7] is not None else [])
+            if last:
+                parts.append(f"last ({eb[2]}): {', '.join(last)} vs consensus")
             if eb[4] and eb[4] >= 2:
-                etxt += f" · {eb[4]}-quarter beat streak"
-            ws.cell(row=row, column=1, value="Earnings"); ws.cell(row=row, column=2, value=etxt); row += 1
+                parts.append(f"{eb[4]}-quarter EPS beat streak")
+            ws.cell(row=row, column=1, value="Earnings"); ws.cell(row=row, column=2, value=" · ".join(parts)); row += 1
         # thin rule between blocks
         row += 1
     for rr in range(4, row):

@@ -48,7 +48,7 @@ def run():
     import ingest_13d as i13
     try:
         j = json.loads(curl("https://www.sec.gov/files/company_tickers.json"))
-        i13.TICKER_BY_CIK = {str(v["cik_str"]): v["ticker"] for v in j.values()}
+        i13.TICKER_BY_CIK = i13.primary_ticker_by_cik(j)
     except Exception:
         i13.TICKER_BY_CIK = {}
     print(f"loaded {len(i13.TICKER_BY_CIK)} CIK->ticker mappings\n")

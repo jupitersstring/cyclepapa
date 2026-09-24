@@ -108,6 +108,8 @@ def run():
           AND issuer NOT LIKE '%FDS%' AND issuer NOT LIKE '%SHARES%' AND issuer NOT LIKE '%EXCH TRD%'
           AND issuer NOT LIKE '%PORTFOLIO%' AND issuer NOT LIKE '%INDEX%' AND issuer NOT LIKE '%ISHARES%'
           AND issuer NOT LIKE '%NOTE%' AND issuer NOT LIKE '%BOND%' AND issuer NOT LIKE '%CALL%' AND issuer NOT LIKE '%PUT%'
+          -- FMP-identified ETFs / closed-end funds stay unticked on holdings by design
+          AND cusip NOT IN (SELECT cusip FROM cusip_map WHERE sec_type = 'etf')
         GROUP BY issuer HAVING vM >= 100 ORDER BY vM DESC""").fetchall()
     if unmapped:
         big = sum(1 for _ in unmapped)

@@ -196,7 +196,8 @@ def enrich_13d():
     # ticker map
     tj = curl("https://www.sec.gov/files/company_tickers.json")
     try:
-        cmap = {str(v["cik_str"]): v["ticker"] for v in json.loads(tj).values()}
+        from ingest_13d import primary_ticker_by_cik   # primary line, not a warrant/pref
+        cmap = primary_ticker_by_cik(json.loads(tj))
     except Exception:
         cmap = {}
     seen = set()

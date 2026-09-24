@@ -103,8 +103,9 @@ def run():
     import ingest_13d as i13
     try:
         j = json.loads(curl("https://www.sec.gov/files/company_tickers.json"))
-        i13.TICKER_BY_CIK = {str(v["cik_str"]): v["ticker"] for v in j.values()}
-        print(f"loaded {len(i13.TICKER_BY_CIK)} CIK→ticker mappings\n")
+        i13.TICKER_BY_CIK = i13.primary_ticker_by_cik(j)
+        print(f"loaded {len(i13.TICKER_BY_CIK)} CIK→ticker mappings; "
+              f"{i13.repair_subject_tickers(conn, j)} stored 13D subjects moved to the primary line\n")
     except Exception as e:
         print(f"warn: ticker map load failed: {e}")
 

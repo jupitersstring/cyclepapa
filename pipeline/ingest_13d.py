@@ -127,6 +127,45 @@ def parse_subject(cik, accession, primary_doc):
 
 TICKER_BY_CIK = {}
 
+def _lines_by_cik(j):
+    by_cik = {}
+    for v in j.values():
+        by_cik.setdefault(str(v["cik_str"]), []).append(v["ticker"])
+    return by_cik
+
+def _primary(tks):
+    """The common-stock line among an issuer's listed lines: not hyphenated
+    (BH-A, SRG-PA) and not a warrant/unit/right sibling (LPAAU, LUCYW = the
+    base ticker + W/U/R). Falls back to the first listed."""
+    for t in tks:
+        if "-" in t or (len(t) >= 4 and t[-1] in "WUR" and t[:-1] in tks) \
+                or (t.endswith("WS") and t[:-2] in tks):
+            continue
+        return t
+    return tks[0]
+
+def primary_ticker_by_cik(j):
+    """CIK -> PRIMARY ticker from company_tickers.json, which lists one row per
+    listed line. A plain dict comprehension kept the LAST line, putting 1,034
+    13D filings on warrants / units / preferreds / notes (SABSW, ASTLW, STRRP,
+    Navient's JSM), where the scorer classified the activist signal out of
+    common-stock picks."""
+    return {cik: _primary(tks) for cik, tks in _lines_by_cik(j).items()}
+
+def repair_subject_tickers(conn, j, table="holder_13d", tcol="subject_ticker"):
+    """Move stored 13D subjects off a secondary line onto the issuer's primary."""
+    n = 0
+    for cik, tks in _lines_by_cik(j).items():
+        if len(tks) > 1:
+            p = _primary(tks)
+            others = [t for t in tks if t != p]
+            ph = ",".join("?" * len(others))
+            n += conn.execute(f"""UPDATE {table} SET {tcol}=?
+                WHERE CAST(subject_cik AS INTEGER)=? AND {tcol} IN ({ph})""",
+                [p, int(cik)] + others).rowcount
+    conn.commit()
+    return n
+
 def run():
     conn = sqlite3.connect(DB)
     conn.executescript("""
@@ -139,7 +178,7 @@ def run():
     global TICKER_BY_CIK
     try:
         j = json.loads(curl("https://www.sec.gov/files/company_tickers.json"))
-        TICKER_BY_CIK = {str(v["cik_str"]): v["ticker"] for v in j.values()}
+        TICKER_BY_CIK = primary_ticker_by_cik(j)
     except Exception:
         TICKER_BY_CIK = {}
     print(f"loaded {len(TICKER_BY_CIK)} ticker mappings")

@@ -69,6 +69,9 @@ def run():
                    FROM broker_13f b LEFT JOIN cusip_map cm ON cm.cusip = b.cusip
                    WHERE b.sh_type IN ('SH','') AND COALESCE(cm.ticker, b.ticker) IS NOT NULL
                      AND b.broker IN (SELECT broker FROM ok)
+                     -- ETF / fund lines: cusip_map now names them (IVV, RYH);
+                     -- basket flow, never a single-name hedge
+                     AND COALESCE(cm.sec_type, 'common') <> 'etf'
                      -- CUSIP issue code (chars 7-8): letters = DEBT (convertible
                      -- notes: AKAM 00971TAQ4 booked as "SH" showed as 26M shares).
                      -- Equity issues are numeric; drop alpha-issue rows.
@@ -91,8 +94,10 @@ def run():
     if skipped:
         print(f"NOTE: brokers excluded for partial/incomparable prior: {skipped}")
 
+    yf_cols = {r[1] for r in conn.execute("PRAGMA table_info(ticker_yf)")}
+    fund_flag = "is_fund" if "is_fund" in yf_cols else "0 AS is_fund"
     yf = {r["ticker"]: r for r in conn.execute(
-        "SELECT ticker, price, mcap_m, shares_out_m FROM ticker_yf WHERE price > 0")}
+        f"SELECT ticker, price, mcap_m, shares_out_m, {fund_flag} FROM ticker_yf WHERE price > 0")}
     issuer_of = {r[0]: r[1] for r in conn.execute("""
         SELECT COALESCE(cm.ticker, b.ticker), MAX(b.issuer)
         FROM broker_13f b LEFT JOIN cusip_map cm ON cm.cusip = b.cusip
@@ -186,6 +191,8 @@ def run():
             continue
         if s and s["sec_type"] not in (None, "common"):
             continue
+        if y["is_fund"]:
+            continue        # FMP flags it an ETF / closed-end fund / trust
         if "-" in tk and tk.split("-")[0] in yf:
             continue        # share-class line (TAP-A): % of shares_out is wrong
         if len(tk) == 5 and tk.endswith(("F", "Y")):

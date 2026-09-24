@@ -37,7 +37,8 @@ def api_key():
 def fetch_csv(path, **params):
     q = "&".join(f"{k}={v}" for k, v in params.items())
     url = f"{API}/{path}?{q}{'&' if q else ''}apikey={api_key()}"
-    for attempt in range(4):
+    limited = 0
+    for attempt in range(6):
         r = subprocess.run(["curl", "-sS", "--max-time", "180", url],
                            capture_output=True, text=True)
         body = r.stdout
@@ -45,8 +46,14 @@ def fetch_csv(path, **params):
             return list(csv.DictReader(io.StringIO(body)))
         if body.strip() in ("", "[]"):
             return []
-        if "Limit Reach" in body:           # plan cap — retrying won't help
-            raise RuntimeError(f"FMP {path}: limit reached")
+        if "Limit Reach" in body:
+            # bulk endpoints sit behind a rolling window (a call that fails now
+            # succeeds a minute later): wait it out twice, then give up
+            limited += 1
+            if limited > 2:
+                raise RuntimeError(f"FMP {path}: limit reached")
+            time.sleep(65)
+            continue
         time.sleep(5 * (attempt + 1))      # transient error
     raise RuntimeError(f"FMP {path} failed: {body[:200]}")
 
