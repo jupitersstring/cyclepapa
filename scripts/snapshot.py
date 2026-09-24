@@ -108,8 +108,11 @@ def rebuild() -> None:
     syms = _cached_ok_symbols()
     print(f"rebuilding from {len(syms)} cached names with data (no network)...")
     uni = pd.read_parquet(config.UNIVERSE_PATH)
-    # refresh=False + no surprise_regions => pure cache read for every symbol.
-    funda = F.build_fundamentals(uni, symbols=syms, refresh=False, surprise_regions=None)
+    # PURE cache read: no expiry at all. With the default 30-day TTL, a snapshot
+    # older than a month was silently RE-FETCHED here — plain Yahoo raws that
+    # clobbered the EDGAR deep history, merged statements and EPS surprises.
+    funda = F.build_fundamentals(uni, symbols=syms, refresh=False, surprise_regions=None,
+                                 ttl_days=None, fail_ttl_days=None)
     F.save_fundamentals(funda)
     ok = int(funda["fetch_ok"].sum()) if "fetch_ok" in funda.columns else len(funda)
     print(f"fundamentals: {len(funda)} rows ({ok} with data) -> {config.FUNDAMENTALS_PATH}")

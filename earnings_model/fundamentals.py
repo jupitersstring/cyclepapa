@@ -345,6 +345,34 @@ def load_raw(symbol: str, ttl_days: float = config.CACHE_TTL_DAYS,
     return raw
 
 
+def preserve_enrichment(prior: dict, new: dict) -> dict:
+    """Fold a cached raw's enrichment layers into a fresh re-fetch, so a re-fetch
+    can never DOWNGRADE a cached name.
+
+    A plain fetch carries ~5y of annual statements, the latest quarters and no
+    EPS-surprise history. The cached raw may hold far more, added by the overlay
+    jobs: an EDGAR deep annual history (10-19y), quarters merged in by
+    refresh_statements, and a surprise history unioned across refreshes.
+    Replacing it wholesale erases all of that. Here the EDGAR annual block is
+    authoritative and kept; other statement blocks are merged by period (new
+    periods appended, deep history kept); surprise histories are unioned; and
+    the provenance stamps are carried over.
+    """
+    from . import yahoo                                # lazy: yahoo imports this module
+    out = dict(new)
+    if prior.get("statement_source") == "edgar-annual" and prior.get("annual"):
+        out["annual"] = prior["annual"]
+    else:
+        out["annual"] = yahoo.merge_statement_blocks(prior.get("annual"), new.get("annual"))
+    out["quarterly"] = yahoo.merge_statement_blocks(prior.get("quarterly"),
+                                                     new.get("quarterly"), quarterly=True)
+    out["surprises"] = yahoo.merge_surprises(prior.get("surprises"), new.get("surprises"))
+    for key in ("statement_source", "cik", "statements_refreshed", "edgar_checked"):
+        if key in prior and key not in new:
+            out[key] = prior[key]
+    return out
+
+
 def save_raw(symbol: str, raw: dict) -> None:
     # Atomic: a kill mid-write used to truncate the JSON, silently costing the
     # name its EDGAR deep-history overlay on the next load (load_raw -> None).
@@ -577,6 +605,12 @@ def build_fundamentals(
             # above skip the limiter entirely).
             raw = mgr.fetch(sym, with_surprises=ws)
             if raw.get("fetch_ok"):
+                # A successful re-fetch of an expired name must MERGE into the
+                # cached raw, not replace it — a plain fetch is thinner than an
+                # enriched raw (EDGAR history, merged quarters, surprises).
+                prior = load_raw(sym, ttl_days=None, fail_ttl_days=None)
+                if prior is not None and prior.get("fetch_ok"):
+                    raw = preserve_enrichment(prior, raw)
                 # Cache successes long, failures briefly (negative cache).
                 save_raw(sym, raw)
             else:
