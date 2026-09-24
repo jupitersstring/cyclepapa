@@ -376,15 +376,39 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # every filer FMP covers. Revenue-based legs only: segment op-margin, op
     # leverage and the margin-inflection flag stay EDGAR-only (FMP has no
     # segment EBIT), so those confirm legs simply stay absent for FMP names.
+    # RECONCILIATION guard: SHARE-based fields (HHI, largest / fastest share,
+    # share delta) are only meaningful when the segments sum to the company
+    # (0.8-1.2x the same-FY consolidated revenue). Partial disclosure (KO's
+    # geographic axis covers 66% of sales) or overlapping hierarchies would
+    # otherwise fake concentration / diversification. Growth rates of a
+    # segment are valid either way. Unknown coverage passes (no IS revenue).
+    for _pre in ('fmp_seg', 'fmp_geo'):
+        _cov = _num_or_nan(f'{_pre}_coverage')
+        _rec_ok = _cov.isna() | ((_cov >= 0.8) & (_cov <= 1.2))
+        for _c in (f'{_pre}_hhi', f'{_pre}_largest_share', f'{_pre}_fastest_share',
+                   f'{_pre}_fastest_share_delta', f'{_pre}_hhi_delta'):
+            if _c in df.columns:
+                df[_c + '_rec'] = _num_or_nan(_c).where(_rec_ok)
+    # quarterly corroboration of the fastest segment, EDGAR definition:
+    # latest-quarter YoY positive and >= half the FY rate
+    _fq_y = _num_or_nan('fmp_seg_fastest_yoy_q'); _ff_y = _num_or_nan('fmp_seg_fastest_yoy')
+    df['fmp_seg_q_confirm'] = ((_fq_y > 0) & (_ff_y.isna() | (_fq_y >= 0.5 * _ff_y))).astype(float) \
+        .where(_fq_y.notna())
     for _b, _f in (('segment_count', 'fmp_seg_count'),
-                   ('segment_revenue_hhi', 'fmp_seg_hhi'),
-                   ('largest_segment_share', 'fmp_seg_largest_share'),
+                   ('segment_revenue_hhi', 'fmp_seg_hhi_rec'),
+                   ('largest_segment_share', 'fmp_seg_largest_share_rec'),
                    ('geographic_region_count', 'fmp_geo_count'),
-                   ('largest_region_share', 'fmp_geo_largest_share'),
+                   ('largest_region_share', 'fmp_geo_largest_share_rec'),
                    ('fastest_segment_yoy', 'fmp_seg_fastest_yoy'),
                    ('fastest_seg_yoy_fy', 'fmp_seg_fastest_yoy'),
-                   ('fastest_segment_share', 'fmp_seg_fastest_share'),
-                   ('fastest_segment_share_delta', 'fmp_seg_fastest_share_delta'),
+                   ('fastest_seg_yoy_q', 'fmp_seg_fastest_yoy_q'),
+                   ('fastest_seg_accel_fy', 'fmp_seg_fastest_accel_fy'),
+                   ('fastest_seg_q_confirm', 'fmp_seg_q_confirm'),
+                   ('fastest_seg_consec_growth', 'fmp_seg_fastest_consec_growth_q'),
+                   ('fastest_segment_share', 'fmp_seg_fastest_share_rec'),
+                   ('fastest_segment_share_delta', 'fmp_seg_fastest_share_delta_rec'),
+                   ('segment_hhi_delta', 'fmp_seg_hhi_delta_rec'),
+                   ('seg_core_declining', 'fmp_seg_core_declining'),
                    ('segment_growth_dispersion', 'fmp_seg_growth_dispersion')):
         _fmp_fill(_b, _f)
     # ---- QUARTERLY forensic fills (fmp_quarterly.py) ----
@@ -7144,6 +7168,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ('fq_deleveraging_flag', 'Deleveraging'), ('fq_gm_inflection_flag', 'GMInflect'),
         ('fq_defrev_build_flag', 'DefRevBuild'), ('fq_cash_tax_shield_flag', 'CashTaxShield'),
         ('fq_forensic_clean_confirm', 'ForensicClean'),
+        ('segment_rot_flag', 'SegCoreRot'),
     ]
     _sig = pd.Series('', index=df.index)
     for _col, _tag in _sig_defs:
@@ -7198,7 +7223,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                             'fmp_seg_count','fmp_seg_hhi','fmp_seg_largest_name','fmp_seg_largest_share',
                             'fmp_seg_fastest_name','fmp_seg_fastest_yoy','fmp_seg_fastest_share_delta',
                             'fmp_geo_count','fmp_geo_largest_name','fmp_geo_largest_share',
-                            'fmp_geo_em_share','fmp_geo_china_share'] if c in df.columns]
+                            'fmp_geo_em_share','fmp_geo_china_share',
+                            'fmp_seg_coverage','fmp_geo_coverage','fmp_seg_fastest_yoy_q',
+                            'fmp_seg_fastest_q_accel','fmp_seg_fastest_consec_growth_q',
+                            'fmp_seg_fastest_accel_fy','fmp_seg_fastest_cagr_3y',
+                            'fmp_seg_share_gainer_3y_name','fmp_seg_share_gainer_3y_delta',
+                            'fmp_seg_hhi_delta','fmp_seg_hhi_delta_3y','fmp_seg_core_declining',
+                            'fmp_geo_core_declining','fmp_geo_em_share_delta',
+                            'fmp_geo_china_share_delta'] if c in df.columns]
              # quarterly 3-statement forensic layer (fmp_quarterly) + flags
              + [c for c in ['fmp_q_status','fmp_q_ccy','fmp_q_latest','fmp_q_periods_per_year',
                             'fq_cf_basis','fq_fx_to_master',

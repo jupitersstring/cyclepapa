@@ -22,6 +22,7 @@ import argparse
 import os
 import sys
 
+import numpy as np
 import pandas as pd
 import tab_colors
 
@@ -79,7 +80,13 @@ def load_data():
                    ('segment_growth_dispersion', 'fmp_seg_growth_dispersion'),
                    ('geographic_region_count', 'fmp_geo_count'),
                    ('largest_region_name', 'fmp_geo_largest_name'),
-                   ('largest_region_share', 'fmp_geo_largest_share')):
+                   ('largest_region_share', 'fmp_geo_largest_share'),
+                   # quarterly momentum + structure (EDGAR names, FMP values)
+                   ('fastest_seg_yoy_q', 'fmp_seg_fastest_yoy_q'),
+                   ('fastest_seg_consec_growth', 'fmp_seg_fastest_consec_growth_q'),
+                   ('fastest_seg_accel_fy', 'fmp_seg_fastest_accel_fy'),
+                   ('segment_hhi_delta', 'fmp_seg_hhi_delta'),
+                   ('seg_core_declining', 'fmp_seg_core_declining')):
         if _f in df.columns:
             if _b not in df.columns:
                 df[_b] = np.nan
@@ -101,6 +108,18 @@ def load_data():
                     df[_col] = np.nan
                 df[_col] = df[_col].where(df[_col].notna() & (df[_col].astype(str) != ''),
                                           df['symbol'].map(_t))
+
+    # FMP quarterly 3-statement accounting read (same columns and plain-
+    # language check as the forensic XR book): a segment thesis resting on
+    # numbers that trip Beneish / accrual / divergence tells is visible here.
+    from build_forensic_xr_book import ACCT_COLS
+    if os.path.exists('archetype_tags.csv'):
+        _have = pd.read_csv('archetype_tags.csv', nrows=0).columns
+        _ac = [c for c in ACCT_COLS if c in _have and c not in df.columns]
+        if _ac:
+            df = df.merge(pd.read_csv('archetype_tags.csv', usecols=['symbol'] + _ac,
+                                      low_memory=False).drop_duplicates('symbol'),
+                          on='symbol', how='left')
 
     # segment-archetype membership flags (from the tags output) so the book can
     # carry a tab per segment SETUP, not just the raw segment-structure cuts
@@ -196,7 +215,7 @@ def _write_segment_table(ws, df_subset, label, n_total, sort_col='entry_confirme
     f_text_muted = _font(color=MUTED)
     f_italic_muted = _font(italic=True, color=MUTED)
 
-    NCOLS = 31   # 28 original + Src, EM rev %, China rev %
+    NCOLS = 41   # 31 + momentum / structure / reconciliation / accounting
     # Title
     t = ws.cell(row=2, column=1, value=label)
     t.font = f_bold
@@ -251,9 +270,14 @@ def _write_segment_table(ws, df_subset, label, n_total, sort_col='entry_confirme
                # not just revenue growth.
                'Fast seg OpMgn ΔYoY %', 'Seg OpLev', 'MgnInflect',
                # source + true revenue geography (FMP)
-               'Src', 'EM rev %', 'China rev %']
-    text_cols = {2, 3, 4, 5, 6, 21, 22, 24, 25}  # ticker/name/country/sector/industry/segment text
-    center_cols = {8, 19, 28, 29}  # verdict + segs count + margin-inflect flag + source
+               'Src', 'EM rev %', 'China rev %',
+               # MOMENTUM (latest quarter, date-matched YoY) + STRUCTURE (3y)
+               'Fast seg Q YoY %', 'Growth Qs', 'Fast seg ΔFY accel pp',
+               'Fast seg 3y CAGR %', '3y share gainer (Δpp)', 'EM Δpp', 'China Δpp',
+               # reconciliation + warnings + accounting
+               'Seg cover %', 'Core rot', 'Accounting check']
+    text_cols = {2, 3, 4, 5, 6, 21, 22, 24, 25, 36, 41}  # ticker/name/.../segment text
+    center_cols = {8, 19, 28, 29, 33, 40}  # verdict, counts, flags, source
     for i, h in enumerate(headers, start=1):
         c = ws.cell(row=11, column=i, value=h)
         c.font = f_bold_muted
@@ -327,6 +351,34 @@ def _write_segment_table(ws, df_subset, label, n_total, sort_col='entry_confirme
         ws.cell(row=r_idx, column=29).alignment = _NUM_ALIGN_CENTER
         _write_pct(ws, r_idx, 30, r.get('fmp_geo_em_share'), font=f_text)
         _write_pct(ws, r_idx, 31, r.get('fmp_geo_china_share'), font=f_text)
+        _write_pct(ws, r_idx, 32, r.get('fastest_seg_yoy_q'), font=f_text)
+        _gq = r.get('fastest_seg_consec_growth')
+        _write_int(ws, r_idx, 33, int(_gq) if pd.notna(_gq) else None, font=f_text)
+        _acc = r.get('fastest_seg_accel_fy')
+        _write_score(ws, r_idx, 34, _acc * 100 if pd.notna(_acc) else None, font=f_text)
+        _write_pct(ws, r_idx, 35, r.get('fmp_seg_fastest_cagr_3y'), font=f_text)
+        _gn, _gd = r.get('fmp_seg_share_gainer_3y_name'), r.get('fmp_seg_share_gainer_3y_delta')
+        ws.cell(row=r_idx, column=36,
+                value=(f"{str(_gn)[:20]} ({_gd*100:+.0f})" if pd.notna(_gd) and isinstance(_gn, str) else '')
+                ).font = f_text
+        ws.cell(row=r_idx, column=36).alignment = _TXT_ALIGN_LEFT
+        for _col, _k in ((37, 'fmp_geo_em_share_delta'), (38, 'fmp_geo_china_share_delta')):
+            _v = r.get(_k)
+            _write_score(ws, r_idx, _col, _v * 100 if pd.notna(_v) else None, font=f_text)
+        # coverage: segment total / same-FY consolidated revenue (product axis,
+        # else geographic). Outside 80-120% the shares are not the company's.
+        _cv = r.get('fmp_seg_coverage')
+        _cv = _cv if pd.notna(_cv) else r.get('fmp_geo_coverage')
+        _write_pct(ws, r_idx, 39, _cv, font=(_font(color='B42318')
+                   if pd.notna(_cv) and not (0.8 <= _cv <= 1.2) else f_text))
+        _rot = r.get('seg_core_declining')
+        ws.cell(row=r_idx, column=40, value='⚠' if (pd.notna(_rot) and _rot == 1) else '').font = _font(color='B42318')
+        ws.cell(row=r_idx, column=40).alignment = _NUM_ALIGN_CENTER
+        from build_forensic_xr_book import acct_check
+        _ak = acct_check(r)
+        _c = ws.cell(row=r_idx, column=41, value=_ak)
+        _c.font = _font(color=('B42318' if _ak.startswith('WARN') else INK))
+        _c.alignment = _TXT_ALIGN_LEFT
         for c in range(1, NCOLS + 1):
             ws.cell(row=r_idx, column=c).border = Border(
                 bottom=Side(style='thin', color=RULE))
@@ -336,7 +388,8 @@ def _write_segment_table(ws, df_subset, label, n_total, sort_col='entry_confirme
     widths = {1: 4, 2: 10, 3: 22, 4: 6, 5: 14, 6: 16, 7: 14, 8: 12,
               9: 9, 10: 8, 11: 7, 12: 7, 13: 9, 14: 7, 15: 8, 16: 10, 17: 9, 18: 10,
               19: 5, 20: 7, 21: 28, 22: 52, 23: 5, 24: 32, 25: 22,
-              26: 18, 27: 9, 28: 10, 29: 10, 30: 9, 31: 10}
+              26: 18, 27: 9, 28: 10, 29: 10, 30: 9, 31: 10,
+              32: 11, 33: 8, 34: 11, 35: 11, 36: 26, 37: 8, 38: 9, 39: 10, 40: 8, 41: 44}
     for col, w in widths.items():
         ws.column_dimensions[get_column_letter(col)].width = w
 
@@ -396,7 +449,10 @@ def main():
     src_note = cover.cell(row=7, column=2,
                           value="Sources: SEC EDGAR dimensional XBRL (US multi-segment 10-K filers; also carries segment "
                                 "operating margin) UNION Financial Modeling Prep revenue segmentation (product + geographic, "
-                                "US and non-US). 'Src' column shows which. FMP is revenue-only: margin columns stay EDGAR.")
+                                "US and non-US, annual AND quarterly). 'Src' column shows which. FMP is revenue-only: margin "
+                                "columns stay EDGAR. Segment totals are reconciled to consolidated revenue ('Seg cover %'); "
+                                "quarterly YoY is date-matched (same quarter a year earlier). 'Accounting check' = FMP "
+                                "3-statement forensic tells, as in the forensic XR book.")
     src_note.font = f_italic_muted
     cover.merge_cells(start_row=7, start_column=2, end_row=7, end_column=7)
 
@@ -441,7 +497,11 @@ def main():
         ("Margin Mix-Shift", "top 60", "XR: rich segment (>=5pp over blend) gaining share -> coming consolidated margin lift"),
         ("Hidden Engine (all)", f"top {max(args.n,150):,}", "arch_fastest_segment — broad hidden growth-engine tag"),
         ("EM Revenue Exposure", f"top {max(args.n,150):,}", ">=50% of revenue from emerging markets (FMP geography), incl. DM listings"),
-        ("FMP Segment Detail", "every name", "per-ticker product + geographic segment revenue, share and YoY (latest FY)"),
+        ("Segment Momentum", "top 100", "fastest segment's latest-QUARTER YoY >= 20%, 3+ growth quarters, accelerating"),
+        ("Mix Shift 3y", "top 100", "a segment took >= 10pp of the company over 3 fiscal years (structural, not a base effect)"),
+        ("Rotting Core", "top 100", "WARNING: a >= 25% segment shrank >= 10% YoY (flat top line may hide it)"),
+        ("Segment Reconciliation", "every flagged name", "segments sum to < 80% or > 120% of revenue — shares not trusted"),
+        ("Segment History", "every name", "per-segment revenue FY-5..FY0 side by side, USD, share, YoY, 3y CAGR, 3y Δshare, latest-Q YoY"),
     ]
     for i, (tab, n, desc) in enumerate(rows_meta, start=16):
         cover.cell(row=i, column=2, value=tab).font = f_bold
@@ -531,6 +591,33 @@ def main():
          if 'arch_fastest_segment' in df.columns else df.iloc[0:0],
          'arch_fastest_segment — the broad hidden growth-engine tag (segment inflection, no valuation gate)',
          'seg_inflect_confirmed', max(args.n, 150)),
+        # MOMENTUM: the annual fastest segment is still accelerating in the
+        # latest reported quarter (date-matched YoY), with a growth streak —
+        # fresher than any fiscal-year number
+        ('Segment Momentum',
+         df[(pd.to_numeric(df.get('fastest_seg_yoy_q'), errors='coerce') >= 0.20)
+            & (pd.to_numeric(df.get('fastest_seg_consec_growth'), errors='coerce') >= 3)
+            & ((pd.to_numeric(df.get('fmp_seg_fastest_q_accel'), errors='coerce') > 0)
+               | (pd.to_numeric(df.get('fastest_seg_accel_fy'), errors='coerce') > 0))
+            & (df['segment_count'].fillna(0) >= 2)],
+         'Latest-quarter YoY of the fastest segment >= 20%, >= 3 straight growth quarters, and accelerating '
+         '(quarter-on-quarter YoY or FY growth rate rising) — ranked by segment YoY, confirmation-upweighted',
+         'seg_inflect_confirmed', max(args.n, 100)),
+        # MIX SHIFT (3y): a segment has structurally taken >= 10pp of the
+        # company over three fiscal years — base-effect-robust, unlike a 1y YoY
+        ('Mix Shift 3y',
+         df[(pd.to_numeric(df.get('fmp_seg_share_gainer_3y_delta'), errors='coerce') >= 0.10)
+            & (df['segment_count'].fillna(0) >= 2)],
+         'A segment gained >= 10pp of company revenue over three fiscal years (structural mix shift, '
+         'not a one-year base effect) — ranked by confirmed ETA; reconciled coverage shown per row',
+         sort_col, max(args.n, 100)),
+        # WARNING tab: a large core segment is shrinking; consolidated revenue
+        # may look flat only because a smaller line is growing
+        ('Rotting Core',
+         df[pd.to_numeric(df.get('seg_core_declining'), errors='coerce') == 1],
+         'WARNING view — a segment that was >= 25% of revenue shrank >= 10% YoY. Informational: '
+         'check whether the growing lines can outrun it before trusting a flat consolidated top line',
+         sort_col, max(args.n, 100)),
     ]
 
     for label, sub_df, desc, tab_sort, tab_n in archetypes:
@@ -552,39 +639,127 @@ def main():
                                  '(FMP geographic segmentation); includes developed-market listings whose '
                                  'economics are EM (the Cluseau sizing tier keys on this too)', n_total, 'fmp_geo_em_share')
 
-    # === FMP Segment Detail: per-ticker rows for EVERY name in the book ===
+    # === Segment Reconciliation: where the segments do NOT add up ===
+    _cov = pd.to_numeric(df.get('fmp_seg_coverage'), errors='coerce')
+    _gcov = pd.to_numeric(df.get('fmp_geo_coverage'), errors='coerce')
+    _bad = df[((_cov < 0.8) | (_cov > 1.2)) | ((_gcov < 0.8) | (_gcov > 1.2))]
+    if not _bad.empty:
+        ws = wb.create_sheet('Segment Reconciliation')
+        tab_colors.set_tab(ws, tab_colors.FAMILY_COLORS['segment'])
+        ws.cell(row=1, column=1, value='Segment reconciliation — segment revenue vs the same fiscal '
+                'year\'s consolidated revenue').font = _font(bold=True, color=INK)
+        ws.cell(row=2, column=1, value='< 80% = partial disclosure (only some lines tagged); > 120% = '
+                'overlapping hierarchy or gross-of-eliminations. Shares / HHI for these axes are NOT the '
+                'company\'s mix, so the archetype layer does not use them (growth rates still valid).'
+                ).font = _font(italic=True, color=MUTED)
+        hdr = ['Ticker', 'Name', 'Country', 'Product segs', 'Product cover %', 'Regions',
+               'Geo cover %', 'Largest segment', 'Mcap (USD)']
+        for i, h in enumerate(hdr, start=1):
+            ws.cell(row=4, column=i, value=h).font = _font(bold=True, color=MUTED)
+        _bad = _bad.assign(_dev=pd.concat([(_cov - 1).abs(), (_gcov - 1).abs()], axis=1).max(axis=1)
+                           .reindex(_bad.index)).sort_values('market_cap', ascending=False)
+        for ri, (_, r) in enumerate(_bad.iterrows(), start=5):
+            ws.cell(row=ri, column=1, value=r['symbol']).font = _font(bold=True, color=INK)
+            ws.cell(row=ri, column=2, value=str(r.get('name') or '')[:32])
+            ws.cell(row=ri, column=3, value=str(r.get('src') or ''))
+            _write_int(ws, ri, 4, int(r['fmp_seg_count']) if pd.notna(r.get('fmp_seg_count')) else None)
+            _write_pct(ws, ri, 5, r.get('fmp_seg_coverage'))
+            _write_int(ws, ri, 6, int(r['fmp_geo_count']) if pd.notna(r.get('fmp_geo_count')) else None)
+            _write_pct(ws, ri, 7, r.get('fmp_geo_coverage'))
+            ws.cell(row=ri, column=8, value=str(r.get('largest_segment_name') or '')[:30])
+            _write_money(ws, ri, 9, r.get('market_cap'))
+        for col, w in zip('ABCDEFGHI', (10, 32, 7, 12, 14, 9, 12, 30, 14)):
+            ws.column_dimensions[col].width = w
+        ws.freeze_panes = 'A5'
+        ws.auto_filter.ref = f"A4:I{ws.max_row}"
+        ws.sheet_view.showGridLines = False
+
+    # === Segment History: per-segment WIDE multi-year view for every name ===
+    # One row per (ticker, axis, segment): up to six fiscal years side by side
+    # (reporting currency), latest FY in USD for cross-company comparison,
+    # share, YoY, 3y CAGR, 3y share change, and the latest-quarter YoY.
     if os.path.exists('fmp_segments_detail.csv'):
         det = pd.read_csv('fmp_segments_detail.csv', low_memory=False)
         det = det[det['symbol'].isin(df['symbol'])]
         if not det.empty:
-            det['_fy_max'] = det.groupby(['symbol', 'axis'])['fiscal_year'].transform('max')
-            det = det[det['fiscal_year'] == det['_fy_max']]
+            usd = {}
+            if os.path.exists('fmp_fx_usd.csv'):
+                usd = pd.read_csv('fmp_fx_usd.csv').set_index('currency')['usd_per_unit'].to_dict()
+            det['_fy0'] = det.groupby(['symbol', 'axis'])['fiscal_year'].transform('max')
+            det['_k'] = (det['_fy0'] - det['fiscal_year']).astype(int)
+            det = det[det['_k'].between(0, 5)]
+            wide = det.pivot_table(index=['symbol', 'axis', 'segment'], columns='_k',
+                                   values='revenue', aggfunc='last')
+            meta = det[det['_k'] == 0].set_index(['symbol', 'axis', 'segment'])[
+                ['fiscal_year', 'currency', 'share', 'yoy']]
+            wide = wide.join(meta, how='inner')
+            # 3y share change: share now minus share three FYs ago
+            sh = det.pivot_table(index=['symbol', 'axis', 'segment'], columns='_k',
+                                 values='share', aggfunc='last')
+            wide['share_d3'] = (sh.get(0) - sh.get(3)) if 3 in sh.columns else np.nan
+            if 3 in wide.columns:
+                wide['cagr3'] = np.where((wide[3] > 0) & (wide[0] > 0),
+                                         (wide[0] / wide[3]) ** (1 / 3) - 1, np.nan)
+            else:
+                wide['cagr3'] = np.nan
+            # latest-quarter YoY per segment (date-matched) from the quarterly detail
+            wide['q_yoy'] = np.nan
+            if os.path.exists('fmp_segments_qdetail.csv'):
+                qd = pd.read_csv('fmp_segments_qdetail.csv', low_memory=False)
+                qd = qd[qd['symbol'].isin(df['symbol'])]
+                if not qd.empty:
+                    qd['date'] = pd.to_datetime(qd['date'], errors='coerce')
+                    last = qd.groupby(['symbol', 'axis'])['date'].transform('max')
+                    cur = qd[qd['date'] == last]
+                    ya = qd[((last - qd['date']).dt.days - 365).abs() <= 45]
+                    ya = ya.sort_values('date').drop_duplicates(['symbol', 'axis', 'segment'], keep='last')
+                    j = cur.merge(ya[['symbol', 'axis', 'segment', 'revenue']],
+                                  on=['symbol', 'axis', 'segment'], suffixes=('', '_ya'))
+                    j['q_yoy'] = np.where(j['revenue_ya'] > 0, j['revenue'] / j['revenue_ya'] - 1, np.nan)
+                    wide['q_yoy'] = j.set_index(['symbol', 'axis', 'segment'])['q_yoy'] \
+                        .reindex(wide.index)
+            wide = wide.reset_index()
             rank = {sym: i for i, sym in enumerate(df.sort_values(sort_col, ascending=False)['symbol'])}
-            det = det.assign(_r=det['symbol'].map(rank),
-                             _ax=det['axis'].map({'product': 0, 'geographic': 1}))
-            det = det.sort_values(['_r', '_ax', 'share'], ascending=[True, True, False])
+            wide = wide.assign(_r=wide['symbol'].map(rank),
+                               _ax=wide['axis'].map({'product': 0, 'geographic': 1}))
+            wide = wide.sort_values(['_r', '_ax', 'share'], ascending=[True, True, False])
             nm = df.drop_duplicates('symbol').set_index('symbol')
-            ws = wb.create_sheet('FMP Segment Detail')
+            ws = wb.create_sheet('Segment History')
             tab_colors.set_tab(ws, tab_colors.FAMILY_COLORS['segment'])
-            hdr = ['Ticker', 'Name', 'Country', 'Axis', 'FY', 'Segment', 'Revenue', 'Ccy', 'Share %', 'YoY %']
+            hdr = ['Ticker', 'Name', 'Country', 'Axis', 'Segment', 'Latest FY', 'Ccy',
+                   'FY-5', 'FY-4', 'FY-3', 'FY-2', 'FY-1', 'FY0 (latest)', 'FY0 USD m',
+                   'Share %', 'YoY %', '3y CAGR %', '3y Δshare pp', 'Latest-Q YoY %']
             ws.append(hdr)
             for c in range(1, len(hdr) + 1):
                 ws.cell(row=1, column=c).font = _font(bold=True, color=MUTED)
-            for r in det.itertuples(index=False):
-                ws.append([r.symbol,
-                           str(nm['name'].get(r.symbol, '') if 'name' in nm.columns else '')[:40],
-                           str(nm['src'].get(r.symbol, '') if 'src' in nm.columns else ''),
-                           r.axis, int(r.fiscal_year), r.segment,
-                           round(float(r.revenue)) if pd.notna(r.revenue) else None,
-                           r.currency if isinstance(r.currency, str) else '',
-                           round(float(r.share) * 100, 1) if pd.notna(r.share) else None,
-                           round(float(r.yoy) * 100, 1) if pd.notna(r.yoy) else None])
-            for col, w in zip('ABCDEFGHIJ', (10, 30, 7, 11, 6, 44, 16, 6, 9, 9)):
-                ws.column_dimensions[col].width = w
-            ws.freeze_panes = 'A2'
-            ws.auto_filter.ref = f"A1:J{ws.max_row}"
+            def _n(v, k=1.0, d=1):
+                return round(float(v) * k, d) if pd.notna(v) else None
+            fy_cols = [k for k in (5, 4, 3, 2, 1, 0)]
+            for _, rd in wide.iterrows():
+                cur = rd['currency'] if isinstance(rd['currency'], str) else ''
+                fx = usd.get(cur)
+                row = [rd['symbol'],
+                       str(nm['name'].get(rd['symbol'], '') if 'name' in nm.columns else '')[:40],
+                       str(nm['src'].get(rd['symbol'], '') if 'src' in nm.columns else ''),
+                       rd['axis'], rd['segment'],
+                       int(rd['fiscal_year']) if pd.notna(rd['fiscal_year']) else None, cur]
+                for k in fy_cols:
+                    v = rd.get(k) if k in wide.columns else np.nan
+                    row.append(round(float(v)) if pd.notna(v) else None)
+                v0 = rd.get(0)
+                row.append(_n(v0 * fx / 1e6) if (pd.notna(v0) and fx) else None)
+                row += [_n(rd['share'], 100), _n(rd['yoy'], 100), _n(rd['cagr3'], 100),
+                        _n(rd['share_d3'], 100), _n(rd['q_yoy'], 100)]
+                ws.append(row)
+            for col, w in zip(range(1, 20), (10, 30, 7, 11, 40, 9, 6, 14, 14, 14, 14, 14, 14,
+                                             11, 8, 8, 10, 11, 12)):
+                ws.column_dimensions[get_column_letter(col)].width = w
+            for rr in ws.iter_rows(min_row=2, min_col=8, max_col=13):
+                for c in rr:
+                    c.number_format = '#,##0'
+            ws.freeze_panes = 'F2'
+            ws.auto_filter.ref = f"A1:S{ws.max_row}"
             ws.sheet_view.showGridLines = False
-
     wb.save(args.out)
     from harvard_style import sanitize_nan_text
     sanitize_nan_text(args.out)
