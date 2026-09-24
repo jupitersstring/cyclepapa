@@ -31,6 +31,26 @@ STYLE_RULES = [
     (r"macro|trend",                          "Macro / Trend"),
 ]
 
+# Fund-level overrides where a researcher group mixes styles. "Value &
+# Multi-Strat Legends" holds Klarman, Li Lu, Pabrai, FPA, Boykin Curry and
+# Gayner beside Point72, Tudor and Renaissance; the multi-strat rule filed the
+# value legends under Mega Multi-Strats / Quants. Judged by business model.
+FUND_STYLE_OVERRIDE = {
+    "Baupost Group LLC": "Value / Concentrated Quality",
+    "Himalaya Capital Management": "Value / Concentrated Quality",
+    "Pabrai Investment Funds (Dalal ": "Value / Concentrated Quality",
+    "FPA Crescent Fund": "Value / Concentrated Quality",
+    "Eagle Capital Management (Boykin Curry)": "Value / Concentrated Quality",
+    "Markel Group (Tom Gayner)": "Value / Concentrated Quality",
+    "Vinik Asset Management LP": "Value / Concentrated Quality",
+    "Iconiq Capital LLC": "Family Offices / Individual Filers",
+    "Hillspire LLC": "Family Offices / Individual Filers",
+    "RIT Capital Partners plc (RCP.L": "Family Offices / Individual Filers",
+}
+
+def style_of(fund, group):
+    return FUND_STYLE_OVERRIDE.get(fund) or macro_style(group)
+
 def macro_style(group):
     g = (group or "").lower()
     for pat, name in STYLE_RULES:
@@ -69,7 +89,7 @@ def run():
                                  FROM fund_meta fm LEFT JOIN fund_positions fp ON fp.fund=fm.fund
                                  GROUP BY fm.fund"""))
     for f in funds:
-        m = macro_style(f["fund_group"])
+        m = style_of(f["fund"], f["fund_group"])
         conn.execute("INSERT INTO fund_style VALUES (?,?,?,?,?,?,?,?)",
                      (f["fund"], f["fund_group"], m, f["total"] or 0,
                       f["c1"] or 0, f["c2"] or 0, f["c3"] or 0, f["c4"] or 0))
@@ -80,7 +100,7 @@ def run():
     bucket = {r[0]: r[1] for r in conn.execute("SELECT ticker, bucket FROM ticker_entry_intact")}
 
     # style summaries + per-ticker consensus
-    styles = sorted({macro_style(r["fund_group"]) for r in funds})
+    styles = sorted({style_of(r["fund"], r["fund_group"]) for r in funds})
     for style in styles:
         # funds in this style
         member_funds = [r["fund"] for r in conn.execute(

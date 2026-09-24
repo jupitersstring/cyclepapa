@@ -550,8 +550,13 @@ LEGEND = [
         ("Blocker %", "The ownership-limitation ceiling (4.99 / 9.99 / 19.99%) — the holder's economic exposure can sit just under it while the header % looks small; the blocker is often contractually raisable."),
         ("Swap Cpty", "A total-return / cash-settled swap named in the 13D text, with counterparty desk if disclosed — the clearest hidden-economic-exposure tell; cross-check the Broker Swap Radar."),
     ]),
-    ("N-PORT Monthly", [
-        ("Series (fund)", "A registered fund's monthly N-PORT-P holdings — fresher than quarterly 13F and inclusive of FOREIGN listings 13F never reports. Supplementary RIC data, not counted as 13F smart money."),
+    ("N-PORT (registered funds)", [
+        ("N-PORT", "A US-registered fund's full holdings report (Form N-PORT-P), public quarterly about 60 days after each fund's fiscal quarter. Unlike a 13F it lists EVERY holding, local non-US listings included. Supplementary: never counted in the 13F score."),
+        ("N-PORT Funds", "Directory of the funds loaded, grouped by the manager's style: portfolio date, equity $, positions, non-US share, largest positions, names initiated / exited since the previous report."),
+        ("N-PORT Holdings", "Each fund's complete equity book, a section per manager and a table per fund, with each position's change since the previous report."),
+        ("Change", "new (not in the previous report) · added / trimmed (shares up / down over 10%, split-adjusted) · held · blank when the fund has no earlier report on file."),
+        ("N-PORT Changes", "Per stock: managers initiating, adding, trimming and exiting across all their funds; Net = buyers minus sellers."),
+        ("N-PORT Global Consensus", "Non-US equities ranked by how many managers hold them; New Buyers = managers holding it now but in none of their previous reports."),
     ]),
     ("Entry / setup", [
         ("Entry / Bucket", "Where the current price sits versus the smart-money cost anchor: below / near / above."),

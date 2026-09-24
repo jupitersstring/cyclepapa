@@ -256,7 +256,6 @@ CREATE TABLE fund_13f_dormant(
 CREATE TABLE stock_splits (
       symbol TEXT, date TEXT, numerator REAL, denominator REAL, split_type TEXT,
       PRIMARY KEY (symbol, date));
-CREATE TABLE prior_split_factor (fund TEXT, ticker TEXT, factor REAL, PRIMARY KEY (fund, ticker));
 CREATE TABLE nport_holdings (trust TEXT, series TEXT, filed TEXT, issuer TEXT, ticker TEXT,
       cusip TEXT, val_usd REAL, pct REAL,
       series_id TEXT, manager TEXT, isin TEXT, country TEXT, currency TEXT,
@@ -317,19 +316,6 @@ CREATE TABLE ticker_style_conviction (
       ticker TEXT, macro_style TEXT, score REAL, n_funds INTEGER,
       n_hyper INTEGER, dollar_m REAL,
       PRIMARY KEY (ticker, macro_style));
-CREATE TABLE fund_style (
-      fund TEXT PRIMARY KEY, sub_group TEXT, macro_style TEXT,
-      total_rows INTEGER, conviction_n INTEGER, threshold_n INTEGER,
-      new_n INTEGER, adds_n INTEGER);
-CREATE TABLE style_summary (
-      macro_style TEXT PRIMARY KEY,
-      n_funds INTEGER, total_rows INTEGER,
-      n_conviction INTEGER, n_threshold INTEGER, n_new INTEGER, n_adds INTEGER,
-      top_funds TEXT, top_consensus TEXT);
-CREATE TABLE style_consensus (
-      macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
-      sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
-      PRIMARY KEY (macro_style, ticker));
 CREATE TABLE broker_swap_radar (
       ticker TEXT, name TEXT, broker TEXT,
       delta_sh_m REAL,          -- share-count change, millions
@@ -347,3 +333,18 @@ CREATE TABLE broker_swap_radar (
       disclosed_swap TEXT,      -- a 13D on this name whose text names a swap
       f144_sale TEXT,           -- Form 144 proposed-sale pressure (contra)
       PRIMARY KEY (ticker, broker));
+CREATE TABLE prior_split_factor (fund TEXT, ticker TEXT, factor REAL, PRIMARY KEY (fund, ticker));
+CREATE TABLE nport_split_factor (series_id TEXT, ticker TEXT, factor REAL, PRIMARY KEY (series_id, ticker));
+CREATE TABLE fund_style (
+      fund TEXT PRIMARY KEY, sub_group TEXT, macro_style TEXT,
+      total_rows INTEGER, conviction_n INTEGER, threshold_n INTEGER,
+      new_n INTEGER, adds_n INTEGER);
+CREATE TABLE style_summary (
+      macro_style TEXT PRIMARY KEY,
+      n_funds INTEGER, total_rows INTEGER,
+      n_conviction INTEGER, n_threshold INTEGER, n_new INTEGER, n_adds INTEGER,
+      top_funds TEXT, top_consensus TEXT);
+CREATE TABLE style_consensus (
+      macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
+      sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
+      PRIMARY KEY (macro_style, ticker));

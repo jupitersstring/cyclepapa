@@ -280,8 +280,8 @@ def sheet_readme(wb, conn):
                    empty) if empty else []),
         (f"fund_positions        {n_fp:,} rows from XLSX research-team classifications",),
         *([(f"nport_holdings        {n_np:,} equity positions from N-PORT: the full books of {n_np_f} registered funds",),
-           (f"                      of {n_np_m} managers, {np_fgn:.0f}% of it outside the US and invisible in 13F "
-            f"(Global Holdings, Global Books)",)] if n_np else []),
+           (f"                      of {n_np_m} managers, {np_fgn:.0f}% of it outside the US and invisible in 13F",),
+           ("                      sheets: N-PORT Funds -> Holdings -> Changes -> Global Consensus",)] if n_np else []),
         ("holder_13d            current SC 13D/G filings via efts.sec.gov full-text search",),
         ("form4_transactions    P-code open-market buys + S-code sells, ≤180d",),
         ("insider_clusters      live ≤180d clusters",),
@@ -662,6 +662,15 @@ def sheet_dossier(wb, conn, top_n=45):
             nm = re.sub(r"\s*\(.*$", "", hr[0]).strip()
             holders.append(f"{nm}{f' {hr[1]:.0f}%' if hr[1] else ''}")
         ws.cell(row=row, column=1, value="Held by"); ws.cell(row=row, column=2, value=", ".join(holders[:6])); row += 1
+        # registered funds (N-PORT) holding it, largest weight first
+        try:
+            npf = conn.execute("""SELECT series, pct FROM nport_holdings WHERE ticker = ?
+                                  ORDER BY pct DESC LIMIT 6""", (tk,)).fetchall()
+        except sqlite3.OperationalError:
+            npf = []
+        if npf:
+            ws.cell(row=row, column=1, value="N-PORT funds")
+            ws.cell(row=row, column=2, value=", ".join(f"{sr} {p:.1f}%" for sr, p in npf if sr)); row += 1
         # insiders + activist
         ins = conn.execute("""SELECT COUNT(DISTINCT owner), SUM(shares*price)/1e6,
                 MAX(CASE WHEN role LIKE '%CEO%' OR role LIKE '%CFO%' OR role LIKE '%Chief%' OR role LIKE '%President%' THEN 1 ELSE 0 END)
@@ -973,33 +982,6 @@ def sheet_latent_ownership(wb, conn):
         ws.cell(row=ridx, column=6).number_format = '0.00"%"'
         ws.cell(row=ridx, column=10).number_format = NUMFMT_MCAP
     ws.freeze_panes = "B5"; autosize(ws); ws.column_dimensions["A"].width = 8
-
-def sheet_nport(wb, conn):
-    """Monthly N-PORT holdings of marquee single-manager funds — fresher than
-    13F and includes FOREIGN names 13F omits (Sequoia's Rolls-Royce, etc.)."""
-    try:
-        series = list(conn.execute("""SELECT series, MAX(filed) FROM nport_holdings
-            GROUP BY series ORDER BY MAX(filed) DESC"""))
-    except sqlite3.OperationalError:
-        return
-    if not series:
-        return
-    ws = wb.create_sheet("N-PORT Monthly")
-    ws.sheet_view.showGridLines = False
-    write_title(ws, "N-PORT Monthly — marquee fund holdings (fresher than 13F)",
-                "Top holdings from registered funds' monthly N-PORT-P filings. Monthly cadence beats quarterly 13F, and N-PORT reports FOREIGN listings a 13F never shows. Supplementary (RIC data), not counted as 13F smart money.", 8)
-    hdr = ["Series (fund)","Filed","Ticker","Issuer","$M","% Fund"]
-    write_table_header(ws, 4, hdr)
-    out = []
-    for ser, filed in series:
-        for r in conn.execute("""SELECT ticker, issuer, ROUND(val_usd/1e6,1), pct
-            FROM nport_holdings WHERE series=? AND filed=? ORDER BY val_usd DESC LIMIT 15""", (ser, filed)):
-            out.append([ser, filed, r[0] or "", (r[1] or ""), r[2], r[3]])
-    write_table_rows(ws, out, 5)
-    for ridx in range(5, 5 + len(out)):
-        ws.cell(row=ridx, column=5).number_format = NUMFMT_M_TO_B
-        ws.cell(row=ridx, column=6).number_format = '0.0"%"'
-    ws.freeze_panes = "C5"; autosize(ws)
 
 def sheet_insider_f4(wb, conn):
     """Insider buying ranked by RECENCY-weighted total. ≤30d buys shown separately."""
@@ -1646,48 +1628,328 @@ def _usd_mcap(mcap_m, ccy):
     fx = fx_major(ccy)
     return mcap_m * fx if (mcap_m and fx) else None
 
-def sheet_global_holdings(wb, conn):
-    """The non-US half of the tracked managers' books. A 13F lists US-listed
-    securities only; N-PORT lists every holding of the managers' registered
-    international / global funds, local listings included."""
+# ---- N-PORT: the registered funds' complete books ---------------------------
+# One block of sheets, in reading order: which funds (N-PORT Funds), what each
+# holds (N-PORT Holdings), what they changed (N-PORT Changes), and where they
+# agree outside the US (N-PORT Global Consensus). Registered-fund data: never
+# counted in the 13F score.
+_STYLE_ORDER = ["Value / Concentrated Quality", "Foreign / EM Value", "Small-cap / Multibagger Specialists",
+                "Disruptive Growth / Innovation", "Activists / Special Situations", "Distressed / Event-Driven",
+                "Tiger Cubs / L/S Legends", "Family Offices / Individual Filers", "Biotech Specialists",
+                "Mega Multi-Strats / Quants"]
+_NO_STYLE = "Not on the 13F roster"
+
+def _nport_style(conn):
     try:
-        rows = conn.execute("""SELECT n.ticker, n.isin, n.issuer, n.country, n.manager, n.val_usd, n.pct,
-                   y.long_name, y.mcap_m, y.currency
+        return {f: m for f, m in conn.execute("SELECT fund, macro_style FROM fund_style")}
+    except sqlite3.OperationalError:
+        return {}
+
+def _style_rank(style):
+    return (_STYLE_ORDER.index(style) if style in _STYLE_ORDER else len(_STYLE_ORDER), style or "")
+
+def _fund_heading(ws, row, text, ncols):
+    """A fund's line inside a manager's section: italic, not shouted."""
+    ws.merge_cells(start_row=row, start_column=1, end_row=row, end_column=ncols)
+    c = ws.cell(row=row, column=1, value=text)
+    c.font = BODY_ITALIC
+    c.alignment = Alignment(horizontal="left", vertical="bottom")
+    ws.row_dimensions[row].height = 18
+
+def _nport_diff(conn):
+    """Each N-PORT position against the fund's previous public report, on
+    split-adjusted share counts (added / trimmed = more than 10% either way).
+      pos[(series_id, key)] -> (status, delta %): new / added / trimmed / held,
+                               '' when the fund has no earlier report on file
+      exits[series_id]      -> [(name, prior $, country)]
+      mgr[(manager, key)]   -> the same status across all of a manager's funds
+    key = ISIN (else ticker, else issuer): stable across a ticker change."""
+    try:
+        cur = conn.execute("""SELECT series_id, manager, COALESCE(isin, ticker, issuer), ticker, shares
+            FROM nport_holdings""").fetchall()
+        pri = conn.execute("""SELECT p.series_id, COALESCE(p.isin, p.ticker, p.issuer), p.ticker, p.shares,
+                p.val_usd, COALESCE(y.long_name, p.issuer), p.country
+            FROM nport_prior p LEFT JOIN ticker_yf y ON y.ticker = p.ticker""").fetchall()
+    except sqlite3.OperationalError:
+        return {}, {}, {}
+    try:
+        split = {(sid, tk): f for sid, tk, f in conn.execute(
+            "SELECT series_id, ticker, factor FROM nport_split_factor")}
+    except sqlite3.OperationalError:
+        split = {}
+    has_prior = {r[0] for r in pri}
+    mg_of = {sid: mg for sid, mg, *_ in cur}
+    cur_by, pri_by = {}, {}
+    for sid, mg, key, tk, sh in cur:
+        a = cur_by.setdefault((sid, key), [0.0, True])
+        if sh is None:
+            a[1] = False
+        else:
+            a[0] += sh
+    for sid, key, tk, sh, val, name, co in pri:
+        a = pri_by.setdefault((sid, key), [0.0, True, 0.0, name, co])
+        if sh is None:
+            a[1] = False
+        else:
+            a[0] += sh * split.get((sid, tk), 1.0)
+        a[2] += val or 0.0
+
+    def classify(c_sh, p_sh, known):
+        if not known or not p_sh:
+            return "held", None
+        r = c_sh / p_sh
+        return ("added" if r > 1.10 else "trimmed" if r < 0.90 else "held"), (r - 1) * 100
+
+    pos = {}
+    for (sid, key), (c_sh, c_known) in cur_by.items():
+        p = pri_by.get((sid, key))
+        if sid not in has_prior:
+            pos[(sid, key)] = ("", None)
+        elif p is None:
+            pos[(sid, key)] = ("new", None)
+        else:
+            pos[(sid, key)] = classify(c_sh, p[0], c_known and p[1])
+    exits = {}
+    for (sid, key), p in pri_by.items():
+        if (sid, key) not in cur_by and sid in mg_of:
+            exits.setdefault(sid, []).append((p[3], p[2], p[4]))
+    agg = {}
+    for (sid, key), (c_sh, c_known) in cur_by.items():
+        if sid in has_prior:
+            a = agg.setdefault((mg_of[sid], key), {"c": 0.0, "p": 0.0, "cin": False, "pin": False, "ok": True})
+            a["c"] += c_sh; a["cin"] = True; a["ok"] &= c_known
+    for (sid, key), p in pri_by.items():
+        if sid in mg_of:
+            a = agg.setdefault((mg_of[sid], key), {"c": 0.0, "p": 0.0, "cin": False, "pin": False, "ok": True})
+            a["p"] += p[0]; a["pin"] = True; a["ok"] &= p[1]
+    mgr = {}
+    for k, a in agg.items():
+        if a["cin"] and not a["pin"]:
+            mgr[k] = "new"
+        elif a["pin"] and not a["cin"]:
+            mgr[k] = "exited"
+        else:
+            mgr[k] = classify(a["c"], a["p"], a["ok"])[0]
+    return pos, exits, mgr
+
+def sheet_nport_funds(wb, conn):
+    """Which registered funds are loaded: grouped by the manager's style."""
+    try:
+        funds = conn.execute("""SELECT series_id, manager, series, MAX(period), SUM(val_usd), COUNT(*),
+                SUM(CASE WHEN country != 'US' THEN val_usd ELSE 0 END), MAX(filed),
+                COUNT(DISTINCT CASE WHEN country != 'US' THEN COALESCE(isin, ticker, issuer) END)
+            FROM nport_holdings GROUP BY series_id""").fetchall()
+    except sqlite3.OperationalError:
+        return
+    if not funds:
+        return
+    pos, exits, _ = _nport_diff(conn)
+    style = _nport_style(conn)
+    prior_p = {sid: p for sid, p in conn.execute("SELECT series_id, MAX(period) FROM nport_prior GROUP BY series_id")}
+    names = {}
+    for sid, key, nm, co in conn.execute("""SELECT n.series_id, COALESCE(n.isin, n.ticker, n.issuer),
+            COALESCE(y.long_name, n.issuer), n.country FROM nport_holdings n
+            LEFT JOIN ticker_yf y ON y.ticker = n.ticker ORDER BY n.val_usd DESC"""):
+        names.setdefault(sid, []).append((key, nm if co in (None, "US") else f"{nm} ({co})"))
+    ws = wb.create_sheet("N-PORT Funds")
+    ws.sheet_view.showGridLines = False
+    hdr = ["Manager", "Fund", "Portfolio as of", "Filed", "Equity $M", "Positions", "Non-US %", "Non-US Names",
+           "Largest positions", "Largest non-US positions", "Previous report", "Initiated since", "Exited since"]
+    n_mgr = len({f[1] for f in funds})
+    write_title(ws, "N-PORT Funds — the registered funds whose complete books are loaded",
+                f"{len(funds)} funds of {n_mgr} managers, grouped by the manager's style. N-PORT lists every "
+                f"holding, local listings included (a 13F lists US-listed securities only); public quarterly, "
+                f"about 60 days after each fund's fiscal quarter. Initiated / exited: since the previous report.",
+                len(hdr))
+    row = 4
+    ordered = sorted(funds, key=lambda f: (_style_rank(style.get(f[1]) or _NO_STYLE), _mgr_short(f[1]), f[2]))
+    groups = {}
+    for f in ordered:
+        groups.setdefault(style.get(f[1]) or _NO_STYLE, []).append(f)
+    for st, fs in groups.items():
+        write_section_heading(ws, row, f"{st} — {len({f[1] for f in fs})} managers, {len(fs)} funds", len(hdr))
+        row += 1
+        write_table_header(ws, row, hdr)
+        row += 1
+        out = []
+        for sid, mg, series, period, tot, n, fgn, filed, n_fgn in fs:
+            held = names.get(sid, [])
+            top = conn.execute("""SELECT COALESCE(y.long_name, n.issuer), n.pct, n.country FROM nport_holdings n
+                LEFT JOIN ticker_yf y ON y.ticker = n.ticker WHERE n.series_id = ?
+                ORDER BY n.val_usd DESC LIMIT 5""", (sid,)).fetchall()
+            top_f = conn.execute("""SELECT COALESCE(y.long_name, n.issuer), n.pct, n.country FROM nport_holdings n
+                LEFT JOIN ticker_yf y ON y.ticker = n.ticker WHERE n.series_id = ? AND n.country != 'US'
+                ORDER BY n.val_usd DESC LIMIT 6""", (sid,)).fetchall()
+            new = [nm for key, nm in held if pos.get((sid, key), ("",))[0] == "new"]
+            gone = [nm if co in (None, "US") else f"{nm} ({co})"
+                    for nm, v, co in sorted(exits.get(sid, []), key=lambda x: -x[1])]
+            has_p = sid in prior_p
+            fmt = lambda rows: "; ".join(f"{nm} {p:.1f}%{'' if co in (None, 'US') else f' ({co})'}"
+                                         for nm, p, co in rows)
+            out.append([_mgr_short(mg), series, period, filed, round((tot or 0) / 1e6, 1), n,
+                        round(100.0 * (fgn or 0) / tot, 1) if tot else "", n_fgn, fmt(top), fmt(top_f),
+                        prior_p.get(sid, "none on file"),
+                        ("; ".join(new) or "none") if has_p else "",
+                        ("; ".join(gone) or "none") if has_p else ""])
+        write_table_rows(ws, out, row)
+        for ridx in range(row, row + len(out)):
+            ws.cell(row=ridx, column=5).number_format = NUMFMT_M_TO_B
+            ws.cell(row=ridx, column=7).number_format = '0"%"'
+        row += len(out) + 2
+    ws.freeze_panes = "C4"
+    autosize(ws)
+    for col in (9, 10, 12, 13):
+        ws.column_dimensions[get_column_letter(col)].width = 70
+
+def sheet_nport_holdings(wb, conn):
+    """Every loaded fund's complete equity book: a section per manager, a
+    table per fund, each position with its change since the prior report."""
+    try:
+        rows = conn.execute("""SELECT n.series_id, n.manager, n.series, n.period, n.ticker,
+                COALESCE(n.isin, n.ticker, n.issuer), COALESCE(y.long_name, n.issuer), n.country, n.pct,
+                n.val_usd, y.mcap_m, y.currency
+            FROM nport_holdings n LEFT JOIN ticker_yf y ON y.ticker = n.ticker
+            ORDER BY n.series_id, n.val_usd DESC""").fetchall()
+    except sqlite3.OperationalError:
+        return
+    if not rows:
+        return
+    pos, _, _ = _nport_diff(conn)
+    style = _nport_style(conn)
+    books = {}
+    for r in rows:
+        books.setdefault(r[1], {}).setdefault(r[0], []).append(r)
+    ws = wb.create_sheet("N-PORT Holdings")
+    ws.sheet_view.showGridLines = False
+    hdr = ["Ticker", "Company", "Country", "% of Fund", "$M", "Change", "Δ Shares %", "Mcap $M (USD)", "Industry"]
+    write_title(ws, "N-PORT Holdings — each fund's complete equity book",
+                "A section per manager, a table per fund, largest position first. Change: since the fund's "
+                "previous public report, on split-adjusted share counts (added / trimmed = over 10%). "
+                "Local listings a 13F never shows are included.", len(hdr))
+    row = 4
+    for mg in sorted(books, key=lambda m: (_style_rank(style.get(m) or _NO_STYLE), _mgr_short(m))):
+        funds = books[mg]
+        write_section_heading(ws, row, f"{_mgr_short(mg)} — {style.get(mg) or _NO_STYLE} · "
+                                       f"{len(funds)} fund{'s' if len(funds) > 1 else ''}", len(hdr))
+        row += 1
+        for sid in sorted(funds, key=lambda s: -sum(r[9] or 0 for r in funds[s])):
+            fr = funds[sid]
+            tot = sum(r[9] or 0 for r in fr)
+            fgn = sum(r[9] or 0 for r in fr if r[7] and r[7] != "US")
+            filed = conn.execute("SELECT MAX(filed) FROM nport_holdings WHERE series_id = ?", (sid,)).fetchone()[0]
+            _fund_heading(ws, row, f"{fr[0][2]} · portfolio as of {fr[0][3]} (filed {filed}) · ${tot / 1e9:,.2f}B in "
+                                   f"{len(fr)} equities · {100 * fgn / tot if tot else 0:.0f}% outside the US",
+                          len(hdr))
+            row += 1
+            write_table_header(ws, row, hdr)
+            row += 1
+            out = []
+            for sid_, mg_, series, period, tk, key, name, co, pct, val, mcap, ccy in fr:
+                st, d = pos.get((sid_, key), ("", None))
+                usd = _usd_mcap(mcap, ccy)
+                out.append([tk or "(no listing)", name, co or "", round(pct or 0, 2), round((val or 0) / 1e6, 1),
+                            st, round(d, 0) if d is not None else "", round(usd) if usd else "",
+                            desc_for(conn, tk)[0] if tk else ""])
+            write_table_rows(ws, out, row, ticker_col=1)
+            for ridx in range(row, row + len(out)):
+                ws.cell(row=ridx, column=4).number_format = '0.00"%"'
+                ws.cell(row=ridx, column=5).number_format = NUMFMT_M_TO_B
+                ws.cell(row=ridx, column=7).number_format = '0"%"'
+                ws.cell(row=ridx, column=8).number_format = NUMFMT_MCAP
+            row += len(out) + 1
+        row += 1
+    ws.freeze_panes = "B4"
+    autosize(ws)
+    ws.column_dimensions["B"].width = 36
+
+def sheet_nport_changes(wb, conn):
+    """What the managers' registered funds bought and sold since their
+    previous reports — per stock, US and non-US."""
+    pos, _, mgr = _nport_diff(conn)
+    if not mgr:
+        return
+    info = {}
+    for key, tk, name, co, val, pct, sid in conn.execute("""SELECT COALESCE(n.isin, n.ticker, n.issuer), n.ticker,
+            COALESCE(y.long_name, n.issuer), n.country, n.val_usd, n.pct, n.series_id
+            FROM nport_holdings n LEFT JOIN ticker_yf y ON y.ticker = n.ticker"""):
+        d = info.setdefault(key, {"tk": tk, "name": name, "co": co, "val": 0.0, "new_w": 0.0})
+        d["val"] += val or 0.0
+        if pos.get((sid, key), ("",))[0] == "new":
+            d["new_w"] = max(d["new_w"], pct or 0.0)
+    for key, tk, name, co in conn.execute("""SELECT COALESCE(p.isin, p.ticker, p.issuer), p.ticker,
+            COALESCE(y.long_name, p.issuer), p.country FROM nport_prior p
+            LEFT JOIN ticker_yf y ON y.ticker = p.ticker"""):
+        info.setdefault(key, {"tk": tk, "name": name, "co": co, "val": 0.0, "new_w": 0.0})
+    per = {}
+    for (mg, key), st in mgr.items():
+        if st in ("new", "added", "trimmed", "exited"):
+            per.setdefault(key, {"new": [], "added": [], "trimmed": [], "exited": []})[st].append(_mgr_short(mg))
+    ws = wb.create_sheet("N-PORT Changes")
+    ws.sheet_view.showGridLines = False
+    hdr = ["Ticker", "Company", "Country", "Net", "Initiated", "Added", "Trimmed", "Exited", "Buying",
+           "Selling", "Largest New Weight %", "$M Held Now", "Mcap $M (USD)", "Industry"]
+    write_title(ws, "N-PORT Changes — what the managers' funds bought and sold",
+                "Per stock, across every manager's funds, since each fund's previous public report "
+                "(split-adjusted share counts; added / trimmed = over 10%). Net = managers initiating or "
+                "adding minus managers trimming or exiting. US and non-US listings.", len(hdr))
+    write_table_header(ws, 4, hdr)
+    mc = {tk: (m, c) for tk, m, c in conn.execute("SELECT ticker, mcap_m, currency FROM ticker_yf")}
+    out = []
+    for key, d in per.items():
+        i = info.get(key, {"tk": None, "name": key, "co": "", "val": 0.0, "new_w": 0.0})
+        buy = [f"{m} (new)" for m in d["new"]] + [f"{m} (added)" for m in d["added"]]
+        sell = [f"{m} (trimmed)" for m in d["trimmed"]] + [f"{m} (exited)" for m in d["exited"]]
+        net = len(d["new"]) + len(d["added"]) - len(d["trimmed"]) - len(d["exited"])
+        usd = _usd_mcap(*mc.get(i["tk"], (None, None))) if i["tk"] else None
+        out.append([i["tk"] or "(no listing)", i["name"], i["co"] or "", net, len(d["new"]), len(d["added"]),
+                    len(d["trimmed"]), len(d["exited"]), "; ".join(buy), "; ".join(sell),
+                    round(i["new_w"], 2) if i["new_w"] else "", round(i["val"] / 1e6, 1) if i["val"] else "",
+                    round(usd) if usd else "", desc_for(conn, i["tk"])[0] if i["tk"] else ""])
+    out.sort(key=lambda r: (-r[3], -(r[4] + r[5]), -(r[11] or 0)))
+    write_table_rows(ws, out, 5, ticker_col=1)
+    color_directional(ws, 5, 4 + len(out), [4], higher_is_better=True)
+    for ridx in range(5, 5 + len(out)):
+        ws.cell(row=ridx, column=11).number_format = '0.00"%"'
+        ws.cell(row=ridx, column=12).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=13).number_format = NUMFMT_MCAP
+    ws.freeze_panes = "B5"
+    autosize(ws)
+    for col in (9, 10):
+        ws.column_dimensions[get_column_letter(col)].width = 60
+
+def sheet_nport_consensus(wb, conn):
+    """Where the managers agree outside the US: non-US equities ranked by how
+    many managers' funds hold them (13F-invisible)."""
+    try:
+        rows = conn.execute("""SELECT n.ticker, COALESCE(n.isin, n.ticker, n.issuer), n.issuer, n.country,
+                n.manager, n.val_usd, n.pct, y.long_name, y.mcap_m, y.currency
             FROM nport_holdings n LEFT JOIN ticker_yf y ON y.ticker = n.ticker
             WHERE n.country IS NOT NULL AND n.country != 'US'""").fetchall()
     except sqlite3.OperationalError:
         return
     if not rows:
         return
-    # a manager INITIATED a position when it is absent from every prior book
-    # of that manager's funds (managers with no prior book on file: unknown)
-    prior = {}
-    try:
-        for manager, isin in conn.execute("SELECT DISTINCT manager, isin FROM nport_prior"):
-            prior.setdefault(_mgr_short(manager), set()).add(isin)
-    except sqlite3.OperationalError:
-        pass
+    _, _, mgr = _nport_diff(conn)
     per = {}
-    for tk, isin, issuer, country, manager, val, pct, name, mcap, ccy in rows:
-        d = per.setdefault(tk or isin or issuer, {"tk": tk, "name": name or issuer, "country": country,
-                                                  "mgr": {}, "new": set(), "val": 0.0,
-                                                  "mcap": _usd_mcap(mcap, ccy)})
+    for tk, key, issuer, country, manager, val, pct, name, mcap, ccy in rows:
+        d = per.setdefault(key, {"tk": tk, "name": name or issuer, "country": country,
+                                 "mgr": {}, "new": set(), "val": 0.0, "mcap": _usd_mcap(mcap, ccy)})
         mg = _mgr_short(manager)
         d["mgr"][mg] = max(d["mgr"].get(mg, 0.0), pct or 0.0)
         d["val"] += val or 0.0
-        if mg in prior and isin and isin not in prior[mg]:
+        if mgr.get((manager, key)) == "new":
             d["new"].add(mg)
     n_funds, n_mgr, p0, p1 = conn.execute("""SELECT COUNT(DISTINCT series_id), COUNT(DISTINCT manager),
         MIN(period), MAX(period) FROM nport_holdings""").fetchone()
-    ws = wb.create_sheet("Global Holdings")
+    ws = wb.create_sheet("N-PORT Global Consensus")
     ws.sheet_view.showGridLines = False
-    write_title(ws, "Global Holdings — the non-US half of the managers' books",
-                f"Every non-US equity held by the international and global funds of {n_mgr} tracked managers "
-                f"({n_funds} funds, N-PORT, portfolios as of {p0} to {p1}), local listings included — a 13F "
-                f"shows none of these. New Buyers: managers holding it now but in none of their previous "
-                f"N-PORT books. Registered-fund data: not counted in the 13F score.", 11)
     hdr = ["Ticker", "Company", "Country", "Managers", "New Buyers", "Held by (largest % of a fund)",
            "$M Held", "Max % of Fund", "Mcap $M (USD)", "Industry", "Business"]
+    write_title(ws, "N-PORT Global Consensus — where the managers agree outside the US",
+                f"Every non-US equity held by the funds of {n_mgr} managers ({n_funds} funds, portfolios as of "
+                f"{p0} to {p1}), ranked by how many managers hold it. A 13F shows none of these local "
+                f"listings. New Buyers: managers holding it now but in none of their previous reports.",
+                len(hdr))
     write_table_header(ws, 4, hdr)
     out = []
     for d in sorted(per.values(), key=lambda d: (-len(d["mgr"]), -len(d["new"]), -d["val"])):
@@ -1706,59 +1968,6 @@ def sheet_global_holdings(wb, conn):
     autosize(ws)
     ws.column_dimensions["F"].width = 60
     ws.column_dimensions[get_column_letter(11)].width = 80
-
-def sheet_global_books(wb, conn):
-    """How global each tracked manager's registered-fund book is, and its
-    largest positions outside the US."""
-    try:
-        funds = conn.execute("""SELECT manager, series, MAX(period), SUM(val_usd),
-                SUM(CASE WHEN country != 'US' THEN val_usd ELSE 0 END),
-                COUNT(DISTINCT CASE WHEN country != 'US' THEN COALESCE(ticker, isin) END), series_id
-            FROM nport_holdings GROUP BY series_id ORDER BY manager, series""").fetchall()
-    except sqlite3.OperationalError:
-        return
-    if not funds:
-        return
-    ws = wb.create_sheet("Global Books")
-    ws.sheet_view.showGridLines = False
-    write_title(ws, "Global Books — how much of each manager's book a 13F can't see",
-                "Each fund's long equity book from its latest public N-PORT: the non-US share is invisible in "
-                "the manager's 13F. Largest non-US positions by % of the fund; initiated / exited = "
-                "non-US names new to, or gone from, the fund since its previous public N-PORT.", 10)
-    hdr = ["Manager", "Fund", "Portfolio as of", "Equity $M", "Non-US %", "Non-US Names",
-           "Largest non-US positions", "Previous book", "Initiated abroad", "Exited abroad"]
-    write_table_header(ws, 4, hdr)
-    has_prior = bool(conn.execute("SELECT 1 FROM sqlite_master WHERE name='nport_prior'").fetchone())
-    out = []
-    for manager, series, period, tot, fgn, n_fgn, sid in funds:
-        top = conn.execute("""SELECT COALESCE(y.long_name, n.issuer), n.pct FROM nport_holdings n
-            LEFT JOIN ticker_yf y ON y.ticker = n.ticker
-            WHERE n.series_id = ? AND n.country != 'US' ORDER BY n.val_usd DESC LIMIT 6""", (sid,)).fetchall()
-        pp, new_, gone = "", "", ""
-        if has_prior:
-            pp = conn.execute("SELECT MAX(period) FROM nport_prior WHERE series_id=?", (sid,)).fetchone()[0] or ""
-        if pp:
-            new_ = "; ".join(r[0] for r in conn.execute("""SELECT COALESCE(y.long_name, n.issuer)
-                FROM nport_holdings n LEFT JOIN ticker_yf y ON y.ticker = n.ticker
-                WHERE n.series_id = ? AND n.country != 'US' AND n.isin NOT IN
-                    (SELECT isin FROM nport_prior WHERE series_id = ? AND isin IS NOT NULL)
-                ORDER BY n.val_usd DESC""", (sid, sid)) if r[0])
-            gone = "; ".join(r[0] for r in conn.execute("""SELECT COALESCE(y.long_name, p.issuer)
-                FROM nport_prior p LEFT JOIN ticker_yf y ON y.ticker = p.ticker
-                WHERE p.series_id = ? AND p.country != 'US' AND p.isin NOT IN
-                    (SELECT isin FROM nport_holdings WHERE series_id = ? AND isin IS NOT NULL)
-                ORDER BY p.val_usd DESC""", (sid, sid)) if r[0])
-        out.append([_mgr_short(manager), series, period, round((tot or 0) / 1e6, 1),
-                    round(100.0 * (fgn or 0) / tot, 1) if tot else "", n_fgn,
-                    "; ".join(f"{nm} {p:.1f}%" for nm, p in top if nm), pp, new_, gone])
-    write_table_rows(ws, out, 5)
-    for ridx in range(5, 5 + len(out)):
-        ws.cell(row=ridx, column=4).number_format = NUMFMT_M_TO_B
-        ws.cell(row=ridx, column=5).number_format = '0"%"'
-    ws.freeze_panes = "C5"
-    autosize(ws)
-    for col in (7, 9, 10):
-        ws.column_dimensions[get_column_letter(col)].width = 70
 
 def sheet_global_picks(wb, conn):
     """Foreign-exchange tickers — scored on a GLOBAL-FAIR formula.
@@ -2238,11 +2447,14 @@ TAB_COLORS = {
     "Insider Clusters":        "808080",
     "Congress Trades":         "808080",
     "Catalysts 8-K":           "808080",
+    # Registered funds (N-PORT) — one block
+    "N-PORT Funds":            "6F6F6F",
+    "N-PORT Holdings":         "6F6F6F",
+    "N-PORT Changes":          "6F6F6F",
+    "N-PORT Global Consensus": "6F6F6F",
     # Setup sheets — mid-light
     "In The Money":            "A6A6A6",
     "Valuation":               "A6A6A6",
-    "Global Holdings":         "A6A6A6",
-    "Global Books":            "A6A6A6",
     "Global Picks":            "A6A6A6",
     "Bill Miller":             "A6A6A6",
     # Reference / support — lighter
@@ -2294,7 +2506,10 @@ def main():
     sheet_activist(wb, conn)
     sheet_broker_radar(wb, conn)
     sheet_latent_ownership(wb, conn)
-    sheet_nport(wb, conn)
+    sheet_nport_funds(wb, conn)           # N-PORT block: which funds,
+    sheet_nport_holdings(wb, conn)        #   what each holds,
+    sheet_nport_changes(wb, conn)         #   what they changed,
+    sheet_nport_consensus(wb, conn)       #   where they agree outside the US
     sheet_insider_recent(wb, conn)
     sheet_insider_f4(wb, conn)
     sheet_clusters(wb, conn)
@@ -2307,8 +2522,6 @@ def main():
     sheet_revealed_pref(wb, conn)
     sheet_valuation(wb, conn)
     sheet_catalysts(wb, conn)
-    sheet_global_holdings(wb, conn)       # non-US books from N-PORT (13F-invisible)
-    sheet_global_books(wb, conn)
     sheet_global_picks(wb, conn)
     sheet_bill_miller(wb, conn)
     sheet_unknown(wb, conn)
@@ -2325,7 +2538,7 @@ def main():
         "Mid ($2B–$10B)", "Large ($10B–$200B)", "Mega (>$200B)", "Material + New", "Activist 10+", "Insider Buys ≤30d",
         "Insider F4 Buys", "Insider Clusters", "Non-Biotech Top 100", "In The Money",
         "Asymmetry", "Revealed Preference", "Valuation", "Catalysts 8-K",
-        "Global Holdings", "Global Books",
+        "N-PORT Changes", "N-PORT Global Consensus",
         "Global Picks", "Unknown Mcap", "All Positions", "All Funds",
         "Fund Coverage", "Ticker Reference",
     }

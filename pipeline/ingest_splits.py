@@ -5,16 +5,36 @@ inside the window multiplies every holder's count: Booking's 25:1 (Apr 2026),
 Carvana's 5:1 and KLA's 10:1 read as 30+ funds "adding" +400-999% and topped
 the Quarter Change sheet and the broadsheet's builders — pure mechanics.
 
-Loads FMP's splits calendar into stock_splits, then writes
-prior_split_factor(fund, ticker, factor): the product of numerator/denominator
-over splits dated after the fund's prior report period and on or before its
-current one (periods from the EDGAR 13F index). Views multiply prior shares by
-it. Only factors != 1 are stored.
+Loads FMP's splits calendar into stock_splits, then writes the product of
+numerator/denominator over splits dated after a book's prior report period and
+on or before its current one: prior_split_factor(fund, ticker, factor) for the
+13F diffs (periods from the EDGAR 13F index) and nport_split_factor(series_id,
+ticker, factor) for the N-PORT diffs. Views multiply prior shares by it. Only
+factors != 1 are stored.
 """
 import datetime as dt, os, sqlite3, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from discover_funds_fmp import _get
 from enrich_fmp import DB
+
+def _windows(conn):
+    """(13F windows per fund, N-PORT windows per fund series): (key, prior
+    period, current period) for every live book that has a prior to diff."""
+    periods = conn.execute("""SELECT s.fund,
+            (SELECT period FROM sec_13f_filings g WHERE g.accession = s.last_accession AND g.period != '' LIMIT 1),
+            (SELECT period FROM sec_13f_filings g WHERE g.accession = p.accession AND g.period != '' LIMIT 1)
+        FROM fund_13f_state s JOIN fund_13f_prior_state p ON p.fund = s.fund
+        WHERE p.accession IS NOT NULL
+          AND EXISTS (SELECT 1 FROM fund_13f_holdings h WHERE h.fund = s.fund)""").fetchall()
+    # live books only: a dormant fund's archived book is never diffed
+    f13 = [(f, pp, cp) for f, cp, pp in periods if cp and pp and pp < cp]
+    try:
+        npt = [(sid, pp, cp) for sid, pp, cp in conn.execute("""SELECT c.series_id, MAX(p.period), MAX(c.period)
+            FROM nport_holdings c JOIN nport_prior p ON p.series_id = c.series_id
+            GROUP BY c.series_id""") if pp and cp and pp < cp]
+    except sqlite3.OperationalError:
+        npt = []
+    return f13, npt
 
 def run():
     conn = sqlite3.connect(DB, timeout=120); conn.execute("PRAGMA busy_timeout=120000")
@@ -24,20 +44,15 @@ def run():
       PRIMARY KEY (symbol, date));
     DROP TABLE IF EXISTS prior_split_factor;
     CREATE TABLE prior_split_factor (fund TEXT, ticker TEXT, factor REAL, PRIMARY KEY (fund, ticker));
+    DROP TABLE IF EXISTS nport_split_factor;
+    CREATE TABLE nport_split_factor (series_id TEXT, ticker TEXT, factor REAL, PRIMARY KEY (series_id, ticker));
     """)
-    periods = conn.execute("""SELECT s.fund,
-            (SELECT period FROM sec_13f_filings g WHERE g.accession = s.last_accession AND g.period != '' LIMIT 1),
-            (SELECT period FROM sec_13f_filings g WHERE g.accession = p.accession AND g.period != '' LIMIT 1)
-        FROM fund_13f_state s JOIN fund_13f_prior_state p ON p.fund = s.fund
-        WHERE p.accession IS NOT NULL
-          AND EXISTS (SELECT 1 FROM fund_13f_holdings h WHERE h.fund = s.fund)""").fetchall()
-    # live books only: a dormant fund's archived book is never diffed
-    windows = [(f, pp, cp) for f, cp, pp in periods if cp and pp and pp < cp]
-    if not windows:
-        print("no fund has both periods on file — nothing to adjust")
+    f13, npt = _windows(conn)
+    if not (f13 or npt):
+        print("no book has both periods on file — nothing to adjust")
         return 0
-    start = min(pp for _, pp, _ in windows)
-    end = max(cp for _, _, cp in windows)
+    start = min(pp for _, pp, _ in f13 + npt)
+    end = max(cp for _, _, cp in f13 + npt)
     # the calendar in quarter-sized requests (one wide request can be capped)
     d0, n_rows, failed = dt.date.fromisoformat(start), 0, 0
     while d0.isoformat() < end:
@@ -58,22 +73,29 @@ def run():
             "SELECT symbol, date, numerator, denominator FROM stock_splits WHERE date > ? AND date <= ?",
             (start, end)):
         splits.setdefault(sym, []).append((d, num / den))
-    out = []
-    for fund, pp, cp in windows:
-        for (tk,) in conn.execute("SELECT DISTINCT ticker FROM fund_13f_prior WHERE fund=? AND ticker IS NOT NULL",
-                                  (fund,)):
-            f = 1.0
-            for d, r in splits.get(tk, ()):
-                if pp < d <= cp:
-                    f *= r
-            if abs(f - 1.0) > 1e-9:
-                out.append((fund, tk, f))
-    conn.executemany("INSERT OR REPLACE INTO prior_split_factor VALUES (?,?,?)", out)
+
+    def factors(windows, prior_sql, table):
+        out = []
+        for key, pp, cp in windows:
+            for (tk,) in conn.execute(prior_sql, (key,)):
+                f = 1.0
+                for d, r in splits.get(tk, ()):
+                    if pp < d <= cp:
+                        f *= r
+                if abs(f - 1.0) > 1e-9:
+                    out.append((key, tk, f))
+        conn.executemany(f"INSERT OR REPLACE INTO {table} VALUES (?,?,?)", out)
+        return out
+
+    out = factors(f13, "SELECT DISTINCT ticker FROM fund_13f_prior WHERE fund=? AND ticker IS NOT NULL",
+                  "prior_split_factor")
+    out_n = factors(npt, "SELECT DISTINCT ticker FROM nport_prior WHERE series_id=? AND ticker IS NOT NULL",
+                    "nport_split_factor")
     conn.commit()
-    tks = sorted({(tk, round(f, 4)) for _, tk, f in out}, key=lambda x: -abs(x[1] - 1))
+    tks = sorted({(tk, round(f, 4)) for _, tk, f in out + out_n}, key=lambda x: -abs(x[1] - 1))
     print(f"splits calendar {start} -> {end}: {n_rows} rows{f' ({failed} requests failed)' if failed else ''}; "
-          f"{len(out)} fund-ticker prior books split-adjusted across {len({t for t, _ in tks})} tickers: "
-          + ", ".join(f"{t} x{f:g}" for t, f in tks[:12]))
+          f"{len(out)} 13F and {len(out_n)} N-PORT prior books split-adjusted across "
+          f"{len({t for t, _ in tks})} tickers: " + ", ".join(f"{t} x{f:g}" for t, f in tks[:12]))
     conn.close()
     return failed
 

@@ -17,8 +17,8 @@ if [ "${ROLL:-1}" = 1 ]; then
   step roll python3 pipeline/ingest_13f.py --refresh          # newest book; old book -> prior
 fi
 step prior python3 pipeline/ingest_13f_prior.py               # exact preceding quarter, if missing
-step splits python3 pipeline/ingest_splits.py                 # split factors for the diffs
-step nport python3 pipeline/ingest_nport.py                 # global books: non-US holdings via N-PORT
+step nport python3 pipeline/ingest_nport.py                   # full fund books incl. non-US (N-PORT)
+step splits python3 pipeline/ingest_splits.py                 # split factors for the 13F and N-PORT diffs
 step build_cusip_map python3 pipeline/build_cusip_map.py
 step map_cusip_fmp python3 pipeline/map_cusip_fmp.py          # FMP-proven CUSIPs, new listings
 step back_apply python3 pipeline/build_cusip_map.py           # push the new mappings onto every line

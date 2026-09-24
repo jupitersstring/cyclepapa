@@ -12,7 +12,8 @@ the ISIN against FMP's global profile file, preferring the home listing that
 trades in the holding's currency over an OTC line.
 
 Stored SEPARATELY in nport_holdings (registered-fund data, not 13F) and never
-counted as 13F smart money. Feeds the Global Holdings and N-PORT Monthly sheets.
+counted as 13F smart money. Feeds the N-PORT sheets (Funds, Holdings, Changes,
+Global Consensus).
 Unmapped lines are kept (ticker NULL, ISIN and issuer shown), never dropped.
 """
 import csv, os, re, sqlite3, sys, time
