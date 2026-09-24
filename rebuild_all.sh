@@ -150,6 +150,8 @@ run python3 systematic_rankings.py         || true
 echo "### Workbook regeneration ###"
 run python3 build_most_asymmetric_xlsx.py  || true
 run python3 build_otc_book.py              || true
+# companion risk-reward book, rebuilt on this engine's current snapshot
+run bash refresh_risk_reward.sh            || true
 
 echo
 echo "### Source-health gate ###"
