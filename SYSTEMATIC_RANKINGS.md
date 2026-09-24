@@ -218,8 +218,8 @@ Use this to deploy systematically by mandate.
 | 5 | RAASY | 23.7 | B | 13E-3 going-private | Form144 +0 |
 | 6 | KW | 23.4 | A | 13E-3 going-private | Form144 +0 |
 | 7 | KORE | 19.8 | B | 13E-3 going-private |
-| 8 | IHS | 19.8 | B | 13E-3 going-private |
-| 9 | LSBWF | 19.8 | B | 13E-3 going-private | Form144 +0 |
+| 8 | LSBWF | 19.8 | B | 13E-3 going-private | Form144 +0 |
+| 9 | IHS | 19.8 | B | 13E-3 going-private |
 | 10 | ELPC | 19.8 | B | 13E-3 going-private |
 
 ### CEO/Chair 10b5-1 sell-plan termination (score >= 30)
@@ -427,26 +427,26 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 ### Top 20 in Tier C
 | Rank | Ticker | Norm | Layers | Reasons |
 |---:|---|--:|--:|---|
-| 1 | HCAI | 50.4 | 3 | P/B 0.11; DD 98%; microcap |
-| 2 | FMFC | 50.4 | 3 | P/B 0.45; DD 99%; microcap |
-| 3 | XCH | 50.4 | 3 | P/B 0.49; DD 94%; microcap |
-| 4 | NVX | 50.4 | 3 | P/B 0.40; DD 93%; microcap |
-| 5 | RVSN | 50.4 | 3 | P/B 0.44; DD 100%; microcap |
-| 6 | RITR | 50.4 | 3 | P/B 0.48; DD 99%; microcap |
-| 7 | NCNA | 50.4 | 3 | P/B 0.21; DD 82%; microcap |
-| 8 | TAOP | 50.4 | 3 | P/B 0.32; DD 81%; microcap |
-| 9 | DXF | 50.4 | 3 | P/B 0.11; DD 93%; microcap |
-| 10 | NTCL | 50.4 | 3 | P/B 0.19; DD 99%; microcap |
-| 11 | SCAG | 50.4 | 3 | P/B 0.34; DD 93%; microcap |
-| 12 | IZM | 50.4 | 3 | P/B 0.19; DD 91%; microcap |
-| 13 | OMH | 50.4 | 3 | P/B 0.45; DD 98%; microcap |
-| 14 | WCT | 50.4 | 3 | P/B 0.39; DD 93%; microcap |
-| 15 | DOGZ | 50.4 | 3 | P/B 0.14; DD 94%; microcap |
-| 16 | EHGO | 50.4 | 3 | P/B 0.16; DD 92%; microcap |
-| 17 | VSA | 50.4 | 3 | P/B 0.17; DD 100%; microcap |
-| 18 | MGN | 50.4 | 3 | P/B 0.17; DD 100%; microcap |
-| 19 | PAVS | 50.4 | 3 | P/B 0.11; DD 100%; microcap |
-| 20 | HKPD | 50.4 | 3 | P/B 0.26; DD 93%; microcap |
+| 1 | MGN | 50.4 | 3 | P/B 0.17; DD 100%; microcap |
+| 2 | PAVS | 50.4 | 3 | P/B 0.11; DD 100%; microcap |
+| 3 | GNS | 50.4 | 3 | P/B 0.33; DD 85%; microcap |
+| 4 | FRSX | 50.4 | 3 | P/B 0.26; DD 85%; microcap |
+| 5 | OMH | 50.4 | 3 | P/B 0.45; DD 98%; microcap |
+| 6 | SVRE | 50.4 | 3 | P/B 0.11; DD 89%; microcap |
+| 7 | HCAI | 50.4 | 3 | P/B 0.11; DD 98%; microcap |
+| 8 | SRXH | 50.4 | 3 | P/B 0.12; DD 96%; microcap |
+| 9 | DUO | 50.4 | 3 | P/B 0.29; DD 86%; microcap |
+| 10 | WCT | 50.4 | 3 | P/B 0.39; DD 93%; microcap |
+| 11 | DOGZ | 50.4 | 3 | P/B 0.14; DD 94%; microcap |
+| 12 | WBUY | 50.4 | 3 | P/B 0.24; DD 83%; microcap |
+| 13 | STFS | 50.4 | 3 | P/B 0.20; DD 83%; microcap |
+| 14 | FCHL | 50.4 | 3 | P/B 0.44; DD 100%; microcap |
+| 15 | TAOP | 50.4 | 3 | P/B 0.32; DD 81%; microcap |
+| 16 | NTCL | 50.4 | 3 | P/B 0.19; DD 99%; microcap |
+| 17 | JYD | 50.4 | 3 | P/B 0.21; DD 88%; microcap |
+| 18 | FLX | 50.4 | 3 | P/B 0.18; DD 81%; microcap |
+| 19 | DXF | 50.4 | 3 | P/B 0.11; DD 93%; microcap |
+| 20 | XCH | 50.4 | 3 | P/B 0.49; DD 94%; microcap |
 
 
 ## 5. Caution list -- convergent names with red flags
@@ -462,8 +462,8 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 | MAT | discretionary hurdle, repricing language, retirement carveout |
 | LW | front-loaded grant, retirement carveout |
 | TROX | retirement carveout |
-| FIS | repricing language |
 | CMCO | discretionary hurdle, repricing language, retirement carveout |
+| FIS | repricing language |
 | LE | retirement carveout |
 | SD | front-loaded grant |
 | OSUR | discretionary hurdle, repricing language, single-trigger CIC |
@@ -495,7 +495,7 @@ Tier reflects how many of 7 data layers we have per ticker. Higher tier = more r
 ## 6. Use-case deployment sheet
 
 - **Highest-conviction concentrated (top-3 convergent)**: HFFG, GO, MAT
-- **Microcap forcing-function basket (Bastian)**: LGL, HTT, GNPX, NUS, MLCI, BEEP
+- **Microcap forcing-function basket (Bastian)**: LGL, HTT, GNPX, NUS, BEEP, MLCI
 - **Mungerian forward-dollar PSU concentration**: THRY, MAT, TRU, EHTH, GROV
 - **Verified buyback compounders (EXECUTING)**: PAYC, AMH, CRM, MORN, RNR
 - **Live SELF_TENDER**: EXFY, ABX, ABXL

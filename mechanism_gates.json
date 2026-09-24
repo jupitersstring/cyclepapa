@@ -45,31 +45,6 @@
     },
     "score": 20.0
   },
-  "BHF": {
-    "ticker": "BHF",
-    "archetypes": [
-      "governance_discount_catalyst"
-    ],
-    "n_mechanisms": 1,
-    "geometry_ratio": 28.22,
-    "geometry_score": 31.6,
-    "downside_pct": 0.0,
-    "upside_pct": 1.411,
-    "floor_source": "book(0.5x)",
-    "sector": "Financial Services",
-    "details": {
-      "governance_discount": {
-        "p_b": 0.459,
-        "tier": "BUILDING",
-        "families": [
-          "CALL_COMMIT",
-          "CIC_PREP",
-          "PAY_ON_VALUE"
-        ]
-      }
-    },
-    "score": 19.9
-  },
   "GENC": {
     "ticker": "GENC",
     "archetypes": [
@@ -3996,30 +3971,6 @@
     },
     "score": 16.8
   },
-  "BHFAN": {
-    "ticker": "BHFAN",
-    "archetypes": [
-      "governance_discount_catalyst"
-    ],
-    "n_mechanisms": 1,
-    "geometry_ratio": 28.22,
-    "geometry_score": 31.6,
-    "downside_pct": 0.0,
-    "upside_pct": 1.411,
-    "floor_source": "book(0.5x)",
-    "sector": "Financial Services",
-    "details": {
-      "governance_discount": {
-        "p_b": 0.561,
-        "tier": "BUILDING",
-        "families": [
-          "CALL_COMMIT",
-          "PAY_ON_VALUE"
-        ]
-      }
-    },
-    "score": 19.9
-  },
   "ELAB": {
     "ticker": "ELAB",
     "archetypes": [
@@ -4409,30 +4360,6 @@
         "d_e": null,
         "ratio": 60.0,
         "small_cap": true
-      }
-    },
-    "score": 20.0
-  },
-  "BHFAP": {
-    "ticker": "BHFAP",
-    "archetypes": [
-      "governance_discount_catalyst"
-    ],
-    "n_mechanisms": 1,
-    "geometry_ratio": 56.44,
-    "geometry_score": 35.5,
-    "downside_pct": 0.0,
-    "upside_pct": 2.822,
-    "floor_source": "book(0.5x)",
-    "sector": "Financial Services",
-    "details": {
-      "governance_discount": {
-        "p_b": 0.357,
-        "tier": "BUILDING",
-        "families": [
-          "CALL_COMMIT",
-          "PAY_ON_VALUE"
-        ]
       }
     },
     "score": 20.0
@@ -5246,54 +5173,6 @@
     },
     "score": 15.7
   },
-  "BHFAM": {
-    "ticker": "BHFAM",
-    "archetypes": [
-      "governance_discount_catalyst"
-    ],
-    "n_mechanisms": 1,
-    "geometry_ratio": 28.22,
-    "geometry_score": 31.6,
-    "downside_pct": 0.0,
-    "upside_pct": 1.411,
-    "floor_source": "book(0.5x)",
-    "sector": "Financial Services",
-    "details": {
-      "governance_discount": {
-        "p_b": 0.553,
-        "tier": "BUILDING",
-        "families": [
-          "CALL_COMMIT",
-          "PAY_ON_VALUE"
-        ]
-      }
-    },
-    "score": 19.9
-  },
-  "BHFAO": {
-    "ticker": "BHFAO",
-    "archetypes": [
-      "governance_discount_catalyst"
-    ],
-    "n_mechanisms": 1,
-    "geometry_ratio": 28.22,
-    "geometry_score": 31.6,
-    "downside_pct": 0.0,
-    "upside_pct": 1.411,
-    "floor_source": "book(0.5x)",
-    "sector": "Financial Services",
-    "details": {
-      "governance_discount": {
-        "p_b": 0.553,
-        "tier": "BUILDING",
-        "families": [
-          "CALL_COMMIT",
-          "PAY_ON_VALUE"
-        ]
-      }
-    },
-    "score": 19.9
-  },
   "MIND": {
     "ticker": "MIND",
     "archetypes": [
@@ -5592,30 +5471,6 @@
       }
     },
     "score": 18.7
-  },
-  "BHFAL": {
-    "ticker": "BHFAL",
-    "archetypes": [
-      "governance_discount_catalyst"
-    ],
-    "n_mechanisms": 1,
-    "geometry_ratio": 28.22,
-    "geometry_score": 31.6,
-    "downside_pct": 0.0,
-    "upside_pct": 1.411,
-    "floor_source": "book(0.5x)",
-    "sector": "Financial Services",
-    "details": {
-      "governance_discount": {
-        "p_b": 0.544,
-        "tier": "BUILDING",
-        "families": [
-          "CALL_COMMIT",
-          "PAY_ON_VALUE"
-        ]
-      }
-    },
-    "score": 19.9
   },
   "CCZ": {
     "ticker": "CCZ",
