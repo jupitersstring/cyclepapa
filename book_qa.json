@@ -2,15 +2,31 @@
  {
   "book": "MOST_ASYMMETRIC.xlsx",
   "sheet": "What's New",
-  "row": 79,
+  "row": 62,
   "kind": "NO DATA",
-  "ticker": "CIK0001355096",
+  "ticker": "ALB-PA",
+  "detail": "no FMP financial record"
+ },
+ {
+  "book": "MOST_ASYMMETRIC.xlsx",
+  "sheet": "What's New",
+  "row": 90,
+  "kind": "NO DATA",
+  "ticker": "NOTEW",
   "detail": "no FMP financial record"
  },
  {
   "book": "MOST_ASYMMETRIC.xlsx",
   "sheet": "Name Financials",
-  "row": 528,
+  "row": 1291,
+  "kind": "DUPLICATE ISSUER",
+  "ticker": "CUBB,CUBI",
+  "detail": "customers bancorp"
+ },
+ {
+  "book": "MOST_ASYMMETRIC.xlsx",
+  "sheet": "Name Financials",
+  "row": 1152,
   "kind": "DUPLICATE ISSUER",
   "ticker": "FMCQF,FMS",
   "detail": "fresenius medical care"
@@ -18,34 +34,34 @@
  {
   "book": "MOST_ASYMMETRIC.xlsx",
   "sheet": "Name Financials",
-  "row": 1013,
+  "row": 1438,
   "kind": "DUPLICATE ISSUER",
   "ticker": "RACD,RACC",
   "detail": "research alliance"
  },
  {
   "book": "MOST_ASYMMETRIC.xlsx",
-  "sheet": "Payoff Geometry",
+  "sheet": "PSU Plans",
   "row": 4,
   "kind": "DEAD COLUMN",
   "ticker": "",
-  "detail": "'Down%' empty in 47/50 rows"
+  "detail": "'rTSR target' empty in 1103/1217 rows"
  },
  {
   "book": "MOST_ASYMMETRIC.xlsx",
   "sheet": "Turnaround Signal",
-  "row": 47,
+  "row": 22,
   "kind": "NO DATA",
-  "ticker": "CIK0002108121",
+  "ticker": "CIK0000859737",
   "detail": "no FMP financial record"
  },
  {
   "book": "MOST_ASYMMETRIC.xlsx",
   "sheet": "Turnaround Signal",
-  "row": 4,
-  "kind": "DEAD COLUMN",
-  "ticker": "",
-  "detail": "'Since (vs SPY)' empty in 59/59 rows"
+  "row": 35,
+  "kind": "NO DATA",
+  "ticker": "ALB-PA",
+  "detail": "no FMP financial record"
  },
  {
   "book": "MOST_ASYMMETRIC.xlsx",
@@ -65,64 +81,16 @@
  },
  {
   "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "Name Financials",
-  "row": 88,
-  "kind": "IMPLAUSIBLE",
-  "ticker": "GDDY",
-  "detail": "P/B 1916.98"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "Name Financials",
-  "row": 492,
-  "kind": "IMPLAUSIBLE",
-  "ticker": "SUPV",
-  "detail": "P/B 1317.19"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "Name Financials",
-  "row": 618,
-  "kind": "IMPLAUSIBLE",
-  "ticker": "CONC",
-  "detail": "P/B 452.66"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "Name Financials",
-  "row": 877,
-  "kind": "IMPLAUSIBLE",
-  "ticker": "TLSA",
-  "detail": "P/B 1220.95"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
   "sheet": "All names",
-  "row": 301,
+  "row": 302,
   "kind": "DUPLICATE ISSUER",
-  "ticker": "AZLUD,AZUL",
+  "ticker": "AZLUY,AZUL",
   "detail": "azul"
  },
  {
   "book": "cyclepapa_risk_reward_workbook.xlsx",
   "sheet": "All names",
-  "row": 481,
-  "kind": "DUPLICATE ISSUER",
-  "ticker": "CIK:0001109448,AB",
-  "detail": "alliancebernstein l p"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "All names",
-  "row": 358,
-  "kind": "DUPLICATE ISSUER",
-  "ticker": "HK:1918,HKEX:SUNAC",
-  "detail": "sunac china"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "All names",
-  "row": 968,
+  "row": 964,
   "kind": "DUPLICATE ISSUER",
   "ticker": "HK:2202,SZSE:000002",
   "detail": "vanke"
@@ -130,113 +98,9 @@
  {
   "book": "cyclepapa_risk_reward_workbook.xlsx",
   "sheet": "All names",
-  "row": 1211,
+  "row": 1204,
   "kind": "DUPLICATE ISSUER",
   "ticker": "NRIM,\u2014",
   "detail": "northrim bancorp"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "All names",
-  "row": 1183,
-  "kind": "DUPLICATE ISSUER",
-  "ticker": "\u2014,SNBR",
-  "detail": "sleep number"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "Catalyst timeline",
-  "row": 56,
-  "kind": "IMPLAUSIBLE",
-  "ticker": "DRX",
-  "detail": "Window start 2026-10-01 is in the future"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "Catalyst timeline",
-  "row": 57,
-  "kind": "IMPLAUSIBLE",
-  "ticker": "TKA",
-  "detail": "Window start 2026-12-01 is in the future"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "Catalyst timeline",
-  "row": 58,
-  "kind": "IMPLAUSIBLE",
-  "ticker": "GTCO",
-  "detail": "Window start 2026-12-01 is in the future"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "Catalyst timeline",
-  "row": 59,
-  "kind": "IMPLAUSIBLE",
-  "ticker": "FLG",
-  "detail": "Window start 2026-12-01 is in the future"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "Catalyst timeline",
-  "row": 62,
-  "kind": "IMPLAUSIBLE",
-  "ticker": "LOCAL",
-  "detail": "Window start 2027-01-01 is in the future"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "Catalyst timeline",
-  "row": 63,
-  "kind": "IMPLAUSIBLE",
-  "ticker": "WLN",
-  "detail": "Window start 2027-01-01 is in the future"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "Catalyst timeline",
-  "row": 64,
-  "kind": "IMPLAUSIBLE",
-  "ticker": "HE",
-  "detail": "Window start 2027-01-01 is in the future"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "Catalyst timeline",
-  "row": 65,
-  "kind": "IMPLAUSIBLE",
-  "ticker": "YPF",
-  "detail": "Window start 2027-03-01 is in the future"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "Catalyst timeline",
-  "row": 66,
-  "kind": "IMPLAUSIBLE",
-  "ticker": "HE",
-  "detail": "Window start 2027-03-01 is in the future"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "Catalyst timeline",
-  "row": 67,
-  "kind": "IMPLAUSIBLE",
-  "ticker": "UREE",
-  "detail": "Window start 2027-06-01 is in the future"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "Catalyst timeline",
-  "row": 68,
-  "kind": "IMPLAUSIBLE",
-  "ticker": "LAC",
-  "detail": "Window start 2027-09-01 is in the future"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "Catalyst timeline",
-  "row": 69,
-  "kind": "IMPLAUSIBLE",
-  "ticker": "LAC",
-  "detail": "Window start 2028-01-01 is in the future"
  }
 ]

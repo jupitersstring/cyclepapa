@@ -47,5 +47,20 @@ so the accuracy figure is not flattered by fixing the cases I had already seen.
 - **Wrong ticker:** a ticker can map to the acquirer rather than the target
   (CMC / Commercial Metals). This comes from the upstream EDGAR display name.
 
-PSU plan extraction (`psu_detail.py`) goes through the same hand-QA loop; see
-the PSU section once that run completes.
+## Round 2 — a reviewed gold set, and the books use it (2026-09-24)
+
+Every current filing was read and extracted by a reviewer. Each record has a verbatim evidence
+quote and a confidence; the records are in `reviewed/`:
+- 976 event filings;
+- 830 proxy PSU plans;
+- 400 Item 5.02 appointment filings.
+
+These records now drive the books (`reviewed_overlay.py`). On the tabs:
+- **(reviewed)** marks a field taken from the reviewed record;
+- **"↻ other kind"** marks a real event of a different kind than the scanner tagged (a rights plan
+  adopted under "pill removed", or the company acquiring under "sale of company"). These events are
+  no longer scored as the tagged kind.
+
+The regex parsers remain the fallback for new filings. Their field-by-field accuracy against the gold
+set is in **PARSER_EVAL.md**. The gold set is split into a tuned-on half and an untouched holdout
+half, and the holdout figures are the honest ones.

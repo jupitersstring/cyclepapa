@@ -1,0 +1,74 @@
+[
+ {
+  "id": "AEBI|0001171843-26-003600",
+  "field": "event_type",
+  "from": "OTHER",
+  "to": "NEW_HIRE",
+  "person": "Barend Fruithof",
+  "role": "Chair of the Board",
+  "reason": "Shareholders elected Barend Fruithof as Chair of the Board"
+ },
+ {
+  "id": "JSPRW|0001213900-26-078887",
+  "field": "event_type",
+  "from": "DIRECTOR_ONLY",
+  "to": "NEW_HIRE",
+  "person": "Matthew Ros",
+  "role": "Chief Operating Officer",
+  "reason": "Board appointed Matthew Ros as COO"
+ },
+ {
+  "id": "ESAB|0001213900-26-067998",
+  "field": "event_type",
+  "from": "EQUITY_AWARD",
+  "to": "NEW_HIRE",
+  "person": "Mitchell P. Rales",
+  "role": "Executive Chair",
+  "reason": "ESAB appointed Rales Executive Chair (with performance option awards)"
+ },
+ {
+  "id": "NSC|0001193125-26-250020",
+  "field": "event_type",
+  "from": "DEPARTURE",
+  "to": "NEW_HIRE",
+  "person": "Brian Barr",
+  "role": "Chief Operating Officer",
+  "reason": "Board appointed Brian Barr as COO (successor to the departing COO)"
+ },
+ {
+  "id": "TACT|0001214659-26-006001",
+  "field": "event_type",
+  "from": "OTHER",
+  "to": "NEW_HIRE",
+  "person": "Robert Campbell",
+  "role": "Chief Financial Officer",
+  "reason": "appointment of Robert Campbell as CFO on the predecessor's retirement"
+ },
+ {
+  "id": "TISI|0001193125-26-279459",
+  "field": "event_type",
+  "from": "DEPARTURE",
+  "to": "NEW_HIRE",
+  "person": "Clinton Roeder",
+  "role": "Executive Vice President and Chief Financial Officer",
+  "reason": "Board appointed Clinton Roeder as EVP and CFO"
+ },
+ {
+  "id": "FNGR|0001493152-26-038662",
+  "field": "event_type",
+  "from": "OTHER",
+  "to": "NEW_HIRE",
+  "person": "Chris Polimeni",
+  "role": "Chief Financial Officer",
+  "reason": "FingerMotion appoints Chris Polimeni as CFO (EX-99.2)"
+ },
+ {
+  "id": "DVN|0001193125-26-211971",
+  "field": "event_type",
+  "from": "DIRECTOR_ONLY",
+  "to": "NEW_HIRE",
+  "person": "Shannon E. Young III",
+  "role": "Executive Vice President and Chief Financial Officer",
+  "reason": "Devon board appointed Shannon E. Young III as EVP and CFO"
+ }
+]

@@ -1,0 +1,2409 @@
+{
+ "has": [
+  [
+   "JTAI",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "KODK",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "LBTYA",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "LBTYK",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "MDIA",
+   "parser found a plan; reviewer: none"
+  ],
+  [
+   "NMRK",
+   "parser found a plan; reviewer: none"
+  ],
+  [
+   "OKE",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "PALI",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "PATK",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "PCYO",
+   "parser found a plan; reviewer: none"
+  ],
+  [
+   "POLA",
+   "parser found a plan; reviewer: none"
+  ],
+  [
+   "ROST",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "SCYX",
+   "parser found a plan; reviewer: none"
+  ],
+  [
+   "SELF",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "TBPH",
+   "parser found a plan; reviewer: none"
+  ],
+  [
+   "TCBK",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "TONX",
+   "parser found a plan; reviewer: none"
+  ],
+  [
+   "TPET",
+   "parser found a plan; reviewer: none"
+  ],
+  [
+   "USNA",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "VENU",
+   "parser found a plan; reviewer: none"
+  ],
+  [
+   "VTSI",
+   "parser found a plan; reviewer: none"
+  ],
+  [
+   "WEST",
+   "parser found a plan; reviewer: none"
+  ],
+  [
+   "XBIT",
+   "parser found a plan; reviewer: none"
+  ],
+  [
+   "XPOF",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "ZETA",
+   "reviewer found a plan; parser: none"
+  ]
+ ],
+ "metrics": [
+  [
+   "KHC",
+   [
+    "Free cash flow",
+    "Revenue",
+    "rTSR"
+   ],
+   [
+    "Free cash flow"
+   ]
+  ],
+  [
+   "KPTI",
+   [
+    "Revenue",
+    "Strategic",
+    "TSR"
+   ],
+   [
+    "Revenue",
+    "rTSR"
+   ]
+  ],
+  [
+   "LEVI",
+   [
+    "Margin",
+    "ROIC",
+    "Revenue",
+    "rTSR"
+   ],
+   [
+    "rTSR"
+   ]
+  ],
+  [
+   "M",
+   [
+    "rTSR"
+   ],
+   [
+    "EBITDA",
+    "Revenue"
+   ]
+  ],
+  [
+   "MAN",
+   [
+    "Margin"
+   ],
+   [
+    "Revenue"
+   ]
+  ],
+  [
+   "MD",
+   [
+    "EBITDA"
+   ],
+   [
+    "EBITDA",
+    "ROIC",
+    "Stock price"
+   ]
+  ],
+  [
+   "MDLN",
+   [
+    "rTSR"
+   ],
+   [
+    "Margin"
+   ]
+  ],
+  [
+   "MPT",
+   [
+    "TSR"
+   ],
+   [
+    "Stock price"
+   ]
+  ],
+  [
+   "MRVI",
+   [
+    "Stock price"
+   ],
+   [
+    "EBITDA"
+   ]
+  ],
+  [
+   "MSCI",
+   [
+    "TSR"
+   ],
+   [
+    "EPS",
+    "Revenue",
+    "TSR"
+   ]
+  ],
+  [
+   "MSFT",
+   [
+    "Revenue"
+   ],
+   [
+    "TSR"
+   ]
+  ],
+  [
+   "MX",
+   [
+    "EBITDA",
+    "Margin",
+    "Revenue",
+    "Stock price"
+   ],
+   [
+    "EBITDA"
+   ]
+  ],
+  [
+   "NCMI",
+   [
+    "EBITDA",
+    "Revenue"
+   ],
+   [
+    "Free cash flow"
+   ]
+  ],
+  [
+   "NFLX",
+   [
+    "rTSR"
+   ],
+   [
+    "Margin",
+    "Revenue"
+   ]
+  ],
+  [
+   "NI",
+   [
+    "EPS",
+    "Other",
+    "rTSR"
+   ],
+   [
+    "ESG",
+    "rTSR"
+   ]
+  ],
+  [
+   "NOV",
+   [
+    "ROCE",
+    "rTSR"
+   ],
+   [
+    "ROIC"
+   ]
+  ],
+  [
+   "NPKI",
+   [
+    "ROCE",
+    "rTSR"
+   ],
+   [
+    "ROIC",
+    "rTSR"
+   ]
+  ],
+  [
+   "NRG",
+   [
+    "rTSR"
+   ],
+   [
+    "ROE"
+   ]
+  ],
+  [
+   "NSIT",
+   [
+    "ROIC",
+    "TSR",
+    "rTSR"
+   ],
+   [
+    "ROIC"
+   ]
+  ],
+  [
+   "NUS",
+   [
+    "EPS"
+   ],
+   [
+    "EPS",
+    "Operating income",
+    "Revenue"
+   ]
+  ],
+  [
+   "OLED",
+   [
+    "EBITDA",
+    "Other",
+    "rTSR"
+   ],
+   [
+    "EBITDA",
+    "Margin"
+   ]
+  ],
+  [
+   "OPTU",
+   [
+    "Revenue"
+   ],
+   [
+    "EBITDA"
+   ]
+  ],
+  [
+   "PCOR",
+   [
+    "rTSR"
+   ],
+   [
+    "Margin",
+    "Revenue",
+    "rTSR"
+   ]
+  ],
+  [
+   "PEG",
+   [
+    "rTSR"
+   ],
+   [
+    "EPS",
+    "ESG",
+    "rTSR"
+   ]
+  ],
+  [
+   "PGR",
+   [
+    "Other"
+   ],
+   [
+    "ESG"
+   ]
+  ],
+  [
+   "PPL",
+   [
+    "EPS",
+    "rTSR"
+   ],
+   [
+    "Operating income",
+    "Other"
+   ]
+  ],
+  [
+   "PPLC",
+   [
+    "EPS",
+    "rTSR"
+   ],
+   [
+    "Operating income",
+    "Other"
+   ]
+  ],
+  [
+   "PXLW",
+   [
+    "Strategic"
+   ],
+   [
+    "Revenue"
+   ]
+  ],
+  [
+   "PYPL",
+   [
+    "rTSR"
+   ],
+   [
+    "Stock price"
+   ]
+  ],
+  [
+   "RBLX",
+   [
+    "Margin",
+    "Revenue"
+   ],
+   [
+    "EBITDA",
+    "Revenue"
+   ]
+  ],
+  [
+   "RC",
+   [
+    "Stock price"
+   ],
+   [
+    "ROE",
+    "rTSR"
+   ]
+  ],
+  [
+   "S",
+   [
+    "Other",
+    "Revenue"
+   ],
+   [
+    "Margin",
+    "Revenue"
+   ]
+  ],
+  [
+   "SNPS",
+   [
+    "Revenue"
+   ],
+   [
+    "rTSR"
+   ]
+  ],
+  [
+   "SSD",
+   [
+    "EPS",
+    "Other"
+   ],
+   [
+    "ROIC",
+    "Revenue"
+   ]
+  ],
+  [
+   "SWX",
+   [
+    "Other",
+    "ROE"
+   ],
+   [
+    "EPS",
+    "Other"
+   ]
+  ],
+  [
+   "TGT",
+   [
+    "EPS",
+    "ROIC",
+    "Revenue"
+   ],
+   [
+    "Operating income",
+    "Revenue"
+   ]
+  ],
+  [
+   "THRY",
+   [
+    "TSR",
+    "rTSR"
+   ],
+   [
+    "EBITDA",
+    "Free cash flow",
+    "Revenue"
+   ]
+  ],
+  [
+   "UBER",
+   [
+    "Operating income",
+    "Other",
+    "Revenue"
+   ],
+   [
+    "Margin",
+    "Operating income"
+   ]
+  ],
+  [
+   "UGI",
+   [
+    "TSR"
+   ],
+   [
+    "EPS",
+    "rTSR"
+   ]
+  ],
+  [
+   "UNFI",
+   [
+    "EPS",
+    "Free cash flow"
+   ],
+   [
+    "EPS",
+    "ROIC"
+   ]
+  ],
+  [
+   "UNM",
+   [
+    "EPS",
+    "Revenue"
+   ],
+   [
+    "EPS",
+    "rTSR"
+   ]
+  ],
+  [
+   "VNOM",
+   [
+    "rTSR"
+   ],
+   [
+    "TSR"
+   ]
+  ],
+  [
+   "VSNT",
+   [
+    "EBITDA",
+    "Other"
+   ],
+   [
+    "EBITDA",
+    "Revenue"
+   ]
+  ],
+  [
+   "VST",
+   [
+    "Free cash flow"
+   ],
+   [
+    "rTSR"
+   ]
+  ],
+  [
+   "WFC",
+   [
+    "ROE"
+   ],
+   [
+    "ESG"
+   ]
+  ],
+  [
+   "WMB",
+   [
+    "AFFO",
+    "ROIC"
+   ],
+   [
+    "AFFO",
+    "ROCE"
+   ]
+  ],
+  [
+   "WSC",
+   [
+    "Free cash flow",
+    "ROIC",
+    "rTSR"
+   ],
+   [
+    "rTSR"
+   ]
+  ],
+  [
+   "WW",
+   [
+    "Stock price"
+   ],
+   [
+    "Revenue"
+   ]
+  ],
+  [
+   "XRN",
+   [
+    "TSR",
+    "rTSR"
+   ],
+   [
+    "FFO"
+   ]
+  ]
+ ],
+ "weights": [
+  [
+   "KBH",
+   {
+    "EPS": 40,
+    "ROIC": 35,
+    "Revenue": 25
+   },
+   {
+    "ROIC": null,
+    "Revenue": null,
+    "Other": null
+   }
+  ],
+  [
+   "KBR",
+   {
+    "Other": 50,
+    "rTSR": 50
+   },
+   {
+    "rTSR": 100.0
+   }
+  ],
+  [
+   "KHC",
+   {
+    "rTSR": 40,
+    "Revenue": 30,
+    "Free cash flow": 30
+   },
+   {
+    "Free cash flow": 100.0
+   }
+  ],
+  [
+   "KMPB",
+   {
+    "Book value": 66.7,
+    "ROE": 33.3
+   },
+   {
+    "ROE": 100.0
+   }
+  ],
+  [
+   "KMPR",
+   {
+    "Book value": 66.7,
+    "ROE": 33.3
+   },
+   {
+    "ROE": 100.0
+   }
+  ],
+  [
+   "KPTI",
+   {
+    "Strategic": 33.3,
+    "Revenue": 33.3,
+    "TSR": 33.3
+   },
+   {
+    "Revenue": 50.0,
+    "rTSR": 50.0
+   }
+  ],
+  [
+   "LEVI",
+   {
+    "rTSR": 50,
+    "Margin": 25,
+    "ROIC": 15,
+    "Revenue": 10
+   },
+   {
+    "rTSR": 100.0
+   }
+  ],
+  [
+   "LHX",
+   {
+    "EPS": 33,
+    "ROIC": 33,
+    "rTSR": 33
+   },
+   {
+    "EPS": 25.0,
+    "ROIC": 25.0,
+    "rTSR": 25.0,
+    "Operating income": 25.0
+   }
+  ],
+  [
+   "LIVN",
+   {
+    "rTSR": 50,
+    "Free cash flow": 25,
+    "ROIC": 25
+   },
+   {
+    "rTSR": null,
+    "Free cash flow": null,
+    "ROIC": null
+   }
+  ],
+  [
+   "LPX",
+   {
+    "ROIC": 100
+   },
+   {
+    "ROIC": null,
+    "EBITDA": null
+   }
+  ],
+  [
+   "LUMN",
+   {
+    "Free cash flow": 50,
+    "rTSR": 50
+   },
+   {
+    "rTSR": 100.0
+   }
+  ],
+  [
+   "LXU",
+   {
+    "ROA": 100
+   },
+   {
+    "TSR": null,
+    "ROA": null
+   }
+  ],
+  [
+   "MAN",
+   {
+    "Margin": 100
+   },
+   {
+    "Revenue": 100.0
+   }
+  ],
+  [
+   "MBUU",
+   {
+    "rTSR": 50,
+    "EBITDA": 50
+   },
+   {
+    "rTSR": null,
+    "EBITDA": null
+   }
+  ],
+  [
+   "MD",
+   {
+    "EBITDA": 100
+   },
+   {
+    "ROIC": null,
+    "EBITDA": null,
+    "Stock price": null
+   }
+  ],
+  [
+   "MDLZ",
+   {
+    "Revenue": 50,
+    "EPS": 50
+   },
+   {
+    "Revenue": 33.3,
+    "EPS": 33.3,
+    "rTSR": 33.3
+   }
+  ],
+  [
+   "MPT",
+   {
+    "TSR": 100
+   },
+   {
+    "Stock price": 100.0
+   }
+  ],
+  [
+   "MRVI",
+   {
+    "Stock price": 100
+   },
+   {
+    "EBITDA": 100.0
+   }
+  ],
+  [
+   "MSCI",
+   {
+    "TSR": 100
+   },
+   {
+    "Revenue": 33.3,
+    "EPS": 33.3,
+    "TSR": 33.3
+   }
+  ],
+  [
+   "MSFT",
+   {
+    "Revenue": 100
+   },
+   {
+    "TSR": 100.0
+   }
+  ],
+  [
+   "MUR",
+   {
+    "rTSR": 80,
+    "ROCE": 20
+   },
+   {
+    "rTSR": null,
+    "ROCE": null,
+    "ROE": null
+   }
+  ],
+  [
+   "MVBF",
+   {
+    "Book value": 50,
+    "EPS": 50
+   },
+   {
+    "Book value": null,
+    "EPS": null
+   }
+  ],
+  [
+   "MYGN",
+   {
+    "Revenue": 34,
+    "EPS": 33,
+    "rTSR": 33
+   },
+   {
+    "Revenue": 50.0,
+    "EPS": 50.0
+   }
+  ],
+  [
+   "NFLX",
+   {
+    "rTSR": 100
+   },
+   {
+    "Revenue": 35.0,
+    "Margin": 65.0
+   }
+  ],
+  [
+   "NI",
+   {
+    "EPS": 50,
+    "rTSR": 30,
+    "Other": 10
+   },
+   {
+    "rTSR": null,
+    "ESG": null
+   }
+  ],
+  [
+   "NPKI",
+   {
+    "rTSR": 70,
+    "ROCE": 30
+   },
+   {
+    "rTSR": 70.0,
+    "ROIC": 30.0
+   }
+  ],
+  [
+   "NRG",
+   {
+    "rTSR": 100
+   },
+   {
+    "ROE": 100.0
+   }
+  ],
+  [
+   "NTGR",
+   {
+    "rTSR": 100
+   },
+   {
+    "rTSR": null,
+    "Revenue": null
+   }
+  ],
+  [
+   "NUS",
+   {
+    "EPS": 100
+   },
+   {
+    "Revenue": null,
+    "Operating income": null,
+    "EPS": null
+   }
+  ],
+  [
+   "NXST",
+   {
+    "rTSR": 100
+   },
+   {
+    "rTSR": 50.0,
+    "Free cash flow": 50.0
+   }
+  ],
+  [
+   "OLED",
+   {
+    "EBITDA": 50,
+    "rTSR": 25,
+    "Other": 25
+   },
+   {
+    "EBITDA": null,
+    "Margin": null
+   }
+  ],
+  [
+   "ONL",
+   {
+    "TSR": 50,
+    "Other": 50
+   },
+   {
+    "TSR": 100.0
+   }
+  ],
+  [
+   "PCOR",
+   {
+    "rTSR": 100
+   },
+   {
+    "rTSR": null,
+    "Revenue": null,
+    "Margin": null
+   }
+  ],
+  [
+   "PEP",
+   {
+    "EPS": 50,
+    "Revenue": 50
+   },
+   {
+    "EPS": null,
+    "Revenue": null
+   }
+  ],
+  [
+   "PFG",
+   {
+    "ROE": 50,
+    "EPS": 50
+   },
+   {
+    "ROE": 33.3,
+    "Operating income": 33.3,
+    "EPS": 33.3
+   }
+  ],
+  [
+   "PLXS",
+   {
+    "rTSR": 50,
+    "ROIC": 50
+   },
+   {
+    "rTSR": 100.0
+   }
+  ],
+  [
+   "PPL",
+   {
+    "rTSR": 50,
+    "EPS": 25
+   },
+   {
+    "Other": null,
+    "Operating income": null
+   }
+  ],
+  [
+   "PPLC",
+   {
+    "rTSR": 50,
+    "EPS": 25
+   },
+   {
+    "Other": null,
+    "Operating income": null
+   }
+  ],
+  [
+   "PRG",
+   {
+    "rTSR": 42.9,
+    "Revenue": 28.6,
+    "Other": 28.6
+   },
+   {
+    "rTSR": null,
+    "Revenue": null
+   }
+  ],
+  [
+   "PRGO",
+   {
+    "Free cash flow": 71.4,
+    "rTSR": 28.6
+   },
+   {
+    "rTSR": null,
+    "Free cash flow": null
+   }
+  ],
+  [
+   "PTLO",
+   {
+    "Revenue": 50,
+    "EBITDA": 50
+   },
+   {
+    "ESG": null,
+    "Revenue": null,
+    "EBITDA": null
+   }
+  ],
+  [
+   "RBLX",
+   {
+    "Revenue": 80,
+    "Margin": 20
+   },
+   {
+    "Revenue": 80.0,
+    "EBITDA": 20.0
+   }
+  ],
+  [
+   "RC",
+   {
+    "Stock price": 100
+   },
+   {
+    "ROE": 50.0,
+    "rTSR": 50.0
+   }
+  ],
+  [
+   "RSG",
+   {
+    "ROIC": 50,
+    "Cash flow": 50
+   },
+   {
+    "ROIC": 100.0
+   }
+  ],
+  [
+   "SHC",
+   {
+    "Revenue": 50,
+    "Free cash flow": 50
+   },
+   {
+    "Revenue": null,
+    "Free cash flow": null
+   }
+  ],
+  [
+   "SKYW",
+   {
+    "Free cash flow": 20,
+    "EBITDA": 50,
+    "Other": 30
+   },
+   {
+    "Free cash flow": null,
+    "EBITDA": null
+   }
+  ],
+  [
+   "SNPS",
+   {
+    "Revenue": 100
+   },
+   {
+    "rTSR": 100.0
+   }
+  ],
+  [
+   "SSD",
+   {
+    "Other": 50,
+    "EPS": 50
+   },
+   {
+    "Revenue": 50.0,
+    "ROIC": 50.0
+   }
+  ],
+  [
+   "SWK",
+   {
+    "ROIC": 30,
+    "EBITDA": 45,
+    "rTSR": 25
+   },
+   {
+    "EBITDA": 45.0,
+    "rTSR": 25.0,
+    "Revenue": 35.0
+   }
+  ],
+  [
+   "SWX",
+   {
+    "Other": 60,
+    "ROE": 40
+   },
+   {
+    "EPS": 50.0,
+    "Other": 50.0
+   }
+  ],
+  [
+   "TARS",
+   {
+    "Revenue": 50,
+    "Strategic": 50
+   },
+   {
+    "Revenue": 100.0
+   }
+  ],
+  [
+   "TER",
+   {
+    "rTSR": 50,
+    "Margin": 50
+   },
+   {
+    "rTSR": 100.0
+   }
+  ],
+  [
+   "TGT",
+   {
+    "Revenue": 33.3,
+    "EPS": 33.3,
+    "ROIC": 33.3
+   },
+   {
+    "Revenue": 67.0,
+    "Operating income": 28.1
+   }
+  ],
+  [
+   "THRM",
+   {
+    "Margin": 75,
+    "Revenue": 25
+   },
+   {
+    "Revenue": null,
+    "Margin": null
+   }
+  ],
+  [
+   "THRY",
+   {
+    "rTSR": 30,
+    "TSR": 30
+   },
+   {
+    "EBITDA": 25.0,
+    "Free cash flow": 35.0,
+    "Revenue": 40.0
+   }
+  ],
+  [
+   "TPG",
+   {
+    "Stock price": 100
+   },
+   {
+    "Stock price": null,
+    "ROE": null
+   }
+  ],
+  [
+   "TPGXL",
+   {
+    "Stock price": 100
+   },
+   {
+    "Stock price": null,
+    "ROE": null
+   }
+  ],
+  [
+   "TRS",
+   {
+    "ROA": 50,
+    "EPS": 50
+   },
+   {
+    "ROA": null,
+    "EPS": null
+   }
+  ],
+  [
+   "TT",
+   {
+    "rTSR": 50,
+    "ROIC": 50
+   },
+   {
+    "rTSR": 100.0
+   }
+  ],
+  [
+   "TXRH",
+   {
+    "EPS": 50,
+    "Other": 50
+   },
+   {
+    "EPS": 100.0
+   }
+  ],
+  [
+   "UBER",
+   {
+    "Operating income": 45,
+    "Revenue": 45,
+    "Other": 10
+   },
+   {
+    "Margin": 45.0,
+    "Operating income": 45.0
+   }
+  ],
+  [
+   "UGI",
+   {
+    "TSR": 100
+   },
+   {
+    "rTSR": null,
+    "EPS": null
+   }
+  ],
+  [
+   "UNFI",
+   {
+    "EPS": 60,
+    "Free cash flow": 40
+   },
+   {
+    "EPS": 75.0,
+    "ROIC": 25.0
+   }
+  ],
+  [
+   "UNM",
+   {
+    "EPS": 50,
+    "Revenue": 50
+   },
+   {
+    "EPS": null,
+    "rTSR": null
+   }
+  ],
+  [
+   "UNP",
+   {
+    "ROIC": 66.7,
+    "Operating income": 33.3
+   },
+   {
+    "ROIC": null,
+    "Operating income": null
+   }
+  ],
+  [
+   "URI",
+   {
+    "Revenue": 50,
+    "ROIC": 50
+   },
+   {
+    "Revenue": null,
+    "ROIC": null
+   }
+  ],
+  [
+   "VNOM",
+   {
+    "rTSR": 100
+   },
+   {
+    "TSR": 100.0
+   }
+  ],
+  [
+   "VSNT",
+   {
+    "Other": 50,
+    "EBITDA": 50
+   },
+   {
+    "Revenue": 50.0,
+    "EBITDA": 50.0
+   }
+  ],
+  [
+   "VST",
+   {
+    "Free cash flow": 100
+   },
+   {
+    "rTSR": 100.0
+   }
+  ],
+  [
+   "WAL",
+   {
+    "ROE": 75,
+    "rTSR": 25
+   },
+   {
+    "rTSR": null,
+    "ROE": null
+   }
+  ],
+  [
+   "WAT",
+   {
+    "rTSR": 50,
+    "Revenue": 50
+   },
+   {
+    "rTSR": 100.0
+   }
+  ],
+  [
+   "WCN",
+   {
+    "ROIC": 50,
+    "Free cash flow": 50
+   },
+   {
+    "ESG": null,
+    "ROIC": null,
+    "Free cash flow": null
+   }
+  ],
+  [
+   "WKC",
+   {
+    "EPS": 100
+   },
+   {
+    "EPS": null,
+    "ROIC": null
+   }
+  ],
+  [
+   "WMB",
+   {
+    "ROIC": 50,
+    "AFFO": 50
+   },
+   {
+    "ROCE": 50.0,
+    "AFFO": 50.0
+   }
+  ],
+  [
+   "WOOF",
+   {
+    "TSR": 100
+   },
+   {
+    "TSR": null,
+    "Revenue": null
+   }
+  ],
+  [
+   "WSM",
+   {
+    "Revenue": 20,
+    "EPS": 20,
+    "ROIC": 30,
+    "Cash flow": 30
+   },
+   {
+    "Revenue": null,
+    "ROIC": null,
+    "Cash flow": null,
+    "EPS": null
+   }
+  ],
+  [
+   "WW",
+   {
+    "Stock price": 100
+   },
+   {
+    "Revenue": 100.0
+   }
+  ],
+  [
+   "XRN",
+   {
+    "TSR": 50,
+    "rTSR": 50
+   },
+   {
+    "FFO": 100.0
+   }
+  ]
+ ],
+ "period": [
+  [
+   "LE",
+   3,
+   null
+  ],
+  [
+   "LLY",
+   2,
+   null
+  ],
+  [
+   "LUCK",
+   3,
+   null
+  ],
+  [
+   "MRVI",
+   3,
+   null
+  ],
+  [
+   "MTH",
+   3,
+   1
+  ],
+  [
+   "MTRN",
+   3,
+   null
+  ],
+  [
+   "NE",
+   3,
+   null
+  ],
+  [
+   "NOV",
+   3,
+   null
+  ],
+  [
+   "NSP",
+   3,
+   5
+  ],
+  [
+   "NTGR",
+   3,
+   1
+  ],
+  [
+   "NUS",
+   3,
+   null
+  ],
+  [
+   "NXT",
+   3,
+   1
+  ],
+  [
+   "ONIT",
+   3,
+   1
+  ],
+  [
+   "OPTU",
+   3,
+   null
+  ],
+  [
+   "OSUR",
+   3,
+   null
+  ],
+  [
+   "PCTY",
+   1,
+   2
+  ],
+  [
+   "PLAY",
+   3,
+   2
+  ],
+  [
+   "PLTK",
+   3,
+   null
+  ],
+  [
+   "PPL",
+   3,
+   1
+  ],
+  [
+   "PPLC",
+   3,
+   1
+  ],
+  [
+   "PTLO",
+   3,
+   null
+  ],
+  [
+   "PXLW",
+   3,
+   null
+  ],
+  [
+   "PYPL",
+   3,
+   null
+  ],
+  [
+   "REXR",
+   3,
+   null
+  ],
+  [
+   "RYN",
+   3,
+   null
+  ],
+  [
+   "SCOR",
+   10,
+   null
+  ],
+  [
+   "SSP",
+   1,
+   null
+  ],
+  [
+   "STRZ",
+   1,
+   null
+  ],
+  [
+   "TIPT",
+   10,
+   3
+  ],
+  [
+   "VITL",
+   3,
+   null
+  ],
+  [
+   "VTS",
+   3,
+   null
+  ],
+  [
+   "WGS",
+   2,
+   1
+  ],
+  [
+   "WW",
+   3,
+   null
+  ],
+  [
+   "XRN",
+   3,
+   null
+  ]
+ ],
+ "max": [
+  [
+   "J",
+   300,
+   null
+  ],
+  [
+   "KBR",
+   200,
+   null
+  ],
+  [
+   "KEX",
+   200,
+   null
+  ],
+  [
+   "KMPB",
+   200,
+   null
+  ],
+  [
+   "KMPR",
+   200,
+   null
+  ],
+  [
+   "KNX",
+   200,
+   null
+  ],
+  [
+   "KO",
+   250,
+   200.0
+  ],
+  [
+   "KPTI",
+   200,
+   150.0
+  ],
+  [
+   "KSS",
+   200,
+   127.0
+  ],
+  [
+   "LEVI",
+   250,
+   null
+  ],
+  [
+   "LLY",
+   200,
+   null
+  ],
+  [
+   "LULU",
+   200,
+   null
+  ],
+  [
+   "LXFR",
+   200,
+   null
+  ],
+  [
+   "MLM",
+   240,
+   200.0
+  ],
+  [
+   "MOD",
+   250,
+   null
+  ],
+  [
+   "MTG",
+   200,
+   null
+  ],
+  [
+   "MUR",
+   200,
+   null
+  ],
+  [
+   "NCMI",
+   200,
+   null
+  ],
+  [
+   "NDAQ",
+   200,
+   null
+  ],
+  [
+   "NFLX",
+   200,
+   null
+  ],
+  [
+   "NSIT",
+   200,
+   null
+  ],
+  [
+   "NVDA",
+   200,
+   150.0
+  ],
+  [
+   "OLED",
+   300,
+   null
+  ],
+  [
+   "ONIT",
+   200,
+   null
+  ],
+  [
+   "ONL",
+   150,
+   100.0
+  ],
+  [
+   "PFG",
+   180,
+   150.0
+  ],
+  [
+   "PHIN",
+   200,
+   null
+  ],
+  [
+   "PLAY",
+   100,
+   null
+  ],
+  [
+   "PLXS",
+   200,
+   null
+  ],
+  [
+   "PPL",
+   200,
+   null
+  ],
+  [
+   "PPLC",
+   200,
+   null
+  ],
+  [
+   "PWR",
+   215,
+   200.0
+  ],
+  [
+   "PYPL",
+   200,
+   null
+  ],
+  [
+   "QCOM",
+   200,
+   null
+  ],
+  [
+   "REXR",
+   275,
+   300.0
+  ],
+  [
+   "RYN",
+   175,
+   null
+  ],
+  [
+   "SD",
+   100,
+   null
+  ],
+  [
+   "SKYW",
+   200,
+   null
+  ],
+  [
+   "SSTK",
+   150,
+   null
+  ],
+  [
+   "STRT",
+   200,
+   null
+  ],
+  [
+   "TILE",
+   200,
+   null
+  ],
+  [
+   "TTEK",
+   200,
+   null
+  ],
+  [
+   "TXRH",
+   200,
+   150.0
+  ],
+  [
+   "VRSN",
+   150,
+   200.0
+  ],
+  [
+   "VST",
+   200,
+   null
+  ],
+  [
+   "WAL",
+   200,
+   null
+  ],
+  [
+   "WCN",
+   250,
+   200.0
+  ],
+  [
+   "WOOF",
+   200,
+   150.0
+  ],
+  [
+   "WSM",
+   300,
+   null
+  ],
+  [
+   "WW",
+   100,
+   null
+  ],
+  [
+   "XRN",
+   200,
+   null
+  ],
+  [
+   "YUM",
+   200,
+   null
+  ]
+ ],
+ "rtsr": [
+  [
+   "LIVN",
+   50,
+   null
+  ],
+  [
+   "MMS",
+   50,
+   null
+  ],
+  [
+   "NI",
+   50,
+   null
+  ],
+  [
+   "NVDA",
+   50,
+   null
+  ],
+  [
+   "NXT",
+   50,
+   null
+  ],
+  [
+   "ONB",
+   50,
+   null
+  ],
+  [
+   "ONBPO",
+   50,
+   null
+  ],
+  [
+   "ONBPP",
+   50,
+   null
+  ],
+  [
+   "PANW",
+   55,
+   null
+  ],
+  [
+   "PHIN",
+   50,
+   null
+  ],
+  [
+   "PYPL",
+   55,
+   null
+  ],
+  [
+   "ST",
+   50,
+   null
+  ],
+  [
+   "THRY",
+   50,
+   null
+  ],
+  [
+   "TPC",
+   50,
+   null
+  ]
+ ],
+ "history": [
+  [
+   "KLIC",
+   [
+    8,
+    200
+   ],
+   []
+  ],
+  [
+   "KMX",
+   [
+    66
+   ],
+   []
+  ],
+  [
+   "KWR",
+   [
+    60
+   ],
+   []
+  ],
+  [
+   "LCID",
+   [
+    57,
+    58
+   ],
+   []
+  ],
+  [
+   "LULU",
+   [
+    200
+   ],
+   []
+  ],
+  [
+   "LUMN",
+   [
+    88
+   ],
+   []
+  ],
+  [
+   "LXFR",
+   [
+    50,
+    117
+   ],
+   []
+  ],
+  [
+   "MCD",
+   [
+    82
+   ],
+   []
+  ],
+  [
+   "MCK",
+   [
+    146
+   ],
+   []
+  ],
+  [
+   "MED",
+   [
+    37
+   ],
+   [
+    200
+   ]
+  ],
+  [
+   "MIRM",
+   [
+    200
+   ],
+   []
+  ],
+  [
+   "MOD",
+   [
+    200
+   ],
+   []
+  ],
+  [
+   "MPT",
+   [
+    0,
+    200
+   ],
+   []
+  ],
+  [
+   "MTH",
+   [
+    42
+   ],
+   []
+  ],
+  [
+   "MX",
+   [
+    0
+   ],
+   []
+  ],
+  [
+   "NDAQ",
+   [
+    120
+   ],
+   []
+  ],
+  [
+   "NFLX",
+   [
+    200
+   ],
+   []
+  ],
+  [
+   "NOG",
+   [
+    0
+   ],
+   []
+  ],
+  [
+   "NSIT",
+   [
+    50
+   ],
+   [
+    100
+   ]
+  ],
+  [
+   "NTGR",
+   [
+    84
+   ],
+   []
+  ],
+  [
+   "NUS",
+   [
+    0
+   ],
+   []
+  ],
+  [
+   "NVDA",
+   [
+    200
+   ],
+   []
+  ],
+  [
+   "NXPI",
+   [
+    50
+   ],
+   []
+  ],
+  [
+   "ONEW",
+   [
+    40,
+    74,
+    152
+   ],
+   []
+  ],
+  [
+   "OPCH",
+   [
+    166
+   ],
+   []
+  ],
+  [
+   "OPTU",
+   [
+    88
+   ],
+   []
+  ],
+  [
+   "PCTY",
+   [
+    130
+   ],
+   []
+  ],
+  [
+   "PD",
+   [
+    0
+   ],
+   []
+  ],
+  [
+   "PFG",
+   [
+    83
+   ],
+   []
+  ],
+  [
+   "PG",
+   [
+    148
+   ],
+   []
+  ],
+  [
+   "POOL",
+   [
+    0
+   ],
+   []
+  ],
+  [
+   "POWI",
+   [
+    0
+   ],
+   []
+  ],
+  [
+   "PRG",
+   [
+    85
+   ],
+   []
+  ],
+  [
+   "PSN",
+   [
+    211
+   ],
+   [
+    200
+   ]
+  ],
+  [
+   "PXLW",
+   [
+    72
+   ],
+   []
+  ],
+  [
+   "PYPL",
+   [
+    0,
+    56,
+    200
+   ],
+   []
+  ],
+  [
+   "QCOM",
+   [
+    66
+   ],
+   []
+  ],
+  [
+   "RPD",
+   [
+    50
+   ],
+   []
+  ],
+  [
+   "SCHL",
+   [
+    57
+   ],
+   []
+  ],
+  [
+   "SIG",
+   [
+    0
+   ],
+   []
+  ],
+  [
+   "SNPS",
+   [
+    0,
+    88
+   ],
+   []
+  ],
+  [
+   "SPCE",
+   [
+    0
+   ],
+   []
+  ],
+  [
+   "SSP",
+   [
+    89
+   ],
+   []
+  ],
+  [
+   "ST",
+   [
+    75
+   ],
+   [
+    108
+   ]
+  ],
+  [
+   "STAA",
+   [
+    0
+   ],
+   [
+    85
+   ]
+  ],
+  [
+   "STZ",
+   [
+    33
+   ],
+   [
+    67
+   ]
+  ],
+  [
+   "TALO",
+   [
+    0
+   ],
+   []
+  ],
+  [
+   "TFSL",
+   [
+    90,
+    100
+   ],
+   []
+  ],
+  [
+   "TGT",
+   [
+    62,
+    88,
+    118
+   ],
+   [
+    16
+   ]
+  ],
+  [
+   "UNFI",
+   [
+    45
+   ],
+   []
+  ],
+  [
+   "UPWK",
+   [
+    60
+   ],
+   []
+  ],
+  [
+   "URI",
+   [
+    110
+   ],
+   []
+  ],
+  [
+   "WD",
+   [
+    0
+   ],
+   []
+  ],
+  [
+   "WGS",
+   [
+    200
+   ],
+   []
+  ],
+  [
+   "WKC",
+   [
+    0
+   ],
+   []
+  ],
+  [
+   "WMB",
+   [
+    192
+   ],
+   []
+  ],
+  [
+   "WMS",
+   [
+    200
+   ],
+   []
+  ],
+  [
+   "WSM",
+   [
+    232
+   ],
+   []
+  ],
+  [
+   "WST",
+   [
+    41
+   ],
+   []
+  ]
+ ]
+}

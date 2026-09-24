@@ -568,7 +568,7 @@ def build_turnaround_signal(wb: Workbook, yf: dict):
         return
 
     headers = ["#", "Ticker", "Company", "Score", "Event", "Who", "Role", "Date",
-               "Salary $k", "Grant $M", "Distress", "Talent", "Since (vs SPY)",
+               "Salary $k", "Grant $M", "Distress", "Talent", "Since vs SPY (%)",
                "What the 8-K says (background / terms)"]
     set_col_widths(ws, [5, 9, 24, 7, 13, 20, 22, 11, 9, 9, 8, 7, 10, 90])
     write_header_row(ws, 4, headers)

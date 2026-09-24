@@ -29,6 +29,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+from datetime import date, datetime
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
@@ -59,6 +60,144 @@ SEPARATE = [
 ACTIVIST = re.compile(r"(?:(?:cooperation|nomination|standstill|settlement)\s+agreement\s+(?:\([^)]*\)\s+)?(?:with|by and (?:between|among) the Company,?\s+and)\s+|by and (?:between|among) the Company,?\s+(?:and\s+)?)" + PROPER)
 SEATS = re.compile(r"(?:appoint|add|nominate)\w*\s+(\w+)\s+(?:new\s+)?(?:independent\s+)?directors?", re.I)
 NUMWORD = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6}
+
+# ---------------------------------------------------------------- wider context
+# the excerpt is one or two sentences; consideration / counterparty are usually in
+# the 8-K's Item 1.01 / 2.01 paragraph or the press-release lede, so fields are
+# searched in the excerpt FIRST and then in those paragraphs.
+_ITEM = re.compile(r"Item\s+(?:1\.01|2\.01|8\.01|5\.02|3\.03)\b[^.]{0,120}?\.\s", re.I)
+
+
+def wide_context(doc, n=3500):
+    flat = " ".join((doc or "").split())
+    parts = []
+    for m in list(_ITEM.finditer(flat))[:2]:
+        parts.append(flat[m.end():m.end() + n])
+    i = flat.find("EX-99")
+    parts.append(flat[i:i + n] if i >= 0 else flat[:n])
+    return " || ".join(parts)
+
+
+_CORP = r"(?:,?\s+(?:Inc|Corp|Corporation|Co|Ltd|Limited|LLC|L\.L\.C|L\.?P|plc|PLC|N\.V|S\.A|AG|SE|Holdings?|Group|Partners|Fund|Trust)\.?)*"
+ENTITY = r"((?!(?:Section|Item|Exhibit|The Company|This|Such|Each)\b)[A-Z0-9][A-Za-z0-9&.'’\-]*(?:\s+(?:[A-Z0-9&][A-Za-z0-9&.'’\-]*|of|de|du|la|the|for)){0,7}" + _CORP + r")"
+_STOP = re.compile(r"\s*(?:\(|,\s*(?:a|an)\s|,\s*(?:and|together)\b|\s+(?:to|for|pursuant|under|in|on|which|that|who|as|at|whereby|On|The)\b|"
+                   r"\s+[A-Z]{5,}\b|[.;:](?!\w)|$)")
+_VEHICLE = re.compile(r"Merger Sub|Acquisition Sub|\bSub(?:,)? (?:Inc|LLC|Corp)|Newco|BidCo|MergeCo|HoldCo Sub|^\d{5,}|Purchaser|Buyer|Offeror", re.I)
+_DEFINED = re.compile(r"^(?:the\s+)?(?:Buyer|Purchaser|Seller|Company|Parent|Merger Sub|Offeror|Investor|Acquiror|Sponsor|Stockholder|Holder|Lender|We|It|Our|Such|This|That|Each|Any|All)s?\b", re.I)
+CP_PATTERNS = {
+    "deal": [
+        r"(?:to be acquired by|will be acquired by|agreed to be acquired by|acquired by|acquisition (?:of the Company )?by)\s+",
+        r"(?:merger agreement|agreement and plan of merger|merger)\s+(?:\([^)]{0,80}\)\s+)?(?:,?\s*dated[^,]{0,40},\s*)?(?:with|by and (?:between|among) [^.]{0,160}? and)\s+",
+        r"(?:entered into|executed|signed)\s+(?:an?\s+|the\s+)?(?:definitive\s+|binding\s+)?(?:[A-Z][\w\-’']*\s+){0,6}(?:Agreement|Purchase Agreement)\s*(?:\([^)]{0,80}\)\s*)?,?\s*(?:dated[^,]{0,40},\s*)?(?:by and (?:between|among) [^.]{0,160}? and|with)\s+",
+        r"(?:agreement to sell|agreed to sell|to sell|sale of|sold|divest\w*|completed the sale of)\s+[^;]{0,160}?\bto\s+",
+        r"(?:combine|combination|merge)\s+[^;]{0,120}?\bwith\s+",
+        r"(?:agreements?|transaction)\s+with\s+",
+        r"(?:separation|spin-?off|distribution)\s+(?:of [^;]{0,80}?\s+)?(?:from|by)\s+",
+    ],
+    "activist": [
+        r"(?:cooperation|nomination|standstill|settlement|support|director appointment|director nomination|letter)\s+agreement\s*(?:\([^)]{0,80}\)\s*)?,?\s*(?:dated[^,]{0,40},\s*)?(?:with|by and (?:between|among) the Company,?\s+and)\s+",
+        r"(?:agreement|engagement|discussions)\s+with\s+(?=[A-Z][^.]{0,40}(?:Management|Capital|Partners|Fund|Advisors|Investment|Group|LLC|L\.P))",
+    ],
+    "tender": [
+        r"(?:tender offer|exchange offer|offer)\s+(?:\([^)]{0,80}\)\s+)?by\s+", r"(?:unsolicited|revised)\s+(?:proposal|offer)\s+from\s+",
+    ],
+}
+
+
+def counterparty(fam, texts, self_names=()):
+    kinds = {"ASSET_SALE": ["deal"], "SALE_OF_COMPANY": ["deal", "tender"], "GOING_PRIVATE": ["deal", "tender"],
+             "TENDER_OFFER": ["tender", "deal"], "EXCHANGE_OFFER": ["tender", "deal"],
+             "ACTIVIST_SETTLEMENT": ["activist"], "BOARD_REFRESH": ["activist"], "VALUE_COMMITTEE": ["activist"],
+             "SPINOFF": ["deal"], "SEPARATION": ["deal"]}.get(fam)
+    if not kinds:                                   # mis-tagged family: a deal named in the excerpt itself
+        kinds, texts = ["deal", "tender", "activist"], texts[:1]
+    for t in texts:
+        for k in kinds:
+            for pre in CP_PATTERNS[k]:
+                for m in re.finditer("(?i:" + pre + r")(?:an? (?:affiliate|subsidiary|entity|fund|vehicle)s? (?:of|sponsored by|managed by|controlled by)\s+|affiliates of\s+|funds (?:managed|advised) by\s+)?" + ENTITY, t):
+                    name = _STOP.split(m.group(1))[0].strip(" ,")
+                    name = re.sub(r"^(?:The|the)\s+(?=[A-Z])", "", name) if len(name.split()) > 1 else name
+                    if len(name) < 3 or _DEFINED.match(name) or name.lower().startswith(("its ", "our ")) or \
+                            (self_names and any(n and n in name.lower() for n in self_names)) or name.lower() in ("the", "section"):
+                        continue
+                    tail = t[m.end(1):m.end(1) + 200]
+                    aff = re.match(r"(?:[^.;]{0,120}?)(?:,|\)|and)\s*(?:an?|the)?\s*(?:(?:wholly[- ]owned|indirect|direct)\s+)?(?:affiliate|subsidiary|portfolio company)\s+of\s+" + ENTITY, tail)
+                    if aff:
+                        name = _STOP.split(aff.group(1))[0].strip(" ,")
+                    elif _VEHICLE.search(name):
+                        continue                               # a deal vehicle: keep looking for the real party
+                    return name
+    return None
+
+
+MONEY2 = re.compile(r"(?:US\$|\$|USD\s?)\s?(\d[\d,]*(?:\.\d+)?)\s*(billion|million|bn|mm|m|thousand)?\b", re.I)
+_CONS_PRE = re.compile(r"(?:up to|for|purchase price|sale price|price of|aggregate|consideration|valued at|value of|proceeds of|"
+                       r"totaling|total of|in cash of|amount of|enterprise value|equity value|transaction value|increase[sd]? (?:it )?to|"
+                       r"additional|new|a|an)\s+(?:of\s+)?(?:approximately\s+|about\s+|roughly\s+|up to\s+)?$", re.I)
+_CONS_POST = re.compile(r"^\s*(?:in (?:cash|total)\s+)?(?:\w+\s+){0,2}(?:share repurchase|stock repurchase|repurchase|buyback|"
+                        r"special (?:cash )?dividend|all-cash|cash transaction|transaction|deal|tender offer|purchase price|"
+                        r"in cash|capital return)", re.I)
+_NOISE = re.compile(r"cash (?:and cash equivalents )?(?:of|balance)|revenue|ebitda|net income|income of|operating|cash flow|sales|"
+                    r"debt of|liquidity|total assets|backlog|charge|impairment|loss|gain|fees?|costs?|expenses?|"
+                    r"market cap|net proceeds of approximately", re.I)
+
+
+def consideration(fam, texts, mcap=None):
+    """(amount, strong): the consideration / programme size. Priority: a figure
+    labelled purchase price / consideration / aggregate; else the first amount in
+    a consideration position; searched in the excerpt, then the wider context."""
+    for ti, t in enumerate(texts):
+        best = None
+        for m in MONEY2.finditer(t):
+            v = float(m.group(1).replace(",", "")) * {"billion": 1e9, "bn": 1e9, "million": 1e6, "mm": 1e6,
+                                                     "m": 1e6, "thousand": 1e3}.get((m.group(2) or "").lower(), 1.0)
+            if v < 1e5:
+                continue
+            pre, post = t[max(0, m.start() - 60):m.start()], t[m.end():m.end() + 60]
+            if _NOISE.search(pre[-35:]) or re.match(r"\s*(?:per|a) share", post, re.I):
+                continue
+            if re.search(r"aggregate principal amount|principal amount", post[:40], re.I) and fam not in ("TENDER_OFFER", "EXCHANGE_OFFER"):
+                continue
+            strong = bool(re.search(r"(?:gross |aggregate |total |base )?(?:purchase price|consideration|sale price|enterprise value|"
+                                    r"equity value|transaction value)(?: of)?\s+(?:approximately\s+|up to\s+)?$", pre, re.I))
+            weak = re.search(r"(?:\ba|\ban|new|additional)\s+(?:approximately\s+)?$", pre, re.I)
+            if strong or (_CONS_PRE.search(pre) and (ti == 0 or not weak)) or (ti == 0 and _CONS_POST.search(post)):
+                if fam in ("BUYBACK_AUTH", "CAPITAL_RETURN", "CAPITAL_RETURN_POLICY") and mcap and v > 3 * mcap:
+                    continue
+                if strong:
+                    return v
+                best = best or v
+        if best:
+            return best
+    return None
+
+
+PS2 = re.compile(r"(€|US\$|\$)\s?(\d+(?:\.\d+)?)\s*(?:\(the “?[^)]{0,30}\)\s*)?(?:in cash\s+|cash\s+|net\s+)?(?:per|a|for each)\s+(?:outstanding\s+|issued\s+)?"
+                 r"(?:share|(?:Class [A-C]\s+)?(?:common|ordinary)\s+(?:share|stock)|Common Share|ordinary share|ADS|unit)|"
+                 r"(€|US\$|\$)\s?(\d+(?:\.\d+)?)\s*/\s*sh(?:are)?\b", re.I)
+_PS_BAD = re.compile(r"EPS|earnings|income|NII|book value|NAV|net asset|FFO|closing (?:sale )?price|stock price|trad|par value|"
+                     r"offering price|exercise price|conversion price|strike|high|low|per share was|diluted|basic", re.I)
+
+
+def per_share(fam, texts):
+    want = {"CAPITAL_RETURN": r"special|dividend", "CAPITAL_RETURN_POLICY": r"dividend|special",
+            "TENDER_OFFER": r"tender|offer|purchase", "SALE_OF_COMPANY": r"acquire|merger|receive|consideration|offer",
+            "GOING_PRIVATE": r"acquire|merger|receive|consideration|offer"}.get(fam, r"acquire|merger|tender|offer|dividend|consideration")
+    for t in texts:
+        cands = []
+        for m in PS2.finditer(t):
+            v = float(m.group(2) or m.group(4))
+            pre = t[max(0, m.start() - 60):m.start()]
+            if v < 0.02 or _PS_BAD.search(pre[-40:]):
+                continue
+            sc = 2 * bool(re.search(want, t[max(0, m.start() - 120):m.end() + 60], re.I))
+            sc += 2 * bool(re.search(r"special", pre, re.I)) if fam.startswith("CAPITAL_RETURN") else 0
+            sc -= 3 * bool(re.search(r"regular|quarterly", pre[-50:], re.I)) if fam == "CAPITAL_RETURN" and re.search(r"special", t, re.I) else 0
+            cands.append((sc, -m.start(), v))
+        if cands:
+            return max(cands)[2]
+    return None
+
 
 PHRASE_HINT = {
     "ASSET_SALE": r"sell|sale of|divest|dispos",
@@ -127,35 +266,26 @@ def sentences_around(t, phrase, hint, n=2):
     return " ".join(sents[best:best + n])[:1400]
 
 
-def parse(fam, exc, mcap, doc=""):
+# governance actions are done when signed / appointed (payouts and deals are done when paid / closed)
+ONE_STEP = {"ACTIVIST_SETTLEMENT", "BOARD_REFRESH", "CHAIR_CEO_SPLIT", "DECLASSIFY"}
+PRICED = {"ASSET_SALE", "SALE_OF_COMPANY", "GOING_PRIVATE", "TENDER_OFFER", "EXCHANGE_OFFER", "BUYBACK_AUTH",
+          "CAPITAL_RETURN", "CAPITAL_RETURN_POLICY"}
+
+
+def parse(fam, exc, mcap, doc="", self_names=()):
     f = {}
     if not exc:
         return f
-    for ps in PER_SHARE.finditer(exc):
-        v = float(ps.group(1))
-        pre = exc[max(0, ps.start() - 25):ps.start()].lower()
-        if v >= 0.02 and "par value" not in pre:       # "$0.01 per share" par value is not a price
-            f["per_share"] = v
-            break
-    # a dollar figure counts only when it is the CONSIDERATION / programme size
-    CONS = re.compile(r"(?:up to|for|purchase price|aggregate|consideration|valued at|value of|proceeds of|"
-                      r"totaling|total of|in cash of|amount of)\s+(?:approximately\s+|about\s+)?$", re.I)
-    NOISE = re.compile(r"cash (?:and cash equivalents )?(?:of|balance)|revenue|ebitda|net income|operating|"
-                       r"cash flow|sales|debt of|liquidity|total assets|backlog", re.I)
-    amts = []
-    for m in MONEY.finditer(exc):
-        v = _amt(m)
-        pre = exc[max(0, m.start() - 40):m.start()]
-        if v < 1e5 and not m.group(2):
-            continue
-        if CONS.search(pre) and not NOISE.search(pre[-30:]):
-            amts.append(v)
-    if amts:
-        f["amount_usd"] = max(amts)
+    wide = wide_context(doc)
+    texts = [exc, wide]
+    v = per_share(fam, texts)
+    if v:
+        f["per_share"] = v
+    v = consideration(fam, texts, mcap) if fam in PRICED else None
+    if v:
+        f["amount_usd"] = v
         if mcap:
-            f["pct_mcap"] = f["amount_usd"] / mcap
-            if fam in ("BUYBACK_AUTH", "CAPITAL_RETURN", "CAPITAL_RETURN_POLICY") and f["pct_mcap"] > 3:
-                f.pop("amount_usd"); f.pop("pct_mcap")
+            f["pct_mcap"] = v / mcap
     low = exc.lower()
     if re.search(r"\b(?:has |have )?(?:completed|finali[sz]ed|consummated|closed)\s+(?:the|its|on)\b|transaction closed|was completed", low) \
             and not re.search(r"expected to (?:close|be completed)|will be completed", low):
@@ -164,6 +294,10 @@ def parse(fam, exc, mcap, doc=""):
         f["status"] = "PENDING"
     else:
         f["status"] = "ANNOUNCED"
+    if fam in ONE_STEP and f["status"] != "COMPLETED" and re.search(
+            r"\b(?:entered into|appointed|named|elected|declared|approved|authorized|adopted|amended|terminated|"
+            r"formed|established|increased|expanded|added)\b", exc, re.I) and not re.search(r"\bwill (?:enter|appoint|name|declare|form)|intends? to|plans? to", exc, re.I):
+        f["status"] = "COMPLETED"
     m = CLOSE.search(exc)
     if m:
         f["timing"] = m.group(1).strip()
@@ -180,10 +314,10 @@ def parse(fam, exc, mcap, doc=""):
             re.search(r"([A-Z][\w&’'\- ]{2,50}?)(?:\s*\([^)]*\))?,?\s+(?:will be|to be|is to be)\s+acquired by", exc)
         if m and not re.match(r"(?:the\s+)?Company|We\b|It\b", m.group(1).strip()):
             f["asset"] = m.group(1).strip()
+    cp = counterparty(fam, texts, self_names)
+    if cp:
+        f["counterparty"] = cp
     if fam in ("ASSET_SALE", "SALE_OF_COMPANY", "GOING_PRIVATE"):
-        m = BUYER.search(exc)
-        if m:
-            f["counterparty"] = m.group(1).strip().rstrip(",")
         m = PREMIUM.search(exc)
         if m:
             f["premium_pct"] = float(m.group(1))
@@ -197,6 +331,10 @@ def parse(fam, exc, mcap, doc=""):
     if fam == "TENDER_OFFER" and re.search(r"tender offer[^.]{0,200}(?:notes|debentures|senior secured|senior unsecured|bonds)|(?:notes|debentures)[^.]{0,200}tender offer", ctx, re.I) \
             and not re.search(r"tender offer[^.]{0,120}(?:shares of (?:its|our) common stock|common shares)", ctx, re.I):
         f["subtype"] = "debt tender"
+    if fam == "PILL_REMOVED" and re.search(r"adopt\w*[^.]{0,80}rights (?:plan|agreement)|rights (?:plan|agreement)[^.]{0,80}adopt|"
+                                          r"may redeem the Rights|Final Expiration Time|Acquiring Person", ctx[:6000], re.I) \
+            and not re.search(r"(?:terminat|redeem|expire|amend)\w*[^.]{0,60}(?:rights (?:plan|agreement)|the Rights)[^.]{0,80}(?:effective|today|early)", exc, re.I):
+        f["subtype"] = "rights plan ADOPTED (not removed)"
     if fam == "ACTIVIST_SETTLEMENT" and re.search(r"non-disclosure|confidentiality", exc, re.I) and \
             not re.search(r"cooperation agreement|nomination agreement|settlement agreement", exc, re.I):
         f["subtype"] = "merger NDA standstill (not activism)"
@@ -238,9 +376,6 @@ def parse(fam, exc, mcap, doc=""):
                     f["asset"] = g[0]
                 break
     if fam == "ACTIVIST_SETTLEMENT":
-        m = ACTIVIST.search(exc)
-        if m:
-            f["counterparty"] = m.group(1).strip().rstrip(",")
         m = SEATS.search(exc)
         if m:
             f["seats"] = NUMWORD.get(m.group(1).lower(), m.group(1))
@@ -266,15 +401,88 @@ NOT_EVENT = [
      "a director joining a standing committee, not a strategic review"),
     ("SPINOFF|SEPARATION|CAPITAL_RETURN_POLICY|STRATEGIC_REVIEW", r"non-GAAP adjustment|Represents the (?:one|two|three) components?|All references are to",
      "a footnote / slide, not an announcement"),
-    ("PILL_REMOVED", r"may redeem the Rights|Final Expiration Time|Acquiring Person",
-     "rights-plan terms (adoption boilerplate), not a pill removal"),
 ]
 
 
-def validate(fam, exc):
+# generic phantom classes (any family), from the reviewed filings: the words matched,
+# but the text is a recital / footnote / bio / cost line, not a new corporate action
+GENERIC_NOT_EVENT = [
+    (r"\b(?:non-GAAP|we exclude|excluding the (?:effect|impact)|adjusted (?:net )?income|adjusted EBITDA|reconciliation|"
+     r"basis of presentation|discontinued operations|have been restated|prior period (?:results|disclosures)|"
+     r"tax (?:adjustment|benefit)|notes to (?:the )?consolidated|equity method of accounting|Note \d+\b)",
+     "a financial-statement / non-GAAP footnote, not an announcement"),
+    (r"(?:costs?|expenses?|charges?|items?|fees)\s+(?:related to|associated with|in connection with|arising (?:out of|from))\s+(?:the\s+)?"
+     r"(?:planned |proposed |pending )?(?:separation|spin|transaction|strategic review|divestiture|sale)|"
+     r"(?:separation|spin-off|transaction|transformation)[- ](?:related )?(?:costs|expenses|charges|items|initiatives)",
+     "a cost line about a transaction, not a new action"),
+    (r"^\W*about [A-Z][^.]{0,60}\b(?:is|was) (?:a|an|the) (?:global |leading |premier )",
+     "company boilerplate ('About X')"),
+    (r"\b(?:served|serves|has served) as\b[^.]{0,120}\b(?:before|prior to|until)\b|prior to joining|his career|her career|"
+     r"\bbiograph", "an executive biography, not a change"),
+    (r"over-?allotment|underwritten (?:public )?offering|public offering price|(?:registered direct|at-the-market) offering|"
+     r"use of (?:the )?(?:net )?proceeds|intends to use the (?:net )?proceeds",
+     "a capital raise / offering, not this event"),
+    (r"^\W*(?:these|such) (?:risks|factors)|(?:risks|uncertainties)[^.]{0,40}include|in the event (?:that )?the [^.]{0,60}"
+     r"(?:is|are) not (?:consummated|completed)",
+     "risk-factor / conditional language"),
+    (r"\bwill serve on the [^.]{0,80}Committee|\bserves? on (?:the|its) [^.]{0,60}Committee|chairs? (?:the|its) [^.]{0,60}Committee",
+     "a director's committee seat, not a strategic action"),
+]
+_MON = "January|February|March|April|May|June|July|August|September|October|November|December"
+_DATE = re.compile(rf"\b({_MON})\s+(?:(\d{{1,2}}),?\s+)?(20\d\d)\b|\b(?:first|second|third|fourth) quarter of (20\d\d)\b|\bin (20\d\d)\b")
+
+
+def _historical(exc, filed):
+    """A recital of an old event: every date in the lead sentence is > 150 days before
+    the filing and nothing says 'today' / 'this week'."""
+    if not filed:
+        return False
+    try:
+        fd = datetime.strptime(filed[:10], "%Y-%m-%d").date()
+    except ValueError:
+        return False
+    lead = re.split(r"(?<=[.!?])\s+(?=[A-Z“\"(])", exc)[0] if exc else ""
+    if re.search(r"\btoday\b|this week|\bnow\b|will be|expected to|\bintends?\b|amend|terminat|waive|extend|"
+                 r"continu|ongoing|remains?|is (?:conducting|exploring|evaluating|pursuing)|process|confirm|pending", lead, re.I):
+        return False                                     # a NEW step on an older deal is still news
+    ds = []
+    for m in _DATE.finditer(lead):
+        try:
+            if m.group(1):
+                ds.append(date(int(m.group(3)), MONTHS[m.group(1)], int(m.group(2) or 28)))
+            else:
+                ds.append(date(int(m.group(4) or m.group(5)), 12, 31))
+        except ValueError:
+            pass
+    if re.search(r"as previously (?:disclosed|reported|announced)|previously completed", lead, re.I) and \
+            (not ds or (fd - max(ds)).days > 45):
+        return True
+    return bool(ds) and (fd - max(ds)).days > 150
+
+
+MONTHS = {m: i + 1 for i, m in enumerate(_MON.split("|"))}
+
+
+def validate(fam, exc, doc="", filed=None, f=None):
     for fams, rx, why in NOT_EVENT:
         if re.search(fams, fam) and re.search(rx, exc, re.I):
             return "NOT AN EVENT", why
+    lead = re.split(r"(?<=[.!?])\s+(?=[A-Z“\"(])", exc)[0] if exc else ""
+    announce = re.search(r"today announced|announced today|\bannounces?\b|has entered into|entered into a definitive|"
+                         r"board of directors (?:has )?(?:approved|authorized|declared)|\b(?:formed|established|created)\b", lead, re.I)
+    if not announce:
+        for rx, why in GENERIC_NOT_EVENT:                   # judged on the LEAD sentence only
+            if re.search(rx, lead, re.I | re.M):
+                return "NOT AN EVENT", why
+    if _historical(exc, filed):
+        return "NOT AN EVENT", "a recital of an earlier event (the dates in the text are months before this filing)"
+    try:
+        import event_classifier
+        r = event_classifier.p_real(fam, exc, (doc or "")[:800], filed)
+    except Exception:
+        r = None
+    if r and r[0] < r[1]:
+        return "NOT AN EVENT", f"reads as a recital / footnote, not a new action (model P(real) {r[0]:.2f})"
     return "REAL", ""
 
 
@@ -321,6 +529,8 @@ def summary(fam, f, exc):
         s = "Debt tender offer (for notes, not shares)" + (f": {amt}" if amt else "")
     elif f.get("subtype") == "merger NDA standstill (not activism)":
         s = "Standstill inside a merger NDA — not an activist settlement"
+    elif f.get("subtype") == "rights plan ADOPTED (not removed)":
+        s = "Rights plan (poison pill) ADOPTED — the opposite of a removal"
     elif f.get("subtype") == "CEO departure":
         s = "CEO departure (no successor named in this filing)"
     elif f.get("subtype") == "interim CEO":
@@ -330,6 +540,50 @@ def summary(fam, f, exc):
     if f.get("status") and fam not in ("SPINOFF", "SEPARATION"):
         s = f"[{f['status'].lower()}] " + s
     return s
+
+
+_YQ = {}
+
+
+def self_names(tk):
+    """The issuer's own ticker / name stem: never its own counterparty."""
+    if not _YQ:
+        try:
+            _YQ.update(json.loads((ROOT / "yfinance_quick.json").read_text()))
+        except Exception:
+            pass
+    nm = str((_YQ.get(tk) or {}).get("name") or "").lower()
+    stem = re.sub(r"[^a-z0-9 ]", " ", nm).split()
+    return tuple(x for x in (tk.lower() if len(tk) > 2 else "", stem[0] if stem and len(stem[0]) > 3 else "") if x)
+
+
+def process(fam, phrase, cik, acc, filed, mcap, t=None, tk=""):
+    """Excerpt + parse + validate one filing. None when the event is not in it."""
+    if t is None:
+        try:
+            t = edgar_doc.text(cik, acc, want=("ex99", "primary"))
+        except Exception:
+            t = ""
+    exc = sentences_around(t, phrase, PHRASE_HINT.get(fam))
+    if not exc:
+        return None
+    f = parse(fam, exc, mcap, t, self_names(tk) if tk else ())
+    verdict, why = validate(fam, exc, t, filed, f)
+    what = summary(fam, f, exc)
+    if verdict != "REAL":
+        what = f"⚠ not a real event — {why}"
+    return {"filed": filed, "url": edgar_doc.url(cik, acc), "excerpt": exc,
+            **{k: v for k, v in f.items()}, "what": what, "verdict": verdict, "verdict_reason": why}
+
+
+def reparse(rec, mcap=None, tk=""):
+    """Re-run the CURRENT parser over the filing an earlier run located (for the scorecard)."""
+    m = re.search(r"/data/(\d+)/(\d{18})/", rec.get("url") or "")
+    if not m:
+        return rec
+    acc = f"{m.group(2)[:10]}-{m.group(2)[10:12]}-{m.group(2)[12:]}"
+    out = process(rec["family"], rec.get("phrase") or "", m.group(1), acc, rec.get("filed"), mcap, tk=tk)
+    return {"family": rec["family"], "date": rec.get("date"), "phrase": rec.get("phrase"), **(out or {})}
 
 
 def work(args):
@@ -343,20 +597,9 @@ def work(args):
     except Exception:
         hits = []
     for acc, d in hits[:3]:
-        try:
-            t = edgar_doc.text(cik, acc, want=("ex99", "primary"))
-        except Exception:
-            t = ""
-        exc = sentences_around(t, phrase, PHRASE_HINT.get(fam))
-        if exc:
-            f = parse(fam, exc, mcap, t)
-            verdict, why = validate(fam, exc)
-            what = summary(fam, f, exc)
-            if verdict != "REAL":
-                what = f"⚠ not a real event — {why}"
-            rec.update({"filed": d, "url": edgar_doc.url(cik, acc), "excerpt": exc,
-                        **{k: v for k, v in f.items()}, "what": what, "verdict": verdict,
-                        "verdict_reason": why})
+        out = process(fam, phrase, cik, acc, d, mcap, tk=tk)
+        if out:
+            rec.update(out)
             break
     return tk, rec
 

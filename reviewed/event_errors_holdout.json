@@ -1,0 +1,2311 @@
+{
+ "phantom": [
+  [
+   "GCMG",
+   "BUYBACK_AUTH",
+   "Generic description of GCM Grosvenor's previously authorized repurchase plan; no new action or amount.",
+   "[announced] Capital return / buyback of $0.12/sh"
+  ],
+  [
+   "FISV",
+   "TENDER_OFFER",
+   "Non-GAAP footnote referencing a gain from Fiserv's June 2026 debt tender offer; not a new action.",
+   "[announced] Debt tender offer (for notes, not shares): $12M"
+  ],
+  [
+   "KROS",
+   "TENDER_OFFER",
+   "Cash-balance commentary citing Keros' past share repurchase and tender offer; historical recital, not a new action.",
+   "[announced] Tender offer"
+  ],
+  [
+   "SCHL",
+   "TENDER_OFFER",
+   "Retrospective summary of Scholastic's past capital returns (buybacks, Dutch auction tender, dividends); no new action.",
+   "[announced] Tender offer (up to $47M (7% of mcap))"
+  ],
+  [
+   "SCHL",
+   "CAPITAL_RETURN_POLICY",
+   "Retrospective summary of Scholastic's past capital returns (buybacks, Dutch auction tender, dividends); no new action.",
+   "[announced] Capital return / buyback, $47M (7% of mcap)"
+  ],
+  [
+   "BCIC",
+   "TENDER_OFFER",
+   "Q1 2026 results recap of a December 2025 Dutch auction tender (557,960 shares, about $7.6 million at $13.63); historical",
+   "[announced] Tender offer at $13.63/sh (up to $18M (20% of mcap))"
+  ],
+  [
+   "BCIC",
+   "CAPITAL_RETURN_POLICY",
+   "Q1 2026 results recap of a December 2025 Dutch auction tender (557,960 shares, about $7.6 million at $13.63); historical",
+   "[announced] Capital return / buyback of $13.63/sh, $18M (20% of mcap)"
+  ],
+  [
+   "FIVN",
+   "ACTIVIST_SETTLEMENT",
+   "Reference to Five9's December 2024 cooperation agreement with Anson Funds; historical recital, no new action.",
+   "[completed] Settlement with Anson Funds Management LP"
+  ],
+  [
+   "TBI",
+   "CAPITAL_RETURN_POLICY",
+   "Investor-presentation table and footnotes on TrueBlue's historical buybacks and outlook; no new action.",
+   "[announced] Capital return / buyback"
+  ],
+  [
+   "CTRN",
+   "CAPITAL_RETURN_POLICY",
+   "Recap of Citi Trends' fiscal 2025 buybacks and remaining $40.0 million authorization; no new action.",
+   "[announced] Capital return / buyback"
+  ],
+  [
+   "MDLN",
+   "ACTIVIST_SETTLEMENT",
+   "List of agreements entered into at Medline's IPO (LP agreement, TRA, director nomination agreement); IPO boilerplate, no",
+   "[completed] Settlement"
+  ],
+  [
+   "OFRM",
+   "ACTIVIST_SETTLEMENT",
+   "Standard IPO-related registration rights and director nomination agreements for Once Upon A Farm; not an activist settle",
+   "[completed] Settlement"
+  ],
+  [
+   "ARAI",
+   "ACTIVIST_SETTLEMENT",
+   "Waiver of a financing standstill with Streeterville for a pre-paid purchase; financing term, not a governance or corpora",
+   "[completed] Settlement with Streeterville; standstill"
+  ],
+  [
+   "AIDX",
+   "ACTIVIST_SETTLEMENT",
+   "Quarterly operating highlights for 20/20 Biolabs; no corporate action in scope.",
+   "[announced] Settlement"
+  ],
+  [
+   "GETY",
+   "ACTIVIST_SETTLEMENT",
+   "Litigation judgment standstill: Getty Images agreed a partial payment of about $4.15 million while plaintiffs defer enfo",
+   "[completed] Settlement; standstill"
+  ],
+  [
+   "NXXT",
+   "ACTIVIST_SETTLEMENT",
+   "Voting, support and standstill agreement with stockholders tied to a NextNRG securities purchase agreement; financing su",
+   "[completed] Settlement; standstill"
+  ],
+  [
+   "IPDN",
+   "ACTIVIST_SETTLEMENT",
+   "Recital of a financing standstill with Streeterville Capital tied to a pre-paid purchase agreement; not a corporate acti",
+   "[completed] Settlement; standstill"
+  ],
+  [
+   "D",
+   "ACTIVIST_SETTLEMENT",
+   "Merger background narrative describing a proposed NDA/standstill with Party A; not a settlement or new action.",
+   "[completed] Standstill inside a merger NDA \u2014 not an activist settlement"
+  ],
+  [
+   "KVUE",
+   "VALUE_COMMITTEE",
+   "Merger proxy supplement recounting that Kenvue formed a strategic review committee on June 30, 2025; historical backgrou",
+   "[announced] Strategic review / committee"
+  ],
+  [
+   "KMB",
+   "VALUE_COMMITTEE",
+   "Merger proxy supplement recounting that Kenvue formed a strategic review committee on June 30, 2025; historical backgrou",
+   "[announced] Strategic review / committee"
+  ],
+  [
+   "PCYO",
+   "VALUE_COMMITTEE",
+   "Investor snapshot text noting a director chairs Pure Cycle's Capital Allocation Committee; no new action.",
+   "[announced] Strategic review / committee"
+  ],
+  [
+   "XBIO",
+   "VALUE_COMMITTEE",
+   "Earnings commentary referring to Xenetic's ongoing strategic review; no new action.",
+   "[announced] Strategic review / committee"
+  ],
+  [
+   "PXLW",
+   "VALUE_COMMITTEE",
+   "Earnings call transcript referencing Pixelworks' ongoing strategic review; no new action stated.",
+   "[announced] Strategic review / committee"
+  ],
+  [
+   "CNR",
+   "CAPITAL_RETURN_POLICY",
+   "Progress update on Core Natural Resources' existing capital return program ($329.2 million of buybacks); no new action.",
+   "[announced] Capital return / buyback, $329M (7% of mcap)"
+  ],
+  [
+   "UIS",
+   "CAPITAL_RETURN_POLICY",
+   "Unisys investor-day slide saying it may consider a capital return program long term; no action.",
+   "[announced] Capital return / buyback"
+  ],
+  [
+   "TBCH",
+   "CAPITAL_RETURN_POLICY",
+   "Recap of Turtle Beach's existing buyback capacity and past repurchases; no new action.",
+   "[announced] Capital return / buyback of $12.53/sh, $25M (10% of mcap)"
+  ],
+  [
+   "META",
+   "CAPITAL_RETURN_POLICY",
+   "Meta quarterly financial summary noting $1.35 billion of dividend payments; no new action.",
+   "[announced] Capital return / buyback"
+  ],
+  [
+   "PEGA",
+   "CAPITAL_RETURN_POLICY",
+   "Footnote defining Pegasystems' total capital returns; boilerplate.",
+   "[pending] Capital return / buyback"
+  ],
+  [
+   "LVS",
+   "CAPITAL_RETURN_POLICY",
+   "Quarterly commentary noting Las Vegas Sands repurchased $500 million of shares; recap, no new action.",
+   "[announced] Capital return / buyback"
+  ],
+  [
+   "FCBC",
+   "CAPITAL_RETURN_POLICY",
+   "First Community Bankshares capital philosophy statement; generic, no specific action.",
+   "[announced] Regular dividend (not a special return) $2.07/sh"
+  ],
+  [
+   "LAUR",
+   "CAPITAL_RETURN_POLICY",
+   "Laureate earnings commentary noting about $105 million of Q1 buybacks; recap.",
+   "[announced] Capital return / buyback, $105M (2% of mcap)"
+  ],
+  [
+   "DIOD",
+   "CAPITAL_RETURN_POLICY",
+   "Diodes earnings call remark on the purpose of its buyback program; no action.",
+   "[announced] Capital return / buyback"
+  ],
+  [
+   "AAMI",
+   "CAPITAL_RETURN_POLICY",
+   "Acadian company boilerplate description.",
+   "[announced] Capital return / buyback of $0.10/sh"
+  ],
+  [
+   "MBUU",
+   "CAPITAL_RETURN_POLICY",
+   "Malibu Boats quote on a new credit facility; financing, not an action in scope.",
+   "[announced] Capital return / buyback, $250M (54% of mcap)"
+  ],
+  [
+   "SEIC",
+   "CAPITAL_RETURN_POLICY",
+   "SEI earnings highlight crediting buyback-driven share count reduction; recap.",
+   "[announced] Capital return / buyback"
+  ],
+  [
+   "LNN",
+   "CAPITAL_RETURN_POLICY",
+   "Lindsay quarterly highlights citing $25.2 million of buybacks; recap.",
+   "[announced] Capital return / buyback, $25M (2% of mcap)"
+  ],
+  [
+   "WFRD",
+   "CAPITAL_RETURN_POLICY",
+   "Weatherford company boilerplate description.",
+   "[announced] Capital return / buyback, $200M (3% of mcap)"
+  ],
+  [
+   "LCII",
+   "CEO_CHANGE",
+   "Earnings-call participant list naming LCI's interim CEO; no announcement of a change in this text.",
+   "[announced] CEO-related filing \u2014 no new CEO appointment in the text"
+  ],
+  [
+   "OXM",
+   "CAPITAL_RETURN_POLICY",
+   "Oxford Industries conference slide on outlook; generic capital return mention.",
+   "[announced] Capital return / buyback"
+  ],
+  [
+   "AIN",
+   "CAPITAL_RETURN_POLICY",
+   "Albany International quarterly recap of buybacks and a December dividend; no new action.",
+   "[announced] Capital return / buyback of $0.28/sh"
+  ],
+  [
+   "TRU",
+   "CAPITAL_RETURN_POLICY",
+   "TransUnion forward-looking statement of increased bias to return capital; no specific action.",
+   "[announced] Capital return / buyback"
+  ],
+  [
+   "CLF",
+   "CAPITAL_RETURN_POLICY",
+   "Senior notes indenture terms (change-of-control put, make-whole redemption); boilerplate.",
+   "[announced] Capital return / buyback"
+  ],
+  [
+   "MTW",
+   "CAPITAL_RETURN_POLICY",
+   "Manitowoc investor slide on capital allocation priorities; no new action.",
+   "[announced] Capital return / buyback"
+  ],
+  [
+   "ASYS",
+   "CEO_CHANGE",
+   "Amtech CEO quote on business demand in earnings release; no leadership change.",
+   "[announced] CEO-related filing \u2014 no new CEO appointment in the text"
+  ],
+  [
+   "MWA",
+   "CEO_CHANGE",
+   "Mueller Water CEO quote on fiscal 2025 results; no leadership change.",
+   "[announced] CEO-related filing \u2014 no new CEO appointment in the text"
+  ],
+  [
+   "PRME",
+   "CEO_CHANGE",
+   "Q2 results recap of Prime Medicine's May 2025 CEO appointment (Allan Reine) and restructuring; historical recital.",
+   "[announced] New CEO: Allan Reine"
+  ],
+  [
+   "FISN",
+   "CHAIR_CEO_SPLIT",
+   "Director compensation policy retainer for a possible future independent chair; not a governance change.",
+   "[completed] Chair Ceo Split"
+  ],
+  [
+   "MVIS",
+   "CHAIR_CEO_SPLIT",
+   "MicroVision quote from its Board Chair accompanying insider share purchase commitments; no governance change.",
+   "[announced] Chair Ceo Split"
+  ],
+  [
+   "SPWH",
+   "CHAIR_CEO_SPLIT",
+   "Incentive plan limits on non-employee director compensation; boilerplate.",
+   "[completed] Chair Ceo Split"
+  ],
+  [
+   "CHD",
+   "BOARD_REFRESH",
+   "Church & Dwight statement of its board tenure policy (no term limits); no specific change.",
+   "[completed] Board Refresh"
+  ],
+  [
+   "BZH",
+   "PILL_REMOVED",
+   "Rights-plan redemption terms only ($0.001 per Right); no action described in the text.",
+   "[announced] Rights plan (poison pill) ADOPTED \u2014 the opposite of a removal"
+  ],
+  [
+   "HCC",
+   "PILL_REMOVED",
+   "Rights-plan redemption and tax terms under an amended rights agreement; legal terms, action not described.",
+   "[announced] Rights plan (poison pill) ADOPTED \u2014 the opposite of a removal"
+  ]
+ ],
+ "missed": [
+  [
+   "GWRE",
+   "BUYBACK_AUTH",
+   "Guidewire completed its 2022 buyback and its board approved a new program to repurchase up to $500.0 million of common s",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "a recital of an earlier event (the dates in the text are months before this filing)"
+  ],
+  [
+   "KHC",
+   "TENDER_OFFER",
+   "Kraft Heinz reported early tender results and satisfied the financing condition for its cash tender for 4.375% 2046 and ",
+   "\u26a0 not a real event \u2014 a capital raise / offering, not this event",
+   "a capital raise / offering, not this event"
+  ],
+  [
+   "TDG",
+   "TENDER_OFFER",
+   "TransDigm plans to use new notes proceeds to repurchase all outstanding 6.75% senior secured notes due 2028 via a concur",
+   "\u26a0 not a real event \u2014 a capital raise / offering, not this event",
+   "a capital raise / offering, not this event"
+  ],
+  [
+   "ACH",
+   "PILL_REMOVED",
+   "Accendra Health's board adopted a Section 382 rights plan (Tax Asset Preservation Plan) to protect its NOLs; rights rede",
+   "\u26a0 not a real event \u2014 reads as a recital / footnote, not a new action (model P(real) 0.45)",
+   "reads as a recital / footnote, not a new action (model P(real) 0.45)"
+  ],
+  [
+   "NNBR",
+   "ACTIVIST_SETTLEMENT",
+   "NN, Inc. agreed with Legion Partners to accelerate vesting of 49,079 restricted shares for Raymond T. (surname truncated",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "a recital of an earlier event (the dates in the text are months before this filing)"
+  ],
+  [
+   "AKA",
+   "ACTIVIST_SETTLEMENT",
+   "a.k.a. Brands disclosed that Ms. Cassidy was nominated as a director under its 2021 director nomination agreement with S",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "a recital of an earlier event (the dates in the text are months before this filing)"
+  ],
+  [
+   "CWD",
+   "ACTIVIST_SETTLEMENT",
+   "CaliberCos launched a note exchange program letting unsecured noteholders swap into 6% amortizing notes, Series AAA pref",
+   "\u26a0 not a real event \u2014 reads as a recital / footnote, not a new action (model P(real) 0.32)",
+   "reads as a recital / footnote, not a new action (model P(real) 0.32)"
+  ],
+  [
+   "COO",
+   "VALUE_COMMITTEE",
+   "Cooper Companies completed its strategic review and announced shareholder-value actions (in separate release); repurchas",
+   "\u26a0 not a real event \u2014 a financial-statement / non-GAAP footnote, not an announcement",
+   "a financial-statement / non-GAAP footnote, not an announcement"
+  ],
+  [
+   "NESR",
+   "CAPITAL_RETURN_POLICY",
+   "NESR approved a capital return program: a $0.10 quarterly dividend expected from Q4 2026 plus authorization to repurchas",
+   "\u26a0 not a real event \u2014 a financial-statement / non-GAAP footnote, not an announcement",
+   "a financial-statement / non-GAAP footnote, not an announcement"
+  ],
+  [
+   "PRG",
+   "CEO_CHANGE",
+   "PROG Holdings named a new CEO, most recently CEO of The Vitamin Shoppe and formerly COO/CFO of Conn's; name not given in",
+   "\u26a0 not a real event \u2014 reads as a recital / footnote, not a new action (model P(real) 0.40)",
+   "reads as a recital / footnote, not a new action (model P(real) 0.40)"
+  ],
+  [
+   "ROIV",
+   "CAPITAL_RETURN_POLICY",
+   "Roivant has repurchased $1.5 billion of shares at about $103 and authorized an additional $500 million buyback (per inve",
+   "\u26a0 not a real event \u2014 a footnote / slide, not an announcement",
+   "a footnote / slide, not an announcement"
+  ],
+  [
+   "TFX",
+   "CAPITAL_RETURN_POLICY",
+   "Teleflex agreed to sell Acute Care, Interventional Urology (to Intersurgical) and OEM (to Montagu and Kohlberg) for $2.0",
+   "\u26a0 not a real event \u2014 a capital raise / offering, not this event",
+   "a capital raise / offering, not this event"
+  ],
+  [
+   "ACLS",
+   "CAPITAL_RETURN_POLICY",
+   "Axcelis Technologies and Veeco Instruments agreed to combine in a merger; Veeco equity awards convert or receive merger ",
+   "\u26a0 not a real event \u2014 a dividend RECEIVED / accounting item, not a distribution to shareholders",
+   "a dividend RECEIVED / accounting item, not a distribution to shareholders"
+  ],
+  [
+   "TREE",
+   "CEO_CHANGE",
+   "LendingTree promoted Ian Smith to COO and Laura Nelson to Head of Insurance; Scott Peyree remains CEO after earlier succ",
+   "\u26a0 not a real event \u2014 an executive biography, not a change",
+   "an executive biography, not a change"
+  ],
+  [
+   "DPZ",
+   "CEO_CHANGE",
+   "Domino's appointed Michael C. Creedon, Jr. (Dollar Tree CEO) and Anneliese Olson as directors and elected Corie Barry Le",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "a recital of an earlier event (the dates in the text are months before this filing)"
+  ],
+  [
+   "GCTK",
+   "CEO_CHANGE",
+   "Glucotrack completed its business combination with L\u014dkahi Therapeutics, creating a L\u014dkahi-controlled public company; L\u014dk",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "a recital of an earlier event (the dates in the text are months before this filing)"
+  ],
+  [
+   "PAHC",
+   "CEO_CHANGE",
+   "Phibro named Daniel Bendheim CEO and President effective July 1, 2026; Jack Bendheim becomes Executive Chairman.",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "a recital of an earlier event (the dates in the text are months before this filing)"
+  ],
+  [
+   "VOGX",
+   "CEO_CHANGE",
+   "Vogenx appointed Ken Toombs, former CEO of PA Consulting, to its board following its August 2026 IPO.",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "a recital of an earlier event (the dates in the text are months before this filing)"
+  ],
+  [
+   "AMTB",
+   "CEO_CHANGE",
+   "Amerant's bank appointed Carlos Iafigliola interim CEO effective November 5, 2025; the filing's current action is not sh",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "a recital of an earlier event (the dates in the text are months before this filing)"
+  ],
+  [
+   "ASAN",
+   "BOARD_REFRESH",
+   "Asana directors, including Cohler, are departing as part of orderly board refreshment, with no disagreements.",
+   "\u26a0 not a real event \u2014 reads as a recital / footnote, not a new action (model P(real) 0.50)",
+   "reads as a recital / footnote, not a new action (model P(real) 0.50)"
+  ],
+  [
+   "SABR",
+   "PILL_REMOVED",
+   "Sabre adopted a one-year limited-duration shareholder rights plan in response to substantial stock accumulation by Const",
+   "\u26a0 not a real event \u2014 reads as a recital / footnote, not a new action (model P(real) 0.51)",
+   "reads as a recital / footnote, not a new action (model P(real) 0.51)"
+  ],
+  [
+   "CRI",
+   "PILL_REMOVED",
+   "Carter's adopted a limited-duration rights agreement after RWWM, Inc. rapidly accumulated 16.86% of its common stock.",
+   "\u26a0 not a real event \u2014 reads as a recital / footnote, not a new action (model P(real) 0.39)",
+   "reads as a recital / footnote, not a new action (model P(real) 0.39)"
+  ],
+  [
+   "STRZ",
+   "PILL_REMOVED",
+   "Starz Entertainment adopted a limited-duration shareholder rights plan expiring March 10, 2027 unless extended by shareh",
+   "\u26a0 not a real event \u2014 reads as a recital / footnote, not a new action (model P(real) 0.24)",
+   "reads as a recital / footnote, not a new action (model P(real) 0.24)"
+  ]
+ ],
+ "amount": [
+  [
+   "BMNM",
+   "BUYBACK_AUTH",
+   "Bimini Capital board authorized a Rule 10b5-1 repurchase plan for Class A common stock up to $2.5 million aggregate.",
+   "[announced] Capital return / buyback",
+   2500000,
+   null
+  ],
+  [
+   "PRTA",
+   "CAPITAL_RETURN_POLICY",
+   "Prothena created distributable reserves, giving the Board flexibility to potentially launch a share redemption program i",
+   "[pending] Capital return / buyback, $105M (23% of mcap)",
+   null,
+   105000000.0
+  ],
+  [
+   "III",
+   "BUYBACK_AUTH",
+   "ISG board approved a new $30 million repurchase authorization, bringing total availability to $32.3 million; also declar",
+   "[announced] Capital return / buyback of $0.04/sh",
+   30000000,
+   null
+  ],
+  [
+   "ACT",
+   "BUYBACK_AUTH",
+   "Enact Holdings board approved a new $500 million share repurchase program and a $0.21 quarterly dividend payable March 1",
+   "[announced] Capital return / buyback of $0.21/sh, $31M (0% of mcap)",
+   500000000,
+   31000000.0
+  ],
+  [
+   "LZB",
+   "BUYBACK_AUTH",
+   "La-Z-Boy board approved in April a new $300 million share repurchase program, replacing the prior program.",
+   "[pending] Capital return / buyback, $20M (2% of mcap)",
+   300000000,
+   20000000.0
+  ],
+  [
+   "DAR",
+   "BUYBACK_AUTH",
+   "Darling Ingredients board refreshed and increased its share repurchase program to $1 billion.",
+   "[announced] Capital return / buyback",
+   1000000000,
+   null
+  ],
+  [
+   "CNX",
+   "TENDER_OFFER",
+   "CNX's cash tender for any and all of its $500 million 6.000% senior notes due 2029 expired; $420.2 million principal ten",
+   "[announced] Debt tender offer (for notes, not shares): $420M",
+   null,
+   420200000.0
+  ],
+  [
+   "NBIX",
+   "TENDER_OFFER",
+   "Neurocrine Biosciences completed its acquisition of Soleno Therapeutics via a $53.00-per-share cash tender offer and mer",
+   "[pending] Tender offer at $53.00/sh (up to $2.90bn (21% of mcap))",
+   null,
+   2900000000.0
+  ],
+  [
+   "EQT",
+   "TENDER_OFFER",
+   "EQT upsized its cash tender offer for multiple senior note series, raising the aggregate purchase cap from $1.15 billion",
+   "[announced] Debt tender offer (for notes, not shares)",
+   1400000000,
+   null
+  ],
+  [
+   "BIIB",
+   "TENDER_OFFER",
+   "Biogen completed its acquisition of Apellis Pharmaceuticals via tender offer at $41.00 per share cash plus a CVR of up t",
+   "[pending] Tender offer at $41.00/sh (up to $2.00bn (6% of mcap))",
+   null,
+   2000000000.0
+  ],
+  [
+   "SM",
+   "CAPITAL_RETURN_POLICY",
+   "SM Energy raised its fixed dividend policy and declared $0.22 per share, payable March 23, 2026 to holders of record Mar",
+   "[announced] Regular dividend (not a special return) $0.22/sh",
+   null,
+   950000000.0
+  ],
+  [
+   "MLCI",
+   "TENDER_OFFER",
+   "Mount Logan Capital plans to launch a tender offer following its business combination with 180 Degree Capital; terms not",
+   "[announced] Tender offer (up to $180,000 (1% of mcap))",
+   null,
+   180000.0
+  ],
+  [
+   "MTDR",
+   "TENDER_OFFER",
+   "Matador's cash tender offer for any and all $500 million of 6.875% senior notes due 2028 expired March 4, 2026.",
+   "[announced] Debt tender offer (for notes, not shares): $420M",
+   null,
+   419705000.0
+  ],
+  [
+   "KHC",
+   "TENDER_OFFER",
+   "Kraft Heinz reported early tender results and satisfied the financing condition for its cash tender for 4.375% 2046 and ",
+   "\u26a0 not a real event \u2014 a capital raise / offering, not this event",
+   null,
+   1100000000.0
+  ],
+  [
+   "NRG",
+   "TENDER_OFFER",
+   "NRG subsidiary Lightning Power commenced a cash tender and consent solicitation for any and all $1.5 billion of its 7.25",
+   "[announced] Debt tender offer (for notes, not shares): $900M",
+   null,
+   900000000.0
+  ],
+  [
+   "LUMN",
+   "TENDER_OFFER",
+   "Lumen, Level 3 Financing and QCF commenced cash tender offers for multiple note series up to a $750 million aggregate pu",
+   "[pending] Debt tender offer (for notes, not shares)",
+   750000000,
+   null
+  ],
+  [
+   "OPTU",
+   "TENDER_OFFER",
+   "Optimum Communications launched a tender offer for up to 120,000,000 Class A shares at $2.50 cash each, as part of a cap",
+   "[announced] Tender offer at $2.50/sh for up to 120,000,000 shares (up to $300M (58% of mcap))",
+   null,
+   300000000.0
+  ],
+  [
+   "SIRI",
+   "TENDER_OFFER",
+   "Sirius XM settled its cash tender offer for its 3.125% senior notes due 2026, purchasing about $498.9 million (49.89%) o",
+   "[announced] Debt tender offer (for notes, not shares): $499M",
+   null,
+   498900000.0
+  ],
+  [
+   "GOSS",
+   "EXCHANGE_OFFER",
+   "Gossamer Bio completed early settlement exchanging 5.00% convertible notes due 2027 for up to $72.0 million new 7.50% se",
+   "[completed] Exchange Offer: $72M (109% of mcap)",
+   null,
+   72000000.0
+  ],
+  [
+   "TMQ",
+   "ACTIVIST_SETTLEMENT",
+   "Trilogy Metals executed definitive agreements for an approximately $35.6 million strategic equity investment by the U.S.",
+   "[completed] Settlement",
+   35600000,
+   null
+  ],
+  [
+   "PLBY",
+   "ACTIVIST_SETTLEMENT",
+   "Playboy agreed to repurchase Fortress's entire 16,589,531-share stake (about 15%) at $1.05, a 28% discount, for $17.4 mi",
+   "[completed] Settlement",
+   17419007.55,
+   null
+  ],
+  [
+   "MMI",
+   "CAPITAL_RETURN_POLICY",
+   "Marcus & Millichap declared a semi-annual regular dividend of $0.25 per share, payable October 6, 2026 to holders of rec",
+   "[announced] Regular dividend (not a special return) $0.25/sh",
+   null,
+   23900000.0
+  ],
+  [
+   "WES",
+   "CAPITAL_RETURN_POLICY",
+   "Western Midstream announced a Q1 2026 distribution of $0.930 per unit, up 2.2% from the prior quarter; Brazos transactio",
+   "[announced] Capital return / buyback of $0.93/sh, $1.60bn (8% of mcap)",
+   null,
+   1600000000.0
+  ],
+  [
+   "VNOM",
+   "CAPITAL_RETURN_POLICY",
+   "Viper declared a Q2 base dividend of $0.38 plus variable $0.29 per Class A share, payable August 20, 2026; base dividend",
+   "[announced] Capital return / buyback of $0.38/sh, $132M (1% of mcap)",
+   null,
+   132000000.0
+  ],
+  [
+   "KNSL",
+   "CAPITAL_RETURN_POLICY",
+   "Kinsale declared a $0.25 quarterly dividend, up 47.1%, following a new $250 million buyback authorization in December 20",
+   "[announced] Capital return / buyback of $0.25/sh, $250M (3% of mcap)",
+   null,
+   250000000.0
+  ],
+  [
+   "ROIV",
+   "CAPITAL_RETURN_POLICY",
+   "Roivant has repurchased $1.5 billion of shares at about $103 and authorized an additional $500 million buyback (per inve",
+   "\u26a0 not a real event \u2014 a footnote / slide, not an announcement",
+   500000000,
+   4400000000.0
+  ],
+  [
+   "MRP",
+   "CAPITAL_RETURN_POLICY",
+   "Millrose Properties declared a $0.76 per share quarterly dividend (about $126.2 million) on Class A and B stock, payable",
+   "[announced] Regular dividend (not a special return) $0.76/sh",
+   126200000,
+   null
+  ],
+  [
+   "TFX",
+   "CAPITAL_RETURN_POLICY",
+   "Teleflex agreed to sell Acute Care, Interventional Urology (to Intersurgical) and OEM (to Montagu and Kohlberg) for $2.0",
+   "\u26a0 not a real event \u2014 a capital raise / offering, not this event",
+   2030000000,
+   1500000000.0
+  ],
+  [
+   "ACLS",
+   "CAPITAL_RETURN_POLICY",
+   "Axcelis Technologies and Veeco Instruments agreed to combine in a merger; Veeco equity awards convert or receive merger ",
+   "\u26a0 not a real event \u2014 a dividend RECEIVED / accounting item, not a distribution to shareholders",
+   null,
+   4400000000.0
+  ],
+  [
+   "WMS",
+   "CAPITAL_RETURN_POLICY",
+   "Advanced Drainage Systems announced acquisition of National Diversified Sales from NORMA Group SE, targeting over $25 mi",
+   "[announced] Capital return / buyback, $1.00bn (10% of mcap)",
+   null,
+   1000000000.0
+  ]
+ ],
+ "counterparty": [
+  [
+   "WEX",
+   "CHAIR_CEO_SPLIT",
+   "WEX will separate the Chair and CEO roles after the 2026 Annual Meeting; Melissa Smith remains CEO and President (part o",
+   "[announced] Chair Ceo Split",
+   "Impactive Capital Master Fund LP",
+   null
+  ],
+  [
+   "ZYME",
+   "VALUE_COMMITTEE",
+   "Zymeworks agreed to acquire Theravance Biopharma for $17 per share; target shareholder vote and HSR clearance required.",
+   "[pending] Strategic review / committee",
+   "Theravance Biopharma, Inc.",
+   null
+  ],
+  [
+   "GILD",
+   "TENDER_OFFER",
+   "Gilead completed its acquisition of Arcellx for $115 per share cash plus a $5 CVR, about $7.8 billion implied equity val",
+   "[completed] Tender offer at $115.00/sh (up to $7.80bn (4% of mcap))",
+   "Arcellx, Inc.",
+   null
+  ],
+  [
+   "NBIX",
+   "TENDER_OFFER",
+   "Neurocrine Biosciences completed its acquisition of Soleno Therapeutics via a $53.00-per-share cash tender offer and mer",
+   "[pending] Tender offer at $53.00/sh (up to $2.90bn (21% of mcap))",
+   "Soleno Therapeutics, Inc.",
+   null
+  ],
+  [
+   "SM",
+   "TENDER_OFFER",
+   "SM Energy announced expiration and final results of its cash tender offer for up to $1.0 billion principal of 8.375% sen",
+   "[announced] Debt tender offer (for notes, not shares): $1.00bn",
+   null,
+   "Civitas"
+  ],
+  [
+   "MLCI",
+   "TENDER_OFFER",
+   "Mount Logan Capital plans to launch a tender offer following its business combination with 180 Degree Capital; terms not",
+   "[announced] Tender offer (up to $180,000 (1% of mcap))",
+   null,
+   "180 Degree Capital Corp"
+  ],
+  [
+   "MTDR",
+   "TENDER_OFFER",
+   "Matador's cash tender offer for any and all $500 million of 6.875% senior notes due 2028 expired March 4, 2026.",
+   "[announced] Debt tender offer (for notes, not shares): $420M",
+   null,
+   "BofA Securities, Inc"
+  ],
+  [
+   "KHC",
+   "TENDER_OFFER",
+   "Kraft Heinz reported early tender results and satisfied the financing condition for its cash tender for 4.375% 2046 and ",
+   "\u26a0 not a real event \u2014 a capital raise / offering, not this event",
+   null,
+   "Kraft Heinz Foods Company"
+  ],
+  [
+   "LUMN",
+   "TENDER_OFFER",
+   "Lumen, Level 3 Financing and QCF commenced cash tender offers for multiple note series up to a $750 million aggregate pu",
+   "[pending] Debt tender offer (for notes, not shares)",
+   null,
+   "Purchase"
+  ],
+  [
+   "ARE",
+   "TENDER_OFFER",
+   "Alexandria Real Estate launched a senior notes offering alongside a debt tender offer; the offering is not conditioned o",
+   "[announced] Debt tender offer (for notes, not shares)",
+   null,
+   "Citigroup Global Markets Inc"
+  ],
+  [
+   "KROS",
+   "CAPITAL_RETURN_POLICY",
+   "Keros announced a $375 million capital return: buying all ADAR1 and Pontifax shares at $17.75 (about $181 million) and a",
+   "[announced] Capital return / buyback of $17.75/sh, $375M (163% of mcap)",
+   "ADAR1 Capital Management; Pontifax Venture Capital",
+   null
+  ],
+  [
+   "DVN",
+   "CAPITAL_RETURN_POLICY",
+   "Devon acquired 16,300 net undeveloped Delaware Basin acres in New Mexico for about $2.6 billion (about $161,500 per acre",
+   "[announced] Capital return / buyback, $2.60bn (5% of mcap)",
+   "Bureau of Land Management",
+   null
+  ],
+  [
+   "TMQ",
+   "ACTIVIST_SETTLEMENT",
+   "Trilogy Metals executed definitive agreements for an approximately $35.6 million strategic equity investment by the U.S.",
+   "[completed] Settlement",
+   "U.S. Department of War",
+   null
+  ],
+  [
+   "JOB",
+   "DECLASSIFY",
+   "GEE Group will declassify its board under the Star Equity Fund agreement: majority declassified at 2027 annual meeting, ",
+   "[announced] Declassify",
+   "Star Equity Fund, LP",
+   null
+  ],
+  [
+   "LULU",
+   "CAPITAL_RETURN_POLICY",
+   "Lululemon responded to founder Chip Wilson's notice nominating three director candidates for the 2026 Annual Meeting (pr",
+   "[announced] Capital return / buyback",
+   "Dennis J. \"Chip\" Wilson",
+   null
+  ],
+  [
+   "TNC",
+   "DECLASSIFY",
+   "Tennant agreed with Vision One to approve and recommend a charter amendment declassifying its board by the earlier of th",
+   "[completed] Declassify",
+   "Vision One",
+   null
+  ],
+  [
+   "NNBR",
+   "ACTIVIST_SETTLEMENT",
+   "NN, Inc. agreed with Legion Partners to accelerate vesting of 49,079 restricted shares for Raymond T. (surname truncated",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "Legion Partners Asset Management, LLC",
+   null
+  ],
+  [
+   "SWX",
+   "ACTIVIST_SETTLEMENT",
+   "Southwest Gas and the Icahn Group mutually terminated their October 2025 amended and restated cooperation agreement.",
+   "[completed] Settlement",
+   "Icahn Group",
+   null
+  ],
+  [
+   "EVC",
+   "ACTIVIST_SETTLEMENT",
+   "Entravision and stockholder Alexandra Seros (and related trusts) mutually terminated their cooperation agreement on May ",
+   "[announced] Settlement",
+   "Alexandra Seros",
+   null
+  ],
+  [
+   "RRGB",
+   "ACTIVIST_SETTLEMENT",
+   "Red Robin amended its cooperation agreement with the JCP and Jumana parties, agreeing to re-nominate James C. Pappas and",
+   "[completed] Settlement",
+   "JCP Parties; Jumana Parties",
+   null
+  ],
+  [
+   "AGCO",
+   "ACTIVIST_SETTLEMENT",
+   "AGCO signed a cooperation agreement with TAFE with non-expiring standstill: no stake increase, voting with the board, an",
+   "[completed] Settlement; standstill",
+   "TAFE",
+   null
+  ],
+  [
+   "PMTS",
+   "ACTIVIST_SETTLEMENT",
+   "Tricor Family Office bought 1.9 million CPI Card Group shares from Parallel49 and received board nomination rights while",
+   "[completed] Settlement",
+   "Tricor Pacific Capital Inc. (Tricor Family Office)",
+   null
+  ],
+  [
+   "FRMI",
+   "ACTIVIST_SETTLEMENT",
+   "Fermi took a board-related action on May 4, 2026 under its September 2025 Director Nomination Agreement with TMNN and Ca",
+   "[announced] Settlement",
+   "TMNN Manager LLC; Caddis Capital, LLC",
+   null
+  ],
+  [
+   "INNV",
+   "ACTIVIST_SETTLEMENT",
+   "InnovAge board action involving Ms. Mahesh under its director nomination agreement with Apax Partners and Welsh Carson; ",
+   "[announced] Settlement",
+   "Apax Partners; Welsh, Carson, Anderson & Stowe",
+   null
+  ],
+  [
+   "CTRI",
+   "BOARD_REFRESH",
+   "Centuri expanded its board to 8 and appointed Icahn designee Dustin DeMaria effective November 10, 2025; he will be on t",
+   "[announced] Board Refresh",
+   "Icahn Group",
+   "Carl C"
+  ],
+  [
+   "LOOP",
+   "ACTIVIST_SETTLEMENT",
+   "Loop Industries disclosed Mr. Geygan (GVIC) joined the board with no nomination or investor rights arrangement; details ",
+   "[announced] Settlement",
+   "GVIC",
+   null
+  ],
+  [
+   "AKA",
+   "ACTIVIST_SETTLEMENT",
+   "a.k.a. Brands disclosed that Ms. Cassidy was nominated as a director under its 2021 director nomination agreement with S",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "Summit Partners",
+   null
+  ],
+  [
+   "LION",
+   "ACTIVIST_SETTLEMENT",
+   "Lionsgate signed a governance, standstill and voting agreement with Liberty 77 Capital and MHR Fund Management, appointi",
+   "[announced] Settlement; standstill",
+   "Liberty 77 Capital L.P.; MHR Fund Management, LLC",
+   null
+  ],
+  [
+   "RITE",
+   "ACTIVIST_SETTLEMENT",
+   "Abstract Concepts 1618 agreed to buy 6.9 million Series NMC preferred shares and warrants from NMC; MineralRite imposed ",
+   "[completed] Settlement; standstill",
+   "Abstract Concepts 1618 LLC",
+   null
+  ],
+  [
+   "HHH",
+   "ACTIVIST_SETTLEMENT",
+   "Howard Hughes closed its acquisition of Vantage Group Holdings, with an independent committee approving related preferre",
+   "[completed] Settlement; standstill",
+   "Vantage Group Holdings",
+   null
+  ],
+  [
+   "RGR",
+   "BOARD_REFRESH",
+   "Ruger appointed three new directors on February 23, 2026 after three retirements, amid a proxy fight with 9% holder Bere",
+   "[completed] Board Refresh",
+   "Beretta",
+   null
+  ],
+  [
+   "RGR",
+   "ACTIVIST_SETTLEMENT",
+   "Ruger's board adopted a stockholder rights plan after Beretta built a 9.0% stake and refused a standstill agreement.",
+   "[announced] Standstill inside a merger NDA \u2014 not an activist settlement",
+   "Beretta",
+   null
+  ],
+  [
+   "PLBY",
+   "ACTIVIST_SETTLEMENT",
+   "Playboy agreed to repurchase Fortress's entire 16,589,531-share stake (about 15%) at $1.05, a 28% discount, for $17.4 mi",
+   "[completed] Settlement",
+   "Fortress (Sellers)",
+   null
+  ],
+  [
+   "WS",
+   "ACTIVIST_SETTLEMENT",
+   "Worthington Steel agreed to acquire Kloeckner & Co via tender offer; major holder SWOCTEM irrevocably committed to tende",
+   "[completed] Settlement; standstill",
+   "Kloeckner & Co",
+   null
+  ],
+  [
+   "RGLD",
+   "ACTIVIST_SETTLEMENT",
+   "Royal Gold agreed to acquire all of Horizon Copper Corp. by plan of arrangement, subject to Horizon securityholder appro",
+   "[pending] Settlement",
+   "Horizon Copper Corp.",
+   null
+  ],
+  [
+   "WU",
+   "VALUE_COMMITTEE",
+   "Western Union has a merger agreement to acquire International Money Express (IMXI), subject to IMXI stockholder approval",
+   "[pending] Strategic review / committee",
+   "International Money Express, Inc. (IMXI)",
+   null
+  ],
+  [
+   "IMXI",
+   "VALUE_COMMITTEE",
+   "Intermex agreed to be acquired by Western Union for $16.00 per share in cash; expected to close in second half of 2026, ",
+   "[pending] Strategic review / committee",
+   "The Western Union Company",
+   null
+  ],
+  [
+   "PRSO",
+   "VALUE_COMMITTEE",
+   "Peraso received a revised unsolicited cash-and-stock acquisition proposal (undetermined amount) from Mobix Labs and agre",
+   "[announced] Strategic review / committee",
+   "Mobix Labs, Inc.",
+   null
+  ],
+  [
+   "AUPH",
+   "VALUE_COMMITTEE",
+   "Aurinia agreed to acquire Kezar Life Sciences (lead asset zetomipzomib) after Kezar's strategic review; Kezar board unan",
+   "[announced] Strategic review / committee",
+   "Kezar Life Sciences",
+   null
+  ],
+  [
+   "AGNT",
+   "CAPITAL_RETURN_POLICY",
+   "AGNT completed repurchase of 8,693,290 shares from the Gratitude 2022 Trust for $31,991,307.20 (about $3.68/share), sold",
+   "[completed] Capital return / buyback, $32M (5% of mcap)",
+   "Gratitude 2022 Trust (Frank Selden, trustee)",
+   null
+  ],
+  [
+   "TBCH",
+   "BOARD_REFRESH",
+   "Turtle Beach's agreement with the Donerail Group caps board size (8, then 7) and gives Donerail rights to propose replac",
+   "[announced] Board Refresh",
+   "Donerail Group",
+   "TDG CP LLC"
+  ],
+  [
+   "ROKU",
+   "CAPITAL_RETURN_POLICY",
+   "Roku agreed to be acquired by Fox Corporation, combining Roku's streaming platform with FOX; terms not stated in excerpt",
+   "[announced] Capital return / buyback of $160.00/sh",
+   "Fox Corporation",
+   null
+  ],
+  [
+   "UBER",
+   "CAPITAL_RETURN_POLICY",
+   "Uber announced a cash takeover offer for Delivery Hero at EUR 41.50 per share (equity value $14.8 billion), with 50%-plu",
+   "[pending] Capital return / buyback of $41.50/sh, $14.80bn (10% of mcap)",
+   "Delivery Hero",
+   null
+  ],
+  [
+   "TFX",
+   "CAPITAL_RETURN_POLICY",
+   "Teleflex agreed to sell Acute Care, Interventional Urology (to Intersurgical) and OEM (to Montagu and Kohlberg) for $2.0",
+   "\u26a0 not a real event \u2014 a capital raise / offering, not this event",
+   "Intersurgical Ltd; Montagu and Kohlberg",
+   null
+  ],
+  [
+   "ACLS",
+   "CAPITAL_RETURN_POLICY",
+   "Axcelis Technologies and Veeco Instruments agreed to combine in a merger; Veeco equity awards convert or receive merger ",
+   "\u26a0 not a real event \u2014 a dividend RECEIVED / accounting item, not a distribution to shareholders",
+   "Veeco Instruments Inc.",
+   null
+  ],
+  [
+   "WMS",
+   "CAPITAL_RETURN_POLICY",
+   "Advanced Drainage Systems announced acquisition of National Diversified Sales from NORMA Group SE, targeting over $25 mi",
+   "[announced] Capital return / buyback, $1.00bn (10% of mcap)",
+   "NORMA Group SE",
+   null
+  ],
+  [
+   "GCTK",
+   "CEO_CHANGE",
+   "Glucotrack completed its business combination with L\u014dkahi Therapeutics, creating a L\u014dkahi-controlled public company; L\u014dk",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "L\u014dkahi Therapeutics",
+   null
+  ],
+  [
+   "NSC",
+   "CEO_CHANGE",
+   "Norfolk Southern agreed to be acquired by Union Pacific in a stock-and-cash merger valuing NS at an $85 billion enterpri",
+   "[announced] CEO-related filing \u2014 no new CEO appointment in the text",
+   "Union Pacific Corporation",
+   null
+  ],
+  [
+   "UNP",
+   "CEO_CHANGE",
+   "Union Pacific agreed to acquire Norfolk Southern in a stock-and-cash merger valuing NS at an $85 billion enterprise valu",
+   "[announced] CEO-related filing \u2014 no new CEO appointment in the text",
+   "Norfolk Southern Corporation",
+   null
+  ],
+  [
+   "ALTI",
+   "CEO_CHANGE",
+   "AlTi Global signed an employment agreement with Interim CEO Nancy Curtin on July 1, 2026 (appointment previously reporte",
+   "[announced] CEO-related filing \u2014 no new CEO appointment in the text",
+   null,
+   "Nancy Curtin"
+  ],
+  [
+   "PEP",
+   "BOARD_REFRESH",
+   "PepsiCo said it will continue board refreshment focused on global leaders; activist Elliott supports PepsiCo and its ann",
+   "[announced] Board Refresh",
+   "Elliott",
+   null
+  ],
+  [
+   "SJM",
+   "BOARD_REFRESH",
+   "J.M. Smucker added two directors, Bruce and Dave (surnames not given), as part of board refreshment.",
+   "[announced] Board Refresh",
+   null,
+   "Elliott Investment Management"
+  ],
+  [
+   "EMPD",
+   "PILL_REMOVED",
+   "Empery Digital adopted a limited-duration rights plan expiring February 2, 2027 in response to ATG Capital's rapid accum",
+   "[announced] Rights plan (poison pill) ADOPTED \u2014 the opposite of a removal",
+   "ATG Capital",
+   null
+  ],
+  [
+   "SLVM",
+   "PILL_REMOVED",
+   "Sylvamo adopted a limited-duration rights plan after Atlas Holdings' directors resigned, ending their 2023 cooperation a",
+   "[announced] Rights plan (poison pill) ADOPTED \u2014 the opposite of a removal",
+   "Atlas Holdings",
+   null
+  ],
+  [
+   "SABR",
+   "PILL_REMOVED",
+   "Sabre adopted a one-year limited-duration shareholder rights plan in response to substantial stock accumulation by Const",
+   "\u26a0 not a real event \u2014 reads as a recital / footnote, not a new action (model P(real) 0.51)",
+   "Constellation Software",
+   null
+  ],
+  [
+   "CRI",
+   "PILL_REMOVED",
+   "Carter's adopted a limited-duration rights agreement after RWWM, Inc. rapidly accumulated 16.86% of its common stock.",
+   "\u26a0 not a real event \u2014 reads as a recital / footnote, not a new action (model P(real) 0.39)",
+   "RWWM, Inc.",
+   null
+  ]
+ ],
+ "status": [
+  [
+   "TRST",
+   "BOARD_REFRESH",
+   "TrustCo expanded its board from nine to eleven and elected Patricia Kieper-Fusco and Bryan L. Guentner, effective immedi",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "GWRE",
+   "BUYBACK_AUTH",
+   "Guidewire completed its 2022 buyback and its board approved a new program to repurchase up to $500.0 million of common s",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "ANNOUNCED",
+   "COMPLETED"
+  ],
+  [
+   "CNX",
+   "TENDER_OFFER",
+   "CNX's cash tender for any and all of its $500 million 6.000% senior notes due 2029 expired; $420.2 million principal ten",
+   "[announced] Debt tender offer (for notes, not shares): $420M",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "CNX",
+   "BOARD_REFRESH",
+   "CNX Resources board expanded from seven to eight directors and elected Mr. Shepard as a director as of the Appointment D",
+   "[completed] Board Refresh",
+   "ANNOUNCED",
+   "COMPLETED"
+  ],
+  [
+   "DKL",
+   "TENDER_OFFER",
+   "Delek Logistics accepted and paid on May 14, 2026 for $270,721,000 principal of 7.125% senior notes due 2028 tendered in",
+   "[announced] Debt tender offer (for notes, not shares)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "NBIX",
+   "TENDER_OFFER",
+   "Neurocrine Biosciences completed its acquisition of Soleno Therapeutics via a $53.00-per-share cash tender offer and mer",
+   "[pending] Tender offer at $53.00/sh (up to $2.90bn (21% of mcap))",
+   "COMPLETED",
+   "PENDING"
+  ],
+  [
+   "BIIB",
+   "TENDER_OFFER",
+   "Biogen completed its acquisition of Apellis Pharmaceuticals via tender offer at $41.00 per share cash plus a CVR of up t",
+   "[pending] Tender offer at $41.00/sh (up to $2.00bn (6% of mcap))",
+   "COMPLETED",
+   "PENDING"
+  ],
+  [
+   "SM",
+   "TENDER_OFFER",
+   "SM Energy announced expiration and final results of its cash tender offer for up to $1.0 billion principal of 8.375% sen",
+   "[announced] Debt tender offer (for notes, not shares): $1.00bn",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "EXFY",
+   "TENDER_OFFER",
+   "Expensify repurchased about 6.1 million Class A shares at $1.20 via a modified Dutch auction tender, plus 0.7 million mo",
+   "[announced] Tender offer at $1.20/sh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "EXFY",
+   "CAPITAL_RETURN_POLICY",
+   "Expensify repurchased about 6.1 million Class A shares at $1.20 via a modified Dutch auction tender, plus 0.7 million mo",
+   "[announced] Capital return / buyback of $1.20/sh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "MTDR",
+   "TENDER_OFFER",
+   "Matador's cash tender offer for any and all $500 million of 6.875% senior notes due 2028 expired March 4, 2026.",
+   "[announced] Debt tender offer (for notes, not shares): $420M",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "FISV",
+   "CEO_CHANGE",
+   "Fiserv appointed Takis Georgakopoulos CEO and director effective immediately, succeeding Mike Lyons, who left to become ",
+   "[announced] New CEO: Takis Georgakopoulos",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "SIRI",
+   "TENDER_OFFER",
+   "Sirius XM settled its cash tender offer for its 3.125% senior notes due 2026, purchasing about $498.9 million (49.89%) o",
+   "[announced] Debt tender offer (for notes, not shares): $499M",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "ST",
+   "TENDER_OFFER",
+   "Sensata completed a $400 million cash tender offer in Q2 2026, retiring about $406 million of long-term debt.",
+   "[announced] Tender offer (up to $400M (7% of mcap))",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "DVN",
+   "CAPITAL_RETURN_POLICY",
+   "Devon acquired 16,300 net undeveloped Delaware Basin acres in New Mexico for about $2.6 billion (about $161,500 per acre",
+   "[announced] Capital return / buyback, $2.60bn (5% of mcap)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "RPAY",
+   "PILL_REMOVED",
+   "Repay adopted a limited-duration stockholder rights plan, effective immediately and expiring April 13, 2027, in response",
+   "[announced] Rights plan (poison pill) ADOPTED \u2014 the opposite of a removal",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "LWAY",
+   "VALUE_COMMITTEE",
+   "Lifeway signed a cooperation agreement with Danone: new independent directors, stayed litigation, Danone backing board o",
+   "[announced] Strategic review / committee",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "TDC",
+   "BOARD_REFRESH",
+   "Teradata reached a cooperation agreement with Lynrock Lake, which will back the board's full 2026 slate and accept stand",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "COLD",
+   "BOARD_REFRESH",
+   "Americold reached a cooperation agreement with Ancora and appointed Joseph Reece and Stephen Sleigh as directors, with a",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "TMQ",
+   "ACTIVIST_SETTLEMENT",
+   "Trilogy Metals executed definitive agreements for an approximately $35.6 million strategic equity investment by the U.S.",
+   "[completed] Settlement",
+   "PENDING",
+   "COMPLETED"
+  ],
+  [
+   "WEAV",
+   "BOARD_REFRESH",
+   "Weave expanded its board by two to ten directors and appointed H. Edward Robson II under its Engine Capital/2717 Partner",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "TNC",
+   "DECLASSIFY",
+   "Tennant agreed with Vision One to approve and recommend a charter amendment declassifying its board by the earlier of th",
+   "[completed] Declassify",
+   "ANNOUNCED",
+   "COMPLETED"
+  ],
+  [
+   "SPSC",
+   "BOARD_REFRESH",
+   "SPS Commerce added two directors after engaging with Anson Funds: returning director Mike and new independent director F",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "NCLH",
+   "DECLASSIFY",
+   "Norwegian Cruise Line shareholders approved a shareholder proposal requesting board declassification (about 235.8 millio",
+   "[completed] Declassify",
+   "ANNOUNCED",
+   "COMPLETED"
+  ],
+  [
+   "CNTY",
+   "BOARD_REFRESH",
+   "Century Casinos expanded its board from five to six and appointed Mitchell Etess, effective immediately.",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "CTRI",
+   "BOARD_REFRESH",
+   "Centuri expanded its board to 8 and appointed Icahn designee Dustin DeMaria effective November 10, 2025; he will be on t",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "LION",
+   "ACTIVIST_SETTLEMENT",
+   "Lionsgate signed a governance, standstill and voting agreement with Liberty 77 Capital and MHR Fund Management, appointi",
+   "[announced] Settlement; standstill",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "RITE",
+   "ACTIVIST_SETTLEMENT",
+   "Abstract Concepts 1618 agreed to buy 6.9 million Series NMC preferred shares and warrants from NMC; MineralRite imposed ",
+   "[completed] Settlement; standstill",
+   "PENDING",
+   "COMPLETED"
+  ],
+  [
+   "RGR",
+   "ACTIVIST_SETTLEMENT",
+   "Ruger's board adopted a stockholder rights plan after Beretta built a 9.0% stake and refused a standstill agreement.",
+   "[announced] Standstill inside a merger NDA \u2014 not an activist settlement",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "RGR",
+   "PILL_REMOVED",
+   "Ruger adopted a stockholder rights plan without dead-hand features; details in an 8-K filed the same day.",
+   "[announced] Rights plan (poison pill) ADOPTED \u2014 the opposite of a removal",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "PLBY",
+   "ACTIVIST_SETTLEMENT",
+   "Playboy agreed to repurchase Fortress's entire 16,589,531-share stake (about 15%) at $1.05, a 28% discount, for $17.4 mi",
+   "[completed] Settlement",
+   "PENDING",
+   "COMPLETED"
+  ],
+  [
+   "WS",
+   "ACTIVIST_SETTLEMENT",
+   "Worthington Steel agreed to acquire Kloeckner & Co via tender offer; major holder SWOCTEM irrevocably committed to tende",
+   "[completed] Settlement; standstill",
+   "PENDING",
+   "COMPLETED"
+  ],
+  [
+   "HPK",
+   "VALUE_COMMITTEE",
+   "HighPeak Energy's board Strategic Alternatives Committee approved and adopted a Change in Control Plan on September 9, 2",
+   "[announced] Strategic review / committee",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "CSGP",
+   "CHAIR_CEO_SPLIT",
+   "CoStar Group appointed a new director, Nana (surname not given), bringing C-suite data analytics experience after a comp",
+   "[announced] Chair Ceo Split",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "GPRE",
+   "VALUE_COMMITTEE",
+   "Green Plains concluded its strategic review begun February 2024, deciding to execute its current strategy under existing",
+   "[announced] Strategic review / committee",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "COO",
+   "BOARD_REFRESH",
+   "Cooper Companies signed a cooperation agreement with Browning West and appointed Walter M. Rosebrough, Jr. as director e",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "ASPN",
+   "DECLASSIFY",
+   "Aspen Aerogels stockholders approved, on an advisory basis, a proposal for future board declassification.",
+   "[completed] Declassify",
+   "ANNOUNCED",
+   "COMPLETED"
+  ],
+  [
+   "TBCH",
+   "BOARD_REFRESH",
+   "Turtle Beach's agreement with the Donerail Group caps board size (8, then 7) and gives Donerail rights to propose replac",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "GPOR",
+   "CAPITAL_RETURN_POLICY",
+   "Gulfport CEO John Reinhart departed and left the board effective immediately; an Office of the Chairman leads while a se",
+   "[announced] Capital return / buyback",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "BBT",
+   "CAPITAL_RETURN_POLICY",
+   "Beacon Financial appointed Sean A. Gray CEO of the company and Beacon Bank effective September 21, 2026; Paul A. Perraul",
+   "[announced] Capital return / buyback",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "BBT",
+   "CEO_CHANGE",
+   "Beacon Financial appointed Sean A. Gray CEO effective September 21, 2026, succeeding retiring CEO Paul A. Perrault.",
+   "[announced] New CEO: Sean A. Gray \u2014 Gray previously served as Chief Operating Officer for the Company since 2025 followi",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "CMRC",
+   "PILL_REMOVED",
+   "Commerce.com adopted a limited-duration rights plan (10% trigger, 20% for passive investors) expiring April 12, 2027, re",
+   "[pending] Rights plan (poison pill) ADOPTED \u2014 the opposite of a removal",
+   "COMPLETED",
+   "PENDING"
+  ],
+  [
+   "NSTS",
+   "CEO_CHANGE",
+   "NSTS Bancorp's President and CEO Lear was also appointed CEO and President of its bank subsidiary.",
+   "[announced] New CEO: Stephen G. Lear \u2014 Lear has served as Chairman of the Board of Directors, Chief Executive Officer an",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "MRDN",
+   "CEO_CHANGE",
+   "Meridian Holdings appointed Zoran Milo\u0161evi\u0107 CEO; interim CEO William Scott becomes CFO and remains Chairman; Michael Pre",
+   "[announced] CEO-related filing \u2014 no new CEO appointment in the text",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "TREE",
+   "CEO_CHANGE",
+   "LendingTree promoted Ian Smith to COO and Laura Nelson to Head of Insurance; Scott Peyree remains CEO after earlier succ",
+   "\u26a0 not a real event \u2014 an executive biography, not a change",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "SOWG",
+   "CEO_CHANGE",
+   "Sow Good named David Lazar CEO and Chairman as Claudia Goldfarb stepped down to COO, alongside a $6.0 million private pl",
+   "[announced] CEO departure (no successor named in this filing)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "ZVIA",
+   "CEO_CHANGE",
+   "Zevia appointed board member Alexandre Ruberti President and CEO effective immediately; also raised Q2 2026 outlook.",
+   "[announced] New CEO: Alexandre I. Ruberti",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "DUOT",
+   "CEO_CHANGE",
+   "Duos Technologies named Recker CEO under a three-year employment agreement through March 31, 2029 with automatic one-yea",
+   "[announced] New CEO: Recker",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "MKL",
+   "CEO_CHANGE",
+   "Markel appointed CEO Tom Gayner as Chairman as well, succeeding Mr. Markel, combining the Chair and CEO roles.",
+   "[announced] New CEO: Crowley",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "FNGR",
+   "CEO_CHANGE",
+   "FingerMotion appointed Jolie Kahn CEO and director, replacing Martin Shen, effective August 4, 2026.",
+   "[announced] New CEO: Kahn \u2014 Kahn served as Chief Executive Officer of AVAX One Technology, Ltd.",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "DPZ",
+   "CEO_CHANGE",
+   "Domino's appointed Michael C. Creedon, Jr. (Dollar Tree CEO) and Anneliese Olson as directors and elected Corie Barry Le",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "PETS",
+   "CEO_CHANGE",
+   "PetMed Express appointed Elkeles to its board, following its recent appointment of Jeff Willard as CEO succeeding interi",
+   "[announced] New CEO: Jeff Willard",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "TCRT",
+   "CEO_CHANGE",
+   "Alaunos Therapeutics recently appointed Holger Weis as CEO.",
+   "[announced] CEO-related filing \u2014 no new CEO appointment in the text",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "ZONE",
+   "CEO_CHANGE",
+   "CleanCore Solutions (ZONE) appointed Tyler Hassen CEO and director to pivot to AI infrastructure; signed a non-binding L",
+   "[announced] New CEO: Tyler Hassen",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "LGL",
+   "CEO_CHANGE",
+   "LGL Group named Jason Lamb Chief Executive Officer effective January 5, 2026.",
+   "[announced] New CEO: Jason Lamb",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "GCTK",
+   "CEO_CHANGE",
+   "Glucotrack completed its business combination with L\u014dkahi Therapeutics, creating a L\u014dkahi-controlled public company; L\u014dk",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "STI",
+   "CEO_CHANGE",
+   "Solidion Technology appointed CEO Jaymes Winters as Chairman too, effective September 16, 2026, and named Mark Schwartz ",
+   "[announced] CEO-related filing \u2014 no new CEO appointment in the text",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "VOGX",
+   "CEO_CHANGE",
+   "Vogenx appointed Ken Toombs, former CEO of PA Consulting, to its board following its August 2026 IPO.",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "BYRN",
+   "BOARD_REFRESH",
+   "Byrna appointed Matthew McBrady, Ph.D. as director, expanding the board from seven to eight.",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "BYRN",
+   "CEO_CHANGE",
+   "Byrna's earnings release notes Conn Davis was appointed CEO on March 3, 2026.",
+   "[announced] CEO-related filing \u2014 no new CEO appointment in the text",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "PLAY",
+   "CEO_CHANGE",
+   "Dave & Buster's CEO Tarun Lal retired effective August 3, 2026; CFO Darin Harper appointed to succeed him.",
+   "[announced] New CEO: Darin Harper \u2014 Harper was previously EVP, Chief Financial Officer for Main Event Entertainment, Inc",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "AI",
+   "CEO_CHANGE",
+   "C3 AI appointed Stephen Ehikian CEO effective September 1, 2025; Tom Siebel continues as Executive Chairman.",
+   "[announced] New CEO: Stephen Ehikian",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "BRC",
+   "CEO_CHANGE",
+   "Brady Corporation appointed Vineet Nargolwala President and CEO as of June 8, 2026.",
+   "[announced] New CEO: Vineet Nargolwala",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "AURA",
+   "CEO_CHANGE",
+   "Aura Biosciences appointed Natalie Holles CEO, President and Class I director effective April 30, 2026.",
+   "[announced] New CEO: Natalie Holles",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "KR",
+   "CEO_CHANGE",
+   "Kroger appointed Greg Foran CEO and director effective immediately, succeeding interim CEO Ron Sargent, who remains Chai",
+   "[announced] New CEO: Gregory S. Foran \u2014 Foran previously served as the Chief Executive Officer of Air New Zealand Limite",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "GNLN",
+   "CEO_CHANGE",
+   "Greenlane appointed Jason Hitchcock CEO to advance its BERA digital asset treasury strategy; holds about 70.4 million BE",
+   "[announced] CEO-related filing \u2014 no new CEO appointment in the text",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "RIME",
+   "CEO_CHANGE",
+   "Algorhythm dismissed CEO Gary Atkinson and appointed Azure Energy co-founder Andrew Thompson CEO and Chairman as part of",
+   "[announced] New CEO: Andrew Thompson",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "AARD",
+   "CEO_CHANGE",
+   "Aardvark Therapeutics formed wholly owned subsidiary Ardia Therapeutics for a dermatology pipeline (lead DIA-615); COO B",
+   "[announced] CEO-related filing \u2014 no new CEO appointment in the text",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "RGS",
+   "CEO_CHANGE",
+   "Regis named former Board Chair Susan Lintonsmith President and CEO; Jim Lain COO, Nancy Benacci Chair and Andrew Alfano ",
+   "[announced] CEO-related filing \u2014 no new CEO appointment in the text",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "ONEW",
+   "CEO_CHANGE",
+   "OneWater Marine named Anthony Aisquith CEO and Austin Singleton Executive Chairman effective immediately; John Schrauden",
+   "[announced] CEO-related filing \u2014 no new CEO appointment in the text",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "HESM",
+   "CEO_CHANGE",
+   "After Chevron's merger with Hess, Hess Midstream named CFO Stein CEO, succeeding John B. Hess, and appointed new directo",
+   "[announced] New CEO: Jonathan C. Stein",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "AVO",
+   "PILL_REMOVED",
+   "Mission Produce adopted a one-year rights plan (15% trigger) effective January 21, 2026, expiring January 21, 2027, resp",
+   "[pending] Rights plan (poison pill) ADOPTED \u2014 the opposite of a removal",
+   "COMPLETED",
+   "PENDING"
+  ],
+  [
+   "AVO",
+   "BOARD_REFRESH",
+   "Mission Produce appointed three new independent directors ahead of the current Board Chair's expected retirement at the ",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "ALTI",
+   "CEO_CHANGE",
+   "AlTi Global signed an employment agreement with Interim CEO Nancy Curtin on July 1, 2026 (appointment previously reporte",
+   "[announced] CEO-related filing \u2014 no new CEO appointment in the text",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "SSTK",
+   "CEO_CHANGE",
+   "Shutterstock CEO Paul Hennessy stepped down; CFO Rik Powell named interim CEO effective immediately.",
+   "[announced] Interim CEO: Rik Powell",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "BTMD",
+   "CEO_CHANGE",
+   "biote's 8-K/A adds compensation for Robert Peterson, CFO/CBO, appointed interim CEO effective June 8, 2026.",
+   "[announced] Interim CEO: Robert Peterson",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "AMZE",
+   "CEO_CHANGE",
+   "Amaze Holdings removed Aaron Day as Chairman/CEO; CFO Joel Krutz named interim CEO and Michael Pruitt Chairman while a s",
+   "[announced] Interim CEO: Joel Krutz",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "MX",
+   "CEO_CHANGE",
+   "Magnachip CEO YJ Kim stepped down; Chairman Camillo Martino named interim CEO; board continues exploring strategic alter",
+   "[announced] Interim CEO: Camillo Martino",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "NWTG",
+   "CEO_CHANGE",
+   "Newton Golf appointed Akinobu Yorihiro interim CEO and Brett Hoge Board Chairperson on March 27, 2026.",
+   "[announced] Interim CEO: Akinobu Yorihiro",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "PSIX",
+   "CEO_CHANGE",
+   "Power Solutions International appointed CFO Xun (Kenneth) Li as interim CEO, effective on the prior CEO's resignation da",
+   "[announced] CEO departure (no successor named in this filing)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "PYXS",
+   "CEO_CHANGE",
+   "Pyxis Oncology appointed director Tom Civik interim CEO effective February 2, 2026.",
+   "[announced] CEO-related filing \u2014 no new CEO appointment in the text",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "HPQ",
+   "CEO_CHANGE",
+   "HP appointed board member Bruce Broussard interim CEO effective February 3, 2026; Enrique Lores stepped down as Presiden",
+   "[announced] CEO-related filing \u2014 no new CEO appointment in the text",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "AMTB",
+   "CEO_CHANGE",
+   "Amerant's bank appointed Carlos Iafigliola interim CEO effective November 5, 2025; the filing's current action is not sh",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "WEN",
+   "CEO_CHANGE",
+   "Wendy's 8-K/A disclosed compensation arrangements for Cook's appointment as interim CEO effective July 18, 2025.",
+   "[announced] CEO-related filing \u2014 no new CEO appointment in the text",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "CABO",
+   "CHAIR_CEO_SPLIT",
+   "Cable One elected Meduski Independent Chair effective January 1, 2026 after Chair/CEO Julia Laulis retired; James Holand",
+   "[completed] Chair Ceo Split",
+   "ANNOUNCED",
+   "COMPLETED"
+  ],
+  [
+   "BRTX",
+   "CEO_CHANGE",
+   "BioRestorative Therapies appointed Grasso as interim CEO.",
+   "[announced] Interim CEO: Mika Grasso",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "IBATF",
+   "CEO_CHANGE",
+   "International Battery Metals named SVP Garrett Galloway interim CEO effective July 27, 2026 after CEO Joseph Mills resig",
+   "[announced] Interim CEO: James Garrett Galloway",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "GYRE",
+   "CEO_CHANGE",
+   "Gyre Therapeutics named Executive Chair Ping Zhang interim CEO on August 5, 2025, succeeding Han Ying, who became SVP Sc",
+   "[announced] CEO departure (no successor named in this filing)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "BNGO",
+   "CEO_CHANGE",
+   "Bionano appointed Chairman Albert A. Luderer, Ph.D. interim CEO effective May 5, 2026, succeeding Erik Holmlin; Chris Tw",
+   "[announced] CEO-related filing \u2014 no new CEO appointment in the text",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "FNKO",
+   "CEO_CHANGE",
+   "Funko disclosed arrangements tied to Michael Lunsford's July 5, 2025 appointment as interim CEO.",
+   "[announced] Interim CEO: Michael Lunsford",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "SAIC",
+   "CEO_CHANGE",
+   "SAIC appointed director James (Jim) C. Reagan interim CEO effective October 23, 2025, succeeding Toni Townes-Whitley; re",
+   "[announced] CEO-related filing \u2014 no new CEO appointment in the text",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "VBIO",
+   "CEO_CHANGE",
+   "Valion Bio appointed Dean Zikria interim CEO effective immediately, alongside board leadership changes.",
+   "[announced] Interim CEO: Dean Zikria",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "AHR",
+   "CEO_CHANGE",
+   "American Healthcare REIT Chairman Hanson has served as interim CEO since February 3, 2026 while CEO Danny Prosky is on l",
+   "[announced] Interim CEO: Hanson",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "WKC",
+   "CHAIR_CEO_SPLIT",
+   "World Kinect founder Michael Kasbar will step down as Executive Chairman; independent director Ken Bakshi becomes indepe",
+   "[completed] Chair Ceo Split",
+   "ANNOUNCED",
+   "COMPLETED"
+  ],
+  [
+   "XHLD",
+   "CHAIR_CEO_SPLIT",
+   "TEN Holdings' independent Board Chair resigned from the board effective immediately.",
+   "[announced] Chair Ceo Split",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "EGBN",
+   "CHAIR_CEO_SPLIT",
+   "Eagle Bancorp named Lead Independent Director Jim Soltesz independent Chair and Pete Mathews Vice Chair, effective immed",
+   "[announced] Chair Ceo Split",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "ZS",
+   "DECLASSIFY",
+   "Zscaler stockholders narrowly approved a non-binding stockholder proposal requesting board declassification (67.0 millio",
+   "[completed] Declassify",
+   "ANNOUNCED",
+   "COMPLETED"
+  ],
+  [
+   "NVTS",
+   "BOARD_REFRESH",
+   "Navitas appointed semiconductor veteran Davin Lee as independent director, effective immediately; board plans to shrink ",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "NRC",
+   "DECLASSIFY",
+   "NRC Health adopted amended and restated bylaws declassifying its previously three-class board.",
+   "[announced] Declassify",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "ALIT",
+   "DECLASSIFY",
+   "Alight filed a restated charter effective June 29, 2026 including the stockholder-approved board declassification and of",
+   "[announced] Declassify",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "GO",
+   "DECLASSIFY",
+   "Grocery Outlet appointed new directors including Thornton effective April 1, 2026, with terms ending at the 2026 meeting",
+   "[announced] Declassify",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "BILL",
+   "BOARD_REFRESH",
+   "BILL signed a cooperation agreement with Starboard: board expanded to 13, Peter Feld and Lee Kirkpatrick appointed, Beth",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "FIBK",
+   "BOARD_REFRESH",
+   "First Interstate BancSystem expanded its board and appointed Ritter and Turner to fill the new seats.",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "PAYC",
+   "BOARD_REFRESH",
+   "Paycom appointed Craig Boelte and William Kerber to its board effective July 8, 2026, expanding it from six to eight.",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "CREX",
+   "BOARD_REFRESH",
+   "Creative Realities will expand its board to seven and re-appoint Mr. Bosco if shareholders approve a pending proposal.",
+   "[completed] Board Refresh",
+   "ANNOUNCED",
+   "COMPLETED"
+  ],
+  [
+   "MCS",
+   "BOARD_REFRESH",
+   "Marcus Corporation expanded its board to 12 and elected David J. Marcus as a director on November 5, 2025.",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "CELC",
+   "BOARD_REFRESH",
+   "Celcuity expanded its board from seven to eight and appointed Charles (Chip) R. Romp on February 11, 2026.",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "UTMD",
+   "BOARD_REFRESH",
+   "Utah Medical Products expanded its board from five to six and appointed former outside counsel Kevin C. Timken; also rai",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "GOGO",
+   "BOARD_REFRESH",
+   "Gogo appointed retired four-star Air Force General Minihan to its board and increased board size to nine, effective imme",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "DAIO",
+   "BOARD_REFRESH",
+   "Data I/O named director Edward Smith Chair and appointed Steven Waszak as independent director, expanding the board from",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "ORN",
+   "BOARD_REFRESH",
+   "Orion Group will expand its board from seven to eight and appoint Robert Ledford effective November 19, 2025.",
+   "[completed] Board Refresh",
+   "ANNOUNCED",
+   "COMPLETED"
+  ],
+  [
+   "NMTC",
+   "BOARD_REFRESH",
+   "NeuroOne expanded its board to five and appointed Jason R. Mills as a Class I director effective December 18, 2025.",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "SNPS",
+   "BOARD_REFRESH",
+   "Synopsys signed a cooperation agreement with Elliott, expanding the board by one and appointing Elliott Managing Partner",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "FUSB",
+   "BOARD_REFRESH",
+   "First US Bancshares expanded its board from eleven to twelve and elected S. Nathan Gordon effective August 27, 2025.",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "WK",
+   "BOARD_REFRESH",
+   "Workiva will expand its board to eight by June 1, 2026 and elected R. Scott Herren (effective March 1, 2026) and Mark S.",
+   "[completed] Board Refresh",
+   "ANNOUNCED",
+   "COMPLETED"
+  ],
+  [
+   "BAX",
+   "BOARD_REFRESH",
+   "Baxter added director Michael McDonnell (ex-Biogen CFO) in February; it also named Andrew Hider CEO and split the Chair/",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "ELV",
+   "BOARD_REFRESH",
+   "Elevance Health appointed a new director, Amy (surname not given), under its board refreshment strategy.",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "OPRT",
+   "BOARD_REFRESH",
+   "Oportun added a new director, Scott (surname not given), a former CEO and CFO with financial services experience.",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "ADM",
+   "BOARD_REFRESH",
+   "ADM appointed former LyondellBasell CFO Michael McMurray to its board effective March 9, 2026.",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "ITT",
+   "BOARD_REFRESH",
+   "ITT appointed new directors, including Bertrand, a former public-company CEO with manufacturing and M&A experience.",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "CRCL",
+   "BOARD_REFRESH",
+   "Circle Internet Group director Date departed as part of orderly board refreshment, not due to any disagreement.",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "ASAN",
+   "BOARD_REFRESH",
+   "Asana directors, including Cohler, are departing as part of orderly board refreshment, with no disagreements.",
+   "\u26a0 not a real event \u2014 reads as a recital / footnote, not a new action (model P(real) 0.50)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "EOLS",
+   "BOARD_REFRESH",
+   "An Evolus director departed to support board refreshment, creating an imbalance among classes of its classified board.",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "COLL",
+   "BOARD_REFRESH",
+   "Collegium director Fallon will not stand for re-election, as part of board refreshment and succession planning.",
+   "[completed] Board Refresh",
+   "ANNOUNCED",
+   "COMPLETED"
+  ],
+  [
+   "CNK",
+   "BOARD_REFRESH",
+   "Cinemark elected Lawrence Burian as a Class II director and declared a $0.09 quarterly dividend payable September 9, 202",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "SJM",
+   "BOARD_REFRESH",
+   "J.M. Smucker added two directors, Bruce and Dave (surnames not given), as part of board refreshment.",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "ACIW",
+   "BOARD_REFRESH",
+   "ACI Worldwide appointed Todd Ford and Didier Lamouche as independent directors ahead of two expected director retirement",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "STZ",
+   "BOARD_REFRESH",
+   "Constellation Brands elected McDonald's executive Morgan Flatley as an independent director effective May 20, 2026.",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "DTI",
+   "BOARD_REFRESH",
+   "Drilling Tools International appointed capital markets veteran Ira H. Green, Jr. to its board, effective immediately.",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "BGDE",
+   "PILL_REMOVED",
+   "Big Digital Energy terminated its stockholder rights agreement by accelerating its expiration from February 1, 2027 to J",
+   "[announced] Rights plan (poison pill) ADOPTED \u2014 the opposite of a removal",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "EMPD",
+   "PILL_REMOVED",
+   "Empery Digital adopted a limited-duration rights plan expiring February 2, 2027 in response to ATG Capital's rapid accum",
+   "[announced] Rights plan (poison pill) ADOPTED \u2014 the opposite of a removal",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "NEUP",
+   "PILL_REMOVED",
+   "Neuphoria Therapeutics adopted a limited-duration stockholder rights plan, effective immediately, in response to rapid a",
+   "[announced] Rights plan (poison pill) ADOPTED \u2014 the opposite of a removal",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "EZRA",
+   "PILL_REMOVED",
+   "Reliance Global Group adopted a one-year stockholder rights plan, citing asset value well above market capitalization.",
+   "[announced] Rights plan (poison pill) ADOPTED \u2014 the opposite of a removal",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "SLVM",
+   "PILL_REMOVED",
+   "Sylvamo adopted a limited-duration rights plan after Atlas Holdings' directors resigned, ending their 2023 cooperation a",
+   "[announced] Rights plan (poison pill) ADOPTED \u2014 the opposite of a removal",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "ORMP",
+   "PILL_REMOVED",
+   "Oramed adopted a rights agreement dated November 17, 2025 and declared a dividend of one purchase right per common share",
+   "[announced] Rights plan (poison pill) ADOPTED \u2014 the opposite of a removal",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "SABR",
+   "PILL_REMOVED",
+   "Sabre adopted a one-year limited-duration shareholder rights plan in response to substantial stock accumulation by Const",
+   "\u26a0 not a real event \u2014 reads as a recital / footnote, not a new action (model P(real) 0.51)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "MSGM",
+   "PILL_REMOVED",
+   "Motorsport Games adopted a limited-duration rights plan on its Class A stock, effective immediately and expiring July 20",
+   "[announced] Rights plan (poison pill) ADOPTED \u2014 the opposite of a removal",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "CRI",
+   "PILL_REMOVED",
+   "Carter's adopted a limited-duration rights agreement after RWWM, Inc. rapidly accumulated 16.86% of its common stock.",
+   "\u26a0 not a real event \u2014 reads as a recital / footnote, not a new action (model P(real) 0.39)",
+   "COMPLETED",
+   "PENDING"
+  ],
+  [
+   "RAIL",
+   "PILL_REMOVED",
+   "FreightCar America adopted a new limited-duration rights plan to replace its existing plan expiring August 5, 2026.",
+   "[announced] Rights plan (poison pill) ADOPTED \u2014 the opposite of a removal",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "STRZ",
+   "PILL_REMOVED",
+   "Starz Entertainment adopted a limited-duration shareholder rights plan expiring March 10, 2027 unless extended by shareh",
+   "\u26a0 not a real event \u2014 reads as a recital / footnote, not a new action (model P(real) 0.24)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ]
+ ],
+ "per_share": [
+  [
+   "AGNT",
+   "CAPITAL_RETURN_POLICY",
+   "AGNT completed repurchase of 8,693,290 shares from the Gratitude 2022 Trust for $31,991,307.20 (about $3.68/share), sold",
+   "[completed] Capital return / buyback, $32M (5% of mcap)",
+   3.68,
+   null
+  ],
+  [
+   "KFY",
+   "CAPITAL_RETURN_POLICY",
+   "Korn Ferry raised its quarterly dividend from $0.48 to $0.55 per share, payable April 15, 2026 to holders of record Marc",
+   "[announced] Regular dividend (not a special return) $0.48/sh",
+   0.55,
+   0.48
+  ]
+ ]
+}

@@ -134,18 +134,29 @@ APPOINTMENT_RX = re.compile(
 )
 
 
-_ROLE = (r"(?:Interim |Acting |Co-)?(?:President and )?(?:Chief Executive Officer|CEO|President|"
-         r"Chief Financial Officer|CFO|Chief Operating Officer|COO|Chief Restructuring Officer|"
-         r"Chief Transformation Officer|Executive Chair(?:man|woman|person)?|Chair(?:man|woman|person)? of the Board|"
-         r"Chief Commercial Officer|Chief Strategy Officer|General Counsel)")
-_PERSON = r"((?:Mr\.|Ms\.|Mrs\.|Dr\.)?\s?[A-Z][a-zA-Z'’\-]+(?:\s[A-Z]\.)?(?:\s(?:(?:van|der|de|den|la|le|von|di|da|du|del|dos|bin|al)\s)*[A-Z][a-zA-Z'’\-]+){1,2})"
+_ROLE = (r"(?i:(?:(?:Interim|Acting|Co-|Group|Deputy|Global)\s+)?"
+         r"(?:(?:Senior |Executive )?Vice President(?:,\s*|\s+-\s+|\s+and\s+)(?:[A-Z][\w&]+,?\s+){0,3}(?:and\s+)?)?"
+         r"(?:President and |President, )?"
+         r"(?:Chief Executive Officer|CEO|President(?:,\s+[A-Z][\w ]{2,30})?|Chief Financial Officer|CFO|"
+         r"Chief Operating Officer|COO|Chief Accounting Officer|Principal Accounting Officer|"
+         r"Chief Restructuring Officer|Chief Transformation Officer|Executive Chair(?:man|woman|person)?|"
+         r"Chair(?:man|woman|person)? of the Board|Chief Commercial Officer|Chief Strategy Officer|"
+         r"Chief Revenue Officer|Chief Legal Officer|General Counsel|Controller|Treasurer|"
+         r"Chief Human Resources Officer|Chief People Officer|Chief [A-Z][a-z]+ Officer|"
+         r"(?:Senior |Executive )Vice President(?:,\s+[A-Z][\w ]{3,30})?))")
+_PERSON = (r"((?:Mr\.|Ms\.|Mrs\.|Dr\.)\s[A-ZÀ-Ý][\wÀ-ÿ'’\-]+(?=\s+(?:will|was|has|had|is|to)\b)|(?:Mr\.|Ms\.|Mrs\.|Dr\.)?\s?[A-ZÀ-Ý][\wÀ-ÿ'’\-]+(?:\s\([A-Z][a-z]+\))?(?:\s[A-Z]\.)?"
+           r"(?:\s(?:(?:van|der|de|den|la|le|von|di|da|du|del|dos|bin|al)\s)*[A-ZÀ-Ý][\wÀ-ÿ'’\-]+){1,2}(?:,?\s+(?:Jr|Sr|III|II)\.?)?)")
+# an aside between the name and the role -- never spanning a list of board appointees
+_ASIDE = r"(?:,\s*(?:age\s+)?\d{2}\s*,|\s*\(age\s+\d{2}\)|,(?:(?!directors?\b|[Bb]oard\b|Class I)[^;]){0,220}?,)?"
+_THE = r"(?:the\s+Company['’]s\s+|its\s+|our\s+|the\s+|[A-Z][\w’']+['’]s\s+)?(?:new\s+|next\s+)?"
 APPT_PATTERNS = [
-    re.compile(r"(?:appointed|named|elected|hired|promoted)\s+" + _PERSON + r",?\s+(?:age\s\d+,\s+)?(?:as|to serve as|to the (?:role|position) of)\s+(?:the\s+Company['’]s\s+|its\s+|our\s+|the\s+)?(?:new\s+)?(" + _ROLE + r")"),
-    re.compile(r"appointed\s+" + _PERSON + r",\s+(?:Ph\.D\.|M\.D\.|Jr\.|CPA|J\.D\.)?,?\s*(?:age\s+)?\d{2},?\s+as\s+(?:the\s+Company['’]s\s+|its\s+|our\s+)?(?:new\s+)?(" + _ROLE + r")"),
-    re.compile(_PERSON + r",\s+(?:age\s+)?\d{2},?\s+(?:has been|was|will be)\s+(?:appointed|named|elected)\s+(?:as\s+)?(?:the\s+Company['’]s\s+|its\s+|our\s+)?(?:new\s+)?(" + _ROLE + r")"),
-    re.compile(_PERSON + r"\s+(?:has been|was|will be)\s+(?:appointed|named|elected)\s+(?:as\s+)?(?:the\s+Company['’]s\s+|its\s+|our\s+)?(?:new\s+)?(" + _ROLE + r")"),
     re.compile(r"(?:Incoming|incoming|New|new)\s+(?:CEO|Chief Executive Officer)\s+" + _PERSON + r"\s+(?:said|stated|commented)[^.]{0,120}?appointed\s+(?:as\s+)?(" + _ROLE + r")"),
-    re.compile(r"(?:appointment|election|hiring)\s+of\s+" + _PERSON + r"\s+as\s+(?:the\s+Company['’]s\s+|its\s+|our\s+)?(?:new\s+)?(" + _ROLE + r")"),
+    re.compile(_PERSON + r"['’]s\s+(?:appointment|election|promotion)\s+(?:as|to\s+(?:the\s+)?(?:role|position|office)\s+of)\s+" + _THE + "(" + _ROLE + r")"),
+    re.compile(r"(?:appointments?|elections?|promotions?|hiring)\s+of\s+" + _PERSON + _ASIDE + r"\s*(?:as|to\s+(?:the\s+)?(?:position|role|office)\s+of|to)\s+" + _THE + "(" + _ROLE + r")"),
+    re.compile(r"(?:appointed|named|elected|promoted|appointing|hired|designated)\s+" + _PERSON + _ASIDE + r"\s*(?:as\s+|to\s+(?:the\s+(?:position|role)\s+of\s+)?|to\s+succeed\s+[^;]{0,90}?\s+as\s+)?" + _THE + "(" + _ROLE + r")"),
+    re.compile(_PERSON + _ASIDE + r"\s*(?:will join|joined|has joined|will serve|to serve|accepted (?:his|her|the) (?:appointment|offer))\s+(?:the Company\s+|[A-Z][\w’']+\s+)?(?:as|to serve as)\s+" + _THE + "(" + _ROLE + r")"),
+    re.compile(_PERSON + _ASIDE + r"\s*(?:will succeed|to succeed|succeeds|succeeded)\s+[^;]{0,90}?\s+as\s+" + _THE + "(" + _ROLE + r")"),
+    re.compile(_PERSON + _ASIDE + r"\s*(?:was|has been|will be|is being|had been)\s+(?:appointed|named|elected|promoted)\s+(?:as\s+|to\s+)?" + _THE + "(" + _ROLE + r")"),
 ]
 BACKGROUND_RX = re.compile(r"[^.]*(?:previously served|most recently served|prior to joining|served as|has served|was the|was previously)[^.]*\.", re.I)
 DEPART_RX = re.compile(r"[^.]*(?:resign|retire|depart|step(?:ped)? down|terminat|separation from)[^.]*\.", re.I)
@@ -158,13 +169,25 @@ def parse_appointment(text: str) -> dict:
     sec = t[i:i + 6000] if i >= 0 else t[:6000]
     out = {"person": None, "role": None, "interim": False, "background": "", "departure": "",
            "excerpt": ""}
+    NOT_NAME = re.compile(r"\b(?:Vice|President|Officer|Chief|Executive|Senior|Company|Board|Directors?|"
+                          r"Inc|Corp|Corporation|Restaurants|Holdings|Group|LLC|Committee|Chair)\b")
+    best = None
     for rx in APPT_PATTERNS:
-        m = rx.search(sec)
-        if m:
-            out["person"] = re.sub(r"^(?:Mr\.|Ms\.|Mrs\.|Dr\.)\s?", "", m.group(1)).strip()
-            out["role"] = m.group(2).strip()
-            out["interim"] = bool(re.search(r"interim|acting", m.group(0), re.I))
+        for m in rx.finditer(sec):
+            person = re.sub(r"^(?:Mr\.|Ms\.|Mrs\.|Dr\.)\s?", "", m.group(1)).strip()
+            if NOT_NAME.search(person) or len(person) < 3:
+                continue
+            pre = sec[max(0, m.start() - 80):m.start()]
+            if re.search(r"previously (?:reported|disclosed|announced)", pre, re.I):
+                continue                                   # an old appointment being recited
+            if re.search(r"(?:said|stated)\s*$", pre.strip()[-12:]) and not re.search(r"appoint|elect|name|promot", m.group(0), re.I):
+                continue                                   # a quote attribution, not an appointment
+            if best is None or m.start() < best[0]:
+                best = (m.start(), person, m.group(2).strip(), m.group(0))
             break
+    if best:
+        _, out["person"], out["role"], whole = best
+        out["interim"] = bool(re.search(r"interim|acting", whole, re.I))
     if out["person"]:
         last = out["person"].split()[-1]
         bg = [b.strip() for b in BACKGROUND_RX.findall(sec) if last in b or "Mr." in b or "Ms." in b]
@@ -176,7 +199,7 @@ def parse_appointment(text: str) -> dict:
     # what KIND of 5.02 event this is -- only a real hire is the Bollenbach pattern
     low = sec.lower()
     if out["person"] and out["role"]:
-        promo = re.search(r"(?:currently|previously) (?:serves|served) as [^.]{0,80}of the company", low)
+        promo = re.search(r"(?:currently|previously) (?:serves|served) as [^.]{0,80}of the company|the company['’]s current|who (?:currently|presently) serves|promoted", low)
         out["event_type"] = "PROMOTION" if promo else "NEW HIRE"
     elif re.search(r"amend\w*[^.]{0,60}employment agreement|employment agreement[^.]{0,60}amend", low):
         out["event_type"] = "PAY AMENDMENT"

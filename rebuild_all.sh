@@ -86,6 +86,10 @@ if [ "$DO_SCANS" = "1" ]; then
   # what each PSU plan actually is (proxy CD&A) -- filing text via edgar_doc
   run python3 event_detail.py                || true
   run python3 psu_detail.py                  || true
+  # reviewed extraction first (reviewed/*.json), the regex parse as the fallback
+  run python3 reviewed_overlay.py            || true
+  # price reaction since each event / hire, and PSU pay-for-performance
+  run python3 detail_enrich.py               || true
   # earnings-call intent: transcripts -> linguistic features -> validated model
   run python3 transcript_fetch.py            --n 10 || true
   run python3 call_intent.py                 || true
@@ -167,6 +171,8 @@ echo "### Workbook regeneration ###"
 run python3 name_financials.py             || true   # FMP financial panel for every name
 run python3 build_most_asymmetric_xlsx.py  || true
 run python3 build_otc_book.py              || true
+# regex parsers vs the reviewed set (PARSER_EVAL.md)
+run python3 parser_eval.py                 || true
 # companion risk-reward book, rebuilt on this engine's current snapshot
 run bash refresh_risk_reward.sh            || true
 

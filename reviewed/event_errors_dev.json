@@ -1,0 +1,1837 @@
+{
+ "phantom": [
+  [
+   "BGS",
+   "ASSET_SALE",
+   "Historical recital of prior divestitures in a filing of acquired-business financial statements.",
+   "[completed] Selling Don Pepino and Sclafani brand for $11M (4% of mcap)"
+  ]
+ ],
+ "missed": [
+  [
+   "APTV",
+   "SPINOFF",
+   "Aptiv completed the spin-off of its Electrical Distribution Systems segment and received a $1.9B cash dividend in connec",
+   "\u26a0 not a real event \u2014 a financial-statement / non-GAAP footnote, not an announcement",
+   "a financial-statement / non-GAAP footnote, not an announcement"
+  ],
+  [
+   "ETN",
+   "SEPARATION",
+   "Eaton signed definitive agreements (June 10, 2026) to separate its Mobility segment and combine it with Dana Incorporate",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "a recital of an earlier event (the dates in the text are months before this filing)"
+  ],
+  [
+   "HON",
+   "CHAIR_CEO_SPLIT",
+   "Honeywell confirms Rajeev Gautam will serve as Independent Chair of the Board, as previously announced.",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "a recital of an earlier event (the dates in the text are months before this filing)"
+  ],
+  [
+   "UCB",
+   "ASSET_SALE",
+   "United Community Banks completed the sale of equipment lease financing subsidiary Navitas Credit Corp. and reinsurance s",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "a recital of an earlier event (the dates in the text are months before this filing)"
+  ],
+  [
+   "LAB",
+   "ASSET_SALE",
+   "Standard BioTools has agreed to divest its Mass Cytometry business while pursuing its merger with Treeline Biosciences, ",
+   "\u26a0 not a real event \u2014 a financial-statement / non-GAAP footnote, not an announcement",
+   "a financial-statement / non-GAAP footnote, not an announcement"
+  ],
+  [
+   "KOS",
+   "ASSET_SALE",
+   "Kosmos completed the sale of its interest in the Ceiba Field and Okume Complex in Equatorial Guinea, and post-quarter co",
+   "\u26a0 not a real event \u2014 a financial-statement / non-GAAP footnote, not an announcement",
+   "a financial-statement / non-GAAP footnote, not an announcement"
+  ],
+  [
+   "LPG",
+   "ASSET_SALE",
+   "Dorian LPG completed sales of VLGCs Corsair (net proceeds $80.8M, July 2026) and Constellation, booking a $30.1M vessel ",
+   "\u26a0 not a real event \u2014 a financial-statement / non-GAAP footnote, not an announcement",
+   "a financial-statement / non-GAAP footnote, not an announcement"
+  ],
+  [
+   "JACK",
+   "VALUE_COMMITTEE",
+   "Jack in the Box added new directors and formed an advisory Capital Allocation Committee chaired by new director Smolinis",
+   "\u26a0 not a real event \u2014 a director joining a standing committee, not a strategic review",
+   "a director joining a standing committee, not a strategic review"
+  ],
+  [
+   "BATL",
+   "ASSET_SALE",
+   "Battalion Oil agreed to divest its West Quito Assets; proceeds, if it closes, to repay its senior secured credit facilit",
+   "\u26a0 not a real event \u2014 a capital raise / offering, not this event",
+   "a capital raise / offering, not this event"
+  ],
+  [
+   "PCRX",
+   "ASSET_SALE",
+   "Pacira agreed to divest its iovera handheld cryoanalgesia business for up to $140.0M, including $70.0M upfront; 66 emplo",
+   "\u26a0 not a real event \u2014 a cost line about a transaction, not a new action",
+   "a cost line about a transaction, not a new action"
+  ],
+  [
+   "VSAT",
+   "VALUE_COMMITTEE",
+   "Under a Cooperation Agreement with Carronade Capital, Viasat appointed Shekar Ayyar and Jinhy Yoon to its board and Stra",
+   "\u26a0 not a real event \u2014 a director's committee seat, not a strategic action",
+   "a director's committee seat, not a strategic action"
+  ],
+  [
+   "PRGO",
+   "ASSET_SALE",
+   "Perrigo's sale of its Dermacosmetics branded business for up to EUR 327M (EUR 300M upfront) is expected to close in Q2 2",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "a recital of an earlier event (the dates in the text are months before this filing)"
+  ],
+  [
+   "VTOL",
+   "SALE_OF_COMPANY",
+   "Bristow Group agreed on June 23, 2026 to acquire Berry Aviation for $105M in cash, subject to adjustments.",
+   "\u26a0 not a real event \u2014 a cost line about a transaction, not a new action",
+   "a cost line about a transaction, not a new action"
+  ],
+  [
+   "RDN",
+   "SALE_OF_COMPANY",
+   "Radian completed its primarily all-cash acquisition of Inigo Limited on February 2, 2026; filing provides Inigo's financ",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "a recital of an earlier event (the dates in the text are months before this filing)"
+  ],
+  [
+   "HWBK",
+   "SALE_OF_COMPANY",
+   "Hawthorn Bancshares appointed investor/entrepreneur Grant Burcham to its board as a Class III director effective April 2",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "a recital of an earlier event (the dates in the text are months before this filing)"
+  ],
+  [
+   "XPOF",
+   "STRATEGIC_REVIEW",
+   "Xponential Fitness appointed Jennifer Ryu CFO effective October 19, 2026; its ongoing strategic alternatives review is l",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "a recital of an earlier event (the dates in the text are months before this filing)"
+  ],
+  [
+   "CRMT",
+   "STRATEGIC_REVIEW",
+   "America's Car-Mart's special committee strategic review (financing, recapitalization, restructuring, M&A) has made signi",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "a recital of an earlier event (the dates in the text are months before this filing)"
+  ],
+  [
+   "FULC",
+   "STRATEGIC_REVIEW",
+   "Fulcrum Therapeutics is conducting a strategic alternatives review (merger, sale, licensing of assets) and has engaged L",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "a recital of an earlier event (the dates in the text are months before this filing)"
+  ],
+  [
+   "NDLS",
+   "STRATEGIC_REVIEW",
+   "Noodles & Company's strategic review (begun Sept 2025) continues, covering refinancing of debt maturing July 27, 2027, r",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "a recital of an earlier event (the dates in the text are months before this filing)"
+  ],
+  [
+   "VC",
+   "CAPITAL_RETURN",
+   "Visteon is raising its quarterly dividend 36% to $0.375 per share in Q1 2026.",
+   "\u26a0 not a real event \u2014 a financial-statement / non-GAAP footnote, not an announcement",
+   "a financial-statement / non-GAAP footnote, not an announcement"
+  ],
+  [
+   "BCSF",
+   "CAPITAL_RETURN",
+   "Bain Capital Specialty Finance declared a Q1 2026 dividend of $0.42 per share, after Q4 2025 special dividends totaling ",
+   "\u26a0 not a real event \u2014 reads as a recital / footnote, not a new action (model P(real) 0.41)",
+   "reads as a recital / footnote, not a new action (model P(real) 0.41)"
+  ],
+  [
+   "FLOC",
+   "CAPITAL_RETURN",
+   "Flowco's board approved a $0.14/share special cash dividend to Class A holders in August 2026, alongside a $0.09 quarter",
+   "\u26a0 not a real event \u2014 reads as a recital / footnote, not a new action (model P(real) 0.49)",
+   "reads as a recital / footnote, not a new action (model P(real) 0.49)"
+  ],
+  [
+   "QNBC",
+   "UPLISTING",
+   "QNB Corp. (OTCQX) was approved to list its common stock on the Nasdaq Capital Market as 'QNBC' and launched an underwrit",
+   "\u26a0 not a real event \u2014 a capital raise / offering, not this event",
+   "a capital raise / offering, not this event"
+  ]
+ ],
+ "amount": [
+  [
+   "DAN",
+   "SPINOFF",
+   "Dana agreed to combine with Eaton's Mobility business (valued ~$5.1B) in a Reverse Morris Trust; Eaton holders to own at",
+   "Separating a business",
+   5100000000,
+   null
+  ],
+  [
+   "DAN",
+   "CAPITAL_RETURN_POLICY",
+   "Dana extended and increased its capital return program from $1 billion to $2 billion after completing the Off-Highway sa",
+   "[announced] Capital return / buyback, $300M (8% of mcap)",
+   2000000000,
+   300000000.0
+  ],
+  [
+   "MOD",
+   "SPINOFF",
+   "Modine agreed to separate its Performance Technologies business and merge it with Gentherm in a ~$1.0B Reverse Morris Tr",
+   "Separating Performance Technologies Business",
+   1000000000,
+   null
+  ],
+  [
+   "THRM",
+   "SPINOFF",
+   "Gentherm agreed to combine with Modine's Performance Technologies business in a ~$1.0B Reverse Morris Trust; Gentherm ho",
+   "Separating a business",
+   1000000000,
+   null
+  ],
+  [
+   "FIS",
+   "ASSET_SALE",
+   "FIS sold its remaining 45% minority stake in Worldpay to Global Payments, concurrently closing its acquisition of Global",
+   "[completed] Selling remaining minority stake to Global Payments for $13.50bn (75% of mcap)",
+   null,
+   13500000000.0
+  ],
+  [
+   "CPAY",
+   "ASSET_SALE",
+   "Corpay signed a definitive agreement to sell PayByPhone, its mobile parking payments business, to Lightyear Capital; pri",
+   "[announced] Selling assets to Lightyear Capital for $500M (2% of mcap)",
+   null,
+   500000000.0
+  ],
+  [
+   "PLUG",
+   "ASSET_SALE",
+   "Plug Power agreed to sell its Graham, Texas project to Stream Data Centers and restructured its New York Gateway Project",
+   "[announced] Selling assets to Stream for $50M (2% of mcap)",
+   null,
+   50000000.0
+  ],
+  [
+   "KTB",
+   "ASSET_SALE",
+   "Kontoor Brands agreed to sell the Lee business to Authentic Brands Group for up to $1B: $750M initial value plus up to $",
+   "[pending] Selling Lee \u00ae business to Authentic Brands Group for $750M (20% of mcap)",
+   1000000000,
+   750000000.0
+  ],
+  [
+   "BOC",
+   "ASSET_SALE",
+   "Boston Omaha agreed to sell its surety insurance unit, General Indemnity Group, to CopperPoint Insurance Company in an a",
+   "[announced] Selling General Indemnity Surety Insurance Unit to CopperPoint Insurance Company Omaha for $84M (21% of mcap",
+   null,
+   84308757.68
+  ],
+  [
+   "LPTH",
+   "ASSET_SALE",
+   "LightPath agreed to divest its China subsidiary LightPath (Zhenjiang) Optical Instrumentation for $4.5M payable in insta",
+   "[announced] Selling Company's subsidiary for $50M (8% of mcap)",
+   4500000,
+   50000000.0
+  ],
+  [
+   "CNDT",
+   "ASSET_SALE",
+   "Conduent agreed to sell its Tolling business (part of Conduent Transportation) to Quarterhill Inc.; price not stated in ",
+   "[announced] Selling Tolling business to Quarterhill Inc for $70M (28% of mcap)",
+   null,
+   70000000.0
+  ],
+  [
+   "BIRD",
+   "ASSET_SALE",
+   "Allbirds (now Smartbird) completed the sale of its Allbirds brand and footwear assets, pivoted to AI infrastructure, nam",
+   "[completed] Selling Allbirds brand for $100M (675% of mcap)",
+   null,
+   100000000.0
+  ],
+  [
+   "GFF",
+   "ASSET_SALE",
+   "Griffon's subsidiaries, with Venanpri, sold the equity of The Ames Companies (AMES) to Merv HoldCo LLC under an amended ",
+   "[announced] Selling assets for $90M (2% of mcap)",
+   null,
+   90000000.0
+  ],
+  [
+   "SUI",
+   "ASSET_SALE",
+   "Sun Communities agreed to sell its UK assets including Park Holidays to Aermont Capital funds for enterprise value of \u00a37",
+   "[announced] Selling UK assets for $1.03bn (7% of mcap)",
+   null,
+   1030000000.0
+  ],
+  [
+   "SRI",
+   "ASSET_SALE",
+   "Stoneridge sold its Control Devices segment to an affiliate of Center Rock Capital Partners, closing January 30, 2026 co",
+   "[completed] Selling Control Devices segment to Center Rock Capital Partners, LP for $59M (30% of mcap)",
+   null,
+   59000000.0
+  ],
+  [
+   "ES",
+   "ASSET_SALE",
+   "Eversource completed the sale of Aquarion Water Company to Aquarion Water Authority for $2.4B cash on June 30, 2026; ~$1",
+   "[completed] Selling assets to Aquarion Water Authority for $1.70bn (7% of mcap)",
+   2400000000,
+   1700000000.0
+  ],
+  [
+   "DNOW",
+   "CAPITAL_RETURN_POLICY",
+   "DNOW completed its all-stock acquisition of MRC Global, issuing 0.9489 DNOW shares per MRC share; expects $70M annual co",
+   "[announced] Capital return / buyback, $500M (17% of mcap)",
+   null,
+   500000000.0
+  ],
+  [
+   "CMTL",
+   "ASSET_SALE",
+   "Comtech agreed on June 14, 2026 to sell most of its Satellite and Space Communications business to an affiliate of Gilat",
+   "[announced] Selling assets to Gilat Satellite Networks Ltd for $158M (364% of mcap)",
+   null,
+   157500000.0
+  ],
+  [
+   "UCB",
+   "ASSET_SALE",
+   "United Community Banks completed the sale of equipment lease financing subsidiary Navitas Credit Corp. and reinsurance s",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   null,
+   2000000000.0
+  ],
+  [
+   "CLVT",
+   "ASSET_SALE",
+   "Clarivate agreed on July 3, 2026 to sell its Life Sciences and Healthcare business to an affiliate of Altaris, subject t",
+   "[pending] Selling Life Sciences and Healthcare business to Altaris, LLC for $600M (49% of mcap)",
+   null,
+   600000000.0
+  ],
+  [
+   "INTG",
+   "ASSET_SALE",
+   "InterGroup completed the sale of a non-core 12-unit multifamily property in Los Angeles County, recognizing a $3.5M gain",
+   "[completed] Selling assets for $2M (3% of mcap)",
+   null,
+   2000000.0
+  ],
+  [
+   "TIPT",
+   "ASSET_SALE",
+   "Tiptree completed the sale of Fortegra on May 29, 2026 for $1.65B total consideration ($1.12B gross to Tiptree) and sold",
+   "[completed] Selling assets to Shield Holdings, LLC for $100M (15% of mcap)",
+   1650000000,
+   100000000.0
+  ],
+  [
+   "TIPT",
+   "SALE_OF_COMPANY",
+   "Tiptree amended its merger agreement for DB Insurance Co. to acquire its subsidiary Fortegra via merger; amendment signe",
+   "[announced] Company to be acquired at $0.06/sh, $1.65bn total",
+   null,
+   1650000000.0
+  ],
+  [
+   "NHI",
+   "ASSET_SALE",
+   "NHI completed the sale of its NHC portfolio, one of its largest transactions, cutting leverage below target; also appoin",
+   "[completed] Selling NHC portfolio for $98M (3% of mcap)",
+   null,
+   98500000.0
+  ],
+  [
+   "LAB",
+   "ASSET_SALE",
+   "Standard BioTools has agreed to divest its Mass Cytometry business while pursuing its merger with Treeline Biosciences, ",
+   "\u26a0 not a real event \u2014 a financial-statement / non-GAAP footnote, not an announcement",
+   null,
+   30000000.0
+  ],
+  [
+   "LPG",
+   "ASSET_SALE",
+   "Dorian LPG completed sales of VLGCs Corsair (net proceeds $80.8M, July 2026) and Constellation, booking a $30.1M vessel ",
+   "\u26a0 not a real event \u2014 a financial-statement / non-GAAP footnote, not an announcement",
+   null,
+   42800000.0
+  ],
+  [
+   "BDN",
+   "ASSET_SALE",
+   "Brandywine sold a 46%-occupied wholly-owned office property in Conshohocken, PA for $15.5M ($133/sq ft) on May 15, 2026.",
+   "[completed] Selling assets for $38M (8% of mcap)",
+   15500000,
+   37800000.0
+  ],
+  [
+   "MATW",
+   "ASSET_SALE",
+   "Matthews completed the sale of Matthews Automation Solutions to Duravant on December 31, 2025 for ~$232M total considera",
+   "[completed] Selling assets for $225M (36% of mcap)",
+   232000000,
+   225400000.0
+  ],
+  [
+   "VASO",
+   "ASSET_SALE",
+   "Vaso filed pro forma financials for its disposition of NetWolves Network Services LLC for a base purchase price of $14.5",
+   "[announced] Selling assets",
+   14500000,
+   null
+  ],
+  [
+   "RVTY",
+   "ASSET_SALE",
+   "Revvity agreed to divest its China Immunodiagnostics business (~6% of FY2025 revenue), expected to close by end of 2027.",
+   "[pending] Selling Immunodiagnostics business to China IDX for $200M (1% of mcap); close end of 2027",
+   null,
+   200000000.0
+  ],
+  [
+   "BATL",
+   "ASSET_SALE",
+   "Battalion Oil agreed to divest its West Quito Assets; proceeds, if it closes, to repay its senior secured credit facilit",
+   "\u26a0 not a real event \u2014 a capital raise / offering, not this event",
+   null,
+   62590000.0
+  ],
+  [
+   "PENG",
+   "ASSET_SALE",
+   "Penguin Solutions agreed on December 29, 2025 to divest its remaining interest in its Brazil memory module business via ",
+   "[announced] Selling assets for $46M (2% of mcap)",
+   null,
+   46080000.0
+  ],
+  [
+   "EGY",
+   "ASSET_SALE",
+   "VAALCO's subsidiary entered an asset purchase and sale agreement to sell assets to Petrus Resources Corp.; assets and pr",
+   "[announced] Selling assets to Petrus Resources Corp for $35M (6% of mcap)",
+   null,
+   35000000.0
+  ],
+  [
+   "CNC",
+   "ASSET_SALE",
+   "Centene signed (Dec 2025) a definitive agreement to divest its remaining Magellan Health businesses, recording $513M of ",
+   "[pending] Selling remaining Magellan Health business for $513M (2% of mcap)",
+   null,
+   513000000.0
+  ],
+  [
+   "IT",
+   "ASSET_SALE",
+   "Gartner entered a definitive agreement to divest its Digital Markets business; it also raised its buyback authorization ",
+   "[announced] Selling Digital Markets business for $2.00bn (17% of mcap)",
+   null,
+   2000000000.0
+  ],
+  [
+   "WY",
+   "ASSET_SALE",
+   "Weyerhaeuser agreed to sell ~108,000 acres of Virginia timberlands for $193M (close Q1 2026), after selling ~86,000 Geor",
+   "[pending] Selling assets for $216M (1% of mcap); close first quarter 2026 and is subject to customar",
+   193000000,
+   216000000.0
+  ],
+  [
+   "GTE",
+   "TENDER_OFFER",
+   "Gran Tierra amended its prepayment agreement to fund a proposed exchange offer and/or cash tender for its 9.500% Senior ",
+   "[announced] Debt tender offer (for notes, not shares): $175M",
+   null,
+   175000000.0
+  ],
+  [
+   "VREOF",
+   "VALUE_COMMITTEE",
+   "Vireo Growth agreed to acquire Cannabist's cultivation, manufacturing and retail operations in CO, IL, MA, NJ and WV for",
+   "[announced] Strategic review / committee",
+   35000000,
+   null
+  ],
+  [
+   "VREOF",
+   "SALE_OF_COMPANY",
+   "Vireo Growth closed its acquisition of Eaze Inc., a cannabis retailer and delivery platform, expanding to 10 states; Cor",
+   "[announced] Company to be acquired by Eaze, $1.00bn total",
+   null,
+   1000000000.0
+  ],
+  [
+   "AIRE",
+   "SALE_OF_COMPANY",
+   "reAlpha Tech completed its acquisition of InstaMortgage Inc. under an amended and restated merger agreement dated August",
+   "[completed] Company to be acquired at $12.51/sh, $8M total",
+   null,
+   8500000.0
+  ],
+  [
+   "AVTX",
+   "SALE_OF_COMPANY",
+   "Avalo entered a Milestone Buyout Option Agreement amending its merger agreement relating to its prior AlmataBio acquisit",
+   "[announced] Company to be acquired, $15M total",
+   null,
+   15000000.0
+  ],
+  [
+   "VRT",
+   "SALE_OF_COMPANY",
+   "Vertiv agreed to acquire UtilityInnovation Group (microgrid/power controls) for ~$1.45B cash at closing plus up to $1.15",
+   "[announced] Company to be acquired, $1.15bn total",
+   1450000000,
+   1150000000.0
+  ],
+  [
+   "BWMN",
+   "SALE_OF_COMPANY",
+   "Bowman Consulting agreed to be acquired by Bernhard Capital Partners for $43.00 per share in cash; close expected Q4 202",
+   "[pending] Company to be acquired by Bernhard Capital Partners at $43.00/sh, $3M total; close fourth quarter of calendar ",
+   null,
+   3000000.0
+  ],
+  [
+   "SCM",
+   "SALE_OF_COMPANY",
+   "Stellus Capital Management, SCM's external adviser ($3.8B AUM), agreed to be acquired by P10, Inc.; Stellus investment p",
+   "[announced] Company to be acquired by P10, Inc, $40.00bn total",
+   null,
+   40000000000.0
+  ],
+  [
+   "HHS",
+   "SALE_OF_COMPANY",
+   "Harte Hanks agreed to be acquired by Star Equity Holdings for $5.00/share (50% cash, 50% Star 10% preferred), ~$38.4M eq",
+   "[announced] Company to be acquired by Star Equity Holdings at $5.00/sh",
+   38400000,
+   null
+  ],
+  [
+   "TBPH",
+   "CHAIR_CEO_SPLIT",
+   "Theravance Biopharma agreed to be acquired by Zymeworks for $17.00/share cash (~$929M equity value) plus an ampreloxetin",
+   "[announced] Chair Ceo Split",
+   929000000,
+   null
+  ],
+  [
+   "SLP",
+   "SALE_OF_COMPANY",
+   "Simulations Plus agreed to be acquired by Altaris affiliates in an all-cash deal, to be combined with Altaris portfolio ",
+   "[announced] Company to be acquired by Altaris, LLC at $18.50/sh, $375M total",
+   null,
+   375000000.0
+  ],
+  [
+   "BLFS",
+   "UPLISTING",
+   "BioLife's sale to Repligen (~$31.00/share, ~$1.5B EV) is subject to stockholder approval, HSR clearance, S-4 effectivene",
+   "[pending] Uplisting",
+   1500000000,
+   null
+  ],
+  [
+   "HZO",
+   "VALUE_COMMITTEE",
+   "Following a strategic review, MarineMax's board approved a merger with Safe Harbor Marinas (Blackstone Infrastructure) a",
+   "[announced] Strategic review / committee",
+   1500000000,
+   null
+  ],
+  [
+   "ARX",
+   "SALE_OF_COMPANY",
+   "Accelerant agreed to be taken private by Thoma Bravo for $20.25/share cash (49% premium), enterprise value of more than ",
+   "[announced] Company to be acquired by Thoma Bravo at $20.25/sh (49% premium), $4.00bn total",
+   null,
+   4000000000.0
+  ],
+  [
+   "RAMP",
+   "SALE_OF_COMPANY",
+   "LiveRamp agreed (May 17, 2026) to be acquired by Publicis Groupe for $38.50 per share in cash; closing expected before e",
+   "[pending] Company to be acquired by Publicis Groupe at $38.50/sh, $18M total; close before the end of calendar 2026",
+   null,
+   18000000.0
+  ],
+  [
+   "PSNL",
+   "SALE_OF_COMPANY",
+   "Personalis agreed to be acquired by Tempus AI to integrate its MRD technology; terms not stated in excerpt.",
+   "[announced] Company to be acquired by Tempus AI, Inc at $16.25/sh, $1.50bn total",
+   null,
+   1500000000.0
+  ],
+  [
+   "BAM",
+   "SALE_OF_COMPANY",
+   "Brookfield and La Caisse agreed to acquire all Boralex Class A shares for $37.25 cash per share, following a Boralex spe",
+   "[announced] Company to be acquired at $37.25/sh, $9.00bn total",
+   null,
+   9000000000.0
+  ],
+  [
+   "FTHM",
+   "SALE_OF_COMPANY",
+   "Fathom Holdings agreed to be acquired by Bed Bath & Beyond, Inc. in an all-stock transaction; exchange terms not in exce",
+   "[announced] Company to be acquired by Bed Bath & Beyond, Inc, $53M total",
+   null,
+   53380000.0
+  ],
+  [
+   "YUM",
+   "BUYBACK_AUTH",
+   "Yum! board approved an incremental $4B share repurchase authorization alongside the $2.7B Pizza Hut sale.",
+   "[announced] Capital return / buyback, $2.70bn (7% of mcap)",
+   4000000000,
+   2700000000.0
+  ],
+  [
+   "DOMO",
+   "CAPITAL_RETURN_POLICY",
+   "After selling its business to Progress Software, Domo (still led by Josh James) will consider AI/automation acquisitions",
+   "[announced] Capital return / buyback, $400M (260% of mcap)",
+   null,
+   400000000.0
+  ],
+  [
+   "GDC",
+   "BUYBACK_AUTH",
+   "GD Culture's board authorized repurchase of up to $100M of common stock over six months ending August 17, 2026.",
+   "[announced] Capital return / buyback",
+   100000000,
+   null
+  ],
+  [
+   "SMTK",
+   "UPLISTING",
+   "SmartKem agreed to combine with Ferrox Critical Minerals (Tivani project, South Africa) in an all-stock merger valuing F",
+   "[pending] Uplisting",
+   125000000,
+   null
+  ],
+  [
+   "TRUG",
+   "GOING_PRIVATE",
+   "TruGolf agreed (August 17, 2026) to acquire tokenization company Polymath Research in exchange for TruGolf Class A commo",
+   "[announced] Company to be acquired, $5M total",
+   null,
+   5000000.0
+  ],
+  [
+   "SND",
+   "CAPITAL_RETURN",
+   "Smart Sand declared a $0.10/share special dividend (~$4.2M total), payable August 12, 2026 to holders of record July 28,",
+   "[announced] Special dividend of $0.10/sh",
+   4200000,
+   null
+  ],
+  [
+   "KRG",
+   "CAPITAL_RETURN",
+   "Kite Realty declared a Q1 2026 dividend of $0.29 per share (up 7.4% YoY), payable about April 16, 2026; a $0.145 special",
+   "[announced] Special dividend of $0.14/sh, $1.00bn (20% of mcap)",
+   null,
+   1000000000.0
+  ],
+  [
+   "CPIX",
+   "CAPITAL_RETURN",
+   "Cumberland paid a $1.50/share special dividend on July 31, 2026, funded after selling its FDA-approved brands portfolio ",
+   "[announced] Special dividend of $1.50/sh, $100M (84% of mcap)",
+   null,
+   100000000.0
+  ],
+  [
+   "PIPR",
+   "CAPITAL_RETURN",
+   "Piper Sandler declared a $5.00/share special dividend and $0.70 quarterly dividend, and a 4-for-1 stock split effective ",
+   "[announced] Special dividend of $5.00/sh, $239M (5% of mcap)",
+   null,
+   239000000.0
+  ],
+  [
+   "RLI",
+   "CAPITAL_RETURN",
+   "RLI declared a $2.00/share special dividend (~$184M) and a 12.5% higher $0.18 regular dividend, payable June 12, 2026, p",
+   "[announced] Special dividend of $2.00/sh, $250M (5% of mcap)",
+   184000000,
+   250000000.0
+  ],
+  [
+   "CBL",
+   "CAPITAL_RETURN",
+   "CBL approved a $0.175/share special dividend for Q1 2026 on top of its $0.45 regular dividend, a total Q1 dividend of $0",
+   "[announced] Special dividend of $0.17/sh, $250,000 (0% of mcap)",
+   null,
+   250000.0
+  ],
+  [
+   "RGEN",
+   "UPLISTING",
+   "Repligen agreed to acquire BioLife Solutions for cash and stock valued at $31.00 per BioLife share (~$1.5B enterprise va",
+   "[pending] Uplisting",
+   1500000000,
+   null
+  ],
+  [
+   "ADTX",
+   "UPLISTING",
+   "Aditxt's subsidiary Ignite Proteomics signed a SPAC business combination valuing it at ~$150M, to become an independent ",
+   "[pending] Uplisting",
+   150000000,
+   null
+  ],
+  [
+   "IPW",
+   "BUYBACK_AUTH",
+   "iPower executed a trading plan to implement its previously authorized $2M share buyback and expects to fund the first tr",
+   "[announced] Capital return / buyback",
+   2000000,
+   null
+  ],
+  [
+   "TCNNF",
+   "BUYBACK_AUTH",
+   "Trulieve authorized repurchase of up to the lesser of $50M or 8,495,038 subordinate voting shares (5%) over 12 months.",
+   "[announced] Capital return / buyback",
+   50000000,
+   null
+  ],
+  [
+   "PLBC",
+   "BUYBACK_AUTH",
+   "Plumas Bancorp announced a share repurchase program funded from cash and retained earnings; size not stated in excerpt.",
+   "[announced] Capital return / buyback, $25M (6% of mcap)",
+   null,
+   25000000.0
+  ]
+ ],
+ "counterparty": [
+  [
+   "WBD",
+   "SPINOFF",
+   "WBD signed a merger agreement with PSKY; closing is conditioned on WBD not completing its Streaming & Studios / Global L",
+   "Completed separation of Streaming & Studios business",
+   "PSKY",
+   null
+  ],
+  [
+   "BLCO",
+   "ACTIVIST_SETTLEMENT",
+   "Bausch + Lomb announced board changes relating to its amended 2022 Director Appointment and Nomination Agreement with Mr",
+   "[completed] Settlement",
+   "Carl C. (surname truncated)",
+   null
+  ],
+  [
+   "BHC",
+   "ACTIVIST_SETTLEMENT",
+   "Bausch Health's 2021 director nomination agreement with Icahn Group terminated after Paulson Capital acquired Icahn's 34",
+   "[completed] Settlement",
+   "Icahn Group",
+   null
+  ],
+  [
+   "MFP",
+   "SPINOFF",
+   "Middleby is spinning off its Food Processing business (SpinCo, Midera Food Processing) as an independent public company;",
+   "Separating a business",
+   "The Middleby Corporation (parent)",
+   null
+  ],
+  [
+   "HONA",
+   "SPINOFF",
+   "Honeywell plans to spin off Honeywell Aerospace via distribution; Aerospace stock to list on Nasdaq as 'HONA', subject t",
+   "Separating a business",
+   "Honeywell (parent)",
+   null
+  ],
+  [
+   "HONA",
+   "SEPARATION",
+   "Honeywell plans to spin off Honeywell Aerospace via distribution; Aerospace stock to list on Nasdaq as 'HONA', subject t",
+   "Separating a business",
+   "Honeywell (parent)",
+   null
+  ],
+  [
+   "FDXF",
+   "SPINOFF",
+   "FedEx completed the spin-off of FedEx Freight on June 1, 2026, distributing 80.1% of FDXF shares (one per two FDX shares",
+   "Completed separation of a business",
+   "FedEx Corporation (parent)",
+   null
+  ],
+  [
+   "KDP",
+   "TENDER_OFFER",
+   "KDP, via Kodiak BidCo, acquired 96.22% of JDE Peet's in a cash tender offer at EUR 31.85 per share (~EUR 14.86B), settle",
+   "[announced] Tender offer at $31.85/sh",
+   "JDE Peet's N.V.",
+   null
+  ],
+  [
+   "THRM",
+   "SPINOFF",
+   "Gentherm agreed to combine with Modine's Performance Technologies business in a ~$1.0B Reverse Morris Trust; Gentherm ho",
+   "Separating a business",
+   "Modine Manufacturing Company",
+   "SpinCo"
+  ],
+  [
+   "NFLX",
+   "SPINOFF",
+   "Netflix and WBD amended their deal for Netflix to acquire Warner Bros. to an all-cash transaction at $27.75 per WBD shar",
+   "Separating a business",
+   "Warner Bros. Discovery, Inc.",
+   "WBD"
+  ],
+  [
+   "NFLX",
+   "SEPARATION",
+   "Netflix and WBD amended their deal for Netflix to acquire Warner Bros. to an all-cash transaction at $27.75 per WBD shar",
+   "Separating a business",
+   "Warner Bros. Discovery, Inc.",
+   "WBD"
+  ],
+  [
+   "HON",
+   "SEPARATION",
+   "Honeywell's separation of Honeywell Aerospace (to trade on Nasdaq as 'HONA') is now expected to complete on June 29, 202",
+   "Separating a business; close third quarter on June 29",
+   null,
+   "American Industrial Partners"
+  ],
+  [
+   "MIDD",
+   "CAPITAL_RETURN_POLICY",
+   "Middleby completed sale of a 51% stake in its Residential Kitchen business to an affiliate of 26North Partners for $540M",
+   "[announced] Capital return / buyback, $540M (11% of mcap)",
+   "26North Partners LP (affiliate)",
+   null
+  ],
+  [
+   "PSKY",
+   "SPINOFF",
+   "Paramount Skydance agreed to acquire Warner Bros. Discovery; closing conditioned on WBD not completing its Streaming/Glo",
+   "Completed separation of Streaming & Studios business",
+   "Warner Bros. Discovery, Inc.",
+   "WBD"
+  ],
+  [
+   "PSKY",
+   "EXCHANGE_OFFER",
+   "Paramount enhanced its $30/share all-cash tender offer for WBD, adding a $0.25/share quarterly ticking fee after 2026 an",
+   "[announced] Exchange Offer",
+   "Warner Bros. Discovery, Inc.",
+   null
+  ],
+  [
+   "CCOI",
+   "ASSET_SALE",
+   "Cogent closed the sale of 10 data center facilities to an I Squared Capital-sponsored entity for $225M cash on June 29, ",
+   "[completed] Selling assets for $225M (51% of mcap)",
+   "Entity sponsored by I Squared Capital",
+   null
+  ],
+  [
+   "OVV",
+   "ASSET_SALE",
+   "Ovintiv agreed to sell its Anadarko assets in Oklahoma (~360K net acres) to an undisclosed buyer for $3.0B cash, closing",
+   "[pending] Selling Anadarko assets for $3.00bn (18% of mcap)",
+   "Undisclosed buyer",
+   null
+  ],
+  [
+   "AHCO",
+   "ASSET_SALE",
+   "AdaptHealth agreed to sell its Diabetes Health business for $235.0M in cash, subject to purchase price adjustments; buye",
+   "[completed] Selling Company's Diabetes Health business to Humana OneHome for $235M (30% of mcap)",
+   null,
+   "Humana OneHome"
+  ],
+  [
+   "GFF",
+   "ASSET_SALE",
+   "Griffon's subsidiaries, with Venanpri, sold the equity of The Ames Companies (AMES) to Merv HoldCo LLC under an amended ",
+   "[announced] Selling assets for $90M (2% of mcap)",
+   "Merv HoldCo LLC",
+   null
+  ],
+  [
+   "SUI",
+   "ASSET_SALE",
+   "Sun Communities agreed to sell its UK assets including Park Holidays to Aermont Capital funds for enterprise value of \u00a37",
+   "[announced] Selling UK assets for $1.03bn (7% of mcap)",
+   "Funds affiliated with Aermont Capital",
+   null
+  ],
+  [
+   "DNOW",
+   "CAPITAL_RETURN_POLICY",
+   "DNOW completed its all-stock acquisition of MRC Global, issuing 0.9489 DNOW shares per MRC share; expects $70M annual co",
+   "[announced] Capital return / buyback, $500M (17% of mcap)",
+   "MRC Global Inc.",
+   null
+  ],
+  [
+   "UCB",
+   "ASSET_SALE",
+   "United Community Banks completed the sale of equipment lease financing subsidiary Navitas Credit Corp. and reinsurance s",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   null,
+   "FUNDS"
+  ],
+  [
+   "ELME",
+   "VALUE_COMMITTEE",
+   "Elme concluded its strategic review: agreed to sell 19 properties to Cortland and adopt a liquidation plan, targeting $1",
+   "[announced] Strategic review / committee",
+   "Cortland",
+   null
+  ],
+  [
+   "TIPT",
+   "ASSET_SALE",
+   "Tiptree completed the sale of Fortegra on May 29, 2026 for $1.65B total consideration ($1.12B gross to Tiptree) and sold",
+   "[completed] Selling assets to Shield Holdings, LLC for $100M (15% of mcap)",
+   null,
+   "Shield Holdings, LLC"
+  ],
+  [
+   "TIPT",
+   "SALE_OF_COMPANY",
+   "Tiptree amended its merger agreement for DB Insurance Co. to acquire its subsidiary Fortegra via merger; amendment signe",
+   "[announced] Company to be acquired at $0.06/sh, $1.65bn total",
+   "DB Insurance Co., Ltd.",
+   null
+  ],
+  [
+   "LAB",
+   "ASSET_SALE",
+   "Standard BioTools has agreed to divest its Mass Cytometry business while pursuing its merger with Treeline Biosciences, ",
+   "\u26a0 not a real event \u2014 a financial-statement / non-GAAP footnote, not an announcement",
+   null,
+   "Treeline Biosciences"
+  ],
+  [
+   "CVV",
+   "ASSET_SALE",
+   "CVD Equipment completed the sale of its Stainless Design Concepts division to an Atlas Copco Group subsidiary for ~$16.9",
+   "[completed] Selling assets to SDC for $17M (54% of mcap)",
+   "Atlas Copco Group (subsidiary)",
+   "SDC"
+  ],
+  [
+   "SEG",
+   "ASSET_SALE",
+   "Seaport Entertainment Group completed the sale of the 250 Water Street development project in NYC to Tavros for $143.0M.",
+   "[completed] Selling assets to Howard Hughes Holdings for $143M (47% of mcap)",
+   "Tavros",
+   "Howard Hughes Holdings"
+  ],
+  [
+   "SMG",
+   "ASSET_SALE",
+   "Scotts Miracle-Gro announced the divestiture of its Hawthorne business and reaffirmed fiscal 2026 guidance; buyer and te",
+   "[announced] Selling assets to Vireo Growth",
+   null,
+   "Vireo Growth"
+  ],
+  [
+   "TOON",
+   "ASSET_SALE",
+   "Kartoon Studios completed the sale of its Frederator channel network business in July 2026, retaining Frederator Studios",
+   "[completed] Selling Frederator channel network business to Amazon Prime Strengthened Balance Sheet",
+   null,
+   "Amazon Prime Strengthened Balance Sheet"
+  ],
+  [
+   "MATW",
+   "ASSET_SALE",
+   "Matthews completed the sale of Matthews Automation Solutions to Duravant on December 31, 2025 for ~$232M total considera",
+   "[completed] Selling assets for $225M (36% of mcap)",
+   "Duravant LLC",
+   null
+  ],
+  [
+   "JACK",
+   "VALUE_COMMITTEE",
+   "Jack in the Box added new directors and formed an advisory Capital Allocation Committee chaired by new director Smolinis",
+   "\u26a0 not a real event \u2014 a director joining a standing committee, not a strategic review",
+   null,
+   "GreenWood Investors, LLC"
+  ],
+  [
+   "CPRI",
+   "CAPITAL_RETURN_POLICY",
+   "Capri completed the sale of Versace to Prada S.p.A. for $1.375B in cash; proceeds to repay most debt, enabling future ca",
+   "[announced] Capital return / buyback, $1.38bn (76% of mcap)",
+   "Prada S.p.A.",
+   null
+  ],
+  [
+   "MSS",
+   "ASSET_SALE",
+   "Maison Solutions agreed to divest its San Gabriel and Monrovia grocery stores for $4.5M plus inventory, closing on or be",
+   "[pending] Selling assets and operations to ENSON for $4M (440% of mcap)",
+   null,
+   "ENSON"
+  ],
+  [
+   "RVTY",
+   "ASSET_SALE",
+   "Revvity agreed to divest its China Immunodiagnostics business (~6% of FY2025 revenue), expected to close by end of 2027.",
+   "[pending] Selling Immunodiagnostics business to China IDX for $200M (1% of mcap); close end of 2027",
+   null,
+   "China IDX"
+  ],
+  [
+   "OTEX",
+   "ASSET_SALE",
+   "OpenText agreed to divest Vertica (non-core Analytics) to Bain-backed Rocket Software for US$150M cash.",
+   "[announced] Selling assets to Continue Focusing for $150M (3% of mcap)",
+   "Rocket Software Inc.",
+   "Continue Focusing"
+  ],
+  [
+   "PENG",
+   "ASSET_SALE",
+   "Penguin Solutions agreed on December 29, 2025 to divest its remaining interest in its Brazil memory module business via ",
+   "[announced] Selling assets for $46M (2% of mcap)",
+   "Lexar Europe B.V.",
+   null
+  ],
+  [
+   "PCRX",
+   "ASSET_SALE",
+   "Pacira agreed to divest its iovera handheld cryoanalgesia business for up to $140.0M, including $70.0M upfront; 66 emplo",
+   "\u26a0 not a real event \u2014 a cost line about a transaction, not a new action",
+   null,
+   "Zimmer Biomet Holdings, Inc"
+  ],
+  [
+   "LSTA",
+   "SALE_OF_COMPANY",
+   "Lisata Therapeutics and acquirer Kuva Labs amended their March 6, 2026 merger agreement to extend the outside date from ",
+   "[announced] Company to be acquired",
+   "Kuva Labs Inc.",
+   null
+  ],
+  [
+   "LSTA",
+   "TENDER_OFFER",
+   "Lisata and Kuva extended their term sheet to March 7, 2026 for Kuva to acquire Lisata via a tender offer for all shares ",
+   "[announced] Tender offer",
+   "Kuva Labs Inc.",
+   null
+  ],
+  [
+   "DXLG",
+   "SALE_OF_COMPANY",
+   "Destination XL amended its December 2025 merger agreement with FBB Holdings I (FullBeauty), extending the end date from ",
+   "[announced] Company to be acquired",
+   "FBB Holdings I, Inc.",
+   null
+  ],
+  [
+   "DXLG",
+   "TENDER_OFFER",
+   "Destination XL's board is reviewing an unsolicited $0.82/share cash tender offer from Zodiac Partners II, in light of it",
+   "[announced] Tender offer at $0.82/sh",
+   "Zodiac Partners II, LLC",
+   "FBB Holdings I, Inc"
+  ],
+  [
+   "VREOF",
+   "VALUE_COMMITTEE",
+   "Vireo Growth agreed to acquire Cannabist's cultivation, manufacturing and retail operations in CO, IL, MA, NJ and WV for",
+   "[announced] Strategic review / committee",
+   "The Cannabist Company Holdings Inc.",
+   null
+  ],
+  [
+   "AIRE",
+   "SALE_OF_COMPANY",
+   "reAlpha Tech completed its acquisition of InstaMortgage Inc. under an amended and restated merger agreement dated August",
+   "[completed] Company to be acquired at $12.51/sh, $8M total",
+   "InstaMortgage Inc.",
+   null
+  ],
+  [
+   "SUNE",
+   "UPLISTING",
+   "SUNation and Suniva signed a definitive merger agreement; Suniva merges into a SUNation subsidiary, combined company to ",
+   "[announced] Uplisting",
+   "Suniva, Inc.",
+   null
+  ],
+  [
+   "JTAI",
+   "SALE_OF_COMPANY",
+   "Jet.AI will distribute SpinCo to shareholders, which then merges into flyExclusive; outside date extended to April 30, 2",
+   "[announced] Company to be acquired by Maxim Group LLC",
+   "flyExclusive, Inc.",
+   "Maxim Group LLC"
+  ],
+  [
+   "AVTX",
+   "SALE_OF_COMPANY",
+   "Avalo entered a Milestone Buyout Option Agreement amending its merger agreement relating to its prior AlmataBio acquisit",
+   "[announced] Company to be acquired, $15M total",
+   "AlmataBio, Inc. (former holders)",
+   null
+  ],
+  [
+   "VRT",
+   "SALE_OF_COMPANY",
+   "Vertiv agreed to acquire UtilityInnovation Group (microgrid/power controls) for ~$1.45B cash at closing plus up to $1.15",
+   "[announced] Company to be acquired, $1.15bn total",
+   "UtilityInnovation Group",
+   null
+  ],
+  [
+   "SYNA",
+   "SALE_OF_COMPANY",
+   "Synaptics agreed to be acquired by onsemi in an all-stock deal (1.350 ON shares per SYNA share), total enterprise value ",
+   "[announced] Synaptics has entered into a definitive agreement (a business) to be acquired, $7.00bn total",
+   "onsemi",
+   null
+  ],
+  [
+   "NATL",
+   "SALE_OF_COMPANY",
+   "NCR Atleos agreed to be acquired by Brink's in a ~$6.6B cash-and-stock deal: 13.3M Brink's shares, $2.2B cash, plus ~$2.",
+   "[announced] Company to be acquired by NCR Atleos, $6.60bn total",
+   "The Brink's Company",
+   "NCR Atleos"
+  ],
+  [
+   "TBPH",
+   "VALUE_COMMITTEE",
+   "Theravance Biopharma is being acquired by Zymeworks for $17.00/share cash plus a CVR for 80% of ampreloxetine monetizati",
+   "[pending] Strategic review / committee",
+   "Zymeworks Inc.",
+   null
+  ],
+  [
+   "TBPH",
+   "CHAIR_CEO_SPLIT",
+   "Theravance Biopharma agreed to be acquired by Zymeworks for $17.00/share cash (~$929M equity value) plus an ampreloxetin",
+   "[announced] Chair Ceo Split",
+   "Zymeworks",
+   null
+  ],
+  [
+   "ATKR",
+   "VALUE_COMMITTEE",
+   "Atkore's Strategic Review Committee process concluded with an agreement to be acquired by Prysmian.",
+   "[announced] Strategic review / committee",
+   "Prysmian",
+   null
+  ],
+  [
+   "GSAT",
+   "VALUE_COMMITTEE",
+   "Globalstar's Strategic Review Committee and special committee approved the merger agreement for Amazon to acquire Global",
+   "[pending] Strategic review / committee",
+   "Amazon.com, Inc.",
+   null
+  ],
+  [
+   "BLFS",
+   "SALE_OF_COMPANY",
+   "BioLife Solutions agreed to be acquired by Repligen for $11.25 cash plus 0.1442 Repligen shares per share (~$31.00/share",
+   "[pending] Company to be acquired at $31.00/sh, $1.50bn total",
+   "Repligen Corporation",
+   null
+  ],
+  [
+   "BLFS",
+   "UPLISTING",
+   "BioLife's sale to Repligen (~$31.00/share, ~$1.5B EV) is subject to stockholder approval, HSR clearance, S-4 effectivene",
+   "[pending] Uplisting",
+   "Repligen Corporation",
+   null
+  ],
+  [
+   "HZO",
+   "VALUE_COMMITTEE",
+   "Following a strategic review, MarineMax's board approved a merger with Safe Harbor Marinas (Blackstone Infrastructure) a",
+   "[announced] Strategic review / committee",
+   "Safe Harbor Marinas (Blackstone Infrastructure Partners)",
+   null
+  ],
+  [
+   "CZR",
+   "ACTIVIST_SETTLEMENT",
+   "The Icahn Group waived its right to appoint replacement directors to Caesars' board under their March 17, 2025 Director ",
+   "[announced] Settlement: replacement board seat(s)",
+   "Icahn Group",
+   null
+  ],
+  [
+   "BAM",
+   "SALE_OF_COMPANY",
+   "Brookfield and La Caisse agreed to acquire all Boralex Class A shares for $37.25 cash per share, following a Boralex spe",
+   "[announced] Company to be acquired at $37.25/sh, $9.00bn total",
+   "Boralex Inc. (co-buyer La Caisse)",
+   null
+  ],
+  [
+   "CMC",
+   "SALE_OF_COMPANY",
+   "Commercial Metals completed its acquisition of Foley Products Company on December 15, 2025 for $1.84B; filing provides t",
+   "[completed] Company to be acquired, $1.84bn total",
+   "Foley Products Company, LLC",
+   null
+  ],
+  [
+   "RDN",
+   "SALE_OF_COMPANY",
+   "Radian completed its primarily all-cash acquisition of Inigo Limited on February 2, 2026; filing provides Inigo's financ",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "Inigo Limited",
+   null
+  ],
+  [
+   "TALO",
+   "SALE_OF_COMPANY",
+   "Talos agreed (June 30, 2026), with a Ridgewood affiliate, to buy Shell's Coulomb field and Na Kika interests in the Gulf",
+   "[announced] Mississippi Canyon area of the Gulf of America (a business) to be acquired",
+   "Shell Offshore Inc.",
+   null
+  ],
+  [
+   "TALO",
+   "ACTIVIST_SETTLEMENT",
+   "Talos amended its December 2024 Cooperation Agreement with Control Empresarial de Capitales (Carlos Slim family, >5% hol",
+   "[completed] Settlement",
+   "Control Empresarial de Capitales, S.A. de C.V. (Slim family)",
+   null
+  ],
+  [
+   "ARLP",
+   "SALE_OF_COMPANY",
+   "Alliance Resource Partners agreed to acquire GP and LP interests in AllDale Minerals III and IV for ~$206.2M, implying ~",
+   "[announced] Company to be acquired, $206M total",
+   "AllDale Minerals III & IV interest holders",
+   null
+  ],
+  [
+   "EDGM",
+   "SALE_OF_COMPANY",
+   "EdgeMode is seeking rescission of its SEA and related agreements with Adler Capital, citing a Swedish court filing that ",
+   "[announced] Stockholm District Court that Marviken (a business) to be acquired",
+   "Adler Capital Limited",
+   null
+  ],
+  [
+   "MNRO",
+   "PILL_REMOVED",
+   "Monro adopted a one-year shareholder rights plan (expires November 6, 2026) in response to Icahn Enterprises accumulatin",
+   "[pending] Rights plan (poison pill) ADOPTED \u2014 the opposite of a removal",
+   "Icahn Enterprises L.P.",
+   null
+  ],
+  [
+   "FOXF",
+   "ACTIVIST_SETTLEMENT",
+   "Under its February 2026 Cooperation Agreement with Engine Capital, Fox Factory expanded its board to nine on March 25, 2",
+   "[completed] Settlement",
+   "Engine Capital L.P.",
+   null
+  ],
+  [
+   "GPRO",
+   "VALUE_COMMITTEE",
+   "GoPro obtained financing from founder/CEO Nicholas Woodman after an independent board committee evaluated alternatives a",
+   "[announced] Strategic review / committee",
+   "Nicholas Woodman (founder and CEO)",
+   null
+  ],
+  [
+   "DOMO",
+   "CAPITAL_RETURN_POLICY",
+   "After selling its business to Progress Software, Domo (still led by Josh James) will consider AI/automation acquisitions",
+   "[announced] Capital return / buyback, $400M (260% of mcap)",
+   "Progress Software Corporation",
+   null
+  ],
+  [
+   "DSGR",
+   "GOING_PRIVATE",
+   "Distribution Solutions Group agreed to be taken private by LKCM Headwater (owns ~79%; led by Chairman/CEO J. Bryan King)",
+   "[announced] Company to be acquired by JPMorgan Chase Bank at $35.00/sh",
+   "LKCM Headwater Investments, LLC",
+   "JPMorgan Chase Bank"
+  ],
+  [
+   "GDC",
+   "GOING_PRIVATE",
+   "GD Culture received a preliminary non-binding going-private proposal at US$10.75/share cash from a consortium of Wealthy",
+   "[announced] Company to be acquired at $10.75/sh",
+   "Wealthy Concord Limited and East Valley Technology Limited (Consortium)",
+   null
+  ],
+  [
+   "UTZ",
+   "GOING_PRIVATE",
+   "Intersnack Group agreed to acquire all Utz Class A shares for $14.25 cash (~91% premium, ~$2.9B EV), taking Utz private;",
+   "[announced] Company to be acquired at $14.25/sh (91% premium), $2.90bn total",
+   "Intersnack Group GmbH & Co. KG",
+   null
+  ],
+  [
+   "GRND",
+   "GOING_PRIVATE",
+   "Grindr's Cooperation Agreement with director and largest holder G. Raymond Zage III bars him from pursuing a going-priva",
+   "[announced] Company to be acquired",
+   "G. Raymond Zage, III",
+   null
+  ],
+  [
+   "GRND",
+   "ACTIVIST_SETTLEMENT",
+   "Grindr entered a Cooperation Agreement with G. Raymond Zage III, a director and its largest stockholder.",
+   "[completed] Settlement",
+   "G. Raymond Zage, III",
+   null
+  ],
+  [
+   "RENX",
+   "GOING_PRIVATE",
+   "RenX converted ~$7M of insider-held debt into preferred stock convertible into common at $2.895 per share, reducing leve",
+   "[pending] Company to be acquired by Index Equity US, LLC at $2.90/sh",
+   null,
+   "Index Equity US, LLC"
+  ],
+  [
+   "SMTK",
+   "UPLISTING",
+   "SmartKem agreed to combine with Ferrox Critical Minerals (Tivani project, South Africa) in an all-stock merger valuing F",
+   "[pending] Uplisting",
+   "Ferrox Critical Minerals",
+   null
+  ],
+  [
+   "TRUG",
+   "GOING_PRIVATE",
+   "TruGolf agreed (August 17, 2026) to acquire tokenization company Polymath Research in exchange for TruGolf Class A commo",
+   "[announced] Company to be acquired, $5M total",
+   "Polymath Research Inc.",
+   null
+  ],
+  [
+   "RGEN",
+   "UPLISTING",
+   "Repligen agreed to acquire BioLife Solutions for cash and stock valued at $31.00 per BioLife share (~$1.5B enterprise va",
+   "[pending] Uplisting",
+   "BioLife Solutions, Inc.",
+   null
+  ],
+  [
+   "MCFT",
+   "UPLISTING",
+   "MasterCraft agreed to combine with Marine Products via mergers in which MasterCraft issues stock, subject to both shareh",
+   "[pending] Uplisting",
+   "Marine Products",
+   null
+  ],
+  [
+   "AEP",
+   "ACTIVIST_SETTLEMENT",
+   "AEP and the Icahn Group terminated their February 2024 Director Appointment and Nomination Agreement effective December ",
+   "[announced] Settlement",
+   "Icahn Group",
+   null
+  ]
+ ],
+ "status": [
+  [
+   "GPC",
+   "ACTIVIST_SETTLEMENT",
+   "Genuine Parts entered a Cooperation Agreement following engagement with Elliott, appointing Court Carruthers and Matt Ca",
+   "[announced] Settlement with Elliott Investment Management L.P",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "WBD",
+   "SPINOFF",
+   "WBD signed a merger agreement with PSKY; closing is conditioned on WBD not completing its Streaming & Studios / Global L",
+   "Completed separation of Streaming & Studios business",
+   "PENDING",
+   "COMPLETED"
+  ],
+  [
+   "BHC",
+   "BOARD_REFRESH",
+   "Bausch Health appointed Michael Goettler and Sandra Leung to its board effective July 22, 2025, expanding it from ten to",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "KDP",
+   "TENDER_OFFER",
+   "KDP, via Kodiak BidCo, acquired 96.22% of JDE Peet's in a cash tender offer at EUR 31.85 per share (~EUR 14.86B), settle",
+   "[announced] Tender offer at $31.85/sh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "MIDD",
+   "CAPITAL_RETURN_POLICY",
+   "Middleby completed sale of a 51% stake in its Residential Kitchen business to an affiliate of 26North Partners for $540M",
+   "[announced] Capital return / buyback, $540M (11% of mcap)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "PSKY",
+   "SPINOFF",
+   "Paramount Skydance agreed to acquire Warner Bros. Discovery; closing conditioned on WBD not completing its Streaming/Glo",
+   "Completed separation of Streaming & Studios business",
+   "PENDING",
+   "COMPLETED"
+  ],
+  [
+   "CCI",
+   "SPINOFF",
+   "Crown Castle has largely separated its Fiber and Small Cell businesses and expects their sale to close in 1H 2026, becom",
+   "Completed separation of Fiber and Small Cell business",
+   "PENDING",
+   "COMPLETED"
+  ],
+  [
+   "OTLK",
+   "SEPARATION",
+   "Outlook Therapeutics entered a separation agreement with departing executive Mr. Kenyon providing severance consistent w",
+   "Separating a business",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "CYH",
+   "CEO_CHANGE",
+   "Community Health Systems' board appointed Kevin J. (surname truncated in text) as Interim Chief Executive Officer on Sep",
+   "[announced] Interim CEO: Kevin J. Hammons",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "AHCO",
+   "ASSET_SALE",
+   "AdaptHealth agreed to sell its Diabetes Health business for $235.0M in cash, subject to purchase price adjustments; buye",
+   "[completed] Selling Company's Diabetes Health business to Humana OneHome for $235M (30% of mcap)",
+   "PENDING",
+   "COMPLETED"
+  ],
+  [
+   "GFF",
+   "ASSET_SALE",
+   "Griffon's subsidiaries, with Venanpri, sold the equity of The Ames Companies (AMES) to Merv HoldCo LLC under an amended ",
+   "[announced] Selling assets for $90M (2% of mcap)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "DNOW",
+   "CAPITAL_RETURN_POLICY",
+   "DNOW completed its all-stock acquisition of MRC Global, issuing 0.9489 DNOW shares per MRC share; expects $70M annual co",
+   "[announced] Capital return / buyback, $500M (17% of mcap)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "JAZZ",
+   "ASSET_SALE",
+   "Jazz Pharmaceuticals executed a definitive agreement to sell a priority review voucher for $200M in gross proceeds (per ",
+   "[completed] Selling assets for $200M (1% of mcap)",
+   "PENDING",
+   "COMPLETED"
+  ],
+  [
+   "NHI",
+   "DECLASSIFY",
+   "NHI appointed Lilly H. Donohue to its board effective February 17, 2026; board declassification completes at the 2026 An",
+   "[announced] Declassify",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "LPG",
+   "ASSET_SALE",
+   "Dorian LPG completed sales of VLGCs Corsair (net proceeds $80.8M, July 2026) and Constellation, booking a $30.1M vessel ",
+   "\u26a0 not a real event \u2014 a financial-statement / non-GAAP footnote, not an announcement",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "VASO",
+   "ASSET_SALE",
+   "Vaso filed pro forma financials for its disposition of NetWolves Network Services LLC for a base purchase price of $14.5",
+   "[announced] Selling assets",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "JACK",
+   "CEO_CHANGE",
+   "Jack in the Box appointed Mark King, its Independent Chair, as Interim CEO effective immediately on May 13, 2026.",
+   "[announced] Interim CEO: Mark King",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "JACK",
+   "CHAIR_CEO_SPLIT",
+   "Jack in the Box's Independent Chair (since March 2026) Mark King, ex-Xponential Fitness CEO, is now Interim CEO.",
+   "[announced] Chair Ceo Split",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "CPRI",
+   "CAPITAL_RETURN_POLICY",
+   "Capri completed the sale of Versace to Prada S.p.A. for $1.375B in cash; proceeds to repay most debt, enabling future ca",
+   "[announced] Capital return / buyback, $1.38bn (76% of mcap)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "HCAT",
+   "DECLASSIFY",
+   "Health Catalyst stockholders approved a non-binding advisory proposal for the board to initiate action to declassify the",
+   "[completed] Declassify",
+   "ANNOUNCED",
+   "COMPLETED"
+  ],
+  [
+   "VSAT",
+   "VALUE_COMMITTEE",
+   "Under a Cooperation Agreement with Carronade Capital, Viasat appointed Shekar Ayyar and Jinhy Yoon to its board and Stra",
+   "\u26a0 not a real event \u2014 a director's committee seat, not a strategic action",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "FWDI",
+   "SALE_OF_COMPANY",
+   "Forward Industries reincorporated from New York to Texas by merger, effective March 5, 2026, after shareholder approval;",
+   "[announced] Company to be acquired",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "USAR",
+   "SALE_OF_COMPANY",
+   "USA Rare Earth completed its combination with Serra Verde Group (SVRE merged into a USAR subsidiary) on September 3, 202",
+   "[pending] Company to be acquired by Serra Verde Group Combines Serra Verde\u2019s",
+   "COMPLETED",
+   "PENDING"
+  ],
+  [
+   "VREOF",
+   "SALE_OF_COMPANY",
+   "Vireo Growth closed its acquisition of Eaze Inc., a cannabis retailer and delivery platform, expanding to 10 states; Cor",
+   "[announced] Company to be acquired by Eaze, $1.00bn total",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "HWBK",
+   "SALE_OF_COMPANY",
+   "Hawthorn Bancshares appointed investor/entrepreneur Grant Burcham to its board as a Class III director effective April 2",
+   "\u26a0 not a real event \u2014 a recital of an earlier event (the dates in the text are months before this filing)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "LRHC",
+   "SALE_OF_COMPANY",
+   "La Rosa Holdings completed the sale of its membership interest in Horeb Kissimmee Realty LLC on February 4, 2026; buyer ",
+   "[announced] Small Business Administration (a business) to be acquired",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "YHC",
+   "SALE_OF_COMPANY",
+   "LQR House reincorporated from Nevada to Delaware; stock continues trading on Nasdaq as 'YHC' with some stockholder right",
+   "[announced] Company to be acquired",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "RMCF",
+   "CEO_CHANGE",
+   "Rocky Mountain Chocolate Factory appointed Mr. Harper Interim CEO with a $140,000 annual base salary plus a special equi",
+   "[announced] Interim CEO: Allen C. Harper",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "GSIT",
+   "STRATEGIC_REVIEW",
+   "GSI Technology's board concluded its strategic alternatives review without a transaction, citing progress and a stronger",
+   "[announced] Strategic review / committee",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "PPIH",
+   "STRATEGIC_REVIEW",
+   "Perma-Pipe announced the conclusion of its board's strategic alternatives review; outcome not stated in excerpt.",
+   "[announced] Strategic review / committee",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "RYAM",
+   "STRATEGIC_REVIEW",
+   "Rayonier Advanced Materials appointed Daniel M. Krawczyk (ex-President of Huber Engineered Materials) CEO, President and",
+   "[announced] Strategic review / committee",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "TRIP",
+   "BOARD_REFRESH",
+   "Tripadvisor signed a cooperation agreement with Starboard Value: board expands 8 to 10, Dhiren Fonseca and Andrew F. Cat",
+   "[announced] Board Refresh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "NINE",
+   "CH11_EMERGENCE",
+   "Nine Energy Service adopted a 2026 LTIP reserving 1,394,999 shares (10% of post-effective-date shares) as contemplated b",
+   "[announced] Ch11 Emergence",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "OPI",
+   "CH11_EMERGENCE",
+   "Office Properties Income Trust emerged from Chapter 11 bankruptcy on June 17, 2026 (predecessor/successor reporting).",
+   "[announced] Ch11 Emergence",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "DCGO",
+   "CHAIR_CEO_SPLIT",
+   "After Klasko's departure notice, DocGo appointed long-serving independent director Michael Burdiek as independent Chair ",
+   "[completed] Chair Ceo Split",
+   "ANNOUNCED",
+   "COMPLETED"
+  ],
+  [
+   "GRND",
+   "GOING_PRIVATE",
+   "Grindr's Cooperation Agreement with director and largest holder G. Raymond Zage III bars him from pursuing a going-priva",
+   "[announced] Company to be acquired",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "KSS",
+   "CHAIR_CEO_SPLIT",
+   "Kohl's independent Chair John Schlifske retired from the board; director Wendy Arlin elected Chair effective immediately",
+   "[announced] Chair Ceo Split",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "RENX",
+   "GOING_PRIVATE",
+   "RenX converted ~$7M of insider-held debt into preferred stock convertible into common at $2.895 per share, reducing leve",
+   "[pending] Company to be acquired by Index Equity US, LLC at $2.90/sh",
+   "COMPLETED",
+   "PENDING"
+  ],
+  [
+   "AII",
+   "CAPITAL_RETURN",
+   "American Integrity Insurance paid a $20.0M special cash dividend to stockholders during Q1 2026.",
+   "[announced] Special dividend, $20M (4% of mcap)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "ACNB",
+   "CAPITAL_RETURN",
+   "ACNB declared a $0.50/share special dividend payable June 15, 2026 and approved a new buyback of up to 310,000 shares (~",
+   "[completed] Special dividend of $0.50/sh",
+   "ANNOUNCED",
+   "COMPLETED"
+  ],
+  [
+   "ARHS",
+   "CAPITAL_RETURN",
+   "Arhaus paid a special cash dividend of $0.35 per share on Class A and B stock on March 31, 2026 (declared February 17).",
+   "[announced] Special dividend of $0.35/sh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "CPIX",
+   "CAPITAL_RETURN",
+   "Cumberland paid a $1.50/share special dividend on July 31, 2026, funded after selling its FDA-approved brands portfolio ",
+   "[announced] Special dividend of $1.50/sh, $100M (84% of mcap)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "BRBS",
+   "CAPITAL_RETURN",
+   "Blue Ridge Bankshares paid a $0.60/share special dividend (~$54.1M) on April 27, 2026.",
+   "[announced] Special dividend of $0.60/sh, $54M (16% of mcap)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "BRBS",
+   "CEO_CHANGE",
+   "Blue Ridge Bankshares named Chief Credit Officer Harry Golliday Interim CEO and President effective March 6, 2026, as CE",
+   "[announced] Interim CEO: Harry Golliday",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "FIZZ",
+   "CAPITAL_RETURN",
+   "National Beverage paid a $304M special dividend ($3.25 per share) on July 30, 2026.",
+   "[announced] Special dividend of $3.25/sh, $304M (11% of mcap)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "IIIN",
+   "CAPITAL_RETURN",
+   "Insteel paid a $1.00/share special dividend totaling $19.4M on December 12, 2025, in addition to its $0.03 regular quart",
+   "[announced] Special dividend of $1.00/sh, $19M (3% of mcap)",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "SIGA",
+   "CAPITAL_RETURN",
+   "SIGA paid a special cash dividend of $0.60 per share on April 23, 2026 (declared March 26).",
+   "[announced] Special dividend of $0.60/sh",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "ADBT",
+   "UPLISTING",
+   "Advasa Holdings completed a direct listing of its common stock on the Nasdaq Global Market under 'ADBT' on August 25, 20",
+   "[announced] Uplisting",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "ASPI",
+   "CEO_CHANGE",
+   "ASP Isotopes appointed COO Robert Ainscow as Interim CEO effective October 1, 2025, with Mann moving to an Executive Cha",
+   "[announced] Interim CEO: Robert Ainscow",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "BMNR",
+   "CEO_CHANGE",
+   "BitMine appointed Chi Tsang CEO and director, succeeding Jonathan Bates, and added independent directors Robert Sechan, ",
+   "[announced] New CEO: Chi Tsang",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "ADTX",
+   "CEO_CHANGE",
+   "Aditxt appointed Jeffrey M. Busch, founder of a $1B NYSE healthcare real estate company, as Interim CEO on June 1, 2026.",
+   "[announced] Interim CEO: Jeffrey M. Busch",
+   "COMPLETED",
+   "ANNOUNCED"
+  ],
+  [
+   "RVSB",
+   "BOARD_REFRESH",
+   "Riverview Bancorp amended its bylaws to increase its board from eight to ten members; new directors not named in excerpt",
+   "[completed] Board Refresh",
+   "ANNOUNCED",
+   "COMPLETED"
+  ]
+ ],
+ "per_share": [
+  [
+   "GPC",
+   "CAPITAL_RETURN_POLICY",
+   "Genuine Parts raised its regular quarterly dividend 3.2% to $1.0625 per share, payable April 2, 2026 to holders of recor",
+   "[announced] Capital return / buyback",
+   1.0625,
+   null
+  ],
+  [
+   "PSKY",
+   "EXCHANGE_OFFER",
+   "Paramount enhanced its $30/share all-cash tender offer for WBD, adding a $0.25/share quarterly ticking fee after 2026 an",
+   "[announced] Exchange Offer",
+   30.0,
+   0.25
+  ],
+  [
+   "BCSF",
+   "CAPITAL_RETURN",
+   "Bain Capital Specialty Finance declared a Q1 2026 dividend of $0.42 per share, after Q4 2025 special dividends totaling ",
+   "\u26a0 not a real event \u2014 reads as a recital / footnote, not a new action (model P(real) 0.41)",
+   0.42,
+   0.18
+  ],
+  [
+   "CFFN",
+   "CAPITAL_RETURN",
+   "Capitol Federal declared a $0.085 quarterly dividend (payable Feb 20, 2026) and intends $0.34/share for fiscal 2026, aft",
+   "[announced] Special dividend of $0.04/sh",
+   0.085,
+   0.04
+  ],
+  [
+   "KRG",
+   "CAPITAL_RETURN",
+   "Kite Realty declared a Q1 2026 dividend of $0.29 per share (up 7.4% YoY), payable about April 16, 2026; a $0.145 special",
+   "[announced] Special dividend of $0.14/sh, $1.00bn (20% of mcap)",
+   0.29,
+   0.145
+  ]
+ ]
+}

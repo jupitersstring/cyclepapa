@@ -40,24 +40,30 @@ ROOT = Path("/home/user/cyclepapa")
 OUT = ROOT / "psu_detail.json"
 
 METRICS = [
-    ("relative TSR", r"relative (?:total shareholder return|TSR)|\brTSR\b|TSR relative to|TSR (?:percentile )?rank\w*|TSR performance percentile|TSR[^.,;]{0,25}?percentile rank\w*|relative to (?:the )?(?:S&P|Russell|peer)"),
-    ("absolute TSR", r"absolute (?:total shareholder return|TSR)"),
-    ("stock-price hurdle", r"stock price (?:hurdle|target|goal)s?|share price (?:hurdle|target)s?"),
+    ("relative TSR", r"relative (?:total (?:shareholder|stockholder) return|TSR)|\brTSR\b|\bRTSR\b|TSR relative to|TSR (?:percentile )?rank\w*|TSR performance percentile|TSR[^.,;]{0,25}?percentile rank\w*|(?:total (?:shareholder|stockholder) return|TSR)[^.;]{0,60}?(?:relative to|compared to|versus|against) (?:the )?(?:S&P|Russell|peer|our|a|its|NASDAQ|companies)"),
+    ("absolute TSR", r"absolute (?:total (?:shareholder|stockholder) return|TSR)"),
+    ("stock-price hurdle", r"stock price (?:hurdle|target|goal)s?|share price (?:hurdle|target|goal)s?|price hurdles?|(?:average |VWAP |closing )(?:stock |share )?price[^.]{0,60}?(?:equals or exceeds|of at least|reach)|\bVWAP\b|market capitalization (?:goal|target|hurdle)s?"),
     ("EPS", r"(?:adjusted |diluted |core )?(?:earnings per share|\bEPS\b)"),
     ("FCF per share", r"free cash flow per share|FCF per share"),
     ("free cash flow", r"(?:adjusted )?free cash flow|\bFCF\b"),
-    ("ROIC", r"return on invested capital|\bROIC\b"),
-    ("ROE", r"return on (?:average )?(?:tangible )?(?:common )?equity|\bROTCE\b|\bROATCE\b|\bROE\b"),
-    ("ROA", r"return on (?:average )?assets|\bROAA\b|\bROA\b"),
-    ("book value / share", r"(?:tangible )?book value per share"),
-    ("revenue", r"(?:organic |net |total )?revenue(?: growth)?|net sales|sales growth"),
-    ("EBITDA", r"(?:adjusted )?\bEBITDA\b(?: margin)?"),
-    ("operating income / margin", r"operating (?:income|margin|profit)"),
-    ("net income", r"net income"),
+    ("ROIC", r"return on (?:average )?invested capital|\bROIC\b|\bCROIC\b|cash return on invested capital|return on (?:total )?capital\b(?! employed)"),
+    ("ROCE", r"return on (?:average )?capital employed|\bROCE\b|\bROACE\b"),
+    ("ROE", r"return on (?:average )?(?:tangible )?(?:common )?(?:shareholders['’] |stockholders['’] )?equity|\bROTCE\b|\bROATCE\b|\bROE\b|\bROACE\b"),
+    ("ROA", r"return on (?:average )?(?:net )?assets|\bROAA\b|\bROA\b|\bRONA\b"),
+    ("book value / share", r"(?:tangible )?book value(?: per share)?|\bT?BVPS\b|\bDBVPS\b"),
+    ("FFO", r"(?<!A)\bFFO\b|funds from operations"),
+    ("AFFO", r"\bAFFO\b|adjusted funds from operations"),
+    ("revenue", r"(?:organic |net |total |core )?revenues?(?: growth)?|net sales|sales growth|\bbookings\b"),
+    ("margin", r"(?:EBITDA|operating|gross|pre-tax|adjusted) margin"),
+    ("EBITDA", r"(?:adjusted )?\bEBITDA\b(?! margin)"),
+    ("operating income / margin", r"operating (?:income|profit)|\bEBIT\b"),
+    ("net income", r"net income|pre-tax (?:net )?income"),
     ("cash flow", r"operating cash flow|cash flow from operations"),
     ("economic profit", r"economic profit|economic value added|\bEVA\b"),
+    ("production", r"production (?:growth|volume|per share)"),
+    ("reserves", r"reserves? (?:growth|replacement|additions)"),
     ("leverage / debt", r"leverage ratio|debt reduction|net debt"),
-    ("strategic / ESG", r"strategic (?:objectives|goals|milestones)|\bESG\b|sustainability"),
+    ("strategic / ESG", r"strategic (?:objectives|goals|milestones|priorities)|\bESG\b|sustainability|energy transition|emissions|safety"),
 ]
 GOOD = {"relative TSR", "stock-price hurdle", "EPS", "FCF per share", "free cash flow", "ROIC", "ROE",
         "book value / share", "economic profit", "absolute TSR"}
@@ -92,131 +98,279 @@ def _metrics_in(sentence):
     return [n for _, n in sorted(found)]
 
 
+_PCTW = r"(\d{1,3}(?:\.\d+)?)\s?%"
+
+
+def _rx(n):
+    return dict(METRICS)[n]
+
+
+def _clause_weights(s_, names):
+    """{metric: weight} pairs stated in ONE sentence / table run. Weight cues:
+    'X (40%)', 'X, weighted 40%', 'X (67% weight)', '50% on X', '50% based on X',
+    'X ... accounts for 50% of', table 'X 75%', 'equally weighted', 'half of ... X'."""
+    sw = {}
+    if re.search(r"(?:equally[- ]weighted|weighted equally|equal weight(?:ing)?|each (?:weighted|with a weight(?:ing)? of) (?:at )?(?:one-half|one-third|50|33))", s_, re.I) and len(names) >= 2:
+        return {n: round(100.0 / len(names), 1) for n in names}
+    m = re.search(r"each\s+(?:with\s+(?:a\s+)?(?:weight(?:ing)? of\s+)?|weighted\s+(?:at\s+)?|at\s+|representing\s+|accounting for\s+|comprising\s+)" + _PCTW
+                  + r"|\(?(?:weighted\s+)?" + _PCTW + r"\s+each\)?", s_, re.I)
+    if m and len(names) >= 2:
+        return {n: float(m.group(1) or m.group(2)) for n in names}
+    if len(names) == 2 and (len(re.findall(r"\b(?:one-half|half)\b", s_, re.I)) >= 2 or re.search(r"50/50", s_)):
+        return {n: 50.0 for n in names}
+    for n in names:
+        rx = _rx(n)
+        cues = [
+            r"(?:" + rx + r")[^%.;()]{0,60}?\(\s*(?:weighted\s+|weight(?:ing)?\s+(?:of\s+)?)?(?:approximately\s+)?" + _PCTW + r"(?:\s*(?:weight(?:ing|ed)?|of (?:the )?(?:award|PSUs?|total)[^)]{0,30}))?\s*\)",
+            r"(?:" + rx + r")[^%.;]{0,40}?,?\s*weight(?:ed|ing)?\s*(?:of|at)?\s*(?:approximately\s+)?" + _PCTW,
+            _PCTW + r"\s+(?:weight(?:ed|ing)?\s+)?(?:on|to|for)\s+(?:the\s+)?(?:(?:achievement|attainment) of\s+)?(?:(?:a|our|the Company['’]s)\s+)?(?:three-year\s+|3-year\s+|cumulative\s+|average\s+|adjusted\s+)*(?:" + rx + r")",
+            _PCTW + r"\s+(?:of\s+(?:the\s+)?(?:PSUs?|PRSUs?|PSAs?|award|target\s+\w+|performance (?:shares|units))\s+)?(?:is\s+|are\s+|will be\s+)?(?:based on|tied to|linked to|dependent on|measured (?:on|by|against))\s+(?:the\s+)?(?:three-year\s+|3-year\s+)?(?:company['’]s\s+|our\s+)?(?:achievement of\s+)?(?:\w+\s+){0,3}?(?:" + rx + r")",
+            r"(?:" + rx + r")[^%.;]{0,80}?(?:accounts? for|represents?|comprises?|makes? up)\s+" + _PCTW,
+            r"(?:" + rx + r")(?:\s+(?:growth|goals?|performance|ranking|percentile|modifier))?\s*(?:\(\d\)\s*)?(?:\||:|–|—|-)?\s*\(?" + _PCTW + r"(?!\s*(?:of target|payout|percentile|CAGR|growth|annual|of (?:the )?(?:peer|companies)))",
+            r"(?:^|[•—–|;,(]|\band\b)\s*" + _PCTW + r"\s+(?:(?:of\s+(?:the\s+)?PSUs?\s+)?(?:for|on)\s+)?(?:[A-Za-z\-]+\s+){0,4}?(?:" + rx + r")",
+        ]
+        for c_ in cues:
+            mm = re.search(c_, s_, re.I)
+            if mm and not re.search(r"growth of|CAGR|target of|goal of|at least|per year|of target|payout|percentile|threshold|maximum", mm.group(0)[-40:], re.I):
+                v = float(mm.group(mm.lastindex))
+                if 5 <= v <= 100:
+                    sw[n] = v
+                    break
+    if len(names) >= 2 and not (85 <= sum(sw.values()) <= 110):
+        # table / list runs: 'CROIC 40% Relative TSR 60%' (metric then %) or
+        # '40% Adjusted EBITDA 40% ROIC 20% rTSR' (% then metric) -- take the reading that adds up
+        after, before = {}, {}
+        for n in names:
+            for mm in re.finditer(r"(?:" + _rx(n) + r")", s_, re.I):
+                a_ = re.match(r"\s*(?:\([^)]{0,40}\)\s*)?(?:\(\d\)\s*)?[|:–—-]?\s*\(?" + _PCTW + r"(?!\s*(?:of target|payout|CAGR|growth))", s_[mm.end():mm.end() + 60])
+                if a_ and n not in after:
+                    after[n] = float(a_.group(1))
+                b_ = re.search(_PCTW + r"\s+(?:(?:of\s+(?:the\s+)?PSUs?\s+)?(?:for|on|in)\s+)?(?:[A-Za-z\-]+\s+){0,4}$", s_[max(0, mm.start() - 60):mm.start()])
+                if b_ and n not in before:
+                    before[n] = float(b_.group(1))
+        best = sw
+        for cand in (after, before, {**after, **sw}, {**before, **sw}):
+            if cand and all(5 <= v <= 100 for v in cand.values()) and abs(sum(cand.values()) - 100) < abs(sum(best.values()) - 100):
+                best = cand
+        sw = best
+    m = re.search(r"\b(?:half|one-half)\s+of\s+(?:the\s+)?(?:PSUs?|PRSUs?|award|performance)", s_, re.I)
+    if m and names and not sw:
+        sw = {names[0]: 50.0}
+    return sw
+
+
+def _solely(s_):
+    """'earned solely based on X' / '100% based on X' / 'X is the sole metric'."""
+    m = re.search(r"(?:solely|exclusively|entirely)\s+(?:based\s+)?(?:on|upon|by)\s+(?:the\s+)?(?:\w+\s+){0,6}?", s_, re.I)
+    if m:
+        names = _metrics_in(s_[m.end():m.end() + 160])
+        if names:
+            return {names[0]: 100.0}
+    m = re.search(r"(?:sole|only|single)\s+(?:performance\s+)?(?:metric|measure)", s_, re.I)
+    if m:
+        names = _metrics_in(s_)
+        if len(names) == 1:
+            return {names[0]: 100.0}
+    return {}
+
+
 def extract(text):
     t = " ".join(text.split())
     wins = psu_windows(t)
     w = " ".join(wins)
     sents = [x for x in re.split(r"(?<=[.;])\s+", w) if 30 < len(x) < 900]
     r = {}
-    # ---- performance period
+    # ---- performance period: every statement in a PSU sentence; the most common wins
     psu_s = [x for x in sents if PSU_WORDS.search(x) and not re.search(
         r"annual (?:cash )?(?:incentive|bonus)|\bAIP\b|short-term incentive", x, re.I)]
+    NUMW = r"(one|two|three|four|five|[1-5])"
+    per = []
     for x in psu_s:
-        m = re.search(r"\b(one|two|three|four|five|[1-5])[- ]year\s+(?:cumulative\s+)?performance\s+(?:period|cycle)", x, re.I)
-        if m:
-            r["period_years"] = _WORDNUM[m.group(1).lower()]
-            break
+        for rx_ in (NUMW + r"[- ](?:fiscal[- ])?years?[- ](?:cumulative\s+|relative\s+|average\s+|forward[- ]looking\s+)?(?:performance|measurement)\s+(?:period|cycle)",
+                    r"(?:performance|measurement)\s+(?:period|cycle)\s+of\s+" + NUMW + r"\s+(?:fiscal\s+|consecutive\s+)?years?",
+                    r"over\s+(?:a|the)\s+" + NUMW + r"[- ]year\s+(?:period|cycle)",
+                    NUMW + r"[- ]year\s+(?:cumulative|average|relative|total)\b"):
+            for m in re.finditer(rx_, x, re.I):
+                per.append(_WORDNUM[m.group(1).lower()])
+        for m in re.finditer(r"(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},\s+(20\d\d)\s*(?:to|through|-|–|and ending(?: on)?)\s*(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},\s+(20\d\d)", x):
+            d = int(m.group(2)) - int(m.group(1))
+            if 0 <= d <= 4:
+                per.append(d + 1 if d == 0 or "December 31" in m.group(0) and "January 1" in m.group(0) else max(1, d))
+    if per:
+        from collections import Counter as _C
+        r["period_years"] = _C(per).most_common(1)[0][0]
     m = re.search(r"(?:fiscal\s+)?(20\d\d)\s*(?:[-–—]|through|to)\s*(?:fiscal\s+)?(20\d\d)\s+performance\s+(?:period|cycle)", w, re.I)
     if m and 0 < int(m.group(2)) - int(m.group(1)) < 6:
         r["cycle"] = f"{m.group(1)}–{m.group(2)}"
-        r["period_years"] = int(m.group(2)) - int(m.group(1)) + 1     # explicit years beat prose
+        r.setdefault("period_years", int(m.group(2)) - int(m.group(1)) + 1)
     if re.search(r"(?:annual|one-year|1-year)\s+(?:performance\s+)?(?:period|goals?|targets?)[^.]{0,100}(?:three|3)-year", w, re.I):
         r["annual_goals_3y_vest"] = True
     # ---- metrics and weights: ONLY sentences about the PSUs (not the annual
     # bonus), and a % counts as a WEIGHT only with an explicit weighting cue --
     # "6% EPS CAGR" or "revenue growth of 5%" are goals, not weights
     mets, per_sentence = {}, []
-    growth = re.compile(r"growth|CAGR|increase|improve|target of|goal of|margin of|at least|per year|annual", re.I)
-    bonus = re.compile(r"annual (?:cash )?(?:incentive|bonus)|\bAIP\b|\bSTI\b|short-term incentive|cash bonus", re.I)
-    prev_names = []
+    bonus = re.compile(r"annual (?:cash )?(?:incentive|bonus)|\bAIP\b|\bSTI\b|short-term incentive|cash bonus|\bMIP\b|annual plan", re.I)
+    modifier = re.compile(r"modifier|governor|modif(?:y|ies|ied)\b|(?:cap(?:ped)?|limit(?:ed)?)[^.]{0,40}negative", re.I)
+    past = re.compile(r"(?:granted|awarded) in (?:fiscal (?:year )?)?20(?:1\d|2[0-3])\b|20(?:1\d|2[0-2])\s*[-–]\s*20(?:2[0-4])\b|paid out|were earned|vested at", re.I)
+    import datetime as _dt
+    prev_names, near_psu, tsr_mod, recent = [], 0, 0, []
     for s_ in sents:
         names = _metrics_in(s_)
-        # "... two PSU metrics, each with 50% weighting" often follows the
-        # sentence that NAMES the metrics
+        if PSU_WORDS.search(s_):
+            near_psu = 3                                 # a PSU mention covers the next few sentences / table rows
+        else:
+            near_psu -= 1
         if not names and prev_names and re.search(r"each\s+(?:with\s+(?:a\s+)?)?" + PCT, s_, re.I):
             names = prev_names
         if names:
             prev_names = names
-        if not PSU_WORDS.search(s_) or bonus.search(s_):
+        if near_psu <= 0 or bonus.search(s_) or not names:
             continue
-        if not names:
-            continue
-        for n in names:
-            mets.setdefault(n, None)
-        sw = {}
-        m = re.search(r"each\s+(?:with\s+(?:a\s+)?|weighted\s+(?:at\s+)?|at\s+|representing\s+)" + PCT + r"\s*(?:weight(?:ing)?)?", s_, re.I)
-        if m or re.search(r"equally\s+weighted", s_, re.I):
-            v = float(m.group(1)) if m else round(100.0 / len(names), 1)
-            sw = {n: v for n in names}
-        else:
-            for n in names:
-                rx = dict(METRICS)[n]
-                cues = [
-                    r"(?:" + rx + r")\s*\(\s*" + PCT + r"\s*(?:weight(?:ing)?)?\s*\)",
-                    r"(?:" + rx + r")[^.%;]{0,20}?weight(?:ed|ing)?\s*(?:of|at)?\s*" + PCT,
-                    PCT + r"\s+weight(?:ed|ing)?\s+(?:on|to|for)\s+(?:the\s+)?(?:" + rx + r")",
-                    PCT + r"\s+(?:of\s+(?:the\s+)?(?:PSUs?|PRSUs?|award|target\s+\w+)\s+)?(?:is\s+|are\s+)?(?:based on|tied to|linked to|dependent on)\s+(?:the\s+)?(?:three-year\s+)?(?:company['’]s\s+|our\s+)?(?:" + rx + r")",
-                    r"(?:" + rx + r")\s*\|\s*" + PCT,
-                ]
-                for c_ in cues:
-                    mm = re.search(c_, s_, re.I)
-                    if mm and not growth.search(mm.group(0)):
-                        v = float(mm.group(1))
-                        if 5 <= v <= 100:
-                            sw[n] = v
-                        break
-        if sw:
+        # a metric that only MODIFIES the payout (rTSR modifier / TSR governor) is not a weighted metric
+        core = [n for n in names if not (n in ("relative TSR", "absolute TSR") and modifier.search(s_) and len(names) > 1)]
+        if re.search(r"(?:relative )?(?:TSR|total shareholder return)\s+(?:performance\s+)?(?:modifier|multiplier|governor)", s_, re.I):
+            tsr_mod += 1
+        if not past.search(s_):
+            for n in core:
+                mets[n] = mets.get(n, 0) + 1
+        sw = _solely(s_) or _clause_weights(s_, core)
+        if sw and not past.search(s_):
             per_sentence.append(sw)
-    # the design is the sentence whose weights add up to ~100% (most metrics wins)
-    full = [x for x in per_sentence if 90 <= sum(x.values()) <= 110]
+            recent.append(bool(re.search(r"\b(?:%d|%d)\b" % (_dt.date.today().year, _dt.date.today().year - 1), s_)))
+    # sets that span a sentence pair / table run: merge neighbours until they add up
+    merged = []
+    for i, sw in enumerate(per_sentence):
+        acc = dict(sw)
+        for nxt in per_sentence[i + 1:i + 4]:
+            if 90 <= sum(acc.values()) <= 110:
+                break
+            if set(nxt) & set(acc):
+                break
+            acc.update(nxt)
+        merged.append(acc)
+    full = [x for x, _r in sorted(zip(merged, recent), key=lambda z: not z[1]) if 90 <= sum(x.values()) <= 110.5]
+    if tsr_mod:
+        r["modifier"] = "relative TSR modifier"
+        weighted_tsr = any("relative TSR" in x for x in full)
+        if not weighted_tsr:
+            mets.pop("relative TSR", None)
     if full:
         best = full[0]                      # proxies state the CURRENT design first
         r["metrics"] = best
         r["weights_verified"] = True
         r["other_metrics"] = [k for k in mets if k not in best]
+    elif mets:
+        # no stated weights: the metrics named most often in the PSU text (drops one-off mentions)
+        top = max(mets.values())
+        keep = [k for k, c in mets.items() if c >= max(2, top * 0.5)] or [max(mets, key=mets.get)]
+        part = max(merged, key=lambda x: sum(x.values())) if merged else {}
+        if part and sum(part.values()) <= 110:
+            r["metrics_partial"] = part                     # stated weights that don't add to 100%
+        r["metrics"] = {k: None for k in keep}
+        if len(keep) == 1:                                  # one metric dominates the PSU text
+            r["metrics"] = {keep[0]: 100.0}
+            r["weights_verified"] = False
+        r["other_metrics"] = [k for k in mets if k not in keep]
     else:
-        r["metrics"] = {k: None for k in mets}
-    # ---- payout range
-    m = re.search(PCT + r"\s*(?:to|-|–|and)\s*" + PCT + r"\s+of\s+(?:the\s+)?(?:target|granted|the target number)", w, re.I)
-    if m and float(m.group(2)) > float(m.group(1)):
-        r["payout_min"], r["payout_max"] = float(m.group(1)), float(m.group(2))
-    else:
-        m = re.search(r"(?:maximum|up to|capped at)\s+(?:payout\s+|of\s+|opportunity\s+)?(?:of\s+|is\s+|equal to\s+)?" + PCT + r"\s+of\s+target", w, re.I)
-        if m and float(m.group(1)) > 100:
-            r["payout_max"] = float(m.group(1))
-    # ---- relative TSR scale
-    pcts = sorted({int(x) for x in re.findall(r"(\d{2})(?:th|st|nd|rd)?[- ]percentile", w) if 10 <= int(x) <= 95})
+        r["metrics"] = {}
+    # ---- payout range: every candidate in a PSU context; the most common value wins
+    bonus_rx = re.compile(r"annual (?:cash )?(?:incentive|bonus)|\bAIP\b|\bSTI\b|short-term incentive|cash bonus|\bMIP\b|bonus opportunit", re.I)
+    ctx_rx = re.compile(PSU_WORDS.pattern + r"|performance[- ]based RSUs?|performance units?|performance-vesting|\bLTPP\b|\bLTIP\b|PSP|target number of (?:shares|units)|shares earned|units earned", re.I)
+    maxes, mins = [], []
+    for s_ in sents:
+        if not ctx_rx.search(s_):
+            continue
+        for m in re.finditer(r"(?:from|between)?\s*" + PCT + r"\s*(?:to|and|-|–)\s*" + PCT, s_):
+            lo, hi = float(m.group(1)), float(m.group(2))
+            pre = s_[max(0, m.start() - 90):m.start()]
+            if 100 <= hi <= 400 and lo < hi and lo <= 50 and not bonus_rx.search(pre):
+                maxes.append(hi); mins.append(lo)
+        for m in re.finditer(r"(?:maximum|max\.?|capped at|cap of|up to|highest level|not (?:to )?exceed|no more than)\s*(?:(?:payout|award|opportunity|level|performance|vesting)\s+){0,2}(?:\(|\||:)?\s*(?:of\s+|is\s+|equal to\s+|at\s+|was\s+)?" + PCT, s_, re.I):
+            v = float(m.group(1)); pre = s_[max(0, m.start() - 40):m.start()]
+            if 100 < v <= 400 and not bonus_rx.search(pre) and not re.search(r"negative", s_[m.start():m.end() + 30], re.I):
+                maxes.append(v)
+        for m in re.finditer(PCT + r"\s+for\s+(?:PSUs|PRSUs|performance (?:shares|units|awards))", s_, re.I):
+            v = float(m.group(1))
+            if 100 < v <= 400:
+                maxes += [v, v]                                 # explicitly the PSU cap
+    if maxes:
+        from collections import Counter as _C
+        c = _C(maxes).most_common()
+        r["payout_max"] = max(v for v, n in c if n == c[0][1])
+        if mins and r["payout_max"] in maxes:
+            r["payout_min"] = min(mins)
+    # ---- relative TSR scale: the percentile that earns 100% of target
+    pcts = sorted({int(x) for x in re.findall(r"(\d{2})(?:\.\d+)?\s?(?:th|st|nd|rd)?[- ]percentile", w) if 10 <= int(x) <= 95})
     if pcts:
         r["rtsr_percentiles"] = pcts
-    m = re.search(r"target[^.]{0,80}?(\d{2})(?:th|st|nd|rd)?[- ]percentile|(\d{2})(?:th|st|nd|rd)?[- ]percentile[^.]{0,60}?(?:target|100\s?%)", w, re.I)
-    if m:
-        r["rtsr_target_pct"] = int(m.group(1) or m.group(2))
+    tc = []
+    for s_ in sents:
+        if not re.search(r"TSR|total (?:shareholder|stockholder) return|percentile", s_, re.I):
+            continue
+        for rx_ in (r"(\d{2})\s?(?:th|st|nd|rd)?[- ]percentile[^.%]{0,50}?\b100\s?%",
+                    r"\b100\s?%[^.%]{0,40}?(\d{2})\s?(?:th|st|nd|rd)?[- ]percentile",
+                    r"[Tt]arget\b[^.%\d]{0,40}?(\d{2})\s?(?:th|st|nd|rd)?[- ]percentile",
+                    r"(\d{2})\s?(?:th|st|nd|rd)?[- ]percentile[^.%\d]{0,30}?\b[Tt]arget\b"):
+            for m in re.finditer(rx_, s_, re.I):
+                v = int(m.group(1))
+                if 25 <= v <= 80:
+                    tc.append(v)
+        if re.search(r"target[^.]{0,60}\bmedian\b|\bmedian\b[^.]{0,40}(?:100\s?%|target)", s_, re.I) and not re.search(r"above[- ]median", s_, re.I):
+            tc.append(50)
+    if tc:
+        from collections import Counter as _C
+        r["rtsr_target_pct"] = _C(tc).most_common(1)[0][0]
     m = re.search(r"(?:TSR|total shareholder return)\s+modifier[^.]{0,140}?(?:\+/-|±|plus or minus|up to|by)\s*" + PCT, w, re.I)
     if m:
         r["tsr_modifier"] = float(m.group(1))
-    if re.search(r"(?:TSR|total shareholder return)\s+(?:is\s+)?negative[^.]{0,140}(?:capped|cap|limited|not exceed|no more than)[^.]{0,40}(?:100\s?%|target)", w, re.I) or \
+    if re.search(r"(?:TSR|total shareholder return)\s+(?:is\s+)?negative[^.]{0,140}(?:capped|cap|limited|not exceed|no more than|cannot (?:exceed|earn more))[^.]{0,60}(?:100\s?%|target)", w, re.I) or \
        re.search(r"(?:capped|limited)\s+at\s+(?:target|100\s?%)[^.]{0,60}if\s+(?:absolute\s+)?(?:TSR|total shareholder return)\s+is\s+negative", w, re.I):
         r["negative_tsr_cap"] = True
     # ---- goal table rows
     goals = re.findall(r"[^.]{0,80}Threshold[^.]{0,240}Target[^.]{0,240}Maximum[^.]{0,200}", w, re.I)
     if goals:
         r["goals_excerpt"] = goals[0][:500]
-    # ---- what past cycles actually PAID
+    # ---- what past cycles actually PAID: a payout phrase + a cycle anchor in the same sentence
+    from datetime import date as _d
+    this_year = _d.today().year
+    PAY = re.compile(r"(?:paid out at|paying out at|pay out at|earned at|vested (?:in|at)|(?:final |total |overall )?payout (?:factor |percentage |level )?(?:of|at|was|equal to)|"
+                     r"vesting (?:percentage|level|factor) of|earned percentage of|were earned at|was earned at|were|was|equal (?:t\s?o)|"
+                     r"resulted in(?: a (?:total |final |overall )?(?:payout|vesting) of)?|earned|certified (?:a payout of|at)?|"
+                     r"funded at|settled at|achieved|attained)\s+(?:approximately\s+|a\s+)?" + PCT +
+                     r"(?!\s*(?:of (?:the )?(?:total|LTI|long-term|target (?:LTI|value|grant value|award value)|base salary)|weight))", re.I)
+    PAY2 = re.compile(PCT + r"\s+(?:total\s+)?(?:payout|vesting of the award|of (?:the )?target(?: (?:number of )?(?:shares|units|PSUs|PRSUs|performance[- ]based RSUs))?|of their (?:target )?(?:PSUs|PRSUs|\d{4} PSUs))", re.I)
+    ANCH = [(re.compile(r"\bFY\s?'?(\d{2})\s*[-–—]\s*FY\s?'?(\d{2})\b"), "fy"),
+            (re.compile(r"(?:fiscal\s+(?:year\s+)?)?(20\d\d)\s*(?:[-–—]|through|to)\s*(?:fiscal\s+(?:year\s+)?)?(20\d\d)"), "range"),
+            (re.compile(r"(?:granted|awarded|issued|made|grants?)(?: to [^.]{0,30}?)? (?:in )?(?:(?:January|February|March|April|May|June|July|August|September|October|November|December) )?(?:fiscal (?:year )?)?(20\d\d)", re.I), "grant"),
+            (re.compile(r"(?:fiscal (?:year )?)?(20\d\d)\s+(?:PSUs?|PRSUs?|PSAs?|performance[- ](?:share|stock|based)|PSU award|LTPP|LTIP|grant|awards?)", re.I), "grant")]
     hist = []
-    pats = [
-        r"(?:fiscal\s+)?(20\d\d)\s*(?:[-–—]|through|to)\s*(?:fiscal\s+)?(20\d\d)[^.]{0,200}?(?:earned|paid out|paid|vested|certified|payout|achieved|resulting in|settled)[^.%]{0,80}?" + PCT,
-        r"granted in (?:fiscal\s+(?:year\s+)?)?(20\d\d)[^.]{0,220}?(?:earned|paid out|paid|vested|certified|payout|achieved)[^.%]{0,60}?" + PCT + r"\s+of\s+target",
-        r"(?:earned|paid out|vested|certified)\s+at\s+" + PCT + r"\s+of\s+target[^.]{0,100}?(?:fiscal\s+)?(20\d\d)\s*(?:[-–—]|through)\s*(20\d\d)",
-    ]
-    for i, pat in enumerate(pats):
-        for mm in re.finditer(pat, t, re.I):
-            g = mm.groups()
-            if i == 0:
-                k, v = f"{g[0]}–{g[1]}", g[2]
-            elif i == 1:
-                k, v = f"{g[0]} grant", g[1]
-            else:
-                k, v = f"{g[1]}–{g[2]}", g[0]
-            try:
-                v = float(v)
-            except ValueError:
+    for s_ in re.split(r"(?<=[.;])\s+|\s[•▪◦]\s", t):
+        if len(s_) > 2500 or not ctx_rx.search(s_):
+            continue
+        anchors = []
+        for rx_, kind in ANCH:
+            for am in rx_.finditer(s_):
+                key = None
+                if kind == "fy":
+                    a1, a2 = 2000 + int(am.group(1)), 2000 + int(am.group(2))
+                    key = f"{a1}–{a2}" if 0 < a2 - a1 < 6 and a2 <= this_year else None
+                elif kind == "range":
+                    a1, a2 = int(am.group(1)), int(am.group(2))
+                    key = f"{a1}–{a2}" if 0 < a2 - a1 < 6 and a2 <= this_year else None
+                else:
+                    y = int(am.group(1))
+                    key = f"{y} grant" if y <= this_year - 3 else None
+                anchors.append((am.start(), am.end(), key))
+        if not anchors:
+            continue
+        for m in list(PAY.finditer(s_)) + list(PAY2.finditer(s_)):
+            v = float(m.group(1))
+            pre = s_[max(0, m.start() - 80):m.start()]
+            if not 0 <= v <= 300 or bonus_rx.search(pre) or re.search(r"weight|of (?:total|the) (?:LTI|mix)|salary", s_[m.end():m.end() + 25], re.I):
                 continue
-            from datetime import date as _d
-            end = re.findall(r"20\d\d", k)
-            if end and int(end[-1]) > _d.today().year - (0 if "grant" not in k else -2):
-                continue                               # cycle not finished yet: not a payout
-            if 0 <= v <= 300 and not re.search(r"salary|bonus|annual incentive|\bAIP\b|\bSTI\b|cash incentive", mm.group(0), re.I):
-                hist.append((k, v))
+            near = min(anchors, key=lambda a_: min(abs(a_[0] - m.start()), abs(a_[1] - m.start())))
+            if min(abs(near[0] - m.start()), abs(near[1] - m.start())) <= 300 and near[2]:
+                hist.append((near[2], v))
     seen, h2 = set(), []
     for k, v in hist:
         if k not in seen:
@@ -356,6 +510,49 @@ def scope(proxy):
                  key=lambda r: -(float(r.get("psu_core") or 0)))[:300]
     names |= {r["ticker"] for r in top}
     return sorted(n for n in names if n in proxy)
+
+
+TEXT_CACHE = ROOT / "fmp_cache" / "psu_text"
+
+
+def proxy_text(t, proxy=None, yq=None):
+    """Flattened proxy text (cached separately so the scorecard can re-extract fast)."""
+    import gzip
+    p = TEXT_CACHE / f"{t}.txt.gz"
+    if p.exists():
+        return gzip.open(p, "rt", encoding="utf-8").read()
+    proxy = proxy or latest_proxy()
+    if t not in proxy:
+        return ""
+    cik = ((yq or {}).get(t) or {}).get("cik")
+    if not cik:
+        try:
+            import edgar
+            cik = edgar.cik_for(t)
+        except Exception:
+            cik = None
+    if not cik:
+        return ""
+    txt = " ".join(edgar_doc.text(cik, proxy[t]["accession"], want=("primary",), max_chars=3_000_000).split())
+    if txt:
+        TEXT_CACHE.mkdir(parents=True, exist_ok=True)
+        tmp = p.with_suffix(".tmp")
+        with gzip.open(tmp, "wt", encoding="utf-8") as f:
+            f.write(txt)
+        tmp.replace(p)
+    return txt
+
+
+def _reextract_one(t):
+    txt = proxy_text(t)
+    return t, (extract(txt) if txt else None)
+
+
+def reextract(tickers, workers=8):
+    """Current parser over cached proxy text (for parser_eval)."""
+    from multiprocessing import Pool
+    with Pool(workers) as pool:
+        return dict(pool.map(_reextract_one, tickers, chunksize=8))
 
 
 def main() -> int:

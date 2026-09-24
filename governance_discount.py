@@ -157,7 +157,7 @@ def main() -> int:
     phantom = set()
     for tk_, evs in _load("event_detail.json").items():
         for e in evs:
-            if e.get("verdict") == "NOT AN EVENT":
+            if e.get("verdict") in ("NOT AN EVENT", "RETYPED"):
                 f_ = "CAPITAL_RETURN_POLICY" if e.get("family") == "CAPITAL_RETURN" else e.get("family")
                 phantom.add((tk_, f_))
 

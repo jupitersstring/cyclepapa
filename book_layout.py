@@ -595,30 +595,46 @@ def psu_sheet(wb, psu, names=None, fin=None, index=None):
             (f"{p['period_years']}-yr" if p.get("period_years") else "") + (f" ({p['cycle']})" if p.get("cycle") else "")
             + (" · annual goals" if p.get("annual_goals_3y_vest") else ""),
             ", ".join(f"{k} {v:.0f}%" if v else k for k, v in sorted(mets.items(), key=lambda kv: -(kv[1] or 0)))
-            + ("" if p.get("weights_verified") or not mets else " (weights not stated)"),
+            + ("" if p.get("weights_verified") or not mets or all(mets.values()) else
+               " (stated weights: " + ", ".join(f"{k} {v:.0f}%" for k, v in p["metrics_partial"].items()) + ")"
+               if p.get("metrics_partial") else " (weights not stated)"),
             (f"{p.get('payout_min', 0):.0f}–{p['payout_max']:.0f}%" if p.get("payout_max") else ""),
             (f"{p['rtsr_target_pct']}th" if p.get("rtsr_target_pct") else ""),
-            "; ".join(x for x in [f"±{p['tsr_modifier']:.0f}% TSR modifier" if p.get("tsr_modifier") else "",
+            "; ".join(x for x in [f"±{p['tsr_modifier']:.0f}% TSR modifier" if p.get("tsr_modifier") else
+                                  (p.get("modifier") or ""),
                                   "capped at target if TSR < 0" if p.get("negative_tsr_cap") else ""] if x),
-            (f"up to {hur:.1f}× price" if hur else ""),
+            (f"up to {hur:.1f}× price" if hur and hur >= 1 else f"already met (top hurdle {hur:.1f}× price)" if hur else ""),
             hist,
             "; ".join(f"{c['cycle']}: paid {c['payout']:.0f}% vs TSR {c['tsr'] * 100:+.0f}% "
                       f"({c['vs_spy'] * 100:+.0f}pp vs SPY) — {c['verdict'].lower()}"
                       for c in p.get("pay_for_performance") or []),
             "; ".join(p.get("red_flags") or []), "; ".join(p.get("why") or []),
-            p.get("design_excerpt") or p.get("goals_excerpt") or "", p.get("url"),
+            p.get("design_excerpt") or p.get("goals_excerpt") or "",
+            "reviewed" if p.get("source") == "reviewed" else "parsed", p.get("url"),
         ])
     return _table_sheet(
         wb, "PSU Plans",
         "What each company's performance-share plan actually is (latest proxy CD&A): metrics and weights, "
         "performance period, payout range, relative-TSR target, modifiers, price hurdles, and what past cycles "
         "actually PAID (the best test of how hard the goals are). Grade A–D with the reasons. 'weights not stated' = "
-        "metrics named but no weighting found in the text. Source: psu_detail.py (edgar_doc).",
+        "metrics named but no weighting found in the text. Extraction: 'reviewed' = read from the proxy by a "
+        "reviewer (verbatim quote in Design); 'parsed' = regex fallback (accuracy: PARSER_EVAL.md). "
+        "Source: psu_detail.py + reviewed/psu.json.",
         ["Ticker", "Name", "Grade", "PSU % LTI", "Period", "Metrics (weight)", "Payout range", "rTSR target",
          "Modifier / caps", "Price hurdles", "What past cycles paid", "Pay vs performance", "Red flags",
-         "Why this grade", "Design (verbatim)", "Proxy"],
-        [9, 22, 7, 8, 14, 44, 11, 9, 26, 14, 30, 44, 26, 60, 70, 12], rows, index=index,
+         "Why this grade", "Design (verbatim)", "Extraction", "Proxy"],
+        [9, 22, 7, 8, 14, 44, 11, 9, 26, 14, 30, 44, 26, 60, 70, 10, 12], rows, index=index,
         wrap_cols=("Why this grade", "Design (verbatim)", "Metrics (weight)", "Pay vs performance"))
+
+
+FAMILY_LABEL = {"CEO_CHANGE": "CEO change", "CHAIR_CEO_SPLIT": "Chair / CEO split", "CH11_EMERGENCE": "Ch. 11 emergence",
+                "PILL_REMOVED": "Poison pill removed", "BUYBACK_AUTH": "Buyback authorised",
+                "SALE_OF_COMPANY": "Sale of company", "ASSET_SALE": "Asset sale", "GOING_PRIVATE": "Going private",
+                "TENDER_OFFER": "Tender offer", "EXCHANGE_OFFER": "Exchange offer", "CAPITAL_RETURN": "Capital return",
+                "CAPITAL_RETURN_POLICY": "Capital-return policy", "SPINOFF": "Spin-off", "SEPARATION": "Separation",
+                "STRATEGIC_REVIEW": "Strategic review", "VALUE_COMMITTEE": "Value committee",
+                "ACTIVIST_SETTLEMENT": "Activist settlement", "BOARD_REFRESH": "Board refresh",
+                "DECLASSIFY": "Board declassified", "UPLISTING": "Uplisting"}
 
 
 def event_sheet(wb, events, fin=None, index=None):
@@ -630,8 +646,9 @@ def event_sheet(wb, events, fin=None, index=None):
             amt = e.get("amount_usd")
             rows.append([
                 t, ((fin or {}).get(t) or {}).get("name", "")[:24], e.get("date"),
-                (e.get("family") or "").replace("_", " ").title(), e.get("status") or "",
-                ("✓ real" if e.get("verdict") == "REAL" else "⚠ phantom" if e.get("verdict") else ""), e.get("what"),
+                FAMILY_LABEL.get(e.get("family"), (e.get("family") or "").replace("_", " ").title()), e.get("status") or "",
+                (("✓ real" if e.get("verdict") == "REAL" else "↻ other kind" if e.get("verdict") == "RETYPED" else "⚠ phantom" if e.get("verdict") else "")
+                       + (" (reviewed)" if e.get("source") == "reviewed" else "")), e.get("what"),
                 (f"${amt / 1e6:,.0f}M" if amt and amt >= 1e6 else ""),
                 (f"{e['pct_mcap'] * 100:.0f}%" if e.get("pct_mcap") and e["pct_mcap"] <= 5 else ""),
                 " · ".join(x for x in [
@@ -641,7 +658,7 @@ def event_sheet(wb, events, fin=None, index=None):
                     f"timing: {e['timing']}" if e.get("timing") else "",
                     f"adviser: {e['advisor']}" if e.get("advisor") else ""] if x),
                 (f"{e['xret_since'] * 100:+.0f}%" if isinstance(e.get("xret_since"), (int, float)) else ""),
-                e.get("excerpt"), e.get("url"),
+                e.get("evidence") or e.get("excerpt"), e.get("url"),
             ])
     rows.sort(key=lambda r: (r[2] or ""), reverse=True)
     return _table_sheet(
@@ -649,12 +666,13 @@ def event_sheet(wb, events, fin=None, index=None):
         "What exactly is happening in every dated corporate-action and governance event behind the thesis tabs: "
         "the 8-K on the event date and its press release are read, and the specifics extracted -- what is being "
         "sold / spun / tendered, to or by whom, for how much (and as % of market cap), when it closes, advisers, "
-        "board seats. Status: ANNOUNCED / PENDING / COMPLETED. Verdict: '⚠ phantom' = the scanner's phrase "
-        "matched but the filing shows no such event (removed from the thesis scoring). Hand-QA accuracy: "
-        "EXTRACTION_QA.md. The verbatim excerpt is the filing's own words. "
-        "Source: event_detail.py (edgar_doc).",
+        "board seats. Status: ANNOUNCED / PENDING / COMPLETED. Verdict: '✓ real'; '↻ other kind' = a real event "
+        "but not the kind the scanner tagged (e.g. a rights plan ADOPTED under 'pill removed', or the company "
+        "ACQUIRING under 'sale of company'); '⚠ phantom' = a recital / footnote, no such event. Both are removed "
+        "from the thesis scoring. '(reviewed)' = read and extracted by a reviewer with a verbatim quote; otherwise "
+        "the regex parse (accuracy vs the reviewed set: PARSER_EVAL.md). Source: event_detail.py + reviewed/.",
         ["Ticker", "Name", "Date", "Event", "Status", "Verdict", "What is happening", "Amount", "% mcap",
-         "Specifics (parsed)", "Since event (vs SPY)",
+         "Specifics", "Since event (vs SPY)",
          "Filing excerpt (verbatim)", "Filing"],
         [9, 22, 11, 16, 11, 10, 60, 10, 7, 50, 10, 90, 12], rows, index=index,
         wrap_cols=("What is happening", "Filing excerpt (verbatim)"))
@@ -796,7 +814,7 @@ def whats_new(wb, events=None, calls=None, turnaround_csv=None, gov=None, index=
     evr = []
     for t, lst in (events or {}).items():
         for e in lst:
-            if e.get("what") and age(e.get("date")) <= 30 and e.get("verdict") != "NOT AN EVENT":
+            if e.get("what") and age(e.get("date")) <= 30 and e.get("verdict") not in ("NOT AN EVENT", "RETYPED"):
                 evr.append([t, name(t), e.get("date"), e.get("status") or "", e["what"],
                             pct(e.get("xret_since")), (f"{e['pct_mcap'] * 100:.0f}%" if e.get("pct_mcap") and e["pct_mcap"] <= 5 else ""),
                             e.get("url")])
@@ -996,7 +1014,7 @@ def qa_fixes(wb, fin, harmonise_pb=True, skip=()):
 
 PROTECT = {"Ticker", "Name", "Company", "Key numbers (FMP)", "Strength %ile", "FMP financial read", "Filing",
            "Proxy", "#", "Rank", "Grade", "Tier", "Score", "What's happening (8-K)", "PSU plan (grade)",
-           "Since (vs SPY)", "Since event (vs SPY)"}
+           "Since (vs SPY)", "Since vs SPY (%)", "Since event (vs SPY)"}
 
 
 def drop_dead_columns(ws, threshold=0.95, min_rows=8):
