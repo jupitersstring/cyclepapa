@@ -43,6 +43,9 @@ import pandas as pd
 import fmp_client as fc
 
 OUT = "fmp_statements.csv"
+# Bumped whenever a field's DEFINITION changes: rows written under an older
+# schema are recomputed (from cache) instead of being skipped as "done".
+SCHEMA = 2
 
 
 def _f(x):
@@ -90,7 +93,7 @@ def enrich_symbol(sym: str) -> dict:
     oe = fc.get_json("owner-earnings", {"symbol": sym, "limit": 6}, ttl=fc.TTL_FUNDAMENTAL)
     bsa = fc.get_json("balance-sheet-statement", {"symbol": sym, "period": "annual", "limit": 8},
                       ttl=fc.TTL_FUNDAMENTAL)
-    rec: dict = {"symbol": sym}
+    rec: dict = {"symbol": sym, "fmp_st_schema": float(SCHEMA)}
 
     # ---- multi-year returns (lindy = median of the per-year series) ----
     roic = _by_year(km, "returnOnInvestedCapital")
@@ -395,7 +398,10 @@ def main() -> None:
     done = set()
     if os.path.exists(OUT):
         try:
-            done = set(pd.read_csv(OUT, usecols=["symbol"])["symbol"].astype(str))
+            _d = pd.read_csv(OUT, low_memory=False)
+            _cur = pd.to_numeric(_d.get("fmp_st_schema"), errors="coerce") == SCHEMA \
+                if "fmp_st_schema" in _d.columns else pd.Series(False, index=_d.index)
+            done = set(_d.loc[_cur, "symbol"].astype(str))
         except Exception:
             done = set()
     todo = [s for s in syms if s not in done]
