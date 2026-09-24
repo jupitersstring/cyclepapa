@@ -20,6 +20,7 @@ import argparse
 import glob
 import sys
 import time
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import pandas as pd
@@ -53,11 +54,20 @@ def main() -> None:
     print(f"fetch_edgar: {len(filers)} US filers in universe have a CIK", flush=True)
 
     todo = []
+    recheck_after = datetime.now(timezone.utc) - timedelta(days=90)
     for sym, cik in filers:
         if not args.refresh:
             cached = F.load_raw(sym, ttl_days=None, fail_ttl_days=None)
             if cached is not None and cached.get("statement_source") == "edgar-annual":
                 continue
+            # EDGAR checked recently and added nothing (short filer / recent IPO):
+            # skip until its filing history has had time to grow.
+            chk = (cached or {}).get("edgar_checked")
+            try:
+                if chk and datetime.fromisoformat(chk) >= recheck_after:
+                    continue
+            except (ValueError, TypeError):
+                pass
         todo.append((sym, cik))
     if args.limit:
         todo = todo[: args.limit]
@@ -82,6 +92,8 @@ def main() -> None:
                     upgraded += 1
                 else:
                     no_edgar += 1          # EDGAR had no more history than yf
+                    base["edgar_checked"] = datetime.now(timezone.utc).isoformat()
+                    F.save_raw(sym, base)  # remember it, so reruns don't re-download
                 # The merged raw carries the data + a resume flag, so the bulky
                 # companyfacts intermediate (~3MB) is no longer needed; drop it to
                 # keep the ephemeral cache flat (it is cheaply re-fetchable).
