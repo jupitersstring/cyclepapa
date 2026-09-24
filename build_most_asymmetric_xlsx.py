@@ -1543,7 +1543,7 @@ def build_governance_discount(wb: Workbook, yf: dict):
     r = max(r, 6) + 1
     act = sum(1 for v in rows if v.get("tier") == "ACTION LIKELY")
     write_footnote(ws, r,
-        f"{len(rows)} names trade at ≤0.70× book (FMP TTM) with a qualifying "
+        f"{len(rows)} names trade at 0.10–0.70× book (validated FMP book: market cap ÷ latest equity) with a qualifying "
         f"governance catalyst; {act} are ACTION LIKELY (a hard event — activist "
         "settlement/13D, value committee or strategic review, capital-return "
         "policy or tender, CEO change, turnaround executive — within ~9 months, "
@@ -1553,6 +1553,126 @@ def build_governance_discount(wb: Workbook, yf: dict):
         "change. Sources: governance_events_8k.py (dated 8-K governance "
         "changes), activist 13D/letters, re-rate events, MD&A language, proxy "
         "redesigns and say-on-pay dissent. Source: governance_discount.py.", 8)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A5"
+
+
+def _jload(name):
+    p = ROOT / name
+    if not p.exists():
+        return {}
+    try:
+        return json.loads(p.read_text())
+    except Exception:
+        return {}
+
+
+def build_call_intent(wb: Workbook, yf: dict):
+    """Earnings-call intent: management language signalling it will act
+    (buyback, tender, capital return, asset sale, strategic review), scored
+    linguistically and calibrated on what companies actually did next.
+    Sources: call_intent.json, CALL_INTENT_VALIDATION.md (call_intent*.py)."""
+    ws = wb.create_sheet("Call Intent")
+    set_col_widths(ws, [9, 20, 13, 7, 7, 6, 8, 22, 58])
+    write_title_band(
+        ws,
+        "Call Intent — management is telling you it will act",
+        "Earnings-call transcripts parsed clause by clause: who is acting, how "
+        "committed the verb is (done › will › expect › evaluating › may), "
+        "negation, specificity ($, timelines), new vs routine programmes, "
+        "analyst pressure and evasive answers — and whether the language is NEW "
+        "vs the company's own prior three calls. Ranked by a model fitted to "
+        "what companies actually did next (buybacks, dividend step-ups, action 8-Ks).",
+        n_cols=9,
+    )
+    d = _jload("call_intent.json")
+    rows = [v for v in d.values() if isinstance(v, dict) and v.get("act_prob") is not None]
+    rows.sort(key=lambda v: (v.get("tier") != "ACT SIGNALLED", v.get("tier") != "BUILDING",
+                             -(v.get("act_prob") or 0)))
+    headers = ["Ticker", "Name", "Tier", "Act prob", "P/B", "Novelty", "Call",
+               "New / strongest families", "Evidence (management, verbatim)"]
+    write_header_row(ws, 4, headers)
+    r = 5
+    shown = [v for v in rows if v.get("tier")][:80] or rows[:40]
+    for i, v in enumerate(shown, 1):
+        y = yf.get(v["ticker"]) or {}
+        fams = v.get("families") or {}
+        strongest = sorted(((k, x) for k, x in fams.items()), key=lambda kv: -kv[1])[:3]
+        lab = ", ".join(["NEW " + f.lower() for f in v.get("new_families") or []]
+                        + [k.lower() for k, _ in strongest if k not in (v.get("new_families") or [])])
+        ev = ""
+        for k in (v.get("new_families") or []) + [k for k, _ in strongest]:
+            e = (v.get("evidence") or {}).get(k)
+            if e:
+                ev = f"[{k.lower()}] “{e[0]['q'][:180]}”"
+                break
+        pb = y.get("p_b")
+        write_body_row(ws, r,
+                       [v["ticker"], (y.get("name") or "")[:20], v.get("tier") or "",
+                        round(v.get("act_prob") or 0, 2), round(pb, 2) if pb else "—",
+                        round(v.get("novelty") or 0, 1), v.get("date", "")[:10],
+                        lab[:40], ev],
+                       band=(i % 2 == 0), bold_first=True)
+        ws.row_dimensions[r].height = 30
+        r += 1
+    if not shown:
+        ws.cell(row=5, column=1, value="No transcripts analysed yet.").font = BODY_FONT
+    r = max(r, 6) + 1
+    val = (_jload("call_intent_model.json").get("validation") or {})
+    def f3(x):
+        return f"{x:.2f}" if isinstance(x, (int, float)) else "n/a"
+    write_footnote(ws, r,
+        f"{len(rows)} names scored on their latest call. Out-of-time validation "
+        f"(CALL_INTENT_VALIDATION.md): AUC for ACTED — rule {f3(val.get('auc_rule'))}, "
+        f"past behaviour only {f3(val.get('auc_baseline_past_behaviour'))}, past behaviour + "
+        f"language {f3(val.get('auc_baseline_plus_language'))}. ACT SIGNALLED = top decile "
+        "of act probability with a committed/realised shareholder action or a family that is "
+        "NEW vs the prior three calls; BUILDING = top quartile. Transcripts: FMP. "
+        "Source: call_intent.py + call_intent_model.py.", 9)
+    ws.sheet_view.showGridLines = False
+    ws.freeze_panes = "A5"
+
+
+def build_political_trades(wb: Workbook, yf: dict):
+    """Congressional trading (Senate + House PTRs) weighted by an event study
+    of what each slice of disclosed trades earned after disclosure.
+    Sources: political_trades.json, POLITICAL_TRADES_VALIDATION.md."""
+    ws = wb.create_sheet("Political Trades")
+    set_col_widths(ws, [9, 22, 8, 6, 6, 8, 11, 60])
+    write_title_band(
+        ws,
+        "Political Trades — congressional buying, weighted by what it earned",
+        "Every Senate and House periodic transaction report, scored from the "
+        "DISCLOSURE date (when the trade becomes public). Each trade is weighted "
+        "by the measured 6-month excess return of its slice — size band, market "
+        "cap, stock vs options, clustered buying, member track record (out of sample).",
+        n_cols=8,
+    )
+    d = _jload("political_trades.json")
+    sc = d.get("scores") or {}
+    rows = sorted(((t, v) for t, v in sc.items() if v.get("buys")), key=lambda kv: -kv[1]["score"])
+    headers = ["Ticker", "Name", "Score", "Buys", "Sells", "Members", "Last disclosed", "Recent trades"]
+    write_header_row(ws, 4, headers)
+    r = 5
+    for i, (t, v) in enumerate(rows[:60], 1):
+        write_body_row(ws, r,
+                       [t, (v.get("name") or "")[:22], v["score"], v["buys"], v["sells"],
+                        v["n_buy_members"], v.get("last_disclosure"),
+                        "; ".join(v.get("recent") or [])[-60*3:]],
+                       band=(i % 2 == 0), bold_first=True)
+        ws.row_dimensions[r].height = 30
+        r += 1
+    if not rows:
+        ws.cell(row=5, column=1, value="No recent congressional buying.").font = BODY_FONT
+    r = max(r, 6) + 1
+    m = d.get("meta") or {}
+    be, se = m.get("buy_edge_6m"), m.get("sell_edge_6m")
+    write_footnote(ws, r,
+        f"{m.get('n_trades', 0)} equity trades since {m.get('since')}; {m.get('n_resolved', 0)} "
+        "with a full 6-month window. Measured edge after disclosure: buys "
+        f"{(be or 0):+.2%}, sells {(se or 0):+.2%} (shrunk means, excess vs SPY). Score = sum "
+        "over the last %s days of each trade's slice-implied excess return (pp), recency-"
+        "weighted. See POLITICAL_TRADES_VALIDATION.md. Source: political_trades.py (FMP)." % m.get("window_days"), 8)
     ws.sheet_view.showGridLines = False
     ws.freeze_panes = "A5"
 
@@ -3140,6 +3260,8 @@ TAB_INDEX = [
     ("Mechanism Gates", "Exceptional-return archetypes as hard causal conjunctions; 2+ machines = highest conviction."),
     ("Structured Distressed", "Cundill/Sibir: asset-backed washouts raising via senior/convertible instruments (own the instrument)."),
     ("Governance Discount", "Well below book + a recent governance change implying action to re-rate or return capital."),
+    ("Call Intent", "Earnings-call language signalling management will act (NLP, validated against what companies did next)."),
+    ("Political Trades", "Senate + House trade disclosures, weighted by an event study of post-disclosure returns."),
     ("Re-Rate Catalysts", "Spin-offs / separations / asset sales / sale-of-company / strategic reviews x geometry room."),
     ("Re-Rate Backtest", "What those catalysts actually returned historically — the evidence behind the weights."),
     ("Tail Odds", "Candidates ranked by measured probability of a right-tail outcome; the features that raise the odds."),
@@ -3313,6 +3435,8 @@ def main() -> int:
     build_mechanism_gates(wb, yf)
     build_structured_distressed(wb, yf)
     build_governance_discount(wb, yf)
+    build_call_intent(wb, yf)
+    build_political_trades(wb, yf)
     build_rerate_catalysts(wb, yf)
     build_rerate_backtest(wb, yf)
     build_tail_odds(wb, yf)
