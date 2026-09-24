@@ -7,7 +7,7 @@
     "mcap": 144348370.0,
     "deep": true,
     "net_cash_frac": 0.0,
-    "n_families": 3,
+    "n_families": 4,
     "n_hard": 2,
     "tier": "ACTION LIKELY",
     "families": {
@@ -34,9 +34,15 @@
         "date": "2026-03-20",
         "source": "DEF 14A",
         "detail": "PSU on tsr"
+      },
+      "CALL_INTENT": {
+        "pts": 4.0,
+        "date": "2026-08-07",
+        "source": "earnings call",
+        "detail": "\u201cI will start with a few words on our continuing strategic options process that began in la\u201d"
       }
     },
-    "score": 34.8
+    "score": 38.8
   },
   "JOB": {
     "ticker": "JOB",
@@ -389,12 +395,6 @@
         "source": "8-K",
         "detail": "modified dutch auction"
       },
-      "CALL_INTENT": {
-        "pts": 4.0,
-        "date": "2026-08-07",
-        "source": "earnings call",
-        "detail": "\u201cAnd then your second point, you know, your second point, we should be buying back stock.\u201d"
-      },
       "CALL_VALUE_GAP": {
         "pts": 3.0,
         "date": "2026-08-07",
@@ -402,7 +402,7 @@
         "detail": "\u201cWe just think our stock doesn't reflect what we think is fair market value.\u201d"
       }
     },
-    "score": 34.0
+    "score": 30.0
   },
   "BXMT": {
     "ticker": "BXMT",
@@ -1000,7 +1000,7 @@
     "mcap": 332474596.0,
     "deep": false,
     "net_cash_frac": 1.069,
-    "n_families": 2,
+    "n_families": 3,
     "n_hard": 0,
     "tier": "BUILDING",
     "families": {
@@ -1015,9 +1015,15 @@
         "date": "2026-05-27",
         "source": "8-K",
         "detail": "definitive agreement to sell"
+      },
+      "CALL_INTENT": {
+        "pts": 4.0,
+        "date": "2026-05-07",
+        "source": "earnings call",
+        "detail": "\u201cAs a result, we initiated the previously described strategic alternatives review process i\u201d"
       }
     },
-    "score": 18.0
+    "score": 25.0
   },
   "NEUP": {
     "ticker": "NEUP",
@@ -1331,8 +1337,8 @@
     "deep": false,
     "net_cash_frac": 1.715,
     "n_families": 3,
-    "n_hard": 1,
-    "tier": "ACTION LIKELY",
+    "n_hard": 0,
+    "tier": "BUILDING",
     "families": {
       "ASSET_SALE": {
         "pts": 5.0,
@@ -1352,14 +1358,14 @@
         "source": "DEF 14A",
         "detail": "say-on-pay 58%"
       },
-      "CALL_COMMIT": {
-        "pts": 7.0,
+      "CALL_INTENT": {
+        "pts": 4.0,
         "date": "2026-08-06",
         "source": "earnings call",
         "detail": "\u201cIn addition to business investments, we will evaluate stock buyback opportunities, includi\u201d"
       }
     },
-    "score": 28.8
+    "score": 25.8
   },
   "ARI": {
     "ticker": "ARI",
@@ -1937,7 +1943,7 @@
     "deep": false,
     "net_cash_frac": 0.0,
     "n_families": 2,
-    "n_hard": 2,
+    "n_hard": 1,
     "tier": "ACTION LIKELY",
     "families": {
       "PAY_ON_VALUE": {
@@ -1946,8 +1952,8 @@
         "source": "DEF 14A",
         "detail": "PSU on eps, tsr"
       },
-      "CALL_COMMIT": {
-        "pts": 7.0,
+      "CALL_INTENT": {
+        "pts": 4.0,
         "date": "2026-08-06",
         "source": "earnings call",
         "detail": "\u201cDuring the second quarter, we repurchased approximately 3.5 million shares at an average p\u201d"
@@ -1965,7 +1971,7 @@
         "detail": "turnaround executive hired"
       }
     },
-    "score": 22.8
+    "score": 19.8
   },
   "AGO": {
     "ticker": "AGO",
@@ -2159,6 +2165,39 @@
     },
     "score": 25.0
   },
+  "CHGG": {
+    "ticker": "CHGG",
+    "name": "Chegg, Inc.",
+    "sector": "Consumer Defensive",
+    "p_b": 0.687,
+    "mcap": 81461251.0,
+    "deep": false,
+    "net_cash_frac": 0.412,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "PAY_ON_VALUE": {
+        "pts": 2.0,
+        "date": "2026-04-28",
+        "source": "DEF 14A",
+        "detail": "PSU on tsr"
+      },
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-08-06",
+        "source": "earnings call",
+        "detail": "\u201cDuring the second quarter, we repurchased $1.7 million of our common stock and have $120.7\u201d"
+      },
+      "CALL_VALUE_GAP": {
+        "pts": 3.0,
+        "date": "2026-08-06",
+        "source": "earnings call",
+        "detail": "\u201cSo the value of the company, we think, is undervalued simply because of the amount of cash\u201d"
+      }
+    },
+    "score": 19.0
+  },
   "FG": {
     "ticker": "FG",
     "name": "F&G Annuities & Life, Inc.",
@@ -2225,45 +2264,6 @@
     },
     "score": 15.0
   },
-  "STRR": {
-    "ticker": "STRR",
-    "name": "Star Equity Holdings, Inc.",
-    "sector": "Industrials",
-    "p_b": 0.629,
-    "mcap": 37587201.0,
-    "deep": false,
-    "net_cash_frac": 0.0,
-    "n_families": 2,
-    "n_hard": 0,
-    "tier": "BUILDING",
-    "families": {
-      "PAY_ON_VALUE": {
-        "pts": 2.0,
-        "date": "2026-04-30",
-        "source": "DEF 14A",
-        "detail": "PSU on tsr"
-      },
-      "CALL_INTENT": {
-        "pts": 4.0,
-        "date": "2026-08-14",
-        "source": "earnings call",
-        "detail": "\u201cWe repurchased about $0.2 million in Q2 and we have $1.6 million remaining on our authoriz\u201d"
-      },
-      "CALL_VALUE_GAP": {
-        "pts": 3.0,
-        "date": "2026-08-14",
-        "source": "earnings call",
-        "detail": "\u201cWe continue to believe our stock is undervalued, and we view share repurchases as a very a\u201d"
-      },
-      "CIC_PREP": {
-        "pts": 1.8,
-        "date": null,
-        "source": "DEF 14A",
-        "detail": "change-in-control terms"
-      }
-    },
-    "score": 16.8
-  },
   "CAN": {
     "ticker": "CAN",
     "name": "Canaan Inc.",
@@ -2318,13 +2318,13 @@
     },
     "score": 17.0
   },
-  "FSK": {
-    "ticker": "FSK",
-    "name": "FS KKR Capital Corp.",
+  "FINV": {
+    "ticker": "FINV",
+    "name": "FinVolution Group",
     "sector": "Financial Services",
-    "p_b": 0.593,
-    "mcap": 3124141060.0,
-    "deep": false,
+    "p_b": 0.305,
+    "mcap": 802321141.0,
+    "deep": true,
     "net_cash_frac": 0.0,
     "n_families": 1,
     "n_hard": 1,
@@ -2332,12 +2332,12 @@
     "families": {
       "CALL_COMMIT": {
         "pts": 7.0,
-        "date": "2026-08-06",
+        "date": "2026-08-27",
         "source": "earnings call",
-        "detail": "\u201cDuring the second quarter, we repurchased approximately 377,800 shares of FSK's common sto\u201d"
+        "detail": "\u201cIn the second quarter, we repurchased USD 27.4 million of shares, bringing first half 2026\u201d"
       }
     },
-    "score": 11.0
+    "score": 17.0
   },
   "GNW": {
     "ticker": "GNW",
@@ -2366,13 +2366,13 @@
     },
     "score": 17.0
   },
-  "HRZN": {
-    "ticker": "HRZN",
-    "name": "Horizon Technology Finance Corporation",
-    "sector": "Financial Services",
-    "p_b": 0.554,
-    "mcap": 231127567.0,
-    "deep": false,
+  "ICG": {
+    "ticker": "ICG",
+    "name": "Intchains Group Limited",
+    "sector": "Technology",
+    "p_b": 0.241,
+    "mcap": 30230495.0,
+    "deep": true,
     "net_cash_frac": 0.0,
     "n_families": 1,
     "n_hard": 1,
@@ -2380,33 +2380,12 @@
     "families": {
       "CALL_COMMIT": {
         "pts": 7.0,
-        "date": "2026-08-05",
+        "date": "2026-08-20",
         "source": "earnings call",
-        "detail": "\u201cIn addition, on August 3, 2026, our Board increased the amount of common stock that may be\u201d"
+        "detail": "\u201cWe also announced today that our Board of Directors had approved a share repurchase progra\u201d"
       }
     },
-    "score": 11.0
-  },
-  "HTFC": {
-    "ticker": "HTFC",
-    "name": "Horizon Technology Finance Corp",
-    "sector": "Financial Services",
-    "p_b": 0.55,
-    "mcap": 229632623.0,
-    "deep": false,
-    "net_cash_frac": 0.0,
-    "n_families": 1,
-    "n_hard": 1,
-    "tier": "BUILDING",
-    "families": {
-      "CALL_COMMIT": {
-        "pts": 7.0,
-        "date": "2026-08-05",
-        "source": "earnings call",
-        "detail": "\u201cIn addition, on August 3, 2026, our Board increased the amount of common stock that may be\u201d"
-      }
-    },
-    "score": 11.0
+    "score": 17.0
   },
   "JOYY": {
     "ticker": "JOYY",
@@ -2431,27 +2410,6 @@
         "date": "2026-08-25",
         "source": "earnings call",
         "detail": "\u201cGiven our strong operating momentum and the long-term prospects, we believe our current sh\u201d"
-      }
-    },
-    "score": 14.0
-  },
-  "KREF": {
-    "ticker": "KREF",
-    "name": "KKR Real Estate Finance Trust Inc.",
-    "sector": "Real Estate",
-    "p_b": 0.437,
-    "mcap": 407021640.0,
-    "deep": true,
-    "net_cash_frac": 0.0,
-    "n_families": 1,
-    "n_hard": 1,
-    "tier": "BUILDING",
-    "families": {
-      "CALL_COMMIT": {
-        "pts": 7.0,
-        "date": "2026-07-22",
-        "source": "earnings call",
-        "detail": "\u201cThis process will be led by a strategic review committee composed solely of the Board's in\u201d"
       }
     },
     "score": 14.0
@@ -2536,6 +2494,27 @@
       }
     },
     "score": 14.0
+  },
+  "PERI": {
+    "ticker": "PERI",
+    "name": "Perion Network Ltd.",
+    "sector": "Communication Services",
+    "p_b": 0.573,
+    "mcap": 357063475.0,
+    "deep": false,
+    "net_cash_frac": 0.0,
+    "n_families": 1,
+    "n_hard": 1,
+    "tier": "BUILDING",
+    "families": {
+      "CALL_COMMIT": {
+        "pts": 7.0,
+        "date": "2026-08-10",
+        "source": "earnings call",
+        "detail": "\u201cSince the initiation of this buyback program, 9 quarters ago, we have repurchased a cumula\u201d"
+      }
+    },
+    "score": 11.0
   },
   "RWAY": {
     "ticker": "RWAY",

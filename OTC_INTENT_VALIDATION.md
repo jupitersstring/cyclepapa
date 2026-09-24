@@ -4,9 +4,9 @@ Generated 2026-09-24 by `otc_comms.py`. Each dated document (press release, 8-K 
 
 | documents | n | base rate | AUC (language) | top-decile hit | lift |
 |---|---|---|---|---|---|
-| all | 216 | 17.6% | 0.522 | 23.8% | 1.35x |
-| press releases | 190 | 19.5% | 0.522 | 21.1% | 1.08x |
-| 8-K EX-99 | 20 | — | — | — | — |
-| letters | 2 | — | — | — | — |
-| calls | 4 | — | — | — | — |
-| not already shrinking | 193 | 18.7% | 0.529 | 21.1% | 1.13x |
+| all | 11542 | 18.9% | 0.563 | 36.1% | 1.91x |
+| press releases | 9559 | 17.5% | 0.522 | 22.8% | 1.30x |
+| 8-K EX-99 | 671 | 11.3% | 0.576 | 23.9% | 2.11x |
+| letters | 64 | 7.8% | 0.546 | 16.7% | 2.13x |
+| calls | 1248 | 34.2% | 0.610 | 50.8% | 1.48x |
+| not already shrinking | 9785 | 15.3% | 0.574 | 32.4% | 2.12x |

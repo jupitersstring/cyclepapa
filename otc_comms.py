@@ -388,10 +388,13 @@ def main() -> int:
     import build_otc_book as ob
     seen, ranked = set(), []
     for r in sorted(out.values(), key=lambda r: -r["score"]):
-        key = ob._norm(r.get("name")) or r["ticker"]
-        if key in seen:
+        # same company = same name, or the very same evidence quote (ordinary + ADR
+        # lines whose names are spelt differently share one transcript)
+        keys = {ob._norm(r.get("name")) or r["ticker"]} | \
+               {"q:" + e["q"][:120] for e in (r.get("evidence") or {}).values() if e.get("q")}
+        if keys & seen:
             continue
-        seen.add(key); ranked.append(r)
+        seen |= keys; ranked.append(r)
     for i, r in enumerate(ranked):
         pct = 1 - i / max(1, len(ranked))
         strong = any(r["families"].get(k, 0) >= 0.9 for k in ci.SHAREHOLDER_ACT)
