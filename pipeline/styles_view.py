@@ -21,9 +21,10 @@ STYLE_RULES = [
     (r"tiger\s*cub|l/?s\s+legends",           "Tiger Cubs / L/S Legends"),
     (r"family[\s-]?office|individual",        "Family Offices / Individual Filers"),
     (r"microcap[\s-]?tactical",               "Microcap-Tactical"),
-    (r"small[\s-]?cap|multibagger",           "Small-cap / Multibagger Specialists"),
+    (r"small[\s-]?cap|multibagger|nano[\s-]?cap|micro[\s-]?cap", "Small-cap / Multibagger Specialists"),
     (r"distressed|event[\s-]?driven",         "Distressed / Event-Driven"),
-    (r"japan|european|asia|global|EM",        "Foreign / EM Value"),
+    # \bEM\b: a bare "em" substring had filed "Nanocap ... 13F-EXEMPT" as Foreign/EM
+    (r"japan|european|asia|global|\bEM\b",   "Foreign / EM Value"),
     (r"activist|special\s+sits|sponsor",      "Activists / Special Situations"),
     (r"value|quality|compounder|skin|fat[\s-]?pitch|VIC|concentrated", "Value / Concentrated Quality"),
     (r"\bPE\b|\bLBO\b|private\s+equity|SPAC|gold|mining", "PE / SPAC / Gold / Mining"),

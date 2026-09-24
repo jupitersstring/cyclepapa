@@ -16,12 +16,14 @@ def nth_13f_acc(cik, n=1):
     Falls through to the paged history files when heavy filers (Form 4 / SC 13
     torrents) push their 13F-HRs out of the ~1000-filing "recent" window."""
     data = m.curl(f"https://data.sec.gov/submissions/CIK{str(cik).zfill(10)}.json")
+    # a FAILED fetch (SEC throttling) is not "no prior filing": return False so
+    # the caller retries next run instead of recording the fund as having none
     if not data:
-        return None, None
+        return False, None
     try:
         d = json.loads(data)
     except json.JSONDecodeError:
-        return None, None
+        return False, None
     rec = d.get("filings", {}).get("recent", {})
     hits = [(rec["accessionNumber"][i], rec["filingDate"][i])
             for i, f in enumerate(rec.get("form", [])) if f == "13F-HR"]
@@ -41,6 +43,25 @@ def nth_13f_acc(cik, n=1):
                 break
     return hits[n] if len(hits) > n else (None, None)
 
+def normalize_units(conn):
+    """Full-dollar filings booked as $k -> $k, by implied price (value/shares
+    vs actual price): unit-free, immune to the megacap blind spot of an mcap
+    rule; one quarter of drift is irrelevant against a ~1000x signal. Runs at
+    the START of each run too: a run interrupted mid-way (SEC throttling) once
+    left five books (Baillie Gifford, Eagle, Ensign Peak...) at $7T."""
+    import statistics
+    px = {t: p for t, p in conn.execute("SELECT ticker, price FROM ticker_yf WHERE price > 0")}
+    for (fund,) in conn.execute("SELECT DISTINCT fund FROM fund_13f_prior").fetchall():
+        ratios = []
+        for tk, v, sh, st in conn.execute("""SELECT ticker, value_k, shares, sh_type FROM fund_13f_prior
+                                             WHERE fund=? AND shares>0 AND value_k>0""", (fund,)):
+            p = 1.0 if st == "PRN" else px.get(tk)   # bonds trade near par per $1 principal
+            if p:
+                ratios.append((v * 1000.0 / sh) / p)
+        if len(ratios) >= 2 and statistics.median(ratios) > 100:
+            conn.execute("UPDATE fund_13f_prior SET value_k=value_k/1000.0 WHERE fund=?", (fund,))
+    conn.commit()
+
 def run():
     conn = sqlite3.connect(DB); conn.execute("PRAGMA busy_timeout=30000")
     conn.executescript("""
@@ -54,6 +75,7 @@ def run():
     CREATE TABLE IF NOT EXISTS fund_13f_prior_state (
       fund TEXT PRIMARY KEY, accession TEXT, filed TEXT, n_holdings INTEGER, total_value_k INTEGER);
     """)
+    normalize_units(conn)              # repair an interrupted earlier run first
     name_map = m.cusip_ticker_map(conn)
     cusip_map = {c: (tk, st) for c, tk, st in
                  conn.execute("SELECT cusip, ticker, sec_type FROM cusip_map")}
@@ -67,6 +89,8 @@ def run():
             skip += 1; continue
         acc, filed = nth_13f_acc(cik, 1)
         time.sleep(0.35)
+        if acc is False:
+            continue                     # fetch failed: leave unrecorded, retry next run
         if not acc or acc == cur_acc:
             conn.execute("INSERT OR REPLACE INTO fund_13f_prior_state VALUES (?,?,?,?,?)",
                          (fund, acc, filed, 0, 0)); conn.commit()
@@ -112,20 +136,7 @@ def run():
         conn.commit(); done += 1
         if done % 25 == 0:
             print(f"  {done} funds ingested ({skip} skipped)", flush=True)
-    # Value-unit normalization by implied price (value/shares vs actual price):
-    # unit-free and immune to the megacap blindspot of the old mcap heuristic.
-    # One quarter of price drift is irrelevant against a ~1000x unit signal.
-    import statistics
-    px = {t: p for t, p in conn.execute("SELECT ticker, price FROM ticker_yf WHERE price > 0")}
-    for (fund,) in conn.execute("SELECT DISTINCT fund FROM fund_13f_prior").fetchall():
-        ratios = []
-        for tk, v, sh, st in conn.execute("""SELECT ticker, value_k, shares, sh_type FROM fund_13f_prior
-                                             WHERE fund=? AND shares>0 AND value_k>0""", (fund,)):
-            p = 1.0 if st == "PRN" else px.get(tk)   # bonds trade near par per $1 principal
-            if p:
-                ratios.append((v * 1000.0 / sh) / p)
-        if len(ratios) >= 2 and statistics.median(ratios) > 100:
-            conn.execute("UPDATE fund_13f_prior SET value_k=value_k/1000.0 WHERE fund=?", (fund,))
+    normalize_units(conn)
     conn.commit()
     n = conn.execute("SELECT COUNT(*) FROM fund_13f_prior").fetchone()[0]
     print(f"DONE: {done} funds, {n} prior holdings", flush=True)

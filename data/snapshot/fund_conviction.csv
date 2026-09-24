@@ -1973,13 +1973,13 @@ Northern Right Capital (Becker ,GEG,ACTIVIST_13D,3.0,1.4,4.2,Activists / Special
 Northern Right Capital (Becker ,CDRE,NEW_INIT_LARGE,2.0,1.4,2.8,Activists / Special Situations,,,0.0
 Northern Right Capital (Becker ,NBIS,NEW_INIT_LARGE,2.0,1.4,2.8,Activists / Special Situations,,,0.0
 Northern Right Capital (Becker ,EBAY,NEW_INIT_LARGE,2.0,1.4,2.8,Activists / Special Situations,,,0.0
-Nierenberg Investment Mgmt D3,SGOV,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.4,11.2,Activists / Special Situations,27.51,,55.4
-Nierenberg Investment Mgmt D3,EQT,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,16.85,,33.9
-Nierenberg Investment Mgmt D3,CRTO,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,1.4,9.1,Activists / Special Situations,9.37,,18.9
-Nierenberg Investment Mgmt D3,LYFT,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,1.4,9.1,Activists / Special Situations,8.55,,17.2
-Nierenberg Investment Mgmt D3,KBR,"HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD,NEW_INIT_LARGE,TOP_PICK",12.0,1.4,16.8,Activists / Special Situations,7.07,,14.2
-Nierenberg Investment Mgmt D3,PBPB,"ACTIVIST_13D,HOLDING_PERSIST,TOP_PICK",7.5,1.4,10.5,Activists / Special Situations,7.0,,14.0
-Nierenberg Investment Mgmt D3,RVSB,"ACTIVIST_13D,HOLDING_PERSIST,INSIDER_COBUY",8.0,1.4,11.2,Activists / Special Situations,,6.4,10.7
+Nierenberg Investment Mgmt D3,SGOV,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.2,9.6,Small-cap / Multibagger Specialists,27.51,,55.4
+Nierenberg Investment Mgmt D3,EQT,"HYPER_CONVICTION,TOP_PICK",7.0,1.2,8.4,Small-cap / Multibagger Specialists,16.85,,33.9
+Nierenberg Investment Mgmt D3,CRTO,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,1.2,7.8,Small-cap / Multibagger Specialists,9.37,,18.9
+Nierenberg Investment Mgmt D3,LYFT,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,1.2,7.8,Small-cap / Multibagger Specialists,8.55,,17.2
+Nierenberg Investment Mgmt D3,KBR,"HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD,NEW_INIT_LARGE,TOP_PICK",12.0,1.2,14.4,Small-cap / Multibagger Specialists,7.07,,14.2
+Nierenberg Investment Mgmt D3,PBPB,"ACTIVIST_13D,HOLDING_PERSIST,TOP_PICK",7.5,1.2,9.0,Small-cap / Multibagger Specialists,7.0,,14.0
+Nierenberg Investment Mgmt D3,RVSB,"ACTIVIST_13D,HOLDING_PERSIST,INSIDER_COBUY",8.0,1.2,9.6,Small-cap / Multibagger Specialists,,6.4,10.7
 MILFAM LLC Subin,NN,"ACTIVIST_13D,HOLDING_PERSIST,HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",12.5,1.5,18.75,Family Offices / Individual Filers,39.4,5.0,40.0
 MILFAM LLC Subin,PCG,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.5,12.0,Family Offices / Individual Filers,28.2,,29.0
 MILFAM LLC Subin,SRL,"ACTIVIST_13D,HOLDING_PERSIST,HYPER_CONVICTION,TOP_PICK",11.5,1.5,17.25,Family Offices / Individual Filers,15.2,13.0,16.0
@@ -2045,44 +2045,44 @@ PointState Capital LP,WCC,THRESHOLD_13G,1.5,0.6,0.9,Macro / Trend,,6.1,0.0
 Tekne Capital Management,GDS,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.0,8.0,Foreign / EM Value,86.0,,203.5
 Tekne Capital Management,ACMR,"HYPER_CONVICTION,TOP_PICK",7.0,1.0,7.0,Foreign / EM Value,11.9,,28.1
 Tekne Capital Management,PAQI,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.0,3.5,Foreign / EM Value,2.1,,5.0
-Cedar Creek Partners (Eriksen),EXCE,"HOLDING_PERSIST,NEW_INIT_LARGE,PUBLIC_LETTER,TOP_PICK",9.0,1.6,14.4,Value / Concentrated Quality,8.0,,0.0
-Cedar Creek Partners (Eriksen),PHIG,"HOLDING_PERSIST,MATERIAL_ADD,PUBLIC_LETTER,TOP_PICK",9.0,1.6,14.4,Value / Concentrated Quality,7.0,,27.0
-Cedar Creek Partners (Eriksen),HRBR,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,4.0,,0.0
-Cedar Creek Partners (Eriksen),PDRX,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,3.0,,0.0
-Cedar Creek Partners (Eriksen),SODI,"HYPER_CONVICTION,PUBLIC_LETTER,TOP_PICK",9.5,1.6,15.2,Value / Concentrated Quality,11.6,,0.0
-Atai Capital Management,TPB,MULTI_FUND_PEER,1.0,1.0,1.0,Other / Unclassified,,,0.0
-Atai Capital Management,BKTI,PUBLIC_LETTER,2.5,1.0,2.5,Other / Unclassified,,,0.0
-Atai Capital Management,HAIVF,PUBLIC_LETTER,2.5,1.0,2.5,Other / Unclassified,,,0.0
-H Partners Management,FUN,"HOLDING_PERSIST,HYPER_CONVICTION,INSIDER_COBUY,TOP_PICK",12.0,1.4,16.8,Activists / Special Situations,53.7,5.7,82.5
-H Partners Management,AAP,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,1.4,16.1,Activists / Special Situations,46.3,,71.2
-Trigran Investments,MTRN,"HYPER_CONVICTION,TOP_PICK",7.0,1.0,7.0,Other / Unclassified,11.6,,48.3
-Trigran Investments,SYNA,"HYPER_CONVICTION,TOP_PICK",7.0,1.0,7.0,Other / Unclassified,11.0,,45.9
-Trigran Investments,EXTR,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,TOP_PICK",10.5,1.0,10.5,Other / Unclassified,10.3,,42.9
-Trigran Investments,NPO,"HYPER_CONVICTION,TOP_PICK",7.0,1.0,7.0,Other / Unclassified,10.2,,42.6
-Trigran Investments,THRM,"HOLDING_PERSIST,THRESHOLD_13G,TOP_PICK",6.0,1.0,6.0,Other / Unclassified,9.0,4.8,37.5
-Trigran Investments,SONO,TOP_PICK,3.0,1.0,3.0,Other / Unclassified,8.0,,33.4
-Trigran Investments,HLIT,TOP_PICK,3.0,1.0,3.0,Other / Unclassified,6.9,,28.9
-Trigran Investments,HAYW,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,1.0,6.5,Other / Unclassified,6.8,,28.6
-Trigran Investments,MDXG,"HOLDING_PERSIST,MATERIAL_ADD,THRESHOLD_13G,TOP_PICK",8.0,1.0,8.0,Other / Unclassified,6.8,4.2,28.3
-Trigran Investments,RDVT,"HOLDING_PERSIST,THRESHOLD_13G,TOP_PICK",6.0,1.0,6.0,Other / Unclassified,5.0,4.5,21.0
-Trigran Investments,OOMA,THRESHOLD_13G,1.5,1.0,1.5,Other / Unclassified,,3.4,0.0
-Trigran Investments,TTGT,THRESHOLD_13G,1.5,1.0,1.5,Other / Unclassified,,5.3,0.0
-Trigran Investments,ANIK,THRESHOLD_13G,1.5,1.0,1.5,Other / Unclassified,,11.2,0.0
-Trigran Investments,AMPL,NEW_INIT_LARGE,2.0,1.0,2.0,Other / Unclassified,,,2.6
-Trigran Investments,AVNS,NEW_INIT_LARGE,2.0,1.0,2.0,Other / Unclassified,,,1.3
+Cedar Creek Partners (Eriksen),EXCE,"HOLDING_PERSIST,NEW_INIT_LARGE,PUBLIC_LETTER,TOP_PICK",9.0,1.2,10.8,Small-cap / Multibagger Specialists,8.0,,0.0
+Cedar Creek Partners (Eriksen),PHIG,"HOLDING_PERSIST,MATERIAL_ADD,PUBLIC_LETTER,TOP_PICK",9.0,1.2,10.8,Small-cap / Multibagger Specialists,7.0,,27.0
+Cedar Creek Partners (Eriksen),HRBR,PUBLIC_LETTER,2.5,1.2,3.0,Small-cap / Multibagger Specialists,4.0,,0.0
+Cedar Creek Partners (Eriksen),PDRX,PUBLIC_LETTER,2.5,1.2,3.0,Small-cap / Multibagger Specialists,3.0,,0.0
+Cedar Creek Partners (Eriksen),SODI,"HYPER_CONVICTION,PUBLIC_LETTER,TOP_PICK",9.5,1.2,11.4,Small-cap / Multibagger Specialists,11.6,,0.0
+Atai Capital Management,TPB,MULTI_FUND_PEER,1.0,1.2,1.2,Small-cap / Multibagger Specialists,,,0.0
+Atai Capital Management,BKTI,PUBLIC_LETTER,2.5,1.2,3.0,Small-cap / Multibagger Specialists,,,0.0
+Atai Capital Management,HAIVF,PUBLIC_LETTER,2.5,1.2,3.0,Small-cap / Multibagger Specialists,,,0.0
+H Partners Management,FUN,"HOLDING_PERSIST,HYPER_CONVICTION,INSIDER_COBUY,TOP_PICK",12.0,1.2,14.4,Small-cap / Multibagger Specialists,53.7,5.7,82.5
+H Partners Management,AAP,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,1.2,13.8,Small-cap / Multibagger Specialists,46.3,,71.2
+Trigran Investments,MTRN,"HYPER_CONVICTION,TOP_PICK",7.0,1.2,8.4,Small-cap / Multibagger Specialists,11.6,,48.3
+Trigran Investments,SYNA,"HYPER_CONVICTION,TOP_PICK",7.0,1.2,8.4,Small-cap / Multibagger Specialists,11.0,,45.9
+Trigran Investments,EXTR,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,TOP_PICK",10.5,1.2,12.6,Small-cap / Multibagger Specialists,10.3,,42.9
+Trigran Investments,NPO,"HYPER_CONVICTION,TOP_PICK",7.0,1.2,8.4,Small-cap / Multibagger Specialists,10.2,,42.6
+Trigran Investments,THRM,"HOLDING_PERSIST,THRESHOLD_13G,TOP_PICK",6.0,1.2,7.2,Small-cap / Multibagger Specialists,9.0,4.8,37.5
+Trigran Investments,SONO,TOP_PICK,3.0,1.2,3.6,Small-cap / Multibagger Specialists,8.0,,33.4
+Trigran Investments,HLIT,TOP_PICK,3.0,1.2,3.6,Small-cap / Multibagger Specialists,6.9,,28.9
+Trigran Investments,HAYW,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,1.2,7.8,Small-cap / Multibagger Specialists,6.8,,28.6
+Trigran Investments,MDXG,"HOLDING_PERSIST,MATERIAL_ADD,THRESHOLD_13G,TOP_PICK",8.0,1.2,9.6,Small-cap / Multibagger Specialists,6.8,4.2,28.3
+Trigran Investments,RDVT,"HOLDING_PERSIST,THRESHOLD_13G,TOP_PICK",6.0,1.2,7.2,Small-cap / Multibagger Specialists,5.0,4.5,21.0
+Trigran Investments,OOMA,THRESHOLD_13G,1.5,1.2,1.8,Small-cap / Multibagger Specialists,,3.4,0.0
+Trigran Investments,TTGT,THRESHOLD_13G,1.5,1.2,1.8,Small-cap / Multibagger Specialists,,5.3,0.0
+Trigran Investments,ANIK,THRESHOLD_13G,1.5,1.2,1.8,Small-cap / Multibagger Specialists,,11.2,0.0
+Trigran Investments,AMPL,NEW_INIT_LARGE,2.0,1.2,2.4,Small-cap / Multibagger Specialists,,,2.6
+Trigran Investments,AVNS,NEW_INIT_LARGE,2.0,1.2,2.4,Small-cap / Multibagger Specialists,,,1.3
 Stadium Capital Management,BLDR,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.4,11.2,Activists / Special Situations,32.2,,13.1
 Stadium Capital Management,BC,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,23.9,,9.7
 Stadium Capital Management,DKS,"HYPER_CONVICTION,INSIDER_COBUY,TOP_PICK",10.5,1.4,14.7,Activists / Special Situations,17.2,,7.0
 Stadium Capital Management,LCII,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,12.6,,5.1
 Stadium Capital Management,SNBR,"ACTIVIST_13D,HOLDING_PERSIST,HYPER_CONVICTION,TOP_PICK",11.5,1.4,16.1,Activists / Special Situations,11.6,11.5,4.7
 Stadium Capital Management,GTLB,MULTI_FUND_PEER,1.0,1.4,1.4,Activists / Special Situations,2.4,,1.0
-Wynnefield Capital,NATR,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,40.2,,59.3
-Wynnefield Capital,CDRE,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,TOP_PICK",10.5,1.4,14.7,Activists / Special Situations,23.9,,35.3
-Wynnefield Capital,DLHC,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,14.5,,21.4
-Wynnefield Capital,LFCR,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.4,11.2,Activists / Special Situations,11.9,,17.5
-Wynnefield Capital,QRHC,"ACTIVIST_13D,HOLDING_PERSIST",4.5,1.4,6.3,Activists / Special Situations,2.2,13.3,3.3
-ADW Capital Management,PAR,"INSIDER_COBUY,MULTI_FUND_PEER",4.5,1.6,7.2,Value / Concentrated Quality,3.0,,7.96
-ADW Capital Management,KELYA,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.6,5.6,Value / Concentrated Quality,,,0.265
+Wynnefield Capital,NATR,"HYPER_CONVICTION,TOP_PICK",7.0,1.2,8.4,Small-cap / Multibagger Specialists,40.2,,59.3
+Wynnefield Capital,CDRE,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,TOP_PICK",10.5,1.2,12.6,Small-cap / Multibagger Specialists,23.9,,35.3
+Wynnefield Capital,DLHC,"HYPER_CONVICTION,TOP_PICK",7.0,1.2,8.4,Small-cap / Multibagger Specialists,14.5,,21.4
+Wynnefield Capital,LFCR,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.2,9.6,Small-cap / Multibagger Specialists,11.9,,17.5
+Wynnefield Capital,QRHC,"ACTIVIST_13D,HOLDING_PERSIST",4.5,1.2,5.4,Small-cap / Multibagger Specialists,2.2,13.3,3.3
+ADW Capital Management,PAR,"INSIDER_COBUY,MULTI_FUND_PEER",4.5,1.2,5.4,Small-cap / Multibagger Specialists,3.0,,7.96
+ADW Capital Management,KELYA,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.2,4.2,Small-cap / Multibagger Specialists,,,0.265
 Glynn Capital Management,TSM,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.6,12.8,Value / Concentrated Quality,10.0,,21.1
 Glynn Capital Management,VRT,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,8.5,,17.9
 Glynn Capital Management,NU,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,6.0,,12.9
@@ -2148,14 +2148,14 @@ Curreen Capital Partners,VFC,"HOLDING_PERSIST,NEW_INIT_LARGE,PUBLIC_LETTER",6.0,
 Curreen Capital Partners,DYNDF,"HOLDING_PERSIST,NEW_INIT_LARGE,PUBLIC_LETTER",6.0,1.0,6.0,Other / Unclassified,1.0,,6.91
 Curreen Capital Partners,GETBF,"NEW_INIT_LARGE,PUBLIC_LETTER",4.5,1.0,4.5,Other / Unclassified,1.0,,0.0
 Curreen Capital Partners,TRUE-B,"NEW_INIT_LARGE,PUBLIC_LETTER",4.5,1.0,4.5,Other / Unclassified,1.0,,0.0
-Greystone Capital Management,NRP,"MULTI_FUND_PEER,PUBLIC_LETTER",3.5,1.6,5.6,Value / Concentrated Quality,,,200.0
-Greystone Capital Management,KTYCF,"PUBLIC_LETTER,TOP_PICK",5.5,1.6,8.8,Value / Concentrated Quality,,,0.0
-Greystone Capital Management,APG,"MULTI_FUND_PEER,PUBLIC_LETTER,TOP_PICK",6.5,1.6,10.4,Value / Concentrated Quality,,,0.0
-Greystone Capital Management,MFCSF,"PUBLIC_LETTER,TOP_PICK",5.5,1.6,8.8,Value / Concentrated Quality,,,0.0
-Greystone Capital Management,FOUR,"HOLDING_PERSIST,INSIDER_COBUY,NEW_INIT_LARGE,PUBLIC_LETTER",9.5,1.6,15.2,Value / Concentrated Quality,-25.0,,0.0
-Osmium Partners,TBHC,"ACTIVIST_13D,HOLDING_PERSIST,HYPER_CONVICTION,TOP_PICK",11.5,1.4,16.1,Activists / Special Situations,50.0,9.7,5.2
-Osmium Partners,LOV,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,30.0,,3.2
-Osmium Partners,TDUP,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,19.0,,2.0
+Greystone Capital Management,NRP,"MULTI_FUND_PEER,PUBLIC_LETTER",3.5,1.2,4.2,Small-cap / Multibagger Specialists,,,200.0
+Greystone Capital Management,KTYCF,"PUBLIC_LETTER,TOP_PICK",5.5,1.2,6.6,Small-cap / Multibagger Specialists,,,0.0
+Greystone Capital Management,APG,"MULTI_FUND_PEER,PUBLIC_LETTER,TOP_PICK",6.5,1.2,7.8,Small-cap / Multibagger Specialists,,,0.0
+Greystone Capital Management,MFCSF,"PUBLIC_LETTER,TOP_PICK",5.5,1.2,6.6,Small-cap / Multibagger Specialists,,,0.0
+Greystone Capital Management,FOUR,"HOLDING_PERSIST,INSIDER_COBUY,NEW_INIT_LARGE,PUBLIC_LETTER",9.5,1.2,11.4,Small-cap / Multibagger Specialists,-25.0,,0.0
+Osmium Partners,TBHC,"ACTIVIST_13D,HOLDING_PERSIST,HYPER_CONVICTION,TOP_PICK",11.5,1.2,13.8,Small-cap / Multibagger Specialists,50.0,9.7,5.2
+Osmium Partners,LOV,"HYPER_CONVICTION,TOP_PICK",7.0,1.2,8.4,Small-cap / Multibagger Specialists,30.0,,3.2
+Osmium Partners,TDUP,"HYPER_CONVICTION,TOP_PICK",7.0,1.2,8.4,Small-cap / Multibagger Specialists,19.0,,2.0
 P2 Capital Partners,ACHC,"HOLDING_PERSIST,HYPER_CONVICTION,NEW_INIT_LARGE,TOP_PICK",10.5,1.6,16.8,Value / Concentrated Quality,19.8,,41.5
 P2 Capital Partners,CBZ,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,14.6,,30.6
 P2 Capital Partners,JBTM,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,13.7,,28.8
@@ -2214,22 +2214,22 @@ MSD Partners Dell Family Office,HAYW,THRESHOLD_13G,1.5,1.5,2.25,Family Offices /
 CAS Investment Partners Sosin,CVNA,"HOLDING_PERSIST,HYPER_CONVICTION,INSIDER_COBUY,MULTI_FUND_PEER,THRESHOLD_13G,TOP_PICK",14.5,1.6,23.2,Value / Concentrated Quality,81.7,,1430.0
 CAS Investment Partners Sosin,HGV,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.6,12.8,Value / Concentrated Quality,11.7,,205.0
 CAS Investment Partners Sosin,COF,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,6.0,,105.0
-Buckley Capital Advisors,LQDA,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.4,11.2,Activists / Special Situations,16.9,,23.6
-Buckley Capital Advisors,ACHC,"HOLDING_PERSIST,HYPER_CONVICTION,NEW_INIT_LARGE,TOP_PICK",10.5,1.4,14.7,Activists / Special Situations,11.2,,31.2
-Buckley Capital Advisors,SGHC,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,TOP_PICK",10.5,1.4,14.7,Activists / Special Situations,10.0,,14.0
-Buckley Capital Advisors,DAVE,TOP_PICK,3.0,1.4,4.2,Activists / Special Situations,9.6,,13.4
-Buckley Capital Advisors,PRTH,"HOLDING_PERSIST,TOP_PICK",4.5,1.4,6.3,Activists / Special Situations,7.2,2.2,16.1
-Buckley Capital Advisors,ROOT,TOP_PICK,3.0,1.4,4.2,Activists / Special Situations,5.5,,7.7
-Buckley Capital Advisors,SEZL,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.4,4.9,Activists / Special Situations,2.8,,3.9
-Buckley Capital Advisors,FLYW,MULTI_FUND_PEER,1.0,1.4,1.4,Activists / Special Situations,1.0,,1.4
-Buckley Capital Advisors,PRKR,NEW_INIT_LARGE,2.0,1.4,2.8,Activists / Special Situations,,,0.25
-Nine Ten Capital Management,GPGI,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,15.8,,49.7
-Nine Ten Capital Management,CLBT,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,1.6,18.4,Value / Concentrated Quality,15.1,,47.5
-Nine Ten Capital Management,SNEX,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,14.9,,46.8
-Nine Ten Capital Management,AGYS,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,TOP_PICK",10.5,1.6,16.8,Value / Concentrated Quality,14.8,,46.5
-Nine Ten Capital Management,MGNI,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.6,12.8,Value / Concentrated Quality,13.1,,41.4
-Nine Ten Capital Management,WINA,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,11.4,,35.8
-Nine Ten Capital Management,IRMD,"HOLDING_PERSIST,HYPER_CONVICTION,THRESHOLD_13G,TOP_PICK",10.0,1.6,16.0,Value / Concentrated Quality,10.2,3.4,32.2
+Buckley Capital Advisors,LQDA,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.2,9.6,Small-cap / Multibagger Specialists,16.9,,23.6
+Buckley Capital Advisors,ACHC,"HOLDING_PERSIST,HYPER_CONVICTION,NEW_INIT_LARGE,TOP_PICK",10.5,1.2,12.6,Small-cap / Multibagger Specialists,11.2,,31.2
+Buckley Capital Advisors,SGHC,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,TOP_PICK",10.5,1.2,12.6,Small-cap / Multibagger Specialists,10.0,,14.0
+Buckley Capital Advisors,DAVE,TOP_PICK,3.0,1.2,3.6,Small-cap / Multibagger Specialists,9.6,,13.4
+Buckley Capital Advisors,PRTH,"HOLDING_PERSIST,TOP_PICK",4.5,1.2,5.4,Small-cap / Multibagger Specialists,7.2,2.2,16.1
+Buckley Capital Advisors,ROOT,TOP_PICK,3.0,1.2,3.6,Small-cap / Multibagger Specialists,5.5,,7.7
+Buckley Capital Advisors,SEZL,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.2,4.2,Small-cap / Multibagger Specialists,2.8,,3.9
+Buckley Capital Advisors,FLYW,MULTI_FUND_PEER,1.0,1.2,1.2,Small-cap / Multibagger Specialists,1.0,,1.4
+Buckley Capital Advisors,PRKR,NEW_INIT_LARGE,2.0,1.2,2.4,Small-cap / Multibagger Specialists,,,0.25
+Nine Ten Capital Management,GPGI,"HYPER_CONVICTION,TOP_PICK",7.0,1.2,8.4,Small-cap / Multibagger Specialists,15.8,,49.7
+Nine Ten Capital Management,CLBT,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,1.2,13.8,Small-cap / Multibagger Specialists,15.1,,47.5
+Nine Ten Capital Management,SNEX,"HYPER_CONVICTION,TOP_PICK",7.0,1.2,8.4,Small-cap / Multibagger Specialists,14.9,,46.8
+Nine Ten Capital Management,AGYS,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,TOP_PICK",10.5,1.2,12.6,Small-cap / Multibagger Specialists,14.8,,46.5
+Nine Ten Capital Management,MGNI,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.2,9.6,Small-cap / Multibagger Specialists,13.1,,41.4
+Nine Ten Capital Management,WINA,"HYPER_CONVICTION,TOP_PICK",7.0,1.2,8.4,Small-cap / Multibagger Specialists,11.4,,35.8
+Nine Ten Capital Management,IRMD,"HOLDING_PERSIST,HYPER_CONVICTION,THRESHOLD_13G,TOP_PICK",10.0,1.2,12.0,Small-cap / Multibagger Specialists,10.2,3.4,32.2
 Bares Capital Management,PEGA,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,17.9,,194.4
 Bares Capital Management,XYZ,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,13.3,,144.0
 Bares Capital Management,WDAY,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,13.2,,142.9
@@ -2238,17 +2238,17 @@ Bares Capital Management,CSGP,"INSIDER_COBUY,TOP_PICK",6.5,1.6,10.4,Value / Conc
 Bares Capital Management,ETSY,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,8.7,,94.7
 Bares Capital Management,ALGN,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,7.0,,76.3
 Bares Capital Management,MEDP,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,5.3,,57.3
-Deep Sail Capital Partners,HYDG,PUBLIC_LETTER,2.5,1.0,2.5,Other / Unclassified,,,3.0
-Long Cast Advisers,MAMA,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
-Long Cast Advisers,PESI,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,8.15
-Long Cast Advisers,PDEX,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
-Long Cast Advisers,CCRD,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
-Long Cast Advisers,CCRN,"HOLDING_PERSIST,NEW_INIT_LARGE,PUBLIC_LETTER",6.0,1.6,9.6,Value / Concentrated Quality,,,16.48
-Long Cast Advisers,NRC,"HOLDING_PERSIST,NEW_INIT_LARGE,PUBLIC_LETTER",6.0,1.6,9.6,Value / Concentrated Quality,,,38.0
-Long Cast Advisers,RSSS,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
-Long Cast Advisers,MTRX,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
-Hummingbird Value Fund (Sonkin),MFCO,"HYPER_CONVICTION,TOP_PICK",7.0,1.0,7.0,Foreign / EM Value,10.0,,0.0
-Hummingbird Value Fund (Sonkin),DEWY,"HYPER_CONVICTION,TOP_PICK",7.0,1.0,7.0,Foreign / EM Value,10.0,,0.0
+Deep Sail Capital Partners,HYDG,PUBLIC_LETTER,2.5,1.2,3.0,Small-cap / Multibagger Specialists,,,3.0
+Long Cast Advisers,MAMA,PUBLIC_LETTER,2.5,1.2,3.0,Small-cap / Multibagger Specialists,,,0.0
+Long Cast Advisers,PESI,PUBLIC_LETTER,2.5,1.2,3.0,Small-cap / Multibagger Specialists,,,8.15
+Long Cast Advisers,PDEX,PUBLIC_LETTER,2.5,1.2,3.0,Small-cap / Multibagger Specialists,,,0.0
+Long Cast Advisers,CCRD,PUBLIC_LETTER,2.5,1.2,3.0,Small-cap / Multibagger Specialists,,,0.0
+Long Cast Advisers,CCRN,"HOLDING_PERSIST,NEW_INIT_LARGE,PUBLIC_LETTER",6.0,1.2,7.2,Small-cap / Multibagger Specialists,,,16.48
+Long Cast Advisers,NRC,"HOLDING_PERSIST,NEW_INIT_LARGE,PUBLIC_LETTER",6.0,1.2,7.2,Small-cap / Multibagger Specialists,,,38.0
+Long Cast Advisers,RSSS,PUBLIC_LETTER,2.5,1.2,3.0,Small-cap / Multibagger Specialists,,,0.0
+Long Cast Advisers,MTRX,PUBLIC_LETTER,2.5,1.2,3.0,Small-cap / Multibagger Specialists,,,0.0
+Hummingbird Value Fund (Sonkin),MFCO,"HYPER_CONVICTION,TOP_PICK",7.0,1.2,8.4,Small-cap / Multibagger Specialists,10.0,,0.0
+Hummingbird Value Fund (Sonkin),DEWY,"HYPER_CONVICTION,TOP_PICK",7.0,1.2,8.4,Small-cap / Multibagger Specialists,10.0,,0.0
 Marlowe Partners LP,FRPT,"HYPER_CONVICTION,INSIDER_COBUY,TOP_PICK",10.5,1.0,10.5,Other / Unclassified,39.8,,10.4
 Marlowe Partners LP,LRCX,"HYPER_CONVICTION,TOP_PICK",7.0,1.0,7.0,Other / Unclassified,26.2,,6.8
 Marlowe Partners LP,CALY,TOP_PICK,3.0,1.0,3.0,Other / Unclassified,9.1,,2.4
@@ -2256,10 +2256,10 @@ Marlowe Partners LP,VLTO,TOP_PICK,3.0,1.0,3.0,Other / Unclassified,6.8,,1.8
 Marlowe Partners LP,POOL,"HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD,TOP_PICK",10.0,1.0,10.0,Other / Unclassified,6.7,,1.7
 Marlowe Partners LP,PLYA,TOP_PICK,3.0,1.0,3.0,Other / Unclassified,5.3,,1.4
 Marlowe Partners LP,SOLV,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.0,3.5,Other / Unclassified,4.2,,1.1
-Horton Capital Management,KRMD,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,72.0,,32.0
-Horton Capital Management,URGN,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,15.0,,6.7
-Horton Capital Management,MYO,"ACTIVIST_13D,HOLDING_PERSIST,NEW_INIT_LARGE",6.5,1.4,9.1,Activists / Special Situations,,6.0,3.6
-Horton Capital Management,OSS,ACTIVIST_13D,3.0,1.4,4.2,Activists / Special Situations,,4.3,0.0
+Horton Capital Management,KRMD,"HYPER_CONVICTION,TOP_PICK",7.0,1.2,8.4,Small-cap / Multibagger Specialists,72.0,,32.0
+Horton Capital Management,URGN,"HYPER_CONVICTION,TOP_PICK",7.0,1.2,8.4,Small-cap / Multibagger Specialists,15.0,,6.7
+Horton Capital Management,MYO,"ACTIVIST_13D,HOLDING_PERSIST,NEW_INIT_LARGE",6.5,1.2,7.8,Small-cap / Multibagger Specialists,,6.0,3.6
+Horton Capital Management,OSS,ACTIVIST_13D,3.0,1.2,3.6,Small-cap / Multibagger Specialists,,4.3,0.0
 Cartica Management,FN,"HYPER_CONVICTION,TOP_PICK",7.0,1.0,7.0,Foreign / EM Value,10.6,,22.0
 Cartica Management,HTHT,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Foreign / EM Value,9.7,,20.0
 Cartica Management,MELI,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Foreign / EM Value,9.7,,20.0
@@ -2560,7 +2560,7 @@ Right Tail Capital,CWAN,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,
 "Bonhoeffer Fund (Keith Smith, W",OMAB,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
 "Bonhoeffer Fund (Keith Smith, W",GMS,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
 Caro-Kann Capital (Artem Fokin),RACE,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
-Long Cast Advisers,BURL,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
+Long Cast Advisers,BURL,PUBLIC_LETTER,2.5,1.2,3.0,Small-cap / Multibagger Specialists,,,0.0
 Plural Investing (Chris Waller),BAH,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
 Plural Investing (Chris Waller),CACI,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
 Kinderhook Partners,HMHC,PUBLIC_LETTER,2.5,1.2,3.0,Small-cap / Multibagger Specialists,,,0.0
