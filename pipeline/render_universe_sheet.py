@@ -13,6 +13,9 @@ from openpyxl.utils import get_column_letter
 import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _style_bw import (
+    complete_text,
+    first_sentence,
+    add_valuation_columns, valuation_lookup,
     write_title, write_section_heading, write_table_header, write_table_rows,
     autosize, write_legend_sheet, add_contents_index, set_print_layout,
     NUMFMT_USD, NUMFMT_PCT, NUMFMT_NUM, NUMFMT_INT, NUMFMT_USD2,
@@ -121,10 +124,10 @@ def signal_row_to_cells(r):
         round(r[30], 0) if r[30] is not None else "",   # 3mo % momentum (price_stats)
         round(r[31], 0) if r[31] is not None else "",   # off 3mo high (drawdown)
         round(r[21] or 0, 2) if r[21] else "",   # anchor px
-        (r[23] or "")[:60],                      # Name
-        (r[24] or "")[:60],                      # Sector
+        (r[23] or ""),                      # Name
+        (r[24] or ""),                      # Sector
         round(r[25] or 0, 2) if r[25] else "",   # Px
-        (r[26] or "")[:48],            # Industry
+        (r[26] or ""),            # Industry
         _one_liner(r[27], 90),         # Business (one-line summary)
     ]
 
@@ -375,7 +378,7 @@ def sheet_convergence(wb, conn):
         out.append([r["ticker"], n, round(r["score"] or 0, 1), r["mcap_m"] or "",
                     round(r["off_high"], 0) if r["off_high"] is not None else ""]
                    + ["●" if flags[f] else "" for f in flag_names]
-                   + [(r["name"] or "")[:58]])
+                   + [(r["name"] or "")])
     write_table_rows(ws, out, 5, ticker_col=1)
     from openpyxl.formatting.rule import DataBarRule
     if out:
@@ -559,7 +562,7 @@ def sheet_qoq_change(wb, conn):
         out.append([tk, nf, n_new, n_add, n_trim, n_exit,
                     "new" if pure_new else round(max(-99, min(999, d_pct)), 0),
                     "common" if tk not in formmix else "+" + formmix[tk],
-                    round(score or 0, 1), mcap or "", (name or "")[:58]])
+                    round(score or 0, 1), mcap or "", (name or "")])
     write_table_rows(ws, out, 5, ticker_col=1)
     # colour is data: Net Funds & Δ Shares — lapis building, crimson trimming
     color_directional(ws, 5, 4 + len(out), [2, 7], higher_is_better=True)
@@ -584,7 +587,7 @@ def sheet_dossier(wb, conn, top_n=45):
                 f"Top {top_n} by score. Each block: drivers · top holders (13F %book) · insiders · activist · recent 8-Ks · valuation & momentum. The single-idea vetting view.", 8)
     conn.row_factory = sqlite3.Row
     names = conn.execute("""SELECT us.*, tm.adv_3m_usd_m adv, ps.off_high, ps.mom_3mo,
-               yf.rev_growth, yf.profit_margin, yf.fwd_pe
+               yf.rev_growth, yf.profit_margin, yf.fwd_pe, yf.ptb_ratio, yf.neg_tbv
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker=us.ticker
         LEFT JOIN price_stats ps ON ps.ticker=us.ticker
@@ -598,7 +601,7 @@ def sheet_dossier(wb, conn, top_n=45):
     for r in names:
         tk = r["ticker"]
         # header line: ticker — name | score | mcap | bucket
-        h = ws.cell(row=row, column=1, value=f"{tk} — {(r['name'] or '')[:40]}")
+        h = ws.cell(row=row, column=1, value=f"{tk} — {(r['name'] or '')}")
         h.font = _F(name="Times New Roman", size=11, bold=True)
         ws.cell(row=row, column=6, value=f"Score {r['score']:.0f}")
         ws.cell(row=row, column=7, value=f"{(r['mcap_m'] or 0)/1000:.1f}B" if r['mcap_m'] else "")
@@ -614,9 +617,9 @@ def sheet_dossier(wb, conn, top_n=45):
             c = canon(hr[0])
             if c in seen: continue
             seen.add(c)
-            nm = re.sub(r"\s*\(.*$", "", hr[0]).strip()[:22]
+            nm = re.sub(r"\s*\(.*$", "", hr[0]).strip()
             holders.append(f"{nm}{f' {hr[1]:.0f}%' if hr[1] else ''}")
-        ws.cell(row=row, column=1, value="Held by"); ws.cell(row=row, column=2, value=", ".join(holders[:6])[:120]); row += 1
+        ws.cell(row=row, column=1, value="Held by"); ws.cell(row=row, column=2, value=", ".join(holders[:6])); row += 1
         # insiders + activist
         ins = conn.execute("""SELECT COUNT(DISTINCT owner), SUM(shares*price)/1e6,
                 MAX(CASE WHEN role LIKE '%CEO%' OR role LIKE '%CFO%' OR role LIKE '%Chief%' OR role LIKE '%President%' THEN 1 ELSE 0 END)
@@ -627,8 +630,8 @@ def sheet_dossier(wb, conn, top_n=45):
         parts = []
         if ins and ins[0]: parts.append(f"{ins[0]} insiders bought ${ins[1]:.1f}M{' (C-suite)' if ins[2] else ''}")
         if r["insider_n"] and r["insider_n"] >= 2: parts.append(f"{r['insider_n']}-insider cluster")
-        if act: parts.append(f"{re.sub(r'( |).*$','',act[0])[:18]} {act[1]:.0f}% ({'13D' if '13D' in (act[2] or '') else '13G'})" if act[1] else "")
-        ws.cell(row=row, column=1, value="Insiders"); ws.cell(row=row, column=2, value=" · ".join(p for p in parts if p)[:120]); row += 1
+        if act: parts.append(f"{re.sub(r'( |).*$','',act[0])} {act[1]:.0f}% ({'13D' if '13D' in (act[2] or '') else '13G'})" if act[1] else "")
+        ws.cell(row=row, column=1, value="Insiders"); ws.cell(row=row, column=2, value=" · ".join(p for p in parts if p)); row += 1
         # recent catalysts
         cats = conn.execute("""SELECT filed, has_ma, has_control, has_director, has_pipe FROM catalysts_8k
                 WHERE ticker=? ORDER BY filed DESC LIMIT 3""", (tk,)).fetchall()
@@ -636,17 +639,20 @@ def sheet_dossier(wb, conn, top_n=45):
         for c in cats:
             tags = [t for t, on in [("M&A", c[1]), ("control", c[2]), ("director", c[3]), ("PIPE", c[4])] if on]
             if tags: clabels.append(f"{c[0][:10]} {'/'.join(tags)}")
-        ws.cell(row=row, column=1, value="Catalysts"); ws.cell(row=row, column=2, value="; ".join(clabels)[:120] or "—"); row += 1
+        ws.cell(row=row, column=1, value="Catalysts"); ws.cell(row=row, column=2, value="; ".join(clabels) or "—"); row += 1
         # valuation + momentum
         val = []
         if r["ev_ebitda"] is not None: val.append(f"EV/EBITDA {r['ev_ebitda']:.1f}x")
-        if r["pb_ratio"] is not None: val.append(f"P/B {r['pb_ratio']:.2f}")
+        if r["pe_ttm"] is not None and r["pe_ttm"] > 0: val.append(f"P/E {r['pe_ttm']:.1f}x")
+        if r["pb_ratio"] is not None: val.append(f"P/B {r['pb_ratio']:.2f}x")
+        if r["ptb_ratio"] is not None and r["ptb_ratio"] > 0: val.append(f"P/TB {r['ptb_ratio']:.2f}x")
+        elif r["neg_tbv"]: val.append("P/TB n/m (negative tangible book)")
         if r["fwd_pe"] is not None and r["fwd_pe"] > 0: val.append(f"Fwd P/E {r['fwd_pe']:.0f}")
         if r["rev_growth"] is not None: val.append(f"Rev {r['rev_growth']*100:+.0f}%")
         if r["profit_margin"] is not None: val.append(f"Margin {r['profit_margin']*100:.0f}%")
         if r["mom_3mo"] is not None: val.append(f"3mo {r['mom_3mo']:+.0f}%")
         if r["off_high"] is not None: val.append(f"{r['off_high']:+.0f}% off high")
-        ws.cell(row=row, column=1, value="Valuation"); ws.cell(row=row, column=2, value=" · ".join(val)[:120]); row += 1
+        ws.cell(row=row, column=1, value="Valuation"); ws.cell(row=row, column=2, value=" · ".join(val)); row += 1
         # earnings track record (FMP): beat rate over the last 8 reported quarters
         try:
             eb = conn.execute("""SELECT n_q, beats, last_date, last_surprise_pct, streak,
@@ -714,7 +720,7 @@ def sheet_whos_buying(wb, conn):
                 continue
             seen.add(c)
             # display the raw fund but trimmed of the trailing manager parenthetical
-            out.append(re.sub(r"\s*\(.*$", "", f).strip()[:44])
+            out.append(re.sub(r"\s*\(.*$", "", f).strip())
         return out
     out = []
     for tk, name, score, s3, s4 in rows:
@@ -724,10 +730,10 @@ def sheet_whos_buying(wb, conn):
         from _canon import canon as _cn2
         new_keys = {_cn2(f) for f in new_f}
         add_f = [f for f in funds_for(tk, 4) if _cn2(f) not in new_keys]
-        out.append([tk, (name or "")[:40], round(score or 0, 1),
+        out.append([tk, (name or ""), round(score or 0, 1),
                     "common" if tk not in nc_form else "+" + nc_form[tk],
-                    len(new_f), ", ".join(new_f)[:70],
-                    len(add_f), ", ".join(add_f)[:70]])
+                    len(new_f), ", ".join(new_f),
+                    len(add_f), ", ".join(add_f)])
     write_table_rows(ws, out, 5, ticker_col=1)
     ws.freeze_panes = "B5"
     if out:
@@ -792,13 +798,13 @@ def sheet_activist(wb, conn):
         if is_biotech(r[10]): continue
         # 13D anywhere = activist; else the top filer's form (13G = passive)
         typ = "13D activist" if r[13] else ("13G passive" if r[12] and "13G" in (r[12] or "") else "—")
-        filer = re.sub(r"\s*\(.*$", "", (r[11] or "")).strip()[:44]
+        filer = re.sub(r"\s*\(.*$", "", (r[11] or "")).strip()
         out.append([r[0], typ, filer, round(r[3] or 0, 1),
                     r[1] or "", r[2] or "",
                     r[4] or 0, r[5] or 0, round(r[6] or 0, 1),
                     round(r[7], 1) if r[7] is not None else "",
                     round(r[8], 2) if r[8] is not None else "",
-                    (r[9] or "")[:58], (r[10] or "")[:58]])
+                    (r[9] or ""), (r[10] or "")])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
@@ -829,10 +835,10 @@ def sheet_broker_radar(wb, conn):
         rows = []
     out = []
     for r in rows:
-        out.append([r[0], (r[1] or "")[:20], round(r[2] or 0, 1), r[3] or 0,
+        out.append([r[0], (r[1] or ""), round(r[2] or 0, 1), r[3] or 0,
                     round(r[4] or 0, 0), round(r[5] or 0, 0), r[6] or 0,
                     round(r[7], 1) if r[7] is not None else "",
-                    r[8] or "", (r[9] or "")[:52], (r[10] or "")[:52], (r[11] or "")[:58]])
+                    r[8] or "", (r[9] or ""), (r[10] or ""), (r[11] or "")])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=4).number_format = '0.00"%"'
@@ -863,9 +869,9 @@ def sheet_broker_radar(wb, conn):
                     r[2], r[3], r[4], r[5],
                     r[6], r[7], r[8] or "",
                     round(r[9], 0) if r[9] is not None else "",
-                    (r[15] or "")[:44], (r[10] or "")[:22], (r[11] or "")[:28],
-                    (r[16] or "")[:18], (r[12] or "")[:40], (r[13] or "")[:40],
-                    (r[14] or "")[:58]])
+                    (r[15] or ""), (r[10] or ""), (r[11] or ""),
+                    (r[16] or ""), (r[12] or ""), (r[13] or ""),
+                    (r[14] or "")])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=4).number_format = '0.0'
@@ -900,10 +906,10 @@ def sheet_latent_ownership(wb, conn):
     nm = {r[0]: r[1] for r in conn.execute("SELECT ticker, name FROM unified_signal")}
     out = []
     for r in rows[:160]:
-        out.append([r[0] or "", (r[1] or "")[:44], r[2], (r[3] or "")[:9],
-                    r[7], r[5] if r[5] else "", (r[6] or "")[:16],
-                    (r[4] or "")[:52], round(r[8],0) if r[8] is not None else "",
-                    r[9] or "", (nm.get(r[0]) or "")[:48]])
+        out.append([r[0] or "", (r[1] or ""), r[2], (r[3] or ""),
+                    r[7], r[5] if r[5] else "", (r[6] or ""),
+                    (r[4] or ""), round(r[8],0) if r[8] is not None else "",
+                    r[9] or "", (nm.get(r[0]) or "")])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=6).number_format = '0.00"%"'
@@ -930,7 +936,7 @@ def sheet_nport(wb, conn):
     for ser, filed in series:
         for r in conn.execute("""SELECT ticker, issuer, ROUND(val_usd/1e6,1), pct
             FROM nport_holdings WHERE series=? AND filed=? ORDER BY val_usd DESC LIMIT 15""", (ser, filed)):
-            out.append([ser[:58], filed, r[0] or "", (r[1] or "")[:52], r[2], r[3]])
+            out.append([ser, filed, r[0] or "", (r[1] or ""), r[2], r[3]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=5).number_format = NUMFMT_M_TO_B
@@ -981,7 +987,7 @@ def sheet_insider_f4(wb, conn):
                     r[8] or 0,
                     round(r[9], 1) if r[9] is not None else "",
                     round(r[10], 2) if r[10] is not None else "",
-                    (r[11] or "")[:58]])
+                    (r[11] or "")])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         for col in (2, 3, 4, 5):
@@ -1043,7 +1049,7 @@ def sheet_insider_recent(wb, conn):
                     r[7] or 0, r[8] or 0, r[9] or 0,
                     round(r[10] or 0, 1),
                     round(r[11], 1) if r[11] is not None else "",
-                    (r[13] or "")[:58]])
+                    (r[13] or "")])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=2).number_format = NUMFMT_M_TO_B
@@ -1081,7 +1087,7 @@ def sheet_clusters(wb, conn):
           AND ic.n_insiders >= 2
         ORDER BY ic.total_usd_m DESC"""))
     out = [[r[0], r[1], r[11], r[2], r[3], round(r[4] or 0, 2), round(r[5] or 0, 2),
-            r[6][:48] if r[6] else "", r[7] or "", r[8] or "unknown",
+            r[6] if r[6] else "", r[7] or "", r[8] or "unknown",
             round(r[9], 1) if r[9] is not None else "",
             round(r[10], 2) if r[10] is not None else ""] for r in rows]
     write_table_rows(ws, out, 5)
@@ -1118,7 +1124,7 @@ def sheet_unknown(wb, conn):
                     r[3] or 0, r[4] or 0, r[5] or 0, r[6] or 0,
                     round(r[7] or 0, 1), round(r[8] or 0, 1),
                     round(r[9] or 0, 1) if r[9] else "",
-                    (r[10] or "")[:58], (r[11] or "")[:48], (r[12] or "")[:12]])
+                    (r[10] or ""), (r[11] or ""), (r[12] or "")])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=8).number_format = NUMFMT_PCT
@@ -1241,7 +1247,7 @@ def sheet_all_holdings_consolidated(wb, conn):
                 f"ETF/fund and unmapped 13F lines included and labelled in Source.", 12)
     out = []
     for r in rows:
-        out.append([(r[0] or "")[:45], r[1] or "", r[2],
+        out.append([(r[0] or ""), r[1] or "", r[2],
                     round(r[3] or 0, 1) if r[3] else "",
                     round(r[4] or 0, 2),
                     r[5] or "",
@@ -1280,7 +1286,7 @@ def sheet_all_funds(wb, conn):
         ORDER BY st.n_holdings DESC NULLS LAST"""))
     out = []
     for r in rows:
-        out.append([r[0][:55], r[1] or "", r[2] or "",
+        out.append([r[0], r[1] or "", r[2] or "",
                     r[3], round(r[4] or 0), r[5], r[6]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
@@ -1324,7 +1330,7 @@ def sheet_asymmetry(wb, conn):
                     round(r[7], 1) if r[7] is not None else "",
                     round(r[8] or 0, 1), round(r[9] or 0, 1),
                     eb_label, round(r[11] or 0, 1) if r[11] else "",
-                    " ".join(cat), (r[15] or "")[:58], d[0], d[1]])
+                    " ".join(cat), (r[15] or ""), d[0], d[1]])
         if len(out) >= 100: break
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5+len(out)):
@@ -1370,7 +1376,7 @@ def sheet_revealed_pref(wb, conn):
                     r[5] or 0, r[6] or "", r[7] or "",
                     round(r[8], 1) if r[8] is not None else "",
                     round(r[9], 2) if r[9] is not None else "",
-                    round(r[10] or 0, 1), eb_label, (r[12] or "")[:58], d[0], d[1]])
+                    round(r[10] or 0, 1), eb_label, (r[12] or ""), d[0], d[1]])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=7).number_format = NUMFMT_MCAP
@@ -1424,7 +1430,7 @@ def sheet_valuation(wb, conn):
                     round(r[4] or 0, 1), r[5] or "", r[6] or "", r[7] or 0,
                     round(r[8] or 0, 1), eb_label,
                     round(r[10] or 0, 1) if r[10] else "",
-                    (r[11] or "")[:58], (r[12] or "")[:48], d[0], d[1]])
+                    (r[11] or ""), (r[12] or ""), d[0], d[1]])
     write_table_rows(ws, out, 5)
     # colour is data: Rev Gr % and Margin % — lapis growing/profitable, crimson
     # shrinking/loss-making (the value-trap tell).
@@ -1474,7 +1480,7 @@ def sheet_catalysts(wb, conn):
                     r[9] or 0, round(r[10] or 0, 1),
                     round(r[11], 1) if r[11] is not None else "",
                     round(r[12], 2) if r[12] is not None else "",
-                    (r[13] or "")[:58], (r[14] or "")[:58]])
+                    (r[13] or ""), (r[14] or "")])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=3).number_format = NUMFMT_MCAP
@@ -1541,7 +1547,7 @@ def sheet_global_picks(wb, conn):
         ccy = r[15] or "USD"
         mcap_usd = r[3]   # unified_signal.mcap_m is already FX-converted to USD
         out.append([r[0], round(r[1] or 0, 1),
-                    (r[2] or "")[:14],
+                    (r[2] or ""),
                     round(mcap_usd) if mcap_usd is not None else "", ccy, r[4] or 0,
                     r[5] or 0, r[6] or 0, r[7] or 0,
                     round(r[8] or 0, 1),
@@ -1550,7 +1556,7 @@ def sheet_global_picks(wb, conn):
                     round(r[11] or 0, 1) if r[11] else "",
                     round(r[12], 1) if r[12] is not None else "",
                     round(r[13], 2) if r[13] is not None else "",
-                    (r[14] or "")[:58], *desc_for(conn, r[0])])
+                    (r[14] or ""), *desc_for(conn, r[0])])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=4).number_format = NUMFMT_MCAP    # Mcap $ (USD)
@@ -1606,10 +1612,10 @@ def sheet_in_the_money(wb, conn):
                     round(vs, 1),
                     r[7] or 0, r[8] or 0, r[9] or 0, r[10] or 0,
                     round(r[11] or 0, 1), round(r[12] or 0, 1),
-                    _ANCHOR_LABEL.get(r[13], (r[13] or ""))[:18],
+                    _ANCHOR_LABEL.get(r[13], (r[13] or "")),
                     round(r[14], 1) if r[14] is not None else "",
                     round(r[15], 2) if r[15] is not None else "",
-                    (r[16] or "")[:58], *desc_for(conn, r[0])])
+                    (r[16] or ""), *desc_for(conn, r[0])])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=3).number_format = NUMFMT_MCAP
@@ -1658,7 +1664,7 @@ def sheet_bill_miller(wb, conn):
         out = []
         for r in rows:
             cluster_mark = "yes" if (r[8] and r[8] > 0) else ""
-            out.append([r[0] or "-", (r[1] or "")[:48],
+            out.append([r[0] or "-", (r[1] or ""),
                         round((r[2] or 0)/1000, 1) if r[2] else "",
                         round(r[3] or 0, 2),
                         r[4] or "", r[5] or "",
@@ -1666,7 +1672,7 @@ def sheet_bill_miller(wb, conn):
                         cluster_mark,
                         round(r[9], 1) if r[9] is not None else "",
                         round(r[10], 2) if r[10] is not None else "",
-                        (r[11] or "")[:48]])
+                        (r[11] or "")])
         write_table_rows(ws, out, row)
         for ridx in range(row, row + len(out)):
             ws.cell(row=ridx, column=3).number_format = NUMFMT_NUM
@@ -1697,7 +1703,7 @@ def sheet_bill_miller(wb, conn):
         ORDER BY combined DESC"""))
     out = []
     for r in overlap:
-        out.append([r[0], (r[1] or "")[:48],
+        out.append([r[0], (r[1] or ""),
                     round(r[2] or 0, 2),
                     round(r[3] or 0, 2),
                     round(r[4] or 0, 2),
@@ -1705,7 +1711,7 @@ def sheet_bill_miller(wb, conn):
                     r[7] or 0, round(r[8] or 0, 1),
                     round(r[9], 1) if r[9] is not None else "",
                     round(r[10], 2) if r[10] is not None else "",
-                    (r[11] or "")[:48]])
+                    (r[11] or "")])
     write_table_rows(ws, out, row)
     for ridx in range(row, row + len(out)):
         ws.cell(row=ridx, column=3).number_format = NUMFMT_PCT
@@ -1782,7 +1788,7 @@ def sheet_best_ideas(wb, conn):
                        round(vse, 1) if vse else "",
                        round(f4_30, 2) if (f4_30 or 0) > 0 else "",
                        round(actpct or 0, 1),
-                       " ".join(cat), (name or "")[:58], " · ".join(why),
+                       " ".join(cat), (name or ""), " · ".join(why),
                        *desc_for(conn, tk)])
     scored.sort(key=lambda x: -x[1])
     out = scored[:90]
@@ -1864,21 +1870,10 @@ def sheet_adversarial_review(wb, conn):
     ws.column_dimensions["D"].width = 120
     ws.freeze_panes = "A4"
 
-def _one_liner(s, limit=200):
-    """Condense a stored business summary to a readable one-liner: the full
-    FIRST SENTENCE (never cut mid-word), only falling back to a hard cap if the
-    first sentence is unusually long."""
-    if not s:
-        return ""
-    s = str(s).strip().replace("\n", " ")
-    dot = s.find(". ")
-    if dot > 0 and dot + 1 <= 320:
-        return s[:dot + 1]                      # whole first sentence
-    if len(s) <= max(limit, 320):
-        return s
-    cut = s[:max(limit, 320)]
-    sp = cut.rfind(" ")                          # never end mid-word
-    return (cut[:sp] if sp > 0 else cut).rstrip() + "…"
+def _one_liner(s, limit=None):
+    """The full first sentence of the business summary — never cut, no
+    ellipsis (shared rule: _style_bw.first_sentence)."""
+    return first_sentence(s)
 
 _DESC_CACHE = None
 def desc_for(conn, ticker):
@@ -1903,7 +1898,7 @@ def desc_for(conn, ticker):
                 summ = summ[len(nm):]
             summ = re.sub(r"^[,\s]*(together with its subsidiaries|and its subsidiaries"
                           r"|through its subsidiaries)?[,\s]*", "", summ, flags=re.I)
-            _DESC_CACHE[r[0]] = ((r[1] or "")[:44], _one_liner(summ, 90))
+            _DESC_CACHE[r[0]] = ((r[1] or ""), _one_liner(summ))
     return _DESC_CACHE.get(ticker, ("", ""))
 
 def sheet_ticker_reference(wb, conn):
@@ -1933,9 +1928,9 @@ def sheet_ticker_reference(wb, conn):
         if r[0] in ETFs: continue
         # Business Summary is the LAST column, so full text overflows and reads
         # in full — show the whole summary (not a truncated one-liner).
-        summ = (str(r[5]).strip().replace("\n", " ") if r[5] else "")
-        out.append([r[0], (r[1] or "")[:58], (r[2] or "")[:58],
-                    (r[3] or "")[:48], r[4] or "", summ])
+        summ = complete_text(r[5])
+        out.append([r[0], (r[1] or ""), (r[2] or ""),
+                    (r[3] or ""), r[4] or "", summ])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=5).number_format = NUMFMT_MCAP
@@ -2070,6 +2065,8 @@ def main():
     add_contents_index(wb["README"], wb.sheetnames)
     set_print_layout(wb)
 
+    # every ticker table carries EV/EBITDA, P/E, P/B and P/TB side by side
+    add_valuation_columns(wb, valuation_lookup(conn))
     wb.save(OUT)
     print(f"wrote {OUT}")
     print(f"sheets: {wb.sheetnames}")

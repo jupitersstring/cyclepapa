@@ -192,6 +192,23 @@ def run():
     if n_p >= 50 and not one("SELECT COUNT(*) FROM insider_clusters WHERE n_insiders >= 2"):
         fails.append(f"insider_clusters: no multi-insider cluster despite buys in {n_p} tickers")
 
+    # I8j. Board seats need tickers: the PitchBook ingest rebuilds pb_affiliation
+    #      without them; if the mapper doesn't follow, the people monitor's
+    #      Board Signal sheet renders empty with no error anywhere.
+    try:
+        n_pub = one("SELECT COUNT(*) FROM pb_affiliation WHERE company_type = 'Public Company'")
+        n_tk = one("SELECT COUNT(*) FROM pb_affiliation WHERE ticker IS NOT NULL")
+        if n_pub >= 20 and n_tk == 0:
+            fails.append(f"pb_affiliation: {n_pub} public-company seats, 0 mapped to a ticker (run map_pb_tickers.py)")
+    except sqlite3.OperationalError:
+        pass
+
+    # I8k. Bond descriptors are not stocks: a ticker with a space ("MSTR 0.625
+    #      03-15-30", from OpenFIGI on convertible-note CUSIPs) must never be
+    #      classed common, or debt ranks as a stock pick.
+    n = one("SELECT COUNT(*) FROM unified_signal WHERE sec_type = 'common' AND ticker LIKE '% %'")
+    if n: fails.append(f"unified_signal: {n} bond descriptors (ticker with a space) classed common")
+
     # I8. feed freshness: warn when the tradeable-signal feeds fall behind.
     for tbl, col, days in [('form4_transactions','trans_date',21), ('holder_13d','filed',30),
                            ('catalysts_8k','filed',30), ('ticker_yf','asof',21)]:

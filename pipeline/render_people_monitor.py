@@ -15,6 +15,7 @@ board) and cross-network convergence are the strongest reads.
 import os, sqlite3
 import openpyxl
 from _style_bw import (
+    add_valuation_columns, valuation_lookup,
     write_title, write_section_heading, write_table_header, write_table_rows,
     autosize, set_default_font, add_contents_index, set_print_layout,
     NUMFMT_MCAP, NUMFMT_M_TO_B,
@@ -113,11 +114,11 @@ def sheet_board_signal(wb, conn):
         ORDER BY best_conf ASC, u.score DESC, nd DESC LIMIT 140""").fetchall()
     out = []
     for r in rows:
-        out.append([r[0], r[8] or "C", (r[1] or "")[:44],
+        out.append([r[0], r[8] or "C", (r[1] or ""),
                     round(r[2], 1) if r[2] is not None else "",
                     round(r[3], 1) if r[3] is not None else "", r[4],
-                    r[9] or "", (r[5] or "")[:44],
-                    (r[6] or "").replace(" / ", "/")[:40], (r[7] or "")[:16]])
+                    r[9] or "", (r[5] or ""),
+                    (r[6] or "").replace(" / ", "/"), (r[7] or "")])
     write_table_rows(ws, out, 5, ticker_col=1)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=4).number_format = '0.0'
@@ -156,9 +157,9 @@ def sheet_investor_seats(wb, conn):
     out = []
     for r in rows:
         firm = r[1] if r[1] != "(principal)" else ("tracked principal" if r[7] else "")
-        out.append([r[0], (firm or "")[:40], (r[2] or "")[:40], r[3] or "",
+        out.append([r[0], (firm or ""), (r[2] or ""), r[3] or "",
                     round(r[4], 1) if r[4] is not None else "",
-                    round(r[5], 1) if r[5] is not None else "", (r[6] or "")[:22]])
+                    round(r[5], 1) if r[5] is not None else "", (r[6] or "")])
     write_table_rows(ws, out, 5, ticker_col=4)
     return ws
 
@@ -186,8 +187,8 @@ def sheet_convergence(wb, conn):
         ORDER BY nd DESC, nt DESC LIMIT 80""").fetchall()
     out = []
     for r in rows:
-        out.append([(r[0] or "")[:48], r[1] or "—", r[2], r[3],
-                    (r[4] or "").replace(" / ", "/")[:48], (r[5] or "")[:40],
+        out.append([(r[0] or ""), r[1] or "—", r[2], r[3],
+                    (r[4] or "").replace(" / ", "/"), (r[5] or ""),
                     round(r[6], 1) if r[6] is not None else ""])
     write_table_rows(ws, out, 5, ticker_col=2)
     return ws
@@ -215,7 +216,7 @@ def sheet_watchlist(wb, conn):
     for r in rows:
         comp = (r[0] or "")
         note = " (SANCTIONED — not addable)" if any(x in comp.upper() for x in _SANCTIONED) else ""
-        out.append([(comp + note)[:52], r[1], (r[2] or "")[:50], (r[3] or "").replace(" / ", "/")[:28]])
+        out.append([(comp + note), r[1], (r[2] or ""), (r[3] or "").replace(" / ", "/")])
     write_table_rows(ws, out, 5, ticker_col=1)
     return ws
 
@@ -238,7 +239,7 @@ def sheet_fo_swf(wb, conn):
         ORDER BY (u.score IS NULL), u.score DESC, a.full_name LIMIT 200""").fetchall()
     out = []
     for r in rows:
-        out.append([r[0], (r[1] or "")[:28], (r[2] or "")[:20], (r[3] or "").replace(" / ", "/")[:22],
+        out.append([r[0], (r[1] or ""), (r[2] or ""), (r[3] or "").replace(" / ", "/"),
                     r[4] or "", round(r[5], 1) if r[5] is not None else ""])
     write_table_rows(ws, out, 5, ticker_col=5)
     return ws
@@ -260,7 +261,7 @@ def sheet_new_funds(wb, conn):
             WHERE fund=? ORDER BY value_k DESC LIMIT 1""", (f,)).fetchone()
         top_name = (top[0] or top[1]) if top else ""
         out.append([f, style[0] if style else "", n, round(book or 0, 1),
-                    (top_name or "")[:22], round(top[2], 1) if top else ""])
+                    (top_name or ""), round(top[2], 1) if top else ""])
     write_table_rows(ws, out, 5, ticker_col=1)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=4).number_format = NUMFMT_M_TO_B
@@ -290,6 +291,8 @@ def run():
     set_default_font(wb)
     set_print_layout(wb, header_rows=4)
     add_contents_index(wb["README"], [s.title for s in wb.worksheets])
+    # every ticker table carries EV/EBITDA, P/E, P/B and P/TB side by side
+    add_valuation_columns(wb, valuation_lookup(conn))
     wb.save(OUT)
     print(f"wrote {OUT}")
     conn.close()

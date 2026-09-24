@@ -12,6 +12,8 @@ from openpyxl.styles import Font, Alignment
 import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _style_bw import (
+    first_sentence,
+    add_valuation_columns, valuation_lookup,
     write_title, write_section_heading, write_table_header, write_table_rows,
     autosize, write_legend_sheet, add_contents_index, set_print_layout,
     NUMFMT_USD, NUMFMT_PCT, NUMFMT_NUM, NUMFMT_INT, NUMFMT_USD2,
@@ -138,7 +140,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
         sout = [[s[0], round(s[3], 1), s[1], s[2],
                  round(s[4] or 0, 1), s[5] or "",
                  round(s[6], 1) if s[6] is not None else "",
-                 round(s[7] or 0, 1), (s[8] or "")[:40]] for s in sig]
+                 round(s[7] or 0, 1), (s[8] or "")] for s in sig]
         write_table_rows(ws, sout, row, ticker_col=1);
         for rr in range(row, row + len(sout)):
             ws.cell(row=rr, column=2).number_format = '0.0"× univ"'
@@ -195,7 +197,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
                     round(r[11] or 0, 1),
                     round(r[12] or 0, 1) if r[12] else "",
                     round(r[13] or 0, 1) if r[13] else "",
-                    (r[14] or "")[:58], *desc_for(conn, r[0])])
+                    (r[14] or ""), *desc_for(conn, r[0])])
         if len(out) >= 30: break
     write_table_rows(ws, out, row)
     # colour is data: activist stake / cluster $ / insider buys = lapis (all are
@@ -235,7 +237,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
             round(r[6], 1) if r[6] is not None else "",
             round(r[7], 2) if r[7] is not None else "",
             round(r[8], 1) if r[8] else "",
-            (r[9] or "")[:58]] for r in rows if r[0] not in ETFs]
+            (r[9] or "")] for r in rows if r[0] not in ETFs]
     write_table_rows(ws, out, row)
     for ridx in range(row, row + len(out)):
         ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
@@ -267,7 +269,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
             round(r[6], 1) if r[6] is not None else "",
             round(r[7], 2) if r[7] is not None else "",
             round(r[8], 1) if r[8] else "",
-            (r[9] or "")[:58]] for r in rows if r[0] not in ETFs]
+            (r[9] or "")] for r in rows if r[0] not in ETFs]
     write_table_rows(ws, out, row)
     for ridx in range(row, row + len(out)):
         ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
@@ -292,11 +294,11 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
         WHERE h.fund IN ({ph}) AND h.pct_book >= 5 AND h.pct_book <= 100
           AND COALESCE(us.sec_type,'common')='common'
         ORDER BY h.pct_book DESC LIMIT 20""", style_funds))
-    out = [[r[0], r[1][:35], round(r[2] or 0, 1), r[3] or 0,
+    out = [[r[0], r[1], round(r[2] or 0, 1), r[3] or 0,
             r[4] or "", r[5] or "",
             round(r[6], 1) if r[6] is not None else "",
             round(r[7], 2) if r[7] is not None else "",
-            (r[8] or "")[:58]]
+            (r[8] or "")]
            for r in rows if r[0] not in ETFs]
     write_table_rows(ws, out, row)
     for ridx in range(row, row + len(out)):
@@ -339,7 +341,7 @@ def write_style_sheet(wb, conn, macro_style, sheet_name):
                         round(r[6] or 0, 1),
                         round(r[7], 1) if r[7] is not None else "",
                         round(r[8], 2) if r[8] is not None else "",
-                        (r[9] or "")[:58]])
+                        (r[9] or "")])
     write_table_rows(ws, out, row, ticker_col=2)
     for ridx in range(row, row + len(out)):
         ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
@@ -396,7 +398,7 @@ def sheet_overview(wb, conn):
                         round(r[11] or 0, 1) if r[11] else "",
                         round(r[12] or 0, 1) if r[12] else "",
                         round(r[13] or 0, 1) if r[13] else "",
-                        (r[14] or "")[:48]])
+                        (r[14] or "")])
             if len(out) >= 10: break
         write_table_rows(ws, out, row)
         for ridx in range(row, row + len(out)):
@@ -494,7 +496,7 @@ def sheet_subgroup_focus(wb, conn):
                             round(r[9] or 0, 1) if r[9] else "",
                             round(r[10], 1) if r[10] is not None else "",
                             round(r[11], 2) if r[11] is not None else "",
-                            (r[12] or "")[:58]])
+                            (r[12] or "")])
                 if len(out) >= 8: break
             write_table_rows(ws, out, row)
             for ridx in range(row, row + len(out)):
@@ -528,13 +530,13 @@ def sheet_subgroup_focus(wb, conn):
                     WHERE h.fund = ? AND h.ticker IS NOT NULL
                     ORDER BY h.value_k DESC LIMIT 1""", (fund,)).fetchone()
                 if top:
-                    spec_out.append([fund[:45], sg[:58], top[0],
+                    spec_out.append([fund, sg, top[0],
                                      round(top[1] or 0, 2),
                                      top[2] or 0,
                                      top[3] or "",
                                      top[4] or ""])
                 else:
-                    spec_out.append([fund[:45], sg[:58], "—", 0, 0, "", ""])
+                    spec_out.append([fund, sg, "—", 0, 0, "", ""])
             write_table_rows(ws, spec_out, row)
             for ridx in range(row, row + len(spec_out)):
                 ws.cell(row=ridx, column=4).number_format = NUMFMT_PCT
@@ -606,8 +608,8 @@ def sheet_fund_roster(wb, conn):
             ORDER BY fs.sub_group, fm.fund""", (ms,)))
         out = []
         for f in funds:
-            out.append([f[0][:46], (f[1] or "")[:40], f[2], round(f[3] or 0),
-                        f[4], f[5], f[6], (f[7] or "")[:22]])
+            out.append([f[0], (f[1] or ""), f[2], round(f[3] or 0),
+                        f[4], f[5], f[6], (f[7] or "")])
         write_table_rows(ws, out, row)
         for ridx in range(row, row+len(out)):
             ws.cell(row=ridx, column=4).number_format = NUMFMT_M_TO_B
@@ -618,19 +620,10 @@ def sheet_fund_roster(wb, conn):
     ws.freeze_panes = "A4"
     autosize(ws)
 
-def _one_liner(s, limit=200):
-    """Full first sentence (never cut mid-word); hard cap only as a fallback."""
-    if not s:
-        return ""
-    s = str(s).strip().replace("\n", " ")
-    dot = s.find(". ")
-    if dot > 0 and dot + 1 <= 320:
-        return s[:dot + 1]
-    if len(s) <= max(limit, 320):
-        return s
-    cut = s[:max(limit, 320)]
-    sp = cut.rfind(" ")
-    return (cut[:sp] if sp > 0 else cut).rstrip() + "…"
+def _one_liner(s, limit=None):
+    """The full first sentence of the business summary — never cut, no
+    ellipsis (shared rule: _style_bw.first_sentence)."""
+    return first_sentence(s)
 
 _DESC_CACHE = None
 def desc_for(conn, ticker):
@@ -645,7 +638,7 @@ def desc_for(conn, ticker):
             FROM unified_signal us
             LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
             LEFT JOIN ticker_yf  yf ON yf.ticker = us.ticker"""):
-            _DESC_CACHE[r[0]] = ((r[1] or "")[:44], _one_liner(r[2], 90))
+            _DESC_CACHE[r[0]] = ((r[1] or ""), _one_liner(r[2]))
     return _DESC_CACHE.get(ticker, ("", ""))
 
 def sheet_ticker_reference(wb, conn):
@@ -672,8 +665,8 @@ def sheet_ticker_reference(wb, conn):
     out = []
     for r in rows:
         if r[0] in ETFs: continue
-        out.append([r[0], (r[1] or "")[:46], (r[2] or "")[:22],
-                    (r[3] or "")[:48], r[4] or "", _one_liner(r[5])])
+        out.append([r[0], (r[1] or ""), (r[2] or ""),
+                    (r[3] or ""), r[4] or "", _one_liner(r[5])])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
         ws.cell(row=ridx, column=5).number_format = NUMFMT_MCAP
@@ -721,6 +714,8 @@ def main():
     add_contents_index(wb["README"], wb.sheetnames)
     set_print_layout(wb)
 
+    # every ticker table carries EV/EBITDA, P/E, P/B and P/TB side by side
+    add_valuation_columns(wb, valuation_lookup(conn))
     wb.save(OUT)
     print(f"wrote {OUT}")
     print(f"sheets: {wb.sheetnames}")

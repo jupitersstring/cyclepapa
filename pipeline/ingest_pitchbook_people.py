@@ -307,6 +307,10 @@ def run():
           f"{conn.execute('SELECT COUNT(DISTINCT full_name) FROM pb_people').fetchone()[0]} distinct individuals; "
           f"{len(principals)} principals parsed, {n_prin} present in data")
     conn.close()
+    # pb_affiliation was just rebuilt WITHOUT tickers: map them now, or every
+    # board-seat signal (people_monitor 'Board Signal') silently comes out empty
+    import map_pb_tickers
+    map_pb_tickers.run()
 
 if __name__ == "__main__":
     run()

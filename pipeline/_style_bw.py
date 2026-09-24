@@ -13,7 +13,8 @@ Design grammar:
   - No gridlines visible.
 """
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
-from openpyxl.utils import get_column_letter
+import re
+from openpyxl.utils import get_column_letter, column_index_from_string
 from openpyxl.worksheet.properties import PageSetupProperties
 
 TNR = "Times New Roman"
@@ -204,6 +205,210 @@ def autosize(ws):
             if v is not None:
                 max_len = max(max_len, min(len(str(v)), 80))
         ws.column_dimensions[letter].width = max(8, min(max_len + 2.5, 62))
+
+# ---------- business descriptions ----------
+# a "word." that does NOT end a sentence: corporate suffixes, country
+# abbreviations, honorifics, initials ("Apple Inc. designs..." must not stop at
+# "Apple Inc.", which the old first-". " rule did)
+_ABBR = {"INC", "CORP", "CO", "LTD", "LLC", "LP", "L.P", "N.V", "NV", "S.A", "SA", "PLC",
+         "AG", "SE", "S.P.A", "U.S", "U.K", "U.S.A", "NO", "ST", "MR", "MS", "MRS", "DR",
+         "JR", "SR", "VS", "ETC", "E.G", "I.E", "APPROX", "INCL", "DEPT", "INT'L", "BHD",
+         "PTY", "PTE", "KK", "OYJ", "ASA", "AB", "SPA", "B.V", "BV", "GMBH", "S.A.B", "C.V"}
+
+def first_sentence(s):
+    """The full first sentence of a business summary — never cut, never an
+    ellipsis. A period ends the sentence only when the next word is
+    capitalised and the word before it isn't an abbreviation or an initial."""
+    if not s:
+        return ""
+    s = " ".join(str(s).split())
+    for m in re.finditer(r"\.\s+", s):
+        words = s[:m.start()].split()
+        prev = words[-1].upper().rstrip(".").strip("(\"'") if words else ""
+        nxt = s[m.end():m.end() + 1]
+        if not nxt or not (nxt.isupper() or nxt.isdigit()):
+            continue
+        if prev in _ABBR or len(prev) <= 1 or (len(prev) <= 3 and "." in prev):
+            continue
+        return s[:m.start() + 1]
+    return s
+
+def complete_text(s):
+    """The full stored text. If an old store cut it (trailing '…', from the
+    500-char Yahoo summaries FMP doesn't cover), end it at its last complete
+    sentence rather than show a fragment."""
+    s = " ".join(str(s or "").split())
+    if s.endswith(("…", "...")):
+        body = s.rstrip(".…").rstrip()
+        ends = [m.start() for m in re.finditer(r"\.\s+(?=[A-Z0-9])", body)]
+        if ends:
+            return body[:ends[-1] + 1]
+    return s
+
+# ---------- valuation multiples on every ticker table ----------
+VALUATION_COLS = ("EV/EBITDA", "P/E", "P/B", "P/TB")
+_VAL_FMT = {"EV/EBITDA": '0.0"x"', "P/E": '0.0"x"', "P/B": '0.00"x"', "P/TB": '0.00"x"'}
+_VAL_DP = {"EV/EBITDA": 1, "P/E": 1, "P/B": 2, "P/TB": 2}
+
+def valuation_lookup(conn):
+    """ticker -> {EV/EBITDA, P/E, P/B, P/TB} exactly as the books define them:
+    EV/EBITDA only with positive EV and EBITDA, P/E only on positive earnings,
+    P/TB only on positive tangible book ('neg TBV' when it is negative —
+    goodwill-heavy balance sheets are information too). unified_signal wins
+    for the multiples it carries, so a new column never contradicts an
+    existing one on the same sheet."""
+    import sqlite3
+    out = {}
+    try:
+        for tk, ev, pe, pb, ptb, neg in conn.execute("""SELECT ticker,
+                CASE WHEN enterprise_value_m > 0 AND ebitda_m > 0 THEN ev_ebitda END,
+                CASE WHEN pe_ttm > 0 THEN pe_ttm END,
+                CASE WHEN pb_ratio > 0 AND (pb_ratio <= 30 OR src = 'fmp') THEN pb_ratio END,
+                CASE WHEN ptb_ratio > 0 THEN ptb_ratio END, neg_tbv
+                FROM ticker_yf"""):
+            out[tk] = {"EV/EBITDA": ev, "P/E": pe, "P/B": pb,
+                       "P/TB": ptb if ptb else ("neg TBV" if neg else None)}
+    except sqlite3.OperationalError:
+        pass
+    for tk, ev, pb, pe in conn.execute("SELECT ticker, ev_ebitda, pb_ratio, pe_ttm FROM unified_signal"):
+        d = out.setdefault(tk, {"EV/EBITDA": None, "P/E": None, "P/B": None, "P/TB": None})
+        if ev is not None:
+            d["EV/EBITDA"] = ev
+        if pb is not None:
+            d["P/B"] = pb
+        if pe is not None and pe > 0:
+            d["P/E"] = pe
+    return out
+
+def _fit_widths(ws, first_col):
+    """autosize() for columns >= first_col only (keeps hand-set widths left of it)."""
+    for col_idx in range(first_col, (ws.max_column or 1) + 1):
+        max_len = 0
+        for row in ws.iter_rows(min_col=col_idx, max_col=col_idx, values_only=True):
+            v = row[0]
+            if v is not None:
+                max_len = max(max_len, min(len(str(v)), 80))
+        ws.column_dimensions[get_column_letter(col_idx)].width = max(8, min(max_len + 2.5, 62))
+
+
+def _is_header_row(ws, r, max_col):
+    """A table header: 3+ filled cells, every one bold (data rows bold only
+    their ticker; merged headings are a single cell)."""
+    n = 0
+    for c in range(1, max_col + 1):
+        cell = ws.cell(r, c)
+        if cell.value in (None, ""):
+            continue
+        if not (cell.font is not None and cell.font.bold):
+            return False                    # data rows fail at their 2nd filled cell
+        n += 1
+    return n >= 3
+
+def add_valuation_columns(wb, vals, skip=("README", "Legend")):
+    """Every ticker table carries the same four multiples — EV/EBITDA, P/E,
+    P/B, P/TB. Missing ones are inserted beside the valuation columns a table
+    already has (else after MCAP / BUCKET, else at its end). Works table by
+    table on the finished workbook: only that table's rows shift right, so
+    stacked tables with different layouts on one sheet stay intact. Nothing
+    is removed; existing columns keep their values, formats and colours."""
+    from copy import copy
+    for ws in wb.worksheets:
+        if ws.title in skip:
+            continue
+        # openpyxl recomputes max_row / max_column by scanning every cell on
+        # each access: read them once (84k-row sheets otherwise go quadratic)
+        max_row, max_col = ws.max_row or 1, ws.max_column or 1
+        heads = []
+        for row in ws.iter_rows(min_row=1, max_row=max_row, max_col=min(max_col, 40)):
+            for cell in row:
+                if cell.value == "TICKER":
+                    heads.append((cell.row, cell.column))
+                    break
+        # merged rows are section headings / notes, never table rows: a table
+        # ends where one begins (and cells inside a merge can't be written)
+        merged_rows = set()
+        for rng in ws.merged_cells.ranges:
+            merged_rows.update(range(rng.min_row, rng.max_row + 1))
+        changes = []
+        for h, tcol in heads:
+            if h in merged_rows:
+                continue
+            hdr, width = {}, 0
+            for col in range(1, max_col + 1):
+                v = ws.cell(h, col).value
+                if v not in (None, ""):
+                    width = col
+                    hdr.setdefault(str(v), col)
+            missing = [m for m in VALUATION_COLS if m not in hdr]
+            if not missing:
+                continue
+            present = [hdr[m] for m in VALUATION_COLS if m in hdr]
+            ins = max(present) if present else next(
+                (hdr[a] for a in ("BUCKET", "MCAP", "MCAP $ (USD)") if a in hdr), width)
+            # the table runs to the next header row; blank rows and merged
+            # sub-headings inside it ('Bill IV — Miller Value Partners') are
+            # stepped over, and only rows whose ticker cell is a ticker (or the
+            # '—' placeholder) shift — notes and other tables are never touched
+            body = []
+            rr = h + 1
+            while rr <= max_row:
+                if rr not in merged_rows:
+                    v = ws.cell(rr, tcol).value
+                    if v == "TICKER" or _is_header_row(ws, rr, max_col):
+                        break
+                    # any filled ticker cell on a multi-cell row: tickers can be
+                    # bond descriptors ("ON 0.5 03-01-29") in position lists
+                    if v not in (None, "") and sum(ws.cell(rr, c).value not in (None, "")
+                                                   for c in range(1, min(max_col, 6) + 1)) >= 2:
+                        body.append(rr)
+                rr += 1
+            k = len(missing)
+            for rr in [h] + body:
+                for col in range(width, ins, -1):          # rightmost first
+                    src, dst = ws.cell(rr, col), ws.cell(rr, col + k)
+                    dst.value, dst._style = src.value, copy(src._style)
+                for i, name in enumerate(missing, 1):
+                    c = ws.cell(rr, ins + i)
+                    if rr == h:
+                        c.value, c.font, c.border = name, HDR_FONT, HDR_BORDER
+                        c.alignment = Alignment(horizontal="right", vertical="bottom")
+                        c.number_format = "General"
+                        continue
+                    v = (vals.get(ws.cell(rr, tcol).value) or {}).get(name)
+                    num = isinstance(v, (int, float))
+                    c.value = round(v, _VAL_DP[name]) if num else (v if v else "—")
+                    c.font, c.border = BODY_FONT, ROW_BORDER
+                    c.fill = PatternFill(fill_type=None)
+                    c.alignment = Alignment(horizontal="right", vertical="center")
+                    c.number_format = _VAL_FMT[name] if num else "General"
+            ref = ws.auto_filter.ref
+            if ref:
+                m = re.match(r"([A-Z]+)(\d+):([A-Z]+)(\d+)$", ref)
+                if m and int(m.group(2)) == h:
+                    end = column_index_from_string(m.group(3)) + k
+                    ws.auto_filter.ref = f"{m.group(1)}{m.group(2)}:{get_column_letter(end)}{m.group(4)}"
+            changes.append((ins, k, width))
+        if not changes:
+            continue
+        new_width = max(w + k for _, k, w in changes)
+        for rng in list(ws.merged_cells.ranges):            # masthead spans the wider table
+            if rng.min_row == rng.max_row and rng.min_row in (1, 2) and rng.min_col == 1 \
+                    and rng.max_col < new_width:
+                r0 = rng.min_row
+                ws.unmerge_cells(rng.coord)
+                ws.merge_cells(start_row=r0, start_column=1, end_row=r0, end_column=new_width)
+                for col in range(1, new_width + 1):
+                    ws.cell(r0, col).border = Border(bottom=THIN_BLK, top=NO_SIDE, left=NO_SIDE, right=NO_SIDE)
+        if len(changes) == 1:
+            ins, k, width = changes[0]                      # carry hand-set widths with their columns
+            for col in range(width, ins, -1):
+                w = ws.column_dimensions[get_column_letter(col)].width
+                if w:
+                    ws.column_dimensions[get_column_letter(col + k)].width = w
+            for i in range(1, k + 1):
+                ws.column_dimensions[get_column_letter(ins + i)].width = 9
+        else:
+            _fit_widths(ws, min(ins for ins, _, _ in changes) + 1)
 
 def set_default_font(wb):
     """Apply Times New Roman as the workbook default styles where possible."""

@@ -118,7 +118,7 @@ def run():
     conn.execute("PRAGMA busy_timeout=120000")
     conn.row_factory = sqlite3.Row
     cols = [r[1] for r in conn.execute("PRAGMA table_info(ticker_yf)")]
-    for col, ty in (("src", "TEXT"), ("is_fund", "INTEGER")):
+    for col, ty in (("src", "TEXT"), ("is_fund", "INTEGER"), ("ptb_ratio", "REAL"), ("neg_tbv", "INTEGER")):
         if col not in cols:
             conn.execute(f"ALTER TABLE ticker_yf ADD COLUMN {col} {ty}")
             cols.append(col)
@@ -149,6 +149,13 @@ def run():
             # than an unpriced "unknown mcap" pick.
             conn.execute("INSERT OR REPLACE INTO yf_dead VALUES (?,?)", (tk, asof))
             n_inactive += 1
+            # still repair a cut description (the rows stay in reference sheets)
+            desc = " ".join((p.get("description") or "").split())
+            if desc:
+                conn.execute("""UPDATE ticker_yf SET business_summary = ? WHERE ticker = ?
+                    AND (business_summary IS NULL OR business_summary = ''
+                         OR business_summary LIKE '%…' OR business_summary LIKE '%...'
+                         OR length(business_summary) < ?)""", (desc, tk, len(desc)))
             continue
         price, mcap, ccy = num(p.get("price")), num(p.get("marketCap")), p.get("currency") or "USD"
         if not price or not mcap:
@@ -195,15 +202,30 @@ def run():
             row["pb_ratio"] = pos(r.get("priceToBookRatioTTM"))
             row["pe_ttm"] = pos(r.get("priceToEarningsRatioTTM"))
             row["peg"] = pos(r.get("priceToEarningsGrowthRatioTTM"))
+            # P/TB = P/B x (book / tangible book per share). Book and tangible
+            # book are both in the reporting currency, so their ratio is
+            # currency-free and inherits P/B's one-currency correctness on ADRs.
+            # Tangible book <= 0 (goodwill-heavy / acquisitive) -> no multiple,
+            # but flagged: that is information in itself.
+            pb_raw = num(r.get("priceToBookRatioTTM"))
+            bv, tbv = num(r.get("bookValuePerShareTTM")), num(r.get("tangibleBookValuePerShareTTM"))
+            row["ptb_ratio"] = (pb_raw * bv / tbv
+                                if (pb_raw and pb_raw > 0 and bv and bv > 0 and tbv and tbv > 0) else None)
+            row["neg_tbv"] = int(bool(bv and bv > 0 and tbv is not None and tbv <= 0))
             pm = num(r.get("netProfitMarginTTM"))
             if pm is not None:
                 row["profit_margin"] = pm
         # descriptive fields: fill gaps only — downstream filters match Yahoo's
         # industry strings (e.g. 'Shell Companies'), so never overwrite them.
-        for col, fk in (("sector", "sector"), ("industry", "industry"),
-                        ("business_summary", "description"), ("long_name", "companyName")):
+        for col, fk in (("sector", "sector"), ("industry", "industry"), ("long_name", "companyName")):
             if col in row and not row.get(col) and p.get(fk):
                 row[col] = p[fk]
+        # business summary: FMP's description is complete; replace a missing,
+        # cut ('…' — the old 500-char Yahoo store) or shorter stored summary
+        desc = " ".join((p.get("description") or "").split())
+        cur = row.get("business_summary") or ""
+        if desc and (not cur or cur.endswith(("…", "...")) or len(desc) > len(cur)):
+            row["business_summary"] = desc
         # FMP's ETF / fund flags: closed-end funds and trusts (ASA, PSLV, MUC,
         # Cornerstone...) otherwise pass the name heuristics and score as stocks
         row["is_fund"] = int(is_true(p.get("isEtf")) or is_true(p.get("isFund")))

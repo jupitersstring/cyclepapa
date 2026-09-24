@@ -41,19 +41,13 @@ def add_columns(conn):
         conn.execute("ALTER TABLE ticker_yf ADD COLUMN long_name TEXT")
     conn.commit()
 
-def short(summary, limit=500):
-    """Truncate a long business summary to ~limit chars on a sentence boundary."""
+def short(summary, limit=None):
+    """The business summary, whitespace-normalised and NEVER cut: sheets show
+    the full text (Ticker Reference) or its full first sentence. A stored
+    500-char cut ending in an ellipsis once reached 1,300 names' cells."""
     if not summary:
         return None
-    s = summary.strip().replace("\n", " ")
-    if len(s) <= limit:
-        return s
-    cut = s[:limit]
-    # back up to the last sentence end for a clean stop
-    dot = cut.rfind(". ")
-    if dot > limit * 0.5:
-        return cut[:dot + 1]
-    return cut.rstrip() + "…"
+    return " ".join(summary.split())
 
 def fetch_profile(tkr, session):
     # crumb-authenticated direct quoteSummary (see enrich_yfinance RCA note) —
@@ -80,8 +74,10 @@ def run(max_n=8000, rps=3.0, refetch=False):
     add_columns(conn)
     have = set()
     if not refetch:
+        # a summary cut to 500 chars with an ellipsis (the old store) is NOT done
         have = {r[0] for r in conn.execute(
-            "SELECT ticker FROM ticker_yf WHERE business_summary IS NOT NULL AND business_summary != ''")}
+            "SELECT ticker FROM ticker_yf WHERE business_summary IS NOT NULL AND business_summary != '' "
+            "AND business_summary NOT LIKE '%…' AND business_summary NOT LIKE '%...'")}
     targets = [r[0] for r in conn.execute(
         "SELECT ticker FROM unified_signal ORDER BY score DESC")]
     todo = [t for t in targets if t not in have][:max_n]
@@ -120,6 +116,12 @@ def run(max_n=8000, rps=3.0, refetch=False):
             print(f"  [{i}/{len(todo)}] {tkr} ok={n_ok} summ={n_summ} fail={n_fail}")
     conn.commit()
     print(f"\ndone: {n_ok} profiles ({n_summ} with summary), {n_fail} failed")
+    if todo and n_ok == 0:
+        # every request failed: Yahoo is rate-limiting / blocking this host
+        # (HTTP 429 seen). Say so loudly instead of a quiet "0 profiles".
+        print("ERROR: Yahoo returned nothing for every ticker (likely HTTP 429 rate-limit). "
+              "Descriptions for names FMP lacks were NOT refreshed.")
+        sys.exit(2)
 
 if __name__ == "__main__":
     max_n = int(sys.argv[1]) if sys.argv[1:] else 8000

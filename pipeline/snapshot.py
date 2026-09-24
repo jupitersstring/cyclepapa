@@ -194,6 +194,7 @@ def restore():
 
     # Load each CSV into its table
     loaded = 0
+    failed = []
     # NOT-NULL fallback map: tables where a NOT NULL TEXT column should
     # accept empty-string when CSV value is blank (preserves the row).
     EMPTY_OK = {("candidates", "source_url"): "",
@@ -238,6 +239,17 @@ def restore():
                     coldefs = ", ".join(f'"{c}" {ty}' for c, ty in zip(cols, types))
                     conn.execute(f'CREATE TABLE "{t}" ({coldefs})')
                 print(f"  created missing table {t}")
+            # columns added after a table's base DDL was written (Form 4's
+            # swap_involved / planned_10b5 / owner_cik / owned_after) must exist
+            # before the insert — otherwise the whole table silently restores
+            # EMPTY (15,704 insider trades once came back as 0 rows)
+            have = {row[1] for row in conn.execute(f"PRAGMA table_info('{t}')")}
+            extra = [i for i, c in enumerate(cols) if c not in have]
+            if extra:
+                types = _infer_types(rows, len(cols))
+                for i in extra:
+                    conn.execute(f'ALTER TABLE "{t}" ADD COLUMN "{cols[i]}" {types[i]}')
+                print(f"  added {len(extra)} newer column(s) to {t}: {[cols[i] for i in extra]}")
             try:
                 conn.execute(f"DELETE FROM '{t}'")
                 ph = ",".join("?" * len(cols))
@@ -245,9 +257,13 @@ def restore():
                 loaded += 1
                 print(f"  restored {t:<28} {len(rows):>6} rows")
             except sqlite3.Error as e:
+                failed.append(t)
                 print(f"  FAIL {t}: {e}")
     conn.commit()
     print(f"\nrestore complete: {loaded} tables hydrated into {DB}")
+    if failed:
+        print(f"ERROR: {len(failed)} table(s) did NOT restore: {failed}")
+        sys.exit(2)
 
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "dump"

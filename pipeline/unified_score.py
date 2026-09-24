@@ -62,6 +62,11 @@ def classify_sec_type(tkr, name, names):
     heuristic verify that RVMDW's base ticker RVMD is the SAME issuer (warrant
     quotes carry the issuer's name), so ARW/SNOW-style tickers never match."""
     nm = name or ""
+    # BOND DESCRIPTORS: OpenFIGI names convertible notes like "MSTR 0.625
+    # 03-15-30" — a real ticker never contains a space. 171 such notes had
+    # scored as common stock picks.
+    if " " in tkr:
+        return "note"
     # PREFERRED — by ticker suffix OR the unambiguous "PFD" name token / coupon-pfd
     # (NCR Corp "5.5% PFD CNV A" is a preferred, not $138B of NCR common stock).
     if _PREF_RE.search(tkr) or re.search(r"\bPFD\b|\bPFD\.|% PFD|CNV PFD|PREF\b", nm, re.I):
@@ -287,7 +292,9 @@ def run():
         # the raw number were USD. Convert once here so every sheet is correct.
         for r in conn.execute("""SELECT ticker,
             CASE WHEN enterprise_value_m > 0 AND ebitda_m > 0 THEN ev_ebitda END AS ev_ebitda,
-            CASE WHEN pb_ratio > 0 AND pb_ratio <= 30 THEN pb_ratio END AS pb_ratio,
+            -- >30 was an ADR currency artifact on YAHOO rows; FMP computes P/B
+            -- in one currency, so a high FMP P/B is real (AAPL 46x, asset-light)
+            CASE WHEN pb_ratio > 0 AND (pb_ratio <= 30 OR src = 'fmp') THEN pb_ratio END AS pb_ratio,
             pe_ttm, mcap_m, long_name, currency
             FROM ticker_yf"""):
             ev, pb = r["ev_ebitda"], r["pb_ratio"]
