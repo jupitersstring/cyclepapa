@@ -7,7 +7,7 @@ is June 2026.
 
 This module queries efts.sec.gov full-text search per holder CIK with:
   forms=SC 13D, SC 13D/A, SC 13G, SC 13G/A
-  dateRange=2025-01-01 to today
+  dateRange=rolling ~21 months to today
 
 Adds rows to holder_13d (idempotent via PRIMARY KEY on holder_cik+accession).
 Then parses subject ticker + percentage from each filing.
@@ -25,7 +25,12 @@ def curl(url, timeout=20):
                          capture_output=True).stdout
     return out
 
-def efts_sc13_search(cik, start="2025-01-01", end="2026-12-31"):
+def efts_sc13_search(cik, start=None, end=None):
+    # rolling window: a fixed end of 2026-12-31 would have silently stopped
+    # finding new 13D/Gs from January 2027
+    import datetime as _dt
+    start = start or (_dt.date.today() - _dt.timedelta(days=640)).isoformat()
+    end = end or _dt.date.today().isoformat()
     """Hit efts.sec.gov for all SC 13D/G filings by this CIK in the date range.
 
     NOTE: efts uses 'SCHEDULE 13D/A' form names whereas the submissions API
@@ -113,7 +118,7 @@ def run():
     only = set(sys.argv[1:]) if len(sys.argv) > 1 else None
     if only:
         holders = [(c, n) for c, n in holders if str(c) in only]
-    print(f"refreshing 13D/G for {len(holders)} holder CIKs (2025-01-01 → today)\n")
+    print(f"refreshing 13D/G for {len(holders)} holder CIKs (last ~21 months → today)\n")
 
     n_holders_with_new = n_new_filings = n_parsed = 0
     for cik, name in holders:

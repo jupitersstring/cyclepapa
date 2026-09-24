@@ -198,8 +198,12 @@ def curl(url, retries=6):
         r = subprocess.run(["curl", "-sk", "--compressed", "-m", "20", "-A", UA, url],
                            capture_output=True)
         out = r.stdout
-        # 429 detection
-        if out[:200].find(b'Rate Threshold Exceeded') != -1 or out[:200].find(b'<!DOCTYPE html') != -1:
+        # SEC throttle / block page. Detect its actual markers — ANY html page
+        # used to count, so every legitimate HTML response burned ~4.5 min of
+        # back-off (20+30+...+70s) before giving up.
+        head = out[:8000]
+        if (head.find(b'Rate Threshold Exceeded') != -1 or head.find(b'Undeclared Automated Tool') != -1
+                or (head.find(b'apology_objects') != -1 and not url.rstrip('/').endswith(('.htm', '.html')))):
             wait = 20 + 10 * i
             print(f"  ! rate-limited, waiting {wait}s")
             time.sleep(wait)
@@ -282,6 +286,25 @@ def find_infotable(cik, accession):
     (which is the cover-page form13f wrapper).
     """
     acc = accession.replace("-", "")
+    # 1. the structured listing (index.json). SEC now answers plain directory
+    #    browsing from automated clients with its "apology" block page, which
+    #    lists no files — scraping it silently fell through to a guessed
+    #    infotable.xml and lost every filer with a custom name
+    #    ("trybe2q2026.inftbl.xml", "WedgewoodPartners_13f_1Q26.xml").
+    js = curl(f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc}/index.json")
+    try:
+        names = [it["name"] for it in json.loads(js)["directory"]["item"]]
+    except (ValueError, KeyError, TypeError):
+        names = []
+    xmls = [n for n in names if n.lower().endswith(".xml") and n.lower() != "primary_doc.xml"]
+    base = f"/Archives/edgar/data/{int(cik)}/{acc}/"
+    for n in xmls:
+        low = n.lower()
+        if any(k in low for k in ("infotable", "informationtable", "inftbl", "infotbl", "info_table")):
+            return base + n
+    if xmls:
+        return base + xmls[0]
+    # 2. fall back to the HTML directory page
     data = curl(f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc}/")
     if not data: return None
     matches = re.findall(r'href="([^"]+\.xml)"', data.decode("utf-8", errors="ignore"), re.I)

@@ -114,7 +114,12 @@ def classify_sec_type(tkr, name, names):
 # (a convert-arb fund's 5% Lumentum note is not a 5% Lumentum equity bet).
 _EQUITY = ("AND sh_type IN ('SH','') AND substr(cusip,7,1) BETWEEN '0' AND '9' "
            "AND substr(cusip,8,1) BETWEEN '0' AND '9' ")
-STALE_FUND_CUTOFF = "2025-01-01"
+# Rolling, not a fixed date: a fund that has missed two quarterly 13F cycles
+# (~200 days) is dormant. A hard-coded 2025-01-01 had kept funds whose last
+# 13F was November 2025 (Engine No. 1, Aurelius, Sagard...) scored as CURRENT
+# smart money in September 2026 on year-old positions.
+import datetime as _dt
+STALE_FUND_CUTOFF = (_dt.date.today() - _dt.timedelta(days=200)).isoformat()
 _FRESH = (f"AND fund NOT IN (SELECT fund FROM fund_13f_state "
           f"WHERE last_filed IS NOT NULL AND last_filed < '{STALE_FUND_CUTOFF}')")
 
