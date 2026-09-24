@@ -231,7 +231,7 @@ def first_sentence(s):
         if prev in _ABBR or len(prev) <= 1 or (len(prev) <= 3 and "." in prev):
             continue
         return s[:m.start() + 1]
-    return s
+    return complete_text(s)             # one sentence, maybe cut at the source
 
 def complete_text(s):
     """The full stored text. If an old store cut it (trailing '…', from the
@@ -243,6 +243,11 @@ def complete_text(s):
         ends = [m.start() for m in re.finditer(r"\.\s+(?=[A-Z0-9])", body)]
         if ends:
             return body[:ends[-1] + 1]
+        # one long sentence cut mid-list (a fund summary FMP doesn't carry,
+        # PSPFX): end at its last complete clause, not on a fragment
+        cut = max(body.rfind("; "), body.rfind(", "))
+        if cut > len(body) // 2:
+            return body[:cut].rstrip(",;") + "."
     return s
 
 # ---------- valuation multiples on every ticker table ----------

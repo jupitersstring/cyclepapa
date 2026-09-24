@@ -88,6 +88,13 @@ def dump():
                 w.writerow([r[c] if r[c] is not None else "" for c in cols])
         flag = "EXPENSIVE" if t in EXPENSIVE_TABLES else ""
         summary.append((t, len(rows), flag))
+    # prune CSVs of tables the DB no longer has: restore() loads every CSV in
+    # the folder, so a dropped table (ticker_yf__old) would come back
+    dumped = {t for t, _, _ in summary}
+    for fname in sorted(os.listdir(SNAP)):
+        if fname.endswith(".csv") and not fname.startswith("_") and fname[:-4] not in dumped:
+            os.remove(os.path.join(SNAP, fname))
+            print(f"  pruned {fname} (table no longer in the DB)")
     # write a manifest with row counts so diff reveals drift
     with open(os.path.join(SNAP, "_MANIFEST.csv"), "w", newline="") as f:
         w = csv.writer(f); w.writerow(["table", "rows", "flag"])

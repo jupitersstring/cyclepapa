@@ -17,7 +17,7 @@ Ancora Advisors   Ancora Holdin,1,,0.0,needs_verify,2026-06-19
 Andurand Capital Management (Pi,0,,0.0,non_equity_strategy,2026-06-19
 Aoris Investment Management,0,,0.0,au_non_filer,2026-06-19
 Appaloosa Management LP,1,1656456,0.0,needs_verify,2026-06-19
-Argyle Street Management,0,1361036,1.0,historical_13f_only,2026-06-19
+Argyle Street Management,0,,1.0,rejected: CIK 1361036 is Bader John A,2026-06-19
 Asia Frontier Capital (Thomas H,0,,0.0,hk_non_filer,2026-06-19
 "Aspect Capital (Anthony Todd, L",0,,0.0,non_equity_strategy,2026-06-19
 Aubrey Capital Management (Andr,0,,0.0,uk_non_filer,2026-06-19
@@ -269,7 +269,7 @@ Robotti & Co Advisors LLC (Bob ,1,1105838,0.5,efts_resolved,2026-06-19
 S. Muoio & Co. LLC (Salvatore M,1,1138996,1.0,efts_resolved,2026-06-19
 Saber Capital (John Huber),2,1911378,0.67,efts_resolved,2026-06-19
 Sachem Head Capital Management,1,1582090,1.0,efts_resolved,2026-06-19
-Sculptor Capital Management,25,1738560,0.67,efts_resolved,2026-06-19
+Sculptor Capital Management,25,,0.67,"rejected: CIK 1738560 is ISLAY CAPITAL MANAGEMENT, LLC",2026-06-19
 Semper Augustus (Chris Bloomstr,1,1115373,0.5,efts_resolved,2026-06-19
 Sessa Capital (John Petry),1,1595849,0.67,efts_resolved,2026-06-19
 ShawSpring Partners (Dennis Hon,1,1766908,1.0,efts_resolved,2026-06-19
@@ -300,11 +300,11 @@ Whale Rock Capital Management (,1,1387322,1.0,efts_resolved,2026-06-19
 Whitebox Advisors,1,1257391,1.0,efts_resolved,2026-06-19
 Wynnefield Capital,3,1251567,1.0,efts_resolved,2026-06-19
 Yacktman Asset Management LP,2,905567,1.0,efts_resolved,2026-06-19
-1 Main Capital (Yaron Naymark),5,1761049,1.0,manual_seed_v2,2026-06-19
+1 Main Capital (Yaron Naymark),5,,1.0,rejected: CIK 1761049 is DiamondRock Hospitality Limited Partnership,2026-06-19
 Bares Capital Management,2,1340807,1.0,v2_verified,2026-06-19
 ADW Capital Management,1,1745214,1.0,v2_verified,2026-06-19
 AKO Capital LLP,1,1376879,1.0,v2_verified,2026-06-19
-Avenue Capital Group (Marc Lasr,2,1002858,0.5,historical_13f_only,2026-06-19
+Avenue Capital Group (Marc Lasr,2,,0.5,rejected: CIK 1002858 is THIRD AVENUE MANAGEMENT LLC,2026-06-19
 Boyar Value Group (Mark & Jonat,1,1218254,1.0,manual_seed_v2,2026-06-19
 Canyon Partners (Canyon Capital,1,1074034,1.0,v2_verified,2026-06-19
 Casdin Capital LLC,1,1534261,1.0,v2_verified,2026-06-19
@@ -329,8 +329,8 @@ Irenic Capital Management,1,1929389,1.0,v2_verified,2026-06-19
 JCP Investment Management LLC,1,1461945,1.0,v2_verified,2026-06-19
 Kinderhook Partners,0,1300996,1.0,historical_13f_only,2026-06-19
 Land & Buildings Investment Man,0,1536520,0.67,gap_first2_open,2026-06-19
-Lawndale Capital,0,1318019,1.0,historical_13f_only,2026-06-19
-Long Cast Advisers,0,1672014,1.0,historical_13f_only,2026-06-19
+Lawndale Capital,0,,1.0,rejected: CIK 1318019 is LEHMAN BROTHERS HOLDINGS CAPITAL TRUST XII,2026-06-19
+Long Cast Advisers,0,,1.0,rejected: CIK 1672014 is Akin Paul,2026-06-19
 MILFAM LLC Subin,1,1728825,0.5,v2_verified,2026-06-19
 Mudrick Capital Management,1,1655183,1.0,v2_verified,2026-06-19
 Oakcliff Capital Partners,1,1657335,1.0,v2_verified,2026-06-19
@@ -343,17 +343,17 @@ RiverNorth Capital   SPCZ ETF (,1,1447578,1.0,v2_verified,2026-06-19
 Sagard Capital Partners,1,1941151,1.0,v2_verified,2026-06-19
 Seilern Investment Management L,1,1817797,0.5,v2_verified,2026-06-19
 Spruce House Partnership,2,1543170,1.0,v2_verified,2026-06-19
-Tiburon Holdings   Tiburon Capi,0,1593514,1.0,historical_13f_only,2026-06-19
-Tiburon Holdings (Peter Lupoff),0,1593514,1.0,historical_13f_only,2026-06-19
+Tiburon Holdings   Tiburon Capi,0,,1.0,"rejected: CIK 1593514 is Nexxus Capital Private Equity Fund VI, L.P.",2026-06-19
+Tiburon Holdings (Peter Lupoff),0,,1.0,"rejected: CIK 1593514 is Nexxus Capital Private Equity Fund VI, L.P.",2026-06-19
 Tocqueville Gold Fund (now Spro,1,883961,0.5,v2_verified,2026-06-19
 VIEX Capital Advisors (Eric Sin,1,1619125,1.0,v2_verified,2026-06-19
 Wedgewood Partners,1,859804,1.0,v2_verified,2026-06-19
 Aquamarine Fund   Aquamarine Ca,3,2104187,1.0,v3_verified,2026-06-19
 Fundsmith LLP (Terry Smith),4,1569205,1.0,v3_verified,2026-06-19
 Kerrisdale Capital Management,1,1569688,1.0,v3_verified,2026-06-19
-Muddy Waters Capital LLC (Carso,1,1547282,1.0,historical_13f_only,2026-06-19
-Old Farm Partners,2,1606457,1.0,historical_13f_only,2026-06-19
-Orange Capital Ventures (Daniel,8,1581596,1.0,historical_13f_only,2026-06-19
+Muddy Waters Capital LLC (Carso,1,,1.0,"rejected: CIK 1547282 is Burger King Worldwide, Inc.",2026-06-19
+Old Farm Partners,2,,1.0,rejected: CIK 1606457 is Atento S.A.,2026-06-19
+Orange Capital Ventures (Daniel,8,,1.0,rejected: CIK 1581596 is Perrtech PTY Ltd,2026-06-19
 Pelham Capital Management,2,1654111,1.0,v3_verified,2026-06-19
 Roumell Asset Management,1,1331693,1.0,v3_verified,2026-06-19
 Royce Investment Partners,1,906304,1.0,v3_verified,2026-06-19

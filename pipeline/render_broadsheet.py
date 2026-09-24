@@ -216,28 +216,54 @@ def _panel(title, heads, rows, rightclasses=None):
             f'<table><thead><tr>{ths}</tr></thead><tbody>{"".join(rows)}</tbody></table></div>')
 
 def _qoq(conn):
-    # Match on CUSIP (stable across quarters) + share counts (unit-independent),
-    # then map to a ticker via cusip_map — the two quarters were mapped by
-    # different logic so a ticker-level, value-based diff is pure noise.
+    # Share counts (unit-independent), matched at the TICKER level via
+    # cusip_map, with the same guards as the workbook's Quarter Change sheet:
+    #  * only funds whose prior book is on file and within [40%, 250%] of the
+    #    current one — a fund with NO prior (a new roster add, a first filer)
+    #    otherwise counted every position as a new buy, and a partial prior
+    #    filing (Berkshire: $67B of $263B) manufactured adds and exits;
+    #  * ticker-level, not raw CUSIP: an ADR -> ordinary CUSIP change between
+    #    quarters (AZN) otherwise reads as an exit plus a new buy;
+    #  * equity lines only: letters in the CUSIP issue code are debt.
+    conn.execute("""CREATE TABLE IF NOT EXISTS prior_split_factor
+        (fund TEXT, ticker TEXT, factor REAL, PRIMARY KEY (fund, ticker))""")   # built by ingest_splits
     rows = q(conn, """
-        WITH cur AS (SELECT fund,cusip,SUM(shares) sh FROM fund_13f_holdings
-                     WHERE cusip IS NOT NULL AND sh_type IN ('SH','') GROUP BY fund,cusip),
-             pri AS (SELECT fund,cusip,SUM(shares) sh FROM fund_13f_prior
-                     WHERE cusip IS NOT NULL AND sh_type IN ('SH','') GROUP BY fund,cusip),
-             chg AS (SELECT cur.fund, cur.cusip, cur.sh cur_sh, pri.sh pri_sh
-                     FROM cur LEFT JOIN pri ON pri.fund=cur.fund AND pri.cusip=cur.cusip
+        WITH ok_funds AS (
+               SELECT c.fund FROM
+                 (SELECT fund, SUM(value_k) v FROM fund_13f_holdings GROUP BY fund) c
+                 JOIN (SELECT fund, SUM(value_k) v FROM fund_13f_prior GROUP BY fund) p
+                 ON p.fund = c.fund
+               WHERE c.v > 0 AND p.v BETWEEN c.v*0.4 AND c.v*2.5),
+             cur AS (SELECT h.fund, COALESCE(cm.ticker, h.cusip) tk, SUM(h.shares) sh
+                     FROM fund_13f_holdings h LEFT JOIN cusip_map cm ON cm.cusip = h.cusip
+                     WHERE h.cusip IS NOT NULL AND h.sh_type IN ('SH','')
+                       AND substr(h.cusip,7,1) BETWEEN '0' AND '9'
+                       AND substr(h.cusip,8,1) BETWEEN '0' AND '9'
+                       AND h.fund IN (SELECT fund FROM ok_funds)
+                     GROUP BY h.fund, tk),
+             pri AS (SELECT h.fund, COALESCE(cm.ticker, h.cusip) tk,
+                            SUM(h.shares) * COALESCE(MAX(sf.factor), 1) sh    -- split-adjusted
+                     FROM fund_13f_prior h LEFT JOIN cusip_map cm ON cm.cusip = h.cusip
+                     LEFT JOIN prior_split_factor sf ON sf.fund = h.fund
+                          AND sf.ticker = COALESCE(cm.ticker, h.cusip)
+                     WHERE h.cusip IS NOT NULL AND h.sh_type IN ('SH','')
+                       AND substr(h.cusip,7,1) BETWEEN '0' AND '9'
+                       AND substr(h.cusip,8,1) BETWEEN '0' AND '9'
+                       AND h.fund IN (SELECT fund FROM ok_funds)
+                     GROUP BY h.fund, tk),
+             chg AS (SELECT cur.fund, cur.tk, cur.sh cur_sh, pri.sh pri_sh
+                     FROM cur LEFT JOIN pri ON pri.fund=cur.fund AND pri.tk=cur.tk
                      UNION ALL
-                     SELECT pri.fund, pri.cusip, NULL, pri.sh FROM pri LEFT JOIN cur
-                       ON cur.fund=pri.fund AND cur.cusip=pri.cusip WHERE cur.fund IS NULL)
-        SELECT cm.ticker AS ticker,
+                     SELECT pri.fund, pri.tk, NULL, pri.sh FROM pri LEFT JOIN cur
+                       ON cur.fund=pri.fund AND cur.tk=pri.tk WHERE cur.fund IS NULL)
+        SELECT chg.tk AS ticker,
           SUM(CASE WHEN pri_sh IS NULL AND cur_sh>0 THEN 1 ELSE 0 END) n_new,
           SUM(CASE WHEN pri_sh IS NOT NULL AND cur_sh>pri_sh*1.05 THEN 1 ELSE 0 END) n_add,
           SUM(CASE WHEN cur_sh IS NOT NULL AND pri_sh IS NOT NULL AND cur_sh<pri_sh*0.95 THEN 1 ELSE 0 END) n_trim,
           SUM(CASE WHEN cur_sh IS NULL AND pri_sh>0 THEN 1 ELSE 0 END) n_exit
-        FROM chg JOIN cusip_map cm ON cm.cusip=chg.cusip
-        JOIN unified_signal u ON u.ticker=cm.ticker AND u.sec_type='common'
-        WHERE cm.ticker NOT IN ('AMZN','MSFT','NVDA','META','GOOGL','GOOG','AAPL','TSLA','SPY','QQQ')
-        GROUP BY cm.ticker""")
+        FROM chg JOIN unified_signal u ON u.ticker=chg.tk AND u.sec_type='common'
+        WHERE chg.tk NOT IN ('AMZN','MSFT','NVDA','META','GOOGL','GOOG','AAPL','TSLA','SPY','QQQ')
+        GROUP BY chg.tk""")
     scored = []
     for r in rows:
         net = (r["n_new"] + r["n_add"]) - (r["n_trim"] + r["n_exit"])

@@ -213,6 +213,26 @@ def sheet_readme(wb, conn):
     d13_date = _maxdate("SELECT MAX(filed) FROM holder_13d")
     c8_date = _maxdate("SELECT MAX(filed) FROM catalysts_8k")
     yf_date = _maxdate("SELECT MAX(asof) FROM ticker_yf")
+    n_fp = conn.execute("SELECT COUNT(*) FROM fund_positions").fetchone()[0]
+    # books kept OUT of every holder count, named in full so nothing drops silently
+    try:
+        dormant = [r[0] for r in conn.execute("""SELECT DISTINCT d.fund FROM fund_13f_dormant d
+            JOIN fund_13f_state s ON s.fund = d.fund ORDER BY s.last_filed DESC""")]
+    except sqlite3.OperationalError:
+        dormant = []
+    empty = [f"{r[0]} ({r[1]})" for r in conn.execute("""SELECT fund, substr(last_filed, 1, 7) FROM fund_13f_state
+        WHERE n_holdings = 0 AND last_accession IS NOT NULL ORDER BY fund""")]
+
+    def _wrapped(label, names, width=88):
+        out, line = [], label
+        for i, nm in enumerate(names):
+            piece = nm + (", " if i < len(names) - 1 else "")
+            if len(line) + len(piece) > width and line.strip():
+                out.append((line.rstrip(),))
+                line = " " * 22
+            line += piece
+        out.append((line.rstrip(),))
+        return out
 
     rows = [
         ("",),
@@ -220,7 +240,7 @@ def sheet_readme(wb, conn):
         (f"13F holdings   position as-of ~{f13_asof}  (latest filing {f13_filed}; SEC allows +45d, so 'smart money'",),
         ("    reflects quarter-END positions and can be up to ~3-4 months old — a fund may have since exited).",),
         (f"Form 4 insider {f4_date}     ·   13D/G activist {d13_date}     ·   8-K catalysts {c8_date}   (near-current)",),
-        (f"Valuations     {yf_date}     (Yahoo; price/mcap current to within days)",),
+        (f"Valuations     {yf_date}     (FMP, Yahoo fallback; price/mcap current to within days)",),
         ("    → The 13F-derived columns (smart_money, section counts, %book) are the LAGGED layer; the Form 4 /",),
         ("      13D / 8-K / valuation columns are current. Don't read a 13F consensus as a live position.",),
         ("",),
@@ -248,7 +268,11 @@ def sheet_readme(wb, conn):
         ("",),
         ("Data sources",),
         (f"fund_13f_holdings     {n_hold:,} rows from SEC 13F-HR XML across {n_13f_funds} funds",),
-        ("fund_positions        6,748 rows from XLSX research-team classifications",),
+        *(_wrapped(f"Dormant, archived     {len(dormant)} funds with no 13F-HR in 200+ days, kept out of every count: ",
+                   dormant) if dormant else []),
+        *(_wrapped(f"Empty latest report   {len(empty)} funds filed a $0 holdings table (held no 13F securities): ",
+                   empty) if empty else []),
+        (f"fund_positions        {n_fp:,} rows from XLSX research-team classifications",),
         ("holder_13d            current SC 13D/G filings via efts.sec.gov full-text search",),
         ("form4_transactions    P-code open-market buys + S-code sells, ≤180d",),
         ("insider_clusters      live ≤180d clusters",),
@@ -496,6 +520,8 @@ def sheet_qoq_change(wb, conn):
     # mapped by different logic, so a ticker-level diff is dominated by mapping
     # noise (Comcast CMCSA vs CCZ). Share counts are unit-independent, so we
     # ignore the value_k unit stragglers entirely and diff shares.
+    conn.execute("""CREATE TABLE IF NOT EXISTS prior_split_factor
+        (fund TEXT, ticker TEXT, factor REAL, PRIMARY KEY (fund, ticker))""")   # built by ingest_splits
     rows = list(conn.execute("""
         WITH ok_funds AS (
              -- guard against PARTIAL prior filings: Berkshire's prior accession
@@ -516,8 +542,14 @@ def sheet_qoq_change(wb, conn):
                        AND substr(h.cusip,8,1) BETWEEN '0' AND '9'
                        AND h.fund IN (SELECT fund FROM ok_funds)
                      GROUP BY h.fund, tk),
-             pri AS (SELECT h.fund, COALESCE(cm.ticker, h.cusip) tk, SUM(h.shares) sh
+             -- prior shares on the CURRENT share basis: a split inside the
+             -- window (Booking 25:1, KLA 10:1, Carvana 5:1 in Q2 2026) made
+             -- every holder read as a +400-999% "adder" (ingest_splits.py)
+             pri AS (SELECT h.fund, COALESCE(cm.ticker, h.cusip) tk,
+                            SUM(h.shares) * COALESCE(MAX(sf.factor), 1) sh
                      FROM fund_13f_prior h LEFT JOIN cusip_map cm ON cm.cusip=h.cusip
+                     LEFT JOIN prior_split_factor sf ON sf.fund = h.fund
+                          AND sf.ticker = COALESCE(cm.ticker, h.cusip)
                      WHERE h.cusip IS NOT NULL AND h.sh_type IN ('SH','')
                        AND substr(h.cusip,7,1) BETWEEN '0' AND '9'
                        AND substr(h.cusip,8,1) BETWEEN '0' AND '9'

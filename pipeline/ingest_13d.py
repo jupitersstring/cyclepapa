@@ -87,8 +87,11 @@ def filings_13_for_holder(cik):
                         "primary_doc": rec["primaryDocument"][i]})
     return out
 
-def parse_subject(cik, accession, primary_doc):
-    """Pull subject company + percentage from a 13D/G filing header."""
+def parse_subject(cik, accession, primary_doc, with_cik=False):
+    """Pull subject company + percentage from a 13D/G filing header.
+    with_cik=True appends the SUBJECT's CIK: EDGAR lists a filing under the
+    subject company's CIK as well as the filers', so a caller holding a wrong
+    (company) CIK must be able to see that the "holder" is the subject."""
     acc = accession.replace("-", "")
     url = f"https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK={cik}&type=SC+13&dateb=&owner=include&count=10"
     # try the .txt header which has standardized SUBJECT COMPANY block
@@ -97,7 +100,7 @@ def parse_subject(cik, accession, primary_doc):
     if not txt or len(txt) < 500:
         # try the index page format
         ix = curl(f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc}/")
-        return None, None, None, txt_url
+        return (None, None, None, txt_url, None) if with_cik else (None, None, None, txt_url)
     # SUBJECT COMPANY block
     m = re.search(r"SUBJECT COMPANY:.*?COMPANY CONFORMED NAME:\s*(.+?)\n.*?CENTRAL INDEX KEY:\s*(\d+)",
                   txt, re.S | re.I)
@@ -123,6 +126,8 @@ def parse_subject(cik, accession, primary_doc):
                 v = float(mp.group(1))
                 if 0.5 < v < 100: pct = v; break
             except ValueError: pass
+    if with_cik:
+        return subj_name, tkr, pct, txt_url, subj_cik
     return subj_name, tkr, pct, txt_url
 
 TICKER_BY_CIK = {}

@@ -108,6 +108,9 @@ def run():
           AND issuer NOT LIKE '%FDS%' AND issuer NOT LIKE '%SHARES%' AND issuer NOT LIKE '%EXCH TRD%'
           AND issuer NOT LIKE '%PORTFOLIO%' AND issuer NOT LIKE '%INDEX%' AND issuer NOT LIKE '%ISHARES%'
           AND issuer NOT LIKE '%NOTE%' AND issuer NOT LIKE '%BOND%' AND issuer NOT LIKE '%CALL%' AND issuer NOT LIKE '%PUT%'
+          -- debt by structure, not by name: a convertible filed as "MAKEMYTRIP
+          -- LIMITED 0 07/.." is principal (PRN) under a lettered issue code
+          AND sh_type != 'PRN' AND substr(cusip,7,1) BETWEEN '0' AND '9' AND substr(cusip,8,1) BETWEEN '0' AND '9'
           -- FMP-identified ETFs / closed-end funds stay unticked on holdings by design
           AND cusip NOT IN (SELECT cusip FROM cusip_map WHERE sec_type = 'etf')
         GROUP BY issuer HAVING vM >= 100 ORDER BY vM DESC""").fetchall()
@@ -159,6 +162,29 @@ def run():
     for tbl in ("fund_13f_holdings", "fund_13f_prior", "broker_13f"):
         n = one(f"SELECT COUNT(*) FROM {tbl} WHERE value_k > 1e9")
         if n: fails.append(f"{tbl}: {n} lines above $1T — full-dollar filing not normalized")
+    # I8f2. Lines with no market price can't be unit-checked against one: a
+    #       whole-dollar line booked as $k shows as an impossible per-share
+    #       value (Indaba's lone ON24 line: $7,960 a share, $33.8B booked).
+    for tbl in ("fund_13f_holdings", "fund_13f_prior"):
+        bad = conn.execute(f"""SELECT h.fund, COALESCE(h.ticker, h.issuer), h.value_k/1e3 FROM {tbl} h
+            LEFT JOIN ticker_yf y ON y.ticker = h.ticker AND y.price > 0
+            WHERE h.sh_type IN ('SH','') AND h.shares > 0 AND h.value_k * 1000.0 / h.shares > 20000
+              AND (y.price IS NULL OR y.price < 5000) ORDER BY h.value_k DESC""").fetchall()
+        if any(b[2] >= 100 for b in bad):
+            fails.append(f"{tbl}: {sum(b[2] >= 100 for b in bad)} lines of $100M+ at >$20k a share with no price "
+                         f"to explain it (unit error): {bad[0][0][:24]} {bad[0][1][:20]} ${bad[0][2]:,.0f}M")
+        elif bad:
+            warns.append(f"{tbl}: {len(bad)} small lines at >$20k a share (mixed-unit filings), largest "
+                         f"{bad[0][0][:24]} {bad[0][1][:20]} ${bad[0][2]:,.1f}M")
+    # I8f3. Options are not holdings: a line whose filed title is an option
+    #       (Funicular's "PUT" lines carried no putCall flag) must never sit in
+    #       a book — $2.4B of puts on MU/NVDA/MSFT once counted as long holders.
+    for tbl in ("fund_13f_holdings", "fund_13f_prior"):
+        r = conn.execute(f"""SELECT COUNT(*), COALESCE(SUM(h.value_k), 0)/1e3 FROM {tbl} h
+            JOIN holding_sec_form f ON f.accession = h.accession AND f.cusip = h.cusip
+            WHERE f.sec_form = 'option'""").fetchone()
+        if r[0]:
+            fails.append(f"{tbl}: {r[0]} option lines (${r[1]:,.0f}M) booked as holdings (run fix_option_lines.py)")
     # I8g. Share class: a line the filer titled COMMON must not carry a
     #      preferred-line ticker (Morgan Stanley common once rode on MS-PQ and
     #      dropped out of every common-stock signal).
@@ -208,6 +234,90 @@ def run():
     #      classed common, or debt ranks as a stock pick.
     n = one("SELECT COUNT(*) FROM unified_signal WHERE sec_type = 'common' AND ticker LIKE '% %'")
     if n: fails.append(f"unified_signal: {n} bond descriptors (ticker with a space) classed common")
+
+    # I9. 13F quarter roll. In September 2026, 223 funds still showed their Q1
+    #     book six weeks after Q2 13Fs were due, and quarter-change diffs ran
+    #     two quarters deep: nothing had rolled them and nothing noticed.
+    import datetime as _dt
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from ingest_13f import DORMANT_DAYS
+    today = _dt.date.today()
+    live_cut = (today - _dt.timedelta(days=DORMANT_DAYS)).isoformat()
+    # I9a. time-based, needs no EDGAR index: the latest quarter whose 45-day
+    #      13F deadline passed 10+ days ago; a live book filed on/before that
+    #      quarter's end is an earlier quarter's book.
+    qe = [_dt.date(y, m, d) for y in (today.year - 1, today.year)
+          for m, d in ((3, 31), (6, 30), (9, 30), (12, 31))]
+    due = max(q for q in qe if q + _dt.timedelta(days=55) <= today).isoformat()
+    live = one("SELECT COUNT(*) FROM fund_13f_state WHERE last_filed >= ?", (live_cut,))
+    behind = [r[0] for r in conn.execute("""SELECT fund FROM fund_13f_state
+        WHERE last_filed >= ? AND last_filed <= ? ORDER BY fund""", (live_cut, due))]
+    if live and len(behind) > 0.10 * live:
+        fails.append(f"13F roll: {len(behind)} of {live} live funds still hold a book from before the "
+                     f"{due} quarter, whose 13Fs were due {(_dt.date.fromisoformat(due) + _dt.timedelta(days=45))} "
+                     f"(run ingest_13f.py --refresh, then ingest_13f_prior.py)")
+    elif behind:
+        warns.append(f"13F roll: {len(behind)} live funds have not filed for the {due} quarter yet "
+                     f"(late / NT / winding down): {', '.join(b[:28] for b in behind[:8])}")
+    try:
+        qidx = lambda col: f"(CAST(substr({col},1,4) AS INT)*4 + (CAST(substr({col},6,2) AS INT)-1)/3)"
+        cur_p = ("(SELECT period FROM sec_13f_filings g WHERE g.accession = s.last_accession "
+                 "AND g.period != '' LIMIT 1)")
+        # I9b. against the EDGAR index ingest_13f keeps: a newer-PERIOD 13F-HR
+        #      for the fund's CIK that was never ingested (same-period
+        #      restatements, like Eminence's empty July re-file, do not count)
+        # (dormant funds too: one that filed an EMPTY report is not dormant)
+        stale = [r[0] for r in conn.execute(f"""SELECT s.fund FROM fund_13f_state s
+            WHERE EXISTS (SELECT 1 FROM sec_13f_filings f
+                WHERE f.cik = CAST(CAST(s.cik AS INTEGER) AS TEXT) AND f.form = '13F-HR'
+                  AND f.period > {cur_p})""")]
+        if stale:
+            fails.append(f"13F roll: {len(stale)} funds have a newer-quarter 13F-HR on EDGAR than their "
+                         f"stored book (ingest_13f.py --refresh): {', '.join(s[:28] for s in stale[:8])}")
+        # I9c. a prior must be the IMMEDIATELY preceding quarter of the current
+        #      book, or "Quarter Change" diffs across a gap under its header
+        gap = conn.execute(f"""SELECT p.fund, cp, pp FROM (
+                SELECT p.fund, {cur_p} cp,
+                       (SELECT period FROM sec_13f_filings g WHERE g.accession = p.accession
+                        AND g.period != '' LIMIT 1) pp
+                FROM fund_13f_prior_state p JOIN fund_13f_state s ON s.fund = p.fund
+                WHERE p.accession IS NOT NULL) p
+            WHERE cp IS NOT NULL AND pp IS NOT NULL AND {qidx('cp')} - {qidx('pp')} != 1""").fetchall()
+        if gap:
+            fails.append(f"13F prior: {len(gap)} funds' prior book is not the preceding quarter "
+                         f"(e.g. {gap[0][0][:28]}: {gap[0][2]} vs {gap[0][1]}) — run ingest_13f_prior.py")
+        # I9d. a 13F-NT newer than the stored book: the holdings are now filed by
+        #      another manager (Pershing Square, Q2 2026) — re-point the roster
+        nt = [r[0] for r in conn.execute(f"""SELECT DISTINCT s.fund FROM fund_13f_state s
+            JOIN sec_13f_filings f ON f.cik = CAST(CAST(s.cik AS INTEGER) AS TEXT)
+            WHERE s.last_filed >= ? AND f.form LIKE '13F-NT%' AND f.period > {cur_p}""", (live_cut,))]
+        if nt:
+            warns.append(f"13F-NT: {len(nt)} funds' newest filing says another manager now reports "
+                         f"their holdings (re-point the CIK): {', '.join(x[:28] for x in nt[:8])}")
+    except sqlite3.OperationalError:
+        warns.append("13F roll: no EDGAR 13F index yet (sec_13f_filings) — run ingest_13f.py --refresh")
+    # I9f. quarter-change diffs are share counts: they need the split factors
+    try:
+        one("SELECT COUNT(*) FROM prior_split_factor")
+    except sqlite3.OperationalError:
+        fails.append("prior_split_factor missing — quarter-change diffs would read splits as buying "
+                     "(run ingest_splits.py)")
+    # I9e. dormant books never sit in the live table every sheet reads
+    n = one("""SELECT COUNT(DISTINCT h.fund) FROM fund_13f_holdings h
+        JOIN fund_13f_state s ON s.fund = h.fund WHERE s.last_filed < ?""", (live_cut,))
+    if n: fails.append(f"13F: {n} dormant funds (no 13F-HR in {DORMANT_DAYS} days) still in fund_13f_holdings "
+                       f"— shown as current holders (ingest_13f.archive_dormant)")
+    # ...and archived, never lost: a re-run once wiped all 29 archived books
+    try:
+        lost = [r[0] for r in conn.execute("""SELECT s.fund FROM fund_13f_state s
+            WHERE s.last_filed < ? AND s.n_holdings > 0
+              AND NOT EXISTS (SELECT 1 FROM fund_13f_holdings h WHERE h.fund = s.fund)
+              AND NOT EXISTS (SELECT 1 FROM fund_13f_dormant d WHERE d.fund = s.fund)""", (live_cut,))]
+        if lost:
+            fails.append(f"13F: {len(lost)} dormant funds' books are in neither the live table nor the "
+                         f"archive (lost): {', '.join(x[:28] for x in lost[:8])}")
+    except sqlite3.OperationalError:
+        pass
 
     # I8. feed freshness: warn when the tradeable-signal feeds fall behind.
     for tbl, col, days in [('form4_transactions','trans_date',21), ('holder_13d','filed',30),

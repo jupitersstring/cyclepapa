@@ -120,7 +120,7 @@ def run():
         holders = [(c, n) for c, n in holders if str(c) in only]
     print(f"refreshing 13D/G for {len(holders)} holder CIKs (last ~21 months → today)\n")
 
-    n_holders_with_new = n_new_filings = n_parsed = 0
+    n_holders_with_new = n_new_filings = n_parsed = n_self = 0
     for cik, name in holders:
         filings = efts_sc13_search(cik)
         time.sleep(0.4)
@@ -132,9 +132,16 @@ def run():
             if existing: continue
             # parse subject
             try:
-                subj, tkr, pct, src = parse_subject(cik, adsh, doc or "primary_doc.xml")
+                subj, tkr, pct, src, subj_cik = parse_subject(cik, adsh, doc or "primary_doc.xml",
+                                                              with_cik=True)
             except Exception:
-                subj, tkr, pct, src = None, None, None, ""
+                subj, tkr, pct, src, subj_cik = None, None, None, "", None
+            # full-text search matches a CIK as filer OR subject: when the
+            # "holder" is the filing's subject company, the CIK is a company's
+            # (a wrong resolver match), not an investor's — never book it
+            if subj_cik and str(int(subj_cik)) == str(int(cik)):
+                n_self += 1
+                continue
             subj_cik_back = None
             if tkr:
                 subj_cik_back = next((c for c, t in i13.TICKER_BY_CIK.items() if t == tkr), None)
@@ -150,7 +157,8 @@ def run():
             print(f"  + {name[:38]:<38} CIK={cik:<8} {new_this_holder} new filings (total this holder)")
         conn.commit()
 
-    print(f"\ndone: {n_new_filings} new 13D/G filings across {n_holders_with_new} holders ({n_parsed} parsed to ticker)")
+    print(f"\ndone: {n_new_filings} new 13D/G filings across {n_holders_with_new} holders ({n_parsed} parsed to ticker)"
+          f"{f'; {n_self} skipped where the holder CIK was the subject company' if n_self else ''}")
 
 if __name__ == "__main__":
     run()

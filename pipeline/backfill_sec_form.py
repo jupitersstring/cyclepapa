@@ -33,9 +33,18 @@ def run():
         url = path if path.startswith("http") else f"https://www.sec.gov{path}"
         body = m.curl(url)
         rows = m.parse_infotable(body) if body else []
+        # One title per (accession, CUSIP), taken from a HOLDING line: options
+        # are filed under the stock's own CUSIP (Marshall Wace, Tudor), and
+        # last-write-wins had relabelled 800+ real NVDA/AAPL/... stock lines
+        # "EQUITY OPTION" — flagging them as option-mixed in every book.
+        first = {}
         for r in rows:
-            if not r.get("cusip"):
+            if not r.get("cusip") or r.get("put_call"):
                 continue
+            if m.classify_sec_form(r.get("title"), r.get("type")) == "option":
+                continue
+            first.setdefault(r["cusip"], r)
+        for r in first.values():
             conn.execute("INSERT OR REPLACE INTO holding_sec_form VALUES (?,?,?,?)",
                          (acc, r["cusip"], r.get("title"),
                           m.classify_sec_form(r.get("title"), r.get("type"))))

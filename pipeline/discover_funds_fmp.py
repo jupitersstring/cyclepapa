@@ -88,6 +88,13 @@ def run(quarter_end="2026-06-30"):
     roster = {str(c).lstrip("0") for c in ingest_13f.FUND_CIK.values() if c}
     roster |= {str(r[0]).lstrip("0") for r in conn.execute("SELECT DISTINCT cik FROM fund_13f_holdings") if r[0]}
     filers = filer_universe(quarter_end)
+    # keep the full filer list: later name lookups (saved-search investor lists,
+    # people screens) resolve firms to 13F CIKs against it without re-fetching
+    conn.executescript("""CREATE TABLE IF NOT EXISTS filer_universe (
+        cik TEXT, name TEXT, quarter_end TEXT, PRIMARY KEY (cik, quarter_end));""")
+    conn.executemany("INSERT OR REPLACE INTO filer_universe VALUES (?,?,?)",
+                     [(c, n, quarter_end) for c, n in filers.items()])
+    conn.commit()
     todo = {c: n for c, n in filers.items() if c not in roster and not GATHERER.search(n)}
     print(f"{len(filers):,} filers for {quarter_end}; {len(roster):,} on the roster; "
           f"{len(filers) - len(todo) - len(roster & set(filers)):,} dropped as asset gatherers / banks / "

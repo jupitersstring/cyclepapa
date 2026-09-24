@@ -73,9 +73,14 @@ def run():
         # parse top 5 filings (most recent first by submissions ordering)
         for f in fl[:5]:
             try:
-                subj, tkr, pct, src = parse_subject(cik, f["accession"], f["primary_doc"])
+                subj, tkr, pct, src, subj_cik = parse_subject(cik, f["accession"], f["primary_doc"],
+                                                              with_cik=True)
             except Exception:
-                subj, tkr, pct, src = None, None, None, ""
+                subj, tkr, pct, src, subj_cik = None, None, None, "", None
+            # EDGAR lists a 13D/G under the SUBJECT's CIK too: a resolver match
+            # that is really a company's CIK must not book filings about it
+            if subj_cik and str(int(subj_cik)) == str(int(cik)):
+                continue
             subj_cik_back = None
             if tkr:
                 subj_cik_back = next((c for c, t in i13.TICKER_BY_CIK.items() if t == tkr), None)

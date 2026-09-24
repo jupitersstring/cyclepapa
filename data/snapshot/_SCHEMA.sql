@@ -187,7 +187,6 @@ CREATE TABLE price_stats (
 CREATE TABLE ticker_meta ("ticker" TEXT PRIMARY KEY, "name" TEXT, "exchange" TEXT, "market" TEXT, "sector" TEXT, "industry" TEXT, "mcap_m" REAL, "price" REAL, "price_currency" TEXT, "adv_3m_usd_m" REAL, "shares_out_m" REAL, "pe_ttm" TEXT, "fwd_pe" TEXT, "beta" TEXT, "asof" TEXT, "sic" INTEGER, "sic_description" TEXT);
 CREATE TABLE "ticker_valuation" ("ticker" TEXT, "cik" INTEGER, "ebitda_ttm" REAL, "book_value" REAL, "net_debt" REAL, "ev_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "ebitda_is_ebit_fallback" INTEGER, "asof" TEXT);
 CREATE TABLE ticker_yf ("ticker" TEXT PRIMARY KEY, "mcap_m" REAL, "enterprise_value_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "pe_ttm" REAL, "fwd_pe" REAL, "ev_revenue" REAL, "peg" REAL, "price" REAL, "currency" TEXT, "shares_out_m" REAL, "ebitda_m" REAL, "total_debt_m" REAL, "total_cash_m" REAL, "profit_margin" REAL, "rev_growth" REAL, "sector" TEXT, "industry" TEXT, "asof" TEXT, "business_summary" TEXT, "long_name" TEXT, src TEXT, is_fund INTEGER, ptb_ratio REAL, neg_tbv INTEGER);
-CREATE TABLE "ticker_yf__old" ("ticker" TEXT, "mcap_m" REAL, "enterprise_value_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "pe_ttm" REAL, "fwd_pe" REAL, "ev_revenue" REAL, "peg" REAL, "price" REAL, "currency" TEXT, "shares_out_m" REAL, "ebitda_m" REAL, "total_debt_m" REAL, "total_cash_m" REAL, "profit_margin" REAL, "rev_growth" REAL, "sector" TEXT, "industry" TEXT, "asof" TEXT, "business_summary" TEXT, "long_name" TEXT);
 CREATE TABLE yf_dead (ticker TEXT PRIMARY KEY, asof TEXT);
 CREATE INDEX idx_yf_evebitda ON ticker_yf(ev_ebitda);
 CREATE INDEX idx_yf_pb ON ticker_yf(pb_ratio);
@@ -240,6 +239,27 @@ CREATE TABLE fund_discovery (cik TEXT PRIMARY KEY, name TEXT, asof TEXT, positio
           rel_sp_3y REAL, rel_sp_5y REAL, reviewed TEXT);
 CREATE INDEX idx_prior_ticker ON fund_13f_prior(ticker);
 CREATE INDEX idx_prior_fund ON fund_13f_prior(fund);
+CREATE TABLE filer_universe (cik TEXT, name TEXT, quarter_end TEXT, PRIMARY KEY (cik, quarter_end));
+CREATE TABLE sec_13f_filings (
+        cik TEXT, accession TEXT, form TEXT, filed TEXT, period TEXT,
+        PRIMARY KEY (cik, accession));
+CREATE TABLE fund_13f_dormant(
+  fund TEXT,
+  cik TEXT,
+  accession TEXT,
+  filed TEXT,
+  issuer TEXT,
+  cusip TEXT,
+  ticker TEXT,
+  value_k INT,
+  shares INT,
+  sh_type TEXT,
+  pct_book REAL
+);
+CREATE TABLE stock_splits (
+      symbol TEXT, date TEXT, numerator REAL, denominator REAL, split_type TEXT,
+      PRIMARY KEY (symbol, date));
+CREATE TABLE prior_split_factor (fund TEXT, ticker TEXT, factor REAL, PRIMARY KEY (fund, ticker));
 CREATE TABLE earnings_surprise (ticker TEXT, date TEXT, eps_actual REAL, eps_est REAL,
         surprise_pct REAL, rev_actual REAL, rev_est REAL, rev_surprise_pct REAL,
         PRIMARY KEY (ticker, date));

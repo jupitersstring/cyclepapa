@@ -69,7 +69,11 @@ def classify_sec_type(tkr, name, names):
         return "note"
     # PREFERRED — by ticker suffix OR the unambiguous "PFD" name token / coupon-pfd
     # (NCR Corp "5.5% PFD CNV A" is a preferred, not $138B of NCR common stock).
-    if _PREF_RE.search(tkr) or re.search(r"\bPFD\b|\bPFD\.|% PFD|CNV PFD|PREF\b", nm, re.I):
+    # "Preferred" spelled out too: Alphabet's 2026 mandatory convertible
+    # (GOOGN, "...Series B Mandatory Convertible Preferred Stock") scored as a
+    # $283B common stock. Operating names ("Preferred Bank") stay common.
+    if (_PREF_RE.search(tkr) or re.search(r"\bPFD\b|\bPFD\.|% PFD|CNV PFD|PREF\b", nm, re.I)
+            or re.search(r"\bpreferred\s+(stock|shares?|securities)\b|\bconvertible\s+preferred\b", nm, re.I)):
         return "preferred"
     if tkr.endswith(("-RI", "-R")) or re.search(r"\bCVR\b|contingent value|\bright(s)?\b(?!s? of)", nm, re.I):
         return "right"
@@ -119,7 +123,9 @@ _EQUITY = ("AND sh_type IN ('SH','') AND substr(cusip,7,1) BETWEEN '0' AND '9' "
 # 13F was November 2025 (Engine No. 1, Aurelius, Sagard...) scored as CURRENT
 # smart money in September 2026 on year-old positions.
 import datetime as _dt
-STALE_FUND_CUTOFF = (_dt.date.today() - _dt.timedelta(days=200)).isoformat()
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from ingest_13f import DORMANT_DAYS       # same window that archives dormant books
+STALE_FUND_CUTOFF = (_dt.date.today() - _dt.timedelta(days=DORMANT_DAYS)).isoformat()
 _FRESH = (f"AND fund NOT IN (SELECT fund FROM fund_13f_state "
           f"WHERE last_filed IS NOT NULL AND last_filed < '{STALE_FUND_CUTOFF}')")
 

@@ -1,47 +1,21 @@
 """Ingest each fund's PRIOR-quarter 13F-HR into fund_13f_prior, so we can diff
 against the current holdings and show who is BUILDING vs quietly TRIMMING — the
-signal a single-quarter snapshot cannot give. Reuses ingest_13f's parser + the
-CUSIP-authority map so the prior quarter maps identically to the current one.
+signal a single-quarter snapshot cannot give. Reuses ingest_13f's parser, book
+writer and CUSIP-authority map so the prior quarter maps identically to the
+current one.
+
+The prior is the 13F-HR whose report period is the quarter IMMEDIATELY before
+the current book's (EDGAR report dates), never merely "the second-newest
+filing": that rule diffed across two quarters after a missed roll, and across
+seven for a filer that skipped a year (VY Capital: Q3 2024 -> Q2 2026). A fund
+with no preceding-quarter filing gets no diff. The normal quarterly roll never
+comes here: ingest_13f --refresh moves the replaced book into the prior slot.
 """
 import json, os, sqlite3, time, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ingest_13f as m
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from build_cusip_map import debt_ticker
 
 DB = m.DB
-
-def nth_13f_acc(cik, n=1):
-    """(accession, filed) of the n-th most recent 13F-HR (0 = latest, 1 = prior).
-    Falls through to the paged history files when heavy filers (Form 4 / SC 13
-    torrents) push their 13F-HRs out of the ~1000-filing "recent" window."""
-    data = m.curl(f"https://data.sec.gov/submissions/CIK{str(cik).zfill(10)}.json")
-    # a FAILED fetch (SEC throttling) is not "no prior filing": return False so
-    # the caller retries next run instead of recording the fund as having none
-    if not data:
-        return False, None
-    try:
-        d = json.loads(data)
-    except json.JSONDecodeError:
-        return False, None
-    rec = d.get("filings", {}).get("recent", {})
-    hits = [(rec["accessionNumber"][i], rec["filingDate"][i])
-            for i, f in enumerate(rec.get("form", [])) if f == "13F-HR"]
-    if len(hits) <= n:
-        pages = sorted(d.get("filings", {}).get("files", []),
-                       key=lambda p: p.get("filingTo", ""), reverse=True)
-        for pg in pages:
-            data = m.curl(f"https://data.sec.gov/submissions/{pg['name']}")
-            if not data: continue
-            try:
-                rec = json.loads(data)
-            except json.JSONDecodeError:
-                continue
-            hits += [(rec["accessionNumber"][i], rec["filingDate"][i])
-                     for i, f in enumerate(rec.get("form", [])) if f == "13F-HR"]
-            if len(hits) > n:
-                break
-    return hits[n] if len(hits) > n else (None, None)
 
 def normalize_units(conn):
     """Full-dollar filings booked as $k -> $k, by implied price (value/shares
@@ -62,6 +36,11 @@ def normalize_units(conn):
             conn.execute("UPDATE fund_13f_prior SET value_k=value_k/1000.0 WHERE fund=?", (fund,))
     conn.commit()
 
+def _period(conn, acc):
+    r = conn.execute("SELECT period FROM sec_13f_filings WHERE accession=? AND period != ''",
+                     (acc,)).fetchone()
+    return r[0] if r else None
+
 def run():
     conn = sqlite3.connect(DB); conn.execute("PRAGMA busy_timeout=30000")
     conn.executescript("""
@@ -74,73 +53,75 @@ def run():
     CREATE INDEX IF NOT EXISTS idx_prior_fund ON fund_13f_prior(fund);
     CREATE TABLE IF NOT EXISTS fund_13f_prior_state (
       fund TEXT PRIMARY KEY, accession TEXT, filed TEXT, n_holdings INTEGER, total_value_k INTEGER);
+    CREATE TABLE IF NOT EXISTS sec_13f_filings (
+      cik TEXT, accession TEXT, form TEXT, filed TEXT, period TEXT,
+      PRIMARY KEY (cik, accession));
     """)
     normalize_units(conn)              # repair an interrupted earlier run first
     name_map = m.cusip_ticker_map(conn)
     cusip_map = {c: (tk, st) for c, tk, st in
                  conn.execute("SELECT cusip, ticker, sec_type FROM cusip_map")}
+    px_map = {t: p for t, p in conn.execute("SELECT ticker, price FROM ticker_yf WHERE price > 0")}
+    maps = (cusip_map, name_map, px_map)
     # every fund we have a current filing + CIK for
     funds = conn.execute("""SELECT s.fund, s.cik, s.last_accession
         FROM fund_13f_state s WHERE s.cik IS NOT NULL AND s.last_accession IS NOT NULL""").fetchall()
     print(f"prior-quarter ingest: {len(funds)} funds", flush=True)
-    done = skip = 0
+    done = skip = none = failed = redone = 0
     for fund, cik, cur_acc in funds:
-        if conn.execute("SELECT 1 FROM fund_13f_prior_state WHERE fund=?", (fund,)).fetchone():
-            skip += 1; continue
-        acc, filed = nth_13f_acc(cik, 1)
-        time.sleep(0.35)
-        if acc is False:
-            continue                     # fetch failed: leave unrecorded, retry next run
-        if not acc or acc == cur_acc:
+        ps = conn.execute("SELECT accession FROM fund_13f_prior_state WHERE fund=?", (fund,)).fetchone()
+        if ps:
+            # A recorded prior must be the IMMEDIATELY preceding quarter of the
+            # current book. The old rule took "the second-newest 13F-HR", which
+            # after a missed roll or a filing gap diffed across 2+ quarters (or
+            # against a same-quarter restatement) under a quarter-change header.
+            cur_p, pri_p = _period(conn, cur_acc), _period(conn, ps[0]) if ps[0] else None
+            if not ps[0] or not cur_p or (pri_p and m.qkey(pri_p) == m.qkey(m.prev_quarter(cur_p))):
+                skip += 1; continue
+            if not pri_p:
+                skip += 1; continue      # period unknown offline: keep (validate reports it)
+            conn.execute("DELETE FROM fund_13f_prior WHERE fund=?", (fund,))
+            conn.execute("DELETE FROM fund_13f_prior_state WHERE fund=?", (fund,))
+            redone += 1
+        filings = m.f13_filings(cik)
+        time.sleep(0.2)
+        if filings is None:
+            failed += 1; continue        # fetch failed: leave unrecorded, retry next run
+        m.record_f13(conn, cik, filings)
+        cur_p = next((x["period"] for x in filings if x["acc"] == cur_acc), "")
+        want = m.prev_quarter(cur_p) if cur_p else None
+        cands = [x for x in filings if x["form"] == "13F-HR" and x["acc"] != cur_acc
+                 and want and x["period"] and m.qkey(x["period"]) == m.qkey(want)]
+        got, fetch_failed = None, False
+        for x in cands:                  # newest first: a same-period re-file supersedes
+            rows = m.fetch_book(cik, x["acc"])
+            if rows is None:
+                fetch_failed = True; break
+            if rows:
+                got = (x, rows); break
+        if fetch_failed:
+            failed += 1; conn.commit(); continue
+        if not got:
+            # no 13F-HR for the preceding quarter (a new filer, a skipped
+            # quarter): no diff is better than a diff across a gap
             conn.execute("INSERT OR REPLACE INTO fund_13f_prior_state VALUES (?,?,?,?,?)",
-                         (fund, acc, filed, 0, 0)); conn.commit()
-            continue
-        path = m.find_infotable(cik, acc)
-        if not path:
-            continue
-        url = path if path.startswith("http") else f"https://www.sec.gov{path}"
-        body = m.curl(url)
-        rows = m.parse_infotable(body) if body else []
-        if not rows:
-            continue
-        rows = [r for r in rows if not r.get("put_call")]     # options are not holdings
-        if not rows:
-            continue
-        agg = {}                       # sum per-account lines by CUSIP (see ingest_13f)
-        for r in rows:
-            a = agg.get(r["cusip"])
-            if a is None:
-                agg[r["cusip"]] = dict(r)
-            else:
-                a["value_k"] += r["value_k"]
-                a["shares"]  += r["shares"]
-        rows = list(agg.values())
-        total_v = sum(r["value_k"] for r in rows)
-        for r in rows:
-            # Same guards as current-quarter ingest: skip empty-filing markers,
-            # never consult the authority map for shared placeholder CUSIPs.
-            if not r["value_k"] and not r["shares"]:
-                continue
-            cusip_ok = r["cusip"] and len(r["cusip"]) == 9 and len(set(r["cusip"])) > 1
-            cm = cusip_map.get(r["cusip"]) if cusip_ok else None
-            tkr = (cm[0] if cm[1] != "etf" else None) if cm is not None else m.name_to_ticker(r["issuer"], name_map)
-            pct = (r["value_k"] / total_v * 100) if total_v else None
-            conn.execute("INSERT OR REPLACE INTO fund_13f_prior VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-                         (fund, cik, acc, filed, r["issuer"], r["cusip"], debt_ticker(tkr, r["cusip"]),
-                          r["value_k"], r["shares"], r["type"], pct))
-            conn.execute("INSERT OR REPLACE INTO holding_sec_form VALUES (?,?,?,?)",
-                         (acc, r["cusip"], r.get("title"),
-                          m.classify_sec_form(r.get("title"), r["type"])))
+                         (fund, None, None, 0, 0)); conn.commit()
+            none += 1; continue
+        x, rows = got
+        n, total_v = m.ingest_book(conn, "fund_13f_prior", fund, cik, x["acc"], x["filed"], rows, *maps)
         conn.execute("INSERT OR REPLACE INTO fund_13f_prior_state VALUES (?,?,?,?,?)",
-                     (fund, acc, filed, len(rows), total_v))
+                     (fund, x["acc"], x["filed"], n, total_v))
         conn.commit(); done += 1
         if done % 25 == 0:
-            print(f"  {done} funds ingested ({skip} skipped)", flush=True)
+            print(f"  {done} funds ingested ({skip} already current)", flush=True)
     normalize_units(conn)
     conn.commit()
     n = conn.execute("SELECT COUNT(*) FROM fund_13f_prior").fetchone()[0]
-    print(f"DONE: {done} funds, {n} prior holdings", flush=True)
+    print(f"DONE: {done} priors ingested ({redone} replaced as not the preceding quarter), "
+          f"{none} with no preceding-quarter 13F, {skip} already current, {failed} fetch failures; "
+          f"{n} prior holdings", flush=True)
     conn.close()
+    return failed
 
 if __name__ == "__main__":
-    run()
+    sys.exit(2 if run() else 0)

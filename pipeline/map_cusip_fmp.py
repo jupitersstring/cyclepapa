@@ -40,6 +40,11 @@ CURATED = {
     "30231G102": "XOM",    # Exxon Mobil Corp's pre-reorganization CUSIP; FMP's XOM profile
                            # now carries ExxonMobil Holdings Corp's 30233Q108. OpenFIGI had "EXMOC"
     "741503403": "BKNG",   # Priceline.com -> Booking Holdings (2018 rename); pre-rename CUSIP
+    "G65431127": "NE",     # Noble Corp plc "ORD SHS A" ($37.3 implied) — the name tier had
+                           # it on the NE-WTA warrant: 15 funds' $679M of Noble off the stock
+    "G0250X149": "AMCR",   # Amcor plc "COM NEW" (post-consolidation line), not OTC AMCCF
+    "38059T106": "GFI",    # Gold Fields sponsored ADR (NYSE); FMP files the OTC GFIOF under it too
+    "65535H208": "NMR",    # Nomura sponsored ADR (NYSE); FMP files the OTC NRSCF under it too
     # verified NEGATIVES (None = keep unmapped): name search finds a different
     # company whose price happens to sit within 1.5x
     "N81409125": None,     # Sono Group NV (Sono Motors) — not Sono-Tek (SOTK)
@@ -169,6 +174,19 @@ def run():
     def named(cusip, company):
         return bool(names.get(cusip, set()) & toks(company))
 
+    def in_52w(cusip, sym):
+        """The 13F-implied price sits inside the line's own 52-week range. A
+        quarter-end price the stock has since left is still that company's
+        price: INNIO was $39.55 at June 30 and $20.13 in September (range
+        17.45-42.95), so today's-price band alone rejected a fresh listing."""
+        p = prof.get(sym) or {}
+        ip, fx = implied.get(cusip), _FX_USD.get(p.get("currency") or "USD")
+        try:
+            lo, hi = (float(x) for x in (p.get("range") or "").split("-"))
+        except ValueError:
+            return False
+        return bool(ip and fx and lo > 0 and lo * fx * 0.9 <= ip <= hi * fx * 1.1)
+
     def name_match_ok(cusip, sym, band):
         """The name tier's full test, shared by the search and the re-audit."""
         p = prof.get(sym) or {}
@@ -177,7 +195,7 @@ def run():
         if (not iss or "." in sym or not is_true(p.get("isActivelyTrading"))
                 or any(NOT_COMMON.search(i) or FUND_FAMILY.search(i) for i in iss)
                 or NOT_COMMON.search(company)
-                or not in_band(px_ratio(cusip, sym), band, False)):
+                or not (in_band(px_ratio(cusip, sym), band, False) or in_52w(cusip, sym))):
             return False
         return any(strong_name(i, company) for i in iss)
 
@@ -199,6 +217,11 @@ def run():
     dropped = []
     for cusip, sym, src in conn.execute("""SELECT cusip, ticker, source FROM cusip_map
             WHERE source IN ('fmp', 'fmp-name') AND ticker IS NOT NULL""").fetchall():
+        # a CUSIP no book holds this quarter has no 13F price to test: no
+        # evidence either way, so the proven mapping stands (the Q2 roll once
+        # dropped 130 of them — ADRs, pre-merger CUSIPs — for want of a price)
+        if implied.get(cusip) is None:
+            continue
         p = prof.get(sym) or {}
         r = px_ratio(cusip, sym)
         if src == "fmp-name":             # name-search pick: re-prove it every run, and

@@ -132,9 +132,13 @@ def run(figi_files=None):
 
     # 2. Consensus from already-mapped holdings: a CUSIP that consistently carries
     #    ONE ticker in the holdings table is a trustworthy name-derived mapping.
-    for cusip, tk, n in conn.execute("""SELECT cusip, ticker, COUNT(*) FROM fund_13f_holdings
-            WHERE ticker IS NOT NULL AND cusip IS NOT NULL
-            GROUP BY cusip HAVING COUNT(DISTINCT ticker)=1"""):
+    #    Never an option CUSIP: a "PUT" line filed under its own CUSIP carries the
+    #    stock's issuer name, and consensus once mapped Funicular's MU puts to MU.
+    for cusip, tk, n in conn.execute("""SELECT h.cusip, h.ticker, COUNT(*) FROM fund_13f_holdings h
+            WHERE h.ticker IS NOT NULL AND h.cusip IS NOT NULL
+              AND NOT EXISTS (SELECT 1 FROM holding_sec_form f WHERE f.cusip = h.cusip
+                              AND f.accession = h.accession AND f.sec_form = 'option')
+            GROUP BY h.cusip HAVING COUNT(DISTINCT h.ticker)=1"""):
         if conn.execute("SELECT 1 FROM cusip_map WHERE cusip=?", (cusip,)).fetchone():
             continue
         upsert(conn, cusip, tk, "common", "name", asof); n_hold += 1
@@ -156,6 +160,23 @@ def run(figi_files=None):
                 WHERE ticker IS NOT NULL AND sec_type = 'common')""").rowcount
     conn.commit()
     print(f"back-applied cusip_map to {applied} previously-unmapped holdings")
+    # 3b. ...and OVERWRITE a disagreeing ticker where the authority is proven
+    #     (curated / OpenFIGI / FMP), not only NULLs: a name-matched line keeps
+    #     whatever the SEC name file said when it was ingested, and "ALPHABET
+    #     INC" on the class-C CUSIP had become GOOGL on some books and GOOGN
+    #     (the 2026 convertible preferred) on others. Equity CUSIPs only — debt
+    #     lines carry their "<ticker> (note)" tag.
+    fixed = 0
+    for t in ("fund_13f_holdings", "fund_13f_prior", "broker_13f"):
+        fixed += conn.execute(f"""UPDATE {t}
+            SET ticker=(SELECT ticker FROM cusip_map WHERE cusip={t}.cusip)
+            WHERE ticker IS NOT NULL
+              AND substr(cusip,7,1) BETWEEN '0' AND '9' AND substr(cusip,8,1) BETWEEN '0' AND '9'
+              AND EXISTS (SELECT 1 FROM cusip_map m WHERE m.cusip={t}.cusip AND m.ticker IS NOT NULL
+                          AND m.sec_type = 'common' AND m.ticker != {t}.ticker
+                          AND m.source IN ('curated', 'openfigi', 'fmp', 'fmp-name'))""").rowcount
+    conn.commit()
+    print(f"corrected {fixed} holdings whose ticker disagreed with a proven CUSIP mapping")
     print(f"tagged {tag_debt_lines(conn)} bond lines '(note)' so they never pool with the stock")
     conn.close()
 
