@@ -1,4 +1,4 @@
-METHODOLOGY AUDIT — 226 checks, 0 FAIL, 0 WARN
+METHODOLOGY AUDIT — 227 checks, 0 FAIL, 0 WARN
   PASS  units: dividend_yield is a fraction  — median |dividend_yield| = 0.028 (fraction-scale cap 1.5)
   PASS  units: fcf_yield is a fraction  — median |fcf_yield| = 0.068 (fraction-scale cap 3.0)
   PASS  units: analyst_target_upside_pct is a fraction  — median |analyst_target_upside_pct| = 0.260 (fraction-scale cap 5.0)
@@ -222,6 +222,7 @@ METHODOLOGY AUDIT — 226 checks, 0 FAIL, 0 WARN
   PASS  fmp forensics: cash_leads_book firers have FCF >= 1.2x NI (the tell)  — 0 of 546
   PASS  fmp forensics: F7 FMP-filled firers have RE >= market cap (post-fill)  — 0 of 1267
   PASS  fmp forensics: customer_float firers show a float leg (post-fill)  — 0 of 1692
+  PASS  fmp segments: HHI/share fills only where segments reconcile to 80-120% of revenue  — 0 unreconciled fills
   PASS  fmp calibration: FMP retained_earnings within 25% of EDGAR on the overlap  — 95.2% of 4807
   PASS  fmp calibration: FMP equity within 25% of EDGAR on the overlap  — 87.4% of 4982
   PASS  fmp calibration: FMP assets within 25% of EDGAR on the overlap  — 95.2% of 5305
