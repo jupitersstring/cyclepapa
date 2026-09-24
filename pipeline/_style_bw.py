@@ -233,6 +233,38 @@ def first_sentence(s):
         return s[:m.start() + 1]
     return complete_text(s)             # one sentence, maybe cut at the source
 
+def business_line(summary, *names):
+    """The first sentence of a business summary without its '<Company Name>'
+    lead-in (the sheet's Name column already says it), still a sentence:
+      'Celsius Holdings, Inc. is a global enterprise…' -> 'A global enterprise…'
+      'JBS N.V., together with its subsidiaries, engages in…' -> 'Engages in…'
+      'Taiwan Semiconductor … Limited (TSMC) specializes in…' -> 'Specializes in…'
+    When what follows the name doesn't stand alone ('Seagate …, headquartered
+    in Dublin, Ireland, is…'; 'Alibaba …, a leading Chinese technology
+    conglomerate, provides…') the whole sentence is kept. The old rule cut the
+    name without its final period and left '. is a global enterprise…'."""
+    s = first_sentence(summary)
+    for nm in names:
+        nm = " ".join(str(nm or "").split())
+        if not s or not nm:
+            continue
+        for cand in (nm, nm.rstrip(".")):
+            if not s.upper().startswith(cand.upper()):
+                continue
+            rest = s[len(cand):]
+            rest = re.sub(r"^[\s.,;:]*(\([^)]{1,25}\)[\s,]*)?", "", rest)
+            rest = re.sub(r"^((together|along) with|(operating )?through|and) its [\w\s-]{0,40}?"
+                          r"(subsidiaries|affiliates|companies|businesses)[\s,]*", "", rest, flags=re.I)
+            m = re.match(r"(is|are)\s+", rest)
+            if m:
+                rest = rest[m.end():]                 # "is a global…" -> "a global…"
+            elif not re.match(r"[a-z]{3,}s\b", rest):  # "operates", "provides", "designs"
+                return s
+            if len(rest) < 25 or not rest[:1].isalpha():
+                return s
+            return rest[0].upper() + rest[1:]
+    return s
+
 def complete_text(s):
     """The full stored text. If an old store cut it (trailing '…', from the
     500-char Yahoo summaries FMP doesn't cover), end it at its last complete
@@ -331,7 +363,8 @@ def valuation_for(vals, ticker, name):
     notes; anything no source knows stays None (rendered "—")."""
     t = str(ticker or "")
     if " " in t.strip():
-        return "note"
+        low = t.lower()
+        return "warrant" if "(warrant)" in low else "right" if "(right)" in low else "note"
     return (vals.get(t) or {}).get(name)
 
 def _fit_widths(ws, first_col):

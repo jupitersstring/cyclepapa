@@ -13,6 +13,7 @@ from openpyxl.utils import get_column_letter
 import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _style_bw import (
+    business_line,
     complete_text,
     first_sentence,
     add_valuation_columns, valuation_lookup,
@@ -24,6 +25,7 @@ from _style_bw import (
     BLACK, ROW_BORDER, LAPIS, CRIMSON, color_directional, color_fixed,
 )
 from openpyxl.styles import Font, Alignment, Border, Side
+from nport_diff import nport_diff as _nport_diff
 
 DB = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "cyclepapa.db")
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "universe_analysis.xlsx")
@@ -1472,111 +1474,193 @@ def sheet_asymmetry(wb, conn):
     ws.column_dimensions[get_column_letter(16)].width = 80   # Business
 
 def sheet_revealed_pref(wb, conn):
-    """Revealed preference — what smart money is ACTIVELY buying (new + adds),
-    not just holding. Ranked by revealed_pref = 2*S3 + S4 + 0.5*S1.
-    Cross-cut by size bucket so micro/small revealed conviction is visible."""
+    """What the tracked investors are BUYING now — dated evidence only
+    (revealed_preference.py): the latest 13F quarter's net buying, insider
+    purchases and new 13D/G stakes in the last 90 days, the latest N-PORT
+    reports. The old ranking read the research spreadsheet's position
+    sections (a May-June snapshot): no stale evidence counts now."""
+    try:
+        q = conn.execute("SELECT MAX(quarter) FROM revealed_pref").fetchone()[0]
+        rows = conn.execute("""SELECT rp.ticker, rp.rp_score, rp.evidence_date, rp.f13_points, rp.f13_buyers,
+                rp.f13_sellers, rp.f13_buying, rp.f13_selling, rp.ins_n, rp.ins_usd_m, rp.ins_csuite,
+                rp.stake_holders, rp.np_buyers, rp.np_sellers, rp.np_buying, rp.cap_points, rp.cap_notes,
+                y.ipo_date, ps.mom_3mo,
+                us.mcap_m, us.mcap_bucket, us.smart_money_n, us.activist_max_pct, us.entry_bucket, tm.name
+            FROM revealed_pref rp JOIN unified_signal us ON us.ticker = rp.ticker
+            LEFT JOIN ticker_meta tm ON tm.ticker = rp.ticker
+            LEFT JOIN ticker_yf y ON y.ticker = rp.ticker
+            LEFT JOIN price_stats ps ON ps.ticker = rp.ticker
+            WHERE rp.rp_score > 0 AND us.sec_type = 'common'
+            ORDER BY rp.rp_score DESC""").fetchall()
+    except sqlite3.OperationalError:
+        return
+    rows = [r for r in rows if r[0] not in ETFs]
+    limit, total = 200, len(rows)
+    rows = rows[:limit]
     ws = wb.create_sheet("Revealed Preference")
     ws.sheet_view.showGridLines = False
-    write_title(ws, "Revealed Preference — what they're actively buying",
-                "Ranked by revealed_pref = 2×(new major positions) + 1×(material adds) + 0.5×(top-conviction holds). Reveals active accumulation, not static holdings.", 15)
-    hdr = ["Ticker","Rev Pref","S3 New","S4 Add","S1 Top","13F","Mcap","Bucket","EV/EBITDA","P/B","Act %","Entry","Name","Industry","Business"]
+    hdr = ["Ticker", "RP Score", "Latest Evidence", "13F Net Pts", "13F Buyers", "13F Sellers",
+           "Who Bought (13F)", "Who Sold (13F)", "Insiders (90d)", "Insider $M", "C-suite",
+           "New 13D/G (90d)", "N-PORT Buyers", "N-PORT Sellers", "N-PORT Moves", "Cap Pts",
+           "Capital Structure", "Listed", "3M Chg %", "Mcap", "Bucket", "13F", "Act %", "Entry", "Name",
+           "Industry", "Business"]
+    write_title(ws, "Revealed Preference — what they are buying now, with dated evidence",
+                f"RP Score = 13F net buying in the {q} quarter (each fund's new or added % of book, net of trims "
+                f"and exits, split-adjusted, capped at 10 per fund and scaled by focus min(1, 75/positions)) "
+                f"+ 2 per insider buying $25k+ in 90 days (+2 if C-suite) + 5 per new 13D / 2 per new 13G in 90 "
+                f"days + 1 per N-PORT manager initiating or adding (-1 trimming or exiting) + capital structure: "
+                f"insiders exercising or converting and holding (+1 each, 90 days), funds converting warrants / "
+                f"notes / preferred into common (+1 each), issuer tender offers (+3), last fiscal year's net "
+                f"buybacks (+1 to +3) or net issuance (-1 / -2), 13D/G stakes raised (+2). Nothing older counts. "
+                f"Listed = IPO in the last 12 months (allocations, not open-market conviction). "
+                f"[showing top {min(limit, total)} of {total} net buyers]", len(hdr))
     write_table_header(ws, 4, hdr)
-    rows = list(conn.execute("""
-        SELECT us.ticker, us.revealed_pref, us.s3_new, us.s4_add, us.s1_top,
-               us.smart_money_n, us.mcap_m, us.mcap_bucket,
-               us.ev_ebitda, us.pb_ratio, us.activist_max_pct, us.entry_bucket, tm.name
-        FROM unified_signal us
-        LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
-        WHERE us.revealed_pref > 0 AND us.sec_type='common'
-        ORDER BY us.revealed_pref DESC, us.smart_money_n DESC LIMIT 120"""))
+    import datetime as _dt
+    ipo_cut = (_dt.date.today() - _dt.timedelta(days=365)).isoformat()
     out = []
-    for r in rows:
-        if r[0] in ETFs or r[0] in MEGA: continue
-        eb = r[11] or ""
+    for (tk, score, ev_date, pts, nb, ns, buying, selling, ins_n, ins_usd, cs, stakes, npb, nps, npm,
+         cap_pts, cap_notes, ipo, mom, mcap, bucket, sm, act, entry, name) in rows:
+        eb = entry or ""
         eb_label = ("below" if eb == "BELOW_ENTRY" else "near" if eb == "NEAR_ENTRY"
                     else "above" if "ABOVE" in eb else "")
-        d = desc_for(conn, r[0])
-        out.append([r[0], round(r[1] or 0, 1), r[2] or 0, r[3] or 0, r[4] or 0,
-                    r[5] or 0, r[6] or "", r[7] or "",
-                    round(r[8], 1) if r[8] is not None else "",
-                    round(r[9], 2) if r[9] is not None else "",
-                    round(r[10] or 0, 1), eb_label, (r[12] or ""), d[0], d[1]])
+        d = desc_for(conn, tk)
+        out.append([tk, round(score, 1), ev_date or "", round(pts, 1) if pts is not None else "", nb or 0, ns or 0,
+                    buying or "", selling or "", ins_n or 0, ins_usd if ins_usd else "", "yes" if cs else "",
+                    stakes or "", npb or 0, nps or 0, npm or "",
+                    cap_pts if cap_pts is not None else "", cap_notes or "",
+                    f"IPO {ipo}" if (ipo and ipo >= ipo_cut) else "",
+                    round(mom, 0) if mom is not None else "", mcap or "", bucket or "", round(sm or 0, 1),
+                    round(act or 0, 1), eb_label, name or "", d[0], d[1]])
     write_table_rows(ws, out, 5)
+    color_directional(ws, 5, 4 + len(out), [16, 19], higher_is_better=True)
     for ridx in range(5, 5 + len(out)):
-        ws.cell(row=ridx, column=7).number_format = NUMFMT_MCAP
-        ws.cell(row=ridx, column=9).number_format = '0.0"x"'
-        ws.cell(row=ridx, column=10).number_format = '0.00"x"'
-        ws.cell(row=ridx, column=11).number_format = NUMFMT_PCT
-    ws.column_dimensions[get_column_letter(14)].width = 24   # Industry
-    ws.column_dimensions[get_column_letter(15)].width = 80   # Business
+        ws.cell(row=ridx, column=10).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=19).number_format = '0"%"'
+        ws.cell(row=ridx, column=20).number_format = NUMFMT_MCAP
+        ws.cell(row=ridx, column=23).number_format = NUMFMT_PCT
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
+    for col in (7, 8):
+        ws.column_dimensions[get_column_letter(col)].width = 60
+    ws.column_dimensions[get_column_letter(12)].width = 36
+    ws.column_dimensions[get_column_letter(15)].width = 40
+    ws.column_dimensions[get_column_letter(17)].width = 60
+    ws.column_dimensions[get_column_letter(26)].width = 24
+    ws.column_dimensions[get_column_letter(27)].width = 80
+
+_FIN_IND = ("bank", "insurance", "capital markets", "asset management", "credit services",
+            "financial - ", "mortgage", "reinsurance", "financial conglomerate")
+
+def _is_financial(sector, industry):
+    """Banks, insurers, asset managers: EV/EBITDA means nothing there; book value does."""
+    ind = (industry or "").lower()
+    return (sector or "") == "Financial Services" or any(k in ind for k in _FIN_IND)
 
 def sheet_valuation(wb, conn):
-    """Cheapest names by valuation among smart-money holdings."""
+    """Cheap AND sound, in three sections: cash-generative non-financials on
+    FCF yield, financials on price / tangible book, and the cheap names that
+    fail a soundness check, each with the reason (possible value traps)."""
     ws = wb.create_sheet("Valuation")
     ws.sheet_view.showGridLines = False
-    write_title(ws, "Valuation — cheap on trailing multiples, checked for quality",
-                "Names held by ≥3 funds, cheapest EV/EBITDA first. Growth/margin columns separate a cheap compounder from a value trap (neg growth/margin flagged). EV/Rev covers names with no EBITDA.", 19)
-    hdr = ["Ticker","EV/EBITDA","P/B","P/E","Fwd P/E","EV/Rev","Rev Gr %","Margin %","Score","Mcap","Bucket","13F","Act %","Entry","vs Entry %","Name","Sector","Industry","Business"]
-    write_table_header(ws, 4, hdr)
-    # Floor at 2x — below that is almost always a data artifact (warrant,
-    # near-zero EBITDA, ADR currency mismatch). Exclude warrant/preferred tickers.
-    rows = list(conn.execute("""
-        SELECT us.ticker, us.ev_ebitda, us.pb_ratio, us.pe_ttm, us.score, us.mcap_m, us.mcap_bucket,
-               us.smart_money_n, us.activist_max_pct, us.entry_bucket, us.vs_entry_pct,
-               tm.name, tm.sic_description,
-               yf.fwd_pe, yf.ev_revenue, yf.rev_growth, yf.profit_margin
+    hdr = ["Ticker", "EV/EBITDA", "P/B", "P/E", "Fwd P/E", "EV/Rev", "FCF Yield %", "Earn Yield %", "ROIC %",
+           "ROE %", "Net Debt/EBITDA", "Rev Gr %", "Margin %", "Flags", "Score", "Mcap", "Bucket", "13F",
+           "Act %", "Entry", "vs Entry %", "Name", "Sector", "Industry", "Business"]
+    write_title(ws, "Valuation — cheap, cash-generative and sound",
+                "Names held by 3+ funds (conviction-weighted). 1) Cheap and sound: EV/EBITDA 2-20x, positive free "
+                "cash flow (under 40%: above that is usually a one-off), net debt under 3x EBITDA, revenue not "
+                "shrinking over 5% (last fiscal year), ROIC 8%+; "
+                "ranked by FCF yield. 2) Financials, where EV/EBITDA means nothing: ROE 8%+ and positive earnings, "
+                "ranked by price / tangible book. 3) Cheap (EV/EBITDA 2-10x) but failing a check — each flag says "
+                "why (possible value traps).", len(hdr))
+    base = list(conn.execute("""
+        SELECT us.ticker, us.ev_ebitda, us.pb_ratio, us.pe_ttm, yf.fwd_pe, yf.ev_revenue, yf.fcf_yield,
+               yf.earnings_yield, yf.roic, yf.roe, yf.net_debt_ebitda, COALESCE(yf.rev_growth_fy, yf.rev_growth),
+               yf.profit_margin, us.score, us.mcap_m, us.mcap_bucket, us.smart_money_n, us.activist_max_pct,
+               us.entry_bucket, us.vs_entry_pct, tm.name, yf.sector, COALESCE(yf.industry, tm.sic_description),
+               yf.ptb_ratio
         FROM unified_signal us
         LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
         LEFT JOIN ticker_yf yf ON yf.ticker = us.ticker
-        WHERE us.ev_ebitda IS NOT NULL AND us.ev_ebitda >= 2 AND us.ev_ebitda < 40 AND us.sec_type='common'
-          AND us.smart_money_n >= 3
-          AND us.ticker NOT LIKE '%-P%'   -- preferreds
-          AND us.ticker NOT LIKE '%-W%'   -- warrants/when-issued
-          AND us.ticker NOT LIKE '%W'     -- warrant suffix
-          AND us.ticker NOT LIKE '%.W%'
-        ORDER BY us.ev_ebitda ASC LIMIT 120"""))
-    out = []
-    for r in rows:
-        if r[0] in ETFs or r[0] in MEGA: continue
-        eb = r[9] or ""
+        WHERE us.sec_type = 'common' AND us.smart_money_n >= 3
+          AND COALESCE(yf.industry, '') != 'Shell Companies'"""))
+    base = [r for r in base if r[0] not in ETFs]
+
+    def flags(r):
+        f = []
+        if r[6] is None or r[10] is None or r[11] is None or r[8] is None:
+            f.append("incomplete data")
+        if r[6] is not None and r[6] <= 0:
+            f.append("negative free cash flow")
+        if r[6] is not None and r[6] > 0.40:
+            # a 40%+ FCF yield is nearly always a one-off (working capital,
+            # insurance float: Oscar Health read 55%), not a durable yield
+            f.append(f"FCF yield {r[6] * 100:.0f}%: likely one-off")
+        if r[10] is not None and r[10] >= 3:
+            f.append(f"net debt {r[10]:.1f}x EBITDA")
+        if r[11] is not None and r[11] < -0.05:
+            f.append(f"revenue {r[11] * 100:+.0f}% last FY")
+        if r[8] is not None and r[8] < 0.08:
+            f.append(f"ROIC {r[8] * 100:.0f}%")
+        return f
+
+    sound, fin, trap = [], [], []
+    for r in base:
+        if _is_financial(r[21], r[22]):
+            ptb = r[23] if r[23] and r[23] > 0 else (r[2] if r[2] and r[2] > 0 else None)
+            if ptb and r[9] is not None and r[9] >= 0.08 and r[3] and r[3] > 0:
+                fin.append((ptb, r))
+            continue
+        if r[1] is None or not (2 <= r[1] <= 20):
+            continue
+        fl = flags(r)
+        if not fl:
+            sound.append((-r[6], r))
+        elif r[1] <= 10:
+            trap.append((r[1], r, "; ".join(fl)))
+
+    def cells(r, flag=""):
+        eb = r[18] or ""
         eb_label = ("below" if eb == "BELOW_ENTRY" else "near" if eb == "NEAR_ENTRY"
                     else "above" if "ABOVE" in eb else "")
+        pct = lambda x: round(x * 100, 1) if x is not None else ""
+        if not flag and r[10] is not None and r[10] < 0:
+            flag = "net cash"
         d = desc_for(conn, r[0])
-        out.append([r[0], round(r[1], 1), round(r[2], 2) if r[2] is not None else "",
-                    round(r[3], 1) if r[3] is not None else "",
-                    round(r[13], 1) if (r[13] is not None and r[13] > 0) else "",   # Fwd P/E (neg = meaningless)
-                    round(r[14], 1) if r[14] is not None else "",          # EV/Rev
-                    round(r[15]*100, 0) if r[15] is not None else "",      # Rev Gr %
-                    round(r[16]*100, 0) if r[16] is not None else "",      # Margin %
-                    round(r[4] or 0, 1), r[5] or "", r[6] or "", r[7] or 0,
-                    round(r[8] or 0, 1), eb_label,
-                    round(r[10] or 0, 1) if r[10] else "",
-                    (r[11] or ""), (r[12] or ""), d[0], d[1]])
-    write_table_rows(ws, out, 5)
-    # colour is data: Rev Gr % and Margin % — lapis growing/profitable, crimson
-    # shrinking/loss-making (the value-trap tell).
-    color_directional(ws, 5, 4 + len(out), [7, 8], higher_is_better=True)
-    for ridx in range(5, 5 + len(out)):
-        ws.cell(row=ridx, column=2).number_format = '0.0"x"'    # EV/EBITDA
-        ws.cell(row=ridx, column=3).number_format = '0.00"x"'   # P/B
-        ws.cell(row=ridx, column=4).number_format = '0.0"x"'    # P/E
-        ws.cell(row=ridx, column=5).number_format = '0.0"x"'    # Fwd P/E
-        ws.cell(row=ridx, column=6).number_format = '0.0"x"'    # EV/Rev
-        ws.cell(row=ridx, column=7).number_format = '0"%"'      # Rev Gr %
-        ws.cell(row=ridx, column=8).number_format = '0"%"'      # Margin %
-        ws.cell(row=ridx, column=10).number_format = NUMFMT_MCAP
-        ws.cell(row=ridx, column=13).number_format = NUMFMT_PCT
-        ws.cell(row=ridx, column=15).number_format = NUMFMT_PCT
-    ws.freeze_panes = "B5"
-    if out:
-        ws.auto_filter.ref = f"A4:{get_column_letter(len(hdr))}{4 + len(out)}"
+        return [r[0], round(r[1], 1) if r[1] is not None else "", round(r[2], 2) if r[2] is not None else "",
+                round(r[3], 1) if r[3] is not None else "", round(r[4], 1) if r[4] is not None else "",
+                round(r[5], 1) if r[5] is not None else "", pct(r[6]), pct(r[7]), pct(r[8]), pct(r[9]),
+                round(r[10], 1) if r[10] is not None else "", pct(r[11]),
+                round(r[12] * 100, 0) if r[12] is not None else "", flag,
+                round(r[13] or 0, 1), r[14] or "", r[15] or "", round(r[16] or 0, 1), round(r[17] or 0, 1),
+                eb_label, round(r[19] or 0, 1) if r[19] else "", r[20] or "", r[21] or "", d[0], d[1]]
+
+    sections = [
+        (f"1 · Cheap and sound — ranked by FCF yield ({len(sound)} names)",
+         [cells(r) for _, r in sorted(sound, key=lambda x: x[0])[:80]]),
+        (f"2 · Financials — ranked by price / tangible book ({len(fin)} names)",
+         [cells(r) for _, r in sorted(fin, key=lambda x: x[0])[:50]]),
+        (f"3 · Cheap but flagged — possible value traps ({len(trap)} names)",
+         [cells(r, fl) for _, r, fl in sorted(trap, key=lambda x: x[0])[:80]]),
+    ]
+    row = 4
+    for label, out in sections:
+        write_section_heading(ws, row, label, len(hdr)); row += 1
+        write_table_header(ws, row, hdr); row += 1
+        write_table_rows(ws, out, row)
+        color_directional(ws, row, row + len(out) - 1, [7, 9, 12], higher_is_better=True)
+        for ridx in range(row, row + len(out)):
+            for col, fmt in ((2, '0.0"x"'), (3, '0.00"x"'), (4, '0.0"x"'), (5, '0.0"x"'), (6, '0.0"x"'),
+                             (7, '0.0"%"'), (8, '0.0"%"'), (9, '0.0"%"'), (10, '0.0"%"'), (11, '0.0"x"'),
+                             (12, '0"%"'), (13, '0"%"'), (16, NUMFMT_MCAP), (19, NUMFMT_PCT), (21, NUMFMT_PCT)):
+                ws.cell(row=ridx, column=col).number_format = fmt
+        row += len(out) + 2
+    ws.freeze_panes = "B4"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
-    ws.column_dimensions[get_column_letter(18)].width = 24   # Industry
-    ws.column_dimensions[get_column_letter(19)].width = 80   # Business
+    ws.column_dimensions[get_column_letter(14)].width = 40   # Flags
+    ws.column_dimensions[get_column_letter(24)].width = 24   # Industry
+    ws.column_dimensions[get_column_letter(25)].width = 80   # Business
 
 def sheet_catalysts(wb, conn):
     """8-K material-event tickers: M&A, control change, director shuffle, PIPE, bankruptcy."""
@@ -1655,82 +1739,6 @@ def _fund_heading(ws, row, text, ncols):
     c.font = BODY_ITALIC
     c.alignment = Alignment(horizontal="left", vertical="bottom")
     ws.row_dimensions[row].height = 18
-
-def _nport_diff(conn):
-    """Each N-PORT position against the fund's previous public report, on
-    split-adjusted share counts (added / trimmed = more than 10% either way).
-      pos[(series_id, key)] -> (status, delta %): new / added / trimmed / held,
-                               '' when the fund has no earlier report on file
-      exits[series_id]      -> [(name, prior $, country)]
-      mgr[(manager, key)]   -> the same status across all of a manager's funds
-    key = ISIN (else ticker, else issuer): stable across a ticker change."""
-    try:
-        cur = conn.execute("""SELECT series_id, manager, COALESCE(isin, ticker, issuer), ticker, shares
-            FROM nport_holdings""").fetchall()
-        pri = conn.execute("""SELECT p.series_id, COALESCE(p.isin, p.ticker, p.issuer), p.ticker, p.shares,
-                p.val_usd, COALESCE(y.long_name, p.issuer), p.country
-            FROM nport_prior p LEFT JOIN ticker_yf y ON y.ticker = p.ticker""").fetchall()
-    except sqlite3.OperationalError:
-        return {}, {}, {}
-    try:
-        split = {(sid, tk): f for sid, tk, f in conn.execute(
-            "SELECT series_id, ticker, factor FROM nport_split_factor")}
-    except sqlite3.OperationalError:
-        split = {}
-    has_prior = {r[0] for r in pri}
-    mg_of = {sid: mg for sid, mg, *_ in cur}
-    cur_by, pri_by = {}, {}
-    for sid, mg, key, tk, sh in cur:
-        a = cur_by.setdefault((sid, key), [0.0, True])
-        if sh is None:
-            a[1] = False
-        else:
-            a[0] += sh
-    for sid, key, tk, sh, val, name, co in pri:
-        a = pri_by.setdefault((sid, key), [0.0, True, 0.0, name, co])
-        if sh is None:
-            a[1] = False
-        else:
-            a[0] += sh * split.get((sid, tk), 1.0)
-        a[2] += val or 0.0
-
-    def classify(c_sh, p_sh, known):
-        if not known or not p_sh:
-            return "held", None
-        r = c_sh / p_sh
-        return ("added" if r > 1.10 else "trimmed" if r < 0.90 else "held"), (r - 1) * 100
-
-    pos = {}
-    for (sid, key), (c_sh, c_known) in cur_by.items():
-        p = pri_by.get((sid, key))
-        if sid not in has_prior:
-            pos[(sid, key)] = ("", None)
-        elif p is None:
-            pos[(sid, key)] = ("new", None)
-        else:
-            pos[(sid, key)] = classify(c_sh, p[0], c_known and p[1])
-    exits = {}
-    for (sid, key), p in pri_by.items():
-        if (sid, key) not in cur_by and sid in mg_of:
-            exits.setdefault(sid, []).append((p[3], p[2], p[4]))
-    agg = {}
-    for (sid, key), (c_sh, c_known) in cur_by.items():
-        if sid in has_prior:
-            a = agg.setdefault((mg_of[sid], key), {"c": 0.0, "p": 0.0, "cin": False, "pin": False, "ok": True})
-            a["c"] += c_sh; a["cin"] = True; a["ok"] &= c_known
-    for (sid, key), p in pri_by.items():
-        if sid in mg_of:
-            a = agg.setdefault((mg_of[sid], key), {"c": 0.0, "p": 0.0, "cin": False, "pin": False, "ok": True})
-            a["p"] += p[0]; a["pin"] = True; a["ok"] &= p[1]
-    mgr = {}
-    for k, a in agg.items():
-        if a["cin"] and not a["pin"]:
-            mgr[k] = "new"
-        elif a["pin"] and not a["cin"]:
-            mgr[k] = "exited"
-        else:
-            mgr[k] = classify(a["c"], a["p"], a["ok"])[0]
-    return pos, exits, mgr
 
 def sheet_nport_funds(wb, conn):
     """Which registered funds are loaded: grouped by the manager's style."""
@@ -1969,68 +1977,136 @@ def sheet_nport_consensus(wb, conn):
     ws.column_dimensions["F"].width = 60
     ws.column_dimensions[get_column_letter(11)].width = 80
 
-def sheet_global_picks(wb, conn):
-    """Foreign-exchange tickers — scored on a GLOBAL-FAIR formula.
+_VENUE = {".T": "Tokyo", ".L": "London", ".HK": "Hong Kong", ".PA": "Paris", ".DE": "Xetra",
+          ".F": "Frankfurt", ".AS": "Amsterdam", ".SW": "SIX Swiss", ".KS": "Korea", ".KQ": "KOSDAQ",
+          ".TW": "Taiwan", ".TWO": "Taipei OTC", ".TO": "Toronto", ".V": "TSX Venture", ".AX": "ASX",
+          ".MI": "Milan", ".MC": "Madrid", ".ST": "Stockholm", ".CO": "Copenhagen", ".HE": "Helsinki",
+          ".OL": "Oslo", ".SA": "São Paulo", ".MX": "Mexico", ".NS": "NSE India", ".BO": "BSE India",
+          ".JK": "Jakarta", ".SI": "Singapore", ".KL": "Kuala Lumpur", ".BK": "Bangkok", ".SS": "Shanghai",
+          ".SZ": "Shenzhen", ".IR": "Dublin", ".BR": "Brussels", ".VI": "Vienna", ".LS": "Lisbon",
+          ".IS": "Istanbul", ".JO": "Johannesburg", ".WA": "Warsaw", ".PR": "Prague", ".BD": "Budapest",
+          ".TA": "Tel Aviv", ".NZ": "New Zealand", ".SN": "Santiago", ".VN": "Vietnam", ".SR": "Saudi"}
 
-    The standard unified_score includes US-only signals (Form 4 buys,
-    insider clusters) which SEC doesn't provide for foreign listings.
-    This sheet uses global_score (smart_money + sections + activist +
-    pct_book + micro_bonus + entry_bonus only) so foreign tickers rank
-    on the same footing as US tickers stripped of the same signals.
-    """
+def _venue(ticker, exchange=None):
+    """The listing venue: the stored exchange, else read off the ticker suffix."""
+    if exchange:
+        return exchange
+    t = ticker or ""
+    return next((v for suf, v in _VENUE.items() if t.endswith(suf)), "US" if "." not in t else "")
+
+def sheet_global_picks(wb, conn):
+    """Non-US listings ranked on fresh evidence: how many tracked managers
+    hold them in their registered funds (N-PORT) and how many are buying,
+    their largest weight, and the 13F funds holding / buying the company's US
+    line (ADR or direct listing). The research spreadsheet's sections are
+    shown for context but no longer drive the rank (a May-June snapshot)."""
+    from nport_diff import nport_diff
+    try:
+        np_rows = conn.execute("""SELECT n.ticker, COALESCE(n.isin, n.ticker, n.issuer), n.manager, n.pct, n.val_usd
+            FROM nport_holdings n WHERE n.ticker IS NOT NULL AND n.country IS NOT NULL AND n.country != 'US'""").fetchall()
+    except sqlite3.OperationalError:
+        np_rows = []
+    _, _, mgr = nport_diff(conn)
+    per = {}
+    for tk, key, manager, pct, val in np_rows:
+        d = per.setdefault(tk, {"mgr": {}, "buy": set(), "sell": set(), "val": 0.0})
+        m = _mgr_short(manager)
+        d["mgr"][m] = max(d["mgr"].get(m, 0.0), pct or 0.0)
+        d["val"] += val or 0.0
+        st = mgr.get((manager, key))
+        if st in ("new", "added"):
+            d["buy"].add(m)
+        elif st in ("trimmed", "exited"):
+            d["sell"].add(m)
+    try:
+        for (tk,) in conn.execute("SELECT ticker FROM unified_signal WHERE is_us = 0 AND sec_type = 'common' "
+                                  "AND (s1_top + s3_new + s4_add + smart_money_n) >= 1"):
+            per.setdefault(tk, {"mgr": {}, "buy": set(), "sell": set(), "val": 0.0})
+    except sqlite3.OperationalError:
+        pass
+    try:
+        adr = dict(conn.execute("SELECT ordinary, adr FROM adr_link"))
+    except sqlite3.OperationalError:
+        adr = {}
+    us = {r[0]: r for r in conn.execute("""SELECT us.ticker, us.smart_money_n, us.s1_top, us.s3_new, us.s4_add,
+            us.max_pct_book, us.activist_max_pct, us.entry_bucket, us.vs_entry_pct, us.ev_ebitda, us.pb_ratio,
+            us.mcap_m FROM unified_signal us""")}
+    try:
+        rp = {t: (p, b, s) for t, p, b, s in conn.execute(
+            "SELECT ticker, f13_points, f13_buyers, f13_sellers FROM revealed_pref")}
+    except sqlite3.OperationalError:
+        rp = {}
+    meta = {t: (ex, nm) for t, ex, nm in conn.execute("SELECT ticker, exchange, name FROM ticker_meta")}
+    yfd = {t: (c, m, n, co, fcf, roic) for t, c, m, n, co, fcf, roic in conn.execute(
+        "SELECT ticker, currency, mcap_m, long_name, NULL, fcf_yield, roic FROM ticker_yf")}
+    out = []
+    for tk, d in per.items():
+        a = adr.get(tk)
+        own, via = us.get(tk), us.get(a) if a else None
+        h13 = max((own[1] if own else 0) or 0, (via[1] if via else 0) or 0)
+        net13 = sum(x for x in ((rp.get(tk) or (0,))[0] or 0, (rp.get(a) or (0,))[0] or 0 if a else 0))
+        b13 = ((rp.get(tk) or (0, 0, 0))[1] or 0) + (((rp.get(a) or (0, 0, 0))[1] or 0) if a else 0)
+        n_m, n_b, n_s = len(d["mgr"]), len(d["buy"]), len(d["sell"])
+        maxp = max(d["mgr"].values()) if d["mgr"] else 0.0
+        score = (2 * n_m + 2 * n_b - n_s + 0.5 * min(maxp, 10) + 0.5 * min(h13, 10)
+                 + 0.5 * max(min(net13, 10), -10))
+        if score <= 0:
+            continue
+        ccy, mcap, lname = (yfd.get(tk) or (None, None, None))[:3]
+        fcf, roic = (yfd.get(tk) or (None,) * 6)[4:6]
+        usd = _usd_mcap(mcap, ccy) if mcap else (own[11] if own else None)
+        eb = (own[7] if own else "") or ""
+        eb_label = ("below" if eb == "BELOW_ENTRY" else "near" if eb == "NEAR_ENTRY"
+                    else "above" if "ABOVE" in eb else "")
+        ex, nm = meta.get(tk, ("", ""))
+        held = "; ".join(f"{m} {p:.1f}%{' (new)' if m in d['buy'] else ''}"
+                         for m, p in sorted(d["mgr"].items(), key=lambda x: -x[1]))
+        desc = desc_for(conn, tk)
+        out.append([tk, round(score, 1), _venue(tk, ex), round(usd) if usd else "", ccy or "USD",
+                    n_m, n_b, n_s, held, a or "", round(h13, 1), b13, round(net13, 1) if net13 else "",
+                    (own[2] if own else 0) or 0, (own[3] if own else 0) or 0, (own[4] if own else 0) or 0,
+                    round((own[5] if own else 0) or 0, 1), round((own[6] if own else 0) or 0, 1), eb_label,
+                    round(own[8], 1) if (own and own[8]) else "",
+                    round(own[9], 1) if (own and own[9] is not None) else "",
+                    round(own[10], 2) if (own and own[10] is not None) else "",
+                    round(fcf * 100, 1) if fcf is not None else "", round(roic * 100, 1) if roic is not None else "",
+                    nm or lname or "", desc[0], desc[1]])
+    out.sort(key=lambda r: -r[1])
     ws = wb.create_sheet("Global Picks")
     ws.sheet_view.showGridLines = False
-    write_title(ws, "Global Picks — non-US listings, fair-score",
-                "Foreign-exchange tickers (.L London, .T Tokyo, .TO Toronto, .HK Hong Kong, .AX Sydney, .MI Milan, .DE Frankfurt, .PA Paris, .AS Amsterdam, .MC Madrid). Ranked by global_score which excludes US-only signals.", 17)
-    ws.cell(row=2, column=1).value = (ws.cell(row=2, column=1).value or "") + \
-        "  Mcap converted to USD at approximate mid-2026 FX (see Currency col)."
-    hdr = ["Ticker","Global Score","Exchange","Mcap $ (USD)","Ccy","13F","S1","S3","S4","pB Max","Act %","Entry","vs Entry %","EV/EBITDA","P/B","Name","Industry","Business"]
+    hdr = ["Ticker", "Global Score", "Exchange", "Mcap $ (USD)", "Ccy", "N-PORT Mgrs", "N-PORT Buyers",
+           "N-PORT Sellers", "Held by (N-PORT)", "US Line", "13F Holders", "13F Buyers", "13F Net Buying",
+           "S1", "S3", "S4", "pB Max", "Act %", "Entry", "vs Entry %", "EV/EBITDA", "P/B", "FCF Yield %",
+           "ROIC %", "Name", "Industry", "Business"]
+    write_title(ws, "Global Picks — non-US listings ranked on fresh evidence",
+                "Global Score = 2 x managers holding it in their registered funds (N-PORT) + 2 x managers buying "
+                "it in their latest report - 1 x managers selling + 0.5 x largest % of a fund (cap 10) + 0.5 x 13F "
+                "holders of the company's US line or itself (conviction-weighted, cap 10) + 0.5 x the latest "
+                "quarter's 13F net buying (cap +/-10). US Line = the ADR or direct US listing whose 13F holders "
+                "count here. S1/S3/S4 = the research spreadsheet's sections (May-June snapshot): context only, "
+                "not in the rank. Mcap converted to USD at approximate FX.", len(hdr))
     write_table_header(ws, 4, hdr)
-    rows = list(conn.execute("""
-        SELECT us.ticker, us.global_score, tm.exchange, us.mcap_m,
-               us.smart_money_n, us.s1_top, us.s3_new, us.s4_add,
-               us.max_pct_book, us.activist_max_pct,
-               us.entry_bucket, us.vs_entry_pct, us.ev_ebitda, us.pb_ratio, tm.name,
-               yf.currency
-        FROM unified_signal us
-        LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
-        LEFT JOIN ticker_yf yf ON yf.ticker = us.ticker
-        WHERE us.is_us = 0 AND us.sec_type='common'
-          AND (us.s1_top + us.s3_new + us.s4_add + us.smart_money_n) >= 1
-          AND COALESCE(tm.name, yf.long_name) IS NOT NULL
-        ORDER BY us.global_score DESC LIMIT 150"""))
-    out = []
-    for r in rows:
-        eb = r[10] or ""
-        eb_label = ("below" if eb == "BELOW_ENTRY" else
-                    "near"  if eb == "NEAR_ENTRY" else
-                    "above" if "ABOVE" in eb else "")
-        ccy = r[15] or "USD"
-        mcap_usd = r[3]   # unified_signal.mcap_m is already FX-converted to USD
-        out.append([r[0], round(r[1] or 0, 1),
-                    (r[2] or ""),
-                    round(mcap_usd) if mcap_usd is not None else "", ccy, r[4] or 0,
-                    r[5] or 0, r[6] or 0, r[7] or 0,
-                    round(r[8] or 0, 1),
-                    round(r[9] or 0, 1),
-                    eb_label,
-                    round(r[11] or 0, 1) if r[11] else "",
-                    round(r[12], 1) if r[12] is not None else "",
-                    round(r[13], 2) if r[13] is not None else "",
-                    (r[14] or ""), *desc_for(conn, r[0])])
+    limit, total = 200, len(out)
+    out = out[:limit]
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
-        ws.cell(row=ridx, column=4).number_format = NUMFMT_MCAP    # Mcap $ (USD)
-        ws.cell(row=ridx, column=10).number_format = NUMFMT_PCT    # pB Max
-        ws.cell(row=ridx, column=11).number_format = NUMFMT_PCT    # Act %
-        ws.cell(row=ridx, column=13).number_format = NUMFMT_PCT    # vs Entry %
-        ws.cell(row=ridx, column=14).number_format = '0.0"x"'      # EV/EBITDA
-        ws.cell(row=ridx, column=15).number_format = '0.00"x"'     # P/B
+        ws.cell(row=ridx, column=4).number_format = NUMFMT_MCAP
+        ws.cell(row=ridx, column=17).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=18).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=20).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=21).number_format = '0.0"x"'
+        ws.cell(row=ridx, column=22).number_format = '0.00"x"'
+        ws.cell(row=ridx, column=23).number_format = '0.0"%"'
+        ws.cell(row=ridx, column=24).number_format = '0.0"%"'
+    if total > limit:
+        ws.cell(row=2, column=1).value = (ws.cell(row=2, column=1).value or "") + \
+            f"  [showing top {limit} of {total}]"
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 10
-    ws.column_dimensions[get_column_letter(17)].width = 24   # Industry
-    ws.column_dimensions[get_column_letter(18)].width = 80   # Business
+    ws.column_dimensions["I"].width = 60
+    ws.column_dimensions[get_column_letter(26)].width = 24   # Industry
+    ws.column_dimensions[get_column_letter(27)].width = 80   # Business
 
 
 _ANCHOR_LABEL = {"candidates": "analyst anchor", "raw_text": "filing text",
@@ -2346,32 +2422,21 @@ def desc_for(conn, ticker):
         for r in conn.execute("""
             SELECT us.ticker,
                    COALESCE(yf.industry, tm.industry, tm.sic_description),
-                   yf.business_summary, us.name
+                   yf.business_summary, yf.long_name, us.name
             FROM unified_signal us
             LEFT JOIN ticker_meta tm ON tm.ticker = us.ticker
             LEFT JOIN ticker_yf  yf ON yf.ticker = us.ticker"""):
-            summ = r[2] or ""
-            # Yahoo summaries open with "<Company Name>, together with its
-            # subsidiaries," — a 90-char cut then just repeats the Name column.
-            # Strip that lead-in so the Business cell carries new information.
-            nm = (r[3] or "").rstrip(".")
-            if nm and summ.upper().startswith(nm.upper()):
-                summ = summ[len(nm):]
-            summ = re.sub(r"^[,\s]*(together with its subsidiaries|and its subsidiaries"
-                          r"|through its subsidiaries)?[,\s]*", "", summ, flags=re.I)
-            _DESC_CACHE[r[0]] = ((r[1] or ""), _one_liner(summ))
+            # summaries open with "<Company Name>, together with its
+            # subsidiaries," — the Name column already says that, so the
+            # Business cell starts at what the company does (still a sentence)
+            _DESC_CACHE[r[0]] = ((r[1] or ""), business_line(r[2], r[3], r[4]))
         # names outside the score table (the global funds' local listings)
         # still describe themselves from their FMP profile
         for tk, ind, summ, nm in conn.execute(
                 "SELECT ticker, industry, business_summary, long_name FROM ticker_yf"):
             if tk in _DESC_CACHE or not (ind or summ):
                 continue
-            summ, nm = summ or "", (nm or "").rstrip(".")
-            if nm and summ.upper().startswith(nm.upper()):
-                summ = summ[len(nm):]
-            summ = re.sub(r"^[,\s]*(together with its subsidiaries|and its subsidiaries"
-                          r"|through its subsidiaries)?[,\s]*", "", summ, flags=re.I)
-            _DESC_CACHE[tk] = ((ind or ""), _one_liner(summ))
+            _DESC_CACHE[tk] = ((ind or ""), business_line(summ, nm))
     return _DESC_CACHE.get(ticker, ("", ""))
 
 def sheet_ticker_reference(wb, conn):

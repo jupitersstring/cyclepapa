@@ -271,6 +271,11 @@ def run():
         if len(cands) > 1:                        # base line over -P / -WT siblings
             plain = [s for s in cands if "-" not in s]
             cands = plain if len(plain) == 1 else cands
+        if len(cands) > 1:
+            # FMP files an ADR's CUSIP under the exchange-listed ADR AND the OTC
+            # ordinary (SAP / SAPGF, NOK / NOKBF): 26 funds' SAP sat on SAPGF
+            listed = [s for s in cands if (prof[s].get("exchange") or "").upper() in ("NYSE", "NASDAQ", "AMEX")]
+            cands = listed if len(listed) == 1 else cands
         if len(cands) != 1:
             continue
         sym = cands[0]
@@ -297,6 +302,55 @@ def run():
             conn.execute(f"UPDATE {t} SET ticker=? WHERE cusip=? AND ticker IS NOT ?", (want, cusip, want))
         corrected.append((cusip, sym, dict(tks)))
     conn.commit()
+    # 3b. Warrants and rights by the filing's own title ("*W EXP 06/30/2051",
+    #     "RT"): the name matcher had put them on the common (11 Hertz warrant
+    #     lines counted as HTZ holders), and warrant prices move too far for
+    #     the price band to prove FMP's line. Title decides the type; FMP's
+    #     warrant / right line on the CUSIP takes it, else a "(warrant)" tag.
+    forms = defaultdict(Counter)
+    for cusip, form in conn.execute("""SELECT h.cusip, f.sec_form FROM fund_13f_holdings h
+            JOIN holding_sec_form f ON f.accession = h.accession AND f.cusip = h.cusip"""):
+        forms[cusip][form] += 1
+    all_by_cusip = defaultdict(list)
+    for sym, p in prof.items():
+        if p.get("cusip") and "." not in sym:
+            all_by_cusip[p["cusip"].upper()].append(sym)
+    n_w = 0
+    for cusip, cnt in forms.items():
+        kind, k = cnt.most_common(1)[0]
+        if kind not in ("warrant", "right") or k * 2 <= sum(cnt.values()):
+            continue
+        if cmap.get(cusip, (None, None))[1] == "curated":
+            continue
+        cur = [tk for tk, in conn.execute("SELECT DISTINCT ticker FROM fund_13f_holdings WHERE cusip=?", (cusip,))]
+        syms = [x for x in all_by_cusip.get(cusip, [])
+                if re.search(r"(W|WS|WT|R|RT|WW)$", x.replace("-", "")) or
+                re.search(r"warrant|right", prof[x].get("companyName") or "", re.I)]
+        if len(syms) == 1:
+            new = syms[0]
+        else:
+            base = next((re.sub(r" \((warrant|right)\)$", "", t) for t in cur if t), None)
+            if base and " " in base:
+                base = None
+            # a ticker that already is a warrant / right line keeps its name —
+            # by suffix, or because it is FMP's own line for this CUSIP (BCTXL)
+            looks = base and (re.search(r"(-WS|-WT|\.WS|\.WT|W|WS|WW|R|RT)$", base)
+                              or base in all_by_cusip.get(cusip, []))
+            new = (base if looks else f"{base} ({kind})") if base else None
+        if not new:
+            continue
+        # the type is recorded even when the ticker is already right (the FMP
+        # confirmation above stores every line it confirms as 'common')
+        conn.execute("""INSERT INTO cusip_map VALUES (?,?,?,'fmp-title',?)
+            ON CONFLICT(cusip) DO UPDATE SET ticker=excluded.ticker, sec_type=excluded.sec_type,
+                source='fmp-title', asof=excluded.asof WHERE cusip_map.source <> 'curated'""",
+            (cusip, new, kind, asof))
+        if set(cur) != {new}:
+            for t in TABLES:
+                conn.execute(f"UPDATE {t} SET ticker=? WHERE cusip=?", (new, cusip))
+            n_w += 1
+    conn.commit()
+    print(f"warrant / right lines: {n_w} CUSIPs moved off the common ticker by their filed title", flush=True)
     print(f"FMP confirmation: corrected {len(corrected):,} held CUSIPs "
           f"({sum(1 for c in corrected if any(c[2].keys() - {None}))} had a wrong ticker, "
           f"the rest were unmapped)", flush=True)

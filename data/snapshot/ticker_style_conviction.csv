@@ -20,10 +20,10 @@ BN,Foreign / EM Value,1.0,1,0,0.0
 AMZN,Activists / Special Situations,39.9,5,1,2748.3
 AMZN,Small-cap / Multibagger Specialists,14.4,3,0,1120.3
 AMZN,Tiger Cubs / L/S Legends,32.2,5,0,3353.2
-AMZN,Family Offices / Individual Filers,16.5,3,0,1928.4
-AMZN,Mega Multi-Strats / Quants,12.2,8,0,8958.7
+AMZN,Family Offices / Individual Filers,18.0,4,0,1928.4
+AMZN,Value / Concentrated Quality,74.4,9,1,2158.7
+AMZN,Mega Multi-Strats / Quants,8.8,6,0,8469.0
 AMZN,Foreign / EM Value,25.0,6,1,4158.0
-AMZN,Value / Concentrated Quality,62.4,8,1,1669.0
 AMZN,Warrant Specialists,3.1,1,0,1200.0
 AMZN,CTA / Trend Followers,1.2,2,0,1232.8
 AMZN,Other / Unclassified,14.5,2,1,2418.0
@@ -39,13 +39,13 @@ META,Value / Concentrated Quality,42.4,6,2,1780.6
 META,CTA / Trend Followers,2.4,1,0,114.4
 META,Other / Unclassified,16.5,3,1,3520.0
 QSR,Activists / Special Situations,4.2,1,0,0.0
-QSR,Mega Multi-Strats / Quants,2.8,1,1,551.3
+QSR,Value / Concentrated Quality,11.2,1,1,551.3
 NVDA,Activists / Special Situations,35.0,5,2,1458.1
 NVDA,Small-cap / Multibagger Specialists,3.6,1,0,0.0
 NVDA,Distressed / Event-Driven,3.6,1,0,149.0
 NVDA,Tiger Cubs / L/S Legends,32.9,5,0,36.0
-NVDA,Family Offices / Individual Filers,8.2,2,0,713.4
-NVDA,Mega Multi-Strats / Quants,24.4,12,1,11232.3
+NVDA,Family Offices / Individual Filers,15.0,3,0,917.7
+NVDA,Mega Multi-Strats / Quants,22.6,11,1,11028.0
 NVDA,Foreign / EM Value,8.5,3,0,3900.0
 NVDA,Value / Concentrated Quality,67.2,5,3,3887.6
 NVDA,Warrant Specialists,0.7,1,0,656.0
@@ -53,7 +53,7 @@ NVDA,CTA / Trend Followers,9.9,3,1,1749.2
 NVDA,Other / Unclassified,11.5,2,0,413.0
 UNP,Activists / Special Situations,16.1,2,0,418.7
 UNP,Small-cap / Multibagger Specialists,3.6,1,0,0.0
-UNP,Mega Multi-Strats / Quants,3.0,1,0,376.4
+UNP,Value / Concentrated Quality,12.0,1,0,376.4
 CRH,Activists / Special Situations,7.0,2,0,340.1
 CRH,Distressed / Event-Driven,11.4,1,1,683.4
 CRH,Foreign / EM Value,5.5,2,0,78.0
@@ -64,14 +64,14 @@ LYV,Activists / Special Situations,7.7,2,0,418.8
 SRTA,Activists / Special Situations,11.2,2,0,17.0
 CMG,Activists / Special Situations,2.8,1,0,174.8
 CEG,Activists / Special Situations,2.8,1,0,167.8
-BABA,Activists / Special Situations,11.9,3,0,437.4
-BABA,Small-cap / Multibagger Specialists,3.6,1,0,0.0
-BABA,Distressed / Event-Driven,6.6,2,0,403.8
-BABA,Family Offices / Individual Filers,24.0,2,2,778.5
-BABA,Foreign / EM Value,12.0,2,1,116.4
-BABA,CTA / Trend Followers,0.6,1,0,104.0
-BABA,Value / Concentrated Quality,18.4,2,1,72.8
-BABA,Other / Unclassified,14.5,4,1,707.7
+BABA,Activists / Special Situations,26.6,3,0,437.4
+BABA,Small-cap / Multibagger Specialists,7.8,1,0,0.0
+BABA,Distressed / Event-Driven,15.0,2,0,403.8
+BABA,Family Offices / Individual Filers,34.5,2,2,778.5
+BABA,Foreign / EM Value,19.0,2,1,116.4
+BABA,CTA / Trend Followers,2.7,1,0,104.0
+BABA,Value / Concentrated Quality,29.6,2,1,72.8
+BABA,Other / Unclassified,28.5,4,1,707.7
 APG,Activists / Special Situations,9.8,2,0,133.2
 APG,Small-cap / Multibagger Specialists,16.8,2,0,18.0
 APG,Value / Concentrated Quality,24.8,2,1,779.3
@@ -126,8 +126,7 @@ TOST,Activists / Special Situations,2.8,1,0,0.0
 TOST,Value / Concentrated Quality,4.8,1,0,11.4
 MRCY,Activists / Special Situations,23.1,2,1,368.8
 FISV,Activists / Special Situations,14.0,1,0,302.0
-FISV,Mega Multi-Strats / Quants,2.2,1,0,0.0
-FISV,Value / Concentrated Quality,8.8,1,0,0.0
+FISV,Value / Concentrated Quality,17.6,2,0,0.0
 FISV,Other / Unclassified,8.0,1,0,0.0
 ALKT,Activists / Special Situations,15.4,1,0,182.0
 ALKT,Small-cap / Multibagger Specialists,22.8,2,0,101.4
@@ -184,15 +183,16 @@ ILMN,Activists / Special Situations,18.2,3,1,984.7
 SWX,Activists / Special Situations,6.3,1,0,402.0
 WGS,Activists / Special Situations,19.6,2,1,789.1
 DIS,Activists / Special Situations,9.1,1,0,221.0
-VSTS,Activists / Special Situations,9.1,1,0,0.0
+VSTS,Activists / Special Situations,14.0,1,0,0.0
 QQQ,Activists / Special Situations,16.8,3,1,109.2
 QQQ,Small-cap / Multibagger Specialists,13.8,1,1,1570.9
 QQQ,Distressed / Event-Driven,9.0,1,0,810.8
-QQQ,Mega Multi-Strats / Quants,10.6,7,1,3787.0
+QQQ,Mega Multi-Strats / Quants,10.2,6,1,3787.0
 QQQ,Warrant Specialists,0.7,1,0,440.0
 QQQ,CTA / Trend Followers,7.5,3,0,1385.6
 QQQ,Value / Concentrated Quality,12.8,1,1,194.0
 QQQ,Other / Unclassified,11.5,2,0,810.8
+QQQ,Family Offices / Individual Filers,1.5,1,0,0.0
 LKQ,Activists / Special Situations,9.1,1,0,484.0
 LKQ,Small-cap / Multibagger Specialists,2.4,1,0,0.0
 AVGO,Activists / Special Situations,1.4,1,0,304.0
@@ -354,15 +354,15 @@ PAR,Foreign / EM Value,8.5,1,0,55.0
 PAR,Other / Unclassified,7.5,1,0,32.0
 CLBT,Small-cap / Multibagger Specialists,25.2,4,1,243.0
 CLBT,Other / Unclassified,5.5,2,0,50.4
-KWY,Small-cap / Multibagger Specialists,6.0,1,0,50.0
-KWY,Other / Unclassified,3.5,1,0,50.0
+KWY,Small-cap / Multibagger Specialists,10.2,1,0,50.0
+KWY,Other / Unclassified,7.0,1,0,50.0
 BUR,Small-cap / Multibagger Specialists,10.2,2,0,55.5
 BUR,Other / Unclassified,4.5,1,0,34.0
 PINS,Small-cap / Multibagger Specialists,2.4,1,0,0.0
 PINS,Other / Unclassified,2.0,1,0,0.0
 SPY,Small-cap / Multibagger Specialists,13.8,1,1,6600.0
 SPY,Distressed / Event-Driven,43.8,4,2,1146.0
-SPY,Mega Multi-Strats / Quants,18.8,9,3,24391.0
+SPY,Mega Multi-Strats / Quants,18.4,8,3,24391.0
 SPY,Biotech Specialists,15.6,2,1,1928.0
 SPY,Activists / Special Situations,22.4,2,2,49.9
 SPY,Value / Concentrated Quality,35.2,2,2,5434.0
@@ -370,6 +370,7 @@ SPY,Warrant Specialists,7.7,2,1,2542.0
 SPY,CTA / Trend Followers,18.9,4,2,4512.0
 SPY,Macro / Trend,6.9,1,1,6600.0
 SPY,Other / Unclassified,15.5,2,1,1067.0
+SPY,Family Offices / Individual Filers,1.5,1,0,0.0
 IEF,Small-cap / Multibagger Specialists,17.4,2,1,2200.0
 IEF,Distressed / Event-Driven,14.4,2,0,666.8
 IEF,Foreign / EM Value,11.5,1,1,22230.0
@@ -435,7 +436,7 @@ ESTA,Activists / Special Situations,9.8,1,1,164.8
 GOGO,Small-cap / Multibagger Specialists,2.4,1,0,31.7
 CHYM,Small-cap / Multibagger Specialists,3.6,1,0,0.0
 CHYM,Tiger Cubs / L/S Legends,10.5,1,0,93.0
-CHYM,Mega Multi-Strats / Quants,0.4,1,0,303.1
+CHYM,Family Offices / Individual Filers,1.5,1,0,303.1
 CHYM,Value / Concentrated Quality,1.6,1,0,81.0
 USNA,Small-cap / Multibagger Specialists,2.4,1,0,0.0
 TANG,Small-cap / Multibagger Specialists,2.4,1,0,0.0
@@ -484,14 +485,16 @@ MSFT,Activists / Special Situations,22.4,4,1,3293.6
 MSFT,CTA / Trend Followers,6.9,1,1,958.4
 MSFT,Value / Concentrated Quality,27.2,5,0,500.2
 MSFT,Other / Unclassified,22.5,4,1,9061.0
-VST,Small-cap / Multibagger Specialists,2.4,1,0,0.0
-VST,Tiger Cubs / L/S Legends,4.2,1,0,0.0
+VST,Small-cap / Multibagger Specialists,6.6,1,0,0.0
+VST,Tiger Cubs / L/S Legends,9.1,1,0,0.0
 ECAT,Small-cap / Multibagger Specialists,13.8,1,1,405.1
 ASA,Small-cap / Multibagger Specialists,7.8,1,0,321.7
+GAM,Small-cap / Multibagger Specialists,4.2,1,0,122.5
+GAM,Warrant Specialists,2.5,1,0,34.6
 NFJ,Small-cap / Multibagger Specialists,7.8,1,0,111.4
 BST,Small-cap / Multibagger Specialists,4.2,1,0,103.0
 CLOE,Small-cap / Multibagger Specialists,3.6,1,0,0.0
-MXF,Small-cap / Multibagger Specialists,3.6,1,0,0.0
+MXF,Small-cap / Multibagger Specialists,7.8,1,0,0.0
 MEGI,Small-cap / Multibagger Specialists,3.6,1,0,0.0
 MSTR,Small-cap / Multibagger Specialists,7.8,1,0,0.0
 MSTR,Activists / Special Situations,18.9,3,0,109.6
@@ -519,8 +522,7 @@ BDX,Small-cap / Multibagger Specialists,2.4,1,0,48.0
 BDX,Foreign / EM Value,6.5,1,0,226.0
 BDX,Other / Unclassified,6.5,1,0,226.0
 FIS,Small-cap / Multibagger Specialists,2.4,1,0,33.7
-FIS,Mega Multi-Strats / Quants,2.6,1,0,299.3
-FIS,Value / Concentrated Quality,3.2,1,0,0.0
+FIS,Value / Concentrated Quality,13.6,2,0,299.3
 TFX,Small-cap / Multibagger Specialists,2.4,1,0,31.3
 TFX,Value / Concentrated Quality,7.2,1,0,0.0
 ITGR,Small-cap / Multibagger Specialists,7.8,1,0,99.1
@@ -541,21 +543,21 @@ INTA,Other / Unclassified,10.5,1,1,84.4
 JBL,Small-cap / Multibagger Specialists,8.4,1,1,79.6
 JBL,Other / Unclassified,7.0,1,1,79.6
 PCOR,Small-cap / Multibagger Specialists,4.8,1,0,48.0
-PCOR,Mega Multi-Strats / Quants,4.4,1,1,1060.0
+PCOR,Family Offices / Individual Filers,16.5,1,1,1060.0
 PCOR,Value / Concentrated Quality,1.6,1,0,24.8
 PCOR,Other / Unclassified,4.0,1,0,48.0
 NOW,Small-cap / Multibagger Specialists,10.8,1,1,0.0
 NOW,Tiger Cubs / L/S Legends,2.8,1,0,560.0
-NOW,Mega Multi-Strats / Quants,1.4,1,0,91.8
+NOW,Family Offices / Individual Filers,5.2,1,0,91.8
 NOW,Other / Unclassified,9.0,1,1,0.0
 JYNT,Small-cap / Multibagger Specialists,13.8,1,1,34.3
 SGU,Small-cap / Multibagger Specialists,12.0,1,1,32.5
 GOOGL,Small-cap / Multibagger Specialists,10.8,2,1,28.0
 GOOGL,Tiger Cubs / L/S Legends,19.6,3,1,2415.2
-GOOGL,Family Offices / Individual Filers,12.0,3,0,5720.0
-GOOGL,Mega Multi-Strats / Quants,10.0,6,1,4738.4
+GOOGL,Family Offices / Individual Filers,20.2,5,0,5965.3
+GOOGL,Value / Concentrated Quality,78.4,14,3,1863.0
+GOOGL,Mega Multi-Strats / Quants,3.2,3,0,3697.0
 GOOGL,Foreign / EM Value,22.0,11,0,713.5
-GOOGL,Value / Concentrated Quality,60.0,13,2,1067.0
 GOOGL,Activists / Special Situations,9.1,3,0,1431.7
 GOOGL,Other / Unclassified,3.5,2,0,0.0
 AMKR,Small-cap / Multibagger Specialists,9.6,1,1,27.4
@@ -593,8 +595,9 @@ GATX,Small-cap / Multibagger Specialists,5.4,1,0,203.0
 MSGS,Small-cap / Multibagger Specialists,4.2,1,0,159.0
 HRI,Small-cap / Multibagger Specialists,1.2,1,0,158.0
 HRI,Activists / Special Situations,21.7,2,1,349.2
-TNC,Small-cap / Multibagger Specialists,3.6,1,0,0.0
-TNC,Value / Concentrated Quality,4.8,1,0,20.2
+TNC,Small-cap / Multibagger Specialists,7.8,1,0,0.0
+TNC,Value / Concentrated Quality,10.4,1,0,20.2
+TNC,Activists / Special Situations,4.9,1,0,0.0
 TSAT,Small-cap / Multibagger Specialists,3.6,1,0,0.0
 SBGI,Small-cap / Multibagger Specialists,3.6,1,0,0.0
 NOBH,Small-cap / Multibagger Specialists,3.6,1,0,0.0
@@ -612,7 +615,7 @@ SPGI,Value / Concentrated Quality,21.6,2,1,747.8
 SPGI,Activists / Special Situations,16.1,1,1,5970.0
 SPGI,Foreign / EM Value,2.5,1,0,0.0
 SPGI,Other / Unclassified,11.5,1,1,6457.0
-SPGI,Mega Multi-Strats / Quants,0.4,1,0,0.0
+SPGI,Family Offices / Individual Filers,1.5,1,0,0.0
 FER,Small-cap / Multibagger Specialists,5.4,1,0,1350.0
 FER,Activists / Special Situations,1.4,1,0,1330.0
 FER,Other / Unclassified,4.5,1,0,1350.0
@@ -662,8 +665,7 @@ POWL,Small-cap / Multibagger Specialists,2.4,1,0,39.0
 POWL,Activists / Special Situations,9.8,1,1,36.0
 BLD,Small-cap / Multibagger Specialists,2.4,1,0,0.0
 CROX,Small-cap / Multibagger Specialists,3.6,1,0,41.0
-CROX,Mega Multi-Strats / Quants,1.8,1,0,53.7
-CROX,Value / Concentrated Quality,18.4,2,1,50.8
+CROX,Value / Concentrated Quality,25.6,3,1,104.5
 LRN,Small-cap / Multibagger Specialists,2.4,1,0,0.0
 LRN,Activists / Special Situations,4.2,1,0,196.0
 SN,Small-cap / Multibagger Specialists,2.4,1,0,40.0
@@ -697,11 +699,10 @@ GGB,Small-cap / Multibagger Specialists,2.4,1,0,0.0
 RDN,Small-cap / Multibagger Specialists,6.6,1,0,0.0
 TDW,Small-cap / Multibagger Specialists,3.6,1,0,44.1
 HCC,Small-cap / Multibagger Specialists,3.6,1,0,51.4
-HCC,Mega Multi-Strats / Quants,2.8,1,1,317.4
+HCC,Value / Concentrated Quality,11.2,1,1,317.4
 BCC,Small-cap / Multibagger Specialists,7.8,1,0,31.6
 VAL,Small-cap / Multibagger Specialists,3.6,1,0,29.5
-VAL,Mega Multi-Strats / Quants,1.2,1,0,46.2
-VAL,Value / Concentrated Quality,4.0,1,0,0.0
+VAL,Value / Concentrated Quality,8.8,2,0,46.2
 TS,Small-cap / Multibagger Specialists,2.4,1,0,0.0
 HOG,Small-cap / Multibagger Specialists,9.6,1,0,0.0
 HOG,Value / Concentrated Quality,16.8,1,1,91.8
@@ -711,6 +712,8 @@ FLG,Small-cap / Multibagger Specialists,5.4,1,0,0.0
 MGA,Small-cap / Multibagger Specialists,3.6,1,0,1970.0
 CTSH,Small-cap / Multibagger Specialists,4.2,1,0,1401.6
 CTSH,Activists / Special Situations,14.7,1,1,29.9
+TSN,Small-cap / Multibagger Specialists,4.2,1,0,1100.0
+TSN,Value / Concentrated Quality,5.6,1,0,0.0
 BAX,Small-cap / Multibagger Specialists,3.6,1,0,1080.0
 BAX,Value / Concentrated Quality,9.6,1,0,204.0
 TBI,Small-cap / Multibagger Specialists,1.8,1,0,0.0
@@ -735,20 +738,20 @@ MA,Small-cap / Multibagger Specialists,3.6,1,0,57.0
 MA,Foreign / EM Value,9.5,4,0,0.0
 MA,Value / Concentrated Quality,16.0,3,1,743.2
 MA,Other / Unclassified,4.0,1,0,0.0
-MA,Mega Multi-Strats / Quants,0.4,1,0,0.0
+MA,Family Offices / Individual Filers,1.5,1,0,0.0
 CP,Small-cap / Multibagger Specialists,2.4,1,0,218.0
 CP,Activists / Special Situations,7.0,2,0,3682.1
 HLT,Small-cap / Multibagger Specialists,8.4,1,1,26.0
 LIN,Small-cap / Multibagger Specialists,13.8,1,1,23.0
 LIN,Foreign / EM Value,3.5,2,0,87.0
 LIN,Value / Concentrated Quality,1.6,1,0,206.0
-TSM,Small-cap / Multibagger Specialists,9.6,1,1,19.0
-TSM,Tiger Cubs / L/S Legends,11.2,5,0,3548.0
-TSM,Family Offices / Individual Filers,10.5,2,0,343.0
-TSM,Mega Multi-Strats / Quants,1.8,1,0,1890.0
-TSM,Foreign / EM Value,24.5,5,1,231.2
-TSM,Value / Concentrated Quality,40.8,5,1,1277.8
-TSM,Other / Unclassified,4.0,1,0,0.0
+TSM,Small-cap / Multibagger Specialists,13.8,1,1,19.0
+TSM,Tiger Cubs / L/S Legends,35.7,5,0,3548.0
+TSM,Family Offices / Individual Filers,21.0,2,0,343.0
+TSM,Mega Multi-Strats / Quants,3.2,1,0,1890.0
+TSM,Foreign / EM Value,42.0,5,1,231.2
+TSM,Value / Concentrated Quality,68.8,5,1,1277.8
+TSM,Other / Unclassified,7.5,1,0,0.0
 PLNT,Small-cap / Multibagger Specialists,2.4,1,0,0.0
 SSE,Small-cap / Multibagger Specialists,4.2,1,0,0.0
 PSO,Distressed / Event-Driven,12.6,1,1,1400.0
@@ -851,7 +854,7 @@ BTU,Distressed / Event-Driven,2.4,1,0,0.0
 LLYV,Distressed / Event-Driven,2.4,1,0,0.0
 GPOR,Distressed / Event-Driven,13.8,1,1,717.7
 AERO,Distressed / Event-Driven,27.0,2,2,1411.5
-AERO,Mega Multi-Strats / Quants,0.8,1,0,0.0
+AERO,Value / Concentrated Quality,3.2,1,0,0.0
 IAU,Distressed / Event-Driven,7.8,1,0,157.9
 MNKTQ,Distressed / Event-Driven,5.4,2,0,0.0
 MNKTQ,Activists / Special Situations,2.1,1,0,0.0
@@ -940,15 +943,15 @@ LII,Tiger Cubs / L/S Legends,2.1,1,0,0.0
 ICE,Tiger Cubs / L/S Legends,4.2,1,0,1555.8
 ICE,Value / Concentrated Quality,9.6,3,0,428.7
 ICE,Foreign / EM Value,5.0,2,0,0.0
-ICE,Mega Multi-Strats / Quants,0.4,1,0,0.0
+ICE,Family Offices / Individual Filers,1.5,1,0,0.0
 DKS,Tiger Cubs / L/S Legends,7.7,1,0,1018.8
 DKS,Activists / Special Situations,14.7,1,1,7.0
 TMO,Tiger Cubs / L/S Legends,2.8,1,0,919.2
 GOOG,Tiger Cubs / L/S Legends,5.6,1,0,0.0
 GOOG,Family Offices / Individual Filers,11.2,1,0,561.0
-GOOG,Mega Multi-Strats / Quants,6.0,3,1,1288.4
+GOOG,Value / Concentrated Quality,24.0,3,1,1110.4
 GOOG,Foreign / EM Value,10.0,4,0,0.0
-GOOG,Value / Concentrated Quality,4.8,1,0,0.0
+GOOG,Mega Multi-Strats / Quants,1.2,1,0,178.0
 GOOG,Warrant Specialists,0.7,1,0,364.0
 GOOG,Activists / Special Situations,5.6,1,0,2540.0
 GOOG,Other / Unclassified,7.0,2,0,178.0
@@ -959,7 +962,7 @@ CLH,Value / Concentrated Quality,5.6,1,0,301.0
 FLS,Tiger Cubs / L/S Legends,8.4,1,0,432.0
 JHX,Tiger Cubs / L/S Legends,9.1,1,0,536.0
 RDDT,Tiger Cubs / L/S Legends,7.0,2,0,42.0
-ADSK,Tiger Cubs / L/S Legends,2.8,1,0,269.8
+ADSK,Tiger Cubs / L/S Legends,7.7,1,0,269.8
 AMPL,Tiger Cubs / L/S Legends,2.8,1,0,34.0
 AMPL,Small-cap / Multibagger Specialists,2.4,1,0,2.6
 SNDK,Tiger Cubs / L/S Legends,2.8,1,0,0.0
@@ -971,9 +974,8 @@ FOX,Foreign / EM Value,6.5,1,0,0.0
 GLNG,Tiger Cubs / L/S Legends,2.8,1,0,0.0
 AXP,Family Offices / Individual Filers,10.5,1,1,56000.0
 BAC,Family Offices / Individual Filers,24.0,2,2,28097.5
-BAC,Mega Multi-Strats / Quants,3.2,1,1,573.7
+BAC,Value / Concentrated Quality,16.0,3,1,612.5
 BAC,Activists / Special Situations,2.8,2,0,15.8
-BAC,Value / Concentrated Quality,3.2,2,0,38.8
 KO,Family Offices / Individual Filers,10.5,1,1,28000.0
 KO,Foreign / EM Value,2.5,1,0,0.0
 CVX,Family Offices / Individual Filers,11.2,1,0,20000.0
@@ -982,8 +984,7 @@ CVX,Activists / Special Situations,5.6,1,0,27.0
 CVX,Other / Unclassified,4.0,1,0,27.0
 CVX,Foreign / EM Value,1.0,1,0,0.0
 OXY,Family Offices / Individual Filers,6.0,1,0,11000.0
-OXY,Mega Multi-Strats / Quants,0.4,1,0,60.3
-OXY,Value / Concentrated Quality,4.8,3,0,2.8
+OXY,Value / Concentrated Quality,6.4,4,0,63.1
 CB,Family Offices / Individual Filers,5.2,1,0,11000.0
 CB,Mega Multi-Strats / Quants,0.8,1,0,0.0
 CB,Other / Unclassified,3.5,1,0,0.0
@@ -994,7 +995,7 @@ NYT,Family Offices / Individual Filers,3.0,1,0,375.0
 DPZ,Family Offices / Individual Filers,3.0,1,0,0.0
 WFC,Family Offices / Individual Filers,12.0,1,1,112.0
 WFC,Value / Concentrated Quality,3.2,2,0,0.0
-RSG,Family Offices / Individual Filers,9.8,1,0,0.0
+RSG,Family Offices / Individual Filers,15.0,1,0,0.0
 XLF,Family Offices / Individual Filers,11.2,1,0,602.0
 XLF,CTA / Trend Followers,0.6,1,0,0.0
 XLF,Other / Unclassified,1.0,1,0,0.0
@@ -1020,7 +1021,8 @@ AAL,Family Offices / Individual Filers,3.0,1,0,217.0
 VRT,Family Offices / Individual Filers,12.0,1,1,698.0
 VRT,Activists / Special Situations,16.1,1,1,29.7
 VRT,Value / Concentrated Quality,6.4,1,0,17.9
-ET,Family Offices / Individual Filers,4.5,1,0,440.0
+ET,Family Offices / Individual Filers,9.8,1,0,440.0
+ET,Value / Concentrated Quality,5.6,1,0,2.7
 MIR,Family Offices / Individual Filers,4.5,1,0,392.0
 APO,Family Offices / Individual Filers,4.5,1,0,386.0
 MDGL,Family Offices / Individual Filers,12.0,1,1,993.0
@@ -1031,36 +1033,31 @@ PPTA,Value / Concentrated Quality,7.2,1,0,0.0
 BHC,Family Offices / Individual Filers,10.5,1,1,508.0
 AAMI,Family Offices / Individual Filers,4.5,1,0,0.0
 NG,Family Offices / Individual Filers,4.5,1,0,0.0
-WTW,Mega Multi-Strats / Quants,3.0,1,0,446.1
-WTW,Value / Concentrated Quality,1.6,1,0,237.0
+WTW,Value / Concentrated Quality,13.6,2,0,683.1
 WTW,Foreign / EM Value,2.5,1,0,0.0
-ELV,Mega Multi-Strats / Quants,1.6,1,0,445.0
-ELV,Foreign / EM Value,3.0,1,0,258.0
-ELV,Value / Concentrated Quality,14.4,2,1,439.0
-ELV,Other / Unclassified,3.0,1,0,258.0
-WCC,Mega Multi-Strats / Quants,1.2,1,0,347.1
-WCC,Value / Concentrated Quality,3.2,1,0,178.0
+ELV,Value / Concentrated Quality,37.6,3,1,884.0
+ELV,Foreign / EM Value,6.5,1,0,258.0
+ELV,Other / Unclassified,6.5,1,0,258.0
+WCC,Value / Concentrated Quality,8.0,2,0,525.1
 WCC,Macro / Trend,0.9,1,0,0.0
-SNNRF,Mega Multi-Strats / Quants,0.6,1,0,0.0
-MOH,Mega Multi-Strats / Quants,0.8,1,0,0.0
+SNNRF,Value / Concentrated Quality,2.4,1,0,0.0
+MOH,Value / Concentrated Quality,12.8,2,0,23.9
 MOH,Foreign / EM Value,2.0,1,0,22.0
-MOH,Value / Concentrated Quality,9.6,1,0,23.9
-PDD,Mega Multi-Strats / Quants,3.2,1,1,522.5
-PDD,Value / Concentrated Quality,18.4,2,1,47.1
-BRK-B,Mega Multi-Strats / Quants,3.2,1,1,451.2
-BRK-B,Value / Concentrated Quality,19.2,5,1,266.0
+PDD,Value / Concentrated Quality,31.2,3,2,569.6
+BRK-B,Value / Concentrated Quality,32.0,6,2,717.2
 BRK-B,Foreign / EM Value,4.5,3,0,362.8
-EWBC,Mega Multi-Strats / Quants,1.2,1,0,312.0
-RIG,Mega Multi-Strats / Quants,4.6,1,1,223.4
+EWBC,Value / Concentrated Quality,4.8,1,0,312.0
+RIG,Value / Concentrated Quality,18.4,1,1,223.4
 RIG,Activists / Special Situations,5.6,1,0,19.0
 RIG,Other / Unclassified,4.0,1,0,19.0
-AMR,Mega Multi-Strats / Quants,5.6,1,1,217.0
-TTAN,Mega Multi-Strats / Quants,4.0,1,1,1230.0
-NTSK,Mega Multi-Strats / Quants,3.4,1,1,1160.0
-OWL,Mega Multi-Strats / Quants,1.2,1,0,500.4
+AMR,Value / Concentrated Quality,22.4,1,1,217.0
+TTAN,Family Offices / Individual Filers,15.0,1,1,1230.0
+NTSK,Family Offices / Individual Filers,18.0,1,1,1160.0
+OWL,Family Offices / Individual Filers,4.5,1,0,500.4
 OWL,Activists / Special Situations,4.9,1,0,1.5
-SHOP,Mega Multi-Strats / Quants,2.6,1,0,395.3
-BRZE,Mega Multi-Strats / Quants,1.2,2,0,0.0
+SHOP,Family Offices / Individual Filers,9.8,1,0,395.3
+BRZE,Family Offices / Individual Filers,2.2,1,0,0.0
+BRZE,Mega Multi-Strats / Quants,0.6,1,0,0.0
 BRZE,Value / Concentrated Quality,4.8,1,0,52.6
 ANET,Mega Multi-Strats / Quants,0.4,1,0,1030.0
 ANET,Activists / Special Situations,1.4,1,0,103.6
@@ -1109,12 +1106,13 @@ EPAM,Foreign / EM Value,9.0,2,0,0.0
 ROK,Foreign / EM Value,2.0,1,0,0.0
 FTV,Foreign / EM Value,2.0,1,0,0.0
 BILI,Foreign / EM Value,2.0,1,0,0.0
-BSX,Foreign / EM Value,5.0,2,0,1060.5
+BSX,Foreign / EM Value,12.0,2,0,1060.5
+BSX,Biotech Specialists,4.5,1,0,231.0
 WYNN,Foreign / EM Value,2.0,1,0,249.1
-UBER,Foreign / EM Value,3.0,1,0,219.1
-UBER,Activists / Special Situations,7.0,2,0,15.4
-UBER,Value / Concentrated Quality,23.2,2,1,573.0
-UBER,Other / Unclassified,4.0,1,0,0.0
+UBER,Foreign / EM Value,6.5,1,0,219.1
+UBER,Activists / Special Situations,16.8,2,0,15.4
+UBER,Value / Concentrated Quality,34.4,2,1,573.0
+UBER,Other / Unclassified,7.5,1,0,0.0
 ITUB,Foreign / EM Value,4.5,1,0,79.9
 ITUB,Other / Unclassified,3.0,1,0,79.9
 ARIS,Foreign / EM Value,6.5,1,0,89.8
@@ -1125,8 +1123,8 @@ BIDU,Foreign / EM Value,6.5,1,0,103.9
 BIDU,Other / Unclassified,6.5,1,0,103.9
 GGAL,Foreign / EM Value,8.5,1,0,47.0
 GGAL,Other / Unclassified,8.5,1,0,47.0
-YPF,Foreign / EM Value,5.0,1,0,59.6
-YPF,Other / Unclassified,5.0,1,0,59.6
+YPF,Foreign / EM Value,8.5,1,0,59.6
+YPF,Other / Unclassified,8.5,1,0,59.6
 EGO,Foreign / EM Value,2.0,1,0,25.0
 EGO,Other / Unclassified,2.0,1,0,25.0
 EQX,Foreign / EM Value,2.0,1,0,24.0
@@ -1239,7 +1237,7 @@ ELVN,Biotech Specialists,4.5,1,0,123.0
 TRAW,Biotech Specialists,3.9,1,0,0.0
 IKNA,Biotech Specialists,3.9,1,0,0.0
 CRVS,Biotech Specialists,3.9,1,0,0.0
-PFE,Biotech Specialists,2.6,1,0,104.0
+PFE,Biotech Specialists,7.2,1,0,104.0
 AXSM,Biotech Specialists,2.6,1,0,45.0
 TARS,Biotech Specialists,2.6,1,0,34.0
 LION,Activists / Special Situations,4.9,1,0,174.6
@@ -1311,8 +1309,8 @@ RGLD,Foreign / EM Value,2.0,1,0,21.0
 BEN,Foreign / EM Value,2.0,1,0,15.0
 UNH,Foreign / EM Value,5.5,2,0,0.0
 UNH,Other / Unclassified,3.0,1,0,0.0
-ADBE,Foreign / EM Value,3.0,1,0,0.0
-ADBE,Other / Unclassified,3.0,1,0,0.0
+ADBE,Foreign / EM Value,6.5,1,0,0.0
+ADBE,Other / Unclassified,6.5,1,0,0.0
 SAP,Foreign / EM Value,1.0,1,0,0.0
 SAP,Value / Concentrated Quality,12.0,1,0,473.0
 SAP,Other / Unclassified,1.0,1,0,0.0
@@ -1377,7 +1375,7 @@ BKNG,Mega Multi-Strats / Quants,0.8,1,0,3000.0
 BKNG,Foreign / EM Value,4.5,1,0,0.0
 SLV,Mega Multi-Strats / Quants,0.8,1,0,2400.0
 ARDX,Mega Multi-Strats / Quants,0.6,1,0,0.0
-BYRN,Mega Multi-Strats / Quants,0.6,1,0,0.0
+BYRN,Mega Multi-Strats / Quants,2.0,1,0,0.0
 CGCT,Mega Multi-Strats / Quants,2.0,1,0,0.0
 VTVT,Mega Multi-Strats / Quants,0.6,1,0,0.0
 HELP,Mega Multi-Strats / Quants,2.0,1,0,0.0
@@ -1425,6 +1423,7 @@ STRRP,Microcap-Tactical,8.4,1,1,0.0
 JOB,Microcap-Tactical,11.4,1,0,2.3
 RLBY,Microcap-Tactical,16.2,1,1,0.5
 SNCR,Microcap-Tactical,12.6,1,1,30.2
+SCOR,Microcap-Tactical,4.2,1,0,0.0
 ALLT,Microcap-Tactical,8.4,1,1,18.4
 NXST,Microcap-Tactical,4.2,1,0,9.4
 AZO,Microcap-Tactical,3.6,1,0,6.4
@@ -1448,8 +1447,8 @@ KVHI,Family Offices / Individual Filers,15.8,1,1,23.1
 RHEP,Family Offices / Individual Filers,15.0,1,0,0.0
 SEER,Family Offices / Individual Filers,12.8,1,0,0.0
 SUNL,Family Offices / Individual Filers,2.2,1,0,0.0
-SYBX,Family Offices / Individual Filers,2.2,1,0,0.0
-SYBX,Activists / Special Situations,9.1,1,0,1.3
+SYBX,Family Offices / Individual Filers,7.5,1,0,0.0
+SYBX,Activists / Special Situations,14.0,1,0,1.3
 OM,Family Offices / Individual Filers,15.0,1,0,0.0
 ACRS,Family Offices / Individual Filers,4.5,1,0,0.0
 AVIR,Family Offices / Individual Filers,12.0,1,0,0.0
@@ -1470,19 +1469,19 @@ ULY,Family Offices / Individual Filers,4.5,1,0,1.0
 PCYO,Activists / Special Situations,13.3,1,0,0.0
 CLAR,Activists / Special Situations,7.7,1,0,0.0
 CTT,Activists / Special Situations,13.3,1,1,0.0
-HKHC,Activists / Special Situations,4.2,1,0,0.0
+HKHC,Activists / Special Situations,9.1,1,0,0.0
 ROOT,Activists / Special Situations,4.9,1,0,44.7
 ROOT,Small-cap / Multibagger Specialists,3.6,1,0,7.7
 DAVE,Activists / Special Situations,4.9,1,0,46.2
 DAVE,Small-cap / Multibagger Specialists,3.6,1,0,13.4
 SGHC,Activists / Special Situations,4.9,1,0,40.3
 SGHC,Small-cap / Multibagger Specialists,12.6,1,1,14.0
-CELH,Activists / Special Situations,4.9,1,0,38.4
+CELH,Activists / Special Situations,9.8,1,0,38.4
 ABIVAX,Activists / Special Situations,2.8,1,0,13.0
 ADMA,Activists / Special Situations,2.8,1,0,11.0
 ABEO,Activists / Special Situations,11.2,1,0,26.4
 ORKA,Activists / Special Situations,3.5,1,0,24.2
-ACOG,Activists / Special Situations,4.2,1,0,13.8
+ACOG,Activists / Special Situations,9.1,1,0,13.8
 NETD,Activists / Special Situations,4.2,1,0,0.0
 IMA,Activists / Special Situations,11.2,1,0,0.0
 AMWL,Activists / Special Situations,11.2,1,0,0.0
@@ -1634,6 +1633,7 @@ MAXX,Warrant Specialists,4.9,1,1,0.0
 FVL,Warrant Specialists,4.9,1,1,0.0
 GAL,Warrant Specialists,4.9,1,1,0.0
 GGO.V,Warrant Specialists,4.9,1,1,0.0
+NONE,Warrant Specialists,2.5,1,0,40.0
 MAX,Warrant Specialists,1.4,1,0,2.0
 SII,Warrant Specialists,7.3,1,1,1918.0
 SII,Value / Concentrated Quality,11.2,1,1,157.2
@@ -1682,10 +1682,10 @@ LWC,Value / Concentrated Quality,4.0,1,0,0.0
 TBPH,Value / Concentrated Quality,4.0,1,0,0.0
 BFIT.AS,Value / Concentrated Quality,8.8,1,0,0.0
 IWG,Value / Concentrated Quality,8.8,1,0,0.0
-LMB,Value / Concentrated Quality,8.8,1,0,0.0
+LMB,Value / Concentrated Quality,14.4,1,0,0.0
 RLGT,Value / Concentrated Quality,8.8,1,0,0.0
-MCFT,Value / Concentrated Quality,8.8,1,0,0.0
-MCFT,Activists / Special Situations,4.2,1,0,152.0
+MCFT,Value / Concentrated Quality,14.4,1,0,0.0
+MCFT,Activists / Special Situations,9.1,1,0,152.0
 DNTL,Value / Concentrated Quality,3.2,1,0,0.0
 LDO.MI,Value / Concentrated Quality,15.2,1,1,0.0
 MEIP,Value / Concentrated Quality,4.0,1,0,0.0
@@ -1703,7 +1703,7 @@ FCNCA,Value / Concentrated Quality,16.0,2,0,31.2
 MCS,Value / Concentrated Quality,4.8,1,0,8.7
 BSM,Value / Concentrated Quality,4.8,1,0,8.7
 DG,Value / Concentrated Quality,4.8,1,0,154.0
-ALK,Value / Concentrated Quality,4.8,1,0,124.0
+ALK,Value / Concentrated Quality,10.4,1,0,124.0
 OLN,Value / Concentrated Quality,8.0,2,0,120.0
 OLN,Activists / Special Situations,1.4,1,0,0.0
 DLTR,Value / Concentrated Quality,4.8,1,0,112.0
@@ -1767,6 +1767,7 @@ NRG,Activists / Special Situations,9.8,1,1,268.0
 ARMK,Activists / Special Situations,9.8,1,1,200.0
 AMRZ,Activists / Special Situations,14.0,1,0,212.0
 SPDR,Activists / Special Situations,9.8,1,1,21.0
+ORN,Activists / Special Situations,4.9,1,0,4.8
 AMP,Activists / Special Situations,4.2,1,0,17.6
 VEON,Activists / Special Situations,9.8,1,1,47.0
 VEON,Other / Unclassified,7.0,1,1,47.0
@@ -1798,7 +1799,7 @@ ACAD,Biotech Specialists,9.8,1,0,955.0
 KOD,Biotech Specialists,5.8,1,0,759.0
 GLUE,Biotech Specialists,1.9,1,0,0.0
 GRAL,Biotech Specialists,1.9,1,0,0.0
-ABCL,Biotech Specialists,6.5,1,0,0.0
+ABCL,Biotech Specialists,11.1,1,0,0.0
 ALKS,Biotech Specialists,1.9,1,0,0.0
 DBVT,Biotech Specialists,1.9,1,0,0.0
 ARTV,Biotech Specialists,13.0,1,0,0.0
@@ -1812,7 +1813,7 @@ TENX,Biotech Specialists,13.0,1,0,15.6
 CLRB,Biotech Specialists,6.5,1,0,0.0
 CRIS,Biotech Specialists,6.5,1,0,0.0
 INAB,Biotech Specialists,1.9,1,0,0.0
-QNRX,Biotech Specialists,1.9,1,0,0.0
+QNRX,Biotech Specialists,6.5,1,0,0.0
 CNSP,Biotech Specialists,1.9,1,0,0.0
 AYTU,Biotech Specialists,1.9,1,0,0.0
 OPTN,Biotech Specialists,1.9,1,0,0.0
@@ -1902,6 +1903,7 @@ ASLE,Value / Concentrated Quality,10.4,1,0,25.0
 NODK,Value / Concentrated Quality,4.8,1,0,21.0
 SNFCA,Value / Concentrated Quality,4.8,1,0,21.0
 SWKH,Value / Concentrated Quality,5.6,1,0,17.0
+RBKB,Value / Concentrated Quality,5.6,1,0,16.0
 SSBI,Value / Concentrated Quality,2.4,1,0,0.0
 NFBK,Value / Concentrated Quality,3.2,1,0,0.0
 GDOT,Value / Concentrated Quality,3.2,1,0,0.0
@@ -1930,7 +1932,7 @@ TTGT,Small-cap / Multibagger Specialists,1.8,1,0,0.0
 BC,Activists / Special Situations,9.8,1,1,9.7
 LCII,Activists / Special Situations,9.8,1,1,5.1
 SNBR,Activists / Special Situations,16.1,1,1,4.7
-NATR,Small-cap / Multibagger Specialists,8.4,1,1,59.3
+NATR,Small-cap / Multibagger Specialists,12.6,1,1,59.3
 DLHC,Small-cap / Multibagger Specialists,8.4,1,1,21.4
 QRHC,Small-cap / Multibagger Specialists,5.4,1,0,3.3
 KELYA,Small-cap / Multibagger Specialists,4.2,1,0,0.3
@@ -1950,6 +1952,7 @@ BRO,Value / Concentrated Quality,3.2,1,0,0.0
 RJF,Value / Concentrated Quality,3.2,1,0,0.0
 VOYA,Value / Concentrated Quality,3.2,1,0,9.3
 TFSL,Value / Concentrated Quality,3.2,1,0,6.3
+CRBG,Value / Concentrated Quality,5.6,1,0,37.6
 AMH,Value / Concentrated Quality,3.2,1,0,0.0
 NTRS,Value / Concentrated Quality,3.2,1,0,0.0
 LAZ,Value / Concentrated Quality,3.2,1,0,0.0
@@ -2078,6 +2081,7 @@ CVE.TO,CTA / Trend Followers,1.5,1,0,0.0
 SU.TO,CTA / Trend Followers,1.5,1,0,0.0
 OIH,CTA / Trend Followers,1.5,1,0,0.0
 FNCHQ,Value / Concentrated Quality,8.8,1,0,0.0
+FUNC,Small-cap / Multibagger Specialists,4.2,1,0,0.0
 CVLY,Small-cap / Multibagger Specialists,3.6,1,0,0.0
 ASRV,Small-cap / Multibagger Specialists,3.6,1,0,0.0
 ESXB,Small-cap / Multibagger Specialists,3.0,1,0,0.0
@@ -2099,7 +2103,7 @@ VRSN,Foreign / EM Value,2.5,1,0,0.0
 BERY,Foreign / EM Value,2.5,1,0,0.0
 AKBNK.IS,Foreign / EM Value,2.5,1,0,0.0
 MCB.KAR,Foreign / EM Value,2.5,1,0,0.0
-STNG,Value / Concentrated Quality,4.0,1,0,0.0
+STNG,Value / Concentrated Quality,9.6,1,0,0.0
 INSW,Value / Concentrated Quality,4.0,1,0,0.0
 CIVI,Activists / Special Situations,3.5,1,0,0.0
 AMRK,Activists / Special Situations,3.5,1,0,0.0
@@ -2131,3 +2135,4 @@ SKF-B.ST,Distressed / Event-Driven,3.6,1,0,0.0
 RXL.PA,Distressed / Event-Driven,8.4,1,1,0.0
 UBSG.SW,Distressed / Event-Driven,8.4,1,1,0.0
 METSO.HE,Distressed / Event-Driven,3.6,1,0,0.0
+BORR,Foreign / EM Value,3.5,1,0,0.0

@@ -77,7 +77,8 @@ def classify_sec_type(tkr, name, names):
     # 03-15-30" — a real ticker never contains a space. 171 such notes had
     # scored as common stock picks.
     if " " in tkr:
-        return "note"
+        low = tkr.lower()                   # "HTZ (warrant)": a warrant line tagged by its filed title
+        return "warrant" if "(warrant)" in low else "right" if "(right)" in low else "note"
     # PREFERRED — by ticker suffix OR the unambiguous "PFD" name token / coupon-pfd
     # (NCR Corp "5.5% PFD CNV A" is a preferred, not $138B of NCR common stock).
     # "Preferred" spelled out too: Alphabet's 2026 mandatory convertible
@@ -413,6 +414,12 @@ def run():
     # Delisted set (quote 404s under valid crumb auth — the 2025-26 M&A wave):
     # a "pick" that can no longer be bought is noise; classified out of pick
     # sheets but kept in reference sheets like everything else.
+    # tickers whose CUSIPs the filings title as warrants / rights (map_cusip_fmp 3b)
+    try:
+        _titled = {t: st for t, st in conn.execute(
+            "SELECT ticker, sec_type FROM cusip_map WHERE sec_type IN ('warrant', 'right') AND ticker IS NOT NULL")}
+    except sqlite3.OperationalError:
+        _titled = {}
     try:
         _dead = {r[0] for r in conn.execute("SELECT ticker FROM yf_dead")}
     except Exception:
@@ -461,6 +468,8 @@ def run():
         # quoteSummary and would misclassify as delisted when they are simply
         # fund-type quotes — their real class already excludes them from picks.
         sec_type = classify_sec_type(tkr, _names.get(tkr), _names)
+        if sec_type == "common" and tkr in _titled:
+            sec_type = _titled[tkr]          # the filings' own title says warrant / right
         if sec_type == "common" and tkr in _fund:
             sec_type = "etf"
         if sec_type == "common" and tkr in _dead:

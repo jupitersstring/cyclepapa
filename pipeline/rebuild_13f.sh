@@ -25,8 +25,10 @@ step back_apply python3 pipeline/build_cusip_map.py           # push the new map
 step enrich_fmp python3 pipeline/enrich_fmp.py
 step price_stats python3 pipeline/build_price_stats.py
 step earnings python3 pipeline/ingest_fmp_earnings.py
+step insider_fmp python3 pipeline/ingest_insider_fmp.py      # every Form 4 code; buys/sells the SEC scan missed
 step cluster python3 pipeline/cluster_detector.py
 step unified_score python3 pipeline/unified_score.py
+step revealed_pref python3 pipeline/revealed_preference.py     # dated buying evidence, no stale sections
 step conviction python3 pipeline/conviction.py
 step styles_view python3 pipeline/styles_view.py
 step broker_swap_radar python3 pipeline/broker_swap_radar.py

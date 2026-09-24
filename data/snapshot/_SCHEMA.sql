@@ -58,7 +58,7 @@ CREATE TABLE form4_transactions (
   accession TEXT NOT NULL, ticker TEXT, owner TEXT, role TEXT,
   trans_date TEXT, code TEXT, shares REAL, price REAL, acquired INTEGER,
   source_url TEXT NOT NULL
-, swap_involved INTEGER DEFAULT 0, planned_10b5 INTEGER DEFAULT 0, owner_cik TEXT, owned_after REAL);
+, swap_involved INTEGER DEFAULT 0, planned_10b5 INTEGER DEFAULT 0, owner_cik TEXT, owned_after REAL, src TEXT);
 CREATE TABLE archetype_members (
   archetype TEXT NOT NULL, ticker TEXT NOT NULL,
   thesis TEXT, valuation TEXT, catalyst TEXT, variant TEXT, smart_money TEXT,
@@ -183,7 +183,7 @@ CREATE TABLE price_stats (
         last_close REAL, n_pts INTEGER, asof TEXT);
 CREATE TABLE ticker_meta ("ticker" TEXT PRIMARY KEY, "name" TEXT, "exchange" TEXT, "market" TEXT, "sector" TEXT, "industry" TEXT, "mcap_m" REAL, "price" REAL, "price_currency" TEXT, "adv_3m_usd_m" REAL, "shares_out_m" REAL, "pe_ttm" TEXT, "fwd_pe" TEXT, "beta" TEXT, "asof" TEXT, "sic" INTEGER, "sic_description" TEXT);
 CREATE TABLE "ticker_valuation" ("ticker" TEXT, "cik" INTEGER, "ebitda_ttm" REAL, "book_value" REAL, "net_debt" REAL, "ev_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "ebitda_is_ebit_fallback" INTEGER, "asof" TEXT);
-CREATE TABLE ticker_yf ("ticker" TEXT PRIMARY KEY, "mcap_m" REAL, "enterprise_value_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "pe_ttm" REAL, "fwd_pe" REAL, "ev_revenue" REAL, "peg" REAL, "price" REAL, "currency" TEXT, "shares_out_m" REAL, "ebitda_m" REAL, "total_debt_m" REAL, "total_cash_m" REAL, "profit_margin" REAL, "rev_growth" REAL, "sector" TEXT, "industry" TEXT, "asof" TEXT, "business_summary" TEXT, "long_name" TEXT, src TEXT, is_fund INTEGER, ptb_ratio REAL, neg_tbv INTEGER, pe_raw REAL, pb_raw REAL, ev_ebitda_raw REAL);
+CREATE TABLE ticker_yf ("ticker" TEXT PRIMARY KEY, "mcap_m" REAL, "enterprise_value_m" REAL, "ev_ebitda" REAL, "pb_ratio" REAL, "pe_ttm" REAL, "fwd_pe" REAL, "ev_revenue" REAL, "peg" REAL, "price" REAL, "currency" TEXT, "shares_out_m" REAL, "ebitda_m" REAL, "total_debt_m" REAL, "total_cash_m" REAL, "profit_margin" REAL, "rev_growth" REAL, "sector" TEXT, "industry" TEXT, "asof" TEXT, "business_summary" TEXT, "long_name" TEXT, src TEXT, is_fund INTEGER, ptb_ratio REAL, neg_tbv INTEGER, pe_raw REAL, pb_raw REAL, ev_ebitda_raw REAL, fcf_yield REAL, earnings_yield REAL, roic REAL, roe REAL, net_debt_ebitda REAL, rev_growth_fy REAL, fy_growth_year TEXT, ipo_date TEXT, net_buyback_yield REAL, buyback_fy TEXT);
 CREATE TABLE yf_dead (ticker TEXT PRIMARY KEY, asof TEXT);
 CREATE INDEX idx_yf_evebitda ON ticker_yf(ev_ebitda);
 CREATE INDEX idx_yf_pb ON ticker_yf(pb_ratio);
@@ -266,12 +266,19 @@ CREATE TABLE nport_prior (trust TEXT, series TEXT, filed TEXT, issuer TEXT, tick
       cusip TEXT, val_usd REAL, pct REAL,
       series_id TEXT, manager TEXT, isin TEXT, country TEXT, currency TEXT,
       shares REAL, period TEXT);
+CREATE TABLE prior_split_factor (fund TEXT, ticker TEXT, factor REAL, PRIMARY KEY (fund, ticker));
+CREATE TABLE nport_split_factor (series_id TEXT, ticker TEXT, factor REAL, PRIMARY KEY (series_id, ticker));
+CREATE TABLE adr_link (ordinary TEXT PRIMARY KEY, adr TEXT);
 CREATE TABLE earnings_surprise (ticker TEXT, date TEXT, eps_actual REAL, eps_est REAL,
         surprise_pct REAL, rev_actual REAL, rev_est REAL, rev_surprise_pct REAL,
         PRIMARY KEY (ticker, date));
 CREATE TABLE earnings_beat (ticker TEXT PRIMARY KEY, n_q INTEGER, beats INTEGER,
         beat_rate REAL, last_date TEXT, last_surprise_pct REAL, streak INTEGER,
         rev_n INTEGER, rev_beats INTEGER, last_rev_surprise_pct REAL);
+CREATE TABLE insider_fmp (symbol TEXT, filing_date TEXT, trans_date TEXT, reporting_cik TEXT,
+          name TEXT, owner_type TEXT, trans_type TEXT, acq_disp TEXT, shares REAL, price REAL,
+          owned_after REAL, security_name TEXT, url TEXT);
+CREATE INDEX idx_insfmp_sym ON insider_fmp(symbol);
 CREATE TABLE unified_signal (
       ticker TEXT PRIMARY KEY,
       name TEXT, exchange TEXT, sector TEXT, mcap_m REAL, price REAL,
@@ -300,6 +307,12 @@ CREATE INDEX idx_us_score ON unified_signal(score DESC);
 CREATE INDEX idx_us_bucket ON unified_signal(mcap_bucket);
 CREATE INDEX idx_us_pb ON unified_signal(max_pct_book DESC);
 CREATE INDEX idx_us_entry ON unified_signal(entry_bucket);
+CREATE TABLE revealed_pref (ticker TEXT PRIMARY KEY, rp_score REAL,
+          f13_points REAL, f13_buyers INTEGER, f13_sellers INTEGER, f13_buying TEXT, f13_selling TEXT,
+          ins_n INTEGER, ins_usd_m REAL, ins_csuite INTEGER, ins_last TEXT,
+          stake_n INTEGER, stake_holders TEXT, stake_last TEXT,
+          np_buyers INTEGER, np_sellers INTEGER, np_buying TEXT, np_selling TEXT,
+          evidence_date TEXT, quarter TEXT, cap_points REAL, cap_notes TEXT);
 CREATE TABLE fund_conviction (
       fund TEXT, ticker TEXT, signals TEXT, raw_score REAL, style_weight REAL,
       score REAL, macro_style TEXT,
@@ -316,6 +329,19 @@ CREATE TABLE ticker_style_conviction (
       ticker TEXT, macro_style TEXT, score REAL, n_funds INTEGER,
       n_hyper INTEGER, dollar_m REAL,
       PRIMARY KEY (ticker, macro_style));
+CREATE TABLE fund_style (
+      fund TEXT PRIMARY KEY, sub_group TEXT, macro_style TEXT,
+      total_rows INTEGER, conviction_n INTEGER, threshold_n INTEGER,
+      new_n INTEGER, adds_n INTEGER);
+CREATE TABLE style_summary (
+      macro_style TEXT PRIMARY KEY,
+      n_funds INTEGER, total_rows INTEGER,
+      n_conviction INTEGER, n_threshold INTEGER, n_new INTEGER, n_adds INTEGER,
+      top_funds TEXT, top_consensus TEXT);
+CREATE TABLE style_consensus (
+      macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
+      sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
+      PRIMARY KEY (macro_style, ticker));
 CREATE TABLE broker_swap_radar (
       ticker TEXT, name TEXT, broker TEXT,
       delta_sh_m REAL,          -- share-count change, millions
@@ -333,18 +359,3 @@ CREATE TABLE broker_swap_radar (
       disclosed_swap TEXT,      -- a 13D on this name whose text names a swap
       f144_sale TEXT,           -- Form 144 proposed-sale pressure (contra)
       PRIMARY KEY (ticker, broker));
-CREATE TABLE prior_split_factor (fund TEXT, ticker TEXT, factor REAL, PRIMARY KEY (fund, ticker));
-CREATE TABLE nport_split_factor (series_id TEXT, ticker TEXT, factor REAL, PRIMARY KEY (series_id, ticker));
-CREATE TABLE fund_style (
-      fund TEXT PRIMARY KEY, sub_group TEXT, macro_style TEXT,
-      total_rows INTEGER, conviction_n INTEGER, threshold_n INTEGER,
-      new_n INTEGER, adds_n INTEGER);
-CREATE TABLE style_summary (
-      macro_style TEXT PRIMARY KEY,
-      n_funds INTEGER, total_rows INTEGER,
-      n_conviction INTEGER, n_threshold INTEGER, n_new INTEGER, n_adds INTEGER,
-      top_funds TEXT, top_consensus TEXT);
-CREATE TABLE style_consensus (
-      macro_style TEXT, ticker TEXT, n_funds INTEGER, dollar_m REAL,
-      sections_seen TEXT, in_tier1 INTEGER, has_cluster INTEGER, entry_bucket TEXT,
-      PRIMARY KEY (macro_style, ticker));

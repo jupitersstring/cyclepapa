@@ -23,7 +23,7 @@ Third Point LLC,LYV,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.4,4.9,Activists / Speci
 Third Point LLC,SRTA,THRESHOLD_13G,1.5,1.4,2.1,Activists / Special Situations,,5.8,0.0
 Third Point LLC,CMG,NEW_INIT_LARGE,2.0,1.4,2.8,Activists / Special Situations,2.4,,174.8
 Third Point LLC,CEG,NEW_INIT_LARGE,2.0,1.4,2.8,Activists / Special Situations,2.31,,167.8
-Third Point LLC,BABA,"MULTI_FUND_PEER,NEW_INIT_LARGE",3.0,1.4,4.2,Activists / Special Situations,1.66,,120.9
+Third Point LLC,BABA,"INSIDER_COBUY,MULTI_FUND_PEER,NEW_INIT_LARGE",6.5,1.4,9.1,Activists / Special Situations,1.66,,120.9
 Third Point LLC,APG,"MULTI_FUND_PEER,NEW_INIT_LARGE",3.0,1.4,4.2,Activists / Special Situations,1.58,,114.8
 Third Point LLC,SPOT,NEW_INIT_LARGE,2.0,1.4,2.8,Activists / Special Situations,0.8,,58.1
 Third Point LLC,PGR,NEW_INIT_LARGE,2.0,1.4,2.8,Activists / Special Situations,0.69,,50.1
@@ -84,7 +84,7 @@ Corvex Management,SWX,"ACTIVIST_13D,HOLDING_PERSIST",4.5,1.4,6.3,Activists / Spe
 Corvex Management,WGS,"HYPER_CONVICTION,INSIDER_COBUY,TOP_PICK",10.5,1.4,14.7,Activists / Special Situations,12.2,,398.0
 Corvex Management,DIS,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,1.4,9.1,Activists / Special Situations,8.5,,221.0
 Corvex Management,UNP,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Activists / Special Situations,8.4,,0.0
-Corvex Management,VSTS,"ACTIVIST_13D,HOLDING_PERSIST,MATERIAL_ADD",6.5,1.4,9.1,Activists / Special Situations,,15.0,0.0
+Corvex Management,VSTS,"ACTIVIST_13D,HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD",10.0,1.4,14.0,Activists / Special Situations,,15.0,0.0
 Corvex Management,QQQ,"MULTI_FUND_PEER,NEW_INIT_LARGE",3.0,1.4,4.2,Activists / Special Situations,,,92.0
 Corvex Management,LLYVA,NEW_INIT_LARGE,2.0,1.4,2.8,Activists / Special Situations,,,82.0
 Corvex Management,LLYVK,NEW_INIT_LARGE,2.0,1.4,2.8,Activists / Special Situations,,,0.0
@@ -173,7 +173,7 @@ Greenhaven Road Investment Mana,HGTY,TOP_PICK,3.0,1.2,3.6,Small-cap / Multibagge
 Greenhaven Road Investment Mana,PAR,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.2,9.0,Small-cap / Multibagger Specialists,5.4,,32.0
 Greenhaven Road Investment Mana,LFCR,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",7.5,1.2,9.0,Small-cap / Multibagger Specialists,5.1,,60.0
 Greenhaven Road Investment Mana,CLBT,MULTI_FUND_PEER,1.0,1.2,1.2,Small-cap / Multibagger Specialists,4.9,,29.0
-Greenhaven Road Investment Mana,KWY,"HOLDING_PERSIST,MATERIAL_ADD,THRESHOLD_13G",5.0,1.2,6.0,Small-cap / Multibagger Specialists,4.3,5.0,50.0
+Greenhaven Road Investment Mana,KWY,"HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD,THRESHOLD_13G",8.5,1.2,10.2,Small-cap / Multibagger Specialists,4.3,5.0,50.0
 Greenhaven Road Investment Mana,KKR,MULTI_FUND_PEER,1.0,1.2,1.2,Small-cap / Multibagger Specialists,3.7,,22.0
 Greenhaven Road Investment Mana,BUR,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,1.2,5.4,Small-cap / Multibagger Specialists,2.8,,34.0
 Greenhaven Road Investment Mana,PINS,NEW_INIT_LARGE,2.0,1.2,2.4,Small-cap / Multibagger Specialists,,,0.0
@@ -238,17 +238,18 @@ Owl Creek Asset Management,PLTR,"MATERIAL_ADD,MULTI_FUND_PEER",3.0,1.2,3.6,Small
 Owl Creek Asset Management,HUM,MATERIAL_ADD,2.0,1.2,2.4,Small-cap / Multibagger Specialists,0.12,,0.0
 Owl Creek Asset Management,FLUT,"INSIDER_COBUY,MATERIAL_ADD,MULTI_FUND_PEER",6.5,1.2,7.8,Small-cap / Multibagger Specialists,0.56,,0.0
 Owl Creek Asset Management,MSFT,"MATERIAL_ADD,MULTI_FUND_PEER",3.0,1.2,3.6,Small-cap / Multibagger Specialists,0.61,,0.0
-Owl Creek Asset Management,VST,MATERIAL_ADD,2.0,1.2,2.4,Small-cap / Multibagger Specialists,0.6,,0.0
+Owl Creek Asset Management,VST,"INSIDER_COBUY,MATERIAL_ADD",5.5,1.2,6.6,Small-cap / Multibagger Specialists,0.6,,0.0
 Saba Capital Management,ECAT,"ACTIVIST_13D,HOLDING_PERSIST,HYPER_CONVICTION,TOP_PICK",11.5,1.2,13.8,Small-cap / Multibagger Specialists,12.04,21.49,405.1
 Saba Capital Management,ASA,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,1.2,7.8,Small-cap / Multibagger Specialists,9.56,,321.7
+Saba Capital Management,GAM,INSIDER_COBUY,3.5,1.2,4.2,Small-cap / Multibagger Specialists,3.64,,122.5
 Saba Capital Management,NFJ,"ACTIVIST_13D,HOLDING_PERSIST,MATERIAL_ADD",6.5,1.2,7.8,Small-cap / Multibagger Specialists,3.31,4.9,111.4
 Saba Capital Management,BST,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.2,4.2,Small-cap / Multibagger Specialists,3.06,,103.0
 Saba Capital Management,CLOE,ACTIVIST_13D,3.0,1.2,3.6,Small-cap / Multibagger Specialists,,5.68,0.0
-Saba Capital Management,MXF,ACTIVIST_13D,3.0,1.2,3.6,Small-cap / Multibagger Specialists,,13.07,0.0
+Saba Capital Management,MXF,"ACTIVIST_13D,INSIDER_COBUY",6.5,1.2,7.8,Small-cap / Multibagger Specialists,,13.07,0.0
 Saba Capital Management,MEGI,ACTIVIST_13D,3.0,1.2,3.6,Small-cap / Multibagger Specialists,,5.0,0.0
 Saba Capital Management,AAPL,"MULTI_FUND_PEER,NEW_INIT_LARGE",3.0,1.2,3.6,Small-cap / Multibagger Specialists,0.84,,0.0
 Saba Capital Management,MSTR,"INSIDER_COBUY,MULTI_FUND_PEER,NEW_INIT_LARGE",6.5,1.2,7.8,Small-cap / Multibagger Specialists,0.77,,0.0
-Saba Capital Management,BABA,"MULTI_FUND_PEER,NEW_INIT_LARGE",3.0,1.2,3.6,Small-cap / Multibagger Specialists,0.72,,0.0
+Saba Capital Management,BABA,"INSIDER_COBUY,MULTI_FUND_PEER,NEW_INIT_LARGE",6.5,1.2,7.8,Small-cap / Multibagger Specialists,0.72,,0.0
 Saba Capital Management,TSLA,"MATERIAL_ADD,MULTI_FUND_PEER",3.0,1.2,3.6,Small-cap / Multibagger Specialists,0.63,,0.0
 Saba Capital Management,CRWD,MATERIAL_ADD,2.0,1.2,2.4,Small-cap / Multibagger Specialists,0.66,,0.0
 Saba Capital Management,RMT,MATERIAL_ADD,2.0,1.2,2.4,Small-cap / Multibagger Specialists,0.4,,0.0
@@ -319,7 +320,7 @@ Harbert Discovery Fund,STRM,ACTIVIST_13D,3.0,1.2,3.6,Small-cap / Multibagger Spe
 GAMCO Investors (Mario Gabelli),GATX,"ACTIVIST_13D,HOLDING_PERSIST",4.5,1.2,5.4,Small-cap / Multibagger Specialists,1.95,5.5,203.0
 GAMCO Investors (Mario Gabelli),MSGS,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.2,4.2,Small-cap / Multibagger Specialists,1.53,,159.0
 GAMCO Investors (Mario Gabelli),HRI,MULTI_FUND_PEER,1.0,1.2,1.2,Small-cap / Multibagger Specialists,1.52,,158.0
-GAMCO Investors (Mario Gabelli),TNC,ACTIVIST_13D,3.0,1.2,3.6,Small-cap / Multibagger Specialists,,5.0,0.0
+GAMCO Investors (Mario Gabelli),TNC,"ACTIVIST_13D,INSIDER_COBUY",6.5,1.2,7.8,Small-cap / Multibagger Specialists,,5.0,0.0
 GAMCO Investors (Mario Gabelli),MNRO,ACTIVIST_13D,3.0,1.2,3.6,Small-cap / Multibagger Specialists,,10.65,0.0
 GAMCO Investors (Mario Gabelli),TSAT,ACTIVIST_13D,3.0,1.2,3.6,Small-cap / Multibagger Specialists,,17.37,0.0
 GAMCO Investors (Mario Gabelli),SBGI,ACTIVIST_13D,3.0,1.2,3.6,Small-cap / Multibagger Specialists,,11.03,0.0
@@ -403,6 +404,7 @@ Third Avenue Management,RHI,"NEW_INIT_LARGE,PUBLIC_LETTER",4.5,1.2,5.4,Small-cap
 Third Avenue Management,FLG,"NEW_INIT_LARGE,PUBLIC_LETTER",4.5,1.2,5.4,Small-cap / Multibagger Specialists,,,0.0
 Pzena Investment Management,MGA,TOP_PICK,3.0,1.2,3.6,Small-cap / Multibagger Specialists,6.39,,1970.0
 Pzena Investment Management,CTSH,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.2,4.2,Small-cap / Multibagger Specialists,4.04,,1401.6
+Pzena Investment Management,TSN,INSIDER_COBUY,3.5,1.2,4.2,Small-cap / Multibagger Specialists,3.57,,1100.0
 Pzena Investment Management,BAX,"HOLDING_PERSIST,THRESHOLD_13G",3.0,1.2,3.6,Small-cap / Multibagger Specialists,3.52,13.8,1080.0
 Pzena Investment Management,TBI,THRESHOLD_13G,1.5,1.2,1.8,Small-cap / Multibagger Specialists,,10.5,0.0
 Pzena Investment Management,GCO,THRESHOLD_13G,1.5,1.2,1.8,Small-cap / Multibagger Specialists,,10.0,0.0
@@ -429,7 +431,7 @@ AKO Capital,MA,"MULTI_FUND_PEER,NEW_INIT_LARGE",3.0,1.2,3.6,Small-cap / Multibag
 AKO Capital,CP,MATERIAL_ADD,2.0,1.2,2.4,Small-cap / Multibagger Specialists,3.3,,218.0
 Pelham Capital Management,HLT,"HYPER_CONVICTION,TOP_PICK",7.0,1.2,8.4,Small-cap / Multibagger Specialists,13.8,,26.0
 Pelham Capital Management,LIN,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,1.2,13.8,Small-cap / Multibagger Specialists,12.4,,23.0
-Pelham Capital Management,TSM,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.2,9.6,Small-cap / Multibagger Specialists,10.0,,19.0
+Pelham Capital Management,TSM,"HYPER_CONVICTION,INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",11.5,1.2,13.8,Small-cap / Multibagger Specialists,10.0,,19.0
 Pelham Capital Management,APG,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",7.5,1.2,9.0,Small-cap / Multibagger Specialists,9.8,,18.0
 Pelham Capital Management,AMZN,"MULTI_FUND_PEER,TOP_PICK",4.0,1.2,4.8,Small-cap / Multibagger Specialists,9.4,,18.0
 Pelham Capital Management,MCO,"MULTI_FUND_PEER,NEW_INIT_LARGE,TOP_PICK",6.0,1.2,7.2,Small-cap / Multibagger Specialists,7.3,,14.0
@@ -448,7 +450,7 @@ Oasis Management,6856.T,PUBLIC_LETTER,2.5,1.2,3.0,Distressed / Event-Driven,,9.9
 Davidson Kempner Capital Manage,SPY,"HOLDING_PERSIST,HYPER_CONVICTION,MULTI_FUND_PEER,NEW_INIT_LARGE,TOP_PICK",11.5,1.2,13.8,Distressed / Event-Driven,16.95,,1067.0
 Davidson Kempner Capital Manage,QQQ,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",7.5,1.2,9.0,Distressed / Event-Driven,6.44,,810.8
 Davidson Kempner Capital Manage,IEF,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,1.2,5.4,Distressed / Event-Driven,3.91,,492.4
-Davidson Kempner Capital Manage,BABA,MULTI_FUND_PEER,1.0,1.2,1.2,Distressed / Event-Driven,2.71,,170.8
+Davidson Kempner Capital Manage,BABA,"INSIDER_COBUY,MULTI_FUND_PEER",4.5,1.2,5.4,Distressed / Event-Driven,2.71,,170.8
 Davidson Kempner Capital Manage,RIVN,"HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD",7.0,1.2,8.4,Distressed / Event-Driven,2.06,,259.4
 Davidson Kempner Capital Manage,NVRI,THRESHOLD_13G,1.5,1.2,1.8,Distressed / Event-Driven,,5.31,0.0
 Davidson Kempner Capital Manage,NUAI,THRESHOLD_13G,1.5,1.2,1.8,Distressed / Event-Driven,,5.22,0.0
@@ -474,7 +476,7 @@ Value Partners,SK,TOP_PICK,3.0,1.4,4.2,Activists / Special Situations,2.3,,0.0
 Whitebox Advisors,WDC,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.2,9.6,Distressed / Event-Driven,13.3,,937.0
 Whitebox Advisors,LITE,"MULTI_FUND_PEER,TOP_PICK",4.0,1.2,4.8,Distressed / Event-Driven,7.2,,510.0
 Whitebox Advisors,SNOW,TOP_PICK,3.0,1.2,3.6,Distressed / Event-Driven,5.6,,394.0
-Whitebox Advisors,BABA,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,1.2,5.4,Distressed / Event-Driven,3.3,,233.0
+Whitebox Advisors,BABA,"HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD,MULTI_FUND_PEER",8.0,1.2,9.6,Distressed / Event-Driven,3.3,,233.0
 Whitebox Advisors,ECHO,MULTI_FUND_PEER,1.0,1.2,1.2,Distressed / Event-Driven,2.6,,183.5
 Whitebox Advisors,MYXXU,THRESHOLD_13G,1.5,1.2,1.8,Distressed / Event-Driven,,5.2,0.0
 Whitebox Advisors,PONOU,THRESHOLD_13G,1.5,1.2,1.8,Distressed / Event-Driven,,5.7,0.0
@@ -585,7 +587,7 @@ Tiger Global Management LLC (Ch,WLTH,"HOLDING_PERSIST,NEW_INIT_LARGE,THRESHOLD_1
 Tiger Global Management LLC (Ch,NOW,MATERIAL_ADD,2.0,1.4,2.8,Tiger Cubs / L/S Legends,,,560.0
 Tiger Global Management LLC (Ch,CPNG,"MATERIAL_ADD,MULTI_FUND_PEER",3.0,1.4,4.2,Tiger Cubs / L/S Legends,,,492.0
 Tiger Global Management LLC (Ch,NFLX,"MATERIAL_ADD,MULTI_FUND_PEER",3.0,1.4,4.2,Tiger Cubs / L/S Legends,,,420.0
-Coatue Management LLC (Philippe,TSM,MULTI_FUND_PEER,1.0,1.4,1.4,Tiger Cubs / L/S Legends,,,0.0
+Coatue Management LLC (Philippe,TSM,"INSIDER_COBUY,MULTI_FUND_PEER",4.5,1.4,6.3,Tiger Cubs / L/S Legends,,,0.0
 Coatue Management LLC (Philippe,MSFT,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Tiger Cubs / L/S Legends,,,0.0
 Coatue Management LLC (Philippe,META,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Tiger Cubs / L/S Legends,,,0.0
 Coatue Management LLC (Philippe,AMZN,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Tiger Cubs / L/S Legends,,,0.0
@@ -596,8 +598,8 @@ Coatue Management LLC (Philippe,AMAT,MATERIAL_ADD,2.0,1.4,2.8,Tiger Cubs / L/S L
 Coatue Management LLC (Philippe,NTRA,MATERIAL_ADD,2.0,1.4,2.8,Tiger Cubs / L/S Legends,,,1128.0
 Coatue Management LLC (Philippe,DASH,"MATERIAL_ADD,MULTI_FUND_PEER",3.0,1.4,4.2,Tiger Cubs / L/S Legends,,,866.0
 Coatue Management LLC (Philippe,SPOT,MATERIAL_ADD,2.0,1.4,2.8,Tiger Cubs / L/S Legends,,,752.0
-Lone Pine Capital LLC (Stephen ,TSM,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Tiger Cubs / L/S Legends,6.81,,0.0
-Lone Pine Capital LLC (Stephen ,VST,TOP_PICK,3.0,1.4,4.2,Tiger Cubs / L/S Legends,6.18,,0.0
+Lone Pine Capital LLC (Stephen ,TSM,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.4,10.5,Tiger Cubs / L/S Legends,6.81,,0.0
+Lone Pine Capital LLC (Stephen ,VST,"INSIDER_COBUY,TOP_PICK",6.5,1.4,9.1,Tiger Cubs / L/S Legends,6.18,,0.0
 Lone Pine Capital LLC (Stephen ,CVNA,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.4,10.5,Tiger Cubs / L/S Legends,5.52,,0.0
 Lone Pine Capital LLC (Stephen ,APP,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Tiger Cubs / L/S Legends,,,0.0
 Lone Pine Capital LLC (Stephen ,LPLA,TOP_PICK,3.0,1.4,4.2,Tiger Cubs / L/S Legends,,,0.0
@@ -611,7 +613,7 @@ Lone Pine Capital LLC (Stephen ,BN,"MATERIAL_ADD,MULTI_FUND_PEER",3.0,1.4,4.2,Ti
 Lone Pine Capital LLC (Stephen ,PM,MATERIAL_ADD,2.0,1.4,2.8,Tiger Cubs / L/S Legends,,,602.0
 Viking Global Investors LP (And,MSFT,MULTI_FUND_PEER,1.0,1.4,1.4,Tiger Cubs / L/S Legends,4.13,,3120.0
 Viking Global Investors LP (And,PNC,TOP_PICK,3.0,1.4,4.2,Tiger Cubs / L/S Legends,4.04,,3040.0
-Viking Global Investors LP (And,TSM,MULTI_FUND_PEER,1.0,1.4,1.4,Tiger Cubs / L/S Legends,3.96,,2980.0
+Viking Global Investors LP (And,TSM,"INSIDER_COBUY,MULTI_FUND_PEER",4.5,1.4,6.3,Tiger Cubs / L/S Legends,3.96,,2980.0
 Viking Global Investors LP (And,SCHW,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Tiger Cubs / L/S Legends,3.68,,0.0
 Viking Global Investors LP (And,LII,THRESHOLD_13G,1.5,1.4,2.1,Tiger Cubs / L/S Legends,,5.2,0.0
 Viking Global Investors LP (And,GOOGL,"MULTI_FUND_PEER,NEW_INIT_LARGE",3.0,1.4,4.2,Tiger Cubs / L/S Legends,,,1669.0
@@ -623,7 +625,7 @@ Maverick Capital Ltd (Lee Ainsl,AMZN,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PE
 Maverick Capital Ltd (Lee Ainsl,MSFT,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Tiger Cubs / L/S Legends,,,0.0
 Maverick Capital Ltd (Lee Ainsl,NU,MULTI_FUND_PEER,1.0,1.4,1.4,Tiger Cubs / L/S Legends,4.49,,672.0
 Maverick Capital Ltd (Lee Ainsl,NVDA,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Tiger Cubs / L/S Legends,-27.6,,0.0
-Maverick Capital Ltd (Lee Ainsl,TSM,MULTI_FUND_PEER,1.0,1.4,1.4,Tiger Cubs / L/S Legends,3.81,,568.0
+Maverick Capital Ltd (Lee Ainsl,TSM,"INSIDER_COBUY,MULTI_FUND_PEER",4.5,1.4,6.3,Tiger Cubs / L/S Legends,3.81,,568.0
 Maverick Capital Ltd (Lee Ainsl,GOOG,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Tiger Cubs / L/S Legends,,,0.0
 Maverick Capital Ltd (Lee Ainsl,CCCX,ACTIVIST_13D,3.0,1.4,4.2,Tiger Cubs / L/S Legends,,9.2,0.0
 D1 Capital Partners LP (Daniel ,CART,TOP_PICK,3.0,1.4,4.2,Tiger Cubs / L/S Legends,7.52,,845.0
@@ -633,8 +635,8 @@ D1 Capital Partners LP (Daniel ,JHX,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,
 D1 Capital Partners LP (Daniel ,RDDT,TOP_PICK,3.0,1.4,4.2,Tiger Cubs / L/S Legends,,,0.0
 D1 Capital Partners LP (Daniel ,AMZN,"HOLDING_PERSIST,MULTI_FUND_PEER,NEW_INIT_LARGE",4.5,1.4,6.3,Tiger Cubs / L/S Legends,,,927.8
 D1 Capital Partners LP (Daniel ,SPOT,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.4,4.9,Tiger Cubs / L/S Legends,,,230.0
-D1 Capital Partners LP (Daniel ,ADSK,NEW_INIT_LARGE,2.0,1.4,2.8,Tiger Cubs / L/S Legends,,,269.8
-Light Street Capital Management,TSM,MULTI_FUND_PEER,1.0,1.4,1.4,Tiger Cubs / L/S Legends,,,0.0
+D1 Capital Partners LP (Daniel ,ADSK,"INSIDER_COBUY,NEW_INIT_LARGE",5.5,1.4,7.7,Tiger Cubs / L/S Legends,,,269.8
+Light Street Capital Management,TSM,"INSIDER_COBUY,MULTI_FUND_PEER",4.5,1.4,6.3,Tiger Cubs / L/S Legends,,,0.0
 Light Street Capital Management,CHYM,"HOLDING_PERSIST,MULTI_FUND_PEER,NEW_INIT_LARGE,TOP_PICK",7.5,1.4,10.5,Tiger Cubs / L/S Legends,,,93.0
 Light Street Capital Management,NVDA,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",7.5,1.4,10.5,Tiger Cubs / L/S Legends,,,36.0
 Light Street Capital Management,AVGO,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",7.5,1.4,10.5,Tiger Cubs / L/S Legends,,,45.0
@@ -671,8 +673,8 @@ Berkshire Hathaway,NYT,NEW_INIT_LARGE,2.0,1.5,3.0,Family Offices / Individual Fi
 Berkshire Hathaway,DPZ,MATERIAL_ADD,2.0,1.5,3.0,Family Offices / Individual Filers,0.45,,0.0
 Daily Journal Corporation,WFC,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.5,12.0,Family Offices / Individual Filers,46.74,,112.0
 Daily Journal Corporation,BAC,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.5,12.0,Family Offices / Individual Filers,40.51,,97.5
-Daily Journal Corporation,BABA,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.5,12.0,Family Offices / Individual Filers,10.17,,24.5
-Cascade Investment LLC,RSG,"ACTIVIST_13D,HOLDING_PERSIST,MATERIAL_ADD",6.5,1.5,9.75,Family Offices / Individual Filers,,35.6,0.0
+Daily Journal Corporation,BABA,"HYPER_CONVICTION,INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",11.5,1.5,17.25,Family Offices / Individual Filers,10.17,,24.5
+Cascade Investment LLC,RSG,"ACTIVIST_13D,HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD",10.0,1.5,15.0,Family Offices / Individual Filers,,35.6,0.0
 Duquesne Family Office,NTRA,"HYPER_CONVICTION,TOP_PICK",7.0,1.5,10.5,Family Offices / Individual Filers,12.8,,575.0
 Duquesne Family Office,XLF,"HOLDING_PERSIST,MULTI_FUND_PEER,NEW_INIT_LARGE,TOP_PICK",7.5,1.5,11.25,Family Offices / Individual Filers,6.7,,602.0
 Duquesne Family Office,INSM,"MULTI_FUND_PEER,TOP_PICK",4.0,1.5,6.0,Family Offices / Individual Filers,5.7,,256.0
@@ -691,14 +693,14 @@ Soros Fund Management LLC,TKO,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.5,1
 Soros Fund Management LLC,MSFT,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,1.5,6.75,Family Offices / Individual Filers,,,78.0
 Soros Fund Management LLC,DAY,NEW_INIT_LARGE,2.0,1.5,3.0,Family Offices / Individual Filers,,,0.0
 Soros Fund Management LLC,COIN,NEW_INIT_LARGE,2.0,1.5,3.0,Family Offices / Individual Filers,,,0.0
-Soros Fund Management LLC,TSM,"MATERIAL_ADD,MULTI_FUND_PEER",3.0,1.5,4.5,Family Offices / Individual Filers,,,0.0
+Soros Fund Management LLC,TSM,"INSIDER_COBUY,MATERIAL_ADD,MULTI_FUND_PEER",6.5,1.5,9.75,Family Offices / Individual Filers,,,0.0
 Soros Fund Management LLC,NVDA,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,1.5,6.75,Family Offices / Individual Filers,2.05,,396.4
-Appaloosa Management LP,BABA,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.5,12.0,Family Offices / Individual Filers,10.99,,754.0
+Appaloosa Management LP,BABA,"HYPER_CONVICTION,INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",11.5,1.5,17.25,Family Offices / Individual Filers,10.99,,754.0
 Appaloosa Management LP,GOOG,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",7.5,1.5,11.25,Family Offices / Individual Filers,8.18,,561.0
 Appaloosa Management LP,AMZN,"MULTI_FUND_PEER,TOP_PICK",4.0,1.5,6.0,Family Offices / Individual Filers,7.34,,504.0
 Appaloosa Management LP,MU,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",7.5,1.5,11.25,Family Offices / Individual Filers,6.25,,428.0
 Appaloosa Management LP,META,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",7.5,1.5,11.25,Family Offices / Individual Filers,5.78,,396.0
-Appaloosa Management LP,TSM,"MULTI_FUND_PEER,TOP_PICK",4.0,1.5,6.0,Family Offices / Individual Filers,5.01,,343.0
+Appaloosa Management LP,TSM,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.5,11.25,Family Offices / Individual Filers,5.01,,343.0
 Appaloosa Management LP,NVDA,MULTI_FUND_PEER,1.0,1.5,1.5,Family Offices / Individual Filers,4.63,,317.0
 Appaloosa Management LP,MSFT,MULTI_FUND_PEER,1.0,1.5,1.5,Family Offices / Individual Filers,3.53,,242.0
 Appaloosa Management LP,EWY,NEW_INIT_LARGE,2.0,1.5,3.0,Family Offices / Individual Filers,2.66,,182.0
@@ -706,7 +708,7 @@ Appaloosa Management LP,BALL,NEW_INIT_LARGE,2.0,1.5,3.0,Family Offices / Individ
 Appaloosa Management LP,AAL,MATERIAL_ADD,2.0,1.5,3.0,Family Offices / Individual Filers,,,217.0
 Omega Family Office (Omega Advi,RKT,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,1.5,17.25,Family Offices / Individual Filers,13.5,,814.0
 Omega Family Office (Omega Advi,VRT,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.5,12.0,Family Offices / Individual Filers,11.6,,698.0
-Omega Family Office (Omega Advi,ET,TOP_PICK,3.0,1.5,4.5,Family Offices / Individual Filers,7.29,,440.0
+Omega Family Office (Omega Advi,ET,"INSIDER_COBUY,TOP_PICK",6.5,1.5,9.75,Family Offices / Individual Filers,7.29,,440.0
 Omega Family Office (Omega Advi,MIR,TOP_PICK,3.0,1.5,4.5,Family Offices / Individual Filers,6.51,,392.0
 Omega Family Office (Omega Advi,APO,TOP_PICK,3.0,1.5,4.5,Family Offices / Individual Filers,6.42,,386.0
 Paulson & Co Inc,MDGL,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.5,12.0,Family Offices / Individual Filers,30.48,,993.0
@@ -714,30 +716,30 @@ Paulson & Co Inc,PPTA,"ACTIVIST_13D,HOLDING_PERSIST,HYPER_CONVICTION,TOP_PICK",1
 Paulson & Co Inc,BHC,"HYPER_CONVICTION,TOP_PICK",7.0,1.5,10.5,Family Offices / Individual Filers,15.61,,508.0
 Paulson & Co Inc,AAMI,TOP_PICK,3.0,1.5,4.5,Family Offices / Individual Filers,,,0.0
 Paulson & Co Inc,NG,TOP_PICK,3.0,1.5,4.5,Family Offices / Individual Filers,,,0.0
-Baupost Group LLC,QSR,"HYPER_CONVICTION,TOP_PICK",7.0,0.4,2.8,Mega Multi-Strats / Quants,10.44,,551.3
-Baupost Group LLC,AMZN,"HOLDING_PERSIST,MULTI_FUND_PEER,NEW_INIT_LARGE,TOP_PICK",7.5,0.4,3.0,Mega Multi-Strats / Quants,9.28,,489.7
-Baupost Group LLC,WTW,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",7.5,0.4,3.0,Mega Multi-Strats / Quants,8.45,,446.1
-Baupost Group LLC,ELV,"MULTI_FUND_PEER,TOP_PICK",4.0,0.4,1.6,Mega Multi-Strats / Quants,8.43,,445.0
-Baupost Group LLC,UNP,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",7.5,0.4,3.0,Mega Multi-Strats / Quants,7.13,,376.4
-Baupost Group LLC,WCC,TOP_PICK,3.0,0.4,1.2,Mega Multi-Strats / Quants,6.58,,347.1
-Baupost Group LLC,GOOG,"MULTI_FUND_PEER,TOP_PICK",4.0,0.4,1.6,Mega Multi-Strats / Quants,6.46,,341.2
-Baupost Group LLC,FIS,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,0.4,2.6,Mega Multi-Strats / Quants,5.67,,299.3
-Baupost Group LLC,SNNRF,THRESHOLD_13G,1.5,0.4,0.6,Mega Multi-Strats / Quants,,3.13,0.0
-Baupost Group LLC,MOH,NEW_INIT_LARGE,2.0,0.4,0.8,Mega Multi-Strats / Quants,2.0,,0.0
-Baupost Group LLC,AERO,NEW_INIT_LARGE,2.0,0.4,0.8,Mega Multi-Strats / Quants,2.0,,0.0
-Baupost Group LLC,FISV,"INSIDER_COBUY,MATERIAL_ADD",5.5,0.4,2.2,Mega Multi-Strats / Quants,,,0.0
-Himalaya Capital Management,GOOGL,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,0.4,4.6,Mega Multi-Strats / Quants,22.31,,796.05
-Himalaya Capital Management,GOOG,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,0.4,3.2,Mega Multi-Strats / Quants,21.55,,769.22
-Himalaya Capital Management,BAC,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,0.4,3.2,Mega Multi-Strats / Quants,16.08,,573.73
-Himalaya Capital Management,PDD,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,0.4,3.2,Mega Multi-Strats / Quants,14.64,,522.5
-Himalaya Capital Management,BRK-B,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,0.4,3.2,Mega Multi-Strats / Quants,12.64,,451.25
-Himalaya Capital Management,EWBC,TOP_PICK,3.0,0.4,1.2,Mega Multi-Strats / Quants,8.74,,312.03
-Himalaya Capital Management,OXY,MULTI_FUND_PEER,1.0,0.4,0.4,Mega Multi-Strats / Quants,1.69,,60.3
-Himalaya Capital Management,CROX,"HOLDING_PERSIST,MULTI_FUND_PEER,NEW_INIT_LARGE",4.5,0.4,1.8,Mega Multi-Strats / Quants,1.51,,53.72
-Pabrai Investment Funds (Dalal ,HCC,"HYPER_CONVICTION,TOP_PICK",7.0,0.4,2.8,Mega Multi-Strats / Quants,39.47,,317.4
-Pabrai Investment Funds (Dalal ,RIG,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,0.4,4.6,Mega Multi-Strats / Quants,27.78,,223.4
-Pabrai Investment Funds (Dalal ,AMR,"HOLDING_PERSIST,HYPER_CONVICTION,INSIDER_COBUY,MATERIAL_ADD,TOP_PICK",14.0,0.4,5.6,Mega Multi-Strats / Quants,27.0,,217.0
-Pabrai Investment Funds (Dalal ,VAL,TOP_PICK,3.0,0.4,1.2,Mega Multi-Strats / Quants,5.76,,46.2
+Baupost Group LLC,QSR,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,10.44,,551.3
+Baupost Group LLC,AMZN,"HOLDING_PERSIST,MULTI_FUND_PEER,NEW_INIT_LARGE,TOP_PICK",7.5,1.6,12.0,Value / Concentrated Quality,9.28,,489.7
+Baupost Group LLC,WTW,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",7.5,1.6,12.0,Value / Concentrated Quality,8.45,,446.1
+Baupost Group LLC,ELV,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.6,12.0,Value / Concentrated Quality,8.43,,445.0
+Baupost Group LLC,UNP,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",7.5,1.6,12.0,Value / Concentrated Quality,7.13,,376.4
+Baupost Group LLC,WCC,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,6.58,,347.1
+Baupost Group LLC,GOOG,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,6.46,,341.2
+Baupost Group LLC,FIS,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,1.6,10.4,Value / Concentrated Quality,5.67,,299.3
+Baupost Group LLC,SNNRF,THRESHOLD_13G,1.5,1.6,2.4,Value / Concentrated Quality,,3.13,0.0
+Baupost Group LLC,MOH,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,2.0,,0.0
+Baupost Group LLC,AERO,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,2.0,,0.0
+Baupost Group LLC,FISV,"INSIDER_COBUY,MATERIAL_ADD",5.5,1.6,8.8,Value / Concentrated Quality,,,0.0
+Himalaya Capital Management,GOOGL,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,1.6,18.4,Value / Concentrated Quality,22.31,,796.05
+Himalaya Capital Management,GOOG,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.6,12.8,Value / Concentrated Quality,21.55,,769.22
+Himalaya Capital Management,BAC,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.6,12.8,Value / Concentrated Quality,16.08,,573.73
+Himalaya Capital Management,PDD,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.6,12.8,Value / Concentrated Quality,14.64,,522.5
+Himalaya Capital Management,BRK-B,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.6,12.8,Value / Concentrated Quality,12.64,,451.25
+Himalaya Capital Management,EWBC,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,8.74,,312.03
+Himalaya Capital Management,OXY,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,1.69,,60.3
+Himalaya Capital Management,CROX,"HOLDING_PERSIST,MULTI_FUND_PEER,NEW_INIT_LARGE",4.5,1.6,7.2,Value / Concentrated Quality,1.51,,53.72
+Pabrai Investment Funds (Dalal ,HCC,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,39.47,,317.4
+Pabrai Investment Funds (Dalal ,RIG,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,1.6,18.4,Value / Concentrated Quality,27.78,,223.4
+Pabrai Investment Funds (Dalal ,AMR,"HOLDING_PERSIST,HYPER_CONVICTION,INSIDER_COBUY,MATERIAL_ADD,TOP_PICK",14.0,1.6,22.4,Value / Concentrated Quality,27.0,,217.0
+Pabrai Investment Funds (Dalal ,VAL,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,5.76,,46.2
 Tudor Investment Corporation,IVV,"MULTI_FUND_PEER,TOP_PICK",4.0,0.4,1.6,Mega Multi-Strats / Quants,5.7,,1040.0
 Tudor Investment Corporation,NVDA,MULTI_FUND_PEER,1.0,0.4,0.4,Mega Multi-Strats / Quants,2.6,,468.0
 Tudor Investment Corporation,QQQ,MULTI_FUND_PEER,1.0,0.4,0.4,Mega Multi-Strats / Quants,2.4,,431.0
@@ -751,18 +753,18 @@ Tudor Investment Corporation,AMD,MULTI_FUND_PEER,1.0,0.4,0.4,Mega Multi-Strats /
 Tudor Investment Corporation,AAPL,MULTI_FUND_PEER,1.0,0.4,0.4,Mega Multi-Strats / Quants,1.0,,185.0
 Tudor Investment Corporation,EA,MULTI_FUND_PEER,1.0,0.4,0.4,Mega Multi-Strats / Quants,1.0,,178.0
 Tudor Investment Corporation,CYBR,MULTI_FUND_PEER,1.0,0.4,0.4,Mega Multi-Strats / Quants,0.8,,145.0
-Iconiq Capital LLC,TTAN,"HOLDING_PERSIST,HYPER_CONVICTION,THRESHOLD_13G,TOP_PICK",10.0,0.4,4.0,Mega Multi-Strats / Quants,19.8,13.9,1230.0
-Iconiq Capital LLC,NTSK,"HOLDING_PERSIST,HYPER_CONVICTION,TOP_PICK",8.5,0.4,3.4,Mega Multi-Strats / Quants,18.8,,1160.0
-Iconiq Capital LLC,PCOR,"HOLDING_PERSIST,HYPER_CONVICTION,MULTI_FUND_PEER,THRESHOLD_13G,TOP_PICK",11.0,0.4,4.4,Mega Multi-Strats / Quants,17.2,11.6,1060.0
-Iconiq Capital LLC,OWL,TOP_PICK,3.0,0.4,1.2,Mega Multi-Strats / Quants,8.1,,500.4
-Iconiq Capital LLC,SHOP,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,0.4,2.6,Mega Multi-Strats / Quants,6.4,,395.3
-Iconiq Capital LLC,CHYM,MULTI_FUND_PEER,1.0,0.4,0.4,Mega Multi-Strats / Quants,4.9,,303.1
-Iconiq Capital LLC,GOOGL,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,0.4,1.8,Mega Multi-Strats / Quants,4.0,,245.3
-Iconiq Capital LLC,NVDA,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,0.4,1.8,Mega Multi-Strats / Quants,3.3,,204.3
-Iconiq Capital LLC,NOW,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,0.4,1.4,Mega Multi-Strats / Quants,1.5,,91.8
-Iconiq Capital LLC,BRZE,THRESHOLD_13G,1.5,0.4,0.6,Mega Multi-Strats / Quants,,1.7,0.0
+Iconiq Capital LLC,TTAN,"HOLDING_PERSIST,HYPER_CONVICTION,THRESHOLD_13G,TOP_PICK",10.0,1.5,15.0,Family Offices / Individual Filers,19.8,13.9,1230.0
+Iconiq Capital LLC,NTSK,"HOLDING_PERSIST,HYPER_CONVICTION,INSIDER_COBUY,TOP_PICK",12.0,1.5,18.0,Family Offices / Individual Filers,18.8,,1160.0
+Iconiq Capital LLC,PCOR,"HOLDING_PERSIST,HYPER_CONVICTION,MULTI_FUND_PEER,THRESHOLD_13G,TOP_PICK",11.0,1.5,16.5,Family Offices / Individual Filers,17.2,11.6,1060.0
+Iconiq Capital LLC,OWL,TOP_PICK,3.0,1.5,4.5,Family Offices / Individual Filers,8.1,,500.4
+Iconiq Capital LLC,SHOP,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,1.5,9.75,Family Offices / Individual Filers,6.4,,395.3
+Iconiq Capital LLC,CHYM,MULTI_FUND_PEER,1.0,1.5,1.5,Family Offices / Individual Filers,4.9,,303.1
+Iconiq Capital LLC,GOOGL,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,1.5,6.75,Family Offices / Individual Filers,4.0,,245.3
+Iconiq Capital LLC,NVDA,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,1.5,6.75,Family Offices / Individual Filers,3.3,,204.3
+Iconiq Capital LLC,NOW,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.5,5.25,Family Offices / Individual Filers,1.5,,91.8
+Iconiq Capital LLC,BRZE,THRESHOLD_13G,1.5,1.5,2.25,Family Offices / Individual Filers,,1.7,0.0
 Point72 Asset Management LP,NVDA,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,0.4,1.8,Mega Multi-Strats / Quants,3.3,,2190.0
-Point72 Asset Management LP,TSM,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,0.4,1.8,Mega Multi-Strats / Quants,2.8,,1890.0
+Point72 Asset Management LP,TSM,"HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD,MULTI_FUND_PEER",8.0,0.4,3.2,Mega Multi-Strats / Quants,2.8,,1890.0
 Point72 Asset Management LP,AMZN,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,0.4,1.8,Mega Multi-Strats / Quants,2.1,,1410.0
 Point72 Asset Management LP,AVGO,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,0.4,1.8,Mega Multi-Strats / Quants,1.8,,1220.0
 Point72 Asset Management LP,ANET,MULTI_FUND_PEER,1.0,0.4,0.4,Mega Multi-Strats / Quants,1.5,,1030.0
@@ -803,7 +805,7 @@ Marshall Wace LLP,VOO,"HOLDING_PERSIST,MULTI_FUND_PEER,NEW_INIT_LARGE",4.5,1.0,4
 Marshall Wace LLP,AMZN,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,1.0,4.5,Foreign / EM Value,2.52,,2770.0
 Marshall Wace LLP,NVDA,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,1.0,4.5,Foreign / EM Value,2.46,,2700.0
 Marshall Wace LLP,MSFT,"HOLDING_PERSIST,MULTI_FUND_PEER",2.5,1.0,2.5,Foreign / EM Value,1.65,,1810.0
-Lansdowne Partners,TSM,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,1.0,11.5,Foreign / EM Value,21.7,,231.2
+Lansdowne Partners,TSM,"HOLDING_PERSIST,HYPER_CONVICTION,INSIDER_COBUY,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",15.0,1.0,15.0,Foreign / EM Value,21.7,,231.2
 Lansdowne Partners,CRH,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,1.0,4.5,Foreign / EM Value,-53.2,,78.0
 Lansdowne Partners,LIN,"HOLDING_PERSIST,MULTI_FUND_PEER",2.5,1.0,2.5,Foreign / EM Value,,,87.0
 Lansdowne Partners,DAL,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,1.0,6.5,Foreign / EM Value,,,188.0
@@ -819,20 +821,20 @@ Lansdowne Partners,BILI,NEW_INIT_LARGE,2.0,1.0,2.0,Foreign / EM Value,,,0.0
 Lansdowne Partners,AMZN,"MATERIAL_ADD,MULTI_FUND_PEER",3.0,1.0,3.0,Foreign / EM Value,,,28.0
 Egerton Capital Ltd,AMZN,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,1.0,11.5,Foreign / EM Value,14.78,,1360.0
 Egerton Capital Ltd,MSFT,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Foreign / EM Value,9.19,,845.7
-Egerton Capital Ltd,BSX,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,5.58,,513.5
+Egerton Capital Ltd,BSX,"INSIDER_COBUY,TOP_PICK",6.5,1.0,6.5,Foreign / EM Value,5.58,,513.5
 Egerton Capital Ltd,COF,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Foreign / EM Value,5.45,,501.5
 Egerton Capital Ltd,MCO,"HOLDING_PERSIST,MULTI_FUND_PEER,NEW_INIT_LARGE",4.5,1.0,4.5,Foreign / EM Value,,,395.1
 Egerton Capital Ltd,GOOGL,"MULTI_FUND_PEER,NEW_INIT_LARGE",3.0,1.0,3.0,Foreign / EM Value,,,338.52
 Egerton Capital Ltd,VMC,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.0,3.5,Foreign / EM Value,,,273.86
 Egerton Capital Ltd,WYNN,NEW_INIT_LARGE,2.0,1.0,2.0,Foreign / EM Value,,,249.05
-Egerton Capital Ltd,UBER,"MULTI_FUND_PEER,NEW_INIT_LARGE",3.0,1.0,3.0,Foreign / EM Value,,,219.08
-TT International Investment Man,BABA,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.0,8.0,Foreign / EM Value,12.7,,116.37
+Egerton Capital Ltd,UBER,"INSIDER_COBUY,MULTI_FUND_PEER,NEW_INIT_LARGE",6.5,1.0,6.5,Foreign / EM Value,,,219.08
+TT International Investment Man,BABA,"HYPER_CONVICTION,INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",11.5,1.0,11.5,Foreign / EM Value,12.7,,116.37
 TT International Investment Man,ITUB,"HOLDING_PERSIST,TOP_PICK",4.5,1.0,4.5,Foreign / EM Value,8.7,,79.89
 TT International Investment Man,ARIS,"HOLDING_PERSIST,NEW_INIT_LARGE,TOP_PICK",6.5,1.0,6.5,Foreign / EM Value,8.4,,89.79
 TT International Investment Man,VIST,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,8.1,,74.18
 TT International Investment Man,BIDU,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,1.0,6.5,Foreign / EM Value,7.6,,103.93
 TT International Investment Man,GGAL,"INSIDER_COBUY,NEW_INIT_LARGE,TOP_PICK",8.5,1.0,8.5,Foreign / EM Value,9.9,,47.04
-TT International Investment Man,YPF,"NEW_INIT_LARGE,TOP_PICK",5.0,1.0,5.0,Foreign / EM Value,6.5,,59.61
+TT International Investment Man,YPF,"INSIDER_COBUY,NEW_INIT_LARGE,TOP_PICK",8.5,1.0,8.5,Foreign / EM Value,6.5,,59.61
 TT International Investment Man,EGO,MATERIAL_ADD,2.0,1.0,2.0,Foreign / EM Value,,,25.0
 TT International Investment Man,EQX,MATERIAL_ADD,2.0,1.0,2.0,Foreign / EM Value,,,24.0
 TT International Investment Man,KSPI,MATERIAL_ADD,2.0,1.0,2.0,Foreign / EM Value,,,22.0
@@ -943,6 +945,7 @@ Deerfield Management Company,INSP,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.3,4.55,Bi
 Deerfield Management Company,LRMR,"ACTIVIST_13D,HOLDING_PERSIST,MATERIAL_ADD",6.5,1.3,8.45,Biotech Specialists,,34.41,5.0
 OrbiMed Advisors LLC,EWTX,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,1.3,8.45,Biotech Specialists,7.8,,385.0
 OrbiMed Advisors LLC,LLY,TOP_PICK,3.0,1.3,3.9,Biotech Specialists,6.6,,324.0
+OrbiMed Advisors LLC,BSX,INSIDER_COBUY,3.5,1.3,4.55,Biotech Specialists,4.7,,231.0
 OrbiMed Advisors LLC,EW,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,1.3,5.85,Biotech Specialists,3.5,,170.0
 OrbiMed Advisors LLC,UPB,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.3,4.55,Biotech Specialists,3.1,,155.0
 OrbiMed Advisors LLC,SION,"ACTIVIST_13D,HOLDING_PERSIST,NEW_INIT_LARGE",6.5,1.3,8.45,Biotech Specialists,3.0,6.6,186.0
@@ -955,7 +958,7 @@ OrbiMed Advisors LLC,PRLD,"ACTIVIST_13D,INSIDER_COBUY",6.5,1.3,8.45,Biotech Spec
 OrbiMed Advisors LLC,ACET,ACTIVIST_13D,3.0,1.3,3.9,Biotech Specialists,,8.8,0.0
 OrbiMed Advisors LLC,CRVS,ACTIVIST_13D,3.0,1.3,3.9,Biotech Specialists,,10.3,0.0
 OrbiMed Advisors LLC,RAPT,THRESHOLD_13G,1.5,1.3,1.95,Biotech Specialists,,6.6,0.0
-OrbiMed Advisors LLC,PFE,NEW_INIT_LARGE,2.0,1.3,2.6,Biotech Specialists,,,104.0
+OrbiMed Advisors LLC,PFE,"INSIDER_COBUY,NEW_INIT_LARGE",5.5,1.3,7.15,Biotech Specialists,,,104.0
 OrbiMed Advisors LLC,AXSM,NEW_INIT_LARGE,2.0,1.3,2.6,Biotech Specialists,,,45.0
 OrbiMed Advisors LLC,TARS,NEW_INIT_LARGE,2.0,1.3,2.6,Biotech Specialists,,,34.0
 Anson Funds Management LP,LION,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.4,4.9,Activists / Special Situations,,,174.6
@@ -991,7 +994,7 @@ Magnetar Capital LLC,CCXIU,THRESHOLD_13G,1.5,1.4,2.1,Activists / Special Situati
 Magnetar Capital LLC,CCRN,THRESHOLD_13G,1.5,1.4,2.1,Activists / Special Situations,,5.54,0.0
 Magnetar Capital LLC,TGNA,MATERIAL_ADD,2.0,1.4,2.8,Activists / Special Situations,,,0.0
 Magnetar Capital LLC,PRA,MATERIAL_ADD,2.0,1.4,2.8,Activists / Special Situations,,,0.0
-Hudson Bay Capital Management L,BABA,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,1.4,6.3,Activists / Special Situations,1.0,,316.5
+Hudson Bay Capital Management L,BABA,"HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD,MULTI_FUND_PEER",8.0,1.4,11.2,Activists / Special Situations,1.0,,316.5
 Hudson Bay Capital Management L,ECHO,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,1.4,6.3,Activists / Special Situations,0.9,,283.6
 Hudson Bay Capital Management L,CYBR,MULTI_FUND_PEER,1.0,1.4,1.4,Activists / Special Situations,0.8,,231.9
 Hudson Bay Capital Management L,EXAS,"HOLDING_PERSIST,MULTI_FUND_PEER,NEW_INIT_LARGE",4.5,1.4,6.3,Activists / Special Situations,0.4,,226.6
@@ -1021,7 +1024,7 @@ Spruce Point Capital Management,EUFN,TOP_PICK,3.0,1.4,4.2,Activists / Special Si
 Marathon Partners Equity Manage,META,MULTI_FUND_PEER,1.0,1.4,1.4,Activists / Special Situations,,,0.0
 Marathon Partners Equity Manage,RELY,"HOLDING_PERSIST,MATERIAL_ADD,PUBLIC_LETTER",6.0,1.4,8.4,Activists / Special Situations,,,0.0
 Marathon Partners Equity Manage,TKO,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.4,10.5,Activists / Special Situations,,,0.0
-Marathon Partners Equity Manage,UBER,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Activists / Special Situations,,,0.0
+Marathon Partners Equity Manage,UBER,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.4,10.5,Activists / Special Situations,,,0.0
 Marathon Partners Equity Manage,XMTR,"INSIDER_COBUY,TOP_PICK",6.5,1.4,9.1,Activists / Special Situations,,,0.0
 Marathon Partners Equity Manage,HSIC,MULTI_FUND_PEER,1.0,1.4,1.4,Activists / Special Situations,,,0.0
 Marathon Partners Equity Manage,ATMU,MULTI_FUND_PEER,1.0,1.4,1.4,Activists / Special Situations,,,0.0
@@ -1069,7 +1072,7 @@ Seilern Investment Management L,MA,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Foreig
 Seilern Investment Management L,UNH,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,6.84,,0.0
 Seilern Investment Management L,MSFT,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Foreign / EM Value,5.01,,0.0
 Seilern Investment Management L,GOOGL,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Value,4.85,,0.0
-Seilern Investment Management L,ADBE,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,4.66,,0.0
+Seilern Investment Management L,ADBE,"INSIDER_COBUY,TOP_PICK",6.5,1.0,6.5,Foreign / EM Value,4.66,,0.0
 Seilern Investment Management L,EW,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Value,4.5,,0.0
 Seilern Investment Management L,SAP,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Value,4.4,,0.0
 Polen Capital Management LLC,AMZN,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Foreign / EM Value,8.53,,0.0
@@ -1082,7 +1085,7 @@ Polen Capital Management LLC,META,"MULTI_FUND_PEER,NEW_INIT_LARGE",3.0,1.0,3.0,F
 Polen Capital Management LLC,ASML,NEW_INIT_LARGE,2.0,1.0,2.0,Foreign / EM Value,,,0.0
 Polen Capital Management LLC,AVGO,"MATERIAL_ADD,MULTI_FUND_PEER",3.0,1.0,3.0,Foreign / EM Value,,,1500.0
 Polen Capital Management LLC,NVDA,"MATERIAL_ADD,MULTI_FUND_PEER",3.0,1.0,3.0,Foreign / EM Value,,,1200.0
-Polen Capital Management LLC,BSX,MATERIAL_ADD,2.0,1.0,2.0,Foreign / EM Value,,,547.0
+Polen Capital Management LLC,BSX,"INSIDER_COBUY,MATERIAL_ADD",5.5,1.0,5.5,Foreign / EM Value,,,547.0
 Polen Capital Management LLC,SNPS,MATERIAL_ADD,2.0,1.0,2.0,Foreign / EM Value,,,516.0
 Polen Capital Management LLC,INTU,MATERIAL_ADD,2.0,1.0,2.0,Foreign / EM Value,,,452.0
 Brandes Investment Partners LP,CAE,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,,,0.0
@@ -1106,14 +1109,14 @@ First Eagle Investment Manageme,GOOG,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Fore
 First Eagle Investment Manageme,BDX,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,1.0,6.5,Foreign / EM Value,,,226.0
 First Eagle Investment Manageme,META,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Foreign / EM Value,,,0.0
 First Eagle Investment Manageme,WPM,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Foreign / EM Value,,,0.0
-First Eagle Investment Manageme,TSM,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Foreign / EM Value,,,0.0
+First Eagle Investment Manageme,TSM,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.0,7.5,Foreign / EM Value,,,0.0
 First Eagle Investment Manageme,MICC,NEW_INIT_LARGE,2.0,1.0,2.0,Foreign / EM Value,,,260.5
 First Eagle Investment Manageme,UL,NEW_INIT_LARGE,2.0,1.0,2.0,Foreign / EM Value,,,0.0
 First Eagle Investment Manageme,FG,NEW_INIT_LARGE,2.0,1.0,2.0,Foreign / EM Value,,,0.0
 First Eagle Investment Manageme,EXP,NEW_INIT_LARGE,2.0,1.0,2.0,Foreign / EM Value,,,0.0
 First Eagle Investment Manageme,WDAY,MATERIAL_ADD,2.0,1.0,2.0,Foreign / EM Value,,,556.0
 First Eagle Investment Manageme,OMC,MATERIAL_ADD,2.0,1.0,2.0,Foreign / EM Value,,,515.0
-First Eagle Investment Manageme,ELV,"MATERIAL_ADD,MULTI_FUND_PEER",3.0,1.0,3.0,Foreign / EM Value,,,258.0
+First Eagle Investment Manageme,ELV,"INSIDER_COBUY,MATERIAL_ADD,MULTI_FUND_PEER",6.5,1.0,6.5,Foreign / EM Value,,,258.0
 First Eagle Investment Manageme,FNV,MATERIAL_ADD,2.0,1.0,2.0,Foreign / EM Value,,,189.0
 First Eagle Investment Manageme,PAAS,MATERIAL_ADD,2.0,1.0,2.0,Foreign / EM Value,,,178.0
 First Eagle Investment Manageme,CHTR,MATERIAL_ADD,2.0,1.0,2.0,Foreign / EM Value,,,165.0
@@ -1145,7 +1148,7 @@ Millennium Management LLC (Isra,QQQ,"MULTI_FUND_PEER,TOP_PICK",4.0,0.4,1.6,Mega 
 Millennium Management LLC (Isra,MSFT,"MULTI_FUND_PEER,TOP_PICK",4.0,0.4,1.6,Mega Multi-Strats / Quants,,,0.0
 Millennium Management LLC (Isra,AAPL,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",7.5,0.4,3.0,Mega Multi-Strats / Quants,,,5400.0
 Millennium Management LLC (Isra,ARDX,THRESHOLD_13G,1.5,0.4,0.6,Mega Multi-Strats / Quants,,7.4,0.0
-Millennium Management LLC (Isra,BYRN,THRESHOLD_13G,1.5,0.4,0.6,Mega Multi-Strats / Quants,,5.1,0.0
+Millennium Management LLC (Isra,BYRN,"INSIDER_COBUY,THRESHOLD_13G",5.0,0.4,2.0,Mega Multi-Strats / Quants,,5.1,0.0
 Millennium Management LLC (Isra,CGCT,"INSIDER_COBUY,THRESHOLD_13G",5.0,0.4,2.0,Mega Multi-Strats / Quants,,5.5,0.0
 Millennium Management LLC (Isra,VTVT,THRESHOLD_13G,1.5,0.4,0.6,Mega Multi-Strats / Quants,,5.7,0.0
 Millennium Management LLC (Isra,BRZE,THRESHOLD_13G,1.5,0.4,0.6,Mega Multi-Strats / Quants,,3.9,0.0
@@ -1238,6 +1241,7 @@ Star Equity Fund LP (Jeffrey Eb,STRRP,"HYPER_CONVICTION,TOP_PICK",7.0,1.2,8.4,Mi
 Star Equity Fund LP (Jeffrey Eb,JOB,"ACTIVIST_13D,HOLDING_PERSIST,NEW_INIT_LARGE,TOP_PICK",9.5,1.2,11.4,Microcap-Tactical,5.43,5.43,2.34
 Star Equity Fund LP (Jeffrey Eb,RLBY,"ACTIVIST_13D,HOLDING_PERSIST,HYPER_CONVICTION,NEW_INIT_LARGE,TOP_PICK",13.5,1.2,16.2,Microcap-Tactical,18.95,19.0,0.466
 180 Degree Capital Corp (now ML,SNCR,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,TOP_PICK",10.5,1.2,12.6,Microcap-Tactical,75.0,,30.2
+180 Degree Capital Corp (now ML,SCOR,INSIDER_COBUY,3.5,1.2,4.2,Microcap-Tactical,,,0.0
 VIEX Capital Advisors (Eric Sin,ALLT,"HYPER_CONVICTION,TOP_PICK",7.0,1.2,8.4,Microcap-Tactical,29.7,,18.4
 S. Muoio & Co. LLC (Salvatore M,NXST,INSIDER_COBUY,3.5,1.2,4.2,Microcap-Tactical,,,9.4
 S. Muoio & Co. LLC (Salvatore M,AZO,TOP_PICK,3.0,1.2,3.6,Microcap-Tactical,,,6.4
@@ -1261,7 +1265,7 @@ Bradley L. Radoff   BLR Partner,RHEP,"HOLDING_PERSIST,MATERIAL_ADD,NEW_INIT_LARG
 Bradley L. Radoff   BLR Partner,SEER,"ACTIVIST_13D,HOLDING_PERSIST,MATERIAL_ADD,NEW_INIT_LARGE",8.5,1.5,12.75,Family Offices / Individual Filers,3.7,9.3,0.0
 Bradley L. Radoff   BLR Partner,GCO,"ACTIVIST_13D,HOLDING_PERSIST,MATERIAL_ADD,NEW_INIT_LARGE",8.5,1.5,12.75,Family Offices / Individual Filers,3.7,3.9,0.0
 Bradley L. Radoff   BLR Partner,SUNL,THRESHOLD_13G,1.5,1.5,2.25,Family Offices / Individual Filers,,,0.0
-Bradley L. Radoff   BLR Partner,SYBX,THRESHOLD_13G,1.5,1.5,2.25,Family Offices / Individual Filers,,4.4,0.0
+Bradley L. Radoff   BLR Partner,SYBX,"INSIDER_COBUY,THRESHOLD_13G",5.0,1.5,7.5,Family Offices / Individual Filers,,4.4,0.0
 Braden M. Leonard   BML Investm,OM,"HOLDING_PERSIST,MATERIAL_ADD,NEW_INIT_LARGE,THRESHOLD_13G,TOP_PICK",10.0,1.5,15.0,Family Offices / Individual Filers,9.4,11.8,0.0
 Braden M. Leonard   BML Investm,ACRS,"HOLDING_PERSIST,THRESHOLD_13G",3.0,1.5,4.5,Family Offices / Individual Filers,,11.9,0.0
 Braden M. Leonard   BML Investm,AVIR,"HOLDING_PERSIST,NEW_INIT_LARGE,THRESHOLD_13G,TOP_PICK",8.0,1.5,12.0,Family Offices / Individual Filers,9.9,9.9,0.0
@@ -1281,7 +1285,7 @@ Mithaq Capital SPC (Turki AlRaj,ULY,"HOLDING_PERSIST,THRESHOLD_13G",3.0,1.5,4.5,
 Maran Capital Management   Mara,PCYO,"ACTIVIST_13D,HOLDING_PERSIST,NEW_INIT_LARGE,TOP_PICK",9.5,1.4,13.3,Activists / Special Situations,,14.7,0.0
 Maran Capital Management   Mara,CLAR,"PUBLIC_LETTER,TOP_PICK",5.5,1.4,7.7,Activists / Special Situations,,,0.0
 Maran Capital Management   Mara,CTT,"HYPER_CONVICTION,PUBLIC_LETTER,TOP_PICK",9.5,1.4,13.3,Activists / Special Situations,15.0,,0.0
-Maran Capital Management   Mara,HKHC,TOP_PICK,3.0,1.4,4.2,Activists / Special Situations,-33.0,,0.0
+Maran Capital Management   Mara,HKHC,"INSIDER_COBUY,TOP_PICK",6.5,1.4,9.1,Activists / Special Situations,-33.0,,0.0
 Maran Capital Management   Mara,TPB,"MULTI_FUND_PEER,PUBLIC_LETTER,TOP_PICK",6.5,1.4,9.1,Activists / Special Situations,,,1000.0
 Findell Capital Management (Bri,LQDA,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,NEW_INIT_LARGE,TOP_PICK",13.5,1.4,18.9,Activists / Special Situations,28.3,,336.29999999999995
 Findell Capital Management (Bri,ESTA,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,23.7,,164.78
@@ -1289,7 +1293,7 @@ Findell Capital Management (Bri,ROOT,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.4,4.9,
 Findell Capital Management (Bri,DAVE,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.4,4.9,Activists / Special Situations,4.5,,46.2
 Findell Capital Management (Bri,TPB,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,1.4,6.3,Activists / Special Situations,4.0,,45.339999999999996
 Findell Capital Management (Bri,SGHC,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.4,4.9,Activists / Special Situations,3.2,,40.260000000000005
-Findell Capital Management (Bri,CELH,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.4,4.9,Activists / Special Situations,2.8,,38.42
+Findell Capital Management (Bri,CELH,"HOLDING_PERSIST,INSIDER_COBUY,NEW_INIT_LARGE",7.0,1.4,9.8,Activists / Special Situations,2.8,,38.42
 Findell Capital Management (Bri,ABIVAX,NEW_INIT_LARGE,2.0,1.4,2.8,Activists / Special Situations,1.9,,13.0
 Findell Capital Management (Bri,ADMA,NEW_INIT_LARGE,2.0,1.4,2.8,Activists / Special Situations,1.6,,11.0
 Findell Capital Management (Bri,VOR,NEW_INIT_LARGE,2.0,1.4,2.8,Activists / Special Situations,0.9,,6.0
@@ -1301,11 +1305,11 @@ Funicular Funds LP   Cable Car ,META,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Acti
 Funicular Funds LP   Cable Car ,MSTR,"INSIDER_COBUY,MULTI_FUND_PEER",4.5,1.4,6.3,Activists / Special Situations,3.4,,109.6
 Funicular Funds LP   Cable Car ,ABEO,"HOLDING_PERSIST,NEW_INIT_LARGE,THRESHOLD_13G,TOP_PICK",8.0,1.4,11.2,Activists / Special Situations,5.3,5.3,26.4
 Funicular Funds LP   Cable Car ,ORKA,PUBLIC_LETTER,2.5,1.4,3.5,Activists / Special Situations,0.8,,24.2
-Funicular Funds LP   Cable Car ,ACOG,"HOLDING_PERSIST,THRESHOLD_13G",3.0,1.4,4.2,Activists / Special Situations,0.4,4.9,13.8
+Funicular Funds LP   Cable Car ,ACOG,"HOLDING_PERSIST,INSIDER_COBUY,THRESHOLD_13G",6.5,1.4,9.1,Activists / Special Situations,0.4,4.9,13.8
 Funicular Funds LP   Cable Car ,NETD,ACTIVIST_13D,3.0,1.4,4.2,Activists / Special Situations,,23.0,0.0
 Funicular Funds LP   Cable Car ,IMA,"HOLDING_PERSIST,NEW_INIT_LARGE,THRESHOLD_13G,TOP_PICK",8.0,1.4,11.2,Activists / Special Situations,5.8,5.8,0.0
 Funicular Funds LP   Cable Car ,AMWL,"HOLDING_PERSIST,NEW_INIT_LARGE,THRESHOLD_13G,TOP_PICK",8.0,1.4,11.2,Activists / Special Situations,5.5,5.5,0.0
-Funicular Funds LP   Cable Car ,SYBX,"ACTIVIST_13D,HOLDING_PERSIST,MATERIAL_ADD",6.5,1.4,9.1,Activists / Special Situations,,28.3,1.28
+Funicular Funds LP   Cable Car ,SYBX,"ACTIVIST_13D,HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD",10.0,1.4,14.0,Activists / Special Situations,,28.3,1.28
 Funicular Funds LP   Cable Car ,NSRX,"HOLDING_PERSIST,NEW_INIT_LARGE,THRESHOLD_13G,TOP_PICK",8.0,1.4,11.2,Activists / Special Situations,5.2,5.2,0.0
 Funicular Funds LP   Cable Car ,KTTA,"HOLDING_PERSIST,NEW_INIT_LARGE,THRESHOLD_13G,TOP_PICK",8.0,1.4,11.2,Activists / Special Situations,7.4,7.4,0.0
 Funicular Funds LP   Cable Car ,RNTX,"HOLDING_PERSIST,NEW_INIT_LARGE,THRESHOLD_13G,TOP_PICK",8.0,1.4,11.2,Activists / Special Situations,6.7,6.7,0.0
@@ -1331,7 +1335,7 @@ Abrams Capital Management LP,META,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrat
 Abrams Capital Management LP,LOGC,"ACTIVIST_13D,HOLDING_PERSIST,INSIDER_COBUY,NEW_INIT_LARGE",10.0,1.6,16.0,Value / Concentrated Quality,2.15,40.0,256.0
 Brave Warrior Advisors LLC (Gle,OMF,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,12.25,,523.0
 Brave Warrior Advisors LLC (Gle,SNX,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,11.13,,475.0
-Brave Warrior Advisors LLC (Gle,ELV,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.6,12.8,Value / Concentrated Quality,10.28,,439.0
+Brave Warrior Advisors LLC (Gle,ELV,"HYPER_CONVICTION,INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",11.5,1.6,18.4,Value / Concentrated Quality,10.28,,439.0
 Brave Warrior Advisors LLC (Gle,SLM,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER,PUBLIC_LETTER,TOP_PICK",10.0,1.6,16.0,Value / Concentrated Quality,8.13,,347.0
 Brave Warrior Advisors LLC (Gle,AN,"HOLDING_PERSIST,MATERIAL_ADD,PUBLIC_LETTER,TOP_PICK",9.0,1.6,14.4,Value / Concentrated Quality,7.51,,321.0
 Brave Warrior Advisors LLC (Gle,MRP,"HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD,PUBLIC_LETTER,THRESHOLD_13G,TOP_PICK",14.0,1.6,22.4,Value / Concentrated Quality,6.02,5.58,257.0
@@ -1378,6 +1382,7 @@ Fairholme Capital Management LL,BRK-B,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concen
 Fairholme Capital Management LL,PGR,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.6,5.6,Value / Concentrated Quality,0.41,,5.8
 Fairholme Capital Management LL,CF,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.6,5.6,Value / Concentrated Quality,0.3,,4.2
 Fairholme Capital Management LL,OXY,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,0.2,,2.8
+Fairholme Capital Management LL,ET,INSIDER_COBUY,3.5,1.6,5.6,Value / Concentrated Quality,0.19,,2.7
 Fairholme Capital Management LL,TGT,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.6,5.6,Value / Concentrated Quality,0.16,,2.2
 Fairholme Capital Management LL,NRP,"MULTI_FUND_PEER,NEW_INIT_LARGE",3.0,1.6,4.8,Value / Concentrated Quality,0.09,,0.0
 Horizon Kinetics Asset Manageme,TPL,"ACTIVIST_13D,HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,TOP_PICK",13.5,1.6,21.6,Value / Concentrated Quality,40.14,14.7,2970.0
@@ -1428,13 +1433,13 @@ Muddy Waters Capital LLC (Carso,APP,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentr
 "Sequoia Fund   Ruane, Cunniff &",FWONK,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,-7.41,,0.0
 "Sequoia Fund   Ruane, Cunniff &",COF,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,5.29,,0.0
 "Sequoia Fund   Ruane, Cunniff &",CSU.TO,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,5.27,,0.0
-"Sequoia Fund   Ruane, Cunniff &",ELV,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,4.93,,0.0
+"Sequoia Fund   Ruane, Cunniff &",ELV,"INSIDER_COBUY,MULTI_FUND_PEER",4.5,1.6,7.2,Value / Concentrated Quality,4.93,,0.0
 "Sequoia Fund   Ruane, Cunniff &",SCHW,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,4.41,,0.0
 "Sequoia Fund   Ruane, Cunniff &",ICE,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,4.34,,0.0
 "Sequoia Fund   Ruane, Cunniff &",MSA,"NEW_INIT_LARGE,PUBLIC_LETTER",4.5,1.6,7.2,Value / Concentrated Quality,,,0.0
 "Sequoia Fund   Ruane, Cunniff &",ACN,"NEW_INIT_LARGE,PUBLIC_LETTER",4.5,1.6,7.2,Value / Concentrated Quality,,,0.0
 "Sequoia Fund   Ruane, Cunniff &",ALGN,"NEW_INIT_LARGE,PUBLIC_LETTER",4.5,1.6,7.2,Value / Concentrated Quality,,,0.0
-"Sequoia Fund   Ruane, Cunniff &",TSM,"MATERIAL_ADD,MULTI_FUND_PEER,PUBLIC_LETTER",5.5,1.6,8.8,Value / Concentrated Quality,3.99,,0.0
+"Sequoia Fund   Ruane, Cunniff &",TSM,"INSIDER_COBUY,MATERIAL_ADD,MULTI_FUND_PEER,PUBLIC_LETTER",9.0,1.6,14.4,Value / Concentrated Quality,3.99,,0.0
 "Sequoia Fund   Ruane, Cunniff &",AHT.L,MATERIAL_ADD,2.0,1.6,3.2,Value / Concentrated Quality,3.94,,0.0
 Davis Selected Advisers LP (Chr,COF,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,7.15,,0.0
 Davis Selected Advisers LP (Chr,CTRA,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,1.6,10.4,Value / Concentrated Quality,5.99,,1712.0
@@ -1443,6 +1448,7 @@ Davis Selected Advisers LP (Chr,VTRS,"HOLDING_PERSIST,THRESHOLD_13G",3.0,1.6,4.8
 Davis Selected Advisers LP (Chr,META,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,4.52,,0.0
 Davis Selected Advisers LP (Chr,MGM,"HOLDING_PERSIST,MULTI_FUND_PEER,THRESHOLD_13G",4.0,1.6,6.4,Value / Concentrated Quality,4.13,9.5,0.0
 Davis Selected Advisers LP (Chr,GOOGL,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,4.09,,0.0
+Davis Selected Advisers LP (Chr,TSN,INSIDER_COBUY,3.5,1.6,5.6,Value / Concentrated Quality,3.85,,0.0
 Davis Selected Advisers LP (Chr,JBS,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,2.16,,341.9
 Davis Selected Advisers LP (Chr,LYB,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,2.07,,0.0
 Davis Selected Advisers LP (Chr,XPRO,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,,,0.0
@@ -1507,6 +1513,7 @@ Karpus Investment Management (P,MKLY,NEW_INIT_LARGE,2.0,0.7,1.4,Warrant Speciali
 Karpus Investment Management (P,AIIA,NEW_INIT_LARGE,2.0,0.7,1.4,Warrant Specialists,,,24.0
 Karpus Investment Management (P,DMII,NEW_INIT_LARGE,2.0,0.7,1.4,Warrant Specialists,,,22.0
 Karpus Investment Management (P,EMIS,NEW_INIT_LARGE,2.0,0.7,1.4,Warrant Specialists,,,18.2
+Bulldog Investors LLC (Phillip ,GAM,INSIDER_COBUY,3.5,0.7,2.45,Warrant Specialists,3.9,,34.6
 Bulldog Investors LLC (Phillip ,TPL,"HOLDING_PERSIST,MATERIAL_ADD",3.5,0.7,2.45,Warrant Specialists,3.41,,30.4
 Bulldog Investors LLC (Phillip ,XAI,NEW_INIT_LARGE,2.0,0.7,1.4,Warrant Specialists,,,6.4
 Bulldog Investors LLC (Phillip ,BRK-A,"MULTI_FUND_PEER,NEW_INIT_LARGE",3.0,0.7,2.1,Warrant Specialists,,,10.0
@@ -1518,6 +1525,7 @@ Eric Sprott PERSONAL (2176423 O,MAXX,"HYPER_CONVICTION,TOP_PICK",7.0,0.7,4.9,War
 Eric Sprott PERSONAL (2176423 O,FVL,"HYPER_CONVICTION,TOP_PICK",7.0,0.7,4.9,Warrant Specialists,10.0,,0.0
 Eric Sprott PERSONAL (2176423 O,GAL,"HYPER_CONVICTION,TOP_PICK",7.0,0.7,4.9,Warrant Specialists,13.1,,0.0
 Eric Sprott PERSONAL (2176423 O,GGO.V,"HYPER_CONVICTION,TOP_PICK",7.0,0.7,4.9,Warrant Specialists,14.9,,0.0
+Eric Sprott PERSONAL (2176423 O,NONE,INSIDER_COBUY,3.5,0.7,2.45,Warrant Specialists,,,40.0
 Eric Sprott PERSONAL (2176423 O,MAX,MATERIAL_ADD,2.0,0.7,1.4,Warrant Specialists,,,2.02
 Sprott Inc   Sprott Asset Manag,SII,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,TOP_PICK",10.5,0.7,7.35,Warrant Specialists,17.4,,1918.0
 Sprott Inc   Sprott Asset Manag,FUND,HOLDING_PERSIST,1.5,0.7,1.05,Warrant Specialists,4.3,10.0,148.0
@@ -1576,7 +1584,7 @@ Brevan Howard Capital Managemen,NVDA,"MULTI_FUND_PEER,TOP_PICK",4.0,0.6,2.4,CTA 
 Brevan Howard Capital Managemen,XLF,MULTI_FUND_PEER,1.0,0.6,0.6,CTA / Trend Followers,,,0.0
 Brevan Howard Capital Managemen,ASHR,"HOLDING_PERSIST,MATERIAL_ADD",3.5,0.6,2.1,CTA / Trend Followers,,,818.0
 Brevan Howard Capital Managemen,IWM,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,0.6,2.7,CTA / Trend Followers,,,346.0
-Brevan Howard Capital Managemen,BABA,MULTI_FUND_PEER,1.0,0.6,0.6,CTA / Trend Followers,,,104.0
+Brevan Howard Capital Managemen,BABA,"INSIDER_COBUY,MULTI_FUND_PEER",4.5,0.6,2.7,CTA / Trend Followers,,,104.0
 Brevan Howard Capital Managemen,AAPL,MULTI_FUND_PEER,1.0,0.6,0.6,CTA / Trend Followers,,,81.0
 Chesapeake Capital (Jerry Parke,LITE,MULTI_FUND_PEER,1.0,0.6,0.6,CTA / Trend Followers,,,0.0
 Chesapeake Capital (Jerry Parke,TFPN,"HYPER_CONVICTION,TOP_PICK",7.0,0.6,4.2,CTA / Trend Followers,15.57,,0.0
@@ -1607,9 +1615,9 @@ Laughing Water Capital (Matt Sw,NN,"MULTI_FUND_PEER,PUBLIC_LETTER",3.5,1.6,5.6,V
 Laughing Water Capital (Matt Sw,LFCR,"MULTI_FUND_PEER,PUBLIC_LETTER",3.5,1.6,5.6,Value / Concentrated Quality,,,0.0
 1 Main Capital (Yaron Naymark),BFIT.AS,"PUBLIC_LETTER,TOP_PICK",5.5,1.6,8.8,Value / Concentrated Quality,,,0.0
 1 Main Capital (Yaron Naymark),IWG,"PUBLIC_LETTER,TOP_PICK",5.5,1.6,8.8,Value / Concentrated Quality,,,0.0
-1 Main Capital (Yaron Naymark),LMB,"PUBLIC_LETTER,TOP_PICK",5.5,1.6,8.8,Value / Concentrated Quality,,,0.0
+1 Main Capital (Yaron Naymark),LMB,"INSIDER_COBUY,PUBLIC_LETTER,TOP_PICK",9.0,1.6,14.4,Value / Concentrated Quality,,,0.0
 1 Main Capital (Yaron Naymark),RLGT,"PUBLIC_LETTER,TOP_PICK",5.5,1.6,8.8,Value / Concentrated Quality,,,0.0
-1 Main Capital (Yaron Naymark),MCFT,"PUBLIC_LETTER,TOP_PICK",5.5,1.6,8.8,Value / Concentrated Quality,,,0.0
+1 Main Capital (Yaron Naymark),MCFT,"INSIDER_COBUY,PUBLIC_LETTER,TOP_PICK",9.0,1.6,14.4,Value / Concentrated Quality,,,0.0
 1 Main Capital (Yaron Naymark),DNTL,MATERIAL_ADD,2.0,1.6,3.2,Value / Concentrated Quality,,,0.0
 Greenwood Investors (Steven Woo,LDO.MI,"HYPER_CONVICTION,PUBLIC_LETTER,TOP_PICK",9.5,1.6,15.2,Value / Concentrated Quality,18.0,,0.0
 Greenwood Investors (Steven Woo,MEIP,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
@@ -1624,7 +1632,7 @@ CAS Investment Partners (Cliff ,HGV,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",
 CAS Investment Partners (Cliff ,COF,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,6.01,,210.0
 ShawSpring Partners (Dennis Hon,OKTA,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,16.62,,89.0
 ShawSpring Partners (Dennis Hon,AMZN,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.6,12.8,Value / Concentrated Quality,14.51,,77.6
-ShawSpring Partners (Dennis Hon,BABA,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.6,12.8,Value / Concentrated Quality,13.61,,72.8
+ShawSpring Partners (Dennis Hon,BABA,"HYPER_CONVICTION,INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",11.5,1.6,18.4,Value / Concentrated Quality,13.61,,72.8
 ShawSpring Partners (Dennis Hon,ZS,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,10.51,,56.2
 ShawSpring Partners (Dennis Hon,BRZE,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,9.81,,52.6
 ShawSpring Partners (Dennis Hon,INTU,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,6.61,,35.4
@@ -1654,7 +1662,7 @@ Semper Augustus (Chris Bloomstr,BRK-B,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK
 Semper Augustus (Chris Bloomstr,BRK-A,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,9.9,,166.0
 Semper Augustus (Chris Bloomstr,DG,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,9.2,,154.0
 Semper Augustus (Chris Bloomstr,DECK,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,7.9,,132.0
-Semper Augustus (Chris Bloomstr,ALK,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,7.4,,124.0
+Semper Augustus (Chris Bloomstr,ALK,"INSIDER_COBUY,TOP_PICK",6.5,1.6,10.4,Value / Concentrated Quality,7.4,,124.0
 Semper Augustus (Chris Bloomstr,OLN,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,7.2,,120.0
 Semper Augustus (Chris Bloomstr,DLTR,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,6.7,,112.0
 Semper Augustus (Chris Bloomstr,NEM,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,6.2,,104.0
@@ -1729,7 +1737,7 @@ Findlay Park Partners (Kingsley,APG,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Val
 Findlay Park Partners (Kingsley,BRK-B,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Value,3.24,,0.0
 Findlay Park Partners (Kingsley,XPO,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Value,3.23,,0.0
 Findlay Park Partners (Kingsley,CRH,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Value,3.21,,0.0
-Aubrey Capital Management (Andr,TSM,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Foreign / EM Value,9.9,,0.0
+Aubrey Capital Management (Andr,TSM,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.0,7.5,Foreign / EM Value,9.9,,0.0
 Aubrey Capital Management (Andr,D05.SI,HOLDING_PERSIST,1.5,1.0,1.5,Foreign / EM Value,3.7,,0.0
 Aubrey Capital Management (Andr,CPI.JO,HOLDING_PERSIST,1.5,1.0,1.5,Foreign / EM Value,3.2,,0.0
 Blue Infinitas (Bogumil Baranow,ONON,"INSIDER_COBUY,NEW_INIT_LARGE,PUBLIC_LETTER",8.0,1.0,8.0,Foreign / EM Value,,,0.0
@@ -1766,7 +1774,7 @@ HG Vora Capital (Parag Vora),FOSL,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.4,4.9,A
 "Coliseum Capital (Adam Gray, Ch",UTI,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,11.8,,286.0
 "Coliseum Capital (Adam Gray, Ch",WSC,TOP_PICK,3.0,1.4,4.2,Activists / Special Situations,8.9,,216.0
 "Coliseum Capital (Adam Gray, Ch",MBC,"INSIDER_COBUY,TOP_PICK",6.5,1.4,9.1,Activists / Special Situations,8.6,,212.0
-"Coliseum Capital (Adam Gray, Ch",MCFT,TOP_PICK,3.0,1.4,4.2,Activists / Special Situations,6.2,,152.0
+"Coliseum Capital (Adam Gray, Ch",MCFT,"INSIDER_COBUY,TOP_PICK",6.5,1.4,9.1,Activists / Special Situations,6.2,,152.0
 "Coliseum Capital (Adam Gray, Ch",NATL,TOP_PICK,3.0,1.4,4.2,Activists / Special Situations,5.4,,132.0
 Sessa Capital (John Petry),WBD,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,1.4,16.1,Activists / Special Situations,15.9,,1252.0
 Sessa Capital (John Petry),HUM,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,11.7,,646.0
@@ -1788,11 +1796,12 @@ Cruiser Capital (Keith Rosenblo,FTAI,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK"
 Cruiser Capital (Keith Rosenblo,SPDR,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,17.6,,21.0
 Cruiser Capital (Keith Rosenblo,APG,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Activists / Special Situations,7.8,,18.4
 Cruiser Capital (Keith Rosenblo,CRH,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Activists / Special Situations,6.6,,15.6
+Cruiser Capital (Keith Rosenblo,ORN,INSIDER_COBUY,3.5,1.4,4.9,Activists / Special Situations,2.1,,4.8
 Boyar Value Group (Mark & Jonat,MSFT,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Activists / Special Situations,8.7,,30.0
 Boyar Value Group (Mark & Jonat,JPM,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Activists / Special Situations,7.9,,28.0
 Boyar Value Group (Mark & Jonat,AMP,TOP_PICK,3.0,1.4,4.2,Activists / Special Situations,5.0,,17.6
 Boyar Value Group (Mark & Jonat,BAC,MULTI_FUND_PEER,1.0,1.4,1.4,Activists / Special Situations,4.5,,15.8
-Boyar Value Group (Mark & Jonat,UBER,MULTI_FUND_PEER,1.0,1.4,1.4,Activists / Special Situations,4.4,,15.4
+Boyar Value Group (Mark & Jonat,UBER,"INSIDER_COBUY,MULTI_FUND_PEER",4.5,1.4,6.3,Activists / Special Situations,4.4,,15.4
 Boyar Value Group (Mark & Jonat,GOOGL,MULTI_FUND_PEER,1.0,1.4,1.4,Activists / Special Situations,2.6,,9.2
 Solus Alternative Asset Managem,VTOL,"ACTIVIST_13D,HOLDING_PERSIST,HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",12.5,1.4,17.5,Activists / Special Situations,34.1,11.7,105.0
 Solus Alternative Asset Managem,VEON,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,15.1,,47.0
@@ -1818,7 +1827,7 @@ Weiss Asset Management (Boston),NVDA,MULTI_FUND_PEER,1.0,1.4,1.4,Activists / Spe
 Weiss Asset Management (Boston),MSTR,"INSIDER_COBUY,MULTI_FUND_PEER",4.5,1.4,6.3,Activists / Special Situations,,,0.0
 Weiss Asset Management (Boston),IBIT,MULTI_FUND_PEER,1.0,1.4,1.4,Activists / Special Situations,,,0.0
 Highbridge Capital,QQQ,MULTI_FUND_PEER,1.0,1.4,1.4,Activists / Special Situations,,,0.0
-Highbridge Capital,BABA,MULTI_FUND_PEER,1.0,1.4,1.4,Activists / Special Situations,,,0.0
+Highbridge Capital,BABA,"INSIDER_COBUY,MULTI_FUND_PEER",4.5,1.4,6.3,Activists / Special Situations,,,0.0
 Highbridge Capital,HYG,MULTI_FUND_PEER,1.0,1.4,1.4,Activists / Special Situations,,,0.0
 Highbridge Capital,HCMA,NEW_INIT_LARGE,2.0,1.4,2.8,Activists / Special Situations,,,10.1
 Yakira Capital,GTLS,MULTI_FUND_PEER,1.0,1.4,1.4,Activists / Special Situations,,,0.0
@@ -1841,7 +1850,7 @@ Baker Bros. Advisors LP,KYMR,"FOLLOW_ON,HOLDING_PERSIST,MATERIAL_ADD",6.0,1.3,7.
 Baker Bros. Advisors LP,GLUE,THRESHOLD_13G,1.5,1.3,1.95,Biotech Specialists,,9.99,0.0
 Baker Bros. Advisors LP,GRAL,THRESHOLD_13G,1.5,1.3,1.95,Biotech Specialists,,9.8,0.0
 Baker Bros. Advisors LP,PRAX,THRESHOLD_13G,1.5,1.3,1.95,Biotech Specialists,,6.3,0.0
-Baker Bros. Advisors LP,ABCL,"HOLDING_PERSIST,NEW_INIT_LARGE,THRESHOLD_13G",5.0,1.3,6.5,Biotech Specialists,,10.8,0.0
+Baker Bros. Advisors LP,ABCL,"HOLDING_PERSIST,INSIDER_COBUY,NEW_INIT_LARGE,THRESHOLD_13G",8.5,1.3,11.05,Biotech Specialists,,10.8,0.0
 Baker Bros. Advisors LP,PRLD,"ACTIVIST_13D,HOLDING_PERSIST,INSIDER_COBUY,NEW_INIT_LARGE",10.0,1.3,13.0,Biotech Specialists,,15.5,0.0
 Baker Bros. Advisors LP,ALKS,THRESHOLD_13G,1.5,1.3,1.95,Biotech Specialists,,6.1,0.0
 Baker Bros. Advisors LP,NRIX,THRESHOLD_13G,1.5,1.3,1.95,Biotech Specialists,,7.2,0.0
@@ -1865,7 +1874,7 @@ Stonepine Capital Management,TENX,"HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD,TO
 Stonepine Capital Management,CLRB,"HOLDING_PERSIST,NEW_INIT_LARGE,THRESHOLD_13G",5.0,1.3,6.5,Biotech Specialists,,9.9,0.0
 Stonepine Capital Management,CRIS,"HOLDING_PERSIST,NEW_INIT_LARGE,THRESHOLD_13G",5.0,1.3,6.5,Biotech Specialists,,9.9,0.0
 Stonepine Capital Management,INAB,THRESHOLD_13G,1.5,1.3,1.95,Biotech Specialists,,9.9,0.0
-Stonepine Capital Management,QNRX,THRESHOLD_13G,1.5,1.3,1.95,Biotech Specialists,,10.6,0.0
+Stonepine Capital Management,QNRX,"INSIDER_COBUY,THRESHOLD_13G",5.0,1.3,6.5,Biotech Specialists,,10.6,0.0
 Stonepine Capital Management,CNSP,THRESHOLD_13G,1.5,1.3,1.95,Biotech Specialists,,9.9,0.0
 Stonepine Capital Management,SRZN,THRESHOLD_13G,1.5,1.3,1.95,Biotech Specialists,,5.8,0.0
 Stonepine Capital Management,AYTU,THRESHOLD_13G,1.5,1.3,1.95,Biotech Specialists,,9.9,0.0
@@ -1901,8 +1910,8 @@ D1 Capital Partners,ANET,"MULTI_FUND_PEER,NEW_INIT_LARGE",3.0,1.6,4.8,Value / Co
 D1 Capital Partners,TXN,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,,,0.0
 Altimeter Capital Management,NVDA,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,1.6,18.4,Value / Concentrated Quality,28.57,,1630.0
 Altimeter Capital Management,META,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.6,12.8,Value / Concentrated Quality,19.61,,1120.0
-Altimeter Capital Management,UBER,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,1.6,18.4,Value / Concentrated Quality,10.06,,573.0
-Altimeter Capital Management,TSM,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,8.1,,462.0
+Altimeter Capital Management,UBER,"HOLDING_PERSIST,HYPER_CONVICTION,INSIDER_COBUY,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",15.0,1.6,24.0,Value / Concentrated Quality,10.06,,573.0
+Altimeter Capital Management,TSM,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.6,12.0,Value / Concentrated Quality,8.1,,462.0
 Altimeter Capital Management,MSFT,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,7.69,,438.0
 Altimeter Capital Management,AMZN,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,7.64,,435.0
 Altimeter Capital Management,CRWV,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",7.5,1.6,12.0,Value / Concentrated Quality,6.12,,349.0
@@ -1944,7 +1953,7 @@ Durable Capital Partners,ESAB,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Qu
 Durable Capital Partners,XMTR,"INSIDER_COBUY,NEW_INIT_LARGE",5.5,1.6,8.8,Value / Concentrated Quality,,,0.0
 Durable Capital Partners,AIT,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,,,0.0
 Wedgewood Partners,GOOGL,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,9.25,,44.8
-Wedgewood Partners,TSM,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,9.03,,43.7
+Wedgewood Partners,TSM,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.6,12.0,Value / Concentrated Quality,9.03,,43.7
 Wedgewood Partners,META,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,7.77,,37.6
 Wedgewood Partners,AAPL,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,7.08,,34.3
 Wedgewood Partners,MSI,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,6.09,,29.5
@@ -1997,7 +2006,7 @@ WindAcre Partnership,ROP,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,THRESHOL
 WindAcre Partnership,FNF,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,10.4,,969.0
 WindAcre Partnership,AMZN,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,8.8,,824.0
 WindAcre Partnership,EXPE,"HOLDING_PERSIST,NEW_INIT_LARGE,TOP_PICK",6.5,1.6,10.4,Value / Concentrated Quality,8.5,,1586.0
-WindAcre Partnership,TSM,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,8.0,,751.0
+WindAcre Partnership,TSM,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.6,12.0,Value / Concentrated Quality,8.0,,751.0
 WindAcre Partnership,SGI,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.6,12.0,Value / Concentrated Quality,6.5,,608.0
 WindAcre Partnership,TDG,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,6.3,,591.0
 WindAcre Partnership,MCO,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,6.2,,581.0
@@ -2032,6 +2041,7 @@ M3F Inc M3 Partners,NODK,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,5.3,,
 M3F Inc M3 Partners,SNFCA,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,5.2,,21.0
 M3F Inc M3 Partners,SWKH,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.6,5.6,Value / Concentrated Quality,4.2,,17.0
 M3F Inc M3 Partners,BHF,"HOLDING_PERSIST,MULTI_FUND_PEER,NEW_INIT_LARGE",4.5,1.6,7.2,Value / Concentrated Quality,4.2,,17.0
+M3F Inc M3 Partners,RBKB,INSIDER_COBUY,3.5,1.6,5.6,Value / Concentrated Quality,3.9,,16.0
 M3F Inc M3 Partners,SSBI,THRESHOLD_13G,1.5,1.6,2.4,Value / Concentrated Quality,,5.0,0.0
 M3F Inc M3 Partners,NFBK,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,2.6,,0.0
 M3F Inc M3 Partners,GDOT,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,2.1,,0.0
@@ -2076,14 +2086,14 @@ Stadium Capital Management,DKS,"HYPER_CONVICTION,INSIDER_COBUY,TOP_PICK",10.5,1.
 Stadium Capital Management,LCII,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,12.6,,5.1
 Stadium Capital Management,SNBR,"ACTIVIST_13D,HOLDING_PERSIST,HYPER_CONVICTION,TOP_PICK",11.5,1.4,16.1,Activists / Special Situations,11.6,11.5,4.7
 Stadium Capital Management,GTLB,MULTI_FUND_PEER,1.0,1.4,1.4,Activists / Special Situations,2.4,,1.0
-Wynnefield Capital,NATR,"HYPER_CONVICTION,TOP_PICK",7.0,1.2,8.4,Small-cap / Multibagger Specialists,40.2,,59.3
+Wynnefield Capital,NATR,"HYPER_CONVICTION,INSIDER_COBUY,TOP_PICK",10.5,1.2,12.6,Small-cap / Multibagger Specialists,40.2,,59.3
 Wynnefield Capital,CDRE,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,TOP_PICK",10.5,1.2,12.6,Small-cap / Multibagger Specialists,23.9,,35.3
 Wynnefield Capital,DLHC,"HYPER_CONVICTION,TOP_PICK",7.0,1.2,8.4,Small-cap / Multibagger Specialists,14.5,,21.4
 Wynnefield Capital,LFCR,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.2,9.6,Small-cap / Multibagger Specialists,11.9,,17.5
 Wynnefield Capital,QRHC,"ACTIVIST_13D,HOLDING_PERSIST",4.5,1.2,5.4,Small-cap / Multibagger Specialists,2.2,13.3,3.3
 ADW Capital Management,PAR,"INSIDER_COBUY,MULTI_FUND_PEER",4.5,1.2,5.4,Small-cap / Multibagger Specialists,3.0,,7.96
 ADW Capital Management,KELYA,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.2,4.2,Small-cap / Multibagger Specialists,,,0.265
-Glynn Capital Management,TSM,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.6,12.8,Value / Concentrated Quality,10.0,,21.1
+Glynn Capital Management,TSM,"HYPER_CONVICTION,INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",11.5,1.6,18.4,Value / Concentrated Quality,10.0,,21.1
 Glynn Capital Management,VRT,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,8.5,,17.9
 Glynn Capital Management,NU,"MULTI_FUND_PEER,TOP_PICK",4.0,1.6,6.4,Value / Concentrated Quality,6.0,,12.9
 Glynn Capital Management,TOST,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,5.0,,11.4
@@ -2093,7 +2103,7 @@ Glynn Capital Management,CRWV,"HOLDING_PERSIST,MULTI_FUND_PEER,NEW_INIT_LARGE",4
 Glynn Capital Management,PLTR,"HOLDING_PERSIST,MULTI_FUND_PEER,NEW_INIT_LARGE",4.5,1.6,7.2,Value / Concentrated Quality,4.0,,8.7
 Glynn Capital Management,HOOD,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.6,5.6,Value / Concentrated Quality,4.0,,8.3
 Glynn Capital Management,LITE,"MULTI_FUND_PEER,NEW_INIT_LARGE",3.0,1.6,4.8,Value / Concentrated Quality,4.0,,0.0
-Glynn Capital Management,UBER,"MULTI_FUND_PEER,NEW_INIT_LARGE",3.0,1.6,4.8,Value / Concentrated Quality,,,0.0
+Glynn Capital Management,UBER,"INSIDER_COBUY,MULTI_FUND_PEER,NEW_INIT_LARGE",6.5,1.6,10.4,Value / Concentrated Quality,,,0.0
 Glynn Capital Management,AMAT,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,,,0.0
 Glynn Capital Management,ADI,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,,,0.0
 Glynn Capital Management,TWLO,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,,,0.0
@@ -2120,6 +2130,7 @@ Gator Capital Management,UPST,"INSIDER_COBUY,NEW_INIT_LARGE",5.5,1.6,8.8,Value /
 Gator Capital Management,VOYA,MATERIAL_ADD,2.0,1.6,3.2,Value / Concentrated Quality,,,9.3
 Gator Capital Management,TFSL,MATERIAL_ADD,2.0,1.6,3.2,Value / Concentrated Quality,,,6.3
 Algebris Investments,BAC,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,,,38.8
+Algebris Investments,CRBG,INSIDER_COBUY,3.5,1.6,5.6,Value / Concentrated Quality,,,37.6
 Algebris Investments,AMH,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,,,0.0
 Algebris Investments,NTRS,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,,,0.0
 Algebris Investments,LAZ,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,,,0.0
@@ -2160,7 +2171,7 @@ P2 Capital Partners,ACHC,"HOLDING_PERSIST,HYPER_CONVICTION,NEW_INIT_LARGE,TOP_PI
 P2 Capital Partners,CBZ,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,14.6,,30.6
 P2 Capital Partners,JBTM,"HYPER_CONVICTION,TOP_PICK",7.0,1.6,11.2,Value / Concentrated Quality,13.7,,28.8
 P2 Capital Partners,HSIC,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.6,12.8,Value / Concentrated Quality,10.5,,22.1
-P2 Capital Partners,TNC,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,9.6,,20.2
+P2 Capital Partners,TNC,"INSIDER_COBUY,TOP_PICK",6.5,1.6,10.4,Value / Concentrated Quality,9.6,,20.2
 P2 Capital Partners,BLKB,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,8.9,,18.6
 P2 Capital Partners,MSA,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,8.1,,16.9
 P2 Capital Partners,ZETA,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,6.9,,14.6
@@ -2339,7 +2350,7 @@ Greenhaven Road Investment Management LP,HGTY,TOP_PICK,3.0,1.0,3.0,Other / Uncla
 Greenhaven Road Investment Management LP,PAR,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.0,7.5,Other / Unclassified,5.4,,32.0
 Greenhaven Road Investment Management LP,LFCR,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",7.5,1.0,7.5,Other / Unclassified,5.1,,60.0
 Greenhaven Road Investment Management LP,CLBT,MULTI_FUND_PEER,1.0,1.0,1.0,Other / Unclassified,4.9,,29.0
-Greenhaven Road Investment Management LP,KWY,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.0,3.5,Other / Unclassified,4.3,5.0,50.0
+Greenhaven Road Investment Management LP,KWY,"HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD",7.0,1.0,7.0,Other / Unclassified,4.3,5.0,50.0
 Greenhaven Road Investment Management LP,KKR,MULTI_FUND_PEER,1.0,1.0,1.0,Other / Unclassified,3.7,,22.0
 Greenhaven Road Investment Management LP,BUR,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,1.0,4.5,Other / Unclassified,2.8,,34.0
 Greenhaven Road Investment Management LP,PINS,NEW_INIT_LARGE,2.0,1.0,2.0,Other / Unclassified,,,0.0
@@ -2360,24 +2371,24 @@ Bandera Partners,TLF,THRESHOLD_13G,1.5,1.2,1.8,Small-cap / Multibagger Specialis
 Davidson Kempner Capital Management,SPY,"HOLDING_PERSIST,HYPER_CONVICTION,MULTI_FUND_PEER,NEW_INIT_LARGE,TOP_PICK",11.5,1.0,11.5,Other / Unclassified,16.95,,1067.0
 Davidson Kempner Capital Management,QQQ,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",7.5,1.0,7.5,Other / Unclassified,6.44,,810.8
 Davidson Kempner Capital Management,IEF,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,1.0,4.5,Other / Unclassified,3.91,,492.4
-Davidson Kempner Capital Management,BABA,MULTI_FUND_PEER,1.0,1.0,1.0,Other / Unclassified,2.71,,170.8
+Davidson Kempner Capital Management,BABA,"INSIDER_COBUY,MULTI_FUND_PEER",4.5,1.0,4.5,Other / Unclassified,2.71,,170.8
 Davidson Kempner Capital Management,RIVN,"HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD",7.0,1.0,7.0,Other / Unclassified,2.06,,259.4
 Davidson Kempner Capital Management,NVRI,THRESHOLD_13G,1.5,1.0,1.5,Other / Unclassified,,5.31,0.0
 Davidson Kempner Capital Management,NUAI,THRESHOLD_13G,1.5,1.0,1.5,Other / Unclassified,,5.22,0.0
 Viking Global Investors LP (Andreas Halvorsen),RRX,THRESHOLD_13G,1.5,1.0,1.5,Other / Unclassified,,5.0,0.0
-TT International Investment Management,BABA,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.0,8.0,Other / Unclassified,12.7,,116.37
+TT International Investment Management,BABA,"HYPER_CONVICTION,INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",11.5,1.0,11.5,Other / Unclassified,12.7,,116.37
 TT International Investment Management,ITUB,TOP_PICK,3.0,1.0,3.0,Other / Unclassified,8.7,,79.89
 TT International Investment Management,ARIS,"HOLDING_PERSIST,NEW_INIT_LARGE,TOP_PICK",6.5,1.0,6.5,Other / Unclassified,8.4,,89.79
 TT International Investment Management,VIST,TOP_PICK,3.0,1.0,3.0,Other / Unclassified,8.1,,74.18
 TT International Investment Management,BIDU,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,1.0,6.5,Other / Unclassified,7.6,,103.93
 TT International Investment Management,GGAL,"INSIDER_COBUY,NEW_INIT_LARGE,TOP_PICK",8.5,1.0,8.5,Other / Unclassified,9.9,,47.04
-TT International Investment Management,YPF,"NEW_INIT_LARGE,TOP_PICK",5.0,1.0,5.0,Other / Unclassified,6.5,,59.61
+TT International Investment Management,YPF,"INSIDER_COBUY,NEW_INIT_LARGE,TOP_PICK",8.5,1.0,8.5,Other / Unclassified,6.5,,59.61
 TT International Investment Management,EGO,MATERIAL_ADD,2.0,1.0,2.0,Other / Unclassified,,,25.0
 TT International Investment Management,EQX,MATERIAL_ADD,2.0,1.0,2.0,Other / Unclassified,,,24.0
 TT International Investment Management,KSPI,MATERIAL_ADD,2.0,1.0,2.0,Other / Unclassified,,,22.0
 TT International Investment Management,MELI,"MATERIAL_ADD,MULTI_FUND_PEER",3.0,1.0,3.0,Other / Unclassified,,,20.0
 BVF Partners L.P.,CTMX,THRESHOLD_13G,1.5,1.3,1.95,Biotech Specialists,,3.5,0.0
-Hudson Bay Capital Management LP,BABA,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,1.0,4.5,Other / Unclassified,1.0,,316.5
+Hudson Bay Capital Management LP,BABA,"HOLDING_PERSIST,INSIDER_COBUY,MATERIAL_ADD,MULTI_FUND_PEER",8.0,1.0,8.0,Other / Unclassified,1.0,,316.5
 Hudson Bay Capital Management LP,ECHO,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,1.0,4.5,Other / Unclassified,0.9,,283.6
 Hudson Bay Capital Management LP,CYBR,MULTI_FUND_PEER,1.0,1.0,1.0,Other / Unclassified,0.8,,231.9
 Hudson Bay Capital Management LP,EXAS,"HOLDING_PERSIST,MULTI_FUND_PEER,NEW_INIT_LARGE",4.5,1.0,4.5,Other / Unclassified,0.4,,226.6
@@ -2389,7 +2400,7 @@ Hudson Bay Capital Management LP,TSLA,"MATERIAL_ADD,MULTI_FUND_PEER",3.0,1.0,3.0
 Marathon Partners Equity Management LLC,META,MULTI_FUND_PEER,1.0,1.0,1.0,Other / Unclassified,,,0.0
 Marathon Partners Equity Management LLC,RELY,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.0,3.5,Other / Unclassified,,,0.0
 Marathon Partners Equity Management LLC,TKO,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.0,7.5,Other / Unclassified,,,0.0
-Marathon Partners Equity Management LLC,UBER,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Other / Unclassified,,,0.0
+Marathon Partners Equity Management LLC,UBER,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.0,7.5,Other / Unclassified,,,0.0
 Marathon Partners Equity Management LLC,XMTR,"INSIDER_COBUY,TOP_PICK",6.5,1.0,6.5,Other / Unclassified,,,0.0
 Marathon Partners Equity Management LLC,HSIC,MULTI_FUND_PEER,1.0,1.0,1.0,Other / Unclassified,,,0.0
 Marathon Partners Equity Management LLC,ATMU,MULTI_FUND_PEER,1.0,1.0,1.0,Other / Unclassified,,,0.0
@@ -2399,21 +2410,21 @@ Seilern Investment Management Ltd,MA,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Othe
 Seilern Investment Management Ltd,UNH,TOP_PICK,3.0,1.0,3.0,Other / Unclassified,6.84,,0.0
 Seilern Investment Management Ltd,MSFT,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Other / Unclassified,5.01,,0.0
 Seilern Investment Management Ltd,GOOGL,MULTI_FUND_PEER,1.0,1.0,1.0,Other / Unclassified,4.85,,0.0
-Seilern Investment Management Ltd,ADBE,TOP_PICK,3.0,1.0,3.0,Other / Unclassified,4.66,,0.0
+Seilern Investment Management Ltd,ADBE,"INSIDER_COBUY,TOP_PICK",6.5,1.0,6.5,Other / Unclassified,4.66,,0.0
 Seilern Investment Management Ltd,EW,MULTI_FUND_PEER,1.0,1.0,1.0,Other / Unclassified,4.5,,0.0
 Seilern Investment Management Ltd,SAP,MULTI_FUND_PEER,1.0,1.0,1.0,Other / Unclassified,4.4,,0.0
 First Eagle Investment Management LLC,GOOG,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Other / Unclassified,,,0.0
 First Eagle Investment Management LLC,BDX,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,1.0,6.5,Other / Unclassified,,,226.0
 First Eagle Investment Management LLC,META,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Other / Unclassified,,,0.0
 First Eagle Investment Management LLC,WPM,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Other / Unclassified,,,0.0
-First Eagle Investment Management LLC,TSM,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Other / Unclassified,,,0.0
+First Eagle Investment Management LLC,TSM,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.0,7.5,Other / Unclassified,,,0.0
 First Eagle Investment Management LLC,MICC,NEW_INIT_LARGE,2.0,1.0,2.0,Other / Unclassified,,,260.5
 First Eagle Investment Management LLC,UL,NEW_INIT_LARGE,2.0,1.0,2.0,Other / Unclassified,,,0.0
 First Eagle Investment Management LLC,FG,NEW_INIT_LARGE,2.0,1.0,2.0,Other / Unclassified,,,0.0
 First Eagle Investment Management LLC,EXP,NEW_INIT_LARGE,2.0,1.0,2.0,Other / Unclassified,,,0.0
 First Eagle Investment Management LLC,WDAY,MATERIAL_ADD,2.0,1.0,2.0,Other / Unclassified,,,556.0
 First Eagle Investment Management LLC,OMC,MATERIAL_ADD,2.0,1.0,2.0,Other / Unclassified,,,515.0
-First Eagle Investment Management LLC,ELV,"MATERIAL_ADD,MULTI_FUND_PEER",3.0,1.0,3.0,Other / Unclassified,,,258.0
+First Eagle Investment Management LLC,ELV,"INSIDER_COBUY,MATERIAL_ADD,MULTI_FUND_PEER",6.5,1.0,6.5,Other / Unclassified,,,258.0
 First Eagle Investment Management LLC,FNV,MATERIAL_ADD,2.0,1.0,2.0,Other / Unclassified,,,189.0
 First Eagle Investment Management LLC,PAAS,MATERIAL_ADD,2.0,1.0,2.0,Other / Unclassified,,,178.0
 First Eagle Investment Management LLC,CHTR,MATERIAL_ADD,2.0,1.0,2.0,Other / Unclassified,,,165.0
@@ -2465,7 +2476,7 @@ Brevan Howard Capital Management LP (Alan Howard),NVDA,"MULTI_FUND_PEER,TOP_PICK
 Brevan Howard Capital Management LP (Alan Howard),XLF,MULTI_FUND_PEER,1.0,1.0,1.0,Other / Unclassified,,,0.0
 Brevan Howard Capital Management LP (Alan Howard),ASHR,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.0,3.5,Other / Unclassified,,,818.0
 Brevan Howard Capital Management LP (Alan Howard),IWM,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER",4.5,1.0,4.5,Other / Unclassified,,,346.0
-Brevan Howard Capital Management LP (Alan Howard),BABA,MULTI_FUND_PEER,1.0,1.0,1.0,Other / Unclassified,,,104.0
+Brevan Howard Capital Management LP (Alan Howard),BABA,"INSIDER_COBUY,MULTI_FUND_PEER",4.5,1.0,4.5,Other / Unclassified,,,104.0
 Brevan Howard Capital Management LP (Alan Howard),AAPL,MULTI_FUND_PEER,1.0,1.0,1.0,Other / Unclassified,,,81.0
 Additional manager covered: Cobas Asset Management (Francisco García Paramés),TEVA,MULTI_FUND_PEER,1.0,1.0,1.0,Other / Unclassified,2.51,,0.0
 Solus Alternative Asset Management (Chris Pucillo),VTOL,"ACTIVIST_13D,HOLDING_PERSIST,HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",12.5,1.0,12.5,Other / Unclassified,34.1,,105.0
@@ -2481,6 +2492,7 @@ Bluebell Capital Partners,BP.L,PUBLIC_LETTER,2.5,1.2,3.0,Distressed / Event-Driv
 Bluebell Capital Partners,SOLB.BR,PUBLIC_LETTER,2.5,1.2,3.0,Distressed / Event-Driven,,,0.0
 PrimeStone Capital,BNR.DE,PUBLIC_LETTER,2.5,1.4,3.5,Activists / Special Situations,2.0,,0.0
 PrimeStone Capital,JSG.L,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,11.77,,0.0
+PrimeStone Capital,TNC,INSIDER_COBUY,3.5,1.4,4.9,Activists / Special Situations,4.1,,0.0
 PrimeStone Capital,SW,PUBLIC_LETTER,2.5,1.4,3.5,Activists / Special Situations,0.8,,0.0
 Slater Investments (Mark Slater,JTC.L,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,5.16,,0.0
 Slater Investments (Mark Slater,FSG.L,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,5.09,,0.0
@@ -2506,14 +2518,15 @@ Westbeck Capital (Jean-Louis Le,SU.TO,PUBLIC_LETTER,2.5,0.6,1.5,CTA / Trend Foll
 Westbeck Capital (Jean-Louis Le,OIH,PUBLIC_LETTER,2.5,0.6,1.5,CTA / Trend Followers,,,0.0
 Arquitos Capital (Steven Kiel),LQDA,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,,,0.0
 Arquitos Capital (Steven Kiel),FNCHQ,"PUBLIC_LETTER,TOP_PICK",5.5,1.6,8.8,Value / Concentrated Quality,7.0,,0.0
+Driver Management Company LLC,FUNC,INSIDER_COBUY,3.5,1.2,4.2,Small-cap / Multibagger Specialists,,,0.0
 Driver Management Company LLC,CVLY,TOP_PICK,3.0,1.2,3.6,Small-cap / Multibagger Specialists,6.72,,0.0
 Driver Management Company LLC,ASRV,TOP_PICK,3.0,1.2,3.6,Small-cap / Multibagger Specialists,8.6,,0.0
 Driver Management Company LLC,ESXB,PUBLIC_LETTER,2.5,1.2,3.0,Small-cap / Multibagger Specialists,,,0.0
 Cobia Capital (Jeff Meyers),APPS,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
 Cobia Capital (Jeff Meyers),AIRG,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
-Hillspire LLC,GOOGL,MULTI_FUND_PEER,1.0,0.4,0.4,Mega Multi-Strats / Quants,,,0.0
-Hillspire LLC,SPY,MULTI_FUND_PEER,1.0,0.4,0.4,Mega Multi-Strats / Quants,,,0.0
-Hillspire LLC,QQQ,MULTI_FUND_PEER,1.0,0.4,0.4,Mega Multi-Strats / Quants,,,0.0
+Hillspire LLC,GOOGL,MULTI_FUND_PEER,1.0,1.5,1.5,Family Offices / Individual Filers,,,0.0
+Hillspire LLC,SPY,MULTI_FUND_PEER,1.0,1.5,1.5,Family Offices / Individual Filers,,,0.0
+Hillspire LLC,QQQ,MULTI_FUND_PEER,1.0,1.5,1.5,Family Offices / Individual Filers,,,0.0
 Equity Management Associates (L,LGC.V,"PUBLIC_LETTER,TOP_PICK",5.5,0.7,3.85,Warrant Specialists,6.7,,0.0
 Equity Management Associates (L,ASM,PUBLIC_LETTER,2.5,0.7,1.75,Warrant Specialists,,,0.0
 Equity Management Associates (L,MSTR,"INSIDER_COBUY,MULTI_FUND_PEER",4.5,0.7,3.15,Warrant Specialists,,,0.0
@@ -2522,8 +2535,8 @@ East Capital (Jacob Grapengiess,PEO.WA,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,9
 East Capital (Jacob Grapengiess,PKO.WA,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,9.11,,0.0
 East Capital (Jacob Grapengiess,PZU.WA,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,5.25,,0.0
 East Capital (Jacob Grapengiess,PRX.AS,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,9.0,,0.0
-East Capital (Jacob Grapengiess,TSM,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Foreign / EM Value,7.8,,0.0
-East Capital (Jacob Grapengiess,BABA,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Foreign / EM Value,5.8,,0.0
+East Capital (Jacob Grapengiess,TSM,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.0,7.5,Foreign / EM Value,7.8,,0.0
+East Capital (Jacob Grapengiess,BABA,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.0,7.5,Foreign / EM Value,5.8,,0.0
 Sandon Capital (Gabriel Radzymi,SXL.AX,TOP_PICK,3.0,1.2,3.6,Microcap-Tactical,5.05,,0.0
 Sandon Capital (Gabriel Radzymi,KAR.AX,PUBLIC_LETTER,2.5,1.2,3.0,Microcap-Tactical,,,0.0
 Sandon Capital (Gabriel Radzymi,FWD.AX,PUBLIC_LETTER,2.5,1.2,3.0,Microcap-Tactical,,,0.0
@@ -2539,12 +2552,12 @@ EdgePoint (Bousada MacDonald Fa,BERY,PUBLIC_LETTER,2.5,1.0,2.5,Foreign / EM Valu
 Asia Frontier Capital (Thomas H,AKBNK.IS,PUBLIC_LETTER,2.5,1.0,2.5,Foreign / EM Value,,,0.0
 Asia Frontier Capital (Thomas H,MCB.KAR,PUBLIC_LETTER,2.5,1.0,2.5,Foreign / EM Value,,,0.0
 "Praetorian Capital (Harris ""Kup",VAL,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
-"Praetorian Capital (Harris ""Kup",STNG,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
+"Praetorian Capital (Harris ""Kup",STNG,"INSIDER_COBUY,PUBLIC_LETTER",6.0,1.6,9.6,Value / Concentrated Quality,,,0.0
 "Praetorian Capital (Harris ""Kup",INSW,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
 Maran Capital Management   Mara,CIVI,PUBLIC_LETTER,2.5,1.4,3.5,Activists / Special Situations,,,0.0
 Maran Capital Management   Mara,AMRK,PUBLIC_LETTER,2.5,1.4,3.5,Activists / Special Situations,,,0.0
 Hayden Capital (Fred Liu),MELI,"MULTI_FUND_PEER,PUBLIC_LETTER",3.5,1.6,5.6,Value / Concentrated Quality,,,0.0
-Hayden Capital (Fred Liu),BABA,"MULTI_FUND_PEER,PUBLIC_LETTER",3.5,1.6,5.6,Value / Concentrated Quality,,,0.0
+Hayden Capital (Fred Liu),BABA,"INSIDER_COBUY,MULTI_FUND_PEER,PUBLIC_LETTER",7.0,1.6,11.2,Value / Concentrated Quality,,,0.0
 Bireme Capital (Evan Tindell & ,PARA,PUBLIC_LETTER,2.5,1.6,4.0,Value / Concentrated Quality,,,0.0
 Bireme Capital (Evan Tindell & ,WBD,"MULTI_FUND_PEER,PUBLIC_LETTER",3.5,1.6,5.6,Value / Concentrated Quality,,,0.0
 Bireme Capital (Evan Tindell & ,CMCSA,"MULTI_FUND_PEER,PUBLIC_LETTER",3.5,1.6,5.6,Value / Concentrated Quality,,,0.0
@@ -2598,15 +2611,16 @@ Egerton Capital Ltd,LIN,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Value,,,0.0
 Egerton Capital Ltd,NVDA,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Value,,,0.0
 Cantillon Capital Management,AVGO,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Value,,,0.0
 Cantillon Capital Management,GOOGL,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Value,,,0.0
-Cantillon Capital Management,TSM,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Value,,,0.0
+Cantillon Capital Management,TSM,"INSIDER_COBUY,MULTI_FUND_PEER",4.5,1.0,4.5,Foreign / EM Value,,,0.0
 Marshall Wace LLP,AAPL,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Value,,,0.0
 Marshall Wace LLP,GOOGL,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Value,,,0.0
 Marshall Wace LLP,CVX,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Value,,,0.0
 Marshall Wace LLP,TSLA,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Value,,,0.0
-RIT Capital Partners plc (RCP.L,SPGI,MULTI_FUND_PEER,1.0,0.4,0.4,Mega Multi-Strats / Quants,,,0.0
-RIT Capital Partners plc (RCP.L,AMZN,MULTI_FUND_PEER,1.0,0.4,0.4,Mega Multi-Strats / Quants,,,0.0
-RIT Capital Partners plc (RCP.L,MA,MULTI_FUND_PEER,1.0,0.4,0.4,Mega Multi-Strats / Quants,,,0.0
-RIT Capital Partners plc (RCP.L,ICE,MULTI_FUND_PEER,1.0,0.4,0.4,Mega Multi-Strats / Quants,,,0.0
+RIT Capital Partners plc (RCP.L,SPGI,MULTI_FUND_PEER,1.0,1.5,1.5,Family Offices / Individual Filers,,,0.0
+RIT Capital Partners plc (RCP.L,AMZN,MULTI_FUND_PEER,1.0,1.5,1.5,Family Offices / Individual Filers,,,0.0
+RIT Capital Partners plc (RCP.L,MA,MULTI_FUND_PEER,1.0,1.5,1.5,Family Offices / Individual Filers,,,0.0
+RIT Capital Partners plc (RCP.L,ICE,MULTI_FUND_PEER,1.0,1.5,1.5,Family Offices / Individual Filers,,,0.0
+azValor Asset Management (Guzmá,BORR,INSIDER_COBUY,3.5,1.0,3.5,Foreign / EM Value,,,0.0
 Cobas Asset Management (Francis,TEVA,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,,,0.0
 The Children's Investment Fund ,GOOGL,MULTI_FUND_PEER,1.0,1.2,1.2,Small-cap / Multibagger Specialists,,,0.0
 Holland Advisors (Andrew Hollin,NU,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Value,,,0.0

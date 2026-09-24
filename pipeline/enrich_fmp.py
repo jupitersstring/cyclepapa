@@ -42,7 +42,7 @@ def fetch_csv(path, **params):
         r = subprocess.run(["curl", "-sS", "--max-time", "180", url],
                            capture_output=True, text=True)
         body = r.stdout
-        if body.startswith('"symbol"'):
+        if '"symbol"' in body.split("\n", 1)[0]:          # statement files lead with "date"
             return list(csv.DictReader(io.StringIO(body)))
         if body.strip() in ("", "[]"):
             return []
@@ -204,7 +204,14 @@ def run():
     # meaningful (positive) values; the sign says why one is blank — a loss,
     # negative EBITDA, negative equity — which the books now print instead of "—"
     for col, ty in (("src", "TEXT"), ("is_fund", "INTEGER"), ("ptb_ratio", "REAL"), ("neg_tbv", "INTEGER"),
-                    ("pe_raw", "REAL"), ("pb_raw", "REAL"), ("ev_ebitda_raw", "REAL")):
+                    ("pe_raw", "REAL"), ("pb_raw", "REAL"), ("ev_ebitda_raw", "REAL"),
+                    # cash, returns and balance sheet, for the Valuation tab's soundness checks
+                    ("fcf_yield", "REAL"), ("earnings_yield", "REAL"), ("roic", "REAL"), ("roe", "REAL"),
+                    ("net_debt_ebitda", "REAL"), ("rev_growth_fy", "REAL"), ("fy_growth_year", "TEXT"),
+                    ("ipo_date", "TEXT"),
+                    # net common stock bought back (+) or issued (-) in the last fiscal year, as a
+                    # share of market cap: the company's own revealed preference for its stock
+                    ("net_buyback_yield", "REAL"), ("buyback_fy", "TEXT")):
         if col not in cols:
             conn.execute(f"ALTER TABLE ticker_yf ADD COLUMN {col} {ty}")
             cols.append(col)
@@ -213,6 +220,24 @@ def run():
     prof = load_profiles()
     km = {r["symbol"]: r for r in cached_bulk("key_metrics_ttm", lambda: fetch_csv("key-metrics-ttm-bulk"))}
     rt = {r["symbol"]: r for r in cached_bulk("ratios_ttm", lambda: fetch_csv("ratios-ttm-bulk"))}
+    buyback = {}                                          # symbol -> (net common issuance, fiscal year)
+    for yr in (2025, 2026):                               # later fiscal year wins
+        try:
+            for g in cached_bulk(f"cash_flow_{yr}", lambda y=yr: fetch_csv(
+                    "cash-flow-statement-bulk", year=y, period="annual"), max_age_h=24 * 7):
+                if g.get("symbol") and num(g.get("netCommonStockIssuance")) is not None:
+                    buyback[g["symbol"]] = (num(g["netCommonStockIssuance"]), str(g.get("fiscalYear") or yr))
+        except RuntimeError as e:
+            print(f"  ! cash flow FY{yr}: {str(e)[:80]}", flush=True)
+    growth = {}
+    for yr in (2025, 2026):                               # later fiscal year wins
+        try:
+            for g in cached_bulk(f"income_growth_{yr}", lambda y=yr: fetch_csv(
+                    "income-statement-growth-bulk", year=y, period="annual"), max_age_h=24 * 7):
+                if g.get("symbol") and num(g.get("growthRevenue")) is not None:
+                    growth[g["symbol"]] = (num(g["growthRevenue"]), str(g.get("fiscalYear") or yr))
+        except RuntimeError as e:
+            print(f"  ! revenue growth FY{yr}: {str(e)[:80]}", flush=True)
     print(f"FMP bulk: {len(prof):,} profiles, {len(km):,} key-metrics, "
           f"{len(rt):,} ratios in {time.time() - t0:.0f}s", flush=True)
     n_alias = apply_ticker_aliases(conn, prof)
@@ -298,6 +323,11 @@ def run():
         if k:
             row["ev_ebitda"] = pos(k.get("evToEBITDATTM"))
             row["ev_ebitda_raw"] = num(k.get("evToEBITDATTM"))
+            row["fcf_yield"] = num(k.get("freeCashFlowYieldTTM"))
+            row["earnings_yield"] = num(k.get("earningsYieldTTM"))
+            row["roic"] = num(k.get("returnOnInvestedCapitalTTM"))
+            row["roe"] = num(k.get("returnOnEquityTTM"))
+            row["net_debt_ebitda"] = num(k.get("netDebtToEBITDATTM"))
             row["ev_revenue"] = pos(k.get("evToSalesTTM"))
             # FMP's EV is in the REPORTING currency (TSM: TWD). EV/mktcap is
             # currency-free, so rescale onto the listing-currency market cap.
@@ -310,6 +340,12 @@ def run():
             # blank would silently discard every FMP multiple.
             m = num(k.get("evToEBITDATTM"))
             row["ebitda_m"] = ev / m if (ev and m) else None
+        if tk in growth:
+            row["rev_growth_fy"], row["fy_growth_year"] = growth[tk]
+        if tk in buyback and k and num(k.get("marketCap")):
+            # both in the reporting currency: the ratio is currency-free
+            iss, fy = buyback[tk]
+            row["net_buyback_yield"], row["buyback_fy"] = -iss / num(k.get("marketCap")), fy
         if r:
             row["pb_ratio"] = pos(r.get("priceToBookRatioTTM"))
             row["pe_ttm"] = pos(r.get("priceToEarningsRatioTTM"))
@@ -343,6 +379,7 @@ def run():
         # FMP's ETF / fund flags: closed-end funds and trusts (ASA, PSLV, MUC,
         # Cornerstone...) otherwise pass the name heuristics and score as stocks
         row["is_fund"] = int(is_true(p.get("isEtf")) or is_true(p.get("isFund")))
+        row["ipo_date"] = (p.get("ipoDate") or "")[:10] or None     # a fresh listing reads differently
         row["asof"] = asof
         row["src"] = "fmp"
         conn.execute(f"INSERT OR REPLACE INTO ticker_yf ({','.join(cols)}) "

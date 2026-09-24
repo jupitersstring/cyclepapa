@@ -92,6 +92,55 @@ def isin_index():
                 idx.setdefault(r["isin"].strip().upper(), []).append(r)
     return idx
 
+_SUFFIX = {"co", "ltd", "limited", "inc", "corp", "corporation", "company", "plc", "sa", "ag", "se", "nv",
+           "spa", "ab", "asa", "oyj", "as", "kgaa", "the", "sab", "de", "cv", "tbk", "pt", "pcl", "bhd",
+           "berhad", "publ", "adr", "ads", "sponsored", "unsponsored", "holding", "holdings", "group"}
+
+def norm_company(name):
+    """'Taiwan Semiconductor Manufacturing Company Limited' and its ADR's
+    profile name collide; suffixes and punctuation don't count."""
+    import unicodedata
+    n = unicodedata.normalize("NFKD", name or "").encode("ascii", "ignore").decode().lower()
+    return " ".join(t for t in re.split(r"[^a-z0-9]+", n) if t and t not in _SUFFIX)
+
+def build_adr_links(conn):
+    """adr_link(ordinary, adr): a non-US listing's US line (ADR or direct
+    listing), by identical normalised company name. Only an unambiguous match
+    is kept (an exchange-listed line is preferred over an OTC one)."""
+    csv.field_size_limit(10 ** 9)
+    adrs = {}
+    with open(PROFILE, newline="") as f:
+        for r in csv.DictReader(f):
+            # a non-US company's US-dollar line on a US venue: an ADR (TSM, DEO)
+            # or a direct listing (SHOP). FMP's isAdr flag misses many (SAP)
+            # and marks Canadian depositary receipts (NSTL.TO): not used.
+            if ("." not in r["symbol"] and (r.get("currency") or "") == "USD"
+                    and (r.get("country") or "US") != "US"
+                    and str(r.get("isActivelyTrading", "")).lower() == "true"
+                    and str(r.get("isEtf", "")).lower() != "true" and str(r.get("isFund", "")).lower() != "true"):
+                adrs.setdefault(norm_company(r.get("companyName")), []).append(
+                    (r["symbol"], (r.get("exchange") or "").upper() not in _OTC))
+    targets = {t: n for t, n in conn.execute("""SELECT DISTINCT n.ticker, COALESCE(y.long_name, n.issuer)
+        FROM nport_holdings n LEFT JOIN ticker_yf y ON y.ticker = n.ticker
+        WHERE n.ticker IS NOT NULL AND n.country != 'US'""")}
+    try:
+        targets.update({t: n for t, n in conn.execute("""SELECT u.ticker, COALESCE(y.long_name, u.name)
+            FROM unified_signal u LEFT JOIN ticker_yf y ON y.ticker = u.ticker
+            WHERE u.is_us = 0 AND u.sec_type = 'common'""") if t not in targets})
+    except sqlite3.OperationalError:
+        pass
+    links = []
+    for tk, name in targets.items():
+        cands = adrs.get(norm_company(name)) or []
+        listed = [s for s, is_listed in cands if is_listed and s != tk]
+        pick = listed if listed else [s for s, _ in cands if s != tk]
+        if len(pick) == 1:
+            links.append((tk, pick[0]))
+    conn.executescript("DROP TABLE IF EXISTS adr_link; CREATE TABLE adr_link (ordinary TEXT PRIMARY KEY, adr TEXT);")
+    conn.executemany("INSERT INTO adr_link VALUES (?,?)", links)
+    conn.commit()
+    return len(links), len(targets)
+
 def pick_symbol(rows, cur):
     """The listing a holder's ISIN most plausibly is: actively trading, not
     OTC, quoted in the holding's own currency, then the most liquid."""
@@ -268,6 +317,8 @@ def run():
     for r in conn.execute("""SELECT issuer, isin, country, ROUND(SUM(val_usd)/1e6, 1) v FROM nport_holdings
             WHERE country != 'US' AND ticker IS NULL GROUP BY isin ORDER BY v DESC LIMIT 8"""):
         print(f"    {r[0][:36]:36s} {r[1] or '-':13s} {r[2] or '-':3s} ${r[3]}M")
+    n_adr, n_t = build_adr_links(conn)
+    print(f"ADR links: {n_adr} of {n_t} non-US listings have a US depositary receipt")
     # a series whose refresh failed keeps its previous book (reported above);
     # only a series with NO book on file fails the run
     have = {r[0] for r in conn.execute("SELECT DISTINCT series_id FROM nport_holdings")}
