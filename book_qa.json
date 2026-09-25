@@ -1,30 +1,6 @@
 [
  {
   "book": "MOST_ASYMMETRIC.xlsx",
-  "sheet": "What's New",
-  "row": 59,
-  "kind": "NO DATA",
-  "ticker": "ALB-PA",
-  "detail": "no FMP financial record"
- },
- {
-  "book": "MOST_ASYMMETRIC.xlsx",
-  "sheet": "What's New",
-  "row": 87,
-  "kind": "NO DATA",
-  "ticker": "NOTEW",
-  "detail": "no FMP financial record"
- },
- {
-  "book": "MOST_ASYMMETRIC.xlsx",
-  "sheet": "What's New",
-  "row": 104,
-  "kind": "DUPLICATE ISSUER",
-  "ticker": "AANNF,AT1.DE",
-  "detail": "aroundtown s a"
- },
- {
-  "book": "MOST_ASYMMETRIC.xlsx",
   "sheet": "PSU Plans",
   "row": 4,
   "kind": "DEAD COLUMN",

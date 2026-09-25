@@ -3021,58 +3021,108 @@ def build_by_archetype(wb: Workbook, arch_psu: dict, arch_asym: dict,
 # Tab 4: Reserve Baskets
 # ----------------------------------------------------------------------
 
+def _tradeable(tk, dist=None, fin=None):
+    """Common / ADR line per the security master, no bankruptcy or going-concern flag, >= $250k/day."""
+    try:
+        import store
+        st = store.sec_type_of(tk)
+        if st and st not in ("common", "adr"):
+            return False
+    except Exception:
+        pass
+    kinds = {x["kind"] for x in ((dist or {}).get(tk) or {}).get("flags") or []}
+    if kinds & {"bankruptcy", "going_concern"}:
+        return False
+    adv = ((fin or {}).get(tk) or {}).get("adv_usd")
+    return adv is None or adv >= 250_000
+
+
+def live_baskets(n=6):
+    """Reserve baskets filled from the layer each basket names (not a hand-typed list)."""
+    fin, dist = _jload("name_financials.json"), _jload("distress_flags.json")
+    psu, ev, own = _jload("psu_detail.json"), _jload("event_detail.json"), _jload("ownership.json")
+    nol, gd = _jload("nol_shell.json"), _jload("going_dark.json")
+    ok = lambda t: _tradeable(t, dist, fin)
+    pick = lambda xs: ", ".join([t for t, _ in sorted(xs, key=lambda z: -z[1]) if ok(t)][:n]) or "— none qualify today —"
+    out = []
+    cheap = [(t, 1 / f["p_b"]) for t, f in fin.items() if f.get("p_b") and 0.1 <= f["p_b"] < 0.5
+             and (f.get("mcap_usd") or 0) < 300e6 and t in psu]
+    out.append(("Microcap below half of book, with a PSU plan", pick(cheap),
+                "P/B < 0.5, market cap < $300M, the board has a performance-pay plan (self-help set-up)"))
+    hur = [(t, p.get("hurdle_max_vs_price") or 0) for t, p in psu.items()
+           if (p.get("hurdle_max_vs_price") or 0) >= 1.2 and p.get("grade") in ("A", "B")]
+    out.append(("Named price-hurdle PSUs", pick(hur),
+                "Grade A/B PSU plan whose top stock-price hurdle is >= 1.2x today's price: management paid only if it rises"))
+    bb = [(t, f["buyback_ttm_mcap"]) for t, f in fin.items() if (f.get("buyback_ttm_mcap") or 0) >= 0.04
+          and (f.get("shares_yoy") or 0) <= -0.02 and (f.get("p_b") or 9) < 1.5]
+    out.append(("Verified buyback compounders", pick(bb),
+                ">= 4% of market cap bought back in 12 months AND the share count actually fell >= 2%; P/B < 1.5"))
+    deals = [(t, e.get("offer_spread") or 0) for t, lst in ev.items() for e in lst
+             if e.get("verdict") == "REAL" and e.get("family") in ("TENDER_OFFER", "SALE_OF_COMPANY", "GOING_PRIVATE")
+             and e.get("status") in ("ANNOUNCED", "PENDING") and e.get("offer_spread") is not None
+             and not str(e.get("deal_state", "")).startswith("dead money") and 0.03 <= e["offer_spread"] < 0.5]
+    out.append(("Live deals with a spread", pick(deals),
+                "Pending tender / sale / take-private, confirmed real, 3-50% left to the offer (dead-money deals excluded)"))
+    exo = [(t, 1) for t, lst in ev.items() for e in lst if e.get("verdict") == "REAL"
+           and e.get("family") == "EXCHANGE_OFFER" and e.get("status") in ("ANNOUNCED", "PENDING")]
+    out.append(("Capital-structure forcing (exchange offers)", pick(exo),
+                "A live exchange offer: the balance sheet is being re-cut -- equity upside if it closes"))
+    ins = [(t, r["insiders"]["buy_usd"]) for t, r in own.items() if (r.get("insiders") or {}).get("buy_usd", 0) >= 500_000
+           and (r.get("insiders") or {}).get("n_buyers", 0) >= 2 and (r.get("insiders") or {}).get("sell_usd", 0) < (r.get("insiders") or {}).get("buy_usd", 0)]
+    out.append(("Insider cluster buying", pick(ins),
+                ">= 2 insiders bought >= $500k in 12 months, net buyers (context: no measured edge alone -- LAYER_VALIDATION.md)"))
+    act = [(t, max(e.get("pct") or 0 for e in r["recent_13d"])) for t, r in own.items()
+           if any(e.get("activist") for e in r.get("recent_13d") or [])]
+    out.append(("Activist 13D in the last 12 months", pick(act),
+                "A known activist filed or raised a 13D (context: no measured edge alone -- LAYER_VALIDATION.md)"))
+    nl = [(t, r.get("score") or 0) for t, r in nol.items() if (r.get("mcap") or 0) < 2e9]
+    out.append(("NOL shells (Section 382 plans)", pick(nl),
+                "Tax-benefit preservation plan = material NOLs; market cap < $2B; tradeable common only"))
+    out.append(("Going-dark / Form 15", f"{len(gd)} names on the OTC book's Going Dark tab",
+                "Post-deregistration value stubs; see OTC_BOOK.xlsx"))
+    return out
+
+
+def portfolio_math(baskets):
+    """Weights from the Cover's own sizing (sizing_for_screens) -- one sizing per name everywhere."""
+    rows = get_convergent_from_disk()
+    proxy = load_proxy()
+    by = {"Concentrated 5%+": [], "Material 2-5%": [], "Participation 1-2%": []}
+    for cr in rows:
+        tk = cr["ticker"]
+        lab = sizing_for_screens(int(cr["n_screens"]), int(cr["n_archetypes_won"]), red_flag_count(tk, proxy), tk)
+        by[lab.split(" (")[0]].append(tk)
+    mid = {"Concentrated 5%+": 0.05, "Material 2-5%": 0.035, "Participation 1-2%": 0.015}
+    out, used = [], 0.0
+    for lab, names in by.items():
+        w = mid[lab] * len(names)
+        used += w
+        out.append((f"{lab.split()[0]} convergent ({lab.split(' ', 1)[1]} each)", ", ".join(names) or "—", f"{w * 100:.1f}%"))
+    for label, names, _ in baskets:
+        k = len([x for x in names.split(", ") if x and not x.startswith("—") and " " not in x])
+        if k:
+            w = min(0.05, 0.01 * k)
+            used += w
+            out.append((label, f"{k} names", f"{w * 100:.1f}%"))
+    # keep at least 15% in reserve: scale every bucket pro rata when the book over-commits
+    scale = min(1.0, 0.85 / used) if used else 1.0
+    if scale < 1.0:
+        out = [(b, n, f"{float(w[:-1]) * scale:.1f}% (scaled from {w})") for b, n, w in out]
+    out.append(("CASH / OPPORTUNISTIC RESERVE", "—", f"{(1 - used * scale) * 100:.1f}% (reserve)"))
+    return out
+
+
 def build_reserve_baskets(wb: Workbook, yf: dict):
     ws = wb.create_sheet("Reserve Baskets")
     set_col_widths(ws, [9, 30, 18, 50])
     write_title_band(ws,
                      "Reserve Baskets",
-                     "Sub-archetype groups for diversified single-"
-                     "mandate deployment alongside the convergent set",
+                     "Sub-archetype groups for diversified deployment alongside the convergent set -- each "
+                     "filled from the layer it names on this run (tradeable common lines only, no bankruptcy "
+                     "or going-concern flag, >= $250k/day); portfolio weights use the Cover's own sizing",
                      n_cols=4)
 
-    baskets = [
-        ("Microcap forcing-function (Bastian)",
-         "BEEP, LGL, NUS, DXLG, WW, OSUR",
-         "P/B < 0.5 + PSU trigger + tender role; "
-         "RGS/NLOP-archetype self-help"),
-        ("Mungerian forward-dollar PSU",
-         "HFFG, MAT, LMT, THRY, EHTH",
-         "Named dollar hurdle = knowable catalyst; "
-         "the most informative PSU class"),
-        ("Verified buyback compounders",
-         "CSGP, KMPR, ADT, PAYC, GRND",
-         "EXECUTING status with PSU alignment; "
-         "real supply-curve compression, not just authorisation"),
-        ("Live tender / event-driven",
-         "EXFY, GPUS, GETY, LE, DXLG, CWAN",
-         "Issuer self-tender / TARGET 14D-9 / 13E-3 going-private; "
-         "mechanical bid as floor"),
-        ("Special-situations debt-haircut (BBGI-archetype)",
-         "WW, LGL, QVCGQ, ENHA, FONR",
-         "Capital-structure forcing function; "
-         "exchange-offer + springing maturity"),
-        ("Cohen-Malloy informational stack",
-         "NSP, ODTX, FONR, MOBI, RGR",
-         "Cluster + role + size = informational; "
-         "ODTX = $75.3M trifecta (9.57% of mcap)"),
-        ("Activist 13D + 8-K restructuring",
-         "RPAY, CCO, SATS",
-         "Triple-cross-validated (13D + restructuring + boundary); "
-         "activist as forced-action catalyst"),
-        ("Russell-recon forced flow",
-         "EBS, BYND, CMCO, BLCO, MUR",
-         "Within ±20% of R2000 cutoff; "
-         "passive-flow distortion candidates"),
-        ("NOL shell / §382 tax-asset",
-         "WOLF, CEG, NOTV, NINE, USGO, CMLSQ, TSEOF",
-         "Tax Benefits Preservation Rights Plan adoption; "
-         "WMIH-archetype tax-attribute monetisation"),
-        ("Going-dark / Form 15 OTC",
-         "(see going_dark.csv)",
-         "Oddball Stocks dark-company terrain; "
-         "post-deregistration value-stub plays"),
-    ]
-
+    baskets = live_baskets()
     headers = ["#", "Basket", "Holdings", "Why this basket exists"]
     write_header_row(ws, 4, headers)
 
@@ -3091,18 +3141,7 @@ def build_reserve_baskets(wb: Workbook, yf: dict):
     r += 2
     ws.cell(row=r, column=1, value="Portfolio math").font = BODY_BOLD
     r += 1
-    portfolio = [
-        ("Concentrated convergent (5%+ each)", "HFFG, CSGP, RNR", "15.0%"),
-        ("Material convergent (2-5% each)",
-         "LE, NUS, ADT, KMPR, MAT, LMT, CDE", "24.5%"),
-        ("Participation convergent (1-2% each)", "GO, GPRO", "3.0%"),
-        ("Microcap forcing-function basket", "6 names", "10.0%"),
-        ("Cohen-Malloy stack", "5 names", "5.0%"),
-        ("Russell-recon flow", "5 names", "3.0%"),
-        ("NOL shells", "7 names", "3.0%"),
-        ("Special-sits debt-haircut", "5 names", "5.0%"),
-        ("CASH / OPPORTUNISTIC RESERVE", "—", "31.5%"),
-    ]
+    portfolio = portfolio_math(baskets)
     write_header_row(ws, r, ["Bucket", "Holdings", "Weight", ""])
     ws.merge_cells(start_row=r, start_column=3, end_row=r, end_column=4)
     r += 1

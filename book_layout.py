@@ -20,6 +20,7 @@
 from __future__ import annotations
 
 import json
+import re
 from bisect import bisect_left, bisect_right
 from pathlib import Path
 
@@ -951,8 +952,9 @@ def whats_new(wb, events=None, calls=None, turnaround_csv=None, gov=None, index=
     k.title(ws.cell(row=1, column=1, value="What's New"))
     k.subtitle(ws.cell(row=2, column=1, value=(
         f"As of {date.today()}: corporate events in the last 30 days, senior appointments in the last 60, "
-        "management commitments on calls in the last 45, and governance actions in the last 60 -- each with "
-        "the stock's move since (excess vs SPY) so you can see what is and isn't priced.")))
+        "management commitments on calls in the last 45, governance actions in the last 60, and -- from the unified "
+        "event store -- 13D/13G ownership moves, insider buying and new filing red flags in the last 30 -- each with "
+        "the stock's move since (excess vs SPY) where known, so you can see what is and isn't priced.")))
     ws.merge_cells("A2:H2")
     ws.row_dimensions[2].height = 32
     for j, w in enumerate([9, 22, 11, 14, 70, 10, 10, 14], 1):
@@ -960,8 +962,30 @@ def whats_new(wb, events=None, calls=None, turnaround_csv=None, gov=None, index=
     today = date.today()
     r = 4
 
+    def _keep(rows):
+        """Security master filter: common / ADR lines only, one line per issuer (the first, i.e. latest)."""
+        try:
+            import store
+        except Exception:
+            return rows
+        out_, seen_ = [], set()
+        for x in rows:
+            t_ = str(x[0])
+            st_ = store.sec_type_of(t_)
+            if st_ and st_ not in ("common", "adr", "otc_line"):
+                continue
+            if not st_ and re.search(r"-P[A-Z]?$|W$", t_) and len(t_) >= 5:
+                continue                                   # unknown to the master and shaped like a pref / warrant
+            ik = store.issuer_key(t_) or t_
+            if ik in seen_:
+                continue
+            seen_.add(ik)
+            out_.append(x)
+        return out_
+
     def section(title, headers, rows):
         nonlocal r
+        rows = _keep(rows)
         k.subtitle(ws.cell(row=r, column=1, value=f"{title}  ({len(rows)})"), wrap=False)
         r += 1
         for j, h in enumerate(headers, 1):
@@ -1033,6 +1057,44 @@ def whats_new(wb, events=None, calls=None, turnaround_csv=None, gov=None, index=
     gr.sort(key=lambda x: x[2] or "", reverse=True)
     section("Governance actions at deep-discount names, last 60 days", ["Ticker", "Name", "Date", "Latest", "Set-up",
                                                                         "", "", ""], gr[:40])
+    # --- from the unified event store: ownership moves, insider buying, new red flags
+    try:
+        import store
+        con = store.connect(readonly=True)
+        lo30 = (today.toordinal() - 30)
+        from datetime import date as _d
+        since = _d.fromordinal(lo30).isoformat()
+        rows13, rowsin, rowsrf = [], [], []
+        seen = set()
+        for e in con.execute("SELECT security_id, date, type, what, counterparty, extra, doc_url FROM events "
+                             "WHERE family='OWNERSHIP' AND date>=? AND type IN ('NEW_13D','13G_TO_13D','13D_ADD') "
+                             "ORDER BY date DESC", (since,)):
+            ex_ = json.loads(e["extra"] or "{}")
+            k_ = (e["security_id"], e["type"], e["date"])
+            if k_ in seen:
+                continue
+            seen.add(k_)
+            rows13.append([e["security_id"], name(e["security_id"]), e["date"],
+                           ("ACTIVIST " if ex_.get("activist") else "") + e["type"].replace("_", " ").lower(),
+                           f"{(e['counterparty'] or '').title()[:40]}: {e['what']}" + (f" ({ex_['pct']:.1f}%)" if ex_.get("pct") else ""),
+                           "", "", e["doc_url"]])
+        agg = {}
+        for e in con.execute("SELECT security_id, date, amount_usd FROM events WHERE type='INSIDER_BUY' AND date>=?", (since,)):
+            a = agg.setdefault(e["security_id"], [0.0, 0, e["date"]])
+            a[0] += e["amount_usd"] or 0; a[1] += 1; a[2] = max(a[2], e["date"])
+        for sid, (v, n, d) in agg.items():
+            if v >= 250_000:
+                rowsin.append([sid, name(sid), d, f"{n} buy(s)", f"insiders bought ${v / 1e6:.2f}M in the last 30 days", "", "", ""])
+        rowsin.sort(key=lambda x: -float(x[4].split("$")[1].split("M")[0]))
+        for e in con.execute("SELECT security_id, date, type, what, doc_url FROM events WHERE family='RED_FLAG' AND date>=? "
+                             "ORDER BY date DESC", (since,)):
+            rowsrf.append([e["security_id"], name(e["security_id"]), e["date"], e["type"].replace("RED_FLAG_", "").replace("_", " ").lower(),
+                           e["what"], "", "", e["doc_url"]])
+        section("Ownership moves (13D / 13G), last 30 days", ["Ticker", "Name", "Filed", "Move", "Who / what", "", "", "Filing"], rows13[:40])
+        section("Insider buying >= $250k, last 30 days", ["Ticker", "Name", "Latest", "Trades", "What", "", "", ""], rowsin[:40])
+        section("New red flags, last 30 days", ["Ticker", "Name", "Date", "Flag", "Detail", "", "", "Filing"], rowsrf[:40])
+    except Exception as exc:                                   # store not built: the file-based sections still stand
+        k.body(ws.cell(row=r, column=1, value=f"(event store unavailable: {exc})"))
     ws.freeze_panes = "A4"
     return ws
 
