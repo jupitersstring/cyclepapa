@@ -22,3 +22,6 @@ xbrl_frames/
 form4_acceptance.json
 # Raw FMP bulk CSV cache (rebuildable, large); distilled fmp_quotes.json is committed.
 fmp_cache/
+
+# data store (rebuilt from caches by store_build.py)
+data/

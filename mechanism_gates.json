@@ -532,6 +532,33 @@
     },
     "score": 15.8
   },
+  "GPI": {
+    "ticker": "GPI",
+    "archetypes": [
+      "coiled_spring_delever",
+      "asset_sale_latent"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 4.97,
+    "geometry_score": 20.5,
+    "downside_pct": 0.504,
+    "upside_pct": 2.502,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "delever": {
+        "d_e": 2.11,
+        "op_income": 242600000.0,
+        "op_prior": 233900000.0
+      },
+      "asset_sale_latent": {
+        "pressure": "mda-intent",
+        "d_e": 2.11,
+        "ratio": 4.97
+      }
+    },
+    "score": 35.1
+  },
   "IART": {
     "ticker": "IART",
     "archetypes": [
@@ -1182,6 +1209,30 @@
     },
     "score": 15.7
   },
+  "ARQ": {
+    "ticker": "ARQ",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.07,
+    "geometry_score": 14.8,
+    "downside_pct": 0.4,
+    "upside_pct": 1.227,
+    "floor_source": "book(0.5x)",
+    "sector": "Industrials",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.517,
+        "tier": "BUILDING",
+        "families": [
+          "PAY_ON_VALUE",
+          "TURNAROUND_EXEC"
+        ]
+      }
+    },
+    "score": 15.7
+  },
   "ASTH": {
     "ticker": "ASTH",
     "archetypes": [
@@ -1206,26 +1257,16 @@
   "BIRD": {
     "ticker": "BIRD",
     "archetypes": [
-      "asset_sale_monetization",
       "governance_discount_catalyst"
     ],
-    "n_mechanisms": 2,
-    "geometry_ratio": 7.21,
-    "geometry_score": 19.7,
-    "downside_pct": 0.4,
+    "n_mechanisms": 1,
+    "geometry_ratio": 2.88,
+    "geometry_score": 14.5,
+    "downside_pct": 1.0,
     "upside_pct": 2.883,
     "floor_source": "book(0.5x)",
     "sector": "Consumer Cyclical",
     "details": {
-      "asset_sale": {
-        "sources": [
-          "event",
-          "narrative"
-        ],
-        "d_e": 1.07,
-        "ratio": 7.21,
-        "small_cap": true
-      },
       "governance_discount": {
         "p_b": 0.657,
         "tier": "BUILDING",
@@ -1236,7 +1277,7 @@
         ]
       }
     },
-    "score": 38.9
+    "score": 15.6
   },
   "BNED": {
     "ticker": "BNED",
@@ -1244,9 +1285,9 @@
       "hidden_asset_realization"
     ],
     "n_mechanisms": 1,
-    "geometry_ratio": 1.01,
-    "geometry_score": 8.9,
-    "downside_pct": 0.619,
+    "geometry_ratio": 0.63,
+    "geometry_score": 7.4,
+    "downside_pct": 1.0,
     "upside_pct": 0.628,
     "floor_source": "book(0.5x)",
     "sector": "Consumer Cyclical",
@@ -1257,7 +1298,7 @@
         "mcap": 380730658.0
       }
     },
-    "score": 15.2
+    "score": 14.8
   },
   "CCS": {
     "ticker": "CCS",
@@ -1333,9 +1374,9 @@
       "governance_discount_catalyst"
     ],
     "n_mechanisms": 1,
-    "geometry_ratio": 7.5,
-    "geometry_score": 14.0,
-    "downside_pct": 0.4,
+    "geometry_ratio": 3.0,
+    "geometry_score": 8.7,
+    "downside_pct": 1.0,
     "upside_pct": 3.0,
     "floor_source": "book(0.5x)",
     "sector": "Healthcare",
@@ -1350,7 +1391,7 @@
         ]
       }
     },
-    "score": 15.5
+    "score": 14.2
   },
   "DEC": {
     "ticker": "DEC",
@@ -2551,9 +2592,9 @@
       "hidden_asset_realization"
     ],
     "n_mechanisms": 1,
-    "geometry_ratio": 0.75,
-    "geometry_score": 4.9,
-    "downside_pct": 0.829,
+    "geometry_ratio": 0.62,
+    "geometry_score": 4.4,
+    "downside_pct": 1.0,
     "upside_pct": 0.618,
     "floor_source": "book(0.5x)",
     "sector": "Communication Services",
@@ -2564,7 +2605,7 @@
         "mcap": 83832990.0
       }
     },
-    "score": 14.2
+    "score": 14.1
   },
   "RYZ": {
     "ticker": "RYZ",
@@ -2593,9 +2634,9 @@
       "structured_distressed_injection"
     ],
     "n_mechanisms": 1,
-    "geometry_ratio": 2.82,
-    "geometry_score": 8.4,
-    "downside_pct": 0.4,
+    "geometry_ratio": 1.13,
+    "geometry_score": 4.3,
+    "downside_pct": 1.0,
     "upside_pct": 1.129,
     "floor_source": "book(0.5x)",
     "sector": "Financial Services",
@@ -2607,7 +2648,7 @@
         "drawdown": -0.885
       }
     },
-    "score": 15.1
+    "score": 14.1
   },
   "THC": {
     "ticker": "THC",
@@ -2637,9 +2678,9 @@
       "asset_sale_latent"
     ],
     "n_mechanisms": 2,
-    "geometry_ratio": 7.5,
-    "geometry_score": 23.0,
-    "downside_pct": 0.4,
+    "geometry_ratio": 3.0,
+    "geometry_score": 17.7,
+    "downside_pct": 1.0,
     "upside_pct": 3.0,
     "floor_source": "book(0.5x)",
     "sector": "Industrials",
@@ -2652,10 +2693,10 @@
       "asset_sale_latent": {
         "pressure": "credit-sweep",
         "d_e": 1.56,
-        "ratio": 7.5
+        "ratio": 3.0
       }
     },
-    "score": 36.8
+    "score": 35.4
   },
   "ABM": {
     "ticker": "ABM",
@@ -3380,9 +3421,9 @@
       "structured_distressed_injection"
     ],
     "n_mechanisms": 1,
-    "geometry_ratio": 3.75,
-    "geometry_score": 18.9,
-    "downside_pct": 0.4,
+    "geometry_ratio": 1.5,
+    "geometry_score": 14.4,
+    "downside_pct": 1.0,
     "upside_pct": 1.5,
     "floor_source": "book(0.5x)",
     "sector": "Financial Services",
@@ -3394,7 +3435,7 @@
         "drawdown": -0.231
       }
     },
-    "score": 17.7
+    "score": 16.6
   },
   "WAFU": {
     "ticker": "WAFU",
@@ -3876,9 +3917,9 @@
       "governance_discount_catalyst"
     ],
     "n_mechanisms": 1,
-    "geometry_ratio": 7.5,
-    "geometry_score": 20.0,
-    "downside_pct": 0.4,
+    "geometry_ratio": 3.0,
+    "geometry_score": 14.7,
+    "downside_pct": 1.0,
     "upside_pct": 3.0,
     "floor_source": "book(0.5x)",
     "sector": "Healthcare",
@@ -3893,7 +3934,7 @@
         ]
       }
     },
-    "score": 17.0
+    "score": 15.7
   },
   "HIHO": {
     "ticker": "HIHO",
@@ -4056,30 +4097,6 @@
     },
     "score": 16.0
   },
-  "MSS": {
-    "ticker": "MSS",
-    "archetypes": [
-      "asset_sale_monetization"
-    ],
-    "n_mechanisms": 1,
-    "geometry_ratio": 3.75,
-    "geometry_score": 18.9,
-    "downside_pct": 0.4,
-    "upside_pct": 1.5,
-    "floor_source": "book(0.5x)",
-    "sector": "Consumer Defensive",
-    "details": {
-      "asset_sale": {
-        "sources": [
-          "event"
-        ],
-        "d_e": null,
-        "ratio": 3.75,
-        "small_cap": true
-      }
-    },
-    "score": 16.7
-  },
   "NMM": {
     "ticker": "NMM",
     "archetypes": [
@@ -4177,9 +4194,9 @@
       "governance_discount_catalyst"
     ],
     "n_mechanisms": 1,
-    "geometry_ratio": 3.75,
-    "geometry_score": 18.9,
-    "downside_pct": 0.4,
+    "geometry_ratio": 2.2,
+    "geometry_score": 16.1,
+    "downside_pct": 0.683,
     "upside_pct": 1.5,
     "floor_source": "book(0.5x)",
     "sector": "Healthcare",
@@ -4192,7 +4209,7 @@
         ]
       }
     },
-    "score": 16.7
+    "score": 16.0
   },
   "DSWL": {
     "ticker": "DSWL",
@@ -4282,6 +4299,30 @@
       }
     },
     "score": 16.0
+  },
+  "CAN": {
+    "ticker": "CAN",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.75,
+    "geometry_score": 18.9,
+    "downside_pct": 0.4,
+    "upside_pct": 1.5,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.621,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP"
+        ]
+      }
+    },
+    "score": 16.7
   },
   "OTF": {
     "ticker": "OTF",
@@ -4666,9 +4707,9 @@
       "governance_discount_catalyst"
     ],
     "n_mechanisms": 1,
-    "geometry_ratio": 1.35,
-    "geometry_score": 14.0,
-    "downside_pct": 0.4,
+    "geometry_ratio": 0.54,
+    "geometry_score": 11.0,
+    "downside_pct": 1.0,
     "upside_pct": 0.54,
     "floor_source": "book(0.5x)",
     "sector": "Financial Services",
@@ -4682,7 +4723,7 @@
         ]
       }
     },
-    "score": 15.5
+    "score": 14.8
   },
   "MFIC": {
     "ticker": "MFIC",
@@ -4759,9 +4800,9 @@
       "structured_distressed_injection"
     ],
     "n_mechanisms": 1,
-    "geometry_ratio": 1.17,
-    "geometry_score": 9.4,
-    "downside_pct": 0.882,
+    "geometry_ratio": 1.04,
+    "geometry_score": 9.0,
+    "downside_pct": 1.0,
     "upside_pct": 1.036,
     "floor_source": "book(0.5x)",
     "sector": "Industrials",
@@ -4773,7 +4814,7 @@
         "drawdown": -0.773
       }
     },
-    "score": 15.3
+    "score": 15.2
   },
   "DIT": {
     "ticker": "DIT",

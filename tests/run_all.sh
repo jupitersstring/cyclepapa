@@ -77,3 +77,7 @@ python3 test_cluster_consensus.py
 echo
 
 echo "All test suites passed."
+
+echo
+echo "=== security master (store) ==="
+python3 test_store.py

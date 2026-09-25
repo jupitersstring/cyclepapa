@@ -421,6 +421,7 @@ def main() -> int:
             sym_map[x["ticker"]] = x["fmp_symbol"]
             sym_map.setdefault(x["ticker"].split(":")[-1], x["fmp_symbol"])
     sym_map.update({k: v for k, v in YAML_SYM.items()})
+    (ROOT / "cross_symbol_map.json").write_text(json.dumps(sym_map, indent=0, sort_keys=True))   # -> store aliases
     fin = name_financials.build(set(sym_map.values()))
     name_financials.add_financials(wb, fin, sym_map, index=3,
                                    skip=("Cover", "Methodology", "Review & data quality"))

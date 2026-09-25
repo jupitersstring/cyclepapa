@@ -1186,6 +1186,26 @@ def _derivative_line(t, name, fin):
     return bool(_re.search(r"\bRights?\b|\bUnits?\b|\bWarrants?\b|Contingent Value", str(name or "")))
 
 
+def _master_type(t):
+    try:
+        import store
+        return store.sec_type_of(t)
+    except Exception:
+        return None
+
+
+def _master_issuer(t, nm):
+    """Issuer grouping key: the security master's CIK-based issuer id, else the normalised name."""
+    try:
+        import store
+        k = store.issuer_key(t)
+        if k and k.startswith("CIK:"):
+            return k
+    except Exception:
+        pass
+    return _norm_issuer(nm)
+
+
 def qa_fixes(wb, fin, harmonise_pb=True, skip=()):
     """Book-level fixes found by book_qa.py:
        * secondary share lines (preferreds / notes of an issuer already listed)
@@ -1213,11 +1233,14 @@ def qa_fixes(wb, fin, harmonise_pb=True, skip=()):
                 continue
             f = fin.get(t) or {}
             nm = f.get("name") or (ws.cell(row=r, column=ncol).value if ncol else None)
-            if (_bad_security(t, nm) or f.get("not_common") or _derivative_line(t, nm, fin)) \
+            st_ = _master_type(t)
+            if (_bad_security(t, nm) or f.get("not_common") or _derivative_line(t, nm, fin)
+                    or (st_ and st_ not in ("common", "adr", "otc_line")
+                        and not (st_ == "bankrupt" and ws.title in ("Distressed Stub Progress", "Red Flags")))) \
                     and ws.title not in ("Distressed Stub Progress",):
-                dels.append(r); stats["bad security"] += 1
+                dels.append(r); stats["bad security" + (f" ({st_})" if st_ and st_ != "common" else "")] += 1
                 continue
-            key = _norm_issuer(nm)
+            key = _master_issuer(t, nm)
             if key:
                 groups.setdefault(key, []).append((r, t))
         # one line per issuer: keep the primary (not an OTC F/Y line; shortest ticker), drop

@@ -141,8 +141,12 @@ def security_type(sym, p, prof):
     if ind == "Shell Companies" and re.search(r"Acquisition|Capital Corp|SPAC|Merger|Blank Check", nm, re.I):
         return "spac"
     price = _f(p.get("price"))
-    if (sym + "Q") in prof or (str(p.get("isActivelyTrading")).lower() == "false" and (price or 0) < 1):
-        return "bankrupt / not trading"
+    q = prof.get(sym + "Q")
+    same_issuer = bool(q) and str(q.get("isActivelyTrading")).lower() != "false" and (_f(q.get("price")) or 0) < 5 and ((p.get("cik") and p.get("cik") == q.get("cik")) or
+                               re.sub(r"[^a-z]", "", (q.get("companyName") or "").lower())[:20]
+                               == re.sub(r"[^a-z]", "", nm.lower())[:20])
+    if same_issuer or (str(p.get("isActivelyTrading")).lower() == "false" and (price or 0) < 1):
+        return "bankrupt / not trading"          # only when the Q line is the SAME issuer (BACQ is not Bank of America)
     return "common"
 
 

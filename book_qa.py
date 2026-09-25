@@ -93,6 +93,16 @@ def run():
                 nm = r[ncol] if ncol >= 0 and ncol < len(r) else None
                 f = fin.get(t) or {}
                 key = norm(nm or f.get("name") or "")
+                try:
+                    import store
+                    ik = store.issuer_key(t)
+                    if ik and ik.startswith("CIK:"):
+                        key = ik                          # the security master's issuer (CIK), not a name match
+                    st_ = store.sec_type_of(t)
+                    if st_ and st_ not in ("common", "adr", "otc_line", "bankrupt"):
+                        add(book, ws.title, rn, "BAD SECURITY", t, f"security master: {st_}")
+                except Exception:
+                    pass
                 if key:
                     seen[key].append((rn, t))
                 full_name = str(f.get("name") or nm or "")

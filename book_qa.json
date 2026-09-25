@@ -25,107 +25,11 @@
  },
  {
   "book": "MOST_ASYMMETRIC.xlsx",
-  "sheet": "Name Financials",
-  "row": 2300,
-  "kind": "DUPLICATE ISSUER",
-  "ticker": "MSGS,MSGE",
-  "detail": "madison square garden"
- },
- {
-  "book": "MOST_ASYMMETRIC.xlsx",
-  "sheet": "Name Financials",
-  "row": 1389,
-  "kind": "DUPLICATE ISSUER",
-  "ticker": "RACD,RACC",
-  "detail": "research alliance"
- },
- {
-  "book": "MOST_ASYMMETRIC.xlsx",
-  "sheet": "Name Financials",
-  "row": 1792,
-  "kind": "DUPLICATE ISSUER",
-  "ticker": "DTB,DTG",
-  "detail": "dte energy company 202"
- },
- {
-  "book": "MOST_ASYMMETRIC.xlsx",
-  "sheet": "Name Financials",
-  "row": 1917,
-  "kind": "DUPLICATE ISSUER",
-  "ticker": "FMCQF,FMS",
-  "detail": "fresenius medical care"
- },
- {
-  "book": "MOST_ASYMMETRIC.xlsx",
-  "sheet": "Name Financials",
-  "row": 2467,
-  "kind": "DUPLICATE ISSUER",
-  "ticker": "PRU,PRH,PRS",
-  "detail": "prudential financial"
- },
- {
-  "book": "MOST_ASYMMETRIC.xlsx",
   "sheet": "PSU Plans",
   "row": 4,
   "kind": "DEAD COLUMN",
   "ticker": "",
-  "detail": "'rTSR target' empty in 1074/1185 rows"
- },
- {
-  "book": "MOST_ASYMMETRIC.xlsx",
-  "sheet": "Asymmetry Assembly",
-  "row": 4,
-  "kind": "DEAD COLUMN",
-  "ticker": "",
-  "detail": "'Catl' empty in 24/26 rows"
- },
- {
-  "book": "MOST_ASYMMETRIC.xlsx",
-  "sheet": "Turnaround Signal",
-  "row": 20,
-  "kind": "NO DATA",
-  "ticker": "CIK0000859737",
-  "detail": "no FMP financial record"
- },
- {
-  "book": "MOST_ASYMMETRIC.xlsx",
-  "sheet": "Priced In",
-  "row": 2092,
-  "kind": "DUPLICATE ISSUER",
-  "ticker": "PRU,PRH,PRS",
-  "detail": "prudential financial in"
- },
- {
-  "book": "MOST_ASYMMETRIC.xlsx",
-  "sheet": "Insider Filing-Time",
-  "row": 51,
-  "kind": "NO DATA",
-  "ticker": "GF",
-  "detail": "no FMP financial record"
- },
- {
-  "book": "MOST_ASYMMETRIC.xlsx",
-  "sheet": "Insider Filing-Time",
-  "row": 52,
-  "kind": "NO DATA",
-  "ticker": "MXF",
-  "detail": "no FMP financial record"
- },
- {
-  "book": "MOST_ASYMMETRIC.xlsx",
-  "sheet": "Single-Measure Best",
-  "row": 85,
-  "kind": "NO DATA",
-  "ticker": "GLL",
-  "detail": "no FMP financial record"
- },
- {
-  "book": "MOST_ASYMMETRIC.xlsx",
-  "sheet": "Single-Measure Best",
-  "row": 86,
-  "kind": "NO DATA",
-  "ticker": "AGQ",
-  "detail": "no FMP financial record"
+  "detail": "'rTSR target' empty in 1093/1207 rows"
  },
  {
   "book": "OTC_BOOK.xlsx",
@@ -133,12 +37,12 @@
   "row": 4,
   "kind": "DEAD COLUMN",
   "ticker": "",
-  "detail": "'Insider %' empty in 49/53 rows"
+  "detail": "'Insider %' empty in 49/54 rows"
  },
  {
   "book": "cyclepapa_risk_reward_workbook.xlsx",
   "sheet": "Call intent",
-  "row": 108,
+  "row": 111,
   "kind": "BAD SECURITY",
   "ticker": "VOW3",
   "detail": "Volkswagen Preferred"
@@ -153,22 +57,6 @@
  },
  {
   "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "PSU Engine x-feed",
-  "row": 5,
-  "kind": "DEAD COLUMN",
-  "ticker": "",
-  "detail": "'Insider conviction' empty in 49/52 rows"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "PSU Engine x-feed",
-  "row": 5,
-  "kind": "DEAD COLUMN",
-  "ticker": "",
-  "detail": "'Conviction flags' empty in 49/52 rows"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
   "sheet": "All names",
   "row": 32,
   "kind": "BAD SECURITY",
@@ -178,15 +66,7 @@
  {
   "book": "cyclepapa_risk_reward_workbook.xlsx",
   "sheet": "All names",
-  "row": 256,
-  "kind": "DUPLICATE ISSUER",
-  "ticker": "AZLUY,AZUL",
-  "detail": "azul"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "All names",
-  "row": 823,
+  "row": 791,
   "kind": "DUPLICATE ISSUER",
   "ticker": "HK:2202,SZSE:000002",
   "detail": "vanke"

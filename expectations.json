@@ -540,6 +540,35 @@
   "short_pct_float": 0.14691860969852083,
   "summary": "4 analysts \u00b7 target $13.00 (+67%), trend up 21% \u00b7 fwd P/E 7.6 (FY2026) \u00b7 short 15% of float, 13.2 days to cover"
  },
+ "ACA": {
+  "n_analysts": 2,
+  "pt": 145,
+  "pt_upside": -0.011723009814612828,
+  "pt_low_high": [
+   140,
+   150
+  ],
+  "pt_trend": 0.11111111111111116,
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 7,
+   "hold": 1,
+   "sell": 0,
+   "strongSell": 0
+  },
+  "rating_consensus": "Buy",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": 4.28,
+  "fwd_fy": "2026",
+  "fwd_pe": 34.2803738317757,
+  "fwd_rev": 2602300000,
+  "short_shares": 1564980,
+  "days_to_cover": 2.48,
+  "short_change": 0.24238286521759833,
+  "short_pct_float": 0.03253616425280586,
+  "summary": "2 analysts (neglected) \u00b7 target $145.00 (-1%), trend up 11% \u00b7 fwd P/E 34.3 (FY2026) \u00b7 short 3% of float, 2.5 days to cover (+24%)"
+ },
  "ACCO": {
   "n_analysts": 2,
   "pt": 6,
@@ -1221,6 +1250,35 @@
   "upgrades_90d": 0,
   "downgrades_90d": 0,
   "summary": "no analyst coverage (orphan)"
+ },
+ "ADM": {
+  "n_analysts": 6,
+  "pt": 88,
+  "pt_upside": 0.06331561140647657,
+  "pt_low_high": [
+   79,
+   95
+  ],
+  "pt_trend": 0.05355417529330575,
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 12,
+   "hold": 22,
+   "sell": 2,
+   "strongSell": 0
+  },
+  "rating_consensus": "Hold",
+  "upgrades_90d": 1,
+  "downgrades_90d": 0,
+  "fwd_eps": 5.37933,
+  "fwd_fy": "2026",
+  "fwd_pe": 15.384815581122556,
+  "fwd_rev": 87340851023,
+  "short_shares": 14598260,
+  "days_to_cover": 3.98,
+  "short_change": 0.01080457309258187,
+  "short_pct_float": 0.030495361862991687,
+  "summary": "6 analysts \u00b7 target $88.00 (+6%) \u00b7 1 up / 0 down 90d \u00b7 fwd P/E 15.4 (FY2026) \u00b7 short 3% of float, 4.0 days to cover"
  },
  "ADMA": {
   "n_analysts": 3,
@@ -2110,6 +2168,34 @@
   "short_pct_float": 0.02843244158301648,
   "summary": "2 analysts (neglected) \u00b7 target $8.00 (+33%) \u00b7 loss expected FY2026"
  },
+ "AI": {
+  "n_analysts": 11,
+  "pt": 9.67,
+  "pt_upside": -0.11202938475665758,
+  "pt_low_high": [
+   7,
+   12
+  ],
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 6,
+   "hold": 15,
+   "sell": 7,
+   "strongSell": 0
+  },
+  "rating_consensus": "Hold",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": -0.75966,
+  "fwd_fy": "2027",
+  "fwd_pe": null,
+  "fwd_rev": 221705995,
+  "short_shares": 42395077,
+  "days_to_cover": 6.93,
+  "short_change": -0.09217575984986437,
+  "short_pct_float": 0.3094851451123168,
+  "summary": "11 analysts \u00b7 target $9.67 (-11%) \u00b7 loss expected FY2027 \u00b7 short 31% of float, 6.9 days to cover"
+ },
  "AIB": {
   "n_analysts": 0,
   "upgrades_90d": 0,
@@ -2177,6 +2263,35 @@
   "short_change": 0.2096171724330902,
   "short_pct_float": 0.019936717630379793,
   "summary": "12 analysts \u00b7 target $87.43 (+15%) \u00b7 1 up / 1 down 90d \u00b7 fwd P/E 9.4 (FY2026)"
+ },
+ "AII": {
+  "n_analysts": 4,
+  "pt": 26.5,
+  "pt_upside": 0.04207628784899731,
+  "pt_low_high": [
+   26,
+   27
+  ],
+  "pt_trend": -0.03209782193351174,
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 5,
+   "hold": 0,
+   "sell": 0,
+   "strongSell": 0
+  },
+  "rating_consensus": "Buy",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": 3.78167,
+  "fwd_fy": "2026",
+  "fwd_pe": 6.724542331826944,
+  "fwd_rev": 1022749500,
+  "short_shares": 229025,
+  "days_to_cover": 1.07,
+  "short_change": 0.3498102220755339,
+  "short_pct_float": 0.034266938138918866,
+  "summary": "4 analysts \u00b7 target $26.50 (+4%) \u00b7 fwd P/E 6.7 (FY2026) \u00b7 short 3% of float, 1.1 days to cover (+35%)"
  },
  "AIN": {
   "n_analysts": 2,
@@ -4423,6 +4538,35 @@
   "short_pct_float": 0.026225659215442957,
   "summary": "1 analyst (neglected) \u00b7 target $3.00 (+188%) \u00b7 loss expected FY2026"
  },
+ "AR": {
+  "n_analysts": 11,
+  "pt": 51.08,
+  "pt_upside": 0.4157427937915743,
+  "pt_low_high": [
+   38,
+   58
+  ],
+  "pt_trend": 0.05639020374562653,
+  "ratings": {
+   "strongBuy": 1,
+   "buy": 33,
+   "hold": 16,
+   "sell": 0,
+   "strongSell": 0
+  },
+  "rating_consensus": "Buy",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": 4.25858,
+  "fwd_fy": "2026",
+  "fwd_pe": 8.472307670631993,
+  "fwd_rev": 6717027497,
+  "short_shares": 13144085,
+  "days_to_cover": 3.98,
+  "short_change": -0.07276340537429737,
+  "short_pct_float": 0.044362501026745285,
+  "summary": "11 analysts \u00b7 target $51.08 (+42%) \u00b7 fwd P/E 8.5 (FY2026) \u00b7 short 4% of float, 4.0 days to cover"
+ },
  "ARAI": {
   "n_analysts": 1,
   "upgrades_90d": 0,
@@ -4746,6 +4890,34 @@
   "short_change": 0.009875340032741597,
   "short_pct_float": 0.01536428928441297,
   "summary": "2 analysts (neglected) \u00b7 target $30.00 (+17%) \u00b7 fwd P/E 10.6 (FY2026)"
+ },
+ "ARQ": {
+  "n_analysts": 4,
+  "pt": 7.5,
+  "pt_upside": 2.6991368680641186,
+  "pt_low_high": [
+   7.5,
+   7.5
+  ],
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 2,
+   "hold": 2,
+   "sell": 0,
+   "strongSell": 0
+  },
+  "rating_consensus": "Buy",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": -0.010854,
+  "fwd_fy": "2026",
+  "fwd_pe": null,
+  "fwd_rev": 124198707,
+  "short_shares": 466211,
+  "days_to_cover": 1.89,
+  "short_change": -0.028145995626551734,
+  "short_pct_float": 0.014673193639348964,
+  "summary": "4 analysts \u00b7 target $7.50 (+270%) \u00b7 loss expected FY2026"
  },
  "ARR": {
   "n_analysts": 4,
@@ -6379,6 +6551,35 @@
   "short_pct_float": 0.018736871663048525,
   "summary": "20 analysts \u00b7 target $273.13 (+35%) \u00b7 2 up / 0 down 90d \u00b7 loss expected FY2026"
  },
+ "BAC": {
+  "n_analysts": 15,
+  "pt": 66,
+  "pt_upside": 0.18099668963049131,
+  "pt_low_high": [
+   59,
+   75
+  ],
+  "pt_trend": 0.06645468998410164,
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 35,
+   "hold": 18,
+   "sell": 1,
+   "strongSell": 0
+  },
+  "rating_consensus": "Buy",
+  "upgrades_90d": 0,
+  "downgrades_90d": 1,
+  "fwd_eps": 4.6095,
+  "fwd_fy": "2026",
+  "fwd_pe": 12.123874606790325,
+  "fwd_rev": 123799962850,
+  "short_shares": 83249868,
+  "days_to_cover": 2.39,
+  "short_change": 0.01215361950963545,
+  "short_pct_float": 0.01176519263663987,
+  "summary": "15 analysts \u00b7 target $66.00 (+18%) \u00b7 0 up / 1 down 90d \u00b7 fwd P/E 12.1 (FY2026)"
+ },
  "BAFN": {
   "n_analysts": 0,
   "upgrades_90d": 0,
@@ -6907,6 +7108,34 @@
   "short_change": 0.13493291077544867,
   "short_pct_float": 0.0678070221160382,
   "summary": "2 analysts (neglected) \u00b7 target $9.50 (+9%) \u00b7 loss expected FY2026 \u00b7 short 7% of float, 8.0 days to cover (+13%)"
+ },
+ "BCC": {
+  "n_analysts": 5,
+  "pt": 94.5,
+  "pt_upside": 0.19726339794754844,
+  "pt_low_high": [
+   92,
+   97
+  ],
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 4,
+   "hold": 6,
+   "sell": 2,
+   "strongSell": 0
+  },
+  "rating_consensus": "Hold",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": 3.91857,
+  "fwd_fy": "2026",
+  "fwd_pe": 20.14255200238863,
+  "fwd_rev": 6619934240,
+  "short_shares": 1617596,
+  "days_to_cover": 5.41,
+  "short_change": 0.061638310956572795,
+  "short_pct_float": 0.04697062391957643,
+  "summary": "5 analysts \u00b7 target $94.50 (+20%) \u00b7 fwd P/E 20.1 (FY2026) \u00b7 short 5% of float, 5.4 days to cover"
  },
  "BCDA": {
   "n_analysts": 1,
@@ -7710,6 +7939,35 @@
   "short_change": -0.030376543568128356,
   "short_pct_float": 0.12316499845513598,
   "summary": "13 analysts \u00b7 target $56.56 (+22%) \u00b7 fwd P/E 12.3 (FY2027) \u00b7 short 12% of float, 6.4 days to cover"
+ },
+ "BIO": {
+  "n_analysts": 4,
+  "pt": 350,
+  "pt_upside": -0.07424551009072389,
+  "pt_low_high": [
+   310,
+   390
+  ],
+  "pt_trend": 0.13643160476105032,
+  "ratings": {
+   "strongBuy": 1,
+   "buy": 7,
+   "hold": 6,
+   "sell": 0,
+   "strongSell": 0
+  },
+  "rating_consensus": "Buy",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": 9.64049,
+  "fwd_fy": "2026",
+  "fwd_pe": 39.21688627860202,
+  "fwd_rev": 2583651557,
+  "short_shares": 998654,
+  "days_to_cover": 3.83,
+  "short_change": -0.11646840036875228,
+  "short_pct_float": 0.0558616330818577,
+  "summary": "4 analysts \u00b7 target $350.00 (-7%), trend up 14% \u00b7 fwd P/E 39.2 (FY2026) \u00b7 short 6% of float, 3.8 days to cover (-12%)"
  },
  "BIO-B": {
   "n_analysts": 5,
@@ -13595,6 +13853,35 @@
   "short_pct_float": 0.0236039146916185,
   "summary": "10 analysts \u00b7 target $358.14 (+13%) \u00b7 fwd P/E 17.7 (FY2026)"
  },
+ "CORZ": {
+  "n_analysts": 13,
+  "pt": 32.46,
+  "pt_upside": 0.7390838467720333,
+  "pt_low_high": [
+   16,
+   40
+  ],
+  "pt_trend": 0.03850050658561299,
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 19,
+   "hold": 3,
+   "sell": 0,
+   "strongSell": 0
+  },
+  "rating_consensus": "Buy",
+  "upgrades_90d": 1,
+  "downgrades_90d": 0,
+  "fwd_eps": -4.4793,
+  "fwd_fy": "2026",
+  "fwd_pe": null,
+  "fwd_rev": 686363055,
+  "short_shares": 63129979,
+  "days_to_cover": 5.86,
+  "short_change": -0.025617290867581466,
+  "short_pct_float": 0.24377496592140302,
+  "summary": "13 analysts \u00b7 target $32.46 (+74%) \u00b7 1 up / 0 down 90d \u00b7 loss expected FY2026 \u00b7 short 24% of float, 5.9 days to cover"
+ },
  "COTY": {
   "n_analysts": 11,
   "pt": 2.67,
@@ -15430,6 +15717,35 @@
   "short_change": -0.02268608817141826,
   "short_pct_float": 0.0263232084078081,
   "summary": "2 analysts (neglected) \u00b7 target $24.00 (+13%) \u00b7 0 up / 1 down 90d \u00b7 fwd P/E 14.9 (FY2026)"
+ },
+ "D": {
+  "n_analysts": 9,
+  "pt": 71.56,
+  "pt_upside": 0.16528252727568815,
+  "pt_low_high": [
+   66,
+   80
+  ],
+  "pt_trend": 0.047139521307647536,
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 12,
+   "hold": 19,
+   "sell": 2,
+   "strongSell": 0
+  },
+  "rating_consensus": "Hold",
+  "upgrades_90d": 1,
+  "downgrades_90d": 0,
+  "fwd_eps": 3.58795,
+  "fwd_fy": "2026",
+  "fwd_pe": 17.115623127412587,
+  "fwd_rev": 18400243913,
+  "short_shares": 22347257,
+  "days_to_cover": 4.49,
+  "short_change": -0.1771361966248869,
+  "short_pct_float": 0.025443331547200954,
+  "summary": "9 analysts \u00b7 target $71.56 (+17%) \u00b7 1 up / 0 down 90d \u00b7 fwd P/E 17.1 (FY2026)"
  },
  "DAIO": {
   "n_analysts": 1,
@@ -18935,6 +19251,35 @@
   "short_pct_float": 0.035376809113844186,
   "summary": "1 analyst (neglected) \u00b7 target $28.00 (+24%) \u00b7 fwd P/E 11.6 (FY2026) \u00b7 short 4% of float, 5.7 days to cover"
  },
+ "ES": {
+  "n_analysts": 7,
+  "pt": 73.8,
+  "pt_upside": 0.13294442738716605,
+  "pt_low_high": [
+   72,
+   76
+  ],
+  "pt_trend": 0.018219178082191867,
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 9,
+   "hold": 16,
+   "sell": 4,
+   "strongSell": 0
+  },
+  "rating_consensus": "Hold",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": 4.64664,
+  "fwd_fy": "2026",
+  "fwd_pe": 14.018731814816729,
+  "fwd_rev": 13694827042,
+  "short_shares": 9088657,
+  "days_to_cover": 4.82,
+  "short_change": -0.01064826048113987,
+  "short_pct_float": 0.02420355926917459,
+  "summary": "7 analysts \u00b7 target $73.80 (+13%) \u00b7 fwd P/E 14.0 (FY2026)"
+ },
  "ESAB": {
   "n_analysts": 8,
   "pt": 135,
@@ -19401,6 +19746,35 @@
   "short_change": 0.04915258200273276,
   "short_pct_float": 0.03261488003907622,
   "summary": "11 analysts \u00b7 target $48.11 (+18%) \u00b7 fwd P/E 14.3 (FY2026) \u00b7 short 3% of float, 4.0 days to cover"
+ },
+ "EXE": {
+  "n_analysts": 11,
+  "pt": 120.9,
+  "pt_upside": 0.3749573524394405,
+  "pt_low_high": [
+   93,
+   147
+  ],
+  "pt_trend": -0.06963661243728136,
+  "ratings": {
+   "strongBuy": 1,
+   "buy": 16,
+   "hold": 5,
+   "sell": 0,
+   "strongSell": 0
+  },
+  "rating_consensus": "Buy",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": 8.60323,
+  "fwd_fy": "2026",
+  "fwd_pe": 10.220579944974157,
+  "fwd_rev": 13269832360,
+  "short_shares": 9563805,
+  "days_to_cover": 4.03,
+  "short_change": 0.13808417401238193,
+  "short_pct_float": 0.04149173048916038,
+  "summary": "11 analysts \u00b7 target $120.90 (+37%) \u00b7 fwd P/E 10.2 (FY2026) \u00b7 short 4% of float, 4.0 days to cover (+14%)"
  },
  "EXFY": {
   "n_analysts": 3,
@@ -24069,6 +24443,35 @@
   "short_pct_float": 0.2621453930945118,
   "summary": "1 analyst (neglected) \u00b7 fwd P/E 12.2 (FY2026) \u00b7 short 26% of float, 12.7 days to cover"
  },
+ "GPI": {
+  "n_analysts": 8,
+  "pt": 380,
+  "pt_upside": 0.5235346002726327,
+  "pt_low_high": [
+   330,
+   425
+  ],
+  "pt_trend": -0.07024250668417842,
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 11,
+   "hold": 14,
+   "sell": 0,
+   "strongSell": 0
+  },
+  "rating_consensus": "Hold",
+  "upgrades_90d": 0,
+  "downgrades_90d": 2,
+  "fwd_eps": 39.13761,
+  "fwd_fy": "2026",
+  "fwd_pe": 6.372898089586972,
+  "fwd_rev": 22319942519,
+  "short_shares": 1278436,
+  "days_to_cover": 5.07,
+  "short_change": 0.06709558516658709,
+  "short_pct_float": 0.11107888585732083,
+  "summary": "8 analysts \u00b7 target $380.00 (+52%) \u00b7 0 up / 2 down 90d \u00b7 fwd P/E 6.4 (FY2026) \u00b7 short 11% of float, 5.1 days to cover"
+ },
  "GPK": {
   "n_analysts": 9,
   "pt": 10.88,
@@ -25007,6 +25410,35 @@
   "short_pct_float": 0.052654246130081885,
   "summary": "2 analysts (neglected) \u00b7 target $17.00 (+140%) \u00b7 loss expected FY2026 \u00b7 short 5% of float, 19.2 days to cover"
  },
+ "H": {
+  "n_analysts": 15,
+  "pt": 197.69,
+  "pt_upside": 0.24776722315145006,
+  "pt_low_high": [
+   180,
+   221
+  ],
+  "pt_trend": 0.044985747603006,
+  "ratings": {
+   "strongBuy": 1,
+   "buy": 18,
+   "hold": 25,
+   "sell": 5,
+   "strongSell": 0
+  },
+  "rating_consensus": "Hold",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": 3.57098,
+  "fwd_fy": "2026",
+  "fwd_pe": 44.36737254199127,
+  "fwd_rev": 7148251663,
+  "short_shares": 4691807,
+  "days_to_cover": 5.69,
+  "short_change": -0.0005176560109768635,
+  "short_pct_float": 0.051818645305491545,
+  "summary": "15 analysts \u00b7 target $197.69 (+25%) \u00b7 fwd P/E 44.4 (FY2026) \u00b7 short 5% of float, 5.7 days to cover"
+ },
  "HAE": {
   "n_analysts": 9,
   "pt": 108.6,
@@ -25534,6 +25966,35 @@
   "short_change": -0.10439799973546149,
   "short_pct_float": 0.08590499617555199,
   "summary": "3 analysts \u00b7 target $8.00 (+55%) \u00b7 fwd P/E 27.9 (FY2026) \u00b7 short 9% of float, 6.4 days to cover (-10%)"
+ },
+ "HE": {
+  "n_analysts": 2,
+  "pt": 10.38,
+  "pt_upside": 0.11194429566148911,
+  "pt_low_high": [
+   8.75,
+   12
+  ],
+  "pt_trend": -0.06395851339671565,
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 0,
+   "hold": 8,
+   "sell": 5,
+   "strongSell": 0
+  },
+  "rating_consensus": "Hold",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": 0.69233,
+  "fwd_fy": "2026",
+  "fwd_pe": 13.483454422024181,
+  "fwd_rev": 3127000000,
+  "short_shares": 18793516,
+  "days_to_cover": 6.77,
+  "short_change": 0.06467153918170343,
+  "short_pct_float": 0.10926714486295318,
+  "summary": "2 analysts (neglected) \u00b7 target $10.38 (+11%) \u00b7 fwd P/E 13.5 (FY2026) \u00b7 short 11% of float, 6.8 days to cover"
  },
  "HELE": {
   "n_analysts": 3,
@@ -27333,6 +27794,30 @@
   "short_pct_float": 0.0005861416063540479,
   "summary": "no analyst coverage (orphan)"
  },
+ "IAC": {
+  "n_analysts": 8,
+  "pt": 50.2,
+  "pt_upside": 0.0877573131094258,
+  "pt_low_high": [
+   44,
+   55
+  ],
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 28,
+   "hold": 5,
+   "sell": 0,
+   "strongSell": 0
+  },
+  "rating_consensus": "Buy",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": 5.48934,
+  "fwd_fy": "2026",
+  "fwd_pe": 8.407203780418046,
+  "fwd_rev": 1829358478,
+  "summary": "8 analysts \u00b7 target $50.20 (+9%) \u00b7 fwd P/E 8.4 (FY2026)"
+ },
  "IART": {
   "n_analysts": 9,
   "pt": 20.5,
@@ -27470,6 +27955,35 @@
   "short_change": -0.03689975672453716,
   "short_pct_float": 0.03465363904450959,
   "summary": "2 analysts (neglected) \u00b7 target $24.00 (-44%) \u00b7 fwd P/E 11.6 (FY2027) \u00b7 short 3% of float, 2.1 days to cover"
+ },
+ "IBM": {
+  "n_analysts": 17,
+  "pt": 256.69,
+  "pt_upside": 0.08716276311888516,
+  "pt_low_high": [
+   175,
+   350
+  ],
+  "pt_trend": -0.13654728480449219,
+  "ratings": {
+   "strongBuy": 1,
+   "buy": 23,
+   "hold": 22,
+   "sell": 5,
+   "strongSell": 0
+  },
+  "rating_consensus": "Buy",
+  "upgrades_90d": 0,
+  "downgrades_90d": 1,
+  "fwd_eps": 12.30916,
+  "fwd_fy": "2026",
+  "fwd_pe": 19.18165008822698,
+  "fwd_rev": 70358694454,
+  "short_shares": 22444940,
+  "days_to_cover": 4.56,
+  "short_change": 0.019482315988400556,
+  "short_pct_float": 0.023874114568602823,
+  "summary": "17 analysts \u00b7 target $256.69 (+9%), trend down 14% \u00b7 0 up / 1 down 90d \u00b7 fwd P/E 19.2 (FY2026)"
  },
  "IBP": {
   "n_analysts": 9,
@@ -28381,6 +28895,35 @@
   "short_pct_float": 0.05511925976960537,
   "summary": "2 analysts (neglected) \u00b7 target $14.00 (+53%) \u00b7 1 up / 0 down 90d \u00b7 fwd P/E 20.8 (FY2027) \u00b7 short 6% of float, 3.8 days to cover (+14%)"
  },
+ "INO": {
+  "n_analysts": 2,
+  "pt": 2.75,
+  "pt_upside": 1.1825396825396823,
+  "pt_low_high": [
+   2.5,
+   3
+  ],
+  "pt_trend": -0.216710182767624,
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 10,
+   "hold": 5,
+   "sell": 2,
+   "strongSell": 0
+  },
+  "rating_consensus": "Buy",
+  "upgrades_90d": 1,
+  "downgrades_90d": 0,
+  "fwd_eps": -0.76333,
+  "fwd_fy": "2026",
+  "fwd_pe": null,
+  "fwd_rev": 666667,
+  "short_shares": 19921776,
+  "days_to_cover": 6.54,
+  "short_change": 0.034769304414455915,
+  "short_pct_float": 0.2432948506619094,
+  "summary": "2 analysts (neglected) \u00b7 target $2.75 (+118%), trend down 22% \u00b7 1 up / 0 down 90d \u00b7 loss expected FY2026 \u00b7 short 24% of float, 6.5 days to cover"
+ },
  "INR": {
   "n_analysts": 3,
   "pt": 24.5,
@@ -29046,6 +29589,35 @@
   "short_change": -0.07924892817445617,
   "short_pct_float": 0.023780035610417926,
   "summary": "2 analysts (neglected) \u00b7 target $31.50 (+6%) \u00b7 fwd P/E 9.4 (FY2026)"
+ },
+ "IT": {
+  "n_analysts": 10,
+  "pt": 172.5,
+  "pt_upside": -0.04545831834656777,
+  "pt_low_high": [
+   120,
+   206
+  ],
+  "pt_trend": -0.09345431607550092,
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 5,
+   "hold": 10,
+   "sell": 3,
+   "strongSell": 0
+  },
+  "rating_consensus": "Hold",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": 14.46552,
+  "fwd_fy": "2026",
+  "fwd_pe": 12.49281049004806,
+  "fwd_rev": 6418652214,
+  "short_shares": 8315554,
+  "days_to_cover": 7.6,
+  "short_change": 0.04416688630590082,
+  "short_pct_float": 0.1274317987618316,
+  "summary": "10 analysts \u00b7 target $172.50 (-5%) \u00b7 fwd P/E 12.5 (FY2026) \u00b7 short 13% of float, 7.6 days to cover"
  },
  "ITFS": {
   "n_analysts": 2,
@@ -31664,6 +32236,25 @@
   "fwd_pe": null,
   "summary": "1 analyst (neglected) \u00b7 target $11.00 (+51%) \u00b7 loss expected FY2026"
  },
+ "L": {
+  "n_analysts": 1,
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 2,
+   "hold": 2,
+   "sell": 0,
+   "strongSell": 0
+  },
+  "rating_consensus": "Buy",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_rev": 21903000000,
+  "short_shares": 4750834,
+  "days_to_cover": 5.56,
+  "short_change": -0.06380442110212459,
+  "short_pct_float": 0.028421762342451428,
+  "summary": "1 analyst (neglected)"
+ },
  "LAB": {
   "n_analysts": 1,
   "pt": 3.25,
@@ -33973,6 +34564,35 @@
   "short_pct_float": 0.050225962814992496,
   "summary": "2 analysts (neglected) \u00b7 target $40.00 (+33%) \u00b7 fwd P/E 12.0 (FY2027) \u00b7 short 5% of float, 2.6 days to cover"
  },
+ "M": {
+  "n_analysts": 7,
+  "pt": 24.25,
+  "pt_upside": 0.06945975744211674,
+  "pt_low_high": [
+   22,
+   30
+  ],
+  "pt_trend": 0.348314606741573,
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 13,
+   "hold": 21,
+   "sell": 7,
+   "strongSell": 0
+  },
+  "rating_consensus": "Hold",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": 2.3234,
+  "fwd_fy": "2027",
+  "fwd_pe": 9.759404321253337,
+  "fwd_rev": 21776083152,
+  "short_shares": 35649331,
+  "days_to_cover": 4.45,
+  "short_change": 0.1016900644480696,
+  "short_pct_float": 0.13775675549200894,
+  "summary": "7 analysts \u00b7 target $24.25 (+7%), trend up 35% \u00b7 fwd P/E 9.8 (FY2027) \u00b7 short 14% of float, 4.5 days to cover (+10%)"
+ },
  "MA": {
   "n_analysts": 28,
   "pt": 666.67,
@@ -35003,6 +35623,35 @@
   "short_change": 0.12718317233035337,
   "short_pct_float": 0.0918306925501267,
   "summary": "3 analysts \u00b7 target $25.25 (+73%), trend up 15% \u00b7 1 up / 0 down 90d \u00b7 loss expected FY2027 \u00b7 short 9% of float, 3.4 days to cover (+13%)"
+ },
+ "MET": {
+  "n_analysts": 12,
+  "pt": 103.22,
+  "pt_upside": 0.06133360752660533,
+  "pt_low_high": [
+   95,
+   111
+  ],
+  "pt_trend": 0.057189376208405474,
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 26,
+   "hold": 7,
+   "sell": 0,
+   "strongSell": 0
+  },
+  "rating_consensus": "Buy",
+  "upgrades_90d": 1,
+  "downgrades_90d": 0,
+  "fwd_eps": 10.04157,
+  "fwd_fy": "2026",
+  "fwd_pe": 9.685238463706373,
+  "fwd_rev": 79787336082,
+  "short_shares": 12285410,
+  "days_to_cover": 4.44,
+  "short_change": 0.03651979906108016,
+  "short_pct_float": 0.022856793065128042,
+  "summary": "12 analysts \u00b7 target $103.22 (+6%) \u00b7 1 up / 0 down 90d \u00b7 fwd P/E 9.7 (FY2026)"
  },
  "META": {
   "n_analysts": 43,
@@ -38517,6 +39166,35 @@
   "short_pct_float": 0.04241352165119565,
   "summary": "2 analysts (neglected) \u00b7 target $71.50 (+1%) \u00b7 fwd P/E 13.2 (FY2026) \u00b7 short 4% of float, 6.1 days to cover"
  },
+ "NHI": {
+  "n_analysts": 3,
+  "pt": 79.4,
+  "pt_upside": 0.18933493109646493,
+  "pt_low_high": [
+   78,
+   80
+  ],
+  "pt_trend": -0.04910929224843519,
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 6,
+   "hold": 12,
+   "sell": 1,
+   "strongSell": 0
+  },
+  "rating_consensus": "Hold",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": 3.85,
+  "fwd_fy": "2026",
+  "fwd_pe": 17.340259740259743,
+  "fwd_rev": 281649600,
+  "short_shares": 2006494,
+  "days_to_cover": 5.96,
+  "short_change": -0.11038645211834175,
+  "short_pct_float": 0.04242231486822118,
+  "summary": "3 analysts \u00b7 target $79.40 (+19%) \u00b7 fwd P/E 17.3 (FY2026) \u00b7 short 4% of float, 6.0 days to cover (-11%)"
+ },
  "NHPBP": {
   "n_analysts": 0,
   "upgrades_90d": 0,
@@ -38537,11 +39215,62 @@
   "short_pct_float": 0.005633213014668188,
   "summary": "no analyst coverage (orphan)"
  },
+ "NI": {
+  "n_analysts": 8,
+  "pt": 50.71,
+  "pt_upside": 0.29148096268941814,
+  "pt_low_high": [
+   48,
+   52
+  ],
+  "pt_trend": 0.028027823240589056,
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 16,
+   "hold": 6,
+   "sell": 0,
+   "strongSell": 0
+  },
+  "rating_consensus": "Buy",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": 2.05424,
+  "fwd_fy": "2026",
+  "fwd_pe": 19.114124931848274,
+  "fwd_rev": 7074652010,
+  "short_shares": 14724912,
+  "days_to_cover": 3.09,
+  "short_change": 0.0050785952268685985,
+  "short_pct_float": 0.030829113868449106,
+  "summary": "8 analysts \u00b7 target $50.71 (+29%) \u00b7 fwd P/E 19.1 (FY2026) \u00b7 short 3% of float, 3.1 days to cover"
+ },
  "NIMU": {
   "n_analysts": 0,
   "upgrades_90d": 0,
   "downgrades_90d": 0,
   "summary": "no analyst coverage (orphan)"
+ },
+ "NINE": {
+  "n_analysts": 2,
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 2,
+   "hold": 5,
+   "sell": 2,
+   "strongSell": 0
+  },
+  "rating_consensus": "Hold",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": 4.56,
+  "fwd_fy": "2026",
+  "fwd_pe": 2.002192982456141,
+  "fwd_rev": 550900000,
+  "short_shares": 240510,
+  "days_to_cover": 5.44,
+  "short_change": 0.06793659251365392,
+  "short_pct_float": 0.005647126113866922,
+  "summary": "2 analysts (neglected) \u00b7 fwd P/E 2.0 (FY2026)"
  },
  "NIXX": {
   "n_analysts": 0,
@@ -38552,6 +39281,35 @@
   "short_change": -0.5039260990519989,
   "short_pct_float": 0.008077635332329247,
   "summary": "no analyst coverage (orphan)"
+ },
+ "NKE": {
+  "n_analysts": 31,
+  "pt": 47.62,
+  "pt_upside": 0.3160149233107641,
+  "pt_low_high": [
+   30,
+   75
+  ],
+  "pt_trend": -0.18752079866888527,
+  "ratings": {
+   "strongBuy": 1,
+   "buy": 32,
+   "hold": 32,
+   "sell": 6,
+   "strongSell": 0
+  },
+  "rating_consensus": "Buy",
+  "upgrades_90d": 0,
+  "downgrades_90d": 3,
+  "fwd_eps": 1.69279,
+  "fwd_fy": "2027",
+  "fwd_pe": 21.37595330785272,
+  "fwd_rev": 45511685195,
+  "short_shares": 85698150,
+  "days_to_cover": 3.1,
+  "short_change": 0.13365837709477013,
+  "short_pct_float": 0.0728156824058239,
+  "summary": "31 analysts \u00b7 target $47.62 (+32%), trend down 19% \u00b7 0 up / 3 down 90d \u00b7 fwd P/E 21.4 (FY2027) \u00b7 short 7% of float, 3.1 days to cover (+13%)"
  },
  "NLCP": {
   "n_analysts": 3,
@@ -39979,6 +40737,28 @@
   "short_change": 0.001192487329822134,
   "short_pct_float": 0.011099463865598989,
   "summary": "1 analyst (neglected) \u00b7 loss expected FY2026"
+ },
+ "NX": {
+  "n_analysts": 3,
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 5,
+   "hold": 6,
+   "sell": 0,
+   "strongSell": 0
+  },
+  "rating_consensus": "Hold",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": 1.8175,
+  "fwd_fy": "2026",
+  "fwd_pe": 11.160935350756535,
+  "fwd_rev": 1873988500,
+  "short_shares": 3903784,
+  "days_to_cover": 5.87,
+  "short_change": 0.25449622312758335,
+  "short_pct_float": 0.09858904800946185,
+  "summary": "3 analysts \u00b7 fwd P/E 11.2 (FY2026) \u00b7 short 10% of float, 5.9 days to cover (+25%)"
  },
  "NXGL": {
   "n_analysts": 1,
@@ -41778,6 +42558,35 @@
   "short_change": -0.009021078731098808,
   "short_pct_float": 0.24607528975202284,
   "summary": "2 analysts (neglected) \u00b7 target $2.50 (+74%), trend down 53% \u00b7 loss expected FY2026 \u00b7 short 25% of float, 18.8 days to cover"
+ },
+ "ORI": {
+  "n_analysts": 2,
+  "pt": 41.5,
+  "pt_upside": 0.07041526953830268,
+  "pt_low_high": [
+   39,
+   44
+  ],
+  "pt_trend": -0.10488868487491398,
+  "ratings": {
+   "strongBuy": 1,
+   "buy": 0,
+   "hold": 4,
+   "sell": 0,
+   "strongSell": 0
+  },
+  "rating_consensus": "Hold",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": 2.9835,
+  "fwd_fy": "2026",
+  "fwd_pe": 12.994804759510643,
+  "fwd_rev": 9932350000,
+  "short_shares": 10505008,
+  "days_to_cover": 9.05,
+  "short_change": 0.05172995680051273,
+  "short_pct_float": 0.046835479737905736,
+  "summary": "2 analysts (neglected) \u00b7 target $41.50 (+7%), trend down 10% \u00b7 fwd P/E 13.0 (FY2026) \u00b7 short 5% of float, 9.1 days to cover"
  },
  "ORKA": {
   "n_analysts": 7,
@@ -45574,6 +46383,34 @@
   "short_pct_float": 0.15566378436750708,
   "summary": "9 analysts \u00b7 target $6.08 (+67%), trend down 28% \u00b7 fwd P/E 20.5 (FY2026) \u00b7 short 16% of float, 8.2 days to cover"
  },
+ "PTN": {
+  "n_analysts": 2,
+  "pt": 47.5,
+  "pt_upside": 3.7076313181367695,
+  "pt_low_high": [
+   47.5,
+   47.5
+  ],
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 3,
+   "hold": 0,
+   "sell": 0,
+   "strongSell": 0
+  },
+  "rating_consensus": "Buy",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": -2.31333,
+  "fwd_fy": "2027",
+  "fwd_pe": null,
+  "fwd_rev": 11666667,
+  "short_shares": 361207,
+  "days_to_cover": 1.56,
+  "short_change": 0.04551611950839707,
+  "short_pct_float": 0.26114376148175245,
+  "summary": "2 analysts (neglected) \u00b7 target $47.50 (+371%) \u00b7 loss expected FY2027 \u00b7 short 26% of float, 1.6 days to cover"
+ },
  "PTRN": {
   "n_analysts": 6,
   "pt": 29,
@@ -47770,6 +48607,20 @@
   "flag": "price target stale (pre-split?)",
   "summary": "2 analysts (neglected) \u00b7 loss expected FY2026 \u00b7 short 3% of float, 1.4 days to cover"
  },
+ "ROC": {
+  "n_analysts": 1,
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": -0.28,
+  "fwd_fy": "2026",
+  "fwd_pe": null,
+  "fwd_rev": 22000000,
+  "short_shares": 42647,
+  "days_to_cover": 3.14,
+  "short_change": 0.05525313010342958,
+  "short_pct_float": 0.007918604756956004,
+  "summary": "1 analyst (neglected) \u00b7 loss expected FY2026"
+ },
  "ROCK": {
   "n_analysts": 3,
   "pt": 55,
@@ -48382,6 +49233,35 @@
   "short_pct_float": 0.08541831194757972,
   "summary": "6 analysts \u00b7 target $6.50 (-4%) \u00b7 fwd P/E 4.8 (FY2026) \u00b7 short 9% of float, 9.8 days to cover"
  },
+ "RWT": {
+  "n_analysts": 4,
+  "pt": 6,
+  "pt_upside": 0.5727391874180865,
+  "pt_low_high": [
+   5.5,
+   6.5
+  ],
+  "pt_trend": -0.016393442622950727,
+  "ratings": {
+   "strongBuy": 1,
+   "buy": 12,
+   "hold": 11,
+   "sell": 0,
+   "strongSell": 0
+  },
+  "rating_consensus": "Buy",
+  "upgrades_90d": 1,
+  "downgrades_90d": 0,
+  "fwd_eps": 0.93458,
+  "fwd_fy": "2026",
+  "fwd_pe": 4.0820475507714695,
+  "fwd_rev": 324217744,
+  "short_shares": 21510300,
+  "days_to_cover": 2.1,
+  "short_change": 2.384135563653664,
+  "short_pct_float": 0.1742922048521787,
+  "summary": "4 analysts \u00b7 target $6.00 (+57%) \u00b7 1 up / 0 down 90d \u00b7 fwd P/E 4.1 (FY2026) \u00b7 short 17% of float, 2.1 days to cover (+238%)"
+ },
  "RWWI": {
   "n_analysts": 0,
   "upgrades_90d": 0,
@@ -48608,6 +49488,35 @@
   "days_to_cover": 1,
   "short_change": -0.5875706214689266,
   "summary": "no analyst coverage (orphan)"
+ },
+ "S": {
+  "n_analysts": 25,
+  "pt": 23.39,
+  "pt_upside": -0.03406979145157962,
+  "pt_low_high": [
+   15,
+   28
+  ],
+  "pt_trend": 0.15872259294566238,
+  "ratings": {
+   "strongBuy": 1,
+   "buy": 21,
+   "hold": 12,
+   "sell": 0,
+   "strongSell": 0
+  },
+  "rating_consensus": "Buy",
+  "upgrades_90d": 1,
+  "downgrades_90d": 1,
+  "fwd_eps": 0.31915,
+  "fwd_fy": "2027",
+  "fwd_pe": 75.87341375528749,
+  "fwd_rev": 1204784041,
+  "short_shares": 20154152,
+  "days_to_cover": 2.26,
+  "short_change": 0.10534347326859339,
+  "short_pct_float": 0.06554157491815105,
+  "summary": "25 analysts \u00b7 target $23.39 (-3%), trend up 16% \u00b7 1 up / 1 down 90d \u00b7 fwd P/E 75.9 (FY2027) \u00b7 short 7% of float, 2.3 days to cover (+11%)"
  },
  "SABR": {
   "n_analysts": 5,
@@ -50737,6 +51646,35 @@
   "short_pct_float": 0.09485388459636328,
   "summary": "4 analysts \u00b7 target $48.67 (+33%) \u00b7 fwd P/E 23.9 (FY2026) \u00b7 short 9% of float, 12.2 days to cover"
  },
+ "SM": {
+  "n_analysts": 10,
+  "pt": 38.5,
+  "pt_upside": 0.09874429223744285,
+  "pt_low_high": [
+   16,
+   52
+  ],
+  "pt_trend": 0.15198175078414589,
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 35,
+   "hold": 15,
+   "sell": 4,
+   "strongSell": 0
+  },
+  "rating_consensus": "Buy",
+  "upgrades_90d": 1,
+  "downgrades_90d": 0,
+  "fwd_eps": 7.43757,
+  "fwd_fy": "2026",
+  "fwd_pe": 4.711216163343672,
+  "fwd_rev": 7596246382,
+  "short_shares": 13482404,
+  "days_to_cover": 3.82,
+  "short_change": 0.05309059393014026,
+  "short_pct_float": 0.056785750254841685,
+  "summary": "10 analysts \u00b7 target $38.50 (+10%), trend up 15% \u00b7 1 up / 0 down 90d \u00b7 fwd P/E 4.7 (FY2026) \u00b7 short 6% of float, 3.8 days to cover"
+ },
  "SMAL": {
   "n_analysts": 0,
   "upgrades_90d": 0,
@@ -51100,6 +52038,34 @@
   "upgrades_90d": 0,
   "downgrades_90d": 0,
   "summary": "no analyst coverage (orphan)"
+ },
+ "SND": {
+  "n_analysts": 1,
+  "pt": 2.25,
+  "pt_upside": -0.5526838966202783,
+  "pt_low_high": [
+   2.25,
+   2.25
+  ],
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 3,
+   "hold": 9,
+   "sell": 2,
+   "strongSell": 0
+  },
+  "rating_consensus": "Hold",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": 0.099,
+  "fwd_fy": "2026",
+  "fwd_pe": 50.80808080808081,
+  "fwd_rev": 223000000,
+  "short_shares": 2065789,
+  "days_to_cover": 11.4,
+  "short_change": 0.029682918975714845,
+  "short_pct_float": 0.07622867736046042,
+  "summary": "1 analyst (neglected) \u00b7 target $2.25 (-55%) \u00b7 fwd P/E 50.8 (FY2026) \u00b7 short 8% of float, 11.4 days to cover"
  },
  "SNDA": {
   "n_analysts": 3,
@@ -57100,6 +58066,35 @@
   "short_change": 0.0018264018269886773,
   "short_pct_float": 0.08422898128748853,
   "summary": "1 analyst (neglected) \u00b7 fwd P/E 13.6 (FY2027) \u00b7 short 8% of float, 6.9 days to cover"
+ },
+ "VAL": {
+  "n_analysts": 5,
+  "pt": 75,
+  "pt_upside": -0.10265613783201721,
+  "pt_low_high": [
+   75,
+   75
+  ],
+  "pt_trend": 0.11275964391691384,
+  "ratings": {
+   "strongBuy": 0,
+   "buy": 11,
+   "hold": 27,
+   "sell": 16,
+   "strongSell": 0
+  },
+  "rating_consensus": "Hold",
+  "upgrades_90d": 0,
+  "downgrades_90d": 0,
+  "fwd_eps": 3.02704,
+  "fwd_fy": "2026",
+  "fwd_pe": 27.611131666578572,
+  "fwd_rev": 2177694074,
+  "short_shares": 5959122,
+  "days_to_cover": 4.1,
+  "short_change": -0.0789433986060939,
+  "short_pct_float": 0.10481131789909373,
+  "summary": "5 analysts \u00b7 target $75.00 (-10%), trend up 11% \u00b7 fwd P/E 27.6 (FY2026) \u00b7 short 10% of float, 4.1 days to cover"
  },
  "VASO": {
   "n_analysts": 0,

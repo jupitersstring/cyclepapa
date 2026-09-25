@@ -713,6 +713,12 @@ def build_turnaround_signal(wb: Workbook, yf: dict):
         m = re.match(r"CIK0*(\d+)$", x.get("ticker") or "")
         if m and m.group(1) in by_cik:
             x["ticker"] = by_cik[m.group(1)]
+        elif m:
+            try:
+                import store                     # the security master knows every CIK FMP profiles
+                x["ticker"] = store.resolve(x["ticker"]) or x["ticker"]
+            except Exception:
+                pass
     r = 5
     for i, row in enumerate(rows[:60], 1):
         ev = row.get("event_type") or ""

@@ -181,6 +181,9 @@ run python3 systematic_rankings.py         || true
 
 echo "### Workbook regeneration ###"
 run python3 name_financials.py             || true   # FMP financial panel for every name
+# one security master + point-in-time facts + one event store (data/cyclepapa.db); the books
+# resolve identifiers and security types through it
+run python3 store_build.py                 || true
 run python3 build_most_asymmetric_xlsx.py  || true
 run python3 build_otc_book.py              || true
 # regex parsers vs the reviewed set (PARSER_EVAL.md)

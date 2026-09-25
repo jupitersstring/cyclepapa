@@ -184,18 +184,6 @@
   "piotroski": 6,
   "severity": 0
  },
- "ACAA": {
-  "flags": [
-   {
-    "kind": "going_concern",
-    "date": "2026-08-05",
-    "detail": "going-concern doubt in 2 10-K/10-Q filing(s) in 12m (latest 2026-08-05)"
-   }
-  ],
-  "altman_z": null,
-  "piotroski": null,
-  "severity": 3
- },
  "ACCO": {
   "flags": [
    {
@@ -667,54 +655,6 @@
   "piotroski": 6,
   "severity": 0
  },
- "AGAE": {
-  "flags": [
-   {
-    "kind": "delisting_notice",
-    "date": "2026-05-22",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1708341/000121390026060267/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-05-11",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1708341/000121390026054565/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-04-21",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1708341/000117184326002624/"
-   },
-   {
-    "kind": "late_filing",
-    "date": "2026-03-31",
-    "detail": "NT 10-K: late periodic report",
-    "url": "https://www.sec.gov/Archives/edgar/data/1708341/000117184326002090/"
-   },
-   {
-    "kind": "late_filing",
-    "date": "2025-11-14",
-    "detail": "NT 10-Q: late periodic report",
-    "url": "https://www.sec.gov/Archives/edgar/data/1708341/000092963825004292/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2025-11-10",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1708341/000092963825004216/"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z 0.40 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": 0.40391067715025397,
-  "piotroski": 0,
-  "severity": 5
- },
  "AGCO": {
   "flags": [],
   "altman_z": 2.5449109066681905,
@@ -1117,12 +1057,6 @@
   "piotroski": 8,
   "severity": 0
  },
- "AIZN": {
-  "flags": [],
-  "altman_z": 1.3511801782577837,
-  "piotroski": 7,
-  "severity": 0
- },
  "AKA": {
   "flags": [
    {
@@ -1345,59 +1279,6 @@
   "altman_z": 1.5853158404630132,
   "piotroski": 7,
   "severity": 0
- },
- "ALTS": {
-  "flags": [
-   {
-    "kind": "late_filing",
-    "date": "2026-08-12",
-    "detail": "NT 10-Q: late periodic report",
-    "url": "https://www.sec.gov/Archives/edgar/data/862861/000149315226037426/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-07-02",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/862861/000149315226031925/"
-   },
-   {
-    "kind": "going_concern",
-    "date": "2026-05-18",
-    "detail": "going-concern doubt in 2 10-K/10-Q filing(s) in 12m (latest 2026-05-18)"
-   },
-   {
-    "kind": "late_filing",
-    "date": "2026-05-13",
-    "detail": "NT 10-Q: late periodic report",
-    "url": "https://www.sec.gov/Archives/edgar/data/862861/000149315226022703/"
-   },
-   {
-    "kind": "late_filing",
-    "date": "2026-03-27",
-    "detail": "NT 10-K: late periodic report",
-    "url": "https://www.sec.gov/Archives/edgar/data/862861/000149315226013194/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2025-12-03",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/862861/000149315225026011/"
-   },
-   {
-    "kind": "late_filing",
-    "date": "2025-11-12",
-    "detail": "NT 10-Q: late periodic report",
-    "url": "https://www.sec.gov/Archives/edgar/data/862861/000149315225021977/"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -1.19 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -1.187095602495465,
-  "piotroski": 2,
-  "severity": 8
  },
  "ALUR": {
   "flags": [
@@ -1911,29 +1792,6 @@
   "altman_z": 3.2395767023118074,
   "piotroski": 6,
   "severity": 2
- },
- "APLT": {
-  "flags": [
-   {
-    "kind": "delisting_notice",
-    "date": "2026-02-03",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1697532/000119312526034559/"
-   },
-   {
-    "kind": "going_concern",
-    "date": "2025-11-13",
-    "detail": "going-concern doubt in 1 10-K/10-Q filing(s) in 12m (latest 2025-11-13)"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -27.42 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -27.4182644978402,
-  "piotroski": 1,
-  "severity": 6
  },
  "APOG": {
   "flags": [],
@@ -2666,12 +2524,6 @@
   "altman_z": -0.4439552594626974,
   "piotroski": 5,
   "severity": 1
- },
- "ATHS": {
-  "flags": [],
-  "altman_z": 0.19330154233922056,
-  "piotroski": 6,
-  "severity": 0
  },
  "ATI": {
   "flags": [],
@@ -3435,12 +3287,6 @@
   "piotroski": 7,
   "severity": 3
  },
- "BCX": {
-  "flags": [],
-  "altman_z": 73.26018545417463,
-  "piotroski": 7,
-  "severity": 0
- },
  "BDC": {
   "flags": [],
   "altman_z": 3.170278870147497,
@@ -3620,12 +3466,6 @@
   "altman_z": 6.041592969388636,
   "piotroski": 6,
   "severity": 2
- },
- "BGY": {
-  "flags": [],
-  "altman_z": 26.686218548926547,
-  "piotroski": 7,
-  "severity": 0
  },
  "BH": {
   "flags": [
@@ -3822,9 +3662,9 @@
   "piotroski": 5,
   "severity": 0
  },
- "BKUT": {
+ "BKUTK": {
   "flags": [],
-  "altman_z": 10.361682506368298,
+  "altman_z": 50.68622611691597,
   "piotroski": 2,
   "severity": 0
  },
@@ -4093,40 +3933,6 @@
   "piotroski": 7,
   "severity": 3
  },
- "BNBX": {
-  "flags": [
-   {
-    "kind": "delisting_notice",
-    "date": "2026-07-13",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/744452/000110465926082893/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-03-24",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/744452/000110465926033842/"
-   },
-   {
-    "kind": "reverse_split",
-    "date": "2025-06-02",
-    "detail": "reverse split 1-for-15"
-   },
-   {
-    "kind": "reverse_split",
-    "date": "2025-03-14",
-    "detail": "reverse split 1-for-50"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -49.65 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -49.64944997729324,
-  "piotroski": 2,
-  "severity": 4
- },
  "BNC": {
   "flags": [
    {
@@ -4356,42 +4162,6 @@
   ],
   "altman_z": -0.1681610554784264,
   "piotroski": 3,
-  "severity": 3
- },
- "BRNS": {
-  "flags": [
-   {
-    "kind": "delisting_notice",
-    "date": "2026-09-09",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1828185/000110465926106183/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-09-01",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1828185/000110465926104368/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-08-25",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1828185/000110465926100470/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-01-06",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1828185/000182818526000004/"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -5.68 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -5.680607742500254,
-  "piotroski": 1,
   "severity": 3
  },
  "BROS": {
@@ -4667,12 +4437,6 @@
   "altman_z": 0.504942969620559,
   "piotroski": 6,
   "severity": 1
- },
- "BXSL": {
-  "flags": [],
-  "altman_z": 0.6556995511671511,
-  "piotroski": 5,
-  "severity": 0
  },
  "BY": {
   "flags": [],
@@ -5070,12 +4834,6 @@
   "piotroski": 5,
   "severity": 0
  },
- "CBSTF": {
-  "flags": [],
-  "altman_z": -3.3101873983077286,
-  "piotroski": 1,
-  "severity": 0
- },
  "CBUS": {
   "flags": [
    {
@@ -5184,18 +4942,6 @@
   "altman_z": 3.033537488803451,
   "piotroski": 5,
   "severity": 0
- },
- "CCXI": {
-  "flags": [
-   {
-    "kind": "going_concern",
-    "date": "2026-08-13",
-    "detail": "going-concern doubt in 1 10-K/10-Q filing(s) in 12m (latest 2026-08-13)"
-   }
-  ],
-  "altman_z": null,
-  "piotroski": null,
-  "severity": 3
  },
  "CCZ": {
   "flags": [],
@@ -5405,12 +5151,6 @@
   "flags": [],
   "altman_z": 0.5888981886456357,
   "piotroski": 3,
-  "severity": 0
- },
- "CGABL": {
-  "flags": [],
-  "altman_z": 0.4613107401737153,
-  "piotroski": 5,
   "severity": 0
  },
  "CGBD": {
@@ -5835,41 +5575,6 @@
   "piotroski": 6,
   "severity": 0
  },
- "CMLS": {
-  "flags": [
-   {
-    "kind": "going_concern",
-    "date": "2026-08-14",
-    "detail": "going-concern doubt in 3 10-K/10-Q filing(s) in 12m (latest 2026-08-14)"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2026-04-17",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1058623/000110465926044909/"
-   },
-   {
-    "kind": "late_filing",
-    "date": "2026-03-31",
-    "detail": "NT 10-K: late periodic report",
-    "url": "https://www.sec.gov/Archives/edgar/data/1058623/000105862326000008/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2026-03-05",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1058623/000110465926023855/"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -0.43 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -0.43279914317713053,
-  "piotroski": 5,
-  "severity": 11
- },
  "CMP": {
   "flags": [],
   "altman_z": 1.9173882218032758,
@@ -5909,18 +5614,6 @@
   ],
   "altman_z": -0.6281685100738263,
   "piotroski": 4,
-  "severity": 1
- },
- "CMSC": {
-  "flags": [
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z 0.56 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": 0.5636022578305749,
-  "piotroski": 5,
   "severity": 1
  },
  "CMT": {
@@ -6419,18 +6112,6 @@
   "piotroski": 3,
   "severity": 1
  },
- "CPPTL": {
-  "flags": [
-   {
-    "kind": "going_concern",
-    "date": "2026-05-27",
-    "detail": "going-concern doubt in 1 10-K/10-Q filing(s) in 12m (latest 2026-05-27)"
-   }
-  ],
-  "altman_z": 2.9215333930914356,
-  "piotroski": 5,
-  "severity": 3
- },
  "CPSS": {
   "flags": [],
   "altman_z": 0.18103126591949265,
@@ -6715,12 +6396,6 @@
   "altman_z": 2.775968290691677,
   "piotroski": 7,
   "severity": 1
- },
- "CUBB": {
-  "flags": [],
-  "altman_z": -0.45905627383717384,
-  "piotroski": 5,
-  "severity": 0
  },
  "CUBI": {
   "flags": [],
@@ -7444,19 +7119,6 @@
   "piotroski": 8,
   "severity": 2
  },
- "DDT": {
-  "flags": [
-   {
-    "kind": "delisting_notice",
-    "date": "2026-09-18",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/28917/000110465926108945/"
-   }
-  ],
-  "altman_z": 5.612473575561635,
-  "piotroski": 7,
-  "severity": 2
- },
  "DEA": {
   "flags": [
    {
@@ -7480,25 +7142,6 @@
   "altman_z": 0.8733880955612447,
   "piotroski": 6,
   "severity": 1
- },
- "DEFI": {
-  "flags": [
-   {
-    "kind": "delisting_notice",
-    "date": "2026-08-12",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1985840/000121390026087992/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-08-03",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1985840/000121390026084293/"
-   }
-  ],
-  "altman_z": null,
-  "piotroski": null,
-  "severity": 2
  },
  "DEI": {
   "flags": [],
@@ -9102,12 +8745,6 @@
   "piotroski": 7,
   "severity": 0
  },
- "ETH": {
-  "flags": [],
-  "altman_z": 9.649565140935684,
-  "piotroski": 9,
-  "severity": 0
- },
  "ETST": {
   "flags": [],
   "altman_z": 7.2194476702227375,
@@ -9403,41 +9040,6 @@
   "altman_z": 3.2386993200503804,
   "piotroski": 4,
   "severity": 0
- },
- "FAT": {
-  "flags": [
-   {
-    "kind": "delisting_notice",
-    "date": "2026-01-30",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1705012/000149315226004289/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2026-01-27",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1705012/000149315226003696/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-01-09",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1705012/000149315226001117/"
-   },
-   {
-    "kind": "going_concern",
-    "date": "2025-11-12",
-    "detail": "going-concern doubt in 1 10-K/10-Q filing(s) in 12m (latest 2025-11-12)"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -1.96 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -1.9597830601800679,
-  "piotroski": 4,
-  "severity": 11
  },
  "FBIN": {
   "flags": [],
@@ -10308,12 +9910,6 @@
   "piotroski": 5,
   "severity": 0
  },
- "FPAY": {
-  "flags": [],
-  "altman_z": 1.6728517179274722,
-  "piotroski": 2,
-  "severity": 0
- },
  "FPH": {
   "flags": [
    {
@@ -10960,30 +10556,6 @@
   "piotroski": 2,
   "severity": 1
  },
- "GGRP": {
-  "flags": [
-   {
-    "kind": "delisting_notice",
-    "date": "2026-09-11",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1854445/000149315226042421/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-03-18",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1854445/000149315226011277/"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -18.40 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -18.40377904293527,
-  "piotroski": 4,
-  "severity": 3
- },
  "GIII": {
   "flags": [],
   "altman_z": 3.180953745557419,
@@ -11112,29 +10684,6 @@
   "piotroski": 6,
   "severity": 1
  },
- "GMGI": {
-  "flags": [
-   {
-    "kind": "reverse_split",
-    "date": "2026-03-03",
-    "detail": "reverse split 1-for-12"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-01-02",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1437925/000147793226000008/"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -1.79 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -1.7939124433134053,
-  "piotroski": 4,
-  "severity": 4
- },
  "GNK": {
   "flags": [],
   "altman_z": 1.8448746501365405,
@@ -11227,88 +10776,6 @@
   "piotroski": 3,
   "severity": 4
  },
- "GOCO": {
-  "flags": [
-   {
-    "kind": "delisting_notice",
-    "date": "2026-06-11",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1808220/000162828026042509/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2026-06-08",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1808220/000162828026041369/"
-   },
-   {
-    "kind": "late_filing",
-    "date": "2026-05-18",
-    "detail": "NT 10-Q: late periodic report",
-    "url": "https://www.sec.gov/Archives/edgar/data/1808220/000162828026035934/"
-   },
-   {
-    "kind": "going_concern",
-    "date": "2026-03-31",
-    "detail": "going-concern doubt in 2 10-K/10-Q filing(s) in 12m (latest 2026-03-31)"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-03-20",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1808220/000162828026020176/"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -2.23 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -2.228449229566619,
-  "piotroski": 2,
-  "severity": 13
- },
- "GOCOQ": {
-  "flags": [
-   {
-    "kind": "delisting_notice",
-    "date": "2026-06-11",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1808220/000162828026042509/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2026-06-08",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1808220/000162828026041369/"
-   },
-   {
-    "kind": "late_filing",
-    "date": "2026-05-18",
-    "detail": "NT 10-Q: late periodic report",
-    "url": "https://www.sec.gov/Archives/edgar/data/1808220/000162828026035934/"
-   },
-   {
-    "kind": "going_concern",
-    "date": "2026-03-31",
-    "detail": "going-concern doubt in 2 10-K/10-Q filing(s) in 12m (latest 2026-03-31)"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-03-20",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1808220/000162828026020176/"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -2.23 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -2.2279106507970043,
-  "piotroski": 2,
-  "severity": 13
- },
  "GOGO": {
   "flags": [
    {
@@ -11356,40 +10823,6 @@
   "altman_z": 0.4377378446706406,
   "piotroski": 8,
   "severity": 2
- },
- "GORV": {
-  "flags": [
-   {
-    "kind": "bankruptcy",
-    "date": "2025-12-01",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1721741/000149315225025447/"
-   },
-   {
-    "kind": "going_concern",
-    "date": "2025-11-14",
-    "detail": "going-concern doubt in 1 10-K/10-Q filing(s) in 12m (latest 2025-11-14)"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2025-11-07",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1721741/000149315225021275/"
-   },
-   {
-    "kind": "reverse_split",
-    "date": "2025-07-14",
-    "detail": "reverse split 1-for-30"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -1.32 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -1.3179872104110286,
-  "piotroski": 3,
-  "severity": 12
  },
  "GOSS": {
   "flags": [
@@ -12307,19 +11740,6 @@
   "altman_z": 2.0903654480186256,
   "piotroski": 9,
   "severity": 0
- },
- "HLXC": {
-  "flags": [
-   {
-    "kind": "delisting_notice",
-    "date": "2026-08-17",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/2099656/000121390026090826/"
-   }
-  ],
-  "altman_z": null,
-  "piotroski": null,
-  "severity": 2
  },
  "HMN": {
   "flags": [],
@@ -13626,66 +13046,6 @@
   "piotroski": 7,
   "severity": 0
  },
- "IRBT": {
-  "flags": [
-   {
-    "kind": "bankruptcy",
-    "date": "2026-01-26",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1159167/000115916726000006/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2025-12-15",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1159167/000115916725000097/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2025-12-15",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1159167/000119312525318337/"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -1.87 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -1.8677460211334833,
-  "piotroski": 2,
-  "severity": 8
- },
- "IRBTQ": {
-  "flags": [
-   {
-    "kind": "bankruptcy",
-    "date": "2026-01-26",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1159167/000115916726000006/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2025-12-15",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1159167/000115916725000097/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2025-12-15",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1159167/000119312525318337/"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -1.87 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -1.8677460211334833,
-  "piotroski": 2,
-  "severity": 8
- },
  "IRDM": {
   "flags": [],
   "altman_z": 2.004332074191894,
@@ -14987,47 +14347,6 @@
   "altman_z": 2.4984602945255743,
   "piotroski": 6,
   "severity": 0
- },
- "LAZRQ": {
-  "flags": [
-   {
-    "kind": "bankruptcy",
-    "date": "2026-04-07",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1758057/000114036126013403/"
-   },
-   {
-    "kind": "going_concern",
-    "date": "2026-03-27",
-    "detail": "going-concern doubt in 2 10-K/10-Q filing(s) in 12m (latest 2026-03-27)"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-01-12",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1758057/000114036126000912/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2025-12-19",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1758057/000114036125046216/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2025-12-15",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1758057/000114036125045494/"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -32.59 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -32.58910105126408,
-  "piotroski": 3,
-  "severity": 11
  },
  "LBRDA": {
   "flags": [
@@ -16813,64 +16132,6 @@
   "piotroski": 1,
   "severity": 7
  },
- "MODV": {
-  "flags": [
-   {
-    "kind": "bankruptcy",
-    "date": "2025-12-29",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1220754/000143774925038831/"
-   },
-   {
-    "kind": "going_concern",
-    "date": "2025-12-29",
-    "detail": "going-concern doubt in 4 10-K/10-Q filing(s) in 12m (latest 2025-12-29)"
-   },
-   {
-    "kind": "late_filing",
-    "date": "2025-11-12",
-    "detail": "NT 10-Q: late periodic report",
-    "url": "https://www.sec.gov/Archives/edgar/data/1220754/000122075425000057/"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z 0.68 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": 0.6762787666242966,
-  "piotroski": 4,
-  "severity": 11
- },
- "MODVQ": {
-  "flags": [
-   {
-    "kind": "bankruptcy",
-    "date": "2025-12-29",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1220754/000143774925038831/"
-   },
-   {
-    "kind": "going_concern",
-    "date": "2025-12-29",
-    "detail": "going-concern doubt in 4 10-K/10-Q filing(s) in 12m (latest 2025-12-29)"
-   },
-   {
-    "kind": "late_filing",
-    "date": "2025-11-12",
-    "detail": "NT 10-Q: late periodic report",
-    "url": "https://www.sec.gov/Archives/edgar/data/1220754/000122075425000057/"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z 0.67 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": 0.6701255347509156,
-  "piotroski": 3,
-  "severity": 11
- },
  "MOS": {
   "flags": [
    {
@@ -17972,36 +17233,6 @@
   "piotroski": 7,
   "severity": 7
  },
- "NINEQ": {
-  "flags": [
-   {
-    "kind": "bankruptcy",
-    "date": "2026-03-10",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1532286/000121390026025721/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-02-06",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1532286/000121390026012975/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2026-02-02",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1532286/000121390026010501/"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -0.72 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -0.7236286261315406,
-  "piotroski": 3,
-  "severity": 8
- },
  "NIXX": {
   "flags": [
    {
@@ -18237,93 +17468,11 @@
   "piotroski": 4,
   "severity": 9
  },
- "NOTV": {
-  "flags": [
-   {
-    "kind": "bankruptcy",
-    "date": "2026-07-16",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/720154/000162828026048369/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2026-06-03",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/720154/000110465926069950/"
-   },
-   {
-    "kind": "going_concern",
-    "date": "2026-05-11",
-    "detail": "going-concern doubt in 3 10-K/10-Q filing(s) in 12m (latest 2026-05-11)"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-01-07",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/720154/000162828026001160/"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -1.54 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -1.5440127425064123,
-  "piotroski": 4,
-  "severity": 11
- },
- "NOTVQ": {
-  "flags": [
-   {
-    "kind": "bankruptcy",
-    "date": "2026-07-16",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/720154/000162828026048369/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2026-06-03",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/720154/000110465926069950/"
-   },
-   {
-    "kind": "going_concern",
-    "date": "2026-05-11",
-    "detail": "going-concern doubt in 3 10-K/10-Q filing(s) in 12m (latest 2026-05-11)"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-01-07",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/720154/000162828026001160/"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -1.55 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -1.5463128267833972,
-  "piotroski": 4,
-  "severity": 11
- },
  "NOV": {
   "flags": [],
   "altman_z": 2.0573263736729768,
   "piotroski": 6,
   "severity": 0
- },
- "NOVA": {
-  "flags": [
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z 0.02 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": 0.0177298442466714,
-  "piotroski": 2,
-  "severity": 1
  },
  "NOVTU": {
   "flags": [],
@@ -21820,93 +20969,6 @@
   "piotroski": 1,
   "severity": 0
  },
- "QVCAQ": {
-  "flags": [
-   {
-    "kind": "bankruptcy",
-    "date": "2026-07-24",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1355096/000110465926086686/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-04-20",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1355096/000135509626000015/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2026-04-17",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1355096/000110465926044521/"
-   },
-   {
-    "kind": "going_concern",
-    "date": "2026-04-15",
-    "detail": "going-concern doubt in 2 10-K/10-Q filing(s) in 12m (latest 2026-04-15)"
-   },
-   {
-    "kind": "late_filing",
-    "date": "2026-04-01",
-    "detail": "NT 10-K: late periodic report",
-    "url": "https://www.sec.gov/Archives/edgar/data/1355096/000110465926037941/"
-   },
-   {
-    "kind": "reverse_split",
-    "date": "2025-05-23",
-    "detail": "reverse split 1-for-50"
-   }
-  ],
-  "altman_z": null,
-  "piotroski": null,
-  "severity": 13
- },
- "QVCGA": {
-  "flags": [
-   {
-    "kind": "bankruptcy",
-    "date": "2026-07-24",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1355096/000110465926086686/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-04-20",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1355096/000135509626000015/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2026-04-17",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1355096/000110465926044521/"
-   },
-   {
-    "kind": "going_concern",
-    "date": "2026-04-15",
-    "detail": "going-concern doubt in 2 10-K/10-Q filing(s) in 12m (latest 2026-04-15)"
-   },
-   {
-    "kind": "late_filing",
-    "date": "2026-04-01",
-    "detail": "NT 10-K: late periodic report",
-    "url": "https://www.sec.gov/Archives/edgar/data/1355096/000110465926037941/"
-   },
-   {
-    "kind": "reverse_split",
-    "date": "2025-05-23",
-    "detail": "reverse split 1-for-50"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z 0.35 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": 0.3516756796738191,
-  "piotroski": 4,
-  "severity": 14
- },
  "QXO": {
   "flags": [],
   "altman_z": 1.3846336946244349,
@@ -21918,18 +20980,6 @@
   "altman_z": 1.5073786654716423,
   "piotroski": 7,
   "severity": 0
- },
- "RAD": {
-  "flags": [
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z 0.69 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": 0.6910191819244433,
-  "piotroski": 3,
-  "severity": 1
  },
  "RAIL": {
   "flags": [],
@@ -23795,77 +22845,6 @@
   "piotroski": 6,
   "severity": 0
  },
- "SGMO": {
-  "flags": [
-   {
-    "kind": "bankruptcy",
-    "date": "2026-09-21",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1001233/000119312526396644/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2026-09-08",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1001233/000110465926105905/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2026-08-28",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1001233/000119312526374328/"
-   },
-   {
-    "kind": "late_filing",
-    "date": "2026-08-17",
-    "detail": "NT 10-Q: late periodic report",
-    "url": "https://www.sec.gov/Archives/edgar/data/1001233/000119312526354282/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2026-07-20",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1001233/000119312526309012/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-07-20",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1001233/000119312526309012/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2026-06-23",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1001233/000119312526278582/"
-   },
-   {
-    "kind": "going_concern",
-    "date": "2026-05-14",
-    "detail": "going-concern doubt in 3 10-K/10-Q filing(s) in 12m (latest 2026-05-14)"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-04-29",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1001233/000162828026028128/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2025-10-29",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1001233/000100123325000015/"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -2449.71 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -2449.7054159612585,
-  "piotroski": 1,
-  "severity": 13
- },
  "SGMOQ": {
   "flags": [
    {
@@ -23931,36 +22910,6 @@
   "altman_z": null,
   "piotroski": null,
   "severity": 12
- },
- "SGRP": {
-  "flags": [
-   {
-    "kind": "delisting_notice",
-    "date": "2026-07-15",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1004989/000143774926023636/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-04-08",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1004989/000143774926011684/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-01-15",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1004989/000143774926001360/"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z 0.91 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": 0.9117272702175618,
-  "piotroski": 2,
-  "severity": 3
  },
  "SGRY": {
   "flags": [
@@ -24564,35 +23513,6 @@
   "piotroski": 3,
   "severity": 7
  },
- "SNBR": {
-  "flags": [
-   {
-    "kind": "delisting_notice",
-    "date": "2026-06-17",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/827187/000082718726000053/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2026-06-12",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/827187/000095010326008891/"
-   },
-   {
-    "kind": "going_concern",
-    "date": "2026-05-12",
-    "detail": "going-concern doubt in 2 10-K/10-Q filing(s) in 12m (latest 2026-05-12)"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -1.27 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -1.2719823221622133,
-  "piotroski": 2,
-  "severity": 11
- },
  "SND": {
   "flags": [],
   "altman_z": 2.809632421522584,
@@ -24832,12 +23752,6 @@
   "flags": [],
   "altman_z": 4.752192787102765,
   "piotroski": 6,
-  "severity": 0
- },
- "SOR": {
-  "flags": [],
-  "altman_z": 468.4440519177488,
-  "piotroski": 3,
   "severity": 0
  },
  "SOWG": {
@@ -25637,12 +24551,6 @@
   "piotroski": 6,
   "severity": 4
  },
- "SWZ": {
-  "flags": [],
-  "altman_z": 203.10315484213598,
-  "piotroski": 5,
-  "severity": 0
- },
  "SXC": {
   "flags": [],
   "altman_z": 1.6452904654936678,
@@ -25786,18 +24694,6 @@
   "altman_z": 2.4806208979160433,
   "piotroski": 6,
   "severity": 0
- },
- "TBB": {
-  "flags": [
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z 0.92 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": 0.9150316645333356,
-  "piotroski": 7,
-  "severity": 1
  },
  "TBCH": {
   "flags": [],
@@ -26042,12 +24938,6 @@
   "piotroski": 7,
   "severity": 0
  },
- "TFSA": {
-  "flags": [],
-  "altman_z": 3.8355881670364322,
-  "piotroski": 1,
-  "severity": 0
- },
  "TFSL": {
   "flags": [],
   "altman_z": -0.3383206996908723,
@@ -26202,34 +25092,6 @@
   "altman_z": 2.162474788065665,
   "piotroski": 6,
   "severity": 0
- },
- "TIVC": {
-  "flags": [
-   {
-    "kind": "going_concern",
-    "date": "2026-08-14",
-    "detail": "going-concern doubt in 4 10-K/10-Q filing(s) in 12m (latest 2026-08-14)"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-03-20",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1787740/000168316826002064/"
-   },
-   {
-    "kind": "reverse_split",
-    "date": "2025-03-07",
-    "detail": "reverse split 1-for-17"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -4.54 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -4.536212144599679,
-  "piotroski": 1,
-  "severity": 7
  },
  "TKO": {
   "flags": [
@@ -26473,23 +25335,6 @@
   "altman_z": 4.020345399475043,
   "piotroski": 3,
   "severity": 2
- },
- "TPICQ": {
-  "flags": [
-   {
-    "kind": "going_concern",
-    "date": "2026-03-25",
-    "detail": "going-concern doubt in 2 10-K/10-Q filing(s) in 12m (latest 2026-03-25)"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -5.03 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -5.0281588687590055,
-  "piotroski": 3,
-  "severity": 4
  },
  "TPST": {
   "flags": [
@@ -26743,76 +25588,6 @@
   "piotroski": 6,
   "severity": 0
  },
- "TSE": {
-  "flags": [
-   {
-    "kind": "going_concern",
-    "date": "2026-08-06",
-    "detail": "going-concern doubt in 3 10-K/10-Q filing(s) in 12m (latest 2026-08-06)"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2026-05-26",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1519061/000110465926066376/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-03-03",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1519061/000110465926022537/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2025-12-15",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1519061/000110465925120876/"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z 0.20 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": 0.1972039807654855,
-  "piotroski": 5,
-  "severity": 11
- },
- "TSEOF": {
-  "flags": [
-   {
-    "kind": "going_concern",
-    "date": "2026-08-06",
-    "detail": "going-concern doubt in 3 10-K/10-Q filing(s) in 12m (latest 2026-08-06)"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2026-05-26",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/1519061/000110465926066376/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2026-03-03",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1519061/000110465926022537/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2025-12-15",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/1519061/000110465925120876/"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z 0.26 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": 0.25838680527666624,
-  "piotroski": 4,
-  "severity": 11
- },
  "TSN": {
   "flags": [],
   "altman_z": 3.130018603160325,
@@ -26944,35 +25719,6 @@
   "altman_z": 1.7740331191745564,
   "piotroski": 5,
   "severity": 0
- },
- "TWNP": {
-  "flags": [
-   {
-    "kind": "delisting_notice",
-    "date": "2026-01-30",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/2011954/000149315226004291/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2026-01-27",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/2011954/000149315226003699/"
-   },
-   {
-    "kind": "going_concern",
-    "date": "2025-11-12",
-    "detail": "going-concern doubt in 1 10-K/10-Q filing(s) in 12m (latest 2025-11-12)"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -0.93 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -0.9273415446853702,
-  "piotroski": 2,
-  "severity": 11
  },
  "TWO": {
   "flags": [
@@ -28960,18 +27706,6 @@
   "piotroski": 3,
   "severity": 6
  },
- "XFLT": {
-  "flags": [
-   {
-    "kind": "reverse_split",
-    "date": "2026-03-23",
-    "detail": "reverse split 1-for-5"
-   }
-  ],
-  "altman_z": 0.35960234100901406,
-  "piotroski": 3,
-  "severity": 1
- },
  "XHLD": {
   "flags": [
    {
@@ -29511,71 +28245,5 @@
   "altman_z": -0.7810574368971629,
   "piotroski": 2,
   "severity": 1
- },
- "ZYXIQ": {
-  "flags": [
-   {
-    "kind": "bankruptcy",
-    "date": "2026-03-20",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/846475/000110465926032723/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2026-02-11",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/846475/000110465926013411/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2026-02-02",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/846475/000110465926009241/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2026-01-15",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/846475/000110465926004122/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2025-12-18",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/846475/000110465925122563/"
-   },
-   {
-    "kind": "delisting_notice",
-    "date": "2025-12-18",
-    "detail": "8-K 3.01: delisting notice / listing-standard failure",
-    "url": "https://www.sec.gov/Archives/edgar/data/846475/000110465925122563/"
-   },
-   {
-    "kind": "bankruptcy",
-    "date": "2025-12-16",
-    "detail": "8-K 1.03: bankruptcy or receivership",
-    "url": "https://www.sec.gov/Archives/edgar/data/846475/000110465925121390/"
-   },
-   {
-    "kind": "late_filing",
-    "date": "2025-11-12",
-    "detail": "NT 10-Q: late periodic report",
-    "url": "https://www.sec.gov/Archives/edgar/data/846475/000110465925110497/"
-   },
-   {
-    "kind": "impairment",
-    "date": "2025-10-07",
-    "detail": "8-K 2.06: material impairment",
-    "url": "https://www.sec.gov/Archives/edgar/data/846475/000110465925097588/"
-   },
-   {
-    "kind": "altman_distress",
-    "date": null,
-    "detail": "Altman Z -5.00 (distress zone < 1.1)"
-   }
-  ],
-  "altman_z": -4.998589483707249,
-  "piotroski": 3,
-  "severity": 11
  }
 }
