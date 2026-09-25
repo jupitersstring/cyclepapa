@@ -1,0 +1,1448 @@
+"""Workbook layout helpers shared by the three books.
+
+  key_numbers(wb, fin, sym_map)   a compact "Key numbers" column (P/B · EV/EBITDA
+                                  · net debt/mcap · 52w position) inserted right
+                                  after each tab's Name column -- the reader sees
+                                  the financials next to the name, not off-screen
+  strength(wb, populations)       ONE ranking scale: "Strength %ile" next to the
+                                  name on every thesis / signal tab = the name's
+                                  percentile among EVERYTHING that layer scored
+                                  (100 = strongest), not just the rows shown
+  regroup(wb, groups, colors)     reorder tabs by how a reader works (Decide ·
+                                  Theses · Signals · Evidence · Plumbing), colour
+                                  the tabs by group, rewrite Contents with a group
+                                  column
+  tear_sheets(wb, fin, names, ...) one block per name: identity, financial panel,
+                                  and every tab the name appears on with its
+                                  strength percentile and that tab's own facts
+"""
+
+from __future__ import annotations
+
+import json
+import re
+from bisect import bisect_left, bisect_right
+from pathlib import Path
+
+from openpyxl.styles import Alignment, Font, PatternFill
+from openpyxl.utils import get_column_letter
+
+ROOT = Path("/home/user/cyclepapa")
+NAVY = "1F3864"
+HEAD = Font(bold=True, color="FFFFFF")
+FILL = PatternFill("solid", fgColor=NAVY)
+TICKER_HDR = ("Ticker", "TKR", "Symbol")
+SKIP_COLS = {"FMP financial read", "Key numbers (FMP)", "Strength %ile", "Name", "Company", "Ticker", "#", "Rank"}
+
+
+NEW_SHEETS = ("Name Financials", "Tear Sheets", "Review & data quality", "Call intent", "Contents",
+              "PSU Plans", "Event Detail", "What's New", "Ownership", "Red Flags", "Priced In")
+
+
+def clone(src, dst):
+    """Copy the full cell style (font, fill, border, alignment, number format)."""
+    from copy import copy
+    from openpyxl.cell.cell import MergedCell
+    if isinstance(dst, MergedCell) or src is None or not src.has_style:
+        return
+    dst.font = copy(src.font)
+    dst.fill = copy(src.fill)
+    dst.border = copy(src.border)
+    dst.alignment = copy(src.alignment)
+    dst.number_format = src.number_format
+
+
+class Kit:
+    """The workbook's OWN house style, read from one of its existing ticker
+    sheets, so anything we add looks like the rest of the book."""
+
+    def __init__(self, wb):
+        ref = None
+        for ws in wb.worksheets:
+            if ws.title in NEW_SHEETS:
+                continue
+            hr, cols = header_of(ws)
+            if hr and ws.max_row > hr + 3 and len(cols) >= 4:
+                ref = (ws, hr, cols)
+                break
+        ws, hr, cols = ref
+        tcol = cols.get("Ticker") or cols.get("TKR") or cols.get("Symbol")
+        ncol = cols.get("Name") or cols.get("Company") or (tcol + 1)
+        self.title_c, self.sub_c = ws["A1"], ws["A2"]
+        if not ws["A2"].has_style or ws["A2"].value is None:
+            self.sub_c = ws["A1"]
+        self.head_c = ws.cell(row=hr, column=ncol)
+        r1, r2 = ws.cell(row=hr + 1, column=ncol), ws.cell(row=hr + 2, column=ncol)
+        banded = lambda c: bool(c.fill is not None and c.fill.fill_type)
+        plain_r, band_r = (hr + 1, hr + 2) if not banded(r1) else (hr + 2, hr + 1)
+        self.body_c, self.band_c = ws.cell(row=plain_r, column=ncol), ws.cell(row=band_r, column=ncol)
+        self.bold_c, self.bold_band_c = ws.cell(row=plain_r, column=tcol), ws.cell(row=band_r, column=tcol)
+        self.header_height = ws.row_dimensions[hr].height
+
+    def title(self, c):
+        clone(self.title_c, c)
+
+    def subtitle(self, c, wrap=True):
+        clone(self.sub_c, c)
+        if wrap:
+            from copy import copy
+            a = copy(c.alignment); a.wrap_text = True; a.vertical = "top"
+            c.alignment = a
+
+    def header(self, c):
+        clone(self.head_c, c)
+
+    def body(self, c, band=False, bold=False, wrap=False):
+        clone((self.bold_band_c if band else self.bold_c) if bold else (self.band_c if band else self.body_c), c)
+        if wrap:
+            from copy import copy
+            a = copy(c.alignment); a.wrap_text = True; a.vertical = "top"
+            c.alignment = a
+
+
+def kit(wb):
+    k = getattr(wb, "_style_kit", None)
+    if k is None:
+        k = wb._style_kit = Kit(wb)
+    return k
+
+
+def header_of(ws, max_row=12):
+    """(header_row, {header: col}) for the first row with a Ticker cell."""
+    for row in ws.iter_rows(min_row=1, max_row=min(ws.max_row, max_row)):
+        for c in row:
+            if isinstance(c.value, str) and c.value.strip() in TICKER_HDR:
+                return c.row, {str(x.value).strip(): x.column for x in row if x.value is not None}
+    return None, {}
+
+
+def insert_col(ws, idx, header, hdr_row, width=24):
+    """Insert a column at idx, keeping merged ranges and column widths aligned
+    (openpyxl's insert_cols moves cells but not merges or widths)."""
+    widths = {i: ws.column_dimensions[get_column_letter(i)].width for i in range(1, ws.max_column + 1)}
+    merges = [(m.min_row, m.min_col, m.max_row, m.max_col) for m in ws.merged_cells.ranges]
+    for m in list(ws.merged_cells.ranges):
+        ws.unmerge_cells(str(m))
+    ws.insert_cols(idx)
+    for r0, c0, r1, c1 in merges:
+        if c0 >= idx:
+            c0, c1 = c0 + 1, c1 + 1
+        elif c1 >= idx:
+            c1 += 1
+        ws.merge_cells(start_row=r0, start_column=c0, end_row=r1, end_column=c1)
+    for i in sorted(widths, reverse=True):
+        j = i + 1 if i >= idx else i
+        if widths[i]:
+            ws.column_dimensions[get_column_letter(j)].width = widths[i]
+    ws.column_dimensions[get_column_letter(idx)].width = width
+    # the new column inherits its neighbour's style on every row (header rule,
+    # body font, row banding, borders), so it reads as part of the table
+    nb = idx - 1 if idx > 1 else idx + 1
+    for r in range(hdr_row, ws.max_row + 1):
+        clone(ws.cell(row=r, column=nb), ws.cell(row=r, column=idx))
+    ws.cell(row=hdr_row, column=idx, value=header)
+
+
+def _name_col(cols):
+    for k in ("Name", "Company"):
+        if k in cols:
+            return cols[k]
+    return cols.get("Ticker") or next(iter(cols.values()))
+
+
+def _ticker(v):
+    return v.replace("●", "").strip() if isinstance(v, str) else None
+
+
+def key_line(f):
+    if not f:
+        return None
+    bits = []
+    if f.get("p_b") is not None:
+        bits.append(f"P/B {f['p_b']:.2f}")
+    ev = f.get("ev_ebitda")
+    if (f.get("sector") or "") == "Financial Services":
+        if f.get("pe") is not None and 0 < f["pe"] < 200:
+            bits.append(f"P/E {f['pe']:.1f}")
+    elif ev is not None and 0 < ev < 200:
+        bits.append(f"{ev:.1f}× EBITDA")
+    nc = f.get("net_cash_pct")
+    if nc is not None and (f.get("sector") or "") != "Financial Services":
+        bits.append(("cash " if nc >= 0 else "debt ") + f"{abs(nc) * 100:.0f}%")
+    if f.get("range_pos") is not None:
+        bits.append(f"52w {f['range_pos'] * 100:.0f}%")
+    return " · ".join(bits)
+
+
+def key_numbers(wb, fin, sym_map=None, skip=()):
+    n = 0
+    for ws in wb.worksheets:
+        if ws.title in skip:
+            continue
+        hr, cols = header_of(ws)
+        if not hr or "Key numbers (FMP)" in cols:
+            continue
+        idx = _name_col(cols) + 1
+        insert_col(ws, idx, "Key numbers (FMP)", hr, width=30)
+        tcol = cols.get("Ticker") or cols.get("TKR") or cols.get("Symbol")
+        tcol = tcol + 1 if tcol >= idx else tcol
+        for r in range(hr + 1, ws.max_row + 1):
+            t = _ticker(ws.cell(row=r, column=tcol).value)
+            if t:
+                line = key_line(fin.get((sym_map or {}).get(t, t)))
+                if line:
+                    ws.cell(row=r, column=idx, value=line)
+        n += 1
+    return n
+
+
+# ---------------------------------------------------------------- one scale
+def _load(fn):
+    p = ROOT / fn
+    return json.loads(p.read_text()) if p.exists() else {}
+
+
+def _field(fn, field, nested=None):
+    d = _load(fn)
+    if nested:
+        d = d.get(nested) or {}
+    out = {}
+    for k, v in d.items():
+        if isinstance(v, dict):
+            x = v.get(field)
+            if isinstance(x, (int, float)) and x > 0:
+                out[k] = float(x)
+    return out
+
+
+def populations():
+    """Tab -> {ticker: score} over EVERYTHING the layer scored."""
+    return {
+        "Governance Discount": _field("governance_discount.json", "score"),
+        "Mechanism Gates": _field("mechanism_gates.json", "score"),
+        "Payoff Geometry": _field("payoff_geometry.json", "score"),
+        "MD&A Intent": _field("mda_scan.json", "score"),
+        "Call Intent": _field("call_intent.json", "act_prob"),
+        "Structured Distressed": _field("structured_distressed_injection.json", "score"),
+        "Distressed Stub Progress": _field("distressed_stub_progress.json", "score"),
+        "Re-Rate Catalysts": _field("rerate_catalysts.json", "rerate_score") or _field("rerate_catalysts.json", "catalyst_score"),
+        "Tail Odds": _field("tail_odds.json", "est_tail_prob"),
+        "Insider Conviction": _field("discretionary_insider_conviction.json", "score"),
+        "Insider Filing-Time": _field("form4_timing.json", "score", nested="scores"),
+        "Asymmetry Assembly": _field("asymmetry_assembly.json", "score"),
+        "Foreign Markets": _field("foreign_markets.json", "score"),
+    }
+
+
+SCORE_HDRS = ("Score", "Conviction", "Timing pts", "Improve", "Assembly", "Conf. tail p", "Tail p",
+              "Act prob", "Consensus", "Screens fired", "Distress")
+
+
+def _pctile(sorted_vals, v):
+    if not sorted_vals:
+        return None
+    lo, hi = bisect_left(sorted_vals, v), bisect_right(sorted_vals, v)
+    return round(100.0 * ((lo + hi) / 2) / len(sorted_vals))
+
+
+def strength(wb, pops, skip=()):
+    """Insert 'Strength %ile' after the name (after Key numbers when present)."""
+    n = 0
+    for ws in wb.worksheets:
+        if ws.title in skip:
+            continue
+        hr, cols = header_of(ws)
+        if not hr or "Strength %ile" in cols:
+            continue
+        sc = next((cols[h] for h in SCORE_HDRS if h in cols), None)
+        pop = pops.get(ws.title)
+        if sc is None and not pop:
+            continue
+        tcol = cols.get("Ticker") or cols.get("TKR") or cols.get("Symbol")
+        rows = [r for r in range(hr + 1, ws.max_row + 1) if _ticker(ws.cell(row=r, column=tcol).value)]
+        if pop:
+            vals, basis = sorted(pop.values()), f"all {len(pop):,} names scored"
+            get = lambda r: pop.get(_ticker(ws.cell(row=r, column=tcol).value))
+        else:
+            within = [ws.cell(row=r, column=sc).value for r in rows]
+            vals = sorted(v for v in within if isinstance(v, (int, float)))
+            basis = f"the {len(vals)} names on this tab"
+            get = lambda r: ws.cell(row=r, column=sc).value if isinstance(ws.cell(row=r, column=sc).value, (int, float)) else None
+        if not vals:
+            continue
+        idx = (cols.get("Key numbers (FMP)") or _name_col(cols)) + 1
+        scores = {r: get(r) for r in rows}
+        insert_col(ws, idx, "Strength %ile", hr, width=9)
+        ws.cell(row=hr, column=idx).comment = None
+        for r, v in scores.items():
+            if v is not None:
+                ws.cell(row=r, column=idx, value=_pctile(vals, v))
+        # say what the percentile is measured against, under the header row
+        from openpyxl.cell.cell import MergedCell
+        note = ws.cell(row=hr - 1, column=idx) if hr > 1 else None
+        if note is not None and not isinstance(note, MergedCell) and note.value is None:
+            note.value = f"%ile vs {basis}"
+            base = ws.cell(row=hr + 1, column=idx).font
+            note.font = Font(name=base.name, italic=True, size=max(7, (base.size or 10) - 2), color="666666")
+        n += 1
+    return n
+
+
+# ---------------------------------------------------------------- grouping
+GROUP_COLORS = {"Decide": "1F3864", "Theses": "2E75B6", "Signals": "70AD47",
+                "Evidence": "ED7D31", "Plumbing": "A5A5A5"}
+
+
+def regroup(wb, groups, contents="Contents", descriptions=None):
+    """Reorder sheets by group; colour tabs; rewrite the Contents table."""
+    order, seen = [], set()
+    for g, tabs in groups:
+        for t in tabs:
+            if t in wb.sheetnames and t not in seen:
+                order.append((g, t)); seen.add(t)
+    for t in wb.sheetnames:                       # anything unlisted goes to Plumbing
+        if t not in seen:
+            order.append(("Plumbing", t)); seen.add(t)
+    wb._sheets = [wb[t] for _, t in order]
+    for g, t in order:
+        wb[t].sheet_properties.tabColor = GROUP_COLORS.get(g, "A5A5A5")
+    if contents in wb.sheetnames:
+        ws = wb[contents]
+        hr, cols = None, {}
+        for row in ws.iter_rows(min_row=1, max_row=8):
+            for c in row:
+                if c.value == "Tab":
+                    hr = c.row
+            if hr:
+                break
+        if hr:
+            from copy import copy
+            hdr_src = ws.cell(row=hr, column=2)
+            body_srcs = [ws.cell(row=hr + 1, column=2), ws.cell(row=hr + 2, column=2)]
+            bold_srcs = [ws.cell(row=hr + 1, column=1), ws.cell(row=hr + 2, column=1)]
+            # snapshot the styles before the cells are cleared
+            snap = {}
+            for key, c in (("h", hdr_src), ("b0", body_srcs[0]), ("b1", body_srcs[1]),
+                           ("k0", bold_srcs[0]), ("k1", bold_srcs[1])):
+                snap[key] = (copy(c.font), copy(c.fill), copy(c.border), copy(c.alignment), c.number_format)
+
+            def apply(c, key):
+                c.font, c.fill, c.border, c.alignment, c.number_format = [copy(x) for x in snap[key][:4]] + [snap[key][4]]
+            old = {}
+            for r in range(hr + 1, ws.max_row + 1):
+                vals = [ws.cell(row=r, column=j).value for j in range(1, 5)]
+                tab = next((v for v in vals if isinstance(v, str) and v in wb.sheetnames), None)
+                if tab:
+                    old[tab] = next((v for v in vals[vals.index(tab) + 1:] if isinstance(v, str)), "")
+            for m in list(ws.merged_cells.ranges):
+                if m.min_row >= hr:
+                    ws.unmerge_cells(str(m))
+            for r in range(hr, ws.max_row + 1):
+                for j in range(1, 5):
+                    ws.cell(row=r, column=j).value = None
+            for j, h in enumerate(["Group", "Tab", "What it contains"], 1):
+                apply(ws.cell(row=hr, column=j, value=h), "h")
+            ws.column_dimensions["A"].width = 11
+            ws.column_dimensions["B"].width = 26
+            ws.column_dimensions["C"].width = 90
+            r = hr
+            i = 0
+            for g, t in order:
+                if t == contents:
+                    continue
+                r += 1
+                i += 1
+                b = "1" if i % 2 == 0 else "0"
+                apply(ws.cell(row=r, column=1, value=g), "k" + b)
+                apply(ws.cell(row=r, column=2, value=t), "b" + b)
+                apply(ws.cell(row=r, column=3, value=(descriptions or {}).get(t) or old.get(t, "")), "b" + b)
+    return order
+
+
+# ---------------------------------------------------------------- tear sheets
+METRICS = [("P/B", "p_b", "{:.2f}"), ("P/E", "pe", "{:.1f}"), ("EV/EBITDA", "ev_ebitda", "{:.1f}×"),
+           ("FCF yield", "fcf_yield", "{:.0%}"), ("Net cash / mcap", "net_cash_pct", "{:+.0%}"),
+           ("Net debt / EBITDA", "nd_ebitda", "{:.1f}×"), ("Revenue growth", "rev_growth", "{:+.0%}"),
+           ("Operating margin", "op_m", "{:.0%}"), ("ROE", "roe", "{:.0%}"),
+           ("Shares YoY", "shares_yoy", "{:+.0%}"), ("Interest cover", "int_cover", "{:.1f}×"),
+           ("52-week position", "range_pos", "{:.0%}"), ("Avg $ volume", "adv_usd", "${:,.0f}")]
+
+
+def _row_facts(ws, r, cols):
+    out = []
+    for h, c in cols.items():
+        if h in SKIP_COLS or h in TICKER_HDR:
+            continue
+        v = ws.cell(row=r, column=c).value
+        if v in (None, "", "–", "—"):
+            continue
+        if isinstance(v, (int, float)) and not isinstance(v, bool):
+            s = f"{v:,.0f}" if abs(v) >= 1000 else (f"{v:.3g}" if isinstance(v, float) else str(v))
+        else:
+            s = str(v)
+        out.append(f"{h}: {s[:60]}")
+    return " · ".join(out)
+
+
+def tear_sheets(wb, fin, names, sym_map=None, title="Tear Sheets", index=None, max_names=60):
+    """names: [display_ticker] in priority order."""
+    # index every tab row by ticker once
+    where = {}
+    for ws in wb.worksheets:
+        if ws.title in (title, "Name Financials"):
+            continue
+        hr, cols = header_of(ws)
+        if not hr:
+            continue
+        tcol = cols.get("Ticker") or cols.get("TKR") or cols.get("Symbol")
+        for r in range(hr + 1, ws.max_row + 1):
+            t = _ticker(ws.cell(row=r, column=tcol).value)
+            if t and len(t) < 20:
+                where.setdefault(t, []).append((ws, r, cols))
+    k = kit(wb)
+    ts = wb.create_sheet(title, index) if index is not None else wb.create_sheet(title)
+    ts.sheet_view.showGridLines = False
+    ts.column_dimensions["A"].width = 24
+    ts.column_dimensions["B"].width = 14
+    ts.column_dimensions["C"].width = 110
+    k.title(ts.cell(row=1, column=1, value=title))
+    k.subtitle(ts.cell(row=2, column=1, value=(
+        "One block per name: identity, the FMP financial panel, and every tab the name appears "
+        "on -- with its strength percentile (100 = strongest in that layer's full population) and "
+        "the facts that tab records. Names in priority order.")))
+    ts.merge_cells("A2:C2")
+    ts.row_dimensions[2].height = 30
+    r = 4
+    done = 0
+    for t in names:
+        if done >= max_names or t not in where:
+            continue
+        sym = (sym_map or {}).get(t, t)
+        f = fin.get(sym) or {}
+        done += 1
+        nm = f.get("name")
+        if not nm:                                # no FMP record: take the name from the tab itself
+            ws0, r0, c0 = where[t][0]
+            nc = c0.get("Name") or c0.get("Company")
+            nm = ws0.cell(row=r0, column=nc).value if nc else ""
+        meta = " · ".join(x for x in [f.get("sector"), f.get("country"),
+                                      f"mcap ${(f.get('mcap_usd') or 0) / 1e6:,.0f}M" if f.get("mcap_usd") else None,
+                                      f"price {f.get('price')}" if f.get("price") else None] if x)
+        # name line styled as a table header (the book's header rule), meta as subtitle
+        for j in (1, 2, 3):
+            k.header(ts.cell(row=r, column=j))
+        ts.cell(row=r, column=1, value=f"{t}  —  {nm or ''}")
+        rows_map = getattr(wb, "_ts_rows", {})
+        rows_map[t] = r
+        wb._ts_rows = rows_map
+        if k.header_height:
+            ts.row_dimensions[r].height = k.header_height
+        r += 1
+        if meta:
+            k.subtitle(ts.cell(row=r, column=1, value=meta), wrap=False)
+            r += 1
+        i = 0
+        if f.get("read"):
+            i += 1
+            k.body(ts.cell(row=r, column=1, value="Financial read"), band=False, bold=True)
+            k.body(ts.cell(row=r, column=2, value=f.get("read") + (
+                "  [" + "; ".join(f["flags"]) + "]" if f.get("flags") else "")), band=False)
+            k.body(ts.cell(row=r, column=3), band=False)
+            ts.merge_cells(start_row=r, start_column=2, end_row=r, end_column=3)
+            r += 1
+        cells = [(lab, fmt.format(f[kk])) for lab, kk, fmt in METRICS
+                 if f.get(kk) is not None and not (kk == "int_cover" and f[kk] == 0)]
+        for p0 in range(0, len(cells), 2):
+            i += 1
+            band = i % 2 == 0
+            pair = cells[p0:p0 + 2]
+            k.body(ts.cell(row=r, column=1, value=pair[0][0]), band=band, bold=True)
+            k.body(ts.cell(row=r, column=2, value=pair[0][1]), band=band)
+            k.body(ts.cell(row=r, column=3, value=(f"{pair[1][0]}: {pair[1][1]}" if len(pair) > 1 else None)),
+                   band=band)
+            r += 1
+        psu = getattr(wb, "_psu", {}).get(sym) or getattr(wb, "_psu", {}).get(t)
+        if psu:
+            k.body(ts.cell(row=r, column=1, value="PSU plan"), bold=True)
+            k.body(ts.cell(row=r, column=2, value=f"grade {psu.get('grade')}"))
+            k.body(ts.cell(row=r, column=3, value=(psu.get("summary") or "") + "  —  " + "; ".join(psu.get("why") or [])),
+                   wrap=True)
+            ts.row_dimensions[r].height = 45
+            r += 1
+        for lab, src, fn in (("Ownership", "_own", ownership_line), ("Red flags", "_dist", redflag_line),
+                             ("Priced in", "_exp", expectations_line)):
+            rec = getattr(wb, src, {}).get(sym) or getattr(wb, src, {}).get(t)
+            txt = fn(rec) if rec else None
+            if txt:
+                k.body(ts.cell(row=r, column=1, value=lab), bold=True)
+                k.body(ts.cell(row=r, column=3, value=txt), wrap=True)
+                ts.row_dimensions[r].height = 30
+                r += 1
+        dz = getattr(wb, "_dossier", {}).get(t) or getattr(wb, "_dossier", {}).get(sym)
+        if dz:
+            mv = dz.get("moves") or {}
+            since = mv.get("price_30d_from") or mv.get("price_90d_from")
+            parts = [f"{lab} {mv[key] * 100:+.0f}%" for lab, key in (("price", "price_30d"), ("P/B", "p_b_30d"))
+                     if isinstance(mv.get(key), (int, float))]
+            if parts and since:
+                k.body(ts.cell(row=r, column=1, value="Moves"), bold=True)
+                k.body(ts.cell(row=r, column=3, value=f"since {since}: " + ", ".join(parts)))
+                r += 1
+            ch = (dz.get("changed_since") or {}).get("items") or []
+            if ch:
+                k.body(ts.cell(row=r, column=1, value="New since last run"), bold=True)
+                k.body(ts.cell(row=r, column=2, value=(dz.get("changed_since") or {}).get("since")))
+                k.body(ts.cell(row=r, column=3, value=" | ".join(f"[{x['date']}] {x['what']}" for x in ch[:4])), wrap=True)
+                ts.row_dimensions[r].height = 45
+                r += 1
+            for e in (dz.get("timeline") or [])[:8]:
+                k.body(ts.cell(row=r, column=1, value=f"{e['date']}"), band=True, bold=True)
+                k.body(ts.cell(row=r, column=2, value=e["family"].replace("_", " ").title()
+                               + (" (reviewed)" if e.get("reviewed") else "")), band=True)
+                k.body(ts.cell(row=r, column=3, value=e["what"]), band=True, wrap=True)
+                ts.row_dimensions[r].height = 30
+                r += 1
+        for e in ([] if dz else (getattr(wb, "_events", {}).get(sym) or getattr(wb, "_events", {}).get(t) or [])[:4]):
+            if not e.get("what"):
+                continue
+            k.body(ts.cell(row=r, column=1, value=f"Event {e.get('date')}"), band=True, bold=True)
+            k.body(ts.cell(row=r, column=2, value=e.get("status") or ""), band=True)
+            k.body(ts.cell(row=r, column=3, value=f"{e['what']} — “{(e.get('excerpt') or '')[:300]}”"), band=True, wrap=True)
+            ts.row_dimensions[r].height = 45
+            r += 1
+        for j, h in enumerate(("Appears on", "Strength %ile", "What that tab says"), 1):
+            k.header(ts.cell(row=r, column=j, value=h))
+        r += 1
+        for i2, (ws, row, cols) in enumerate(where[t], 1):
+            band = i2 % 2 == 0
+            k.body(ts.cell(row=r, column=1, value=ws.title), band=band, bold=True)
+            st = cols.get("Strength %ile")
+            k.body(ts.cell(row=r, column=2, value=ws.cell(row=row, column=st).value if st else None), band=band)
+            k.body(ts.cell(row=r, column=3, value=_row_facts(ws, row, cols)), band=band, wrap=True)
+            ts.row_dimensions[r].height = 30
+            r += 1
+        r += 1
+    ts.freeze_panes = "A4"
+    return done
+
+
+# ---------------------------------------------------------------- event + PSU detail
+def _load_json(name):
+    p = ROOT / name
+    try:
+        return json.loads(p.read_text()) if p.exists() else {}
+    except Exception:
+        return {}
+
+
+def event_line(evs, n=2):
+    """Most recent located events as '[date] what' -- real events first (a phantom
+    only when nothing real exists), with the deal math where it applies."""
+    real = [e for e in evs or [] if e.get("what") and e.get("verdict") in ("REAL", None)]
+    other = [e for e in evs or [] if e.get("what") and e.get("verdict") not in ("REAL", None)]
+    out = []
+    for e in (real or other)[:n]:
+        x = f"[{e.get('date')}] {e['what']}"
+        if e.get("deal_state"):
+            x += f" — offer {e['offer_spread'] * 100:+.1f}% vs price: {e['deal_state']}"
+        elif e.get("amount_ev") and e.get("family") == "ASSET_SALE":
+            x += f" — {e['amount_ev'] * 100:.0f}% of EV"
+        out.append(x)
+    return " | ".join(out)
+
+
+def psu_line(p):
+    if not p:
+        return None
+    mets = p.get("metrics") or {}
+    m = ", ".join(f"{k} {v:.0f}%" if v else k for k, v in sorted(mets.items(), key=lambda kv: -(kv[1] or 0)))
+    bits = [f"{p.get('grade')}"]
+    if p.get("period_years"):
+        bits.append(f"{p['period_years']}-yr")
+    if m:
+        bits.append(m)
+    if p.get("history"):
+        bits.append("paid " + ", ".join(f"{v:.0f}%" for _, v in p["history"][:2]))
+    return " · ".join(bits)
+
+
+def detail_column(wb, header, values_by_ticker, tabs, after=("Strength %ile", "Key numbers (FMP)"), width=60,
+                  min_fill=0.15):
+    """Insert a column right after the name block on the given tabs."""
+    n = 0
+    for t in tabs:
+        if t not in wb.sheetnames:
+            continue
+        ws = wb[t]
+        hr, cols = header_of(ws)
+        if not hr or header in cols:
+            continue
+        base = next((cols[a] for a in after if a in cols), None) or _name_col(cols)
+        idx = base + 1
+        tcol = cols.get("Ticker") or cols.get("TKR") or cols.get("Symbol")
+        body = [r for r in range(hr + 1, ws.max_row + 1) if _ticker(ws.cell(row=r, column=tcol).value)]
+        hits = sum(1 for r in body if values_by_ticker.get(_ticker(ws.cell(row=r, column=tcol).value)))
+        if not body or hits / len(body) < min_fill or not hits:
+            continue                                   # would be a dead column on this sheet
+        insert_col(ws, idx, header, hr, width=width)
+        tcol = tcol + 1 if tcol >= idx else tcol
+        for r in range(hr + 1, ws.max_row + 1):
+            tk = _ticker(ws.cell(row=r, column=tcol).value)
+            v = values_by_ticker.get(tk) if tk else None
+            if v:
+                ws.cell(row=r, column=idx, value=v)
+        n += 1
+    return n
+
+
+def _table_sheet(wb, title, subtitle, headers, widths, rows, index=None, wrap_cols=()):
+    k = kit(wb)
+    ws = wb.create_sheet(title, index) if index is not None else wb.create_sheet(title)
+    ws.sheet_view.showGridLines = False
+    k.title(ws.cell(row=1, column=1, value=title))
+    k.subtitle(ws.cell(row=2, column=1, value=subtitle))
+    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=min(len(headers), 10))
+    ws.row_dimensions[2].height = 44
+    for j, (h, w) in enumerate(zip(headers, widths), 1):
+        k.header(ws.cell(row=4, column=j, value=h))
+        ws.column_dimensions[get_column_letter(j)].width = w
+    if k.header_height:
+        ws.row_dimensions[4].height = k.header_height
+    for i, vals in enumerate(rows, 1):
+        r = 4 + i
+        for j, v in enumerate(vals, 1):
+            k.body(ws.cell(row=r, column=j, value=v), band=(i % 2 == 0), bold=(j == 1),
+                   wrap=(headers[j - 1] in wrap_cols))
+        if wrap_cols:
+            ws.row_dimensions[r].height = 45
+    ws.freeze_panes = "C5"
+    return ws
+
+
+def psu_sheet(wb, psu, names=None, fin=None, index=None):
+    order = [t for t in (names or []) if t in psu] + sorted(
+        (t for t in psu if t not in set(names or [])), key=lambda t: (psu[t].get("grade"), -psu[t].get("grade_pts", 0)))
+    order.sort(key=lambda t: ("ABCD".index(psu[t].get("grade", "D")), -psu[t].get("grade_pts", 0)))
+    rows = []
+    for t in order:
+        p = psu[t]
+        mets = p.get("metrics") or {}
+        hist = "; ".join(f"{k}: {v:.0f}%" for k, v in p.get("history") or [])
+        hur = p.get("hurdle_max_vs_price")
+        rows.append([
+            t, ((fin or {}).get(t) or {}).get("name", "")[:24], p.get("grade"),
+            p.get("psu_pct_lti"),
+            (f"{p['period_years']}-yr" if p.get("period_years") else "") + (f" ({p['cycle']})" if p.get("cycle") else "")
+            + (" · annual goals" if p.get("annual_goals_3y_vest") else ""),
+            ", ".join(f"{k} {v:.0f}%" if v else k for k, v in sorted(mets.items(), key=lambda kv: -(kv[1] or 0)))
+            + ("" if p.get("weights_verified") or not mets or all(mets.values()) else
+               " (stated weights: " + ", ".join(f"{k} {v:.0f}%" for k, v in p["metrics_partial"].items()) + ")"
+               if p.get("metrics_partial") else " (weights not stated)"),
+            (f"{p.get('payout_min', 0):.0f}–{p['payout_max']:.0f}%" if p.get("payout_max") else ""),
+            (f"{p['rtsr_target_pct']}th" if p.get("rtsr_target_pct") else ""),
+            "; ".join(x for x in [f"±{p['tsr_modifier']:.0f}% TSR modifier" if p.get("tsr_modifier") else
+                                  (p.get("modifier") or ""),
+                                  "capped at target if TSR < 0" if p.get("negative_tsr_cap") else ""] if x),
+            (f"up to {hur:.1f}× price" if hur and hur >= 1 else f"already met (top hurdle {hur:.1f}× price)" if hur else ""),
+            hist,
+            "; ".join(f"{c['cycle']}: paid {c['payout']:.0f}% vs TSR {c['tsr'] * 100:+.0f}% "
+                      f"({c['vs_spy'] * 100:+.0f}pp vs SPY) — {c['verdict'].lower()}"
+                      for c in p.get("pay_for_performance") or []),
+            "; ".join(p.get("red_flags") or []), "; ".join(p.get("why") or []),
+            p.get("design_excerpt") or p.get("goals_excerpt") or "",
+            "reviewed" if p.get("source") == "reviewed" else "parsed", p.get("url"),
+        ])
+    return _table_sheet(
+        wb, "PSU Plans",
+        "What each company's performance-share plan actually is (latest proxy CD&A): metrics and weights, "
+        "performance period, payout range, relative-TSR target, modifiers, price hurdles, and what past cycles "
+        "actually PAID (the best test of how hard the goals are). Grade A–D with the reasons. 'weights not stated' = "
+        "metrics named but no weighting found in the text. Extraction: 'reviewed' = read from the proxy by a "
+        "reviewer (verbatim quote in Design); 'parsed' = regex fallback (accuracy: PARSER_EVAL.md). "
+        "Source: psu_detail.py + reviewed/psu.json.",
+        ["Ticker", "Name", "Grade", "PSU % LTI", "Period", "Metrics (weight)", "Payout range", "rTSR target",
+         "Modifier / caps", "Price hurdles", "What past cycles paid", "Pay vs performance", "Red flags",
+         "Why this grade", "Design (verbatim)", "Extraction", "Proxy"],
+        [9, 22, 7, 8, 14, 44, 11, 9, 26, 14, 30, 44, 26, 60, 70, 10, 12], rows, index=index,
+        wrap_cols=("Why this grade", "Design (verbatim)", "Metrics (weight)", "Pay vs performance"))
+
+
+FAMILY_LABEL = {"CEO_CHANGE": "CEO change", "CHAIR_CEO_SPLIT": "Chair / CEO split", "CH11_EMERGENCE": "Ch. 11 emergence",
+                "PILL_REMOVED": "Poison pill removed", "BUYBACK_AUTH": "Buyback authorised",
+                "SALE_OF_COMPANY": "Sale of company", "ASSET_SALE": "Asset sale", "GOING_PRIVATE": "Going private",
+                "TENDER_OFFER": "Tender offer", "EXCHANGE_OFFER": "Exchange offer", "CAPITAL_RETURN": "Capital return",
+                "CAPITAL_RETURN_POLICY": "Capital-return policy", "SPINOFF": "Spin-off", "SEPARATION": "Separation",
+                "STRATEGIC_REVIEW": "Strategic review", "VALUE_COMMITTEE": "Value committee",
+                "ACTIVIST_SETTLEMENT": "Activist settlement", "BOARD_REFRESH": "Board refresh",
+                "DECLASSIFY": "Board declassified", "UPLISTING": "Uplisting"}
+
+
+def ownership_line(r):
+    return (r or {}).get("summary") or None
+
+
+def redflag_line(r):
+    try:
+        import distress_flags
+        return distress_flags.line(r) or None
+    except Exception:
+        return None
+
+
+def ownership_sheet(wb, own, dist=None, fin=None, index=None):
+    """Who else is in the stock: 13D/13G, 13F holders, value investors, insiders (buys AND sells)."""
+    rows = []
+    for t, r in own.items():
+        ins = r.get("insiders") or {}
+        s13 = r.get("inst") or {}
+        notable = (r.get("recent_13d") or r.get("active_13d") or ins.get("buy_usd", 0) >= 100_000
+                   or ins.get("sell_usd", 0) >= 1_000_000 or r.get("value_holders") or r.get("new_big_holders"))
+        if not notable:
+            continue
+        rec = r.get("recent_13d") or []
+        act = any(e.get("activist") for e in rec) or any(h.get("activist") for h in r.get("active_13d") or [])
+        sw = any(e["type"] == "switch" for e in rec)
+        key = (0 if act else 1, 0 if sw else 1, 0 if rec else 1, -(ins.get("buy_usd") or 0))
+        ch = s13.get("investorsHoldingChange")
+        rows.append((key, [
+            t, ((fin or {}).get(t) or {}).get("name", "")[:24],
+            "; ".join(("ACTIVIST " if e.get("activist") else "") + f"{e['holder'].title()[:26]}: {e['what']}"
+                      + (f" {e['pct']:.1f}%" if e.get("pct") and "->" not in e["what"] else "") + f" [{e['date']}]"
+                      for e in sorted(rec, key=lambda e: e["date"], reverse=True)[:2]),
+            "; ".join(("⚑ " if h.get("activist") else "") + f"{h['name'].title()[:26]} {h['pct']:.1f}%"
+                      for h in (r.get("active_13d") or [])[:3]),
+            (f"{s13.get('investorsHolding')} ({ch:+d})" if s13.get("investorsHolding") and ch is not None else ""),
+            (f"{s13['ownershipPercent']:.0f}%" if isinstance(s13.get("ownershipPercent"), (int, float)) and s13["ownershipPercent"] <= 150 else ""),
+            "; ".join((r.get("value_holders") or []) + (r.get("new_big_holders") or []))[:160],
+            (f"${ins.get('buy_usd', 0) / 1e6:.2f}M ({ins.get('n_buyers', 0)})" if ins.get("buy_usd") else ""),
+            (f"${ins.get('sell_usd', 0) / 1e6:.2f}M ({ins.get('n_sellers', 0)})" if ins.get("sell_usd") else ""),
+            "✓" if ins.get("csuite_buy") else "",
+            "; ".join(r.get("underwater_holders") or [])[:120],
+            redflag_line((dist or {}).get(t)) or "",
+        ]))
+    rows = [x for _, x in sorted(rows, key=lambda z: z[0])][:400]
+    return _table_sheet(
+        wb, "Ownership",
+        "Who else is in the stock, and what they are doing (FMP: 13D/13G, 13F, every Form 4 incl. sales). "
+        "13D/13G = 5%+ holders: a new 13D or a 13G -> 13D switch means a holder intends to influence the company "
+        "(⚑ = known activist). 13F = institutional holders (count and change on the quarter) and value investors "
+        "holding or adding. Insiders = open-market buys and sells over 12 months. 'Big holders under water' = "
+        "a 2%+ holder whose average cost is well above today's price. Whether each of these has predicted "
+        "returns is tested in LAYER_VALIDATION.md (in this universe, ownership filings alone have NOT predicted "
+        "returns: read them as context -- who can force the value out, who is under water). Top 400 names shown: "
+        "activists and 13G->13D switches first. Red flags from distress_flags.py.",
+        ["Ticker", "Name", "13D / 13G activity (12m)", "Active 5%+ holders (13D)", "13F holders (Δ q/q)",
+         "Inst. own.", "Value investors / new big holders", "Insider buys 12m", "Insider sells 12m", "C-suite buy",
+         "Big holders under water", "Red flags"],
+        [9, 22, 60, 40, 12, 8, 50, 14, 14, 8, 44, 44], rows, index=index,
+        wrap_cols=("13D / 13G activity (12m)", "Value investors / new big holders", "Red flags"))
+
+
+def expectations_line(r):
+    return (r or {}).get("summary") or None
+
+
+def expectations_sheet(wb, exp, fin=None, index=None):
+    """What the market already expects: analysts (coverage, targets, ratings, forward P/E) and short interest."""
+    rows = []
+    for t, r in exp.items():
+        if t.startswith("_") or not isinstance(r, dict):
+            continue
+        rt = r.get("ratings") or {}
+        rows.append((-(r.get("short_pct_float") or 0), [
+            t, ((fin or {}).get(t) or {}).get("name", "")[:24], r.get("n_analysts"),
+            (round(r["pt"], 2) if r.get("pt") else ""),
+            (f"{r['pt_upside'] * 100:+.0f}%" if r.get("pt_upside") is not None else ""),
+            (f"{r['pt_trend'] * 100:+.0f}%" if r.get("pt_trend") is not None else ""),
+            (f"{rt.get('strongBuy', 0) + rt.get('buy', 0)}/{rt.get('hold', 0)}/{rt.get('sell', 0) + rt.get('strongSell', 0)}" if rt else ""),
+            (f"{r.get('upgrades_90d', 0)}/{r.get('downgrades_90d', 0)}" if (r.get("upgrades_90d") or r.get("downgrades_90d")) else ""),
+            (round(r["fwd_pe"], 1) if r.get("fwd_pe") else ("loss" if r.get("fwd_eps") is not None and r["fwd_eps"] <= 0 else "")),
+            (f"{r['short_pct_float'] * 100:.1f}%" if r.get("short_pct_float") is not None else ""),
+            (round(r["days_to_cover"], 1) if r.get("days_to_cover") else ""),
+            (f"{r['short_change'] * 100:+.0f}%" if r.get("short_change") is not None else ""),
+            r.get("summary") or "",
+        ]))
+    rows = [x for _, x in sorted(rows, key=lambda z: z[0])]
+    return _table_sheet(
+        wb, "Priced In",
+        "What the market already expects, per name: analyst coverage (0-2 = neglected: nobody is looking), the "
+        "consensus price target and the upside it implies, the target trend (last quarter vs last year), ratings "
+        "(buy / hold / sell), upgrades / downgrades in 90 days, the forward P/E on next year's consensus EPS; and "
+        "FINRA short interest (% of float, days to cover, change vs the prior settlement). Sorted by short interest. "
+        f"Short-interest settlement {exp.get('_si_date', '')}. What these have predicted: EXPECTATIONS_VALIDATION.md. "
+        "Source: expectations_layer.py (FMP + FINRA).",
+        ["Ticker", "Name", "Analysts", "Target $", "Upside to target", "Target trend", "Buy/Hold/Sell",
+         "Up/Down 90d", "Fwd P/E", "Short % float", "Days to cover", "Short Δ", "Read"],
+        [9, 22, 8, 9, 9, 9, 10, 9, 8, 9, 8, 8, 70], rows, index=index, wrap_cols=("Read",))
+
+
+def redflag_sheet(wb, dist, fin=None, names=None, index=None):
+    """Filings that say 'value trap': the caution list, by severity."""
+    import distress_flags as dfl
+    rows = []
+    for t, r in dist.items():
+        if names is not None and t not in names:
+            continue
+        fl = [x for x in r.get("flags") or [] if x["kind"] != "altman_distress"] or r.get("flags") or []
+        if not fl:
+            continue
+        kinds = []
+        for x in fl:
+            if x["kind"] not in kinds:
+                kinds.append(x["kind"])
+        rows.append((-(r.get("severity") or 0), [
+            t, ((fin or {}).get(t) or {}).get("name", "")[:24], r.get("severity"),
+            ", ".join(k.replace("_", " ") for k in kinds),
+            (round(r["altman_z"], 2) if isinstance(r.get("altman_z"), (int, float)) else ""),
+            (r.get("piotroski") if r.get("piotroski") is not None else ""),
+            "; ".join(f"[{x.get('date') or '—'}] {x['detail']}" for x in fl[:4]),
+            next((x.get("url") for x in fl if x.get("url")), None),
+        ]))
+    rows = [x for _, x in sorted(rows, key=lambda z: z[0])]
+    return _table_sheet(
+        wb, "Red Flags",
+        "Filings that say 'this may be a value trap', for every name in the book: 8-K 1.03 bankruptcy, 4.02 "
+        "non-reliance on past financials, 3.01 delisting notice, 2.06 impairment, NT 10-K/10-Q late filings, "
+        "going-concern doubt in a 10-K/10-Q (EDGAR full-text search), reverse splits, and Altman Z in the distress "
+        "zone (< 1.1; not computed for banks / insurers). Severity: bankruptcy 5, non-reliance / going concern 3, "
+        "delisting / late filing 2, reverse split / impairment / Altman 1. Last 12 months. What each flag has "
+        "meant for returns: LAYER_VALIDATION.md. Source: distress_flags.py.",
+        ["Ticker", "Name", "Severity", "Flags", "Altman Z", "Piotroski", "Detail (latest first)", "Filing"],
+        [9, 22, 8, 40, 8, 8, 90, 12], rows, index=index, wrap_cols=("Detail (latest first)", "Flags"))
+
+
+def event_sheet(wb, events, fin=None, index=None):
+    rows = []
+    for t, evs in events.items():
+        for e in evs:
+            if not e.get("excerpt"):
+                continue
+            amt = e.get("amount_usd")
+            rows.append([
+                t, ((fin or {}).get(t) or {}).get("name", "")[:24], e.get("date"),
+                FAMILY_LABEL.get(e.get("family"), (e.get("family") or "").replace("_", " ").title()), e.get("status") or "",
+                (("✓ real" if e.get("verdict") == "REAL" else "↻ other kind" if e.get("verdict") == "RETYPED" else "⚠ phantom" if e.get("verdict") else "")
+                       + (" (reviewed)" if e.get("source") == "reviewed" else "")), e.get("what"),
+                (f"${amt / 1e6:,.0f}M" if amt and amt >= 1e6 else ""),
+                (f"{e['pct_mcap'] * 100:.0f}%" if e.get("pct_mcap") and e["pct_mcap"] <= 5 else ""),
+                (f"{e['amount_ev'] * 100:.0f}%" if e.get("amount_ev") and e["amount_ev"] <= 5 else ""),
+                (f"{e['offer_spread'] * 100:+.1f}% · {e['deal_state']}" if e.get("deal_state") else ""),
+                " · ".join(x for x in [
+                    f"counterparty: {e['counterparty']}" if e.get("counterparty") else "",
+                    f"person: {e['person']}" if e.get("person") else "",
+                    f"asset: {e['asset']}" if e.get("asset") else "",
+                    f"timing: {e['timing']}" if e.get("timing") else "",
+                    f"adviser: {e['advisor']}" if e.get("advisor") else ""] if x),
+                (f"{e['xret_since'] * 100:+.0f}%" if isinstance(e.get("xret_since"), (int, float)) else ""),
+                e.get("evidence") or e.get("excerpt"), e.get("url"),
+            ])
+    rows.sort(key=lambda r: (r[2] or ""), reverse=True)
+    return _table_sheet(
+        wb, "Event Detail",
+        "What exactly is happening in every dated corporate-action and governance event behind the thesis tabs: "
+        "the 8-K on the event date and its press release are read, and the specifics extracted -- what is being "
+        "sold / spun / tendered, to or by whom, for how much (and as % of market cap), when it closes, advisers, "
+        "board seats. % EV = consideration / enterprise value (the honest size for a levered seller; % mcap overstates it). "
+        "Offer vs price = per-share offer vs today's price on a pending deal: 'dead money' < 3% left, 'wide spread' > 15% "
+        "(market doubts it closes), 'bump expected' = trades above the offer. Status: ANNOUNCED / PENDING / COMPLETED. Verdict: '✓ real'; '↻ other kind' = a real event "
+        "but not the kind the scanner tagged (e.g. a rights plan ADOPTED under 'pill removed', or the company "
+        "ACQUIRING under 'sale of company'); '⚠ phantom' = a recital / footnote, no such event. Both are removed "
+        "from the thesis scoring. '(reviewed)' = read and extracted by a reviewer with a verbatim quote; otherwise "
+        "the regex parse (accuracy vs the reviewed set: PARSER_EVAL.md). Source: event_detail.py + reviewed/.",
+        ["Ticker", "Name", "Date", "Event", "Status", "Verdict", "What is happening", "Amount", "% mcap", "% EV",
+         "Offer vs price", "Specifics", "Since event (vs SPY)",
+         "Filing excerpt (verbatim)", "Filing"],
+        [9, 22, 11, 16, 11, 10, 60, 10, 7, 7, 26, 50, 10, 90, 12], rows, index=index,
+        wrap_cols=("What is happening", "Filing excerpt (verbatim)"))
+
+
+# ---------------------------------------------------------------- navigation + colour
+GRADE_FILL = {"A": "D9EAD3", "B": "EAF3E3", "C": "FDF2D0", "D": "F8DAD6"}
+STATUS_FONT = {"COMPLETED": "7F7F7F", "PENDING": "B7791F", "ANNOUNCED": "1F5F8B"}
+
+
+def _hdr_cols(ws):
+    hr, cols = header_of(ws)
+    return hr, cols
+
+
+def link_tickers(wb, ts_title="Tear Sheets"):
+    """Every ticker cell (outside the tear sheets) links to its tear-sheet block."""
+    rows = getattr(wb, "_ts_rows", {})
+    if not rows or ts_title not in wb.sheetnames:
+        return 0
+    n = 0
+    for ws in wb.worksheets:
+        if ws.title == ts_title:
+            continue
+        hr, cols = _hdr_cols(ws)
+        if not hr:
+            continue
+        tcol = cols.get("Ticker") or cols.get("TKR") or cols.get("Symbol")
+        for r in range(hr + 1, ws.max_row + 1):
+            c = ws.cell(row=r, column=tcol)
+            t = _ticker(c.value)
+            if t and t in rows:
+                from copy import copy
+                f = copy(c.font)
+                c.hyperlink = f"#'{ts_title}'!A{rows[t]}"
+                c.font = f                           # keep the house font (no blue underline)
+                n += 1
+    return n
+
+
+def link_filings(wb, headers=("Filing", "Proxy")):
+    """Replace raw URLs with a clickable 'open filing'."""
+    n = 0
+    for ws in wb.worksheets:
+        hr, cols = _hdr_cols(ws)
+        if not hr:
+            continue
+        for h in headers:
+            c0 = cols.get(h)
+            if not c0:
+                continue
+            for r in range(hr + 1, ws.max_row + 1):
+                c = ws.cell(row=r, column=c0)
+                if isinstance(c.value, str) and c.value.startswith("http"):
+                    from copy import copy
+                    f = copy(c.font); f.underline = "single"; f.color = "1F5F8B"
+                    c.hyperlink, c.value, c.font = c.value, "open filing", f
+                    n += 1
+    return n
+
+
+def colourise(wb):
+    """Grades A-D tinted; event status coloured; strength %ile as data bars."""
+    from copy import copy
+    from openpyxl.formatting.rule import DataBarRule
+    for ws in wb.worksheets:
+        hr, cols = _hdr_cols(ws)
+        if not hr:
+            continue
+        for h in ("Grade",):
+            c0 = cols.get(h)
+            if c0:
+                for r in range(hr + 1, ws.max_row + 1):
+                    c = ws.cell(row=r, column=c0)
+                    if c.value in GRADE_FILL:
+                        c.fill = PatternFill("solid", fgColor=GRADE_FILL[c.value])
+                        f = copy(c.font); f.b = True; c.font = f
+        c0 = cols.get("Status")
+        if c0:
+            for r in range(hr + 1, ws.max_row + 1):
+                c = ws.cell(row=r, column=c0)
+                if c.value in STATUS_FONT:
+                    f = copy(c.font); f.color = STATUS_FONT[c.value]; f.b = True; c.font = f
+        c0 = cols.get("Strength %ile")
+        if c0:
+            col = get_column_letter(c0)
+            ws.conditional_formatting.add(
+                f"{col}{hr + 1}:{col}{ws.max_row}",
+                DataBarRule(start_type="num", start_value=0, end_type="num", end_value=100,
+                            color="9DB9D3", showValue=True))
+
+
+def whats_new(wb, events=None, calls=None, turnaround_csv=None, gov=None, index=None, fin=None, only=None):
+    """Front-of-book digest: what happened recently, across every engine."""
+    from datetime import date
+    k = kit(wb)
+    ws = wb.create_sheet("What's New", index) if index is not None else wb.create_sheet("What's New")
+    ws.sheet_view.showGridLines = False
+    k.title(ws.cell(row=1, column=1, value="What's New"))
+    k.subtitle(ws.cell(row=2, column=1, value=(
+        f"As of {date.today()}: corporate events in the last 30 days, senior appointments in the last 60, "
+        "management commitments on calls in the last 45, governance actions in the last 60, and -- from the unified "
+        "event store -- 13D/13G ownership moves, insider buying and new filing red flags in the last 30 -- each with "
+        "the stock's move since (excess vs SPY) where known, so you can see what is and isn't priced.")))
+    ws.merge_cells("A2:H2")
+    ws.row_dimensions[2].height = 32
+    for j, w in enumerate([9, 22, 11, 14, 70, 10, 10, 14], 1):
+        ws.column_dimensions[get_column_letter(j)].width = w
+    today = date.today()
+    r = 4
+
+    def _keep(rows):
+        """Security master filter: common / ADR lines only, one line per issuer (the first, i.e. latest);
+        `only` restricts the digest to one book's names."""
+        if only is not None:
+            rows = [x for x in rows if str(x[0]) in only]
+        elif fin:
+            rows = [x for x in rows if str(x[0]) in fin]           # the main book: names it can show financials for
+        try:
+            import store
+        except Exception:
+            return rows
+        out_, seen_ = [], set()
+        for x in rows:
+            t_ = str(x[0])
+            st_ = store.sec_type_of(t_)
+            if st_ and st_ not in ("common", "adr", "otc_line"):
+                continue
+            if not st_ and re.search(r"-P[A-Z]?$|W$", t_) and len(t_) >= 5:
+                continue                                   # unknown to the master and shaped like a pref / warrant
+            ik = store.issuer_key(t_) or t_
+            if ik in seen_:
+                continue
+            seen_.add(ik)
+            out_.append(x)
+        return out_
+
+    def section(title, headers, rows):
+        nonlocal r
+        rows = _keep(rows)
+        k.subtitle(ws.cell(row=r, column=1, value=f"{title}  ({len(rows)})"), wrap=False)
+        r += 1
+        for j, h in enumerate(headers, 1):
+            k.header(ws.cell(row=r, column=j, value=h))
+        r += 1
+        for i, vals in enumerate(rows, 1):
+            for j, v in enumerate(vals, 1):
+                c = ws.cell(row=r, column=j, value=v)
+                k.body(c, band=(i % 2 == 0), bold=(j == 1), wrap=(j == 5))
+                if isinstance(v, str) and v.startswith("http"):
+                    c.hyperlink, c.value = v, "open filing"
+            ws.row_dimensions[r].height = 30
+            r += 1
+        if not rows:
+            k.body(ws.cell(row=r, column=1, value="— none —")); r += 1
+        r += 1
+
+    def age(d):
+        try:
+            return (today - date.fromisoformat(str(d)[:10])).days
+        except ValueError:
+            return 9999
+
+    def pct(x):
+        return f"{x * 100:+.0f}%" if isinstance(x, (int, float)) else ""
+    name = lambda t: ((fin or {}).get(t) or {}).get("name", "")[:22]
+    evr = []
+    for t, lst in (events or {}).items():
+        for e in lst:
+            if e.get("what") and age(e.get("date")) <= 30 and e.get("verdict") not in ("NOT AN EVENT", "RETYPED"):
+                evr.append([t, name(t), e.get("date"), e.get("status") or "", e["what"],
+                            pct(e.get("xret_since")), (f"{e['pct_mcap'] * 100:.0f}%" if e.get("pct_mcap") and e["pct_mcap"] <= 5 else ""),
+                            e.get("url")])
+    evr.sort(key=lambda x: x[2] or "", reverse=True)
+    section("Corporate events, last 30 days", ["Ticker", "Name", "Date", "Status", "What is happening",
+                                                "Since (vs SPY)", "% mcap", "Filing"], evr[:60])
+    hires = []
+    if turnaround_csv and Path(turnaround_csv).exists():
+        for x in csv_rows(turnaround_csv):
+            if x.get("event_type") in ("NEW HIRE", "PROMOTION") and age(x.get("filing_date")) <= 60:
+                who = f"{x.get('person')} — {x.get('role')}" + (" (interim)" if x.get("interim") else "")
+                hires.append([x["ticker"], name(x["ticker"]) or (x.get("company") or "")[:22], x.get("filing_date"),
+                              x.get("event_type"), who + ". " + (x.get("background") or "")[:220],
+                              pct(float(x["xret_since"])) if x.get("xret_since") not in (None, "") else "", "", ""])
+    hires.sort(key=lambda x: x[2] or "", reverse=True)
+    section("Senior appointments, last 60 days", ["Ticker", "Name", "Date", "Type", "Who / background",
+                                                   "Since (vs SPY)", "", ""], hires[:40])
+    cr = []
+    for t, c in (calls or {}).items():
+        if c.get("tier") == "ACT SIGNALLED" and age(c.get("date")) <= 45:
+            fams = c.get("families") or {}
+            top = next((f for f in (c.get("new_families") or []) + sorted(fams, key=lambda f: -fams[f])
+                        if (c.get("evidence") or {}).get(f)), None)
+            q = (c["evidence"][top][0]["q"][:220]) if top else ""
+            cr.append([t, name(t), c.get("date"), "NEW " + top.lower() if top in (c.get("new_families") or []) else (top or "").lower(),
+                       f"“{q}”", "", f"{c['size_pct']:.0%}" if c.get("size_pct") else "", ""])
+    cr.sort(key=lambda x: x[2] or "", reverse=True)
+    section("Management commitments on calls, last 45 days", ["Ticker", "Name", "Call", "Action", "What management said",
+                                                               "", "Size", ""], cr[:40])
+    gr = []
+    for t, g in (gov or {}).items():
+        fams = g.get("families") or {}
+        recent = [(f, v) for f, v in fams.items() if v.get("date") and age(v["date"]) <= 60 and f != "PAY_ON_VALUE"]
+        if g.get("tier") == "ACTION LIKELY" and recent:
+            f, v = max(recent, key=lambda kv: kv[1]["date"])
+            gr.append([t, name(t) or (g.get("name") or "")[:22], v["date"], f.replace("_", " ").lower(),
+                       f"P/B {g.get('p_b'):.2f}; {len(fams)} signals: " + ", ".join(x.replace('_', ' ').lower() for x in fams)[:200],
+                       "", "", ""])
+    gr.sort(key=lambda x: x[2] or "", reverse=True)
+    section("Governance actions at deep-discount names, last 60 days", ["Ticker", "Name", "Date", "Latest", "Set-up",
+                                                                        "", "", ""], gr[:40])
+    # --- from the unified event store: ownership moves, insider buying, new red flags
+    try:
+        import store
+        con = store.connect(readonly=True)
+        lo30 = (today.toordinal() - 30)
+        from datetime import date as _d
+        since = _d.fromordinal(lo30).isoformat()
+        rows13, rowsin, rowsrf = [], [], []
+        seen = set()
+        for e in con.execute("SELECT security_id, date, type, what, counterparty, extra, doc_url FROM events "
+                             "WHERE family='OWNERSHIP' AND date>=? AND type IN ('NEW_13D','13G_TO_13D','13D_ADD') "
+                             "ORDER BY date DESC", (since,)):
+            ex_ = json.loads(e["extra"] or "{}")
+            k_ = (e["security_id"], e["type"], e["date"])
+            if k_ in seen:
+                continue
+            seen.add(k_)
+            rows13.append([e["security_id"], name(e["security_id"]), e["date"],
+                           ("ACTIVIST " if ex_.get("activist") else "") + e["type"].replace("_", " ").lower(),
+                           f"{(e['counterparty'] or '').title()[:40]}: {e['what']}" + (f" ({ex_['pct']:.1f}%)" if ex_.get("pct") else ""),
+                           "", "", e["doc_url"]])
+        agg = {}
+        for e in con.execute("SELECT security_id, date, amount_usd FROM events WHERE type='INSIDER_BUY' AND date>=?", (since,)):
+            a = agg.setdefault(e["security_id"], [0.0, 0, e["date"]])
+            a[0] += e["amount_usd"] or 0; a[1] += 1; a[2] = max(a[2], e["date"])
+        for sid, (v, n, d) in agg.items():
+            if v >= 250_000:
+                rowsin.append([sid, name(sid), d, f"{n} buy(s)", f"insiders bought ${v / 1e6:.2f}M in the last 30 days", "", "", ""])
+        rowsin.sort(key=lambda x: -float(x[4].split("$")[1].split("M")[0]))
+        for e in con.execute("SELECT security_id, date, type, what, doc_url FROM events WHERE family='RED_FLAG' AND date>=? "
+                             "ORDER BY date DESC", (since,)):
+            rowsrf.append([e["security_id"], name(e["security_id"]), e["date"], e["type"].replace("RED_FLAG_", "").replace("_", " ").lower(),
+                           e["what"], "", "", e["doc_url"]])
+        section("Ownership moves (13D / 13G), last 30 days", ["Ticker", "Name", "Filed", "Move", "Who / what", "", "", "Filing"], rows13[:40])
+        section("Insider buying >= $250k, last 30 days", ["Ticker", "Name", "Latest", "Trades", "What", "", "", ""], rowsin[:40])
+        section("New red flags, last 30 days", ["Ticker", "Name", "Date", "Flag", "Detail", "", "", "Filing"], rowsrf[:40])
+        rowsjp = []
+        for e in con.execute("SELECT security_id, date, type, what, evidence, doc_url FROM events WHERE family='JP_DISCLOSURE' "
+                             "AND date>=? AND type NOT IN ('JP_BUYBACK_PROGRESS','JP_INTERNAL_REORG','JP_DIVIDEND_REVISION') "
+                             "ORDER BY date DESC", (since,)):
+            rowsjp.append([e["security_id"], name(e["security_id"]), e["date"], e["type"].replace("JP_", "").replace("_", " ").lower(),
+                           f"{e['what']} — {e['evidence'] or ''}"[:260], "", "", e["doc_url"]])
+        if only is None:
+            rowsjp = [x for x in rowsjp if x[0] in (fin or {})]      # the main book: its own names only
+        if only is not None or rowsjp:
+            section("Japan timely disclosures (TDnet), last 30 days", ["Ticker", "Name", "Date", "Type", "What (English label — Japanese title)",
+                                                                        "", "", "Filing"], rowsjp[:60])
+    except Exception as exc:                                   # store not built: the file-based sections still stand
+        k.body(ws.cell(row=r, column=1, value=f"(event store unavailable: {exc})"))
+    ws.freeze_panes = "A4"
+    return ws
+
+
+def csv_rows(path):
+    import csv as _csv
+    return list(_csv.DictReader(open(path)))
+
+
+# ---------------------------------------------------------------- QA fixes
+from collections import Counter
+
+
+def _norm_issuer(n):
+    import re as _re
+    n = _re.sub(r"[^a-z0-9 ]", " ", str(n or "").lower())
+    n = _re.sub(r"\b(inc|corp|corporation|co|ltd|limited|plc|holdings?|group|the|sa|ag|nv|lp|llc|class [a-c])\b", " ", n)
+    return " ".join(n.split())[:24]
+
+
+def _bad_security(t, name):
+    import re as _re
+    if len(t) == 5 and t.endswith("Q"):
+        return "bankrupt (Q) line"
+    # any coupon rate in the name ("5.375% S...", "6.25% Series A") is a note / preferred line
+    if _re.search(r"\d%|\bnotes?\b|debenture|\bsr\.? nts?\b|\bpfd\b|preferred", str(name or ""), _re.I):
+        return "note / preferred line"
+    return None
+
+
+def delete_rows(ws, rows_to_delete, hr):
+    """Delete body rows, keeping merged footnotes, row heights and row
+    banding (odd/even body rows re-styled from the first two body rows)."""
+    if not rows_to_delete:
+        return
+    dels = sorted(set(rows_to_delete))
+    merges = [(m.min_row, m.min_col, m.max_row, m.max_col) for m in ws.merged_cells.ranges if m.min_row > hr]
+    for m in [m for m in ws.merged_cells.ranges if m.min_row > hr]:
+        ws.unmerge_cells(str(m))
+    heights = {r: ws.row_dimensions[r].height for r in range(hr + 1, ws.max_row + 1)}
+    # snapshot banding templates (first two body rows) before deleting
+    from copy import copy
+    tmpl = {}
+    for k_, r in ((0, hr + 1), (1, hr + 2)):
+        tmpl[k_] = [(copy(ws.cell(row=r, column=c).font), copy(ws.cell(row=r, column=c).fill),
+                     copy(ws.cell(row=r, column=c).border)) for c in range(1, ws.max_column + 1)]
+    first_nonbody = None
+    for r in range(hr + 1, ws.max_row + 2):
+        v = ws.cell(row=r, column=1).value
+        if v is None and ws.cell(row=r, column=2).value is None:
+            first_nonbody = r
+            break
+    for r in reversed(dels):
+        ws.delete_rows(r)
+    shift = lambda r: r - sum(1 for d in dels if d < r)
+    for r0, c0, r1, c1 in merges:
+        ws.merge_cells(start_row=shift(r0), start_column=c0, end_row=shift(r1), end_column=c1)
+    for r, h in heights.items():
+        if r in dels:
+            continue
+        ws.row_dimensions[shift(r)].height = h
+    # re-band the remaining body rows
+    last_body = shift(first_nonbody) - 1 if first_nonbody else ws.max_row
+    for i, r in enumerate(range(hr + 1, last_body + 1)):
+        t = tmpl[i % 2]
+        for c in range(1, min(ws.max_column, len(t)) + 1):
+            cell = ws.cell(row=r, column=c)
+            f0, fill0, b0 = t[c - 1]
+            cell.fill = copy(fill0)
+            cell.border = copy(b0)
+            # keep a cell's own bold / colour emphasis (grades, tags); restore the band font otherwise
+            if not cell.font or cell.font.name != f0.name:
+                cell.font = copy(f0)
+
+
+_BAD_BASIS = ("mcap_suspect", "implausible", "inconsistent")
+_MCAP_H = {"Mcap $M", "Mcap ($M)", "mcap ($M)", "Market cap $M", "Mcap $m", "MCap $M"}
+
+
+def _num(v):
+    if isinstance(v, (int, float)) and not isinstance(v, bool):
+        return float(v)
+    try:
+        return float(str(v).replace("×", "").replace("x", "").replace(",", "").strip())
+    except (ValueError, AttributeError):
+        return None
+
+
+def _harmonise(cell, h, v, f, stats):
+    """One number per name everywhere: the validated FMP value, or 'n/m' where the
+    validator rejected it (a tab must not re-derive what the source threw out)."""
+    x = _num(v)
+    bad = f.get("pb_src") in _BAD_BASIS
+    if h == "P/B" and f.get("p_b") is None and bad and x is not None:
+        cell.value = "n/m"; stats["rejected P/B -> n/m"] += 1
+        return True
+    if h in ("P/E", "P/E (TTM)", "P/E ttm") and x is not None:
+        if f.get("pe") is None:
+            if bad or 0 <= x < 1:
+                cell.value = "n/m"; stats["rejected P/E -> n/m"] += 1
+                return True
+            if x <= 0:
+                cell.value = "loss"; stats["negative P/E -> loss"] += 1
+                return True
+        elif f["pe"] < 0 or (x == 0 and f["pe"] <= 0):
+            cell.value = "loss"; stats["negative P/E -> loss"] += 1
+            return True
+    if h in ("EV/EBITDA", "EV/EBITDA ×") and x is not None and f.get("ev_ebitda") is None:
+        cell.value = "n/m"; stats["EV/EBITDA with negative EV or EBITDA -> n/m"] += 1
+        return True
+    if h in ("ROE", "ROE %") and x is not None and f.get("roe") is None and any(
+            "not meaningful" in str(fl) for fl in f.get("flags") or []):
+        cell.value = "n/m"; stats["rejected ROE -> n/m"] += 1
+        return True
+    if h in _MCAP_H and x is not None:
+        if f.get("mcap_usd"):
+            nv = round(f["mcap_usd"] / 1e6, 1)
+            if abs(nv - x) > max(0.05 * abs(nv), 0.2):
+                stats["market cap -> USD (validated)"] += 1
+            cell.value = nv
+            return True
+        if bad or f.get("currency") not in (None, "USD"):
+            cell.value = "n/m"; stats["market cap unvalidated -> n/m"] += 1
+            return True
+    return False
+
+
+_ISSUER_IDX = {}
+
+
+def _other_line_of(t, name, fin):
+    """An OTC F-line priced > 5x away from the issuer's most-traded line is a preferred /
+    other class (FRFFF $17.78 vs Fairfax common FRFHF $1,591)."""
+    if not _ISSUER_IDX:
+        for k, v in fin.items():
+            key = _norm_issuer(v.get("name"))
+            if key and v.get("price"):
+                _ISSUER_IDX.setdefault(key, []).append((k, v.get("price"), v.get("adv_usd") or 0, v.get("currency")))
+    key = _norm_issuer(name or (fin.get(t) or {}).get("name"))
+    lines = _ISSUER_IDX.get(key) or []
+    me = (fin.get(t) or {}).get("price")
+    # an ADR (…Y) differs from the ordinary line by its ratio, not by being another class
+    others = [x for x in lines if x[0] != t and x[3] == (fin.get(t) or {}).get("currency") and not x[0].endswith("Y")]
+    if not me or not others:
+        return False
+    top = max(others, key=lambda x: x[2])
+    return top[2] > 20 * max((fin.get(t) or {}).get("adv_usd") or 0, 1) and not (0.2 < me / top[1] < 5)
+
+
+def _derivative_line(t, name, fin):
+    """SPAC rights / units / warrants and CVRs: '-RI', '-CVR', or a 5-letter R/U/W/Z line
+    whose 4-letter base is the same issuer."""
+    import re as _re
+    if _re.search(r"-(?:RI|R|CVR|WT|WS|U|UN|P[A-Z]?)$", t):
+        return True
+    # a longer ticker of the same issuer priced far from the common (TPGXL note $21 vs TPG $45,
+    # VSECU unit, WHLRP / FBIOP preferreds) is another security of that issuer
+    for n_ in (4, 3, 2):
+        base = t[:n_]
+        if len(t) > n_ and base in fin and base != t and not base.endswith("Y"):
+            bf, tf = fin.get(base) or {}, fin.get(t) or {}
+            if _norm_issuer(bf.get("name")) and _norm_issuer(bf.get("name")) == _norm_issuer(name or tf.get("name")):
+                bp, tp = bf.get("price"), tf.get("price")
+                if not bp or not tp or not (0.55 < tp / bp < 1.8) or t[n_:] in ("P", "U", "W", "R", "Z", "XL", "PR", "WS"):
+                    return True
+            break
+    if t not in fin and len(t) == 5 and t[-1] in "WRUZ" and t[:4] in fin:
+        return True                                     # warrant / right / unit of a listed issuer
+    if len(t) == 5 and t[-1] == "F" and _other_line_of(t, name, fin):
+        return True
+    if len(t) == 5 and t[-1] in "RUWZP" and t[:4] in fin:
+        base = (fin.get(t[:4]) or {}).get("name") or ""
+        if _norm_issuer(base) and _norm_issuer(base) == _norm_issuer(name or (fin.get(t) or {}).get("name")):
+            return True
+    return bool(_re.search(r"\bRights?\b|\bUnits?\b|\bWarrants?\b|Contingent Value", str(name or "")))
+
+
+def _master_type(t):
+    try:
+        import store
+        return store.sec_type_of(t)
+    except Exception:
+        return None
+
+
+def _master_issuer(t, nm):
+    """Issuer grouping key: the security master's CIK-based issuer id, else the normalised name."""
+    try:
+        import store
+        k = store.issuer_key(t)
+        if k and k.startswith("CIK:"):
+            return k
+    except Exception:
+        pass
+    return _norm_issuer(nm)
+
+
+def qa_fixes(wb, fin, harmonise_pb=True, skip=()):
+    """Book-level fixes found by book_qa.py:
+       * secondary share lines (preferreds / notes of an issuer already listed)
+         and bankrupt Q-lines / baby bonds removed from list sheets
+       * negative P/E shown as 'loss'
+       * P/B columns show the validated FMP P/B (one number per name everywhere)
+       * floats rounded (no 7-14 decimal values)"""
+    import re as _re
+    stats = Counter()
+    for ws in wb.worksheets:
+        if ws.title in skip:
+            continue
+        hr, cols = header_of(ws)
+        if not hr:
+            continue
+        tcol = cols.get("Ticker") or cols.get("TKR") or cols.get("Symbol")
+        ncol = cols.get("Name") or cols.get("Company")
+        groups, dels = {}, []
+        for r in range(hr + 1, ws.max_row + 1):
+            t = _ticker(ws.cell(row=r, column=tcol).value)
+            if not t or len(t) > 18 or " " in t:
+                continue
+            if t in ("NONE", "N/A", "NA") or (_re.fullmatch(r"[A-Z]{4}X", t) and not fin.get(t)):
+                dels.append(r); stats["junk / mutual-fund ticker"] += 1    # Form 4 filers that are funds
+                continue
+            f = fin.get(t) or {}
+            nm = f.get("name") or (ws.cell(row=r, column=ncol).value if ncol else None)
+            st_ = _master_type(t)
+            if (_bad_security(t, nm) or f.get("not_common") or _derivative_line(t, nm, fin)
+                    or (st_ and st_ not in ("common", "adr", "otc_line")
+                        and not (st_ == "bankrupt" and ws.title in ("Distressed Stub Progress", "Red Flags")))) \
+                    and ws.title not in ("Distressed Stub Progress",):
+                dels.append(r); stats["bad security" + (f" ({st_})" if st_ and st_ != "common" else "")] += 1
+                continue
+            key = _master_issuer(t, nm)
+            if key:
+                groups.setdefault(key, []).append((r, t))
+        # one line per issuer: keep the primary (not an OTC F/Y line; shortest ticker), drop
+        # secondary lines that extend it (AGNC -> AGNCL) or are its OTC / class twin
+        for key, lst in groups.items():
+            if len({t for _, t in lst}) < 2:
+                continue
+            otc_line = lambda t: len(t) == 5 and t[-1] in "FY"
+            adv = lambda t: ((fin.get(t) or {}).get("adv_usd") or 0)
+            # keep the issuer's most-traded primary line; every other line of the same issuer
+            # (notes, preferreds, old tickers, OTC twins) goes
+            keep_r, keep_t = min(lst, key=lambda rt: (otc_line(rt[1]), -adv(rt[1]), len(rt[1]), rt[0]))
+            for r, t in lst:
+                if t == keep_t:
+                    continue
+                dels.append(r); stats["duplicate issuer line"] += 1
+        # P/E sign / P/B harmonisation / rounding -- every body row
+        for r in range(hr + 1, ws.max_row + 1):
+            t = _ticker(ws.cell(row=r, column=tcol).value)
+            if not t or r in dels:
+                continue
+            f = fin.get(t) or {}
+            for h, c in cols.items():
+                    cell = ws.cell(row=r, column=c)
+                    v = cell.value
+                    if harmonise_pb and f and h == "P/B" and f.get("p_b") and isinstance(v, (int, float, str)) \
+                            and not isinstance(v, bool) and _num(v) is None and str(v).strip().lower() in ("neg. equity", "n/m"):
+                        cell.value = round(f["p_b"], 2); stats["P/B harmonised"] += 1     # stale label vs validated value
+                    elif harmonise_pb and f and h in ("52w pos", "52w position", "52w %") and f.get("range_pos") is not None \
+                            and _num(v) is not None:
+                        x = _num(v)
+                        nv = f["range_pos"] if (x <= 1.5 and "%" not in str(v)) else round(f["range_pos"] * 100)
+                        if abs((x if x <= 1.5 else x / 100) - f["range_pos"]) > 0.1:
+                            stats["52w position harmonised"] += 1
+                        cell.value = nv if isinstance(nv, int) else round(nv, 2)
+                    elif h in ("P/E",) and isinstance(v, (int, float)) and v < 0:
+                        cell.value = "loss"; stats["negative P/E -> loss"] += 1
+                    elif h == "P/B" and isinstance(v, (int, float)) and v > 100:
+                        cell.value = "n/m"; stats["P/B > 100x -> n/m"] += 1       # near-zero equity
+                    elif h == "P/B" and isinstance(v, (int, float)) and v < 0:
+                        cell.value = "neg. equity"; stats["negative P/B -> neg. equity"] += 1
+                    elif harmonise_pb and f and _harmonise(cell, h, v, f, stats):
+                        pass
+                    elif h == "P/B" and harmonise_pb and f.get("p_b") and isinstance(v, (int, float, str)):
+                        try:
+                            cur = float(str(v).replace("×", ""))
+                        except ValueError:
+                            cur = None
+                        if cur is None or abs(cur / f["p_b"] - 1) > 0.02:
+                            stats["P/B harmonised"] += 1
+                        cell.value = round(f["p_b"], 2)
+                    elif isinstance(v, float) and not float(v).is_integer():
+                        rv = round(v, 3 if abs(v) < 1 else 2)
+                        if rv != v:
+                            cell.value = rv; stats["rounded"] += 1
+        rows_t = {}
+        for r in range(hr + 1, ws.max_row + 1):
+            t = _ticker(ws.cell(row=r, column=tcol).value)
+            if t:
+                rows_t[r] = t
+        delete_rows(ws, [r for r in dels if r in rows_t], hr)
+        stats["dead columns removed"] += drop_dead_columns(ws)
+    return stats
+
+
+PROTECT = {"Japan disclosures (TDnet)", "Red flags (filings)", "Ownership (13D/13F/insiders)", "Priced in (analysts / short)", "Ticker", "Name", "Company", "Key numbers (FMP)", "Strength %ile", "FMP financial read", "Filing",
+           "Proxy", "#", "Rank", "Grade", "Tier", "Intent tier", "Score", "What's happening (8-K)", "PSU plan (grade)",
+           "Since (vs SPY)", "Since vs SPY (%)", "Since event (vs SPY)"}
+
+
+def drop_dead_columns(ws, threshold=0.95, min_rows=8):
+    """Delete columns empty / zero / dash in >= threshold of body rows (keeping
+    merged ranges and widths aligned)."""
+    hr, cols = header_of(ws)
+    if not hr:
+        return 0
+    tcol = cols.get("Ticker") or cols.get("TKR") or cols.get("Symbol")
+    body = [r for r in range(hr + 1, ws.max_row + 1) if _ticker(ws.cell(row=r, column=tcol).value)]
+    if len(body) < min_rows:
+        return 0
+    dead = []
+    for h, c in cols.items():
+        if h in PROTECT:
+            continue
+        empty = sum(1 for r in body if ws.cell(row=r, column=c).value in (None, "", "–", "—", "-", 0, "0"))
+        if empty / len(body) >= threshold:
+            dead.append(c)
+    for c in sorted(dead, reverse=True):
+        widths = {i: ws.column_dimensions[get_column_letter(i)].width for i in range(1, ws.max_column + 1)}
+        merges = [(m.min_row, m.min_col, m.max_row, m.max_col) for m in ws.merged_cells.ranges]
+        for m in list(ws.merged_cells.ranges):
+            ws.unmerge_cells(str(m))
+        ws.delete_cols(c)
+        for r0, c0, r1, c1 in merges:
+            if c0 > c:
+                c0, c1 = c0 - 1, c1 - 1
+            elif c1 >= c:
+                c1 = max(c0, c1 - 1)
+            ws.merge_cells(start_row=r0, start_column=c0, end_row=r1, end_column=c1)
+        for i in sorted(widths):
+            if i > c and widths[i]:
+                ws.column_dimensions[get_column_letter(i - 1)].width = widths[i]
+    return len(dead)

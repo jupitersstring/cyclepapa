@@ -1,0 +1,229 @@
+{
+  "n_events": 525,
+  "n_tail": 79,
+  "tail_threshold": 0.5,
+  "base_tail_rate": 0.15,
+  "screenable": [
+    "catalyst",
+    "sector",
+    "size",
+    "drawdown_12m",
+    "range_pos"
+  ],
+  "features": {
+    "catalyst": {
+      "STRATEGIC_REVIEW": {
+        "n": 56,
+        "tail_rate": 0.179,
+        "lift": 1.19
+      },
+      "CAPITAL_RETURN": {
+        "n": 59,
+        "tail_rate": 0.153,
+        "lift": 1.01
+      },
+      "SALE_OF_COMPANY": {
+        "n": 16,
+        "tail_rate": 0.312,
+        "lift": 2.08
+      },
+      "ASSET_SALE": {
+        "n": 68,
+        "tail_rate": 0.191,
+        "lift": 1.27
+      },
+      "TENDER_OFFER": {
+        "n": 47,
+        "tail_rate": 0.149,
+        "lift": 0.99
+      },
+      "SPINOFF": {
+        "n": 66,
+        "tail_rate": 0.152,
+        "lift": 1.01
+      },
+      "CH11_EMERGENCE": {
+        "n": 14,
+        "tail_rate": 0.286,
+        "lift": 1.9
+      },
+      "EXCHANGE_OFFER": {
+        "n": 24,
+        "tail_rate": 0.083,
+        "lift": 0.55
+      },
+      "UPLISTING": {
+        "n": 56,
+        "tail_rate": 0.107,
+        "lift": 0.71
+      },
+      "BUYBACK_AUTH": {
+        "n": 81,
+        "tail_rate": 0.111,
+        "lift": 0.74
+      },
+      "SEPARATION": {
+        "n": 15,
+        "tail_rate": 0.133,
+        "lift": 0.89
+      },
+      "GOING_PRIVATE": {
+        "n": 23,
+        "tail_rate": 0.087,
+        "lift": 0.58
+      }
+    },
+    "sector": {
+      "Unknown": {
+        "n": 154,
+        "tail_rate": 0.117,
+        "lift": 0.78
+      },
+      "Healthcare": {
+        "n": 54,
+        "tail_rate": 0.222,
+        "lift": 1.48
+      },
+      "Consumer Cyclical": {
+        "n": 51,
+        "tail_rate": 0.196,
+        "lift": 1.3
+      },
+      "Technology": {
+        "n": 49,
+        "tail_rate": 0.184,
+        "lift": 1.22
+      },
+      "Industrials": {
+        "n": 57,
+        "tail_rate": 0.211,
+        "lift": 1.4
+      },
+      "Communication Services": {
+        "n": 24,
+        "tail_rate": 0.167,
+        "lift": 1.11
+      },
+      "Basic Materials": {
+        "n": 23,
+        "tail_rate": 0.217,
+        "lift": 1.44
+      },
+      "Utilities": {
+        "n": 10,
+        "tail_rate": 0.1,
+        "lift": 0.66
+      },
+      "Financial Services": {
+        "n": 36,
+        "tail_rate": 0.111,
+        "lift": 0.74
+      },
+      "Consumer Defensive": {
+        "n": 22,
+        "tail_rate": 0.045,
+        "lift": 0.3
+      },
+      "Real Estate": {
+        "n": 23,
+        "tail_rate": 0.087,
+        "lift": 0.58
+      },
+      "Energy": {
+        "n": 22,
+        "tail_rate": 0.045,
+        "lift": 0.3
+      }
+    },
+    "drawdown_12m": {
+      "deep(<-50%)": {
+        "n": 104,
+        "tail_rate": 0.231,
+        "lift": 1.53
+      },
+      "mod(-50..-20%)": {
+        "n": 156,
+        "tail_rate": 0.141,
+        "lift": 0.94
+      },
+      "shallow(>-20%)": {
+        "n": 256,
+        "tail_rate": 0.125,
+        "lift": 0.83
+      }
+    },
+    "range_pos": {
+      "low": {
+        "n": 219,
+        "tail_rate": 0.215,
+        "lift": 1.43
+      },
+      "mid": {
+        "n": 110,
+        "tail_rate": 0.064,
+        "lift": 0.42
+      },
+      "high": {
+        "n": 161,
+        "tail_rate": 0.124,
+        "lift": 0.83
+      }
+    },
+    "pre_12m": {
+      "down(<-20%)": {
+        "n": 155,
+        "tail_rate": 0.219,
+        "lift": 1.46
+      },
+      "up(>+20%)": {
+        "n": 116,
+        "tail_rate": 0.138,
+        "lift": 0.92
+      },
+      "flat": {
+        "n": 159,
+        "tail_rate": 0.107,
+        "lift": 0.71
+      }
+    },
+    "post_1m": {
+      "up(>+20%)": {
+        "n": 51,
+        "tail_rate": 0.353,
+        "lift": 2.35
+      },
+      "flat": {
+        "n": 428,
+        "tail_rate": 0.14,
+        "lift": 0.93
+      },
+      "down(<-20%)": {
+        "n": 46,
+        "tail_rate": 0.022,
+        "lift": 0.14
+      }
+    },
+    "size": {
+      "micro": {
+        "n": 108,
+        "tail_rate": 0.167,
+        "lift": 1.11
+      },
+      "mid": {
+        "n": 109,
+        "tail_rate": 0.156,
+        "lift": 1.04
+      },
+      "small": {
+        "n": 65,
+        "tail_rate": 0.123,
+        "lift": 0.82
+      },
+      "large": {
+        "n": 89,
+        "tail_rate": 0.202,
+        "lift": 1.34
+      }
+    }
+  }
+}

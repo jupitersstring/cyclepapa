@@ -1,0 +1,839 @@
+{
+  "RENT": {
+    "filing_date": "2025-08-21",
+    "days_since": 305,
+    "accession": "0000950103-25-010546",
+    "form_type": "8-K",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "microcap $117M"
+  },
+  "SEVN": {
+    "filing_date": "2025-10-30",
+    "days_since": 235,
+    "accession": "0001104659-25-104380",
+    "form_type": "8-K",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 8.0,
+    "reasons": ""
+  },
+  "PRHIZ": {
+    "filing_date": "2026-02-03",
+    "days_since": 139,
+    "accession": "0001193125-26-035854",
+    "form_type": "S-1/A",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 23.0,
+    "reasons": "139d ago; effective S-1/A"
+  },
+  "WOLF": {
+    "filing_date": "2025-06-23",
+    "days_since": 364,
+    "accession": "0001193125-25-144083",
+    "form_type": "8-K",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 8.0,
+    "reasons": ""
+  },
+  "RFL": {
+    "filing_date": "2025-05-06",
+    "days_since": 412,
+    "accession": "0001213900-25-040209",
+    "form_type": "8-K",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 3.0,
+    "reasons": ""
+  },
+  "LOGC": {
+    "filing_date": "2026-01-22",
+    "days_since": 151,
+    "accession": "0001140361-26-001964",
+    "form_type": "8-K",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 15.0,
+    "reasons": "151d ago"
+  },
+  "FLYYQ": {
+    "filing_date": "2025-02-21",
+    "days_since": 486,
+    "accession": "0000950103-25-002262",
+    "form_type": "8-K",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 3.0,
+    "reasons": ""
+  },
+  "OPITQ": {
+    "filing_date": "2026-03-04",
+    "days_since": 110,
+    "accession": "0001104659-26-023459",
+    "form_type": "8-K",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 15.0,
+    "reasons": "110d ago"
+  },
+  "NG": {
+    "filing_date": "2025-04-22",
+    "days_since": 426,
+    "accession": "0001171843-25-002363",
+    "form_type": "8-K",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 3.0,
+    "reasons": ""
+  },
+  "TSEOF": {
+    "filing_date": "2026-05-26",
+    "days_since": 27,
+    "accession": "0001104659-26-066376",
+    "form_type": "8-K",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 33.0,
+    "reasons": "27d ago (active); microcap $0M"
+  },
+  "LGL-RW": {
+    "filing_date": "2026-06-05",
+    "days_since": 17,
+    "accession": "0001437749-26-019661",
+    "form_type": "424B3",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 33.0,
+    "reasons": "17d ago (active); effective 424B3"
+  },
+  "FOSL": {
+    "filing_date": "2025-10-16",
+    "days_since": 249,
+    "accession": "0001193125-25-241510",
+    "form_type": "424B3",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 24.0,
+    "reasons": "effective 424B3; microcap $254M"
+  },
+  "SNDA": {
+    "filing_date": "2026-03-11",
+    "days_since": 103,
+    "accession": "0001193125-26-101103",
+    "form_type": "8-K",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 15.0,
+    "reasons": "103d ago"
+  },
+  "AMPGR": {
+    "filing_date": "2025-10-30",
+    "days_since": 235,
+    "accession": "0001493152-25-020135",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective 424B5"
+  },
+  "RDNW": {
+    "filing_date": "2025-08-28",
+    "days_since": 298,
+    "accession": "0001596961-25-000083",
+    "form_type": "8-K",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "microcap $291M"
+  },
+  "PSKY": {
+    "filing_date": "2026-03-02",
+    "days_since": 112,
+    "accession": "0001104659-26-021911",
+    "form_type": "8-K",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 15.0,
+    "reasons": "112d ago"
+  },
+  "WBD": {
+    "filing_date": "2026-02-27",
+    "days_since": 115,
+    "accession": "0001437107-26-000018",
+    "form_type": "8-K",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 15.0,
+    "reasons": "115d ago"
+  },
+  "STI": {
+    "filing_date": "2025-02-06",
+    "days_since": 501,
+    "accession": "0001213900-25-010931",
+    "form_type": "S-1/A",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 11.0,
+    "reasons": "effective S-1/A"
+  },
+  "BZAIW": {
+    "filing_date": "2025-04-18",
+    "days_since": 430,
+    "accession": "0001193125-25-085748",
+    "form_type": "424B3",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 11.0,
+    "reasons": "effective 424B3"
+  },
+  "LVWR-WT": {
+    "filing_date": "2025-03-31",
+    "days_since": 448,
+    "accession": "0001628280-25-015671",
+    "form_type": "424B3",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 11.0,
+    "reasons": "effective 424B3"
+  },
+  "AZUXY": {
+    "filing_date": "2026-05-06",
+    "days_since": 47,
+    "accession": "0001292814-26-002828",
+    "form_type": "F-1",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 33.0,
+    "reasons": "47d ago (active); effective F-1"
+  },
+  "LITS": {
+    "filing_date": "2025-07-23",
+    "days_since": 334,
+    "accession": "0001140361-25-026950",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective 424B5"
+  },
+  "ALURW": {
+    "filing_date": "2025-01-27",
+    "days_since": 511,
+    "accession": "0001193125-25-012785",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 11.0,
+    "reasons": "effective 424B5"
+  },
+  "FTHM": {
+    "filing_date": "2025-03-11",
+    "days_since": 468,
+    "accession": "0001104659-25-022585",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 11.0,
+    "reasons": "effective 424B5"
+  },
+  "MLECW": {
+    "filing_date": "2025-08-21",
+    "days_since": 305,
+    "accession": "0001213900-25-079314",
+    "form_type": "424B3",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective 424B3"
+  },
+  "APWC": {
+    "filing_date": "2025-12-18",
+    "days_since": 186,
+    "accession": "0001628280-25-057806",
+    "form_type": "424B3",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective 424B3"
+  },
+  "RMR": {
+    "filing_date": "2026-02-04",
+    "days_since": 138,
+    "accession": "0001644378-26-000006",
+    "form_type": "8-K",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 15.0,
+    "reasons": "138d ago"
+  },
+  "CTXR": {
+    "filing_date": "2025-04-02",
+    "days_since": 446,
+    "accession": "0001213900-25-027540",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 11.0,
+    "reasons": "effective 424B5"
+  },
+  "CTOR": {
+    "filing_date": "2025-09-10",
+    "days_since": 285,
+    "accession": "0001213900-25-086384",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective 424B5"
+  },
+  "FLYX-WT": {
+    "filing_date": "2026-01-09",
+    "days_since": 164,
+    "accession": "0001193125-26-009098",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 23.0,
+    "reasons": "164d ago; effective 424B5"
+  },
+  "IOVA": {
+    "filing_date": "2025-08-22",
+    "days_since": 304,
+    "accession": "0001104659-25-081949",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective 424B5"
+  },
+  "CYPH": {
+    "filing_date": "2025-11-12",
+    "days_since": 222,
+    "accession": "0001104659-25-109899",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective 424B5"
+  },
+  "CLRB": {
+    "filing_date": "2026-05-06",
+    "days_since": 47,
+    "accession": "0001104659-26-056031",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 41.0,
+    "reasons": "47d ago (active); effective 424B5; microcap $22M"
+  },
+  "FEMY": {
+    "filing_date": "2025-12-23",
+    "days_since": 181,
+    "accession": "0001140361-25-046542",
+    "form_type": "424B3",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 24.0,
+    "reasons": "effective 424B3; microcap $16M"
+  },
+  "PDSB": {
+    "filing_date": "2026-06-15",
+    "days_since": 7,
+    "accession": "0001140361-26-025227",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 33.0,
+    "reasons": "7d ago (active); effective 424B5"
+  },
+  "RGNX": {
+    "filing_date": "2026-02-12",
+    "days_since": 130,
+    "accession": "0001193125-26-048688",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 31.0,
+    "reasons": "130d ago; effective 424B5; microcap $418M"
+  },
+  "VSECU": {
+    "filing_date": "2026-02-02",
+    "days_since": 140,
+    "accession": "0001193125-26-032692",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 23.0,
+    "reasons": "140d ago; effective 424B5"
+  },
+  "CRVO": {
+    "filing_date": "2026-06-22",
+    "days_since": 0,
+    "accession": "0001437749-26-021218",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 33.0,
+    "reasons": "0d ago (active); effective 424B5"
+  },
+  "TLN": {
+    "filing_date": "2025-02-28",
+    "days_since": 479,
+    "accession": "0001628280-25-008933",
+    "form_type": "424B3",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 11.0,
+    "reasons": "effective 424B3"
+  },
+  "ASTS": {
+    "filing_date": "2026-02-13",
+    "days_since": 129,
+    "accession": "0001493152-26-006524",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 23.0,
+    "reasons": "129d ago; effective 424B5"
+  },
+  "AQST": {
+    "filing_date": "2025-08-14",
+    "days_since": 312,
+    "accession": "0001140361-25-031320",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective 424B5"
+  },
+  "CNTN": {
+    "filing_date": "2026-03-03",
+    "days_since": 111,
+    "accession": "0001493152-26-008711",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 39.0,
+    "reasons": "111d ago; effective 424B5; microcap $234M; P/B 0.40"
+  },
+  "PSQH-WT": {
+    "filing_date": "2025-05-20",
+    "days_since": 398,
+    "accession": "0001213900-25-045582",
+    "form_type": "424B3",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 11.0,
+    "reasons": "effective 424B3"
+  },
+  "ECO": {
+    "filing_date": "2025-05-22",
+    "days_since": 396,
+    "accession": "0001104659-25-051815",
+    "form_type": "424B3",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 11.0,
+    "reasons": "effective 424B3"
+  },
+  "ICCM": {
+    "filing_date": "2025-07-09",
+    "days_since": 348,
+    "accession": "0001213900-25-062430",
+    "form_type": "424B3",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective 424B3"
+  },
+  "HOVRW": {
+    "filing_date": "2026-05-08",
+    "days_since": 45,
+    "accession": "0001213900-26-053521",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 33.0,
+    "reasons": "45d ago (active); effective 424B5"
+  },
+  "LEE": {
+    "filing_date": "2025-11-10",
+    "days_since": 224,
+    "accession": "0001213900-25-108313",
+    "form_type": "S-1",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 24.0,
+    "reasons": "effective S-1; microcap $216M"
+  },
+  "CMTG": {
+    "filing_date": "2026-02-02",
+    "days_since": 140,
+    "accession": "0001193125-26-032775",
+    "form_type": "8-K",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 31.0,
+    "reasons": "140d ago; microcap $383M; P/B 0.26"
+  },
+  "BEBE-WT": {
+    "filing_date": "2025-12-19",
+    "days_since": 185,
+    "accession": "0001213900-25-123488",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective 424B4"
+  },
+  "NRXS": {
+    "filing_date": "2025-02-12",
+    "days_since": 495,
+    "accession": "0001493152-25-006043",
+    "form_type": "424B3",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 19.0,
+    "reasons": "effective 424B3; microcap $89M"
+  },
+  "NVTS": {
+    "filing_date": "2026-05-11",
+    "days_since": 42,
+    "accession": "0001104659-26-058727",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 33.0,
+    "reasons": "42d ago (active); effective 424B5"
+  },
+  "CCEC": {
+    "filing_date": "2025-01-27",
+    "days_since": 511,
+    "accession": "0001193125-25-013439",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 11.0,
+    "reasons": "effective 424B5"
+  },
+  "BBCQW": {
+    "filing_date": "2026-01-08",
+    "days_since": 165,
+    "accession": "0001213900-26-002472",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 23.0,
+    "reasons": "165d ago; effective 424B4"
+  },
+  "BHK": {
+    "filing_date": "2025-05-28",
+    "days_since": 390,
+    "accession": "0001193125-25-128070",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 11.0,
+    "reasons": "effective 424B5"
+  },
+  "LOKVU": {
+    "filing_date": "2025-01-10",
+    "days_since": 528,
+    "accession": "0001213900-25-002634",
+    "form_type": "S-1",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 11.0,
+    "reasons": "effective S-1"
+  },
+  "CCAQW": {
+    "filing_date": "2025-05-08",
+    "days_since": 410,
+    "accession": "0001213900-25-040894",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 11.0,
+    "reasons": "effective 424B4"
+  },
+  "ADACW": {
+    "filing_date": "2025-12-19",
+    "days_since": 185,
+    "accession": "0001104659-25-122671",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective 424B4"
+  },
+  "EVTWF": {
+    "filing_date": "2025-01-22",
+    "days_since": 516,
+    "accession": "0001104659-25-005277",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 11.0,
+    "reasons": "effective 424B5"
+  },
+  "PCAPU": {
+    "filing_date": "2025-05-22",
+    "days_since": 396,
+    "accession": "0001213900-25-046580",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 11.0,
+    "reasons": "effective 424B4"
+  },
+  "YYAI": {
+    "filing_date": "2025-07-11",
+    "days_since": 346,
+    "accession": "0001641172-25-018693",
+    "form_type": "424B3",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective 424B3"
+  },
+  "CTM": {
+    "filing_date": "2025-06-12",
+    "days_since": 375,
+    "accession": "0001213900-25-053929",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 11.0,
+    "reasons": "effective 424B5"
+  },
+  "FCRS-UN": {
+    "filing_date": "2025-09-26",
+    "days_since": 269,
+    "accession": "0001213900-25-092098",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective 424B4"
+  },
+  "ONCHU": {
+    "filing_date": "2025-06-26",
+    "days_since": 361,
+    "accession": "0001213900-25-058226",
+    "form_type": "S-1/A",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective S-1/A"
+  },
+  "TMTSW": {
+    "filing_date": "2026-02-11",
+    "days_since": 131,
+    "accession": "0001213900-26-014740",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 23.0,
+    "reasons": "131d ago; effective 424B4"
+  },
+  "DSACW": {
+    "filing_date": "2025-11-24",
+    "days_since": 210,
+    "accession": "0001213900-25-114215",
+    "form_type": "S-1/A",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective S-1/A"
+  },
+  "MZYX-WT": {
+    "filing_date": "2026-02-26",
+    "days_since": 116,
+    "accession": "0001213900-26-020597",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 23.0,
+    "reasons": "116d ago; effective 424B4"
+  },
+  "RDAGW": {
+    "filing_date": "2025-04-01",
+    "days_since": 447,
+    "accession": "0001213900-25-026507",
+    "form_type": "S-1/A",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 11.0,
+    "reasons": "effective S-1/A"
+  },
+  "QADRW": {
+    "filing_date": "2025-09-12",
+    "days_since": 283,
+    "accession": "0001213900-25-086957",
+    "form_type": "S-1",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective S-1"
+  },
+  "BLZRU": {
+    "filing_date": "2025-08-25",
+    "days_since": 301,
+    "accession": "0001213900-25-080183",
+    "form_type": "S-1/A",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective S-1/A"
+  },
+  "WLCO": {
+    "filing_date": "2026-06-22",
+    "days_since": 0,
+    "accession": "0001213900-26-070283",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 33.0,
+    "reasons": "0d ago (active); effective 424B4"
+  },
+  "MUZEU": {
+    "filing_date": "2026-02-02",
+    "days_since": 140,
+    "accession": "0001213900-26-010463",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 23.0,
+    "reasons": "140d ago; effective 424B4"
+  },
+  "WENNU": {
+    "filing_date": "2025-04-30",
+    "days_since": 418,
+    "accession": "0001213900-25-037753",
+    "form_type": "S-1",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 11.0,
+    "reasons": "effective S-1"
+  },
+  "OBAWW": {
+    "filing_date": "2025-06-05",
+    "days_since": 382,
+    "accession": "0001213900-25-051650",
+    "form_type": "S-1",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 11.0,
+    "reasons": "effective S-1"
+  },
+  "ATRA": {
+    "filing_date": "2025-05-15",
+    "days_since": 403,
+    "accession": "0001193125-25-120939",
+    "form_type": "424B5",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 11.0,
+    "reasons": "effective 424B5"
+  },
+  "GSHRW": {
+    "filing_date": "2025-01-28",
+    "days_since": 510,
+    "accession": "0001213900-25-007542",
+    "form_type": "S-1",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 11.0,
+    "reasons": "effective S-1"
+  },
+  "YICC": {
+    "filing_date": "2026-06-16",
+    "days_since": 6,
+    "accession": "0001104659-26-074584",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 33.0,
+    "reasons": "6d ago (active); effective 424B4"
+  },
+  "WLIIW": {
+    "filing_date": "2026-01-07",
+    "days_since": 166,
+    "accession": "0001213900-26-002167",
+    "form_type": "S-1",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 23.0,
+    "reasons": "166d ago; effective S-1"
+  },
+  "APNA": {
+    "filing_date": "2026-02-04",
+    "days_since": 138,
+    "accession": "0001213900-26-011619",
+    "form_type": "S-1",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 23.0,
+    "reasons": "138d ago; effective S-1"
+  },
+  "ACGCW": {
+    "filing_date": "2026-04-07",
+    "days_since": 76,
+    "accession": "0001213900-26-041121",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 23.0,
+    "reasons": "76d ago; effective 424B4"
+  },
+  "SCPQU": {
+    "filing_date": "2025-12-22",
+    "days_since": 182,
+    "accession": "0001213900-25-124627",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective 424B4"
+  },
+  "SKAI": {
+    "filing_date": "2026-02-13",
+    "days_since": 129,
+    "accession": "0001829126-26-001299",
+    "form_type": "S-1/A",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 23.0,
+    "reasons": "129d ago; effective S-1/A"
+  },
+  "SORNU": {
+    "filing_date": "2025-10-08",
+    "days_since": 257,
+    "accession": "0001213900-25-097451",
+    "form_type": "S-1",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective S-1"
+  },
+  "XCBEW": {
+    "filing_date": "2026-01-21",
+    "days_since": 152,
+    "accession": "0001493152-26-003090",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 23.0,
+    "reasons": "152d ago; effective 424B4"
+  },
+  "MESHW": {
+    "filing_date": "2025-12-11",
+    "days_since": 193,
+    "accession": "0001213900-25-120264",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective 424B4"
+  },
+  "RNGTW": {
+    "filing_date": "2025-10-06",
+    "days_since": 259,
+    "accession": "0001193125-25-230644",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective 424B4"
+  },
+  "FTHAU": {
+    "filing_date": "2026-05-01",
+    "days_since": 52,
+    "accession": "0001213900-26-050604",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 33.0,
+    "reasons": "52d ago (active); effective 424B4"
+  },
+  "CAIIU": {
+    "filing_date": "2026-03-27",
+    "days_since": 87,
+    "accession": "0001213900-26-035522",
+    "form_type": "S-1",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 23.0,
+    "reasons": "87d ago; effective S-1"
+  },
+  "CAQUW": {
+    "filing_date": "2026-02-06",
+    "days_since": 136,
+    "accession": "0001104659-26-011571",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 23.0,
+    "reasons": "136d ago; effective 424B4"
+  },
+  "PAACU": {
+    "filing_date": "2025-12-18",
+    "days_since": 186,
+    "accession": "0001213900-25-123024",
+    "form_type": "S-1",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective S-1"
+  },
+  "IPFXU": {
+    "filing_date": "2026-03-30",
+    "days_since": 84,
+    "accession": "0001213900-26-035878",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 23.0,
+    "reasons": "84d ago; effective 424B4"
+  },
+  "PTORW": {
+    "filing_date": "2026-01-26",
+    "days_since": 147,
+    "accession": "0001213900-26-007398",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 23.0,
+    "reasons": "147d ago; effective 424B4"
+  },
+  "ITHAW": {
+    "filing_date": "2025-12-15",
+    "days_since": 189,
+    "accession": "0001104659-25-120777",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective 424B4"
+  },
+  "MBVIU": {
+    "filing_date": "2025-08-27",
+    "days_since": 299,
+    "accession": "0001213900-25-081199",
+    "form_type": "424B4",
+    "query_match": "\"rights offering\" \"backstop\"",
+    "score": 16.0,
+    "reasons": "effective 424B4"
+  }
+}

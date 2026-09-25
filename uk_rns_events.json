@@ -1,0 +1,26 @@
+{
+  "MONY.L": {
+    "ticker": "MONY.L",
+    "name": "moneysupermarket-com-group",
+    "family": "own_shares",
+    "class": "transaction_own_shares",
+    "score": 4.0,
+    "is_fund": false,
+    "headline": "transaction-in-own-shares",
+    "url": "https://www.investegate.co.uk/announcement/rns/moneysupermarket-com-group--mony/transaction-in-own-shares/9730604",
+    "premium_pct": null,
+    "vs_market": null
+  },
+  "RTC.L": {
+    "ticker": "RTC.L",
+    "name": "rtc-group",
+    "family": "own_shares",
+    "class": "transaction_own_shares",
+    "score": 4.0,
+    "is_fund": false,
+    "headline": "transaction-in-own-shares",
+    "url": "https://www.investegate.co.uk/announcement/rns/rtc-group--rtc/transaction-in-own-shares/9730583",
+    "premium_pct": null,
+    "vs_market": "discount"
+  }
+}

@@ -1,0 +1,1290 @@
+{
+  "EXFY": {
+    "n_amendments": 3,
+    "acceptance_series": [
+      {
+        "date": "2026-05-29",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-11",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-12",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 8.0,
+    "reasons": "3 amendments"
+  },
+  "ABX": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2025-07-15",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-07-30",
+        "pct": 88.0,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "ABXL": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2025-07-15",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-07-30",
+        "pct": 88.0,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "BCX": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2025-05-20",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-05-21",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "BGY": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2025-05-21",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-05-22",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "BIIB": {
+    "n_amendments": 3,
+    "acceptance_series": [
+      {
+        "date": "2026-05-06",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-05-12",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-05-14",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 8.0,
+    "reasons": "3 amendments"
+  },
+  "BOE": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2025-05-20",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-05-21",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "BSTZ": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2025-05-21",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-05-22",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "BTX": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2025-07-09",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-07-10",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "CAF": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2026-04-01",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-04-02",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "CMU": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2026-05-06",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-05-11",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "CXH": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2026-05-13",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-05-19",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "DTST": {
+    "n_amendments": 4,
+    "acceptance_series": [
+      {
+        "date": "2025-12-18",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-12-23",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-01-16",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-01-16",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 8.0,
+    "reasons": "4 amendments"
+  },
+  "DXLG": {
+    "n_amendments": 4,
+    "acceptance_series": [
+      {
+        "date": "2026-05-27",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-02",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-05",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-12",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 8.0,
+    "reasons": "4 amendments"
+  },
+  "EFR": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2026-05-26",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-01",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "EIX": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2025-12-04",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-12-22",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "ENZN": {
+    "n_amendments": 9,
+    "acceptance_series": [
+      {
+        "date": "2026-02-11",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-02-27",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-03-03",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-03-09",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-03-11",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-03-16",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-03-19",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-03-24",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-03-25",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 8.0,
+    "reasons": "9 amendments"
+  },
+  "EVF": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2026-05-26",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-01",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "FSK": {
+    "n_amendments": 6,
+    "acceptance_series": [
+      {
+        "date": "2026-05-22",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-05-22",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-02",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-02",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-05",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-05",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 8.0,
+    "reasons": "6 amendments"
+  },
+  "GETY": {
+    "n_amendments": 3,
+    "acceptance_series": [
+      {
+        "date": "2026-03-11",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-03-25",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-03-31",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 8.0,
+    "reasons": "3 amendments"
+  },
+  "GMAB": {
+    "n_amendments": 4,
+    "acceptance_series": [
+      {
+        "date": "2025-10-31",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-12-09",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-12-12",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-12-30",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 8.0,
+    "reasons": "4 amendments"
+  },
+  "GNK": {
+    "n_amendments": 16,
+    "acceptance_series": [
+      {
+        "date": "2026-05-15",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-05-18",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-05-21",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-05-26",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-05-27",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-05-28",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-02",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-02",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-04",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-05",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-05",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-08",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-08",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-08",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-10",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-11",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 8.0,
+    "reasons": "16 amendments"
+  },
+  "GPUS": {
+    "n_amendments": 3,
+    "acceptance_series": [
+      {
+        "date": "2026-05-29",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-09",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-10",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 8.0,
+    "reasons": "3 amendments"
+  },
+  "HCKT": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2025-12-05",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-12-08",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "HERZ": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2025-10-16",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-10-21",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "INFY": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2025-11-19",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-12-05",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "IZEA": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2025-06-17",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-06-18",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "KALV": {
+    "n_amendments": 4,
+    "acceptance_series": [
+      {
+        "date": "2026-06-01",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-01",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-06-11",
+        "pct": 77.8,
+        "shares": null
+      },
+      {
+        "date": "2026-06-11",
+        "pct": 77.8,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 8.0,
+    "reasons": "4 amendments"
+  },
+  "KROS": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2025-11-19",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-11-20",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "LE": {
+    "n_amendments": 5,
+    "acceptance_series": [
+      {
+        "date": "2026-03-18",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-03-18",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-03-19",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-04-01",
+        "pct": 95.2,
+        "shares": null
+      },
+      {
+        "date": "2026-04-01",
+        "pct": 95.2,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 8.0,
+    "reasons": "5 amendments"
+  },
+  "LEN": {
+    "n_amendments": 8,
+    "acceptance_series": [
+      {
+        "date": "2025-10-24",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-11-03",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-11-05",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-11-10",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-11-17",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-11-20",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-11-24",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-11-26",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 8.0,
+    "reasons": "8 amendments"
+  },
+  "MLCI": {
+    "n_amendments": 3,
+    "acceptance_series": [
+      {
+        "date": "2026-01-13",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-02-04",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-02-06",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 8.0,
+    "reasons": "3 amendments"
+  },
+  "MLCIL": {
+    "n_amendments": 3,
+    "acceptance_series": [
+      {
+        "date": "2026-01-13",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-02-04",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-02-06",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 8.0,
+    "reasons": "3 amendments"
+  },
+  "MRNA": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2025-11-18",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-12-16",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "NBIX": {
+    "n_amendments": 3,
+    "acceptance_series": [
+      {
+        "date": "2026-04-28",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-04-29",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-05-18",
+        "pct": 88.9,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 8.0,
+    "reasons": "3 amendments"
+  },
+  "NESR": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2025-06-23",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-07-01",
+        "pct": 96.05,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "NEXN": {
+    "n_amendments": 4,
+    "acceptance_series": [
+      {
+        "date": "2025-05-08",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-05-13",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-05-22",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-06-06",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 8.0,
+    "reasons": "4 amendments"
+  },
+  "SCHL": {
+    "n_amendments": 3,
+    "acceptance_series": [
+      {
+        "date": "2026-03-30",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-04-21",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-04-23",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 8.0,
+    "reasons": "3 amendments"
+  },
+  "SVRN": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2025-12-11",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-01-13",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "SWZ": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2026-01-21",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-01-22",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "TLSI": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2025-07-15",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-07-25",
+        "pct": 98.82,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "VCX": {
+    "n_amendments": 4,
+    "acceptance_series": [
+      {
+        "date": "2025-07-09",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-10-08",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-01-08",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-03-09",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 8.0,
+    "reasons": "4 amendments"
+  },
+  "WBD": {
+    "n_amendments": 38,
+    "acceptance_series": [
+      {
+        "date": "2025-12-08",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-12-10",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-12-11",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-12-15",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-12-17",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-12-17",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-12-19",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-12-22",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-12-22",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-12-22",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-12-23",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-12-23",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-01-07",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-01-07",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-01-08",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-01-09",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-01-09",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-01-12",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-01-20",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-01-20",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-01-20",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-01-22",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-01-26",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-02-10",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-02-10",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-02-10",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-02-17",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-02-17",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-02-17",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-02-19",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-02-24",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-02-24",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-02-25",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-02-25",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-02-25",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-02-26",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-02-27",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-02-27",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 8.0,
+    "reasons": "38 amendments"
+  },
+  "WIX": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2026-04-02",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-04-03",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "WTM": {
+    "n_amendments": 2,
+    "acceptance_series": [
+      {
+        "date": "2025-12-22",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2025-12-29",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 3.0,
+    "reasons": ""
+  },
+  "YEXT": {
+    "n_amendments": 4,
+    "acceptance_series": [
+      {
+        "date": "2026-02-23",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-03-04",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-03-19",
+        "pct": null,
+        "shares": null
+      },
+      {
+        "date": "2026-03-20",
+        "pct": null,
+        "shares": null
+      }
+    ],
+    "declining": false,
+    "score": 8.0,
+    "reasons": "4 amendments"
+  }
+}

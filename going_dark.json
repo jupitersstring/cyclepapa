@@ -1,0 +1,2044 @@
+{
+  "LMMY": {
+    "ticker": "LMMY",
+    "company": "Exousia Bio, Inc. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-08-31",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "CWLXF": {
+    "ticker": "CWLXF",
+    "company": "C21 Investments Inc. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-08-26",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "NBND": {
+    "ticker": "NBND",
+    "company": "NetBrands Corp. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-08-25",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "QVCG": {
+    "ticker": "QVCG",
+    "company": "QVC Group, Inc. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-08-21",
+    "score": 10.0,
+    "mcap": 769748414.0,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "DWAY": {
+    "ticker": "DWAY",
+    "company": "Driveitaway Holdings, Inc. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-08-18",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "PAIYY": {
+    "ticker": "PAIYY",
+    "company": "Aesthetic Medical International Holdings Group Ltd ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-08-11",
+    "score": 13.0,
+    "micro_cap": true,
+    "mcap": 275896.0,
+    "p_b": -0.08813042930905216,
+    "insider_pct": null
+  },
+  "APOS": {
+    "ticker": "APOS",
+    "company": "Apollo Global Management, Inc. ",
+    "forms": [
+      "15",
+      "25"
+    ],
+    "date": "2026-08-11",
+    "score": 4.0,
+    "mcap": 74609592053.0,
+    "p_b": 3.5146301056840903,
+    "insider_pct": null
+  },
+  "PNXP": {
+    "ticker": "PNXP",
+    "company": "PINEAPPLE EXPRESS CANNABIS Co ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-08-10",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "WVE": {
+    "ticker": "WVE",
+    "company": "Wave Life Sciences, Inc. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-08-10",
+    "score": 10.0,
+    "mcap": 785768310.0,
+    "p_b": 1.7858783640139355,
+    "insider_pct": 0.15882
+  },
+  "GLP": {
+    "ticker": "GLP",
+    "company": "GLOBAL PARTNERS LP ",
+    "forms": [
+      "15",
+      "25"
+    ],
+    "date": "2026-08-10",
+    "score": 12.0,
+    "controlled": true,
+    "mcap": 1676489084.0,
+    "p_b": 2.2313790590810214,
+    "insider_pct": 0.30053
+  },
+  "MSBB": {
+    "ticker": "MSBB",
+    "company": "Mercer Bancorp, Inc. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-08-10",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "STRS": {
+    "ticker": "STRS",
+    "company": "STRATUS PROPERTIES INC ",
+    "forms": [
+      "15",
+      "25"
+    ],
+    "date": "2026-08-10",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "PLTYF": {
+    "ticker": "PLTYF",
+    "company": "Plastec Technologies, Ltd. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-08-05",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "SNBRQ": {
+    "ticker": "SNBRQ",
+    "company": "Sleep Number Corp ",
+    "forms": [
+      "15",
+      "25"
+    ],
+    "date": "2026-08-03",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "MYCB": {
+    "ticker": "MYCB",
+    "company": "My City Builders, Inc. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-07-30",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "GTES": {
+    "ticker": "GTES",
+    "company": "Gates Industrial Corp Ltd. ",
+    "forms": [
+      "15",
+      "25"
+    ],
+    "date": "2026-07-30",
+    "score": 8.0,
+    "mcap": 6718300000.0,
+    "p_b": 1.8983283297197533,
+    "insider_pct": null
+  },
+  "RBOT": {
+    "ticker": "RBOT",
+    "company": "Vicarious Surgical Inc. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-07-27",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "DREM": {
+    "ticker": "DREM",
+    "company": "Dream Homes & Development Corp. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-07-22",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "SIGY": {
+    "ticker": "SIGY",
+    "company": "Sigyn Therapeutics, Inc. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-07-16",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "CLNV": {
+    "ticker": "CLNV",
+    "company": "Clean Vision Corp ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-07-15",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "CSCIF": {
+    "ticker": "CSCIF",
+    "company": "COSCIENS Biopharma Inc. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-07-06",
+    "score": 15.0,
+    "micro_cap": true,
+    "below_book": true,
+    "mcap": 1938797.0,
+    "p_b": 0.40105842699680494,
+    "insider_pct": null
+  },
+  "WYTC": {
+    "ticker": "WYTC",
+    "company": "WYTEC INTERNATIONAL INC ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-07-01",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "FTAIM": {
+    "ticker": "FTAIM",
+    "company": "FTAI Aviation Ltd. ",
+    "forms": [
+      "15",
+      "25"
+    ],
+    "date": "2026-06-25",
+    "score": 4.0,
+    "mcap": 21174477754.0,
+    "p_b": 47.92874455881007,
+    "insider_pct": null
+  },
+  "BASA": {
+    "ticker": "BASA",
+    "company": "BASANITE, INC. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-06-25",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "WCHD": {
+    "ticker": "WCHD",
+    "company": "WeCapital Holdings, Inc. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-06-24",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "CYRX": {
+    "ticker": "CYRX",
+    "company": "Cryoport, Inc. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-06-22",
+    "score": 10.0,
+    "mcap": 870447946.0,
+    "p_b": 1.777374608140632,
+    "insider_pct": 0.039330002
+  },
+  "CTHH": {
+    "ticker": "CTHH",
+    "company": "QWEST CORP ",
+    "forms": [
+      "15",
+      "25"
+    ],
+    "date": "2026-06-12",
+    "score": 13.0,
+    "micro_cap": true,
+    "mcap": 256844648.0,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "ECIA": {
+    "ticker": "ECIA",
+    "company": "ENCISION INC ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-06-10",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "ABIT": {
+    "ticker": "ABIT",
+    "company": "Athena Bitcoin Global ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-05-22",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "BPTH": {
+    "ticker": "BPTH",
+    "company": "BIO-PATH HOLDINGS, INC. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-05-22",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "YGMZF": {
+    "ticker": "YGMZF",
+    "company": "MingZhu Logistics Holdings Ltd ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-05-14",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "MPTI": {
+    "ticker": "MPTI",
+    "company": "M-tron Industries, Inc. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-05-13",
+    "score": 13.0,
+    "micro_cap": true,
+    "mcap": 263640476.0,
+    "p_b": 2.5254346282272673,
+    "insider_pct": 0.05784
+  },
+  "SNTI": {
+    "ticker": "SNTI",
+    "company": "Senti Biosciences, Inc. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-05-08",
+    "score": 17.0,
+    "micro_cap": true,
+    "controlled": true,
+    "mcap": 11040815.0,
+    "p_b": -3.205134930902675,
+    "insider_pct": 0.47907
+  },
+  "LDSN": {
+    "ticker": "LDSN",
+    "company": "Aphoenity International Holdings Inc. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-04-20",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "SWKHL": {
+    "ticker": "SWKHL",
+    "company": "SWK Holdings Corp ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-04-16",
+    "score": 15.0,
+    "micro_cap": true,
+    "below_book": true,
+    "mcap": 191030667.0,
+    "p_b": 0.8225327310313146,
+    "insider_pct": null
+  },
+  "AHRO": {
+    "ticker": "AHRO",
+    "company": "Authentic Holdings, Inc. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-04-15",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "BBUC": {
+    "ticker": "BBUC",
+    "company": "Brookfield Business Corp ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-04-13",
+    "score": 10.0,
+    "below_book": true,
+    "mcap": 5229526212.0,
+    "p_b": 0.9763535463082306,
+    "insider_pct": null
+  },
+  "ZIVO": {
+    "ticker": "ZIVO",
+    "company": "Zivo Bioscience, Inc. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-03-31",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "BLMH": {
+    "ticker": "BLMH",
+    "company": "BLUM HOLDINGS, INC. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-03-31",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "CELG-RI": {
+    "ticker": "CELG-RI",
+    "company": "BRISTOL MYERS SQUIBB CO ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-03-27",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "RMTHF": {
+    "ticker": "RMTHF",
+    "company": "MAGIC SOFTWARE ENTERPRISES LTD ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-03-13",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "ANEB": {
+    "ticker": "ANEB",
+    "company": "Anebulo Pharmaceuticals, Inc. ",
+    "forms": [
+      "15",
+      "25"
+    ],
+    "date": "2026-03-02",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "CYTOF": {
+    "ticker": "CYTOF",
+    "company": "Altamira Therapeutics Ltd. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-02-27",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "STQN": {
+    "ticker": "STQN",
+    "company": "STRATEGIC ACQUISITIONS INC /NV/ ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-02-23",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "EXE": {
+    "ticker": "EXE",
+    "company": "EXPAND ENERGY Corp ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-02-18",
+    "score": 4.0,
+    "mcap": 20356146720.0,
+    "p_b": 1.0704738423493045,
+    "insider_pct": 0.0030399999
+  },
+  "CYAN": {
+    "ticker": "CYAN",
+    "company": "CYANOTECH CORP ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-02-13",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "RDGA": {
+    "ticker": "RDGA",
+    "company": "RIDGEFIELD ACQUISITION CORP ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-02-03",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "HTOO": {
+    "ticker": "HTOO",
+    "company": "Fusion Fuel Green PLC ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-01-30",
+    "score": 13.0,
+    "micro_cap": true,
+    "mcap": 14729331.0,
+    "p_b": 2.679795941096399,
+    "insider_pct": null
+  },
+  "IRTC": {
+    "ticker": "IRTC",
+    "company": "iRhythm Holdings, Inc. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-01-30",
+    "score": 8.0,
+    "mcap": 3769646822.0,
+    "p_b": 20.242904133711146,
+    "insider_pct": 0.01158
+  },
+  "INDV": {
+    "ticker": "INDV",
+    "company": "Indivior Pharmaceuticals, Inc. ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-01-26",
+    "score": 8.0,
+    "mcap": 4527903300.0,
+    "p_b": -21.72567115384615,
+    "insider_pct": 0.04298
+  },
+  "MIBE": {
+    "ticker": "MIBE",
+    "company": "MIAMI BREEZE CAR CARE INC ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-01-23",
+    "score": 8.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "LGL": {
+    "ticker": "LGL",
+    "company": "LGL GROUP INC ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-01-22",
+    "score": 17.0,
+    "micro_cap": true,
+    "controlled": true,
+    "mcap": 40355968.0,
+    "p_b": 1.0004367380812773,
+    "insider_pct": 0.36908
+  },
+  "ELPC": {
+    "ticker": "ELPC",
+    "company": "ENERGY CO OF PARANA ",
+    "forms": [
+      "15"
+    ],
+    "date": "2026-01-21",
+    "score": 8.0,
+    "mcap": 2287528159.0,
+    "p_b": 1.9486214332008238,
+    "insider_pct": null
+  },
+  "TRT": {
+    "ticker": "TRT",
+    "company": "TRIO-TECH INTERNATIONAL ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-15",
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 119492504.0,
+    "p_b": 2.9810050983248364,
+    "insider_pct": null
+  },
+  "KHC": {
+    "ticker": "KHC",
+    "company": "Kraft Heinz Co ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-08",
+    "score": 1.0,
+    "below_book": true,
+    "mcap": 28073285580.0,
+    "p_b": 0.7824648669666167,
+    "insider_pct": 0.27781
+  },
+  "CSAN": {
+    "ticker": "CSAN",
+    "company": "Cosan S.A. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-08",
+    "score": 3.0,
+    "mcap": 2694279217.0,
+    "p_b": 3.0423990664321745,
+    "insider_pct": null
+  },
+  "OPAD": {
+    "ticker": "OPAD",
+    "company": "Offerpad Solutions Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-28",
+    "score": 10.0,
+    "micro_cap": true,
+    "below_book": true,
+    "mcap": 16528005.0,
+    "p_b": 0.43885830697474937,
+    "insider_pct": 0.14491999
+  },
+  "BGICF": {
+    "ticker": "BGICF",
+    "company": "BIRKS GROUP INC. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-17",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "WILCF": {
+    "ticker": "WILCF",
+    "company": "G WILLI FOOD INTERNATIONAL LTD ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-17",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "CNL": {
+    "ticker": "CNL",
+    "company": "Collective Mining Ltd. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-10",
+    "score": 3.0,
+    "mcap": 1200976616.0,
+    "p_b": 10.592561499632643,
+    "insider_pct": null
+  },
+  "AXIAY": {
+    "ticker": "AXIAY",
+    "company": "AXIA Energia S.A. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-27",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "QBTS": {
+    "ticker": "QBTS",
+    "company": "D-Wave Quantum Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-24",
+    "score": 3.0,
+    "mcap": 6307846066.0,
+    "p_b": 5.820742546065496,
+    "insider_pct": 0.02273
+  },
+  "TRNZ": {
+    "ticker": "TRNZ",
+    "company": "Trinity Capital Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-24",
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 142313760.0,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "CAE": {
+    "ticker": "CAE",
+    "company": "CAE INC ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-22",
+    "score": 3.0,
+    "mcap": 7894781291.0,
+    "p_b": 2.0509563859292395,
+    "insider_pct": null
+  },
+  "AZUXY": {
+    "ticker": "AZUXY",
+    "company": "AZUL SA ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-16",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "HAPN": {
+    "ticker": "HAPN",
+    "company": "LendingClub Corp ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-06-18",
+    "score": 3.0,
+    "mcap": 1784769255.0,
+    "p_b": 1.1183896991409696,
+    "insider_pct": null
+  },
+  "PTN": {
+    "ticker": "PTN",
+    "company": "PALATIN TECHNOLOGIES INC ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-05-28",
+    "score": 10.0,
+    "micro_cap": true,
+    "below_book": true,
+    "mcap": 17952885.0,
+    "p_b": 0.9274447364291771,
+    "insider_pct": 0.01082
+  },
+  "PRTCY": {
+    "ticker": "PRTCY",
+    "company": "PureTech Health plc ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-05-11",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "ENHA": {
+    "ticker": "ENHA",
+    "company": "Enhanced Group Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-05-07",
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 185909642.0,
+    "p_b": 54.428011343683394,
+    "insider_pct": null
+  },
+  "MAPS": {
+    "ticker": "MAPS",
+    "company": "WM TECHNOLOGY, INC. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-04-17",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "BMNP": {
+    "ticker": "BMNP",
+    "company": "BITMINE IMMERSION TECHNOLOGIES, INC. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-04-16",
+    "score": 0.0,
+    "mcap": 11013828959.0,
+    "p_b": 1.3131621824554462,
+    "insider_pct": null
+  },
+  "DCBG": {
+    "ticker": "DCBG",
+    "company": "Dime Community Bancshares, Inc. /NY/ ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-04-06",
+    "score": 5.0,
+    "below_book": true,
+    "mcap": 1167127800.0,
+    "p_b": 0.7888116350458642,
+    "insider_pct": null
+  },
+  "UAMY": {
+    "ticker": "UAMY",
+    "company": "UNITED STATES ANTIMONY CORP ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-03-16",
+    "score": 5.0,
+    "mcap": 683150536.0,
+    "p_b": 3.7214318739543457,
+    "insider_pct": null
+  },
+  "CULP": {
+    "ticker": "CULP",
+    "company": "CULP INC ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-03-05",
+    "score": 10.0,
+    "micro_cap": true,
+    "below_book": true,
+    "mcap": 45332767.0,
+    "p_b": 0.8300428036383092,
+    "insider_pct": null
+  },
+  "ARIS": {
+    "ticker": "ARIS",
+    "company": "Aris Mining Corp ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-02-20",
+    "score": 3.0,
+    "mcap": 3840072000.0,
+    "p_b": 2.2052613186478087,
+    "insider_pct": null
+  },
+  "AZN": {
+    "ticker": "AZN",
+    "company": "ASTRAZENECA PLC ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-01-30",
+    "score": 0.0,
+    "mcap": 255831919847.0,
+    "p_b": 5.049136424689164,
+    "insider_pct": null
+  },
+  "TELFY": {
+    "ticker": "TELFY",
+    "company": "TELEFONICA S A ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-01-08",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "HELP": {
+    "ticker": "HELP",
+    "company": "CYBIN INC. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-01-02",
+    "score": 5.0,
+    "mcap": 805173459.0,
+    "p_b": 2.8223967447923846,
+    "insider_pct": null
+  },
+  "ABXL": {
+    "ticker": "ABXL",
+    "company": "Abacus Global Management, Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2025-12-29",
+    "score": 3.0,
+    "mcap": 2472170841.0,
+    "p_b": 5.524755932207653,
+    "insider_pct": null
+  },
+  "TBPH": {
+    "ticker": "TBPH",
+    "company": "Theravance Biopharma, Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-23",
+    "score": 5.0,
+    "mcap": 883412589.0,
+    "p_b": 3.0380813068466197,
+    "insider_pct": 0.046729997
+  },
+  "HVIIR": {
+    "ticker": "HVIIR",
+    "company": "ONE Nuclear Energy Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-23",
+    "score": 10.0,
+    "micro_cap": true,
+    "below_book": true,
+    "mcap": 232720911.0,
+    "p_b": 0.42033086485791943,
+    "insider_pct": null
+  },
+  "KO": {
+    "ticker": "KO",
+    "company": "COCA COLA CO ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-22",
+    "score": 0.0,
+    "mcap": 379914624441.0,
+    "p_b": 10.453324481327801,
+    "insider_pct": 0.09896
+  },
+  "CRI": {
+    "ticker": "CRI",
+    "company": "CARTERS INC ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-22",
+    "score": 3.0,
+    "mcap": 1106608503.0,
+    "p_b": 1.0391713272651346,
+    "insider_pct": 0.04833
+  },
+  "MRSH": {
+    "ticker": "MRSH",
+    "company": "MARSH & MCLENNAN COMPANIES, INC. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-21",
+    "score": 0.0,
+    "mcap": 81512456687.0,
+    "p_b": 5.432698412698413,
+    "insider_pct": 0.0011
+  },
+  "SASOF": {
+    "ticker": "SASOF",
+    "company": "SASOL LTD ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-18",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "SAY": {
+    "ticker": "SAY",
+    "company": "SARATOGA INVESTMENT CORP. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-18",
+    "score": 7.0,
+    "below_book": true,
+    "mcap": 314398339.0,
+    "p_b": 0.7506693545285779,
+    "insider_pct": null
+  },
+  "OKE": {
+    "ticker": "OKE",
+    "company": "ONEOK INC /NEW/ ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-18",
+    "score": 0.0,
+    "mcap": 57595435800.0,
+    "p_b": 2.489685377337926,
+    "insider_pct": 0.00164
+  },
+  "CIMG": {
+    "ticker": "CIMG",
+    "company": "CIMG Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-17",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "WMT": {
+    "ticker": "WMT",
+    "company": "Walmart Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-16",
+    "score": 3.0,
+    "controlled": true,
+    "mcap": 874581850688.0,
+    "p_b": 8.933769117856633,
+    "insider_pct": 0.4495
+  },
+  "ACHR": {
+    "ticker": "ACHR",
+    "company": "Archer Aviation Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-16",
+    "score": 3.0,
+    "mcap": 4318314630.0,
+    "p_b": 2.35670797442266,
+    "insider_pct": 0.14934
+  },
+  "LLOBF": {
+    "ticker": "LLOBF",
+    "company": "Lloyds Banking Group plc ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-15",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "CCZ": {
+    "ticker": "CCZ",
+    "company": "COMCAST CORP ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-14",
+    "score": 1.0,
+    "below_book": true,
+    "mcap": 15715279955.0,
+    "p_b": 0.90331697671828,
+    "insider_pct": null
+  },
+  "TEVA": {
+    "ticker": "TEVA",
+    "company": "TEVA PHARMACEUTICAL INDUSTRIES LTD ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-14",
+    "score": 0.0,
+    "mcap": 46084804800.0,
+    "p_b": 5.96717537985296,
+    "insider_pct": 4.0000003e-05
+  },
+  "BCLYF": {
+    "ticker": "BCLYF",
+    "company": "BARCLAYS PLC ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-14",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "RYDAF": {
+    "ticker": "RYDAF",
+    "company": "Shell plc ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-14",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "BCDRF": {
+    "ticker": "BCDRF",
+    "company": "Banco Santander, S.A. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-14",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "INGVF": {
+    "ticker": "INGVF",
+    "company": "ING GROEP NV ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-11",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "TMC": {
+    "ticker": "TMC",
+    "company": "TMC the metals Co Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-09",
+    "score": 7.0,
+    "controlled": true,
+    "mcap": 1810994323.0,
+    "p_b": -64.6619654874804,
+    "insider_pct": 0.45136002
+  },
+  "BTAFF": {
+    "ticker": "BTAFF",
+    "company": "British American Tobacco p.l.c. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-08",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "GIPR": {
+    "ticker": "GIPR",
+    "company": "GENERATION INCOME PROPERTIES, INC. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-04",
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 320656.0,
+    "p_b": -0.3249221858131305,
+    "insider_pct": null
+  },
+  "NHPBP": {
+    "ticker": "NHPBP",
+    "company": "National Healthcare Properties, Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-03",
+    "score": 5.0,
+    "mcap": 718332320.0,
+    "p_b": 1.483646923891307,
+    "insider_pct": null
+  },
+  "VODPF": {
+    "ticker": "VODPF",
+    "company": "VODAFONE GROUP PUBLIC LTD CO ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-03",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "RCKT": {
+    "ticker": "RCKT",
+    "company": "ROCKET PHARMACEUTICALS, INC. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-02",
+    "score": 7.0,
+    "below_book": true,
+    "mcap": 345521147.0,
+    "p_b": 0.9346883615757938,
+    "insider_pct": 0.029660001
+  },
+  "ARQQ": {
+    "ticker": "ARQQ",
+    "company": "Arqit Quantum Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-02",
+    "score": 5.0,
+    "mcap": 393642288.0,
+    "p_b": 13.178595014208033,
+    "insider_pct": null
+  },
+  "BXBL": {
+    "ticker": "BXBL",
+    "company": "BOXABL Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-09-01",
+    "score": 3.0,
+    "mcap": 1446013119.0,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "BKSY": {
+    "ticker": "BKSY",
+    "company": "BlackSky Technology Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-26",
+    "score": 5.0,
+    "mcap": 934649344.0,
+    "p_b": 4.0661518824575005,
+    "insider_pct": null
+  },
+  "GDEV": {
+    "ticker": "GDEV",
+    "company": "GDEV Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-25",
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 199473874.0,
+    "p_b": -3.8273651138496065,
+    "insider_pct": null
+  },
+  "HUMA": {
+    "ticker": "HUMA",
+    "company": "Humacyte, Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-25",
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 94936800.0,
+    "p_b": 4.216045214011068,
+    "insider_pct": 0.07506
+  },
+  "TWOD": {
+    "ticker": "TWOD",
+    "company": "TWO HARBORS INVESTMENT CORP. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-25",
+    "score": 3.0,
+    "mcap": 2763473459.0,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "LXU": {
+    "ticker": "LXU",
+    "company": "LSB INDUSTRIES, INC. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-25",
+    "score": 5.0,
+    "mcap": 757155870.0,
+    "p_b": 1.3940049553333815,
+    "insider_pct": 0.18872999
+  },
+  "RNW": {
+    "ticker": "RNW",
+    "company": "ReNew Energy Global plc ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-21",
+    "score": 3.0,
+    "mcap": 2489337414.0,
+    "p_b": 1.8199667077342432,
+    "insider_pct": null
+  },
+  "XOS": {
+    "ticker": "XOS",
+    "company": "Xos, Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-19",
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 26917650.0,
+    "p_b": 1.423972306076913,
+    "insider_pct": null
+  },
+  "IFED": {
+    "ticker": "IFED",
+    "company": "UBS AG ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-19",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "DRMA": {
+    "ticker": "DRMA",
+    "company": "Dermata Therapeutics, Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-17",
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 770159.0,
+    "p_b": 1.3146820903054144,
+    "insider_pct": null
+  },
+  "VRMK": {
+    "ticker": "VRMK",
+    "company": "ERP OPERATING LTD PARTNERSHIP ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-17",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "MYSE": {
+    "ticker": "MYSE",
+    "company": "Myseum.AI, Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-14",
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 9561431.0,
+    "p_b": 2.061212443042516,
+    "insider_pct": null
+  },
+  "HBCYF": {
+    "ticker": "HBCYF",
+    "company": "HSBC HOLDINGS PLC ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-14",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "LIDR": {
+    "ticker": "LIDR",
+    "company": "AEye, Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-13",
+    "score": 10.0,
+    "micro_cap": true,
+    "below_book": true,
+    "mcap": 55346186.0,
+    "p_b": 0.7964602107181544,
+    "insider_pct": 0.02451
+  },
+  "MNTS": {
+    "ticker": "MNTS",
+    "company": "Momentus Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-11",
+    "score": 10.0,
+    "micro_cap": true,
+    "below_book": true,
+    "mcap": 24467143.0,
+    "p_b": 0.4411072459303343,
+    "insider_pct": 0.00541
+  },
+  "VLNWF": {
+    "ticker": "VLNWF",
+    "company": "Valens Semiconductor Ltd. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-11",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "FCT": {
+    "ticker": "FCT",
+    "company": "FIRST TRUST SENIOR FLOATING RATE INCOME FUND II ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-10",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "JOBY": {
+    "ticker": "JOBY",
+    "company": "Joby Aviation, Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-10",
+    "score": 7.0,
+    "controlled": true,
+    "mcap": 6221541039.0,
+    "p_b": 3.4558641909880614,
+    "insider_pct": 0.32586
+  },
+  "SRZN": {
+    "ticker": "SRZN",
+    "company": "Surrozen, Inc./DE ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-07",
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 127552804.0,
+    "p_b": -0.8845990670660601,
+    "insider_pct": null
+  },
+  "SLAIY": {
+    "ticker": "SLAIY",
+    "company": "SOLAI Ltd ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-04",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "PG": {
+    "ticker": "PG",
+    "company": "PROCTER & GAMBLE Co ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-03",
+    "score": 0.0,
+    "mcap": 350257964778.0,
+    "p_b": 6.577561865920347,
+    "insider_pct": 0.00066
+  },
+  "PM": {
+    "ticker": "PM",
+    "company": "Philip Morris International Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-08-03",
+    "score": 0.0,
+    "mcap": 298286781800.0,
+    "p_b": -34.48656707004544,
+    "insider_pct": 0.00164
+  },
+  "RSVR": {
+    "ticker": "RSVR",
+    "company": "Reservoir Media, Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-27",
+    "score": 5.0,
+    "mcap": 626552136.0,
+    "p_b": 1.6692357221501408,
+    "insider_pct": null
+  },
+  "MVST": {
+    "ticker": "MVST",
+    "company": "Microvast Holdings, Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-22",
+    "score": 14.0,
+    "micro_cap": true,
+    "controlled": true,
+    "below_book": true,
+    "mcap": 244170765.0,
+    "p_b": 0.44597344271894007,
+    "insider_pct": 0.52791
+  },
+  "CELU": {
+    "ticker": "CELU",
+    "company": "Celularity Inc ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-22",
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 33285005.0,
+    "p_b": -0.7599811407703221,
+    "insider_pct": null
+  },
+  "WGS": {
+    "ticker": "WGS",
+    "company": "GeneDx Holdings Corp. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-21",
+    "score": 3.0,
+    "mcap": 2640782375.0,
+    "p_b": 10.341694270312546,
+    "insider_pct": 0.12179
+  },
+  "FRNM": {
+    "ticker": "FRNM",
+    "company": "Freenome, Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-20",
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 127334548.0,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "FFAI": {
+    "ticker": "FFAI",
+    "company": "FARADAY FUTURE INTELLIGENT ELECTRIC INC. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-20",
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 2887059.0,
+    "p_b": -0.10712345016489558,
+    "insider_pct": 0.020469999
+  },
+  "RVTY": {
+    "ticker": "RVTY",
+    "company": "REVVITY, INC. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-20",
+    "score": 0.0,
+    "mcap": 15743346655.0,
+    "p_b": 2.1932567779969947,
+    "insider_pct": 0.00364
+  },
+  "OPFI": {
+    "ticker": "OPFI",
+    "company": "OppFi Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-20",
+    "score": 9.0,
+    "controlled": true,
+    "mcap": 537123527.0,
+    "p_b": 1.0242928588188434,
+    "insider_pct": 0.60526
+  },
+  "EVLV": {
+    "ticker": "EVLV",
+    "company": "Evolv Technologies Holdings, Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-16",
+    "score": 5.0,
+    "mcap": 867879553.0,
+    "p_b": 7.265772027966143,
+    "insider_pct": 0.04216
+  },
+  "HLLY": {
+    "ticker": "HLLY",
+    "company": "Holley Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-16",
+    "score": 7.0,
+    "below_book": true,
+    "mcap": 301526469.0,
+    "p_b": 0.6646251788708092,
+    "insider_pct": 0.05429
+  },
+  "QTEX": {
+    "ticker": "QTEX",
+    "company": "QTREX Quantum Ltd. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-15",
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 34841650.0,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "BHATF": {
+    "ticker": "BHATF",
+    "company": "Blue Hat Interactive Entertainment Technology ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-14",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "ASNS": {
+    "ticker": "ASNS",
+    "company": "ACTELIS NETWORKS INC ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-14",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "CPTAF": {
+    "ticker": "CPTAF",
+    "company": "Captivision Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-14",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "REEAF": {
+    "ticker": "REEAF",
+    "company": "REE Automotive Ltd. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-13",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "MEHA": {
+    "ticker": "MEHA",
+    "company": "Functional Brands Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-13",
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 198370.0,
+    "p_b": -0.07797241439519063,
+    "insider_pct": null
+  },
+  "ALCUF": {
+    "ticker": "ALCUF",
+    "company": "Alchemy Investments Acquisition Corp 1 ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-10",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "RVPH": {
+    "ticker": "RVPH",
+    "company": "REVIVA PHARMACEUTICALS HOLDINGS, INC. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-10",
+    "score": 10.0,
+    "micro_cap": true,
+    "below_book": true,
+    "mcap": 6148981.0,
+    "p_b": 4.377739689207348e-07,
+    "insider_pct": null
+  },
+  "TE": {
+    "ticker": "TE",
+    "company": "T1 Energy Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-10",
+    "score": 3.0,
+    "mcap": 1170559154.0,
+    "p_b": 2.5736219185248155,
+    "insider_pct": 0.16778
+  },
+  "SBDS": {
+    "ticker": "SBDS",
+    "company": "Solo Brands, Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-08",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "BF-A": {
+    "ticker": "BF-A",
+    "company": "BROWN FORMAN CORP ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-07",
+    "score": 0.0,
+    "mcap": 12249412799.0,
+    "p_b": 3.0169855656336613,
+    "insider_pct": null
+  },
+  "LANWF": {
+    "ticker": "LANWF",
+    "company": "Lanvin Group Holdings Ltd ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-06",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "EVGO": {
+    "ticker": "EVGO",
+    "company": "EVgo Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-01",
+    "score": 5.0,
+    "mcap": 439403086.0,
+    "p_b": -9.437677261613691,
+    "insider_pct": 0.05647
+  },
+  "NIXX": {
+    "ticker": "NIXX",
+    "company": "Nixxy, Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-07-01",
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 10338243.0,
+    "p_b": 1.2372979349782294,
+    "insider_pct": null
+  },
+  "TPTS": {
+    "ticker": "TPTS",
+    "company": "Terra Property Trust, Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-06-30",
+    "score": 5.0,
+    "mcap": 367506246.0,
+    "p_b": 4.758052644626719,
+    "insider_pct": null
+  },
+  "TBLA": {
+    "ticker": "TBLA",
+    "company": "Taboola.com Ltd. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-06-29",
+    "score": 5.0,
+    "mcap": 936873871.0,
+    "p_b": 1.0035485696547841,
+    "insider_pct": 0.21583
+  },
+  "HNNA": {
+    "ticker": "HNNA",
+    "company": "HENNESSY ADVISORS INC ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-06-29",
+    "score": 10.0,
+    "micro_cap": true,
+    "below_book": true,
+    "mcap": 82184856.0,
+    "p_b": 0.8094521766124886,
+    "insider_pct": null
+  },
+  "TIRXF": {
+    "ticker": "TIRXF",
+    "company": "TIAN RUIXIANG HOLDINGS LTD ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-06-26",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "PBR-A": {
+    "ticker": "PBR-A",
+    "company": "PETROBRAS - PETROLEO BRASILEIRO SA ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-06-26",
+    "score": 0.0,
+    "mcap": 124345527762.0,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "CE": {
+    "ticker": "CE",
+    "company": "Celanese Corp ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-06-25",
+    "score": 3.0,
+    "mcap": 5408041008.0,
+    "p_b": 1.2919352051835855,
+    "insider_pct": 0.0035899999
+  },
+  "CASIF": {
+    "ticker": "CASIF",
+    "company": "CASI Pharmaceuticals, Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-06-23",
+    "score": 12.0,
+    "micro_cap": true,
+    "controlled": true,
+    "mcap": 2672263.0,
+    "p_b": -0.04586323293172691,
+    "insider_pct": 0.45305002
+  },
+  "PMNT": {
+    "ticker": "PMNT",
+    "company": "Perfect Moment Ltd. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-06-18",
+    "score": 8.0,
+    "micro_cap": true,
+    "mcap": 6378364.0,
+    "p_b": -3.0487088664994983,
+    "insider_pct": null
+  },
+  "MYPS": {
+    "ticker": "MYPS",
+    "company": "PLAYSTUDIOS, Inc. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-06-17",
+    "score": 10.0,
+    "micro_cap": true,
+    "below_book": true,
+    "mcap": 59289361.0,
+    "p_b": 0.27336493384562055,
+    "insider_pct": null
+  },
+  "RBSPF": {
+    "ticker": "RBSPF",
+    "company": "NatWest Group plc ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-06-15",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "V": {
+    "ticker": "V",
+    "company": "VISA INC. ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-06-15",
+    "score": 0.0,
+    "mcap": 677812819481.0,
+    "p_b": 19.65287909517312,
+    "insider_pct": 0.00084
+  },
+  "RZC": {
+    "ticker": "RZC",
+    "company": "REINSURANCE GROUP OF AMERICA INC ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-06-15",
+    "score": 0.0,
+    "mcap": 15511818940.0,
+    "p_b": 1.1963308251789104,
+    "insider_pct": null
+  },
+  "BREZR": {
+    "ticker": "BREZR",
+    "company": "Breeze Acquisition Corp. II ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-06-10",
+    "score": 3.0,
+    "mcap": null,
+    "p_b": null,
+    "insider_pct": null
+  },
+  "QSI": {
+    "ticker": "QSI",
+    "company": "Quantum-Si Inc ",
+    "forms": [
+      "25"
+    ],
+    "date": "2026-06-10",
+    "score": 10.0,
+    "micro_cap": true,
+    "below_book": true,
+    "mcap": 151354119.0,
+    "p_b": 0.9141106464448032,
+    "insider_pct": null
+  }
+}

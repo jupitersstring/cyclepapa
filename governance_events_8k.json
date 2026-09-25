@@ -1,0 +1,3644 @@
+{
+  "RPAY": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-07-14",
+      "phrase": "cooperation agreement"
+    },
+    "PILL_REMOVED": {
+      "date": "2026-04-14",
+      "phrase": "redeem the rights"
+    }
+  },
+  "TBRG": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-01-08",
+      "phrase": "cooperation agreement"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-01-08",
+      "phrase": "board refreshment"
+    }
+  },
+  "JACK": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-09-21",
+      "phrase": "cooperation agreement"
+    },
+    "VALUE_COMMITTEE": {
+      "date": "2025-11-07",
+      "phrase": "capital allocation committee"
+    },
+    "CEO_CHANGE": {
+      "date": "2026-05-13",
+      "phrase": "interim Chief Executive Officer"
+    },
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-05-13",
+      "phrase": "independent Chair of the Board"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-09-21",
+      "phrase": "board refreshment"
+    },
+    "PILL_REMOVED": {
+      "date": "2025-07-02",
+      "phrase": "redeem the rights"
+    }
+  },
+  "LWAY": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-10-01",
+      "phrase": "cooperation agreement"
+    },
+    "VALUE_COMMITTEE": {
+      "date": "2025-10-01",
+      "phrase": "strategic review committee"
+    },
+    "BOARD_REFRESH": {
+      "date": "2025-10-01",
+      "phrase": "board refreshment"
+    }
+  },
+  "ITGR": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-03-12",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "FIVN": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-02-20",
+      "phrase": "cooperation agreement"
+    },
+    "DECLASSIFY": {
+      "date": "2026-05-27",
+      "phrase": "declassification of the Board"
+    }
+  },
+  "GNSS": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-12-29",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "ONL": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-01-26",
+      "phrase": "cooperation agreement"
+    },
+    "VALUE_COMMITTEE": {
+      "date": "2026-01-26",
+      "phrase": "strategic review process"
+    }
+  },
+  "TDC": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-02-11",
+      "phrase": "cooperation agreement"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-02-11",
+      "phrase": "board refreshment"
+    }
+  },
+  "TALO": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-12-11",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "COLD": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-12-22",
+      "phrase": "cooperation agreement"
+    },
+    "BOARD_REFRESH": {
+      "date": "2025-12-22",
+      "phrase": "board refreshment"
+    }
+  },
+  "TMQ": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-08-31",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "PFGC": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-09-23",
+      "phrase": "cooperation agreement"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-08-20",
+      "phrase": "board refreshment"
+    }
+  },
+  "DMRC": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-07-29",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "JOB": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-08-21",
+      "phrase": "cooperation agreement"
+    },
+    "DECLASSIFY": {
+      "date": "2026-08-21",
+      "phrase": "declassify the Board"
+    }
+  },
+  "MIGI": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-04-06",
+      "phrase": "cooperation agreement"
+    },
+    "PILL_REMOVED": {
+      "date": "2026-02-02",
+      "phrase": "redeem the rights"
+    }
+  },
+  "FSP": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-10-15",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "ATKR": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-11-21",
+      "phrase": "cooperation agreement"
+    },
+    "VALUE_COMMITTEE": {
+      "date": "2026-08-03",
+      "phrase": "strategic review committee"
+    },
+    "BOARD_REFRESH": {
+      "date": "2025-11-21",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "HOFT": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-02-17",
+      "phrase": "cooperation agreement"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-01-02",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "FBIN": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-03-16",
+      "phrase": "cooperation agreement"
+    },
+    "DECLASSIFY": {
+      "date": "2026-05-07",
+      "phrase": "declassify the Board"
+    }
+  },
+  "FUN": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-05-20",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "SRI": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-02-26",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "BJRI": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-11-17",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "LULU": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-05-27",
+      "phrase": "cooperation agreement"
+    },
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-12-29",
+      "phrase": "return capital to shareholders"
+    },
+    "DECLASSIFY": {
+      "date": "2026-06-26",
+      "phrase": "declassification of the Board"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-05-27",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "DAKT": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-10-30",
+      "phrase": "cooperation agreement"
+    },
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-04-09",
+      "phrase": "return excess capital"
+    }
+  },
+  "WEX": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-05-04",
+      "phrase": "cooperation agreement"
+    },
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-07-22",
+      "phrase": "modified dutch auction"
+    },
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-05-04",
+      "phrase": "separate the roles of Chair"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-01-12",
+      "phrase": "board refreshment"
+    }
+  },
+  "VXRT": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-07-02",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "CVEO": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-11-28",
+      "phrase": "cooperation agreement"
+    },
+    "BOARD_REFRESH": {
+      "date": "2025-11-28",
+      "phrase": "board refreshment"
+    }
+  },
+  "FOXF": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-03-26",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "OSUR": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-04-17",
+      "phrase": "cooperation agreement"
+    },
+    "DECLASSIFY": {
+      "date": "2026-06-03",
+      "phrase": "declassify the Board"
+    }
+  },
+  "WEAV": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-03-30",
+      "phrase": "cooperation agreement"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-03-30",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "HXL": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-03-04",
+      "phrase": "cooperation agreement"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-03-04",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "ASH": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-07-28",
+      "phrase": "cooperation agreement"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-07-28",
+      "phrase": "board refreshment"
+    }
+  },
+  "TNC": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-02-13",
+      "phrase": "cooperation agreement"
+    },
+    "DECLASSIFY": {
+      "date": "2026-02-13",
+      "phrase": "declassify the Board"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-02-13",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "PENN": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-02-23",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "MED": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-03-20",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "NNBR": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-07-31",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "VSAT": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-05-07",
+      "phrase": "cooperation agreement"
+    },
+    "VALUE_COMMITTEE": {
+      "date": "2026-05-07",
+      "phrase": "strategic review committee"
+    }
+  },
+  "SPSC": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-02-12",
+      "phrase": "cooperation agreement"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-02-12",
+      "phrase": "board refreshment"
+    }
+  },
+  "ALOT": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-08-21",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "TBI": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-04-13",
+      "phrase": "cooperation agreement"
+    },
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-11-03",
+      "phrase": "return excess capital"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-01-09",
+      "phrase": "board refreshment"
+    }
+  },
+  "INGN": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-04-06",
+      "phrase": "cooperation agreement"
+    },
+    "DECLASSIFY": {
+      "date": "2026-06-11",
+      "phrase": "declassify the Board"
+    }
+  },
+  "GPC": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-09-04",
+      "phrase": "cooperation agreement"
+    },
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-02-17",
+      "phrase": "capital return program"
+    },
+    "CEO_CHANGE": {
+      "date": "2026-09-09",
+      "phrase": "appointed Chief Executive Officer"
+    },
+    "BOARD_REFRESH": {
+      "date": "2025-09-04",
+      "phrase": "board refreshment"
+    }
+  },
+  "SWX": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-02-12",
+      "phrase": "cooperation agreement"
+    },
+    "BOARD_REFRESH": {
+      "date": "2025-10-14",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "EVC": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-05-20",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "QTRX": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-08-04",
+      "phrase": "cooperation agreement"
+    },
+    "DECLASSIFY": {
+      "date": "2025-10-02",
+      "phrase": "declassify the Board"
+    }
+  },
+  "NCLH": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-03-27",
+      "phrase": "cooperation agreement"
+    },
+    "DECLASSIFY": {
+      "date": "2026-06-16",
+      "phrase": "declassify the Board"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-03-27",
+      "phrase": "board refreshment"
+    }
+  },
+  "RRGB": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-02-13",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "STAA": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-01-15",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "AGCO": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-07-01",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "GRND": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-02-26",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "MIDD": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-01-06",
+      "phrase": "cooperation agreement"
+    },
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-02-02",
+      "phrase": "capital return program"
+    }
+  },
+  "LPRO": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-03-06",
+      "phrase": "cooperation agreement"
+    },
+    "DECLASSIFY": {
+      "date": "2026-03-06",
+      "phrase": "declassify the Board"
+    }
+  },
+  "TTSH": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-12-03",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "NVVE": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-06-25",
+      "phrase": "cooperation agreement"
+    }
+  },
+  "HRTX": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-08-12",
+      "phrase": "cooperation agreement"
+    },
+    "PILL_REMOVED": {
+      "date": "2025-08-15",
+      "phrase": "redeem the rights"
+    }
+  },
+  "CTRN": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-02-20",
+      "phrase": "cooperation agreement"
+    },
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-03-17",
+      "phrase": "capital return program"
+    }
+  },
+  "MDLN": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-12-22",
+      "phrase": "nomination agreement"
+    }
+  },
+  "PMTS": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-12-05",
+      "phrase": "nomination agreement"
+    }
+  },
+  "BHC": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-08-15",
+      "phrase": "nomination agreement"
+    },
+    "BOARD_REFRESH": {
+      "date": "2025-07-24",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "BLCO": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-08-18",
+      "phrase": "nomination agreement"
+    }
+  },
+  "FLY": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-08-08",
+      "phrase": "nomination agreement"
+    }
+  },
+  "AEP": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-12-29",
+      "phrase": "nomination agreement"
+    }
+  },
+  "FRMI": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-05-05",
+      "phrase": "nomination agreement"
+    }
+  },
+  "CNTY": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-05-07",
+      "phrase": "nomination agreement"
+    },
+    "VALUE_COMMITTEE": {
+      "date": "2025-08-07",
+      "phrase": "strategic review process"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-05-07",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "INNV": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-01-29",
+      "phrase": "nomination agreement"
+    }
+  },
+  "OFRM": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-02-09",
+      "phrase": "nomination agreement"
+    }
+  },
+  "CTRI": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-11-12",
+      "phrase": "nomination agreement"
+    },
+    "BOARD_REFRESH": {
+      "date": "2025-11-12",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "YSS": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-04-14",
+      "phrase": "nomination agreement"
+    }
+  },
+  "MAIR": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-04-17",
+      "phrase": "nomination agreement"
+    },
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-06-05",
+      "phrase": "modified dutch auction"
+    }
+  },
+  "IAS": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-09-24",
+      "phrase": "nomination agreement"
+    },
+    "VALUE_COMMITTEE": {
+      "date": "2025-12-12",
+      "phrase": "strategic review process"
+    }
+  },
+  "JAMF": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-10-30",
+      "phrase": "nomination agreement"
+    }
+  },
+  "JBLU": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-08-27",
+      "phrase": "nomination agreement"
+    }
+  },
+  "LOOP": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-06-23",
+      "phrase": "nomination agreement"
+    },
+    "VALUE_COMMITTEE": {
+      "date": "2026-09-17",
+      "phrase": "strategic alternatives committee"
+    }
+  },
+  "AKA": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-08-04",
+      "phrase": "nomination agreement"
+    }
+  },
+  "CZR": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-09-17",
+      "phrase": "nomination agreement"
+    }
+  },
+  "OPAL": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-03-09",
+      "phrase": "nomination agreement"
+    }
+  },
+  "SNDR": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-05-01",
+      "phrase": "nomination agreement"
+    }
+  },
+  "SUJA": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-05-08",
+      "phrase": "nomination agreement"
+    }
+  },
+  "ARAI": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-08-19",
+      "phrase": "standstill agreement"
+    }
+  },
+  "LION": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-01-26",
+      "phrase": "standstill agreement"
+    }
+  },
+  "AIDX": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-08-17",
+      "phrase": "standstill agreement"
+    }
+  },
+  "EDGM": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-07-15",
+      "phrase": "standstill agreement"
+    }
+  },
+  "CWD": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-09-15",
+      "phrase": "standstill agreement"
+    }
+  },
+  "RITE": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-05-07",
+      "phrase": "standstill agreement"
+    }
+  },
+  "GETY": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-08-28",
+      "phrase": "standstill agreement"
+    }
+  },
+  "PCOK": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-01-23",
+      "phrase": "standstill agreement"
+    }
+  },
+  "DRTTF": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-05-06",
+      "phrase": "standstill agreement"
+    }
+  },
+  "HHH": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-06-05",
+      "phrase": "standstill agreement"
+    }
+  },
+  "RGR": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-10-14",
+      "phrase": "standstill agreement"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-03-09",
+      "phrase": "board refreshment"
+    },
+    "PILL_REMOVED": {
+      "date": "2025-10-14",
+      "phrase": "redeem the rights"
+    }
+  },
+  "NXXT": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-08-17",
+      "phrase": "standstill agreement"
+    }
+  },
+  "LSBK": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-03-18",
+      "phrase": "standstill agreement"
+    }
+  },
+  "IROQ": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-09-26",
+      "phrase": "standstill agreement"
+    }
+  },
+  "IPDN": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-08-13",
+      "phrase": "standstill agreement"
+    }
+  },
+  "PLBY": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-06-22",
+      "phrase": "standstill agreement"
+    }
+  },
+  "GWRS": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-08-21",
+      "phrase": "standstill agreement"
+    }
+  },
+  "QIPT": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-08-27",
+      "phrase": "standstill agreement"
+    }
+  },
+  "D": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-08-25",
+      "phrase": "standstill agreement"
+    }
+  },
+  "MUX": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-07-31",
+      "phrase": "standstill agreement"
+    }
+  },
+  "AGAE": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-04-21",
+      "phrase": "standstill agreement"
+    }
+  },
+  "UTZ": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-07-22",
+      "phrase": "standstill agreement"
+    }
+  },
+  "TOON": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-08-14",
+      "phrase": "standstill agreement"
+    },
+    "PILL_REMOVED": {
+      "date": "2026-07-06",
+      "phrase": "redeem the rights"
+    }
+  },
+  "MPX": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-05-01",
+      "phrase": "standstill agreement"
+    }
+  },
+  "WS": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-01-22",
+      "phrase": "standstill agreement"
+    }
+  },
+  "MCFT": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2026-05-01",
+      "phrase": "standstill agreement"
+    }
+  },
+  "OVV": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-11-07",
+      "phrase": "standstill agreement"
+    }
+  },
+  "CDE": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-11-03",
+      "phrase": "standstill agreement"
+    },
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-08-05",
+      "phrase": "capital return program"
+    }
+  },
+  "EXC": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-11-24",
+      "phrase": "standstill agreement"
+    }
+  },
+  "RGLD": {
+    "ACTIVIST_SETTLEMENT": {
+      "date": "2025-07-10",
+      "phrase": "standstill agreement"
+    }
+  },
+  "TBPH": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-08-10",
+      "phrase": "strategic review committee"
+    },
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-01-12",
+      "phrase": "return excess capital"
+    },
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-06-29",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "KVUE": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-01-16",
+      "phrase": "strategic review committee"
+    }
+  },
+  "ZYME": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-06-29",
+      "phrase": "strategic review committee"
+    }
+  },
+  "CMTL": {
+    "VALUE_COMMITTEE": {
+      "date": "2025-12-11",
+      "phrase": "strategic review committee"
+    }
+  },
+  "GSAT": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-04-14",
+      "phrase": "strategic review committee"
+    }
+  },
+  "VRE": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-02-23",
+      "phrase": "strategic review committee"
+    }
+  },
+  "KMB": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-01-16",
+      "phrase": "strategic review committee"
+    }
+  },
+  "BBGI": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-08-19",
+      "phrase": "strategic alternatives committee"
+    }
+  },
+  "WU": {
+    "VALUE_COMMITTEE": {
+      "date": "2025-08-14",
+      "phrase": "strategic alternatives committee"
+    }
+  },
+  "IMXI": {
+    "VALUE_COMMITTEE": {
+      "date": "2025-08-11",
+      "phrase": "strategic alternatives committee"
+    }
+  },
+  "FPAY": {
+    "VALUE_COMMITTEE": {
+      "date": "2025-10-01",
+      "phrase": "strategic alternatives committee"
+    }
+  },
+  "HPK": {
+    "VALUE_COMMITTEE": {
+      "date": "2025-09-15",
+      "phrase": "strategic alternatives committee"
+    }
+  },
+  "FARO": {
+    "VALUE_COMMITTEE": {
+      "date": "2025-07-02",
+      "phrase": "strategic alternatives committee"
+    }
+  },
+  "PCYO": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-04-09",
+      "phrase": "capital allocation committee"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-01-16",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "CSGP": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-01-07",
+      "phrase": "capital allocation committee"
+    },
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-03-16",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "HURN": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-07-27",
+      "phrase": "capital allocation committee"
+    }
+  },
+  "PLTK": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-04-06",
+      "phrase": "strategic review process"
+    }
+  },
+  "ELME": {
+    "VALUE_COMMITTEE": {
+      "date": "2025-08-04",
+      "phrase": "strategic review process"
+    }
+  },
+  "STRS": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-02-05",
+      "phrase": "strategic review process"
+    }
+  },
+  "LVLU": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-07-14",
+      "phrase": "strategic review process"
+    }
+  },
+  "AQB": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-08-06",
+      "phrase": "strategic review process"
+    }
+  },
+  "HAIN": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-04-17",
+      "phrase": "strategic review process"
+    }
+  },
+  "EHAB": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-03-05",
+      "phrase": "strategic review process"
+    }
+  },
+  "IRBT": {
+    "VALUE_COMMITTEE": {
+      "date": "2025-12-01",
+      "phrase": "strategic review process"
+    }
+  },
+  "XBIO": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-08-07",
+      "phrase": "strategic review process"
+    }
+  },
+  "KZR": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-03-30",
+      "phrase": "strategic review process"
+    }
+  },
+  "SBGI": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-08-05",
+      "phrase": "strategic review process"
+    }
+  },
+  "PRSO": {
+    "VALUE_COMMITTEE": {
+      "date": "2025-09-09",
+      "phrase": "strategic review process"
+    }
+  },
+  "VYNE": {
+    "VALUE_COMMITTEE": {
+      "date": "2025-11-06",
+      "phrase": "strategic review process"
+    }
+  },
+  "ONT": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-08-05",
+      "phrase": "strategic review process"
+    },
+    "PILL_REMOVED": {
+      "date": "2026-08-10",
+      "phrase": "redeem the rights"
+    }
+  },
+  "SUNE": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-04-15",
+      "phrase": "strategic review process"
+    }
+  },
+  "BNBX": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-07-13",
+      "phrase": "strategic review process"
+    }
+  },
+  "CVGW": {
+    "VALUE_COMMITTEE": {
+      "date": "2025-12-12",
+      "phrase": "strategic review process"
+    }
+  },
+  "FULC": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-06-04",
+      "phrase": "strategic review process"
+    }
+  },
+  "ATEX": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-02-11",
+      "phrase": "strategic review process"
+    }
+  },
+  "ASRT": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-05-13",
+      "phrase": "strategic review process"
+    }
+  },
+  "PASG": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-04-20",
+      "phrase": "strategic review process"
+    }
+  },
+  "GPRE": {
+    "VALUE_COMMITTEE": {
+      "date": "2025-08-27",
+      "phrase": "strategic review process"
+    }
+  },
+  "AUPH": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-04-03",
+      "phrase": "strategic review process"
+    }
+  },
+  "HZO": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-08-10",
+      "phrase": "strategic review process"
+    },
+    "BOARD_REFRESH": {
+      "date": "2025-09-30",
+      "phrase": "board refreshment"
+    }
+  },
+  "VREOF": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-07-23",
+      "phrase": "strategic review process"
+    }
+  },
+  "COO": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-09-09",
+      "phrase": "strategic review process"
+    },
+    "BOARD_REFRESH": {
+      "date": "2025-12-23",
+      "phrase": "board refreshment"
+    }
+  },
+  "PXLW": {
+    "VALUE_COMMITTEE": {
+      "date": "2025-08-12",
+      "phrase": "strategic review process"
+    }
+  },
+  "ROYL": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-02-17",
+      "phrase": "strategic review process"
+    }
+  },
+  "DOMO": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-06-15",
+      "phrase": "strategic review process"
+    },
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-07-22",
+      "phrase": "return capital to shareholders"
+    },
+    "PILL_REMOVED": {
+      "date": "2026-07-22",
+      "phrase": "redeem the rights"
+    }
+  },
+  "ECVT": {
+    "VALUE_COMMITTEE": {
+      "date": "2025-12-12",
+      "phrase": "strategic review process"
+    }
+  },
+  "ASPN": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-02-25",
+      "phrase": "strategic review process"
+    },
+    "DECLASSIFY": {
+      "date": "2026-05-18",
+      "phrase": "declassification of the Board"
+    }
+  },
+  "BRN": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-03-23",
+      "phrase": "strategic review process"
+    },
+    "PILL_REMOVED": {
+      "date": "2026-02-02",
+      "phrase": "redeem the rights"
+    }
+  },
+  "GPRO": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-07-08",
+      "phrase": "strategic review process"
+    }
+  },
+  "MNRO": {
+    "VALUE_COMMITTEE": {
+      "date": "2026-05-27",
+      "phrase": "strategic review process"
+    },
+    "PILL_REMOVED": {
+      "date": "2025-11-10",
+      "phrase": "redeem the rights"
+    }
+  },
+  "CNR": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-08-06",
+      "phrase": "capital return program"
+    }
+  },
+  "KROS": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-10-15",
+      "phrase": "capital return program"
+    }
+  },
+  "UIS": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-06-02",
+      "phrase": "capital return program"
+    }
+  },
+  "AGNT": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-09-15",
+      "phrase": "capital return program"
+    }
+  },
+  "ADI": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-02-18",
+      "phrase": "capital return program"
+    }
+  },
+  "TKO": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-08-03",
+      "phrase": "capital return program"
+    }
+  },
+  "NXPI": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-08-28",
+      "phrase": "capital return program"
+    }
+  },
+  "TBCH": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-08-06",
+      "phrase": "capital return program"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-03-12",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "SM": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-02-25",
+      "phrase": "capital return program"
+    }
+  },
+  "RNGR": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-07-28",
+      "phrase": "capital return program"
+    }
+  },
+  "NOV": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-07-29",
+      "phrase": "capital return program"
+    }
+  },
+  "META": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-07-29",
+      "phrase": "capital return program"
+    }
+  },
+  "LUCK": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-05-06",
+      "phrase": "capital return program"
+    }
+  },
+  "PEGA": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-06-08",
+      "phrase": "capital return program"
+    }
+  },
+  "ROKU": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-06-15",
+      "phrase": "capital return program"
+    }
+  },
+  "MMI": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-08-06",
+      "phrase": "capital return program"
+    }
+  },
+  "ONTF": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-02-25",
+      "phrase": "capital return program"
+    }
+  },
+  "NESR": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-05-11",
+      "phrase": "capital return program"
+    }
+  },
+  "PTC": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-05-06",
+      "phrase": "capital return program"
+    }
+  },
+  "WES": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-05-06",
+      "phrase": "capital return program"
+    }
+  },
+  "SD": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-08-05",
+      "phrase": "capital return program"
+    }
+  },
+  "DAN": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-02-18",
+      "phrase": "capital return program"
+    }
+  },
+  "PYPL": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-07-28",
+      "phrase": "capital return program"
+    }
+  },
+  "VNOM": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-08-03",
+      "phrase": "capital return program"
+    }
+  },
+  "LVS": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-01-28",
+      "phrase": "return excess capital"
+    }
+  },
+  "PRG": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-12-02",
+      "phrase": "return excess capital"
+    },
+    "CEO_CHANGE": {
+      "date": "2026-03-10",
+      "phrase": "named Chief Executive Officer"
+    }
+  },
+  "UBER": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-07-16",
+      "phrase": "return excess capital"
+    }
+  },
+  "FHB": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-02-06",
+      "phrase": "return excess capital"
+    }
+  },
+  "PFG": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-04-23",
+      "phrase": "return excess capital"
+    }
+  },
+  "FND": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-04-30",
+      "phrase": "return excess capital"
+    }
+  },
+  "FCBC": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-01-27",
+      "phrase": "return excess capital"
+    }
+  },
+  "KNSL": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-02-12",
+      "phrase": "return excess capital"
+    }
+  },
+  "BFAM": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-05-05",
+      "phrase": "return excess capital"
+    }
+  },
+  "LAUR": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-04-30",
+      "phrase": "return excess capital"
+    }
+  },
+  "DIOD": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-02-12",
+      "phrase": "return excess capital"
+    }
+  },
+  "AAMI": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-07-30",
+      "phrase": "return excess capital"
+    }
+  },
+  "APTV": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-11-18",
+      "phrase": "return excess capital"
+    },
+    "CEO_CHANGE": {
+      "date": "2026-03-16",
+      "phrase": "named Chief Executive Officer"
+    }
+  },
+  "ROIV": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-12-11",
+      "phrase": "return excess capital"
+    }
+  },
+  "ABUS": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-08-21",
+      "phrase": "modified dutch auction"
+    }
+  },
+  "OI": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-12-02",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "MBUU": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-07-13",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "COUR": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-05-18",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "SEIC": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-07-22",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "PRTA": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-02-19",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "LSCC": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-12-05",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "SPFX": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-04-28",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "KINS": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-07-23",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "KFY": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-03-05",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "TTEK": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-09-10",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "CNTN": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-06-16",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "CFFN": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-12-17",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "MRP": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-03-23",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "LNN": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-07-02",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "YUM": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-09-10",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "VEEV": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-01-05",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "CALY": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-06-01",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "GPOR": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-03-09",
+      "phrase": "return capital to shareholders"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-06-01",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "FROG": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-02-26",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "CPRI": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-12-02",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "VMD": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-08-20",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "GCT": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-08-18",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "OKTA": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-01-05",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "HDSN": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-12-01",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "YUMC": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-09-03",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "WCN": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-08-07",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "TYL": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-02-04",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "WFRD": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-09-23",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "LCII": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-02-18",
+      "phrase": "return capital to shareholders"
+    },
+    "CEO_CHANGE": {
+      "date": "2026-08-07",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "OXM": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-01-12",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "STKL": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-04-17",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "TFX": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-12-09",
+      "phrase": "return capital to shareholders"
+    },
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-01-08",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "UTHR": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-03-09",
+      "phrase": "return capital to shareholders"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-07-23",
+      "phrase": "board refreshment"
+    }
+  },
+  "BWEN": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-09-10",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "GLXZ": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-07-22",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "AIN": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-02-24",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "DVN": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-05-21",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "BBT": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-09-21",
+      "phrase": "return capital to shareholders"
+    },
+    "CEO_CHANGE": {
+      "date": "2026-09-21",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "TRU": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-03-10",
+      "phrase": "return capital to shareholders"
+    },
+    "BOARD_REFRESH": {
+      "date": "2025-12-23",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "MDXG": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-02-25",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "ACLS": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-10-01",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "CLF": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-10-07",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "WMS": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-09-23",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "CMRC": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-09-10",
+      "phrase": "return capital to shareholders"
+    },
+    "PILL_REMOVED": {
+      "date": "2026-04-14",
+      "phrase": "redeem the rights"
+    }
+  },
+  "MTW": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-02-10",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "DNOW": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-11-06",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "H": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-08-07",
+      "phrase": "return capital to shareholders"
+    }
+  },
+  "EXFY": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-08-06",
+      "phrase": "modified dutch auction"
+    }
+  },
+  "SCHL": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-07-23",
+      "phrase": "modified dutch auction"
+    }
+  },
+  "BFH": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-07-24",
+      "phrase": "modified dutch auction"
+    }
+  },
+  "BCIC": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-05-08",
+      "phrase": "modified dutch auction"
+    }
+  },
+  "HCKT": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-11-04",
+      "phrase": "modified dutch auction"
+    }
+  },
+  "SILA": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-09-08",
+      "phrase": "modified dutch auction"
+    }
+  },
+  "RDNT": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2026-06-10",
+      "phrase": "modified dutch auction"
+    }
+  },
+  "UPLD": {
+    "CAPITAL_RETURN_POLICY": {
+      "date": "2025-07-28",
+      "phrase": "modified dutch auction"
+    }
+  },
+  "NSTS": {
+    "CEO_CHANGE": {
+      "date": "2026-04-09",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "GORV": {
+    "CEO_CHANGE": {
+      "date": "2025-07-11",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "LDXC": {
+    "CEO_CHANGE": {
+      "date": "2026-07-17",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "BXMT": {
+    "CEO_CHANGE": {
+      "date": "2025-09-19",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "BSTT": {
+    "CEO_CHANGE": {
+      "date": "2025-09-19",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "MHK": {
+    "CEO_CHANGE": {
+      "date": "2026-06-11",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "MRDN": {
+    "CEO_CHANGE": {
+      "date": "2026-07-29",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "WAMFF": {
+    "CEO_CHANGE": {
+      "date": "2026-06-11",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "HG": {
+    "CEO_CHANGE": {
+      "date": "2025-08-06",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "TWNP": {
+    "CEO_CHANGE": {
+      "date": "2025-12-29",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "TREE": {
+    "CEO_CHANGE": {
+      "date": "2026-01-09",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "JNJ": {
+    "CEO_CHANGE": {
+      "date": "2025-09-09",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "SSUP": {
+    "CEO_CHANGE": {
+      "date": "2025-12-08",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "QIND": {
+    "CEO_CHANGE": {
+      "date": "2026-04-23",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "TMGI": {
+    "CEO_CHANGE": {
+      "date": "2026-03-26",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "SOWG": {
+    "CEO_CHANGE": {
+      "date": "2026-01-07",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "JKHY": {
+    "CEO_CHANGE": {
+      "date": "2025-08-27",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "SRGZ": {
+    "CEO_CHANGE": {
+      "date": "2026-02-11",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "ZVIA": {
+    "CEO_CHANGE": {
+      "date": "2026-06-15",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "DOW": {
+    "CEO_CHANGE": {
+      "date": "2026-04-14",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "DUOT": {
+    "CEO_CHANGE": {
+      "date": "2026-09-17",
+      "phrase": "named Chief Executive Officer"
+    }
+  },
+  "MKL": {
+    "CEO_CHANGE": {
+      "date": "2026-09-08",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "CCRN": {
+    "CEO_CHANGE": {
+      "date": "2026-07-28",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "FNGR": {
+    "CEO_CHANGE": {
+      "date": "2026-08-10",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "DPZ": {
+    "CEO_CHANGE": {
+      "date": "2026-07-14",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "PETS": {
+    "CEO_CHANGE": {
+      "date": "2026-09-21",
+      "phrase": "appointed Chief Executive Officer"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-09-21",
+      "phrase": "board refreshment"
+    }
+  },
+  "R": {
+    "CEO_CHANGE": {
+      "date": "2025-12-12",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "DEFI": {
+    "CEO_CHANGE": {
+      "date": "2026-01-07",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "TCRT": {
+    "CEO_CHANGE": {
+      "date": "2025-07-17",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "ZONE": {
+    "CEO_CHANGE": {
+      "date": "2026-06-08",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "LGL": {
+    "CEO_CHANGE": {
+      "date": "2026-01-07",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "GCTK": {
+    "CEO_CHANGE": {
+      "date": "2026-07-15",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "STI": {
+    "CEO_CHANGE": {
+      "date": "2026-09-21",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "OPGN": {
+    "CEO_CHANGE": {
+      "date": "2025-12-05",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "EHTH": {
+    "CEO_CHANGE": {
+      "date": "2025-07-29",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "ASYS": {
+    "CEO_CHANGE": {
+      "date": "2026-08-05",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "GCAN": {
+    "CEO_CHANGE": {
+      "date": "2026-09-21",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "PAHC": {
+    "CEO_CHANGE": {
+      "date": "2025-12-18",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "VOGX": {
+    "CEO_CHANGE": {
+      "date": "2026-09-22",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "SUI": {
+    "CEO_CHANGE": {
+      "date": "2025-07-23",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "USNA": {
+    "CEO_CHANGE": {
+      "date": "2026-01-08",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "HCAT": {
+    "CEO_CHANGE": {
+      "date": "2026-09-08",
+      "phrase": "appointed Chief Executive Officer"
+    },
+    "DECLASSIFY": {
+      "date": "2025-07-10",
+      "phrase": "declassify the Board"
+    }
+  },
+  "BMNR": {
+    "CEO_CHANGE": {
+      "date": "2025-11-14",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "SFM": {
+    "CEO_CHANGE": {
+      "date": "2026-09-01",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "BYRN": {
+    "CEO_CHANGE": {
+      "date": "2026-03-09",
+      "phrase": "appointed Chief Executive Officer"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-09-03",
+      "phrase": "board refreshment"
+    }
+  },
+  "LPX": {
+    "CEO_CHANGE": {
+      "date": "2026-02-17",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "PLAY": {
+    "CEO_CHANGE": {
+      "date": "2026-08-04",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "AI": {
+    "CEO_CHANGE": {
+      "date": "2025-09-05",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "KNW": {
+    "CEO_CHANGE": {
+      "date": "2025-08-07",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "SPFI": {
+    "CEO_CHANGE": {
+      "date": "2026-06-17",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "CBNK": {
+    "CEO_CHANGE": {
+      "date": "2025-12-31",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "BYSI": {
+    "CEO_CHANGE": {
+      "date": "2026-06-04",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "CODQL": {
+    "CEO_CHANGE": {
+      "date": "2026-07-14",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "BRC": {
+    "CEO_CHANGE": {
+      "date": "2026-06-11",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "FISV": {
+    "CEO_CHANGE": {
+      "date": "2026-06-15",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "AURA": {
+    "CEO_CHANGE": {
+      "date": "2026-05-04",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "KR": {
+    "CEO_CHANGE": {
+      "date": "2026-02-09",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "MWA": {
+    "CEO_CHANGE": {
+      "date": "2025-11-06",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "GNLN": {
+    "CEO_CHANGE": {
+      "date": "2026-03-04",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "RIME": {
+    "CEO_CHANGE": {
+      "date": "2026-09-21",
+      "phrase": "appointed Chief Executive Officer"
+    }
+  },
+  "AARD": {
+    "CEO_CHANGE": {
+      "date": "2026-02-12",
+      "phrase": "named Chief Executive Officer"
+    }
+  },
+  "RGS": {
+    "CEO_CHANGE": {
+      "date": "2026-03-18",
+      "phrase": "named Chief Executive Officer"
+    }
+  },
+  "MPB": {
+    "CEO_CHANGE": {
+      "date": "2026-09-01",
+      "phrase": "named Chief Executive Officer"
+    },
+    "DECLASSIFY": {
+      "date": "2026-09-01",
+      "phrase": "declassification of the Board"
+    }
+  },
+  "ANY": {
+    "CEO_CHANGE": {
+      "date": "2025-11-13",
+      "phrase": "named Chief Executive Officer"
+    },
+    "PILL_REMOVED": {
+      "date": "2026-08-10",
+      "phrase": "redeem the rights"
+    }
+  },
+  "TYFG": {
+    "CEO_CHANGE": {
+      "date": "2025-10-31",
+      "phrase": "named Chief Executive Officer"
+    }
+  },
+  "ODP": {
+    "CEO_CHANGE": {
+      "date": "2025-12-10",
+      "phrase": "named Chief Executive Officer"
+    }
+  },
+  "ONEW": {
+    "CEO_CHANGE": {
+      "date": "2025-08-19",
+      "phrase": "named Chief Executive Officer"
+    }
+  },
+  "HESM": {
+    "CEO_CHANGE": {
+      "date": "2025-07-18",
+      "phrase": "named Chief Executive Officer"
+    }
+  },
+  "HOLX": {
+    "CEO_CHANGE": {
+      "date": "2026-04-07",
+      "phrase": "named Chief Executive Officer"
+    }
+  },
+  "CME": {
+    "CEO_CHANGE": {
+      "date": "2026-06-17",
+      "phrase": "named Chief Executive Officer"
+    }
+  },
+  "RXRX": {
+    "CEO_CHANGE": {
+      "date": "2025-11-05",
+      "phrase": "named Chief Executive Officer"
+    }
+  },
+  "ARAY": {
+    "CEO_CHANGE": {
+      "date": "2025-10-20",
+      "phrase": "named Chief Executive Officer"
+    }
+  },
+  "AVO": {
+    "CEO_CHANGE": {
+      "date": "2025-12-18",
+      "phrase": "named Chief Executive Officer"
+    },
+    "BOARD_REFRESH": {
+      "date": "2025-12-18",
+      "phrase": "board refreshment"
+    },
+    "PILL_REMOVED": {
+      "date": "2026-01-22",
+      "phrase": "redeem the rights"
+    }
+  },
+  "PRME": {
+    "CEO_CHANGE": {
+      "date": "2025-08-07",
+      "phrase": "named Chief Executive Officer"
+    }
+  },
+  "COFS": {
+    "CEO_CHANGE": {
+      "date": "2026-05-20",
+      "phrase": "named Chief Executive Officer"
+    }
+  },
+  "SONN": {
+    "CEO_CHANGE": {
+      "date": "2025-07-14",
+      "phrase": "named Chief Executive Officer"
+    }
+  },
+  "NSC": {
+    "CEO_CHANGE": {
+      "date": "2025-07-29",
+      "phrase": "named Chief Executive Officer"
+    }
+  },
+  "UNP": {
+    "CEO_CHANGE": {
+      "date": "2025-07-29",
+      "phrase": "named Chief Executive Officer"
+    }
+  },
+  "FBK": {
+    "CEO_CHANGE": {
+      "date": "2026-09-21",
+      "phrase": "named Chief Executive Officer"
+    }
+  },
+  "ALTI": {
+    "CEO_CHANGE": {
+      "date": "2026-07-02",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "RENT": {
+    "CEO_CHANGE": {
+      "date": "2026-05-13",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "SSTK": {
+    "CEO_CHANGE": {
+      "date": "2026-07-13",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "FNWB": {
+    "CEO_CHANGE": {
+      "date": "2025-07-09",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "ENTO": {
+    "CEO_CHANGE": {
+      "date": "2025-09-12",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "BTMD": {
+    "CEO_CHANGE": {
+      "date": "2026-06-17",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "AMZE": {
+    "CEO_CHANGE": {
+      "date": "2026-08-03",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "LUDG": {
+    "CEO_CHANGE": {
+      "date": "2025-10-01",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "CYH": {
+    "CEO_CHANGE": {
+      "date": "2025-09-10",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "MX": {
+    "CEO_CHANGE": {
+      "date": "2025-08-11",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "NWTG": {
+    "CEO_CHANGE": {
+      "date": "2026-03-30",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "PSIX": {
+    "CEO_CHANGE": {
+      "date": "2026-05-13",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "RMCF": {
+    "CEO_CHANGE": {
+      "date": "2026-07-14",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "PYXS": {
+    "CEO_CHANGE": {
+      "date": "2026-02-06",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "HPQ": {
+    "CEO_CHANGE": {
+      "date": "2026-02-03",
+      "phrase": "interim Chief Executive Officer"
+    },
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-06-26",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "BUKS": {
+    "CEO_CHANGE": {
+      "date": "2026-07-24",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "AMTB": {
+    "CEO_CHANGE": {
+      "date": "2026-05-19",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "PMI": {
+    "CEO_CHANGE": {
+      "date": "2026-06-24",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "ADTX": {
+    "CEO_CHANGE": {
+      "date": "2026-06-01",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "AGH": {
+    "CEO_CHANGE": {
+      "date": "2026-02-03",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "WEN": {
+    "CEO_CHANGE": {
+      "date": "2025-07-30",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "CABO": {
+    "CEO_CHANGE": {
+      "date": "2025-12-31",
+      "phrase": "interim Chief Executive Officer"
+    },
+    "CHAIR_CEO_SPLIT": {
+      "date": "2025-12-31",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "BRTX": {
+    "CEO_CHANGE": {
+      "date": "2026-09-02",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "IBATF": {
+    "CEO_CHANGE": {
+      "date": "2026-07-27",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "RAKR": {
+    "CEO_CHANGE": {
+      "date": "2026-09-14",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "SNBH": {
+    "CEO_CHANGE": {
+      "date": "2026-05-04",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "GYRE": {
+    "CEO_CHANGE": {
+      "date": "2025-08-11",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "MLKN": {
+    "CEO_CHANGE": {
+      "date": "2026-06-03",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "BNGO": {
+    "CEO_CHANGE": {
+      "date": "2026-05-06",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "FNKO": {
+    "CEO_CHANGE": {
+      "date": "2025-08-04",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "LNTH": {
+    "CEO_CHANGE": {
+      "date": "2025-11-06",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "SAIC": {
+    "CEO_CHANGE": {
+      "date": "2025-10-23",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "VBIO": {
+    "CEO_CHANGE": {
+      "date": "2026-09-23",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "VRSSF": {
+    "CEO_CHANGE": {
+      "date": "2026-07-06",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "BRBS": {
+    "CEO_CHANGE": {
+      "date": "2026-03-12",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "PMHS": {
+    "CEO_CHANGE": {
+      "date": "2026-07-30",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "GMGI": {
+    "CEO_CHANGE": {
+      "date": "2025-12-15",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "ASPI": {
+    "CEO_CHANGE": {
+      "date": "2025-10-03",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "LFWD": {
+    "CEO_CHANGE": {
+      "date": "2026-08-31",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "INVE": {
+    "CEO_CHANGE": {
+      "date": "2026-09-18",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "AHR": {
+    "CEO_CHANGE": {
+      "date": "2026-03-24",
+      "phrase": "interim Chief Executive Officer"
+    }
+  },
+  "EPRT": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-09-16",
+      "phrase": "separate the roles of Chairman"
+    }
+  },
+  "CNDT": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-01-23",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "YETI": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-08-12",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "MO": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2025-10-09",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "FISN": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-07-29",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "OSCR": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-04-21",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "DCGO": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-04-22",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "WKC": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-09-17",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "FWRD": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-07-10",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "MVIS": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-03-16",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "XHLD": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-02-05",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "EGBN": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2025-11-03",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "KSS": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-07-29",
+      "phrase": "independent Chair of the Board"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-07-29",
+      "phrase": "board refreshment"
+    }
+  },
+  "APOG": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2025-11-05",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "HON": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2025-08-21",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "MYRG": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-08-07",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "IDA": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2025-09-19",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "WLDN": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-06-18",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "SMTC": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-06-08",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "SPWH": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-05-28",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "KALU": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-06-04",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "KRC": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-05-19",
+      "phrase": "independent Chair of the Board"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-02-26",
+      "phrase": "board refreshment"
+    }
+  },
+  "CPAY": {
+    "CHAIR_CEO_SPLIT": {
+      "date": "2026-02-05",
+      "phrase": "independent Chair of the Board"
+    }
+  },
+  "IDXX": {
+    "DECLASSIFY": {
+      "date": "2026-05-15",
+      "phrase": "declassify the Board"
+    }
+  },
+  "CSV": {
+    "DECLASSIFY": {
+      "date": "2026-05-14",
+      "phrase": "declassify the Board"
+    }
+  },
+  "GPK": {
+    "DECLASSIFY": {
+      "date": "2026-06-16",
+      "phrase": "declassify the Board"
+    }
+  },
+  "SNBR": {
+    "DECLASSIFY": {
+      "date": "2026-05-27",
+      "phrase": "declassify the Board"
+    }
+  },
+  "MATW": {
+    "DECLASSIFY": {
+      "date": "2026-02-19",
+      "phrase": "declassify the Board"
+    }
+  },
+  "RYAM": {
+    "DECLASSIFY": {
+      "date": "2026-05-18",
+      "phrase": "declassify the Board"
+    }
+  },
+  "MPC": {
+    "DECLASSIFY": {
+      "date": "2026-05-01",
+      "phrase": "declassify the Board"
+    }
+  },
+  "EXP": {
+    "DECLASSIFY": {
+      "date": "2026-07-31",
+      "phrase": "declassify the Board"
+    }
+  },
+  "FAF": {
+    "DECLASSIFY": {
+      "date": "2026-05-15",
+      "phrase": "declassify the Board"
+    }
+  },
+  "AMC": {
+    "DECLASSIFY": {
+      "date": "2025-12-11",
+      "phrase": "declassify the Board"
+    }
+  },
+  "ECOR": {
+    "DECLASSIFY": {
+      "date": "2025-09-03",
+      "phrase": "declassify the Board"
+    }
+  },
+  "GAME": {
+    "DECLASSIFY": {
+      "date": "2026-06-22",
+      "phrase": "declassify the Board"
+    }
+  },
+  "HUSA": {
+    "DECLASSIFY": {
+      "date": "2025-09-11",
+      "phrase": "declassify the Board"
+    }
+  },
+  "CNNE": {
+    "DECLASSIFY": {
+      "date": "2025-12-16",
+      "phrase": "declassify the Board"
+    }
+  },
+  "KEYS": {
+    "DECLASSIFY": {
+      "date": "2026-03-24",
+      "phrase": "declassify the Board"
+    },
+    "BOARD_REFRESH": {
+      "date": "2025-11-20",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "SBCF": {
+    "DECLASSIFY": {
+      "date": "2026-05-20",
+      "phrase": "declassify the Board"
+    }
+  },
+  "ZVRA": {
+    "DECLASSIFY": {
+      "date": "2026-06-05",
+      "phrase": "declassify the Board"
+    }
+  },
+  "EMR": {
+    "DECLASSIFY": {
+      "date": "2026-02-06",
+      "phrase": "declassify the Board"
+    }
+  },
+  "ZS": {
+    "DECLASSIFY": {
+      "date": "2026-01-15",
+      "phrase": "declassify the Board"
+    }
+  },
+  "NVTS": {
+    "DECLASSIFY": {
+      "date": "2026-06-26",
+      "phrase": "declassify the Board"
+    },
+    "BOARD_REFRESH": {
+      "date": "2026-05-04",
+      "phrase": "board refreshment"
+    }
+  },
+  "MAPS": {
+    "DECLASSIFY": {
+      "date": "2026-07-22",
+      "phrase": "declassify the Board"
+    }
+  },
+  "BFIN": {
+    "DECLASSIFY": {
+      "date": "2025-07-25",
+      "phrase": "declassify the Board"
+    }
+  },
+  "NRC": {
+    "DECLASSIFY": {
+      "date": "2026-04-20",
+      "phrase": "declassify the Board"
+    }
+  },
+  "LAZ": {
+    "DECLASSIFY": {
+      "date": "2026-05-22",
+      "phrase": "declassify the Board"
+    }
+  },
+  "ALIT": {
+    "DECLASSIFY": {
+      "date": "2026-07-01",
+      "phrase": "declassify the Board"
+    }
+  },
+  "SNOW": {
+    "DECLASSIFY": {
+      "date": "2025-07-03",
+      "phrase": "declassify the Board"
+    }
+  },
+  "A": {
+    "DECLASSIFY": {
+      "date": "2026-03-20",
+      "phrase": "declassify the Board"
+    }
+  },
+  "WHD": {
+    "DECLASSIFY": {
+      "date": "2026-09-08",
+      "phrase": "declassify the Board"
+    }
+  },
+  "KGS": {
+    "DECLASSIFY": {
+      "date": "2026-05-07",
+      "phrase": "declassification of the Board"
+    }
+  },
+  "SONO": {
+    "DECLASSIFY": {
+      "date": "2026-03-11",
+      "phrase": "declassification of the Board"
+    }
+  },
+  "KLXE": {
+    "DECLASSIFY": {
+      "date": "2026-05-11",
+      "phrase": "declassification of the Board"
+    }
+  },
+  "RIOT": {
+    "DECLASSIFY": {
+      "date": "2026-04-01",
+      "phrase": "declassification of the Board"
+    }
+  },
+  "NCNO": {
+    "DECLASSIFY": {
+      "date": "2026-06-22",
+      "phrase": "declassification of the Board"
+    }
+  },
+  "FDS": {
+    "DECLASSIFY": {
+      "date": "2025-12-22",
+      "phrase": "declassification of the Board"
+    }
+  },
+  "NHI": {
+    "DECLASSIFY": {
+      "date": "2026-02-23",
+      "phrase": "declassification of the Board"
+    }
+  },
+  "NX": {
+    "DECLASSIFY": {
+      "date": "2026-03-03",
+      "phrase": "declassification of the Board"
+    }
+  },
+  "GO": {
+    "DECLASSIFY": {
+      "date": "2026-04-02",
+      "phrase": "declassification of the Board"
+    }
+  },
+  "MUSA": {
+    "DECLASSIFY": {
+      "date": "2026-05-11",
+      "phrase": "declassification of the Board"
+    }
+  },
+  "NINEQ": {
+    "DECLASSIFY": {
+      "date": "2026-03-10",
+      "phrase": "declassification of the Board"
+    }
+  },
+  "BL": {
+    "DECLASSIFY": {
+      "date": "2026-03-10",
+      "phrase": "declassification of the Board"
+    }
+  },
+  "BILL": {
+    "BOARD_REFRESH": {
+      "date": "2025-10-16",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "TRIP": {
+    "BOARD_REFRESH": {
+      "date": "2026-03-23",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "FEMY": {
+    "BOARD_REFRESH": {
+      "date": "2026-08-11",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "GIPL": {
+    "BOARD_REFRESH": {
+      "date": "2026-05-20",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "WDFC": {
+    "BOARD_REFRESH": {
+      "date": "2026-02-19",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "CMPO": {
+    "BOARD_REFRESH": {
+      "date": "2026-01-13",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "L": {
+    "BOARD_REFRESH": {
+      "date": "2025-11-03",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "FIBK": {
+    "BOARD_REFRESH": {
+      "date": "2026-07-16",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "FLR": {
+    "BOARD_REFRESH": {
+      "date": "2026-08-04",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "PAYC": {
+    "BOARD_REFRESH": {
+      "date": "2026-07-09",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "CREX": {
+    "BOARD_REFRESH": {
+      "date": "2025-11-19",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "MCS": {
+    "BOARD_REFRESH": {
+      "date": "2025-11-12",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "RVSB": {
+    "BOARD_REFRESH": {
+      "date": "2026-04-02",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "USAR": {
+    "BOARD_REFRESH": {
+      "date": "2026-04-23",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "ADTN": {
+    "BOARD_REFRESH": {
+      "date": "2026-06-26",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "COP": {
+    "BOARD_REFRESH": {
+      "date": "2025-07-01",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "REBN": {
+    "BOARD_REFRESH": {
+      "date": "2026-03-06",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "CELC": {
+    "BOARD_REFRESH": {
+      "date": "2026-05-20",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "UTMD": {
+    "BOARD_REFRESH": {
+      "date": "2025-11-04",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "CNX": {
+    "BOARD_REFRESH": {
+      "date": "2025-09-22",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "TRST": {
+    "BOARD_REFRESH": {
+      "date": "2026-09-16",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "ANGX": {
+    "BOARD_REFRESH": {
+      "date": "2025-10-28",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "VICI": {
+    "BOARD_REFRESH": {
+      "date": "2026-09-08",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "XMTR": {
+    "BOARD_REFRESH": {
+      "date": "2026-02-24",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "SNSE": {
+    "BOARD_REFRESH": {
+      "date": "2026-02-13",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "CATX": {
+    "BOARD_REFRESH": {
+      "date": "2025-09-03",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "GOGO": {
+    "BOARD_REFRESH": {
+      "date": "2025-07-08",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "TOPP": {
+    "BOARD_REFRESH": {
+      "date": "2026-02-02",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "DAIO": {
+    "BOARD_REFRESH": {
+      "date": "2025-12-05",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "NPKI": {
+    "BOARD_REFRESH": {
+      "date": "2026-07-28",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "ORN": {
+    "BOARD_REFRESH": {
+      "date": "2025-09-29",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "NORD": {
+    "BOARD_REFRESH": {
+      "date": "2025-08-07",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "BMRA": {
+    "BOARD_REFRESH": {
+      "date": "2025-10-08",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "CHH": {
+    "BOARD_REFRESH": {
+      "date": "2026-05-21",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "NMTC": {
+    "BOARD_REFRESH": {
+      "date": "2025-12-22",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "RBBN": {
+    "BOARD_REFRESH": {
+      "date": "2026-04-15",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "TSE": {
+    "BOARD_REFRESH": {
+      "date": "2026-01-20",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "VVX": {
+    "BOARD_REFRESH": {
+      "date": "2026-01-08",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "WSC": {
+    "BOARD_REFRESH": {
+      "date": "2025-09-03",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "SNPS": {
+    "BOARD_REFRESH": {
+      "date": "2026-05-27",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "FUSB": {
+    "BOARD_REFRESH": {
+      "date": "2025-08-28",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "WK": {
+    "BOARD_REFRESH": {
+      "date": "2026-01-28",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "NUWE": {
+    "BOARD_REFRESH": {
+      "date": "2026-02-26",
+      "phrase": "increase the size of the Board"
+    }
+  },
+  "CMP": {
+    "BOARD_REFRESH": {
+      "date": "2025-12-19",
+      "phrase": "board refreshment"
+    }
+  },
+  "ALGN": {
+    "BOARD_REFRESH": {
+      "date": "2026-07-29",
+      "phrase": "board refreshment"
+    }
+  },
+  "BAX": {
+    "BOARD_REFRESH": {
+      "date": "2026-03-19",
+      "phrase": "board refreshment"
+    }
+  },
+  "HR": {
+    "BOARD_REFRESH": {
+      "date": "2026-04-30",
+      "phrase": "board refreshment"
+    }
+  },
+  "WCC": {
+    "BOARD_REFRESH": {
+      "date": "2025-12-08",
+      "phrase": "board refreshment"
+    }
+  },
+  "DCO": {
+    "BOARD_REFRESH": {
+      "date": "2026-05-04",
+      "phrase": "board refreshment"
+    }
+  },
+  "COTY": {
+    "BOARD_REFRESH": {
+      "date": "2026-03-18",
+      "phrase": "board refreshment"
+    }
+  },
+  "GXO": {
+    "BOARD_REFRESH": {
+      "date": "2025-07-31",
+      "phrase": "board refreshment"
+    }
+  },
+  "ELV": {
+    "BOARD_REFRESH": {
+      "date": "2025-12-10",
+      "phrase": "board refreshment"
+    }
+  },
+  "OPRT": {
+    "BOARD_REFRESH": {
+      "date": "2026-08-14",
+      "phrase": "board refreshment"
+    }
+  },
+  "ADM": {
+    "BOARD_REFRESH": {
+      "date": "2026-03-10",
+      "phrase": "board refreshment"
+    }
+  },
+  "HUM": {
+    "BOARD_REFRESH": {
+      "date": "2026-04-10",
+      "phrase": "board refreshment"
+    }
+  },
+  "SGA": {
+    "BOARD_REFRESH": {
+      "date": "2025-10-01",
+      "phrase": "board refreshment"
+    }
+  },
+  "NGVT": {
+    "BOARD_REFRESH": {
+      "date": "2026-02-23",
+      "phrase": "board refreshment"
+    }
+  },
+  "RDW": {
+    "BOARD_REFRESH": {
+      "date": "2025-10-07",
+      "phrase": "board refreshment"
+    }
+  },
+  "ITT": {
+    "BOARD_REFRESH": {
+      "date": "2026-06-29",
+      "phrase": "board refreshment"
+    }
+  },
+  "CHD": {
+    "BOARD_REFRESH": {
+      "date": "2025-12-05",
+      "phrase": "board refreshment"
+    }
+  },
+  "VIAV": {
+    "BOARD_REFRESH": {
+      "date": "2026-05-18",
+      "phrase": "board refreshment"
+    }
+  },
+  "JAZZ": {
+    "BOARD_REFRESH": {
+      "date": "2026-05-29",
+      "phrase": "board refreshment"
+    }
+  },
+  "CRCL": {
+    "BOARD_REFRESH": {
+      "date": "2026-06-12",
+      "phrase": "board refreshment"
+    }
+  },
+  "MTN": {
+    "BOARD_REFRESH": {
+      "date": "2026-09-02",
+      "phrase": "board refreshment"
+    }
+  },
+  "ASAN": {
+    "BOARD_REFRESH": {
+      "date": "2026-04-20",
+      "phrase": "board refreshment"
+    }
+  },
+  "EOLS": {
+    "BOARD_REFRESH": {
+      "date": "2026-03-13",
+      "phrase": "board refreshment"
+    }
+  },
+  "COLL": {
+    "BOARD_REFRESH": {
+      "date": "2026-04-07",
+      "phrase": "board refreshment"
+    }
+  },
+  "ARCB": {
+    "BOARD_REFRESH": {
+      "date": "2026-01-28",
+      "phrase": "board refreshment"
+    }
+  },
+  "CNK": {
+    "BOARD_REFRESH": {
+      "date": "2026-08-12",
+      "phrase": "board refreshment"
+    }
+  },
+  "JBL": {
+    "BOARD_REFRESH": {
+      "date": "2026-04-22",
+      "phrase": "board refreshment"
+    }
+  },
+  "PEP": {
+    "BOARD_REFRESH": {
+      "date": "2025-12-08",
+      "phrase": "board refreshment"
+    }
+  },
+  "SJM": {
+    "BOARD_REFRESH": {
+      "date": "2026-02-26",
+      "phrase": "board refreshment"
+    }
+  },
+  "ACIW": {
+    "BOARD_REFRESH": {
+      "date": "2025-10-01",
+      "phrase": "board refreshment"
+    }
+  },
+  "STZ": {
+    "BOARD_REFRESH": {
+      "date": "2026-05-21",
+      "phrase": "board refreshment"
+    }
+  },
+  "SON": {
+    "BOARD_REFRESH": {
+      "date": "2026-02-12",
+      "phrase": "board refreshment"
+    }
+  },
+  "WW": {
+    "BOARD_REFRESH": {
+      "date": "2026-04-03",
+      "phrase": "board refreshment"
+    }
+  },
+  "DTI": {
+    "BOARD_REFRESH": {
+      "date": "2026-01-27",
+      "phrase": "board refreshment"
+    }
+  },
+  "AZZ": {
+    "BOARD_REFRESH": {
+      "date": "2026-03-05",
+      "phrase": "board refreshment"
+    }
+  },
+  "FI": {
+    "BOARD_REFRESH": {
+      "date": "2025-10-29",
+      "phrase": "board refreshment"
+    }
+  },
+  "ASIX": {
+    "BOARD_REFRESH": {
+      "date": "2025-09-02",
+      "phrase": "board refreshment"
+    }
+  },
+  "TELA": {
+    "BOARD_REFRESH": {
+      "date": "2026-05-12",
+      "phrase": "board refreshment"
+    }
+  },
+  "BGDE": {
+    "PILL_REMOVED": {
+      "date": "2026-06-09",
+      "phrase": "terminate the rights agreement"
+    }
+  },
+  "VRA": {
+    "PILL_REMOVED": {
+      "date": "2026-04-17",
+      "phrase": "terminate the rights agreement"
+    }
+  },
+  "LGMK": {
+    "PILL_REMOVED": {
+      "date": "2026-08-03",
+      "phrase": "terminate the rights agreement"
+    }
+  },
+  "NNDM": {
+    "PILL_REMOVED": {
+      "date": "2026-02-03",
+      "phrase": "terminate the rights agreement"
+    }
+  },
+  "EMPD": {
+    "PILL_REMOVED": {
+      "date": "2026-02-03",
+      "phrase": "redeem the rights"
+    }
+  },
+  "GNK": {
+    "PILL_REMOVED": {
+      "date": "2025-11-10",
+      "phrase": "redeem the rights"
+    }
+  },
+  "NEUP": {
+    "PILL_REMOVED": {
+      "date": "2025-10-27",
+      "phrase": "redeem the rights"
+    }
+  },
+  "JTAI": {
+    "PILL_REMOVED": {
+      "date": "2026-02-13",
+      "phrase": "redeem the rights"
+    }
+  },
+  "EZRA": {
+    "PILL_REMOVED": {
+      "date": "2026-09-03",
+      "phrase": "redeem the rights"
+    }
+  },
+  "SLVM": {
+    "PILL_REMOVED": {
+      "date": "2025-11-10",
+      "phrase": "redeem the rights"
+    }
+  },
+  "ORMP": {
+    "PILL_REMOVED": {
+      "date": "2025-11-17",
+      "phrase": "redeem the rights"
+    }
+  },
+  "SSP": {
+    "PILL_REMOVED": {
+      "date": "2025-11-26",
+      "phrase": "redeem the rights"
+    }
+  },
+  "SABR": {
+    "PILL_REMOVED": {
+      "date": "2026-03-02",
+      "phrase": "redeem the rights"
+    }
+  },
+  "DALN": {
+    "PILL_REMOVED": {
+      "date": "2025-07-28",
+      "phrase": "redeem the rights"
+    }
+  },
+  "MSGM": {
+    "PILL_REMOVED": {
+      "date": "2026-07-23",
+      "phrase": "redeem the rights"
+    }
+  },
+  "CRI": {
+    "PILL_REMOVED": {
+      "date": "2025-09-24",
+      "phrase": "redeem the rights"
+    }
+  },
+  "AYRO": {
+    "PILL_REMOVED": {
+      "date": "2025-08-01",
+      "phrase": "redeem the rights"
+    }
+  },
+  "RAIL": {
+    "PILL_REMOVED": {
+      "date": "2026-08-05",
+      "phrase": "redeem the rights"
+    }
+  },
+  "STRZ": {
+    "PILL_REMOVED": {
+      "date": "2026-03-11",
+      "phrase": "redeem the rights"
+    }
+  },
+  "BZH": {
+    "PILL_REMOVED": {
+      "date": "2025-11-13",
+      "phrase": "redeem the rights"
+    }
+  },
+  "INSW": {
+    "PILL_REMOVED": {
+      "date": "2026-04-09",
+      "phrase": "redeem the rights"
+    }
+  },
+  "ACH": {
+    "PILL_REMOVED": {
+      "date": "2026-08-10",
+      "phrase": "redeem the rights"
+    }
+  },
+  "OTEX": {
+    "PILL_REMOVED": {
+      "date": "2025-12-09",
+      "phrase": "redeem the rights"
+    }
+  },
+  "OPTT": {
+    "PILL_REMOVED": {
+      "date": "2026-06-29",
+      "phrase": "redeem the rights"
+    }
+  },
+  "CVM": {
+    "PILL_REMOVED": {
+      "date": "2025-11-24",
+      "phrase": "redeem the rights"
+    }
+  },
+  "HCC": {
+    "PILL_REMOVED": {
+      "date": "2025-09-26",
+      "phrase": "redeem the rights"
+    }
+  }
+}

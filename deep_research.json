@@ -1,0 +1,170 @@
+{
+  "A_fingerprint_concentration": {
+    "0-3": {
+      "n": 280,
+      "monster_rate": 0.021,
+      "win_rate": 0.564,
+      "median": 0.055,
+      "mean": 0.09,
+      "loss_rate_50": 0.068
+    },
+    "4-5": {
+      "n": 63,
+      "monster_rate": 0.111,
+      "win_rate": 0.571,
+      "median": 0.13,
+      "mean": 0.26,
+      "loss_rate_50": 0.063
+    },
+    "6-7": {
+      "n": 63,
+      "monster_rate": 0.095,
+      "win_rate": 0.413,
+      "median": -0.123,
+      "mean": 0.542,
+      "loss_rate_50": 0.254
+    },
+    "8-10": {
+      "n": 119,
+      "monster_rate": 0.101,
+      "win_rate": 0.37,
+      "median": -0.207,
+      "mean": 9.042,
+      "loss_rate_50": 0.311
+    }
+  },
+  "B_confirmation_sweep": {
+    ">= +0%": {
+      "n": 237,
+      "monster_rate": 0.076,
+      "win_rate": 0.629,
+      "median": 0.129,
+      "mean": 4.907,
+      "loss_rate_50": 0.084,
+      "coverage": 0.451
+    },
+    ">= +10%": {
+      "n": 106,
+      "monster_rate": 0.113,
+      "win_rate": 0.66,
+      "median": 0.292,
+      "mean": 10.832,
+      "loss_rate_50": 0.094,
+      "coverage": 0.202
+    },
+    ">= +20%": {
+      "n": 51,
+      "monster_rate": 0.196,
+      "win_rate": 0.647,
+      "median": 0.304,
+      "mean": 21.522,
+      "loss_rate_50": 0.137,
+      "coverage": 0.097
+    },
+    ">= +30%": {
+      "n": 29,
+      "monster_rate": 0.241,
+      "win_rate": 0.552,
+      "median": 0.28,
+      "mean": 37.615,
+      "loss_rate_50": 0.207,
+      "coverage": 0.055
+    },
+    "faded (<= -10%)": {
+      "n": 103,
+      "monster_rate": 0.029,
+      "win_rate": 0.194,
+      "median": -0.331,
+      "mean": -0.274,
+      "loss_rate_50": 0.388
+    }
+  },
+  "C_payoff_sizing_top_bucket": {
+    "n": 119,
+    "monster_rate": 0.101,
+    "win_rate": 0.37,
+    "median": -0.207,
+    "mean": 9.042,
+    "loss_rate_50": 0.311,
+    "avg_win": 25.362,
+    "avg_loss": -0.533,
+    "payoff_ratio_b": 47.59,
+    "full_kelly_fraction": 0.357,
+    "suggested_fraction_quarter_kelly": 0.089
+  },
+  "D_loser_fingerprint": {
+    "n_losers": 76,
+    "loser_vs_rest": {
+      "drawdown_24m": {
+        "loser": -0.656,
+        "rest": -0.226
+      },
+      "pre_vol": {
+        "loser": 0.271,
+        "rest": 0.106
+      },
+      "range_pos": {
+        "loser": 0.062,
+        "rest": 0.45
+      },
+      "pre_12m": {
+        "loser": -0.568,
+        "rest": -0.042
+      },
+      "decel": {
+        "loser": 0.013,
+        "rest": 0.004
+      },
+      "post_1m": {
+        "loser": -0.141,
+        "rest": 0.0
+      }
+    },
+    "loser_catalysts": {
+      "UPLISTING": 0.26,
+      "STRATEGIC_REVIEW": 0.2,
+      "CAPITAL_RETURN": 0.09,
+      "SPINOFF": 0.08
+    }
+  },
+  "E_out_of_sample": {
+    "train": {
+      "n": 284,
+      "fp>=6": {
+        "n": 94,
+        "monster_rate": 0.096,
+        "win_rate": 0.34,
+        "median": -0.208,
+        "mean": -0.016,
+        "loss_rate_50": 0.34
+      },
+      "fp<6": {
+        "n": 190,
+        "monster_rate": 0.021,
+        "win_rate": 0.632,
+        "median": 0.084,
+        "mean": 0.138,
+        "loss_rate_50": 0.058
+      }
+    },
+    "test": {
+      "n": 241,
+      "fp>=6": {
+        "n": 88,
+        "monster_rate": 0.102,
+        "win_rate": 0.432,
+        "median": -0.121,
+        "mean": 12.632,
+        "loss_rate_50": 0.239
+      },
+      "fp<6": {
+        "n": 153,
+        "monster_rate": 0.059,
+        "win_rate": 0.484,
+        "median": 0.0,
+        "mean": 0.101,
+        "loss_rate_50": 0.078
+      }
+    }
+  }
+}

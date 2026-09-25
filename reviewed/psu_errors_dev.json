@@ -1,0 +1,2770 @@
+{
+ "has": [
+  [
+   "AGNC",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "AGNCL",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "AGNCM",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "AGNCN",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "AGNCO",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "AGNCP",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "AHRT",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "AIRE",
+   "parser found a plan; reviewer: none"
+  ],
+  [
+   "AMCX",
+   "parser found a plan; reviewer: none"
+  ],
+  [
+   "AMS",
+   "parser found a plan; reviewer: none"
+  ],
+  [
+   "ARTV",
+   "parser found a plan; reviewer: none"
+  ],
+  [
+   "ATLO",
+   "parser found a plan; reviewer: none"
+  ],
+  [
+   "AUPH",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "BGSF",
+   "parser found a plan; reviewer: none"
+  ],
+  [
+   "COSM",
+   "parser found a plan; reviewer: none"
+  ],
+  [
+   "CTO",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "DLR",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "ELUT",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "EVC",
+   "parser found a plan; reviewer: none"
+  ],
+  [
+   "FLYE",
+   "parser found a plan; reviewer: none"
+  ],
+  [
+   "GPK",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "GWRE",
+   "reviewer found a plan; parser: none"
+  ],
+  [
+   "IIPR",
+   "reviewer found a plan; parser: none"
+  ]
+ ],
+ "metrics": [
+  [
+   "ACM",
+   [
+    "EPS",
+    "ROIC",
+    "rTSR"
+   ],
+   [
+    "ROIC"
+   ]
+  ],
+  [
+   "ADBE",
+   [
+    "Other",
+    "rTSR"
+   ],
+   [
+    "TSR",
+    "rTSR"
+   ]
+  ],
+  [
+   "ADEA",
+   [
+    "EBITDA"
+   ],
+   [
+    "EBITDA",
+    "ESG",
+    "Revenue"
+   ]
+  ],
+  [
+   "ADT",
+   [
+    "Stock price"
+   ],
+   [
+    "EPS"
+   ]
+  ],
+  [
+   "ALIT",
+   [
+    "Free cash flow"
+   ],
+   [
+    "EBITDA",
+    "Revenue"
+   ]
+  ],
+  [
+   "ALNY",
+   [
+    "Other",
+    "Strategic"
+   ],
+   [
+    "ESG",
+    "Revenue"
+   ]
+  ],
+  [
+   "AMAT",
+   [
+    "Other",
+    "rTSR"
+   ],
+   [
+    "Margin",
+    "rTSR"
+   ]
+  ],
+  [
+   "AMD",
+   [
+    "rTSR"
+   ],
+   [
+    "EPS",
+    "Revenue",
+    "rTSR"
+   ]
+  ],
+  [
+   "AMN",
+   [
+    "EBITDA",
+    "rTSR"
+   ],
+   [
+    "TSR"
+   ]
+  ],
+  [
+   "AON",
+   [
+    "EPS"
+   ],
+   [
+    "EPS",
+    "Free cash flow",
+    "Margin",
+    "Revenue",
+    "Stock price"
+   ]
+  ],
+  [
+   "AP",
+   [
+    "Stock price",
+    "rTSR"
+   ],
+   [
+    "ROIC",
+    "rTSR"
+   ]
+  ],
+  [
+   "ATI",
+   [
+    "Margin",
+    "rTSR"
+   ],
+   [
+    "EBITDA",
+    "Free cash flow"
+   ]
+  ],
+  [
+   "AXP",
+   [
+    "ROE",
+    "rTSR"
+   ],
+   [
+    "ESG",
+    "ROE"
+   ]
+  ],
+  [
+   "BA",
+   [
+    "Free cash flow",
+    "rTSR"
+   ],
+   [
+    "ESG",
+    "rTSR"
+   ]
+  ],
+  [
+   "BALL",
+   [
+    "EPS",
+    "Other"
+   ],
+   [
+    "ESG",
+    "Other"
+   ]
+  ],
+  [
+   "BAX",
+   [
+    "ROIC",
+    "Revenue"
+   ],
+   [
+    "rTSR"
+   ]
+  ],
+  [
+   "BBY",
+   [
+    "rTSR"
+   ],
+   [
+    "Operating income"
+   ]
+  ],
+  [
+   "BEEP",
+   [
+    "Stock price"
+   ],
+   [
+    "AFFO",
+    "FFO",
+    "rTSR"
+   ]
+  ],
+  [
+   "BHC",
+   [
+    "Free cash flow"
+   ],
+   [
+    "Cash flow"
+   ]
+  ],
+  [
+   "BHF",
+   [
+    "Cash flow",
+    "Other"
+   ],
+   [
+    "ESG",
+    "Revenue"
+   ]
+  ],
+  [
+   "BILL",
+   [
+    "Revenue",
+    "rTSR"
+   ],
+   [
+    "EBITDA",
+    "Revenue"
+   ]
+  ],
+  [
+   "CDE",
+   [
+    "Free cash flow",
+    "Reserves",
+    "rTSR"
+   ],
+   [
+    "ESG",
+    "Free cash flow",
+    "ROIC",
+    "Revenue"
+   ]
+  ],
+  [
+   "CERT",
+   [
+    "TSR"
+   ],
+   [
+    "EBITDA",
+    "Revenue"
+   ]
+  ],
+  [
+   "CGNX",
+   [
+    "Margin"
+   ],
+   [
+    "EBITDA"
+   ]
+  ],
+  [
+   "CMLSQ",
+   [
+    "EBITDA",
+    "Other",
+    "Revenue"
+   ],
+   [
+    "EBITDA"
+   ]
+  ],
+  [
+   "CMP",
+   [
+    "Free cash flow",
+    "ROCE"
+   ],
+   [
+    "EBITDA",
+    "ESG",
+    "Free cash flow",
+    "Other",
+    "ROCE"
+   ]
+  ],
+  [
+   "CNC",
+   [
+    "Margin",
+    "Other",
+    "rTSR"
+   ],
+   [
+    "TSR",
+    "rTSR"
+   ]
+  ],
+  [
+   "COTY",
+   [
+    "ESG",
+    "Operating income",
+    "Revenue"
+   ],
+   [
+    "ESG"
+   ]
+  ],
+  [
+   "CRM",
+   [
+    "Other",
+    "rTSR"
+   ],
+   [
+    "TSR"
+   ]
+  ],
+  [
+   "CRTO",
+   [
+    "Other",
+    "rTSR"
+   ],
+   [
+    "EBITDA",
+    "rTSR"
+   ]
+  ],
+  [
+   "CUBB",
+   [
+    "Other",
+    "ROE",
+    "rTSR"
+   ],
+   [
+    "ROCE",
+    "ROE"
+   ]
+  ],
+  [
+   "CUBI",
+   [
+    "Other",
+    "ROE",
+    "rTSR"
+   ],
+   [
+    "ROCE",
+    "ROE"
+   ]
+  ],
+  [
+   "CURI",
+   [
+    "Stock price"
+   ],
+   [
+    "Revenue"
+   ]
+  ],
+  [
+   "CW",
+   [
+    "rTSR"
+   ],
+   [
+    "EPS",
+    "Revenue"
+   ]
+  ],
+  [
+   "DEC",
+   [
+    "ESG",
+    "ROE",
+    "TSR",
+    "rTSR"
+   ],
+   [
+    "ESG",
+    "Free cash flow",
+    "TSR"
+   ]
+  ],
+  [
+   "DH",
+   [
+    "Other",
+    "Revenue"
+   ],
+   [
+    "Stock price"
+   ]
+  ],
+  [
+   "DOCU",
+   [
+    "Free cash flow",
+    "Revenue",
+    "rTSR"
+   ],
+   [
+    "Free cash flow"
+   ]
+  ],
+  [
+   "EEFT",
+   [
+    "Operating income",
+    "Stock price"
+   ],
+   [
+    "EPS",
+    "Operating income"
+   ]
+  ],
+  [
+   "ELF",
+   [
+    "Other",
+    "Revenue"
+   ],
+   [
+    "EBITDA",
+    "Revenue"
+   ]
+  ],
+  [
+   "ESAB",
+   [
+    "EPS"
+   ],
+   [
+    "EBITDA",
+    "EPS",
+    "Free cash flow"
+   ]
+  ],
+  [
+   "ETSY",
+   [
+    "Margin",
+    "Other",
+    "Revenue",
+    "rTSR"
+   ],
+   [
+    "rTSR"
+   ]
+  ],
+  [
+   "EVH",
+   [
+    "rTSR"
+   ],
+   [
+    "EBITDA",
+    "Revenue",
+    "TSR"
+   ]
+  ],
+  [
+   "FBIN",
+   [
+    "EBITDA",
+    "ROIC"
+   ],
+   [
+    "Margin",
+    "ROIC"
+   ]
+  ],
+  [
+   "FET",
+   [
+    "Free cash flow",
+    "TSR",
+    "rTSR"
+   ],
+   [
+    "Free cash flow"
+   ]
+  ],
+  [
+   "FPH",
+   [
+    "Stock price"
+   ],
+   [
+    "ESG"
+   ]
+  ],
+  [
+   "FRST",
+   [
+    "EPS"
+   ],
+   [
+    "ROA"
+   ]
+  ],
+  [
+   "FUBO",
+   [
+    "Stock price"
+   ],
+   [
+    "EBITDA",
+    "Revenue",
+    "Stock price"
+   ]
+  ],
+  [
+   "GPRE",
+   [
+    "Strategic"
+   ],
+   [
+    "EBITDA",
+    "ESG"
+   ]
+  ],
+  [
+   "GRWG",
+   [
+    "EBITDA",
+    "Margin",
+    "Other",
+    "Revenue"
+   ],
+   [
+    "Revenue"
+   ]
+  ],
+  [
+   "HAE",
+   [
+    "Revenue",
+    "rTSR"
+   ],
+   [
+    "Free cash flow",
+    "rTSR"
+   ]
+  ],
+  [
+   "HUM",
+   [
+    "Strategic",
+    "rTSR"
+   ],
+   [
+    "EPS",
+    "Revenue"
+   ]
+  ],
+  [
+   "HUT",
+   [
+    "EBITDA",
+    "Other"
+   ],
+   [
+    "EBITDA",
+    "Stock price"
+   ]
+  ],
+  [
+   "ICFI",
+   [
+    "EPS"
+   ],
+   [
+    "rTSR"
+   ]
+  ],
+  [
+   "IR",
+   [
+    "rTSR"
+   ],
+   [
+    "EPS"
+   ]
+  ],
+  [
+   "IRTC",
+   [
+    "Other"
+   ],
+   [
+    "Revenue"
+   ]
+  ]
+ ],
+ "weights": [
+  [
+   "AA",
+   {
+    "rTSR": 40,
+    "ROE": 40,
+    "Strategic": 20
+   },
+   {
+    "rTSR": null,
+    "ROE": null
+   }
+  ],
+  [
+   "ADBE",
+   {
+    "Other": 50,
+    "rTSR": 50
+   },
+   {
+    "rTSR": null,
+    "TSR": null
+   }
+  ],
+  [
+   "ADEA",
+   {
+    "EBITDA": 100
+   },
+   {
+    "EBITDA": null,
+    "ESG": null,
+    "Revenue": null
+   }
+  ],
+  [
+   "AEE",
+   {
+    "rTSR": 85.7,
+    "ESG": 14.3
+   },
+   {
+    "ESG": null,
+    "rTSR": null
+   }
+  ],
+  [
+   "AGCO",
+   {
+    "ROA": 50
+   },
+   {
+    "ROA": null,
+    "Revenue": null
+   }
+  ],
+  [
+   "AIG",
+   {
+    "Book value": 20,
+    "rTSR": 20
+   },
+   {
+    "rTSR": 100.0
+   }
+  ],
+  [
+   "AMAT",
+   {
+    "Other": 50,
+    "rTSR": 50
+   },
+   {
+    "Margin": 50.0,
+    "rTSR": 50.0
+   }
+  ],
+  [
+   "AMR",
+   {
+    "rTSR": 40,
+    "ESG": 30,
+    "Production": 30
+   },
+   {
+    "rTSR": null,
+    "ESG": null
+   }
+  ],
+  [
+   "AMT",
+   {
+    "AFFO": 50,
+    "rTSR": 20
+   },
+   {
+    "AFFO": 50.0,
+    "ROIC": 30.0,
+    "rTSR": 30.0
+   }
+  ],
+  [
+   "AON",
+   {
+    "EPS": 100
+   },
+   {
+    "EPS": null,
+    "Revenue": null,
+    "Margin": null,
+    "Free cash flow": null,
+    "Stock price": null
+   }
+  ],
+  [
+   "AP",
+   {
+    "Stock price": 50.7,
+    "rTSR": 49.3
+   },
+   {
+    "rTSR": null,
+    "ROIC": null
+   }
+  ],
+  [
+   "APA",
+   {
+    "ROIC": 40,
+    "rTSR": 60
+   },
+   {
+    "ROIC": 40.0,
+    "rTSR": 40.0,
+    "ESG": 20.0
+   }
+  ],
+  [
+   "ATI",
+   {
+    "rTSR": 50,
+    "Margin": 50
+   },
+   {
+    "EBITDA": 60.0,
+    "Free cash flow": 30.0
+   }
+  ],
+  [
+   "AVAH",
+   {
+    "EBITDA": 100
+   },
+   {
+    "EBITDA": 50.0,
+    "rTSR": 50.0
+   }
+  ],
+  [
+   "AVGO",
+   {
+    "Revenue": 100
+   },
+   {
+    "Revenue": null,
+    "rTSR": null
+   }
+  ],
+  [
+   "BA",
+   {
+    "Free cash flow": 50,
+    "rTSR": 50
+   },
+   {
+    "ESG": null,
+    "rTSR": null
+   }
+  ],
+  [
+   "BALL",
+   {
+    "Other": 50,
+    "EPS": 50
+   },
+   {
+    "Other": 50.0,
+    "ESG": 50.0
+   }
+  ],
+  [
+   "BDN",
+   {
+    "Other": 75,
+    "Operating income": 25
+   },
+   {
+    "Operating income": 100.0
+   }
+  ],
+  [
+   "BEEP",
+   {
+    "Stock price": 100
+   },
+   {
+    "AFFO": null,
+    "FFO": null,
+    "rTSR": null
+   }
+  ],
+  [
+   "BETR",
+   {
+    "Stock price": 50,
+    "Revenue": 50
+   },
+   {
+    "Revenue": null,
+    "Stock price": null
+   }
+  ],
+  [
+   "BHC",
+   {
+    "Free cash flow": 100
+   },
+   {
+    "Cash flow": 100.0
+   }
+  ],
+  [
+   "BHF",
+   {
+    "Cash flow": 60,
+    "Other": 40
+   },
+   {
+    "ESG": null,
+    "Revenue": null
+   }
+  ],
+  [
+   "BLCO",
+   {
+    "Revenue": 75,
+    "rTSR": 25
+   },
+   {
+    "Revenue": 100.0
+   }
+  ],
+  [
+   "BRFH",
+   {
+    "Revenue": 44,
+    "EBITDA": 44,
+    "Other": 12
+   },
+   {
+    "Revenue": null,
+    "EBITDA": null
+   }
+  ],
+  [
+   "BSX",
+   {
+    "Revenue": 50,
+    "rTSR": 50
+   },
+   {
+    "rTSR": 100.0
+   }
+  ],
+  [
+   "CAKE",
+   {
+    "Revenue": 33.3,
+    "EPS": 33.3,
+    "Other": 33.3
+   },
+   {
+    "Revenue": 50.0,
+    "EPS": 50.0
+   }
+  ],
+  [
+   "CARR",
+   {
+    "EPS": 25
+   },
+   {
+    "EPS": 50.0,
+    "rTSR": 50.0
+   }
+  ],
+  [
+   "CBOE",
+   {
+    "rTSR": 50,
+    "EPS": 50
+   },
+   {
+    "EPS": 100.0
+   }
+  ],
+  [
+   "CCOI",
+   {
+    "EBITDA": 100
+   },
+   {
+    "EBITDA": 50.0,
+    "Free cash flow": 50.0
+   }
+  ],
+  [
+   "CDE",
+   {
+    "Reserves": 25,
+    "Free cash flow": 25,
+    "rTSR": 50
+   },
+   {
+    "Free cash flow": null,
+    "ESG": null,
+    "Revenue": null,
+    "ROIC": null
+   }
+  ],
+  [
+   "CERT",
+   {
+    "TSR": 100
+   },
+   {
+    "Revenue": null,
+    "EBITDA": null
+   }
+  ],
+  [
+   "CFR",
+   {
+    "ROA": 100
+   },
+   {
+    "ROA": null,
+    "Revenue": null
+   }
+  ],
+  [
+   "CGNX",
+   {
+    "Margin": 100
+   },
+   {
+    "EBITDA": 100.0
+   }
+  ],
+  [
+   "CLNE",
+   {
+    "Stock price": 50,
+    "Other": 50
+   },
+   {
+    "Stock price": 100.0
+   }
+  ],
+  [
+   "CLX",
+   {
+    "Other": 100
+   },
+   {
+    "Other": null,
+    "Margin": null
+   }
+  ],
+  [
+   "CMI",
+   {
+    "ROIC": 80,
+    "EBITDA": 20
+   },
+   {
+    "ROIC": 50.0,
+    "EBITDA": 50.0
+   }
+  ],
+  [
+   "CNC",
+   {
+    "Margin": 50,
+    "Other": 25,
+    "rTSR": 25
+   },
+   {
+    "rTSR": null,
+    "TSR": null
+   }
+  ],
+  [
+   "COO",
+   {
+    "EPS": 50,
+    "rTSR": 50
+   },
+   {
+    "EPS": 100.0
+   }
+  ],
+  [
+   "COTY",
+   {
+    "Operating income": 60,
+    "Revenue": 30,
+    "ESG": 10
+   },
+   {
+    "ESG": 100.0
+   }
+  ],
+  [
+   "CRI",
+   {
+    "Revenue": 50,
+    "EPS": 50
+   },
+   {
+    "Revenue": null,
+    "EPS": null,
+    "Operating income": null
+   }
+  ],
+  [
+   "CRM",
+   {
+    "rTSR": 50,
+    "Other": 50
+   },
+   {
+    "TSR": 100.0
+   }
+  ],
+  [
+   "CROX",
+   {
+    "Margin": 50,
+    "Revenue": 50
+   },
+   {
+    "Margin": 33.0,
+    "Revenue": 33.0,
+    "rTSR": 33.0
+   }
+  ],
+  [
+   "CRTO",
+   {
+    "Other": 50,
+    "rTSR": 50
+   },
+   {
+    "rTSR": null,
+    "EBITDA": null
+   }
+  ],
+  [
+   "CRWD",
+   {
+    "Revenue": 50,
+    "EPS": 50
+   },
+   {
+    "Revenue": 100.0
+   }
+  ],
+  [
+   "CURI",
+   {
+    "Stock price": 100
+   },
+   {
+    "Revenue": 100.0
+   }
+  ],
+  [
+   "CVLT",
+   {
+    "rTSR": 50,
+    "Other": 50
+   },
+   {
+    "rTSR": 100.0
+   }
+  ],
+  [
+   "CVX",
+   {
+    "rTSR": 100
+   },
+   {
+    "rTSR": 70.0,
+    "ROCE": 30.0
+   }
+  ],
+  [
+   "CW",
+   {
+    "rTSR": 100
+   },
+   {
+    "Revenue": 60.0,
+    "EPS": 40.0
+   }
+  ],
+  [
+   "CWEN",
+   {
+    "rTSR": 50,
+    "Cash flow": 50
+   },
+   {
+    "rTSR": 100.0
+   }
+  ],
+  [
+   "DEC",
+   {
+    "ROE": 40,
+    "TSR": 20,
+    "rTSR": 20,
+    "ESG": 20
+   },
+   {
+    "TSR": 30.0,
+    "Free cash flow": 40.0,
+    "ESG": 30.0
+   }
+  ],
+  [
+   "DGX",
+   {
+    "Revenue": 50
+   },
+   {
+    "Revenue": null,
+    "ROIC": null
+   }
+  ],
+  [
+   "DH",
+   {
+    "Revenue": 50,
+    "Other": 50
+   },
+   {
+    "Stock price": 100.0
+   }
+  ],
+  [
+   "DOCN",
+   {
+    "Revenue": 75,
+    "Free cash flow": 25
+   },
+   {
+    "Revenue": null,
+    "Free cash flow": null
+   }
+  ],
+  [
+   "DOCU",
+   {
+    "rTSR": 50,
+    "Revenue": 25,
+    "Free cash flow": 25
+   },
+   {
+    "Free cash flow": 97.2
+   }
+  ],
+  [
+   "DOV",
+   {
+    "rTSR": 50,
+    "ROIC": 50
+   },
+   {
+    "ROIC": null,
+    "rTSR": null
+   }
+  ],
+  [
+   "DRS",
+   {
+    "rTSR": 40,
+    "EPS": 40,
+    "ROIC": 20
+   },
+   {
+    "rTSR": 40.0,
+    "Revenue": 30.0,
+    "ROIC": 30.0
+   }
+  ],
+  [
+   "DT",
+   {
+    "Other": 24,
+    "Revenue": 24,
+    "Operating income": 12,
+    "rTSR": 40
+   },
+   {
+    "rTSR": 20.0,
+    "Revenue": 40.0,
+    "Operating income": 40.0
+   }
+  ],
+  [
+   "ECPG",
+   {
+    "ROIC": 25,
+    "rTSR": 75
+   },
+   {
+    "ROIC": 100.0
+   }
+  ],
+  [
+   "EFX",
+   {
+    "rTSR": 50,
+    "EBITDA": 50
+   },
+   {
+    "EBITDA": 100.0
+   }
+  ],
+  [
+   "ENTG",
+   {
+    "Free cash flow": 50,
+    "rTSR": 50
+   },
+   {
+    "Free cash flow": null,
+    "rTSR": null
+   }
+  ],
+  [
+   "ESAB",
+   {
+    "EPS": 100
+   },
+   {
+    "EPS": null,
+    "EBITDA": null,
+    "Free cash flow": null
+   }
+  ],
+  [
+   "ETSY",
+   {
+    "Other": 25,
+    "Revenue": 25,
+    "Margin": 25,
+    "rTSR": 25
+   },
+   {
+    "rTSR": 100.0
+   }
+  ],
+  [
+   "EVH",
+   {
+    "rTSR": 100
+   },
+   {
+    "EBITDA": null,
+    "Revenue": null,
+    "TSR": null
+   }
+  ],
+  [
+   "EVRG",
+   {
+    "rTSR": 50
+   },
+   {
+    "rTSR": null,
+    "EPS": null
+   }
+  ],
+  [
+   "FBIN",
+   {
+    "EBITDA": 75,
+    "ROIC": 25
+   },
+   {
+    "Margin": 75.0,
+    "ROIC": 25.0
+   }
+  ],
+  [
+   "FIBK",
+   {
+    "ROE": 50,
+    "rTSR": 50
+   },
+   {
+    "ROE": 100.0
+   }
+  ],
+  [
+   "FISV",
+   {
+    "rTSR": 30,
+    "EPS": 30,
+    "Revenue": 20,
+    "Free cash flow": 20
+   },
+   {
+    "rTSR": 40.0,
+    "Revenue": 40.0,
+    "EPS": 20.0
+   }
+  ],
+  [
+   "FOUR",
+   {
+    "Free cash flow": 100
+   },
+   {
+    "Free cash flow": null
+   }
+  ],
+  [
+   "FPH",
+   {
+    "Stock price": 100
+   },
+   {
+    "ESG": 100.0
+   }
+  ],
+  [
+   "FRST",
+   {
+    "EPS": 100
+   },
+   {
+    "ROA": 100.0
+   }
+  ],
+  [
+   "FSLY",
+   {
+    "rTSR": 30
+   },
+   {
+    "Revenue": 66.7,
+    "Free cash flow": 33.0
+   }
+  ],
+  [
+   "FUBO",
+   {
+    "Stock price": 100
+   },
+   {
+    "Stock price": null,
+    "EBITDA": null,
+    "Revenue": null
+   }
+  ],
+  [
+   "GCO",
+   {
+    "Operating income": 100
+   },
+   {
+    "Other": null,
+    "Operating income": null
+   }
+  ],
+  [
+   "GLRE",
+   {
+    "Book value": 65,
+    "Other": 35
+   },
+   {
+    "Book value": 100.0
+   }
+  ],
+  [
+   "GPRE",
+   {
+    "Strategic": 50
+   },
+   {
+    "ESG": null,
+    "EBITDA": null
+   }
+  ],
+  [
+   "GTE",
+   {
+    "rTSR": 50,
+    "Free cash flow": 25,
+    "Strategic": 25
+   },
+   {
+    "rTSR": null,
+    "Free cash flow": null,
+    "ESG": null
+   }
+  ],
+  [
+   "GTM",
+   {
+    "Free cash flow": 100
+   },
+   {
+    "Free cash flow": null
+   }
+  ],
+  [
+   "HAE",
+   {
+    "rTSR": 75,
+    "Revenue": 25
+   },
+   {
+    "Free cash flow": 20.0,
+    "rTSR": 75.0
+   }
+  ],
+  [
+   "HAIN",
+   {
+    "rTSR": 40,
+    "Margin": 40,
+    "Free cash flow": 20
+   },
+   {
+    "rTSR": null,
+    "Margin": null,
+    "Free cash flow": null
+   }
+  ],
+  [
+   "HFFG",
+   {
+    "Revenue": 25,
+    "EBITDA": 25,
+    "Stock price": 50
+   },
+   {
+    "EBITDA": null,
+    "Revenue": null
+   }
+  ],
+  [
+   "HIMS",
+   {
+    "Revenue": 100
+   },
+   {
+    "Revenue": null,
+    "Stock price": null
+   }
+  ],
+  [
+   "HL",
+   {
+    "rTSR": 50
+   },
+   {
+    "rTSR": 100.0
+   }
+  ],
+  [
+   "HON",
+   {
+    "rTSR": 25,
+    "Revenue": 25,
+    "ROIC": 25,
+    "Margin": 25
+   },
+   {
+    "rTSR": null,
+    "Revenue": null
+   }
+  ],
+  [
+   "HURC",
+   {
+    "Other": 55,
+    "Free cash flow": 45
+   },
+   {
+    "Free cash flow": 100.0
+   }
+  ],
+  [
+   "HUT",
+   {
+    "Other": 33.3,
+    "EBITDA": 33.3
+   },
+   {
+    "EBITDA": null,
+    "Stock price": null
+   }
+  ],
+  [
+   "IART",
+   {
+    "Revenue": 50,
+    "Margin": 50
+   },
+   {
+    "Revenue": 100.0
+   }
+  ],
+  [
+   "IBP",
+   {
+    "EBITDA": 100
+   },
+   {
+    "EBITDA": null,
+    "Revenue": null
+   }
+  ],
+  [
+   "ICE",
+   {
+    "rTSR": 42.9,
+    "EBITDA": 57.1
+   },
+   {
+    "EBITDA": 100.0
+   }
+  ],
+  [
+   "ICFI",
+   {
+    "EPS": 100
+   },
+   {
+    "rTSR": 100.0
+   }
+  ],
+  [
+   "IR",
+   {
+    "rTSR": 100
+   },
+   {
+    "EPS": 100.0
+   }
+  ],
+  [
+   "IRTC",
+   {
+    "Other": 100
+   },
+   {
+    "Revenue": 100.0
+   }
+  ],
+  [
+   "ISRG",
+   {
+    "Margin": 33.3,
+    "Other": 66.7
+   },
+   {
+    "Margin": 100.0
+   }
+  ]
+ ],
+ "period": [
+  [
+   "ABX",
+   1,
+   null
+  ],
+  [
+   "ABXL",
+   1,
+   null
+  ],
+  [
+   "ADEA",
+   3,
+   1
+  ],
+  [
+   "ASTS",
+   1,
+   4
+  ],
+  [
+   "ATEN",
+   4,
+   null
+  ],
+  [
+   "BBAI",
+   1,
+   null
+  ],
+  [
+   "BETR",
+   5,
+   null
+  ],
+  [
+   "BFH",
+   3,
+   null
+  ],
+  [
+   "BRFH",
+   1,
+   null
+  ],
+  [
+   "BUSE",
+   3,
+   2
+  ],
+  [
+   "BYND",
+   2,
+   3
+  ],
+  [
+   "CCL",
+   3,
+   null
+  ],
+  [
+   "CCOI",
+   3,
+   4
+  ],
+  [
+   "CG",
+   4,
+   1
+  ],
+  [
+   "CGABL",
+   4,
+   1
+  ],
+  [
+   "CHGG",
+   1,
+   null
+  ],
+  [
+   "CHPT",
+   1,
+   5
+  ],
+  [
+   "CMLSQ",
+   4,
+   null
+  ],
+  [
+   "CRI",
+   3,
+   null
+  ],
+  [
+   "CRTO",
+   3,
+   2
+  ],
+  [
+   "CRWD",
+   1,
+   3
+  ],
+  [
+   "CWEN",
+   3,
+   2
+  ],
+  [
+   "DCGO",
+   3,
+   2
+  ],
+  [
+   "DH",
+   3,
+   null
+  ],
+  [
+   "DOCN",
+   1,
+   3
+  ],
+  [
+   "DXLG",
+   3,
+   null
+  ],
+  [
+   "EHTH",
+   3,
+   2
+  ],
+  [
+   "ETSY",
+   3,
+   2
+  ],
+  [
+   "FDX",
+   3,
+   null
+  ],
+  [
+   "FPH",
+   3,
+   2
+  ],
+  [
+   "GCO",
+   1,
+   3
+  ],
+  [
+   "GPGI",
+   2,
+   null
+  ],
+  [
+   "GRWG",
+   1,
+   null
+  ],
+  [
+   "GS",
+   3,
+   1
+  ],
+  [
+   "HIMS",
+   3,
+   null
+  ],
+  [
+   "HUT",
+   3,
+   4
+  ],
+  [
+   "IBP",
+   1,
+   null
+  ],
+  [
+   "INR",
+   3,
+   2
+  ],
+  [
+   "INSE",
+   1,
+   null
+  ]
+ ],
+ "max": [
+  [
+   "AA",
+   200,
+   null
+  ],
+  [
+   "AAT",
+   150,
+   null
+  ],
+  [
+   "AEE",
+   200,
+   150.0
+  ],
+  [
+   "AGCO",
+   200,
+   null
+  ],
+  [
+   "AIG",
+   200,
+   null
+  ],
+  [
+   "AIOT",
+   166.7,
+   null
+  ],
+  [
+   "AIV",
+   200,
+   null
+  ],
+  [
+   "AMD",
+   250,
+   200.0
+  ],
+  [
+   "APTV",
+   200,
+   240.0
+  ],
+  [
+   "ARQ",
+   200,
+   null
+  ],
+  [
+   "ASTS",
+   100,
+   125.0
+  ],
+  [
+   "ATEC",
+   200,
+   null
+  ],
+  [
+   "AXP",
+   150,
+   120.0
+  ],
+  [
+   "BAH",
+   240,
+   200.0
+  ],
+  [
+   "BBY",
+   150,
+   null
+  ],
+  [
+   "BDC",
+   200,
+   null
+  ],
+  [
+   "BDX",
+   200,
+   null
+  ],
+  [
+   "BROS",
+   200,
+   null
+  ],
+  [
+   "BTU",
+   200,
+   null
+  ],
+  [
+   "BUSE",
+   125,
+   100.0
+  ],
+  [
+   "BWXT",
+   200,
+   null
+  ],
+  [
+   "BYND",
+   150,
+   null
+  ],
+  [
+   "CCL",
+   200,
+   null
+  ],
+  [
+   "CCOI",
+   100,
+   null
+  ],
+  [
+   "CCZ",
+   250,
+   null
+  ],
+  [
+   "CHPT",
+   100,
+   null
+  ],
+  [
+   "CIA",
+   200,
+   null
+  ],
+  [
+   "CLNE",
+   133,
+   null
+  ],
+  [
+   "CLW",
+   200,
+   null
+  ],
+  [
+   "CMCO",
+   200,
+   null
+  ],
+  [
+   "CMI",
+   200,
+   null
+  ],
+  [
+   "CMLSQ",
+   150,
+   100.0
+  ],
+  [
+   "CMP",
+   240,
+   275.0
+  ],
+  [
+   "CUBB",
+   150,
+   120.0
+  ],
+  [
+   "CUBI",
+   150,
+   120.0
+  ],
+  [
+   "DEC",
+   100,
+   null
+  ],
+  [
+   "DH",
+   200,
+   null
+  ],
+  [
+   "DTM",
+   200,
+   null
+  ],
+  [
+   "DXLG",
+   150,
+   null
+  ],
+  [
+   "EHTH",
+   200,
+   null
+  ],
+  [
+   "ELF",
+   225,
+   175.0
+  ],
+  [
+   "EVTC",
+   200,
+   250.0
+  ],
+  [
+   "FDX",
+   150,
+   null
+  ],
+  [
+   "FIBK",
+   200,
+   null
+  ],
+  [
+   "FLUT",
+   200,
+   null
+  ],
+  [
+   "FOUR",
+   150,
+   null
+  ],
+  [
+   "FOX",
+   200,
+   null
+  ],
+  [
+   "FPH",
+   100,
+   null
+  ],
+  [
+   "GFF",
+   300,
+   null
+  ],
+  [
+   "GPC",
+   200,
+   null
+  ],
+  [
+   "GS",
+   150,
+   null
+  ],
+  [
+   "GTE",
+   200,
+   null
+  ],
+  [
+   "HAS",
+   200,
+   250.0
+  ],
+  [
+   "HELE",
+   200,
+   null
+  ],
+  [
+   "HOFT",
+   200,
+   null
+  ],
+  [
+   "HSIC",
+   200,
+   null
+  ],
+  [
+   "HUBB",
+   200,
+   null
+  ],
+  [
+   "HURC",
+   200,
+   null
+  ],
+  [
+   "INR",
+   300,
+   null
+  ],
+  [
+   "IR",
+   200,
+   null
+  ]
+ ],
+ "rtsr": [
+  [
+   "AMRZ",
+   50,
+   null
+  ],
+  [
+   "BHC",
+   50,
+   null
+  ],
+  [
+   "BIIB",
+   50,
+   25
+  ],
+  [
+   "BROS",
+   50,
+   null
+  ],
+  [
+   "CALY",
+   50,
+   null
+  ],
+  [
+   "CBL",
+   50,
+   null
+  ],
+  [
+   "CVLT",
+   50,
+   null
+  ],
+  [
+   "ETN",
+   50,
+   null
+  ],
+  [
+   "FOX",
+   50,
+   null
+  ],
+  [
+   "GBX",
+   50,
+   null
+  ],
+  [
+   "GOOGL",
+   50,
+   75
+  ],
+  [
+   "IRWD",
+   50,
+   null
+  ]
+ ],
+ "history": [
+  [
+   "AAOI",
+   [
+    200
+   ],
+   []
+  ],
+  [
+   "ACH",
+   [
+    0
+   ],
+   []
+  ],
+  [
+   "ADEA",
+   [
+    200
+   ],
+   []
+  ],
+  [
+   "AEE",
+   [
+    94,
+    141
+   ],
+   []
+  ],
+  [
+   "AIG",
+   [
+    161
+   ],
+   []
+  ],
+  [
+   "AP",
+   [
+    0,
+    200
+   ],
+   []
+  ],
+  [
+   "APTV",
+   [
+    147
+   ],
+   [
+    96
+   ]
+  ],
+  [
+   "ARE",
+   [
+    17
+   ],
+   []
+  ],
+  [
+   "ASO",
+   [
+    0
+   ],
+   [
+    99
+   ]
+  ],
+  [
+   "ATEC",
+   [
+    179
+   ],
+   []
+  ],
+  [
+   "AZZ",
+   [
+    184
+   ],
+   []
+  ],
+  [
+   "BAH",
+   [
+    95
+   ],
+   []
+  ],
+  [
+   "BAX",
+   [
+    57
+   ],
+   [
+    50
+   ]
+  ],
+  [
+   "BIIB",
+   [
+    0
+   ],
+   [
+    25,
+    50,
+    200
+   ]
+  ],
+  [
+   "BILL",
+   [
+    0,
+    100
+   ],
+   []
+  ],
+  [
+   "BOOT",
+   [
+    146
+   ],
+   []
+  ],
+  [
+   "CAG",
+   [
+    36
+   ],
+   [
+    119
+   ]
+  ],
+  [
+   "CALY",
+   [
+    0
+   ],
+   []
+  ],
+  [
+   "CASY",
+   [
+    250
+   ],
+   [
+    200
+   ]
+  ],
+  [
+   "CAT",
+   [
+    100
+   ],
+   []
+  ],
+  [
+   "CCOI",
+   [
+    100
+   ],
+   []
+  ],
+  [
+   "CCZ",
+   [
+    108
+   ],
+   []
+  ],
+  [
+   "CDE",
+   [
+    166
+   ],
+   [
+    32,
+    46
+   ]
+  ],
+  [
+   "CGNX",
+   [
+    0
+   ],
+   []
+  ],
+  [
+   "CHGG",
+   [
+    17,
+    130
+   ],
+   []
+  ],
+  [
+   "CLH",
+   [
+    0,
+    100
+   ],
+   []
+  ],
+  [
+   "CLW",
+   [
+    0
+   ],
+   []
+  ],
+  [
+   "CMCO",
+   [
+    0
+   ],
+   []
+  ],
+  [
+   "CMLSQ",
+   [
+    88
+   ],
+   [
+    54
+   ]
+  ],
+  [
+   "CMP",
+   [
+    0
+   ],
+   []
+  ],
+  [
+   "CNDT",
+   [
+    22,
+    50
+   ],
+   [
+    0
+   ]
+  ],
+  [
+   "CNH",
+   [
+    0
+   ],
+   [
+    60
+   ]
+  ],
+  [
+   "COLB",
+   [
+    84,
+    129
+   ],
+   []
+  ],
+  [
+   "CRI",
+   [
+    37
+   ],
+   []
+  ],
+  [
+   "CROX",
+   [
+    0,
+    97
+   ],
+   []
+  ],
+  [
+   "CVCO",
+   [
+    192
+   ],
+   []
+  ],
+  [
+   "CVLT",
+   [
+    0,
+    72,
+    132
+   ],
+   []
+  ],
+  [
+   "CVX",
+   [
+    15
+   ],
+   []
+  ],
+  [
+   "CYH",
+   [
+    0
+   ],
+   [
+    80,
+    87
+   ]
+  ],
+  [
+   "DBI",
+   [
+    75,
+    82
+   ],
+   []
+  ],
+  [
+   "DEC",
+   [
+    55
+   ],
+   []
+  ],
+  [
+   "DGX",
+   [
+    154,
+    157
+   ],
+   []
+  ],
+  [
+   "DNOW",
+   [
+    78
+   ],
+   [
+    0
+   ]
+  ],
+  [
+   "DNUT",
+   [
+    14
+   ],
+   []
+  ],
+  [
+   "DT",
+   [
+    0,
+    62,
+    114
+   ],
+   []
+  ],
+  [
+   "DXC",
+   [
+    100
+   ],
+   []
+  ],
+  [
+   "ECPG",
+   [
+    200
+   ],
+   [
+    10
+   ]
+  ],
+  [
+   "EXE",
+   [
+    63,
+    200
+   ],
+   [
+    100
+   ]
+  ],
+  [
+   "FBIN",
+   [
+    90
+   ],
+   []
+  ],
+  [
+   "FIBK",
+   [
+    0
+   ],
+   []
+  ],
+  [
+   "FPH",
+   [
+    67,
+    81
+   ],
+   []
+  ],
+  [
+   "GCO",
+   [
+    76,
+    190
+   ],
+   []
+  ],
+  [
+   "GD",
+   [
+    128
+   ],
+   [
+    112
+   ]
+  ],
+  [
+   "GIII",
+   [
+    150
+   ],
+   []
+  ],
+  [
+   "GIS",
+   [
+    23
+   ],
+   []
+  ],
+  [
+   "GPGI",
+   [
+    70,
+    124
+   ],
+   []
+  ],
+  [
+   "HAE",
+   [
+    128
+   ],
+   []
+  ],
+  [
+   "HAIN",
+   [
+    0
+   ],
+   []
+  ],
+  [
+   "HELE",
+   [
+    0
+   ],
+   []
+  ],
+  [
+   "HON",
+   [
+    59
+   ],
+   []
+  ],
+  [
+   "HUBS",
+   [
+    100
+   ],
+   []
+  ],
+  [
+   "HUN",
+   [
+    0
+   ],
+   []
+  ],
+  [
+   "HURC",
+   [
+    0
+   ],
+   [
+    50
+   ]
+  ],
+  [
+   "IBM",
+   [
+    113
+   ],
+   []
+  ],
+  [
+   "IDCC",
+   [
+    200
+   ],
+   []
+  ],
+  [
+   "INFU",
+   [
+    0,
+    103
+   ],
+   []
+  ],
+  [
+   "IRTC",
+   [
+    75,
+    89,
+    121
+   ],
+   [
+    3
+   ]
+  ]
+ ]
+}

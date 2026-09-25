@@ -1,0 +1,2332 @@
+{
+  "OTLK": {
+    "ticker": "OTLK",
+    "cik": "0001649989",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "gain on extinguishment of debt",
+        "date": "2026-05-18",
+        "accession": "0001104659-26-062865"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "NEO": {
+    "ticker": "NEO",
+    "cik": "0001077183",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "gain on extinguishment of debt",
+        "date": "2026-07-28",
+        "accession": "0001077183-26-000058"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "REAL": {
+    "ticker": "REAL",
+    "cik": "0001573221",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "gain on extinguishment of debt",
+        "date": "2026-05-07",
+        "accession": "0001573221-26-000045"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "SPCE": {
+    "ticker": "SPCE",
+    "cik": "0001706946",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "gain on extinguishment of debt",
+        "date": "2026-08-12",
+        "accession": "0001706946-26-000126"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "FSLY": {
+    "ticker": "FSLY",
+    "cik": "0001517413",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "gain on extinguishment of debt",
+        "date": "2026-05-06",
+        "accession": "0001517413-26-000129"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "SNDA": {
+    "ticker": "SNDA",
+    "cik": "0001043000",
+    "score": 8.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "gain on extinguishment of debt",
+        "date": "2026-08-10",
+        "accession": "0001043000-26-000030"
+      },
+      {
+        "class": "stub_distribution",
+        "stage": 5,
+        "phrase": "liquidating distribution",
+        "date": "2026-08-10",
+        "accession": "0001193125-26-342676"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": false,
+    "classification": "hard_value_unlock"
+  },
+  "IEP": {
+    "ticker": "IEP",
+    "cik": "0000813762",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "gain on extinguishment of debt",
+        "date": "2026-05-11",
+        "accession": "0001104659-26-058108"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "CCO": {
+    "ticker": "CCO",
+    "cik": "0001334978",
+    "score": 8.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "gain on extinguishment of debt",
+        "date": "2026-08-05",
+        "accession": "0001334978-26-000023"
+      },
+      {
+        "class": "principal_haircut",
+        "stage": 4,
+        "phrase": "forgiveness of principal",
+        "date": "2026-05-18",
+        "accession": "0001213900-26-058449"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "hard_value_unlock"
+  },
+  "WW": {
+    "ticker": "WW",
+    "cik": "0000105319",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "gain on extinguishment of debt",
+        "date": "2026-08-05",
+        "accession": "0001193125-26-335047"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "LCID": {
+    "ticker": "LCID",
+    "cik": "0001811210",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "gain on extinguishment of debt",
+        "date": "2026-08-04",
+        "accession": "0001628280-26-052548"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "STEM": {
+    "ticker": "STEM",
+    "cik": "0001758766",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "gain on extinguishment of debt",
+        "date": "2026-08-12",
+        "accession": "0001758766-26-000078"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "PAR": {
+    "ticker": "PAR",
+    "cik": "0000708821",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "gain on extinguishment of debt",
+        "date": "2026-05-07",
+        "accession": "0000708821-26-000076"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "LXU": {
+    "ticker": "LXU",
+    "cik": "0000060714",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "gain on extinguishment of debt",
+        "date": "2026-04-30",
+        "accession": "0001193125-26-194397"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "RPAY": {
+    "ticker": "RPAY",
+    "cik": "0001720592",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "gain on extinguishment of debt",
+        "date": "2026-06-01",
+        "accession": "0001193125-26-251442"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "SBGI": {
+    "ticker": "SBGI",
+    "cik": "0001971213",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "gain on extinguishment of debt",
+        "date": "2026-04-30",
+        "accession": "0001971213-26-000022"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "SKLZ": {
+    "ticker": "SKLZ",
+    "cik": "0001801661",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "gain on extinguishment of debt",
+        "date": "2026-06-08",
+        "accession": "0001801661-26-000056"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "UGI": {
+    "ticker": "UGI",
+    "cik": "0000884614",
+    "score": 0.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "notes accepted for purchase",
+        "date": "2026-05-11",
+        "accession": "0000884614-26-000028"
+      },
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "termination statement",
+        "date": "2026-07-07",
+        "accession": "0001104659-26-081321"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [
+      "hidden_claim_growth",
+      "creditor_enforcement"
+    ],
+    "distressed": true,
+    "classification": "delay_or_value_transfer_away"
+  },
+  "MOS": {
+    "ticker": "MOS",
+    "cik": "0001285785",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "notes accepted for purchase",
+        "date": "2026-08-17",
+        "accession": "0001193125-26-353193"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "CYH": {
+    "ticker": "CYH",
+    "cik": "0001108109",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "notes accepted for purchase",
+        "date": "2026-04-23",
+        "accession": "0001193125-26-171305"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "LUMN": {
+    "ticker": "LUMN",
+    "cik": "0000018926",
+    "score": 11.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "notes accepted for purchase",
+        "date": "2026-05-20",
+        "accession": "0001193125-26-231849"
+      },
+      {
+        "class": "asset_sale_completed",
+        "stage": 4,
+        "phrase": "net cash proceeds",
+        "date": "2026-05-14",
+        "accession": "0001193125-26-222375"
+      },
+      {
+        "class": "plan_effective",
+        "stage": 5,
+        "phrase": "effective date has occurred",
+        "date": "2026-05-14",
+        "accession": "0001193125-26-222375"
+      },
+      {
+        "class": "stub_distribution",
+        "stage": 5,
+        "phrase": "liquidating distribution",
+        "date": "2026-05-27",
+        "accession": "0001193125-26-240338"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [
+      "new_preferred"
+    ],
+    "distressed": false,
+    "classification": "hard_value_unlock"
+  },
+  "BDN": {
+    "ticker": "BDN",
+    "cik": "0000790816",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "notes accepted for purchase",
+        "date": "2026-08-17",
+        "accession": "0001193125-26-353237"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "KW": {
+    "ticker": "KW",
+    "cik": "0001408100",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "debt_retired_below_par",
+        "stage": 4,
+        "phrase": "notes accepted for purchase",
+        "date": "2026-05-29",
+        "accession": "0001193125-26-248565"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "MRP": {
+    "ticker": "MRP",
+    "cik": "0002017206",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "principal_haircut",
+        "stage": 4,
+        "phrase": "forgiveness of principal",
+        "date": "2026-03-27",
+        "accession": "0001193125-26-127640"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "APLD": {
+    "ticker": "APLD",
+    "cik": "0001144879",
+    "score": -1.0,
+    "events": [
+      {
+        "class": "principal_haircut",
+        "stage": 4,
+        "phrase": "forgiveness of principal",
+        "date": "2026-06-26",
+        "accession": "0001493152-26-030333"
+      },
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "obligations discharged",
+        "date": "2026-06-16",
+        "accession": "0001493152-26-028899"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [
+      "new_preferred",
+      "creditor_enforcement"
+    ],
+    "distressed": true,
+    "classification": "delay_or_value_transfer_away"
+  },
+  "MRVI": {
+    "ticker": "MRVI",
+    "cik": "0001823239",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "principal_haircut",
+        "stage": 4,
+        "phrase": "forgiveness of principal",
+        "date": "2026-06-03",
+        "accession": "0001823239-26-000049"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "WEST": {
+    "ticker": "WEST",
+    "cik": "0001806347",
+    "score": -2.0,
+    "events": [
+      {
+        "class": "principal_haircut",
+        "stage": 4,
+        "phrase": "forgiveness of principal",
+        "date": "2026-06-30",
+        "accession": "0001104659-26-079351"
+      },
+      {
+        "class": "plan_effective",
+        "stage": 5,
+        "phrase": "effective date has occurred",
+        "date": "2026-06-30",
+        "accession": "0001104659-26-079351"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [
+      "hidden_claim_growth",
+      "new_preferred",
+      "creditor_enforcement"
+    ],
+    "distressed": true,
+    "classification": "delay_or_value_transfer_away"
+  },
+  "CARG": {
+    "ticker": "CARG",
+    "cik": "0001494259",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "principal_haircut",
+        "stage": 4,
+        "phrase": "forgiveness of principal",
+        "date": "2026-08-06",
+        "accession": "0001193125-26-338014"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "MGTX": {
+    "ticker": "MGTX",
+    "cik": "0001735438",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "deed of release",
+        "date": "2026-07-07",
+        "accession": "0001104659-26-080949"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "BALY": {
+    "ticker": "BALY",
+    "cik": "0001747079",
+    "score": -6.0,
+    "events": [
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "deed of release",
+        "date": "2026-08-05",
+        "accession": "0001213900-26-085392"
+      },
+      {
+        "class": "plan_effective",
+        "stage": 5,
+        "phrase": "effective date has occurred",
+        "date": "2026-08-05",
+        "accession": "0001213900-26-085392"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [
+      "priming_superpriority",
+      "new_preferred",
+      "creditor_enforcement"
+    ],
+    "distressed": true,
+    "classification": "delay_or_value_transfer_away"
+  },
+  "WOLF": {
+    "ticker": "WOLF",
+    "cik": "0000895419",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "obligations discharged",
+        "date": "2026-03-26",
+        "accession": "0001193125-26-126483"
+      },
+      {
+        "class": "rsa_threshold",
+        "stage": 2,
+        "phrase": "restructuring support agreement",
+        "date": "2026-06-09",
+        "accession": "0001193125-26-263792"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "FLNC": {
+    "ticker": "FLNC",
+    "cik": "0001868941",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "obligations discharged",
+        "date": "2026-04-03",
+        "accession": "0001104659-26-039628"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "ARAY": {
+    "ticker": "ARAY",
+    "cik": "0001138723",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "obligations discharged",
+        "date": "2026-07-29",
+        "accession": "0001437749-26-024904"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "TSEOF": {
+    "ticker": "TSEOF",
+    "cik": "0001519061",
+    "score": -16.0,
+    "events": [
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "obligations discharged",
+        "date": "2026-05-14",
+        "accession": "0001104659-26-060590"
+      },
+      {
+        "class": "rsa_threshold",
+        "stage": 2,
+        "phrase": "restructuring support agreement",
+        "date": "2026-05-14",
+        "accession": "0001104659-26-060590"
+      },
+      {
+        "class": "plan_effective",
+        "stage": 5,
+        "phrase": "effective date has occurred",
+        "date": "2026-05-26",
+        "accession": "0001104659-26-066376"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [
+      "priming_superpriority",
+      "equity_wipeout",
+      "hidden_claim_growth",
+      "new_preferred",
+      "creditor_enforcement"
+    ],
+    "distressed": true,
+    "classification": "delay_or_value_transfer_away"
+  },
+  "RDNW": {
+    "ticker": "RDNW",
+    "cik": "0001596961",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "termination statement",
+        "date": "2026-05-18",
+        "accession": "0001628280-26-035821"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "NUVB": {
+    "ticker": "NUVB",
+    "cik": "0001811063",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "termination statement",
+        "date": "2026-06-30",
+        "accession": "0001193125-26-290823"
+      },
+      {
+        "class": "going_concern_removed",
+        "stage": 4,
+        "phrase": "no longer exists",
+        "date": "2026-06-30",
+        "accession": "0001193125-26-290823"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "EBS": {
+    "ticker": "EBS",
+    "cik": "0001367644",
+    "score": -4.0,
+    "events": [
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "termination statement",
+        "date": "2026-04-17",
+        "accession": "0001367644-26-000038"
+      },
+      {
+        "class": "asset_sale_completed",
+        "stage": 4,
+        "phrase": "net cash proceeds",
+        "date": "2026-04-17",
+        "accession": "0001367644-26-000038"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [
+      "hidden_claim_growth",
+      "new_preferred",
+      "creditor_enforcement"
+    ],
+    "distressed": true,
+    "classification": "delay_or_value_transfer_away"
+  },
+  "GNSS": {
+    "ticker": "GNSS",
+    "cik": "0000924383",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "termination statement",
+        "date": "2026-07-15",
+        "accession": "0001193125-26-304084"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "DEC": {
+    "ticker": "DEC",
+    "cik": "0001922446",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "termination statement",
+        "date": "2026-07-06",
+        "accession": "0001922446-26-000057"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "FMC": {
+    "ticker": "FMC",
+    "cik": "0000037785",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "termination statement",
+        "date": "2026-06-05",
+        "accession": "0001193125-26-259541"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "CMTL": {
+    "ticker": "CMTL",
+    "cik": "0000023197",
+    "score": 5.0,
+    "events": [
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "termination statement",
+        "date": "2026-06-15",
+        "accession": "0001104659-26-073803"
+      },
+      {
+        "class": "asset_sale_completed",
+        "stage": 4,
+        "phrase": "net cash proceeds",
+        "date": "2026-08-03",
+        "accession": "0000023197-26-000084"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "WNC": {
+    "ticker": "WNC",
+    "cik": "0000879526",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "termination statement",
+        "date": "2026-08-13",
+        "accession": "0001193125-26-347884"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "HNST": {
+    "ticker": "HNST",
+    "cik": "0001530979",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "termination statement",
+        "date": "2026-04-06",
+        "accession": "0001628280-26-023738"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "UHS": {
+    "ticker": "UHS",
+    "cik": "0000352915",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "collateral release",
+        "date": "2026-07-21",
+        "accession": "0001193125-26-310330"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "CCK": {
+    "ticker": "CCK",
+    "cik": "0001219601",
+    "score": 3.0,
+    "events": [
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "collateral release",
+        "date": "2026-03-23",
+        "accession": "0001193125-26-119866"
+      },
+      {
+        "class": "maturity_extension",
+        "stage": 3,
+        "phrase": "new maturity date",
+        "date": "2026-03-23",
+        "accession": "0001193125-26-119866"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "BAH": {
+    "ticker": "BAH",
+    "cik": "0001443646",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "collateral release",
+        "date": "2026-06-22",
+        "accession": "0001104659-26-076094"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "GTE": {
+    "ticker": "GTE",
+    "cik": "0001273441",
+    "score": 1.0,
+    "events": [
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "collateral release",
+        "date": "2026-08-10",
+        "accession": "0001104659-26-092820"
+      },
+      {
+        "class": "asset_sale_completed",
+        "stage": 4,
+        "phrase": "net cash proceeds",
+        "date": "2026-08-05",
+        "accession": "0001104659-26-090711"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [
+      "creditor_enforcement"
+    ],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "ARQ": {
+    "ticker": "ARQ",
+    "cik": "0001515156",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "lien_release",
+        "stage": 4,
+        "phrase": "collateral release",
+        "date": "2026-04-01",
+        "accession": "0001515156-26-000041"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "SUNE": {
+    "ticker": "SUNE",
+    "cik": "0000022701",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "maturity_extension",
+        "stage": 3,
+        "phrase": "new maturity date",
+        "date": "2026-04-15",
+        "accession": "0001213900-26-043846"
+      },
+      {
+        "class": "plan_effective",
+        "stage": 5,
+        "phrase": "confirmation order",
+        "date": "2026-06-08",
+        "accession": "0001213900-26-066011"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "BMI": {
+    "ticker": "BMI",
+    "cik": "0000009092",
+    "score": 1.0,
+    "events": [
+      {
+        "class": "maturity_extension",
+        "stage": 3,
+        "phrase": "new maturity date",
+        "date": "2026-06-11",
+        "accession": "0001193125-26-267194"
+      }
+    ],
+    "max_stage": 3,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "DBX": {
+    "ticker": "DBX",
+    "cik": "0001467623",
+    "score": 1.0,
+    "events": [
+      {
+        "class": "maturity_extension",
+        "stage": 3,
+        "phrase": "new maturity date",
+        "date": "2026-06-01",
+        "accession": "0001467623-26-000040"
+      }
+    ],
+    "max_stage": 3,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "LODE": {
+    "ticker": "LODE",
+    "cik": "0001120970",
+    "score": 3.0,
+    "events": [
+      {
+        "class": "asset_sale_completed",
+        "stage": 4,
+        "phrase": "net cash proceeds",
+        "date": "2026-04-01",
+        "accession": "0001437749-26-010897"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "AZTA": {
+    "ticker": "AZTA",
+    "cik": "0000933974",
+    "score": 3.0,
+    "events": [
+      {
+        "class": "asset_sale_completed",
+        "stage": 4,
+        "phrase": "net cash proceeds",
+        "date": "2026-07-08",
+        "accession": "0001628280-26-047591"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "CCOI": {
+    "ticker": "CCOI",
+    "cik": "0001158324",
+    "score": 3.0,
+    "events": [
+      {
+        "class": "asset_sale_completed",
+        "stage": 4,
+        "phrase": "net cash proceeds",
+        "date": "2026-06-15",
+        "accession": "0001104659-26-074046"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "CHRS": {
+    "ticker": "CHRS",
+    "cik": "0001512762",
+    "score": 3.0,
+    "events": [
+      {
+        "class": "asset_sale_completed",
+        "stage": 4,
+        "phrase": "net cash proceeds",
+        "date": "2026-08-17",
+        "accession": "0001104659-26-097951"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "SCOR": {
+    "ticker": "SCOR",
+    "cik": "0001158172",
+    "score": 3.0,
+    "events": [
+      {
+        "class": "asset_sale_completed",
+        "stage": 4,
+        "phrase": "net cash proceeds",
+        "date": "2026-06-02",
+        "accession": "0001158172-26-000042"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "AIV": {
+    "ticker": "AIV",
+    "cik": "0000922864",
+    "score": 3.0,
+    "events": [
+      {
+        "class": "asset_sale_completed",
+        "stage": 4,
+        "phrase": "net cash proceeds",
+        "date": "2026-03-30",
+        "accession": "0001193125-26-132051"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "YUMC": {
+    "ticker": "YUMC",
+    "cik": "0001673358",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "asset_sale_completed",
+        "stage": 4,
+        "phrase": "net cash proceeds",
+        "date": "2026-08-06",
+        "accession": "0001193125-26-336485"
+      },
+      {
+        "class": "plan_effective",
+        "stage": 5,
+        "phrase": "effective date has occurred",
+        "date": "2026-08-06",
+        "accession": "0001193125-26-336485"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [
+      "creditor_enforcement"
+    ],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "HCAT": {
+    "ticker": "HCAT",
+    "cik": "0001636422",
+    "score": 3.0,
+    "events": [
+      {
+        "class": "asset_sale_completed",
+        "stage": 4,
+        "phrase": "net cash proceeds",
+        "date": "2026-08-06",
+        "accession": "0001636422-26-000091"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "BV": {
+    "ticker": "BV",
+    "cik": "0001734713",
+    "score": 3.0,
+    "events": [
+      {
+        "class": "asset_sale_completed",
+        "stage": 4,
+        "phrase": "net cash proceeds",
+        "date": "2026-05-05",
+        "accession": "0001193125-26-206439"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "HYFM": {
+    "ticker": "HYFM",
+    "cik": "0001695295",
+    "score": 3.0,
+    "events": [
+      {
+        "class": "asset_sale_completed",
+        "stage": 4,
+        "phrase": "net cash proceeds",
+        "date": "2026-08-06",
+        "accession": "0001437749-26-026270"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "MDRR": {
+    "ticker": "MDRR",
+    "cik": "0001654595",
+    "score": 3.0,
+    "events": [
+      {
+        "class": "asset_sale_completed",
+        "stage": 4,
+        "phrase": "net cash proceeds",
+        "date": "2026-08-05",
+        "accession": "0001104659-26-090763"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "ARI": {
+    "ticker": "ARI",
+    "cik": "0001467760",
+    "score": 3.0,
+    "events": [
+      {
+        "class": "asset_sale_completed",
+        "stage": 4,
+        "phrase": "closing of the asset sale",
+        "date": "2026-04-24",
+        "accession": "0001193125-26-177686"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "VREOF": {
+    "ticker": "VREOF",
+    "cik": "0001771706",
+    "score": -1.0,
+    "events": [
+      {
+        "class": "asset_sale_completed",
+        "stage": 4,
+        "phrase": "closing of the asset sale",
+        "date": "2026-03-25",
+        "accession": "0001104659-26-034509"
+      },
+      {
+        "class": "rsa_threshold",
+        "stage": 2,
+        "phrase": "restructuring support agreement",
+        "date": "2026-03-25",
+        "accession": "0001104659-26-034509"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [
+      "hidden_claim_growth",
+      "creditor_enforcement"
+    ],
+    "distressed": true,
+    "classification": "delay_or_value_transfer_away"
+  },
+  "BIRD": {
+    "ticker": "BIRD",
+    "cik": "0001653909",
+    "score": 1.0,
+    "events": [
+      {
+        "class": "asset_sale_completed",
+        "stage": 4,
+        "phrase": "closing of the asset sale",
+        "date": "2026-04-20",
+        "accession": "0001193125-26-164338"
+      },
+      {
+        "class": "stub_distribution",
+        "stage": 5,
+        "phrase": "liquidating distribution",
+        "date": "2026-03-31",
+        "accession": "0001628280-26-022181"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [
+      "hidden_claim_growth",
+      "creditor_enforcement"
+    ],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "NOTV": {
+    "ticker": "NOTV",
+    "cik": "0000720154",
+    "score": 5.0,
+    "events": [
+      {
+        "class": "rsa_threshold",
+        "stage": 2,
+        "phrase": "restructuring support agreement",
+        "date": "2026-06-03",
+        "accession": "0001104659-26-069950"
+      },
+      {
+        "class": "plan_effective",
+        "stage": 5,
+        "phrase": "effective date has occurred",
+        "date": "2026-06-03",
+        "accession": "0001104659-26-069950"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "NOTVQ": {
+    "ticker": "NOTVQ",
+    "cik": "0000720154",
+    "score": 5.0,
+    "events": [
+      {
+        "class": "rsa_threshold",
+        "stage": 2,
+        "phrase": "restructuring support agreement",
+        "date": "2026-07-16",
+        "accession": "0001628280-26-048369"
+      },
+      {
+        "class": "plan_effective",
+        "stage": 5,
+        "phrase": "substantial consummation",
+        "date": "2026-07-16",
+        "accession": "0001628280-26-048369"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "OPITQ": {
+    "ticker": "OPITQ",
+    "cik": "0001456772",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "rsa_threshold",
+        "stage": 2,
+        "phrase": "restructuring support agreement",
+        "date": "2026-04-01",
+        "accession": "0001104659-26-038561"
+      }
+    ],
+    "max_stage": 2,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "TSEOQ": {
+    "ticker": "TSEOQ",
+    "cik": "0001519061",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "rsa_threshold",
+        "stage": 2,
+        "phrase": "restructuring support agreement",
+        "date": "2026-08-06",
+        "accession": "0001104659-26-091904"
+      }
+    ],
+    "max_stage": 2,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "AGO": {
+    "ticker": "AGO",
+    "cik": "0001273813",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "rsa_threshold",
+        "stage": 2,
+        "phrase": "restructuring support agreement",
+        "date": "2026-03-23",
+        "accession": "0001273813-26-000047"
+      }
+    ],
+    "max_stage": 2,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "ACH": {
+    "ticker": "ACH",
+    "cik": "0000075252",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "rsa_threshold",
+        "stage": 2,
+        "phrase": "restructuring support agreement",
+        "date": "2026-06-15",
+        "accession": "0001193125-26-271115"
+      }
+    ],
+    "max_stage": 2,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "UWMC": {
+    "ticker": "UWMC",
+    "cik": "0001783398",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "plan_effective",
+        "stage": 5,
+        "phrase": "effective date has occurred",
+        "date": "2026-08-06",
+        "accession": "0001783398-26-000114"
+      },
+      {
+        "class": "stub_distribution",
+        "stage": 5,
+        "phrase": "liquidating distribution",
+        "date": "2026-08-06",
+        "accession": "0001783398-26-000114"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [
+      "hidden_claim_growth",
+      "new_preferred"
+    ],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "INGR": {
+    "ticker": "INGR",
+    "cik": "0001046257",
+    "score": 3.0,
+    "events": [
+      {
+        "class": "plan_effective",
+        "stage": 5,
+        "phrase": "effective date has occurred",
+        "date": "2026-06-09",
+        "accession": "0001628280-26-041921"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "OCGN": {
+    "ticker": "OCGN",
+    "cik": "0001372299",
+    "score": 3.0,
+    "events": [
+      {
+        "class": "plan_effective",
+        "stage": 5,
+        "phrase": "effective date has occurred",
+        "date": "2026-05-07",
+        "accession": "0001104659-26-057138"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "CNXC": {
+    "ticker": "CNXC",
+    "cik": "0001803599",
+    "score": 3.0,
+    "events": [
+      {
+        "class": "plan_effective",
+        "stage": 5,
+        "phrase": "effective date has occurred",
+        "date": "2026-03-23",
+        "accession": "0001803599-26-000080"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "PHR": {
+    "ticker": "PHR",
+    "cik": "0001412408",
+    "score": 3.0,
+    "events": [
+      {
+        "class": "plan_effective",
+        "stage": 5,
+        "phrase": "effective date has occurred",
+        "date": "2026-05-04",
+        "accession": "0001412408-26-000138"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "GOCOQ": {
+    "ticker": "GOCOQ",
+    "cik": "0001808220",
+    "score": 3.0,
+    "events": [
+      {
+        "class": "plan_effective",
+        "stage": 5,
+        "phrase": "substantial consummation",
+        "date": "2026-07-21",
+        "accession": "0001628280-26-049063"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "LAZRQ": {
+    "ticker": "LAZRQ",
+    "cik": "0001758057",
+    "score": 3.0,
+    "events": [
+      {
+        "class": "plan_effective",
+        "stage": 5,
+        "phrase": "substantial consummation",
+        "date": "2026-04-07",
+        "accession": "0001140361-26-013403"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "SNBR": {
+    "ticker": "SNBR",
+    "cik": "0000827187",
+    "score": 3.0,
+    "events": [
+      {
+        "class": "plan_effective",
+        "stage": 5,
+        "phrase": "substantial consummation",
+        "date": "2026-06-16",
+        "accession": "0000950103-26-009081"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "ZYXIQ": {
+    "ticker": "ZYXIQ",
+    "cik": "0000846475",
+    "score": 3.0,
+    "events": [
+      {
+        "class": "plan_effective",
+        "stage": 5,
+        "phrase": "emerged from Chapter 11",
+        "date": "2026-03-26",
+        "accession": "0001104659-26-035274"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "NINE": {
+    "ticker": "NINE",
+    "cik": "0001532286",
+    "score": 3.0,
+    "events": [
+      {
+        "class": "plan_effective",
+        "stage": 5,
+        "phrase": "emerged from Chapter 11",
+        "date": "2026-05-13",
+        "accession": "0001213900-26-055933"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "COLL": {
+    "ticker": "COLL",
+    "cik": "0001267565",
+    "score": 0.0,
+    "events": [],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "delay_or_value_transfer_away"
+  },
+  "MVST": {
+    "ticker": "MVST",
+    "cik": "0001760689",
+    "score": 0.0,
+    "events": [],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "delay_or_value_transfer_away"
+  },
+  "HCWC": {
+    "ticker": "HCWC",
+    "cik": "0001948864",
+    "score": 0.0,
+    "events": [],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "delay_or_value_transfer_away"
+  },
+  "PHGE": {
+    "ticker": "PHGE",
+    "cik": "0001739174",
+    "score": 0.0,
+    "events": [],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "delay_or_value_transfer_away"
+  },
+  "GPRO": {
+    "ticker": "GPRO",
+    "cik": "0001500435",
+    "score": 0.0,
+    "events": [],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "delay_or_value_transfer_away"
+  },
+  "FRMI": {
+    "ticker": "FRMI",
+    "cik": "0002071778",
+    "score": 0.0,
+    "events": [],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "delay_or_value_transfer_away"
+  },
+  "CVR": {
+    "ticker": "CVR",
+    "cik": "0000019871",
+    "score": 0.0,
+    "events": [],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "delay_or_value_transfer_away"
+  },
+  "ENVB": {
+    "ticker": "ENVB",
+    "cik": "0000890821",
+    "score": 0.0,
+    "events": [],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "delay_or_value_transfer_away"
+  },
+  "QNCX": {
+    "ticker": "QNCX",
+    "cik": "0001662774",
+    "score": 1.0,
+    "events": [
+      {
+        "class": "listing_restored",
+        "stage": 4,
+        "phrase": "regained compliance",
+        "date": "2026-04-28",
+        "accession": "0001193125-26-187243"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "SKYE": {
+    "ticker": "SKYE",
+    "cik": "0001516551",
+    "score": 0.0,
+    "events": [],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "delay_or_value_transfer_away"
+  },
+  "CGC": {
+    "ticker": "CGC",
+    "cik": "0001737927",
+    "score": 0.0,
+    "events": [],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "delay_or_value_transfer_away"
+  },
+  "NFBK": {
+    "ticker": "NFBK",
+    "cik": "0001493225",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "going_concern_removed",
+        "stage": 4,
+        "phrase": "no longer exists",
+        "date": "2026-07-22",
+        "accession": "0001193125-26-312412"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "CURI": {
+    "ticker": "CURI",
+    "cik": "0001776909",
+    "score": 6.0,
+    "events": [
+      {
+        "class": "going_concern_removed",
+        "stage": 4,
+        "phrase": "no longer exists",
+        "date": "2026-05-14",
+        "accession": "0001628280-26-035211"
+      },
+      {
+        "class": "stub_distribution",
+        "stage": 5,
+        "phrase": "return of capital to shareholders",
+        "date": "2026-08-12",
+        "accession": "0001628280-26-056318"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "BYND": {
+    "ticker": "BYND",
+    "cik": "0001655210",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "going_concern_removed",
+        "stage": 4,
+        "phrase": "no longer exists",
+        "date": "2026-08-06",
+        "accession": "0001655210-26-000055"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "TEM": {
+    "ticker": "TEM",
+    "cik": "0001717115",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "going_concern_removed",
+        "stage": 4,
+        "phrase": "no longer exists",
+        "date": "2026-05-13",
+        "accession": "0001193125-26-220115"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "LCII": {
+    "ticker": "LCII",
+    "cik": "0000763744",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "going_concern_removed",
+        "stage": 4,
+        "phrase": "no longer exists",
+        "date": "2026-08-07",
+        "accession": "0000763744-26-000079"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "IMRX": {
+    "ticker": "IMRX",
+    "cik": "0001790340",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "going_concern_removed",
+        "stage": 4,
+        "phrase": "no longer exists",
+        "date": "2026-08-05",
+        "accession": "0001790340-26-000091"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "ZSQR": {
+    "ticker": "ZSQR",
+    "cik": "0001759186",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "going_concern_removed",
+        "stage": 4,
+        "phrase": "no longer exists",
+        "date": "2026-06-04",
+        "accession": "0001683168-26-004560"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "EXOD": {
+    "ticker": "EXOD",
+    "cik": "0001821534",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "going_concern_removed",
+        "stage": 4,
+        "phrase": "no longer exists",
+        "date": "2026-08-11",
+        "accession": "0001628280-26-055453"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "RAIL": {
+    "ticker": "RAIL",
+    "cik": "0001320854",
+    "score": 2.0,
+    "events": [
+      {
+        "class": "going_concern_removed",
+        "stage": 4,
+        "phrase": "no longer exists",
+        "date": "2026-05-04",
+        "accession": "0001320854-26-000010"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "GIII": {
+    "ticker": "GIII",
+    "cik": "0000821002",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "stub_distribution",
+        "stage": 5,
+        "phrase": "liquidating distribution",
+        "date": "2026-05-14",
+        "accession": "0000950142-26-001394"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "ABUS": {
+    "ticker": "ABUS",
+    "cik": "0001447028",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "stub_distribution",
+        "stage": 5,
+        "phrase": "return of capital to shareholders",
+        "date": "2026-07-16",
+        "accession": "0001171843-26-004708"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "ORI": {
+    "ticker": "ORI",
+    "cik": "0000074260",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "stub_distribution",
+        "stage": 5,
+        "phrase": "return of capital to shareholders",
+        "date": "2026-04-23",
+        "accession": "0000074260-26-000066"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "EEFT": {
+    "ticker": "EEFT",
+    "cik": "0001029199",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "stub_distribution",
+        "stage": 5,
+        "phrase": "return of capital to shareholders",
+        "date": "2026-04-29",
+        "accession": "0001554855-26-000809"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "KRNY": {
+    "ticker": "KRNY",
+    "cik": "0001617242",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "stub_distribution",
+        "stage": 5,
+        "phrase": "return of capital to shareholders",
+        "date": "2026-06-03",
+        "accession": "0001617242-26-000012"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "BBW": {
+    "ticker": "BBW",
+    "cik": "0001113809",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "stub_distribution",
+        "stage": 5,
+        "phrase": "return of capital to shareholders",
+        "date": "2026-05-28",
+        "accession": "0001437749-26-018669"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "MGM": {
+    "ticker": "MGM",
+    "cik": "0000789570",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "stub_distribution",
+        "stage": 5,
+        "phrase": "return of capital to shareholders",
+        "date": "2026-04-29",
+        "accession": "0000789570-26-000034"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "FNF": {
+    "ticker": "FNF",
+    "cik": "0001331875",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "stub_distribution",
+        "stage": 5,
+        "phrase": "return of capital to shareholders",
+        "date": "2026-05-06",
+        "accession": "0001331875-26-000036"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "DTI": {
+    "ticker": "DTI",
+    "cik": "0001884516",
+    "score": 4.0,
+    "events": [
+      {
+        "class": "stub_distribution",
+        "stage": 5,
+        "phrase": "return of capital to shareholders",
+        "date": "2026-05-07",
+        "accession": "0001193125-26-212052"
+      }
+    ],
+    "max_stage": 5,
+    "counters": [],
+    "distressed": true,
+    "classification": "real_progress_conditional"
+  },
+  "INHD": {
+    "ticker": "INHD",
+    "cik": "0001961847",
+    "score": 1.0,
+    "events": [
+      {
+        "class": "listing_restored",
+        "stage": 4,
+        "phrase": "resumption of trading",
+        "date": "2026-07-31",
+        "accession": "0001493152-26-035577"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "BRCC": {
+    "ticker": "BRCC",
+    "cik": "0001891101",
+    "score": 1.0,
+    "events": [
+      {
+        "class": "listing_restored",
+        "stage": 4,
+        "phrase": "regained compliance",
+        "date": "2026-06-02",
+        "accession": "0001891101-26-000032"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "UPLD": {
+    "ticker": "UPLD",
+    "cik": "0001505155",
+    "score": 1.0,
+    "events": [
+      {
+        "class": "listing_restored",
+        "stage": 4,
+        "phrase": "regained compliance",
+        "date": "2026-07-08",
+        "accession": "0001505155-26-000055"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "IMUX": {
+    "ticker": "IMUX",
+    "cik": "0001280776",
+    "score": 1.0,
+    "events": [
+      {
+        "class": "listing_restored",
+        "stage": 4,
+        "phrase": "regained compliance",
+        "date": "2026-04-01",
+        "accession": "0001193805-26-000382"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "PRTS": {
+    "ticker": "PRTS",
+    "cik": "0001378950",
+    "score": 1.0,
+    "events": [
+      {
+        "class": "listing_restored",
+        "stage": 4,
+        "phrase": "regained compliance",
+        "date": "2026-06-09",
+        "accession": "0001140361-26-024644"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "PSTV": {
+    "ticker": "PSTV",
+    "cik": "0001095981",
+    "score": 1.0,
+    "events": [
+      {
+        "class": "listing_restored",
+        "stage": 4,
+        "phrase": "regained compliance",
+        "date": "2026-04-21",
+        "accession": "0001193125-26-165205"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "AIRE": {
+    "ticker": "AIRE",
+    "cik": "0001859199",
+    "score": 1.0,
+    "events": [
+      {
+        "class": "listing_restored",
+        "stage": 4,
+        "phrase": "regained compliance",
+        "date": "2026-05-14",
+        "accession": "0001213900-26-056656"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "FFAI": {
+    "ticker": "FFAI",
+    "cik": "0001805521",
+    "score": 1.0,
+    "events": [
+      {
+        "class": "listing_restored",
+        "stage": 4,
+        "phrase": "regained compliance",
+        "date": "2026-08-10",
+        "accession": "0001213900-26-087005"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "LVLU": {
+    "ticker": "LVLU",
+    "cik": "0001780201",
+    "score": 1.0,
+    "events": [
+      {
+        "class": "listing_restored",
+        "stage": 4,
+        "phrase": "regained compliance",
+        "date": "2026-08-06",
+        "accession": "0001104659-26-091970"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "FEMY": {
+    "ticker": "FEMY",
+    "cik": "0001339005",
+    "score": 1.0,
+    "events": [
+      {
+        "class": "listing_restored",
+        "stage": 4,
+        "phrase": "regained compliance",
+        "date": "2026-06-24",
+        "accession": "0001140361-26-026169"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "SKYQ": {
+    "ticker": "SKYQ",
+    "cik": "0001812447",
+    "score": 1.0,
+    "events": [
+      {
+        "class": "listing_restored",
+        "stage": 4,
+        "phrase": "regained compliance",
+        "date": "2026-03-30",
+        "accession": "0001096906-26-000405"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "NDRA": {
+    "ticker": "NDRA",
+    "cik": "0001681682",
+    "score": 1.0,
+    "events": [
+      {
+        "class": "listing_restored",
+        "stage": 4,
+        "phrase": "regained compliance",
+        "date": "2026-04-21",
+        "accession": "0001213900-26-045885"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  },
+  "AEON": {
+    "ticker": "AEON",
+    "cik": "0001837607",
+    "score": 1.0,
+    "events": [
+      {
+        "class": "listing_restored",
+        "stage": 4,
+        "phrase": "regained compliance",
+        "date": "2026-08-03",
+        "accession": "0001837607-26-000057"
+      }
+    ],
+    "max_stage": 4,
+    "counters": [],
+    "distressed": true,
+    "classification": "survival_or_process_only"
+  }
+}

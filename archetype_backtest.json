@@ -1,0 +1,221 @@
+{
+  "window": "2022-06-01..2025-06-30",
+  "n_events": 525,
+  "archetypes": {
+    "asset_sale_monetization": {
+      "backtestable": true,
+      "n": 33,
+      "all": {
+        "n": 33,
+        "monster_rate": 0.03,
+        "win_rate": 0.455,
+        "median": -0.043,
+        "mean": 0.018,
+        "loss_rate_50": 0.121
+      },
+      "confirmed_>=20pct": {
+        "n": 7,
+        "monster_rate": 0.0,
+        "win_rate": 0.429,
+        "median": -0.043,
+        "mean": 0.111,
+        "loss_rate_50": 0.143
+      },
+      "faded_<=-10pct": {
+        "n": 5,
+        "monster_rate": 0.0,
+        "win_rate": 0.2,
+        "median": -0.193,
+        "mean": -0.258,
+        "loss_rate_50": 0.2
+      },
+      "top_trades": [
+        {
+          "ticker": "VSTM",
+          "ret_12m": 1.47,
+          "date": "2023-02-02"
+        },
+        {
+          "ticker": "NTRP",
+          "ret_12m": 1.0,
+          "date": "2023-11-13"
+        },
+        {
+          "ticker": "OPRT",
+          "ret_12m": 0.92,
+          "date": "2024-09-26"
+        },
+        {
+          "ticker": "UPXI",
+          "ret_12m": 0.84,
+          "date": "2024-08-05"
+        }
+      ]
+    },
+    "tender_offer_squeeze": {
+      "backtestable": true,
+      "n": 8,
+      "all": {
+        "n": 8,
+        "monster_rate": 0.0,
+        "win_rate": 0.125,
+        "median": -0.282,
+        "mean": -0.268,
+        "loss_rate_50": 0.25
+      },
+      "confirmed_>=20pct": {
+        "n": 0
+      },
+      "faded_<=-10pct": {
+        "n": 3,
+        "monster_rate": 0.0,
+        "win_rate": 0.0,
+        "median": -0.574,
+        "mean": -0.44,
+        "loss_rate_50": 0.667
+      },
+      "top_trades": [
+        {
+          "ticker": "BDSX",
+          "ret_12m": 0.25,
+          "date": "2023-07-26"
+        },
+        {
+          "ticker": "CYH",
+          "ret_12m": -0.13,
+          "date": "2023-12-12"
+        },
+        {
+          "ticker": "TBPH",
+          "ret_12m": -0.15,
+          "date": "2022-08-25"
+        },
+        {
+          "ticker": "RYAM",
+          "ret_12m": -0.26,
+          "date": "2024-10-29"
+        }
+      ]
+    },
+    "sub_cash_buyback": {
+      "backtestable": true,
+      "n": 22,
+      "all": {
+        "n": 22,
+        "monster_rate": 0.136,
+        "win_rate": 0.364,
+        "median": -0.147,
+        "mean": 0.067,
+        "loss_rate_50": 0.136
+      },
+      "confirmed_>=20pct": {
+        "n": 4,
+        "monster_rate": 0.25,
+        "win_rate": 0.5,
+        "median": 0.13,
+        "mean": 0.353,
+        "loss_rate_50": 0.0
+      },
+      "faded_<=-10pct": {
+        "n": 6,
+        "monster_rate": 0.0,
+        "win_rate": 0.167,
+        "median": -0.374,
+        "mean": -0.365,
+        "loss_rate_50": 0.333
+      },
+      "top_trades": [
+        {
+          "ticker": "MYRG",
+          "ret_12m": 1.5,
+          "date": "2025-02-26"
+        },
+        {
+          "ticker": "AKA",
+          "ret_12m": 1.49,
+          "date": "2023-06-06"
+        },
+        {
+          "ticker": "PEV",
+          "ret_12m": 1.3,
+          "date": "2025-03-25"
+        },
+        {
+          "ticker": "PFIE",
+          "ret_12m": 0.79,
+          "date": "2024-05-24"
+        }
+      ]
+    },
+    "stated_unlock_triangulated": {
+      "backtestable": true,
+      "n": 56,
+      "all": {
+        "n": 56,
+        "monster_rate": 0.107,
+        "win_rate": 0.464,
+        "median": -0.049,
+        "mean": 19.405,
+        "loss_rate_50": 0.268
+      },
+      "confirmed_>=20pct": {
+        "n": 8,
+        "monster_rate": 0.375,
+        "win_rate": 0.625,
+        "median": 0.608,
+        "mean": 135.599,
+        "loss_rate_50": 0.25
+      },
+      "faded_<=-10pct": {
+        "n": 16,
+        "monster_rate": 0.062,
+        "win_rate": 0.188,
+        "median": -0.547,
+        "mean": -0.34,
+        "loss_rate_50": 0.5
+      },
+      "top_trades": [
+        {
+          "ticker": "INRE",
+          "ret_12m": 1072.6,
+          "date": "2024-11-06"
+        },
+        {
+          "ticker": "SYRE",
+          "ret_12m": 9.75,
+          "date": "2023-04-12"
+        },
+        {
+          "ticker": "IRWD",
+          "ret_12m": 4.96,
+          "date": "2025-04-14"
+        },
+        {
+          "ticker": "SVT",
+          "ret_12m": 3.4,
+          "date": "2025-03-17"
+        }
+      ]
+    },
+    "coiled_spring_delever": {
+      "backtestable": false,
+      "reason": "needs point-in-time D/E + rising operating income (no historical fundamentals); could add a 'reduce leverage' 8-K event scan."
+    },
+    "hidden_asset_realization": {
+      "backtestable": false,
+      "reason": "needs the point-in-time credit-agreement asset-sweep scan + a small-levered balance sheet; not reconstructable historically."
+    },
+    "forced_seller_exhaustion": {
+      "backtestable": false,
+      "reason": "needs historical N-PORT fund-flow (forced selling); no EDGAR event phrase and no historical flow store."
+    },
+    "asset_sale_latent": {
+      "backtestable": false,
+      "reason": "ANTICIPATORY (the setup BEFORE the sale is announced) -- by definition has no event to anchor; needs a FORWARD tracking study (snapshot today, check for a sale over the next 6-12 months)."
+    },
+    "tender_target_latent": {
+      "backtestable": false,
+      "reason": "ANTICIPATORY (take-private candidate before any bid) -- same: needs forward tracking, not a backward event anchor."
+    }
+  }
+}

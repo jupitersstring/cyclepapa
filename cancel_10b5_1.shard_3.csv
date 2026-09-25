@@ -1,0 +1,280 @@
+rank,ticker,n_quarters_scanned,n_events,term_sell,adopt_sell,term_buy,adopt_buy,modify_pair,score,reasons
+1,WMT,4,3,3,0,0,0,0,74.0,"BULLISH terminate sell: Daniel J. Bartlett (Executive Vice President) 155,328sh [+22] | BULLISH terminate sell: David Rainey (Executive Vice President and) 40,000sh [+18] | BULLISH terminate sell: Douglas McMillon (President and Chief Executive ) 233,000sh [+34]"
+2,LCNB,4,4,0,0,0,4,0,32.0,"BULLISH adopt buy: an insider (?) 310,922sh [+8] | BULLISH adopt buy: an insider (?) 310,922sh [+8] | BULLISH adopt buy: an insider (?) [+8] | BULLISH adopt buy: an insider (?) [+8]"
+3,LXFR,4,3,1,0,0,0,0,28.0,BULLISH terminate sell: an insider (Director) [+18] | neutral terminate (type unknown): an insider (Director) [+5] | neutral terminate (type unknown): an insider (Director) [+5]
+4,KYMR,4,6,2,1,0,0,2,24.0,BULLISH terminate sell: an insider (Director) [+18] | BEARISH adopt sell: an insider (director) [-12] | BULLISH terminate sell: an insider (director) [+18]
+5,PCOR,4,1,1,0,0,0,0,18.0,BULLISH terminate sell: an insider (director) [+18]
+6,PEN,4,2,1,0,0,0,0,18.0,BULLISH terminate sell: Arani Bose (Director) [+18]
+7,SMG,4,1,1,0,0,0,0,18.0,BULLISH terminate sell: an insider (director) [+18]
+8,SPRY,4,1,1,0,0,0,0,18.0,BULLISH terminate sell: an insider (director) [+18]
+9,OMC,4,3,0,0,0,0,0,15.0,"neutral terminate (type unknown): an insider (director) 268,350sh [+5] | neutral terminate (type unknown): an insider (director) 122,607sh [+5] | neutral terminate (type unknown): an insider (director) 11,945sh [+5]"
+10,VABK,4,3,0,0,0,0,0,15.0,neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5]
+11,INMB,4,2,0,0,0,0,0,10.0,neutral terminate (type unknown): an insider (director) [+5] | neutral terminate (type unknown): an insider (director) [+5]
+12,SRE,4,7,0,0,0,0,5,10.0,neutral terminate (type unknown): used herein (director) [+5] | neutral terminate (type unknown): used herein (director) [+5]
+13,PINS,4,5,1,1,0,0,3,6.0,"BULLISH terminate sell: an insider (director) 40,000sh [+18] | BEARISH adopt sell: an insider (?) 40,000sh [-12]"
+14,SN,1,1,0,0,0,0,0,5.0,"neutral terminate (type unknown): an insider (director) 193,135sh [+5]"
+15,TSEOF,4,7,0,0,0,0,6,5.0,neutral terminate (type unknown): an insider (director) [+5]
+16,VNOM,2,1,0,0,0,0,0,5.0,neutral terminate (type unknown): an insider (director) [+5]
+17,INGN,4,3,1,2,0,0,0,2.0,"BULLISH terminate sell: Yi Boyer (Executive Vice President) [+18] | BEARISH adopt sell: Gregoire Ramade (Chief Commercial Officer) 18,000sh [-8] | BEARISH adopt sell: Yi Boyer (Executive Vice President) 18,000sh [-8]"
+18,HE,4,0,0,0,0,0,0,0.0,
+19,HGTY,4,0,0,0,0,0,0,0.0,
+20,HLT,4,0,0,0,0,0,0,0.0,
+21,HNVR,4,0,0,0,0,0,0,0.0,
+22,HOWL,4,0,0,0,0,0,0,0.0,
+23,HRI,4,0,0,0,0,0,0,0.0,
+24,HSDT,4,0,0,0,0,0,0,0.0,
+25,HTH,4,0,0,0,0,0,0,0.0,
+26,HUT,4,0,0,0,0,0,0,0.0,
+27,HYNE,2,0,0,0,0,0,0,0.0,
+28,IBATF,1,0,0,0,0,0,0,0.0,
+29,ICCM,0,0,0,0,0,0,0,0.0,
+30,IDXX,4,0,0,0,0,0,0,0.0,
+31,IEX,4,0,0,0,0,0,0,0.0,
+32,IIF,0,0,0,0,0,0,0,0.0,
+33,ILXP,1,0,0,0,0,0,0,0.0,
+34,IMNM,4,0,0,0,0,0,0,0.0,
+35,INSE,4,0,0,0,0,0,0,0.0,
+36,INTS,4,0,0,0,0,0,0,0.0,
+37,INVH,4,0,0,0,0,0,0,0.0,
+38,IPDN,4,0,0,0,0,0,0,0.0,
+39,IPWR,4,0,0,0,0,0,0,0.0,
+40,IRIX,4,0,0,0,0,0,0,0.0,
+41,IRWD,4,0,0,0,0,0,0,0.0,
+42,IVEVF,0,0,0,0,0,0,0,0.0,
+43,JANL,4,0,0,0,0,0,0,0.0,
+44,JBIO,4,0,0,0,0,0,0,0.0,
+45,JETBF,4,0,0,0,0,0,0,0.0,
+46,JOB,4,0,0,0,0,0,0,0.0,
+47,JRVR,4,0,0,0,0,0,0,0.0,
+48,KALU,4,0,0,0,0,0,0,0.0,
+49,KEYS,4,0,0,0,0,0,0,0.0,
+50,KMB,4,0,0,0,0,0,0,0.0,
+51,KO,4,0,0,0,0,0,0,0.0,
+52,KPTI,4,0,0,0,0,0,0,0.0,
+53,KRT,4,0,0,0,0,0,0,0.0,
+54,KVHI,4,0,0,0,0,0,0,0.0,
+55,KZR,0,0,0,0,0,0,0,0.0,
+56,LDI,4,0,0,0,0,0,0,0.0,
+57,LFST,4,0,0,0,0,0,0,0.0,
+58,LHSW,0,0,0,0,0,0,0,0.0,
+59,LIMX,4,0,0,0,0,0,0,0.0,
+60,LMND,4,0,0,0,0,0,0,0.0,
+61,LODE,4,0,0,0,0,0,0,0.0,
+62,LOPE,4,0,0,0,0,0,0,0.0,
+63,LQDA,4,0,0,0,0,0,0,0.0,
+64,LSF,4,0,0,0,0,0,0,0.0,
+65,LUV,4,0,0,0,0,0,0,0.0,
+66,LYV,4,0,0,0,0,0,0,0.0,
+67,MAAS,0,0,0,0,0,0,0,0.0,
+68,MAZE,4,0,0,0,0,0,0,0.0,
+69,MBX,4,0,0,0,0,0,0,0.0,
+70,MDLK,3,0,0,0,0,0,0,0.0,
+71,MED,4,0,0,0,0,0,0,0.0,
+72,MENS,0,0,0,0,0,0,0,0.0,
+73,MFICL,4,0,0,0,0,0,0,0.0,
+74,MGNO,4,0,0,0,0,0,0,0.0,
+75,MIAX,2,0,0,0,0,0,0,0.0,
+76,MIST,4,0,0,0,0,0,0,0.0,
+77,MKTW,4,0,0,0,0,0,0,0.0,
+78,MLCMF,0,0,0,0,0,0,0,0.0,
+79,MNPR,4,0,0,0,0,0,0,0.0,
+80,MNTN,3,0,0,0,0,0,0,0.0,
+81,MOS,4,0,0,0,0,0,0,0.0,
+82,MPLT,2,0,0,0,0,0,0,0.0,
+83,MRBK,4,0,0,0,0,0,0,0.0,
+84,MRMD,4,0,0,0,0,0,0,0.0,
+85,MTEX,4,0,0,0,0,0,0,0.0,
+86,MUX,4,0,0,0,0,0,0,0.0,
+87,MX,4,0,0,0,0,0,0,0.0,
+88,MYGN,4,0,0,0,0,0,0,0.0,
+89,NAGE,4,0,0,0,0,0,0,0.0,
+90,NATL,4,0,0,0,0,0,0,0.0,
+91,NBY,0,0,0,0,0,0,0,0.0,
+92,NEWT,4,0,0,0,0,0,0,0.0,
+93,NFJ,0,0,0,0,0,0,0,0.0,
+94,NINE,4,0,0,0,0,0,0,0.0,
+95,NMG,0,0,0,0,0,0,0,0.0,
+96,NNBR,4,0,0,0,0,0,0,0.0,
+97,NOMA,2,0,0,0,0,0,0,0.0,
+98,NRG,4,0,0,0,0,0,0,0.0,
+99,NSA,4,0,0,0,0,0,0,0.0,
+100,NTRP,4,0,0,0,0,0,0,0.0,
+101,NVAX,4,0,0,0,0,0,0,0.0,
+102,NVTS,4,0,0,0,0,0,0,0.0,
+103,NWS,4,0,0,0,0,0,0,0.0,
+104,NXTC,4,0,0,0,0,0,0,0.0,
+105,OBIO,4,0,0,0,0,0,0,0.0,
+106,ODFL,4,0,0,0,0,0,0,0.0,
+107,OFSSH,4,0,0,0,0,0,0,0.0,
+108,OKUR,4,0,0,0,0,0,0,0.0,
+109,OMF,4,0,0,0,0,0,0,0.0,
+110,OPK,4,0,0,0,0,0,0,0.0,
+111,ORCL,4,0,0,0,0,0,0,0.0,
+112,ORMP,4,0,0,0,0,0,0,0.0,
+113,OSUR,4,0,0,0,0,0,0,0.0,
+114,OTF,4,0,0,0,0,0,0,0.0,
+115,OUST,4,0,0,0,0,0,0,0.0,
+116,OVLY,4,0,0,0,0,0,0,0.0,
+117,PACB,4,0,0,0,0,0,0,0.0,
+118,PAIYY,0,0,0,0,0,0,0,0.0,
+119,PAM,0,0,0,0,0,0,0,0.0,
+120,PAVM,4,0,0,0,0,0,0,0.0,
+121,PAYO,4,0,0,0,0,0,0,0.0,
+122,PDFS,4,0,0,0,0,0,0,0.0,
+123,PEP,4,0,0,0,0,0,0,0.0,
+124,PFX,4,0,0,0,0,0,0,0.0,
+125,PHCI,4,0,0,0,0,0,0,0.0,
+126,PLBC,4,0,0,0,0,0,0,0.0,
+127,PLUG,4,0,0,0,0,0,0,0.0,
+128,PMCB,4,0,0,0,0,0,0,0.0,
+129,PNBK,4,0,0,0,0,0,0,0.0,
+130,POCI,4,0,0,0,0,0,0,0.0,
+131,POST,4,0,0,0,0,0,0,0.0,
+132,PPTA,4,0,0,0,0,0,0,0.0,
+133,PRME,4,0,0,0,0,0,0,0.0,
+134,PRPO,4,0,0,0,0,0,0,0.0,
+135,PSA,4,0,0,0,0,0,0,0.0,
+136,PSUS,0,0,0,0,0,0,0,0.0,
+137,PTLO,4,0,0,0,0,0,0,0.0,
+138,QADRU,1,0,0,0,0,0,0,0.0,
+139,QDEL,4,0,0,0,0,0,0,0.0,
+140,QNBC,4,0,0,0,0,0,0,0.0,
+141,QTRX,4,0,0,0,0,0,0,0.0,
+142,QUCY,1,0,0,0,0,0,0,0.0,
+143,QVCGB,0,0,0,0,0,0,0,0.0,
+144,RAPP,4,0,0,0,0,0,0,0.0,
+145,RCG,0,0,0,0,0,0,0,0.0,
+146,RDGL,4,0,0,0,0,0,0,0.0,
+147,REE,0,0,0,0,0,0,0,0.0,
+148,REGN,4,0,0,0,0,0,0,0.0,
+149,RIG,4,0,0,0,0,0,0,0.0,
+150,RLAY,4,0,0,0,0,0,0,0.0,
+151,RM,4,0,0,0,0,0,0,0.0,
+152,RMTI,4,0,0,0,0,0,0,0.0,
+153,RNTX,4,0,0,0,0,0,0,0.0,
+154,RPD,4,4,0,0,0,0,0,0.0,
+155,RSI,4,0,0,0,0,0,0,0.0,
+156,RVYL,0,0,0,0,0,0,0,0.0,
+157,RYAM,4,0,0,0,0,0,0,0.0,
+158,SABR,4,0,0,0,0,0,0,0.0,
+159,SAIC,4,0,0,0,0,0,0,0.0,
+160,SANA,4,0,0,0,0,0,0,0.0,
+161,SBAC,4,0,0,0,0,0,0,0.0,
+162,SBRA,4,0,0,0,0,0,0,0.0,
+163,SCI,4,0,0,0,0,0,0,0.0,
+164,SCVL,4,0,0,0,0,0,0,0.0,
+165,SDEV,4,0,0,0,0,0,0,0.0,
+166,SEDG,4,0,0,0,0,0,0,0.0,
+167,SELF,4,0,0,0,0,0,0,0.0,
+168,SERA,4,0,0,0,0,0,0,0.0,
+169,SG,4,0,0,0,0,0,0,0.0,
+170,SGRY,4,0,0,0,0,0,0,0.0,
+171,SHIP,0,0,0,0,0,0,0,0.0,
+172,SIDU,4,0,0,0,0,0,0,0.0,
+173,SITE,4,0,0,0,0,0,0,0.0,
+174,SKT,4,0,0,0,0,0,0,0.0,
+175,SLDE,3,0,0,0,0,0,0,0.0,
+176,SLMT,0,0,0,0,0,0,0,0.0,
+177,SLS,4,0,0,0,0,0,0,0.0,
+178,SNDX,4,0,0,0,0,0,0,0.0,
+179,SNPS,4,0,0,0,0,0,0,0.0,
+180,SNYR,4,0,0,0,0,0,0,0.0,
+181,SPHR,4,0,0,0,0,0,0,0.0,
+182,SRTS,4,0,0,0,0,0,0,0.0,
+183,SSTI,4,0,0,0,0,0,0,0.0,
+184,STIM,4,0,0,0,0,0,0,0.0,
+185,STLE,4,0,0,0,0,0,0,0.0,
+186,STRO,4,0,0,0,0,0,0,0.0,
+187,STRZ,4,0,0,0,0,0,0,0.0,
+188,SUI,4,0,0,0,0,0,0,0.0,
+189,SUNE,4,0,0,0,0,0,0,0.0,
+190,SWZ,0,0,0,0,0,0,0,0.0,
+191,TBRG,4,0,0,0,0,0,0,0.0,
+192,TDWDU,2,0,0,0,0,0,0,0.0,
+193,TENX,4,0,0,0,0,0,0,0.0,
+194,TFPM,0,0,0,0,0,0,0,0.0,
+195,TGTX,4,0,0,0,0,0,0,0.0,
+196,THR,4,0,0,0,0,0,0,0.0,
+197,TITN,3,0,0,0,0,0,0,0.0,
+198,TLN,4,0,0,0,0,0,0,0.0,
+199,TMSOF,0,0,0,0,0,0,0,0.0,
+200,TOPS,0,0,0,0,0,0,0,0.0,
+201,TRAX,1,0,0,0,0,0,0,0.0,
+202,TRGSR,1,0,0,0,0,0,0,0.0,
+203,TRON,4,0,0,0,0,0,0,0.0,
+204,TRV,4,4,0,0,0,0,0,0.0,
+205,TSSI,4,0,0,0,0,0,0,0.0,
+206,TULP,4,0,0,0,0,0,0,0.0,
+207,TXN,4,0,0,0,0,0,0,0.0,
+208,UA,4,0,0,0,0,0,0,0.0,
+209,UFPT,4,0,0,0,0,0,0,0.0,
+210,UNH,4,0,0,0,0,0,0,0.0,
+211,UP,4,0,0,0,0,0,0,0.0,
+212,URSB,1,0,0,0,0,0,0,0.0,
+213,USDW,4,0,0,0,0,0,0,0.0,
+214,USNA,4,0,0,0,0,0,0,0.0,
+215,UVE,4,0,0,0,0,0,0,0.0,
+216,VATE,4,0,0,0,0,0,0,0.0,
+217,VFF,4,0,0,0,0,0,0,0.0,
+218,VKI,0,0,0,0,0,0,0,0.0,
+219,VRDN,4,0,0,0,0,0,0,0.0,
+220,VRT,4,0,0,0,0,0,0,0.0,
+221,VTS,4,0,0,0,0,0,0,0.0,
+222,VVOS,4,0,0,0,0,0,0,0.0,
+223,W,4,0,0,0,0,0,0,0.0,
+224,WBI,2,0,0,0,0,0,0,0.0,
+225,WCN,4,0,0,0,0,0,0,0.0,
+226,WELL,4,0,0,0,0,0,0,0.0,
+227,WHWK,4,0,0,0,0,0,0,0.0,
+228,WLDN,4,0,0,0,0,0,0,0.0,
+229,WOOF,4,0,0,0,0,0,0,0.0,
+230,WSBC,4,0,0,0,0,0,0,0.0,
+231,WSTNR,3,0,0,0,0,0,0,0.0,
+232,WTW,4,0,0,0,0,0,0,0.0,
+233,WYFI,3,0,0,0,0,0,0,0.0,
+234,XPL,4,0,0,0,0,0,0,0.0,
+235,XTIA,4,0,0,0,0,0,0,0.0,
+236,XYF,0,0,0,0,0,0,0,0.0,
+237,YYGH,0,0,0,0,0,0,0,0.0,
+238,ZETA,4,0,0,0,0,0,0,0.0,
+239,ZM,4,0,0,0,0,0,0,0.0,
+240,ZSTK,4,0,0,0,0,0,0,0.0,
+241,URBN,3,2,1,1,0,0,0,-2.0,BULLISH terminate sell: an insider (director) [+18] | BEARISH adopt sell: Richard A. Hayne (Chief Executive Officer) [-20]
+242,PFG,4,1,0,1,0,0,0,-3.0,"weak BEARISH adopt sell (small): Kenneth McCullum (Executive Vice President and) 5,130sh [-3]"
+243,SPAI,4,2,0,0,1,0,0,-3.0,neutral terminate (type unknown): an insider (director) [+5] | BEARISH terminate buy: an insider (director) [-8]
+244,OPRX,4,1,0,1,0,0,0,-8.0,"BEARISH adopt sell: Mr. Edward Stelmakh (Chief Financial Officer) 11,120sh [-8]"
+245,PRKS,4,1,0,1,0,0,0,-8.0,"BEARISH adopt sell: Marc Swanson (Chief Executive Officer) 22,948sh [-8]"
+246,XNCR,4,1,0,0,1,0,0,-8.0,BEARISH terminate buy: an insider (director) [-8]
+247,ULS,4,2,0,2,0,0,0,-11.0,"weak BEARISH adopt sell (small): Karen K. Pepping (Senior Vice President and) 5,529sh [-3] | BEARISH adopt sell: Alberto Uggetti (Executive Vice President and) 21,880sh [-8]"
+248,NPB,4,1,0,1,0,0,0,-12.0,"BEARISH adopt sell: David S. Hooker (Director) 89,000sh [-12]"
+249,PVLA,4,1,0,1,0,0,0,-12.0,BEARISH adopt sell: Kathleen Goin (Chief Operating Officer) [-12]
+250,HLF,4,1,0,1,0,0,0,-15.0,"BEARISH adopt sell: Robert Levy (President) 216,524sh [-15]"
+251,MTB,4,6,0,2,0,0,0,-15.0,"weak BEARISH adopt sell (small): Kevin J. Pearson (Vice Chairman) 6,000sh [-3] | BEARISH adopt sell: an insider (director) [-12]"
+252,SYRE,4,3,0,1,0,0,2,-15.0,"BEARISH adopt sell: an insider (director) 100,000sh [-15]"
+253,MSCI,4,1,0,1,0,0,0,-16.0,BEARISH adopt sell: Andrew C. Wiechmann (Chief Financial Officer) [-16]
+254,RGR,4,2,0,2,0,0,0,-16.0,"BEARISH adopt sell: an insider (Senior Vice President) 22,612sh [-8] | BEARISH adopt sell: an insider (?) 20,000sh [-8]"
+255,LBRT,4,1,0,1,0,0,0,-19.0,"BEARISH adopt sell: Michael Stock (Chief Financial Officer) 399,964sh [-19]"
+256,MCO,4,1,0,1,0,0,0,-20.0,"BEARISH adopt sell: an insider (Chief Executive Officer) 43,204sh [-20]"
+257,REPX,4,1,0,1,0,0,0,-20.0,"BEARISH adopt sell: Bobby Riley (Chief Executive Officer) 50,000sh [-20]"
+258,XERS,4,1,0,1,0,0,0,-20.0,"BEARISH adopt sell: Marla Persky (Chairperson) 31,000sh [-20]"
+259,TPR,4,1,0,1,0,0,0,-23.0,"BEARISH adopt sell: Joanne Crevoiserat (Chief Executive Officer) 264,247sh [-23]"
+260,VICR,4,1,0,1,0,0,0,-26.0,"BEARISH adopt sell: Patrizio Vinciarelli (Chairman of the Board) 1,000,000sh [-26]"
+261,ONT,4,2,0,2,0,0,0,-28.0,"BEARISH adopt sell: Allan Dicks (Chief Financial Officer) 89,142sh [-16] | BEARISH adopt sell: Nasym Afsari (General Counsel) 40,027sh [-12]"
+262,ROOT,4,5,0,2,3,0,0,-30.0,"BEARISH terminate buy: an insider (director) [-8] | BEARISH terminate buy: an insider (director) [-8] | BEARISH terminate buy: an insider (director) [-8] | weak BEARISH adopt sell (small): an insider (Director) 2,853sh [-3] | weak BEARISH adopt sell (small): an insider (Director) 8,291sh [-3]"
+263,PLRX,4,2,0,2,0,0,0,-35.0,"BEARISH adopt sell: Bernard Coulie (Chief Executive Officer) 81,756sh [-20] | BEARISH adopt sell: an insider (?) 104,327sh [-15]"
+264,KLAC,4,3,0,3,0,0,0,-36.0,BEARISH adopt sell: Vice President (Chief Legal Officer) [-12] | BEARISH adopt sell: an insider (Director) [-12] | BEARISH adopt sell: Vice President (Chief Legal Officer) [-12]
+265,LENZ,4,2,0,2,0,0,0,-38.0,"BEARISH adopt sell: Evert Schimmelpennink (Chief Executive Officer) 225,000sh [-23] | BEARISH adopt sell: Shawn Olsson (Chief Commercial Officer) 225,000sh [-15]"
+266,LULU,4,2,0,2,0,0,0,-40.0,BEARISH adopt sell: Calvin McDonald (Chief Executive Officer) [-20] | BEARISH adopt sell: Calvin McDonald (Chief Executive Officer) [-20]
+267,INCY,4,5,0,5,0,0,0,-41.0,"BEARISH adopt sell: Thomas Tray (Vice President) 15,000sh [-8] | BEARISH adopt sell: Steven Stein (Executive Vice President and) 187,500sh [-15] | BEARISH adopt sell: Lee Heeson (Executive Vice President and) 69,435sh [-12] | weak BEARISH adopt sell (small): Thomas Tray (Vice President) 3,074sh [-3] | weak BEARISH adopt sell (small): Patrick Mayes (Executive Vice President) 4,143sh [-3]"
+268,LASR,4,2,0,2,0,0,0,-42.0,"BEARISH adopt sell: Joseph Corso (Chief Financial Officer) 156,714sh [-19] | BEARISH adopt sell: Scott Keeney (President and Chief Executive ) 430,868sh [-23]"
+269,VST,4,5,0,5,0,0,0,-43.0,"BEARISH adopt sell: an insider (director) 50,000sh [-12] | BEARISH adopt sell: an insider (Director) 25,000sh [-12] | weak BEARISH adopt sell (small): an insider (Director) 488sh [-3] | BEARISH adopt sell: an insider (Director) 15,000sh [-8] | BEARISH adopt sell: an insider (Director) 19,500sh [-8]"
+270,RIVN,4,3,0,2,0,0,0,-45.0,"BEARISH adopt sell: an insider (Chief Financial Officer) 237,712sh [-19] | BEARISH adopt sell: an insider (Chief Executive Officer) 3,500,000sh [-26]"
+271,RXRX,4,3,0,3,0,0,0,-49.0,"BEARISH adopt sell: an insider (Director) 12,735sh [-8] | BEARISH adopt sell: Ben Taylor (Chief Financial Officer) 3,868,000sh [-22] | BEARISH adopt sell: Ben Taylor (Chief Financial Officer) 299,317sh [-19]"
+272,PRCH,4,6,0,3,0,0,0,-50.0,"BEARISH adopt sell: Matthew Ehrlichman (Chairman and Chief Executive O) 584,998sh [-26] | BEARISH adopt sell: an insider (Director) 40,000sh [-12] | BEARISH adopt sell: an insider (Director) 40,000sh [-12]"
+273,TWLO,4,4,0,4,0,0,0,-50.0,"BEARISH adopt sell: Khozema Shipchandler (Chief Executive Officer) 245,716sh [-23] | BEARISH adopt sell: Aidan Viggiano (Chief Financial Officer) [-16] | weak BEARISH adopt sell (small): Khozema Shipchandler (Chief Executive Officer) 7,000sh [-3] | BEARISH adopt sell: Khozema Shipchandler (Chief Executive Officer) 10,600sh [-8]"
+274,MARA,4,6,0,5,0,0,0,-65.0,"neutral terminate (type unknown): an insider (Director) 21,551sh [+5] | BEARISH adopt sell: Salman Khan (Chief Financial Officer) 21,551sh [-8] | BEARISH adopt sell: Zabi Nowaid (General Counsel) 176,000sh [-15] | BEARISH adopt sell: Fred Thiel (Chief Executive Officer) 357,565sh [-23] | BEARISH adopt sell: Salman Khan (Chief Financial Officer) 13,000sh [-8] | BEARISH adopt sell: Salman Khan (Chief Financial Officer) 33,500sh [-16]"
+275,TARS,4,8,0,8,0,0,0,-71.0,"weak BEARISH adopt sell (small): an insider (Director) 5,187sh [-3] | BEARISH adopt sell: Bobak Azamian (Chief Executive Officer) 24,000sh [-8] | BEARISH adopt sell: Bobak Azamian (Chief Executive Officer) 57,925sh [-20] | BEARISH adopt sell: Bobak Azamian (Chief Executive Officer) 24,000sh [-8] | BEARISH adopt sell: Aziz Mottiwala (Chief Commercial Officer) 24,000sh [-8] | BEARISH adopt sell: Aziz Mottiwala (Chief Commercial Officer) 17,500sh [-8] | BEARISH adopt sell: Bobak Azamian (Chief Executive Officer) 24,000sh [-8] | BEARISH adopt sell: Aziz Mottiwala (Chief Commercial Officer) 24,000sh [-8]"
+276,SVV,4,4,0,4,0,0,0,-73.0,"BEARISH adopt sell: Mark Walsh (Chief Executive Officer) 445,000sh [-23] | BEARISH adopt sell: Michael Maher (Chief Financial Officer) 445,000sh [-19] | BEARISH adopt sell: Richard Medway (General Counsel) 49,742sh [-12] | BEARISH adopt sell: Michael Maher (Chief Financial Officer) 160,000sh [-19]"
+277,LITE,4,9,0,9,0,0,0,-80.0,"BEARISH adopt sell: Pamela Fletcher (director) 12,000sh [-8] | weak BEARISH adopt sell (small): Pamela Fletcher (director) 3,155sh [-3] | BEARISH adopt sell: Jae Kim (Senior Vice President) 38,594sh [-12] | weak BEARISH adopt sell (small): Jae Kim (Senior Vice President) 5,416sh [-3] | BEARISH adopt sell: Wupen Yuen (President) 28,522sh [-12] | BEARISH adopt sell: Vince Retort (President) 105,445sh [-15] | BEARISH adopt sell: Wajid Ali (Chief Financial Officer) 66,265sh [-16] | BEARISH adopt sell: Jae Kim (Senior Vice President) 20,352sh [-8] | BEARISH adopt sell: Wupen Yuen (President) 20,352sh [-8]"
+278,NEE,4,10,0,8,0,0,2,-80.0,"BEARISH adopt sell: Charles E. Sieving (Executive Vice President) 132,184sh [-15] | BEARISH adopt sell: John W. Ketchum (Chairman) 132,184sh [-23] | BEARISH adopt sell: Charles E. Sieving (Executive Vice President) 88,605sh [-12] | BEARISH adopt sell: Ronald Reagan (Executive Vice President Engin) 99,603sh [-12] | weak BEARISH adopt sell (small): Robert Coffey (Executive Vice President Nucle) 7,500sh [-3] | BEARISH adopt sell: Michael Dunne (Executive Vice President and) 10,000sh [-8] | BEARISH adopt sell: Charles E. Sieving (Executive Vice President) 145,140sh [-15] | BEARISH adopt sell: John W. Ketchum (Chairman) 145,120sh [-23]"
+279,VEL,4,10,0,10,0,0,0,-80.0,"BEARISH adopt sell: Jeffrey T. Taylor (Executive Vice President) 25,980sh [-12] | BEARISH adopt sell: Mark R. Szczepaniak (Chief Financial Officer) 25,980sh [-16] | BEARISH adopt sell: Fiona L. Tam (Chief Accounting Officer) 24,000sh [-8] | BEARISH adopt sell: Roland T. Kelly (Chief Legal Officer) 10,000sh [-8] | BEARISH adopt sell: Jeffrey T. Taylor (Executive Vice President) 21,250sh [-8] | BEARISH adopt sell: Mark R. Szczepaniak (Chief Financial Officer) 21,250sh [-8] | BEARISH adopt sell: Jeffrey T. Taylor (Executive Vice President) 21,250sh [-8] | BEARISH adopt sell: Mark R. Szczepaniak (Chief Financial Officer) 21,250sh [-8] | BEARISH adopt sell: Jeffrey T. Taylor (Executive Vice President) 21,250sh [-8] | BEARISH adopt sell: Mark R. Szczepaniak (Chief Financial Officer) 21,250sh [-8]"

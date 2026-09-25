@@ -1,0 +1,1242 @@
+ticker,kind,filing_date,score,mcap_M,p_b,reasons
+CMLSQ,NOL_SHELL,2026-03-05,70.0,0.0,-0.0003314917,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+PRTS,NOL_SHELL,2026-05-11,63.0,56.0,0.93965167,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+TSEOF,NOL_SHELL,2026-05-26,55.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+FUBO,RESTRUCT_8K,2026-01-07,48.0,286.0,0.35272792,8-K restructuring/debt-haircut keyword hit; microcap $286M; P/B 0.35; PSU.merger_acquisition_close; gov 15.0
+WBD,RESTRUCT_8K,2026-05-27,46.0,66590.0,1.8338742,8-K restructuring/debt-haircut keyword hit; PSU 70%LTI; live TARGET 14D-9
+XTIA,SPAC_TRUST_ARB,,45.0,,,trading near/below assumed trust NAV ($10.10) 
+RXT,SPAC_TRUST_ARB,,45.0,,,trading near/below assumed trust NAV ($10.10) 
+FSK,RESTRUCT_8K,2025-12-23,40.0,0.0,,8-K restructuring/debt-haircut keyword hit; live TARGET 14D-9
+RPAY,RESTRUCT_8K,2026-06-15,39.0,294.0,0.5637131,8-K restructuring/debt-haircut keyword hit; microcap $294M; P/B 0.56; PSU 75%LTI; gov 15.0
+CTEV,RESTRUCT_8K,2026-02-23,36.0,527.0,-2.177806,8-K restructuring/debt-haircut keyword hit; microcap $527M; PSU.ebitda_dollar_target; PSU.revenue_dollar_target
+EBS,RESTRUCT_8K,2026-04-17,36.0,429.0,0.82392555,8-K restructuring/debt-haircut keyword hit; microcap $429M; P/B 0.82; PSU.fda_phase_milestone
+CIK0002117580,FORM_10_SPINOFF,2026-06-16,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002097887,FORM_10_SPINOFF,2026-06-16,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002121708,FORM_10_SPINOFF,2026-05-15,35.0,0.0,,Form 10-12B spinoff registration
+CIK0001772918,FORM_10_SPINOFF,2026-05-15,35.0,0.0,,Form 10-12B spinoff registration
+SPQS,FORM_10_SPINOFF,2026-05-14,35.0,0.0,,Form 10-12B spinoff registration
+BRLL,FORM_10_SPINOFF,2026-05-08,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002089975,FORM_10_SPINOFF,2026-04-24,35.0,0.0,,Form 10-12B spinoff registration
+ILXP,FORM_10_SPINOFF,2026-04-09,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002107762,FORM_10_SPINOFF,2026-04-09,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002102386,FORM_10_SPINOFF,2026-04-01,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002066811,FORM_10_SPINOFF,2026-03-31,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002033382,FORM_10_SPINOFF,2026-03-31,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002108121,FORM_10_SPINOFF,2026-03-27,35.0,0.0,,Form 10-12B spinoff registration
+LEEEF,FORM_10_SPINOFF,2026-03-26,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002082557,FORM_10_SPINOFF,2026-03-24,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002082559,FORM_10_SPINOFF,2026-03-24,35.0,0.0,,Form 10-12B spinoff registration
+HYOR,FORM_10_SPINOFF,2026-03-23,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002107057,FORM_10_SPINOFF,2026-03-19,35.0,0.0,,Form 10-12B spinoff registration
+CSDX,FORM_10_SPINOFF,2026-03-12,35.0,0.0,,Form 10-12B spinoff registration
+CIK0001289047,FORM_10_SPINOFF,2026-03-05,35.0,0.0,,Form 10-12B spinoff registration
+RITE,FORM_10_SPINOFF,2026-03-04,35.0,0.0,,Form 10-12B spinoff registration
+CIK0001984739,FORM_10_SPINOFF,2026-03-04,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002096330,FORM_10_SPINOFF,2026-02-18,35.0,0.0,,Form 10-12B spinoff registration
+AGGID,FORM_10_SPINOFF,2026-02-13,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002061174,FORM_10_SPINOFF,2026-02-12,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002083477,FORM_10_SPINOFF,2026-02-03,35.0,0.0,,Form 10-12B spinoff registration
+CIK0000095572,FORM_10_SPINOFF,2026-01-23,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002095486,FORM_10_SPINOFF,2026-01-15,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002025369,FORM_10_SPINOFF,2026-01-05,35.0,0.0,,Form 10-12B spinoff registration
+CIK0001938649,FORM_10_SPINOFF,2025-12-19,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002082015,FORM_10_SPINOFF,2025-12-19,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002074450,FORM_10_SPINOFF,2025-12-19,35.0,0.0,,Form 10-12B spinoff registration
+ZICX,FORM_10_SPINOFF,2025-12-16,35.0,0.0,,Form 10-12B spinoff registration
+SPST,FORM_10_SPINOFF,2025-12-15,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002046946,FORM_10_SPINOFF,2025-12-15,35.0,0.0,,Form 10-12B spinoff registration
+GTAO,FORM_10_SPINOFF,2025-12-09,35.0,0.0,,Form 10-12B spinoff registration
+FCCI,FORM_10_SPINOFF,2025-12-09,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002089126,FORM_10_SPINOFF,2025-12-05,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002027033,FORM_10_SPINOFF,2025-12-05,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002081628,FORM_10_SPINOFF,2025-11-25,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002085428,FORM_10_SPINOFF,2025-11-05,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002035713,FORM_10_SPINOFF,2025-11-04,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002082826,FORM_10_SPINOFF,2025-10-16,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002073537,FORM_10_SPINOFF,2025-10-15,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002043133,FORM_10_SPINOFF,2025-10-10,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002032020,FORM_10_SPINOFF,2025-09-29,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002077250,FORM_10_SPINOFF,2025-09-26,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002073653,FORM_10_SPINOFF,2025-09-26,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002079966,FORM_10_SPINOFF,2025-09-24,35.0,0.0,,Form 10-12B spinoff registration
+CIK0001953940,FORM_10_SPINOFF,2025-09-23,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002075239,FORM_10_SPINOFF,2025-09-19,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002075109,FORM_10_SPINOFF,2025-09-19,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002033362,FORM_10_SPINOFF,2025-09-19,35.0,0.0,,Form 10-12B spinoff registration
+MDLK,FORM_10_SPINOFF,2025-09-18,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002052153,FORM_10_SPINOFF,2025-09-09,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002052152,FORM_10_SPINOFF,2025-09-09,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002074065,FORM_10_SPINOFF,2025-08-22,35.0,0.0,,Form 10-12B spinoff registration
+CIK0001997284,FORM_10_SPINOFF,2025-08-15,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002069692,FORM_10_SPINOFF,2025-08-08,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002065337,FORM_10_SPINOFF,2025-08-06,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002012139,FORM_10_SPINOFF,2025-08-04,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002071136,FORM_10_SPINOFF,2025-08-01,35.0,0.0,,Form 10-12B spinoff registration
+CIK0002045370,FORM_10_SPINOFF,2025-07-28,35.0,0.0,,Form 10-12B spinoff registration
+AMCX,RESTRUCT_8K,2026-02-23,35.0,436.0,0.45617583,8-K restructuring/debt-haircut keyword hit; microcap $436M; P/B 0.46
+KUST,RESTRUCT_8K,2025-12-22,35.0,1.0,0.20856337,8-K restructuring/debt-haircut keyword hit; microcap $1M; P/B 0.21
+CCO,ACTIVIST_13D,2026-06-11,35.0,1227.0,-0.34816527,
+JBLU,ACTIVIST_13D,2026-06-09,35.0,1715.0,0.94758487,
+GTX,ACTIVIST_13D,2026-05-22,35.0,6405.0,-8.22476,
+PAR,ACTIVIST_13D,2026-05-18,35.0,558.0,0.6752845,
+BATL,ACTIVIST_13D,2026-05-15,35.0,45.0,-1.0336176,
+BYND,RESTRUCT_8K,2025-12-23,31.0,351.0,-14.810869,8-K restructuring/debt-haircut keyword hit; microcap $351M; PSU 83%LTI; gov 18.0
+DVA,RESTRUCT_8K,2026-06-08,31.0,12743.0,-17.392904,8-K restructuring/debt-haircut keyword hit; PSU 75%LTI; buyback EXECUTING -9.1%
+SD,NOL_SHELL,2026-06-16,30.0,556.0,1.053184,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+RGS,NOL_SHELL,2025-10-30,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+CIK0001822250,NOL_SHELL,2025-08-07,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+TTI,NOL_SHELL,2026-05-26,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+ENZN,NOL_SHELL,2026-05-05,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+HRTX,NOL_SHELL,2026-06-16,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+SOUNW,NOL_SHELL,2026-04-21,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+LOGC,NOL_SHELL,2026-01-20,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+LPSN,NOL_SHELL,2025-10-08,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+GEGGL,NOL_SHELL,2026-01-07,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+BMNM,NOL_SHELL,2025-12-10,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+LXU,NOL_SHELL,2025-10-30,30.0,859.0,1.5804104,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+QVCGQ,NOL_SHELL,2026-04-17,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+GBTG,NOL_SHELL,2025-11-10,30.0,4870.0,3.0334525,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+CIK0001758057,NOL_SHELL,2026-01-05,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+FRBT,NOL_SHELL,2026-06-12,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+NINE,NOL_SHELL,2026-02-02,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+NOTV,NOL_SHELL,2026-06-03,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+CIK0001842356,NOL_SHELL,2025-07-21,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+WOLF,NOL_SHELL,2025-07-01,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+CIK0001389002,NOL_SHELL,2025-08-04,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+LSF,NOL_SHELL,2025-12-22,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+IBCP,NOL_SHELL,2026-03-18,30.0,717.0,1.4029676,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+Q,NOL_SHELL,2025-10-15,30.0,31537.0,4.392,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+CEG,NOL_SHELL,2025-12-09,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+USGO,NOL_SHELL,2026-03-19,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+CTGO,NOL_SHELL,2026-02-11,30.0,0.0,,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+SOLS,NOL_SHELL,2025-10-17,30.0,13190.0,8.875828,Tax Benefits Preservation Rights Plan adoption -- likely material NOL carryforward
+AGO,RESTRUCT_8K,2026-03-23,29.0,3364.0,0.61095655,8-K restructuring/debt-haircut keyword hit; P/B 0.61; organic shrink -7.0%
+PRGO,RESTRUCT_8K,2026-03-23,29.0,1469.0,0.58665854,8-K restructuring/debt-haircut keyword hit; P/B 0.59; PSU 87%LTI
+BV,RESTRUCT_8K,2026-05-05,29.0,1199.0,0.96963763,8-K restructuring/debt-haircut keyword hit; P/B 0.97; organic shrink -1.8%
+GOSS,RESTRUCT_8K,2026-06-17,28.0,79.0,-0.23531976,8-K restructuring/debt-haircut keyword hit; microcap $79M; PSU.fda_phase_milestone
+CMCO,RESTRUCT_8K,2026-02-04,28.0,399.0,0.59663504,8-K restructuring/debt-haircut keyword hit; microcap $399M; P/B 0.60
+CCO,RESTRUCT_8K,2026-02-09,28.0,1227.0,-0.34816527,8-K restructuring/debt-haircut keyword hit; PSU.asset_sale_named; gov 15.0
+ORMP,RESTRUCT_8K,2026-01-14,28.0,158.0,0.66472,8-K restructuring/debt-haircut keyword hit; microcap $158M; P/B 0.66
+FDP,RESTRUCT_8K,2026-02-12,28.0,1370.0,0.6801515,8-K restructuring/debt-haircut keyword hit; P/B 0.68; gov 15.0
+BCO,RESTRUCT_8K,2026-04-06,27.0,4224.0,16.129894,8-K restructuring/debt-haircut keyword hit; PSU 75%LTI; organic shrink -1.7%
+MMS,RESTRUCT_8K,2026-05-28,26.0,3207.0,1.910522,8-K restructuring/debt-haircut keyword hit; PSU 88%LTI; gov 15.0
+TSEOF,RESTRUCT_8K,2026-05-14,25.0,0.0,,8-K restructuring/debt-haircut keyword hit; microcap $0M; gov 15.0
+GF,ACTIVIST_13D,2026-06-16,25.0,0.0,,
+MXF,ACTIVIST_13D,2026-06-16,25.0,0.0,,
+GDV-PK,ACTIVIST_13D,2026-06-15,25.0,0.0,,
+CVEO,ACTIVIST_13D,2026-06-15,25.0,0.0,,
+MASI,ACTIVIST_13D,2026-06-11,25.0,9424.0,11.944905,
+UTI,ACTIVIST_13D,2026-06-10,25.0,0.0,,
+HHH,ACTIVIST_13D,2026-06-08,25.0,3950.0,1.0355932,
+AUPH,ACTIVIST_13D,2026-06-04,25.0,2029.0,3.635107,
+HFRO-PA,ACTIVIST_13D,2026-06-04,25.0,0.0,,
+GLQ,ACTIVIST_13D,2026-06-04,25.0,0.0,,
+ECAT,ACTIVIST_13D,2026-06-03,25.0,0.0,,
+SNNUF,ACTIVIST_13D,2026-06-03,25.0,0.0,,
+QRVO,ACTIVIST_13D,2026-06-02,25.0,0.0,,
+NNBR,ACTIVIST_13D,2026-05-29,25.0,0.0,,
+GF,ACTIVIST_13D,2026-05-28,25.0,0.0,,
+MXF,ACTIVIST_13D,2026-05-28,25.0,0.0,,
+ASA,ACTIVIST_13D,2026-05-28,25.0,0.0,,
+MCFT,ACTIVIST_13D,2026-05-19,25.0,562.0,1.9994833,
+GPGI,RESTRUCT_8K,2026-01-14,23.0,3339.0,1.0715282,8-K restructuring/debt-haircut keyword hit; PSU.spin_separation
+BXMT,RESTRUCT_8K,2026-05-19,23.0,3100.0,0.92102623,8-K restructuring/debt-haircut keyword hit; P/B 0.92
+SATS,RESTRUCT_8K,2026-03-19,23.0,33842.0,5.9986644,8-K restructuring/debt-haircut keyword hit; PSU.merger_acquisition_close
+ARRY,RESTRUCT_8K,2026-02-18,23.0,1195.0,-5.573888,8-K restructuring/debt-haircut keyword hit; PSU.ebitda_dollar_target
+APG,RESTRUCT_8K,2026-05-18,23.0,18923.0,5.42811,8-K restructuring/debt-haircut keyword hit; PSU.ebitda_dollar_target
+THR,RESTRUCT_8K,2026-02-24,23.0,2014.0,3.7278216,8-K restructuring/debt-haircut keyword hit; PSU.ebitda_dollar_target
+BTU,RESTRUCT_8K,2026-06-15,23.0,3198.0,0.91458744,8-K restructuring/debt-haircut keyword hit; P/B 0.91
+CNM,RESTRUCT_8K,2026-04-10,23.0,9881.0,4.552905,8-K restructuring/debt-haircut keyword hit; PSU.ebitda_dollar_target
+AHCO,RESTRUCT_8K,2026-04-13,23.0,1335.0,0.86622524,8-K restructuring/debt-haircut keyword hit; P/B 0.87
+PRMB,RESTRUCT_8K,2026-04-01,23.0,8763.0,2.9639175,8-K restructuring/debt-haircut keyword hit; PSU.merger_acquisition_close
+BLCO,RESTRUCT_8K,2026-01-02,23.0,5377.0,0.84250516,8-K restructuring/debt-haircut keyword hit; P/B 0.84
+ACH,RESTRUCT_8K,2026-05-22,21.0,0.0,,8-K restructuring/debt-haircut keyword hit; PSU 75%LTI
+IQV,RESTRUCT_8K,2026-06-11,21.0,31085.0,4.996781,8-K restructuring/debt-haircut keyword hit; organic shrink -3.2%
+WOLF,RESTRUCT_8K,2026-03-26,21.0,0.0,,8-K restructuring/debt-haircut keyword hit; PSU 90%LTI
+OGN,RESTRUCT_8K,2026-04-27,21.0,3525.0,3.9048867,8-K restructuring/debt-haircut keyword hit; PSU 70%LTI
+ECPG,RESTRUCT_8K,2026-05-26,21.0,1770.0,1.715455,8-K restructuring/debt-haircut keyword hit; PSU 75%LTI
+ASTS,RESTRUCT_8K,2026-05-11,21.0,34431.0,12.732883,8-K restructuring/debt-haircut keyword hit; organic shrink -18.1%
+MUR,RESTRUCT_8K,2026-01-06,21.0,5297.0,1.0387968,8-K restructuring/debt-haircut keyword hit; PSU 80%LTI
+PENN,RESTRUCT_8K,2026-04-16,21.0,2902.0,1.5068113,8-K restructuring/debt-haircut keyword hit; PSU 70%LTI
+CMPR,RESTRUCT_8K,2026-06-04,21.0,2227.0,-4.247747,8-K restructuring/debt-haircut keyword hit; PSU 75%LTI
+LITE,RESTRUCT_8K,2025-12-22,21.0,63933.0,69.30589,8-K restructuring/debt-haircut keyword hit; PSU 70%LTI
+BZH,RESTRUCT_8K,2026-03-17,21.0,0.0,,8-K restructuring/debt-haircut keyword hit; PSU 71%LTI
+GTE,RESTRUCT_8K,2026-03-06,20.0,288.0,2.6419995,8-K restructuring/debt-haircut keyword hit; microcap $288M
+SNTI,RESTRUCT_8K,2026-05-01,20.0,28.0,5.0038676,8-K restructuring/debt-haircut keyword hit; microcap $28M
+CPS,RESTRUCT_8K,2026-03-04,20.0,529.0,-4.585066,8-K restructuring/debt-haircut keyword hit; microcap $529M
+BIRD,RESTRUCT_8K,2026-04-20,20.0,32.0,1.9698601,8-K restructuring/debt-haircut keyword hit; microcap $32M
+CMLSQ,RESTRUCT_8K,2026-03-05,20.0,0.0,-0.0003314917,8-K restructuring/debt-haircut keyword hit; microcap $0M
+SITE,RESTRUCT_8K,2026-04-27,20.0,0.0,,8-K restructuring/debt-haircut keyword hit; gov 15.0
+ENTG,RESTRUCT_8K,2026-04-29,20.0,20462.0,5.0532217,8-K restructuring/debt-haircut keyword hit; gov 18.0
+ALSN,RESTRUCT_8K,2026-01-02,20.0,9733.0,5.120206,8-K restructuring/debt-haircut keyword hit; gov 15.0
+ATEC,RESTRUCT_8K,2026-05-05,20.0,1255.0,-233.14285,8-K restructuring/debt-haircut keyword hit; gov 20.0
+NXST,RESTRUCT_8K,2026-03-30,20.0,5484.0,2.5293686,8-K restructuring/debt-haircut keyword hit; gov 15.0
+HNI,RESTRUCT_8K,2026-06-10,20.0,2383.0,1.3435622,8-K restructuring/debt-haircut keyword hit; gov 15.0
+TTMI,RESTRUCT_8K,2026-06-03,20.0,0.0,,8-K restructuring/debt-haircut keyword hit; gov 15.0
+CRC,RESTRUCT_8K,2026-04-17,20.0,0.0,,8-K restructuring/debt-haircut keyword hit; gov 15.0
+ZSQR,RESTRUCT_8K,2026-06-01,20.0,531.0,,8-K restructuring/debt-haircut keyword hit; microcap $531M
+EPSN,RESTRUCT_8K,2026-01-13,20.0,179.0,1.4445797,8-K restructuring/debt-haircut keyword hit; microcap $179M
+GTM,ACTIVIST_13D,2026-06-16,20.0,796.0,0.5424955,
+LLYVK,ACTIVIST_13D,2026-06-15,20.0,9157.0,-28.82421,
+BLND,ACTIVIST_13D,2026-06-12,20.0,409.0,-7.4778767,
+SIRI,ACTIVIST_13D,2026-06-10,20.0,9264.0,0.7882225,
+LAB,ACTIVIST_13D,2026-06-09,20.0,348.0,0.61731577,
+HCAT,ACTIVIST_13D,2026-06-08,20.0,137.0,0.98772025,
+QMCO,ACTIVIST_13D,2026-06-08,20.0,201.0,-1.054166,
+CLMT,ACTIVIST_13D,2026-06-05,20.0,3020.0,-2.891114,
+RPAY,ACTIVIST_13D,2026-06-04,20.0,294.0,0.5637131,
+RPAY,ACTIVIST_13D,2026-06-03,20.0,294.0,0.5637131,
+DOMO,ACTIVIST_13D,2026-06-03,20.0,142.0,-0.71868587,
+SNBR,ACTIVIST_13D,2026-06-01,20.0,9.0,-0.014359842,
+RPAY,ACTIVIST_13D,2026-05-27,20.0,294.0,0.5637131,
+FLGT,ACTIVIST_13D,2026-05-27,20.0,531.0,0.51337016,
+PRCH,ACTIVIST_13D,2026-05-27,20.0,1043.0,-39.708332,
+HFFG,ACTIVIST_13D,2026-05-26,20.0,98.0,0.48054323,
+BATL,ACTIVIST_13D,2026-05-22,20.0,45.0,-1.0336176,
+ARAY,ACTIVIST_13D,2026-05-22,20.0,38.0,0.9116809,
+MERC,ACTIVIST_13D,2026-05-21,20.0,67.0,-12.108434,
+IRD,ACTIVIST_13D,2026-05-20,20.0,321.0,-6.05919,
+RPAY,ACTIVIST_13D,2026-05-18,20.0,294.0,0.5637131,
+CASIF,ACTIVIST_13D,2026-05-18,20.0,2.0,-0.055126794,
+BLND,ACTIVIST_13D,2026-05-15,20.0,409.0,-7.4778767,
+PSKY,RESTRUCT_8K,2026-05-19,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+BHC,RESTRUCT_8K,2025-12-23,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+SABR,RESTRUCT_8K,2025-12-23,15.0,692.0,-0.6648936,8-K restructuring/debt-haircut keyword hit
+ADV,RESTRUCT_8K,2026-03-11,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+CIK0001193311,RESTRUCT_8K,2026-03-20,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+BBGI,RESTRUCT_8K,2026-04-29,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+CIK0002066811,RESTRUCT_8K,2026-04-07,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+TPTA,RESTRUCT_8K,2026-06-11,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+UONEK,RESTRUCT_8K,2026-03-17,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+MVIS,RESTRUCT_8K,2026-02-24,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+CEG,RESTRUCT_8K,2026-01-15,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+AMC,RESTRUCT_8K,2026-02-13,15.0,1765.0,-0.73515546,8-K restructuring/debt-haircut keyword hit
+ADTX,RESTRUCT_8K,2026-06-09,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+WMG,RESTRUCT_8K,2026-03-11,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+CDE,RESTRUCT_8K,2026-03-23,15.0,16581.0,1.5986091,8-K restructuring/debt-haircut keyword hit
+CVSI,RESTRUCT_8K,2026-03-10,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+CIK0001930087,RESTRUCT_8K,2026-01-29,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+CIK0001812554,RESTRUCT_8K,2026-06-11,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+TBH,RESTRUCT_8K,2026-05-08,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+NE-WT,RESTRUCT_8K,2026-06-01,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+MDLN,RESTRUCT_8K,2026-06-02,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+VST,RESTRUCT_8K,2026-01-27,15.0,49303.0,18.859797,8-K restructuring/debt-haircut keyword hit
+QXO-PB,RESTRUCT_8K,2026-06-17,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+CIK0001916099,RESTRUCT_8K,2026-03-27,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+PAVM,RESTRUCT_8K,2026-02-04,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+TH,RESTRUCT_8K,2025-12-29,15.0,1637.0,4.368855,8-K restructuring/debt-haircut keyword hit
+NVACW,RESTRUCT_8K,2026-04-06,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+BWIN,RESTRUCT_8K,2026-01-02,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+NRG,RESTRUCT_8K,2026-04-28,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+KIDZW,RESTRUCT_8K,2026-05-29,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+WHR-PA,RESTRUCT_8K,2026-06-16,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+IPW,RESTRUCT_8K,2026-05-19,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+UGRO,RESTRUCT_8K,2026-04-14,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+SPWRW,RESTRUCT_8K,2026-04-22,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+CIK0001859919,RESTRUCT_8K,2026-05-27,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+LFWD,RESTRUCT_8K,2026-01-13,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+PRM,RESTRUCT_8K,2026-01-02,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+CIK0001838126,RESTRUCT_8K,2026-03-26,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+TCPC,RESTRUCT_8K,2026-06-01,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+LRHC,RESTRUCT_8K,2026-01-09,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+MEHA,RESTRUCT_8K,2026-03-13,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+CBLO,RESTRUCT_8K,2026-06-02,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+NXXT,RESTRUCT_8K,2026-04-10,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+NXGLW,RESTRUCT_8K,2026-02-11,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+HLF,RESTRUCT_8K,2026-05-01,15.0,1171.0,-2.6463702,8-K restructuring/debt-haircut keyword hit
+FNGR,RESTRUCT_8K,2026-05-14,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+PHXE-P,RESTRUCT_8K,2026-02-13,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+GAMG,RESTRUCT_8K,2026-03-24,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+SHC,RESTRUCT_8K,2026-05-20,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+CIK0001634452,RESTRUCT_8K,2025-12-23,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+CIK0002044112,RESTRUCT_8K,2026-02-20,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+FFAIW,RESTRUCT_8K,2026-04-16,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+VACHW,RESTRUCT_8K,2026-05-29,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+GNVR,RESTRUCT_8K,2026-04-22,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+BNZIW,RESTRUCT_8K,2026-02-13,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+MITI,RESTRUCT_8K,2026-02-27,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+CIK0001982701,RESTRUCT_8K,2026-02-13,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+TDG,RESTRUCT_8K,2026-02-13,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+QVCGQ,RESTRUCT_8K,2026-04-17,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+MRVI,RESTRUCT_8K,2026-06-03,15.0,1881.0,3.5564852,8-K restructuring/debt-haircut keyword hit
+MAIR,RESTRUCT_8K,2026-06-05,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+COMP,RESTRUCT_8K,2026-01-09,15.0,6104.0,2.1619475,8-K restructuring/debt-haircut keyword hit
+CIK0001918712,RESTRUCT_8K,2025-12-22,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+SDSTW,RESTRUCT_8K,2025-12-31,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+VNRX,RESTRUCT_8K,2026-01-08,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+WMS,RESTRUCT_8K,2026-02-27,15.0,10393.0,5.3039126,8-K restructuring/debt-haircut keyword hit
+VTOL,RESTRUCT_8K,2026-01-27,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+PFGC,RESTRUCT_8K,2026-02-19,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+VSAT,RESTRUCT_8K,2026-01-26,15.0,8732.0,1.9003744,8-K restructuring/debt-haircut keyword hit
+OTF,RESTRUCT_8K,2025-12-22,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+WCC,RESTRUCT_8K,2026-02-27,15.0,16277.0,3.231793,8-K restructuring/debt-haircut keyword hit
+W,RESTRUCT_8K,2026-05-18,15.0,9064.0,-3.2172976,8-K restructuring/debt-haircut keyword hit
+OTLC,RESTRUCT_8K,2026-01-29,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+HLT,RESTRUCT_8K,2026-05-11,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+RUMBW,RESTRUCT_8K,2026-06-17,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+FVNNR,RESTRUCT_8K,2026-01-20,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+BBBY-WT,RESTRUCT_8K,2026-04-02,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+PLMKU,RESTRUCT_8K,2026-03-12,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+DAAQU,RESTRUCT_8K,2026-01-13,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+HCACR,RESTRUCT_8K,2026-06-03,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+CSTUF,RESTRUCT_8K,2026-04-09,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+TACHU,RESTRUCT_8K,2026-06-01,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+DBRG-PJ,RESTRUCT_8K,2026-05-27,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+LUMN,RESTRUCT_8K,2026-05-14,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+ENHA,RESTRUCT_8K,2026-05-08,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+NOTV,RESTRUCT_8K,2026-05-18,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+SSP,RESTRUCT_8K,2026-05-06,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+CIK0001758057,RESTRUCT_8K,2026-01-05,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+ALISU,RESTRUCT_8K,2026-03-09,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+TFX,RESTRUCT_8K,2026-05-27,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+QVCDQ,RESTRUCT_8K,2026-04-17,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+NINE,RESTRUCT_8K,2026-02-02,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+FLYYQ,RESTRUCT_8K,2026-03-16,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+NFE,RESTRUCT_8K,2026-05-12,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+CIK0001220754,RESTRUCT_8K,2025-12-29,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+OPITQ,RESTRUCT_8K,2026-04-28,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+CIK0000846475,RESTRUCT_8K,2026-03-20,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+CIK0001159167,RESTRUCT_8K,2026-01-26,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+VREOD,RESTRUCT_8K,2026-03-25,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+BGS,RESTRUCT_8K,2026-01-16,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+CP,RESTRUCT_8K,2026-03-25,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+RILYZ,RESTRUCT_8K,2026-02-10,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+KLXE,RESTRUCT_8K,2026-06-02,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+ACDC,RESTRUCT_8K,2026-03-09,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+USFD,RESTRUCT_8K,2026-06-02,15.0,20551.0,4.7775555,8-K restructuring/debt-haircut keyword hit
+BSY,RESTRUCT_8K,2026-04-27,15.0,10059.0,8.450741,8-K restructuring/debt-haircut keyword hit
+GENVR,RESTRUCT_8K,2026-03-27,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+MZTI,RESTRUCT_8K,2026-05-01,15.0,3017.0,2.8874018,8-K restructuring/debt-haircut keyword hit
+PBI-PB,RESTRUCT_8K,2026-05-19,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+DK,RESTRUCT_8K,2026-04-10,15.0,2942.0,55.95571,8-K restructuring/debt-haircut keyword hit
+CIFR,RESTRUCT_8K,2026-03-25,15.0,9422.0,13.073213,8-K restructuring/debt-haircut keyword hit
+PUMP,RESTRUCT_8K,2026-05-04,15.0,1848.0,1.8941679,8-K restructuring/debt-haircut keyword hit
+IBP,RESTRUCT_8K,2026-01-06,15.0,5435.0,8.091934,8-K restructuring/debt-haircut keyword hit
+NVRI,RESTRUCT_8K,2026-06-01,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+BE,RESTRUCT_8K,2025-12-23,15.0,73844.0,80.0771,8-K restructuring/debt-haircut keyword hit
+XPO,RESTRUCT_8K,2026-06-01,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+BYD,RESTRUCT_8K,2026-01-21,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+SM,RESTRUCT_8K,2026-03-04,15.0,7871.0,1.1457789,8-K restructuring/debt-haircut keyword hit
+BSQKZ,RESTRUCT_8K,2026-01-14,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+BALY,RESTRUCT_8K,2026-02-17,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+KNF,RESTRUCT_8K,2026-05-18,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+TIPT,RESTRUCT_8K,2026-05-29,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+PRPL,RESTRUCT_8K,2026-03-31,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+ASPI,RESTRUCT_8K,2026-03-24,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+OCAC-UN,RESTRUCT_8K,2026-06-17,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+OHACR,RESTRUCT_8K,2026-05-29,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+CHUC,RESTRUCT_8K,2026-05-21,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+JAB,RESTRUCT_8K,2026-06-17,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+FMACU,RESTRUCT_8K,2026-04-03,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+NBRGU,RESTRUCT_8K,2026-02-05,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+CIK0001692951,RESTRUCT_8K,2026-03-06,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+APURU,RESTRUCT_8K,2026-05-29,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+QLEP-UN,RESTRUCT_8K,2026-05-11,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+PLUN-UN,RESTRUCT_8K,2026-05-06,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+BREZU,RESTRUCT_8K,2026-06-02,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+TWLVR,RESTRUCT_8K,2025-12-22,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+MTNE-UN,RESTRUCT_8K,2026-05-08,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+BRKHU,RESTRUCT_8K,2026-06-02,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+MCAHU,RESTRUCT_8K,2026-05-07,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+OTAI-UN,RESTRUCT_8K,2026-05-15,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+VECA-RI,RESTRUCT_8K,2026-05-14,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+BRUNW,RESTRUCT_8K,2026-05-14,15.0,0.0,,8-K restructuring/debt-haircut keyword hit
+HSPTU,ACTIVIST_13D,2026-06-17,10.0,0.0,,
+BNBX,ACTIVIST_13D,2026-06-17,10.0,0.0,,
+NRDY,ACTIVIST_13D,2026-06-17,10.0,190.0,6.4727273,
+SDEV,ACTIVIST_13D,2026-06-17,10.0,0.0,,
+SDEV,ACTIVIST_13D,2026-06-17,10.0,0.0,,
+NNDM,ACTIVIST_13D,2026-06-17,10.0,0.0,,
+SAH,ACTIVIST_13D,2026-06-17,10.0,2674.0,2.7304118,
+LSAK,ACTIVIST_13D,2026-06-17,10.0,404.0,2.0354366,
+LCUT,ACTIVIST_13D,2026-06-17,10.0,209.0,1.0589052,
+LPRO,ACTIVIST_13D,2026-06-17,10.0,0.0,,
+CMTL,ACTIVIST_13D,2026-06-17,10.0,0.0,,
+CTNT,ACTIVIST_13D,2026-06-17,10.0,0.0,,
+SATS,ACTIVIST_13D,2026-06-17,10.0,33842.0,5.9986644,
+CPAC,ACTIVIST_13D,2026-06-17,10.0,0.0,,
+ELVN,ACTIVIST_13D,2026-06-17,10.0,0.0,,
+TDC,ACTIVIST_13D,2026-06-17,10.0,0.0,,
+CSHRW,ACTIVIST_13D,2026-06-16,10.0,0.0,,
+PHGE,ACTIVIST_13D,2026-06-16,10.0,0.0,,
+ENHA,ACTIVIST_13D,2026-06-16,10.0,0.0,,
+LPRO,ACTIVIST_13D,2026-06-16,10.0,0.0,,
+FOX,ACTIVIST_13D,2026-06-16,10.0,25644.0,2.3411844,
+KW,ACTIVIST_13D,2026-06-16,10.0,1523.0,2.0222015,
+EDSA,ACTIVIST_13D,2026-06-16,10.0,0.0,,
+RPRX,ACTIVIST_13D,2026-06-16,10.0,0.0,,
+PAYO,ACTIVIST_13D,2026-06-16,10.0,2233.0,3.4187596,
+KNOP,ACTIVIST_13D,2026-06-16,10.0,0.0,,
+DNUT,ACTIVIST_13D,2026-06-16,10.0,0.0,,
+ANTA,ACTIVIST_13D,2026-06-16,10.0,0.0,,
+MTA,ACTIVIST_13D,2026-06-16,10.0,0.0,,
+BTDR,ACTIVIST_13D,2026-06-16,10.0,0.0,,
+MBAVW,ACTIVIST_13D,2026-06-16,10.0,0.0,,
+AFYA,ACTIVIST_13D,2026-06-16,10.0,0.0,,
+KW,ACTIVIST_13D,2026-06-16,10.0,1523.0,2.0222015,
+YYGH,ACTIVIST_13D,2026-06-16,10.0,0.0,,
+CMTL,ACTIVIST_13D,2026-06-16,10.0,0.0,,
+VISM,ACTIVIST_13D,2026-06-15,10.0,0.0,,
+NEGG,ACTIVIST_13D,2026-06-15,10.0,0.0,,
+NPK,ACTIVIST_13D,2026-06-15,10.0,0.0,,
+MEGL,ACTIVIST_13D,2026-06-15,10.0,0.0,,
+MEGL,ACTIVIST_13D,2026-06-15,10.0,0.0,,
+CRVO,ACTIVIST_13D,2026-06-15,10.0,0.0,,
+PW-PA,ACTIVIST_13D,2026-06-15,10.0,0.0,,
+BHR-PD,ACTIVIST_13D,2026-06-15,10.0,0.0,,
+HOWL,ACTIVIST_13D,2026-06-15,10.0,0.0,,
+ARTV,ACTIVIST_13D,2026-06-15,10.0,361.0,2.0877886,
+LINC,ACTIVIST_13D,2026-06-15,10.0,0.0,,
+Z,ACTIVIST_13D,2026-06-15,10.0,0.0,,
+BEIGF,ACTIVIST_13D,2026-06-15,10.0,0.0,,
+HUMAW,ACTIVIST_13D,2026-06-15,10.0,0.0,,
+STTK,ACTIVIST_13D,2026-06-15,10.0,0.0,,
+ATNI,ACTIVIST_13D,2026-06-15,10.0,0.0,,
+BGDE,ACTIVIST_13D,2026-06-15,10.0,0.0,,
+JACK,ACTIVIST_13D,2026-06-15,10.0,0.0,,
+MGF,ACTIVIST_13D,2026-06-15,10.0,0.0,,
+JCTC,ACTIVIST_13D,2026-06-12,10.0,0.0,,
+USAS,ACTIVIST_13D,2026-06-12,10.0,0.0,,
+NAD,ACTIVIST_13D,2026-06-12,10.0,0.0,,
+MG,ACTIVIST_13D,2026-06-12,10.0,593.0,2.5443382,
+LOTWW,ACTIVIST_13D,2026-06-12,10.0,0.0,,
+NIU,ACTIVIST_13D,2026-06-12,10.0,0.0,,
+PCTTW,ACTIVIST_13D,2026-06-12,10.0,0.0,,
+NRC,ACTIVIST_13D,2026-06-12,10.0,0.0,,
+GPUS-PD,ACTIVIST_13D,2026-06-12,10.0,0.0,,
+STI,ACTIVIST_13D,2026-06-11,10.0,0.0,,
+GLOO,ACTIVIST_13D,2026-06-11,10.0,0.0,,
+AWHL,ACTIVIST_13D,2026-06-11,10.0,0.0,,
+STTK,ACTIVIST_13D,2026-06-11,10.0,0.0,,
+FIG,ACTIVIST_13D,2026-06-11,10.0,10826.0,7.399783,
+NYXH,ACTIVIST_13D,2026-06-11,10.0,0.0,,
+WIA,ACTIVIST_13D,2026-06-11,10.0,0.0,,
+RMCF,ACTIVIST_13D,2026-06-10,10.0,0.0,,
+PSNL,ACTIVIST_13D,2026-06-10,10.0,0.0,,
+BHR-PD,ACTIVIST_13D,2026-06-10,10.0,0.0,,
+HEPS,ACTIVIST_13D,2026-06-10,10.0,0.0,,
+ADT,ACTIVIST_13D,2026-06-10,10.0,5065.0,1.397105,
+SHEN,ACTIVIST_13D,2026-06-10,10.0,898.0,1.0352746,
+GCO,ACTIVIST_13D,2026-06-10,10.0,0.0,,
+HWH,ACTIVIST_13D,2026-06-09,10.0,0.0,,
+HCWC,ACTIVIST_13D,2026-06-09,10.0,7.0,1.4224598,
+HCWC,ACTIVIST_13D,2026-06-09,10.0,7.0,1.4224598,
+RAINW,ACTIVIST_13D,2026-06-09,10.0,0.0,,
+BRKHU,ACTIVIST_13D,2026-06-09,10.0,0.0,,
+LIQT,ACTIVIST_13D,2026-06-09,10.0,0.0,,
+JBIO,ACTIVIST_13D,2026-06-09,10.0,929.0,2.5399468,
+MTA,ACTIVIST_13D,2026-06-09,10.0,0.0,,
+TORO,ACTIVIST_13D,2026-06-09,10.0,0.0,,
+USAR,ACTIVIST_13D,2026-06-09,10.0,4974.0,6.1106105,
+SVREW,ACTIVIST_13D,2026-06-08,10.0,0.0,,
+YRD,ACTIVIST_13D,2026-06-08,10.0,0.0,,
+SMSI,ACTIVIST_13D,2026-06-08,10.0,0.0,,
+NIVFW,ACTIVIST_13D,2026-06-08,10.0,0.0,,
+HGV,ACTIVIST_13D,2026-06-08,10.0,3987.0,3.4216022,
+ADAG,ACTIVIST_13D,2026-06-08,10.0,0.0,,
+SLDPW,ACTIVIST_13D,2026-06-08,10.0,0.0,,
+VAL-WT,ACTIVIST_13D,2026-06-08,10.0,0.0,,
+TRS,ACTIVIST_13D,2026-06-08,10.0,1496.0,2.2273479,
+GRPFF,ACTIVIST_13D,2026-06-05,10.0,0.0,,
+GRPFF,ACTIVIST_13D,2026-06-05,10.0,0.0,,
+STI,ACTIVIST_13D,2026-06-05,10.0,0.0,,
+REED,ACTIVIST_13D,2026-06-05,10.0,0.0,,
+NIPG,ACTIVIST_13D,2026-06-05,10.0,0.0,,
+NIPG,ACTIVIST_13D,2026-06-05,10.0,0.0,,
+NNI,ACTIVIST_13D,2026-06-05,10.0,0.0,,
+SAIHW,ACTIVIST_13D,2026-06-05,10.0,0.0,,
+EBAY,ACTIVIST_13D,2026-06-05,10.0,48245.0,10.984634,
+DELL,ACTIVIST_13D,2026-06-05,10.0,0.0,,
+GRPFF,ACTIVIST_13D,2026-06-05,10.0,0.0,,
+GRPFF,ACTIVIST_13D,2026-06-05,10.0,0.0,,
+MHD,ACTIVIST_13D,2026-06-05,10.0,0.0,,
+BTSGU,ACTIVIST_13D,2026-06-05,10.0,0.0,,
+FANG,ACTIVIST_13D,2026-06-05,10.0,55292.0,1.5159696,
+CACC,ACTIVIST_13D,2026-06-05,10.0,5955.0,3.919209,
+CACC,ACTIVIST_13D,2026-06-05,10.0,5955.0,3.919209,
+GAP,ACTIVIST_13D,2026-06-05,10.0,7596.0,2.0839508,
+NAUT,ACTIVIST_13D,2026-06-04,10.0,0.0,,
+AUROW,ACTIVIST_13D,2026-06-04,10.0,0.0,,
+LPTH,ACTIVIST_13D,2026-06-04,10.0,0.0,,
+VSCO,ACTIVIST_13D,2026-06-04,10.0,0.0,,
+CTOR,ACTIVIST_13D,2026-06-04,10.0,0.0,,
+WRB-PH,ACTIVIST_13D,2026-06-04,10.0,0.0,,
+BODYW,ACTIVIST_13D,2026-06-04,10.0,0.0,,
+TXO,ACTIVIST_13D,2026-06-04,10.0,747.0,1.0707215,
+CIFR,ACTIVIST_13D,2026-06-04,10.0,9422.0,13.073213,
+BOF,ACTIVIST_13D,2026-06-04,10.0,0.0,,
+ADSEW,ACTIVIST_13D,2026-06-04,10.0,0.0,,
+YYGH,ACTIVIST_13D,2026-06-04,10.0,0.0,,
+MG,ACTIVIST_13D,2026-06-04,10.0,593.0,2.5443382,
+HUBCZ,ACTIVIST_13D,2026-06-03,10.0,0.0,,
+JOB,ACTIVIST_13D,2026-06-03,10.0,0.0,,
+CITR,ACTIVIST_13D,2026-06-03,10.0,0.0,,
+AURX,ACTIVIST_13D,2026-06-03,10.0,0.0,,
+XRXDW,ACTIVIST_13D,2026-06-03,10.0,0.0,,
+ELAB,ACTIVIST_13D,2026-06-03,10.0,0.0,,
+DTSS,ACTIVIST_13D,2026-06-03,10.0,0.0,,
+DTSS,ACTIVIST_13D,2026-06-03,10.0,0.0,,
+FONR,ACTIVIST_13D,2026-06-03,10.0,0.0,,
+BF-B,ACTIVIST_13D,2026-06-03,10.0,0.0,,
+PBR-A,ACTIVIST_13D,2026-06-03,10.0,0.0,,
+VRMWW,ACTIVIST_13D,2026-06-03,10.0,0.0,,
+PRQR,ACTIVIST_13D,2026-06-03,10.0,0.0,,
+WSUPW,ACTIVIST_13D,2026-06-02,10.0,0.0,,
+IOBTQ,ACTIVIST_13D,2026-06-02,10.0,0.0,,
+GRNQ,ACTIVIST_13D,2026-06-02,10.0,0.0,,
+BHR-PD,ACTIVIST_13D,2026-06-02,10.0,0.0,,
+ZENA,ACTIVIST_13D,2026-06-02,10.0,0.0,,
+BJDX,ACTIVIST_13D,2026-06-02,10.0,0.0,,
+BJDX,ACTIVIST_13D,2026-06-02,10.0,0.0,,
+CODI-PA,ACTIVIST_13D,2026-06-02,10.0,0.0,,
+ESAB,ACTIVIST_13D,2026-06-02,10.0,5048.0,2.3043573,
+PFHO,ACTIVIST_13D,2026-06-02,10.0,0.0,,
+DUKRW,ACTIVIST_13D,2026-06-02,10.0,0.0,,
+ASYS,ACTIVIST_13D,2026-06-02,10.0,0.0,,
+BBY,ACTIVIST_13D,2026-06-02,10.0,15942.0,5.1694913,
+BIOX,ACTIVIST_13D,2026-06-01,10.0,0.0,,
+CWGL,ACTIVIST_13D,2026-06-01,10.0,0.0,,
+CWGL,ACTIVIST_13D,2026-06-01,10.0,0.0,,
+STRRP,ACTIVIST_13D,2026-06-01,10.0,0.0,,
+NAKAW,ACTIVIST_13D,2026-06-01,10.0,0.0,,
+RMSGW,ACTIVIST_13D,2026-06-01,10.0,0.0,,
+RDVT,ACTIVIST_13D,2026-06-01,10.0,783.0,7.488862,
+CITR,ACTIVIST_13D,2026-06-01,10.0,0.0,,
+OPLN,ACTIVIST_13D,2026-06-01,10.0,3935.0,3.1392105,
+TBLAW,ACTIVIST_13D,2026-06-01,10.0,0.0,,
+MGM,ACTIVIST_13D,2026-06-01,10.0,12529.0,5.1487756,
+AMBR,ACTIVIST_13D,2026-06-01,10.0,0.0,,
+TH,ACTIVIST_13D,2026-06-01,10.0,1637.0,4.368855,
+SATA,ACTIVIST_13D,2026-06-01,10.0,0.0,,
+QTTB,ACTIVIST_13D,2026-06-01,10.0,202.0,3.7555277,
+GLRE,ACTIVIST_13D,2026-06-01,10.0,0.0,,
+OTLK,ACTIVIST_13D,2026-06-01,10.0,0.0,,
+AVO,ACTIVIST_13D,2026-06-01,10.0,993.0,1.3566687,
+ROLR,ACTIVIST_13D,2026-05-29,10.0,0.0,,
+INAB,ACTIVIST_13D,2026-05-29,10.0,0.0,,
+SYM,ACTIVIST_13D,2026-05-29,10.0,25129.0,7.706405,
+GLOO,ACTIVIST_13D,2026-05-29,10.0,0.0,,
+BETRW,ACTIVIST_13D,2026-05-29,10.0,0.0,,
+HLNE,ACTIVIST_13D,2026-05-29,10.0,4591.0,3.9467654,
+SLXNW,ACTIVIST_13D,2026-05-29,10.0,0.0,,
+NMG,ACTIVIST_13D,2026-05-29,10.0,0.0,,
+BRLSW,ACTIVIST_13D,2026-05-29,10.0,0.0,,
+CWBHF,ACTIVIST_13D,2026-05-29,10.0,0.0,,
+ASRMF,ACTIVIST_13D,2026-05-29,10.0,0.0,,
+GRTX,ACTIVIST_13D,2026-05-29,10.0,0.0,,
+RNWWW,ACTIVIST_13D,2026-05-29,10.0,0.0,,
+NVTS,ACTIVIST_13D,2026-05-29,10.0,4926.0,11.319713,
+YYGH,ACTIVIST_13D,2026-05-29,10.0,0.0,,
+ARTV,ACTIVIST_13D,2026-05-28,10.0,361.0,2.0877886,
+AIRI,ACTIVIST_13D,2026-05-28,10.0,0.0,,
+BZFDW,ACTIVIST_13D,2026-05-28,10.0,0.0,,
+RANI,ACTIVIST_13D,2026-05-28,10.0,0.0,,
+QTTB,ACTIVIST_13D,2026-05-28,10.0,202.0,3.7555277,
+SMSI,ACTIVIST_13D,2026-05-28,10.0,0.0,,
+QUBT,ACTIVIST_13D,2026-05-28,10.0,2149.0,1.345475,
+HOVRW,ACTIVIST_13D,2026-05-28,10.0,0.0,,
+PHGE,ACTIVIST_13D,2026-05-28,10.0,0.0,,
+RNWWW,ACTIVIST_13D,2026-05-28,10.0,0.0,,
+LULU,ACTIVIST_13D,2026-05-28,10.0,13781.0,2.8493614,
+EBAY,ACTIVIST_13D,2026-05-28,10.0,48245.0,10.984634,
+TYGO,ACTIVIST_13D,2026-05-28,10.0,217.0,7.2831635,
+WILC,ACTIVIST_13D,2026-05-28,10.0,0.0,,
+REPX,ACTIVIST_13D,2026-05-28,10.0,755.0,1.1920418,
+ODVWZ,ACTIVIST_13D,2026-05-28,10.0,0.0,,
+BZFDW,ACTIVIST_13D,2026-05-28,10.0,0.0,,
+ZVIA,ACTIVIST_13D,2026-05-28,10.0,0.0,,
+KWR,ACTIVIST_13D,2026-05-28,10.0,2562.0,1.861927,
+CSTM,ACTIVIST_13D,2026-05-28,10.0,4847.0,4.331427,
+SLMT,ACTIVIST_13D,2026-05-28,10.0,0.0,,
+RNWWW,ACTIVIST_13D,2026-05-28,10.0,0.0,,
+TK,ACTIVIST_13D,2026-05-28,10.0,0.0,,
+SATLW,ACTIVIST_13D,2026-05-28,10.0,0.0,,
+AEFC,ACTIVIST_13D,2026-05-28,10.0,0.0,,
+EL,ACTIVIST_13D,2026-05-28,10.0,32446.0,8.125397,
+ALXO,ACTIVIST_13D,2026-05-27,10.0,0.0,,
+GAME,ACTIVIST_13D,2026-05-27,10.0,0.0,,
+ZENA,ACTIVIST_13D,2026-05-27,10.0,0.0,,
+AAT,ACTIVIST_13D,2026-05-27,10.0,1901.0,1.3233229,
+OFIX,ACTIVIST_13D,2026-05-27,10.0,0.0,,
+TACT,ACTIVIST_13D,2026-05-27,10.0,0.0,,
+MIMI,ACTIVIST_13D,2026-05-27,10.0,0.0,,
+CPSH,ACTIVIST_13D,2026-05-27,10.0,0.0,,
+LIQT,ACTIVIST_13D,2026-05-27,10.0,0.0,,
+ASMB,ACTIVIST_13D,2026-05-27,10.0,0.0,,
+NMG,ACTIVIST_13D,2026-05-27,10.0,0.0,,
+STIM,ACTIVIST_13D,2026-05-27,10.0,0.0,,
+PW-PA,ACTIVIST_13D,2026-05-26,10.0,0.0,,
+LTH,ACTIVIST_13D,2026-05-26,10.0,7261.0,2.2540076,
+HSDT,ACTIVIST_13D,2026-05-26,10.0,0.0,,
+CBL,ACTIVIST_13D,2026-05-26,10.0,1549.0,3.8931653,
+LTH,ACTIVIST_13D,2026-05-26,10.0,7261.0,2.2540076,
+GAME,ACTIVIST_13D,2026-05-26,10.0,0.0,,
+CALY,ACTIVIST_13D,2026-05-26,10.0,3033.0,1.4439785,
+KNSA,ACTIVIST_13D,2026-05-26,10.0,3992.0,6.3134203,
+ARQQW,ACTIVIST_13D,2026-05-26,10.0,0.0,,
+SHMDW,ACTIVIST_13D,2026-05-26,10.0,0.0,,
+INFQ-WT,ACTIVIST_13D,2026-05-26,10.0,0.0,,
+TE-WT,ACTIVIST_13D,2026-05-26,10.0,0.0,,
+MGF,ACTIVIST_13D,2026-05-26,10.0,0.0,,
+SAFX,ACTIVIST_13D,2026-05-22,10.0,0.0,,
+BRCB,ACTIVIST_13D,2026-05-22,10.0,135.0,2.3856707,
+KLRS,ACTIVIST_13D,2026-05-22,10.0,99.0,1.3950368,
+BHR-PD,ACTIVIST_13D,2026-05-22,10.0,0.0,,
+NXNVW,ACTIVIST_13D,2026-05-22,10.0,0.0,,
+INTJ,ACTIVIST_13D,2026-05-22,10.0,0.0,,
+GEL,ACTIVIST_13D,2026-05-22,10.0,0.0,,
+TXO,ACTIVIST_13D,2026-05-22,10.0,747.0,1.0707215,
+FBK,ACTIVIST_13D,2026-05-22,10.0,2791.0,1.4108208,
+PAHC,ACTIVIST_13D,2026-05-22,10.0,1324.0,3.660314,
+BLFS,ACTIVIST_13D,2026-05-22,10.0,1275.0,3.4234,
+WGSWW,ACTIVIST_13D,2026-05-22,10.0,0.0,,
+FIEE,ACTIVIST_13D,2026-05-22,10.0,0.0,,
+PSEC-PA,ACTIVIST_13D,2026-05-21,10.0,0.0,,
+KALV,ACTIVIST_13D,2026-05-21,10.0,0.0,,
+RPGL,ACTIVIST_13D,2026-05-21,10.0,0.0,,
+MGRT,ACTIVIST_13D,2026-05-21,10.0,0.0,,
+GPUS-PD,ACTIVIST_13D,2026-05-21,10.0,0.0,,
+PBR-A,ACTIVIST_13D,2026-05-21,10.0,0.0,,
+ACCS,ACTIVIST_13D,2026-05-21,10.0,0.0,,
+MIAX,ACTIVIST_13D,2026-05-21,10.0,3871.0,3.6065428,
+ASPSW,ACTIVIST_13D,2026-05-21,10.0,0.0,,
+NNDM,ACTIVIST_13D,2026-05-21,10.0,0.0,,
+AOMN,ACTIVIST_13D,2026-05-21,10.0,0.0,,
+LWAY,ACTIVIST_13D,2026-05-20,10.0,364.0,4.032149,
+LULU,ACTIVIST_13D,2026-05-20,10.0,13781.0,2.8493614,
+PUMP,ACTIVIST_13D,2026-05-20,10.0,1848.0,1.8941679,
+DINO,ACTIVIST_13D,2026-05-20,10.0,0.0,,
+LWAY,ACTIVIST_13D,2026-05-20,10.0,364.0,4.032149,
+RDW,ACTIVIST_13D,2026-05-20,10.0,3133.0,2.8657205,
+KFS,ACTIVIST_13D,2026-05-20,10.0,0.0,,
+CARR,ACTIVIST_13D,2026-05-20,10.0,0.0,,
+CPBI,ACTIVIST_13D,2026-05-20,10.0,0.0,,
+FLNC,ACTIVIST_13D,2026-05-19,10.0,4370.0,8.5533905,
+VANI,ACTIVIST_13D,2026-05-19,10.0,97.0,5.0222225,
+PUBC,ACTIVIST_13D,2026-05-19,10.0,0.0,,
+BRCB,ACTIVIST_13D,2026-05-19,10.0,135.0,2.3856707,
+SDEV,ACTIVIST_13D,2026-05-19,10.0,0.0,,
+SDEV,ACTIVIST_13D,2026-05-19,10.0,0.0,,
+CAEP,ACTIVIST_13D,2026-05-19,10.0,0.0,,
+SATLW,ACTIVIST_13D,2026-05-19,10.0,0.0,,
+BLDP,ACTIVIST_13D,2026-05-19,10.0,1320.0,2.28482,
+EBAY,ACTIVIST_13D,2026-05-19,10.0,48245.0,10.984634,
+EVC,ACTIVIST_13D,2026-05-19,10.0,824.0,12.677054,
+SYM,ACTIVIST_13D,2026-05-19,10.0,25129.0,7.706405,
+TG,ACTIVIST_13D,2026-05-19,10.0,0.0,,
+BETRW,ACTIVIST_13D,2026-05-19,10.0,0.0,,
+MPX,ACTIVIST_13D,2026-05-19,10.0,0.0,,
+OUT,ACTIVIST_13D,2026-05-19,10.0,5396.0,8.153764,
+NMG,ACTIVIST_13D,2026-05-19,10.0,0.0,,
+VNET,ACTIVIST_13D,2026-05-19,10.0,0.0,,
+EVTWF,ACTIVIST_13D,2026-05-19,10.0,0.0,,
+NKTX,ACTIVIST_13D,2026-05-19,10.0,0.0,,
+KELYB,ACTIVIST_13D,2026-05-19,10.0,0.0,,
+UUU,ACTIVIST_13D,2026-05-19,10.0,19.0,6.5478616,
+UUU,ACTIVIST_13D,2026-05-19,10.0,19.0,6.5478616,
+JOBY-WT,ACTIVIST_13D,2026-05-18,10.0,0.0,,
+EMAT,ACTIVIST_13D,2026-05-18,10.0,0.0,,
+ZOOZW,ACTIVIST_13D,2026-05-18,10.0,0.0,,
+ADV,ACTIVIST_13D,2026-05-18,10.0,0.0,,
+SRZNW,ACTIVIST_13D,2026-05-18,10.0,0.0,,
+TOPS,ACTIVIST_13D,2026-05-18,10.0,0.0,,
+MYO,ACTIVIST_13D,2026-05-18,10.0,51.0,5.6223173,
+CIFR,ACTIVIST_13D,2026-05-18,10.0,9422.0,13.073213,
+SHMDW,ACTIVIST_13D,2026-05-18,10.0,0.0,,
+PBT,ACTIVIST_13D,2026-05-18,10.0,0.0,,
+ASH,ACTIVIST_13D,2026-05-18,10.0,0.0,,
+TPGXL,ACTIVIST_13D,2026-05-18,10.0,0.0,,
+WHWK,ACTIVIST_13D,2026-05-18,10.0,199.0,1.3905222,
+SB-PD,ACTIVIST_13D,2026-05-18,10.0,0.0,,
+XOMAP,ACTIVIST_13D,2026-05-18,10.0,0.0,,
+NMG,ACTIVIST_13D,2026-05-15,10.0,0.0,,
+PW-PA,ACTIVIST_13D,2026-05-15,10.0,0.0,,
+ZEOX,ACTIVIST_13D,2026-05-15,10.0,0.0,,
+LTRN,ACTIVIST_13D,2026-05-15,10.0,0.0,,
+ZSQR,ACTIVIST_13D,2026-05-15,10.0,531.0,,
+UXIN,ACTIVIST_13D,2026-05-15,10.0,0.0,,
+NRIS,ACTIVIST_13D,2026-05-15,10.0,0.0,,
+UXIN,ACTIVIST_13D,2026-05-15,10.0,0.0,,
+UXIN,ACTIVIST_13D,2026-05-15,10.0,0.0,,
+NVAX,ACTIVIST_13D,2026-05-15,10.0,0.0,,
+DT,ACTIVIST_13D,2026-05-15,10.0,11883.0,4.600023,
+TOIIW,ACTIVIST_13D,2026-05-15,10.0,0.0,,
+BLDP,ACTIVIST_13D,2026-05-15,10.0,1320.0,2.28482,
+REE,ACTIVIST_13D,2026-05-15,10.0,0.0,,
+REE,ACTIVIST_13D,2026-05-15,10.0,0.0,,
+DOCN,ACTIVIST_13D,2026-05-15,10.0,17568.0,19.789562,
+ETOR,ACTIVIST_13D,2026-05-15,10.0,0.0,,
+BUDFF,ACTIVIST_13D,2026-05-15,10.0,0.0,,
+SATS,ACTIVIST_13D,2026-05-15,10.0,33842.0,5.9986644,
+VNET,ACTIVIST_13D,2026-05-15,10.0,0.0,,
+RAVE,ACTIVIST_13D,2026-05-15,10.0,0.0,,
+BOF,ACTIVIST_13D,2026-05-15,10.0,0.0,,
+ARTV,RUSSELL_BOUNDARY,,0.0,361.0,,within +/- 20% of R2000_BOTTOM
+ETSY,RUSSELL_BOUNDARY,,0.0,6522.0,,within +/- 20% of R1000_BOTTOM
+LNTH,RUSSELL_BOUNDARY,,0.0,6526.0,,within +/- 20% of R1000_BOTTOM
+ALIT,RUSSELL_BOUNDARY,,0.0,358.0,,within +/- 20% of R2000_BOTTOM
+VGZ,RUSSELL_BOUNDARY,,0.0,358.0,,within +/- 20% of R2000_BOTTOM
+FLR,RUSSELL_BOUNDARY,,0.0,6542.0,,within +/- 20% of R1000_BOTTOM
+MTRX,RUSSELL_BOUNDARY,,0.0,363.0,,within +/- 20% of R2000_BOTTOM
+DBX,RUSSELL_BOUNDARY,,0.0,6451.0,,within +/- 20% of R1000_BOTTOM
+OMF,RUSSELL_BOUNDARY,,0.0,6552.0,,within +/- 20% of R1000_BOTTOM
+M,RUSSELL_BOUNDARY,,0.0,6448.0,,within +/- 20% of R1000_BOTTOM
+MTDR,RUSSELL_BOUNDARY,,0.0,6446.0,,within +/- 20% of R1000_BOTTOM
+MXL,RUSSELL_BOUNDARY,,0.0,6443.0,,within +/- 20% of R1000_BOTTOM
+INGM,RUSSELL_BOUNDARY,,0.0,6556.0,,within +/- 20% of R1000_BOTTOM
+IDCC,RUSSELL_BOUNDARY,,0.0,6562.0,,within +/- 20% of R1000_BOTTOM
+CGEH,RUSSELL_BOUNDARY,,0.0,364.0,,within +/- 20% of R2000_BOTTOM
+LWAY,RUSSELL_BOUNDARY,,0.0,364.0,,within +/- 20% of R2000_BOTTOM
+PSN,RUSSELL_BOUNDARY,,0.0,6413.0,,within +/- 20% of R1000_BOTTOM
+POOL,RUSSELL_BOUNDARY,,0.0,6585.0,,within +/- 20% of R1000_BOTTOM
+MRCY,RUSSELL_BOUNDARY,,0.0,6413.0,,within +/- 20% of R1000_BOTTOM
+ACA,RUSSELL_BOUNDARY,,0.0,6413.0,,within +/- 20% of R1000_BOTTOM
+APGE,RUSSELL_BOUNDARY,,0.0,6408.0,,within +/- 20% of R1000_BOTTOM
+IMVT,RUSSELL_BOUNDARY,,0.0,6402.0,,within +/- 20% of R1000_BOTTOM
+GTX,RUSSELL_BOUNDARY,,0.0,6405.0,,within +/- 20% of R1000_BOTTOM
+CAR,RUSSELL_BOUNDARY,,0.0,6610.0,,within +/- 20% of R1000_BOTTOM
+URBN,RUSSELL_BOUNDARY,,0.0,6617.0,,within +/- 20% of R1000_BOTTOM
+TMHC,RUSSELL_BOUNDARY,,0.0,6620.0,,within +/- 20% of R1000_BOTTOM
+NATR,RUSSELL_BOUNDARY,,0.0,354.0,,within +/- 20% of R2000_BOTTOM
+SEI,RUSSELL_BOUNDARY,,0.0,6374.0,,within +/- 20% of R1000_BOTTOM
+RYN,RUSSELL_BOUNDARY,,0.0,6629.0,,within +/- 20% of R1000_BOTTOM
+TTAN,RUSSELL_BOUNDARY,,0.0,6369.0,,within +/- 20% of R1000_BOTTOM
+MGPI,RUSSELL_BOUNDARY,,0.0,353.0,,within +/- 20% of R2000_BOTTOM
+SYRE,RUSSELL_BOUNDARY,,0.0,6638.0,,within +/- 20% of R1000_BOTTOM
+CHYM,RUSSELL_BOUNDARY,,0.0,6363.0,,within +/- 20% of R1000_BOTTOM
+PAYC,RUSSELL_BOUNDARY,,0.0,6348.0,,within +/- 20% of R1000_BOTTOM
+FSS,RUSSELL_BOUNDARY,,0.0,6656.0,,within +/- 20% of R1000_BOTTOM
+EXP,RUSSELL_BOUNDARY,,0.0,6662.0,,within +/- 20% of R1000_BOTTOM
+ZURA,RUSSELL_BOUNDARY,,0.0,351.0,,within +/- 20% of R2000_BOTTOM
+BYND,RUSSELL_BOUNDARY,,0.0,351.0,,within +/- 20% of R2000_BOTTOM
+KYMR,RUSSELL_BOUNDARY,,0.0,6326.0,,within +/- 20% of R1000_BOTTOM
+RSI,RUSSELL_BOUNDARY,,0.0,6674.0,,within +/- 20% of R1000_BOTTOM
+EAT,RUSSELL_BOUNDARY,,0.0,6322.0,,within +/- 20% of R1000_BOTTOM
+TXNM,RUSSELL_BOUNDARY,,0.0,6324.0,,within +/- 20% of R1000_BOTTOM
+ESTC,RUSSELL_BOUNDARY,,0.0,6318.0,,within +/- 20% of R1000_BOTTOM
+RIG,RUSSELL_BOUNDARY,,0.0,6685.0,,within +/- 20% of R1000_BOTTOM
+EPRT,RUSSELL_BOUNDARY,,0.0,6695.0,,within +/- 20% of R1000_BOTTOM
+AVBC,RUSSELL_BOUNDARY,,0.0,349.0,,within +/- 20% of R2000_BOTTOM
+AVIR,RUSSELL_BOUNDARY,,0.0,349.0,,within +/- 20% of R2000_BOTTOM
+AWI,RUSSELL_BOUNDARY,,0.0,6711.0,,within +/- 20% of R1000_BOTTOM
+NSA,RUSSELL_BOUNDARY,,0.0,6724.0,,within +/- 20% of R1000_BOTTOM
+LAB,RUSSELL_BOUNDARY,,0.0,348.0,,within +/- 20% of R2000_BOTTOM
+FNLC,RUSSELL_BOUNDARY,,0.0,347.0,,within +/- 20% of R2000_BOTTOM
+FAF,RUSSELL_BOUNDARY,,0.0,6750.0,,within +/- 20% of R1000_BOTTOM
+GATX,RUSSELL_BOUNDARY,,0.0,6239.0,,within +/- 20% of R1000_BOTTOM
+PCVX,RUSSELL_BOUNDARY,,0.0,6769.0,,within +/- 20% of R1000_BOTTOM
+AVTR,RUSSELL_BOUNDARY,,0.0,6766.0,,within +/- 20% of R1000_BOTTOM
+SENS,RUSSELL_BOUNDARY,,0.0,375.0,,within +/- 20% of R2000_BOTTOM
+VAL,RUSSELL_BOUNDARY,,0.0,6229.0,,within +/- 20% of R1000_BOTTOM
+PJT,RUSSELL_BOUNDARY,,0.0,6216.0,,within +/- 20% of R1000_BOTTOM
+FIGR,RUSSELL_BOUNDARY,,0.0,6206.0,,within +/- 20% of R1000_BOTTOM
+HIMS,RUSSELL_BOUNDARY,,0.0,6208.0,,within +/- 20% of R1000_BOTTOM
+PTGX,RUSSELL_BOUNDARY,,0.0,6802.0,,within +/- 20% of R1000_BOTTOM
+MVST,RUSSELL_BOUNDARY,,0.0,376.0,,within +/- 20% of R2000_BOTTOM
+CPB,RUSSELL_BOUNDARY,,0.0,6802.0,,within +/- 20% of R1000_BOTTOM
+AIRS,RUSSELL_BOUNDARY,,0.0,377.0,,within +/- 20% of R2000_BOTTOM
+CHDN,RUSSELL_BOUNDARY,,0.0,6179.0,,within +/- 20% of R1000_BOTTOM
+YOU,RUSSELL_BOUNDARY,,0.0,6830.0,,within +/- 20% of R1000_BOTTOM
+ARTNA,RUSSELL_BOUNDARY,,0.0,341.0,,within +/- 20% of R2000_BOTTOM
+ST,RUSSELL_BOUNDARY,,0.0,6838.0,,within +/- 20% of R1000_BOTTOM
+RM,RUSSELL_BOUNDARY,,0.0,341.0,,within +/- 20% of R2000_BOTTOM
+GBLI,RUSSELL_BOUNDARY,,0.0,380.0,,within +/- 20% of R2000_BOTTOM
+ENTA,RUSSELL_BOUNDARY,,0.0,340.0,,within +/- 20% of R2000_BOTTOM
+CNTA,RUSSELL_BOUNDARY,,0.0,6141.0,,within +/- 20% of R1000_BOTTOM
+MIRM,RUSSELL_BOUNDARY,,0.0,6131.0,,within +/- 20% of R1000_BOTTOM
+NXG,RUSSELL_BOUNDARY,,0.0,339.0,,within +/- 20% of R2000_BOTTOM
+HNST,RUSSELL_BOUNDARY,,0.0,381.0,,within +/- 20% of R2000_BOTTOM
+BNED,RUSSELL_BOUNDARY,,0.0,381.0,,within +/- 20% of R2000_BOTTOM
+PTCT,RUSSELL_BOUNDARY,,0.0,6116.0,,within +/- 20% of R1000_BOTTOM
+LE,RUSSELL_BOUNDARY,,0.0,381.0,,within +/- 20% of R2000_BOTTOM
+COMP,RUSSELL_BOUNDARY,,0.0,6104.0,,within +/- 20% of R1000_BOTTOM
+HVT,RUSSELL_BOUNDARY,,0.0,382.0,,within +/- 20% of R2000_BOTTOM
+PCOR,RUSSELL_BOUNDARY,,0.0,6902.0,,within +/- 20% of R1000_BOTTOM
+HXL,RUSSELL_BOUNDARY,,0.0,6907.0,,within +/- 20% of R1000_BOTTOM
+THG,RUSSELL_BOUNDARY,,0.0,6915.0,,within +/- 20% of R1000_BOTTOM
+PCTY,RUSSELL_BOUNDARY,,0.0,6058.0,,within +/- 20% of R1000_BOTTOM
+CDZI,RUSSELL_BOUNDARY,,0.0,335.0,,within +/- 20% of R2000_BOTTOM
+NCMI,RUSSELL_BOUNDARY,,0.0,335.0,,within +/- 20% of R2000_BOTTOM
+RMNI,RUSSELL_BOUNDARY,,0.0,386.0,,within +/- 20% of R2000_BOTTOM
+CENX,RUSSELL_BOUNDARY,,0.0,6029.0,,within +/- 20% of R1000_BOTTOM
+RYTM,RUSSELL_BOUNDARY,,0.0,6027.0,,within +/- 20% of R1000_BOTTOM
+KGS,RUSSELL_BOUNDARY,,0.0,6971.0,,within +/- 20% of R1000_BOTTOM
+LW,RUSSELL_BOUNDARY,,0.0,6013.0,,within +/- 20% of R1000_BOTTOM
+RAL,RUSSELL_BOUNDARY,,0.0,6990.0,,within +/- 20% of R1000_BOTTOM
+CZR,RUSSELL_BOUNDARY,,0.0,6003.0,,within +/- 20% of R1000_BOTTOM
+TSSI,RUSSELL_BOUNDARY,,0.0,333.0,,within +/- 20% of R2000_BOTTOM
+APPF,RUSSELL_BOUNDARY,,0.0,5986.0,,within +/- 20% of R1000_BOTTOM
+MORN,RUSSELL_BOUNDARY,,0.0,7022.0,,within +/- 20% of R1000_BOTTOM
+CACC,RUSSELL_BOUNDARY,,0.0,5955.0,,within +/- 20% of R1000_BOTTOM
+MYRG,RUSSELL_BOUNDARY,,0.0,7048.0,,within +/- 20% of R1000_BOTTOM
+ENPH,RUSSELL_BOUNDARY,,0.0,7053.0,,within +/- 20% of R1000_BOTTOM
+AII,RUSSELL_BOUNDARY,,0.0,329.0,,within +/- 20% of R2000_BOTTOM
+GVA,RUSSELL_BOUNDARY,,0.0,5939.0,,within +/- 20% of R1000_BOTTOM
+NPO,RUSSELL_BOUNDARY,,0.0,7069.0,,within +/- 20% of R1000_BOTTOM
+CLF,RUSSELL_BOUNDARY,,0.0,7079.0,,within +/- 20% of R1000_BOTTOM
+ACT,RUSSELL_BOUNDARY,,0.0,5920.0,,within +/- 20% of R1000_BOTTOM
+DUOL,RUSSELL_BOUNDARY,,0.0,5898.0,,within +/- 20% of R1000_BOTTOM
+WNC,RUSSELL_BOUNDARY,,0.0,394.0,,within +/- 20% of R2000_BOTTOM
+CZNC,RUSSELL_BOUNDARY,,0.0,395.0,,within +/- 20% of R2000_BOTTOM
+CE,RUSSELL_BOUNDARY,,0.0,5865.0,,within +/- 20% of R1000_BOTTOM
+LXEO,RUSSELL_BOUNDARY,,0.0,324.0,,within +/- 20% of R2000_BOTTOM
+MATX,RUSSELL_BOUNDARY,,0.0,5854.0,,within +/- 20% of R1000_BOTTOM
+POR,RUSSELL_BOUNDARY,,0.0,5854.0,,within +/- 20% of R1000_BOTTOM
+STRT,RUSSELL_BOUNDARY,,0.0,324.0,,within +/- 20% of R2000_BOTTOM
+LAD,RUSSELL_BOUNDARY,,0.0,7147.0,,within +/- 20% of R1000_BOTTOM
+ACLS,RUSSELL_BOUNDARY,,0.0,5823.0,,within +/- 20% of R1000_BOTTOM
+ZUMZ,RUSSELL_BOUNDARY,,0.0,322.0,,within +/- 20% of R2000_BOTTOM
+GKOS,RUSSELL_BOUNDARY,,0.0,7194.0,,within +/- 20% of R1000_BOTTOM
+LQDA,RUSSELL_BOUNDARY,,0.0,5803.0,,within +/- 20% of R1000_BOTTOM
+PTLO,RUSSELL_BOUNDARY,,0.0,321.0,,within +/- 20% of R2000_BOTTOM
+CMCO,RUSSELL_BOUNDARY,,0.0,399.0,,within +/- 20% of R2000_BOTTOM
+NLCP,RUSSELL_BOUNDARY,,0.0,322.0,,within +/- 20% of R2000_BOTTOM
+SES,RUSSELL_BOUNDARY,,0.0,399.0,,within +/- 20% of R2000_BOTTOM
+IRD,RUSSELL_BOUNDARY,,0.0,321.0,,within +/- 20% of R2000_BOTTOM
+NODK,RUSSELL_BOUNDARY,,0.0,320.0,,within +/- 20% of R2000_BOTTOM
+KNSL,RUSSELL_BOUNDARY,,0.0,7232.0,,within +/- 20% of R1000_BOTTOM
+AMRN,RUSSELL_BOUNDARY,,0.0,319.0,,within +/- 20% of R2000_BOTTOM
+ORGO,RUSSELL_BOUNDARY,,0.0,319.0,,within +/- 20% of R2000_BOTTOM
+SLAB,RUSSELL_BOUNDARY,,0.0,7240.0,,within +/- 20% of R1000_BOTTOM
+CHRD,RUSSELL_BOUNDARY,,0.0,7242.0,,within +/- 20% of R1000_BOTTOM
+SMC,RUSSELL_BOUNDARY,,0.0,402.0,,within +/- 20% of R2000_BOTTOM
+GOLF,RUSSELL_BOUNDARY,,0.0,5748.0,,within +/- 20% of R1000_BOTTOM
+GXO,RUSSELL_BOUNDARY,,0.0,5749.0,,within +/- 20% of R1000_BOTTOM
+LTH,RUSSELL_BOUNDARY,,0.0,7261.0,,within +/- 20% of R1000_BOTTOM
+SI,RUSSELL_BOUNDARY,,0.0,318.0,,within +/- 20% of R2000_BOTTOM
+CWAN,RUSSELL_BOUNDARY,,0.0,7262.0,,within +/- 20% of R1000_BOTTOM
+KMX,RUSSELL_BOUNDARY,,0.0,7270.0,,within +/- 20% of R1000_BOTTOM
+BBW,RUSSELL_BOUNDARY,,0.0,403.0,,within +/- 20% of R2000_BOTTOM
+LYEL,RUSSELL_BOUNDARY,,0.0,317.0,,within +/- 20% of R2000_BOTTOM
+MYGN,RUSSELL_BOUNDARY,,0.0,403.0,,within +/- 20% of R2000_BOTTOM
+NOVT,RUSSELL_BOUNDARY,,0.0,5717.0,,within +/- 20% of R1000_BOTTOM
+SVCO,RUSSELL_BOUNDARY,,0.0,404.0,,within +/- 20% of R2000_BOTTOM
+LEA,RUSSELL_BOUNDARY,,0.0,7294.0,,within +/- 20% of R1000_BOTTOM
+LSAK,RUSSELL_BOUNDARY,,0.0,404.0,,within +/- 20% of R2000_BOTTOM
+AUB,RUSSELL_BOUNDARY,,0.0,5699.0,,within +/- 20% of R1000_BOTTOM
+VSNT,RUSSELL_BOUNDARY,,0.0,5690.0,,within +/- 20% of R1000_BOTTOM
+PAGP,RUSSELL_BOUNDARY,,0.0,5681.0,,within +/- 20% of R1000_BOTTOM
+BGC,RUSSELL_BOUNDARY,,0.0,5677.0,,within +/- 20% of R1000_BOTTOM
+PRLD,RUSSELL_BOUNDARY,,0.0,314.0,,within +/- 20% of R2000_BOTTOM
+PACB,RUSSELL_BOUNDARY,,0.0,407.0,,within +/- 20% of R2000_BOTTOM
+YEXT,RUSSELL_BOUNDARY,,0.0,407.0,,within +/- 20% of R2000_BOTTOM
+BKTI,RUSSELL_BOUNDARY,,0.0,313.0,,within +/- 20% of R2000_BOTTOM
+SIGA,RUSSELL_BOUNDARY,,0.0,312.0,,within +/- 20% of R2000_BOTTOM
+CCRN,RUSSELL_BOUNDARY,,0.0,409.0,,within +/- 20% of R2000_BOTTOM
+ACMR,RUSSELL_BOUNDARY,,0.0,5621.0,,within +/- 20% of R1000_BOTTOM
+SPCE,RUSSELL_BOUNDARY,,0.0,409.0,,within +/- 20% of R2000_BOTTOM
+ALKS,RUSSELL_BOUNDARY,,0.0,7382.0,,within +/- 20% of R1000_BOTTOM
+VSEC,RUSSELL_BOUNDARY,,0.0,5616.0,,within +/- 20% of R1000_BOTTOM
+CWST,RUSSELL_BOUNDARY,,0.0,5618.0,,within +/- 20% of R1000_BOTTOM
+BLND,RUSSELL_BOUNDARY,,0.0,409.0,,within +/- 20% of R2000_BOTTOM
+ABEO,RUSSELL_BOUNDARY,,0.0,311.0,,within +/- 20% of R2000_BOTTOM
+CARL,RUSSELL_BOUNDARY,,0.0,310.0,,within +/- 20% of R2000_BOTTOM
+BKH,RUSSELL_BOUNDARY,,0.0,5595.0,,within +/- 20% of R1000_BOTTOM
+BBBY,RUSSELL_BOUNDARY,,0.0,410.0,,within +/- 20% of R2000_BOTTOM
+AMTM,RUSSELL_BOUNDARY,,0.0,5585.0,,within +/- 20% of R1000_BOTTOM
+BMBL,RUSSELL_BOUNDARY,,0.0,411.0,,within +/- 20% of R2000_BOTTOM
+ONIT,RUSSELL_BOUNDARY,,0.0,309.0,,within +/- 20% of R2000_BOTTOM
+PACS,RUSSELL_BOUNDARY,,0.0,5571.0,,within +/- 20% of R1000_BOTTOM
+AVT,RUSSELL_BOUNDARY,,0.0,7431.0,,within +/- 20% of R1000_BOTTOM
+CHE,RUSSELL_BOUNDARY,,0.0,5566.0,,within +/- 20% of R1000_BOTTOM
+JMSB,RUSSELL_BOUNDARY,,0.0,308.0,,within +/- 20% of R2000_BOTTOM
+CLPT,RUSSELL_BOUNDARY,,0.0,412.0,,within +/- 20% of R2000_BOTTOM
+IBEX,RUSSELL_BOUNDARY,,0.0,412.0,,within +/- 20% of R2000_BOTTOM
+TFPM,RUSSELL_BOUNDARY,,0.0,5547.0,,within +/- 20% of R1000_BOTTOM
+ISBA,RUSSELL_BOUNDARY,,0.0,306.0,,within +/- 20% of R2000_BOTTOM
+NMRA,RUSSELL_BOUNDARY,,0.0,306.0,,within +/- 20% of R2000_BOTTOM
+AXS,RUSSELL_BOUNDARY,,0.0,7478.0,,within +/- 20% of R1000_BOTTOM
+GTN,RUSSELL_BOUNDARY,,0.0,415.0,,within +/- 20% of R2000_BOTTOM
+GNTX,RUSSELL_BOUNDARY,,0.0,5507.0,,within +/- 20% of R1000_BOTTOM
+FENC,RUSSELL_BOUNDARY,,0.0,305.0,,within +/- 20% of R2000_BOTTOM
+HQY,RUSSELL_BOUNDARY,,0.0,7501.0,,within +/- 20% of R1000_BOTTOM
+PEGA,RUSSELL_BOUNDARY,,0.0,5500.0,,within +/- 20% of R1000_BOTTOM
+NXST,RUSSELL_BOUNDARY,,0.0,5484.0,,within +/- 20% of R1000_BOTTOM
+PRIM,RUSSELL_BOUNDARY,,0.0,5488.0,,within +/- 20% of R1000_BOTTOM
+BLTE,RUSSELL_BOUNDARY,,0.0,5476.0,,within +/- 20% of R1000_BOTTOM
+SYNA,RUSSELL_BOUNDARY,,0.0,5482.0,,within +/- 20% of R1000_BOTTOM
+PATH,RUSSELL_BOUNDARY,,0.0,5466.0,,within +/- 20% of R1000_BOTTOM
+AIRJ,RUSSELL_BOUNDARY,,0.0,303.0,,within +/- 20% of R2000_BOTTOM
+FCCO,RUSSELL_BOUNDARY,,0.0,303.0,,within +/- 20% of R2000_BOTTOM
+SRRK,RUSSELL_BOUNDARY,,0.0,5462.0,,within +/- 20% of R1000_BOTTOM
+MASS,RUSSELL_BOUNDARY,,0.0,302.0,,within +/- 20% of R2000_BOTTOM
+RDNW,RUSSELL_BOUNDARY,,0.0,302.0,,within +/- 20% of R2000_BOTTOM
+DIN,RUSSELL_BOUNDARY,,0.0,418.0,,within +/- 20% of R2000_BOTTOM
+IBP,RUSSELL_BOUNDARY,,0.0,5435.0,,within +/- 20% of R1000_BOTTOM
+REI,RUSSELL_BOUNDARY,,0.0,301.0,,within +/- 20% of R2000_BOTTOM
+OCGN,RUSSELL_BOUNDARY,,0.0,420.0,,within +/- 20% of R2000_BOTTOM
+JXN,RUSSELL_BOUNDARY,,0.0,7580.0,,within +/- 20% of R1000_BOTTOM
+CLNE,RUSSELL_BOUNDARY,,0.0,421.0,,within +/- 20% of R2000_BOTTOM
+GAP,RUSSELL_BOUNDARY,,0.0,7596.0,,within +/- 20% of R1000_BOTTOM
+OUT,RUSSELL_BOUNDARY,,0.0,5396.0,,within +/- 20% of R1000_BOTTOM
+GETY,RUSSELL_BOUNDARY,,0.0,299.0,,within +/- 20% of R2000_BOTTOM
+UP,RUSSELL_BOUNDARY,,0.0,299.0,,within +/- 20% of R2000_BOTTOM
+CLMB,RUSSELL_BOUNDARY,,0.0,421.0,,within +/- 20% of R2000_BOTTOM
+BRBS,RUSSELL_BOUNDARY,,0.0,299.0,,within +/- 20% of R2000_BOTTOM
+FVCB,RUSSELL_BOUNDARY,,0.0,298.0,,within +/- 20% of R2000_BOTTOM
+ACI,RUSSELL_BOUNDARY,,0.0,7621.0,,within +/- 20% of R1000_BOTTOM
+BLCO,RUSSELL_BOUNDARY,,0.0,5377.0,,within +/- 20% of R1000_BOTTOM
+HUMA,RUSSELL_BOUNDARY,,0.0,298.0,,within +/- 20% of R2000_BOTTOM
+COGT,RUSSELL_BOUNDARY,,0.0,5362.0,,within +/- 20% of R1000_BOTTOM
+PALI,RUSSELL_BOUNDARY,,0.0,297.0,,within +/- 20% of R2000_BOTTOM
+MYFW,RUSSELL_BOUNDARY,,0.0,297.0,,within +/- 20% of R2000_BOTTOM
+KLIC,RUSSELL_BOUNDARY,,0.0,5340.0,,within +/- 20% of R1000_BOTTOM
+FND,RUSSELL_BOUNDARY,,0.0,5333.0,,within +/- 20% of R1000_BOTTOM
+KEX,RUSSELL_BOUNDARY,,0.0,7669.0,,within +/- 20% of R1000_BOTTOM
+KWY,RUSSELL_BOUNDARY,,0.0,294.0,,within +/- 20% of R2000_BOTTOM
+MEI,RUSSELL_BOUNDARY,,0.0,426.0,,within +/- 20% of R2000_BOTTOM
+RPAY,RUSSELL_BOUNDARY,,0.0,294.0,,within +/- 20% of R2000_BOTTOM
+RBB,RUSSELL_BOUNDARY,,0.0,427.0,,within +/- 20% of R2000_BOTTOM
+FWRD,RUSSELL_BOUNDARY,,0.0,426.0,,within +/- 20% of R2000_BOTTOM
+MUR,RUSSELL_BOUNDARY,,0.0,5297.0,,within +/- 20% of R1000_BOTTOM
+OVLY,RUSSELL_BOUNDARY,,0.0,293.0,,within +/- 20% of R2000_BOTTOM
+NAVN,RUSSELL_BOUNDARY,,0.0,5271.0,,within +/- 20% of R1000_BOTTOM
+ALK,RUSSELL_BOUNDARY,,0.0,5273.0,,within +/- 20% of R1000_BOTTOM
+SXT,RUSSELL_BOUNDARY,,0.0,5268.0,,within +/- 20% of R1000_BOTTOM
+LODE,RUSSELL_BOUNDARY,,0.0,292.0,,within +/- 20% of R2000_BOTTOM
+BXC,RUSSELL_BOUNDARY,,0.0,428.0,,within +/- 20% of R2000_BOTTOM
+FNKO,RUSSELL_BOUNDARY,,0.0,291.0,,within +/- 20% of R2000_BOTTOM
+EBS,RUSSELL_BOUNDARY,,0.0,429.0,,within +/- 20% of R2000_BOTTOM
+PLAY,RUSSELL_BOUNDARY,,0.0,430.0,,within +/- 20% of R2000_BOTTOM
+G,RUSSELL_BOUNDARY,,0.0,5229.0,,within +/- 20% of R1000_BOTTOM
+BCPC,RUSSELL_BOUNDARY,,0.0,5215.0,,within +/- 20% of R1000_BOTTOM
+TAP,RUSSELL_BOUNDARY,,0.0,7798.0,,within +/- 20% of R1000_BOTTOM
+PRTA,RUSSELL_BOUNDARY,,0.0,432.0,,within +/- 20% of R2000_BOTTOM
+CIK0001999538,GOING_DARK,2026-06-17,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+THR,GOING_DARK,2026-06-17,0.0,2014.0,3.7278216,"Form 15 deregistration -- going dark, OTC pink only"
+NVAAF,GOING_DARK,2026-06-16,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001921745,GOING_DARK,2026-06-16,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001913963,GOING_DARK,2026-06-16,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+FONR,GOING_DARK,2026-06-15,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001936748,GOING_DARK,2026-06-15,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0000068622,GOING_DARK,2026-06-12,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0000045876,GOING_DARK,2026-06-12,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001141788,GOING_DARK,2026-06-12,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001627041,GOING_DARK,2026-06-11,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001133470,GOING_DARK,2026-06-11,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+FFIC,GOING_DARK,2026-06-11,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002092445,GOING_DARK,2026-06-11,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0000930775,GOING_DARK,2026-06-10,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002046954,GOING_DARK,2026-06-10,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001788013,GOING_DARK,2026-06-10,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002032379,GOING_DARK,2026-06-09,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001874999,GOING_DARK,2026-06-09,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001672587,GOING_DARK,2026-06-09,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001635569,GOING_DARK,2026-06-09,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001559356,GOING_DARK,2026-06-08,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0000794619,GOING_DARK,2026-06-08,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0000924901,GOING_DARK,2026-06-08,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001067063,GOING_DARK,2026-06-08,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001545018,GOING_DARK,2026-06-03,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002013100,GOING_DARK,2026-06-02,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002034268,GOING_DARK,2026-06-01,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001829280,GOING_DARK,2026-06-01,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001853513,GOING_DARK,2026-05-29,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001916232,GOING_DARK,2026-05-29,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001484565,GOING_DARK,2026-05-28,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001518336,GOING_DARK,2026-05-26,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001561680,GOING_DARK,2026-05-26,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001803737,GOING_DARK,2026-05-26,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001005757,GOING_DARK,2026-05-26,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001743907,GOING_DARK,2026-05-26,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001129155,GOING_DARK,2026-05-26,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001492422,GOING_DARK,2026-05-26,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+MCS,GOING_DARK,2026-05-26,0.0,685.0,1.5517962,"Form 15 deregistration -- going dark, OTC pink only"
+ABIT,GOING_DARK,2026-05-22,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+BPTH,GOING_DARK,2026-05-22,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001921031,GOING_DARK,2026-05-22,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001607939,GOING_DARK,2026-05-21,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001645666,GOING_DARK,2026-05-21,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+PRTCY,GOING_DARK,2026-05-21,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0000858470,GOING_DARK,2026-05-19,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001438231,GOING_DARK,2026-05-18,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001856236,GOING_DARK,2026-05-18,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001600626,GOING_DARK,2026-05-18,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0000896429,GOING_DARK,2026-05-18,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001125259,GOING_DARK,2026-05-18,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001831363,GOING_DARK,2026-05-15,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0000034563,GOING_DARK,2026-05-15,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+YGMZF,GOING_DARK,2026-05-14,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001830188,GOING_DARK,2026-05-14,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+MPTI,GOING_DARK,2026-05-13,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001942722,GOING_DARK,2026-05-13,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002071136,GOING_DARK,2026-05-12,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001918661,GOING_DARK,2026-05-12,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001668931,GOING_DARK,2026-05-12,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001603652,GOING_DARK,2026-05-11,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0000351834,GOING_DARK,2026-05-11,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001071255,GOING_DARK,2026-05-11,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001756701,GOING_DARK,2026-05-11,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001834253,GOING_DARK,2026-05-11,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001620305,GOING_DARK,2026-05-11,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+SNTI,GOING_DARK,2026-05-08,0.0,28.0,5.0038676,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001831840,GOING_DARK,2026-05-08,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001786205,GOING_DARK,2026-05-08,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+IVPR,GOING_DARK,2026-05-07,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001178879,GOING_DARK,2026-05-07,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001991085,GOING_DARK,2026-05-07,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001656047,GOING_DARK,2026-05-07,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001435508,GOING_DARK,2026-05-06,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002054174,GOING_DARK,2026-05-04,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001845337,GOING_DARK,2026-05-04,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0000909108,GOING_DARK,2026-05-04,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0000855787,GOING_DARK,2026-05-01,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002086744,GOING_DARK,2026-05-01,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+WBKCY,GOING_DARK,2026-05-01,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+LYRA,GOING_DARK,2026-04-30,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001053352,GOING_DARK,2026-04-30,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001512931,GOING_DARK,2026-04-30,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001897392,GOING_DARK,2026-04-30,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001876620,GOING_DARK,2026-04-30,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001377469,GOING_DARK,2026-04-29,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001621466,GOING_DARK,2026-04-29,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001934741,GOING_DARK,2026-04-27,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001913196,GOING_DARK,2026-04-27,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002025396,GOING_DARK,2026-04-23,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001661589,GOING_DARK,2026-04-23,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002087683,GOING_DARK,2026-04-22,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+SOHOB,GOING_DARK,2026-04-21,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001737193,GOING_DARK,2026-04-20,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002047036,GOING_DARK,2026-04-20,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001012100,GOING_DARK,2026-04-20,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0000859737,GOING_DARK,2026-04-17,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+SWKHL,GOING_DARK,2026-04-16,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001899236,GOING_DARK,2026-04-16,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+AHRO,GOING_DARK,2026-04-15,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001663240,GOING_DARK,2026-04-15,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001924168,GOING_DARK,2026-04-15,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001970509,GOING_DARK,2026-04-14,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+FGNV,GOING_DARK,2026-04-14,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001413837,GOING_DARK,2026-04-13,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001110611,GOING_DARK,2026-04-13,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001846017,GOING_DARK,2026-04-13,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001372020,GOING_DARK,2026-04-13,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001889956,GOING_DARK,2026-04-13,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001056285,GOING_DARK,2026-04-13,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001137547,GOING_DARK,2026-04-13,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001871130,GOING_DARK,2026-04-13,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+BBUC,GOING_DARK,2026-04-13,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001542028,GOING_DARK,2026-04-13,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002092707,GOING_DARK,2026-04-13,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0000039899,GOING_DARK,2026-04-08,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001621368,GOING_DARK,2026-04-08,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001841341,GOING_DARK,2026-04-08,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001905216,GOING_DARK,2026-04-08,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001758057,GOING_DARK,2026-04-07,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001931934,GOING_DARK,2026-04-07,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001575048,GOING_DARK,2026-04-03,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001640982,GOING_DARK,2026-04-03,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001124140,GOING_DARK,2026-04-02,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001651944,GOING_DARK,2026-04-02,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+ZIVO,GOING_DARK,2026-03-31,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+BACK,GOING_DARK,2026-03-31,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+BLMH,GOING_DARK,2026-03-31,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001001082,GOING_DARK,2026-03-31,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001042642,GOING_DARK,2026-03-31,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001615222,GOING_DARK,2026-03-30,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002066067,GOING_DARK,2026-03-30,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001733443,GOING_DARK,2026-03-30,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0000800166,GOING_DARK,2026-03-30,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001922858,GOING_DARK,2026-03-30,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CELG-RI,GOING_DARK,2026-03-27,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001699838,GOING_DARK,2026-03-27,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001898474,GOING_DARK,2026-03-27,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002066659,GOING_DARK,2026-03-27,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001857355,GOING_DARK,2026-03-27,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+TPICQ,GOING_DARK,2026-03-26,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0000846475,GOING_DARK,2026-03-26,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001540013,GOING_DARK,2026-03-26,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001881859,GOING_DARK,2026-03-26,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001660851,GOING_DARK,2026-03-25,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001888347,GOING_DARK,2026-03-25,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001545654,GOING_DARK,2026-03-23,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002088257,GOING_DARK,2026-03-20,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001602813,GOING_DARK,2026-03-18,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+FLYYQ,GOING_DARK,2026-03-12,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002101944,GOING_DARK,2026-03-09,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002084824,GOING_DARK,2026-03-09,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001921318,GOING_DARK,2026-03-06,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001640052,GOING_DARK,2026-03-04,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001596958,GOING_DARK,2026-03-04,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001984297,GOING_DARK,2026-02-27,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001896310,GOING_DARK,2026-02-27,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001937619,GOING_DARK,2026-02-26,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001922474,GOING_DARK,2026-02-20,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+LFTO,GOING_DARK,2026-02-17,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+RHNO,GOING_DARK,2026-02-12,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001472619,GOING_DARK,2026-02-11,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001646924,GOING_DARK,2026-02-06,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001655591,GOING_DARK,2026-02-06,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+DLTI,GOING_DARK,2026-02-06,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001566543,GOING_DARK,2026-02-04,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001166834,GOING_DARK,2026-02-02,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002035964,GOING_DARK,2026-01-30,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001861570,GOING_DARK,2026-01-30,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001886967,GOING_DARK,2026-01-30,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001957146,GOING_DARK,2026-01-30,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001031623,GOING_DARK,2026-01-26,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001990353,GOING_DARK,2026-01-21,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001642727,GOING_DARK,2026-01-20,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001974913,GOING_DARK,2026-01-20,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+TELFY,GOING_DARK,2026-01-20,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001883955,GOING_DARK,2026-01-16,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001115055,GOING_DARK,2026-01-12,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0000018349,GOING_DARK,2026-01-12,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001655153,GOING_DARK,2026-01-09,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001659329,GOING_DARK,2026-01-09,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001900656,GOING_DARK,2026-01-08,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001991884,GOING_DARK,2026-01-08,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001801738,GOING_DARK,2026-01-07,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002043041,GOING_DARK,2026-01-06,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002043030,GOING_DARK,2026-01-06,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002043033,GOING_DARK,2026-01-06,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002043022,GOING_DARK,2026-01-06,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0002043020,GOING_DARK,2026-01-06,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001589804,GOING_DARK,2025-12-31,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001543042,GOING_DARK,2025-12-31,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001882961,GOING_DARK,2025-12-30,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001648439,GOING_DARK,2025-12-30,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001612518,GOING_DARK,2025-12-30,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001629716,GOING_DARK,2025-12-30,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001869889,GOING_DARK,2025-12-29,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001974300,GOING_DARK,2025-12-23,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+CIK0001878122,GOING_DARK,2025-12-23,0.0,0.0,,"Form 15 deregistration -- going dark, OTC pink only"
+AZZ,GOING_DARK,2025-12-22,0.0,4210.0,3.1345115,"Form 15 deregistration -- going dark, OTC pink only"
+MYPSW,DELISTING,2026-06-17,0.0,0.0,,Form 25 exchange delisting
+CIK0001722388,DELISTING,2026-06-16,0.0,0.0,,Form 25 exchange delisting
+CIK0001005201,DELISTING,2026-06-16,0.0,0.0,,Form 25 exchange delisting
+NVAAF,DELISTING,2026-06-16,0.0,0.0,,Form 25 exchange delisting
+CIK0001845809,DELISTING,2026-06-16,0.0,0.0,,Form 25 exchange delisting
+KW,DELISTING,2026-06-16,0.0,1523.0,2.0222015,Form 25 exchange delisting
+CIK0001924868,DELISTING,2026-06-15,0.0,0.0,,Form 25 exchange delisting
+BLMZF,DELISTING,2026-06-15,0.0,0.0,,Form 25 exchange delisting
+RBSPF,DELISTING,2026-06-15,0.0,0.0,,Form 25 exchange delisting
+V,DELISTING,2026-06-15,0.0,0.0,,Form 25 exchange delisting
+RZC,DELISTING,2026-06-15,0.0,0.0,,Form 25 exchange delisting
+CIK0001649373,DELISTING,2026-06-15,0.0,0.0,,Form 25 exchange delisting
+FTAIN,DELISTING,2026-06-12,0.0,0.0,,Form 25 exchange delisting
+HSPTU,DELISTING,2026-06-12,0.0,0.0,,Form 25 exchange delisting
+AXIA-P,DELISTING,2026-06-11,0.0,0.0,,Form 25 exchange delisting
+FITBP,DELISTING,2026-06-11,0.0,0.0,,Form 25 exchange delisting
+MLACR,DELISTING,2026-06-11,0.0,0.0,,Form 25 exchange delisting
+KALV,DELISTING,2026-06-11,0.0,0.0,,Form 25 exchange delisting
+BREZU,DELISTING,2026-06-10,0.0,0.0,,Form 25 exchange delisting
+QSIAW,DELISTING,2026-06-10,0.0,0.0,,Form 25 exchange delisting
+VACHW,DELISTING,2026-06-10,0.0,0.0,,Form 25 exchange delisting
+MASI,DELISTING,2026-06-10,0.0,9424.0,11.944905,Form 25 exchange delisting
+CIK0001479026,DELISTING,2026-06-10,0.0,0.0,,Form 25 exchange delisting
+LEGT-UN,DELISTING,2026-06-10,0.0,0.0,,Form 25 exchange delisting
+APURU,DELISTING,2026-06-09,0.0,0.0,,Form 25 exchange delisting
+CIK0001633061,DELISTING,2026-06-09,0.0,0.0,,Form 25 exchange delisting
+KPLTW,DELISTING,2026-06-08,0.0,0.0,,Form 25 exchange delisting
+IOBTQ,DELISTING,2026-06-08,0.0,0.0,,Form 25 exchange delisting
+QVCGQ,DELISTING,2026-06-08,0.0,0.0,,Form 25 exchange delisting
+STAI,DELISTING,2026-06-08,0.0,0.0,,Form 25 exchange delisting
+CXH,DELISTING,2026-06-08,0.0,0.0,,Form 25 exchange delisting
+CMU,DELISTING,2026-06-08,0.0,0.0,,Form 25 exchange delisting
+CXE,DELISTING,2026-06-08,0.0,0.0,,Form 25 exchange delisting
+FACWW,DELISTING,2026-06-05,0.0,0.0,,Form 25 exchange delisting
+SA,DELISTING,2026-06-05,0.0,0.0,,Form 25 exchange delisting
+CIK0000038009,DELISTING,2026-06-05,0.0,0.0,,Form 25 exchange delisting
+CIK0001960208,DELISTING,2026-06-04,0.0,0.0,,Form 25 exchange delisting
+IVPR,DELISTING,2026-06-04,0.0,0.0,,Form 25 exchange delisting
+TWNPQ,DELISTING,2026-06-04,0.0,0.0,,Form 25 exchange delisting
+BDX,DELISTING,2026-06-04,0.0,40722.0,1.6874086,Form 25 exchange delisting
+FONR,DELISTING,2026-06-03,0.0,0.0,,Form 25 exchange delisting
+NXPLW,DELISTING,2026-06-02,0.0,0.0,,Form 25 exchange delisting
+EPWKF,DELISTING,2026-06-02,0.0,0.0,,Form 25 exchange delisting
+LLY,DELISTING,2026-06-02,0.0,0.0,,Form 25 exchange delisting
+FFIC,DELISTING,2026-06-01,0.0,0.0,,Form 25 exchange delisting
+THR,DELISTING,2026-06-01,0.0,2014.0,3.7278216,Form 25 exchange delisting
+CIK0000045876,DELISTING,2026-06-01,0.0,0.0,,Form 25 exchange delisting
+OXLCL,DELISTING,2026-05-29,0.0,0.0,,Form 25 exchange delisting
+CIK0001928561,DELISTING,2026-05-29,0.0,0.0,,Form 25 exchange delisting
+CIK0001879238,DELISTING,2026-05-29,0.0,0.0,,Form 25 exchange delisting
+CIK0000864270,DELISTING,2026-05-29,0.0,0.0,,Form 25 exchange delisting
+PTN,DELISTING,2026-05-28,0.0,0.0,,Form 25 exchange delisting
+CIK0001133470,DELISTING,2026-05-28,0.0,0.0,,Form 25 exchange delisting
+CIK0000794619,DELISTING,2026-05-28,0.0,0.0,,Form 25 exchange delisting
+CIK0001862005,DELISTING,2026-05-28,0.0,0.0,,Form 25 exchange delisting
+CIK0001293525,DELISTING,2026-05-28,0.0,0.0,,Form 25 exchange delisting
+CIK0001139414,DELISTING,2026-05-28,0.0,0.0,,Form 25 exchange delisting
+CIK0001139209,DELISTING,2026-05-28,0.0,0.0,,Form 25 exchange delisting
+CIK0001139208,DELISTING,2026-05-28,0.0,0.0,,Form 25 exchange delisting
+CIK0001139206,DELISTING,2026-05-28,0.0,0.0,,Form 25 exchange delisting
+CIK0001139197,DELISTING,2026-05-28,0.0,0.0,,Form 25 exchange delisting
+CIK0001139193,DELISTING,2026-05-28,0.0,0.0,,Form 25 exchange delisting
+CIK0001139191,DELISTING,2026-05-28,0.0,0.0,,Form 25 exchange delisting
+CIK0000230211,DELISTING,2026-05-28,0.0,0.0,,Form 25 exchange delisting
+FDX,DELISTING,2026-05-28,0.0,76175.0,2.5600827,Form 25 exchange delisting
+CIK0001516212,DELISTING,2026-05-27,0.0,0.0,,Form 25 exchange delisting
+GECCI,DELISTING,2026-05-27,0.0,0.0,,Form 25 exchange delisting
+CIK0000924901,DELISTING,2026-05-27,0.0,0.0,,Form 25 exchange delisting
+HBCYF,DELISTING,2026-05-26,0.0,0.0,,Form 25 exchange delisting
+CCAP,DELISTING,2026-05-26,0.0,0.0,,Form 25 exchange delisting
+HDRNW,DELISTING,2026-05-22,0.0,0.0,,Form 25 exchange delisting
+NRXP,DELISTING,2026-05-22,0.0,0.0,,Form 25 exchange delisting
+USGO,DELISTING,2026-05-22,0.0,0.0,,Form 25 exchange delisting
+AMT,DELISTING,2026-05-22,0.0,88906.0,25.245403,Form 25 exchange delisting
+EEFT,DELISTING,2026-05-21,0.0,0.0,,Form 25 exchange delisting
+CIK0001853513,DELISTING,2026-05-19,0.0,0.0,,Form 25 exchange delisting
+DTST,DELISTING,2026-05-18,0.0,0.0,,Form 25 exchange delisting
+MSPRZ,DELISTING,2026-05-18,0.0,0.0,,Form 25 exchange delisting
+YGMZF,DELISTING,2026-05-18,0.0,0.0,,Form 25 exchange delisting
+SYBX,DELISTING,2026-05-18,0.0,0.0,,Form 25 exchange delisting
+CIK0001484565,DELISTING,2026-05-18,0.0,0.0,,Form 25 exchange delisting
+CIK0001064642,DELISTING,2026-05-18,0.0,0.0,,Form 25 exchange delisting
+CIK0000876717,DELISTING,2026-05-18,0.0,0.0,,Form 25 exchange delisting
+CIK0001945422,DELISTING,2026-05-15,0.0,0.0,,Form 25 exchange delisting
+CIK0002034268,DELISTING,2026-05-15,0.0,0.0,,Form 25 exchange delisting
+CIK0001005757,DELISTING,2026-05-15,0.0,0.0,,Form 25 exchange delisting
+CIK0001829280,DELISTING,2026-05-15,0.0,0.0,,Form 25 exchange delisting
+CIK0001616668,DELISTING,2026-05-15,0.0,0.0,,Form 25 exchange delisting
+GLW,DELISTING,2026-05-15,0.0,161748.0,14.431391,Form 25 exchange delisting
+CIK0001129155,DELISTING,2026-05-15,0.0,0.0,,Form 25 exchange delisting
+CIK0001803737,DELISTING,2026-05-15,0.0,0.0,,Form 25 exchange delisting
+CIK0001771146,DELISTING,2026-05-14,0.0,0.0,,Form 25 exchange delisting
+CCLD,DELISTING,2026-05-14,0.0,97.0,1.6678805,Form 25 exchange delisting
+TMSOF,DELISTING,2026-05-14,0.0,0.0,,Form 25 exchange delisting
+FATPQ,DELISTING,2026-05-14,0.0,0.0,,Form 25 exchange delisting
+CIK0001492422,DELISTING,2026-05-14,0.0,0.0,,Form 25 exchange delisting
+PRTCY,DELISTING,2026-05-11,0.0,0.0,,Form 25 exchange delisting
+ENHA,DELISTING,2026-05-07,0.0,0.0,,Form 25 exchange delisting
+CIK0001503123,DELISTING,2026-05-06,0.0,0.0,,Form 25 exchange delisting
+CIK0001944285,DELISTING,2026-05-05,0.0,0.0,,Form 25 exchange delisting
+CIK0000068622,DELISTING,2026-04-30,0.0,0.0,,Form 25 exchange delisting
+LYRA,DELISTING,2026-04-20,0.0,0.0,,Form 25 exchange delisting
+MAPSW,DELISTING,2026-04-17,0.0,0.0,,Form 25 exchange delisting
+BMNR,DELISTING,2026-04-16,0.0,9176.0,0.8071547,Form 25 exchange delisting
+CIK0001572661,DELISTING,2026-04-15,0.0,0.0,,Form 25 exchange delisting
+SOHOB,DELISTING,2026-04-08,0.0,0.0,,Form 25 exchange delisting
+CIK0001485894,DELISTING,2026-04-06,0.0,0.0,,Form 25 exchange delisting
+DCBG,DELISTING,2026-04-06,0.0,0.0,,Form 25 exchange delisting
+CIK0001125259,DELISTING,2026-03-30,0.0,0.0,,Form 25 exchange delisting
+CIK0001922858,DELISTING,2026-03-20,0.0,0.0,,Form 25 exchange delisting
+UAMY,DELISTING,2026-03-16,0.0,0.0,,Form 25 exchange delisting
+ZENVF,DELISTING,2026-03-09,0.0,0.0,,Form 25 exchange delisting
+CULP,DELISTING,2026-03-05,0.0,0.0,,Form 25 exchange delisting
+CIK0001881567,DELISTING,2026-03-05,0.0,0.0,,Form 25 exchange delisting
+BSLKW,DELISTING,2026-03-02,0.0,0.0,,Form 25 exchange delisting
+CIK0001970751,DELISTING,2026-03-02,0.0,0.0,,Form 25 exchange delisting
+LVRWF,DELISTING,2026-02-24,0.0,0.0,,Form 25 exchange delisting
+CIK0001761055,DELISTING,2026-02-20,0.0,0.0,,Form 25 exchange delisting
+CIK0001100663,DELISTING,2026-02-20,0.0,0.0,,Form 25 exchange delisting
+ARIS,DELISTING,2026-02-20,0.0,0.0,,Form 25 exchange delisting
+SSKN,DELISTING,2026-02-19,0.0,0.0,,Form 25 exchange delisting
+ANEB,DELISTING,2026-02-17,0.0,0.0,,Form 25 exchange delisting
+INFQ-WT,DELISTING,2026-02-13,0.0,0.0,,Form 25 exchange delisting
+CIK0001409269,DELISTING,2026-01-30,0.0,0.0,,Form 25 exchange delisting
+AZN,DELISTING,2026-01-30,0.0,0.0,,Form 25 exchange delisting
+CIK0001792829,DELISTING,2026-01-20,0.0,0.0,,Form 25 exchange delisting
+CIK0001742912,DELISTING,2026-01-13,0.0,0.0,,Form 25 exchange delisting
+TELFY,DELISTING,2026-01-08,0.0,0.0,,Form 25 exchange delisting
+CIK0001406468,DELISTING,2026-01-08,0.0,0.0,,Form 25 exchange delisting
+HELP,DELISTING,2026-01-02,0.0,0.0,,Form 25 exchange delisting
+CIK0001860434,DELISTING,2025-12-31,0.0,0.0,,Form 25 exchange delisting
+ABXL,DELISTING,2025-12-29,0.0,0.0,,Form 25 exchange delisting
+CIK0001591939,DELISTING,2025-12-29,0.0,0.0,,Form 25 exchange delisting
+CIK0001954705,DELISTING,2025-12-22,0.0,0.0,,Form 25 exchange delisting
+GLBZ,DELISTING,2025-12-22,0.0,0.0,,Form 25 exchange delisting
+OMCC,DELISTING,2025-12-22,0.0,0.0,,Form 25 exchange delisting
+QS,DELISTING,2025-12-22,0.0,4503.0,4.0576496,Form 25 exchange delisting
+GRTUF,DELISTING,2025-12-22,0.0,0.0,,Form 25 exchange delisting

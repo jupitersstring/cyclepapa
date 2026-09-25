@@ -1,0 +1,5064 @@
+{
+  "GRNT": {
+    "ticker": "GRNT",
+    "archetypes": [
+      "hidden_asset_realization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 0.91,
+    "geometry_score": 12.5,
+    "downside_pct": 0.533,
+    "upside_pct": 0.483,
+    "floor_source": "book(0.5x)",
+    "sector": "Energy",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 13.0,
+        "d_e": 0.85,
+        "mcap": 602105235.0
+      }
+    },
+    "score": 16.1
+  },
+  "VSNT": {
+    "ticker": "VSNT",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 2.87,
+    "geometry_score": 17.5,
+    "downside_pct": 0.4,
+    "upside_pct": 1.149,
+    "floor_source": "book(0.5x)",
+    "sector": "Communication Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.579,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 16.4
+  },
+  "GENC": {
+    "ticker": "GENC",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 5.13,
+    "geometry_score": 23.7,
+    "downside_pct": 0.213,
+    "upside_pct": 1.094,
+    "floor_source": "NCAV",
+    "sector": "Industrials",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "NCAV",
+        "insider_pct": 0.287,
+        "net_cash_frac": 0.169,
+        "mcap": 257828978.0
+      }
+    },
+    "score": 13.9
+  },
+  "UNIT": {
+    "ticker": "UNIT",
+    "archetypes": [
+      "asset_sale_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 13.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Real Estate",
+    "details": {
+      "asset_sale_latent": {
+        "pressure": "credit-sweep",
+        "d_e": 33.27,
+        "ratio": 3.0
+      }
+    },
+    "score": 11.4
+  },
+  "MX": {
+    "ticker": "MX",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 7.5,
+    "geometry_score": 20.0,
+    "downside_pct": 0.4,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.522,
+        "tier": "BUILDING",
+        "families": [
+          "CEO_CHANGE",
+          "MDA_UNLOCK",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 17.0
+  },
+  "CVGI": {
+    "ticker": "CVGI",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 6.22,
+    "geometry_score": 21.8,
+    "downside_pct": 0.4,
+    "upside_pct": 2.487,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "delever": {
+        "d_e": 1.12,
+        "op_income": 14713000.0,
+        "op_prior": 1408000.0
+      }
+    },
+    "score": 17.4
+  },
+  "ANGI": {
+    "ticker": "ANGI",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 7.5,
+    "geometry_score": 20.0,
+    "downside_pct": 0.4,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Communication Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.315,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "CALL_INTENT",
+          "CIC_PREP",
+          "PAY_ON_VALUE",
+          "TURNAROUND_EXEC"
+        ]
+      }
+    },
+    "score": 17.0
+  },
+  "AHCO": {
+    "ticker": "AHCO",
+    "archetypes": [
+      "asset_sale_monetization",
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 3.0,
+    "geometry_score": 17.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "event"
+        ],
+        "d_e": 1.37,
+        "ratio": 3.0,
+        "small_cap": true
+      },
+      "governance_discount": {
+        "p_b": 0.569,
+        "tier": "BUILDING",
+        "families": [
+          "ASSET_SALE",
+          "PAY_ON_VALUE",
+          "PROXY_RESPONSIVE"
+        ]
+      }
+    },
+    "score": 38.4
+  },
+  "HSIC": {
+    "ticker": "HSIC",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.57,
+    "geometry_score": 14.6,
+    "downside_pct": 0.84,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "delever": {
+        "d_e": 1.17,
+        "op_income": 182000000.0,
+        "op_prior": 175000000.0
+      }
+    },
+    "score": 15.7
+  },
+  "CHGG": {
+    "ticker": "CHGG",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.92,
+    "geometry_score": 16.2,
+    "downside_pct": 0.4,
+    "upside_pct": 1.569,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Defensive",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.687,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 16.1
+  },
+  "PAHC": {
+    "ticker": "PAHC",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.4,
+    "geometry_score": 14.4,
+    "downside_pct": 0.872,
+    "upside_pct": 2.965,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "delever": {
+        "d_e": 2.18,
+        "op_income": 44653000.0,
+        "op_prior": 33515000.0
+      }
+    },
+    "score": 15.6
+  },
+  "BXMT": {
+    "ticker": "BXMT",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 0.38,
+    "geometry_score": 6.3,
+    "downside_pct": 1.0,
+    "upside_pct": 0.381,
+    "floor_source": "book(0.5x)",
+    "sector": "Real Estate",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.658,
+        "tier": "BUILDING",
+        "families": [
+          "CEO_CHANGE",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 13.6
+  },
+  "GETY": {
+    "ticker": "GETY",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 17.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Communication Services",
+    "details": {
+      "delever": {
+        "d_e": 3.82,
+        "op_income": 31555000.0,
+        "op_prior": 27342000.0
+      }
+    },
+    "score": 16.4
+  },
+  "THRY": {
+    "ticker": "THRY",
+    "archetypes": [
+      "coiled_spring_delever",
+      "asset_sale_monetization",
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 3,
+    "geometry_ratio": 3.0,
+    "geometry_score": 17.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "delever": {
+        "d_e": 1.03,
+        "op_income": 4058000.0,
+        "op_prior": -3034000.0
+      },
+      "asset_sale": {
+        "sources": [
+          "event"
+        ],
+        "d_e": 1.03,
+        "ratio": 3.0,
+        "small_cap": true
+      },
+      "governance_discount": {
+        "p_b": 0.398,
+        "tier": "BUILDING",
+        "families": [
+          "ASSET_SALE",
+          "PAY_ON_VALUE",
+          "PROXY_RESPONSIVE"
+        ]
+      }
+    },
+    "score": 50.4
+  },
+  "VREOF": {
+    "ticker": "VREOF",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 4.47,
+    "geometry_score": 19.9,
+    "downside_pct": 0.512,
+    "upside_pct": 2.289,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "delever": {
+        "d_e": 1.65,
+        "op_income": 9000000.0,
+        "op_prior": 2000000.0
+      }
+    },
+    "score": 17.0
+  },
+  "CAL": {
+    "ticker": "CAL",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 7.08,
+    "geometry_score": 22.6,
+    "downside_pct": 0.4,
+    "upside_pct": 2.832,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "delever": {
+        "d_e": 1.43,
+        "op_income": 23869000.0,
+        "op_prior": 11584000.0
+      }
+    },
+    "score": 17.6
+  },
+  "STRZ": {
+    "ticker": "STRZ",
+    "archetypes": [
+      "stated_unlock_triangulated",
+      "asset_sale_monetization"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 5.05,
+    "geometry_score": 17.6,
+    "downside_pct": 0.4,
+    "upside_pct": 2.022,
+    "floor_source": "book(0.5x)",
+    "sector": "Communication Services",
+    "details": {
+      "stated_unlock": {
+        "mda_families": [
+          "value_unlock"
+        ],
+        "mda_score": 8.0,
+        "insider_buys": 2
+      },
+      "asset_sale": {
+        "sources": [
+          "narrative"
+        ],
+        "d_e": 1.26,
+        "ratio": 5.05,
+        "small_cap": true
+      }
+    },
+    "score": 38.4
+  },
+  "AMN": {
+    "ticker": "AMN",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 4.15,
+    "geometry_score": 15.5,
+    "downside_pct": 0.723,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "delever": {
+        "d_e": 1.09,
+        "op_income": 117171000.0,
+        "op_prior": 12507000.0
+      }
+    },
+    "score": 15.9
+  },
+  "ALIT": {
+    "ticker": "ALIT",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 14.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.333,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "DECLASSIFY",
+          "MDA_CAPITAL",
+          "PAY_ON_VALUE",
+          "TURNAROUND_EXEC"
+        ]
+      }
+    },
+    "score": 15.7
+  },
+  "AGO": {
+    "ticker": "AGO",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.11,
+    "geometry_score": 17.9,
+    "downside_pct": 0.4,
+    "upside_pct": 1.243,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.563,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 16.5
+  },
+  "ALHC": {
+    "ticker": "ALHC",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.88,
+    "geometry_score": 15.1,
+    "downside_pct": 0.773,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "delever": {
+        "d_e": 1.56,
+        "op_income": 15503000.0,
+        "op_prior": -5393000.0
+      }
+    },
+    "score": 15.8
+  },
+  "BCIC": {
+    "ticker": "BCIC",
+    "archetypes": [
+      "hidden_asset_realization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 0.57,
+    "geometry_score": 11.2,
+    "downside_pct": 1.0,
+    "upside_pct": 0.571,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 12.0,
+        "d_e": 1.74,
+        "mcap": 88004025.0
+      }
+    },
+    "score": 15.8
+  },
+  "GPI": {
+    "ticker": "GPI",
+    "archetypes": [
+      "coiled_spring_delever",
+      "asset_sale_latent"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 4.97,
+    "geometry_score": 20.5,
+    "downside_pct": 0.504,
+    "upside_pct": 2.502,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "delever": {
+        "d_e": 2.11,
+        "op_income": 242600000.0,
+        "op_prior": 233900000.0
+      },
+      "asset_sale_latent": {
+        "pressure": "mda-intent",
+        "d_e": 2.11,
+        "ratio": 4.97
+      }
+    },
+    "score": 35.1
+  },
+  "IART": {
+    "ticker": "IART",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 4.5,
+    "geometry_score": 19.9,
+    "downside_pct": 0.572,
+    "upside_pct": 2.575,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "delever": {
+        "d_e": 1.96,
+        "op_income": 11470000.0,
+        "op_prior": -15497000.0
+      }
+    },
+    "score": 17.0
+  },
+  "LBTYK": {
+    "ticker": "LBTYK",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 2.14,
+    "geometry_score": 16.0,
+    "downside_pct": 1.0,
+    "upside_pct": 2.143,
+    "floor_source": "book(0.5x)",
+    "sector": "Communication Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.351,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "PAY_ON_VALUE",
+          "PROXY_RESPONSIVE",
+          "TURNAROUND_EXEC"
+        ]
+      }
+    },
+    "score": 16.0
+  },
+  "BATL": {
+    "ticker": "BATL",
+    "archetypes": [
+      "hidden_asset_realization",
+      "asset_sale_monetization"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 3.0,
+    "geometry_score": 14.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Energy",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 13.0,
+        "d_e": 1.01,
+        "mcap": 24394629.0
+      },
+      "asset_sale": {
+        "sources": [
+          "event"
+        ],
+        "d_e": 1.01,
+        "ratio": 3.0,
+        "small_cap": true
+      }
+    },
+    "score": 38.7
+  },
+  "AESI": {
+    "ticker": "AESI",
+    "archetypes": [
+      "hidden_asset_realization",
+      "structured_distressed_injection"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 0.4,
+    "geometry_score": 3.3,
+    "downside_pct": 0.623,
+    "upside_pct": 0.247,
+    "floor_source": "book(0.5x)",
+    "sector": "Energy",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 9.0,
+        "d_e": 0.83,
+        "mcap": 1475134947.0
+      },
+      "structured_distressed_injection": {
+        "instrument": "senior_convertible",
+        "coupon_pct": 0.5,
+        "senior_secured": true,
+        "drawdown": -0.413
+      }
+    },
+    "score": 36.8
+  },
+  "HAIN": {
+    "ticker": "HAIN",
+    "archetypes": [
+      "asset_sale_monetization",
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 3.0,
+    "geometry_score": 14.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Defensive",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "event"
+        ],
+        "d_e": 2.76,
+        "ratio": 3.0,
+        "small_cap": true
+      },
+      "governance_discount": {
+        "p_b": 0.23,
+        "tier": "BUILDING",
+        "families": [
+          "ASSET_SALE",
+          "CIC_PREP",
+          "MDA_UNLOCK",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 37.7
+  },
+  "INGM": {
+    "ticker": "INGM",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 4.53,
+    "geometry_score": 20.0,
+    "downside_pct": 0.663,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "delever": {
+        "d_e": 1.01,
+        "op_income": 222915000.0,
+        "op_prior": 200864000.0
+      }
+    },
+    "score": 17.0
+  },
+  "ARAI": {
+    "ticker": "ARAI",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 5.62,
+    "geometry_score": 22.2,
+    "downside_pct": 0.0,
+    "upside_pct": 0.281,
+    "floor_source": "net-cash",
+    "sector": "Technology",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "net-cash",
+        "insider_pct": 0.605,
+        "net_cash_frac": 702.458,
+        "mcap": 11665552.0
+      }
+    },
+    "score": 13.6
+  },
+  "COR": {
+    "ticker": "COR",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.08,
+    "geometry_score": 13.8,
+    "downside_pct": 0.975,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "delever": {
+        "d_e": 3.59,
+        "op_income": 1142593000.0,
+        "op_prior": 1036190000.0
+      }
+    },
+    "score": 15.4
+  },
+  "KSS": {
+    "ticker": "KSS",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 17.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.486,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "BOARD_REFRESH",
+          "CALL_COMMIT",
+          "CIC_PREP",
+          "PAY_ON_VALUE",
+          "PROXY_RESPONSIVE",
+          "SOP_DISSENT",
+          "TURNAROUND_EXEC"
+        ]
+      }
+    },
+    "score": 16.4
+  },
+  "LUCY": {
+    "ticker": "LUCY",
+    "archetypes": [
+      "sub_cash_buyback",
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 31.6,
+    "geometry_score": 35.4,
+    "downside_pct": 0.0,
+    "upside_pct": 1.58,
+    "floor_source": "NCAV",
+    "sector": "Healthcare",
+    "details": {
+      "sub_cash_buyback": {
+        "net_cash_frac": 0.759,
+        "net_buyback_score": -6,
+        "verified_buyback": true
+      },
+      "tender_target_latent": {
+        "floor_source": "NCAV",
+        "insider_pct": 0.076,
+        "net_cash_frac": 0.759,
+        "mcap": 5765735.0
+      }
+    },
+    "score": 40.0
+  },
+  "ARI": {
+    "ticker": "ARI",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.54,
+    "geometry_score": 10.5,
+    "downside_pct": 0.4,
+    "upside_pct": 0.617,
+    "floor_source": "book(0.5x)",
+    "sector": "Real Estate",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.661,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "ASSET_SALE",
+          "CALL_COMMIT",
+          "STRATEGIC_REVIEW"
+        ]
+      }
+    },
+    "score": 14.6
+  },
+  "ARE": {
+    "ticker": "ARE",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 0.98,
+    "geometry_score": 12.8,
+    "downside_pct": 0.4,
+    "upside_pct": 0.392,
+    "floor_source": "book(0.5x)",
+    "sector": "Real Estate",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.599,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "PAY_ON_VALUE",
+          "PROXY_RESPONSIVE",
+          "SOP_DISSENT",
+          "TENDER_OFFER"
+        ]
+      }
+    },
+    "score": 15.2
+  },
+  "CLVT": {
+    "ticker": "CLVT",
+    "archetypes": [
+      "asset_sale_monetization",
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 3.0,
+    "geometry_score": 17.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "event"
+        ],
+        "d_e": 0.89,
+        "ratio": 3.0,
+        "small_cap": true
+      },
+      "governance_discount": {
+        "p_b": 0.268,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "ASSET_SALE",
+          "CIC_PREP",
+          "PAY_ON_VALUE",
+          "TURNAROUND_EXEC"
+        ]
+      }
+    },
+    "score": 38.4
+  },
+  "NEO": {
+    "ticker": "NEO",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 7.5,
+    "geometry_score": 20.0,
+    "downside_pct": 0.4,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.611,
+        "tier": "BUILDING",
+        "families": [
+          "PAY_ON_VALUE",
+          "TURNAROUND_EXEC"
+        ]
+      }
+    },
+    "score": 17.0
+  },
+  "WOOF": {
+    "ticker": "WOOF",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 7.5,
+    "geometry_score": 23.0,
+    "downside_pct": 0.4,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "delever": {
+        "d_e": 1.28,
+        "op_income": 24626000.0,
+        "op_prior": 16359000.0
+      }
+    },
+    "score": 17.8
+  },
+  "NCMI": {
+    "ticker": "NCMI",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 2.47,
+    "geometry_score": 7.7,
+    "downside_pct": 0.4,
+    "upside_pct": 0.988,
+    "floor_source": "book(0.5x)",
+    "sector": "Communication Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.606,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_INTENT",
+          "CIC_PREP",
+          "PAY_ON_VALUE",
+          "PROXY_RESPONSIVE"
+        ]
+      }
+    },
+    "score": 13.9
+  },
+  "NUS": {
+    "ticker": "NUS",
+    "archetypes": [
+      "asset_sale_monetization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 7.5,
+    "geometry_score": 23.0,
+    "downside_pct": 0.4,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Defensive",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "narrative"
+        ],
+        "d_e": 0.33,
+        "ratio": 7.5,
+        "small_cap": true
+      }
+    },
+    "score": 17.8
+  },
+  "RYN": {
+    "ticker": "RYN",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.94,
+    "geometry_score": 12.6,
+    "downside_pct": 0.4,
+    "upside_pct": 0.777,
+    "floor_source": "book(0.5x)",
+    "sector": "Real Estate",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.602,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 15.2
+  },
+  "LE": {
+    "ticker": "LE",
+    "archetypes": [
+      "tender_offer_squeeze",
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 4.65,
+    "geometry_score": 17.1,
+    "downside_pct": 0.4,
+    "upside_pct": 1.86,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "tender_offer": {
+        "sources": [
+          "event"
+        ],
+        "ratio": 4.65,
+        "mcap": 318167973.0,
+        "net_cash_floor": false
+      },
+      "governance_discount": {
+        "p_b": 0.646,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "CALL_INTENT",
+          "CIC_PREP",
+          "MDA_UNLOCK",
+          "PAY_ON_VALUE",
+          "TENDER_OFFER"
+        ]
+      }
+    },
+    "score": 36.3
+  },
+  "OPTU": {
+    "ticker": "OPTU",
+    "archetypes": [
+      "tender_offer_squeeze"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 9.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "none",
+    "sector": "Communication Services",
+    "details": {
+      "tender_offer": {
+        "sources": [
+          "event"
+        ],
+        "ratio": 3.0,
+        "mcap": 514299409.0,
+        "net_cash_floor": false
+      }
+    },
+    "score": 12.4
+  },
+  "DXLG": {
+    "ticker": "DXLG",
+    "archetypes": [
+      "tender_offer_squeeze",
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 3.0,
+    "geometry_score": 14.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "tender_offer": {
+        "sources": [
+          "event"
+        ],
+        "ratio": 3.0,
+        "mcap": 33191492.0,
+        "net_cash_floor": false
+      },
+      "governance_discount": {
+        "p_b": 0.318,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "MDA_CAPITAL",
+          "PAY_ON_VALUE",
+          "TENDER_OFFER"
+        ]
+      }
+    },
+    "score": 35.7
+  },
+  "PRTA": {
+    "ticker": "PRTA",
+    "archetypes": [
+      "sub_cash_buyback"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 2.04,
+    "geometry_score": 16.8,
+    "downside_pct": 0.295,
+    "upside_pct": 0.601,
+    "floor_source": "net-cash",
+    "sector": "Healthcare",
+    "details": {
+      "sub_cash_buyback": {
+        "net_cash_frac": 0.705,
+        "net_buyback_score": null,
+        "verified_buyback": true
+      }
+    },
+    "score": 18.2
+  },
+  "AMTM": {
+    "ticker": "AMTM",
+    "archetypes": [
+      "forced_seller_exhaustion"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 4.93,
+    "geometry_score": 20.5,
+    "downside_pct": 0.515,
+    "upside_pct": 2.543,
+    "floor_source": "book(0.5x)",
+    "sector": "Industrials",
+    "details": {
+      "forced_seller": {
+        "nport_score": 12.0,
+        "burning": false
+      }
+    },
+    "score": 15.1
+  },
+  "CNC": {
+    "ticker": "CNC",
+    "archetypes": [
+      "asset_sale_monetization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 4.72,
+    "geometry_score": 20.2,
+    "downside_pct": 0.636,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "event"
+        ],
+        "d_e": 0.76,
+        "ratio": 4.72,
+        "small_cap": false
+      }
+    },
+    "score": 17.1
+  },
+  "PTLO": {
+    "ticker": "PTLO",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.64,
+    "geometry_score": 14.8,
+    "downside_pct": 1.0,
+    "upside_pct": 1.639,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.548,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "CIC_PREP",
+          "PAY_ON_VALUE",
+          "TURNAROUND_EXEC"
+        ]
+      }
+    },
+    "score": 15.7
+  },
+  "ARQ": {
+    "ticker": "ARQ",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.07,
+    "geometry_score": 14.8,
+    "downside_pct": 0.4,
+    "upside_pct": 1.227,
+    "floor_source": "book(0.5x)",
+    "sector": "Industrials",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.517,
+        "tier": "BUILDING",
+        "families": [
+          "PAY_ON_VALUE",
+          "TURNAROUND_EXEC"
+        ]
+      }
+    },
+    "score": 15.7
+  },
+  "ASTH": {
+    "ticker": "ASTH",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 4.01,
+    "geometry_score": 15.3,
+    "downside_pct": 0.748,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "delever": {
+        "d_e": 1.22,
+        "op_income": 28528000.0,
+        "op_prior": 20583000.0
+      }
+    },
+    "score": 15.8
+  },
+  "BIRD": {
+    "ticker": "BIRD",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 2.88,
+    "geometry_score": 14.5,
+    "downside_pct": 1.0,
+    "upside_pct": 2.883,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.657,
+        "tier": "BUILDING",
+        "families": [
+          "ASSET_SALE",
+          "MDA_UNLOCK",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 15.6
+  },
+  "BNED": {
+    "ticker": "BNED",
+    "archetypes": [
+      "hidden_asset_realization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 0.63,
+    "geometry_score": 7.4,
+    "downside_pct": 1.0,
+    "upside_pct": 0.628,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 12.0,
+        "d_e": 1.07,
+        "mcap": 380730658.0
+      }
+    },
+    "score": 14.8
+  },
+  "CCS": {
+    "ticker": "CCS",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 2.72,
+    "geometry_score": 17.2,
+    "downside_pct": 0.4,
+    "upside_pct": 1.086,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.692,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP",
+          "PAY_ON_VALUE",
+          "PROXY_RESPONSIVE"
+        ]
+      }
+    },
+    "score": 16.3
+  },
+  "CLNE": {
+    "ticker": "CLNE",
+    "archetypes": [
+      "hidden_asset_realization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.26,
+    "geometry_score": 15.1,
+    "downside_pct": 0.4,
+    "upside_pct": 1.304,
+    "floor_source": "book(0.5x)",
+    "sector": "Energy",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 13.0,
+        "d_e": 0.57,
+        "mcap": 366674016.0
+      }
+    },
+    "score": 16.8
+  },
+  "CWK": {
+    "ticker": "CWK",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 4.57,
+    "geometry_score": 16.0,
+    "downside_pct": 0.657,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Real Estate",
+    "details": {
+      "delever": {
+        "d_e": 1.55,
+        "op_income": 58700000.0,
+        "op_prior": 45300000.0
+      }
+    },
+    "score": 16.0
+  },
+  "DCGO": {
+    "ticker": "DCGO",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 8.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.301,
+        "tier": "BUILDING",
+        "families": [
+          "CHAIR_CEO_SPLIT",
+          "PAY_ON_VALUE",
+          "PROXY_RESPONSIVE"
+        ]
+      }
+    },
+    "score": 14.2
+  },
+  "DEC": {
+    "ticker": "DEC",
+    "archetypes": [
+      "hidden_asset_realization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.12,
+    "geometry_score": 10.3,
+    "downside_pct": 1.0,
+    "upside_pct": 1.118,
+    "floor_source": "book(0.5x)",
+    "sector": "Energy",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 13.0,
+        "d_e": 4.04,
+        "mcap": 1016506371.0
+      }
+    },
+    "score": 15.6
+  },
+  "FMC": {
+    "ticker": "FMC",
+    "archetypes": [
+      "tender_offer_squeeze"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 14.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Basic Materials",
+    "details": {
+      "tender_offer": {
+        "sources": [
+          "event"
+        ],
+        "ratio": 3.0,
+        "mcap": 1277939892.0,
+        "net_cash_floor": false
+      }
+    },
+    "score": 13.7
+  },
+  "GIII": {
+    "ticker": "GIII",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.11,
+    "geometry_score": 17.9,
+    "downside_pct": 0.4,
+    "upside_pct": 1.243,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.654,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "CIC_PREP",
+          "PAY_ON_VALUE",
+          "TURNAROUND_EXEC"
+        ]
+      }
+    },
+    "score": 16.5
+  },
+  "HCAT": {
+    "ticker": "HCAT",
+    "archetypes": [
+      "asset_sale_monetization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 4.84,
+    "geometry_score": 17.4,
+    "downside_pct": 0.62,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "event"
+        ],
+        "d_e": 1.23,
+        "ratio": 4.84,
+        "small_cap": true
+      }
+    },
+    "score": 16.4
+  },
+  "JELD": {
+    "ticker": "JELD",
+    "archetypes": [
+      "asset_sale_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 9.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "none",
+    "sector": "Industrials",
+    "details": {
+      "asset_sale_latent": {
+        "pressure": "credit-sweep",
+        "d_e": 114.58,
+        "ratio": 3.0
+      }
+    },
+    "score": 10.4
+  },
+  "LAB": {
+    "ticker": "LAB",
+    "archetypes": [
+      "asset_sale_monetization",
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 38.71,
+    "geometry_score": 33.8,
+    "downside_pct": 0.0,
+    "upside_pct": 1.935,
+    "floor_source": "NCAV",
+    "sector": "Healthcare",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "event",
+          "narrative"
+        ],
+        "d_e": 0.05,
+        "ratio": 38.71,
+        "small_cap": true
+      },
+      "governance_discount": {
+        "p_b": 0.53,
+        "tier": "BUILDING",
+        "families": [
+          "ASSET_SALE",
+          "MDA_UNLOCK",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 42.0
+  },
+  "NRDY": {
+    "ticker": "NRDY",
+    "archetypes": [
+      "asset_sale_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.41,
+    "geometry_score": 5.4,
+    "downside_pct": 0.879,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "asset_sale_latent": {
+        "pressure": "mda-intent",
+        "d_e": 1.01,
+        "ratio": 3.41
+      }
+    },
+    "score": 9.3
+  },
+  "ONEW": {
+    "ticker": "ONEW",
+    "archetypes": [
+      "asset_sale_monetization",
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 3.0,
+    "geometry_score": 17.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "narrative"
+        ],
+        "d_e": null,
+        "ratio": 3.0,
+        "small_cap": true
+      },
+      "governance_discount": {
+        "p_b": 0.576,
+        "tier": "BUILDING",
+        "families": [
+          "CEO_CHANGE",
+          "CIC_PREP",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 38.4
+  },
+  "ONIT": {
+    "ticker": "ONIT",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 17.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.403,
+        "tier": "BUILDING",
+        "families": [
+          "BUYBACK_AUTH",
+          "CALL_INTENT",
+          "CIC_PREP",
+          "PAY_ON_VALUE",
+          "PROXY_RESPONSIVE",
+          "SOP_DISSENT"
+        ]
+      }
+    },
+    "score": 16.4
+  },
+  "PMCB": {
+    "ticker": "PMCB",
+    "archetypes": [
+      "sub_cash_buyback",
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 30.0,
+    "geometry_score": 35.0,
+    "downside_pct": 0.0,
+    "upside_pct": 1.5,
+    "floor_source": "NCAV",
+    "sector": "Healthcare",
+    "details": {
+      "sub_cash_buyback": {
+        "net_cash_frac": 4.068,
+        "net_buyback_score": null,
+        "verified_buyback": true
+      },
+      "tender_target_latent": {
+        "floor_source": "NCAV",
+        "insider_pct": 0.057,
+        "net_cash_frac": 4.068,
+        "mcap": 4573366.0
+      }
+    },
+    "score": 40.0
+  },
+  "SAFE": {
+    "ticker": "SAFE",
+    "archetypes": [
+      "hidden_asset_realization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 0.99,
+    "geometry_score": 12.8,
+    "downside_pct": 1.0,
+    "upside_pct": 0.993,
+    "floor_source": "book(0.5x)",
+    "sector": "Real Estate",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 15.0,
+        "d_e": 1.93,
+        "mcap": 928781726.0
+      }
+    },
+    "score": 16.2
+  },
+  "SHEN": {
+    "ticker": "SHEN",
+    "archetypes": [
+      "hidden_asset_realization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 2.74,
+    "geometry_score": 14.2,
+    "downside_pct": 0.4,
+    "upside_pct": 1.096,
+    "floor_source": "book(0.5x)",
+    "sector": "Communication Services",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 13.0,
+        "d_e": 0.8,
+        "mcap": 681262387.0
+      }
+    },
+    "score": 16.6
+  },
+  "TREE": {
+    "ticker": "TREE",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 5.68,
+    "geometry_score": 17.3,
+    "downside_pct": 0.528,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "delever": {
+        "d_e": 1.42,
+        "op_income": 31114000.0,
+        "op_prior": -7109000.0
+      }
+    },
+    "score": 16.3
+  },
+  "TRS": {
+    "ticker": "TRS",
+    "archetypes": [
+      "sub_cash_buyback"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 2.21,
+    "geometry_score": 21.2,
+    "downside_pct": 0.381,
+    "upside_pct": 0.841,
+    "floor_source": "net-cash",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "sub_cash_buyback": {
+        "net_cash_frac": 0.619,
+        "net_buyback_score": 17,
+        "verified_buyback": false
+      }
+    },
+    "score": 19.3
+  },
+  "UEIC": {
+    "ticker": "UEIC",
+    "archetypes": [
+      "asset_sale_monetization",
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 12.18,
+    "geometry_score": 26.1,
+    "downside_pct": 0.246,
+    "upside_pct": 3.0,
+    "floor_source": "NCAV",
+    "sector": "Technology",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "narrative"
+        ],
+        "d_e": 0.22,
+        "ratio": 12.18,
+        "small_cap": true
+      },
+      "governance_discount": {
+        "p_b": 0.465,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "CAPITAL_RETURN_POLICY",
+          "MDA_UNLOCK",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 40.5
+  },
+  "UNFI": {
+    "ticker": "UNFI",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 4.26,
+    "geometry_score": 15.6,
+    "downside_pct": 0.705,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Defensive",
+    "details": {
+      "delever": {
+        "d_e": 1.97,
+        "op_income": 66000000.0,
+        "op_prior": 15000000.0
+      }
+    },
+    "score": 15.9
+  },
+  "ARAY": {
+    "ticker": "ARAY",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 14.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.655,
+        "tier": "BUILDING",
+        "families": [
+          "CEO_CHANGE",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 15.7
+  },
+  "COHN": {
+    "ticker": "COHN",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 7.5,
+    "geometry_score": 23.0,
+    "downside_pct": 0.4,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.51,
+        "tier": "BUILDING",
+        "families": [
+          "CAPITAL_RETURN_POLICY",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 17.8
+  },
+  "CTRN": {
+    "ticker": "CTRN",
+    "archetypes": [
+      "hidden_asset_realization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 0.52,
+    "geometry_score": 6.9,
+    "downside_pct": 0.857,
+    "upside_pct": 0.441,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 13.0,
+        "d_e": 1.79,
+        "mcap": 434384914.0
+      }
+    },
+    "score": 14.7
+  },
+  "CVS": {
+    "ticker": "CVS",
+    "archetypes": [
+      "forced_seller_exhaustion"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 4.7,
+    "geometry_score": 20.2,
+    "downside_pct": 0.638,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "forced_seller": {
+        "nport_score": 6.0,
+        "burning": false
+      }
+    },
+    "score": 15.1
+  },
+  "ELV": {
+    "ticker": "ELV",
+    "archetypes": [
+      "forced_seller_exhaustion"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 4.05,
+    "geometry_score": 15.3,
+    "downside_pct": 0.741,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "forced_seller": {
+        "nport_score": 6.0,
+        "burning": false
+      }
+    },
+    "score": 13.8
+  },
+  "FG": {
+    "ticker": "FG",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.07,
+    "geometry_score": 17.8,
+    "downside_pct": 0.4,
+    "upside_pct": 1.227,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.626,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 16.4
+  },
+  "FNWB": {
+    "ticker": "FNWB",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.6,
+    "geometry_score": 14.7,
+    "downside_pct": 0.4,
+    "upside_pct": 0.641,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.611,
+        "tier": "BUILDING",
+        "families": [
+          "CEO_CHANGE",
+          "CIC_PREP",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 15.7
+  },
+  "FWRD": {
+    "ticker": "FWRD",
+    "archetypes": [
+      "coiled_spring_delever",
+      "asset_sale_latent"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 3.0,
+    "geometry_score": 12.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "none",
+    "sector": "Industrials",
+    "details": {
+      "delever": {
+        "d_e": 26.05,
+        "op_income": 20441000.0,
+        "op_prior": 4763000.0
+      },
+      "asset_sale_latent": {
+        "pressure": "mda-intent",
+        "d_e": 26.05,
+        "ratio": 3.0
+      }
+    },
+    "score": 33.2
+  },
+  "HUN": {
+    "ticker": "HUN",
+    "archetypes": [
+      "asset_sale_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 7.5,
+    "geometry_score": 20.0,
+    "downside_pct": 0.4,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Basic Materials",
+    "details": {
+      "asset_sale_latent": {
+        "pressure": "mda-intent",
+        "d_e": 0.93,
+        "ratio": 7.5
+      }
+    },
+    "score": 13.0
+  },
+  "LSAK": {
+    "ticker": "LSAK",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 4.78,
+    "geometry_score": 20.3,
+    "downside_pct": 0.627,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "delever": {
+        "d_e": 1.33,
+        "op_income": 4085000.0,
+        "op_prior": 366000.0
+      }
+    },
+    "score": 17.1
+  },
+  "MAGN": {
+    "ticker": "MAGN",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 17.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Defensive",
+    "details": {
+      "delever": {
+        "d_e": 1.83,
+        "op_income": 17000000.0,
+        "op_prior": 4000000.0
+      }
+    },
+    "score": 16.4
+  },
+  "MED": {
+    "ticker": "MED",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 22.86,
+    "geometry_score": 30.2,
+    "downside_pct": 0.047,
+    "upside_pct": 1.143,
+    "floor_source": "NCAV",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.687,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "ACTIVIST_SETTLEMENT",
+          "CIC_PREP",
+          "PAY_ON_VALUE",
+          "PROXY_RESPONSIVE",
+          "SOP_DISSENT"
+        ]
+      }
+    },
+    "score": 19.6
+  },
+  "ONL": {
+    "ticker": "ONL",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.34,
+    "geometry_score": 13.9,
+    "downside_pct": 1.0,
+    "upside_pct": 1.338,
+    "floor_source": "book(0.5x)",
+    "sector": "Real Estate",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.228,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "ACTIVIST_SETTLEMENT",
+          "CALL_INTENT",
+          "MDA_GOVERNANCE",
+          "PAY_ON_VALUE",
+          "VALUE_COMMITTEE"
+        ]
+      }
+    },
+    "score": 15.5
+  },
+  "PRGO": {
+    "ticker": "PRGO",
+    "archetypes": [
+      "asset_sale_monetization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 7.5,
+    "geometry_score": 20.0,
+    "downside_pct": 0.4,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "event"
+        ],
+        "d_e": 1.45,
+        "ratio": 7.5,
+        "small_cap": true
+      }
+    },
+    "score": 17.0
+  },
+  "RBBN": {
+    "ticker": "RBBN",
+    "archetypes": [
+      "asset_sale_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 7.5,
+    "geometry_score": 20.0,
+    "downside_pct": 0.4,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "asset_sale_latent": {
+        "pressure": "mda-intent",
+        "d_e": 0.95,
+        "ratio": 7.5
+      }
+    },
+    "score": 13.0
+  },
+  "WHR": {
+    "ticker": "WHR",
+    "archetypes": [
+      "structured_distressed_injection"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.75,
+    "geometry_score": 18.9,
+    "downside_pct": 0.4,
+    "upside_pct": 1.5,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "structured_distressed_injection": {
+        "instrument": "convertible_preferred",
+        "coupon_pct": null,
+        "senior_secured": true,
+        "drawdown": -0.646
+      }
+    },
+    "score": 17.7
+  },
+  "SAIC": {
+    "ticker": "SAIC",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.21,
+    "geometry_score": 14.1,
+    "downside_pct": 0.865,
+    "upside_pct": 2.777,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "delever": {
+        "d_e": 1.97,
+        "op_income": 179000000.0,
+        "op_prior": 121000000.0
+      }
+    },
+    "score": 15.5
+  },
+  "HPP": {
+    "ticker": "HPP",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.75,
+    "geometry_score": 18.9,
+    "downside_pct": 0.4,
+    "upside_pct": 1.5,
+    "floor_source": "book(0.5x)",
+    "sector": "Real Estate",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.226,
+        "tier": "BUILDING",
+        "families": [
+          "PAY_ON_VALUE",
+          "PROXY_RESPONSIVE",
+          "SOP_DISSENT"
+        ]
+      }
+    },
+    "score": 16.7
+  },
+  "UNH": {
+    "ticker": "UNH",
+    "archetypes": [
+      "forced_seller_exhaustion"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.51,
+    "geometry_score": 14.5,
+    "downside_pct": 0.854,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "forced_seller": {
+        "nport_score": 6.0,
+        "burning": false
+      }
+    },
+    "score": 13.6
+  },
+  "MLCI": {
+    "ticker": "MLCI",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.45,
+    "geometry_score": 14.3,
+    "downside_pct": 0.4,
+    "upside_pct": 0.578,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.586,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "CALL_VALUE_GAP",
+          "TENDER_OFFER"
+        ]
+      }
+    },
+    "score": 15.6
+  },
+  "RGNX": {
+    "ticker": "RGNX",
+    "archetypes": [
+      "hidden_asset_realization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 0.68,
+    "geometry_score": 4.6,
+    "downside_pct": 0.909,
+    "upside_pct": 0.615,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 14.0,
+        "d_e": 3.27,
+        "mcap": 392899913.0
+      }
+    },
+    "score": 14.2
+  },
+  "CLB": {
+    "ticker": "CLB",
+    "archetypes": [
+      "hidden_asset_realization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 0.81,
+    "geometry_score": 8.1,
+    "downside_pct": 0.731,
+    "upside_pct": 0.59,
+    "floor_source": "book(0.5x)",
+    "sector": "Energy",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 12.0,
+        "d_e": 0.61,
+        "mcap": 506602733.0
+      }
+    },
+    "score": 15.0
+  },
+  "BGS": {
+    "ticker": "BGS",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 14.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Defensive",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.619,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "CALL_VALUE_GAP",
+          "CIC_PREP",
+          "PAY_ON_VALUE",
+          "TURNAROUND_EXEC"
+        ]
+      }
+    },
+    "score": 15.7
+  },
+  "UPBD": {
+    "ticker": "UPBD",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 4.87,
+    "geometry_score": 20.4,
+    "downside_pct": 0.616,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "delever": {
+        "d_e": 2.39,
+        "op_income": 77438000.0,
+        "op_prior": 62615000.0
+      }
+    },
+    "score": 17.1
+  },
+  "CMTL": {
+    "ticker": "CMTL",
+    "archetypes": [
+      "asset_sale_monetization",
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 3.0,
+    "geometry_score": 14.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "event"
+        ],
+        "d_e": 4.79,
+        "ratio": 3.0,
+        "small_cap": true
+      },
+      "governance_discount": {
+        "p_b": 0.164,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "ASSET_SALE",
+          "MDA_UNLOCK",
+          "PAY_ON_VALUE",
+          "TURNAROUND_EXEC"
+        ]
+      }
+    },
+    "score": 37.7
+  },
+  "DLHC": {
+    "ticker": "DLHC",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.5,
+    "geometry_score": 11.4,
+    "downside_pct": 1.0,
+    "upside_pct": 1.5,
+    "floor_source": "book(0.5x)",
+    "sector": "Industrials",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.61,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "PAY_ON_VALUE",
+          "PROXY_RESPONSIVE",
+          "TURNAROUND_EXEC"
+        ]
+      }
+    },
+    "score": 14.8
+  },
+  "IMMR": {
+    "ticker": "IMMR",
+    "archetypes": [
+      "hidden_asset_realization",
+      "asset_sale_latent"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 3.75,
+    "geometry_score": 18.9,
+    "downside_pct": 0.4,
+    "upside_pct": 1.5,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 12.0,
+        "d_e": 0.92,
+        "mcap": 246589256.0
+      },
+      "asset_sale_latent": {
+        "pressure": "credit-sweep",
+        "d_e": 0.92,
+        "ratio": 3.75
+      }
+    },
+    "score": 35.7
+  },
+  "PRG": {
+    "ticker": "PRG",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 4.34,
+    "geometry_score": 15.7,
+    "downside_pct": 0.691,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "delever": {
+        "d_e": 1.21,
+        "op_income": 65309000.0,
+        "op_prior": 56342000.0
+      }
+    },
+    "score": 15.9
+  },
+  "RVSB": {
+    "ticker": "RVSB",
+    "archetypes": [
+      "hidden_asset_realization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 0.57,
+    "geometry_score": 11.2,
+    "downside_pct": 0.4,
+    "upside_pct": 0.229,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 11.0,
+        "d_e": 0.62,
+        "mcap": 120762072.0
+      }
+    },
+    "score": 15.8
+  },
+  "SITC": {
+    "ticker": "SITC",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.39,
+    "geometry_score": 14.1,
+    "downside_pct": 0.4,
+    "upside_pct": 0.554,
+    "floor_source": "book(0.5x)",
+    "sector": "Real Estate",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.557,
+        "tier": "BUILDING",
+        "families": [
+          "ASSET_SALE",
+          "MDA_UNLOCK",
+          "PAY_ON_VALUE",
+          "SOP_DISSENT"
+        ]
+      }
+    },
+    "score": 15.5
+  },
+  "SSTK": {
+    "ticker": "SSTK",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 7.5,
+    "geometry_score": 20.0,
+    "downside_pct": 0.4,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Communication Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.446,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "CEO_CHANGE",
+          "CIC_PREP",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 17.0
+  },
+  "SWAG": {
+    "ticker": "SWAG",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 7.81,
+    "geometry_score": 26.2,
+    "downside_pct": 0.262,
+    "upside_pct": 2.047,
+    "floor_source": "NCAV",
+    "sector": "Communication Services",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "NCAV",
+        "insider_pct": 0.498,
+        "net_cash_frac": 0.195,
+        "mcap": 28704969.0
+      }
+    },
+    "score": 14.6
+  },
+  "CMP": {
+    "ticker": "CMP",
+    "archetypes": [
+      "hidden_asset_realization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.82,
+    "geometry_score": 11.2,
+    "downside_pct": 0.865,
+    "upside_pct": 1.57,
+    "floor_source": "book(0.5x)",
+    "sector": "Basic Materials",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 18.0,
+        "d_e": 2.6,
+        "mcap": 976369641.0
+      }
+    },
+    "score": 15.8
+  },
+  "MATV": {
+    "ticker": "MATV",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 4.05,
+    "geometry_score": 15.3,
+    "downside_pct": 0.654,
+    "upside_pct": 2.651,
+    "floor_source": "book(0.5x)",
+    "sector": "Basic Materials",
+    "details": {
+      "delever": {
+        "d_e": 2.19,
+        "op_income": 7300000.0,
+        "op_prior": -430600000.0
+      }
+    },
+    "score": 15.8
+  },
+  "MDIA": {
+    "ticker": "MDIA",
+    "archetypes": [
+      "hidden_asset_realization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 0.62,
+    "geometry_score": 4.4,
+    "downside_pct": 1.0,
+    "upside_pct": 0.618,
+    "floor_source": "book(0.5x)",
+    "sector": "Communication Services",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 26.0,
+        "d_e": 3.06,
+        "mcap": 83832990.0
+      }
+    },
+    "score": 14.1
+  },
+  "RYZ": {
+    "ticker": "RYZ",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 6.18,
+    "geometry_score": 21.8,
+    "downside_pct": 0.485,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Industrials",
+    "details": {
+      "delever": {
+        "d_e": 1.04,
+        "op_income": 23200000.0,
+        "op_prior": 2300000.0
+      }
+    },
+    "score": 17.4
+  },
+  "STEX": {
+    "ticker": "STEX",
+    "archetypes": [
+      "structured_distressed_injection"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.13,
+    "geometry_score": 4.3,
+    "downside_pct": 1.0,
+    "upside_pct": 1.129,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "structured_distressed_injection": {
+        "instrument": "convertible_debenture",
+        "coupon_pct": null,
+        "senior_secured": true,
+        "drawdown": -0.885
+      }
+    },
+    "score": 14.1
+  },
+  "THC": {
+    "ticker": "THC",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.18,
+    "geometry_score": 14.0,
+    "downside_pct": 0.888,
+    "upside_pct": 2.826,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "delever": {
+        "d_e": 2.75,
+        "op_income": 1296000000.0,
+        "op_prior": 943000000.0
+      }
+    },
+    "score": 15.5
+  },
+  "ULH": {
+    "ticker": "ULH",
+    "archetypes": [
+      "hidden_asset_realization",
+      "asset_sale_latent"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 3.0,
+    "geometry_score": 17.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Industrials",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 13.0,
+        "d_e": 1.56,
+        "mcap": 427022865.0
+      },
+      "asset_sale_latent": {
+        "pressure": "credit-sweep",
+        "d_e": 1.56,
+        "ratio": 3.0
+      }
+    },
+    "score": 35.4
+  },
+  "ABM": {
+    "ticker": "ABM",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.26,
+    "geometry_score": 14.2,
+    "downside_pct": 0.694,
+    "upside_pct": 2.264,
+    "floor_source": "book(0.5x)",
+    "sector": "Industrials",
+    "details": {
+      "delever": {
+        "d_e": 1.04,
+        "op_income": 86900000.0,
+        "op_prior": 82300000.0
+      }
+    },
+    "score": 15.6
+  },
+  "CABO": {
+    "ticker": "CABO",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.5,
+    "geometry_score": 14.4,
+    "downside_pct": 1.0,
+    "upside_pct": 1.5,
+    "floor_source": "book(0.5x)",
+    "sector": "Communication Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.291,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "CEO_CHANGE",
+          "CHAIR_CEO_SPLIT",
+          "CIC_PREP",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 15.6
+  },
+  "CNDT": {
+    "ticker": "CNDT",
+    "archetypes": [
+      "asset_sale_monetization",
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 3.0,
+    "geometry_score": 17.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "event",
+          "narrative"
+        ],
+        "d_e": null,
+        "ratio": 3.0,
+        "small_cap": true
+      },
+      "governance_discount": {
+        "p_b": 0.377,
+        "tier": "BUILDING",
+        "families": [
+          "ASSET_SALE",
+          "CALL_VALUE_GAP",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 38.4
+  },
+  "CTSO": {
+    "ticker": "CTSO",
+    "archetypes": [
+      "asset_sale_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 9.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "none",
+    "sector": "Healthcare",
+    "details": {
+      "asset_sale_latent": {
+        "pressure": "mda-intent",
+        "d_e": 12.0,
+        "ratio": 3.0
+      }
+    },
+    "score": 10.4
+  },
+  "CWH": {
+    "ticker": "CWH",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 13.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "delever": {
+        "d_e": 17.39,
+        "op_income": 22085000.0,
+        "op_prior": 20842000.0
+      }
+    },
+    "score": 15.4
+  },
+  "CYH": {
+    "ticker": "CYH",
+    "archetypes": [
+      "asset_sale_monetization",
+      "tender_offer_squeeze"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 3.0,
+    "geometry_score": 12.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "none",
+    "sector": "Healthcare",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "event"
+        ],
+        "d_e": null,
+        "ratio": 3.0,
+        "small_cap": true
+      },
+      "tender_offer": {
+        "sources": [
+          "event"
+        ],
+        "ratio": 3.0,
+        "mcap": 432192593.0,
+        "net_cash_floor": false
+      }
+    },
+    "score": 35.2
+  },
+  "DFH": {
+    "ticker": "DFH",
+    "archetypes": [
+      "hidden_asset_realization",
+      "asset_sale_latent",
+      "structured_distressed_injection"
+    ],
+    "n_mechanisms": 3,
+    "geometry_ratio": 4.15,
+    "geometry_score": 19.5,
+    "downside_pct": 0.4,
+    "upside_pct": 1.662,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 14.0,
+        "d_e": 1.33,
+        "mcap": 1074894602.0
+      },
+      "asset_sale_latent": {
+        "pressure": "credit-sweep",
+        "d_e": 1.33,
+        "ratio": 4.15
+      },
+      "structured_distressed_injection": {
+        "instrument": "convertible_preferred",
+        "coupon_pct": null,
+        "senior_secured": true,
+        "drawdown": -0.576
+      }
+    },
+    "score": 48.9
+  },
+  "DH": {
+    "ticker": "DH",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 7.5,
+    "geometry_score": 20.0,
+    "downside_pct": 0.4,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.653,
+        "tier": "BUILDING",
+        "families": [
+          "PAY_ON_VALUE",
+          "TURNAROUND_EXEC"
+        ]
+      }
+    },
+    "score": 17.0
+  },
+  "GCO": {
+    "ticker": "GCO",
+    "archetypes": [
+      "asset_sale_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 6.13,
+    "geometry_score": 18.7,
+    "downside_pct": 0.4,
+    "upside_pct": 2.451,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "asset_sale_latent": {
+        "pressure": "mda-intent",
+        "d_e": 1.11,
+        "ratio": 6.13
+      }
+    },
+    "score": 12.7
+  },
+  "INR": {
+    "ticker": "INR",
+    "archetypes": [
+      "coiled_spring_delever",
+      "hidden_asset_realization",
+      "asset_sale_latent",
+      "structured_distressed_injection"
+    ],
+    "n_mechanisms": 4,
+    "geometry_ratio": 7.5,
+    "geometry_score": 23.0,
+    "downside_pct": 0.4,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Energy",
+    "details": {
+      "delever": {
+        "d_e": 2.99,
+        "op_income": 65333000.0,
+        "op_prior": -87979000.0
+      },
+      "hidden_asset": {
+        "credit_score": 12.0,
+        "d_e": 2.99,
+        "mcap": 248646322.0
+      },
+      "asset_sale_latent": {
+        "pressure": "credit-sweep",
+        "d_e": 2.99,
+        "ratio": 7.5
+      },
+      "structured_distressed_injection": {
+        "instrument": "convertible_preferred",
+        "coupon_pct": 51.0,
+        "senior_secured": true,
+        "drawdown": -0.323
+      }
+    },
+    "score": 61.8
+  },
+  "KTCC": {
+    "ticker": "KTCC",
+    "archetypes": [
+      "asset_sale_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 14.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "asset_sale_latent": {
+        "pressure": "mda-intent",
+        "d_e": 1.17,
+        "ratio": 3.0
+      }
+    },
+    "score": 11.7
+  },
+  "NC": {
+    "ticker": "NC",
+    "archetypes": [
+      "asset_sale_monetization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.08,
+    "geometry_score": 17.8,
+    "downside_pct": 0.4,
+    "upside_pct": 1.231,
+    "floor_source": "book(0.5x)",
+    "sector": "Energy",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "narrative"
+        ],
+        "d_e": 0.29,
+        "ratio": 3.08,
+        "small_cap": true
+      }
+    },
+    "score": 16.4
+  },
+  "NMRK": {
+    "ticker": "NMRK",
+    "archetypes": [
+      "coiled_spring_delever",
+      "asset_sale_monetization"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 4.56,
+    "geometry_score": 16.0,
+    "downside_pct": 0.657,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Real Estate",
+    "details": {
+      "delever": {
+        "d_e": 1.55,
+        "op_income": 26960000.0,
+        "op_prior": -17519000.0
+      },
+      "asset_sale": {
+        "sources": [
+          "narrative"
+        ],
+        "d_e": 1.55,
+        "ratio": 4.56,
+        "small_cap": false
+      }
+    },
+    "score": 38.0
+  },
+  "NRG": {
+    "ticker": "NRG",
+    "archetypes": [
+      "forced_seller_exhaustion"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.38,
+    "geometry_score": 14.3,
+    "downside_pct": 0.887,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Utilities",
+    "details": {
+      "forced_seller": {
+        "nport_score": 6.0,
+        "burning": false
+      }
+    },
+    "score": 13.6
+  },
+  "PLCE": {
+    "ticker": "PLCE",
+    "archetypes": [
+      "asset_sale_monetization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 9.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "none",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "narrative"
+        ],
+        "d_e": null,
+        "ratio": 3.0,
+        "small_cap": true
+      }
+    },
+    "score": 14.4
+  },
+  "PLTK": {
+    "ticker": "PLTK",
+    "archetypes": [
+      "asset_sale_monetization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 9.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "none",
+    "sector": "Technology",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "narrative"
+        ],
+        "d_e": null,
+        "ratio": 3.0,
+        "small_cap": true
+      }
+    },
+    "score": 14.4
+  },
+  "RYAM": {
+    "ticker": "RYAM",
+    "archetypes": [
+      "asset_sale_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.55,
+    "geometry_score": 11.6,
+    "downside_pct": 0.845,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Basic Materials",
+    "details": {
+      "asset_sale_latent": {
+        "pressure": "mda-intent",
+        "d_e": 3.38,
+        "ratio": 3.55
+      }
+    },
+    "score": 10.9
+  },
+  "SBGI": {
+    "ticker": "SBGI",
+    "archetypes": [
+      "hidden_asset_realization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 2.67,
+    "geometry_score": 13.1,
+    "downside_pct": 1.0,
+    "upside_pct": 2.67,
+    "floor_source": "book(0.5x)",
+    "sector": "Communication Services",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 26.0,
+        "d_e": 8.98,
+        "mcap": 897702446.0
+      }
+    },
+    "score": 16.3
+  },
+  "SLQT": {
+    "ticker": "SLQT",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 17.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "delever": {
+        "d_e": 1.05,
+        "op_income": 35930000.0,
+        "op_prior": 22059000.0
+      }
+    },
+    "score": 16.4
+  },
+  "TAOX": {
+    "ticker": "TAOX",
+    "archetypes": [
+      "structured_distressed_injection"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.22,
+    "geometry_score": 7.6,
+    "downside_pct": 0.551,
+    "upside_pct": 0.674,
+    "floor_source": "NCAV",
+    "sector": "Technology",
+    "details": {
+      "structured_distressed_injection": {
+        "instrument": "convertible_pipe",
+        "coupon_pct": 7.0,
+        "senior_secured": true,
+        "drawdown": -0.567
+      }
+    },
+    "score": 14.9
+  },
+  "USNA": {
+    "ticker": "USNA",
+    "archetypes": [
+      "sub_cash_buyback",
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 5.82,
+    "geometry_score": 26.4,
+    "downside_pct": 0.377,
+    "upside_pct": 2.196,
+    "floor_source": "net-cash",
+    "sector": "Consumer Defensive",
+    "details": {
+      "sub_cash_buyback": {
+        "net_cash_frac": 0.623,
+        "net_buyback_score": 12,
+        "verified_buyback": false
+      },
+      "tender_target_latent": {
+        "floor_source": "net-cash",
+        "insider_pct": 0.409,
+        "net_cash_frac": 0.623,
+        "mcap": 261436236.0
+      }
+    },
+    "score": 38.6
+  },
+  "VISN": {
+    "ticker": "VISN",
+    "archetypes": [
+      "sub_cash_buyback",
+      "asset_sale_monetization",
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 3,
+    "geometry_ratio": 60.0,
+    "geometry_score": 38.5,
+    "downside_pct": 0.0,
+    "upside_pct": 3.0,
+    "floor_source": "NCAV",
+    "sector": "Technology",
+    "details": {
+      "sub_cash_buyback": {
+        "net_cash_frac": 1.688,
+        "net_buyback_score": 22,
+        "verified_buyback": false
+      },
+      "asset_sale": {
+        "sources": [
+          "event"
+        ],
+        "d_e": 0.01,
+        "ratio": 60.0,
+        "small_cap": true
+      },
+      "governance_discount": {
+        "p_b": 0.584,
+        "tier": "BUILDING",
+        "families": [
+          "ASSET_SALE",
+          "CALL_INTENT",
+          "PAY_ON_VALUE",
+          "SOP_DISSENT"
+        ]
+      }
+    },
+    "score": 56.0
+  },
+  "FINV": {
+    "ticker": "FINV",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.75,
+    "geometry_score": 18.9,
+    "downside_pct": 0.4,
+    "upside_pct": 1.5,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.305,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT"
+        ]
+      }
+    },
+    "score": 16.7
+  },
+  "GNW": {
+    "ticker": "GNW",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 6.82,
+    "geometry_score": 22.4,
+    "downside_pct": 0.4,
+    "upside_pct": 2.727,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.422,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP"
+        ]
+      }
+    },
+    "score": 17.6
+  },
+  "NGVC": {
+    "ticker": "NGVC",
+    "archetypes": [
+      "hidden_asset_realization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 0.53,
+    "geometry_score": 7.0,
+    "downside_pct": 0.825,
+    "upside_pct": 0.441,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Defensive",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 6.0,
+        "d_e": 1.39,
+        "mcap": 685232976.0
+      }
+    },
+    "score": 14.8
+  },
+  "ASPI": {
+    "ticker": "ASPI",
+    "archetypes": [
+      "hidden_asset_realization",
+      "structured_distressed_injection"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 0.91,
+    "geometry_score": 5.5,
+    "downside_pct": 0.659,
+    "upside_pct": 0.598,
+    "floor_source": "book(0.5x)",
+    "sector": "Basic Materials",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 8.0,
+        "d_e": 0.93,
+        "mcap": 388412143.0
+      },
+      "structured_distressed_injection": {
+        "instrument": "convertible_pipe",
+        "coupon_pct": null,
+        "senior_secured": null,
+        "drawdown": -0.787
+      }
+    },
+    "score": 37.4
+  },
+  "VASO": {
+    "ticker": "VASO",
+    "archetypes": [
+      "asset_sale_monetization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.47,
+    "geometry_score": 11.5,
+    "downside_pct": 0.714,
+    "upside_pct": 2.478,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "event"
+        ],
+        "d_e": 0.06,
+        "ratio": 3.47,
+        "small_cap": true
+      }
+    },
+    "score": 14.9
+  },
+  "CVV": {
+    "ticker": "CVV",
+    "archetypes": [
+      "asset_sale_monetization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 4.27,
+    "geometry_score": 10.6,
+    "downside_pct": 0.419,
+    "upside_pct": 1.791,
+    "floor_source": "book(0.5x)",
+    "sector": "Industrials",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "event"
+        ],
+        "d_e": null,
+        "ratio": 4.27,
+        "small_cap": true
+      }
+    },
+    "score": 14.7
+  },
+  "BAFN": {
+    "ticker": "BAFN",
+    "archetypes": [
+      "structured_distressed_injection"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.5,
+    "geometry_score": 14.4,
+    "downside_pct": 1.0,
+    "upside_pct": 1.5,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "structured_distressed_injection": {
+        "instrument": "convertible_pipe",
+        "coupon_pct": 11.0,
+        "senior_secured": true,
+        "drawdown": -0.231
+      }
+    },
+    "score": 16.6
+  },
+  "WAFU": {
+    "ticker": "WAFU",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 18.78,
+    "geometry_score": 33.9,
+    "downside_pct": 0.0,
+    "upside_pct": 0.939,
+    "floor_source": "net-cash",
+    "sector": "Consumer Defensive",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "net-cash",
+        "insider_pct": null,
+        "net_cash_frac": 1.283,
+        "mcap": 7034842.0
+      }
+    },
+    "score": 16.0
+  },
+  "ADIG": {
+    "ticker": "ADIG",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.02,
+    "geometry_score": 17.7,
+    "downside_pct": 0.4,
+    "upside_pct": 1.21,
+    "floor_source": "book(0.5x)",
+    "sector": "Industrials",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.594,
+        "tier": "BUILDING",
+        "families": [
+          "TURNAROUND_EXEC"
+        ]
+      }
+    },
+    "score": 16.4
+  },
+  "ASLE": {
+    "ticker": "ASLE",
+    "archetypes": [
+      "asset_sale_monetization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 4.69,
+    "geometry_score": 17.2,
+    "downside_pct": 0.4,
+    "upside_pct": 1.875,
+    "floor_source": "book(0.5x)",
+    "sector": "Industrials",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "narrative"
+        ],
+        "d_e": null,
+        "ratio": 4.69,
+        "small_cap": true
+      }
+    },
+    "score": 16.3
+  },
+  "EHGO": {
+    "ticker": "EHGO",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 30.0,
+    "geometry_score": 35.0,
+    "downside_pct": 0.0,
+    "upside_pct": 1.5,
+    "floor_source": "NCAV",
+    "sector": "Industrials",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "NCAV",
+        "insider_pct": null,
+        "net_cash_frac": 0.82,
+        "mcap": 1674192.0
+      }
+    },
+    "score": 16.0
+  },
+  "VIVS": {
+    "ticker": "VIVS",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 30.0,
+    "geometry_score": 37.0,
+    "downside_pct": 0.0,
+    "upside_pct": 1.5,
+    "floor_source": "net-cash",
+    "sector": "Healthcare",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "net-cash",
+        "insider_pct": null,
+        "net_cash_frac": 8.337,
+        "mcap": 602600.0
+      }
+    },
+    "score": 16.0
+  },
+  "ICG": {
+    "ticker": "ICG",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.75,
+    "geometry_score": 18.9,
+    "downside_pct": 0.4,
+    "upside_pct": 1.5,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.241,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT"
+        ]
+      }
+    },
+    "score": 16.7
+  },
+  "VTGN": {
+    "ticker": "VTGN",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 30.0,
+    "geometry_score": 35.0,
+    "downside_pct": 0.0,
+    "upside_pct": 1.5,
+    "floor_source": "NCAV",
+    "sector": "Healthcare",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "NCAV",
+        "insider_pct": null,
+        "net_cash_frac": 1.675,
+        "mcap": 17528876.0
+      }
+    },
+    "score": 16.0
+  },
+  "WWR": {
+    "ticker": "WWR",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.75,
+    "geometry_score": 23.9,
+    "downside_pct": 0.4,
+    "upside_pct": 1.5,
+    "floor_source": "net-cash",
+    "sector": "Basic Materials",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "net-cash",
+        "insider_pct": null,
+        "net_cash_frac": 0.59,
+        "mcap": 70302173.0
+      }
+    },
+    "score": 14.0
+  },
+  "CLAR": {
+    "ticker": "CLAR",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 2.46,
+    "geometry_score": 10.7,
+    "downside_pct": 0.399,
+    "upside_pct": 0.982,
+    "floor_source": "NCAV",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.679,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "CALL_INTENT",
+          "MDA_UNLOCK",
+          "STRATEGIC_REVIEW"
+        ]
+      }
+    },
+    "score": 14.7
+  },
+  "JOB": {
+    "ticker": "JOB",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 14.53,
+    "geometry_score": 27.2,
+    "downside_pct": 0.206,
+    "upside_pct": 3.0,
+    "floor_source": "NCAV",
+    "sector": "Industrials",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.509,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "ACTIVIST_SETTLEMENT",
+          "CALL_VALUE_GAP",
+          "DECLASSIFY",
+          "MDA_UNLOCK"
+        ]
+      }
+    },
+    "score": 18.8
+  },
+  "FEDU": {
+    "ticker": "FEDU",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 30.0,
+    "geometry_score": 37.0,
+    "downside_pct": 0.0,
+    "upside_pct": 1.5,
+    "floor_source": "net-cash",
+    "sector": "Consumer Defensive",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "net-cash",
+        "insider_pct": null,
+        "net_cash_frac": 3.481,
+        "mcap": 2311769.0
+      }
+    },
+    "score": 16.0
+  },
+  "QRHC": {
+    "ticker": "QRHC",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 17.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Industrials",
+    "details": {
+      "delever": {
+        "d_e": 1.64,
+        "op_income": 242000.0,
+        "op_prior": -8161000.0
+      }
+    },
+    "score": 16.4
+  },
+  "CODQL": {
+    "ticker": "CODQL",
+    "archetypes": [
+      "asset_sale_monetization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 13.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Energy",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "event"
+        ],
+        "d_e": null,
+        "ratio": 3.0,
+        "small_cap": true
+      }
+    },
+    "score": 15.4
+  },
+  "JOYY": {
+    "ticker": "JOYY",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.98,
+    "geometry_score": 15.6,
+    "downside_pct": 0.4,
+    "upside_pct": 0.791,
+    "floor_source": "book(0.5x)",
+    "sector": "Communication Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.643,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP"
+        ]
+      }
+    },
+    "score": 15.9
+  },
+  "MBGL": {
+    "ticker": "MBGL",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.75,
+    "geometry_score": 18.9,
+    "downside_pct": 0.4,
+    "upside_pct": 1.5,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.57,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "MDA_CAPITAL",
+          "TURNAROUND_EXEC"
+        ]
+      }
+    },
+    "score": 16.7
+  },
+  "ELAB": {
+    "ticker": "ELAB",
+    "archetypes": [
+      "hidden_asset_realization",
+      "asset_sale_latent"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 60.0,
+    "geometry_score": 38.5,
+    "downside_pct": 0.0,
+    "upside_pct": 3.0,
+    "floor_source": "NCAV",
+    "sector": "Healthcare",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 10.0,
+        "d_e": 1.1,
+        "mcap": 2028784.0
+      },
+      "asset_sale_latent": {
+        "pressure": "credit-sweep",
+        "d_e": 1.1,
+        "ratio": 60.0
+      }
+    },
+    "score": 39.0
+  },
+  "GRCE": {
+    "ticker": "GRCE",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.75,
+    "geometry_score": 23.9,
+    "downside_pct": 0.4,
+    "upside_pct": 1.5,
+    "floor_source": "net-cash",
+    "sector": "Healthcare",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "net-cash",
+        "insider_pct": null,
+        "net_cash_frac": 0.494,
+        "mcap": 34338195.0
+      }
+    },
+    "score": 14.0
+  },
+  "HOS": {
+    "ticker": "HOS",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 7.5,
+    "geometry_score": 20.0,
+    "downside_pct": 0.4,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Energy",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.238,
+        "tier": "BUILDING",
+        "families": [
+          "TURNAROUND_EXEC"
+        ]
+      }
+    },
+    "score": 17.0
+  },
+  "AEMD": {
+    "ticker": "AEMD",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 30.0,
+    "geometry_score": 37.0,
+    "downside_pct": 0.0,
+    "upside_pct": 1.5,
+    "floor_source": "net-cash",
+    "sector": "Healthcare",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "net-cash",
+        "insider_pct": null,
+        "net_cash_frac": 1.458,
+        "mcap": 3447752.0
+      }
+    },
+    "score": 16.0
+  },
+  "CAPS": {
+    "ticker": "CAPS",
+    "archetypes": [
+      "hidden_asset_realization",
+      "asset_sale_latent",
+      "structured_distressed_injection"
+    ],
+    "n_mechanisms": 3,
+    "geometry_ratio": 3.0,
+    "geometry_score": 14.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Basic Materials",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 6.0,
+        "d_e": 1.6,
+        "mcap": 2517645.0
+      },
+      "asset_sale_latent": {
+        "pressure": "credit-sweep",
+        "d_e": 1.6,
+        "ratio": 3.0
+      },
+      "structured_distressed_injection": {
+        "instrument": "senior_secured_convertible",
+        "coupon_pct": null,
+        "senior_secured": true,
+        "drawdown": -0.89
+      }
+    },
+    "score": 47.7
+  },
+  "BNGO": {
+    "ticker": "BNGO",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 14.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.639,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "CEO_CHANGE",
+          "PAY_ON_VALUE",
+          "SOP_DISSENT"
+        ]
+      }
+    },
+    "score": 15.7
+  },
+  "HIHO": {
+    "ticker": "HIHO",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 16.14,
+    "geometry_score": 32.9,
+    "downside_pct": 0.051,
+    "upside_pct": 0.82,
+    "floor_source": "net-cash",
+    "sector": "Industrials",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "net-cash",
+        "insider_pct": null,
+        "net_cash_frac": 0.949,
+        "mcap": 4216290.0
+      }
+    },
+    "score": 16.0
+  },
+  "VENU": {
+    "ticker": "VENU",
+    "archetypes": [
+      "hidden_asset_realization",
+      "asset_sale_latent"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 5.17,
+    "geometry_score": 17.7,
+    "downside_pct": 0.4,
+    "upside_pct": 2.068,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 9.0,
+        "d_e": 1.15,
+        "mcap": 88562434.0
+      },
+      "asset_sale_latent": {
+        "pressure": "credit-sweep",
+        "d_e": 1.15,
+        "ratio": 5.17
+      }
+    },
+    "score": 35.4
+  },
+  "FNGR": {
+    "ticker": "FNGR",
+    "archetypes": [
+      "structured_distressed_injection"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 2.98,
+    "geometry_score": 20.7,
+    "downside_pct": 0.27,
+    "upside_pct": 0.805,
+    "floor_source": "NCAV",
+    "sector": "Communication Services",
+    "details": {
+      "structured_distressed_injection": {
+        "instrument": "secured_convertible",
+        "coupon_pct": null,
+        "senior_secured": true,
+        "drawdown": -0.938
+      }
+    },
+    "score": 18.2
+  },
+  "GMRS": {
+    "ticker": "GMRS",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 17.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "delever": {
+        "d_e": 23.01,
+        "op_income": 218898000.0,
+        "op_prior": 177852000.0
+      }
+    },
+    "score": 16.4
+  },
+  "VIOT": {
+    "ticker": "VIOT",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.06,
+    "geometry_score": 17.8,
+    "downside_pct": 0.4,
+    "upside_pct": 1.223,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.403,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT"
+        ]
+      }
+    },
+    "score": 16.4
+  },
+  "STKS": {
+    "ticker": "STKS",
+    "archetypes": [
+      "asset_sale_monetization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 17.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "narrative"
+        ],
+        "d_e": null,
+        "ratio": 3.0,
+        "small_cap": true
+      }
+    },
+    "score": 16.4
+  },
+  "CIIT": {
+    "ticker": "CIIT",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 60.0,
+    "geometry_score": 38.5,
+    "downside_pct": 0.0,
+    "upside_pct": 3.0,
+    "floor_source": "NCAV",
+    "sector": "Industrials",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "NCAV",
+        "insider_pct": null,
+        "net_cash_frac": 0.972,
+        "mcap": 738990.0
+      }
+    },
+    "score": 16.0
+  },
+  "NMM": {
+    "ticker": "NMM",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.08,
+    "geometry_score": 17.8,
+    "downside_pct": 0.4,
+    "upside_pct": 1.231,
+    "floor_source": "book(0.5x)",
+    "sector": "Industrials",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.694,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP"
+        ]
+      }
+    },
+    "score": 16.4
+  },
+  "SNOA": {
+    "ticker": "SNOA",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 30.0,
+    "geometry_score": 37.0,
+    "downside_pct": 0.0,
+    "upside_pct": 1.5,
+    "floor_source": "net-cash",
+    "sector": "Healthcare",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "net-cash",
+        "insider_pct": null,
+        "net_cash_frac": 1.109,
+        "mcap": 2163900.0
+      }
+    },
+    "score": 16.0
+  },
+  "MSN": {
+    "ticker": "MSN",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 28.14,
+    "geometry_score": 34.6,
+    "downside_pct": 0.0,
+    "upside_pct": 1.407,
+    "floor_source": "NCAV",
+    "sector": "Technology",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "NCAV",
+        "insider_pct": null,
+        "net_cash_frac": 0.955,
+        "mcap": 9631222.0
+      }
+    },
+    "score": 16.0
+  },
+  "SEER": {
+    "ticker": "SEER",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 7.5,
+    "geometry_score": 17.0,
+    "downside_pct": 0.4,
+    "upside_pct": 3.0,
+    "floor_source": "NCAV",
+    "sector": "Healthcare",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.443,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT"
+        ]
+      }
+    },
+    "score": 16.2
+  },
+  "SDEV": {
+    "ticker": "SDEV",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 2.2,
+    "geometry_score": 16.1,
+    "downside_pct": 0.683,
+    "upside_pct": 1.5,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.456,
+        "tier": "BUILDING",
+        "families": [
+          "TURNAROUND_EXEC"
+        ]
+      }
+    },
+    "score": 16.0
+  },
+  "DSWL": {
+    "ticker": "DSWL",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 30.0,
+    "geometry_score": 35.0,
+    "downside_pct": 0.0,
+    "upside_pct": 1.5,
+    "floor_source": "NCAV",
+    "sector": "Technology",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "NCAV",
+        "insider_pct": null,
+        "net_cash_frac": 0.453,
+        "mcap": 50912191.0
+      }
+    },
+    "score": 16.0
+  },
+  "AEBI": {
+    "ticker": "AEBI",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 4.94,
+    "geometry_score": 20.5,
+    "downside_pct": 0.442,
+    "upside_pct": 2.186,
+    "floor_source": "book(0.5x)",
+    "sector": "Industrials",
+    "details": {
+      "delever": {
+        "d_e": 1.2,
+        "op_income": 15368000.0,
+        "op_prior": 14394000.0
+      }
+    },
+    "score": 17.1
+  },
+  "SNDL": {
+    "ticker": "SNDL",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 2.11,
+    "geometry_score": 15.9,
+    "downside_pct": 0.4,
+    "upside_pct": 0.843,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Defensive",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.47,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP"
+        ]
+      }
+    },
+    "score": 16.0
+  },
+  "MOGU": {
+    "ticker": "MOGU",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 30.0,
+    "geometry_score": 37.0,
+    "downside_pct": 0.0,
+    "upside_pct": 1.5,
+    "floor_source": "net-cash",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "net-cash",
+        "insider_pct": null,
+        "net_cash_frac": 1.274,
+        "mcap": 15202972.0
+      }
+    },
+    "score": 16.0
+  },
+  "CAN": {
+    "ticker": "CAN",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.75,
+    "geometry_score": 18.9,
+    "downside_pct": 0.4,
+    "upside_pct": 1.5,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.621,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP"
+        ]
+      }
+    },
+    "score": 16.7
+  },
+  "OTF": {
+    "ticker": "OTF",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.23,
+    "geometry_score": 13.6,
+    "downside_pct": 0.4,
+    "upside_pct": 0.493,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.636,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP"
+        ]
+      }
+    },
+    "score": 15.4
+  },
+  "NNDM": {
+    "ticker": "NNDM",
+    "archetypes": [
+      "asset_sale_monetization",
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 4.48,
+    "geometry_score": 15.9,
+    "downside_pct": 0.4,
+    "upside_pct": 1.793,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "event"
+        ],
+        "d_e": null,
+        "ratio": 4.48,
+        "small_cap": true
+      },
+      "governance_discount": {
+        "p_b": 0.691,
+        "tier": "BUILDING",
+        "families": [
+          "ASSET_SALE",
+          "CALL_INTENT"
+        ]
+      }
+    },
+    "score": 38.0
+  },
+  "VNCE": {
+    "ticker": "VNCE",
+    "archetypes": [
+      "hidden_asset_realization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 0.68,
+    "geometry_score": 4.6,
+    "downside_pct": 0.793,
+    "upside_pct": 0.539,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 7.0,
+        "d_e": 2.38,
+        "mcap": 142283781.0
+      }
+    },
+    "score": 14.2
+  },
+  "MPT": {
+    "ticker": "MPT",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 0.76,
+    "geometry_score": 11.9,
+    "downside_pct": 1.0,
+    "upside_pct": 0.756,
+    "floor_source": "book(0.5x)",
+    "sector": "Real Estate",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.474,
+        "tier": "BUILDING",
+        "families": [
+          "MDA_UNLOCK",
+          "PAY_ON_VALUE",
+          "SOP_DISSENT"
+        ]
+      }
+    },
+    "score": 15.0
+  },
+  "SSP": {
+    "ticker": "SSP",
+    "archetypes": [
+      "hidden_asset_realization",
+      "asset_sale_latent"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 3.0,
+    "geometry_score": 13.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Communication Services",
+    "details": {
+      "hidden_asset": {
+        "credit_score": 36.0,
+        "d_e": 2.05,
+        "mcap": 241610584.0
+      },
+      "asset_sale_latent": {
+        "pressure": "credit-sweep",
+        "d_e": 2.05,
+        "ratio": 3.0
+      }
+    },
+    "score": 34.4
+  },
+  "XAIR": {
+    "ticker": "XAIR",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 30.0,
+    "geometry_score": 37.0,
+    "downside_pct": 0.0,
+    "upside_pct": 1.5,
+    "floor_source": "net-cash",
+    "sector": "Healthcare",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "net-cash",
+        "insider_pct": null,
+        "net_cash_frac": 1.934,
+        "mcap": 2240491.0
+      }
+    },
+    "score": 16.0
+  },
+  "MHH": {
+    "ticker": "MHH",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 4.48,
+    "geometry_score": 22.9,
+    "downside_pct": 0.425,
+    "upside_pct": 1.905,
+    "floor_source": "NCAV",
+    "sector": "Industrials",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "NCAV",
+        "insider_pct": null,
+        "net_cash_frac": 0.364,
+        "mcap": 86387040.0
+      }
+    },
+    "score": 13.7
+  },
+  "GTBIF": {
+    "ticker": "GTBIF",
+    "archetypes": [
+      "structured_distressed_injection"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.62,
+    "geometry_score": 18.7,
+    "downside_pct": 0.445,
+    "upside_pct": 1.613,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "structured_distressed_injection": {
+        "instrument": "secured_convertible",
+        "coupon_pct": null,
+        "senior_secured": true,
+        "drawdown": -0.266
+      }
+    },
+    "score": 17.7
+  },
+  "TCPC": {
+    "ticker": "TCPC",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 0.53,
+    "geometry_score": 11.0,
+    "downside_pct": 1.0,
+    "upside_pct": 0.535,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.61,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT"
+        ]
+      }
+    },
+    "score": 14.8
+  },
+  "CION": {
+    "ticker": "CION",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.7,
+    "geometry_score": 15.0,
+    "downside_pct": 0.4,
+    "upside_pct": 0.681,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.535,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP"
+        ]
+      }
+    },
+    "score": 15.8
+  },
+  "MODD": {
+    "ticker": "MODD",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 20.49,
+    "geometry_score": 34.5,
+    "downside_pct": 0.0,
+    "upside_pct": 1.024,
+    "floor_source": "net-cash",
+    "sector": "Healthcare",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "net-cash",
+        "insider_pct": null,
+        "net_cash_frac": 1.411,
+        "mcap": 4920254.0
+      }
+    },
+    "score": 16.0
+  },
+  "MIND": {
+    "ticker": "MIND",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 27.12,
+    "geometry_score": 34.4,
+    "downside_pct": 0.067,
+    "upside_pct": 1.804,
+    "floor_source": "NCAV",
+    "sector": "Technology",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "NCAV",
+        "insider_pct": null,
+        "net_cash_frac": 0.408,
+        "mcap": 40173623.0
+      }
+    },
+    "score": 16.0
+  },
+  "FIP": {
+    "ticker": "FIP",
+    "archetypes": [
+      "asset_sale_monetization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 17.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Industrials",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "event"
+        ],
+        "d_e": null,
+        "ratio": 3.0,
+        "small_cap": true
+      }
+    },
+    "score": 16.4
+  },
+  "ICMB": {
+    "ticker": "ICMB",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.5,
+    "geometry_score": 14.4,
+    "downside_pct": 1.0,
+    "upside_pct": 1.5,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.239,
+        "tier": "BUILDING",
+        "families": [
+          "STRATEGIC_REVIEW"
+        ]
+      }
+    },
+    "score": 15.6
+  },
+  "AMIX": {
+    "ticker": "AMIX",
+    "archetypes": [
+      "tender_target_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 30.0,
+    "geometry_score": 37.0,
+    "downside_pct": 0.0,
+    "upside_pct": 1.5,
+    "floor_source": "net-cash",
+    "sector": "Healthcare",
+    "details": {
+      "tender_target_latent": {
+        "floor_source": "net-cash",
+        "insider_pct": null,
+        "net_cash_frac": 3.161,
+        "mcap": 2215440.0
+      }
+    },
+    "score": 16.0
+  },
+  "SPRU": {
+    "ticker": "SPRU",
+    "archetypes": [
+      "coiled_spring_delever"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 17.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Energy",
+    "details": {
+      "delever": {
+        "d_e": 5.71,
+        "op_income": 3848000.0,
+        "op_prior": -1698000.0
+      }
+    },
+    "score": 16.4
+  },
+  "WHF": {
+    "ticker": "WHF",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 0.54,
+    "geometry_score": 11.0,
+    "downside_pct": 1.0,
+    "upside_pct": 0.54,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.607,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP"
+        ]
+      }
+    },
+    "score": 14.8
+  },
+  "MFIC": {
+    "ticker": "MFIC",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.1,
+    "geometry_score": 13.2,
+    "downside_pct": 0.4,
+    "upside_pct": 0.441,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.671,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT",
+          "CALL_VALUE_GAP"
+        ]
+      }
+    },
+    "score": 15.3
+  },
+  "QDEL": {
+    "ticker": "QDEL",
+    "archetypes": [
+      "asset_sale_latent"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 14.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "asset_sale_latent": {
+        "pressure": "mda-intent",
+        "d_e": 1.66,
+        "ratio": 3.0
+      }
+    },
+    "score": 11.7
+  },
+  "RGS": {
+    "ticker": "RGS",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 2.56,
+    "geometry_score": 16.9,
+    "downside_pct": 1.0,
+    "upside_pct": 2.561,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Cyclical",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.369,
+        "tier": "BUILDING",
+        "families": [
+          "CEO_CHANGE",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 16.2
+  },
+  "POLA": {
+    "ticker": "POLA",
+    "archetypes": [
+      "structured_distressed_injection"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.04,
+    "geometry_score": 9.0,
+    "downside_pct": 1.0,
+    "upside_pct": 1.036,
+    "floor_source": "book(0.5x)",
+    "sector": "Industrials",
+    "details": {
+      "structured_distressed_injection": {
+        "instrument": "convertible_preferred",
+        "coupon_pct": 10.0,
+        "senior_secured": true,
+        "drawdown": -0.773
+      }
+    },
+    "score": 15.2
+  },
+  "DIT": {
+    "ticker": "DIT",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 14.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Consumer Defensive",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.562,
+        "tier": "BUILDING",
+        "families": [
+          "CAPITAL_RETURN_POLICY"
+        ]
+      }
+    },
+    "score": 15.7
+  },
+  "QTRX": {
+    "ticker": "QTRX",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 7.4,
+    "geometry_score": 13.9,
+    "downside_pct": 0.4,
+    "upside_pct": 2.962,
+    "floor_source": "book(0.5x)",
+    "sector": "Healthcare",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.616,
+        "tier": "BUILDING",
+        "families": [
+          "ACTIVIST_SETTLEMENT",
+          "DECLASSIFY",
+          "PAY_ON_VALUE"
+        ]
+      }
+    },
+    "score": 15.5
+  },
+  "ZH": {
+    "ticker": "ZH",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.8,
+    "geometry_score": 15.2,
+    "downside_pct": 0.4,
+    "upside_pct": 0.719,
+    "floor_source": "book(0.5x)",
+    "sector": "Communication Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.482,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT"
+        ]
+      }
+    },
+    "score": 15.8
+  },
+  "PERI": {
+    "ticker": "PERI",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.33,
+    "geometry_score": 13.9,
+    "downside_pct": 0.4,
+    "upside_pct": 0.532,
+    "floor_source": "book(0.5x)",
+    "sector": "Communication Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.573,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT"
+        ]
+      }
+    },
+    "score": 15.5
+  },
+  "INVE": {
+    "ticker": "INVE",
+    "archetypes": [
+      "asset_sale_monetization",
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 2,
+    "geometry_ratio": 60.0,
+    "geometry_score": 35.5,
+    "downside_pct": 0.0,
+    "upside_pct": 3.0,
+    "floor_source": "NCAV",
+    "sector": "Technology",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "event"
+        ],
+        "d_e": 0.01,
+        "ratio": 60.0,
+        "small_cap": true
+      },
+      "governance_discount": {
+        "p_b": 0.439,
+        "tier": "ACTION LIKELY",
+        "families": [
+          "ASSET_SALE",
+          "CEO_CHANGE",
+          "PAY_ON_VALUE",
+          "TURNAROUND_EXEC"
+        ]
+      }
+    },
+    "score": 42.0
+  },
+  "BBGI": {
+    "ticker": "BBGI",
+    "archetypes": [
+      "asset_sale_monetization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.0,
+    "geometry_score": 17.7,
+    "downside_pct": 1.0,
+    "upside_pct": 3.0,
+    "floor_source": "book(0.5x)",
+    "sector": "Communication Services",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "narrative"
+        ],
+        "d_e": null,
+        "ratio": 3.0,
+        "small_cap": true
+      }
+    },
+    "score": 16.4
+  },
+  "KREF": {
+    "ticker": "KREF",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 2.01,
+    "geometry_score": 15.7,
+    "downside_pct": 0.4,
+    "upside_pct": 0.804,
+    "floor_source": "book(0.5x)",
+    "sector": "Real Estate",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.437,
+        "tier": "BUILDING",
+        "families": [
+          "CALL_COMMIT"
+        ]
+      }
+    },
+    "score": 15.9
+  },
+  "BCSF": {
+    "ticker": "BCSF",
+    "archetypes": [
+      "governance_discount_catalyst"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 0.45,
+    "geometry_score": 10.6,
+    "downside_pct": 1.0,
+    "upside_pct": 0.449,
+    "floor_source": "book(0.5x)",
+    "sector": "Financial Services",
+    "details": {
+      "governance_discount": {
+        "p_b": 0.666,
+        "tier": "BUILDING",
+        "families": [
+          "CAPITAL_RETURN_POLICY"
+        ]
+      }
+    },
+    "score": 14.7
+  },
+  "OTEX": {
+    "ticker": "OTEX",
+    "archetypes": [
+      "asset_sale_monetization"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 3.8,
+    "geometry_score": 19.0,
+    "downside_pct": 0.645,
+    "upside_pct": 2.452,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "asset_sale": {
+        "sources": [
+          "event"
+        ],
+        "d_e": 1.56,
+        "ratio": 3.8,
+        "small_cap": false
+      }
+    },
+    "score": 16.8
+  },
+  "AIB": {
+    "ticker": "AIB",
+    "archetypes": [
+      "structured_distressed_injection"
+    ],
+    "n_mechanisms": 1,
+    "geometry_ratio": 1.28,
+    "geometry_score": 13.8,
+    "downside_pct": 0.597,
+    "upside_pct": 0.764,
+    "floor_source": "book(0.5x)",
+    "sector": "Technology",
+    "details": {
+      "structured_distressed_injection": {
+        "instrument": "convertible_pipe",
+        "coupon_pct": null,
+        "senior_secured": true,
+        "drawdown": -0.785
+      }
+    },
+    "score": 16.4
+  }
+}

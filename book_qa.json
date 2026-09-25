@@ -1,0 +1,26 @@
+[
+ {
+  "book": "MOST_ASYMMETRIC.xlsx",
+  "sheet": "PSU Plans",
+  "row": 4,
+  "kind": "DEAD COLUMN",
+  "ticker": "",
+  "detail": "'rTSR target' empty in 1093/1207 rows"
+ },
+ {
+  "book": "OTC_BOOK.xlsx",
+  "sheet": "Going Dark",
+  "row": 4,
+  "kind": "DEAD COLUMN",
+  "ticker": "",
+  "detail": "'Insider %' empty in 49/54 rows"
+ },
+ {
+  "book": "cyclepapa_risk_reward_workbook.xlsx",
+  "sheet": "All names",
+  "row": 791,
+  "kind": "DUPLICATE ISSUER",
+  "ticker": "HK:2202,SZSE:000002",
+  "detail": "vanke"
+ }
+]
