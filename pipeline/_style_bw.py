@@ -638,6 +638,16 @@ LEGEND = [
         ("Catalyst", "An 8-K for M&A (Item 1.01 / 2.01) or change of control (5.01) in the last 180 days."),
         ("# Sig", "How many of these eight fire."),
     ]),
+    ("Industries (FMP designations)", [
+        ("Industry", "FMP's industry designation (\"Banks - Regional\", \"Semiconductors\", \"Oil & Gas E&P\"): narrower than a sector, independent of GICS."),
+        ("Managers", "Industry Index: distinct 13F filers (one per filing) plus N-PORT managers holding any of the industry's names."),
+        ("$B Held (13F)", "The tracked funds' 13F value in the industry's names, in $ billions."),
+        ("Net Pts / Buyers / Sellers", "Last quarter's net buying across all funds (as in Revealed Preference), and how many funds bought or sold any of the industry's names."),
+        ("Holders", "Industry Detail: conviction-weighted 13F holders (each fund counts min(1, 75 ÷ its positions))."),
+        ("Styles", "The styles holding the name, ranked by their funds' combined % of book in it, with the number of their funds."),
+        ("Share % / All Funds % / Tilt", "Industries by Style: the average fund's % of book in the industry, in the style and across all funds; Tilt = Share ÷ All Funds (above 1 = the style leans in)."),
+        ("Median P/E, EV/EBITDA, P/TB, ROE, 3M", "Across the industry's held names. For financials read P/TB and ROE; EV/EBITDA means nothing for a bank."),
+    ]),
     ("Activist & insider (SEC)", [
         ("13D", "Number of SC 13D / 13G beneficial-ownership filings (a ≥5% stake)."),
         ("Act %", "Largest activist stake disclosed via 13D/G (max percent of share class)."),

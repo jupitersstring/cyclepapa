@@ -185,6 +185,7 @@ def add_signal_heatmap(ws, first_row, last_row):
 # The README's reading guide: every sheet under the question it answers.
 SHEET_GUIDE = [
     ("Start here", [
+        ("What Changed", "new since the last build: filings, insider trades, 8-Ks, fresh 13Fs, top-100 moves"),
         ("Action Dashboard", "the strongest setups right now, several independent signals at once, one line each"),
         ("Best Ideas", "multi-signal shortlist under $10B (cheap, below entry, insiders, activist, catalyst), with reasons"),
         ("Convergence", "every name firing 3+ independent signal types; the dots show which"),
@@ -203,6 +204,10 @@ SHEET_GUIDE = [
         ("Small ($300M–$2B)", "top 60 small-caps"), ("Mid ($2B–$10B)", "top 60 mid-caps"),
         ("Large ($10B–$200B)", "top 60 large-caps"), ("Mega (>$200B)", "every mega-cap, the ten giants included"),
         ("Best in Bucket", "the top 20 of each size class on one sheet"),
+    ]),
+    ("By industry (FMP's industry designations)", [
+        ("Industry Index", "every industry the funds hold, ranked by last quarter's net buying, with medians"),
+        ("Industry Detail", "each industry's names: who holds them, who bought and who sold, how they're valued"),
     ]),
     ("Value and setup", [
         ("Valuation", "cheap AND sound: free-cash-flow yield, ROIC, leverage, growth; value traps flagged"),
@@ -315,6 +320,8 @@ def sheet_readme(wb, conn):
     rows = [
         ("",),
         ("START HERE",),
+        ("0. What Changed — new since the last build: filings, top-100 entries and exits, score moves. Seen the books",),
+        ("   before? Start there.",),
         ("1. Action Dashboard — the strongest setups right now, several independent signals at once, one line each.",),
         ("2. Revealed Preference — what the funds and insiders are buying now, on dated evidence (last 13F quarter,",),
         ("   insider buys and new 13D/Gs in 90 days, N-PORT reports), with who bought and who sold.",),
@@ -399,6 +406,185 @@ def sheet_readme(wb, conn):
                 c.font = BODY_FONT
         else:
             c.font = MONO_FONT
+
+def _baseline(table, base):
+    """A table as the last delivered build left it: its CSV in the snapshot
+    committed at `base` (default HEAD). None when there is no such build."""
+    import csv, io, subprocess
+    repo = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    try:
+        out = subprocess.run(["git", "-C", repo, "show", f"{base}:data/snapshot/{table}.csv"],
+                             capture_output=True, text=True, timeout=180)
+    except Exception:
+        return None
+    if out.returncode != 0 or not out.stdout:
+        return None
+    csv.field_size_limit(10 ** 8)
+    return list(csv.DictReader(io.StringIO(out.stdout)))
+
+def sheet_what_changed(wb, conn):
+    """What is new since the last delivered build: filings (13D/G, insider
+    buys and large sells, M&A / control 8-Ks, 13F books), names entering or
+    leaving the top 100, the biggest score moves and new Revealed Preference
+    names. The baseline is the snapshot committed with that build
+    (data/snapshot, git HEAD; CHANGES_SINCE=<commit> picks another)."""
+    import subprocess
+    base = os.environ.get("CHANGES_SINCE", "HEAD")
+    repo = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    try:
+        when = subprocess.run(["git", "-C", repo, "log", "-1", "--format=%cd", "--date=format:%Y-%m-%d %H:%M UTC", base],
+                              capture_output=True, text=True, timeout=30).stdout.strip()
+    except Exception:
+        when = ""
+    ws = wb.create_sheet("What Changed", 1)
+    ws.sheet_view.showGridLines = False
+    us_prev = _baseline("unified_signal", base)
+    if us_prev is None:
+        write_title(ws, "What Changed", "No earlier build on file to compare with.", 8)
+        return
+    write_title(ws, f"What Changed — since the last build ({when or base})",
+                "New filings since then (13D/G stakes, insider open-market buys and large sells, M&A and change-of-"
+                "control 8-Ks, fresh 13F books), names entering or leaving the Top 100, the largest score moves and "
+                "new Revealed Preference names. Read this first when you have seen the books before.", 8)
+    row = 4
+    ETF_MEGA = ETFs | MEGA
+
+    def section(title, hdr, out, width=8, fmts=None, note=None):
+        nonlocal row
+        write_section_heading(ws, row, f"{title} — {len(out)}" if out else f"{title} — none", width)
+        row += 1
+        if note:
+            ws.cell(row=row, column=1, value=note).font = BODY_ITALIC
+            row += 1
+        if not out:
+            row += 1
+            return
+        write_table_header(ws, row, hdr)
+        row += 1
+        write_table_rows(ws, out, row)
+        for col, f in (fmts or {}).items():
+            for r_ in range(row, row + len(out)):
+                ws.cell(row=r_, column=col).number_format = f
+        row += len(out) + 2
+
+    name = {r[0]: r[1] for r in conn.execute("""SELECT us.ticker, COALESCE(y.long_name, us.name)
+        FROM unified_signal us LEFT JOIN ticker_yf y ON y.ticker = us.ticker""")}
+    # 1. 13D/G stakes
+    prev = {r.get("accession") for r in (_baseline("holder_13d", base) or [])}
+    import datetime as _dt
+    recent_cut = (_dt.date.today() - _dt.timedelta(days=30)).isoformat()
+    out, late = [], []
+    for holder, form, filed, acc, subj, tk, pct in conn.execute("""SELECT holder, form, filed, accession, subject_name,
+            subject_ticker, pct_class FROM holder_13d WHERE subject_ticker IS NOT NULL ORDER BY filed DESC"""):
+        if acc and acc not in prev:
+            r_ = [tk, holder or "", form or "", round(pct, 1) if pct else "", str(filed)[:10], name.get(tk) or subj or ""]
+            (out if str(filed)[:10] >= recent_cut else late).append(r_)
+    section("New 13D/G stakes (filed in the last 30 days)", ["Ticker", "Holder", "Form", "% of Class", "Filed", "Name"],
+            out, 6, {4: NUMFMT_PCT})
+    section("Older 13D/G filings captured for the first time by this build", ["Ticker", "Holder", "Form",
+            "% of Class", "Filed", "Name"], late, 6, {4: NUMFMT_PCT},
+            note="Filed earlier but missing from the last build (the SEC search refreshes a 21-month window).")
+    # 2. insider open-market buys ($25k+) and sells ($1M+)
+    key = lambda a, o, d, sh, cd: (a or "", (o or "").upper(), str(d)[:10], round(float(sh or 0)), cd or "")
+    prev = {key(r.get("accession"), r.get("owner"), r.get("trans_date"), r.get("shares") or 0, r.get("code"))
+            for r in (_baseline("form4_transactions", base) or [])}
+    agg = {}
+    for acc, tk, owner, role, d, code, sh, px in conn.execute("""SELECT accession, ticker, owner, role, trans_date, code,
+            shares, price FROM form4_transactions WHERE code IN ('P', 'S') AND price > 0 AND price < 200000
+              AND trans_date >= date('now', '-60 days')"""):
+        if key(acc, owner, d, sh, code) in prev:
+            continue
+        k = (tk, owner, code)
+        a = agg.setdefault(k, {"usd": 0.0, "last": "", "role": role or ""})
+        a["usd"] += (sh or 0) * (px or 0)
+        a["last"] = max(a["last"], str(d)[:10])
+    buys = sorted(((v["usd"], k, v) for k, v in agg.items() if k[2] == "P" and v["usd"] >= 25000), reverse=True)
+    sells = sorted(((v["usd"], k, v) for k, v in agg.items() if k[2] == "S" and v["usd"] >= 1e6), reverse=True)
+    section("New insider open-market buys ($25k+)", ["Ticker", "Insider", "Role", "Type", "$M", "Last Trade", "Name"],
+            [[k[0], k[1] or "", v["role"], "entity" if is_entity(k[1]) else "person", round(u / 1e6, 2), v["last"],
+              name.get(k[0]) or ""] for u, k, v in buys[:150]], 7, {5: NUMFMT_M_TO_B},
+            note="Type: person = an individual's own money; entity = a company, fund or holding vehicle.")
+    section("New insider sales ($1M+)", ["Ticker", "Insider", "Role", "$M", "Last Trade", "Name"],
+            [[k[0], k[1] or "", v["role"], round(u / 1e6, 2), v["last"], name.get(k[0]) or ""] for u, k, v in sells[:80]],
+            6, {4: NUMFMT_M_TO_B})
+    # 3. 8-K catalysts
+    prev = {r.get("accession") for r in (_baseline("catalysts_8k", base) or [])}
+    out = []
+    for tk, filed, acc, labels, ma, ctrl, pipe, bnk in conn.execute("""SELECT ticker, filed, accession, item_labels,
+            has_ma, has_control, has_pipe, has_bankruptcy FROM catalysts_8k
+            WHERE has_ma = 1 OR has_control = 1 OR has_pipe = 1 OR has_bankruptcy = 1 ORDER BY filed DESC"""):
+        if acc and acc not in prev:
+            kind = ", ".join(k for k, f in (("M&A", ma), ("change of control", ctrl), ("PIPE / dilution", pipe),
+                                            ("bankruptcy", bnk)) if f)
+            out.append([tk, str(filed)[:10], kind, labels or "", name.get(tk) or ""])
+    section("New 8-K catalysts (M&A, control, dilution, bankruptcy)", ["Ticker", "Filed", "Kind", "Items", "Name"],
+            out[:150], 5)
+    # 4. fresh 13F books
+    prev = {r.get("fund"): r.get("last_accession") for r in (_baseline("fund_13f_state", base) or [])}
+    out = []
+    for fund, acc, filed, n, v in conn.execute("""SELECT fund, last_accession, last_filed, n_holdings, total_value_k
+            FROM fund_13f_state ORDER BY last_filed DESC"""):
+        if acc and prev.get(fund) != acc:
+            out.append([fund, str(filed)[:10], n or 0, round((v or 0) / 1e3)])
+    section("New 13F books", ["Fund", "Filed", "Positions", "$M"], out, 4, {4: NUMFMT_M_TO_B})
+    # 5. the Top 100 and the score
+    def top(rows_):
+        pool = [(float(r["score"] or 0), r["ticker"]) for r in rows_
+                if r.get("sec_type") == "common" and r.get("mcap_bucket") not in ("unknown", "", None)
+                and r["ticker"] not in ETF_MEGA]
+        return [t for sc, t in sorted(pool, reverse=True)[:100]]
+    cur_rows = [dict(zip(("ticker", "score", "sec_type", "mcap_bucket", "s3_new", "s4_add", "smart_money_n",
+                          "insider_cluster_dollars_m"), r)) for r in conn.execute("""SELECT ticker, score, sec_type,
+            mcap_bucket, s3_new, s4_add, smart_money_n, insider_cluster_dollars_m FROM unified_signal""")]
+    now_top, was_top = top(cur_rows), top(us_prev)
+    was_rank = {t: i + 1 for i, t in enumerate(was_top)}
+    now_rank = {t: i + 1 for i, t in enumerate(now_top)}
+    prev_by = {r["ticker"]: r for r in us_prev}
+    cur_by = {r["ticker"]: r for r in cur_rows}
+    def f(x):
+        try:
+            return float(x or 0)
+        except (TypeError, ValueError):
+            return 0.0
+    entered = [[t, now_rank[t], round(f(cur_by[t]["score"]), 1), round(f(cur_by[t]["score"]) - f((prev_by.get(t) or {}).get("score")), 1),
+                name.get(t) or ""] for t in now_top if t not in was_rank]
+    left = [[t, was_rank[t], round(f((cur_by.get(t) or {}).get("score")), 1),
+             round(f((cur_by.get(t) or {}).get("score")) - f(prev_by[t]["score"]), 1), name.get(t) or ""]
+            for t in was_top if t not in now_rank]
+    section("Entered the Top 100", ["Ticker", "Rank Now", "Score", "Change", "Name"], entered, 5)
+    section("Left the Top 100", ["Ticker", "Rank Before", "Score Now", "Change", "Name"], left, 5)
+    moves = []
+    for t, r in cur_by.items():
+        p = prev_by.get(t)
+        if not p or r.get("sec_type") != "common" or t in ETF_MEGA:
+            continue
+        dlt = f(r["score"]) - f(p.get("score"))
+        if abs(dlt) >= 3:
+            why = []
+            for k, lab in (("s3_new", "S3"), ("s4_add", "S4"), ("smart_money_n", "13F"),
+                           ("insider_cluster_dollars_m", "insider $M")):
+                dv = f(r.get(k)) - f(p.get(k))
+                if abs(dv) >= 0.5:
+                    why.append(f"{lab} {dv:+.1f}")
+            moves.append((dlt, t, round(f(r["score"]), 1), ", ".join(why)))
+    moves.sort(key=lambda x: -abs(x[0]))
+    section("Largest score moves (3+ points)", ["Ticker", "Change", "Score Now", "What Moved", "Name"],
+            [[t, round(dl, 1), sc, why, name.get(t) or ""] for dl, t, sc, why in moves[:60]], 5, {2: '+0.0;-0.0'})
+    # 6. Revealed Preference
+    rp_prev = {r["ticker"]: f(r.get("rp_score")) for r in (_baseline("revealed_pref", base) or [])}
+    rp_now = dict(conn.execute("SELECT ticker, rp_score FROM revealed_pref"))
+    def top_rp(d):
+        return [t for t, v in sorted(d.items(), key=lambda x: -x[1]) if t in cur_by
+                and (cur_by[t].get("sec_type") == "common") and t not in ETFs][:50]
+    was50 = set(top_rp(rp_prev))
+    new50 = [[t, round(rp_now[t], 1), round(rp_now[t] - rp_prev.get(t, 0.0), 1), name.get(t) or ""]
+             for t in top_rp(rp_now) if t not in was50]
+    section("New to the Revealed Preference top 50", ["Ticker", "RP Score", "Change", "Name"], new50, 4)
+    ws.freeze_panes = "A4"
+    autosize(ws)
+    ws.column_dimensions["A"].width = 30
+    for col, w in (("B", 34), ("D", 40), ("F", 40)):
+        ws.column_dimensions[col].width = w
 
 def write_signal_sheet(wb, conn, name, where_extra="", limit=200, subtitle="", exclude_biotech=False,
                        include_mega=False):
@@ -918,6 +1104,122 @@ def sheet_whos_buying(wb, conn):
     autosize(ws)
     ws.column_dimensions["F"].width = 60
     ws.column_dimensions["H"].width = 60
+
+def sheet_industries(wb, conn, per_industry=30):
+    """The industry lens (FMP's industry designations): an index of every
+    industry the funds hold, ranked by last quarter's net buying, each linked
+    to its section in Industry Detail — the names, who holds them, who bought
+    and who sold them last quarter."""
+    from industry_view import IndustryData, is_financial
+    from fund_moves import latest_due_quarter
+    d = IndustryData(conn)
+    q = latest_due_quarter()
+    by_ind = d.names_by_industry()
+    idx = wb.create_sheet("Industry Index")
+    det = wb.create_sheet("Industry Detail")
+    for ws in (idx, det):
+        ws.sheet_view.showGridLines = False
+    # ---- detail first: its section rows are the index's link targets ----
+    write_title(det, "Industry Detail — each industry's names: who holds them, who bought and who sold",
+                f"FMP industries A–Z. Per industry, the operating common stocks a tracked fund holds (13F, one vote per "
+                f"filing; N-PORT books) or moved in the {q} quarter, by conviction: weighted holders, the largest "
+                f"position, last quarter's net buying and N-PORT managers. Up to {per_industry} names each; the rest "
+                f"are in All Positions (filter its Industry column). Financials carry P/TB and ROE, the rest FCF yield.",
+                17)
+    hdr = ["Ticker", "Holders", "Max % Book", "Held By", "Last Qtr", "Net Pts", "Who Bought", "Who Sold",
+           "N-PORT Mgrs", "Styles", "3M Chg %", "Mcap", "ROE %", "FCF Yield %", "Rev Gr %", "Name", "Business"]
+    row, target, summary = 4, {}, {}
+    for ind in sorted(by_ind, key=str.lower):
+        names = by_ind[ind]
+        sm = d.industry_summary(ind, names)
+        summary[ind] = sm
+        target[ind] = row
+        shown = names[:per_industry]
+        write_section_heading(det, row,
+            f"{ind} — {len(names)} names held · {sm['managers']} managers · last quarter net "
+            f"{sm['net']:+.1f} pts ({sm['buyers']} funds buying, {sm['sellers']} selling)"
+            + (f" · top {len(shown)} of {len(names)} shown" if len(names) > len(shown) else ""), 17)
+        row += 1
+        write_table_header(det, row, hdr)
+        row += 1
+        out = []
+        for t in shown:
+            f = d.facts.get(t) or {}
+            mv = d.moves.get(t) or {}
+            ind_, bus = desc_for(conn, t)
+            fin = is_financial(ind)
+            out.append([t, _r1(f.get("wtd")), _r1((d.holders.get(t) or [(None,)])[0][0]), d.held_by(t),
+                        (f"+{len({m['fund'] for m in mv.get('buy', [])})} / -{len({m['fund'] for m in mv.get('sell', [])})}"
+                         if mv else ""),
+                        round(mv["net"], 1) if mv else "", d.who(mv.get("buy", [])), d.who(mv.get("sell", [])),
+                        len(d.nport.get(t, ())) or "", d.styles(t), _r0(f.get("mom")), f.get("mcap") or "",
+                        _pct(f.get("roe")), "" if fin else _pct(f.get("fcf")), _pct(f.get("growth")),
+                        f.get("name") or "", bus])
+        write_table_rows(det, out, row)
+        color_directional(det, row, row + len(out) - 1, [6, 11], higher_is_better=True)
+        for ridx in range(row, row + len(out)):
+            det.cell(row=ridx, column=2).number_format = '0.0'
+            det.cell(row=ridx, column=3).number_format = NUMFMT_PCT
+            det.cell(row=ridx, column=6).number_format = '0.0'
+            det.cell(row=ridx, column=11).number_format = '0"%"'
+            det.cell(row=ridx, column=12).number_format = NUMFMT_MCAP
+            for col in (13, 14, 15):
+                det.cell(row=ridx, column=col).number_format = '0.0"%"'
+        row += len(out) + 2
+    det.freeze_panes = "B4"
+    autosize(det)
+    det.column_dimensions["A"].width = 9
+    for col, w in (("D", 46), ("G", 50), ("H", 50), ("J", 34), ("P", 30), ("Q", 70)):
+        det.column_dimensions[col].width = w
+
+    # ---- the index ----
+    write_title(idx, "Industry Index — where the funds are, and where they moved last quarter",
+                f"Every FMP industry the tracked funds hold (operating common stocks; SPACs left out), ranked by net "
+                f"buying in the {q} quarter: the % of book bought minus sold across all funds (capped at 10 per "
+                f"position, weighted by focus; the Revealed Preference rules). Managers = distinct 13F filers plus "
+                f"N-PORT managers holding any of its names. Click an industry for its names in Industry Detail. "
+                f"Medians are across the industry's held names.", 16)
+    ih = ["Industry", "Names", "Managers", "$B Held (13F)", "Net Pts", "Buyers", "Sellers", "Bought Most",
+          "Sold Most", "Top Names (conviction)", "Most-Exposed Styles", "Median P/E", "Median EV/EBITDA",
+          "Median P/TB", "Median ROE %", "Median 3M %"]
+    write_table_header(idx, 4, ih)
+    order = sorted(summary, key=lambda i: (-summary[i]["net"], -summary[i]["managers"]))
+    out = []
+    for ind in order:
+        sm = summary[ind]
+        out.append([ind, sm["names"], sm["managers"], round(sm["held_m"] / 1e3, 2) if sm["held_m"] else "",
+                    round(sm["net"], 1), sm["buyers"], sm["sellers"], sm["bought"], sm["sold"], sm["top"],
+                    sm["styles"], _r1(sm["pe"]), _r1(sm["ev"]), _r2(sm["ptb"]),
+                    round(sm["roe"] * 100, 1) if sm["roe"] is not None else "", _r0(sm["mom"])])
+    write_table_rows(idx, out, 5, ticker_col=None)
+    color_directional(idx, 5, 4 + len(out), [5, 16], higher_is_better=True)
+    link_font = Font(name=TNR, size=SIZE_BODY, color=BLACK, underline="single")
+    for i, ind in enumerate(order):
+        c = idx.cell(row=5 + i, column=1)
+        c.hyperlink = f"#'Industry Detail'!A{target[ind]}"
+        c.font = link_font
+        idx.cell(row=5 + i, column=4).number_format = '0.00'
+        idx.cell(row=5 + i, column=5).number_format = '0.0'
+        idx.cell(row=5 + i, column=15).number_format = '0.0"%"'
+        idx.cell(row=5 + i, column=16).number_format = '0"%"'
+    idx.freeze_panes = "B5"
+    idx.auto_filter.ref = f"A4:{get_column_letter(len(ih))}{4 + len(out)}"
+    autosize(idx)
+    for col, w in (("A", 40), ("H", 40), ("I", 40), ("J", 34), ("K", 60)):
+        idx.column_dimensions[col].width = w
+
+def _r0(v):
+    return round(v) if isinstance(v, (int, float)) else ""
+
+def _r1(v):
+    return round(v, 1) if isinstance(v, (int, float)) else ""
+
+def _r2(v):
+    return round(v, 2) if isinstance(v, (int, float)) else ""
+
+def _pct(v):
+    """A ratio stored as a fraction (0.12) shown as a percentage (12.0)."""
+    return round(v * 100, 1) if isinstance(v, (int, float)) else ""
 
 def sheet_best_in_bucket(wb, conn, per_bucket=20):
     """Top names WITHIN each size bucket. The flat Top-100 is ~44% large-cap
@@ -1454,8 +1756,13 @@ def sheet_all_holdings_consolidated(wb, conn):
     """
     ws = wb.create_sheet("All Positions")
     ws.sheet_view.showGridLines = False
-    hdr = ["Fund","Ticker","Source","Value $M","%Book","Section","Activist %","Mcap","Bucket","EV/EBITDA","P/B","Issuer (as filed)"]
+    hdr = ["Fund","Ticker","Source","Value $M","%Book","Section","Activist %","Mcap","Bucket","EV/EBITDA","P/B",
+           "Industry","Style","Sub-Group","Issuer (as filed)"]
     write_table_header(ws, 4, hdr)
+    # industry (FMP) and the fund's style on every row: "which banks do the
+    # deep-value funds hold" is two filters
+    ind = dict(conn.execute("SELECT ticker, industry FROM ticker_yf WHERE industry IS NOT NULL"))
+    sty = {f: (m, g) for f, m, g in conn.execute("SELECT fund, macro_style, sub_group FROM fund_style")}
     # EVERY 13F line, mapped or not: ETF / fund lines carry no ticker on the
     # holdings (they stay out of stock signals by design) but are real
     # positions — shown with the CUSIP map's ticker and a fund label; lines no
@@ -1508,9 +1815,12 @@ def sheet_all_holdings_consolidated(wb, conn):
     write_title(ws, "All Fund Positions — consolidated view",
                 f"Every disclosed position: 13F-HR + fund_positions (all sections) + 13D/G (≥5%). "
                 f"{len(rows):,} rows across {n_funds} funds — complete, no per-fund cap. "
-                f"ETF/fund and unmapped 13F lines included and labelled in Source.", 12)
+                f"ETF/fund and unmapped 13F lines included and labelled in Source. Industry (FMP), Style and "
+                f"Sub-Group on every row: filter them together (e.g. Industry 'Banks - Regional' within Sub-Group "
+                f"'Deep Value').", 15)
     out = []
     for r in rows:
+        st = sty.get(r[0]) or ("", "")
         out.append([(r[0] or ""), r[1] or "", r[2],
                     round(r[3] or 0, 1) if r[3] else "",
                     round(r[4] or 0, 2),
@@ -1519,6 +1829,7 @@ def sheet_all_holdings_consolidated(wb, conn):
                     r[7] or "", r[8] or "",
                     round(r[9], 1) if r[9] is not None else "",
                     round(r[10], 2) if r[10] is not None else "",
+                    ind.get(r[1]) or "", st[0] or "", st[1] or "",
                     r[11] or ""])
     write_table_rows(ws, out, 5)
     for ridx in range(5, 5 + len(out)):
@@ -1529,6 +1840,8 @@ def sheet_all_holdings_consolidated(wb, conn):
         ws.cell(row=ridx, column=10).number_format = '0.0"x"'
         ws.cell(row=ridx, column=11).number_format = '0.00"x"'
     ws.freeze_panes = "A5"
+    if out:
+        ws.auto_filter.ref = f"A4:{get_column_letter(len(hdr))}{4 + len(out)}"
     autosize(ws)
 
 def sheet_all_funds(wb, conn):
@@ -2692,6 +3005,7 @@ def main():
 
     sheet_readme(wb, conn)
     write_legend_sheet(wb, 1)
+    sheet_what_changed(wb, conn)          # new since the last delivered build (sheet 2)
     sheet_action_dashboard(wb, conn)      # front-page scannable summary
     sheet_convergence(wb, conn)           # multi-signal convergence matrix
     sheet_dossier(wb, conn)               # per-ticker consolidated view
@@ -2717,6 +3031,7 @@ def main():
                       + ("; the ten largest US mega-caps the other ranked sheets leave out are all here."
                          if bucket == "mega" else ".")))
     sheet_best_in_bucket(wb, conn)
+    sheet_industries(wb, conn)            # Industry Index + Industry Detail (FMP industries)
     write_signal_sheet(wb, conn, "Material + New",
         where_extra="AND (us.s3_new + us.s4_add) >= 2 AND us.mcap_bucket != 'unknown'",
         limit=80,

@@ -216,12 +216,6 @@ CREATE INDEX idx_pba_ticker ON pb_affiliation(ticker);
 CREATE TABLE pb_principal (name TEXT PRIMARY KEY);
 CREATE TABLE pb_principal_fund (principal TEXT, fund TEXT);
 CREATE INDEX idx_cusipmap_tk ON cusip_map(ticker);
-CREATE TABLE congress_trades (
-      chamber TEXT, member_id TEXT, member TEXT, district TEXT, owner TEXT,
-      ticker TEXT, asset_type TEXT, asset_desc TEXT, type TEXT,
-      amount_lo REAL, amount_hi REAL, amount_text TEXT,
-      trans_date TEXT, disclosure_date TEXT, link TEXT);
-CREATE INDEX idx_congress_ticker ON congress_trades(ticker);
 CREATE TABLE ticker_alias (old TEXT PRIMARY KEY, new TEXT,
                     cusip TEXT, asof TEXT);
 CREATE TABLE fund_discovery (cik TEXT PRIMARY KEY, name TEXT, asof TEXT, positions INTEGER,
@@ -266,12 +260,18 @@ CREATE TABLE earnings_surprise (ticker TEXT, date TEXT, eps_actual REAL, eps_est
 CREATE TABLE earnings_beat (ticker TEXT PRIMARY KEY, n_q INTEGER, beats INTEGER,
         beat_rate REAL, last_date TEXT, last_surprise_pct REAL, streak INTEGER,
         rev_n INTEGER, rev_beats INTEGER, last_rev_surprise_pct REAL);
+CREATE TABLE prior_split_factor (fund TEXT, ticker TEXT, factor REAL, PRIMARY KEY (fund, ticker));
+CREATE TABLE nport_split_factor (series_id TEXT, ticker TEXT, factor REAL, PRIMARY KEY (series_id, ticker));
 CREATE TABLE insider_fmp (symbol TEXT, filing_date TEXT, trans_date TEXT, reporting_cik TEXT,
           name TEXT, owner_type TEXT, trans_type TEXT, acq_disp TEXT, shares REAL, price REAL,
           owned_after REAL, security_name TEXT, url TEXT);
 CREATE INDEX idx_insfmp_sym ON insider_fmp(symbol);
-CREATE TABLE prior_split_factor (fund TEXT, ticker TEXT, factor REAL, PRIMARY KEY (fund, ticker));
-CREATE TABLE nport_split_factor (series_id TEXT, ticker TEXT, factor REAL, PRIMARY KEY (series_id, ticker));
+CREATE TABLE congress_trades (
+      chamber TEXT, member_id TEXT, member TEXT, district TEXT, owner TEXT,
+      ticker TEXT, asset_type TEXT, asset_desc TEXT, type TEXT,
+      amount_lo REAL, amount_hi REAL, amount_text TEXT,
+      trans_date TEXT, disclosure_date TEXT, link TEXT);
+CREATE INDEX idx_congress_ticker ON congress_trades(ticker);
 CREATE TABLE ticker_entry_intact (
       ticker TEXT PRIMARY KEY,
       current_px REAL, anchor_px REAL, anchor_source TEXT,

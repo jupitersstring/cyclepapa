@@ -11,7 +11,7 @@ Elliott Investment Management,FSK,NEW_INIT_LARGE,2.0,1.4,2.8,Activists / Special
 Elliott Investment Management,OR,MATERIAL_ADD,2.0,1.4,2.8,Activists / Special Situations,0.36,,0.0
 Pershing Square Capital Managem,BN,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,1.4,16.1,Activists / Special Situations,17.83,,5640.0
 Pershing Square Capital Managem,AMZN,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,1.4,16.1,Activists / Special Situations,14.04,,4440.0
-Pershing Square Capital Managem,HHH,"ACTIVIST_13D,HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",14.5,1.4,20.3,Activists / Special Situations,11.25,46.9,5360.0
+Pershing Square Capital Managem,HHH,"ACTIVIST_13D,HOLDING_PERSIST,HYPER_CONVICTION,INSIDER_COBUY,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",18.0,1.4,25.2,Activists / Special Situations,11.25,46.9,5360.0
 Pershing Square Capital Managem,META,"HOLDING_PERSIST,HYPER_CONVICTION,MULTI_FUND_PEER,NEW_INIT_LARGE,TOP_PICK",11.5,1.4,16.1,Activists / Special Situations,11.17,,7040.0
 Pershing Square Capital Managem,QSR,ACTIVIST_13D,3.0,1.4,4.2,Activists / Special Situations,,6.5,0.0
 Third Point LLC,NVDA,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Activists / Special Situations,7.56,,550.2
@@ -328,11 +328,11 @@ GAMCO Investors (Mario Gabelli),NOBH,ACTIVIST_13D,3.0,1.2,3.6,Small-cap / Multib
 GAMCO Investors (Mario Gabelli),CFLT,NEW_INIT_LARGE,2.0,1.2,2.4,Small-cap / Multibagger Specialists,0.24,,25.3
 GAMCO Investors (Mario Gabelli),ALEX,NEW_INIT_LARGE,2.0,1.2,2.4,Small-cap / Multibagger Specialists,,,0.0
 GAMCO Investors (Mario Gabelli),LLYVK,NEW_INIT_LARGE,2.0,1.2,2.4,Small-cap / Multibagger Specialists,,,0.0
-The Children's Investment Fund ,GE,"HOLDING_PERSIST,HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",9.5,1.2,11.4,Small-cap / Multibagger Specialists,27.28,,29260.0
-The Children's Investment Fund ,MSFT,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,1.2,13.8,Small-cap / Multibagger Specialists,15.13,,16430.0
-The Children's Investment Fund ,MCO,"HOLDING_PERSIST,HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",9.5,1.2,11.4,Small-cap / Multibagger Specialists,12.67,,13600.0
-The Children's Investment Fund ,SPGI,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,1.2,13.8,Small-cap / Multibagger Specialists,11.48,,12914.0
-The Children's Investment Fund ,FER,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.2,4.2,Small-cap / Multibagger Specialists,2.51,,2700.0
+The Children's Investment Fund ,GE,"HOLDING_PERSIST,HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",9.5,1.4,13.3,Activists / Special Situations,27.28,,29260.0
+The Children's Investment Fund ,MSFT,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,1.4,16.1,Activists / Special Situations,15.13,,16430.0
+The Children's Investment Fund ,MCO,"HOLDING_PERSIST,HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",9.5,1.4,13.3,Activists / Special Situations,12.67,,13600.0
+The Children's Investment Fund ,SPGI,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,1.4,16.1,Activists / Special Situations,11.48,,12914.0
+The Children's Investment Fund ,FER,"HOLDING_PERSIST,MATERIAL_ADD",3.5,1.4,4.9,Activists / Special Situations,2.51,,2700.0
 Pentwater Capital Management,EA,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",11.5,1.2,13.8,Small-cap / Multibagger Specialists,10.73,,2240.0
 Pentwater Capital Management,BA,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,1.2,7.8,Small-cap / Multibagger Specialists,6.88,,1440.0
 Pentwater Capital Management,WBD,"HOLDING_PERSIST,MATERIAL_ADD,MULTI_FUND_PEER,TOP_PICK",7.5,1.2,9.0,Small-cap / Multibagger Specialists,6.37,,1330.0
@@ -1055,7 +1055,7 @@ Avoro Capital Advisors LLC (for,XBI,NEW_INIT_LARGE,2.0,1.4,2.8,Activists / Speci
 JCP Investment Management LLC,SPY,"HYPER_CONVICTION,MULTI_FUND_PEER,TOP_PICK",8.0,1.4,11.2,Activists / Special Situations,18.9,,23.86
 JCP Investment Management LLC,FNF,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,14.7,,18.64
 JCP Investment Management LLC,UNFI,"HYPER_CONVICTION,TOP_PICK",7.0,1.4,9.8,Activists / Special Situations,12.3,,15.6
-JCP Investment Management LLC,HHH,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,MULTI_FUND_PEER,NEW_INIT_LARGE,TOP_PICK",13.5,1.4,18.9,Activists / Special Situations,11.4,,28.9
+JCP Investment Management LLC,HHH,"HOLDING_PERSIST,HYPER_CONVICTION,INSIDER_COBUY,MATERIAL_ADD,MULTI_FUND_PEER,NEW_INIT_LARGE,TOP_PICK",17.0,1.4,23.8,Activists / Special Situations,11.4,,28.9
 JCP Investment Management LLC,NATL,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,1.4,9.1,Activists / Special Situations,8.7,,10.99
 Kopernik Global Investors LLC,KT,"HOLDING_PERSIST,MATERIAL_ADD,TOP_PICK",6.5,1.0,6.5,Foreign / EM Value,,,46.0
 Kopernik Global Investors LLC,MOH,NEW_INIT_LARGE,2.0,1.0,2.0,Foreign / EM Value,,,22.0
@@ -1706,7 +1706,7 @@ Magallanes Value Investors (Ivá,SEM,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,5.7
 "Valentum AM (Luis de Blas, Jesú",ASTA,"NEW_INIT_LARGE,PUBLIC_LETTER",4.5,1.0,4.5,Foreign / EM Value,,,0.0
 "Valentum AM (Luis de Blas, Jesú",TIT.MI,"NEW_INIT_LARGE,PUBLIC_LETTER",4.5,1.0,4.5,Foreign / EM Value,,,0.0
 Numantia Patrimonio Global (Emé,BAM,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,8.0,,0.0
-Numantia Patrimonio Global (Emé,HHH,"MULTI_FUND_PEER,TOP_PICK",4.0,1.0,4.0,Foreign / EM Value,6.0,,0.0
+Numantia Patrimonio Global (Emé,HHH,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.0,7.5,Foreign / EM Value,6.0,,0.0
 Numantia Patrimonio Global (Emé,MSTR,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.0,7.5,Foreign / EM Value,5.7,,0.0
 Numantia Patrimonio Global (Emé,TSLA,"HOLDING_PERSIST,MULTI_FUND_PEER,TOP_PICK",5.5,1.0,5.5,Foreign / EM Value,5.5,,0.0
 Numantia Patrimonio Global (Emé,META,"HOLDING_PERSIST,MULTI_FUND_PEER,TOP_PICK",5.5,1.0,5.5,Foreign / EM Value,5.0,,0.0
@@ -1959,7 +1959,7 @@ TCI Fund Management Ltd,MSFT,MULTI_FUND_PEER,1.0,1.4,1.4,Activists / Special Sit
 TCI Fund Management Ltd,GOOGL,"HOLDING_PERSIST,MULTI_FUND_PEER,NEW_INIT_LARGE",4.5,1.4,6.3,Activists / Special Situations,1.56,,1414.0
 Northern Right Capital (Becker ,NWSA,"HOLDING_PERSIST,HYPER_CONVICTION,MATERIAL_ADD,TOP_PICK",10.5,1.4,14.7,Activists / Special Situations,12.4,,35.0
 Northern Right Capital (Becker ,FTAI,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Activists / Special Situations,9.0,,25.0
-Northern Right Capital (Becker ,HHH,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Activists / Special Situations,8.6,,24.0
+Northern Right Capital (Becker ,HHH,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.4,10.5,Activists / Special Situations,8.6,,24.0
 Northern Right Capital (Becker ,TKO,"INSIDER_COBUY,MULTI_FUND_PEER,TOP_PICK",7.5,1.4,10.5,Activists / Special Situations,8.5,,24.0
 Northern Right Capital (Becker ,ECHO,"MULTI_FUND_PEER,TOP_PICK",4.0,1.4,5.6,Activists / Special Situations,7.0,,20.0
 Northern Right Capital (Becker ,NDAQ,"HOLDING_PERSIST,INSIDER_COBUY,NEW_INIT_LARGE,TOP_PICK",10.0,1.4,14.0,Activists / Special Situations,6.9,,19.0
@@ -2176,15 +2176,15 @@ Sanford DeLand Buffettology,BVXP.L,"HOLDING_PERSIST,NEW_INIT_LARGE,TOP_PICK",6.5
 Sanford DeLand Buffettology,ROL,TOP_PICK,3.0,1.6,4.8,Value / Concentrated Quality,5.14,,0.0
 Sanford DeLand Buffettology,LSEG.L,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.6,5.6,Value / Concentrated Quality,4.93,,0.0
 Sanford DeLand Buffettology,ABDP.L,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.6,5.6,Value / Concentrated Quality,4.73,,0.0
-Troy Asset Mgmt Trojan Fund,SGLN.L,"HOLDING_PERSIST,TOP_PICK",4.5,1.0,4.5,Other / Unclassified,5.26,,0.0
-Troy Asset Mgmt Trojan Fund,GOOGL,"HOLDING_PERSIST,MULTI_FUND_PEER",2.5,1.0,2.5,Other / Unclassified,3.92,,0.0
-Troy Asset Mgmt Trojan Fund,SGLD.L,HOLDING_PERSIST,1.5,1.0,1.5,Other / Unclassified,3.79,,0.0
-Troy Asset Mgmt Trojan Fund,ULVR.L,HOLDING_PERSIST,1.5,1.0,1.5,Other / Unclassified,2.9,,0.0
-Troy Asset Mgmt Trojan Fund,HEIA.AS,HOLDING_PERSIST,1.5,1.0,1.5,Other / Unclassified,2.28,,0.0
-Troy Asset Mgmt Trojan Fund,CB,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.0,3.5,Other / Unclassified,2.21,,0.0
-Troy Asset Mgmt Trojan Fund,CNI,HOLDING_PERSIST,1.5,1.0,1.5,Other / Unclassified,2.14,,0.0
-Troy Asset Mgmt Trojan Fund,HUBB,NEW_INIT_LARGE,2.0,1.0,2.0,Other / Unclassified,,,0.0
-Troy Asset Mgmt Trojan Fund,NKE,NEW_INIT_LARGE,2.0,1.0,2.0,Other / Unclassified,,,0.0
+Troy Asset Mgmt Trojan Fund,SGLN.L,"HOLDING_PERSIST,TOP_PICK",4.5,1.6,7.2,Value / Concentrated Quality,5.26,,0.0
+Troy Asset Mgmt Trojan Fund,GOOGL,"HOLDING_PERSIST,MULTI_FUND_PEER",2.5,1.6,4.0,Value / Concentrated Quality,3.92,,0.0
+Troy Asset Mgmt Trojan Fund,SGLD.L,HOLDING_PERSIST,1.5,1.6,2.4,Value / Concentrated Quality,3.79,,0.0
+Troy Asset Mgmt Trojan Fund,ULVR.L,HOLDING_PERSIST,1.5,1.6,2.4,Value / Concentrated Quality,2.9,,0.0
+Troy Asset Mgmt Trojan Fund,HEIA.AS,HOLDING_PERSIST,1.5,1.6,2.4,Value / Concentrated Quality,2.28,,0.0
+Troy Asset Mgmt Trojan Fund,CB,"HOLDING_PERSIST,NEW_INIT_LARGE",3.5,1.6,5.6,Value / Concentrated Quality,2.21,,0.0
+Troy Asset Mgmt Trojan Fund,CNI,HOLDING_PERSIST,1.5,1.6,2.4,Value / Concentrated Quality,2.14,,0.0
+Troy Asset Mgmt Trojan Fund,HUBB,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,,,0.0
+Troy Asset Mgmt Trojan Fund,NKE,NEW_INIT_LARGE,2.0,1.6,3.2,Value / Concentrated Quality,,,0.0
 Aoris Investment Management,HLMA.L,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,9.3,,0.0
 Aoris Investment Management,ACN,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,9.2,,0.0
 Aoris Investment Management,EXPN.L,TOP_PICK,3.0,1.0,3.0,Foreign / EM Value,8.4,,0.0
@@ -2499,7 +2499,7 @@ RIT Capital Partners plc (RCP.L,MA,MULTI_FUND_PEER,1.0,1.5,1.5,Family Offices / 
 RIT Capital Partners plc (RCP.L,ICE,MULTI_FUND_PEER,1.0,1.5,1.5,Family Offices / Individual Filers,,,0.0
 azValor Asset Management (Guzmá,BORR,INSIDER_COBUY,3.5,1.0,3.5,Foreign / EM Value,,,0.0
 Cobas Asset Management (Francis,TEVA,MULTI_FUND_PEER,1.0,1.6,1.6,Value / Concentrated Quality,,,0.0
-The Children's Investment Fund ,GOOGL,MULTI_FUND_PEER,1.0,1.2,1.2,Small-cap / Multibagger Specialists,,,0.0
+The Children's Investment Fund ,GOOGL,MULTI_FUND_PEER,1.0,1.4,1.4,Activists / Special Situations,,,0.0
 Holland Advisors (Andrew Hollin,NU,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Value,,,0.0
 Holland Advisors (Andrew Hollin,CSU.TO,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Value,,,0.0
 Numantia Patrimonio Global (Emé,BN,MULTI_FUND_PEER,1.0,1.0,1.0,Foreign / EM Value,,,0.0

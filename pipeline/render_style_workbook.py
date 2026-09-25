@@ -82,9 +82,15 @@ class StyleData:
             elif not _INDEX_PRODUCT.search(iss or ""):
                 self.unmapped.setdefault(m, []).append((pct or 0.0, iss or "", cusip))
         self.fresh = {self.cn(f) for f in self.fresh_funds}
+        # a fund moving both share classes (GOOGL -25%, GOOG +12%) keeps both
         self.move_at = {}
         for mv in self.moves:
-            self.move_at[(self.cn(mv["fund"]), self.cls.get(mv["ticker"], mv["ticker"]))] = mv
+            key = (self.cn(mv["fund"]), self.cls.get(mv["ticker"], mv["ticker"]))
+            prev = self.move_at.get(key)
+            if prev and prev["ticker"] != mv["ticker"]:
+                mv = dict(mv, label=f"{prev['ticker']} {prev['label']}; {mv['ticker']} {mv['label']}",
+                          pts=prev["pts"] + mv["pts"])
+            self.move_at[key] = mv
         self.display = {}
         for f in [r[0] for r in conn.execute("SELECT fund FROM fund_style")] + list(self.info):
             m = self.cn(f)
@@ -244,10 +250,14 @@ def sheet_readme(wb, conn):
         ("     Researcher notes — the research spreadsheet's new-position and add sections, kept as written;",),
         ("        'Still Held' checks each against the funds' latest 13F.",),
         ("     By size bucket — the top 5 per market-cap class (nano to mega).",),
-        ("3. Sub-Group Tiers — the same view within narrower peer groups (e.g. US Activists Tier 1), members named.",),
-        ("4. Fund Roster — every fund: whether its 13F book is current, how concentrated it is, what its vote weighs,",),
+        ("3. Industries by Style — each style's industries (FMP's designations): how much of the average fund's",),
+        ("   book is there against all funds (the tilt), last quarter's net buying, the names held and moved.",),
+        ("4. Sub-Group Tiers — the same view within narrower peer groups (e.g. US Activists Tier 1), members named.",),
+        ("5. Fund Roster — every fund: whether its 13F book is current, how concentrated it is, what its vote weighs,",),
         ("   and in plain English why a fund has no 13F data (non-US manager, below the $100M threshold, ...).",),
-        ("5. Legend — every column defined.  6. Ticker Reference — every symbol: name, industry, what it does.",),
+        ("6. Fund Dossier — one block per manager: largest positions, what it bought and sold, 13D/G stakes, non-US",),
+        ("   holdings, research notes. Click a name on the Fund Roster to jump to its block.",),
+        ("7. Legend — every column defined.  8. Ticker Reference — every symbol: name, industry, what it does.",),
         ("",),
         ("Data as of",),
         (f"13F books: quarter ended {sd.quarter} (filed by mid-August), compared with each fund's previous quarter. "
@@ -572,6 +582,211 @@ def sheet_overview(wb, conn):
     ws.column_dimensions["E"].width = 58
     ws.column_dimensions["F"].width = 58
 
+def sheet_industries_by_style(wb, conn, per_style=15):
+    """Each style's industry exposure (FMP industries): how much of the average
+    fund's book sits in each industry, against the average fund overall (the
+    tilt), last quarter's net buying there, and the names it holds and moved."""
+    sd = style_data(conn)
+    ind = dict(conn.execute("SELECT ticker, industry FROM ticker_yf WHERE industry IS NOT NULL"))
+    ws = wb.create_sheet("Industries by Style")
+    write_title(ws, "Industries by Style — where each style's money sits, and what it bought there",
+                f"FMP industries. Share = the average fund's % of book in the industry (each fund counts equally, one "
+                f"book per filing, share classes merged); All Funds = the same across every fund; Tilt = Share ÷ All "
+                f"Funds (above 1 = the style leans into it). Net Pts = the style's buying minus selling there in the "
+                f"{sd.quarter} quarter. Top {per_style} industries per style by Share; SPACs left out.", 10)
+    # the average fund's industry weights, style by style and overall
+    def weights(managers):
+        seen, per_fund = set(), []
+        for m in sorted(managers):
+            b = sd.book.get(m)
+            if m not in sd.hold or b in seen:
+                continue
+            seen.add(b)
+            w = {}
+            for t, pct in sd.hold[m].items():
+                i = ind.get(t)
+                if i and i != "Shell Companies" and 0 < pct <= 100:
+                    w[i] = w.get(i, 0.0) + pct
+            per_fund.append(w)
+        n = len(per_fund) or 1
+        tot = {}
+        for w in per_fund:
+            for i, v in w.items():
+                tot[i] = tot.get(i, 0.0) + v
+        return {i: v / n for i, v in tot.items()}, len(per_fund)
+    everyone, _ = weights(set(sd.hold))
+    hdr = ["Industry", "Share %", "All Funds %", "Tilt", "Names Held", "Funds Holding", "Net Pts",
+           "Largest Names (holders)", "Bought Last Qtr", "Sold Last Qtr"]
+    row = 4
+    for ms, count in style_macro_list(conn):
+        managers = sd.members.get(ms, set())
+        w, n_books = weights(managers)
+        if not w:
+            continue
+        write_section_heading(ws, row, f"{ms} — {n_books} fund books · {len(w)} industries held", 10)
+        row += 1
+        write_table_header(ws, row, hdr)
+        row += 1
+        agg = sd.agg(sd.with_book(managers))
+        mv = sd.moves_for(managers)
+        out = []
+        for i, share in sorted(w.items(), key=lambda x: -x[1])[:per_style]:
+            names = [(t, a) for t, a in agg.items() if ind.get(t) == i]
+            names.sort(key=lambda x: (-sum(p for p, m in x[1]["h"]), -x[1]["n"]))
+            funds = {m for t, a in names for p, m in a["h"]}
+            net = sum(mv[t]["net"] for t, a in names if t in mv)
+            net += sum(d["net"] for t, d in mv.items() if ind.get(t) == i and t not in agg)   # fully exited names
+            bought = sorted(((d["net"], t) for t, d in mv.items() if ind.get(t) == i and d["net"] > 0), reverse=True)[:4]
+            sold = sorted(((d["net"], t) for t, d in mv.items() if ind.get(t) == i and d["net"] < 0))[:4]
+            base = everyone.get(i) or 0.0
+            out.append([i, round(share, 2), round(base, 2), round(share / base, 1) if base else "",
+                        len(names), len(funds), round(net, 1) if net else "",
+                        ", ".join(f"{t} ({a['n']})" for t, a in names[:6]),
+                        ", ".join(f"{t} {v:+.1f}" for v, t in bought), ", ".join(f"{t} {v:+.1f}" for v, t in sold)])
+        write_table_rows(ws, out, row, ticker_col=None)
+        color_directional(ws, row, row + len(out) - 1, [7], higher_is_better=True)
+        _fmt(ws, row, len(out), {2: '0.0"%"', 3: '0.0"%"', 4: '0.0"×"', 7: '0.0'})
+        row += len(out) + 2
+    ws.freeze_panes = "B4"
+    autosize(ws)
+    for col, w_ in (("A", 40), ("H", 56), ("I", 40), ("J", 40)):
+        ws.column_dimensions[col].width = w_
+
+ROSTER_ROWS = {}          # fund -> its row on the Fund Roster (linked to its dossier block)
+
+def sheet_fund_dossier(wb, conn, top_n=10):
+    """One block per manager: its style, book facts, largest positions with
+    last quarter's moves and industries, everything it bought and sold, its
+    13D/G stakes, its registered funds' non-US holdings, and — for managers
+    that file no 13F — the research notes. The Fund Roster's names link here."""
+    from _canon import canon
+    sd = style_data(conn)
+    ws = wb.create_sheet("Fund Dossier")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Fund Dossier — every manager, one block each",
+                f"By style, largest books first. Positions from the latest 13F (one book per filing, share classes "
+                f"merged); Last Qtr = the manager's move in the {sd.quarter} quarter ('held' = no material change). "
+                f"13D/G stakes filed in the last 24 months. Managers without a 13F show their research notes. "
+                f"Find a manager: click its name on the Fund Roster, or search this sheet.", 10)
+    ind = dict(conn.execute("SELECT ticker, industry FROM ticker_yf WHERE industry IS NOT NULL"))
+    variants = {}
+    for (f,) in conn.execute("SELECT fund FROM fund_style"):
+        variants.setdefault(canon(f), []).append(f)
+    stakes = {}
+    for holder, tk, pct, form, filed in conn.execute("""SELECT holder, subject_ticker, pct_class, form, filed
+            FROM holder_13d WHERE subject_ticker IS NOT NULL AND filed >= date('now', '-24 months')
+            ORDER BY filed DESC"""):
+        d = stakes.setdefault(canon(holder), {})
+        if tk not in d:
+            d[tk] = (pct, form, filed)
+    nport = {}
+    try:
+        for mgr, series, tk, issuer, country, pct in conn.execute("""SELECT manager, series, ticker, issuer, country, pct
+                FROM nport_holdings ORDER BY pct DESC"""):
+            nport.setdefault(canon(mgr), []).append((series, tk, issuer, country, pct))
+    except sqlite3.OperationalError:
+        pass
+    notes = {}
+    for f, tk, sec in conn.execute("""SELECT fund, ticker, section FROM fund_positions
+            WHERE ticker IS NOT NULL AND section IN (1, 3, 4)"""):
+        notes.setdefault(canon(f), {}).setdefault(sec, [])
+        if tk not in notes[canon(f)][sec]:
+            notes[canon(f)][sec].append(tk)
+    moves_by = {}
+    for mv in sd.moves:
+        moves_by.setdefault(sd.cn(mv["fund"]), []).append(mv)
+    status = dict(conn.execute("SELECT fund, status FROM fund_resolution_state"))
+    sub = {f: g for f, g in conn.execute("SELECT fund, sub_group FROM fund_style")}
+    hdr = ["Ticker", "% of Book", "Last Qtr", "Industry", "Mcap", "Name"]
+    row, anchors = 4, {}
+    for ms, count in style_macro_list(conn):
+        managers = sorted(sd.members.get(ms, set()),
+                          key=lambda m: -((sd.info.get(sd.rep.get(m)) or {}).get("value_m") or 0))
+        write_section_heading(ws, row, f"{ms.upper()} — {len(managers)} managers", 10)
+        row += 1
+        for m in managers:
+            names = variants.get(m, [])
+            fund = sd.rep.get(m) or (names[0] if names else m)
+            inf = sd.info.get(sd.rep.get(m)) or {}
+            for f in names:
+                anchors[f] = row
+            c = ws.cell(row=row, column=1, value=f"{sd.display.get(m, short_fund(fund))} — {ms}"
+                        + (f" · {sub.get(names[0])}" if names and sub.get(names[0]) else ""))
+            c.font = Font(name=TNR, bold=True, size=SIZE_BODY + 1, color="000000")
+            row += 1
+            if inf.get("n"):
+                facts = (f"13F book {inf.get('period') or '?'} (filed {inf.get('filed') or '?'}) · {inf['n']} positions · "
+                         f"${inf.get('value_m', 0):,.0f}M · top-10 {inf.get('top10') or 0:.0f}% of book · vote weight "
+                         f"{inf.get('focus') or 0:.2f}")
+            else:
+                facts = plain_status(status.get(names[0]) if names else None)
+            if len(names) > 1:
+                facts += " · on the roster as: " + "; ".join(names)
+            ws.cell(row=row, column=1, value=facts).font = BODY_ITALIC
+            row += 1
+            held = sorted(sd.hold.get(m, {}).items(), key=lambda x: -x[1])[:top_n]
+            if held:
+                write_table_header(ws, row, hdr)
+                row += 1
+                out = []
+                for t, pct in held:
+                    mv = sd.move_at.get((m, t))
+                    mt = sd.meta.get(t) or {}
+                    out.append([t, round(pct, 1), mv["label"] if mv else ("held" if m in sd.fresh else ""),
+                                ind.get(t) or "", mt.get("mcap") or "", sd.name(t)])
+                write_table_rows(ws, out, row)
+                _fmt(ws, row, len(out), {2: NUMFMT_PCT, 5: NUMFMT_MCAP})
+                row += len(out)
+            mvs = moves_by.get(m, [])
+            lines = []
+            buys = [x for x in mvs if x["kind"] in ("new", "add")]
+            sells = [x for x in mvs if x["kind"] in ("exit", "trim")]
+            if buys:
+                lines.append("Bought last quarter: " + "; ".join(
+                    f"{x['ticker']} ({x['label']})" for x in sorted(buys, key=lambda x: -x["cw"])))
+            if sells:
+                lines.append("Sold last quarter: " + "; ".join(
+                    f"{x['ticker']} ({x['label']})" for x in sorted(sells, key=lambda x: -x["pw"])))
+            st = stakes.get(m) or {}
+            if st:
+                lines.append("13D/G stakes (24 months): " + "; ".join(
+                    f"{t} {p:.1f}% ({'13D' if '13D' in (fm or '') else '13G'}, {str(fd)[:10]})" if p else
+                    f"{t} ({'13D' if '13D' in (fm or '') else '13G'}, {str(fd)[:10]})"
+                    for t, (p, fm, fd) in list(st.items())[:12]) + (f"; +{len(st) - 12} more" if len(st) > 12 else ""))
+            np_ = nport.get(m) or []
+            if np_:
+                fgn = [x for x in np_ if (x[3] or "US") != "US"][:8]
+                lines.append(f"N-PORT ({len({x[0] for x in np_})} registered funds): largest non-US: " + "; ".join(
+                    f"{x[1] or x[2]} ({x[3]}) {x[4]:.1f}%" for x in fgn))
+            if not inf.get("n"):
+                nt = notes.get(m) or {}
+                for sec, label in ((1, "Research notes, top picks"), (3, "Research notes, new positions"),
+                                   (4, "Research notes, adds")):
+                    if nt.get(sec):
+                        lines.append(f"{label}: " + ", ".join(nt[sec][:15])
+                                     + (f" (+{len(nt[sec]) - 15} more)" if len(nt[sec]) > 15 else ""))
+            for ln in lines:
+                c = ws.cell(row=row, column=1, value=ln)
+                c.font = BODY_FONT
+                c.alignment = Alignment(horizontal="left", vertical="top", wrap_text=False)
+                row += 1
+            row += 1
+    ws.freeze_panes = "A4"
+    autosize(ws)
+    ws.column_dimensions["A"].width = 12
+    ws.column_dimensions["C"].width = 22
+    ws.column_dimensions["D"].width = 30
+    ws.column_dimensions["F"].width = 40
+    # the Fund Roster is the index: each fund name links to its block
+    if "Fund Roster" in wb.sheetnames:
+        roster = wb["Fund Roster"]
+        link_font = Font(name=TNR, size=SIZE_BODY, color="000000", underline="single")
+        for f, r in ROSTER_ROWS.items():
+            if f in anchors:
+                c = roster.cell(row=r, column=1)
+                c.hyperlink = f"#'Fund Dossier'!A{anchors[f]}"
+                c.font = link_font
+
 def sheet_subgroup_focus(wb, conn):
     """Sub_group tier picks. Multi-fund sub_groups shown explicitly;
     single-fund specialists consolidated into a 'Specialist Funds' bucket
@@ -766,8 +981,9 @@ def sheet_fund_roster(wb, conn):
             WHERE fs.macro_style=?
             ORDER BY fs.sub_group, fm.fund""", (ms,)))
         out = []
-        for f in funds:
+        for i_, f in enumerate(funds):
             fund = f[0]
+            ROSTER_ROWS[fund] = row + i_
             inf = sd.info.get(fund) or {}
             m = sd.cn(fund)
             if fund in dormant:
@@ -860,7 +1076,9 @@ def main():
     sheet_readme(wb, conn)
     write_legend_sheet(wb, 1)
     sheet_fund_roster(wb, conn)
+    sheet_fund_dossier(wb, conn)
     sheet_overview(wb, conn)
+    sheet_industries_by_style(wb, conn)
     sheet_subgroup_focus(wb, conn)
     for ms, _ in style_macro_list(conn):
         sn = safe_sheet_name(ms)
@@ -879,7 +1097,8 @@ def main():
             ws.auto_filter.ref = f"A4:{get_column_letter(ws.max_column)}{ws.max_row}"
 
     # README + meta tabs in lightest grey for distinction
-    for nav in ("README", "Legend", "Fund Roster", "Overview", "Sub-Group Tiers", "Ticker Reference"):
+    for nav in ("README", "Legend", "Fund Roster", "Fund Dossier", "Overview", "Industries by Style",
+                "Sub-Group Tiers", "Ticker Reference"):
         if nav in wb.sheetnames:
             wb[nav].sheet_properties.tabColor = "F2F2F2"
 
