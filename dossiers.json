@@ -1247,6 +1247,14 @@
   "moves": {},
   "timeline": [
    {
+    "date": "2026-09-07",
+    "type": "JP_BUYBACK_PROGRESS",
+    "family": "JP_DISCLOSURE",
+    "what": "buyback progress / results report",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260904532009.pdf"
+   },
+   {
     "date": "2026-08-07",
     "type": "CALL_BUILDING",
     "family": "CALL_INTENT",
@@ -1493,7 +1501,16 @@
    "rev_growth": 0.06799124513618682
   },
   "moves": {},
-  "timeline": [],
+  "timeline": [
+   {
+    "date": "2026-09-02",
+    "type": "JP_BUYBACK_PROGRESS",
+    "family": "JP_DISCLOSURE",
+    "what": "buyback progress / results report",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260901530252.pdf"
+   }
+  ],
   "changed_since": {
    "since": "2026-09-25",
    "items": []
@@ -1665,7 +1682,24 @@
   "other_lines": [],
   "now": {},
   "moves": {},
-  "timeline": [],
+  "timeline": [
+   {
+    "date": "2026-09-16",
+    "type": "JP_TENDER",
+    "family": "JP_DISCLOSURE",
+    "what": "tender offer (company as bidder or other)",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260915536688.pdf"
+   },
+   {
+    "date": "2026-08-28",
+    "type": "JP_ACQUISITION",
+    "family": "JP_DISCLOSURE",
+    "what": "acquisition by the company (share purchase / making a subsidiary)",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260828527594.pdf"
+   }
+  ],
   "changed_since": {
    "since": "2026-09-25",
    "items": []
@@ -1701,7 +1735,24 @@
    "rev_growth": -0.1412964870349015
   },
   "moves": {},
-  "timeline": [],
+  "timeline": [
+   {
+    "date": "2026-09-16",
+    "type": "JP_BUYBACK_PROGRESS",
+    "family": "JP_DISCLOSURE",
+    "what": "buyback progress / results report",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260916536923.pdf"
+   },
+   {
+    "date": "2026-09-01",
+    "type": "JP_BUYBACK_PROGRESS",
+    "family": "JP_DISCLOSURE",
+    "what": "buyback progress / results report",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260901529591.pdf"
+   }
+  ],
   "changed_since": {
    "since": "2026-09-25",
    "items": []
@@ -1810,7 +1861,16 @@
   ],
   "now": {},
   "moves": {},
-  "timeline": [],
+  "timeline": [
+   {
+    "date": "2026-09-04",
+    "type": "JP_BUYBACK_PROGRESS",
+    "family": "JP_DISCLOSURE",
+    "what": "buyback progress / results report",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260904531749.pdf"
+   }
+  ],
   "changed_since": {
    "since": "2026-09-25",
    "items": []
@@ -1932,7 +1992,40 @@
   "other_lines": [],
   "now": {},
   "moves": {},
-  "timeline": [],
+  "timeline": [
+   {
+    "date": "2026-09-04",
+    "type": "JP_STAKEBUILDING",
+    "family": "JP_DISCLOSURE",
+    "what": "stake-building / change of major shareholder",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260903531204.pdf"
+   },
+   {
+    "date": "2026-08-31",
+    "type": "JP_TENDER_TARGET",
+    "family": "JP_DISCLOSURE",
+    "what": "tender offer for the company (board opinion)",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260831528914.pdf"
+   },
+   {
+    "date": "2026-08-31",
+    "type": "JP_HOSTILE_TENDER",
+    "family": "JP_DISCLOSURE",
+    "what": "hostile tender offer for the company (board opposes)",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260831528903.pdf"
+   },
+   {
+    "date": "2026-08-31",
+    "type": "JP_MIDTERM_PLAN",
+    "family": "JP_DISCLOSURE",
+    "what": "mid-term business plan",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260831528919.pdf"
+   }
+  ],
   "changed_since": {
    "since": "2026-09-25",
    "items": []
@@ -2077,7 +2170,16 @@
    "rev_growth": 0.06442016029818332
   },
   "moves": {},
-  "timeline": [],
+  "timeline": [
+   {
+    "date": "2026-09-03",
+    "type": "JP_BUYBACK_PROGRESS",
+    "family": "JP_DISCLOSURE",
+    "what": "buyback progress / results report",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260903531084.pdf"
+   }
+  ],
   "changed_since": {
    "since": "2026-09-25",
    "items": []
@@ -2164,7 +2266,16 @@
    "rev_growth": 0.010433274105537516
   },
   "moves": {},
-  "timeline": [],
+  "timeline": [
+   {
+    "date": "2026-09-01",
+    "type": "JP_BUYBACK_PROGRESS",
+    "family": "JP_DISCLOSURE",
+    "what": "buyback progress / results report",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260901529603.pdf"
+   }
+  ],
   "changed_since": {
    "since": "2026-09-25",
    "items": []
@@ -2402,7 +2513,32 @@
    "rev_growth": -0.028017875727908814
   },
   "moves": {},
-  "timeline": [],
+  "timeline": [
+   {
+    "date": "2026-09-25",
+    "type": "JP_CANCEL",
+    "family": "JP_DISCLOSURE",
+    "what": "treasury-share cancellation",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260915536374.pdf"
+   },
+   {
+    "date": "2026-09-18",
+    "type": "JP_BUYBACK_PROGRESS",
+    "family": "JP_DISCLOSURE",
+    "what": "buyback progress / results report",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260915536375.pdf"
+   },
+   {
+    "date": "2026-09-01",
+    "type": "JP_BUYBACK_PROGRESS",
+    "family": "JP_DISCLOSURE",
+    "what": "buyback progress / results report",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260831528794.pdf"
+   }
+  ],
   "changed_since": {
    "since": "2026-09-25",
    "items": []
@@ -2497,7 +2633,16 @@
    "rev_growth": 0.09284852279790012
   },
   "moves": {},
-  "timeline": [],
+  "timeline": [
+   {
+    "date": "2026-09-03",
+    "type": "JP_BUYBACK_PROGRESS",
+    "family": "JP_DISCLOSURE",
+    "what": "buyback progress / results report",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260902530821.pdf"
+   }
+  ],
   "changed_since": {
    "since": "2026-09-25",
    "items": []
@@ -6301,7 +6446,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": -0.12638461994371708,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": -0.09332049973575984,
+   "p_b_30d": -0.12420026109950744,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -10384,7 +10529,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": -0.1124161867429162,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": -0.2279306259034416,
+   "p_b_30d": -0.11485744071729442,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [],
@@ -15533,7 +15678,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 0.038389668704487345,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -21240,7 +21385,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 0.3885591088633842,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -26113,7 +26258,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 0.002666553984194353,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -26948,7 +27093,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 1.1113923890927349,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -29663,7 +29808,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 0.005757177897184107,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -31731,27 +31876,6 @@
   "priced_in": null,
   "red_flags": []
  },
- "B3:LUPA3": {
-  "security_id": "LUPA3.SA",
-  "issuer_id": "NAME:BR:lupatech s a",
-  "name": "Lupatech S.A.",
-  "sec_type": "common",
-  "exchange": "SAO",
-  "currency": "BRL",
-  "kind": "operating",
-  "country": "BR",
-  "other_lines": [],
-  "now": {},
-  "moves": {},
-  "timeline": [],
-  "changed_since": {
-   "since": "2026-09-25",
-   "items": []
-  },
-  "ownership": null,
-  "priced_in": null,
-  "red_flags": []
- },
  "B3:MRFG3": {
   "security_id": "MRFG3.SA",
   "issuer_id": "NAME:BR:marfrig global foods s a",
@@ -31772,35 +31896,6 @@
    "div_yield": 0.13307,
    "shares_yoy": -0.06203795800775813
   },
-  "moves": {},
-  "timeline": [],
-  "changed_since": {
-   "since": "2026-09-25",
-   "items": []
-  },
-  "ownership": null,
-  "priced_in": null,
-  "red_flags": []
- },
- "B3:OIBR3": {
-  "security_id": "OIBR3.SA",
-  "issuer_id": "NAME:BR:oi s a",
-  "name": "Oi S.A.",
-  "sec_type": "common",
-  "exchange": "SAO",
-  "currency": "BRL",
-  "kind": "operating",
-  "country": "BR",
-  "other_lines": [
-   {
-    "security_id": "OIBR4.SA",
-    "sec_type": "common",
-    "exchange": "SAO",
-    "status": "active",
-    "is_primary": 0
-   }
-  ],
-  "now": {},
   "moves": {},
   "timeline": [],
   "changed_since": {
@@ -40640,7 +40735,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": -0.1688115217291365,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -52922,7 +53017,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 0.0393968184397151,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -54195,7 +54290,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 0.04041723821342247,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -58344,6 +58439,552 @@
   "priced_in": null,
   "red_flags": []
  },
+ "CIK:0000732834": {
+  "security_id": "CLR",
+  "issuer_id": "CIK:732834",
+  "name": "Continental Resources, Inc.",
+  "sec_type": "common",
+  "exchange": "NYSE",
+  "currency": "USD",
+  "kind": "ep",
+  "country": "US",
+  "other_lines": [],
+  "now": {
+   "price": 74.27,
+   "mcap_usd": 0.0,
+   "pe": 25.878048780487802,
+   "ev_ebitda": 0.5747355474737408,
+   "roe": 0.11406418304796499,
+   "roa": 0.060504392661380954,
+   "tce_ta": 0.5548969977426109,
+   "div_yield": 0.01332974,
+   "shares_yoy": 0.0,
+   "rev_growth": 0.0342138555477296,
+   "n_analysts": 3.0,
+   "pt_upside": -0.22108522956779308,
+   "insider_buy_12m_usd": 0.0,
+   "insider_sell_12m_usd": 0.0
+  },
+  "moves": {},
+  "timeline": [],
+  "changed_since": {
+   "since": "2026-09-25",
+   "items": []
+  },
+  "ownership": null,
+  "priced_in": null,
+  "red_flags": []
+ },
+ "CIK:0000800240": {
+  "security_id": "ODP",
+  "issuer_id": "CIK:800240",
+  "name": "The ODP Corporation",
+  "sec_type": "common",
+  "exchange": "NASDAQ",
+  "currency": "USD",
+  "kind": "operating",
+  "country": "US",
+  "other_lines": [],
+  "now": {
+   "price": 28.0,
+   "mcap_usd": 843289748.0,
+   "p_b": 1.0246533997569867,
+   "p_tbv": 2.304070349726776,
+   "pe": -140.00000000000003,
+   "ev_ebitda": 15.764019000000001,
+   "net_cash_pct": -0.7198000467094496,
+   "roe": -0.00749063670411985,
+   "roa": -0.0027447392497712718,
+   "tce_ta": 0.11161939615736505,
+   "div_yield": 0.0,
+   "buyback_ttm_mcap": 0.06047743390804272,
+   "shares_yoy": -0.09090909090909094,
+   "n_analysts": 2.0,
+   "severity": 2.0,
+   "altman_z": 2.0477964415512595,
+   "insider_buy_12m_usd": 0.0,
+   "insider_sell_12m_usd": 0.0
+  },
+  "moves": {},
+  "timeline": [
+   {
+    "date": "2025-12-10",
+    "type": "RED_FLAG_DELISTING_NOTICE",
+    "family": "RED_FLAG",
+    "what": "8-K 3.01: delisting notice / listing-standard failure",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/800240/000119312525314368/"
+   },
+   {
+    "date": "2025-12-10",
+    "type": "CEO_CHANGE",
+    "family": "CEO_CHANGE",
+    "what": "",
+    "reviewed": false,
+    "url": null
+   },
+   {
+    "date": "2024-03-01",
+    "type": "INSIDER_SELL",
+    "family": "INSIDER",
+    "what": "insiders sold $1.38M in 1 trade(s) (2024-03)"
+   }
+  ],
+  "changed_since": {
+   "since": "2026-09-25",
+   "items": []
+  },
+  "ownership": null,
+  "priced_in": null,
+  "red_flags": []
+ },
+ "CIK:0001127703": {
+  "security_id": "PRA",
+  "issuer_id": "CIK:1127703",
+  "name": "ProAssurance Corporation",
+  "sec_type": "common",
+  "exchange": "NYSE",
+  "currency": "USD",
+  "kind": "insurer",
+  "country": "US",
+  "other_lines": [],
+  "now": {
+   "price": 25.0,
+   "mcap_usd": 1290193150.0,
+   "p_b": 0.9637153133099786,
+   "p_tbv": 1.052947280538245,
+   "pe": 19.71453355413611,
+   "ev_ebitda": 14.111004119166921,
+   "net_cash_pct": 2.831180742201274,
+   "roe": 0.04950975869336823,
+   "roa": 0.012040093880119099,
+   "tce_ta": 0.22628218587990268,
+   "div_yield": 0.0,
+   "buyback_ttm_mcap": 0.0009308683742430348,
+   "shares_yoy": 0.007114394013023606,
+   "rev_growth": -0.03164015780600482,
+   "floor_frac": 0.526,
+   "downside_pct": 0.474,
+   "n_analysts": 3.0,
+   "pt_upside": -0.26680000000000004,
+   "severity": 2.0,
+   "altman_z": 1.0948212010460945,
+   "insider_buy_12m_usd": 0.0,
+   "insider_sell_12m_usd": 0.0
+  },
+  "moves": {
+   "price_30d": 0.0,
+   "price_30d_from": "2026-06-20",
+   "mcap_30d": 0.0,
+   "mcap_30d_from": "2026-06-20",
+   "p_b_30d": 0.01418821538752657,
+   "p_b_30d_from": "2026-06-20"
+  },
+  "timeline": [
+   {
+    "date": "2026-06-30",
+    "type": "13D_CUT",
+    "family": "OWNERSHIP",
+    "what": "13D stake cut 5.9% -> 0.0%",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1127703/000110465926079450/xslSCHEDULE_13D_X02/primary_doc.xml"
+   },
+   {
+    "date": "2026-06-26",
+    "type": "RED_FLAG_DELISTING_NOTICE",
+    "family": "RED_FLAG",
+    "what": "8-K 3.01: delisting notice / listing-standard failure",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1127703/000112770326000032/"
+   },
+   {
+    "date": "2025-04-11",
+    "type": "NEW_13D",
+    "family": "OWNERSHIP",
+    "what": "new 13D (active 5%+ holder)",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1127703/000110465925033995/xslSCHEDULE_13D_X01/primary_doc.xml"
+   }
+  ],
+  "changed_since": {
+   "since": "2026-09-25",
+   "items": []
+  },
+  "ownership": null,
+  "priced_in": null,
+  "red_flags": []
+ },
+ "CIK:0001348911": {
+  "security_id": "KALV",
+  "issuer_id": "CIK:1348911",
+  "name": "KalVista Pharmaceuticals, Inc.",
+  "sec_type": "common",
+  "exchange": "NASDAQ",
+  "currency": "USD",
+  "kind": "operating",
+  "country": "US",
+  "other_lines": [],
+  "now": {
+   "price": 27.0,
+   "mcap_usd": 1437503976.0,
+   "pe": -8.359133126934983,
+   "ev_ebitda": -12.739338998604312,
+   "roe": -10.57436935474631,
+   "roa": -0.6270980245993291,
+   "tce_ta": -0.008083488632128214,
+   "div_yield": 0.0,
+   "shares_yoy": 0.15394425810607593,
+   "n_analysts": 3.0,
+   "pt_upside": 0.0,
+   "severity": 3.0,
+   "altman_z": -0.5148524375309249,
+   "insider_buy_12m_usd": 0.0,
+   "insider_sell_12m_usd": 7066665.0
+  },
+  "moves": {
+   "price_30d": 0.0,
+   "price_30d_from": "2026-06-20",
+   "mcap_30d": 0.0,
+   "mcap_30d_from": "2026-06-20",
+   "p_b_30d": 0.0,
+   "p_b_30d_from": "2026-06-20"
+  },
+  "timeline": [
+   {
+    "date": "2026-06-11",
+    "type": "RED_FLAG_DELISTING_NOTICE",
+    "family": "RED_FLAG",
+    "what": "8-K 3.01: delisting notice / listing-standard failure",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1348911/000114036126024949/"
+   },
+   {
+    "date": "2026-06-11",
+    "type": "TENDER_OFFER",
+    "family": "TENDER_OFFER",
+    "what": "",
+    "reviewed": false,
+    "url": null
+   },
+   {
+    "date": "2026-05-27",
+    "type": "INSIDER_SELL",
+    "family": "INSIDER",
+    "what": "insiders sold $1.75M in 13 trade(s) (2026-05)"
+   },
+   {
+    "date": "2026-05-21",
+    "type": "13D_CUT",
+    "family": "OWNERSHIP",
+    "what": "13D stake cut 2.3% -> 0.8%",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1348911/000123191926000523/xslSCHEDULE_13D_X02/primary_doc.xml"
+   },
+   {
+    "date": "2026-05-21",
+    "type": "NEW_13D",
+    "family": "OWNERSHIP",
+    "what": "new 13D (active 5%+ holder)",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1348911/000123191926000523/xslSCHEDULE_13D_X02/primary_doc.xml"
+   },
+   {
+    "date": "2026-04-17",
+    "type": "INSIDER_SELL",
+    "family": "INSIDER",
+    "what": "insiders sold $0.32M in 4 trade(s) (2026-04)"
+   },
+   {
+    "date": "2026-03-26",
+    "type": "INSIDER_SELL",
+    "family": "INSIDER",
+    "what": "insiders sold $3.13M in 3 trade(s) (2026-03)"
+   },
+   {
+    "date": "2026-02-23",
+    "type": "INSIDER_SELL",
+    "family": "INSIDER",
+    "what": "insiders sold $0.45M in 6 trade(s) (2026-02)"
+   },
+   {
+    "date": "2025-12-08",
+    "type": "INSIDER_SELL",
+    "family": "INSIDER",
+    "what": "insiders sold $0.12M in 1 trade(s) (2025-12)"
+   },
+   {
+    "date": "2025-11-24",
+    "type": "INSIDER_SELL",
+    "family": "INSIDER",
+    "what": "insiders sold $0.57M in 9 trade(s) (2025-11)"
+   },
+   {
+    "date": "2025-11-04",
+    "type": "13D_ADD",
+    "family": "OWNERSHIP",
+    "what": "13D stake up 4.8% -> 6.9%",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1348911/000123191925000414/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-09-08",
+    "type": "INSIDER_SELL",
+    "family": "INSIDER",
+    "what": "insiders sold $0.12M in 1 trade(s) (2025-09)"
+   },
+   {
+    "date": "2025-08-25",
+    "type": "INSIDER_SELL",
+    "family": "INSIDER",
+    "what": "insiders sold $0.40M in 8 trade(s) (2025-08)"
+   },
+   {
+    "date": "2025-08-20",
+    "type": "NEW_13D",
+    "family": "OWNERSHIP",
+    "what": "new 13D (active 5%+ holder)",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1348911/000141588925022500/xslSCHEDULE_13D_X01/primary_doc.xml"
+   }
+  ],
+  "changed_since": {
+   "since": "2026-09-25",
+   "items": []
+  },
+  "ownership": null,
+  "priced_in": null,
+  "red_flags": []
+ },
+ "CIK:0001408100": {
+  "security_id": "KW",
+  "issuer_id": "CIK:1408100",
+  "name": "Kennedy-Wilson Holdings, Inc.",
+  "sec_type": "common",
+  "exchange": "NYSE",
+  "currency": "USD",
+  "kind": "operating",
+  "country": "US",
+  "other_lines": [],
+  "now": {
+   "price": 10.92,
+   "mcap_usd": 1521191763.0,
+   "p_b": 1.0024327927512355,
+   "p_tbv": 2.208787226658923,
+   "pe": 54.929577464788736,
+   "ev_ebitda": 13.651283112042346,
+   "net_cash_pct": -3.0688438588396436,
+   "roe": 0.0385473132457554,
+   "roa": 0.008645617314601162,
+   "tce_ta": 0.10057832169874698,
+   "div_yield": 0.04395604,
+   "buyback_ttm_mcap": 0.009400524212541374,
+   "shares_yoy": 0.010637545171139129,
+   "rev_growth": -0.0638257213835276,
+   "n_analysts": 1.0,
+   "severity": 6.0,
+   "altman_z": 0.20075174736167278,
+   "insider_buy_12m_usd": 0.0,
+   "insider_sell_12m_usd": 0.0,
+   "active_13d_max_pct": 19.9
+  },
+  "moves": {
+   "price_30d": 0.0,
+   "price_30d_from": "2026-06-20",
+   "mcap_30d": 0.0,
+   "mcap_30d_from": "2026-06-20",
+   "p_b_30d": -0.5038324557048662,
+   "p_b_30d_from": "2026-06-20"
+  },
+  "timeline": [
+   {
+    "date": "2026-06-18",
+    "type": "13D_CUT",
+    "family": "OWNERSHIP",
+    "what": "13D stake cut 8.1% -> 0.0%",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1408100/000090514826002994/xslSCHEDULE_13D_X02/primary_doc.xml"
+   },
+   {
+    "date": "2026-06-16",
+    "type": "RED_FLAG_DELISTING_NOTICE",
+    "family": "RED_FLAG",
+    "what": "8-K 3.01: delisting notice / listing-standard failure",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1408100/000114036126025340/"
+   },
+   {
+    "date": "2026-06-16",
+    "type": "13D_CUT",
+    "family": "OWNERSHIP",
+    "what": "13D stake cut 5.7% -> 0.0%",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/915191/000094787126000631/xslSCHEDULE_13D_X02/primary_doc.xml"
+   },
+   {
+    "date": "2026-03-16",
+    "type": "SALE_OF_COMPANY",
+    "family": "SALE_OF_COMPANY",
+    "what": "",
+    "reviewed": false,
+    "url": null
+   },
+   {
+    "date": "2026-02-27",
+    "type": "RED_FLAG_GOING_CONCERN",
+    "family": "RED_FLAG",
+    "what": "going-concern doubt in 2 10-K/10-Q filing(s) in 12m (latest 2026-02-27)",
+    "reviewed": false,
+    "url": null
+   },
+   {
+    "date": "2026-02-18",
+    "type": "13D_ADD",
+    "family": "OWNERSHIP",
+    "what": "13D stake up 16.9% -> 18.8%",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/915191/000094787126000195/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2026-02-18",
+    "type": "NEW_13D",
+    "family": "OWNERSHIP",
+    "what": "new 13D (active 5%+ holder)",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/915191/000094787126000195/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-11-05",
+    "type": "13G_TO_13D",
+    "family": "OWNERSHIP",
+    "what": "13G->13D switch (passive holder turned active)",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/915191/000094787125000946/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-11-05",
+    "type": "NEW_13D",
+    "family": "OWNERSHIP",
+    "what": "new 13D (active 5%+ holder)",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/915191/000094787125000946/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-11-04",
+    "type": "NEW_13D",
+    "family": "OWNERSHIP",
+    "what": "new 13D (active 5%+ holder)",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/901819/000119312525265316/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-05-19",
+    "type": "INSIDER_BUY",
+    "family": "INSIDER",
+    "what": "insiders bought $1.44M in 2 trade(s) (2025-05)"
+   },
+   {
+    "date": "2025-03-19",
+    "type": "INSIDER_BUY",
+    "family": "INSIDER",
+    "what": "insiders bought $0.35M in 1 trade(s) (2025-03)"
+   },
+   {
+    "date": "2025-03-14",
+    "type": "INSIDER_SELL",
+    "family": "INSIDER",
+    "what": "insiders sold $0.26M in 1 trade(s) (2025-03)"
+   }
+  ],
+  "changed_since": {
+   "since": "2026-09-25",
+   "items": []
+  },
+  "ownership": null,
+  "priced_in": null,
+  "red_flags": []
+ },
+ "CIK:0001489096": {
+  "security_id": "THR",
+  "issuer_id": "CIK:1489096",
+  "name": "Thermon Group Holdings, Inc.",
+  "sec_type": "common",
+  "exchange": "NYSE",
+  "currency": "USD",
+  "kind": "operating",
+  "country": "US",
+  "other_lines": [],
+  "now": {
+   "price": 61.14,
+   "mcap_usd": 2013932891.0,
+   "p_b": 3.7384915797602387,
+   "p_tbv": 12.591330142673153,
+   "pe": 45.288888888888884,
+   "ev_ebitda": 22.38459253524341,
+   "net_cash_pct": -0.06271062981512227,
+   "roe": 0.08481842328239173,
+   "roa": 0.07229696057675943,
+   "tce_ta": 0.19584401145584493,
+   "div_yield": 0.0,
+   "buyback_ttm_mcap": 0.019622302300439463,
+   "shares_yoy": -0.02633840025773948,
+   "rev_growth": 0.030776239989470655,
+   "n_analysts": 3.0,
+   "pt_upside": -0.06771344455348383,
+   "severity": 2.0,
+   "altman_z": 6.034496579053057,
+   "insider_buy_12m_usd": 0.0,
+   "insider_sell_12m_usd": 0.0
+  },
+  "moves": {
+   "price_30d": 0.0,
+   "price_30d_from": "2026-06-20",
+   "mcap_30d": 0.0,
+   "mcap_30d_from": "2026-06-20",
+   "p_b_30d": 0.0028622560050188817,
+   "p_b_30d_from": "2026-06-20"
+  },
+  "timeline": [
+   {
+    "date": "2026-06-01",
+    "type": "RED_FLAG_DELISTING_NOTICE",
+    "family": "RED_FLAG",
+    "what": "8-K 3.01: delisting notice / listing-standard failure",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1489096/000110465926068666/"
+   },
+   {
+    "date": "2024-12-12",
+    "type": "INSIDER_SELL",
+    "family": "INSIDER",
+    "what": "insiders sold $0.78M in 1 trade(s) (2024-12)"
+   },
+   {
+    "date": "2024-06-03",
+    "type": "INSIDER_SELL",
+    "family": "INSIDER",
+    "what": "insiders sold $0.16M in 1 trade(s) (2024-06)"
+   },
+   {
+    "date": "2024-05-31",
+    "type": "INSIDER_SELL",
+    "family": "INSIDER",
+    "what": "insiders sold $0.28M in 2 trade(s) (2024-05)"
+   },
+   {
+    "date": "2024-02-06",
+    "type": "INSIDER_BUY",
+    "family": "INSIDER",
+    "what": "insiders bought $0.22M in 3 trade(s) (2024-02)"
+   }
+  ],
+  "changed_since": {
+   "since": "2026-09-25",
+   "items": []
+  },
+  "ownership": null,
+  "priced_in": null,
+  "red_flags": []
+ },
  "CIK:0001500305": {
   "security_id": "SPGX",
   "issuer_id": "CIK:1500305",
@@ -58435,6 +59076,36 @@
   "priced_in": null,
   "red_flags": []
  },
+ "CIK:0001692412": {
+  "security_id": "PLYA",
+  "issuer_id": "CIK:1692412",
+  "name": "Playa Hotels & Resorts N.V.",
+  "sec_type": "common",
+  "exchange": "NASDAQ",
+  "currency": "USD",
+  "kind": "operating",
+  "country": "NL",
+  "other_lines": [],
+  "now": {
+   "price": 13.48,
+   "mcap_usd": 1658215240.0,
+   "p_b": 3.629158223993028,
+   "pe": 23.649122807017545,
+   "ev_ebitda": 10.197121621080454,
+   "roe": 0.1424017085195435,
+   "div_yield": 0.0,
+   "shares_yoy": -0.10998625830057551
+  },
+  "moves": {},
+  "timeline": [],
+  "changed_since": {
+   "since": "2026-09-25",
+   "items": []
+  },
+  "ownership": null,
+  "priced_in": null,
+  "red_flags": []
+ },
  "CIK:0001783876": {
   "security_id": "TMSWW",
   "issuer_id": "CIK:1783876",
@@ -58460,6 +59131,314 @@
     "url": null
    }
   ],
+  "changed_since": {
+   "since": "2026-09-25",
+   "items": []
+  },
+  "ownership": null,
+  "priced_in": null,
+  "red_flags": []
+ },
+ "CIK:0001844224": {
+  "security_id": "FREY",
+  "issuer_id": "CIK:1844224",
+  "name": "FREYR Battery",
+  "sec_type": "common",
+  "exchange": "NYSE",
+  "currency": "USD",
+  "kind": "operating",
+  "country": "US",
+  "other_lines": [
+   {
+    "security_id": "FREY-WT",
+    "sec_type": "warrant_right_unit",
+    "exchange": "NYSE",
+    "status": "inactive",
+    "is_primary": 0
+   }
+  ],
+  "now": {
+   "price": 1.53,
+   "mcap_usd": 241819551.0,
+   "p_b": 1.1984376520847064,
+   "pe": -0.7261853908586074,
+   "ev_ebitda": -13.741487617896395,
+   "net_cash_pct": -2.5727820493720133,
+   "roe": -1.8575980966162973,
+   "roa": -0.2426983642752801,
+   "tce_ta": -0.01932448338244222,
+   "div_yield": 0.0,
+   "buyback_ttm_mcap": 0.0,
+   "shares_yoy": 0.7964126768331004,
+   "rev_growth": 2.8769727899461985,
+   "n_analysts": 1.0,
+   "severity": 1.0,
+   "altman_z": -0.7440859032925989,
+   "insider_buy_12m_usd": 0.0,
+   "insider_sell_12m_usd": 0.0,
+   "active_13d_max_pct": 19.99
+  },
+  "moves": {},
+  "timeline": [
+   {
+    "date": "2026-05-26",
+    "type": "13D_CUT",
+    "family": "OWNERSHIP",
+    "what": "13D stake cut 19.6% -> 11.0%",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1992243/000091228226000766/xslSCHEDULE_13D_X02/primary_doc.xml"
+   },
+   {
+    "date": "2026-02-26",
+    "type": "13D_CUT",
+    "family": "OWNERSHIP",
+    "what": "13D stake cut 9.6% -> 4.2%",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1781385/000121390026020794/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2026-01-23",
+    "type": "13D_ADD",
+    "family": "OWNERSHIP",
+    "what": "13D stake up 18.4% -> 19.6%",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1992243/000091228226000112/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2026-01-06",
+    "type": "13D_ADD",
+    "family": "OWNERSHIP",
+    "what": "13D stake up 17.4% -> 18.4%",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1992243/000091228226000017/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-11-04",
+    "type": "13D_ADD",
+    "family": "OWNERSHIP",
+    "what": "13D stake up 16.5% -> 20.0%",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1541901/000092189525002886/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-10-27",
+    "type": "13D_ADD",
+    "family": "OWNERSHIP",
+    "what": "13D stake up 6.1% -> 16.5%",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1541901/000092189525002811/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-09-09",
+    "type": "NEW_13D",
+    "family": "OWNERSHIP",
+    "what": "new 13D (active 5%+ holder)",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1992243/000091228225000974/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-08-15",
+    "type": "NEW_13D",
+    "family": "OWNERSHIP",
+    "what": "new 13D (active 5%+ holder)",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1541901/000092189525002324/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-08-15",
+    "type": "13D_CUT",
+    "family": "OWNERSHIP",
+    "what": "13D stake cut 9.9% -> 8.8%",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1541901/000092189525002324/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-01-07",
+    "type": "13D_CUT",
+    "family": "OWNERSHIP",
+    "what": "13D stake cut 5.8% -> 4.6%",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1888978/000095017025003141/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2024-12-31",
+    "type": "NEW_13D",
+    "family": "OWNERSHIP",
+    "what": "new 13D (active 5%+ holder)",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1888978/000095017024141714/xslSCHEDULE_13D_X01/primary_doc.xml"
+   }
+  ],
+  "changed_since": {
+   "since": "2026-09-25",
+   "items": []
+  },
+  "ownership": null,
+  "priced_in": null,
+  "red_flags": []
+ },
+ "CIK:0001874944": {
+  "security_id": "VCSA",
+  "issuer_id": "CIK:1874944",
+  "name": "Vacasa, Inc.",
+  "sec_type": "common",
+  "exchange": "NASDAQ",
+  "currency": "USD",
+  "kind": "operating",
+  "country": "US",
+  "other_lines": [],
+  "now": {
+   "price": 5.39,
+   "mcap_usd": 123260132.0,
+   "p_b": 2.36282208588957,
+   "pe": -0.8461538461538461,
+   "ev_ebitda": -1.222577627844277,
+   "roe": -1.153015988372093,
+   "div_yield": 0.0,
+   "n_analysts": 5.0,
+   "pt_upside": -0.40816326530612246,
+   "severity": 1.0,
+   "altman_z": -2.702882214658437,
+   "insider_buy_12m_usd": 0.0,
+   "insider_sell_12m_usd": 0.0,
+   "active_13d_max_pct": 11.7
+  },
+  "moves": {},
+  "timeline": [
+   {
+    "date": "2025-05-05",
+    "type": "13D_CUT",
+    "family": "OWNERSHIP",
+    "what": "13D stake cut 20.0% -> 0.0%",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1595082/000090266425002103/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-05-02",
+    "type": "13D_CUT",
+    "family": "OWNERSHIP",
+    "what": "13D stake cut 2.0% -> 0.0%",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1641818/000095017025063025/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-05-01",
+    "type": "NEW_13D",
+    "family": "OWNERSHIP",
+    "what": "new 13D (active 5%+ holder)",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1403525/000114036125016970/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-05-01",
+    "type": "13D_CUT",
+    "family": "OWNERSHIP",
+    "what": "13D stake cut 5.9% -> 0.0%",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1403525/000114036125016970/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-03-31",
+    "type": "13D_CUT",
+    "family": "OWNERSHIP",
+    "what": "13D stake cut 8.0% -> 6.2%",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1595082/000090266425001630/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-03-25",
+    "type": "NEW_13D",
+    "family": "OWNERSHIP",
+    "what": "new 13D (active 5%+ holder)",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1403525/000114036125010296/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-03-25",
+    "type": "13D_CUT",
+    "family": "OWNERSHIP",
+    "what": "13D stake cut 9.0% -> 0.0%",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1403525/000114036125010296/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-03-13",
+    "type": "13D_CUT",
+    "family": "OWNERSHIP",
+    "what": "13D stake cut 19.7% -> 17.6%",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1737652/000095017025038945/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-02-03",
+    "type": "NEW_13D",
+    "family": "OWNERSHIP",
+    "what": "new 13D (active 5%+ holder)",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1595082/000090266425000648/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-02-03",
+    "type": "13D_ADD",
+    "family": "OWNERSHIP",
+    "what": "13D stake up 9.4% -> 20.0%",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1595082/000090266425000648/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-01-07",
+    "type": "NEW_13D",
+    "family": "OWNERSHIP",
+    "what": "new 13D (active 5%+ holder)",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1641818/000095017025002871/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-01-07",
+    "type": "13G_TO_13D",
+    "family": "OWNERSHIP",
+    "what": "13G->13D switch (passive holder turned active)",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1596118/000095017025003166/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-01-07",
+    "type": "NEW_13D",
+    "family": "OWNERSHIP",
+    "what": "new 13D (active 5%+ holder)",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1596118/000095017025003166/xslSCHEDULE_13D_X01/primary_doc.xml"
+   },
+   {
+    "date": "2025-01-07",
+    "type": "13G_TO_13D",
+    "family": "OWNERSHIP",
+    "what": "13G->13D switch (passive holder turned active)",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1737652/000095017025002915/xslSCHEDULE_13D_X01/primary_doc.xml"
+   }
+  ],
+  "changed_since": {
+   "since": "2026-09-25",
+   "items": []
+  },
+  "ownership": null,
+  "priced_in": null,
+  "red_flags": []
+ },
+ "CIK:0001909770": {
+  "security_id": "KHOB",
+  "issuer_id": "CIK:1909770",
+  "name": "Kheoba Corp.",
+  "sec_type": "common",
+  "exchange": "OTC",
+  "currency": "USD",
+  "kind": "operating",
+  "country": "ES",
+  "other_lines": [],
+  "now": {},
+  "moves": {},
+  "timeline": [],
   "changed_since": {
    "since": "2026-09-25",
    "items": []
@@ -68710,7 +69689,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 1.5602236958183124,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -73249,7 +74228,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 0.011560413308997264,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -75683,43 +76662,6 @@
    "8-K 3.01: delisting notice / listing-standard failure",
    "going-concern doubt in 1 10-K/10-Q filing(s) in 12m (latest 2026-02-24)"
   ]
- },
- "DBD": {
-  "security_id": "DBD",
-  "issuer_id": "CIK:28823",
-  "name": "Diebold Nixdorf, Incorporated",
-  "sec_type": "common",
-  "exchange": "NYSE",
-  "currency": "USD",
-  "kind": "operating",
-  "country": "US",
-  "other_lines": [],
-  "now": {
-   "price": 63.99,
-   "mcap_usd": 2172242166.0,
-   "p_b": 2.2412733862979777,
-   "pe": 20.086816720257236,
-   "ev_ebitda": 8.6221280046811,
-   "net_cash_pct": -0.38043640480552204,
-   "roe": 0.10592493808344447,
-   "roa": 0.02975967457046513,
-   "tce_ta": -0.10753091045335332,
-   "div_yield": 0.0,
-   "buyback_ttm_mcap": 0.04189219849625182,
-   "shares_yoy": -0.058666666666666645,
-   "rev_growth": 0.05438008877270373,
-   "floor_frac": 0.223,
-   "downside_pct": 0.777
-  },
-  "moves": {},
-  "timeline": [],
-  "changed_since": {
-   "since": "2026-09-25",
-   "items": []
-  },
-  "ownership": null,
-  "priced_in": null,
-  "red_flags": []
  },
  "DBGI": {
   "security_id": "DBGI",
@@ -83330,7 +84272,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 0.14814241945692608,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -89406,35 +90348,6 @@
   "priced_in": null,
   "red_flags": []
  },
- "EPA:EMEIS": {
-  "security_id": "EMEIS.PA",
-  "issuer_id": "NAME:FR:emeis",
-  "name": "Emeis",
-  "sec_type": "common",
-  "exchange": "PAR",
-  "currency": "EUR",
-  "kind": "operating",
-  "country": "FR",
-  "other_lines": [
-   {
-    "security_id": "0NEX.IL",
-    "sec_type": "common",
-    "exchange": "IOB",
-    "status": "active",
-    "is_primary": 0
-   }
-  ],
-  "now": {},
-  "moves": {},
-  "timeline": [],
-  "changed_since": {
-   "since": "2026-09-25",
-   "items": []
-  },
-  "ownership": null,
-  "priced_in": null,
-  "red_flags": []
- },
  "EPA:EN": {
   "security_id": "EN.PA",
   "issuer_id": "CUSIP6:F11487",
@@ -90702,7 +91615,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 0.007134698170149667,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -94974,69 +95887,6 @@
    "Altman Z -4.04 (distress zone < 1.1)"
   ]
  },
- "FAC": {
-  "security_id": "FAC",
-  "issuer_id": "CIK:2049662",
-  "name": "Factorial Energy Inc.",
-  "sec_type": "common",
-  "exchange": "NASDAQ",
-  "currency": "USD",
-  "kind": "operating",
-  "country": "US",
-  "other_lines": [
-   {
-    "security_id": "FACWW",
-    "sec_type": "common",
-    "exchange": "NASDAQ",
-    "status": "active",
-    "is_primary": 0
-   },
-   {
-    "security_id": "CGCTW",
-    "sec_type": "warrant_right_unit",
-    "exchange": "NASDAQ",
-    "status": "delisted",
-    "is_primary": 0
-   },
-   {
-    "security_id": "CGCT",
-    "sec_type": "common",
-    "exchange": "NASDAQ",
-    "status": "delisted",
-    "is_primary": 0
-   },
-   {
-    "security_id": "CGCTU",
-    "sec_type": "warrant_right_unit",
-    "exchange": "NASDAQ",
-    "status": "delisted",
-    "is_primary": 0
-   }
-  ],
-  "now": {
-   "price": 6.6279,
-   "mcap_usd": 182930040.0,
-   "p_b": 2.1521434369816115,
-   "p_tbv": 2.1521434369816115,
-   "pe": -43.54722422494593,
-   "ev_ebitda": -2.883872848871645,
-   "net_cash_pct": 0.5737001970808076,
-   "roe": -0.15202391555747144,
-   "roa": -0.10511901523967081,
-   "tce_ta": 0.5958402848851067,
-   "div_yield": 0.0,
-   "shares_yoy": 0.0
-  },
-  "moves": {},
-  "timeline": [],
-  "changed_since": {
-   "since": "2026-09-25",
-   "items": []
-  },
-  "ownership": null,
-  "priced_in": null,
-  "red_flags": []
- },
  "FACO": {
   "security_id": "FACO",
   "issuer_id": "CUSIP6:318457",
@@ -98548,7 +99398,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": -2.1790260789411597e-05,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -103243,7 +104093,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": -0.24847629373136004,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": -0.21626982893237434,
+   "p_b_30d": -0.21861405214370588,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -104643,49 +105493,6 @@
   },
   "ownership": "13F holders +166 (+74%) to 389 \u00b7 Coatue Management Llc new 6.7%; Jericho Capital Asset Manage new 1.5% \u00b7 big holders under water: Coatue Management Llc 7% paid ~$55.86 (-29%)",
   "priced_in": "7 analysts \u00b7 target $56.00 (+42%) \u00b7 fwd P/E 29.3 (FY2027) \u00b7 short 14% of float, 1.1 days to cover",
-  "red_flags": []
- },
- "FR": {
-  "security_id": "FR",
-  "issuer_id": "CIK:921825",
-  "name": "First Industrial Realty Trust, Inc.",
-  "sec_type": "common",
-  "exchange": "NYSE",
-  "currency": "USD",
-  "kind": "reit",
-  "country": "US",
-  "other_lines": [],
-  "now": {
-   "price": 61.73,
-   "mcap_usd": 8183572274.0,
-   "p_b": 2.947833612318727,
-   "p_tbv": 2.947833612318727,
-   "pe": 22.312727272727273,
-   "ev_ebitda": 15.550139691407406,
-   "net_cash_pct": -0.3100335544247434,
-   "roe": 0.1342271122813488,
-   "roa": 0.06302302589753947,
-   "tce_ta": 0.48024422795647215,
-   "div_yield": 0.03080183,
-   "buyback_ttm_mcap": 5.13223303879628e-06,
-   "shares_yoy": 0.00018870160553752235,
-   "rev_growth": 0.08432424407666161
-  },
-  "moves": {
-   "price_30d": -0.0011326860841424091,
-   "price_30d_from": "2026-06-20",
-   "mcap_30d": -0.03354473955981785,
-   "mcap_30d_from": "2026-06-20",
-   "p_b_30d": -0.007705757136572955,
-   "p_b_30d_from": "2026-06-20"
-  },
-  "timeline": [],
-  "changed_since": {
-   "since": "2026-09-25",
-   "items": []
-  },
-  "ownership": null,
-  "priced_in": null,
   "red_flags": []
  },
  "FRBA": {
@@ -107884,6 +108691,35 @@
   "red_flags": [
    "Altman Z 0.96 (distress zone < 1.1)"
   ]
+ },
+ "Flag": {
+  "security_id": "FLAG",
+  "issuer_id": "CIK:1855485",
+  "name": "Global X - S&P 500 U.S. Market Leaders Top 50 ETF",
+  "sec_type": "fund",
+  "exchange": "AMEX",
+  "currency": "USD",
+  "kind": "operating",
+  "country": "US",
+  "other_lines": [
+   {
+    "security_id": "CLDI",
+    "sec_type": "common",
+    "exchange": "AMEX",
+    "status": "active",
+    "is_primary": 1
+   }
+  ],
+  "now": {},
+  "moves": {},
+  "timeline": [],
+  "changed_since": {
+   "since": "2026-09-25",
+   "items": []
+  },
+  "ownership": null,
+  "priced_in": null,
+  "red_flags": []
  },
  "GAIA": {
   "security_id": "GAIA",
@@ -126984,7 +127820,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 0.1992554986105537,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -130883,56 +131719,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": -0.1547176758335671,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": -0.208545959903376,
-   "p_b_30d_from": "2026-06-20"
-  },
-  "timeline": [],
-  "changed_since": {
-   "since": "2026-09-25",
-   "items": []
-  },
-  "ownership": null,
-  "priced_in": null,
-  "red_flags": []
- },
- "HTZ": {
-  "security_id": "HTZ",
-  "issuer_id": "CIK:1657853",
-  "name": "Hertz Global Holdings, Inc.",
-  "sec_type": "common",
-  "exchange": "NASDAQ",
-  "currency": "USD",
-  "kind": "operating",
-  "country": "US",
-  "other_lines": [
-   {
-    "security_id": "HTZWW",
-    "sec_type": "common",
-    "exchange": "NASDAQ",
-    "status": "active",
-    "is_primary": 0
-   }
-  ],
-  "now": {
-   "price": 1.775,
-   "mcap_usd": 560425645.0,
-   "pe": -1.9719101123595506,
-   "ev_ebitda": 7.146296255102041,
-   "roe": 0.5095890410958904,
-   "roa": -0.011687332439678285,
-   "tce_ta": -0.19059986595174264,
-   "div_yield": 0.0,
-   "shares_yoy": 0.3527508090614886,
-   "rev_growth": 0.03389830508474567,
-   "floor_frac": 0.0,
-   "downside_pct": 1.0
-  },
-  "moves": {
-   "price_30d": -0.6485148514851485,
-   "price_30d_from": "2026-06-20",
-   "mcap_30d": -0.6485502046161964,
-   "mcap_30d_from": "2026-06-20",
-   "p_b_30d": -0.5640416307366065,
+   "p_b_30d": -0.17023972185857017,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [],
@@ -134799,27 +135586,6 @@
    "reverse split 1-for-100"
   ]
  },
- "IDX:SRIL": {
-  "security_id": "SRIL.JK",
-  "issuer_id": "NAME:ID:pt sri rejeki isman tbk",
-  "name": "PT Sri Rejeki Isman Tbk",
-  "sec_type": "common",
-  "exchange": "JKT",
-  "currency": "IDR",
-  "kind": "operating",
-  "country": "ID",
-  "other_lines": [],
-  "now": {},
-  "moves": {},
-  "timeline": [],
-  "changed_since": {
-   "since": "2026-09-25",
-   "items": []
-  },
-  "ownership": null,
-  "priced_in": null,
-  "red_flags": []
- },
  "IDXG": {
   "security_id": "IDXG",
   "issuer_id": "CIK:1054102",
@@ -138003,7 +138769,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.036747434065306894,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": -0.7480570892989622,
+   "p_b_30d": 0.03678038201932288,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -140023,6 +140789,14 @@
   },
   "moves": {},
   "timeline": [
+   {
+    "date": "2026-09-07",
+    "type": "JP_BUYBACK_PROGRESS",
+    "family": "JP_DISCLOSURE",
+    "what": "buyback progress / results report",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260904532009.pdf"
+   },
    {
     "date": "2026-08-07",
     "type": "CALL_BUILDING",
@@ -153769,7 +154543,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": -0.5038324557048662,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -155662,7 +156436,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 0.7693731171395011,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -156135,7 +156909,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": -0.04295224215176019,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -157205,7 +157979,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": -0.19537547249929132,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -161886,7 +162660,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 0.010402774452353825,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -181781,6 +182555,113 @@
   "priced_in": null,
   "red_flags": []
  },
+ "Move": {
+  "security_id": "MOVE",
+  "issuer_id": "CIK:1734750",
+  "name": "Corvex, Inc.",
+  "sec_type": "common",
+  "exchange": "NASDAQ",
+  "currency": "USD",
+  "kind": "operating",
+  "country": "US",
+  "other_lines": [],
+  "now": {
+   "price": 11.0,
+   "pe": -0.9345107297189116,
+   "ev_ebitda": -0.0831293918625835,
+   "roe": -0.09667863845066643,
+   "roa": -0.046138726529767755,
+   "tce_ta": -0.8980916801123935,
+   "div_yield": 0.0,
+   "n_analysts": 1.0,
+   "pt_upside": 0.7045454545454546,
+   "short_pct_float": 0.569607304868451,
+   "days_to_cover": 1.0,
+   "severity": 9.0,
+   "altman_z": -0.34665075184400923,
+   "insider_buy_12m_usd": 0.0,
+   "insider_sell_12m_usd": 1525138.0,
+   "active_13d_max_pct": 20.0
+  },
+  "moves": {},
+  "timeline": [
+   {
+    "date": "2026-07-08",
+    "type": "NEW_13D",
+    "family": "OWNERSHIP",
+    "what": "new 13D (active 5%+ holder)",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1734750/000121390026076496/xslSCHEDULE_13D_X02/primary_doc.xml"
+   },
+   {
+    "date": "2026-07-08",
+    "type": "NEW_13D",
+    "family": "OWNERSHIP",
+    "what": "new 13D (active 5%+ holder)",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1734750/000121390026076497/xslSCHEDULE_13D_X02/primary_doc.xml"
+   },
+   {
+    "date": "2026-05-18",
+    "type": "RED_FLAG_LATE_FILING",
+    "family": "RED_FLAG",
+    "what": "NT 10-Q: late periodic report",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1734750/000121390026058093/"
+   },
+   {
+    "date": "2026-03-31",
+    "type": "RED_FLAG_GOING_CONCERN",
+    "family": "RED_FLAG",
+    "what": "going-concern doubt in 4 10-K/10-Q filing(s) in 12m (latest 2026-03-31)",
+    "reviewed": false,
+    "url": null
+   },
+   {
+    "date": "2026-03-19",
+    "type": "RED_FLAG_DELISTING_NOTICE",
+    "family": "RED_FLAG",
+    "what": "8-K 3.01: delisting notice / listing-standard failure",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1734750/000121390026031846/"
+   },
+   {
+    "date": "2026-01-27",
+    "type": "INSIDER_SELL",
+    "family": "INSIDER",
+    "what": "insiders sold $0.21M in 5 trade(s) (2026-01)"
+   },
+   {
+    "date": "2025-10-10",
+    "type": "RED_FLAG_REVERSE_SPLIT",
+    "family": "RED_FLAG",
+    "what": "reverse split 1-for-10",
+    "reviewed": false,
+    "url": null
+   },
+   {
+    "date": "2025-10-03",
+    "type": "RED_FLAG_DELISTING_NOTICE",
+    "family": "RED_FLAG",
+    "what": "8-K 3.01: delisting notice / listing-standard failure",
+    "reviewed": false,
+    "url": "https://www.sec.gov/Archives/edgar/data/1734750/000121390025096069/"
+   },
+   {
+    "date": "2024-04-02",
+    "type": "INSIDER_BUY",
+    "family": "INSIDER",
+    "what": "insiders bought $2.01M in 3 trade(s) (2024-04)"
+   }
+  ],
+  "changed_since": {
+   "since": "2026-09-25",
+   "items": []
+  },
+  "ownership": null,
+  "priced_in": null,
+  "red_flags": []
+ },
  "NAAS": {
   "security_id": "NAAS",
   "issuer_id": "CIK:1712178",
@@ -185306,7 +186187,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": -0.6852410907361239,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -189537,7 +190418,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 0.06247550772259336,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [],
@@ -194593,7 +195474,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": -0.39105280895475514,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -201593,100 +202474,6 @@
   "priced_in": null,
   "red_flags": []
  },
- "NYSE:HCC": {
-  "security_id": "HCC",
-  "issuer_id": "CIK:1691303",
-  "name": "Warrior Met Coal, Inc.",
-  "sec_type": "common",
-  "exchange": "NYSE",
-  "currency": "USD",
-  "kind": "operating",
-  "country": "US",
-  "other_lines": [],
-  "now": {
-   "price": 90.43,
-   "mcap_usd": 4774881605.0,
-   "p_b": 2.0849017517538715,
-   "p_tbv": 2.0849017517538715,
-   "pe": 21.382211538461537,
-   "ev_ebitda": 10.198229817057323,
-   "net_cash_pct": 0.018150397678813233,
-   "roe": 0.10021800030979713,
-   "roa": 0.07561901366713775,
-   "tce_ta": 0.7896051696609608,
-   "div_yield": 0.00359753,
-   "buyback_ttm_mcap": 0.0,
-   "shares_yoy": 0.0048464345446253,
-   "rev_growth": 0.3747467755818026,
-   "n_analysts": 4.0,
-   "pt_upside": 0.10582771204246377,
-   "short_pct_float": 0.07392757031472014,
-   "days_to_cover": 7.12,
-   "severity": 0.0,
-   "altman_z": 6.808109457598119,
-   "insider_buy_12m_usd": 0.0,
-   "insider_sell_12m_usd": 26410174.0
-  },
-  "moves": {
-   "price_30d": -0.0016559947008168985,
-   "price_30d_from": "2026-06-20",
-   "mcap_30d": -0.0016559989588696977,
-   "mcap_30d_from": "2026-06-20",
-   "p_b_30d": -0.03896112944495822,
-   "p_b_30d_from": "2026-06-20"
-  },
-  "timeline": [
-   {
-    "date": "2026-08-24",
-    "type": "INSIDER_SELL",
-    "family": "INSIDER",
-    "what": "insiders sold $11.59M in 4 trade(s) (2026-08)"
-   },
-   {
-    "date": "2026-06-02",
-    "type": "INSIDER_SELL",
-    "family": "INSIDER",
-    "what": "insiders sold $2.20M in 1 trade(s) (2026-06)"
-   },
-   {
-    "date": "2026-01-12",
-    "type": "INSIDER_SELL",
-    "family": "INSIDER",
-    "what": "insiders sold $11.03M in 2 trade(s) (2026-01)"
-   },
-   {
-    "date": "2025-11-13",
-    "type": "INSIDER_SELL",
-    "family": "INSIDER",
-    "what": "insiders sold $1.59M in 3 trade(s) (2025-11)"
-   },
-   {
-    "date": "2024-11-08",
-    "type": "INSIDER_SELL",
-    "family": "INSIDER",
-    "what": "insiders sold $0.59M in 2 trade(s) (2024-11)"
-   },
-   {
-    "date": "2024-07-03",
-    "type": "INSIDER_SELL",
-    "family": "INSIDER",
-    "what": "insiders sold $2.49M in 2 trade(s) (2024-07)"
-   },
-   {
-    "date": "2024-02-23",
-    "type": "INSIDER_BUY",
-    "family": "INSIDER",
-    "what": "insiders bought $0.12M in 1 trade(s) (2024-02)"
-   }
-  ],
-  "changed_since": {
-   "since": "2026-09-25",
-   "items": []
-  },
-  "ownership": null,
-  "priced_in": null,
-  "red_flags": []
- },
  "NYSE:HE": {
   "security_id": "HE",
   "issuer_id": "CIK:354707",
@@ -207393,7 +208180,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 0.010297693807018504,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -209194,7 +209981,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": -0.21973560712840257,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": -0.2127112894374238,
+   "p_b_30d": -0.20254759996487315,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [],
@@ -220417,7 +221204,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": -5.1535024615699125,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -225217,7 +226004,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 0.01418821538752657,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -225382,7 +226169,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": -0.016285169498978957,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": -0.04815728658933993,
+   "p_b_30d": 0.01154945293044185,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -233849,7 +234636,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": -1.0493160837508448,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -238031,7 +238818,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 0.2899261955131238,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -240538,58 +241325,6 @@
   "red_flags": [
    "Altman Z -0.43 (distress zone < 1.1)"
   ]
- },
- "RPC": {
-  "security_id": "RPC",
-  "issuer_id": "CIK:1841968",
-  "name": "Ridgepost Capital, Inc.",
-  "sec_type": "common",
-  "exchange": "NYSE",
-  "currency": "USD",
-  "kind": "financial_other",
-  "country": "US",
-  "other_lines": [
-   {
-    "security_id": "PX",
-    "sec_type": "common",
-    "exchange": "NYSE",
-    "status": "delisted",
-    "is_primary": 0
-   }
-  ],
-  "now": {
-   "price": 7.795,
-   "mcap_usd": 609724121.0,
-   "p_b": 1.659298373423974,
-   "pe": 29.60000000000001,
-   "ev_ebitda": 9.753696102964176,
-   "net_cash_pct": -0.7895046012129148,
-   "roe": 0.07739956461508014,
-   "roa": 0.023741262986280938,
-   "tce_ta": -0.4495611981199161,
-   "div_yield": 0.02108108,
-   "buyback_ttm_mcap": 0.030254666601913883,
-   "shares_yoy": 0.006679469685483719,
-   "rev_growth": 0.044338312841256444,
-   "floor_frac": 0.301,
-   "downside_pct": 0.699
-  },
-  "moves": {
-   "price_30d": -0.05743651753325263,
-   "price_30d_from": "2026-06-20",
-   "mcap_30d": -0.32654810690210234,
-   "mcap_30d_from": "2026-06-20",
-   "p_b_30d": -0.35634479927834595,
-   "p_b_30d_from": "2026-06-20"
-  },
-  "timeline": [],
-  "changed_since": {
-   "since": "2026-09-25",
-   "items": []
-  },
-  "ownership": null,
-  "priced_in": null,
-  "red_flags": []
  },
  "RPD": {
   "security_id": "RPD",
@@ -244820,7 +245555,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": -0.6852410907361239,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -248157,7 +248892,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": -0.0023758337268061647,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -251871,7 +252606,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 0.2553207412160521,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -259125,7 +259860,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": -0.017830642174525235,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.18814307872205305,
+   "p_b_30d": 0.20146728425449445,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [],
@@ -261259,7 +261994,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 0.023340059185884554,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -267472,7 +268207,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 0.025316991159195057,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -268889,71 +269624,6 @@
   },
   "ownership": "The Trustees Of Amendment And : 13D stake cut 81.9% -> 11.7% [2026-09-02] \u00b7 The Trustees Of Amendment And : 13D stake up 11.7% -> 81.9% [2026-09-02] \u00b7 insiders 12m: bought $0.0M (0), sold $3.9M (3)",
   "priced_in": "2 analysts (neglected) \u00b7 target $27.67 (-25%) \u00b7 fwd P/E 9.9 (FY2026) \u00b7 short 7% of float, 4.0 days to cover",
-  "red_flags": []
- },
- "TDW": {
-  "security_id": "TDW",
-  "issuer_id": "CIK:98222",
-  "name": "Tidewater Inc.",
-  "sec_type": "common",
-  "exchange": "NYSE",
-  "currency": "USD",
-  "kind": "operating",
-  "country": "US",
-  "other_lines": [
-   {
-    "security_id": "TDGMW",
-    "sec_type": "common",
-    "exchange": "OTC",
-    "status": "inactive",
-    "is_primary": 0
-   },
-   {
-    "security_id": "TDW-WTB",
-    "sec_type": "bankrupt",
-    "exchange": "NYSE",
-    "status": "inactive",
-    "is_primary": 0
-   },
-   {
-    "security_id": "TDW-WTA",
-    "sec_type": "common",
-    "exchange": "NYSE",
-    "status": "inactive",
-    "is_primary": 0
-   },
-   {
-    "security_id": "TDW-WT",
-    "sec_type": "warrant_right_unit",
-    "exchange": "AMEX",
-    "status": "inactive",
-    "is_primary": 0
-   }
-  ],
-  "now": {
-   "price": 87.16,
-   "mcap_usd": 4334519096.0,
-   "p_b": 3.1112769896437174,
-   "p_tbv": 3.1112769896437174,
-   "pe": 17.420791781206734,
-   "ev_ebitda": 9.381629533617398,
-   "net_cash_pct": -0.009149573256373075,
-   "roe": 0.1874007744856214,
-   "roa": 0.10433342067228453,
-   "tce_ta": 0.5887620126275219,
-   "div_yield": 0.0,
-   "buyback_ttm_mcap": 0.0,
-   "shares_yoy": -0.005498790266141418,
-   "rev_growth": -0.010215273509978529
-  },
-  "moves": {},
-  "timeline": [],
-  "changed_since": {
-   "since": "2026-09-25",
-   "items": []
-  },
-  "ownership": null,
-  "priced_in": null,
   "red_flags": []
  },
  "TDY": {
@@ -271112,7 +271782,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 0.0028622560050188817,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -272889,7 +273559,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": -0.015830452965557518,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -276741,7 +277411,16 @@
    "rev_growth": 0.06799124513618682
   },
   "moves": {},
-  "timeline": [],
+  "timeline": [
+   {
+    "date": "2026-09-02",
+    "type": "JP_BUYBACK_PROGRESS",
+    "family": "JP_DISCLOSURE",
+    "what": "buyback progress / results report",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260901530252.pdf"
+   }
+  ],
   "changed_since": {
    "since": "2026-09-25",
    "items": []
@@ -276877,7 +277556,16 @@
   ],
   "now": {},
   "moves": {},
-  "timeline": [],
+  "timeline": [
+   {
+    "date": "2026-09-04",
+    "type": "JP_BUYBACK_PROGRESS",
+    "family": "JP_DISCLOSURE",
+    "what": "buyback progress / results report",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260904531749.pdf"
+   }
+  ],
   "changed_since": {
    "since": "2026-09-25",
    "items": []
@@ -277159,7 +277847,16 @@
   ],
   "now": {},
   "moves": {},
-  "timeline": [],
+  "timeline": [
+   {
+    "date": "2026-09-01",
+    "type": "JP_BUYBACK_PROGRESS",
+    "family": "JP_DISCLOSURE",
+    "what": "buyback progress / results report",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260901529301.pdf"
+   }
+  ],
   "changed_since": {
    "since": "2026-09-25",
    "items": []
@@ -277209,7 +277906,16 @@
   ],
   "now": {},
   "moves": {},
-  "timeline": [],
+  "timeline": [
+   {
+    "date": "2026-09-03",
+    "type": "JP_BUYBACK_PROGRESS",
+    "family": "JP_DISCLOSURE",
+    "what": "buyback progress / results report",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260902530854.pdf"
+   }
+  ],
   "changed_since": {
    "since": "2026-09-25",
    "items": []
@@ -277230,7 +277936,16 @@
   "other_lines": [],
   "now": {},
   "moves": {},
-  "timeline": [],
+  "timeline": [
+   {
+    "date": "2026-09-02",
+    "type": "JP_BUYBACK_PROGRESS",
+    "family": "JP_DISCLOSURE",
+    "what": "buyback progress / results report",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260901530238.pdf"
+   }
+  ],
   "changed_since": {
    "since": "2026-09-25",
    "items": []
@@ -277259,7 +277974,16 @@
   ],
   "now": {},
   "moves": {},
-  "timeline": [],
+  "timeline": [
+   {
+    "date": "2026-09-01",
+    "type": "JP_BUYBACK_PROGRESS",
+    "family": "JP_DISCLOSURE",
+    "what": "buyback progress / results report",
+    "reviewed": false,
+    "url": "https://www.release.tdnet.info/inbs/140120260901529731.pdf"
+   }
+  ],
   "changed_since": {
    "since": "2026-09-25",
    "items": []
@@ -277351,7 +278075,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.026702005966776632,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": -0.8491357453368883,
+   "p_b_30d": -0.8284746294384073,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [],
@@ -278857,7 +279581,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": -0.359162894207957,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -283500,42 +284224,6 @@
   },
   "ownership": "insiders 12m: bought $0.1M (1), sold $30.5M (6)",
   "priced_in": "15 analysts \u00b7 target $1,219.15 (+16%), trend up 15% \u00b7 1 up / 1 down 90d \u00b7 fwd P/E 21.3 (FY2026)",
-  "red_flags": []
- },
- "US": {
-  "security_id": "US.MI",
-  "issuer_id": "NAME:IT:unipolsai assicurazioni s p a",
-  "name": "UnipolSai Assicurazioni S.p.A.",
-  "sec_type": "common",
-  "exchange": "MIL",
-  "currency": "EUR",
-  "kind": "insurer",
-  "country": "IT",
-  "other_lines": [
-   {
-    "security_id": "FDIAY",
-    "sec_type": "adr",
-    "exchange": "OTC",
-    "status": "inactive",
-    "is_primary": 1
-   },
-   {
-    "security_id": "UNPLF",
-    "sec_type": "otc_line",
-    "exchange": "OTC",
-    "status": "inactive",
-    "is_primary": 0
-   }
-  ],
-  "now": {},
-  "moves": {},
-  "timeline": [],
-  "changed_since": {
-   "since": "2026-09-25",
-   "items": []
-  },
-  "ownership": null,
-  "priced_in": null,
   "red_flags": []
  },
  "USAQ": {
@@ -290741,7 +291429,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": 0.4466991135625511,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [
@@ -298740,7 +299428,7 @@
    "price_30d_from": "2026-06-20",
    "mcap_30d": 0.0,
    "mcap_30d_from": "2026-06-20",
-   "p_b_30d": 0.0,
+   "p_b_30d": -0.004295790049144155,
    "p_b_30d_from": "2026-06-20"
   },
   "timeline": [

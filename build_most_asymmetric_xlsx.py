@@ -3782,6 +3782,13 @@ def main() -> int:
     if exp:
         bl.detail_column(wb, "Priced in (analysts / short)", {t: bl.expectations_line(r) for t, r in exp.items()
                                                                if isinstance(r, dict)}, THESIS, width=50)
+    try:
+        import tdnet_feed
+        td = bl._load_json("tdnet_events.json")
+        bl.detail_column(wb, "Japan disclosures (TDnet)", {k: tdnet_feed.line(v) for k, v in td.items() if tdnet_feed.line(v)},
+                         ["Foreign Markets"], width=60, min_fill=0.0)
+    except Exception as exc:
+        print("  TDnet column skipped:", exc)
     if dist:
         bl.detail_column(wb, "Red flags (filings)", {t: bl.redflag_line(r) for t, r in dist.items()},
                          THESIS, width=40, min_fill=0.0)

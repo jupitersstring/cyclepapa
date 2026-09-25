@@ -967,6 +967,8 @@ def whats_new(wb, events=None, calls=None, turnaround_csv=None, gov=None, index=
         `only` restricts the digest to one book's names."""
         if only is not None:
             rows = [x for x in rows if str(x[0]) in only]
+        elif fin:
+            rows = [x for x in rows if str(x[0]) in fin]           # the main book: names it can show financials for
         try:
             import store
         except Exception:
@@ -1096,6 +1098,17 @@ def whats_new(wb, events=None, calls=None, turnaround_csv=None, gov=None, index=
         section("Ownership moves (13D / 13G), last 30 days", ["Ticker", "Name", "Filed", "Move", "Who / what", "", "", "Filing"], rows13[:40])
         section("Insider buying >= $250k, last 30 days", ["Ticker", "Name", "Latest", "Trades", "What", "", "", ""], rowsin[:40])
         section("New red flags, last 30 days", ["Ticker", "Name", "Date", "Flag", "Detail", "", "", "Filing"], rowsrf[:40])
+        rowsjp = []
+        for e in con.execute("SELECT security_id, date, type, what, evidence, doc_url FROM events WHERE family='JP_DISCLOSURE' "
+                             "AND date>=? AND type NOT IN ('JP_BUYBACK_PROGRESS','JP_INTERNAL_REORG','JP_DIVIDEND_REVISION') "
+                             "ORDER BY date DESC", (since,)):
+            rowsjp.append([e["security_id"], name(e["security_id"]), e["date"], e["type"].replace("JP_", "").replace("_", " ").lower(),
+                           f"{e['what']} — {e['evidence'] or ''}"[:260], "", "", e["doc_url"]])
+        if only is None:
+            rowsjp = [x for x in rowsjp if x[0] in (fin or {})]      # the main book: its own names only
+        if only is not None or rowsjp:
+            section("Japan timely disclosures (TDnet), last 30 days", ["Ticker", "Name", "Date", "Type", "What (English label — Japanese title)",
+                                                                        "", "", "Filing"], rowsjp[:60])
     except Exception as exc:                                   # store not built: the file-based sections still stand
         k.body(ws.cell(row=r, column=1, value=f"(event store unavailable: {exc})"))
     ws.freeze_panes = "A4"
@@ -1395,7 +1408,7 @@ def qa_fixes(wb, fin, harmonise_pb=True, skip=()):
     return stats
 
 
-PROTECT = {"Red flags (filings)", "Ownership (13D/13F/insiders)", "Priced in (analysts / short)", "Ticker", "Name", "Company", "Key numbers (FMP)", "Strength %ile", "FMP financial read", "Filing",
+PROTECT = {"Japan disclosures (TDnet)", "Red flags (filings)", "Ownership (13D/13F/insiders)", "Priced in (analysts / short)", "Ticker", "Name", "Company", "Key numbers (FMP)", "Strength %ile", "FMP financial read", "Filing",
            "Proxy", "#", "Rank", "Grade", "Tier", "Intent tier", "Score", "What's happening (8-K)", "PSU plan (grade)",
            "Since (vs SPY)", "Since vs SPY (%)", "Since event (vs SPY)"}
 

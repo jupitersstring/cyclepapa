@@ -148,6 +148,7 @@ def run():
             n = len(body)
             for h, vals in colvals.items():
                 if n >= 8 and h not in ("FMP financial read", "Red flags (filings)", "Ownership (13D/13F/insiders)",
+                                        "Japan disclosures (TDnet)",
                                         "Priced in (analysts / short)") and not (ws.title == "Payoff Geometry" and h == "Down%"):
                     empty = sum(1 for v in vals if v in (None, "", "–", "—", "-", 0, "0", "None"))
                     if empty / n >= 0.9:

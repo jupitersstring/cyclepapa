@@ -386,6 +386,10 @@ def load_events(con, run):
             add(t, v["date"][:10], "CALL_" + v["tier"].replace(" ", "_"), "CALL_INTENT", "earnings call", None, None, None, None,
                 None, None, 0, ", ".join((v.get("families") or {}).keys()), None,
                 {"act_prob": v.get("act_prob"), "size_pct": v.get("size_pct")})
+    for sym, lst in (_j("tdnet_events.json") or {}).items():
+        for x in lst:
+            fam = "RED_FLAG" if x["type"].startswith("RED_FLAG") else "JP_DISCLOSURE"
+            add(sym, x["date"], x["type"], fam, "TDnet", x.get("url"), what=x.get("what"), evidence=x.get("title"))
     pdb = ROOT / "pipeline.db"
     if pdb.exists():
         try:

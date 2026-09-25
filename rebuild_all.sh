@@ -109,6 +109,8 @@ if [ "$DO_SCANS" = "1" ]; then
   run python3 ownership_layer.py             || true
   run python3 distress_flags.py              || true
   run python3 layer_validate.py              || true
+  # Japan: TDnet timely disclosures, archived daily (the public list keeps ~31 days)
+  run python3 tdnet_feed.py                  || true
   # what is priced in: analysts (FMP) + short interest (FINRA), then its validation
   run python3 expectations_layer.py          || true
   run python3 expectations_validate.py       || true

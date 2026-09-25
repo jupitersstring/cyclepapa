@@ -462,6 +462,14 @@ def main() -> int:
     bl.detail_column(wb, "Ownership (13D/13F/insiders)", by_cross(own, bl.ownership_line), CROSS_TABS, width=56, min_fill=0.0)
     bl.detail_column(wb, "Priced in (analysts / short)", by_cross(exp, bl.expectations_line), CROSS_TABS, width=50, min_fill=0.0)
     bl.detail_column(wb, "Red flags (filings)", by_cross(dist, bl.redflag_line), CROSS_TABS, width=40, min_fill=0.0)
+    try:
+        import tdnet_feed
+        td = _j("tdnet_events.json")
+        bl.detail_column(wb, "Japan disclosures (TDnet)", {k: tdnet_feed.line(td.get(v)) for k, v in sym_map.items()
+                                                           if td.get(v) and tdnet_feed.line(td.get(v))},
+                         CROSS_TABS, width=60, min_fill=0.0)
+    except Exception as exc:
+        print("  TDnet column skipped:", exc)
     fin_disp = {k: fin.get(v) for k, v in sym_map.items() if fin.get(v)}
     print("  QA fixes:", dict(bl.qa_fixes(wb, fin_disp, harmonise_pb=False,
                                           skip=("Cover", "Methodology", "Review & data quality"))))
