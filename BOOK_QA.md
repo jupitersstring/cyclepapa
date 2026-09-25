@@ -6,7 +6,6 @@ Automated checks over every sheet of the three books (`book_qa.py`). Counts by b
 |---|---|---|
 | MOST_ASYMMETRIC.xlsx | DEAD COLUMN | 1 |
 | OTC_BOOK.xlsx | DEAD COLUMN | 1 |
-| cyclepapa_risk_reward_workbook.xlsx | BAD SECURITY | 3 |
 | cyclepapa_risk_reward_workbook.xlsx | DUPLICATE ISSUER | 1 |
 
 ## Findings
@@ -15,7 +14,4 @@ Automated checks over every sheet of the three books (`book_qa.py`). Counts by b
 |---|---|---|---|---|---|
 | MOST_ASYMMETRIC | PSU Plans | 4 | DEAD COLUMN |  | 'rTSR target' empty in 1093/1207 rows |
 | OTC_BOOK | Going Dark | 4 | DEAD COLUMN |  | 'Insider %' empty in 49/54 rows |
-| cyclepapa_risk_reward_workbook | All names | 32 | BAD SECURITY | XETR:VOW3 | Volkswagen Preferred |
-| cyclepapa_risk_reward_workbook | Call intent | 111 | BAD SECURITY | VOW3 | Volkswagen Preferred |
-| cyclepapa_risk_reward_workbook | Executive Summary | 34 | BAD SECURITY | XETR:VOW3 | Volkswagen Preferred |
 | cyclepapa_risk_reward_workbook | All names | 791 | DUPLICATE ISSUER | HK:2202,SZSE:000002 | vanke |

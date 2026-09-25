@@ -99,14 +99,15 @@ def run():
                     if ik and ik.startswith("CIK:"):
                         key = ik                          # the security master's issuer (CIK), not a name match
                     st_ = store.sec_type_of(t)
-                    if st_ and st_ not in ("common", "adr", "otc_line", "bankrupt"):
+                    if st_ and st_ not in ("common", "adr", "otc_line", "bankrupt") and not german_pref:
                         add(book, ws.title, rn, "BAD SECURITY", t, f"security master: {st_}")
                 except Exception:
                     pass
                 if key:
                     seen[key].append((rn, t))
                 full_name = str(f.get("name") or nm or "")
-                if _DEBT.search(full_name or "") or (len(t) == 5 and t.endswith("Q")) or re.search(r"-WT$|\.WS$|-U$", t):
+                german_pref = bool(re.search(r"XETR:|\.DE$|FRA:", t)) or t in ("VOW3", "PAH3", "HEN3", "FPE3", "SIX3")
+                if (_DEBT.search(full_name or "") and not german_pref) or (len(t) == 5 and t.endswith("Q")) or re.search(r"-WT$|\.WS$|-U$", t):
                     add(book, ws.title, rn, "BAD SECURITY", t, full_name[:60])
                 if not f and book != "cyclepapa_risk_reward_workbook.xlsx" and ws.title not in ("Foreign Markets", "Going Dark", "UK Capital Events"):
                     add(book, ws.title, rn, "NO DATA", t, "no FMP financial record")
@@ -146,7 +147,8 @@ def run():
                     add(book, ws.title, lst[1][0], "DUPLICATE ISSUER", ",".join(t for _, t in lst), key)
             n = len(body)
             for h, vals in colvals.items():
-                if n >= 8 and h not in ("FMP financial read",) and not (ws.title == "Payoff Geometry" and h == "Down%"):
+                if n >= 8 and h not in ("FMP financial read", "Red flags (filings)", "Ownership (13D/13F/insiders)",
+                                        "Priced in (analysts / short)") and not (ws.title == "Payoff Geometry" and h == "Down%"):
                     empty = sum(1 for v in vals if v in (None, "", "–", "—", "-", 0, "0", "None"))
                     if empty / n >= 0.9:
                         add(book, ws.title, hr, "DEAD COLUMN", "", f"'{h}' empty in {empty}/{n} rows")

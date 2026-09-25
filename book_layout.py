@@ -943,7 +943,7 @@ def colourise(wb):
                             color="9DB9D3", showValue=True))
 
 
-def whats_new(wb, events=None, calls=None, turnaround_csv=None, gov=None, index=None, fin=None):
+def whats_new(wb, events=None, calls=None, turnaround_csv=None, gov=None, index=None, fin=None, only=None):
     """Front-of-book digest: what happened recently, across every engine."""
     from datetime import date
     k = kit(wb)
@@ -963,7 +963,10 @@ def whats_new(wb, events=None, calls=None, turnaround_csv=None, gov=None, index=
     r = 4
 
     def _keep(rows):
-        """Security master filter: common / ADR lines only, one line per issuer (the first, i.e. latest)."""
+        """Security master filter: common / ADR lines only, one line per issuer (the first, i.e. latest);
+        `only` restricts the digest to one book's names."""
+        if only is not None:
+            rows = [x for x in rows if str(x[0]) in only]
         try:
             import store
         except Exception:

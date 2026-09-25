@@ -421,6 +421,28 @@ def main() -> int:
             sym_map[x["ticker"]] = x["fmp_symbol"]
             sym_map.setdefault(x["ticker"].split(":")[-1], x["fmp_symbol"])
     sym_map.update({k: v for k, v in YAML_SYM.items()})
+    # security-master fallback for tickers the engine could not map -- accepted only when the
+    # master's company name shares its first distinctive word with the row's name
+    try:
+        import store
+        added = 0
+        for x in rows:
+            t = x.get("ticker") or ""
+            if not t or t in sym_map:
+                continue
+            sec_ = store.security(t)
+            if not sec_ or sec_.get("sec_type") not in ("common", "adr"):
+                continue
+            w = lambda n: [z for z in re.sub(r"[^a-z0-9 ]", " ", str(n or "").lower()).split()
+                           if len(z) > 2 and z not in ("the", "and", "group", "holdings", "company", "corp", "inc", "ltd", "plc")]
+            a_, b_ = w(x.get("name")), w(sec_.get("name"))
+            if a_ and b_ and a_[0] == b_[0]:
+                sym_map[t] = sec_["security_id"]
+                sym_map.setdefault(t.split(":")[-1], sec_["security_id"])
+                added += 1
+        print(f"  security master mapped {added} more cross-book tickers")
+    except Exception as exc:
+        print("  security master unavailable:", exc)
     (ROOT / "cross_symbol_map.json").write_text(json.dumps(sym_map, indent=0, sort_keys=True))   # -> store aliases
     fin = name_financials.build(set(sym_map.values()))
     name_financials.add_financials(wb, fin, sym_map, index=3,
@@ -428,12 +450,29 @@ def main() -> int:
     import book_layout as bl
     bl.key_numbers(wb, fin, sym_map, skip=("Cover", "Methodology", "Review & data quality",
                                            "Name Financials"))
+    # ownership / what's priced in / red flags / dossiers (US-listed names; keyed back to the cross tickers)
+    def _j(n):
+        pth = ROOT / n
+        return json.loads(pth.read_text()) if pth.exists() else {}
+    own, exp, dist, dz = _j("ownership.json"), _j("expectations.json"), _j("distress_flags.json"), _j("dossiers.json")
+    wb._own, wb._exp, wb._dist, wb._dossier = own, exp, dist, dz
+    by_cross = lambda src, fn: {k: fn(src.get(v)) for k, v in sym_map.items() if isinstance(src.get(v), dict) and fn(src.get(v))}
+    CROSS_TABS = ["Executive Summary", "All names", "Universe (Tier 1+2)", "Portfolio sizing", "Catalyst timeline",
+                  "Post-reorg (listed common)", "Post-reorg assembly", "Asymmetry lenses", "Coverage gap (need YAML)"]
+    bl.detail_column(wb, "Ownership (13D/13F/insiders)", by_cross(own, bl.ownership_line), CROSS_TABS, width=56, min_fill=0.0)
+    bl.detail_column(wb, "Priced in (analysts / short)", by_cross(exp, bl.expectations_line), CROSS_TABS, width=50, min_fill=0.0)
+    bl.detail_column(wb, "Red flags (filings)", by_cross(dist, bl.redflag_line), CROSS_TABS, width=40, min_fill=0.0)
     fin_disp = {k: fin.get(v) for k, v in sym_map.items() if fin.get(v)}
     print("  QA fixes:", dict(bl.qa_fixes(wb, fin_disp, harmonise_pb=False,
                                           skip=("Cover", "Methodology", "Review & data quality"))))
     print("  cross-book cleanup:", dict(cross_cleanup(wb, bl)))
     top = [x["ticker"] for x in rows[:40]] + [x["ticker"] for x in rows if x["source"] == "REAL"]
     bl.tear_sheets(wb, fin, list(dict.fromkeys(top)), sym_map, index=1, max_names=60)
+    # What's New for the names in THIS book only (events, calls, ownership moves, insider buying, red flags)
+    cross_syms = set(sym_map.values()) | set(sym_map)
+    evd = {k: v for k, v in _j("event_detail.json").items() if k in cross_syms}
+    cal = {k: v for k, v in _j("call_intent.json").items() if k in cross_syms}
+    bl.whats_new(wb, events=evd, calls=cal, fin=fin, index=2, only=cross_syms)
     wb.save(a.xlsx)
     print(f"post-process: review sheet ({len(real)} hand-built names checked) + call intent "
           f"({len(have)} of {len(rows)} names have transcripts)")

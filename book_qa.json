@@ -17,30 +17,6 @@
  },
  {
   "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "Call intent",
-  "row": 111,
-  "kind": "BAD SECURITY",
-  "ticker": "VOW3",
-  "detail": "Volkswagen Preferred"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "Executive Summary",
-  "row": 34,
-  "kind": "BAD SECURITY",
-  "ticker": "XETR:VOW3",
-  "detail": "Volkswagen Preferred"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "All names",
-  "row": 32,
-  "kind": "BAD SECURITY",
-  "ticker": "XETR:VOW3",
-  "detail": "Volkswagen Preferred"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
   "sheet": "All names",
   "row": 791,
   "kind": "DUPLICATE ISSUER",
