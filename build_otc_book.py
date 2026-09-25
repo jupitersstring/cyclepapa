@@ -421,6 +421,10 @@ def main() -> int:
     fin = name_financials.load()
     name_financials.add_financials(wb, fin, index=1, skip=("Contents", "Methodology"))
     bl.key_numbers(wb, fin, skip=("Contents", "Methodology", "Name Financials"))
+    dist = _load("distress_flags.json")
+    if dist:
+        bl.detail_column(wb, "Red flags (filings)", {t: bl.redflag_line(r) for t, r in dist.items()},
+                         ["US Net-Nets", "US Deep Value", "Cash Shells", "OTC Intent", "NOL Shells"], width=40, min_fill=0.0)
     print("  QA fixes:", dict(bl.qa_fixes(wb, fin, skip=("Contents", "Methodology"))))
     cited = [str(c.value).strip() for c in wb["Name Financials"]["A"][4:] if c.value]
     intent_first = [r["ticker"] for r in sorted(oi.values(), key=lambda r: -r.get("score", 0))

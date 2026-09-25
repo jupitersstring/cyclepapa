@@ -26,7 +26,7 @@
  {
   "book": "MOST_ASYMMETRIC.xlsx",
   "sheet": "Name Financials",
-  "row": 1109,
+  "row": 1287,
   "kind": "DUPLICATE ISSUER",
   "ticker": "FMCQF,FMS",
   "detail": "fresenius medical care"
@@ -34,18 +34,18 @@
  {
   "book": "MOST_ASYMMETRIC.xlsx",
   "sheet": "Name Financials",
-  "row": 1209,
+  "row": 1507,
   "kind": "DUPLICATE ISSUER",
-  "ticker": "015760.KS,KEP",
-  "detail": "korea electric power c"
+  "ticker": "RACD,RACC",
+  "detail": "research alliance"
  },
  {
   "book": "MOST_ASYMMETRIC.xlsx",
   "sheet": "Name Financials",
-  "row": 1416,
+  "row": 1914,
   "kind": "DUPLICATE ISSUER",
-  "ticker": "RACD,RACC",
-  "detail": "research alliance"
+  "ticker": "DTB,DTG",
+  "detail": "dte energy company 202"
  },
  {
   "book": "MOST_ASYMMETRIC.xlsx",

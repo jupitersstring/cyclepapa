@@ -513,7 +513,8 @@ _SW = {}
 def _sw_data():
     if not _SW:
         for k, fn in (("fin", "name_financials.json"), ("ev", "event_detail.json"), ("ci", "call_intent.json"),
-                      ("f4", "form4_buys.json"), ("geo", "payoff_geometry.json")):
+                      ("f4", "form4_buys.json"), ("geo", "payoff_geometry.json"), ("own", "ownership.json"),
+                      ("dist", "distress_flags.json"), ("val", "layer_validation.json")):
             try:
                 _SW[k] = json.loads((ROOT / fn).read_text())
             except Exception:
@@ -536,6 +537,22 @@ def risk_cuts(tk: str) -> list:
         cuts.append(f"trades ${adv / 1e3:,.0f}k/day")
     if f.get("not_common"):
         cuts.append("not common equity")
+    # filing red flags: bankruptcy and auditor going-concern doubt always cut (prudence, not an
+    # edge claim); the others cut only where the event study measured a NEGATIVE return
+    VAL_NAME = {"non_reliance": "8-K 4.02 non-reliance", "delisting_notice": "8-K 3.01 delisting notice",
+                "late_filing": "late filing (NT 10-K/10-Q)", "reverse_split": "reverse split",
+                "impairment": "8-K 2.06 impairment"}
+    val = _sw_data()["val"]
+    kinds = {x["kind"] for x in (_sw_data()["dist"].get(tk) or {}).get("flags") or []}
+    if "bankruptcy" in kinds:
+        cuts += ["bankruptcy filing (8-K 1.03)"] * 2
+    if "going_concern" in kinds:
+        cuts.append("going-concern doubt")
+    for k in kinds:
+        vn = VAL_NAME.get(k)
+        r = ((val.get(vn) or {}).get("126") or {}) if vn else {}
+        if r.get("n", 0) >= 30 and (r.get("t") or 0) <= -2:
+            cuts.append(vn + " (measured negative)")
     for e in _sw_data()["ev"].get(tk) or []:
         if e.get("verdict") == "REAL" and str(e.get("deal_state", "")).startswith("dead money"):
             cuts += ["pending cash deal: <3% left to the offer (dead money)"] * 2    # at most Participation
@@ -577,7 +594,18 @@ def so_what(tk: str, ns: int | None = None) -> str:
     c = d["ci"].get(tk) or {}
     if c.get("tier") in ("ACT SIGNALLED", "BUILDING"):
         bits.append(f"mgmt on call: {c['tier'].lower()}")
+    o = d["own"].get(tk) or {}
+    rec13 = sorted(o.get("recent_13d") or [], key=lambda e: e["date"], reverse=True)
+    if rec13:
+        e = rec13[0]
+        bits.append(("activist " if e.get("activist") else "") + f"{e['holder'].title()[:24]}: {e['what']}")
+    elif o.get("active_13d"):
+        h = o["active_13d"][0]
+        bits.append(("activist " if h.get("activist") else "") + f"13D holder {h['name'].title()[:24]} {h['pct']:.1f}%")
     b = d["f4"].get(tk) or {}
+    ins = o.get("insiders") or {}
+    if ins.get("sell_usd", 0) >= 1_000_000 and ins.get("sell_usd", 0) > 3 * ins.get("buy_usd", 0):
+        bits.append(f"insiders SOLD ${ins['sell_usd'] / 1e6:.1f}M in 12m")
     if b.get("total_dollar", 0) >= 100_000 and b.get("total_shares"):
         paid = b["total_dollar"] / b["total_shares"]
         px = f.get("price")
@@ -3666,6 +3694,13 @@ def main() -> int:
         bl.psu_sheet(wb, psu, fin=fin)
     if events:
         bl.event_sheet(wb, events, fin=fin)
+    own = bl._load_json("ownership.json")
+    dist = bl._load_json("distress_flags.json")
+    wb._own, wb._dist = own, dist
+    if own:
+        bl.ownership_sheet(wb, own, dist, fin=fin)
+    if dist:
+        bl.redflag_sheet(wb, dist, fin=fin)
     name_financials.add_financials(wb, fin, index=3, skip=NONAME)
     # financials NEXT TO the name, and one strength scale on every thesis/signal tab
     bl.key_numbers(wb, fin, skip=NONAME + ("Name Financials",))
@@ -3677,6 +3712,15 @@ def main() -> int:
     bl.detail_column(wb, "PSU plan (grade)", {t: bl.psu_line(p) for t, p in psu.items()},
                      ["Most Asymmetric", "Caution List", "Incentive Improvers", "Single-Measure Best",
                       "Without Valuation", "Governance Discount", "Call Intent"], width=48)
+    THESIS = ["Most Asymmetric", "Governance Discount", "Mechanism Gates", "Re-Rate Catalysts", "Payoff Geometry",
+              "Distressed Stub Progress", "Hidden Asset Realisation", "Turnaround Signal", "Call Intent",
+              "Asymmetry Assembly", "Insider Conviction", "Recent 30d", "Tail Odds", "Caution List"]
+    if own:
+        bl.detail_column(wb, "Ownership (13D/13F/insiders)", {t: bl.ownership_line(r) for t, r in own.items()},
+                         THESIS, width=56)
+    if dist:
+        bl.detail_column(wb, "Red flags (filings)", {t: bl.redflag_line(r) for t, r in dist.items()},
+                         THESIS, width=40, min_fill=0.0)
     qa = bl.qa_fixes(wb, fin, skip=NONAME + ("Tear Sheets",))
     print("  QA fixes:", dict(qa))
     # tear sheets: the shortlist first, then the most-cited names
@@ -3698,7 +3742,7 @@ def main() -> int:
                     "Structured Distressed", "Distressed Stub Progress", "Hidden Asset Realisation",
                     "Asymmetry Assembly", "Turnaround Signal", "Call Intent", "Foreign Markets",
                     "UK Capital Events", "By Archetype", "Reserve Baskets", "Caution List"]),
-        ("Signals", ["Insider Conviction", "Insider Filing-Time", "MD&A Intent", "Incentive Improvers",
+        ("Signals", ["Ownership", "Red Flags", "Insider Conviction", "Insider Filing-Time", "MD&A Intent", "Incentive Improvers",
                      "Recent 30d", "Political Trades", "Single-Measure Best", "Without Valuation"]),
         ("Evidence", ["Re-Rate Backtest", "Tail Odds", "Winners Study"]),
         ("Plumbing", ["Layer Correlation", "Coverage & Tiers", "Methodology"]),
@@ -3707,7 +3751,9 @@ def main() -> int:
                      "Name Financials": "FMP financial panel for every name in the book + the tabs each appears on.",
                      "What's New": "Recent events, appointments, call commitments and governance actions, with the move since.",
                      "PSU Plans": "What each PSU plan is (metrics, weights, period, payout, TSR, hurdles, past payouts) and its grade.",
-                     "Event Detail": "Every 8-K event: what is sold/spun/tendered, to whom, for how much, status, verbatim excerpt."})
+                     "Event Detail": "Every 8-K event: what is sold/spun/tendered, to whom, for how much, status, verbatim excerpt.",
+                     "Ownership": "13D/13G activists and 5%+ holders, 13F holder changes, value investors, insider buys AND sells.",
+                     "Red Flags": "Bankruptcy, non-reliance, delisting, late filings, going concern, reverse splits, Altman Z."})
     wb.save(OUT)
     print(f"\nwrote {OUT}  ({len(wb.sheetnames)} tabs)")
     return 0

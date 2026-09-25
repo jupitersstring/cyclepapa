@@ -17,9 +17,9 @@ Automated checks over every sheet of the three books (`book_qa.py`). Counts by b
 |---|---|---|---|---|---|
 | MOST_ASYMMETRIC | Asymmetry Assembly | 4 | DEAD COLUMN |  | 'Catl' empty in 24/26 rows |
 | MOST_ASYMMETRIC | PSU Plans | 4 | DEAD COLUMN |  | 'rTSR target' empty in 1074/1185 rows |
-| MOST_ASYMMETRIC | Name Financials | 1109 | DUPLICATE ISSUER | FMCQF,FMS | fresenius medical care |
-| MOST_ASYMMETRIC | Name Financials | 1209 | DUPLICATE ISSUER | 015760.KS,KEP | korea electric power c |
-| MOST_ASYMMETRIC | Name Financials | 1416 | DUPLICATE ISSUER | RACD,RACC | research alliance |
+| MOST_ASYMMETRIC | Name Financials | 1287 | DUPLICATE ISSUER | FMCQF,FMS | fresenius medical care |
+| MOST_ASYMMETRIC | Name Financials | 1507 | DUPLICATE ISSUER | RACD,RACC | research alliance |
+| MOST_ASYMMETRIC | Name Financials | 1914 | DUPLICATE ISSUER | DTB,DTG | dte energy company 202 |
 | MOST_ASYMMETRIC | What's New | 104 | DUPLICATE ISSUER | AANNF,AT1.DE | aroundtown s a |
 | MOST_ASYMMETRIC | Insider Filing-Time | 51 | NO DATA | GF | no FMP financial record |
 | MOST_ASYMMETRIC | Insider Filing-Time | 52 | NO DATA | MXF | no FMP financial record |

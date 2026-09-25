@@ -67,6 +67,7 @@ GEOMETRY_WEIGHTS = {
 
 
 _FIN: dict = {}
+_DIST: dict = {}
 
 
 def _num(x):
@@ -103,11 +104,15 @@ def main() -> int:
 
     W = GEOMETRY_WEIGHTS
     out = {}
-    global _FIN
+    global _FIN, _DIST
     try:
         _FIN = json.loads((ROOT / "name_financials.json").read_text())
     except Exception:
         _FIN = {}
+    try:
+        _DIST = json.loads((ROOT / "distress_flags.json").read_text())
+    except Exception:
+        _DIST = {}
     for tk, y in yf.items():
         price = _num(y.get("price")); mcap = _num(y.get("mcap"))
         pb = _num(y.get("p_b")); ps = _num(y.get("p_s"))
@@ -168,6 +173,9 @@ def main() -> int:
         # of the price; only cash / working capital can take downside below 40%.
         # Equity stubs (net debt > 2x mcap) get no book floor at all.
         soft = min(0.5 * book_frac, 0.60)
+        dk = {x["kind"] for x in (_DIST.get(tk) or {}).get("flags") or []}
+        if dk & {"bankruptcy", "going_concern", "non_reliance"}:
+            soft = 0.0                       # auditor doubt / bankruptcy / restated books: book is not a floor
         if net_cash is not None and shares and price and (-net_cash) / (shares * price) > 2.0:
             soft = 0.0
         floor_frac = max(hard_floor_eff, soft)

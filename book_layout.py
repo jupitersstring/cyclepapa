@@ -35,7 +35,7 @@ SKIP_COLS = {"FMP financial read", "Key numbers (FMP)", "Strength %ile", "Name",
 
 
 NEW_SHEETS = ("Name Financials", "Tear Sheets", "Review & data quality", "Call intent", "Contents",
-              "PSU Plans", "Event Detail", "What's New")
+              "PSU Plans", "Event Detail", "What's New", "Ownership", "Red Flags")
 
 
 def clone(src, dst):
@@ -468,6 +468,14 @@ def tear_sheets(wb, fin, names, sym_map=None, title="Tear Sheets", index=None, m
                    wrap=True)
             ts.row_dimensions[r].height = 45
             r += 1
+        for lab, src, fn in (("Ownership", "_own", ownership_line), ("Red flags", "_dist", redflag_line)):
+            rec = getattr(wb, src, {}).get(sym) or getattr(wb, src, {}).get(t)
+            txt = fn(rec) if rec else None
+            if txt:
+                k.body(ts.cell(row=r, column=1, value=lab), bold=True)
+                k.body(ts.cell(row=r, column=3, value=txt), wrap=True)
+                ts.row_dimensions[r].height = 30
+                r += 1
         for e in (getattr(wb, "_events", {}).get(sym) or getattr(wb, "_events", {}).get(t) or [])[:4]:
             if not e.get("what"):
                 continue
@@ -532,7 +540,8 @@ def psu_line(p):
     return " · ".join(bits)
 
 
-def detail_column(wb, header, values_by_ticker, tabs, after=("Strength %ile", "Key numbers (FMP)"), width=60):
+def detail_column(wb, header, values_by_ticker, tabs, after=("Strength %ile", "Key numbers (FMP)"), width=60,
+                  min_fill=0.15):
     """Insert a column right after the name block on the given tabs."""
     n = 0
     for t in tabs:
@@ -547,7 +556,7 @@ def detail_column(wb, header, values_by_ticker, tabs, after=("Strength %ile", "K
         tcol = cols.get("Ticker") or cols.get("TKR") or cols.get("Symbol")
         body = [r for r in range(hr + 1, ws.max_row + 1) if _ticker(ws.cell(row=r, column=tcol).value)]
         hits = sum(1 for r in body if values_by_ticker.get(_ticker(ws.cell(row=r, column=tcol).value)))
-        if not body or hits / len(body) < 0.15:
+        if not body or hits / len(body) < min_fill or not hits:
             continue                                   # would be a dead column on this sheet
         insert_col(ws, idx, header, hr, width=width)
         tcol = tcol + 1 if tcol >= idx else tcol
@@ -640,6 +649,102 @@ FAMILY_LABEL = {"CEO_CHANGE": "CEO change", "CHAIR_CEO_SPLIT": "Chair / CEO spli
                 "STRATEGIC_REVIEW": "Strategic review", "VALUE_COMMITTEE": "Value committee",
                 "ACTIVIST_SETTLEMENT": "Activist settlement", "BOARD_REFRESH": "Board refresh",
                 "DECLASSIFY": "Board declassified", "UPLISTING": "Uplisting"}
+
+
+def ownership_line(r):
+    return (r or {}).get("summary") or None
+
+
+def redflag_line(r):
+    try:
+        import distress_flags
+        return distress_flags.line(r) or None
+    except Exception:
+        return None
+
+
+def ownership_sheet(wb, own, dist=None, fin=None, index=None):
+    """Who else is in the stock: 13D/13G, 13F holders, value investors, insiders (buys AND sells)."""
+    rows = []
+    for t, r in own.items():
+        ins = r.get("insiders") or {}
+        s13 = r.get("inst") or {}
+        notable = (r.get("recent_13d") or r.get("active_13d") or ins.get("buy_usd", 0) >= 100_000
+                   or ins.get("sell_usd", 0) >= 1_000_000 or r.get("value_holders") or r.get("new_big_holders"))
+        if not notable:
+            continue
+        rec = r.get("recent_13d") or []
+        act = any(e.get("activist") for e in rec) or any(h.get("activist") for h in r.get("active_13d") or [])
+        sw = any(e["type"] == "switch" for e in rec)
+        key = (0 if act else 1, 0 if sw else 1, 0 if rec else 1, -(ins.get("buy_usd") or 0))
+        ch = s13.get("investorsHoldingChange")
+        rows.append((key, [
+            t, ((fin or {}).get(t) or {}).get("name", "")[:24],
+            "; ".join(("ACTIVIST " if e.get("activist") else "") + f"{e['holder'].title()[:26]}: {e['what']}"
+                      + (f" {e['pct']:.1f}%" if e.get("pct") and "->" not in e["what"] else "") + f" [{e['date']}]"
+                      for e in sorted(rec, key=lambda e: e["date"], reverse=True)[:2]),
+            "; ".join(("⚑ " if h.get("activist") else "") + f"{h['name'].title()[:26]} {h['pct']:.1f}%"
+                      for h in (r.get("active_13d") or [])[:3]),
+            (f"{s13.get('investorsHolding')} ({ch:+d})" if s13.get("investorsHolding") and ch is not None else ""),
+            (f"{s13['ownershipPercent']:.0f}%" if isinstance(s13.get("ownershipPercent"), (int, float)) and s13["ownershipPercent"] <= 150 else ""),
+            "; ".join((r.get("value_holders") or []) + (r.get("new_big_holders") or []))[:160],
+            (f"${ins.get('buy_usd', 0) / 1e6:.2f}M ({ins.get('n_buyers', 0)})" if ins.get("buy_usd") else ""),
+            (f"${ins.get('sell_usd', 0) / 1e6:.2f}M ({ins.get('n_sellers', 0)})" if ins.get("sell_usd") else ""),
+            "✓" if ins.get("csuite_buy") else "",
+            "; ".join(r.get("underwater_holders") or [])[:120],
+            redflag_line((dist or {}).get(t)) or "",
+        ]))
+    rows = [x for _, x in sorted(rows, key=lambda z: z[0])][:400]
+    return _table_sheet(
+        wb, "Ownership",
+        "Who else is in the stock, and what they are doing (FMP: 13D/13G, 13F, every Form 4 incl. sales). "
+        "13D/13G = 5%+ holders: a new 13D or a 13G -> 13D switch means a holder intends to influence the company "
+        "(⚑ = known activist). 13F = institutional holders (count and change on the quarter) and value investors "
+        "holding or adding. Insiders = open-market buys and sells over 12 months. 'Big holders under water' = "
+        "a 2%+ holder whose average cost is well above today's price. Whether each of these has predicted "
+        "returns is tested in LAYER_VALIDATION.md (in this universe, ownership filings alone have NOT predicted "
+        "returns: read them as context -- who can force the value out, who is under water). Top 400 names shown: "
+        "activists and 13G->13D switches first. Red flags from distress_flags.py.",
+        ["Ticker", "Name", "13D / 13G activity (12m)", "Active 5%+ holders (13D)", "13F holders (Δ q/q)",
+         "Inst. own.", "Value investors / new big holders", "Insider buys 12m", "Insider sells 12m", "C-suite buy",
+         "Big holders under water", "Red flags"],
+        [9, 22, 60, 40, 12, 8, 50, 14, 14, 8, 44, 44], rows, index=index,
+        wrap_cols=("13D / 13G activity (12m)", "Value investors / new big holders", "Red flags"))
+
+
+def redflag_sheet(wb, dist, fin=None, names=None, index=None):
+    """Filings that say 'value trap': the caution list, by severity."""
+    import distress_flags as dfl
+    rows = []
+    for t, r in dist.items():
+        if names is not None and t not in names:
+            continue
+        fl = [x for x in r.get("flags") or [] if x["kind"] != "altman_distress"] or r.get("flags") or []
+        if not fl:
+            continue
+        kinds = []
+        for x in fl:
+            if x["kind"] not in kinds:
+                kinds.append(x["kind"])
+        rows.append((-(r.get("severity") or 0), [
+            t, ((fin or {}).get(t) or {}).get("name", "")[:24], r.get("severity"),
+            ", ".join(k.replace("_", " ") for k in kinds),
+            (round(r["altman_z"], 2) if isinstance(r.get("altman_z"), (int, float)) else ""),
+            (r.get("piotroski") if r.get("piotroski") is not None else ""),
+            "; ".join(f"[{x.get('date') or '—'}] {x['detail']}" for x in fl[:4]),
+            next((x.get("url") for x in fl if x.get("url")), None),
+        ]))
+    rows = [x for _, x in sorted(rows, key=lambda z: z[0])]
+    return _table_sheet(
+        wb, "Red Flags",
+        "Filings that say 'this may be a value trap', for every name in the book: 8-K 1.03 bankruptcy, 4.02 "
+        "non-reliance on past financials, 3.01 delisting notice, 2.06 impairment, NT 10-K/10-Q late filings, "
+        "going-concern doubt in a 10-K/10-Q (EDGAR full-text search), reverse splits, and Altman Z in the distress "
+        "zone (< 1.1; not computed for banks / insurers). Severity: bankruptcy 5, non-reliance / going concern 3, "
+        "delisting / late filing 2, reverse split / impairment / Altman 1. Last 12 months. What each flag has "
+        "meant for returns: LAYER_VALIDATION.md. Source: distress_flags.py.",
+        ["Ticker", "Name", "Severity", "Flags", "Altman Z", "Piotroski", "Detail (latest first)", "Filing"],
+        [9, 22, 8, 40, 8, 8, 90, 12], rows, index=index, wrap_cols=("Detail (latest first)", "Flags"))
 
 
 def event_sheet(wb, events, fin=None, index=None):
@@ -1082,12 +1187,14 @@ def qa_fixes(wb, fin, harmonise_pb=True, skip=()):
             if len({t for _, t in lst}) < 2:
                 continue
             otc_line = lambda t: len(t) == 5 and t[-1] in "FY"
-            keep_r, keep_t = min(lst, key=lambda rt: (otc_line(rt[1]), len(rt[1]), rt[0]))
+            adv = lambda t: ((fin.get(t) or {}).get("adv_usd") or 0)
+            # keep the issuer's most-traded primary line; every other line of the same issuer
+            # (notes, preferreds, old tickers, OTC twins) goes
+            keep_r, keep_t = min(lst, key=lambda rt: (otc_line(rt[1]), -adv(rt[1]), len(rt[1]), rt[0]))
             for r, t in lst:
                 if t == keep_t:
                     continue
-                if t.startswith(keep_t) or keep_t.startswith(t[:3]) or otc_line(t) or t[:4] == keep_t[:4]:
-                    dels.append(r); stats["duplicate issuer line"] += 1
+                dels.append(r); stats["duplicate issuer line"] += 1
         # P/E sign / P/B harmonisation / rounding -- every body row
         for r in range(hr + 1, ws.max_row + 1):
             t = _ticker(ws.cell(row=r, column=tcol).value)
@@ -1137,7 +1244,7 @@ def qa_fixes(wb, fin, harmonise_pb=True, skip=()):
     return stats
 
 
-PROTECT = {"Ticker", "Name", "Company", "Key numbers (FMP)", "Strength %ile", "FMP financial read", "Filing",
+PROTECT = {"Red flags (filings)", "Ownership (13D/13F/insiders)", "Ticker", "Name", "Company", "Key numbers (FMP)", "Strength %ile", "FMP financial read", "Filing",
            "Proxy", "#", "Rank", "Grade", "Tier", "Intent tier", "Score", "What's happening (8-K)", "PSU plan (grade)",
            "Since (vs SPY)", "Since vs SPY (%)", "Since event (vs SPY)"}
 

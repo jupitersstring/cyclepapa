@@ -100,6 +100,11 @@ if [ "$DO_SCANS" = "1" ]; then
   run python3 otc_comms.py                   || true
   # congressional trades (event-studied; workbook monitor, not a consensus layer)
   run python3 political_trades.py            || true
+  # ownership (13D/13G, 13F, all Form 4) and filing red flags, then their event study
+  run python3 ownership_layer.py             || true
+  run python3 distress_flags.py              || true
+  run python3 layer_validate.py              || true
+  run python3 payoff_geometry.py             || true   # re-run: red flags remove book floors
   run python3 governance_discount.py         || true
   run python3 mechanism_gates.py             || true
   run python3 rerate_backtest.py             --start 2022-06-01 --end 2025-06-30 --cap 60 || true
