@@ -19,6 +19,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import re
 import subprocess
 from collections import Counter
 from datetime import date
@@ -130,6 +131,93 @@ def move_since(sym, d):
     except RuntimeError:
         return None
     return (px[-1][4] / px[0][4] - 1) if len(px) >= 2 else None
+
+
+JUNK_NAME = re.compile(
+    r"\bv\.\s|\bvs\.?\s|^In re\b|\bIn Re:|Pension|Retirement Plan|Republic of|Municipality|City of|Receivables|"
+    r"Auto (?:Loan|Lease)|Owner Trust|Trust \d{4}-|\d{4}-[A-Z0-9]+ Trust|\bETF\b|ProShares|Grayscale|iShares|"
+    r"\bannonce|Prorogation|Federal Home Loan Bank|FHLBank|Bitcoin Trust|Ethereum Trust", re.I)
+STALE_SIZING = {
+    "241560": "catalyst void: the Doosan share swap was cancelled (Dec-2024)",
+    "SAB": "catalyst void: BBVA's offer lapsed (Oct-2025)",
+    "TKA": "price +39% since the thesis: re-base before sizing",
+    "LOCAL": "price / share count unverified after the restructuring",
+    "UREE": "wrong ticker (trades as USAR): re-anchor the waterfall",
+}
+
+
+def cross_cleanup(wb, bl):
+    """Rows that are not tradeable companies out of the rankings; stale / broken
+    theses marked where they are sized; catalysts whose window has passed marked."""
+    from collections import Counter
+    from datetime import date as _date
+    st = Counter()
+    for name in ("All names", "Executive Summary", "Post-reorg (listed common)", "Universe (Tier 1+2)",
+                 "Coverage gap (need YAML)"):
+        if name not in wb.sheetnames:
+            continue
+        ws = wb[name]
+        hr, cols = bl.header_of(ws)
+        if not hr:
+            continue
+        tc, nc = cols.get("Ticker"), cols.get("Name")
+        dels = []
+        for r in range(hr + 1, ws.max_row + 1):
+            t = str(ws.cell(row=r, column=tc).value or "").strip()
+            nm = str(ws.cell(row=r, column=nc).value or "") if nc else ""
+            if not t and not nm:
+                continue
+            why = None
+            if t in ("", "—", "-", "private", "None") or t.upper().startswith("CIK") or "<br" in t:
+                why = "no listed ticker (person / private / unlisted entity)"
+            elif JUNK_NAME.search(nm):
+                why = "not an operating company (court case / sovereign / municipality / ETF / ABS trust / headline)"
+            elif name == "Post-reorg (listed common)" and (t.startswith("OTC:") or re.search(r"-P[A-Z]?$", t)):
+                why = "not exchange-listed common"
+            if why:
+                dels.append(r); st[why] += 1
+        bl.delete_rows(ws, dels, hr)
+    today = _date.today().isoformat()
+    for ws in wb.worksheets:
+        hr, cols = bl.header_of(ws)
+        if not hr:
+            continue
+        tc = cols.get("Ticker")
+        for r in range(hr + 1, ws.max_row + 1):
+            c = ws.cell(row=r, column=tc)
+            if str(c.value or "").strip() in ("UREE", "NASDAQ:UREE"):
+                c.value = "USAR"; st["UREE -> USAR"] += 1
+    if "Catalyst timeline" in wb.sheetnames:
+        ws = wb["Catalyst timeline"]
+        hr, cols = bl.header_of(ws)
+        we, evc, tc = cols.get("Window end"), cols.get("Event"), cols.get("Ticker")
+        for r in range(hr + 1, ws.max_row + 1):
+            end, ev, t = ws.cell(row=r, column=we).value, ws.cell(row=r, column=evc), str(ws.cell(row=r, column=tc).value or "")
+            if not ev.value:
+                continue
+            if isinstance(end, str) and re.match(r"20\d\d-\d\d-\d\d", end) and end < today:
+                ev.value = f"⚠ WINDOW PASSED — {ev.value}"; st["catalyst window passed"] += 1
+            elif t in STALE_SIZING and "void" in STALE_SIZING[t]:
+                ev.value = f"⚠ VOID ({STALE_SIZING[t]}) — {ev.value}"; st["catalyst void"] += 1
+    if "Portfolio sizing" in wb.sheetnames:
+        ws = wb["Portfolio sizing"]
+        hr, cols = bl.header_of(ws)
+        tc = cols.get("Ticker")
+        rc = ws.max_column + 1
+        ws.cell(row=hr, column=rc, value="Review status")
+        bl.clone(ws.cell(row=hr, column=rc - 1), ws.cell(row=hr, column=rc))
+        ws.column_dimensions[bl.get_column_letter(rc)].width = 46
+        for r in range(hr + 1, ws.max_row + 1):
+            t = str(ws.cell(row=r, column=tc).value or "").strip()
+            if not t:
+                continue
+            c = ws.cell(row=r, column=rc)
+            bl.clone(ws.cell(row=r, column=rc - 1), c)
+            if t in STALE_SIZING:
+                c.value = f"⚠ do not size until re-based: {STALE_SIZING[t]}"; st["stale thesis flagged in sizing"] += 1
+            else:
+                c.value = "ok"
+    return st
 
 
 def main() -> int:
@@ -342,6 +430,7 @@ def main() -> int:
     fin_disp = {k: fin.get(v) for k, v in sym_map.items() if fin.get(v)}
     print("  QA fixes:", dict(bl.qa_fixes(wb, fin_disp, harmonise_pb=False,
                                           skip=("Cover", "Methodology", "Review & data quality"))))
+    print("  cross-book cleanup:", dict(cross_cleanup(wb, bl)))
     top = [x["ticker"] for x in rows[:40]] + [x["ticker"] for x in rows if x["source"] == "REAL"]
     bl.tear_sheets(wb, fin, list(dict.fromkeys(top)), sym_map, index=1, max_names=60)
     wb.save(a.xlsx)

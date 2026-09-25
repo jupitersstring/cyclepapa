@@ -278,6 +278,8 @@ def score_uk(rec: dict) -> tuple[float, list[str]]:
     if pe is not None and 0 < pe < 8:
         score += 12; reasons.append(f"P/E {pe:.1f}")
     div_y = _num(rec.get("dividend_yield"))
+    if div_y is not None and div_y > 1:
+        div_y = div_y / 100          # yfinance >= 0.2.5x reports dividendYield in PERCENT (6.29 = 6.29%)
     if div_y is not None and div_y > 0.06:
         score += 8; reasons.append(f"div yield {div_y*100:.1f}%")
     return score, reasons

@@ -90,6 +90,8 @@ if [ "$DO_SCANS" = "1" ]; then
   run python3 reviewed_overlay.py            || true
   # price reaction since each event / hire, and PSU pay-for-performance
   run python3 detail_enrich.py               || true
+  # re-score catalysts now that phantom / retyped events are known
+  run python3 rerate_catalysts.py            || true
   # earnings-call intent: transcripts -> linguistic features -> validated model
   run python3 transcript_fetch.py            --n 10 || true
   run python3 call_intent.py                 || true

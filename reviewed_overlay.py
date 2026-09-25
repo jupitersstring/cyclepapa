@@ -105,7 +105,10 @@ def apply_events(ev: dict, mcaps: dict | None = None) -> int:
             mc = (mcaps or {}).get(tk)
             if e.get("amount_usd") and mc:
                 e["pct_mcap"] = e["amount_usd"] / mc
+            else:
+                e.pop("pct_mcap", None)                    # no stated amount -> no % of mcap
             if not g.get("is_event"):
+                e.pop("pct_mcap", None)
                 e["verdict"], e["verdict_reason"] = "NOT AN EVENT", "reviewed: " + (g.get("what") or "")[:160]
                 e["what"] = "⚠ not a real event — " + (g.get("what") or "")
             elif g.get("event_type") not in FAMILY_MAP.get(e["family"], {e["family"]}):
@@ -135,7 +138,10 @@ def apply_psu(psu: dict) -> int:
             nm = PSU_NAME.get(k, str(k).lower())
             mets[nm] = (mets.get(nm) or 0) + v if v is not None else mets.get(nm)
         r["metrics"] = mets
-        r["weights_verified"] = all(v is not None for v in mets.values())
+        tot = sum(v for v in mets.values() if v is not None)
+        r["weights_verified"] = all(v is not None for v in mets.values()) and 90 <= tot <= 110
+        if not r["weights_verified"] and any(v is not None for v in mets.values()):
+            r["metrics_partial"] = {k: v for k, v in mets.items() if v is not None}
         r.pop("metrics_partial", None)
         r.pop("other_metrics", None)
         for gk, rk in (("period_years", "period_years"), ("payout_min", "payout_min"), ("payout_max", "payout_max"),
@@ -170,6 +176,18 @@ def appointment(tk: str, acc: str):
     return appointment._g.get(f"{tk}|{acc}")
 
 
+_MC = {}
+
+
+def _mcaps():
+    if not _MC:
+        try:
+            _MC.update({k: (v or {}).get("mcap") for k, v in json.loads((ROOT / "yfinance_quick.json").read_text()).items()})
+        except Exception:
+            pass
+    return _MC
+
+
 def apply_appointment(row: dict) -> bool:
     g = appointment(row.get("ticker", ""), row.get("accession", ""))
     if not g:
@@ -184,6 +202,12 @@ def apply_appointment(row: dict) -> bool:
     row["base_salary_usd"] = g.get("base_salary_usd") or ""
     if g.get("inducement_or_signon_usd"):
         row["grant_value_usd"] = g["inducement_or_signon_usd"]
+    mc = (_mcaps().get(row.get("ticker")) or 0)
+    try:
+        if mc and float(row.get("grant_value_usd") or 0) > 0.25 * mc:
+            row["grant_value_usd"] = ""                    # a loan / convertible / plan share reserve, not a pay grant
+    except ValueError:
+        row["grant_value_usd"] = ""
     else:
         try:
             if float(row.get("grant_value_usd") or 0) < 50_000:

@@ -66,6 +66,9 @@ GEOMETRY_WEIGHTS = {
 }
 
 
+_FIN: dict = {}
+
+
 def _num(x):
     """Coerce to float or None (some source fields are strings)."""
     if x is None:
@@ -100,6 +103,11 @@ def main() -> int:
 
     W = GEOMETRY_WEIGHTS
     out = {}
+    global _FIN
+    try:
+        _FIN = json.loads((ROOT / "name_financials.json").read_text())
+    except Exception:
+        _FIN = {}
     for tk, y in yf.items():
         price = _num(y.get("price")); mcap = _num(y.get("mcap"))
         pb = _num(y.get("p_b")); ps = _num(y.get("p_s"))
@@ -134,6 +142,15 @@ def main() -> int:
             net_cash_frac = 0.0
             ncav_frac = 0.0
 
+        # cross-check against the validated FMP balance sheet: a name FMP shows with net
+        # debt > 50% of mcap, or a current ratio < 0.5, has no cash / NCAV floor whatever the
+        # (older, sometimes mis-tagged) XBRL frames say (AERA: frames net cash vs FMP net debt 102%)
+        fq = _FIN.get(tk) or {}
+        if (fq.get("net_cash_pct") is not None and fq["net_cash_pct"] < -0.5) or \
+                (fq.get("current") is not None and fq["current"] < 0.5):
+            net_cash_frac = ncav_frac = 0.0
+        if fq.get("not_common") or fq.get("pb_src") in ("mcap_suspect", "implausible", "inconsistent"):
+            continue                         # the market cap itself is not trustworthy
         hard_floor = max(net_cash_frac, ncav_frac)
         # BURN HAIRCUT: a cash floor erodes as the company burns. op_income is
         # quarterly; annualise and erode up to burn_horizon years of burn from

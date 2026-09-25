@@ -104,6 +104,9 @@ def sheet(wb, title, cols, headline, sub, headers, rows, foot):
     if not rows:
         ws.cell(row=5, column=1, value="No names pass the screen.").font = BODY_FONT
         r = 6
+    m = _re.match(r"\s*(\d+)", foot)
+    if m and rows and int(m.group(1)) > len(rows):
+        foot = f"Top {len(rows)} shown of {m.group(1)}. " + foot
     write_footnote(ws, r + 1, foot, len(cols))
     ws.sheet_view.showGridLines = False
     ws.freeze_panes = "A5"
@@ -129,6 +132,19 @@ def main() -> int:
         t = {"ACT SIGNALLED": "▲ ", "BUILDING": "△ "}.get(r.get("tier"), "")
         sz = f" {r['size_pct_mcap']:.0%}" if r.get("size_pct_mcap", 0) >= 0.01 else ""
         return f"{t}{fam.lower().replace('_', ' ')}{sz}"
+    FIN = _load("name_financials.json")
+
+    def unvalidated(k):
+        """The validated financials reject this line's market-cap basis, or it isn't the common."""
+        f = FIN.get(k) or {}
+        return f.get("pb_src") in ("mcap_suspect", "implausible", "inconsistent") or bool(f.get("not_common"))
+
+    def undated(k):
+        f = FIN.get(k)
+        return f is not None and not f.get("stmt_date")
+
+    def nm(k, v, n=26):
+        return ((v.get("name") or "")[:n - 10] + " ⚠undated") if undated(k) else (v.get("name") or "")[:n]
     otc = {k: v for k, v in q.items() if v.get("otc")}
     # an OTC line whose company also has a US-exchange listing is a secondary
     # security (preferred / other class) -- its fundamentals are the parent's.
@@ -152,6 +168,8 @@ def main() -> int:
         if v.get("sector") == "Financial Services":
             continue                     # deposits make NCAV meaningless
         ncav, mcap = _n(v.get("ncav")), _n(v.get("mcap"))
+        if unvalidated(k):
+            continue
         if ncav and mcap and mcap >= 1e6:
             ratio = ncav / mcap
             if 1.0 <= ratio <= 15:
@@ -166,7 +184,7 @@ def main() -> int:
           "strip data artifacts.",
           ["Ticker", "Name", "Tier", "NCAV/mcap", "Mcap $M", "P/B", "P/E",
            "52w pos", "$vol/day k", "Mgmt intent"],
-          [[k, (v.get("name") or "")[:26], tier(v), f"{r:.2f}×",
+          [[k, nm(k, v), tier(v), f"{r:.2f}×",
             _num(v["mcap"] / 1e6, 1), _num(v.get("p_b")), _num(v.get("p_e_trailing"), 1),
             _pct(_range_pos(v)), _num(dollar_vol(v) / 1e3, 1), intent(k)] for r, k, v in nn[:60]],
           f"{len(nn)} US OTC names trade below NCAV. Check each for: cash burn "
@@ -177,6 +195,10 @@ def main() -> int:
     # --- US Deep Value: low P/B or low P/E with positive yields ---
     dv = []
     for k, v in us.items():
+        if unvalidated(k):
+            continue
+        if k in FIN:                             # validated values, one number per name
+            v = dict(v, p_b=FIN[k].get("p_b"), p_e_trailing=FIN[k].get("pe"))
         pb, pe = _n(v.get("p_b")), _n(v.get("p_e_trailing"))
         ey, fy = _n(v.get("earnings_yield")) or 0, _n(v.get("fcf_yield")) or 0
         if ey > 0.5 or fy > 0.6 or (pb is not None and 0 < pb < 0.05):
@@ -200,7 +222,7 @@ def main() -> int:
           "FCF yield. US-domiciled OTC, liquidity-tiered.",
           ["Ticker", "Name", "Tier", "P/B", "P/E", "Earn yld", "FCF yld",
            "Mcap $M", "52w pos", "Mgmt intent"],
-          [[k, (v.get("name") or "")[:26], tier(v), _num(v.get("p_b")),
+          [[k, nm(k, v), tier(v), _num(v.get("p_b")),
             _num(v.get("p_e_trailing"), 1), _pct(v.get("earnings_yield")),
             _pct(v.get("fcf_yield")), _num((v.get("mcap") or 0) / 1e6, 1),
             _pct(_range_pos(v)), intent(k)] for s, k, v in dv[:60]],
@@ -212,6 +234,8 @@ def main() -> int:
     for k, v in us.items():
         if v.get("sector") == "Financial Services":
             continue                     # bank cash = deposits, not a floor
+        if unvalidated(k):
+            continue
         fr = frames.get(k) or {}
         nc, mcap = _n(fr.get("net_cash")), _n(v.get("mcap"))
         if nc and mcap and mcap >= 2e6 and 0.5 * mcap < nc <= 15 * mcap:
@@ -229,7 +253,7 @@ def main() -> int:
           "visible.",
           ["Ticker", "Name", "Tier", "NetCash/mcap", "Net cash $M", "Mcap $M",
            "Op inc q $M", "Runway yrs", "Mgmt intent"],
-          [[k, (v.get("name") or "")[:26], tier(v), f"{r:.2f}×", _num(nc / 1e6, 1),
+          [[k, nm(k, v), tier(v), f"{r:.2f}×", _num(nc / 1e6, 1),
             _num(v["mcap"] / 1e6, 1), _num(op / 1e6, 2) if op is not None else "—",
             _num(rw, 1) if rw else ("∞" if (op or 0) >= 0 else "—"), intent(k)]
            for r, k, v, nc, op, rw in cs[:60]],
@@ -242,6 +266,10 @@ def main() -> int:
     gdr = []
     for k, g in gd.items():
         v = q.get(k) or {}
+        if not v.get("otc") and dollar_vol(v) >= 1e6:
+            continue                   # still an active exchange listing: the Form 15/25 was another security
+        if _re.search(r"-R[I]?$|-CVR$", k) or not (v or g.get("mcap")):
+            continue                   # CVRs and lines with no data at all
         gdr.append((g.get("score", 0), k, g, v))
     gdr.sort(key=lambda t: -t[0])
     counts["Going Dark"] = len(gdr)
@@ -281,6 +309,11 @@ def main() -> int:
     # --- Foreign OTC: ratio-only, currency caveat ---
     fr_rows = []
     for k, v in fx.items():
+        if unvalidated(k):
+            continue
+        if k in FIN:
+            v = dict(v, p_b=FIN[k].get("p_b"), p_e_trailing=FIN[k].get("pe"),
+                     mcap=FIN[k].get("mcap_usd") or v.get("mcap"))
         pe, pb = _n(v.get("p_e_trailing")), _n(v.get("p_b"))
         ey = _n(v.get("earnings_yield"))
         if pe and 0 < pe < 12 and pb and 0 < pb < 1.2 and ey and 0 < ey < 0.6 \
@@ -322,7 +355,7 @@ def main() -> int:
           "(results, shareholder letters, buyback/tender notices) and calls where "
           "they exist — clause-level commitment, negation, new-vs-routine, and the "
           "SIZE of any buyback/tender vs market cap. ● = also on a cheapness screen here.",
-          ["Ticker", "Name", "Tier", "Score", "Size", "P/B", "Mcap $M", "Docs 12m", "Evidence (verbatim, dated)"],
+          ["Ticker", "Name", "Intent tier", "Score", "Size", "P/B", "Mcap $M", "Docs 12m", "Evidence (verbatim, dated)"],
           [[r["ticker"] + (" ●" if r["ticker"] in cheap else ""), (r.get("name") or "")[:24], r["tier"],
             round(r["score"], 1), (f"{r['size_pct_mcap']:.0%}" if r.get("size_pct_mcap") else "—"),
             _num(r.get("p_b")), _num((r.get("mcap") or 0) / 1e6, 1),

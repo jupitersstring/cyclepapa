@@ -120,7 +120,10 @@ NOT_BUYBACK = rx(r"\brepurchase agreements?\b", r"\bpurchase warrants?\b", r"\b(
                  r"\bemployee stock purchase", r"\breverse repurchase")
 # "repurchased $30m of notes" is deleveraging, not a share buyback
 DEBT_OBJ = rx(r"\b(?:repurchas\w*|buy(?:ing)?\s?-?backs?|bought back|retir\w*)\s+(?:\S+\s+){0,6}(?:debt|notes|bonds|debentures|convertibles?|loans?|term loan)\b",
-             r"\b(?:debt|note|bond|convertible|debenture)s?\s+(?:re)?purchas\w*", r"\b(?:debt|note|bond)s?\s+buy\s?-?backs?")
+             r"\b(?:debt|note|bond|convertible|debenture)s?\s+(?:re)?purchas\w*", r"\b(?:debt|note|bond)s?\s+buy\s?-?backs?",
+             r"\btender offers?\s+(?:\S+\s+){0,8}(?:notes|bonds|debentures|debt|preferred)\b",
+             r"\b(?:notes|bonds|debentures)\s+tender",
+             r"\b(?:repurchas\w*|redeem\w*|redemption of)\s+(?:\S+\s+){0,4}preferred (?:stock|shares)")
 ACTION = ("BUYBACK", "DIVIDEND_RETURN", "TENDER", "STRATEGIC_REVIEW", "MONETIZE",
           "DELEVER", "GOVERNANCE", "COST")
 STANCE = ("VALUE_GAP", "ANTICIPATION")
@@ -241,7 +244,8 @@ def score_clause(cl: str, doc: bool = False):
             m = GAP_WEAK.search(cl)
         if fam == "DELEVER" and not m and debt:
             m = DEBT_OBJ.search(cl)
-        if not m or (fam == "BUYBACK" and (debt or NOT_BUYBACK.search(cl))):
+        # a tender for / buyback of notes or preferreds is financing, not a common-share return
+        if not m or (fam in ("BUYBACK", "TENDER") and (debt or NOT_BUYBACK.search(cl))):
             continue
         pre = cl[: m.start()]
         spec = min(1.0, 0.5 * bool(MONEY.search(cl)) + 0.5 * bool(TIME.search(cl)))

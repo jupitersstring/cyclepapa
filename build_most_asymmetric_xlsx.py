@@ -507,17 +507,98 @@ TICKER_ANNOTATIONS: dict[str, dict] = {
 }
 
 
-def sizing_for_screens(ns: int, na: int, n_flags: int) -> str:
+_SW = {}
+
+
+def _sw_data():
+    if not _SW:
+        for k, fn in (("fin", "name_financials.json"), ("ev", "event_detail.json"), ("ci", "call_intent.json"),
+                      ("f4", "form4_buys.json"), ("geo", "payoff_geometry.json")):
+            try:
+                _SW[k] = json.loads((ROOT / fn).read_text())
+            except Exception:
+                _SW[k] = {}
+    return _SW
+
+
+def risk_cuts(tk: str) -> list:
+    """Reasons a position must be smaller than the screen count suggests."""
+    f = _sw_data()["fin"].get(tk) or {}
+    cuts = []
+    nc = f.get("net_cash_pct")
+    if nc is not None and nc < -1.0:
+        cuts.append(f"net debt {abs(nc) * 100:.0f}% of mcap")
+    ic = f.get("int_cover")
+    if ic not in (None, 0) and ic < 1.5 and (nc or 0) < -0.3:
+        cuts.append(f"interest cover {ic:.1f}×")
+    adv = f.get("adv_usd")
+    if adv is not None and adv < 1e6:
+        cuts.append(f"trades ${adv / 1e3:,.0f}k/day")
+    if f.get("not_common"):
+        cuts.append("not common equity")
+    for e in _sw_data()["ev"].get(tk) or []:
+        if e.get("verdict") == "REAL" and str(e.get("deal_state", "")).startswith("dead money"):
+            cuts += ["pending cash deal: <3% left to the offer (dead money)"] * 2    # at most Participation
+            break
+    return cuts
+
+
+def sizing_for_screens(ns: int, na: int, n_flags: int, tk: str | None = None) -> str:
     """Sizing derived from data, not memory:
        Concentrated   if ns >= 4 and n_flags <= 1
        Material       if ns >= 3 and n_flags <= 2
        Participation  otherwise
-    """
-    if ns >= 4 and n_flags <= 1:
-        return "Concentrated 5%+"
-    if ns >= 3 and n_flags <= 2:
-        return "Material 2-5%"
-    return "Participation 1-2%"
+    then cut one level per risk (leverage > 100% of mcap, interest cover < 1.5x,
+    < $1M/day traded) -- breadth of signals is not a licence to size a levered stub."""
+    lv = 2 if (ns >= 4 and n_flags <= 1) else 1 if (ns >= 3 and n_flags <= 2) else 0
+    cuts = risk_cuts(tk) if tk else []
+    lv = max(0, lv - len(cuts))
+    lab = ["Participation 1-2%", "Material 2-5%", "Concentrated 5%+"][lv]
+    return lab + (f" (cut: {'; '.join(dict.fromkeys(cuts))})" if cuts else "")
+
+
+def so_what(tk: str, ns: int | None = None) -> str:
+    """One line a PM can act on: mechanism -> size -> who is aligned -> what is
+    priced -> what breaks it. Built from the event, call, insider and financial data."""
+    d = _sw_data()
+    f = d["fin"].get(tk) or {}
+    bits = []
+    real = [e for e in d["ev"].get(tk) or [] if e.get("verdict") == "REAL" and e.get("what")]
+    if real:
+        e = real[0]
+        w = re.sub(r"^\[\w+\]\s*", "", e["what"])
+        w = w[:110] + ("…" if len(w) > 110 else "")
+        size = (f" ({e['amount_ev'] * 100:.0f}% of EV)" if e.get("amount_ev") and e["amount_ev"] <= 5 else "")
+        bits.append(w + size)
+        if e.get("deal_state"):
+            bits.append(f"offer {e['offer_spread'] * 100:+.1f}% vs price — {e['deal_state']}")
+        elif isinstance(e.get("xret_since"), (int, float)):
+            bits.append(f"{e['xret_since'] * 100:+.0f}% vs SPY since ({e.get('date')})")
+    c = d["ci"].get(tk) or {}
+    if c.get("tier") in ("ACT SIGNALLED", "BUILDING"):
+        bits.append(f"mgmt on call: {c['tier'].lower()}")
+    b = d["f4"].get(tk) or {}
+    if b.get("total_dollar", 0) >= 100_000 and b.get("total_shares"):
+        paid = b["total_dollar"] / b["total_shares"]
+        px = f.get("price")
+        vs = f" (paid ${paid:.2f}; now {px / paid - 1:+.0%})" if px and (f.get("currency") or "USD") == "USD" else ""
+        bits.append(f"insiders bought ${b['total_dollar'] / 1e6:.1f}M{vs}")
+    val = []
+    if f.get("p_tbv") and f.get("kind") == "bank":
+        val.append(f"P/TBV {f['p_tbv']:.2f}")
+    elif f.get("p_b"):
+        val.append(f"P/B {f['p_b']:.2f}")
+    g = d["geo"].get(tk) or {}
+    if g.get("downside_pct") is not None:
+        val.append(f"floor downside {g['downside_pct'] * 100:.0f}%")
+    if val:
+        bits.append(" · ".join(val))
+    cuts = list(dict.fromkeys(risk_cuts(tk)))
+    if cuts:
+        bits.append("risk: " + ", ".join(cuts))
+    if not bits:
+        return f"{ns} layers firing (no dated event or financial read)" if ns else ""
+    return " → ".join(bits)
 
 
 def red_flag_count(tk: str, proxy: dict) -> int:
@@ -662,10 +743,19 @@ def build_foreign_markets(wb: Workbook):
     write_header_row(ws, 4, headers)
 
     rows = list(json.loads(path.read_text()).items())
+    finf = _jload("name_financials.json")
     rows.sort(key=lambda x: -float(x[1].get("score", 0)))
     r = 5
     for i, (tk, v) in enumerate(rows[:60], 1):
-        roe_pct = (v.get("roe") or 0) * 100
+        f = finf.get(tk) or {}
+        if f:                                  # validated FMP values (one number per name)
+            v = dict(v, p_b=round(f["p_b"], 2) if f.get("p_b") else "n/m",
+                     p_e_trailing=round(f["pe"], 1) if f.get("pe") and f["pe"] > 0 else ("loss" if (f.get("pe") or 0) < 0 else "n/m"),
+                     roe=f.get("roe"))
+        v = dict(v, reasons=re.sub(r"div yield (\d+(?:\.\d+)?)%",
+                                   lambda m: f"div yield {float(m.group(1)) / 100:.1f}%" if float(m.group(1)) > 40 else m.group(0),
+                                   v.get("reasons") or ""))
+        roe_pct = round(v["roe"] * 100, 1) if isinstance(v.get("roe"), (int, float)) else "—"
         band = (i % 2 == 0)
         write_body_row(ws, r,
                        [tk, v.get("jurisdiction", ""),
@@ -795,6 +885,16 @@ def build_single_measure(wb: Workbook, yf: dict, proxy: dict,
     )
 
     sections = []
+    FIN1 = _jload("name_financials.json")
+
+    def ok_line(tk):
+        f = FIN1.get(tk)
+        return not (f and (f.get("not_common") or f.get("pb_src") in ("mcap_suspect", "implausible", "inconsistent")))
+
+    def vf(tk, key, ykey, y):
+        """validated FMP value when FMP knows the name, else the quote-store value"""
+        f = FIN1.get(tk)
+        return f.get(key) if f else y.get(ykey)
 
     # 1. PSU forensic core
     psu_ranked = []
@@ -826,7 +926,9 @@ def build_single_measure(wb: Workbook, yf: dict, proxy: dict,
     # 3. Deepest P/B floor
     pb_ranked = []
     for tk, y in yf.items():
-        pb_v = y.get("p_b")
+        if not ok_line(tk):
+            continue
+        pb_v = vf(tk, "p_b", "p_b", y)
         try: pb_v = float(pb_v) if pb_v is not None else None
         except Exception: pb_v = None
         if pb_v is not None and 0 < pb_v < 0.5:
@@ -840,7 +942,9 @@ def build_single_measure(wb: Workbook, yf: dict, proxy: dict,
     # 4. Cheapest EV/EBITDA
     evb_ranked = []
     for tk, y in yf.items():
-        v = y.get("ev_ebitda")
+        if not ok_line(tk):
+            continue
+        v = vf(tk, "ev_ebitda", "ev_ebitda", y)
         try: v = float(v) if v is not None else None
         except Exception: v = None
         # exclude near-zero (often biotech with denominator issues)
@@ -857,10 +961,12 @@ def build_single_measure(wb: Workbook, yf: dict, proxy: dict,
     # 5. Lowest trailing P/E (excluding negatives)
     pe_ranked = []
     for tk, y in yf.items():
-        v = y.get("p_e_trailing")
+        if not ok_line(tk):
+            continue
+        v = vf(tk, "pe", "p_e_trailing", y)
         try: v = float(v) if v is not None else None
         except Exception: v = None
-        if v is not None and 0.5 < v < 8:
+        if v is not None and 2 <= v < 8 and (y.get("mcap") or 0) >= 10e6:
             pe_ranked.append((tk, v,
                                f"P/E {v:.1f} | "
                                f"mcap ${(y.get('mcap') or 0)/1e6:,.0f}M | "
@@ -876,7 +982,9 @@ def build_single_measure(wb: Workbook, yf: dict, proxy: dict,
         if not isinstance(b, dict): continue
         if b.get("status") not in ("EXECUTING", "SHRINKING_NO_AUTH"): continue
         chg = (b.get("share_change") or {}).get("change_pct")
-        if chg is None: continue
+        if chg is None or chg >= 0: continue
+        sy = (FIN1.get(tk) or {}).get("shares_yoy")
+        if sy is not None and sy > 0: continue       # FMP's diluted share count RISES: not a verified shrink
         bb_ranked.append((tk, abs(chg),
                           f"shares {chg:+.1f}% over "
                           f"{(b.get('share_change') or {}).get('span_days','?')}d | "
@@ -892,6 +1000,7 @@ def build_single_measure(wb: Workbook, yf: dict, proxy: dict,
         if not isinstance(c, dict): continue
         s = c.get("score")
         if s is None or float(s) < 25: continue
+        if "BEARISH" in str(c.get("reasons", "")).upper(): continue
         c10_ranked.append((tk, float(s),
                             f"signed score {float(s):.0f} | "
                             f"{c.get('reasons', '')[:50]}"))
@@ -1164,7 +1273,20 @@ def build_insider_conviction(wb: Workbook, yf: dict):
 
     headers = ["Ticker", "Name", "Conviction", "Insiders", "Cluster",
                "Same day", "C-suite", "Total $M", "Top $M",
-               "Configuration"]
+               "Insiders paid (avg)", "Now vs their price", "Configuration"]
+    f4b = _jload("form4_buys.json")
+    finb = _jload("name_financials.json")
+
+    def basis(tk):
+        b, f = f4b.get(tk) or {}, finb.get(tk) or {}
+        if not b.get("total_shares") or not b.get("total_dollar"):
+            return "—", "—"
+        paid = b["total_dollar"] / b["total_shares"]
+        px = f.get("price")
+        if not px or (f.get("currency") or "USD") != "USD":
+            return f"${paid:,.2f}", "—"
+        d = px / paid - 1
+        return f"${paid:,.2f}", f"{d * 100:+.0f}%" + ("  ← below insiders' cost" if d <= -0.10 else "")
     write_header_row(ws, 4, headers)
     r = 5
     for i, row in enumerate(rows[:45], 1):
@@ -1174,7 +1296,7 @@ def build_insider_conviction(wb: Workbook, yf: dict):
                         row["n_insiders"], row["cluster"],
                         row["same_day"], row["csuite"],
                         round(row["total_m"], 2), round(row["top_m"], 2),
-                        row["flags"][:80]],
+                        *basis(row["tk"]), row["flags"][:80]],
                        band=band, bold_first=True)
         ws.row_dimensions[r].height = 24
         r += 1
@@ -1507,7 +1629,7 @@ def build_governance_discount(wb: Workbook, yf: dict):
     governance change implies the board will act on the gap (re-rate or
     return capital). Source: governance_discount.json."""
     ws = wb.create_sheet("Governance Discount")
-    set_col_widths(ws, [9, 22, 13, 7, 6, 9, 8, 50])
+    set_col_widths(ws, [9, 22, 13, 7, 6, 9, 8, 50, 18, 30])
     write_title_band(
         ws,
         "Governance Discount — well below book, and the board just changed",
@@ -1515,8 +1637,9 @@ def build_governance_discount(wb: Workbook, yf: dict):
         "has shifted so closing the gap becomes the board's job: an activist "
         "settlement, a new CEO, a strategic-review or capital-allocation "
         "committee, a chair/CEO split, declassification, a pill dropped, a "
-        "capital-return policy or tender. Signals are dated and recency-weighted.",
-        n_cols=8,
+        "capital-return policy or tender. Signals are dated and recency-weighted. "
+        "Tracking: return vs SPY since the first dated signal, and whether a capital action has followed.",
+        n_cols=10,
     )
     d = {}
     p = ROOT / "governance_discount.json"
@@ -1525,10 +1648,31 @@ def build_governance_discount(wb: Workbook, yf: dict):
             d = json.loads(p.read_text())
         except Exception:
             d = {}
-    rows = sorted((v for v in d.values() if isinstance(v, dict)),
+    finv = _jload("name_financials.json")
+    # the gate is 'well below VALIDATED book': a name whose book multiple the validator
+    # rejected (share-basis mismatch, note / preferred line) cannot pass it
+    rows = sorted((v for v in d.values() if isinstance(v, dict)
+                   and not (finv.get(v.get("ticker")) and (finv[v["ticker"]].get("p_b") is None
+                                                           or finv[v["ticker"]].get("not_common")))),
                   key=lambda r: (r.get("tier") != "ACTION LIKELY", -r.get("score", 0)))
     headers = ["Ticker", "Name", "Tier", "Score", "P/B", "Mcap $M",
-               "Net cash", "Governance signals (most recent date)"]
+               "Net cash", "Governance signals (most recent date)", "Since signal (vs SPY)",
+               "Action since? (capital return / sale / tender)"]
+    evd = _jload("event_detail.json")
+    ACTION = {"BUYBACK_AUTH", "TENDER_OFFER", "CAPITAL_RETURN", "CAPITAL_RETURN_POLICY", "ASSET_SALE",
+              "SALE_OF_COMPANY", "GOING_PRIVATE", "SPINOFF", "SEPARATION"}
+
+    def tracking(tk, fams):
+        dates = sorted(str(x.get("date"))[:10] for x in fams.values() if x.get("date"))
+        if not dates:
+            return "—", "—"
+        first = dates[0]
+        evs = [e for e in evd.get(tk) or [] if e.get("verdict") == "REAL"]
+        on = [e for e in evs if str(e.get("date")) >= first and isinstance(e.get("xret_since"), (int, float))]
+        since = min(on, key=lambda e: e["date"]) if on else None
+        acts = [e for e in evs if e.get("family") in ACTION and str(e.get("date")) > first]
+        act = (f"yes: {acts[0]['family'].replace('_', ' ').lower()} {acts[0]['date']}" if acts else "not yet")
+        return (f"{since['xret_since'] * 100:+.0f}% since {since['date']}" if since else "—"), act
     write_header_row(ws, 4, headers)
     r = 5
     for i, v in enumerate(rows[:60], 1):
@@ -1543,7 +1687,7 @@ def build_governance_discount(wb: Workbook, yf: dict):
                        [v.get("ticker"), (v.get("name") or "")[:22], v.get("tier"),
                         v.get("score"), round(v.get("p_b") or 0, 2),
                         round((v.get("mcap") or 0) / 1e6, 1),
-                        (f"{nc*100:.0f}%" if nc else "—"), sig[:50]],
+                        (f"{nc*100:.0f}%" if nc else "—"), sig[:50], *tracking(v.get("ticker"), fams)],
                        band=(i % 2 == 0), bold_first=True)
         ws.row_dimensions[r].height = 22
         r += 1
@@ -1576,13 +1720,27 @@ def _jload(name):
         return {}
 
 
+def talk_walk(v, f):
+    """Buyback language vs cash actually spent on buybacks over the last 12 months."""
+    bb = f.get("buyback_ttm_mcap")
+    talks = (v.get("families") or {}).get("BUYBACK", 0) >= 1.0 or (v.get("bb_pct_out") or 0) > 0
+    if bb is None:
+        return "no cash-flow data"
+    done = f"bought {bb * 100:.1f}% of mcap"
+    if talks and bb < 0.002:
+        return f"talk, no walk ⚠ ({done})"
+    if talks and bb >= 0.02:
+        return f"walks the talk ({done})"
+    return done
+
+
 def build_call_intent(wb: Workbook, yf: dict):
     """Earnings-call intent: management language signalling it will act
     (buyback, tender, capital return, asset sale, strategic review), scored
     linguistically and calibrated on what companies actually did next.
     Sources: call_intent.json, CALL_INTENT_VALIDATION.md (call_intent*.py)."""
     ws = wb.create_sheet("Call Intent")
-    set_col_widths(ws, [9, 20, 13, 7, 7, 6, 6, 6, 8, 22, 58])
+    set_col_widths(ws, [9, 20, 13, 7, 7, 6, 6, 6, 8, 22, 24, 58])
     write_title_band(
         ws,
         "Call Intent — management is telling you it will act",
@@ -1591,15 +1749,17 @@ def build_call_intent(wb: Workbook, yf: dict):
         "negation, specificity ($, timelines), new vs routine programmes, "
         "analyst pressure and evasive answers — and whether the language is NEW "
         "vs the company's own prior three calls. Ranked by a model fitted to "
-        "what companies actually did next (buybacks, dividend step-ups, action 8-Ks).",
-        n_cols=11,
+        "what companies actually did next (buybacks, dividend step-ups, action 8-Ks). "
+        "'Talk vs walk' checks the buyback talk against the cash actually spent on buybacks (TTM).",
+        n_cols=12,
     )
     d = _jload("call_intent.json")
+    finx = _jload("name_financials.json")
     rows = [v for v in d.values() if isinstance(v, dict) and v.get("act_prob") is not None]
     rows.sort(key=lambda v: (v.get("tier") != "ACT SIGNALLED", v.get("tier") != "BUILDING",
                              -(v.get("act_prob") or 0)))
     headers = ["Ticker", "Name", "Tier", "Act prob", "P/B", "Novelty", "Size", "CEO+CFO", "Call",
-               "New / strongest families", "Evidence (management, verbatim)"]
+               "New / strongest families", "Talk vs walk (TTM buybacks)", "Evidence (management, verbatim)"]
     write_header_row(ws, 4, headers)
     r = 5
     shown = [v for v in rows if v.get("tier")][:80] or rows[:40]
@@ -1622,7 +1782,7 @@ def build_call_intent(wb: Workbook, yf: dict):
                         round(v.get("novelty") or 0, 1),
                         (f"{v['size_pct']:.0%}" if v.get("size_pct") else "—"),
                         ("✓" if v.get("both_act") else ""), v.get("date", "")[:10],
-                        lab[:40], ev],
+                        lab[:40], talk_walk(v, finx.get(v["ticker"]) or {}), ev],
                        band=(i % 2 == 0), bold_first=True)
         ws.row_dimensions[r].height = 30
         r += 1
@@ -1673,7 +1833,7 @@ def build_political_trades(wb: Workbook, yf: dict):
         write_body_row(ws, r,
                        [t, (v.get("name") or "")[:22], v["score"], v["buys"], v["sells"],
                         v["n_buy_members"], v.get("last_disclosure"),
-                        "; ".join(v.get("recent") or [])[-60*3:]],
+                        "; ".join((v.get("recent") or [])[-3:])],
                        band=(i % 2 == 0), bold_first=True)
         ws.row_dimensions[r].height = 30
         r += 1
@@ -2612,9 +2772,8 @@ def build_cover(wb: Workbook):
         ns = int(cr["n_screens"])
         na = int(cr["n_archetypes_won"])
         nflags = red_flag_count(tk, proxy)
-        sizing = sizing_for_screens(ns, na, nflags)
-        why = ann.get("why",
-                       f"{ns} layers firing | cons {cr.get('consensus_score', '?')}")
+        sizing = sizing_for_screens(ns, na, nflags, tk)
+        why = ann.get("why") or so_what(tk, ns)
         convergent.append((tk, name, sizing, why))
     write_header_row(ws, r, ["#", "Ticker", "Name", "Sizing", "Why"])
     r += 1
@@ -2637,7 +2796,7 @@ def build_cover(wb: Workbook):
     r += 1
     write_footnote(ws, r,
         "Cyclepapa Research · Module Series 1 · The framework "
-        "produces 12 names by demanding (a) presence in top-N of "
+        "produces its short list by demanding (a) presence in top-N of "
         "≥3 of 8 independent rankers built from independent evidence "
         "and (b) winner of at least one PSU/governance archetype "
         "across 57 buckets. Robustness checks: list unchanged "
@@ -2655,7 +2814,7 @@ def build_most_asymmetric(wb: Workbook, proxy: dict, yf: dict, bbv: dict,
     ws = wb.create_sheet("Most Asymmetric")
     set_col_widths(ws, [9, 22, 11, 11, 11, 11, 22, 32, 28, 18])
     write_title_band(ws,
-                     "The Convergent Twelve",
+                     "The Convergent Set",
                      "Per-name structural detail · sourced from "
                      "PSU forensics + valuation + buyback verification "
                      "+ tender mechanics + insider behaviour",
@@ -2682,13 +2841,12 @@ def build_most_asymmetric(wb: Workbook, proxy: dict, yf: dict, bbv: dict,
         ns = int(cr["n_screens"])
         na = int(cr.get("n_archetypes_won") or ns)
         nflags = red_flag_count(tk, proxy)
-        why = ann.get("why",
-                       f"{ns} layers firing | cons {cr.get('consensus_score', '?')}")
+        why = ann.get("why") or so_what(tk, ns)
         g = geo.get(tk) or {}
         floor = ann.get("floor") or (
             f"{g.get('floor_source')} floor · downside {g['downside_pct'] * 100:.0f}%"
             if g.get("floor_source") and g.get("downside_pct") is not None else "no asset floor measured")
-        sizing = sizing_for_screens(ns, na, nflags)
+        sizing = sizing_for_screens(ns, na, nflags, tk)
         convergent_data.append((tk, name, why, floor, sizing))
 
     r = 5

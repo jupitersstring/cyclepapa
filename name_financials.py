@@ -121,8 +121,60 @@ def _bulk():
                 prof[r["symbol"]] = r
         _BULK = (prof, {r["symbol"]: r for r in fmp.get_bulk_csv("ratios-ttm-bulk")},
                  {r["symbol"]: r for r in fmp.get_bulk_csv("key-metrics-ttm-bulk")},
-                 fmp_book.load(), _quarterly("isbulk", ["revenue", "weightedAverageShsOutDil", "ebitda"]))
+                 fmp_book.load(), _quarterly("isbulk", ["revenue", "weightedAverageShsOutDil", "ebitda", "netInterestIncome",
+                                                        "netIncome", "depreciationAndAmortization",
+                                                        "netIncomeFromDiscontinuedOperations"]),
+                 _quarterly("cfbulk", ["commonStockRepurchased", "commonDividendsPaid", "commonStockIssuance"]))
     return _BULK
+
+
+def security_type(sym, p, prof):
+    """common / note-preferred / fund / spac / defunct -- only common equity belongs on an equity tab."""
+    nm = p.get("companyName") or ""
+    ind = p.get("industry") or ""
+    if re.search(r"\d%|\bnotes?\b|debenture|\bpfd\b|preferred|\bZONES\b|capital securities|cap secs", nm, re.I):
+        return "note / preferred line"
+    if str(p.get("isFund")).lower() == "true" or str(p.get("isEtf")).lower() == "true" or (
+            ind.startswith("Asset Management") and re.search(r"\bFund\b|\bTrust\b|Income|Municipal|Opportunit|Strategy|Portfolio", nm)
+            and not re.search(r"\bInc\.?$|Corp|Group|Holdings|Management", nm)):
+        return "fund"
+    if ind == "Shell Companies" and re.search(r"Acquisition|Capital Corp|SPAC|Merger|Blank Check", nm, re.I):
+        return "spac"
+    price = _f(p.get("price"))
+    if (sym + "Q") in prof or (str(p.get("isActivelyTrading")).lower() == "false" and (price or 0) < 1):
+        return "bankrupt / not trading"
+    return "common"
+
+
+def kind_of(sector, industry):
+    i = industry or ""
+    if i.startswith("Banks") or i in ("Financial - Mortgages", "Financial - Credit Services"):
+        return "bank"
+    if i.startswith("Insurance") and "Brokers" not in i:
+        return "insurer"
+    if i == "REIT - Mortgage":
+        return "mreit"
+    if i.startswith("REIT"):
+        return "reit"
+    if i.startswith("Asset Management") or i in ("Financial - Capital Markets", "Investment - Banking & Investment Services",
+                                                 "Financial - Conglomerates", "Shell Companies"):
+        return "financial_other"
+    if i in ("Oil & Gas Exploration & Production", "Oil & Gas Integrated"):
+        return "ep"
+    return "operating"
+
+
+def _ttm_sum(qs, key):
+    """Trailing-12-month sum from dated quarterly rows (semi-annual filers: 2 halves)."""
+    if not qs:
+        return None
+    last = qs[-1][0]
+    rows = [(d, v.get(key)) for d, v in qs if _days(d, last) < 360 and v.get(key) is not None]
+    if len(rows) >= 4:
+        return sum(v for _, v in rows[-4:])
+    if len(rows) == 2 and _days(rows[0][0], rows[1][0]) > 150:
+        return sum(v for _, v in rows)
+    return None
 
 
 def _usd(v, ccy):
@@ -139,7 +191,7 @@ def _usd(v, ccy):
 
 def build(symbols) -> dict:
     """Financial records for the given FMP symbols (those FMP knows)."""
-    prof, rat, km, sheets, inc = _bulk()
+    prof, rat, km, sheets, inc, cfq = _bulk()
     out = {}
     for s in sorted(set(symbols) & set(prof)):
         p, ra, k = prof[s], rat.get(s) or {}, km.get(s) or {}
@@ -171,13 +223,44 @@ def build(symbols) -> dict:
             "current": _f(ra.get("currentRatioTTM")),
             "rev_growth": _ttm_growth(q, "revenue"), "shares_yoy": sh_chg,
             "range_pos": _range_pos(p.get("range"), price),
-            "adv_usd": (_f(p.get("averageVolume")) or 0) * (price or 0) or None,
+            "adv_usd": _usd((_f(p.get("averageVolume")) or 0) * (price or 0) / (100 if p.get("currency") in ("GBp", "GBX", "ZAc", "ZAC", "ILA") else 1),
+                            p.get("currency")) or None,
             "stmt_date": bs.get("date"),
         }
+        rec["industry"] = p.get("industry")
+        rec["kind"] = kind_of(p.get("sector"), p.get("industry"))
+        # ---- sector-routed metrics (statement currency, expressed vs equity / mcap)
+        ta = _f(bs.get("totalAssets"))
+        gw = _f(bs.get("goodwillAndIntangibleAssets")) or 0
+        pref = _f(bs.get("preferredStock")) or 0
+        tang = (eq - gw - pref) if eq else None
+        mc_stmt = (eq * pb) if (eq and pb) else None            # market cap in statement currency
+        ttm = lambda qs, k: _ttm_sum(qs, k)
+        ni, nii, da = ttm(q, "netIncome"), ttm(q, "netInterestIncome"), ttm(q, "depreciationAndAmortization")
+        rec["tce_ta"] = tang / ta if (tang is not None and ta) else None
+        rec["p_tbv"] = mc_stmt / tang if (mc_stmt and tang and tang > 0) else None
+        aoci = _f(bs.get("accumulatedOtherComprehensiveIncomeLoss"))
+        rec["aoci_eq"] = aoci / eq if (aoci is not None and eq and eq > 0) else None
+        rec["roa"] = ni / ta if (ni is not None and ta) else None
+        rec["nii_assets"] = nii / ta if (nii and ta and rec["kind"] in ("bank",)) else None
+        rec["ffo_yield"] = (ni + da) / mc_stmt if (rec["kind"] == "reit" and ni is not None and da is not None and mc_stmt) else None
+        lti = _f(bs.get("longTermInvestments"))
+        rec["lt_inv_mcap"] = lti / mc_stmt if (lti and mc_stmt and rec["kind"] == "operating") else None
+        rec["tax_assets_mcap"] = (_f(bs.get("taxAssets")) or 0) / mc_stmt if mc_stmt else None
+        cq = cfq.get(s) or []
+        rep, divp = ttm(cq, "commonStockRepurchased"), ttm(cq, "commonDividendsPaid")
+        rec["buyback_ttm_mcap"] = abs(rep) / mc_stmt if (rep is not None and mc_stmt) else None
+        rec["div_paid_ttm_mcap"] = abs(divp) / mc_stmt if (divp is not None and mc_stmt) else None
+        if rec["kind"] in ("bank", "insurer", "mreit"):
+            rec["net_cash_pct"] = rec["nd_ebitda"] = rec["int_cover"] = rec["ev_ebitda"] = None   # a lender's debt is its raw material
         # sanity: FMP TTM ratios break on the same artefacts as P/B
         flags = []
         if pb_src in ("mcap_suspect", "implausible"):
             flags.append("market-cap/share data inconsistent")
+            # every market-cap-based multiple inherits the bad market cap
+            for k_ in ("mcap_usd", "pe", "ps", "ev_ebitda", "fcf_yield", "earn_yield", "net_cash_pct", "p_tbv",
+                       "buyback_ttm_mcap", "div_paid_ttm_mcap", "lt_inv_mcap", "ffo_yield"):
+                rec[k_] = None
         if pb_src == "neg_equity":
             flags.append("negative equity")
         if rec["pe"] is not None and rec["earn_yield"] is not None and (rec["pe"] > 0) != (rec["earn_yield"] > 0):
@@ -188,14 +271,31 @@ def build(symbols) -> dict:
         elif rec["fcf_yield"] is not None and abs(rec["fcf_yield"]) > 1.0:
             flags.append("FCF yield >100% (check)")
             rec["fcf_yield"] = None
-        if re.search(r"\d%|\bnotes?\b|debenture|\bpfd\b|preferred", p.get("companyName") or "", re.I):
-            flags.append("not common equity (note / preferred line)")
+        sec = security_type(s, p, prof)
+        if sec != "common":
+            flags.append(f"not common equity ({sec})")
             rec["not_common"] = True
+        rec["security"] = sec
         if rec["roe"] is not None and abs(rec["roe"]) > 1.5:
             flags.append(f"ROE {rec['roe'] * 100:,.0f}% not meaningful (tiny or bad equity figure)")
             rec["roe"] = None
         if rec["pe"] is not None and 0 <= rec["pe"] < 1:
             rec["pe"] = None                             # sub-1x P/E is a units artefact
+        # EV/EBITDA is meaningless when either side is negative (FMP reports -/- as a positive multiple)
+        ebitda_ttm = _ttm_sum(q, "ebitda")
+        if rec["ev_ebitda"] is not None and ((rec["ev"] is not None and rec["ev"] <= 0) or
+                                             (ebitda_ttm is not None and ebitda_ttm <= 0) or rec["ev_ebitda"] <= 0):
+            rec["ev_ebitda"] = None
+        # P/B / P/E must imply the ROE the statements show; a 3x+ gap means the market cap is
+        # on the wrong share basis (ADR ratio, stale count, preferred line priced as the company)
+        pb_, pe_, roe_ = rec["p_b"], rec["pe"], rec["roe"]
+        if pb_ and pe_ and 0 < pe_ < 200 and roe_ and roe_ > 0.02:
+            gap = (pb_ / pe_) / roe_
+            if gap < 0.33 or gap > 3.0:
+                flags.append(f"valuation inputs inconsistent (P/B÷P/E implies ROE {pb_ / pe_ * 100:.0f}% vs {roe_ * 100:.0f}%: "
+                             "ADR ratio / share-count basis)")
+                rec["p_b"] = rec["pe"] = rec["mcap_usd"] = rec["p_tbv"] = None
+                rec["pb_src"] = "inconsistent"
         if rec["mcap_usd"] is not None and rec["mcap_usd"] > 5e12:
             flags.append("market cap implausible (units)")
             rec["mcap_usd"] = None
@@ -235,6 +335,60 @@ def _pct(x, d=0):
 def read_line(r):
     """Plain-English one-liner a reader would write in the margin."""
     bits = []
+    k = r.get("kind")
+    bb = r.get("buyback_ttm_mcap")
+    bb_txt = f"bought back {bb * 100:.1f}% of mcap (TTM)" if bb and bb >= 0.01 else None
+    if k == "bank":
+        if r.get("p_tbv"):
+            bits.append(f"P/TBV {r['p_tbv']:.2f}")
+        elif r.get("p_b"):
+            bits.append(f"P/B {r['p_b']:.2f}")
+        if r.get("pe") and 0 < r["pe"] < 200:
+            bits.append(f"P/E {r['pe']:.1f}")
+        if r.get("roa") is not None:
+            bits.append(f"ROA {r['roa'] * 100:.2f}%")
+        if r.get("tce_ta") is not None:
+            bits.append(f"TCE/TA {r['tce_ta'] * 100:.1f}%" + (" ⚠" if r["tce_ta"] < 0.06 else ""))
+        if r.get("nii_assets"):
+            bits.append(f"NII/assets {r['nii_assets'] * 100:.2f}%")
+        if r.get("aoci_eq") is not None and r["aoci_eq"] <= -0.05:
+            bits.append(f"AOCI loss {abs(r['aoci_eq']) * 100:.0f}% of equity" + (" ⚠" if r["aoci_eq"] <= -0.15 else ""))
+        if r.get("div_yield"):
+            bits.append(f"div {r['div_yield'] * 100:.1f}%")
+        if bb_txt:
+            bits.append(bb_txt)
+        return " · ".join(bits) + " (bank basis)"
+    if k in ("insurer", "mreit", "financial_other"):
+        if r.get("p_b") is not None:
+            bits.append(f"P/B {r['p_b']:.2f}")
+        if r.get("p_tbv") and k == "insurer" and r["p_b"] and r["p_tbv"] > r["p_b"] * 1.15:
+            bits.append(f"P/TBV {r['p_tbv']:.2f}")
+        if r.get("pe") and 0 < r["pe"] < 200:
+            bits.append(f"P/E {r['pe']:.1f}")
+        if r.get("roe") is not None:
+            bits.append(f"ROE {r['roe'] * 100:.0f}%")
+        if r.get("aoci_eq") is not None and r["aoci_eq"] <= -0.10 and k == "insurer":
+            bits.append(f"AOCI loss {abs(r['aoci_eq']) * 100:.0f}% of equity")
+        if r.get("div_yield"):
+            bits.append(f"div {r['div_yield'] * 100:.1f}%")
+        if bb_txt:
+            bits.append(bb_txt)
+        return " · ".join(bits) + {"insurer": " (insurer: book/earnings basis)", "mreit": " (mortgage REIT: book/dividend basis)",
+                                   "financial_other": " (financial: book/earnings basis)"}[k]
+    if k == "reit":
+        if r.get("p_b") is not None:
+            bits.append(f"P/B {r['p_b']:.2f}")
+        if r.get("ffo_yield"):
+            bits.append(f"FFO≈ yield {r['ffo_yield'] * 100:.1f}%")
+        if r.get("div_yield"):
+            bits.append(f"div {r['div_yield'] * 100:.1f}%")
+        if r.get("nd_ebitda") is not None and 0 < r["nd_ebitda"] < 40:
+            bits.append(f"ND/EBITDA {r['nd_ebitda']:.1f}×")
+        if r.get("int_cover") not in (None, 0) and r["int_cover"] < 1.5:
+            bits.append(f"interest cover {r['int_cover']:.1f}× ⚠")
+        if bb_txt:
+            bits.append(bb_txt)
+        return " · ".join(bits) + " (REIT basis)"
     if (r.get("sector") or "") == "Financial Services":
         # banks / insurers / asset managers: cash-flow and EBITDA metrics are meaningless
         if r["p_b"] is not None:
@@ -269,6 +423,10 @@ def read_line(r):
                     + f"{abs(r['shares_yoy']) * 100:.0f}%/yr")
     if r["int_cover"] not in (None, 0) and r["int_cover"] < 1.5 and (r["net_cash_pct"] or 0) < -0.10:
         bits.append(f"interest cover {r['int_cover']:.1f}× ⚠")
+    if bb_txt:
+        bits.append(bb_txt)
+    if r.get("lt_inv_mcap") and r["lt_inv_mcap"] >= 0.3:
+        bits.append(f"LT investments {r['lt_inv_mcap'] * 100:.0f}% of mcap")
     return " · ".join(bits)
 
 

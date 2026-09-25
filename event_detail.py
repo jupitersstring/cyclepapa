@@ -630,6 +630,16 @@ def main() -> int:
                 print(f"  {i}/{len(jobs)}", flush=True)
     for tk in out:
         out[tk].sort(key=lambda r: r.get("date") or "", reverse=True)
+        # SPINOFF and SEPARATION scanners fire on the same filing: keep one record
+        seen = set()
+        keep = []
+        for r in out[tk]:
+            k = (r.get("date"), r.get("url"), "SEP" if r["family"] in ("SPINOFF", "SEPARATION") else r["family"])
+            if r.get("url") and k in seen:
+                continue
+            seen.add(k)
+            keep.append(r)
+        out[tk] = keep
     OUT.write_text(json.dumps(out, indent=1))
     n = sum(len(v) for v in out.values())
     got = sum(1 for v in out.values() for r in v if r.get("excerpt"))

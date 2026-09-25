@@ -174,10 +174,19 @@ def main() -> int:
 
     # 1b) live 8-K corporate-action announcements (rerate_events_8k.py).
     events8k = _load("rerate_events_8k.json")
+    _yq_ex = _load("yfinance_quick.json") or {}
+    # an event the filing review found is a recital / footnote (NOT AN EVENT) or a
+    # different kind of event (RETYPED) is not a catalyst of this kind
+    phantom = {(tk_, e.get("family"), e.get("date")) for tk_, lst in (_load("event_detail.json") or {}).items()
+               for e in (lst or []) if e.get("verdict") in ("NOT AN EVENT", "RETYPED")}
     for tk, buckets in events8k.items():
         if not isinstance(buckets, dict):
             continue
         for b, info in buckets.items():
+            if (tk, b, (info or {}).get("date")) in phantom:
+                continue
+            if b == "UPLISTING" and str((_yq_ex.get(tk) or {}).get("exchange") or "").upper() in ("NYSE", "NASDAQ", "AMEX", "NYSEARCA", "NYSE AMERICAN"):
+                continue                     # already exchange-listed: an 'uplisting' phrase is some other security
             if b in W_EVENT:
                 add(tk, b, "event", W_EVENT[b],
                     (info or {}).get("phrase", "8-K"))

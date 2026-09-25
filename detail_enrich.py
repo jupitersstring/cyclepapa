@@ -90,8 +90,47 @@ def enrich_events(spy):
             e["days_since"] = (today - date.fromisoformat(d)).days
             e["priced"] = "moved" if abs(r - (m or 0)) >= 0.20 else "not yet"
             n += 1
+    deal_math(ev)
     p.write_text(json.dumps(ev, indent=1))
     return n
+
+
+DEAL = {"SALE_OF_COMPANY", "GOING_PRIVATE", "TENDER_OFFER", "EXCHANGE_OFFER"}
+
+
+def deal_math(ev):
+    """Turn 'an event happened' into numbers a PM can act on:
+      offer_spread  per-share offer vs today's price (pending takeovers / tenders)
+      deal_state    'dead money' (<3% spread on a pending cash deal), 'bump expected'
+                    (price above offer), 'wide spread' (>15%: market doubts it closes)
+      amount_ev     consideration / enterprise value (the honest size of an asset sale:
+                    '% of mcap' overstates it for levered sellers)
+      pf_net_debt   pro-forma net debt / mcap after an asset sale's cash comes in"""
+    fin = json.loads((ROOT / "name_financials.json").read_text()) if (ROOT / "name_financials.json").exists() else {}
+    for t, lst in ev.items():
+        f = fin.get(t) or {}
+        usd = (f.get("currency") or "USD") == "USD"
+        price, ev_, mc = f.get("price"), f.get("ev"), f.get("mcap")
+        for e in lst:
+            for k in ("offer_spread", "deal_state", "amount_ev", "pf_net_debt"):
+                e.pop(k, None)
+            if e.get("verdict") not in ("REAL", None):
+                continue
+            pending = e.get("status") in ("ANNOUNCED", "PENDING")
+            ps = e.get("per_share")
+            if e.get("family") in DEAL and ps and price and usd and pending:
+                sp = ps / price - 1
+                if -0.5 < sp < 3:
+                    e["offer_spread"] = round(sp, 4)
+                    e["deal_state"] = ("bump expected (trades above offer)" if sp < -0.005 else
+                                       "dead money (<3% to offer)" if sp < 0.03 else
+                                       "wide spread: market doubts it closes" if sp > 0.15 else "normal arb spread")
+            amt = e.get("amount_usd")
+            if amt and usd and ev_ and ev_ > 0:
+                e["amount_ev"] = round(amt / ev_, 4)
+            if amt and usd and e.get("family") == "ASSET_SALE" and mc and ev_ and ev_ > mc:
+                e["pf_net_debt"] = round((ev_ - mc - amt) / mc, 4)
+
 
 
 def enrich_turnaround(spy):

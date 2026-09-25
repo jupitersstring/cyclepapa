@@ -502,13 +502,18 @@ def _load_json(name):
 
 
 def event_line(evs, n=2):
-    """Most recent located events as '[date] what' (newest first)."""
+    """Most recent located events as '[date] what' -- real events first (a phantom
+    only when nothing real exists), with the deal math where it applies."""
+    real = [e for e in evs or [] if e.get("what") and e.get("verdict") in ("REAL", None)]
+    other = [e for e in evs or [] if e.get("what") and e.get("verdict") not in ("REAL", None)]
     out = []
-    for e in evs or []:
-        if e.get("what"):
-            out.append(f"[{e.get('date')}] {e['what']}")
-        if len(out) >= n:
-            break
+    for e in (real or other)[:n]:
+        x = f"[{e.get('date')}] {e['what']}"
+        if e.get("deal_state"):
+            x += f" — offer {e['offer_spread'] * 100:+.1f}% vs price: {e['deal_state']}"
+        elif e.get("amount_ev") and e.get("family") == "ASSET_SALE":
+            x += f" — {e['amount_ev'] * 100:.0f}% of EV"
+        out.append(x)
     return " | ".join(out)
 
 
@@ -651,6 +656,8 @@ def event_sheet(wb, events, fin=None, index=None):
                        + (" (reviewed)" if e.get("source") == "reviewed" else "")), e.get("what"),
                 (f"${amt / 1e6:,.0f}M" if amt and amt >= 1e6 else ""),
                 (f"{e['pct_mcap'] * 100:.0f}%" if e.get("pct_mcap") and e["pct_mcap"] <= 5 else ""),
+                (f"{e['amount_ev'] * 100:.0f}%" if e.get("amount_ev") and e["amount_ev"] <= 5 else ""),
+                (f"{e['offer_spread'] * 100:+.1f}% · {e['deal_state']}" if e.get("deal_state") else ""),
                 " · ".join(x for x in [
                     f"counterparty: {e['counterparty']}" if e.get("counterparty") else "",
                     f"person: {e['person']}" if e.get("person") else "",
@@ -666,15 +673,17 @@ def event_sheet(wb, events, fin=None, index=None):
         "What exactly is happening in every dated corporate-action and governance event behind the thesis tabs: "
         "the 8-K on the event date and its press release are read, and the specifics extracted -- what is being "
         "sold / spun / tendered, to or by whom, for how much (and as % of market cap), when it closes, advisers, "
-        "board seats. Status: ANNOUNCED / PENDING / COMPLETED. Verdict: '✓ real'; '↻ other kind' = a real event "
+        "board seats. % EV = consideration / enterprise value (the honest size for a levered seller; % mcap overstates it). "
+        "Offer vs price = per-share offer vs today's price on a pending deal: 'dead money' < 3% left, 'wide spread' > 15% "
+        "(market doubts it closes), 'bump expected' = trades above the offer. Status: ANNOUNCED / PENDING / COMPLETED. Verdict: '✓ real'; '↻ other kind' = a real event "
         "but not the kind the scanner tagged (e.g. a rights plan ADOPTED under 'pill removed', or the company "
         "ACQUIRING under 'sale of company'); '⚠ phantom' = a recital / footnote, no such event. Both are removed "
         "from the thesis scoring. '(reviewed)' = read and extracted by a reviewer with a verbatim quote; otherwise "
         "the regex parse (accuracy vs the reviewed set: PARSER_EVAL.md). Source: event_detail.py + reviewed/.",
-        ["Ticker", "Name", "Date", "Event", "Status", "Verdict", "What is happening", "Amount", "% mcap",
-         "Specifics", "Since event (vs SPY)",
+        ["Ticker", "Name", "Date", "Event", "Status", "Verdict", "What is happening", "Amount", "% mcap", "% EV",
+         "Offer vs price", "Specifics", "Since event (vs SPY)",
          "Filing excerpt (verbatim)", "Filing"],
-        [9, 22, 11, 16, 11, 10, 60, 10, 7, 50, 10, 90, 12], rows, index=index,
+        [9, 22, 11, 16, 11, 10, 60, 10, 7, 7, 26, 50, 10, 90, 12], rows, index=index,
         wrap_cols=("What is happening", "Filing excerpt (verbatim)"))
 
 
@@ -931,6 +940,108 @@ def delete_rows(ws, rows_to_delete, hr):
                 cell.font = copy(f0)
 
 
+_BAD_BASIS = ("mcap_suspect", "implausible", "inconsistent")
+_MCAP_H = {"Mcap $M", "Mcap ($M)", "mcap ($M)", "Market cap $M", "Mcap $m", "MCap $M"}
+
+
+def _num(v):
+    if isinstance(v, (int, float)) and not isinstance(v, bool):
+        return float(v)
+    try:
+        return float(str(v).replace("×", "").replace("x", "").replace(",", "").strip())
+    except (ValueError, AttributeError):
+        return None
+
+
+def _harmonise(cell, h, v, f, stats):
+    """One number per name everywhere: the validated FMP value, or 'n/m' where the
+    validator rejected it (a tab must not re-derive what the source threw out)."""
+    x = _num(v)
+    bad = f.get("pb_src") in _BAD_BASIS
+    if h == "P/B" and f.get("p_b") is None and bad and x is not None:
+        cell.value = "n/m"; stats["rejected P/B -> n/m"] += 1
+        return True
+    if h in ("P/E", "P/E (TTM)", "P/E ttm") and x is not None:
+        if f.get("pe") is None:
+            if bad or 0 <= x < 1:
+                cell.value = "n/m"; stats["rejected P/E -> n/m"] += 1
+                return True
+            if x <= 0:
+                cell.value = "loss"; stats["negative P/E -> loss"] += 1
+                return True
+        elif f["pe"] < 0 or (x == 0 and f["pe"] <= 0):
+            cell.value = "loss"; stats["negative P/E -> loss"] += 1
+            return True
+    if h in ("EV/EBITDA", "EV/EBITDA ×") and x is not None and f.get("ev_ebitda") is None:
+        cell.value = "n/m"; stats["EV/EBITDA with negative EV or EBITDA -> n/m"] += 1
+        return True
+    if h in ("ROE", "ROE %") and x is not None and f.get("roe") is None and any(
+            "not meaningful" in str(fl) for fl in f.get("flags") or []):
+        cell.value = "n/m"; stats["rejected ROE -> n/m"] += 1
+        return True
+    if h in _MCAP_H and x is not None:
+        if f.get("mcap_usd"):
+            nv = round(f["mcap_usd"] / 1e6, 1)
+            if abs(nv - x) > max(0.05 * abs(nv), 0.2):
+                stats["market cap -> USD (validated)"] += 1
+            cell.value = nv
+            return True
+        if bad or f.get("currency") not in (None, "USD"):
+            cell.value = "n/m"; stats["market cap unvalidated -> n/m"] += 1
+            return True
+    return False
+
+
+_ISSUER_IDX = {}
+
+
+def _other_line_of(t, name, fin):
+    """An OTC F-line priced > 5x away from the issuer's most-traded line is a preferred /
+    other class (FRFFF $17.78 vs Fairfax common FRFHF $1,591)."""
+    if not _ISSUER_IDX:
+        for k, v in fin.items():
+            key = _norm_issuer(v.get("name"))
+            if key and v.get("price"):
+                _ISSUER_IDX.setdefault(key, []).append((k, v.get("price"), v.get("adv_usd") or 0, v.get("currency")))
+    key = _norm_issuer(name or (fin.get(t) or {}).get("name"))
+    lines = _ISSUER_IDX.get(key) or []
+    me = (fin.get(t) or {}).get("price")
+    # an ADR (…Y) differs from the ordinary line by its ratio, not by being another class
+    others = [x for x in lines if x[0] != t and x[3] == (fin.get(t) or {}).get("currency") and not x[0].endswith("Y")]
+    if not me or not others:
+        return False
+    top = max(others, key=lambda x: x[2])
+    return top[2] > 20 * max((fin.get(t) or {}).get("adv_usd") or 0, 1) and not (0.2 < me / top[1] < 5)
+
+
+def _derivative_line(t, name, fin):
+    """SPAC rights / units / warrants and CVRs: '-RI', '-CVR', or a 5-letter R/U/W/Z line
+    whose 4-letter base is the same issuer."""
+    import re as _re
+    if _re.search(r"-(?:RI|R|CVR|WT|WS|U|UN|P[A-Z]?)$", t):
+        return True
+    # a longer ticker of the same issuer priced far from the common (TPGXL note $21 vs TPG $45,
+    # VSECU unit, WHLRP / FBIOP preferreds) is another security of that issuer
+    for n_ in (4, 3, 2):
+        base = t[:n_]
+        if len(t) > n_ and base in fin and base != t and not base.endswith("Y"):
+            bf, tf = fin.get(base) or {}, fin.get(t) or {}
+            if _norm_issuer(bf.get("name")) and _norm_issuer(bf.get("name")) == _norm_issuer(name or tf.get("name")):
+                bp, tp = bf.get("price"), tf.get("price")
+                if not bp or not tp or not (0.55 < tp / bp < 1.8) or t[n_:] in ("P", "U", "W", "R", "Z", "XL", "PR", "WS"):
+                    return True
+            break
+    if t not in fin and len(t) == 5 and t[-1] in "WRUZ" and t[:4] in fin:
+        return True                                     # warrant / right / unit of a listed issuer
+    if len(t) == 5 and t[-1] == "F" and _other_line_of(t, name, fin):
+        return True
+    if len(t) == 5 and t[-1] in "RUWZP" and t[:4] in fin:
+        base = (fin.get(t[:4]) or {}).get("name") or ""
+        if _norm_issuer(base) and _norm_issuer(base) == _norm_issuer(name or (fin.get(t) or {}).get("name")):
+            return True
+    return bool(_re.search(r"\bRights?\b|\bUnits?\b|\bWarrants?\b|Contingent Value", str(name or "")))
+
+
 def qa_fixes(wb, fin, harmonise_pb=True, skip=()):
     """Book-level fixes found by book_qa.py:
        * secondary share lines (preferreds / notes of an issuer already listed)
@@ -958,7 +1069,8 @@ def qa_fixes(wb, fin, harmonise_pb=True, skip=()):
                 continue
             f = fin.get(t) or {}
             nm = f.get("name") or (ws.cell(row=r, column=ncol).value if ncol else None)
-            if _bad_security(t, nm) and ws.title not in ("Distressed Stub Progress",):
+            if (_bad_security(t, nm) or f.get("not_common") or _derivative_line(t, nm, fin)) \
+                    and ws.title not in ("Distressed Stub Progress",):
                 dels.append(r); stats["bad security"] += 1
                 continue
             key = _norm_issuer(nm)
@@ -985,12 +1097,24 @@ def qa_fixes(wb, fin, harmonise_pb=True, skip=()):
             for h, c in cols.items():
                     cell = ws.cell(row=r, column=c)
                     v = cell.value
-                    if h in ("P/E",) and isinstance(v, (int, float)) and v < 0:
+                    if harmonise_pb and f and h == "P/B" and f.get("p_b") and isinstance(v, (int, float, str)) \
+                            and not isinstance(v, bool) and _num(v) is None and str(v).strip().lower() in ("neg. equity", "n/m"):
+                        cell.value = round(f["p_b"], 2); stats["P/B harmonised"] += 1     # stale label vs validated value
+                    elif harmonise_pb and f and h in ("52w pos", "52w position", "52w %") and f.get("range_pos") is not None \
+                            and _num(v) is not None:
+                        x = _num(v)
+                        nv = f["range_pos"] if (x <= 1.5 and "%" not in str(v)) else round(f["range_pos"] * 100)
+                        if abs((x if x <= 1.5 else x / 100) - f["range_pos"]) > 0.1:
+                            stats["52w position harmonised"] += 1
+                        cell.value = nv if isinstance(nv, int) else round(nv, 2)
+                    elif h in ("P/E",) and isinstance(v, (int, float)) and v < 0:
                         cell.value = "loss"; stats["negative P/E -> loss"] += 1
                     elif h == "P/B" and isinstance(v, (int, float)) and v > 100:
                         cell.value = "n/m"; stats["P/B > 100x -> n/m"] += 1       # near-zero equity
                     elif h == "P/B" and isinstance(v, (int, float)) and v < 0:
                         cell.value = "neg. equity"; stats["negative P/B -> neg. equity"] += 1
+                    elif harmonise_pb and f and _harmonise(cell, h, v, f, stats):
+                        pass
                     elif h == "P/B" and harmonise_pb and f.get("p_b") and isinstance(v, (int, float, str)):
                         try:
                             cur = float(str(v).replace("×", ""))
@@ -1014,7 +1138,7 @@ def qa_fixes(wb, fin, harmonise_pb=True, skip=()):
 
 
 PROTECT = {"Ticker", "Name", "Company", "Key numbers (FMP)", "Strength %ile", "FMP financial read", "Filing",
-           "Proxy", "#", "Rank", "Grade", "Tier", "Score", "What's happening (8-K)", "PSU plan (grade)",
+           "Proxy", "#", "Rank", "Grade", "Tier", "Intent tier", "Score", "What's happening (8-K)", "PSU plan (grade)",
            "Since (vs SPY)", "Since vs SPY (%)", "Since event (vs SPY)"}
 
 

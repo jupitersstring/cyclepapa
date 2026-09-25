@@ -201,7 +201,9 @@ def name_keys(name):
 def about_company(r, sym, name):
     """FMP's press-release feed occasionally returns another issuer's release:
     keep it only if it names the ticker or the company."""
-    blob = ((r.get("title") or "") + " " + (r.get("text") or "") + " " + (r.get("full") or "")[:3000]).lower()
+    # the headline + lede must be about this company (a peer's release that merely
+    # lists it among others -- Dynavax's buyback under VXRT -- is not its news)
+    blob = ((r.get("title") or "") + " " + (r.get("text") or "")[:600] + " " + (r.get("full") or "")[:600]).lower()
     if re.search(r"\b" + re.escape(sym.lower()) + r"\b", blob):
         return True
     keys = name_keys(name)
