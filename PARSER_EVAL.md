@@ -1,4 +1,4 @@
-# Parser scorecard — regex parsers vs reviewed extraction (2026-09-24)
+# Parser scorecard — regex parsers vs reviewed extraction (2026-09-25)
 
 **Gold set.** Every filing behind the books was read and extracted by a reviewer, with a verbatim evidence quote and a confidence for each record (`reviewed/`): 976 event filings (8-K + press release), 830 proxy PSU plans, and 400 Item 5.02 appointment filings.
 
@@ -13,16 +13,16 @@
 | appointments | person name (on true hires) | 42% | 86% | 87 |
 | appointments | role family (on true hires) | 57% | 94% | 87 |
 | appointments | base salary exact |  | 94% | 50 |
-| events/dev | real-event verdict (precision: flagged REAL that are real) |  | 100% | 368 |
-| events/dev | real-event verdict (phantoms caught) | 14% | 99% | 98 |
-| events/dev | real-event verdict (real events kept) |  | 94% | 390 |
-| events/dev | event family matches |  | 78% | 390 |
+| events/dev | real-event verdict (precision: flagged REAL that are real) |  | 100% | 362 |
+| events/dev | real-event verdict (phantoms caught) | 14% | 99% | 97 |
+| events/dev | real-event verdict (real events kept) |  | 94% | 383 |
+| events/dev | event family matches |  | 78% | 383 |
 | events/dev | amount exact (when the filing states one) | 45% | 73% | 100 |
-| events/dev | amount invented where none stated |  | 43 | 390 |
-| events/dev | counterparty | 23% | 57% | 159 |
-| events/dev | counterparty invented where none stated |  | 12 | 390 |
-| events/dev | per-share price | 61% | 91% | 57 |
-| events/dev | status (completed vs not) | 82% | 86% | 379 |
+| events/dev | amount invented where none stated |  | 43 | 383 |
+| events/dev | counterparty | 23% | 57% | 155 |
+| events/dev | counterparty invented where none stated |  | 12 | 383 |
+| events/dev | per-share price | 61% | 91% | 56 |
+| events/dev | status (completed vs not) | 82% | 86% | 373 |
 | events/holdout | real-event verdict (precision: flagged REAL that are real) |  | 88% | 446 |
 | events/holdout | real-event verdict (phantoms caught) | 6% | 27% | 71 |
 | events/holdout | real-event verdict (real events kept) | 97% | 94% | 417 |

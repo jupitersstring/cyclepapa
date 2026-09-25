@@ -251,6 +251,9 @@ def build(symbols) -> dict:
         rep, divp = ttm(cq, "commonStockRepurchased"), ttm(cq, "commonDividendsPaid")
         rec["buyback_ttm_mcap"] = abs(rep) / mc_stmt if (rep is not None and mc_stmt) else None
         rec["div_paid_ttm_mcap"] = abs(divp) / mc_stmt if (divp is not None and mc_stmt) else None
+        for k_ in ("buyback_ttm_mcap", "div_paid_ttm_mcap"):
+            if rec[k_] is not None and rec[k_] > 0.5:
+                rec[k_] = None                            # > 50% of mcap in a year: statement / mcap basis mismatch
         if rec["kind"] in ("bank", "insurer", "mreit"):
             rec["net_cash_pct"] = rec["nd_ebitda"] = rec["int_cover"] = rec["ev_ebitda"] = None   # a lender's debt is its raw material
         # sanity: FMP TTM ratios break on the same artefacts as P/B

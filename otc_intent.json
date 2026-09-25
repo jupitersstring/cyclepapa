@@ -1,92 +1,4 @@
 {
- "AANNF": {
-  "ticker": "AANNF",
-  "name": "Aroundtown S.A.",
-  "domestic": false,
-  "p_b": 0.22525999528371668,
-  "mcap": 2516197245.0,
-  "score": 11.26,
-  "families": {
-   "BUYBACK": 2.878,
-   "DIVIDEND_RETURN": 0.418,
-   "TENDER": 1.63,
-   "MONETIZE": 1.658,
-   "DELEVER": 2.241,
-   "COST": 0.543,
-   "VALUE_GAP": 1.7,
-   "ANTICIPATION": 0.945
-  },
-  "novelty": 4.39,
-  "new_families": [
-   "BUYBACK",
-   "VALUE_GAP"
-  ],
-  "size_pct_mcap": 0.1,
-  "docs_12m": {
-   "CALL": 3,
-   "PR": 1
-  },
-  "last_doc": "2026-08-26",
-  "evidence": {
-   "BUYBACK": {
-    "date": "2026-08-26",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "We continue to execute our share buyback program launched in January, taking advantage of the market volatility and repurchasing our own shares at a significant discount to NAV.",
-    "url": null
-   },
-   "DIVIDEND_RETURN": {
-    "date": "2026-03-09",
-    "kind": "CALL",
-    "doc": "Q4 2025 call",
-    "q": "This gave us the confidence to initiate the dividend distributions.",
-    "url": null
-   },
-   "TENDER": {
-    "date": "2026-08-26",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "The euro benchmark was placed with a concurrent tender offer under which we bought back around EUR 0.7 billion of bonds across years 28, 39 and 40.",
-    "url": null
-   },
-   "MONETIZE": {
-    "date": "2026-03-09",
-    "kind": "CALL",
-    "doc": "Q4 2025 call",
-    "q": "Additionally, at the end of January, we initiated a EUR 250 million share buyback program, which allows us to repurchase our shares at a significant discount and utilizing disposal proceeds from selling properties at around book values.",
-    "url": null
-   },
-   "DELEVER": {
-    "date": "2026-08-26",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "The euro benchmark was placed with a concurrent tender offer under which we bought back around EUR 0.7 billion of bonds across years 28, 39 and 40.",
-    "url": null
-   },
-   "COST": {
-    "date": "2026-08-26",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "The Bau-Turbo regulation provides further momentum by streamlining change of use processes and shortening approval periods, and we have received good feedback from municipalities for around 120,000 square meters of offices.",
-    "url": null
-   },
-   "VALUE_GAP": {
-    "date": "2026-08-26",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "We continue to execute our share buyback program launched in January, taking advantage of the market volatility and repurchasing our own shares at a significant discount to NAV.",
-    "url": null
-   },
-   "ANTICIPATION": {
-    "date": "2026-03-09",
-    "kind": "CALL",
-    "doc": "Q4 2025 call",
-    "q": "A portion of the leases have already been signed and advanced negotiations are going with additional prospective tenants.",
-    "url": null
-   }
-  },
-  "tier": "ACT SIGNALLED"
- },
  "MRETF": {
   "ticker": "MRETF",
   "name": "Martinrea International Inc.",
@@ -222,79 +134,89 @@
   },
   "tier": "ACT SIGNALLED"
  },
- "AIMFF": {
-  "ticker": "AIMFF",
-  "name": "Aimia Inc.",
+ "AANNF": {
+  "ticker": "AANNF",
+  "name": "Aroundtown S.A.",
   "domestic": false,
-  "p_b": 0.6543376928920239,
-  "mcap": 170612965.0,
-  "score": 10.43,
+  "p_b": 0.22525999528371668,
+  "mcap": 2516197245.0,
+  "score": 10.01,
   "families": {
-   "BUYBACK": 2.602,
-   "TENDER": 1.385,
-   "MONETIZE": 2.06,
-   "DELEVER": 0.577,
-   "COST": 0.337,
-   "VALUE_GAP": 1.56,
-   "ANTICIPATION": 2.031
+   "BUYBACK": 2.878,
+   "DIVIDEND_RETURN": 0.418,
+   "TENDER": 1.011,
+   "MONETIZE": 1.658,
+   "DELEVER": 2.256,
+   "COST": 0.543,
+   "VALUE_GAP": 1.7,
+   "ANTICIPATION": 0.945
   },
-  "novelty": 3.76,
+  "novelty": 3.58,
   "new_families": [
-   "TENDER"
+   "BUYBACK",
+   "VALUE_GAP"
   ],
-  "size_pct_mcap": 0.089,
+  "size_pct_mcap": 0.1,
   "docs_12m": {
-   "CALL": 4
+   "CALL": 3,
+   "PR": 1
   },
-  "last_doc": "2026-08-11",
+  "last_doc": "2026-08-26",
   "evidence": {
    "BUYBACK": {
-    "date": "2026-05-13",
+    "date": "2026-08-26",
     "kind": "CALL",
-    "doc": "Q1 2026 call",
-    "q": "Pending regulatory approval, we anticipate being committed to buy back approximately 5 million shares over the next 12 months through to June 2027.",
+    "doc": "Q2 2026 call",
+    "q": "We continue to execute our share buyback program launched in January, taking advantage of the market volatility and repurchasing our own shares at a significant discount to NAV.",
+    "url": null
+   },
+   "DIVIDEND_RETURN": {
+    "date": "2026-03-09",
+    "kind": "CALL",
+    "doc": "Q4 2025 call",
+    "q": "This gave us the confidence to initiate the dividend distributions.",
     "url": null
    },
    "TENDER": {
-    "date": "2026-08-11",
+    "date": "2026-03-09",
     "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "We completed a tender offer to purchase senior notes due in January 2030, reducing our interest costs materially.",
+    "doc": "Q4 2025 call",
+    "q": "As you have noticed, we have launched a share-to-share voluntary tender offer for GCP shares and therefore, came out earlier with the results.",
     "url": null
    },
    "MONETIZE": {
-    "date": "2026-05-13",
+    "date": "2026-03-09",
     "kind": "CALL",
-    "doc": "Q1 2026 call",
-    "q": "Most notably, we announced the divestiture of the specialty chemicals business, Bozzetto.",
+    "doc": "Q4 2025 call",
+    "q": "Additionally, at the end of January, we initiated a EUR 250 million share buyback program, which allows us to repurchase our shares at a significant discount and utilizing disposal proceeds from selling properties at around book values.",
     "url": null
    },
    "DELEVER": {
-    "date": "2026-03-24",
+    "date": "2026-08-26",
     "kind": "CALL",
-    "doc": "Q4 2025 call",
-    "q": "In addition, we will be reducing our debt by making an offer for our senior notes -- senior notes to be redeemed at principal value plus accrued interest.",
+    "doc": "Q2 2026 call",
+    "q": "The euro benchmark was placed with a concurrent tender offer under which we bought back around EUR 0.7 billion of bonds across years 28, 39 and 40.",
     "url": null
    },
    "COST": {
-    "date": "2025-11-12",
+    "date": "2026-08-26",
     "kind": "CALL",
-    "doc": "Q3 2025 call",
-    "q": "Some of the cost savings we have made on holdco costs include reduced audit and professional fees, lower rent, lower insurance and reduced director fees stemming from the optimization of our Board earlier this year.",
+    "doc": "Q2 2026 call",
+    "q": "The Bau-Turbo regulation provides further momentum by streamlining change of use processes and shortening approval periods, and we have received good feedback from municipalities for around 120,000 square meters of offices.",
     "url": null
    },
    "VALUE_GAP": {
-    "date": "2026-05-13",
+    "date": "2026-08-26",
     "kind": "CALL",
-    "doc": "Q1 2026 call",
-    "q": "Combined with these efforts, we are now in a position to eradicate the Holdco debt, in particular reference to the notes and begin to make investments in undervalued companies.",
+    "doc": "Q2 2026 call",
+    "q": "We continue to execute our share buyback program launched in January, taking advantage of the market volatility and repurchasing our own shares at a significant discount to NAV.",
     "url": null
    },
    "ANTICIPATION": {
-    "date": "2026-05-13",
+    "date": "2026-03-09",
     "kind": "CALL",
-    "doc": "Q1 2026 call",
-    "q": "Subsequent to the quarter end, we received all the necessary regulatory approvals for the Bozzetto transaction to be completed, paving the way for the deal to close in the next couple of weeks, certainly by the end of May.",
+    "doc": "Q4 2025 call",
+    "q": "A portion of the leases have already been signed and advanced negotiations are going with additional prospective tenants.",
     "url": null
    }
   },
@@ -323,7 +245,7 @@
   "size_pct_mcap": 0.0,
   "docs_12m": {
    "CALL": 2,
-   "PR": 17
+   "PR": 16
   },
   "last_doc": "2026-07-31",
   "evidence": {
@@ -400,7 +322,7 @@
   "size_pct_mcap": 0.3379,
   "docs_12m": {
    "CALL": 3,
-   "PR": 7,
+   "PR": 6,
    "EX99": 5
   },
   "last_doc": "2026-08-17",
@@ -533,6 +455,82 @@
     "kind": "CALL",
     "doc": "Q3 2025 call",
     "q": "In Turkey, the government continues to advance its medical cannabis draft law, which could be made public in the coming months.",
+    "url": null
+   }
+  },
+  "tier": "ACT SIGNALLED"
+ },
+ "AIMFF": {
+  "ticker": "AIMFF",
+  "name": "Aimia Inc.",
+  "domestic": false,
+  "p_b": 0.6543376928920239,
+  "mcap": 170612965.0,
+  "score": 8.37,
+  "families": {
+   "BUYBACK": 2.602,
+   "TENDER": 0.27,
+   "MONETIZE": 2.06,
+   "DELEVER": 1.76,
+   "COST": 0.337,
+   "VALUE_GAP": 1.56,
+   "ANTICIPATION": 2.031
+  },
+  "novelty": 2.78,
+  "new_families": [],
+  "size_pct_mcap": 0.089,
+  "docs_12m": {
+   "CALL": 4
+  },
+  "last_doc": "2026-08-11",
+  "evidence": {
+   "BUYBACK": {
+    "date": "2026-05-13",
+    "kind": "CALL",
+    "doc": "Q1 2026 call",
+    "q": "Pending regulatory approval, we anticipate being committed to buy back approximately 5 million shares over the next 12 months through to June 2027.",
+    "url": null
+   },
+   "TENDER": {
+    "date": "2026-08-11",
+    "kind": "CALL",
+    "doc": "Q2 2026 call",
+    "q": "In the interest of transparency, slide 12 illustrates the impact of the tender offer on our liquidity on a pro forma basis.",
+    "url": null
+   },
+   "MONETIZE": {
+    "date": "2026-05-13",
+    "kind": "CALL",
+    "doc": "Q1 2026 call",
+    "q": "Most notably, we announced the divestiture of the specialty chemicals business, Bozzetto.",
+    "url": null
+   },
+   "DELEVER": {
+    "date": "2026-08-11",
+    "kind": "CALL",
+    "doc": "Q2 2026 call",
+    "q": "We completed a tender offer to purchase senior notes due in January 2030, reducing our interest costs materially.",
+    "url": null
+   },
+   "COST": {
+    "date": "2025-11-12",
+    "kind": "CALL",
+    "doc": "Q3 2025 call",
+    "q": "Some of the cost savings we have made on holdco costs include reduced audit and professional fees, lower rent, lower insurance and reduced director fees stemming from the optimization of our Board earlier this year.",
+    "url": null
+   },
+   "VALUE_GAP": {
+    "date": "2026-05-13",
+    "kind": "CALL",
+    "doc": "Q1 2026 call",
+    "q": "Combined with these efforts, we are now in a position to eradicate the Holdco debt, in particular reference to the notes and begin to make investments in undervalued companies.",
+    "url": null
+   },
+   "ANTICIPATION": {
+    "date": "2026-05-13",
+    "kind": "CALL",
+    "doc": "Q1 2026 call",
+    "q": "Subsequent to the quarter end, we received all the necessary regulatory approvals for the Bozzetto transaction to be completed, paving the way for the deal to close in the next couple of weeks, certainly by the end of May.",
     "url": null
    }
   },
@@ -1248,15 +1246,15 @@
   "domestic": false,
   "p_b": 0.9270200436290805,
   "mcap": 13135787384.0,
-  "score": 6.46,
+  "score": 6.56,
   "families": {
    "BUYBACK": 1.248,
-   "TENDER": 2.999,
+   "TENDER": 2.822,
    "MONETIZE": 0.936,
-   "DELEVER": 0.54,
+   "DELEVER": 1.135,
    "COST": 0.487
   },
-  "novelty": 5.12,
+  "novelty": 5.36,
   "new_families": [],
   "size_pct_mcap": 0.0,
   "docs_12m": {
@@ -1287,11 +1285,11 @@
     "url": null
    },
    "DELEVER": {
-    "date": "2026-08-25",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "The proceeds of this transaction will initially be used to repay bank debt.",
-    "url": null
+    "date": "2026-04-22",
+    "kind": "PR",
+    "doc": "SCENTRE GROUP ANNOUNCES CASH TENDER OFFER FOR ANY AND ALL OF ITS OUTSTANDING SUBORDINATED ",
+    "q": "SCENTRE GROUP ANNOUNCES CASH TENDER OFFER FOR ANY AND ALL OF ITS OUTSTANDING SUBORDINATED NOTES",
+    "url": "https://www.prnewswire.com/news-releases/scentre-group-announces-cash-tender-offer-for-any-and-all-of-its-outstanding-subordinated-notes-302750240.html"
    },
    "COST": {
     "date": "2026-08-25",
@@ -1527,75 +1525,6 @@
     "kind": "CALL",
     "doc": "Q3 2025 call",
     "q": "So, I'd say it's more to say.",
-    "url": null
-   }
-  },
-  "tier": "ACT SIGNALLED"
- },
- "GRNNF": {
-  "ticker": "GRNNF",
-  "name": "Grand City Properties S.A.",
-  "domestic": false,
-  "p_b": 0.319527241913536,
-  "mcap": 1810571641.0,
-  "score": 6.17,
-  "families": {
-   "BUYBACK": 2.29,
-   "TENDER": 2.107,
-   "MONETIZE": 1.375,
-   "DELEVER": 0.519,
-   "COST": 0.487,
-   "ANTICIPATION": 1.069
-  },
-  "novelty": 1.97,
-  "new_families": [],
-  "size_pct_mcap": 0.0,
-  "docs_12m": {
-   "CALL": 3,
-   "PR": 1
-  },
-  "last_doc": "2026-08-12",
-  "evidence": {
-   "BUYBACK": {
-    "date": "2026-08-12",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "In the second quarter, we issued EUR 600 million of new notes at a coupon of 5.25%, following the transaction we executed in the fourth quarter of last year and completed the tender offer on the notes with the first call date this year, whi",
-    "url": null
-   },
-   "TENDER": {
-    "date": "2026-08-12",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "In the second quarter, we issued EUR 600 million of new notes at a coupon of 5.25%, following the transaction we executed in the fourth quarter of last year and completed the tender offer on the notes with the first call date this year, whi",
-    "url": null
-   },
-   "MONETIZE": {
-    "date": "2026-08-12",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "On the disposal side, we completed EUR 31 million mostly properties in a non-core location and condominium.",
-    "url": null
-   },
-   "DELEVER": {
-    "date": "2026-03-11",
-    "kind": "CALL",
-    "doc": "Q4 2025 call",
-    "q": "In 2025, we have continued to successfully execute our strategy, reducing leverage as reflecting in our LTV of 31% while at the same time, increasing our annualized rent to EUR 429 million.",
-    "url": null
-   },
-   "COST": {
-    "date": "2026-03-11",
-    "kind": "CALL",
-    "doc": "Q4 2025 call",
-    "q": "Our approach combines access to venture-backed solution with the ability to adopt new tools directly into our operation, helping us to streamline processes, improve efficiencies and support our ESG objectives.",
-    "url": null
-   },
-   "ANTICIPATION": {
-    "date": "2026-08-12",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "And we hope to see already in the next few months, full operation there, and it will be implemented in our P&L and results.",
     "url": null
    }
   },
@@ -2398,7 +2327,7 @@
   "size_pct_mcap": 0.0,
   "docs_12m": {
    "CALL": 3,
-   "PR": 12
+   "PR": 11
   },
   "last_doc": "2026-08-13",
   "evidence": {
@@ -3926,50 +3855,6 @@
   },
   "tier": "ACT SIGNALLED"
  },
- "MBAK": {
-  "ticker": "MBAK",
-  "name": "MBAK Energy Solutions Inc.",
-  "domestic": true,
-  "p_b": null,
-  "mcap": 4586181.0,
-  "score": 4.19,
-  "families": {
-   "BUYBACK": 1.125,
-   "GOVERNANCE": 1.0,
-   "COST": 0.27
-  },
-  "novelty": 1.79,
-  "new_families": [],
-  "size_pct_mcap": 0.109,
-  "docs_12m": {
-   "PR": 9
-  },
-  "last_doc": "2026-03-25",
-  "evidence": {
-   "BUYBACK": {
-    "date": "2026-02-03",
-    "kind": "PR",
-    "doc": "MBAK Energy Solutions, Inc. (OTC:MBAK) Announces $500,000 Share Repurchase Plan",
-    "q": "(OTC:MBAK) Announces $500,000 Share Repurchase Plan",
-    "url": "https://www.globenewswire.com/news-release/2026/02/03/3231218/0/en/MBAK-Energy-Solutions-Inc-OTC-MBAK-Announces-500-000-Share-Repurchase-Plan.html"
-   },
-   "GOVERNANCE": {
-    "date": "2026-03-25",
-    "kind": "PR",
-    "doc": "MBAK Energy Solutions, Inc. (OTC:MBAK) partners with LETSATSI Power in Zambia's Copperbelt",
-    "q": "(OTC:MBAK) has signed an exclusive cooperation agreement with LETSATSI Power South Africa to install and operate 50 MWh of BESS.",
-    "url": "https://www.globenewswire.com/news-release/2026/03/25/3262278/0/en/MBAK-Energy-Solutions-Inc-OTC-MBAK-partners-with-LETSATSI-Power-in-Zambia-s-Copperbelt.html"
-   },
-   "COST": {
-    "date": "2026-03-05",
-    "kind": "PR",
-    "doc": "MBAK Energy Solutions, Inc. (OTC:MBAK) Opens Indian Subsidiary to streamline BESS integrat",
-    "q": "(OTC:MBAK) Opens Indian Subsidiary to streamline BESS integration",
-    "url": "https://www.globenewswire.com/news-release/2026/03/05/3250066/0/en/MBAK-Energy-Solutions-Inc-OTC-MBAK-Opens-Indian-Subsidiary-to-streamline-BESS-integration.html"
-   }
-  },
-  "tier": "ACT SIGNALLED"
- },
  "TIHRF": {
   "ticker": "TIHRF",
   "name": "Tharisa plc",
@@ -4223,6 +4108,42 @@
   },
   "tier": "ACT SIGNALLED"
  },
+ "CIBH": {
+  "ticker": "CIBH",
+  "name": "CIB Marine Bancshares, Inc.",
+  "domestic": true,
+  "p_b": 0.7428534063634685,
+  "mcap": 60353125.0,
+  "score": 4.1,
+  "families": {
+   "BUYBACK": 3.301,
+   "GOVERNANCE": 0.78
+  },
+  "novelty": 1.77,
+  "new_families": [],
+  "size_pct_mcap": 0.058,
+  "docs_12m": {
+   "PR": 7
+  },
+  "last_doc": "2026-07-13",
+  "evidence": {
+   "BUYBACK": {
+    "date": "2026-05-01",
+    "kind": "PR",
+    "doc": "CIB Marine Bancshares, Inc. Expands Common Stock Repurchase Plan",
+    "q": "As a result, the total amount authorized for the repurchase of the Company's outstanding common stock has increased from $2.5 million to $3.5 million with the program continuing through December 31, 2026.",
+    "url": "https://www.globenewswire.com/news-release/2026/05/01/3285760/0/en/CIB-Marine-Bancshares-Inc-Expands-Common-Stock-Repurchase-Plan.html"
+   },
+   "GOVERNANCE": {
+    "date": "2026-02-13",
+    "kind": "PR",
+    "doc": "CIB Marine Bancshares, Inc. Announces Expansion of Board of Directors and Appointment of N",
+    "q": "Announces Expansion of Board of Directors and Appointment of New Director",
+    "url": "https://www.globenewswire.com/news-release/2026/02/13/3238265/0/en/CIB-Marine-Bancshares-Inc-Announces-Expansion-of-Board-of-Directors-and-Appointment-of-New-Director.html"
+   }
+  },
+  "tier": "ACT SIGNALLED"
+ },
  "LIMAF": {
   "ticker": "LIMAF",
   "name": "Linamar Corporation",
@@ -4354,42 +4275,6 @@
   },
   "tier": "ACT SIGNALLED"
  },
- "CIBH": {
-  "ticker": "CIBH",
-  "name": "CIB Marine Bancshares, Inc.",
-  "domestic": true,
-  "p_b": 0.7428534063634685,
-  "mcap": 60353125.0,
-  "score": 4.05,
-  "families": {
-   "BUYBACK": 3.301,
-   "GOVERNANCE": 0.78
-  },
-  "novelty": 1.63,
-  "new_families": [],
-  "size_pct_mcap": 0.058,
-  "docs_12m": {
-   "PR": 7
-  },
-  "last_doc": "2026-07-13",
-  "evidence": {
-   "BUYBACK": {
-    "date": "2026-05-01",
-    "kind": "PR",
-    "doc": "CIB Marine Bancshares, Inc. Expands Common Stock Repurchase Plan",
-    "q": "As a result, the total amount authorized for the repurchase of the Company's outstanding common stock has increased from $2.5 million to $3.5 million with the program continuing through December 31, 2026.",
-    "url": "https://www.globenewswire.com/news-release/2026/05/01/3285760/0/en/CIB-Marine-Bancshares-Inc-Expands-Common-Stock-Repurchase-Plan.html"
-   },
-   "GOVERNANCE": {
-    "date": "2026-02-13",
-    "kind": "PR",
-    "doc": "CIB Marine Bancshares, Inc. Announces Expansion of Board of Directors and Appointment of N",
-    "q": "Announces Expansion of Board of Directors and Appointment of New Director",
-    "url": "https://www.globenewswire.com/news-release/2026/02/13/3238265/0/en/CIB-Marine-Bancshares-Inc-Announces-Expansion-of-Board-of-Directors-and-Appointment-of-New-Director.html"
-   }
-  },
-  "tier": "ACT SIGNALLED"
- },
  "CVAT": {
   "ticker": "CVAT",
   "name": "Cavitation Technologies, Inc.",
@@ -4469,6 +4354,85 @@
     "kind": "CALL",
     "doc": "Q4 2025 call",
     "q": "We will be moving away from presenting our financials on an underlying basis by allocating restructuring and other items from below the line to above the line.",
+    "url": null
+   }
+  },
+  "tier": "ACT SIGNALLED"
+ },
+ "FRFFF": {
+  "ticker": "FRFFF",
+  "name": "Fairfax Financial Holdings Limited",
+  "domestic": false,
+  "p_b": 0.5969580235016914,
+  "mcap": 15669350581.0,
+  "score": 4.03,
+  "families": {
+   "BUYBACK": 1.473,
+   "DIVIDEND_RETURN": 0.263,
+   "STRATEGIC_REVIEW": 0.337,
+   "MONETIZE": 0.149,
+   "DELEVER": 0.748,
+   "COST": 0.29,
+   "VALUE_GAP": 0.8
+  },
+  "novelty": 1.37,
+  "new_families": [
+   "VALUE_GAP"
+  ],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "CALL": 4,
+   "PR": 6
+  },
+  "last_doc": "2026-07-31",
+  "evidence": {
+   "BUYBACK": {
+    "date": "2026-07-31",
+    "kind": "CALL",
+    "doc": "Q2 2026 call",
+    "q": "You can see we bought back almost 1 million shares in the quarter.",
+    "url": null
+   },
+   "DIVIDEND_RETURN": {
+    "date": "2025-11-07",
+    "kind": "CALL",
+    "doc": "Q3 2025 call",
+    "q": "Consolidated interest and dividend income of $655 million was up 7.5% year-over-year benefiting from a growing investment portfolio and increased dividend income in the quarter.",
+    "url": null
+   },
+   "STRATEGIC_REVIEW": {
+    "date": "2025-11-07",
+    "kind": "CALL",
+    "doc": "Q3 2025 call",
+    "q": "Earlier this week, Fairfax and Bill McMorrow, Chairman and CEO of Kennedy-Wilson, issued a take-private offer to the Board of Directors of Kennedy-Wilson for $10.25 per share, a premium of approximately 38% of the closing stock that day.",
+    "url": null
+   },
+   "MONETIZE": {
+    "date": "2026-02-20",
+    "kind": "CALL",
+    "doc": "Q4 2025 call",
+    "q": "The only thing I would add is that held-for-sale accounting means that we just have one line on our balance sheet for the held for sale assets in one line for the held-for-sale liabilities.",
+    "url": null
+   },
+   "DELEVER": {
+    "date": "2026-02-20",
+    "kind": "CALL",
+    "doc": "Q4 2025 call",
+    "q": "Fairfax has committed to provide the consortium with funding up to an aggregate amount of $1.65 billion, which is the amount necessary to fund the cash purchase price and the redemption of certain preferred shares and other expenses.",
+    "url": null
+   },
+   "COST": {
+    "date": "2026-02-20",
+    "kind": "CALL",
+    "doc": "Q4 2025 call",
+    "q": "By 2001, revenues were $50 million, 2005, they were $280 million and in 2017, the company reached $5 billion in sales, profits every year through 2017. 2017 through 2025 were what we would call the lean years. restructuring charges, new CEO",
+    "url": null
+   },
+   "VALUE_GAP": {
+    "date": "2026-07-31",
+    "kind": "CALL",
+    "doc": "Q2 2026 call",
+    "q": "So we think it still remains undervalued.",
     "url": null
    }
   },
@@ -4704,77 +4668,6 @@
   },
   "tier": "ACT SIGNALLED"
  },
- "FRFFF": {
-  "ticker": "FRFFF",
-  "name": "Fairfax Financial Holdings Limited",
-  "domestic": false,
-  "p_b": 0.5969580235016914,
-  "mcap": 15669350581.0,
-  "score": 3.91,
-  "families": {
-   "BUYBACK": 1.473,
-   "DIVIDEND_RETURN": 0.263,
-   "STRATEGIC_REVIEW": 0.337,
-   "MONETIZE": 0.149,
-   "COST": 0.29,
-   "VALUE_GAP": 0.8
-  },
-  "novelty": 1.07,
-  "new_families": [
-   "VALUE_GAP"
-  ],
-  "size_pct_mcap": 0.0,
-  "docs_12m": {
-   "CALL": 4,
-   "PR": 6
-  },
-  "last_doc": "2026-07-31",
-  "evidence": {
-   "BUYBACK": {
-    "date": "2026-07-31",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "You can see we bought back almost 1 million shares in the quarter.",
-    "url": null
-   },
-   "DIVIDEND_RETURN": {
-    "date": "2025-11-07",
-    "kind": "CALL",
-    "doc": "Q3 2025 call",
-    "q": "Consolidated interest and dividend income of $655 million was up 7.5% year-over-year benefiting from a growing investment portfolio and increased dividend income in the quarter.",
-    "url": null
-   },
-   "STRATEGIC_REVIEW": {
-    "date": "2025-11-07",
-    "kind": "CALL",
-    "doc": "Q3 2025 call",
-    "q": "Earlier this week, Fairfax and Bill McMorrow, Chairman and CEO of Kennedy-Wilson, issued a take-private offer to the Board of Directors of Kennedy-Wilson for $10.25 per share, a premium of approximately 38% of the closing stock that day.",
-    "url": null
-   },
-   "MONETIZE": {
-    "date": "2026-02-20",
-    "kind": "CALL",
-    "doc": "Q4 2025 call",
-    "q": "The only thing I would add is that held-for-sale accounting means that we just have one line on our balance sheet for the held for sale assets in one line for the held-for-sale liabilities.",
-    "url": null
-   },
-   "COST": {
-    "date": "2026-02-20",
-    "kind": "CALL",
-    "doc": "Q4 2025 call",
-    "q": "By 2001, revenues were $50 million, 2005, they were $280 million and in 2017, the company reached $5 billion in sales, profits every year through 2017. 2017 through 2025 were what we would call the lean years. restructuring charges, new CEO",
-    "url": null
-   },
-   "VALUE_GAP": {
-    "date": "2026-07-31",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "So we think it still remains undervalued.",
-    "url": null
-   }
-  },
-  "tier": "ACT SIGNALLED"
- },
  "HDIUF": {
   "ticker": "HDIUF",
   "name": "ADENTRA Inc.",
@@ -4993,6 +4886,50 @@
   },
   "tier": "ACT SIGNALLED"
  },
+ "MBAK": {
+  "ticker": "MBAK",
+  "name": "MBAK Energy Solutions Inc.",
+  "domestic": true,
+  "p_b": null,
+  "mcap": 4586181.0,
+  "score": 3.85,
+  "families": {
+   "BUYBACK": 1.125,
+   "GOVERNANCE": 0.6,
+   "COST": 0.27
+  },
+  "novelty": 1.55,
+  "new_families": [],
+  "size_pct_mcap": 0.109,
+  "docs_12m": {
+   "PR": 9
+  },
+  "last_doc": "2026-03-25",
+  "evidence": {
+   "BUYBACK": {
+    "date": "2026-02-03",
+    "kind": "PR",
+    "doc": "MBAK Energy Solutions, Inc. (OTC:MBAK) Announces $500,000 Share Repurchase Plan",
+    "q": "(OTC:MBAK) Announces $500,000 Share Repurchase Plan",
+    "url": "https://www.globenewswire.com/news-release/2026/02/03/3231218/0/en/MBAK-Energy-Solutions-Inc-OTC-MBAK-Announces-500-000-Share-Repurchase-Plan.html"
+   },
+   "GOVERNANCE": {
+    "date": "2026-03-25",
+    "kind": "PR",
+    "doc": "MBAK Energy Solutions, Inc. (OTC:MBAK) partners with LETSATSI Power in Zambia's Copperbelt",
+    "q": "(OTC:MBAK) has signed an exclusive cooperation agreement with LETSATSI Power South Africa to install and operate 50 MWh of BESS.",
+    "url": "https://www.globenewswire.com/news-release/2026/03/25/3262278/0/en/MBAK-Energy-Solutions-Inc-OTC-MBAK-partners-with-LETSATSI-Power-in-Zambia-s-Copperbelt.html"
+   },
+   "COST": {
+    "date": "2026-03-05",
+    "kind": "PR",
+    "doc": "MBAK Energy Solutions, Inc. (OTC:MBAK) Opens Indian Subsidiary to streamline BESS integrat",
+    "q": "(OTC:MBAK) Opens Indian Subsidiary to streamline BESS integration",
+    "url": "https://www.globenewswire.com/news-release/2026/03/05/3250066/0/en/MBAK-Energy-Solutions-Inc-OTC-MBAK-Opens-Indian-Subsidiary-to-streamline-BESS-integration.html"
+   }
+  },
+  "tier": "ACT SIGNALLED"
+ },
  "HNTIY": {
   "ticker": "HNTIY",
   "name": "Hunting PLC",
@@ -5093,44 +5030,6 @@
     "doc": "Q2 2026 call",
     "q": "Therefore, the total shareholder return comprised of the basic return and gains on strategic share divestitures is expected to be approximately JPY 250 billion, JPY 26 billion higher compared to the initial forecast.",
     "url": null
-   }
-  },
-  "tier": "ACT SIGNALLED"
- },
- "LFGP": {
-  "ticker": "LFGP",
-  "name": "Ledyard Financial Group, Inc.",
-  "domestic": true,
-  "p_b": 1.1824586608711736,
-  "mcap": 76715553.0,
-  "score": 3.79,
-  "families": {
-   "BUYBACK": 1.05,
-   "GOVERNANCE": 1.809
-  },
-  "novelty": 2.14,
-  "new_families": [
-   "BUYBACK"
-  ],
-  "size_pct_mcap": 0.0502,
-  "docs_12m": {
-   "PR": 7
-  },
-  "last_doc": "2026-07-20",
-  "evidence": {
-   "BUYBACK": {
-    "date": "2026-02-06",
-    "kind": "PR",
-    "doc": "Ledyard Financial Group, Inc. Announces Stock Repurchase Program",
-    "q": "(OTCQX\u00ae: LFGP) (the \u201cCompany\u201d), the holding company for Ledyard National Bank (the \u201cBank\u201d), today announced that its Board of Directors has authorized the repurchase of up to 173,135 shares of the Company's common stock, which is approximat",
-    "url": "https://www.globenewswire.com/news-release/2026/02/06/3233853/0/en/Ledyard-Financial-Group-Inc-Announces-Stock-Repurchase-Program.html"
-   },
-   "GOVERNANCE": {
-    "date": "2026-03-25",
-    "kind": "PR",
-    "doc": "Jennifer Williams Joins Board of Directors of Ledyard Financial Group, Inc.",
-    "q": "(OTCQX\u00ae: LFGP) (the \u201cCompany\u201d), the holding company for Ledyard National Bank (the \u201cBank\u201d), today announced that Jennifer \u201cJenny\u201d Williams has been appointed to the Board of Directors, effective March 26, 2026.",
-    "url": "https://www.globenewswire.com/news-release/2026/03/25/3262221/0/en/Jennifer-Williams-Joins-Board-of-Directors-of-Ledyard-Financial-Group-Inc.html"
    }
   },
   "tier": "ACT SIGNALLED"
@@ -5649,7 +5548,7 @@
   ],
   "size_pct_mcap": 0.0,
   "docs_12m": {
-   "PR": 30,
+   "PR": 29,
    "LETTER": 1,
    "EX99": 2
   },
@@ -6043,7 +5942,7 @@
   ],
   "size_pct_mcap": 0.0493,
   "docs_12m": {
-   "PR": 26,
+   "PR": 25,
    "EX99": 4
   },
   "last_doc": "2026-09-23",
@@ -6230,7 +6129,7 @@
     "url": null
    }
   },
-  "tier": "BUILDING"
+  "tier": "ACT SIGNALLED"
  },
  "STLFF": {
   "ticker": "STLFF",
@@ -6483,118 +6382,6 @@
   },
   "tier": "BUILDING"
  },
- "FNMA": {
-  "ticker": "FNMA",
-  "name": "Federal National Mortgage Association",
-  "domestic": true,
-  "p_b": null,
-  "mcap": 5732533457.0,
-  "score": 3.39,
-  "families": {
-   "TENDER": 1.856,
-   "MONETIZE": 0.675
-  },
-  "novelty": 0.68,
-  "new_families": [],
-  "size_pct_mcap": 0.0,
-  "docs_12m": {
-   "CALL": 2,
-   "PR": 40,
-   "EX99": 3
-  },
-  "last_doc": "2026-09-21",
-  "evidence": {
-   "TENDER": {
-    "date": "2026-02-23",
-    "kind": "PR",
-    "doc": "Fannie Mae Announces Tender Offer for Any and All of Certain CAS Notes",
-    "q": "Fannie Mae (OTCQB: FNMA) today announced that it has commenced fixed-price cash tender offers (each, an \"Offer\" and, collectively, the \"Offers\") for the purchase of any and all of the Connecticut Avenue Securities\u00ae (CAS) Notes listed below ",
-    "url": "https://www.prnewswire.com/news-releases/fannie-mae-announces-tender-offer-for-any-and-all-of-certain-cas-notes-302694043.html"
-   },
-   "MONETIZE": {
-    "date": "2026-07-29",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "This quarter, we recorded $150 million in net unrealized losses on our available-for-sale investment portfolio due to movements in long-term interest rates.",
-    "url": null
-   }
-  },
-  "tier": "BUILDING"
- },
- "AGFMF": {
-  "ticker": "AGFMF",
-  "name": "AGF Management Limited",
-  "domestic": false,
-  "p_b": 0.8640163471154367,
-  "mcap": 770069172.0,
-  "score": 3.34,
-  "families": {
-   "BUYBACK": 2.187,
-   "DIVIDEND_RETURN": 0.797,
-   "MONETIZE": 0.836
-  },
-  "novelty": 0.32,
-  "new_families": [],
-  "size_pct_mcap": 0.0,
-  "docs_12m": {
-   "CALL": 2,
-   "PR": 16
-  },
-  "last_doc": "2026-09-03",
-  "evidence": {
-   "BUYBACK": {
-    "date": "2026-06-24",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "In the same period, we returned CAD 80 million to shareholders, consisting of CAD 32 million in dividends and CAD 47 million in share buybacks.",
-    "url": null
-   },
-   "DIVIDEND_RETURN": {
-    "date": "2026-06-24",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "Our future capital allocation will be balanced and includes returning capital to shareholders through dividends and share buybacks, as well as investing in areas of growth.",
-    "url": null
-   },
-   "MONETIZE": {
-    "date": "2026-06-24",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "We do expect some monetizations coming in the next few years.",
-    "url": null
-   }
-  },
-  "tier": "BUILDING"
- },
- "FMCC": {
-  "ticker": "FMCC",
-  "name": "Federal Home Loan Mortgage Corporation",
-  "domestic": true,
-  "p_b": null,
-  "mcap": 2892764887.0,
-  "score": 3.33,
-  "families": {
-   "TENDER": 3.248
-  },
-  "novelty": 0.83,
-  "new_families": [],
-  "size_pct_mcap": 0.0,
-  "docs_12m": {
-   "PR": 82,
-   "EX99": 5
-  },
-  "last_doc": "2026-09-17",
-  "evidence": {
-   "TENDER": {
-    "date": "2026-05-04",
-    "kind": "EX99",
-    "doc": "8-K 7.01,9.01",
-    "q": "McLean, Va. - Freddie Mac (OTCQB: FMCC) today announced that it has commenced a fixed-price cash tender offer (the \u201cOffer\u201d) for the purchase of any and all of the STACR\u00ae (Structured Agency Credit Risk) Notes listed in the table below (the \u201c",
-    "url": "https://www.sec.gov/Archives/edgar/data/1026214/000102621426000030"
-   }
-  },
-  "tier": "BUILDING"
- },
  "PFSB": {
   "ticker": "PFSB",
   "name": "PFS Bancorp, Inc.",
@@ -6622,6 +6409,43 @@
    }
   },
   "tier": ""
+ },
+ "FMCC": {
+  "ticker": "FMCC",
+  "name": "Federal Home Loan Mortgage Corporation",
+  "domestic": true,
+  "p_b": null,
+  "mcap": 2892764887.0,
+  "score": 3.29,
+  "families": {
+   "TENDER": 2.965,
+   "DELEVER": 1.706
+  },
+  "novelty": 0.72,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "PR": 82,
+   "EX99": 5
+  },
+  "last_doc": "2026-09-17",
+  "evidence": {
+   "TENDER": {
+    "date": "2026-05-04",
+    "kind": "EX99",
+    "doc": "8-K 7.01,9.01",
+    "q": "McLean, Va. - Freddie Mac (OTCQB: FMCC) today announced that it has commenced a fixed-price cash tender offer (the \u201cOffer\u201d) for the purchase of any and all of the STACR\u00ae (Structured Agency Credit Risk) Notes listed in the table below (the \u201c",
+    "url": "https://www.sec.gov/Archives/edgar/data/1026214/000102621426000030"
+   },
+   "DELEVER": {
+    "date": "2026-05-04",
+    "kind": "EX99",
+    "doc": "8-K 7.01,9.01",
+    "q": "Freddie Mac Announces Tender Offer for Any and All of Certain STACR Notes",
+    "url": "https://www.sec.gov/Archives/edgar/data/1026214/000102621426000030"
+   }
+  },
+  "tier": "BUILDING"
  },
  "DXYN": {
   "ticker": "DXYN",
@@ -6740,22 +6564,58 @@
   },
   "tier": ""
  },
+ "TVFCF": {
+  "ticker": "TVFCF",
+  "name": "T\u00e9l\u00e9vision Fran\u00e7aise 1 S.A.",
+  "domestic": false,
+  "p_b": 0.6934105257810516,
+  "mcap": 1932728057.0,
+  "score": 3.2,
+  "families": {
+   "DIVIDEND_RETURN": 1.159,
+   "MONETIZE": 1.803
+  },
+  "novelty": 2.85,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "CALL": 3
+  },
+  "last_doc": "2026-07-30",
+  "evidence": {
+   "DIVIDEND_RETURN": {
+    "date": "2026-07-30",
+    "kind": "CALL",
+    "doc": "Q2 2026 call",
+    "q": "You have noticed, and you're not the only one, that we have a strong net cash position, and we are capitalizing on that when we say that we aim to increase the dividend.",
+    "url": null
+   },
+   "MONETIZE": {
+    "date": "2026-07-30",
+    "kind": "CALL",
+    "doc": "Q2 2026 call",
+    "q": "We divested last year.",
+    "url": null
+   }
+  },
+  "tier": "BUILDING"
+ },
  "UNBLF": {
   "ticker": "UNBLF",
   "name": "Unibail-Rodamco-Westfield SE",
   "domestic": false,
   "p_b": 0.7447607254004628,
   "mcap": 16226634501.0,
-  "score": 3.28,
+  "score": 3.2,
   "families": {
-   "BUYBACK": 1.474,
+   "BUYBACK": 1.417,
    "MONETIZE": 1.109,
    "DELEVER": 0.786,
    "GOVERNANCE": 0.585,
    "COST": 0.667,
    "ANTICIPATION": 0.9
   },
-  "novelty": 1.26,
+  "novelty": 1.21,
   "new_families": [],
   "size_pct_mcap": 0.0,
   "docs_12m": {
@@ -6804,42 +6664,6 @@
     "kind": "CALL",
     "doc": "Q2 2026 call",
     "q": "And that's the reason why we structured carefully this transaction to afford the maximum flexibility in an environment that can remain volatile in the next few months.",
-    "url": null
-   }
-  },
-  "tier": "BUILDING"
- },
- "TVFCF": {
-  "ticker": "TVFCF",
-  "name": "T\u00e9l\u00e9vision Fran\u00e7aise 1 S.A.",
-  "domestic": false,
-  "p_b": 0.6934105257810516,
-  "mcap": 1932728057.0,
-  "score": 3.2,
-  "families": {
-   "DIVIDEND_RETURN": 1.159,
-   "MONETIZE": 1.803
-  },
-  "novelty": 2.85,
-  "new_families": [],
-  "size_pct_mcap": 0.0,
-  "docs_12m": {
-   "CALL": 3
-  },
-  "last_doc": "2026-07-30",
-  "evidence": {
-   "DIVIDEND_RETURN": {
-    "date": "2026-07-30",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "You have noticed, and you're not the only one, that we have a strong net cash position, and we are capitalizing on that when we say that we aim to increase the dividend.",
-    "url": null
-   },
-   "MONETIZE": {
-    "date": "2026-07-30",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "We divested last year.",
     "url": null
    }
   },
@@ -6920,6 +6744,44 @@
     "doc": "Q2 2026 call",
     "q": "Over the coming months, we'll be deploying AI agents to improve our full end-to-end Internet troubleshooting journey from network diagnostics to customer self-serve to call center support to home technician help.",
     "url": null
+   }
+  },
+  "tier": "BUILDING"
+ },
+ "LFGP": {
+  "ticker": "LFGP",
+  "name": "Ledyard Financial Group, Inc.",
+  "domestic": true,
+  "p_b": 1.1824586608711736,
+  "mcap": 76715553.0,
+  "score": 3.16,
+  "families": {
+   "BUYBACK": 1.05,
+   "GOVERNANCE": 1.221
+  },
+  "novelty": 1.45,
+  "new_families": [
+   "BUYBACK"
+  ],
+  "size_pct_mcap": 0.0502,
+  "docs_12m": {
+   "PR": 6
+  },
+  "last_doc": "2026-07-20",
+  "evidence": {
+   "BUYBACK": {
+    "date": "2026-02-06",
+    "kind": "PR",
+    "doc": "Ledyard Financial Group, Inc. Announces Stock Repurchase Program",
+    "q": "(OTCQX\u00ae: LFGP) (the \u201cCompany\u201d), the holding company for Ledyard National Bank (the \u201cBank\u201d), today announced that its Board of Directors has authorized the repurchase of up to 173,135 shares of the Company's common stock, which is approximat",
+    "url": "https://www.globenewswire.com/news-release/2026/02/06/3233853/0/en/Ledyard-Financial-Group-Inc-Announces-Stock-Repurchase-Program.html"
+   },
+   "GOVERNANCE": {
+    "date": "2026-07-20",
+    "kind": "PR",
+    "doc": "Betsey Rhynhart Joins Board of Directors of Ledyard Financial Group",
+    "q": "(OTCQX\u00ae: LFGP) (the \u201cCompany\u201d), the holding company for Ledyard National Bank (the \u201cBank\u201d), today announced that Betsey Rhynhart has been appointed to the Board of Directors of both Ledyard Financial Group, Inc. and Ledyard National Bank, e",
+    "url": "https://www.globenewswire.com/news-release/2026/07/20/3329738/0/en/Betsey-Rhynhart-Joins-Board-of-Directors-of-Ledyard-Financial-Group.html"
    }
   },
   "tier": "BUILDING"
@@ -7369,6 +7231,51 @@
     "doc": "Earnings Release \u2013 Redwood Capital Bancorp \u2013 First Quarter, 2026",
     "q": "Redwood Capital Bancorp First Quarter 2026 Earnings Release - Solid First Quarter Financial Performance, Dividend Increased.",
     "url": "https://www.businesswire.com/news/home/20260429069447/en/Earnings-Release-%E2%80%93-Redwood-Capital-Bancorp-%E2%80%93-First-Quarter-2026/"
+   }
+  },
+  "tier": "BUILDING"
+ },
+ "AGFMF": {
+  "ticker": "AGFMF",
+  "name": "AGF Management Limited",
+  "domestic": false,
+  "p_b": 0.8640163471154367,
+  "mcap": 770069172.0,
+  "score": 2.98,
+  "families": {
+   "BUYBACK": 1.885,
+   "DIVIDEND_RETURN": 0.682,
+   "MONETIZE": 0.765
+  },
+  "novelty": 0.07,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "CALL": 1,
+   "PR": 15
+  },
+  "last_doc": "2026-09-03",
+  "evidence": {
+   "BUYBACK": {
+    "date": "2026-06-24",
+    "kind": "CALL",
+    "doc": "Q2 2026 call",
+    "q": "In the same period, we returned CAD 80 million to shareholders, consisting of CAD 32 million in dividends and CAD 47 million in share buybacks.",
+    "url": null
+   },
+   "DIVIDEND_RETURN": {
+    "date": "2026-06-24",
+    "kind": "CALL",
+    "doc": "Q2 2026 call",
+    "q": "Our future capital allocation will be balanced and includes returning capital to shareholders through dividends and share buybacks, as well as investing in areas of growth.",
+    "url": null
+   },
+   "MONETIZE": {
+    "date": "2026-06-24",
+    "kind": "CALL",
+    "doc": "Q2 2026 call",
+    "q": "We do expect some monetizations coming in the next few years.",
+    "url": null
    }
   },
   "tier": "BUILDING"
@@ -8172,6 +8079,121 @@
     "doc": "Q4 2025 call",
     "q": "I understand the dividend will be decided in the AGM in the next couple of weeks.",
     "url": null
+   }
+  },
+  "tier": "BUILDING"
+ },
+ "GRNNF": {
+  "ticker": "GRNNF",
+  "name": "Grand City Properties S.A.",
+  "domestic": false,
+  "p_b": 0.319527241913536,
+  "mcap": 1810571641.0,
+  "score": 2.73,
+  "families": {
+   "BUYBACK": 1.075,
+   "TENDER": 0.63,
+   "MONETIZE": 1.375,
+   "DELEVER": 2.13,
+   "COST": 0.487,
+   "ANTICIPATION": 1.069
+  },
+  "novelty": 0.82,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "CALL": 3,
+   "PR": 1
+  },
+  "last_doc": "2026-08-12",
+  "evidence": {
+   "BUYBACK": {
+    "date": "2026-03-11",
+    "kind": "CALL",
+    "doc": "Q4 2025 call",
+    "q": "In addition to the EUR 500 million, we repurchased EUR 100 million of the 1.5% perpetual notes that have their first call date in 2026, proactively targeting the refinancing of the notes and reducing potential negative impact from the marke",
+    "url": null
+   },
+   "TENDER": {
+    "date": "2025-12-16",
+    "kind": "CALL",
+    "doc": "Q3 2025 call",
+    "q": "FFO I amounted to EUR 141 million, remaining stable, primarily as a result of higher adjusted EBITDA and slightly lower perpetual notes attribution resulting from the exchange and tender offer executed in 2024, which were offset by higher f",
+    "url": null
+   },
+   "MONETIZE": {
+    "date": "2026-08-12",
+    "kind": "CALL",
+    "doc": "Q2 2026 call",
+    "q": "On the disposal side, we completed EUR 31 million mostly properties in a non-core location and condominium.",
+    "url": null
+   },
+   "DELEVER": {
+    "date": "2026-08-12",
+    "kind": "CALL",
+    "doc": "Q2 2026 call",
+    "q": "In the second quarter, we issued EUR 600 million of new notes at a coupon of 5.25%, following the transaction we executed in the fourth quarter of last year and completed the tender offer on the notes with the first call date this year, whi",
+    "url": null
+   },
+   "COST": {
+    "date": "2026-03-11",
+    "kind": "CALL",
+    "doc": "Q4 2025 call",
+    "q": "Our approach combines access to venture-backed solution with the ability to adopt new tools directly into our operation, helping us to streamline processes, improve efficiencies and support our ESG objectives.",
+    "url": null
+   },
+   "ANTICIPATION": {
+    "date": "2026-08-12",
+    "kind": "CALL",
+    "doc": "Q2 2026 call",
+    "q": "And we hope to see already in the next few months, full operation there, and it will be implemented in our P&L and results.",
+    "url": null
+   }
+  },
+  "tier": "BUILDING"
+ },
+ "FNMA": {
+  "ticker": "FNMA",
+  "name": "Federal National Mortgage Association",
+  "domestic": true,
+  "p_b": null,
+  "mcap": 5732533457.0,
+  "score": 2.72,
+  "families": {
+   "TENDER": 1.406,
+   "MONETIZE": 0.675,
+   "DELEVER": 0.9
+  },
+  "novelty": 0.68,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "CALL": 2,
+   "PR": 40,
+   "EX99": 3
+  },
+  "last_doc": "2026-09-21",
+  "evidence": {
+   "TENDER": {
+    "date": "2026-02-23",
+    "kind": "PR",
+    "doc": "Fannie Mae Announces Tender Offer for Any and All of Certain CAS Notes",
+    "q": "Fannie Mae (OTCQB: FNMA) today announced that it has commenced fixed-price cash tender offers (each, an \"Offer\" and, collectively, the \"Offers\") for the purchase of any and all of the Connecticut Avenue Securities\u00ae (CAS) Notes listed below ",
+    "url": "https://www.prnewswire.com/news-releases/fannie-mae-announces-tender-offer-for-any-and-all-of-certain-cas-notes-302694043.html"
+   },
+   "MONETIZE": {
+    "date": "2026-07-29",
+    "kind": "CALL",
+    "doc": "Q2 2026 call",
+    "q": "This quarter, we recorded $150 million in net unrealized losses on our available-for-sale investment portfolio due to movements in long-term interest rates.",
+    "url": null
+   },
+   "DELEVER": {
+    "date": "2026-03-02",
+    "kind": "PR",
+    "doc": "Fannie Mae Announces Results of Tender Offer for Any and All of Certain CAS Notes",
+    "q": "Fannie Mae Announces Results of Tender Offer for Any and All of Certain CAS Notes",
+    "url": "https://www.prnewswire.com/news-releases/fannie-mae-announces-results-of-tender-offer-for-any-and-all-of-certain-cas-notes-302700579.html"
    }
   },
   "tier": "BUILDING"
@@ -9043,6 +9065,66 @@
   },
   "tier": "BUILDING"
  },
+ "AXIAY": {
+  "ticker": "AXIAY",
+  "name": "AXIA Energia S.A.",
+  "domestic": false,
+  "p_b": 1.013184771899452,
+  "mcap": 24335480490.0,
+  "score": 2.44,
+  "families": {
+   "BUYBACK": 1.125,
+   "MONETIZE": 1.698,
+   "DELEVER": 1.385,
+   "COST": 0.337,
+   "ANTICIPATION": 1.35
+  },
+  "novelty": 1.16,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "CALL": 3
+  },
+  "last_doc": "2026-08-06",
+  "evidence": {
+   "BUYBACK": {
+    "date": "2026-02-27",
+    "kind": "CALL",
+    "doc": "Q4 2025 call",
+    "q": "As I had talked about, we launched the first share purchase program where we had 1,644 employees becoming new shareholders of the company, and that represents 22% of our total employees.",
+    "url": null
+   },
+   "MONETIZE": {
+    "date": "2026-02-27",
+    "kind": "CALL",
+    "doc": "Q4 2025 call",
+    "q": "Generation margin, when we look at the fourth quarter of '24, excluding this aspect of the reimbursement of wind plants that in the comparison is not -- it's apples and oranges, of BRL 250 million, we would have had an increase of 25% in ou",
+    "url": null
+   },
+   "DELEVER": {
+    "date": "2026-08-06",
+    "kind": "CALL",
+    "doc": "Q2 2026 call",
+    "q": "We announced a year-to-date BRL 7.7 billion to redeem Class C preferred shares.",
+    "url": null
+   },
+   "COST": {
+    "date": "2025-11-06",
+    "kind": "CALL",
+    "doc": "Q3 2025 call",
+    "q": "On Slide 18, consistent deliveries, everything we've done to simplify the structure and bring risks down and it's an indication of the price resilience we are projecting for 2026, advances in energy trading.",
+    "url": null
+   },
+   "ANTICIPATION": {
+    "date": "2026-08-06",
+    "kind": "CALL",
+    "doc": "Q2 2026 call",
+    "q": "For this half year, we'll have BRL 7.7 billion of shareholder returns to be executed in the coming months.",
+    "url": null
+   }
+  },
+  "tier": "BUILDING"
+ },
  "TKKYY": {
   "ticker": "TKKYY",
   "name": "Turkiye Sise ve Cam Fabrikalari AS",
@@ -9567,66 +9649,6 @@
     "kind": "CALL",
     "doc": "Q4 2025 call",
     "q": "We will see the full impact of these investments over the coming months and years.",
-    "url": null
-   }
-  },
-  "tier": "BUILDING"
- },
- "AXIAY": {
-  "ticker": "AXIAY",
-  "name": "AXIA Energia S.A.",
-  "domestic": false,
-  "p_b": 1.013184771899452,
-  "mcap": 24335480490.0,
-  "score": 2.3,
-  "families": {
-   "BUYBACK": 1.125,
-   "MONETIZE": 1.698,
-   "DELEVER": 0.54,
-   "COST": 0.337,
-   "ANTICIPATION": 1.35
-  },
-  "novelty": 0.82,
-  "new_families": [],
-  "size_pct_mcap": 0.0,
-  "docs_12m": {
-   "CALL": 3
-  },
-  "last_doc": "2026-08-06",
-  "evidence": {
-   "BUYBACK": {
-    "date": "2026-02-27",
-    "kind": "CALL",
-    "doc": "Q4 2025 call",
-    "q": "As I had talked about, we launched the first share purchase program where we had 1,644 employees becoming new shareholders of the company, and that represents 22% of our total employees.",
-    "url": null
-   },
-   "MONETIZE": {
-    "date": "2026-02-27",
-    "kind": "CALL",
-    "doc": "Q4 2025 call",
-    "q": "Generation margin, when we look at the fourth quarter of '24, excluding this aspect of the reimbursement of wind plants that in the comparison is not -- it's apples and oranges, of BRL 250 million, we would have had an increase of 25% in ou",
-    "url": null
-   },
-   "DELEVER": {
-    "date": "2025-11-06",
-    "kind": "CALL",
-    "doc": "Q3 2025 call",
-    "q": "As capital allocation that we have today comes down, we'll be beginning to substantially deleveraging the company.",
-    "url": null
-   },
-   "COST": {
-    "date": "2025-11-06",
-    "kind": "CALL",
-    "doc": "Q3 2025 call",
-    "q": "On Slide 18, consistent deliveries, everything we've done to simplify the structure and bring risks down and it's an indication of the price resilience we are projecting for 2026, advances in energy trading.",
-    "url": null
-   },
-   "ANTICIPATION": {
-    "date": "2026-08-06",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "For this half year, we'll have BRL 7.7 billion of shareholder returns to be executed in the coming months.",
     "url": null
    }
   },
@@ -11016,58 +11038,6 @@
   },
   "tier": "BUILDING"
  },
- "SOCLF": {
-  "ticker": "SOCLF",
-  "name": "Pharos Energy plc",
-  "domestic": false,
-  "p_b": 0.5442187821673069,
-  "mcap": 152638170.0,
-  "score": 2.02,
-  "families": {
-   "BUYBACK": 0.775,
-   "DIVIDEND_RETURN": 0.694,
-   "GOVERNANCE": 0.351,
-   "ANTICIPATION": 1.08
-  },
-  "novelty": 1.61,
-  "new_families": [],
-  "size_pct_mcap": 0.0,
-  "docs_12m": {
-   "CALL": 1
-  },
-  "last_doc": "2025-09-24",
-  "evidence": {
-   "BUYBACK": {
-    "date": "2025-09-24",
-    "kind": "CALL",
-    "doc": "Q2 2025 call",
-    "q": "And just to say that the buyback, which we've been running for some time, completed in January, and we haven't renewed that at this point.",
-    "url": null
-   },
-   "DIVIDEND_RETURN": {
-    "date": "2025-09-24",
-    "kind": "CALL",
-    "doc": "Q2 2025 call",
-    "q": "We have announced a 10% increase in prior year dividend, so just under 0.4 per share, which will be paid in January.",
-    "url": null
-   },
-   "GOVERNANCE": {
-    "date": "2025-09-24",
-    "kind": "CALL",
-    "doc": "Q2 2025 call",
-    "q": "We appointed a new Chairman to the Board in June.",
-    "url": null
-   },
-   "ANTICIPATION": {
-    "date": "2025-09-24",
-    "kind": "CALL",
-    "doc": "Q2 2025 call",
-    "q": "And as I mentioned, we also have this formal process ongoing for the exploration, which is, again, a new fresh look at how best to find a partner to deliver hopefully, a drilling campaign next year.",
-    "url": null
-   }
-  },
-  "tier": ""
- },
  "NOTE": {
   "ticker": "NOTE",
   "name": "FiscalNote Holdings, Inc.",
@@ -11150,7 +11120,7 @@
   "new_families": [],
   "size_pct_mcap": 0.0,
   "docs_12m": {
-   "PR": 89
+   "PR": 88
   },
   "last_doc": "2026-09-22",
   "evidence": {
@@ -11537,6 +11507,42 @@
     "doc": "Q2 2026 call",
     "q": "The base case is to sell a bit of land for a totally different price than if you grow trees.",
     "url": null
+   }
+  },
+  "tier": "BUILDING"
+ },
+ "AERA": {
+  "ticker": "AERA",
+  "name": "AI Era Corp.",
+  "domestic": true,
+  "p_b": 0.1745197412001706,
+  "mcap": 461574.0,
+  "score": 1.93,
+  "families": {
+   "BUYBACK": 1.25,
+   "MONETIZE": 0.759
+  },
+  "novelty": 0.76,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "PR": 12
+  },
+  "last_doc": "2026-08-31",
+  "evidence": {
+   "BUYBACK": {
+    "date": "2026-04-24",
+    "kind": "PR",
+    "doc": "PRISM MediaWire \u2013 Weekly Press Release Round Up \u2013 April 20 to April 24, 2026 \u2013 Top Financi",
+    "q": "Aclarion Announces $2.5 Million Stock Repurchase Plan",
+    "url": "https://prismmediawire.com/prism-mediawire-weekly-press-release-round-up-april-20-to-april-24-2026-top-financial-corporate-news-highlights/"
+   },
+   "MONETIZE": {
+    "date": "2026-08-31",
+    "kind": "PR",
+    "doc": "AI Era Corp. Begins Monetizing Its Content Library by Licensing Online Broadcast Rights \u2014 ",
+    "q": "Begins Monetizing Its Content Library by Licensing Online Broadcast Rights \u2014 Retaining AI Training Rights as the Library Grows from the uFilm.ai Production Loop",
+    "url": "https://www.globenewswire.com/news-release/2026/08/31/3353501/0/en/ai-era-corp-begins-monetizing-its-content-library-by-licensing-online-broadcast-rights-retaining-ai-training-rights-as-the-library-grows-from-the-ufilm-ai-production-loop.html"
    }
   },
   "tier": "BUILDING"
@@ -12550,44 +12556,6 @@
     "doc": "Q4 2025 call",
     "q": "And so, yes, we're excited for it and definitely I think it's going to be a large source of revenue in the coming months and years.",
     "url": null
-   }
-  },
-  "tier": "BUILDING"
- },
- "BIEI": {
-  "ticker": "BIEI",
-  "name": "Premier Biomedical, Inc.",
-  "domestic": true,
-  "p_b": null,
-  "mcap": 519992.0,
-  "score": 1.75,
-  "families": {
-   "BUYBACK": 1.25,
-   "ANTICIPATION": 1.125
-  },
-  "novelty": 1.25,
-  "new_families": [
-   "BUYBACK"
-  ],
-  "size_pct_mcap": 0.0,
-  "docs_12m": {
-   "PR": 11
-  },
-  "last_doc": "2026-09-21",
-  "evidence": {
-   "BUYBACK": {
-    "date": "2026-04-24",
-    "kind": "PR",
-    "doc": "PRISM MediaWire \u2013 Weekly Press Release Round Up \u2013 April 20 to April 24, 2026 \u2013 Top Financi",
-    "q": "Aclarion Announces $2.5 Million Stock Repurchase Plan",
-    "url": "https://prismmediawire.com/prism-mediawire-weekly-press-release-round-up-april-20-to-april-24-2026-top-financial-corporate-news-highlights/"
-   },
-   "ANTICIPATION": {
-    "date": "2026-07-07",
-    "kind": "PR",
-    "doc": "Premier Graphene Inc. (BIEI) makes Down Payment for the Production of a Second SEDENA Cont",
-    "q": "Having Completed Delivery on the First Government Contract, Premier Wasted No Time in Preceding with yet Another Contract with More to Come Mexico City, Mexico, July 7, 2026 \u2013 PRISM MediaWire (Press Release Service \u2013 Press Release Distribut",
-    "url": "https://prismmediawire.com/premier-graphene-inc-biei-makes-down-payment-for-the-production-of-a-second-sedena-contract/"
    }
   },
   "tier": "BUILDING"
@@ -14206,60 +14174,6 @@
   },
   "tier": ""
  },
- "PLNH": {
-  "ticker": "PLNH",
-  "name": "Planet 13 Holdings Inc.",
-  "domestic": true,
-  "p_b": 1.1518090818551916,
-  "mcap": 44690144.0,
-  "score": 1.45,
-  "families": {
-   "MONETIZE": 1.927,
-   "GOVERNANCE": 0.585,
-   "COST": 2.401,
-   "ANTICIPATION": 0.9
-  },
-  "novelty": 1.33,
-  "new_families": [],
-  "size_pct_mcap": 0.0,
-  "docs_12m": {
-   "CALL": 3,
-   "PR": 19,
-   "EX99": 2
-  },
-  "last_doc": "2026-08-12",
-  "evidence": {
-   "MONETIZE": {
-    "date": "2026-03-25",
-    "kind": "CALL",
-    "doc": "Q4 2025 call",
-    "q": "We completed the California divestiture in early Q1, which removes approximately $2.5 million to $3 million in quarterly revenue from the run rate going forward.",
-    "url": null
-   },
-   "GOVERNANCE": {
-    "date": "2026-03-25",
-    "kind": "CALL",
-    "doc": "Q4 2025 call",
-    "q": "We've made major changes on people heading it and support groups working underneath the new director.",
-    "url": null
-   },
-   "COST": {
-    "date": "2026-03-25",
-    "kind": "CALL",
-    "doc": "Q4 2025 call",
-    "q": "Nevada wholesale was up 38% sequentially, which reflects the hotels team restructuring we executed in Q2.",
-    "url": null
-   },
-   "ANTICIPATION": {
-    "date": "2026-03-25",
-    "kind": "CALL",
-    "doc": "Q4 2025 call",
-    "q": "So all I can say is stay tuned.",
-    "url": null
-   }
-  },
-  "tier": ""
- },
  "WDPSF": {
   "ticker": "WDPSF",
   "name": "Warehouses De Pauw",
@@ -14402,7 +14316,7 @@
   ],
   "size_pct_mcap": 0.0,
   "docs_12m": {
-   "PR": 20
+   "PR": 19
   },
   "last_doc": "2026-09-16",
   "evidence": {
@@ -15333,58 +15247,6 @@
   },
   "tier": ""
  },
- "TSDOF": {
-  "ticker": "TSDOF",
-  "name": "Tessenderlo Group N.V.",
-  "domestic": false,
-  "p_b": 0.7105708681202744,
-  "mcap": 1581012025.0,
-  "score": 1.28,
-  "families": {
-   "BUYBACK": 0.923,
-   "MONETIZE": 0.45,
-   "COST": 1.797,
-   "ANTICIPATION": 1.856
-  },
-  "novelty": 1.82,
-  "new_families": [],
-  "size_pct_mcap": 0.0,
-  "docs_12m": {
-   "CALL": 2
-  },
-  "last_doc": "2026-08-27",
-  "evidence": {
-   "BUYBACK": {
-    "date": "2026-03-25",
-    "kind": "CALL",
-    "doc": "Q4 2025 call",
-    "q": "And we distributed about EUR 80 million in shareholders value through dividends or through share buyback.",
-    "url": null
-   },
-   "MONETIZE": {
-    "date": "2026-08-27",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "And this is definitely a goal of diversification of the group, creating value and unlocking value by having major stakes in listed entities worldwide is definitely something we like to do.",
-    "url": null
-   },
-   "COST": {
-    "date": "2026-08-27",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "So this is a contingent consideration that we will not receive and that we have taken in EBIT adjusting items, and then we had some restructuring expenses, additional restructuring expenses, mainly for PB Leiner and for Picanol in Ypres.",
-    "url": null
-   },
-   "ANTICIPATION": {
-    "date": "2026-08-27",
-    "kind": "CALL",
-    "doc": "Q2 2026 call",
-    "q": "Currently, we have decided that it is better for us to invest capital in minority stake, let's say, from a listed company. like FMC, we have not restarted our buyback program, but we might do so in the coming months, depending on how we are",
-    "url": null
-   }
-  },
-  "tier": ""
- },
  "FGPR": {
   "ticker": "FGPR",
   "name": "Ferrellgas Partners, L.P.",
@@ -15791,7 +15653,7 @@
   ],
   "size_pct_mcap": 0.0,
   "docs_12m": {
-   "PR": 16,
+   "PR": 15,
    "LETTER": 1,
    "EX99": 1
   },
@@ -17351,38 +17213,6 @@
   },
   "tier": ""
  },
- "LGMK": {
-  "ticker": "LGMK",
-  "name": "LogicMark, Inc.",
-  "domestic": true,
-  "p_b": null,
-  "mcap": 989735.0,
-  "score": 1.0,
-  "families": {
-   "MONETIZE": 1.111
-  },
-  "novelty": 1.11,
-  "new_families": [
-   "MONETIZE"
-  ],
-  "size_pct_mcap": 0.0,
-  "docs_12m": {
-   "CALL": 2,
-   "PR": 5,
-   "EX99": 3
-  },
-  "last_doc": "2026-06-04",
-  "evidence": {
-   "MONETIZE": {
-    "date": "2026-03-25",
-    "kind": "CALL",
-    "doc": "Q4 2025 call",
-    "q": "We are expanding our monetization beyond one-time device sales to include multiple subscription levels, connected care services, and select licensing opportunities.",
-    "url": null
-   }
-  },
-  "tier": ""
- },
  "PTBS": {
   "ticker": "PTBS",
   "name": "Potomac Bancshares, Inc.",
@@ -18486,7 +18316,7 @@
   "new_families": [],
   "size_pct_mcap": 0.0,
   "docs_12m": {
-   "PR": 14
+   "PR": 13
   },
   "last_doc": "2026-06-24",
   "evidence": {
@@ -18946,8 +18776,8 @@
   "size_pct_mcap": 0.0,
   "docs_12m": {
    "CALL": 1,
-   "PR": 12,
-   "EX99": 8
+   "PR": 11,
+   "EX99": 7
   },
   "last_doc": "2026-08-12",
   "evidence": {
@@ -19705,6 +19535,58 @@
   },
   "tier": ""
  },
+ "TSDOF": {
+  "ticker": "TSDOF",
+  "name": "Tessenderlo Group N.V.",
+  "domestic": false,
+  "p_b": 0.7105708681202744,
+  "mcap": 1581012025.0,
+  "score": 0.76,
+  "families": {
+   "BUYBACK": 0.554,
+   "MONETIZE": 0.45,
+   "COST": 1.77,
+   "ANTICIPATION": 1.744
+  },
+  "novelty": 1.45,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "CALL": 2
+  },
+  "last_doc": "2026-08-27",
+  "evidence": {
+   "BUYBACK": {
+    "date": "2026-03-25",
+    "kind": "CALL",
+    "doc": "Q4 2025 call",
+    "q": "And we distributed about EUR 80 million in shareholders value through dividends or through share buyback.",
+    "url": null
+   },
+   "MONETIZE": {
+    "date": "2026-08-27",
+    "kind": "CALL",
+    "doc": "Q2 2026 call",
+    "q": "And this is definitely a goal of diversification of the group, creating value and unlocking value by having major stakes in listed entities worldwide is definitely something we like to do.",
+    "url": null
+   },
+   "COST": {
+    "date": "2026-08-27",
+    "kind": "CALL",
+    "doc": "Q2 2026 call",
+    "q": "So this is a contingent consideration that we will not receive and that we have taken in EBIT adjusting items, and then we had some restructuring expenses, additional restructuring expenses, mainly for PB Leiner and for Picanol in Ypres.",
+    "url": null
+   },
+   "ANTICIPATION": {
+    "date": "2026-08-27",
+    "kind": "CALL",
+    "doc": "Q2 2026 call",
+    "q": "Currently, we have decided that it is better for us to invest capital in minority stake, let's say, from a listed company. like FMC, we have not restarted our buyback program, but we might do so in the coming months, depending on how we are",
+    "url": null
+   }
+  },
+  "tier": ""
+ },
  "MITI": {
   "ticker": "MITI",
   "name": "Mitesco, Inc.",
@@ -19883,6 +19765,60 @@
     "doc": "8-K 5.02,7.01,9.01",
     "q": "I look forward to working alongside management and my fellow directors as we expand strategic partnerships, accelerate commercial adoption, broaden recurring licensing opportunities, and continue unlocking the value of this platform for cus",
     "url": "https://www.sec.gov/Archives/edgar/data/1295514/000149315226032828"
+   }
+  },
+  "tier": ""
+ },
+ "PLNH": {
+  "ticker": "PLNH",
+  "name": "Planet 13 Holdings Inc.",
+  "domestic": true,
+  "p_b": 1.1518090818551916,
+  "mcap": 44690144.0,
+  "score": 0.7,
+  "families": {
+   "MONETIZE": 1.327,
+   "GOVERNANCE": 0.351,
+   "COST": 2.03,
+   "ANTICIPATION": 0.54
+  },
+  "novelty": 0.56,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "CALL": 3,
+   "PR": 19,
+   "EX99": 2
+  },
+  "last_doc": "2026-08-12",
+  "evidence": {
+   "MONETIZE": {
+    "date": "2026-03-25",
+    "kind": "CALL",
+    "doc": "Q4 2025 call",
+    "q": "We completed the California divestiture in early Q1, which removes approximately $2.5 million to $3 million in quarterly revenue from the run rate going forward.",
+    "url": null
+   },
+   "GOVERNANCE": {
+    "date": "2026-03-25",
+    "kind": "CALL",
+    "doc": "Q4 2025 call",
+    "q": "We've made major changes on people heading it and support groups working underneath the new director.",
+    "url": null
+   },
+   "COST": {
+    "date": "2026-05-13",
+    "kind": "CALL",
+    "doc": "Q1 2026 call",
+    "q": "And the third consecutive quarter of sequential growth and a direct result of the wholesale team restructuring what we executed in 2025.",
+    "url": null
+   },
+   "ANTICIPATION": {
+    "date": "2026-03-25",
+    "kind": "CALL",
+    "doc": "Q4 2025 call",
+    "q": "So all I can say is stay tuned.",
+    "url": null
    }
   },
   "tier": ""
@@ -20194,39 +20130,32 @@
   },
   "tier": ""
  },
- "GLGI": {
-  "ticker": "GLGI",
-  "name": "Greystone Logistics, Inc.",
+ "LGMK": {
+  "ticker": "LGMK",
+  "name": "LogicMark, Inc.",
   "domestic": true,
-  "p_b": 0.4549011467753005,
-  "mcap": 6272162.0,
+  "p_b": null,
+  "mcap": 989735.0,
   "score": 0.66,
   "families": {
-   "MONETIZE": 0.619,
-   "DELEVER": 0.636
+   "MONETIZE": 0.73
   },
-  "novelty": 0.87,
+  "novelty": 0.73,
   "new_families": [],
   "size_pct_mcap": 0.0,
   "docs_12m": {
    "CALL": 2,
-   "PR": 6
+   "PR": 5,
+   "EX99": 3
   },
-  "last_doc": "2026-09-03",
+  "last_doc": "2026-06-04",
   "evidence": {
    "MONETIZE": {
-    "date": "2026-04-16",
-    "kind": "CALL",
-    "doc": "Q3 2026 call",
-    "q": "In terms of just the operational, where we are money-wise, we have contracted to sell a piece of property we bought, for $1.675 million, which will allow us to have some cash on hand for any shortfall we might have.",
-    "url": null
-   },
-   "DELEVER": {
-    "date": "2026-04-16",
-    "kind": "CALL",
-    "doc": "Q3 2026 call",
-    "q": "And during the last multiple years when we had $10 million, $11 million, $12 million EBITDA every year, we were buying equipment, paying down debt, buying equipment, paying down debt.",
-    "url": null
+    "date": "2026-03-27",
+    "kind": "EX99",
+    "doc": "8-K 2.02,7.01,9.01",
+    "q": "With an expanded sales and business development team and multiple monetization pathways, including licensing of our vast IP portfolio, we believe LogicMark is well-positioned to drive revenue growth, improve profitability, and deliver meani",
+    "url": "https://www.sec.gov/Archives/edgar/data/1566826/000121390026035498"
    }
   },
   "tier": ""
@@ -20259,34 +20188,6 @@
   },
   "tier": ""
  },
- "DDEJF": {
-  "ticker": "DDEJF",
-  "name": "Dundee Corporation",
-  "domestic": false,
-  "p_b": 0.815480265008198,
-  "mcap": 322705705.0,
-  "score": 0.66,
-  "families": {
-   "MONETIZE": 0.937
-  },
-  "novelty": 0.49,
-  "new_families": [],
-  "size_pct_mcap": 0.0,
-  "docs_12m": {
-   "PR": 20
-  },
-  "last_doc": "2026-06-04",
-  "evidence": {
-   "MONETIZE": {
-    "date": "2026-03-25",
-    "kind": "PR",
-    "doc": "Dundee Corporation Delivers Strong 2025 Results; Advances Mining Strategy Through Monetiza",
-    "q": "\u201c This year , we delivered solid net earnings driven by significant investment gains across our mining portfolio , alongside sizeable monetization transactions that strengthened Dundee's year-end cash position and financial flexibility , \u201d ",
-    "url": "https://www.globenewswire.com/news-release/2026/03/25/3262639/0/en/Dundee-Corporation-Delivers-Strong-2025-Results-Advances-Mining-Strategy-Through-Monetizations-and-Capital-Repositioning.html"
-   }
-  },
-  "tier": ""
- },
  "LOMLF": {
   "ticker": "LOMLF",
   "name": "Lion One Metals Limited",
@@ -20301,7 +20202,7 @@
   "new_families": [],
   "size_pct_mcap": 0.0,
   "docs_12m": {
-   "PR": 45
+   "PR": 44
   },
   "last_doc": "2026-09-24",
   "evidence": {
@@ -20856,7 +20757,7 @@
   "new_families": [],
   "size_pct_mcap": 0.0,
   "docs_12m": {
-   "PR": 8
+   "PR": 7
   },
   "last_doc": "2026-09-23",
   "evidence": {
@@ -21090,6 +20991,43 @@
   },
   "tier": ""
  },
+ "GLGI": {
+  "ticker": "GLGI",
+  "name": "Greystone Logistics, Inc.",
+  "domestic": true,
+  "p_b": 0.4549011467753005,
+  "mcap": 6272162.0,
+  "score": 0.56,
+  "families": {
+   "MONETIZE": 0.619,
+   "DELEVER": 0.636
+  },
+  "novelty": 0.62,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "CALL": 2,
+   "PR": 6
+  },
+  "last_doc": "2026-09-03",
+  "evidence": {
+   "MONETIZE": {
+    "date": "2026-04-16",
+    "kind": "CALL",
+    "doc": "Q3 2026 call",
+    "q": "In terms of just the operational, where we are money-wise, we have contracted to sell a piece of property we bought, for $1.675 million, which will allow us to have some cash on hand for any shortfall we might have.",
+    "url": null
+   },
+   "DELEVER": {
+    "date": "2026-04-16",
+    "kind": "CALL",
+    "doc": "Q3 2026 call",
+    "q": "And during the last multiple years when we had $10 million, $11 million, $12 million EBITDA every year, we were buying equipment, paying down debt, buying equipment, paying down debt.",
+    "url": null
+   }
+  },
+  "tier": ""
+ },
  "ACCMF": {
   "ticker": "ACCMF",
   "name": "AAC Clyde Space AB (publ)",
@@ -21205,7 +21143,7 @@
   "new_families": [],
   "size_pct_mcap": 0.0,
   "docs_12m": {
-   "PR": 16,
+   "PR": 15,
    "EX99": 7
   },
   "last_doc": "2026-09-15",
@@ -21994,6 +21932,34 @@
   },
   "tier": ""
  },
+ "DDEJF": {
+  "ticker": "DDEJF",
+  "name": "Dundee Corporation",
+  "domestic": false,
+  "p_b": 0.815480265008198,
+  "mcap": 322705705.0,
+  "score": 0.47,
+  "families": {
+   "MONETIZE": 0.718
+  },
+  "novelty": 0.27,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "PR": 20
+  },
+  "last_doc": "2026-06-04",
+  "evidence": {
+   "MONETIZE": {
+    "date": "2026-01-14",
+    "kind": "PR",
+    "doc": "Dundee Corporation Announces the Accretive Monetization of Its Royalty on the Borborema Go",
+    "q": "Dundee Corporation Announces the Accretive Monetization of Its Royalty on the Borborema Gold Project",
+    "url": "https://www.globenewswire.com/news-release/2026/01/14/3218483/0/en/Dundee-Corporation-Announces-the-Accretive-Monetization-of-Its-Royalty-on-the-Borborema-Gold-Project.html"
+   }
+  },
+  "tier": ""
+ },
  "KMMPF": {
   "ticker": "KMMPF",
   "name": "Killam Apartment REIT",
@@ -22138,42 +22104,6 @@
     "doc": "Q2 2026 call",
     "q": "While this final migration and a limited number of system optimizations will continue over the coming months, we expect any remaining financial impact to be immaterial.",
     "url": null
-   }
-  },
-  "tier": ""
- },
- "NXGB": {
-  "ticker": "NXGB",
-  "name": "NxGen Brands Inc.",
-  "domestic": true,
-  "p_b": null,
-  "mcap": 350.0,
-  "score": 0.44,
-  "families": {
-   "MONETIZE": 0.351,
-   "COST": 1.266
-  },
-  "novelty": 0.67,
-  "new_families": [],
-  "size_pct_mcap": 0.0,
-  "docs_12m": {
-   "PR": 17
-  },
-  "last_doc": "2026-07-08",
-  "evidence": {
-   "MONETIZE": {
-    "date": "2025-09-24",
-    "kind": "PR",
-    "doc": "NxGen Brands Finalizes Acquisition of High-Performing Turnkey Business, Citing Significant",
-    "q": "This immediate success provides a strong foundation for the company\u2019s strategic growth initiatives, which are poised to unlock even greater value.",
-    "url": "https://prismmediawire.com/nxgen-brands-finalizes-acquisition-of-high-performing-turnkey-business-citing-significant-untapped-growth-potential/"
-   },
-   "COST": {
-    "date": "2025-10-21",
-    "kind": "PR",
-    "doc": "NxGen Brands, Inc. Announces Company Expansion into New Warehouse Space",
-    "q": "(OTC: NXGB) announced a significant expansion, acquiring additional warehouse space to meet increasing demand and streamline logistics, reinforcing its commitment to operational excellence and customer satisfaction.",
-    "url": "https://prismmediawire.com/nxgen-brands-inc-announces-company-expansion-into-new-warehouse-space/"
    }
   },
   "tier": ""
@@ -22848,7 +22778,7 @@
   "size_pct_mcap": 0.0,
   "docs_12m": {
    "CALL": 4,
-   "PR": 46,
+   "PR": 45,
    "EX99": 3
   },
   "last_doc": "2026-09-21",
@@ -23889,6 +23819,7 @@
   "score": 0.25,
   "families": {
    "MONETIZE": 0.45,
+   "DELEVER": 0.949,
    "COST": 0.27
   },
   "novelty": 0.07,
@@ -23906,6 +23837,13 @@
     "doc": "8-K 1.01,7.01,9.01",
     "q": "By entering into this agreement with Sabes the technology is being reunited with its visionary and founder, creating a practical pathway to unlock value from the technology while materially improving the Company\u2019s financial and strategic po",
     "url": "https://www.sec.gov/Archives/edgar/data/1812360/000149315226025636"
+   },
+   "DELEVER": {
+    "date": "2025-12-16",
+    "kind": "EX99",
+    "doc": "8-K 7.01,9.01",
+    "q": "In connection with the Company\u2019s acquisition strategy, the Company formed a wholly owned subsidiary, FOXO Acquisition Corporation (\u201cFAC\u201d), that intends to serve as vehicle to make acquisitions and created a new series of preferred stock des",
+    "url": "https://www.sec.gov/Archives/edgar/data/1812360/000149315225027961"
    },
    "COST": {
     "date": "2025-12-16",
@@ -24334,42 +24272,6 @@
     "doc": "Q4 2025 call",
     "q": "If we look at operational highlights for the quarter, we can conclude that the previously announced efficiency measures are fully implemented and that the cost savings from that is around SEK 200 million.",
     "url": null
-   }
-  },
-  "tier": ""
- },
- "AUTR": {
-  "ticker": "AUTR",
-  "name": "Autris",
-  "domestic": true,
-  "p_b": 3.7252701292015407,
-  "mcap": 85560246.0,
-  "score": 0.19,
-  "families": {
-   "GOVERNANCE": 0.27,
-   "COST": 0.27
-  },
-  "novelty": 0.07,
-  "new_families": [],
-  "size_pct_mcap": 0.0,
-  "docs_12m": {
-   "PR": 3
-  },
-  "last_doc": "2026-04-28",
-  "evidence": {
-   "GOVERNANCE": {
-    "date": "2025-09-24",
-    "kind": "PR",
-    "doc": "Autris Acquires BitCorp Capital - Substantially Bolstering Its Bitcoin Reserve Strategy an",
-    "q": "Alex Voss has been appointed a Director of Autris bringing the number of Board members to 5.",
-    "url": "https://www.newsfilecorp.com/release/267587/Autris-Acquires-BitCorp-Capital-Substantially-Bolstering-Its-Bitcoin-Reserve-Strategy-and-Undertakes-30-Million-Dollar-Capital-Raise"
-   },
-   "COST": {
-    "date": "2025-09-24",
-    "kind": "PR",
-    "doc": "Autris Acquires BitCorp Capital - Substantially Bolstering Its Bitcoin Reserve Strategy an",
-    "q": "Voss led M&A and other restructuring transactions at Juniper Advisory where he advised companies in the healthcare industry.",
-    "url": "https://www.newsfilecorp.com/release/267587/Autris-Acquires-BitCorp-Capital-Substantially-Bolstering-Its-Bitcoin-Reserve-Strategy-and-Undertakes-30-Million-Dollar-Capital-Raise"
    }
   },
   "tier": ""
@@ -25554,6 +25456,34 @@
   },
   "tier": ""
  },
+ "NXGB": {
+  "ticker": "NXGB",
+  "name": "NxGen Brands Inc.",
+  "domestic": true,
+  "p_b": null,
+  "mcap": 350.0,
+  "score": 0.07,
+  "families": {
+   "COST": 1.199
+  },
+  "novelty": 0.19,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "PR": 15
+  },
+  "last_doc": "2026-07-08",
+  "evidence": {
+   "COST": {
+    "date": "2025-10-21",
+    "kind": "PR",
+    "doc": "NxGen Brands, Inc. Announces Company Expansion into New Warehouse Space",
+    "q": "(OTC: NXGB) announced a significant expansion, acquiring additional warehouse space to meet increasing demand and streamline logistics, reinforcing its commitment to operational excellence and customer satisfaction.",
+    "url": "https://prismmediawire.com/nxgen-brands-inc-announces-company-expansion-into-new-warehouse-space/"
+   }
+  },
+  "tier": ""
+ },
  "ARRJF": {
   "ticker": "ARRJF",
   "name": "Arjo AB (publ)",
@@ -26283,7 +26213,7 @@
   "new_families": [],
   "size_pct_mcap": 0.0,
   "docs_12m": {
-   "PR": 70
+   "PR": 69
   },
   "last_doc": "2026-09-15",
   "evidence": {
@@ -26691,7 +26621,7 @@
   "new_families": [],
   "size_pct_mcap": 0.0,
   "docs_12m": {
-   "PR": 3
+   "PR": 2
   },
   "last_doc": "2025-12-08",
   "evidence": {},
@@ -26932,6 +26862,24 @@
    "PR": 1
   },
   "last_doc": "2026-01-15",
+  "evidence": {},
+  "tier": ""
+ },
+ "AUTR": {
+  "ticker": "AUTR",
+  "name": "Autris",
+  "domestic": true,
+  "p_b": 3.7252701292015407,
+  "mcap": 85560246.0,
+  "score": 0.0,
+  "families": {},
+  "novelty": 0.0,
+  "new_families": [],
+  "size_pct_mcap": 0.0,
+  "docs_12m": {
+   "PR": 2
+  },
+  "last_doc": "2026-04-28",
   "evidence": {},
   "tier": ""
  },
@@ -27220,7 +27168,7 @@
   "size_pct_mcap": 0.0,
   "docs_12m": {
    "PR": 11,
-   "EX99": 3
+   "EX99": 2
   },
   "last_doc": "2026-08-03",
   "evidence": {},
@@ -27841,8 +27789,7 @@
   "new_families": [],
   "size_pct_mcap": 0.0,
   "docs_12m": {
-   "PR": 8,
-   "EX99": 1
+   "PR": 8
   },
   "last_doc": "2026-08-19",
   "evidence": {},
@@ -28211,7 +28158,7 @@
   "new_families": [],
   "size_pct_mcap": 0.0,
   "docs_12m": {
-   "PR": 7
+   "PR": 6
   },
   "last_doc": "2026-07-28",
   "evidence": {},
@@ -28717,7 +28664,7 @@
   "new_families": [],
   "size_pct_mcap": 0.0,
   "docs_12m": {
-   "PR": 10
+   "PR": 9
   },
   "last_doc": "2026-07-29",
   "evidence": {},
@@ -28735,7 +28682,7 @@
   "new_families": [],
   "size_pct_mcap": 0.0,
   "docs_12m": {
-   "PR": 5
+   "PR": 4
   },
   "last_doc": "2026-09-08",
   "evidence": {},
@@ -29103,7 +29050,7 @@
   "new_families": [],
   "size_pct_mcap": 0.0,
   "docs_12m": {
-   "PR": 23
+   "PR": 22
   },
   "last_doc": "2026-08-19",
   "evidence": {},
@@ -29447,7 +29394,7 @@
   "new_families": [],
   "size_pct_mcap": 0.0,
   "docs_12m": {
-   "PR": 59
+   "PR": 58
   },
   "last_doc": "2026-09-24",
   "evidence": {},
@@ -29521,7 +29468,7 @@
   "size_pct_mcap": 0.0,
   "docs_12m": {
    "PR": 7,
-   "EX99": 6
+   "EX99": 5
   },
   "last_doc": "2026-08-14",
   "evidence": {},
@@ -29621,7 +29568,7 @@
   "new_families": [],
   "size_pct_mcap": 0.0,
   "docs_12m": {
-   "PR": 16
+   "PR": 15
   },
   "last_doc": "2026-09-09",
   "evidence": {},
@@ -29795,7 +29742,7 @@
   "new_families": [],
   "size_pct_mcap": 0.0,
   "docs_12m": {
-   "PR": 6
+   "PR": 5
   },
   "last_doc": "2026-05-28",
   "evidence": {},
@@ -31466,7 +31413,7 @@
   "size_pct_mcap": 0.0,
   "docs_12m": {
    "PR": 1,
-   "EX99": 4
+   "EX99": 3
   },
   "last_doc": "2025-10-16",
   "evidence": {},
@@ -31856,7 +31803,7 @@
   "new_families": [],
   "size_pct_mcap": 0.0,
   "docs_12m": {
-   "PR": 8
+   "PR": 7
   },
   "last_doc": "2025-12-18",
   "evidence": {},
@@ -32456,7 +32403,7 @@
   "new_families": [],
   "size_pct_mcap": 0.0,
   "docs_12m": {
-   "PR": 4
+   "PR": 3
   },
   "last_doc": "2026-08-06",
   "evidence": {},
@@ -33498,27 +33445,9 @@
   "new_families": [],
   "size_pct_mcap": 0.0,
   "docs_12m": {
-   "PR": 10
+   "PR": 9
   },
   "last_doc": "2026-08-24",
-  "evidence": {},
-  "tier": ""
- },
- "HLOGF": {
-  "ticker": "HLOGF",
-  "name": "Helium One Global Ltd",
-  "domestic": false,
-  "p_b": 0.5733024112825268,
-  "mcap": 50777500.0,
-  "score": 0.0,
-  "families": {},
-  "novelty": 0.0,
-  "new_families": [],
-  "size_pct_mcap": 0.0,
-  "docs_12m": {
-   "PR": 1
-  },
-  "last_doc": "2025-09-24",
   "evidence": {},
   "tier": ""
  },

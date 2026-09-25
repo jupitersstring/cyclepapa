@@ -168,7 +168,7 @@
     "p_b": 0.398,
     "mcap": 180852450.0,
     "deep": true,
-    "net_cash_frac": 0.23,
+    "net_cash_frac": null,
     "n_families": 2,
     "n_hard": 1,
     "tier": "ACTION LIKELY",
@@ -222,7 +222,7 @@
     "p_b": 0.482,
     "mcap": 32181134.0,
     "deep": true,
-    "net_cash_frac": 0.126,
+    "net_cash_frac": null,
     "n_families": 1,
     "n_hard": 1,
     "tier": "BUILDING",
@@ -501,7 +501,7 @@
     "p_b": 0.667,
     "mcap": 11202525.0,
     "deep": false,
-    "net_cash_frac": 0.068,
+    "net_cash_frac": null,
     "n_families": 1,
     "n_hard": 1,
     "tier": "BUILDING",
@@ -690,7 +690,7 @@
     "p_b": 0.662,
     "mcap": 13303287.0,
     "deep": false,
-    "net_cash_frac": 0.0,
+    "net_cash_frac": null,
     "n_families": 2,
     "n_hard": 1,
     "tier": "ACTION LIKELY",
@@ -1143,7 +1143,7 @@
     "p_b": 0.657,
     "mcap": 34412083.0,
     "deep": false,
-    "net_cash_frac": 0.0,
+    "net_cash_frac": null,
     "n_families": 2,
     "n_hard": 0,
     "tier": "BUILDING",
@@ -1773,7 +1773,7 @@
     "p_b": 0.517,
     "mcap": 87032988.0,
     "deep": false,
-    "net_cash_frac": 0.0,
+    "net_cash_frac": null,
     "n_families": 1,
     "n_hard": 1,
     "tier": "BUILDING",
@@ -1938,13 +1938,13 @@
     "tier": "ACTION LIKELY",
     "families": {
       "PROXY_RESPONSIVE": {
-        "pts": 4.0,
+        "pts": 3.2,
         "date": "2026-03-25",
         "source": "DEF 14A",
         "detail": "responsive_to_shareholders"
       },
       "PAY_ON_VALUE": {
-        "pts": 2.0,
+        "pts": 1.6,
         "date": "2026-03-25",
         "source": "DEF 14A",
         "detail": "PSU on other_per_share, tsr"
@@ -1962,7 +1962,7 @@
         "detail": "\u201cDuring the quarter, we maintained our quarterly cash dividend of $0.32 per share and repur\u201d"
       }
     },
-    "score": 22.0
+    "score": 20.8
   },
   "CCZ": {
     "ticker": "CCZ",
@@ -1971,7 +1971,7 @@
     "p_b": 0.175,
     "mcap": 15715279955.0,
     "deep": true,
-    "net_cash_frac": 0.0,
+    "net_cash_frac": null,
     "n_families": 2,
     "n_hard": 0,
     "tier": "BUILDING",
@@ -2037,7 +2037,7 @@
     "p_b": 0.328,
     "mcap": 724363746.0,
     "deep": true,
-    "net_cash_frac": 0.0,
+    "net_cash_frac": null,
     "n_families": 1,
     "n_hard": 1,
     "tier": "BUILDING",
@@ -2169,7 +2169,7 @@
     "p_b": 0.179,
     "mcap": 40001778.0,
     "deep": true,
-    "net_cash_frac": 0.0,
+    "net_cash_frac": null,
     "n_families": 1,
     "n_hard": 1,
     "tier": "BUILDING",
@@ -2223,7 +2223,7 @@
     "p_b": 0.621,
     "mcap": 181885085.0,
     "deep": false,
-    "net_cash_frac": 0.0,
+    "net_cash_frac": null,
     "n_families": 1,
     "n_hard": 1,
     "tier": "BUILDING",
@@ -2571,13 +2571,13 @@
     "tier": "BUILDING",
     "families": {
       "CALL_COMMIT": {
-        "pts": 7.0,
+        "pts": 5.6,
         "date": "2026-03-25",
         "source": "earnings call",
         "detail": "\u201cIn terms of shareholder returns, we declared a special dividend of USD 0.088 per ADS in Ju\u201d"
       }
     },
-    "score": 14.0
+    "score": 12.6
   },
   "WHF": {
     "ticker": "WHF",
@@ -2634,7 +2634,7 @@
     "p_b": 0.136,
     "mcap": 18047338.0,
     "deep": true,
-    "net_cash_frac": 0.28,
+    "net_cash_frac": null,
     "n_families": 1,
     "n_hard": 1,
     "tier": "BUILDING",

@@ -1337,7 +1337,7 @@
    "3-year performance period",
    "payout capped at 200%"
   ],
-  "summary": "3-yr \u00b7 ROA 50% \u00b7 payout 0\u2013200% \u00b7 \u00b120% TSR modifier",
+  "summary": "3-yr \u00b7 ROA 50% (weights not stated) \u00b7 payout 0\u2013200% \u00b7 \u00b120% TSR modifier",
   "filing_date": "2026-03-12",
   "url": "https://www.sec.gov/Archives/edgar/data/880266/000088026626000023/",
   "psu_pct_lti": null,
@@ -1348,7 +1348,7 @@
    "responsive to shareholders"
   ],
   "source": "reviewed",
-  "weights_verified": true,
+  "weights_verified": false,
   "payout_max": 200,
   "negative_tsr_cap": false,
   "design_excerpt": "% of RONA Performance Shares Earned Weighted % of Total PSP Shares Earned"
@@ -1610,7 +1610,7 @@
    "book value / share": 20,
    "relative TSR": 20
   },
-  "weights_verified": true,
+  "weights_verified": false,
   "negative_tsr_cap": true,
   "goals_excerpt": "rategic planning or sensitive internal projections Preference for more rigorous threshold, target, stretch and maximum performance goals for the relative TSR metric used in the LTI plan | n Implemented more rigorous goals for the relative TSR metric in the 2026 LTI plan, including that a last place ranking will resul",
   "design_excerpt": "Each performance metric has a weighting of 20 percent when calculating the PSU Earnout Percentage.",
@@ -1625,7 +1625,7 @@
    "red flag: single-trigger CIC",
    "pay-for-performance: 2023-2025 paid 161% while TSR was +45% (-41pp vs SPY) \u2014 misaligned"
   ],
-  "summary": "3-yr (2025\u20132027) \u00b7 book value / share 20%, relative TSR 20% \u00b7 payout 0\u2013200% \u00b7 paid 2023-2025: 161%",
+  "summary": "3-yr (2025\u20132027) \u00b7 book value / share 20%, relative TSR 20% (weights not stated) \u00b7 payout 0\u2013200% \u00b7 paid 2023-2025: 161%",
   "filing_date": "2026-03-31",
   "url": "https://www.sec.gov/Archives/edgar/data/5272/000000527226000039/",
   "psu_pct_lti": null,
@@ -6269,7 +6269,7 @@
   "metrics": {
    "relative TSR": 50
   },
-  "weights_verified": true,
+  "weights_verified": false,
   "payout_max": 350,
   "payout_min": 0,
   "rtsr_percentiles": [
@@ -6288,7 +6288,7 @@
    "PSUs 50% of LTI",
    "price hurdles up to $100 = 3.1\u00d7 today's $31.8912"
   ],
-  "summary": "PSUs 50% of LTI \u00b7 3-yr \u00b7 relative TSR 50% \u00b7 payout 0\u2013350%",
+  "summary": "PSUs 50% of LTI \u00b7 3-yr \u00b7 relative TSR 50% (weights not stated) \u00b7 payout 0\u2013350%",
   "filing_date": "2026-04-22",
   "url": "https://www.sec.gov/Archives/edgar/data/1781755/000178175526000027/",
   "psu_pct_lti": 50,
@@ -11732,7 +11732,7 @@
    "price hurdles up to $500 = 2.1\u00d7 today's $236.31",
    "pay-for-performance: 2023-2025 paid 154% while TSR was +18% (-68pp vs SPY) \u2014 misaligned"
   ],
-  "summary": "3-yr (2025\u20132027) \u00b7 revenue 50% \u00b7 payout 0\u2013200% \u00b7 paid 2023-2025: 154%, 2022-2024: 157%",
+  "summary": "3-yr (2025\u20132027) \u00b7 revenue 50% (weights not stated) \u00b7 payout 0\u2013200% \u00b7 paid 2023-2025: 154%, 2022-2024: 157%",
   "filing_date": "2026-04-06",
   "url": "https://www.sec.gov/Archives/edgar/data/1022079/000114036126013356/",
   "psu_pct_lti": null,
@@ -11744,7 +11744,7 @@
    "3y vesting"
   ],
   "source": "reviewed",
-  "weights_verified": true,
+  "weights_verified": false,
   "payout_min": 0,
   "negative_tsr_cap": false,
   "history": [
@@ -14143,7 +14143,7 @@
    "payout capped at target if TSR negative",
    "PSUs 70% of LTI"
   ],
-  "summary": "PSUs 70% of LTI \u00b7 3-yr (2023\u20132025) \u00b7 relative TSR 50% \u00b7 payout 0\u2013200%",
+  "summary": "PSUs 70% of LTI \u00b7 3-yr (2023\u20132025) \u00b7 relative TSR 50% (weights not stated) \u00b7 payout 0\u2013200%",
   "filing_date": "2026-03-26",
   "url": "https://www.sec.gov/Archives/edgar/data/1711269/000114036126011357/",
   "psu_pct_lti": 70,
@@ -14158,7 +14158,7 @@
    "3y vesting"
   ],
   "source": "reviewed",
-  "weights_verified": true,
+  "weights_verified": false,
   "negative_tsr_cap": true
  },
  "EVTC": {
@@ -17025,7 +17025,7 @@
    "payout capped at 200%",
    "PSUs 50% of LTI"
   ],
-  "summary": "PSUs 50% of LTI \u00b7 3-yr \u00b7 strategic / ESG 50% \u00b7 payout 0\u2013200%",
+  "summary": "PSUs 50% of LTI \u00b7 3-yr \u00b7 strategic / ESG 50% (weights not stated) \u00b7 payout 0\u2013200%",
   "filing_date": "2026-04-24",
   "url": "https://www.sec.gov/Archives/edgar/data/1309402/000130940226000050/",
   "psu_pct_lti": 50,
@@ -17042,7 +17042,7 @@
    "clawback strengthened"
   ],
   "source": "reviewed",
-  "weights_verified": true,
+  "weights_verified": false,
   "negative_tsr_cap": false,
   "design_excerpt": "Since 2018, we have granted PSUs that utilize strategic performance measures, weighted 50%"
  },
@@ -17876,7 +17876,7 @@
   "metrics": {
    "ROIC": 50
   },
-  "weights_verified": true,
+  "weights_verified": false,
   "payout_max": 200,
   "goals_excerpt": "by the LDC Committee on at least an annual basis, an e ($ in billions) Measures Threshold Target Maximum Actual** Continuing NEOs Performance as % of Target | MIP Payout Sales (50%) $147",
   "design_excerpt": "Fiscal 2023-2025 Performance Shares Three-Year Average ROIC (50%)",
@@ -17890,7 +17890,7 @@
    "PSUs only 30% of LTI",
    "price hurdles up to 1.3\u00d7 today's price"
   ],
-  "summary": "PSUs 30% of LTI \u00b7 3-yr \u00b7 ROIC 50% \u00b7 payout 0\u2013200%",
+  "summary": "PSUs 30% of LTI \u00b7 3-yr \u00b7 ROIC 50% (weights not stated) \u00b7 payout 0\u2013200%",
   "filing_date": "2026-04-07",
   "url": "https://www.sec.gov/Archives/edgar/data/354950/000035495026000090/",
   "psu_pct_lti": 30,
@@ -18143,7 +18143,7 @@
   "metrics": {
    "relative TSR": 50
   },
-  "weights_verified": true,
+  "weights_verified": false,
   "rtsr_percentiles": [
    25,
    50
@@ -18167,7 +18167,7 @@
    "price hurdles up to $90 = 4.9\u00d7 today's $18.215",
    "pay-for-performance: 2023-2025 paid 100% while TSR was +243% (+157pp vs SPY) \u2014 aligned"
   ],
-  "summary": "PSUs 50% of LTI \u00b7 3-yr \u00b7 relative TSR 50% \u00b7 paid 2023-2025: 100%",
+  "summary": "PSUs 50% of LTI \u00b7 3-yr \u00b7 relative TSR 50% (weights not stated) \u00b7 paid 2023-2025: 100%",
   "filing_date": "2026-04-10",
   "url": "https://www.sec.gov/Archives/edgar/data/719413/000119312526151210/",
   "psu_pct_lti": 50,
@@ -18893,7 +18893,7 @@
    "max payout 300% (>200%)",
    "PSUs 50% of LTI"
   ],
-  "summary": "PSUs 50% of LTI \u00b7 3-yr \u00b7 other 33%, EBITDA 33% \u00b7 payout 0\u2013300%",
+  "summary": "PSUs 50% of LTI \u00b7 3-yr \u00b7 other 33%, EBITDA 33% (weights not stated) \u00b7 payout 0\u2013300%",
   "filing_date": "2026-04-28",
   "url": "https://www.sec.gov/Archives/edgar/data/1964789/000110465926049711/",
   "psu_pct_lti": 50,
@@ -18912,7 +18912,7 @@
    "clawback strengthened"
   ],
   "source": "reviewed",
-  "weights_verified": true,
+  "weights_verified": false,
   "negative_tsr_cap": false
  },
  "HWBK": {
@@ -28204,7 +28204,7 @@
   "metrics": {
    "revenue": 50
   },
-  "weights_verified": true,
+  "weights_verified": false,
   "payout_max": 300,
   "payout_min": 0,
   "rtsr_percentiles": [
@@ -28222,7 +28222,7 @@
    "max payout 300% (>200%)",
    "PSUs 50% of LTI"
   ],
-  "summary": "PSUs 50% of LTI \u00b7 3-yr \u00b7 revenue 50% \u00b7 payout 0\u2013300% \u00b7 rTSR target 50th pct",
+  "summary": "PSUs 50% of LTI \u00b7 3-yr \u00b7 revenue 50% (weights not stated) \u00b7 payout 0\u2013300% \u00b7 rTSR target 50th pct",
   "filing_date": "2025-06-25",
   "url": "https://www.sec.gov/Archives/edgar/data/1852131/000185213125000036/",
   "psu_pct_lti": 50,
@@ -29878,7 +29878,7 @@
   "metrics": {
    "relative TSR": 50
   },
-  "weights_verified": true,
+  "weights_verified": false,
   "goals_excerpt": "in peer group: > or = 75 th (Top Quartile) = 200% 50 th = Target = 100% 25 th = Threshold = 20% 200% \u2022 Top quartile EPS Growth 25% Measured on operating earnings per share in year three 163% \u2022 Exceeded our 2025 EPS target ESG Index 25% Targets, thresholds and maximums were established in accordance with our 2023-2025 Business Plan for the following metrics: (1) energy efficiency program targets for electric savings, (2) energy eff 1) energy efficiency program tar",
   "history": [
    [
@@ -29898,7 +29898,7 @@
    "price hurdles up to $207 = 3.1\u00d7 today's $67.725",
    "pay-for-performance: 2023-2025 paid 163% while TSR was +43% (-43pp vs SPY) \u2014 misaligned"
   ],
-  "summary": "PSUs 70% of LTI \u00b7 3-yr (2025\u20132027) \u00b7 relative TSR 50% \u00b7 paid 2023-2025: 163%",
+  "summary": "PSUs 70% of LTI \u00b7 3-yr (2025\u20132027) \u00b7 relative TSR 50% (weights not stated) \u00b7 paid 2023-2025: 163%",
   "filing_date": "2026-03-12",
   "url": "https://www.sec.gov/Archives/edgar/data/788784/000119312526104270/",
   "psu_pct_lti": 70,
@@ -31076,7 +31076,7 @@
    "history always pays high (avg 161%): soft goals",
    "pay-for-performance: 2023-2025 rTSR paid 161% while TSR was +33% (-53pp vs SPY) \u2014 misaligned"
   ],
-  "summary": "PSUs 80% of LTI \u00b7 3-yr (2023\u20132025) \u00b7 relative TSR 50%, EPS 25% \u00b7 payout 0\u2013200% \u00b7 paid 2023-2025 rTSR: 161%",
+  "summary": "PSUs 80% of LTI \u00b7 3-yr (2023\u20132025) \u00b7 relative TSR 50%, EPS 25% (weights not stated) \u00b7 payout 0\u2013200% \u00b7 paid 2023-2025 rTSR: 161%",
   "filing_date": "2026-04-01",
   "url": "https://www.sec.gov/Archives/edgar/data/922224/000119312526135991/",
   "psu_pct_lti": 80,
@@ -31086,7 +31086,7 @@
    "3y vesting"
   ],
   "source": "reviewed",
-  "weights_verified": true,
+  "weights_verified": false,
   "payout_min": 0,
   "payout_max": 200,
   "negative_tsr_cap": false,
@@ -31124,7 +31124,7 @@
    "PSUs 80% of LTI",
    "history always pays high (avg 161%): soft goals"
   ],
-  "summary": "PSUs 80% of LTI \u00b7 3-yr (2023\u20132025) \u00b7 relative TSR 50%, EPS 25% \u00b7 payout 0\u2013200% \u00b7 paid 2023-2025 rTSR: 161%",
+  "summary": "PSUs 80% of LTI \u00b7 3-yr (2023\u20132025) \u00b7 relative TSR 50%, EPS 25% (weights not stated) \u00b7 payout 0\u2013200% \u00b7 paid 2023-2025 rTSR: 161%",
   "filing_date": "2026-04-01",
   "url": "https://www.sec.gov/Archives/edgar/data/922224/000119312526135991/",
   "psu_pct_lti": 80,
@@ -31134,7 +31134,7 @@
    "3y vesting"
   ],
   "source": "reviewed",
-  "weights_verified": true,
+  "weights_verified": false,
   "payout_min": 0,
   "payout_max": 200,
   "negative_tsr_cap": false,
@@ -37017,7 +37017,7 @@
    "relative TSR": 30,
    "absolute TSR": 30
   },
-  "weights_verified": true,
+  "weights_verified": false,
   "payout_max": 150,
   "payout_min": 0,
   "goals_excerpt": "following performance measures, weights and funding formula: Measure | Weight | Threshold | Target | Maximum Performance (as a % of Target) Relative TSR | 30% | 40 th Percentile 50 th Percentile 65 th Percentile Absolute TSR | 30% | 8",
@@ -37032,7 +37032,7 @@
    "PSUs 60% of LTI",
    "price hurdles up to $6.05 = 3.2\u00d7 today's $1.9"
   ],
-  "summary": "PSUs 60% of LTI \u00b7 3-yr \u00b7 relative TSR 30%, absolute TSR 30% \u00b7 payout 0\u2013150% \u00b7 rTSR target 50th pct",
+  "summary": "PSUs 60% of LTI \u00b7 3-yr \u00b7 relative TSR 30%, absolute TSR 30% (weights not stated) \u00b7 payout 0\u2013150% \u00b7 rTSR target 50th pct",
   "filing_date": "2026-04-30",
   "url": "https://www.sec.gov/Archives/edgar/data/1556739/000155673926000029/",
   "psu_pct_lti": 60,

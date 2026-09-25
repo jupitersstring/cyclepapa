@@ -1273,7 +1273,7 @@ def build_insider_conviction(wb: Workbook, yf: dict):
 
     headers = ["Ticker", "Name", "Conviction", "Insiders", "Cluster",
                "Same day", "C-suite", "Total $M", "Top $M",
-               "Insiders paid (avg)", "Now vs their price", "Configuration"]
+               "Insiders paid (avg $)", "Now vs their price (%)", "Configuration"]
     f4b = _jload("form4_buys.json")
     finb = _jload("name_financials.json")
 
@@ -1284,9 +1284,9 @@ def build_insider_conviction(wb: Workbook, yf: dict):
         paid = b["total_dollar"] / b["total_shares"]
         px = f.get("price")
         if not px or (f.get("currency") or "USD") != "USD":
-            return f"${paid:,.2f}", "—"
+            return round(paid, 2), "—"
         d = px / paid - 1
-        return f"${paid:,.2f}", f"{d * 100:+.0f}%" + ("  ← below insiders' cost" if d <= -0.10 else "")
+        return round(paid, 2), (f"{d * 100:+.0f}% ← below insiders' cost" if d <= -0.10 else round(d * 100))
     write_header_row(ws, 4, headers)
     r = 5
     for i, row in enumerate(rows[:45], 1):

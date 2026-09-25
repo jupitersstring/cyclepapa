@@ -214,26 +214,6 @@
    "xret_since": -0.0614,
    "days_since": 25,
    "priced": "not yet"
-  },
-  {
-   "family": "SEPARATION",
-   "date": "2026-08-31",
-   "phrase": "separate into two",
-   "filed": "2026-08-31",
-   "url": "https://www.sec.gov/Archives/edgar/data/1755672/000119312526377055/",
-   "excerpt": "(the \u201cCompany\u201d or \u201cCorteva\u201d) announced that its Board of Directors is pursuing a plan to separate Corteva into two independent, publicly traded companies, one comprising its current crop protection business and the other comprising its current seed business to be owned and conducted, directly or indirectly, by Vylor Inc., a Delaware corporation and a wholly owned subsidiary of the Company (\u201cVylor\u201d) (the \u201cSeparation\u201d). In connection with the Separation, Vylor issued $1,100,000,000 aggregate principal amount of senior notes in a private offering, consisting of $550,000,000 aggregate principal amount of Senior Notes due 2031 (the \u201c2031 notes\u201d) and $550,000,000 aggregate principal amount of Senior Notes due 2036 (the \u201c2036 notes\u201d and, together with the 2031 notes, the \u201cnew notes\u201d and such offering the \u201cNotes Offering\u201d).",
-   "status": "ANNOUNCED",
-   "asset": "Seed business (Vylor Inc.)",
-   "what": "[announced] Corteva is pursuing separation into crop protection and seed companies; seed business to be held by subsidiary Vylor Inc., which issued $1.1B senior notes in connection.",
-   "verdict": "REAL",
-   "verdict_reason": "",
-   "source": "reviewed",
-   "reviewed_type": "SEPARATION",
-   "evidence": "its Board of Directors is pursuing a plan to separate Corteva into two independent, publicly traded companies",
-   "ret_since": -0.0594,
-   "xret_since": -0.0614,
-   "days_since": 25,
-   "priced": "not yet"
   }
  ],
  "SNDK": [
@@ -262,27 +242,6 @@
    "family": "SPINOFF",
    "date": "2026-05-15",
    "phrase": "plan to separate",
-   "filed": "2026-05-15",
-   "url": "https://www.sec.gov/Archives/edgar/data/1763950/000149315226023758/",
-   "excerpt": "Planned Separation into an Independent Business Entity In connection with the May 2026 financing, Lantern announced a strategic plan to separate withZeta.ai and related personnel into an independent business entity under the leadership of Panna Sharma. The separation is intended to provide withZeta.ai with dedicated funding sources and the opportunity to realize valuation multiples distinct from Lantern\u2019s clinical-stage drug development operations.",
-   "status": "ANNOUNCED",
-   "what": "[announced] Lantern Pharma plans to separate its withZeta.ai AI platform into an independent business entity led by Panna Sharma.",
-   "verdict": "REAL",
-   "verdict_reason": "",
-   "source": "reviewed",
-   "reviewed_type": "SEPARATION",
-   "asset": "withZeta.ai",
-   "person": "Panna Sharma",
-   "evidence": "Lantern announced a strategic plan to separate withZeta.ai and related personnel into an independent business entity under the leadership of Panna Sharma.",
-   "ret_since": -0.621,
-   "xret_since": -0.6635,
-   "days_since": 133,
-   "priced": "moved"
-  },
-  {
-   "family": "SEPARATION",
-   "date": "2026-05-15",
-   "phrase": "planned separation",
    "filed": "2026-05-15",
    "url": "https://www.sec.gov/Archives/edgar/data/1763950/000149315226023758/",
    "excerpt": "Planned Separation into an Independent Business Entity In connection with the May 2026 financing, Lantern announced a strategic plan to separate withZeta.ai and related personnel into an independent business entity under the leadership of Panna Sharma. The separation is intended to provide withZeta.ai with dedicated funding sources and the opportunity to realize valuation multiples distinct from Lantern\u2019s clinical-stage drug development operations.",
@@ -416,25 +375,6 @@
    "priced": "not yet"
   },
   {
-   "family": "SEPARATION",
-   "date": "2026-07-29",
-   "phrase": "planned separation",
-   "filed": "2026-07-29",
-   "url": "https://www.sec.gov/Archives/edgar/data/885590/000088559026000105/",
-   "excerpt": "(c) Represents the one component of the non-GAAP adjustment of \u201cSeparation costs and separation-related costs\u201d (see Table 2). (d) Represents the two components of the non-GAAP adjustment of \u201cRestructuring, integration and transformation costs\u201d (see table 2).",
-   "status": "ANNOUNCED",
-   "what": "\u26a0 not a real event \u2014 Financial table footnote on separation costs.",
-   "verdict": "NOT AN EVENT",
-   "verdict_reason": "reviewed: Financial table footnote on separation costs.",
-   "source": "reviewed",
-   "reviewed_type": "NOT_AN_EVENT",
-   "evidence": "Represents the one component of the non-GAAP adjustment of \u201cSeparation costs and separation-related costs\u201d",
-   "ret_since": 0.1859,
-   "xret_since": 0.1323,
-   "days_since": 58,
-   "priced": "not yet"
-  },
-  {
    "family": "EXCHANGE_OFFER",
    "date": "2026-02-18",
    "phrase": "debt exchange offer",
@@ -552,28 +492,6 @@
    "xret_since": -0.0669,
    "days_since": 52,
    "priced": "not yet"
-  },
-  {
-   "family": "SEPARATION",
-   "date": "2026-08-04",
-   "phrase": "separate into two",
-   "filed": "2026-08-04",
-   "url": "https://www.sec.gov/Archives/edgar/data/2105139/000121390026084882/",
-   "excerpt": "(\u201cADI\u201d or the \u201cCompany\u201d) entered into a Separation and Distribution Agreement by and between ADI and Resideo Technologies, Inc. (\u201cResideo\u201d), pursuant to which, among other things, Resideo and ADI agreed to undertake certain actions in order to transfer or contribute the ADI Global Distribution business to ADI or its subsidiaries (the \u201cSeparation\u201d) and distribute all of the outstanding common stock of ADI to Resideo common stockholders as of the close of business on the record date, July 20, 2026 (the \u201cDistribution\u201d).",
-   "status": "ANNOUNCED",
-   "counterparty": "Resideo Technologies, Inc.",
-   "what": "ADI Global Distribution entered a Separation and Distribution Agreement with Resideo to spin off ADI via distribution of all ADI shares to Resideo holders of record July 20, 2026.",
-   "verdict": "REAL",
-   "verdict_reason": "",
-   "source": "reviewed",
-   "reviewed_type": "SPINOFF",
-   "asset": "ADI Global Distribution business",
-   "timing": "record date July 20, 2026",
-   "evidence": "distribute all of the outstanding common stock of ADI to Resideo common stockholders as of the close of business on the record date, July 20, 2026",
-   "ret_since": -0.0705,
-   "xret_since": -0.0669,
-   "days_since": 52,
-   "priced": "not yet"
   }
  ],
  "MFP": [
@@ -604,27 +522,6 @@
    "family": "SPINOFF",
    "date": "2026-06-15",
    "phrase": "plan to separate",
-   "filed": "2026-06-15",
-   "url": "https://www.sec.gov/Archives/edgar/data/2089271/000162828026043193/",
-   "excerpt": "Aerospace intends to have its common stock authorized for listing on The Nasdaq Stock Market LLC (\u201cNasdaq\u201d) under the symbol \u201cHONA.\u201d Following the distribution, Honeywell will continue to trade on Nasdaq under the symbol \u201cHON.\u201d Completion of the distribution is subject to the satisfaction or waiver of a number of conditions, which are described in more detail in \u201cThe Separation and Distribution\u2014Conditions to the Distribution,\u201d including that the Aerospace common stock to be delivered in the distribution shall have been approved for listing on Nasdaq, subject to official notice of distribution. In reviewing this information statement, you should carefully consider the matters described under the section entitled \u201c Risk Factors \u201d beginning on page 34 .",
-   "status": "PENDING",
-   "what": "[pending] Honeywell plans to spin off Honeywell Aerospace via distribution; Aerospace stock to list on Nasdaq as 'HONA', subject to conditions.",
-   "verdict": "REAL",
-   "verdict_reason": "",
-   "source": "reviewed",
-   "reviewed_type": "SPINOFF",
-   "asset": "Honeywell Aerospace",
-   "counterparty": "Honeywell (parent)",
-   "evidence": "Aerospace intends to have its common stock authorized for listing on The Nasdaq Stock Market LLC (\u201cNasdaq\u201d) under the symbol \u201cHONA.\u201d",
-   "ret_since": -0.1953,
-   "xret_since": -0.2162,
-   "days_since": 102,
-   "priced": "moved"
-  },
-  {
-   "family": "SEPARATION",
-   "date": "2026-06-15",
-   "phrase": "planned separation",
    "filed": "2026-06-15",
    "url": "https://www.sec.gov/Archives/edgar/data/2089271/000162828026043193/",
    "excerpt": "Aerospace intends to have its common stock authorized for listing on The Nasdaq Stock Market LLC (\u201cNasdaq\u201d) under the symbol \u201cHONA.\u201d Following the distribution, Honeywell will continue to trade on Nasdaq under the symbol \u201cHON.\u201d Completion of the distribution is subject to the satisfaction or waiver of a number of conditions, which are described in more detail in \u201cThe Separation and Distribution\u2014Conditions to the Distribution,\u201d including that the Aerospace common stock to be delivered in the distribution shall have been approved for listing on Nasdaq, subject to official notice of distribution. In reviewing this information statement, you should carefully consider the matters described under the section entitled \u201c Risk Factors \u201d beginning on page 34 .",
@@ -852,7 +749,7 @@
    "xret_since": -0.4294,
    "days_since": 189,
    "priced": "moved",
-   "amount_ev": 0.0971
+   "amount_ev": 0.0969
   },
   {
    "family": "CEO_CHANGE",
@@ -912,27 +809,6 @@
    "source": "reviewed",
    "reviewed_type": "NOT_AN_EVENT",
    "evidence": "In the event the Transaction is not consummated, Eaton intends to separate its Mobility business segment in a spin-off.",
-   "ret_since": 0.0518,
-   "xret_since": 0.023,
-   "days_since": 56,
-   "priced": "not yet"
-  },
-  {
-   "family": "SEPARATION",
-   "date": "2026-07-31",
-   "phrase": "planned separation",
-   "filed": "2026-07-31",
-   "url": "https://www.sec.gov/Archives/edgar/data/1551182/000155118226000027/",
-   "excerpt": "Planned Separation of Mobility Business On January 26, 2026, Eaton announced its intention to separate its Mobility business segment from the rest of Eaton via a spin-off. On June 10, 2026, Eaton entered into definitive agreements with Dana Incorporated (Dana), whereby Eaton will separate the Mobility business and combine it with Dana in a Reverse Morris Trust (RMT) transaction (the separation and merger with and into Dana described below collectively referred to as the Transaction).",
-   "status": "PENDING",
-   "counterparty": "Dana Incorporated",
-   "asset": "Mobility business segment",
-   "what": "[pending] Eaton signed definitive agreements (June 10, 2026) to separate its Mobility segment and combine it with Dana Incorporated in a Reverse Morris Trust transaction.",
-   "verdict": "REAL",
-   "verdict_reason": "",
-   "source": "reviewed",
-   "reviewed_type": "SPINOFF",
-   "evidence": "Eaton will separate the Mobility business and combine it with Dana in a Reverse Morris Trust (RMT) transaction",
    "ret_since": 0.0518,
    "xret_since": 0.023,
    "days_since": 56,
@@ -1072,7 +948,7 @@
    "xret_since": -0.3068,
    "days_since": 219,
    "priced": "moved",
-   "amount_ev": 0.4259
+   "amount_ev": 0.4362
   }
  ],
  "MOD": [
@@ -1098,7 +974,7 @@
    "xret_since": -0.0086,
    "days_since": 239,
    "priced": "not yet",
-   "amount_ev": 0.0924
+   "amount_ev": 0.0906
   }
  ],
  "THRM": [
@@ -1163,28 +1039,6 @@
    "what": "\u21bb the company is the ACQUIRER: Netflix and WBD amended their deal for Netflix to acquire Warner Bros. to an all-cash transaction at $27.75 per WBD share; SpinCo net-debt Specified Amount cut by $260M.",
    "verdict": "RETYPED",
    "verdict_reason": "reviewed: the company is the ACQUIRER, not spinoff",
-   "source": "reviewed",
-   "reviewed_type": "ACQUISITION_BY_COMPANY",
-   "asset": "Warner Bros. (WBD Streaming & Studios)",
-   "evidence": "The all-cash transaction continues to be valued at $27.75 per WBD share, unchanged from the prior transaction structure.",
-   "ret_since": -0.1774,
-   "xret_since": -0.3177,
-   "days_since": 248,
-   "priced": "moved"
-  },
-  {
-   "family": "SEPARATION",
-   "date": "2026-01-20",
-   "phrase": "planned separation",
-   "filed": "2026-01-20",
-   "url": "https://www.sec.gov/Archives/edgar/data/1065280/000119312526015951/",
-   "excerpt": "The Separation and Distribution Agreement sets the Specified Amount, during the period that the Distribution is expected to be completed, to be $17.0 billion as of June 30, 2026, with decreases over time to $16.1 billion as of December 31, 2026. The Specified Amount of net debt of SpinCo included in the Amended and Restated Merger Agreement was reduced by $260 million from the Specified Amount included in the Original Merger Agreement.",
-   "per_share": 27.75,
-   "status": "PENDING",
-   "counterparty": "Warner Bros. Discovery, Inc.",
-   "what": "\u21bb the company is the ACQUIRER: Netflix and WBD amended their deal for Netflix to acquire Warner Bros. to an all-cash transaction at $27.75 per WBD share; SpinCo net-debt Specified Amount cut by $260M.",
-   "verdict": "RETYPED",
-   "verdict_reason": "reviewed: the company is the ACQUIRER, not separation",
    "source": "reviewed",
    "reviewed_type": "ACQUISITION_BY_COMPANY",
    "asset": "Warner Bros. (WBD Streaming & Studios)",
@@ -1321,26 +1175,6 @@
    "family": "SPINOFF",
    "date": "2026-09-08",
    "phrase": "completed the spin-off",
-   "filed": "2026-09-08",
-   "url": "https://www.sec.gov/Archives/edgar/data/1839285/000121390026097953/",
-   "excerpt": "(\u201cHCTI\u201d or the \u201cCompany\u201d), a Delaware corporation, entered into (i) a Separation and Distribution Agreement (the \u201cSeparation Agreement\u201d) and (ii) a Transition Services Agreement (the \u201cServices Agreement\u201d and, together with the Separation Agreement, the \u201cTransaction Agreements\u201d) with Teyame AI Holdings, Inc. (\u201cTeyame\u201d), a Delaware corporation and direct, wholly-owned subsidiary of the Company, in connection with the planned separation and spin-off of Teyame from the Company (the \u201cSpin-Off\u201d).",
-   "status": "PENDING",
-   "what": "[pending] Healthcare Triangle signed Separation and Distribution and Transition Services agreements with subsidiary Teyame AI Holdings for its planned spin-off.",
-   "verdict": "REAL",
-   "verdict_reason": "",
-   "source": "reviewed",
-   "reviewed_type": "SPINOFF",
-   "asset": "Teyame AI Holdings, Inc.",
-   "evidence": "in connection with the planned separation and spin-off of Teyame from the Company (the \u201cSpin-Off\u201d).",
-   "ret_since": -0.0819,
-   "xret_since": -0.0853,
-   "days_since": 17,
-   "priced": "not yet"
-  },
-  {
-   "family": "SEPARATION",
-   "date": "2026-09-08",
-   "phrase": "planned separation",
    "filed": "2026-09-08",
    "url": "https://www.sec.gov/Archives/edgar/data/1839285/000121390026097953/",
    "excerpt": "(\u201cHCTI\u201d or the \u201cCompany\u201d), a Delaware corporation, entered into (i) a Separation and Distribution Agreement (the \u201cSeparation Agreement\u201d) and (ii) a Transition Services Agreement (the \u201cServices Agreement\u201d and, together with the Separation Agreement, the \u201cTransaction Agreements\u201d) with Teyame AI Holdings, Inc. (\u201cTeyame\u201d), a Delaware corporation and direct, wholly-owned subsidiary of the Company, in connection with the planned separation and spin-off of Teyame from the Company (the \u201cSpin-Off\u201d).",
@@ -1513,7 +1347,6 @@
    "filed": "2026-01-12",
    "url": "https://www.sec.gov/Archives/edgar/data/1136893/000119312526009759/",
    "excerpt": "FIS simultaneously completed the sale of its remaining minority stake in Worldpay to Global Payments. \u201cWe are pleased to have closed this strategic acquisition ahead of schedule, enabling us to start 2026 in a strong position to deliver greater value to our financial institution and corporate clients,\u201d said Stephanie Ferris, Chief Executive Officer and President of FIS.",
-   "pct_mcap": 0.7461156071231607,
    "status": "COMPLETED",
    "asset": "Remaining 45% minority stake in Worldpay",
    "counterparty": "Global Payments",
@@ -2037,7 +1870,7 @@
    "days_since": 171,
    "priced": "moved",
    "amount_ev": 0.0296,
-   "pf_net_debt": 214.3269
+   "pf_net_debt": 214.3283
   },
   {
    "family": "SEPARATION",
@@ -2162,7 +1995,7 @@
    "days_since": 204,
    "priced": "moved",
    "amount_ev": 0.0107,
-   "pf_net_debt": 22.9756
+   "pf_net_debt": 22.9479
   },
   {
    "family": "CEO_CHANGE",
@@ -2212,8 +2045,8 @@
    "xret_since": -0.443,
    "days_since": 88,
    "priced": "moved",
-   "amount_ev": 0.0792,
-   "pf_net_debt": 4.9664
+   "amount_ev": 0.0794,
+   "pf_net_debt": 4.9491
   }
  ],
  "THRY": [
@@ -2239,8 +2072,8 @@
    "xret_since": -0.1056,
    "days_since": 11,
    "priced": "not yet",
-   "amount_ev": 0.4516,
-   "pf_net_debt": 1.0462
+   "amount_ev": 0.4523,
+   "pf_net_debt": 1.041
   }
  ],
  "ZD": [
@@ -2266,7 +2099,7 @@
    "xret_since": 0.232,
    "days_since": 206,
    "priced": "moved",
-   "amount_ev": 0.8802
+   "amount_ev": 0.8944
   }
  ],
  "CPAY": [
@@ -2287,7 +2120,6 @@
    "filed": "2026-02-04",
    "url": "https://www.sec.gov/Archives/edgar/data/1175454/000117545426000008/",
    "excerpt": "Agreement to sell PayByPhone On February 4, 2026, the Company issued a press release announcing it had signed a definitive agreement to sell PayByPhone, a mobile parking payments business, to Lightyear Capital. A copy of the press release is attached as Exhibit 99.2, which is incorporated by reference in its entirety.",
-   "pct_mcap": 0.019238514181535406,
    "status": "PENDING",
    "counterparty": "Lightyear Capital",
    "what": "[pending] Corpay signed a definitive agreement to sell PayByPhone, its mobile parking payments business, to Lightyear Capital; price not stated.",
@@ -2326,7 +2158,7 @@
    "xret_since": -0.154,
    "days_since": 67,
    "priced": "not yet",
-   "amount_ev": 0.3747
+   "amount_ev": 0.3987
   }
  ],
  "HAIN": [
@@ -2379,7 +2211,6 @@
    "filed": "2026-07-13",
    "url": "https://www.sec.gov/Archives/edgar/data/1093691/000110465926082854/",
    "excerpt": "Plug previously announced in February 2026 that it had entered into a definitive agreement to sell its interest in the New York Gateway Project to Stream. As the parties continued to work toward satisfaction of the transaction's closing conditions, including applicable regulatory and project-related approvals, the parties agreed to restructure the transaction into a staged closing and to enter into a definitive agreement for the sale of Plug\u2019s Graham, Texas Project.",
-   "pct_mcap": 0.017356172135113427,
    "status": "PENDING",
    "counterparty": "Stream US Data Centers, LLC",
    "what": "[pending] Plug Power agreed to sell its Graham, Texas project to Stream Data Centers and restructured its New York Gateway Project sale into a staged closing; expects $80M near-term liquidity.",
@@ -2418,8 +2249,8 @@
    "xret_since": -0.0968,
    "days_since": 127,
    "priced": "not yet",
-   "amount_ev": 0.2098,
-   "pf_net_debt": 0.0173
+   "amount_ev": 0.2095,
+   "pf_net_debt": 0.0194
   }
  ],
  "BOC": [
@@ -2430,7 +2261,6 @@
    "filed": "2026-05-18",
    "url": "https://www.sec.gov/Archives/edgar/data/1494582/000143774926017511/",
    "excerpt": "Weisenburger, Date: May 18, 2026 2 EX-99.1 4 ex_963989.htm EXHIBIT 99.1 PRESS RELEASE DATED MAY 18, 2026 Exhibit 99.1 Boston Omaha Corporation Signs Definitive Agreement to Sell its General Indemnity Surety Insurance Unit to CopperPoint Insurance Company Omaha, Nebraska--May 18, 2026 - (BUSINESS WIRE) Boston Omaha Corporation (NYSE:BOC) (\u201cBoston Omaha\u201d or the \u201cCompany\u201d) today announced that it has entered into a definitive Securities Purchase Agreement (the \u201cSPA\u201d) to sell its surety insurance business, operated by General Indemnity Group, LLC (\u201cGIG\u201d), to CopperPoint Insurance Company (\u201cCopperPoint\u201d). The transaction is structured as an all-cash transaction under which CopperPoint will acquire all of the outstanding equity interests of GIG.",
-   "pct_mcap": 0.20753542133027716,
    "status": "PENDING",
    "asset": "General Indemnity Group, LLC (surety insurance business)",
    "counterparty": "CopperPoint Insurance Company",
@@ -2493,7 +2323,8 @@
    "xret_since": 0.313,
    "days_since": 43,
    "priced": "moved",
-   "amount_ev": 0.0039
+   "amount_ev": 0.0037,
+   "pf_net_debt": 0.0382
   },
   {
    "family": "CHAIR_CEO_SPLIT",
@@ -2530,8 +2361,8 @@
    "xret_since": 0.1999,
    "days_since": 220,
    "priced": "not yet",
-   "amount_ev": 0.1424,
-   "pf_net_debt": 0.0798
+   "amount_ev": 0.1432,
+   "pf_net_debt": 0.0735
   },
   {
    "family": "ACTIVIST_SETTLEMENT",
@@ -2580,8 +2411,8 @@
    "xret_since": 0.2818,
    "days_since": 156,
    "priced": "moved",
-   "amount_ev": 0.0924,
-   "pf_net_debt": -0.0307
+   "amount_ev": 0.0906,
+   "pf_net_debt": -0.0092
   }
  ],
  "EG": [
@@ -2630,7 +2461,7 @@
    "xret_since": 0.0161,
    "days_since": 44,
    "priced": "not yet",
-   "amount_ev": 0.1812
+   "amount_ev": 0.1853
   },
   {
    "family": "VALUE_COMMITTEE",
@@ -2696,7 +2527,7 @@
    "xret_since": -0.0918,
    "days_since": 121,
    "priced": "not yet",
-   "amount_ev": 309.5479
+   "amount_ev": 12.8987
   },
   {
    "family": "PILL_REMOVED",
@@ -2765,8 +2596,8 @@
    "xret_since": -0.1588,
    "days_since": 52,
    "priced": "not yet",
-   "amount_ev": 0.0841,
-   "pf_net_debt": 2.2638
+   "amount_ev": 0.0845,
+   "pf_net_debt": 2.2442
   }
  ],
  "SHAZ": [
@@ -2792,7 +2623,7 @@
    "xret_since": -0.5004,
    "days_since": 246,
    "priced": "moved",
-   "amount_ev": 0.0609
+   "amount_ev": 0.0621
   }
  ],
  "LPTH": [
@@ -2844,7 +2675,7 @@
    "days_since": 212,
    "priced": "not yet",
    "amount_ev": 0.0548,
-   "pf_net_debt": 0.0764
+   "pf_net_debt": 0.0767
   }
  ],
  "FIP": [
@@ -2871,8 +2702,8 @@
    "xret_since": -0.559,
    "days_since": 148,
    "priced": "moved",
-   "amount_ev": 0.4992,
-   "pf_net_debt": 3.177
+   "amount_ev": 0.4969,
+   "pf_net_debt": 3.2142
   }
  ],
  "CNDT": [
@@ -2883,7 +2714,6 @@
    "filed": "2026-06-30",
    "url": "https://www.sec.gov/Archives/edgar/data/1677703/000167770326000077/",
    "excerpt": "FLORHAM PARK, N.J., [June 30, 2026] \u2014 Conduent Incorporated (Nasdaq: CNDT), a global technology\u2011driven business solutions and services provider, today announced that it has entered into a definitive agreement to sell its Tolling business (a division of Conduent Transportation) to Quarterhill Inc. (TSX: QTRH) (OTCQX: QTRHF), a leading global provider of intelligent transportation system solutions.",
-   "pct_mcap": 0.2777421529380579,
    "status": "PENDING",
    "asset": "Tolling business (Conduent Transportation division)",
    "counterparty": "Quarterhill Inc.",
@@ -2928,7 +2758,6 @@
    "filed": "2026-06-17",
    "url": "https://www.sec.gov/Archives/edgar/data/1653909/000119312526273417/",
    "excerpt": "The company has completed its previously announced definitive agreement to sell the Allbirds brand and footwear assets. With the transition to Smartbird now completed, the company also strengthened its balance sheet by increasing the size of its convertible financing facility from $50 million to $100 million.",
-   "pct_mcap": 6.752836917435292,
    "status": "COMPLETED",
    "asset": "Allbirds brand and footwear assets",
    "what": "[completed] Allbirds (now Smartbird) completed the sale of its Allbirds brand and footwear assets, pivoted to AI infrastructure, named Nadia Carlsten CEO, and upsized convertible facility to $100M.",
@@ -2976,7 +2805,7 @@
    "xret_since": -0.1704,
    "days_since": 99,
    "priced": "not yet",
-   "amount_ev": 0.0645
+   "amount_ev": 0.0634
   }
  ],
  "GFF": [
@@ -2987,7 +2816,6 @@
    "filed": "2026-06-11",
    "url": "https://www.sec.gov/Archives/edgar/data/50725/000093041326001842/",
    "excerpt": "On June 7, 2026, Griffon AMES HoldCo LLC, a Delaware limited liability company and indirect wholly owned subsidiary of Griffon (\u201c Griffon HoldCo \u201d) and New Ames Equity Sub LLC, a Delaware limited liability company (\u201c New Ames Equity Sub \u201d, and collectively with Griffon HoldCo, the \u201c Ames Selling Parties \u201d) entered into the A&R MTA with VNPI Global Investments and Services, S.L., a Spanish sociedad limitada (\u201c VNPI Spain \u201d), Bellota Holding AG, a Swiss aktiengesellschaft (collectively with VNPI Spain, \u201c Venanpri \u201d, and Venanpri, together with the Ames Selling Parties, the \u201c Sellers \u201d and each, a \u201c Seller \u201d), Merv HoldCo LLC, a Delaware limited liability company (\u201c Buyer \u201d), Merv MidCo LLC, a Delaware limited liability company (\u201c MidCo \u201d), and Merv FinCo LLC, a Delaware limited liability company (the \u201c Borrower \u201d). The A&R MTA amended and restated the Initial MTA in its entirety to make a number of ministerial changes, such as adding New Ames Equity Sub as a party to the transaction, and providing for an updated pre-closing reorganization pursuant to which Griffon HoldCo contributed the equity interests of The Ames Companies, LLC (formerly The Ames Companies, Inc., to be referred to as \u201c AMES \u201d) to New Ames Equity Sub, which then sold such equity interests to Buyer at closing.",
-   "pct_mcap": 0.02029593326652942,
    "status": "COMPLETED",
    "what": "[completed] Griffon's subsidiaries, with Venanpri, sold the equity of The Ames Companies (AMES) to Merv HoldCo LLC under an amended and restated master transaction agreement.",
    "verdict": "REAL",
@@ -3011,7 +2839,6 @@
    "filed": "2026-05-21",
    "url": "https://www.sec.gov/Archives/edgar/data/912593/000091259326000174/",
    "excerpt": "(NYSE: SUI) (the \u201cCompany\u201d or \u201cSun\u201d), a real estate investment trust (\u201cREIT\u201d) that owns and operates or has an interest in manufactured housing (\u201cMH\u201d) and recreational vehicle (\u201cRV\u201d) communities, today announced that it has entered into a definitive agreement to sell its UK assets, including the Park Holidays business (\u201cPark Holidays\u201d) to funds affiliated with Aermont Capital (\u201cAermont\u201d) in an all-cash transaction with an enterprise value of \u00a3768 million (or approximately $1.03 billion). This strategic transaction enables the Company to fully focus on its core North American MH and RV portfolio while further enhancing its financial flexibility.",
-   "pct_mcap": 0.07412142909572665,
    "status": "PENDING",
    "asset": "UK assets including Park Holidays",
    "what": "[pending] Sun Communities agreed to sell its UK assets including Park Holidays to Aermont Capital funds for enterprise value of \u00a3768M (~$1.03B) in cash.",
@@ -3095,7 +2922,7 @@
    "xret_since": -0.1735,
    "days_since": 148,
    "priced": "not yet",
-   "amount_ev": 1.3617
+   "amount_ev": 1.3592
   }
  ],
  "WULF": [
@@ -3151,7 +2978,6 @@
    "filed": "2026-02-02",
    "url": "https://www.sec.gov/Archives/edgar/data/1043337/000104333726000002/",
    "excerpt": "(NYSE: SRI) today announced that it has completed the sale of its Control Devices segment to an affiliate of Center Rock Capital Partners, LP (\u201cCenter Rock\u201d), a private investment firm specializing in driving long-term value creation for middle-market industrial businesses. The transaction was closed, effective as of January 30, 2026, concurrent with the signing of the definitive agreement to sell the Control Devices segment.",
-   "pct_mcap": 0.29681680378328534,
    "status": "COMPLETED",
    "asset": "Control Devices segment",
    "counterparty": "Center Rock Capital Partners, LP (affiliate)",
@@ -3204,8 +3030,8 @@
    "xret_since": -0.1294,
    "days_since": 86,
    "priced": "not yet",
-   "amount_ev": 0.046,
-   "pf_net_debt": 1.0341
+   "amount_ev": 0.0462,
+   "pf_net_debt": 1.0239
   }
  ],
  "DNOW": [
@@ -3236,7 +3062,6 @@
    "filed": "2025-11-06",
    "url": "https://www.sec.gov/Archives/edgar/data/1599617/000119312525269726/",
    "excerpt": "Maintaining a disciplined approach to capital allocation, the combined company expects to continue strategic acquisitions, return capital to shareholders and reduce debt towards a net cash position. \u2022 A strong balance sheet with a streamlined capital structure allowing for greater capital allocation flexibility. DNOW is expected to generate $70 million of annual cost synergies within three years following closing through public company costs, corporate and IT systems, and operational and supply chain efficiencies.",
-   "pct_mcap": 0.17390702478296838,
    "status": "COMPLETED",
    "what": "\u21bb the company is the ACQUIRER: DNOW completed its all-stock acquisition of MRC Global, issuing 0.9489 DNOW shares per MRC share; expects $70M annual cost synergies within three years.",
    "verdict": "RETYPED",
@@ -3391,8 +3216,8 @@
    "xret_since": 0.3199,
    "days_since": 256,
    "priced": "moved",
-   "amount_ev": 0.0115,
-   "pf_net_debt": 0.1646
+   "amount_ev": 0.0113,
+   "pf_net_debt": 0.1761
   }
  ],
  "CMTL": [
@@ -3403,7 +3228,6 @@
    "filed": "2026-06-15",
    "url": "https://www.sec.gov/Archives/edgar/data/23197/000002319726000070/",
    "excerpt": "As discussed in more detail in a Current Report on Form 8-K to be filed by the Company with the SEC on June 15, 2026, subsequent to quarter end, on June 14, 2026, the Company entered into a transaction to sell most of Comtech's Satellite and Space Communications (\"S&S\") business to an affiliate of Gilat Satellite Networks Ltd. As the criteria for reporting the portion of the S&S business being sold as \"held for sale\" was not met as of April 30, 2026, the Company's Condensed Consolidated Financial Statements as of and for the three and nine months ended April 30, 2026 and 2025 reflect the portion of the S&S business being sold as \"held and used.\" The portion of the S&S business being retained by Comtech principally includes advanced cybersecurity training in support of U.S. government and certain commercial and university customers.",
-   "pct_mcap": 3.6378949749190816,
    "status": "PENDING",
    "counterparty": "Gilat Satellite Networks Ltd. (affiliate)",
    "what": "[pending] Comtech agreed on June 14, 2026 to sell most of its Satellite and Space Communications business to an affiliate of Gilat Satellite Networks; retains cybersecurity training.",
@@ -3519,7 +3343,7 @@
    "days_since": 254,
    "priced": "moved",
    "amount_ev": 0.0766,
-   "pf_net_debt": 4.3487
+   "pf_net_debt": 4.3429
   }
  ],
  "UCB": [
@@ -3530,7 +3354,6 @@
    "filed": "2026-09-01",
    "url": "https://www.sec.gov/Archives/edgar/data/857855/000085785526000084/",
    "excerpt": "(the \u201cCompany\u201d) issued a press release announcing that its wholly owned subsidiary, United Community Bank (the \u201cBank\u201d), completed the sale of Navitas Credit Corp., the Bank\u2019s equipment lease financing subsidiary, and NLFC Reinsurance Corp., the Bank\u2019s reinsurance subsidiary, that was previously disclosed in a current report on Form 8-K filed with the Securities and Exchange Commission on June 11, 2026. A copy of the press release is attached as Exhibit 99.1 to this Current Report on Form 8-K.",
-   "pct_mcap": 0.4913270446468713,
    "status": "COMPLETED",
    "what": "[completed] United Community Banks completed the sale of equipment lease financing subsidiary Navitas Credit Corp. and reinsurance subsidiary NLFC Reinsurance Corp.; buyer/price not in excerpt.",
    "verdict": "REAL",
@@ -3568,7 +3391,7 @@
    "xret_since": 0.0133,
    "days_since": 122,
    "priced": "not yet",
-   "amount_ev": 0.0124
+   "amount_ev": 0.0125
   },
   {
    "family": "ASSET_SALE",
@@ -3600,7 +3423,6 @@
    "filed": "2026-07-06",
    "url": "https://www.sec.gov/Archives/edgar/data/1764046/000095010326010269/",
    "excerpt": "Entry into a Material Definitive Agreement On July 3, 2026, certain subsidiaries of Clarivate Plc (\u201c Clarivate \u201d or the \u201c Company \u201d) entered into a Stock and Asset Purchase Agreement (the \u201c Purchase Agreement \u201d) with an affiliate of Altaris, LLC (\u201c Buyer \u201d), pursuant to which, among other things, Clarivate has agreed to sell its Life Sciences and Healthcare business to Buyer (the \u201c Transaction \u201d). The consummation of the Transaction is subject to certain specified closing conditions, including the receipt of certain regulatory approvals and other customary closing conditions, including, subject to certain materiality exceptions, the accuracy of each party\u2019s representations and warranties and each party\u2019s compliance with its obligations and covenants under the Purchase Agreement.",
-   "pct_mcap": 0.49368023475482525,
    "status": "PENDING",
    "asset": "Life Sciences and Healthcare business",
    "counterparty": "Altaris, LLC (affiliate)",
@@ -3624,7 +3446,6 @@
    "filed": "2026-02-17",
    "url": "https://www.sec.gov/Archives/edgar/data/69422/000149315226007082/",
    "excerpt": "During the quarter, the Company also completed the sale of a non-core 12-unit multifamily property in Los Angeles County, strengthening liquidity and providing additional working capital. Quarterly highlights (three months ended December 31, 2025 vs. 2024) \u25cf | Total revenues increased to $17.3 million from $14.4 million, an increase of $2.9 million (+20%). \u25cf | Hotel revenues increased to $12.6 million from $9.9 million, an increase of $2.7 million (+27%). \u25cf | Real estate revenues increased to $4.6 million from $4.5 million, an increase of $0.2 million (+4%). \u25cf | Income from operations increased to $2.0 million from $0.9 million. \u25cf | Net income was $1.0 million compared to a net loss of $3.7 million. \u25cf | Net income attributable to InterGroup was $1.5 million ($0.71 per diluted share) compared to a net loss attributable to InterGroup of $2.7 million ($1.26 per diluted share). \u25cf | The Company recognized a GAAP gain on sale of real estate of $3.5 million from the disposition of a non-core Los Angeles multifamily property.",
-   "pct_mcap": 0.025179138237950812,
    "status": "COMPLETED",
    "what": "[completed] InterGroup completed the sale of a non-core 12-unit multifamily property in Los Angeles County, recognizing a $3.5M gain; price not stated.",
    "verdict": "REAL",
@@ -3647,7 +3468,6 @@
    "filed": "2026-06-01",
    "url": "https://www.sec.gov/Archives/edgar/data/1278027/000110465926068743/",
    "excerpt": "As previously disclosed, on May 23, 2025, we completed the sale of the Don Pepino and Sclafani brands of pizza and spaghetti sauces, crushed tomatoes, tomato puree and whole peeled tomatoes for a purchase price of $10.6 million, which we refer to as the \u201c Don Pepino divestiture.\u201d On August 1, 2025, we completed the sale of the Le Sueur U.S. shelf-stable vegetable brand for a purchase price of $59.1 million, which we refer to as the \u201c Le Sueur U.S. divestiture.\u201d On March 2, 2026, we completed the sale of our Green Giant U.S. frozen business for a purchase price of approximately $61.5 million, which we refer to as the \u201c Green Giant U.S. frozen divestiture.\u201d Also on March 2, 2026, we entered into a co-manufacturing agreement with the acquirer of the Green Giant U.S. frozen business pursuant to which we continue to manufacture for the acquirer of the business certain Green Giant frozen vegetable products for sale by the acquirer in the United States. (d) Exhibits. 23.1 Consent of SyCip Gorres Velayo & Co. 99.1 Audited Special Purpose Abbreviated Financial Statements of Del Monte Foods Holdings Limited Broth and Stock Business, which comprise the Statement of Assets Acquired as of April 27, 2025 and the related Statement of Revenue and Direct Expenses for the year ended April 27, 2025. 99.2 Unaudited Special Purpose Abbreviated Interim Financial Statements of Del Monte Foods Holding",
-   "pct_mcap": 0.043315072842794546,
    "status": "COMPLETED",
    "asset": "Don Pepino and Sclafani brand",
    "what": "\u26a0 not a real event \u2014 Historical recital of prior divestitures in a filing of acquired-business financial statements.",
@@ -3670,7 +3490,6 @@
    "filed": "2026-01-16",
    "url": "https://www.sec.gov/Archives/edgar/data/1453593/000149315226002569/",
    "excerpt": "(the \u201cCompany\u201d) and Surgalign SPV, Inc., a wholly owned subsidiary of the Company (together with the Company, the \u201cSeller\u201d), completed the sale of certain assets relating to the Company\u2019s Coflex and CoFix products (the \u201cCoflex/CoFix Divestiture\u201d) to Companion Spine, LLC and one of its affiliates, Companion Spine SAS (collectively, \u201cCompanion Spine\u201d), for a total purchase price of $17.5 million, subject to a closing inventory valuation adjustment set forth in the purchase agreement. Of the $17.5 million purchase price, $8.2 million was paid to the Seller in the form of an unsecured promissory note issued by Companion Spine to the Seller (the \u201cNote\u201d), which Note was scheduled to mature on January 15, 2026.",
-   "pct_mcap": 0.3287632548185938,
    "status": "COMPLETED",
    "what": "\u26a0 not a real event \u2014 Recital of a previously completed Coflex/CoFix asset sale and the maturity of the related promissory note; the new action is not shown.",
    "verdict": "NOT AN EVENT",
@@ -3708,8 +3527,8 @@
    "xret_since": 0.0656,
    "days_since": 42,
    "priced": "not yet",
-   "amount_ev": 0.1605,
-   "pf_net_debt": 0.9787
+   "amount_ev": 0.1607,
+   "pf_net_debt": 0.9758
   },
   {
    "family": "VALUE_COMMITTEE",
@@ -3758,7 +3577,7 @@
    "xret_since": 0.3337,
    "days_since": 128,
    "priced": "moved",
-   "amount_ev": 1.2762
+   "amount_ev": 1.1637
   }
  ],
  "KRC": [
@@ -3875,7 +3694,6 @@
    "filed": "2026-04-30",
    "url": "https://www.sec.gov/Archives/edgar/data/1393726/000139372626000025/",
    "excerpt": "On April 28, 2026, Tiptree Inc., a Maryland corporation (\u201c Tiptree \u201d or the \u201c Company \u201d), The Fortegra Group, Inc., a Delaware corporation and subsidiary of the Company (\u201c Fortegra \u201d), DB Insurance Co., Ltd., incorporated and existing under the laws of the Republic of Korea (\u201c Purchaser \u201d), and DB Insurance North America Merger Sub, Inc., a Delaware corporation and wholly owned subsidiary of Purchaser (\u201c Merger Sub \u201d), entered into that certain First Amendment to Agreement and Plan of Merger (the \u201c Amendment \u201d), which amends the Agreement and Plan of Merger, dated as of September 26, 2025 (as amended, the \u201c Merger Agreement \u201d), by and among the Company, Fortegra, Purchaser and Merger Sub. The Merger Agreement provides for, among other things, the acquisition of Fortegra by Purchaser, by means of a merger of Merger Sub with and into Fortegra, with Fortegra surviving the merger as a wholly owned subsidiary of Purchaser (the \u201c Transaction \u201d).",
-   "pct_mcap": 2.539260331163407,
    "status": "PENDING",
    "what": "\u21bb asset sale: Tiptree amended its merger agreement for DB Insurance Co. to acquire its subsidiary Fortegra via merger; amendment signed April 28, 2026.",
    "verdict": "RETYPED",
@@ -3899,7 +3717,6 @@
    "filed": "2026-08-10",
    "url": "https://www.sec.gov/Archives/edgar/data/877860/000087786026000200/",
    "excerpt": "\u201cOur total SHOP NOI for the second quarter increased by approximately 188% year-over-year driven by our recent acquisitions while the same-store SHOP results were ahead of expectations.\u201d \"We also completed the sale of the NHC portfolio, one of the largest transactions in the Company's history, reducing balance sheet leverage to well below our target range and providing significant financial flexibility to pursue additional private-pay senior housing investments. In addition, we recently appointed a Chief Operating Officer to further strengthen our asset management and business development capabilities as we navigate the current operating environment and position the Company to capitalize on the long-term demographic tailwinds supporting our industry.",
-   "pct_mcap": 0.030439465822962714,
    "status": "COMPLETED",
    "asset": "NHC portfolio",
    "what": "[completed] NHI completed the sale of its NHC portfolio, one of its largest transactions, cutting leverage below target; also appointed a COO.",
@@ -3943,7 +3760,6 @@
    "filed": "2026-08-05",
    "url": "https://www.sec.gov/Archives/edgar/data/1162194/000119312526335106/",
    "excerpt": "Recent Highlights: \u2022 Second quarter 2026 revenue of $20.1 million \u2022 1% improvement in operating loss and 84% improvement in adjusted EBITDA year-over-year \u2022 Merger with Treeline Biosciences progressing toward stockholder vote and anticipated to close before year-end 2026 \u201cWe remain on track to close our merger with Treeline Biosciences in 2026, with our previously filed registration statement on Form S-4, our agreement to divest our Mass Cytometry business, and Illumina\u2019s early buyout of contingent payments for $30 million from its acquisition of SomaLogic,\u201d said Michael Egholm, PhD, President and Chief Executive Officer of Standard BioTools. \u201cWe continue to believe this merger is the best path forward to maximize shareholder value, providing exposure to a catalyst-rich, well-capitalized pipeline of potential new therapeutics with significant near and long term value creation opportunities, and we look forward to updating stockholders as we progress toward the vote and closing.\u201d Dr.",
-   "pct_mcap": 0.10479366902043027,
    "status": "PENDING",
    "asset": "Mass Cytometry business",
    "what": "[pending] Standard BioTools has agreed to divest its Mass Cytometry business while pursuing its merger with Treeline Biosciences, expected to close before year-end 2026.",
@@ -4012,7 +3828,7 @@
    "xret_since": 0.5554,
    "days_since": 239,
    "priced": "moved",
-   "amount_ev": 0.0626
+   "amount_ev": 0.0627
   }
  ],
  "LPG": [
@@ -4023,7 +3839,6 @@
    "filed": "2026-08-05",
    "url": "https://www.sec.gov/Archives/edgar/data/1596993/000159699326000038/",
    "excerpt": "Adjusted net income for the three months ended June 30, 2026 is calculated by adjusting net income for the same period to exclude a gain on disposal on vessel of $30.1 million and an unrealized gain on derivative instruments of $0.9 million. Please refer to the reconciliation of net income to adjusted net income, which appears later in this press release. \u200b The $95.9 million increase in adjusted net income for the three months ended June 30, 2026, compared to the three months ended June 30, 2025, is primarily attributable to (i) increases of $103.7 million in revenues and $0.2 million in interest income; and (ii) decreases of $3.4 million in general and administrative expenses, $1.8 million in vessel operating expenses, $0.9 million in voyage expenses, $0.8 million in depreciation and amortization expenses; partially offset by increases of (i) $11.9 million in charter hire expenses, $1.7 million in profit sharing expenses, and $1.0 million in interest and finance costs; and (ii) a reduction of $0.3 million in realized gain on derivatives. \u200b The TCE rate per available day for our fleet was $75,926 for the three months ended June 30, 2026, a 91.1% increase from $39,726 for the same period in the prior year.",
-   "pct_mcap": 0.018961425571365233,
    "status": "COMPLETED",
    "what": "[completed] Dorian LPG completed sales of VLGCs Corsair (net proceeds $80.8M, July 2026) and Constellation, booking a $30.1M vessel disposal gain; also declared a $1.00/share irregular dividend.",
    "verdict": "REAL",
@@ -4062,7 +3877,7 @@
    "days_since": 64,
    "priced": "not yet",
    "amount_ev": 0.005,
-   "pf_net_debt": 5.1924
+   "pf_net_debt": 5.2011
   }
  ],
  "CVV": [
@@ -4089,7 +3904,7 @@
    "xret_since": -0.0668,
    "days_since": 171,
    "priced": "not yet",
-   "amount_ev": 2.2411
+   "amount_ev": 2.4192
   }
  ],
  "FLR": [
@@ -4135,7 +3950,7 @@
    "xret_since": 0.0041,
    "days_since": 155,
    "priced": "not yet",
-   "amount_ev": 0.0882
+   "amount_ev": 0.0906
   }
  ],
  "ESOA": [
@@ -4206,7 +4021,7 @@
    "xret_since": 0.0437,
    "days_since": 228,
    "priced": "not yet",
-   "amount_ev": 0.5106
+   "amount_ev": 0.5125
   }
  ],
  "WTRG": [
@@ -4393,7 +4208,6 @@
    "filed": "2026-08-31",
    "url": "https://www.sec.gov/Archives/edgar/data/1962481/000149315226040819/",
    "excerpt": "On August 31, 2028 the Company completed the sale of the Option Shares upon exercise by the Representative of the Over-Allotment Option, resulting in additional gross proceeds to the Company in the amount of approximately $418,500, before deducting underwriting discounts and commissions and offering expenses. On August 31, 2026, the Company issued a press release announcing the exercise of the Over-Allotment Option, a copy of which is furnished as Exhibit 99.1 to this Current Report on Form 8-K.",
-   "pct_mcap": 0.007971929967861979,
    "status": "COMPLETED",
    "what": "\u26a0 not a real event \u2014 Over-allotment exercise in a small public stock offering (capital raise), not a divestiture.",
    "verdict": "NOT AN EVENT",
@@ -4452,8 +4266,8 @@
    "xret_since": -0.3736,
    "days_since": 261,
    "priced": "moved",
-   "amount_ev": 0.1934,
-   "pf_net_debt": 0.5596
+   "amount_ev": 0.1949,
+   "pf_net_debt": 0.5445
   }
  ],
  "MIAX": [
@@ -4501,7 +4315,7 @@
    "xret_since": 0.16,
    "days_since": 50,
    "priced": "not yet",
-   "amount_ev": 0.8897
+   "amount_ev": 0.9974
   }
  ],
  "ROCK": [
@@ -4635,8 +4449,8 @@
    "xret_since": -0.4161,
    "days_since": 276,
    "priced": "moved",
-   "amount_ev": 0.0443,
-   "pf_net_debt": 9.0745
+   "amount_ev": 0.0442,
+   "pf_net_debt": 9.0838
   },
   {
    "family": "VALUE_COMMITTEE",
@@ -4748,8 +4562,8 @@
    "xret_since": -0.4927,
    "days_since": 81,
    "priced": "moved",
-   "amount_ev": 0.0963,
-   "pf_net_debt": 40.3172
+   "amount_ev": 0.0964,
+   "pf_net_debt": 40.3009
   }
  ],
  "CDNA": [
@@ -4795,7 +4609,6 @@
    "filed": "2026-08-04",
    "url": "https://www.sec.gov/Archives/edgar/data/31791/000003179126000022/",
    "excerpt": "Enters into Definitive Agreement to Divest China Immunodiagnostics Business The Company recently entered into a definitive agreement to divest its Immunodiagnostics business in China ( \u201c China IDX \u201d ), which represented approximately 6% of the Company\u2019s total revenue in fiscal year 2025. The transaction is expected to close by the end of 2027, subject to customary closing conditions and regulatory approvals.",
-   "pct_mcap": 0.012703779214343928,
    "status": "PENDING",
    "timing": "by the end of 2027",
    "asset": "China Immunodiagnostics business",
@@ -4835,7 +4648,7 @@
    "days_since": 235,
    "priced": "not yet",
    "amount_ev": 0.0143,
-   "pf_net_debt": 0.8482
+   "pf_net_debt": 0.8499
   },
   {
    "family": "PILL_REMOVED",
@@ -4856,7 +4669,6 @@
    "filed": "2025-12-22",
    "url": "https://www.sec.gov/Archives/edgar/data/1282648/000110465925123349/",
    "excerpt": "The Company intends to use the net proceeds from the divestiture of the West Quito Assets, if such transaction closes, to repay amounts outstanding under the Company\u2019s Senior Secured Credit Agreement and for general corporate purposes, including funding potential acquisitions and planned drilling expenditures. The purchase price is subject to adjustments for (i) operating expenses, capital expenditures and revenues between the effective date and the closing date, (ii) title, casualty and environmental defects, and (iii) other purchase price adjustments customary in oil and gas purchase and sale agreements.",
-   "pct_mcap": 2.5657287102009216,
    "status": "PENDING",
    "asset": "West Quito Assets",
    "what": "[pending] Battalion Oil agreed to divest its West Quito Assets; proceeds, if it closes, to repay its senior secured credit facility; price not in excerpt.",
@@ -4879,7 +4691,6 @@
    "filed": "2026-01-06",
    "url": "https://www.sec.gov/Archives/edgar/data/1616533/000161653326000008/",
    "excerpt": "We remain focused on executing with discipline, deepening partnerships, and innovating across our core businesses.\u201d Penguin Solutions Reaches Agreement to Divest Remaining Interest in Brazil Memory Module Business On December 29, 2025, SMART Modular Technologies (LX) S.\u00e0 r.l. (\u201cSeller\u201d), a wholly owned indirect subsidiary of the Company, entered into a Stock Transfer Agreement (the \u201cStock Transfer Agreement\u201d), by and among Seller, Lexar Europe B.V.",
-   "pct_mcap": 0.016188119523273158,
    "status": "PENDING",
    "what": "[pending] Penguin Solutions agreed on December 29, 2025 to divest its remaining interest in its Brazil memory module business via a stock transfer agreement involving Lexar Europe B.V.",
    "verdict": "REAL",
@@ -4903,7 +4714,6 @@
    "filed": "2026-02-10",
    "url": "https://www.sec.gov/Archives/edgar/data/894627/000089462726000005/",
    "excerpt": "(the \u201cSeller\u201d), a wholly-owned indirect subsidiary of VAALCO Energy, Inc., (the \u201cCompany\u201d, \u201cwe\u201d and \u201cus\u201d) entered into an Asset Purchase and Sale Agreement (the \u201cAsset Purchase Agreement\u201d) with Petrus Resources Corp. (the \u201cBuyer\u201d) and, solely for the purposes of Section 9.7 therein, Petrus Resources LTD.",
-   "pct_mcap": 0.057385581757812186,
    "status": "PENDING",
    "counterparty": "Petrus Resources Corp.",
    "what": "[pending] VAALCO's subsidiary entered an asset purchase and sale agreement to sell assets to Petrus Resources Corp.; assets and price not in excerpt.",
@@ -4965,8 +4775,8 @@
    "xret_since": -0.1157,
    "days_since": 113,
    "priced": "not yet",
-   "amount_ev": 0.6197,
-   "pf_net_debt": -0.3198
+   "amount_ev": 0.6177,
+   "pf_net_debt": -0.3142
   },
   {
    "family": "DECLASSIFY",
@@ -5011,7 +4821,7 @@
    "xret_since": -0.1139,
    "days_since": 78,
    "priced": "not yet",
-   "amount_ev": 4.6349
+   "amount_ev": 5.0689
   }
  ],
  "CEG": [
@@ -5037,8 +4847,8 @@
    "xret_since": 0.0056,
    "days_since": 50,
    "priced": "not yet",
-   "amount_ev": 0.0074,
-   "pf_net_debt": 0.2211
+   "amount_ev": 0.0073,
+   "pf_net_debt": 0.2317
   }
  ],
  "PCRX": [
@@ -5063,8 +4873,8 @@
    "xret_since": -0.056,
    "days_since": 87,
    "priced": "not yet",
-   "amount_ev": 0.1184,
-   "pf_net_debt": 0.0654
+   "amount_ev": 0.1155,
+   "pf_net_debt": 0.0951
   }
  ],
  "HUM": [
@@ -5106,7 +4916,6 @@
    "filed": "2026-02-06",
    "url": "https://www.sec.gov/Archives/edgar/data/1071739/000107173926000031/",
    "excerpt": "We expect full year 2026 adjusted diluted EPS to be greater than $3.00, marking important progress toward restoring the enterprise's embedded earnings power all while continuing to work to provide access to affordable, high-quality care for our members.\" 1 Other Events \u2022 In December 2025, Centene signed a definitive agreement to divest the remaining Magellan Health businesses. As a result, the Company recorded non-cash impairment charges associated with the pending divestiture totaling $513 million, or $389 million after-tax.",
-   "pct_mcap": 0.016567837417234204,
    "status": "PENDING",
    "asset": "Remaining Magellan Health businesses",
    "what": "[pending] Centene signed (Dec 2025) a definitive agreement to divest its remaining Magellan Health businesses, recording $513M of related impairment charges.",
@@ -5129,7 +4938,6 @@
    "filed": "2026-02-03",
    "url": "https://www.sec.gov/Archives/edgar/data/749251/000074925126000028/",
    "excerpt": "Over the past few months, we increased our leverage through the successful completion of our first investment-grade bond issuance, we entered into a definitive agreement to divest the Digital Markets business, and the Board appointed two new directors who bring unique and valuable skills. Looking ahead, we expect CV to accelerate throughout 2026.\u201d CONFERENCE CALL INFORMATION The Company will host a webcast call at 8:00 a.m.",
-   "pct_mcap": 0.16530001534410615,
    "status": "PENDING",
    "asset": "Digital Markets business",
    "what": "[pending] Gartner entered a definitive agreement to divest its Digital Markets business; it also raised its buyback authorization by $500M in January 2026.",
@@ -5188,8 +4996,8 @@
    "xret_since": -0.5146,
    "days_since": 212,
    "priced": "moved",
-   "amount_ev": 0.0052,
-   "pf_net_debt": 0.0419
+   "amount_ev": 0.0053,
+   "pf_net_debt": 0.0235
   }
  ],
  "WY": [
@@ -5215,8 +5023,8 @@
    "xret_since": -0.3021,
    "days_since": 239,
    "priced": "moved",
-   "amount_ev": 0.0098,
-   "pf_net_debt": 0.2688
+   "amount_ev": 0.0099,
+   "pf_net_debt": 0.2491
   }
  ],
  "WELL": [
@@ -5241,8 +5049,8 @@
    "xret_since": -0.0898,
    "days_since": 60,
    "priced": "not yet",
-   "amount_ev": 0.0383,
-   "pf_net_debt": 0.0908
+   "amount_ev": 0.0387,
+   "pf_net_debt": 0.0808
   }
  ],
  "VSAT": [
@@ -5379,8 +5187,8 @@
    "xret_since": 0.0779,
    "days_since": 51,
    "priced": "not yet",
-   "amount_ev": 1.5379,
-   "pf_net_debt": -2.3156
+   "amount_ev": 1.5538,
+   "pf_net_debt": -2.3406
   },
   {
    "family": "TENDER_OFFER",
@@ -5389,7 +5197,6 @@
    "filed": "2026-02-18",
    "url": "https://www.sec.gov/Archives/edgar/data/1273441/000110465926017084/",
    "excerpt": "The Amended Prepayment Agreement provides that the Sellers will apply the funds advanced thereunder to (i) finance the cash consideration portion of the consideration to be paid under the Company\u2019s proposed exchange offer of its 9.500% Senior Secured Amortizing Notes due 2029 for new notes, and/or to fund a cash tender offer of such securities, (ii) finance the repurchase of all or a portion of its outstanding senior notes, and/or (iii) pay fees and expenses related to the amendment and restatement. The Amended Prepayment Agreement includes financial covenants requiring the Sellers, on a combined basis, to maintain (i) an asset coverage ratio of at least 150% and (ii) a debt service coverage ratio of at least 200%, tested on a semi-annual basis and upon certain other events.",
-   "pct_mcap": 0.494910901897347,
    "status": "ANNOUNCED",
    "subtype": "debt tender",
    "what": "\u21bb exchange offer debt: Gran Tierra amended its prepayment agreement to fund a proposed exchange offer and/or cash tender for its 9.500% Senior Secured Amortizing Notes due 2029.",
@@ -5455,7 +5262,6 @@
    "filed": "2026-02-06",
    "url": "https://www.sec.gov/Archives/edgar/data/1922446/000192244626000011/",
    "excerpt": "Acquisitions and divestitures In May 2025 we entered into a purchase and sale agreement to divest certain non-operated interests in Oklahoma for approximately $10.1 million in cash subject to customary closing terms and adjustments. The transaction, which had an effective date of March 1, 2025, closed in May 2025.",
-   "pct_mcap": 0.00993599281632048,
    "status": "PENDING",
    "asset": "non-operated interest",
    "what": "\u26a0 not a real event \u2014 Historical note on a divestiture that closed in May 2025.",
@@ -5495,7 +5301,6 @@
    "filed": "2026-02-06",
    "url": "https://www.sec.gov/Archives/edgar/data/1922446/000192244626000011/",
    "excerpt": "In November 2023, the Company commenced a tender offer to purchase up to 550,000 shares of common stock from its stockholders leading to 318,125 shares being repurchased in December 2023 for a total purchase price of $15.4 million. The repurchased shares in 2023 were 8 Canvas Energy Inc. and Subsidiaries Notes to Consolidated Financial Statements all immediately retired.",
-   "pct_mcap": 0.015149929640726275,
    "status": "ANNOUNCED",
    "shares": 550000.0,
    "what": "\u26a0 not a real event \u2014 Historical 2023 tender offer in acquired-company financial statements.",
@@ -5848,7 +5653,6 @@
    "filed": "2026-04-06",
    "url": "https://www.sec.gov/Archives/edgar/data/1771706/000110465926039924/",
    "excerpt": "(\u201cVireo\u201d or the \u201cCompany\u201d) entered that certain Amendment to Agreement and Plan of Merger (the \u201cFirst Amendment\u201d) by and among the Company, Simple Merger Sub Inc., a wholly owned subsidiary of the Company (\u201cMerger Sub\u201d), and Eaze Inc. (\u201cEaze\u201d), which amended the Agreement and Plan of Merger, dated December 22, 2025, by and among the Company, Merger Sub, Eaze, and FoundersJT LLC, as the Stockholder Representative (as amended by the First Amendment, the \u201cMerger Agreement\u201d).",
-   "pct_mcap": 2.204213227061689,
    "status": "COMPLETED",
    "counterparty": "Eaze Inc.",
    "what": "\u21bb the company is the ACQUIRER: Vireo Growth closed its acquisition of Eaze Inc., a cannabis retailer and delivery platform, expanding to 10 states; Cory Azzalino named CEO of California business.",
@@ -5874,7 +5678,6 @@
    "filed": "2026-08-25",
    "url": "https://www.sec.gov/Archives/edgar/data/1859199/000121390026093535/",
    "excerpt": "(the \u201cCompany\u201d) completed its previously announced acquisition of InstaMortgage Inc., a California corporation (\u201cInstaMortgage\u201d), pursuant to the Amended and Restated Agreement and Plan of Merger, dated as of August 17, 2026 (the \u201cA&R Merger Agreement\u201d), which was entered into on such date, pursuant to which the Agreement and Plan of Merger, dated as of December 19, 2025 (the \u201cOriginal Merger Agreement\u201d), by and among the Company, reAlpha Merger Sub I, Inc., a Delaware corporation and a newly formed wholly-owned subsidiary of the Company (\u201cMerger Sub\u201d), InstaMortgage, Shashank Shekhar and Ankur Dhingra (Messrs. Shekhar and Dhingra together, the \u201cStockholders\u201d), was amended and restated in its entirety.",
-   "pct_mcap": 1.131726131330027,
    "status": "COMPLETED",
    "what": "\u21bb the company is the ACQUIRER: reAlpha Tech completed its acquisition of InstaMortgage Inc. under an amended and restated merger agreement dated August 17, 2026.",
    "verdict": "RETYPED",
@@ -6095,7 +5898,6 @@
    "filed": "2026-04-28",
    "url": "https://www.sec.gov/Archives/edgar/data/1534120/000153412026000026/",
    "excerpt": "(the \u201c Company \u201d) entered into a Milestone Buyout Option Agreement and Amendment to Agreement and Plan of Merger and Reorganization (the \u201c Milestone Buyout and Amendment Agreement \u201d). As previously disclosed, the Company, Project Athens Merger Sub, Inc., Second Project Athens Merger Sub, LLC, AlmataBio, Inc.",
-   "pct_mcap": 0.018299669383533182,
    "status": "ANNOUNCED",
    "what": "\u21bb another kind of event: Avalo entered a Milestone Buyout Option Agreement amending its merger agreement relating to its prior AlmataBio acquisition; terms not detailed in excerpt.",
    "verdict": "RETYPED",
@@ -6207,7 +6009,7 @@
    "xret_since": -0.2859,
    "days_since": 92,
    "priced": "moved",
-   "amount_ev": 1.6974
+   "amount_ev": 1.6759
   }
  ],
  "OS": [
@@ -6253,7 +6055,6 @@
    "url": "https://www.sec.gov/Archives/edgar/data/1847590/000119312526341431/",
    "excerpt": "Pending Transaction with Bernhard Capital Partners In a separate press release issued today, Bowman announced that it has entered into a definitive agreement to be acquired by Bernhard Capital Partners for $43.00 per share in cash. The transaction is expected to close in the fourth quarter of calendar year 2026 or the first quarter of calendar year 2027, subject to the receipt of required regulatory approvals and the satisfaction or waiver of other customary closing conditions.",
    "per_share": 43.0,
-   "pct_mcap": 0.004026628502317514,
    "status": "PENDING",
    "timing": "fourth quarter of 2026 or first quarter of 2027",
    "counterparty": "Bernhard Capital Partners",
@@ -6314,7 +6115,6 @@
    "filed": "2026-02-05",
    "url": "https://www.sec.gov/Archives/edgar/data/1551901/000110465926010653/",
    "excerpt": "Todd Huskinson Title: Chief Financial Officer EX-99.1 2 tm265326d1_ex99-1.htm EXHIBIT 99.1 Exhibit 99.1 Stellus Capital Management to Become Part of Alternative Asset Manager P10 Transaction to provide complementary resources, expertise, and relationships to enhance Stellus\u2019 existing platform Stellus investment processes, strategy, and operations to remain unchanged HOUSTON, February 5, 2026 (PR NEWSWIRE) \u2013 Stellus Capital Management (\u201cStellus\u201d or the \u201cCompany), a U.S. direct lender with $3.8 billion of AUM specializing in senior secured loans in the lower-middle market, announced that it has entered into a definitive agreement to be acquired by P10, Inc. (NYSE: PX) (\u201cP10\u201d), a leading private markets solutions provider that similarly serves the lower-middle market.",
-   "pct_mcap": 177.49822044721634,
    "status": "PENDING",
    "counterparty": "P10, Inc.",
    "what": "\u21bb another kind of event: Stellus Capital Management, SCM's external adviser ($3.8B AUM), agreed to be acquired by P10, Inc.; Stellus investment processes and strategy unchanged.",
@@ -6369,7 +6169,7 @@
    "priced": "moved",
    "offer_spread": 0.0834,
    "deal_state": "normal arb spread",
-   "amount_ev": 0.7237
+   "amount_ev": 0.7202
   }
  ],
  "FOLD": [
@@ -6407,7 +6207,7 @@
    "xret_since": -0.022,
    "days_since": 211,
    "priced": "not yet",
-   "amount_ev": 1.1196
+   "amount_ev": 1.1194
   }
  ],
  "LXFR": [
@@ -6608,7 +6408,6 @@
    "filed": "2026-06-16",
    "url": "https://www.sec.gov/Archives/edgar/data/1023459/000102345926000020/",
    "excerpt": "(Nasdaq: SLP) (\u201cSimulations Plus\u201d or the \u201cCompany\u201d), a global leader in model-informed and AI-accelerated drug development that advances biopharma innovation, today announced that it has entered into a definitive agreement to be acquired by affiliates of Altaris, LLC (\u201cAltaris\u201d), an investment firm with an exclusive focus on acquiring and building companies in the healthcare industry, in an all-cash transaction. At or about the closing of the transaction, Altaris anticipates the Company will be combined with Chemical Computing Group (\u201cCCG\u201d), an existing Altaris portfolio company that provides advanced molecular design software to customers across the pharmaceutical, chemical and materials sectors.",
-   "pct_mcap": 1.0068725306249813,
    "status": "PENDING",
    "counterparty": "Altaris, LLC (affiliates)",
    "what": "[pending] Simulations Plus agreed to be acquired by Altaris affiliates in an all-cash deal, to be combined with Altaris portfolio company Chemical Computing Group; price not in excerpt.",
@@ -6650,7 +6449,7 @@
    "priced": "not yet",
    "offer_spread": 0.0049,
    "deal_state": "dead money (<3% to offer)",
-   "amount_ev": 1.0109
+   "amount_ev": 1.0107
   },
   {
    "family": "VALUE_COMMITTEE",
@@ -6786,7 +6585,7 @@
    "priced": "moved",
    "offer_spread": -0.173,
    "deal_state": "bump expected (trades above offer)",
-   "amount_ev": 0.8064
+   "amount_ev": 0.7993
   },
   {
    "family": "UPLISTING",
@@ -6953,7 +6752,6 @@
    "url": "https://www.sec.gov/Archives/edgar/data/1997350/000119312526347925/",
    "excerpt": "Figures for the second quarter and first six months of 2025 in the table above were recast to reflect the new presentation. 12 EX-99.2 3 d286225dex992.htm EX-99.2 Exhibit 99.2 Accelerant Enters into Definitive Agreement to be Acquired by Thoma Bravo Accelerant Shareholders to Receive $20.25 per Share in Cash, Representing a 49% Premium to Accelerant\u2019s Closing Share Price on August 12, 2026 August 13, 2026 \u2014 Accelerant (NYSE: ARX), the data-driven risk exchange platform transforming the specialty insurance marketplace through the Accelerant Risk Exchange, today announced that it has entered into a definitive agreement with Thoma Bravo to become a privately held company in an all-cash transaction with an enterprise value of more than $4 billion. Under the terms of the agreement, Accelerant Class A and Class B stockholders will receive $20.25 per share in cash, representing a 49% premium to Accelerant\u2019s closing share price on August 12, 2026.",
    "per_share": 20.25,
-   "pct_mcap": 0.9291278773837782,
    "status": "PENDING",
    "counterparty": "Thoma Bravo",
    "premium_pct": 49,
@@ -6993,7 +6791,7 @@
    "xret_since": 0.5265,
    "days_since": 191,
    "priced": "moved",
-   "amount_ev": 0.0721
+   "amount_ev": 0.0722
   }
  ],
  "CCO": [
@@ -7066,7 +6864,6 @@
    "url": "https://www.sec.gov/Archives/edgar/data/733269/000073326926000045/",
    "excerpt": "P 2 Additional Business Highlights & Metrics \u2022 On May 17, 2026, LiveRamp announced that it entered into a definitive agreement to be acquired by Publicis Groupe in an all-cash transaction valuing LiveRamp's equity at $38.50 per share. The transaction is expected to close before the end of calendar 2026, subject to customary closing conditions, including approval by LiveRamp shareholders.",
    "per_share": 38.5,
-   "pct_mcap": 0.007876560256006271,
    "status": "PENDING",
    "timing": "before the end of calendar 2026",
    "counterparty": "Publicis Groupe",
@@ -7105,7 +6902,6 @@
    "filed": "2026-07-20",
    "url": "https://www.sec.gov/Archives/edgar/data/1527753/000119312526308488/",
    "excerpt": "(Nasdaq: PSNL), a leader in advanced genomics for precision oncology, today announced that it has entered into a definitive agreement to be acquired by Tempus AI, Inc. (NASDAQ: TEM), a technology company leading the adoption of AI to advance precision medicine and patient care.",
-   "pct_mcap": 0.8681736558104185,
    "status": "PENDING",
    "counterparty": "Tempus AI, Inc.",
    "what": "[pending] Personalis agreed to be acquired by Tempus AI to integrate its MRD technology; terms not stated in excerpt.",
@@ -7154,7 +6950,6 @@
    "url": "https://www.sec.gov/Archives/edgar/data/1937926/000117184326001893/",
    "excerpt": "(TSX: BLX), Brookfield and La Caisse announced today that they have entered into a definitive arrangement agreement (the \" Arrangement Agreement \"), whereby Brookfield and La Caisse (together, the \u201c Purchaser \u201d) will acquire all of Boralex Inc.\u2019s (\u201c Boralex \u201d or the \u201c Corporation \u201d) issued and outstanding Class A common shares of Boralex (the \" Common Shares \") for a price (the \" Consideration \") of $37.25 in cash per Common Share (the \" Transaction \"). The Transaction follows an extensive review undertaken by a special committee comprised entirely of independent directors (the \" Special Committee \") of Boralex's board of directors (the \" Board of Directors \"), to maximize shareholder value, finance Boralex's strong pipeline and position the Corporation for its next phase of growth.",
    "per_share": 37.25,
-   "pct_mcap": 0.1239024071311585,
    "status": "PENDING",
    "what": "\u21bb the company is the ACQUIRER: Brookfield and La Caisse agreed to acquire all Boralex Class A shares for $37.25 cash per share, following a Boralex special committee review.",
    "verdict": "RETYPED",
@@ -7216,7 +7011,6 @@
    "filed": "2026-03-12",
    "url": "https://www.sec.gov/Archives/edgar/data/314203/000110465926026975/",
    "excerpt": "On December 9, 2025, the Company acquired a 27.3% interest in Paragon at a cost basis of $13.7M. As of December 31, 2025, the fair value of the investment was $17.9M.",
-   "pct_mcap": 0.04463780051701732,
    "status": "ANNOUNCED",
    "what": "\u26a0 not a real event \u2014 Financial note on a December 2025 minority investment in Paragon; not a sale of company.",
    "verdict": "NOT AN EVENT",
@@ -7316,7 +7110,6 @@
    "filed": "2026-06-17",
    "url": "https://www.sec.gov/Archives/edgar/data/1753162/000162828026043724/",
    "excerpt": "(Nasdaq: FTHM) (\u201cFathom\u201d), a national, technology-driven real estate services platform integrating residential brokerage, mortgage, title, and SaaS offerings, today announced that it has entered into a definitive merger agreement to be acquired by Bed Bath & Beyond, Inc. (NYSE: BBBY) (\u201cBed Bath & Beyond\u201d) in an all-stock transaction.",
-   "pct_mcap": 2.9601726460527447,
    "status": "PENDING",
    "counterparty": "Bed Bath & Beyond, Inc.",
    "what": "[pending] Fathom Holdings agreed to be acquired by Bed Bath & Beyond, Inc. in an all-stock transaction; exchange terms not in excerpt.",
@@ -7376,7 +7169,7 @@
    "xret_since": -0.1426,
    "days_since": 101,
    "priced": "not yet",
-   "amount_ev": 0.08
+   "amount_ev": 0.0809
   },
   {
    "family": "CAPITAL_RETURN_POLICY",
@@ -7796,7 +7589,6 @@
    "filed": "2026-07-28",
    "url": "https://www.sec.gov/Archives/edgar/data/744825/000143774926024677/",
    "excerpt": "The Subordinated Lender represented to the Company, among other things, that it is an accredited investor and acquired the Warrant for investment purposes and for its own account. Item 9.01.",
-   "pct_mcap": 0.01040988939492518,
    "status": "ANNOUNCED",
    "what": "\u26a0 not a real event \u2014 Investor representation on a warrant issued to a subordinated lender; not a sale of company.",
    "verdict": "NOT AN EVENT",
@@ -8793,7 +8585,6 @@
    "filed": "2026-07-22",
    "url": "https://www.sec.gov/Archives/edgar/data/1505952/000110465926085819/",
    "excerpt": "It will consider potential transactions where the company can employ its expertise in AI and automation to enhance profitability as well as options to return capital to shareholders. The Company will continue to be led by Founder and Chief Executive Officer Josh James and its Board of Directors.",
-   "pct_mcap": 2.5997603098987083,
    "status": "PENDING",
    "what": "\u21bb asset sale: After selling its business to Progress Software, Domo (still led by Josh James) will consider AI/automation acquisitions and options to return capital to shareholders.",
    "verdict": "RETYPED",
@@ -9756,7 +9547,6 @@
    "filed": "2026-02-26",
    "url": "https://www.sec.gov/Archives/edgar/data/832428/000083242826000006/",
    "excerpt": "In the event of a \u201cgoing private transaction\u201d or \u201cchange in control\u201d (each as defined in the award agreement), the performance period will end on the closing date of the transaction. Mr.",
-   "pct_mcap": 0.8277783062682387,
    "status": "ANNOUNCED",
    "what": "\u26a0 not a real event \u2014 Executive award agreement terms referencing going-private/change-in-control definitions.",
    "verdict": "NOT AN EVENT",
@@ -9839,7 +9629,7 @@
    "priced": "not yet",
    "offer_spread": 0.0011,
    "deal_state": "dead money (<3% to offer)",
-   "amount_ev": 1.298
+   "amount_ev": 1.2983
   },
   {
    "family": "BUYBACK_AUTH",
@@ -9918,7 +9708,6 @@
    "filed": "2026-02-19",
    "url": "https://www.sec.gov/Archives/edgar/data/1617406/000161740626000003/",
    "excerpt": "Further, the two Hilton San Francisco Hotels, which were placed into receivership in October 2023, were sold by the court-appointed receiver in November 2025. 27 HILTON DENVER CITY CENTER PROPERTIES ACQUIRED AND SOLD NON-CORE DISPOSITION INITIATIVE - STATUS SINCE JANUARY 1, 2026 (unaudited, dollars in millions) Status # of Hotels Room Count 2025 Hotel Adjusted EBITDA (1) Sold in 2026 1 193 $1 Remaining Non-Core Hotels To Be Sold 10 4,414 $44 Remaining Safehold Leases (2) 3 959 $16 Total 14 5,566 $61 ____________________________________ (1) Includes Park\u2019s share from its Non-Core unconsolidated joint venture. (2) Timing for the disposition of the Hilton Salt Lake City Center, DoubleTree Hotel San Diego - Mission Valley and DoubleTree Hotel Durango cannot be determined given ongoing litigation. 28 SIGNIA BY HILTON ORLANDO BONNET CREEK CURRENT SUPPLEMENTARY FINANCIAL INFORMATION 29 SIGNIA BY HILTON ORLANDO BONNET CREEK CURRENT SUPPLEMENTARY FINANCIAL INFORMATION HISTORICAL CURRENT FULL-YEAR HOTEL METRICS Three Months Ended Full-Year (unaudited, dollars in millions) March 31, June 30, September 30, December 31, December 31, 2025 2025 2025 2025 2025 Current RevPAR (1) $ 185.44 $ 201.93 $ 183.32 $ 189.04 $ 189.92 Current Occupancy 70.0 % 77.0 % 74.3 % 71.1 % 73.1 % Current ADR $ 265.02 $ 262.10 $ 246.84 $ 265.99 $ 259.83 Total Revenues $ 630 $ 672 $ 610 $ 629 $ 2,541 Operating income",
-   "pct_mcap": 0.00022116637134419396,
    "status": "ANNOUNCED",
    "what": "\u26a0 not a real event \u2014 Supplemental table on non-core hotel disposition status and a 2025 receiver sale; no new action.",
    "verdict": "NOT AN EVENT",
@@ -9995,7 +9784,6 @@
    "filed": "2026-02-06",
    "url": "https://www.sec.gov/Archives/edgar/data/1716621/000143774926003387/",
    "excerpt": "The Company intends to use (A) any remaining net proceeds in connection with the First Closing, and (B) any net proceeds for any Additional Closing, for (i) general corporate purposes and working capital purposes, (ii) to unwind, wind down, divest, or otherwise restructure the Company\u2019s legacy catheter business, including a potential going-private transaction or a spin off or wholesale shut-down, (iii) to satisfy, settle, eliminate, or otherwise resolve legacy liabilities and obligations and to simplify the Company\u2019s capital structure, and (iv) to reduce operating expenses and cash burn and position of the Company as a streamlined public company with a clean and simplified balance sheet. In connection with the Private Placement Financing, pursuant to an engagement letter (the \u201cEngagement Letter\u201d) with Dawson James Securities, Inc.",
-   "pct_mcap": 5.331750932180359,
    "status": "ANNOUNCED",
    "what": "\u26a0 not a real event \u2014 Use-of-proceeds language in a private placement financing, listing possible restructuring options for the legacy business; no decided action.",
    "verdict": "NOT AN EVENT",
@@ -10091,7 +9879,6 @@
    "filed": "2026-05-04",
    "url": "https://www.sec.gov/Archives/edgar/data/2108962/000121390026051635/",
    "excerpt": "On April 29, 2026, the Registration Statement on Form S-1 (File No. 333-295030) (as amended, the \u201cRegistration Statement\u201d) relating to the initial public offering (the \u201cIPO\u201d) of General Catalyst Global Resilience Merger Corp. (the \u201cCompany\u201d) was declared effective by the U.S.",
-   "pct_mcap": 0.9640315055076437,
    "status": "ANNOUNCED",
    "what": "\u26a0 not a real event \u2014 SPAC IPO registration effectiveness and pricing; not a corporate action of the kind tracked.",
    "verdict": "NOT AN EVENT",
@@ -10113,7 +9900,6 @@
    "filed": "2026-04-29",
    "url": "https://www.sec.gov/Archives/edgar/data/2114227/000121390026049354/",
    "excerpt": "Simultaneously with the closing of the IPO, pursuant to the Private Placement Units Purchase Agreement, the Company completed the private sale of an aggregate of 350,000 units (the \u201c Private Placement Units \u201d) to the Sponsor at a purchase price of $10.00 per Private Placement Unit, generating gross proceeds to the Company of $3,500,000. The Private Placement Units (and underlying securities) are identical to the Units sold in the IPO, except as otherwise disclosed in the Registration Statement.",
-   "pct_mcap": 0.9190146121103483,
    "status": "COMPLETED",
    "what": "\u26a0 not a real event \u2014 SPAC IPO closing and sponsor private placement; not a corporate action of the kind tracked.",
    "verdict": "NOT AN EVENT",
@@ -10135,7 +9921,6 @@
    "filed": "2026-08-03",
    "url": "https://www.sec.gov/Archives/edgar/data/2114229/000121390026084616/",
    "excerpt": "Simultaneously with the closing of the IPO, pursuant to the Private Placement Units Purchase Agreement, the Company completed the private sale of an aggregate of 350,000 units (the \u201c Private Placement Units \u201d) to the Sponsor at a purchase price of $10.00 per Private Placement Unit, generating gross proceeds to the Company of $3,500,000. The Private Placement Units (and underlying securities) are identical to the Units sold in the IPO, except as otherwise disclosed in the Registration Statement.",
-   "pct_mcap": 0.9664880764786217,
    "status": "COMPLETED",
    "what": "\u26a0 not a real event \u2014 SPAC IPO closing and sponsor private placement; not a corporate action of the kind tracked.",
    "verdict": "NOT AN EVENT",
@@ -10169,7 +9954,6 @@
    "filed": "2025-12-19",
    "url": "https://www.sec.gov/Archives/edgar/data/2074973/000121390025123495/",
    "excerpt": "Simultaneously with the closing of the IPO, pursuant to the Private Placement Units Purchase Agreement, the Company completed the private sale of an aggregate of 500,000 units (the \u201c Private Placement Units \u201d) to the Sponsor at a purchase price of $10.00 per Private Placement Unit, generating gross proceeds to the Company of $5,000,000. The Private Placement Units (and underlying securities) are identical to the Units sold in the IPO, except as otherwise disclosed in the Registration Statement.",
-   "pct_mcap": 0.7773932539540962,
    "status": "COMPLETED",
    "what": "\u26a0 not a real event \u2014 SPAC IPO closing and sponsor private placement; not a corporate action of the kind tracked.",
    "verdict": "NOT AN EVENT",
@@ -10258,7 +10042,6 @@
    "filed": "2026-01-27",
    "url": "https://www.sec.gov/Archives/edgar/data/2099656/000121390026007972/",
    "excerpt": "Simultaneously with the closing of the IPO, pursuant to the Private Placement Shares Purchase Agreement, the Company completed the private sale of 497,500 Class A Ordinary Shares (the \u201c Private Placement Shares \u201d) at a purchase price of $10.00 per Private Placement Share, to the Sponsor, generating gross proceeds to the Company of $4,975,000. The Private Placement Shares are identical to the Class A Ordinary Shares sold in the IPO, except that, so long as they are held by the Sponsor and its permitted transferees: (i) they may not, subject to certain limited exceptions, be transferred, assigned or sold until 30 days after the completion of a business combination and (ii) they are entitled to registration rights.",
-   "pct_mcap": 0.9169508328305608,
    "status": "COMPLETED",
    "what": "\u26a0 not a real event \u2014 SPAC IPO closing and sponsor private placement; not a corporate action of the kind tracked.",
    "verdict": "NOT AN EVENT",
@@ -10292,7 +10075,6 @@
    "filed": "2026-03-02",
    "url": "https://www.sec.gov/Archives/edgar/data/1850733/000121390026022435/",
    "excerpt": "Simultaneously with the closing of the IPO, pursuant to the Private Placement Shares Purchase Agreement, the Company completed the private sale of an aggregate of 200,000 Class A Ordinary Shares (the \u201c Private Placement Shares \u201d) to the Sponsor at a price of $10.00 per Private Placement Share, generating gross proceeds to the Company of approximately $2,000,000. The Private Placement Shares are identical to the Class A Ordinary Shares sold in the IPO, except as otherwise disclosed in the Company\u2019s Registration Statement for its IPO.",
-   "pct_mcap": 0.8343554187212668,
    "status": "COMPLETED",
    "what": "\u26a0 not a real event \u2014 SPAC IPO closing and sponsor private placement; not a corporate action of the kind tracked.",
    "verdict": "NOT AN EVENT",
@@ -10411,7 +10193,6 @@
    "filed": "2026-03-31",
    "url": "https://www.sec.gov/Archives/edgar/data/1817760/000110465926037405/",
    "excerpt": "(the \"Company\") entered into a Securities Purchase Agreement (the \"Preferred Stock Purchase Agreement\") with certain institutional investors (collectively, the \"Buyers\"), including certain March Noteholders (as defined below) pursuant to which the Company agreed to issue and sell to the Buyers in a private placement (the \u201cPrivate Placement\u201d), at an initial closing, (i) 11,411.5 shares of the Company's newly designated Series A Convertible Preferred Stock, par value $0.0001 per share (the \"Series A Preferred Stock\"), with a stated value of $1,000 per share, convertible into shares of the Company's common stock, par value $0.0001 per share (the \"Common Stock\"), at an initial conversion price of $0.5812 per share, subject to adjustment as set forth in the Certificate of Designations (as defined below), and (ii) warrants to purchase up to 23,251,960 shares of Common Stock (the \"Warrants\"). The purchase price under the Preferred Stock Purchase Agreement may be satisfied in cash or by exchange of Notes (defined below).",
-   "pct_mcap": 2.90143413744508,
    "status": "PENDING",
    "what": "\u26a0 not a real event \u2014 Series A convertible preferred and warrant private placement (capital raise); not a going-private or tracked corporate action.",
    "verdict": "NOT AN EVENT",
@@ -10457,7 +10238,6 @@
    "filed": "2026-08-28",
    "url": "https://www.sec.gov/Archives/edgar/data/1471727/000149315226040642/",
    "excerpt": "Private Placement Securities Purchase Agreement On August 27, 2026, SRX Global Inc., a Delaware corporation (the \u201cCompany\u201d), entered into a Securities Purchase Agreement (the \u201cSecurities Purchase Agreement\u201d) with certain accredited investors (the \u201cInvestors\u201d) named therein. Pursuant to the Securities Purchase Agreement, the Company sold 3,579 shares of the Company\u2019s Series C convertible preferred stock, par value $0.001 per share (the \u201cSeries C Preferred Stock\u201d) to the Investors for a purchase price of $2,862,500.00, which purchase price was satisfied by the assignment by Investors to the Company of certain Convertible Grid Promissory Notes issued by CERO Therapeutics Holdings, Inc. in the aggregate original principal amount of $2,812,500.00 (the \u201cCERO Notes\u201d).",
-   "pct_mcap": 0.16557188703306341,
    "status": "ANNOUNCED",
    "what": "\u26a0 not a real event \u2014 Series C convertible preferred private placement (capital raise) paid with assigned notes; not a going-private action.",
    "verdict": "NOT AN EVENT",
@@ -10501,7 +10281,6 @@
    "filed": "2026-08-18",
    "url": "https://www.sec.gov/Archives/edgar/data/1857086/000149315226038904/",
    "excerpt": "(\u201c Polymath \u201d), a privately-held Canadian technology company focused on the issuance, compliance and lifecycle management of regulated digital securities and other tokenized financial instruments, today jointly announced that they have entered into an acquisition agreement dated August 17, 2026, pursuant to which TruGolf will acquire Polymath in exchange for shares of TruGolf Class A common stock and non-voting Series C preferred stock (the \u201c Transaction \u201d). The Transaction will bring one of the first regulated, purpose-built blockchains for tokenized securities to the public markets, positioning the combined company at the center of a fundamental shift in how the world\u2019s financial assets are issued, traded, and owned.",
-   "pct_mcap": 21.631069137223175,
    "status": "PENDING",
    "what": "\u21bb the company is the ACQUIRER: TruGolf agreed (August 17, 2026) to acquire tokenization company Polymath Research in exchange for TruGolf Class A common and Series C preferred stock.",
    "verdict": "RETYPED",
@@ -10525,7 +10304,6 @@
    "filed": "2026-06-05",
    "url": "https://www.sec.gov/Archives/edgar/data/2104177/000121390026065914/",
    "excerpt": "Simultaneously with the closing of the IPO, pursuant to the Private Placement Warrants Purchase Agreement, the Company completed the private sale of 3,600,000 warrants (the \u201cPrivate Placement Warrants\u201d) at the initial public offering price of $1.00 per warrant (for an aggregate purchase price of $3,600,000). The Private Placement Warrants are identical to the Warrants sold in the IPO, except as otherwise disclosed in the Registration Statement.",
-   "pct_mcap": 0.020974437404413373,
    "status": "COMPLETED",
    "what": "\u26a0 not a real event \u2014 SPAC IPO closing and sponsor private placement; not a corporate action of the kind tracked.",
    "verdict": "NOT AN EVENT",
@@ -10559,7 +10337,6 @@
    "filed": "2026-05-22",
    "url": "https://www.sec.gov/Archives/edgar/data/2093524/000121390026060674/",
    "excerpt": "Simultaneously with the closing of the IPO, pursuant to the Sponsor Private Placement Units Purchase Agreement and the Underwriters\u2019 Private Placement Units Purchase Agreement, the Company completed the private sale of an aggregate of 311,000 units (the \u201cPrivate Placement Units\u201d) to the Sponsor and the Underwriters at a price of $10.00 per Private Placement Unit for an aggregate purchase price of $3,110,000. The Private Placement Units (and underlying securities) are identical to the Units sold in the IPO, except as otherwise disclosed in the Registration Statement.",
-   "pct_mcap": 0.0282884589991123,
    "status": "COMPLETED",
    "what": "\u26a0 not a real event \u2014 SPAC IPO closing and sponsor private placement; not a corporate action of the kind tracked.",
    "verdict": "NOT AN EVENT",
@@ -10581,7 +10358,6 @@
    "filed": "2026-07-10",
    "url": "https://www.sec.gov/Archives/edgar/data/2123471/000118518526002892/",
    "excerpt": "Simultaneously with the closing of the IPO, pursuant to the Sponsor Private Placement Units Purchase Agreement and the Representatives\u2019 Private Placement Units Purchase Agreement, the Company completed the private sale of an aggregate of 665,000 units (the \u201c Private Placement Units \u201d) to the Sponsor and the Representatives, with each Private Placement Unit consisting of one Class A ordinary share and one third of one redeemable Warrant exercisable to purchase one Class A ordinary share at $11.50 per share, at a price of $10.00 per Private Placement Unit, or $6,650,000 in the aggregate. Of the 665,000 Private Placement Units, the Sponsor purchased 265,000 Private Placement Units and the Representatives purchased 400,000 Private Placement Units.",
-   "pct_mcap": 0.7456389256923835,
    "status": "COMPLETED",
    "what": "\u26a0 not a real event \u2014 SPAC IPO closing and sponsor private placement; not a corporate action of the kind tracked.",
    "verdict": "NOT AN EVENT",
@@ -10687,7 +10463,7 @@
    "xret_since": -0.2358,
    "days_since": 92,
    "priced": "moved",
-   "amount_ev": 0.3604
+   "amount_ev": 0.3662
   },
   {
    "family": "CAPITAL_RETURN",
@@ -10757,7 +10533,7 @@
    "xret_since": 0.1037,
    "days_since": 45,
    "priced": "not yet",
-   "amount_ev": 0.0166
+   "amount_ev": 0.0167
   }
  ],
  "HG": [
@@ -10923,7 +10699,6 @@
    "filed": "2026-02-09",
    "url": "https://www.sec.gov/Archives/edgar/data/60086/000006008626000005/",
    "excerpt": "Today, CNA announced that it increased its regular quarterly dividend to $0.48 per share and declared a special dividend of $2.00 per share, which amounts to $616 million for Loews, which we expect to receive in March. Page 9 of 13 Reconciliation of GAAP Measures to Non-GAAP Measures These earnings remarks contain financial measures that are not in accordance with accounting principles generally accepted in the United States of America (\"GAAP\").",
-   "pct_mcap": 0.03584078930430494,
    "status": "ANNOUNCED",
    "what": "\u26a0 not a real event \u2014 Describes a dividend declared by subsidiary CNA that Loews expects to receive ($616M); not Loews' own shareholder capital return.",
    "verdict": "NOT AN EVENT",
@@ -10967,7 +10742,6 @@
    "url": "https://www.sec.gov/Archives/edgar/data/1286043/000128604326000005/",
    "excerpt": "Dividend \u25aa As previously announced on December 29, 2025, the Company\u2019s Board of Trustees declared a special dividend of $0.145 per common share, which was paid on January 16, 2026, to shareholders of record as of January 9, 2026. \u25aa On February 14, 2026, the Company\u2019s Board of Trustees declared a first quarter 2026 dividend of $0.29 per common share, which represents a 7.4% year-over-year increase. The first quarter dividend will be paid on or about April 16, 2026, to shareholders of record as of April 9, 2026. 2026 Earnings Guidance The Company expects to generate net income attributable to common shareholders of $0.36 to $0.42 per diluted share in 2026, NAREIT FFO of $2.06 to $2.12 per diluted share, and Core FFO of $2.06 to $2.12 per diluted share, based, in part, on the following assumptions: \u25aa 2026 Same Property NOI range of 2.25% to 3.25%. \u25aa Bad debt reserve of 1.0% of total revenues at the midpoint. \u25aa Interest expense, net of interest income, excluding unconsolidated joint ventures, of $121.0 million at the midpoint.",
    "per_share": 0.29,
-   "pct_mcap": 0.20069822603763224,
    "status": "ANNOUNCED",
    "what": "[announced] Kite Realty declared a Q1 2026 dividend of $0.29 per share (up 7.4% YoY), payable about April 16, 2026; a $0.145 special dividend was paid January 16.",
    "verdict": "REAL",
@@ -11072,7 +10846,7 @@
    "xret_since": 0.2531,
    "days_since": 136,
    "priced": "moved",
-   "amount_ev": 0.0834
+   "amount_ev": 0.0829
   }
  ],
  "ACNB": [
@@ -11275,7 +11049,6 @@
    "url": "https://www.sec.gov/Archives/edgar/data/1087294/000108729426000058/",
    "excerpt": "Board Declares a Special Dividend Cumberland\u2019s Board of Directors authorized and declared a special cash dividend of $1.50 per share of the company\u2019s common stock. The dividend was paid on July 31, 2026, to the shareholders of record as of July 23, 2026.",
    "per_share": 1.5,
-   "pct_mcap": 0.836888554471942,
    "status": "COMPLETED",
    "what": "[completed] Cumberland paid a $1.50/share special dividend on July 31, 2026, funded after selling its FDA-approved brands portfolio to Apotex for $100M cash.",
    "verdict": "REAL",
@@ -11313,7 +11086,7 @@
    "xret_since": 0.0464,
    "days_since": 59,
    "priced": "not yet",
-   "amount_ev": 0.1195
+   "amount_ev": 0.118
   },
   {
    "family": "CEO_CHANGE",
@@ -11362,7 +11135,7 @@
    "xret_since": -0.0604,
    "days_since": 14,
    "priced": "not yet",
-   "amount_ev": 0.1085
+   "amount_ev": 0.1106
   }
  ],
  "PRPH": [
@@ -11430,7 +11203,6 @@
    "url": "https://www.sec.gov/Archives/edgar/data/1230245/000123024526000008/",
    "excerpt": "Capital \u2022 Declared a special cash dividend of $5.00 per share and a quarterly cash dividend of $0.70 per share. \u2022 Announced a four-for-one forward split of our common stock to be effected at the start of trading on March 24, 2026. \u2022 Total dividend for fiscal year 2025 totaled $7.70 per share of common stock, an increase of 40% over 2024. \u2022 Returned an aggregate of $239 million to shareholders during 2025 through share repurchases and dividends. 1 U.S. GAAP Selected Financial Data The following summarizes our results on a U.S.",
    "per_share": 5.0,
-   "pct_mcap": 0.04880751024056716,
    "status": "ANNOUNCED",
    "what": "[announced] Piper Sandler declared a $5.00/share special dividend and $0.70 quarterly dividend, and a 4-for-1 stock split effective March 24, 2026.",
    "verdict": "REAL",
@@ -11537,7 +11309,7 @@
    "xret_since": 0.1557,
    "days_since": 134,
    "priced": "not yet",
-   "amount_ev": 0.0335
+   "amount_ev": 0.034
   }
  ],
  "MKTW": [
@@ -11570,7 +11342,6 @@
    "filed": "2026-04-08",
    "url": "https://www.sec.gov/Archives/edgar/data/1449792/000149315226015719/",
    "excerpt": "The decrease in cash on hand is primarily due to the payment of a one-time special cash dividend of an aggregate of $16.7 million on January 7, 2025, and the payment of federal and state income taxes during the year ended December 31, 2025. The Company had no bank debt as of December 31, 2025.",
-   "pct_mcap": 0.4630802350284704,
    "status": "ANNOUNCED",
    "what": "\u26a0 not a real event \u2014 Historical reference to a special dividend paid January 7, 2025 explaining cash decline.",
    "verdict": "NOT AN EVENT",
@@ -11662,7 +11433,6 @@
    "url": "https://www.sec.gov/Archives/edgar/data/910612/000119312526139801/",
    "excerpt": "The Company announced on March 30, 2026 that, in consideration of these matters, its Board of Directors approved a special cash dividend of $0.175 per common share for the first quarter of 2026. The special dividend is in addition to the previously declared $0.45 per share dividend announced on February 11, 2026, resulting in a total first \u2011 quarter dividend of $0.625 per share, a 39% increase.",
    "per_share": 0.175,
-   "pct_mcap": 0.00015168819023185357,
    "status": "ANNOUNCED",
    "what": "[announced] CBL approved a $0.175/share special dividend for Q1 2026 on top of its $0.45 regular dividend, a total Q1 dividend of $0.625 (up 39%).",
    "verdict": "REAL",
@@ -11707,7 +11477,6 @@
    "filed": "2026-04-28",
    "url": "https://www.sec.gov/Archives/edgar/data/1010470/000093905726000092/",
    "excerpt": "The increase was primarily due to a $274,000 special cash dividend received from the FHLB \u2013 San Francisco, which is not expected to recur. Excluding the special dividend, recurring dividend income was essentially flat with the same quarter last year, reflecting a stable underlying dividend rate on a largely unchanged average balance of approximately $10.2 million.",
-   "pct_mcap": 0.002367691559403398,
    "status": "ANNOUNCED",
    "what": "\u26a0 not a real event \u2014 Describes a special dividend received from the FHLB of San Francisco, not paid by the company.",
    "verdict": "NOT AN EVENT",
@@ -13173,7 +12942,7 @@
    "xret_since": -0.7808,
    "days_since": 213,
    "priced": "moved",
-   "amount_ev": 0.7292
+   "amount_ev": 0.7029
   }
  ],
  "UAMY": [
@@ -13197,7 +12966,7 @@
    "xret_since": -0.2,
    "days_since": 37,
    "priced": "moved",
-   "amount_ev": 0.1589
+   "amount_ev": 0.1572
   }
  ],
  "SHOP": [
@@ -13221,7 +12990,7 @@
    "xret_since": 0.0786,
    "days_since": 226,
    "priced": "not yet",
-   "amount_ev": 0.0108
+   "amount_ev": 0.0107
   }
  ],
  "LIFE": [
@@ -13245,7 +13014,7 @@
    "xret_since": 0.6383,
    "days_since": 53,
    "priced": "moved",
-   "amount_ev": 0.0474
+   "amount_ev": 0.0465
   }
  ],
  "IBEX": [
@@ -13270,7 +13039,7 @@
    "xret_since": 0.3667,
    "days_since": 135,
    "priced": "moved",
-   "amount_ev": 0.0333
+   "amount_ev": 0.0329
   }
  ],
  "RVSB": [
@@ -13362,7 +13131,7 @@
    "xret_since": -0.3178,
    "days_since": 101,
    "priced": "moved",
-   "amount_ev": 0.3558
+   "amount_ev": 0.3548
   },
   {
    "family": "CAPITAL_RETURN_POLICY",
@@ -13384,7 +13153,7 @@
    "xret_since": -0.3178,
    "days_since": 101,
    "priced": "moved",
-   "amount_ev": 0.3558
+   "amount_ev": 0.3548
   }
  ],
  "IPW": [
@@ -13432,7 +13201,7 @@
    "xret_since": -0.5381,
    "days_since": 219,
    "priced": "moved",
-   "amount_ev": 0.3328
+   "amount_ev": 0.3349
   }
  ],
  "ASIC": [
@@ -13456,7 +13225,7 @@
    "xret_since": 0.3918,
    "days_since": 218,
    "priced": "moved",
-   "amount_ev": 0.0397
+   "amount_ev": 0.0402
   }
  ],
  "RBLX": [
@@ -13480,7 +13249,7 @@
    "xret_since": 0.0587,
    "days_since": 129,
    "priced": "not yet",
-   "amount_ev": 0.0835
+   "amount_ev": 0.084
   }
  ],
  "SILO": [
@@ -13539,7 +13308,6 @@
    "filed": "2026-02-02",
    "url": "https://www.sec.gov/Archives/edgar/data/1168455/000143774926002609/",
    "excerpt": "The Company intends to fund the repurchases from available cash and retained earnings. The repurchase program does not obligate the Company to acquire any specific number of shares and may be modified, suspended, or terminated at any time without prior notice.",
-   "pct_mcap": 0.05861754515132478,
    "status": "ANNOUNCED",
    "what": "[announced] Plumas Bancorp announced a share repurchase program funded from cash and retained earnings; size not stated in excerpt.",
    "verdict": "REAL",
@@ -13684,7 +13452,7 @@
    "xret_since": -0.2337,
    "days_since": 213,
    "priced": "moved",
-   "amount_ev": 0.456
+   "amount_ev": 0.4279
   }
  ],
  "JBTM": [
@@ -13710,7 +13478,7 @@
    "xret_since": -0.1526,
    "days_since": 133,
    "priced": "not yet",
-   "amount_ev": 0.027
+   "amount_ev": 0.0273
   }
  ],
  "WEX": [
@@ -13740,7 +13508,6 @@
    "filed": "2026-07-22",
    "url": "https://www.sec.gov/Archives/edgar/data/1309108/000130910826000026/",
    "excerpt": "ASR Accelerated share repurchase agreement, entered into during the third quarter of 2024, with JPMorgan Chase Bank, National Association to repurchase an aggregate of $300.0 million of the Company\u2019s outstanding common stock. Under the ASR, the Company made a payment of $300.0 million to JPMorgan for which we received an initial delivery of approximately 1.3 million shares of our common stock.",
-   "pct_mcap": 0.04734000646701413,
    "status": "COMPLETED",
    "what": "\u26a0 not a real event \u2014 Historical description of a 2024 $300 million ASR with JPMorgan; not a new action.",
    "verdict": "NOT AN EVENT",
@@ -13877,7 +13644,7 @@
    "xret_since": 1.1466,
    "days_since": 211,
    "priced": "moved",
-   "amount_ev": 0.0267
+   "amount_ev": 0.0265
   },
   {
    "family": "CAPITAL_RETURN_POLICY",
@@ -13900,7 +13667,7 @@
    "xret_since": 1.1466,
    "days_since": 211,
    "priced": "moved",
-   "amount_ev": 0.0267
+   "amount_ev": 0.0265
   }
  ],
  "FPH": [
@@ -13926,7 +13693,7 @@
    "xret_since": -0.1707,
    "days_since": 155,
    "priced": "not yet",
-   "amount_ev": 0.0938
+   "amount_ev": 0.0942
   }
  ],
  "KVYO": [
@@ -13951,7 +13718,7 @@
    "xret_since": -0.2328,
    "days_since": 207,
    "priced": "moved",
-   "amount_ev": 0.115
+   "amount_ev": 0.1219
   }
  ],
  "BMNM": [
@@ -14034,7 +13801,7 @@
    "xret_since": 0.0113,
    "days_since": 17,
    "priced": "not yet",
-   "amount_ev": 0.0351
+   "amount_ev": 0.0345
   }
  ],
  "MHH": [
@@ -14060,7 +13827,7 @@
    "xret_since": -0.0686,
    "days_since": 218,
    "priced": "not yet",
-   "amount_ev": 0.0939
+   "amount_ev": 0.0942
   }
  ],
  "SN": [
@@ -14086,7 +13853,7 @@
    "xret_since": 0.2535,
    "days_since": 226,
    "priced": "moved",
-   "amount_ev": 0.0308
+   "amount_ev": 0.0298
   }
  ],
  "PRTA": [
@@ -14111,7 +13878,7 @@
    "xret_since": -0.1655,
    "days_since": 210,
    "priced": "not yet",
-   "amount_ev": 0.5953
+   "amount_ev": 0.6478
   },
   {
    "family": "CAPITAL_RETURN_POLICY",
@@ -14120,7 +13887,6 @@
    "filed": "2026-02-19",
    "url": "https://www.sec.gov/Archives/edgar/data/1559053/000155905326000003/",
    "excerpt": "The creation of distributable reserves provides flexibility for the Board of Directors to potentially return capital to shareholders via a share redemption program through open market purchases or other permissible means in 2026. Any such program would be subject to the discretion of the Board of Directors and Prothena\u2019s then-current financial condition.",
-   "pct_mcap": 0.22971098909719012,
    "status": "PENDING",
    "what": "\u21bb another kind of event: Prothena created distributable reserves, giving the Board flexibility to potentially launch a share redemption program in 2026; no program yet approved.",
    "verdict": "RETYPED",
@@ -14157,7 +13923,7 @@
    "xret_since": 0.1002,
    "days_since": 211,
    "priced": "not yet",
-   "amount_ev": 0.0675
+   "amount_ev": 0.0691
   }
  ],
  "PAR": [
@@ -14182,7 +13948,7 @@
    "xret_since": -0.4949,
    "days_since": 211,
    "priced": "moved",
-   "amount_ev": 0.099
+   "amount_ev": 0.1008
   }
  ],
  "COSM": [
@@ -14208,7 +13974,7 @@
    "xret_since": 0.7852,
    "days_since": 36,
    "priced": "moved",
-   "amount_ev": 0.1377
+   "amount_ev": 0.1434
   }
  ],
  "PTRN": [
@@ -14233,7 +13999,7 @@
    "xret_since": 0.3917,
    "days_since": 204,
    "priced": "moved",
-   "amount_ev": 0.0394
+   "amount_ev": 0.0402
   }
  ],
  "WRBY": [
@@ -14258,7 +14024,7 @@
    "xret_since": -0.1077,
    "days_since": 211,
    "priced": "not yet",
-   "amount_ev": 0.035
+   "amount_ev": 0.0314
   }
  ],
  "ONIT": [
@@ -14308,7 +14074,7 @@
    "xret_since": 0.5223,
    "days_since": 228,
    "priced": "moved",
-   "amount_ev": 0.0618
+   "amount_ev": 0.0617
   }
  ],
  "PD": [
@@ -14333,7 +14099,7 @@
    "xret_since": 0.9305,
    "days_since": 120,
    "priced": "moved",
-   "amount_ev": 0.0665
+   "amount_ev": 0.0648
   }
  ],
  "WSR": [
@@ -14370,7 +14136,7 @@
    "xret_since": -0.1398,
    "days_since": 232,
    "priced": "not yet",
-   "amount_ev": 0.0359
+   "amount_ev": 0.0358
   }
  ],
  "ORBS": [
@@ -14395,7 +14161,7 @@
    "xret_since": -0.5581,
    "days_since": 270,
    "priced": "moved",
-   "amount_ev": 0.3179
+   "amount_ev": 0.3151
   }
  ],
  "ALKT": [
@@ -14420,7 +14186,7 @@
    "xret_since": -0.24,
    "days_since": 149,
    "priced": "moved",
-   "amount_ev": 0.0551
+   "amount_ev": 0.0547
   }
  ],
  "BTGO": [
@@ -14537,7 +14303,7 @@
    "xret_since": 0.0895,
    "days_since": 134,
    "priced": "not yet",
-   "amount_ev": 0.0611
+   "amount_ev": 0.0606
   }
  ],
  "ASNS": [
@@ -14575,7 +14341,7 @@
    "xret_since": 0.2502,
    "days_since": 196,
    "priced": "moved",
-   "amount_ev": 0.0124
+   "amount_ev": 0.0123
   }
  ],
  "THG": [
@@ -14600,7 +14366,7 @@
    "xret_since": 0.1298,
    "days_since": 135,
    "priced": "not yet",
-   "amount_ev": 0.0851
+   "amount_ev": 0.0857
   }
  ],
  "FNB": [
@@ -14625,7 +14391,7 @@
    "xret_since": -0.1101,
    "days_since": 164,
    "priced": "not yet",
-   "amount_ev": 0.0233
+   "amount_ev": 0.0232
   }
  ],
  "DIN": [
@@ -14650,7 +14416,7 @@
    "xret_since": -0.1795,
    "days_since": 51,
    "priced": "not yet",
-   "amount_ev": 0.0511
+   "amount_ev": 0.051
   }
  ],
  "VICR": [
@@ -14676,7 +14442,7 @@
    "xret_since": 0.3684,
    "days_since": 29,
    "priced": "moved",
-   "amount_ev": 0.0128
+   "amount_ev": 0.0124
   }
  ],
  "PLXS": [
@@ -14728,7 +14494,7 @@
    "xret_since": -0.2861,
    "days_since": 260,
    "priced": "moved",
-   "amount_ev": 0.0382
+   "amount_ev": 0.0388
   }
  ],
  "IIIV": [
@@ -14753,7 +14519,7 @@
    "xret_since": -0.2607,
    "days_since": 136,
    "priced": "moved",
-   "amount_ev": 0.2138
+   "amount_ev": 0.2093
   }
  ],
  "CZWI": [
@@ -14801,7 +14567,7 @@
    "xret_since": -0.0692,
    "days_since": 23,
    "priced": "not yet",
-   "amount_ev": 0.0427
+   "amount_ev": 0.0436
   }
  ],
  "HNVR": [
@@ -14850,7 +14616,7 @@
    "xret_since": 0.0094,
    "days_since": 50,
    "priced": "not yet",
-   "amount_ev": 0.0576
+   "amount_ev": 0.055
   },
   {
    "family": "CAPITAL_RETURN_POLICY",
@@ -14874,7 +14640,7 @@
    "xret_since": 0.4382,
    "days_since": 403,
    "priced": "moved",
-   "amount_ev": 0.0533
+   "amount_ev": 0.0508
   }
  ],
  "PRAA": [
@@ -14899,7 +14665,7 @@
    "xret_since": 0.1339,
    "days_since": 50,
    "priced": "not yet",
-   "amount_ev": 0.2212
+   "amount_ev": 0.2238
   }
  ],
  "MIR": [
@@ -14925,7 +14691,7 @@
    "xret_since": 0.0564,
    "days_since": 25,
    "priced": "not yet",
-   "amount_ev": 0.0528
+   "amount_ev": 0.0539
   }
  ],
  "ETSY": [
@@ -14951,7 +14717,7 @@
    "xret_since": 0.1349,
    "days_since": 280,
    "priced": "not yet",
-   "amount_ev": 0.0858
+   "amount_ev": 0.086
   }
  ],
  "LYB": [
@@ -14999,7 +14765,7 @@
    "xret_since": -0.0928,
    "days_since": 95,
    "priced": "not yet",
-   "amount_ev": 0.0449
+   "amount_ev": 0.0444
   }
  ],
  "KLAC": [
@@ -15024,7 +14790,7 @@
    "xret_since": 0.1617,
    "days_since": 197,
    "priced": "not yet",
-   "amount_ev": 0.0286
+   "amount_ev": 0.0281
   }
  ],
  "HOOD": [
@@ -15075,7 +14841,7 @@
    "xret_since": 0.2528,
    "days_since": 51,
    "priced": "moved",
-   "amount_ev": 0.1021
+   "amount_ev": 0.1014
   }
  ],
  "ACT": [
@@ -15100,7 +14866,7 @@
    "xret_since": 0.0839,
    "days_since": 234,
    "priced": "not yet",
-   "amount_ev": 0.0715
+   "amount_ev": 0.0725
   }
  ],
  "NUE": [
@@ -15125,7 +14891,7 @@
    "xret_since": 0.0865,
    "days_since": 151,
    "priced": "not yet",
-   "amount_ev": 0.0651
+   "amount_ev": 0.0655
   }
  ],
  "RCKY": [
@@ -15224,7 +14990,7 @@
    "xret_since": 0.649,
    "days_since": 232,
    "priced": "moved",
-   "amount_ev": 0.0661
+   "amount_ev": 0.0643
   }
  ],
  "AZTA": [
@@ -15250,7 +15016,7 @@
    "xret_since": 0.0671,
    "days_since": 233,
    "priced": "not yet",
-   "amount_ev": 0.173
+   "amount_ev": 0.1735
   }
  ],
  "RYZ": [
@@ -15276,7 +15042,7 @@
    "xret_since": -0.1955,
    "days_since": 142,
    "priced": "not yet",
-   "amount_ev": 0.0399
+   "amount_ev": 0.0398
   }
  ],
  "LZB": [
@@ -15301,7 +15067,7 @@
    "xret_since": -0.1775,
    "days_since": 101,
    "priced": "not yet",
-   "amount_ev": 0.2061
+   "amount_ev": 0.2039
   }
  ],
  "MGNI": [
@@ -15327,7 +15093,7 @@
    "xret_since": 0.902,
    "days_since": 212,
    "priced": "moved",
-   "amount_ev": 0.056
+   "amount_ev": 0.0566
   }
  ],
  "FCFS": [
@@ -15378,7 +15144,7 @@
    "xret_since": 0.0776,
    "days_since": 51,
    "priced": "not yet",
-   "amount_ev": 0.0725
+   "amount_ev": 0.0723
   }
  ],
  "CTSH": [
@@ -15404,7 +15170,7 @@
    "xret_since": 0.0776,
    "days_since": 130,
    "priced": "not yet",
-   "amount_ev": 0.0739
+   "amount_ev": 0.0746
   }
  ],
  "CNX": [
@@ -15415,7 +15181,6 @@
    "filed": "2026-02-24",
    "url": "https://www.sec.gov/Archives/edgar/data/1070412/000119312526067479/",
    "excerpt": "On February 23, 2026, CNX Resources Corporation issued a press release announcing the final results and expiration of its previously announced cash tender offer for any and all of its outstanding 6.000% senior notes due 2029. A copy of the press release is furnished herewith as Exhibit 99.1 and is incorporated herein by reference.",
-   "pct_mcap": 0.08496174035441306,
    "status": "COMPLETED",
    "subtype": "debt tender",
    "what": "[completed] CNX's cash tender for any and all of its $500 million 6.000% senior notes due 2029 expired; $420.2 million principal tendered.",
@@ -15614,7 +15379,6 @@
    "url": "https://www.sec.gov/Archives/edgar/data/914475/000119312526228013/",
    "excerpt": "Pursuant to the Merger Agreement, on April 20, 2026, the Company, through Purchaser, commenced a tender offer to purchase all the outstanding shares of Soleno\u2019s common stock, par value $0.001 per share (the \u201c Soleno Shares \u201d), at a price of $53.00 per Soleno Share (the \u201c Offer Price \u201d), in cash, without interest and subject to any required withholding taxes, upon the terms and subject to the conditions set forth in the Offer to Purchase, dated April 20, 2026 (together with any amendments or supplements thereto, the \u201c Offer to Purchase \u201d) and in the related Letter of Transmittal (together with any amendments or supplements thereto, the \u201c Letter of Transmittal \u201d; the Offer to Purchase and the Letter of Transmittal, collectively, the \u201c Offer \u201d). The Offer to Purchase and the Letter of Transmittal were filed as Exhibits (a)(1)(A) and (a)(1)(B), respectively, to the Tender Offer Statement on Schedule TO originally filed with the SEC by Purchaser and the Company on April 20, 2026.",
    "per_share": 53.0,
-   "pct_mcap": 0.2051307064532262,
    "status": "COMPLETED",
    "what": "\u21bb the company is the ACQUIRER: Neurocrine Biosciences completed its acquisition of Soleno Therapeutics via a $53.00-per-share cash tender offer and merger.",
    "verdict": "RETYPED",
@@ -15702,7 +15466,7 @@
    "xret_since": -0.3877,
    "days_since": 185,
    "priced": "moved",
-   "amount_ev": 0.0374
+   "amount_ev": 0.0368
   }
  ],
  "KALV": [
@@ -15762,7 +15526,6 @@
    "url": "https://www.sec.gov/Archives/edgar/data/875045/000119312526222908/",
    "excerpt": "Pursuant to the Merger Agreement, on April 14, 2026, Purchaser commenced a tender offer (the \u201cOffer\u201d) to acquire any and all of the issued and outstanding Shares, in exchange for (i) $41.00 per Share, net to the seller in cash, without interest and subject to reduction for any applicable tax withholding (the \u201cCash Amount\u201d), plus (ii) one contractual, non-transferable contingent value right per Share (each, a \u201cCVR\u201d) representing the right to receive contingent cash payments of up to an aggregate of $4.00 in cash, without interest and subject to reduction for any applicable tax withholding, upon the achievement of certain specified milestones (the Cash Amount plus one CVR, collectively, the \u201cOffer Price\u201d), upon the terms and subject to the conditions set forth in the Offer to Purchase, dated April 14, 2026 (as amended or supplemented from time to time, the \u201cOffer to Purchase\u201d) and in the related Letter of Transmittal. On May 14, 2026, Biogen announced that the Offer and related withdrawal rights expired as scheduled at one minute after 11:59 p.m., Eastern Time, on May 13, 2026 (the \u201cExpiration Time\u201d) and that immediately prior to the Expiration Time, based on the information provided by the depositary for the Offer, a total of 105,687,831 Shares were validly tendered (and not validly withdrawn) pursuant to the Offer, representing approximately 82.4% of the Shares outstanding imme",
    "per_share": 41.0,
-   "pct_mcap": 0.060374399177193346,
    "status": "COMPLETED",
    "counterparty": "Apellis Pharmaceuticals, Inc.",
    "what": "\u21bb the company is the ACQUIRER: Biogen completed its acquisition of Apellis Pharmaceuticals via tender offer at $41.00 per share cash plus a CVR of up to $4.00; 82.4% tendered.",
@@ -15816,7 +15579,7 @@
    "xret_since": -0.4225,
    "days_since": 190,
    "priced": "moved",
-   "amount_ev": 0.2685
+   "amount_ev": 0.2643
   }
  ],
  "FMC": [
@@ -15854,7 +15617,7 @@
    "xret_since": -0.0131,
    "days_since": 176,
    "priced": "not yet",
-   "amount_ev": 0.0672
+   "amount_ev": 0.0674
   },
   {
    "family": "CAPITAL_RETURN_POLICY",
@@ -15864,7 +15627,6 @@
    "url": "https://www.sec.gov/Archives/edgar/data/893538/000089353826000029/",
    "excerpt": "On February 25, 2026, the Company announced that its Board of Directors approved an increase to the Company\u2019s fixed dividend policy. In connection with the increased fixed dividend policy, the Board of Directors approved a dividend of $0.22 per share of common stock outstanding that will be paid on March 23, 2026 to stockholders of record at the close of business on March 9, 2026.",
    "per_share": 0.22,
-   "pct_mcap": 0.11308440137860312,
    "status": "ANNOUNCED",
    "subtype": "regular dividend",
    "what": "[announced] SM Energy raised its fixed dividend policy and declared $0.22 per share, payable March 23, 2026 to holders of record March 9, 2026.",
@@ -15889,7 +15651,6 @@
    "filed": "2025-12-29",
    "url": "https://www.sec.gov/Archives/edgar/data/2051820/000205182025000176/",
    "excerpt": "Business Update In advance of launching its expected tender offer, Mount Logan Capital Inc. (\u201cMount Logan\u201d, \"MLCI\" or the \u201cCompany\u201d) is providing an update on certain business developments following the closing of the business combination (the \"Business Combination\") with 180 Degree Capital Corp.",
-   "pct_mcap": 0.005058981825945056,
    "status": "ANNOUNCED",
    "what": "Mount Logan Capital plans to launch a tender offer following its business combination with 180 Degree Capital; terms not stated.",
    "verdict": "REAL",
@@ -15978,7 +15739,6 @@
    "filed": "2026-03-05",
    "url": "https://www.sec.gov/Archives/edgar/data/1520006/000110465926024110/",
    "excerpt": "Erman Title: Co-President EX-99.1 3 tm268001d1_ex99-1.htm EXHIBIT 99.1 Exhibit 99.1 MATADOR RESOURCES COMPANY ANNOUNCES EXPIRATION AND RESULTS OF CASH TENDER OFFER FOR ANY AND ALL OF ITS OUTSTANDING 6.875% SENIOR NOTES DUE 2028 DALLAS, Texas, March 5, 2026 -- Matador Resources Company (NYSE: MTDR) (\u201cMatador\u201d) today announced the expiration and results of its previously announced cash tender offer (the \u201cTender Offer\u201d) to purchase any and all of the $500 million outstanding aggregate principal amount of its 6.875% Senior Notes due 2028 (the \u201cNotes\u201d). The Tender Offer expired at 5:00 p.m., New York City time, on March 4, 2026 (the \u201cExpiration Time\u201d).",
-   "pct_mcap": 0.06381910647470335,
    "status": "COMPLETED",
    "subtype": "debt tender",
    "what": "[completed] Matador's cash tender offer for any and all $500 million of 6.875% senior notes due 2028 expired March 4, 2026.",
@@ -16017,7 +15777,7 @@
    "xret_since": -0.069,
    "days_since": 35,
    "priced": "not yet",
-   "amount_ev": 0.2444
+   "amount_ev": 0.2425
   },
   {
    "family": "CAPITAL_RETURN_POLICY",
@@ -16050,7 +15810,6 @@
    "filed": "2026-05-21",
    "url": "https://www.sec.gov/Archives/edgar/data/1637459/000119312526234627/",
    "excerpt": "The Issuer intends to use the net proceeds from the Notes offering to fund the consideration for the purchase of its 4.375% Senior Notes due 2046 and 4.875% Senior Notes due 2049 validly tendered and accepted for purchase pursuant to a previously announced concurrent tender offer, together with accrued and unpaid interest thereon. Any excess proceeds will be used for general corporate purposes, which may include repayment of outstanding indebtedness.",
-   "pct_mcap": 0.03918315855354185,
    "status": "PENDING",
    "subtype": "debt tender",
    "what": "[pending] Kraft Heinz reported early tender results and satisfied the financing condition for its cash tender for 4.375% 2046 and 4.875% 2049 notes, electing early settlement.",
@@ -16074,7 +15833,6 @@
    "filed": "2026-04-14",
    "url": "https://www.sec.gov/Archives/edgar/data/1013871/000110465926043327/",
    "excerpt": "Further, on April 14, 2026, NRG issued a press release announcing that its wholly-owned subsidiary, Lightning Power, LLC (\u201cLightning\u201d), has commenced a cash tender offer to purchase (the \u201cTender Offer\u201d) any and all of Lightning\u2019s 7.250% senior secured notes due 2032 (the \u201cLightning 2032 Notes\u201d), of which $1,500 million aggregate principal amount is currently outstanding. In conjunction with the Tender Offer, Lightning is soliciting consents (the \u201cConsent Solicitation\u201d) to adopt certain proposed amendments to the indenture governing the Lightning 2032 Notes to (1) eliminate substantially all of the restrictive covenants and certain affirmative covenants and events of default and related provisions therein and (2) release all of the guarantees of and the collateral securing the Lightning 2032 Notes.",
-   "pct_mcap": 0.042063759736635176,
    "status": "ANNOUNCED",
    "subtype": "debt tender",
    "what": "[announced] NRG subsidiary Lightning Power commenced a cash tender and consent solicitation for any and all $1.5 billion of its 7.250% senior secured notes due 2032.",
@@ -16108,7 +15866,6 @@
    "filed": "2026-08-06",
    "url": "https://www.sec.gov/Archives/edgar/data/798354/000079835426000028/",
    "excerpt": "See additional information on page 15 for an analysis of the company\u2019s amortization expense. 4 Represents a net gain on the sale-leaseback of certain facilities in the first six months of 2026. 5 Represents the company\u2019s share of amortization of acquisition-related intangible assets at its unconsolidated affiliates. 6 Represents a gain on early debt extinguishment in connection with the company\u2019s June 2026 cash tender offer and open market repurchase of a portion of its outstanding 5.150% senior notes due March 2027 and 4.400% senior notes due July 2049. This adjustment also includes the release of $22 million, recorded within net interest expense in the consolidated statements of income, of unamortized losses originally recorded in accumulated other comprehensive loss associated with treasury lock agreements that had been designated as a cash flow hedge of the extinguished debt. 7 The tax impact of adjustments is calculated using a tax rate of 19.5% in both the first six months of 2026 and 2025, which approximates the company\u2019s anticipated annual effective tax rates. 8 Represents incremental compensation expense associated with the transition of the company\u2019s Chief Executive Officer (\u201cCEO\u201d) in 2025, comprised of $40 million of former CEO non-cash share-based compensation and related employer payroll taxes, and a $12 million cash replacement award paid to the company\u2019s successo",
-   "pct_mcap": 0.0004896822407337987,
    "status": "COMPLETED",
    "subtype": "debt tender",
    "what": "\u26a0 not a real event \u2014 Non-GAAP footnote referencing a gain from Fiserv's June 2026 debt tender offer; not a new action.",
@@ -16169,7 +15926,7 @@
    "xret_since": -0.3547,
    "days_since": 141,
    "priced": "moved",
-   "amount_ev": 0.0422
+   "amount_ev": 0.0425
   }
  ],
  "ALGT": [
@@ -16239,7 +15996,6 @@
    "url": "https://www.sec.gov/Archives/edgar/data/1702780/000121390026063161/",
    "excerpt": "(NYSE: OPTU) (\u201cOptimum\u201d), today announced it has launched a tender offer to purchase up to 120,000,000 shares of Optimum\u2019s Class A Common Stock, par value $0.01 per share (the \u201cClass A Common Stock\u201d). The consideration for each share of Class A Common Stock tendered and accepted for purchase pursuant to the tender offer will equal $2.50 (the \u201cPurchase Price\u201d), payable in cash, less any applicable withholding taxes and without interest.",
    "per_share": 2.5,
-   "pct_mcap": 0.5833178003904725,
    "status": "ANNOUNCED",
    "shares": 120000000.0,
    "what": "[announced] Optimum Communications launched a tender offer for up to 120,000,000 Class A shares at $2.50 cash each, as part of a capital structure repositioning.",
@@ -16287,7 +16043,6 @@
    "filed": "2026-03-10",
    "url": "https://www.sec.gov/Archives/edgar/data/908937/000110465926025845/",
    "excerpt": "(the \u201cCompany,\u201d \u201cwe,\u201d \u201cus\u201d or \u201cour\u201d), settled its previously announced cash tender offer (the \u201cTender Offer\u201d) for any and all of its outstanding 3.125% Senior Notes due 2026 (the \u201c3.125% Notes\u201d). A total of approximately $498.9 million (49.89%) of 3.125% Notes were purchased in the Tender Offer on March 5, 2026.",
-   "pct_mcap": 0.056806278412617595,
    "status": "COMPLETED",
    "subtype": "debt tender",
    "what": "[completed] Sirius XM settled its cash tender offer for its 3.125% senior notes due 2026, purchasing about $498.9 million (49.89%) on March 5, 2026.",
@@ -16350,7 +16105,7 @@
    "xret_since": -0.1576,
    "days_since": 58,
    "priced": "not yet",
-   "amount_ev": 0.0501
+   "amount_ev": 0.0499
   }
  ],
  "ARE": [
@@ -16440,7 +16195,6 @@
    "filed": "2026-07-23",
    "url": "https://www.sec.gov/Archives/edgar/data/866729/000086672926000015/",
    "excerpt": "Following the sale-leaseback transactions, we returned significant capital to shareholders through share repurchases, a modified Dutch auction tender offer and dividends, and established a long-term leverage framework that supports both disciplined investment and continued capital returns. Together, these actions completed major elements of our financial transformation and provide Scholastic with greater financial flexibility to enhance shareholder returns.",
-   "pct_mcap": 0.07162220282509141,
    "status": "COMPLETED",
    "what": "\u26a0 not a real event \u2014 Retrospective summary of Scholastic's past capital returns (buybacks, Dutch auction tender, dividends); no new action.",
    "verdict": "NOT AN EVENT",
@@ -16460,7 +16214,6 @@
    "filed": "2026-07-23",
    "url": "https://www.sec.gov/Archives/edgar/data/866729/000086672926000015/",
    "excerpt": "Following the sale-leaseback transactions, we returned significant capital to shareholders through share repurchases, a modified Dutch auction tender offer and dividends, and established a long-term leverage framework that supports both disciplined investment and continued capital returns. Together, these actions completed major elements of our financial transformation and provide Scholastic with greater financial flexibility to enhance shareholder returns.",
-   "pct_mcap": 0.07162220282509141,
    "status": "COMPLETED",
    "what": "\u26a0 not a real event \u2014 Retrospective summary of Scholastic's past capital returns (buybacks, Dutch auction tender, dividends); no new action.",
    "verdict": "NOT AN EVENT",
@@ -16482,7 +16235,6 @@
    "filed": "2026-05-08",
    "url": "https://www.sec.gov/Archives/edgar/data/1372807/000119312526215068/",
    "excerpt": "Share Repurchase Program and Tender Offer: On December 12, 2025, the Company, its management, the Adviser, and the Company\u2019s affiliates completed a modified \u201cDutch Auction\u201d Tender Offer. The Company purchased 557,960 shares of its common stock for an aggregate cost of approximately $7.6 million at an average price of $13.63 per share, which was accretive to NAV by $0.18 per share.",
-   "pct_mcap": 0.19999085269111272,
    "status": "COMPLETED",
    "what": "\u26a0 not a real event \u2014 Q1 2026 results recap of a December 2025 Dutch auction tender (557,960 shares, about $7.6 million at $13.63); historical recital.",
    "verdict": "NOT AN EVENT",
@@ -16502,7 +16254,6 @@
    "filed": "2026-05-08",
    "url": "https://www.sec.gov/Archives/edgar/data/1372807/000119312526215068/",
    "excerpt": "Share Repurchase Program and Tender Offer: On December 12, 2025, the Company, its management, the Adviser, and the Company\u2019s affiliates completed a modified \u201cDutch Auction\u201d Tender Offer. The Company purchased 557,960 shares of its common stock for an aggregate cost of approximately $7.6 million at an average price of $13.63 per share, which was accretive to NAV by $0.18 per share.",
-   "pct_mcap": 0.19999085269111272,
    "status": "COMPLETED",
    "what": "\u26a0 not a real event \u2014 Q1 2026 results recap of a December 2025 Dutch auction tender (557,960 shares, about $7.6 million at $13.63); historical recital.",
    "verdict": "NOT AN EVENT",
@@ -16578,7 +16329,6 @@
    "filed": "2026-06-05",
    "url": "https://www.sec.gov/Archives/edgar/data/1728117/000172811726000045/",
    "excerpt": "(the \u201cCompany\u201d) accepted for exchange and completed the early settlement of the 5.00% Convertible Senior Notes due 2027 (the \u201cExisting Convertible Notes\u201d) that were validly tendered on or before the early tender deadline of 5:00 p.m., New York City time, on June 2, 2026 (the \u201cExtended Early Tender Date\u201d) in the Company\u2019s previously announced exchange offer (the \u201cExchange Offer\u201d) to exchange any and all of the Existing Convertible Notes for a pro rata portion of (i) up to $72.0 million in aggregate principal amount of its new 7.50% Convertible Senior Secured First Lien Notes due 2030 (the \u201cNew Convertible Notes\u201d), (ii) up to 317,647,058 shares of its common stock (the \u201cCommon Stock\u201d), par value $0.0001 per share (the \u201cNew Shares\u201d) or, in lieu of issuing shares of Common Stock to the extent any investor would beneficially own greater than 9.99% of the outstanding Common Stock, prefunded warrants to purchase shares of Common Stock (the \u201cPrefunded Warrants\u201d and, together with the New Shares, the \u201cEquity Securities\u201d) and (iii) up to 150,000,000 warrants to purchase shares of its Common Stock (the \u201cPurchase Warrants\u201d and, together with the New Convertible Notes and the Equity Securities, the \"Offered Securities\"). The Company also completed the concurrent solicitation of consents (the \u201cConsent Solicitation\u201d) from holders of the Existing Convertible Notes to adopt certain amendments t",
-   "pct_mcap": 1.088634405812606,
    "status": "COMPLETED",
    "what": "[completed] Gossamer Bio completed early settlement exchanging 5.00% convertible notes due 2027 for up to $72.0 million new 7.50% secured convertibles, up to 317.6 million shares and warrants.",
    "verdict": "REAL",
@@ -16718,7 +16468,7 @@
    "xret_since": -0.1123,
    "days_since": 148,
    "priced": "not yet",
-   "amount_ev": 0.0601
+   "amount_ev": 0.0603
   }
  ],
  "HLF": [
@@ -20087,7 +19837,6 @@
    "filed": "2026-08-06",
    "url": "https://www.sec.gov/Archives/edgar/data/1710366/000171036626000053/",
    "excerpt": "Core has now invested a total of $329.2 million to repurchase 4.3 million shares of common stock, or roughly 7.9 percent of total shares outstanding as of the program\u2019s launch, at an average share price of $77.04, and a total of $360.1 million, inclusive of dividend payments, in the capital return program overall. Since the inception of its capital return program in February 2025, Core has returned approximately 80 percent of its free cash flow 1 to stockholders via its capital return program.",
-   "pct_mcap": 0.06980290656554927,
    "status": "ANNOUNCED",
    "what": "\u26a0 not a real event \u2014 Progress update on Core Natural Resources' existing capital return program ($329.2 million of buybacks); no new action.",
    "verdict": "NOT AN EVENT",
@@ -20146,7 +19895,7 @@
    "xret_since": -0.1127,
    "days_since": 10,
    "priced": "not yet",
-   "amount_ev": 0.0688
+   "amount_ev": 0.0682
   }
  ],
  "ADI": [
@@ -20204,7 +19953,6 @@
    "filed": "2026-08-06",
    "url": "https://www.sec.gov/Archives/edgar/data/1493761/000119312526338051/",
    "excerpt": "The current share repurchase program, authorized in May 2025, has approximately $31.0 million of remaining capacity. Since commencing buybacks in 2024, Turtle Beach has repurchased approximately $74 million of common stock.",
-   "pct_mcap": 0.09848403679732338,
    "status": "COMPLETED",
    "what": "\u26a0 not a real event \u2014 Recap of Turtle Beach's existing buyback capacity and past repurchases; no new action.",
    "verdict": "NOT AN EVENT",
@@ -20268,7 +20016,6 @@
    "filed": "2026-07-29",
    "url": "https://www.sec.gov/Archives/edgar/data/1021860/000119312526322315/",
    "excerpt": "Corporate Information NOV repurchased approximately 3.2 million shares of common stock for $63 million and paid $64 million in dividends during the second quarter, resulting in a total of $127 million in capital returned to shareholders. During the second quarter of 2026, NOV recorded $17 million in pre-tax Other Items, primarily related to severance and facility closures, and costs associated with streamlining our business operations (see Reconciliation of GAAP to non-GAAP measures).",
-   "pct_mcap": 0.008581157689541217,
    "status": "COMPLETED",
    "what": "\u26a0 not a real event \u2014 NOV quarterly recap of buybacks ($63 million) and dividends ($64 million); no new action.",
    "verdict": "NOT AN EVENT",
@@ -20311,7 +20058,6 @@
    "filed": "2026-05-06",
    "url": "https://www.sec.gov/Archives/edgar/data/1840572/000162828026030912/",
    "excerpt": "Total Revenue Growth: 4% to 5% Total Revenue: $1,250M to $1,260M Adjusted EBITDA: $345M to $350M Share Repurchase and Capital Return Program Update From December 29, 2025 through May 4, 2026, the Company repurchased 1.1 million shares of Class A common stock for approximately $8.3 million, at an average per share price of $7.29. The Company has approximately $59 million currently remaining under the share repurchase program.",
-   "pct_mcap": 0.011432553199915926,
    "status": "COMPLETED",
    "what": "\u26a0 not a real event \u2014 Lucky Strike update on repurchases under its existing program ($8.3 million; about $59 million remaining); no new action.",
    "verdict": "NOT AN EVENT",
@@ -20378,7 +20124,6 @@
    "url": "https://www.sec.gov/Archives/edgar/data/1578732/000162828026053748/",
    "excerpt": "Capital Allocation On July 31, 2026, the Board of Directors declared a semi-annual regular dividend of $0.25 per share, payable on October 6, 2026, to stockholders of record at the close of business on September 15, 2026. During the six months ended June 30, 2026, the Company repurchased 912,957 shares of common stock at an average price of $26.22 for a total purchase price of $23.9 million.",
    "per_share": 0.25,
-   "pct_mcap": 0.020834510341510393,
    "status": "ANNOUNCED",
    "subtype": "regular dividend",
    "what": "[announced] Marcus & Millichap declared a semi-annual regular dividend of $0.25 per share, payable October 6, 2026 to holders of record September 15, 2026.",
@@ -20420,7 +20165,7 @@
    "xret_since": 0.248,
    "days_since": 137,
    "priced": "moved",
-   "amount_ev": 0.0145
+   "amount_ev": 0.0146
   }
  ],
  "PTC": [
@@ -20446,7 +20191,7 @@
    "xret_since": -0.0502,
    "days_since": 142,
    "priced": "not yet",
-   "amount_ev": 0.1163
+   "amount_ev": 0.1168
   }
  ],
  "WES": [
@@ -20458,7 +20203,6 @@
    "url": "https://www.sec.gov/Archives/edgar/data/1423902/000142390226000043/",
    "excerpt": "With that said, we intend to reevaluate our 2026 guidance ranges in conjunction with our second-quarter results after the scheduled close of the Brazos transaction.\u201d \u201cAll in all, years of hard work that have culminated in multiple quarters of record operational and financial results continue to demonstrate WES\u2019s financial flexibility to consummate accretive M&A, fund its organic growth program, and sustain a balanced capital return program, all while maintaining one of the strongest balance sheets in the midstream sector.\u201d 3 CONFERENCE CALL TOMORROW AT 9:00 A.M. CT WES will host a conference call on Thursday, May 7, 2026, at 9:00 a.m.",
    "per_share": 0.93,
-   "pct_mcap": 0.08385619874475908,
    "status": "ANNOUNCED",
    "what": "[announced] Western Midstream announced a Q1 2026 distribution of $0.930 per unit, up 2.2% from the prior quarter; Brazos transaction close pending.",
    "verdict": "REAL",
@@ -20530,7 +20274,6 @@
    "url": "https://www.sec.gov/Archives/edgar/data/2074176/000207417626000050/",
    "excerpt": "SECOND QUARTER 2026 CASH DIVIDEND & CAPITAL RETURN PROGRAM Viper announced today that the Company\u2019s Board of Directors (the \u201cBoard\u201d) declared a base cash dividend of $0.38 per Class A common share for the second quarter of 2026, payable on August 20, 2026 to Class A common stockholders of record at the close of business on August 13, 2026. The Board also declared a variable cash dividend of $0.29 per Class A common share for the second quarter of 2026, payable on August 20, 2026 to Class A common stockholders of record at the close of business on August 13, 2026.",
    "per_share": 0.38,
-   "pct_mcap": 0.008788118534046917,
    "status": "ANNOUNCED",
    "what": "[announced] Viper declared a Q2 base dividend of $0.38 plus variable $0.29 per Class A share, payable August 20, 2026; base dividend raised 32% to $2.00 annually from Q3.",
    "verdict": "REAL",
@@ -20699,7 +20442,6 @@
    "url": "https://www.sec.gov/Archives/edgar/data/1669162/000166916226000012/",
    "excerpt": "In December 2025, the Company announced a new $250 million share repurchase authorization. 4 In February 2026, the Company's Board of Directors declared a cash dividend of $0.25 per share of common stock, a 47.1% increase from the prior cash dividend, reflecting continued confidence in the Company\u2019s financial position and capital generation abilities. The new share repurchase authorization and increased dividend return excess capital to stockholders while maintaining a conservative capital position for the Company's business.",
    "per_share": 0.25,
-   "pct_mcap": 0.031660122010985434,
    "status": "ANNOUNCED",
    "what": "[announced] Kinsale declared a $0.25 quarterly dividend, up 47.1%, following a new $250 million buyback authorization in December 2025.",
    "verdict": "REAL",
@@ -20722,7 +20464,6 @@
    "filed": "2026-04-30",
    "url": "https://www.sec.gov/Archives/edgar/data/912766/000162828026028578/",
    "excerpt": "Additionally, we continue to return excess capital to shareholders, having completed approximately $105 million in share repurchases during the first quarter. As a result, we are increasing our full-year Adjusted Earnings Per Share guidance.\u201d Mr.",
-   "pct_mcap": 0.02100428597916519,
    "status": "COMPLETED",
    "what": "\u26a0 not a real event \u2014 Laureate earnings commentary noting about $105 million of Q1 buybacks; recap.",
    "verdict": "NOT AN EVENT",
@@ -20823,7 +20564,6 @@
    "filed": "2026-07-13",
    "url": "https://www.sec.gov/Archives/edgar/data/1590976/000159097626000029/",
    "excerpt": "\u201cThe facility gives us the flexibility to keep investing in the business, pursue disciplined growth opportunities, and return capital to shareholders. We appreciate the continued support of Truist and our bank group.\u201d For more information, please refer to the full text of the Credit Agreement filed as an exhibit to Malibu's Current Report on Form 8-K.",
-   "pct_mcap": 0.5436144079162574,
    "status": "ANNOUNCED",
    "what": "\u26a0 not a real event \u2014 Malibu Boats quote on a new credit facility; financing, not an action in scope.",
    "verdict": "NOT AN EVENT",
@@ -20859,7 +20599,7 @@
    "xret_since": -0.1566,
    "days_since": 130,
    "priced": "not yet",
-   "amount_ev": 5.5523
+   "amount_ev": 7.4515
   }
  ],
  "SEIC": [
@@ -20905,7 +20645,7 @@
    "xret_since": 0.3931,
    "days_since": 294,
    "priced": "moved",
-   "amount_ev": 0.0155
+   "amount_ev": 0.0151
   }
  ],
  "SPFX": [
@@ -20967,7 +20707,7 @@
    "xret_since": -0.0592,
    "days_since": 15,
    "priced": "not yet",
-   "amount_ev": 0.0516
+   "amount_ev": 0.0525
   }
  ],
  "MRP": [
@@ -20995,7 +20735,7 @@
    "xret_since": -0.1746,
    "days_since": 186,
    "priced": "not yet",
-   "amount_ev": 0.019
+   "amount_ev": 0.0191
   }
  ],
  "LNN": [
@@ -21006,7 +20746,6 @@
    "filed": "2026-07-02",
    "url": "https://www.sec.gov/Archives/edgar/data/836157/000119312526293405/",
    "excerpt": "Key Highlights: \u2022 International irrigation project in the Middle East North Africa (MENA) region remains on schedule \u2022 Infrastructure revenues increased 8 percent, driven by another consecutive quarter of growth in road safety products \u2022 Irrigation revenues decreased 7 percent as challenging market conditions in North America and Brazil persist \u2022 Net earnings of $15.8 million and $1.53 of diluted earnings per share \u2022 Completed $25.2 million of share repurchases during the quarter, bringing total repurchases to $80.7 million for the fiscal year \u201cDeliveries for the large irrigation project in the Middle East North Africa (MENA) region remain on schedule despite continued geopolitical challenges\" said Randy Wood, President and Chief Executive Officer. \"In North America, demand for irrigation equipment remains tempered as margin pressure from high input costs continues to impact customer sentiment.",
-   "pct_mcap": 0.021202465309586385,
    "status": "COMPLETED",
    "what": "\u26a0 not a real event \u2014 Lindsay quarterly highlights citing $25.2 million of buybacks; recap.",
    "verdict": "NOT AN EVENT",
@@ -21042,7 +20781,7 @@
    "xret_since": 0.11,
    "days_since": 263,
    "priced": "not yet",
-   "amount_ev": 0.0468
+   "amount_ev": 0.0465
   }
  ],
  "CALY": [
@@ -21147,7 +20886,7 @@
    "xret_since": 1.2645,
    "days_since": 263,
    "priced": "moved",
-   "amount_ev": 0.0292
+   "amount_ev": 0.0297
   }
  ],
  "HDSN": [
@@ -21173,7 +20912,7 @@
    "xret_since": -0.4243,
    "days_since": 298,
    "priced": "moved",
-   "amount_ev": 0.1557
+   "amount_ev": 0.1514
   }
  ],
  "YUMC": [
@@ -21248,7 +20987,7 @@
    "xret_since": -0.17,
    "days_since": 233,
    "priced": "not yet",
-   "amount_ev": 0.0713
+   "amount_ev": 0.0717
   }
  ],
  "WFRD": [
@@ -21259,7 +20998,6 @@
    "filed": "2025-09-23",
    "url": "https://www.sec.gov/Archives/edgar/data/1603923/000160392325000145/",
    "excerpt": "About Weatherford Weatherford delivers innovative energy services that integrate proven technologies with advanced digitalization to create sustainable offerings for maximized value and return on investment. Our world-class experts partner with customers to optimize their resources and realize the full potential of their assets.",
-   "pct_mcap": 0.03263882447299557,
    "status": "ANNOUNCED",
    "what": "\u26a0 not a real event \u2014 Weatherford company boilerplate description.",
    "verdict": "NOT AN EVENT",
@@ -21301,7 +21039,6 @@
    "filed": "2026-02-18",
    "url": "https://www.sec.gov/Archives/edgar/data/763744/000076374426000007/",
    "excerpt": "The Company used $128.6 million for share repurchases, $114.0 million for dividend payments to shareholders, $112.7 million for the acquisitions of businesses, and $52.6 million for capital expenditures in the twelve months ended December 31, 2025. The Company's outstanding long-term indebtedness, including current maturities, was $945.2 million at December 31, 2025.",
-   "pct_mcap": 0.06131891499883839,
    "status": "COMPLETED",
    "what": "\u26a0 not a real event \u2014 LCI Industries annual cash-use recap (buybacks, dividends, acquisitions); no new action.",
    "verdict": "NOT AN EVENT",
@@ -21427,7 +21164,7 @@
    "xret_since": -0.2471,
    "days_since": 200,
    "priced": "moved",
-   "amount_ev": 0.1084
+   "amount_ev": 0.1096
   }
  ],
  "BWEN": [
@@ -21589,7 +21326,7 @@
    "xret_since": -0.217,
    "days_since": 212,
    "priced": "moved",
-   "amount_ev": 0.1803
+   "amount_ev": 0.1811
   }
  ],
  "ACLS": [
@@ -21600,7 +21337,6 @@
    "filed": "2025-10-01",
    "url": "https://www.sec.gov/Archives/edgar/data/1113232/000110465925095307/",
    "excerpt": "All dividend equivalents, if any, accrued but unpaid as of the Effective Time with respect to each such Unvested Veeco RSU will also be assumed and become an obligation in connection with the applicable Axcelis RSU. Treatment of Stock-Based Awards \u2013 Veeco PSUs As of the Effective Time, each then-outstanding Veeco performance-based stock unit (a \u201c Veeco PSU \u201d) that is vested in accordance with its terms (each, a \u201c Vested Veeco PSU \u201d) will be canceled, and the holder thereof will be entitled to receive, subject to any applicable tax withholding (A) the Merger Consideration in respect of each share of Veeco Common Stock subject to such Vested Veeco PSU immediately prior to the Effective Time (based on the achievement of the applicable performance metrics (x) for those Vested Veeco PSUs where the applicable performance period has elapsed prior to the Effective Time, at the actual level of performance as determined by the Compensation Committee of the Veeco Board in the ordinary course of business consistent with past practice at the conclusion of such performance period and (y) for those Vested Veeco PSUs where the applicable performance period has not elapsed prior to the Effective Time, at the greater of (i) target level of performance or (ii) actual performance through the most recent practicable date prior to the date on which the closing occurs (the \u201c Closing Date \u201d), as deter",
-   "pct_mcap": 1.2429623415721895,
    "status": "PENDING",
    "what": "\u21bb merger of equals: Axcelis Technologies and Veeco Instruments agreed to combine in a merger; Veeco equity awards convert or receive merger consideration.",
    "verdict": "RETYPED",
@@ -21645,7 +21381,6 @@
    "filed": "2025-09-23",
    "url": "https://www.sec.gov/Archives/edgar/data/1604028/000119312525212097/",
    "excerpt": "Barbour continued, \u201cOur disciplined capital allocation framework and strong balance sheet provide us the flexibility to act when opportunities like this arise, while continuing to invest in our business and return capital to shareholders. Through our investment in NDS and applying ADS\u2019 proven operating model and integration expertise, we expect to drive enhanced profitability and realize significant synergies as a combined entity.",
-   "pct_mcap": 0.0997408491466057,
    "status": "PENDING",
    "what": "\u21bb the company is the ACQUIRER: Advanced Drainage Systems announced acquisition of National Diversified Sales from NORMA Group SE, targeting over $25 million annual cost synergies; price not stated.",
    "verdict": "RETYPED",
@@ -21684,7 +21419,7 @@
    "xret_since": 0.0151,
    "days_since": 15,
    "priced": "not yet",
-   "amount_ev": 0.1346
+   "amount_ev": 0.1361
   },
   {
    "family": "PILL_REMOVED",

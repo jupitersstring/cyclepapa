@@ -2,7 +2,7 @@
  {
   "book": "MOST_ASYMMETRIC.xlsx",
   "sheet": "What's New",
-  "row": 62,
+  "row": 59,
   "kind": "NO DATA",
   "ticker": "ALB-PA",
   "detail": "no FMP financial record"
@@ -10,23 +10,23 @@
  {
   "book": "MOST_ASYMMETRIC.xlsx",
   "sheet": "What's New",
-  "row": 90,
+  "row": 87,
   "kind": "NO DATA",
   "ticker": "NOTEW",
   "detail": "no FMP financial record"
  },
  {
   "book": "MOST_ASYMMETRIC.xlsx",
-  "sheet": "Name Financials",
-  "row": 1291,
+  "sheet": "What's New",
+  "row": 104,
   "kind": "DUPLICATE ISSUER",
-  "ticker": "CUBB,CUBI",
-  "detail": "customers bancorp"
+  "ticker": "AANNF,AT1.DE",
+  "detail": "aroundtown s a"
  },
  {
   "book": "MOST_ASYMMETRIC.xlsx",
   "sheet": "Name Financials",
-  "row": 1152,
+  "row": 1109,
   "kind": "DUPLICATE ISSUER",
   "ticker": "FMCQF,FMS",
   "detail": "fresenius medical care"
@@ -34,7 +34,15 @@
  {
   "book": "MOST_ASYMMETRIC.xlsx",
   "sheet": "Name Financials",
-  "row": 1438,
+  "row": 1209,
+  "kind": "DUPLICATE ISSUER",
+  "ticker": "015760.KS,KEP",
+  "detail": "korea electric power c"
+ },
+ {
+  "book": "MOST_ASYMMETRIC.xlsx",
+  "sheet": "Name Financials",
+  "row": 1416,
   "kind": "DUPLICATE ISSUER",
   "ticker": "RACD,RACC",
   "detail": "research alliance"
@@ -45,22 +53,22 @@
   "row": 4,
   "kind": "DEAD COLUMN",
   "ticker": "",
-  "detail": "'rTSR target' empty in 1103/1217 rows"
+  "detail": "'rTSR target' empty in 1074/1185 rows"
+ },
+ {
+  "book": "MOST_ASYMMETRIC.xlsx",
+  "sheet": "Asymmetry Assembly",
+  "row": 4,
+  "kind": "DEAD COLUMN",
+  "ticker": "",
+  "detail": "'Catl' empty in 24/26 rows"
  },
  {
   "book": "MOST_ASYMMETRIC.xlsx",
   "sheet": "Turnaround Signal",
-  "row": 22,
+  "row": 20,
   "kind": "NO DATA",
   "ticker": "CIK0000859737",
-  "detail": "no FMP financial record"
- },
- {
-  "book": "MOST_ASYMMETRIC.xlsx",
-  "sheet": "Turnaround Signal",
-  "row": 35,
-  "kind": "NO DATA",
-  "ticker": "ALB-PA",
   "detail": "no FMP financial record"
  },
  {
@@ -80,9 +88,57 @@
   "detail": "no FMP financial record"
  },
  {
+  "book": "MOST_ASYMMETRIC.xlsx",
+  "sheet": "Single-Measure Best",
+  "row": 85,
+  "kind": "NO DATA",
+  "ticker": "GLL",
+  "detail": "no FMP financial record"
+ },
+ {
+  "book": "MOST_ASYMMETRIC.xlsx",
+  "sheet": "Single-Measure Best",
+  "row": 86,
+  "kind": "NO DATA",
+  "ticker": "AGQ",
+  "detail": "no FMP financial record"
+ },
+ {
+  "book": "OTC_BOOK.xlsx",
+  "sheet": "Going Dark",
+  "row": 4,
+  "kind": "DEAD COLUMN",
+  "ticker": "",
+  "detail": "'Insider %' empty in 49/53 rows"
+ },
+ {
+  "book": "cyclepapa_risk_reward_workbook.xlsx",
+  "sheet": "Call intent",
+  "row": 108,
+  "kind": "BAD SECURITY",
+  "ticker": "VOW3",
+  "detail": "Volkswagen Preferred"
+ },
+ {
+  "book": "cyclepapa_risk_reward_workbook.xlsx",
+  "sheet": "Executive Summary",
+  "row": 34,
+  "kind": "BAD SECURITY",
+  "ticker": "XETR:VOW3",
+  "detail": "Volkswagen Preferred"
+ },
+ {
   "book": "cyclepapa_risk_reward_workbook.xlsx",
   "sheet": "All names",
-  "row": 302,
+  "row": 32,
+  "kind": "BAD SECURITY",
+  "ticker": "XETR:VOW3",
+  "detail": "Volkswagen Preferred"
+ },
+ {
+  "book": "cyclepapa_risk_reward_workbook.xlsx",
+  "sheet": "All names",
+  "row": 256,
   "kind": "DUPLICATE ISSUER",
   "ticker": "AZLUY,AZUL",
   "detail": "azul"
@@ -90,17 +146,9 @@
  {
   "book": "cyclepapa_risk_reward_workbook.xlsx",
   "sheet": "All names",
-  "row": 964,
+  "row": 823,
   "kind": "DUPLICATE ISSUER",
   "ticker": "HK:2202,SZSE:000002",
   "detail": "vanke"
- },
- {
-  "book": "cyclepapa_risk_reward_workbook.xlsx",
-  "sheet": "All names",
-  "row": 1204,
-  "kind": "DUPLICATE ISSUER",
-  "ticker": "NRIM,\u2014",
-  "detail": "northrim bancorp"
  }
 ]
