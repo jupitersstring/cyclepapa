@@ -20,3 +20,4 @@ prior.log
 data/.fmp_key
 .env
 data/fmp_cache/
+data/sec_cache/

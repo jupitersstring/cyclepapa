@@ -125,6 +125,9 @@ def sheet_readme(wb, conn):
         ("• 'Watchlist — Not in Universe' — the same board concentration on companies we don't yet cover (mostly",),
         ("   foreign — Harbour Energy, Playtech, NOVATEK, En+ ...). Candidates to add.",),
         ("• 'Family Office / SWF Map' — where Gulf, royal, and billionaire-vehicle nominees sit.",),
+        ("• 'New Insider Filings' — tracked people who filed an SEC Form 3 in the last 120 days: a new board seat,",),
+        ("   officer role or 10% stake, live (the PitchBook searches date from September 2025). Confirmed when the",),
+        ("   company is in the person's own profile; same-name filings are listed apart, beside the profile, to check.",),
         ("• 'Network Roster Adds' — investment firms found in the data and now tracked for holdings (context).",),
         ("",),
         ("Column definitions",),
@@ -329,6 +332,68 @@ def sheet_fo_swf(wb, conn):
     return ws
 
 
+def sheet_new_filings(wb, conn):
+    """The live check the PitchBook snapshot lacks: tracked people who filed a
+    Form 3 — the SEC's initial insider filing, due within ten days of becoming
+    a director, an officer or a 10% owner — in the last 120 days
+    (ingest_sec_events)."""
+    try:
+        rows = conn.execute("""SELECT e.filed, e.subject_ticker, e.subject_name, e.party_name, e.detail
+            FROM sec_events e WHERE e.kind = 'form3' AND e.detail LIKE 'tracked person%'
+            ORDER BY e.filed DESC""").fetchall()
+    except sqlite3.OperationalError:
+        return None
+    ws = wb.create_sheet("New Insider Filings")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "New Insider Filings — tracked people joining boards and companies (SEC Form 3)",
+                "A Form 3 is filed within ten days of becoming a director, officer or 10% owner: the live version of "
+                "the board seats the PitchBook searches recorded in September 2025. Last 120 days. Filers are matched "
+                "to the tracked individuals by name, so a filing is CONFIRMED only when its company (or ticker) is in "
+                "the person's own PitchBook profile; the rest share a name with a tracked person and are shown beside "
+                "that person's profile to check — a CFO in Ohio is rarely the London banker of the same name. Role "
+                "from the filing.", 9)
+    from map_pb_tickers import norm
+    theme, profile, blob, ticks = {}, {}, {}, {}
+    for full, th, comp, pos, loc, bio in conn.execute("""SELECT full_name, theme, primary_company, primary_position,
+            location, biography FROM pb_people"""):
+        theme.setdefault(full, th)
+        profile.setdefault(full, f"{pos or 'role n/a'} at {comp or 'n/a'}" + (f" ({loc})" if loc and loc != "None" else ""))
+        blob.setdefault(full, []).append(f"{comp or ''} {bio or ''}")
+    for full, comp, tk in conn.execute("SELECT full_name, company, ticker FROM pb_affiliation"):
+        blob.setdefault(full, []).append(comp or "")
+        if tk and tk != "None":
+            ticks.setdefault(full, set()).add(tk)
+    generic = set("""HOLDINGS HOLDING GROUP COMPANY CORPORATION INCORPORATED LIMITED TECHNOLOGIES TECHNOLOGY
+        INTERNATIONAL SYSTEMS SERVICES SERVICE FINANCIAL CAPITAL PARTNERS INDUSTRIES ENERGY GLOBAL AMERICAN
+        NATIONAL SPACE PRIVATE CREDIT FUND TRUST INCOME BANCORP THERAPEUTICS PHARMACEUTICALS SCIENCES
+        BIOSCIENCES MEDICAL HEALTH DIGITAL NETWORK NETWORKS SOLUTIONS RESOURCES PROPERTIES REALTY INVESTMENT
+        INVESTMENTS MANAGEMENT VENTURES ACQUISITION""".split())
+    def confirmed(person, comp, tk):
+        if tk and tk in ticks.get(person, ()):
+            return True
+        words = set(norm(" ".join(blob.get(person, []))).split())
+        return any(t in words for t in norm(comp).split() if len(t) >= 5 and t not in generic)
+    score = dict(conn.execute("SELECT ticker, score FROM unified_signal"))
+    sure, check = [], []
+    for filed, tk, comp, filer, detail in rows:
+        m = re.match(r"tracked person: (.*?)(?: · (.*))?$", detail or "")
+        person, role = (m.group(1), m.group(2) or "") if m else ("", "")
+        r_ = [person, role, comp or "", tk or "", filed, profile.get(person, ""),
+              (theme.get(person) or "").replace(" / ", "/"),
+              round(score[tk], 1) if score.get(tk) is not None else "", filer or ""]
+        (sure if confirmed(person, comp or "", tk) else check).append(r_)
+    hdr = ["Person", "Role (Form 3)", "Company", "Ticker", "Filed", "Their PitchBook Profile", "Network", "Our Score",
+           "Filed As"]
+    row = 4
+    for title, out in (("Confirmed — the company is in the person's own profile", sure),
+                       ("Same name as a tracked person — check the profile matches the filing", check)):
+        write_section_heading(ws, row, f"{title} — {len(out)}", 9)
+        if out:
+            write_table_header(ws, row + 1, hdr)
+            write_table_rows(ws, out, row + 2, ticker_col=4)
+        row += len(out) + (3 if out else 2)
+    return ws
+
 def sheet_new_funds(wb, conn):
     ws = wb.create_sheet("Network Roster Adds")
     ws.sheet_view.showGridLines = False
@@ -363,6 +428,7 @@ def run():
     sheet_convergence(wb, conn)
     sheet_watchlist(wb, conn)
     sheet_fo_swf(wb, conn)
+    sheet_new_filings(wb, conn)
     sheet_new_funds(wb, conn)
     for ws in wb.worksheets:
         autosize(ws)

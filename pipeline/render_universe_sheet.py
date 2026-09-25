@@ -54,7 +54,7 @@ _WHY_LABEL = {"sm": "sm", "s3*": "s3", "s4*": "s4", "s1*": "s1", "act": "act",
               "pb_max": "pb", "pb_n5": "pb5", "clust": "clu", "clust$": "clu$",
               "f4buy": "f4buy", "f4rec+": "f4rec", "f4sell": "f4sell",
               "f4recsell": "f4sell30", "mic": "micro", "er": "er", "entry": "entry",
-              "cat8k": "8k"}
+              "cat8k": "8k", "evt": "event"}
 def _why(components):
     if not components:
         return ""
@@ -196,6 +196,7 @@ SHEET_GUIDE = [
         ("Who's Buying", "for each name, the funds that opened or added to it, with the size of each move"),
         ("QoQ Change", "breadth: how many funds added vs trimmed each name (share counts, every size of move)"),
         ("Material + New", "the score table for names two or more funds opened or added (focus-weighted)"),
+        ("Manager Track Records", "how each fund's new buys did after its 13F made them public, vs the S&P 500"),
     ]),
     ("Ranked by the score", [
         ("Top 100", "the highest scores (ETFs and the ten largest US mega-caps left out)"),
@@ -214,6 +215,8 @@ SHEET_GUIDE = [
         ("In The Money", "trading below the funds' estimated entry price"),
         ("Asymmetry", "margin of safety times upside"),
         ("Catalysts 8-K", "M&A, change of control, director changes, dilution, bankruptcy in the last 180 days"),
+        ("Special Situations", "proxy fights, spin-offs coming (Form 10), tender and going-private offers"),
+        ("Short Interest", "crowded shorts the funds own, bears building, bears leaving (FINRA)"),
     ]),
     ("Insiders and politicians", [
         ("Insider Buys ≤30d", "open-market insider buying in the last 30 days, C-suite first, with the buyers named"),
@@ -364,6 +367,7 @@ def sheet_readme(wb, conn):
         ("      + entry setup: +2.5 to +5 at 15-30% below the funds' estimated entry, tapering to 0 at 50% below",),
         ("        and -3 beyond (a busted thesis); +1.5 within 15% of it; -3 when 40%+ above it",),
         ("      + 8-K catalysts (M&A +5, change of control +4, director change +1, PIPE -3, bankruptcy -10)",),
+        ("      + SEC events, 180 days (proxy contest +4, tender / going-private offer +5, spin-off coming +2)",),
         ("",),
         ("Data sources",),
         (f"fund_13f_holdings     {n_hold:,} rows from SEC 13F-HR XML across {n_13f_funds} funds",),
@@ -527,6 +531,24 @@ def sheet_what_changed(wb, conn):
         if acc and prev.get(fund) != acc:
             out.append([fund, str(filed)[:10], n or 0, round((v or 0) / 1e3)])
     section("New 13F books", ["Fund", "Filed", "Positions", "$M"], out, 4, {4: NUMFMT_M_TO_B})
+    # proxy fights, spin-off registrations, tender / going-private offers
+    prev_ev = _baseline("sec_events", base)
+    try:
+        evs = conn.execute("""SELECT kind, form, filed, accession, subject_ticker, subject_name, party_name, detail
+            FROM sec_events WHERE kind IN ('proxy', 'spin', 'tender') ORDER BY filed DESC""").fetchall()
+    except sqlite3.OperationalError:
+        evs = []
+    if prev_ev is None:                           # first build with this feed: the last week only
+        cut = (_dt.date.today() - _dt.timedelta(days=7)).isoformat()
+        evs = [e for e in evs if (e[2] or "") >= cut]
+        note = "First build with this feed: filings of the last 7 days."
+    else:
+        seen_acc = {r.get("accession") for r in prev_ev}
+        evs = [e for e in evs if e[3] not in seen_acc]
+        note = None
+    label = {"proxy": "proxy fight", "spin": "spin-off / Form 10", "tender": "tender / going private"}
+    section("New special-situation filings", ["Ticker", "Kind", "Form", "Filed", "Other Party", "Company / Detail"],
+            [[e[4] or "", label[e[0]], e[1], e[2], e[6] or "", (e[7] or e[5] or "")] for e in evs][:150], 6, note=note)
     # 5. the Top 100 and the score
     def top(rows_):
         pool = [(float(r["score"] or 0), r["ticker"]) for r in rows_
@@ -912,6 +934,8 @@ def sheet_qoq_change(wb, conn):
     autosize(ws)
     ws.column_dimensions["A"].width = 8
 
+_EVENTS, _SHORTS = {}, {}
+
 def sheet_dossier(wb, conn, top_n=45):
     """One consolidated block per ticker — score + drivers, holders, insiders,
     activist, catalysts, valuation, momentum — so vetting an idea doesn't mean
@@ -1001,6 +1025,14 @@ def sheet_dossier(wb, conn, top_n=45):
             tags = [t for t, on in [("M&A", c[1]), ("control", c[2]), ("director", c[3]), ("PIPE", c[4])] if on]
             if tags: clabels.append(f"{c[0][:10]} {'/'.join(tags)}")
         ws.cell(row=row, column=1, value="Catalysts"); ws.cell(row=row, column=2, value="; ".join(clabels) or "—"); row += 1
+        evs = _EVENTS.get(tk) or []
+        if evs:
+            ws.cell(row=row, column=1, value="Events"); ws.cell(row=row, column=2, value="; ".join(e[2] for e in evs[:4])); row += 1
+        sh = _SHORTS.get(tk)
+        if sh and sh[0] is not None:
+            ws.cell(row=row, column=1, value="Shorts")
+            ws.cell(row=row, column=2, value=f"{sh[0]:.1f}% of shares sold short, {sh[1] or 0:.1f} days to cover"
+                    + (f" ({sh[2]:+.0f}% in three months)" if sh[2] is not None else "")); row += 1
         # valuation + momentum
         val = []
         if r["ev_ebitda"] is not None: val.append(f"EV/EBITDA {r['ev_ebitda']:.1f}x")
@@ -1038,7 +1070,8 @@ def sheet_dossier(wb, conn, top_n=45):
         row += 1
     for rr in range(4, row):
         c = ws.cell(row=rr, column=1)
-        if c.value in ("Drivers", "Held by", "Insiders", "Congress", "Catalysts", "Valuation", "Earnings"):
+        if c.value in ("Drivers", "Held by", "Insiders", "Congress", "Catalysts", "Events", "Shorts",
+                       "Valuation", "Earnings"):
             c.font = _F(name="Times New Roman", size=9, italic=True, color="7F7F7F")
     ws.column_dimensions["A"].width = 16
     ws.column_dimensions["B"].width = 96
@@ -1104,6 +1137,336 @@ def sheet_whos_buying(wb, conn):
     autosize(ws)
     ws.column_dimensions["F"].width = 60
     ws.column_dimensions["H"].width = 60
+
+def short_data(conn):
+    """({ticker: (short % of shares out, days to cover, 3-month change %)},
+    settlement date) from FINRA's latest settlement (ingest_short_interest)."""
+    try:
+        dates = [r[0] for r in conn.execute("SELECT DISTINCT settlement_date FROM short_interest ORDER BY 1 DESC")]
+    except sqlite3.OperationalError:
+        return {}, None
+    if not dates:
+        return {}, None
+    old = dict(conn.execute("SELECT ticker, short_shares FROM short_interest WHERE settlement_date = ?",
+                            (dates[1],))) if len(dates) > 1 else {}
+    so = dict(conn.execute("SELECT ticker, shares_out_m FROM ticker_yf WHERE shares_out_m > 0"))
+    out = {}
+    for tk, ss, dtc in conn.execute("""SELECT ticker, short_shares, days_to_cover FROM short_interest
+            WHERE settlement_date = ?""", (dates[0],)):
+        pct = 100.0 * ss / (so[tk] * 1e6) if so.get(tk) and ss is not None else None
+        if pct is not None and pct > 100:          # an ADR's shares against the ordinary count
+            pct = None
+        o = old.get(tk)
+        chg = 100.0 * (ss / o - 1) if o and ss is not None and o > 0 else None
+        out[tk] = (pct, dtc, chg)
+    return out, dates[0]
+
+def events_by_ticker(conn):
+    """{ticker: [(kind, filed, text)]} from sec_events: proxy contests,
+    tender / going-private offers, spin-offs (on the parent's ticker)."""
+    out = {}
+    try:
+        rows = conn.execute("""SELECT kind, form, filed, subject_ticker, subject_name, party_name, detail
+            FROM sec_events WHERE kind IN ('proxy', 'tender', 'spin') ORDER BY filed DESC""").fetchall()
+    except sqlite3.OperationalError:
+        return out
+    from ingest_sec_events import parent_ticker
+    for kind, form, filed, tk, subj, party, detail in rows:
+        if kind == "spin":
+            ptk = parent_ticker(detail)
+            if ptk:
+                out.setdefault(ptk, []).append(("spin", filed, f"spinning off {subj} (Form 10 {filed})"))
+            continue
+        if not tk:
+            continue
+        what = {"proxy": f"proxy contest ({party or 'dissident'}, {form} {filed})",
+                "tender": f"{'going-private' if form == 'SC 13E3' else 'tender offer'} ({party or subj}, {form} {filed})"}
+        out.setdefault(tk, []).append((kind, filed, what[kind]))
+    return out
+
+def track_records(conn):
+    """{fund: row} from fund_track_record (track_records.py)."""
+    try:
+        cols = [r[1] for r in conn.execute("PRAGMA table_info(fund_track_record)")]
+        return {r[0]: dict(zip(cols, r)) for r in conn.execute("SELECT * FROM fund_track_record")}
+    except sqlite3.OperationalError:
+        return {}
+
+def sheet_special_situations(wb, conn):
+    """Filings that betray a coming catalyst (ingest_sec_events): proxy
+    contests, spin-offs being registered, tender and going-private offers —
+    each with who holds the company (or the spin-off's parent)."""
+    try:
+        ev = conn.execute("""SELECT kind, form, filed, accession, subject_cik, subject_name, subject_ticker,
+            party_name, detail FROM sec_events WHERE kind IN ('proxy', 'spin', 'tender')""").fetchall()
+    except sqlite3.OperationalError:
+        return
+    ws = wb.create_sheet("Special Situations")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Special Situations — proxy fights, spin-offs coming, tender and going-private offers",
+                "From SEC filings (EDGAR full-text search): proxy contests in the last 180 days (a dissident's "
+                "materials, or the company's contested proxy); Form 10 registrations in the last 365 days (a new "
+                "company being registered — a spin-off when the filing names a parent); third-party tender offers, "
+                "going-private deals and target responses in the last 180 days. 13F = conviction-weighted holders "
+                "of the company (for a spin-off, of its parent).", 11)
+    fac = {r[0]: r[1:] for r in conn.execute("""SELECT us.ticker, us.smart_money_n, us.mcap_m, us.score,
+        COALESCE(y.long_name, us.name), rp.rp_score FROM unified_signal us
+        LEFT JOIN ticker_yf y ON y.ticker = us.ticker LEFT JOIN revealed_pref rp ON rp.ticker = us.ticker""")}
+    roster = {r[0].upper() for r in conn.execute("SELECT fund FROM fund_meta")}
+    from _canon import canon
+    roster_c = {canon(f) for f in roster}
+    row = 4
+    def block(title, hdr, out, fmts):
+        nonlocal row
+        write_section_heading(ws, row, f"{title} — {len(out)}", 11)
+        row += 1
+        if not out:
+            row += 1
+            return
+        write_table_header(ws, row, hdr)
+        row += 1
+        write_table_rows(ws, out, row)
+        for col, f in fmts.items():
+            for r_ in range(row, row + len(out)):
+                ws.cell(row=r_, column=col).number_format = f
+        row += len(out) + 2
+    # proxy fights, one row per company
+    g = {}
+    for kind, form, filed, acc, cik, subj, tk, party, detail in ev:
+        if kind != "proxy":
+            continue
+        d = g.setdefault(cik, {"tk": tk, "name": subj, "forms": set(), "first": filed, "last": filed, "n": 0,
+                               "parties": set()})
+        d["forms"].add(form); d["n"] += 1
+        d["first"], d["last"] = min(d["first"], filed), max(d["last"], filed)
+        if party and form not in ("PREC14A", "DEFC14A"):
+            d["parties"].add(party)
+    # closed-end and unlisted funds (Saba's discount campaigns, muni funds) are
+    # a different game from a dissident at an operating company: shown apart
+    fundlike = {t for (t,) in conn.execute("SELECT ticker FROM ticker_yf WHERE is_fund = 1")}
+    def is_fund(tk, name):
+        return tk in fundlike or bool(re.search(r"\bFund\b|\bMunicipal|Tax[- ]Free|Income Trust|Closed[- ]End",
+                                                 name or "", re.I))
+    out, funds_out = [], []
+    for cik, d in sorted(g.items(), key=lambda x: x[1]["last"], reverse=True):
+        f = fac.get(d["tk"]) or (None,) * 5
+        tracked = any(canon(p) in roster_c for p in d["parties"])
+        (funds_out if is_fund(d["tk"], d["name"]) else out).append(
+            [d["tk"] or "", d["name"], "; ".join(sorted(d["parties"])) or "(company's contested proxy)",
+             "tracked fund" if tracked else "", d["first"], d["last"], d["n"], ", ".join(sorted(d["forms"])),
+             round(f[0], 1) if f[0] else "", f[1] or "", round(f[4], 1) if f[4] else ""])
+    hdr_p = ["Ticker", "Company", "Dissident", "Tracked?", "First Filing", "Latest", "Filings", "Forms",
+             "13F", "Mcap", "RP Score"]
+    block("Proxy fights at operating companies", hdr_p, out, {10: NUMFMT_MCAP})
+    block("Proxy fights at closed-end and unlisted funds (discount and governance campaigns)", hdr_p, funds_out,
+          {10: NUMFMT_MCAP})
+    # spin-offs coming, one row per registrant
+    g = {}
+    for kind, form, filed, acc, cik, subj, tk, party, detail in ev:
+        if kind != "spin":
+            continue
+        d = g.setdefault(cik, {"name": subj, "tk": tk, "first": filed, "last": filed, "n": 0, "parent": party,
+                               "detail": detail})
+        d["n"] += 1
+        d["first"], d["last"] = min(d["first"], filed), max(d["last"], filed)
+    from ingest_sec_events import parent_ticker
+    spins, other, unread = [], [], []
+    for cik, d in sorted(g.items(), key=lambda x: x[1]["last"], reverse=True):
+        ptk = parent_ticker(d["detail"]) or ""
+        f = fac.get(ptk) or (None,) * 5
+        mm = re.search(r"then merging into (.+)$", d["detail"] or "")
+        r_ = [ptk, d["parent"] or "", d["name"], d["tk"] or "", mm.group(1) if mm else "", d["first"], d["last"],
+              d["n"], round(f[0], 1) if f[0] else "", f[1] or "", round(f[4], 1) if f[4] else ""]
+        if d["parent"]:
+            spins.append(r_)
+        elif (d["detail"] or "").startswith("parent not read"):
+            unread.append(r_[:4] + r_[5:])
+        else:
+            other.append(r_[:4] + r_[5:])
+    block("Spin-offs coming (Form 10 names a parent)", ["Ticker", "Parent", "New Company", "New Ticker",
+          "Then Merging Into", "First Filing", "Latest", "Filings", "13F", "Mcap", "RP Score"], spins,
+          {10: NUMFMT_MCAP})
+    block("Other Form 10 registrations (no company distributes the shares: private funds and BDCs registering, "
+          "uplistings, holding-company formations)",
+          ["Ticker", "Parent", "Company", "Ticker Filed", "First Filing", "Latest", "Filings", "13F", "Mcap",
+           "RP Score"], other, {9: NUMFMT_MCAP})
+    if unread:
+        block("Form 10 registrations not read yet (EDGAR did not serve the document; read on the next run)",
+              ["Ticker", "Parent", "Company", "Ticker Filed", "First Filing", "Latest", "Filings", "13F", "Mcap",
+               "RP Score"], unread, {9: NUMFMT_MCAP})
+    # tender offers and going-private, one row per target
+    g = {}
+    for kind, form, filed, acc, cik, subj, tk, party, detail in ev:
+        if kind != "tender":
+            continue
+        d = g.setdefault(cik, {"tk": tk, "name": subj, "forms": set(), "first": filed, "last": filed,
+                               "parties": set()})
+        d["forms"].add(form)
+        d["first"], d["last"] = min(d["first"], filed), max(d["last"], filed)
+        if party and party != subj:
+            d["parties"].add(party)
+    out = []
+    for cik, d in sorted(g.items(), key=lambda x: x[1]["last"], reverse=True):
+        f = fac.get(d["tk"]) or (None,) * 5
+        kind = "going private" if "SC 13E3" in d["forms"] else "tender offer"
+        out.append([d["tk"] or "", d["name"], kind, "; ".join(sorted(d["parties"])), d["first"], d["last"],
+                    ", ".join(sorted(d["forms"])), round(f[0], 1) if f[0] else "", f[1] or ""])
+    block("Tender offers and going-private deals", ["Ticker", "Company", "Kind", "Bidder / Filer", "First Filing",
+          "Latest", "Forms", "13F", "Mcap"], out, {9: NUMFMT_MCAP})
+    ws.freeze_panes = "A4"
+    autosize(ws)
+    for col, w in (("B", 36), ("C", 44), ("D", 30)):
+        ws.column_dimensions[col].width = w
+
+def sheet_short_interest(wb, conn):
+    """FINRA short interest against what the funds own: crowded shorts the
+    funds hold with conviction, shorts building, shorts being covered."""
+    sd, settle = short_data(conn)
+    if not sd:
+        return
+    ws = wb.create_sheet("Short Interest")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, f"Short Interest — crowded shorts, bears building and leaving (FINRA, settled {settle})",
+                "Short % Out = shares sold short ÷ shares outstanding; Days to Cover = short shares ÷ average daily "
+                "volume; 3M Chg = change in short shares against the settlement about three months earlier. A "
+                "name the funds own with conviction and the bears crowd is a squeeze candidate, or a warning. "
+                "13F = conviction-weighted holders; Last Qtr = funds buying / selling in the latest 13F quarter. "
+                "Names the funds own: weighted holders 1.5+ or a 1%+ position, market cap $50M+. A short count "
+                "near or above half the shares out usually means a small float (a new listing) or a share count "
+                "not yet updated for a reverse split — check before reading it as a squeeze.", 12)
+    from fund_moves import quarter_moves
+    mv, _ = quarter_moves(conn)
+    lq = {}
+    for m in mv:
+        d = lq.setdefault(m["ticker"], [set(), set()])
+        (d[0] if m["kind"] in ("new", "add") else d[1]).add(m["fund"])
+    fac = {r[0]: r[1:] for r in conn.execute("""SELECT us.ticker, us.smart_money_n, us.max_pct_book, us.mcap_m,
+        COALESCE(y.long_name, us.name), y.industry, rp.rp_score FROM unified_signal us
+        LEFT JOIN ticker_yf y ON y.ticker = us.ticker LEFT JOIN revealed_pref rp ON rp.ticker = us.ticker
+        WHERE us.sec_type = 'common'""")}
+    def row_for(tk):
+        pct, dtc, chg = sd[tk]
+        f = fac[tk]
+        b = lq.get(tk, [set(), set()])
+        return [tk, round(pct, 1) if pct is not None else "", round(dtc, 1) if dtc is not None else "",
+                round(chg) if chg is not None else "", round(f[0] or 0, 1), round(f[1] or 0, 1),
+                f"+{len(b[0])} / -{len(b[1])}" if (b[0] or b[1]) else "", round(f[5], 1) if f[5] else "",
+                f[2] or "", f[3] or "", f[4] or ""]
+    hdr = ["Ticker", "Short % Out", "Days to Cover", "3M Chg %", "13F", "Max % Book", "Last Qtr", "RP Score",
+           "Mcap", "Name", "Industry"]
+    fmts = {2: '0.0"%"', 3: '0.0', 4: '+0"%";-0"%"', 5: '0.0', 6: NUMFMT_PCT, 8: '0.0', 9: NUMFMT_MCAP}
+    row = 4
+    def block(title, tks):
+        nonlocal row
+        write_section_heading(ws, row, f"{title} — {len(tks)}", 12)
+        row += 1
+        if not tks:
+            row += 1
+            return
+        write_table_header(ws, row, hdr)
+        row += 1
+        out = [row_for(t) for t in tks]
+        write_table_rows(ws, out, row)
+        for col, f in fmts.items():
+            for r_ in range(row, row + len(out)):
+                ws.cell(row=r_, column=col).number_format = f
+        color_directional(ws, row, row + len(out) - 1, [4], higher_is_better=False)
+        row += len(out) + 2
+    # "the funds own": a real holding (weighted holders 1.5+ or a position of 1%+
+    # of a book) in a company big enough to matter ($50M+): a $0.1M shell one
+    # fund holds a sliver of is noise, however short it is
+    held = [t for t in sd if t in fac and ((fac[t][0] or 0) >= 1.5 or (fac[t][1] or 0) >= 1)
+            and (fac[t][2] or 0) >= 50]
+    crowded = [t for t in held if (sd[t][0] or 0) >= 10 or ((sd[t][1] or 0) >= 8 and (sd[t][0] or 0) >= 5)]
+    crowded.sort(key=lambda t: -(sd[t][0] or 0))
+    building = [t for t in held if (sd[t][2] or 0) >= 50 and (sd[t][0] or 0) >= 3]
+    building.sort(key=lambda t: -(sd[t][2] or 0))
+    leaving = [t for t in held if sd[t][2] is not None and sd[t][2] <= -40 and (sd[t][0] or 0) >= 2]
+    leaving.sort(key=lambda t: sd[t][2])
+    block("Crowded shorts the funds own (10%+ of shares out, or 8+ days to cover)", crowded[:150])
+    block("Bears building (short shares up 50%+ in three months)", building[:100])
+    block("Bears leaving (short shares down 40%+ in three months)", leaving[:100])
+    ws.freeze_panes = "A4"
+    autosize(ws)
+    ws.column_dimensions["J"].width = 34
+    ws.column_dimensions["K"].width = 30
+
+def sheet_track_records(wb, conn):
+    """How each manager's new buys have done since its 13F made them public
+    (track_records.py), and last quarter's new buys by the proven ones."""
+    tr = track_records(conn)
+    if not tr:
+        return
+    from fund_moves import short_fund, quarter_moves
+    import statistics
+    style = dict(conn.execute("SELECT fund, macro_style FROM fund_style"))
+    # the yardstick: every fund's mature new buys together
+    allx = [x for (x,) in conn.execute("""SELECT excess FROM new_buy_returns
+        WHERE julianday('now') - julianday(filed) >= 90""")]
+    base = (f" All funds together: {100.0 * sum(x > 0 for x in allx) / len(allx):.0f}% of {len(allx):,} new buys "
+            f"beat the S&P 500, median {statistics.median(allx):+.1f} pts — the index was led by its largest "
+            f"stocks, so read a fund against this, not against zero." if allx else "")
+    ws = wb.create_sheet("Manager Track Records")
+    ws.sheet_view.showGridLines = False
+    write_title(ws, "Manager Track Records — how each fund's new buys did after its 13F made them public",
+                "A new buy = a position of 0.5%+ of the 13F book not held the quarter before (IPOs, spin-offs, "
+                "renamed companies and partial filings left out). Measured from the filing date — the first day you "
+                "could have copied it — to the latest close (a stock taken over or delisted: to its last close), "
+                "against the S&P 500 (SPY) over the same days; price moves only, split-adjusted, no dividends on "
+                "either side. Quarters filed 90+ days ago count; the latest is shown apart as too early to judge. "
+                "Big bets = 3%+ of the book. Funds with 5+ new buys, best median first. Common sense, not a model: "
+                "past hit rates are context, not a forecast." + base, 14)
+    hdr = ["Fund", "Style", "New Buys", "Beat S&P %", "Median vs S&P", "Average vs S&P", "Big Bets", "Big Bets Beat %",
+           "Big Bets Median", "Best", "Worst", "Latest Qtr Buys", "Latest Qtr Median", "Quarters"]
+    def fund_rows(lo, hi):
+        rs = [r for r in tr.values() if lo <= (r["n"] or 0) <= hi]
+        rs.sort(key=lambda r: (-(r["med_excess"] if r["med_excess"] is not None else -999), -(r["n"] or 0)))
+        return [[short_fund(r["fund"]), style.get(r["fund"], ""), r["n"], r["beat_pct"], r["med_excess"],
+                 r["avg_excess"], r["n_big"] or "", r["big_beat_pct"] if r["n_big"] else "",
+                 r["big_med_excess"] if r["n_big"] else "", r["best"], r["worst"], r["recent_n"] or "",
+                 r["recent_med_excess"] if r["recent_n"] else "", f"{r['first_period']} to {r['last_period']}"]
+                for r in rs]
+    row = 4
+    # ten or more measured buys make a record; five to nine are shown apart,
+    # where one lucky or unlucky pick still moves the median
+    for title, lo, hi in (("Funds with 10+ measured new buys, best median first", 10, 10 ** 6),
+                          ("Thinner records: 5-9 measured new buys (one pick still moves the median)", 5, 9)):
+        out = fund_rows(lo, hi)
+        write_section_heading(ws, row, f"{title} — {len(out)}", 14)
+        write_table_header(ws, row + 1, hdr)
+        write_table_rows(ws, out, row + 2, ticker_col=None)
+        first = row + 2
+        if out:
+            color_directional(ws, first, first + len(out) - 1, [5, 9], higher_is_better=True)
+        for r_ in range(first, first + len(out)):
+            ws.cell(row=r_, column=4).number_format = '0"%"'
+            ws.cell(row=r_, column=8).number_format = '0"%"'
+            for col in (5, 6, 9, 13):
+                ws.cell(row=r_, column=col).number_format = '+0.0;-0.0'
+        row = first + len(out) + 1
+    # last quarter's new buys by managers with a record of beating the market
+    proven = {f for f, r in tr.items() if (r["n"] or 0) >= 10 and (r["beat_pct"] or 0) >= 60 and (r["med_excess"] or 0) > 0}
+    mv, _ = quarter_moves(conn)
+    picks = [m for m in mv if m["kind"] in ("new", "add") and m["fund"] in proven and not m["listing"]]
+    picks.sort(key=lambda m: -m["cw"])
+    write_section_heading(ws, row, f"Last quarter's buys by managers whose new buys beat the S&P 500 60%+ of the time "
+                                   f"(10+ buys, positive median) — {len(picks)}", 14)
+    row += 1
+    write_table_header(ws, row, ["Ticker", "Buyer", "Move", "% of Book", "Buyer Beat %", "Buyer Median", "Name"])
+    row += 1
+    name = {r[0]: r[1] for r in conn.execute("""SELECT us.ticker, COALESCE(y.long_name, us.name)
+        FROM unified_signal us LEFT JOIN ticker_yf y ON y.ticker = us.ticker""")}
+    out = [[m["ticker"], short_fund(m["fund"]), m["label"], round(m["cw"], 1), tr[m["fund"]]["beat_pct"],
+            tr[m["fund"]]["med_excess"], name.get(m["ticker"]) or ""] for m in picks[:200]]
+    write_table_rows(ws, out, row)
+    for r_ in range(row, row + len(out)):
+        ws.cell(row=r_, column=4).number_format = NUMFMT_PCT
+        ws.cell(row=r_, column=5).number_format = '0"%"'
+        ws.cell(row=r_, column=6).number_format = '+0.0;-0.0'
+    ws.freeze_panes = "B4"
+    autosize(ws)
+    ws.column_dimensions["A"].width = 36
+    ws.column_dimensions["B"].width = 30
 
 def sheet_industries(wb, conn, per_industry=30):
     """The industry lens (FMP's industry designations): an index of every
@@ -1956,10 +2319,26 @@ def sheet_revealed_pref(wb, conn):
     ws = wb.create_sheet("Revealed Preference")
     ws.sheet_view.showGridLines = False
     hdr = ["Ticker", "RP Score", "Latest Evidence", "13F Net Pts", "13F Buyers", "13F Sellers",
-           "Who Bought (13F)", "Who Sold (13F)", "Insiders (90d)", "Insider $M", "C-suite",
+           "Who Bought (13F)", "Who Sold (13F)", "Buyers' Record", "Insiders (90d)", "Insider $M", "C-suite",
            "New 13D/G (90d)", "N-PORT Buyers", "N-PORT Sellers", "N-PORT Moves", "Cap Pts",
-           "Capital Structure", "Listed", "3M Chg %", "Mcap", "Bucket", "13F", "Act %", "Entry", "Name",
-           "Industry", "Business"]
+           "Capital Structure", "Listed", "3M Chg %", "Short % Out", "Days to Cover", "Mcap", "Bucket", "13F",
+           "Act %", "Entry", "Name", "Industry", "Business"]
+    # the 13F buyers' own track records (track_records.py): how often their
+    # new buys beat the S&P 500 after their 13Fs made them public
+    tr = track_records(conn)
+    from fund_moves import quarter_moves as _qm
+    _mv, _ = _qm(conn)
+    buyers_of = {}
+    for m_ in _mv:
+        if m_["kind"] in ("new", "add") and m_["pts"] > 0:
+            buyers_of.setdefault(m_["ticker"], []).append(m_["fund"])
+    def record(tk):
+        rs = [tr[f] for f in buyers_of.get(tk, []) if f in tr and (tr[f]["n"] or 0) >= 10]   # 10+ buys = a record
+        if not rs:
+            return ""
+        beat = sum(r["beat_pct"] for r in rs) / len(rs)
+        return f"{beat:.0f}% beat S&P ({len(rs)} of {len(buyers_of[tk])} buyers with records)"
+    shorts, _settle = short_data(conn)
     write_title(ws, "Revealed Preference — what they are buying now, with dated evidence",
                 f"RP Score = 13F net buying in the {q} quarter (each fund's new or added % of book, net of trims "
                 f"and exits, split-adjusted, capped at 10 per fund and scaled by focus min(1, 75/positions)) "
@@ -1982,30 +2361,36 @@ def sheet_revealed_pref(wb, conn):
         eb_label = ("below" if eb == "BELOW_ENTRY" else "near" if eb == "NEAR_ENTRY"
                     else "above" if "ABOVE" in eb else "")
         d = desc_for(conn, tk)
+        sh = shorts.get(tk) or (None, None, None)
         out.append([tk, round(score, 1), ev_date or "", round(pts, 1) if pts is not None else "", nb or 0, ns or 0,
-                    buying or "", selling or "", ins_n or 0, ins_usd if ins_usd else "", "yes" if cs else "",
+                    buying or "", selling or "", record(tk), ins_n or 0, ins_usd if ins_usd else "", "yes" if cs else "",
                     stakes or "", npb or 0, nps or 0, npm or "",
                     cap_pts if cap_pts is not None else "", cap_notes or "",
                     f"IPO {ipo}" if (ipo and ipo >= ipo_cut) else "",
-                    round(mom, 0) if mom is not None else "", mcap or "", bucket or "", round(sm or 0, 1),
+                    round(mom, 0) if mom is not None else "",
+                    round(sh[0], 1) if sh[0] is not None else "", round(sh[1], 1) if sh[1] is not None else "",
+                    mcap or "", bucket or "", round(sm or 0, 1),
                     round(act or 0, 1), eb_label, name or "", d[0], d[1]])
     write_table_rows(ws, out, 5)
-    color_directional(ws, 5, 4 + len(out), [16, 19], higher_is_better=True)
+    color_directional(ws, 5, 4 + len(out), [17, 20], higher_is_better=True)
     for ridx in range(5, 5 + len(out)):
-        ws.cell(row=ridx, column=10).number_format = NUMFMT_M_TO_B
-        ws.cell(row=ridx, column=19).number_format = '0"%"'
-        ws.cell(row=ridx, column=20).number_format = NUMFMT_MCAP
-        ws.cell(row=ridx, column=23).number_format = NUMFMT_PCT
+        ws.cell(row=ridx, column=11).number_format = NUMFMT_M_TO_B
+        ws.cell(row=ridx, column=20).number_format = '0"%"'
+        ws.cell(row=ridx, column=21).number_format = '0.0"%"'
+        ws.cell(row=ridx, column=22).number_format = '0.0'
+        ws.cell(row=ridx, column=23).number_format = NUMFMT_MCAP
+        ws.cell(row=ridx, column=26).number_format = NUMFMT_PCT
     ws.freeze_panes = "B5"
     autosize(ws)
     ws.column_dimensions["A"].width = 8
     for col in (7, 8):
         ws.column_dimensions[get_column_letter(col)].width = 60
-    ws.column_dimensions[get_column_letter(12)].width = 36
-    ws.column_dimensions[get_column_letter(15)].width = 40
-    ws.column_dimensions[get_column_letter(17)].width = 60
-    ws.column_dimensions[get_column_letter(26)].width = 24
-    ws.column_dimensions[get_column_letter(27)].width = 80
+    ws.column_dimensions[get_column_letter(9)].width = 34
+    ws.column_dimensions[get_column_letter(13)].width = 36
+    ws.column_dimensions[get_column_letter(16)].width = 40
+    ws.column_dimensions[get_column_letter(18)].width = 60
+    ws.column_dimensions[get_column_letter(29)].width = 24
+    ws.column_dimensions[get_column_letter(30)].width = 80
 
 _FIN_IND = ("bank", "insurance", "capital markets", "asset management", "credit services",
             "financial - ", "mortgage", "reinsurance", "financial conglomerate")
@@ -3005,6 +3390,8 @@ def main():
 
     sheet_readme(wb, conn)
     write_legend_sheet(wb, 1)
+    _EVENTS.update(events_by_ticker(conn))
+    _SHORTS.update(short_data(conn)[0])
     sheet_what_changed(wb, conn)          # new since the last delivered build (sheet 2)
     sheet_action_dashboard(wb, conn)      # front-page scannable summary
     sheet_convergence(wb, conn)           # multi-signal convergence matrix
@@ -3039,6 +3426,7 @@ def main():
                  "the latest 13F quarter, weighted by focus (research notes for funds without a current 13F). "
                  "Who they are: the Who's Buying sheet.")
     sheet_whos_buying(wb, conn)
+    sheet_track_records(wb, conn)         # how each manager's new buys did since its 13F
     sheet_activist(wb, conn)
     sheet_broker_radar(wb, conn)
     sheet_latent_ownership(wb, conn)
@@ -3059,6 +3447,8 @@ def main():
     sheet_revealed_pref(wb, conn)
     sheet_valuation(wb, conn)
     sheet_catalysts(wb, conn)
+    sheet_special_situations(wb, conn)    # proxy fights, spin-offs coming, tenders (SEC filings)
+    sheet_short_interest(wb, conn)        # FINRA short interest against fund conviction
     sheet_global_picks(wb, conn)
     sheet_bill_miller(wb, conn)
     sheet_unknown(wb, conn)

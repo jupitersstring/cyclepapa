@@ -272,6 +272,23 @@ CREATE TABLE congress_trades (
       amount_lo REAL, amount_hi REAL, amount_text TEXT,
       trans_date TEXT, disclosure_date TEXT, link TEXT);
 CREATE INDEX idx_congress_ticker ON congress_trades(ticker);
+CREATE TABLE fund_13f_history (
+      fund TEXT, cik TEXT, accession TEXT, filed TEXT,
+      issuer TEXT, cusip TEXT, ticker TEXT, value_k INTEGER, shares INTEGER,
+      sh_type TEXT, pct_book REAL,
+      PRIMARY KEY (fund, accession, cusip));
+CREATE INDEX idx_hist_fund ON fund_13f_history(fund);
+CREATE INDEX idx_hist_ticker ON fund_13f_history(ticker);
+CREATE TABLE fund_13f_history_state (
+      fund TEXT, period TEXT, accession TEXT, filed TEXT, n_holdings INTEGER, total_value_k INTEGER,
+      PRIMARY KEY (fund, period));
+CREATE TABLE sec_events (
+        kind TEXT, form TEXT, filed TEXT, accession TEXT PRIMARY KEY,
+        subject_cik TEXT, subject_name TEXT, subject_ticker TEXT,
+        party_cik TEXT, party_name TEXT, detail TEXT);
+CREATE TABLE short_interest (
+        ticker TEXT, settlement_date TEXT, short_shares REAL, prev_short_shares REAL, adv REAL,
+        days_to_cover REAL, market TEXT, PRIMARY KEY (ticker, settlement_date));
 CREATE TABLE ticker_entry_intact (
       ticker TEXT PRIMARY KEY,
       current_px REAL, anchor_px REAL, anchor_source TEXT,
@@ -313,6 +330,11 @@ CREATE TABLE revealed_pref (ticker TEXT PRIMARY KEY, rp_score REAL,
           stake_n INTEGER, stake_holders TEXT, stake_last TEXT,
           np_buyers INTEGER, np_sellers INTEGER, np_buying TEXT, np_selling TEXT,
           evidence_date TEXT, quarter TEXT, cap_points REAL, cap_notes TEXT);
+CREATE TABLE new_buy_returns (fund TEXT, period TEXT, ticker TEXT, pct_book REAL, filed TEXT,
+          entry_date TEXT, entry_px REAL, last_date TEXT, last_px REAL, ret REAL, spy_ret REAL, excess REAL);
+CREATE TABLE fund_track_record (fund TEXT PRIMARY KEY, n INTEGER, beat_pct REAL, med_excess REAL,
+          avg_excess REAL, n_big INTEGER, big_beat_pct REAL, big_med_excess REAL, first_period TEXT,
+          last_period TEXT, best TEXT, worst TEXT, recent_n INTEGER, recent_med_excess REAL);
 CREATE TABLE fund_conviction (
       fund TEXT, ticker TEXT, signals TEXT, raw_score REAL, style_weight REAL,
       score REAL, macro_style TEXT,

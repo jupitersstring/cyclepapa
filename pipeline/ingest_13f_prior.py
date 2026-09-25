@@ -34,6 +34,10 @@ def normalize_units(conn):
                 ratios.append((v * 1000.0 / sh) / p)
         if len(ratios) >= 2 and statistics.median(ratios) > 100:
             conn.execute("UPDATE fund_13f_prior SET value_k=value_k/1000.0 WHERE fund=?", (fund,))
+    # the recorded totals follow the lines: a book normalised here after its
+    # state row was written kept its whole-dollar total (66 funds sat at 1000x)
+    conn.execute("""UPDATE fund_13f_prior_state SET total_value_k = (SELECT COALESCE(SUM(p.value_k), 0)
+        FROM fund_13f_prior p WHERE p.fund = fund_13f_prior_state.fund) WHERE accession IS NOT NULL""")
     conn.commit()
 
 def _period(conn, acc):

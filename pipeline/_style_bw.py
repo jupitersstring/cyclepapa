@@ -648,6 +648,17 @@ LEGEND = [
         ("Share % / All Funds % / Tilt", "Industries by Style: the average fund's % of book in the industry, in the style and across all funds; Tilt = Share ÷ All Funds (above 1 = the style leans in)."),
         ("Median P/E, EV/EBITDA, P/TB, ROE, 3M", "Across the industry's held names. For financials read P/TB and ROE; EV/EBITDA means nothing for a bank."),
     ]),
+    ("Short interest, events and track records", [
+        ("Short % Out", "Shares sold short ÷ shares outstanding, from FINRA's latest twice-monthly settlement."),
+        ("Days to Cover", "Short shares ÷ average daily volume: how many days of normal trading the shorts would need to buy back."),
+        ("3M Chg % (shorts)", "Change in short shares against the settlement about three months earlier: bears building (up) or leaving (down)."),
+        ("Buyers' Record", "For a name the funds bought last quarter: how often those buyers' earlier new buys beat the S&P 500 after their 13Fs went public, averaged over the buyers with a record (10+ measured buys; Manager Track Records). Read it against the all-funds figure in that sheet's header, not against 50%."),
+        ("Beat S&P % / Median vs S&P", "Manager Track Records: of a fund's new buys (0.5%+ of book, not held the quarter before), the share that beat the S&P 500 from the 13F filing date to the latest close (a stock taken over: to its last close, the S&P to the same day), and the middle result in percentage points. Price moves only, split-adjusted."),
+        ("Big Bets", "New buys of 3%+ of the book, measured the same way."),
+        ("Proxy fight / Dissident", "Special Situations: a proxy contest filed in the last 180 days (DFAN14A / PREN14A / DEFN14A from a dissident, PREC14A / DEFC14A from the company); Tracked? = the dissident is on the fund roster."),
+        ("Spin-off coming / Form 10", "A new company registering its shares (Form 10-12B / 10-12G) that names a parent: shares are about to be distributed to the parent's holders."),
+        ("Tender / going private", "A third-party tender offer (SC TO-T), a going-private deal (SC 13E3) or a target's response (SC 14D9) in the last 180 days."),
+    ]),
     ("Activist & insider (SEC)", [
         ("13D", "Number of SC 13D / 13G beneficial-ownership filings (a ≥5% stake)."),
         ("Act %", "Largest activist stake disclosed via 13D/G (max percent of share class)."),

@@ -22,10 +22,14 @@ SNAP = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
 # Tables whose data is EXPENSIVE to refetch (EDGAR + price + parsed Form 4s).
 # We always dump these. Other (derived) tables are dumped too for completeness
 # but are also rebuildable from these + the CSV inputs + source code.
-EXPENSIVE_TABLES = {"edgar_filings", "form4_transactions", "prices", "discovery",
+EXPENSIVE_TABLES = {"edgar_filings", "form4_transactions", "discovery",
                     "discovery_13d", "discovery_13d_subjects", "insider_clusters",
                     "ticker_meta", "ticker_valuation", "catalysts_8k", "holder_13d"}
-ALWAYS_SKIP = set()  # views handled separately
+# Daily closes (prices: ~2.7M rows since 2025-03) are re-fetched from FMP by
+# ingest_prices_fmp.py and cached a day per symbol; committed, they would add
+# tens of MB to every build. What the books derive from them (track records,
+# entry anchors, momentum) is snapshotted.
+ALWAYS_SKIP = {"prices"}  # views handled separately
 
 def list_tables(conn):
     return [r[0] for r in conn.execute(

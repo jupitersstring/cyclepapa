@@ -212,6 +212,38 @@ def build():
             ["Tk","Name","RP","13F buy/sell","Insiders","13D/G","Latest","3mo"], rrows,
             rightclasses="l l tnum tnum tnum tnum tnum tnum".split()))
 
+    # PANEL 4b — special situations on held names: proxy fights, tender and
+    # going-private offers, spin-offs being registered (on the parent)
+    if _has_table(conn, "sec_events"):
+        from ingest_sec_events import parent_ticker
+        held = {r[0]: (r[1], r[2]) for r in q(conn, """SELECT ticker, name, smart_money_n FROM unified_signal
+            WHERE sec_type = 'common' AND smart_money_n > 0""")}
+        sit = {}
+        for kind, form, filed, tk, subj, party, detail in q(conn, """SELECT kind, form, filed, subject_ticker,
+                subject_name, party_name, detail FROM sec_events WHERE kind IN ('proxy', 'tender', 'spin')
+                ORDER BY filed DESC"""):
+            if kind == "spin":
+                tk = parent_ticker(detail)
+                what = f"spinning off {subj}"
+            elif kind == "proxy":
+                what = "proxy fight" + (f" ({party})" if party and form not in ("PREC14A", "DEFC14A") else "")
+            else:
+                what = ("going private" if form == "SC 13E3" else "tender offer") + \
+                       (f" ({party})" if party and party != subj else "")
+            if not tk or tk not in held or (tk, kind) in sit:
+                continue
+            sit[(tk, kind)] = (filed, tk, what)
+        srows = [f'<tr><td class="l tk">{esc(tk)}</td>'
+                 f'<td class="l mut">{esc((held[tk][0] or "")[:30])}</td>'
+                 f'<td class="l">{esc(what[:60])}</td>'
+                 f'<td class="tnum">{esc(filed)}</td>'
+                 f'<td class="tnum">{held[tk][1]:.1f}</td></tr>'
+                 for filed, tk, what in sorted(sit.values(), reverse=True)[:14]]
+        if srows:
+            parts.append(_panel("Special situations — proxy fights, tender offers and spin-offs at names the funds hold",
+                ["Tk", "Name", "What", "Latest filing", "13F"], srows,
+                rightclasses="l l l tnum tnum".split()))
+
     # PANEL 5 — cheap AND sound (the Valuation sheet's checks), not just cheap:
     # insurers, and loss-makers on a one-off EBITDA, read "cheap" on EV/EBITDA
     val = q(conn, """SELECT us.ticker, us.name, us.ev_ebitda, yf.fcf_yield, yf.roic,
@@ -245,7 +277,8 @@ def build():
     parts.append('<p class="mut">Colour is data: <span class="up">▲ lapis</span> improving / accumulating · '
                  '<span class="dn">▼ crimson</span> deteriorating / distributing. Built from 13F, 13D/G, Form 4, '
                  '8-K and N-PORT filings and FMP market data; the detail behind every line is in '
-                 'universe_analysis.xlsx (Action Dashboard, Revealed Preference, QoQ Change, Valuation).</p>')
+                 'universe_analysis.xlsx (Action Dashboard, Revealed Preference, QoQ Change, Special Situations, '
+                 'Valuation).</p>')
     parts.append("</div>")
     open(OUT, "w").write("<!doctype html><meta charset='utf-8'>" + "".join(parts))
     print(f"wrote {OUT}")

@@ -140,6 +140,7 @@ _EQUITY = ("AND sh_type IN ('SH','') AND substr(cusip,7,1) BETWEEN '0' AND '9' "
 import datetime as _dt
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from ingest_13f import DORMANT_DAYS       # same window that archives dormant books
+from ingest_sec_events import parent_ticker
 STALE_FUND_CUTOFF = (_dt.date.today() - _dt.timedelta(days=DORMANT_DAYS)).isoformat()
 _FRESH = (f"AND fund NOT IN (SELECT fund FROM fund_13f_state "
           f"WHERE last_filed IS NOT NULL AND last_filed < '{STALE_FUND_CUTOFF}')")
@@ -372,6 +373,20 @@ def run():
         pass  # ticker_yf may not exist yet
 
     # 8-K catalysts — count of each material item type in the last 180d
+    # SEC event filings (ingest_sec_events): a live proxy contest, a tender or
+    # going-private offer, a spin-off being registered (on the parent)
+    events = {}
+    try:
+        for kind, form, tk, detail in conn.execute("""SELECT kind, form, subject_ticker, detail FROM sec_events
+                WHERE kind IN ('proxy', 'tender', 'spin') AND filed >= date('now', '-180 days')"""):
+            if kind == "spin":
+                ptk = parent_ticker(detail)
+                if ptk:
+                    events.setdefault(ptk, set()).add("spin")
+            elif tk:
+                events.setdefault(tk, set()).add(kind)
+    except sqlite3.OperationalError:
+        pass
     cat8k = {}     # ticker -> dict of has_ma/has_director/has_control/has_pipe/has_bankruptcy
     for r in conn.execute("""SELECT ticker,
             MAX(has_ma) AS ma, MAX(has_director) AS dir, MAX(has_control) AS ctrl,
@@ -594,6 +609,11 @@ def run():
         #   Director change (5.02)                 = +1  (could be activist)
         #   PIPE / dilution (3.02)                 = -3  (counter-signal)
         #   Bankruptcy (1.03)                      = -10 (counter-signal)
+        #   SEC events: proxy contest +4 · tender / going-private +5 (unless an
+        #   M&A 8-K already counts the deal) · spin-off being registered +2
+        ev = events.get(tkr, set())
+        catalyst_evt = (4 * ("proxy" in ev) + (5 if ("tender" in ev and not c8_ma) else 0)
+                        + 2 * ("spin" in ev))
         catalyst_8k = (5 * c8_ma + 4 * c8_ctrl + 1 * c8_dir
                        - 3 * c8_pipe - 10 * c8_bnk)
 
@@ -603,7 +623,7 @@ def run():
                  form4_buying + form4_recent_bonus +
                  form4_selling + form4_recent_sell_penalty +
                  micro_bonus + er_contribution + entry_bonus +
-                 catalyst_8k)
+                 catalyst_8k + catalyst_evt)
 
         # ASYMMETRY — margin-of-safety (downside protection) × upside potential.
         # The multibagger setup: cheap valuation + smart money already in below
@@ -651,7 +671,7 @@ def run():
                       f"pb_n5={cluster_pct_book:.1f} clust={insider_cluster:.0f} "
                       f"clust$={insider_dollars:.1f} f4buy={form4_buying:.1f} f4rec+={form4_recent_bonus:.1f} "
                       f"f4sell={form4_selling:.1f} f4recsell={form4_recent_sell_penalty:.1f} "
-                      f"mic={micro_bonus:.0f} er={er_contribution:.1f} entry={entry_bonus:.1f} cat8k={catalyst_8k:.0f}")
+                      f"mic={micro_bonus:.0f} er={er_contribution:.1f} entry={entry_bonus:.1f} cat8k={catalyst_8k:.0f} evt={catalyst_evt:.0f}")
 
         conn.execute("""INSERT INTO unified_signal VALUES
             (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",

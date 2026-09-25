@@ -289,6 +289,7 @@ def sheet_readme(wb, conn):
         ("      + 1.5 × funds with 5%+ of book (cap 12) + insider buy cluster (5 / 10 / 15) + 3 × ln(1 + cluster $M)",),
         ("      + 2 × ln(1 + insider buys $M) + 2 × ln(1 + buys in 30 days) − 1.5 × ln(1 + insider sells $M) (and 30-day)",),
         ("      + small-cap bonus (+5 under $300M, +3 under $2B) + entry setup + 8-K catalysts (M&A +5, control +4, ...)",),
+        ("      + SEC events (proxy contest +4, tender / going-private +5, spin-off coming +2)",),
         ("All inputs are primary filings (13F, 13D/G, Form 4, 8-K, N-PORT) plus FMP market data. No memory-based picks.",),
     ]
     for i, r in enumerate(rows, 4):
@@ -697,6 +698,11 @@ def sheet_fund_dossier(wb, conn, top_n=10):
         moves_by.setdefault(sd.cn(mv["fund"]), []).append(mv)
     status = dict(conn.execute("SELECT fund, status FROM fund_resolution_state"))
     sub = {f: g for f, g in conn.execute("SELECT fund, sub_group FROM fund_style")}
+    try:                                                   # track_records.py
+        tcols = [r[1] for r in conn.execute("PRAGMA table_info(fund_track_record)")]
+        trec = {r[0]: dict(zip(tcols, r)) for r in conn.execute("SELECT * FROM fund_track_record")}
+    except sqlite3.OperationalError:
+        trec = {}
     hdr = ["Ticker", "% of Book", "Last Qtr", "Industry", "Mcap", "Name"]
     row, anchors = 4, {}
     for ms, count in style_macro_list(conn):
@@ -724,6 +730,20 @@ def sheet_fund_dossier(wb, conn, top_n=10):
                 facts += " · on the roster as: " + "; ".join(names)
             ws.cell(row=row, column=1, value=facts).font = BODY_ITALIC
             row += 1
+            tr = next((trec[f] for f in names + [fund] if f in trec), None)
+            if tr and (tr["n"] or tr["recent_n"]):
+                txt = (f"Track record: {tr['n']} new buys ({tr['first_period']} to {tr['last_period']} books) — "
+                       f"{tr['beat_pct']:.0f}% beat the S&P 500 after the 13F went public, median "
+                       f"{tr['med_excess']:+.1f} pts" + (" (a thin record: under 10 buys)" if tr["n"] < 10 else "")
+                       if tr["n"] else "Track record: too early to judge")
+                if tr["n_big"]:
+                    txt += f"; big bets (3%+ of book): {tr['n_big']}, {tr['big_beat_pct']:.0f}% beat, median {tr['big_med_excess']:+.1f}"
+                if tr["n"]:
+                    txt += f"; best {tr['best']}, worst {tr['worst']}"
+                if tr["recent_n"]:
+                    txt += f"; latest quarter {tr['recent_n']} buys, {tr['recent_med_excess']:+.1f} so far"
+                ws.cell(row=row, column=1, value=txt).font = BODY_ITALIC
+                row += 1
             held = sorted(sd.hold.get(m, {}).items(), key=lambda x: -x[1])[:top_n]
             if held:
                 write_table_header(ws, row, hdr)

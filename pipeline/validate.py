@@ -377,6 +377,30 @@ def run():
         warns.append(f"cusip_map: {len(frgn)} US CUSIPs held this quarter map to foreign-style codes: "
                      + ", ".join(frgn[:8]))
 
+    # I12c. a book's recorded total is the sum of its lines: a unit repair that
+    #       fixes the lines but not the state row left 66 prior-book totals at
+    #       1000x (whole dollars) — anything reading the state reads garbage
+    # (a prior can hold a successor filer's line too, so it is summed per fund)
+    for state, lines, key in [("fund_13f_state", "fund_13f_holdings", "t.accession = s.last_accession"),
+                              ("fund_13f_prior_state", "fund_13f_prior", "s.accession IS NOT NULL"),
+                              ("fund_13f_history_state", "fund_13f_history", "t.accession = s.accession")]:
+        grp = "fund" if state == "fund_13f_prior_state" else "fund, accession"
+        try:
+            off = conn.execute(f"""SELECT s.fund, s.total_value_k, t.v FROM {state} s
+                JOIN (SELECT {grp}, SUM(value_k) v FROM {lines} GROUP BY {grp}) t
+                  ON t.fund = s.fund AND {key}
+                WHERE s.total_value_k > 0 AND t.v > 0
+                  AND (s.total_value_k > 1.02 * t.v OR s.total_value_k < 0.98 * t.v)""").fetchall()
+        except sqlite3.OperationalError:
+            continue
+        unit = [o for o in off if o[1] > 100 * o[2] or o[1] < o[2] / 100]
+        if unit:
+            fails.append(f"{state}: {len(unit)} recorded book totals are 100x+ off the sum of their lines "
+                         f"(a unit repair missed the state row), e.g. {unit[0][0][:28]}")
+        elif off:
+            warns.append(f"{state}: {len(off)} recorded book totals differ 2%+ from the sum of their lines, "
+                         f"e.g. {off[0][0][:28]}")
+
     # I13. vs-entry is computed on today's price: entry_intact.py runs in the
     #      rebuild; a stale table showed a third "current" price for BABA.
     try:
@@ -388,6 +412,26 @@ def run():
                          f"(run entry_intact.py)")
     except sqlite3.OperationalError:
         pass
+
+    # I14. the newer feeds: prices (FMP daily closes), short interest (FINRA,
+    #      twice a month), SEC event filings, track records
+    for tbl, col, days, what in [("prices", "date", 6, "ingest_prices_fmp.py"),
+                                 ("short_interest", "settlement_date", 35, "ingest_short_interest.py"),
+                                 ("sec_events", "filed", 10, "ingest_sec_events.py")]:
+        try:
+            mx = conn.execute(f"SELECT MAX({col}) FROM {tbl}").fetchone()[0]
+        except sqlite3.OperationalError:
+            mx = None
+        if not mx:
+            warns.append(f"{tbl} empty — run {what}")
+        elif (conn.execute("SELECT julianday('now') - julianday(?)", (mx,)).fetchone()[0] or 0) > days:
+            warns.append(f"{tbl} stale: latest {str(mx)[:10]} (> {days}d) — run {what}")
+    try:
+        n_tr = conn.execute("SELECT COUNT(*) FROM fund_track_record WHERE n >= 5").fetchone()[0]
+        if n_tr < 100:
+            warns.append(f"fund_track_record: only {n_tr} funds with 5+ measured new buys (13F history loaded?)")
+    except sqlite3.OperationalError:
+        warns.append("fund_track_record missing — run ingest_13f_history.py then track_records.py")
 
     # I8. feed freshness: warn when the tradeable-signal feeds fall behind.
     for tbl, col, days in [('form4_transactions','trans_date',21), ('holder_13d','filed',30),

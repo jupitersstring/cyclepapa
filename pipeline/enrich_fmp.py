@@ -46,6 +46,13 @@ def fetch_csv(path, **params):
             return list(csv.DictReader(io.StringIO(body)))
         if body.strip() in ("", "[]"):
             return []
+        # past the last part of a paged bulk file FMP answers with this error,
+        # not an empty body: that is the end of the file (profile-bulk has
+        # parts 0-3). Retrying it for two minutes and raising threw away the
+        # parts already read, and with no cached copy (a fresh checkout)
+        # stopped the whole refresh.
+        if params.get("part") and "Invalid or missing query parameter - part" in body:
+            return []
         if "Limit Reach" in body:
             # bulk endpoints sit behind a rolling window (a call that fails now
             # succeeds a minute later): wait it out twice, then give up
@@ -275,7 +282,10 @@ def run():
     print(f"per-symbol fallback: {len(gaps)} listings missing from the bulk ratio/metric files, "
           f"{n_fill} rows recovered", flush=True)
     existing = {r["ticker"]: dict(r) for r in conn.execute("SELECT * FROM ticker_yf")}
-    asof = time.strftime("%Y-%m-%d")
+    # the rows are as of the profile file they come from: a run that fell back
+    # to an older copy (the bulk call failed) must not stamp its prices today —
+    # a later, fresher run that finds the listing gone would then contradict it
+    asof = time.strftime("%Y-%m-%d", time.localtime(os.path.getmtime(os.path.join(CACHE, "profile_bulk.csv"))))
     conn.execute("CREATE TABLE IF NOT EXISTS yf_dead (ticker TEXT PRIMARY KEY, asof TEXT)")
     n_upd = n_new = n_inactive = n_miss = n_revived = 0
     for tk in sorted(universe):
@@ -288,6 +298,8 @@ def run():
             # Dayforce, Avidity). Flag it so scoring treats it as delisted rather
             # than an unpriced "unknown mcap" pick.
             conn.execute("INSERT OR REPLACE INTO yf_dead VALUES (?,?)", (tk, asof))
+            # its last FMP price stays for reference, marked as no longer trading
+            conn.execute("UPDATE ticker_yf SET src = 'fmp-inactive' WHERE ticker = ? AND src = 'fmp'", (tk,))
             n_inactive += 1
             # still repair a cut description (the rows stay in reference sheets)
             desc = " ".join((p.get("description") or "").split())
