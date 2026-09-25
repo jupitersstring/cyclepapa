@@ -514,7 +514,8 @@ def _sw_data():
     if not _SW:
         for k, fn in (("fin", "name_financials.json"), ("ev", "event_detail.json"), ("ci", "call_intent.json"),
                       ("f4", "form4_buys.json"), ("geo", "payoff_geometry.json"), ("own", "ownership.json"),
-                      ("dist", "distress_flags.json"), ("val", "layer_validation.json")):
+                      ("dist", "distress_flags.json"), ("val", "layer_validation.json"),
+                      ("exp", "expectations.json")):
             try:
                 _SW[k] = json.loads((ROOT / fn).read_text())
             except Exception:
@@ -611,6 +612,17 @@ def so_what(tk: str, ns: int | None = None) -> str:
         px = f.get("price")
         vs = f" (paid ${paid:.2f}; now {px / paid - 1:+.0%})" if px and (f.get("currency") or "USD") == "USD" else ""
         bits.append(f"insiders bought ${b['total_dollar'] / 1e6:.1f}M{vs}")
+    x = d["exp"].get(tk) or {}
+    pi = []
+    if isinstance(x, dict):
+        if (x.get("n_analysts") or 0) <= 2:
+            pi.append("neglected (" + (f"{x['n_analysts']} analysts" if x.get("n_analysts") else "no coverage") + ")")
+        if x.get("pt_upside") is not None:
+            pi.append(f"target {x['pt_upside']:+.0%}")
+        if (x.get("short_pct_float") or 0) >= 0.10:
+            pi.append(f"short {x['short_pct_float']:.0%} of float")
+    if pi:
+        bits.append("priced in: " + ", ".join(pi))
     val = []
     if f.get("p_tbv") and f.get("kind") == "bank":
         val.append(f"P/TBV {f['p_tbv']:.2f}")
@@ -3696,11 +3708,14 @@ def main() -> int:
         bl.event_sheet(wb, events, fin=fin)
     own = bl._load_json("ownership.json")
     dist = bl._load_json("distress_flags.json")
-    wb._own, wb._dist = own, dist
+    exp = bl._load_json("expectations.json")
+    wb._own, wb._dist, wb._exp = own, dist, exp
     if own:
         bl.ownership_sheet(wb, own, dist, fin=fin)
     if dist:
         bl.redflag_sheet(wb, dist, fin=fin)
+    if exp:
+        bl.expectations_sheet(wb, exp, fin=fin)
     name_financials.add_financials(wb, fin, index=3, skip=NONAME)
     # financials NEXT TO the name, and one strength scale on every thesis/signal tab
     bl.key_numbers(wb, fin, skip=NONAME + ("Name Financials",))
@@ -3718,6 +3733,9 @@ def main() -> int:
     if own:
         bl.detail_column(wb, "Ownership (13D/13F/insiders)", {t: bl.ownership_line(r) for t, r in own.items()},
                          THESIS, width=56)
+    if exp:
+        bl.detail_column(wb, "Priced in (analysts / short)", {t: bl.expectations_line(r) for t, r in exp.items()
+                                                               if isinstance(r, dict)}, THESIS, width=50)
     if dist:
         bl.detail_column(wb, "Red flags (filings)", {t: bl.redflag_line(r) for t, r in dist.items()},
                          THESIS, width=40, min_fill=0.0)
@@ -3742,7 +3760,7 @@ def main() -> int:
                     "Structured Distressed", "Distressed Stub Progress", "Hidden Asset Realisation",
                     "Asymmetry Assembly", "Turnaround Signal", "Call Intent", "Foreign Markets",
                     "UK Capital Events", "By Archetype", "Reserve Baskets", "Caution List"]),
-        ("Signals", ["Ownership", "Red Flags", "Insider Conviction", "Insider Filing-Time", "MD&A Intent", "Incentive Improvers",
+        ("Signals", ["Ownership", "Red Flags", "Priced In", "Insider Conviction", "Insider Filing-Time", "MD&A Intent", "Incentive Improvers",
                      "Recent 30d", "Political Trades", "Single-Measure Best", "Without Valuation"]),
         ("Evidence", ["Re-Rate Backtest", "Tail Odds", "Winners Study"]),
         ("Plumbing", ["Layer Correlation", "Coverage & Tiers", "Methodology"]),
@@ -3753,7 +3771,8 @@ def main() -> int:
                      "PSU Plans": "What each PSU plan is (metrics, weights, period, payout, TSR, hurdles, past payouts) and its grade.",
                      "Event Detail": "Every 8-K event: what is sold/spun/tendered, to whom, for how much, status, verbatim excerpt.",
                      "Ownership": "13D/13G activists and 5%+ holders, 13F holder changes, value investors, insider buys AND sells.",
-                     "Red Flags": "Bankruptcy, non-reliance, delisting, late filings, going concern, reverse splits, Altman Z."})
+                     "Red Flags": "Bankruptcy, non-reliance, delisting, late filings, going concern, reverse splits, Altman Z.",
+                     "Priced In": "Analyst coverage, targets, ratings, forward P/E and short interest: what the market expects."})
     wb.save(OUT)
     print(f"\nwrote {OUT}  ({len(wb.sheetnames)} tabs)")
     return 0

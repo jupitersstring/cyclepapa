@@ -5,7 +5,7 @@ Automated checks over every sheet of the three books (`book_qa.py`). Counts by b
 | Book | Kind | Findings |
 |---|---|---|
 | MOST_ASYMMETRIC.xlsx | DEAD COLUMN | 2 |
-| MOST_ASYMMETRIC.xlsx | DUPLICATE ISSUER | 4 |
+| MOST_ASYMMETRIC.xlsx | DUPLICATE ISSUER | 7 |
 | MOST_ASYMMETRIC.xlsx | NO DATA | 7 |
 | OTC_BOOK.xlsx | DEAD COLUMN | 1 |
 | cyclepapa_risk_reward_workbook.xlsx | BAD SECURITY | 3 |
@@ -18,9 +18,12 @@ Automated checks over every sheet of the three books (`book_qa.py`). Counts by b
 |---|---|---|---|---|---|
 | MOST_ASYMMETRIC | Asymmetry Assembly | 4 | DEAD COLUMN |  | 'Catl' empty in 24/26 rows |
 | MOST_ASYMMETRIC | PSU Plans | 4 | DEAD COLUMN |  | 'rTSR target' empty in 1074/1185 rows |
-| MOST_ASYMMETRIC | Name Financials | 1287 | DUPLICATE ISSUER | FMCQF,FMS | fresenius medical care |
-| MOST_ASYMMETRIC | Name Financials | 1507 | DUPLICATE ISSUER | RACD,RACC | research alliance |
-| MOST_ASYMMETRIC | Name Financials | 1914 | DUPLICATE ISSUER | DTB,DTG | dte energy company 202 |
+| MOST_ASYMMETRIC | Name Financials | 1389 | DUPLICATE ISSUER | RACD,RACC | research alliance |
+| MOST_ASYMMETRIC | Name Financials | 1792 | DUPLICATE ISSUER | DTB,DTG | dte energy company 202 |
+| MOST_ASYMMETRIC | Name Financials | 1917 | DUPLICATE ISSUER | FMCQF,FMS | fresenius medical care |
+| MOST_ASYMMETRIC | Name Financials | 2300 | DUPLICATE ISSUER | MSGS,MSGE | madison square garden |
+| MOST_ASYMMETRIC | Name Financials | 2467 | DUPLICATE ISSUER | PRU,PRH,PRS | prudential financial |
+| MOST_ASYMMETRIC | Priced In | 2092 | DUPLICATE ISSUER | PRU,PRH,PRS | prudential financial in |
 | MOST_ASYMMETRIC | What's New | 104 | DUPLICATE ISSUER | AANNF,AT1.DE | aroundtown s a |
 | MOST_ASYMMETRIC | Insider Filing-Time | 51 | NO DATA | GF | no FMP financial record |
 | MOST_ASYMMETRIC | Insider Filing-Time | 52 | NO DATA | MXF | no FMP financial record |

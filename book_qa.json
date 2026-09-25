@@ -26,15 +26,15 @@
  {
   "book": "MOST_ASYMMETRIC.xlsx",
   "sheet": "Name Financials",
-  "row": 1287,
+  "row": 2300,
   "kind": "DUPLICATE ISSUER",
-  "ticker": "FMCQF,FMS",
-  "detail": "fresenius medical care"
+  "ticker": "MSGS,MSGE",
+  "detail": "madison square garden"
  },
  {
   "book": "MOST_ASYMMETRIC.xlsx",
   "sheet": "Name Financials",
-  "row": 1507,
+  "row": 1389,
   "kind": "DUPLICATE ISSUER",
   "ticker": "RACD,RACC",
   "detail": "research alliance"
@@ -42,10 +42,26 @@
  {
   "book": "MOST_ASYMMETRIC.xlsx",
   "sheet": "Name Financials",
-  "row": 1914,
+  "row": 1792,
   "kind": "DUPLICATE ISSUER",
   "ticker": "DTB,DTG",
   "detail": "dte energy company 202"
+ },
+ {
+  "book": "MOST_ASYMMETRIC.xlsx",
+  "sheet": "Name Financials",
+  "row": 1917,
+  "kind": "DUPLICATE ISSUER",
+  "ticker": "FMCQF,FMS",
+  "detail": "fresenius medical care"
+ },
+ {
+  "book": "MOST_ASYMMETRIC.xlsx",
+  "sheet": "Name Financials",
+  "row": 2467,
+  "kind": "DUPLICATE ISSUER",
+  "ticker": "PRU,PRH,PRS",
+  "detail": "prudential financial"
  },
  {
   "book": "MOST_ASYMMETRIC.xlsx",
@@ -70,6 +86,14 @@
   "kind": "NO DATA",
   "ticker": "CIK0000859737",
   "detail": "no FMP financial record"
+ },
+ {
+  "book": "MOST_ASYMMETRIC.xlsx",
+  "sheet": "Priced In",
+  "row": 2092,
+  "kind": "DUPLICATE ISSUER",
+  "ticker": "PRU,PRH,PRS",
+  "detail": "prudential financial in"
  },
  {
   "book": "MOST_ASYMMETRIC.xlsx",

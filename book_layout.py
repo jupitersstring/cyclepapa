@@ -35,7 +35,7 @@ SKIP_COLS = {"FMP financial read", "Key numbers (FMP)", "Strength %ile", "Name",
 
 
 NEW_SHEETS = ("Name Financials", "Tear Sheets", "Review & data quality", "Call intent", "Contents",
-              "PSU Plans", "Event Detail", "What's New", "Ownership", "Red Flags")
+              "PSU Plans", "Event Detail", "What's New", "Ownership", "Red Flags", "Priced In")
 
 
 def clone(src, dst):
@@ -468,7 +468,8 @@ def tear_sheets(wb, fin, names, sym_map=None, title="Tear Sheets", index=None, m
                    wrap=True)
             ts.row_dimensions[r].height = 45
             r += 1
-        for lab, src, fn in (("Ownership", "_own", ownership_line), ("Red flags", "_dist", redflag_line)):
+        for lab, src, fn in (("Ownership", "_own", ownership_line), ("Red flags", "_dist", redflag_line),
+                             ("Priced in", "_exp", expectations_line)):
             rec = getattr(wb, src, {}).get(sym) or getattr(wb, src, {}).get(t)
             txt = fn(rec) if rec else None
             if txt:
@@ -710,6 +711,44 @@ def ownership_sheet(wb, own, dist=None, fin=None, index=None):
          "Big holders under water", "Red flags"],
         [9, 22, 60, 40, 12, 8, 50, 14, 14, 8, 44, 44], rows, index=index,
         wrap_cols=("13D / 13G activity (12m)", "Value investors / new big holders", "Red flags"))
+
+
+def expectations_line(r):
+    return (r or {}).get("summary") or None
+
+
+def expectations_sheet(wb, exp, fin=None, index=None):
+    """What the market already expects: analysts (coverage, targets, ratings, forward P/E) and short interest."""
+    rows = []
+    for t, r in exp.items():
+        if t.startswith("_") or not isinstance(r, dict):
+            continue
+        rt = r.get("ratings") or {}
+        rows.append((-(r.get("short_pct_float") or 0), [
+            t, ((fin or {}).get(t) or {}).get("name", "")[:24], r.get("n_analysts"),
+            (round(r["pt"], 2) if r.get("pt") else ""),
+            (f"{r['pt_upside'] * 100:+.0f}%" if r.get("pt_upside") is not None else ""),
+            (f"{r['pt_trend'] * 100:+.0f}%" if r.get("pt_trend") is not None else ""),
+            (f"{rt.get('strongBuy', 0) + rt.get('buy', 0)}/{rt.get('hold', 0)}/{rt.get('sell', 0) + rt.get('strongSell', 0)}" if rt else ""),
+            (f"{r.get('upgrades_90d', 0)}/{r.get('downgrades_90d', 0)}" if (r.get("upgrades_90d") or r.get("downgrades_90d")) else ""),
+            (round(r["fwd_pe"], 1) if r.get("fwd_pe") else ("loss" if r.get("fwd_eps") is not None and r["fwd_eps"] <= 0 else "")),
+            (f"{r['short_pct_float'] * 100:.1f}%" if r.get("short_pct_float") is not None else ""),
+            (round(r["days_to_cover"], 1) if r.get("days_to_cover") else ""),
+            (f"{r['short_change'] * 100:+.0f}%" if r.get("short_change") is not None else ""),
+            r.get("summary") or "",
+        ]))
+    rows = [x for _, x in sorted(rows, key=lambda z: z[0])]
+    return _table_sheet(
+        wb, "Priced In",
+        "What the market already expects, per name: analyst coverage (0-2 = neglected: nobody is looking), the "
+        "consensus price target and the upside it implies, the target trend (last quarter vs last year), ratings "
+        "(buy / hold / sell), upgrades / downgrades in 90 days, the forward P/E on next year's consensus EPS; and "
+        "FINRA short interest (% of float, days to cover, change vs the prior settlement). Sorted by short interest. "
+        f"Short-interest settlement {exp.get('_si_date', '')}. What these have predicted: EXPECTATIONS_VALIDATION.md. "
+        "Source: expectations_layer.py (FMP + FINRA).",
+        ["Ticker", "Name", "Analysts", "Target $", "Upside to target", "Target trend", "Buy/Hold/Sell",
+         "Up/Down 90d", "Fwd P/E", "Short % float", "Days to cover", "Short Δ", "Read"],
+        [9, 22, 8, 9, 9, 9, 10, 9, 8, 9, 8, 8, 70], rows, index=index, wrap_cols=("Read",))
 
 
 def redflag_sheet(wb, dist, fin=None, names=None, index=None):
@@ -1244,7 +1283,7 @@ def qa_fixes(wb, fin, harmonise_pb=True, skip=()):
     return stats
 
 
-PROTECT = {"Red flags (filings)", "Ownership (13D/13F/insiders)", "Ticker", "Name", "Company", "Key numbers (FMP)", "Strength %ile", "FMP financial read", "Filing",
+PROTECT = {"Red flags (filings)", "Ownership (13D/13F/insiders)", "Priced in (analysts / short)", "Ticker", "Name", "Company", "Key numbers (FMP)", "Strength %ile", "FMP financial read", "Filing",
            "Proxy", "#", "Rank", "Grade", "Tier", "Intent tier", "Score", "What's happening (8-K)", "PSU plan (grade)",
            "Since (vs SPY)", "Since vs SPY (%)", "Since event (vs SPY)"}
 

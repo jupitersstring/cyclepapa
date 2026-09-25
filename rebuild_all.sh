@@ -104,6 +104,11 @@ if [ "$DO_SCANS" = "1" ]; then
   run python3 ownership_layer.py             || true
   run python3 distress_flags.py              || true
   run python3 layer_validate.py              || true
+  # what is priced in: analysts (FMP) + short interest (FINRA), then its validation
+  run python3 expectations_layer.py          || true
+  run python3 expectations_validate.py       || true
+  # point-in-time, survivorship-free backtest (incl. names that later failed / delisted)
+  run python3 survivorship_backtest.py       || true
   run python3 payoff_geometry.py             || true   # re-run: red flags remove book floors
   run python3 governance_discount.py         || true
   run python3 mechanism_gates.py             || true
