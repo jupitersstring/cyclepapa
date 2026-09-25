@@ -24,6 +24,7 @@ from __future__ import annotations
 import csv
 import glob
 import json
+import re
 from pathlib import Path
 
 import fmp_book
@@ -124,6 +125,18 @@ def _bulk():
     return _BULK
 
 
+def _usd(v, ccy):
+    """Local-currency amount in USD (minor units GBp / ZAc / ILA handled)."""
+    if v is None or not ccy:
+        return v if ccy in (None, "", "USD") else None
+    minor = {"GBp": ("GBP", 1), "GBX": ("GBP", 1), "ZAc": ("ZAR", 1), "ZAC": ("ZAR", 1), "ILA": ("ILS", 1)}
+    c = minor.get(ccy, (ccy, 1))[0]                   # FMP marketCap is in MAJOR units already
+    if c == "USD":
+        return v
+    r = fmp_book.fx(c, "USD")
+    return v * r if r else None
+
+
 def build(symbols) -> dict:
     """Financial records for the given FMP symbols (those FMP knows)."""
     prof, rat, km, sheets, inc = _bulk()
@@ -144,7 +157,7 @@ def build(symbols) -> dict:
             sh_chg = None                                   # split artefact
         rec = {
             "name": p.get("companyName"), "sector": p.get("sector"), "country": p.get("country"),
-            "currency": p.get("currency"), "price": price, "mcap": mcap,
+            "currency": p.get("currency"), "price": price, "mcap": mcap, "mcap_usd": _usd(mcap, p.get("currency")),
             "ev": _f(k.get("enterpriseValueTTM")), "p_b": pb, "pb_src": pb_src,
             "pe": _f(ra.get("priceToEarningsRatioTTM")), "ps": _f(ra.get("priceToSalesRatioTTM")),
             "ev_ebitda": _f(k.get("evToEBITDATTM")), "fcf_yield": _f(k.get("freeCashFlowYieldTTM")),
@@ -169,9 +182,23 @@ def build(symbols) -> dict:
             flags.append("negative equity")
         if rec["pe"] is not None and rec["earn_yield"] is not None and (rec["pe"] > 0) != (rec["earn_yield"] > 0):
             flags.append("P/E vs earnings-yield sign mismatch")
-        if rec["fcf_yield"] is not None and abs(rec["fcf_yield"]) > 1.0:
+        fin_co = (p.get("sector") or "") == "Financial Services"
+        if fin_co:
+            rec["fcf_yield"] = None                      # bank / insurer cash flow is loan and float flow, not FCF
+        elif rec["fcf_yield"] is not None and abs(rec["fcf_yield"]) > 1.0:
             flags.append("FCF yield >100% (check)")
             rec["fcf_yield"] = None
+        if re.search(r"\d%|\bnotes?\b|debenture|\bpfd\b|preferred", p.get("companyName") or "", re.I):
+            flags.append("not common equity (note / preferred line)")
+            rec["not_common"] = True
+        if rec["roe"] is not None and abs(rec["roe"]) > 1.5:
+            flags.append(f"ROE {rec['roe'] * 100:,.0f}% not meaningful (tiny or bad equity figure)")
+            rec["roe"] = None
+        if rec["pe"] is not None and 0 <= rec["pe"] < 1:
+            rec["pe"] = None                             # sub-1x P/E is a units artefact
+        if rec["mcap_usd"] is not None and rec["mcap_usd"] > 5e12:
+            flags.append("market cap implausible (units)")
+            rec["mcap_usd"] = None
         if rec["shares_yoy"] is not None and abs(rec["shares_yoy"]) > 0.15 and (p.get("country") or "US") != "US":
             flags.append("share-count history inconsistent (foreign line)")
             rec["shares_yoy"] = None
@@ -286,7 +313,7 @@ def financials_sheet(wb, title, symbols, fin, subtitle="", index=None, tabs=None
         seen.add(s)
         r += 1
         vals = [disp, (f.get("name") or "")[:22], (f.get("sector") or "")[:14],
-                num((f.get("mcap") or 0) / 1e6, 0), num(f.get("p_b"), 2), num(f.get("pe"), 1),
+                num((f.get("mcap_usd") or 0) / 1e6, 0) if f.get("mcap_usd") else "—", num(f.get("p_b"), 2), num(f.get("pe"), 1),
                 num(f.get("ev_ebitda"), 1), pc(f.get("fcf_yield")), pc(f.get("net_cash_pct")),
                 num(f.get("nd_ebitda"), 1), pc(f.get("rev_growth")), pc(f.get("op_m")), pc(f.get("roe")),
                 pc(f.get("shares_yoy")), num(f.get("int_cover"), 1), pc(f.get("range_pos")),

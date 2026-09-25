@@ -32,6 +32,9 @@ import fmp_client as fmp
 
 _CACHE: dict | None = None
 MIN_PLAUSIBLE = 0.10
+# > 60x book is a currency / unit mismatch (ADR on a hyper-inflation filer, x1000
+# filing), not a valuation -- SUPV came out at 1,317x
+MAX_PLAUSIBLE = 60.0
 
 
 def _quarters(n=5):
@@ -221,7 +224,11 @@ def pb(symbol, mcap, quote_ccy, ratio_pb, sheets, price=None, is_adr=False):
                 tag = "calc" if conv == 1.0 else "calc_fx"
                 # < 0.10x is almost always a x1000 filing or a stale share count
                 # in the quote (GNK, KXIN, MOVE) -- never treat it as "cheap".
-                return (v, tag) if v >= MIN_PLAUSIBLE else (None, "implausible")
+                if MIN_PLAUSIBLE <= v <= MAX_PLAUSIBLE:
+                    return v, tag
+                if rpb is not None and MIN_PLAUSIBLE <= rpb <= MAX_PLAUSIBLE and tag == "calc_fx":
+                    return rpb, "ratio"                  # the FX-converted calc broke: FMP's own ratio
+                return None, "implausible"
     if rpb is not None and rpb > 0:
-        return (rpb, "ratio") if rpb >= MIN_PLAUSIBLE else (None, "implausible")
+        return (rpb, "ratio") if MIN_PLAUSIBLE <= rpb <= MAX_PLAUSIBLE else (None, "implausible")
     return None, "none"

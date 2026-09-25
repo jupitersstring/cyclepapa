@@ -34,7 +34,7 @@ RECENT_SHEETS = {"What's New", "Recent 30d", "Call Intent", "Turnaround Signal",
 SKIP = {"Contents", "Cover", "Methodology", "Layer Correlation", "Coverage & Tiers", "Re-Rate Backtest",
         "Winners Study", "Tear Sheets", "Review & data quality"}
 # listed debt / hybrid lines (ADRs and German preference shares are equity: not flagged)
-_DEBT = re.compile(r"\bnotes?\b|debenture|\bsr\.? nts?\b|\bpfd\b|warrant|%\s*(?:series|notes?|sr|jr|senior|fixed)", re.I)
+_DEBT = re.compile(r"\d%|\bnotes?\b|debenture|\bsr\.? nts?\b|\bpfd\b|warrant|preferred", re.I)
 
 
 def norm(n):

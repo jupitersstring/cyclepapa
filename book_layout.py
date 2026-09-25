@@ -425,7 +425,7 @@ def tear_sheets(wb, fin, names, sym_map=None, title="Tear Sheets", index=None, m
             nc = c0.get("Name") or c0.get("Company")
             nm = ws0.cell(row=r0, column=nc).value if nc else ""
         meta = " · ".join(x for x in [f.get("sector"), f.get("country"),
-                                      f"mcap ${(f.get('mcap') or 0) / 1e6:,.0f}M" if f.get("mcap") else None,
+                                      f"mcap ${(f.get('mcap_usd') or 0) / 1e6:,.0f}M" if f.get("mcap_usd") else None,
                                       f"price {f.get('price')}" if f.get("price") else None] if x)
         # name line styled as a table header (the book's header rule), meta as subtitle
         for j in (1, 2, 3):
@@ -880,8 +880,9 @@ def _bad_security(t, name):
     import re as _re
     if len(t) == 5 and t.endswith("Q"):
         return "bankrupt (Q) line"
-    if _re.search(r"\bnotes?\b|debenture|\bsr\.? nts?\b|%\s*(?:series|notes?|senior|fixed\b|jr|sub)", str(name or ""), _re.I):
-        return "note / baby bond"
+    # any coupon rate in the name ("5.375% S...", "6.25% Series A") is a note / preferred line
+    if _re.search(r"\d%|\bnotes?\b|debenture|\bsr\.? nts?\b|\bpfd\b|preferred", str(name or ""), _re.I):
+        return "note / preferred line"
     return None
 
 
