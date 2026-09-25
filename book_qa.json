@@ -129,6 +129,22 @@
  },
  {
   "book": "cyclepapa_risk_reward_workbook.xlsx",
+  "sheet": "PSU Engine x-feed",
+  "row": 5,
+  "kind": "DEAD COLUMN",
+  "ticker": "",
+  "detail": "'Insider conviction' empty in 49/52 rows"
+ },
+ {
+  "book": "cyclepapa_risk_reward_workbook.xlsx",
+  "sheet": "PSU Engine x-feed",
+  "row": 5,
+  "kind": "DEAD COLUMN",
+  "ticker": "",
+  "detail": "'Conviction flags' empty in 49/52 rows"
+ },
+ {
+  "book": "cyclepapa_risk_reward_workbook.xlsx",
   "sheet": "All names",
   "row": 32,
   "kind": "BAD SECURITY",

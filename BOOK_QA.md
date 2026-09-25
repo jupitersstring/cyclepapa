@@ -9,6 +9,7 @@ Automated checks over every sheet of the three books (`book_qa.py`). Counts by b
 | MOST_ASYMMETRIC.xlsx | NO DATA | 7 |
 | OTC_BOOK.xlsx | DEAD COLUMN | 1 |
 | cyclepapa_risk_reward_workbook.xlsx | BAD SECURITY | 3 |
+| cyclepapa_risk_reward_workbook.xlsx | DEAD COLUMN | 2 |
 | cyclepapa_risk_reward_workbook.xlsx | DUPLICATE ISSUER | 2 |
 
 ## Findings
@@ -32,5 +33,7 @@ Automated checks over every sheet of the three books (`book_qa.py`). Counts by b
 | cyclepapa_risk_reward_workbook | All names | 32 | BAD SECURITY | XETR:VOW3 | Volkswagen Preferred |
 | cyclepapa_risk_reward_workbook | Call intent | 108 | BAD SECURITY | VOW3 | Volkswagen Preferred |
 | cyclepapa_risk_reward_workbook | Executive Summary | 34 | BAD SECURITY | XETR:VOW3 | Volkswagen Preferred |
+| cyclepapa_risk_reward_workbook | PSU Engine x-feed | 5 | DEAD COLUMN |  | 'Insider conviction' empty in 49/52 rows |
+| cyclepapa_risk_reward_workbook | PSU Engine x-feed | 5 | DEAD COLUMN |  | 'Conviction flags' empty in 49/52 rows |
 | cyclepapa_risk_reward_workbook | All names | 256 | DUPLICATE ISSUER | AZLUY,AZUL | azul |
 | cyclepapa_risk_reward_workbook | All names | 823 | DUPLICATE ISSUER | HK:2202,SZSE:000002 | vanke |
