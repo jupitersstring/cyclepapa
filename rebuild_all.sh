@@ -48,6 +48,11 @@ if [ "$DO_SCANS" = "1" ]; then
   # FMP bulk quotes/ratios first: every downstream price/valuation leg reads
   # the enriched quote store (needs FMP_API_KEY).
   run python3 fmp_universe.py                || true
+  # validated financials + security master first, then the quote store every layer reads
+  # is rewritten with the validated values (quotes_sync keeps the originals under _raw)
+  run python3 name_financials.py             || true
+  run python3 store_build.py                 || true
+  run python3 quotes_sync.py                 || true
   # Each is independently resumable; failures don't abort the rest.
   # -- Valuation / balance-sheet
   run python3 quarterly_10q_parse.py        --limit 200 || true
@@ -184,6 +189,8 @@ run python3 name_financials.py             || true   # FMP financial panel for e
 # one security master + point-in-time facts + one event store (data/cyclepapa.db); the books
 # resolve identifiers and security types through it
 run python3 store_build.py                 || true
+run python3 quotes_sync.py                 || true
+run python3 dossier.py                     || true   # per-company records the tear sheets render from
 run python3 build_most_asymmetric_xlsx.py  || true
 run python3 build_otc_book.py              || true
 # regex parsers vs the reviewed set (PARSER_EVAL.md)

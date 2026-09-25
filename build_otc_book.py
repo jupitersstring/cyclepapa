@@ -421,6 +421,7 @@ def main() -> int:
     fin = name_financials.load()
     name_financials.add_financials(wb, fin, index=1, skip=("Contents", "Methodology"))
     bl.key_numbers(wb, fin, skip=("Contents", "Methodology", "Name Financials"))
+    wb._dossier = _load("dossiers.json")
     dist = _load("distress_flags.json")
     if dist:
         bl.detail_column(wb, "Red flags (filings)", {t: bl.redflag_line(r) for t, r in dist.items()},

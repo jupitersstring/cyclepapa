@@ -477,7 +477,31 @@ def tear_sheets(wb, fin, names, sym_map=None, title="Tear Sheets", index=None, m
                 k.body(ts.cell(row=r, column=3, value=txt), wrap=True)
                 ts.row_dimensions[r].height = 30
                 r += 1
-        for e in (getattr(wb, "_events", {}).get(sym) or getattr(wb, "_events", {}).get(t) or [])[:4]:
+        dz = getattr(wb, "_dossier", {}).get(t) or getattr(wb, "_dossier", {}).get(sym)
+        if dz:
+            mv = dz.get("moves") or {}
+            since = mv.get("price_30d_from") or mv.get("price_90d_from")
+            parts = [f"{lab} {mv[key] * 100:+.0f}%" for lab, key in (("price", "price_30d"), ("P/B", "p_b_30d"))
+                     if isinstance(mv.get(key), (int, float))]
+            if parts and since:
+                k.body(ts.cell(row=r, column=1, value="Moves"), bold=True)
+                k.body(ts.cell(row=r, column=3, value=f"since {since}: " + ", ".join(parts)))
+                r += 1
+            ch = (dz.get("changed_since") or {}).get("items") or []
+            if ch:
+                k.body(ts.cell(row=r, column=1, value="New since last run"), bold=True)
+                k.body(ts.cell(row=r, column=2, value=(dz.get("changed_since") or {}).get("since")))
+                k.body(ts.cell(row=r, column=3, value=" | ".join(f"[{x['date']}] {x['what']}" for x in ch[:4])), wrap=True)
+                ts.row_dimensions[r].height = 45
+                r += 1
+            for e in (dz.get("timeline") or [])[:8]:
+                k.body(ts.cell(row=r, column=1, value=f"{e['date']}"), band=True, bold=True)
+                k.body(ts.cell(row=r, column=2, value=e["family"].replace("_", " ").title()
+                               + (" (reviewed)" if e.get("reviewed") else "")), band=True)
+                k.body(ts.cell(row=r, column=3, value=e["what"]), band=True, wrap=True)
+                ts.row_dimensions[r].height = 30
+                r += 1
+        for e in ([] if dz else (getattr(wb, "_events", {}).get(sym) or getattr(wb, "_events", {}).get(t) or [])[:4]):
             if not e.get("what"):
                 continue
             k.body(ts.cell(row=r, column=1, value=f"Event {e.get('date')}"), band=True, bold=True)

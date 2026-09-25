@@ -3716,6 +3716,7 @@ def main() -> int:
     dist = bl._load_json("distress_flags.json")
     exp = bl._load_json("expectations.json")
     wb._own, wb._dist, wb._exp = own, dist, exp
+    wb._dossier = bl._load_json("dossiers.json")          # per-company records from the data store
     if own:
         bl.ownership_sheet(wb, own, dist, fin=fin)
     if dist:
