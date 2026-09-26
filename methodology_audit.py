@@ -98,8 +98,8 @@ def _beaten(t, g):
     # the quote-time snapshot as fallback — a stale quote must not "contradict"
     # a fresher primary
     if os.path.exists("ts_snapshot.csv"):
-        ts = pd.read_csv("ts_snapshot.csv", usecols=["symbol", "ts_dist_hi52"])
-        m = m.merge(ts, on="symbol", how="left")
+        ts = pd.read_csv("ts_snapshot.csv", usecols=["symbol", "ts_dist_hi52"]).drop_duplicates("symbol")
+        m = m.drop(columns=[c for c in ("ts_dist_hi52",) if c in m.columns]).merge(ts, on="symbol", how="left")
         m["pct_off_52w_high"] = (pd.to_numeric(m["ts_dist_hi52"], errors="coerce") - 1.0).fillna(
             pd.to_numeric(m["pct_off_52w_high"], errors="coerce"))
     for arch, depth in [("arch_dead_option", 0.40),

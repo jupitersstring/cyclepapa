@@ -18,11 +18,14 @@ export PYTHONWARNINGS=ignore   # pandas fragmentation warnings are noise here
 
 step() { echo; echo "=== $* ==="; }
 
+# FROM_AUDIT=1 resumes at the audit gate (archetypes + enrich already fresh)
+if [ -z "${FROM_AUDIT:-}" ]; then
 step "1/4 archetype_tags"
 python3 -c "import archetype_tags as a; a.compute()" > /dev/null || { echo "archetype_tags FAILED"; exit 1; }
 
 step "2/4 enrich_asymmetry_global"
 python3 enrich_asymmetry_global.py 2>&1 | tail -3 || { echo "enrich FAILED"; exit 1; }
+fi
 
 step "3/4 methodology_audit (gate)"
 audit_out=$(python3 methodology_audit.py 2>&1)
