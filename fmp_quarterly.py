@@ -213,6 +213,10 @@ def enrich_symbol(sym: str):
     cf = fc.get_json("cash-flow-statement", {"symbol": sym, "period": "quarter", "limit": 9},
                      ttl=fc.TTL_FUNDAMENTAL)
     rec = {"symbol": sym}
+    # FY-in-Q4 substitution: restore the true Q4 = FY - (Q1+Q2+Q3) (fy_q4.py)
+    import fy_q4
+    isr, _q4 = fy_q4.restore(isr, "is")
+    cf, _ = fy_q4.restore(cf, "cf", _q4)
     ip, ccy = _clean(isr)
     if not ip:
         return rec, []

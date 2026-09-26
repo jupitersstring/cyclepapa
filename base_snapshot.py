@@ -44,6 +44,19 @@ def _ttm_2y(panel: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(out)
 
 
+def _cp_latest(g: pd.DataFrame):
+    """Change-point statistics at the latest week, computed by the event
+    study's own function (event_study_analyse._cp_one) so the live measure is
+    exactly what was backtested: dollar-volume CUSUM and 13-week z-score vs the
+    base (the name's own history, so the currency is irrelevant), volatility
+    regime, 26w-vs-78w slope break, PELT price step-up in the last 13 weeks."""
+    import event_study_analyse as ea
+    g = g.sort_values("week")
+    sym = g["symbol"].iloc[0]
+    rec = ea._cp_one((sym, [(0, g["week"].iloc[-1])], g[["week", "close", "dvol"]].reset_index(drop=True)))
+    return {"symbol": sym, **{"bs_" + k: v for k, v in rec.get(0, {}).items()}}
+
+
 def build(out: str = "base_snapshot.csv") -> pd.DataFrame:
     from multiprocessing import Pool
     p = es.attach_usd(_prices())
@@ -76,6 +89,14 @@ def build(out: str = "base_snapshot.csv") -> pd.DataFrame:
             d["bs_ebit_turned"] = ((d["bs_ebit_ttm_2y"] <= 0) & (d["bs_ebit_ttm"] > 0)).astype(float) \
                 .where(d["bs_ebit_ttm"].notna() & d["bs_ebit_ttm_2y"].notna())
         d = d.drop(columns=["bs_rev_ttm", "bs_rev_ttm_2y", "bs_ebit_ttm", "bs_ebit_ttm_2y"])
+    # change-point ignition measures (the study's CP features carried lift)
+    raw = _prices()[["symbol", "week", "close", "dvol"]]
+    raw = raw[raw["symbol"].isin(set(d["symbol"]))]
+    cgroups = [g for _, g in raw.groupby("symbol", sort=False)]
+    del raw
+    with Pool(4) as pool:
+        cp = pd.DataFrame(list(pool.imap_unordered(_cp_latest, cgroups, chunksize=64)))
+    d = d.merge(cp, on="symbol", how="left")
     d.to_csv(out, index=False, float_format="%.6g")
     return d
 

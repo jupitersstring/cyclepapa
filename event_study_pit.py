@@ -69,6 +69,8 @@ def fetch(sym: str) -> dict:
 def _ttm_frame(rows) -> pd.DataFrame:
     if not rows:
         return pd.DataFrame()
+    import fy_q4                      # FY-in-Q4 substitution -> true Q4
+    rows, _ = fy_q4.restore(rows, "is")
     d = pd.DataFrame(rows)
     if "date" not in d.columns:
         return pd.DataFrame()

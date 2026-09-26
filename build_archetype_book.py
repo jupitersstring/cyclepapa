@@ -36,6 +36,8 @@ from openpyxl.styles import Alignment, Border, Side
 
 # Friendly archetype label mapping (matches archetype_tags.py pretty dict)
 ARCHETYPE_LABELS = {
+    'arch_coiled_fallen_angel': 'Coiled Fallen Angel (coiled base >= 40% below the prior high)',
+    'arch_ignition_fallen_angel': 'Ignition Fallen Angel (igniting base >= 40% below the prior high)',
     'arch_narrative_lag': 'Narrative Lag',
     'arch_derate_through_growth': 'Derating Through Growth (grew into its valuation)',
     'arch_fixed_cost_demand_shock': 'Fixed-Cost + Demand Shock',
