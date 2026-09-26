@@ -246,6 +246,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # only — segment operating margin stays EDGAR-only. Fills the EDGAR segment
     # columns where the dimensional harvest has nothing (~90% of the universe).
     df = _merge_fmp_overlay(df, 'fmp_segments.csv')
+    # weekly-panel base / coil snapshot (base_snapshot.py) and the analyst
+    # sentiment layer (fmp_sentiment.py): the price-path and perception inputs
+    # of the "flat for two years, then re-rates" family
+    df = _merge_fmp_overlay(df, 'base_snapshot.csv')
+    df = _merge_fmp_overlay(df, 'fmp_sentiment.csv')
 
     # FMP INSTITUTIONAL overlay (fmp_institutional.py): 13F ownership
     # trajectory over the last three complete quarters (US-listed names).
@@ -1134,7 +1139,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # price_yoy==0.0 & momentum_12m==0.0 stale/missing tape no longer reads as
     # "lagging". (G9) tighten beyond flat_or_down: the tape must be genuinely
     # DOWN on at least one present lens (a real lag, not merely flat/stale).
-    _lag_tape = ((_py_raw < 0.0) | (_m12_raw < 0.0))
+    # ...or the tape has gone NOWHERE for two years (weekly panel) while sales
+    # advanced >= 20% more than the price — a lag measured over the full base,
+    # which a single down year cannot see (and a flat year cannot trigger)
+    _lag_tape = ((_py_raw < 0.0) | (_m12_raw < 0.0)
+                 | ((_num_or_nan('bs_is_base') == 1) & (_num_or_nan('bs_coil_rev') >= np.log(1.20))).fillna(False))
     # (audit re-check) tightened from ~28% of the universe toward the spirit
     # (price/narrative LAGS genuinely improving fundamentals): require a real
     # multi-lens advance (not a lone first-positive), investable operating
@@ -2715,7 +2724,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (~(n_analysts_v > 4)) &                       # (twosided) MISSING coverage = MOST neglected (the thesis); mcap cap prevents mega-cap re-admit
         low_sbc_liger &
         liger_sector_ok &
-        (flat_or_down | beaten_down_any(0.30))    # presence-aware lag/drawdown
+        (flat_or_down | beaten_down_any(0.30)     # presence-aware lag/drawdown
+         | (_num('bs_is_base') == 1).fillna(False))  # ...or a two-year flat base (weekly panel)
     ).fillna(False).astype(int)
 
     # NEW: Liger Neglected Survivor — the single best proxy for his edge:
@@ -5207,11 +5217,16 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # change from FMP's historical enterprise-value series. A large positive gap
     # (fundamentals compounded, the multiple did not follow) is the cleanest,
     # global "still not re-rated" evidence — added as an extra lens.
+    # (weekly panel + quarterly statements) the TWO-YEAR lens: TTM sales /
+    # EBIT compounded well ahead of the 104-week price return — "told and
+    # ignored" over the full base, not one noisy 12-month window
     _no_rerate_au = ((_esc_au <= 0.10)
                      | ((_pyw_au <= _fund_g_au)
                         & _pyw_au.notna() & _fund_g_au.notna())
                      | (_pe_exp_au <= 0.10)
-                     | (_num('fmp_dyn_unrerated_gap') >= 0.15))
+                     | (_num('fmp_dyn_unrerated_gap') >= 0.15)
+                     | (_num('bs_coil_rev') >= np.log(1.25))
+                     | (_num('bs_coil_ebit') >= np.log(1.40)))
     _pe_au = _num('p_e')
     _not_rich_au = (((_pe_au > 0) & (_pe_au <= 25))
                     | ((ev_ebitda_v > 0) & (ev_ebitda_v <= 14))
@@ -5513,6 +5528,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     derate_any = (
         (mult_compression >= 0.15) |
         (_derate_3y >= 0.15) |
+        (_num('bs_coil_rev') >= 0.15) |      # 2y: log sales growth - log price return (EV/Sales compressing)
         (_evsg_exceptional & (rev_growth_score >= 0.5) &
          ((mult_compression >= 0) | (_derate_3y >= 0)))
     ).fillna(False)
@@ -5744,12 +5760,23 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _ups = _num('analyst_target_upside_pct')
     _ups = _ups.where(_ups.abs() <= 5.0, _ups / 100.0)
     _nan_ = _num('n_analysts').fillna(_num('n_analysts_pew'))
+    # (sentiment layer) an AWAKENING is a CHANGE in perception, so the level
+    # lenses are joined by momentum lenses: buy share rising, net upgrades,
+    # targets being raised, new coverage arriving
+    # targets being raised, new coverage arriving. They are a SECOND route in
+    # (>= 2 momentum lenses), not extra denominators for the level test —
+    # adding them to the level lenses made "half of available" stricter and
+    # dropped covered names for the wrong reason.
     conv_any, conv_score = _confirm([
         (_rec, lambda x: (x > 0) & (x <= 2.2)),   # consensus rating strong
         (_ups, lambda x: x >= 0.25),              # >=25% target upside
         (_nan_, lambda x: x >= 8),                # deep coverage still bullish-priced
     ])
-    _conviction = conv_any & (conv_score >= 0.5)  # >=half the AVAILABLE lenses
+    _sent_turn_n = ((_num('sent_buy_share_d12') >= 0.10).fillna(False).astype(int)
+                    + ((_num('sent_upgrades_12m') - _num('sent_downgrades_12m')) >= 2).fillna(False).astype(int)
+                    + (_num('sent_pt_rev_q') >= 0.05).fillna(False).astype(int)
+                    + (_num('sent_initiations_12m') >= 1).fillna(False).astype(int))
+    _conviction = (conv_any & (conv_score >= 0.5)) | (_sent_turn_n >= 2)
     _not_extended = ((_num('roc_12m') <= 0.50) |
                      (_num('roc_12m').isna() & (_num('momentum_12m') <= 0.50)))
     # (G6) require a REAL consensus rating present and reasonable (not bearish)
@@ -5854,7 +5881,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # price consolidating (roughly flat over 6m and 12m) or declining
     _ip12 = _num('roc_12m').fillna(_num('momentum_12m')).fillna(_num('price_yoy'))
     _ip6 = _num('roc_6m')
-    _inst_flat_or_down = (_ip12 <= 0.10) & (_ip6.isna() | (_ip6 <= 0.10))
+    _inst_flat_or_down = (((_ip12 <= 0.10) & (_ip6.isna() | (_ip6 <= 0.10)))
+                          # weekly panel: a two-year base still flat over 26w
+                          | ((_num('bs_is_base') == 1) & (_num('bs_r26') <= 0.10)).fillna(False))
     # validity only (no quality veto): enough holders for 13F deltas to mean
     # something, an investable listing, not a collapse / ghost / fund shell
     _inst_fund = _ind_all.str.contains(
@@ -5899,6 +5928,108 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         & (_pt_own_acc >= 1.0) & (_pt_buy_acc >= 1.0)).astype(int)
     df['inst_own_excess_q0'] = _io_x0.round(3)
     df['inst_buy_excess_q0'] = _ish_x0.round(4)
+
+    # ================= SENTIMENT (sell-side perception) flags ================
+    # Surfaced, never gates. Levels say how the street sees the name; the
+    # 12-month CHANGES say where perception is going — the part that moves a
+    # multiple. (FMP's upgrade/downgrade feed is US-centric, so "no upgrade"
+    # alone is never evidence of anything for a non-US name.)
+    _sn = _num('sent_n_analysts').fillna(_num('n_analysts'))
+    _sb = _num('sent_buy_share'); _sbd = _num('sent_buy_share_d12')
+    _sup, _sdn = _num('sent_upgrades_12m'), _num('sent_downgrades_12m')
+    _sini = _num('sent_initiations_12m'); _spt = _num('sent_pt_rev_q')
+    _snd = _num('sent_n_analysts_d12')
+    df['sent_warming_flag'] = (                       # perception improving
+        ((_sbd >= 0.10) | ((_sup - _sdn) >= 2) | (_spt >= 0.10)) & ~(_sbd <= -0.10)
+    ).fillna(False).astype(int)
+    df['sent_cooling_flag'] = (
+        ((_sbd <= -0.10) | ((_sdn - _sup) >= 2) | (_spt <= -0.10)) & ~(_sbd >= 0.10)
+    ).fillna(False).astype(int)
+    df['sent_discovery_flag'] = ((_sini >= 1) | (_snd >= 2)).fillna(False).astype(int)
+    df['sent_neglected_flag'] = (~(_sn > 3)).astype(int)            # <= 3 analysts or none on file
+    df['sent_skeptic_flag'] = ((_sb <= 0.50) & (_sn >= 3)).fillna(False).astype(int)
+
+    # ============ COILED BASE / BASE IGNITION (theory-first; the base-breakout
+    # event study recalibrates the weights) ============
+    # The pattern: a future multi-bagger goes NOWHERE for ~2 years, then re-rates
+    # violently. Mechanism: value accretes under a flat price (the COIL), the
+    # market is not watching or does not believe (PERCEPTION LAG), and when the
+    # first buyers arrive (IGNITION) a small, thinly-owned, under-covered stock
+    # moves fast because earnings growth and multiple expansion land together.
+    # Four blocks, each read through several INDEPENDENT lenses; a block is met
+    # by ANY of its lenses (breadth doctrine: missing data never vetoes).
+    #
+    # A — TIME: a genuine two-year base from the weekly panel (104w return within
+    #     +/-25%, 104w high/low <= 2x), not pinned to its low (upper 3/4 of the
+    #     range) — a flat base, not a slow collapse.
+    _bs = (_num('bs_is_base') == 1)
+    _bs_not_low = (_num('bs_pos_in_range') >= 0.25)
+    _blk_time = (_bs & _bs_not_low).fillna(False)
+    # B — COIL: value accreted while the price did not.
+    _coil_legs = [
+        (_num('bs_coil_rev') >= np.log(1.30)).fillna(False),          # sales outgrew price by 30%+
+        (_num('bs_coil_ebit') >= np.log(1.50)).fillna(False),         # EBIT outgrew price by 50%+
+        (_num('bs_ebit_turned') == 1).fillna(False),                  # loss -> profit inside the base
+        ((df.get('fq_gm_inflection_flag', 0) == 1)
+         & (_num('bs_rev_g_2y') > 0)).fillna(False),                  # gross-margin-led, growing sales
+        (_num('fmp_dyn_unrerated_gap') >= 0.15).fillna(False),        # multi-year fundamentals vs EV/Sales
+    ]
+    _coil_n = sum(l.astype(int) for l in _coil_legs)
+    # the coil must be a REAL, surviving business: positive cash or EBIT now
+    # (or the turn itself), not melting — validity, not a quality screen
+    _coil_real = ((_num('fcf_ttm') > 0) | (_num('ebitda_ttm') > 0) | (_num('bs_ebit_turned') == 1)
+                  ).fillna(False) & _not_melting
+    _blk_coil = (_coil_n >= 1) & _coil_real
+    # C — PERCEPTION LAG: nobody is watching, or nobody believes it.
+    _beat_ok = (_num('fmp_earnings_beat_rate') >= 0.60) | (_num('earnings_beat_rate') >= 0.60)
+    _perc_legs = [
+        (df['sent_neglected_flag'] == 1),                             # <= 3 analysts
+        ((df['sent_skeptic_flag'] == 1) & _beat_ok).fillna(False),    # doubted despite beats
+        ((_num('sent_months_since_up') >= 12) & (_sn >= 3)
+         & (_num('sent_upgrades_12m') == 0) & ~(_snd > 0)).fillna(False),  # no upgrade, coverage not growing
+        (_num('yf_institution_pct') <= 0.30).fillna(False),          # thinly owned by institutions
+        ((_num('analyst_target_upside_pct').where(
+            _num('analyst_target_upside_pct').abs() <= 5) <= 0.10)
+         & (_coil_n >= 1)).fillna(False),                             # targets anchored despite the coil
+    ]
+    _perc_n = sum(l.astype(int) for l in _perc_legs)
+    _blk_perc = _perc_n >= 1
+    # D — IGNITION: someone is starting to notice (price/volume evidence first —
+    # the event-study dry run found volume expansion and accumulation carry the
+    # lift, volatility compression does not).
+    _ign_legs = [
+        # thresholds ~ the top 15% of current two-year bases (the dry run's lift
+        # sat in the top quintile; the 65th-75th percentile fired on half of all
+        # coiled bases, which is not an ignition)
+        (_num('bs_dvol_trend') >= 1.60).fillna(False),                # dollar volume expanding
+        (_num('bs_updown_vol') >= 1.80).fillna(False),                # up-weeks carry the volume
+        ((_num('bs_rs26') >= 0.10) & (_num('bs_r26') >= 0.10)).fillna(False),  # right side strengthening vs peers
+        ((df['arch_institutional_accumulation'] == 1)
+         | (s('insider_buy_flag', 0) == 1)).fillna(False),            # informed buyers
+        ((df['sent_warming_flag'] == 1) | (df['sent_discovery_flag'] == 1)),  # perception turning
+    ]
+    _ign_n = sum(l.astype(int) for l in _ign_legs)
+    # validity (not quality): tradeable, an operating business with real sales,
+    # common stock, clean data
+    _cb_valid = (is_operating & (_num('bs_med_dvol26') >= 250_000)
+                 & (_num('revenue_ttm_usd') >= 10e6)).fillna(False)
+    df['arch_coiled_base'] = (_cb_valid & _blk_time & _blk_coil & _blk_perc).astype(int)
+    # ignition needs PRICE/VOLUME evidence (the lenses that carried the measured
+    # lift): >= 2 lenses, at least one of them volume expansion / accumulation
+    _ign_volume = _ign_legs[0] | _ign_legs[1]
+    df['arch_base_ignition'] = ((df['arch_coiled_base'] == 1) & (_ign_n >= 2) & _ign_volume).astype(int)
+    # Rank score (0-1): coil depth and breadth, perception lag, ignition, and the
+    # fallen-angel context (a base formed >= 40% below the prior 5y high had the
+    # strongest lift in the dry run); small size is a mild tilt.
+    _coil_depth = (_num('bs_coil_rev').clip(0, np.log(3)) / np.log(3)).fillna(0)
+    _fallen = ((0.60 - _num('bs_prior_dd')) / 0.40).clip(0, 1).fillna(0)
+    _small = ((9.0 - _num('bs_size_dvol')) / 3.0).clip(0, 1).fillna(0)   # < $1bn/wk dvol tilts up
+    df['coiled_base_score'] = (((0.25 * (_coil_n / 3).clip(0, 1) + 0.15 * _coil_depth
+                                 + 0.15 * (_perc_n / 2).clip(0, 1) + 0.25 * (_ign_n / 3).clip(0, 1)
+                                 + 0.12 * _fallen + 0.08 * _small).clip(0, 1))
+                               * df['arch_coiled_base']).round(3)
+    df['coiled_base_legs'] = (_coil_n.astype(str) + 'C/' + _perc_n.astype(str) + 'P/'
+                              + _ign_n.astype(str) + 'I').where(df['arch_coiled_base'] == 1, '')
 
     arch_cols = [
         'arch_narrative_lag',
@@ -6034,6 +6165,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_discops_mask',
         'arch_xr_verified_deleveraging',
         'arch_xr_cash_leads_book',
+        'arch_coiled_base',
+        'arch_base_ignition',
         'arch_xr_peer_margin_gap',
         'arch_xr_investment_remark',
         'arch_xr_stake_fv_gap',
@@ -6208,6 +6341,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_xr_owned_realestate_value': 'XR-OwnedRealEstateValue',
         'arch_xr_discops_mask': 'XR-DiscOpsMask',
         'arch_xr_verified_deleveraging': 'XR-VerifiedDeleveraging',
+        'arch_coiled_base': 'CoiledBase',
+        'arch_base_ignition': 'BaseIgnition',
         'arch_xr_cash_leads_book': 'XR-CashLeadsBook',
         'arch_xr_peer_margin_gap': 'XR-PeerMarginGap',
         'arch_xr_investment_remark': 'XR-InvestmentRemark',
@@ -7197,6 +7332,9 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ('fq_defrev_build_flag', 'DefRevBuild'), ('fq_cash_tax_shield_flag', 'CashTaxShield'),
         ('fq_forensic_clean_confirm', 'ForensicClean'),
         ('segment_rot_flag', 'SegCoreRot'),
+        ('arch_coiled_base', 'CoiledBase'), ('arch_base_ignition', 'BaseIgnition'),
+        ('sent_warming_flag', 'SentWarming'), ('sent_cooling_flag', 'SentCooling'),
+        ('sent_discovery_flag', 'NewCoverage'), ('sent_skeptic_flag', 'StreetSkeptic'),
     ]
     _sig = pd.Series('', index=df.index)
     for _col, _tag in _sig_defs:
@@ -7281,6 +7419,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                             'fq_cash_leads_earnings_flag','fq_wc_release_flag','fq_deleveraging_flag',
                             'fq_gm_inflection_flag','fq_defrev_build_flag','fq_cash_tax_shield_flag',
                             'fq_forensic_clean_confirm','fq_forensic_red_count','fq_forensic_green_count',
+                            # base / coil + sentiment layer
+                            'coiled_base_score','coiled_base_legs','bs_is_base','bs_r104','bs_range104',
+                            'bs_r26','bs_rs26','bs_pos_in_range','bs_dvol_trend','bs_updown_vol',
+                            'bs_prior_dd','bs_rev_g_2y','bs_coil_rev','bs_coil_ebit','bs_ebit_turned',
+                            'sent_n_analysts','sent_buy_share','sent_buy_share_d12','sent_upgrades_12m',
+                            'sent_downgrades_12m','sent_initiations_12m','sent_months_since_up',
+                            'sent_pt_rev_q','sent_warming_flag','sent_cooling_flag','sent_discovery_flag',
+                            'sent_neglected_flag','sent_skeptic_flag',
                             ] if c in df.columns]
              + [c + '_eff' for c in _EFF_COLS if c + '_eff' in df.columns]
              + [c for c in df.columns if c.startswith('fmp_filled_')]]

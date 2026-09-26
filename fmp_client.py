@@ -203,16 +203,20 @@ def get_json(
     ttl: float = _DEFAULT_TTL,
     neg_ttl: float = TTL_NEGATIVE,
     max_attempts: int = 5,
+    cache: bool = True,
 ) -> list | dict | None:
     """GET a *stable* JSON endpoint, cached (positive AND negative).
 
     ``endpoint`` is the path after ``/stable/`` (e.g. ``"profile"``).
     Returns parsed JSON (usually a list), or ``None`` for a cached/live 404.
+    ``cache=False`` neither reads nor writes the disk cache — for bulky
+    payloads (daily price history) the caller reduces immediately and stores
+    its own compact form instead.
     """
     params = dict(params or {})
     ck = cache_key or (endpoint + "?" + "&".join(f"{x}={params[x]}" for x in sorted(params)))
     cpath = _cache_path(ck)
-    found, payload = _cache_read(cpath, ttl, neg_ttl)
+    found, payload = _cache_read(cpath, ttl, neg_ttl) if cache else (False, None)
     if found:
         _bump("neg_hit" if (payload is None or payload == []) else "hit")
         return payload
@@ -229,7 +233,8 @@ def get_json(
                 raise FMPError(f"{endpoint}: network error after {attempt} tries: {exc}")
             time.sleep(delay); delay *= 2; continue
         if r.status_code == 404:
-            _cache_write(cpath, endpoint, None, 404)
+            if cache:
+                _cache_write(cpath, endpoint, None, 404)
             _bump("miss")
             return None
         if r.status_code == 429 or r.status_code >= 500:
@@ -247,7 +252,8 @@ def get_json(
             if "Limit Reach" in msg and attempt < max_attempts:
                 time.sleep(delay); delay *= 2; continue
             raise FMPError(f"{endpoint}: {msg[:160]}")
-        _cache_write(cpath, endpoint, data, 200)
+        if cache:
+            _cache_write(cpath, endpoint, data, 200)
         _bump("miss")
         return data
     return None

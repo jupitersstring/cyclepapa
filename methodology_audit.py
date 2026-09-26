@@ -561,7 +561,8 @@ def _regression(t, g):
                 "arch_xr_investment_remark", "arch_xr_stake_fv_gap",
                 "arch_xr_lookthrough_earner", "arch_xr_value_unlock",
                 # quarterly-forensic XR (operating-gated)
-                "arch_xr_verified_deleveraging", "arch_xr_cash_leads_book"):
+                "arch_xr_verified_deleveraging", "arch_xr_cash_leads_book",
+                "arch_coiled_base", "arch_base_ignition"):
         if _ac in t.columns:
             leak = int(((n(t, _ac) == 1) & _finre).sum())
             check(f"regression(R1): {_ac} excludes Financials/REITs/Utilities",

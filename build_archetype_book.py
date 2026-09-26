@@ -142,6 +142,8 @@ ARCHETYPE_LABELS = {
     'arch_xr_discops_mask': 'Discontinued-Ops Mask (profitable core hidden by a divested drag)',
     'arch_xr_verified_deleveraging': 'Verified Deleveraging (net-debt path falling, operations-funded, cheap EV/EBITDA)',
     'arch_xr_cash_leads_book': 'Cash Leads Book (CFO pulling away from NI, negative accruals, cheap)',
+    'arch_coiled_base': 'Coiled Base (2y flat base + fundamentals compounding under it + perception lag)',
+    'arch_base_ignition': 'Base Ignition (coiled base + volume / accumulation / sentiment turning)',
     'arch_xr_investment_remark': 'Investment/JV Remark (stake remeasured to fair value, value crystallised)',
     'arch_xr_stake_fv_gap': 'Stake FV Gap (disclosed fair value of JV stake > carrying value)',
     'arch_xr_lookthrough_earner': 'Look-Through Earner (associate profit a big share of pretax)',
