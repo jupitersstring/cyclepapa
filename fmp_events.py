@@ -43,6 +43,11 @@ import pandas as pd
 import fmp_client as fc
 
 OUT = "fmp_events.csv"
+# FIXED schema for the per-symbol pass (see fmp_sentiment.COLS for why)
+COLS = ["symbol", "ev_beats_8q", "ev_beat_share_8q", "ev_surprise_4q", "ev_react_last", "ev_pead_4w",
+        "ev_last_report_days", "ev_react_beats_4q", "ev_ignored_beats_2y", "ev_pt_n_12m", "ev_pt_prem_12m",
+        "ev_pt_rev_90d", "ev_px_90d", "ev_pt_lead_flag", "ev_pt_chase_flag", "ev_div_raise_streak",
+        "ev_div_cut_2y", "ev_spin_filing_date", "ev_sc13d_date", "ev_tender_date", "ev_merger_proxy_date"]
 TODAY = pd.Timestamp(dt.date.today())
 
 
@@ -180,7 +185,8 @@ def main(workers: int = 4) -> None:
             batch = todo[i:i + step]
             args = [(s, px_by.get(s), "." not in s) for s in batch]
             recs = list(ex.map(one, args))
-            pd.DataFrame(recs).to_csv(OUT, mode="a", header=not os.path.exists(OUT), index=False)
+            pd.DataFrame(recs).reindex(columns=COLS).to_csv(OUT, mode="a", header=not os.path.exists(OUT),
+                                                            index=False)
             st = fc.cache_stats()
             print(f"  events {min(i + step, len(todo))}/{len(todo)} | hit_rate={st['hit_rate']}", flush=True)
     # one-call feeds: S&P 500 history, M&A targets, free float

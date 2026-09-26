@@ -251,6 +251,19 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # of the "flat for two years, then re-rates" family
     df = _merge_fmp_overlay(df, 'base_snapshot.csv')
     df = _merge_fmp_overlay(df, 'fmp_sentiment.csv')
+    # weekly time-series measures (ts_snapshot.py), through-cycle annual minima
+    # (fmp_throughcycle.py), quarterly growth quality (fmp_quarterly_ext.py)
+    df = _merge_fmp_overlay(df, 'ts_snapshot.csv')
+    df = _merge_fmp_overlay(df, 'fmp_throughcycle.csv')
+    df = _merge_fmp_overlay(df, 'fmp_quarterly_ext.csv')
+    # dated events layer (fmp_events.py). Its columns are prefixed ev_ in the
+    # file; ev_ already names the enterprise-value multiples here (ev_ebitda,
+    # ev_sales), so they are renamed evt_ on the way in.
+    if os.path.exists('fmp_events.csv'):
+        _evt = pd.read_csv('fmp_events.csv', low_memory=False).drop_duplicates('symbol', keep='last')
+        _evt = _evt.rename(columns={c: 'evt_' + c[3:] for c in _evt.columns if c.startswith('ev_')})
+        df = df.drop(columns=[c for c in _evt.columns if c != 'symbol' and c in df.columns])
+        df = df.merge(_evt, on='symbol', how='left')
 
     # FMP INSTITUTIONAL overlay (fmp_institutional.py): 13F ownership
     # trajectory over the last three complete quarters (US-listed names).
@@ -6939,16 +6952,19 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # (_is_drug_dev / _is_clinical_biotech computed above, before the scrubs.)
     # Exempt price-action/catalyst archetypes AND the biotech's own dedicated
     # deep-value screen; every other (fundamental) archetype is scrubbed.
-    _biotech_ok = {'arch_analyst_awakening', 'arch_analyst_rerating_confirmed',
-                   'arch_oneil_canslim',
-                   'arch_weinstein_stage2', 'arch_kullamagie_breakout',
-                   'arch_biotech_deep_value'}
+    # (user) clinical-stage biotech moves on BINARY trial / regulatory events, a
+    # different mechanism from every other archetype here, so the momentum /
+    # perception archetypes are scrubbed too; the names they would have flagged
+    # are SURFACED as biotech_momentum_watch (not lost), and the biotech's own
+    # dedicated deep-value screen stays.
+    _bio_mom = ['arch_analyst_awakening', 'arch_analyst_rerating_confirmed', 'arch_oneil_canslim',
+                'arch_weinstein_stage2', 'arch_kullamagie_breakout']
+    df['biotech_momentum_watch'] = (_is_clinical_biotech.values
+                                    & (df[[c for c in _bio_mom if c in df.columns]].sum(axis=1) > 0)).astype(int)
+    _biotech_ok = {'arch_biotech_deep_value'}
     _fund_arch = [c for c in arch_cols if c not in _biotech_ok]
     _fund_scrub = _fund_arch + [c for c in _GATED_SCORES
-                                if c not in ('analyst_awakening_score',
-                                             'oneil_score', 'weinstein_score',
-                                             'kullamagie_score',
-                                             'biotech_deep_value_score',
+                                if c not in ('biotech_deep_value_score',
                                              'biotech_cash_runway_yrs')]
     if _is_clinical_biotech.any():
         df.loc[_is_clinical_biotech.values, _fund_scrub] = 0
@@ -7383,6 +7399,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
              # institutional accumulation + FMP segmentation + digest
              + [c for c in ['inst_accum_score','inst_accum_accelerating','inst_own_excess_q0','inst_buy_excess_q0','fmp_signals',
                             'roic_lindy_eff','capret_yield_eff','multi_year_data','non_common_flag',
+                            'biotech_momentum_watch',
                             'fmp_inst_quarter','fmp_inst_holders','fmp_inst_own_pct',
                             'fmp_inst_own_chg_q0','fmp_inst_own_chg_q1','fmp_inst_own_chg_q2',
                             'fmp_inst_shares_chg_pct_q0','fmp_inst_shares_chg_pct_q1',

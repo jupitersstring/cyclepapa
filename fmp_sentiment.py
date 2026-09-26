@@ -31,6 +31,12 @@ import pandas as pd
 import fmp_client as fc
 
 OUT = "fmp_sentiment.csv"
+# FIXED schema: every appended batch is written with exactly these columns in
+# this order (a batch-dependent column set appended under a once-written
+# header misaligns rows silently).
+COLS = ["symbol", "sent_n_analysts", "sent_buy_share", "sent_buy_share_d12", "sent_n_analysts_d12",
+        "sent_upgrades_12m", "sent_downgrades_12m", "sent_initiations_12m", "sent_months_since_up",
+        "sent_pt_rev_q", "sent_pt_count_q"]
 TODAY = pd.Timestamp(dt.date.today())
 
 
@@ -102,7 +108,8 @@ def main(workers: int = 3) -> None:
     with ThreadPoolExecutor(max_workers=workers) as ex:
         for i in range(0, len(todo), step):
             recs = list(ex.map(enrich_symbol, todo[i:i + step]))
-            pd.DataFrame(recs).to_csv(OUT, mode="a", header=not os.path.exists(OUT), index=False)
+            pd.DataFrame(recs).reindex(columns=COLS).to_csv(OUT, mode="a", header=not os.path.exists(OUT),
+                                                            index=False)
             s = fc.cache_stats()
             print(f"  sentiment {min(i + step, len(todo))}/{len(todo)} | hit_rate={s['hit_rate']}", flush=True)
 
