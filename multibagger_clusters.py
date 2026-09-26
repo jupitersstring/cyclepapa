@@ -62,19 +62,39 @@ FEATS = [
     "beats_4q", "surprise_4q", "ignored_beats_2y", "react_beats_mean", "last_react", "pt_prem_12m",
     "pt_rev_6m", "ins_buy_quarters_4q", "ins_net_buy_4q", "bo_new_holders_12m", "bo_increasing_12m",
 ]
+TAPE_EXTRA = ["wks_since_hi52", "wks_since_lo260", "dd_time_share_260"]
+
+
+def feats_all(d: pd.DataFrame) -> list:
+    """The full gamut: the curated story features, the path-shape measures,
+    every FMP ratio (level / 1y change / own-history percentile: kr_*) and
+    the trend shapes of the core series (tr_*)."""
+    base = [f for f in FEATS + TAPE_EXTRA if f in d.columns]
+    return base + [c for c in d.columns if c.startswith(("kr_", "tr_"))]
+
+
 MISS = {"miss_fund": "rev_g1", "miss_val": "ps", "miss_perc": "n_analysts", "miss_emp": "emp_g1",
         "miss_bs": "netcash_mcap"}
 # NARRATIVE AXES: each a composite of ranked features with a direction
 # (+1 = higher rank means more of the axis). The clustering's primary space.
 BLOCKS = {
-    "growth": [("rev_g1", 1), ("rev_g2", 1), ("rev_q_yoy", 1), ("ebit_g1", 1), ("eps_g1", 1)],
+    "growth": [("rev_g1", 1), ("rev_g2", 1), ("rev_q_yoy", 1), ("ebit_g1", 1), ("eps_g1", 1),
+               ("kr_revenuePerShare_g4", 1), ("kr_freeCashFlowPerShare_g4", 1)],
     "accelerating": [("rev_accel", 1), ("rev_q_accel", 1)],
     "margin_trajectory": [("opm_d1", 1), ("opm_d2", 1), ("gm_d1", 1), ("fcf_margin_d1", 1), ("roic_d1", 1),
-                          ("inc_margin", 1)],
+                          ("inc_margin", 1), ("tr_opm_slope8", 1), ("tr_gm_slope8", 1), ("tr_opm_consist", 1)],
+    "best_in_own_history": [("kr_operatingProfitMargin_own", 1), ("kr_grossProfitMargin_own", 1),
+                            ("kr_returnOnInvestedCapital_own", 1), ("kr_returnOnCapitalEmployed_own", 1),
+                            ("kr_freeCashFlowPerShare_own", 1)],
+    "cash_quality": [("kr_incomeQuality", 1), ("kr_operatingCashFlowSalesRatio_d4", 1), ("cfo_ni", 1),
+                     ("kr_freeCashFlowOperatingCashFlowRatio", 1)],
+    "efficiency_trend": [("kr_assetTurnover_d4", 1), ("kr_cashConversionCycle_d4", -1),
+                         ("kr_daysOfSalesOutstanding_d4", -1), ("kr_fixedAssetTurnover_d4", 1)],
     "profitability": [("opm", 1), ("fcf_margin", 1), ("roic", 1), ("roe", 1)],
     "below_own_cycle": [("opm_vs_5y", -1)],
     "cheapness": [("ps", -1), ("ev_sales", -1), ("ev_ebit", -1), ("pb", -1), ("fcf_yield", 1), ("earn_yield", 1)],
-    "cheap_vs_own_history": [("ps_vs_own", -1), ("evs_chg_1y", -1)],
+    "cheap_vs_own_history": [("ps_vs_own", -1), ("evs_chg_1y", -1), ("kr_evToSales_own", -1),
+                             ("kr_priceToSalesRatio_own", -1), ("kr_enterpriseValueMultiple_own", -1)],
     "balance_sheet": [("netcash_mcap", 1), ("nd_ebitda", -1), ("current_ratio", 1), ("equity_assets", 1),
                       ("ncav_mcap", 1)],
     "deleveraging": [("debt_chg1", -1)],
@@ -160,10 +180,8 @@ def ranked(d: pd.DataFrame, feats) -> pd.DataFrame:
     measured against its own market at that moment, so neither a global bull
     run nor one country's bubble can manufacture a cluster)."""
     m = d["week"].dt.to_period("M").astype(str) + "|" + d["market"].astype(str)
-    R = pd.DataFrame(index=d.index)
-    for f in feats:
-        if f in d.columns:
-            R[f] = d.groupby(m)[f].rank(pct=True)
+    fs = [f for f in feats if f in d.columns]
+    R = d[fs].groupby(m).rank(pct=True).astype("float32")      # all columns at once
     for k, src in MISS.items():
         R[k] = d[src].isna().astype(float) if src in d.columns else 1.0
     st = [c for c in d.columns if c.startswith("st_")]
@@ -221,7 +239,7 @@ def run(d: pd.DataFrame, label: str = LABEL, tag: str = "", kmax: int = 12, spac
     from sklearn.decomposition import PCA
     from sklearn.metrics import adjusted_rand_score, silhouette_score
     from sklearn.preprocessing import StandardScaler
-    feats = [f for f in FEATS if f in d.columns]
+    feats = feats_all(d)
     R = ranked(d, feats)
     S = blocks(R) if space == "blocks" else R
     Xall = S.fillna(0.5).to_numpy(float)
@@ -371,7 +389,7 @@ def tree_recipes(d: pd.DataFrame, label: str = LABEL, depth: int = 4) -> pd.Data
     """A shallow decision tree on the NARRATIVE AXES (fit <= 2017): each leaf
     is a readable recipe; its lift is re-measured on 2018+."""
     from sklearn.tree import DecisionTreeClassifier
-    feats = [f for f in FEATS if f in d.columns]
+    feats = feats_all(d)
     B = blocks(ranked(d, feats)).fillna(0.5)
     fit = (d["week"] <= FIT_END) & d[label].notna()
     test = (d["week"] > FIT_END) & (d["week"] <= pd.Timestamp(TEST_END[label])) & d[label].notna()

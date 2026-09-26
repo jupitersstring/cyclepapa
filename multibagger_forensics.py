@@ -42,7 +42,7 @@ def prep():
     d = d[~d["bio"]].copy()
     d = d.sort_values(["symbol", "week"]).reset_index(drop=True)
     d["ym"] = d["week"].dt.to_period("M")
-    feats = [f for f in mc.FEATS if f in d.columns]
+    feats = mc.feats_all(d)
     R = mc.ranked(d, feats)
     B = mc.blocks(R)
     return d, R, B
@@ -217,7 +217,7 @@ def lookalike_diff(d, R, pairs, n_boot: int = 300, seed: int = 7) -> pd.DataFram
     within-month-market rank of every feature, with a bootstrap 90% interval
     over CASES (the dogs that did not bark)."""
     rng = np.random.default_rng(seed)
-    feats = [f for f in mc.FEATS if f in R.columns] + [c for c in R.columns if c.startswith("st_")]
+    feats = [f for f in mc.feats_all(d) if f in R.columns] + [c for c in R.columns if c.startswith("st_")]
     C = R.loc[pairs["case"], feats].to_numpy(float)
     K = R.loc[pairs["ctrl"], feats].to_numpy(float)
     diff = C - K
@@ -238,7 +238,7 @@ def ten_vs_three(d, R, ent_idx) -> pd.DataFrame:
     ok = e["fwd_mult_60"].notna()
     big = ok & (e["fwd_mult_60"] >= 10)
     small = ok & (e["fwd_mult_60"] < 5)
-    feats = [f for f in mc.FEATS if f in R.columns]
+    feats = [f for f in mc.feats_all(d) if f in R.columns]
     a, b = R.loc[e.index[big], feats].mean(), R.loc[e.index[small], feats].mean()
     out = pd.DataFrame({"ten_bagger_rank": a, "three_to_five_rank": b, "diff": a - b})
     out.attrs["n"] = (int(big.sum()), int(small.sum()))

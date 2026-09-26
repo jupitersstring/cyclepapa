@@ -228,6 +228,107 @@ def quarterly_story(raw: dict, raw2: dict) -> pd.DataFrame:
     return f
 
 
+# The FULL ratio history FMP serves (key-metrics + ratios, quarterly), by
+# theme. Valuation multiples here are PERIOD-END (the rolled-forward live
+# valuation is computed separately above); their value is the 'vs own
+# history' view.
+KM_FIELDS = ["capexToDepreciation", "capexToOperatingCashFlow", "capexToRevenue", "cashConversionCycle",
+             "daysOfInventoryOutstanding", "daysOfPayablesOutstanding", "daysOfSalesOutstanding",
+             "earningsYield", "evToEBITDA", "evToFreeCashFlow", "evToOperatingCashFlow", "evToSales",
+             "freeCashFlowYield", "incomeQuality", "intangiblesToTotalAssets", "interestBurden",
+             "netDebtToEBITDA", "operatingCycle", "operatingReturnOnAssets", "researchAndDevelopementToRevenue",
+             "returnOnAssets", "returnOnCapitalEmployed", "returnOnEquity", "returnOnInvestedCapital",
+             "returnOnTangibleAssets", "salesGeneralAndAdministrativeToRevenue",
+             "stockBasedCompensationToRevenue", "taxBurden"]
+RA_FIELDS = ["assetTurnover", "bottomLineProfitMargin", "capitalExpenditureCoverageRatio", "cashRatio",
+             "currentRatio", "debtServiceCoverageRatio", "debtToAssetsRatio", "debtToCapitalRatio",
+             "debtToEquityRatio", "dividendPayoutRatio", "dividendPaidAndCapexCoverageRatio", "ebitdaMargin",
+             "effectiveTaxRate", "financialLeverageRatio", "fixedAssetTurnover",
+             "freeCashFlowOperatingCashFlowRatio", "grossProfitMargin", "interestCoverageRatio",
+             "inventoryTurnover", "netIncomePerEBT", "operatingCashFlowCoverageRatio",
+             "operatingCashFlowSalesRatio", "operatingProfitMargin", "payablesTurnover", "pretaxProfitMargin",
+             "quickRatio", "receivablesTurnover", "solvencyRatio", "workingCapitalTurnoverRatio",
+             "priceToBookRatio", "priceToSalesRatio", "priceToEarningsRatio", "priceToFreeCashFlowRatio",
+             "enterpriseValueMultiple"]
+PS_FIELDS = ["revenuePerShare", "freeCashFlowPerShare", "bookValuePerShare", "tangibleBookValuePerShare",
+             "operatingCashFlowPerShare", "netIncomePerShare"]
+
+
+def _own_pct(s: pd.Series, n: int = 12) -> pd.Series:
+    """Where the latest value sits in the company's OWN last n quarters (0 =
+    worst of its own history, 1 = best / highest)."""
+    return s.rolling(n, min_periods=6).apply(lambda a: (a[:-1] < a[-1]).mean() if np.isfinite(a[-1]) else np.nan,
+                                             raw=True)
+
+
+def ratio_story(raw2: dict, avail_by_pe: dict, fy_q4_dates=frozenset()) -> pd.DataFrame:
+    """kr_<field>: level, _d4 (1-year change; growth for per-share lines) and
+    _own (percentile within its own last 3 years), for every ratio FMP serves.
+    Point-in-time: each quarter becomes usable on the income statement's
+    filing date for the same period (75 days after period end otherwise)."""
+    km = pd.DataFrame(raw2.get("km") or [])
+    ra = pd.DataFrame(raw2.get("ra") or [])
+    if not len(km) and not len(ra):
+        return pd.DataFrame()
+    frames = []
+    for df_, fields in ((km, KM_FIELDS), (ra, RA_FIELDS + PS_FIELDS)):
+        if len(df_) and "date" in df_.columns:
+            # FMP computes these ratios from its own quarterly rows, so a
+            # quarter whose "Q4" carried the FISCAL YEAR (fy_q4.py) has every
+            # flow-based ratio wrong (OpenText revenue/share +314%): the
+            # quarter is dropped and the as-of falls back to the last clean one
+            df_ = df_[~df_["date"].isin(fy_q4_dates)]
+            f = df_[["date"] + [c for c in fields if c in df_.columns]].copy()
+            f["period_end"] = pd.to_datetime(f["date"], errors="coerce")
+            frames.append(f.drop(columns=["date"]).drop_duplicates("period_end").set_index("period_end"))
+    if not frames:
+        return pd.DataFrame()
+    q = pd.concat(frames, axis=1).sort_index()
+    q = q[~q.index.duplicated()].apply(pd.to_numeric, errors="coerce")
+    pe = pd.Series(q.index, index=q.index)
+    out = pd.DataFrame(index=q.index)
+    for c in q.columns:
+        s = q[c].replace([np.inf, -np.inf], np.nan)
+        key = "kr_" + c
+        ok4 = (pe - pe.shift(4)).dt.days.between(320, 410)
+        if c in PS_FIELDS:
+            prev = s.shift(4).where(ok4)
+            out[key + "_g4"] = (s / prev.where(prev > 0) - 1).where(s > 0)
+        else:
+            out[key] = s
+            out[key + "_d4"] = (s - s.shift(4)).where(ok4)
+        out[key + "_own"] = _own_pct(s)
+    out = out.reset_index().rename(columns={"index": "period_end"})
+    out["avail"] = out["period_end"].map(avail_by_pe).fillna(out["period_end"] + pd.Timedelta(days=75))
+    return out.astype({c: "float32" for c in out.columns if c.startswith("kr_")})
+
+
+def trend_shapes(q: pd.DataFrame) -> pd.DataFrame:
+    """tr_<series>_slope8 / _accel / _consist / _streak: the SHAPE of the core
+    series over the last 8 quarters — direction, whether it is speeding up
+    (last 4 vs prior 4), how steady (share of quarters improving) and the
+    current run of improving quarters."""
+    series = {"revg": q.get("rev_g1"), "gm": q.get("gm"), "opm": q.get("opm"), "fcfm": q.get("fcf_margin"),
+              "roic": q.get("roic"), "shares": q.get("shares"), "debt": q.get("bs_totalDebt")}
+    out = pd.DataFrame({"period_end": q["period_end"], "avail": q["avail"]})
+    x = np.arange(8, dtype=float)
+    for k, s in series.items():
+        if s is None:
+            continue
+        s = pd.to_numeric(s, errors="coerce")
+        if k in ("shares", "debt"):
+            s = np.log(s.where(s > 0))
+        d = s.diff()
+        out[f"tr_{k}_slope8"] = s.rolling(8, min_periods=6).apply(
+            lambda a: np.polyfit(x[-len(a):][np.isfinite(a)], a[np.isfinite(a)], 1)[0] if np.isfinite(a).sum() >= 5 else np.nan,
+            raw=True)
+        out[f"tr_{k}_accel"] = d.rolling(4).mean() - d.shift(4).rolling(4).mean()
+        out[f"tr_{k}_consist"] = (d > 0).astype(float).where(d.notna()).rolling(8, min_periods=6).mean()
+        up = (d > 0).astype(int)
+        out[f"tr_{k}_streak"] = up.groupby((up == 0).cumsum()).cumsum().astype(float).where(d.notna())
+    return out
+
+
 def employees(raw2: dict) -> pd.DataFrame:
     e = pd.DataFrame(raw2.get("emp") or [])
     if not len(e) or "employeeCount" not in e.columns:
@@ -295,6 +396,16 @@ def tape(px: pd.DataFrame, last_global: pd.Timestamp) -> pd.DataFrame:
     T["slope_brk"] = (s26 - s78) / (T["vol52"] / np.sqrt(52)).where(T["vol52"] > 0)
     x = pd.Series(np.arange(len(lc), dtype=float))
     T["trend_r2_52"] = lc.rolling(52, min_periods=40).corr(x) ** 2 * np.sign(_roll_slope(lc, 52))
+    # PATH SHAPE: how long since the 52w high and the 5y low (a fresh low vs a
+    # long-completed bottom), and how much of the last 5 years was spent in a
+    # deep drawdown (> 20% below the running 5y high) — a long, grinding
+    # decline vs a sharp, recent break
+    def _since_ext(a, fn):
+        return float(len(a) - 1 - fn(a)) if np.isfinite(a).any() else np.nan
+    T["wks_since_hi52"] = c.rolling(52, min_periods=40).apply(lambda a: _since_ext(a, np.nanargmax), raw=True)
+    T["wks_since_lo260"] = c.rolling(260, min_periods=104).apply(lambda a: _since_ext(a, np.nanargmin), raw=True)
+    run_hi = c.rolling(260, min_periods=52).max()
+    T["dd_time_share_260"] = (c < 0.8 * run_hi).astype(float).where(run_hi.notna()).rolling(260, min_periods=104).mean()
     # ---- outcomes: forward max of a 4-week HELD level ----
     held = c.rolling(HOLD).min()
     n = len(c)
@@ -366,6 +477,19 @@ def _one(sym, px, last_global):
     q = quarterly_story(raw, raw2)
     if len(q):
         q = q.sort_values("avail")
+        # the full ratio history + trend shapes, merged point-in-time
+        _avail = dict(zip(q["period_end"], q["avail"]))
+        import fy_q4
+        _, _q4d = fy_q4.restore(raw.get("is"), "is")
+        for extra in (ratio_story(raw2, _avail, frozenset(_q4d)), trend_shapes(q.sort_values("period_end"))):
+            if len(extra):
+                extra = extra.sort_values("avail").drop(columns=["period_end"])
+                xm = pd.merge_asof(out[["week"]].reset_index(), extra, left_on="week", right_on="avail",
+                                   direction="backward").set_index("index").drop(columns=["week", "avail"])
+                stale_x = (out["week"] - pd.merge_asof(out[["week"]].reset_index(), extra[["avail"]],
+                           left_on="week", right_on="avail", direction="backward").set_index("index")["avail"]).dt.days > 270
+                xm.loc[stale_x.values, :] = np.nan
+                out = pd.concat([out, xm], axis=1)
         m = pd.merge_asof(out[["week"]].reset_index(), q, left_on="week", right_on="avail",
                           direction="backward").set_index("index")
         m = m.drop(columns=["week"])
@@ -493,7 +617,8 @@ def main(workers: int = 4) -> None:
     with Pool(workers) as pool:
         for i, r in enumerate(pool.imap_unordered(one, groups, chunksize=16), 1):
             if r is not None and len(r):
-                parts.append(r)
+                # ~360 features x ~1.3M month-ends: 32-bit floats halve memory
+                parts.append(r.astype({c: "float32" for c in r.select_dtypes("float64").columns}))
             if i % 1000 == 0:
                 print(f"  {i}/{len(groups)}", flush=True)
     d = pd.concat(parts, ignore_index=True)
