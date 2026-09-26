@@ -4831,9 +4831,24 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _maint_oe_b = (_cfo31 - _maint_cx31)                  # Greenwald maintenance-capex lens
     _maint_oe31 = pd.concat([_maint_oe_a, _maint_oe_b], axis=1).min(axis=1)  # conservative
     _maint_y31 = (_maint_oe31 / _mc_ca.where(_mc_ca > 0))
+    # (user / endpoint matrix, REACH) GROWTH CAPEX = CAPEX - D&A (D&A as the
+    # replacement / maintenance spend) for every filer the quarterly engine
+    # covers, CURRENCY-FREE: capex / D&A straight from the TTM panel, and the
+    # maintenance cash yield as FCF yield + growth-capex yield, where
+    #   growth capex / mcap = (capex / revenue) x (1 - D&A / capex) / (P/S)
+    # — each factor a within-currency ratio (capex and revenue from the same
+    # statements; P/S from the FX-coherent master). Used only where the
+    # level-based lenses above are missing.
+    _fq_cx = _ncol('fq_capex').abs()
+    _fq_ratio = _ncol('fq_capex_to_da').where(_ncol('fq_capex_to_da') > 0)
+    _fq_capint = (_fq_cx / _ncol('fq_revenue').where(_ncol('fq_revenue') > 0)).where(lambda x: x < 1.0)
+    _ps31 = _ncol('p_s').where(_ncol('p_s') > 0)
+    _gcx_y = (_fq_capint * (1.0 - 1.0 / _fq_ratio).clip(lower=0) / _ps31)
+    _maint_y31 = _maint_y31.fillna(fcf_yield + _gcx_y)
+    _capex_over_da31 = (_cx31 / _dna31.where(_dna31 > 0)).fillna(_fq_ratio)
     df['arch_xr_growth_capex_masked'] = (
         is_operating & (_mc_ca > 0) & _fx_coherent &
-        (_dna31 > 0) & (_cx31 >= 1.5 * _dna31) &           # capex FAR above replacement
+        (_capex_over_da31 >= 1.5) &                        # capex FAR above replacement (D&A)
         (_cfo31 > 0) &
         ((s('roce', np.nan) >= 0.12) | (_ncol('ebitda_margin') >= 0.20)) &  # returns justify it
         (rev_yoy_c >= 0.10) &                              # the growth is real
