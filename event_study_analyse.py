@@ -36,7 +36,8 @@ FUND_F = ["rev_g_base", "ebit_g_base", "ebit_turned", "gm_delta_base", "rev_acce
 PERC_F = ["n_analysts", "buy_share", "buy_share_d12", "upgrades_12m", "downgrades_12m",
           "initiations_12m", "months_since_up", "beats_4q", "surprise_4q",
           "beats_2y", "ignored_beats_2y", "react_beats_mean", "last_react",
-          "pt_n_12m", "pt_prem_12m", "pt_rev_6m"]
+          "pt_n_12m", "pt_prem_12m", "pt_rev_6m",
+          "ins_buys_8q", "ins_buy_quarters_4q", "ins_net_buy_4q", "bo_new_holders_12m", "bo_increasing_12m"]
 
 
 def _w(d):
@@ -210,7 +211,8 @@ def reconstruct_archetypes(d: pd.DataFrame) -> dict:
     sent_turn = ((g("buy_share_d12") >= 0.10) | ((g("upgrades_12m") - g("downgrades_12m")) >= 2)
                  | (g("pt_rev_6m") >= 0.05) | (g("initiations_12m") >= 1)).fillna(False)
     ign = [(g("dvol_trend") >= q85("dvol_trend")), (g("updown_vol") >= q85("updown_vol")),
-           ((g("rs26") >= 0.10) & (g("r26") >= 0.10)), sent_turn, (g("last_react") >= 0.10)]
+           ((g("rs26") >= 0.10) & (g("r26") >= 0.10)), sent_turn, (g("last_react") >= 0.10),
+           ((g("ins_buy_quarters_4q") >= 2) | (g("bo_new_holders_12m") >= 1) | (g("bo_increasing_12m") >= 1))]
     ign_n = sum(x.fillna(False).astype(int) for x in ign)
     ign_vol = (ign[0] | ign[1]).fillna(False)
     coiled = time_ok & (coil_n >= 1) & (perc_n >= 1)

@@ -61,7 +61,9 @@ def fetch(sym: str) -> dict:
             "gh": _get("grades-historical", {"symbol": sym, "limit": 500}),
             "gr": _get("grades", {"symbol": sym, "limit": 2000}),
             "er": _get("earnings", {"symbol": sym, "limit": 100}),
-            "pt": _get("price-target-news", {"symbol": sym, "limit": 1000})}
+            "pt": _get("price-target-news", {"symbol": sym, "limit": 1000}),
+            "ins": _get("insider-trading/statistics", {"symbol": sym}),
+            "bo": _get("acquisition-of-beneficial-ownership", {"symbol": sym})}
 
 
 def _ttm_frame(rows) -> pd.DataFrame:
@@ -142,6 +144,22 @@ def features_for(sym: str, weeks: pd.Series, r104: pd.Series, raw: dict, px=None
         pt["px"] = pd.to_numeric(pt.get("priceWhenPosted"), errors="coerce")
         pt = pt.dropna(subset=["date", "tgt"]).sort_values("date")
         pt = pt[pt["tgt"] > 0]
+    # insider statistics per calendar quarter, usable 15 days after quarter end
+    ins = pd.DataFrame(raw.get("ins") or [])
+    if len(ins) and {"year", "quarter"}.issubset(ins.columns):
+        ins["avail"] = (pd.PeriodIndex.from_fields(year=ins["year"].astype(int), quarter=ins["quarter"].astype(int),
+                                                   freq="Q").end_time.normalize() + pd.Timedelta(days=15))
+        for c in ("totalPurchases", "totalSales", "acquiredTransactions", "disposedTransactions"):
+            ins[c] = pd.to_numeric(ins.get(c), errors="coerce").fillna(0)
+        ins = ins.sort_values("avail")
+    # 13D/13G filings: >=5% holders, excluding the passive index complexes
+    bo = pd.DataFrame(raw.get("bo") or [])
+    if len(bo) and "filingDate" in bo.columns:
+        bo["d"] = pd.to_datetime(bo["filingDate"], errors="coerce")
+        bo["pct"] = pd.to_numeric(bo.get("percentOfClass"), errors="coerce")
+        bo["who"] = bo.get("nameOfReportingPerson", "").astype(str).str.upper()
+        bo = bo[~bo["who"].str.contains("VANGUARD|BLACKROCK|STATE STREET|FMR|FIDELITY|DIMENSIONAL|GEODE|NORTHERN TRUST",
+                                          regex=True)].dropna(subset=["d"]).sort_values("d")
     rows = []
     for idx, t in weeks.items():
         rec = {}
@@ -209,6 +227,27 @@ def features_for(sym: str, weeks: pd.Series, r104: pd.Series, raw: dict, px=None
             recent = pt[(pt["date"] <= t) & (pt["date"] > t - pd.Timedelta(days=183))]
             if len(recent) and len(prev):
                 rec["pt_rev_6m"] = float(recent["tgt"].median() / prev["tgt"].median() - 1)
+        # QUIET ACCUMULATION by insiders during the base (8 quarters) and lately (4)
+        if len(ins) and ins["avail"].min() <= t - pd.Timedelta(days=365):
+            w8 = ins[(ins["avail"] <= t) & (ins["avail"] > t - pd.Timedelta(weeks=104))]
+            w4 = w8[w8["avail"] > t - pd.Timedelta(days=365)]
+            rec["ins_buys_8q"] = float(w8["totalPurchases"].sum())
+            rec["ins_buy_quarters_4q"] = float((w4["totalPurchases"] > 0).sum())
+            rec["ins_net_buy_4q"] = float(w4["totalPurchases"].sum() - w4["totalSales"].sum())
+        # NEW or INCREASING concentrated (>=5%, non-index) holders in the last 12 months
+        if len(bo):
+            past = bo[bo["d"] <= t]
+            w12 = past[past["d"] > t - pd.Timedelta(days=365)]
+            first = past.groupby("who")["d"].min()
+            rec["bo_new_holders_12m"] = float(((first > t - pd.Timedelta(days=365)) &
+                                               first.index.isin(w12.loc[w12["pct"] >= 5, "who"])).sum())
+            inc = 0
+            for who, g2 in past.groupby("who"):
+                g2 = g2.sort_values("d")
+                if len(g2) >= 2 and g2["d"].iloc[-1] > t - pd.Timedelta(days=365) and \
+                        g2["pct"].iloc[-1] > g2["pct"].iloc[-2] + 0.5:
+                    inc += 1
+            rec["bo_increasing_12m"] = float(inc)
         rows.append(rec)
     return pd.DataFrame(rows, index=weeks.index)
 
