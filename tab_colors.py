@@ -132,6 +132,14 @@ ARCH_FAMILY = {
     'arch_mb_fallen_trough': 'contrarian',
     'arch_mb_fallen_below_cycle': 'contrarian',
     'arch_mb_inflecting_operator': 'inflection', 'arch_mb_quiet_turn': 'inflection',
+    'arch_mb_left_for_dead_value': 'contrarian',
+    'arch_mb_fallen_ignored_believers': 'contrarian',
+    'arch_mb_smart_money_wreckage': 'contrarian',
+    'arch_mb_grew_into_valuation_turning': 'inflection',
+    'arch_mb_tree_recipe': 'contrarian',
+    'arch_mb_tree_recipe_10x': 'contrarian',
+    'arch_mb_sequence_preignition': 'inflection',
+
     'arch_asleep_at_wheel': 'contrarian', 'arch_dead_option': 'contrarian',
     'arch_analyst_awakening': 'contrarian', 'arch_institutional_accumulation': 'contrarian', 'arch_liger_neglected_survivor': 'contrarian',
     # analyst re-rating CONFIRMED by 52w-high price strength — a momentum-

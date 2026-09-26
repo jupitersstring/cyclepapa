@@ -103,6 +103,12 @@ def _one(args):
                "ts_above_ma30": float(cl[-1] > ma30[-1]) if np.isfinite(ma30[-1]) else np.nan,
                "ts_dist_hi52": cl[-1] / hi52[-1], "ts_dist_lo52": cl[-1] / lo52[-1],
                "ts_dist_hi260": cl[-1] / hi260[-1],
+               # PATH SHAPE (multibagger study): share of the last 5 years spent
+               # > 20% below the running high, and weeks since the 5-year low —
+               # a long grind vs a sharp recent break, a fresh low vs an old one
+               "ts_dd_time_share_260": float(np.mean(cl[-260:] < 0.8 * np.maximum.accumulate(cl[-260:])))
+               if len(cl) >= 104 else np.nan,
+               "ts_wks_since_lo260": float(len(cl[-260:]) - 1 - int(np.argmin(cl[-260:]))) if len(cl) >= 104 else np.nan,
                "ts_wks_since_hi52": float(51 - int(np.nanargmax(hi[-52:]))) if n >= 52 else np.nan,
                "ts_mrs": rs[-1] - rs_ma[-1],
                "ts_mrs_13ago": rs[-14] - rs_ma[-14] if n > 70 else np.nan,

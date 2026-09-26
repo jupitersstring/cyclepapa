@@ -17,6 +17,9 @@ so half-yearly filers are handled as their own cadence.
   fqx_inc_ebit_margin    change in TTM EBIT / change in TTM revenue (revenue up >= 3%)
   fqx_fcf_ps_g           TTM FCF per diluted share now vs a year ago (both > 0)
   fqx_roic_ttm           TTM EBIT x 0.75 / (equity + total debt - cash), latest balance sheet
+  fqx_{opm,fcfm,gm,roic}_slope8 / _consist / _streak   trend shape over 8 quarters
+  fqx_m_since_{rev_accel,margin_inflect,turn_positive,share_shrink}   months since the
+                         sign first appeared in the last 18 months; fqx_<sign>_now
 """
 from __future__ import annotations
 
@@ -91,12 +94,76 @@ def one(g: pd.DataFrame) -> dict:
             ic = last.get("equity", np.nan) + (last.get("total_debt", 0) or 0) - (last.get("cash_sti", 0) or 0)
             if np.isfinite(e) and np.isfinite(ic) and ic > 0:
                 rec["fqx_roic_ttm"] = float(np.clip(e * 0.75 / ic, -2, 5))
+    # ---- TREND SHAPES over the last 8 quarters (the multibagger study's
+    # tr_* measures): slope, consistency (share of quarters improving), the
+    # current improving streak; on TTM series so seasonality cancels ----
+    def ttm_series(col):
+        v = g[col].to_numpy(float)
+        out = np.full(n, np.nan)
+        for i in range(per - 1, n):
+            if np.all(np.abs(gaps[i - per + 1:i] - 365 / per) < 45) and np.all(np.isfinite(v[i - per + 1:i + 1])):
+                out[i] = v[i - per + 1:i + 1].sum()
+        return out
+    T = {c: ttm_series(c) for c in ("revenue", "opinc", "fcf", "gp", "ni")}
+    rev_t = np.where(T["revenue"] > 0, T["revenue"], np.nan)
+    series = {"opm": T["opinc"] / rev_t, "fcfm": T["fcf"] / rev_t, "gm": T["gp"] / rev_t}
+    eq = g.get("equity"); td = g.get("total_debt"); cs = g.get("cash_sti")
+    if eq is not None:
+        ic = (eq.fillna(np.nan).to_numpy(float) + (td.fillna(0).to_numpy(float) if td is not None else 0)
+              - (cs.fillna(0).to_numpy(float) if cs is not None else 0))
+        series["roic"] = np.where(ic > 0, T["opinc"] * 0.75 / np.where(ic > 0, ic, np.nan), np.nan)
+    for k, s in series.items():
+        w = s[-8:]
+        ok = np.isfinite(w)
+        if ok.sum() >= 5:
+            x = np.arange(len(w), dtype=float)[ok]
+            rec[f"fqx_{k}_slope8"] = float(np.polyfit(x, w[ok], 1)[0])
+            dq = np.diff(s[-9:])
+            dq = dq[np.isfinite(dq)]
+            if len(dq) >= 4:
+                rec[f"fqx_{k}_consist"] = float((dq > 0).mean())
+                streak = 0
+                for v in dq[::-1]:
+                    if v > 0:
+                        streak += 1
+                    else:
+                        break
+                rec[f"fqx_{k}_streak"] = float(streak)
+    # ---- SIGN TIMING (the forensic sequence): months since each sign FIRST
+    # appeared inside the last 18 months (NaN = not in the window) ----
+    yoy = np.full(n, np.nan)
+    for i in range(n):
+        j = _ya(d, i)
+        if j is not None and np.isfinite(T["revenue"][i]) and T["revenue"][j] > 0:
+            yoy[i] = T["revenue"][i] / T["revenue"][j] - 1
+    def ya_val(arr, i):
+        j = _ya(d, i)
+        return arr[j] if j is not None else np.nan
+    signs = {}
+    for i in range(n):
+        signs.setdefault("rev_accel", []).append(np.isfinite(yoy[i]) and np.isfinite(ya_val(yoy, i)) and yoy[i] - ya_val(yoy, i) >= 0.10)
+        o, oy = series["opm"][i], ya_val(series["opm"], i)
+        signs.setdefault("margin_inflect", []).append(np.isfinite(o) and np.isfinite(oy) and o - oy >= 0.03)
+        turned = False
+        for c in ("opinc", "ni", "fcf"):
+            v, vy = T[c][i], ya_val(T[c], i)
+            if np.isfinite(v) and np.isfinite(vy) and vy <= 0 < v:
+                turned = True
+        signs.setdefault("turn_positive", []).append(turned)
+        sh, shy = g["shares_dil"].iloc[i], ya_val(g["shares_dil"].to_numpy(float), i)
+        signs.setdefault("share_shrink", []).append(np.isfinite(sh) and np.isfinite(shy) and shy > 0 and sh / shy - 1 <= -0.02)
+    last = d[-1]
+    for k, flags in signs.items():
+        idx = [i for i in range(n) if flags[i] and (last - d[i]).astype(int) <= 548]
+        rec[f"fqx_{k}_now"] = float(bool(flags[-1]))
+        if idx:
+            rec[f"fqx_m_since_{k}"] = float((last - d[idx[0]]).astype(int) / 30.4)
     return rec
 
 
 def main() -> None:
     p = pd.read_parquet("fmp_quarterly_panel.parquet",
-                        columns=["symbol", "date", "revenue", "opinc", "ni", "fcf", "shares_dil",
+                        columns=["symbol", "date", "revenue", "opinc", "ni", "fcf", "gp", "shares_dil",
                                  "equity", "total_debt", "cash_sti"])
     p["date"] = pd.to_datetime(p["date"])
     with np.errstate(divide="ignore", invalid="ignore"):

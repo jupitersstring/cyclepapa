@@ -251,6 +251,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # of the "flat for two years, then re-rates" family
     df = _merge_fmp_overlay(df, 'base_snapshot.csv')
     df = _merge_fmp_overlay(df, 'fmp_sentiment.csv')
+    if os.path.exists('fmp_us_filings.csv'):        # headcount + quarterly insider statistics (SEC filers)
+        df = _merge_fmp_overlay(df, 'fmp_us_filings.csv')
     # weekly time-series measures (ts_snapshot.py), through-cycle annual minima
     # (fmp_throughcycle.py), quarterly growth quality (fmp_quarterly_ext.py)
     df = _merge_fmp_overlay(df, 'ts_snapshot.csv')
@@ -6912,7 +6914,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_mb_fallen_value_turn'] = (_mb_base & _mb_fallen & _mb_deep & _mb_turn).astype(int)   # 2.7x / 3.6x
     df['arch_mb_fallen_value_accel'] = (_mb_base & _mb_fallen & _mb_deep & _mb_accel).astype(int)  # 3.0x / 3.3x
     df['arch_mb_fallen_stressed'] = (_mb_base & _mb_fallen & _mb_stressed).astype(int)        # 3.1x / 2.7x
-    df['arch_mb_fallen_insider'] = (_mb_base & _mb_fallen & _mb_insider).astype(int)          # 2.2x / 4.3x
+    # FALLEN + INSIDER CONVICTION (the study's FAST archetype: fallen angel +
+    # insiders buying in 2+ of the last 4 quarters + an OPERATING business, not
+    # an asset play + margins not yet consistent; lift 15-21x on a 3x within
+    # 12 months, median 7.8 months to the triple, blow-up 31%). SEC quarterly
+    # statistics where they exist, the EDGAR cluster-buy / distinct-buyer
+    # flags otherwise.
+    _ins_2q = ((_ncol('usf_ins_buy_quarters_4q') >= 2)
+               | (_ncol('usf_ins_buy_quarters_4q').isna() & _mb_insider)).fillna(False)
+    _operating_not_asset = ~(_ncol('ncav_pct_mcap') >= 0.5)
+    _margins_not_consistent = ~(_ncol('fqx_opm_consist') > 0.5)
+    df['arch_mb_fallen_insider'] = (_mb_base & _mb_fallen & _ins_2q & _operating_not_asset
+                                    & _margins_not_consistent).astype(int)
     df['arch_mb_fallen_trough'] = (_mb_base & _mb_fallen & _mb_trough).astype(int)            # 2.8x / 2.2x
     # the two real latent clusters (continuous directions, not boxes)
     #  FALLEN BELOW ITS CYCLE (47% of 2018+ multibaggers, 1.5x): far below the
@@ -6938,10 +6951,76 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _mb_weak_tape = ((_ncol('ts_r13') < 0) & (_ncol('ts_dist_hi52') < 0.85)).fillna(False)
     _mb_fund_turning = (((rev_accel > 0) | (_ncol('fq_rev_growth') >= 0.10))
                         & ((_ncol('fqx_ebit_ttm_g') > 0) | _mb_turn)).fillna(False)
-    df['arch_mb_quiet_turn'] = (_mb_base & _mb_fund_turning & _mb_weak_tape & _cheap_own).astype(int)
+    # MARGIN INFLECTION UNDER A WEAK TAPE (upgrade of the quiet turn with the
+    # study's trend shapes: operating margin rising steadily over 8 quarters,
+    # or a dated inflection; ROIC trend up; the tape still weak)
+    _margin_trend_up = (((_ncol('fqx_opm_slope8') > 0) & (_ncol('fqx_opm_consist') >= 0.6))
+                        | (_ncol('fqx_margin_inflect_now') == 1)).fillna(False)
+    _roic_trend_up = ((_ncol('fqx_roic_slope8') > 0) | (_ncol('roce_delta_yoy') > 0) | _mb_roic_up).fillna(False)
+    df['arch_mb_quiet_turn'] = (_mb_base & _mb_fund_turning & _margin_trend_up & _roic_trend_up
+                                & _mb_weak_tape & _cheap_own).astype(int)
+
+    # ---- the nine archetypes from the full-sample mining (MULTIBAGGER_ARCHETYPES.md) ----
+    # 1. LEFT-FOR-DEAD VALUE (the 10x archetype): fallen + deep value + FCF
+    #    margin NOT yet in an improving streak — the condition present in all
+    #    40 top 10x patterns; the market prices terminal decline before the
+    #    cash flow turns. Lift 17-23x on a 10x within 5 years (~20% of these),
+    #    3x in ~12 months, blow-up 15%.
+    _fcf_not_turned = ((_ncol('fqx_fcfm_streak') <= 1)
+                       | (_ncol('fqx_fcfm_streak').isna() & ~(_ncol('fcf_margin_delta_yoy') > 0))).fillna(False)
+    df['arch_mb_left_for_dead_value'] = (_mb_base & _mb_fallen & _mb_deep & _fcf_not_turned).astype(int)
+    # 3. FALLEN + IGNORED BELIEVERS: few analysts, but those few are buyers,
+    #    and no dividend yield propping the name up. Lift 7-9x on a 3x within
+    #    24 months, blow-up 25-40%.
+    _few = _ncol('sent_n_analysts').between(1, 5)
+    df['arch_mb_fallen_ignored_believers'] = (
+        _mb_base & _mb_fallen & _few & (_ncol('sent_buy_share') >= 0.6)
+        & ~(_ncol('dividend_yield') > 0.02)).fillna(False).astype(int)
+    # 4. SMART MONEY IN THE WRECKAGE (the mixture model's highest-lift group):
+    #    fallen + deep value + informed buyers arriving — insider buying, a new
+    #    >= 5% holder (SC 13D <= 12 months), or a headcount jump. Lift 2.1x as
+    #    a region, blow-up 27%. The legs are SEC data (US filers); the spirit
+    #    counts how many arrived.
+    _smart_legs = (_ins_2q.astype(int) + _13d_recent.astype(int)
+                   + (_ncol('usf_emp_g1') >= 0.10).fillna(False).astype(int))
+    df['mb_smart_money_legs'] = _smart_legs
+    df['arch_mb_smart_money_wreckage'] = (_mb_base & _mb_fallen & _mb_deep & (_smart_legs >= 1)).astype(int)
+    # 7. GREW INTO THE VALUATION, NOW TURNING: the de-rating-through-growth
+    #    family where the margin / profit turn has arrived (Archetype B's
+    #    medians: revenue +13%, margin at the 64th pct of its own history).
+    df['arch_mb_grew_into_valuation_turning'] = (
+        (df['arch_derate_through_growth'] == 1) & (_margin_trend_up | _mb_turn)
+        & (_ncol('fq_rev_growth') >= 0.08).fillna(False)).astype(int)
+    # 8. THE TREE RECIPE: within-country ranks — volatility top 40%, size
+    #    bottom 13%, fallen top 17%, profitability bottom 46%: 16.7% of such
+    #    months led to a 3x within 24 months (lift 3.9x), blow-up 30%. The 10x
+    #    variant swaps the fallen leg for cheapness above the median (5.7x).
+    def _crank(x):
+        return pd.to_numeric(x, errors='coerce').groupby(country).rank(pct=True)
+    _r_vol = _crank(_ncol('ts_vol_1y')); _r_size = _crank(mcap)
+    _r_fallen = _crank(1 - _ncol('ts_dist_hi260')); _r_prof = _crank(_ncol('op_margin'))
+    _r_cheap = _crank(-_ncol('p_s').where(_ncol('p_s') > 0))
+    df['arch_mb_tree_recipe'] = (_mb_base & (_r_vol >= 0.60) & (_r_size <= 0.13) & (_r_fallen >= 0.83)
+                                 & (_r_prof <= 0.46)).fillna(False).astype(int)
+    df['arch_mb_tree_recipe_10x'] = (_mb_base & (_r_vol >= 0.62) & (_r_size <= 0.12) & (_r_cheap >= 0.46)
+                                     & (_r_prof <= 0.45)).fillna(False).astype(int)
+    # 9. THE SEQUENCE, PRE-IGNITION: the forensic timeline — revenue
+    #    acceleration and margin inflection arrive ~14 months before the run,
+    #    profit turning positive ~12, share count shrinking ~11; the volume
+    #    change point and new highs only ~6 months before. Two or more of the
+    #    fundamental signs first appeared 3-18 months ago and the tape has NOT
+    #    yet ignited: the window before the move.
+    _signs = sum((_ncol(f'fqx_m_since_{k}').between(3, 18)).fillna(False).astype(int)
+                 for k in ('rev_accel', 'margin_inflect', 'turn_positive', 'share_shrink'))
+    df['mb_sequence_signs'] = _signs
+    _not_ignited = ((_ncol('ts_dist_hi52') < 0.90) & ~(_ncol('bs_cp_dvol_z13') >= 1.5)
+                    & ~(_ncol('ts_r13') > 0.15)).fillna(False)
+    df['arch_mb_sequence_preignition'] = (_mb_base & (_signs >= 2) & _not_ignited).astype(int)
     _SPIRITED += ['mb_fallen_deep_value', 'mb_fallen_value_turn', 'mb_fallen_value_accel', 'mb_fallen_stressed',
                   'mb_fallen_insider', 'mb_fallen_trough', 'mb_fallen_below_cycle', 'mb_inflecting_operator',
-                  'mb_quiet_turn']
+                  'mb_quiet_turn', 'mb_left_for_dead_value', 'mb_fallen_ignored_believers',
+                  'mb_smart_money_wreckage', 'mb_grew_into_valuation_turning', 'mb_tree_recipe',
+                  'mb_tree_recipe_10x', 'mb_sequence_preignition']
     # Rank score (0-1), weights re-calibrated to the event study's OUT-OF-
     # SAMPLE lifts (fit <= 2018, test 2019+): fallen-angel context was the
     # strongest single ingredient (bottom prior-drawdown quintile 3.3x; with
@@ -7107,6 +7186,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_fallen_below_cycle',
         'arch_mb_inflecting_operator',
         'arch_mb_quiet_turn',
+        'arch_mb_left_for_dead_value',
+        'arch_mb_fallen_ignored_believers',
+        'arch_mb_smart_money_wreckage',
+        'arch_mb_grew_into_valuation_turning',
+        'arch_mb_tree_recipe',
+        'arch_mb_tree_recipe_10x',
+        'arch_mb_sequence_preignition',
         'arch_xr_peer_margin_gap',
         'arch_xr_investment_remark',
         'arch_xr_stake_fv_gap',
@@ -7295,6 +7381,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_fallen_below_cycle': 'MB-FallenBelowCycle',
         'arch_mb_inflecting_operator': 'MB-InflectingOperator',
         'arch_mb_quiet_turn': 'MB-QuietTurnWeakTape',
+        'arch_mb_left_for_dead_value': 'MB-LeftForDeadValue',
+        'arch_mb_fallen_ignored_believers': 'MB-FallenIgnoredBelievers',
+        'arch_mb_smart_money_wreckage': 'MB-SmartMoneyWreckage',
+        'arch_mb_grew_into_valuation_turning': 'MB-GrewIntoValuationTurning',
+        'arch_mb_tree_recipe': 'MB-TreeRecipe',
+        'arch_mb_tree_recipe_10x': 'MB-TreeRecipe10x',
+        'arch_mb_sequence_preignition': 'MB-SequencePreIgnition',
         'arch_xr_cash_leads_book': 'XR-CashLeadsBook',
         'arch_xr_peer_margin_gap': 'XR-PeerMarginGap',
         'arch_xr_investment_remark': 'XR-InvestmentRemark',
@@ -8517,8 +8610,32 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                                    (_c('fqx_roic_ttm') - _c('roic_lindy'), 1), (_c('fqx_inc_ebit_margin'), 1),
                                  (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
         'mb_quiet_turn': [(_c('ts_r13'), -1), (_c('ts_dist_hi52'), -1), (_c('rev_accel'), 1),
-                          (_c('fqx_ebit_ttm_g'), 1), (_c('ev_sales_change_yoy'), -1),
-                          (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
+                          (_c('fqx_opm_slope8'), 1), (_c('fqx_roic_slope8'), 1), (_c('nl_sales_1y'), 1),
+                          (_c('ev_sales_change_yoy'), -1), (_c('market_cap_usd'), -1)],
+        # the forensic lenses: weaker recent tape, deeper fall, cheaper vs own
+        # history, larger sales-per-share divergence, smaller, informed buyers
+        'mb_left_for_dead_value': [(_c('ts_dist_hi260'), -1), (_c('ts_dd_time_share_260'), 1),
+                                   (_c('pb').where(_c('pb') > 0), -1), (_c('p_s').where(_c('p_s') > 0), -1),
+                                   (_c('nl_sales_3y'), 1), (_c('bs_range104'), 1), (_c('market_cap_usd'), -1),
+                                   (-_evt_age_days('evt_sc13d_date'), 1)],
+        'mb_fallen_ignored_believers': [(_c('ts_dist_hi260'), -1), (_c('sent_buy_share'), 1),
+                                        (_c('sent_n_analysts'), -1), (_c('nl_sales_1y'), 1),
+                                        (_c('ts_r13'), -1), (_c('market_cap_usd'), -1)],
+        'mb_smart_money_wreckage': [(_c('mb_smart_money_legs'), 1), (_c('ts_dist_hi260'), -1),
+                                    (_c('usf_ins_buy_quarters_4q'), 1), (-_evt_age_days('evt_sc13d_date'), 1),
+                                    (_c('usf_emp_g1'), 1), (_c('pb').where(_c('pb') > 0), -1),
+                                    (_c('market_cap_usd'), -1)],
+        'mb_grew_into_valuation_turning': [(_c('derate_growth_absorbed'), 1), (_c('fqx_opm_slope8'), 1),
+                                           (_c('fqx_opm_consist'), 1), (_c('fq_rev_growth'), 1),
+                                           (_c('ts_r13'), -1), (_c('sent_n_analysts'), -1)],
+        'mb_tree_recipe': [(_c('ts_vol_1y'), 1), (_c('market_cap_usd'), -1), (_c('ts_dist_hi260'), -1),
+                           (_c('p_s').where(_c('p_s') > 0), -1), (_c('nl_sales_1y'), 1), (_c('ts_r13'), -1)],
+        'mb_tree_recipe_10x': [(_c('ts_vol_1y'), 1), (_c('market_cap_usd'), -1),
+                               (_c('p_s').where(_c('p_s') > 0), -1), (_c('ts_dist_hi260'), -1),
+                               (_c('nl_sales_3y'), 1), (-_evt_age_days('evt_sc13d_date'), 1)],
+        'mb_sequence_preignition': [(_c('mb_sequence_signs'), 1), (_c('fqx_opm_slope8'), 1),
+                                    (_c('fqx_roic_slope8'), 1), (_c('rev_accel'), 1), (_c('ts_r13'), -1),
+                                    (_c('ts_dist_hi52'), -1), (_c('market_cap_usd'), -1)],
         'bottleneck': [(_c('tc_min_gm'), 1), (_c('gross_margin'), 1), (_c('roic_lindy'), 1),
                        (_c('capex_intensity'), -1)],
     })
@@ -8686,7 +8803,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
              + [c for c in ['inst_accum_score','inst_accum_accelerating','inst_own_excess_q0','inst_buy_excess_q0','fmp_signals',
                             'roic_lindy_eff','capret_yield_eff','multi_year_data','non_common_flag',
                             'biotech_momentum_watch','controlled_sub_flag',
-                            'narrative_lag_lenses','narrative_lag_extent','narrative_lag_years','narrative_lag_max_gap','narrative_lag_outrun','derate_growth_extent','derate_growth_years','derate_growth_horizons','derate_growth_froth','derate_growth_share','derate_growth_absorbed','nl_sales_1y','nl_ebit_1y','nl_eps_1y','nl_fcfps_1y','nl_sales_5y','nl_ebit_3y','nl_fcfps_3y','nl_ebit_5y','nl_fcfps_5y',
+                            'narrative_lag_lenses','narrative_lag_extent','narrative_lag_years','narrative_lag_max_gap','narrative_lag_outrun','derate_growth_extent','derate_growth_years','derate_growth_horizons','derate_growth_froth','derate_growth_share','derate_growth_absorbed','mb_smart_money_legs','mb_sequence_signs','nl_sales_1y','nl_ebit_1y','nl_eps_1y','nl_fcfps_1y','nl_sales_5y','nl_ebit_3y','nl_fcfps_3y','nl_ebit_5y','nl_fcfps_5y',
                             'nl_sales_2y','nl_ebit_2y','nl_sales_3y',
                             'ts_dvol26_usd','ts_r52','ts_rs_pct_mkt','ts_weinstein_stage','ts_maxdd_5y',
                             'ts_dist_hi52','ts_mrs',
