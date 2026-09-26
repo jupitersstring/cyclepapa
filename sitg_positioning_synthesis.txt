@@ -1,0 +1,461 @@
+================================================================================
+SITG SMALLCAP POSITIONING SYNTHESIS — May 2026
+Concentrated, Skin-in-the-Game Fund Cohort + Staleness-Resistant Setups
+================================================================================
+
+GENERATED: 2026-05-16
+COVERAGE: 250 funds / 261 sheets / 3,043 activity rows
+SOURCE WORKBOOK: fund_activity_last_6mo.xlsx (commit 46cbb65)
+WINDOW: Nov 2025 - May 2026 filings
+
+
+--------------------------------------------------------------------------------
+WHY THIS LIST FILTERS FOR STALENESS-RESISTANT POSITIONS
+--------------------------------------------------------------------------------
+
+13F filings disclose holdings 45 days after quarter-end. For typical L/S hedge
+funds turning over portfolios quarterly, this lag often makes the disclosure
+already obsolete by the time it's public. But for several specific fund types,
+staleness matters far less, and the signal can be acted on weeks or months later
+without significant decay:
+
+1. PM-OWNED FIRMS WITH PERMANENT CAPITAL ("eat own cooking")
+   - No outside LP redemption pressure forces selling
+   - Concentrated positions held for years, not quarters
+   - PM's net worth IS the fund, so they don't churn
+
+2. POST-RESTRUCTURING SPONSORS (received equity from a workout)
+   - Cost basis is sunk; they hold until thesis plays out
+   - Examples: Knighthead/HTZ, Mudrick/MNKTQ, Aurelius/CORZ
+
+3. LONG-DURATION LAND, ROYALTY, OR REAL-ESTATE COMPOUNDERS
+   - Decade-plus theses
+   - Examples: TPL (Horizon Kinetics 40% / 25+ years), JOE (Berkowitz 80% /
+     20+ years), NFGC (Sprott personal), MRP (multiple)
+
+4. ACTIVIST CAMPAIGNS MID-FLIGHT (13D filed, board action pending)
+   - The 13D is by definition recent (filed when crossing 5% w/ intent)
+   - Catalyst path is public, dated, and observable
+
+5. FAMILY OFFICES + CONTROL-STAKE HOLDERS (>=20% of co.)
+   - Cannot exit quickly without disclosure
+   - Routinely re-file SEDAR / TR-1 / 13D-A every few months
+
+6. HYPER-CONCENTRATED SINGLE-NAME PM BETS (>=30% of portfolio)
+   - The position IS the manager's career bet
+   - They will not trim quietly between filings
+
+
+--------------------------------------------------------------------------------
+SECTION 1: THE STALENESS-RESISTANT FAT-PITCH UNIVERSE
+--------------------------------------------------------------------------------
+
+Below are the highest-conviction current setups where filing lag doesn't degrade
+signal, ranked by combined SITG score, concentration, and catalyst clarity.
+
+
+-------- TIER A: CONTROL OR NEAR-CONTROL STAKES (>=30% of company) -------------
+
+These can't unwind without disclosure. The stake IS the thesis.
+
+  PLCE (Children's Place) - Mithaq Capital 61.3% / 13.6M sh
+    Saudi family office (Turki AlRajhi) controls the apparel restorer.
+    Mithaq came in 2023, stabilized financials, replaced management.
+    Filing date: 12/17/2025. Staleness: irrelevant - control stake.
+
+  NEXN (Nexxen International) - Mithaq Capital 30.5% / 17.3M sh
+    Same Mithaq playbook on ad-tech turnaround.
+    Filing date: 12/17/2025. Staleness: irrelevant.
+
+  ARTV (Artiva Biotherapeutics) - RA Capital Healthcare 33.7% / 16.4M sh
+    +$100M new equity deployed 5/13/2026 - very fresh.
+    Cell therapy binary readout; RA only does control at this size when
+    they think outcome is highly probable.
+
+  LOGC (ContextLogic Holdings) - Abrams Capital 40% / 18.3M sh
+    Abrams' first 13D in years; permanent-capital vehicle post-US Salt.
+    David Abrams + Raja Bobbili joined the board 2/26/2026.
+    Filing: 2/26/2026 SC 13D. Staleness: irrelevant - PCV.
+
+  JOE (St. Joe Co.) - Fairholme 80% of 13F / Berkowitz 32.8% of co.
+    Florida panhandle land bank since 2007 (~20-year hold).
+    Most recent filing: 5/7/2026 SC 13D/A (Amend #36) - small trim.
+    Staleness: irrelevant - 20-year duration.
+
+  TPL (Texas Pacific Land) - Horizon Kinetics ~14.7% of co. (May 2026 13D/A)
+    Permanent Permian royalty stream. Stahl held it for 25+ years.
+    Continued buying through founder Stahl's death (4/7/2026).
+    Filing: 5/7/2026 SC 13D/A - very fresh.
+    Staleness: irrelevant - multi-decade thesis.
+
+  NETD (Nabors Energy Transition II) - Funicular/Cable Car 56.4% of 13F
+    Jacob Ma-Weaver's largest single bet by far. He literally cannot
+    own much more without taking control.
+    Filing: ongoing throughout 2025-2026. Staleness: irrelevant.
+
+  HTZ (Hertz) - Knighthead 67.33% of 13F / $932M / 181M sh
+    Knighthead/Diamond sponsored the post-BK restructure. Cost basis
+    is the floor. They are not selling at $5.
+    Staleness: irrelevant - sponsor of record.
+
+  IEP (Icahn Enterprises) - Icahn 86.89% of his vehicle, +5.87% sh Q4 2025
+    Owner adding to own ship. By definition cannot sell quickly.
+    Staleness: irrelevant - founder/operator.
+
+  TDW (Tidewater) - Robotti & Co 38% of portfolio
+    Robotti's signature OSV cycle bet. He cycles through it carefully
+    but the thesis is the entire position.
+    Staleness: low - typically 2-3 year industry cycle hold.
+
+  MASI (Masimo) - Politan 71% of 13F + 6.2% 13D/A w/ voting agreement
+    Activist won the proxy fight; new management is being installed.
+    Filing: 2/13/2026 SC 13D/A. Staleness: irrelevant - active campaign.
+
+  LUV (Southwest Airlines) - Elliott 85% of 13F / 4.9% 13D/A April 2026
+    Elliott's biggest single concentrated bet. They only trimmed
+    slightly - the engagement is ongoing.
+    Staleness: irrelevant - public campaign.
+
+
+-------- TIER B: HYPER-CONCENTRATED PM-OWNED MICROCAP (SITG 5) -----------------
+
+These are PM's own money concentrated in <$2B mkt cap companies. They cannot
+exit quickly without moving the price, so they don't try.
+
+  Funicular Funds (Jacob Ma-Weaver / Cable Car) - NETD 56.4%
+    Plus: SYBX 28.3% w/ buyout proposal Q1/Q2 2026.
+    Plus: AMWL 5.5% (event 1/16/26), IMA 5.8% (event 12/29/25).
+
+  Mithaq Capital (Turki AlRajhi) - PLCE 61.3%, NEXN 30.5%
+    Plus: Citi Trends 9.99% (smallest concentration position).
+
+  Maran Capital (Dan Roller) - PCYO 14.7% of co. via Plaisance SPV
+    Plus: CLAR, CTT (Correios de Portugal) top-5.
+    Pure microcap; Roller is sole PM with own money.
+
+  22NW (Aron Englander) - FSTR 13.5%, NKTR 5.9%, RGNX 5.6%
+    Plus: CULP 14.7% (12/12/25 SC 13D/A), DHX >5% passive.
+    Microcap-only mandate.
+
+  BLR Partners / Radoff Family Foundation (Bradley Radoff)
+    BRN 17.4% combined Radoff + Foundation (3/31/26 SC 13D/A escalation)
+    Plus: SEER buyout proposal $2.35 + CVR + WHITE proxy slate
+    Plus: KVHI new, SYBX 28.3% (joint w/ Funicular), GCO 12.3%, SEER 10.6%
+
+  BML Investment Partners (Braden M. Leonard) - OM stepped 9.4%/10.5%/11.8%
+    Plus: ACRS 11.9% (Feb)→trimmed slightly, AVIR 9.9% new 13G, PMVP 9.9%,
+    ADVM 0% (full exit 11/2025).
+    Biotech-heavy SITG operator.
+
+  Peter Kamin / 3K Limited Partnership - TTSH 17.6% / 7M sh
+    Tile Shop Holdings classic illiquid takedown.
+
+  MILFAM / Neil Subin (Lloyd Miller III estate) - SRL 13.4% Scully Royalty
+    Plus: NN (NextNav) new 2.5M sh.
+    Permanent capital from estate; multi-decade hold pattern.
+
+  Stilwell Value (Joseph Stilwell)
+    WHLR 49.99% w/ Magnetar, PFBX 15.99%, LSBK 9.9%, NOBH 15.84% w/ GAMCO.
+    Microcap bank + CEF activist since 1990s.
+
+  Star Equity Fund (Jeffrey Eberwein) - STRR 28.25%, RLBY 19%
+    Both escalating through Q2 2026.
+
+  Veradace Partners (Vezendan + Conlin) - SSTI 5.1% → 16.5% Q1 2026
+    Plus: RPAY 12.9% (8.6% slate), TIPT 15.9%.
+    Concentrated activist; rare aggressive escalator.
+
+  Privet Fund Management - ACNT 17% (Ascent Industries)
+    Largest single, multi-year hold.
+
+  Cannell Capital (Carlo Cannell) - CZR 6.8% top buy, CVCO, CMPO top-5
+    Plus: NTIP 5.0% (1.14M sh) 2/9/26 13G.
+    Self-described "PE in microcap."
+
+
+-------- TIER C: ACTIVE ACTIVIST CAMPAIGNS (fresh by definition) ---------------
+
+13D filings + active proxy/board engagements. These cannot go stale - the
+campaign is the catalyst.
+
+  WEX (WEX Inc) - IMPACTIVE CAPITAL settlement 5/3/2026
+    3 nominees (Adams/Alemany/Wolfe) added to slate; board to 11;
+    Chair/CEO split. Win typically rerates 15-30% within 12 months.
+
+  VSCO (Victoria's Secret) - BBRC / Brett Blundy 13%
+    Preliminary proxy 5/4/2026 AGAINST Chair James + Dir. Naficy at
+    2026 AGM. Australian retail PE escalating to US activism.
+
+  MAT (Mattel) - Southeastern Asset Mgmt 7.57% w/ public letter 5/7/2026
+    Hawkins/Longleaf rarely goes public - typically resolves at premium.
+
+  ASA (ASA Gold & Precious Metals) - Saba Capital 31.9%
+    Non-binding BDC-aligned transaction proposal.
+
+  SEER (Seer Inc) - Radoff-JEC Group $2.35 + CVR cash buyout proposal
+    Deadline 5/2/2026 + WHITE proxy slate for 2026 AGM.
+    Cash floor + slate optionality.
+
+  ARTV (Artiva Biotherapeutics) - RA Capital escalated to 33.7% / +$100M
+    Single largest concentrated bet of any window I've tracked.
+
+  EEX (Emerald Holding) - Apollo/Onex go-private 5/9/2026 + >90% consent
+    Arb spread closing.
+
+  JHG (Janus Henderson) - Trian + General Catalyst merger price raised
+    $49 -> $52/share (March 24 amendment).
+
+  CORZ (Core Scientific) - Two Seas Capital cooperation agreement
+    First independent director deadline extended to 5/30/2026.
+
+  RPAY (Repay Holdings) - Veradace Partners 8.6%; nominated Vezendan +
+    W. Jacobs for 2026 AGM. Slate in active deployment.
+
+  BRN (Barnwell Industries) - Radoff + Family Foundation 17.4% group
+    Escalated 9.1%+4.6% Dec 2025 -> 12.8%+6.5% March 2026.
+
+  MNRO (Monro Inc) - Icahn + GAMCO new positions; Gabelli 10.65% 13D
+    Two activists initiating same name simultaneously.
+
+  PENN (Penn Entertainment) - HG Vora 2 board seats won 2024-2025
+    Ongoing engagement.
+
+  APD (Air Products) - Mantle Ridge 3 board seats 2025
+    Hilal's current major campaign.
+
+  LSEG (London Stock Exchange Group, UK) - Elliott pushing for portfolio
+    review + £5B buyback. UK disclosure (not 13D).
+
+
+-------- TIER D: MULTI-FUND CONSENSUS SMALLCAP (3+ SITG funds agreeing) --------
+
+Cross-fund agreement at the same time = signal independence.
+
+  REZI (Resideo Technologies)
+    Alta Fox 9.57% new top-6 + GoldenTree + Sachem Head - three SITG
+    funds initiating Q4 2025 simultaneously. Honeywell spin maturing.
+
+  RAPT (RAPT Therapeutics)
+    Caligan + Polygon + Redmile - three biotech specialists Q4 2025.
+    Each new position ~$21M+. Binary IBD/asthma readout pending.
+
+  NKTR (Nektar Therapeutics)
+    22NW + BVF + Polygon - three biotech specialists adding.
+    Cash balance > market cap; restructuring biotech.
+
+  MICC (Millicom International)
+    First Eagle $260M new + Southeastern new - two deep-value
+    telecom buyers. Latin America telecoms uncrowded.
+
+  LPX (Louisiana-Pacific)
+    Eminence 5.2% + Scopia + Southeastern - 3 concentrated value
+    shops in housing-cycle name.
+
+
+-------- TIER E: SPONSOR / FOUNDER / EX-OPERATOR CONCENTRATION ----------------
+
+Filings are routinely refreshed because >=20% stakes require periodic update.
+
+  PRKS (United Parks) - Hill Path Capital 57.9%
+    Scott Ross drives company; recent 13D/A 5/13/2026 confirms.
+    Plus: GoldenTree 96% of own portfolio in this name.
+
+  TEAM (Atlassian) - Cannon-Brookes 22.7% Class A / 42.7% voting
+    Founder control disclosed 5/15/2026.
+
+  MS (Morgan Stanley) - MUFG 23.95% - standstill extended to Oct 2028
+
+  CIFR (Cipher Mining) - Bitfury/V3 15% w/ $100M prepaid forward 5/13/26
+
+  EOSE (Eos Energy) - Cerberus 32% (159.6M shs)
+
+  EVC (Entravision) - Seros / Ulloa family trust 13.61% post estate
+    Filing 5/11/2026.
+
+  REE Automotive (REE) - Sardes co-founder 6.14% Cl A / 26.9% voting (5/15)
+
+
+-------- TIER F: WARRANT-BACKED ASYMMETRIC OPTIONALITY (Sprott + Crescat) ------
+
+These positions come WITH attached warrants - additional upside leverage if
+the underlying re-rates. The warrant doesn't get stale either - it has a
+defined strike + expiry.
+
+ERIC SPROTT PERSONAL (2176423 Ontario Ltd):
+
+  HYMC (Hycroft Mining) - $40M / 33% co.
+    Warrant: $6.00 strike / 24 months from 9/2025
+    Gold-silver restart project NV; he's effectively the largest shareholder
+
+  Galantas Gold (GAL) - C$4M / 13.1% non-diluted
+    Warrant: $0.12 strike / 36 months expiry ~Dec 2028 (LONGEST DURATION)
+    Plus: exercised 39M warrants April 2026 at the same $0.12 strike
+    36-month at-the-money optionality on producing UK gold miner
+
+  Blackrock Silver (BRC.V) - C$7M largest single PP Q1 2026
+    Warrant: C$1.50 strike / 24 months expiry 1/8/2028
+    NV silver in Tonopah district
+
+  MAX Power Mining (MAXX) - C$4.6M / 12.8% non-diluted
+    Warrant: C$1.80 strike / 24 months expiry 3/20/2028
+
+  Rio Silver - $3M
+    Warrant: $0.50 strike / 24 months (accelerator $0.75) expiry 3/31/2028
+
+  Galleon Gold (GGO.V) - C$3M / 14.9% non-diluted
+    Warrant: $0.75 strike / 12 months expiry 12/4/2026 (SHORTER-DATED)
+
+  Highlander Silver (HSLV) - $40M / 8.06M shares
+    No warrants - common only; highest conviction concentrated bet of window
+
+  Sokoman Minerals (SIC.V) - C$10M / 23.8%
+    Warrants exercise at C$0.19 / 24 months
+
+CRESCAT CAPITAL (Smith / Costa / Hennigh):
+
+  Goliath Resources (GOT.V) - longtime cornerstone since 2020
+    Last 2.59M warrants exercised at $2.50 Dec 2025 - sole holder
+    Now fully diluted into common
+
+  Westward Gold (WG.CN) - 12.1% non-diluted / 21.7% partially diluted
+    Warrant: C$0.15 strike / 24 months from 10/8/2025
+
+  Juggernaut Exploration (JUGR.V) - 28.95% post-funding diluted
+    Warrant: $0.75 / 60 months w/ $1.50 forced conversion trigger
+
+  Barksdale Resources (BRO.V) - REPRICED PP March 2026 at $0.15 / 24 months
+
+
+--------------------------------------------------------------------------------
+SECTION 2: WHERE STALENESS DOES MATTER (avoid relying on these signals)
+--------------------------------------------------------------------------------
+
+These filings can become stale within weeks. Treat them as historical only:
+
+- Citadel, Millennium, ExodusPoint, Schonfeld, Marshall Wace, Point72, D.E. Shaw
+  Quantitative + multi-PM funds. Pods churn books weekly.
+
+- Renaissance Technologies
+  Pure quant. Holdings change daily.
+
+- Bridgewater Associates
+  Macro-driven, factor portfolios.
+
+- Two Sigma, GSA Capital, PDT Partners, AQR
+  Same. Quant + factor.
+
+- Most Tiger Cubs (Coatue, Tiger Global, Lone Pine, Light Street)
+  L/S with quarterly turnover (though concentration is meaningful when present).
+
+For these, use 13F as DIRECTIONAL context only. Don't trade off old positions.
+
+
+--------------------------------------------------------------------------------
+SECTION 3: CROSS-FUND CONSENSUS WHERE TIME OF FILING MATTERS LESS
+--------------------------------------------------------------------------------
+
+Tickers where multiple SITG/concentrated funds have built positions, suggesting
+the thesis is independently verified across mandates:
+
+TICKER    SITG FUNDS HOLDING                              MAX % OF ANY FUND
+------    -----------------------------                   ------------------
+LOGC      Abrams                                          40% of co. (13D)
+LOAR      Abrams                                          38% of portfolio
+JOE       Berkowitz/Fairholme                             80% of portfolio
+TPL       Horizon Kinetics + Bulldog                      40% of portfolio
+NETD      Funicular/Cable Car                             56% of portfolio
+PLCE      Mithaq                                          61% of co.
+NEXN      Mithaq                                          30% of co.
+TDW       Robotti                                         38% of portfolio
+HTZ       Knighthead                                      67% of portfolio
+LUV       Elliott                                         85% of portfolio
+MASI      Politan                                         71% of portfolio
+HHH       Pershing Square + JCP                           48% (Pershing) +new (JCP)
+SEER      Radoff group                                    10.6% (buyout proposal)
+SYBX      Funicular + Radoff joint                        28.3% (Funicular)
+BRN       Radoff + Foundation                             17.4% combined
+WHLR      Stilwell + Magnetar                             50% (Magnetar)
+PRKS      Hill Path + GoldenTree + Engine                 58% (Hill Path)
+RAPT      Caligan + Polygon + Redmile                     60% (Caligan)
+NKTR      22NW + BVF + Polygon                            22% (Caligan)
+REZI      Alta Fox + GoldenTree + Sachem Head             9.6% (Alta Fox)
+LPX       Eminence + Scopia + Southeastern                29% (Eminence)
+MICC      First Eagle + Southeastern                      n/a
+MAT       Southeastern (public letter)                    7.57% of Longleaf
+MNRO      Icahn + GAMCO                                   10.65% (Gabelli 13D)
+CORZ      Aurelius + Pentwater + Two Seas                 15.31% (Aurelius)
+CRWV      Magnetar + Greenblatt                           48% (Magnetar)
+TFPM      Elliott + Horizon Kinetics                      21.4% (Elliott)
+
+
+--------------------------------------------------------------------------------
+SECTION 4: SHORT LIST FOR ACTIONABLE FOLLOW-UP
+--------------------------------------------------------------------------------
+
+If you must pick 12 to focus on:
+
+  1. LOGC  (Abrams 13D 40% / new board / permanent capital vehicle)
+  2. NETD  (Funicular 56% / single biggest concentrated bet)
+  3. JOE   (Berkowitz 80% / 20-year duration thesis)
+  4. TPL   (Horizon Kinetics 14.7% / adding through founder's death)
+  5. MASI  (Politan 71% / activist won proxy / mgmt installing)
+  6. ARTV  (RA Capital 33.7% / +$100M / 5/13/2026 escalation)
+  7. SEER  (Radoff $2.35 + CVR cash buyout + WHITE slate)
+  8. MNRO  (Icahn + Gabelli 10.65% joint initiation)
+  9. PCYO  (Maran new top-5 at 14.7% of co.)
+ 10. REZI  (Alta Fox + GoldenTree + Sachem Head all new Q4 2025)
+ 11. HYMC  (Sprott 33% + $6 warrants 9/2027)
+ 12. Galantas Gold (Sprott 13.1% + $0.12 warrants 36-mo expiry)
+
+
+--------------------------------------------------------------------------------
+SECTION 5: KEY DATA SOURCES (for refresh)
+--------------------------------------------------------------------------------
+
+US filings:
+  - SEC EDGAR full-text search (https://efts.sec.gov/LATEST/search-index)
+  - stocktitan.net (curated 13D/G feed)
+  - whalewisdom.com, 13f.info, fintel.io
+  - 13D Monitor (Ken Squire / CNBC)
+
+Canadian:
+  - SEDAR+ (sedarplus.ca/csa-party) for Early Warning Reports
+  - newsfilecorp.com/company/6126 for Eric Sprott personal PP press releases
+  - juniorminingnetwork.com for mining-specific
+
+European:
+  - UK FCA TR-1 (fca.org.uk)
+  - CNMV Spain (cnmv.es)
+  - AMF France (amf-france.org)
+  - BaFin Germany (bafin.de)
+
+Asia:
+  - Japan EDINET 大量保有報告書
+  - HKEX disclosures
+
+For tail-convexity commentary (not filings):
+  - Bloomberg / Business Insider / FT for Spitznagel/Universa
+  - Crescat monthly research letters (crescat.net)
+  - Palisades Gold Radio podcast (Sprott / Inwentash / Day / Lepard)
+
+
+--------------------------------------------------------------------------------
+SECTION 6: STALENESS FRAMEWORK SUMMARY
+--------------------------------------------------------------------------------
+
+OK to act on a 3-6 month-old filing if:
+  - Filer is SITG 5 (PM own money, no LP pressure)
+  - Position is >=20% of company (cannot exit quickly)
+  - Thesis has multi-year horizon (real estate, royalty, land bank)
+  - Filer is post-BK sponsor (Knighthead, Mudrick, Aurelius, etc.)
+  - Active 13D campaign or proxy fight underway
+  - Family office vehicle (Mithaq, MILFAM, BLR Family Foundation)
+
+Treat as stale (use only as context):
+  - L/S hedge fund 13Fs from quant or multi-PM platforms
+  - Tiger Cubs in <5% positions
+  - Anyone with <2% concentration in their book
+
+================================================================================
+END OF SYNTHESIS
+================================================================================

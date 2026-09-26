@@ -1,0 +1,11 @@
+archetype,mapped_factor,base_rate_excess,members_total,members_live_t1,members_live_t2,members_live_t3,members_demoted,members_graduated,members_dead,members_untracked,members_excluded,best_member,best_member_er,verdict
+1. Yartseva Pure Multibagger,smart_money_uw,0.17,13,1,2,0,5,0,0,5,0,ROCK,0.665,WEAKENED
+10. Hedged / Special Structure,EXCLUDED,,4,0,1,0,0,0,0,3,0,,,EXCLUDED-BY-MANDATE
+2. Activist Board Catalyst,activist_13d,-0.257,6,0,0,0,2,0,0,4,0,,,EMPIRICALLY-WEAK
+3. Biotech Multi-Fund Convergence,EXCLUDED,,6,1,1,0,0,0,0,4,0,,,EXCLUDED-BY-MANDATE
+4. Sponsor-Anchored Holdco Transformation,sponsor_anchor,0.17,1,0,1,0,0,0,0,0,0,HHH,0.073,SUPPORTED
+5. Spinoff / SoTP Arbitrage,spin_arb,0.1,2,1,0,0,0,0,0,1,0,KBR,0.698,WEAKENED
+6. Deep Drawdown Mean Reversion,smart_money_uw,0.17,4,0,1,0,1,0,0,2,0,,,WEAKENED
+7. Hard Asset / Royalty,family_anchor,0.17,3,0,1,0,0,0,0,2,0,NRP,0.073,WEAKENED
+8. Foreign / Underfollowed Value,deep_value,0.0,3,0,0,0,1,0,0,2,0,,,EMPTIED
+9. Quality Compounder at Trough,post_acquisition,0.0,3,0,0,0,0,0,0,3,0,,,EMPTIED
