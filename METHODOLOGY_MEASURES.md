@@ -13,6 +13,10 @@ Yields/growth/margins are FRACTIONS (0.25 = 25%) everywhere; a consumer comparin
 
 A FRACTION of shares outstanding (0-1; up to ~1.5 on US names where 13F holdings overlap / lent shares are double-counted). Consumed by the coiled-base perception leg as 'thinly owned' (<= 0.30), so a percent-scale value would silently break it.
 
+## Yahoo earnings growth (Lynch last-resort input)
+
+yf_earnings_growth is Yahoo's single-quarter growth, consumed only as the LAST resort in the Lynch growth chain and capped at the band's top (0.50), so its 100%-cap artifact cannot fire.
+
 ## Beaten-down / drawdown family
 
 A name tagged 'beaten down N%' must actually be materially below its high when the direct 52w measure exists — proxy lenses must never override a present, contradicting primary.
