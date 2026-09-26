@@ -183,7 +183,11 @@ def ranked(d: pd.DataFrame, feats) -> pd.DataFrame:
     run nor one country's bubble can manufacture a cluster)."""
     m = d["week"].dt.to_period("M").astype(str) + "|" + d["market"].astype(str)
     fs = [f for f in feats if f in d.columns]
-    R = d[fs].groupby(m).rank(pct=True).astype("float32")      # all columns at once
+    # in column chunks: the grouped rank materialises float64 intermediates,
+    # and 400 columns x 1.3M rows of those (4 GB) is what pushed the studies
+    # over the box's memory beside a book build
+    parts = [d[fs[i:i + 40]].groupby(m).rank(pct=True).astype("float32") for i in range(0, len(fs), 40)]
+    R = pd.concat(parts, axis=1) if parts else pd.DataFrame(index=d.index)
     for k, src in MISS.items():
         R[k] = d[src].isna().astype(float) if src in d.columns else 1.0
     st = [c for c in d.columns if c.startswith("st_")]
