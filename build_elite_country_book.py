@@ -57,7 +57,7 @@ def elite_matrix(df: pd.DataFrame, arch_cols: list) -> tuple[pd.DataFrame, pd.Da
     # VALIDITY for elite status (not a thesis test): tradeable — >= $250k a
     # week on the weekly panel, or where the panel lacks the name the daily
     # dollar-volume fallback (>= $50k/day) — and a clean data record
-    _adv = n("avg_dollar_volume")
+    _adv = n("pew_avg_dollar_volume")
     liquid = ((n("ts_dvol26_usd") >= 250_000)
               | (n("ts_dvol26_usd").isna() & (_adv >= 50_000))).fillna(False)
     clean = ~(n("fq_forensic_red_count") > 0)
@@ -122,7 +122,7 @@ def main() -> None:
         "FCF yld>50%": num("fcf_yield") > 0.5, "net cash>2x mcap": num("net_cash_pct_mcap") > 2,
         "P/E<1.5": num("p_e").between(0, 1.5, inclusive="neither"), "P/B<0.1": num("pb").between(0, 0.1, inclusive="neither"),
         "P/S<0.05": num("p_s").between(0, 0.05, inclusive="neither"), "rev<$5M": num("revenue_ttm_usd") < 5e6}, axis=1)
-    _thin = num("ts_dvol26_usd").fillna(num("avg_dollar_volume") * 5)
+    _thin = num("ts_dvol26_usd").fillna(num("pew_avg_dollar_volume") * 5)
     _v["thin: <$250k/wk"] = _thin < 250_000
     _v["no volume data"] = _thin.isna()
     df["verify"] = _v.fillna(False).apply(lambda r: ", ".join(k for k, v in r.items() if bool(v)), axis=1)
@@ -131,7 +131,7 @@ def main() -> None:
     _nm = (df["name"].astype(str).str.lower().str.replace(r"[^a-z0-9 ]", "", regex=True)
            .str.replace(r"\b(inc|corp|co|ltd|plc|ag|sa|nv|limited|holdings|group|company|the)\b", "", regex=True)
            .str.split().str.join(" "))
-    _liq = num("ts_dvol26_usd").fillna(num("avg_dollar_volume") * 5)
+    _liq = num("ts_dvol26_usd").fillna(num("pew_avg_dollar_volume") * 5)
     _dup = (df.assign(_k=_nm, _l=_liq)[df["elite_n"] > 0].sort_values("_l", ascending=False)
             .duplicated(subset=["_k", "src"], keep="first"))
     df.loc[_dup[_dup].index, "elite_n"] = 0

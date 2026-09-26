@@ -45,7 +45,7 @@ import fmp_client as fc
 OUT = "fmp_statements.csv"
 # Bumped whenever a field's DEFINITION changes: rows written under an older
 # schema are recomputed (from cache) instead of being skipped as "done".
-SCHEMA = 5
+SCHEMA = 6
 
 
 def _f(x):
@@ -257,6 +257,25 @@ def enrich_symbol(sym: str) -> dict:
             return s[0][1] / s[n][1] - 1.0
         rec["fmp_st_shares_growth_3y"] = _sh_growth(3)
         rec["fmp_st_shares_growth_5y"] = _sh_growth(min(5, len(sh) - 1))
+
+    # ---- annual twins of the quarterly TTM growth measures (fmp_quarterly_ext)
+    # for filers FMP carries only ANNUAL statements for: latest FY vs prior FY
+    # net income / operating income growth (both > 0), and the share of the
+    # last 5 FYs with net income up on the year — the same measures at annual
+    # cadence, so a name without a quarterly panel is judged on the same
+    # thesis, never dropped for want of quarterly data
+    def _fy_growth(series):
+        d = dict(series)
+        if len(d) < 2:
+            return np.nan
+        y0 = max(d)
+        a, b = d.get(y0, np.nan), d.get(y0 - 1, np.nan)
+        return a / b - 1.0 if (math.isfinite(a) and math.isfinite(b) and a > 0 and b > 0) else np.nan
+    rec["fmp_st_ni_g1"] = _fy_growth(ni_s)
+    rec["fmp_st_ebit_g1"] = _fy_growth(opinc)
+    _nid = dict(ni_s)
+    _ups = [(_nid[y] > _nid[y - 1]) for y in sorted(_nid, reverse=True)[:5] if (y - 1) in _nid]
+    rec["fmp_st_ni_up_share_5"] = float(np.mean(_ups)) if len(_ups) >= 3 else np.nan
 
     # ---- multi-year PER-SHARE earnings-power growth over EXACT spans ----
     # (the long-horizon narrative-lag lenses: the price is per share, so the
