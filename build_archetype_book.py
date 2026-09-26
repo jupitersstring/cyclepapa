@@ -54,6 +54,8 @@ ARCHETYPE_LABELS = {
     'arch_mb_tree_recipe': 'MB: Tree Recipe (small, volatile, fallen, unprofitable: lift 3.9x, blow-up 30%)',
     'arch_mb_tree_recipe_10x': 'MB: Tree Recipe 10x (small, volatile, cheap, unprofitable: lift 5.7x)',
     'arch_mb_sequence_preignition': 'MB: Sequence Pre-Ignition (fundamental signs 3-18m ago, tape not yet)',
+    'arch_mb_conviction_confluence': 'MB: Conviction Confluence (insider conviction inside smart-money wreckage: lift 5.8x, blow-up 31%)',
+    'arch_mb_left_for_dead_insider': 'MB: Left-for-Dead + Insider Conviction (lift 5.5x, blow-up 32%)',
     'arch_narrative_lag': 'Narrative Lag',
     'arch_derate_through_growth': 'Derating Through Growth (grew into its valuation)',
     'arch_fixed_cost_demand_shock': 'Fixed-Cost + Demand Shock',

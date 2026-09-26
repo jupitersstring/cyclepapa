@@ -139,6 +139,7 @@ ARCH_FAMILY = {
     'arch_mb_tree_recipe': 'contrarian',
     'arch_mb_tree_recipe_10x': 'contrarian',
     'arch_mb_sequence_preignition': 'inflection',
+    'arch_mb_conviction_confluence': 'contrarian', 'arch_mb_left_for_dead_insider': 'contrarian',
 
     'arch_asleep_at_wheel': 'contrarian', 'arch_dead_option': 'contrarian',
     'arch_analyst_awakening': 'contrarian', 'arch_institutional_accumulation': 'contrarian', 'arch_liger_neglected_survivor': 'contrarian',

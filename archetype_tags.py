@@ -7016,6 +7016,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _not_ignited = ((_ncol('ts_dist_hi52') < 0.90) & ~(_ncol('bs_cp_dvol_z13') >= 1.5)
                     & ~(_ncol('ts_r13') > 0.15)).fillna(False)
     df['arch_mb_sequence_preignition'] = (_mb_base & (_signs >= 2) & _not_ignited).astype(int)
+    # INTERSECTIONS that beat their parts (second investigation, §5): insider
+    # conviction inside the smart-money wreckage (lift 5.8x vs 3.9x / 4.7x,
+    # blow-up 31%), and left-for-dead value with insider conviction (5.5x)
+    df['arch_mb_conviction_confluence'] = ((df['arch_mb_fallen_insider'] == 1)
+                                           & (df['arch_mb_smart_money_wreckage'] == 1)).astype(int)
+    df['arch_mb_left_for_dead_insider'] = ((df['arch_mb_left_for_dead_value'] == 1)
+                                           & (df['arch_mb_fallen_insider'] == 1)).astype(int)
+    _SPIRITED += ['mb_conviction_confluence', 'mb_left_for_dead_insider']
     _SPIRITED += ['mb_fallen_deep_value', 'mb_fallen_value_turn', 'mb_fallen_value_accel', 'mb_fallen_stressed',
                   'mb_fallen_insider', 'mb_fallen_trough', 'mb_fallen_below_cycle', 'mb_inflecting_operator',
                   'mb_quiet_turn', 'mb_left_for_dead_value', 'mb_fallen_ignored_believers',
@@ -7193,6 +7201,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_tree_recipe',
         'arch_mb_tree_recipe_10x',
         'arch_mb_sequence_preignition',
+        'arch_mb_conviction_confluence',
+        'arch_mb_left_for_dead_insider',
         'arch_xr_peer_margin_gap',
         'arch_xr_investment_remark',
         'arch_xr_stake_fv_gap',
@@ -7388,6 +7398,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'arch_mb_tree_recipe': 'MB-TreeRecipe',
         'arch_mb_tree_recipe_10x': 'MB-TreeRecipe10x',
         'arch_mb_sequence_preignition': 'MB-SequencePreIgnition',
+        'arch_mb_conviction_confluence': 'MB-ConvictionConfluence',
+        'arch_mb_left_for_dead_insider': 'MB-LeftForDeadInsider',
         'arch_xr_cash_leads_book': 'XR-CashLeadsBook',
         'arch_xr_peer_margin_gap': 'XR-PeerMarginGap',
         'arch_xr_investment_remark': 'XR-InvestmentRemark',
@@ -8597,15 +8609,19 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'mb_fallen_stressed': [(_c('ts_dist_hi260'), -1), (_c('ev_sales').where(_c('ev_sales') > 0), -1),
                                (_c('fqx_ebit_ttm_g'), 1), (_c('cfo_yield'), 1),
                                  (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
-        'mb_fallen_insider': [(_c('ts_dist_hi260'), -1), (_c('insider_distinct_buyers'), 1),
-                              (_c('fmp_insider_alignment_ratio'), 1), (_c('fcf_yield'), 1),
-                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
+        'mb_fallen_insider': [(_c('ts_dist_hi260'), -1), (_c('usf_ins_buy_quarters_4q'), 1),
+                              (_c('insider_distinct_buyers'), 1), (_c('market_cap_usd'), -1),
+                              # §1: buybacks alongside the insiders (1.7x), reinvesting (capex, 1.6x),
+                              # LEVERAGE present (low debt lowered the odds to 0.4x), deep value
+                              # (1.5x); §2 fresh low (1.3x vs 0.2x for a 1-2 year-old low)
+                              (_c('buyback_yield'), 1), (_c('capex_intensity'), 1), (_c('debt_to_equity'), 1),
+                              (_c('pb').where(_c('pb') > 0), -1), (_c('ts_wks_since_lo260'), -1)],
         'mb_fallen_trough': [(_c('ts_dist_hi260'), -1), (_c('tc_med_opm') - _c('op_margin'), 1),
                              (_c('rev_accel'), 1), (_c('tc_min_opm'), 1),
                                  (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
         'mb_fallen_below_cycle': [(_c('ts_dist_hi260'), -1), (_c('tc_med_opm') - _c('op_margin'), 1),
                                   (_c('ev_sales_change_yoy'), -1), (_c('tc_opinc_pos'), 1),
-                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
+                                 (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1), (_c('ts_wks_since_lo260'), -1)],
         'mb_inflecting_operator': [(_c('op_margin_delta_yoy'), 1), (_c('fqx_ebit_ttm_g'), 1),
                                    (_c('fqx_roic_ttm') - _c('roic_lindy'), 1), (_c('fqx_inc_ebit_margin'), 1),
                                  (_c('market_cap_usd'), -1), (-_evt_age_days('evt_sc13d_date'), 1)],
@@ -8616,23 +8632,38 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         # history, larger sales-per-share divergence, smaller, informed buyers
         'mb_left_for_dead_value': [(_c('ts_dist_hi260'), -1), (_c('ts_dd_time_share_260'), 1),
                                    (_c('pb').where(_c('pb') > 0), -1), (_c('p_s').where(_c('p_s') > 0), -1),
-                                   (_c('nl_sales_3y'), 1), (_c('bs_range104'), 1), (_c('market_cap_usd'), -1),
-                                   (-_evt_age_days('evt_sc13d_date'), 1)],
+                                   (_c('nl_sales_3y'), 1), (_c('market_cap_usd'), -1),
+                                   # §1 refinements: FCF streak at zero (2.1x), insiders / a rising
+                                   # 13D holder (1.7-2.0x), headcount growth (1.9x), a FALLING buy
+                                   # share (1.9x), long since the last upgrade (1.6x); §2 fresh low
+                                   (_c('fqx_fcfm_streak'), -1), (_c('usf_ins_buy_quarters_4q'), 1),
+                                   (-_evt_age_days('evt_sc13d_date'), 1), (_c('usf_emp_g1'), 1),
+                                   (_c('sent_buy_share_d12'), -1), (_c('sent_months_since_up'), 1),
+                                   (_c('ts_wks_since_lo260'), -1), (_c('gross_margin'), -1)],
+        'mb_conviction_confluence': [(_c('mb_smart_money_legs'), 1), (_c('usf_ins_buy_quarters_4q'), 1),
+                                     (_c('buyback_yield'), 1), (_c('ts_dist_hi260'), -1),
+                                     (_c('ts_wks_since_lo260'), -1), (_c('market_cap_usd'), -1)],
+        'mb_left_for_dead_insider': [(_c('fqx_fcfm_streak'), -1), (_c('usf_ins_buy_quarters_4q'), 1),
+                                     (_c('pb').where(_c('pb') > 0), -1), (_c('ts_dist_hi260'), -1),
+                                     (_c('ts_wks_since_lo260'), -1), (_c('buyback_yield'), 1)],
         'mb_fallen_ignored_believers': [(_c('ts_dist_hi260'), -1), (_c('sent_buy_share'), 1),
                                         (_c('sent_n_analysts'), -1), (_c('nl_sales_1y'), 1),
                                         (_c('ts_r13'), -1), (_c('market_cap_usd'), -1)],
         'mb_smart_money_wreckage': [(_c('mb_smart_money_legs'), 1), (_c('ts_dist_hi260'), -1),
                                     (_c('usf_ins_buy_quarters_4q'), 1), (-_evt_age_days('evt_sc13d_date'), 1),
                                     (_c('usf_emp_g1'), 1), (_c('pb').where(_c('pb') > 0), -1),
-                                    (_c('market_cap_usd'), -1)],
+                                    (_c('market_cap_usd'), -1),
+                                    # §1: few analysts (1.35x), reinvesting (1.3x); §2 fresh low (1.35x)
+                                    (_c('sent_n_analysts'), -1), (_c('capex_intensity'), 1),
+                                    (_c('ts_wks_since_lo260'), -1)],
         'mb_grew_into_valuation_turning': [(_c('derate_growth_absorbed'), 1), (_c('fqx_opm_slope8'), 1),
                                            (_c('fqx_opm_consist'), 1), (_c('fq_rev_growth'), 1),
                                            (_c('ts_r13'), -1), (_c('sent_n_analysts'), -1)],
         'mb_tree_recipe': [(_c('ts_vol_1y'), 1), (_c('market_cap_usd'), -1), (_c('ts_dist_hi260'), -1),
-                           (_c('p_s').where(_c('p_s') > 0), -1), (_c('nl_sales_1y'), 1), (_c('ts_r13'), -1)],
+                           (_c('p_s').where(_c('p_s') > 0), -1), (_c('nl_sales_1y'), 1), (_c('ts_r13'), -1), (_c('ts_wks_since_lo260'), -1)],
         'mb_tree_recipe_10x': [(_c('ts_vol_1y'), 1), (_c('market_cap_usd'), -1),
                                (_c('p_s').where(_c('p_s') > 0), -1), (_c('ts_dist_hi260'), -1),
-                               (_c('nl_sales_3y'), 1), (-_evt_age_days('evt_sc13d_date'), 1)],
+                               (_c('nl_sales_3y'), 1), (-_evt_age_days('evt_sc13d_date'), 1), (_c('ts_wks_since_lo260'), -1)],
         'mb_sequence_preignition': [(_c('mb_sequence_signs'), 1), (_c('fqx_opm_slope8'), 1),
                                     (_c('fqx_roic_slope8'), 1), (_c('rev_accel'), 1), (_c('ts_r13'), -1),
                                     (_c('ts_dist_hi52'), -1), (_c('market_cap_usd'), -1)],
