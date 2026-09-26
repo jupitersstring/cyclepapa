@@ -67,3 +67,5 @@ mb_panel.parquet
 mb_panel_parts/
 *_DM.xlsx
 *_EM.xlsx
+*.parquet.tmp
+*.csv.tmp
