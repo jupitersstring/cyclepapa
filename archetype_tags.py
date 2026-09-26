@@ -6996,7 +6996,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     #    months led to a 3x within 24 months (lift 3.9x), blow-up 30%. The 10x
     #    variant swaps the fallen leg for cheapness above the median (5.7x).
     def _crank(x):
-        return pd.to_numeric(x, errors='coerce').groupby(country).rank(pct=True)
+        # ranks within the country AMONG THE LIQUID OPERATING BASE (the study's
+        # population), not the whole universe — else the bottom-13%-by-size
+        # slice is illiquid names that the base then removes
+        return pd.to_numeric(x, errors='coerce').where(_mb_base).groupby(country).rank(pct=True)
     _r_vol = _crank(_ncol('ts_vol_1y')); _r_size = _crank(mcap)
     _r_fallen = _crank(1 - _ncol('ts_dist_hi260')); _r_prof = _crank(_ncol('op_margin'))
     _r_cheap = _crank(-_ncol('p_s').where(_ncol('p_s') > 0))
