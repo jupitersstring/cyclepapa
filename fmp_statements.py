@@ -45,7 +45,7 @@ import fmp_client as fc
 OUT = "fmp_statements.csv"
 # Bumped whenever a field's DEFINITION changes: rows written under an older
 # schema are recomputed (from cache) instead of being skipped as "done".
-SCHEMA = 3
+SCHEMA = 4
 
 
 def _f(x):
@@ -257,6 +257,45 @@ def enrich_symbol(sym: str) -> dict:
             return s[0][1] / s[n][1] - 1.0
         rec["fmp_st_shares_growth_3y"] = _sh_growth(3)
         rec["fmp_st_shares_growth_5y"] = _sh_growth(min(5, len(sh) - 1))
+
+    # ---- multi-year PER-SHARE earnings-power growth over EXACT spans ----
+    # (the long-horizon narrative-lag lenses: the price is per share, so the
+    # advance must be too). Each endpoint is the 2-fiscal-year AVERAGE (latest
+    # two vs the two ending `span` years earlier) so one lumpy year — a write-
+    # down, a working-capital swing, a timing shift between policies — cannot
+    # make or break a multi-year trend. Both endpoints must be positive (a
+    # growth rate off a loss is undefined). Operating margin change is on the
+    # same averaged endpoints: sales growth that came with a falling margin is
+    # volume, not earnings power.
+    _sh_d = {y: v for y, v in sh if math.isfinite(v) and v > 0} if sh else {}
+
+    def _ps_avg(series, y0):
+        d = dict(series)
+        vals = [d[y] / _sh_d[y] for y in (y0, y0 - 1) if y in d and y in _sh_d]
+        return float(np.mean(vals)) if len(vals) == 2 else np.nan
+
+    def _ps_growth(series, span):
+        d = dict(series)
+        if not d:
+            return np.nan
+        y0 = max(d)
+        a, b = _ps_avg(series, y0), _ps_avg(series, y0 - span)
+        return a / b - 1.0 if (math.isfinite(a) and math.isfinite(b) and a > 0 and b > 0) else np.nan
+
+    def _opm_avg(y0):
+        vals = [opd[y] / revd[y] for y in (y0, y0 - 1) if y in opd and y in revd and revd[y] > 0]
+        return float(np.mean(vals)) if len(vals) == 2 else np.nan
+
+    opd, revd = dict(opinc), dict(rec_rev)
+    for span in (3, 5):
+        rec[f"fmp_st_ebit_ps_{span}y_g"] = _ps_growth(opinc, span)
+        rec[f"fmp_st_fcf_ps_{span}y_g"] = _ps_growth(fcf, span)
+        rec[f"fmp_st_sales_ps_{span}y_g"] = _ps_growth(rec_rev, span)
+        if revd:
+            y0 = max(revd)
+            a, b = _opm_avg(y0), _opm_avg(y0 - span)
+            if math.isfinite(a) and math.isfinite(b):
+                rec[f"fmp_st_opm_chg_{span}y"] = a - b
 
     # ---- capital return (audited multi-year cash-flow history) ----
     # CURRENCY-CONSISTENCY GUARD. A yield divides a cash-flow amount (in the

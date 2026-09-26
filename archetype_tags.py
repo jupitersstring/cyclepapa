@@ -1206,16 +1206,38 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # growth: TTM (date-matched) for 1y; the 3y figure prorated for 2y / 3y.
     _sh1 = np.log1p(_ncol('fq_shares_yoy').fillna(_ncol('shares_yoy')).fillna(0))
     _sh3 = np.log1p(_ncol('shares_growth_3y').fillna(0))
+    # 5y share growth only where the history really spans 5 fiscal years
+    # (fmp_statements falls back to a shorter span on short histories)
+    _sh5 = np.log1p(_ncol('shares_growth_5y').where(_ncol('years_of_history') >= 6))
     _lag_lens = {
         'sales_1y': np.log1p(_ncol('fq_rev_growth')) - _sh1 - _r52,
         'ebit_1y': np.log1p(_ncol('fqx_ebit_ttm_g')) - _sh1 - _r52,
         'eps_1y': np.log1p(_ncol('fqx_ni_ttm_g')) - _sh1 - _r52,
+        'fcfps_1y': np.log1p(_ncol('fqx_fcf_ps_g')) - _r52,          # already per share
         'sales_2y': _ncol('bs_coil_rev') - _sh3 * (2 / 3),
         'ebit_2y': _ncol('bs_coil_ebit') - _sh3 * (2 / 3),
-        'sales_3y': 3 * np.log1p(_ncol('revenue_3y_cagr')) - _sh3 - np.log1p(_ncol('ts_r156')),
     }
+    # LONG coils (3y / 5y): per-share sales, EBIT and FCF over exact fiscal
+    # spans with 2-year-averaged endpoints (fmp_statements), against the 3y /
+    # 5y total-return price change — the most persistent form of the lag.
+    # Sales per share falls back to the revenue CAGR less share growth.
+    _sps = {3: _ncol('fmp_st_sales_ps_3y_g').fillna(
+                np.expm1(3 * np.log1p(_ncol('revenue_3y_cagr')) - _sh3)),
+            5: _ncol('fmp_st_sales_ps_5y_g').fillna(
+                np.expm1(5 * np.log1p(_ncol('revenue_5y_cagr')) - _sh5))}
+    _rp = {3: np.log1p(_ncol('ts_r156')), 5: np.log1p(_ncol('ts_r260'))}
+    _long_g = {}
+    for _span in (3, 5):
+        _long_g[f'sales_{_span}y'] = _sps[_span]
+        _long_g[f'ebit_{_span}y'] = _ncol(f'fmp_st_ebit_ps_{_span}y_g')
+        _long_g[f'fcfps_{_span}y'] = _ncol(f'fmp_st_fcf_ps_{_span}y_g')
+    for _k, _g in _long_g.items():
+        _lag_lens[_k] = np.log1p(_g) - _rp[int(_k.split('_')[1][0])]
     _lag_thr = {'sales_1y': np.log(1.2), 'ebit_1y': np.log(1.3), 'eps_1y': np.log(1.3),
-                'sales_2y': np.log(1.2), 'ebit_2y': np.log(1.3), 'sales_3y': np.log(1.3)}
+                'fcfps_1y': np.log(1.3), 'sales_2y': np.log(1.2), 'ebit_2y': np.log(1.3),
+                'sales_3y': np.log(1.3), 'ebit_3y': np.log(1.4), 'fcfps_3y': np.log(1.4),
+                'sales_5y': np.log(1.5), 'ebit_5y': np.log(1.6), 'fcfps_5y': np.log(1.6)}
+    _lag_h = {k: int(k.split('_')[1][0]) for k in _lag_lens}
     # A lag needs a genuine ADVANCE: each lens counts only when the fundamental
     # itself grew (a price fall with flat fundamentals is not a lag, it is
     # just a fall — without this every coil lens fired on any drawdown).
@@ -1227,22 +1249,52 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _adv = {'sales_1y': _ncol('fq_rev_growth').between(0.10, 2.0),
             'ebit_1y': _ncol('fqx_ebit_ttm_g').between(0.10, 2.0),
             'eps_1y': _ncol('fqx_ni_ttm_g').between(0.10, 2.0),
+            'fcfps_1y': _ncol('fqx_fcf_ps_g').between(0.10, 2.0),
             'sales_2y': _ncol('bs_rev_g_2y').between(0.15, 3.0),
-            'ebit_2y': (_eg2 >= np.log(1.15)) & (_eg2 <= np.log(4.0)),
-            'sales_3y': _ncol('revenue_3y_cagr').between(0.05, 1.0)}
+            'ebit_2y': (_eg2 >= np.log(1.15)) & (_eg2 <= np.log(4.0))}
+    # long spans: a plausible per-share advance is 5%-60% a year compounded
+    # (above that it is a base effect off a near-zero start, e.g. FCF
+    # per share +4,700% from a breakeven year). Per-share SALES only count as
+    # an advance where the operating margin held (>= -2pp on averaged
+    # endpoints): sales bought with a collapsing margin are volume, not value.
+    for _k, _g in _long_g.items():
+        _span = int(_k.split('_')[1][0])
+        _cg = np.expm1(np.log1p(_g) / _span)
+        _ok = _cg.between(0.05, 0.60)
+        if _k.startswith('sales'):
+            _ok &= ~(_ncol(f'fmp_st_opm_chg_{_span}y') < -0.02)
+        _adv[_k] = _ok
     _valid = {k: (v.where(_adv[k].fillna(False))) for k, v in _lag_lens.items()}
     _hit = {k: (v >= _lag_thr[k]).fillna(False) for k, v in _valid.items()}
     # INDEPENDENT evidence is counted by horizon, not by metric (the 1-year
-    # sales / EBIT / EPS gaps share one price change)
-    _h1 = _hit['sales_1y'] | _hit['ebit_1y'] | _hit['eps_1y']
-    _h2 = _hit['sales_2y'] | _hit['ebit_2y']
-    _h3 = _hit['sales_3y']
+    # sales / EBIT / EPS / FCF gaps share one price change)
+    _hz = {}
+    for _k, _hv in _lag_h.items():
+        _hz[_hv] = _hz.get(_hv, pd.Series(False, index=df.index)) | _hit[_k]
     # relative lag (behind its own market while growing) and ignored evidence
     _lag_rel = ((_ncol('ts_rs_pct_mkt') <= 40) & (_ncol('fq_rev_growth') >= 0.15)).fillna(False)
     _lag_ign = (_ncol('evt_ignored_beats_2y') >= 2).fillna(False)
-    df['narrative_lag_lenses'] = (_h1.astype(int) + _h2.astype(int) + _h3.astype(int)
+    df['narrative_lag_lenses'] = (sum(v.astype(int) for v in _hz.values())
                                   + _lag_rel.astype(int) + _lag_ign.astype(int)).astype(int)
-    df['narrative_lag_extent'] = pd.concat(list(_valid.values()), axis=1).max(axis=1).round(4)
+    # THE LAG IS ALL THE LAGS, AND LONGER IS STRONGER. A story that has lagged
+    # its fundamentals for five years is more mispriced (and more persistent)
+    # than a one-year gap, and a lag visible on every horizon is more
+    # pervasive than one. So:
+    #   narrative_lag_extent   total lag = sum over horizons of that horizon's
+    #                          gap (mean of its lagging per-share lenses, log
+    #                          terms); longer lags accumulate larger gaps, and
+    #                          each lagging horizon adds — nothing is a max
+    #   narrative_lag_years    the longest horizon on which it lags (1/2/3/5)
+    #   narrative_lag_max_gap  the single largest gap (for reference)
+    _hgap = {}
+    for _hv in sorted(set(_lag_h.values())):
+        _ks = [k for k, h in _lag_h.items() if h == _hv]
+        _g = pd.concat([_valid[k].where(_hit[k]) for k in _ks], axis=1).mean(axis=1)
+        _hgap[_hv] = _g.fillna(0.0)
+    df['narrative_lag_extent'] = sum(_hgap.values()).where(df['narrative_lag_lenses'] > 0).round(4)
+    df['narrative_lag_years'] = pd.concat(
+        [pd.Series(np.where(_hz[h], h, 0), index=df.index) for h in _hz], axis=1).max(axis=1)
+    df['narrative_lag_max_gap'] = pd.concat(list(_valid.values()), axis=1).max(axis=1).round(4)
     for _k, _v in _valid.items():                      # per-lens gaps (which lens drives the lag)
         df['nl_' + _k] = _v.round(4)
     df['narrative_lag_watch'] = df['arch_narrative_lag'].astype(int)
@@ -7660,8 +7712,10 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         'analyst_awakening': [(_c('sent_buy_share_d12'), 1), (_c('sent_upgrades_12m') - _c('sent_downgrades_12m'), 1),
                               (_c('sent_pt_rev_q'), 1), (_c('ts_mrs') - _c('ts_mrs_13ago'), 1),
                               (_c('evt_pt_rev_90d'), 1)],
-        'narrative_lag': [(_c('narrative_lag_extent'), 1), (_c('narrative_lag_lenses'), 1),
-                          (_c('fq_rev_growth'), 1), (_c('fqx_ebit_ttm_g'), 1)],
+        # all lags, longer the stronger: total lag across horizons, how long
+        # it has lagged, how pervasive it is, and ignored hard evidence
+        'narrative_lag': [(_c('narrative_lag_extent'), 1), (_c('narrative_lag_years'), 1),
+                          (_c('narrative_lag_lenses'), 1), (_c('evt_ignored_beats_2y'), 1)],
         'asleep_at_wheel': [(_c('evt_beat_share_8q'), 1), (_c('evt_surprise_4q'), 1),
                             (_c('avg_earnings_surprise'), 1), (_c('earnings_beat_streak'), 1),
                             (_c('evt_ignored_beats_2y'), 1)],
@@ -7755,7 +7809,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
              + [c for c in ['inst_accum_score','inst_accum_accelerating','inst_own_excess_q0','inst_buy_excess_q0','fmp_signals',
                             'roic_lindy_eff','capret_yield_eff','multi_year_data','non_common_flag',
                             'biotech_momentum_watch','controlled_sub_flag',
-                            'narrative_lag_lenses','narrative_lag_extent','nl_sales_1y','nl_ebit_1y','nl_eps_1y',
+                            'narrative_lag_lenses','narrative_lag_extent','narrative_lag_years','narrative_lag_max_gap','nl_sales_1y','nl_ebit_1y','nl_eps_1y','nl_fcfps_1y','nl_sales_5y',
                             'nl_sales_2y','nl_ebit_2y','nl_sales_3y',
                             'ts_dvol26_usd','ts_r52','ts_rs_pct_mkt','ts_weinstein_stage','ts_maxdd_5y',
                             'ts_dist_hi52','ts_mrs',
