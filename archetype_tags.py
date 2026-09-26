@@ -996,17 +996,25 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
 
     _TIERED = []
 
-    def _tier(name, core, exceptional=None, note=""):
+    def _tier(name, core, exceptional=None, elite_metric=None, higher=True, q=0.90):
         """Core / watch / exceptional split (breadth doctrine): the PREVIOUS
         rule survives as a surfaced `<name>_watch` flag, `arch_<name>` becomes
         the tightened core (the archetype's thesis measured directly), and
         `<name>_exceptional` marks the genuinely exceptional subset (ranking /
-        EXC tags; never a gate on anything else)."""
+        EXC tags; never a gate on anything else), and `<name>_elite` the BEST
+        OF THE BEST on the archetype's defining continuous measure: the top
+        (1-q) of core members, ranked among core members only."""
         col = 'arch_' + name
         df[name + '_watch'] = df[col].astype(int)
         df[col] = (df[col].astype(bool) & core.fillna(False)).astype(int)
         if exceptional is not None:
             df[name + '_exceptional'] = (df[col].astype(bool) & exceptional.fillna(False)).astype(int)
+        if elite_metric is not None:
+            m = pd.to_numeric(elite_metric, errors='coerce')
+            m = m if higher else -m
+            inn = df[col].astype(bool) & m.notna()
+            cut = m[inn].quantile(q) if inn.sum() >= 10 else np.inf
+            df[name + '_elite'] = (inn & (m >= cut)).astype(int)
         _TIERED.append(name)
 
     def _ncol(col):
@@ -1185,6 +1193,16 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((s('fcf_ttm') > 0) | (s('ebitda_ttm') > 0) | _first_pos_any) &
         (((pb > 0) & (pb < 3.0)) | (fcf_yield >= 0.03))
     ).fillna(False).astype(int)
+    # (tighten) the lag MEASURED against the advance: TTM sales growth outran the
+    # 52-week total return by >= 20% (1-year coil), or the 2-year coil holds.
+    # A down year alone (half the universe) is not a lag. Exceptional: TTM
+    # EBIT +20%, stock flat-or-down on the year, consistent EPS record.
+    _coil1y = np.log1p(_ncol('fq_rev_growth')) - np.log1p(_ncol('ts_r52'))
+    _tier('narrative_lag',
+          ((_coil1y >= np.log(1.2)) | (_ncol('bs_coil_rev') >= np.log(1.2)) | (_ncol('bs_coil_ebit') >= np.log(1.3)))
+          & ((_ncol('ebitda_ttm') > 0) | (_ncol('fcf_ttm') > 0)),     # a profitable business the market ignores
+          (_ncol('fqx_ebit_ttm_g') >= 0.20) & (_ncol('ts_r52') <= 0) & (_ncol('fqx_eps_pos_share_8') >= 0.75),
+          elite_metric=pd.concat([_coil1y, _ncol('bs_coil_rev')], axis=1).max(axis=1))
 
     # ---------- Cluster C5: Fixed-Cost Asset + Demand Shock ----------
     df['arch_fixed_cost_demand_shock'] = (
@@ -1327,6 +1345,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         (mcap > 0) & (mcap < 4e8) &
         ((~adv_has) | (adv < 5e5))
     ).astype(int)
+    # (tighten) the ADV leg was dead (the pew ADV field is absent for firers):
+    # tradeable-but-thin in USD ($50k-$2.5M / week), observed neglect (<= 1
+    # analyst), a real operating business. Exceptional: also profitable on
+    # EBITDA and FCF.
+    _tier('blindspot',
+          is_operating & _ncol('ts_dvol26_usd').between(5e4, 2.5e6) & ~(_ncol('sent_n_analysts') > 1),
+          (_ncol('ebitda_ttm') > 0) & (_ncol('fcf_ttm') > 0),
+          elite_metric=fcf_yield)
 
     # ---------- Cluster H: Microcap Inflection + Activist Capital Allocation ----------
     # Pattern (user write-up):
@@ -1476,7 +1502,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # history went global; the through-cycle minimum is what durability means.
     _tier('lindy_margin',
           (_ncol('tc_min_opm') >= 0.15) & (_ncol('tc_years') >= 7),
-          (_ncol('tc_min_opm') >= 0.20) & (_ncol('tc_min_gm') >= 0.40))
+          (_ncol('tc_min_opm') >= 0.20) & (_ncol('tc_min_gm') >= 0.40),
+          elite_metric=_ncol('tc_min_opm'))
 
     df['arch_lindy_fcf'] = (
         is_operating &                               # (R1b) exclude financials/REITs
@@ -1495,7 +1522,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _tier('lindy_fcf',
           (_ncol('tc_fcf_years') >= 7) & (_ncol('tc_fcf_pos') == _ncol('tc_fcf_years'))
           & (_ncol('tc_fcf_margin_avg') >= 0.10),
-          (_ncol('ts_maxdd_5y') >= -0.40))
+          (_ncol('ts_maxdd_5y') >= -0.40),
+          elite_metric=_ncol('tc_fcf_margin_avg'))
 
     # P — No Dilution (Clean Compounder): shares roughly flat over 3y AND
     # FCF positive 4 of 5 AND ROIC positive 4 of 5. The Mayer / Mauboussin
@@ -1522,7 +1550,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # flat-or-down over 5y, ROIC >= 15% and FCF per share still rising.
     _tier('no_dilution',
           (_ncol('roic_lindy') >= 0.10),
-          (_ncol('shares_growth_5y') <= 0) & (_ncol('roic_lindy') >= 0.15) & (_ncol('fqx_fcf_ps_g') > 0))
+          (_ncol('shares_growth_5y') <= 0) & (_ncol('roic_lindy') >= 0.15) & (_ncol('fqx_fcf_ps_g') > 0),
+          elite_metric=_ncol('roic_lindy'))
 
     # ---------- Z-AC: Capital-allocation archetypes (audit June 2026) ---------
     # Directly extracted from EDGAR XBRL: payments of dividends + buybacks +
@@ -1567,7 +1596,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # coverage). Exceptional: a >= 5-year dividend-raise streak with no cut.
     _tier('capital_returner',
           (_ncol('tc_uncov_payout_3y') == 0),
-          (_ncol('evt_div_raise_streak') >= 5) & ~(_ncol('evt_div_cut_2y') == 1))
+          (_ncol('evt_div_raise_streak') >= 5) & ~(_ncol('evt_div_cut_2y') == 1),
+          elite_metric=capital_return_yield)
 
     # Z2 — Balance-Sheet Return / Cash-Rich Runoff: a DISTINCT thesis, not an
     # operating compounder. Companies returning cash NOT generated by
@@ -1791,7 +1821,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # street is genuinely not watching (observed coverage <= 3 analysts).
     _tier('quiet_compounder',
           (_ncol('ts_r52') <= 0.20) & (_ncol('ts_maxdd_5y') > -0.45) & (_ncol('fqx_ebit_ttm_g') >= 0.10),
-          (_ncol('sent_n_analysts') <= 3))
+          (_ncol('sent_n_analysts') <= 3),
+          elite_metric=_ncol('roic_lindy'))
 
     # S — Buyback Compounder: shrinking share count + durable ROIC + clean
     # balance sheet. Greenblatt / capital-allocation classic.
@@ -1838,6 +1869,19 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_owner_operator'] = (
         _oo_common & (_oo_us | _oo_global)
     ).fillna(False).astype(int)
+    # (tighten) Yahoo "insiders" includes corporate parents: >= 60% is usually a
+    # listed SUBSIDIARY, not an owner-operator (surfaced as controlled_sub_flag).
+    # Core = insider 20-60%, or revealed alignment (insider buying, buybacks,
+    # a shrinking count). Exceptional: insiders buying + ROIC >= 15% + no dilution.
+    df['controlled_sub_flag'] = (insider >= 0.60).fillna(False).astype(int)
+    _aligned = ((_ncol('fmp_insider_aligned_flag') == 1) | (_ncol('insider_buy_flag') == 1)
+                | (_ncol('buyback_yield') >= 0.01) | (_ncol('shares_growth_3y') < 0))
+    _tier('owner_operator',
+          insider.between(0.20, 0.60) & (_aligned | (_ncol('roic_lindy') >= 0.12)),
+          (((_ncol('insider_buy_flag') == 1) | (_ncol('fmp_insider_net_usd_12m') > 0))
+           | (_ncol('shares_growth_3y') <= -0.05))
+          & (_ncol('roic_lindy') >= 0.15) & ~(_ncol('shares_growth_3y') > 0),
+          elite_metric=_ncol('roic_lindy'))
 
     # U — Quality at a Reasonable Price (QARP): high lindy ROIIC AND not
     # already discounted as a compounder. Russo-via-Buffett pattern of
@@ -2057,6 +2101,18 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     df['arch_lynch_pegy'] = (
         (pegy_v > 0) & (pegy_v <= 1.0)
     ).fillna(False).astype(int)
+    # (tighten) PEGY on DURABLE growth: TTM net-income growth (date-matched
+    # quarters) inside Lynch's 8-50% band with a consistent EPS record, instead
+    # of Yahoo's single-quarter growth (38% of firers sat at its 100% cap).
+    # Exceptional: PEGY <= 0.6 and operating income positive every year.
+    _g_ly = _ncol('fqx_ni_ttm_g')
+    _dy_ly = _ncol('dividend_yield').fillna(0)
+    _pegy_ttm = (_ncol('p_e') / ((_g_ly * 100) + (_dy_ly * 100))).where(
+        (_ncol('p_e') > 0) & _g_ly.between(0.08, 0.50))
+    _tier('lynch_pegy',
+          (_pegy_ttm <= 1.0) & ((_ncol('fqx_eps_pos_share_8') >= 0.75) | (_ncol('eps_yoy_positive_share') >= 0.75)),
+          (_pegy_ttm <= 0.6) & (_ncol('tc_opinc_pos') == _ncol('tc_years')),
+          elite_metric=_pegy_ttm, higher=False)
     # (G9) require real positive EBITDA on the EBITDA-yield path (a negative
     # EBITDA makes the ratio meaningless), and drop the sales (psg/evsg)
     # fallback for negative-EBITDA names while guarding a near-zero-EV
@@ -2071,6 +2127,16 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
           (((_psg_e > 0) & (_psg_e <= 0.06)) |
            ((_evsg_e > 0) & (_evsg_e <= 0.05)))))
     ).fillna(False).astype(int)
+    # (tighten) growth denominator = min(TTM EBIT growth, 3y revenue CAGR),
+    # capped at 50% — one hot EBITDA year no longer manufactures a cheap ratio.
+    # Exceptional: <= 0.4 with operating leverage showing.
+    _g_ev = pd.concat([_ncol('fqx_ebit_ttm_g'), _ncol('revenue_3y_cagr')], axis=1).min(axis=1).clip(upper=0.50)
+    _evgy_d = (_ncol('ev_ebitda') / ((_g_ev * 100) + (_ncol('dividend_yield').fillna(0) * 100))).where(
+        (_ncol('ev_ebitda') > 0) & (_g_ev >= 0.08))
+    _tier('lynch_evgy',
+          (_evgy_d <= 0.6),
+          (_evgy_d <= 0.4) & (_ncol('fqx_inc_ebit_margin') >= 0.15),
+          elite_metric=_evgy_d, higher=False)
 
     # ======================================================================
     # Practitioner archetypes — Wolf of Oakville, Liger Cub / Byron Street,
@@ -2521,7 +2587,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _tier('kullamagie_breakout',
           (_ncol('ts_rs_pct_mkt') >= 90) & (_ncol('ts_dist_hi52') >= 0.75)
           & (_ncol('ts_above_ma30') == 1) & (_ncol('ts_dvol26_usd') >= 1e6),
-          (_ncol('ts_rs_pct_mkt') >= 95) & (_ncol('ts_tight5') <= 0.10) & (_ncol('ts_dvol26_usd') >= 5e6))
+          (_ncol('ts_rs_pct_mkt') >= 95) & (_ncol('ts_tight5') <= 0.10) & (_ncol('ts_dvol26_usd') >= 5e6),
+          elite_metric=_ncol('ts_rs_raw'))
     df['kullamagie_score'] = (df['kullamagie_score'] * df['arch_kullamagie_breakout']).round(3)
 
     # ---------- Weinstein Stage 2A / early Stage 2 SETUP ----------
@@ -2551,7 +2618,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _tier('weinstein_stage2',
           (_ncol('ts_weinstein_stage') == 2) & (_ncol('ts_above_ma30') == 1) & (_ncol('ts_mrs') > 0)
           & (_ncol('ts_dist_hi52') >= 0.90) & (_ncol('ts_r52') <= 1.0),
-          (_ncol('ts_ma30_slope13') < 0.03) & ((_ncol('ts_mrs_13ago') <= 0) | (_ncol('ts_vol_spike4') >= 2)))
+          (_ncol('ts_ma30_slope13') < 0.03) & ((_ncol('ts_mrs_13ago') <= 0) | (_ncol('ts_vol_spike4') >= 2)),
+          elite_metric=_ncol('ts_mrs'))
     df['weinstein_score'] = (df['weinstein_score'] * df['arch_weinstein_stage2']).round(3)
 
     # ---------- O'Neil CAN SLIM SETUP ----------
@@ -2590,7 +2658,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # EPS record, and "M" — a healthy market (>= half of it above its 30w MA).
     _tier('oneil_canslim',
           (_ncol('fqx_eps_q_yoy') >= 0.25) & (_ncol('ts_rs_pct_mkt') >= 80) & (_ncol('ts_dist_hi52') >= 0.85),
-          (_ncol('fqx_eps_accel') > 0) & (_ncol('fqx_eps_pos_share_8') >= 0.75) & (_ncol('ts_mkt_breadth30') >= 0.5))
+          (_ncol('fqx_eps_accel') > 0) & (_ncol('fqx_eps_pos_share_8') >= 0.75) & (_ncol('ts_mkt_breadth30') >= 0.5),
+          elite_metric=_ncol('fqx_eps_q_yoy'))
     df['oneil_score'] = (df['oneil_score'] * df['arch_oneil_canslim']).round(3)
 
     # ---------- Peter Cundill deep value ----------
@@ -2836,6 +2905,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         ((rev_accel > 0) | oper_lev_any) &
         liger_sector_ok
     ).fillna(False).astype(int)
+    # (tighten) "early inflection" must be REAL: a first-positive print, EPS
+    # turning positive, or incremental EBIT margin >= 20% (not oper_lev_any's
+    # sequential drift). Exceptional: observed coverage <= 1, TTM EBIT +30%.
+    _tier('liger_neglected_survivor',
+          (ebitda_first_pos > 0) | (ni_first_pos > 0) | (_ncol('fqx_eps_turned') == 1)
+          | (_ncol('fqx_inc_ebit_margin') >= 0.20),
+          ~(_ncol('sent_n_analysts') > 1) & (_ncol('fqx_ebit_ttm_g') >= 0.30),
+          elite_metric=_ncol('fqx_ebit_ttm_g'))
 
     # ---------- Oak Bloke special situations ----------
     # Every Oak winner pairs cheapness with a CASH-RICH, cash-generative
@@ -5266,6 +5343,15 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         | _asleep_eps_branch
         | _asleep_fwd_branch.fillna(False)
     ).fillna(False).astype(int)
+    # (tighten) a 4-quarter 75% beat rate is the base rate (40% of covered
+    # names). Core: 7 of the last 8 reports beat, or a perfect 4/4 with a >=2%
+    # average surprise. Exceptional: 7/8 AND >= 3 of those beats the price
+    # ignored (the market is asleep, not just the analysts).
+    _tier('asleep_at_wheel',
+          (_ncol('evt_beats_8q') >= 7) | ((_ncol('earnings_beat_rate') >= 1.0) & (_ncol('avg_earnings_surprise') >= 0.02)),
+          (_ncol('evt_beats_8q') >= 7) & (_ncol('evt_ignored_beats_2y') >= 3),
+          elite_metric=pd.concat([_ncol('evt_surprise_4q'), _ncol('avg_earnings_surprise')], axis=1).max(axis=1))
+    df['asleep_score'] = (df['asleep_score'] * df['arch_asleep_at_wheel']).round(3) if 'asleep_score' in df else 0
     # Quality-UPWEIGHTED ranking score: the underestimation signal earns a name
     # into the archetype, but quality (returns on capital, margins, profitability,
     # conservative leverage) carries the majority of the RANK weight, so the
@@ -5330,6 +5416,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _not_rich_au.fillna(False) &
         _not_melting
     ).fillna(False).astype(int)
+    # (tighten) "not re-rated" measured: sales growth >= the 52-week total
+    # return (1-year coil >= 0) or the 2-year coil. Exceptional: the market
+    # FADES the beats (average earnings-week reaction to beats <= 0).
+    _c1_au = np.log1p(_ncol('fq_rev_growth')) - np.log1p(_ncol('ts_r52'))
+    _tier('asleep_unrerated',
+          (_c1_au >= 0) | (_ncol('bs_coil_rev') >= np.log(1.25)) | (_ncol('bs_coil_ebit') >= np.log(1.40)),
+          (_ncol('evt_react_beats_4q') <= 0),
+          elite_metric=pd.concat([_c1_au, _ncol('bs_coil_rev')], axis=1).max(axis=1))
 
     # XR9 — Audited streak, unrerated ('XR-AuditedStreakUnrerated'):
     # (user: streaks LONGER than four quarters) 8+ CONSECUTIVE quarters of
@@ -5636,6 +5730,14 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     
         & is_operating   # (G1 ext) EV-multiple meaningless for financials
     ).fillna(False).astype(int)
+    # (tighten) TTM sales growth >= 15% (not one YoY print) outrunning the
+    # total return by >= 15% (1y) or the 2-year coil. Exceptional: operating
+    # leverage showing (incremental EBIT margin >= 15%).
+    _c1_ev = np.log1p(_ncol('fq_rev_growth')) - np.log1p(_ncol('ts_r52'))
+    _tier('evsales_derating',
+          (_ncol('fq_rev_growth') >= 0.15) & ((_c1_ev >= 0.15) | (_ncol('bs_coil_rev') >= 0.15)),
+          (_ncol('fqx_inc_ebit_margin') >= 0.15),
+          elite_metric=_c1_ev)
     # Score: depth of the derate + growth confirmation + exceptional evsg bonus.
     _derate_depth = (mult_compression.clip(0, 1.0)).fillna(0.0)     # 0..1
     df['evsales_derate_score'] = ((0.5 * _derate_depth
@@ -5913,7 +6015,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     # leading), or two independent change lenses at once.
     _tier('analyst_awakening',
           (_sent_turn_n >= 1) | ((_ncol('ts_mrs') > _ncol('ts_mrs_13ago')) & (_ncol('ts_r13') > 0)),
-          (_ncol('evt_pt_lead_flag') == 1) | (_sent_turn_n >= 2))
+          (_ncol('evt_pt_lead_flag') == 1) | (_sent_turn_n >= 2),
+          elite_metric=df['analyst_awakening_score'])
     df['analyst_awakening_score'] = (df['analyst_awakening_score'] * df['arch_analyst_awakening']).round(3)
 
     # ---------- Analyst re-rating CONFIRMED by 52-week highs ----------
@@ -5948,7 +6051,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
     _tier('analyst_rerating_confirmed',
           (_ncol('ts_dist_hi52') >= 0.97) | ((_ncol('ts_rs_at_hi') == 1) & (_ncol('ts_above_ma30') == 1)),
           (_ncol('evt_pt_lead_flag') == 1) | (_ncol('sent_buy_share_d12') >= 0.10)
-          | ((_ncol('sent_upgrades_12m') - _ncol('sent_downgrades_12m')) >= 2) | (_ncol('sent_pt_rev_q') >= 0.10))
+          | ((_ncol('sent_upgrades_12m') - _ncol('sent_downgrades_12m')) >= 2) | (_ncol('sent_pt_rev_q') >= 0.10),
+          elite_metric=_ncol('ts_mrs'))
     df['analyst_rerating_score'] = (df['analyst_rerating_score'] * df['arch_analyst_rerating_confirmed']).round(3)
 
     # ---------- Institutional accumulation into a flat / falling tape ----------
@@ -6602,6 +6706,13 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _not_melting &
         (nde <= 2.0)                                    # low leverage (strong balance sheet)
     ).fillna(False).astype(int)
+    # (tighten) same insider-band / revealed-alignment fix as owner_operator.
+    # Exceptional: genuinely unwatched (observed <= 2 analysts) and FCF
+    # positive in every fiscal year on file.
+    _tier('flyover',
+          insider.between(0.20, 0.60) | ((_ncol('insider_buy_flag') == 1) | (_ncol('buyback_yield') >= 0.01)),
+          ~(_ncol('sent_n_analysts') > 2) & (_ncol('tc_fcf_pos') == _ncol('tc_fcf_years')),
+          elite_metric=_ncol('roic_lindy'))
 
     # ---------- Event-driven / Special-Situations sleeve (EDGAR, US filers) ----
     # The Special-Situations taxonomy (Master Reference III/VIII; Compendium
@@ -7465,6 +7576,11 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
         _on = pd.to_numeric(df[_c], errors='coerce').fillna(0) == 1
         _sig = _sig.where(~_on, _sig + ' · EXC-' + _c[:-len('_exceptional')])
     df['exceptional_count'] = df[_exc_cols].sum(axis=1).astype(int) if _exc_cols else 0
+    _eli_cols = [n + '_elite' for n in _TIERED if n + '_elite' in df.columns]
+    for _c in _eli_cols:
+        _on = pd.to_numeric(df[_c], errors='coerce').fillna(0) == 1
+        _sig = _sig.where(~_on, _sig + ' · ELITE-' + _c[:-len('_elite')])
+    df['elite_count'] = df[_eli_cols].sum(axis=1).astype(int) if _eli_cols else 0
     df['fmp_signals'] = _sig.str.lstrip(' ·')
 
     out = df[['symbol'] + arch_cols + ['archetype_count','archetype_tags_str','bab_score','oper_leverage_score','buyback_score','inflection_confirm_score','rev_growth_score','cheapness_score','quality_score','confirm_overall','alignment_score','governance_score','governance_tier','insider_distinct_buyers','insider_net_buy_value','insider_officer_buy_flag','insider_buy_flag','insider_cluster_buy_flag','insider_10pct_buy_flag','tenbagger_score','tenbagger_implied_return','evsales_derate_score','evsales_derate_gap','lynch_reward_score','lynch_leg_max','lynch_exceptional_leg','lynch_rank','high_52w_abs','high_52w_rel','high_52w_both','analyst_awakening_score','analyst_rerating_score','asleep_score','seg_inflect_score','oneil_score','weinstein_score','kullamagie_score','cundill_score','biotech_deep_value_score','biotech_cash_runway_yrs','is_drug_developer','is_clinical_biotech','financing_fragile_flag','sbc_polluted_flag','earnings_oneoff_flag','segment_rot_flag','data_quality_flag','holdco_flag','china_vie_flag','cash_squatter_flag','capex_treadmill_flag','earnings_variability_flag','cluseau_sizing_tier','adjusted_book','adjusted_pb','nnwc','nnwc_pct_mcap','nnwc_asset_mix','xr_family_count','xr_confidence','xr_score','forensic_hidden_pct','forensic_xr_score','value_unlock_score','value_unlock_confirmed','pre_rerating_quality','pre_rerating_score','pre_rerating_flag','truly_xr_score','truly_xr_flag','truly_xr_tell_count','truly_xr_mech_count','truly_xr_tells_str','spin_date','reorg_date']
@@ -7503,7 +7619,7 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
              # institutional accumulation + FMP segmentation + digest
              + [c for c in ['inst_accum_score','inst_accum_accelerating','inst_own_excess_q0','inst_buy_excess_q0','fmp_signals',
                             'roic_lindy_eff','capret_yield_eff','multi_year_data','non_common_flag',
-                            'biotech_momentum_watch',
+                            'biotech_momentum_watch','controlled_sub_flag',
                             'fmp_inst_quarter','fmp_inst_holders','fmp_inst_own_pct',
                             'fmp_inst_own_chg_q0','fmp_inst_own_chg_q1','fmp_inst_own_chg_q2',
                             'fmp_inst_shares_chg_pct_q0','fmp_inst_shares_chg_pct_q1',
@@ -7551,8 +7667,8 @@ def compute(out_path: str = 'archetype_tags.csv') -> pd.DataFrame:
                             'sent_neglected_flag','sent_skeptic_flag',
                             ] if c in df.columns]
              + [c + '_eff' for c in _EFF_COLS if c + '_eff' in df.columns]
-             + [c for c in df.columns if c.endswith(('_watch', '_exceptional'))]
-             + ['exceptional_count']
+             + [c for c in df.columns if c.endswith(('_watch', '_exceptional', '_elite'))]
+             + ['exceptional_count', 'elite_count']
              + [c for c in df.columns if c.startswith('fmp_filled_')]]
     from master_versions import versioned_replace
     # 10 significant digits: exact for every ratio / flag / score and for
